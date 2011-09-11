@@ -3315,14 +3315,16 @@ class EventListPage(BasePage):
                         if gid not in _EVENT_DISPLAYED:
 
                             # family event 
-                            if _type in _EVENTMAP:
-                                handle_list = db.find_backlink_handles(event_handle, 
-                                    include_classes = ['Family'])
+                            if int(_type) in _EVENTMAP:
+                                handle_list = set(db.find_backlink_handles(
+                                    event_handle, 
+                                    include_classes=['Family', 'Person']))
 
                             # personal event
                             else:
-                                handle_list = db.find_backlink_handles(event_handle, 
-                                    include_classes = ['Person'])
+                                handle_list = set(db.find_backlink_handles(
+                                    event_handle, 
+                                    include_classes=['Person']))
                             if handle_list:
 
                                 trow = Html("tr")
@@ -3346,7 +3348,8 @@ class EventListPage(BasePage):
                                     tcell += "&nbsp;" 
   
                                 # display Event type if first in the list
-                                tcell = Html("td", class_ = "ColumnType", inline = True)
+                                tcell = Html("td", class_="ColumnType",
+                                             title=evt_type, inline=True)
                                 trow += tcell
                                 if first_event:
                                     tcell += evt_type
@@ -3495,8 +3498,8 @@ class EventPage(BasePage):
                 trow += tcell
 
                 # Person(s) field
-                handle_list = db.find_backlink_handles(event_handle,
-                    include_classes = ['Family' if event.type in _EVENTMAP else 'Person'])
+                handle_list = set(db.find_backlink_handles(event_handle,
+                    include_classes = ['Family', 'Person'] if int(event.type) in _EVENTMAP else ['Person']))
                 first_person = True
 
                 # get person(s) for ColumnPerson
