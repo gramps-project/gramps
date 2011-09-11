@@ -359,7 +359,7 @@ class BasePage(object):
         completes the person column for classes EventListPage and EventPage
 
         @param: tcell -- table cell from its caller
-        @param: first_person -- variable from its callers
+        @param: first_person -- Not used any more, done via css
         @param: handle_list -- handle list from the backlink of the event_handle
         """
         db = self.report.database
@@ -368,20 +368,17 @@ class BasePage(object):
 
             # personal event
             if classname == "Person":
-
                 _obj = db.get_person_from_handle(handle)
                 if _obj:
                     person_name = self.get_name(_obj)
                     if check_person_database(handle, ppl_hnd_list):
                         url = self.report.build_url_fname_html(handle, "ppl", up) 
-                        tcell += self.person_link(url, _obj, _NAME_STYLE_DEFAULT,
-                            gid = _obj.get_gramps_id() )
+                        tcell += Html("span", self.person_link(url, _obj,
+                            _NAME_STYLE_DEFAULT, gid=_obj.get_gramps_id()),
+                            class_="person", inline=True)
                     else:
-                        tcell += person_name
-
-                    if not first_person:
-                        tcell += ", "
-                        first_person = False
+                        tcell += Html("span", person_name, class_="person",
+                                      inline=True)
 
             # family event
             else:
@@ -415,13 +412,12 @@ class BasePage(object):
                             slink = spouse_name
 
                     if spouse and husband:
-                        tcell += Html("span", hlink, class_ = "father fatherMother") + (
-                            Html("span", slink, class_ = "mother")
-                        )  
+                        tcell += Html("span", hlink, class_ = "father", inline=True)
+                        tcell += Html("span", slink, class_ = "mother", inline=True)
                     elif spouse:
-                        tcell += Html("span", slink, class_ = "mother")
+                        tcell += Html("span", slink, class_ = "mother", inline=True)
                     elif husband:
-                        tcell += Html("span", hlink, class_ = "father")
+                        tcell += Html("span", hlink, class_ = "father", inline=True)
 
         # return tcell, and first_person back to its callers
         return tcell
@@ -2040,7 +2036,7 @@ class BasePage(object):
                 person_name = person
 
             # 1. start building link to image or person
-            hyper = Html("a", href = url)
+            hyper = Html("a", href=url, inline=True)
 
             # 2. insert thumbnail if there is one, otherwise insert class = "noThumb"
             if thumbnailUrl:
@@ -2604,6 +2600,7 @@ class SurnamePage(BasePage):
                                             gid = partner.gramps_id)
                                     else:
                                         tcell += partner_name
+                                    first_family = False
                         else:
                             tcell += "&nbsp;"
 
