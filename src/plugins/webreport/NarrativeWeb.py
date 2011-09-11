@@ -3141,7 +3141,7 @@ class PlacePage(BasePage):
                     placedetail += thumbnail
 
             # add section title
-            placedetail += Html("h5", html_escape(self.page_title), inline =True)
+            placedetail += Html("h3", html_escape(self.page_title), inline =True)
 
             # begin summaryarea division and places table
             with Html("div", id ='summaryarea') as summaryarea:
