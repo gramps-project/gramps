@@ -1079,6 +1079,35 @@ table.attrlist tbody tr td.ColumnSources {
     width: 10%;
 }
 
+/* Subsections : Attributes
+----------------------------------------------------- */
+div#attributes {
+    margin: 0;
+    padding: 0;
+}
+table.attrlist {
+    width: 100%;
+}
+table.attrlist thead tr th {
+    background-color: #70B1ED;
+    color: #000;
+}
+table.attrlist tbody tr td {
+    border-bottom: dashed 1px #000;
+}
+table.attrlist tbody tr td.ColumnType {
+    width: 15%;
+}
+table.attrlist tbody tr td.ColumnValue {
+    width: 15%;
+}
+table.attrlist tbody tr td.ColumnNotes {
+    width: 40%;
+}
+table.attrlist tbody tr td.ColumnSources {
+    width: 10%;
+}
+
 /* Subsections : Parents
 ----------------------------------------------------- */
 div#parents {

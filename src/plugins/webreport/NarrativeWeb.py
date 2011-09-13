@@ -1105,6 +1105,61 @@ class BasePage(object):
         # return section to its caller
         return section
 
+    def display_family_attr_list(self, attrlist):
+        """
+        format for family attribute list is different than all the others
+        """
+        with Html("div", class_ ="subsection", id ="attributes") as section:
+            with Html("table", class_ ="infolist attributes") as table:
+                section += table
+
+                thead = Html("thead")
+                table += thead
+
+                # for proper spacing...
+                trow = Html("tr")
+                thead += trow
+
+                trow.extend(
+                    Html("th", label, class_ =colclass, inline =True)
+                    for label, colclass in [
+                        ('&nbsp;',     "ColumnType"),
+                        ('&nbsp;',     "ColumnAttribute"),  
+                        (_("Type"),    "Type"),
+                        (_("Value"),   "Value"),
+                        (_("Notes"),   "Notes"),
+                        (_("Sources"), "Sources")
+                    ]
+                )
+                tbody = Html("tbody")
+                table += tbody
+
+                first_row = True
+                for attr in attrlist:
+                    if first_row:
+                        trow = Html("tr") + (
+                            Html("td", '&nbsp;', class_ ="ColumnType", inline =True),
+                            Html("td", _("Attributes"), class_ ="ColumnAttribute", inline =True)
+                        )
+                    else:
+                        trow = Html("tr") + (
+                            Html("td", '&nbsp;', class_ ="ColumnType", inline =True),
+                            Html("td", '&nbsp;', class_ ="ColumnAttribute", inline =True)
+                        )
+                    tbody += trow
+
+                    trow.extend(
+                        Html("td", data or "&nbsp;", class_ =colclass, inline =True)
+                        for colclass, data in [
+                            ("Type",          str(attr.get_type()) ),
+                            ("Value",         attr.get_value() ),
+                            ("ColumnNotes",   self.dump_notes(attr.get_note_list()) ),
+                            ("ColumnSources", self.get_citation_links(attr.get_source_references()) )
+                        ]
+                    )
+                    first_row = False
+        return section
+
     def write_footer(self):
         """
         Will create and display the footer section of each page...
@@ -1933,6 +1988,10 @@ class BasePage(object):
                                 Html("td", self.dump_ordinance(db, family, "Family"), class_ = "ColumnValue")
                                 )
                             table += trow
+
+            attrlist = family.get_attribute_list()
+            if attrlist:
+                section += self.display_family_attr_list(attrlist)
 
         # return section to its caller
         return section
@@ -4643,7 +4702,7 @@ class IndividualPage(BasePage):
         gen.lib.Person.UNKNOWN : _('unknown'),
         }
 
-    def __init__(self, report, title, person, ind_list, place_list, src_list, attribute_list):
+    def __init__(self, report, title, person, ind_list, place_list, src_list):
         BasePage.__init__(self, report, title, person.gramps_id)
         self.person = person
         self.ind_list = ind_list
@@ -4732,7 +4791,7 @@ class IndividualPage(BasePage):
                 individualdetail += sect8
 
             # display attributes
-            sect9 = self.display_attr_list(attribute_list)
+            sect9 = self.display_attr_list(self.person.get_attribute_list())
             if sect9 is not None:
                 individualdetail += sect9
 
@@ -6526,22 +6585,6 @@ class NavWebReport(Report):
             fdir, fname = os.path.split(from_path)
             self.copy_file(from_path, fname, "images")
 
-    def build_attributes(self, person):
-        """
-        build a list of attributes for each person
-        """
-        # get personal attributes
-        attribute_list = person.get_attribute_list()
-
-        for family_handle in person.get_family_handle_list():
-            family = self.database.get_family_from_handle(family_handle)
-
-            # get family attributes
-            attribute_list.extend(family.get_attribute_list() )
-
-        # return attributes to its caller
-        return attribute_list
-
     def person_pages(self, ind_list, place_list, source_list):
         """
         creates IndividualListPage, IndividualPage, and gendex page
@@ -6557,10 +6600,7 @@ class NavWebReport(Report):
             self.progress.step()
             person = self.database.get_person_from_handle(person_handle)
 
-            # get attributes for each person
-            attribute_list = self.build_attributes(person)
-
-            IndividualPage(self, self.title, person, ind_list, place_list, source_list, attribute_list)
+            IndividualPage(self, self.title, person, ind_list, place_list, source_list)
 
         if self.inc_gendex:
             self.progress.set_pass(_('Creating GENDEX file'), len(ind_list))
