@@ -129,7 +129,7 @@ DEATH = _("Death")
 DHEAD = _("Date")
 DESCRHEAD = _("Description")
 _EVENT = _("Event")
-GRAMPSID = _("Gramps ID")
+GRAMPSID = _("Gramps&nbsp;ID")
 LATITUDE = _("Latitude")
 LOCALITY = _("Locality")
 LONGITUDE = _("Longitude")
@@ -1274,10 +1274,10 @@ class BasePage(object):
             ('places',                  _("Places"),                True),
             ('events',                  _("Events"),                self.report.inc_events), 
             ('media',                   _("Media"),                 self.create_media),
-            ('download',                _("Download"),              self.report.inc_download),
             ('sources',                 SHEAD,                      True),
             ('repositories',            _("Repositories"),          inc_repos),
             ("addressbook",             _("Address Book"),          self.report.inc_addressbook),
+            ('download',                _("Download"),              self.report.inc_download),
             ('contact',                 _("Contact"),               self.report.use_contact),
                 ]
 
@@ -2156,7 +2156,7 @@ class IndividualListPage(BasePage):
                 individuallist += alpha_nav
 
             # begin table and table head
-            with Html("table", class_ = "infolist IndividualList") as table:
+            with Html("table", class_ = "infolist primobjlist IndividualList") as table:
                 individuallist += table
                 thead = Html("thead")
                 table += thead
@@ -2289,9 +2289,8 @@ class IndividualListPage(BasePage):
                                 mother_name = self.get_name(mother)
                             samerow = False 
                             if mother and father:
-                                tcell = ( Html("span", father_name, class_ = "father fatherNmother") +
-                                    Html("span", mother_name, class_ = "mother")
-                                    )
+                                tcell = Html("span", father_name, class_ = "father fatherNmother")
+                                tcell += Html("span", mother_name, class_ = "mother")
                             elif mother:
                                 tcell = Html("span", mother_name, class_ = "mother")
                             elif father:
@@ -2345,7 +2344,7 @@ class SurnamePage(BasePage):
             surnamedetail += Html("p", msg, id = "description")
 
             # begin surname table and thead
-            with Html("table", class_ = "infolist surname") as table:
+            with Html("table", class_ = "infolist primobjlist surname") as table:
                 surnamedetail += table
                 thead = Html("thead")
                 table += thead
@@ -2452,9 +2451,8 @@ class SurnamePage(BasePage):
                             if mother:
                                 mother_name = self.get_name(mother)
                             if mother and father:
-                                tcell = ( Html("span", father_name, class_ = "father fatherNmother") +
-                                    Html("span", mother_name, class_ = "mother")
-                                    )
+                                tcell = Html("span", father_name, class_ = "father fatherNmother")
+                                tcell += Html("span", mother_name, class_ = "mother")
                             elif mother:
                                 tcell = Html("span", mother_name, class_ = "mother", inline = True)
                             elif father:
@@ -2500,7 +2498,7 @@ class PlaceListPage(BasePage):
                 placelist += alpha_nav
 
             # begin places table and table head
-            with Html("table", class_ = "infolist placelist") as table:
+            with Html("table", class_ = "infolist primobjlist placelist") as table:
                 placelist += table
 
                 # begin table head
@@ -2744,7 +2742,7 @@ class EventListPage(BasePage):
                 eventlist += alpha_nav
 
             # begin alphabet event table
-            with Html("table", class_ = "infolist alphaevent") as table:
+            with Html("table", class_ = "infolist primobjlist alphaevent") as table:
                 eventlist += table
 
                 thead = Html("thead")
@@ -3322,7 +3320,7 @@ class SurnameListPage(BasePage):
                 table_id = 'SortByName'
 
             # begin surnamelist table and table head 
-            with Html("table", class_ = "infolist surnamelist", id = table_id) as table:
+            with Html("table", class_ = "infolist primobjlist surnamelist", id = table_id) as table:
                 surnamelist += table
 
                 thead = Html("thead")
@@ -3519,7 +3517,7 @@ class SourceListPage(BasePage):
             sourceslist += Html("p", msg, id = "description")
 
             # begin sourcelist table and table head
-            with Html("table", class_ = "infolist sourcelist") as table:
+            with Html("table", class_ = "infolist primobjlist sourcelist") as table:
                 sourceslist += table 
                 thead = Html("thead")
                 table += thead
@@ -3675,7 +3673,7 @@ class MediaListPage(BasePage):
             medialist += Html("p", msg, id = "description")
 
             # begin gallery table and table head
-            with Html("table", class_ = "infolist gallerylist") as table:
+            with Html("table", class_ = "infolist primobjlist gallerylist") as table:
                 medialist += table
 
                 # begin table head
@@ -5444,7 +5442,7 @@ class RepositoryListPage(BasePage):
             repositorylist += Html("p", msg, id = "description")
 
             # begin repositories table and table head
-            with Html("table", class_ = "infolist repolist") as table:
+            with Html("table", class_ = "infolist primobjlist repolist") as table:
                 repositorylist += table 
 
                 thead = Html("thead")
@@ -5591,7 +5589,7 @@ class AddressBookListPage(BasePage):
             addressbooklist += Html("p", msg, id = "description")
 
             # begin Address Book table
-            with Html("table", class_ = "infolist addressbook") as table:
+            with Html("table", class_ = "infolist primobjlist addressbook") as table:
                 addressbooklist += table
 
                 thead = Html("thead")
