@@ -421,18 +421,17 @@ class BasePage(object):
 
         @param: attr = attribute object
         """
-
         trow = Html("tr")
 
         # display attribute list
         trow.extend(
-            Html("td", data or "&nbsp;", class_ = "Column" + colclass,
-                inline = True if (colclass == "Type" or "Sources") else False)
+            Html("td", data or "&nbsp;", class_ = colclass,
+                inline = True if (colclass == "Type" or "ColumnSources") else False)
             for (colclass, data) in [
                 ["Type",    str(attr.get_type()) ],
                 ["Value",   attr.get_value() ],
-                ["Notes",   self.dump_notes(attr.get_note_list()) ],
-                ["Sources", self.get_citation_links(attr.get_source_references()) ] ]
+                ["ColumnNotes",   self.dump_notes(attr.get_note_list()) ],
+                ["ColumnSources", self.get_citation_links(attr.get_source_references()) ] ]
         )
 
         # return table row to its caller
@@ -1015,18 +1014,13 @@ class BasePage(object):
         name.set_display_as(name_format)
         return _nd.display_name(name)
 
-    def display_attr_list(self, attrlist):
+    def display_attribute_header(self):
         """
-        will display a list of attributes
-
-        @param: attrlist -- a list of attributes
+        display the attribute section and its table header
         """
-        if not attrlist:
-            return None
-
         # begin attributes division and section title
-        with Html("div", class_ = "subsection", id = "attributes") as section:
-            section += Html("h4", AHEAD,  inline = True)
+        with Html("div", class_ = "subsection", id ="attributes") as section:
+            section += Html("h4", _("Attributes"),  inline =True)
 
             # begin attributes table
             with Html("table", class_ = "infolist attrlist") as table:
@@ -1039,24 +1033,83 @@ class BasePage(object):
                 thead += trow
 
                 trow.extend(
-                    Html("th", label, class_ = "Column" + colclass, inline = True)
+                    Html("th", label, class_ =colclass, inline = True)
                     for (label, colclass) in [
-                        (THEAD,    "Type"),
-                        (VHEAD,    "Value"),
-                        (NHEAD,    "Notes"),
-                        (SHEAD,    "Sources") ]
-                        )
-                                     
-                # begin table body
+                        (THEAD,    "ColumnType"),
+                        (VHEAD,    "ColumnValue"),
+                        (NHEAD,    "ColumnNotes"),
+                        (SHEAD,    "ColumnSources") ]
+                )
+        return section, table
+
+    def display_attr_list(self, attrlist):
+        """
+        will display a list of attributes
+
+        @param: attrlist -- a list of attributes
+        """
+        # begin table body
+        tbody = Html("tbody")
+
+        tbody.extend(
+            self.dump_attribute(attr)
+            for attr in attrlist
+        )
+        return tbody
+
+    def display_family_attr_list(self, attrlist):
+        """
+        format for family attribute list is different than all the others
+        """
+        with Html("div", class_ ="subsection", id ="attributes") as section:
+            with Html("table", class_ ="infolist attributes") as table:
+                section += table
+
+                thead = Html("thead")
+                table += thead
+
+                # for proper spacing...
+                trow = Html("tr")
+                thead += trow
+
+                trow.extend(
+                    Html("th", label, class_ =colclass, inline =True)
+                    for label, colclass in [
+                        ('&nbsp;',     "ColumnType"),
+                        ('&nbsp;',     "ColumnAttribute"),  
+                        (_("Type"),    "Type"),
+                        (_("Value"),   "Value"),
+                        (_("Notes"),   "Notes"),
+                        (_("Sources"), "Sources")
+                    ]
+                )
                 tbody = Html("tbody")
                 table += tbody
 
-                tbody.extend(
-                    self.dump_attribute(attr)
-                    for attr in attrlist
-                )
+                first_row = True
+                for attr in attrlist:
+                    if first_row:
+                        trow = Html("tr") + (
+                            Html("td", '&nbsp;', class_ ="ColumnType", inline =True),
+                            Html("td", _("Attributes"), class_ ="ColumnAttribute", inline =True)
+                        )
+                    else:
+                        trow = Html("tr") + (
+                            Html("td", '&nbsp;', class_ ="ColumnType", inline =True),
+                            Html("td", '&nbsp;', class_ ="ColumnAttribute", inline =True)
+                        )
+                    tbody += trow
 
-        # return section to its caller
+                    trow.extend(
+                        Html("td", data or "&nbsp;", class_ =colclass, inline =True)
+                        for colclass, data in [
+                            ("Type",          str(attr.get_type()) ),
+                            ("Value",         attr.get_value() ),
+                            ("ColumnNotes",   self.dump_notes(attr.get_note_list()) ),
+                            ("ColumnSources", self.get_citation_links(attr.get_source_references()) )
+                        ]
+                    )
+                    first_row = False
         return section
 
     def write_footer(self):
@@ -2922,9 +2975,11 @@ class EventPage(BasePage):
 
             # get attribute list
             attrlist = event.get_attribute_list()
-            attrlist = self.display_attr_list(attrlist)
-            if attrlist is not None:
-                eventdetail += attrlist
+            if attrlist:
+                section, attrtable = self.display_attribute_header()
+                eventdetail += section
+
+                attrtable += self.display_attr_list(attrlist)
 
             # event source references
             srcrefs = self.display_ind_sources(event)
@@ -3156,10 +3211,13 @@ class MediaPage(BasePage):
                 mediadetail += notelist
 
             # get attribute list
-            attrlist = self.display_attr_list(media.get_attribute_list())
-            if attrlist is not None:
-                mediadetail += attrlist
+            attrlist = media.get_attribute_list()
+            if attrlist:
+                section, table = self.display_attribute_header()
+                mediadetail ++ section
 
+                table += self.display_attr_list(attrlist)
+ 
             # get media sources
             srclist = self.display_media_sources(media)
             if srclist is not None:
@@ -3886,7 +3944,7 @@ class IndividualPage(BasePage):
         gen.lib.Person.UNKNOWN : _('unknown'),
         }
 
-    def __init__(self, report, title, person, ind_list, place_list, src_list, attribute_list):
+    def __init__(self, report, title, person, ind_list, place_list, src_list):
         BasePage.__init__(self, report, title, person.gramps_id)
         self.person = person
         self.ind_list = ind_list
@@ -3972,10 +4030,13 @@ class IndividualPage(BasePage):
             if sect8 is not None:
                 individualdetail += sect8
 
-            # display attributes
-            sect9 = self.display_attr_list(attribute_list)
-            if sect9 is not None:
-                individualdetail += sect9
+            # display attributes for person...
+            attrlist = self.person.get_attribute_list()
+            if attrlist:
+                section, table = self.display_attribute_header()
+                individualdetail += section
+
+                table += self.display_attr_list(attrlist)
 
             # display web links
             sect10 = self.display_url_list(self.person.get_url_list())
@@ -5193,6 +5254,10 @@ class IndividualPage(BasePage):
                             )
                         table += trow
 
+            attrlist = family.get_attribute_list()
+            if attrlist:
+                section += self.display_family_attr_list(attrlist)
+
         # return section to its caller
         return section
 
@@ -5834,7 +5899,6 @@ class NavWebReport(Report):
 
         place_list = {}
         source_list = {}
-        attribute_list = []
 
         self.base_pages()
 
@@ -5963,23 +6027,6 @@ class NavWebReport(Report):
             fdir, fname = os.path.split(from_path)
             self.copy_file(from_path, fname, "images")
 
-    def build_attributes(self, person):
-        """
-        build a list of attributes for each person
-        """
-
-        # get personal attributes
-        attribute_list = person.get_attribute_list()
-
-        for family_handle in person.get_family_handle_list():
-            family = self.database.get_family_from_handle(family_handle)
-
-            # get family attributes
-            attribute_list.extend(family.get_attribute_list() )
-
-        # return attributes to its caller
-        return attribute_list
-
     def person_pages(self, ind_list, place_list, source_list):
         """
         creates IndividualListPage, IndividualPage, and gendex page
@@ -5996,10 +6043,7 @@ class NavWebReport(Report):
             self.progress.step()
             person = self.database.get_person_from_handle(person_handle)
 
-            # get attributes for each person
-            attribute_list = self.build_attributes(person)
-
-            IndividualPage(self, self.title, person, ind_list, place_list, source_list, attribute_list)
+            IndividualPage(self, self.title, person, ind_list, place_list, source_list)
 
         if self.inc_gendex:
             self.progress.set_pass(_('Creating GENDEX file'), len(ind_list))

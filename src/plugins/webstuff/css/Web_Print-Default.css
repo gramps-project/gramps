@@ -393,6 +393,24 @@ table.surname thead tr th.ColumnParents, table.surname tbody tr td.ColumnParents
     padding:3em 20px;
 }
 
+/* Subsection: Families: Attributes
+------------------------------------------------- */
+div#families div#attributes table.attributes {
+    font: normal .8em sans-serif;
+}
+div#families div#attributes table.attributes thead tr th.ColumnType {
+    background: none;
+    border: none;
+}
+div#families div#attributes table.attributes thead tr th.ColumnAttribute {
+    background: none;
+    border: none;
+}
+div#families div#attributes table.attributes thead tr th.Type {
+    border-left: solid 1px #000;
+    width: 15%;
+}
+
 /* Subsections : Events 
 ----------------------------------------------------- */
 #IndividualDetail .ColumnValue {

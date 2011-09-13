@@ -518,6 +518,24 @@ div#IndividualDetail div.subsection table tr td:first-child {
     text-decoration:underline;
 }
 
+/* Subsection: Families: Attributes
+------------------------------------------------- */
+div#families div#attributes table.attributes {
+    font: normal .8em sans-serif;
+}
+div#families div#attributes table.attributes thead tr th.ColumnType {
+    background: none;
+    border: none;
+}
+div#families div#attributes table.attributes thead tr th.ColumnAttribute {
+    background: none;
+    border: none;
+}
+div#families div#attributes table.attributes thead tr th.Type {
+    border-left: solid 1px #000;
+    width: 15%;
+}
+
 /* Places
 ----------------------------------------------------- */
 
