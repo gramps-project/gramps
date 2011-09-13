@@ -1079,35 +1079,6 @@ table.attrlist tbody tr td.ColumnSources {
     width: 10%;
 }
 
-/* Subsections : Attributes
------------------------------------------------------ */
-div#attributes {
-    margin: 0;
-    padding: 0;
-}
-table.attrlist {
-    width: 100%;
-}
-table.attrlist thead tr th {
-    background-color: #70B1ED;
-    color: #000;
-}
-table.attrlist tbody tr td {
-    border-bottom: dashed 1px #000;
-}
-table.attrlist tbody tr td.ColumnType {
-    width: 15%;
-}
-table.attrlist tbody tr td.ColumnValue {
-    width: 15%;
-}
-table.attrlist tbody tr td.ColumnNotes {
-    width: 40%;
-}
-table.attrlist tbody tr td.ColumnSources {
-    width: 10%;
-}
-
 /* Subsections : Parents
 ----------------------------------------------------- */
 div#parents {
@@ -1161,19 +1132,41 @@ div#families table.fixed_subtables table.eventlist th:last-child {
     width:5em;
 }
 
+/* Subsection: Families: Attributes
+------------------------------------------------- */
+div#IndividualDetail div#attributes table.attributes {
+    font: normal .8em sans-serif;
+}
+div#IndividualDetail div#attributes table.attributes thead tr th.ColumnType,
+div#IndidivualDetail div#attributes table.attributes thead tr th.ColumnAttribute {
+    background: none;
+    border: none;
+}
+div#families div#attributes table.attributes thead tr th.ColumnAttribute {
+    background: none;
+    border: none;
+}
+div#families div#attributes table.attributes thead tr th.Type {
+    border-left: solid 1px #000;
+    width: 15%;
+}
+
 /* Subsection: LDS Ordinance
 ------------------------------------------------------ */
 div#LDSOrdinance {
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
 }
 div#LDSOrdinance table.ldsordlist {
-    font-size: .35cm;
+    font: normal .8em sans;
 }
-table.ldsordlist {
-    margin-bottom: .5em;
+div#IndividualDetail div#LDSOrdinance table.ldsordlist tbody tr td.ColumnType,
+div#IndividualDetail div#LDSOrdinance table.ldsordlist tbody tr td.ColumnAttribute {
+    background: none;
+    border: none;
 }
 table.ldsordlist tbody tr td.ColumnLDSType {
+    border-left: solid 1px #000;
     width: 12%;
 }
 table.ldsordlist tbody tr td.ColumnLDSDate {

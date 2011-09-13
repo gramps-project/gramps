@@ -1109,6 +1109,9 @@ class BasePage(object):
         """
         format for family attribute list is different than all the others
         """
+        if not attrlist:
+            return None
+
         with Html("div", class_ ="subsection", id ="attributes") as section:
             with Html("table", class_ ="infolist attributes") as table:
                 section += table
@@ -1979,21 +1982,88 @@ class BasePage(object):
                                     for birth_date, chandle in children
                             )
 
-                        # family LDS ordinance list
-                        famldslist = family.lds_ord_list
-                        if famldslist:
-                            trow = Html("tr") + (
-                                Html("td", "&nbsp;", class_ = "ColumnType", inline = True),
-                                Html("td", "&nbsp;", class_ = "ColumnAttribute", inline = True),
-                                Html("td", self.dump_ordinance(db, family, "Family"), class_ = "ColumnValue")
-                                )
-                            table += trow
+            attrlist = self.display_family_attr_list(family.get_attribute_list())
+            if attrlist is not None:
+                section += attrlist
 
-            attrlist = family.get_attribute_list()
-            if attrlist:
-                section += self.display_family_attr_list(attrlist)
+            ldsordlist = self.display_family_lds_ordinance(family.get_lds_ord_list())
+            if ldsordlist is not None:
+                section += ldsordlist
 
         # return section to its caller
+        return section
+
+    def display_family_lds_ordinance(self, family_lds_ord_list):
+        """
+        creates family lds ordinance as it is formatted differently than dump_ordinance() in BasePage
+        """
+        if not family_lds_ord_list:
+            return None
+
+        with Html("div", class_ ="subsection", id ="LDSOrdinance") as section:
+            with Html("table", class_ ="infolist ldsordlist") as table:
+                section += table
+
+                thead = Html("thead")
+                table += thead
+
+                # add two blank cells for proper layout...
+                trow = Html("tr") + (
+                    Html("th", '&nbsp;', class_ ="ColumnType", inline =True),
+                    Html("th", '&nbsp;', class_ ="ColumnAttribute", inline =True)
+                )
+                thead += trow
+
+                trow.extend(
+                    Html("th", label, class_ =colclass, inline =True)
+                    for label, colclass in [
+                        (_("Type"),    "ColumnLDSType"),
+                        (_("Date"),    "ColumnLDSDate"),
+                        (_("Temple"),  "ColumnLDSTemple"),
+                        (_("Place"),   "ColumnLDSPlace"),
+                        (_("Status"),  "ColumnLDSStatus"),
+                        (_("Sources"), "ColumnLDSSources")
+                    ]
+                )
+                tbody = Html("tbody")
+                table += tbody
+
+                first_row = True
+                for ord in family_lds_ord_list:
+                    place_hyper = "&nbsp;"
+                    phandle = ord.get_place_handle()
+                    if phandle:
+                        place = self._dbase.get_place_from_handle(phandle)
+                        if place:
+                            place_hyper = self.place_link(phandle, place.get_title(), place.get_gramps_id(), True)
+
+                    trow = Html("tr")
+                    tbody += trow
+
+                    tcell1 = Html("td", class_ ="ColumnType", inline =True)
+                    tcell2 = Html("td", class_ ="ColumnAttribute", inline =True)
+                    if first_row:
+                        trow.attr = 'class ="BeginOrdinance"'
+                        tcell1 += _("LDS")
+                        tcell2 += _("Ordinance")
+                    else:
+                        tcell1 += '&nbsp;'
+                        tcell2 += '&nbsp;'
+                    trow += (tcell1, tcell2)             
+
+                    trow.extend(
+                        Html("td", value or "&nbsp;", class_ =colclass,
+                            inline = (not value or colclass == "LDSDate"))
+                        for colclass, value in [
+                            ("ColumnLDSType",     ord.type2xml() ),
+                            ("ColumnLDSDate",     _dd.display(ord.get_date_object()) ),
+                            ("ColumnLDSTemple",   ord.get_temple() ),
+                            ("ColumnLDSPlace",    place_hyper),
+                            ("ColumnLDSStatus",   ord.get_status() ),
+                            ("ColumnLDSSources",  self.get_citation_links(ord.get_source_references()) )
+                        ]
+                    )
+                    first_row = False
         return section
 
     def display_partner(self, family, table, ppl_hnd_list):
