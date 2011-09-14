@@ -425,13 +425,13 @@ class BasePage(object):
 
         # display attribute list
         trow.extend(
-            Html("td", data or "&nbsp;", class_ = colclass,
-                inline = True if (colclass == "Type" or "ColumnSources") else False)
+            Html("td", data or "&nbsp;", class_ = "Column" + colclass,
+                inline = True if (colclass == "Type" or "Sources") else False)
             for (colclass, data) in [
                 ["Type",    str(attr.get_type()) ],
                 ["Value",   attr.get_value() ],
-                ["ColumnNotes",   self.dump_notes(attr.get_note_list()) ],
-                ["ColumnSources", self.get_citation_links(attr.get_source_references()) ] ]
+                ["Notes",   self.dump_notes(attr.get_note_list()) ],
+                ["Sources", self.get_citation_links(attr.get_source_references()) ] ]
         )
 
         # return table row to its caller
@@ -1020,7 +1020,7 @@ class BasePage(object):
         """
         # begin attributes division and section title
         with Html("div", class_ = "subsection", id ="attributes") as section:
-            section += Html("h4", _("Attributes"),  inline =True)
+            section += Html("h4", AHEAD,  inline =True)
 
             # begin attributes table
             with Html("table", class_ = "infolist attrlist") as table:
@@ -1052,65 +1052,9 @@ class BasePage(object):
         tbody = Html("tbody")
 
         tbody.extend(
-            self.dump_attribute(attr)
-            for attr in attrlist
+            self.dump_attribute(attr) for attr in attrlist
         )
         return tbody
-
-    def display_family_attr_list(self, attrlist):
-        """
-        format for family attribute list is different than all the others
-        """
-        with Html("div", class_ ="subsection", id ="attributes") as section:
-            with Html("table", class_ ="infolist attributes") as table:
-                section += table
-
-                thead = Html("thead")
-                table += thead
-
-                # for proper spacing...
-                trow = Html("tr")
-                thead += trow
-
-                trow.extend(
-                    Html("th", label, class_ =colclass, inline =True)
-                    for label, colclass in [
-                        ('&nbsp;',     "ColumnType"),
-                        ('&nbsp;',     "ColumnAttribute"),  
-                        (_("Type"),    "Type"),
-                        (_("Value"),   "Value"),
-                        (_("Notes"),   "Notes"),
-                        (_("Sources"), "Sources")
-                    ]
-                )
-                tbody = Html("tbody")
-                table += tbody
-
-                first_row = True
-                for attr in attrlist:
-                    if first_row:
-                        trow = Html("tr") + (
-                            Html("td", '&nbsp;', class_ ="ColumnType", inline =True),
-                            Html("td", _("Attributes"), class_ ="ColumnAttribute", inline =True)
-                        )
-                    else:
-                        trow = Html("tr") + (
-                            Html("td", '&nbsp;', class_ ="ColumnType", inline =True),
-                            Html("td", '&nbsp;', class_ ="ColumnAttribute", inline =True)
-                        )
-                    tbody += trow
-
-                    trow.extend(
-                        Html("td", data or "&nbsp;", class_ =colclass, inline =True)
-                        for colclass, data in [
-                            ("Type",          str(attr.get_type()) ),
-                            ("Value",         attr.get_value() ),
-                            ("ColumnNotes",   self.dump_notes(attr.get_note_list()) ),
-                            ("ColumnSources", self.get_citation_links(attr.get_source_references()) )
-                        ]
-                    )
-                    first_row = False
-        return section
 
     def write_footer(self):
         """
@@ -3212,7 +3156,7 @@ class MediaPage(BasePage):
             attrlist = media.get_attribute_list()
             if attrlist:
                 section, table = self.display_attribute_header()
-                mediadetail ++ section
+                mediadetail += section
 
                 table += self.display_attr_list(attrlist)
  
@@ -5252,9 +5196,20 @@ class IndividualPage(BasePage):
                             )
                         table += trow
 
-            attrlist = family.get_attribute_list()
-            if attrlist:
-                section += self.display_family_attr_list(attrlist)
+                    attrlist = family.get_attribute_list()
+                    if attrlist:
+                        trow = Html("tr") + (
+                                Html("td", "&nbsp;", class_ = "ColumnType",
+                                    inline = True),
+                                Html("td", AHEAD, class_ = "ColumnAttribute",
+                                    inline = True)
+                                )
+                        table += trow
+                        tcell = Html("td", class_ = "ColumnValue")
+                        trow += tcell
+                        dummy, attrtable = self.display_attribute_header()
+                        tcell += attrtable
+                        attrtable += self.display_attr_list(attrlist)
 
         # return section to its caller
         return section
