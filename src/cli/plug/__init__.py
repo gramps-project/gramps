@@ -500,6 +500,7 @@ class CommandLineReport(object):
             print "   Available options:"
             for key in sorted(self.options_dict.keys()):
                 if key in self.options_help:
+                    if key is None: continue
                     opt = self.options_help[key]
                 # Make the output nicer to read, assume that tab has 8 spaces
                     tabs = '\t\t' if len(key) < 10 else '\t'
