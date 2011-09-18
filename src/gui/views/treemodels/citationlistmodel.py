@@ -21,7 +21,7 @@
 # $Id$
 
 """
-CitationBaseModel, CitationListModel and CitationTreeModel classes for GRAMPS.
+CitationListModel class for GRAMPS.
 """
 
 #-------------------------------------------------------------------------

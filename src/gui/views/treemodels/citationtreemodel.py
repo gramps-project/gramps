@@ -168,9 +168,6 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
             citation_page = citation.get_page()
             self.add_node(handle, citation_handle, citation_page, 
                           citation_handle, secondary=True)
-        
-        
-        
 #        try:
 #            source_handle = data[COLUMN_SOURCE]
 #        except:
@@ -189,6 +186,14 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
 #            log.warn("Citation %s does not have a source" % 
 #                     unicode(data[COLUMN_PAGE]),
 #                      exc_info=True)
+
+    def add_secondary_row(self, handle, data):
+        """
+        Add a secondary node to the node map for a citation.
+        """
+        # parameters are parent, child, sortkey, handle
+        self.add_node(self.citation_source(data), handle, 
+                      self.citation_page(data), handle, secondary=True)
 
     def on_get_n_columns(self):
         return len(self.fmap)+1

@@ -680,7 +680,10 @@ class TreeBaseModel(gtk.GenericTreeModel):
                 (self.search and self.search.match(handle, self.db)):
             #row needs to be added to the model
             data = self.map(handle)
-            self.add_row(handle, data)
+            if data:
+                self.add_row(handle, data)
+            else:
+                self.add_secondary_row(handle, self.map2(handle))
 
         _LOG.debug(self.__class__.__name__ + ' add_row_by_handle ' +
                     str(time.clock() - cput) + ' sec')

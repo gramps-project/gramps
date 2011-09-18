@@ -73,18 +73,8 @@ class BaseCitationView(ListView):
     # The configuration parameters have been moved to CitationTreeView and
     # CitationListView, because they differ for the two different views.
 
-    def __init__(self, pdata, dbstate, uistate, title, model, nav_group=0):
-
-        signal_map = {
-            'citation-add'     : self.row_add,
-            'citation-update'  : self.row_update,
-            'citation-delete'  : self.row_delete,
-            'citation-rebuild' : self.object_build,
-            'source-add'       : self.row_add,
-            'source-update'    : self.row_update,
-            'source-delete'    : self.row_delete,
-            'source-rebuild'   : self.object_build,
-            }
+    def __init__(self, pdata, dbstate, uistate, title, model, signal_map, 
+                 nav_group=0):
 
         ListView.__init__(
             self, title, pdata, dbstate, uistate, 
@@ -430,7 +420,7 @@ class BaseCitationView(ListView):
         """
         Define the default gramplets for the sidebar and bottombar.
         """
-        return (("Source Filter",),
+        return (("Citation Filter",),
                 ("Citation Gallery",
                  "Citation Notes",
                  "Citation Backlinks"))

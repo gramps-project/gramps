@@ -50,9 +50,12 @@ from gen.ggettext import gettext as _
 class CitationListView(BaseCitationView):
     """
     A list view of citations.
+    
+    The citation list view only shows the citations (it does not show 
+    sources as separate list entries).
     """
     # The data items here have to correspond, in order, to the items in
-    # src/giu.views/treemodels/citationlistmodel.py
+    # src/giu.views/treemodels/citationlismodel.py
     COL_TITLE_PAGE     =  0
     COL_ID             =  1
     COL_DATE           =  2
@@ -99,7 +102,16 @@ class CitationListView(BaseCitationView):
     QR_CATEGORY = CATEGORY_QR_SOURCE
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
+
+        signal_map = {
+            'citation-add'     : self.row_add,
+            'citation-update'  : self.row_update,
+            'citation-delete'  : self.row_delete,
+            'citation-rebuild' : self.object_build,
+            }
+
         BaseCitationView.__init__(self, pdata, dbstate, uistate,
                                _('Citation View'), CitationListModel,
+                               signal_map, 
                                nav_group=nav_group)
 

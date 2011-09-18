@@ -98,8 +98,20 @@ class CitationTreeView(BaseCitationView):
     
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         
+        signal_map = {
+            'citation-add'     : self.row_add,
+            'citation-update'  : self.row_update,
+            'citation-delete'  : self.row_delete,
+            'citation-rebuild' : self.object_build,
+            'source-add'       : self.row_add,
+            'source-update'    : self.row_update,
+            'source-delete'    : self.row_delete,
+            'source-rebuild'   : self.object_build,
+            }
+
         BaseCitationView.__init__(self, pdata, dbstate, uistate,
                                _('Citation Tree View'), CitationTreeModel,
+                               signal_map, 
                                nav_group=nav_group)
 
     def type_list(self):
