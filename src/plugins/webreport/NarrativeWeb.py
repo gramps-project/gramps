@@ -1020,7 +1020,7 @@ class BasePage(object):
         """
         # begin attributes division and section title
         with Html("div", class_ = "subsection", id ="attributes") as section:
-            section += Html("h4", AHEAD,  inline =True)
+            section += Html("h4", _("Attributes"),  inline =True)
 
             # begin attributes table
             with Html("table", class_ = "infolist attrlist") as table:
@@ -1035,10 +1035,10 @@ class BasePage(object):
                 trow.extend(
                     Html("th", label, class_ =colclass, inline = True)
                     for (label, colclass) in [
-                        (THEAD,    "ColumnType"),
-                        (VHEAD,    "ColumnValue"),
-                        (NHEAD,    "ColumnNotes"),
-                        (SHEAD,    "ColumnSources") ]
+                        (_("Type"),    "ColumnType"),
+                        (_("Value"),   "ColumnValue"),
+                        (_("Notes"),   "ColumnNotes"),
+                        (_("Sources"), "ColumnSources") ]
                 )
         return section, table
 
@@ -5187,29 +5187,29 @@ class IndividualPage(BasePage):
                                 for birth_date, child_handle in children)
 
                     # family LDS ordinance list
-                    famldslist = family.lds_ord_list
-                    if famldslist:
+                    family_lds_ordinance_list = family.lds_ord_list
+                    if family_lds_ordinance_list:
                         trow = Html("tr") + (
                             Html("td", "&nbsp;", class_ = "ColumnType", inline = True),
-                            Html("td", "&nbsp;", class_ = "ColumnAttribute", inline = True),
+                            Html("td", _("LDS Ordinance"), class_ = "ColumnAttribute", inline = True),
                             Html("td", self.dump_ordinance(db, family, "Family"), class_ = "ColumnValue")
                             )
                         table += trow
 
-                    attrlist = family.get_attribute_list()
-                    if attrlist:
+                    # Family Attribute list
+                    family_attribute_list = family.get_attribute_list()
+                    if family_attribute_list:
                         trow = Html("tr") + (
-                                Html("td", "&nbsp;", class_ = "ColumnType",
-                                    inline = True),
-                                Html("td", AHEAD, class_ = "ColumnAttribute",
-                                    inline = True)
+                                Html("td", "&nbsp;", class_ ="ColumnType", inline =True),
+                                Html("td", _("Attributes"), class_ ="ColumnAttribute", inline =True)
                                 )
                         table += trow
+
                         tcell = Html("td", class_ = "ColumnValue")
                         trow += tcell
                         dummy, attrtable = self.display_attribute_header()
                         tcell += attrtable
-                        attrtable += self.display_attr_list(attrlist)
+                        attrtable += self.display_attr_list(family_attribute_list)
 
         # return section to its caller
         return section
