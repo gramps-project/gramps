@@ -524,24 +524,22 @@ table.surname tbody tr td.ColumnParents {
 
 /*    Relationships
 ================================================= */
-div#Relationships {
+div#Relationships, div#RelationshipDetail {
     margin: 0 auto;
     padding: 0;
     width: 100%;
 }
-table.relationships {
+div#Relationships table.infolist {
     width: 100%;
-    margin: 0;
-    padding: 0;
 }
-table.relationships thead tr th.ColumnMarriage,
-table.relationships thead tr th.ColumnDivorce {
+div#Relationships table.infolist thead tr th.ColumnMarriage,
+div#Relationships table.infolist thead tr th.ColumnDivorce {
     width: 10%;
 }
-table.relationships tbody tr td.BeginLetter {
-    border-bottom: solid 1px #000;
+div#Relationships table.infolist tbody tr.BeginFamily {
+    border-top: solid 1px #000;
 }
-table.relationships tbody tr td {
+div#Relationships table.infolist tbody tr td {
     border-bottom: dashed 1px #000;
 }
 
@@ -1105,6 +1103,9 @@ div#families {
 div#families table.infolist tbody tr.BeginFamily {
     border-top: solid 1px #000;
 }
+div#families table.infolist tbody tr td {
+    border-bottom: none;
+}
 div#Families table.infolist tbody tr td.ColumnType,
 div#Families table.infolist tbody tr td.ColumnAttribute {
     color: #000;
@@ -1134,21 +1135,54 @@ div#families table.fixed_subtables table.eventlist th:last-child {
 
 /* Subsection: Families: Attributes
 ------------------------------------------------- */
-div#IndividualDetail div#attributes table.attributes {
+div#families able.infolist {
     font: normal .8em sans-serif;
+    width: 100%;
 }
-div#IndividualDetail div#attributes table.attributes thead tr th.ColumnType,
-div#IndidivualDetail div#attributes table.attributes thead tr th.ColumnAttribute {
-    background: none;
-    border: none;
+div#families table.infolist tbody tr.BeginAttribute {
+    border-top: solid 1px #000;
 }
-div#families div#attributes table.attributes thead tr th.ColumnAttribute {
-    background: none;
-    border: none;
+div#families table.infolist tbody tr td.Type {
+    width: 8%;
 }
-div#families div#attributes table.attributes thead tr th.Type {
-    border-left: solid 1px #000;
+div#families table.infolist tbody tr td.Value {
     width: 15%;
+}
+div#families table.infolist tr td.Notes {
+    width: 40%;
+}
+div#families table.infolist tbody tr td.Sources {
+    with: 15%;
+}
+
+/* Subsection: Families: LDS Ordinance
+------------------------------------------------------ */
+div#families table.infolist {
+    font: normal .8em sans;
+}
+div#families table.infolist tbody tr.BeginOrdinance {
+    border-top: solid 1px #000;
+}
+div#families table.infolist tbody tr td.ColumnLDSType {
+    width: 5%;
+}
+div#families table.infolist tbody tr td.ColumnLDSDate {
+    width: 10%;
+}
+div#families table.infolist tbody tr td.ColumnLDSTemple {
+    width: 8%;
+}
+div#families table.infolist tbody tr td.ColumnLDSPlace {
+    width: 15%;
+}
+div#families table.infolist tbody tr td.ColumnLDSStatus {
+    width: 8%;
+}
+div#families table.infolist tbody tr td.ColumnLDSSealed {
+    width: 20%;
+}
+div#families table.infolist tbody tr td.ColumnLDSSources {
+    width: 7%;
 }
 
 /* Subsection: LDS Ordinance
@@ -1157,17 +1191,14 @@ div#LDSOrdinance {
     margin: 0 auto;
     padding: 0;
 }
-div#LDSOrdinance table.ldsordlist {
+table.ldsordlist {
     font: normal .8em sans;
 }
-div#IndividualDetail div#LDSOrdinance table.ldsordlist tbody tr td.ColumnType,
-div#IndividualDetail div#LDSOrdinance table.ldsordlist tbody tr td.ColumnAttribute {
-    background: none;
-    border: none;
+table.ldsordlist tbody tr.BeginOrdinance {
+    border-top: solid 1px #000;
 }
 table.ldsordlist tbody tr td.ColumnLDSType {
-    border-left: solid 1px #000;
-    width: 12%;
+    width: 8%;
 }
 table.ldsordlist tbody tr td.ColumnLDSDate {
     width: 15%;
@@ -1176,9 +1207,9 @@ table.ldsordlist tbody tr td.ColumnLDSTemple {
     width: 10%;
 }
 table.ldsordlist tbody tr td.ColumnLDSPlace {
-    width: 35%;
+    width: 20%;
 }
-table.ldsordlist tbody tr td.ColumnLDSStatus {
+tableldsordolist tbody tr td.ColumnLDSStatus {
     width: 8%;
 }
 table.ldsordlist tbody tr td.ColumnLDSSealed {
@@ -1186,7 +1217,6 @@ table.ldsordlist tbody tr td.ColumnLDSSealed {
 }
 table.ldsordlist tbody tr td.ColumnLDSSources {
     width: 7%;
-    margin-top: .2cm;
 }
 
 /* Subsections : Addresses
