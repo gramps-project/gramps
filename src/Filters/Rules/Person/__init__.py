@@ -106,6 +106,7 @@ from _RegExpName import RegExpName
 from _MatchIdOf import MatchIdOf
 from _RegExpIdOf import RegExpIdOf
 from _ChangedSince import ChangedSince
+from _IsRelatedWith import IsRelatedWith
 
 #-------------------------------------------------------------------------
 #
@@ -183,5 +184,6 @@ editor_rule_list = [
     RegExpIdOf,
     Disconnected,
     ChangedSince,
+    IsRelatedWith,
 ]
 
