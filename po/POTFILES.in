@@ -499,6 +499,7 @@ src/Filters/Rules/Person/_IsMale.py
 src/Filters/Rules/Person/_IsMoreThanNthGenerationAncestorOf.py
 src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py
 src/Filters/Rules/Person/_IsParentOfFilterMatch.py
+src/Filters/Rules/Person/_IsRelatedWith.py
 src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py
 src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py
 src/Filters/Rules/Person/_IsWitness.py
