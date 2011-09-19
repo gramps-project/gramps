@@ -14,11 +14,11 @@ DATAFILES = \
 	Web_Basic-Lilac.css \
 	Web_Basic-Peach.css \
 	Web_Basic-Spruce.css \
+	Web_Horizontal-Menus.css \
 	Web_Mainz.css \
-	Web_Navigation-Horizontal.css \
-	Web_Navigation-Vertical.css \
 	Web_Nebraska.css \
 	Web_Print-Default.css \
+	Web_Vertical-Menus.css \
 	Web_Visually.css
 
 

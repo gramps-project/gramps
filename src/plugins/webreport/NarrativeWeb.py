@@ -6501,12 +6501,12 @@ class NavWebReport(Report):
         fname = CSS["behaviour"]["filename"] 
         self.copy_file(fname, "behaviour.css", "styles")
 
-        # copy Navigation Menu Layout style sheet if Blue or Visually is being used
+        # copy Menu Layout stylesheet if Blue or Visually is being used?
         if CSS[self.css]["navigation"]: 
             if self.navigation == "Horizontal":
-                fname = CSS["Navigation-Horizontal"]["filename"] 
+                fname = CSS["Horizontal-Menus"]["filename"] 
             else:
-                fname = CSS["Navigation-Vertical"]["filename"] 
+                fname = CSS["Vertical-Menus"]["filename"] 
             self.copy_file(fname, "narrative-menus.css", "styles")
 
         # copy narrative-maps if Place or Family Map pages?

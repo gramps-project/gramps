@@ -122,12 +122,12 @@ def load_on_reg(dbstate, uistate, plugin):
          path_css('Web_Print-Default.css'), None, [], [] ],
 
         # vertical navigation style sheet
-        ["Navigation-Vertical", 0, "Navigation-Vertical", 
-         path_css('Web_Navigation-Vertical.css'), None, [], [] ],
+        ["Vertica-Menusl", 0, "", 
+         path_css('Web_Vertical-Menus.css'), None, [], [] ],
 
         # horizontal navigation style sheet
-        ["Navigation-Horizontal", 0, "Navigation-Horizontal", 
-         path_css('Web_Navigation-Horizontal.css'), None, [], []],
+        ["Horizontal-Menus", 0, "", 
+         path_css('Web_Horizontal-Menus.css'), None, [], []],
 
         # GeoView style sheet with its image
         ["GeoView", 0, "GeoView", 

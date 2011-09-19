@@ -1,4 +1,5 @@
-# encoding: utf-8
+# -*- coding: utf-8 -*-
+#!/usr/bin/python
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -318,8 +319,8 @@ class WebCalReport(Report):
 
         # copy Navigation Menu Layout if Blue or Visually is being used
         if CSS[self.css]["navigation"]:
-            fname = CSS["Navigation-Horizontal"]["filename"] 
-            self.copy_file(fname, "Web_Navigation-Menus.css", "styles")
+            fname = CSS["Horizontal-Menus"]["filename"] 
+            self.copy_file(fname, "narrative-menus.css", "styles")
 
         # copy print stylesheet
         fname = CSS["Print-Default"]["filename"]
@@ -415,13 +416,13 @@ class WebCalReport(Report):
             fname = "/".join(subdirs + ["styles", _CALENDARPRINT])
             links += Html("link",rel = "stylesheet", href = fname,type = "text/css", media = "print", indent = False)
 
-        # add horizontal menu if css == Blue or Visually because there is no menus
+        # add horizontal menu if css == Blue or Visually because there is no menus?
         if CSS[self.css]["navigation"]:
 
             # Link to Navigation Menus stylesheet
-            fname = "/".join(subdirs + ["styles", "Web_Navigation-Menus.css"])
+            fname = "/".join(subdirs + ["styles", "narrative-menus.css"])
             links.extend( 
-                Html("link", href = fname, type = "text/css", media = "screen", rel = "stylesheet")
+                Html("link", href =fname, type ="text/css", media ="screen", rel ="stylesheet")
             )
 
         # add meta tags and links to head section
