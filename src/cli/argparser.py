@@ -192,7 +192,7 @@ class ArgParser(object):
         1/ Just the family tree (name or database dir)
         2/ -O, --open:   Open of a family tree
         3/ -i, --import: Import a family tree of any format understood by an importer, 
-                 optionally provide-f to indicate format
+                 optionally provide -f to indicate format
         4/ -e, --export: export a family tree in required format, optionally provide
                  -f to indicate format
         5/ -f, --format=FORMAT : format after a -i or -e option
