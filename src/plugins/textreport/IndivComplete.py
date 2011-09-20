@@ -159,7 +159,8 @@ class IndivCompleteReport(Report):
                     The option class carries its number, and the function
                     returning the list of filters.
         cites     - Whether or not to include source information.
-        sort      - Whether ot not to sort events into chronological order.
+        sort      - Whether or not to sort events into chronological order.
+        images    - Whether or not to include images.
         sections  - Which event groups should be given separate sections.
         name_format   - Preferred format to display names
         """
@@ -172,6 +173,8 @@ class IndivCompleteReport(Report):
         self.use_srcs_notes = menu.get_option_by_name('incsrcnotes').get_value()
         
         self.sort = menu.get_option_by_name('sort').get_value()
+
+        self.use_images = menu.get_option_by_name('images').get_value()
 
         filter_option = options_class.menu.get_option_by_name('filter')
         self.filter = filter_option.get_filter()
@@ -550,7 +553,7 @@ class IndivCompleteReport(Report):
         self.doc.start_paragraph("IDS-Normal")
         self.doc.end_paragraph()
 
-        if len(media_list) > 0:
+        if self.use_images and len(media_list) > 0:
             media_handle = media_list[0].get_reference_handle()
             media = self.database.get_object_from_handle(media_handle)
             mime_type = media.get_mime_type()
@@ -704,6 +707,9 @@ class IndivCompleteOptions(MenuReportOptions):
             "Endnotes section. Only works if Include sources is selected."))
         menu.add_option(category_name, "incsrcnotes", incsrcnotes)
 
+        images = BooleanOption(_("Include Photo/Images from Gallery"), True)
+        images.set_help(_("Whether to include images."))
+        menu.add_option(category_name, "images", images)
 
         ################################
         category_name = SECTION_CATEGORY
