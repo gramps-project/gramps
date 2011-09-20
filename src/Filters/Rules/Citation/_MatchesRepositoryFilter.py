@@ -1,10 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2007  Donald N. Allingham
-# Copyright (C) 2007-2008  Brian G. Matherly
-# Copyright (C) 2008  Jerome Rapinat
-# Copyright (C) 2008  Benny Malengier
+# Copyright (C) 2011  Benny Malengier
+# Copyright (C) 2011  Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,6 +26,8 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
+import logging
+LOG = logging.getLogger(".citation")
 from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -35,35 +35,38 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._Rule import Rule
+from Filters.Rules import MatchesFilterBase
 
 #-------------------------------------------------------------------------
-# "Objects having sources"
+# "Sources which reference a repository by selection"
 #-------------------------------------------------------------------------
-class HasSourceBase(Rule):
-    """Objects having notes"""
+class MatchesRepositoryFilter(MatchesFilterBase):
+    """Citations which have a source which references the selected repository"""
 
-    labels      = [  _('Number of instances:'), _('Number must be:')]
-    name        = _('Objects with <count> sources')
-    description = _("Matches objects that have a certain number of sources connected to it")
+    labels      = [ _('Repository filter name:') ]
+    name        = _('Citations with a source with a repository reference '
+                    'matching the <repository filter>')
+    description = _("Matches citations with sources with a repository "
+                    "reference that match a certain repository filter")
     category    = _('General filters')
-
+    
+    # we want to have this filter show repository filters
+    namespace = 'Repository'
+    
+    
     def prepare(self, db):
-        # things we want to do just once, not for every handle
-        if  self.list[1] == 'lesser than':
-            self.count_type = 0
-        elif self.list[1] == 'greater than':
-            self.count_type = 2
-        else:
-            self.count_type = 1 # "equal to"
-
-        self.userSelectedCount = int(self.list[0])
-
-    def apply(self, db, obj):
-        count = len(obj.get_source_references())
-        if self.count_type == 0:     # "lesser than"
-            return count < self.userSelectedCount
-        elif self.count_type == 2:   # "greater than"
-            return count > self.userSelectedCount
-        # "equal to"
-        return count == self.userSelectedCount
+        MatchesFilterBase.prepare(self, db)
+        self.MRF_filt = self.find_filter()
+            
+    def apply(self, db, object):
+        if self.MRF_filt is None :
+            return False
+        
+        source_handle = object.source_handle
+        source = db.get_source_from_handle(source_handle)
+        repolist = [x.ref for x in source.get_reporef_list()]
+        for repohandle in repolist:
+            #check if repo in repository filter
+            if self.MRF_filt.check(db, repohandle):
+                return True
+        return False

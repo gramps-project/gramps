@@ -1,10 +1,10 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2007  Donald N. Allingham
-# Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2008  Brian G. Matherly
 # Copyright (C) 2008  Jerome Rapinat
 # Copyright (C) 2008  Benny Malengier
+# Copyright (C) 2011  Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -35,35 +35,13 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._Rule import Rule
+from Filters.Rules._HasGalleryBase import HasGalleryBase
 
 #-------------------------------------------------------------------------
-# "Objects having sources"
+# "Sources who have media object reference"
 #-------------------------------------------------------------------------
-class HasSourceBase(Rule):
-    """Objects having notes"""
+class HasGallery(HasGalleryBase):
+    """Rule that checks for citation who has media object reference"""
 
-    labels      = [  _('Number of instances:'), _('Number must be:')]
-    name        = _('Objects with <count> sources')
-    description = _("Matches objects that have a certain number of sources connected to it")
-    category    = _('General filters')
-
-    def prepare(self, db):
-        # things we want to do just once, not for every handle
-        if  self.list[1] == 'lesser than':
-            self.count_type = 0
-        elif self.list[1] == 'greater than':
-            self.count_type = 2
-        else:
-            self.count_type = 1 # "equal to"
-
-        self.userSelectedCount = int(self.list[0])
-
-    def apply(self, db, obj):
-        count = len(obj.get_source_references())
-        if self.count_type == 0:     # "lesser than"
-            return count < self.userSelectedCount
-        elif self.count_type == 2:   # "greater than"
-            return count > self.userSelectedCount
-        # "equal to"
-        return count == self.userSelectedCount
+    name        = _('Citations with <count> media')
+    description = _("Matches citations with a certain number of items in the gallery")

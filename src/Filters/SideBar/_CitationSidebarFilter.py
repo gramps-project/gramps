@@ -1,6 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
+# Copyright (C) 2002-2006  Donald N. Allingham
 # Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
@@ -39,13 +40,15 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gui.widgets import MonitoredMenu
+import gen.lib
 from Filters.SideBar import SidebarFilter
 from Filters import GenericFilterFactory, build_filter_model, Rules
-from Filters.Rules.Source import (RegExpIdOf, HasIdOf, HasSource, 
+from Filters.Rules.Citation import (RegExpIdOf, HasIdOf, HasCitation, 
                                   HasNoteMatchingSubstringOf, HasNoteRegexp, 
                                   MatchesFilter)
-# FIXME: need to add Citation filter rules.
-GenericSourceFilter = GenericFilterFactory('Citation')
+from Utils import confidence
+GenericCitationFilter = GenericFilterFactory('Citation')
 #-------------------------------------------------------------------------
 #
 # PersonSidebarFilter class
@@ -56,16 +59,19 @@ class CitationSidebarFilter(SidebarFilter):
     def __init__(self, dbstate, uistate, clicked):
         self.clicked_func = clicked
         self.filter_id = gtk.Entry()
-        self.filter_title = gtk.Entry()       
-        self.filter_author = gtk.Entry()
-        self.filter_pub = gtk.Entry()
+        self.filter_page = gtk.Entry()       
+        self.filter_date = gtk.Entry()
+        
+        self.citn = gen.lib.Citation()
+        self.filter_conf = gtk.ComboBox()
+        
         self.filter_note = gtk.Entry()
 
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
 
         self.generic = gtk.ComboBox()
 
-        SidebarFilter.__init__(self, dbstate, uistate, "Source")
+        SidebarFilter.__init__(self, dbstate, uistate, "Citation")
 
     def create_widget(self):
         cell = gtk.CellRendererText()
@@ -73,38 +79,53 @@ class CitationSidebarFilter(SidebarFilter):
         cell.set_property('ellipsize', self._FILTER_ELLIPSIZE)
         self.generic.pack_start(cell, True)
         self.generic.add_attribute(cell, 'text', 0)
-        self.on_filters_changed('Source')
+        self.on_filters_changed('Citation')
 
         self.add_text_entry(_('ID'), self.filter_id)
-        self.add_text_entry(_('Title'), self.filter_title)
-        self.add_text_entry(_('Author'), self.filter_author)
-        self.add_text_entry(_('Publication'), self.filter_pub)
+        self.add_text_entry(_('Volume/Page'), self.filter_page)
+        self.add_text_entry(_('Date'), self.filter_date)
+        # FIXME: The confidence combo-box is not populated with any entries.
+        # I have no idea why this should be, as the code here seems 
+        # entirely analogous to src/gui/editors/editcitation,
+        # which itself is derived from src/gui/editors/editsourceref.py
+        # and edit citation displays the confidence selectors correctly.
+        # There is some different code in src/gui/filtereditor.py.
+        self.type_mon = MonitoredMenu(
+            self.filter_conf,
+            self.citn.set_confidence_level,
+            self.citn.get_confidence_level, [
+            (_('Very Low'), gen.lib.Citation.CONF_VERY_LOW),
+            (_('Low'), gen.lib.Citation.CONF_LOW),
+            (_('Normal'), gen.lib.Citation.CONF_NORMAL),
+            (_('High'), gen.lib.Citation.CONF_HIGH),
+            (_('Very High'), gen.lib.Citation.CONF_VERY_HIGH)])
+        self.add_combo_entry(_('Confidence'), self.filter_conf)
         self.add_text_entry(_('Note'), self.filter_note)
         self.add_filter_entry(_('Custom filter'), self.generic)
         self.add_entry(None, self.filter_regex)
 
     def clear(self, obj):
         self.filter_id.set_text('')
-        self.filter_title.set_text('')
-        self.filter_author.set_text('')
-        self.filter_pub.set_text('')
+        self.filter_page.set_text('')
+        self.filter_date.set_text('')
+        self.filter_conf.set_active(0)
         self.filter_note.set_text('')
         self.generic.set_active(0)
 
     def get_filter(self):
         gid = unicode(self.filter_id.get_text()).strip()
-        title = unicode(self.filter_title.get_text()).strip()
-        author = unicode(self.filter_author.get_text()).strip()
-        pub = unicode(self.filter_pub.get_text()).strip()
+        page = unicode(self.filter_page.get_text()).strip()
+        date = unicode(self.filter_date.get_text()).strip()
+        conf = self.citn.get_confidence_level()
         note = unicode(self.filter_note.get_text()).strip()
         regex = self.filter_regex.get_active()
         gen = self.generic.get_active() > 0
 
-        empty = not (gid or title or author or pub or note or regex or gen)
+        empty = not (gid or page or date or conf or note or regex or gen)
         if empty:
             generic_filter = None
         else:
-            generic_filter = GenericSourceFilter()
+            generic_filter = GenericCitationFilter()
             if gid:
                 if regex:
                     rule = RegExpIdOf([gid])
@@ -112,7 +133,7 @@ class CitationSidebarFilter(SidebarFilter):
                     rule = HasIdOf([gid])
                 generic_filter.add_rule(rule)
 
-            rule = HasSource([title, author, pub], use_regex=regex)
+            rule = HasCitation([page, date, conf], use_regex=regex)
             generic_filter.add_rule(rule)
                 
             if note:
@@ -132,9 +153,9 @@ class CitationSidebarFilter(SidebarFilter):
         return generic_filter
 
     def on_filters_changed(self, name_space):
-        if name_space == 'Source':
-            all_filter = GenericSourceFilter()
+        if name_space == 'Citation':
+            all_filter = GenericCitationFilter()
             all_filter.set_name(_("None"))
-            all_filter.add_rule(Rules.Source.AllSources([]))
-            self.generic.set_model(build_filter_model('Source', [all_filter]))
+            all_filter.add_rule(Rules.Citation.AllCitations([]))
+            self.generic.set_model(build_filter_model('Citation', [all_filter]))
             self.generic.set_active(0)

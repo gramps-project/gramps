@@ -277,6 +277,20 @@ class GenericSourceFilter(GenericFilter):
     def find_from_handle(self, db, handle):
         return db.get_source_from_handle(handle)
 
+class GenericCitationFilter(GenericFilter):
+
+    def __init__(self, source=None):
+        GenericFilter.__init__(self, source)
+
+    def get_cursor(self, db):
+        return db.get_citation_cursor()
+
+    def make_obj(self):
+        return gen.lib.Citation()
+
+    def find_from_handle(self, db, handle):
+        return db.get_citation_from_handle(handle)
+
 class GenericPlaceFilter(GenericFilter):
 
     def __init__(self, source=None):
@@ -343,6 +357,8 @@ def GenericFilterFactory(namespace):
         return GenericEventFilter
     elif namespace == 'Source':
         return GenericSourceFilter
+    elif namespace == 'Citation':
+        return GenericCitationFilter
     elif namespace == 'Place':
         return GenericPlaceFilter
     elif namespace == 'MediaObject':

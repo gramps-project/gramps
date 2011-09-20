@@ -419,6 +419,7 @@ class BaseCitationView(ListView):
     def get_default_gramplets(self):
         """
         Define the default gramplets for the sidebar and bottombar.
+        This is overridden for the tree view to give 'Source Filter'
         """
         return (("Citation Filter",),
                 ("Citation Gallery",

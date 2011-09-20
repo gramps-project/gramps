@@ -193,6 +193,16 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
 #        """
 #        return []
 
+    def get_source_references(self) :
+        """
+        Return the list of source references associated with the object.
+
+        :returns: Returns the list of :class:`~gen.lib.srcref.SourceRef` objects associated with
+            the object.
+        :rtype: list
+        """
+        return [self.source_handle]
+
     def get_note_child_list(self):
         """
         Return the list of child secondary objects that may refer notes.

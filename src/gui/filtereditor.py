@@ -85,6 +85,7 @@ _TITLES = {
             'MediaObject' : _('Media Object Filters'),
             'Repository' : _('Repository Filters'),
             'Note' : _('Note Filters'),
+            'Citation' : _('Citation Filters'),
 }
 
 _name2typeclass = {
@@ -293,6 +294,7 @@ class MyID(gtk.HBox):
         'MediaObject'  : _('Media Object'),
         'Repository' : _('Repository'),
         'Note'   : _('Note'),
+        'Citation' : _('Citation'),
         }
     
     def __init__(self, dbstate, uistate, track, namespace='Person'):
@@ -345,6 +347,9 @@ class MyID(gtk.HBox):
         elif self.namespace == 'Source':
             source = self.db.get_source_from_gramps_id(gramps_id)
             name = source.get_title()
+        elif self.namespace == 'Citation':
+            citation = self.db.get_citation_from_gramps_id(gramps_id)
+            name = citation.get_page()
         elif self.namespace == 'MediaObject':
             obj = self.db.get_object_from_gramps_id(gramps_id)
             name = obj.get_path()
@@ -461,6 +466,8 @@ class EditRule(ManagedWindow.ManagedWindow):
             class_list = Rules.Event.editor_rule_list
         elif self.namespace == 'Source':
             class_list = Rules.Source.editor_rule_list
+        elif self.namespace == 'Citation':
+            class_list = Rules.Citation.editor_rule_list
         elif self.namespace == 'Place':
             class_list = Rules.Place.editor_rule_list
         elif self.namespace == 'MediaObject':
@@ -915,6 +922,10 @@ class ShowResults(ManagedWindow.ManagedWindow):
             source = self.db.get_source_from_handle(handle)
             name = source.get_title()
             gid = source.get_gramps_id()
+        elif self.namespace == 'Citation':
+            citation = self.db.get_citation_from_handle(handle)
+            name = citation.get_title()
+            gid = citation.get_gramps_id()
         elif self.namespace == 'Place':
             place = self.db.get_place_from_handle(handle)
             name = place.get_title()
@@ -946,6 +957,8 @@ class ShowResults(ManagedWindow.ManagedWindow):
             sortname = self.db.get_event_from_handle(handle).get_description()
         elif self.namespace == 'Source':
             sortname = self.db.get_source_from_handle(handle).get_title()
+        elif self.namespace == 'Citation':
+            sortname = self.db.get_citation_from_handle(handle).get_title()
         elif self.namespace == 'Place':
             sortname = self.db.get_place_from_handle(handle).get_title()
         elif self.namespace == 'MediaObject':
@@ -1133,6 +1146,8 @@ class FilterEditor(ManagedWindow.ManagedWindow):
             return self.db.get_event_handles()
         elif self.namespace == 'Source':
             return self.db.get_source_handles()
+        elif self.namespace == 'Citation':
+            return self.db.get_citation_handles()
         elif self.namespace == 'Place':
             return self.db.iter_place_handles()
         elif self.namespace == 'MediaObject':

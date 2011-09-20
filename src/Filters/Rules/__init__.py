@@ -39,5 +39,5 @@ from Filters.Rules._MatchesSourceConfidenceBase import MatchesSourceConfidenceBa
 from Filters.Rules._MatchesSourceFilterBase import MatchesSourceFilterBase
 from Filters.Rules._ChangedSinceBase import ChangedSinceBase
 
-from Filters.Rules import (Person, Family, Event, Source, Place, MediaObject, 
-                           Repository, Note)
+from Filters.Rules import (Person, Family, Event, Source, Citation, Place, 
+                           MediaObject, Repository, Note)
