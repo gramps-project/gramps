@@ -1198,6 +1198,9 @@ div#families table.fixed_subtables table.eventlist th:first-child {
 div#families table.fixed_subtables table.eventlist th:last-child {
     width:5em;
 }
+div#families table.attrlist td.ColumnType {
+    width: 15%;
+}
 
 /* Subsection: LDS Ordinance
 ------------------------------------------------------ */
