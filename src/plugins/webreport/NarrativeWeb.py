@@ -350,7 +350,7 @@ class BasePage(object):
         self.noid = report.options['nogid']
         self.linkhome = report.options['linkhome']
         self.create_media = report.options['gallery']
-        self.thumbpreview = report.options['thumbpreview']
+        self.inc_thumbnails = report.options['inc_thumbnails']
         self.inc_families = report.options['inc_families']
         self.inc_events = report.options['inc_events']
 
@@ -1254,9 +1254,15 @@ class BasePage(object):
         # include repositories or not?
         inc_repos = True   
         if (not self.report.inc_repository or
-            not len(self.report.database.get_repository_handles() ) ):
+            not len(self.report.database.get_repository_handles()) ):
                 inc_repos = False  
 
+        # include thumbnails preview page or not?
+        inc_thumbnails = True
+        if (not self.create_media or not self.report.inc_thumbnails):
+            inc_thumbnails = False
+
+        # determine which menu items will be available?
         navs = [
             (self.report.index_fname,   _("Html|Home"),     self.report.use_home),
             (self.report.intro_fname,    _("Introduction"), self.report.use_intro),
@@ -1266,7 +1272,7 @@ class BasePage(object):
             ('places',                  _("Places"),        True),
             ('events',                  _("Events"),        self.report.inc_events), 
             ('media',                   _("Media"),         self.create_media),
-            ('thumbnails',              _("Thumbnails"),    self.report.thumbpreview),
+            ('thumbnails',              _("Thumbnails"),    inc_thumbnails),
             ('sources',                 _("Sources"),       True),
             ('repositories',            _("Repositories"),  inc_repos),
             ("addressbook",             _("Address Book"),  self.report.inc_addressbook),
@@ -6256,7 +6262,7 @@ class NavWebReport(Report):
 
         self.title = self.options['title']
         self.inc_gallery = self.options['gallery']
-        self.thumbpreview = self.options['thumbpreview']
+        self.inc_thumbnails = self.options['inc_thumbnails']
 
         self.inc_contact = self.options['contactnote'] or \
                            self.options['contactimg']
@@ -6268,7 +6274,7 @@ class NavWebReport(Report):
         self.inc_families = self.options['inc_families']
 
         # create a media thumbnail preview page or not?
-        self.thumbpreview = self.options['thumbpreview']
+        self.inc_thumbnails = self.options['inc_thumbnails']
 
         # create an event pages or not?
         self.inc_events = self.options['inc_events']
@@ -6432,7 +6438,7 @@ class NavWebReport(Report):
             self.gallery_pages(source_list)
 
             # build Thumbnail Preview Page...
-            if self.thumbpreview:
+            if self.inc_thumbnails:
                 self.thumbnail_preview_page()
 
         # Build classes source pages a second time to pick up sources referenced
@@ -7228,11 +7234,11 @@ class NavWebOptions(MenuReportOptions):
                               "of the image shown on the media page. Set to 0 for no limit."))
         addopt( "maxinitialimageheight", self.__maxinitialimageheight)
 
-        self.__thumbpreview = BooleanOption(_("Create a media thumbnails preview page"), False)
-        self.__thumbpreview.set_help(_("Whether to create a thumbnail's preview page?  "
+        self.__inc_thumbnails = BooleanOption(_("Create a media thumbnails preview page"), False)
+        self.__inc_thumbnails.set_help(_("Whether to create a thumbnail's preview page?  "
             "This will be hyper- linked to the Media List Page only!")
                             )
-        addopt("thumbpreview", self.__thumbpreview)
+        addopt("inc_thumbnails", self.__inc_thumbnails)
 
         self.__gallery_changed()
 
@@ -7479,12 +7485,12 @@ class NavWebOptions(MenuReportOptions):
             self.__maxinitialimagewidth.set_available(False)
             self.__maxinitialimageheight.set_available(False)
 
-            self.__thumbpreview.set_available(False)
+            self.__inc_thumbnails.set_available(False)
         else:
             self.__maxinitialimagewidth.set_available(True)
             self.__maxinitialimageheight.set_available(True)
 
-            self.__thumbpreview.set_available(True)
+            self.__inc_thumbnails.set_available(True)
 
     def __living_changed(self):
         """
