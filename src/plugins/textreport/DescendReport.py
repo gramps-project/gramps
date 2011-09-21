@@ -292,6 +292,7 @@ class RecurseDown():
                     child = self.database.get_person_from_handle(child_ref.ref)
                     self.recurse(level+1, child, ref_str)
 
+
 #------------------------------------------------------------------------
 #
 # DescendantReport
