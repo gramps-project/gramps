@@ -459,24 +459,6 @@ table.individuallist tbody tr td.ColumnName a:hover {
     margin-left:20px;
 }
 
-/* Subsection: Families: Attributes
-------------------------------------------------- */
-div#families div#attributes table.attributes {
-    font: normal .8em sans-serif;
-}
-div#families div#attributes table.attributes thead tr th.ColumnType {
-    background: none;
-    border: none;
-}
-div#families div#attributes table.attributes thead tr th.ColumnAttribute {
-    background: none;
-    border: none;
-}
-div#families div#attributes table.attributes thead tr th.Type {
-    border-left: solid 1px #000;
-    width: 15%;
-}
-
 /* Sources
 ----------------------------------------------------- */
 #Sources {  }
@@ -843,6 +825,9 @@ div#families table.fixed_subtables table.eventlist th:first-child {
 }
 div#families table.fixed_subtables table.eventlist th:last-child {
     width:5em;
+}
+div#families table.attrlist td.ColumnType {
+    width: 15%;
 }
 
 /* Subsections : Addresses
