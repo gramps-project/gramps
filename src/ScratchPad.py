@@ -152,7 +152,9 @@ def model_contains(model, data):
             # FIXME: too restrictive, birth and death won't both copy
             same = ((row[0] == data[0]) and
                     (row[1]._title == data[1]._title) and
-                    (row[1]._handle == data[1]._handle))
+                    (row[1]._handle == data[1]._handle) and
+                    (row[3] == data[3]) and
+                    (row[4] == data[4]))
         if same:
             return True
     return False
