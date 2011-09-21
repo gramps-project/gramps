@@ -9,6 +9,7 @@
 # Copyright (C) 2009      Benny Malengier <benny.malengier@gramps-project.org>
 # Copyright (C) 2010      Jakim Friant
 # Copyright (C) 2010      Vlada Peri\u0107
+# Copyright (C) 2011      Matt Keenan <matt.keenan@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -115,6 +116,7 @@ class DetDescendantReport(Report):
         incssign      - Whether to include a sign ('+') before the descendant number in the child-list to indicate a child has succession.
         pid           - The Gramps ID of the center person for the report.
         name_format   - Preferred format to display names
+        incmateref    - Whether to print mate information or reference
         """
         Report.__init__(self, database, options_class)
 
@@ -148,6 +150,7 @@ class DetDescendantReport(Report):
         self.inc_attrs     = get_value('incattrs')
         self.inc_paths     = get_value('incpaths')
         self.inc_ssign     = get_value('incssign')
+        self.inc_materef   = get_value('incmateref')
         pid                = get_value('pid')
         self.center_person = database.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
@@ -157,6 +160,7 @@ class DetDescendantReport(Report):
         self.prev_gen_handles = {}
         self.gen_keys = []
         self.dnumber = {}
+        self.dmates = {}
 
         if blankdate:
             empty_date = EMPTY_ENTRY
@@ -550,7 +554,20 @@ class DetDescendantReport(Report):
             self.doc.write_text_citation(self.endnotes(mate))
             self.doc.end_paragraph()
 
-            self.write_person_info(mate)
+            if not self.inc_materef:
+                # Don't want to just print reference
+                self.write_person_info(mate)
+            else:
+                # Check to see if we've married a cousin
+                if mate_handle in self.dnumber:
+                    self.doc.start_paragraph('DDR-MoreDetails')
+                    self.doc.write_text_citation(
+                        self._("Ref: %s. %s") %
+                        (self.dnumber[mate_handle], name))
+                    self.doc.end_paragraph()
+                else:
+                    self.dmates[mate_handle] = person.get_handle()
+                    self.write_person_info(mate)
 
     def __get_mate_names(self, family):
         mother_handle = family.get_mother_handle()
@@ -982,6 +999,10 @@ class DetDescendantOptions(MenuReportOptions):
         incmates = BooleanOption(_("Include spouses"), False)
         incmates.set_help(_("Whether to include detailed spouse information."))
         add_option("incmates", incmates)
+
+        incmateref = BooleanOption(_("Include spouse reference"), False)
+        incmateref.set_help(_("Whether to include reference to spouse."))
+        add_option("incmateref", incmateref)
 
         incssign = BooleanOption(_("Include sign of succession ('+')"
                                    " in child-list"), True)
