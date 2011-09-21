@@ -674,8 +674,11 @@ class BasePage(object):
                                                     place.long,
                                                     "D.D8")
 
-                # 0 = latitude, 1 = longitude, 2 = place title, 3 = place handle, 4 = event date...
-                place_lat_long.append( [latitude, longitude, placetitle, place.handle, event.get_date_object() ] )
+                # 0 = latitude, 1 = longitude, 2 = place title,
+                # 3 = place handle, 4 = event date...
+                if latitude is not None:
+                    place_lat_long.append( [latitude, longitude, placetitle,
+                                       place.handle, event.get_date_object() ] )
 
     def _get_event_place(self, person, ppl_handle_list):
         """
