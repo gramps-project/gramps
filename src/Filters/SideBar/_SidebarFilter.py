@@ -132,15 +132,6 @@ class SidebarFilter(DbGUIElement):
                           xoptions=gtk.FILL, yoptions=0)
         self.position += 1
 
-    def add_combo_entry(self, name, widget):
-        if name:
-            self.table.attach(widgets.BasicLabel(name),
-                              1, 2, self.position, self.position+1,
-                              xoptions=gtk.FILL, yoptions=0)
-        self.table.attach(widget, 2, 4, self.position, self.position+1,
-                          xoptions=gtk.FILL|gtk.EXPAND, yoptions=0)
-        self.position += 1
-
     def on_filters_changed(self, namespace):
         """
         Called when filters are changed.

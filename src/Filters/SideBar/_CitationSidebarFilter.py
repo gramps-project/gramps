@@ -62,8 +62,28 @@ class CitationSidebarFilter(SidebarFilter):
         self.filter_page = gtk.Entry()       
         self.filter_date = gtk.Entry()
         
-        self.citn = gen.lib.Citation()
         self.filter_conf = gtk.ComboBox()
+#        # FIXME: The confidence combo-box is not populated with any entries.
+#        # I have no idea why this should be, as the code here seems 
+#        # entirely analogous to src/gui/editors/editcitation,
+#        # which itself is derived from src/gui/editors/editsourceref.py
+#        # and edit citation displays the confidence selectors correctly.
+#        # There is some different code in src/gui/filtereditor.py.
+#        self.citn = gen.lib.Citation()
+#        self.type_mon = MonitoredMenu(
+#            self.filter_conf,
+#            self.citn.set_confidence_level,
+#            self.citn.get_confidence_level, [
+#            (_('Very Low'), gen.lib.Citation.CONF_VERY_LOW),
+#            (_('Low'), gen.lib.Citation.CONF_LOW),
+#            (_('Normal'), gen.lib.Citation.CONF_NORMAL),
+#            (_('High'), gen.lib.Citation.CONF_HIGH),
+#            (_('Very High'), gen.lib.Citation.CONF_VERY_HIGH)])
+        model = gtk.ListStore(str)
+        for conf_value in sorted(confidence.keys()):
+            model.append((confidence[conf_value],))
+        self.filter_conf.set_model(model)
+        self.filter_conf.set_active(2)
         
         self.filter_note = gtk.Entry()
 
@@ -81,25 +101,16 @@ class CitationSidebarFilter(SidebarFilter):
         self.generic.add_attribute(cell, 'text', 0)
         self.on_filters_changed('Citation')
 
+        cell = gtk.CellRendererText()
+        cell.set_property('width', self._FILTER_WIDTH)
+        cell.set_property('ellipsize', self._FILTER_ELLIPSIZE)
+        self.filter_conf.pack_start(cell, True)
+        self.filter_conf.add_attribute(cell, 'text', 0)
+
         self.add_text_entry(_('ID'), self.filter_id)
         self.add_text_entry(_('Volume/Page'), self.filter_page)
         self.add_text_entry(_('Date'), self.filter_date)
-        # FIXME: The confidence combo-box is not populated with any entries.
-        # I have no idea why this should be, as the code here seems 
-        # entirely analogous to src/gui/editors/editcitation,
-        # which itself is derived from src/gui/editors/editsourceref.py
-        # and edit citation displays the confidence selectors correctly.
-        # There is some different code in src/gui/filtereditor.py.
-        self.type_mon = MonitoredMenu(
-            self.filter_conf,
-            self.citn.set_confidence_level,
-            self.citn.get_confidence_level, [
-            (_('Very Low'), gen.lib.Citation.CONF_VERY_LOW),
-            (_('Low'), gen.lib.Citation.CONF_LOW),
-            (_('Normal'), gen.lib.Citation.CONF_NORMAL),
-            (_('High'), gen.lib.Citation.CONF_HIGH),
-            (_('Very High'), gen.lib.Citation.CONF_VERY_HIGH)])
-        self.add_combo_entry(_('Confidence'), self.filter_conf)
+        self.add_entry(_('Confidence'), self.filter_conf)
         self.add_text_entry(_('Note'), self.filter_note)
         self.add_filter_entry(_('Custom filter'), self.generic)
         self.add_entry(None, self.filter_regex)
@@ -108,7 +119,7 @@ class CitationSidebarFilter(SidebarFilter):
         self.filter_id.set_text('')
         self.filter_page.set_text('')
         self.filter_date.set_text('')
-        self.filter_conf.set_active(0)
+        self.filter_conf.set_active(2)
         self.filter_note.set_text('')
         self.generic.set_active(0)
 
@@ -116,7 +127,15 @@ class CitationSidebarFilter(SidebarFilter):
         gid = unicode(self.filter_id.get_text()).strip()
         page = unicode(self.filter_page.get_text()).strip()
         date = unicode(self.filter_date.get_text()).strip()
-        conf = self.citn.get_confidence_level()
+        model = self.filter_conf.get_model()
+        node = self.filter_conf.get_active_iter()
+        conf_name = model.get_value(node, 0)  # The value is actually the text
+        conf = 2
+        for i in confidence.keys():
+            if confidence[i] == conf_name:
+                conf = i
+                break
+#        conf = self.citn.get_confidence_level()
         note = unicode(self.filter_note.get_text()).strip()
         regex = self.filter_regex.get_active()
         gen = self.generic.get_active() > 0
