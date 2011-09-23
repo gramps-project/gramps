@@ -35,7 +35,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-08-22 12:17+0200\n"
-"PO-Revision-Date: 2011-09-14 16:03+0100\n"
+"PO-Revision-Date: 2011-09-23 17:04+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -1370,7 +1370,7 @@ msgid "the object|Make %s active"
 msgstr "Nastavit aktivní %s"
 
 #: ../src/ScratchPad.py:1351
-#, fuzzy, python-format
+#, python-format
 msgid "the object|Create Filter from %s selected..."
 msgstr "Vytvořit filtr z vybraného %s..."
 
@@ -4097,9 +4097,8 @@ msgid "The basic style used for the endnotes reference display."
 msgstr "Základní styl používaný pro zobrazení koncových poznámek archivů."
 
 #: ../src/gen/plug/report/endnotes.py:75
-#, fuzzy
 msgid "The basic style used for the endnotes reference notes display."
-msgstr "Základní styl používaný pro zobrazení koncových poznámek archivů."
+msgstr "Základní styl používaný pro zobrazení odkazů koncových poznámek."
 
 #: ../src/gen/plug/report/endnotes.py:121
 msgid "Endnotes"
@@ -5285,7 +5284,7 @@ msgstr "Obnovit výchozí nastavení?"
 
 #: ../src/gui/grampsbar.py:483
 msgid "The Grampsbar will be restored to contain its default gramplets.  This action cannot be undone."
-msgstr ""
+msgstr "Lišta Gramps bude po obnovení obsahovat výchozí gramplety. Tuto akci nelze odvolat."
 
 #: ../src/gui/grampsbar.py:485
 #: ../src/gui/plug/_windows.py:490
@@ -11621,9 +11620,8 @@ msgstr "Náhled"
 
 #. set Message Ares to Select
 #: ../src/plugins/gramplet/EditExifMetadata.py:401
-#, fuzzy
 msgid "Select an image to begin..."
-msgstr "Vybrat mediální objekt"
+msgstr "Vybrat obrázek kterým se začne..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:423
 msgid ""
@@ -11644,7 +11642,7 @@ msgstr ""
 #. Convert message
 #: ../src/plugins/gramplet/EditExifMetadata.py:451
 msgid "Please convert this image to an Exiv2- compatible image type..."
-msgstr ""
+msgstr "Převeďte prosím tento obrázek do Exiv2 kompatibilního typu..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:474
 #, python-format
@@ -13305,9 +13303,9 @@ msgid "place"
 msgstr "místo"
 
 #: ../src/plugins/import/ImportCsv.py:247
-#, fuzzy, python-format
+#, python-format
 msgid "format error: line %(line)d: %(zero)s"
-msgstr "chyba formátu: soubor %(fname)s, řádek %(line)d: %(zero)s"
+msgstr "chyba formátu: řádek %(line)d: %(zero)s"
 
 #: ../src/plugins/import/ImportCsv.py:308
 msgid "CSV Import"
@@ -13514,9 +13512,9 @@ msgid "  %(id)s - %(text)s with %(id2)s\n"
 msgstr "  %(id)s - %(text)s s %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:241
-#, fuzzy, python-format
+#, python-format
 msgid "  Family %(id)s with %(id2)s\n"
-msgstr "  Místo %(id)s s %(id2)s\n"
+msgstr "  Rodina %(id)s s %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:244
 #, python-format
@@ -17806,9 +17804,8 @@ msgid "Specific parameters"
 msgstr "Specifické parametry"
 
 #: ../src/plugins/lib/maps/geography.py:1091
-#, fuzzy
 msgid "Where to save the tiles for offline mode."
-msgstr "Kde bude umístěna poznámka."
+msgstr "Kde budou uloženy dlaždice pro offline režim."
 
 #: ../src/plugins/lib/maps/geography.py:1096
 msgid ""
@@ -17831,14 +17828,14 @@ msgid "The map"
 msgstr "Mapa"
 
 #: ../src/plugins/lib/maps/grampsmaps.py:167
-#, fuzzy, python-format
+#, python-format
 msgid "Can't create tiles cache directory %s"
-msgstr "Nemohu vytvořit adresář: %s"
+msgstr "Nemohu vytvořit adresář keše dlaždic %s"
 
 #: ../src/plugins/lib/maps/grampsmaps.py:185
-#, fuzzy, python-format
+#, python-format
 msgid "Can't create tiles cache directory for '%s'."
-msgstr "Nemohu vytvořit adresář: %s"
+msgstr "Nemohu vytvořit adresář keše dlaždic pro '%s'."
 
 #. Make upper case of translaed country so string search works later
 #: ../src/plugins/mapservices/eniroswedenmap.py:42
@@ -21405,19 +21402,16 @@ msgid "WARNING: osmgpsmap module not loaded. Geography functionality will not be
 msgstr "POZOR: modul osmgpsmap nebyl nahrán. Geografické funkce nebudou k dispozici."
 
 #: ../src/plugins/view/geography.gpr.py:49
-#, fuzzy
 msgid "A view allowing to see the places visited by one person during his life."
-msgstr "Tento pohled umožňuje zobrazení stránek html vložených v Gramps"
+msgstr "Pohled ukazující všechny všechna místa, která osoba během svého života navštívila."
 
 #: ../src/plugins/view/geography.gpr.py:66
-#, fuzzy
 msgid "A view allowing to see all places of the database."
-msgstr "Tento pohled umožňuje zobrazení stránek html vložených v Gramps"
+msgstr "Pohled ukazující všechny všechna místa v databázi."
 
 #: ../src/plugins/view/geography.gpr.py:81
-#, fuzzy
 msgid "A view allowing to see all events places of the database."
-msgstr "Pohled ukazující všechny všechna místa v rodokmenu"
+msgstr "Pohled ukazující všechny všechna místa událostí v databázi."
 
 #: ../src/plugins/view/geography.gpr.py:97
 msgid "A view allowing to see the places visited by one family during all their life."
@@ -22837,9 +22831,8 @@ msgid "Whether to include a place map on the Place Pages, where Latitude/ Longit
 msgstr "Zda zahrnout mapu míst na stránkách míst pokud jsou dostupné zeměpisné souřadnice."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6782
-#, fuzzy
 msgid "Include Family Map Pages with all places shown on the map"
-msgstr "Zahrnout jednotlivé mapové stránky se všemi místy zobrazenými na mapě"
+msgstr "Zahrnout stránky Family Map se všemi místy zobrazenými na mapě"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6784
 msgid "Whether or not to add an individual page map showing all the places on this page. This will allow you to see how your family traveled around the country."
@@ -22850,14 +22843,12 @@ msgid "Markers"
 msgstr "Značkay"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6793
-#, fuzzy
 msgid "Family Links"
-msgstr "Zpětné linky rodiny"
+msgstr "Linky rodiny"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6794
-#, fuzzy
 msgid "Google/ FamilyMap Option"
-msgstr "Možnosti mapy míst"
+msgstr "Volba Google/ FamilyMap"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6797
 msgid "Select which option that you would like to have for the Google Maps Family Map pages..."
@@ -24504,7 +24495,6 @@ msgid "Places with no latitude or longitude given"
 msgstr "Místa bez zeměpisných souřadnic"
 
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:47
-#, fuzzy
 msgid "Matches places with empty latitude or longitude"
 msgstr "Vyhovují místa s prázdnou zeměpisnou šířkou nebo délkou"
 
@@ -25022,9 +25012,8 @@ msgid "Notes containing <substring>"
 msgstr "Poznámky obsahující <substring>"
 
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:46
-#, fuzzy
 msgid "Matches notes that contain text which matches a substring"
-msgstr "Vyhovují oznámky, které obsahují text odpovídající podřetězci"
+msgstr "Vyhovují poznámky, které obsahují text odpovídající podřetězci"
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:44
 msgid "Regular expression:"
@@ -25035,7 +25024,6 @@ msgid "Notes containing <regular expression>"
 msgstr "Poznámky obsahující <regular expression>"
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:46
-#, fuzzy
 msgid "Matches notes that contain text which matches a regular expression"
 msgstr "Vyhovují poznámky, které obsahují text odpovídající reg. výrazu"
 
@@ -26264,26 +26252,24 @@ msgid "L_atitude:"
 msgstr "Zeměpisná šířk_a:"
 
 #: ../src/glade/editplace.glade.h:11
-#, fuzzy
 msgid ""
 "Latitude (position above the Equator) of the place in decimal or degree notation. \n"
 "Eg, valid values are 12.0154, 50°52′21.92″N, N50°52′21.92″ or 50:52:21.92\n"
 "You can set these values via the Geography View by searching the place, or via a map service in the place view."
 msgstr ""
 "Zeměpisná šířka(pozice nad rovinou) místa ve stupních nebo v desetinné formě .\n"
-"Platné hodnoty jsou  12.0154, 50&#xB0;52'21.92\"N, N50&#xBA;52'21.92\" nebo 50:52:21.92\n"
-"Tyto hodnoty můžete nastavit prostřednictvím Zeměpisného náhledu vyhledáním místa, nebo přes mapovou službu v náhledu míst."
+"Platné hodnoty jsou  12.0154, 50°52′21.92″N, N50°52′21.92″ nebo 50:52:21.92\n"
+"Tyto hodnoty můžete nastavit prostřednictvím Zeměpisného pohledu vyhledáním místa, nebo přes mapovou službu v pohledu míst."
 
 #: ../src/glade/editplace.glade.h:14
-#, fuzzy
 msgid ""
 "Longitude (position relative to the Prime, or Greenwich, Meridian) of the place in decimal or degree notation. \n"
 "Eg, valid values are -124.3647, 124°52′21.92″E, E124°52′21.92″ or 124:52:21.92\n"
 "You can set these values via the Geography View by searching the place, or via a map service in the place view."
 msgstr ""
 "Zeměpisná délka (pozice vztažená k nultému nebo Grenwichskému poledníku) místa ve stupních nebo v desetinné formě .\n"
-"Platné hodnoty jsou -124.3647, 124&#xB0;52'21.92\"E, E124&#xBA;52'21.92\" nebo 124:52:21.92\n"
-"Tyto hodnoty můžete nastavit prostřednictvím Zeměpisného náhledu vyhledáním místa, nebo přes mapovou službu v náhledu míst."
+"Platné hodnoty jsou  -124.3647, 124°52′21.92″E, E124°52′21.92″ nebo 124:52:21.92\n"
+"Tyto hodnoty můžete nastavit prostřednictvím Zeměpisného pohledu vyhledáním místa, nebo přes mapovou službu v pohledu míst."
 
 #: ../src/glade/editplace.glade.h:18
 msgid ""
