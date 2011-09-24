@@ -6,11 +6,11 @@ GRAMPS Cascading Style Sheet
 Style Name: Basic-Peach Stylesheet
 Style Author: Jason M. Simanek (2008)
 Note: Adapted from GRAMPS original Modern Style stylesheet with a new orange color scheme.
-
 **************************************************************************************************
 This website was created with GRAMPS <http://www.gramps-project.org/>
 --------------------------------------------------------------------------------------------------
 GRAMPS is a Free Software Project for Genealogy, offering a professional
+
 genealogy program, and a wiki open to all. It is a community project, created,
 developed and governed by genealogists.
 
@@ -20,6 +20,7 @@ Go to <http://gramps-project.org/> to learn more!
 Copyright 2008 Jason M. Simanek
 Copyright 2009 Stephane Charette
 Copyright (C) 2008-2011 Rob G. Healey <robhealey1@gmail.com>
+Copyright 2011 Michiel D. Nauta
 
 This file is part of the GRAMPS program.
 
@@ -37,1166 +38,679 @@ GRAMPS. If not, see <http://www.gnu.org/licenses/>.
 
 Color Palette
 --------------------------------------------------------------------------------------------------
+
 black                   #36220B
 brown                   #8C581C
 orange dark             #EA8414
 orange                  #FFC35E
 orange light            #FFE09F
 yellow light            #FFFBE7
----------------------------------------------------------------------------------------------------
-
+--------------------------------------------------------------------------------------------------
+Characteristic of this style is that it uses the full width of the browser
+window and that horizontal highlighting bars extend over the full width of
+the page.
+--------------------------------------------------------------------------------------------------
 # $Id$
 
  NarrativeWeb Styles
--------------------------------------------------------------------------------------------- 
+------------------------------------------------------------------------------------------------ 
 
  General Elements
 ----------------------------------------------------- */
 
 body {
-    font-family:sans-serif;
-    color:#36220B;
-    margin:0;
-    padding:0;
-    background-color:#FFFBE7;
+    font-family: sans-serif;
+    font-size: 90%;
+    color: #36220B;
+    margin: 0px;
+    background-color: #FFE09F;
 }
-div {
-    margin:0;
-    padding:0;
-}
-img {
-    border:none;
-    margin:0;
-}
-.thumbnail a:hover {
-    background:none;
+body > div {
+    clear: both;
 }
 .content {
-    padding-top: 1cm;
-    background-color:#FFFBE7;
+    background-color: #FFFBE7;
+    border-top: solid 1px #8C581C;
 }
 .content div.snapshot {
-    float:right;
-    margin:20px;
-    padding:0;
-    background:none;
-}
-.content div.snapshot div.thumbnail {
-    margin:0;
-    padding:0;
-    background:none;
+    float: right;
+    margin: 2em;
 }
 .fullclear {
-    width:100%;
-    height:1px;
-    margin:0;
-    padding:0;
-    clear:both;
+    clear: both;
 }
 
 /* General Text
 ----------------------------------------------------- */
 h1 {
-    font-size:1.4em;
-    font-weight:bold;
-    margin:0;
-}
-h2 {
-    display:none;
+    font-size: x-large;
+    font-weight: bold;
+    padding-left: 15px;
 }
 h3 {
-    font-size:1.2em;
-    font-weight:bold;
-    margin-left:12px;
-    text-align:left;
-    margin:0;
-    padding:.5em 20px .2em 20px;
+    font-size: large;
+    padding-left: 15px;
 }
 h4 {
-    font-size:.8em;
-    color:#EA8414;
-    margin:0;
-    padding:.2em 0 .2em 20px;
-    background-color:#FFE09F;
-    border-bottom:solid 1px #8C581C;
-}
-h5, h6 {
-    font-style:italic;
-    margin:1.3em 0 .5em 1em;
-}
-p {
-    font-size:14px;
-    line-height:17px;
-    margin:0;
+    font-size: medium;
+    color: #EA8414;
+    background-color: #FFC35E;
+    padding-left: 15px;
+    margin-bottom: 0px;
+    border-bottom: solid 1px #8C581C;
 }
 p#description {
-    padding:0 15px 1em 15px;
+    padding-left: 15px;
 }
-p a:link {
-    text-decoration:underline;
+a {
+    color: #36220B;
+    text-decoration: none;
 }
-sup {
-    line-height:0;
-}
-ol {
-}
-ol li a {
-    text-decoration:none;
-}
-a:link {
-    color:#36220B;
-    text-decoration:underline;
-}
-a:hover, a:active {
-    background-color:#FFE09F;
-    color:#36220B;
-    text-decoration:underline;
-}
-a:visited {
-    color:#36220B;
-    text-decoration:underline;
+a[href]:hover, a[href]:active {
+    background-color: #FFE09F
 }
 .grampsid {
-    font:normal .8em/1.2em monospace;
-    color:#8C581C;
+    font-family: monospace;
+    font-size: smaller;
+    color: #8C581C;
 }
 
 /* Header
 ----------------------------------------------------- */
-#header {
-    padding:15px 15px 2px 15px;
-    margin:0;
-    background-color:#FFE09F;
-}
 #SiteTitle {
-    color:#EA8414;
-    margin:0 0 3px 0;
+    color: #EA8414;
 }
-#header p {
-    font-size:1em;
-    font-weight:bold;
-    color:#8C581C;
-    margin:0;
+#user_header, #user_footer {
+    padding-left: 15px;
 }
 
 /* Navigation
 ----------------------------------------------------- */
 #navigation, #subnavigation {
-    margin:0;
-    padding:4px 0 0 0;
-    background-color:#FFE09F;
+    border: solid 1px #FFE09F; /* needed by IE7 */
+}
+#subnavigation ul {
+    overflow: hidden;
 }
 #navigation ul, #subnavigation ul {
-    list-style:none;
-    min-width:770px;
-    height:22px;
-    margin:0;
-    padding:0 0 0 12px;
-    border-bottom:1px solid #8C581C;
+    list-style: none;
+    margin: 0px;
+    padding-left: 15px;
+}
+#subnavigation ul {
+    border-bottom: solid 1px #8C581C;
 }
 #navigation ul li, #subnavigation ul li {
-    margin:0;
-    padding:0;
-    float:left;
+    float: left;
 }
 #navigation ul li a, #subnavigation ul li a {
-    display:block;
-    font-size:12px;
-    line-height:100%;
-    font-weight:bold;
-    text-decoration:none;
-    margin:0;
-    padding:5px 5px;
-    background-color:#FFE09F;
+    display: block;
+    font-size: smaller;
+    font-weight: bold;
+    padding: 5px;
+    border-bottom: solid 1px #FFE09F;
 }
 #navigation ul li a:hover, #subnavigation ul li a:hover {
-    background-color:#FFC35E;
-    border-bottom:solid 1px #36220B;
+    text-decoration: none;
+    background-color: #FFC35E;
+    border-bottom: solid 1px #36220B;
 }
-#navigation ul li.CurrentSection a, #subnavigation ul li.CurrentSection a {
-    padding-bottom:4px;
-    border-top:solid 1px #8C581C;
-    border-right:solid 1px #8C581C;
-    border-left:solid 1px #8C581C;
-    border-bottom:solid 1px #FFFBE7;
-    background-color:#FFFBE7;
-}
-#navigation ul li.CurrentSection a:hover {
-    background-color:#FFFBE7;
+#navigation ul li.CurrentSection a {
+    position: relative;
+    top: 1px;
+    border: solid 1px #8C581C;
+    border-bottom-style: none;
+    background-color: #FFFBE7;
 }
 #subnavigation ul li.CurrentSection a {
-    border-width:0 0 1px 0;
+    background-color: #FFFBE7;
 }
 
 /* Alphabet Navigation
 ----------------------------------------------------- */
-div#alphabet {
-    width: 100%;
-    margin: 0;
+#alphabet {
     background-color: #FFE09F;
 }
-div#alphabet ul {
-    list-style:none;
-    min-width:770px;
-    height:24px;
-    margin:0;
-    padding: 0px 0px 0px 16px;
+#alphabet ul {
+    list-style: none;
     border-width: 2px 0px 4px 0px;
     border-style: solid;
-    border-color: #000;
+    border-color: #36220B;
+    margin: 0px;
+    padding-left: 15px;
+    /* float container stretch, see www.quirksmode.org/css/clearing.html */
+    overflow: hidden;
 }
-div#alphabet ul li:after {
-    content:"  |";
+#alphabet ul li {
+    float: left;
+    font-size: larger;
+    font-weight: bold;
 }
-div#alphabet ul li {
-    margin:0;
-    float:left;
+#alphabet ul li:after {
+    content: " |";
 }
-div#alphabet ul li a {
-    display:block;
-    padding: 4px 8px 4px 8px;
-    float:left;
-    font:bold 16px/100% sans;
-    margin:0;
-    text-decoration:none;
-    color: #000;
+#alphabet ul li a {
+    display: block;
+    padding: 4px 8px;
+    line-height: 100%;
+    float: left;
 }
-div#alphabet ul li a:hover {
-    background-color: #000;
-    color: #FFF;
+#alphabet ul li a:hover {
+    text-decoration: none;
+    background-color: #36220B;
+    color: #FFFBE7;
 }
 
 /* Main Table
 ----------------------------------------------------- */
 table {
-    font-size:14px;
-    margin:0 15px;
-    padding:0;
-    border:none;
-    border-collapse:collapse;
+    border-collapse: collapse;
+    width: 100%;
+}
+div#summaryarea > table.infolist,
+div#parents > table.infolist,
+h3 + table.infolist {
+    width: auto;
 }
 table tr th {
-    font-weight: bold;
     text-align: left;
-    margin:0;
-    padding:.1em 10px;
-    background-color:#FFC35E;
-    border-top:solid 1px #8C581C;
-    border-bottom:solid 1px #8C581C;
+    background-color: #FFE09F;
+    border-top: solid 1px #8C581C;
+    border-bottom: solid 1px #8C581C;
 }
-table.infolist tr th:first-child {
-    border-left:solid 1px #8C581C;
+table tr th:first-child {
+    border-left: solid 1px #EA8414;
 }
-table.infolist tr th:last-child {
-    border-right:solid 1px #8C581C;
+table tr th:last-child {
+    border-right: solid 1px #EA8414;
 }
-table.infolist tr th a {
-    text-decoration:none;
+table.primobjlist tr th {
+    background-color: #FFC35E;
 }
-table tr td {
-    vertical-align:middle;
-    padding:.1em 10px;
+table td, table th {
+    vertical-align: top;
+    padding-left: 1ex;
 }
-table.infolist tr td a {
-    display:block;
-    text-decoration:none;
+table.primobjlist td {
+    vertical-align: middle;
 }
-table.infolist tr.BeginLetter td, table.infolist tr.BeginSurname td {
-    border-top:solid 1px #FFC35E;
+table td:first-child, table th:first-child {
+    padding-left: 15px;
 }
-table.infolist tr th.ColumnQuantity {
-    width:30%;
+table.primobjlist tr a {
+    display: block; /* make whole td clickable */
 }
-table.infolist tr td.ColumnLetter {
-    font-weight:bold;
+table.primobjlist tr.BeginLetter td, table.primobjlist tr.BeginSurname td {
+    border-top: solid 1px #FFC35E;
 }
-table.infolist tbody tr td.ColumnBirth {
-    font-size:.9em;
-    width:10%;
+td.ColumnLetter, td.ColumnRowLabel {
+    font-weight: bold;
 }
-table.infolist tbody tr td.ColumnDeath {
-    font-size:.9em;
-    width:10%;
+td.ColumnBirth, td.ColumnDeath, td.ColumnPartner, td.ColumnParents {
+    font-size: 90%;
 }
-table.infolist tbody tr td.ColumnRowLabel {
-    font-weight:bold;
-    width:2%;
+table.infolist tr td ol {
+    margin: 0px;
 }
-table.infolist tbody tr td.ColumnType {
-    width:6%;
-    padding-left:20px;
+#summaryarea table.infolist td.ColumnAttribute,
+#parents table.infolist td.ColumnAttribute,
+#families table.infolist td.ColumnType,
+#families table.infolist td.ColumnAttribute {
+    color: #8C581C;
 }
-table.infolist tbody tr td.ColumnPartner {
-    font-size:.9em;
+/* div summaryarea is missing for events, sources and repos! */
+h3 + table.infolist td.ColumnAttribute {
+    color: #8C581C;
 }
-table.infolist tbody tr td.ColumnParents {
-    font-size:.9em;
-}
-table.infolist tbody tr td.ColumnParents span.father, table.infolist tbody tr td.ColumnParents span.mother {
-    display:block;
-}
-table.infolist tbody tr td.ColumnParents span.mother:before {
-    content:"+ ";
-}
-table.infolist tbody p.EventNote {
-    border-top:dashed 1px #FFC35E;
-    padding-top:1em;
-    padding-bottom:1em;
+table.primobjlist td.ColumnParents span.mother:before {
+    content: "+ ";
 }
 
 /* Surnames
 ----------------------------------------------------- */
-#Surnames {  }
-#SurnameDetail p#description { padding-top:0; }
-table.surnamelist tbody tr td.ColumnSurname {
-    width:50%;
+table#SortByName td.ColumnSurname, table#SortByName th.ColumnSurname,
+table#SortByCount td.ColumnQuantity, table#SortByCount th.ColumnQuantity {
+    background-color: #FFE09F;
 }
-table.surnamelist thead tr th.ColumnSurname {
-    padding:0;
+table#SortByName td.ColumnSurname a[href]:hover {
+    background-color: #FFC35E;
 }
-table.surnamelist thead tr th.ColumnQuantity {
-    width:40%;
-    padding:0;
+/* make the whole cell light up on hover not just the a. */
+table#SortByName td.ColumnSurname,
+table#SortByName th.ColumnSurname,
+table#SortByName th.ColumnQuantity {
+    padding-left: 0px;
 }
-table.infolist thead tr th.ColumnSurname a, table.infolist thead tr th.ColumnQuantity a {
-    display:block;
-    padding:.1em 10px;
+table#SortByName td.ColumnSurname > a,
+table#SortByName th.ColumnSurname > a,
+table#SortByName th.ColumnQuantity > a {
+    padding-left: 1ex;
 }
-table#SortByName thead tr th.ColumnSurname a, table#SortByCount thead tr th.ColumnQuantity a {
-    background-color:#FFE09F;
+table#SortByName thead th.ColumnSurname a:after,
+table#SortByCount thead th.ColumnQuantity a:after {
+    content: " \2193";
 }
-table#SortByName thead tr th.ColumnSurname a:after, table#SortByCount thead tr th.ColumnQuantity a:after {
-    content:" ↓";
+table.surname td.ColumnName {
+    background-color: #FFE09F;
 }
-table.infolist tbody tr td.ColumnSurname {
-    padding:0;
-    background-color:#FFE09F;
+table.surname td.ColumnName a[href]:hover {
+    background-color: #FFC35E;
 }
-table.infolist tbody tr td.ColumnSurname a {
-    padding:.1em 10px;
+/* make the whole cell light up on hover not just the a. */
+table.surname td.ColumnName {
+    padding-left: 0px;
 }
-table.infolist tbody tr td.ColumnSurname a:hover {
-    padding:.1em 10px;
-    background-color:#FFC35E;
-}
-table.surname {
-    border-bottom:solid 1px #FFE09F;
-}
-table.surname tbody tr td {
-    border-bottom:dashed 1px #FFC35E;
-}
-table.surname tbody tr td.ColumnName {
-    width:20%;
-    padding:0;
-    background-color:#FFE09F;
-}
-table.surname tbody tr td.ColumnName a {
-    display:block;
-    padding:.6em 10px .6em 20px;
-}
-table.surname tbody tr td.ColumnName a:hover {
-    background-color:#FFC35E;
-}
-table.surname tbody tr td.ColumnName a span.grampsid {
-    display:none;
-}
-table.surname thead tr th.ColumnParents, table.surname tbody tr td.ColumnParents {
-    width:25%;
+table.surname td.ColumnName > a {
+    padding-left: 15px;
 }
 
 /* Individuals
 ----------------------------------------------------- */
-#Individuals {  }
-#Individuals table.individuallist {
-    border-bottom:solid 1px #FFE09F;
-}
-#Individuals table.individuallist tbody tr td {
-    border-bottom:dashed 1px #FFC35E;
-}
-#Individuals table.individuallist tbody tr td a:hover {
-    text-decoration:none;
-}
-table.individuallist tbody tr td.ColumnSurname {
-    background:none;
-}
-table.individuallist tbody tr td.ColumnSurname a:hover, table.individuallist tbody tr td.ColumnSurname a:active {
-    cursor:default;
-    color:black;
-    background:none;
-}
-table.individuallist tbody tr td.ColumnName {
-    padding:0;
-    background-color:#FFE09F;
-}
-table.individuallist tbody tr td.ColumnName a {
-    display:block;
-    padding:.6em 10px;
-    vertical-align:middle;
-}
-table.individuallist tbody tr td.ColumnName a:hover {
-    background-color:#FFC35E;
-}
-#Individuals div table.infolist tr td p {
-    vertical-align:top;
-}
-#Individuals div table.infolist tr td p a {
-    display:inline;
-}
-
-/* IndividualDetail
------------------------------------------------------- */
-#IndividualDetail {
-    background-color:#FFE09F;
-}
-#IndividualDetail div table.infolist tr td {
-    font:normal .9em/1.2em sans-serif;
-    vertical-align:top;
-}
-#IndividualDetail div table.infolist tr td a {
-    display:inline;
-}
-#IndividualDetail table.infolist tr td a:hover {
-    text-decoration:underline;
-}
-#IndividualDetail table.infolist tbody tr td.ColumnAttribute {
-    width:10%;
-    color:#696969;
-}
-#IndividualDetail div.subsection table tr td:first-child {
-    padding-left:20px;
-}
-#familymap a.familymap {
-    margin-left:20px;
-}
-
-/* Subsection: Families: Attributes
-------------------------------------------------- */
-div#families div#attributes table.attributes {
-    font: normal .8em sans-serif;
-}
-div#families div#attributes table.attributes thead tr th.ColumnType {
-    background: none;
-    border: none;
-}
-div#families div#attributes table.attributes thead tr th.ColumnAttribute {
-    background: none;
-    border: none;
-}
-div#families div#attributes table.attributes thead tr th.Type {
-    border-left: solid 1px #000;
-    width: 15%;
-}
-
-/* Sources
------------------------------------------------------ */
-#Sources table.infolist tbody tr td.ColumnRowLabel {
-    padding-bottom:0;
-}
-#Sources table.infolist tbody tr td.ColumnName {
-    padding:0;
-}
-#Sources table.infolist tbody tr td.ColumnName a {
-    padding:.1em 10px .3em 10px;
-}
-#SourceDetail div#references ol li {
-    padding-bottom:.5em;
+table.IndividualList td.ColumnSurname {
+    background-color: #FFE09F;
 }
 
 /* Places
 ----------------------------------------------------- */
-#Places table.infolist tbody tr td.ColumnName {
-    padding:0;
+#Places table.infolist td.ColumnName {
+    background-color: #FFE09F;
 }
-#Places table.infolist tbody tr td.ColumnName a {
-    padding:.1em 10px .3em 10px;
+#Places table.infolist td.ColumnName a[href]:hover {
+    background-color: #FFC35E;
+}
+/* make the whole cell light up on hover not just the a. */
+#Places table.infolist td.ColumnName {
+    padding-left: 0px;
+}
+#Places table.infolist td.ColumnName > a {
+    padding-left: 1ex;
 }
 
 /* Events
 ----------------------------------------------------- */
 #EventList table.infolist tr.BeginType td {
-    border-top: dashed 1px #FFC35E;
+    border-top:dashed 1px #FFC35E;
 }
 #EventList table.infolist tr.BeginLetter td {
-    border-top: solid 1px #FFC35E;
+    border-top:solid 1px #FFC35E;
 }
-#EventList table.infolist tr td a,
-#EventDetail table.infolist tr td a {
+#EventList table.infolist td.ColumnType {
+    background-color: #FFE09F;
+}
+#EventList td.ColumnPerson a {
     display: inline;
 }
-#EventList table.infolist tr td span.father, 
-#EventList table.infolist tr td span.mother,
-#EventDetail table.infolist tr td span.father,
-#EventDetail table.infolist tr td span.mother {
-    display: block;
-}
-#EventList table.infolist tr td span.person:after,
-#EventList table.infolist tr td span.father:after,
-#EventList table.infolist tr td span.mother:after,
-#EventDetail table.infolist tr td span.person:after,
-#EventDetail table.infolist tr td span.father:after,
-#EventDetail table.infolist tr td span.mother:after {
+#EventList td.ColumnPerson span.person:after,
+#EventList td.ColumnPerson span.father:after,
+#EventList td.ColumnPerson span.mother:after,
+#EventDetail td.ColumnPerson span.person:after,
+#EventDetail td.ColumnPerson span.father:after,
+#EventDetail td.ColumnPerson span.mother:after {
     content: ", ";
 }
-#EventList table.infolist tr td span.person:last-child:after,
-#EventList table.infolist tr td span.father:last-child:after,
-#EventList table.infolist tr td span.mother:last-child:after,
-#EventDetail table.infolist tr td span.person:last-child:after,
-#EventDetail table.infolist tr td span.father:last-child:after,
-#EventDetail table.infolist tr td span.mother:last-child:after {
+#EventList td.ColumnPerson span.fatherNmother:after,
+#EventDetail td.ColumnPerson span.fatherNmother:after {
+    content: " + ";
+}
+#EventList td.ColumnPerson span.person:last-child:after,
+#EventList td.ColumnPerson span.father:last-child:after,
+#EventList td.ColumnPerson span.mother:last-child:after,
+#EventDetail td.ColumnPerson span.person:last-child:after,
+#EventDetail td.ColumnPerson span.father:last-child:after,
+#EventDetail td.ColumnPerson span.mother:last-child:after {
     content: "";
 }
 
 /* Gallery
 ----------------------------------------------------- */
-#Gallery table.infolist tbody tr td.ColumnRowLabel, #Gallery table.infolist tbody tr td.ColumnDate {
-    padding-bottom:0;
-}
-#Gallery table.infolist tbody tr td.ColumnName {
-    padding:0;
-}
-#Gallery table.infolist tbody tr td.ColumnName a {
-    padding:.1em 10px .3em 10px;
-}
-#Gallery table.infolist tbody tr td.ColumnName a:hover {
-    background-color:#FFE09F;
-}
 #GalleryNav {
-    font-size:.8em;
-    margin:1em 0 0 0;
-    padding:1.2em 0 0 0;
-    text-align:center;
+    text-align: center;
+    margin: 2em 0px;
 }
 #GalleryNav a {
-    font-weight:bold;
-    text-decoration:none;
-    background-color:#FFE09F;
-    border:solid 1px #8C581C;
+    font-weight: bold;
+    background-color: #FFE09F;
+    border: solid 1px #EA8414;
+    margin: 1em;
 }
 #GalleryNav a:hover {
-    background-color:#FFC35E;
+    background-color: #FFC35E;
 }
 #GalleryNav a#Previous {
-    padding:.4em .7em .3em .7em;
+    padding: .4em .7em .3em .7em;
 }
 #GalleryNav a#Next {
-    padding:.4em 1.9em .3em 1.9em;
-}
-#GalleryPages {
-    margin:0 1em;
+    padding: .4em 1.9em .3em 1.9em;
 }
 #GalleryCurrent {
-    font-size:1.2em;
-    font-weight:bold;
+    font-size: larger;
 }
 #GalleryTotal {
-    font-weight:normal;
+    font-weight: normal;
 }
 #GalleryDisplay {
-    margin:0 auto;
-    padding:0;
-    position:relative;
-    overflow:hidden;
-    text-align:center;
-    border:solid 1px #8C581C;
+    margin: 0px auto;
+    position: relative;
 }
 #GalleryDisplay img {
-    margin:0 auto;
+    margin: 0px auto;
+    display: block;
+    border: solid 1px #EA8414;
 }
-#GalleryDetail div#summaryarea{
-    margin:0;
-    padding:1.4em 0 0 0;
-}
-#GalleryDetail div#summaryarea h3 {
-    text-align:center;
-}
-#GalleryDetail div h4 {
-    margin-top:0;
-}
-#GalleryDetail div#summaryarea table.gallery {
-    width:100%;
-    margin-top:1.5em;
-    margin-bottom:0;
-    padding-bottom:0;
-    background-color:#FFE09F;
-    border-style:solid;
-    border-width:8px 0 0 0;
-    border-color:#FFC35E;
+#GalleryDetail h3 {
+    text-align: center;
 }
 
 /* Contact
 ----------------------------------------------------- */
+#Contact {
+    overflow: hidden;
+}
 #Contact #summaryarea {
-    width:500px;
-    margin:2em auto;
-    padding:3em;
-    background-color:#FFE09F;
-    border:solid 1px #8C581C;
+    width: 40em;
+    margin: 2em auto;
+    padding: 3em;
+    background-color: #FFE09F;
+    border: solid 1px #EA8414;
 }
-#Contact #summaryarea img {
-    float:right;
-    margin:0;
-    padding:0;
-    border:solid 1px #8C581C;
+#Contact img {
+    float: right;
+    border: solid 1px #EA8414;
 }
-#researcher {
-    margin-top:.3em;
+#Contact #researcher, #Contact #researcher h3 {
+    font-size: larger;
+    padding-left: 0px;
 }
-#researcher h3 {
-    padding:0;
-}
-#researcher span {
-    display:block;
-    float:left;
-    margin-right:.4em;
-}
-#streetaddress {
-    width:85%;
-}
-#locality, .locality {
+#Contact #streetaddress, #Contact #locality, #Contact #email {
     display: block;
-    width: 100%;
 }
-#city:after {
-    content:",";
+#Contact #locality, #Contact #city, #Contact #state, #Contact #postalcode,
+#Contact #country {
+    white-space: nowrap;
 }
-#country {
-    clear:left;
-}
-#email {
-    clear:left;
-}
-#email a {
-    text-decoration:none;
-}
-#email a:hover {
-    text-decoration:underline;
+#Contact #city:after {
+    content: ",";
 }
 
-/* Download 
+/* Download
 ----------------------------------------------------- */
-#Download { 
-    padding:1cm;
-    height:396px;
-}
-table.download {
-    border:solid 2px #000;
-    width:100%;
-}
-table.download img {
-    float:center;
-}
-table.download thead tr th {
-    text-align:center;
-    border:solid 2px #000;
-    color: #000;
-    text-transform:uppercase;
-}
-table.download tbody tr#Row02 {
-    border-bottom:solid 2px #000;
-}
-table.download thead tr th, table.download tbody tr td { 
-    padding-left:10px;
-    padding-top:20px;
-    border-style:solid;
-    border-color:#000;
-    border-width:0 2px 2px 2px;
-    text-align:left;
-}
-table.download td.Description {
-    width: 50%;
-}
-table.download td.License {
-    width:8%;
-}
-table.download td.Filename {
-    width:30%;
-}
-table.download td.Filename a {
-    font-weight:bold;
-    font-style: italic;
-    text-decoration:none;
-}
-table.download td.Filename a:hover {
-    text-decoration:underline;
-}
-table.download td.Modified {
-    width:12%;
-    font-weight:bold;
+#Download table.download a {
+    display: block;
 }
 
-/* Subsections
+/* Subsection
 ----------------------------------------------------- */
-#Home, #Introduction, #Contact {
-    padding:1.5em 0 3em 0;
+#Home, #Introduction {
+    overflow: hidden;
 }
-#Home p, #Introduction p, #Contact p {
-    margin:0 20px 1em 20px;
+#Home img, #Introduction img {
+    float: right;
+    margin: 1em;
+    max-width: 950px;
 }
-#Home img, #Introduction img, #Contact img {
-    float:right;
-    margin:0;
-    padding:0 20px 3em 20px;
+#Home p, #Introduction p {
+    padding-left: 15px;
 }
-#Home a, #Introduction a, #Contact a {
-    color: #000;
-    text-decoration: none;
+.subsection {
+    clear: both;
+    overflow: hidden;
 }
-div.subsection{
-    padding-bottom:.5em;
-    background-color:#FFFBE7;
-}
-div.subsection h4 {
-    margin-bottom:.5em;
-}
-div.subsection table, div.subsection ol, div.subsection p, div.subsection > a {
-    font-size:.9em;
-}
-div.subsection a {
-    text-decoration:none;
-}
-div.subsection a:hover {
-    text-decoration:underline;
-    background:none;
-}
-div.subsection table.infolist {
-    width:100%;
-    margin:0;
-}
-#IndividualDetail div.subsection table tr td:first-child {
-    padding-left:20px;
+.subsection p {
+    margin: 0px;
 }
 
-/* Subsections : Summary Area
+/* Subsection : Families
 ----------------------------------------------------- */
-div#summaryarea {
-    min-height:100px;
-    background:none;
-}
-div#summaryarea table.infolist {
-    margin:0;
-    padding:0;
-    background:#FFFBE7;
-    border-bottom:solid .7em #FFFBE7;
-}
-div#summaryarea table.infolist tr td, div#summaryarea table.infolist tr td p {
-    vertical-align:top;
-}
-div#summaryarea table.infolist tr td a, div#summaryarea table.infolist tr td p a {
-    display:inline;
-}
-div#summaryarea table.infolist tbody tr td.ColumnAttribute {
-    width:14%;
-    padding-left:20px;
-}
-
-/* Subsections : Events
------------------------------------------------------ */
-div#events {
-    padding-bottom:0;
-}
-div#events h4 {
-    margin-bottom:0;
-}
-div#events table.infolist {
-    border-bottom:solid 1px #FFFBE7;
-}
-div#events table.infolist tbody tr td {
-    padding-top:.2em;
-    padding-bottom:.2em;
-}
-#IndividualDetail div#events table.infolist thead tr th:first-child {
-    padding-left:20px;
-}
-div#events table.infolist tbody tr td.ColumnAttribute {
-    border-bottom:dashed 1px #FFC35E;
-}
-div#events table.infolist tbody tr td.ColumnValue {
-    border-bottom:dashed 1px #FFC35E;
-}
-div#events table.infolist tbody tr td.ColumnValue p {
-    margin:.1em 2em;
-}
-
-/* Subsections : Parents
------------------------------------------------------ */
-div#parents table.infolist tbody tr td.ColumnValue ol {
-    margin:0;
-    padding-top:0;
-}
-div#parents table.infolist tbody tr td.ColumnValue ol li {
-    padding-bottom:.2em;
-}
-
-/* Subsections : Families
------------------------------------------------------ */
-div#families table.infolist tbody tr td.ColumnValue p {
-    margin-top:0;
-}
-div#families table.infolist tbody tr td.ColumnValue ol {
-    margin:0;
-    padding-top:0;
-}
-div#families table.infolist tbody tr td.ColumnValue ol li {
-    padding-bottom:.2em;
-}
 div#families table.fixed_subtables table.eventlist {
-    table-layout:fixed;
+    table-layout: fixed;
 }
 div#families table.fixed_subtables table.eventlist th:first-child {
-    width:9em;
+    width: 9em;
 }
 div#families table.fixed_subtables table.eventlist th:last-child {
-    width:5em;
+    width: 5em;
+}
+div#families table.attrlist td.ColumnType {
+    color: #36220B;
 }
 
-/* Subsections : Addresses
+/* Subsection : Gallery
 ----------------------------------------------------- */
-div#addresses {
-    padding-bottom:0;
-}
-div#addresses h4 {
-    margin-bottom:0;
-}
-div#addresses table.infolist {
-    border-bottom:solid 1px #FFFBE7;
-}
-div#addresses table.infolist tbody tr td {
-    padding-top:.2em;
-    padding-bottom:.2em;
-}
-div#addresses table.infolist tbody tr td.ColumnAttribute {
-    width:30%;
-    border-bottom:dashed 1px #FFC35E;
-}
-div#addresses table.infolist tbody tr td.ColumnValue {
-    border-bottom:dashed 1px #FFC35E;
-}
-div#Addresses table.infolist tr td a, div#Addresses table.infolist tr td p a {
-    display: inline;
-}
-
-/* Subsections : Attributes
------------------------------------------------------ */
-
-/* Subsections : Gallery
------------------------------------------------------ */
-#indivgallery h4 {
-    margin-bottom:1em;
-}
 #indivgallery .thumbnail {
-    margin:0;
-    float:left;
-    width:130px;
-    height:150px;
-    text-align:center;
+    float: left;
+    max-width: 130px;
+    max-height: 150px;
+    font-size: smaller;
+    text-align: center;
+    margin: 0.8em 0.5em;
 }
-#indivgallery .thumbnail a {
-    display:block;
-    margin:0;
-    padding:0;
-    background:none;
+#indivgallery h4 + .thumbnail {
+    margin-left: 15px;
+    /* Problem: if there are more thumnails then fit on a single row, the
+     *          first thumnail on each next row should also have a margin-left
+     *          of 15 px. */
 }
-#indivgallery .thumbnail a img {
-    margin:0;
-    padding:0;
-    border:solid 1px #8C581C;
+#indivgallery img {
+    border: solid 1px #8C581C;
 }
-#indivgallery div.thumbnail span {
-/* ## remove this line and the comment markers from the line below to hide the description in Individual Gallery
+#indivgallery span {
+/* ## remove this line and the comment markers from the line below to hide description in Indivifual Gallery
     display: none; */
-
-    font-size:.6em;
-    text-align:center;
-    width:80%;
-    margin:0 auto;
-    padding:0;
 }
 
-/* Subsections : Narrative
+/* Subsection : Narrative
 ----------------------------------------------------- */
-div.narrative {
-    padding-bottom:0;
+h4 + div.grampsstylednote, a.familymap {
+    margin: 1em 15px;
 }
-.narrative p {
-    margin-top:.5em;
-    margin-bottom:0;
-    padding:0 20px 1em 20px;
+i + div.grampsstylednote p {
+    margin: 0px;
 }
 
-/* Subsections : References
+/* Subsection : Family Map
 ----------------------------------------------------- */
-#references ol {
-    margin-top:0;
-    margin-bottom:0;
+a.familymap {
+    display: block;
 }
 
-/* Subsections : Source References
+/* Subsection : Source References
 ----------------------------------------------------- */
-div#sourcerefs ol {
-    list-style-type:decimal;
-}
-div#sourcerefs ol li ol {
-    list-style-type:lower-alpha;
+#sourcerefs ol li ol {
+    list-style-type: lower-alpha;
 }
 
-/* Subsections : Weblinks
------------------------------------------------------ */
-
-/* Subsections : Pedigree
+/* Subsection : Pedigree
 ----------------------------------------------------- */
 .pedigreegen {
-    font-size:.9em;
-    list-style:none;
-    margin:.5em 0 0 0;
-    padding:0 0 .7em 20px;
+    list-style-type: none;
+    padding-left: 15px;
 }
 .pedigreegen li ol {
-    list-style:none;
-    margin-left:.5em;
-}
-.pedigreegen li ol li {
-    padding-bottom:.2em;
+    list-style-type: none;
 }
 .pedigreegen li ol li ol {
-    list-style:decimal;
-    margin-left:1.6em;
+    list-style-type: decimal;
 }
-.pedigreegen li ol li ol li ol.spouselist {
-    font-size:1em;
-    list-style:none;
-    margin-left:0;
+.pedigreegen ol.spouselist {
+    list-style-type: none;
 }
-.spouselist li.spouse ol {
-    font-size:1em;
-    list-style:decimal;
-    margin-left:1.6em;
-}
-.spouse a {
-    font-weight:normal;
+.pedigreegen ol.spouselist li.spouse ol {
+    list-style-type: decimal;
 }
 .spouse:before {
     content: "+ ";
 }
 .thisperson {
-    font-weight:bold;
+    font-weight: bold;
+}
+.thisperson > ol {
+    font-weight: normal;
 }
 
 /* Footer
 ----------------------------------------------------- */
 #footer {
-    clear:both;
-    width:100%;
-    font-size:12px;
-    line-height:130%;
-    color:#8C581C;
-    margin:0;
-    padding:15px 0 0 0;
-    background-color:#FFC35E;
-    border-top:solid 1px #EA8414;
+    clear: both;
+    padding-top: 1em;
+    background-color: #FFC35E;
+    border-top: solid 1px #EA8414;
 }
-#footer a, #footer a:visited {
-    text-decoration:none;
-    color:#8C581C;
-}
-#footer a:hover {
-    text-decoration:underline;
-}
-#footer img {
-    border:0;
-    margin:0 auto;
-    vertical-align:middle;
+#footer > * {
+    background-color: #FFE09F;
 }
 #footer p#createdate {
-    float:left;
-    width:40%;
-    text-align:left;
-    margin-left:10px;
+    float: left;
+    width: 50%;
+    text-align: left;
+    padding-left: 15px;
+    margin-top: 1em;
 }
 #footer p#copyright {
-    float:right;
-    width:40%;
-    text-align:right;
-    margin-right:10px;
+    float: right;
+    width: 40%;
+    text-align: right;
+    padding-right: 15px;
 }
-#footer p#copyright img {
-    margin-right:10px;
+#footer a[href]:hover {
+    background-color: #FFC35E;
 }
-#user_footer {
-    width:70%;
-    float:left;
-    margin:1em;
+
+/* Overwritten
+----------------------------------------------------- */
+button#drop {
+    background-color: #FFE09F;
+    border: solid 1px #EA8414 ! important;
 }
-#user_footer p {
-    font:normal 1em/1.2em serif;
-    margin:0;
-    padding:0;
+button#drop:hover {
+    background-color: #FFC35E;
+}
+div#map_canvas {
+    border-color: #EA8414 ! important;
+}
+body#FamilyMap {
+    background-color: #FFE09F ! important;
 }
 
 /* Calendar Styles
--------------------------------------------------------------------------------------------- */
-/* Calendar : General */
-body#WebCal {
-    padding:0 14px;
-    background-color:#8C581C;
+===================================================== */
+table.calendar {
+    table-layout: fixed;
+    empty-cells: show;
 }
-.calendar {
-    empty-cells:show;
-    width:100%;
-    font-size:1em;
-    font-weight:normal;
-    margin:0;
-    padding:0;
-    border:none;
-    border-collapse:collapse;
+.calendar thead th {
+    text-align: center;
+    border-top-style: none;
 }
-.calendar thead tr th {
-    width:14%;
-    font-weight:bold;
-    font-size:14px;
-    line-height:14px;
-    text-align:center;
-    text-transform:uppercase;
-    padding:2px 0;
+.calendar thead th.monthName {
+    font-size: xx-large;
+    font-weight: normal;
+    background-color: #FFFBE7;
+    border-bottom-style: none;
+    padding-top: 1em;
 }
-.calendar thead tr th.monthName {
-    width:100%;
-    font-weight:normal;
-    font-size:2em;
-    line-height:100%;
-    text-transform:none;
-    color:#36220B;
-    padding:.3em 0 .2em 0;
-    background-color:#FFF;
-    border-bottom-width:0;
+.calendar thead th abbr {
+    border-bottom-style: none;
 }
-body#WebCal #CreatorInfo {
-    float:right;
-    font-size:12px;
-    margin:-24px 10px 0 0;
+#CreatorInfo {
+    float: right;
+    margin: -1em 15px 0px 0px;
+    font-weight: bold;
+    color: #8C581C;
 }
-.calendar thead tr th.weekend, 
-.calendar thead tr th.weekday {
-    color:#EA8414;
-    background-color:#FFE09F;
-    border-style:solid;
-    border-width:0 0 1px 0;
-    border-color:#8C581C;
-}
-.calendar thead tr th.saturday, 
-.calendar thead tr th.sunday { }
-.calendar tfoot tr td {
-    padding:.7em 5% 1em 5%;
-    border-top:solid 4px #8C581C;
+#CreatorInfo a[href]:hover {
+    background-color: #FFC35E;
 }
 .calendar tfoot tr td {
-    vertical-align:middle;
-    color:#8C581C;
-    background-color:#FFFBE7;
+    border-top: solid 4px #8C581C;
+    vertical-align: middle;
 }
 
 /* Calendar : Date Numeral */
-.calendar tbody tr td div.date {
-    float:right;
-    display:block;
-    width:1.8em;
-    font-weight:bold;
-    font-size:1em;
-    line-height:100%;
-    text-align:center;
-    color:#8C581C;
-    margin:0 0 0 .5em;
-    padding:.2em 0;
-    background-color:#FFE09F;
+.calendar div.date {
+    float: right;
+    width: 1.8em;
+    font-size: large;
+    text-align: center;
+    background-color: #FFC35E;
+    color: #8C581C;
 }
 
 /* Calendar : Date Container */
-.calendar tbody tr td {
-    vertical-align:top;
-    height:10em;
-    padding:0;
-    border-width:1px 0 0 1px;
-    border-style:solid;
-    border-color:#FFE09F;
+.calendar td {
+    padding: 0px 0px 0px 1ex;
+    border-width: 1px 0px 0px 1px;
+    border-style: solid;
+    border-color: #FFC35E;
+    background-color: #FFFBE7;
 }
-.calendar tbody tr td.weekday {
-    background-color:#FFF;
-}
-.calendar tbody tr td.weekend {
-    background-color:#FFFBE7;
-}
-.calendar tbody tr td.saturday {
-
- }
-.calendar tbody tr td:first-child {
-    border-left:none;
+.calendar td:first-child {
+    border-left-style: none;
+    padding: 0px 0px 0px 1ex;
 }
 .calendar tbody tr:first-child td {
-    border-top:none;
+    border-top-style: none;
 }
 
 /* Calendar : Date Detail */
-.calendar tbody tr td ul {
-    list-style:none;
-    font-family:sans-serif;
-    font-size:.8em;
-    margin:2.3em 0 .3em 0;
-    padding:0;
+.calendar td ul {
+    font-size: smaller;
+    list-style: none;
+    padding: 0px;
 }
-.calendar tbody tr td ul li {
-    display:block;
-    width:92%;
-    margin:0 4%;
-    padding:.2em 0 .3em 0;
-    border-top:dashed 1px #C1B398;
+.calendar td ul li {
+    border-top: dashed 1px #8C581C;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
 }
-.calendar tbody tr td ul li:first-child {
-    border:none;
+.calendar td ul li:first-child {
+    border-style: none;
+}
+.calendar td ul a[href]:hover {
+    background-color: #FFC35E;
 }
 
 /* Calendar : Birthday, Anniversary, Highlight */
-.calendar tbody tr td ul li em {
-    font-style:normal;
-    color:#0A65B5;
+.calendar td ul li em {
+    font-style: normal;
+    color: #EA8414;
 }
-.calendar tbody tr td ul li span.yearsmarried em {
-    color:#453619;
+.calendar td.highlight {
+    background-color: #FFE09F;
 }
-.calendar tbody tr td.highlight {
-    background-color:#E5F2FE;
-}
-.calendar tbody tr td.highlight div.date {
-    color:#0A65B5;
-    background-color:#C2E1FE;
+.calendar td.highlight div.date {
+    color: #36220B;
+    background-color: #FFC35E;
 }
 
 /* Calendar : Previous-Next Month */
-.calendar tbody tr td.previous, 
-.calendar tbody tr td.next, 
-.calendar tbody tr td.previous div.date, 
-.calendar tbody tr td.next div.date {
-    color:#FFE09F;
-    background-color:#FFFBE7;
+.calendar td.previous,
+.calendar td.next,
+.calendar td.previous div.date,
+.calendar td.next div.date {
+    color: #FFC35E;
+    background-color: #FFFBE7;
 }
 
 /* Calendar : Full Year */
 body#fullyearlinked div.content {
-    width:963px;
-    margin:0 auto;
-    padding:15px 0 2px 2px;
+    overflow: hidden;
 }
 body#fullyearlinked table.calendar {
-    float:left;
-    width:320px;
-    height:18em;
-    border:solid 1px #7D5925;
+    float: left;
+    width: 33.3%;
+    height: 18em;
+    border: solid 1px #36220B;
 }
-body#fullyearlinked table.calendar thead tr th {
-    height:2em;
+body#fullyearlinked table.calendar thead th {
+    height: 2em;
 }
-body#fullyearlinked table.calendar thead tr th.monthName {
-    font-size:1.2em;
-    padding:2px 0;
+body#fullyearlinked table.calendar thead th.monthName {
+    font-size: large;
+    padding: 2px 0px;
 }
-body#fullyearlinked table.calendar tbody tr td {
-    height:3em;
+body#fullyearlinked table.calendar tbody td {
+    height: 3em;
+}
+body#OneDay div.content {
+    overflow: hidden;
 }
