@@ -35,7 +35,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-08-22 12:17+0200\n"
-"PO-Revision-Date: 2011-09-24 11:46+0100\n"
+"PO-Revision-Date: 2011-09-24 12:32+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -10237,14 +10237,12 @@ msgid "Whether to include page numbers on each page."
 msgstr "Zda vkládat čísla stran na každou stránku."
 
 #: ../src/plugins/drawreport/DescendTree.py:1637
-#, fuzzy
 msgid "Descendant Chart for [selected person(s)]"
-msgstr "Graf potomků osoby  %(person)s"
+msgstr "Graf potomků osoby  [selected person(s)]"
 
 #: ../src/plugins/drawreport/DescendTree.py:1641
-#, fuzzy
 msgid "Family Chart for [names of chosen family]"
-msgstr "Rodinný graf osoby %(person)s"
+msgstr "Rodinný graf osoby [names of chosen family]"
 
 #: ../src/plugins/drawreport/DescendTree.py:1645
 #, fuzzy
@@ -11099,9 +11097,8 @@ msgid "Image Metadata"
 msgstr "Metadata obrázku"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:110
-#, fuzzy
 msgid "Person Residence"
-msgstr "Odkaz na osobu"
+msgstr "Bydliště osoby"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:111
 msgid "Gramplet showing residence events for a person"
@@ -11703,9 +11700,8 @@ msgid "Media Path Update"
 msgstr "Aktualizace cest k médiím"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:893
-#, fuzzy
 msgid "There has been an error in updating the image file's path!"
-msgstr "Při konverzi vašeho obrázku došlo k chybě."
+msgstr "Při aktualizaci cesty k souboru obrázku došlo k chybě!"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:931
 msgid "Click the close button when you are finished modifying this image's Exif metadata."
@@ -11813,9 +11809,8 @@ msgid "All Exif metadata has been deleted from this image..."
 msgstr "Z tohoto obrázku byla odstraněna všechna Exif metadata..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1468
-#, fuzzy
 msgid "There was an error in stripping the Exif metadata from this image..."
-msgstr "Obrázek neobsahuje žádná Exif metadata."
+msgstr "Při odstraňování Exif metadat z obrázku došlo k chybě..."
 
 #: ../src/plugins/gramplet/Events.py:45
 #: ../src/plugins/gramplet/PersonResidence.py:45
@@ -17734,6 +17729,8 @@ msgid ""
 "Choose the radius of the selection.\n"
 "On the map you should see a circle or an oval depending on the latitude."
 msgstr ""
+"Zvolte poloměr výběru.\n"
+"Na mapě byste měli vidět kruh nebo ovál v závislosti na zem. šířce."
 
 #: ../src/plugins/lib/maps/geography.py:197
 msgid "The green values in the row correspond to the current place values."
@@ -17759,11 +17756,11 @@ msgstr "Přidat nitkový kříž"
 
 #: ../src/plugins/lib/maps/geography.py:439
 msgid "Unlock zoom and position"
-msgstr ""
+msgstr "Odemknout pozici a přiblížení"
 
 #: ../src/plugins/lib/maps/geography.py:441
 msgid "Lock zoom and position"
-msgstr ""
+msgstr "Uzamknout pozici a přiblížení"
 
 #: ../src/plugins/lib/maps/geography.py:448
 msgid "Add place"
@@ -17813,10 +17810,13 @@ msgid ""
 "You can remove all tiles placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
+"Pokud vám dochází místo na disku\n"
+"můžete odstranit všechny dlaždice umístěné v cestě výše.\n"
+"Buďte opatrní! Pokud nemáte přístup k Internetu, nebudete mítm žádnou mapu."
 
 #: ../src/plugins/lib/maps/geography.py:1101
 msgid "Zoom used when centering"
-msgstr ""
+msgstr "Přiblížení použité pro vystředění"
 
 #. there is no button. I need to found a solution for this.
 #. it can be very dangerous ! if someone put / in geography.path ...
@@ -21122,7 +21122,7 @@ msgstr "Odstranění nepoužívaných objektů"
 
 #: ../src/plugins/tool/tools.gpr.py:419
 msgid "Removes unused objects from the database"
-msgstr "Odstranit nepoužité objekty z databáze"
+msgstr "Odstraní nepoužité objekty z databáze"
 
 #: ../src/plugins/tool/tools.gpr.py:441
 msgid "Reorders the Gramps IDs according to Gramps' default rules."
@@ -21403,7 +21403,7 @@ msgstr "POZOR: modul osmgpsmap nebyl nahrán. Geografické funkce nebudou k disp
 
 #: ../src/plugins/view/geography.gpr.py:49
 msgid "A view allowing to see the places visited by one person during his life."
-msgstr "Pohled ukazující všechny všechna místa, která osoba během svého života navštívila."
+msgstr "Pohled ukazující všechny všechna místa, která konkrétní osoba během svého života navštívila."
 
 #: ../src/plugins/view/geography.gpr.py:66
 msgid "A view allowing to see all places of the database."
@@ -21415,12 +21415,11 @@ msgstr "Pohled ukazující všechny všechna místa událostí v databázi."
 
 #: ../src/plugins/view/geography.gpr.py:97
 msgid "A view allowing to see the places visited by one family during all their life."
-msgstr ""
+msgstr "Pohled ukazující všechny všechna místa, která konkrétní rodina během svého života navštívila."
 
 #: ../src/plugins/view/geoevents.py:116
-#, fuzzy
 msgid "Events places map"
-msgstr "Místo události"
+msgstr "Mapa míst událostí"
 
 #: ../src/plugins/view/geoevents.py:252
 msgid "incomplete or unreferenced event ?"
@@ -21434,14 +21433,12 @@ msgstr "Zobrazit všechny události"
 #: ../src/plugins/view/geoevents.py:372
 #: ../src/plugins/view/geoplaces.py:328
 #: ../src/plugins/view/geoplaces.py:332
-#, fuzzy
 msgid "Centering on Place"
-msgstr "Celý název tohoto místa."
+msgstr "Centruje se na místo"
 
 #: ../src/plugins/view/geofamily.py:116
-#, fuzzy
 msgid "Family places map"
-msgstr "Graf rodových linií"
+msgstr "Mapa míst rodiny"
 
 #: ../src/plugins/view/geofamily.py:216
 #: ../src/plugins/view/geoperson.py:322
@@ -21477,9 +21474,8 @@ msgid "No description"
 msgstr "Bez popisu"
 
 #: ../src/plugins/view/geoperson.py:144
-#, fuzzy
 msgid "Person places map"
-msgstr "Gramplet pramenů osoby"
+msgstr "Mapa míst osoby"
 
 #: ../src/plugins/view/geoperson.py:486
 msgid "Animate"
@@ -21491,22 +21487,23 @@ msgstr "Rychlost animace v milisekundách (větší hodnota znamená pomaleji)"
 
 #: ../src/plugins/view/geoperson.py:516
 msgid "How many steps between two markers when we are on large move ?"
-msgstr ""
+msgstr "Kolik kroků mezi dvěma značkami, indikující velké stěhování?"
 
 #: ../src/plugins/view/geoperson.py:523
 msgid ""
 "The minimum latitude/longitude to select large move.\n"
 "The value is in tenth of degree."
 msgstr ""
+"Minimální zem. délka/šířka označující velké stěhování.\n"
+"Hodnota je v desetinách stupně."
 
 #: ../src/plugins/view/geoperson.py:530
 msgid "The animation parameters"
 msgstr "Parametry animace"
 
 #: ../src/plugins/view/geoplaces.py:116
-#, fuzzy
 msgid "Places places map"
-msgstr "Seznam míst"
+msgstr "Mapa míst"
 
 #: ../src/plugins/view/geoplaces.py:324
 msgid "Show all places"
@@ -22316,7 +22313,7 @@ msgstr "Umístit značky na této stránce, které reprezentují různé lokace 
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4203
 msgid "Drop Markers"
-msgstr ""
+msgstr "Odstranit značky"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4420
 msgid "Ancestors"
@@ -22820,7 +22817,7 @@ msgstr "Mapová služba"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6771
 msgid "Choose your choice of map service for creating the Place Map Pages."
-msgstr ""
+msgstr "Zvolte mapovou službu pro vytváření stránek map míst."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6776
 msgid "Include Place map on Place Pages"
@@ -24701,16 +24698,16 @@ msgid "Matches sources with a certain number of repository references"
 msgstr "Vyhovují prameny s určitým počtem odkazů na archiv"
 
 #: ../src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py:42
-#, fuzzy
 msgid "Sources with repository reference containing <substring> in \"Call Number\""
-msgstr "Prameny mající poznámky obsahující <substring>"
+msgstr "Prameny s odkazem na archiv obsahující <substring> v \"Signatuře\""
 
 #: ../src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py:43
-#, fuzzy
 msgid ""
 "Matches sources with a repository reference\n"
 "containing a substring in \"Call Number\""
-msgstr "Vyhovují prameny jejichž poznámky obsahují text odpovídající podřetězci"
+msgstr ""
+"Vyhovují Prameny s odkazem na archiv\n"
+" obsahující podřetězec v \"Signatuře\""
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:47
@@ -24751,16 +24748,16 @@ msgid "Matches sources matched by the specified filter name"
 msgstr "Vyhovují prameny odpovídající uvedenému filtru"
 
 #: ../src/Filters/Rules/Source/_MatchesRepositoryFilter.py:42
-#, fuzzy
 msgid "Sources with repository reference matching the <repository filter>"
-msgstr "Události s pramenem odpovádajícím filtru <source filter>"
+msgstr "Prameny s odkazem na archiv odpovídající filtru <repository filter>"
 
 #: ../src/Filters/Rules/Source/_MatchesRepositoryFilter.py:43
-#, fuzzy
 msgid ""
 "Matches sources with a repository reference that match a certain\n"
 "repository filter"
-msgstr "Vyhovují osoby mající události odpovídající určitému filtru"
+msgstr ""
+"Vyhovují prameny s odkazem na archiv odpovídající určitému\n"
+"filtru archivů"
 
 #: ../src/Filters/Rules/Source/_MatchesTitleSubstringOf.py:44
 msgid "Sources title containing <substring>"
