@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-10 14:23+0200\n"
+"POT-Creation-Date: 2011-09-20 15:14+0200\n"
 "PO-Revision-Date: 2011-06-16 06:59+0200\n"
 "Last-Translator: Espen Berg <espenbe@gmail.com>\n"
 "Language-Team: Norsk bokmål <nb@i18n.org>\n"
@@ -105,9 +105,9 @@ msgstr "Organisere bokmerker"
 #: ../src/plugins/tool/NotRelated.py:130
 #: ../src/plugins/tool/RemoveUnused.py:200 ../src/plugins/tool/Verify.py:506
 #: ../src/plugins/view/repoview.py:82
-#: ../src/plugins/webreport/NarrativeWeb.py:2120
-#: ../src/plugins/webreport/NarrativeWeb.py:2308
-#: ../src/plugins/webreport/NarrativeWeb.py:5542
+#: ../src/plugins/webreport/NarrativeWeb.py:2113
+#: ../src/plugins/webreport/NarrativeWeb.py:2300
+#: ../src/plugins/webreport/NarrativeWeb.py:5560
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:125
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
 msgid "Name"
@@ -589,7 +589,7 @@ msgstr ""
 #: ../src/plugins/view/geoperson.py:448 ../src/plugins/view/relview.py:450
 #: ../src/plugins/view/relview.py:995 ../src/plugins/view/relview.py:1042
 #: ../src/plugins/webreport/NarrativeWeb.py:152
-#: ../src/plugins/webreport/NarrativeWeb.py:1739
+#: ../src/plugins/webreport/NarrativeWeb.py:1732
 msgid "Unknown"
 msgstr "Ukjent"
 
@@ -799,7 +799,7 @@ msgstr "tidligere partner"
 #: ../src/plugins/textreport/IndivComplete.py:607
 #: ../src/plugins/textreport/TagReport.py:210
 #: ../src/plugins/view/familyview.py:79 ../src/plugins/view/relview.py:883
-#: ../src/plugins/webreport/NarrativeWeb.py:4917
+#: ../src/plugins/webreport/NarrativeWeb.py:4920
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:112
 msgid "Father"
 msgstr "Far"
@@ -817,7 +817,7 @@ msgstr "Far"
 #: ../src/plugins/textreport/IndivComplete.py:612
 #: ../src/plugins/textreport/TagReport.py:216
 #: ../src/plugins/view/familyview.py:80 ../src/plugins/view/relview.py:884
-#: ../src/plugins/webreport/NarrativeWeb.py:4932
+#: ../src/plugins/webreport/NarrativeWeb.py:4935
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:113
 msgid "Mother"
 msgstr "Mor"
@@ -832,7 +832,7 @@ msgstr "Ektefelle"
 
 #: ../src/Reorder.py:39 ../src/plugins/textreport/TagReport.py:222
 #: ../src/plugins/view/familyview.py:81
-#: ../src/plugins/webreport/NarrativeWeb.py:4512
+#: ../src/plugins/webreport/NarrativeWeb.py:4515
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:115
 msgid "Relationship"
 msgstr "Relasjon"
@@ -859,7 +859,7 @@ msgstr "Utilgjengelig"
 #: ../src/gui/grampsgui.py:103 ../src/gui/editors/editaddress.py:152
 #: ../src/plugins/gramplet/RepositoryDetails.py:124
 #: ../src/plugins/textreport/FamilyGroup.py:315
-#: ../src/plugins/webreport/NarrativeWeb.py:5543
+#: ../src/plugins/webreport/NarrativeWeb.py:5561
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:93
 msgid "Address"
 msgstr "Adresse"
@@ -943,7 +943,7 @@ msgstr "Kommentar"
 msgid "Family Event"
 msgstr "Familiehendelser"
 
-#: ../src/ScratchPad.py:407 ../src/plugins/webreport/NarrativeWeb.py:1647
+#: ../src/ScratchPad.py:407 ../src/plugins/webreport/NarrativeWeb.py:1640
 msgid "Url"
 msgstr "Nettadresse"
 
@@ -988,8 +988,8 @@ msgstr "Hendelsesreferanse"
 #: ../src/plugins/export/ExportCsv.py:334
 #: ../src/plugins/import/ImportCsv.py:169
 #: ../src/plugins/quickview/FilterByName.py:318
-#: ../src/plugins/webreport/NarrativeWeb.py:2119
-#: ../src/plugins/webreport/NarrativeWeb.py:2284
+#: ../src/plugins/webreport/NarrativeWeb.py:2112
+#: ../src/plugins/webreport/NarrativeWeb.py:2276
 #: ../src/plugins/webreport/NarrativeWeb.py:3282
 msgid "Surname"
 msgstr "Etternavn"
@@ -1014,10 +1014,10 @@ msgstr "Tekst"
 #: ../src/plugins/quickview/References.py:87
 #: ../src/plugins/textreport/TagReport.py:439
 #: ../src/plugins/view/mediaview.py:127 ../src/plugins/view/view.gpr.py:85
-#: ../src/plugins/webreport/NarrativeWeb.py:1227
-#: ../src/plugins/webreport/NarrativeWeb.py:1272
-#: ../src/plugins/webreport/NarrativeWeb.py:1544
-#: ../src/plugins/webreport/NarrativeWeb.py:2976
+#: ../src/plugins/webreport/NarrativeWeb.py:1220
+#: ../src/plugins/webreport/NarrativeWeb.py:1265
+#: ../src/plugins/webreport/NarrativeWeb.py:1537
+#: ../src/plugins/webreport/NarrativeWeb.py:2973
 #: ../src/plugins/webreport/NarrativeWeb.py:3606
 msgid "Media"
 msgstr "Media"
@@ -1064,7 +1064,7 @@ msgstr "Personreferanse"
 #: ../src/plugins/textreport/PlaceReport.py:386
 #: ../src/plugins/tool/EventCmp.py:250 ../src/plugins/view/geography.gpr.py:48
 #: ../src/plugins/webreport/NarrativeWeb.py:141
-#: ../src/plugins/webreport/NarrativeWeb.py:4511
+#: ../src/plugins/webreport/NarrativeWeb.py:4514
 msgid "Person"
 msgstr "Person"
 
@@ -1150,6 +1150,7 @@ msgstr "Oppbevaringssted"
 #: ../src/plugins/view/eventview.py:82 ../src/plugins/view/mediaview.py:94
 #: ../src/plugins/view/noteview.py:79 ../src/plugins/view/repoview.py:84
 #: ../src/plugins/webreport/NarrativeWeb.py:148
+#: ../src/plugins/webreport/NarrativeWeb.py:1038
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:92
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:90
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:92
@@ -1180,6 +1181,7 @@ msgstr "Tittel"
 #: ../src/plugins/gramplet/MetadataViewer.py:58
 #: ../src/plugins/tool/PatchNames.py:405
 #: ../src/plugins/webreport/NarrativeWeb.py:150
+#: ../src/plugins/webreport/NarrativeWeb.py:1039
 msgid "Value"
 msgstr "Verdi"
 
@@ -1251,7 +1253,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/ToolTips.py:150 ../src/plugins/webreport/NarrativeWeb.py:1989
+#: ../src/ToolTips.py:150 ../src/plugins/webreport/NarrativeWeb.py:1982
 msgid "Telephone"
 msgstr "Telefon"
 
@@ -1359,7 +1361,7 @@ msgid "High"
 msgstr "Høy"
 
 #: ../src/Utils.py:93 ../src/gui/editors/editsourceref.py:138
-#: ../src/plugins/webreport/NarrativeWeb.py:1740
+#: ../src/plugins/webreport/NarrativeWeb.py:1733
 msgid "Normal"
 msgstr "Normal"
 
@@ -2705,8 +2707,8 @@ msgstr "Religion"
 
 #: ../src/gen/lib/eventtype.py:176
 #: ../src/plugins/gramplet/bottombar.gpr.py:118
-#: ../src/plugins/webreport/NarrativeWeb.py:2033
-#: ../src/plugins/webreport/NarrativeWeb.py:5544
+#: ../src/plugins/webreport/NarrativeWeb.py:2026
+#: ../src/plugins/webreport/NarrativeWeb.py:5562
 msgid "Residence"
 msgstr "Bosted"
 
@@ -3415,7 +3417,7 @@ msgstr "Fila %s er allerede åpen. Lukk den først."
 #: ../src/plugins/export/ExportVCalendar.py:108
 #: ../src/plugins/export/ExportVCard.py:70
 #: ../src/plugins/export/ExportVCard.py:74
-#: ../src/plugins/webreport/NarrativeWeb.py:5817
+#: ../src/plugins/webreport/NarrativeWeb.py:5835
 #, python-format
 msgid "Could not create %s"
 msgstr "Kunne ikke lage %s"
@@ -3793,10 +3795,10 @@ msgstr "Sluttkommentarer"
 
 #: ../src/gen/plug/report/utils.py:143
 #: ../src/plugins/textreport/IndivComplete.py:553
-#: ../src/plugins/webreport/NarrativeWeb.py:1321
-#: ../src/plugins/webreport/NarrativeWeb.py:1503
-#: ../src/plugins/webreport/NarrativeWeb.py:1574
-#: ../src/plugins/webreport/NarrativeWeb.py:1590
+#: ../src/plugins/webreport/NarrativeWeb.py:1314
+#: ../src/plugins/webreport/NarrativeWeb.py:1496
+#: ../src/plugins/webreport/NarrativeWeb.py:1567
+#: ../src/plugins/webreport/NarrativeWeb.py:1583
 msgid "Could not add photo to page"
 msgstr "Kunne ikke legge til bilde på siden"
 
@@ -3948,7 +3950,7 @@ msgstr "Innstillinger"
 #: ../src/plugins/lib/libplaceview.py:94
 #: ../src/plugins/view/placetreeview.py:73 ../src/plugins/view/repoview.py:87
 #: ../src/plugins/webreport/NarrativeWeb.py:134
-#: ../src/plugins/webreport/NarrativeWeb.py:894
+#: ../src/plugins/webreport/NarrativeWeb.py:889
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:88
 msgid "Locality"
 msgstr "Plassering"
@@ -3981,7 +3983,7 @@ msgstr "Fylke"
 #: ../src/plugins/tool/ExtractCity.py:389
 #: ../src/plugins/view/placetreeview.py:77 ../src/plugins/view/repoview.py:90
 #: ../src/plugins/webreport/NarrativeWeb.py:127
-#: ../src/plugins/webreport/NarrativeWeb.py:2469
+#: ../src/plugins/webreport/NarrativeWeb.py:2461
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:92
 msgid "Country"
 msgstr "Land"
@@ -4072,7 +4074,7 @@ msgstr "Eksempel"
 #. label for the combo
 #: ../src/gui/configure.py:844 ../src/plugins/drawreport/Calendar.py:421
 #: ../src/plugins/textreport/BirthdayReport.py:365
-#: ../src/plugins/webreport/NarrativeWeb.py:6521
+#: ../src/plugins/webreport/NarrativeWeb.py:6518
 #: ../src/plugins/webreport/WebCal.py:1386
 msgid "Name format"
 msgstr "Navneformat"
@@ -4878,7 +4880,7 @@ msgstr "Filtertest"
 #: ../src/plugins/textreport/BirthdayReport.py:350
 #: ../src/plugins/textreport/IndivComplete.py:649
 #: ../src/plugins/tool/SortEvents.py:168
-#: ../src/plugins/webreport/NarrativeWeb.py:6499
+#: ../src/plugins/webreport/NarrativeWeb.py:6496
 #: ../src/plugins/webreport/WebCal.py:1364
 msgid "Filter"
 msgstr "Filter"
@@ -4974,11 +4976,11 @@ msgstr "Rediger Dato"
 #: ../src/plugins/textreport/TagReport.py:283
 #: ../src/plugins/view/eventview.py:116
 #: ../src/plugins/view/geography.gpr.py:80 ../src/plugins/view/view.gpr.py:40
-#: ../src/plugins/webreport/NarrativeWeb.py:1226
-#: ../src/plugins/webreport/NarrativeWeb.py:1269
-#: ../src/plugins/webreport/NarrativeWeb.py:2678
-#: ../src/plugins/webreport/NarrativeWeb.py:2861
-#: ../src/plugins/webreport/NarrativeWeb.py:4764
+#: ../src/plugins/webreport/NarrativeWeb.py:1219
+#: ../src/plugins/webreport/NarrativeWeb.py:1262
+#: ../src/plugins/webreport/NarrativeWeb.py:2670
+#: ../src/plugins/webreport/NarrativeWeb.py:2856
+#: ../src/plugins/webreport/NarrativeWeb.py:4767
 msgid "Events"
 msgstr "Hendelser"
 
@@ -5051,6 +5053,7 @@ msgstr "Flett sammen"
 #: ../src/plugins/textreport/TagReport.py:369
 #: ../src/plugins/view/noteview.py:107 ../src/plugins/view/view.gpr.py:100
 #: ../src/plugins/webreport/NarrativeWeb.py:136
+#: ../src/plugins/webreport/NarrativeWeb.py:1040
 msgid "Notes"
 msgstr "Notater"
 
@@ -5078,7 +5081,7 @@ msgstr "Velg foreldre"
 #: ../src/gui/grampsgui.py:133 ../src/plugins/gramplet/gramplet.gpr.py:150
 #: ../src/plugins/gramplet/gramplet.gpr.py:156
 #: ../src/plugins/view/pedigreeview.py:689
-#: ../src/plugins/webreport/NarrativeWeb.py:4605
+#: ../src/plugins/webreport/NarrativeWeb.py:4608
 msgid "Pedigree"
 msgstr "Stamtavle"
 
@@ -5086,10 +5089,10 @@ msgstr "Stamtavle"
 #: ../src/plugins/view/geography.gpr.py:65
 #: ../src/plugins/view/placetreeview.gpr.py:11
 #: ../src/plugins/view/view.gpr.py:179
-#: ../src/plugins/webreport/NarrativeWeb.py:1225
-#: ../src/plugins/webreport/NarrativeWeb.py:1266
-#: ../src/plugins/webreport/NarrativeWeb.py:2434
-#: ../src/plugins/webreport/NarrativeWeb.py:2549
+#: ../src/plugins/webreport/NarrativeWeb.py:1218
+#: ../src/plugins/webreport/NarrativeWeb.py:1259
+#: ../src/plugins/webreport/NarrativeWeb.py:2426
+#: ../src/plugins/webreport/NarrativeWeb.py:2541
 msgid "Places"
 msgstr "Steder"
 
@@ -5099,10 +5102,10 @@ msgstr "Rapporter"
 
 #: ../src/gui/grampsgui.py:138 ../src/plugins/quickview/FilterByName.py:106
 #: ../src/plugins/view/repoview.py:123 ../src/plugins/view/view.gpr.py:195
-#: ../src/plugins/webreport/NarrativeWeb.py:1230
+#: ../src/plugins/webreport/NarrativeWeb.py:1222
 #: ../src/plugins/webreport/NarrativeWeb.py:3572
-#: ../src/plugins/webreport/NarrativeWeb.py:5370
-#: ../src/plugins/webreport/NarrativeWeb.py:5442
+#: ../src/plugins/webreport/NarrativeWeb.py:5388
+#: ../src/plugins/webreport/NarrativeWeb.py:5460
 msgid "Repositories"
 msgstr "Oppbevaringssteder"
 
@@ -5114,6 +5117,7 @@ msgstr "Oppbevaringssteder"
 #: ../src/plugins/quickview/FilterByName.py:103
 #: ../src/plugins/view/sourceview.py:107 ../src/plugins/view/view.gpr.py:210
 #: ../src/plugins/webreport/NarrativeWeb.py:144
+#: ../src/plugins/webreport/NarrativeWeb.py:1041
 #: ../src/plugins/webreport/NarrativeWeb.py:3443
 #: ../src/plugins/webreport/NarrativeWeb.py:3519
 msgid "Sources"
@@ -5554,7 +5558,7 @@ msgstr "Media:"
 #: ../src/plugins/textreport/DetDescendantReport.py:919
 #: ../src/plugins/textreport/DetDescendantReport.py:920
 #: ../src/plugins/textreport/FamilyGroup.py:631
-#: ../src/plugins/webreport/NarrativeWeb.py:6662
+#: ../src/plugins/webreport/NarrativeWeb.py:6659
 msgid "Include"
 msgstr "Ta med"
 
@@ -5563,7 +5567,7 @@ msgid "Megabyte|MB"
 msgstr "MB"
 
 #: ../src/gui/viewmanager.py:1543
-#: ../src/plugins/webreport/NarrativeWeb.py:6656
+#: ../src/plugins/webreport/NarrativeWeb.py:6653
 msgid "Exclude"
 msgstr "Utelat"
 
@@ -5880,7 +5884,7 @@ msgstr "#"
 #: ../src/plugins/lib/libpersonview.py:93
 #: ../src/plugins/quickview/siblings.py:47
 #: ../src/plugins/textreport/IndivComplete.py:570
-#: ../src/plugins/webreport/NarrativeWeb.py:4721
+#: ../src/plugins/webreport/NarrativeWeb.py:4724
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:127
 msgid "Gender"
 msgstr "Kjønn"
@@ -6108,6 +6112,7 @@ msgid "%(mother)s [%(gramps_id)s]"
 msgstr "%(mother)s [%(gramps_id)s]"
 
 #: ../src/gui/editors/editldsord.py:301 ../src/gui/editors/editldsord.py:421
+#: ../src/plugins/webreport/NarrativeWeb.py:5194
 msgid "LDS Ordinance"
 msgstr "LDS-ordinering"
 
@@ -6841,7 +6846,7 @@ msgstr "Fylke"
 #: ../src/plugins/lib/maps/geography.py:186
 #: ../src/plugins/tool/ExtractCity.py:387
 #: ../src/plugins/view/placetreeview.py:76
-#: ../src/plugins/webreport/NarrativeWeb.py:2468
+#: ../src/plugins/webreport/NarrativeWeb.py:2460
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:91
 msgid "State"
 msgstr "Stat"
@@ -7097,7 +7102,7 @@ msgid "Author"
 msgstr "Forfatter"
 
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:69
-#: ../src/plugins/webreport/NarrativeWeb.py:1743
+#: ../src/plugins/webreport/NarrativeWeb.py:1736
 msgid "Page"
 msgstr "Side"
 
@@ -7531,7 +7536,7 @@ msgstr "Utvalgsmuligheter"
 #: ../src/plugins/textreport/PlaceReport.py:365
 #: ../src/plugins/textreport/SimpleBookTitle.py:120
 #: ../src/plugins/textreport/TagReport.py:526
-#: ../src/plugins/webreport/NarrativeWeb.py:6477
+#: ../src/plugins/webreport/NarrativeWeb.py:6474
 #: ../src/plugins/webreport/WebCal.py:1352
 msgid "Report Options"
 msgstr "Innstillinger for rapporter"
@@ -8311,7 +8316,7 @@ msgstr "Fant ingen ektefeller eller barn"
 
 #: ../src/Merge/mergeperson.py:245
 #: ../src/plugins/textreport/IndivComplete.py:365
-#: ../src/plugins/webreport/NarrativeWeb.py:848
+#: ../src/plugins/webreport/NarrativeWeb.py:843
 msgid "Addresses"
 msgstr "Adresser"
 
@@ -8676,7 +8681,7 @@ msgstr "Beregner hvilke personer som skal tas med i rapporten."
 #: ../src/plugins/graph/GVRelGraph.py:482
 #: ../src/plugins/textreport/IndivComplete.py:655
 #: ../src/plugins/tool/SortEvents.py:173
-#: ../src/plugins/webreport/NarrativeWeb.py:6505
+#: ../src/plugins/webreport/NarrativeWeb.py:6502
 #: ../src/plugins/webreport/WebCal.py:1370
 msgid "Filter Person"
 msgstr "Filtrere person"
@@ -8684,7 +8689,7 @@ msgstr "Filtrere person"
 #: ../src/plugins/Records.py:523 ../src/plugins/drawreport/TimeLine.py:332
 #: ../src/plugins/graph/GVRelGraph.py:483
 #: ../src/plugins/tool/SortEvents.py:174
-#: ../src/plugins/webreport/NarrativeWeb.py:6506
+#: ../src/plugins/webreport/NarrativeWeb.py:6503
 #: ../src/plugins/webreport/WebCal.py:1371
 msgid "The center person for the filter"
 msgstr "Senterpersonen for filteret"
@@ -8898,13 +8903,13 @@ msgid "of %d"
 msgstr "av %d"
 
 #: ../src/plugins/docgen/HtmlDoc.py:263
-#: ../src/plugins/webreport/NarrativeWeb.py:6435
+#: ../src/plugins/webreport/NarrativeWeb.py:6432
 #: ../src/plugins/webreport/WebCal.py:246
 msgid "Possible destination error"
 msgstr "Mulig målfeil"
 
 #: ../src/plugins/docgen/HtmlDoc.py:264
-#: ../src/plugins/webreport/NarrativeWeb.py:6436
+#: ../src/plugins/webreport/NarrativeWeb.py:6433
 #: ../src/plugins/webreport/WebCal.py:247
 msgid "You appear to have set your target directory to a directory used for data storage. This could create problems with file management. It is recommended that you consider using a different directory to store your generated web pages."
 msgstr "Det ser ut som om du har satt målkatalog lik en katalog som brukes for å lagre data.  Dette kan lage problemer med filhåndteringen.  Det anbefales at du vurderer å bruke en annen katalog for å lagre dine genererte nettsider."
@@ -9308,7 +9313,7 @@ msgstr "Formatere måneder..."
 
 #: ../src/plugins/drawreport/Calendar.py:264
 #: ../src/plugins/textreport/BirthdayReport.py:205
-#: ../src/plugins/webreport/NarrativeWeb.py:5898
+#: ../src/plugins/webreport/NarrativeWeb.py:5915
 #: ../src/plugins/webreport/WebCal.py:1105
 msgid "Applying Filter..."
 msgstr "Bruker filter..."
@@ -9387,7 +9392,7 @@ msgstr "Senterpersonen for denne rapporten"
 
 #: ../src/plugins/drawreport/Calendar.py:424
 #: ../src/plugins/textreport/BirthdayReport.py:368
-#: ../src/plugins/webreport/NarrativeWeb.py:6525
+#: ../src/plugins/webreport/NarrativeWeb.py:6522
 #: ../src/plugins/webreport/WebCal.py:1390
 msgid "Select the format to display names"
 msgstr "Velg format for å vise navn"
@@ -10346,14 +10351,14 @@ msgstr "Kilde for begravelse"
 #: ../src/plugins/export/ExportCsv.py:457
 #: ../src/plugins/import/ImportCsv.py:224
 #: ../src/plugins/textreport/FamilyGroup.py:556
-#: ../src/plugins/webreport/NarrativeWeb.py:5210
+#: ../src/plugins/webreport/NarrativeWeb.py:5228
 msgid "Husband"
 msgstr "Ektemann"
 
 #: ../src/plugins/export/ExportCsv.py:457
 #: ../src/plugins/import/ImportCsv.py:221
 #: ../src/plugins/textreport/FamilyGroup.py:565
-#: ../src/plugins/webreport/NarrativeWeb.py:5212
+#: ../src/plugins/webreport/NarrativeWeb.py:5230
 msgid "Wife"
 msgstr "Kone"
 
@@ -10663,6 +10668,8 @@ msgstr "Smågramps som viser egenskapene til en person"
 #: ../src/plugins/gramplet/gramplet.gpr.py:59
 #: ../src/plugins/gramplet/gramplet.gpr.py:66
 #: ../src/plugins/webreport/NarrativeWeb.py:123
+#: ../src/plugins/webreport/NarrativeWeb.py:1023
+#: ../src/plugins/webreport/NarrativeWeb.py:5204
 msgid "Attributes"
 msgstr "Egenskaper"
 
@@ -10803,7 +10810,7 @@ msgstr "Smågramps som viser barna til en person"
 #: ../src/plugins/view/fanchartview.py:868
 #: ../src/plugins/view/pedigreeview.py:1909
 #: ../src/plugins/view/relview.py:1358
-#: ../src/plugins/webreport/NarrativeWeb.py:5160
+#: ../src/plugins/webreport/NarrativeWeb.py:5163
 msgid "Children"
 msgstr "Barn"
 
@@ -10831,8 +10838,8 @@ msgstr "Smågramps som viser referanser for en person"
 #: ../src/plugins/gramplet/bottombar.gpr.py:552
 #: ../src/plugins/gramplet/bottombar.gpr.py:566
 #: ../src/plugins/gramplet/bottombar.gpr.py:580
-#: ../src/plugins/webreport/NarrativeWeb.py:1772
-#: ../src/plugins/webreport/NarrativeWeb.py:4293
+#: ../src/plugins/webreport/NarrativeWeb.py:1765
+#: ../src/plugins/webreport/NarrativeWeb.py:4296
 msgid "References"
 msgstr "Referanser"
 
@@ -11119,7 +11126,7 @@ msgstr "Artist"
 
 #. copyright field
 #: ../src/plugins/gramplet/EditExifMetadata.py:285
-#: ../src/plugins/webreport/NarrativeWeb.py:6534
+#: ../src/plugins/webreport/NarrativeWeb.py:6531
 #: ../src/plugins/webreport/WebCal.py:1399
 msgid "Copyright"
 msgstr "Opphavsrett"
@@ -11153,7 +11160,7 @@ msgstr "Deg. Min. Sek."
 #: ../src/plugins/lib/libplaceview.py:101
 #: ../src/plugins/view/placetreeview.py:80
 #: ../src/plugins/webreport/NarrativeWeb.py:133
-#: ../src/plugins/webreport/NarrativeWeb.py:2470
+#: ../src/plugins/webreport/NarrativeWeb.py:2462
 msgid "Latitude"
 msgstr "Breddegrad"
 
@@ -11162,7 +11169,7 @@ msgstr "Breddegrad"
 #: ../src/plugins/lib/libplaceview.py:102
 #: ../src/plugins/view/placetreeview.py:81
 #: ../src/plugins/webreport/NarrativeWeb.py:135
-#: ../src/plugins/webreport/NarrativeWeb.py:2471
+#: ../src/plugins/webreport/NarrativeWeb.py:2463
 msgid "Longitude"
 msgstr "Lengdegrad"
 
@@ -11328,7 +11335,7 @@ msgstr "Personmeny"
 #: ../src/plugins/quickview/quickview.gpr.py:312
 #: ../src/plugins/view/fanchartview.py:825
 #: ../src/plugins/view/pedigreeview.py:1864 ../src/plugins/view/relview.py:898
-#: ../src/plugins/webreport/NarrativeWeb.py:4954
+#: ../src/plugins/webreport/NarrativeWeb.py:4957
 msgid "Siblings"
 msgstr "Søsken"
 
@@ -11846,9 +11853,9 @@ msgstr "mindre enn 1"
 #: ../src/plugins/gramplet/StatsGramplet.py:135
 #: ../src/plugins/graph/GVFamilyLines.py:147
 #: ../src/plugins/textreport/Summary.py:102
-#: ../src/plugins/webreport/NarrativeWeb.py:1223
-#: ../src/plugins/webreport/NarrativeWeb.py:1260
-#: ../src/plugins/webreport/NarrativeWeb.py:2091
+#: ../src/plugins/webreport/NarrativeWeb.py:1216
+#: ../src/plugins/webreport/NarrativeWeb.py:1253
+#: ../src/plugins/webreport/NarrativeWeb.py:2084
 msgid "Individuals"
 msgstr "Personer"
 
@@ -12305,7 +12312,7 @@ msgstr "Fargen som skal brukes for å vise ukjent kjønn."
 #: ../src/plugins/quickview/FilterByName.py:94
 #: ../src/plugins/textreport/TagReport.py:193
 #: ../src/plugins/view/familyview.py:113 ../src/plugins/view/view.gpr.py:55
-#: ../src/plugins/webreport/NarrativeWeb.py:5142
+#: ../src/plugins/webreport/NarrativeWeb.py:5145
 msgid "Families"
 msgstr "Familier"
 
@@ -12716,7 +12723,6 @@ msgstr "dødsårsak"
 #: ../src/plugins/quickview/FilterByName.py:239
 #: ../src/plugins/quickview/FilterByName.py:245
 #: ../src/plugins/quickview/FilterByName.py:251
-#: ../src/plugins/webreport/NarrativeWeb.py:132
 msgid "Gramps ID"
 msgstr "Gramps ID"
 
@@ -17304,7 +17310,7 @@ msgid "Open on maps.google.com"
 msgstr "Åpner fra maps.google.com"
 
 #: ../src/plugins/mapservices/mapservice.gpr.py:69
-#: ../src/plugins/webreport/NarrativeWeb.py:6783
+#: ../src/plugins/webreport/NarrativeWeb.py:6780
 msgid "OpenStreetMap"
 msgstr "OpenStreetMap"
 
@@ -18695,7 +18701,7 @@ msgid "The basic style used for generation headings."
 msgstr "Basisstilen som brukes til generasjonsoverskriftene."
 
 #: ../src/plugins/textreport/FamilyGroup.py:114
-#: ../src/plugins/webreport/NarrativeWeb.py:618
+#: ../src/plugins/webreport/NarrativeWeb.py:613
 #, python-format
 msgid "%(type)s: %(value)s"
 msgstr "%(type)s: %(value)s"
@@ -19422,7 +19428,8 @@ msgid ""
 "family tree and importing that backup in an empty family\n"
 "tree. The rest of the checking is skipped, the Check and\n"
 "Repair tool should be run anew on this new family tree."
-msgstr "Slektsdatabasen din inneholder duplikate referanser\n"
+msgstr ""
+"Slektsdatabasen din inneholder duplikate referanser\n"
 " Dette er ikke bra, men det kan repareres ved å ta en sikkerhetskopi\n"
 "av slektsdatabasen(e) dine(e). Importer disse i en tom\n"
 "slektsdatabsae. Resten av sjekken blir oversett. Verktøyet\n"
@@ -21438,6 +21445,10 @@ msgstr "Kildevisning"
 msgid "The view showing all the sources"
 msgstr "Visningen viser alle kildene"
 
+#: ../src/plugins/webreport/NarrativeWeb.py:132
+msgid "Gramps&nbsp;ID"
+msgstr "Gramps&nbsp;ID"
+
 #: ../src/plugins/webreport/NarrativeWeb.py:143
 msgid "Postal Code"
 msgstr "Postnummer"
@@ -21450,153 +21461,153 @@ msgstr "Delstat/fylke"
 msgid "Alternate Locations"
 msgstr "Alternative steder"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:819
+#: ../src/plugins/webreport/NarrativeWeb.py:814
 #, python-format
 msgid "Source Reference: %s"
 msgstr "Kildehenvisning: %s"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1088
+#: ../src/plugins/webreport/NarrativeWeb.py:1081
 #, python-format
 msgid "Generated by <a href = \"%(homepage)s\">Gramps</a> %(version)s on %(date)s"
 msgstr "Generert av <a href=\"%(homepage)s\">Gramps</a> %(version)s %(date)s"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1102
+#: ../src/plugins/webreport/NarrativeWeb.py:1095
 #, python-format
 msgid "<br />Created for <a href = \"%s\">%s</a>"
 msgstr "<br />Laget for <a href = \"%s\">%s</a>"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1221
+#: ../src/plugins/webreport/NarrativeWeb.py:1214
 msgid "Html|Home"
 msgstr "Hjem"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1222
+#: ../src/plugins/webreport/NarrativeWeb.py:1215
 #: ../src/plugins/webreport/NarrativeWeb.py:3369
 msgid "Introduction"
 msgstr "Introduksjon"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1224
-#: ../src/plugins/webreport/NarrativeWeb.py:1255
-#: ../src/plugins/webreport/NarrativeWeb.py:1258
+#: ../src/plugins/webreport/NarrativeWeb.py:1217
+#: ../src/plugins/webreport/NarrativeWeb.py:1248
+#: ../src/plugins/webreport/NarrativeWeb.py:1251
 #: ../src/plugins/webreport/NarrativeWeb.py:3237
 #: ../src/plugins/webreport/NarrativeWeb.py:3282
 msgid "Surnames"
 msgstr "Etternavn"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1228
-#: ../src/plugins/webreport/NarrativeWeb.py:3719
-#: ../src/plugins/webreport/NarrativeWeb.py:6681
-msgid "Download"
-msgstr "Last ned"
-
 #. Add xml, doctype, meta and stylesheets
-#: ../src/plugins/webreport/NarrativeWeb.py:1231
-#: ../src/plugins/webreport/NarrativeWeb.py:1275
-#: ../src/plugins/webreport/NarrativeWeb.py:5514
-#: ../src/plugins/webreport/NarrativeWeb.py:5617
+#: ../src/plugins/webreport/NarrativeWeb.py:1223
+#: ../src/plugins/webreport/NarrativeWeb.py:1268
+#: ../src/plugins/webreport/NarrativeWeb.py:5532
+#: ../src/plugins/webreport/NarrativeWeb.py:5635
 msgid "Address Book"
 msgstr "Adressebok"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1232
+#: ../src/plugins/webreport/NarrativeWeb.py:1224
+#: ../src/plugins/webreport/NarrativeWeb.py:3719
+#: ../src/plugins/webreport/NarrativeWeb.py:6678
+msgid "Download"
+msgstr "Last ned"
+
+#: ../src/plugins/webreport/NarrativeWeb.py:1225
 #: ../src/plugins/webreport/NarrativeWeb.py:3819
 msgid "Contact"
 msgstr "Kontakt"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1281
+#: ../src/plugins/webreport/NarrativeWeb.py:1274
 #, python-format
 msgid "Main Navigation Item %s"
 msgstr "Element for hovednavigering %s"
 
 #. add section title
-#: ../src/plugins/webreport/NarrativeWeb.py:1614
+#: ../src/plugins/webreport/NarrativeWeb.py:1607
 msgid "Narrative"
 msgstr "Oppsummering"
 
 #. begin web title
-#: ../src/plugins/webreport/NarrativeWeb.py:1631
-#: ../src/plugins/webreport/NarrativeWeb.py:5545
+#: ../src/plugins/webreport/NarrativeWeb.py:1624
+#: ../src/plugins/webreport/NarrativeWeb.py:5563
 msgid "Web Links"
 msgstr "Nettlenker"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1708
+#: ../src/plugins/webreport/NarrativeWeb.py:1701
 msgid "Source References"
 msgstr "Kildehenvisning"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1744
+#: ../src/plugins/webreport/NarrativeWeb.py:1737
 msgid "Confidence"
 msgstr "Troverdighet"
 
 #. return hyperlink to its caller
-#: ../src/plugins/webreport/NarrativeWeb.py:1795
-#: ../src/plugins/webreport/NarrativeWeb.py:4089
-#: ../src/plugins/webreport/NarrativeWeb.py:4338
+#: ../src/plugins/webreport/NarrativeWeb.py:1788
+#: ../src/plugins/webreport/NarrativeWeb.py:4092
+#: ../src/plugins/webreport/NarrativeWeb.py:4341
 msgid "Family Map"
 msgstr "Familiekart"
 
 #. Individual List page message
-#: ../src/plugins/webreport/NarrativeWeb.py:2098
+#: ../src/plugins/webreport/NarrativeWeb.py:2091
 msgid "This page contains an index of all the individuals in the database, sorted by their last names. Selecting the person&#8217;s name will take you to that person&#8217;s individual page."
 msgstr "Denne siden inneholder en oversikt over alle personene i databasen, sortert etter etternavn. Ved å klikke på personens navn vil du komme til en egen side for denne personen."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2293
+#: ../src/plugins/webreport/NarrativeWeb.py:2285
 #, python-format
 msgid "This page contains an index of all the individuals in the database with the surname of %s. Selecting the person&#8217;s name will take you to that person&#8217;s individual page."
 msgstr "Denne siden inneholder en oversikt over alle personene i databasen med %s som etternavn. Ved å klikke på personens navn vil du komme til en egen side for denne personen."
 
 #. place list page message
-#: ../src/plugins/webreport/NarrativeWeb.py:2441
+#: ../src/plugins/webreport/NarrativeWeb.py:2433
 msgid "This page contains an index of all the places in the database, sorted by their title. Clicking on a place&#8217;s title will take you to that place&#8217;s page."
 msgstr " Denne siden inneholder en oversikt over alle stedene i databasen, sortert etter stedsnavn. Ved å klikke på stedsnavnet, vil du komme til en egen side for dette stedet."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2467
+#: ../src/plugins/webreport/NarrativeWeb.py:2459
 msgid "Place Name | Name"
 msgstr "Navn"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2499
+#: ../src/plugins/webreport/NarrativeWeb.py:2491
 #, python-format
 msgid "Places with letter %s"
 msgstr "Steder med bokstaven %s"
 
 #. section title
-#: ../src/plugins/webreport/NarrativeWeb.py:2619
+#: ../src/plugins/webreport/NarrativeWeb.py:2611
 msgid "Place Map"
 msgstr "Stedskart"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2684
+#: ../src/plugins/webreport/NarrativeWeb.py:2676
 msgid "This page contains an index of all the events in the database, sorted by their type and date (if one is present). Clicking on an event&#8217;s Gramps ID will open a page for that event."
 msgstr " Denne siden inneholder en oversikt over alle hendelsene i databasen, sortert etter stedsnavn. Ved å klikke på hendelsen sin Gramps ID vil du komme til en egen side for dette stedet."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2709
+#: ../src/plugins/webreport/NarrativeWeb.py:2701
 #: ../src/plugins/webreport/NarrativeWeb.py:3276
 msgid "Letter"
 msgstr "Bokstav"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2764
+#: ../src/plugins/webreport/NarrativeWeb.py:2758
 msgid "Event types beginning with letter "
 msgstr "Hendelsestyper som begynner med bokstaven "
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2902
+#: ../src/plugins/webreport/NarrativeWeb.py:2897
 msgid "Person(s)"
 msgstr "Person(er)"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2993
+#: ../src/plugins/webreport/NarrativeWeb.py:2990
 msgid "Previous"
 msgstr "Forrige"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2994
+#: ../src/plugins/webreport/NarrativeWeb.py:2991
 #, python-format
 msgid "<strong id = \"GalleryCurrent\">%(page_number)d</strong> of <strong id = \"GalleryTotal\">%(total_pages)d</strong>"
 msgstr "<strong id=\"GalleryCurrent\">%(page_number)d</strong> av <strong id=\"GalleryTotal\">%(total_pages)d</strong>"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2999
+#: ../src/plugins/webreport/NarrativeWeb.py:2996
 msgid "Next"
 msgstr "Neste"
 
 #. missing media error message
-#: ../src/plugins/webreport/NarrativeWeb.py:3002
+#: ../src/plugins/webreport/NarrativeWeb.py:2999
 msgid "The file has been moved or deleted."
 msgstr "Fila har blitt flyttet eller slettet."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3139
+#: ../src/plugins/webreport/NarrativeWeb.py:3136
 msgid "File Type"
 msgstr "Filtype"
 
@@ -21654,82 +21665,82 @@ msgid "Last Modified"
 msgstr "Sist endret"
 
 #. page message
-#: ../src/plugins/webreport/NarrativeWeb.py:4215
+#: ../src/plugins/webreport/NarrativeWeb.py:4218
 msgid "The place markers on this page represent different locations based upon spouse, children (if any), and personal events and their places of the main person. The list is sorted in chronological order."
 msgstr "Plassmarkørene på denne siden representerer ulike steder basert på ektefelle, barn (om noen) og personlige hendelser og deres steder for hovedpersonen.  Lista er sortert kronologisk."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4223
+#: ../src/plugins/webreport/NarrativeWeb.py:4226
 msgid "Drop Markers"
 msgstr "Slett markører"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4444
+#: ../src/plugins/webreport/NarrativeWeb.py:4447
 msgid "Ancestors"
 msgstr "Aner"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4499
+#: ../src/plugins/webreport/NarrativeWeb.py:4502
 msgid "Associations"
 msgstr "Relasjoner"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4694
+#: ../src/plugins/webreport/NarrativeWeb.py:4697
 msgid "Call Name"
 msgstr "Tiltalsnavn"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4704
+#: ../src/plugins/webreport/NarrativeWeb.py:4707
 msgid "Nick Name"
 msgstr "Økenavn"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4742
+#: ../src/plugins/webreport/NarrativeWeb.py:4745
 msgid "Age at Death"
 msgstr "Alder ved død"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4807
+#: ../src/plugins/webreport/NarrativeWeb.py:4810
 msgid "Latter-Day Saints/ LDS Ordinance"
 msgstr "Siste dagers hellige/ LDS-ordinanse"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5376
+#: ../src/plugins/webreport/NarrativeWeb.py:5394
 msgid "This page contains an index of all the repositories in the database, sorted by their title. Clicking on a repositories&#8217;s title will take you to that repositories&#8217;s page."
 msgstr "Denne siden inneholder en oversikt over alle ppbevaringssteder i databasen, sortert etter tittel. Ved å klikke på et oppbevaringssted vil du komme til en egen side for dette oppbevaringsstedet."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5391
+#: ../src/plugins/webreport/NarrativeWeb.py:5409
 msgid "Repository |Name"
 msgstr "Oppbevaringssted"
 
 #. Address Book Page message
-#: ../src/plugins/webreport/NarrativeWeb.py:5521
+#: ../src/plugins/webreport/NarrativeWeb.py:5539
 msgid "This page contains an index of all the individuals in the database, sorted by their surname, with one of the following: Address, Residence, or Web Links. Selecting the person&#8217;s name will take you to their individual Address Book page."
 msgstr "Denne siden inneholder en oversikt over alle personene i databasen sortert etter etternavn, med en av de følgende: Addresse, Bosted eller URL. Ved å klikke på personens navn vil du komme til en egen side i adresseboken for for denne personen."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5778
+#: ../src/plugins/webreport/NarrativeWeb.py:5796
 #, python-format
 msgid "Neither %s nor %s are directories"
 msgstr "Hverken %s eller %s er mapper"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5785
-#: ../src/plugins/webreport/NarrativeWeb.py:5789
-#: ../src/plugins/webreport/NarrativeWeb.py:5802
-#: ../src/plugins/webreport/NarrativeWeb.py:5806
+#: ../src/plugins/webreport/NarrativeWeb.py:5803
+#: ../src/plugins/webreport/NarrativeWeb.py:5807
+#: ../src/plugins/webreport/NarrativeWeb.py:5820
+#: ../src/plugins/webreport/NarrativeWeb.py:5824
 #, python-format
 msgid "Could not create the directory: %s"
 msgstr "Klarte ikke å opprette mappa: %s"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5811
+#: ../src/plugins/webreport/NarrativeWeb.py:5829
 msgid "Invalid file name"
 msgstr "Ugyldig filnavn"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5812
+#: ../src/plugins/webreport/NarrativeWeb.py:5830
 msgid "The archive file must be a file, not a directory"
 msgstr "Arkivfilen må være en fil, ikke en katalog"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5821
+#: ../src/plugins/webreport/NarrativeWeb.py:5839
 msgid "Narrated Web Site Report"
 msgstr "Fortellende nettsider"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5881
+#: ../src/plugins/webreport/NarrativeWeb.py:5898
 #, python-format
 msgid "ID=%(grampsid)s, path=%(dir)s"
 msgstr "ID=%(grampsid)s, sti=%(dir)s"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5886
+#: ../src/plugins/webreport/NarrativeWeb.py:5903
 msgid "Missing media objects:"
 msgstr "Manglende mediaobjekter:"
 
@@ -21737,170 +21748,170 @@ msgstr "Manglende mediaobjekter:"
 msgid "Creating individual pages"
 msgstr "Lager individuelle sider"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6005
+#: ../src/plugins/webreport/NarrativeWeb.py:6002
 msgid "Creating GENDEX file"
 msgstr "Lager GENDEX-fil"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6045
+#: ../src/plugins/webreport/NarrativeWeb.py:6042
 msgid "Creating surname pages"
 msgstr "Lager side over etternavn"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6062
+#: ../src/plugins/webreport/NarrativeWeb.py:6059
 msgid "Creating source pages"
 msgstr "Lager side over kilder"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6075
+#: ../src/plugins/webreport/NarrativeWeb.py:6072
 msgid "Creating place pages"
 msgstr "Lager side over steder"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6092
+#: ../src/plugins/webreport/NarrativeWeb.py:6089
 msgid "Creating event pages"
 msgstr "Lager side over hendelser"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6109
+#: ../src/plugins/webreport/NarrativeWeb.py:6106
 msgid "Creating media pages"
 msgstr "Lag side over mediaobjekter"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6164
+#: ../src/plugins/webreport/NarrativeWeb.py:6161
 msgid "Creating repository pages"
 msgstr "Lager sider for oppbevaringssteder"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6213
+#: ../src/plugins/webreport/NarrativeWeb.py:6210
 msgid "Creating address book pages ..."
 msgstr "Lager adresseboksider..."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6480
+#: ../src/plugins/webreport/NarrativeWeb.py:6477
 msgid "Store web pages in .tar.gz archive"
 msgstr "Lagre nettsted i .tar.gz arkiv"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6482
+#: ../src/plugins/webreport/NarrativeWeb.py:6479
 msgid "Whether to store the web pages in an archive file"
 msgstr "Lagre nettsted i en arkivfil"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6487
+#: ../src/plugins/webreport/NarrativeWeb.py:6484
 #: ../src/plugins/webreport/WebCal.py:1354
 msgid "Destination"
 msgstr "Mål"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6489
+#: ../src/plugins/webreport/NarrativeWeb.py:6486
 #: ../src/plugins/webreport/WebCal.py:1356
 msgid "The destination directory for the web files"
 msgstr "Målkatalogen for nettsidene"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6495
+#: ../src/plugins/webreport/NarrativeWeb.py:6492
 msgid "Web site title"
 msgstr "Nettsidetittel"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6495
+#: ../src/plugins/webreport/NarrativeWeb.py:6492
 msgid "My Family Tree"
 msgstr "Mitt slektstre"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6496
+#: ../src/plugins/webreport/NarrativeWeb.py:6493
 msgid "The title of the web site"
 msgstr "Tittel på nettstedet"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6501
+#: ../src/plugins/webreport/NarrativeWeb.py:6498
 msgid "Select filter to restrict people that appear on web site"
 msgstr "Velg filter for å begrense antall personer som skal vises på nettsidene"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6528
+#: ../src/plugins/webreport/NarrativeWeb.py:6525
 #: ../src/plugins/webreport/WebCal.py:1393
 msgid "File extension"
 msgstr "Filetternavn"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6531
+#: ../src/plugins/webreport/NarrativeWeb.py:6528
 #: ../src/plugins/webreport/WebCal.py:1396
 msgid "The extension to be used for the web files"
 msgstr "Filendelsen som skal brukes på nettsidene"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6537
+#: ../src/plugins/webreport/NarrativeWeb.py:6534
 #: ../src/plugins/webreport/WebCal.py:1402
 msgid "The copyright to be used for the web files"
 msgstr "Opphavsrett som skal brukes på nettsidene"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6540
+#: ../src/plugins/webreport/NarrativeWeb.py:6537
 #: ../src/plugins/webreport/WebCal.py:1408
 msgid "StyleSheet"
 msgstr "Stilsett"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6545
+#: ../src/plugins/webreport/NarrativeWeb.py:6542
 #: ../src/plugins/webreport/WebCal.py:1411
 msgid "The stylesheet to be used for the web pages"
 msgstr "Stilsettet som skal brukes på nettsidene"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6550
+#: ../src/plugins/webreport/NarrativeWeb.py:6547
 msgid "Horizontal -- No Change"
 msgstr "Vannrett -- Ingen endring"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6551
+#: ../src/plugins/webreport/NarrativeWeb.py:6548
 msgid "Vertical"
 msgstr "Loddrett"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6553
+#: ../src/plugins/webreport/NarrativeWeb.py:6550
 msgid "Navigation Menu Layout"
 msgstr "Utseende på navigeringsmeny"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6556
+#: ../src/plugins/webreport/NarrativeWeb.py:6553
 msgid "Choose which layout for the Navigation Menus."
 msgstr "Velg hvilket utseende du vil ha på navigasjonsmenyene."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6561
+#: ../src/plugins/webreport/NarrativeWeb.py:6558
 msgid "Include ancestor's tree"
 msgstr "Ta med anetavle"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6562
+#: ../src/plugins/webreport/NarrativeWeb.py:6559
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr "Ta med en anetavle på hver personside"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6567
+#: ../src/plugins/webreport/NarrativeWeb.py:6564
 msgid "Graph generations"
 msgstr "Generasjoner i anetavlen"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6568
+#: ../src/plugins/webreport/NarrativeWeb.py:6565
 msgid "The number of generations to include in the ancestor graph"
 msgstr "Antall generasjoner som skal være med i anetavlen"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6578
+#: ../src/plugins/webreport/NarrativeWeb.py:6575
 msgid "Page Generation"
 msgstr "Sidegenerering"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6581
+#: ../src/plugins/webreport/NarrativeWeb.py:6578
 msgid "Home page note"
 msgstr "Notat for Startside"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6582
+#: ../src/plugins/webreport/NarrativeWeb.py:6579
 msgid "A note to be used on the home page"
 msgstr "Et notat som skal brukes på startsiden"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6585
+#: ../src/plugins/webreport/NarrativeWeb.py:6582
 msgid "Home page image"
 msgstr "Bilde til Startside"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6586
+#: ../src/plugins/webreport/NarrativeWeb.py:6583
 msgid "An image to be used on the home page"
 msgstr "Et bilde som skal brukes på hjemmesiden"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6589
+#: ../src/plugins/webreport/NarrativeWeb.py:6586
 msgid "Introduction note"
 msgstr "Introduksjonsnotat"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6590
+#: ../src/plugins/webreport/NarrativeWeb.py:6587
 msgid "A note to be used as the introduction"
 msgstr "Et notat som skal brukes som introduksjonen"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6593
+#: ../src/plugins/webreport/NarrativeWeb.py:6590
 msgid "Introduction image"
 msgstr "Introduksjonsbilde"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6594
+#: ../src/plugins/webreport/NarrativeWeb.py:6591
 msgid "An image to be used as the introduction"
 msgstr "Et bilde som skal brukes som introduksjonen"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6597
+#: ../src/plugins/webreport/NarrativeWeb.py:6594
 msgid "Publisher contact note"
 msgstr "Utgivers kontaktnotat"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6598
+#: ../src/plugins/webreport/NarrativeWeb.py:6595
 msgid ""
 "A note to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -21910,11 +21921,11 @@ msgstr ""
 "Hvis ingen utgiverinformasjon er angitt\n"
 "vil det ikke bli laget en kontaktside"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6604
+#: ../src/plugins/webreport/NarrativeWeb.py:6601
 msgid "Publisher contact image"
 msgstr "Utgivers kontaktbilde"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6605
+#: ../src/plugins/webreport/NarrativeWeb.py:6602
 msgid ""
 "An image to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -21924,178 +21935,178 @@ msgstr ""
 "Hvis ingen utgiverinformasjon er angitt\n"
 "vil det ikke bli laget en kontaktside"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6611
+#: ../src/plugins/webreport/NarrativeWeb.py:6608
 msgid "HTML user header"
 msgstr "HTML-brukertopptekst"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6612
+#: ../src/plugins/webreport/NarrativeWeb.py:6609
 msgid "A note to be used as the page header"
 msgstr "Et notat som skal brukes i toppteksten"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6615
+#: ../src/plugins/webreport/NarrativeWeb.py:6612
 msgid "HTML user footer"
 msgstr "HTML-brukerbunntekst"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6616
+#: ../src/plugins/webreport/NarrativeWeb.py:6613
 msgid "A note to be used as the page footer"
 msgstr "Stil som blir brukt på bunnteksten"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6619
+#: ../src/plugins/webreport/NarrativeWeb.py:6616
 msgid "Include images and media objects"
 msgstr "Ta med bilder og mediaobjekter"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6620
+#: ../src/plugins/webreport/NarrativeWeb.py:6617
 msgid "Whether to include a gallery of media objects"
 msgstr "Ta med et galleri av mediaobjekt"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6624
+#: ../src/plugins/webreport/NarrativeWeb.py:6621
 msgid "Max width of initial image"
 msgstr "Største bredde på startbilde"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6626
+#: ../src/plugins/webreport/NarrativeWeb.py:6623
 msgid "This allows you to set the maximum width of the image shown on the media page. Set to 0 for no limit."
 msgstr "Dette gjør det mulig for deg å angi maksimal bredde på bildet som skal vises på mediasiden. Angi 0 for å ikke sette noen grense."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6630
+#: ../src/plugins/webreport/NarrativeWeb.py:6627
 msgid "Max height of initial image"
 msgstr "Største høyde på startbilde"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6632
+#: ../src/plugins/webreport/NarrativeWeb.py:6629
 msgid "This allows you to set the maximum height of the image shown on the media page. Set to 0 for no limit."
 msgstr "Dette gjør det mulig for deg å angi maksimal høyde på bildet som skal vises på mediasiden. Angi 0 for å ikke sette noen grense."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6638
+#: ../src/plugins/webreport/NarrativeWeb.py:6635
 msgid "Suppress Gramps ID"
 msgstr "Ikke ta med Gramps IDene"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6639
+#: ../src/plugins/webreport/NarrativeWeb.py:6636
 msgid "Whether to include the Gramps ID of objects"
 msgstr "Ta med Gramps ID for objekter"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6646
+#: ../src/plugins/webreport/NarrativeWeb.py:6643
 msgid "Privacy"
 msgstr "Privat"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6649
+#: ../src/plugins/webreport/NarrativeWeb.py:6646
 msgid "Include records marked private"
 msgstr "Ta med opplysninger som er markert som private"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6650
+#: ../src/plugins/webreport/NarrativeWeb.py:6647
 msgid "Whether to include private objects"
 msgstr "Ta med private objekter"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6653
+#: ../src/plugins/webreport/NarrativeWeb.py:6650
 msgid "Living People"
 msgstr "Levende personer"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6658
+#: ../src/plugins/webreport/NarrativeWeb.py:6655
 msgid "Include Last Name Only"
 msgstr "Ta bare med etternavn"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6660
+#: ../src/plugins/webreport/NarrativeWeb.py:6657
 msgid "Include Full Name Only"
 msgstr "Ta bare med fullstendige navn"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6663
+#: ../src/plugins/webreport/NarrativeWeb.py:6660
 msgid "How to handle living people"
 msgstr "Hvordan håndtere levende personer"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6667
+#: ../src/plugins/webreport/NarrativeWeb.py:6664
 msgid "Years from death to consider living"
 msgstr "Antall år fra død til antatt levende"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6669
+#: ../src/plugins/webreport/NarrativeWeb.py:6666
 msgid "This allows you to restrict information on people who have not been dead for very long"
 msgstr "Dette gir mulighet til å begrense informasjon på personer som ikke døde for lenge siden"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6684
+#: ../src/plugins/webreport/NarrativeWeb.py:6681
 msgid "Include download page"
 msgstr "Ta med nedlastningsside"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6685
+#: ../src/plugins/webreport/NarrativeWeb.py:6682
 msgid "Whether to include a database download option"
 msgstr "Ta med mulighet for å kunne laste ned databasen"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6689
-#: ../src/plugins/webreport/NarrativeWeb.py:6698
+#: ../src/plugins/webreport/NarrativeWeb.py:6686
+#: ../src/plugins/webreport/NarrativeWeb.py:6695
 msgid "Download Filename"
 msgstr "Laste ned filnavn"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6691
-#: ../src/plugins/webreport/NarrativeWeb.py:6700
+#: ../src/plugins/webreport/NarrativeWeb.py:6688
+#: ../src/plugins/webreport/NarrativeWeb.py:6697
 msgid "File to be used for downloading of database"
 msgstr "Fil som skal brukes for nedlasting av database"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6694
-#: ../src/plugins/webreport/NarrativeWeb.py:6703
+#: ../src/plugins/webreport/NarrativeWeb.py:6691
+#: ../src/plugins/webreport/NarrativeWeb.py:6700
 msgid "Description for download"
 msgstr "Beskrivelse for nedlasting"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6694
+#: ../src/plugins/webreport/NarrativeWeb.py:6691
 msgid "Smith Family Tree"
 msgstr "Slektstreet til Smith"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6695
-#: ../src/plugins/webreport/NarrativeWeb.py:6704
+#: ../src/plugins/webreport/NarrativeWeb.py:6692
+#: ../src/plugins/webreport/NarrativeWeb.py:6701
 msgid "Give a description for this file."
 msgstr "Gi en beskrivelse av denne filen."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6703
+#: ../src/plugins/webreport/NarrativeWeb.py:6700
 msgid "Johnson Family Tree"
 msgstr "Slektstreet til Johnson"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6713
+#: ../src/plugins/webreport/NarrativeWeb.py:6710
 #: ../src/plugins/webreport/WebCal.py:1551
 msgid "Advanced Options"
 msgstr "Avanserte valg"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6716
+#: ../src/plugins/webreport/NarrativeWeb.py:6713
 #: ../src/plugins/webreport/WebCal.py:1553
 msgid "Character set encoding"
 msgstr "Tegnsett"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6719
+#: ../src/plugins/webreport/NarrativeWeb.py:6716
 #: ../src/plugins/webreport/WebCal.py:1556
 msgid "The encoding to be used for the web files"
 msgstr "Tegnsettet som skal brukes på nettsidene"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6722
+#: ../src/plugins/webreport/NarrativeWeb.py:6719
 msgid "Include link to active person on every page"
 msgstr "Ta med lenke til startperson på hver side"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6723
+#: ../src/plugins/webreport/NarrativeWeb.py:6720
 msgid "Include a link to the active person (if they have a webpage)"
 msgstr "Ta med lenke til startperson (hvis de har en nettside)"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6726
+#: ../src/plugins/webreport/NarrativeWeb.py:6723
 msgid "Include a column for birth dates on the index pages"
 msgstr "Ta med en kolonne for fødselsdatoer på indekssidene"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6727
+#: ../src/plugins/webreport/NarrativeWeb.py:6724
 msgid "Whether to include a birth column"
 msgstr "Ta med en fødselskolonne"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6730
+#: ../src/plugins/webreport/NarrativeWeb.py:6727
 msgid "Include a column for death dates on the index pages"
 msgstr "Ta med en kolonne for dødsdatoer på indekssidene"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6731
+#: ../src/plugins/webreport/NarrativeWeb.py:6728
 msgid "Whether to include a death column"
 msgstr "Ta med en dødskolonne"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6734
+#: ../src/plugins/webreport/NarrativeWeb.py:6731
 msgid "Include a column for partners on the index pages"
 msgstr "Ta med en kolonne for partnere på indekssidene"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6736
+#: ../src/plugins/webreport/NarrativeWeb.py:6733
 msgid "Whether to include a partners column"
 msgstr "Ta med en kolonne over partnere"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6739
+#: ../src/plugins/webreport/NarrativeWeb.py:6736
 msgid "Include a column for parents on the index pages"
 msgstr "Ta med en kolonne for foreldre på indekssidene"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6741
+#: ../src/plugins/webreport/NarrativeWeb.py:6738
 msgid "Whether to include a parents column"
 msgstr "Ta med en kolonne over foreldre"
 
@@ -22105,96 +22116,96 @@ msgstr "Ta med en kolonne over foreldre"
 #. showallsiblings.set_help(_( "Whether to include half and/ or "
 #. "step-siblings with the parents and siblings"))
 #. menu.add_option(category_name, 'showhalfsiblings', showallsiblings)
-#: ../src/plugins/webreport/NarrativeWeb.py:6751
+#: ../src/plugins/webreport/NarrativeWeb.py:6748
 msgid "Sort all children in birth order"
 msgstr "Sorter i alle barn fødselsrekkefølge"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6752
+#: ../src/plugins/webreport/NarrativeWeb.py:6749
 msgid "Whether to display children in birth order or in entry order?"
 msgstr "Om barn skal sorteres på fødsel eller rekkefølge de ble registrert i databasen?"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6755
+#: ../src/plugins/webreport/NarrativeWeb.py:6752
 msgid "Include event pages"
 msgstr "Ta med hendelsessider"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6756
+#: ../src/plugins/webreport/NarrativeWeb.py:6753
 msgid "Add a complete events list and relevant pages or not"
 msgstr "Legg til en fullstendig liste med hendelser og relevante sider eller ikke"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6759
+#: ../src/plugins/webreport/NarrativeWeb.py:6756
 msgid "Include repository pages"
 msgstr "Ta med sider for oppbevaringssteder"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6760
+#: ../src/plugins/webreport/NarrativeWeb.py:6757
 msgid "Whether to include the Repository Pages or not?"
 msgstr "Om sider for oppbevaringssteder skal tas med eller ikke?"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6763
+#: ../src/plugins/webreport/NarrativeWeb.py:6760
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr "Ta med GENDEX-fil (/gendex.txt)"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6764
+#: ../src/plugins/webreport/NarrativeWeb.py:6761
 msgid "Whether to include a GENDEX file or not"
 msgstr "Om en GENDEX-fil skal tas med eller ikke"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6767
+#: ../src/plugins/webreport/NarrativeWeb.py:6764
 msgid "Include address book pages"
 msgstr "Ta med adresseboksider"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6768
+#: ../src/plugins/webreport/NarrativeWeb.py:6765
 msgid "Whether to add Address Book pages or not which can include e-mail and website addresses and personal address/ residence events?"
 msgstr "Skal det tas med adresseboksider eller ikke som kan ta med e-post og nettsideadresser og personadresser/ bostedshendelser?"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6778
+#: ../src/plugins/webreport/NarrativeWeb.py:6775
 msgid "Place Map Options"
 msgstr "Innstillinger for Stedskart"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6782
+#: ../src/plugins/webreport/NarrativeWeb.py:6779
 msgid "Google"
 msgstr "Google"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6784
+#: ../src/plugins/webreport/NarrativeWeb.py:6781
 msgid "Map Service"
 msgstr "Karttjeneste"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6787
+#: ../src/plugins/webreport/NarrativeWeb.py:6784
 msgid "Choose your choice of map service for creating the Place Map Pages."
 msgstr "Velg hvilken karttjeneste du vil bruke for å lage kartsidene."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6792
+#: ../src/plugins/webreport/NarrativeWeb.py:6789
 msgid "Include Place map on Place Pages"
 msgstr "Ta med stedskart på stedssider"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6793
+#: ../src/plugins/webreport/NarrativeWeb.py:6790
 msgid "Whether to include a place map on the Place Pages, where Latitude/ Longitude are available."
 msgstr "Om det skal lages et stedskart på Stedssiden der lengde-/breddegrader er angitt."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6798
+#: ../src/plugins/webreport/NarrativeWeb.py:6795
 msgid "Include Family Map Pages with all places shown on the map"
 msgstr "Ta med familiestedskart der alle steder vises på et kart"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6800
+#: ../src/plugins/webreport/NarrativeWeb.py:6797
 msgid "Whether or not to add an individual page map showing all the places on this page. This will allow you to see how your family traveled around the country."
 msgstr "Om det skal tas med et individuelt stedskart som skal vises på denne siden eller ikke. Dette vil gi deg mulighet til å se hvordan din familie reiste eller flyttet rundt."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6808
+#: ../src/plugins/webreport/NarrativeWeb.py:6805
 msgid "Markers"
 msgstr "Markeringer"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6809
+#: ../src/plugins/webreport/NarrativeWeb.py:6806
 msgid "Family Links"
 msgstr "Familielenker"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6810
+#: ../src/plugins/webreport/NarrativeWeb.py:6807
 msgid "Google/ FamilyMap Option"
 msgstr "Google/ Innstillinger for familiekart"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6813
+#: ../src/plugins/webreport/NarrativeWeb.py:6810
 msgid "Select which option that you would like to have for the Google Maps Family Map pages..."
 msgstr "Velger hvilke innstillinger du vil ha på familiekartsidene med Google Kart..."
 
 #. adding title to hyperlink menu for screen readers and braille writers
-#: ../src/plugins/webreport/NarrativeWeb.py:7109
+#: ../src/plugins/webreport/NarrativeWeb.py:7106
 msgid "Alphabet Navigation Menu Item "
 msgstr "Meny for alfabetnavigering "
 
