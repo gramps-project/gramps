@@ -150,10 +150,6 @@ VHEAD = _("Value")
 ALT_LOCATIONS = _("Alternate Locations")
 _UNKNOWN = _("Unknown")
 
-# initialize global variable
-place_lat_long = []
-place_handle_list = set()
-
 # Events that are usually a family event
 _EVENTMAP = set(
                 [gen.lib.EventType.MARRIAGE, gen.lib.EventType.MARR_ALT, 
@@ -576,17 +572,19 @@ class BasePage(object):
         )
         return trow
 
-    def display_event_row(self, event, event_ref, subdirs, hyp, omit):
+    def display_event_row(self, event, event_ref, place_lat_long, up, hyperlink, omit):
         """
         display the event row for IndividualPage
 
         @param: evt = Event object from report database
         @param: evt_ref = event reference
-        @param: subdirs = add [".."] * 3 for subdirectories or not
-        @param: hyp = add a hyperlink or not
+        @param: place_lat_long -- for use in Family Map Pages
+        @param: up = add [".."] * 3 for subdirectories or not
+        @param: hyperlink = add a hyperlink or not
         @params: omit = role to be omitted in output
         """
         db = self.report.database
+        event_gid = event.get_gramps_id()
 
         # check to see if place is already in self.place_list?
         lnk = (self.report.cur_fname, self.page_title, self.gid)
@@ -599,20 +597,23 @@ class BasePage(object):
                 self.place_list[place_handle] = [lnk]
 
             place = db.get_place_from_handle(place_handle)
-            self._append_to_place_lat_long(place, event)
+            if place:
+                self.append_to_place_lat_long(place, event, place_lat_long)
 
         # begin event table row
         trow = Html("tr")
 
         # get event type and hyperlink to it or not?
-        etype = str(event.type)
-        if not event_ref.get_role() == omit:
-            etype += " (%s)" % event_ref.get_role()
-        event_hyper = self.event_link(etype, event_ref.ref, event.gramps_id, subdirs) if hyp else etype
+        etype = str(event.get_type())
+        
+        event_role = event_ref.get_role()
+        if not event_role == omit:
+            etype += " (%s)" % event_role
+        event_hyper = self.event_link(etype, event_ref.ref, event_gid, up) if hyperlink else etype
         trow += Html("td", event_hyper, class_ = "ColumnEvent")
 
         # get event data
-        event_data = self.get_event_data(event, event_ref, subdirs)
+        event_data = self.get_event_data(event, event_ref, up)
 
         trow.extend(
             Html("td", data or "&nbsp;", class_ =colclass,
@@ -622,15 +623,15 @@ class BasePage(object):
 
         # get event notes
         notelist = event.get_note_list()
-        notelist.extend( event_ref.get_note_list())
+        notelist.extend(event_ref.get_note_list())
         htmllist = self.dump_notes(notelist)
   
-        # if the event or event reference has an attributes attached to it,
-        # get the text and format it correctly
+        # if the event or event reference has an attribute attached to it,
+        # get the text and format it correctly?
         attrlist = event.get_attribute_list()
-        attrlist.extend( event_ref.get_attribute_list() )
+        attrlist.extend(event_ref.get_attribute_list())
         for attr in attrlist:
-            htmllist.extend ( Html (
+            htmllist.extend(Html(
                 "p",
                 _("%(type)s: %(value)s") % {
                 'type'     : Html("b", attr.get_type()),
@@ -639,48 +640,44 @@ class BasePage(object):
             #also output notes attached to the attributes
             notelist = attr.get_note_list()
             if notelist:
-                htmllist.extend (self.dump_notes( notelist ))
+                htmllist.extend(self.dump_notes(notelist))
 
         trow += Html("td", htmllist, class_ = "ColumnNotes")
 
         # get event source references
-        srcrefs = self.get_citation_links( event.get_source_references() ) or "&nbsp;"
+        srcrefs = self.get_citation_links(event.get_source_references()) or "&nbsp;"
         trow += Html("td", srcrefs, class_ = "ColumnSources")
 
         # return events table row to its callers
         return trow
 
-    def _append_to_place_lat_long(self, place, event):
+    def append_to_place_lat_long(self, place, event, place_lat_long):
         """
         Create a list of places with coordinates.
 
         @param: place -- place object from database
         @param: event -- event object from database
+        @param: place_lat_long -- for use in Family Map Pages
         """
-        if not place:
-            return
-
-        global place_lat_long
-
         placetitle = place.get_title()
         latitude, longitude = "", ""
 
-        found = any(p[2] == placetitle for p in place_lat_long)
-        if not found:
+        latitude = place.get_latitude()
+        longitude = place.get_longitude()
 
-            if (place.lat and place.long):
+        if (latitude and longitude):
+            found = any(data[3] == place.get_handle() for data in place_lat_long)
+            if not found:
 
-                latitude, longitude = conv_lat_lon( place.lat,
-                                                    place.long,
-                                                    "D.D8")
+                latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
 
                 # 0 = latitude, 1 = longitude, 2 = place title,
                 # 3 = place handle, 4 = event date...
                 if latitude is not None:
                     place_lat_long.append( [latitude, longitude, placetitle,
-                                       place.handle, event.get_date_object() ] )
+                                       place.get_handle(), event.get_date_object()] )
 
-    def _get_event_place(self, person, ppl_handle_list):
+    def _get_event_place(self, person, ppl_handle_list, place_lat_long):
         """
         retrieve from a a person their events, and places for family map
 
@@ -702,7 +699,7 @@ class BasePage(object):
 
                             place = db.get_place_from_handle(place_handle)
                             if place:
-                                self._append_to_place_lat_long(place, event)
+                                self.append_to_place_lat_long(place, event, place_lat_long)
 
     def event_link(self, eventtype, handle, gid = None, up = False):
         """ creates a hyperlink for an event based on its type """
@@ -723,7 +720,7 @@ class BasePage(object):
         else:
             return eventtype
 
-    def format_family_events(self, event_ref_list):
+    def format_family_events(self, event_ref_list, place_lat_long):
         """
         displays the event row for events such as marriage and divorce
 
@@ -747,9 +744,9 @@ class BasePage(object):
                 event = db.get_event_from_handle(evt_ref.ref)
 
                 # add event body row
-                tbody += self.display_event_row(event, evt_ref, True, True, EventRoleType.FAMILY)
-
-        # return table to its callers
+                tbody += self.display_event_row(event, evt_ref, place_lat_long, 
+                                            up =True, hyperlink =True,
+                                            omit =EventRoleType.FAMILY)
         return table
 
     def get_event_data(self, evt, evt_ref, up, gid = None):
@@ -1873,11 +1870,15 @@ class BasePage(object):
         return Html("a", _("Family Map"), href = url, title = _("Family Map"), 
             class_ = "familymap", inline = True)
 
-    def display_ind_families(self, famfamily_handle_lis, ppl_handle_list):
+    def display_ind_families(self, family_handle_list, ppl_handle_list, place_lat_long):
         """
         Displays a person's relationships ...
+
+        @param: family_handle_list -- families in this report database
+        @param: ppl_handle_list -- people in this report database
+        @param: place_lat_long -- for use in Family Map Pages
         """
-        if not famfamily_handle_lis:
+        if not family_handle_list:
             return None
 
         db = self.report.database
@@ -1889,16 +1890,16 @@ class BasePage(object):
 
             # begin families table
             table_class = "infolist"
-            if len(famfamily_handle_lis) > 1:
+            if len(family_handle_list) > 1:
                 table_class += " fixed_subtables"
             with Html("table", class_ = table_class) as table:
                 section += table
 
-                for fhandle in famfamily_handle_lis:
+                for fhandle in family_handle_list:
                     family = db.get_family_from_handle(fhandle)
                     if family: 
 
-                        self.display_partner(family, table, ppl_handle_list)
+                        self.display_partner(family, table, ppl_handle_list, place_lat_long)
 
                         childlist = family.get_child_ref_list()
                         if childlist:
@@ -1919,8 +1920,8 @@ class BasePage(object):
                             # add individual's children event's place to family map
                             if self.familymappages:
                                 for handle in childlist:
-                                    individual = db.get_person_from_handle(handle)
-                                    self._get_event_place(individual, self.ind_list)
+                                    child = db.get_person_from_handle(handle)
+                                    self._get_event_place(child, self.ind_list, place_lat_long)
 
                             children = add_birthdate(db, childlist)
                             if birthorder:
@@ -1961,9 +1962,14 @@ class BasePage(object):
         # return section to its caller
         return section
 
-    def display_partner(self, family, table, ppl_handle_list):
+    def display_partner(self, family, table, ppl_handle_list, place_lat_long):
         """
         display an individual's partner
+
+        @param: family -- family from the database
+        @param: table -- Html element from its caller
+        @param: ppl_handle_list -- people handle list from the filter that was applied to database
+        @param: place_lat_long -- for use in Family Map Pages
         """
         if not family:
             return
@@ -1984,7 +1990,6 @@ class BasePage(object):
 
         partner_handle = ReportUtils.find_spouse(self.person, family)
         if partner_handle:
-
             partner = db.get_person_from_handle(partner_handle)
             partner_name = self.get_name(partner)
         else:
@@ -2015,7 +2020,7 @@ class BasePage(object):
             trow = Html("tr") + (
                 Html("td", "&nbsp;", class_ = "ColumnType", inline = True),
                 Html("td", "&nbsp;", class_ = "ColumnAttribute", inline = True),
-                Html("td", self.format_family_events(family_events), class_ = "ColumnValue")
+                Html("td", self.format_family_events(family_events, place_lat_long), class_ = "ColumnValue")
                 )
             table += trow
 
@@ -2164,20 +2169,14 @@ class BasePage(object):
 
     def place_link(self, handle, name, gid = None, up = False):
 
-        global place_handle_list
-        found = any(handle == place_handle for place_handle in place_handle_list)
-        if found:
-            url = self.report.build_url_fname_html(handle, "plc", up)
+        url = self.report.build_url_fname_html(handle, "plc", up)
 
-            hyper = Html("a", html_escape(name), href = url, title = html_escape(name))
-            if not self.noid and gid:
-                hyper += Html("span", " [%s]" % gid, class_ = "grampsid", inline = True)
+        hyper = Html("a", html_escape(name), href = url, title = html_escape(name))
+        if not self.noid and gid:
+            hyper += Html("span", " [%s]" % gid, class_ = "grampsid", inline = True)
 
-            # return hyperlink to its callers
-            return hyper
-
-        else:
-            return name
+        # return hyperlink to its callers
+        return hyper
 
     def dump_place(self, place, table):
         """
@@ -2728,11 +2727,11 @@ class FamilyListPage(BasePage):
                         if person:
                             if phandle not in displayed:
 
-                                famfamily_handle_lis = person.get_family_handle_list()
-                                if famfamily_handle_lis:
+                                family_handle_list = person.get_family_handle_list()
+                                if family_handle_list:
 
                                     first_family = True
-                                    for fhandle in famfamily_handle_lis:
+                                    for fhandle in family_handle_list:
 
                                         family = db.get_family_from_handle(fhandle)
                                         if family:
@@ -2834,7 +2833,7 @@ class FamilyListPage(BasePage):
         return hyper
 
 class FamilyPage(BasePage):
-    def __init__(self, report, title, person, family, place_list, ppl_handle_list):
+    def __init__(self, report, title, person, family, place_list, ppl_handle_list, place_lat_long):
         if (not person or not family):
             return
 
@@ -2944,7 +2943,7 @@ class FamilyPage(BasePage):
                         trow = Html("tr") + (
                             Html("td", "&nbsp;", class_ = "ColumnType", inline = True),
                             Html("td", "&nbsp;", class_ = "ColumnAttribute", inline = True),
-                            Html("td", self.format_family_events(family_evt_ref_list),
+                            Html("td", self.format_family_events(family_evt_ref_list, place_lat_long),
                                 class_ = "ColumnValue")
                         )
                         table += trow
@@ -4670,8 +4669,8 @@ class IndividualPage(BasePage):
         gen.lib.Person.UNKNOWN : _('unknown'),
         }
 
-    def __init__(self, report, title, person, ind_list, place_list, src_list):
-        BasePage.__init__(self, report, title, person.gramps_id)
+    def __init__(self, report, title, person, ind_list, place_list, src_list, place_lat_long):
+        BasePage.__init__(self, report, title, person.get_gramps_id())
         self.person = person
         self.ind_list = ind_list
         self.src_list = src_list        # Used by get_citation_links()
@@ -4681,14 +4680,10 @@ class IndividualPage(BasePage):
         self.name = self.get_name(person)
         db = report.database
 
-        global place_lat_long
-        place_lat_long = []
-
-        of = self.report.create_file(person.handle, "ppl")
+        of = self.report.create_file(person.get_handle(), "ppl")
         self.up = True
         indivdetpage, head, body = self.write_header(self.sort_name)
         self.familymappages = self.report.options['familymappages']
-        self.fgooglemap = self.report.options['familymappages']
 
         # attach the ancestortree style sheet if ancestor graph is being created?
         if self.report.options["ancestortree"]:
@@ -4709,7 +4704,7 @@ class IndividualPage(BasePage):
             individualdetail += (name, summary)
 
             # display a person's events
-            sect2 = self.display_ind_events()
+            sect2 = self.display_ind_events(place_lat_long)
             if sect2 is not None:
                 individualdetail += sect2
 
@@ -4719,8 +4714,8 @@ class IndividualPage(BasePage):
                 individualdetail += sect3
 
             # display relationships
-            person_famfamily_handle_lis = self.person.get_family_handle_list()
-            sect4 = self.display_ind_families(person_famfamily_handle_lis, ind_list)
+            person_family_handle_list = self.person.get_family_handle_list()
+            sect4 = self.display_ind_families(person_family_handle_list, ind_list, place_lat_long)
             if sect4 is not None:
                 individualdetail += sect4
 
@@ -4783,7 +4778,7 @@ class IndividualPage(BasePage):
             # create family map link
             if self.familymappages:
                 if len(place_lat_long):
-                    individualdetail += self.__display_family_map(person)
+                    individualdetail += self.__display_family_map(person, place_lat_long)
 
             # display pedigree
             sect13 = self.display_ind_pedigree()
@@ -4805,15 +4800,13 @@ class IndividualPage(BasePage):
         # and close the file
         self.XHTMLWriter(indivdetpage, of)
 
-    def __create_family_map(self, person):
+    def __create_family_map(self, person, place_lat_long):
         """
         creates individual family map page
 
         @param: person -- person from database
+        @param: place_lat_long -- for use in Family Map Pages
         """
-
-        # fields in place_lat_long = latitude, longitude, placename, handle, and date of event
-        global place_lat_long
 
         # if there is no latitude/ longitude data, then return?
         if not place_lat_long:
@@ -4858,9 +4851,7 @@ class IndividualPage(BasePage):
         middleset = [value for value in (-8, -9, -10, -11, 8, 9, 10, 11)]
         largeset = [value for value in (-11, -12, -13, -14, -15, -16, -17, 11, 12, 13, 14, 15, 16, 17)]
 
-        if spany in tinyset:
-            zoomlevel = 13
-        elif spany in smallset:
+        if (spany in tinyset or spany in smallset):
             zoomlevel = 6
         elif spany in middleset:
             zoomlevel = 5
@@ -4872,7 +4863,7 @@ class IndividualPage(BasePage):
         # sort place_lat_long based on latitude and longitude order...
         place_lat_long.sort()
 
-        of = self.report.create_file(person.handle, "maps")
+        of = self.report.create_file(person.get_handle(), "maps")
         self.up = True
         familymappage, head, body = self.write_header(_("Family Map"))
 
@@ -4904,7 +4895,7 @@ class IndividualPage(BasePage):
                 # if the number of places is only 1, then use code from imported javascript?
                 if number_markers == 1:
                     data = place_lat_long[0]
-                    jsc += google_jsc % ( data[0], data[1] )
+                    jsc += google_jsc % (data[0], data[1])
 
                 # Google Maps add their javascript inside of the head element...
                 else:
@@ -4923,11 +4914,10 @@ class IndividualPage(BasePage):
 
     var lifeHistory = [""" % (midX_, midY_, zoomlevel)
                         for index in xrange(0, (number_markers - 1)):
-                            data = place_lat_long[index]
-                            latitude, longitude = conv_lat_lon(data[0], data[1], "D.D8")
+                            latitude, longitude = place_lat_long[index][0], place_lat_long[index][1]
+                            print(index, data)
                             jsc += """    new google.maps.LatLng(%s, %s),""" % (latitude, longitude)
-                        data = place_lat_long[-1]
-                        latitude, longitude = conv_lat_lon(data[0], data[1], "D.D8")
+                        latitude, longitude = place_lat_long[-1][0], place_lat_long[-1][1]
                         jsc += """    new google.maps.LatLng(%s, %s) ];
 
     var flightPath = new google.maps.Polyline({
@@ -4943,16 +4933,15 @@ class IndividualPage(BasePage):
                     # Google Maps Markers only...
                     elif self.googleopts == "Markers":
                         if (not midX_ and not midY_):
-                            data = place_lat_long[0]
-                            midX_, midY_ = conv_lat_lon( data[0], data[1], "D.D8" )
+                            midX_, midY_ = conv_lat_lon(place_lat_long[0][0], place_lat_long[0][1], "D.D8")
                         jsc += """
   //<![CDATA[
   var centre = new google.maps.LatLng(%s, %s);
   var gpsCoords = [""" % (midX_, midY_)
                         for index in xrange(0, (number_markers - 1)):
-                            data = place_lat_long[index]
-                            jsc += """      new google.maps.LatLng(%s, %s),""" %  ( data[0], data[1] )
-                        data = place_lat_long[-1]
+                            latitude, longitude = place_lat_long[index][0], place_lat_long[index][1]
+                            jsc += """      new google.maps.LatLng(%s, %s),""" %  (latitude, longitude)
+                        latitude, longitude = place_lat_long[-1][0], place_lat_long[-1][1]
                         jsc += """      new google.maps.LatLng(%s, %s)
   ];
  var markers = [];
@@ -4986,7 +4975,7 @@ class IndividualPage(BasePage):
     }));
     iterator++;
   }
-  //]]>""" % (data[0], data[1], zoomlevel)
+  //]]>""" % (latitude, longitude, zoomlevel)
 # there is no need to add an ending "</script>",
 # as it will be added automatically by libhtml()!
 
@@ -4997,10 +4986,10 @@ class IndividualPage(BasePage):
                                   self.get_name(person)), inline=True)
 
             # page message
-            msg = _("The place markers on this page represent different "
-                    "locations based upon spouse, children (if any), and "
-                    "personal events and their places of the main person. "
-                    "The list is sorted in chronological order.")
+            msg = _("This map page represents the person and their descendants only.  "
+                    "The markers and the Referene list are sorted in chronological order.  "
+                   "Clicking on a place&#8217;s name in the Reference section will "
+                   "take you to that page&#8217;s page.") 
             mapbackground += Html("p", msg, id = "description")
 
             # if Google and Markers are selected, then add "Drop Markers" button?
@@ -5108,21 +5097,21 @@ class IndividualPage(BasePage):
         # and close the file
         self.XHTMLWriter(familymappage, of)
 
-    def __display_family_map(self, person):
+    def __display_family_map(self, person, place_lat_long):
         """
         create the family map link
         """
-
         # create family map page
-        self.__create_family_map(person)
+        self.__create_family_map(person, place_lat_long)
 
         # begin family map division plus section title
         with Html("div", class_ = "subsection", id = "familymap") as familymap:
             familymap += Html("h4", _("Family Map"), inline = True)
 
             # add family map link
-            url = self.report.build_url_fname_html(person.handle, "maps", True)
-            familymap += self.family_map_link(person.handle, url)
+            person_handle = person.get_handle()
+            url = self.report.build_url_fname_html(person_handle, "maps", True)
+            familymap += self.family_map_link(person_handle, url)
 
         # return family map link to its caller
         return familymap
@@ -5531,9 +5520,11 @@ class IndividualPage(BasePage):
         # do NOT combine before returning 
         return thumbnail, section_title, summaryarea
 
-    def display_ind_events(self):
+    def display_ind_events(self, place_lat_long):
         """
         will create the events table
+
+        @param: place_lat_long -- for use in Family Map Pages
         """
         event_ref_list = self.person.get_event_ref_list()
         if not event_ref_list:
@@ -5560,10 +5551,13 @@ class IndividualPage(BasePage):
 
                 for evt_ref in event_ref_list:
                     event = db.get_event_from_handle(evt_ref.ref)
+                    if event:
 
-                    # display event row
-                    tbody += self.display_event_row(event, evt_ref, True, True, EventRoleType.PRIMARY)
- 
+                        # display event row
+                        tbody += self.display_event_row(
+                                                        event, evt_ref, place_lat_long,
+                                                        True, True, EventRoleType.PRIMARY)
+
         # return section to its caller
         return section
 
@@ -5589,20 +5583,19 @@ class IndividualPage(BasePage):
         # return table columns to its caller
         return tcell1, tcell2
 
-    def display_ind_parents(self, ind_list):
+    def display_ind_parents(self, ppl_handle_list):
         """
         Display a person's parents
         """
 
-        birthorder = self.report.options['birthorder']
         parent_list = self.person.get_parent_family_handle_list()
-
         if not parent_list:
             return None
 
         db = self.report.database
-        self.familymappages = self.report.options['familymappages']
-        self.mapservice = self.report.options['mapservice']
+
+        birthorder = self.report.options['birthorder']
+        familymappages = self.report.options['familymappages']
 
         # begin parents division
         with Html("div", class_ = "subsection", id = "parents") as section:
@@ -5632,7 +5625,7 @@ class IndividualPage(BasePage):
 
                         if not first:
                             trow = Html("tr") + (
-                                Html("td", "&nbsp;", colspan = 2, inline = True)
+                                Html("td", "&nbsp;", colspan =2, inline = True)
                                 )
                             table += trow
                         else:
@@ -5642,10 +5635,6 @@ class IndividualPage(BasePage):
                         father_handle = family.get_father_handle()
                         if father_handle:
                             father = db.get_person_from_handle(father_handle)
-
-                            # get the father's event places for family map
-                            if self.familymappages:
-                                self._get_event_place(father, ind_list)
 
                             trow = Html("tr")
                             table += trow
@@ -5657,10 +5646,6 @@ class IndividualPage(BasePage):
                         mother_handle = family.get_mother_handle()
                         if mother_handle:
                             mother = db.get_person_from_handle(mother_handle)
-
-                            # get the mother's event places for family map
-                            if self.familymappages:
-                                self._get_event_place(mother, ind_list)
 
                             trow = Html("tr")
                             table += trow
@@ -5680,12 +5665,6 @@ class IndividualPage(BasePage):
                     # display them...    
                     if sibling:
 
-                        # add the sibling's event places for family map
-                        if self.familymappages:
-                           for handle in sibling:
-                               individual = db.get_person_from_handle(handle)
-                               self._get_event_place(individual, ind_list)
-
                         trow = Html("tr") + (
                             Html("td", _("Siblings"), class_ = "ColumnAttribute", inline = True)
                             )
@@ -5702,7 +5681,7 @@ class IndividualPage(BasePage):
                             sibling = sorted(sibling)
  
                         ordered.extend(
-                            self.display_child_link(chandle, ind_list)
+                            self.display_child_link(chandle, ppl_handle_list)
                                 for birth_date, chandle in sibling
                         )
 
@@ -6345,7 +6324,6 @@ class NavWebReport(Report):
         self.photo_list = {}
 
     def write_report(self):
-        global place_handle_list
 
         _WRONGMEDIAPATH = []
         if not self.use_archive:
@@ -6403,21 +6381,19 @@ class NavWebReport(Report):
         # Build the person list
         ind_list = self.build_person_list()
 
-        # create place_handle_list for use in place_link()
-        for handle in self.database.get_place_handles():
-            place_handle_list.add(handle)
+        # initialize place_lat_long variable for use in Family Map Pages
+        place_lat_long = []
 
         # copy all of the neccessary files
         self.copy_narrated_files()
 
         place_list = {}
         source_list = {}
-        attribute_list = []
 
         self.base_pages()
 
         # build classes IndividualListPage and IndividualPage
-        self.person_pages(ind_list, place_list, source_list)
+        self.person_pages(ind_list, place_list, source_list, place_lat_long)
 
         # build classes SurnameListPage and SurnamePage
         self.surname_pages(ind_list)
@@ -6431,7 +6407,7 @@ class NavWebReport(Report):
 
         # build classes FamilyListPage and FamilyPage
         if self.inc_families:
-            self.family_pages(ind_list, place_list)
+            self.family_pages(ind_list, place_list, place_lat_long)
 
         # build classes SourceListPage and SourcePage
         self.source_pages(source_list)
@@ -6555,7 +6531,7 @@ class NavWebReport(Report):
             fdir, fname = os.path.split(from_path)
             self.copy_file(from_path, fname, "images")
 
-    def person_pages(self, ind_list, place_list, source_list):
+    def person_pages(self, ind_list, place_list, source_list, place_lat_long):
         """
         creates IndividualListPage, IndividualPage, and gendex page
         """
@@ -6570,7 +6546,7 @@ class NavWebReport(Report):
             self.progress.step()
             person = self.database.get_person_from_handle(person_handle)
 
-            IndividualPage(self, self.title, person, ind_list, place_list, source_list)
+            IndividualPage(self, self.title, person, ind_list, place_list, source_list, place_lat_long)
 
         if self.inc_gendex:
             self.progress.set_pass(_('Creating GENDEX file'), len(ind_list))
@@ -6638,7 +6614,7 @@ class NavWebReport(Report):
             SourcePage(self, self.title, key, source_list)
             self.progress.step()
 
-    def family_pages(self, ppl_handle_list, place_list):
+    def family_pages(self, ppl_handle_list, place_list, place_lat_long):
         """
         creates the FamiliesListPage and FamilyPages
         """
@@ -6653,12 +6629,12 @@ class NavWebReport(Report):
         for phandle in ppl_handle_list:
             person = db.get_person_from_handle(phandle)
             if person:
-                famfamily_handle_lis = person.get_family_handle_list()
-                if famfamily_handle_lis:
-                    for fhandle in famfamily_handle_lis:
+                family_handle_list = person.get_family_handle_list()
+                if family_handle_list:
+                    for fhandle in family_handle_list:
                         family = db.get_family_from_handle(fhandle)
                         if family:
-                            FamilyPage(self, self.title, person, family, place_list, ppl_handle_list)
+                            FamilyPage(self, self.title, person, family, place_list, ppl_handle_list, place_lat_long)
 
                             self.progress.step()
 
@@ -7842,9 +7818,9 @@ def build_event_data(db, ppl_handle_list):
                         event_types.append(str(event.get_type()))
                         event_handle_list.append(evt_ref.ref)
 
-            person_famfamily_handle_lis = person.get_family_handle_list()
-            if person_famfamily_handle_lis:
-                for fhandle in person_famfamily_handle_lis:
+            person_family_handle_list = person.get_family_handle_list()
+            if person_family_handle_list:
+                for fhandle in person_family_handle_list:
                     family = db.get_family_from_handle(fhandle)
                     if family:
 
