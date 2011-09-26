@@ -27,12 +27,35 @@ Citation List View
 
 #-------------------------------------------------------------------------
 #
+# python modules
+#
+#-------------------------------------------------------------------------
+import logging
+LOG = logging.getLogger(".citation")
+
+#-------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+#-------------------------------------------------------------------------
+import gtk
+
+#-------------------------------------------------------------------------
+#
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from libcitationview import BaseCitationView
 from gui.views.treemodels.citationlistmodel import CitationListModel
 from gen.plug import CATEGORY_QR_SOURCE
+import gen.lib
+from gui.views.listview import ListView
+import Utils
+import Bookmarks
+import Errors
+from DdTargets import DdTargets
+from QuestionDialog import ErrorDialog
+from gui.editors import EditCitation, DeleteCitationQuery
+from Filters.SideBar import CitationSidebarFilter
 
 #-------------------------------------------------------------------------
 #
@@ -47,7 +70,7 @@ from gen.ggettext import gettext as _
 # CitationView
 #
 #-------------------------------------------------------------------------
-class CitationListView(BaseCitationView):
+class CitationListView(ListView):
     """
     A list view of citations.
     
@@ -69,7 +92,7 @@ class CitationListView(BaseCitationView):
     COL_SRC_CHAN       = 10
     # name of the columns
     COLUMN_NAMES = [
-        _('Title/Page'),
+        _('Volume/Page'),
         _('ID'),
         _('Date'),
         _('Confidence'),
@@ -93,8 +116,6 @@ class CitationListView(BaseCitationView):
     ADD_MSG = _("Add a new citation and a new source")
     ADD_SOURCE_MSG = _("Add a new source")
     ADD_CITATION_MSG = _("Add a new citation to an existing source")
-    # Edit delete and merge messages are overridden for the tree view as 
-    # they can apply to sources or citations
     EDIT_MSG = _("Edit the selected citation")
     DEL_MSG = _("Delete the selected citation")
     MERGE_MSG = _("Merge the selected citations")
@@ -110,8 +131,225 @@ class CitationListView(BaseCitationView):
             'citation-rebuild' : self.object_build,
             }
 
-        BaseCitationView.__init__(self, pdata, dbstate, uistate,
-                               _('Citation View'), CitationListModel,
-                               signal_map, 
-                               nav_group=nav_group)
+        ListView.__init__(
+            self, _('Citation View'), pdata, dbstate, uistate, 
+            self.COLUMN_NAMES, len(self.COLUMN_NAMES), 
+            CitationListModel, signal_map,
+            dbstate.db.get_citation_bookmarks(),
+            Bookmarks.CitationBookmarks, nav_group,
+            multiple=True,
+            filter_class=CitationSidebarFilter)
 
+        self.func_list.update({
+            '<CONTROL>J' : self.jump,
+            '<CONTROL>BackSpace' : self.key_delete,
+            })
+
+        self.additional_uis.append(self.additional_ui())
+
+    def navigation_type(self):
+        return 'Citation'
+
+    def get_bookmarks(self):
+        return self.dbstate.db.get_citation_bookmarks()
+
+    def drag_info(self):
+        return DdTargets.CITATION_LINK
+    
+    def define_actions(self):
+        """
+        This defines the possible actions for the citation views.
+        Possible actions are:
+        add:        Add a new citation and a new source (this can also be done 
+                      by source view add a source, then citation view add a new 
+                      citation to an existing source)
+        edit:       Edit a citation.
+        merge:      Merge the selected citations.
+        remove:     Delete the selected citations.
+        
+        
+        """
+        ListView.define_actions(self)
+
+        self.all_action = gtk.ActionGroup(self.title + "/CitationAll")
+        self.edit_action = gtk.ActionGroup(self.title + "/CitationEdit")
+
+        self._add_action('FilterEdit', None, _('Citation Filter Editor'),
+                         callback=self.filter_editor,)
+        self._add_action('QuickReport', None, _("Quick View"), None, None, None)
+        self._add_action('Dummy', None, '  ', None, None, self.dummy_report)
+
+        self._add_action_group(self.edit_action)
+        self._add_action_group(self.all_action)
+
+    def get_stock(self):
+        return 'gramps-citation'
+
+    def additional_ui(self):
+        """
+        Defines the UI string for UIManager
+        """
+        return '''<ui>
+          <menubar name="MenuBar">
+            <menu action="FileMenu">
+              <placeholder name="LocalExport">
+                <menuitem action="ExportTab"/>
+              </placeholder>
+            </menu>
+            <menu action="BookMenu">
+              <placeholder name="AddEditBook">
+                <menuitem action="AddBook"/>
+                <menuitem action="EditBook"/>
+              </placeholder>
+            </menu>
+            <menu action="GoMenu">
+              <placeholder name="CommonGo">
+                <menuitem action="Back"/>
+                <menuitem action="Forward"/>
+                <separator/>
+              </placeholder>
+            </menu>
+            <menu action="EditMenu">
+              <placeholder name="CommonEdit">
+                <menuitem action="Add"/>
+                <menuitem action="Edit"/>
+                <menuitem action="Remove"/>
+                <menuitem action="Merge"/>
+              </placeholder>
+              <menuitem action="FilterEdit"/>
+            </menu>
+          </menubar>
+          <toolbar name="ToolBar">
+            <placeholder name="CommonNavigation">
+              <toolitem action="Back"/>  
+              <toolitem action="Forward"/>  
+            </placeholder>
+            <placeholder name="CommonEdit">
+              <toolitem action="Add"/>
+              <toolitem action="Edit"/>
+              <toolitem action="Remove"/>
+              <toolitem action="Merge"/>
+            </placeholder>
+          </toolbar>
+          <popup name="Popup">
+            <menuitem action="Back"/>
+            <menuitem action="Forward"/>
+            <separator/>
+            <menuitem action="Add"/>
+            <menuitem action="Edit"/>
+            <menuitem action="Remove"/>
+            <menuitem action="Merge"/>
+            <separator/>
+            <menu name="QuickReport" action="QuickReport">
+              <menuitem action="Dummy"/>
+            </menu>
+          </popup>
+        </ui>'''
+
+    def dummy_report(self, obj):
+        """ For the xml UI definition of popup to work, the submenu 
+            Quick Report must have an entry in the xml
+            As this submenu will be dynamically built, we offer a dummy action
+        """
+        pass
+
+    def add(self, obj):
+        """
+        add:        Add a new citation and a new source (this can also be done 
+                      by source view add a source, then citation view add a new 
+                      citation to an existing source)
+        
+        Create a new Source instance and Citation instance and call the 
+        EditCitation editor with the new source and new citation. 
+        
+        Called when the Add button is clicked. 
+        If the window already exists (Errors.WindowActiveError), we ignore it. 
+        This prevents the dialog from coming up twice on the same object.
+        
+        However, since the window is identified by the Source object, and
+        we have just created a new one, it seems to be impossible for the 
+        window to already exist, so this is just an extra safety measure.
+        """
+        try:
+            EditCitation(self.dbstate, self.uistate, [], gen.lib.Citation(),
+                         gen.lib.Source())
+        except Errors.WindowActiveError:
+            pass
+
+    def remove(self, obj):
+        self.remove_selected_objects()
+
+    def remove_object_from_handle(self, handle):
+        the_lists = Utils.get_citation_referents(handle, self.dbstate.db)
+        object = self.dbstate.db.get_citation_from_handle(handle)
+        query = DeleteCitationQuery(self.dbstate, self.uistate, object, 
+                                    the_lists)
+        is_used = any(the_lists)
+        return (query, is_used, object)
+
+    def edit(self, obj):
+        """
+        Edit a Citation
+        """
+        for handle in self.selected_handles():
+            citation = self.dbstate.db.get_citation_from_handle(handle)
+            try:
+                EditCitation(self.dbstate, self.uistate, [], citation)
+            except Errors.WindowActiveError:
+                pass
+
+    def __blocked_text(self):
+        """
+        Return the common text used when citation cannot be edited
+        """
+        return _("This citation cannot be edited at this time. "
+                    "Either the associated citation is already being "
+                    "edited or another object that is associated with "
+                    "the same citation is being edited.\n\nTo edit this "
+                    "citation, you need to close the object.")
+
+    def merge(self, obj):
+        """
+        Merge the selected citations.
+        """
+        mlist = self.selected_handles()
+        
+        if len(mlist) != 2:
+            msg = _("Cannot merge citations.")
+            msg2 = _("Exactly two citations must be selected to perform a "
+                     "merge. A second citation can be selected by holding "
+                     "down the control key while clicking on the desired "
+                     "citation.")
+            ErrorDialog(msg, msg2)
+        else:
+            citation1 = self.dbstate.db.get_citation_from_handle(mlist[0])
+            citation2 = self.dbstate.db.get_citation_from_handle(mlist[1])
+            if not citation1.get_reference_handle()  == \
+                            citation2.get_reference_handle():         
+                msg = _("Cannot merge citations.")
+                msg2 = _("The two selected citations must have the same "
+                         "source to perform a merge. If you want to merge "
+                         "these two citations, then you must merge the "
+                         "sources first.")
+                ErrorDialog(msg, msg2)
+            else:
+                import Merge
+                Merge.MergeCitations(self.dbstate, self.uistate, 
+                                     mlist[0], mlist[1])
+
+    def get_handle_from_gramps_id(self, gid):
+        obj = self.dbstate.db.get_citation_from_gramps_id(gid)
+        if obj:
+            return obj.get_handle()
+        else:
+            return None
+
+    def get_default_gramplets(self):
+        """
+        Define the default gramplets for the sidebar and bottombar.
+        This is overridden for the tree view to give 'Source Filter'
+        """
+        return (("Citation Filter",),
+                ("Citation Gallery",
+                 "Citation Notes",
+                 "Citation Backlinks"))

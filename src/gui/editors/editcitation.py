@@ -90,6 +90,37 @@ class EditCitation(EditPrimary):
         # EditCitation, not only do we need to protect obj (which will be
         # a Citation, but we also need to protect the associated Source.
 
+    def build_window_key(self, obj):
+        """
+        Return a key for the edit window that is opened.
+        This function overrides the build_window_key in EditPrimary.
+        
+        There is a problem with database object locking. The database locking is
+        handled by the ManagedWindow class, which will only allow one primary
+        object to be edited at a time.
+
+        Normally, the window key is derived from the obj that is being edited.
+        However, in the case of EditCitation, there are two objects being
+        edited, the Citation and the Source. Both must be protected against
+        against the user trying to edit them twice.
+        
+        What we do here is to derive the window key from the Source object, if
+        one exists. A Citation always points to exactly one Source object, so if
+        we try to edit the same Citation twice, the associated Source objects
+        will be the same so this will be prevented. If we try to edit a Source
+        object and a Citation object that refers to the same Source, then again,
+        the window key will be the same and this will be prevented.
+        """
+        if obj and obj.get_reference_handle():
+            # citation already points to source
+            return obj.get_reference_handle()
+        elif self.source and self.source.get_handle():
+            # Citation doesn't yet point to source, but source exists and has a
+            # handle
+            return self.source.get_handle()
+        else:
+            return id(self)
+
     def empty_object(self):
         """
         Return an empty Citation object for comparison for changes.
@@ -181,7 +212,6 @@ class EditCitation(EditPrimary):
         """Connects any signals that need to be connected.
         
         Called by the init routine of the base class L{EditPrimary}.
-        
         """
         self.define_ok_button(self.glade.get_object('ok'), self.save)
         self.define_cancel_button(self.glade.get_object('cancel'))
@@ -191,7 +221,19 @@ class EditCitation(EditPrimary):
         """
         Connect any signals that need to be connected. 
         Called by the init routine of the base class (_EditPrimary).
+                
+        What this code does is to check that the object edited is not deleted
+        whilst editing it.  If the object is deleted we need to close the editor
+        windows and clean up.  If the database emits a rebuild signal for the
+        database object type we also abort the edit.
+
+        The Citation editor edits two primary objects, and therefore we need to
+        check if either have been deleted.  If the source is deleted, the
+        citation must have been deleted first and will emit a signal, so we
+        shouldn't have to connect to the source-delete signal.  It should not be
+        necessary to connect to the source- rebuild signal for similar reasons.
         """
+        
         # FIXME: Should this be modified so that the 'close' routines
         # are executed not only for the 'Citation', bit also for the 'Source'
         self._add_db_signal('citation-rebuild', self._do_close)

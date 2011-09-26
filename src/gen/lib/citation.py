@@ -70,7 +70,7 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
         MediaBase.__init__(self)                       #  7
         NoteBase.__init__(self)                        #  6
         DateBase.__init__(self)                        #  2
-        self.source_handle = None,                     #  5
+        self.source_handle = None                      #  5
         self.page = ""                                 #  3
         self.confidence = Citation.CONF_NORMAL         #  4
         self.datamap = {}                              #  8

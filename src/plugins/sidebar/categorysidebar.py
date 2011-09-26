@@ -69,7 +69,9 @@ CATEGORY_ICON = {
     'Sources': 'gramps-source',
     'Repositories': 'gramps-repository',
     'Media': 'gramps-media',
-    'Notes': 'gramps-notes'}
+    'Notes': 'gramps-notes',
+    'Citations': 'gramps-citation',
+}
 
 #-------------------------------------------------------------------------
 #

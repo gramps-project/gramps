@@ -180,6 +180,16 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
             else:
                 raise ValueError("selection must be either source or citation")
     
+    def __blocked_text(self):
+        """
+        Return the common text used when citation cannot be edited
+        """
+        return _("This citation cannot be created at this time. "
+                    "Either the associated Source object is already being "
+                    "edited, or another citation associated with the same "
+                    "source is being edited.\n\nTo edit this "
+                    "citation, you need to close the object.")
+
     def edit_button_clicked(self, obj):
         """
         Get the selected Citation instance and call the EditCitation editor 
@@ -190,10 +200,8 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         This prevents the dialog from coming up twice on the same object.
         """
         handle = self.get_selected()
-        LOG.debug('selected handle %s' % handle)
         if handle:
             citation = self.dbstate.db.get_citation_from_handle(handle)
-            LOG.debug("selected citation: %s" % citation)
             try:
                 from gui.editors import EditCitation
                 EditCitation(self.dbstate, self.uistate, self.track, citation,
