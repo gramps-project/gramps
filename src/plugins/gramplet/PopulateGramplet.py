@@ -127,4 +127,5 @@ class PopulateGramplet(Gramplet):
                     db.add_citation(citation, trans)
             LOG.debug("sources and citations added")
         db.enable_signals()
+        db.request_rebuild()
         
