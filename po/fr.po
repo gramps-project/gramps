@@ -7682,7 +7682,7 @@ msgstr "Déplacer le dépôt sélectionné vers le bas"
 
 #: ../src/gui/editors/displaytabs/repoembedlist.py:68
 msgid "Call Number"
-msgstr "Numéro d'appel"
+msgstr "Numéro d'identifiant"
 
 #: ../src/gui/editors/displaytabs/repoembedlist.py:75
 msgid "_Repositories"
@@ -18965,7 +18965,7 @@ msgstr "Aucune référence lien pour cette note"
 
 #: ../src/plugins/quickview/Reporef.py:59
 msgid "Type of media"
-msgstr "Type de medium"
+msgstr "Support"
 
 #: ../src/plugins/quickview/Reporef.py:59
 msgid "Call number"
@@ -25547,7 +25547,7 @@ msgstr "Correspond aux sources ayant un nombre de références de dépôt"
 
 #: ../src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py:42
 msgid "Sources with repository reference containing <substring> in \"Call Number\""
-msgstr "Sources dont la référence du dépôt contient la <sous-chaîne> dans le \"Numéro d'appel\""
+msgstr "Sources dont la référence du dépôt contient la <sous-chaîne> dans le \"Numéro d'identifiant\""
 
 #: ../src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py:43
 msgid ""
@@ -25555,7 +25555,7 @@ msgid ""
 "containing a substring in \"Call Number\""
 msgstr ""
 "Correspond aux sources dont la référence du dépôt\n"
-"contient cette sous-chaîne dans le \"Numéro d'appel\"."
+"contient cette sous-chaîne dans le \"Numéro d'identifiant\"."
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:47
@@ -26704,7 +26704,7 @@ msgstr "<b>Information partagée</b>"
 
 #: ../src/glade/editreporef.glade.h:8
 msgid "Call n_umber:"
-msgstr "_Numéro d'appel :"
+msgstr "_Numéro d'identifiant :"
 
 # trunk
 # ajout d'un conseil...
