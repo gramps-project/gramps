@@ -72,7 +72,7 @@ class HasCitationBase(Rule):
                 return False
         
         if self.list[2]:
-            if citation.get_confidence_level() <= int(self.list[2]):
+            if citation.get_confidence_level() < int(self.list[2]):
                 return False
 
         return True
