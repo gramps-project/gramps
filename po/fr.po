@@ -26715,12 +26715,12 @@ msgstr "Un enregistrement unique pour identifier la source dans le dépôt."
 # trunk
 #: ../src/glade/editreporef.glade.h:12
 msgid "On what type of media this source is available in the repository."
-msgstr "Sur quel type de medium cette source est disponible dans le dépôt."
+msgstr "Sur quel support cette source est disponible dans le dépôt."
 
 # éviter le raccourci sur le y ou le p
 #: ../src/glade/editreporef.glade.h:15
 msgid "_Media Type:"
-msgstr "_Type de medium :"
+msgstr "Suppor_t :"
 
 #: ../src/glade/editpersonref.glade.h:2
 msgid ""
