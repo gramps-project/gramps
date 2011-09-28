@@ -35,7 +35,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-08-22 12:17+0200\n"
-"PO-Revision-Date: 2011-09-24 12:32+0100\n"
+"PO-Revision-Date: 2011-09-28 20:16+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -4208,7 +4208,6 @@ msgid "Display Name Editor"
 msgstr "Zobrazit editor jmen"
 
 #: ../src/gui/configure.py:99
-#, fuzzy
 msgid ""
 "The following keywords are replaced with the appropriate name parts:\n"
 "<tt>  \n"
@@ -4232,14 +4231,14 @@ msgid ""
 msgstr ""
 "Následující klíčová slova budou nahrazena příslušnými hodnotami:\n"
 "<tt>  \n"
-"  <b>křestní</b>      -  křestní jméno (jméno) <b>Příjmení</b>      -  příjmení (s předponami a spojkami)\n"
-"  <b>titul</b>      - titul (Dr., ing.)       <b>přípona</b>       - přípona (ml., st.)\n"
-"  <b>běžné</b>       - běžné jméno nebo přezdívka               <b>přezdívka</b>     - přezdívka\n"
+"  <b>křestní</b>    -  křestní jméno (jméno)  <b>Příjmení</b>     -  příjmení (s předponami a spojkami)\n"
+"  <b>titul</b>      - titul (Dr., ing.)       <b>přípona</b>      - přípona (ml., st.)\n"
+"  <b>běžné</b>      - běžné jméno nebo přezdívka               <b>přezdívka</b>     - přezdívka\n"
 "  <b>iniciály</b>   - první písmena jména  <b>obvyklé</b>       - přezdívka nebo křestní jméno\n"
-"  <b>primární, primární[předp], [příjm] nebo [spojka]</b>    - celé primární (hlavní) příjmení, předpona, jen příjmení, spojka\n"
-"  <b>otcovské, otcovské[předp], [příjm] nebo [spojka]</b> - celé  příjmení po otci/matce, předpona, jen příjmení, spojka \n"
-"  <b>rodinnápřezdívka</b>   - přezdívka rodiny   <b>předpona</b>     - všechny předpony (von, de)\n"
-"  <b>zbytek</b>       - další (ne primární) příjmení\n"
+"  <b>primární, primární[předp], [příjm] nebo [spojka]</b>       - celé primární (hlavní) příjmení, předpona, jen příjmení, spojka\n"
+"  <b>otcovské, otcovské[předp], [příjm] nebo [spojka]</b>       - celé  příjmení po otci/matce, předpona, jen příjmení, spojka \n"
+"  <b>rodinnápřezdívka</b>   - přezdívka rodiny  <b>předpona</b> - všechny předpony (von, de)\n"
+"  <b>zbytek</b>     - další (ne primární) příjmení\n"
 "  <b>holépříjmení</b>  - příjmení (bez předpon a spojek)\n"
 "</tt>\n"
 "Klíčové slovo psané VELKÝMI PÍSMENY vynucuje velká písmena jmen. Kulaté závorky, čárky a uvozovky navíc jsou odstraněny. Ostatní text se zobrazí doslovně.\n"
@@ -7237,15 +7236,14 @@ msgid "Open Containing _Folder"
 msgstr "_Otevřít obsahující složku"
 
 #: ../src/gui/editors/displaytabs/gallerytab.py:291
-#, fuzzy
 msgid ""
 "This media reference cannot be edited at this time. Either the associated media object is already being edited or another media reference that is associated with the same media object is being edited.\n"
 "\n"
 "To edit this media reference, you need to close the media object."
 msgstr ""
-"Tento odkaz na událost nemůže být měněn.  Zřejmě je měněna přidružená událost, nebo je otevřen jiný odkaz na tuto událost.\n"
+"Tento odkaz na média nemůže být v tuto chvíli upravován.  Zřejmě je už upravujete  přidružený objekt médií nebo je upravován jiný odkaz na tuto objekt.\n"
 "\n"
-"Chcete-li měnit tento odkaz, musíte nejprve uzavřít událost."
+"Chcete-li měnit tento odkaz, musíte objekt médií nejprve uzavřít."
 
 #: ../src/gui/editors/displaytabs/gallerytab.py:505
 #: ../src/plugins/view/mediaview.py:199
@@ -7945,7 +7943,7 @@ msgstr "Na výšku"
 
 #: ../src/gui/plug/report/_papermenu.py:101
 msgid "Landscape"
-msgstr "Na délku"
+msgstr "Na šířku"
 
 #: ../src/gui/plug/report/_papermenu.py:204
 #: ../src/glade/styleeditor.glade.h:33
@@ -7955,7 +7953,7 @@ msgstr "cm"
 
 #: ../src/gui/plug/report/_papermenu.py:208
 msgid "inch|in."
-msgstr "in."
+msgstr "palec"
 
 #: ../src/gui/plug/report/_reportdialog.py:94
 msgid "Processing File"
@@ -10245,9 +10243,8 @@ msgid "Family Chart for [names of chosen family]"
 msgstr "Rodinný graf osoby [names of chosen family]"
 
 #: ../src/plugins/drawreport/DescendTree.py:1645
-#, fuzzy
 msgid "Cousin Chart for [names of children]"
-msgstr "Graf blízkých příbuzných osoby "
+msgstr "Graf blízkých příbuzných osoby [names of children]"
 
 #: ../src/plugins/drawreport/DescendTree.py:1685
 msgid "The bold style used for the text display."
@@ -11521,7 +11518,7 @@ msgstr "<-- Typy obrázků -->"
 #. Media Object's Title
 #: ../src/plugins/gramplet/EditExifMetadata.py:173
 msgid "Warning:  Changing this entry will update the Media object title field in Gramps not Exiv2 metadata."
-msgstr ""
+msgstr "Pozor: Změna této položky aktualizuje pole titulku v Gramps, ne však v metadatech Exiv2."
 
 #. Description
 #: ../src/plugins/gramplet/EditExifMetadata.py:177
@@ -11582,7 +11579,7 @@ msgstr "Jedná se o měření nadmořské výšky (nad/pod úrovní hladiny moř
 #. Wiki Help button
 #: ../src/plugins/gramplet/EditExifMetadata.py:212
 msgid "Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' in your web browser."
-msgstr ""
+msgstr "Zobrazí stránku Wiki nápovědy Gramps  pro 'Upravit Exif Metadata obrázku' ve vašem webovém prohlížeči."
 
 #. Edit screen button
 #: ../src/plugins/gramplet/EditExifMetadata.py:216
@@ -11590,21 +11587,23 @@ msgid ""
 "This will open up a new window to allow you to edit/ modify this image's Exif metadata.\n"
 "  It will also allow you to be able to Save the modified metadata."
 msgstr ""
+"Bude otevřeno nové okno, které vám umožní upravit/měnit Exif metadata tohoto obrázku.\n"
+" Provedené změny samozřejmě umožní také uložit."
 
 #. Thumbnail Viewing Window button
 #: ../src/plugins/gramplet/EditExifMetadata.py:221
 msgid "Will produce a Popup window showing a Thumbnail Viewing Area"
-msgstr ""
+msgstr "Vytvoří vyskakovací okno zobrazující oblast Pohledu náhledů"
 
 #. Image Type button
 #: ../src/plugins/gramplet/EditExifMetadata.py:224
 msgid "Select from a drop- down box the image file type that you would like to convert your non- Exiv2 compatible media object to."
-msgstr ""
+msgstr "Z rozbalovacího seznamu zvolte typ souboru do kterého chcete zkonvertovat Exiv2 nekompatibilní objekt média."
 
 #. Convert to different image type
 #: ../src/plugins/gramplet/EditExifMetadata.py:228
 msgid "If your image is not of an image type that can have Exif metadata read/ written to/from, convert it to a type that can?"
-msgstr ""
+msgstr "Pokud váš obrázek není ve formátu který může nést metadata Exif, převedete jej do jiného, který to umožní?"
 
 #. Delete/ Erase/ Wipe Exif metadata button
 #: ../src/plugins/gramplet/EditExifMetadata.py:232
@@ -11705,7 +11704,7 @@ msgstr "Při aktualizaci cesty k souboru obrázku došlo k chybě!"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:931
 msgid "Click the close button when you are finished modifying this image's Exif metadata."
-msgstr ""
+msgstr "Pokud jste skončili s úpravou metadat tohoto obrázku, klikněte na tlačítko Zavřít."
 
 #. Add the Save button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:957
@@ -11718,6 +11717,8 @@ msgid ""
 "Closes this popup Edit window.\n"
 "WARNING: This action will NOT Save any changes/ modification made to this image's Exif metadata."
 msgstr ""
+"Zavře toto okno úprav.\n"
+"POZOR: Tato akce NEukládá jakékoli změny, které byly v Exif metadatech provedeny."
 
 #. Clear button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:965
@@ -11727,7 +11728,7 @@ msgstr "Toto tlačíko vymaže všechna datová pole zde zobrazená."
 #. Re- display the data fields button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:968
 msgid "Re -display the data fields that were cleared from the Edit Area."
-msgstr ""
+msgstr "Znovu zobrazit datová pole, která byla v oblasti úprav vyčištěna."
 
 #. Media Title Frame...
 #: ../src/plugins/gramplet/EditExifMetadata.py:989
@@ -11795,9 +11796,8 @@ msgid "Media Title Update"
 msgstr "Akutalizovat titulek média"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1356
-#, fuzzy
 msgid "Media Object Date Created"
-msgstr "Mediální objekty označené jako důvěrné"
+msgstr "Datum objektu média vytvořen"
 
 #. set Edit Message to Saved...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1428
@@ -12588,9 +12588,8 @@ msgstr "Maximální počet položek k zobrazení"
 #. How many generations of descendants to process before we go up to the
 #. next level of ancestors.
 #: ../src/plugins/gramplet/WhatsNext.py:64
-#, fuzzy
 msgid "Descendant generations per ancestor generation"
-msgstr "Potomci <osoby> vzdálení alespoň<N> generací"
+msgstr "Počet generací předků na generaci potomků"
 
 #. After an ancestor was processed, how many extra rounds to delay until
 #. the descendants of this ancestor are processed.
@@ -13721,14 +13720,12 @@ msgid "Witness name: %s"
 msgstr "Jméno svědka: %s"
 
 #: ../src/plugins/import/ImportXml.py:1147
-#, fuzzy
 msgid "Any event reference must have a 'hlink' attribute."
-msgstr "Všechny mapy odkazů byly přegenerovány."
+msgstr "Každý odkaz na událost musí mít 'hlink' atribut."
 
 #: ../src/plugins/import/ImportXml.py:1392
-#, fuzzy
 msgid "Any person reference must have a 'hlink' attribute."
-msgstr "Všechny mapy odkazů byly přegenerovány."
+msgstr "Každý odkaz na osobu musí mít 'hlink' atribut."
 
 #: ../src/plugins/import/ImportXml.py:1552
 #, python-format
@@ -13740,9 +13737,8 @@ msgid "Gramps ignored namemap value"
 msgstr "Gramps ignoroval hodnotu jmenné mapy"
 
 #: ../src/plugins/import/ImportXml.py:1757
-#, fuzzy
 msgid "Any note reference must have a 'hlink' attribute."
-msgstr "Všechny mapy odkazů byly přegenerovány."
+msgstr "Každý odkaz na poznámku musí mít 'hlink' atribut.."
 
 #: ../src/plugins/import/ImportXml.py:2239
 #, python-format
@@ -17734,7 +17730,7 @@ msgstr ""
 
 #: ../src/plugins/lib/maps/geography.py:197
 msgid "The green values in the row correspond to the current place values."
-msgstr ""
+msgstr "Zelené hodnoty v řádku odpovídají hodnotám aktuálního místa."
 
 #. here, we could add value from geography names services ...
 #. if we found no place, we must create a default place.
@@ -17792,9 +17788,8 @@ msgid "Center on this place"
 msgstr "Vystředit na tomto místě"
 
 #: ../src/plugins/lib/maps/geography.py:1076
-#, fuzzy
 msgid "Nothing for this view."
-msgstr "Záznam této relace"
+msgstr "Nic pro tento pohled."
 
 #: ../src/plugins/lib/maps/geography.py:1077
 msgid "Specific parameters"
@@ -22307,9 +22302,8 @@ msgstr "Poslední změna"
 
 #. page message
 #: ../src/plugins/webreport/NarrativeWeb.py:4194
-#, fuzzy
 msgid "The place markers on this page represent a different location based upon your spouse, your children (if any), and your personal events and their places.  The list has been sorted in chronological date order(if any?), and then by latitude/ longitude.  Clicking on the place&#8217;s name in the References will take you to that place&#8217;s page."
-msgstr "Umístit značky na této stránce, které reprezentují různé lokace založené na vašem partnerovi, potomcích (pokud jsou) a vašich osobních událostech a jejich místech. Seznam byl chronologicky setříděn. Kliknutí na název místa  v Archivech vás přenese na stránku místa. Kliknutí na značku zobrazí název místa, které reprezentuje."
+msgstr "Značky míst na této stránce reprezentují různé lokace založené na událostech partnera(ky), potomků (pokud jsou) a vašich osobních událostech a jejich místech. Seznam byl setříděn chronologicky  a poté podle zeměpisných souřadnic. Kliknutí na název místa  v Archivech vás přenese na stránku místa."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4203
 msgid "Drop Markers"
@@ -22849,7 +22843,7 @@ msgstr "Volba Google/ FamilyMap"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6797
 msgid "Select which option that you would like to have for the Google Maps Family Map pages..."
-msgstr ""
+msgstr "Vyberte možnosti, které byste chtěli mít na stránkách Mapa rodiny v mapách Google..."
 
 #. adding title to hyperlink menu for screen readers and braille writers
 #: ../src/plugins/webreport/NarrativeWeb.py:7093
