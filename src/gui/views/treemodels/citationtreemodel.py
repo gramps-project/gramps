@@ -162,12 +162,13 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
             for j in i:
                 source_handle_list.append(j)
         for citation_handle in source_handle_list:
-#            # add as node: parent, child, sortkey, handle; parent and child are 
-#            # nodes in the treebasemodel, and will be used as iters
-            citation = self.db.get_citation_from_handle(citation_handle)
-            citation_page = citation.get_page()
-            self.add_node(handle, citation_handle, citation_page, 
-                          citation_handle, secondary=True)
+            if self.get_node(citation_handle) is None:
+    #            # add as node: parent, child, sortkey, handle; parent and child are 
+    #            # nodes in the treebasemodel, and will be used as iters
+                citation = self.db.get_citation_from_handle(citation_handle)
+                citation_page = citation.get_page()
+                self.add_node(handle, citation_handle, citation_page, 
+                              citation_handle, secondary=True)
 #        try:
 #            source_handle = data[COLUMN_SOURCE]
 #        except:

@@ -31,6 +31,7 @@ A view showing all the Sources with child Citations
 #-------------------------------------------------------------------------
 import logging
 LOG = logging.getLogger(".citation")
+_LOG = logging.getLogger('.gui.citationtreeview')
 
 #-------------------------------------------------------------------------
 #
@@ -116,14 +117,14 @@ class CitationTreeView(ListView):
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         
         signal_map = {
-            'citation-add'     : self.row_add,
-            'citation-update'  : self.row_update,
-            'citation-delete'  : self.row_delete,
-            'citation-rebuild' : self.object_build,
-            'source-add'       : self.row_add,
-            'source-update'    : self.row_update,
-            'source-delete'    : self.row_delete,
-            'source-rebuild'   : self.object_build,
+            'citation-add'     : self._citation_row_add,
+            'citation-update'  : self._citation_row_update,
+            'citation-delete'  : self._citation_row_delete,
+            'citation-rebuild' : self._citation_object_build,
+            'source-add'       : self._source_row_add,
+            'source-update'    : self._source_row_update,
+            'source-delete'    : self._source_row_delete,
+            'source-rebuild'   : self._source_object_build,
             }
 
         ListView.__init__(
@@ -142,6 +143,52 @@ class CitationTreeView(ListView):
 
         self.additional_uis.append(self.additional_ui())
 
+    def _print_handles(self, text, handle_list):
+        for handle in handle_list:
+            source = self.dbstate.db.get_source_from_handle(handle)
+            citation = self.dbstate.db.get_citation_from_handle(handle)
+            _LOG.debug("\n\n\n")
+            if source:
+                _LOG.debug("---- %s -- source %s" % 
+                           (text, source.get_title()))
+            elif citation:
+                _LOG.debug("---- %s -- citation %s" % 
+                           (text, citation.get_page()))
+            else:
+                _LOG.debug("---- %s -- handle %s" % (text, handle))
+   
+    def _citation_row_add(self, handle_list):            
+        self._print_handles("citation row add", handle_list)
+        self.row_add(handle_list)
+    
+    def _citation_row_update(self, handle_list):            
+        self._print_handles("citation row update", handle_list)
+        self.row_update(handle_list)
+    
+    def _citation_row_delete(self, handle_list):            
+        self._print_handles("citation row delete", handle_list)
+        self.row_delete(handle_list)
+    
+    def _citation_object_build(self, *args):            
+        _LOG.debug("citation object build")
+        self.object_build(*args)
+    
+    def _source_row_add(self, handle_list):            
+        self._print_handles("source row add", handle_list)
+        self.row_add(handle_list)
+    
+    def _source_row_update(self, handle_list):            
+        self._print_handles("source row update", handle_list)
+        self.row_update(handle_list)
+    
+    def _source_row_delete(self, handle_list):            
+        self._print_handles("source row delete", handle_list)
+        self.row_delete(handle_list)
+    
+    def _source_object_build(self, *args):            
+        _LOG.debug("source object build")
+        self.object_build(*args)
+    
     def navigation_type(self):
         return 'Citation'
 

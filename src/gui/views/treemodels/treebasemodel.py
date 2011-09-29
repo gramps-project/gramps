@@ -99,7 +99,7 @@ class Node(object):
         """
         Assign the handle of a Gramps object to this node.
         """
-        if not self.handle:
+        if not self.handle or handle == None:
             self.handle = handle
             self.secondary = secondary
         else:
@@ -609,6 +609,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
         Remove a node from the map.
         """
         if node.children:
+            del self.handle2node[node.handle]
             node.set_handle(None)
             self.__displayed -= 1
             self.__total -= 1
@@ -687,6 +688,8 @@ class TreeBaseModel(gtk.GenericTreeModel):
 
         _LOG.debug(self.__class__.__name__ + ' add_row_by_handle ' +
                     str(time.clock() - cput) + ' sec')
+        _LOG.debug("displayed %d / total: %d" % 
+                   (self.__displayed, self.__total))
 
     def delete_row_by_handle(self, handle):
         """
@@ -715,6 +718,8 @@ class TreeBaseModel(gtk.GenericTreeModel):
             
         _LOG.debug(self.__class__.__name__ + ' delete_row_by_handle ' +
                     str(time.clock() - cput) + ' sec')
+        _LOG.debug("displayed %d / total: %d" % 
+                   (self.__displayed, self.__total))
 
     def update_row_by_handle(self, handle):
         """
