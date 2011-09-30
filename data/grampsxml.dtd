@@ -58,9 +58,9 @@ DATABASE
     tags
 -->
 
-<!ELEMENT database (header, name-formats?, tags?, events?, people?, families?,
-                    sources?, places?, objects?, repositories?, notes?,
-                    bookmarks?, namemaps?)>
+<!ELEMENT database (header, name-formats?, tags?, events?, people?, 
+                    families?, sources?, places?, objects?, 
+                    repositories?, notes?, bookmarks?, namemaps?)>
 <!ATTLIST database xmlns CDATA #FIXED "http://gramps-project.org/xml/1.4.0/">
 
 
@@ -80,16 +80,17 @@ HEADER
         version  CDATA #REQUIRED
 >
 
-<!ELEMENT researcher (resname, resaddr?, rescity?, resstate?,
+<!ELEMENT researcher (resname?, resaddr?, reslocality?, rescity?, resstate?,
                       rescountry?, respostal?, resphone?, resemail?)>
-<!ELEMENT resname    (#PCDATA)>
-<!ELEMENT resaddr    (#PCDATA)>
-<!ELEMENT rescity    (#PCDATA)>
-<!ELEMENT resstate   (#PCDATA)>
-<!ELEMENT rescountry (#PCDATA)>
-<!ELEMENT respostal  (#PCDATA)>
-<!ELEMENT resphone   (#PCDATA)>
-<!ELEMENT resemail   (#PCDATA)>
+<!ELEMENT resname        (#PCDATA)>
+<!ELEMENT resaddr        (#PCDATA)>
+<!ELEMENT reslocality    (#PCDATA)>
+<!ELEMENT rescity        (#PCDATA)>
+<!ELEMENT resstate       (#PCDATA)>
+<!ELEMENT rescountry     (#PCDATA)>
+<!ELEMENT respostal      (#PCDATA)>
+<!ELEMENT resphone       (#PCDATA)>
+<!ELEMENT resemail       (#PCDATA)>
 
 <!ELEMENT mediapath  (#PCDATA)>
 
@@ -157,19 +158,19 @@ GENDER has values of M, F, or U.
         rel   CDATA #REQUIRED
 >
 
-<!ELEMENT address ((daterange|datespan|dateval|datestr)?, street?, city?,
-                   county?, state?, country?, postal?, phone?, noteref*,
-                   sourceref*)>
+<!ELEMENT address ((daterange|datespan|dateval|datestr)?, street?, 
+                   locality?, city?, county?, state?, country?, postal?, 
+                   phone?, noteref*, sourceref*)>
 <!ATTLIST address priv (0|1) #IMPLIED>
 
-<!ELEMENT street  (#PCDATA)>
+<!ELEMENT street   (#PCDATA)>
 <!ELEMENT locality (#PCDATA)>
-<!ELEMENT city    (#PCDATA)>
-<!ELEMENT county  (#PCDATA)>
-<!ELEMENT country (#PCDATA)>
-<!ELEMENT postal  (#PCDATA)>
-<!ELEMENT state   (#PCDATA)>
-<!ELEMENT phone   (#PCDATA)>
+<!ELEMENT city     (#PCDATA)>
+<!ELEMENT county   (#PCDATA)>
+<!ELEMENT state    (#PCDATA)>
+<!ELEMENT country  (#PCDATA)>
+<!ELEMENT postal   (#PCDATA)>
+<!ELEMENT phone    (#PCDATA)>
 
 
 <!--    ************************************************************
@@ -264,14 +265,15 @@ PLACES
 
 <!ELEMENT location EMPTY>
 <!ATTLIST location
-        street  CDATA #IMPLIED
-        city    CDATA #IMPLIED
-        parish  CDATA #IMPLIED
-        county  CDATA #IMPLIED
-        state   CDATA #IMPLIED
-        country CDATA #IMPLIED
-        postal  CDATA #IMPLIED
-        phone   CDATA #IMPLIED
+        street   CDATA #IMPLIED
+        locality CDATA #IMPLIED
+        city     CDATA #IMPLIED
+        parish   CDATA #IMPLIED
+        county   CDATA #IMPLIED
+        state    CDATA #IMPLIED
+        country  CDATA #IMPLIED
+        postal   CDATA #IMPLIED
+        phone    CDATA #IMPLIED
 >
 
 <!--    ************************************************************
