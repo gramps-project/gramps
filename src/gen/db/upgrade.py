@@ -384,6 +384,10 @@ def gramps_upgrade_16(self):
             txt += key2string[key] % data_upgradeobject[key2data[key]]
         except:
             txt += key2string[key]
+    txt += _("\n\nYou may want to run\n"
+             "Tools -> Family Tree Processing -> Merge\n"
+             "in order to merge citations that contain similar\n"
+             "information")
     InfoDialog(_('Upgrade Statistics'), txt)
 
 def upgrade_media_list_16(self, media_list):
