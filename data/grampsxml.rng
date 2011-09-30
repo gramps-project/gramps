@@ -133,6 +133,7 @@
   <define name="researcher-content">
       <element name="resname"><text/></element>
       <optional><element name="resaddr"><text/></element></optional>
+      <optional><element name="reslocality"><text/></element></optional>
       <optional><element name="rescity"><text/></element></optional>
       <optional><element name="resstate"><text/></element></optional>
       <optional><element name="rescountry"><text/></element></optional>
@@ -282,6 +283,7 @@
     </attribute></optional>
     <optional><ref name="date-content"/></optional>
     <optional><element name="street"><text/></element></optional>
+    <optional><element name="locality"><text/></element></optional>
     <optional><element name="city"><text/></element></optional>
     <optional><element name="county"><text/></element></optional>
     <optional><element name="state"><text/></element></optional>
