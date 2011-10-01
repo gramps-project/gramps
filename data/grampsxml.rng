@@ -449,8 +449,8 @@
     <ref name="primary-object"/>
     <optional><element name="ptitle"><text/></element></optional>
     <optional><element name="coord">
-        <attribute name="long"><data type="float"/></attribute>
-        <attribute name="lat"><data type="float"/></attribute>
+        <attribute name="long"><text/></attribute>
+        <attribute name="lat"><text/></attribute>
     </element></optional>
     <zeroOrMore><element name="location">
         <optional><attribute name="street"><text/></attribute></optional>
