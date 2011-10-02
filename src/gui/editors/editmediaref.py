@@ -430,7 +430,7 @@ class EditMediaRef(EditReference):
         self.rect_pixbuf_render = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, w, h)
         cm = gtk.gdk.colormap_get_system()
         color = cm.alloc_color(gtk.gdk.Color("blue"))
-        self.rect_pixmap = gtk.gdk.Pixmap(None, w, h, 24)
+        self.rect_pixmap = gtk.gdk.Pixmap(None, w, h, cm.get_visual().depth)
         self.rect_pixmap.set_colormap(cm)
         self.rect_gc = self.rect_pixmap.new_gc()
         self.rect_gc.set_foreground(color)
