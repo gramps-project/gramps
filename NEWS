@@ -1,3 +1,13 @@
+2011-10-01
+Version 3.3.1 -- "The Tenth Anniversary Edition" bug fix release.
+* translation updates:  ca, cs, de, fr, hr, it, nb, nl, pl, pt_br, sk, sl, sv, uk, zh_cn
+* new languages in this release:  ja (Japanese), vi (Vietnamese)
+* 36 bugs closed since v3.3.0:  http://www.gramps-project.org/bugs/roadmap_page.php?version_id=27
+* 79 translation commits since v3.3.0
+* 189 code commits since v3.3.0
+* ten years since v0.1.1 was first released:  http://www.gramps-project.org/wiki/index.php?title=Previous_releases
+* "Thank you!" to Donald Allingham, The Gramps Developers, translators, and our every day users
+
 2011-06-12
 Version 3.3.0 -- the "Prelude to the next version" new feature release.
 * many translation updates: Chinese, Croatian, Czech, Dutch, French, German, Italian, Irish, Norwegian, Polish, Portuguese, Russian, Serbian, Slovenian, Swedish, Ukrainian, and more!
