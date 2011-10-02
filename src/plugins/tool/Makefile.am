@@ -53,7 +53,8 @@ GLADEFILES = \
 	relcalc.glade \
 	removeunused.glade \
 	soundgen.glade \
-	verify.glade
+	verify.glade \
+	mergecitations.glade
 
 dist_pkgdata_DATA = $(GLADEFILES)
 
