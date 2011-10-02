@@ -28,7 +28,8 @@ pkgdata_PYTHON = \
 	SortEvents.py \
 	SoundGen.py \
 	tools.gpr.py \
-	Verify.py
+	Verify.py \
+	MergeCitations.py
 #	DumpGenderStats.py \
 #	PHPGedViewConnector.py \
 #	TestcaseGenerator.py
