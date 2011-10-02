@@ -161,20 +161,19 @@ h2 {
     float: center;
 }
 h3 {
-    font:normal 2em/1.2em serif;
-    text-align:center;
-    margin:0;
+    font: normal 1.6em serif;
+    text-align: center;
+    margin: 0 auto;
     padding:.5em 20px .2em 20px;
     border-bottom: double 4px #000;
 }
 h4 {
-    font: normal 1.2em/1.2em serif;
-    color: #FFF;
-    margin-top: .3cm;
-    padding: .2em 0 .2em 20px;
+    font: normal 1em serif;
     background-color: #00029D;
+    color: #FFF;
+    padding: .2em 0 .2em 20px;
     border-width: 4px 0px 4px 0px;
-    border-style: solid;
+    border-style: grooved;
     border-color: #13A926;
 }
 h5, h6 {
@@ -426,11 +425,12 @@ div#IndividualDetail {
     padding: 0;
     margin: 0;
 }
-#IndividualDetail div table.infolist tr td {
+#IndividualDetail div#summaryarea table.infolist tr td {
     font: normal .9em/1.2em sans-serif;
     vertical-align: top;
+    border: none;
 }
-div#IndividualDetail div table.infolist tr td a {
+div#IndividualDetail div#summaryarea table.infolist tr td a {
     display: inline;
 }
 div#IndividualDetail table.infolist tr td a:hover {
@@ -625,6 +625,9 @@ table.eventlist tbody tr td.ColumnSources {
 }
 table.eventlist tbody tr td.ColumnPerson {
     width: 35%;
+}
+div#IndividualDetail div#families table.eventlist tr td {
+    border-bottom: dashed 1px #000;
 }
 div#EventList table.infolist tbody tr td {
     border-bottom: dashed 1px #000;
@@ -1099,6 +1102,9 @@ div#parents table.infolist tbody tr td.ColumnValue ol {
 }
 div#parents table.infolist tbody tr td.ColumnValue ol li a {
     text-decoration: underline;
+}
+div#IndividualDetail div#parents table.infolist tr td {
+    border: none;
 }
 
 /* Subsections : Families
