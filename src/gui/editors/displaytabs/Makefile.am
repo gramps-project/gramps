@@ -12,7 +12,7 @@ pkgdata_PYTHON = \
 	buttontab.py \
 	childmodel.py \
 	citationbackreflist.py \
-	citationenbededlist.py \
+	citationembedlist.py \
 	citationrefmodel.py \
 	dataembedlist.py \
 	datamodel.py \
