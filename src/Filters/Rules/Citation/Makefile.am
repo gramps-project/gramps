@@ -14,10 +14,10 @@ pkgdata_PYTHON = \
 	_HasNoteRegexp.py \
 	_HasReferenceCountOf.py \
 	_MatchesFilter.py \
-    _MatchesPageSubstringOf.py \
-    _MatchesRepositoryFilter.py \
-    _MatchesSourceFilter.py \
-	_RegExpIdOf.py \
+	_MatchesPageSubstringOf.py \
+	_MatchesRepositoryFilter.py \
+	_MatchesSourceFilter.py \
+	_RegExpIdOf.py
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/Rules/Citation
 pkgpythondir = @pkgpythondir@/Filters/Rules/Citation
