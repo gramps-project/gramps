@@ -1,8 +1,11 @@
+# -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2009  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2011       Vlada Perić <vlada.peric@gmail.com>
+# Copyright (C) 2011       Matt Keenan <matt.keenan@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -2096,16 +2099,16 @@ class Narrator(object):
         spouse = self.__db.get_person_from_handle(spouse_handle)
         event = ReportUtils.find_marriage(self.__db, family)
     
-        # not all families have a spouse.
-        if not spouse:
-            return u""
-    
         date = self.__empty_date
         place = self.__empty_place
-        if not name_display:
-            spouse_name = _nd.display(spouse)
+        if spouse:
+            if not name_display:
+                spouse_name = _nd.display(spouse)
+            else:
+                spouse_name = name_display.display(spouse)
         else:
-            spouse_name = name_display.display(spouse)
+            # not all families have a spouse.
+            spouse_name = _("Unknown")
                 
         if event:
             if self.__use_fulldate :
@@ -2129,6 +2132,8 @@ class Narrator(object):
             'place'         : place, 
             }
     
+        date_full = 0
+
         if event:
             dobj = event.get_date_object()
         
@@ -2136,8 +2141,6 @@ class Narrator(object):
                 date_full = 2
             elif dobj and dobj.get_day_valid():
                 date_full = 1
-            else:
-                date_full = 0
             
         gender = self.__person.get_gender()
     
@@ -2155,42 +2158,42 @@ class Narrator(object):
         # describe type
     
         if is_first:
-            if event and date and place and self.__verbose:
+            if date and place and self.__verbose:
                 if relationship == FamilyRelType.MARRIED:
                     text = marriage_first_date_place[gender][date_full]
                 elif relationship == FamilyRelType.UNMARRIED:
                     text = unmarried_first_date_place[gender][date_full]
                 else:
                     text = relationship_first_date_place[gender][date_full]
-            elif event and date and place:
+            elif date and place:
                 if relationship == FamilyRelType.MARRIED:
                     text = marriage_first_date_place['succinct'][date_full]
                 elif relationship == FamilyRelType.UNMARRIED:
                     text = unmarried_first_date_place['succinct'][date_full]
                 else:
                     text = relationship_first_date_place['succinct'][date_full]           
-            elif event and date and self.__verbose:
+            elif date and self.__verbose:
                 if relationship == FamilyRelType.MARRIED:
                     text = marriage_first_date[gender][date_full]
                 elif relationship == FamilyRelType.UNMARRIED:
                     text = unmarried_first_date[gender][date_full]
                 else:
                     text = relationship_first_date[gender][date_full]
-            elif event and date:
+            elif date:
                 if relationship == FamilyRelType.MARRIED:
                     text = marriage_first_date['succinct'][date_full]
                 elif relationship == FamilyRelType.UNMARRIED:
                     text = unmarried_first_date['succinct'][date_full]
                 else:
                     text = relationship_first_date['succinct'][date_full]
-            elif event and place and self.__verbose:
+            elif place and self.__verbose:
                 if relationship == FamilyRelType.MARRIED:
                     text = marriage_first_place[gender]
                 elif relationship == FamilyRelType.UNMARRIED:
                     text = unmarried_first_place[gender]
                 else:
                     text = relationship_first_place[gender]
-            elif event and place:
+            elif place:
                 if relationship == FamilyRelType.MARRIED:
                     text = marriage_first_place['succinct']
                 elif relationship == FamilyRelType.UNMARRIED:
@@ -2212,42 +2215,42 @@ class Narrator(object):
                 else:
                     text = relationship_first_only['succinct']
         else:
-            if event and date and place and self.__verbose:
+            if date and place and self.__verbose:
                 if relationship == FamilyRelType.MARRIED:
                     text = marriage_also_date_place[gender][date_full]
                 elif relationship == FamilyRelType.UNMARRIED:
                     text = unmarried_also_date_place[gender][date_full]
                 else:
                     text = relationship_also_date_place[gender][date_full]
-            if event and date and place:
+            if date and place:
                 if relationship == FamilyRelType.MARRIED:
                     text = marriage_also_date_place['succinct'][date_full]
                 elif relationship == FamilyRelType.UNMARRIED:
                     text = unmarried_also_date_place['succinct'][date_full]
                 else:
                     text = relationship_also_date_place['succinct'][date_full]
-            elif event and date and self.__verbose:
+            elif date and self.__verbose:
                 if relationship == FamilyRelType.MARRIED:
                     text = marriage_also_date[gender][date_full]
                 elif relationship == FamilyRelType.UNMARRIED:
                     text = unmarried_also_date[gender][date_full]
                 else:
                     text = relationship_also_date[gender][date_full]
-            elif event and date:
+            elif date:
                 if relationship == FamilyRelType.MARRIED:
                     text = marriage_also_date['succinct'][date_full]
                 elif relationship == FamilyRelType.UNMARRIED:
                     text = unmarried_also_date['succinct'][date_full]
                 else:
                     text = relationship_also_date['succinct'][date_full]
-            elif event and place and self.__verbose:
+            elif place and self.__verbose:
                 if relationship == FamilyRelType.MARRIED:
                     text = marriage_also_place[gender]
                 elif relationship == FamilyRelType.UNMARRIED:
                     text = unmarried_also_place[gender]
                 else:
                     text = relationship_also_place[gender]
-            elif event and place:
+            elif place:
                 if relationship == FamilyRelType.MARRIED:
                     text = marriage_also_place['succinct']
                 elif relationship == FamilyRelType.UNMARRIED:
