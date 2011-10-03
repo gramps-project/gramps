@@ -433,7 +433,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
-        return self.get_citation_child_list()
+        return (self.get_citation_child_list() + self.event_ref_list)
 
     def merge(self, acquisition):
         """
