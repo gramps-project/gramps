@@ -220,16 +220,21 @@ class Printinfo():
             self.doc.write_text(_("sp. %(spouse)s") % {'spouse':name}, mark)
             self.dump_string(spouse, family_handle)
             self.doc.end_paragraph()
+        else:
+            self.doc.start_paragraph("DR-Spouse%d" % min(level, 32))
+            self.doc.write_text(_("sp. %(spouse)s") % {'spouse':'Unknown'})
+            self.doc.end_paragraph()
 
     def print_reference(self, level, person, display_num):
         #Person and their family have already been printed so
         #print reference here
-        mark = ReportUtils.get_person_mark(self.database, person)
-        self.doc.start_paragraph("DR-Spouse%d" % min(level, 32))
-        name = self._name_display.display(person)
-        self.doc.write_text(_("sp. see  %(reference)s : %(spouse)s") %
-            {'reference':display_num, 'spouse':name}, mark)
-        self.doc.end_paragraph()
+        if person:
+            mark = ReportUtils.get_person_mark(self.database, person)
+            self.doc.start_paragraph("DR-Spouse%d" % min(level, 32))
+            name = self._name_display.display(person)
+            self.doc.write_text(_("sp. see  %(reference)s : %(spouse)s") %
+                {'reference':display_num, 'spouse':name}, mark)
+            self.doc.end_paragraph()
 
 
 #------------------------------------------------------------------------
@@ -281,8 +286,9 @@ class RecurseDown():
             else:
                 self.objPrint.print_spouse(level, spouse_handle, family)
 
-                spouse_num = _("%s sp." % (ref_str))
-                self.person_printed[spouse_handle] = spouse_num
+                if spouse_handle:
+                    spouse_num = _("%s sp." % (ref_str))
+                    self.person_printed[spouse_handle] = spouse_num
 
                 if level >= self.max_generations:
                     continue
