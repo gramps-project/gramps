@@ -263,8 +263,9 @@ class DetDescendantReport(Report):
         for generation in xrange(len(self.gen_keys)):
             for key in self.gen_keys[generation]:
                 person_handle = self.map[key]
-                self.dnumber[person_handle] = mod_reg_number
-                mod_reg_number += 1
+                if person_handle not in self.dnumber:
+                    self.dnumber[person_handle] = mod_reg_number
+                    mod_reg_number += 1
 
     def write_report(self):
         """
@@ -291,6 +292,7 @@ class DetDescendantReport(Report):
 
         generation = 0
 
+        self.numbers_printed = list()
         for generation in xrange(len(self.gen_keys)):
             if self.pgbrk and generation > 0:
                 self.doc.page_break()
@@ -358,6 +360,12 @@ class DetDescendantReport(Report):
         person = self.database.get_person_from_handle(person_handle)
 
         val = self.dnumber[person_handle]
+
+        if val in self.numbers_printed:
+            return
+        else:
+            self.numbers_printed.append(val)
+
         self.doc.start_paragraph("DDR-First-Entry","%s." % val)
 
         name = self._name_display.display_formal(person)
@@ -383,7 +391,7 @@ class DetDescendantReport(Report):
                     self.doc.write_text(self._(
                         "%(name)s is the same person as [%(id_str)s].") % {
                             'name' :'',
-                            'id_str': str(dkey),
+                            'id_str': self.dnumber[self.map[dkey]],
                             }
                         )
                     self.doc.end_paragraph()
