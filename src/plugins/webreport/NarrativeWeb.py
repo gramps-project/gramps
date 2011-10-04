@@ -4074,10 +4074,8 @@ class IndividualPage(BasePage):
         middleset = [value for value in (-8, -9, -10, -11, 8, 9, 10, 11)]
         largeset = [value for value in (-11, -12, -13, -14, -15, -16, -17, 11, 12, 13, 14, 15, 16, 17)]
 
-        if spany in tinyset:
-            zoomlevel = 13
-        elif spany in smallset:
-            zoomlevel = 6
+        if (spany in tinyset or spany in smallset):
+            zoomlevel = 7
         elif spany in middleset:
             zoomlevel = 5
         elif spany in largeset:
