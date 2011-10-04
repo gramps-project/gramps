@@ -2222,7 +2222,7 @@ class Narrator(object):
                     text = unmarried_also_date_place[gender][date_full]
                 else:
                     text = relationship_also_date_place[gender][date_full]
-            if date and place:
+            elif date and place:
                 if relationship == FamilyRelType.MARRIED:
                     text = marriage_also_date_place['succinct'][date_full]
                 elif relationship == FamilyRelType.UNMARRIED:
