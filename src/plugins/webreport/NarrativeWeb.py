@@ -2007,7 +2007,8 @@ class BasePage(object):
                 url = self.report.build_url_fname_html(spouse_handle, "ppl", True)
                 tcell += self.person_link(url, spouse, _NAME_STYLE_DEFAULT, gid =gid)
             else:
-reltionships
+                tcell += self.get_name(spouse)
+
         # display family events; such as marriage and divorce...
         family_events = family.get_event_ref_list()
         if family_events: 
@@ -2836,8 +2837,8 @@ class FamilyPage(BasePage):
         self.person = person
         self.place_list = place_list
         self.up = True
-        birthorder = self.report.options["birthorder"]
-        self.familymappages = self.report.options["familymappages"]
+        birthorder = report.options["birthorder"]
+        self.familymappages = report.options["familymappages"]
         BasePage.__init__(self, report, title, family.get_gramps_id())
 
         of = self.report.create_file(family.get_handle(), "fam")
@@ -4674,9 +4675,6 @@ class IndividualPage(BasePage):
         self.name = self.get_name(person)
         db = report.database
 
-        # for use in family map pages...
-        self.familymappages = self.report.options["familymappages"]
-
         of = self.report.create_file(person.get_handle(), "ppl")
         self.up = True
         indivdetpage, head, body = self.write_header(self.sort_name)
@@ -4739,18 +4737,18 @@ class IndividualPage(BasePage):
                     media_list += event.get_media_list()
 
             # display additional images as gallery
-            sect7 = self.display_additional_images_as_gallery(media_list, self.person)
+            sect7 = self.display_additional_images_as_gallery(media_list, person)
             if sect7 is not None:
                 individualdetail += sect7
 
-            # display Narrative
+            # display Narrative Notes
             notelist = person.get_note_list()
             sect8 = self.display_note_list(notelist)
             if sect8 is not None:
                 individualdetail += sect8
 
             # display attributes
-            attrlist = self.person.get_attribute_list()
+            attrlist = person.get_attribute_list()
             if attrlist: 
                 attrsection, attrtable = self.display_attribute_header()
                 self.display_attr_list(attrlist, attrtable)
@@ -4762,18 +4760,18 @@ class IndividualPage(BasePage):
                 individualdetail += sect10
 
             # display associations
-            assocs = self.person.get_person_ref_list()
+            assocs = person.get_person_ref_list()
             if assocs:
                 individualdetail += self.display_ind_associations(assocs)
 
-            # display sources
-            sect11 = self.display_ind_sources(self.person)
+            # display source references
+            sect11 = self.display_ind_sources(person)
             if sect11 is not None:
                 individualdetail += sect11
 
-            # create family map link
-            if self.familymappages:
-                if len(place_lat_long):
+            # for use in family map pages...
+            if len(place_lat_long):
+                if self.report.options["familymappages"]:
                     individualdetail += self.__display_family_map(person, place_lat_long)
 
             # display pedigree
