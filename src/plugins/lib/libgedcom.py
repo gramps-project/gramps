@@ -1178,7 +1178,7 @@ class BaseReader(object):
         line = unicode(self.ifile.readline(), 
                        encoding=self.enc,
                        errors='replace')
-        return line.strip().translate(strip_dict)
+        return line.translate(strip_dict)
 
 class UTF8Reader(BaseReader):
 
@@ -1196,7 +1196,7 @@ class UTF8Reader(BaseReader):
         line =  unicode(self.ifile.readline(),
                        encoding=self.enc,
                        errors='replace')
-        return line.strip().translate(strip_dict)
+        return line.translate(strip_dict)
 
 class UTF16Reader(BaseReader):
 
