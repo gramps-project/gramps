@@ -4764,11 +4764,6 @@ class IndividualPage(BasePage):
             if assocs:
                 individualdetail += self.display_ind_associations(assocs)
 
-            # display source references
-            sect11 = self.display_ind_sources(person)
-            if sect11 is not None:
-                individualdetail += sect11
-
             # for use in family map pages...
             if len(place_lat_long):
                 if self.report.options["familymappages"]:
@@ -4784,6 +4779,11 @@ class IndividualPage(BasePage):
                 sect14 = self.display_tree()
                 if sect14 is not None:
                     individualdetail += sect14
+
+            # display source references
+            sect14 = self.display_ind_sources(person)
+            if sect14 is not None:
+                individualdetail += sect14
 
         # add clearline for proper styling
         # create footer section
@@ -4909,7 +4909,6 @@ class IndividualPage(BasePage):
     var lifeHistory = [""" % (midX_, midY_, zoomlevel)
                         for index in xrange(0, (number_markers - 1)):
                             latitude, longitude = place_lat_long[index][0], place_lat_long[index][1]
-                            print(index, data)
                             jsc += """    new google.maps.LatLng(%s, %s),""" % (latitude, longitude)
                         latitude, longitude = place_lat_long[-1][0], place_lat_long[-1][1]
                         jsc += """    new google.maps.LatLng(%s, %s) ];
