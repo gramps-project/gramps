@@ -35,7 +35,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-08-22 12:17+0200\n"
-"PO-Revision-Date: 2011-09-28 20:12+0100\n"
+"PO-Revision-Date: 2011-10-07 15:31+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -11651,7 +11651,7 @@ msgstr "Zobrazit  Exif metadata..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:674
 msgid "Click Close to close this Thumbnail View Area."
-msgstr "Klikněte na Zavřít pro uzavření oblasti Pohledu náhledů"
+msgstr "Klikněte na Zavřít pro uzavření oblasti Pohledu náhledů."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:678
 msgid "Thumbnail View Area"
@@ -12578,6 +12578,9 @@ msgid ""
 "\n"
 "You can click the configuration icon in the toolbar to add additional columns, while right-click on the background allows to add gramplets. You can also drag the Properties button to reposition the gramplet  on this page, and detach the gramplet to float above Gramps."
 msgstr ""
+"Právě se nacházíte na stránce \"Gramplety\" na kterou můžete přidávat své vlastní gramplety. Tuto stránku můžete také připojit k libovolnému Pohledu přidáním boční a/nebo spodní lišty, nebo kliknutím pravým tlačítkem myši na pravou stranu záložky.\n"
+"\n"
+"Kliknutím na ikonu konfigurace v nástrojové liště přidáte sloupce, kliknutím pravým tlačítkem myši a pozadí stránky přidáte gramplety. Tažením tlačítka Možnosti můžete změnit pozici grampletů na této stránce,  nebo je odpojit od stránky a nechat je vznášet nad Gramps."
 
 #. Minimum number of lines we want to see. Further lines with the same
 #. distance to the main person will be added on top of this.
@@ -12595,7 +12598,7 @@ msgstr "Počet generací předků na generaci potomků"
 #. the descendants of this ancestor are processed.
 #: ../src/plugins/gramplet/WhatsNext.py:70
 msgid "Delay before descendants of an ancestor is processed"
-msgstr ""
+msgstr "Prodleva před zpracováním potomků předka"
 
 #. Tag to use to indicate that this person has no further marriages, if
 #. the person is not tagged, warn about this at the time the marriages
@@ -20021,6 +20024,11 @@ msgid ""
 "tree. The rest of the checking is skipped, the Check and\n"
 "Repair tool should be run anew on this new family tree."
 msgstr ""
+"Váš rodokmen obsahuje duplicitní ukazatele napříč tabulkami.\n"
+"Tento stav je špatně a lze jej opravit  tak, že vytvoříte \n"
+"zálohu rodokmenu a záložní data naimportujete zpět \n"
+"do prázdného rodokmenu. Další kontroly byly zastaveny. \n"
+"Nástroj Kontrola Oprava musí být spuštěn nad tímto novým rodokmenem."
 
 #: ../src/plugins/tool/Check.py:207
 msgid "Check Integrity"
