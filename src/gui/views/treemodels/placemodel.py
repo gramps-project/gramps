@@ -138,16 +138,28 @@ class PlaceBaseModel(object):
         return unicode(data[2])
 
     def column_longitude(self, data):
-        return conv_lat_lon('0', data[3], format='DEG')[1]
+        value = conv_lat_lon('0', data[3], format='DEG')[1]
+        if not value:
+            return _("Error in format")
+        return value
 
     def column_latitude(self, data):
-        return conv_lat_lon(data[4], '0', format='DEG')[0]
+        value = conv_lat_lon(data[4], '0', format='DEG')[0]
+        if not value:
+            return _("Error in format")
+        return value
 
     def sort_longitude(self, data):
-        return conv_lat_lon('0', data[3], format='ISO-DMS') if data[3] else u''
+        value = conv_lat_lon('0', data[3], format='ISO-DMS') if data[3] else u''
+        if not value:
+             return _("Error in format")
+        return value
 
     def sort_latitude(self, data):
-        return conv_lat_lon(data[4], '0', format='ISO-DMS') if data[4] else u''
+        value = conv_lat_lon(data[4], '0', format='ISO-DMS') if data[4] else u''
+        if not value:
+            return _("Error in format")
+        return value 
 
     def column_id(self, data):
         return unicode(data[1])
