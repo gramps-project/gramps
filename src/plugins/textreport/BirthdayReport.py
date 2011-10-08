@@ -370,10 +370,11 @@ class CalendarOptions(MenuReportOptions):
 
         country = EnumeratedListOption(_("Country for holidays"), 0)
         holiday_table = libholiday.HolidayTable()
-        holiday_table.sort()
-        if (len(holiday_table) == 0 or 
-            (len(holiday_table) > 0 and holiday_table[0] != '')):
-            holiday_table.insert(0, '')
+        countries = holiday_table.get_countries()
+        countries.sort()
+        if (len(countries) == 0 or 
+            (len(countries) > 0 and countries[0] != '')):
+            countries.insert(0, '')
         count = 0
         for c in  holiday_table.get_countries():
             country.add_item(count, c)
