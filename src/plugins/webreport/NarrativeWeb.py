@@ -3991,11 +3991,6 @@ class IndividualPage(BasePage):
             if assocs:
                 individualdetail += self.display_ind_associations(assocs)
 
-            # display sources
-            sect11 = self.display_ind_sources(self.person)
-            if sect11 is not None:
-                individualdetail += sect11
-
             # create family map link
             if self.familymappages:
                 if len(place_lat_long):
@@ -4011,6 +4006,11 @@ class IndividualPage(BasePage):
                 sect14 = self.display_tree()
                 if sect14 is not None:
                     individualdetail += sect14
+
+            # display personal sources
+            personal_sources = self.display_ind_sources(self.person)
+            if personal_sources is not None:
+                individualdetail += personal_sources
 
         # add clearline for proper styling
         # create footer section
@@ -6315,6 +6315,9 @@ class NavWebReport(Report):
         Imagine we run gramps on Windows (heaven forbits), we don't want to
         see backslashes in the URL.
         """
+        if not fname:
+            return ""
+
         if constfunc.win():
             fname = fname.replace('\\',"/")
         subdirs = self.build_subdirs(subdir, fname, up)
