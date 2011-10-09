@@ -25,14 +25,16 @@ GRAMPS Cascading Style Sheet
 Style Name: Web_Navigation-Horizontal.css
 ***************************************************************************************************
 
-# $Id: $
+# $Id$
 
  Body Element
 ----------------------------------------------------- */
 body {
+    background-color: #000;
+    color: #FFF;
     margin: 0 auto;
     padding: 5px 2px 5px 2px;
-    width: 965px;
+    width: 100%;
 }
 
 /* Navigation

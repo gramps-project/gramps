@@ -1756,9 +1756,9 @@ class BasePage(object):
         # return section to its caller
         return section
 
-    def display_references(self, handlelist, up = False):
+    def display_references(self, handle_list, up = False):
 
-        if not handlelist:
+        if not handle_list:
             return None
 
         # begin references division and title
@@ -1767,15 +1767,15 @@ class BasePage(object):
 
             ordered = Html("ol")
             section += ordered 
-            sortlist = sorted(handlelist, key=lambda x:locale.strxfrm(x[1]))
+            sortlist = sorted(handle_list, key = lambda x:locale.strxfrm(x[1]))
         
             for (path, name, gid) in sortlist:
                 list = Html("li")
                 ordered += list
 
                 # Note. 'path' already has a filename extension
-                url = self.report.build_url_fname(path, None, self.up)
-                list += self.person_link(url, name or _UNKNOWN, None, gid = gid)
+                url = self.report.build_url_fname(path, up =self.up)
+                list += self.person_link(url, name or _("Unknown"), None, gid =gid)
 
         # return references division to its caller
         return section
@@ -4075,7 +4075,7 @@ class IndividualPage(BasePage):
         largeset = [value for value in (-11, -12, -13, -14, -15, -16, -17, 11, 12, 13, 14, 15, 16, 17)]
 
         if (spany in tinyset or spany in smallset):
-            zoomlevel = 7
+            zoomlevel = 6
         elif spany in middleset:
             zoomlevel = 5
         elif spany in largeset:
@@ -4311,12 +4311,9 @@ class IndividualPage(BasePage):
                         list1 = Html("li", _dd.display(date), inline =True)
                         ordered1 += list1
                         
-        # add body id for this page...
-        body.attr = 'id ="FamilyMap" '
-
         # add body onload to initialize map for Google Maps only...
         if self.mapservice == "Google":
-            body.attr += ' onload ="initialize()" '
+            body.attr += 'onload ="initialize()"'
 
         # add clearline for proper styling
         # add footer section
@@ -6304,7 +6301,7 @@ class NavWebReport(Report):
             raise AttributeError("unknown object type '%s'" % obj_class)
         return self.build_url_fname(handle, subdir, up) + self.ext
 
-    def build_url_fname(self, fname, subdir = None, up = False):
+    def build_url_fname(self, fname, subdir =None, up =False):
         """
         Create part of the URL given the filename and optionally the subdirectory.
         If the subdirectory is given, then two extra levels of subdirectory are inserted
@@ -7128,13 +7125,13 @@ def _has_webpage_extension(url):
     """
     return any(url.endswith(ext) for ext in _WEB_EXT) 
 
-def add_birthdate(db, handlelist):
+def add_birthdate(db, handle_list):
     """
     This will sort a list of child handles in birth order
     """
 
     sortable_individuals = []
-    for handle in handlelist:
+    for handle in handle_list:
         person = db.get_person_from_handle(handle)
 
         # get birth date: if birth_date equals nothing, then generate a fake one?

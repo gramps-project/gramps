@@ -42,16 +42,8 @@ Unknown     #000
 ===== Web Graphics =====
 Males       Web_Gender_Male.png
 Females     Web_Gender_Female.png
-*/
 
-/* NarrativeWeb Styles
-================================================= */
-body {
-    background-color: #000;
-    color: #FFF;
-}
-
-/* Menu Elements
+ Menu Colorized Elements
 ================================================= */
 div#navigation ul, div#subnavigation ul {
     background-color: Navy;
