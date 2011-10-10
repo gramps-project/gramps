@@ -3575,16 +3575,18 @@ class SourcePage(BasePage):
                     reposection += ordered
 
                     for repo_ref in repo_ref_list:
-                        repository = db.get_repository_from_handle( repo_ref.ref )
-                        list = Html("li", self.repository_link( repository.handle,
+                        repository = db.get_repository_from_handle(repo_ref.ref)
+                        list = Html("li", self.repository_link(repository.get_handle(),
                                                                 repository.name,
                                                                 inc_repos,
-                                                                repository.gramps_id,
-                                                                up = True ) )
+                                                                repository.get_gramps_id(),
+                                                                up =True)
+                        )
                         ordered += list                            
 
             # references
-            references = self.display_references(src_list[source.handle])
+            references = self.display_references(src_list[source.get_handle()]
+            )
             if references is not None:
                 srcdetail += references
 
@@ -6321,6 +6323,7 @@ class NavWebReport(Report):
         if constfunc.win():
             fname = fname.replace('\\',"/")
         subdirs = self.build_subdirs(subdir, fname, up)
+
         return "/".join(subdirs + [fname])
 
     def create_file(self, fname, subdir = None, ext = None):
