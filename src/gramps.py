@@ -284,7 +284,7 @@ def show_settings():
         if gsversion_str:
             gsversion_str = gsversion_str.replace('\n', '')
     except:
-        gsversion_str = 'Ghostcript not in system PATH'
+        gsversion_str = 'Ghostscript not in system PATH'
 
     os_path = os.environ.get('PATH','not set')
     os_path = os_path.split(os.pathsep)
