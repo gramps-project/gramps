@@ -82,7 +82,7 @@ class NumberOfAncestorsReport(Report):
         # Copy the global NameDisplay so that we don't change application 
         # defaults.
         self._name_display = copy.deepcopy(global_name_display)
-        name_format = menu.get_option_by_name("name_format").get_value()
+        name_format = options_class.menu.get_option_by_name("name_format").get_value()
         if name_format != 0:
             self._name_display.set_default_format(name_format)
 
