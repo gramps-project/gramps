@@ -166,6 +166,15 @@ class DbDjango(DbWriteBase, DbReadBase):
         obj.unserialize(self.dji.get_family(self.dji.Family.get(handle=handle)))
         return obj
 
+    def get_family_from_gramps_id(self, gramps_id):
+        obj = gen.lib.Family()
+        try:
+            family = self.dji.Family.get(gramps_id=gramps_id)
+        except:
+            return None
+        obj.unserialize(self.dji.get_family(family))
+        return obj
+
     def get_person_from_handle(self, handle):
         try:
             person = self.dji.Person.select_related().get(handle=handle)
@@ -203,18 +212,31 @@ class DbDjango(DbWriteBase, DbReadBase):
         obj.unserialize(self.dji.get_media(self.dji.Media.get(handle=handle)))
         return obj
 
+    def get_media_object_handles(self):
+        return [media.handle for media in self.dji.Media.all()]
+
     def get_person_handles(self, sort_handles=False):
         return [person.handle for person in self.dji.Person.all()]
 
     def get_default_person(self):
         return None
 
+    def iter_people(self):
+        return (self.get_person_from_handle(person.handle) 
+                for person in self.dji.Person.all())
+
     def iter_person_handles(self):
         return (person.handle for person in self.dji.Person.all())
+
+    def get_tag_handles(self, sort_handles=False):
+        return []
 
     def iter_families(self):
         return (self.get_family_from_handle(family.handle) 
                 for family in self.dji.Family.all())
+
+    def iter_family_handles(self):
+        return (family.handle for family in self.dji.Family.all())
 
     def get_person_from_gramps_id(self, gramps_id):
         obj = gen.lib.Person()
