@@ -5983,7 +5983,6 @@ class RepositoryPage(BasePage):
     """
     will create the individual Repository Pages
     """
-
     def __init__(self, report, title, repo, handle):
         gid = repo.get_gramps_id()
         BasePage.__init__(self, report, title, gid)
@@ -5998,7 +5997,7 @@ class RepositoryPage(BasePage):
             body += repositorydetail
 
             # repository name
-            repositorydetail += Html("h3", repo.name, inline = True)
+            repositorydetail += Html("h3", html_escape(repo.name), inline = True)
 
             # begin repository table
             with Html("table", class_ = "infolist repolist") as table:
@@ -6007,25 +6006,24 @@ class RepositoryPage(BasePage):
                 tbody = Html("tbody")
                 table += tbody
 
-                # repo gramps id
-                if not self.noid and gid:
-                    trow = Html("tr") + (
-                        Html("td", _("Gramps ID"), class_ ="ColumnAttribute", inline =True),
-                        Html("td", gid, class_ ="ColumnValue", inline =True)
+                if self.noid or not gid:
+                    gid = False
+
+                tbody.extend(
+                    ( Html("tr"),
+                        Html("td", label, class_ ="ColumnType"),
+                        Html("td", data or "&nbsp;", class_ ="ColumnAttribute")
                     )
-                    tbody += trow
-
-                # repository type
-                trow = Html("tr") + (
-                    Html("td", _("Type"), class_ ="ColumnAttribute", inline =True),
-                    Html("td", str(repo.type), class_ ="ColumnValue", inline =True)
+                    for label, data in [
+                        (_("Gramps ID"), gid),
+                        (_("Type"),      str(repo.get_type()))
+                    ]
                 )
-                tbody += trow
 
-            # repository: address(es)... repositort addresses do NOT have Sources
-            addresses = self.dump_addresses(repo.get_address_list(), False)
-            if addresses is not None:
-                repositorydetail += addresses
+            # repository: address(es)... repository addresses do NOT have Sources
+            repo_address = self.display_addr_list(repo.get_address_list(), False)
+            if repo_address is not None:
+                repositorydetail += repo_address
 
             # repository: urllist
             urllist = self.display_url_list(repo.get_url_list())
