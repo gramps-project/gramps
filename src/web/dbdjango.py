@@ -40,10 +40,17 @@ from gen.db import (PERSON_KEY,
 from web.libdjango import DjangoInterface
 
 # Example for running a report:
-# from ReportBase._CommandLineReport import run_report
+# ------------------------------
+# from cli.plug import run_report
+# from django.conf import settings
+# import web.settings as default_settings
+# try:
+#     settings.configure(default_settings)
+# except:
+#     pass
 # import dbdjango
 # db = dbdjango.DbDjango()
-# run_report(db, "ancestor_report", off="txt", of="ar.txt", pid="I37")
+# run_report(db, "ancestor_report", off="txt", of="ar.txt", pid="I0363")
 
 # Imports for importing a file:
 import DbState
@@ -196,7 +203,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         obj.unserialize(self.dji.get_media(self.dji.Media.get(handle=handle)))
         return obj
 
-    def get_person_handles(self):
+    def get_person_handles(self, sort_handles=False):
         return [person.handle for person in self.dji.Person.all()]
 
     def get_default_person(self):
