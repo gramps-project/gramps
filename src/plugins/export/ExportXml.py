@@ -511,10 +511,10 @@ class GrampsXmlWriter(UpdateCallback):
         self.write_attribute_list(person.get_attribute_list())
         self.write_url_list(person.get_url_list(),index+1)
 
-        for family_handle in person.get_parent_family_handle_list():
+        for family_handle in sorted(person.get_parent_family_handle_list()):
             self.write_ref("childof",family_handle,index+1)
 
-        for family_handle in person.get_family_handle_list():
+        for family_handle in sorted(person.get_family_handle_list()):
             self.write_ref("parentin",family_handle,index+1)
 
         for person_ref in person.get_person_ref_list():
