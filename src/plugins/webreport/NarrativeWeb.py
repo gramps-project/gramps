@@ -2148,19 +2148,19 @@ class BasePage(object):
         @param: gid -- gramps id
         @param: up -- whether to add backward reference
         """
-
-        name = html_escape( name )
+        name = html_escape(name)
+        if not repo_yes:
+            return name
 
         # build local page url
         url = self.report.build_url_fname_html(handle, 'repo', up)
 
         # begin hyperlink
-        hyper = Html("a", name, href = url, title = html_escape(name))
+        hyper = Html("a", name, href =url, title =name)
         if not self.noid and gid:
-            hyper += Html("span", '[%s]' % gid, class_ = "grampsid", inline = True)
+            hyper += Html("span", '[%s]' % gid, class_ ="grampsid", inline =True)
 
-        # return hyperlink to its callers
-        return hyper if repo_yes else name
+        return hyper
 
     def place_link(self, handle, name, gid = None, up = False):
 
@@ -3466,7 +3466,7 @@ class EventPage(BasePage):
             body += eventdetail
 
             thumbnail = self.display_first_image_as_thumbnail(event_media_list, event)
-            if thumbnail:
+            if thumbnail is not None:
                 eventdetail += thumbnail
 
             # display page title
@@ -4125,9 +4125,9 @@ class SourcePage(BasePage):
 
         source = db.get_source_from_handle(handle)
         if not source:
-            return
+            return None
 
-        BasePage.__init__(self, report, title, source.gramps_id)
+        BasePage.__init__(self, report, title, source.get_gramps_id())
         self.page_title = source.get_title()
         inc_repos = self.report.options["inc_repository"]
 
@@ -4136,20 +4136,21 @@ class SourcePage(BasePage):
         sourcepage, head, body = self.write_header(_('Sources'))
 
         # begin source detail division
-        with Html("div", class_ = "content", id = "SourceDetail") as srcdetail:
-            body += srcdetail
+        with Html("div", class_ = "content", id = "SourceDetail") as section:
+            body += section
 
-            media_list = source.get_media_list()
-            thumbnail = self.display_first_image_as_thumbnail(media_list, source)
-            if thumbnail is not None:
-                srcdetail += thumbnail
+            if self.create_media:
+                media_list = source.get_media_list()
+                thumbnail = self.display_first_image_as_thumbnail(media_list, source)
+                if thumbnail is not None:
+                    section += thumbnail
 
             # add section title
-            srcdetail += Html("h3", html_escape(source.get_title()), inline = True)
+            section += Html("h3", html_escape(source.get_title()), inline = True)
 
             # begin sources table
             with Html("table", class_ = "infolist source") as table:
-                srcdetail += table
+                section += table
 
                 tbody = Html("tbody")
                 table += tbody
@@ -4159,7 +4160,7 @@ class SourcePage(BasePage):
                     grampsid = self.gid
 
                 for (label, val) in [
-                    (GRAMPSID,                     grampsid),
+                    (_("Gramps ID"),               grampsid),
                     (_("Author"),                  source.author),
                     (_("Publication information"), source.pubinfo),
                     (_("Abbreviation"),            source.abbrev) ]:
@@ -4171,38 +4172,43 @@ class SourcePage(BasePage):
                         )
                         tbody += trow
 
-            # additional media
-            sourcemedia = self.display_additional_images_as_gallery(media_list, source)
-            if sourcemedia is not None:
-                srcdetail += sourcemedia
+            if self.create_media: 
+                # additional media
+                sourcemedia = self.display_additional_images_as_gallery(media_list, source)
+                if sourcemedia is not None:
+                    section += sourcemedia
 
             # additional notes
-            notelist = self.display_note_list( source.get_note_list() )
+            notelist = self.display_note_list(source.get_note_list()
+            )
             if notelist is not None:
-                srcdetail += notelist
+                section += notelist
 
             # source repository list
             repo_ref_list = source.get_reporef_list()
             if repo_ref_list:
                 with Html("div", id = "subsection", class_ = "Repositories") as reposection:
-                    srcdetail += reposection  
+                    section += reposection
                     reposection += Html("h4", _("Repositories"), inline = True)
+
                     ordered = Html("ol")
                     reposection += ordered
 
                     for repo_ref in repo_ref_list:
-                        repository = db.get_repository_from_handle( repo_ref.ref )
-                        list = Html("li", self.repository_link( repository.handle,
+                        repository = db.get_repository_from_handle(repo_ref.ref)
+                        list = Html("li", self.repository_link(repository.get_handle(),
                                                                 repository.name,
                                                                 inc_repos,
-                                                                repository.gramps_id,
-                                                                up = True ) )
+                                                                repository.get_gramps_id(),
+                                                                up =True)
+                        )
                         ordered += list                            
 
             # references
-            references = self.display_references(src_list[source.handle])
+            references = self.display_references(src_list[source.get_handle()]
+            )
             if references is not None:
-                srcdetail += references
+                section += references
 
         # add clearline for proper styling
         # add footer section
@@ -5978,7 +5984,8 @@ class RepositoryPage(BasePage):
     will create the individual Repository Pages
     """
 
-    def __init__(self, report, title, repo, handle, gid = None):
+    def __init__(self, report, title, repo, handle):
+        gid = repo.get_gramps_id()
         BasePage.__init__(self, report, title, gid)
         db = report.database
 
@@ -5999,24 +6006,23 @@ class RepositoryPage(BasePage):
 
                 tbody = Html("tbody")
                 table += tbody
- 
-                # GRAMPS ID
+
+                # repo gramps id
                 if not self.noid and gid:
-                    # repo gramps id
                     trow = Html("tr") + (
-                        Html("td", GRAMPSID, class_ = "ColumnAttribute", inline = True),
-                        Html("td", gid, class_ = "ColumnValue", inline = True)
-                        )
+                        Html("td", _("Gramps ID"), class_ ="ColumnAttribute", inline =True),
+                        Html("td", gid, class_ ="ColumnValue", inline =True)
+                    )
                     tbody += trow
 
                 # repository type
                 trow = Html("tr") + (
-                    Html("td", THEAD, class_ = "ColumnAttribute", inline = True),
-                    Html("td", str(repo.type), class_ = "ColumnValue", inline = True)
-                    )
+                    Html("td", _("Type"), class_ ="ColumnAttribute", inline =True),
+                    Html("td", str(repo.type), class_ ="ColumnValue", inline =True)
+                )
                 tbody += trow
 
-            # repository: address(es)
+            # repository: address(es)... repositort addresses do NOT have Sources
             addresses = self.dump_addresses(repo.get_address_list(), False)
             if addresses is not None:
                 repositorydetail += addresses
@@ -6742,10 +6748,7 @@ class NavWebReport(Report):
         for index, key in enumerate(keys):
             (repo, handle) = repos_dict[key]
 
-            # RepositoryPage Class
-            RepositoryPage(self, self.title, repo, handle, repo.gramps_id)
-
-            # increment progress bar 
+            RepositoryPage(self, self.title, repo, handle)
             self.progress.step()
 
     def addressbook_pages(self, ind_list):
@@ -6895,6 +6898,9 @@ class NavWebReport(Report):
         Imagine we run gramps on Windows (heaven forbits), we don't want to
         see backslashes in the URL.
         """
+        if not fname:
+            return ""
+
         if constfunc.win():
             fname = fname.replace('\\',"/")
         subdirs = self.build_subdirs(subdir, fname, up)
