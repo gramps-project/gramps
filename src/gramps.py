@@ -365,14 +365,46 @@ def run():
 
     # Calls to LOG must be after setup_logging() and ArgParser() 
     LOG = logging.getLogger(".locale")
-    LOG.debug('Using locale: LC_CTYPE: %s %s'%   locale.getlocale(locale.LC_CTYPE))
-    LOG.debug('Using locale: LC_COLLATE: %s %s'% locale.getlocale(locale.LC_COLLATE))
-    LOG.debug('Using locale: LC_TIME %s %s'%     locale.getlocale(locale.LC_TIME))
-    LOG.debug('Using locale: LC_MONETARY %s %s'% locale.getlocale(locale.LC_MONETARY))
-    LOG.debug('Using locale: LC_MESSAGES %s %s'% locale.getlocale(locale.LC_MESSAGES))
-    LOG.debug('Using locale: LC_NUMERIC %s %s'%  locale.getlocale(locale.LC_NUMERIC))
-    LOG.debug('Using LANG: %s'%               os.environ.get('LANG'))
-    LOG.debug('Using LANGUAGE: %s'%           os.environ.get('LANGUAGE'))
+    if hasattr(locale, 'LC_CTYPE'):
+        LOG.debug('Using locale: LC_CTYPE %s %s' %
+                         locale.getlocale(locale.LC_CTYPE))
+    else:
+        LOG.debug('locale: LC_CTYPE is not defined')
+    if hasattr(locale, 'LC_COLLATE'):
+        LOG.debug('Using locale: LC_COLLATE %s %s' %
+                         locale.getlocale(locale.LC_COLLATE))
+    else:
+        LOG.debug('locale: LC_COLLATE is not defined')
+    if hasattr(locale, 'LC_TIME'):
+        LOG.debug('Using locale: LC_TIME %s %s' %
+                         locale.getlocale(locale.LC_TIME))
+    else:
+        LOG.debug('locale: LC_TIME is not defined')
+    if hasattr(locale, 'LC_MONETARY'):
+        LOG.debug('Using locale: LC_MONETARY %s %s' %
+                         locale.getlocale(locale.LC_MONETARY))
+    else:
+        LOG.debug('locale: LC_MONETARY is not defined')
+    if hasattr(locale, 'LC_MESSAGES'):
+        LOG.debug('Using locale: LC_MESSAGES %s %s' %
+                         locale.getlocale(locale.LC_MESSAGES))
+    else:
+        LOG.debug('locale: LC_MESSAGES is not defined')
+    if hasattr(locale, 'LC_NUMERIC'):
+        LOG.debug('Using locale: LC_NUMERIC %s %s' %
+                         locale.getlocale(locale.LC_NUMERIC))
+    else:
+        LOG.debug('locale: LC_NUMERIC is not defined')
+    if 'LANG' in os.environ:
+        LOG.debug('Using LANG: %s' %
+                         os.environ.get('LANG'))
+    else:
+        LOG.debug('environment: LANG is not defined')
+    if 'LANGUAGE' in os.environ:
+        LOG.debug('Using LANGUAGE: %s' %
+                         os.environ.get('LANGUAGE'))
+    else:
+        LOG.debug('environment: LANGUAGE is not defined')
     
     if argpars.need_gui():
         #A GUI is needed, set it up
