@@ -851,19 +851,19 @@ class BasePage(object):
         @param: up - rather to add back directories or not?
         """
 
-        url = self.report.build_url_fname_html( source.handle, "src", up )
+        url = self.report.build_url_fname_html(source.get_handle(), "src", up)
         gid = source.get_gramps_id()
-        title = html_escape( source.get_title() )
+        title = html_escape(source.get_title())
 
         # begin hyperlink
         hyper = Html("a", title, 
-                     href=url, 
-                     title=_("Source Reference: %s") % title, 
-                     inline=True)
+                     href =url, 
+                     title =_("Source Reference: %s") % title, 
+                     inline =True)
 
         # if not None, add name reference to hyperlink element
         if cindex:
-            hyper.attr += ' name = "sref%d"' % cindex
+            hyper.attr += ' name ="sref%d"' % cindex
 
         # add GRAMPS ID
         if not self.noid and gid:
@@ -5979,11 +5979,13 @@ class RepositoryListPage(BasePage):
         # and close the file
         self.XHTMLWriter(repolistpage, of)
 
+#-----------------------------------------------------
+#
+# Repository Pages
+#
+#-----------------------------------------------------
 class RepositoryPage(BasePage):
-    """
-    will create the individual Repository Pages
-    """
-    def __init__(self, report, title, repo, handle):
+    def __init__(self, report, title, repo, handle, source_list):
         gid = repo.get_gramps_id()
         BasePage.__init__(self, report, title, gid)
         db = report.database
@@ -6006,19 +6008,18 @@ class RepositoryPage(BasePage):
                 tbody = Html("tbody")
                 table += tbody
 
-                if self.noid or not gid:
-                    gid = False
-
-                tbody.extend(
-                    ( Html("tr"),
-                        Html("td", label, class_ ="ColumnType"),
-                        Html("td", data or "&nbsp;", class_ ="ColumnAttribute")
+                if not self.noid and gid:
+                    trow = Html("tr") + (
+                        Html("td", _("Gramps ID"), class_ ="ColumnAttribute", inline =True),
+                        Html("td", gid, class_="ColumnValue", inline =True)
                     )
-                    for label, data in [
-                        (_("Gramps ID"), gid),
-                        (_("Type"),      str(repo.get_type()))
-                    ]
+                    tbody += trow
+
+                trow = Html("tr") + (
+                    Html("td", _("Type"), class_ ="ColumnAttribute", inline =True),
+                    Html("td", str(repo.get_type()), class_ ="ColumnValue", inline =True)
                 )
+                tbody += trow
 
             # repository: address(es)... repository addresses do NOT have Sources
             repo_address = self.display_addr_list(repo.get_address_list(), False)
@@ -6035,6 +6036,9 @@ class RepositoryPage(BasePage):
             if notelist is not None:
                 repositorydetail += notelist
 
+            # display Repository Referenced Sources...
+            repositorydetail += self.__write_referenced_sources(handle, source_list)
+
         # add clearline for proper styling
         # add footer section
         footer = self.write_footer()
@@ -6043,6 +6047,48 @@ class RepositoryPage(BasePage):
         # send page out for processing
         # and close the file
         self.XHTMLWriter(repositorypage, of)
+
+    def __write_referenced_sources(self, handle, source_list):
+        """
+        This procedure writes out each of the sources related to the repository.
+        """
+        db = self.report.database
+
+        repository = db.get_repository_from_handle(handle)
+        if not repository:
+            return None
+
+        repository_source_handles = [handle for (object_type, handle) in
+                         db.find_backlink_handles(handle, include_classes = ['Source'])]
+
+        # begin Repository Referenced Sources...
+        with Html("div", class_ ="Subsection", id ="referenced_sources") as section:
+            section += Html("h4", _("Referenced Sources"), inline =True)
+
+            source_nbr = 0
+            for source_handle in repository_source_handles:
+                source = db.get_source_from_handle(source_handle)
+                if source:
+
+                    # Get the list of references from this source to our repo
+                    # (can be more than one, technically)
+                    for reporef in source.get_reporef_list():
+                        if reporef.ref == repository.get_handle():
+                            source_nbr += 1
+
+                            if source_handle in source_list:
+                                source_name = self.source_link(source, up =True)
+                            else:
+                                source_name = source.get_title()
+
+                            title = (('%(nbr)d. %(name)s (%(type)s) : %(call)s') % 
+                                            {'nbr'  : source_nbr,
+                                             'name' : source_name,
+                                             'type' : str(reporef.get_media_type()),
+                                             'call' : reporef.get_call_number()})
+                            ordered = Html("ol", title)
+                            section += ordered
+        return section
 
 class AddressBookListPage(BasePage):
 
@@ -6421,16 +6467,15 @@ class NavWebReport(Report):
         # by galleries
         self.source_pages(source_list)
 
+        # build classes ddressBookList and AddressBookPage
+        if self.inc_addressbook:
+            self.addressbook_pages(ind_list)
+
         # build classes RepositoryListPage and RepositoryPage
         if self.inc_repository:
             repolist = self.database.get_repository_handles()
             if len(repolist):
-                self.repository_pages(repolist)
-
-
-        # build classes ddressBookList and AddressBookPage
-        if self.inc_addressbook:
-            self.addressbook_pages(ind_list)
+                self.repository_pages(repolist, source_list)
 
         # if an archive is being used, close it?
         if self.archive:
@@ -6721,24 +6766,23 @@ class NavWebReport(Report):
         if self.use_intro:
             IntroductionPage(self, self.title)
 
-    def repository_pages(self, repolist):
+    def repository_pages(self, repolist, source_list):
         """
         will create RepositoryPage() and RepositoryListPage()
         """
-
         repos_dict = {}
 
         # Sort the repositories
         for handle in repolist:
-            repo = self.database.get_repository_from_handle(handle)
-            key = repo.name + str(repo.get_gramps_id())
-            repos_dict[key] = (repo, handle)
+            repository = self.database.get_repository_from_handle(handle)
+            key = repository.get_name() + str(repository.get_gramps_id())
+            repos_dict[key] = (repository, handle)
             
-        keys = sorted(repos_dict, key = locale.strxfrm)
+        keys = sorted(repos_dict, key =locale.strxfrm)
 
         # set progress bar pass for Repositories
-        repo_size = len(repos_dict)
-        self.progress.set_pass(_('Creating repository pages'), repo_size)
+        repository_size = len(repos_dict)
+        self.progress.set_pass(_('Creating repository pages'), repository_size)
 
         # RepositoryListPage Class
         RepositoryListPage(self, self.title, repos_dict, keys)
@@ -6746,7 +6790,7 @@ class NavWebReport(Report):
         for index, key in enumerate(keys):
             (repo, handle) = repos_dict[key]
 
-            RepositoryPage(self, self.title, repo, handle)
+            RepositoryPage(self, self.title, repository, handle, source_list)
             self.progress.step()
 
     def addressbook_pages(self, ind_list):
