@@ -129,6 +129,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         AttributeBase.unserialize(self, attribute_list)
         SourceBase.unserialize(self, source_list)
         NoteBase.unserialize(self, note_list)
+        return self
 
     def _has_handle_reference(self, classname, handle):
         """

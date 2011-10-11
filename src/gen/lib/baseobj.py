@@ -186,3 +186,8 @@ class BaseObject(object):
         :type acquisition: BaseObject
         """
         pass
+
+    @classmethod
+    def create(cls, data):
+        return cls().unserialize(data)
+

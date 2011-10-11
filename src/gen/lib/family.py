@@ -147,6 +147,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         NoteBase.unserialize(self, note_list)
         LdsOrdBase.unserialize(self, lds_seal_list)
         TagBase.unserialize(self, tag_list)
+        return self
 
     def _has_handle_reference(self, classname, handle):
         """
