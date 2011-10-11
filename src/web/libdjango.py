@@ -162,6 +162,17 @@ class DjangoInterface(object):
                                                      object_type=obj_type)
         return map(self.pack_attribute, attribute_list)
 
+    def get_primary_name(self, person):
+        names = person.name_set.filter(preferred=True).order_by("order")
+        if len(names) > 0:
+            return gen.lib.Name.create(self.pack_name(names[0]))
+        else:
+            return gen.lib.Name()
+      
+    def get_alternate_names(self, person):
+        names = person.name_set.filter(preferred=False).order_by("order")
+        return [gen.lib.Name.create(self.pack_name(n)) for n in names]
+
     def get_names(self, person, preferred):
         names = person.name_set.filter(preferred=preferred).order_by("order")
         if preferred:
@@ -374,10 +385,9 @@ class DjangoInterface(object):
         pnote_list = self.get_note_list(person)
         person_ref_list = self.get_person_ref_list(person)
         # This looks up the events for the first EventType given:
-        death_ref_index = lookup_role_index(models.EventType.DEATH, 
-                                            event_ref_list)
-        birth_ref_index = lookup_role_index(models.EventType.BIRTH, 
-                                            event_ref_list)
+        death_ref_index = person.death_ref_index
+        birth_ref_index = person.birth_ref_index
+
         return (str(person.handle),
                 person.gramps_id,  
                 tuple(person.gender_type)[0],
@@ -1093,14 +1103,19 @@ class DjangoInterface(object):
             object_id=person.id, 
             object_type=obj_type, 
             ref_object__event_type__val=models.EventType.BIRTH)
+
+        all_events = self.get_event_ref_list(person)
         if events:
             person.birth = events[0].ref_object
+            person.birth_ref_index = lookup_role_index(models.EventType.BIRTH, all_events)
+
         events = models.EventRef.objects.filter(
             object_id=person.id, 
             object_type=obj_type, 
             ref_object__event_type__val=models.EventType.DEATH)
         if events:
             person.death = events[0].ref_object
+            person.death_ref_index = lookup_role_index(models.EventType.DEATH, all_events)
         person.save()
         return person
 

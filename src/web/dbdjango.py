@@ -26,6 +26,7 @@
 # Gramps Modules
 #
 #------------------------------------------------------------------------
+import cPickle
 import web
 import gen
 from gen.db import DbReadBase, DbWriteBase
@@ -161,27 +162,45 @@ class DbDjango(DbWriteBase, DbReadBase):
         obj.unserialize(self.dji.get_event(self.dji.Event.get(handle=handle)))
         return obj
 
-    def get_family_from_handle(self, handle):
-        obj = gen.lib.Family()
-        obj.unserialize(self.dji.get_family(self.dji.Family.get(handle=handle)))
+    def get_family_from_handle(self, handle): 
+        #print "get_family_from_handle", handle
+        family = self.dji.Family.get(handle=handle)
+        obj = self.make_family(family)
         return obj
 
     def get_family_from_gramps_id(self, gramps_id):
-        obj = gen.lib.Family()
+        #print "get_family_from_id", gramps_id
         try:
             family = self.dji.Family.get(gramps_id=gramps_id)
         except:
             return None
-        obj.unserialize(self.dji.get_family(family))
+        obj = self.make_family(family)
         return obj
 
     def get_person_from_handle(self, handle):
+        #print "get_person_from_handle", handle
         try:
             person = self.dji.Person.select_related().get(handle=handle)
         except:
             return None
-        data = self.dji.get_person(person)
-        obj = gen.lib.Person().unserialize(data)
+        return self.make_person(person)
+
+    def make_family(self, family):
+        if family.cache:
+            data = cPickle.loads(str(family.cache))
+            obj = gen.lib.Family.create(data)
+        else:
+            data = self.dji.get_family(family)
+            obj = gen.lib.Family.create(data)
+        return obj
+
+    def make_person(self, person):
+        if person.cache:
+            data = cPickle.loads(str(person.cache))
+            obj = gen.lib.Person.create(data)
+        else:
+            data = self.dji.get_person(person)
+            obj = gen.lib.Person.create(data)
         return obj
 
     def get_place_from_handle(self, handle):
@@ -239,14 +258,10 @@ class DbDjango(DbWriteBase, DbReadBase):
         return (family.handle for family in self.dji.Family.all())
 
     def get_person_from_gramps_id(self, gramps_id):
-        obj = gen.lib.Person()
+        #print "get_person_from_gramps_id", gramps_id
         match_list = self.dji.Person.filter(gramps_id=gramps_id)
         if match_list.count() > 0:
-            data = self.dji.get_person(
-                match_list[0]
-                )
-            obj.unserialize(data)
-            return obj
+            return self.make_person(match_list[0])
         else:
             return None
 

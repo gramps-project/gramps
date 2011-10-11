@@ -412,6 +412,7 @@ class PrimaryObject(models.Model):
                                         blank=True) # user edits
     private = models.BooleanField('private')
     #attributes = models.ManyToManyField("Attribute", blank=True, null=True)
+    cache = models.TextField(blank=True, null=True)
 
     def __unicode__(self): return "%s: %s" % (self.__class__.__name__,
                                               self.gramps_id)
@@ -432,6 +433,9 @@ class Person(PrimaryObject):
                                          object_id_field="object_id")
     birth = models.ForeignKey("Event", related_name="birth", blank=True, null=True)
     death = models.ForeignKey("Event", related_name="death", blank=True, null=True)
+
+    birth_ref_index = models.IntegerField("Birth Reference Index", default=-1)
+    death_ref_index = models.IntegerField("Death Reference Index", default=-1)
 
     tags = models.ManyToManyField('Tag', blank=True, null=True)
 
@@ -454,7 +458,7 @@ class Person(PrimaryObject):
         return str(self.get_primary_name())
 
     def make_tag_list(self):
-        return []
+        return tuple()
 
 class Family(PrimaryObject):
     father = models.ForeignKey('Person', related_name="father_ref", 
@@ -465,7 +469,7 @@ class Family(PrimaryObject):
     tags = models.ManyToManyField('Tag', blank=True, null=True)
 
     def make_tag_list(self):
-        return []
+        return tuple()
 
     #lds_list = models.ManyToManyField('Lds', null=True, blank=True)
 
@@ -526,7 +530,7 @@ class Media(DateObject, PrimaryObject):
     tags = models.ManyToManyField('Tag', blank=True, null=True)
 
     def make_tag_list(self):
-        return []
+        return tuple()
 
 class Note(PrimaryObject):
     note_type = models.ForeignKey('NoteType')
@@ -538,7 +542,7 @@ class Note(PrimaryObject):
     tags = models.ManyToManyField('Tag', blank=True, null=True)
 
     def make_tag_list(self):
-        return []
+        return tuple()
 
 #---------------------------------------------------------------------------
 #
