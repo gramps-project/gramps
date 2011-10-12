@@ -27,6 +27,7 @@
 #
 #------------------------------------------------------------------------
 import cPickle
+import base64
 import web
 import gen
 from gen.db import DbReadBase, DbWriteBase
@@ -187,7 +188,7 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def make_family(self, family):
         if family.cache:
-            data = cPickle.loads(str(family.cache))
+            data = cPickle.loads(base64.decodestring(family.cache))
             obj = gen.lib.Family.create(data)
         else:
             data = self.dji.get_family(family)
@@ -196,7 +197,7 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def make_person(self, person):
         if person.cache:
-            data = cPickle.loads(str(person.cache))
+            data = cPickle.loads(base64.decodestring(person.cache))
             obj = gen.lib.Person.create(data)
         else:
             data = self.dji.get_person(person)

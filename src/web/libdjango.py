@@ -28,6 +28,8 @@
 #------------------------------------------------------------------------
 import time
 import sys
+import cPickle
+import base64
 
 #------------------------------------------------------------------------
 #
@@ -1396,3 +1398,78 @@ class DjangoInterface(object):
         self.add_media_ref_list(event, media_list)
         self.add_source_ref_list(event, source_list)
     
+    def rebuild_caches(self, callback=None):
+        """
+        Call this to rebuild the caches for all primary models.
+        """
+        if not callable(callback): 
+            callback = lambda (percent): None # dummy
+
+        callback(0)
+        count = 0.0
+        total = (self.Note.all().count() + 
+                 self.Person.all().count() +
+                 self.Event.all().count() + 
+                 self.Family.all().count() +
+                 self.Repository.all().count() +
+                 self.Place.all().count() +
+                 self.Media.all().count() +
+                 self.Source.all().count())
+
+        for item in self.Person.all():
+            raw = self.get_person(item)
+            item.cache = base64.encodestring(cPickle.dumps(raw))
+            item.save()
+            callback(100 * count/total)
+            count += 1
+
+        for item in self.Family.all():
+            raw = self.get_family(item)
+            item.cache = base64.encodestring(cPickle.dumps(raw))
+            item.save()
+            callback(100 * count/total)
+            count += 1
+
+        for item in self.Source.all():
+            raw = self.get_source(item)
+            item.cache = base64.encodestring(cPickle.dumps(raw))
+            item.save()
+            callback(100 * count/total)
+            count += 1
+
+        for item in self.Event.all():
+            raw = self.get_event(item)
+            item.cache = base64.encodestring(cPickle.dumps(raw))
+            item.save()
+            callback(100 * count/total)
+            count += 1
+
+        for item in self.Repository.all():
+            raw = self.get_repository(item)
+            item.cache = base64.encodestring(cPickle.dumps(raw))
+            item.save()
+            callback(100 * count/total)
+            count += 1
+
+        for item in self.Place.all():
+            raw = self.get_place(item)
+            item.cache = base64.encodestring(cPickle.dumps(raw))
+            item.save()
+            callback(100 * count/total)
+            count += 1
+
+        for item in self.Media.all():
+            raw = self.get_media(item)
+            item.cache = base64.encodestring(cPickle.dumps(raw))
+            item.save()
+            callback(100 * count/total)
+            count += 1
+
+        for item in self.Note.all():
+            raw = self.get_note(item)
+            item.cache = base64.encodestring(cPickle.dumps(raw))
+            item.save()
+            callback(100 * count/total)
+            count += 1
+
+        callback(100)
