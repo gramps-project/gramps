@@ -411,9 +411,9 @@ def view(request, view):
                     surname, first = [term.strip() for term in 
                                       search.split(",", 1)]
                     object_list = Family.objects \
-                        .filter((Q(father__name__surname__istartswith=surname) &
+                        .filter((Q(father__name__surname__surname__istartswith=surname) &
                                  Q(father__name__first_name__istartswith=first)) |
-                                (Q(mother__name__surname__istartswith=surname) &
+                                (Q(mother__name__surname__surname__istartswith=surname) &
                                  Q(mother__name__first_name__istartswith=first)) 
                                 ) \
                         .order_by("gramps_id")
@@ -421,9 +421,9 @@ def view(request, view):
                     object_list = Family.objects \
                         .filter(Q(gramps_id__icontains=search) |
                                 Q(family_rel_type__name__icontains=search) |
-                                Q(father__name__surname__istartswith=search) |
+                                Q(father__name__surname__surname__istartswith=search) |
                                 Q(father__name__first_name__istartswith=search) |
-                                Q(mother__name__surname__istartswith=search) |
+                                Q(mother__name__surname__surname__istartswith=search) |
                                 Q(mother__name__first_name__istartswith=search)
                                 ) \
                         .order_by("gramps_id")
@@ -440,8 +440,8 @@ def view(request, view):
                 object_list = Family.objects \
                     .filter((Q(gramps_id__icontains=search_text) |
                              Q(family_rel_type__name__icontains=search_text) |
-                             Q(father__name__surname__istartswith=search_text) |
-                             Q(mother__name__surname__istartswith=search_text)) &
+                             Q(father__name__surname__surname__istartswith=search_text) |
+                             Q(mother__name__surname__surname__istartswith=search_text)) &
                             Q(private=False) &
                             Q(mother__private=False) &
                             Q(father__private=False)
@@ -500,22 +500,21 @@ def view(request, view):
                     surname, first_name = [term.strip() for term in 
                                            search.split(",", 1)]
                     object_list = Name.objects \
-                        .filter(Q(surname__istartswith=surname, 
+                        .filter(Q(surname__surname__istartswith=surname, 
                                   first_name__istartswith=first_name)) \
-                        .order_by("surname", "first_name")
+                        .order_by("surname__surname", "first_name")
                 else:
                     object_list = Name.objects \
-                        .filter((Q(surname__icontains=search) | 
+                        .filter((Q(surname__surname__icontains=search) | 
                                  Q(first_name__icontains=search) |
                                  Q(suffix__icontains=search) |
-                                 Q(prefix__icontains=search) |
-                                 Q(patronymic__icontains=search) |
+                                 Q(surname__prefix__icontains=search) |
                                  Q(title__icontains=search) |
                                  Q(person__gramps_id__icontains=search))
                                 ) \
-                        .order_by("surname", "first_name")
+                        .order_by("surname__surname", "first_name")
             else:
-                object_list = Name.objects.all().order_by("surname", "first_name")
+                object_list = Name.objects.all().order_by("surname__surname", "first_name")
         else:
             # BEGIN NON-AUTHENTICATED users
             if request.GET.has_key("search"):
@@ -526,17 +525,17 @@ def view(request, view):
                     search_text = search
                 object_list = Name.objects \
                     .select_related() \
-                    .filter(Q(surname__istartswith=search_text) &
+                    .filter(Q(surname__surname__istartswith=search_text) &
                             Q(private=False) &
                             Q(person__private=False)
                             ) \
-                    .order_by("surname", "first_name")
+                    .order_by("surname__surname", "first_name")
             else:
                 object_list = Name.objects \
                                 .select_related() \
                                 .filter(Q(private=False) &
                                         Q(person__private=False)) \
-                                .order_by("surname", "first_name")
+                                .order_by("surname__surname", "first_name")
             # END NON-AUTHENTICATED users
         view_template = 'view_people.html'
         total = Name.objects.all().count()
