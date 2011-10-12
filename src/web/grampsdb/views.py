@@ -257,13 +257,15 @@ def process_action(request, view, handle, action):
             args = {}
             if request.GET.has_key("options"):
                 options = request.GET.get("options")
-                for pair in options.split(" "):
-                    key, value = pair.split("=", 1)
-                    args[key] = value
-            run_report(db, handle, off="pdf", of=("%s.pdf" % handle), **args)
-            #           pid="I0363")
+                if options:
+                    for pair in options.split("%3D"):
+                        if "=" in pair:
+                            key, value = pair.split("=", 1)
+                            args[str(key)] = str(value)
+            #context["message"] = "args = '%s' " % args
+            run_report(db, handle, off="pdf", of=("/tmp/%s.pdf" % str(handle)), **args)
     #return render_to_response("process_action.html", context)
-    return send_file(request, "%s.pdf" % handle)
+    return send_file(request, "/tmp/%s.pdf" % str(handle))
 
 def view_detail(request, view, handle, action="view"):
     context = RequestContext(request)
