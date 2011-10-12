@@ -246,26 +246,30 @@ def send_file(request, filename):
 def process_action(request, view, handle, action):
     from cli.plug import run_report
     db = DbDjango()
-    #context = RequestContext(request)
-    #context["tview"] = "Results"
+    if view == "report":
+        if request.user.is_authenticated():
+            profile = request.user.get_profile()
+            if action == "run":
+                args = {}
+                if request.GET.has_key("options"):
+                    options = request.GET.get("options")
+                    if options:
+                        for pair in options.split("%3D"):
+                            if "=" in pair:
+                                key, value = pair.split("=", 1)
+                                args[str(key)] = str(value)
+                filename = "/tmp/%s-%s.pdf" % (str(profile.user.username), str(handle))
+                run_report(db, handle, off="pdf", of=filename, **args)
+                return send_file(request, filename)
+    # If failure, just fail for now:
+    context = RequestContext(request)
+    context["tview"] = "Results"
     #context["view"] = view
     #context["handle"] = handle
     #context["action"] = action
-    #context["message"] = "Your report ran. How to download?"
-    if view == "report":
-        if action == "run":
-            args = {}
-            if request.GET.has_key("options"):
-                options = request.GET.get("options")
-                if options:
-                    for pair in options.split("%3D"):
-                        if "=" in pair:
-                            key, value = pair.split("=", 1)
-                            args[str(key)] = str(value)
-            #context["message"] = "args = '%s' " % args
-            run_report(db, handle, off="pdf", of=("/tmp/%s.pdf" % str(handle)), **args)
-    #return render_to_response("process_action.html", context)
-    return send_file(request, "/tmp/%s.pdf" % str(handle))
+    context["message"] = "You need to be logged in."
+    #context["message"] = filename
+    return render_to_response("process_action.html", context)
 
 def view_detail(request, view, handle, action="view"):
     context = RequestContext(request)
