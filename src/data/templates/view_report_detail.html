@@ -1,0 +1,38 @@
+{% extends "view_page_detail.html" %}
+{% load my_tags %}
+
+{% block content %} 
+
+<div class="content" id="IndividualDetail">
+<div id="summaryarea">
+
+<form name="RunForm" action="/report/{{report.handle}}/run">
+<table class="infolist">
+<tr>
+<td class="ColumnAttribute">Name:</td>
+<td class="ColumnValue" id="data" colspan="5">{{report.name}} </td>
+</tr>
+<tr>
+<td class="ColumnAttribute">Type:</td>
+<td class="ColumnValue" id="data">{{report.report_type}}</td>
+</tr>
+<td class="ColumnAttribute">Options:</td>
+<td class="ColumnValue" id="data">
+<input autocomplete="off" name="options" id="get_focus" type="text" size="50" value="{{search}}"></input>
+</td>
+</tr>
+<td class="ColumnValue" id="data">
+<input type="submit" value="Run"></input>
+</td>
+<td>
+</td>
+</form>
+
+</tr>
+</table>
+
+</div>
+</div>
+
+{% endblock %}
+

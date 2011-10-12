@@ -1,0 +1,55 @@
+{% extends "view_page_detail.html" %}
+{% load my_tags %}
+
+{% block content %} 
+
+   <script type="text/javascript">
+     $(function(){
+
+            $('#tabs').tabs();
+      });
+   </script>
+
+<div class="content" id="IndividualDetail">
+<div id="summaryarea">
+
+<table class="infolist">
+<tr>
+<td class="ColumnAttribute">Name:</td>
+<td class="ColumnValue" id="data" colspan="5">{{tag.name}} </td>
+</tr>
+<tr>
+<td class="ColumnAttribute">Type:</td>
+<td class="ColumnValue" id="data">{{tag.repository_type}}</td>
+<td class="ColumnAttribute">Color:</td>
+<td class="ColumnValue" id="data">{{tag.color}}</td>
+<td class="ColumnAttribute" >Private:</td>
+<td class="ColumnValue" id="data">{{tag.private}}</td>
+<td class="ColumnAttribute" >Priority:</td>
+<td class="ColumnValue" id="data">{{tag.priority}}</td>
+</tr>
+</table>
+
+<!-- Tabs -->
+<h2 class="demoHeaders">Tabs</h2>
+
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
+  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-addresses">Addresses</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-internet">Internet</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-notes">Notes</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-references">References</a></li>
+  </ul>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-addresses">
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-internet">
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-notes">
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-references">
+  </div>
+</div>
+
+
+{% endblock %}
+
