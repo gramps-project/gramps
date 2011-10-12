@@ -61,9 +61,7 @@ log = logging.getLogger(".libcairodoc")
 # GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk
 import pango
-import pangocairo
 
 #------------------------------------------------------------------------
 #
@@ -102,6 +100,7 @@ font_families = _GNOME_FONT
 
 # FIXME debug logging does not work here.
 def set_font_families():
+    import pangocairo
 ##def set_font_families(pango_context):
     """Set the used font families depending on availability.
     """
@@ -914,6 +913,7 @@ class GtkDocPicture(GtkDocBaseElement):
             return (None, self), 0
 
     def draw(self, cr, layout, width, dpi_x, dpi_y):
+        import gtk
         img_width = self._width * dpi_x / 2.54
         img_height = self._height * dpi_y / 2.54
         
