@@ -38,8 +38,9 @@ from django.conf.urls.defaults import *
 from django.contrib import admin
 admin.autodiscover()
 
-from web.grampsdb.views import (main_page, user_page, logout_page,
-                                view, view_detail, view_name_detail)
+from web.grampsdb.views import (main_page, user_page, logout_page, 
+                                process_action, view, view_detail, 
+                                view_name_detail)
 
 urlpatterns = patterns('',
     # Specific matches first:
@@ -73,6 +74,7 @@ urlpatterns += patterns('',
     (r'^(?P<view>(\w+))/(?P<handle>(\w+))/$', view_detail),
     (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))$', view_name_detail),
     (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/(?P<action>(\w+))$', view_name_detail),
+    (r'^(?P<view>(\w+))/(?P<handle>(\w+))/(?P<action>(\w+))$', process_action),
 )
 
 # In urls:

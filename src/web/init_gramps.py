@@ -29,4 +29,4 @@ import settings
 
 import grampsdb.models as dj
 
-dj.clear_tables("primary", "secondary", "ref")
+dj.clear_tables("primary", "secondary", "ref", "system")

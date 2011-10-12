@@ -386,6 +386,8 @@ class Tag(models.Model):
     last_saved = models.DateTimeField('last changed', auto_now=True) 
     last_changed = models.DateTimeField('last changed', null=True,
                                         blank=True) # user edits
+    last_changed_by = models.TextField(blank=True, null=True)
+
     name = models.TextField('name')
     color = models.CharField(max_length=13) # "#000000000000" # Black
     priority = models.IntegerField('priority', blank=False)
@@ -410,6 +412,8 @@ class PrimaryObject(models.Model):
     last_saved = models.DateTimeField('last changed', auto_now=True) 
     last_changed = models.DateTimeField('last changed', null=True,
                                         blank=True) # user edits
+    last_changed_by = models.TextField(blank=True, null=True)
+
     private = models.BooleanField('private')
     #attributes = models.ManyToManyField("Attribute", blank=True, null=True)
     cache = models.TextField(blank=True, null=True)
@@ -561,6 +565,7 @@ class SecondaryObject(models.Model):
     last_saved = models.DateTimeField('last changed', auto_now=True)
     last_changed = models.DateTimeField('last changed', null=True,
                                         blank=True) # user edits
+    last_changed_by = models.TextField(blank=True, null=True)
     order = models.PositiveIntegerField(default=1)
 
 class Surname(models.Model):
@@ -742,6 +747,8 @@ class BaseRef(models.Model):
     order = models.PositiveIntegerField()
     last_saved = models.DateTimeField('last changed', auto_now=True)
     last_changed = models.DateTimeField('last changed', null=True) # user edits
+    last_changed_by = models.TextField(blank=True, null=True)
+
     #attributes = models.ManyToManyField("Attribute", null=True)
     private = models.BooleanField()
   
@@ -801,6 +808,19 @@ class MediaRef(BaseRef):
     def __unicode__(self):
         return "MediaRef to " + str(self.ref_object)
 
+class Report(models.Model):
+    name = models.TextField(blank=True, null=True)
+    handle = models.TextField(blank=True, null=True) # report_id
+    report_type = models.TextField(blank=True, null=True)
+    options = models.TextField(blank=True, null=True)
+
+class Result(models.Model):
+    name = models.TextField(blank=True, null=True)
+    filename = models.TextField(blank=True, null=True)
+    run_on = models.DateTimeField('run on', auto_now=True)
+    run_by = models.TextField('run by', blank=True, null=True)
+    status = models.TextField(blank=True, null=True)
+
 TABLES = [
     ("abstract", mGrampsType),
     ("type", NameType),
@@ -820,7 +840,6 @@ TABLES = [
     ("type", LdsStatus),
     ("type", ThemeType),
     ("abstract", DateObject),
-    ("meta", Config),
     ("abstract", PrimaryObject),
     ("primary", Person),
     ("primary", Family),
@@ -847,7 +866,10 @@ TABLES = [
     ("ref", RepositoryRef),
     ("ref", PersonRef),
     ("ref", ChildRef),
-    ("ref", MediaRef)
+    ("ref", MediaRef),
+    ("system", Config),
+    ("system", Report),
+    ("system", Result),
     ]
 
 def no_style():
@@ -860,7 +882,7 @@ def no_style():
 def clear_tables(*categories):
     """
     Clear the entries of categories of tables. Category is:
-    "abstract", "type", "ref", "meta", "primary" and "secondary".
+    "abstract", "type", "ref", "system", "primary" and "secondary".
     """
     from django.db import connection, transaction
     cursor = connection.cursor()

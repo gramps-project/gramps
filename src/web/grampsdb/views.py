@@ -21,6 +21,8 @@
 
 """ Main view handlers """
 
+import os
+
 #------------------------------------------------------------------------
 #
 # Django Modules
@@ -29,7 +31,7 @@
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response, redirect
 from django.template import Context, RequestContext, escape
 from django.db.models import Q
@@ -58,6 +60,7 @@ VIEWS = [(_('People'), 'person', Name),
          (_('Sources'), 'source', Source),
          (_('Places'), 'place', Place),
          (_('Repositories'), 'repository', Repository),
+         (_('Tags'), 'tag', Tag),
          ]
 
 def context_processor(request):
@@ -228,6 +231,39 @@ def view_name_detail(request, handle, order, action="view"):
     else:
         return render_to_response(view_template, context)
     
+def send_file(request, filename):
+    """                                                                         
+    Send a file through Django without loading the whole file into              
+    memory at once. The FileWrapper will turn the file object into an           
+    iterator for chunks of 8KB.                                                 
+    """
+    from django.core.servers.basehttp import FileWrapper
+    wrapper = FileWrapper(file(filename))
+    response = HttpResponse(wrapper, mimetype='application/pdf')
+    response['Content-Length'] = os.path.getsize(filename)
+    return response
+
+def process_action(request, view, handle, action):
+    from cli.plug import run_report
+    db = DbDjango()
+    #context = RequestContext(request)
+    #context["tview"] = "Results"
+    #context["view"] = view
+    #context["handle"] = handle
+    #context["action"] = action
+    #context["message"] = "Your report ran. How to download?"
+    if view == "report":
+        if action == "run":
+            args = {}
+            if request.GET.has_key("options"):
+                options = request.GET.get("options")
+                for pair in options.split(" "):
+                    key, value = pair.split("=", 1)
+                    args[key] = value
+            run_report(db, handle, off="pdf", of=("%s.pdf" % handle), **args)
+            #           pid="I0363")
+    #return render_to_response("process_action.html", context)
+    return send_file(request, "%s.pdf" % handle)
 
 def view_detail(request, view, handle, action="view"):
     context = RequestContext(request)
@@ -284,6 +320,20 @@ def view_detail(request, view, handle, action="view"):
             raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_source_detail.html'
         context["tview"] = _("Source")
+    elif view == "tag":
+        try:
+            obj = Tag.objects.get(handle=handle)
+        except:
+            raise Http404(_("Requested %s does not exist.") % view)
+        view_template = 'view_tag_detail.html'
+        context["tview"] = _("Tag")
+    elif view == "report":
+        try:
+            obj = Report.objects.get(handle=handle)
+        except:
+            raise Http404(_("Requested %s does not exist.") % view)
+        view_template = 'view_report_detail.html'
+        context["tview"] = _("Report")
     else:
         raise Http404(_("Requested page type not known"))
     context[view] = obj
@@ -595,8 +645,28 @@ def view(request, view):
             object_list = Source.objects.filter(private).order_by("gramps_id")
         view_template = 'view_sources.html'
         total = Source.objects.all().count()
+    elif view == "tag":
+        if request.GET.has_key("search"):
+            search = request.GET.get("search")
+            object_list = Tag.objects \
+                .filter(Q(name__icontains=search)) \
+                .order_by("name")
+        else:
+            object_list = Tag.objects.order_by("name")
+        view_template = 'view_tags.html'
+        total = Tag.objects.all().count()
+    elif view == "report":
+        if request.GET.has_key("search"):
+            search = request.GET.get("search")
+            object_list = Report.objects \
+                .filter(Q(name__icontains=search)) \
+                .order_by("name")
+        else:
+            object_list = Report.objects.all()
+        view_template = 'view_report.html'
+        total = Report.objects.all().count()
     else:
-        raise Http404("Requested page type not known")
+        raise Http404("Requested page type '%s' not known" % view)
 
     if request.user.is_authenticated():
         paginator = Paginator(object_list, 20) 
