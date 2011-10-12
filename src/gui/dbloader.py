@@ -313,7 +313,6 @@ class DbLoader(CLIDbLoader):
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
         except gen.db.exceptions.DbEnvironmentError, msg:
-            _LOG.error("dbloader: read_file: DbEnvironmentError detected")
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
         except OSError, msg:
