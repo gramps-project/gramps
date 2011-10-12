@@ -68,7 +68,7 @@ def import_file(db, filename, callback):
     """
     dbstate = DbState.DbState()
     climanager = CLIManager(dbstate, False) # do not load db_loader
-    climanager.do_reg_plugins()
+    climanager.do_reg_plugins(dbstate, None)
     pmgr = BasePluginManager.get_instance()
     (name, ext) = os.path.splitext(os.path.basename(filename))
     format = ext[1:].lower()
@@ -86,6 +86,32 @@ def import_file(db, filename, callback):
             import_function(db, filename, callback)
             db.step = 1
             import_function(db, filename, callback)
+            return True
+    return False
+
+def export_file(db, filename, callback):
+    """
+    Export the db to a file (such as a GEDCOM file).
+
+    >>> export_file(DbDjango(), "/home/user/Untitled_1.ged", lambda a: a)
+    """
+    dbstate = DbState.DbState()
+    climanager = CLIManager(dbstate, False) # do not load db_loader
+    climanager.do_reg_plugins(dbstate, None)
+    pmgr = BasePluginManager.get_instance()
+    (name, ext) = os.path.splitext(os.path.basename(filename))
+    format = ext[1:].lower()
+    export_list = pmgr.get_reg_exporters()
+    for pdata in export_list:
+        if format == pdata.extension:
+            mod = pmgr.load_plugin(pdata)
+            if not mod:
+                for name, error_tuple in pmgr.get_fail_list():
+                    etype, exception, traceback = error_tuple
+                    print "ERROR:", name, exception
+                return False
+            export_function = getattr(mod, pdata.export_function)
+            export_function(db, filename, callback)
             return True
     return False
 
@@ -107,6 +133,10 @@ class Cursor(object):
             yield (item.handle, self.func(item))
         yield None
 
+class Bookmarks:
+    def get(self):
+        return [] # handles
+
 class DbDjango(DbWriteBase, DbReadBase):
     """
     A Gramps Database Backend. This replicates the grampsdb functions.
@@ -118,15 +148,15 @@ class DbDjango(DbWriteBase, DbReadBase):
         self.dji = DjangoInterface()
         self.readonly = False
         self.db_is_open = True
-        self.name_formats = range(4)
-        self.bookmarks = []
-        self.family_bookmarks = []
-        self.event_bookmarks = []
-        self.place_bookmarks = []
-        self.source_bookmarks = []
-        self.repo_bookmarks = []
-        self.media_bookmarks = []
-        self.note_bookmarks = []
+        self.name_formats = []
+        self.bookmarks = Bookmarks()
+        self.family_bookmarks = Bookmarks()
+        self.event_bookmarks = Bookmarks()
+        self.place_bookmarks = Bookmarks()
+        self.source_bookmarks = Bookmarks()
+        self.repo_bookmarks = Bookmarks()
+        self.media_bookmarks = Bookmarks()
+        self.note_bookmarks = Bookmarks()
         self.event_prefix = "E%04s"
         # ----------------------------------
         self.id_trans  = {}
@@ -153,15 +183,50 @@ class DbDjango(DbWriteBase, DbReadBase):
         self.undo_history_callback = None
         self.modified   = 0
 
+    def get_mediapath(self):
+        return None
+
+    def get_name_group_keys(self):
+        return []
+
+    def get_name_group_mapping(self, key):
+        return None
 
     def get_researcher(self):
-        obj = gen.lib.Name()
+        obj = gen.lib.Researcher()
         return obj
 
     def get_event_from_handle(self, handle):
         obj = gen.lib.Event()
         obj.unserialize(self.dji.get_event(self.dji.Event.get(handle=handle)))
         return obj
+
+    def get_person_handles(self):
+        return [item.handle for item in self.dji.Person.all()]
+
+    def get_family_handles(self):
+        return [item.handle for item in self.dji.Family.all()]
+
+    def get_event_handles(self):
+        return [item.handle for item in self.dji.Event.all()]
+
+    def get_source_handles(self):
+        return [item.handle for item in self.dji.Source.all()]
+
+    def get_place_handles(self):
+        return [item.handle for item in self.dji.Place.all()]
+
+    def get_repository_handles(self):
+        return [item.handle for item in self.dji.Repository.all()]
+
+    def get_media_object_handles(self):
+        return [item.handle for item in self.dji.Media.all()]
+
+    def get_note_handles(self):
+        return [item.handle for item in self.dji.Note.all()]
+
+    def get_tag_handles(self, sort_handles=False):
+        return []
 
     def get_family_from_handle(self, handle): 
         #print "get_family_from_handle", handle
@@ -177,6 +242,9 @@ class DbDjango(DbWriteBase, DbReadBase):
             return None
         obj = self.make_family(family)
         return obj
+
+    def get_repository_from_handle(self, handle):
+        return gen.lib.Repository.create(self.dji.get_repository(self.dji.Repository.get(handle=handle)))
 
     def get_person_from_handle(self, handle):
         #print "get_person_from_handle", handle
@@ -248,9 +316,6 @@ class DbDjango(DbWriteBase, DbReadBase):
     def iter_person_handles(self):
         return (person.handle for person in self.dji.Person.all())
 
-    def get_tag_handles(self, sort_handles=False):
-        return []
-
     def iter_families(self):
         return (self.get_family_from_handle(family.handle) 
                 for family in self.dji.Family.all())
@@ -268,6 +333,9 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def get_number_of_people(self):
         return self.dji.Person.count()
+
+    def get_number_of_tags(self):
+        return 0 # self.dji.Tag.count()
 
     def get_number_of_families(self):
         return self.dji.Family.count()
