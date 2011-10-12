@@ -287,6 +287,7 @@ class GrampsXmlWriter(UpdateCallback):
             for handle in self.db.get_source_handles():
                 source = self.db.get_source_from_handle(handle)
                 self.write_source(source,2)
+                self.update()
             self.g.write("  </sources>\n")
 
         if place_len > 0:
