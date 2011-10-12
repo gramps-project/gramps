@@ -75,6 +75,7 @@ urlpatterns += patterns('',
     (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))$', view_name_detail),
     (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/(?P<action>(\w+))$', view_name_detail),
     (r'^(?P<view>(\w+))/(?P<handle>(\w+))/(?P<action>(\w+))$', process_action),
+    (r'^favicon\.ico$', 'django.views.generic.simple.redirect_to', {'url': '/styles/images/favicon.ico'}),
 )
 
 # In urls:
