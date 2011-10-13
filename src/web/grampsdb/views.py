@@ -48,6 +48,7 @@ from web.dbdjango import DbDjango
 
 import gen.proxy
 from Utils import create_id
+import const
 
 _ = lambda text: text
 
@@ -63,19 +64,6 @@ VIEWS = [(_('People'), 'person', Name),
          (_('Tags'), 'tag', Tag),
          ]
 
-def get_version():
-    #Makefile:VERSIONSTRING = 3.4.0-0.SVN18300
-    version = "trunk.SVN"
-    try:
-        fp = file("/usr/local/wsgi/trunk//Makefile")
-    except:
-        return version
-    for line in fp:
-        if line.startswith("VERSIONSTRING"):
-            junk, version = [item.strip() for item in line.split("=", 1)]
-            break
-    return version
-
 def context_processor(request):
     """
     This function is executed before template processing.
@@ -88,7 +76,7 @@ def context_processor(request):
     else:
         context["css_theme"] = "Web_Mainz.css"
     # Other things for all environments:
-    context["gramps_version"] = get_version()
+    context["gramps_version"] = const.VERSION
     context["views"] = VIEWS
     context["True"] = True
     context["False"] = False
