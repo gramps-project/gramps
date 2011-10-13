@@ -5,6 +5,7 @@
 # Copyright (C) 2009       Benny Malengier
 # Copyright (C) 2009-2010  Stephen George
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2011       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -82,14 +83,26 @@ except:
 gettext.textdomain(TransUtils.LOCALEDOMAIN)
 gettext.install(TransUtils.LOCALEDOMAIN, localedir=None, unicode=1) #None is sys default locale
 
-if not constfunc.win():
+if hasattr(os, "uname"):
+    operating_system = os.uname()[0]
+else:
+    operating_system = sys.platform
+
+if constfunc.win(): # Windows
+    TransUtils.setup_windows_gettext()
+elif operating_system == 'FreeBSD':
+    try:
+        gettext.bindtextdomain(TransUtils.LOCALEDOMAIN, TransUtils.LOCALEDIR)
+    except locale.Error:
+        print 'No translation in some gtk.Builder strings, '
+elif operating_system == 'OpenBSD':
+    pass
+else: # normal case
     try:
         locale.bindtextdomain(TransUtils.LOCALEDOMAIN, TransUtils.LOCALEDIR)
         #locale.textdomain(TransUtils.LOCALEDOMAIN)
     except locale.Error:
         print 'No translation in some gtk.Builder strings, '
-else:
-    TransUtils.setup_windows_gettext()
 
 #-------------------------------------------------------------------------
 #
@@ -258,15 +271,14 @@ def show_settings():
         gramps_str = 'not found'
 
     if hasattr(os, "uname"):
-        operating_system = os.uname()[0]
         kernel = os.uname()[2]
     else:
-        operating_system = sys.platform
         kernel = None
 
     lang_str = os.environ.get('LANG','not set')
     language_str = os.environ.get('LANGUAGE','not set')
     grampsi18n_str = os.environ.get('GRAMPSI18N','not set')
+    grampshome_str = os.environ.get('GRAMPSHOME','not set')
     grampsdir_str = os.environ.get('GRAMPSDIR','not set')
 
     try:
@@ -314,6 +326,7 @@ def show_settings():
     print ' LANG      : %s' % lang_str
     print ' LANGUAGE  : %s' % language_str
     print ' GRAMPSI18N: %s' % grampsi18n_str
+    print ' GRAMPSHOME: %s' % grampshome_str
     print ' GRAMPSDIR : %s' % grampsdir_str
     print ' PYTHONPATH:'
     for folder in sys.path:
