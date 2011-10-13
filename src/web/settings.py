@@ -130,3 +130,13 @@ CACHE_BACKEND = 'locmem://'
 TRANSACTIONS_MANAGED = False
 LOCALE_PATHS = tuple()
 
+# In versions < 2.7 python does not properly copy methods when doing a 
+# deepcopy. This workaround makes the copy work properly. When Gramps no longer
+# supports python 2.6, this workaround can be removed.
+import sys
+if sys.version_info < (2, 7) :
+    import copy
+    import types
+    def _deepcopy_method(x, memo):
+        return type(x)(x.im_func, copy.deepcopy(x.im_self, memo), x.im_class)
+    copy._deepcopy_dispatch[types.MethodType] = _deepcopy_method
