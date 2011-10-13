@@ -249,7 +249,7 @@ def send_file(request, filename, mimetype):
 
 def process_action(request, view, handle, action):
     from cli.plug import run_report
-    from dbdjango import export_file
+    from web.dbdjango import export_file
     db = DbDjango()
     if view == "report":
         if request.user.is_authenticated():
