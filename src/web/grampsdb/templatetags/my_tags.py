@@ -106,8 +106,8 @@ register.filter('missing', missing)
 
 def currentSection(view1, view2):
     if view1.strip().lower() == view2.strip().lower():
-        return "CurrentSection"
-    return "OtherSection"
+        return "class=CurrentSection"
+    return ""
 currentSection.is_safe = True
 register.filter('currentSection', currentSection)
 
