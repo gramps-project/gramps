@@ -85,6 +85,7 @@ class Span(object):
     BEFORE = config.get('behavior.date-before-range')
     AFTER  = config.get('behavior.date-after-range')
     ABOUT  = config.get('behavior.date-about-range')
+    ALIVE  = config.get('behavior.max-age-prob-alive')
     def __init__(self, date1, date2):
         self.valid = (date1.sortval != 0 and date2.sortval != 0)
         self.date1 = date1
@@ -293,9 +294,8 @@ class Span(object):
         if self.repr is not None:
             return self.repr
         elif self.valid:
-            ALIVE  = config.get('behavior.max-age-prob-alive')
-            if self._diff(self.date1, self.date2)[0] >= ALIVE:
-                return _("less than %s years") % ALIVE
+            if self._diff(self.date1, self.date2)[0] > Span.ALIVE:
+                return _("less than %s years") % Span.ALIVE
             if self.date1.get_modifier() == Date.MOD_NONE:
                 if   self.date2.get_modifier() == Date.MOD_NONE:
                     #v = self.date1.sortval - self.date2.sortval
