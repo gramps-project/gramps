@@ -10,15 +10,19 @@ import datetime
 class PersonForm(forms.ModelForm):
     class Meta:
         model = Person
+        exclude = ["death", "birth", "handle", "birth_ref_index", "death_ref_index"]
 
-        exclude = ["death", "birth", "handle"]
+    surname = forms.CharField(required=False, 
+                              widget=TextInput(attrs={'size':'30'}))
+    prefix = forms.CharField(required=False, 
+                             widget=TextInput(attrs={'size':'30'}))
 
 class NameForm(forms.ModelForm):
     class Meta:
         model = Name
         # Exclude these, so they don't get checked:
         exclude = ["order", "calendar", "modifier", 
-                   "quality",
+                   "quality", 
                    #"quality_estimated", "quality_calculated", 
                    #"quality_interpreted", 
                    "year1", "day1", "month1",

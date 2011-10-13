@@ -26,10 +26,11 @@
 {% endif %}
 <tr>
  <td class="ColumnAttribute">{{form.surname.label}}:</td>
- <td class="ColumnValue" id="data">{% render form.surname user action %}</td>
+ <td class="ColumnValue" id="data"></td>
  <td class="ColumnAttribute">{{form.prefix.label}}:</td>
- <td class="ColumnValue" id="data">{% render form.prefix user action %}</td>
+ <td class="ColumnValue" id="data"></td>
 </tr>
+<tr>
  <td class="ColumnAttribute">{{form.first_name.label}}:</td>
  <td class="ColumnValue" id="data">{% render form.first_name user action %}</td>
  <td class="ColumnAttribute">{{form.call.label}}:</td>
@@ -41,8 +42,6 @@
  <td class="ColumnAttribute">{{form.suffix.label}}:</td>
  <td class="ColumnValue" id="data">{% render form.suffix user action %}</td>
 <tr>
- <td class="ColumnAttribute">{{form.patronymic.label}}:</td>
- <td class="ColumnValue" id="data">{% render form.patronymic user action %}</td>
  <td class="ColumnAttribute">{{form.name_type.label}}:</td>
  <td class="ColumnValue" id="data">{% render form.name_type user action %}</td>
 </tr>

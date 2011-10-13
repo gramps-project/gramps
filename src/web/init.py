@@ -109,6 +109,9 @@ for table, entries in [("grampsdb.config",
                          (("name", '"summary"'),
                           ("handle", '"summary"'),
                           ("report_type", '"textreport"')),
+                         (("name", '"GEDCOM Export"'),
+                          ("handle", '"gedcom_export"'),
+                          ("report_type", '"export"')),
                          ])]:
     entry_count = 0
     for entry in entries:

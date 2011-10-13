@@ -117,7 +117,7 @@ def fix_person(request, person):
         names = person.name_set.all().order_by("order")
         if names.count() == 0:
             name = Name(person=person, 
-                        surname="? Fixed", 
+                        surname_set=[Surname(surname="? Fixed")], 
                         first_name="? Missing name",
                         preferred=True)
             name.save()
@@ -233,7 +233,7 @@ def view_name_detail(request, handle, order, action="view"):
     else:
         return render_to_response(view_template, context)
     
-def send_file(request, filename):
+def send_file(request, filename, mimetype):
     """                                                                         
     Send a file through Django without loading the whole file into              
     memory at once. The FileWrapper will turn the file object into an           
@@ -241,16 +241,20 @@ def send_file(request, filename):
     """
     from django.core.servers.basehttp import FileWrapper
     wrapper = FileWrapper(file(filename))
-    response = HttpResponse(wrapper, mimetype='application/pdf')
+    response = HttpResponse(wrapper, mimetype=mimetype)
+    path, base = os.path.split(filename)
     response['Content-Length'] = os.path.getsize(filename)
+    response['Content-Disposition'] = 'attachment; filename=%s' % base
     return response
 
 def process_action(request, view, handle, action):
     from cli.plug import run_report
+    from dbdjango import export_file
     db = DbDjango()
     if view == "report":
         if request.user.is_authenticated():
             profile = request.user.get_profile()
+            report = Report.objects.get(handle=handle)
             if action == "run":
                 args = {}
                 if request.GET.has_key("options"):
@@ -260,9 +264,17 @@ def process_action(request, view, handle, action):
                             if "=" in pair:
                                 key, value = pair.split("=", 1)
                                 args[str(key)] = str(value)
-                filename = "/tmp/%s-%s.pdf" % (str(profile.user.username), str(handle))
-                run_report(db, handle, off="pdf", of=filename, **args)
-                return send_file(request, filename)
+                if report.report_type == "textreport":
+                    filename = "/tmp/%s-%s.pdf" % (str(profile.user.username), str(handle))
+                    run_report(db, handle, off="pdf", of=filename, **args)
+                    mimetype = 'application/pdf'
+                elif report.report_type == "export":
+                    filename = "/tmp/%s-%s.ged" % (str(profile.user.username), str(handle))
+                    export_file(db, filename, lambda n: n) # callback
+                    mimetype = 'text/plain'
+                else:
+                    pass # FIXME: error
+                return send_file(request, filename, mimetype)
     # If failure, just fail for now:
     context = RequestContext(request)
     context["tview"] = "Results"
@@ -670,7 +682,7 @@ def view(request, view):
                 .filter(Q(name__icontains=search)) \
                 .order_by("name")
         else:
-            object_list = Report.objects.all()
+            object_list = Report.objects.all().order_by("name")
         view_template = 'view_report.html'
         total = Report.objects.all().count()
     else:
