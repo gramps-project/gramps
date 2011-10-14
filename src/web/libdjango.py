@@ -1051,7 +1051,7 @@ class DjangoInterface(object):
                             last_changed=todate(change),
                             private=private,
                             gender_type=models.get_type(models.GenderType, gender))
-        person.cache = base64.encodestring(cPickle.dumps(data))
+        #person.cache = base64.encodestring(cPickle.dumps(data))
         person.save()
 
     def add_person_detail(self, data):
@@ -1140,7 +1140,7 @@ class DjangoInterface(object):
                         preformatted=format,
                         text=text,
                         note_type=models.get_type(models.NoteType, note_type))
-        n.cache = base64.encodestring(cPickle.dumps(data))
+        #n.cache = base64.encodestring(cPickle.dumps(data))
         n.save()
         count = 1
         for markup in markup_list:
@@ -1164,7 +1164,7 @@ class DjangoInterface(object):
                                family_rel_type = models.get_type(models.FamilyRelType, the_type),
                                last_changed=todate(change), 
                                private=private)
-        family.cache = base64.encodestring(cPickle.dumps(data))
+        #family.cache = base64.encodestring(cPickle.dumps(data))
         family.save()
 
     def add_family_detail(self, data):
@@ -1216,7 +1216,7 @@ class DjangoInterface(object):
         source = models.Source(handle=handle, gramps_id=gid, title=title,
                                author=author, pubinfo=pubinfo, abbrev=abbrev,
                                last_changed=todate(change), private=private)
-        source.cache = base64.encodestring(cPickle.dumps(data))
+        #source.cache = base64.encodestring(cPickle.dumps(data))
         source.save()
 
     def add_source_detail(self, data):
@@ -1249,7 +1249,7 @@ class DjangoInterface(object):
                                        private=private,
                                        repository_type=models.get_type(models.RepositoryType, the_type),
                                        name=name)
-        repository.cache = base64.encodestring(cPickle.dumps(data))
+        #repository.cache = base64.encodestring(cPickle.dumps(data))
         repository.save()
 
     def add_repository_detail(self, data):
@@ -1313,7 +1313,7 @@ class DjangoInterface(object):
         place = models.Place(handle=handle, gramps_id=gid, title=title,
                              long=long, lat=lat, last_changed=todate(change),
                              private=private)
-        place.cache = base64.encodestring(cPickle.dumps(data))
+        #place.cache = base64.encodestring(cPickle.dumps(data))
         place.save()
 
     def add_place_detail(self, data):
@@ -1353,7 +1353,7 @@ class DjangoInterface(object):
                              path=path, mime=mime, 
                              desc=desc, last_changed=todate(change),
                              private=private)
-        media.cache = base64.encodestring(cPickle.dumps(data))
+        #media.cache = base64.encodestring(cPickle.dumps(data))
         self.add_date(media, date)
         media.save()
     
@@ -1386,7 +1386,7 @@ class DjangoInterface(object):
                              private=private,
                              description=description,
                              last_changed=todate(change))
-        event.cache = base64.encodestring(cPickle.dumps(data))
+        #event.cache = base64.encodestring(cPickle.dumps(data))
         self.add_date(event, date)
         event.save()
 
@@ -1476,6 +1476,74 @@ class DjangoInterface(object):
         for item in self.Note.all():
             raw = self.get_note(item)
             item.cache = base64.encodestring(cPickle.dumps(raw))
+            item.save()
+            callback(100 * count/total)
+            count += 1
+
+        callback(100)
+
+    def clear_caches(self, callback=None):
+        """
+        Call this to clear the caches for all primary models.
+        """
+        if not callable(callback): 
+            callback = lambda (percent): None # dummy
+
+        callback(0)
+        count = 0.0
+        total = (self.Note.all().count() + 
+                 self.Person.all().count() +
+                 self.Event.all().count() + 
+                 self.Family.all().count() +
+                 self.Repository.all().count() +
+                 self.Place.all().count() +
+                 self.Media.all().count() +
+                 self.Source.all().count())
+
+        for item in self.Person.all():
+            item.cache = None
+            item.save()
+            callback(100 * count/total)
+            count += 1
+
+        for item in self.Family.all():
+            item.cache = None
+            item.save()
+            callback(100 * count/total)
+            count += 1
+
+        for item in self.Source.all():
+            item.cache = None
+            item.save()
+            callback(100 * count/total)
+            count += 1
+
+        for item in self.Event.all():
+            item.cache = None
+            item.save()
+            callback(100 * count/total)
+            count += 1
+
+        for item in self.Repository.all():
+            item.cache = None
+            item.save()
+            callback(100 * count/total)
+            count += 1
+
+        for item in self.Place.all():
+            item.cache = None
+            item.save()
+            callback(100 * count/total)
+            count += 1
+
+        for item in self.Media.all():
+            item.cache = None
+            item.save()
+            callback(100 * count/total)
+            count += 1
+
+        for item in self.Note.all():
+            item.cache = None
             item.save()
             callback(100 * count/total)
             count += 1

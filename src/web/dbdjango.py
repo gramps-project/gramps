@@ -21,6 +21,14 @@
 
 """ Implements a Db interface """
 
+## Major issues to fix:
+
+## 1) import from GEDCOM is not associating proper gramps handles between objects
+##    suspect that something not working correct in adding with transactions
+##    BUG: People event_ref are no longer pointing to correct event, even
+##    previously-working export to django from gramps gtk
+## 2) did export from gramps gtk break with the changes for importing gedcom?
+
 #------------------------------------------------------------------------
 #
 # Gramps Modules
@@ -68,7 +76,6 @@ def import_file(db, filename, callback):
 
     >>> import_file(DbDjango(), "/home/user/Untitled_1.ged", lambda a: a)
     """
-    global count
     dbstate = DbState.DbState()
     climanager = CLIManager(dbstate, False) # do not load db_loader
     climanager.do_reg_plugins(dbstate, None)
@@ -217,12 +224,15 @@ class DbDjango(DbWriteBase, DbReadBase):
         self.undo_history_callback = None
         self.modified   = 0
         self.txn = DjangoTxn("DbDjango Transaction", self)
+        self.cache = {}
+        self.use_cache = False
 
     def prepare_import(self):
         """
         DbDjango does not commit data, but saves them for later
         commit.
         """
+        self.use_cache = True
         self.cache = {}
 
     def commit_import(self):
@@ -261,6 +271,8 @@ class DbDjango(DbWriteBase, DbReadBase):
                 self.dji.add_source_detail(obj.serialize())
             elif isinstance(obj, gen.lib.Note):
                 self.dji.add_note_detail(obj.serialize())
+        self.use_cache = False
+        self.cache = {}
 
     def transaction_commit(self, txn):
         pass
@@ -269,8 +281,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         pass
 
     def request_rebuild(self):
-        # FIXME: rebuild cache
-        pass
+        self.dji.rebuild_caches()
 
     def get_undodb(self):
         return None
@@ -536,6 +547,8 @@ class DbDjango(DbWriteBase, DbReadBase):
         return []
 
     def get_event_from_handle(self, handle):
+        if handle in self.cache:
+            return self.cache[handle]
         try:
             event = self.dji.Event.get(handle=handle)
         except:
@@ -543,6 +556,8 @@ class DbDjango(DbWriteBase, DbReadBase):
         self.make_event(event)
 
     def get_family_from_handle(self, handle): 
+        if handle in self.cache:
+            return self.cache[handle]
         try:
             family = self.dji.Family.get(handle=handle)
         except:
@@ -550,6 +565,10 @@ class DbDjango(DbWriteBase, DbReadBase):
         return self.make_family(family)
 
     def get_family_from_gramps_id(self, gramps_id):
+        if self.cache:
+            for handle in self.cache:
+                if self.cache[handle].gramps_id == gramps_id:
+                    return self.cache[handle]
         try:
             family = self.dji.Family.get(gramps_id=gramps_id)
         except:
@@ -557,6 +576,8 @@ class DbDjango(DbWriteBase, DbReadBase):
         return self.make_family(family)
 
     def get_repository_from_handle(self, handle):
+        if handle in self.cache:
+            return self.cache[handle]
         try:
             repository = self.dji.Repository.get(handle=handle)
         except:
@@ -564,6 +585,8 @@ class DbDjango(DbWriteBase, DbReadBase):
         return self.make_repository(repository)
 
     def get_person_from_handle(self, handle):
+        if handle in self.cache:
+            return self.cache[handle]
         try:
             #person = self.dji.Person.select_related().get(handle=handle)
             person = self.dji.Person.get(handle=handle)
@@ -577,6 +600,13 @@ class DbDjango(DbWriteBase, DbReadBase):
         else:
             data = self.dji.get_family(family)
         return gen.lib.Repository.create(data)
+
+    def make_source(self, source):
+        if source.cache:
+            data = cPickle.loads(base64.decodestring(source.cache))
+        else:
+            data = self.dji.get_source(source)
+        return gen.lib.Source.create(data)
 
     def make_family(self, family):
         if family.cache:
@@ -599,7 +629,7 @@ class DbDjango(DbWriteBase, DbReadBase):
             data = self.dji.get_event(event)
         return gen.lib.Event.create(data)
 
-    def make_note(self, event):
+    def make_note(self, note):
         if note.cache:
             data = cPickle.loads(base64.decodestring(note.cache))
         else:
@@ -621,7 +651,9 @@ class DbDjango(DbWriteBase, DbReadBase):
         return gen.lib.Media.create(data)
 
     def get_place_from_handle(self, handle):
-        # FIXME: use cache
+        if handle in self.cache:
+            return self.cache[handle]
+        # FIXME: use object cache
         try:
             dji_obj = self.dji.Place.get(handle=handle)
         except:
@@ -635,6 +667,8 @@ class DbDjango(DbWriteBase, DbReadBase):
         return None
 
     def get_source_from_handle(self, handle):
+        if handle in self.cache:
+            return self.cache[handle]
         try:
             source = self.dji.Source.get(handle=handle)
         except:
@@ -642,6 +676,8 @@ class DbDjango(DbWriteBase, DbReadBase):
         return self.make_source(source)
 
     def get_note_from_handle(self, handle):
+        if handle in self.cache:
+            return self.cache[handle]
         try:
             note = self.dji.Note.get(handle=handle)
         except:
@@ -649,6 +685,8 @@ class DbDjango(DbWriteBase, DbReadBase):
         return self.make_note(note)
 
     def get_object_from_handle(self, handle):
+        if handle in self.cache:
+            return self.cache[handle]
         try:
             media = self.dji.Media.get(handle=handle)
         except:
@@ -679,6 +717,10 @@ class DbDjango(DbWriteBase, DbReadBase):
         return (family.handle for family in self.dji.Family.all())
 
     def get_person_from_gramps_id(self, gramps_id):
+        if self.cache:
+            for handle in self.cache:
+                if self.cache[handle].gramps_id == gramps_id:
+                    return self.cache[handle]
         match_list = self.dji.Person.filter(gramps_id=gramps_id)
         if match_list.count() > 0:
             return self.make_person(match_list[0])
