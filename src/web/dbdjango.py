@@ -224,23 +224,28 @@ class DbDjango(DbWriteBase, DbReadBase):
         self.undo_history_callback = None
         self.modified   = 0
         self.txn = DjangoTxn("DbDjango Transaction", self)
-        self.cache = {}
-        self.use_cache = False
+        # Import cache for gedcom import, uses transactions, and
+        # two step adding of objects.
+        self.import_cache = {}
+        self.use_import_cache = False
+        self.use_db_cache = True
 
     def prepare_import(self):
         """
-        DbDjango does not commit data, but saves them for later
-        commit.
+        DbDjango does not commit data on gedcom import, but saves them
+        for later commit.
         """
-        self.use_cache = True
-        self.cache = {}
+        self.use_import_cache = True
+        self.import_cache = {}
 
     def commit_import(self):
         """
-        Commits the items that were queued up during the last import.
+        Commits the items that were queued up during the last gedcom
+        import for two step adding.
         """
-        for key in self.cache.keys():
-            obj = self.cache[key]
+        # First we add the primary objects:
+        for key in self.import_cache.keys():
+            obj = self.import_cache[key]
             if isinstance(obj, gen.lib.Person):
                 self.dji.add_person(obj.serialize())
             elif isinstance(obj, gen.lib.Family):
@@ -255,8 +260,9 @@ class DbDjango(DbWriteBase, DbReadBase):
                 self.dji.add_source(obj.serialize())
             elif isinstance(obj, gen.lib.Note):
                 self.dji.add_note(obj.serialize())
-        for key in self.cache.keys():
-            obj = self.cache[key]
+        # Next we add the links:
+        for key in self.import_cache.keys():
+            obj = self.import_cache[key]
             if isinstance(obj, gen.lib.Person):
                 self.dji.add_person_detail(obj.serialize())
             elif isinstance(obj, gen.lib.Family):
@@ -271,8 +277,8 @@ class DbDjango(DbWriteBase, DbReadBase):
                 self.dji.add_source_detail(obj.serialize())
             elif isinstance(obj, gen.lib.Note):
                 self.dji.add_note_detail(obj.serialize())
-        self.use_cache = False
-        self.cache = {}
+        self.use_import_cache = False
+        self.import_cache = {}
 
     def transaction_commit(self, txn):
         pass
@@ -547,17 +553,17 @@ class DbDjango(DbWriteBase, DbReadBase):
         return []
 
     def get_event_from_handle(self, handle):
-        if handle in self.cache:
-            return self.cache[handle]
+        if handle in self.import_cache:
+            return self.import_cache[handle]
         try:
             event = self.dji.Event.get(handle=handle)
         except:
             return None
-        self.make_event(event)
+        return self.make_event(event)
 
     def get_family_from_handle(self, handle): 
-        if handle in self.cache:
-            return self.cache[handle]
+        if handle in self.import_cache:
+            return self.import_cache[handle]
         try:
             family = self.dji.Family.get(handle=handle)
         except:
@@ -565,10 +571,10 @@ class DbDjango(DbWriteBase, DbReadBase):
         return self.make_family(family)
 
     def get_family_from_gramps_id(self, gramps_id):
-        if self.cache:
-            for handle in self.cache:
-                if self.cache[handle].gramps_id == gramps_id:
-                    return self.cache[handle]
+        if self.import_cache:
+            for handle in self.import_cache:
+                if self.import_cache[handle].gramps_id == gramps_id:
+                    return self.import_cache[handle]
         try:
             family = self.dji.Family.get(gramps_id=gramps_id)
         except:
@@ -576,8 +582,8 @@ class DbDjango(DbWriteBase, DbReadBase):
         return self.make_family(family)
 
     def get_repository_from_handle(self, handle):
-        if handle in self.cache:
-            return self.cache[handle]
+        if handle in self.import_cache:
+            return self.import_cache[handle]
         try:
             repository = self.dji.Repository.get(handle=handle)
         except:
@@ -585,8 +591,8 @@ class DbDjango(DbWriteBase, DbReadBase):
         return self.make_repository(repository)
 
     def get_person_from_handle(self, handle):
-        if handle in self.cache:
-            return self.cache[handle]
+        if handle in self.import_cache:
+            return self.import_cache[handle]
         try:
             #person = self.dji.Person.select_related().get(handle=handle)
             person = self.dji.Person.get(handle=handle)
@@ -595,64 +601,64 @@ class DbDjango(DbWriteBase, DbReadBase):
         return self.make_person(person)
 
     def make_repository(self, repository):
-        if repository.cache:
+        if self.use_db_cache and repository.cache:
             data = cPickle.loads(base64.decodestring(repository.cache))
         else:
             data = self.dji.get_family(family)
         return gen.lib.Repository.create(data)
 
     def make_source(self, source):
-        if source.cache:
+        if self.use_db_cache and source.cache:
             data = cPickle.loads(base64.decodestring(source.cache))
         else:
             data = self.dji.get_source(source)
         return gen.lib.Source.create(data)
 
     def make_family(self, family):
-        if family.cache:
+        if self.use_db_cache and family.cache:
             data = cPickle.loads(base64.decodestring(family.cache))
         else:
             data = self.dji.get_family(family)
         return gen.lib.Family.create(data)
 
     def make_person(self, person):
-        if person.cache:
+        if self.use_db_cache and person.cache:
             data = cPickle.loads(base64.decodestring(person.cache))
         else:
             data = self.dji.get_person(person)
         return gen.lib.Person.create(data)
 
     def make_event(self, event):
-        if event.cache:
+        if self.use_db_cache and event.cache:
             data = cPickle.loads(base64.decodestring(event.cache))
         else:
             data = self.dji.get_event(event)
         return gen.lib.Event.create(data)
 
     def make_note(self, note):
-        if note.cache:
+        if self.use_db_cache and note.cache:
             data = cPickle.loads(base64.decodestring(note.cache))
         else:
             data = self.dji.get_note(note)
         return gen.lib.Note.create(data)
 
     def make_place(self, place):
-        if place.cache:
+        if self.use_db_cache and place.cache:
             data = cPickle.loads(base64.decodestring(place.cache))
         else:
             data = self.dji.get_place(place)
         return gen.lib.Place.create(data)
 
     def make_media(self, media):
-        if media.cache:
+        if self.use_db_cache and media.cache:
             data = cPickle.loads(base64.decodestring(media.cache))
         else:
             data = self.dji.get_media(media)
         return gen.lib.Media.create(data)
 
     def get_place_from_handle(self, handle):
-        if handle in self.cache:
-            return self.cache[handle]
+        if handle in self.import_cache:
+            return self.import_cache[handle]
         # FIXME: use object cache
         try:
             dji_obj = self.dji.Place.get(handle=handle)
@@ -667,8 +673,8 @@ class DbDjango(DbWriteBase, DbReadBase):
         return None
 
     def get_source_from_handle(self, handle):
-        if handle in self.cache:
-            return self.cache[handle]
+        if handle in self.import_cache:
+            return self.import_cache[handle]
         try:
             source = self.dji.Source.get(handle=handle)
         except:
@@ -676,8 +682,8 @@ class DbDjango(DbWriteBase, DbReadBase):
         return self.make_source(source)
 
     def get_note_from_handle(self, handle):
-        if handle in self.cache:
-            return self.cache[handle]
+        if handle in self.import_cache:
+            return self.import_cache[handle]
         try:
             note = self.dji.Note.get(handle=handle)
         except:
@@ -685,8 +691,8 @@ class DbDjango(DbWriteBase, DbReadBase):
         return self.make_note(note)
 
     def get_object_from_handle(self, handle):
-        if handle in self.cache:
-            return self.cache[handle]
+        if handle in self.import_cache:
+            return self.import_cache[handle]
         try:
             media = self.dji.Media.get(handle=handle)
         except:
@@ -717,10 +723,10 @@ class DbDjango(DbWriteBase, DbReadBase):
         return (family.handle for family in self.dji.Family.all())
 
     def get_person_from_gramps_id(self, gramps_id):
-        if self.cache:
-            for handle in self.cache:
-                if self.cache[handle].gramps_id == gramps_id:
-                    return self.cache[handle]
+        if self.import_cache:
+            for handle in self.import_cache:
+                if self.import_cache[handle].gramps_id == gramps_id:
+                    return self.import_cache[handle]
         match_list = self.dji.Person.filter(gramps_id=gramps_id)
         if match_list.count() > 0:
             return self.make_person(match_list[0])
@@ -749,19 +755,19 @@ class DbDjango(DbWriteBase, DbReadBase):
         return self.dji.Repository.count()
 
     def get_place_cursor(self):
-        return Cursor(self.dji.Place, self.dji.get_place).iter()
+        return Cursor(self.dji.Place, self.make_place).iter()
 
     def get_person_cursor(self):
-        return Cursor(self.dji.Person, self.dji.get_person).iter()
+        return Cursor(self.dji.Person, self.make_person).iter()
 
     def get_family_cursor(self):
-        return Cursor(self.dji.Family, self.dji.get_family).iter()
+        return Cursor(self.dji.Family, self.make_family).iter()
 
     def get_events_cursor(self):
-        return Cursor(self.dji.Event, self.dji.get_event).iter()
+        return Cursor(self.dji.Event, self.make_event).iter()
 
     def get_source_cursor(self):
-        return Cursor(self.dji.Source, self.dji.get_source).iter()
+        return Cursor(self.dji.Source, self.make_source).iter()
 
     def has_person_handle(self, handle):
         return self.dji.Person.filter(handle=handle).count() == 1
@@ -782,6 +788,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         return self.dji.Place.filter(handle=handle).count() == 1
 
     def get_raw_person_data(self, handle):
+        # FIXME?: not cached
         try:
             return self.dji.get_person(self.dji.Person.get(handle=handle))
         except:
@@ -820,7 +827,7 @@ class DbDjango(DbWriteBase, DbReadBase):
     def add_person(self, person, trans, set_gid=True):
         if not person.handle:
             person.handle = Utils.create_id()
-        if not person.gramps_id:
+        if not person.gramps_id or set_gid:
             person.gramps_id = self.find_next_person_gramps_id()
         self.commit_person(person, trans)
         return person.handle
@@ -828,7 +835,7 @@ class DbDjango(DbWriteBase, DbReadBase):
     def add_family(self, family, trans, set_gid=True):
         if not family.handle:
             family.handle = Utils.create_id()
-        if not family.gramps_id:
+        if not family.gramps_id or set_gid:
             family.gramps_id = self.find_next_family_gramps_id()
         self.commit_family(family, trans)
         return family.handle
@@ -836,7 +843,7 @@ class DbDjango(DbWriteBase, DbReadBase):
     def add_source(self, source, trans, set_gid=True):
         if not source.handle:
             source.handle = Utils.create_id()
-        if not source.gramps_id:
+        if not source.gramps_id or set_gid:
             source.gramps_id = self.find_next_source_gramps_id()
         self.commit_source(source, trans)
         return source.handle
@@ -844,7 +851,7 @@ class DbDjango(DbWriteBase, DbReadBase):
     def add_repository(self, repository, trans, set_gid=True):
         if not repository.handle:
             repository.handle = Utils.create_id()
-        if not repository.gramps_id:
+        if not repository.gramps_id or set_gid:
             repository.gramps_id = self.find_next_repository_gramps_id()
         self.commit_repository(repository, trans)
         return repository.handle
@@ -852,7 +859,7 @@ class DbDjango(DbWriteBase, DbReadBase):
     def add_note(self, note, trans, set_gid=True):
         if not note.handle:
             note.handle = Utils.create_id()
-        if not note.gramps_id:
+        if not note.gramps_id or set_gid:
             note.gramps_id = self.find_next_note_gramps_id()
         self.commit_note(note, trans)
         return note.handle
@@ -860,7 +867,7 @@ class DbDjango(DbWriteBase, DbReadBase):
     def add_place(self, place, trans, set_gid=True):
         if not place.handle:
             place.handle = Utils.create_id()
-        if not place.gramps_id:
+        if not place.gramps_id or set_gid:
             place.gramps_id = self.find_next_place_gramps_id()
         self.commit_place(place, trans)
         return place.handle
@@ -868,31 +875,31 @@ class DbDjango(DbWriteBase, DbReadBase):
     def add_event(self, event, trans, set_gid=True):
         if not event.handle:
             event.handle = Utils.create_id()
-        if not event.gramps_id:
+        if not event.gramps_id or set_gid:
             event.gramps_id = self.find_next_event_gramps_id()
         self.commit_event(event, trans)
         return event.handle
 
     def commit_person(self, person, trans, change_time=None):
-        self.cache[person.handle] = person
+        self.import_cache[person.handle] = person
 
     def commit_family(self, family, trans, change_time=None):
-        self.cache[family.handle] = family
+        self.import_cache[family.handle] = family
 
     def commit_source(self, source, trans, change_time=None):
-        self.cache[source.handle] = source
+        self.import_cache[source.handle] = source
 
     def commit_repository(self, repository, trans, change_time=None):
-        self.cache[repository.handle] = repository
+        self.import_cache[repository.handle] = repository
 
     def commit_note(self, note, trans, change_time=None):
-        self.cache[note.handle] = note
+        self.import_cache[note.handle] = note
 
     def commit_place(self, place, trans, change_time=None):
-        self.cache[place.handle] = place
+        self.import_cache[place.handle] = place
 
     def commit_event(self, event, trans, change_time=None):
-        self.cache[event.handle] = event
+        self.import_cache[event.handle] = event
 
     def get_gramps_ids(self, obj_key):
         key2table = {
