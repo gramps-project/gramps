@@ -43,10 +43,10 @@ from django.contrib.contenttypes.models import ContentType
 # Gramps-Connect Modules
 #
 #------------------------------------------------------------------------
-import web.grampsdb.models as models
-import web.grampsdb.forms as forms
-from web import libdjango
-from web.dbdjango import DbDjango
+import webapp.grampsdb.models as models
+import webapp.grampsdb.forms as forms
+from webapp import libdjango
+from webapp.dbdjango import DbDjango
 
 #------------------------------------------------------------------------
 #

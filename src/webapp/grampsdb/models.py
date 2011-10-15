@@ -36,7 +36,7 @@ from django.contrib.contenttypes import generic
 from gen.lib.date import Date as GDate, Today
 from Utils import create_id, create_uid
 
-from web.grampsdb.profile import Profile
+from webapp.grampsdb.profile import Profile
 
 #---------------------------------------------------------------------------
 #

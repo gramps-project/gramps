@@ -1,7 +1,7 @@
 # forms.py forms for Django web project 
 
 from django import forms
-from web.grampsdb.models import *
+from webapp.grampsdb.models import *
 from django.forms.models import inlineformset_factory
 from django.forms.models import BaseModelFormSet
 from django.forms.widgets import TextInput

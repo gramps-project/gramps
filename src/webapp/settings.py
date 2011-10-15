@@ -71,7 +71,7 @@ MIDDLEWARE_CLASSES = (
 #    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
-ROOT_URLCONF = 'web.urls'
+ROOT_URLCONF = 'webapp.urls'
 
 TEMPLATE_DIRS = (
     # Use absolute paths, not relative paths.
@@ -83,7 +83,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 #    "django.core.context_processors.debug",
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
-    "web.grampsdb.views.context_processor",
+    "webapp.grampsdb.views.context_processor",
 )
 
 INSTALLED_APPS = (
@@ -92,7 +92,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
-    'web.grampsdb',
+    'webapp.grampsdb',
 #    'django_extensions',
 #    'debug_toolbar',
 )

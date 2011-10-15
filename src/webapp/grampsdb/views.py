@@ -41,10 +41,10 @@ from django.db.models import Q
 # Gramps Modules
 #
 #------------------------------------------------------------------------
-import web
-from web.grampsdb.models import *
-from web.grampsdb.forms import *
-from web.dbdjango import DbDjango
+import webapp
+from webapp.grampsdb.models import *
+from webapp.grampsdb.forms import *
+from webapp.dbdjango import DbDjango
 
 import gen.proxy
 from Utils import create_id
@@ -248,8 +248,8 @@ def send_file(request, filename, mimetype):
     return response
 
 def process_action(request, view, handle, action):
-    from web.reports import import_file
-    from web.reports import export_file
+    from webapp.reports import import_file
+    from webapp.reports import export_file
     from cli.plug import run_report
     db = DbDjango()
     if view == "report":
