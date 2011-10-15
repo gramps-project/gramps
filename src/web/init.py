@@ -111,6 +111,11 @@ for table, entries in [("grampsdb.config",
                           ("report_type", '"textreport"')),
                          (("name", '"GEDCOM Export"'),
                           ("handle", '"gedcom_export"'),
+                          ("options", '"off=ged"'),
+                          ("report_type", '"export"')),
+                         (("name", '"Gramps XML Export"'),
+                          ("handle", '"ex_gpkg"'),
+                          ("options", '"off=gramps"'),
                           ("report_type", '"export"')),
                          ])]:
     entry_count = 0

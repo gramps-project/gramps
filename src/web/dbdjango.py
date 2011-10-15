@@ -21,14 +21,6 @@
 
 """ Implements a Db interface """
 
-## Major issues to fix:
-
-## 1) import from GEDCOM is not associating proper gramps handles between objects
-##    suspect that something not working correct in adding with transactions
-##    BUG: People event_ref are no longer pointing to correct event, even
-##    previously-working export to django from gramps gtk
-## 2) did export from gramps gtk break with the changes for importing gedcom?
-
 #------------------------------------------------------------------------
 #
 # Gramps Modules
@@ -735,6 +727,12 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def get_number_of_people(self):
         return self.dji.Person.count()
+
+    def get_number_of_events(self):
+        return self.dji.Event.count()
+
+    def get_number_of_places(self):
+        return self.dji.Place.count()
 
     def get_number_of_tags(self):
         return 0 # self.dji.Tag.count()

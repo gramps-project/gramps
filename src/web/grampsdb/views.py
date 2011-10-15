@@ -256,20 +256,27 @@ def process_action(request, view, handle, action):
             profile = request.user.get_profile()
             report = Report.objects.get(handle=handle)
             if action == "run":
-                args = {}
+                args = {"off": "pdf"} # basic defaults
+                # override from given defaults in table:
+                if report.options:
+                    for pair in str(report.options).split(" "):
+                        if "=" in pair:
+                            key, value = pair.split("=", 1)
+                            args[key] = value
+                # override from options on webpage:
                 if request.GET.has_key("options"):
-                    options = request.GET.get("options")
+                    options = str(request.GET.get("options"))
                     if options:
-                        for pair in options.split("%3D"):
+                        for pair in options.split("%3D"): # from webpage
                             if "=" in pair:
                                 key, value = pair.split("=", 1)
-                                args[str(key)] = str(value)
+                                args[key] = value
                 if report.report_type == "textreport":
-                    filename = "/tmp/%s-%s.pdf" % (str(profile.user.username), str(handle))
-                    run_report(db, handle, off="pdf", of=filename, **args)
-                    mimetype = 'application/pdf'
+                    filename = "/tmp/%s-%s.%s" % (str(profile.user.username), str(handle), args["off"])
+                    run_report(db, handle, of=filename, **args)
+                    mimetype = 'application/%s' % args["off"]
                 elif report.report_type == "export":
-                    filename = "/tmp/%s-%s.ged" % (str(profile.user.username), str(handle))
+                    filename = "/tmp/%s-%s.%s" % (str(profile.user.username), str(handle), args["off"])
                     export_file(db, filename, lambda n: n) # callback
                     mimetype = 'text/plain'
                 else:
