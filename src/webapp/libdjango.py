@@ -36,9 +36,9 @@ import base64
 # Gramps Modules
 #
 #------------------------------------------------------------------------
-import web.grampsdb.models as models
+import webapp.grampsdb.models as models
 from django.contrib.contenttypes.models import ContentType
-import web
+import webapp
 import gen
 
 # To get a django person from a django database:

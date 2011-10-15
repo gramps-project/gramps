@@ -335,8 +335,8 @@ src/Simple/_SimpleDoc.py
 #
 #   web
 #
-src/web/grampsdb/views.py
-src/web/utils.py
+src/webapp/grampsdb/views.py
+src/webapp/utils.py
 
 #
 #   Glade files

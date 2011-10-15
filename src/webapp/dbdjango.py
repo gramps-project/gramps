@@ -40,7 +40,7 @@ from gen.db import (PERSON_KEY,
                     REPOSITORY_KEY,
                     NOTE_KEY)
 import Utils
-from web.libdjango import DjangoInterface
+from webapp.libdjango import DjangoInterface
 
 class Cursor(object):
     def __init__(self, model, func):
