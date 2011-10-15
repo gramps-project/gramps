@@ -884,6 +884,7 @@ def clear_tables(*categories):
     Clear the entries of categories of tables. Category is:
     "abstract", "type", "ref", "system", "primary" and "secondary".
     """
+    # FIXME: I don't think this works anymore...
     from django.db import connection, transaction
     cursor = connection.cursor()
     flush_tables = []

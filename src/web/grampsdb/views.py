@@ -248,8 +248,9 @@ def send_file(request, filename, mimetype):
     return response
 
 def process_action(request, view, handle, action):
+    from web.reports import import_file
+    from web.reports import export_file
     from cli.plug import run_report
-    from web.dbdjango import export_file
     db = DbDjango()
     if view == "report":
         if request.user.is_authenticated():
