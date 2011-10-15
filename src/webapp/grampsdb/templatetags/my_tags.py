@@ -3,8 +3,8 @@ import re
 from django import template
 from django.template import escape, Library
 from django.utils.safestring import mark_safe
-from web.utils import *
-import web.utils
+from webapp.utils import *
+import webapp.utils
 
 register = Library()
 
@@ -53,12 +53,12 @@ def make_tag(func):
     return do_func
 
 for filter_name in util_filters:
-    func = getattr(web.utils, filter_name)
+    func = getattr(webapp.utils, filter_name)
     func.is_safe = True
     register.filter(filter_name, func)
 
 for tag_name in util_tags:
-    func = getattr(web.utils, tag_name)
+    func = getattr(webapp.utils, tag_name)
     register.tag(tag_name, make_tag(func))
 
 probably_alive.is_safe = True
