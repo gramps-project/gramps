@@ -40,7 +40,7 @@ from gen.db import BSDDBTxn
 from gen.lib.nameorigintype import NameOriginType
 from gen.db.write import _mkname, SURNAMES
 from gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, EVENT_KEY, 
-                            MEDIA_KEY, PLACE_KEY)
+                            MEDIA_KEY, PLACE_KEY, REPOSITORY_KEY)
 from QuestionDialog import (InfoDialog)
 
 def gramps_upgrade_16(self):
@@ -67,13 +67,14 @@ def gramps_upgrade_16(self):
 
     # Setup data for upgrade statistics information dialogue
     keyorder = [PERSON_KEY, FAMILY_KEY, EVENT_KEY, MEDIA_KEY, 
-                PLACE_KEY]
+                PLACE_KEY, REPOSITORY_KEY]
     key2data = {
             PERSON_KEY : 0,
             FAMILY_KEY : 1,
             EVENT_KEY: 2, 
             MEDIA_KEY: 3, 
-            PLACE_KEY: 4, 
+            PLACE_KEY: 4,
+            REPOSITORY_KEY: 5, 
             }
     key2string = {
         PERSON_KEY      : _('%6d  People        upgraded with %6d citations in %6d secs\n'),
@@ -81,8 +82,9 @@ def gramps_upgrade_16(self):
         EVENT_KEY       : _('%6d  Events        upgraded with %6d citations in %6d secs\n'),
         MEDIA_KEY       : _('%6d  Media Objects upgraded with %6d citations in %6d secs\n'),
         PLACE_KEY       : _('%6d  Places        upgraded with %6d citations in %6d secs\n'),
+        REPOSITORY_KEY  : _('%6d  Repositories  upgraded with %6d citations in %6d secs\n'),
         }
-    data_upgradeobject = [0] * 5
+    data_upgradeobject = [0] * 6
 
     # Initialise the citation gramps ID number
     self.cmap_index = 0
@@ -305,6 +307,32 @@ def gramps_upgrade_16(self):
                                        self.cmap_index - start_num_citations,
                                        time.time() - start_time)
 
+    # ---------------------------------
+    # Modify Repositories
+    # ---------------------------------
+    start_num_citations = self.cmap_index
+    start_time = time.time()
+    for repository_handle in self.repository_map.keys():
+        repository = self.repository_map[repository_handle]
+        (handle, gramps_id, the_type, name, note_list,
+         address_list, urls, change, private) = repository
+        if address_list:
+            address_list = upgrade_address_list_16(
+                                    self, address_list)
+        if address_list:
+            new_repository = (handle, gramps_id, the_type, name, note_list,
+                              address_list, urls, change, private)
+            with BSDDBTxn(self.env, self.repository_map) as txn:
+                txn.put(str(handle), new_repository)
+        self.update()
+
+    LOG.debug("%d repositorys upgraded with %d citations in %d seconds. " % 
+              (len(self.repository_map.keys()), 
+               self.cmap_index - start_num_citations, 
+               time.time() - start_time))
+    data_upgradeobject[key2data[REPOSITORY_KEY]] = (len(self.repository_map.keys()),
+                                       self.cmap_index - start_num_citations,
+                                       time.time() - start_time)
     # ---------------------------------
 
     
