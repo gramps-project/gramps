@@ -62,6 +62,7 @@ VIEWS = [(_('People'), 'person', Name),
          (_('Places'), 'place', Place),
          (_('Repositories'), 'repository', Repository),
          (_('Tags'), 'tag', Tag),
+         (_('Reports'), 'report', Report),
          ]
 
 def context_processor(request):
@@ -96,7 +97,7 @@ def logout_page(request):
     logout(request)
     # TODO: allow this once we have an error page
     #if request.GET.has_key("next"):
-    #    return redirect(request.GET.get("next"), context)
+    #    return redirect(request.GET.get("next"))
     return HttpResponseRedirect('/')
 
 def user_page(request, username):
@@ -132,7 +133,7 @@ def fix_person(request, person):
                 name.save()
                 order += 1
     if request:
-        return redirect("/person/%s" % person.handle, request)
+        return redirect("/person/%s" % person.handle)
 
 def set_date(obj):
     obj.calendar = 0
@@ -225,11 +226,9 @@ def view_name_detail(request, handle, order, action="view"):
     view_template = "view_name_detail.html"
     if action == "save":
         context["action"] = "view"
-        return redirect("/person/%s/name/%d" % 
-                        (person.handle, name.order), context)
+        return redirect("/person/%s/name/%d" % (person.handle, name.order))
     elif action == "back":
-        return redirect("/person/%s/" % 
-                        (person.handle), context)
+        return redirect("/person/%s/" % (person.handle))
     else:
         return render_to_response(view_template, context)
     
@@ -280,23 +279,34 @@ def process_action(request, view, handle, action):
                     export_file(db, filename, lambda n: n) # callback
                     mimetype = 'text/plain'
                 elif report.report_type == "import":
-                    context = RequestContext(request)
                     filename = download(args["i"], "/tmp/%s-%s.ged" % (str(profile.user.username), str(handle)))
                     if filename is not None:
                         import threading
                         def background():
-                            import_file(db, filename, lambda n: n) # callback
+                            try:
+                                import_file(db, filename, lambda n: n) # callback
+                            except:
+                                message = "import_file failed."
+                                request.user.message_set.create(message = message)
                         threading.Thread(target=background).start()
-                        context["message"] = "Your data is now being imported..."
-                        return redirect("/report/", context)
+                        message = "Your data is now being imported..."
+                        request.user.message_set.create(message = message)
+                        return redirect("/report/")
                     else:
-                        context["error"] = "No filename was provided or found."
-                        return redirect("/report/", context)
+                        message = "No filename was provided or found."
+                        request.user.message_set.create(message = message)
+                        return redirect("/report/")
+                else:
+                    message = "Invalid report type '%s'" % report.report_type
+                    request.user.message_set.create(message = message)
+                    return redirect("/report/")
+                if os.path.exists(filename):
+                    return send_file(request, filename, mimetype)
                 else:
                     context = RequestContext(request)
-                    context["error"] = "Invalid report type '%s'" % report.report_type
-                    return redirect("/report/", context)
-                return send_file(request, filename, mimetype)
+                    message = "Failed: '%s' is not found" % filename
+                    request.user.message_set.create(message=message)
+                    return redirect("/report/")
     # If failure, just fail for now:
     context = RequestContext(request)
     context["tview"] = "Results"
@@ -462,8 +472,7 @@ def view_person_detail(request, view, handle, action="view"):
         nf.model = name
         # END NON-AUTHENTICATED ACCESS
     if action == "save":
-        context["action"] = "view"
-        return redirect("/person/%s" % person.handle, context)
+        return redirect("/person/%s" % person.handle)
     context["action"] = action
     context["view"] = view
     context["tview"] = _("Person")

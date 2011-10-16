@@ -91,7 +91,8 @@ class mGrampsType(models.Model):
 
     name = models.CharField(max_length=40)
     
-    def __unicode__(self): return self.name
+    def __unicode__(self): 
+        return str(self.name)
 
     def get_default_type(self):
         """ return a tuple default (val,name) """
@@ -418,8 +419,9 @@ class PrimaryObject(models.Model):
     #attributes = models.ManyToManyField("Attribute", blank=True, null=True)
     cache = models.TextField(blank=True, null=True)
 
-    def __unicode__(self): return "%s: %s" % (self.__class__.__name__,
-                                              self.gramps_id)
+    def __unicode__(self): 
+        return "%s: %s" % (self.__class__.__name__,
+                           self.gramps_id)
 
 class Person(PrimaryObject):
     """
@@ -479,6 +481,11 @@ class Family(PrimaryObject):
 
     # Others keys here:
     #   .lds_set
+
+    def __unicode__(self):
+        father = self.father.get_primary_name() if self.father else "No father"
+        mother = self.mother.get_primary_name() if self.mother else "No mother"
+        return str("%s and %s" % (father, mother))
 
 class Source(PrimaryObject):
     title = models.CharField(max_length=50, blank=True)
@@ -814,12 +821,18 @@ class Report(models.Model):
     report_type = models.TextField(blank=True, null=True)
     options = models.TextField(blank=True, null=True)
 
+    def __unicode__(self):
+        return str(self.name)
+
 class Result(models.Model):
     name = models.TextField(blank=True, null=True)
     filename = models.TextField(blank=True, null=True)
     run_on = models.DateTimeField('run on', auto_now=True)
     run_by = models.TextField('run by', blank=True, null=True)
     status = models.TextField(blank=True, null=True)
+
+    def __unicode__(self):
+        return str(self.name)
 
 TABLES = [
     ("abstract", mGrampsType),

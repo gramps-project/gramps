@@ -33,7 +33,6 @@
          <li {{tview|currentSection:view.1 }}><a href="/{{view.1}}/">{{view.0}}</a></li>
     {% endfor %}
     {% if user.is_authenticated %}
-         <li><a href="/report">Reports</a></li>
 	 {% if next %}
          <li><a href="/logout/?next={{next}}">Logout</a></li>
 	 {% else %}
@@ -52,16 +51,13 @@
     </ul>
     {% endblock %}
    </div>
-   <div class="content">
-     {% if error %}
-     <font color="red">{{error}}</font>
-     {% endif %}
-     {% if message %}
-     <font color="blue">{{message}}</font>
-     {% endif %}
     <div class="grampsweb">
+     {% for message in messages %}
+        <font color="red">{{message}}</font>
+     {% endfor %}
     {% block content %}
     {% endblock %}
+   <div class="content">
     </div>
    </div>
    <div id="footer">
