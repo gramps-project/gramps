@@ -20,7 +20,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# $Id: _ReportOptions.py 13346 2009-10-08 01:12:51Z dsblank $
+# $Id$
 
 # Written by Alex Roitman
 
