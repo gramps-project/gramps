@@ -35,7 +35,9 @@ def import_file(db, filename, callback):
         if format == pdata.extension:
             mod = pmgr.load_plugin(pdata)
             if not mod:
-                for name, error_tuple in pmgr.get_fail_list():
+                for item in pmgr.get_fail_list():
+                    name, error_tuple, pdata = item
+                    # (filename, (exception-type, exception, traceback), pdata)
                     etype, exception, traceback = error_tuple
                     print "ERROR:", name, exception
                 return False
@@ -89,7 +91,8 @@ def export_file(db, filename, callback):
         if format == pdata.extension:
             mod = pmgr.load_plugin(pdata)
             if not mod:
-                for name, error_tuple in pmgr.get_fail_list():
+                for item in pmgr.get_fail_list():
+                    name, error_tuple, pdata = item
                     etype, exception, traceback = error_tuple
                     print "ERROR:", name, exception
                 return False

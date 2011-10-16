@@ -268,6 +268,7 @@ def send_file(request, filename, mimetype):
 def process_action(request, view, handle, action):
     from webapp.reports import import_file, export_file, download
     from cli.plug import run_report
+    import traceback
     db = DbDjango()
     if view == "report":
         if request.user.is_authenticated():
@@ -302,17 +303,24 @@ def process_action(request, view, handle, action):
                                                                       str(handle),
                                                                       args["iff"]))
                     if filename is not None:
-                        import threading
-                        def background():
-                            try:
-                                import_file(db, filename, lambda n: n) # callback
-                            except:
-                                message = "import_file failed."
+                        if True: # run in background, with error handling
+                            import threading
+                            def background():
+                                try:
+                                    import_file(db, filename, lambda n: n) # callback
+                                except:
+                                    message = "import_file failed: " + traceback.format_exc()
+                                    request.user.message_set.create(message = message)
+                            threading.Thread(target=background).start()
+                            message = "Your data is now being imported..."
+                            request.user.message_set.create(message = message)
+                            return redirect("/report/")
+                        else:
+                            success = import_file(db, filename, lambda n: n) # callback
+                            if not success:
+                                message = "Failed to load imported."
                                 request.user.message_set.create(message = message)
-                        threading.Thread(target=background).start()
-                        message = "Your data is now being imported..."
-                        request.user.message_set.create(message = message)
-                        return redirect("/report/")
+                            return redirect("/report/")
                     else:
                         message = "No filename was provided or found."
                         request.user.message_set.create(message = message)
