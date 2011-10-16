@@ -29,8 +29,27 @@
     {% block navigation %}
     <ul>
     <li {{ tview|currentSection:"home" }}><a href="/">Home</a></li>
-    {% for view in views %}
-         <li {{tview|currentSection:view.1 }}><a href="/{{view.1}}/">{{view.0}}</a></li>
+    {% for title in menu %}
+         {# (<Nice name>, /<path>/, <Model> | None, Need authentication ) #}
+         {% if title.3 %} 
+	   {% if user.is_authenticated %}
+                <li {{tview|currentSection:title.1 }}>
+	        {% if title.1 %}
+                   <a href="/{{title.1}}/">{{title.0}}</a></li>
+	        {% else %}
+                   <a href="/">{{title.0}}</a></li>
+	        {% endif %}
+	   {% else %}
+                {# don't show #}
+           {% endif %}
+        {% else %}
+                <li {{tview|currentSection:title.1 }}>
+	        {% if title.1 %}
+                   <a href="/{{title.1}}/">{{title.0}}</a></li>
+	        {% else %}
+                   <a href="/">{{title.0}}</a></li>
+	        {% endif %}
+	{% endif %}
     {% endfor %}
     {% if user.is_authenticated %}
 	 {% if next %}

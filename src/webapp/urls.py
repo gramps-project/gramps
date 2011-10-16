@@ -40,7 +40,7 @@ admin.autodiscover()
 
 from webapp.grampsdb.views import (main_page, user_page, logout_page, 
                                    process_action, view, view_detail, 
-                                   view_name_detail)
+                                   view_name_detail, browse_page)
 
 urlpatterns = patterns('',
     # Specific matches first:
@@ -63,7 +63,9 @@ urlpatterns += patterns('',
 # The rest will match views:
 urlpatterns += patterns('',
     (r'^$', main_page),
+    (r'^user/$', user_page),
     (r'^user/(\w+)/$', user_page),
+    (r'^browse/$', browse_page),
     (r'^login/$', 'django.contrib.auth.views.login'),
     (r'^logout/$', logout_page),
     (r'^(?P<view>(\w+))/$', view),

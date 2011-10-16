@@ -4,6 +4,7 @@ from django import template
 from django.template import escape, Library
 from django.utils.safestring import mark_safe
 from webapp.utils import *
+from webapp.grampsdb.views import VIEWS
 import webapp.utils
 
 register = Library()
@@ -104,8 +105,29 @@ def missing(data):
 missing.is_safe = True
 register.filter('missing', missing)
 
-def currentSection(view1, view2):
-    if view1.strip().lower() == view2.strip().lower():
+def getViewName(item):
+    for view in VIEWS:
+        if view[1] == item:
+            return view[0]
+    if item == "name":
+        return "Names"
+    return "Unknown View"
+
+def breadcrumb(path, arg=None):
+    if arg:
+        path = path.replace("{0}", arg)
+    retval = ""
+    for item in path.split(","):
+        p, name = item.split("|")
+        retval += '<a href="%s">%s</a> > ' % (p, name)
+    return "<p>%s</p>" % retval
+breadcrumb.is_safe = True
+register.filter('breadcrumb', breadcrumb)
+
+def currentSection(view1, view2): # tview, menu
+    if view1.strip().lower() in [view[1] for view in VIEWS] and view2 == "browse":
+        return "class=CurrentSection"
+    elif view1.strip().lower() == view2.strip().lower():
         return "class=CurrentSection"
     return ""
 currentSection.is_safe = True

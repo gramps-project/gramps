@@ -117,6 +117,14 @@ for table, entries in [("grampsdb.config",
                           ("handle", '"ex_gpkg"'),
                           ("options", '"off=gramps"'),
                           ("report_type", '"export"')),
+                         (("name", '"GEDCOM Import"'),
+                          ("handle", '"im_ged"'),
+                          ("options", '"iff=ged i=http://arborvita.free.fr/Kennedy/Kennedy.ged"'),
+                          ("report_type", '"import"')),
+                         (("name", '"Gramps package (portable XML) Import"'),
+                          ("handle", '"im_gpkg"'),
+                          ("options", '"iff=gramps i=http://gramps.svn.sourceforge.net/viewvc/gramps/trunk/example/gramps/example.gramps?revision=18333"'),
+                          ("report_type", '"import"')),
                          ])]:
     entry_count = 0
     for entry in entries:

@@ -11,6 +11,9 @@
    </script>
 
 <div class="content" id="IndividualDetail">
+
+{{ "/browse|Browse,/person|People,/person/{0}|Person"|breadcrumb:person.handle}}
+
 <h3>{{person|make_name:user}} [{{person.gramps_id}}]</h3>
 <div id="summaryarea">
 <table class="infolist"> {% comment %} 4 cols {% endcomment %}

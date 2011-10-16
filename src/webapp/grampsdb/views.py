@@ -52,18 +52,24 @@ import const
 
 _ = lambda text: text
 
+# Menu: (<Nice name>, /<path>/, <Model> | None, Need authentication ) 
+MENU = [
+    (_('Browse'), 'browse', None, False),
+    (_('Reports'), 'report', Report, True),
+    (_('User'), 'user', None, True),
+]
 # Views: [(<Nice name plural>, /<name>/handle, <Model>), ]
-VIEWS = [(_('People'), 'person', Name), 
-         (_('Families'), 'family', Family),
-         (_('Events'), 'event', Event),
-         (_('Notes'), 'note', Note),
-         (_('Media'), 'media', Media),
-         (_('Sources'), 'source', Source),
-         (_('Places'), 'place', Place),
-         (_('Repositories'), 'repository', Repository),
-         (_('Tags'), 'tag', Tag),
-         (_('Reports'), 'report', Report),
-         ]
+VIEWS = [
+    (_('People'), 'person', Name), 
+    (_('Families'), 'family', Family),
+    (_('Events'), 'event', Event),
+    (_('Notes'), 'note', Note),
+    (_('Media'), 'media', Media),
+    (_('Sources'), 'source', Source),
+    (_('Places'), 'place', Place),
+    (_('Repositories'), 'repository', Repository),
+    (_('Tags'), 'tag', Tag),
+    ]
 
 def context_processor(request):
     """
@@ -79,6 +85,7 @@ def context_processor(request):
     # Other things for all environments:
     context["gramps_version"] = const.VERSION
     context["views"] = VIEWS
+    context["menu"] = MENU
     context["True"] = True
     context["False"] = False
     context["default"] = ""
@@ -100,16 +107,28 @@ def logout_page(request):
     #    return redirect(request.GET.get("next"))
     return HttpResponseRedirect('/')
 
-def user_page(request, username):
-    try:
-        user = User.objects.get(username=username)
-    except User.DoesNotExist:
-        raise Http404(_('Requested user not found.'))
+def browse_page(request):
     context = RequestContext(request)
-    context["username"] =  username
-    context["view"] = 'user'
-    context["tview"] = _('User')
-    return render_to_response('user_page.html', context)
+    context["view"] = 'browse'
+    context["tview"] = _('Browse')
+    return render_to_response('browse_page.html', context)
+
+def user_page(request, username=None):
+    if request.user.is_authenticated():
+        if username is None:
+            profile = request.user.get_profile()
+            username = profile.user.username
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            raise Http404(_('Requested user not found.'))
+        context = RequestContext(request)
+        context["username"] =  username
+        context["view"] = 'user'
+        context["tview"] = _('User')
+        return render_to_response('user_page.html', context)
+    else:
+        raise Http404(_("Requested page is not accessible."))
 
 def fix_person(request, person):
     try:
@@ -255,7 +274,7 @@ def process_action(request, view, handle, action):
             profile = request.user.get_profile()
             report = Report.objects.get(handle=handle)
             if action == "run":
-                args = {"off": "pdf"} # basic defaults
+                args = {"off": "pdf", "iff": "ged"} # basic defaults
                 # override from given defaults in table:
                 if report.options:
                     for pair in str(report.options).split(" "):
@@ -266,7 +285,7 @@ def process_action(request, view, handle, action):
                 if request.GET.has_key("options"):
                     options = str(request.GET.get("options"))
                     if options:
-                        for pair in options.split("%3D"): # from webpage
+                        for pair in options.split(" "): # from webpage
                             if "=" in pair:
                                 key, value = pair.split("=", 1)
                                 args[key] = value
@@ -279,7 +298,9 @@ def process_action(request, view, handle, action):
                     export_file(db, filename, lambda n: n) # callback
                     mimetype = 'text/plain'
                 elif report.report_type == "import":
-                    filename = download(args["i"], "/tmp/%s-%s.ged" % (str(profile.user.username), str(handle)))
+                    filename = download(args["i"], "/tmp/%s-%s.%s" % (str(profile.user.username), 
+                                                                      str(handle),
+                                                                      args["iff"]))
                     if filename is not None:
                         import threading
                         def background():
@@ -309,7 +330,6 @@ def process_action(request, view, handle, action):
                     return redirect("/report/")
     # If failure, just fail for now:
     context = RequestContext(request)
-    context["tview"] = "Results"
     #context["view"] = view
     #context["handle"] = handle
     #context["action"] = action
@@ -321,6 +341,7 @@ def view_detail(request, view, handle, action="view"):
     context = RequestContext(request)
     context["action"] = action
     context["view"] = view
+    context["tview"] = _('Browse')
     if view == "event":
         try:
             obj = Event.objects.get(handle=handle)

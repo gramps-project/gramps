@@ -26,8 +26,10 @@ Database information:</p>
 </tr>
 {% for view in views %}
    <tr class="{% cycle odd,even %}">
-       <td align="left"><a href="/{{view.1}}">{{view.0}}</a></td> 
-       <td align="right"><a href="/{{view.1}}">{{view.2.objects.count|format_number}}</td>
+       {% if view.2 %}
+          <td align="left"><a href="/{{view.1}}">{{view.0}}</a></td> 
+          <td align="left"><a href="/{{view.1}}">{{view.2.objects.count|format_number}}</td>
+       {% endif %}
    </tr>
 {% endfor %}
 </table>
