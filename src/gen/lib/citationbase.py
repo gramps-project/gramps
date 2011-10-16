@@ -137,6 +137,20 @@ class CitationBase(object):
         """
         return self.citation_list
 
+    def get_all_citation_lists(self):
+        """
+        Return the list of :class:`~gen.lib.citation.Citation` handles 
+        associated with the object or with child objects.
+
+        :returns: The list of :class:`~gen.lib.citation.Citation` handles
+        :rtype: list
+        """
+        list = self.citation_list
+        
+        for item in self.get_citation_child_list():
+            list += item.get_citation_list()
+        return list
+
     def has_citation_reference(self, citation_handle):
         """
         Return True if the object or any of its child objects has reference 

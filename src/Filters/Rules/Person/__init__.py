@@ -33,6 +33,7 @@ from _HasAlternateName import HasAlternateName
 from _HasAssociation import HasAssociation
 from _HasAttribute import HasAttribute
 from _HasBirth import HasBirth
+from _HasCitation import HasCitation
 from _HasCommonAncestorWith import HasCommonAncestorWith
 from _HasCommonAncestorWithFilterMatch import HasCommonAncestorWithFilterMatch
 from _HasDeath import HasDeath
@@ -50,7 +51,7 @@ from _HasNote import HasNote
 from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
 from _HasNoteRegexp import HasNoteRegexp
 from _HasRelationship import HasRelationship
-from _HasSource import HasSource
+from _HasSourceCount import HasSourceCount
 from _HasSourceOf import HasSourceOf
 from _HasTag import HasTag
 from _HasTextMatchingRegexpOf import HasTextMatchingRegexpOf
@@ -131,12 +132,13 @@ editor_rule_list = [
     HasRelationship,
     HasDeath,
     HasBirth,
+    HasCitation, 
     HasEvent,
     HasFamilyEvent,
     HasAttribute,
     HasFamilyAttribute,
     HasTag,
-    HasSource,
+    HasSourceCount,
     HasSourceOf,
     HaveAltFamilies,
     HavePhotos,

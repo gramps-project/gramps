@@ -1,10 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2007  Donald N. Allingham
-# Copyright (C) 2007-2008  Brian G. Matherly
-# Copyright (C) 2008  Jerome Rapinat
-# Copyright (C) 2008  Benny Malengier
+# Copyright (C) 2002-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,6 +20,9 @@
 
 # $Id$
 
+"""
+Filter rule to match persons with a particular citation.
+"""
 #-------------------------------------------------------------------------
 #
 # Standard Python modules
@@ -35,13 +35,26 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._HasSourceBase import HasSourceBase
+from Filters.Rules._HasCitationBase import HasCitationBase
 
 #-------------------------------------------------------------------------
-# "Families having sources"
+#
+# HasEvent
+#
 #-------------------------------------------------------------------------
-class HasSource(HasSourceBase):
-    """Families with sources"""
+class HasCitation(HasCitationBase):
+    """Rule that checks for a person with a particular value"""
 
-    name        = _('Families with <count> sources')
-    description = _("Matches families with a certain number of sources connected to it")
+    labels      = [ _('Volume/Page:'), 
+                    _('Date:'), 
+                    _('Confidence level:')]
+    name        =  _('People with the <citation>')
+    description = _("Matches people with a citation of a particular "
+                    "value")
+    
+    def apply(self, dbase, person):
+        for citation_handle in person.get_citation_list():
+            citation = dbase.get_citation_from_handle(citation_handle)
+            if HasCitationBase.apply(self, dbase, citation):
+                return True
+        return False

@@ -22,6 +22,46 @@
 
 """
 Package providing filter rules for GRAMPS.
+
+The following filters are provided in Filters/Rules.
+
+Match given values:
+_HasCitationBase             Citation with a particular value (HasCitation)
+                             also used for Person, Family and Event having a 
+                             particular Citation
+_HasEventBase                Event with a particular value (HasEvent)
+                             also used for Family and Person having a particular
+                             Event
+_HasSourceBase               Source with a particular value (HasSource)
+                             also used for Citation having a particular Source
+
+Match on sub-objects
+_ChangedSinceBase            Object changed since date
+_HasAttributeBase            Object has particular attribute value
+_HasGrampsId                 Object has a specific Gramps Id
+_HasNoteRegexBase            Object has notes matching regular expression
+_HasNoteSubstrBase           Object has note containing substring
+_HasTagBase                  Object has a particular tag
+_HasTextMatchingRegexpOf     Object has text matching regular expression
+_HasTextMatchingSubstringOf  Object has text containing substring
+_IsPrivate                   Object is marked as private
+_MatchesFilterBase           Object matches another filter
+_RegExpldBase                Object has Gramps Id matching regular expression
+
+Match on related objects
+_MatchesFilterEventBase      Object has an event that matches another filter
+_MatchesSourceConfidenceBase Object with specific confidence on direct sources
+_MatchesSourceFilterBase     Object matches another filter on direct sources
+
+Count based
+_HasGalleryBase              Object has </>/= number of media objects
+_HasLDSBase                  Object has </>/= number of LDS  sub-objects
+_HasNoteBase                 Object has </>/= number of notes
+_HasReferenceCountBase       Object has </>/= number of references
+_HasSourceCountBase          Object has </>/= number of sources
+
+_Rule                        Base rule class
+_Everything                  Match every object in the database
 """
 
 # Need to expose this to be available for filter plugins:

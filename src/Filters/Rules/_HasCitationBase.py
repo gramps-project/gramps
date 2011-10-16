@@ -53,7 +53,7 @@ class HasCitationBase(Rule):
                     _('Confidence:') ]
     name        = _('Citations matching parameters')
     description = _("Matches citations with particular parameters")
-    category    = _('General filters')
+    category    = _('Citation/source filters')
 
     def prepare(self, db):
         self.date = None

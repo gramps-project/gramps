@@ -44,7 +44,7 @@ class HasSourceOf(Rule):
 
     labels      = [ _('Source ID:') ]
     name        = _('People with the <source>')
-    category    = _('General filters')
+    category    = _('Citation/source filters')
     description = _('Matches people who have a particular source')
     
     def prepare(self,db):
@@ -55,14 +55,22 @@ class HasSourceOf(Rule):
 
         self.nosource = False
         try:
-            self.source_handle = db.get_source_from_gramps_id(self.list[0]).get_handle()
+            self.source_handle = db.get_source_from_gramps_id(
+                    self.list[0]).get_handle()
         except:
             self.source_handle = None
 
     def apply(self, db, person):
         if not self.source_handle:
             if self.nosource:
-                return len(person.get_source_references()) == 0
+                # check whether the citation list is empty as a proxy for
+                # there being no sources
+                return len(person.get_all_citation_lists()) == 0
             else:
                 return False
-        return person.has_source_reference(self.source_handle)
+        else:
+            for citation_handle in person.get_all_citation_lists():
+                citation = db.get_citation_from_handle(citation_handle)
+                if citation.get_reference_handle() == self.source_handle:
+                    return True
+            return False

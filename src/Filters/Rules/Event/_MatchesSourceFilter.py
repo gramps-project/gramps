@@ -49,7 +49,7 @@ class MatchesSourceFilter(MatchesSourceFilterBase):
     name        = _('Events with source matching the <source filter>')
     description = _("Matches events with sources that match the "
                     "specified source filter name")
-    category    = _('General filters')
+    category    = _('Citation/source filters')
 
     # we want to have this filter show source filters
     namespace   = 'Source'

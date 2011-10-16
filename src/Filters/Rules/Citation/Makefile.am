@@ -13,6 +13,7 @@ pkgdata_PYTHON = \
 	_HasNoteMatchingSubstringOf.py \
 	_HasNoteRegexp.py \
 	_HasReferenceCountOf.py \
+	_HasSource.py \
 	_MatchesFilter.py \
 	_MatchesPageSubstringOf.py \
 	_MatchesRepositoryFilter.py \

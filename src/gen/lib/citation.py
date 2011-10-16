@@ -181,6 +181,8 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
         """
         return self.media_list
 
+# FIXME: get_sourceRef_child_list needs to be removed
+
 #    def get_sourcref_child_list(self):
 #        """
 #        Return the list of child secondary objects that may refer sources.
@@ -192,16 +194,6 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
 #        :rtype: list
 #        """
 #        return []
-
-    def get_source_references(self) :
-        """
-        Return the list of source references associated with the object.
-
-        :returns: Returns the list of :class:`~gen.lib.srcref.SourceRef` objects associated with
-            the object.
-        :rtype: list
-        """
-        return [self.source_handle]
 
     def get_note_child_list(self):
         """
@@ -236,6 +228,11 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
             ret += [('Source', self.get_reference_handle())]
         return ret
 
+# FIXME: Remove all has_source_refernce and consequently all
+# get_sourceref_child_list, because these seem to be only used in the filter
+# _HasSourceOf and mergesource, and it is better to make the test directly,
+# because, only citations refer to sources, and they have only one reference.
+# need to check remove and replace source reference.
     def has_source_reference(self, src_handle) :
         """
         Return True if any of the child objects has reference to this source 

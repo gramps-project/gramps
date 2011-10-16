@@ -34,23 +34,36 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules import MatchesSourceFilterBase
+from Filters.Rules import MatchesFilterBase
 
 #-------------------------------------------------------------------------
 #
 # MatchesFilter
 #
 #-------------------------------------------------------------------------
-class MatchesSourceFilter(MatchesSourceFilterBase):
+class MatchesSourceFilter(MatchesFilterBase):
     """
     Rule that checks against another filter.
     """
 
     labels      = [_('Source filter name:')]
-    name        = _('Events with source matching the <source filter>')
-    description = _("Matches events with sources that match the "
+    name        = _('Citations with source matching the <source filter>')
+    description = _("Matches citations with sources that match the "
                     "specified source filter name")
     category    = _('General filters')
 
     # we want to have this filter show source filters
     namespace   = 'Source'
+
+    def prepare(self, db):
+        MatchesFilterBase.prepare(self, db)
+        self.MRF_filt = self.find_filter()
+            
+    def apply(self, db, object):
+        if self.MRF_filt is None :
+            return False
+        
+        source_handle = object.source_handle
+        if self.MRF_filt.check(db, source_handle):
+            return True
+        return False

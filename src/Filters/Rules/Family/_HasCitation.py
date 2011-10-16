@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,6 +21,9 @@
 
 # $Id$
 
+"""
+Filter rule to match family with a particular citation.
+"""
 #-------------------------------------------------------------------------
 #
 # Standard Python modules
@@ -32,32 +36,26 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._Rule import Rule
+from Filters.Rules._HasCitationBase import HasCitationBase
 
 #-------------------------------------------------------------------------
 #
-# HasSource
+# HasEvent
 #
 #-------------------------------------------------------------------------
-class HasSource(Rule):
-    """Rule that checks for a person with a particular value"""
+class HasCitation(HasCitationBase):
+    """Rule that checks for a family with a particular value"""
 
-
-    labels      = [ _('Title:'), 
-                    _('Author:'), 
-                    _('Publication:') ]
-    name        = _('Sources matching parameters')
-    description = _("Matches sources with particular parameters")
-    category    = _('General filters')
-
-    def apply(self,db,source):
-        if not self.match_substring(0,source.get_title()):
-            return False
-
-        if not self.match_substring(1,source.get_author()):
-            return False
-
-        if not self.match_substring(2,source.get_publication_info()):
-            return False
-
-        return True
+    labels      = [ _('Volume/Page:'), 
+                    _('Date:'), 
+                    _('Confidence level:')]
+    name        =  _('Family with the <citation>')
+    description = _("Matches families with a citation of a particular "
+                    "value")
+    
+    def apply(self, dbase, family):
+        for citation_handle in family.get_citation_list():
+            citation = dbase.get_citation_from_handle(citation_handle)
+            if HasCitationBase.apply(self, dbase, citation):
+                return True
+        return False

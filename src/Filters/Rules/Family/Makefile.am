@@ -8,6 +8,7 @@ pkgdata_PYTHON = \
 	_FamilyPrivate.py\
 	_HasEvent.py\
 	_HasAttribute.py\
+	_HasCitation.py \
 	_HasGallery.py \
 	_HasIdOf.py\
 	_HasLDS.py \
@@ -16,7 +17,7 @@ pkgdata_PYTHON = \
 	_HasNoteRegexp.py\
 	_HasReferenceCountOf.py\
 	_HasRelType.py\
-	_HasSource.py \
+	_HasSourceCount.py \
 	_HasTag.py \
 	__init__.py\
 	_IsBookmarked.py\

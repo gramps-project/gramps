@@ -35,12 +35,12 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._HasSourceBase import HasSourceBase
+from Filters.Rules._HasSourceCountBase import HasSourceCountBase
 
 #-------------------------------------------------------------------------
 # "People having sources"
 #-------------------------------------------------------------------------
-class HasSource(HasSourceBase):
+class HasSourceCount(HasSourceCountBase):
     """People with sources"""
 
     name        = _('People with <count> sources')

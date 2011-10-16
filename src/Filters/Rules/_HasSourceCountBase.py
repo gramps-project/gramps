@@ -2,8 +2,9 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2002-2007  Donald N. Allingham
-# Copyright (C) 2007-2009  Brian G. Matherly
-# Copyright (C) 2009  Benny Malengier
+# Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2008  Jerome Rapinat
+# Copyright (C) 2008  Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,6 +21,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 #-------------------------------------------------------------------------
 #
 # Standard Python modules
@@ -32,13 +35,36 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._HasSourceBase import HasSourceBase
+from Filters.Rules._Rule import Rule
 
 #-------------------------------------------------------------------------
-# "People having sources"
+# "Objects having sources"
 #-------------------------------------------------------------------------
-class HasSource(HasSourceBase):
-    """Events with sources"""
+class HasSourceCountBase(Rule):
+    """Objects having sources"""
 
-    name        = _('Events with <count> sources')
-    description = _("Matches events with a certain number of sources connected to it")
+    labels      = [  _('Number of instances:'), _('Number must be:')]
+    name        = _('Objects with <count> sources')
+    description = _("Matches objects that have a certain number of sources "
+                    "connected to it (actually citations are counted)")
+    category    = _('Citation/source filters')
+
+    def prepare(self, db):
+        # things we want to do just once, not for every handle
+        if  self.list[1] == 'lesser than':
+            self.count_type = 0
+        elif self.list[1] == 'greater than':
+            self.count_type = 2
+        else:
+            self.count_type = 1 # "equal to"
+
+        self.userSelectedCount = int(self.list[0])
+
+    def apply(self, db, obj):
+        count = len(obj.get_citation_list())
+        if self.count_type == 0:     # "lesser than"
+            return count < self.userSelectedCount
+        elif self.count_type == 2:   # "greater than"
+            return count > self.userSelectedCount
+        # "equal to"
+        return count == self.userSelectedCount

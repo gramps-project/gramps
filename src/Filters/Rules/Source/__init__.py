@@ -25,6 +25,8 @@
 Package providing filter rules for GRAMPS.
 """
 
+from Filters.Rules._HasSourceBase import HasSourceBase as HasSource
+
 from _AllSources import AllSources
 from _HasGallery import HasGallery
 from _HasIdOf import HasIdOf
@@ -35,7 +37,6 @@ from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
 from _HasReferenceCountOf import HasReferenceCountOf
 from _SourcePrivate import SourcePrivate
 from _MatchesFilter import MatchesFilter
-from _HasSource import HasSource
 from _ChangedSince import ChangedSince
 from _HasRepository import HasRepository
 from _MatchesTitleSubstringOf import MatchesTitleSubstringOf

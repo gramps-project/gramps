@@ -1,7 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2010  Benny Malengier
+# Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,8 +19,11 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _MatchesSourceFilterBase.py
+# $Id$
 
+"""
+Filter rule to match citation with a particular source.
+"""
 #-------------------------------------------------------------------------
 #
 # Standard Python modules
@@ -32,38 +36,27 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules import MatchesFilterBase
+from Filters.Rules._HasSourceBase import HasSourceBase
 
 #-------------------------------------------------------------------------
 #
-# MatchesFilter
+# HasEvent
 #
 #-------------------------------------------------------------------------
-class MatchesSourceFilterBase(MatchesFilterBase):
-    """
-    Rule that checks against another filter.
-    """
+class HasSource(HasSourceBase):
+    """Rule that checks for an citation with a particular value"""
 
-    labels      = [_('Source filter name:')]
-    name        = _('Objects with source matching the <source filter>')
-    description = _("Matches objects with sources that match the "
-                    "specified source filter name")
-    category    = _('Citation/source filters')
-
-    # we want to have this filter show source filters
-    namespace   = 'Source'
-
-    def prepare(self, db):
-        MatchesFilterBase.prepare(self, db)
-        self.MSF_filt = self.find_filter()
-
-    def apply(self, db, object):
-        if self.MSF_filt is None :
-            return False
-        
-        for citation_handle in object.get_citation_list():
-            citation = db.get_citation_from_handle(citation_handle)
-            sourcehandle = citation.get_reference_handle()
-            if self.MSF_filt.check(db, sourcehandle):
-                return True
+    labels      = [ _('Title:'), 
+                    _('Author:'), 
+                    _('Publication:') ]
+    name        = _('Sources matching parameters')
+    description = _("Matches citations with a source of a particular "
+                    "value")
+    category    = _('Source filters')
+    
+    def apply(self, dbase, citation):
+        source = dbase.get_source_from_handle(
+                                    citation.get_reference_handle())
+        if HasSourceBase.apply(self, dbase, source):
+            return True
         return False
