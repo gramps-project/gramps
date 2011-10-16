@@ -46,6 +46,32 @@ def import_file(db, filename, callback):
             return True
     return False
 
+def download(url, filename=None):
+    import urllib2
+    import shutil
+    import urlparse
+    def getFilename(url,openUrl):
+        if 'Content-Disposition' in openUrl.info():
+            # If the response has Content-Disposition, try to get filename from it
+            cd = dict(map(
+                lambda x: x.strip().split('=') if '=' in x else (x.strip(),''),
+                openUrl.info().split(';')))
+            if 'filename' in cd:
+                fname = cd['filename'].strip("\"'")
+                if fname: return fname
+        # if no filename was found above, parse it out of the final URL.
+        return os.path.basename(urlparse.urlsplit(openUrl.url)[2])
+    r = urllib2.urlopen(urllib2.Request(url))
+    success = None
+    try:
+        filename = filename or "/tmp/%s" % getFilename(url,r)
+        with open(filename, 'wb') as f:
+            shutil.copyfileobj(r,f)
+        success = filename
+    finally:
+        r.close()
+    return success
+
 def export_file(db, filename, callback):
     """
     Export the db to a file (such as a GEDCOM file).

@@ -130,6 +130,7 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         MediaBase.unserialize(self, media_list)
         SourceBase.unserialize(self, source_list)
         NoteBase.unserialize(self, note_list)
+        return self
 
     def get_text_data_list(self):
         """

@@ -53,6 +53,12 @@
     {% endblock %}
    </div>
    <div class="content">
+     {% if error %}
+     <font color="red">{{error}}</font>
+     {% endif %}
+     {% if message %}
+     <font color="blue">{{message}}</font>
+     {% endif %}
     <div class="grampsweb">
     {% block content %}
     {% endblock %}

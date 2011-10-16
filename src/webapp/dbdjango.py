@@ -52,12 +52,12 @@ class Cursor(object):
         return self.__next__()
     def __next__(self):
         for item in self.model.all():
-            yield (item.handle, self.func(item))
+            yield (item.handle, self.func(item.handle))
     def __exit__(self, *args, **kwargs):
         pass
     def iter(self):
         for item in self.model.all():
-            yield (item.handle, self.func(item))
+            yield (item.handle, self.func(item.handle))
         yield None
 
 class Bookmarks:
@@ -678,19 +678,19 @@ class DbDjango(DbWriteBase, DbReadBase):
         return self.dji.Repository.count()
 
     def get_place_cursor(self):
-        return Cursor(self.dji.Place, self.make_place).iter()
+        return Cursor(self.dji.Place, self.get_raw_place_data).iter()
 
     def get_person_cursor(self):
-        return Cursor(self.dji.Person, self.make_person).iter()
+        return Cursor(self.dji.Person, self.get_raw_person_data).iter()
 
     def get_family_cursor(self):
-        return Cursor(self.dji.Family, self.make_family).iter()
+        return Cursor(self.dji.Family, self.get_raw_family_data).iter()
 
     def get_events_cursor(self):
-        return Cursor(self.dji.Event, self.make_event).iter()
+        return Cursor(self.dji.Event, self.get_raw_event_data).iter()
 
     def get_source_cursor(self):
-        return Cursor(self.dji.Source, self.make_source).iter()
+        return Cursor(self.dji.Source, self.get_raw_source_data).iter()
 
     def has_person_handle(self, handle):
         return self.dji.Person.filter(handle=handle).count() == 1

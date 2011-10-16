@@ -248,8 +248,7 @@ def send_file(request, filename, mimetype):
     return response
 
 def process_action(request, view, handle, action):
-    from webapp.reports import import_file
-    from webapp.reports import export_file
+    from webapp.reports import import_file, export_file, download
     from cli.plug import run_report
     db = DbDjango()
     if view == "report":
@@ -280,8 +279,23 @@ def process_action(request, view, handle, action):
                     filename = "/tmp/%s-%s.%s" % (str(profile.user.username), str(handle), args["off"])
                     export_file(db, filename, lambda n: n) # callback
                     mimetype = 'text/plain'
+                elif report.report_type == "import":
+                    context = RequestContext(request)
+                    filename = download(args["i"], "/tmp/%s-%s.ged" % (str(profile.user.username), str(handle)))
+                    if filename is not None:
+                        import threading
+                        def background():
+                            import_file(db, filename, lambda n: n) # callback
+                        threading.Thread(target=background).start()
+                        context["message"] = "Your data is now being imported..."
+                        return redirect("/report/", context)
+                    else:
+                        context["error"] = "No filename was provided or found."
+                        return redirect("/report/", context)
                 else:
-                    pass # FIXME: error
+                    context = RequestContext(request)
+                    context["error"] = "Invalid report type '%s'" % report.report_type
+                    return redirect("/report/", context)
                 return send_file(request, filename, mimetype)
     # If failure, just fail for now:
     context = RequestContext(request)
