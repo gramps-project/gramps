@@ -692,6 +692,9 @@ class DbDjango(DbWriteBase, DbReadBase):
     def get_source_cursor(self):
         return Cursor(self.dji.Source, self.get_raw_source_data).iter()
 
+    def has_gramps_id(self, key, gramps_id):
+        return self.dji.Person.filter(handle=handle).count() == 1
+
     def has_person_handle(self, handle):
         return self.dji.Person.filter(handle=handle).count() == 1
 
@@ -709,6 +712,12 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def has_place_handle(self, handle):
         return self.dji.Place.filter(handle=handle).count() == 1
+
+    def has_event_handle(self, handle):
+        return self.dji.Event.filter(handle=handle).count() == 1
+
+    def has_tag_handle(self, handle):
+        return self.dji.Tag.filter(handle=handle).count() == 1
 
     def get_raw_person_data(self, handle):
         # FIXME?: not cached
@@ -803,6 +812,12 @@ class DbDjango(DbWriteBase, DbReadBase):
         self.commit_event(event, trans)
         return event.handle
 
+    def add_tag(self, tag, trans):
+        if not tag.handle:
+            tag.handle = Utils.create_id()
+        self.commit_event(tag, trans)
+        return tag.handle
+
     def commit_person(self, person, trans, change_time=None):
         self.import_cache[person.handle] = person
 
@@ -823,6 +838,9 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def commit_event(self, event, trans, change_time=None):
         self.import_cache[event.handle] = event
+
+    def commit_tag(self, tag, trans, change_time=None):
+        self.import_cache[tag.handle] = tag
 
     def get_gramps_ids(self, obj_key):
         key2table = {
