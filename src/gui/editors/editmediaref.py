@@ -99,6 +99,7 @@ class EditMediaRef(EditReference):
         self.primtab = RefTab(self.dbstate, self.uistate, self.track, 
                               _('_General'), tblref)
         self.track_ref_for_deletion("primtab")
+        self.rect_pixbuf = None
 
     def setup_filepath(self):
         self.select = self.top.get_object('file_select')
@@ -478,6 +479,8 @@ class EditMediaRef(EditReference):
             self.corner2_y_spinbutton.set_value(100)
 
         else:
+            if (self.rect_pixbuf == None):
+                return
             self.subpixmap.set_from_pixbuf(self.rect_pixbuf)
 
             # ensure the clicks happened at least 5 pixels away from each other
@@ -541,6 +544,9 @@ class EditMediaRef(EditReference):
                 self.corner1_y_spinbutton.set_value(new_y1)
                 self.corner2_x_spinbutton.set_value(new_x2)
                 self.corner2_y_spinbutton.set_value(new_y2)
+
+                # Free the pixbuf as it is not needed anymore
+                self.rect_pixbuf = None
 
     def _update_addmedia(self, obj):
         """
