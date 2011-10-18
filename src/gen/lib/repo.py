@@ -139,6 +139,45 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         """
         return self.get_referenced_note_handles()
 
+    def has_citation_reference(self, citation_handle) :
+        """
+        Return True if any of the child objects has reference to this citation 
+        handle.
+        
+        Note: for most objects, this is inherited from citationbase, which
+        checks both the object and the child objects. However, uniquely,
+        Repositories do not have citations for the primary object, but only for
+        child (secondary) objects. Hence, this function has to be implemented
+        directly in the primary object; it only checks the child objects.
+
+        :param citation_handle: The citation handle to be checked.
+        :type citation_handle: str
+        :returns: Returns whether any of it's child objects has reference to 
+                this citation handle.
+        :rtype: bool
+        """
+        for item in self.get_citation_child_list():
+            if item.has_citation_reference(citation_handle):
+                return True
+
+        return False
+
+    def replace_citation_references(self, old_handle, new_handle):
+        """
+        Replace references to citation handles in the list in this object and 
+        all child objects and merge equivalent entries.
+        
+        Note: the same comment about citationbase in has_citation_reference
+        applies here too.
+
+        :param old_handle: The citation handle to be replaced.
+        :type old_handle: str
+        :param new_handle: The citation handle to replace the old one with.
+        :type new_handle: str
+        """
+        for item in self.get_citation_child_list():
+            item.replace_citation_references(old_handle, new_handle)
+
     def has_source_reference(self, src_handle) :
         """
         Return True if any of the child objects has reference to this source 

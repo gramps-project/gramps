@@ -56,7 +56,8 @@ import ManagedWindow
 from gen.ggettext import sgettext as _
 from glade import Glade
 from gen.db import DbTxn
-from gen.lib import (Person, Family, Event, Place, MediaObject, Citation)
+from gen.lib import (Person, Family, Event, Place, MediaObject, Citation, 
+                     Repository)
 from Errors import MergeError
 
 #-------------------------------------------------------------------------
@@ -254,6 +255,11 @@ class MergeCitations(tool.BatchTool,ManagedWindow.ManagedWindow):
                 assert(obj.has_citation_reference(old_handle))
                 obj.replace_citation_references(old_handle, new_handle)
                 db.commit_media_object(obj, trans)
+            elif class_name == Repository.__name__:
+                repository = db.get_repository_from_handle(handle)
+                assert(repository.has_citation_reference(old_handle))
+                repository.replace_citation_references(old_handle, new_handle)
+                db.commit_repository(repository, trans)
             else:
                 raise MergeError("Encountered an object of type %s that has "
                         "a citation reference." % class_name)

@@ -30,7 +30,7 @@ Provide merge capabilities for citations.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.lib import (Person, Family, Event, Place, MediaObject)
+from gen.lib import (Person, Family, Event, Place, MediaObject, Repository)
 from gen.db import DbTxn
 from gen.ggettext import sgettext as _
 import const
@@ -219,6 +219,12 @@ class MergeCitationQuery(object):
                     assert(obj.has_citation_reference(old_handle))
                     obj.replace_citation_references(old_handle, new_handle)
                     self.database.commit_media_object(obj, trans)
+                elif class_name == Repository.__name__:
+                    repository = self.database.get_repository_from_handle(handle)
+                    assert(repository.has_citation_reference(old_handle))
+                    repository.replace_citation_references(old_handle, 
+                                                           new_handle)
+                    self.database.commit_repository(repository, trans)
                 else:
                     raise MergeError("Encounter an object of type %s that has "
                             "a citation reference." % class_name)
