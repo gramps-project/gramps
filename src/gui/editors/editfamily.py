@@ -941,15 +941,13 @@ class EditFamily(EditPrimary):
             if birth:
                 #if event changes it view needs to update
                 self.callman.register_handles({'event': [birth.get_handle()]})
-            if birth and birth.get_type() == gen.lib.EventType.BAPTISM:
-                birth_label.set_label(_("Baptism:"))
+                birth_label.set_label("%s:" % birth.get_type())
 
             death = get_death_or_fallback(db, person)
             if death:
                 #if event changes it view needs to update
                 self.callman.register_handles({'event': [death.get_handle()]})
-            if death and death.get_type() == gen.lib.EventType.BURIAL:
-                death_label.set_label(_("Burial:"))
+                death_label.set_label("%s:" % death.get_type())
 
             btn_edit.set_tooltip_text(_('Edit %s') % name)
             btn_index.hide()
