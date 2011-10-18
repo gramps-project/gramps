@@ -12,11 +12,6 @@ class PersonForm(forms.ModelForm):
         model = Person
         exclude = ["death", "birth", "handle", "birth_ref_index", "death_ref_index"]
 
-    surname = forms.CharField(required=False, 
-                              widget=TextInput(attrs={'size':'30'}))
-    prefix = forms.CharField(required=False, 
-                             widget=TextInput(attrs={'size':'30'}))
-
 class NameForm(forms.ModelForm):
     class Meta:
         model = Name
@@ -33,23 +28,41 @@ class NameForm(forms.ModelForm):
                               widget=TextInput(attrs={'size':'30'}))
     first_name = forms.CharField(label="Given", 
                                  required=False, 
-                                 widget=TextInput(attrs={'size':'30'}))
+                                 widget=TextInput(attrs={'size':'60'}))
     title = forms.CharField(required=False, 
-                            widget=TextInput(attrs={'size':'30'}))
+                            widget=TextInput(attrs={'size':'15'}))
     prefix = forms.CharField(required=False, 
-                             widget=TextInput(attrs={'size':'30'}))
+                             initial='prefix',
+                             widget=TextInput(attrs={'size':'15',
+                                                     'style': 'font-style: italic; color: gray; ',
+                                                     'onFocus': """if (this.value == 'prefix') {this.value = ''; 
+                                                                                                this.style.color = "black"; 
+                                                                                                this.style.fontStyle = 'normal';
+                                                                                               }""",
+                                                     'onBlur': """if (this.value == '') {this.value = 'prefix'; 
+                                                                                         this.style.color = "gray"; 
+                                                                                         this.style.fontStyle = 'italic';
+                                                                                         }"""}))
     suffix = forms.CharField(required=False, 
-                             widget=TextInput(attrs={'size':'30'}))
-    call = forms.CharField(label="Callname", 
+                             initial='suffix',
+                             widget=TextInput(attrs={'size':'15',
+                                                     'style': 'font-style: italic; color: gray; ',
+                                                     'onFocus': """if (this.value == 'suffix') {this.value = ''; 
+                                                                                                this.style.color = "black"; 
+                                                                                                this.style.fontStyle = 'normal';
+                                                                                               }""",
+                                                     'onBlur': """if (this.value == '') {this.value = 'suffix'; 
+                                                                                         this.style.color = "gray"; 
+                                                                                         this.style.fontStyle = 'italic';
+                                                                                         }"""}))
+    call = forms.CharField(label="Call", 
                            required=False, 
-                           widget=TextInput(attrs={'size':'30'}))
-    patronymic = forms.CharField(required=False, 
-                                 widget=TextInput(attrs={'size':'30'}))
-    group_as = forms.CharField(required=False, 
-                               widget=TextInput(attrs={'size':'30'}))
-    text = forms.CharField(label="Date",
+                           widget=TextInput(attrs={'size':'15'}))
+    nick = forms.CharField(label="Nick", 
                            required=False, 
-                           widget=TextInput(attrs={'size':'30'}))
+                           widget=TextInput(attrs={'size':'15'}))
+    origin = forms.CharField(required=False, 
+                               widget=TextInput(attrs={'size':'15'}))
 
 class NameFormFromPerson(NameForm):
     class Meta:

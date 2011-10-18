@@ -14,11 +14,9 @@
 
 {{ "/browse|Browse,/person|People"|breadcrumb}}
 
-<h3>{{nameform|render_name:user}} [{{person.gramps_id}}]</h3>
 <div id="summaryarea">
 <table class="infolist"> {% comment %} 5 cols {% endcomment %}
 <tbody>
-
 {% if user.is_authenticated %}
   {% ifequal action "edit" %}
     {% for error in personform.errors %}
@@ -32,38 +30,40 @@
 {% endif %}
 
 <tr>
- <td class="ColumnAttribute"></td>
- <td class="ColumnValue" id="data"></td>
- <td rowspan="7" colspan="2" style="border:solid 2px #7D5925;">Image:</td>
-</tr>
-<tr>
- <td class="ColumnAttribute" colspan="2"></td>
- <td class="ColumnAttribute">{{nameform.suffix.label}}</td>
- <td class="ColumnValue" id="data">{% render nameform.suffix user action %}</td>
-</tr>
-<tr>
- <td class="ColumnAttribute">{{nameform.first_name.label}}</td>
- <td class="ColumnValue" id="data">{% render nameform.first_name user action nameform.model.person.probably_alive "[Living]" %}</td>
- <td class="ColumnAttribute">{{nameform.call.label}}</td>
- <td class="ColumnValue" id="data">{% render nameform.call user action %}</td>
-</tr>
-<tr>
- <td class="ColumnAttribute">{{nameform.name_type.label}}</td>
+ <td colspan="4">{{nameform|render_name:user}} [{{person.gramps_id}}]</td>
+ <td class="ColumnAttribute" align="right">{{nameform.name_type.label}}:</td>
  <td class="ColumnValue" id="data">{% render nameform.name_type user action %}</td>
 </tr>
 <tr>
- <td class="ColumnAttribute" colspan="2"></td>
- <td class="ColumnAttribute">{{nameform.title.label}}</td>
+ <td class="ColumnAttribute" align="right">{{nameform.title.label}}:</td>
  <td class="ColumnValue" id="data">{% render nameform.title user action %}</td>
+ <td class="ColumnAttribute" align="right">{{nameform.nick.label}}:</td>
+ <td class="ColumnValue" id="data">{% render nameform.nick user action %}</td>
+ <td class="ColumnAttribute" align="right">{{nameform.call.label}}:</td>
+ <td class="ColumnValue" id="data">{% render nameform.call user action %}</td>
 </tr>
 <tr>
- <td class="ColumnAttribute">{{personform.gender_type.label}}</td>
+ <td class="ColumnAttribute" align="right">{{nameform.first_name.label}}:</td>
+ <td class="ColumnValue" id="data" colspan="4">{% render nameform.first_name user action %}</td>
+ <td class="ColumnValue" id="data">{% render nameform.suffix user action %}</td>
+</tr>
+<tr>
+ <td class="ColumnAttribute" align="right">{{nameform.surname.label}}:</td>
+ <td class="ColumnValue" id="data">{% render nameform.prefix user action %}</td>
+ <td class="ColumnValue" id="data" colspan="2">{% render nameform.surname user action %}</td>
+ <td class="ColumnAttribute" align="right">{{nameform.origin.label}}:</td>
+ <td class="ColumnValue" id="data" colspan="2">{% render nameform.origin user action %}</td>
+</tr>
+<tr>
+ <td class="ColumnAttribute" align="right">{{personform.gender_type.label}}:</td>
  <td class="ColumnValue" id="data">{% render personform.gender_type user action %}</td>
- <td class="ColumnAttribute">{{personform.gramps_id.label}}</td>
+ <td class="ColumnAttribute" align="right">{{personform.gramps_id.label}}:</td>
  <td class="ColumnValue" id="data">{% render personform.gramps_id user action %}</td>
+ <td class="ColumnAttribute" align="right">{{personform.tags.label}}:</td>
+ <td class="ColumnValue" id="data" rowspan="2">{% render personform.tags user action %}</td>
 </tr>
 <tr>
- <td class="ColumnAttribute">{{personform.private.label}}</td>
+ <td class="ColumnAttribute" align="right">{{personform.private.label}}:</td>
  <td class="ColumnValue" id="data">{% render personform.private user action %}</td>
 </tr>
 </tbody>

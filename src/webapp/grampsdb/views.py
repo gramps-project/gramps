@@ -438,9 +438,19 @@ def view_person_detail(request, view, handle, action="view"):
                 name = person.name_set.get(preferred=True)
             except:
                 name = Name(person=person, preferred=True)
+            primary_surname = name.surname_set.get(primary=True)
+            default_data = {"surname": primary_surname.surname, 
+                            "prefix": primary_surname.prefix,
+                            "suffix": name.suffix or "suffix",
+                            "first_name": name.first_name,
+                            "name_type": name.name_type,
+                            "title": name.title,
+                            "nick": name.nick,
+                            "call": name.call,
+                            }
             pf = PersonForm(instance=person)
             pf.model = person
-            nf = NameForm(instance=name)
+            nf = NameForm(default_data, instance=name)
             nf.model = name
         elif action == "add":
             # make new data:
