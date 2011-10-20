@@ -51,7 +51,8 @@ from gen.db import DbTxn
 from glade import Glade
 from displaytabs import (SourceEmbedList, AttrEmbedList, MediaBackRefList, 
                          NoteTab)
-from gui.widgets import MonitoredSpinButton, MonitoredEntry, PrivacyButton
+from gui.widgets import (MonitoredSpinButton, MonitoredEntry, PrivacyButton,
+                         MonitoredDate)
 from editreference import RefTab, EditReference
 from addmedia import AddMediaObject
 
@@ -146,7 +147,7 @@ class EditMediaRef(EditReference):
             self.pixmap.set_from_pixbuf(pb)
             self.subpixmap.set_from_pixbuf(pb)
 
-    def _setup_fields(self):
+    def _setup_fields(self):                                             
         ebox_shared = self.top.get_object('eventbox')
         ebox_shared.connect('button-press-event', self.button_press_event)
 
@@ -448,12 +449,12 @@ class EditMediaRef(EditReference):
             if new_x2 - new_x1 >= 5 and new_y2 - new_y1 >= 5:
 
                 # get the image size and calculate the X and Y offsets
-                # (image is centered when smaller than const.THUMBSCALE)
+                # (image is centered *horizontally* when smaller than const.THUMBSCALE)
                 pixbuf = self.subpixmap.get_pixbuf();
                 w = pixbuf.get_width()
                 h = pixbuf.get_height()
                 x = (const.THUMBSCALE - w) / 2
-                y = (const.THUMBSCALE - h) / 2
+                y = 0
 
                 # if the click was outside of the image,
                 # bring it within the boundaries
