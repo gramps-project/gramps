@@ -12,7 +12,6 @@ pkgdata_PYTHON = \
 	_HasReferenceCountOf.py\
 	_AllSources.py\
 	_HasIdOf.py\
-	_HasSource.py\
 	_HasNote.py \
 	_HasNoteRegexp.py\
 	_HasRepository.py\
