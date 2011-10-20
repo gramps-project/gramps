@@ -51,7 +51,7 @@ from gen.db import DbTxn
 from glade import Glade
 from displaytabs import (SourceEmbedList, AttrEmbedList, MediaBackRefList, 
                          NoteTab)
-from gui.widgets import (MonitoredSpinButton, MonitoredEntry, PrivacyButton
+from gui.widgets import MonitoredSpinButton, MonitoredEntry, PrivacyButton
 from editreference import RefTab, EditReference
 from addmedia import AddMediaObject
 
