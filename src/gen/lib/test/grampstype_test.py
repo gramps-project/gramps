@@ -19,7 +19,7 @@
 #
 
 # gen/lib/test/grampstype_test.py
-# $Id: grampstype_test.py 00001 2001-01-01 01:01:01Z unknown $
+# $Id$
 
 """ unittest for grampstype """
 
