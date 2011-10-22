@@ -182,7 +182,10 @@ class ChildEmbedList(EmbeddedList):
                 continue
             name = self._column_names[pair[1]][0]
             render = gtk.CellRendererText()
-            column = gtk.TreeViewColumn(name, render, markup=pair[1])
+            if pair[1] in (6, 7): # date columns
+                column = gtk.TreeViewColumn(name, render, markup=pair[1])
+            else:
+                column = gtk.TreeViewColumn(name, render, text=pair[1])
             column.set_min_width(50)
 
             column.set_resizable(True)
