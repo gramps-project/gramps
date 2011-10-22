@@ -299,7 +299,7 @@ class ScratchLocation(ScratchObjWrapper):
     DRAG_TARGET  = DdTargets.LOCATION
     ICON         = ICONS['location']
     
-    def __init__(self):
+    def __init__(self, dbstate, obj):
         super(ScratchLocation, self).__init__(dbstate, obj)
         self._type  = _("Location")
         self._value = "%s %s %s" % (self._obj.get_city(),
