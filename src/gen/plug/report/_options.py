@@ -416,33 +416,35 @@ class OptionListCollection(_options.OptionListCollection):
         f.write('</last-common>\n')
 
     def write_module_common(self, f, option_list):
-        if option_list.get_style_name() \
-               and option_list.get_style_name() != self.default_style_name:
-            f.write('  <style name="%s"/>\n' % escxml(option_list.get_style_name()) )
-        if option_list.get_paper_metric() \
-               and option_list.get_paper_metric() != self.default_paper_metric:
-            f.write('  <metric value="%d"/>\n' % option_list.get_paper_metric() )
-        if option_list.get_custom_paper_size() \
-                and option_list.get_custom_paper_size() != self.default_custom_paper_size:
-            size = self.get_last_custom_paper_size()
-            f.write('  <size value="%f %f"/>\n' % (size[0], size[1]) )
-        if option_list.get_paper_name() \
-               and option_list.get_paper_name() != self.default_paper_name:
-            f.write('  <paper name="%s"/>\n' % escxml(option_list.get_paper_name()) )
-        if option_list.get_css_filename() \
-               and option_list.get_css_filename() != self.default_css_filename:
-            f.write('  <css name="%s"/>\n' % escxml(option_list.get_css_filename()))
-        if option_list.get_format_name() \
-               and option_list.get_format_name() != self.default_format_name:
-            f.write('  <format name="%s"/>\n' % escxml(option_list.get_format_name()) )
-        if option_list.get_orientation() \
-               and option_list.get_orientation() != self.default_orientation:
-            f.write('  <orientation value="%d"/>\n' % option_list.get_orientation() )
-        if option_list.get_margins() \
-               and option_list.get_margins() != self.default_margins:
-            margins = option_list.get_margins()
-            for pos in range(len(margins)): 
-                f.write('  <margin number="%s" value="%f"/>\n' % (pos, margins[pos]))
+        if option_list.get_format_name():
+            f.write('  <format name="%s"/>\n' %
+                        escxml(option_list.get_format_name()) )
+            if option_list.get_format_name() == 'html':
+                if option_list.get_css_filename():
+                    f.write('  <css name="%s"/>\n' %
+                                escxml(option_list.get_css_filename()))
+            else: # not HTML format, therefore it's paper
+                if option_list.get_paper_name():
+                    f.write('  <paper name="%s"/>\n' %
+                                escxml(option_list.get_paper_name()) )
+                if option_list.get_orientation() is not None: # 0 is legal
+                    f.write('  <orientation value="%d"/>\n' %
+                                option_list.get_orientation() )
+                if option_list.get_paper_metric() is not None: # 0 is legal
+                    f.write('  <metric value="%d"/>\n' %
+                                option_list.get_paper_metric() )
+                if option_list.get_custom_paper_size():
+                    size = self.get_last_custom_paper_size()
+                    f.write('  <size value="%f %f"/>\n' % (size[0], size[1]) )
+                if option_list.get_margins():
+                    margins = option_list.get_margins()
+                    for pos in range(len(margins)): 
+                        f.write('  <margin number="%s" value="%f"/>\n' %
+                                    (pos, margins[pos]))
+
+        if option_list.get_style_name():
+            f.write('  <style name="%s"/>\n' %
+                        escxml(option_list.get_style_name()) )
 
     def parse(self):
         """
@@ -599,7 +601,7 @@ class OptionHandler(_options.OptionHandler):
     def set_common_options(self):
         if self.saved_option_list.get_style_name():
             self.style_name = self.saved_option_list.get_style_name()
-        if self.saved_option_list.get_orientation():
+        if self.saved_option_list.get_orientation() is not None: # 0 is legal
             self.orientation = self.saved_option_list.get_orientation()
         if self.saved_option_list.get_custom_paper_size():
             self.custom_paper_size = self.saved_option_list.get_custom_paper_size()
@@ -607,12 +609,29 @@ class OptionHandler(_options.OptionHandler):
             self.margins = self.saved_option_list.get_margins()
         if self.saved_option_list.get_css_filename():
             self.css_filename = self.saved_option_list.get_css_filename()
-        if self.saved_option_list.get_paper_metric():
+        if self.saved_option_list.get_paper_metric() is not None: # 0 is legal
             self.paper_metric = self.saved_option_list.get_paper_metric()
         if self.saved_option_list.get_paper_name():
             self.paper_name = self.saved_option_list.get_paper_name()
         if self.saved_option_list.get_format_name():
             self.format_name = self.saved_option_list.get_format_name()
+
+    def save_options(self):
+        """
+        Saves options to file.
+        
+        """
+
+        # First we save options from options_dict
+        for option_name, option_data in self.options_dict.iteritems():
+            self.saved_option_list.set_option(option_name,
+                                              self.options_dict[option_name])
+
+        # Handle common options
+        self.save_common_options()
+
+        # Finally, save the whole collection into file
+        self.option_list_collection.save()
 
     def save_common_options(self):
         # First we save common options

@@ -45,6 +45,7 @@ class WebReportDialog(ReportDialog):
         self.category = CATEGORY_WEB
         ReportDialog.__init__(self, dbstate, uistate, option_class,
                                   name, trans_name)
+        self.options.handler.set_format_name('html')
 
     def setup_init(self):
         pass
