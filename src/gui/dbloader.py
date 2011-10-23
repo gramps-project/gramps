@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id:dbloader.py 9912 2008-01-22 09:17:46Z acraphae $
+# $Id$
 
 """
 Handling of loading new/existing databases.

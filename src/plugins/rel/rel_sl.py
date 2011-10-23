@@ -21,7 +21,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id:rel_sl.py 9912 2008-01-22 09:17:46Z acraphae $
+# $Id$
 
 # Written by Bernard Banko, inspired from rel_ru.py by Alex Roitman.
 """

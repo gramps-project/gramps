@@ -22,7 +22,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id:_ReportUtils.py 9912 2008-01-22 09:17:46Z acraphae $
+# $Id$
 
 """
 A collection of utilities to aid in the generation of reports.

@@ -17,6 +17,9 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+# gen/plug/menu/__init__.py
+# $Id$
+#
 """
 The menu package for allowing plugins to specify options in a generic way.
 """

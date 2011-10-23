@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id:constfunc.py 14272 2010-02-07 19:11:00Z ldnp $
+# $Id$
 
 """
 Some independent constants/functions that can be safely imported

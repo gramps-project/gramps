@@ -3,7 +3,7 @@
 # Date: 6 April, 2004
 # Copyright: Toshio Kuratomi
 # License: GPL
-# Id: $Id$
+# $Id$
 
 """A tooltip class."""
 

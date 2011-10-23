@@ -17,6 +17,9 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+# gen/mime/__init__.py
+# $Id$
+#
 
 try:
     from _gnomemime import get_description, get_type, mime_type_is_defined
