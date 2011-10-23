@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2011       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -51,7 +52,7 @@ from gen.plug import PluginRegister, PTYPE_STR, load_addon_file
 from gen.ggettext import gettext as _
 from gui.utils import open_file_with_default_application
 from gui.pluginmanager import GuiPluginManager
-from gui.plug import tool
+from gui.plug import tool, add_gui_options
 from QuestionDialog import InfoDialog
 from gui.editors import EditPerson
 import Utils
@@ -772,7 +773,7 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         and run the tool.
         """
         # Save options
-        self.options.parse_user_options(self)
+        self.options.parse_user_options()
         self.options.handler.save_options()
         self.pre_run()
         self.run() # activate results tab
@@ -1014,7 +1015,7 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         It is called immediately before the window is displayed. All
         calls to add_option or add_frame_option should be called in
         this task."""
-        self.options.add_user_options(self)
+        add_gui_options(self)
 
     def build_menu_names(self, obj):
         return (_('Main window'), self.get_title())
