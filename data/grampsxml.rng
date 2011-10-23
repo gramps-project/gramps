@@ -590,6 +590,9 @@
     <optional><zeroOrMore><element name="sourceref">
         <ref name="sourceref-content"/>
     </element></zeroOrMore></optional>
+    <optional><zeroOrMore><element name="noteref">
+        <ref name="noteref-content"/>
+    </element></zeroOrMore></optional>
   </define>
 
   <define name="sourceref-content">
