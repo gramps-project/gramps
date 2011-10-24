@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-requires grampswidgets 0.0 -->
@@ -7,7 +7,6 @@
     <property name="default_width">600</property>
     <property name="default_height">450</property>
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox20">
         <property name="visible">True</property>
@@ -33,7 +32,9 @@
                       <object class="GtkLabel" id="label425">
                         <property name="visible">True</property>
                         <property name="xalign">0</property>
-                        <property name="label" translatable="yes">Corner 2:  X</property>
+                        <property name="label" translatable="yes">_Corner 2:  X</property>
+                        <property name="use_underline">True</property>
+                        <property name="mnemonic_widget">corner2_x</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -49,6 +50,8 @@
                         <property name="visible">True</property>
                         <property name="xalign">0</property>
                         <property name="label" translatable="yes">Y coordinate|Y</property>
+                        <property name="use_underline">True</property>
+                        <property name="mnemonic_widget">corner2_y</property>
                       </object>
                       <packing>
                         <property name="left_attach">3</property>
@@ -80,7 +83,7 @@
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">If media is an image, select the specific part of the image you want to reference.
 You can use the mouse on the picture to select a region, or use these spinbuttons to set the top left, and bottom right corner of the referenced region. Point (0,0) is the top left corner of the picture, and (100,100) the bottom right corner.</property>
-                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="invisible_char">●</property>
                         <property name="adjustment">adjustment4</property>
                         <property name="climb_rate">1</property>
                         <property name="numeric">True</property>
@@ -99,7 +102,7 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">If media is an image, select the specific part of the image you want to reference.
 You can use the mouse on the picture to select a region, or use these spinbuttons to set the top left, and bottom right corner of the referenced region. Point (0,0) is the top left corner of the picture, and (100,100) the bottom right corner.</property>
-                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="invisible_char">●</property>
                         <property name="adjustment">adjustment3</property>
                         <property name="climb_rate">1</property>
                         <property name="numeric">True</property>
@@ -149,7 +152,9 @@ Select a region with clicking and holding the mouse button on the top left corne
                       <object class="GtkLabel" id="label426">
                         <property name="visible">True</property>
                         <property name="xalign">0</property>
-                        <property name="label" translatable="yes">Corner 1:  X</property>
+                        <property name="label" translatable="yes">_Corner 1:  X</property>
+                        <property name="use_underline">True</property>
+                        <property name="mnemonic_widget">corner1_x</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -167,7 +172,7 @@ Select a region with clicking and holding the mouse button on the top left corne
                         <property name="tooltip_text" translatable="yes">If media is an image, select the specific part of the image you want to reference.
 You can use the mouse on the picture to select a region, or use these spinbuttons to set the top left, and bottom right corner of the referenced region. Point (0,0) is the top left corner of the picture, and (100,100) the bottom right corner.
 </property>
-                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="invisible_char">●</property>
                         <property name="adjustment">adjustment2</property>
                         <property name="climb_rate">1</property>
                         <property name="numeric">True</property>
@@ -186,7 +191,7 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">If media is an image, select the specific part of the image you want to reference.
 You can use the mouse on the picture to select a region, or use these spinbuttons to set the top left, and bottom right corner of the referenced region. Point (0,0) is the top left corner of the picture, and (100,100) the bottom right corner.</property>
-                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="invisible_char">●</property>
                         <property name="adjustment">adjustment1</property>
                         <property name="climb_rate">1</property>
                         <property name="numeric">True</property>
@@ -204,6 +209,8 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                         <property name="visible">True</property>
                         <property name="xalign">0</property>
                         <property name="label" translatable="yes">Y coordinate|Y</property>
+                        <property name="use_underline">True</property>
+                        <property name="mnemonic_widget">corner1_y</property>
                       </object>
                       <packing>
                         <property name="left_attach">3</property>
@@ -234,10 +241,20 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="relief">none</property>
+                            <child internal-child="accessible">
+                              <object class="AtkObject" id="private-atkobject">
+                                <property name="AtkObject::accessible-name" translatable="yes">Private</property>
+                              </object>
+                            </child>
                             <child>
                               <object class="GtkImage" id="image2686">
                                 <property name="visible">True</property>
                                 <property name="icon_name">gtk-dialog-authentication</property>
+                                <child internal-child="accessible">
+                                  <object class="AtkObject" id="image2686-atkobject">
+                                    <property name="AtkObject::accessible-description" translatable="yes">Privacy</property>
+                                  </object>
+                                </child>
                                 <property name="icon-size">1</property>
                               </object>
                             </child>
@@ -308,8 +325,8 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                       <object class="GtkTable" id="table2">
                         <property name="visible">True</property>
                         <property name="border_width">12</property>
-                        <property name="n_rows">5</property>
-                        <property name="n_columns">3</property>
+                        <property name="n_rows">7</property>
+                        <property name="n_columns">4</property>
                         <property name="column_spacing">12</property>
                         <property name="row_spacing">6</property>
                         <child>
@@ -319,12 +336,13 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                             <property name="label" translatable="yes">_Path:</property>
                             <property name="use_underline">True</property>
                             <property name="justify">center</property>
+                            <property name="mnemonic_widget">path</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
                             <property name="right_attach">2</property>
-                            <property name="top_attach">2</property>
-                            <property name="bottom_attach">3</property>
+                            <property name="top_attach">3</property>
+                            <property name="bottom_attach">4</property>
                             <property name="x_options">GTK_FILL</property>
                             <property name="y_options"></property>
                           </packing>
@@ -368,7 +386,7 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="tooltip_text" translatable="yes">Descriptive title for this media object.</property>
-                            <property name="invisible_char">&#x25CF;</property>
+                            <property name="invisible_char">●</property>
                           </object>
                           <packing>
                             <property name="left_attach">2</property>
@@ -414,8 +432,8 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                           </object>
                           <packing>
                             <property name="right_attach">3</property>
-                            <property name="top_attach">4</property>
-                            <property name="bottom_attach">5</property>
+                            <property name="top_attach">6</property>
+                            <property name="bottom_attach">7</property>
                             <property name="x_options">GTK_FILL</property>
                           </packing>
                         </child>
@@ -447,7 +465,7 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                             </child>
                           </object>
                           <packing>
-                            <property name="bottom_attach">4</property>
+                            <property name="bottom_attach">5</property>
                             <property name="x_options">GTK_FILL</property>
                             <property name="y_options">GTK_FILL</property>
                           </packing>
@@ -456,15 +474,14 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                           <object class="GtkLabel" id="label660">
                             <property name="visible">True</property>
                             <property name="xalign">0</property>
-                            <property name="label" translatable="yes">_Type:</property>
-                            <property name="use_underline">True</property>
+                            <property name="label" translatable="yes">Type:</property>
                             <property name="mnemonic_widget">type</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
                             <property name="right_attach">2</property>
-                            <property name="top_attach">3</property>
-                            <property name="bottom_attach">4</property>
+                            <property name="top_attach">5</property>
+                            <property name="bottom_attach">6</property>
                             <property name="x_options">GTK_FILL</property>
                             <property name="y_options"></property>
                           </packing>
@@ -478,89 +495,34 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                           <packing>
                             <property name="left_attach">2</property>
                             <property name="right_attach">3</property>
-                            <property name="top_attach">3</property>
-                            <property name="bottom_attach">4</property>
+                            <property name="top_attach">5</property>
+                            <property name="bottom_attach">6</property>
                             <property name="x_options">GTK_FILL</property>
                             <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkHBox" id="hbox136">
+                          <object class="GtkLabel" id="label422">
                             <property name="visible">True</property>
-                            <property name="spacing">12</property>
-                            <child>
-                              <object class="UndoableEntry" id="gid">
-                                <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="tooltip_text" translatable="yes">A unique ID to identify the Media object.</property>
-                                <property name="invisible_char">&#x25CF;</property>
-                              </object>
-                              <packing>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkToggleButton" id="privacy">
-                                <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="receives_default">True</property>
-                                <property name="relief">none</property>
-                                <child>
-                                  <object class="GtkImage" id="image2710">
-                                    <property name="visible">True</property>
-                                    <property name="icon_name">gtk-dialog-authentication</property>
-                                    <property name="icon-size">1</property>
-                                  </object>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">False</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
+                            <property name="xalign">0</property>
+                            <property name="label" translatable="yes">_Date:</property>
+                            <property name="use_underline">True</property>
+                            <property name="mnemonic_widget">date_entry</property>
                           </object>
                           <packing>
-                            <property name="left_attach">2</property>
-                            <property name="right_attach">3</property>
+                            <property name="left_attach">1</property>
+                            <property name="right_attach">2</property>
+                            <property name="top_attach">2</property>
+                            <property name="bottom_attach">3</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options">GTK_FILL</property>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkHBox" id="hbox2">
+                          <object class="ValidatableMaskedEntry" id="date_entry">
                             <property name="visible">True</property>
-                            <property name="spacing">12</property>
-                            <child>
-                              <object class="UndoableEntry" id="path">
-                                <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="invisible_char">&#x25CF;</property>
-                              </object>
-                              <packing>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkButton" id="file_select">
-                                <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="receives_default">True</property>
-                                <property name="relief">none</property>
-                                <child>
-                                  <object class="GtkImage" id="image2673">
-                                    <property name="visible">True</property>
-                                    <property name="stock">gtk-open</property>
-                                    <property name="icon-size">1</property>
-                                  </object>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">False</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
+                            <property name="can_focus">True</property>
+                            <property name="invisible_char">•</property>
                           </object>
                           <packing>
                             <property name="left_attach">2</property>
@@ -569,6 +531,193 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                             <property name="bottom_attach">3</property>
                             <property name="y_options"></property>
                           </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="date_edit">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">True</property>
+                            <property name="has_tooltip">True</property>
+                            <property name="tooltip_text" translatable="yes">Invoke date editor</property>
+                            <property name="relief">none</property>
+                            <accessibility>
+                              <relation type="labelled-by" target="label422"/>
+                            </accessibility>
+                            <child internal-child="accessible">
+                              <object class="AtkObject" id="date_edit-atkobject">
+                                <property name="AtkObject::accessible-name" translatable="yes">Date</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkImage" id="image2264">
+                                <property name="visible">True</property>
+                                <property name="icon_name">gramps-date</property>
+                                <child internal-child="accessible">
+                                  <object class="AtkObject" id="image2264-atkobject">
+                                    <property name="AtkObject::accessible-description" translatable="yes">Date</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">3</property>
+                            <property name="right_attach">4</property>
+                            <property name="top_attach">2</property>
+                            <property name="bottom_attach">3</property>
+                            <property name="x_options">GTK_FILL</property>
+                            <property name="y_options"></property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkToggleButton" id="privacy">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">True</property>
+                            <property name="relief">none</property>
+                            <child internal-child="accessible">
+                              <object class="AtkObject" id="privacy-atkobject">
+                                <property name="AtkObject::accessible-name" translatable="yes">Private</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkImage" id="image2710">
+                                <property name="visible">True</property>
+                                <property name="icon_name">gtk-dialog-authentication</property>
+                                <child internal-child="accessible">
+                                  <object class="AtkObject" id="image2710-atkobject">
+                                    <property name="AtkObject::accessible-description" translatable="yes">Privacy</property>
+                                  </object>
+                                </child>
+                                <property name="icon-size">1</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">3</property>
+                            <property name="right_attach">4</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="UndoableEntry" id="gid">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="invisible_char">•</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="right_attach">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="file_select">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">True</property>
+                            <property name="has_tooltip">True</property>
+                            <property name="tooltip_text" translatable="yes">Select a file</property>
+                            <property name="relief">none</property>
+                            <accessibility>
+                              <relation type="labelled-by" target="label129"/>
+                            </accessibility>
+                            <child internal-child="accessible">
+                              <object class="AtkObject" id="file_select-atkobject">
+                                <property name="AtkObject::accessible-name" translatable="yes">Path</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkImage" id="image2673">
+                                <property name="visible">True</property>
+                                <property name="stock">gtk-open</property>
+                                <child internal-child="accessible">
+                                  <object class="AtkObject" id="image2673-atkobject">
+                                    <property name="AtkObject::accessible-description" translatable="yes">Folder</property>
+                                  </object>
+                                </child>
+                                <property name="icon-size">1</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">3</property>
+                            <property name="right_attach">4</property>
+                            <property name="top_attach">3</property>
+                            <property name="bottom_attach">4</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="UndoableEntry" id="path">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="invisible_char">•</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="right_attach">3</property>
+                            <property name="top_attach">3</property>
+                            <property name="bottom_attach">4</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="label2">
+                            <property name="visible">True</property>
+                            <property name="xalign">0</property>
+                            <property name="label" translatable="yes">_Tags:</property>
+                            <property name="use_underline">True</property>
+                            <property name="mnemonic_widget">tag_button</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="right_attach">2</property>
+                            <property name="top_attach">4</property>
+                            <property name="bottom_attach">5</property>
+                            <property name="x_options">GTK_FILL</property>
+                            <property name="y_options"></property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="tag_label">
+                            <property name="visible">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="right_attach">3</property>
+                            <property name="top_attach">4</property>
+                            <property name="bottom_attach">5</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="tag_button">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">True</property>
+                            <accessibility>
+                              <relation type="labelled-by" target="label1"/>
+                            </accessibility>
+                            <child internal-child="accessible">
+                              <object class="AtkObject" id="tag_button-atkobject">
+                                <property name="AtkObject::accessible-name" translatable="yes">Tags</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">3</property>
+                            <property name="right_attach">4</property>
+                            <property name="top_attach">4</property>
+                            <property name="bottom_attach">5</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <placeholder/>
+                        </child>
+                        <child>
+                          <placeholder/>
+                        </child>
+                        <child>
+                          <placeholder/>
+                        </child>
+                        <child>
+                          <placeholder/>
                         </child>
                       </object>
                     </child>
