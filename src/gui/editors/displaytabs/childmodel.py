@@ -95,10 +95,9 @@ class ChildModel(gtk.ListStore):
         to a string of 10 long prepended with 0 as needed.
         This gives correct string sort for years in the millenia around today
         """
-        event_ref = data.get_birth_ref()
-        if event_ref and event_ref.ref:
-            event = self.db.get_event_from_handle(event_ref.ref)
-            return '%012d' % event.get_date_object().get_sort_value()
+        birth = get_birth_or_fallback(self.db, data)
+        if birth:
+            return '%012d' % birth.get_date_object().get_sort_value()
         else:
             return '%012d' % 0
 
