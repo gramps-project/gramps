@@ -37,7 +37,7 @@ import DateHandler
 from gen.display.name import displayer as name_displayer
 import Utils
 import gen.lib
-from gen.utils import get_birth_or_fallback
+from gen.utils import get_birth_or_fallback, get_death_or_fallback
 
 #-------------------------------------------------------------------------
 #
@@ -46,19 +46,15 @@ from gen.utils import get_birth_or_fallback
 #-------------------------------------------------------------------------
 class ChildModel(gtk.ListStore):
 
-    _HANDLE_COL = -8
-    
-    def __init__(self, family, db):
-        self.family = family
+    def __init__(self, child_ref_list, db):
         gtk.ListStore.__init__(self, int, str, str, str, str, str, 
-                               str, str, str, str, str, str, str, str)
+                               str, str, str, str, str, str, str, object)
         self.db = db
-        index = 1
-        for child_ref in self.get_data():
+        for index, child_ref in enumerate(child_ref_list):
             child = db.get_person_from_handle(child_ref.ref)
             if child:
                 self.append(row=[
-                    index, 
+                    index + 1, 
                     child.get_gramps_id(), 
                     name_displayer.display(child), 
                     Utils.gender[child.get_gender()], 
@@ -68,15 +64,11 @@ class ChildModel(gtk.ListStore):
                     self.column_death_day(child), 
                     self.column_birth_place(child), 
                     self.column_death_place(child), 
-                    child.get_handle(), 
                     name_displayer.sort_string(child.primary_name), 
                     self.column_birth_sort(child), 
                     self.column_death_sort(child),
+                    child_ref
                     ])
-                index += 1
-
-    def get_data(self):
-        return self.family.get_child_ref_list()
 
     def column_birth_day(self, data):
         birth = get_birth_or_fallback(self.db, data)
@@ -95,18 +87,19 @@ class ChildModel(gtk.ListStore):
         to a string of 10 long prepended with 0 as needed.
         This gives correct string sort for years in the millenia around today
         """
-        event_ref = data.get_birth_ref()
-        if event_ref and event_ref.ref:
-            event = self.db.get_event_from_handle(event_ref.ref)
-            return '%012d' % event.get_date_object().get_sort_value()
+        birth = get_birth_or_fallback(self.db, data)
+        if birth:
+            return '%012d' % birth.get_date_object().get_sort_value()
         else:
             return '%012d' % 0
 
     def column_death_day(self, data):
-        event_ref = data.get_death_ref()
-        if event_ref and event_ref.ref:
-            event = self.db.get_event_from_handle(event_ref.ref)
-            return DateHandler.get_date(event)
+        death = get_death_or_fallback(self.db, data)
+        if death:
+            if death.get_type() == gen.lib.EventType.DEATH:
+                return DateHandler.get_date(death)
+            else:
+                return '<i>%s</i>' % cgi.escape(DateHandler.get_date(death))
         else:
             return u""
 
@@ -117,10 +110,9 @@ class ChildModel(gtk.ListStore):
         to a string of 10 long prepended with 0 as needed.
         This gives correct string sort for years in the millenia around today
         """
-        event_ref = data.get_death_ref()
-        if event_ref and event_ref.ref:
-            event = self.db.get_event_from_handle(event_ref.ref)
-            return '%012d' % event.get_date_object().get_sort_value()
+        death = get_death_or_fallback(self.db, data)
+        if death:
+            return '%012d' % death.get_date_object().get_sort_value()
         else:
             return '%012d' % 0
         

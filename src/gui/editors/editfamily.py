@@ -95,8 +95,9 @@ class ChildEmbedList(EmbeddedList):
     is contained here instead of in displaytabs.
     """
 
-    _HANDLE_COL = 10
-    _DND_TYPE = DdTargets.PERSON_LINK
+    _HANDLE_COL = 13
+    _DND_TYPE = DdTargets.CHILDREF
+    _DND_EXTRA = DdTargets.PERSON_LINK
 
     _MSG = {
         'add'   : _('Create a new person and add the child to the family'),
@@ -107,17 +108,18 @@ class ChildEmbedList(EmbeddedList):
         'down'  : _('Move the child down in the children list'),
         }
 
+    # (name, column in model, width, markup/text, font weight)
     _column_names = [
-        (_('#'),0) ,
-        (_('ID'),1) ,
-        (_('Name'),11),
-        (_('Gender'),3),
-        (_('Paternal'),4),
-        (_('Maternal'),5),
-        (_('Birth Date'),12),
-        (_('Death Date'),13),
-        (_('Birth Place'),8),
-        (_('Death Place'),9),
+        (_('#'), 0, 25, 0, -1),
+        (_('ID'), 1, 60, 0, -1),
+        (_('Name'), 10, 250, 0, -1),
+        (_('Gender'), 3, 75, 0, -1),
+        (_('Paternal'), 4, 100, 0, -1),
+        (_('Maternal'), 5, 100, 0, -1),
+        (_('Birth Date'), 11, 150, 1, -1),
+        (_('Death Date'), 12, 150, 1, -1),
+        (_('Birth Place'), 8, 150, 0, -1),
+        (_('Death Place'), 9, 150, 0, -1),
         ]
     
     def __init__(self, dbstate, uistate, track, family):
@@ -143,69 +145,16 @@ class ChildEmbedList(EmbeddedList):
     def get_middle_click(self):
         return self.edit_child_button_clicked
 
-    def find_index(self, obj):
-        """
-        returns the index of the object within the associated data
-        """
-        reflist = [ref.ref for ref in self.family.get_child_ref_list()]
-        return reflist.index(obj)
-
-    def _find_row(self, x, y):
-        row = self.tree.get_path_at_pos(x, y)
-        if row is None:
-            return len(self.family.get_child_ref_list())
-        else:
-            return row[0][0]
-
-    def _handle_drag(self, row, obj):
-        self.family.get_child_ref_list().insert(row, obj)
-        self.changed = True
-        self.rebuild()
-
-    def _move(self, row_from, row_to, obj):
-        dlist = self.family.get_child_ref_list()
-        if row_from < row_to:
-            dlist.insert(row_to, obj)
-            del dlist[row_from]
-        else:
-            del dlist[row_from]
-            dlist.insert(row_to-1, obj)
-        self.changed = True
-        self.rebuild()
-
-    def build_columns(self):
-        map(self.tree.remove_column, self.columns)
-        self.columns = []
-
-        for pair in self.column_order():
-            if not pair[0]:
-                continue
-            name = self._column_names[pair[1]][0]
-            render = gtk.CellRendererText()
-            column = gtk.TreeViewColumn(name, render, markup=pair[1])
-            column.set_min_width(50)
-
-            column.set_resizable(True)
-            column.set_expand(True)
-            column.set_sort_column_id(self._column_names[pair[1]][1])
-            self.columns.append(column)
-            self.tree.append_column(column)
 
     def get_icon_name(self):
         return 'gramps-family'
-
-    def is_empty(self):
-        """
-        The list is considered empty if the child list is empty.
-        """
-        return len(self.family.get_child_ref_list()) == 0
 
     def get_data(self):
         """
         Normally, get_data returns a list. However, we return family
         object here instead.
         """
-        return self.family
+        return self.family.get_child_ref_list()
 
     def column_order(self):
         return [(1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), 
@@ -229,12 +178,20 @@ class ChildEmbedList(EmbeddedList):
         EditPerson(self.dbstate, self.uistate, self.track, person,
                    self.new_child_added)
 
+    def handle_extra_type(self, objtype, obj):
+        """
+        Called when a person is dropped onto the list.  objtype will be 
+        'person-link' and obj will contain a person handle.
+        """
+        person = self.dbstate.db.get_person_from_handle(obj)
+        self.new_child_added(person)
+
     def new_child_added(self, person):
         ref = gen.lib.ChildRef()
         ref.ref = person.get_handle()
         self.family.add_child_ref(ref)
         self.rebuild()
-        self.call_edit_childref(ref.ref)
+        self.call_edit_childref(ref)
 
     def child_ref_edited(self, person):
         self.rebuild()
@@ -254,7 +211,7 @@ class ChildEmbedList(EmbeddedList):
             ref.ref = person.get_handle()
             self.family.add_child_ref(ref)
             self.rebuild()
-            self.call_edit_childref(ref.ref)
+            self.call_edit_childref(ref)
 
     def run(self, skip):
         skip_list = filter(None, skip)
@@ -262,91 +219,35 @@ class ChildEmbedList(EmbeddedList):
                      _("Select Child"), skip=skip_list)
 
     def del_button_clicked(self, obj=None):
-        handle = self.get_selected()
-        if handle:
-            for ref in self.family.get_child_ref_list():
-                if ref.ref == handle:
-                    self.family.remove_child_ref(ref)
+        ref = self.get_selected()
+        if ref:
+            self.family.remove_child_ref(ref)
             self.rebuild()
 
     def edit_button_clicked(self, obj=None):
-        handle = self.get_selected()
-        if handle:
-            self.call_edit_childref(handle)
-
-    def call_edit_childref(self, handle):
-        for ref in self.family.get_child_ref_list():
-            if ref.ref == handle:
-                p = self.dbstate.db.get_person_from_handle(handle)
-                n = name_displayer.display(p)
-                try:
-                    EditChildRef(n, self.dbstate, self.uistate, self.track,
-                                 ref, self.child_ref_edited)
-                except Errors.WindowActiveError:
-                    pass
-                break
-
-    def edit_child_button_clicked(self, obj=None):
-        handle = self.get_selected()
-        if handle:
-            for ref in self.family.get_child_ref_list():
-                if ref.ref == handle:
-                    p = self.dbstate.db.get_person_from_handle(handle)
-                    try:
-                        EditPerson(self.dbstate, self.uistate, self.track,
-                               p, self.child_ref_edited)
-                    except Errors.WindowActiveError:
-                        pass
-                    break
-    
-    def up_button_clicked(self, obj):
-        handle = self.get_selected()
-        if handle:
-            pos = self.find_index(handle)
-            if pos > 0 :
-                self._move_up(pos,self.family.get_child_ref_list()[pos], 
-                              selmethod=self.family.get_child_ref_list)
-                
-    def down_button_clicked(self, obj):
         ref = self.get_selected()
         if ref:
-            pos = self.find_index(ref)
-            if pos >=0 and pos < len(self.family.get_child_ref_list())-1:
-                self._move_down(pos,self.family.get_child_ref_list()[pos], 
-                                selmethod=self.family.get_child_ref_list)
+            self.call_edit_childref(ref)
+
+    def call_edit_childref(self, ref):
+        p = self.dbstate.db.get_person_from_handle(ref.ref)
+        n = name_displayer.display(p)
+        try:
+            EditChildRef(n, self.dbstate, self.uistate, self.track,
+                         ref, self.child_ref_edited)
+        except Errors.WindowActiveError:
+            pass
+
+    def edit_child_button_clicked(self, obj=None):
+        ref = self.get_selected()
+        if ref:
+            p = self.dbstate.db.get_person_from_handle(ref.ref)
+            try:
+                EditPerson(self.dbstate, self.uistate, self.track,
+                       p, self.child_ref_edited)
+            except Errors.WindowActiveError:
+                pass
     
-
-    def drag_data_received(self, widget, context, x, y, sel_data, info, time):
-        """
-        Handle the standard gtk interface for drag_data_received.
-
-        If the selection data is define, extract the value from sel_data.data,
-        and decide if this is a move or a reorder.
-        """
-        if sel_data and sel_data.data:
-            (mytype, selfid, obj, row_from) = pickle.loads(sel_data.data)
-
-            # make sure this is the correct DND type for this object
-            if mytype == self._DND_TYPE.drag_type:
-                
-                # determine the destination row
-                row = self._find_row(x, y)
-
-                # if the is same object, we have a move, otherwise,
-                # it is a standard drag-n-drop
-                
-                if id(self) == selfid:
-                    obj = self.get_data().get_child_ref_list()[row_from]
-                    self._move(row_from, row, obj)
-                else:
-                    handle = obj
-                    obj = gen.lib.ChildRef()
-                    obj.ref = handle
-                    self._handle_drag(row, obj)
-                self.rebuild()
-            elif self._DND_EXTRA and mytype == self._DND_EXTRA.drag_type:
-                self.handle_extra_type(mytype, obj)
-
     def north_american(self):
         """
         Child inherits name from father

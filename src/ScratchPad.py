@@ -102,6 +102,7 @@ def map2class(target):
     d = {"person-link": ScratchPersonLink,
          "family-link": ScratchFamilyLink,
          'personref': ScratchPersonRef,
+         'childref': ScratchChildRef,
          'source-link': ScratchSourceLink,
          'srcref': ScratchSourceRef,
          'repo-link': ScratchRepositoryLink,
@@ -592,6 +593,24 @@ class ScratchPersonRef(ScratchObjWrapper):
                 self._title = self._obj.get_relation()
                 self._value = person.get_primary_name().get_name()
 
+class ScratchChildRef(ScratchObjWrapper):
+
+    DROP_TARGETS = [DdTargets.CHILDREF]
+    DRAG_TARGET  = DdTargets.CHILDREF
+    ICON         = LINK_PIC
+
+    def __init__(self, dbstate, obj):
+        super(ScratchChildRef, self).__init__(dbstate, obj)
+        self._type  = _("Child ref")
+        if self._obj:
+            person = self._db.get_person_from_handle(self._obj.get_reference_handle())
+            if person:
+                frel = str(self._obj.get_father_relation())
+                mrel = str(self._obj.get_mother_relation())
+                self._title = _('%(frel)s %(mrel)s') % {'frel': frel, 
+                                                        'mrel': mrel}
+                self._value = person.get_primary_name().get_name()
+
 class ScratchPersonLink(ScratchHandleWrapper):
 
     DROP_TARGETS = [DdTargets.PERSON_LINK]
@@ -889,6 +908,8 @@ class ScratchPadListView(object):
                          gen_del_obj(self.delete_object, 'person-link'))
         self._db.connect('person-delete', 
                          gen_del_obj(self.delete_object_ref, 'personref'))
+        self._db.connect('person-delete', 
+                         gen_del_obj(self.delete_object_ref, 'childref'))
         self._db.connect('source-delete',
                          gen_del_obj(self.delete_object, 'source-link'))
         self._db.connect('source-delete',
@@ -964,6 +985,7 @@ class ScratchPadListView(object):
         self.register_wrapper_class(ScratchDropRawList)
         self.register_wrapper_class(ScratchDropHandleList)
         self.register_wrapper_class(ScratchPersonRef)
+        self.register_wrapper_class(ScratchChildRef)
         self.register_wrapper_class(ScratchText)
         self.register_wrapper_class(ScratchNote)
         
