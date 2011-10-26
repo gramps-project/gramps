@@ -44,7 +44,7 @@ class Photo(gtk.EventBox):
     """
     Displays an image and allows it to be viewed in an external image viewer.
     """
-    def __init__(self, netbook_mode=False):
+    def __init__(self, use_small_size=False):
         gtk.EventBox.__init__(self)
         self.full_path = None
         self.photo = gtk.Image()
@@ -54,7 +54,7 @@ class Photo(gtk.EventBox):
                 'viewer application.')
         self.set_tooltip_text(tip)
         self.__size = ThumbNails.SIZE_LARGE
-        if netbook_mode:
+        if use_small_size:
             self.__size = ThumbNails.SIZE_NORMAL
 
     def set_image(self, full_path, mime_type=None, rectangle=None):

@@ -45,7 +45,7 @@ class PersonDetails(Gramplet):
         """
         self.top = gtk.HBox()
         vbox = gtk.VBox()
-        self.photo = Photo(self.uistate.netbook_mode())
+        self.photo = Photo(self.uistate.screen_height() < 1000)
         self.photo.show()
         self.name = gtk.Label()
         self.name.set_alignment(0, 0)

@@ -61,7 +61,7 @@ class Gallery(Gramplet):
             full_path = Utils.media_path_full(self.dbstate.db, media.get_path())
             mime_type = media.get_mime_type()
             if mime_type and mime_type.startswith("image"):
-                photo = Photo(self.uistate.netbook_mode())
+                photo = Photo(self.uistate.screen_height() < 1000)
                 photo.set_image(full_path, mime_type, media_ref.get_rectangle())
                 self.image_list.append(photo)
                 self.top.pack_start(photo, expand=False, fill=False)
