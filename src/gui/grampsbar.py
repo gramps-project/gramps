@@ -314,8 +314,8 @@ class GrampsBar(gtk.Notebook):
         """
         Add a tab to the notebook for the given gramplet.
         """
-        width = int(self.uistate.screen_width() * 0.25)
-        height = int(self.uistate.screen_height() * 0.20)
+        width = min(int(self.uistate.screen_width() * 0.25), 400)
+        height = min(int(self.uistate.screen_height() * 0.20), 400)
         gramplet.set_size_request(width, height)
 
         page_num = self.append_page(gramplet)
