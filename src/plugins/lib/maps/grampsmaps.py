@@ -56,6 +56,7 @@ import constants
 from gen.ggettext import sgettext as _
 from gen.ggettext import ngettext
 from config import config
+from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------
 #
