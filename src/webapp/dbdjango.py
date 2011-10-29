@@ -28,6 +28,7 @@
 #------------------------------------------------------------------------
 import cPickle
 import base64
+import time
 import gen
 import re
 from gen.db import DbReadBase, DbWriteBase, DbTxn
@@ -63,6 +64,8 @@ class Cursor(object):
 class Bookmarks:
     def get(self):
         return [] # handles
+    def append(self, handle):
+        pass
 
 class DjangoTxn(DbTxn):
     def __init__(self, message, db, table=None):
@@ -80,6 +83,11 @@ class DjangoTxn(DbTxn):
                 return txn[key]
             else:
                 return None
+
+    def put(self, handle, new_data, txn):
+        """
+        """
+        txn[handle] = new_data
 
 class DbDjango(DbWriteBase, DbReadBase):
     """
@@ -693,7 +701,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         return Cursor(self.dji.Source, self.get_raw_source_data).iter()
 
     def has_gramps_id(self, key, gramps_id):
-        return self.dji.Person.filter(handle=handle).count() == 1
+        return self.dji.Person.filter(gramps_id=gramps_id).count() > 0
 
     def has_person_handle(self, handle):
         return self.dji.Person.filter(handle=handle).count() == 1
@@ -719,42 +727,85 @@ class DbDjango(DbWriteBase, DbReadBase):
     def has_tag_handle(self, handle):
         return self.dji.Tag.filter(handle=handle).count() == 1
 
+    def has_object_handle(self, handle):
+        return self.dji.Media.filter(handle=handle).count() == 1
+
+    def has_name_group_key(self, key):
+        # FIXME:
+        return False
+
+    def set_name_group_mapping(self, key, value):
+        # FIXME:
+        pass
+
+    def set_default_person_handle(self, handle):
+        pass
+
+    def set_mediapath(self, mediapath):
+        pass
+
     def get_raw_person_data(self, handle):
-        # FIXME?: not cached
         try:
             return self.dji.get_person(self.dji.Person.get(handle=handle))
         except:
-            return None
+            if handle in self.import_cache:
+                return self.import_cache[handle].serialize()
+            else:
+                return None
 
     def get_raw_family_data(self, handle):
         try:
             return self.dji.get_family(self.dji.Family.get(handle=handle))
         except:
-            return None
+            if handle in self.import_cache:
+                return self.import_cache[handle].serialize()
+            else:
+                return None
 
     def get_raw_source_data(self, handle):
         try:
             return self.dji.get_source(self.dji.Source.get(handle=handle))
         except:
-            return None
+            if handle in self.import_cache:
+                return self.import_cache[handle].serialize()
+            else:
+                return None
 
     def get_raw_repository_data(self, handle):
         try:
             return self.dji.get_repository(self.dji.Repository.get(handle=handle))
         except:
-            return None
+            if handle in self.import_cache:
+                return self.import_cache[handle].serialize()
+            else:
+                return None
 
     def get_raw_note_data(self, handle):
         try:
             return self.dji.get_note(self.dji.Note.get(handle=handle))
         except:
-            return None
+            if handle in self.import_cache:
+                return self.import_cache[handle].serialize()
+            else:
+                return None
 
     def get_raw_place_data(self, handle):
         try:
             return self.dji.get_place(self.dji.Place.get(handle=handle))
         except:
-            return None
+            if handle in self.import_cache:
+                return self.import_cache[handle].serialize()
+            else:
+                return None
+
+    def get_raw_object_data(self, handle):
+        try:
+            return self.dji.get_media(self.dji.Media.get(handle=handle))
+        except:
+            if handle in self.import_cache:
+                return self.import_cache[handle].serialize()
+            else:
+                return None
 
     def add_person(self, person, trans, set_gid=True):
         if not person.handle:
@@ -818,6 +869,20 @@ class DbDjango(DbWriteBase, DbReadBase):
         self.commit_event(tag, trans)
         return tag.handle
 
+    def add_object(self, obj, transaction, set_gid=True):
+        """
+        Add a MediaObject to the database, assigning internal IDs if they have
+        not already been defined.
+        
+        If not set_gid, then gramps_id is not set.
+        """
+        if not obj.handle:
+            obj.handle = Utils.create_id()
+        if not obj.gramps_id or set_gid:
+            obj.gramps_id = self.find_next_object_gramps_id()
+        self.commit_media_object(obj, transaction)
+        return obj.handle
+
     def commit_person(self, person, trans, change_time=None):
         self.import_cache[person.handle] = person
 
@@ -841,6 +906,13 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def commit_tag(self, tag, trans, change_time=None):
         self.import_cache[tag.handle] = tag
+
+    def commit_media_object(self, obj, transaction, change_time=None):
+        """
+        Commit the specified MediaObject to the database, storing the changes
+        as part of the transaction.
+        """
+        self.import_cache[obj.handle] = obj
 
     def get_gramps_ids(self, obj_key):
         key2table = {
