@@ -46,7 +46,6 @@ from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                              PARA_ALIGN_LEFT, PARA_ALIGN_CENTER)
 from gen.plug.menu import (BooleanOption, StringOption, NumberOption, 
                          EnumeratedListOption, FilterOption, PersonOption)
-from gui.utils import ProgressMeter
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
@@ -65,10 +64,11 @@ class CalendarReport(Report):
     """
     Create the Calendar object that produces the report.
     """
-    def __init__(self, database, options_class):
-        Report.__init__(self, database, options_class)
-        menu = options_class.menu
-        mgobn = lambda name:options_class.menu.get_option_by_name(name).get_value()
+    def __init__(self, database, options, user):
+        Report.__init__(self, database, options, user)
+        self._user = user
+        menu = options.menu
+        mgobn = lambda name:options.menu.get_option_by_name(name).get_value()
 
         self.titletext = mgobn('titletext')
         self.relationships = mgobn('relationships')
@@ -144,7 +144,6 @@ class CalendarReport(Report):
     def write_report(self):
         """ The short method that runs through each month and creates a page. """
         # initialize the dict to fill:
-        self.progress = ProgressMeter(_('Birthday and Anniversary Report'))
         self.calendar = {}
         # get the information, first from holidays:
         if self.country != 0:
@@ -172,11 +171,12 @@ class CalendarReport(Report):
             self.doc.start_paragraph('BIR-Text3style')
             self.doc.write_text(_("Relationships shown are to %s") % _nd.display_name(name))
             self.doc.end_paragraph()
-        self.progress.set_pass(_('Formatting months...'), 12)
+        self._user.begin_progress(_('Birthday and Anniversary Report'), 
+                                  _('Formatting months...'), 12)
         for month in range(1, 13):
-            self.progress.step()
+            self._user.step_progress()
             self.print_page(month)
-        self.progress.close()
+        self._user.end_progress()
 
     def print_page(self, month):
         """ Prints a month as a page """
@@ -209,14 +209,19 @@ class CalendarReport(Report):
         and text.
         """
         people = self.database.iter_person_handles()
-        self.progress.set_pass(_('Applying Filter...'), 
-            self.database.get_number_of_people())
-        people = self.filter.apply(self.database, people, self.progress)
+        self._user.begin_progress(_('Birthday and Anniversary Report'), 
+                                  _('Applying Filter...'), 
+                                  self.database.get_number_of_people())
+        people = self.filter.apply(self.database, people, 
+                                   self._user.step_progress)
+        self._user.end_progress()
+        
         rel_calc = Relationship.get_relationship_calculator()
 
-        self.progress.set_pass(_('Reading database...'), len(people))
+        self._user.begin_progress(_('Birthday and Anniversary Report'), 
+                                  _('Reading database...'), len(people))
         for person_handle in people:
-            self.progress.step()
+            self._user.step_progress()
             person = self.database.get_person_from_handle(person_handle)
             birth_ref = person.get_birth_ref()
             birth_date = None
@@ -331,6 +336,7 @@ class CalendarReport(Report):
                                                                     prob_alive_date)
                                             if (self.alive and alive1 and alive2) or not self.alive:
                                                 self.add_day_item(text, month, day)
+        self._user.end_progress()
 
 #------------------------------------------------------------------------
 #

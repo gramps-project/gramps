@@ -135,15 +135,15 @@ def draw_wedge(doc,  style,  centerx,  centery,  radius,  start_angle,
 #------------------------------------------------------------------------
 class FanChart(Report):
 
-    def __init__(self, database, options_class):
+    def __init__(self, database, options, user):
         """
         Create the FanChart object that produces the report.
         
         The arguments are:
 
         database        - the GRAMPS database instance
-        person          - currently selected person
-        options_class   - instance of the Options class for this report
+        options         - instance of the Options class for this report
+        user            - a gen.user.User instance
 
         This report needs the following parameters (class variables)
         that come in the options class.
@@ -154,7 +154,7 @@ class FanChart(Report):
         radial          - Print radial texts roundabout or as upright as possible.
         """
 
-        menu = options_class.menu
+        menu = options.menu
         self.max_generations = menu.get_option_by_name('maxgen').get_value()
         self.circle          = menu.get_option_by_name('circle').get_value()
         self.background      = menu.get_option_by_name('background').get_value()
@@ -177,7 +177,7 @@ class FanChart(Report):
         
         self.calendar = 0
 
-        Report.__init__(self, database, options_class)
+        Report.__init__(self, database, options, user)
 
         self.height = 0
         self.map = [None] * 2**self.max_generations

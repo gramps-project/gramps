@@ -54,23 +54,23 @@ import DateHandler
 #------------------------------------------------------------------------
 class EndOfLineReport(Report):
 
-    def __init__(self, database, options_class):
+    def __init__(self, database, options, user):
         """
         Create the EndOfLineReport object that produces the report.
         
         The arguments are:
 
         database        - the GRAMPS database instance
-        person          - currently selected person
-        options_class   - instance of the Options class for this report
+        options         - instance of the Options class for this report
+        user            - a gen.user.User() instance
 
         This report needs the following parameters (class variables)
         that come in the options class.
         name_format   - Preferred format to display names
 
         """
-        Report.__init__(self, database, options_class)
-        menu = options_class.menu
+        Report.__init__(self, database, options, user)
+        menu = options.menu
         pid = menu.get_option_by_name('pid').get_value()
         self.center_person = database.get_person_from_gramps_id(pid)
         if (self.center_person == None) :

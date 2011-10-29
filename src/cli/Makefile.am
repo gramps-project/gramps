@@ -13,7 +13,8 @@ pkgdata_PYTHON = \
 	arghandler.py \
 	argparser.py \
 	clidbman.py \
-	grampscli.py
+	grampscli.py \
+	user.py
 
 pkgpyexecdir = @pkgpyexecdir@/cli
 pkgpythondir = @pkgpythondir@/cli

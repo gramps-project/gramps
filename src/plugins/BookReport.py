@@ -78,6 +78,7 @@ from gen.plug.menu import PersonOption, FilterOption, FamilyOption
 import ManagedWindow
 from glade import Glade
 from gui.utils import open_file_with_default_application
+import gui.user
 
 # Import from specific modules in ReportBase
 from gen.plug.report import CATEGORY_BOOK, book_categories
@@ -85,6 +86,7 @@ from gui.plug.report._reportdialog import ReportDialog
 from gui.plug.report._docreportdialog import DocReportDialog
 from gen.plug.report._options import ReportOptions
 from cli.plug import CommandLineReport
+import cli.user
 
 from gen.display.name import displayer as _nd
 
@@ -1252,13 +1254,13 @@ class BookReportDialog(DocReportDialog):
         """Create a document of the type requested by the user."""
         pstyle = self.paper_frame.get_paper_style()
         self.doc = self.format(self.selected_style, pstyle)
-
+        user = gui.user.User()
         self.rptlist = []
         for item in self.book.get_item_list():
             item.option_class.set_document(self.doc)
             report_class = item.get_write_item()
-            obj = write_book_item(self.database,
-                                  report_class, item.option_class)
+            obj = write_book_item(self.database, report_class, 
+                                  item.option_class, user)
             self.rptlist.append(obj)
         self.doc.open(self.target_path)
 
@@ -1357,6 +1359,7 @@ def cl_report(database, name, category, options_str_dict):
     doc = clr.format(selected_style,
                      PaperStyle(clr.paper, clr.orien, clr.marginl,
                                 clr.marginr, clr.margint, clr.marginb))
+    user = cli.user.User()
     rptlist = []
     for item in book.get_item_list():
         item.option_class.set_document(doc)
@@ -1381,11 +1384,11 @@ def cl_report(database, name, category, options_str_dict):
 # Generic task function for book report
 #
 #------------------------------------------------------------------------
-def write_book_item(database, report_class, options_class):
-    """Write the Timeline Graph using options set.
+def write_book_item(database, report_class, options, user):
+    """Write the report using options set.
     All user dialog has already been handled and the output file opened."""
     try:
-        return report_class(database, options_class)
+        return report_class(database, options, user)
     except Errors.ReportError, msg:
         (m1, m2) = msg.messages()
         ErrorDialog(m1, m2)

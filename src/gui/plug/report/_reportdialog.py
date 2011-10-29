@@ -53,6 +53,7 @@ import config
 import Errors
 from gui.utils import ProgressMeter, open_file_with_default_application
 from gui.plug import add_gui_options
+from gui.user import User
 from QuestionDialog import ErrorDialog, OptionDialog
 from gen.plug.report import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
                              CATEGORY_CODE, CATEGORY_WEB, CATEGORY_GRAPHVIZ,
@@ -675,7 +676,8 @@ def report(dbstate, uistate, person, report_class, options_class,
         if response == gtk.RESPONSE_OK:
             dialog.close()
             try:
-                MyReport = report_class(dialog.db, dialog.options)
+                user = User()
+                MyReport = report_class(dialog.db, dialog.options, user)
                 
                 def do_report():
                     MyReport.doc.init()

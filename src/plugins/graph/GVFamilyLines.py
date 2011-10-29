@@ -284,17 +284,17 @@ class FamilyLinesOptions(MenuReportOptions):
 #
 #------------------------------------------------------------------------
 class FamilyLinesReport(Report):
-    def __init__(self, database, options):
+    def __init__(self, database, options, user):
         """
         Create FamilyLinesReport object that eventually produces the report.
         
         The arguments are:
 
         database    - the GRAMPS database instance
-        person      - currently selected person
         options     - instance of the FamilyLinesOptions class for this report
+        user        - a gen.user.User() instance
         """
-        Report.__init__(self, database, options)
+        Report.__init__(self, database, options, user)
 
         # initialize several convenient variables
         self._db = database

@@ -73,15 +73,15 @@ class AncestorReport(Report):
     """
     Ancestor Report class
     """
-    def __init__(self, database, options_class):
+    def __init__(self, database, options, user):
         """
         Create the AncestorReport object that produces the Ahnentafel report.
         
         The arguments are:
 
         database        - the GRAMPS database instance
-        person          - currently selected person
-        options_class   - instance of the Options class for this report
+        options         - instance of the Options class for this report
+        user            - a gen.user.User() instance
 
         This report needs the following parameters (class variables)
         that come in the options class.
@@ -91,11 +91,11 @@ class AncestorReport(Report):
         name_format   - Preferred format to display names
 
         """
-        Report.__init__(self, database, options_class)
+        Report.__init__(self, database, options, user)
 
         self.map = {}
         
-        menu = options_class.menu
+        menu = options.menu
         self.max_generations = menu.get_option_by_name('maxgen').get_value()
         self.pgbrk = menu.get_option_by_name('pagebbg').get_value()
         self.opt_namebrk = menu.get_option_by_name('namebrk').get_value()

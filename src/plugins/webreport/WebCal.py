@@ -61,7 +61,6 @@ from gen.plug.menu import BooleanOption, NumberOption, StringOption, \
 import GrampsLocale
 from QuestionDialog import WarningDialog
 from Utils import probably_alive, xml_lang, get_researcher
-from gui.utils import ProgressMeter
 from DateHandler import displayer as _dd
 
 from gen.display.name import displayer as _nd
@@ -99,9 +98,10 @@ class WebCalReport(Report):
     """
     Create WebCalReport object that produces the report.
     """
-    def __init__(self, database, options):
-        Report.__init__(self, database, options)
+    def __init__(self, database, options, user):
+        Report.__init__(self, database, options, user)
         mgobn = lambda name:options.menu.get_option_by_name(name).get_value()
+        self._user = user
 
         # class to do conversion of styled notes to html markup
         self._backend = HtmlBackend()
@@ -293,7 +293,9 @@ class WebCalReport(Report):
     def __get_holidays(self, year):
 
         # _('translation')
-        self.progress.set_pass((_('Calculating Holidays for year %04d') % year), 365)
+        self._user.begin_progress(_("Web Calendar Report"),
+                                  (_('Calculating Holidays for year %04d') % year),
+                                  365)
 
         """ Get the holidays for the specified country and year """
         holiday_table = libholiday.HolidayTable()
@@ -304,9 +306,8 @@ class WebCalReport(Report):
                 holiday_names = holiday_table.get_holidays(month, day) 
                 for holiday_name in holiday_names:
                     self.add_day_item(holiday_name, year, month, day, 'Holiday')
-
-                # increment progress bar
-                self.progress.step() 
+                self._user.step_progress()
+        self._user.end_progress()
 
     def copy_calendar_files(self):
         """
@@ -803,8 +804,8 @@ class WebCalReport(Report):
 
         nr_up = 1                   # Number of directory levels up to get to self.html_dir / root
 
-        # generate progress pass for "WebCal"
-        self.progress.set_pass(_('Formatting months ...'), 12)
+        self._user.begin_progress(_("Web Calendar Report"),
+                                  _('Formatting months ...'), 12)
 
         for month in range(1, 13):
             cal_fname = _dd.long_months[month]
@@ -854,8 +855,8 @@ class WebCalReport(Report):
             # and close the file
             self.XHTMLWriter(webcal, of)
 
-            # increase progress bar
-            self.progress.step()
+            self._user.step_progress()
+        self._user.end_progress()
 
     def year_glance(self, year):
         """
@@ -866,7 +867,8 @@ class WebCalReport(Report):
         nr_up = 1                       # Number of directory levels up to get to root
 
         # generate progress pass for "Year At A Glance"
-        self.progress.set_pass(_('Creating Year At A Glance calendar'), 12)
+        self._user.begin_progress(_("Web Calendar Report"),
+                                  _('Creating Year At A Glance calendar'), 12)
 
         of = self.create_file('fullyearlinked', str(year))
 
@@ -903,7 +905,7 @@ class WebCalReport(Report):
             content += monthly_calendar  
 
             # increase progress bar
-            self.progress.step()
+            self._user.step_progress()
 
         # create blank line for stylesheets
         # write footer section
@@ -913,6 +915,7 @@ class WebCalReport(Report):
         # send calendar page to web output
         # and close the file
         self.XHTMLWriter(yearglance, of)
+        self._user.end_progress()
 
     def one_day(self, event_date, fname_date, day_list):
         """
@@ -1045,12 +1048,16 @@ class WebCalReport(Report):
         db = self.database
 
         people = db.iter_person_handles()
-        self.progress.set_pass(_('Applying Filter...'), db.get_number_of_people())
-        people = self.filter.apply(db, people, self.progress)
+        self._user.begin_progress(_("Web Calendar Report"),
+                                  _('Applying Filter...'), 
+                                  db.get_number_of_people())
+        people = self.filter.apply(db, people, self._user.step_progress)
+        self._user.end_progress()
 
-        self.progress.set_pass(_("Reading database..."), len(people))
+        self._user.begin_progress(_("Web Calendar Report"),
+                                  _("Reading database..."), len(people))
         for person in imap(db.get_person_from_handle, people):
-            self.progress.step()
+            self._user.step_progress()
 
             family_list = person.get_family_handle_list()
             birth_ref = person.get_birth_ref()
@@ -1148,7 +1155,8 @@ class WebCalReport(Report):
                                         'person' : short_name}
 
                                     self.add_day_item(text, year, month, day, 'Anniversary')
-
+        self._user.end_progress()
+        
     def write_footer(self, nr_up):
         """
         Writes the footer section of the pages
@@ -1200,10 +1208,6 @@ class WebCalReport(Report):
         """
         The short method that runs through each month and creates a page. 
         """
-
-        # Create progress meter bar
-        self.progress = ProgressMeter(_("Web Calendar Report"), '')
-
         # get data from database for birthdays/ anniversaries
         self.collect_data(self.start_year)
 
@@ -1250,9 +1254,6 @@ class WebCalReport(Report):
             # "One Day" calendar pages
             if self.fullyear:
                 self.year_glance(cal_year)
-
-        # Close the progress meter
-        self.progress.close()
 
 # ---------------------------------------------------------------------------------------
 #                             WebCalOptions; Creates the Menu

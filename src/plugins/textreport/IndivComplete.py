@@ -143,14 +143,15 @@ for event_group, type_list in GROUP_DICT.iteritems():
 #------------------------------------------------------------------------
 class IndivCompleteReport(Report):
 
-    def __init__(self, database, options_class):
+    def __init__(self, database, options, user):
         """
         Create the IndivCompleteReport object that produces the report.
         
         The arguments are:
 
         database        - the GRAMPS database instance
-        options_class   - instance of the Options class for this report
+        options         - instance of the Options class for this report
+        user            - a gen.user.User() instance
 
         This report needs the following parameters (class variables)
         that come in the options class.
@@ -165,9 +166,9 @@ class IndivCompleteReport(Report):
         name_format   - Preferred format to display names
         """
 
-        Report.__init__(self, database, options_class)
+        Report.__init__(self, database, options, user)
 
-        menu = options_class.menu
+        menu = options.menu
         self.use_pagebreak = menu.get_option_by_name('pageben').get_value()
         self.use_srcs = menu.get_option_by_name('cites').get_value()
         self.use_srcs_notes = menu.get_option_by_name('incsrcnotes').get_value()
@@ -176,7 +177,7 @@ class IndivCompleteReport(Report):
 
         self.use_images = menu.get_option_by_name('images').get_value()
 
-        filter_option = options_class.menu.get_option_by_name('filter')
+        filter_option = options.menu.get_option_by_name('filter')
         self.filter = filter_option.get_filter()
         self.bibli = None
 

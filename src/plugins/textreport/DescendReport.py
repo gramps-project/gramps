@@ -306,14 +306,15 @@ class RecurseDown():
 #------------------------------------------------------------------------
 class DescendantReport(Report):
 
-    def __init__(self, database, options_class):
+    def __init__(self, database, options, user):
         """
         Create the DescendantReport object that produces the report.
         
         The arguments are:
 
         database        - the GRAMPS database instance
-        options_class   - instance of the Options class for this report
+        options         - instance of the Options class for this report
+        user            - a gen.user.User() instance
 
         This report needs the following parameters (class variables)
         that come in the options class.
@@ -323,9 +324,9 @@ class DescendantReport(Report):
         dups    - Whether to include duplicate descendant trees
         """
 
-        Report.__init__(self, database, options_class)
+        Report.__init__(self, database, options, user)
 
-        menu = options_class.menu
+        menu = options.menu
         self.max_generations = menu.get_option_by_name('gen').get_value()
         pid = menu.get_option_by_name('pid').get_value()
         self.center_person = database.get_person_from_gramps_id(pid)

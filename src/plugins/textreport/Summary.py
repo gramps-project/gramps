@@ -58,17 +58,18 @@ class SummaryReport(Report):
     """
     This report produces a summary of the objects in the database.
     """
-    def __init__(self, database, options_class):
+    def __init__(self, database, options, user):
         """
         Create the SummaryReport object that produces the report.
         
         The arguments are:
 
         database        - the GRAMPS database instance
-        options_class   - instance of the Options class for this report
+        options         - instance of the Options class for this report
+        user            - a gen.user.User() instance
 
         """
-        Report.__init__(self, database, options_class)
+        Report.__init__(self, database, options, user)
         self.__db = database
         
     def write_report(self):

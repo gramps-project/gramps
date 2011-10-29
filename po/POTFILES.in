@@ -29,7 +29,11 @@ src/cli/arghandler.py
 src/cli/argparser.py
 src/cli/clidbman.py
 src/cli/grampscli.py
+src/cli/user.py
 src/cli/plug/__init__.py
+
+# gen
+src/gen/user.py
 
 # gen db API
 src/gen/db/base.py
@@ -90,6 +94,7 @@ src/gui/filtereditor.py
 src/gui/grampsbar.py
 src/gui/grampsgui.py
 src/gui/makefilter.py
+src/gui/user.py
 src/gui/utils.py
 src/gui/viewmanager.py
 

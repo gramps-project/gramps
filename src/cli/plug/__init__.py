@@ -62,6 +62,7 @@ from gen.plug.report._paper import paper_sizes
 import const
 import DbState
 from cli.grampscli import CLIManager
+import cli.user
 
 #------------------------------------------------------------------------
 #
@@ -559,7 +560,7 @@ def cl_report(database, name, category, report_class, options_class,
         if clr.css_filename is not None and \
            hasattr(clr.option_class.handler.doc, 'set_css_filename'):
             clr.option_class.handler.doc.set_css_filename(clr.css_filename)
-        MyReport = report_class(database, clr.option_class)
+        MyReport = report_class(database, clr.option_class, cli.user.User())
         MyReport.doc.init()
         MyReport.begin_report()
         MyReport.write_report()

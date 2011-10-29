@@ -56,15 +56,15 @@ from gen.display.name import displayer as global_name_display
 #------------------------------------------------------------------------
 class FamilyGroup(Report):
 
-    def __init__(self, database, options_class):
+    def __init__(self, database, options, user):
         """
         Create the DetAncestorReport object that produces the report.
         
         The arguments are:
 
         database        - the GRAMPS database instance
-        person          - currently selected person
-        options_class   - instance of the Options class for this report
+        options         - instance of the Options class for this report
+        user            - a gen.user.User() instance
 
         This report needs the following parameters (class variables)
         that come in the options class.
@@ -73,8 +73,8 @@ class FamilyGroup(Report):
         includeAttrs  - Whether to include attributes
         name_format   - Preferred format to display names
         """
-        Report.__init__(self, database, options_class)
-        menu = options_class.menu
+        Report.__init__(self, database, options, user)
+        menu = options.menu
 
         self.family_handle = None
 

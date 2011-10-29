@@ -48,7 +48,6 @@ from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
 import Sort
 from QuestionDialog import ErrorDialog
 from gen.display.name import displayer as name_displayer
-from gui.utils import ProgressMeter
 import config
 from gen.utils import get_birth_or_fallback, get_death_or_fallback
 
@@ -77,15 +76,15 @@ def _get_sort_functions(sort):
 #------------------------------------------------------------------------
 class TimeLine(Report):
 
-    def __init__(self, database, options_class):
+    def __init__(self, database, options, user):
         """
         Create the Timeline object that produces the report.
         
         The arguments are:
 
         database        - the GRAMPS database instance
-        person          - currently selected person
-        options_class   - instance of the Options class for this report
+        options         - instance of the Options class for this report
+        user            - instance of gen.user.User()
 
         This report needs the following parameters (class variables)
         that come in the options class.
@@ -95,9 +94,9 @@ class TimeLine(Report):
                     returning the list of filters.
         sortby -    Sorting method to be used.
         """
-
-        Report.__init__(self, database, options_class)
-        menu = options_class.menu
+        Report.__init__(self, database, options, user)
+        self._user = user
+        menu = options.menu
         self.filter = menu.get_option_by_name('filter').get_filter()
 
         self.title = _("Timeline Graph for %s") % self.filter.get_name()
@@ -109,8 +108,6 @@ class TimeLine(Report):
         self.calendar = 0
 
     def write_report(self):
-        self.progress = ProgressMeter(_('Timeline'))
-
         (low, high) = self.find_year_range()
 
         if low == high:
@@ -142,14 +139,17 @@ class TimeLine(Report):
         
         length = len(self.plist)
 
-        self.progress.set_pass(_('Sorting dates...'), 1)
+        self._user.begin_progress(_('Timeline'), _('Sorting dates...'), 1)
         self.plist.sort(key=self.sort_func)
-        self.progress.set_pass(_('Calculating timeline...'), len(self.plist))
+        self._user.end_progress()
+        
+        self._user.begin_progress(_('Timeline'), 
+                                  _('Calculating timeline...'), len(self.plist))
         
         self.calendar = config.get('preferences.calendar-format-report')
         
         for p_id in self.plist:
-            self.progress.step()
+            self._user.step_progress()
             p = self.database.get_person_from_handle(p_id)
             birth = get_birth_or_fallback(self.database, p)
             if birth:
@@ -203,7 +203,7 @@ class TimeLine(Report):
             else:
                 index += 1;
             current += 1
-        self.progress.close()
+        self._user.end_progress()
         self.build_grid(low, high,start,stop)
         self.doc.end_page()    
 

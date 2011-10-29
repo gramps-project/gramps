@@ -61,20 +61,22 @@ class NumberOfAncestorsReport(Report):
     """
     This report counts all the ancestors of the specified person.
     """
-    def __init__(self, database, options_class):
+    def __init__(self, database, options, user):
         """
         Create the NumberOfAncestorsReport object that produces the report.
         
         The arguments are:
 
         database        - the GRAMPS database instance
-        person          - currently selected person
-        options_class   - instance of the Options class for this report
+        options         - instance of the Options class for this report
+        user            - a gen.user.User() instance
+        
+        Menu options:
         name_format   - Preferred format to display names
         """
-        Report.__init__(self, database, options_class)
+        Report.__init__(self, database, options, user)
         self.__db = database
-        pid = options_class.menu.get_option_by_name('pid').get_value()
+        pid = options.menu.get_option_by_name('pid').get_value()
         self.__person = database.get_person_from_gramps_id(pid)
         if (self.__person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
@@ -82,7 +84,7 @@ class NumberOfAncestorsReport(Report):
         # Copy the global NameDisplay so that we don't change application 
         # defaults.
         self._name_display = copy.deepcopy(global_name_display)
-        name_format = options_class.menu.get_option_by_name("name_format").get_value()
+        name_format = options.menu.get_option_by_name("name_format").get_value()
         if name_format != 0:
             self._name_display.set_default_format(name_format)
 

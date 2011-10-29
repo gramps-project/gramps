@@ -89,7 +89,6 @@ from gen.plug.report import MenuReportOptions
                         
 import Utils
 import constfunc
-from gui.utils import ProgressMeter
 import ThumbNails
 import ImgManip
 import gen.mime
@@ -3443,7 +3442,6 @@ class EventPage(BasePage):
 
         @param: title -- is the title of the web pages
         @param: event_handle -- the event handle for the database
-        @param: progressmeter -- progress meter bar
         """
         db = report.database
 
@@ -4310,7 +4308,7 @@ class MediaListPage(BasePage):
         return hyper
 
 class ThumbnailPreviewPage(BasePage):
-    def __init__(self, report, title, ticker):
+    def __init__(self, report, title, cb_progress):
         BasePage.__init__(self, report, title)
         db = report.database
 
@@ -4438,7 +4436,7 @@ class ThumbnailPreviewPage(BasePage):
                     index += 1
 
                     # increase progress meter...
-                    ticker.step()
+                    cb_progress()
 
         # add body id element
         body.attr = 'id ="ThumbnailPreview"'
@@ -6244,7 +6242,7 @@ class AddressBookPage(BasePage):
 
 class NavWebReport(Report):
     
-    def __init__(self, database, options):
+    def __init__(self, database, options, user):
         """
         Create WebReport object that produces the report.
 
@@ -6252,8 +6250,10 @@ class NavWebReport(Report):
 
         database        - the GRAMPS database instance
         options         - instance of the Options class for this report
+        user            - instance of a gen.user.User()
         """
-        Report.__init__(self, database, options)
+        Report.__init__(self, database, options, user)
+        self._user = user
         menu = options.menu
         self.link_prefix_up = True
         self.options = {}
@@ -6419,8 +6419,6 @@ class NavWebReport(Report):
                             str(value))
                 return
 
-        self.progress = ProgressMeter(_("Narrated Web Site Report"), '')
-
         # Build the person list
         ind_list = self.build_person_list()
 
@@ -6488,7 +6486,6 @@ class NavWebReport(Report):
             if len(_WRONGMEDIAPATH) > 10:
                 error += '\n ...'
             WarningDialog(_("Missing media objects:"), error)
-        self.progress.close()
 
     def build_person_list(self):
         """
@@ -6498,8 +6495,13 @@ class NavWebReport(Report):
         # gets the person list and applies the requested filter
         self.person_handles = {}
         ind_list = self.database.iter_person_handles()
-        self.progress.set_pass(_('Applying Filter...'), self.database.get_number_of_people())
-        ind_list = self.filter.apply(self.database, ind_list, self.progress)
+        
+        self._user.begin_progress(_("Narrated Web Site Report"),
+                                  _('Applying Filter...'), 
+                                  self.database.get_number_of_people())
+        ind_list = self.filter.apply(self.database, ind_list, 
+                                     self._user.step_progress)
+        self._user.end_progress()
         for handle in ind_list:
             self.person_handles[handle] = True
         return ind_list
@@ -6577,27 +6579,27 @@ class NavWebReport(Report):
         """
         creates IndividualListPage, IndividualPage, and gendex page
         """
-        self.progress.set_pass(_('Creating individual pages'), len(ind_list) + 1)
-        self.progress.step()    # otherwise the progress indicator sits at 100%
-                                # for a short while from the last step we did,
-                                # which was to apply the privacy filter
-
+        self._user.begin_progress(_("Narrated Web Site Report"),
+                                  _('Creating individual pages'), 
+                                  len(ind_list) + 1)
         IndividualListPage(self, self.title, ind_list)
-
         for person_handle in ind_list:
-            self.progress.step()
+            self._user.step_progress()
             person = self.database.get_person_from_handle(person_handle)
 
             IndividualPage(self, self.title, person, ind_list, place_list, source_list, place_lat_long)
+        self._user.end_progress()
 
         if self.inc_gendex:
-            self.progress.set_pass(_('Creating GENDEX file'), len(ind_list))
+            self._user.beign_progress(_("Narrated Web Site Report"),
+                                      _('Creating GENDEX file'), len(ind_list))
             fp_gendex = self.create_file("gendex", ext=".txt")
             for person_handle in ind_list:
-                self.progress.step()
+                self._user.step_progress()
                 person = self.database.get_person_from_handle(person_handle)
                 self.write_gendex(fp_gendex, person)
             self.close_file(fp_gendex)
+            self._user.end_progress()
 
     def write_gendex(self, fp, person):
         """
@@ -6631,7 +6633,8 @@ class NavWebReport(Report):
 
         local_list = sort_people(self.database, ind_list)
 
-        self.progress.set_pass(_("Creating surname pages"), len(local_list))
+        self._user.begin_progress(_("Narrated Web Site Report"),
+                                  _("Creating surname pages"), len(local_list))
 
         SurnameListPage(self, self.title, ind_list, SurnameListPage.ORDER_BY_NAME,
             self.surname_fname)
@@ -6641,20 +6644,23 @@ class NavWebReport(Report):
 
         for (surname, handle_list) in local_list:
             SurnamePage(self, self.title, surname, handle_list)
-            self.progress.step()
+            self._user.step_progress()
+        self._user.end_progress()
 
     def source_pages(self, source_list):
         """
         creates SourceListPage and SourcePage
         """
 
-        self.progress.set_pass(_("Creating source pages"), len(source_list))
+        self._user.begin_progress(_("Narrated Web Site Report"),
+                                  _("Creating source pages"), len(source_list))
 
         SourceListPage(self, self.title, source_list.keys())
 
         for key in source_list:
             SourcePage(self, self.title, key, source_list)
-            self.progress.step()
+            self._user.step_progress()
+        self._user.end_progress()
 
     def family_pages(self, ppl_handle_list, place_list, place_lat_long):
         """
@@ -6662,8 +6668,9 @@ class NavWebReport(Report):
         """
         db = self.database
 
-        # set ProgressMeter for Families/ Relationship pages...
-        self.progress.set_pass(_("Creating family pages..."), len(db.get_family_handles() ))
+        self._user.begin_progress(_("Narrated Web Site Report"),
+                                  _("Creating family pages..."), 
+                                  len(db.get_family_handles() ))
 
         displayed = set()
         FamilyListPage(self, self.title, ppl_handle_list, displayed)
@@ -6678,20 +6685,23 @@ class NavWebReport(Report):
                         if family:
                             FamilyPage(self, self.title, person, family, place_list, ppl_handle_list, place_lat_long)
 
-                            self.progress.step()
+                            self._user.step_progress()
+        self._user.end_progress()
 
     def place_pages(self, place_list, source_list):
         """
         creates PlaceListPage and PlacePage
         """
 
-        self.progress.set_pass(_("Creating place pages"), len(place_list))
+        self._user.begin_progress(_("Narrated Web Site Report"),
+                                  _("Creating place pages"), len(place_list))
 
         PlaceListPage(self, self.title, place_list)
 
         for place in place_list:
             PlacePage(self, self.title, place, source_list, place_list)
-            self.progress.step()
+            self._user.step_progress()
+        self._user.end_progress()
 
     def event_pages(self, ind_list):
         """
@@ -6702,23 +6712,26 @@ class NavWebReport(Report):
 
         # set up progress bar for event pages; using ind list
         event_handle_list, event_types = build_event_data(db, ind_list)
-        self.progress.set_pass(_("Creating event pages"), len(event_handle_list))
+        self._user.begin_progress(_("Narrated Web Site Report"),
+                                  _("Creating event pages"), 
+                                  len(event_handle_list))
 
         # send all data to the events list page
         EventListPage(self, self.title, event_types, event_handle_list, ind_list)
 
         for event_handle in event_handle_list:
-
             # create individual event pages
             EventPage(self, self.title, event_handle, ind_list)
-
-            self.progress.step()
+            self._user.step_progress()
+        self._user.end_progress()
 
     def gallery_pages(self, source_list):
         """
         creates MediaListPage and MediaPage
         """
-        self.progress.set_pass(_("Creating media pages"), len(self.photo_list))
+        self._user.begin_progress(_("Narrated Web Site Report"),
+                                  _("Creating media pages"), 
+                                  len(self.photo_list))
 
         MediaListPage(self, self.title)
 
@@ -6734,9 +6747,10 @@ class NavWebReport(Report):
             # Notice. Here self.photo_list[photo_handle] is used not self.photo_list
             MediaPage(self, self.title, photo_handle, source_list, self.photo_list[photo_handle],
                       (prev, next, index, total))
-            self.progress.step()
+            self._user.step_progress()
             prev = photo_handle
             index += 1
+        self._user.end_progress()
 
     def thumbnail_preview_page(self):
         """
@@ -6744,9 +6758,11 @@ class NavWebReport(Report):
         """
         db = self.database
 
-        self.progress.set_pass(_("Creating thumbnail preview page..."), len(self.photo_list))
-
-        ThumbnailPreviewPage(self, self.title, self.progress)
+        self._user.begin_progress(_("Narrated Web Site Report"),
+                                  _("Creating thumbnail preview page..."), 
+                                  len(self.photo_list))
+        ThumbnailPreviewPage(self, self.title, self._user.step_progress)
+        self._user.end_progress()
 
     def base_pages(self):
         """
@@ -6782,8 +6798,10 @@ class NavWebReport(Report):
 
         # set progress bar pass for Repositories
         repository_size = len(repos_dict)
-        self.progress.set_pass(_('Creating repository pages'), repository_size)
-
+        
+        self._user.begin_progress(_("Narrated Web Site Report"),
+                                  _('Creating repository pages'), 
+                                  repository_size)
         # RepositoryListPage Class
         RepositoryListPage(self, self.title, repos_dict, keys)
 
@@ -6791,7 +6809,8 @@ class NavWebReport(Report):
             (repo, handle) = repos_dict[key]
 
             RepositoryPage(self, self.title, repository, handle, source_list)
-            self.progress.step()
+            self._user.step_progress()
+        self._user.end_progress()
 
     def addressbook_pages(self, ind_list):
         """
@@ -6827,17 +6846,21 @@ class NavWebReport(Report):
         AddressBookListPage(self, self.title, url_addr_res)
 
         # begin Address Book pages 
-        addr_size = len(url_addr_res) 
-        self.progress.set_pass(_("Creating address book pages ..."), addr_size)
+        addr_size = len(url_addr_res)
+        
+        self._user.begin_progress(_("Narrated Web Site Report"),
+                                  _("Creating address book pages ..."), 
+                                  addr_size)
         for (sort_name, person_handle, add, res, url) in url_addr_res:
             AddressBookPage(self, self.title, person_handle, add, res, url)
-            self.progress.step()
+            self._user.step_progress()
+        self._user.end_progress()
 
     def build_subdirs(self, subdir, fname, up = False):
         """
         If subdir is given, then two extra levels of subdirectory are inserted
-        between 'subdir' and the filename. The reason is to prevent directories with
-        too many entries.
+        between 'subdir' and the filename. The reason is to prevent directories
+        with too many entries.
 
         For example, this may return "8/1/aec934857df74d36618"
 

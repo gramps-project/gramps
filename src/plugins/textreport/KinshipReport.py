@@ -58,14 +58,15 @@ from gen.utils import get_birth_or_fallback, get_death_or_fallback
 #------------------------------------------------------------------------
 class KinshipReport(Report):
 
-    def __init__(self, database, options_class):
+    def __init__(self, database, options, user):
         """
         Create the KinshipReport object that produces the report.
         
         The arguments are:
 
         database        - the GRAMPS database instance
-        options_class   - instance of the Options class for this report
+        options         - instance of the Options class for this report
+        user            - a gen.user.User() instance
 
         This report needs the following parameters (class variables)
         that come in the options class.
@@ -78,9 +79,9 @@ class KinshipReport(Report):
         pid           - The Gramps ID of the center person for the report.
         name_format   - Preferred format to display names
         """
-        Report.__init__(self, database, options_class)
+        Report.__init__(self, database, options, user)
 
-        menu = options_class.menu
+        menu = options.menu
         self.max_descend = menu.get_option_by_name('maxdescend').get_value()
         self.max_ascend  = menu.get_option_by_name('maxascend').get_value()
         self.inc_spouses = menu.get_option_by_name('incspouses').get_value()

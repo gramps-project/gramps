@@ -431,10 +431,10 @@ class RecordsGramplet(Gramplet):
 #------------------------------------------------------------------------
 class RecordsReport(Report):
 
-    def __init__(self, database, options_class):
+    def __init__(self, database, options, user):
 
-        Report.__init__(self, database, options_class)
-        menu = options_class.menu
+        Report.__init__(self, database, options, user)
+        menu = options.menu
 
         self.filter_option =  menu.get_option_by_name('filter')
         self.filter = self.filter_option.get_filter()

@@ -1255,17 +1255,18 @@ class GuiConnect():
 #------------------------------------------------------------------------
 class DescendTree(Report):
 
-    def __init__(self, database, options_class):
+    def __init__(self, database, options, user):
         """
         Create DescendTree object that produces the report.
         The arguments are:
 
         database        - the GRAMPS database instance
-        options_class   - instance of the Options class for this report
+        options         - instance of the Options class for this report
+        user            - a gen.user.User() instance
         """
-        Report.__init__(self, database, options_class)
+        Report.__init__(self, database, options, user)
 
-        self.options_class = options_class
+        self.options = options
         self.database = database
         
         #The canvas that we will put our report on and print off of
@@ -1279,7 +1280,7 @@ class DescendTree(Report):
         database = self.database
 
         self.Connect = GuiConnect()
-        self.Connect.set__opts(self.options_class.menu, self.options_class.name)
+        self.Connect.set__opts(self.options.menu, self.options.name)
         
         style_sheet = self.doc.get_style_sheet()
         font_normal = style_sheet.get_paragraph_style("CG2-Normal").get_font()

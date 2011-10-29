@@ -78,15 +78,15 @@ HENRY = "123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 #------------------------------------------------------------------------
 class DetDescendantReport(Report):
 
-    def __init__(self, database, options_class):
+    def __init__(self, database, options, user):
         """
         Create the DetDescendantReport object that produces the report.
         
         The arguments are:
 
         database        - the GRAMPS database instance
-        person          - currently selected person
-        options_class   - instance of the Options class for this report
+        options         - instance of the Options class for this report
+        user            - a gen.user.User() instance
 
         This report needs the following parameters (class variables)
         that come in the options class.
@@ -118,11 +118,11 @@ class DetDescendantReport(Report):
         name_format   - Preferred format to display names
         incmateref    - Whether to print mate information or reference
         """
-        Report.__init__(self, database, options_class)
+        Report.__init__(self, database, options, user)
 
         self.map = {}
 
-        menu = options_class.menu
+        menu = options.menu
         get_option_by_name = menu.get_option_by_name
         get_value = lambda name: get_option_by_name(name).get_value()
         self.max_generations = get_value('gen')

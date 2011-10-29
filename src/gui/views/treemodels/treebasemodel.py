@@ -523,7 +523,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
                         total_steps=self.__total, interval=self.__total//10)
             pmon.add_op(status_filter)
             handle_list = dfilter.apply(self.db, handle_list, 
-                                        progress=status_filter)
+                                        cb_progress=status_filter.heartbeat)
             status_filter.end()
         status.heartbeat()
 

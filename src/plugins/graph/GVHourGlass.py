@@ -67,11 +67,11 @@ class HourGlassReport(Report):
     """
     An hourglass report displays ancestors and descendants of a center person.
     """
-    def __init__(self, database, options_class):
+    def __init__(self, database, options, user):
         """
         Create HourGlass object that produces the report.
         """
-        Report.__init__(self, database, options_class)
+        Report.__init__(self, database, options, user)
         
         # Would be nice to get rid of these 2 hard-coded arrays of colours
         # and instead allow the user to pick-and-choose whatever colour they
@@ -93,7 +93,7 @@ class HourGlassReport(Report):
         self.__db = database
         self.__used_people = []
         
-        menu = options_class.menu
+        menu = options.menu
         self.max_descend = menu.get_option_by_name('maxdescend').get_value()
         self.max_ascend  = menu.get_option_by_name('maxascend').get_value()
         pid = menu.get_option_by_name('pid').get_value()

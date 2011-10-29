@@ -61,8 +61,6 @@ from gen.plug.report import MenuReportOptions
 
 from gen.display.name import displayer as name_displayer
 
-from gui.utils import ProgressMeter
-
 PT2CM = ReportUtils.pt2cm
 #cm2pt = ReportUtils.cm2pt
 
@@ -646,7 +644,7 @@ class GUIConnect():
 #------------------------------------------------------------------------
 class AncestorTree(Report):
 
-    def __init__(self, database, options_class):
+    def __init__(self, database, options, user):
         """
         Create AncestorTree object that produces the report.
         
@@ -654,13 +652,14 @@ class AncestorTree(Report):
 
         database        - the GRAMPS database instance
         person          - currently selected person
-        options_class   - instance of the Options class for this report
+        options         - instance of the Options class for this report
 
         """
-        Report.__init__(self, database, options_class)
+        Report.__init__(self, database, options, user)
 
-        self.options_class = options_class
+        self.options = options
         self.database = database
+        self._user = user
 
         #The canvas that we will put our report on and print off of
         self.canvas = Canvas(self.doc)
@@ -687,15 +686,15 @@ class AncestorTree(Report):
         database = self.database
 
         self.connect = GUIConnect()
-        self.connect.set__opts(self.options_class.menu)
+        self.connect.set__opts(self.options.menu)
 
         #Set up the canvas that we will print on.
         style_sheet = self.doc.get_style_sheet()
         font_normal = style_sheet.get_paragraph_style("AC2-Normal").get_font()
         self.doc.report_opts = ReportOptions(self.doc, font_normal, 'AC2-line')
         
-        self.progress = ProgressMeter(_('Ancestor Tree'))
-        self.progress.set_pass(_('Making the Tree...'), 4)
+        self._user.begin_progress(_('Ancestor Tree'), 
+                                  _('Making the Tree...'), 4)
 
         #make the tree onto the canvas
         inlc_marr = self.connect.get_val("inc_marr")
@@ -706,7 +705,7 @@ class AncestorTree(Report):
         tree.start(self.connect.get_val('pid'))
         tree = None
 
-        self.progress.step()
+        self._user.step_progress()
 
         #Title
         title = self.connect.title_class(self.doc)
@@ -724,7 +723,7 @@ class AncestorTree(Report):
         self.max_generations = report.get_generations()  #already know
         report = None
 
-        self.progress.step()
+        self._user.step_progress()
 
         #Note?
         if self.connect.get_val("inc_note"):
@@ -769,7 +768,7 @@ class AncestorTree(Report):
         if prnnum:
             page_num_box = PageNumberBox(self.doc, 'AC2-box')
         
-        self.progress.step()
+        self._user.step_progress()
         #####################
         #ok, everyone is now ready to print on the canvas.  Paginate?
         self.canvas.paginate(colsperpage, one_page)
@@ -779,7 +778,9 @@ class AncestorTree(Report):
         #lets finally make some pages!!!
         #####################
         pages = self.canvas.page_count(incblank)
-        self.progress.set_pass(_('Printing the Tree...'), pages)
+        self._user.end_progress()
+        self._user.begin_progress( _('Ancestor Tree'), 
+                                   _('Printing the Tree...'), pages)
 
         for page in self.canvas.page_iter_gen(incblank):
 
@@ -796,10 +797,10 @@ class AncestorTree(Report):
             #Print the individual people and lines
             page.display()
                     
-            self.progress.step()
+            self._user.step_progress()
             self.doc.end_page()
 
-        self.progress.close()
+        self._user.end_progress()
         
 
     def scale_styles(self, scale):
