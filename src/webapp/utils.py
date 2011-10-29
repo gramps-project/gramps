@@ -522,7 +522,10 @@ def render(formfield, user, action, test=False, truetext=""):
     if action == "view":
         if (not user.is_authenticated() and not test) or user.is_authenticated():
             fieldname = formfield.name # 'surname'
-            retval = str(getattr(formfield.form.model, fieldname))
+            try:
+                retval = str(getattr(formfield.form.model, fieldname))
+            except:
+                retval = "???" # formfield._data()
         else:
             retval = truetext
     else:

@@ -439,8 +439,8 @@ def view_person_detail(request, view, handle, action="view"):
             except:
                 name = Name(person=person, preferred=True)
             primary_surname = name.surname_set.get(primary=True)
-            default_data = {"surname": primary_surname.surname, 
-                            "prefix": primary_surname.prefix,
+            default_data = {"surname": "XX" or primary_surname.surname, 
+                            "prefix": primary_surname.prefix or "prefix",
                             "suffix": name.suffix or "suffix",
                             "first_name": name.first_name,
                             "name_type": name.name_type,
