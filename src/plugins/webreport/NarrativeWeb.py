@@ -6591,7 +6591,7 @@ class NavWebReport(Report):
         self._user.end_progress()
 
         if self.inc_gendex:
-            self._user.beign_progress(_("Narrated Web Site Report"),
+            self._user.begin_progress(_("Narrated Web Site Report"),
                                       _('Creating GENDEX file'), len(ind_list))
             fp_gendex = self.create_file("gendex", ext=".txt")
             for person_handle in ind_list:
