@@ -146,6 +146,11 @@
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">An optional suffix to the name, such as "Jr." or "III"</property>
                         <property name="invisible_char">●</property>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="suffix-atkobject">
+                            <property name="AtkObject::accessible-name" translatable="yes">Suffix</property>
+                          </object>
+                        </child>
                       </object>
                       <packing>
                         <property name="left_attach">7</property>
@@ -197,6 +202,11 @@
                         <property name="height_request">114</property>
                         <property name="visible">True</property>
                         <property name="label_xalign">2.2351741291171123e-10</property>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="frame5-atkobject">
+                            <property name="AtkObject::accessible-description" translatable="yes">Image</property>
+                          </object>
+                        </child>
                         <child>
                           <object class="GtkEventBox" id="eventbox1">
                             <property name="visible">True</property>
@@ -289,6 +299,12 @@
 Indicate that the surname consists of different parts. Every surname has its own prefix and a possible connector to the next surname. Eg., the surname Ramón y Cajal can be stored as Ramón, which is inherited from the father, the connector y, and Cajal, which is inherited from the mother.</property>
                         <property name="image">image2</property>
                         <property name="use_underline">True</property>
+                        <accelerator key="a" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="multsurnamebtn-atkobject">
+                            <property name="AtkObject::accessible-name" translatable="yes">Add</property>
+                          </object>
+                        </child>
                       </object>
                       <packing>
                         <property name="left_attach">8</property>
@@ -323,6 +339,24 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="tooltip_text" translatable="yes">Set person as private data</property>
                             <property name="relief">none</property>
                             <property name="xalign">1</property>
+                            <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                            <child internal-child="accessible">
+                              <object class="AtkObject" id="private-atkobject">
+                                <property name="AtkObject::accessible-name" translatable="yes">Private</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkImage" id="image3">
+                                <property name="visible">True</property>
+                                <property name="pixel_size">16</property>
+                                <property name="icon_name">gtk-dialog-authentication</property>
+                                <child internal-child="accessible">
+                                  <object class="AtkObject" id="image3-atkobject">
+                                    <property name="AtkObject::accessible-description" translatable="yes">Privacy</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -377,6 +411,7 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="xalign">0</property>
                             <property name="label" translatable="yes">_Surname:</property>
                             <property name="use_underline">True</property>
+                            <property name="mnemonic_widget">surname</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -391,6 +426,11 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="can_focus">True</property>
                             <property name="tooltip_text" translatable="yes">An optional prefix for the family that is not used in sorting, such as "de" or "van".</property>
                             <property name="invisible_char">●</property>
+                            <child internal-child="accessible">
+                              <object class="AtkObject" id="prefix-atkobject">
+                                <property name="AtkObject::accessible-name" translatable="yes">Prefix</property>
+                              </object>
+                            </child>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -404,6 +444,9 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="can_focus">True</property>
                             <property name="tooltip_text" translatable="yes">Part of a person's name indicating the family to which the person belongs</property>
                             <property name="invisible_char">●</property>
+                            <accessibility>
+                              <relation type="labelled-by" target="surnamelabel"/>
+                            </accessibility>
                           </object>
                           <packing>
                             <property name="position">2</property>
@@ -444,6 +487,12 @@ Indicate that the surname consists of different parts. Every surname has its own
                         <property name="receives_default">True</property>
                         <property name="tooltip_text" translatable="yes">Go to Name Editor to add more information about this name</property>
                         <property name="image">image1</property>
+                        <accelerator key="e" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="editnamebtn-atkobject">
+                            <property name="AtkObject::accessible-name" translatable="yes">Edit</property>
+                          </object>
+                        </child>
                         <signal name="clicked" handler="on_edit_name_clicked"/>
                       </object>
                       <packing>
@@ -532,6 +581,7 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="label" translatable="yes">_ID:</property>
                             <property name="use_underline">True</property>
                             <property name="justify">right</property>
+                            <property name="mnemonic_widget">gid</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -557,7 +607,9 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="visible">True</property>
                             <property name="xalign">0</property>
                             <property name="xpad">6</property>
-                            <property name="label" translatable="yes">Tags:</property>
+                            <property name="label" translatable="yes">_Tags:</property>
+                            <property name="use_underline">True</property>
+                            <property name="mnemonic_widget">tag_button</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -578,6 +630,14 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="xalign">1</property>
+                            <accessibility>
+                              <relation type="labelled-by" target="label1"/>
+                            </accessibility>
+                            <child internal-child="accessible">
+                              <object class="AtkObject" id="tag_button-atkobject">
+                                <property name="AtkObject::accessible-name" translatable="yes">Tags</property>
+                              </object>
+                            </child>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -696,9 +756,19 @@ Indicate that the surname consists of different parts. Every surname has its own
   <object class="GtkImage" id="image1">
     <property name="visible">True</property>
     <property name="stock">gtk-edit</property>
+    <child internal-child="accessible">
+      <object class="AtkObject" id="image1-atkobject">
+        <property name="AtkObject::accessible-description" translatable="yes">Edit</property>
+      </object>
+    </child>
   </object>
   <object class="GtkImage" id="image2">
     <property name="visible">True</property>
     <property name="stock">gtk-add</property>
+    <child internal-child="accessible">
+      <object class="AtkObject" id="image2-atkobject">
+        <property name="AtkObject::accessible-description" translatable="yes">Add</property>
+      </object>
+    </child>
   </object>
 </interface>

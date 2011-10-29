@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-naming-policy toplevel-contextual -->
@@ -10,7 +10,6 @@
     <child>
       <object class="GtkVBox" id="vbox38">
         <property name="visible">True</property>
-        <property name="orientation">vertical</property>
         <child>
           <object class="GtkHPaned" id="hpaned3">
             <property name="visible">True</property>
@@ -39,7 +38,6 @@
             <child>
               <object class="GtkVBox" id="vbox39">
                 <property name="visible">True</property>
-                <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkHBox" id="hbox3">
                     <property name="visible">True</property>
@@ -213,6 +211,11 @@
                 <property name="receives_default">False</property>
                 <property name="tooltip_text" translatable="yes">Perform selected action</property>
                 <property name="use_underline">True</property>
+                <child internal-child="accessible">
+                  <object class="AtkObject" id="apply-atkobject">
+                    <property name="AtkObject::accessible-name" translatable="yes">Run</property>
+                  </object>
+                </child>
                 <signal name="clicked" handler="on_report_apply_clicked" object="report"/>
               </object>
               <packing>

@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-requires grampswidgets 0.0 -->
@@ -7,7 +7,6 @@
     <property name="default_width">650</property>
     <property name="default_height">450</property>
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox30">
         <property name="visible">True</property>
@@ -16,7 +15,6 @@
           <object class="GtkVBox" id="vbox21">
             <property name="visible">True</property>
             <property name="border_width">6</property>
-            <property name="orientation">vertical</property>
             <property name="spacing">6</property>
             <child>
               <object class="GtkLabel" id="title">
@@ -52,6 +50,11 @@
                         <property name="width_request">100</property>
                         <property name="height_request">100</property>
                         <property name="visible">True</property>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="image-atkobject">
+                            <property name="AtkObject::accessible-description" translatable="yes">Image</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                     <child type="label">
@@ -100,7 +103,7 @@
                   <object class="UndoableEntry" id="photoDescription">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="invisible_char">&#x25CF;</property>
+                    <property name="invisible_char">●</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>

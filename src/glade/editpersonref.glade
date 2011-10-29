@@ -1,11 +1,10 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-requires grampswidgets 0.0 -->
   <!-- interface-naming-policy project-wide -->
   <object class="GtkDialog" id="pref_edit">
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox21">
         <property name="visible">True</property>
@@ -57,7 +56,7 @@
                     <property name="tooltip_text" translatable="yes">Description of the association, eg. Godfather, Friend, ...
 
 Note: Use Events instead for relations connected to specific time frames or occasions. Events can be shared between people, each indicating their role in the event.</property>
-                    <property name="invisible_char">&#x25CF;</property>
+                    <property name="invisible_char">●</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -73,10 +72,21 @@ Note: Use Events instead for relations connected to specific time frames or occa
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="relief">none</property>
+                    <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="private-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Private</property>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkImage" id="image2694">
                         <property name="visible">True</property>
                         <property name="icon_name">gtk-dialog-authentication</property>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="image2694-atkobject">
+                            <property name="AtkObject::accessible-description" translatable="yes">Privacy</property>
+                          </object>
+                        </child>
                         <property name="icon-size">1</property>
                       </object>
                     </child>
@@ -109,10 +119,24 @@ Note: Use Events instead for relations connected to specific time frames or occa
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="tooltip_text" translatable="yes">Select a person that has an association to the edited person.</property>
+                    <accelerator key="s" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                    <accessibility>
+                      <relation type="labelled-by" target="label649"/>
+                    </accessibility>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="select-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Person</property>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkImage" id="image2695">
                         <property name="visible">True</property>
                         <property name="stock">gtk-index</property>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="image2695-atkobject">
+                            <property name="AtkObject::accessible-description" translatable="yes">Selector</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>

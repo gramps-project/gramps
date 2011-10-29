@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-requires grampswidgets 0.0 -->
@@ -55,7 +55,9 @@
                       <object class="GtkLabel" id="label5">
                         <property name="visible">True</property>
                         <property name="xalign">0</property>
-                        <property name="label" translatable="yes">Width:</property>
+                        <property name="label" translatable="yes">_Width:</property>
+                        <property name="use_underline">True</property>
+                        <property name="mnemonic_widget">pwidth</property>
                       </object>
                       <packing>
                         <property name="top_attach">1</property>
@@ -68,7 +70,9 @@
                       <object class="GtkLabel" id="label2">
                         <property name="visible">True</property>
                         <property name="xalign">0</property>
-                        <property name="label" translatable="yes">Height:</property>
+                        <property name="label" translatable="yes">_Height:</property>
+                        <property name="use_underline">True</property>
+                        <property name="mnemonic_widget">pheight</property>
                       </object>
                       <packing>
                         <property name="top_attach">2</property>
@@ -91,26 +95,11 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="UndoableEntry" id="pwidth">
-                        <property name="visible">True</property>
-                        <property name="sensitive">False</property>
-                        <property name="can_focus">True</property>
-                        <property name="invisible_char">&#x2022;</property>
-                      </object>
-                      <packing>
-                        <property name="left_attach">1</property>
-                        <property name="right_attach">2</property>
-                        <property name="top_attach">1</property>
-                        <property name="bottom_attach">2</property>
-                        <property name="y_options"></property>
-                      </packing>
-                    </child>
-                    <child>
                       <object class="UndoableEntry" id="pheight">
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
                         <property name="can_focus">True</property>
-                        <property name="invisible_char">&#x2022;</property>
+                        <property name="invisible_char">•</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -149,6 +138,21 @@
                         <property name="top_attach">2</property>
                         <property name="bottom_attach">3</property>
                         <property name="x_options">GTK_FILL</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="UndoableEntry" id="pwidth">
+                        <property name="visible">True</property>
+                        <property name="sensitive">False</property>
+                        <property name="can_focus">True</property>
+                        <property name="invisible_char">•</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="top_attach">1</property>
+                        <property name="bottom_attach">2</property>
                         <property name="y_options"></property>
                       </packing>
                     </child>
@@ -207,7 +211,9 @@
                       <object class="GtkLabel" id="label9">
                         <property name="visible">True</property>
                         <property name="xalign">0</property>
-                        <property name="label" translatable="yes">Left:</property>
+                        <property name="label" translatable="yes">_Left:</property>
+                        <property name="use_underline">True</property>
+                        <property name="mnemonic_widget">lmargin</property>
                       </object>
                       <packing>
                         <property name="x_options">GTK_FILL</property>
@@ -218,7 +224,9 @@
                       <object class="GtkLabel" id="label10">
                         <property name="visible">True</property>
                         <property name="xalign">0</property>
-                        <property name="label" translatable="yes">Right:</property>
+                        <property name="label" translatable="yes">_Right:</property>
+                        <property name="use_underline">True</property>
+                        <property name="mnemonic_widget">rmargin</property>
                       </object>
                       <packing>
                         <property name="top_attach">1</property>
@@ -231,7 +239,9 @@
                       <object class="GtkLabel" id="label11">
                         <property name="visible">True</property>
                         <property name="xalign">0</property>
-                        <property name="label" translatable="yes">Top:</property>
+                        <property name="label" translatable="yes">_Top:</property>
+                        <property name="use_underline">True</property>
+                        <property name="mnemonic_widget">tmargin</property>
                       </object>
                       <packing>
                         <property name="top_attach">2</property>
@@ -244,7 +254,9 @@
                       <object class="GtkLabel" id="label12">
                         <property name="visible">True</property>
                         <property name="xalign">0</property>
-                        <property name="label" translatable="yes">Bottom:</property>
+                        <property name="label" translatable="yes">_Bottom:</property>
+                        <property name="use_underline">True</property>
+                        <property name="mnemonic_widget">bmargin</property>
                       </object>
                       <packing>
                         <property name="top_attach">3</property>
@@ -303,7 +315,7 @@
                       <object class="UndoableEntry" id="lmargin">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="invisible_char">&#x2022;</property>
+                        <property name="invisible_char">•</property>
                         <property name="text">2.54</property>
                       </object>
                       <packing>
@@ -316,7 +328,7 @@
                       <object class="UndoableEntry" id="rmargin">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="invisible_char">&#x2022;</property>
+                        <property name="invisible_char">•</property>
                         <property name="text">2.54</property>
                       </object>
                       <packing>
@@ -331,7 +343,7 @@
                       <object class="UndoableEntry" id="tmargin">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="invisible_char">&#x2022;</property>
+                        <property name="invisible_char">•</property>
                         <property name="text">2.54</property>
                       </object>
                       <packing>
@@ -346,7 +358,7 @@
                       <object class="UndoableEntry" id="bmargin">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="invisible_char">&#x2022;</property>
+                        <property name="invisible_char">•</property>
                         <property name="text">2.54</property>
                       </object>
                       <packing>

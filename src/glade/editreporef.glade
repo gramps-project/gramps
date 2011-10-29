@@ -92,10 +92,21 @@
                         <property name="tooltip_markup">Indicates if the record is private</property>
                         <property name="tooltip_text" translatable="yes">Indicates if the record is private</property>
                         <property name="relief">none</property>
+                        <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="private_ref-atkobject">
+                            <property name="AtkObject::accessible-name" translatable="yes">Private</property>
+                          </object>
+                        </child>
                         <child>
                           <object class="GtkImage" id="image2720">
                             <property name="visible">True</property>
-                            <property name="icon_name">gramps-unlock</property>
+                            <property name="icon_name">gtk-dialog-authentication</property>
+                            <child internal-child="accessible">
+                              <object class="AtkObject" id="image2720-atkobject">
+                                <property name="AtkObject::accessible-description" translatable="yes">Privacy</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
                       </object>
@@ -276,10 +287,20 @@
                                 <property name="tooltip_markup">Indicates if the record is private</property>
                                 <property name="tooltip_text" translatable="yes">Indicates if the record is private</property>
                                 <property name="relief">none</property>
+                                <child internal-child="accessible">
+                                  <object class="AtkObject" id="private-atkobject">
+                                    <property name="AtkObject::accessible-name" translatable="yes">Private</property>
+                                  </object>
+                                </child>
                                 <child>
                                   <object class="GtkImage" id="image2712">
                                     <property name="visible">True</property>
-                                    <property name="icon_name">gramps-unlock</property>
+                                    <property name="icon_name">gtk-dialog-authentication</property>
+                                    <child internal-child="accessible">
+                                      <object class="AtkObject" id="image2712-atkobject">
+                                        <property name="AtkObject::accessible-description" translatable="yes">Privacy</property>
+                                      </object>
+                                    </child>
                                   </object>
                                 </child>
                               </object>

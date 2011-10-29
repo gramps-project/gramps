@@ -241,6 +241,7 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="relief">none</property>
+                            <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                             <child internal-child="accessible">
                               <object class="AtkObject" id="private-atkobject">
                                 <property name="AtkObject::accessible-name" translatable="yes">Private</property>
@@ -540,6 +541,7 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                             <property name="has_tooltip">True</property>
                             <property name="tooltip_text" translatable="yes">Invoke date editor</property>
                             <property name="relief">none</property>
+                            <accelerator key="d" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                             <accessibility>
                               <relation type="labelled-by" target="label422"/>
                             </accessibility>

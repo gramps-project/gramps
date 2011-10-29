@@ -1,11 +1,10 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-requires grampswidgets 0.0 -->
   <!-- interface-naming-policy project-wide -->
   <object class="GtkDialog" id="editplace">
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox19">
         <property name="visible">True</property>
@@ -73,7 +72,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">Full name of this place.</property>
-                    <property name="invisible_char">&#x25CF;</property>
+                    <property name="invisible_char">●</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -101,7 +100,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">A unique ID to identify the place</property>
-                    <property name="invisible_char">&#x25CF;</property>
+                    <property name="invisible_char">●</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -117,10 +116,21 @@
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="relief">none</property>
+                    <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="private-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Private</property>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkImage" id="image2707">
                         <property name="visible">True</property>
-                        <property name="icon_name">gramps-unlock</property>
+                        <property name="icon_name">gtk-dialog-authentication</property>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="image2707-atkobject">
+                            <property name="AtkObject::accessible-description" translatable="yes">Privacy</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>
@@ -140,7 +150,7 @@
                     <property name="tooltip_text" translatable="yes">Latitude (position above the Equator) of the place in decimal or degree notation. 
 Eg, valid values are 12.0154, 50°52′21.92″N, N50°52′21.92″ or 50:52:21.92
 You can set these values via the Geography View by searching the place, or via a map service in the place view.</property>
-                    <property name="invisible_char">&#x25CF;</property>
+                    <property name="invisible_char">●</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -157,7 +167,7 @@ You can set these values via the Geography View by searching the place, or via a
                     <property name="tooltip_text" translatable="yes">Longitude (position relative to the Prime, or Greenwich, Meridian) of the place in decimal or degree notation. 
 Eg, valid values are -124.3647, 124°52′21.92″E, E124°52′21.92″ or 124:52:21.92
 You can set these values via the Geography View by searching the place, or via a map service in the place view.</property>
-                    <property name="invisible_char">&#x25CF;</property>
+                    <property name="invisible_char">●</property>
                   </object>
                   <packing>
                     <property name="left_attach">3</property>
@@ -224,7 +234,7 @@ You can set these values via the Geography View by searching the place, or via a
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">Lowest level of a place division: eg the street name. 
 Use Alternate Locations tab to store the current name.</property>
-                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="invisible_char">●</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -238,7 +248,7 @@ Use Alternate Locations tab to store the current name.</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">The town or city where the place is. 
 Use Alternate Locations tab to store the current name.</property>
-                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="invisible_char">●</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -253,7 +263,7 @@ Use Alternate Locations tab to store the current name.</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">Lowest clergical division of this place. Typically used for church sources that only mention the parish.</property>
-                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="invisible_char">●</property>
                       </object>
                       <packing>
                         <property name="left_attach">3</property>
@@ -302,7 +312,7 @@ Use Alternate Locations tab to store the current name.</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">Third level of place division. Eg., in the USA a county.</property>
-                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="invisible_char">●</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -335,7 +345,7 @@ Use Alternate Locations tab to store the current name.</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">Second level of place division, eg., in the USA a state, in Germany a Bundesland.</property>
-                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="invisible_char">●</property>
                       </object>
                       <packing>
                         <property name="left_attach">3</property>
@@ -367,7 +377,7 @@ Use Alternate Locations tab to store the current name.</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">The country where the place is. 
 </property>
-                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="invisible_char">●</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -399,7 +409,7 @@ Use Alternate Locations tab to store the current name.</property>
                       <object class="UndoableEntry" id="postal">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="invisible_char">●</property>
                       </object>
                       <packing>
                         <property name="left_attach">3</property>
@@ -430,7 +440,7 @@ Use Alternate Locations tab to store the current name.</property>
                       <object class="UndoableEntry" id="phone">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="invisible_char">●</property>
                       </object>
                       <packing>
                         <property name="left_attach">3</property>
@@ -461,7 +471,7 @@ Use Alternate Locations tab to store the current name.</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">A district within, or a settlement near to, a town or city.
 Use Alternate Locations tab to store the current name.</property>
-                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="invisible_char">●</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>

@@ -1,11 +1,10 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-requires grampswidgets 0.0 -->
   <!-- interface-naming-policy project-wide -->
   <object class="GtkDialog" id="editfamily">
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox17">
         <property name="visible">True</property>
@@ -93,10 +92,20 @@
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
                                 <property name="relief">none</property>
+                                <child internal-child="accessible">
+                                  <object class="AtkObject" id="fbutton_index-atkobject">
+                                    <property name="AtkObject::accessible-name" translatable="yes">Father</property>
+                                  </object>
+                                </child>
                                 <child>
                                   <object class="GtkImage" id="image2671">
                                     <property name="visible">True</property>
                                     <property name="stock">gtk-index</property>
+                                    <child internal-child="accessible">
+                                      <object class="AtkObject" id="image2671-atkobject">
+                                        <property name="AtkObject::accessible-description" translatable="yes">Selector</property>
+                                      </object>
+                                    </child>
                                   </object>
                                 </child>
                               </object>
@@ -113,10 +122,20 @@
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
                                 <property name="relief">none</property>
+                                <child internal-child="accessible">
+                                  <object class="AtkObject" id="fbutton_add-atkobject">
+                                    <property name="AtkObject::accessible-name" translatable="yes">Add</property>
+                                  </object>
+                                </child>
                                 <child>
                                   <object class="GtkImage" id="image2697">
                                     <property name="visible">True</property>
                                     <property name="stock">gtk-add</property>
+                                    <child internal-child="accessible">
+                                      <object class="AtkObject" id="image2697-atkobject">
+                                        <property name="AtkObject::accessible-description" translatable="yes">Add</property>
+                                      </object>
+                                    </child>
                                   </object>
                                 </child>
                               </object>
@@ -132,10 +151,20 @@
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
                                 <property name="relief">none</property>
+                                <child internal-child="accessible">
+                                  <object class="AtkObject" id="fbutton_del-atkobject">
+                                    <property name="AtkObject::accessible-name" translatable="yes">Remove</property>
+                                  </object>
+                                </child>
                                 <child>
                                   <object class="GtkImage" id="image2724">
                                     <property name="visible">True</property>
                                     <property name="stock">gtk-remove</property>
+                                    <child internal-child="accessible">
+                                      <object class="AtkObject" id="image2724-atkobject">
+                                        <property name="AtkObject::accessible-description" translatable="yes">Remove</property>
+                                      </object>
+                                    </child>
                                   </object>
                                 </child>
                               </object>
@@ -151,10 +180,21 @@
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
                                 <property name="relief">none</property>
+                                <accelerator key="f" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                                <child internal-child="accessible">
+                                  <object class="AtkObject" id="fbutton_edit-atkobject">
+                                    <property name="AtkObject::accessible-name" translatable="yes">Edit</property>
+                                  </object>
+                                </child>
                                 <child>
                                   <object class="GtkImage" id="image2725">
                                     <property name="visible">True</property>
                                     <property name="stock">gtk-edit</property>
+                                    <child internal-child="accessible">
+                                      <object class="AtkObject" id="image2725-atkobject">
+                                        <property name="AtkObject::accessible-description" translatable="yes">Edition</property>
+                                      </object>
+                                    </child>
                                   </object>
                                 </child>
                               </object>
@@ -347,10 +387,20 @@
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
                                 <property name="relief">none</property>
+                                <child internal-child="accessible">
+                                  <object class="AtkObject" id="mbutton_index-atkobject">
+                                    <property name="AtkObject::accessible-name" translatable="yes">Mother</property>
+                                  </object>
+                                </child>
                                 <child>
                                   <object class="GtkImage" id="image2670">
                                     <property name="visible">True</property>
                                     <property name="stock">gtk-index</property>
+                                    <child internal-child="accessible">
+                                      <object class="AtkObject" id="image2670-atkobject">
+                                        <property name="AtkObject::accessible-description" translatable="yes">Selector</property>
+                                      </object>
+                                    </child>
                                   </object>
                                 </child>
                               </object>
@@ -366,10 +416,20 @@
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
                                 <property name="relief">none</property>
+                                <child internal-child="accessible">
+                                  <object class="AtkObject" id="mbutton_add-atkobject">
+                                    <property name="AtkObject::accessible-name" translatable="yes">Add</property>
+                                  </object>
+                                </child>
                                 <child>
                                   <object class="GtkImage" id="image2698">
                                     <property name="visible">True</property>
                                     <property name="stock">gtk-add</property>
+                                    <child internal-child="accessible">
+                                      <object class="AtkObject" id="image2698-atkobject">
+                                        <property name="AtkObject::accessible-description" translatable="yes">Add</property>
+                                      </object>
+                                    </child>
                                   </object>
                                 </child>
                               </object>
@@ -385,10 +445,20 @@
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
                                 <property name="relief">none</property>
+                                <child internal-child="accessible">
+                                  <object class="AtkObject" id="mbutton_del-atkobject">
+                                    <property name="AtkObject::accessible-name" translatable="yes">Remove</property>
+                                  </object>
+                                </child>
                                 <child>
                                   <object class="GtkImage" id="image2726">
                                     <property name="visible">True</property>
                                     <property name="stock">gtk-remove</property>
+                                    <child internal-child="accessible">
+                                      <object class="AtkObject" id="image2726-atkobject">
+                                        <property name="AtkObject::accessible-description" translatable="yes">Remove</property>
+                                      </object>
+                                    </child>
                                   </object>
                                 </child>
                               </object>
@@ -404,10 +474,21 @@
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
                                 <property name="relief">none</property>
+                                <accelerator key="m" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                                <child internal-child="accessible">
+                                  <object class="AtkObject" id="mbutton_edit-atkobject">
+                                    <property name="AtkObject::accessible-name" translatable="yes">Edit</property>
+                                  </object>
+                                </child>
                                 <child>
                                   <object class="GtkImage" id="image2727">
                                     <property name="visible">True</property>
                                     <property name="stock">gtk-edit</property>
+                                    <child internal-child="accessible">
+                                      <object class="AtkObject" id="image2727-atkobject">
+                                        <property name="AtkObject::accessible-description" translatable="yes">Edition</property>
+                                      </object>
+                                    </child>
                                   </object>
                                 </child>
                               </object>
@@ -426,10 +507,16 @@
                                 <property name="tooltip_markup">Indicates if the record is private</property>
                                 <property name="tooltip_text" translatable="yes">Indicates if the record is private</property>
                                 <property name="relief">none</property>
+                                <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                                 <child>
                                   <object class="GtkImage" id="image2672">
                                     <property name="visible">True</property>
-                                    <property name="icon_name">gramps-unlock</property>
+                                    <property name="icon_name">gtk-dialog-authentication</property>
+                                    <child internal-child="accessible">
+                                      <object class="AtkObject" id="image2672-atkobject">
+                                        <property name="AtkObject::accessible-name" translatable="yes">Privacy</property>
+                                      </object>
+                                    </child>
                                   </object>
                                 </child>
                               </object>
@@ -513,7 +600,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">A unique ID for the family</property>
-                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="invisible_char">●</property>
                         <property name="width_chars">6</property>
                       </object>
                       <packing>
@@ -559,7 +646,9 @@
                       <object class="GtkLabel" id="label1">
                         <property name="visible">True</property>
                         <property name="xalign">0</property>
-                        <property name="label" translatable="yes">Tags:</property>
+                        <property name="label" translatable="yes">_Tags:</property>
+                        <property name="use_underline">True</property>
+                        <property name="mnemonic_widget">tag_button</property>
                       </object>
                       <packing>
                         <property name="top_attach">2</property>
@@ -586,6 +675,14 @@
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="tooltip_text" translatable="yes">Edit the tag list</property>
+                            <accessibility>
+                              <relation type="labelled-by" target="label1"/>
+                            </accessibility>
+                            <child internal-child="accessible">
+                              <object class="AtkObject" id="tag_button-atkobject">
+                                <property name="AtkObject::accessible-name" translatable="yes">Tags</property>
+                              </object>
+                            </child>
                             <child>
                               <placeholder/>
                             </child>

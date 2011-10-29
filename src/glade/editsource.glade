@@ -1,11 +1,10 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-requires grampswidgets 0.0 -->
   <!-- interface-naming-policy toplevel-contextual -->
   <object class="GtkDialog" id="editsource">
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <signal name="delete_event" handler="on_sourceEditor_delete_event"/>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox11">
@@ -163,7 +162,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">A unique ID to identify the source</property>
-                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="invisible_char">●</property>
                       </object>
                       <packing>
                         <property name="position">0</property>
@@ -176,10 +175,21 @@
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes">Indicates if the record is private</property>
                         <property name="relief">none</property>
+                        <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="private-atkobject">
+                            <property name="AtkObject::accessible-name" translatable="yes">Private</property>
+                          </object>
+                        </child>
                         <child>
                           <object class="GtkImage" id="image2706">
                             <property name="visible">True</property>
-                            <property name="icon_name">gramps-unlock</property>
+                            <property name="icon_name">gtk-dialog-authentication</property>
+                            <child internal-child="accessible">
+                              <object class="AtkObject" id="image2706-atkobject">
+                                <property name="AtkObject::accessible-description" translatable="yes">Privacy</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
                       </object>
