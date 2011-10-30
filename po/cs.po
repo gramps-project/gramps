@@ -35,7 +35,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-29 10:35+0200\n"
-"PO-Revision-Date: 2011-10-29 10:46+0100\n"
+"PO-Revision-Date: 2011-10-30 10:04+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -1174,9 +1174,8 @@ msgid "Person ref"
 msgstr "Osoba odk"
 
 #: ../src/ScratchPad.py:604
-#, fuzzy
 msgid "Child ref"
-msgstr "Děti"
+msgstr "Potomek odk"
 
 #: ../src/ScratchPad.py:610
 #, python-format
@@ -21808,9 +21807,8 @@ msgstr "Tato stránka obsahuje seznam všech jednotlivců v databázi s příjme
 
 #. Families list page message
 #: ../src/plugins/webreport/NarrativeWeb.py:2673
-#, fuzzy
 msgid "This page contains an index of all the families/ relationships in the database, sorted by their family name/ surname. Clicking on a person&#8217;s name will take you to their family/ relationship&#8217;s page."
-msgstr "Tato stránka obsahuje seznam všech míst v databázi, řazený podle názvu. Kliknutím na název se zobrazí stránka tohoto místa."
+msgstr "Tato stránka obsahuje seznam všech rodin/vztahů v databázi, řazený podle jména/příjmení. Kliknutí na jméno osoby vás přenese na stránku rodiny/vztahů."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2699
 #: ../src/plugins/webreport/NarrativeWeb.py:3049
@@ -21935,9 +21933,8 @@ msgid "Mime Type"
 msgstr "Mime typ"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4336
-#, fuzzy
 msgid "This page displays a indexed list of all the media objects in this database.  It is sorted by media title.  There is an index of all the media objects in this database.  Clicking on a thumbnail will take you to that image&#8217;s page."
-msgstr "Tato stránka obsahuje seznam všech míst v databázi, řazený podle názvu. Kliknutím na název se zobrazí stránka tohoto místa."
+msgstr "Tato stránka obsahuje seznam všech objektů médií v databázi. Je řazený podle titulu média. Kliknutí na náhled vás přenese na stránku s obrázkem."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4352
 msgid "Thumbnail Preview"
@@ -21957,9 +21954,8 @@ msgstr "Poslední změna"
 
 #. page message
 #: ../src/plugins/webreport/NarrativeWeb.py:4986
-#, fuzzy
 msgid "This map page represents the person and their descendants only.  The markers and the Referene list are sorted in chronological order.  Clicking on a place&#8217;s name in the Reference section will take you to that page&#8217;s page."
-msgstr "Značky míst na této stránce reprezentují různé lokace založené na událostech partnera(ky), potomků (pokud jsou) a vašich osobních událostech a jejich místech. Seznam byl setříděn chronologicky  a poté podle zeměpisných souřadnic. Kliknutí na název místa  v Archivech vás přenese na stránku místa."
+msgstr "Tato mapová stránka reprezentuje pouze osobu a její potomky. Značky a seznam odkazů je chonologicky setříděn. Kliknutí na název místa v sekci Odkazy vás přenese na stránku místa."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4994
 msgid "Drop Markers"
