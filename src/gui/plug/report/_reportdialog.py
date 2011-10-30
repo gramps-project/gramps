@@ -51,7 +51,7 @@ import gtk
 from gen.ggettext import gettext as _
 import config
 import Errors
-from gui.utils import ProgressMeter, open_file_with_default_application
+from gui.utils import open_file_with_default_application
 from gui.plug import add_gui_options
 from gui.user import User
 from QuestionDialog import ErrorDialog, OptionDialog
@@ -71,43 +71,6 @@ import Utils
 #
 #-------------------------------------------------------------------------
 URL_REPORT_PAGE = URL_MANUAL_PAGE + "_-_Reports"
-
-#-------------------------------------------------------------------------------
-#
-# Private Functions
-#
-#-------------------------------------------------------------------------------
-def _run_long_process_in_thread(func, header):
-    """
-    This function will spawn a new thread to execute the provided function.
-    While the function is running, a progress bar will be created. 
-    The progress bar will show activity while the function executes.
-    
-    @param func: A function that will take an unknown amount of time to 
-        complete. 
-    @type category: callable
-    @param header: A header for the progress bar.
-        Example: "Updating Data"
-    @type name: string
-    @return: nothing
-    
-    """
-    pbar = ProgressMeter(_('Processing File'))
-    pbar.set_pass(total=40, 
-                  mode=ProgressMeter.MODE_ACTIVITY, 
-                  header=header)
-    
-    sys_thread = threading.Thread(target=func)
-    sys_thread.start()
-    
-    while sys_thread.isAlive():
-        # The loop runs 20 times per second until the thread completes.
-        # With the progress pass total set at 40, it should move across the bar
-        # every two seconds.
-        time.sleep(0.05)
-        pbar.step()   
-    
-    pbar.close()
 
 #-------------------------------------------------------------------------
 #
@@ -678,29 +641,18 @@ def report(dbstate, uistate, person, report_class, options_class,
             try:
                 user = User()
                 MyReport = report_class(dialog.db, dialog.options, user)
-                
-                def do_report():
-                    MyReport.doc.init()
-                    MyReport.begin_report()
-                    MyReport.write_report()
-                    MyReport.end_report()
+                MyReport.doc.init()
+                MyReport.begin_report()
+                MyReport.write_report()
+                MyReport.end_report()
 
-                if not hasattr(dialog, "open_with_app"):
-                    # This is a work around for the Web reports which 
-                    # do not have a target frame and have their own progress 
-                    # bars.
-                    do_report()
-                elif dialog.open_with_app.get_property('sensitive') == False:
-                    # This is a work around for the GtkPrint report which 
-                    # uses GTK. The print dialog interferes with the progress
-                    # bar. So the progress bar should not be used.
-                    do_report()
-                else:
-                    _run_long_process_in_thread(do_report, dialog.report_name)
-
-                    if dialog.open_with_app.get_active():
-                        out_file = dialog.options.get_output()
-                        open_file_with_default_application(out_file)
+                # Web reports do not have a target frame      
+                # The GtkPrint generator can not be "opened"
+                if hasattr(dialog, "open_with_app")                        and \
+                   dialog.open_with_app.get_property('sensitive') == True  and \
+                   dialog.open_with_app.get_active():
+                    out_file = dialog.options.get_output()
+                    open_file_with_default_application(out_file)
                 
             except Errors.FilterError, msg:
                 (m1, m2) = msg.messages()
