@@ -33,12 +33,7 @@ Reports/Graphical Reports/Personal Tree
 # GRAMPS modules
 #
 #------------------------------------------------------------------------ 
-try:
-    from TransUtils import get_addon_translator
-    _ = get_addon_translator(__file__).gettext
-except:
-    import gettext
-    _ = gettext.gettext
+from TransUtils import sgettext as _
 
 from Errors import ReportError
 
