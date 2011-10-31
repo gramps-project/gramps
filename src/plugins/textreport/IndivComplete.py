@@ -53,7 +53,6 @@ from gen.plug.report import Bibliography
 from gen.plug.report import endnotes as Endnotes
 from gen.display.name import displayer as global_name_display
 from Utils import media_path_full
-from QuestionDialog import WarningDialog
 
 #------------------------------------------------------------------------
 #
@@ -167,6 +166,7 @@ class IndivCompleteReport(Report):
         """
 
         Report.__init__(self, database, options, user)
+        self._user = user
 
         menu = options.menu
         self.use_pagebreak = menu.get_option_by_name('pageben').get_value()
@@ -567,7 +567,7 @@ class IndivCompleteReport(Report):
                                               crop=media_list[0].get_rectangle())
                     self.doc.end_paragraph()
                 else:
-                    WarningDialog(_("Could not add photo to page"),
+                    self._user.warn(_("Could not add photo to page"),
                           "%s: %s" % (filename, _('File does not exist')))
 
         self.doc.start_table("one","IDS-IndTable")

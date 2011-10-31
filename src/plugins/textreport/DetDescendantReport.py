@@ -121,6 +121,7 @@ class DetDescendantReport(Report):
         Report.__init__(self, database, options, user)
 
         self.map = {}
+        self._user = user
 
         menu = options.menu
         get_option_by_name = menu.get_option_by_name
@@ -737,7 +738,7 @@ class DetDescendantReport(Report):
         plist = person.get_media_list()
         if self.addimages and len(plist) > 0:
             photo = plist[0]
-            ReportUtils.insert_image(self.database, self.doc, photo)
+            ReportUtils.insert_image(self.database, self.doc, photo, self._user)
         
         self.doc.start_paragraph("DDR-Entry")
         

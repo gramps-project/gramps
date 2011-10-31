@@ -92,7 +92,6 @@ import constfunc
 import ThumbNails
 import ImgManip
 import gen.mime
-from QuestionDialog import ErrorDialog, WarningDialog
 from gen.display.name import displayer as _nd
 from DateHandler import displayer as _dd
 from gen.proxy import PrivateProxyDb, LivingProxyDb
@@ -1372,7 +1371,8 @@ class BasePage(object):
                     return image   
 
                 except (IOError, OSError), msg:
-                    WarningDialog(_("Could not add photo to page"), str(msg))
+                    self.report.user.warn(_("Could not add photo to page"), 
+                                          str(msg))
 
         # no image to return
         return None
@@ -1554,7 +1554,7 @@ class BasePage(object):
                                                  descr, up=True, usedescr=False)
 
                         except (IOError, OSError), msg:
-                            WarningDialog(_("Could not add photo to page"), str(msg))
+                            self.report.user.warn(_("Could not add photo to page"), str(msg))
             else:
                 # begin hyperlink
                 snapshot += self.doc_link(photo_handle, descr, up=True,
@@ -1625,7 +1625,7 @@ class BasePage(object):
                         section += self.media_link(photo_handle, url, descr, True)
 
                     except (IOError, OSError), msg:
-                        WarningDialog(_("Could not add photo to page"), str(msg))
+                        self.report.user.warn(_("Could not add photo to page"), str(msg))
                 else:
                     try:
 
@@ -1641,7 +1641,7 @@ class BasePage(object):
                         else:
                             photo_list[photo_handle] = [lnk]
                     except (IOError, OSError), msg:
-                        WarningDialog(_("Could not add photo to page"), str(msg))
+                        self.report.user.warn(_("Could not add photo to page"), str(msg))
                 displayed.append(photo_handle)
 
         # add fullclear for proper styling
@@ -3835,7 +3835,7 @@ class MediaPage(BasePage):
         except (IOError, OSError), msg:
             error = _("Missing media object:") +                               \
                      "%s (%s)" % (photo.get_description(), photo.get_gramps_id())
-            WarningDialog(error, str(msg))
+            self.report.user.warn(error, str(msg))
             return None
 
 class SurnameListPage(BasePage):
@@ -6253,7 +6253,7 @@ class NavWebReport(Report):
         user            - instance of a gen.user.User()
         """
         Report.__init__(self, database, options, user)
-        self._user = user
+        self.user = user
         menu = options.menu
         self.link_prefix_up = True
         self.options = {}
@@ -6376,19 +6376,21 @@ class NavWebReport(Report):
             elif not os.path.isdir(dir_name):
                 parent_dir = os.path.dirname(dir_name)
                 if not os.path.isdir(parent_dir):
-                    ErrorDialog(_("Neither %s nor %s are directories") % \
-                                (dir_name, parent_dir))
+                    msg = _("Neither %s nor %s are directories") % \
+                          (dir_name, parent_dir)
+                    self.user.notify_error(msg)
                     return
                 else:
                     try:
                         os.mkdir(dir_name)
                     except IOError, value:
-                        ErrorDialog(_("Could not create the directory: %s") % \
-                                    dir_name + "\n" + value[1])
+                        msg = _("Could not create the directory: %s") % \
+                              dir_name + "\n" + value[1]
+                        self.user.notify_error(msg)
                         return
                     except:
-                        ErrorDialog(_("Could not create the directory: %s") % \
-                                    dir_name)
+                        msg = _("Could not create the directory: %s") % dir_name
+                        self.user.notify_error(msg)
                         return
 
             try:
@@ -6400,22 +6402,24 @@ class NavWebReport(Report):
                 if not os.path.isdir(image_dir_name):
                     os.mkdir(image_dir_name)
             except IOError, value:
-                ErrorDialog(_("Could not create the directory: %s") % \
-                            image_dir_name + "\n" + value[1])
+                msg = _("Could not create the directory: %s") % \
+                      image_dir_name + "\n" + value[1]
+                self.user.notify_error(msg)
                 return
             except:
-                ErrorDialog(_("Could not create the directory: %s") % \
-                            image_dir_name)
+                msg = _("Could not create the directory: %s") % \
+                      image_dir_name + "\n" + value[1]
+                self.user.notify_error(msg)
                 return
         else:
             if os.path.isdir(self.target_path):
-                ErrorDialog(_('Invalid file name'),
-                            _('The archive file must be a file, not a directory'))
+                self.user.notify_error(_('Invalid file name'),
+                        _('The archive file must be a file, not a directory'))
                 return
             try:
                 self.archive = tarfile.open(self.target_path, "w:gz")
             except (OSError, IOError), value:
-                ErrorDialog(_("Could not create %s") % self.target_path,
+                self.user.notify_error(_("Could not create %s") % self.target_path,
                             str(value))
                 return
 
@@ -6485,7 +6489,7 @@ class NavWebReport(Report):
                             'dir': x[1]} for x in _WRONGMEDIAPATH[:10]])
             if len(_WRONGMEDIAPATH) > 10:
                 error += '\n ...'
-            WarningDialog(_("Missing media objects:"), error)
+            self.user.warn(_("Missing media objects:"), error)
 
     def build_person_list(self):
         """
@@ -6496,12 +6500,12 @@ class NavWebReport(Report):
         self.person_handles = {}
         ind_list = self.database.iter_person_handles()
         
-        self._user.begin_progress(_("Narrated Web Site Report"),
+        self.user.begin_progress(_("Narrated Web Site Report"),
                                   _('Applying Filter...'), 
                                   self.database.get_number_of_people())
         ind_list = self.filter.apply(self.database, ind_list, 
-                                     self._user.step_progress)
-        self._user.end_progress()
+                                     self.user.step_progress)
+        self.user.end_progress()
         for handle in ind_list:
             self.person_handles[handle] = True
         return ind_list
@@ -6579,27 +6583,27 @@ class NavWebReport(Report):
         """
         creates IndividualListPage, IndividualPage, and gendex page
         """
-        self._user.begin_progress(_("Narrated Web Site Report"),
+        self.user.begin_progress(_("Narrated Web Site Report"),
                                   _('Creating individual pages'), 
                                   len(ind_list) + 1)
         IndividualListPage(self, self.title, ind_list)
         for person_handle in ind_list:
-            self._user.step_progress()
+            self.user.step_progress()
             person = self.database.get_person_from_handle(person_handle)
 
             IndividualPage(self, self.title, person, ind_list, place_list, source_list, place_lat_long)
-        self._user.end_progress()
+        self.user.end_progress()
 
         if self.inc_gendex:
-            self._user.begin_progress(_("Narrated Web Site Report"),
+            self.user.begin_progress(_("Narrated Web Site Report"),
                                       _('Creating GENDEX file'), len(ind_list))
             fp_gendex = self.create_file("gendex", ext=".txt")
             for person_handle in ind_list:
-                self._user.step_progress()
+                self.user.step_progress()
                 person = self.database.get_person_from_handle(person_handle)
                 self.write_gendex(fp_gendex, person)
             self.close_file(fp_gendex)
-            self._user.end_progress()
+            self.user.end_progress()
 
     def write_gendex(self, fp, person):
         """
@@ -6633,7 +6637,7 @@ class NavWebReport(Report):
 
         local_list = sort_people(self.database, ind_list)
 
-        self._user.begin_progress(_("Narrated Web Site Report"),
+        self.user.begin_progress(_("Narrated Web Site Report"),
                                   _("Creating surname pages"), len(local_list))
 
         SurnameListPage(self, self.title, ind_list, SurnameListPage.ORDER_BY_NAME,
@@ -6644,23 +6648,23 @@ class NavWebReport(Report):
 
         for (surname, handle_list) in local_list:
             SurnamePage(self, self.title, surname, handle_list)
-            self._user.step_progress()
-        self._user.end_progress()
+            self.user.step_progress()
+        self.user.end_progress()
 
     def source_pages(self, source_list):
         """
         creates SourceListPage and SourcePage
         """
 
-        self._user.begin_progress(_("Narrated Web Site Report"),
+        self.user.begin_progress(_("Narrated Web Site Report"),
                                   _("Creating source pages"), len(source_list))
 
         SourceListPage(self, self.title, source_list.keys())
 
         for key in source_list:
             SourcePage(self, self.title, key, source_list)
-            self._user.step_progress()
-        self._user.end_progress()
+            self.user.step_progress()
+        self.user.end_progress()
 
     def family_pages(self, ppl_handle_list, place_list, place_lat_long):
         """
@@ -6668,7 +6672,7 @@ class NavWebReport(Report):
         """
         db = self.database
 
-        self._user.begin_progress(_("Narrated Web Site Report"),
+        self.user.begin_progress(_("Narrated Web Site Report"),
                                   _("Creating family pages..."), 
                                   len(db.get_family_handles() ))
 
@@ -6685,23 +6689,23 @@ class NavWebReport(Report):
                         if family:
                             FamilyPage(self, self.title, person, family, place_list, ppl_handle_list, place_lat_long)
 
-                            self._user.step_progress()
-        self._user.end_progress()
+                            self.user.step_progress()
+        self.user.end_progress()
 
     def place_pages(self, place_list, source_list):
         """
         creates PlaceListPage and PlacePage
         """
 
-        self._user.begin_progress(_("Narrated Web Site Report"),
+        self.user.begin_progress(_("Narrated Web Site Report"),
                                   _("Creating place pages"), len(place_list))
 
         PlaceListPage(self, self.title, place_list)
 
         for place in place_list:
             PlacePage(self, self.title, place, source_list, place_list)
-            self._user.step_progress()
-        self._user.end_progress()
+            self.user.step_progress()
+        self.user.end_progress()
 
     def event_pages(self, ind_list):
         """
@@ -6712,7 +6716,7 @@ class NavWebReport(Report):
 
         # set up progress bar for event pages; using ind list
         event_handle_list, event_types = build_event_data(db, ind_list)
-        self._user.begin_progress(_("Narrated Web Site Report"),
+        self.user.begin_progress(_("Narrated Web Site Report"),
                                   _("Creating event pages"), 
                                   len(event_handle_list))
 
@@ -6722,14 +6726,14 @@ class NavWebReport(Report):
         for event_handle in event_handle_list:
             # create individual event pages
             EventPage(self, self.title, event_handle, ind_list)
-            self._user.step_progress()
-        self._user.end_progress()
+            self.user.step_progress()
+        self.user.end_progress()
 
     def gallery_pages(self, source_list):
         """
         creates MediaListPage and MediaPage
         """
-        self._user.begin_progress(_("Narrated Web Site Report"),
+        self.user.begin_progress(_("Narrated Web Site Report"),
                                   _("Creating media pages"), 
                                   len(self.photo_list))
 
@@ -6747,10 +6751,10 @@ class NavWebReport(Report):
             # Notice. Here self.photo_list[photo_handle] is used not self.photo_list
             MediaPage(self, self.title, photo_handle, source_list, self.photo_list[photo_handle],
                       (prev, next, index, total))
-            self._user.step_progress()
+            self.user.step_progress()
             prev = photo_handle
             index += 1
-        self._user.end_progress()
+        self.user.end_progress()
 
     def thumbnail_preview_page(self):
         """
@@ -6758,11 +6762,11 @@ class NavWebReport(Report):
         """
         db = self.database
 
-        self._user.begin_progress(_("Narrated Web Site Report"),
+        self.user.begin_progress(_("Narrated Web Site Report"),
                                   _("Creating thumbnail preview page..."), 
                                   len(self.photo_list))
-        ThumbnailPreviewPage(self, self.title, self._user.step_progress)
-        self._user.end_progress()
+        ThumbnailPreviewPage(self, self.title, self.user.step_progress)
+        self.user.end_progress()
 
     def base_pages(self):
         """
@@ -6799,7 +6803,7 @@ class NavWebReport(Report):
         # set progress bar pass for Repositories
         repository_size = len(repos_dict)
         
-        self._user.begin_progress(_("Narrated Web Site Report"),
+        self.user.begin_progress(_("Narrated Web Site Report"),
                                   _('Creating repository pages'), 
                                   repository_size)
         # RepositoryListPage Class
@@ -6809,8 +6813,8 @@ class NavWebReport(Report):
             (repo, handle) = repos_dict[key]
 
             RepositoryPage(self, self.title, repository, handle, source_list)
-            self._user.step_progress()
-        self._user.end_progress()
+            self.user.step_progress()
+        self.user.end_progress()
 
     def addressbook_pages(self, ind_list):
         """
@@ -6848,13 +6852,13 @@ class NavWebReport(Report):
         # begin Address Book pages 
         addr_size = len(url_addr_res)
         
-        self._user.begin_progress(_("Narrated Web Site Report"),
+        self.user.begin_progress(_("Narrated Web Site Report"),
                                   _("Creating address book pages ..."), 
                                   addr_size)
         for (sort_name, person_handle, add, res, url) in url_addr_res:
             AddressBookPage(self, self.title, person_handle, add, res, url)
-            self._user.step_progress()
-        self._user.end_progress()
+            self.user.step_progress()
+        self.user.end_progress()
 
     def build_subdirs(self, subdir, fname, up = False):
         """
@@ -7075,7 +7079,7 @@ class NavWebReport(Report):
                     print("Copying error: %s" % sys.exc_info()[1])
                     print("Continuing...")
             elif self.warn_dir:
-                WarningDialog(
+                self.user.warn(
                     _("Possible destination error") + "\n" +
                     _("You appear to have set your target directory "
                       "to a directory used for data storage. This "

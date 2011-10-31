@@ -79,8 +79,7 @@ class User():
     
     def warn(self, title, warning):
         """
-        Warn the user. The user will be forced to acknowledge the warning before
-        proceeding.
+        Warn the user.
         
         @param title: the title of the warning
         @type title: str
@@ -92,8 +91,7 @@ class User():
     
     def notify_error(self, title, error):
         """
-        Notify the user of an error. The user will be forced to acknowledge the 
-        error before proceeding.
+        Notify the user of an error.
         
         @param title: the title of the error
         @type title: str

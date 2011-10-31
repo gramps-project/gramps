@@ -125,7 +125,7 @@ def place_name(db, place_handle):
 # Functions commonly used in reports
 #
 #-------------------------------------------------------------------------
-def insert_image(database, doc, photo, w_cm=4.0, h_cm=4.0, alt=""):
+def insert_image(database, doc, photo, user, w_cm=4.0, h_cm=4.0, alt=""):
     """
     Insert pictures of a person into the document.
     """
@@ -139,10 +139,8 @@ def insert_image(database, doc, photo, w_cm=4.0, h_cm=4.0, alt=""):
             doc.add_media_object(filename, "right", w_cm, h_cm, alt=alt,
                                  style_name="DDR-Caption", crop=photo.get_rectangle())
         else:
-            # TODO: Replace this with a callback
-            from QuestionDialog import WarningDialog
-            WarningDialog(_("Could not add photo to page"), 
-                          "%s: %s" % (filename, _('File does not exist')))
+            user.warn(_("Could not add photo to page"), 
+                      "%s: %s" % (filename, _('File does not exist')))
 
 #-------------------------------------------------------------------------
 #

@@ -107,6 +107,7 @@ class DetAncestorReport(Report):
         Report.__init__(self, database, options, user)
 
         self.map = {}
+        self._user = user
 
         menu = options.menu
         get_option_by_name = menu.get_option_by_name
@@ -248,7 +249,7 @@ class DetAncestorReport(Report):
         
         if self.addimages and len(plist) > 0:
             photo = plist[0]
-            ReportUtils.insert_image(self.database, self.doc, photo)
+            ReportUtils.insert_image(self.database, self.doc, photo, self._user)
 
         self.doc.start_paragraph("DAR-First-Entry","%s." % str(key))
 
@@ -648,7 +649,8 @@ class DetAncestorReport(Report):
                 
                 if self.addimages and len(plist) > 0:
                     photo = plist[0]
-                    ReportUtils.insert_image(self.database, self.doc, photo)
+                    ReportUtils.insert_image(self.database, self.doc, 
+                                             photo, self._user)
         
                 name = self._name_display.display_formal(ind)
                 mark = ReportUtils.get_person_mark(self.database, ind)

@@ -31,6 +31,7 @@ The User class provides basic interaction with the user.
 #-------------------------------------------------------------------------
 import gen.user
 from gui.utils import ProgressMeter
+from QuestionDialog import WarningDialog, ErrorDialog
 
 #-------------------------------------------------------------------------
 #
@@ -96,8 +97,7 @@ class User(gen.user.User):
     
     def warn(self, title, warning):
         """
-        Warn the user. The user will be forced to acknowledge the warning before
-        proceeding.
+        Warn the user.
         
         @param title: the title of the warning
         @type title: str
@@ -105,12 +105,11 @@ class User(gen.user.User):
         @type warning: str
         @returns: none
         """
-        pass
+        WarningDialog(title, warning)
     
     def notify_error(self, title, error):
         """
-        Notify the user of an error. The user will be forced to acknowledge the 
-        error before proceeding.
+        Notify the user of an error.
         
         @param title: the title of the error
         @type title: str
@@ -118,4 +117,4 @@ class User(gen.user.User):
         @type error: str
         @returns: none
         """
-        pass
+        ErrorDialog(title, warning)

@@ -46,7 +46,6 @@ pt2cm = ReportUtils.pt2cm
 from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                     FONT_SANS_SERIF, DASHED, PARA_ALIGN_CENTER)
 import Sort
-from QuestionDialog import ErrorDialog
 from gen.display.name import displayer as name_displayer
 import config
 from gen.utils import get_birth_or_fallback, get_death_or_fallback

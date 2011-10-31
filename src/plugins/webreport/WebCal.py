@@ -59,7 +59,6 @@ from gen.plug.menu import BooleanOption, NumberOption, StringOption, \
                           EnumeratedListOption, FilterOption, PersonOption, \
                           DestinationOption, NoteOption
 import GrampsLocale
-from QuestionDialog import WarningDialog
 from Utils import probably_alive, xml_lang, get_researcher
 from DateHandler import displayer as _dd
 
@@ -241,7 +240,7 @@ class WebCalReport(Report):
         if from_fname != dest:
             shutil.copyfile(from_fname, dest)
         elif self.warn_dir:
-            WarningDialog(
+            self._user.warn(
                 _("Possible destination error") + "\n" +
                 _("You appear to have set your target directory "
                   "to a directory used for data storage. This "
