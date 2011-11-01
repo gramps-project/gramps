@@ -33,7 +33,7 @@ Reports/Graphical Reports/Personal Tree
 # GRAMPS modules
 #
 #------------------------------------------------------------------------ 
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 
 from Errors import ReportError
 
