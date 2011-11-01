@@ -213,37 +213,8 @@ class SourceView(ListView):
         self.remove_selected_objects()
 
     def remove_object_from_handle(self, handle):
-        the_lists = Utils.get_source_referents(handle, self.dbstate.db)
-        LOG.debug('source referents %s' % [the_lists])
-#        per = []
-#        fam = []
-#        eve = []
-#        pla = []
-#        sou = []
-#        med = []
-#        rep = []
-        citation_referents_list = []
-        for citation in the_lists[7]:
-            LOG.debug('citation %s' % citation)
-            refs = Utils.get_citation_referents(citation, self.dbstate.db)
-            citation_referents_list += [(citation, refs)]
-#            (per2 , fam2, eve2, pla2, sou2, med2, rep2) = refs
-#            per += per2
-#            fam += fam2
-#            eve += eve2
-#            pla += pla2
-#            sou += sou2
-#            med += med2
-#            rep += rep2
-#        citation_referents_list = (per , fam, eve, pla, sou, med, rep)
-        LOG.debug('citation_referents_list %s' % [citation_referents_list])    
-            
-        (person_list, family_list, event_list, place_list, source_list, 
-         media_list, repo_list, citation_list) = the_lists
-        the_lists = (person_list, family_list, event_list, place_list, 
-                     source_list, media_list, repo_list, citation_list, 
-                     citation_referents_list)
-        
+        the_lists = Utils.get_source_and_citation_referents(handle, 
+                                                            self.dbstate.db)
         LOG.debug('the_lists %s' % [the_lists])    
 
         object = self.dbstate.db.get_source_from_handle(handle)

@@ -149,7 +149,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
         :returns: Returns the list of child objects that may carry textual data.
         :rtype: list
         """
-        return self.attribute_list + self.source_list
+        return self.attribute_list
 
     def get_citation_child_list(self):
         """
@@ -169,7 +169,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
                 refer notes.
         :rtype: list
         """
-        return self.attribute_list + self.source_list + self.citation_list
+        return self.attribute_list + self.citation_list
 
     def get_referenced_handles(self):
         """

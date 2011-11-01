@@ -26,13 +26,15 @@
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
+import logging
+LOG = logging.getLogger(".citationfilter")
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Utils import get_source_referents
+from Utils import get_source_and_citation_referents
 from Filters.Rules._Rule import Rule
 
 #-------------------------------------------------------------------------
@@ -179,15 +181,30 @@ class HasTextMatchingSubstringOf(Rule):
         # search all sources and match all referents of a matching source
         for source in self.db.iter_sources():
             match = self.match_object(source)
+            LOG.debug("cache_sources match %s string %s source %s" %
+                      (match, self.list[0], source.gramps_id))
             if not match:
                 if any(reporef.get_reference_handle() in self.repo_map
                             for reporef in source.get_reporef_list()
                       ):
-
+                    match = True
+                    LOG.debug("cache_sources repomatch %s string %s source %s" %
+                              (match, self.list[0], source.gramps_id))
+            (citation_list, citation_referents_list) = \
+                    get_source_and_citation_referents(source.handle, self.db)
+            LOG.debug("the_lists %s %s" % 
+                      (citation_list, citation_referents_list))
+            for (citation_handle, refs) in citation_referents_list:
+                citation = self.db.get_citation_from_handle(citation_handle)
+                LOG.debug("cache_sources match %s matchcitation %s string %s"
+                          " source %s citation %s" %
+                          (match, self.match_object(citation), 
+                           self.list[0], source.gramps_id, 
+                           citation.gramps_id))
+                if match or self.match_object(citation):
                     # Update the maps to reflect the reference
-                    (person_list, family_list, event_list, place_list,
-                         source_list, media_list, repo_list
-                    ) = get_source_referents(source.handle,self.db)
+                    (person_list, family_list, event_list, place_list, 
+                     source_list, media_list, repo_list) = refs
                     self.person_map.update(person_list)
                     self.family_map.update(family_list)
                     self.event_map.update(event_list)
