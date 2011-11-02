@@ -160,10 +160,10 @@ class osmGpsMap():
 
     def build_widget(self):
         self.vbox = gtk.VBox(False, 0)
-        cache_path = os.path.join(const.HOME_DIR, 'maps')
+        cache_path = config.get('geography.path')
         if not os.path.isdir(cache_path):
             try:
-                os.mkdir(cache_path, 0750)
+                os.makedirs(cache_path, 0755) # create dir like mkdir -p
             except:
                 ErrorDialog(_("Can't create tiles cache directory %s") %
                              cache_path )
@@ -178,10 +178,10 @@ class osmGpsMap():
             self.osm.image_remove_all()
             self.vbox.remove(self.osm)
             self.osm.destroy()
-        tiles_path=os.path.join(GEOGRAPHY_PATH, constants.tiles_path[map_type])
+        tiles_path=os.path.join(config.get('geography.path'), constants.tiles_path[map_type])
         if not os.path.isdir(tiles_path):
             try:
-                os.mkdir(tiles_path, 0750)
+                os.makedirs(tiles_path, 0755) # create dir like mkdir -p
             except:
                 ErrorDialog(_("Can't create tiles cache directory for '%s'.") %
                              constants.map_title[map_type])
