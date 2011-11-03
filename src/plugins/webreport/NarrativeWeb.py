@@ -95,17 +95,12 @@ import gen.mime
 from gen.display.name import displayer as _nd
 from DateHandler import displayer as _dd
 from gen.proxy import PrivateProxyDb, LivingProxyDb
-from libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
+from libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS, openstreet_jsc, google_jsc
 
-# import for Place Map Pages...
-from libhtmlconst import openstreet_jsc, google_jsc
-
-# import HTML Class from
-# src/plugins/lib/libhtml.py
+# import HTML Class from src/plugins/lib/libhtml.py
 from libhtml import Html
 
-# import styled notes from
-# src/plugins/lib/libhtmlbackend.py
+# import styled notes from src/plugins/lib/libhtmlbackend.py
 from libhtmlbackend import HtmlBackend, process_spaces
 
 from libgedcom import make_gedcom_date
