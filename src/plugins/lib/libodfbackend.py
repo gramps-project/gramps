@@ -122,19 +122,17 @@ class OdfBackend(DocBackend):
         if tagtype not in self.SUPPORTED_MARKUP:
             return None
         if ( tagtype == DocBackend.FONTCOLOR ):
-            return ('<text:span text:style-name=\"FontColor__%s__\">' % 
-                                self.ESCAPE_FUNC()(value), 
+            return ('<text:span text:style-name=\"FontColor__%s__\">' % value,
                     '</text:span>')
         elif ( tagtype == DocBackend.FONTFACE ):
-            return ('<text:span text:style-name=\"FontFace__%s__\">' % 
-                                self.ESCAPE_FUNC()(value), 
+            return ('<text:span text:style-name=\"FontFace__%s__\">' %
+                                self.ESCAPE_FUNC()(value),
                     '</text:span>')
         elif ( tagtype == DocBackend.FONTSIZE ):
-            return ('<text:span text:style-name=\"FontSize__%d__\">' % value, 
+            return ('<text:span text:style-name=\"FontSize__%d__\">' % value,
                     '</text:span>')
         else: #elif ( tagtype == DocBackend.HIGHLIGHT ):
-            return ('<text:span text:style-name=\"FontHighlight__%s__\">' % 
-                                self.ESCAPE_FUNC()(value), 
+            return ('<text:span text:style-name=\"FontHighlight__%s__\">' % value,
                     '</text:span>')
 
     def format_link(self, value):
