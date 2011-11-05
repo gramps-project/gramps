@@ -129,7 +129,7 @@ class OdfBackend(DocBackend):
                                 self.ESCAPE_FUNC()(value),
                     '</text:span>')
         elif ( tagtype == DocBackend.FONTSIZE ):
-            return ('<text:span text:style-name=\"FontSize__%s__\">' % value,
+            return ('<text:span text:style-name=\"FontSize__%d__\">' % value,
                     '</text:span>')
         else: #elif ( tagtype == DocBackend.HIGHLIGHT ):
             return ('<text:span text:style-name=\"FontHighlight__%s__\">' % value,
