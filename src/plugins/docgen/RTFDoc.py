@@ -22,7 +22,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id:RTFDoc.py 9912 2008-01-22 09:17:46Z acraphae $
+# $Id$
 
 #------------------------------------------------------------------------
 #
@@ -37,10 +37,18 @@ from gen.ggettext import gettext as _
 #
 #------------------------------------------------------------------------
 from gen.plug.docgen import (BaseDoc, TextDoc, FONT_SERIF, PARA_ALIGN_RIGHT,
-                             PARA_ALIGN_CENTER, PARA_ALIGN_JUSTIFY)
+                             PARA_ALIGN_CENTER, PARA_ALIGN_JUSTIFY,
+                             URL_PATTERN)
 import ImgManip
 import Errors
 import Utils
+
+#------------------------------------------------------------------------
+#
+# Set up to make links clickable
+#
+#------------------------------------------------------------------------
+_CLICKABLE = r'''{\\field{\\*\\fldinst HYPERLINK "\1"}{\\fldrslt \1}}'''
 
 #------------------------------------------------------------------------
 #
@@ -380,23 +388,15 @@ class RTFDoc(BaseDoc,TextDoc):
         if (nx, ny) == (0,0):
             return
 
-        if (nx, ny) == (0,0):
-            return
-
-        ratio = float(x_cm)*float(ny)/(float(y_cm)*float(nx))
-
-        if ratio < 1:
-            act_width = x_cm
-            act_height = y_cm*ratio
-        else:
-            act_height = y_cm
-            act_width = x_cm/ratio
-
-        buf = ImgManip.resize_to_jpeg_buffer(name, int(act_width*40), 
-                                             int(act_height*40))
+        (act_width, act_height) = ImgManip.image_actual_size(x_cm, y_cm, nx, ny)
 
         act_width = twips(act_width)
         act_height = twips(act_height)
+
+        size = [act_width, act_height]
+        buf = ImgManip.resize_to_jpeg_buffer(name, size, crop=crop)
+        act_width = size[0] # In case it changed because of cropping or keeping the ratio
+        act_height = size[1]
 
         self.f.write('{\*\shppict{\\pict\\jpegblip')
         self.f.write('\\picwgoal%d\\pichgoal%d\n' % (act_width,act_height))
@@ -407,6 +407,9 @@ class RTFDoc(BaseDoc,TextDoc):
                 self.f.write('\n')
             index = index+1
         self.f.write('}}\\par\n')
+
+        if len(alt):
+            self.f.write('%s\n\\par\n' % alt)
 
     def write_styled_note(self, styledtext, format, style_name,
                           contains_html=False, links=False):
@@ -419,6 +422,7 @@ class RTFDoc(BaseDoc,TextDoc):
             If contains_html=True, then the textdoc is free to handle that in 
             some way. Eg, a textdoc could remove all tags, or could make sure
             a link is clickable. RTFDoc prints the html without handling it
+        links: bool, make URLs clickable if True
         """
         text = str(styledtext)
         self.start_paragraph(style_name)
@@ -435,7 +439,7 @@ class RTFDoc(BaseDoc,TextDoc):
             else:
                 if ( linenb > 1 ):
                     self.write_text('\\line ')
-                self.write_text(line)
+                self.write_text(line, links=links)
                 linenb += 1
         # FIXME: I don't understand why these newlines are necessary.
         # It may be related to the behaviour of end_paragraph inside tables, and
@@ -475,6 +479,10 @@ class RTFDoc(BaseDoc,TextDoc):
                 self.text += '\\%s' % i
             else:
                 self.text += i
+
+        if links ==  True:
+            import re
+            self.text = re.sub(URL_PATTERN, _CLICKABLE, self.text)
 
 def process_spaces(line, format):
     """

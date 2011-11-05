@@ -52,9 +52,8 @@ from gen.plug.menu import BooleanOption, NumberOption, EnumeratedListOption, \
                          FilterOption, PersonOption
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
-from gui.plug.report import MenuReportOptions
+from gen.plug.report import MenuReportOptions
 import DateHandler
-from gui.utils import ProgressMeter
 
 #------------------------------------------------------------------------
 #
@@ -614,7 +613,7 @@ class Extract(object):
 
     
     def collect_data(self, db, filter_func, menu, genders,
-                     year_from, year_to, no_years):
+                     year_from, year_to, no_years, cb_progress):
         """goes through the database and collects the selected personal
         data persons fitting the filter and birth year criteria. The
         arguments are:
@@ -625,6 +624,7 @@ class Extract(object):
         year_from   - use only persons who've born this year of after
         year_to     - use only persons who've born this year or before
         no_years    - use also people without known birth year
+        cb_progress - callback to indicate progress
         
         Returns an array of tuple of:
         - Extraction method title
@@ -643,8 +643,8 @@ class Extract(object):
                 data.append((ext[name][1], {}, ext[name][2], ext[name][3]))
         
         # go through the people and collect data
-        for person_handle in filter_func.apply(db, db.iter_person_handles()):
-
+        for person_handle in filter_func.apply(db, db.iter_person_handles(), cb_progress):
+            cb_progress()
             person = db.get_person_from_handle(person_handle)
             # check whether person has suitable gender
             if person.gender != genders and genders != Person.UNKNOWN:
@@ -687,7 +687,7 @@ _Extract = Extract()
 #------------------------------------------------------------------------
 class StatisticsChart(Report):
 
-    def __init__(self, database, options_class):
+    def __init__(self, database, options, user):
         """
         Create the Statistics object that produces the report.
         Uses the Extractor class to extract the data from the database.
@@ -696,12 +696,13 @@ class StatisticsChart(Report):
 
         database        - the GRAMPS database instance
         person          - currently selected person
-        options_class   - instance of the Options class for this report
+        options   - instance of the Options class for this report
 
         To see what the options are, check the options help in the options class.
         """
-        Report.__init__(self, database, options_class)
-        menu = options_class.menu
+        Report.__init__(self, database, options, user)
+        menu = options.menu
+        self._user = user
         get_option_by_name = menu.get_option_by_name
         get_value = lambda name: get_option_by_name(name).get_value()
 
@@ -727,16 +728,17 @@ class StatisticsChart(Report):
             'year_from': year_from,
             'year_to': year_to
         }
-        self.progress = ProgressMeter(_('Statistics Charts'))
 
         # extract requested items from the database and count them
-        self.progress.set_pass(_('Collecting data...'), 1)
+        self._user.begin_progress(_('Statistics Charts'), 
+                                  _('Collecting data...'), 0)
         tables = _Extract.collect_data(database, self.filter, menu,
                         gender, year_from, year_to, 
-                        get_value('no_years'))
-        self.progress.step()
+                        get_value('no_years'), self._user.step_progress)
+        self._user.end_progress()
 
-        self.progress.set_pass(_('Sorting data...'), len(tables))
+        self._user.begin_progress(_('Statistics Charts'), 
+                                  _('Sorting data...'), len(tables))
         self.data = []
         sortby = get_value('sortby')
         reverse = get_value('reverse')
@@ -750,7 +752,8 @@ class StatisticsChart(Report):
             else:
                 heading = _("Persons born %(year_from)04d-%(year_to)04d: %(chart_title)s") % mapping
             self.data.append((heading, table[0], table[1], lookup))
-        self.progress.step()
+            self._user.step_progress()
+        self._user.end_progress()
     #DEBUG
         #print heading
         #print table[1]
@@ -779,7 +782,8 @@ class StatisticsChart(Report):
     def write_report(self):
         "output the selected statistics..."
 
-        self.progress.set_pass(_('Saving charts...'), len(self.data))
+        self._user.begin_progress(_('Statistics Charts'), 
+                                  _('Saving charts...'), len(self.data))
         for data in self.data:
             self.doc.start_page()
             if len(data[2]) < self.bar_items:
@@ -787,8 +791,8 @@ class StatisticsChart(Report):
             else:
                 self.output_barchart(*data[:4])
             self.doc.end_page()
-        self.progress.step()
-        self.progress.close()
+            self._user.step_progress()
+        self._user.end_progress()
 
 
     def output_piechart(self, title, typename, data, lookup):

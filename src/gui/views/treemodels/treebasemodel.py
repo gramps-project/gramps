@@ -20,6 +20,9 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+# gui/views/treemodels/treebasemodel.py
+# $Id$
+#
 
 """
 This module provides the model that is used for all hierarchical treeviews.
@@ -524,7 +527,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
                         total_steps=self.__total, interval=self.__total//10)
             pmon.add_op(status_filter)
             handle_list = dfilter.apply(self.db, handle_list, 
-                                        progress=status_filter)
+                                        cb_progress=status_filter.heartbeat)
             status_filter.end()
         status.heartbeat()
 

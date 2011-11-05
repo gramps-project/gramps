@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-naming-policy project-wide -->
@@ -54,10 +54,20 @@
                     <property name="has_tooltip">True</property>
                     <property name="tooltip_markup">Drag to move; click to detach</property>
                     <property name="tooltip_text" translatable="yes">Drag to move; click to detach</property>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="gvproperties-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Detach</property>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkImage" id="gvpropertiesimage">
                         <property name="visible">True</property>
                         <property name="stock">gtk-properties</property>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="gvpropertiesimage-atkobject">
+                            <property name="AtkObject::accessible-description" translatable="yes">Config</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>
@@ -75,10 +85,20 @@
                     <property name="has_tooltip">True</property>
                     <property name="tooltip_markup">Click to expand/collapse</property>
                     <property name="tooltip_text" translatable="yes">Click to expand/collapse</property>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="gvstate-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Remove</property>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkImage" id="gvstateimage">
                         <property name="visible">True</property>
                         <property name="stock">gtk-remove</property>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="gvstateimage-atkobject">
+                            <property name="AtkObject::accessible-description" translatable="yes">Remove</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>
@@ -96,10 +116,20 @@
                     <property name="has_tooltip">True</property>
                     <property name="tooltip_markup">Click to delete gramplet from view</property>
                     <property name="tooltip_text" translatable="yes">Click to delete gramplet from view</property>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="gvclose-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Delete</property>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkImage" id="gvcloseimage">
                         <property name="visible">True</property>
                         <property name="stock">gtk-close</property>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="gvcloseimage-atkobject">
+                            <property name="AtkObject::accessible-description" translatable="yes">Close</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>

@@ -20,7 +20,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# $Id:_PlaceModel.py 9912 2008-01-22 09:17:46Z acraphae $
+# $Id$
 
 """
 Place Model.
@@ -138,16 +138,36 @@ class PlaceBaseModel(object):
         return unicode(data[2])
 
     def column_longitude(self, data):
-        return conv_lat_lon('0', data[3], format='DEG')[1]
+        if not data[3]:
+            return u' '
+        value = conv_lat_lon('0', data[3], format='DEG')[1]
+        if not value:
+            return _("Error in format")
+        return value
 
     def column_latitude(self, data):
-        return conv_lat_lon(data[4], '0', format='DEG')[0]
+        if not data[4]:
+            return u' '
+        value = conv_lat_lon(data[4], '0', format='DEG')[0]
+        if not value:
+            return _("Error in format")
+        return value
 
     def sort_longitude(self, data):
-        return conv_lat_lon('0', data[3], format='ISO-DMS') if data[3] else u''
+        if not data[3]:
+            return u' '
+        value = conv_lat_lon('0', data[3], format='ISO-DMS') if data[3] else u''
+        if not value:
+             return _("Error in format")
+        return value
 
     def sort_latitude(self, data):
-        return conv_lat_lon(data[4], '0', format='ISO-DMS') if data[4] else u''
+        if not data[4]:
+            return u' '
+        value = conv_lat_lon(data[4], '0', format='ISO-DMS') if data[4] else u''
+        if not value:
+            return _("Error in format")
+        return value 
 
     def column_id(self, data):
         return unicode(data[1])

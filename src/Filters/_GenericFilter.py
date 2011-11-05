@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id:_GenericFilter.py 9912 2008-01-22 09:17:46Z acraphae $
+# $Id$
 
 """
 Package providing filtering framework for GRAMPS.
@@ -114,7 +114,7 @@ class GenericFilter(object):
     def find_from_handle(self, db, handle):
         return db.get_person_from_handle(handle)
 
-    def check_func(self, db, id_list, task, progress=None, tupleind=None):
+    def check_func(self, db, id_list, task, cb_progress=None, tupleind=None):
         final_list = []
         
         if id_list is None:
@@ -122,8 +122,8 @@ class GenericFilter(object):
                 for handle, data in cursor:
                     person = self.make_obj()
                     person.unserialize(data)
-                    if progress:
-                        progress.step()
+                    if cb_progress:
+                        cb_progress()
                     if task(db, person) != self.invert:
                         final_list.append(handle)
         else:
@@ -133,13 +133,13 @@ class GenericFilter(object):
                 else:
                     handle = data[tupleind]
                 person = self.find_from_handle(db, handle)
-                if progress:
-                    progress.step()
+                if cb_progress:
+                    cb_progress()
                 if task(db, person) != self.invert:
                     final_list.append(data)
         return final_list
 
-    def check_and(self, db, id_list, progress=None, tupleind=None):
+    def check_and(self, db, id_list, cb_progress=None, tupleind=None):
         final_list = []
         flist = self.flist
 
@@ -148,8 +148,8 @@ class GenericFilter(object):
                 for handle, data in cursor:
                     person = self.make_obj()
                     person.unserialize(data)
-                    if progress:
-                        progress.step()
+                    if cb_progress:
+                        cb_progress()
                     val = all(rule.apply(db, person) for rule in flist)
                     if val != self.invert:
                         final_list.append(handle)
@@ -160,23 +160,23 @@ class GenericFilter(object):
                 else:
                     handle = data[tupleind]
                 person = self.find_from_handle(db, handle)
-                if progress:
-                    progress.step()
+                if cb_progress:
+                    cb_progress()
                 val = all(rule.apply(db, person) for rule in flist if person)
                 if val != self.invert:
                     final_list.append(data)
         return final_list
 
-    def check_or(self, db, id_list, progress=None, tupleind=None):
-        return self.check_func(db, id_list, self.or_test, progress,
+    def check_or(self, db, id_list, cb_progress=None, tupleind=None):
+        return self.check_func(db, id_list, self.or_test, cb_progress,
                                 tupleind)
 
-    def check_one(self, db, id_list, progress=None, tupleind=None):
-        return self.check_func(db, id_list, self.one_test, progress,
+    def check_one(self, db, id_list, cb_progress=None, tupleind=None):
+        return self.check_func(db, id_list, self.one_test, cb_progress,
                                 tupleind)
 
-    def check_xor(self, db, id_list, progress=None, tupleind=None):
-        return self.check_func(db, id_list, self.xor_test, progress,
+    def check_xor(self, db, id_list, cb_progress=None, tupleind=None):
+        return self.check_func(db, id_list, self.xor_test, cb_progress,
                                 tupleind)
 
     def xor_test(self, db, person):
@@ -207,16 +207,15 @@ class GenericFilter(object):
     def check(self, db, handle):
         return self.get_check_func()(db, [handle])
 
-    # progress is optional. If present it must be an instance of 
-    #  gui.utils.ProgressMeter
-    def apply(self, db, id_list=None, progress=None, tupleind=None):
+    def apply(self, db, id_list=None, cb_progress=None, tupleind=None):
         """
         Apply the filter using db.
         If id_list given, the handles in id_list are used. If not given
         a database cursor will be used over all entries.
-        
-        If progress given, it will be used to indicate progress of the
-        Filtering
+
+        cb_progress is optional. If present it must be a function that takes no 
+        parameters. If cb_progress given, it will be called occasionally to 
+        indicate progress of the filtering.
         
         If tupleind is given, id_list is supposed to consist of a list of 
         tuples, with the handle being index tupleind. So 
@@ -230,7 +229,7 @@ class GenericFilter(object):
         m = self.get_check_func()
         for rule in self.flist:
             rule.requestprepare(db)
-        res = m(db, id_list, progress, tupleind)
+        res = m(db, id_list, cb_progress, tupleind)
         for rule in self.flist:
             rule.requestreset()
         return res

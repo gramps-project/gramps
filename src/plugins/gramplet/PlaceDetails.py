@@ -42,7 +42,7 @@ class PlaceDetails(Gramplet):
         """
         self.top = gtk.HBox()
         vbox = gtk.VBox()
-        self.photo = Photo()
+        self.photo = Photo(self.uistate.screen_height() < 1000)
         self.title = gtk.Label()
         self.title.set_alignment(0, 0)
         self.title.modify_font(pango.FontDescription('sans bold 12'))

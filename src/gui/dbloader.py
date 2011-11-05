@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id:DbLoader.py 9912 2008-01-22 09:17:46Z acraphae $
+# $Id$
 
 """
 Handling of loading new/existing databases.
@@ -272,7 +272,7 @@ class DbLoader(CLIDbLoader):
         
         This method should only return on success.
         Returning on failure makes no sense, because we cannot recover,
-        since database has already beeen changed.
+        since database has already been changed.
         Therefore, any errors should raise exceptions.
 
         On success, return with the disabled signals. The post-load routine
@@ -313,7 +313,6 @@ class DbLoader(CLIDbLoader):
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
         except gen.db.exceptions.DbEnvironmentError, msg:
-            _LOG.error("dbloader: read_file: DbEnvironmentError detected")
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
         except OSError, msg:

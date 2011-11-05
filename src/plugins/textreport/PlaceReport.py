@@ -39,7 +39,7 @@ from gen.ggettext import gettext as _
 from gen.plug.menu import FilterOption, PlaceListOption, EnumeratedListOption, \
                           BooleanOption
 from gen.plug.report import Report
-from gui.plug.report import MenuReportOptions
+from gen.plug.report import MenuReportOptions
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
                             TableCellStyle, FONT_SANS_SERIF, FONT_SERIF, 
                             INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
@@ -47,20 +47,20 @@ from gen.proxy import PrivateProxyDb
 import DateHandler
 import Sort
 from gen.display.name import displayer as _nd
-from gui.utils import ProgressMeter
 
 class PlaceReport(Report):
     """
     Place Report class
     """
-    def __init__(self, database, options_class):
+    def __init__(self, database, options, user):
         """
         Create the PlaceReport object produces the Place report.
         
         The arguments are:
 
         database        - the GRAMPS database instance
-        options_class   - instance of the Options class for this report
+        options         - instance of the Options class for this report
+        user            - instance of a gen.user.User class
 
         This report needs the following parameters (class variables)
         that come in the options class.
@@ -71,9 +71,10 @@ class PlaceReport(Report):
 
         """
 
-        Report.__init__(self, database, options_class)
+        Report.__init__(self, database, options, user)
 
-        menu = options_class.menu
+        self._user = user
+        menu = options.menu
         places = menu.get_option_by_name('places').get_value()
         self.center  = menu.get_option_by_name('center').get_value()
         self.incpriv = menu.get_option_by_name('incpriv').get_value()
@@ -104,9 +105,6 @@ class PlaceReport(Report):
         is opened and ready for writing.
         """
 
-        # Create progress meter bar
-        self.progress = ProgressMeter(_("Place Report"), '')
-
         # Write the title line. Set in INDEX marker so that this section will be
         # identified as a major category if this is included in a Book report.
 
@@ -117,15 +115,16 @@ class PlaceReport(Report):
         self.doc.end_paragraph()
         self.__write_all_places()
 
-        # Close the progress meter
-        self.progress.close()
-
     def __write_all_places(self):
         """
         This procedure writes out each of the selected places.
         """
         place_nbr = 1
-        self.progress.set_pass(_("Generating report"), len(self.place_handles))
+
+        self._user.begin_progress(_("Place Report"), 
+                                  _("Generating report"), 
+                                  len(self.place_handles))
+        
         for handle in self.place_handles:
             self.__write_place(handle, place_nbr)
             if self.center == "Event":
@@ -136,7 +135,9 @@ class PlaceReport(Report):
               raise AttributeError("no such center: '%s'" % self.center)
             place_nbr += 1
             # increment progress bar
-            self.progress.step()
+            self._user.step_progress()
+            
+        self._user.end_progress()
 
     def __write_place(self, handle, place_nbr):
         """

@@ -11,6 +11,9 @@
    </script>
 
 <div class="content" id="IndividualDetail">
+
+{{ "/browse|Browse,/person|People,/person/{0}|Person"|breadcrumb:person.handle}}
+
 <h3>{{person|make_name:user}} [{{person.gramps_id}}]</h3>
 <div id="summaryarea">
 <table class="infolist"> {% comment %} 4 cols {% endcomment %}
@@ -26,10 +29,11 @@
 {% endif %}
 <tr>
  <td class="ColumnAttribute">{{form.surname.label}}:</td>
- <td class="ColumnValue" id="data">{% render form.surname user action %}</td>
+ <td class="ColumnValue" id="data"></td>
  <td class="ColumnAttribute">{{form.prefix.label}}:</td>
- <td class="ColumnValue" id="data">{% render form.prefix user action %}</td>
+ <td class="ColumnValue" id="data"></td>
 </tr>
+<tr>
  <td class="ColumnAttribute">{{form.first_name.label}}:</td>
  <td class="ColumnValue" id="data">{% render form.first_name user action %}</td>
  <td class="ColumnAttribute">{{form.call.label}}:</td>
@@ -41,8 +45,6 @@
  <td class="ColumnAttribute">{{form.suffix.label}}:</td>
  <td class="ColumnValue" id="data">{% render form.suffix user action %}</td>
 <tr>
- <td class="ColumnAttribute">{{form.patronymic.label}}:</td>
- <td class="ColumnValue" id="data">{% render form.patronymic user action %}</td>
  <td class="ColumnAttribute">{{form.name_type.label}}:</td>
  <td class="ColumnValue" id="data">{% render form.name_type user action %}</td>
 </tr>
@@ -74,7 +76,7 @@
 
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom"
   id="tab-general"> 
-    <div style="overflow: auto; height:150px; color: black; background-color: white;">
+    <div style="overflow: auto; height:150px;">
     <table border="1">
     <tr><td style="background-color: #FFF2C5;">{{form.group_as.label}}: </td>
         <td>{% render form.group_as user action %}</td>

@@ -24,7 +24,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id:HtmlDoc.py 9912 2008-01-22 09:17:46Z acraphae $
+# $Id$
 
 
 """
@@ -48,7 +48,7 @@ from gen.ggettext import gettext as _
 #------------------------------------------------------------------------
 import ImgManip
 import const
-from gen.plug.docgen import BaseDoc, TextDoc, FONT_SANS_SERIF
+from gen.plug.docgen import BaseDoc, TextDoc, FONT_SANS_SERIF, URL_PATTERN
 from libhtmlbackend import HtmlBackend, process_spaces
 from libhtml import Html
 
@@ -62,6 +62,13 @@ LOG = logging.getLogger(".htmldoc")
 
 _TEXTDOCSCREEN = 'grampstextdoc.css'
 _HTMLSCREEN = 'grampshtml.css'
+
+#------------------------------------------------------------------------
+#
+# Set up to make links clickable
+#
+#------------------------------------------------------------------------
+_CLICKABLE = r'''<a href="\1">\1</a>'''
 
 #------------------------------------------------------------------------
 #
@@ -297,17 +304,21 @@ class HtmlDoc(BaseDoc, TextDoc):
         self.htmllist[-2] += self.htmllist[-1]
         self.htmllist.pop()
     
-    def __write_text(self, text, mark=None, markup=False):
+    def __write_text(self, text, mark=None, markup=False, links=False):
         """
         @param text: text to write.
         @param mark:  IndexMark to use for indexing (if supported)
         @param markup: True if text already contains markup info. 
                        Then text will no longer be escaped
+        @param links: make URLs clickable if True
         """
         if not markup:            
             text = self._backend.ESCAPE_FUNC()(text)
         if self.__title_written == 0 :
             self.title += text
+        if links == True:
+            import re
+            text = re.sub(URL_PATTERN, _CLICKABLE, text)
         self.htmllist[-1] += text
     
     def __empty_char(self):
@@ -323,7 +334,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         """
         if text != "":
             self._empty = 0
-        self.__write_text(text, mark)
+        self.__write_text(text, mark, links=links)
 
     def write_title(self):
         """
@@ -461,6 +472,7 @@ class HtmlDoc(BaseDoc, TextDoc):
             some way. Eg, a textdoc could remove all tags, or could make sure
             a link is clickable. HtmlDoc will show the html as pure text, so 
             no escaping will happen.
+        links: bool, make URLs clickable if True
         """
         text = str(styledtext)
 
@@ -469,7 +481,7 @@ class HtmlDoc(BaseDoc, TextDoc):
             #just dump the note out as it is. Adding markup would be dangerous
             # as it could destroy the html. If html code, one can do the 
             self.start_paragraph(style_name)
-            self.__write_text(text, markup=True)
+            self.__write_text(text, markup=True, links=links)
             self.end_paragraph()
         else:
             s_tags = styledtext.get_tags()
@@ -502,7 +514,7 @@ class HtmlDoc(BaseDoc, TextDoc):
                         self._empty = 1   # para is empty
                     if linenb > 1:
                         self.htmllist[-1] += Html('br')
-                    self.__write_text(line, markup=True)
+                    self.__write_text(line, markup=True, links=links)
                     self._empty = 0  # para is not empty
                     linenb += 1
             if inpara == True:
@@ -528,17 +540,31 @@ class HtmlDoc(BaseDoc, TextDoc):
         imdir = self._backend.datadirfull()
 
         try:
-            ImgManip.resize_to_jpeg(name, imdir + os.sep + refname, size, size)
+            ImgManip.resize_to_jpeg(name, imdir + os.sep + refname, size, size, crop=crop)
         except:
             LOG.warn(_("Could not create jpeg version of image %(name)s") % 
                         {'name' : name})
             return
 
         if pos not in ["right", "left"] :
-            self.htmllist[-1] += Html('img', src= imdir + os.sep + refname, 
+            if len(alt):
+                self.htmllist[-1] += Html('div') + (
+                    Html('img', src= imdir + os.sep + refname,
+                         border = '0', alt=alt),
+                    Html('p', class_="DDR-Caption") + alt
+                )
+            else:
+                self.htmllist[-1] += Html('img', src= imdir + os.sep + refname, 
                             border = '0', alt=alt)
         else:
-            self.htmllist[-1] += Html('img', src= imdir + os.sep + refname, 
+            if len(alt):
+                self.htmllist[-1] += Html('div', style_="float: %s; padding: 5px; margin: 0;" % pos) + (
+                    Html('img', src= imdir + os.sep + refname,
+                         border = '0', alt=alt),
+                    Html('p', class_="DDR-Caption") + alt
+                )
+            else:
+                self.htmllist[-1] += Html('img', src= imdir + os.sep + refname, 
                             border = '0', alt=alt, align=pos)
 
     def page_break(self):

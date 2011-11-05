@@ -14,7 +14,6 @@
     <link href="/images/favicon2.ico" type="image/x-icon" rel="shortcut icon" />
     {% block css %}
     <link media="screen" href="/styles/css/behaviour.css" type="text/css" rel="stylesheet" />
-    <link media="screen" href="/styles/css/Web_Alphabet-Horizontal.css" type="text/css" rel="stylesheet" />
     <link media="screen" href="/styles/css/{{css_theme}}" type="text/css" rel="stylesheet" />
     <link media="print" href="/styles/css/Web_Print-Default.css" type="text/css" rel="stylesheet" />
     <link type="text/css" href="/styles/css/swanky-purse/jquery-ui-1.7.2.custom.css" rel="stylesheet" />	
@@ -22,23 +21,42 @@
     <script type="text/javascript" src="/styles/js/jquery-ui-1.7.2.custom.min.js"></script>
     {% endblock %}
 </head>
-<body id= "NarrativeWeb" onload="document.getElementById('get_focus').focus();">
+<body onload="document.getElementById('get_focus').focus();">
    <div id="header">
      <h1 id="SiteTitle">{% block heading %}Gramps-Connect{% endblock %}</h1>
    </div>
    <div id="navigation">
     {% block navigation %}
     <ul>
-    <li class="{{ tview|currentSection:"home" }}"><a href="/">Home</a></li>
-    {% for view in views %}
-         <li class="{{tview|currentSection:view.1 }}"><a href="/{{view.1}}/">{{view.0}}</a></li>
+    <li {{ tview|currentSection:"home" }}><a href="/">Home</a></li>
+    {% for title in menu %}
+         {# (<Nice name>, /<path>/, <Model> | None, Need authentication ) #}
+         {% if title.3 %} 
+	   {% if user.is_authenticated %}
+                <li {{tview|currentSection:title.1 }}>
+	        {% if title.1 %}
+                   <a href="/{{title.1}}/">{{title.0}}</a></li>
+	        {% else %}
+                   <a href="/">{{title.0}}</a></li>
+	        {% endif %}
+	   {% else %}
+                {# don't show #}
+           {% endif %}
+        {% else %}
+                <li {{tview|currentSection:title.1 }}>
+	        {% if title.1 %}
+                   <a href="/{{title.1}}/">{{title.0}}</a></li>
+	        {% else %}
+                   <a href="/">{{title.0}}</a></li>
+	        {% endif %}
+	{% endif %}
     {% endfor %}
     {% if user.is_authenticated %}
 	 {% if next %}
          <li><a href="/logout/?next={{next}}">Logout</a></li>
 	 {% else %}
          <li><a href="/logout">Logout</a></li>
-	 {% endif %}
+	 {% endif %}         
        {% if user.is_superuser %}
          <li><a href="/admin">Admin</a></li>
        {% endif %}
@@ -52,16 +70,19 @@
     </ul>
     {% endblock %}
    </div>
-   <div class="content">
     <div class="grampsweb">
+     {% for message in messages %}
+        <font color="red">{{message}}</font>
+     {% endfor %}
     {% block content %}
     {% endblock %}
+   <div class="content">
     </div>
    </div>
    <div id="footer">
     {% block footer %}
     <p id="createdate">
-      Gramps Connect, tools for genealogy collaborations
+      Gramps Connect, version {{gramps_version}}.
     </p>
     <p id="copyright">&copy; 2009-2011 <a href="http://www.gramps-project.org/">www.gramps-project.org</a> 
     </p>

@@ -520,9 +520,6 @@ class RelationshipView(NavigationView):
             for family_handle in family_handle_list:
                 if family_handle:
                     self.write_family(family_handle, person)
-        else:
-            self.write_label("%s:" % _('Family'), None, False, person)
-            self.row += 1
 
         self.row = 0
 
@@ -1341,7 +1338,8 @@ class RelationshipView(NavigationView):
         else:
             # show "V Family: ..." and the rest
             self.write_label("%s:" % _('Family'), family, False, person)
-            if handle:
+            if (handle or
+                    family.get_relationship() != gen.lib.FamilyRelType.UNKNOWN):
                 box = self.write_person(_('Spouse'), handle)
 
                 if not self.write_relationship_events(box, family):

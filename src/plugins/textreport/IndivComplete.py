@@ -30,6 +30,7 @@
 #
 #------------------------------------------------------------------------
 import os
+import copy
 from gen.ggettext import gettext as _
 from collections import defaultdict
 
@@ -44,15 +45,14 @@ from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
                              PARA_ALIGN_CENTER)
 import DateHandler
 from gen.plug.menu import (BooleanOption, FilterOption, PersonOption,
-                           BooleanListOption)
+                           BooleanListOption, EnumeratedListOption)
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
-from gui.plug.report import MenuReportOptions
+from gen.plug.report import MenuReportOptions
 from gen.plug.report import Bibliography
 from gen.plug.report import endnotes as Endnotes
-from gen.display.name import displayer as _nd
+from gen.display.name import displayer as global_name_display
 from Utils import media_path_full
-from QuestionDialog import WarningDialog
 
 #------------------------------------------------------------------------
 #
@@ -142,14 +142,15 @@ for event_group, type_list in GROUP_DICT.iteritems():
 #------------------------------------------------------------------------
 class IndivCompleteReport(Report):
 
-    def __init__(self, database, options_class):
+    def __init__(self, database, options, user):
         """
         Create the IndivCompleteReport object that produces the report.
         
         The arguments are:
 
         database        - the GRAMPS database instance
-        options_class   - instance of the Options class for this report
+        options         - instance of the Options class for this report
+        user            - a gen.user.User() instance
 
         This report needs the following parameters (class variables)
         that come in the options class.
@@ -158,24 +159,36 @@ class IndivCompleteReport(Report):
                     The option class carries its number, and the function
                     returning the list of filters.
         cites     - Whether or not to include source information.
-        sort      - Whether ot not to sort events into chronological order.
+        sort      - Whether or not to sort events into chronological order.
+        images    - Whether or not to include images.
         sections  - Which event groups should be given separate sections.
+        name_format   - Preferred format to display names
         """
 
-        Report.__init__(self, database, options_class)
+        Report.__init__(self, database, options, user)
+        self._user = user
 
-        menu = options_class.menu
+        menu = options.menu
         self.use_pagebreak = menu.get_option_by_name('pageben').get_value()
         self.use_srcs = menu.get_option_by_name('cites').get_value()
         self.use_srcs_notes = menu.get_option_by_name('incsrcnotes').get_value()
         
         self.sort = menu.get_option_by_name('sort').get_value()
 
-        filter_option = options_class.menu.get_option_by_name('filter')
+        self.use_images = menu.get_option_by_name('images').get_value()
+
+        filter_option = options.menu.get_option_by_name('filter')
         self.filter = filter_option.get_filter()
         self.bibli = None
 
         self.section_list = menu.get_option_by_name('sections').get_selected()
+
+        # Copy the global NameDisplay so that we don't change application 
+        # defaults.
+        self._name_display = copy.deepcopy(global_name_display)
+        name_format = menu.get_option_by_name("name_format").get_value()
+        if name_format != 0:
+            self._name_display.set_default_format(name_format)
 
     def write_fact(self, event_ref, event, event_group):
         """
@@ -306,7 +319,7 @@ class IndivCompleteReport(Report):
             father_handle = family.get_father_handle()
             if father_handle:
                 father = self.database.get_person_from_handle(father_handle)
-                fname = _nd.display(father)
+                fname = self._name_display.display(father)
                 mark = ReportUtils.get_person_mark(self.database, father)
                 self.write_p_entry(_('Father'), fname, frel, mark)
             else:
@@ -315,7 +328,7 @@ class IndivCompleteReport(Report):
             mother_handle = family.get_mother_handle()
             if mother_handle:
                 mother = self.database.get_person_from_handle(mother_handle)
-                mname = _nd.display(mother)
+                mname = self._name_display.display(mother)
                 mark = ReportUtils.get_person_mark(self.database, mother)
                 self.write_p_entry(_('Mother'), mname, mrel, mark)
             else:
@@ -343,7 +356,7 @@ class IndivCompleteReport(Report):
             name_type = str( name.get_type() )
             self.doc.start_row()
             self.normal_cell(name_type)
-            text = _nd.display_name(name)
+            text = self._name_display.display_name(name)
             endnotes = ""
             if self.use_srcs:
                 endnotes = Endnotes.cite_source(self.bibli, name)
@@ -408,7 +421,7 @@ class IndivCompleteReport(Report):
             self.doc.start_paragraph("IDS-Spouse")
             if spouse_id:
                 spouse = self.database.get_person_from_handle(spouse_id)
-                text = _nd.display(spouse)
+                text = self._name_display.display(spouse)
                 mark = ReportUtils.get_person_mark(self.database, spouse)
             else:
                 text = _("unknown")
@@ -432,7 +445,7 @@ class IndivCompleteReport(Report):
                 for child_ref in child_ref_list:
                     self.doc.start_paragraph("IDS-Normal")
                     child = self.database.get_person_from_handle(child_ref.ref)
-                    name = _nd.display(child)
+                    name = self._name_display.display(child)
                     mark = ReportUtils.get_person_mark(self.database, child)
                     self.doc.write_text(name, mark)
                     self.doc.end_paragraph()
@@ -531,7 +544,7 @@ class IndivCompleteReport(Report):
         self.bibli = Bibliography(Bibliography.MODE_DATE|Bibliography.MODE_PAGE)
         
         media_list = self.person.get_media_list()
-        name = _nd.display(self.person)
+        name = self._name_display.display(self.person)
         title = _("Summary of %s") % name
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.start_paragraph("IDS-Title")
@@ -541,7 +554,7 @@ class IndivCompleteReport(Report):
         self.doc.start_paragraph("IDS-Normal")
         self.doc.end_paragraph()
 
-        if len(media_list) > 0:
+        if self.use_images and len(media_list) > 0:
             media_handle = media_list[0].get_reference_handle()
             media = self.database.get_object_from_handle(media_handle)
             mime_type = media.get_mime_type()
@@ -549,10 +562,12 @@ class IndivCompleteReport(Report):
                 filename = media_path_full(self.database, media.get_path())
                 if os.path.exists(filename):
                     self.doc.start_paragraph("IDS-Normal")
-                    self.doc.add_media_object(filename, "right", 4.0, 4.0)
+                    self.doc.add_media_object(filename, "right", 4.0, 4.0,
+                                              style_name="DDR-Caption",
+                                              crop=media_list[0].get_rectangle())
                     self.doc.end_paragraph()
                 else:
-                    WarningDialog(_("Could not add photo to page"),
+                    self._user.warn(_("Could not add photo to page"),
                           "%s: %s" % (filename, _('File does not exist')))
 
         self.doc.start_table("one","IDS-IndTable")
@@ -560,7 +575,7 @@ class IndivCompleteReport(Report):
         self.doc.start_row()
         self.normal_cell("%s:" % _("Name"))
         name = self.person.get_primary_name()
-        text = _nd.display_name(name)
+        text = self._name_display.display_name(name)
         mark = ReportUtils.get_person_mark(self.database, self.person)
         endnotes = ""
         if self.use_srcs:
@@ -585,7 +600,7 @@ class IndivCompleteReport(Report):
             if father_inst_id:
                 father_inst = self.database.get_person_from_handle(
                     father_inst_id)
-                father = _nd.display(father_inst)
+                father = self._name_display.display(father_inst)
                 fmark = ReportUtils.get_person_mark(self.database, father_inst)
             else:
                 father = ""
@@ -594,7 +609,7 @@ class IndivCompleteReport(Report):
             if mother_inst_id:
                 mother_inst = self.database.get_person_from_handle(
                     mother_inst_id) 
-                mother = _nd.display(mother_inst)
+                mother = self._name_display.display(mother_inst)
                 mmark = ReportUtils.get_person_mark(self.database, mother_inst)
             else:
                 mother = ""
@@ -661,6 +676,17 @@ class IndivCompleteOptions(MenuReportOptions):
         self.__pid.set_help(_("The center person for the filter."))
         menu.add_option(category_name, "pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
+
+        # We must figure out the value of the first option before we can
+        # create the EnumeratedListOption
+        fmt_list = global_name_display.get_name_format()
+        name_format = EnumeratedListOption(_("Name format"), 0)
+        name_format.add_item(0, _("Default"))
+        for num, name, fmt_str, act in fmt_list:
+            name_format.add_item(num, name)
+        name_format.set_help(_("Select the format to display names"))
+        menu.add_option(category_name, "name_format", name_format)
+
         
         self.__update_filters()
         
@@ -682,6 +708,9 @@ class IndivCompleteOptions(MenuReportOptions):
             "Endnotes section. Only works if Include sources is selected."))
         menu.add_option(category_name, "incsrcnotes", incsrcnotes)
 
+        images = BooleanOption(_("Include Photo/Images from Gallery"), True)
+        images.set_help(_("Whether to include images."))
+        menu.add_option(category_name, "images", images)
 
         ################################
         category_name = SECTION_CATEGORY

@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-requires grampswidgets 0.0 -->
@@ -6,7 +6,6 @@
   <object class="GtkDialog" id="editsourceref">
     <property name="default_width">600</property>
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox17">
         <property name="visible">True</property>
@@ -62,10 +61,24 @@
                     <property name="has_tooltip">True</property>
                     <property name="tooltip_text" translatable="yes">Invoke date editor</property>
                     <property name="relief">none</property>
+                    <accelerator key="d" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                    <accessibility>
+                      <relation type="labelled-by" target="label612"/>
+                    </accessibility>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="date_stat-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Date</property>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkImage" id="image2682">
                         <property name="visible">True</property>
                         <property name="icon_name">gramps-date</property>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="image2682-atkobject">
+                            <property name="AtkObject::accessible-description" translatable="yes">Date</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>
@@ -81,7 +94,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">Specific location within the information referenced. For a published work, this could include the volume of a multi-volume work and the page number(s). For a periodical, it could include volume, issue, and page numbers. For a newspaper, it could include a column number and page number. For an unpublished source, this could be a sheet number, page number, frame number, etc. A census record might have a line number or dwelling and family numbers in addition to the page number. </property>
-                    <property name="invisible_char">&#x25CF;</property>
+                    <property name="invisible_char">●</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -129,10 +142,21 @@
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="relief">none</property>
+                    <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="privacy-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Private</property>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkImage" id="image2677">
                         <property name="visible">True</property>
-                        <property name="icon_name">gramps-unlock</property>
+                        <property name="icon_name">gtk-dialog-authentication</property>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="image2677-atkobject">
+                            <property name="AtkObject::accessible-description" translatable="yes">Privacy</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>
@@ -175,7 +199,7 @@ Very High =Direct and primary evidence used, or by dominance of the evidence </p
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">The date of the entry in the source you are referencing, e.g. the date a house was visited during a census, or the date an entry was made in a birth log/registry. </property>
-                    <property name="invisible_char">&#x25CF;</property>
+                    <property name="invisible_char">●</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -291,7 +315,7 @@ Very High =Direct and primary evidence used, or by dominance of the evidence </p
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">Authors of the source.</property>
-                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="invisible_char">●</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -346,7 +370,7 @@ Very High =Direct and primary evidence used, or by dominance of the evidence </p
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">Provide a short title used for sorting, filing, and retrieving source records.</property>
-                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="invisible_char">●</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -361,7 +385,7 @@ Very High =Direct and primary evidence used, or by dominance of the evidence </p
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">Publication Information, such as city and year of publication, name of publisher, ...</property>
-                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="invisible_char">●</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -395,7 +419,7 @@ Very High =Direct and primary evidence used, or by dominance of the evidence </p
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="tooltip_text" translatable="yes">A unique ID to identify the source</property>
-                            <property name="invisible_char">&#x25CF;</property>
+                            <property name="invisible_char">●</property>
                           </object>
                           <packing>
                             <property name="position">0</property>
@@ -407,10 +431,20 @@ Very High =Direct and primary evidence used, or by dominance of the evidence </p
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="relief">none</property>
+                            <child internal-child="accessible">
+                              <object class="AtkObject" id="private-atkobject">
+                                <property name="AtkObject::accessible-name" translatable="yes">Private</property>
+                              </object>
+                            </child>
                             <child>
                               <object class="GtkImage" id="image2709">
                                 <property name="visible">True</property>
-                                <property name="icon_name">gramps-unlock</property>
+                                <property name="icon_name">gtk-dialog-authentication</property>
+                                <child internal-child="accessible">
+                                  <object class="AtkObject" id="image2709-atkobject">
+                                    <property name="AtkObject::accessible-description" translatable="yes">Privacy</property>
+                                  </object>
+                                </child>
                               </object>
                             </child>
                           </object>
@@ -435,7 +469,7 @@ Very High =Direct and primary evidence used, or by dominance of the evidence </p
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">Title of the source.</property>
-                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="invisible_char">●</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>

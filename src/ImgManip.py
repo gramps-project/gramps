@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id:ImgManip.py 9912 2008-01-22 09:17:46Z acraphae $
+# $Id$
 
 """
 Image manipulation routines.
@@ -51,7 +51,7 @@ import Utils
 # resize_to_jpeg
 #
 #-------------------------------------------------------------------------
-def resize_to_jpeg(source, destination, width, height):
+def resize_to_jpeg(source, destination, width, height, crop=None):
     """
     Create the destination, derived from the source, resizing it to the
     specified size, while converting to JPEG.
@@ -64,10 +64,27 @@ def resize_to_jpeg(source, destination, width, height):
     :type width: int
     :param height: desired height of the destination image
     :type height: int
+    :param crop: cropping coordinates
+    :type crop: array of integers ([start_x, start_y, end_x, end_y])
     """
     import gtk
+
     img = gtk.gdk.pixbuf_new_from_file(source)
-    scaled = img.scale_simple(width, height, gtk.gdk.INTERP_BILINEAR)
+
+    if crop:
+        # Gramps cropping coorinates are [0, 100], so we need to convert to pixels
+        start_x = int((crop[0]/100.0)*img.get_width())
+        start_y = int((crop[1]/100.0)*img.get_height())
+        end_x = int((crop[2]/100.0)*img.get_width())
+        end_y = int((crop[3]/100.0)*img.get_height())
+
+        img = img.subpixbuf(start_x, start_y, end_x-start_x, end_y-start_y)
+
+    # Need to keep the ratio intact, otherwise scaled images look stretched
+    # if the dimensions aren't close in size
+    (width, height) = image_actual_size(width, height, img.get_width(), img.get_height())
+
+    scaled = img.scale_simple(int(width), int(height), gtk.gdk.INTERP_BILINEAR)
     scaled.save(destination, 'jpeg')
 
 #-------------------------------------------------------------------------
@@ -165,27 +182,80 @@ def image_actual_size(x_cm, y_cm, x, y):
 
 #-------------------------------------------------------------------------
 #
+# resize_to_buffer
+#
+#-------------------------------------------------------------------------
+def resize_to_buffer(source, size, crop=None):
+    """
+    Loads the image and resizes it. Instead of saving the file, the data
+    is returned in a buffer.
+
+    :param source: source image file, in any format that gtk recognizes
+    :type source: unicode
+    :param size: desired size of the destination image ([width, height])
+    :type size: list
+    :param crop: cropping coordinates
+    :type crop: array of integers ([start_x, start_y, end_x, end_y])
+    :rtype: buffer of data 
+    :returns: raw data
+    """
+    import gtk
+    img = gtk.gdk.pixbuf_new_from_file(source)
+
+    if crop:
+        # Gramps cropping coorinates are [0, 100], so we need to convert to pixels
+        start_x = int((crop[0]/100.0)*img.get_width())
+        start_y = int((crop[1]/100.0)*img.get_height())
+        end_x = int((crop[2]/100.0)*img.get_width())
+        end_y = int((crop[3]/100.0)*img.get_height())
+
+        img = img.subpixbuf(start_x, start_y, end_x-start_x, end_y-start_y)
+
+    # Need to keep the ratio intact, otherwise scaled images look stretched
+    # if the dimensions aren't close in size
+    (size[0], size[1]) = image_actual_size(size[0], size[1], img.get_width(), img.get_height())
+
+    scaled = img.scale_simple(int(size[0]), int(size[1]), gtk.gdk.INTERP_BILINEAR)
+
+    return scaled
+
+#-------------------------------------------------------------------------
+#
 # resize_to_jpeg_buffer
 #
 #-------------------------------------------------------------------------
-def resize_to_jpeg_buffer(source, width, height):
+def resize_to_jpeg_buffer(source, size, crop=None):
     """
     Loads the image, converting the file to JPEG, and resizing it. Instead of
     saving the file, the data is returned in a buffer.
 
     :param source: source image file, in any format that gtk recognizes
     :type source: unicode
-    :param width: desired width of the destination image
-    :type width: int
-    :param height: desired height of the destination image
-    :type height: int
+    :param size: desired size of the destination image ([width, height])
+    :type size: list
+    :param crop: cropping coordinates
+    :type crop: array of integers ([start_x, start_y, end_x, end_y])
     :rtype: buffer of data 
     :returns: jpeg image as raw data
     """
     import gtk
     filed, dest = tempfile.mkstemp()
     img = gtk.gdk.pixbuf_new_from_file(source)
-    scaled = img.scale_simple(int(width), int(height), gtk.gdk.INTERP_BILINEAR)
+
+    if crop:
+        # Gramps cropping coorinates are [0, 100], so we need to convert to pixels
+        start_x = int((crop[0]/100.0)*img.get_width())
+        start_y = int((crop[1]/100.0)*img.get_height())
+        end_x = int((crop[2]/100.0)*img.get_width())
+        end_y = int((crop[3]/100.0)*img.get_height())
+
+        img = img.subpixbuf(start_x, start_y, end_x-start_x, end_y-start_y)
+
+    # Need to keep the ratio intact, otherwise scaled images look stretched
+    # if the dimensions aren't close in size
+    (size[0], size[1]) = image_actual_size(size[0], size[1], img.get_width(), img.get_height())
+
+    scaled = img.scale_simple(int(size[0]), int(size[1]), gtk.gdk.INTERP_BILINEAR)
     os.close(filed)
     dest = Utils.get_unicode_path_from_env_var(dest)
     scaled.save(dest, 'jpeg')

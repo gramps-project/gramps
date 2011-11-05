@@ -18,6 +18,9 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+# DateHandler/_Date_sl.py
+# $Id$
+#
 
 # Slovenian version 2010 by Bernard Banko, based on croatian one by Josip
 

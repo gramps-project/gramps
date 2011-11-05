@@ -40,7 +40,7 @@ from gen.ggettext import gettext as _
 from gen.plug.menu import EnumeratedListOption
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
-from gui.plug.report import MenuReportOptions
+from gen.plug.report import MenuReportOptions
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                         TableStyle, TableCellStyle, FONT_SANS_SERIF, 
                         INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
@@ -57,23 +57,23 @@ import DateHandler
 #------------------------------------------------------------------------
 class TagReport(Report):
 
-    def __init__(self, database, options_class):
+    def __init__(self, database, options, user):
         """
         Create the TagReport object that produces the report.
         
         The arguments are:
 
         database        - the GRAMPS database instance
-        person          - currently selected person
-        options_class   - instance of the Options class for this report
+        options         - instance of the Options class for this report
+        user            - a gen.user.User() instance
 
         This report needs the following parameters (class variables)
         that come in the options class.
         
         tag             - The tag each object must match to be included.
         """
-        Report.__init__(self, database, options_class)
-        menu = options_class.menu
+        Report.__init__(self, database, options, user)
+        menu = options.menu
         self.tag = menu.get_option_by_name('tag').get_value()
         if not self.tag:
             raise ReportError(_('Tag Report'),

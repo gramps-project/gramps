@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-requires grampswidgets 0.0 -->
@@ -7,7 +7,6 @@
     <property name="default_width">400</property>
     <property name="default_height">300</property>
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox1">
         <property name="visible">True</property>
@@ -61,11 +60,21 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="button3-atkobject">
+                            <property name="AtkObject::accessible-name" translatable="yes">Add</property>
+                          </object>
+                        </child>
                         <signal name="clicked" handler="on_add_clicked" object="styles"/>
                         <child>
                           <object class="GtkImage" id="image2328">
                             <property name="visible">True</property>
                             <property name="stock">gtk-add</property>
+                            <child internal-child="accessible">
+                              <object class="AtkObject" id="image2328-atkobject">
+                                <property name="AtkObject::accessible-description" translatable="yes">Add</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
                       </object>
@@ -80,11 +89,21 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="button4-atkobject">
+                            <property name="AtkObject::accessible-name" translatable="yes">Edit</property>
+                          </object>
+                        </child>
                         <signal name="clicked" handler="on_edit_clicked" object="styles"/>
                         <child>
                           <object class="GtkImage" id="image2329">
                             <property name="visible">True</property>
                             <property name="stock">gtk-edit</property>
+                            <child internal-child="accessible">
+                              <object class="AtkObject" id="image2329-atkobject">
+                                <property name="AtkObject::accessible-description" translatable="yes">Edition</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
                       </object>
@@ -99,11 +118,21 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="button5-atkobject">
+                            <property name="AtkObject::accessible-name" translatable="yes">Remove</property>
+                          </object>
+                        </child>
                         <signal name="clicked" handler="on_delete_clicked" object="styles"/>
                         <child>
                           <object class="GtkImage" id="image2330">
                             <property name="visible">True</property>
                             <property name="stock">gtk-remove</property>
+                            <child internal-child="accessible">
+                              <object class="AtkObject" id="image2330-atkobject">
+                                <property name="AtkObject::accessible-description" translatable="yes">Remove</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
                       </object>
@@ -182,7 +211,6 @@
   </object>
   <object class="GtkDialog" id="editor">
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox2">
         <property name="visible">True</property>
@@ -226,6 +254,11 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="has_focus">True</property>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="style_name-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Style name</property>
+                      </object>
+                    </child>
                   </object>
                   <packing>
                     <property name="position">1</property>

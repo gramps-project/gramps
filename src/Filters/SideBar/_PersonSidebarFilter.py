@@ -72,10 +72,10 @@ class PersonSidebarFilter(SidebarFilter):
 
     def __init__(self, dbstate, uistate, clicked):
         self.clicked_func = clicked
-        self.filter_name = gtk.Entry()
-        self.filter_id = gtk.Entry()
-        self.filter_birth = gtk.Entry()
-        self.filter_death = gtk.Entry()
+        self.filter_name = widgets.BasicEntry()
+        self.filter_id = widgets.BasicEntry()
+        self.filter_birth = widgets.BasicEntry()
+        self.filter_death = widgets.BasicEntry()
         self.filter_event = gen.lib.Event()
         self.filter_event.set_type((gen.lib.EventType.CUSTOM, u''))
         self.etype = gtk.ComboBoxEntry()
@@ -84,7 +84,7 @@ class PersonSidebarFilter(SidebarFilter):
             self.filter_event.set_type, 
             self.filter_event.get_type)
 
-        self.filter_note = gtk.Entry()
+        self.filter_note = widgets.BasicEntry()
         self.filter_gender = gtk.combo_box_new_text()
         map(self.filter_gender.append_text, 
             [ _('any'), _('male'), _('female'), _('unknown') ])
@@ -111,6 +111,8 @@ class PersonSidebarFilter(SidebarFilter):
         self.tag.pack_start(cell, True)
         self.tag.add_attribute(cell, 'text', 0)
 
+        self.etype.child.set_width_chars(5)
+
         exdate1 = gen.lib.Date()
         exdate2 = gen.lib.Date()
         exdate1.set(gen.lib.Date.QUAL_NONE, gen.lib.Date.MOD_RANGE, 
@@ -133,7 +135,7 @@ class PersonSidebarFilter(SidebarFilter):
         self.add_text_entry(_('Note'), self.filter_note)
         self.add_entry(_('Tag'), self.tag)
         self.add_filter_entry(_('Custom filter'), self.generic)
-        self.add_entry(None, self.filter_regex)
+        self.add_regex_entry(self.filter_regex)
 
     def clear(self, obj):
         self.filter_name.set_text(u'')

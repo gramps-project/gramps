@@ -37,7 +37,7 @@ from gen.ggettext import sgettext as _
 from gen.plug.menu import StringOption, MediaOption, NumberOption
 from Utils import media_path_full
 from gen.plug.report import Report
-from gui.plug.report import MenuReportOptions
+from gen.plug.report import MenuReportOptions
 from gen.plug.docgen import (FontStyle, ParagraphStyle,
                              FONT_SANS_SERIF, PARA_ALIGN_CENTER)
 
@@ -48,14 +48,15 @@ from gen.plug.docgen import (FontStyle, ParagraphStyle,
 #------------------------------------------------------------------------
 class SimpleBookTitle(Report):
     """ This report class generates a title page for a book. """
-    def __init__(self, database, options_class):
+    def __init__(self, database, options, user):
         """
         Create SimpleBookTitle object that produces the report.
         
         The arguments are:
 
         database        - the GRAMPS database instance
-        options_class   - instance of the Options class for this report
+        options   - instance of the Options class for this report
+        user            - a gen.user.User() instance
 
         This report needs the following parameters (class variables)
         that come in the options class.
@@ -66,9 +67,9 @@ class SimpleBookTitle(Report):
         imgsize   - Size for the image.
         footer    - Footer string.
         """
-        Report.__init__(self, database, options_class)
+        Report.__init__(self, database, options, user)
 
-        menu = options_class.menu
+        menu = options.menu
         self.title_string = menu.get_option_by_name('title').get_value()
         self.image_size = menu.get_option_by_name('imgsize').get_value()
         self.subtitle_string = menu.get_option_by_name('subtitle').get_value()

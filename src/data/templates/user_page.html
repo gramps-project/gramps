@@ -8,12 +8,30 @@
 <p id="description">Details for <b>{{user.first_name}} {{user.last_name}}</b> ({{user.username}}):</p>
 
 <p id="description">
-<ul>
-   <li>User name: <b>{{user.username}}</b></li>
-   <li>Email: <b><a href="mailto:{{user.email}}">{{user.email}}></a></b></li>
-   <li>Superuser?: <b>{{user.is_superuser}}</b></li>
-   <li>Last login: <b>{{user.last_login}}</b></li>
-</ul>
+<table>
+<tr>
+  <td width="30%">User name: </td><td><em>{{user.username}}</em></td>
+</tr>
+<tr>
+  <td>Email:     </td><td><a href="mailto:{{user.email}}"><em>{{user.email}}</a></em></td>
+</tr>
+<tr>
+  <td>Type:      </td>
+<td>
+
+{% if user.is_superuser %}
+  <em>Administrator</em>
+{% else %}
+  <em>User</em>
+{% endif %}
+
+</td>
+</tr>
+<tr>
+   <td>Last login: </td><td><em>{{user.last_login}}</em></td>
+</tr>
+</table>
+
 </p>
 
 {% endblock %}

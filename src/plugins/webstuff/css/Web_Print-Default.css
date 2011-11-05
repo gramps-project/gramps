@@ -295,6 +295,57 @@ table.surname thead tr th.ColumnParents, table.surname tbody tr td.ColumnParents
 /* Individuals
 ----------------------------------------------------- */
 
+/*    Relationships
+================================================= */
+div#Relationships {
+    font: normal 1em sans-serif;
+    margin: 0 auto;
+    padding: 0;
+}
+table.relationships {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+table.relationships thead tr th.ColumnMarriage,
+table.relationships thead tr th.ColumnDivorce {
+    width: 10%;
+}
+table.relationships thead tr th.ColumnHyper {
+    width: 15%;
+}
+table.relationships thead tr th.ColumnMedia {
+    width: 15%;
+}
+table.relationships tbody tr#FirstLetter {
+    border-bottom: solid 1px #000;
+}
+table.relationships tbody tr td {
+    border-bottom: dashed 1px #000;
+}
+table.relationships tbody tr td.ColumnRowLabel a {
+    background: none;
+}
+
+/* Events
+----------------------------------------------------- */
+#EventList table.infolist tr td span.person:after,
+#EventList table.infolist tr td span.father:after,
+#EventList table.infolist tr td span.mother:after,
+#EventDetail table.infolist tr td span.person:after,
+#EventDetail table.infolist tr td span.father:after,
+#EventDetail table.infolist tr td span.mother:after {
+    content: ", ";
+}
+#EventList table.infolist tr td span.person:last-child:after,
+#EventList table.infolist tr td span.father:last-child:after,
+#EventList table.infolist tr td span.mother:last-child:after,
+#EventDetail table.infolist tr td span.person:last-child:after,
+#EventDetail table.infolist tr td span.father:last-child:after,
+#EventDetail table.infolist tr td span.mother:last-child:after {
+    content: "";
+}
+
 /* Gallery
 ----------------------------------------------------- */
 #GalleryDetail h2 {
@@ -329,6 +380,26 @@ table.surname thead tr th.ColumnParents, table.surname tbody tr td.ColumnParents
     float:right;
     margin:0;
     padding:0 0 9pt 9pt;
+}
+
+/*    Thumbnail Preview Reference Section
+------------------------------------------------- */
+body#ThumbnailPreview div#references {
+    background-color: #FFF;
+    color: #00029D;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+}
+body#ThumbnailPreview div#references table.infolist tbody tr {
+    border-bottom: dashed 1px #000;
+}
+body#ThumbnailPreview div#references table.infolist tbody tr td.ColumnRowLabel a {
+    background: none;
+    width: 2%;
+}
+body#ThumbnailPreview div#references table.infolist tbody tr td.ColumnName {
+    width: 90%;
 }
 
 /* Contact 
@@ -407,12 +478,41 @@ table.surname thead tr th.ColumnParents, table.surname tbody tr td.ColumnParents
     padding:0;
     border:solid .5pt #000;
 }
-#indivgallery div.thumbnail p {
+#indivgallery div.thumbnail span {
     font:normal 7pt/9pt sans-serif;
     text-align:center;
     width:80%;
     margin:0 auto;
     padding:0;
+}
+
+/* Subsections : Attributes
+----------------------------------------------------- */
+div#attributes {
+    margin: 0;
+    padding: 0;
+}
+table.attrlist {
+    width: 100%;
+}
+table.attrlist thead tr th {
+    background-color: #70B1ED;
+    color: #000;
+}
+table.attrlist tbody tr td {
+    border-bottom: dashed 1px #000;
+}
+table.attrlist tbody tr td.ColumnType {
+    width: 15%;
+}
+table.attrlist tbody tr td.ColumnValue {
+    width: 15%;
+}
+table.attrlist tbody tr td.ColumnNotes {
+    width: 40%;
+}
+table.attrlist tbody tr td.ColumnSources {
+    width: 10%;
 }
 
 /* Subsections : Pedigree 

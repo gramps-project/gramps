@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: tools.gpr.py 14300 2010-02-10 12:13:47Z dsblank $
+# $Id$
 
 """
 GRAMPS registration file

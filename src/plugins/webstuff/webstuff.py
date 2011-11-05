@@ -19,8 +19,11 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: $
+# $Id$
 
+#------------------------------------------------
+#    python modules
+#------------------------------------------------
 import os
 import const
 from gen.ggettext import sgettext as _
@@ -91,44 +94,40 @@ def load_on_reg(dbstate, uistate, plugin):
 
         # Visually Impaired style sheet with its navigation menus
         ["Visually Impaired", 1, _("Visually Impaired"), 
-         path_css('Web_Visually.css'),  "narrative-menus.css", [], []],
+         path_css('Web_Visually.css'),  "narrative-menus.css", [], [] ],
 
         # no style sheet option
-        ["No style sheet",1, _("No style sheet"),    [],    None, [], []],
+        ["No style sheet",1, _("No style sheet"),    [],    None, [], [] ],
 
         # ancestor tree style sheet and its images
         ["ancestortree",  0, "ancestortree",
          path_css("ancestortree.css"), None,
          [path_img("Web_Gender_Female.png"),
-          path_img("Web_Gender_Male.png")],        []],
+          path_img("Web_Gender_Male.png")],        [] ],
 
         # media reference regions style sheet
         ["behaviour",     0, "Behaviour",            
-         path_css('behaviour.css'),         None,  [], []], 
+         path_css('behaviour.css'),         None,  [], [] ], 
 
-        # mapstraction style sheet for NarrativeWeb place maps
-        ["mapstraction",  0, "mapstraction",
-         path_css("Mapstraction.css"),      None, [],
-         [path_js("mapstraction", "mxn.core.js"),
-          path_js("mapstraction", "mxn.googlev3.core.js"),
-          path_js("mapstraction", "mxn.js"),
-          path_js("mapstraction", "mxn.openlayers.core.js")] ],   
+        # NarrativeMap stylesheet/ image for NarrativeWeb place maps
+        ["NarrativeMaps",  0, "",
+         path_css("narrative-maps.css"),      None, [], [] ],
 
         # default style sheet in the options
         ["default",       0, _("Basic-Ash"),         
-         path_css('Web_Basic-Ash.css'),     None, [], []],
+         path_css('Web_Basic-Ash.css'),     None, [], [] ],
 
         # default printer style sheet
         ["Print-Default", 0, "Print-Default",        
-         path_css('Web_Print-Default.css'), None, [], []],
+         path_css('Web_Print-Default.css'), None, [], [] ],
 
         # vertical navigation style sheet
-        ["Navigation-Vertical", 0, "Navigation-Vertical", 
-         path_css('Web_Navigation-Vertical.css'), None, [], []],
+        ["Vertica-Menusl", 0, "", 
+         path_css('Web_Vertical-Menus.css'), None, [], [] ],
 
         # horizontal navigation style sheet
-        ["Navigation-Horizontal", 0, "Navigation-Horizontal", 
-         path_css('Web_Navigation-Horizontal.css'), None, [], []],
+        ["Horizontal-Menus", 0, "", 
+         path_css('Web_Horizontal-Menus.css'), None, [], []],
 
         # GeoView style sheet with its image
         ["GeoView", 0, "GeoView", 

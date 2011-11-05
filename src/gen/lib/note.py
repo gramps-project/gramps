@@ -112,6 +112,7 @@ class Note(BasicPrimaryObject, TagBase):
         self.type = NoteType()
         self.type.unserialize(the_type)
         TagBase.unserialize(self, tag_list)
+        return self
 
     def get_text_data_list(self):
         """Return the list of all textual attributes of the object.

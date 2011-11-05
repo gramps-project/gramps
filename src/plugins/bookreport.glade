@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-naming-policy toplevel-contextual -->
@@ -93,6 +93,7 @@
                             <property name="can_default">True</property>
                             <property name="receives_default">False</property>
                             <property name="tooltip_text" translatable="yes">Save current set of configured selections</property>
+                            <accelerator key="r" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                             <signal name="clicked" handler="on_save_clicked"/>
                             <child>
                               <object class="GtkImage" id="image34">
@@ -135,6 +136,7 @@
                             <property name="can_default">True</property>
                             <property name="receives_default">False</property>
                             <property name="tooltip_text" translatable="yes">Manage previously created books</property>
+                            <accelerator key="s" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                             <signal name="clicked" handler="on_edit_clicked"/>
                             <child>
                               <object class="GtkImage" id="image36">
@@ -279,6 +281,7 @@
                         <property name="can_default">True</property>
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes">Add an item to the book</property>
+                        <accelerator key="a" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                         <signal name="clicked" handler="on_add_clicked"/>
                         <child>
                           <object class="GtkImage" id="image24">
@@ -450,7 +453,6 @@
   <object class="GtkDialog" id="bookreport">
     <property name="height_request">300</property>
     <property name="type_hint">normal</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox1">
         <property name="visible">True</property>
@@ -470,7 +472,6 @@
             </child>
             <child>
               <object class="GtkScrolledWindow" id="scrolledwindow2">
-                <!-- the next line is the (initial) Available Books width -->
                 <property name="width_request">500</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>

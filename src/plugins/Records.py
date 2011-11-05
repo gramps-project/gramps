@@ -45,7 +45,7 @@ from gen.plug.menu import (BooleanOption, EnumeratedListOption,
                            FilterOption, PersonOption, StringOption)
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
-from gui.plug.report import MenuReportOptions
+from gen.plug.report import MenuReportOptions
 from Utils import probably_alive
 
 #------------------------------------------------------------------------
@@ -431,10 +431,10 @@ class RecordsGramplet(Gramplet):
 #------------------------------------------------------------------------
 class RecordsReport(Report):
 
-    def __init__(self, database, options_class):
+    def __init__(self, database, options, user):
 
-        Report.__init__(self, database, options_class)
-        menu = options_class.menu
+        Report.__init__(self, database, options, user)
+        menu = options.menu
 
         self.filter_option =  menu.get_option_by_name('filter')
         self.filter = self.filter_option.get_filter()

@@ -20,7 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: placetreeview.py 14176 2010-02-01 07:01:45Z bmcage $
+# $Id$
 
 """
 Person Tree View

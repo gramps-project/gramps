@@ -98,7 +98,7 @@ img {
     padding:0;
     background:none;
 }
-.content div.snapshot div.thumbnail p {
+.content div.snapshot div.thumbnail span {
     display:none;
 }
 .fullclear {
@@ -233,7 +233,7 @@ div#alphabet ul li a, div#navigation ul li a, div#subnavigation ul li a {
     display: block;
     padding: 4px 8px 4px 8px;
     float: left;
-    font: bold 16px/100% sans;
+    font: bold .7em sans;
     margin: 0;
     text-decoration: none;
     color: #000;
@@ -455,6 +455,38 @@ table.individuallist tbody tr td.ColumnName a:hover {
 #IndividualDetail div.subsection table tr td:first-child {
     padding-left:20px;
 }
+#familymap a.familymap {
+    margin-left:20px;
+}
+
+/* Subsections : Attributes
+----------------------------------------------------- */
+div#attributes {
+    margin: 0;
+    padding: 0;
+}
+table.attrlist {
+    width: 100%;
+}
+table.attrlist thead tr th {
+    background-color: #70B1ED;
+    color: #000;
+}
+table.attrlist tbody tr td {
+    border-bottom: dashed 1px #000;
+}
+table.attrlist tbody tr td.ColumnType {
+    width: 15%;
+}
+table.attrlist tbody tr td.ColumnValue {
+    width: 15%;
+}
+table.attrlist tbody tr td.ColumnNotes {
+    width: 40%;
+}
+table.attrlist tbody tr td.ColumnSources {
+    width: 10%;
+}
 
 /* Sources
 ----------------------------------------------------- */
@@ -466,7 +498,6 @@ table.individuallist tbody tr td.ColumnName a:hover {
     padding:0;
 }
 #Sources table.infolist tbody tr td.ColumnName a {
-    font-size:.9em;
     padding:.1em 10px .3em 10px;
 }
 #Sources table.infolist tbody tr td.ColumnName a:hover {
@@ -474,6 +505,28 @@ table.individuallist tbody tr td.ColumnName a:hover {
 }
 #SourceDetail div#references ol li {
     padding-bottom:.5em;
+}
+
+/*    Relationships
+================================================= */
+table.relationships thead tr th.ColumnMarriage,
+table.relationships thead tr th.ColumnDivorce {
+    width: 10%;
+}
+table.relationships thead tr th.ColumnHyper {
+    width: 15%;
+}
+table.relationships thead tr th.ColumnMedia {
+    width: 15%;
+}
+table.relationships tbody tr td.ColumnRowLabel a {
+    background: none;
+}
+table.relationships tbody tr td.ColumnPartner {
+    font-size: 1.1em;
+}
+table.relationships tbody tr td.ColumnPartner a:hover {
+    background-color: #C1B398;
 }
 
 /* Places
@@ -487,6 +540,41 @@ table.individuallist tbody tr td.ColumnName a:hover {
 }
 #Places table.infolist tbody tr td.ColumnName a:hover {
     background-color:#C1B398;
+}
+
+/* Events
+----------------------------------------------------- */
+#EventList table.infolist tr.BeginType td {
+    border-top: dashed 1px #C1B398;
+}
+#EventList table.infolist tr.BeginLetter td {
+    border-top: solid 1px #C1B398;
+}
+#EventList table.infolist tr td a,
+#EventDetail table.infolist tr td a {
+    display: inline;
+}
+#EventList table.infolist tr td span.father, 
+#EventList table.infolist tr td span.mother,
+#EventDetail table.infolist tr td span.father,
+#EventDetail table.infolist tr td span.mother {
+    display: block;
+}
+#EventList table.infolist tr td span.person:after,
+#EventList table.infolist tr td span.father:after,
+#EventList table.infolist tr td span.mother:after,
+#EventDetail table.infolist tr td span.person:after,
+#EventDetail table.infolist tr td span.father:after,
+#EventDetail table.infolist tr td span.mother:after {
+    content: ", ";
+}
+#EventList table.infolist tr td span.person:last-child:after,
+#EventList table.infolist tr td span.father:last-child:after,
+#EventList table.infolist tr td span.mother:last-child:after,
+#EventDetail table.infolist tr td span.person:last-child:after,
+#EventDetail table.infolist tr td span.father:last-child:after,
+#EventDetail table.infolist tr td span.mother:last-child:after {
+    content: "";
 }
 
 /* Gallery
@@ -563,6 +651,26 @@ table.individuallist tbody tr td.ColumnName a:hover {
     border-style:solid;
     border-width:8px 0 0 0;
     border-color:#C1B398;
+}
+
+/*    Thumbnail Preview Reference Section
+------------------------------------------------- */
+body#ThumbnailPreview div#references {
+    background-color: #FFF;
+    color: #00029D;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+}
+body#ThumbnailPreview div#references table.infolist tbody tr {
+    border-bottom: dashed 1px #000;
+}
+body#ThumbnailPreview div#references table.infolist tbody tr td.ColumnRowLabel a {
+    background: none;
+    width: 2%;
+}
+body#ThumbnailPreview div#references table.infolist tbody tr td.ColumnName {
+    width: 90%;
 }
 
 /* Contact
@@ -690,7 +798,7 @@ div.subsection{
 div.subsection h4 {
     margin-bottom:.5em;
 }
-div.subsection table, div.subsection ol, div.subsection p {
+div.subsection table, div.subsection ol, div.subsection p, div.subsection > a {
     font-size:.9em;
 }
 div.subsection a {
@@ -780,6 +888,18 @@ div#families table.infolist tbody tr td.ColumnValue ol {
 div#families table.infolist tbody tr td.ColumnValue ol li {
     padding-bottom:.2em;
 }
+div#families table.fixed_subtables table.eventlist {
+    table-layout:fixed;
+}
+div#families table.fixed_subtables table.eventlist th:first-child {
+    width:9em;
+}
+div#families table.fixed_subtables table.eventlist th:last-child {
+    width:5em;
+}
+div#families table.attrlist td.ColumnType {
+    width: 15%;
+}
 
 /* Subsections : Addresses
 ----------------------------------------------------- */
@@ -796,6 +916,9 @@ div#addresses table.infolist tbody tr td.ColumnAttribute {
 }
 div#addresses table.infolist tbody tr td.ColumnValue {
     border-bottom:solid 1px #C1B398;
+}
+div#Addresses table.infolist tr td a, div#Addresses table.infolist tr td p a {
+    display: inline;
 }
 
 /* Subsections : Gallery
@@ -821,7 +944,7 @@ div#addresses table.infolist tbody tr td.ColumnValue {
     padding:0;
     border:solid 1px #542;
 }
-#indivgallery div.thumbnail p {
+#indivgallery div.thumbnail span {
 /* ## remove this line and the comment markers from the line below to hide the description in Individual Gallery
     display: none; */
 
@@ -834,10 +957,10 @@ div#addresses table.infolist tbody tr td.ColumnValue {
 
 /* Subsections : Narrative
 ----------------------------------------------------- */
-div#narrative {
+div.narrative {
     padding-bottom:0;
 }
-#narrative p {
+.narrative p {
     font:normal .9em/1.4em sans-serif;
     margin-top:.5em;
     margin-bottom:0;
@@ -937,7 +1060,7 @@ div#pedigree {
     font-size: 12px;
     line-height: 130%;
     font-family: sans-serif;
-    color: #FFF;
+    color: #C1B398;
     margin: 0;
     padding: 0;
     background-color: #542;
@@ -945,7 +1068,7 @@ div#pedigree {
 }
 #footer a, #footer a:visited {
     text-decoration: none;
-    color: #FFF;
+    color: #C1B398;
 }
 #footer a:hover {
     text-decoration: underline;
@@ -960,17 +1083,17 @@ div#pedigree {
     width: 40%;
     text-align: left;
     margin-left: 10px;
-    color: #FFF;
+    color: #C1B398;
 }
 #footer p#copyright {
     float: right;
     width: 40%;
     text-align: right;
-    color: #FFF;
+    color: #C1B398;
     margin-right: 10px;
 }
 #footer p#copyright img {
-    margin-right: 10px;
+    margin-right: 10px[
 }
 #user_footer {
     width: 70%;

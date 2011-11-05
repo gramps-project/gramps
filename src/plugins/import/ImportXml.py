@@ -637,9 +637,10 @@ class GrampsParser(UpdateCallback):
             "reporef": (self.start_reporef, self.stop_reporef), 
             "rname": (None, self.stop_rname), 
         }
+        self.grampsuri = re.compile(r"^gramps://(?P<object_class>[A-Z][a-z]+)/"
+            "handle/(?P<handle>\w+)$")
 
-    def inaugurate(self, handle, prim_obj, has_handle_func, add_func,
-                   get_raw_obj_data):
+    def inaugurate(self, handle, target, prim_obj):
         """
         Assign a handle (identity) to a primary object (and create it if it
         doesn't exist yet) and add it to the database.
@@ -653,28 +654,41 @@ class GrampsParser(UpdateCallback):
         :param handle: The handle of the primary object, typically as read
                        directly from the XML attributes.
         :type handle: str
+        :param target: Indicates the primary object type this handle relates to.
+        :type targe": str, identical to target attr of bookmarks.
         :param prim_obj: template of the primary object that is to be created.
         :type prim_obj: Either an empty instance of a primary object or the
                          class object of a primary object.
-        :param has_handle_func: function to determine if the database contains
-                                a given handle for a specific object type.
-        :type has_handle_func: func
-        :param add_func: function to add a primary object of a specific type
-                         to the database.
-        :type add_func: func
-        :param get_raw_obj_data: function to read the content of a primary
-                                 object from the db in serialized form.
-        :type get_raw_obj_data: func
         :returns: The handle of the primary object.
         :rtype: str
         """
         handle = str(handle.replace('_', ''))
-        if handle in self.import_handles:
-            handle = self.import_handles[handle]
+        if (handle in self.import_handles and
+                target in self.import_handles[handle]):
+            handle = self.import_handles[handle][target]
             if not callable(prim_obj): 
                 # This method is called by a start_<primary_object> method.
+                get_raw_obj_data = {"person": self.db.get_raw_person_data,
+                                    "family": self.db.get_raw_family_data,
+                                    "event": self.db.get_raw_event_data,
+                                    "place": self.db.get_raw_place_data,
+                                    "source": self.db.get_raw_source_data,
+                                    "citation": self.db.get_raw_citation_data,
+                                    "repository": self.db.get_raw_repository_data,
+                                    "media": self.db.get_raw_object_data,
+                                    "note": self.db.get_raw_note_data,
+                                    "tag": self.db.get_raw_tag_data}[target]
                 raw = get_raw_obj_data(handle)
                 prim_obj.unserialize(raw)
+            return handle
+        elif handle in self.import_handles:
+            LOG.warn("The file you import contains duplicate handles "
+                    "which is illegal and being fixed now.")
+            orig_handle = handle
+            handle = Utils.create_id()
+            while handle in self.import_handles:
+                handle = Utils.create_id()
+            self.import_handles[orig_handle][target] = handle
         else:
             orig_handle = handle
             if self.replace_import_handle:
@@ -682,16 +696,35 @@ class GrampsParser(UpdateCallback):
                 while handle in self.import_handles:
                     handle = Utils.create_id()
             else:
+                has_handle_func = {"person": self.db.has_person_handle,
+                                   "family": self.db.has_family_handle,
+                                   "event": self.db.has_event_handle,
+                                   "place": self.db.has_place_handle,
+                                   "source": self.db.has_source_handle,
+                                   "citation": self.db.get_raw_citation_data,
+                                   "repository": self.db.has_repository_handle,
+                                   "media": self.db.has_object_handle,
+                                   "note": self.db.has_note_handle,
+                                   "tag": self.db.has_tag_handle}[target]
                 while has_handle_func(handle):
                     handle = Utils.create_id()
-            self.import_handles[orig_handle] = handle
-            if callable(prim_obj): # method is called by a reference
-                prim_obj = prim_obj()
-            prim_obj.set_handle(handle)
-            if add_func == self.db.add_tag:
-                add_func(prim_obj, self.trans)
-            else:
-                add_func(prim_obj, self.trans, set_gid=False)
+            self.import_handles[orig_handle] = {target: handle}
+        if callable(prim_obj): # method is called by a reference
+            prim_obj = prim_obj()
+        prim_obj.set_handle(handle)
+        if target == "tag":
+            self.db.add_tag(prim_obj, self.trans)
+        else:
+            add_func = {"person": self.db.add_person,
+                        "family": self.db.add_family,
+                        "event": self.db.add_event,
+                        "place": self.db.add_place,
+                        "source": self.db.add_source,
+                        "citation": self.db.add_citation,
+                        "repository": self.db.add_repository,
+                        "media": self.db.add_object,
+                        "note": self.db.add_note}[target]
+            add_func(prim_obj, self.trans, set_gid=False)
         return handle
 
     def inaugurate_id(self, id_, key, prim_obj):
@@ -966,10 +999,7 @@ class GrampsParser(UpdateCallback):
         Add a family reference to the LDS ordinance currently processed.
         """
         if 'hlink' in attrs:
-            handle = self.inaugurate(attrs['hlink'], gen.lib.Family,
-                                     self.db.has_family_handle,
-                                     self.db.add_family,
-                                     self.db.get_raw_family_data)
+            handle = self.inaugurate(attrs['hlink'], "family", gen.lib.Family)
         else: # old style XML
             handle = self.inaugurate_id(attrs.get('ref'), FAMILY_KEY,
                                         gen.lib.Family)
@@ -979,10 +1009,7 @@ class GrampsParser(UpdateCallback):
         """A reference to a place in an object: event or lds_ord
         """
         if 'hlink' in attrs:
-            handle = self.inaugurate(attrs['hlink'], gen.lib.Place,
-                                     self.db.has_place_handle,
-                                     self.db.add_place,
-                                     self.db.get_raw_place_data)
+            handle = self.inaugurate(attrs['hlink'], "place", gen.lib.Place)
         else: # old style XML
             handle = self.inaugurate_id(attrs.get('ref'), PLACE_KEY,
                                         gen.lib.Place)
@@ -1001,10 +1028,7 @@ class GrampsParser(UpdateCallback):
             orig_handle = attrs['handle'].replace('_', '')
             is_merge_candidate = (self.replace_import_handle and
                                   self.db.has_place_handle(orig_handle))
-            self.inaugurate(orig_handle, self.placeobj,
-                            self.db.has_place_handle,
-                            self.db.add_place,
-                            self.db.get_raw_place_data)
+            self.inaugurate(orig_handle, "place", self.placeobj)
             gramps_id = self.legalize_id(attrs.get('id'), PLACE_KEY,
                                          self.pidswap, self.db.pid2user_format,
                                          self.db.find_next_place_gramps_id)
@@ -1068,8 +1092,7 @@ class GrampsParser(UpdateCallback):
 
         person = gen.lib.Person()
         if 'hlink' in attrs:
-            self.inaugurate(attrs['hlink'], person, self.db.has_person_handle,
-                            self.db.add_person, self.db.get_raw_person_data)
+            self.inaugurate(attrs['hlink'], "person", person)
         elif 'ref' in attrs:
             self.inaugurate_id(attrs['ref'], PERSON_KEY, person)
         else:
@@ -1112,10 +1135,7 @@ class GrampsParser(UpdateCallback):
                 orig_handle = attrs['handle'].replace('_', '')
                 is_merge_candidate = (self.replace_import_handle and
                                       self.db.has_event_handle(orig_handle))
-                self.inaugurate(orig_handle, self.event,
-                                self.db.has_event_handle,
-                                self.db.add_event,
-                                self.db.get_raw_event_data)
+                self.inaugurate(orig_handle, "event", self.event)
                 gramps_id = self.legalize_id(attrs.get('id'), EVENT_KEY,
                                           self.eidswap, self.db.eid2user_format,
                                           self.db.find_next_event_gramps_id)
@@ -1136,10 +1156,7 @@ class GrampsParser(UpdateCallback):
         """
         self.eventref = gen.lib.EventRef()
         if 'hlink' in attrs:
-            handle = self.inaugurate(attrs['hlink'], gen.lib.Event,
-                                     self.db.has_event_handle,
-                                     self.db.add_event,
-                                     self.db.get_raw_event_data)
+            handle = self.inaugurate(attrs['hlink'], "event", gen.lib.Event)
         else: # there is no old style XML
             raise GrampsImportError(_("The Gramps Xml you are trying to "
                 "import is malformed."), _("Any event reference must have a "
@@ -1206,10 +1223,8 @@ class GrampsParser(UpdateCallback):
             # Old XML. Can be either handle or id reference
             # and this is guaranteed to be a person bookmark
             if 'hlink' in attrs:
-                handle = self.inaugurate(attrs['hlink'], gen.lib.Person,
-                                         self.db.has_person_handle,
-                                         self.db.add_person,
-                                         self.db.get_raw_person_data)
+                handle = self.inaugurate(attrs['hlink'], "person",
+                                         gen.lib.Person)
             else:
                 handle = self.inaugurate_id(attrs.get('ref'), PERSON_KEY,
                                             gen.lib.Person)
@@ -1218,7 +1233,7 @@ class GrampsParser(UpdateCallback):
 
         # This is new XML, so we are guaranteed to have a handle ref
         handle = attrs['hlink'].replace('_', '')
-        handle = self.import_handles[handle]
+        handle = self.import_handles[handle][target]
         # Due to pre 2.2.9 bug, bookmarks might be handle of other object
         # Make sure those are filtered out.
         # Bookmarks are at end, so all handle must exist before we do bookmrks
@@ -1291,10 +1306,7 @@ class GrampsParser(UpdateCallback):
             orig_handle = attrs['handle'].replace('_', '')
             is_merge_candidate = (self.replace_import_handle and
                                   self.db.has_person_handle(orig_handle))
-            self.inaugurate(orig_handle, self.person,
-                            self.db.has_person_handle,
-                            self.db.add_person,
-                            self.db.get_raw_person_data)
+            self.inaugurate(orig_handle, "person", self.person)
             gramps_id = self.legalize_id(attrs.get('id'), PERSON_KEY,
                                         self.idswap, self.db.id2user_format,
                                         self.db.find_next_person_gramps_id)
@@ -1315,10 +1327,7 @@ class GrampsParser(UpdateCallback):
         Store the home person of the database.
         """
         if 'home' in attrs:
-            handle = self.inaugurate(attrs['home'], gen.lib.Person,
-                                     self.db.has_person_handle,
-                                     self.db.add_person,
-                                     self.db.get_raw_person_data)
+            handle = self.inaugurate(attrs['home'], "person", gen.lib.Person)
             self.home = handle
 
     def start_father(self, attrs):
@@ -1326,10 +1335,7 @@ class GrampsParser(UpdateCallback):
         Add a father reference to the family currently processed.
         """
         if 'hlink' in attrs:
-            handle = self.inaugurate(attrs['hlink'], gen.lib.Person,
-                                    self.db.has_person_handle,
-                                    self.db.add_person,
-                                    self.db.get_raw_person_data)
+            handle = self.inaugurate(attrs['hlink'], "person", gen.lib.Person)
         else: # old style XML
             handle = self.inaugurate_id(attrs.get('ref'), PERSON_KEY,
                                         gen.lib.Person)
@@ -1340,10 +1346,7 @@ class GrampsParser(UpdateCallback):
         Add a mother reference to the family currently processed.
         """
         if 'hlink' in attrs:
-            handle = self.inaugurate(attrs['hlink'], gen.lib.Person,
-                                    self.db.has_person_handle,
-                                    self.db.add_person,
-                                    self.db.get_raw_person_data)
+            handle = self.inaugurate(attrs['hlink'], "person", gen.lib.Person)
         else: # old style XML
             handle = self.inaugurate_id(attrs.get('ref'), PERSON_KEY,
                                         gen.lib.Person)
@@ -1357,10 +1360,7 @@ class GrampsParser(UpdateCallback):
         frel and mrel belonged to the "childof" tag
         """
         if 'hlink' in attrs:
-            handle = self.inaugurate(attrs['hlink'], gen.lib.Person,
-                                     self.db.has_person_handle,
-                                     self.db.add_person,
-                                     self.db.get_raw_person_data)
+            handle = self.inaugurate(attrs['hlink'], "person", gen.lib.Person)
         else: # old style XML
             handle = self.inaugurate_id(attrs.get('ref'), PERSON_KEY,
                                         gen.lib.Person)
@@ -1378,10 +1378,7 @@ class GrampsParser(UpdateCallback):
         belong to the "childref" tag under family.
         """
         self.childref = gen.lib.ChildRef()
-        handle = self.inaugurate(attrs['hlink'], gen.lib.Person,
-                                 self.db.has_person_handle,
-                                 self.db.add_person,
-                                 self.db.get_raw_person_data)
+        handle = self.inaugurate(attrs['hlink'], "person", gen.lib.Person)
         self.childref.ref = handle
         self.childref.private = bool(attrs.get('priv'))
 
@@ -1404,10 +1401,7 @@ class GrampsParser(UpdateCallback):
         """
         self.personref = gen.lib.PersonRef()
         if 'hlink' in attrs:
-            handle = self.inaugurate(attrs['hlink'], gen.lib.Person,
-                                    self.db.has_person_handle,
-                                    self.db.add_person,
-                                    self.db.get_raw_person_data)
+            handle = self.inaugurate(attrs['hlink'], "person", gen.lib.Person)
         else: # there is no old style XML
             raise GrampsImportError(_("The Gramps Xml you are trying to "
                 "import is malformed."), _("Any person reference must have a "
@@ -1443,10 +1437,7 @@ class GrampsParser(UpdateCallback):
             orig_handle = attrs['handle'].replace('_', '')
             is_merge_candidate = (self.replace_import_handle and
                                   self.db.has_family_handle(orig_handle))
-            self.inaugurate(orig_handle, self.family,
-                            self.db.has_family_handle,
-                            self.db.add_family,
-                            self.db.get_raw_family_data)
+            self.inaugurate(orig_handle, "family", self.family)
             gramps_id = self.legalize_id(attrs.get('id'), FAMILY_KEY,
                                         self.fidswap, self.db.fid2user_format,
                                         self.db.find_next_family_gramps_id)
@@ -1490,10 +1481,7 @@ class GrampsParser(UpdateCallback):
         person is a child.
         """
         if 'hlink' in attrs:
-            handle = self.inaugurate(attrs['hlink'], gen.lib.Family,
-                                    self.db.has_family_handle,
-                                    self.db.add_family,
-                                    self.db.get_raw_family_data)
+            handle = self.inaugurate(attrs['hlink'], "family", gen.lib.Family)
         else: # old style XML
             handle = self.inaugurate_id(attrs.get('ref'), FAMILY_KEY,
                                         gen.lib.Family)
@@ -1522,10 +1510,7 @@ class GrampsParser(UpdateCallback):
         person is a parent.
         """
         if 'hlink' in attrs:
-            handle = self.inaugurate(attrs['hlink'], gen.lib.Family,
-                                    self.db.has_family_handle,
-                                    self.db.add_family,
-                                    self.db.get_raw_family_data)
+            handle = self.inaugurate(attrs['hlink'], "family", gen.lib.Family)
         else: # old style XML
             handle = self.inaugurate_id(attrs.get('ref'), FAMILY_KEY,
                                         gen.lib.Family)
@@ -1606,6 +1591,19 @@ class GrampsParser(UpdateCallback):
         tagtype.set_from_xml_str(attrs['name'].lower())
         try:
             val = attrs['value']
+            match = self.grampsuri.match(val)
+            if match:
+                target = {"Person":"person", "Family":"family",
+                          "Event":"event", "Place":"place", "Source":"source",
+                          "Citation":"citation", 
+                          "Repository":"repository", "Media":"media",
+                          "Note":"note"}[str(match.group('object_class'))]
+                if match.group('handle') in self.import_handles:
+                    if target in self.import_handles[match.group('handle')]:
+                        val = "gramps://%s/handle/%s" % (
+                                match.group('object_class'),
+                                self.import_handles[match.group('handle')]
+                                                   [target])
             tagvalue = gen.lib.StyledTextTagType.STYLE_TYPE[int(tagtype)](val)
         except KeyError:
             tagvalue = None
@@ -1625,8 +1623,7 @@ class GrampsParser(UpdateCallback):
 
         # Tag defintion
         self.tag = gen.lib.Tag()
-        self.inaugurate(attrs['handle'], self.tag, self.db.has_tag_handle,
-                        self.db.add_tag, self.db.get_raw_tag_data)
+        self.inaugurate(attrs['handle'], "tag", self.tag)
         self.tag.change = int(attrs.get('change', self.change))
         self.info.add('new-object', TAG_KEY, self.tag)
         self.tag.set_name(attrs['name'])
@@ -1638,9 +1635,7 @@ class GrampsParser(UpdateCallback):
         """
         Tag reference in a primary object.
         """
-        handle = self.inaugurate(attrs['hlink'], gen.lib.Tag,
-                                 self.db.has_tag_handle,
-                                 self.db.add_tag, self.db.get_raw_tag_data)
+        handle = self.inaugurate(attrs['hlink'], "tag", gen.lib.Tag)
 
         if self.person:
             self.person.add_tag(handle)
@@ -1672,10 +1667,7 @@ class GrampsParser(UpdateCallback):
                 orig_handle = attrs['handle'].replace('_', '')
                 is_merge_candidate = (self.replace_import_handle and
                                       self.db.has_note_handle(orig_handle))
-                self.inaugurate(orig_handle, self.note,
-                                self.db.has_note_handle,
-                                self.db.add_note,
-                                self.db.get_raw_note_data)
+                self.inaugurate(orig_handle, "note", self.note)
                 gramps_id = self.legalize_id(attrs.get('id'), NOTE_KEY,
                                           self.nidswap, self.db.nid2user_format,
                                           self.db.find_next_note_gramps_id)
@@ -1775,10 +1767,7 @@ class GrampsParser(UpdateCallback):
         Add a note reference to the object currently processed.
         """
         if 'hlink' in attrs:
-            handle = self.inaugurate(attrs['hlink'], gen.lib.Note,
-                                     self.db.has_note_handle,
-                                     self.db.add_note,
-                                     self.db.get_raw_note_data)
+            handle = self.inaugurate(attrs['hlink'], "note", gen.lib.Note)
         else:
             raise GrampsImportError(_("The Gramps Xml you are trying to "
                 "import is malformed."), _("Any note reference must have a "
@@ -1858,10 +1847,7 @@ class GrampsParser(UpdateCallback):
         """
         Add a citation reference to the object currently processed.
         """
-        handle = self.inaugurate(attrs['hlink'], gen.lib.Citation,
-                                 self.db.has_citation_handle,
-                                 self.db.add_citation,
-                                 self.db.get_raw_citation_data)
+        handle = self.inaugurate(attrs['hlink'], "citation", gen.lib.Citation)
 
         self.__add_citation(handle)
 
@@ -1875,10 +1861,7 @@ class GrampsParser(UpdateCallback):
         orig_handle = attrs['handle'].replace('_', '')
         is_merge_candidate = (self.replace_import_handle and
                               self.db.has_citation_handle(orig_handle))
-        self.inaugurate(orig_handle, self.citation,
-                        self.db.has_citation_handle,
-                        self.db.add_citation,
-                        self.db.get_raw_citation_data)
+        self.inaugurate(orig_handle, "citation", self.citation)
         gramps_id = self.legalize_id(attrs.get('id'), CITATION_KEY,
                                      self.cidswap, self.db.cid2user_format,
                                      self.db.find_next_citation_gramps_id)
@@ -1897,10 +1880,7 @@ class GrampsParser(UpdateCallback):
         Add a source reference to the object currently processed.
         """
         if 'hlink' in attrs:
-            handle = self.inaugurate(attrs['hlink'], gen.lib.Source,
-                                     self.db.has_source_handle,
-                                     self.db.add_source,
-                                     self.db.get_raw_source_data)
+            handle = self.inaugurate(attrs['hlink'], "source", gen.lib.Source)
         else:
             handle = self.inaugurate_id(attrs.get('ref'), SOURCE_KEY,
                                         gen.lib.Source)
@@ -1932,10 +1912,7 @@ class GrampsParser(UpdateCallback):
             orig_handle = attrs['handle'].replace('_', '')
             is_merge_candidate = (self.replace_import_handle and
                                   self.db.has_source_handle(orig_handle))
-            self.inaugurate(orig_handle, self.source,
-                            self.db.has_source_handle,
-                            self.db.add_source,
-                            self.db.get_raw_source_data)
+            self.inaugurate(orig_handle, "source", self.source)
             gramps_id = self.legalize_id(attrs.get('id'), SOURCE_KEY,
                                          self.sidswap, self.db.sid2user_format,
                                          self.db.find_next_source_gramps_id)
@@ -1956,10 +1933,8 @@ class GrampsParser(UpdateCallback):
         """
         self.reporef = gen.lib.RepoRef()
         if 'hlink' in attrs:
-            handle = self.inaugurate(attrs['hlink'], gen.lib.Repository,
-                                     self.db.has_repository_handle,
-                                     self.db.add_repository,
-                                     self.db.get_raw_repository_data)
+            handle = self.inaugurate(attrs['hlink'], "repository",
+                                     gen.lib.Repository)
         else: # old style XML
             handle = self.inaugurate_id(attrs.get('ref'), REPOSITORY_KEY,
                                         gen.lib.Repository)
@@ -1978,10 +1953,8 @@ class GrampsParser(UpdateCallback):
         """
         self.objref = gen.lib.MediaRef()
         if 'hlink' in attrs:
-            handle = self.inaugurate(attrs['hlink'], gen.lib.MediaObject,
-                                     self.db.has_object_handle,
-                                     self.db.add_object,
-                                     self.db.get_raw_object_data)
+            handle = self.inaugurate(attrs['hlink'], "media",
+                                     gen.lib.MediaObject)
         else: # old style XML
             handle = self.inaugurate_id(attrs.get('ref'), MEDIA_KEY,
                                         gen.lib.MediaObject)
@@ -2015,10 +1988,7 @@ class GrampsParser(UpdateCallback):
             orig_handle = attrs['handle'].replace('_', '')
             is_merge_candidate = (self.replace_import_handle and
                                   self.db.has_object_handle(orig_handle))
-            self.inaugurate(orig_handle, self.object,
-                            self.db.has_object_handle,
-                            self.db.add_object,
-                            self.db.get_raw_object_data)
+            self.inaugurate(orig_handle, "media", self.object)
             gramps_id = self.legalize_id(attrs.get('id'), MEDIA_KEY,
                                          self.oidswap, self.db.oid2user_format,
                                          self.db.find_next_object_gramps_id)
@@ -2052,10 +2022,7 @@ class GrampsParser(UpdateCallback):
             orig_handle = attrs['handle'].replace('_', '')
             is_merge_candidate = (self.replace_import_handle and
                                   self.db.has_repository_handle(orig_handle))
-            self.inaugurate(orig_handle, self.repo,
-                            self.db.has_repository_handle,
-                            self.db.add_repository,
-                            self.db.get_raw_repository_data)
+            self.inaugurate(orig_handle, "repository", self.repo)
             gramps_id = self.legalize_id(attrs.get('id'), REPOSITORY_KEY,
                                          self.ridswap, self.db.rid2user_format,
                                          self.db.find_next_repository_gramps_id)

@@ -4,6 +4,7 @@
 # Copyright (C) 2001-2006  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2011       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -50,7 +51,9 @@ import gtk
 from gen.ggettext import gettext as _
 import config
 import Errors
-from gui.utils import ProgressMeter, open_file_with_default_application
+from gui.utils import open_file_with_default_application
+from gui.plug import add_gui_options
+from gui.user import User
 from QuestionDialog import ErrorDialog, OptionDialog
 from gen.plug.report import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
                              CATEGORY_CODE, CATEGORY_WEB, CATEGORY_GRAPHVIZ,
@@ -68,43 +71,6 @@ import Utils
 #
 #-------------------------------------------------------------------------
 URL_REPORT_PAGE = URL_MANUAL_PAGE + "_-_Reports"
-
-#-------------------------------------------------------------------------------
-#
-# Private Functions
-#
-#-------------------------------------------------------------------------------
-def _run_long_process_in_thread(func, header):
-    """
-    This function will spawn a new thread to execute the provided function.
-    While the function is running, a progress bar will be created. 
-    The progress bar will show activity while the function executes.
-    
-    @param func: A function that will take an unknown amount of time to 
-        complete. 
-    @type category: callable
-    @param header: A header for the progress bar.
-        Example: "Updating Data"
-    @type name: string
-    @return: nothing
-    
-    """
-    pbar = ProgressMeter(_('Processing File'))
-    pbar.set_pass(total=40, 
-                  mode=ProgressMeter.MODE_ACTIVITY, 
-                  header=header)
-    
-    sys_thread = threading.Thread(target=func)
-    sys_thread.start()
-    
-    while sys_thread.isAlive():
-        # The loop runs 20 times per second until the thread completes.
-        # With the progress pass total set at 40, it should move across the bar
-        # every two seconds.
-        time.sleep(0.05)
-        pbar.step()   
-    
-    pbar.close()
 
 #-------------------------------------------------------------------------
 #
@@ -168,7 +134,6 @@ class ReportDialog(ManagedWindow.ManagedWindow):
                 self.options = option_class(self.raw_name, self.db)
         except TypeError:
             self.options = option_class
-        self.options.init_selection(self.dbstate, self.uistate)
         self.options.load_previous_values()
 
     def build_window_key(self, obj):
@@ -232,7 +197,6 @@ class ReportDialog(ManagedWindow.ManagedWindow):
         self.window.vbox.add(self.notebook)
 
         self.setup_report_options_frame()
-        self.setup_selection_frame()
         self.setup_other_frames()
         self.notebook.set_current_page(0)
 
@@ -255,14 +219,14 @@ class ReportDialog(ManagedWindow.ManagedWindow):
         It is called immediately before the window is displayed. All
         calls to add_option or add_frame_option should be called in
         this task."""
-        self.options.add_user_options(self)
+        add_gui_options(self)
 
     def parse_user_options(self):
         """Called to allow parsing of added widgets.
         It is called when OK is pressed in a dialog. 
         All custom widgets should provide a parsing code here."""
         try:
-            self.options.parse_user_options(self)
+            self.options.parse_user_options()
         except:
             LOG.error("Failed to parse user options.", exc_info=True)
             
@@ -370,13 +334,6 @@ class ReportDialog(ManagedWindow.ManagedWindow):
         # Now build the actual menu.
         style = self.options.handler.get_default_stylesheet_name()
         self.build_style_menu(style)
-
-    def setup_selection_frame(self):
-        widget = self.options.build_selection()
-        if widget:
-            l = gtk.Label("<b>%s</b>" % _("Selection Options"))
-            l.set_use_markup(True)
-            self.notebook.append_page(widget, l)            
 
     def setup_report_options_frame(self):
         """Set up the report options frame of the dialog.  This
@@ -617,7 +574,6 @@ class ReportDialog(ManagedWindow.ManagedWindow):
         self.parse_user_options()
         
         # Save options
-        self.options.save_selection()
         self.options.handler.save_options()
         
     def on_cancel(self, *obj):
@@ -683,30 +639,20 @@ def report(dbstate, uistate, person, report_class, options_class,
         if response == gtk.RESPONSE_OK:
             dialog.close()
             try:
-                MyReport = report_class(dialog.db, dialog.options)
-                
-                def do_report():
-                    MyReport.doc.init()
-                    MyReport.begin_report()
-                    MyReport.write_report()
-                    MyReport.end_report()
+                user = User()
+                MyReport = report_class(dialog.db, dialog.options, user)
+                MyReport.doc.init()
+                MyReport.begin_report()
+                MyReport.write_report()
+                MyReport.end_report()
 
-                if not hasattr(dialog, "open_with_app"):
-                    # This is a work around for the Web reports which 
-                    # do not have a target frame and have their own progress 
-                    # bars.
-                    do_report()
-                elif dialog.open_with_app.get_property('sensitive') == False:
-                    # This is a work around for the GtkPrint report which 
-                    # uses GTK. The print dialog interferes with the progress
-                    # bar. So the progress bar should not be used.
-                    do_report()
-                else:
-                    _run_long_process_in_thread(do_report, dialog.report_name)
-
-                    if dialog.open_with_app.get_active():
-                        out_file = dialog.options.get_output()
-                        open_file_with_default_application(out_file)
+                # Web reports do not have a target frame      
+                # The GtkPrint generator can not be "opened"
+                if hasattr(dialog, "open_with_app")                        and \
+                   dialog.open_with_app.get_property('sensitive') == True  and \
+                   dialog.open_with_app.get_active():
+                    out_file = dialog.options.get_output()
+                    open_file_with_default_application(out_file)
                 
             except Errors.FilterError, msg:
                 (m1, m2) = msg.messages()

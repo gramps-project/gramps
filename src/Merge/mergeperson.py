@@ -325,8 +325,9 @@ class MergePeople(ManagedWindow.ManagedWindow):
             query.execute()
         except MergeError, err:
             ErrorDialog( _("Cannot merge people"), str(err))
-        self.uistate.viewmanager.active_page.selection.unselect_path(
-                unselect_path)
+        if self.uistate.viewmanager.active_page.selection:
+            self.uistate.viewmanager.active_page.selection.unselect_path(
+                    unselect_path)
         self.uistate.set_busy_cursor(False)
         self.close()
         if self.update:

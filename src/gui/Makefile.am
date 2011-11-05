@@ -27,6 +27,7 @@ pkgdata_PYTHON = \
 	navigator.py \
 	makefilter.py \
 	pluginmanager.py \
+	user.py \
 	utils.py \
 	viewmanager.py
 

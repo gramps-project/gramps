@@ -110,7 +110,7 @@ def _read_mem(bname):
         fname = bname + '.MEM'
     else:
         fname = bname + '.mem'
-    f = open(fname)
+    f = open(fname, "rb")
     recfmt = "i28s"
     reclen = struct.calcsize( recfmt )
     #print "# reclen = %d" % reclen
@@ -131,7 +131,7 @@ def _read_recs(table, bname):
         fname = bname + table.fileext
     else:
         fname = bname + table.fileext.lower()
-    f = open(fname)
+    f = open(fname, "rb")
     recfmt = table.recfmt
     log.info("# %s - recfmt = %s" % (table['name1'], recfmt))
     reclen = struct.calcsize( recfmt )
@@ -811,7 +811,9 @@ class ProgenParser(object):
                     name.set_call_name(recflds[call_name_ix])
                 if patronym:
                     #log.warning("Patroniem, %s: '%s'" % (diag_msg, patronym))
-                    name.set_patronymic(patronym)
+                    #name.set_patronymic(patronym)
+                    log.warning(_("Patronymic name skipped: '%(patronym)s' (%(msg)s)") % {
+                        'patronym' : patronym.encode('utf-8'), 'msg' : diag_msg or '' } )
                 person.set_primary_name(name)
                 person.set_gender(gender)
 

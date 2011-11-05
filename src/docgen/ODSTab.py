@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: 
+# $Id$
 
 #-------------------------------------------------------------------------
 #
@@ -385,12 +385,13 @@ class ODSTab(TabbedDoc):
         self.f.write('>\n')
 
         self.f.write('<text:p>')
-        text = text.replace('&','&amp;')       # Must be first
-        text = text.replace('<','&lt;')
-        text = text.replace('>','&gt;')
-        text = text.replace('\t','<text:tab-stop/>')
-        text = text.replace('\n','<text:line-break/>')
-        self.f.write(unicode(text))
+        if text is not None: # it must not be just 'if text'
+            text = text.replace('&','&amp;')       # Must be first
+            text = text.replace('<','&lt;')
+            text = text.replace('>','&gt;')
+            text = text.replace('\t','<text:tab-stop/>')
+            text = text.replace('\n','<text:line-break/>')
+            self.f.write(unicode(text))
 
         self.f.write('</text:p>\n')
         self.f.write('</table:table-cell>\n')

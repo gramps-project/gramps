@@ -46,6 +46,7 @@ from gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc, ParagraphStyle,
 from gen.plug.report import utils as ReportUtils
 from Errors import PluginError
 from gen.plug.docbackend import CairoBackend
+import ImgManip
 
 #------------------------------------------------------------------------
 #
@@ -60,9 +61,7 @@ log = logging.getLogger(".libcairodoc")
 # GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk
 import pango
-import pangocairo
 
 #------------------------------------------------------------------------
 #
@@ -101,6 +100,7 @@ font_families = _GNOME_FONT
 
 # FIXME debug logging does not work here.
 def set_font_families():
+    import pangocairo
 ##def set_font_families(pango_context):
     """Set the used font families depending on availability.
     """
@@ -894,11 +894,12 @@ class GtkDocPicture(GtkDocBaseElement):
     _type = 'IMAGE'
     _allowed_children = []
     
-    def __init__(self, style, filename, width, height):
+    def __init__(self, style, filename, width, height, crop=None):
         GtkDocBaseElement.__init__(self, style)
         self._filename = filename
         self._width = width
         self._height = height
+        self._crop = crop
     
     def divide(self, layout, width, height, dpi_x, dpi_y):
         img_width = self._width * dpi_x / 2.54
@@ -912,6 +913,7 @@ class GtkDocPicture(GtkDocBaseElement):
             return (None, self), 0
 
     def draw(self, cr, layout, width, dpi_x, dpi_y):
+        import gtk
         img_width = self._width * dpi_x / 2.54
         img_height = self._height * dpi_y / 2.54
         
@@ -923,7 +925,7 @@ class GtkDocPicture(GtkDocBaseElement):
             l_margin = 0
         
         # load the image and get its extents
-        pixbuf = gtk.gdk.pixbuf_new_from_file(self._filename)
+        pixbuf = ImgManip.resize_to_buffer(self._filename, [img_width, img_height], self._crop)
         pixbuf_width = pixbuf.get_width()
         pixbuf_height = pixbuf.get_height()
         
@@ -1227,6 +1229,7 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
         self._active_element = self._doc
         self._pages = []
         self._elements_to_paginate = []
+        self._links_error = False
     
     def close(self):
         self.run()
@@ -1300,11 +1303,12 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
         Convenience function to write a styledtext to the cairo doc. 
         styledtext : assumed a StyledText object to write
         format : = 0 : Flowed, = 1 : Preformatted
-        style_name : name of the style to use for default presentation                                          
-        contains_html: bool, the backend should not check if html is present.                                     
-            If contains_html=True, then the textdoc is free to handle that in                                     
-            some way. Eg, a textdoc could remove all tags, or could make sure                                     
+        style_name : name of the style to use for default presentation
+        contains_html: bool, the backend should not check if html is present.
+            If contains_html=True, then the textdoc is free to handle that in
+            some way. Eg, a textdoc could remove all tags, or could make sure
             a link is clickable. CairoDoc does nothing different for html notes
+        links:  bool, true if URLs should be made clickable
         """
         text = str(styledtext)
 
@@ -1319,7 +1323,7 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
             #FIXME: following split should be regex to match \n\s*\n instead?
             for line in markuptext.split('\n\n'):
                 self.start_paragraph(style_name)
-                self.__write_text(line, markup=True)
+                self.__write_text(line, markup=True, links=links)
                 self.end_paragraph()
         elif format == 0:
             #flowed
@@ -1331,16 +1335,34 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
                 newlines = []
                 for singleline in lines:
                     newlines.append(' '.join(singleline.split()))
-                self.__write_text('\n'.join(newlines), markup=True)
+                self.__write_text('\n'.join(newlines), markup=True, links=links)
                 self.end_paragraph()
 
-    def __write_text(self, text, mark=None, markup=False):
+    def __write_text(self, text, mark=None, markup=False, links=False):
         """
         @param text: text to write.
         @param mark:  IndexMark to use for indexing (if supported)
         @param markup: True if text already contains markup info. 
                        Then text will no longer be escaped
+        @param links:  True if URLs should be made clickable
         """
+        if links == True:
+            import cairo
+
+            if cairo.cairo_version() < 11210 and self._links_error == False:
+                # Cairo v1.12 is suppose to be the first version
+                # that supports clickable links
+                print """
+WARNING: This version of cairo (%s) does NOT support clickable links.
+The first version that is suppose to is v1.12.  See the roadmap:
+
+    http://www.cairographics.org/roadmap/
+
+The work around is to save to another format that supports clickable
+links (like ODF) and write PDF from that format.
+                """ % cairo.version
+                self._links_error = True
+
         if not markup:            
             # We need to escape the text here for later pango.Layout.set_markup
             # calls. This way we save the markup created by the report
@@ -1354,8 +1376,9 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
            present style
         @param text: text to write.
         @param mark:  IndexMark to use for indexing (if supported)
+        @param links:  True if URLs should be made clickable
         """
-        self.__write_text(text, mark)
+        self.__write_text(text, mark, links=links)
     
     def write_markup(self, text, s_tags):
         """
@@ -1369,9 +1392,24 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
         markuptext = self._backend.add_markup_from_styled(text, s_tags)
         self.__write_text(markuptext, markup=True)
     
-    def add_media_object(self, name, pos, x_cm, y_cm, alt=''):
-        new_image = GtkDocPicture(pos, name, x_cm, y_cm)
+    def add_media_object(self, name, pos, x_cm, y_cm, alt='', 
+                         style_name=None, crop=None):
+        new_image = GtkDocPicture(pos, name, x_cm, y_cm, crop=crop)
         self._active_element.add_child(new_image)
+
+        if len(alt):
+            style_sheet = self.get_style_sheet()
+
+            style = style_sheet.get_paragraph_style(style_name)
+            style.set_alignment(PARA_ALIGN_CENTER)
+            # Center the caption under the image
+            if pos == "right":
+                style.set_left_margin(self.get_usable_width() - new_image._width)
+            else:
+                style.set_right_margin(self.get_usable_width() - new_image._width)
+            new_paragraph = GtkDocParagraph(style)
+            new_paragraph.add_text(alt)
+            self._active_element.add_child(new_paragraph)
 
     # DrawDoc implementation
     

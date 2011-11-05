@@ -1038,9 +1038,16 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             (act_width, act_height) = ImgManip.image_actual_size(x_cm, y_cm, x, y)
 
         if len(alt):
-            self.cntnt.write('<draw:frame draw:style-name="%s" draw:name="caption_%s" text:anchor-type="paragraph" svg:y="0in" svg:width="%.2fcm" draw:z-index="34"> ' % (pos, tag, act_width))
-            self.cntnt.write('<draw:text-box fo:min-height="%.2fcm"> ' % act_height)
-            self.cntnt.write('<text:p text:style-name="%s">' % style_name)
+            self.cntnt.write(
+                '<draw:frame draw:style-name="%s" ' % pos +
+                    'draw:name="caption_%s" ' % tag +
+                    'text:anchor-type="paragraph" ' +
+                    'svg:y="0in" ' +
+                    'svg:width="%.2fcm" ' % act_width +
+                    'draw:z-index="34"> ' +
+                    '<draw:text-box fo:min-height="%.2fcm"> ' % act_height +
+                    '<text:p text:style-name="%s">' % style_name
+                    )
 
         self.cntnt.write(
             '<draw:frame draw:style-name="%s" ' % pos +
@@ -1554,6 +1561,8 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         entities. The _esc_map dictionary allows us to add our own
         mappings.
         """
+        text = escape(text, _esc_map)
+
         if links == True:
             text = re.sub(URL_PATTERN, _CLICKABLE, text)
 
@@ -1572,7 +1581,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                     'text:string-value="%s" ' % key +
                     'text:outline-level="%d" />' % mark.level
                     )
-        self.cntnt.write(escape(text, _esc_map))
+        self.cntnt.write(text)
 
     def _write_manifest(self):
         """

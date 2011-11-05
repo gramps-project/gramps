@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id:gramps_main.py 9912 2008-01-22 09:17:46Z acraphae $
+# $Id$
 
 """
 Provides the startcli function, which the main program calls for CLI

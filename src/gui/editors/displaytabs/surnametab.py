@@ -211,6 +211,7 @@ class SurnameTab(EmbeddedList):
                                      focus_column=self.columns[0],
                                      focus_cell=None,
                                      start_editing=True)
+        self.update()
 
     def del_button_clicked(self, obj):
         """

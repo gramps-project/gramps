@@ -17,6 +17,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+# $Id$
+#
 
 """
 Provide the basic functionality for a list view
@@ -434,7 +436,7 @@ class ListModel(object):
             node = self.model.append()
         elif self.list_mode == "tree":
             if node is None: # new node
-                node = self.model.append(None, data + [None])
+                node = self.model.append(None, data + [info])
                 need_to_set = False
             else: # use a previous node, passed in
                 node = self.model.append(node)

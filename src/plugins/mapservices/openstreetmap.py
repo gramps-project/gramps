@@ -17,7 +17,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# $id: $
+# $Id$
 #
 """
 OpenStreetMap map service plugin. Open place in openstreetmap.org
@@ -62,10 +62,10 @@ class OpensStreetMapService(MapService):
         city = place.get_main_location().get_city()
         country = place.get_main_location().get_country()
         if city and country:
-            self.url = "http://gazetteer.openstreetmap.org/namefinder/"\
-                        "?find=%s%%2C%s" % (city, country)
+            self.url = "http://open.mapquestapi.com/nominatim/v1/"\
+                        "search.php?q=%s%%2C%s" % (city, country)
             return
         
         titledescr = place.get_title()
-        self.url = "http://gazetteer.openstreetmap.org/namefinder/"\
-                        "?find=%s" % '+'.join(titledescr.split())
+        self.url = "http://open.mapquestapi.com/nominatim/v1/"\
+                        "search.php?q=%s" % '+'.join(titledescr.split())

@@ -18,7 +18,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# $Id: _Bibliography.py 13191 2009-09-10 18:49:48Z gbritton $
+# $Id$
 
 """
 Contain and organize bibliographic information.

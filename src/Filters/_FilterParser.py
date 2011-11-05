@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id:_FilterParser.py 9912 2008-01-22 09:17:46Z acraphae $
+# $Id$
 
 #-------------------------------------------------------------------------
 #
@@ -108,6 +108,8 @@ class FilterParser(handler.ContentHandler):
 
     def endElement(self, tag):
         if tag == "rule" and self.r is not None:
+            if len(self.r.labels) != len(self.a):
+                self.__upgrade()
             if len(self.r.labels) < len(self.a):
                 print _("WARNING: Too many arguments in filter '%s'!\n"\
                         "Trying to load with subset of arguments.")  %\
@@ -133,6 +135,20 @@ class FilterParser(handler.ContentHandler):
             
     def characters(self, data):
         pass
+
+    def __upgrade(self):
+        """
+        Upgrade argument lists to latest version.
+        """
+        # HasPlace rule has extra locality field in v3.3
+        if self.r == Rules.Place.HasPlace and len(self.a) == 8:
+            self.a = self.a[0:2] + [u''] + self.a[4:8] + [self.a[3]] + \
+                     [self.a[2]]
+        # HasNameOf rule has new fields for surnames in v3.3
+        if self.r == Rules.Person.HasNameOf and len(self.a) == 7:
+            self.a = self.a[0:2] + [self.a[3]] + [self.a[2]] + [self.a[6]] + \
+                     [u''] + [self.a[4]] + [u'', u''] + [self.a[5]] + \
+                     [u'', u'0']
 
 #-------------------------------------------------------------------------
 #

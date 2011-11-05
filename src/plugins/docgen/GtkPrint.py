@@ -45,7 +45,6 @@ from math import radians
 from gen.plug.docgen import PAPER_PORTRAIT
 import libcairodoc
 import Errors
-from glade import Glade
 #import constfunc
 
 #------------------------------------------------------------------------
@@ -203,7 +202,7 @@ class PrintPreview(object):
     def __build_window(self):
         """Build the window from Glade.
         """
-
+        from glade import Glade
         glade_xml = Glade()
         self._window = glade_xml.toplevel
         #self._window.set_transient_for(parent)

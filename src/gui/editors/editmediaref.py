@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2006  Donald N. Allingham
 #               2008-2009  Stephane Charette <stephanecharette@gmail.com>
 #               2009       Gary Burton
+#               2011       Robert Cheramy <robert@cheramy.net>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -51,7 +52,8 @@ from gen.db import DbTxn
 from glade import Glade
 from displaytabs import (CitationEmbedList, AttrEmbedList, MediaBackRefList, 
                          NoteTab)
-from gui.widgets import MonitoredSpinButton, MonitoredEntry, PrivacyButton
+from gui.widgets import (MonitoredSpinButton, MonitoredEntry, PrivacyButton,
+                         MonitoredDate, MonitoredTagList)
 from editreference import RefTab, EditReference
 from addmedia import AddMediaObject
 
@@ -98,6 +100,7 @@ class EditMediaRef(EditReference):
         self.primtab = RefTab(self.dbstate, self.uistate, self.track, 
                               _('_General'), tblref)
         self.track_ref_for_deletion("primtab")
+        self.rect_pixbuf = None
 
     def setup_filepath(self):
         self.select = self.top.get_object('file_select')
@@ -147,6 +150,7 @@ class EditMediaRef(EditReference):
             self.subpixmap.set_from_pixbuf(pb)
 
     def _setup_fields(self):
+        
         ebox_shared = self.top.get_object('eventbox')
         ebox_shared.connect('button-press-event', self.button_press_event)
 
@@ -156,6 +160,7 @@ class EditMediaRef(EditReference):
             ebox_ref.connect('button-press-event', self.button_press_event_ref)
             ebox_ref.connect('button-release-event', 
                                                  self.button_release_event_ref)
+            ebox_ref.connect('motion-notify-event', self.motion_notify_event_ref)
             ebox_ref.add_events(gtk.gdk.BUTTON_PRESS_MASK)
             ebox_ref.add_events(gtk.gdk.BUTTON_RELEASE_MASK)
 
@@ -248,6 +253,22 @@ class EditMediaRef(EditReference):
             self.top.get_object("path"),
             self.source.set_path,
             self.source.get_path,
+            self.db.readonly)
+            
+        self.date_field = MonitoredDate(
+            self.top.get_object("date_entry"),
+            self.top.get_object("date_edit"),
+            self.source.get_date_object(),
+            self.uistate, self.track,
+            self.db.readonly)
+            
+        self.tags = MonitoredTagList(
+            self.top.get_object("tag_label"), 
+            self.top.get_object("tag_button"), 
+            self.source.set_tag_list, 
+            self.source.get_tag_list,
+            self.db,
+            self.uistate, self.track,
             self.db.readonly)
 
     def set_corner1_x(self, value):
@@ -422,6 +443,44 @@ class EditMediaRef(EditReference):
         is received.
         """
         self.button_press_coords = (event.x, event.y)
+        # prepare drawing of a feedback rectangle
+        self.rect_pixbuf = self.subpixmap.get_pixbuf()
+        w,h = self.rect_pixbuf.get_width(), self.rect_pixbuf.get_height()
+        self.rect_pixbuf_render = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, w, h)
+        cm = gtk.gdk.colormap_get_system()
+        color = cm.alloc_color(gtk.gdk.Color("blue"))
+        self.rect_pixmap = gtk.gdk.Pixmap(None, w, h, cm.get_visual().depth)
+        self.rect_pixmap.set_colormap(cm)
+        self.rect_gc = self.rect_pixmap.new_gc()
+        self.rect_gc.set_foreground(color)
+ 
+    def motion_notify_event_ref(self, widget, event):
+        # get the image size and calculate the X and Y offsets
+        # (image is centered *horizontally* when smaller than const.THUMBSCALE)
+        w, h = self.rect_pixbuf.get_width(), self.rect_pixbuf.get_height()
+        offset_x = (const.THUMBSCALE - w) / 2
+        offset_y = 0
+
+        self.rect_pixmap.draw_pixbuf(self.rect_gc, self.rect_pixbuf, 0, 0, 0, 0)
+        
+        # get coordinates of the rectangle, so that x1 < x2 and y1 < y2
+        x1 = min(self.button_press_coords[0], event.x)
+        x2 = max(self.button_press_coords[0], event.x)
+        y1 = min(self.button_press_coords[1], event.y)
+        y2 = max(self.button_press_coords[1], event.y)
+
+        width = int(x2 - x1)
+        height = int(y2 - y1)
+        x1 = int(x1 - offset_x)
+        y1 = int(y1 - offset_y)
+        
+        self.rect_pixmap.draw_rectangle(self.rect_gc, False,
+                    x1, y1, width, height)
+                    
+        self.rect_pixbuf_render.get_from_drawable(self.rect_pixmap,
+                                gtk.gdk.colormap_get_system(),
+                                0,0,0,0, w, h)
+        self.subpixmap.set_from_pixbuf(self.rect_pixbuf_render)
 
     def button_release_event_ref(self, widget, event):
         """
@@ -438,6 +497,9 @@ class EditMediaRef(EditReference):
             self.corner2_y_spinbutton.set_value(100)
 
         else:
+            if (self.rect_pixbuf == None):
+                return
+            self.subpixmap.set_from_pixbuf(self.rect_pixbuf)
 
             # ensure the clicks happened at least 5 pixels away from each other
             new_x1 = min(self.button_press_coords[0], event.x)
@@ -448,12 +510,11 @@ class EditMediaRef(EditReference):
             if new_x2 - new_x1 >= 5 and new_y2 - new_y1 >= 5:
 
                 # get the image size and calculate the X and Y offsets
-                # (image is centered when smaller than const.THUMBSCALE)
-                pixbuf = self.subpixmap.get_pixbuf();
-                w = pixbuf.get_width()
-                h = pixbuf.get_height()
+                # (image is centered *horizontally* when smaller than const.THUMBSCALE)
+                w = self.rect_pixbuf.get_width()
+                h = self.rect_pixbuf.get_height()
                 x = (const.THUMBSCALE - w) / 2
-                y = (const.THUMBSCALE - h) / 2
+                y = 0
 
                 # if the click was outside of the image,
                 # bring it within the boundaries
@@ -501,6 +562,9 @@ class EditMediaRef(EditReference):
                 self.corner1_y_spinbutton.set_value(new_y1)
                 self.corner2_x_spinbutton.set_value(new_x2)
                 self.corner2_y_spinbutton.set_value(new_y2)
+
+                # Free the pixbuf as it is not needed anymore
+                self.rect_pixbuf = None
 
     def _update_addmedia(self, obj):
         """

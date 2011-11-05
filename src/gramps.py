@@ -5,6 +5,7 @@
 # Copyright (C) 2009       Benny Malengier
 # Copyright (C) 2009-2010  Stephen George
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2011       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -61,27 +62,47 @@ import constfunc
 #TransUtils.setup_gettext()
 gettext.bindtextdomain(TransUtils.LOCALEDOMAIN, TransUtils.LOCALEDIR)
 try:
-    locale.setlocale(locale.LC_ALL,'C')
     locale.setlocale(locale.LC_ALL,'')
-except locale.Error:
-    pass
-except ValueError:
-    pass
+except:
+    # FIXME: This should use LOG.warn, but logging has not been initialised yet
+    print >> sys.stderr, _("WARNING: Setting locale failed. Please fix the "
+        "LC_* and/or the LANG environment variables to prevent this error")
+    try:
+        # It is probably not necessary to set the locale to 'C'
+        # because the locale will just stay at whatever it was,
+        # which at startup is "C".
+        # however this is done here just to make sure that the locale
+        # functions are working 
+        locale.setlocale(locale.LC_ALL,'C')
+    except:
+        print >> sys.stderr, _("ERROR: Setting the 'C' locale didn't work either")
+        # FIXME: This should propagate the exception,
+        # if that doesn't break Gramps under Windows
+        # raise
 
 gettext.textdomain(TransUtils.LOCALEDOMAIN)
 gettext.install(TransUtils.LOCALEDOMAIN, localedir=None, unicode=1) #None is sys default locale
 
-if not constfunc.win():
+if hasattr(os, "uname"):
+    operating_system = os.uname()[0]
+else:
+    operating_system = sys.platform
+
+if constfunc.win(): # Windows
+    TransUtils.setup_windows_gettext()
+elif operating_system == 'FreeBSD':
+    try:
+        gettext.bindtextdomain(TransUtils.LOCALEDOMAIN, TransUtils.LOCALEDIR)
+    except locale.Error:
+        print 'No translation in some gtk.Builder strings, '
+elif operating_system == 'OpenBSD':
+    pass
+else: # normal case
     try:
         locale.bindtextdomain(TransUtils.LOCALEDOMAIN, TransUtils.LOCALEDIR)
         #locale.textdomain(TransUtils.LOCALEDOMAIN)
     except locale.Error:
         print 'No translation in some gtk.Builder strings, '
-else:
-    TransUtils.setup_windows_gettext()
-
-LOG.debug('Using locale:', locale.getlocale())
-
 
 #-------------------------------------------------------------------------
 #
@@ -99,6 +120,21 @@ if not sys.version_info >= MIN_PYTHON_VERSION :
             MIN_PYTHON_VERSION[1],
             MIN_PYTHON_VERSION[2]))
     sys.exit(1)
+
+#-------------------------------------------------------------------------
+#
+# deepcopy workaround
+#
+#-------------------------------------------------------------------------
+# In versions < 2.7 python does not properly copy methods when doing a 
+# deepcopy. This workaround makes the copy work properly. When Gramps no longer
+# supports python 2.6, this workaround can be removed.
+if sys.version_info < (2, 7) :
+    import copy
+    import types
+    def _deepcopy_method(x, memo):
+        return type(x)(x.im_func, copy.deepcopy(x.im_self, memo), x.im_class)
+    copy._deepcopy_dispatch[types.MethodType] = _deepcopy_method
 
 #-------------------------------------------------------------------------
 #
@@ -169,6 +205,10 @@ def show_settings():
     except ImportError:
         gtkver_str = 'not found'
         pygtkver_str = 'not found'
+    # no DISPLAY is a RuntimeError in an older pygtk (e.g. 2.17 in Fedora 14)
+    except RuntimeError:
+        gtkver_str = 'DISPLAY not set'
+        pygtkver_str = 'DISPLAY not set'
     #exept TypeError: To handle back formatting on version split
 
     try:
@@ -231,15 +271,14 @@ def show_settings():
         gramps_str = 'not found'
 
     if hasattr(os, "uname"):
-        operating_system = os.uname()[0]
         kernel = os.uname()[2]
     else:
-        operating_system = sys.platform
         kernel = None
 
     lang_str = os.environ.get('LANG','not set')
     language_str = os.environ.get('LANGUAGE','not set')
     grampsi18n_str = os.environ.get('GRAMPSI18N','not set')
+    grampshome_str = os.environ.get('GRAMPSHOME','not set')
     grampsdir_str = os.environ.get('GRAMPSDIR','not set')
 
     try:
@@ -257,7 +296,7 @@ def show_settings():
         if gsversion_str:
             gsversion_str = gsversion_str.replace('\n', '')
     except:
-        gsversion_str = 'Ghostcript not in system PATH'
+        gsversion_str = 'Ghostscript not in system PATH'
 
     os_path = os.environ.get('PATH','not set')
     os_path = os_path.split(os.pathsep)
@@ -287,6 +326,7 @@ def show_settings():
     print ' LANG      : %s' % lang_str
     print ' LANGUAGE  : %s' % language_str
     print ' GRAMPSI18N: %s' % grampsi18n_str
+    print ' GRAMPSHOME: %s' % grampshome_str
     print ' GRAMPSDIR : %s' % grampsdir_str
     print ' PYTHONPATH:'
     for folder in sys.path:
@@ -333,7 +373,51 @@ def run():
         return error
 
     from cli.argparser import ArgParser
-    argpars = ArgParser(sys.argv)
+    argv_copy = sys.argv[:]
+    argpars = ArgParser(argv_copy)
+
+    # Calls to LOG must be after setup_logging() and ArgParser() 
+    LOG = logging.getLogger(".locale")
+    if hasattr(locale, 'LC_CTYPE'):
+        LOG.debug('Using locale: LC_CTYPE %s %s' %
+                         locale.getlocale(locale.LC_CTYPE))
+    else:
+        LOG.debug('locale: LC_CTYPE is not defined')
+    if hasattr(locale, 'LC_COLLATE'):
+        LOG.debug('Using locale: LC_COLLATE %s %s' %
+                         locale.getlocale(locale.LC_COLLATE))
+    else:
+        LOG.debug('locale: LC_COLLATE is not defined')
+    if hasattr(locale, 'LC_TIME'):
+        LOG.debug('Using locale: LC_TIME %s %s' %
+                         locale.getlocale(locale.LC_TIME))
+    else:
+        LOG.debug('locale: LC_TIME is not defined')
+    if hasattr(locale, 'LC_MONETARY'):
+        LOG.debug('Using locale: LC_MONETARY %s %s' %
+                         locale.getlocale(locale.LC_MONETARY))
+    else:
+        LOG.debug('locale: LC_MONETARY is not defined')
+    if hasattr(locale, 'LC_MESSAGES'):
+        LOG.debug('Using locale: LC_MESSAGES %s %s' %
+                         locale.getlocale(locale.LC_MESSAGES))
+    else:
+        LOG.debug('locale: LC_MESSAGES is not defined')
+    if hasattr(locale, 'LC_NUMERIC'):
+        LOG.debug('Using locale: LC_NUMERIC %s %s' %
+                         locale.getlocale(locale.LC_NUMERIC))
+    else:
+        LOG.debug('locale: LC_NUMERIC is not defined')
+    if 'LANG' in os.environ:
+        LOG.debug('Using LANG: %s' %
+                         os.environ.get('LANG'))
+    else:
+        LOG.debug('environment: LANG is not defined')
+    if 'LANGUAGE' in os.environ:
+        LOG.debug('Using LANGUAGE: %s' %
+                         os.environ.get('LANGUAGE'))
+    else:
+        LOG.debug('environment: LANGUAGE is not defined')
     
     if argpars.need_gui():
         #A GUI is needed, set it up

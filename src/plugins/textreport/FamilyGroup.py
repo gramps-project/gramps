@@ -29,6 +29,7 @@
 # Python Library
 #
 #------------------------------------------------------------------------
+import copy
 from functools import partial
 
 #------------------------------------------------------------------------
@@ -37,16 +38,16 @@ from functools import partial
 #
 #------------------------------------------------------------------------
 import gen.lib
-from gen.plug.menu import BooleanOption, FamilyOption
+from gen.plug.menu import (BooleanOption, FamilyOption, EnumeratedListOption)
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
-from gui.plug.report import MenuReportOptions
+from gen.plug.report import MenuReportOptions
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
                             TableCellStyle, FONT_SANS_SERIF, FONT_SERIF, 
                             INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 import DateHandler
 from gen.ggettext import sgettext as _
-from gen.display.name import displayer as _nd
+from gen.display.name import displayer as global_name_display
 
 #------------------------------------------------------------------------
 #
@@ -55,24 +56,25 @@ from gen.display.name import displayer as _nd
 #------------------------------------------------------------------------
 class FamilyGroup(Report):
 
-    def __init__(self, database, options_class):
+    def __init__(self, database, options, user):
         """
         Create the DetAncestorReport object that produces the report.
         
         The arguments are:
 
         database        - the GRAMPS database instance
-        person          - currently selected person
-        options_class   - instance of the Options class for this report
+        options         - instance of the Options class for this report
+        user            - a gen.user.User() instance
 
         This report needs the following parameters (class variables)
         that come in the options class.
         
         family_handle - Handle of the family to write report on.
         includeAttrs  - Whether to include attributes
+        name_format   - Preferred format to display names
         """
-        Report.__init__(self, database, options_class)
-        menu = options_class.menu
+        Report.__init__(self, database, options, user)
+        menu = options.menu
 
         self.family_handle = None
 
@@ -82,6 +84,13 @@ class FamilyGroup(Report):
             self.family_handle = family.get_handle()
         else:
             self.family_handle = None
+
+        # Copy the global NameDisplay so that we don't change application 
+        # defaults.
+        self._name_display = copy.deepcopy(global_name_display)
+        name_format = menu.get_option_by_name("name_format").get_value()
+        if name_format != 0:
+            self._name_display.set_default_format(name_format)
 
         get_option_by_name = menu.get_option_by_name
         get_value = lambda name:get_option_by_name(name).get_value()        
@@ -160,7 +169,7 @@ class FamilyGroup(Report):
             father_handle = family.get_father_handle() 
             if father_handle:
                 father = self.database.get_person_from_handle(father_handle)
-                father_name = _nd.display(father)
+                father_name = self._name_display.display(father)
                 if self.incRelDates:
                     birth_ref = father.get_birth_ref()
                     birth = "  "
@@ -177,7 +186,7 @@ class FamilyGroup(Report):
             mother_handle = family.get_mother_handle() 
             if mother_handle:
                 mother = self.database.get_person_from_handle(mother_handle)
-                mother_name = _nd.display(mother)
+                mother_name = self._name_display.display(mother)
                 if self.incRelDates:
                     birth_ref = mother.get_birth_ref()
                     birth = "  "
@@ -264,7 +273,7 @@ class FamilyGroup(Report):
             person = gen.lib.Person()
         else:
             person = self.database.get_person_from_handle(person_handle)
-        name = _nd.display(person)
+        name = self._name_display.display(person)
         
         self.doc.start_table(title,'FGR-ParentTable')
         self.doc.start_row()
@@ -339,7 +348,7 @@ class FamilyGroup(Report):
         if self.incParNames:
             for alt_name in person.get_alternate_names():
                 name_type = str( alt_name.get_type() )
-                name = _nd.display_name(alt_name)
+                name = self._name_display.display_name(alt_name)
                 self.dump_parent_line(name_type, name)
 
         self.doc.end_table()
@@ -454,7 +463,7 @@ class FamilyGroup(Report):
         self.doc.end_paragraph()
         self.doc.end_cell()
         
-        name = _nd.display(person)
+        name = self._name_display.display(person)
         mark = ReportUtils.get_person_mark(self.database,person)
         self.doc.start_cell('FGR-ChildName',3)
         self.doc.start_paragraph('FGR-ChildText')
@@ -514,7 +523,7 @@ class FamilyGroup(Report):
                     self.doc.start_paragraph('FGR-Normal')
 
                     spouse = self.database.get_person_from_handle(spouse_id)
-                    spouse_name = _nd.display(spouse)
+                    spouse_name = self._name_display.display(spouse)
                     if self.incRelDates:
                         birth = "  "
                         birth_ref = spouse.get_birth_ref()
@@ -621,6 +630,17 @@ class FamilyGroupOptions(MenuReportOptions):
         family_id = FamilyOption(_("Center Family"))
         family_id.set_help(_("The center family for the report"))
         add_option("family_id", family_id)
+
+        # We must figure out the value of the first option before we can
+        # create the EnumeratedListOption
+        fmt_list = global_name_display.get_name_format()
+        name_format = EnumeratedListOption(_("Name format"), 0)
+        name_format.add_item(0, _("Default"))
+        for num, name, fmt_str, act in fmt_list:
+            name_format.add_item(num, name)
+        name_format.set_help(_("Select the format to display names"))
+        add_option("name_format", name_format)
+
         
         recursive = BooleanOption(_('Recursive'),False)
         recursive.set_help(_("Create reports for all descendants "

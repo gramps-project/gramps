@@ -41,6 +41,7 @@ from gen.ggettext import gettext as _
 #-------------------------------------------------------------------------
 import gen.lib
 from txn import DbTxn
+from exceptions import DbTransactionCancel
 
 class DbReadBase(object):
     """
@@ -1738,6 +1739,11 @@ class DbWriteBase(DbReadBase):
         elif family.get_mother_handle() == person_handle:
             msg = _("Remove mother from family")
             family.set_mother_handle(None)
+        else:
+            raise DbTransactionCancel("The relation between the person and "
+                "the family you try to remove is not consistent, please fix "
+                "that first, for example from the family editor or by running "
+                "the database repair tool, before removing the family.")
     
         if (not family.get_father_handle() and not family.get_mother_handle()
                 and not family.get_child_ref_list()):

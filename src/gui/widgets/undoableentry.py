@@ -20,7 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: validatedmaskedentry.py 14091 2010-01-18 04:42:17Z pez4brian $
+# $Id$
 
 __all__ = ["UndoableEntry"]
 

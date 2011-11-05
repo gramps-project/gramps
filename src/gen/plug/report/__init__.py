@@ -23,7 +23,7 @@
 
 # gen.plug.report.__init__
 #
-# $Id: __init__.py 12360 2009-03-19 02:32:16Z pez4brian $
+# $Id$
 
 "Report Generation Framework"
 
@@ -32,3 +32,4 @@ from _reportbase import Report
 
 from _bibliography import Bibliography, Citation
 
+from _options import MenuReportOptions

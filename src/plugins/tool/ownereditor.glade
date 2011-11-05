@@ -1,6 +1,6 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <!-- interface-requires gtk+ 2.12 -->
+  <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy project-wide -->
   <object class="GtkWindow" id="ownereditor">
     <property name="window_position">center</property>
@@ -37,7 +37,9 @@
                   <object class="GtkLabel" id="label1">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Name:</property>
+                    <property name="label" translatable="yes">_Name:</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">name</property>
                   </object>
                   <packing>
                     <property name="x_options">GTK_FILL</property>
@@ -48,7 +50,9 @@
                   <object class="GtkLabel" id="label2">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Street:</property>
+                    <property name="label" translatable="yes">_Street:</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">address</property>
                   </object>
                   <packing>
                     <property name="top_attach">1</property>
@@ -61,7 +65,9 @@
                   <object class="GtkLabel" id="label3">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">City:</property>
+                    <property name="label" translatable="yes">_City:</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">city</property>
                   </object>
                   <packing>
                     <property name="top_attach">3</property>
@@ -74,7 +80,9 @@
                   <object class="GtkLabel" id="label4">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">State/County:</property>
+                    <property name="label" translatable="yes">_State/County:</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">state</property>
                   </object>
                   <packing>
                     <property name="top_attach">4</property>
@@ -87,7 +95,9 @@
                   <object class="GtkLabel" id="label5">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Country:</property>
+                    <property name="label" translatable="yes">_Country:</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">country</property>
                   </object>
                   <packing>
                     <property name="top_attach">5</property>
@@ -100,7 +110,9 @@
                   <object class="GtkLabel" id="label6">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">ZIP/Postal Code:</property>
+                    <property name="label" translatable="yes">_ZIP/Postal Code:</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">zip</property>
                   </object>
                   <packing>
                     <property name="top_attach">6</property>
@@ -113,7 +125,9 @@
                   <object class="GtkLabel" id="label7">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Phone:</property>
+                    <property name="label" translatable="yes">_Phone:</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">phone</property>
                   </object>
                   <packing>
                     <property name="top_attach">7</property>
@@ -126,7 +140,9 @@
                   <object class="GtkLabel" id="label8">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Email:</property>
+                    <property name="label" translatable="yes">_Email:</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">email</property>
                   </object>
                   <packing>
                     <property name="top_attach">8</property>
@@ -139,7 +155,7 @@
                   <object class="GtkEntry" id="name">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="invisible_char">&#x2022;</property>
+                    <property name="invisible_char">•</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -151,7 +167,7 @@
                   <object class="GtkEntry" id="address">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="invisible_char">&#x2022;</property>
+                    <property name="invisible_char">•</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -165,7 +181,7 @@
                   <object class="GtkEntry" id="city">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="invisible_char">&#x2022;</property>
+                    <property name="invisible_char">•</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -179,7 +195,7 @@
                   <object class="GtkEntry" id="state">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="invisible_char">&#x2022;</property>
+                    <property name="invisible_char">•</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -193,7 +209,7 @@
                   <object class="GtkEntry" id="country">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="invisible_char">&#x2022;</property>
+                    <property name="invisible_char">•</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -207,7 +223,7 @@
                   <object class="GtkEntry" id="zip">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="invisible_char">&#x2022;</property>
+                    <property name="invisible_char">•</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -221,7 +237,7 @@
                   <object class="GtkEntry" id="phone">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="invisible_char">&#x2022;</property>
+                    <property name="invisible_char">•</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -235,7 +251,7 @@
                   <object class="GtkEntry" id="email">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="invisible_char">&#x2022;</property>
+                    <property name="invisible_char">•</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -249,7 +265,9 @@
                   <object class="GtkLabel" id="label9">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Locality:</property>
+                    <property name="label" translatable="yes">_Locality:</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">locality</property>
                   </object>
                   <packing>
                     <property name="top_attach">2</property>
@@ -262,7 +280,7 @@
                   <object class="GtkEntry" id="locality">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="invisible_char">&#x25CF;</property>
+                    <property name="invisible_char">●</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>

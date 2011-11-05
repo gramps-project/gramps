@@ -6,6 +6,7 @@
 # Copyright (C) 2009       Gary Burton
 # Copyright (C) 2010       Craig J. Anderson
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2011       Matt Keenan (matt.keenan@gmail.com)
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,6 +34,7 @@ Reports/Text Reports/Descendant Report.
 # standard python modules
 #
 #------------------------------------------------------------------------
+import copy
 from gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -42,12 +44,13 @@ from gen.ggettext import gettext as _
 #------------------------------------------------------------------------
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                             FONT_SANS_SERIF, INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
-from gen.plug.menu import NumberOption, PersonOption, BooleanOption, EnumeratedListOption
-from gen.display.name import displayer as _nd
+from gen.plug.menu import (NumberOption, PersonOption, BooleanOption,
+                           EnumeratedListOption)
+from gen.display.name import displayer as global_name_display
 from Errors import ReportError
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
-from gui.plug.report import MenuReportOptions
+from gen.plug.report import MenuReportOptions
 import DateHandler
 import Sort
 from gen.utils import (get_birth_or_fallback, get_death_or_fallback,
@@ -61,8 +64,24 @@ from gen.utils import (get_birth_or_fallback, get_death_or_fallback,
 #
 #------------------------------------------------------------------------
 class PrintSimple():
+    def __init__(self, showdups):
+        self.showdups = showdups
+        self.num = {0:1}
+
     def number(self, level):
-        return "%d." % level
+        if self.showdups:
+            # Just show original simple numbering
+            to_return = "%d." % level
+        else:
+            to_return = str(level)
+            if level > 1:
+                to_return += "-" + str(self.num[level-1])
+            to_return += "."
+
+            self.num[level] = 1
+            self.num[level-1] = self.num[level-1] + 1
+
+        return to_return
     
     
 #------------------------------------------------------------------------
@@ -125,8 +144,10 @@ class Printinfo():
     A base class used to help make the individual numbering system classes.
     This class must first be initialized with set_class_vars
     """
-    def __init__(self, doc, database, numbering, showmarriage, showdivorce):
+    def __init__(self, doc, database, numbering, showmarriage, showdivorce,\
+                 name_display):
         #classes
+        self._name_display = name_display
         self.doc = doc
         self.database = database
         self.numbering = numbering
@@ -184,9 +205,10 @@ class Printinfo():
         display_num = self.numbering.number(level)
         self.doc.start_paragraph("DR-Level%d" % min(level, 32), display_num)
         mark = ReportUtils.get_person_mark(self.database, person)
-        self.doc.write_text(_nd.display(person), mark)
+        self.doc.write_text(self._name_display.display(person), mark)
         self.dump_string(person)
         self.doc.end_paragraph()
+        return display_num
     
     def print_spouse(self, level, spouse_handle, family_handle):
         #Currently print_spouses is the same for all numbering systems.
@@ -194,9 +216,24 @@ class Printinfo():
             spouse = self.database.get_person_from_handle(spouse_handle)
             mark = ReportUtils.get_person_mark(self.database, spouse)
             self.doc.start_paragraph("DR-Spouse%d" % min(level, 32))
-            name = _nd.display(spouse)
+            name = self._name_display.display(spouse)
             self.doc.write_text(_("sp. %(spouse)s") % {'spouse':name}, mark)
             self.dump_string(spouse, family_handle)
+            self.doc.end_paragraph()
+        else:
+            self.doc.start_paragraph("DR-Spouse%d" % min(level, 32))
+            self.doc.write_text(_("sp. %(spouse)s") % {'spouse':'Unknown'})
+            self.doc.end_paragraph()
+
+    def print_reference(self, level, person, display_num):
+        #Person and their family have already been printed so
+        #print reference here
+        if person:
+            mark = ReportUtils.get_person_mark(self.database, person)
+            self.doc.start_paragraph("DR-Spouse%d" % min(level, 32))
+            name = self._name_display.display(person)
+            self.doc.write_text(_("sp. see  %(reference)s : %(spouse)s") %
+                {'reference':display_num, 'spouse':name}, mark)
             self.doc.end_paragraph()
 
 
@@ -216,28 +253,50 @@ class RecurseDown():
     objPrint:  A Printinfo derived class that prints person
                information on the report
     """
-    def __init__(self, max_generations, database, objPrint):
+    def __init__(self, max_generations, database, objPrint, showdups):
         self.max_generations = max_generations
         self.database = database
         self.objPrint = objPrint
+        self.showdups = showdups
+        self.person_printed = {}
     
-    def recurse(self, level, person):
+    def recurse(self, level, person, curdepth):
 
-        self.objPrint.print_person(level, person)
+        person_handle = person.get_handle()
+        display_num = self.objPrint.print_person(level, person)
+
+        if curdepth is None:
+            ref_str = display_num
+        else:
+            ref_str = curdepth + " " + display_num
+
+        if person_handle not in self.person_printed:
+            self.person_printed[person_handle] = ref_str
 
         for family_handle in person.get_family_handle_list():
             family = self.database.get_family_from_handle(family_handle)
 
             spouse_handle = ReportUtils.find_spouse(person, family)
-            self.objPrint.print_spouse(level, spouse_handle, family)
 
-            if level >= self.max_generations:
-                continue
+            if not self.showdups and spouse_handle in self.person_printed:
+                # Just print a reference
+                spouse = self.database.get_person_from_handle(spouse_handle)
+                self.objPrint.print_reference(level, spouse,
+                        self.person_printed[person_handle])
+            else:
+                self.objPrint.print_spouse(level, spouse_handle, family)
 
-            childlist = family.get_child_ref_list()[:]
-            for child_ref in childlist:
-                child = self.database.get_person_from_handle(child_ref.ref)
-                self.recurse(level+1, child)
+                if spouse_handle:
+                    spouse_num = _("%s sp." % (ref_str))
+                    self.person_printed[spouse_handle] = spouse_num
+
+                if level >= self.max_generations:
+                    continue
+
+                childlist = family.get_child_ref_list()[:]
+                for child_ref in childlist:
+                    child = self.database.get_person_from_handle(child_ref.ref)
+                    self.recurse(level+1, child, ref_str)
 
 
 #------------------------------------------------------------------------
@@ -247,24 +306,27 @@ class RecurseDown():
 #------------------------------------------------------------------------
 class DescendantReport(Report):
 
-    def __init__(self, database, options_class):
+    def __init__(self, database, options, user):
         """
         Create the DescendantReport object that produces the report.
         
         The arguments are:
 
         database        - the GRAMPS database instance
-        options_class   - instance of the Options class for this report
+        options         - instance of the Options class for this report
+        user            - a gen.user.User() instance
 
         This report needs the following parameters (class variables)
         that come in the options class.
         
         gen       - Maximum number of generations to include.
+        name_format   - Preferred format to display names
+        dups    - Whether to include duplicate descendant trees
         """
 
-        Report.__init__(self, database, options_class)
+        Report.__init__(self, database, options, user)
 
-        menu = options_class.menu
+        menu = options.menu
         self.max_generations = menu.get_option_by_name('gen').get_value()
         pid = menu.get_option_by_name('pid').get_value()
         self.center_person = database.get_person_from_gramps_id(pid)
@@ -275,9 +337,10 @@ class DescendantReport(Report):
         self.by_birthdate = sort.by_birthdate
     
         #Initialize the Printinfo class    
+        self._showdups = menu.get_option_by_name('dups').get_value()
         numbering = menu.get_option_by_name('numbering').get_value()
         if numbering == "Simple":
-            obj = PrintSimple()
+            obj = PrintSimple(self._showdups)
         elif numbering == "de Villiers/Pama":
             obj = PrintVilliers()
         elif numbering == "Meurgey de Tupigny":
@@ -288,18 +351,26 @@ class DescendantReport(Report):
         marrs = menu.get_option_by_name('marrs').get_value()
         divs = menu.get_option_by_name('divs').get_value()
 
-        self.objPrint = Printinfo(self.doc, database, obj, marrs, divs)
+        # Copy the global NameDisplay so that we don't change application defaults.
+        self._name_display = copy.deepcopy(global_name_display)
+        name_format = menu.get_option_by_name("name_format").get_value()
+        if name_format != 0:
+            self._name_display.set_default_format(name_format)
+
+        self.objPrint = Printinfo(self.doc, database, obj, marrs, divs,
+                                  self._name_display)
     
     def write_report(self):
         self.doc.start_paragraph("DR-Title")
-        name = _nd.display(self.center_person)
+        name = self._name_display.display(self.center_person)
         title = _("Descendants of %s") % name
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
         
-        recurse = RecurseDown(self.max_generations, self.database, self.objPrint)
-        recurse.recurse(1, self.center_person)
+        recurse = RecurseDown(self.max_generations, self.database,
+                              self.objPrint, self._showdups)
+        recurse.recurse(1, self.center_person, None)
 
 #------------------------------------------------------------------------
 #
@@ -322,6 +393,16 @@ class DescendantOptions(MenuReportOptions):
         pid.set_help(_("The center person for the report"))
         menu.add_option(category_name, "pid", pid)
         
+        # We must figure out the value of the first option before we can
+        # create the EnumeratedListOption
+        fmt_list = global_name_display.get_name_format()
+        name_format = EnumeratedListOption(_("Name format"), 0)
+        name_format.add_item(0, _("Default"))
+        for num, name, fmt_str, act in fmt_list:
+            name_format.add_item(num, name)
+        name_format.set_help(_("Select the format to display names"))
+        menu.add_option(category_name, "name_format", name_format)
+
         numbering = EnumeratedListOption(_("Numbering system"), "Simple")
         numbering.set_items([
                 ("Simple",      _("Simple numbering")), 
@@ -341,6 +422,10 @@ class DescendantOptions(MenuReportOptions):
         divs = BooleanOption(_('Show divorce info'), False)
         divs.set_help(_("Whether to show divorce information in the report."))
         menu.add_option(category_name, "divs", divs)
+
+        dups = BooleanOption(_('Show duplicate trees'), True)
+        dups.set_help(_("Whether to show duplicate family trees in the report."))
+        menu.add_option(category_name, "dups", dups)
 
     def make_default_style(self, default_style):
         """Make the default output style for the Descendant Report."""

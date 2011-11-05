@@ -102,6 +102,7 @@ def map2class(target):
     d = {"person-link": ScratchPersonLink,
          "family-link": ScratchFamilyLink,
          'personref': ScratchPersonRef,
+         'childref': ScratchChildRef,
          'source-link': ScratchSourceLink,
          'srcref': ScratchSourceRef,
          'repo-link': ScratchRepositoryLink,
@@ -152,7 +153,9 @@ def model_contains(model, data):
             # FIXME: too restrictive, birth and death won't both copy
             same = ((row[0] == data[0]) and
                     (row[1]._title == data[1]._title) and
-                    (row[1]._handle == data[1]._handle))
+                    (row[1]._handle == data[1]._handle) and
+                    (row[3] == data[3]) and
+                    (row[4] == data[4]))
         if same:
             return True
     return False
@@ -297,7 +300,7 @@ class ScratchLocation(ScratchObjWrapper):
     DRAG_TARGET  = DdTargets.LOCATION
     ICON         = ICONS['location']
     
-    def __init__(self):
+    def __init__(self, dbstate, obj):
         super(ScratchLocation, self).__init__(dbstate, obj)
         self._type  = _("Location")
         self._value = "%s %s %s" % (self._obj.get_city(),
@@ -588,6 +591,24 @@ class ScratchPersonRef(ScratchObjWrapper):
             person = self._db.get_person_from_handle(self._obj.get_reference_handle())
             if person:
                 self._title = self._obj.get_relation()
+                self._value = person.get_primary_name().get_name()
+
+class ScratchChildRef(ScratchObjWrapper):
+
+    DROP_TARGETS = [DdTargets.CHILDREF]
+    DRAG_TARGET  = DdTargets.CHILDREF
+    ICON         = LINK_PIC
+
+    def __init__(self, dbstate, obj):
+        super(ScratchChildRef, self).__init__(dbstate, obj)
+        self._type  = _("Child ref")
+        if self._obj:
+            person = self._db.get_person_from_handle(self._obj.get_reference_handle())
+            if person:
+                frel = str(self._obj.get_father_relation())
+                mrel = str(self._obj.get_mother_relation())
+                self._title = _('%(frel)s %(mrel)s') % {'frel': frel, 
+                                                        'mrel': mrel}
                 self._value = person.get_primary_name().get_name()
 
 class ScratchPersonLink(ScratchHandleWrapper):
@@ -887,6 +908,8 @@ class ScratchPadListView(object):
                          gen_del_obj(self.delete_object, 'person-link'))
         self._db.connect('person-delete', 
                          gen_del_obj(self.delete_object_ref, 'personref'))
+        self._db.connect('person-delete', 
+                         gen_del_obj(self.delete_object_ref, 'childref'))
         self._db.connect('source-delete',
                          gen_del_obj(self.delete_object, 'source-link'))
         self._db.connect('source-delete',
@@ -962,6 +985,7 @@ class ScratchPadListView(object):
         self.register_wrapper_class(ScratchDropRawList)
         self.register_wrapper_class(ScratchDropHandleList)
         self.register_wrapper_class(ScratchPersonRef)
+        self.register_wrapper_class(ScratchChildRef)
         self.register_wrapper_class(ScratchText)
         self.register_wrapper_class(ScratchNote)
         

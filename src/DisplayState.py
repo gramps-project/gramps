@@ -403,6 +403,18 @@ class DisplayState(gen.utils.Callback):
         # but this connection is still made!
         # self.dbstate.connect('database-changed', self.db_changed)
 
+    def screen_width(self):
+        """
+        Return the width of the current screen.
+        """
+        return self.window.get_screen().get_width()
+
+    def screen_height(self):
+        """
+        Return the height of the current screen.
+        """
+        return self.window.get_screen().get_height()
+
     def clear_history(self):
         """
         Clear all history objects.

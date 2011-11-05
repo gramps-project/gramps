@@ -352,6 +352,7 @@ class PluginData(object):
         self._icons = []
         self._icondir = None
         self._depends_on = []
+        self._include_in_listing = True
         #derived var
         self.mod_name = None
         #RELCALC attr
@@ -538,6 +539,14 @@ class PluginData(object):
             raise ValueError, 'Plugin must have depends_on as a list'
         self._depends_on = depends
 
+    def _get_include_in_listing(self):
+        return self._include_in_listing
+
+    def _set_include_in_listing(self, include):
+        if not isinstance(include, bool):
+            raise ValueError, 'Plugin must have include_in_listing as a bool'
+        self._include_in_listing = include
+
     id = property(_get_id, _set_id)
     name = property(_get_name, _set_name)
     name_accell = property(_get_name_accell, _set_name_accell)
@@ -556,6 +565,7 @@ class PluginData(object):
     icons = property(_get_icons, _set_icons)
     icondir = property(_get_icondir, _set_icondir)
     depends_on = property(_get_depends_on, _set_depends_on)
+    include_in_listing = property(_get_include_in_listing, _set_include_in_listing)
     
     def statustext(self):
         return STATUSTEXT[self.status]

@@ -17,6 +17,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+# $Id$
+#
 
 """
 Handles generation and access to thumbnails used in GRAMPS.
@@ -342,5 +344,5 @@ def get_thumbnail_path(src_file, mtype=None, rectangle=None, size=SIZE_NORMAL):
         if (not os.path.isfile(filename)) or (
                 os.path.getmtime(src_file) > os.path.getmtime(filename)):
             if not __create_thumbnail_image(src_file, mtype, rectangle, size):
-                return os.path.join(const.IMAGE_DIR, "image-missing.png")
+                return os.path.join(const.IMAGE_DIR, "document.png")
         return os.path.abspath(filename)

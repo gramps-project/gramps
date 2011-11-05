@@ -18,7 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id $
+# gen/proxy/referencedbyselection.py
+# $Id$
 
 """
 Proxy class for the GRAMPS databases. Returns objects which are

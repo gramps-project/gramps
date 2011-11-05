@@ -29,7 +29,7 @@ Original Style Author: Jason M. Simanek (2008)
 Color Palette
 --------------------------------------------------------------------------------------------------
 DK. Blue	#00029D
-Lt. Blue	#70B1ED, #BCEAF6
+Lt. Blue	#BCEAF6
 Green		#13A926
 Black		#000
 White		#FFF
@@ -54,7 +54,8 @@ body {
 /* Menu Elements
 ================================================= */
 div#navigation ul, div#subnavigation ul {
-    background-color: Navy;
+    font: normal .9em sans-serif;
+    background-color: #00029D;
 }
 div#navigation ul li, 
 div#subnavigation ul li {
@@ -74,8 +75,8 @@ div#subnavigation ul li a:hover {
 div#navigation ul li.CurrentSection a,
 div#subnavigation ul li.CurrentSection a {
     background-color: #BCEAF6;
-    font: bold 16px sans;
-    color: #FFF;
+    font: bold 14px sans;
+    color: #000;
 }
 div#navigation ul li.CurrentSection a:hover {
     background-color: #BCEAF6;
@@ -155,23 +156,24 @@ h1 {
     font:normal 2em/1.2em serif;
 }
 h2 {
-    display: none;
+    font: bold 1em sans-serif;
+    text-align: center;
+    float: center;
 }
 h3 {
-    font:normal 2em/1.2em serif;
-    text-align:center;
-    margin:0;
+    font: normal 1.6em serif;
+    text-align: center;
+    margin: 0 auto;
     padding:.5em 20px .2em 20px;
     border-bottom: double 4px #000;
 }
 h4 {
-    font: normal 1.2em/1.2em serif;
-    color: #FFF;
-    margin-top: .3cm;
-    padding: .2em 0 .2em 20px;
+    font: normal 1em serif;
     background-color: #00029D;
+    color: #FFF;
+    padding: .2em 0 .2em 20px;
     border-width: 4px 0px 4px 0px;
-    border-style: solid;
+    border-style: grooved;
     border-color: #13A926;
 }
 h5, h6 {
@@ -218,7 +220,7 @@ a:visited {
 }
 a:hover {
     color: #000;
-    background-color: #70B1ED;
+    background-color: #BCEAF6;
     text-decoration: none;
 }
 span.preposition {
@@ -248,11 +250,18 @@ div#header  {
     font-style: italic;
 }
 p#user_header {
-    font-size:1.3em;
-    text-align:left;
+    font-size: .8em;
+    text-align: right;
     color: #FFF;
-    margin:0;
-    padding:.2em 0 .6em 20px;
+    margin: 0 auto;
+    padding: .2em 0 .6em 20px;
+}
+#user_header a {
+    text-decoration: underline;
+}
+#user_header img {
+    float: right;
+    margin-right: 10px;
 }
 
 /* Footer
@@ -323,7 +332,7 @@ table.infolist thead tr th {
     color: #000;
     margin: 0;
     padding: .2em 10px;
-    background-color: #70B1ED;
+    background-color: #BCEAF6;
     border: solid 1px #000;
 }
 table.infolist thead tr th a {
@@ -343,8 +352,11 @@ table.infolist tr td a {
     text-decoration: none;
     color: #000;
 }
+table.infolist tbody tr td {
+    border-bottom: dashed 1px #000;
+}
 table.infolist tr.BeginLetter td, table.infolist tr.BeginSurname td {
-    border-top: solid 1px #13A815;
+    border-top: solid 1px #000;
 }
 table.infolist tr td.ColumnLetter {
     width: 3%;
@@ -359,8 +371,11 @@ table.infolist tbody tr td.ColumnDeath {
     width: 10%;
 }
 table.infolist tbody tr td.ColumnRowLabel {
-    width: 6%;
+    width: 2%;
     padding-left: 20px;
+}
+table.infolist tbody tr td.ColumnRowLabel a {
+    background: none;
 }
 table.infolist tbody tr td.ColumnType {
     width: 6%;
@@ -368,6 +383,7 @@ table.infolist tbody tr td.ColumnType {
 }
 table.infolist tbody tr td.ColumnPartner {
     font-size:.9em;
+    width: 20%;
 }
 table.infolist tbody tr td.ColumnParents {
     font-size: .9em;
@@ -378,6 +394,60 @@ table.infolist tbody tr td.ColumnParents span.mother {
 }
 table.infolist tbody tr td.ColumnParents span.mother:before {
     content: "+ ";
+}
+
+/* Individuals
+================================================= */
+div#Individuals {
+    margin: 0;
+    padding: 0;
+}
+div#Individuals table.individuallist {
+    border-bottom: solid 1px #000;
+}
+div#Individuals table.individuallist tbody tr td.ColumnSurname a:hover,
+div#Individuals table.individuallist tbody tr td.ColumnSurname a:active {
+    cursor: default;
+    color: #000;
+    background: none;
+}
+div#Individuals table.individuallist tbody tr td.ColumnName a {
+    vertical-align: middle;
+}
+div#Individuals div table.infolist tr td p {
+    font:normal .9em/1.2em sans-serif;
+    vertical-align: top;
+}
+div#Individuals div table.infolist tr td p a {
+    display: inline;
+}
+div#IndividualDetail {
+    padding: 0;
+    margin: 0;
+}
+#IndividualDetail div#summaryarea table.infolist tr td {
+    font: normal .9em/1.2em sans-serif;
+    vertical-align: top;
+    border: none;
+}
+div#IndividualDetail div#summaryarea table.infolist tr td a {
+    display: inline;
+}
+div#IndividualDetail table.infolist tr td a:hover {
+    text-decoration: none;
+}
+div#IndividualDetail table.infolist tbody tr td.ColumnAttribute {
+    width: 10%;
+}
+div#IndividualDetail div.subsection table tr td:first-child {
+    padding-left: 20px;
+}
+#familymap a.familymap {
+    margin-left:20px;
+    text-decoration:none;
+}
+#familymap a.familymap:hover {
+    text-decoration:underline;
 }
 
 /* Surnames
@@ -428,7 +498,7 @@ table#SortByName tbody tr td.ColumnSurname {
 }
 table.surnamelist tbody tr td.ColumnSurname:hover,
  table#SortByName tbody tr td.ColumnSurname:hover {
-    background-color: #70B1ED;
+    background-color: #BCEAF6;
 }
 table.surname {
     border-bottom: solid 1px #000;
@@ -452,61 +522,32 @@ table.surname tbody tr td.ColumnName a span.grampsid {
 }
 table.surname tbody tr td.ColumnName:hover {
     background-color: #00029D;
-    color: #FFF;/home/Frog/trunk/src/gui/viewmanager.py:946: GtkWarning: Inserting action group 'Media' into UI manager which already has a group with this name
-
+    color: #FFF;
 }
 table.surname thead tr th.ColumnParents, 
 table.surname tbody tr td.ColumnParents {
     width: 25%;
 }
 
-/* Individuals
+/*    Relationships
 ================================================= */
-div#Individuals {
-    margin: 0;
+div#Relationships, div#RelationshipDetail {
+    margin: 0 auto;
     padding: 0;
+    width: 100%;
 }
-div#Individuals table.individuallist {
-    border-bottom: solid 1px #000;
+div#Relationships table.infolist {
+    width: 100%;
 }
-div#Individuals table.individuallist tbody tr td {
-    border-bottom: dashed 1px #000;
-}
-div#Individuals table.individuallist tbody tr td.ColumnSurname a:hover,
-div#Individuals table.individuallist tbody tr td.ColumnSurname a:active {
-    cursor: default;
-    color: #000;
-    background: none;
-}
-div#Individuals table.individuallist tbody tr td.ColumnName a {
-    vertical-align: middle;
-}
-div#Individuals div table.infolist tr td p {
-    font:normal .9em/1.2em sans-serif;
-    vertical-align: top;
-}
-div#Individuals div table.infolist tr td p a {
-    display: inline;
-}
-div#IndividualDetail {
-    padding: 0;
-    margin: 0;
-}
-#IndividualDetail div table.infolist tr td {
-    font: normal .9em/1.2em sans-serif;
-    vertical-align: top;
-}
-div#IndividualDetail div table.infolist tr td a {
-    display: inline;
-}
-div#IndividualDetail table.infolist tr td a:hover {
-    text-decoration: none;
-}
-div#IndividualDetail table.infolist tbody tr td.ColumnAttribute {
+div#Relationships table.infolist thead tr th.ColumnMarriage,
+div#Relationships table.infolist thead tr th.ColumnDivorce {
     width: 10%;
 }
-div#IndividualDetail div.subsection table tr td:first-child {
-    padding-left: 20px;
+div#Relationships table.infolist tbody tr.BeginFamily {
+    border-top: solid 1px #000;
+}
+div#Relationships table.infolist tbody tr td {
+    border-bottom: dashed 1px #000;
 }
 
 /* Places
@@ -568,16 +609,13 @@ table.eventlist tbody tr td {
     border-bottom: dashed 1px #000;
 }
 table.eventlist tbody tr td.ColumnEvent {
-    width: 12%;
+    width: 15%;
 }
 table.eventlist tbody tr td.ColumnDate {
     width: 12%;
 }
 table.eventlist tbody tr td.ColumnPlace {
     width: 25%;
-}
-table.eventlist tbody tr td.ColumnDescription {
-    width: 20%;
 }
 table.eventlist tbody tr td.ColumnNotes {
     width: 20%;
@@ -588,8 +626,8 @@ table.eventlist tbody tr td.ColumnSources {
 table.eventlist tbody tr td.ColumnPerson {
     width: 35%;
 }
-table.eventlist tbody tr td.ColumnPartner {
-    width: 35%;
+div#IndividualDetail div#families table.eventlist tr td {
+    border-bottom: dashed 1px #000;
 }
 div#EventList table.infolist tbody tr td {
     border-bottom: dashed 1px #000;
@@ -651,6 +689,35 @@ div#EventDetail table.eventlist tbody tr td.ColumnDate {
     border-top: solid 1px #000;
 }
     
+/* Events
+----------------------------------------------------- */
+#EventList table.infolist tr td a,
+#EventDetail table.infolist tr td a {
+    display: inline;
+}
+#EventList table.infolist tr td span.father, 
+#EventList table.infolist tr td span.mother,
+#EventDetail table.infolist tr td span.father,
+#EventDetail table.infolist tr td span.mother {
+    display: block;
+}
+#EventList table.infolist tr td span.person:after,
+#EventList table.infolist tr td span.father:after,
+#EventList table.infolist tr td span.mother:after,
+#EventDetail table.infolist tr td span.person:after,
+#EventDetail table.infolist tr td span.father:after,
+#EventDetail table.infolist tr td span.mother:after {
+    content: ", ";
+}
+#EventList table.infolist tr td span.person:last-child:after,
+#EventList table.infolist tr td span.father:last-child:after,
+#EventList table.infolist tr td span.mother:last-child:after,
+#EventDetail table.infolist tr td span.person:last-child:after,
+#EventDetail table.infolist tr td span.father:last-child:after,
+#EventDetail table.infolist tr td span.mother:last-child:after {
+    content: "";
+}
+
 /* Gallery
 ----------------------------------------------------- */
 #Gallery {
@@ -659,10 +726,6 @@ div#EventDetail table.eventlist tbody tr td.ColumnDate {
 }
 #Gallery table.infolist tbody tr td {
     border-bottom: dashed 1px #000;
-}
-#Gallery table.infolist tbody tr td.ColumnRowLabel {
-    padding-bottom: 0;
-    width: 3%;
 }
 #Gallery table.infolist tbody tr td.ColumnName {
     width: 50%;
@@ -746,8 +809,24 @@ div#EventDetail table.eventlist tbody tr td.ColumnDate {
     width: 40%;
 }
 
+/*    Thumbnail Preview Reference Section
+------------------------------------------------- */
+body#ThumbnailPreview div#references {
+    background-color: #FFF;
+    color: #00029D;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+}
+body#ThumbnailPreview div#references table.infolist tbody tr {
+    border-bottom: dashed 1px #000;
+}
+body#ThumbnailPreview div#references table.infolist tbody tr td.ColumnName {
+    width: 90%;
+}
+
 /* Contact
------------------------------------------------------ */
+------------------------------------------------- */
 #Contact #summaryarea {
     width: 500px;
     margin: 0 auto;
@@ -837,10 +916,6 @@ div#Download table.download td.ColumnModified {
 div#Sources table.infolist tbody tr td {
     border-bottom: dashed 1px #000;
 }
-div#Sources table.infolist tbody tr td.ColumnRowLabel {
-    padding-bottom: 0;
-    width: 3%;
-}
 div#Sources table.infolist tbody tr td.ColumnName {
     padding:0;
 }
@@ -867,9 +942,6 @@ div#RepositoryList {
 }
 div#RepositoryList table.repolist tbody tr td {
     border-bottom: dashed 1px #000;
-}
-div#RepositoryList table.repolist tbody tr td.ColumnRowLabel {
-    width: 3%;
 }
 div#RepositoryList table.repolist tbody tr td.ColumnType {
     width: 15%;
@@ -908,38 +980,6 @@ div#AddressBookList table.addressbook tbody tr td.ColumnWebLinks {
     width: 10%;
 }
 
-/*    Marriage Report
------------------------------------------------------- */
-div#MarriageReport {
-    margin: 0;
-    padding: 0;
-}
-div#MarriageReort table.infolist {
-    width: 100%;
-}
-div#MarriageReport table.infolist tbody tr td {
-    border: solid 2px #139A26;
-    height: .3em;
-    overflow: hidden;
-}
-div#MarriageReport table.infolist tbody tr td.ColumnLetter {
-    width: 3%;
-}
-div#MarriageReport table.infolist tbody tr td.ColumnLetter a {
-    background: none;
-}
-div#MarriageReport table.infolist tbody tr td.ColumnPerson,
-div#MarriageReport table.infolist tbody tr td.ColumnPartner {
-    width: 25%;
-}
-div#MarriageReport table.infolist tbody tr td.ColumnMarriage,
-div#MarriageReport table.infolist tbody tr td.ColumnDivorce {
-    width: 15%;
-}
-div#MarriageReport tbody tr td.ColumnImage {
-    width: 15%;
-}
-
 /* Subsections
 ----------------------------------------------------- */
 #Home, #Introduction, #Contact {
@@ -963,7 +1003,7 @@ div.subsection {
 div.subsection h4 {
     margin-bottom: .5em;
 }
-div.subsection table, div.subsection ol, div.subsection p {
+div.subsection table, div.subsection ol, div.subsection p, div.subsection > a {
     font-size: .9em;
 }
 div.subsection a {
@@ -1000,8 +1040,8 @@ div#events table.eventlist {
     font-size: 10px;
     line-height: 12px;
     color: #000;
-    padding: 6px 0 4px 0;
-    background-color: #70B1ED;
+    padding: 6px 0px 4px 0px;
+    background-color: #BCEAF6;
 }
 #IndividualDetail div#events table.infolist thead tr th:first-child {
     padding-left: 20px;
@@ -1063,6 +1103,9 @@ div#parents table.infolist tbody tr td.ColumnValue ol {
 div#parents table.infolist tbody tr td.ColumnValue ol li a {
     text-decoration: underline;
 }
+div#IndividualDetail div#parents table.infolist tr td {
+    border: none;
+}
 
 /* Subsections : Families
 ----------------------------------------------------- */
@@ -1072,6 +1115,9 @@ div#families {
 }
 div#families table.infolist tbody tr.BeginFamily {
     border-top: solid 1px #000;
+}
+div#families table.infolist tbody tr td {
+    border-bottom: none;
 }
 div#Families table.infolist tbody tr td.ColumnType,
 div#Families table.infolist tbody tr td.ColumnAttribute {
@@ -1090,21 +1136,82 @@ div#families table.infolist tbody tr td.ColumnValue ol li {
 div#families table.infolist tbody tr td.ColumnValue ol li a {
     text-decoration: underline;
 }
+div#families table.fixed_subtables table.eventlist {
+    table-layout:fixed;
+}
+div#families table.fixed_subtables table.eventlist th:first-child {
+    width:9em;
+}
+div#families table.fixed_subtables table.eventlist th:last-child {
+    width:5em;
+}
+
+/* Subsection: Families: Attributes
+------------------------------------------------- */
+div#families able.infolist {
+    font: normal .8em sans-serif;
+    width: 100%;
+}
+div#families table.infolist tbody tr.BeginAttribute {
+    border-top: solid 1px #000;
+}
+div#families table.infolist tbody tr td.Type {
+    width: 8%;
+}
+div#families table.infolist tbody tr td.Value {
+    width: 15%;
+}
+div#families table.infolist tr td.Notes {
+    width: 40%;
+}
+div#families table.infolist tbody tr td.Sources {
+    with: 15%;
+}
+
+/* Subsection: Families: LDS Ordinance
+------------------------------------------------------ */
+div#families table.infolist {
+    font: normal .8em sans;
+}
+div#families table.infolist tbody tr.BeginOrdinance {
+    border-top: solid 1px #000;
+}
+div#families table.infolist tbody tr td.ColumnLDSType {
+    width: 5%;
+}
+div#families table.infolist tbody tr td.ColumnLDSDate {
+    width: 10%;
+}
+div#families table.infolist tbody tr td.ColumnLDSTemple {
+    width: 8%;
+}
+div#families table.infolist tbody tr td.ColumnLDSPlace {
+    width: 15%;
+}
+div#families table.infolist tbody tr td.ColumnLDSStatus {
+    width: 8%;
+}
+div#families table.infolist tbody tr td.ColumnLDSSealed {
+    width: 20%;
+}
+div#families table.infolist tbody tr td.ColumnLDSSources {
+    width: 7%;
+}
 
 /* Subsection: LDS Ordinance
 ------------------------------------------------------ */
 div#LDSOrdinance {
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
 }
-div#LDSOrdinance table.ldsordlist {
-    font-size: .35cm;
-}
 table.ldsordlist {
-    margin-bottom: .5em;
+    font: normal .8em sans;
+}
+table.ldsordlist tbody tr.BeginOrdinance {
+    border-top: solid 1px #000;
 }
 table.ldsordlist tbody tr td.ColumnLDSType {
-    width: 12%;
+    width: 8%;
 }
 table.ldsordlist tbody tr td.ColumnLDSDate {
     width: 15%;
@@ -1113,17 +1220,16 @@ table.ldsordlist tbody tr td.ColumnLDSTemple {
     width: 10%;
 }
 table.ldsordlist tbody tr td.ColumnLDSPlace {
-    width: 35%;
+    width: 20%;
 }
-table.ldsordlist tbody tr td.ColumnLDSStatus {
-    width: 8;
+tableldsordolist tbody tr td.ColumnLDSStatus {
+    width: 8%;
 }
 table.ldsordlist tbody tr td.ColumnLDSSealed {
     width: 25%;
 }
 table.ldsordlist tbody tr td.ColumnLDSSources {
     width: 7%;
-    margin-top: .2cm;
 }
 
 /* Subsections : Addresses
@@ -1134,7 +1240,6 @@ div#Addresses {
 }
 div#Addresses table.infolist {
     font-size: 10px;
-    background-color: #70B1ED;
 }
 div#Addresses table.infolist tbody tr td.ColumnDate {
     width: 15%;
@@ -1160,14 +1265,17 @@ div#Addresses table.infolist tbody tr td.ColumnPostalcode {
 div#Addresses table.infolist tbody tr td.ColumnPhone {
     width: 12%;
 }
+div#Addresses table.infolist tr td a, div#Addresses table.infolist tr td p a {
+    display: inline;
+}
 
 /* SubSection: Residence
 ----------------------------------------------------- */
-div#Residence {
+div.Residence {
     margin: 0;
     padding: 0;
 }
-div#Residence table.infolist tr td {
+div.Residence table.infolist tr td {
     border-top: dashed 1px #000;
 }
 
@@ -1195,7 +1303,7 @@ div#Residence table.infolist tr td {
     border: solid 1px #000;
 }
 
-#indivgallery div.thumbnail p {
+#indivgallery div.thumbnail span {
 /* ## remove this line and the comment markers from the line below to hide the description in Individual Gallery
     display: none; */
     font: normal .7em/1.4em sans-serif;
@@ -1207,10 +1315,10 @@ div#Residence table.infolist tr td {
 
 /* Subsections : Narrative
 ----------------------------------------------------- */
-div#narrative {
+div.narrative {
     padding-bottom: 0;
 }
-#narrative p {
+.narrative p {
     font: normal .9em/1.4em sans-serif;
     margin-top: .5em;
     margin-bottom: 0;
@@ -1537,9 +1645,6 @@ table.oneday {
 }
 table.oneday tbody tr td {
     border-bottom: dashed 1px #000;
-}
-table.oneday tbody tr td.ColumnRowLabel {
-    width: 5%;
 }
 table.oneday tbody tr td.ColumnText {
     width: 85%;

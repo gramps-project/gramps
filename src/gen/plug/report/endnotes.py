@@ -20,7 +20,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# $Id: _Endnotes.py 15169 2010-04-16 20:59:10Z bmcage $
+# $Id$
 
 """
 Provide utilities for printing endnotes in text reports.
@@ -29,6 +29,7 @@ from gen.plug.docgen import FontStyle, ParagraphStyle, FONT_SANS_SERIF
 from gen.lib import NoteType, SourceRef
 from gen.ggettext import gettext as _
 from Utils import confidence
+from DateHandler import displayer
 
 def add_endnote_styles(style_sheet):
     """
@@ -178,9 +179,9 @@ def _format_ref_text(ref, key):
         datepresent = True
     if datepresent:
         if ref.get_page():
-            ref_txt = "%s - %s" % (ref.get_page(), str(date))
+            ref_txt = "%s - %s" % (ref.get_page(), displayer.display(date))
         else:
-            ref_txt = str(date)
+            ref_txt =  displayer.display(date)
     else:
         ref_txt = ref.get_page()
         

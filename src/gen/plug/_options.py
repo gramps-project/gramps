@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2004-2005  Donald N. Allingham
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2011       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,7 +19,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# $Id:_Options.py 9912 2008-01-22 09:17:46Z acraphae $
+# $Id$
 
 # Written by Alex Roitman
 
@@ -51,6 +52,7 @@ except:
 #
 #-------------------------------------------------------------------------
 import Utils
+import gen
 
 #-------------------------------------------------------------------------
 #
@@ -337,7 +339,7 @@ class OptionHandler(object):
         bad_opts = []
         for option_name, option_data in options.iteritems():
             if option_name not in self.options_dict:
-                print "Option %s is present in the %s but is not known "\
+                print "Option '%s' is present in %s but is not known "\
                       "to the module." % (option_name,
                                           self.option_list_collection.filename)
                 print "Ignoring..."
@@ -441,17 +443,11 @@ class Options(object):
         """
         self.handler = OptionHandler(self.name,self.options_dict,self.person_id)
 
-    def add_user_options(self,dialog):
+    def add_user_options(self):
         """
         Set up UI controls (widgets) for the options specific for this modul.
 
         This method MUST be overridden by modules that define new options.
-        The single argument 'dialog' is the Report.ReportDialog instance.
-        Any attribute of the dialog is available.
-        
-        After the widgets are defined, they MUST be added to the dialog
-        using the following call:
-                dialog.add_options(LABEL,widget)
         
         NOTE:   To really have any effect besides looking pretty, each widget
                 set up here must be also parsed in the parse_user_options()
@@ -459,13 +455,11 @@ class Options(object):
         """
         pass
 
-    def parse_user_options(self,dialog):
+    def parse_user_options(self):
         """
         Parses UI controls (widgets) for the options specific for this module.
 
         This method MUST be overridden by modules that define new options.
-        The single argument 'dialog' is the Report.ReportDialog instance.
-        Any attribute of the dialog is available.
         
         After obtaining values from the widgets, they MUST be used to set the
         appropriate options_dict values. Otherwise the values will not have
@@ -475,3 +469,72 @@ class Options(object):
                 in the add_user_options() method above.
         """
         pass
+
+#------------------------------------------------------------------------
+#
+# MenuOptions class
+#
+#------------------------------------------------------------------------
+class MenuOptions(object):
+    """
+    Introduction
+    ============
+    A MenuOptions is used to implement the necessary functions for adding
+    options to a menu.
+    """
+    def __init__(self):
+        self.menu = gen.plug.menu.Menu()
+        
+        # Fill options_dict with report/tool defaults:
+        self.options_dict = {}
+        self.options_help = {}
+        self.add_menu_options(self.menu)
+        for name in self.menu.get_all_option_names():
+            option = self.menu.get_option_by_name(name)
+            self.options_dict[name] = option.get_value()
+            self.options_help[name] = [ "", option.get_help() ]
+
+    def make_default_style(self, default_style):
+        """
+        This function is currently required by some reports.
+        """
+        pass
+
+    def add_menu_options(self, menu):
+        """
+        Add the user defined options to the menu.
+        
+        @param menu: A menu class for the options to belong to.
+        @type menu: Menu
+        @return: nothing
+        """
+        raise NotImplementedError
+    
+    def add_menu_option(self, category, name, option):
+        """
+        Add a single option to the menu.
+        """
+        self.menu.add_option(category, name, option)
+        self.options_dict[name] = option.get_value()
+        self.options_help[name] = [ "", option.get_help() ]
+
+    def add_user_options(self):
+        """
+        Generic method to add user options to the menu.
+        """
+        for category in self.menu.get_categories():
+            for name in self.menu.get_option_names(category):
+                option = self.menu.get_option(category, name)
+                
+                # override option default with xml-saved value:
+                if name in self.options_dict:
+                    option.set_value(self.options_dict[name])
+
+    def parse_user_options(self):
+        """
+        Load the changed values into the saved options.
+        """
+        for name in self.menu.get_all_option_names():
+            option = self.menu.get_option_by_name(name)
+            self.options_dict[name] = option.get_value()
+

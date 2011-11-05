@@ -145,7 +145,7 @@ IMAGE_DIR      = os.path.join(ROOT_DIR, "images")
 VERSION_DIR    = os.path.join(
     HOME_DIR, "gramps%s%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1]))
 
-CUSTOM_FILTERS = os.path.join(HOME_DIR, "custom_filters.xml")
+CUSTOM_FILTERS = os.path.join(VERSION_DIR, "custom_filters.xml")
 REPORT_OPTIONS = os.path.join(HOME_DIR, "report_options.xml")
 TOOL_OPTIONS   = os.path.join(HOME_DIR, "tool_options.xml")
 
@@ -178,7 +178,7 @@ RULE_GLADE     = os.path.join(GLADE_DIR, "rule.glade")
 
 PLUGINS_DIR      = os.path.join(ROOT_DIR, "plugins")
 DATA_DIR         = os.path.join(ROOT_DIR, "data")
-WEB_DIR          = os.path.join(ROOT_DIR, 'web')
+WEB_DIR          = os.path.join(ROOT_DIR, 'webapp')
 #SYSTEM_FILTERS  = os.path.join(DATA_DIR, "system_filters.xml")
 TIP_DATA         = os.path.join(DATA_DIR, "tips.xml")
 WEBSTUFF_DIR     = os.path.join(PLUGINS_DIR, "webstuff")

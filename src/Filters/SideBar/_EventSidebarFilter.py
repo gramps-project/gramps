@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id:_EventSidebarFilter.py 9912 2008-01-22 09:17:46Z acraphae $
+# $Id$
 
 #-------------------------------------------------------------------------
 #
@@ -58,8 +58,8 @@ class EventSidebarFilter(SidebarFilter):
 
     def __init__(self, dbstate, uistate, clicked):
         self.clicked_func = clicked
-        self.filter_id = gtk.Entry()
-        self.filter_desc = gtk.Entry()       
+        self.filter_id = widgets.BasicEntry()
+        self.filter_desc = widgets.BasicEntry()
         self.filter_event = gen.lib.Event()
         self.filter_event.set_type((gen.lib.EventType.CUSTOM, u''))
         self.etype = gtk.ComboBoxEntry()
@@ -69,11 +69,11 @@ class EventSidebarFilter(SidebarFilter):
             self.filter_event.set_type,
             self.filter_event.get_type)
         
-        self.filter_mainparts = gtk.Entry()
-        self.filter_date = gtk.Entry()
-        self.filter_place = gtk.Entry()
-        self.filter_note = gtk.Entry()
-
+        self.filter_mainparts = widgets.BasicEntry()
+        self.filter_date = widgets.BasicEntry()
+        self.filter_place = widgets.BasicEntry()
+        self.filter_note = widgets.BasicEntry()
+        
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
 
         self.generic = gtk.ComboBox()
@@ -88,15 +88,17 @@ class EventSidebarFilter(SidebarFilter):
         self.generic.add_attribute(cell, 'text', 0)
         self.on_filters_changed('Event')
 
+        self.etype.child.set_width_chars(5)
+
         self.add_text_entry(_('ID'), self.filter_id)
         self.add_text_entry(_('Description'), self.filter_desc)
         self.add_entry(_('Type'), self.etype)
-        self.add_text_entry(_('Main Participants'), self.filter_mainparts)
+        self.add_text_entry(_('Participants'), self.filter_mainparts)
         self.add_text_entry(_('Date'), self.filter_date)
         self.add_text_entry(_('Place'), self.filter_place)
         self.add_text_entry(_('Note'), self.filter_note)
         self.add_filter_entry(_('Custom filter'), self.generic)
-        self.add_entry(None, self.filter_regex)
+        self.add_regex_entry(self.filter_regex)
 
     def clear(self, obj):
         self.filter_id.set_text(u'')

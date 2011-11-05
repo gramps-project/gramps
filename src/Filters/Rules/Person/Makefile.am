@@ -57,6 +57,7 @@ pkgdata_PYTHON = \
 	_IsMoreThanNthGenerationAncestorOf.py \
 	_IsMoreThanNthGenerationDescendantOf.py \
 	_IsParentOfFilterMatch.py \
+        _IsRelatedWith.py \
 	_IsSiblingOfFilterMatch.py \
 	_IsSpouseOfFilterMatch.py \
 	_IsWitness.py \

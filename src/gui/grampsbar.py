@@ -39,15 +39,6 @@ import os
 #
 #-------------------------------------------------------------------------
 import gtk
-gtk.rc_parse_string("""
-    style "tab-button-style" {
-       GtkWidget::focus-padding = 0
-       GtkWidget::focus-line-width = 0
-       xthickness = 0
-       ythickness = 0
-    }
-    widget "*.tab-button" style "tab-button-style"
-    """)
 
 #-------------------------------------------------------------------------
 #
@@ -67,6 +58,7 @@ from gui.widgets.grampletpane import (AVAILABLE_GRAMPLETS,
                                       GuiGramplet)
 from gui.widgets.undoablebuffer import UndoableBuffer
 from gui.utils import add_menuitem
+from QuestionDialog import QuestionDialog
 
 #-------------------------------------------------------------------------
 #
@@ -92,6 +84,7 @@ class GrampsBar(gtk.Notebook):
         self.uistate = uistate
         self.pageview = pageview
         self.configfile = os.path.join(const.VERSION_DIR, "%s.ini" % configfile)
+        self.defaults = defaults
         self.detached_gramplets = []
         self.empty = False
 
@@ -297,6 +290,14 @@ class GrampsBar(gtk.Notebook):
             return [gramplet.gname for gramplet in self.get_children() +
                                                    self.detached_gramplets]
 
+    def restore(self):
+        """
+        Restore the GrampsBar to its default gramplets.
+        """
+        map(self.remove_gramplet, self.all_gramplets())
+        map(self.add_gramplet, self.defaults)
+        self.set_current_page(0)
+
     def __create_empty_tab(self):
         """
         Create an empty tab to be displayed when the GrampsBar is empty.
@@ -313,13 +314,16 @@ class GrampsBar(gtk.Notebook):
         """
         Add a tab to the notebook for the given gramplet.
         """
-        gramplet.set_size_request(gramplet.width, gramplet.height)
+        width = min(int(self.uistate.screen_width() * 0.25), 400)
+        height = min(int(self.uistate.screen_height() * 0.20), 400)
+        gramplet.set_size_request(width, height)
+
         page_num = self.append_page(gramplet)
         return page_num
 
     def __create_tab_label(self, gramplet):
         """
-        Create a tab label consisting of a label and a close button.
+        Create a tab label.
         """
         label = gtk.Label()
         if hasattr(gramplet.pui, "has_data"):
@@ -412,18 +416,19 @@ class GrampsBar(gtk.Notebook):
         Called when a button is pressed in the tabs section of the GrampsBar.
         """
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-            uiman = self.uistate.uimanager
-            ag_menu = uiman.get_widget('/GrampsBarPopup/AddGramplet')
+            menu = gtk.Menu()
+
+            ag_menu = gtk.MenuItem(_('Add a gramplet'))
             nav_type = self.pageview.navigation_type()
             skip = self.all_gramplets()
             gramplet_list = GET_GRAMPLET_LIST(nav_type, skip)
             gramplet_list.sort()
             self.__create_submenu(ag_menu, gramplet_list, self.__add_clicked)
+            ag_menu.show()
+            menu.append(ag_menu)
 
-            rg_menu = uiman.get_widget('/GrampsBarPopup/RemoveGramplet')
-            if self.empty:
-                rg_menu.hide()
-            else:
+            if not self.empty:
+                rg_menu = gtk.MenuItem(_('Remove a gramplet'))
                 gramplet_list = [(gramplet.title, gramplet.gname)
                                  for gramplet in self.get_children() +
                                                  self.detached_gramplets]
@@ -431,11 +436,16 @@ class GrampsBar(gtk.Notebook):
                 self.__create_submenu(rg_menu, gramplet_list,
                                       self.__remove_clicked)
                 rg_menu.show()
+                menu.append(rg_menu)
 
-            menu = uiman.get_widget('/GrampsBarPopup')
-            if menu:
-                menu.popup(None, None, None, 1, event.time)
-                return True
+            rd_menu = gtk.MenuItem(_('Restore default gramplets'))
+            rd_menu.connect("activate", self.__restore_clicked)
+            rd_menu.show()
+            menu.append(rd_menu)
+
+            menu.popup(None, None, None, 1, event.time)
+            return True
+
         return False
 
     def __create_submenu(self, main_menu, gramplet_list, callback_func):
@@ -463,6 +473,16 @@ class GrampsBar(gtk.Notebook):
         Called when a gramplet is removed from the context menu.
         """
         self.remove_gramplet(gname)
+
+    def __restore_clicked(self, menu):
+        """
+        Called when restore defaults is clicked from the context menu.
+        """
+        QuestionDialog(_("Restore to defaults?"),
+            _("The Grampsbar will be restored to contain its default "
+              "gramplets.  This action cannot be undone."),
+            _("OK"),
+            self.restore)
 
     def get_config_funcs(self):
         """

@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-naming-policy project-wide -->
@@ -33,16 +33,25 @@
             <child>
               <object class="GtkVBox" id="vbox129">
                 <property name="visible">True</property>
-                <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkButton" id="pup">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="pup-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Move parent up</property>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkImage" id="image2714">
                         <property name="visible">True</property>
                         <property name="stock">gtk-go-up</property>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="image2714-atkobject">
+                            <property name="AtkObject::accessible-description" translatable="yes">Arrow top</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>
@@ -57,10 +66,20 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="pdown-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Move parent down</property>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkImage" id="image2715">
                         <property name="visible">True</property>
                         <property name="stock">gtk-go-down</property>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="image2715-atkobject">
+                            <property name="AtkObject::accessible-description" translatable="yes">Arrow bottom</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>
@@ -144,16 +163,25 @@
             <child>
               <object class="GtkVBox" id="vbox130">
                 <property name="visible">True</property>
-                <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkButton" id="fup">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="fup-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Move family up</property>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkImage" id="image2716">
                         <property name="visible">True</property>
                         <property name="stock">gtk-go-up</property>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="image2716-atkobject">
+                            <property name="AtkObject::accessible-description" translatable="yes">Arrow top</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>
@@ -168,10 +196,20 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="fdown-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Move family down</property>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkImage" id="image2717">
                         <property name="visible">True</property>
                         <property name="stock">gtk-go-down</property>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="image2717-atkobject">
+                            <property name="AtkObject::accessible-description" translatable="yes">Arrow bottom</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>

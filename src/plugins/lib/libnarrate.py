@@ -1,8 +1,11 @@
+# -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2009  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2011       Vlada Perić <vlada.peric@gmail.com>
+# Copyright (C) 2011       Matt Keenan <matt.keenan@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -52,10 +55,9 @@ _NAME_INDEX_EXCLUDE_NAME = 1
 
 # In string arrays, the first strings should not include age.
 # The following strings should include year, month and day units.
+# And support format with precision (see gen/lib/date.py).
 _AGE_INDEX_NO_AGE = 0
-_AGE_INDEX_YEARS  = 1
-_AGE_INDEX_MONTHS = 2
-_AGE_INDEX_DAYS   = 3
+_AGE_INDEX = 1
 
 #-------------------------------------------------------------------------
 #
@@ -181,377 +183,265 @@ born_no_date_with_place = [
 died_full_date_with_place = [
   { Person.UNKNOWN : [
     _("%(unknown_gender_name)s died on %(death_date)s in %(death_place)s."), 
-    _("%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d years."), 
-    _("%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d months."), 
-    _("%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    _("%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age of %(age)s."), 
     ], 
     Person.MALE : [
     _("%(male_name)s died on %(death_date)s in %(death_place)s."), 
-    _("%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d years."), 
-    _("%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d months."), 
-    _("%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    _("%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)s."), 
     ], 
     Person.FEMALE : [
     _("%(female_name)s died on %(death_date)s in %(death_place)s."), 
-    _("%(female_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d years."), 
-    _("%(female_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d months."), 
-    _("%(female_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    _("%(female_name)s died on %(death_date)s in %(death_place)s at the age of %(age)s."), 
     ], 
   },
   { Person.UNKNOWN : [
     _("This person died on %(death_date)s in %(death_place)s."), 
-    _("This person died on %(death_date)s in %(death_place)s at the age of %(age)d years."), 
-    _("This person died on %(death_date)s in %(death_place)s at the age of %(age)d months."), 
-    _("This person died on %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    _("This person died on %(death_date)s in %(death_place)s at the age of %(age)s."), 
     ], 
     Person.MALE : [
     _("He died on %(death_date)s in %(death_place)s."), 
-    _("He died on %(death_date)s in %(death_place)s at the age of %(age)d years."), 
-    _("He died on %(death_date)s in %(death_place)s at the age of %(age)d months."), 
-    _("He died on %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    _("He died on %(death_date)s in %(death_place)s at the age of %(age)s."), 
     ], 
     Person.FEMALE : [
     _("She died on %(death_date)s in %(death_place)s."), 
-    _("She died on %(death_date)s in %(death_place)s at the age of %(age)d years."), 
-    _("She died on %(death_date)s in %(death_place)s at the age of %(age)d months."), 
-    _("She died on %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    _("She died on %(death_date)s in %(death_place)s at the age of %(age)s."), 
     ], 
   }, 
   [
   _("Died %(death_date)s in %(death_place)s."),
-  _("Died %(death_date)s in %(death_place)s (age %(age)d years)."),
-  _("Died %(death_date)s in %(death_place)s (age %(age)d months)."),
-  _("Died %(death_date)s in %(death_place)s (age %(age)d days)."),
+  _("Died %(death_date)s in %(death_place)s (%(age)s)."),
   ], 
 ]
 
 died_modified_date_with_place = [
   { Person.UNKNOWN : [
     _("%(unknown_gender_name)s died %(death_date)s in %(death_place)s."), 
-    _("%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of %(age)d years."), 
-    _("%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of %(age)d months."), 
-    _("%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    _("%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of %(age)s."),  
     ], 
     Person.MALE : [
     _("%(male_name)s died %(death_date)s in %(death_place)s."), 
-    _("%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d years."), 
-    _("%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d months."), 
-    _("%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    _("%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)s."), 
     ], 
     Person.FEMALE : [
     _("%(female_name)s died %(death_date)s in %(death_place)s."), 
-    _("%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d years."), 
-    _("%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d months."), 
-    _("%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    _("%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)s."), 
     ], 
   },
   { Person.UNKNOWN : [
     _("This person died %(death_date)s in %(death_place)s."), 
-    _("This person died %(death_date)s in %(death_place)s at the age of %(age)d years."), 
-    _("This person died %(death_date)s in %(death_place)s at the age of %(age)d months."), 
-    _("This person died %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    _("This person died %(death_date)s in %(death_place)s at the age of %(age)s."), 
     ], 
     Person.MALE : [
     _("He died %(death_date)s in %(death_place)s."), 
-    _("He died %(death_date)s in %(death_place)s at the age of %(age)d years."), 
-    _("He died %(death_date)s in %(death_place)s at the age of %(age)d months."), 
-    _("He died %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    _("He died %(death_date)s in %(death_place)s at the age of %(age)s."), 
     ], 
     Person.FEMALE : [
     _("She died %(death_date)s in %(death_place)s."), 
-    _("She died %(death_date)s in %(death_place)s at the age of %(age)d years."), 
-    _("She died %(death_date)s in %(death_place)s at the age of %(age)d months."), 
-    _("She died %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    _("She died %(death_date)s in %(death_place)s at the age of %(age)s."), 
     ], 
   }, 
   [
   _("Died %(death_date)s in %(death_place)s."),
-  _("Died %(death_date)s in %(death_place)s (age %(age)d years)."),
-  _("Died %(death_date)s in %(death_place)s (age %(age)d months)."),
-  _("Died %(death_date)s in %(death_place)s (age %(age)d days)."),
+  _("Died %(death_date)s in %(death_place)s (%(age)s)."),
   ], 
 ]
 
 died_full_date_no_place = [
   { Person.UNKNOWN : [
     _("%(unknown_gender_name)s died on %(death_date)s."), 
-    _("%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."), 
-    _("%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."), 
-    _("%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."), 
+    _("%(unknown_gender_name)s died on %(death_date)s at the age of %(age)s."), 
     ], 
     Person.MALE : [
     _("%(male_name)s died on %(death_date)s."), 
-    _("%(male_name)s died on %(death_date)s at the age of %(age)d years."), 
-    _("%(male_name)s died on %(death_date)s at the age of %(age)d months."), 
-    _("%(male_name)s died on %(death_date)s at the age of %(age)d days."), 
+    _("%(male_name)s died on %(death_date)s at the age of %(age)s."), 
     ], 
     Person.FEMALE : [
     _("%(female_name)s died on %(death_date)s."), 
-    _("%(female_name)s died on %(death_date)s at the age of %(age)d years."), 
-    _("%(female_name)s died on %(death_date)s at the age of %(age)d months."), 
-    _("%(female_name)s died on %(death_date)s at the age of %(age)d days."), 
+    _("%(female_name)s died on %(death_date)s at the age of %(age)s."), 
     ], 
   },
   { Person.UNKNOWN : [
     _("This person died on %(death_date)s."), 
-    _("This person died on %(death_date)s at the age of %(age)d years."), 
-    _("This person died on %(death_date)s at the age of %(age)d months."), 
-    _("This person died on %(death_date)s at the age of %(age)d days."), 
+    _("This person died on %(death_date)s at the age of %(age)s."), 
     ], 
     Person.MALE : [
     _("He died on %(death_date)s."), 
-    _("He died on %(death_date)s at the age of %(age)d years."), 
-    _("He died on %(death_date)s at the age of %(age)d months."), 
-    _("He died on %(death_date)s at the age of %(age)d days."), 
+    _("He died on %(death_date)s at the age of %(age)s."), 
     ], 
     Person.FEMALE : [
     _("She died on %(death_date)s."), 
-    _("She died on %(death_date)s at the age of %(age)d years."), 
-    _("She died on %(death_date)s at the age of %(age)d months."), 
-    _("She died on %(death_date)s at the age of %(age)d days."), 
+    _("She died on %(death_date)s at the age of %(age)s."), 
     ], 
   }, 
   [
   _("Died %(death_date)s."),
-  _("Died %(death_date)s (age %(age)d years)."),
-  _("Died %(death_date)s (age %(age)d months)."),
-  _("Died %(death_date)s (age %(age)d days)."),
+  _("Died %(death_date)s (%(age)s)."),
   ], 
 ]  
 
 died_modified_date_no_place = [
   { Person.UNKNOWN : [
     _("%(unknown_gender_name)s died %(death_date)s."), 
-    _("%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."), 
-    _("%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."), 
-    _("%(unknown_gender_name)s died %(death_date)s at the age of %(age)d days."), 
+    _("%(unknown_gender_name)s died %(death_date)s at the age of %(age)s."), 
     ], 
     Person.MALE : [
     _("%(male_name)s died %(death_date)s."), 
-    _("%(male_name)s died %(death_date)s at the age of %(age)d years."), 
-    _("%(male_name)s died %(death_date)s at the age of %(age)d months."), 
-    _("%(male_name)s died %(death_date)s at the age of %(age)d days."), 
+    _("%(male_name)s died %(death_date)s at the age of %(age)s."), 
     ], 
     Person.FEMALE : [
     _("%(female_name)s died %(death_date)s."), 
-    _("%(female_name)s died %(death_date)s at the age of %(age)d years."), 
-    _("%(female_name)s died %(death_date)s at the age of %(age)d months."), 
-    _("%(female_name)s died %(death_date)s at the age of %(age)d days."), 
+    _("%(female_name)s died %(death_date)s at the age of %(age)s."), 
     ], 
   },
   { Person.UNKNOWN : [
     _("This person died %(death_date)s."), 
-    _("This person died %(death_date)s at the age of %(age)d years."), 
-    _("This person died %(death_date)s at the age of %(age)d months."), 
-    _("This person died %(death_date)s at the age of %(age)d days."), 
+    _("This person died %(death_date)s at the age of %(age)s."), 
     ], 
     Person.MALE : [
     _("He died %(death_date)s."), 
-    _("He died %(death_date)s at the age of %(age)d years."), 
-    _("He died %(death_date)s at the age of %(age)d months."), 
-    _("He died %(death_date)s at the age of %(age)d days."), 
+    _("He died %(death_date)s at the age of %(age)s."), 
     ], 
     Person.FEMALE : [
     _("She died %(death_date)s."), 
-    _("She died %(death_date)s at the age of %(age)d years."), 
-    _("She died %(death_date)s at the age of %(age)d months."), 
-    _("She died %(death_date)s at the age of %(age)d days."), 
+    _("She died %(death_date)s at the age of %(age)s."), 
     ], 
   }, 
   [
   _("Died %(death_date)s."),
-  _("Died %(death_date)s (age %(age)d years)."),
-  _("Died %(death_date)s (age %(age)d months)."),
-  _("Died %(death_date)s (age %(age)d days)."),
+  _("Died %(death_date)s (%(age)s)."),
   ], 
 ]  
 
 died_partial_date_with_place = [
   { Person.UNKNOWN : [
     _("%(unknown_gender_name)s died in %(month_year)s in %(death_place)s."), 
-    _("%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d years."), 
-    _("%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d months."), 
-    _("%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d days."), 
+    _("%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age of %(age)s."), 
     ], 
     Person.MALE : [
     _("%(male_name)s died in %(month_year)s in %(death_place)s."), 
-    _("%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d years."), 
-    _("%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d months."), 
-    _("%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d days."), 
+    _("%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)s."), 
     ], 
     Person.FEMALE : [
     _("%(female_name)s died in %(month_year)s in %(death_place)s."), 
-    _("%(female_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d years."), 
-    _("%(female_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d months."), 
-    _("%(female_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d days."), 
+    _("%(female_name)s died in %(month_year)s in %(death_place)s at the age of %(age)s."), 
     ], 
   },
   { Person.UNKNOWN : [
     _("This person died in %(month_year)s in %(death_place)s."), 
-    _("This person died in %(month_year)s in %(death_place)s at the age of %(age)d years."), 
-    _("This person died in %(month_year)s in %(death_place)s at the age of %(age)d months."), 
-    _("This person died in %(month_year)s in %(death_place)s at the age of %(age)d days."), 
+    _("This person died in %(month_year)s in %(death_place)s at the age of %(age)s."), 
     ], 
     Person.MALE : [
     _("He died in %(month_year)s in %(death_place)s."), 
-    _("He died in %(month_year)s in %(death_place)s at the age of %(age)d years."), 
-    _("He died in %(month_year)s in %(death_place)s at the age of %(age)d months."), 
-    _("He died in %(month_year)s in %(death_place)s at the age of %(age)d days."), 
+    _("He died in %(month_year)s in %(death_place)s at the age of %(age)s."), 
     ], 
     Person.FEMALE : [
     _("She died in %(month_year)s in %(death_place)s."), 
-    _("She died in %(month_year)s in %(death_place)s at the age of %(age)d years."), 
-    _("She died in %(month_year)s in %(death_place)s at the age of %(age)d months."), 
-    _("She died in %(month_year)s in %(death_place)s at the age of %(age)d days."), 
+    _("She died in %(month_year)s in %(death_place)s at the age of %(age)s."), 
     ]
   }, 
   [
   _("Died %(month_year)s in %(death_place)s."),
-  _("Died %(month_year)s in %(death_place)s (age %(age)d years)."),
-  _("Died %(month_year)s in %(death_place)s (age %(age)d months)."),
-  _("Died %(month_year)s in %(death_place)s (age %(age)d days)."),
+  _("Died %(month_year)s in %(death_place)s (%(age)s)."),
   ], 
 ]  
 
 died_partial_date_no_place = [
   { Person.UNKNOWN : [
     _("%(unknown_gender_name)s died in %(month_year)s."), 
-    _("%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."), 
-    _("%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."), 
-    _("%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."), 
+    _("%(unknown_gender_name)s died in %(month_year)s at the age of %(age)s."), 
     ], 
     Person.MALE : [
     _("%(male_name)s died in %(month_year)s."), 
-    _("%(male_name)s died in %(month_year)s at the age of %(age)d years."), 
-    _("%(male_name)s died in %(month_year)s at the age of %(age)d months."), 
-    _("%(male_name)s died in %(month_year)s at the age of %(age)d days."), 
+    _("%(male_name)s died in %(month_year)s at the age of %(age)s."), 
     ], 
     Person.FEMALE : [
     _("%(female_name)s died in %(month_year)s."), 
-    _("%(female_name)s died in %(month_year)s at the age of %(age)d years."), 
-    _("%(female_name)s died in %(month_year)s at the age of %(age)d months."), 
-    _("%(female_name)s died in %(month_year)s at the age of %(age)d days."), 
+    _("%(female_name)s died in %(month_year)s at the age of %(age)s."), 
     ], 
   },
   { Person.UNKNOWN : [
     _("This person died in %(month_year)s."), 
-    _("This person died in %(month_year)s at the age of %(age)d years."), 
-    _("This person died in %(month_year)s at the age of %(age)d months."), 
-    _("This person died in %(month_year)s at the age of %(age)d days."), 
+    _("This person died in %(month_year)s at the age of %(age)s."), 
     ], 
     Person.MALE : [
     _("He died in %(month_year)s."), 
-    _("He died in %(month_year)s at the age of %(age)d years."), 
-    _("He died in %(month_year)s at the age of %(age)d months."), 
-    _("He died in %(month_year)s at the age of %(age)d days."), 
+    _("He died in %(month_year)s at the age of %(age)s."), 
     ], 
     Person.FEMALE : [
     _("She died in %(month_year)s."), 
-    _("She died in %(month_year)s at the age of %(age)d years."), 
-    _("She died in %(month_year)s at the age of %(age)d months."), 
-    _("She died in %(month_year)s at the age of %(age)d days."), 
+    _("She died in %(month_year)s at the age of %(age)s."), 
     ], 
   }, 
   [
   _("Died %(month_year)s."),
-  _("Died %(month_year)s (age %(age)d years)."),
-  _("Died %(month_year)s (age %(age)d months)."),
-  _("Died %(month_year)s (age %(age)d days)."),
+  _("Died %(month_year)s (%(age)s)."),
   ],
 ]  
 
 died_no_date_with_place = [
   { Person.UNKNOWN : [
     _("%(unknown_gender_name)s died in %(death_place)s."), 
-    _("%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."), 
-    _("%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."), 
-    _("%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."), 
+    _("%(unknown_gender_name)s died in %(death_place)s at the age of %(age)s."), 
     ], 
     Person.MALE : [
     _("%(male_name)s died in %(death_place)s."), 
-    _("%(male_name)s died in %(death_place)s at the age of %(age)d years."), 
-    _("%(male_name)s died in %(death_place)s at the age of %(age)d months."), 
-    _("%(male_name)s died in %(death_place)s at the age of %(age)d days."), 
+    _("%(male_name)s died in %(death_place)s at the age of %(age)s."), 
     ], 
     Person.FEMALE : [
     _("%(female_name)s died in %(death_place)s."), 
-    _("%(female_name)s died in %(death_place)s at the age of %(age)d years."), 
-    _("%(female_name)s died in %(death_place)s at the age of %(age)d months."), 
-    _("%(female_name)s died in %(death_place)s at the age of %(age)d days."), 
+    _("%(female_name)s died in %(death_place)s at the age of %(age)s."), 
     ], 
   },
   {
     Person.UNKNOWN : [
     _("This person died in %(death_place)s."), 
-    _("This person died in %(death_place)s at the age of %(age)d years."), 
-    _("This person died in %(death_place)s at the age of %(age)d months."), 
-    _("This person died in %(death_place)s at the age of %(age)d days."), 
+    _("This person died in %(death_place)s at the age of %(age)s."), 
     ], 
     Person.MALE : [
     _("He died in %(death_place)s."), 
-    _("He died in %(death_place)s at the age of %(age)d years."), 
-    _("He died in %(death_place)s at the age of %(age)d months."), 
-    _("He died in %(death_place)s at the age of %(age)d days."), 
+    _("He died in %(death_place)s at the age of %(age)s."), 
     ], 
     Person.FEMALE : [
     _("She died in %(death_place)s."), 
-    _("She died in %(death_place)s at the age of %(age)d years."), 
-    _("She died in %(death_place)s at the age of %(age)d months."), 
-    _("She died in %(death_place)s at the age of %(age)d days."), 
+    _("She died in %(death_place)s at the age of %(age)s."), 
     ], 
   }, 
   [
   _("Died in %(death_place)s."),
-  _("Died in %(death_place)s (age %(age)d years)."),
-  _("Died in %(death_place)s (age %(age)d months)."),
-  _("Died in %(death_place)s (age %(age)d days)."),
+  _("Died in %(death_place)s (%(age)s)."),
   ],
 ]  
 
 died_no_date_no_place = [
   { Person.UNKNOWN : [
     "", 
-    _("%(unknown_gender_name)s died at the age of %(age)d years."), 
-    _("%(unknown_gender_name)s died at the age of %(age)d months."), 
-    _("%(unknown_gender_name)s died at the age of %(age)d days."), 
+    _("%(unknown_gender_name)s died at the age of %(age)s."), 
     ], 
     Person.MALE : [
     "", 
-    _("%(male_name)s died at the age of %(age)d years."), 
-    _("%(male_name)s died at the age of %(age)d months."), 
-    _("%(male_name)s died at the age of %(age)d days."), 
+    _("%(male_name)s died at the age of %(age)s."), 
     ], 
     Person.FEMALE : [
     "", 
-    _("%(female_name)s died at the age of %(age)d years."), 
-    _("%(female_name)s died at the age of %(age)d months."), 
-    _("%(female_name)s died at the age of %(age)d days."), 
+    _("%(female_name)s died at the age of %(age)s."), 
     ], 
   },
   { Person.UNKNOWN : [
     "", 
-    _("This person died at the age of %(age)d years."), 
-    _("This person died at the age of %(age)d months."), 
-    _("This person died at the age of %(age)d days."), 
+    _("This person died at the age of %(age)s."), 
     ], 
     Person.MALE : [
     "", 
-    _("He died at the age of %(age)d years."), 
-    _("He died at the age of %(age)d months."), 
-    _("He died at the age of %(age)d days."), 
+    _("He died at the age of %(age)s."), 
     ], 
     Person.FEMALE : [
     "", 
-    _("She died at the age of %(age)d years."), 
-    _("She died at the age of %(age)d months."), 
-    _("She died at the age of %(age)d days."), 
+    _("She died at the age of %(age)s."), 
     ], 
   }, 
   [
   "",
-  _("Died (age %(age)d years)."),
-  _("Died (age %(age)d months)."),
-  _("Died (age %(age)d days)."),
+  _("Died (%(age)s)."),
   ], 
 ]
 
@@ -1624,19 +1514,14 @@ class Narrator(object):
         Get a string narrating the death of the subject.
         Example sentences:
             Person died on Date
-            Person died on Date at the age of N Years
-            Person died on Date at the age of N Months
-            Person died on Date at the age of N Days
+            Person died on Date at the age of 'age'
             Person died on Date in Place
-            Person died on Date in Place at the age of N Years
-            Person died on Date in Place at the age of N Months
-            Person died on Date in Place at the age of N Days
+            Person died on Date in Place at the age of 'age'
             Person died in Place
-            Person died in Place at the age of N Years
-            Person died in Place at the age of N Months
-            Person died in Place at the age of N Days
+            Person died in Place at the age of 'age'
             Person died
             ''
+        where 'age' string is an advanced age calculation.
         
         :returns: A sentence about the subject's death.
         :rtype: unicode
@@ -2070,7 +1955,7 @@ class Narrator(object):
             
         return text
 
-    def get_married_string(self, family, is_first=True):
+    def get_married_string(self, family, is_first=True, name_display=None):
         """
         Get a string narrating the marriage of the subject.
         Example sentences:
@@ -2085,7 +1970,9 @@ class Narrator(object):
         :param is_first: Indicates whether this sentence represents the first 
             marriage. If it is not the first marriage, the sentence will 
             include "also".
-        :type is_first: :class:`~gen.lib.family,Family`
+        :type is_first: bool
+        :param name_display: An object to be used for displaying names
+        :type is_first: :class:`~gen.display.name,NameDisplay`
         :returns: A sentence about the subject's marriage.
         :rtype: unicode
         """
@@ -2093,15 +1980,18 @@ class Narrator(object):
         spouse_handle = ReportUtils.find_spouse(self.__person, family)
         spouse = self.__db.get_person_from_handle(spouse_handle)
         event = ReportUtils.find_marriage(self.__db, family)
-    
-        # not all families have a spouse.
-        if not spouse:
-            return u""
-    
+
         date = self.__empty_date
         place = self.__empty_place
-        spouse_name = _nd.display(spouse)
-    
+        if spouse:
+            if not name_display:
+                spouse_name = _nd.display(spouse)
+            else:
+                spouse_name = name_display.display(spouse)
+        else:
+            # not all families have a spouse.
+            spouse_name = _("Unknown")
+
         if event:
             if self.__use_fulldate :
                 mdate = self.__get_date(event.get_date_object())
@@ -2123,7 +2013,9 @@ class Narrator(object):
             'partial_date'  : date, 
             'place'         : place, 
             }
-    
+
+        date_full = 0
+
         if event:
             dobj = event.get_date_object()
         
@@ -2131,8 +2023,6 @@ class Narrator(object):
                 date_full = 2
             elif dobj and dobj.get_day_valid():
                 date_full = 1
-            else:
-                date_full = 0
             
         gender = self.__person.get_gender()
     
@@ -2150,42 +2040,42 @@ class Narrator(object):
         # describe type
     
         if is_first:
-            if event and date and place and self.__verbose:
+            if date and place and self.__verbose:
                 if relationship == FamilyRelType.MARRIED:
                     text = marriage_first_date_place[gender][date_full]
                 elif relationship == FamilyRelType.UNMARRIED:
                     text = unmarried_first_date_place[gender][date_full]
                 else:
                     text = relationship_first_date_place[gender][date_full]
-            elif event and date and place:
+            elif date and place:
                 if relationship == FamilyRelType.MARRIED:
                     text = marriage_first_date_place['succinct'][date_full]
                 elif relationship == FamilyRelType.UNMARRIED:
                     text = unmarried_first_date_place['succinct'][date_full]
                 else:
                     text = relationship_first_date_place['succinct'][date_full]           
-            elif event and date and self.__verbose:
+            elif date and self.__verbose:
                 if relationship == FamilyRelType.MARRIED:
                     text = marriage_first_date[gender][date_full]
                 elif relationship == FamilyRelType.UNMARRIED:
                     text = unmarried_first_date[gender][date_full]
                 else:
                     text = relationship_first_date[gender][date_full]
-            elif event and date:
+            elif date:
                 if relationship == FamilyRelType.MARRIED:
                     text = marriage_first_date['succinct'][date_full]
                 elif relationship == FamilyRelType.UNMARRIED:
                     text = unmarried_first_date['succinct'][date_full]
                 else:
                     text = relationship_first_date['succinct'][date_full]
-            elif event and place and self.__verbose:
+            elif place and self.__verbose:
                 if relationship == FamilyRelType.MARRIED:
                     text = marriage_first_place[gender]
                 elif relationship == FamilyRelType.UNMARRIED:
                     text = unmarried_first_place[gender]
                 else:
                     text = relationship_first_place[gender]
-            elif event and place:
+            elif place:
                 if relationship == FamilyRelType.MARRIED:
                     text = marriage_first_place['succinct']
                 elif relationship == FamilyRelType.UNMARRIED:
@@ -2207,42 +2097,42 @@ class Narrator(object):
                 else:
                     text = relationship_first_only['succinct']
         else:
-            if event and date and place and self.__verbose:
+            if date and place and self.__verbose:
                 if relationship == FamilyRelType.MARRIED:
                     text = marriage_also_date_place[gender][date_full]
                 elif relationship == FamilyRelType.UNMARRIED:
                     text = unmarried_also_date_place[gender][date_full]
                 else:
                     text = relationship_also_date_place[gender][date_full]
-            if event and date and place:
+            elif date and place:
                 if relationship == FamilyRelType.MARRIED:
                     text = marriage_also_date_place['succinct'][date_full]
                 elif relationship == FamilyRelType.UNMARRIED:
                     text = unmarried_also_date_place['succinct'][date_full]
                 else:
                     text = relationship_also_date_place['succinct'][date_full]
-            elif event and date and self.__verbose:
+            elif date and self.__verbose:
                 if relationship == FamilyRelType.MARRIED:
                     text = marriage_also_date[gender][date_full]
                 elif relationship == FamilyRelType.UNMARRIED:
                     text = unmarried_also_date[gender][date_full]
                 else:
                     text = relationship_also_date[gender][date_full]
-            elif event and date:
+            elif date:
                 if relationship == FamilyRelType.MARRIED:
                     text = marriage_also_date['succinct'][date_full]
                 elif relationship == FamilyRelType.UNMARRIED:
                     text = unmarried_also_date['succinct'][date_full]
                 else:
                     text = relationship_also_date['succinct'][date_full]
-            elif event and place and self.__verbose:
+            elif place and self.__verbose:
                 if relationship == FamilyRelType.MARRIED:
                     text = marriage_also_place[gender]
                 elif relationship == FamilyRelType.UNMARRIED:
                     text = unmarried_also_place[gender]
                 else:
                     text = relationship_also_place[gender]
-            elif event and place:
+            elif place:
                 if relationship == FamilyRelType.MARRIED:
                     text = marriage_also_place['succinct']
                 elif relationship == FamilyRelType.UNMARRIED:
@@ -2350,15 +2240,9 @@ class Narrator(object):
         if birth_year_valid and death_year_valid:
             span = death - birth
             if span and span.is_valid():
-                if span[0] != 0:
-                    age = span[0]
-                    age_index = _AGE_INDEX_YEARS
-                elif span[1] != 0:
-                    age = span[1]
-                    age_index = _AGE_INDEX_MONTHS
-                elif span[2] != 0:
-                    age = span[2]
-                    age_index = _AGE_INDEX_DAYS
+                if span:
+                    age = span
+                    age_index = _AGE_INDEX
                 else:
                     age = 0
                     age_index = _AGE_INDEX_NO_AGE

@@ -1,4 +1,5 @@
-# encoding: utf-8
+# -*- coding: utf-8 -*-
+#!/usr/bin/python
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -53,14 +54,12 @@ import const
 import constfunc
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
-from gui.plug.report import MenuReportOptions
+from gen.plug.report import MenuReportOptions
 from gen.plug.menu import BooleanOption, NumberOption, StringOption, \
                           EnumeratedListOption, FilterOption, PersonOption, \
                           DestinationOption, NoteOption
 import GrampsLocale
-from QuestionDialog import WarningDialog
 from Utils import probably_alive, xml_lang, get_researcher
-from gui.utils import ProgressMeter
 from DateHandler import displayer as _dd
 
 from gen.display.name import displayer as _nd
@@ -98,9 +97,10 @@ class WebCalReport(Report):
     """
     Create WebCalReport object that produces the report.
     """
-    def __init__(self, database, options):
-        Report.__init__(self, database, options)
+    def __init__(self, database, options, user):
+        Report.__init__(self, database, options, user)
         mgobn = lambda name:options.menu.get_option_by_name(name).get_value()
+        self._user = user
 
         # class to do conversion of styled notes to html markup
         self._backend = HtmlBackend()
@@ -240,7 +240,7 @@ class WebCalReport(Report):
         if from_fname != dest:
             shutil.copyfile(from_fname, dest)
         elif self.warn_dir:
-            WarningDialog(
+            self._user.warn(
                 _("Possible destination error") + "\n" +
                 _("You appear to have set your target directory "
                   "to a directory used for data storage. This "
@@ -292,7 +292,9 @@ class WebCalReport(Report):
     def __get_holidays(self, year):
 
         # _('translation')
-        self.progress.set_pass((_('Calculating Holidays for year %04d') % year), 365)
+        self._user.begin_progress(_("Web Calendar Report"),
+                                  (_('Calculating Holidays for year %04d') % year),
+                                  365)
 
         """ Get the holidays for the specified country and year """
         holiday_table = libholiday.HolidayTable()
@@ -303,9 +305,8 @@ class WebCalReport(Report):
                 holiday_names = holiday_table.get_holidays(month, day) 
                 for holiday_name in holiday_names:
                     self.add_day_item(holiday_name, year, month, day, 'Holiday')
-
-                # increment progress bar
-                self.progress.step() 
+                self._user.step_progress()
+        self._user.end_progress()
 
     def copy_calendar_files(self):
         """
@@ -318,8 +319,8 @@ class WebCalReport(Report):
 
         # copy Navigation Menu Layout if Blue or Visually is being used
         if CSS[self.css]["navigation"]:
-            fname = CSS["Navigation-Horizontal"]["filename"] 
-            self.copy_file(fname, "Web_Navigation-Menus.css", "styles")
+            fname = CSS["Horizontal-Menus"]["filename"] 
+            self.copy_file(fname, "narrative-menus.css", "styles")
 
         # copy print stylesheet
         fname = CSS["Print-Default"]["filename"]
@@ -380,7 +381,7 @@ class WebCalReport(Report):
         """
 
         # number of subdirectories up to reach root
-        subdirs = '../'*nr_up
+        subdirs = ['..'] * nr_up
 
         # Header contants
         xmllang = xml_lang()
@@ -395,10 +396,10 @@ class WebCalReport(Report):
             body.attr = "id = '%(idtag)s'" % { 'idtag' : body_id }
 
         # GRAMPS favicon
-        fname1 = os.path.join(subdirs, "images", "favicon2.ico")
+        fname1 = "/".join(subdirs + ["images", "favicon2.ico"])
 
         # _CALENDARSCREEN stylesheet
-        fname2 = os.path.join(subdirs, "styles", _CALENDARSCREEN)
+        fname2 = "/".join(subdirs + ["styles", _CALENDARSCREEN])
 
         # create additional meta tags
         meta = Html("meta", attr = _META1) + (
@@ -412,16 +413,16 @@ class WebCalReport(Report):
 
         # add printer stylesheet to webcalendar() and one_day() only
         if add_print:
-            fname = os.path.join(subdirs, "styles", _CALENDARPRINT)
+            fname = "/".join(subdirs + ["styles", _CALENDARPRINT])
             links += Html("link",rel = "stylesheet", href = fname,type = "text/css", media = "print", indent = False)
 
-        # add horizontal menu if css == Blue or Visually because there is no menus
+        # add horizontal menu if css == Blue or Visually because there is no menus?
         if CSS[self.css]["navigation"]:
 
             # Link to Navigation Menus stylesheet
-            fname = os.path.join(subdirs, "styles", "Web_Navigation-Menus.css")
+            fname = "/".join(subdirs + ["styles", "narrative-menus.css"])
             links.extend( 
-                Html("link", href = fname, type = "text/css", media = "screen", rel = "stylesheet")
+                Html("link", href =fname, type ="text/css", media ="screen", rel ="stylesheet")
             )
 
         # add meta tags and links to head section
@@ -625,7 +626,7 @@ class WebCalReport(Report):
                 th_txt = '%s %04d' % (month_name, year)
 
         # begin calendar table and table head
-        with Html("table", class_ = "calendar", id = month_name) as table:
+        with Html("table", class_ ="calendar", id = month_name) as table:
 
             thead = Html("thead")
             table += thead 
@@ -802,8 +803,8 @@ class WebCalReport(Report):
 
         nr_up = 1                   # Number of directory levels up to get to self.html_dir / root
 
-        # generate progress pass for "WebCal"
-        self.progress.set_pass(_('Formatting months ...'), 12)
+        self._user.begin_progress(_("Web Calendar Report"),
+                                  _('Formatting months ...'), 12)
 
         for month in range(1, 13):
             cal_fname = _dd.long_months[month]
@@ -823,8 +824,10 @@ class WebCalReport(Report):
             body += self.month_navigation(nr_up, year, currentsection, True)
 
             # build the calendar
+            content = Html("div", class_="content")
+            body += content
             monthly_calendar = self.calendar_build("wc", year, month)
-            body += monthly_calendar
+            content += monthly_calendar
 
             # create note section for webcalendar()
             # One has to be minused because the array starts at zero, but January =1
@@ -851,8 +854,8 @@ class WebCalReport(Report):
             # and close the file
             self.XHTMLWriter(webcal, of)
 
-            # increase progress bar
-            self.progress.step()
+            self._user.step_progress()
+        self._user.end_progress()
 
     def year_glance(self, year):
         """
@@ -863,7 +866,8 @@ class WebCalReport(Report):
         nr_up = 1                       # Number of directory levels up to get to root
 
         # generate progress pass for "Year At A Glance"
-        self.progress.set_pass(_('Creating Year At A Glance calendar'), 12)
+        self._user.begin_progress(_("Web Calendar Report"),
+                                  _('Creating Year At A Glance calendar'), 12)
 
         of = self.create_file('fullyearlinked', str(year))
 
@@ -888,20 +892,19 @@ class WebCalReport(Report):
                        'that date, if there are any.\n'))
 
         # page description 
-        body += Html("div", class_ = "content") + (
-
-            # message line
+        content = Html("div", class_ = "content") + (
             Html("p", msg, id='description')
             )
+        body += content
 
         for month in range(1, 13):
 
             # build the calendar
             monthly_calendar = self.calendar_build("yg", year, month)
-            body += monthly_calendar  
+            content += monthly_calendar  
 
             # increase progress bar
-            self.progress.step()
+            self._user.step_progress()
 
         # create blank line for stylesheets
         # write footer section
@@ -911,6 +914,7 @@ class WebCalReport(Report):
         # send calendar page to web output
         # and close the file
         self.XHTMLWriter(yearglance, of)
+        self._user.end_progress()
 
     def one_day(self, event_date, fname_date, day_list):
         """
@@ -949,11 +953,13 @@ class WebCalReport(Report):
         body += self.month_navigation(nr_up, year, currentsection, True)
 
         # set date display as in user prevferences 
-        body += Html("h3", _dd.display(event_date), inline = True)
+        content = Html("div", class_="content")
+        body += content
+        content += Html("h3", _dd.display(event_date), inline = True)
 
         # list the events
         ordered = Html("ol")
-        body += ordered  
+        content += ordered  
         for nyears, date, text, event in day_list:
             ordered += Html("li", text, inline = False if event == 'Anniversary' else True)
 
@@ -1041,12 +1047,16 @@ class WebCalReport(Report):
         db = self.database
 
         people = db.iter_person_handles()
-        self.progress.set_pass(_('Applying Filter...'), db.get_number_of_people())
-        people = self.filter.apply(db, people, self.progress)
+        self._user.begin_progress(_("Web Calendar Report"),
+                                  _('Applying Filter...'), 
+                                  db.get_number_of_people())
+        people = self.filter.apply(db, people, self._user.step_progress)
+        self._user.end_progress()
 
-        self.progress.set_pass(_("Reading database..."), len(people))
+        self._user.begin_progress(_("Web Calendar Report"),
+                                  _("Reading database..."), len(people))
         for person in imap(db.get_person_from_handle, people):
-            self.progress.step()
+            self._user.step_progress()
 
             family_list = person.get_family_handle_list()
             birth_ref = person.get_birth_ref()
@@ -1144,7 +1154,8 @@ class WebCalReport(Report):
                                         'person' : short_name}
 
                                     self.add_day_item(text, year, month, day, 'Anniversary')
-
+        self._user.end_progress()
+        
     def write_footer(self, nr_up):
         """
         Writes the footer section of the pages
@@ -1196,10 +1207,6 @@ class WebCalReport(Report):
         """
         The short method that runs through each month and creates a page. 
         """
-
-        # Create progress meter bar
-        self.progress = ProgressMeter(_("Web Calendar Report"), '')
-
         # get data from database for birthdays/ anniversaries
         self.collect_data(self.start_year)
 
@@ -1246,9 +1253,6 @@ class WebCalReport(Report):
             # "One Day" calendar pages
             if self.fullyear:
                 self.year_glance(cal_year)
-
-        # Close the progress meter
-        self.progress.close()
 
 # ---------------------------------------------------------------------------------------
 #                             WebCalOptions; Creates the Menu
@@ -1332,11 +1336,12 @@ class WebCalOptions(MenuReportOptions):
         cright.set_help( _("The copyright to be used for the web files"))
         menu.add_option(category_name, "cright", cright)
 
-        css = EnumeratedListOption(_('StyleSheet'), CSS["default"]["id"])
-        for (fname, id) in sorted([(CSS[key]["translation"], CSS[key]["id"]) 
-                                  for key in CSS.keys()]):                                      
-            if CSS[id]["user"]:
-                css.add_item(CSS[id]["id"], CSS[id]["translation"])
+        css_list = sorted([(CSS[key]["translation"], CSS[key]["id"]) 
+                            for key in CSS.keys()
+                            if CSS[key]["user"]])
+        css = EnumeratedListOption(_('StyleSheet'), css_list[0][1])
+        for css_item in css_list:                              
+            css.add_item(css_item[1], css_item[0])
         css.set_help( _('The stylesheet to be used for the web pages'))
         menu.add_option(category_name, "css", css)
 

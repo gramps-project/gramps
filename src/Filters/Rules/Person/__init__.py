@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id:__init__.py 9912 2008-01-22 09:17:46Z acraphae $
+# $Id$
 
 """
 Package providing filter rules for GRAMPS.
@@ -107,6 +107,7 @@ from _RegExpName import RegExpName
 from _MatchIdOf import MatchIdOf
 from _RegExpIdOf import RegExpIdOf
 from _ChangedSince import ChangedSince
+from _IsRelatedWith import IsRelatedWith
 
 #-------------------------------------------------------------------------
 #
@@ -185,5 +186,6 @@ editor_rule_list = [
     RegExpIdOf,
     Disconnected,
     ChangedSince,
+    IsRelatedWith,
 ]
 

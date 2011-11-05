@@ -21,7 +21,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _Report.py 12559 2009-05-21 17:19:50Z gbritton $
+# $Id$
 
 #-------------------------------------------------------------------------
 #
@@ -35,7 +35,7 @@ class Report(object):
     sub-classed to create a functional report generator.
     """
 
-    def __init__(self, database, options_class):
+    def __init__(self, database, options_class, user):
         self.database = database
         self.options_class = options_class
 

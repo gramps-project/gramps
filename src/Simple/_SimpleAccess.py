@@ -18,6 +18,9 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+# Simple/_SimpleAccess.py
+# $Id$
+#
 
 """
 Provide a simplified database access interface to the GRAMPS database.
@@ -952,9 +955,9 @@ class SimpleAccess(object):
         elif isinstance(obj, gen.lib.Place):
             return place_name(self.dbase, obj.handle)
         elif isinstance(obj, gen.lib.Repository):
-            return obj.type
+            return obj.gramps_id
         elif isinstance(obj, gen.lib.Note):
-            return obj.type
+            return obj.gramps_id
         elif obj is None:
             return ""
         else:

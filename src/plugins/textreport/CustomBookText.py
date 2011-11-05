@@ -44,7 +44,7 @@ from gen.ggettext import gettext as _
 #------------------------------------------------------------------------
 from gen.plug.menu import TextOption
 from gen.plug.report import Report
-from gui.plug.report import MenuReportOptions
+from gen.plug.report import MenuReportOptions
 from gen.plug.docgen import (FontStyle, ParagraphStyle, FONT_SANS_SERIF, 
                              PARA_ALIGN_CENTER)
 
@@ -55,15 +55,15 @@ from gen.plug.docgen import (FontStyle, ParagraphStyle, FONT_SANS_SERIF,
 #------------------------------------------------------------------------
 class CustomText(Report):
 
-    def __init__(self, database, options_class):
+    def __init__(self, database, options, user):
         """
         Create CustomText object that produces the report.
         
         The arguments are:
 
         database        - the GRAMPS database instance
-        person          - currently selected person
-        options_class   - instance of the Options class for this report
+        options         - instance of the Options class for this report
+        user            - a gen.user.User() instance
 
         This report needs the following parameters (class variables)
         that come in the options class.
@@ -72,9 +72,9 @@ class CustomText(Report):
         mid   - Text in the middle.
         bot   - Text on the bottom.
         """
-        Report.__init__(self, database, options_class)
+        Report.__init__(self, database, options, user)
 
-        menu = options_class.menu
+        menu = options.menu
         self.top_text = menu.get_option_by_name('top').get_value()
         self.middle_text = menu.get_option_by_name('mid').get_value()
         self.bottom_text = menu.get_option_by_name('bot').get_value()

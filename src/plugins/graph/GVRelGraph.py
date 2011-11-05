@@ -51,7 +51,7 @@ from gen.plug.menu import (BooleanOption, EnumeratedListOption, FilterOption,
                           PersonOption, ColorOption)
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
-from gui.plug.report import MenuReportOptions
+from gen.plug.report import MenuReportOptions
 from gen.display.name import displayer as name_displayer
 import DateHandler
 import gen.lib
@@ -80,15 +80,15 @@ _ARROWS = [ { 'name' : _("Descendants <- Ancestors"),  'value' : 'd' },
 #------------------------------------------------------------------------
 class RelGraphReport(Report):
 
-    def __init__(self, database, options_class):
+    def __init__(self, database, options, user):
         """
         Create ComprehensiveAncestorsReport object that produces the report.
         
         The arguments are:
 
         database        - the GRAMPS database instance
-        person          - currently selected person
-        options_class   - instance of the Options class for this report
+        options         - instance of the Options class for this report
+        user            - a gen.user.User() instance
 
         This report needs the following parameters (class variables)
         that come in the options class.
@@ -114,12 +114,12 @@ class RelGraphReport(Report):
         dashed         - Whether to use dashed lines for non-birth relationships
         use_roundedcorners - Whether to use rounded corners for females
         """
-        Report.__init__(self, database, options_class)
+        Report.__init__(self, database, options, user)
         
         self.database = database
 
-        menu = options_class.menu
-        get_option_by_name = options_class.menu.get_option_by_name
+        menu = options.menu
+        get_option_by_name = options.menu.get_option_by_name
         get_value = lambda name: get_option_by_name(name).get_value()
 
         self.includeid = get_value('incid')

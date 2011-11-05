@@ -29,13 +29,14 @@ __date__ ="$Apr 20, 2010 3:13:24 PM$"
 
 from gui.plug import tool
 
-from _guioptions import GuiMenuOptions, make_gui_option
+from _guioptions import make_gui_option, add_gui_options
+from gen.plug import MenuOptions
 
 from _dialogs import ReportPluginDialog, ToolPluginDialog
 import _windows as PluginWindows
 
 # This needs to go above Tool and MenuOption as it needs both
-class MenuToolOptions(GuiMenuOptions, tool.ToolOptions):
+class MenuToolOptions(MenuOptions, tool.ToolOptions):
     """
     The MenuToolOptions class implements the ToolOptions
     functionality in a generic way so that the user does not need to
@@ -47,4 +48,4 @@ class MenuToolOptions(GuiMenuOptions, tool.ToolOptions):
     """
     def __init__(self, name, person_id=None, dbstate=None):
         tool.ToolOptions.__init__(self, name, person_id)
-        GuiMenuOptions.__init__(self)
+        MenuOptions.__init__(self)

@@ -1,3 +1,6 @@
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
 # This file is derived from the GPL program "PyPE"
 #
 # Copyright (C) 2003-2006  Josiah Carlson
@@ -17,6 +20,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+# $Id$
 
 """
 Least recently used algorithm

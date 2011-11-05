@@ -22,7 +22,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id:_ReportUtils.py 9912 2008-01-22 09:17:46Z acraphae $
+# $Id$
 
 """
 A collection of utilities to aid in the generation of reports.
@@ -125,7 +125,7 @@ def place_name(db, place_handle):
 # Functions commonly used in reports
 #
 #-------------------------------------------------------------------------
-def insert_image(database, doc, photo, w_cm=4.0, h_cm=4.0):
+def insert_image(database, doc, photo, user, w_cm=4.0, h_cm=4.0, alt=""):
     """
     Insert pictures of a person into the document.
     """
@@ -136,12 +136,11 @@ def insert_image(database, doc, photo, w_cm=4.0, h_cm=4.0):
     if mime_type and mime_type.startswith("image"):
         filename = media_path_full(database, media_object.get_path())
         if os.path.exists(filename):
-            doc.add_media_object(filename, "right", w_cm, h_cm)
+            doc.add_media_object(filename, "right", w_cm, h_cm, alt=alt,
+                                 style_name="DDR-Caption", crop=photo.get_rectangle())
         else:
-            # TODO: Replace this with a callback
-            from QuestionDialog import WarningDialog
-            WarningDialog(_("Could not add photo to page"), 
-                          "%s: %s" % (filename, _('File does not exist')))
+            user.warn(_("Could not add photo to page"), 
+                      "%s: %s" % (filename, _('File does not exist')))
 
 #-------------------------------------------------------------------------
 #
@@ -212,7 +211,7 @@ def get_person_mark(db, person):
 #-------------------------------------------------------------------------
 def get_address_str(addr):
     """
-    Return a string that combines the elements of an addres
+    Return a string that combines the elements of an address
     
     @param addr: the GRAMPS address instance
     """

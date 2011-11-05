@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-requires grampswidgets 0.0 -->
@@ -24,7 +24,6 @@
     <property name="default_width">500</property>
     <property name="type_hint">dialog</property>
     <property name="gravity">center</property>
-    <property name="has_separator">False</property>
     <signal name="delete_event" handler="on_edit_filter_delete_event"/>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox1">
@@ -64,12 +63,21 @@
                         <property name="can_default">True</property>
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes">Add another rule to the filter</property>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="definition_add-atkobject">
+                            <property name="AtkObject::accessible-name" translatable="yes">Add</property>
+                          </object>
+                        </child>
                         <signal name="clicked" handler="on_add_clicked"/>
                         <child>
                           <object class="GtkImage" id="image2">
                             <property name="visible">True</property>
                             <property name="stock">gtk-add</property>
-                            <property name="icon-size">4</property>
+                            <child internal-child="accessible">
+                              <object class="AtkObject" id="image2-atkobject">
+                                <property name="AtkObject::accessible-description" translatable="yes">Add</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
                       </object>
@@ -87,12 +95,21 @@
                         <property name="can_default">True</property>
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes">Edit the selected rule</property>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="definition_edit-atkobject">
+                            <property name="AtkObject::accessible-name" translatable="yes">Edit</property>
+                          </object>
+                        </child>
                         <signal name="clicked" handler="on_edit_clicked"/>
                         <child>
                           <object class="GtkImage" id="image3">
                             <property name="visible">True</property>
                             <property name="stock">gtk-edit</property>
-                            <property name="icon-size">4</property>
+                            <child internal-child="accessible">
+                              <object class="AtkObject" id="image3-atkobject">
+                                <property name="AtkObject::accessible-description" translatable="yes">Edition</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
                       </object>
@@ -110,12 +127,21 @@
                         <property name="can_default">True</property>
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes">Delete the selected rule</property>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="definition_delete-atkobject">
+                            <property name="AtkObject::accessible-name" translatable="yes">Remove</property>
+                          </object>
+                        </child>
                         <signal name="clicked" handler="on_delete_clicked"/>
                         <child>
                           <object class="GtkImage" id="image4">
                             <property name="visible">True</property>
                             <property name="stock">gtk-remove</property>
-                            <property name="icon-size">4</property>
+                            <child internal-child="accessible">
+                              <object class="AtkObject" id="image4-atkobject">
+                                <property name="AtkObject::accessible-description" translatable="yes">Remove</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
                       </object>
@@ -409,7 +435,6 @@
     <property name="default_height">350</property>
     <property name="type_hint">dialog</property>
     <property name="gravity">center</property>
-    <property name="has_separator">False</property>
     <signal name="delete_event" handler="on_filter_list_delete_event"/>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox3">
@@ -469,7 +494,6 @@
                           <object class="GtkImage" id="image5">
                             <property name="visible">True</property>
                             <property name="stock">gtk-add</property>
-                            <property name="icon-size">4</property>
                           </object>
                         </child>
                       </object>
@@ -492,7 +516,6 @@
                           <object class="GtkImage" id="image6">
                             <property name="visible">True</property>
                             <property name="stock">gtk-edit</property>
-                            <property name="icon-size">4</property>
                           </object>
                         </child>
                       </object>
@@ -515,7 +538,6 @@
                           <object class="GtkImage" id="image9">
                             <property name="visible">True</property>
                             <property name="stock">gtk-copy</property>
-                            <property name="icon-size">4</property>
                           </object>
                         </child>
                       </object>
@@ -536,7 +558,6 @@
                           <object class="GtkImage" id="image8">
                             <property name="visible">True</property>
                             <property name="stock">gtk-execute</property>
-                            <property name="icon-size">4</property>
                           </object>
                         </child>
                       </object>
@@ -559,7 +580,6 @@
                           <object class="GtkImage" id="image7">
                             <property name="visible">True</property>
                             <property name="stock">gtk-remove</property>
-                            <property name="icon-size">4</property>
                           </object>
                         </child>
                       </object>
@@ -657,7 +677,6 @@
     <property name="default_height">400</property>
     <property name="type_hint">dialog</property>
     <property name="gravity">center</property>
-    <property name="has_separator">False</property>
     <signal name="delete_event" handler="on_test_delete_event"/>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox4">
@@ -729,7 +748,6 @@
     <property name="window_position">center-on-parent</property>
     <property name="type_hint">dialog</property>
     <property name="gravity">center</property>
-    <property name="has_separator">False</property>
     <signal name="delete_event" handler="on_rule_edit_delete_event"/>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox5">

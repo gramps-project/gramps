@@ -1,11 +1,10 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-requires grampswidgets 0.0 -->
   <!-- interface-naming-policy project-wide -->
   <object class="GtkDialog" id="editaddress">
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox13">
         <property name="visible">True</property>
@@ -71,7 +70,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">The town or city of the address</property>
-                    <property name="invisible_char">&#x25CF;</property>
+                    <property name="invisible_char">●</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -120,7 +119,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">Postal code</property>
-                    <property name="invisible_char">&#x25CF;</property>
+                    <property name="invisible_char">●</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -170,7 +169,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">Phone number linked to the address.</property>
-                    <property name="invisible_char">&#x25CF;</property>
+                    <property name="invisible_char">●</property>
                   </object>
                   <packing>
                     <property name="left_attach">5</property>
@@ -185,7 +184,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">The state or county of the address in case a mail address must contain this.</property>
-                    <property name="invisible_char">&#x25CF;</property>
+                    <property name="invisible_char">●</property>
                   </object>
                   <packing>
                     <property name="left_attach">5</property>
@@ -200,7 +199,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">Country of the address</property>
-                    <property name="invisible_char">&#x25CF;</property>
+                    <property name="invisible_char">●</property>
                   </object>
                   <packing>
                     <property name="left_attach">5</property>
@@ -217,7 +216,7 @@
                     <property name="tooltip_text" translatable="yes">Mail address. 
 
 Note: Use Residence Event for genealogical address data.</property>
-                    <property name="invisible_char">&#x25CF;</property>
+                    <property name="invisible_char">●</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -233,10 +232,21 @@ Note: Use Residence Event for genealogical address data.</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="relief">none</property>
+                    <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="private-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Private</property>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkImage" id="image2685">
                         <property name="visible">True</property>
                         <property name="icon_name">gtk-dialog-authentication</property>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="image2685-atkobject">
+                            <property name="AtkObject::accessible-description" translatable="yes">Privacy</property>
+                          </object>
+                        </child>
                         <property name="icon-size">1</property>
                       </object>
                     </child>
@@ -255,12 +265,27 @@ Note: Use Residence Event for genealogical address data.</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="tooltip_text" translatable="yes">Show Date Editor</property>
+                    <property name="has_tooltip">True</property>
+                    <property name="tooltip_text" translatable="yes">Invoke date editor</property>
                     <property name="relief">none</property>
+                    <accelerator key="d" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                    <accessibility>
+                      <relation type="labelled-by" target="label209"/>
+                    </accessibility>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="date_stat-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Date</property>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkImage" id="date_stat_child">
                         <property name="visible">True</property>
                         <property name="icon_name">gramps-date</property>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="date_stat_child-atkobject">
+                            <property name="AtkObject::accessible-description" translatable="yes">Date</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>
@@ -276,7 +301,7 @@ Note: Use Residence Event for genealogical address data.</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">Date at which the address is valid.</property>
-                    <property name="invisible_char">&#x25CF;</property>
+                    <property name="invisible_char">●</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -303,7 +328,7 @@ Note: Use Residence Event for genealogical address data.</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">The locality of the address</property>
-                    <property name="invisible_char">&#x25CF;</property>
+                    <property name="invisible_char">●</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>

@@ -80,6 +80,7 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         NoteBase.unserialize(self, note_list)
         AddressBase.unserialize(self, address_list)
         UrlBase.unserialize(self, urls)
+        return self
         
     def get_text_data_list(self):
         """

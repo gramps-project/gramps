@@ -111,6 +111,7 @@ class _DdTargets(object):
         
         self.ADDRESS            = _DdType(self, 'paddr')
         self.ATTRIBUTE          = _DdType(self, 'pattr')
+        self.CHILDREF           = _DdType(self, 'childref')
         self.DATA               = _DdType(self, 'data_tuple')
         self.EVENT              = _DdType(self, 'pevent')
         self.EVENTREF           = _DdType(self, 'eventref')
@@ -142,6 +143,7 @@ class _DdTargets(object):
         self._all_gramps_types = [
             self.ADDRESS, 
             self.ATTRIBUTE, 
+            self.CHILDREF, 
             self.EVENT, 
             self.EVENTREF, 
             self.LOCATION, 

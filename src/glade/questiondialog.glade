@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-naming-policy project-wide -->
   <object class="GtkDialog" id="savedialog">
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox2">
         <property name="visible">True</property>
@@ -160,7 +159,6 @@
   </object>
   <object class="GtkDialog" id="questiondialog">
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="vbox1">
         <property name="visible">True</property>
@@ -276,7 +274,6 @@
   </object>
   <object class="GtkDialog" id="optiondialog">
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="vbox2">
         <property name="visible">True</property>
@@ -391,7 +388,6 @@
   </object>
   <object class="GtkDialog" id="infodialog">
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="vbox142">
         <property name="visible">True</property>
@@ -499,7 +495,6 @@
   </object>
   <object class="GtkDialog" id="missmediadialog">
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="vbox5">
         <property name="visible">True</property>
@@ -730,7 +725,6 @@
   </object>
   <object class="GtkDialog" id="hidedialog">
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="vbox128">
         <property name="visible">True</property>

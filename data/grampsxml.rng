@@ -42,10 +42,15 @@
             <attribute name="date"><data type="date"/></attribute>
             <attribute name="version"><text/></attribute>
         </element>
-        <optional><element name="researcher">
+        <element name="researcher">
+            <optional>
             <ref name="researcher-content"/>
-        </element></optional>
-        <optional><element name="mediapath"><text/></element></optional>
+            </optional>
+        </element>
+        <optional>
+           <element name="mediapath"><text/>
+           </element>
+        </optional>
       </element>
 
       <optional><element name="name-formats">
@@ -134,6 +139,7 @@
   <define name="researcher-content">
       <element name="resname"><text/></element>
       <optional><element name="resaddr"><text/></element></optional>
+      <optional><element name="reslocality"><text/></element></optional>
       <optional><element name="rescity"><text/></element></optional>
       <optional><element name="resstate"><text/></element></optional>
       <optional><element name="rescountry"><text/></element></optional>
@@ -191,11 +197,7 @@
         <attribute name="hlink"><data type="IDREF"/></attribute>
     </element></zeroOrMore>
     <zeroOrMore><element name="personref">
-        <attribute name="hlink"><data type="IDREF"/></attribute>
-        <optional><attribute name="priv">
-            <ref name="priv-content"/>
-        </attribute></optional>
-        <attribute name="rel"><text/></attribute>
+        <ref name="personref-content"/>
     </element></zeroOrMore>
     <zeroOrMore><element name="noteref">
         <ref name="noteref-content"/>
@@ -287,6 +289,7 @@
     </attribute></optional>
     <optional><ref name="date-content"/></optional>
     <optional><element name="street"><text/></element></optional>
+    <optional><element name="locality"><text/></element></optional>
     <optional><element name="city"><text/></element></optional>
     <optional><element name="county"><text/></element></optional>
     <optional><element name="state"><text/></element></optional>
@@ -472,8 +475,8 @@
     <ref name="primary-object"/>
     <optional><element name="ptitle"><text/></element></optional>
     <optional><element name="coord">
-        <attribute name="long"><data type="float"/></attribute>
-        <attribute name="lat"><data type="float"/></attribute>
+        <attribute name="long"><text/></attribute>
+        <attribute name="lat"><text/></attribute>
     </element></optional>
     <zeroOrMore><element name="location">
         <optional><attribute name="street"><text/></attribute></optional>

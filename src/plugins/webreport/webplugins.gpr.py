@@ -64,4 +64,4 @@ plg.authors_email = ["thsturgill@yahoo.com", "robhealey1@gmail.com"]
 plg.category =  CATEGORY_WEB
 plg.reportclass = 'WebCalReport'
 plg.optionclass = 'WebCalOptions'
-plg.report_modes = [REPORT_MODE_GUI]
+plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI]

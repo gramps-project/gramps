@@ -29,7 +29,11 @@ src/cli/arghandler.py
 src/cli/argparser.py
 src/cli/clidbman.py
 src/cli/grampscli.py
+src/cli/user.py
 src/cli/plug/__init__.py
+
+# gen
+src/gen/user.py
 
 # gen db API
 src/gen/db/base.py
@@ -90,6 +94,7 @@ src/gui/filtereditor.py
 src/gui/grampsbar.py
 src/gui/grampsgui.py
 src/gui/makefilter.py
+src/gui/user.py
 src/gui/utils.py
 src/gui/viewmanager.py
 
@@ -312,6 +317,7 @@ src/plugins/lib/libgedcom.py
 src/plugins/lib/libgrdb.py
 src/plugins/lib/libholiday.py
 src/plugins/lib/libhtmlconst.py
+src/plugins/lib/libmetadata.py
 src/plugins/lib/libnarrate.py
 src/plugins/lib/libpersonview.py
 src/plugins/lib/libplaceview.py
@@ -498,6 +504,7 @@ src/Filters/Rules/Person/_IsMale.py
 src/Filters/Rules/Person/_IsMoreThanNthGenerationAncestorOf.py
 src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py
 src/Filters/Rules/Person/_IsParentOfFilterMatch.py
+src/Filters/Rules/Person/_IsRelatedWith.py
 src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py
 src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py
 src/Filters/Rules/Person/_IsWitness.py
