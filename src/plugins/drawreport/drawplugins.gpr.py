@@ -29,8 +29,8 @@
 
 plg = newplugin()
 plg.id    = 'ancestor_chart,BKI'
-plg.name  = _("Ancestor Tree")
-plg.description =  _("Produces a graphical ancestral tree")
+plg.name  = _("Ancestor Tree (BKI)")
+plg.description =  _("Produces a graphical ancestral tree (BKI)")
 plg.version = '1.0'
 plg.gramps_target_version = '3.4'
 plg.status = STABLE
@@ -89,8 +89,8 @@ plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
 
 plg = newplugin()
 plg.id    = 'descend_chart,BKI'
-plg.name  = _("Descendant Tree")
-plg.description =  _("Produces a graphical descendant tree")
+plg.name  = _("Descendant Tree (BKI)")
+plg.description =  _("Produces a graphical descendant tree (BKI)")
 plg.version = '1.0'
 plg.gramps_target_version = '3.4'
 plg.status = STABLE
@@ -127,8 +127,8 @@ plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI]
 
 plg = newplugin()
 plg.id    = 'family_descend_chart,BKI'
-plg.name  = _("Family Descendant Tree")
-plg.description =  _("Produces a graphical descendant tree around a family")
+plg.name  = _("Family Descendant Tree (BKI)")
+plg.description =  _("Produces a graphical descendant tree around a family (BKI)")
 plg.version = '1.0'
 plg.status = STABLE
 plg.fname = 'DescendTree.py'
