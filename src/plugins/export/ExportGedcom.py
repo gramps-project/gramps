@@ -194,7 +194,7 @@ def event_has_subordinate_data(event, event_ref):
                 event.get_attribute_list() or
                 event_ref.get_attribute_list() or
                 event.get_note_list() or
-                event.get_source_references() or
+                event.get_citation_list() or
                 event.get_media_list())
     else:
         return False
@@ -488,7 +488,7 @@ class GedcomWriter(UpdateCallback):
                 self.__writeln(level, "ASSO", "@%s@" % person.get_gramps_id())
                 self.__writeln(level+1, "RELA", ref.get_relation())
                 self.__note_references(ref.get_note_list(), level+1)
-                self.__source_references(ref.get_source_references(), level+1)
+                self.__source_references(ref.get_citation_list(), level+1)
 
     def __note_references(self, notelist, level):
         """
@@ -669,15 +669,15 @@ class GedcomWriter(UpdateCallback):
             else:
                 continue
             self.__note_references(attr.get_note_list(), 2)
-            self.__source_references(attr.get_source_references(), 2)
+            self.__source_references(attr.get_citation_list(), 2)
 
-    def __source_references(self, ref_list, level):
+    def __source_references(self, citation_list, level):
         """
-        Loop through the list of source references, writing the information
+        Loop through the list of citation handles, writing the information
         to the file.
         """
-        for srcref in ref_list:
-            self.__source_ref_record(level, srcref)
+        for citation_handle in citation_list:
+            self.__source_ref_record(level, citation_handle)
 
     def __addresses(self, person):
         """
@@ -703,7 +703,7 @@ class GedcomWriter(UpdateCallback):
                 self.__writeln(2, 'PHON', addr.get_phone())
 
             self.__note_references(addr.get_note_list(), 2)
-            self.__source_references(addr.get_source_references(), 2)
+            self.__source_references(addr.get_citation_list(), 2)
 
     def __photos(self, media_list, level):
         """
@@ -743,11 +743,11 @@ class GedcomWriter(UpdateCallback):
 
     def __person_sources(self, person):
         """
-        Loop through the list of source references, writing the information
+        Loop through the list of citations, writing the information
         to the file.
         """
-        for srcref in person.get_source_references():
-            self.__source_ref_record(1, srcref)
+        for citation_handle in person.get_citation_list():
+            self.__source_ref_record(1, citation_handle)
 
     def __url_list(self, obj, level):
         """
@@ -809,7 +809,7 @@ class GedcomWriter(UpdateCallback):
         self.__family_events(family)
         self.__family_attributes(family.get_attribute_list(), 1)
         self.__family_child_list(family.get_child_ref_list())
-        self.__source_references(family.get_source_references(), 1)
+        self.__source_references(family.get_citation_list(), 1)
         self.__photos(family.get_media_list(), 1)
         self.__note_references(family.get_note_list(), 1)
         self.__change(family.get_change_time(), 1)
@@ -921,7 +921,7 @@ class GedcomWriter(UpdateCallback):
                 self.__writeln(2, 'TYPE', str(attr.get_type()))
 
             self.__note_references(attr.get_note_list(), level+1)
-            self.__source_references(attr.get_source_references(), 
+            self.__source_references(attr.get_citation_list(), 
                                      level+1)
 
     def __sources(self):
@@ -1137,7 +1137,7 @@ class GedcomWriter(UpdateCallback):
                 self.__writeln(3, 'AGE', attr.get_value())
 
         self.__note_references(event.get_note_list(), 2)
-        self.__source_references(event.get_source_references(), 2)
+        self.__source_references(event.get_citation_list(), 2)
 
         self.__photos(event.get_media_list(), 2)
         if place:
@@ -1193,7 +1193,7 @@ class GedcomWriter(UpdateCallback):
             self.__writeln(2, 'STAT', LDS_STATUS[lds_ord.get_status()])
         
         self.__note_references(lds_ord.get_note_list(), index+1)
-        self.__source_references(lds_ord.get_source_references(), index+1)
+        self.__source_references(lds_ord.get_citation_list(), index+1)
 
     def __date(self, level, date):
         """
@@ -1270,10 +1270,10 @@ class GedcomWriter(UpdateCallback):
         if nick:
             self.__writeln(2, 'NICK', nick)
 
-        self.__source_references(name.get_source_references(), 2)
+        self.__source_references(name.get_citation_list(), 2)
         self.__note_references(name.get_note_list(), 2)
 
-    def __source_ref_record(self, level, ref):
+    def __source_ref_record(self, level, citation_handle):
         """
         n SOUR @<XREF:SOUR>@ /* pointer to source record */ {1:1} 
         +1 PAGE <WHERE_WITHIN_SOURCE> {0:1} 
@@ -1288,7 +1288,9 @@ class GedcomWriter(UpdateCallback):
         +1 <<NOTE_STRUCTURE>> {0:M} 
         """
 
-        src_handle = ref.get_reference_handle()
+        citation = self.dbase.get_citation_from_handle(citation_handle)
+                
+        src_handle = citation.get_reference_handle()
         if src_handle is None:
             return
 
@@ -1298,25 +1300,27 @@ class GedcomWriter(UpdateCallback):
 
         # Reference to the source
         self.__writeln(level, "SOUR", "@%s@" % src.get_gramps_id())
-        if ref.get_page() != "":
+        if citation.get_page() != "":
         # PAGE <WHERE_WITHIN_SOURCE> can not have CONC lines.
         # WHERE_WITHIN_SOURCE:= {Size=1:248}
         # Maximize line to 248 and set limit to 248, for no line split
-            self.__writeln(level+1, 'PAGE', ref.get_page()[0:248], limit=248)
+            self.__writeln(level+1, 'PAGE', citation.get_page()[0:248], 
+                           limit=248)
 
 
-        conf = min(ref.get_confidence_level(), gen.lib.SourceRef.CONF_VERY_HIGH)
+        conf = min(citation.get_confidence_level(), 
+                   gen.lib.SourceRef.CONF_VERY_HIGH)
         if conf != gen.lib.SourceRef.CONF_NORMAL and conf != -1:
             self.__writeln(level+1, "QUAY", QUALITY_MAP[conf])
 
-        if not ref.get_date_object().is_empty():
+        if not citation.get_date_object().is_empty():
             self.__writeln(level+1, 'DATA')
-            self.__date(level+2, ref.get_date_object())
+            self.__date(level+2, citation.get_date_object())
 
-        if len(ref.get_note_list()) > 0:
+        if len(citation.get_note_list()) > 0:
 
             note_list = [ self.dbase.get_note_from_handle(h) 
-                          for h in ref.get_note_list() ]
+                          for h in citation.get_note_list() ]
             note_list = [ n for n in note_list 
                           if n.get_type() == gen.lib.NoteType.SOURCE_TEXT]
 
@@ -1325,16 +1329,17 @@ class GedcomWriter(UpdateCallback):
             else:
                 ref_text = ""
 
-            if ref_text != "" and ref.get_date_object().is_empty():
+            if ref_text != "" and citation.get_date_object().is_empty():
                 self.__writeln(level+1, 'DATA')
             if ref_text != "":
                 self.__writeln(level+2, "TEXT", ref_text)
 
             note_list = [ self.dbase.get_note_from_handle(h) 
-                          for h in ref.get_note_list() ]
+                          for h in citation.get_note_list() ]
             note_list = [ n.handle for n in note_list 
                           if n and n.get_type() != gen.lib.NoteType.SOURCE_TEXT]
             self.__note_references(note_list, level+1)
+            self.__photos(citation.get_media_list(), level+1)
 
     def __photo(self, photo, level):
         """
