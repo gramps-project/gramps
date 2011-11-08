@@ -63,27 +63,11 @@ class CitationSidebarFilter(SidebarFilter):
         self.filter_date = gtk.Entry()
         
         self.filter_conf = gtk.ComboBox()
-#        # FIXME: The confidence combo-box is not populated with any entries.
-#        # I have no idea why this should be, as the code here seems 
-#        # entirely analogous to src/gui/editors/editcitation,
-#        # which itself is derived from src/gui/editors/editsourceref.py
-#        # and edit citation displays the confidence selectors correctly.
-#        # There is some different code in src/gui/filtereditor.py.
-#        self.citn = gen.lib.Citation()
-#        self.type_mon = MonitoredMenu(
-#            self.filter_conf,
-#            self.citn.set_confidence_level,
-#            self.citn.get_confidence_level, [
-#            (_('Very Low'), gen.lib.Citation.CONF_VERY_LOW),
-#            (_('Low'), gen.lib.Citation.CONF_LOW),
-#            (_('Normal'), gen.lib.Citation.CONF_NORMAL),
-#            (_('High'), gen.lib.Citation.CONF_HIGH),
-#            (_('Very High'), gen.lib.Citation.CONF_VERY_HIGH)])
         model = gtk.ListStore(str)
         for conf_value in sorted(confidence.keys()):
             model.append((confidence[conf_value],))
         self.filter_conf.set_model(model)
-        self.filter_conf.set_active(2)
+        self.filter_conf.set_active(2)  # gen.lib.Citation.CONF_NORMAL
         
         self.filter_note = gtk.Entry()
 
