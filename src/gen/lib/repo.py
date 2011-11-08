@@ -179,23 +179,6 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         for item in self.get_citation_child_list():
             item.replace_citation_references(old_handle, new_handle)
 
-    def has_source_reference(self, src_handle) :
-        """
-        Return True if any of the child objects has reference to this source 
-        handle.
-
-        :param src_handle: The source handle to be checked.
-        :type src_handle: str
-        :returns: Returns whether any of it's child objects has reference to 
-                this source handle.
-        :rtype: bool
-        """
-        for item in self.get_sourcref_child_list():
-            if item.has_source_reference(src_handle):
-                return True
-
-        return False
-
     def remove_source_references(self, src_handle_list):
         """
         Remove references to all source handles in the list in all child 

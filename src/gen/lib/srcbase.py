@@ -37,13 +37,14 @@ from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
 #-------------------------------------------------------------------------
 #
 # SourceBase classes
+# FIXME: CITATION: As of Gramps 3.4, SourceBase is no longer used so this module
+# needs to be removed
 #
 #-------------------------------------------------------------------------
 class SourceBase(object):
     """
     Base class for storing source references.
     """
-# FIXME: SourceBase is no longer used so this module needs to be removed    
     def __init__(self, source=None):
         """
         Create a new SourceBase, copying from source if not None.

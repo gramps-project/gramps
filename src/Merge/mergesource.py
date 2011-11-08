@@ -209,7 +209,7 @@ class MergeSourceQuery(object):
                     old_handle):
                 if class_name == Citation.__name__:
                     citation = self.database.get_citation_from_handle(handle)
-                    assert(citation.has_source_reference(old_handle))
+                    assert(citation.get_reference_handle() == old_handle)
                     citation.replace_source_references(old_handle, new_handle)
                     self.database.commit_citation(citation, trans)
                 else:

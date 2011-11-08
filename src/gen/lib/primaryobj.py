@@ -131,15 +131,6 @@ class BasicPrimaryObject(TableObject, PrivacyBase):
         """
         pass
 
-    def has_source_reference(self, handle):
-        """
-        Indicate if the object has a source references. 
-        
-        In the base class, no such references exist. Derived classes should 
-        override this if they provide source references.
-        """
-        return False
-
     def has_media_reference(self, handle):
         """
         Indicate if the object has a media references. 

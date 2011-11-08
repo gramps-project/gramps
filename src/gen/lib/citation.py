@@ -233,26 +233,6 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
 # _HasSourceOf and mergesource, and it is better to make the test directly,
 # because, only citations refer to sources, and they have only one reference.
 # need to check remove and replace source reference.
-    def has_source_reference(self, src_handle) :
-        """
-        Return True if any of the child objects has reference to this source 
-        handle.
-
-        :param src_handle: The source handle to be checked.
-        :type src_handle: str
-        :returns: Returns whether any of it's child objects has reference to 
-                this source handle.
-        :rtype: bool
-        
-        Only the Citation Primary object refers to sources, none of the 
-        child objects do. Also, the Citation object only ever refers to one
-        Source, so only that reference needs to be checked.
-        """
-        if src_handle == self.get_reference_handle():
-            return True
-
-        return False
-
     def remove_source_references(self, src_handle_list):
         """
         Remove references to all source handles in the list in all child 
