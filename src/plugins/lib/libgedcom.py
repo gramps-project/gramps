@@ -2037,19 +2037,19 @@ class GedcomParser(UpdateCallback):
             TOKEN_RNOTE  : self.__person_asso_note, 
             }
 
-        self.srcref_parse_tbl = {
-            TOKEN_PAGE   : self.__srcref_page, 
-            TOKEN_DATE   : self.__srcref_date, 
-            TOKEN_DATA   : self.__srcref_data, 
-            TOKEN_OBJE   : self.__srcref_obje, 
-            TOKEN_REFN   : self.__srcref_refn, 
+        self.citation_parse_tbl = {
+            TOKEN_PAGE   : self.__citation_page, 
+            TOKEN_DATE   : self.__citation_date, 
+            TOKEN_DATA   : self.__citation_data, 
+            TOKEN_OBJE   : self.__citation_obje, 
+            TOKEN_REFN   : self.__citation_refn, 
             TOKEN_EVEN   : self.__ignore, 
             TOKEN_IGNORE : self.__ignore, 
             TOKEN__LKD   : self.__ignore, 
-            TOKEN_QUAY   : self.__srcref_quay, 
-            TOKEN_NOTE   : self.__srcref_note, 
-            TOKEN_RNOTE  : self.__srcref_note, 
-            TOKEN_TEXT   : self.__srcref_data_text, 
+            TOKEN_QUAY   : self.__citation_quay, 
+            TOKEN_NOTE   : self.__citation_note, 
+            TOKEN_RNOTE  : self.__citation_note, 
+            TOKEN_TEXT   : self.__citation_data_text, 
             }
 
         self.object_parse_tbl = {
@@ -2218,11 +2218,11 @@ class GedcomParser(UpdateCallback):
             TOKEN_NOTE   : self.__optional_note, 
             }
 
-        self.srcref_data_tbl = {
-            TOKEN_DATE   : self.__srcref_data_date, 
-            TOKEN_TEXT   : self.__srcref_data_text,
-            TOKEN_RNOTE  : self.__srcref_data_note, 
-            TOKEN_NOTE   : self.__srcref_data_note, 
+        self.citation_data_tbl = {
+            TOKEN_DATE   : self.__citation_data_date, 
+            TOKEN_TEXT   : self.__citation_data_text,
+            TOKEN_RNOTE  : self.__citation_data_note, 
+            TOKEN_NOTE   : self.__citation_data_note, 
             }
 
         self.header_sour = {
@@ -2747,8 +2747,8 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        source_ref = self.handle_source(line, state.level)
-        state.person.add_source_reference(source_ref)
+        citation_handle = self.handle_source(line, state.level)
+        state.person.add_citation(citation_handle)
 
     def __person_attr(self, line, state):
         """
@@ -3354,8 +3354,8 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        sref = self.handle_source(line, state.level)
-        state.name.add_source_reference(sref)
+        citation_handle = self.handle_source(line, state.level)
+        state.name.add_citation(citation_handle)
 
     def __ignore(self, line, state):
         """
@@ -3548,8 +3548,8 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        srcref = self.handle_source(line, state.level)
-        state.lds_ord.add_source_reference(srcref)
+        citation_handle = self.handle_source(line, state.level)
+        state.lds_ord.add_citation(citation_handle)
 
     def __lds_note(self, line, state):
         """
@@ -3681,8 +3681,8 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        source_ref = self.handle_source(line, state.level)
-        state.person.add_source_reference(source_ref)
+        citation_handle = self.handle_source(line, state.level)
+        state.person.add_citation(citation_handle)
 
     def __person_fams(self, line, state):
         """
@@ -3765,7 +3765,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.ref.add_source_reference(self.handle_source(line, state.level))
+        state.ref.add_citation(self.handle_source(line, state.level))
 
     def __person_asso_note(self, line, state):
         """
@@ -4040,8 +4040,8 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        source_ref = self.handle_source(line, state.level)
-        state.family.add_source_reference(source_ref)
+        citation_handle = self.handle_source(line, state.level)
+        state.family.add_citation(citation_handle)
 
     def __family_object(self, line, state):
         """
@@ -4369,7 +4369,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.place.add_source_reference(self.handle_source(line, state.level))
+        state.place.add_citation(self.handle_source(line, state.level))
 
     def __place_map(self, line, state):
         """
@@ -4503,7 +4503,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.event.add_source_reference(self.handle_source(line, state.level))
+        state.event.add_citation(self.handle_source(line, state.level))
 
     def __event_cause(self, line, state):
         """
@@ -4531,7 +4531,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.attr.add_source_reference(self.handle_source(line, state.level))
+        state.attr.add_citation(self.handle_source(line, state.level))
 
     def __event_age(self, line, state):
         """
@@ -4821,7 +4821,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.addr.add_source_reference(self.handle_source(line, state.level))
+        state.addr.add_citation(self.handle_source(line, state.level))
             
     def __address_note(self, line, state):
         """
@@ -4834,7 +4834,7 @@ class GedcomParser(UpdateCallback):
         """
         self.__parse_note(line, state.addr, state.level+1)
 
-    def __srcref_page(self, line, state):
+    def __citation_page(self, line, state):
         """
         Parses the PAGE line of an SOUR instance tag
 
@@ -4843,9 +4843,9 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.src_ref.set_page(line.data)
+        state.citation.set_page(line.data)
 
-    def __srcref_date(self, line, state):
+    def __citation_date(self, line, state):
         """
         Parses the DATE line of an SOUR instance tag
 
@@ -4854,9 +4854,9 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.src_ref.set_date_object(line.data)
+        state.citation.set_date_object(line.data)
 
-    def __srcref_data(self, line, state): 
+    def __citation_data(self, line, state): 
         """
         Parses the DATA line of an SOUR instance tag
 
@@ -4866,12 +4866,12 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         sub_state = CurrentState(level=state.level+1)
-        sub_state.src_ref = state.src_ref
+        sub_state.citation = state.citation
 
-        self.__parse_level(sub_state, self.srcref_data_tbl, self.__undefined)
+        self.__parse_level(sub_state, self.citation_data_tbl, self.__undefined)
 
-    def __srcref_data_date(self, line, state):
-        state.src_ref.set_date_object(line.data)
+    def __citation_data_date(self, line, state):
+        state.citation.set_date_object(line.data)
 
     def __source_text(self, line, state):
         note = gen.lib.Note()
@@ -4883,7 +4883,7 @@ class GedcomParser(UpdateCallback):
 
         state.source.add_note(note.get_handle())
 
-    def __srcref_data_text(self, line, state):
+    def __citation_data_text(self, line, state):
         note = gen.lib.Note()
         note.set(line.data)
         gramps_id = self.dbase.find_next_note_gramps_id()
@@ -4891,12 +4891,12 @@ class GedcomParser(UpdateCallback):
         note.set_type(gen.lib.NoteType.SOURCE_TEXT)
         self.dbase.add_note(note, self.trans)
 
-        state.src_ref.add_note(note.get_handle())
+        state.citation.add_note(note.get_handle())
 
-    def __srcref_data_note(self, line, state):
-        self.__parse_note(line, state.src_ref, state.level)
+    def __citation_data_note(self, line, state):
+        self.__parse_note(line, state.citation, state.level)
 
-    def __srcref_obje(self, line, state): 
+    def __citation_obje(self, line, state): 
         """
         Parses the OBJE line of an SOUR instance tag
 
@@ -4908,12 +4908,10 @@ class GedcomParser(UpdateCallback):
         if line.data and line.data[0] == '@':
             self.__not_recognized(line, state.level)
         else:
-            src = self.dbase.get_source_from_handle(state.handle)
             (form, filename, title, note) = self.__obje(state.level)
-            self.build_media_object(src, form, filename, title, note)
-            self.dbase.commit_source(src, self.trans)
+            self.build_media_object(state.citation, form, filename, title, note)
 
-    def __srcref_refn(self, line, state): 
+    def __citation_refn(self, line, state): 
         """
         Parses the REFN line of an SOUR instance tag
 
@@ -4924,7 +4922,7 @@ class GedcomParser(UpdateCallback):
         """
         self.__skip_subordinate_levels(state.level+1)
 
-    def __srcref_quay(self, line, state): 
+    def __citation_quay(self, line, state): 
         """
         Parses the QUAY line of an SOUR instance tag
 
@@ -4940,11 +4938,11 @@ class GedcomParser(UpdateCallback):
         # If value is greater than 3, cap at 3
         val = min(val, 3)
         if val > 1:
-            state.src_ref.set_confidence_level(val+1)
+            state.citation.set_confidence_level(val+1)
         else:
-            state.src_ref.set_confidence_level(val)
+            state.citation.set_confidence_level(val)
 
-    def __srcref_note(self, line, state): 
+    def __citation_note(self, line, state): 
         """
         Parses the NOTE line of an SOUR instance tag
 
@@ -4953,7 +4951,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.src_ref, state.level+1)
+        self.__parse_note(line, state.citation, state.level+1)
 
     def __parse_source(self, name, level):
         """
@@ -5301,7 +5299,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.attr.add_source_reference(self.handle_source(line, state.level))
+        state.attr.add_citation(self.handle_source(line, state.level))
 
     def __person_attr_place(self, line, state):
         """
@@ -5729,14 +5727,14 @@ class GedcomParser(UpdateCallback):
             self.nid2id[new_note.gramps_id] = new_note.handle
             self.__skip_subordinate_levels(level)
 
-    def __parse_source_reference(self, src_ref, level, handle):
+    def __parse_source_reference(self, citation, level, handle):
         """
         Read the data associated with a SOUR reference.
         """
         state = CurrentState(level=level+1)
-        state.src_ref = src_ref
+        state.citation = citation
         state.handle = handle
-        self.__parse_level(state, self.srcref_parse_tbl, self.__ignore)
+        self.__parse_level(state, self.citation_parse_tbl, self.__ignore)
     
     def __parse_header_head(self):
         """
@@ -5766,7 +5764,7 @@ class GedcomParser(UpdateCallback):
         Handle the specified source, building a source reference to
         the object.
         """
-        source_ref = gen.lib.SourceRef()
+        citation = gen.lib.Citation()
         if line.data and line.data[0] != "@":
             title = line.data
             handle = self.inline_srcs.get(title, Utils.create_id())
@@ -5777,9 +5775,10 @@ class GedcomParser(UpdateCallback):
         else:
             src = self.__find_or_create_source(self.sid_map[line.data])
         self.dbase.commit_source(src, self.trans)
-        self.__parse_source_reference(source_ref, level, src.handle)
-        source_ref.set_reference_handle(src.handle)
-        return source_ref
+        self.__parse_source_reference(citation, level, src.handle)
+        citation.set_reference_handle(src.handle)
+        self.dbase.add_citation(citation, self.trans)
+        return citation.handle
 
     def __parse_change(self, line, obj, level):
         """
@@ -5951,9 +5950,10 @@ class GedcomParser(UpdateCallback):
         Add the default source to the object.
         """
         if self.use_def_src and len(obj.get_source_references()) == 0:
-            sref = gen.lib.SourceRef()
-            sref.set_reference_handle(self.def_src.handle)
-            obj.add_source_reference(sref)
+            citation = gen.lib.Citation()
+            citation.set_reference_handle(self.def_src.handle)
+            self.dbase.add_citation(citation, self.trans)
+            obj.add_citation(citation.handle)
 
     def __subm_name(self, line, state):
         """
