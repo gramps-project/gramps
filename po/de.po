@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-07 19:42+0100\n"
-"PO-Revision-Date: 2011-11-07 20:14+0100\n"
+"POT-Creation-Date: 2011-11-09 18:55+0100\n"
+"PO-Revision-Date: 2011-11-09 19:00+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -5888,8 +5888,7 @@ msgid ""
 "contact the plugin author otherwise. "
 msgstr ""
 "Das Zusatzmodul wurde nicht geladen. Siehe Hilfemenü Zusatzmodulverwaltung "
-"für "
-"mehr Informationen.\n"
+"für mehr Informationen.\n"
 "Verwende http://bugs.gramps-project.org um einen Fehler für offizielle "
 "Zusatzmodule zu melden, anderenfalls kontaktiere den Autor der Erweiterung. "
 
@@ -5906,8 +5905,7 @@ msgid ""
 "the view author (%(firstauthoremail)s) otherwise. "
 msgstr ""
 "Die Ansicht %(name)s wurde nicht geladen. Siehe Hilfemenü, "
-"Zusatzmodulverwaltung "
-"für mehr Informationen.\n"
+"Zusatzmodulverwaltung für mehr Informationen.\n"
 "Gehe auf http://bugs.gramps-project.org bei offiziellen Ansichten einen "
 "Fehlerbericht zu erstellen, anderenfalls kontaktiere den Autor der Ansicht "
 "(%(firstauthoremail)s). "
@@ -9477,6 +9475,7 @@ msgid "Ancestor Graph for %s"
 msgstr "Ahnendiagramm für %s"
 
 #: ../src/plugins/drawreport/AncestorTree.py:697
+#: ../src/plugins/drawreport/drawplugins.gpr.py:32
 #: ../src/plugins/drawreport/drawplugins.gpr.py:48
 msgid "Ancestor Tree"
 msgstr "Ahnenbaum"
@@ -10278,13 +10277,9 @@ msgstr "Cousinendiagramm für [Namen der Kinder]"
 msgid "The bold style used for the text display."
 msgstr "Der Fettdruckstil, der für die Textanzeige verwendet wird."
 
-#: ../src/plugins/drawreport/drawplugins.gpr.py:32
-msgid "Ancestor Tree (BKI)"
-msgstr "Ahnenbaum (BKI)"
-
 #: ../src/plugins/drawreport/drawplugins.gpr.py:33
-msgid "Produces a graphical ancestral tree (BKI)"
-msgstr "Erstellt eine grafische Ahnentafel in Baumstruktur (BKI)"
+msgid "Produces a graphical ancestral tree (Book report)"
+msgstr "Erstellt eine grafische Ahnentafel in Baumstruktur (Buchbericht)"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:49
 msgid "Produces a graphical ancestral tree"
@@ -10301,32 +10296,26 @@ msgid "Produces a graphical calendar"
 msgstr "Erstellt einen grafischen Kalender"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:92
-msgid "Descendant Tree (BKI)"
-msgstr "Nachkommenbaum (BKI)"
-
-#: ../src/plugins/drawreport/drawplugins.gpr.py:93
-msgid "Produces a graphical descendant tree (BKI)"
-msgstr "Erstellt eine grafischen Nachkommenbaum (BKI)"
-
 #: ../src/plugins/drawreport/drawplugins.gpr.py:108
 msgid "Descendant Tree"
 msgstr "Nachkommenbaum"
+
+#: ../src/plugins/drawreport/drawplugins.gpr.py:93
+msgid "Produces a graphical descendant tree (Book report)"
+msgstr "Erstellt eine grafischen Nachkommenbaum (Buchbericht)"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:109
 msgid "Produces a graphical descendant tree"
 msgstr "Erstellt eine grafischen Nachkommenbaum"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:130
-msgid "Family Descendant Tree (BKI)"
-msgstr "Familiennachkommenbaum (BKI)"
-
-#: ../src/plugins/drawreport/drawplugins.gpr.py:131
-msgid "Produces a graphical descendant tree around a family (BKI)"
-msgstr "Erstellt eine grafischen Nachkommenbaum um eine Familie (BKI)"
-
 #: ../src/plugins/drawreport/drawplugins.gpr.py:147
 msgid "Family Descendant Tree"
 msgstr "Familiennachkommenbaum"
+
+#: ../src/plugins/drawreport/drawplugins.gpr.py:131
+msgid "Produces a graphical descendant tree around a family (Book report)"
+msgstr "Erstellt eine grafischen Nachkommenbaum um eine Familie (Buchbericht)"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:148
 msgid "Produces a graphical descendant tree around a family"
@@ -13774,8 +13763,7 @@ msgstr ""
 "importierten Mediendateien in den bestehende Medienbasispfad ändern. Du "
 "kannst das durch verschieben deiner Medienobjekte an die neue Position und "
 "das Medienverwaltungwerkzeug mit Ersetze Zeichenfolge im Pfad, um die "
-"korrekten "
-"Pfade in deinen Medienobjekten zu setzen, erledigen."
+"korrekten Pfade in deinen Medienobjekten zu setzen, erledigen."
 
 #. -------------------------------------------------------------------------
 #.
@@ -27585,8 +27573,7 @@ msgstr ""
 "Setze den 'Relativen Pfad' in den Präferenzen um zu vermeiden, das das "
 "Basisverzeichnis in dem alle deine Medien gespeichert sind neu eingeben zu "
 "müssen. Das 'Medienmverwaltung' Werkzeug kann dabei helfen, die Pfade für "
-"eine "
-"Sammlung von Medienobjekten zu verwalten. "
+"eine Sammlung von Medienobjekten zu verwalten. "
 
 #: ../src/glade/editmediaref.glade.h:2
 msgid ""
@@ -29762,6 +29749,15 @@ msgstr ""
 "werden. Du kannst auch den Vertrauensgrad eines Datums und sogar zwischen "
 "sieben verschiedenen Kalendern wählen. Probiere die Schaltfläche neben dem "
 "Datumsfeld im Ereigniseditor."
+
+#~ msgid "Ancestor Tree (BKI)"
+#~ msgstr "Ahnenbaum (BKI)"
+
+#~ msgid "Descendant Tree (BKI)"
+#~ msgstr "Nachkommenbaum (BKI)"
+
+#~ msgid "Family Descendant Tree (BKI)"
+#~ msgstr "Familiennachkommenbaum (BKI)"
 
 #~ msgid "Baptism:"
 #~ msgstr "Taufe:"
