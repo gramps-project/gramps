@@ -363,6 +363,29 @@
     <date name="1. Weihnachtsfeiertag" type="religious" value="*/12/25" />
     <date name="2. Weihnachtsfeiertag" type="religious" value="*/12/26" />
   </country>
+  <country _name="Japan">
+    <date name="元日" value="*/1/1" />
+    <date name="成人の日" value="*/2/mon/jan" />
+    <date name="建国記念の日" value="*/2/11" />
+    <date name="春分の日" value="*/3/20" />
+    <date name="春分の日" value="*/3/21" />
+    <date name="昭和の日" value="*/4/29" />
+    <date name="憲法記念日" value="*/5/3" />
+    <date name="みどりの日" value="*/5/4" />
+    <date name="こどもの日" value="*/5/5" />
+    <date name="海の日" value="*/3/mon/jul" />
+    <date name="敬老の日" value="*/3/mon/sep" />
+    <date name="秋分の日" value="*/9/22" />
+    <date name="秋分の日" value="*/9/23" />
+    <date name="体育の日" value="*/2/mon/oct" />
+    <date name="文化の日" value="*/11/3" />
+    <date name="勤労感謝の日" value="*/11/23" />
+    <date name="天皇誕生日" value="*/12/23" />
+    <date name="皇太子明仁親王の結婚" value="1959/4/10" />
+    <date name="昭和天皇の大喪の礼" value="1989/2/24" />
+    <date name="天皇(明仁)即位記念" value="1990/11/12" />
+    <date name="皇太子徳仁親王の結婚" value="1993/6/9" />
+  </country>
   <country _name="Sweden - Holidays">
     <date name="Nyårsdagen" value="*/1/1" type="religious" />
     <date name="Trettondagen" value="*/1/6" type="religious" />
