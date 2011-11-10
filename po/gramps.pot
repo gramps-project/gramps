@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-09 15:32+0100\n"
+"POT-Creation-Date: 2011-11-10 08:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17446,47 +17446,51 @@ msgid "Hanuka"
 msgstr ""
 
 #: ../src/plugins/lib/holidays.xml.in.h:31
-msgid "Jewish Holidays"
+msgid "Japan"
 msgstr ""
 
 #: ../src/plugins/lib/holidays.xml.in.h:32
-msgid "Passover"
+msgid "Jewish Holidays"
 msgstr ""
 
 #: ../src/plugins/lib/holidays.xml.in.h:33
-msgid "Purim"
+msgid "Passover"
 msgstr ""
 
 #: ../src/plugins/lib/holidays.xml.in.h:34
-msgid "Rosh Ha'Shana"
+msgid "Purim"
 msgstr ""
 
 #: ../src/plugins/lib/holidays.xml.in.h:35
-msgid "Rosh Ha'Shana 2"
+msgid "Rosh Ha'Shana"
 msgstr ""
 
 #: ../src/plugins/lib/holidays.xml.in.h:36
-msgid "Shavuot"
+msgid "Rosh Ha'Shana 2"
 msgstr ""
 
 #: ../src/plugins/lib/holidays.xml.in.h:37
-msgid "Simhat Tora"
+msgid "Shavuot"
 msgstr ""
 
 #: ../src/plugins/lib/holidays.xml.in.h:38
-msgid "Sukot"
+msgid "Simhat Tora"
 msgstr ""
 
 #: ../src/plugins/lib/holidays.xml.in.h:39
-msgid "Sweden - Holidays"
+msgid "Sukot"
 msgstr ""
 
 #: ../src/plugins/lib/holidays.xml.in.h:40
+msgid "Sweden - Holidays"
+msgstr ""
+
+#: ../src/plugins/lib/holidays.xml.in.h:41
 #: ../src/plugins/tool/ExtractCity.py:62
 msgid "United States of America"
 msgstr ""
 
-#: ../src/plugins/lib/holidays.xml.in.h:41
+#: ../src/plugins/lib/holidays.xml.in.h:42
 msgid "Yom Kippur"
 msgstr ""
 

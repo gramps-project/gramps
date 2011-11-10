@@ -23,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.3.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-09 15:32+0100\n"
-"PO-Revision-Date: 2011-11-09 15:34+0100\n"
+"POT-Creation-Date: 2011-11-10 08:57+0100\n"
+"PO-Revision-Date: 2011-11-10 08:58+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "Language: \n"
@@ -18145,47 +18145,51 @@ msgid "Hanuka"
 msgstr "Hanoucca"
 
 #: ../src/plugins/lib/holidays.xml.in.h:31
+msgid "Japan"
+msgstr "Japon"
+
+#: ../src/plugins/lib/holidays.xml.in.h:32
 msgid "Jewish Holidays"
 msgstr "Fêtes juives"
 
-#: ../src/plugins/lib/holidays.xml.in.h:32
+#: ../src/plugins/lib/holidays.xml.in.h:33
 msgid "Passover"
 msgstr "Pâque juive"
 
-#: ../src/plugins/lib/holidays.xml.in.h:33
+#: ../src/plugins/lib/holidays.xml.in.h:34
 msgid "Purim"
 msgstr ""
 
-#: ../src/plugins/lib/holidays.xml.in.h:34
+#: ../src/plugins/lib/holidays.xml.in.h:35
 msgid "Rosh Ha'Shana"
 msgstr ""
 
-#: ../src/plugins/lib/holidays.xml.in.h:35
+#: ../src/plugins/lib/holidays.xml.in.h:36
 msgid "Rosh Ha'Shana 2"
 msgstr ""
 
-#: ../src/plugins/lib/holidays.xml.in.h:36
+#: ../src/plugins/lib/holidays.xml.in.h:37
 msgid "Shavuot"
 msgstr ""
 
-#: ../src/plugins/lib/holidays.xml.in.h:37
+#: ../src/plugins/lib/holidays.xml.in.h:38
 msgid "Simhat Tora"
 msgstr ""
 
-#: ../src/plugins/lib/holidays.xml.in.h:38
+#: ../src/plugins/lib/holidays.xml.in.h:39
 msgid "Sukot"
 msgstr ""
 
-#: ../src/plugins/lib/holidays.xml.in.h:39
+#: ../src/plugins/lib/holidays.xml.in.h:40
 msgid "Sweden - Holidays"
 msgstr "Suède - jours fériés"
 
-#: ../src/plugins/lib/holidays.xml.in.h:40
+#: ../src/plugins/lib/holidays.xml.in.h:41
 #: ../src/plugins/tool/ExtractCity.py:62
 msgid "United States of America"
 msgstr "USA"
 
-#: ../src/plugins/lib/holidays.xml.in.h:41
+#: ../src/plugins/lib/holidays.xml.in.h:42
 msgid "Yom Kippur"
 msgstr "Yom Kippour"
 
