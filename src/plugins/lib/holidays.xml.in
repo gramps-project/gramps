@@ -417,19 +417,16 @@
     <date name="April Fool's Day" value="*/4/1" type="secular" />
     <date name="Arbor Day" value="*/-1/fri/apr" type="secular" />
     <date name="Earth Day" value="*/4/22" type="secular" />
-    <date name="Easter" type="religious" value="> easter(y)" />
-    <date name="Ash Wednesday" type="religious" value="> easter(y)" offset="-46" />
-    <date name="Mardi Gras" type="religious" value="> easter(y)" offset="-47" />
+    <date name="Easter" value="> easter(y)" type="religious" />
+    <date name="Ash Wednesday" value="> easter(y)" type="religious" offset="-46" />
+    <date name="Mardi Gras" value="> easter(y)" type="religious" offset="-47" />
     <date name="Daylight Saving begins" value="> dst(y)[0]" type="informational" />
-    <date name="Income Taxes due" value="*/4/15" type="national"
-      if="date.weekday().__cmp__(4)-1" />
-    <date name="Income Taxes due" value="*/4/16" type="national"
-      if="date.weekday() == 0" />
-    <date name="Income Taxes due" value="*/4/17" type="national"
-      if="date.weekday() == 0" />
+    <date name="Income Taxes due" value="*/4/15" type="national" if="date.weekday().__cmp__(4)-1" />
+    <date name="Income Taxes due" value="*/4/16" type="national" if="date.weekday() == 0" />
+    <date name="Income Taxes due" value="*/4/17" type="national" if="date.weekday() == 0" />
     <date name="Daylight Saving ends" value="> dst(y)[1]" type="informational" />
-    <date name="Inauguration Day" value="*/1/20" if="(y - 1980) % 4 == 1" type="national" />
-    <date name="Passover" type="religious" value="> passover(y)" />
+    <date name="Inauguration Day" value="*/1/20" type="national" if="(y - 1980) % 4 == 1" />
+    <date name="Passover" value="> passover(y)" type="religious" />
     <date name="Assistants' Day" value="*/-1/sat/apr" offset="-3" type="secular" />
     <date name="Cinco de Mayo" value="*/5/5" type="secular" />
     <date name="Armed Forces Day" value="*/3/sat/may" type="secular" />
@@ -440,20 +437,20 @@
     <date name="Independence Day" value="*/7/4" type="national" />
     <date name="Parents' Day" value="*/4/sun/jul" type="secular" />
     <date name="Labor Day" value="*/1/mon/sep" type="national" />
-    <date name="Grandparents' Day" value="*/1/mon/sep" offset="6" type="secular" />
+    <date name="Grandparents' Day" value="*/1/mon/sep" type="secular" offset="6" />
     <date name="Columbus Day" value="*/2/mon/oct" type="secular" />
     <date name="Ramadan begins" value="2006/09/24" type="religious" />
     <date name="Ramadan begins" value="2007/09/13" type="religious" />
     <date name="Ramadan begins" value="2008/09/2" type="religious" />
     <date name="Ramadan begins" value="2009/08/22" type="religious" />
-    <date name="Yom Kippur" type="religious" value="> passover(y)" offset="172" />
+    <date name="Yom Kippur" value="> passover(y)" type="religious" offset="172" />
     <date name="United Nations Day" value="*/10/24" type="secular" />
     <date name="Halloween" value="*/10/31" type="secular" />
-    <date name="Election Day" value="*/11/2" offset="tue" type="secular" />
+    <date name="Election Day" value="*/11/2" type="secular" offset="tue" />
     <date name="Veterans Day" value="*/11/11" type="national" />
     <date name="Thanksgiving" value="*/4/thu/nov" type="national" />
-    <date name="Hanukkah begins" type="religious" value="> hanuka(y)" />
-    <date name="Christmas" value="*/12/25" type="national" />
+    <date name="Hanukkah begins" value="> hanuka(y)" type="religious" />
+    <date name="Christmas" value="*/12/25" type="religious" />
     <date name="Kwanzaa begins" value="*/12/26" type="religious" />
   </country>
   <country _name="Jewish Holidays">
