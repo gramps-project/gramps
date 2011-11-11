@@ -192,30 +192,6 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         """
         return self.get_referenced_note_handles()
 
-    def remove_source_references(self, src_handle_list):
-        """
-        Remove references to all source handles in the list in all child 
-        objects.
-
-        :param src_handle_list: The list of source handles to be removed.
-        :type src_handle_list: list
-        """
-        for item in self.get_sourcref_child_list():
-            item.remove_source_references(src_handle_list)
-
-    def replace_source_references(self, old_handle, new_handle):
-        """
-        Replace references to source_handles in the list in this object and
-        all child objects and merge equivalent entries.
-
-        :param old_handle: The source handle to be replaced.
-        :type old_handle: str
-        :param new_handle: The source handle to replace the old one with.
-        :type new_handle: str
-        """
-        for item in self.get_sourcref_child_list():
-            item.replace_source_references(old_handle, new_handle)
-
     def merge(self, acquisition):
         """
         Merge the content of acquisition into this source.

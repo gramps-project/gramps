@@ -21,7 +21,7 @@
 # $Id$
 
 """ Unittest that tests the code involved in merging """
-
+# FIXME: CITATION: this needs to be updated for citations.
 import unittest
 import sys
 import os

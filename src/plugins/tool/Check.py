@@ -231,7 +231,8 @@ class Check(tool.BatchTool):
             checker.check_person_references()
             checker.check_family_references()
             checker.check_place_references()
-            checker.check_source_references()
+            checker.check_citation_references()
+            # FIXME: CITATION should also check source references
             checker.check_media_references()
             checker.check_repo_references()
             checker.check_note_references()
@@ -266,7 +267,7 @@ class CheckIntegrity(object):
         self.invalid_person_references = []
         self.invalid_family_references = []
         self.invalid_place_references = []
-        self.invalid_source_references = []
+        self.invalid_citation_references = []
         self.invalid_repo_references = []
         self.invalid_media_references = []
         self.invalid_note_references = []
@@ -995,8 +996,8 @@ class CheckIntegrity(object):
                     self.db.commit_event(event, self.trans)
                     self.invalid_place_references.append(key)
 
-    def check_source_references(self):
-        known_handles = self.db.get_source_handles()
+    def check_citation_references(self):
+        known_handles = self.db.get_citation_handles()
 
         total = (
                 self.db.get_number_of_people() +
@@ -1008,7 +1009,7 @@ class CheckIntegrity(object):
                 self.db.get_number_of_repositories()
                 )
 
-        self.progress.set_pass(_('Looking for source reference problems'),
+        self.progress.set_pass(_('Looking for citation reference problems'),
                                total)
         
         for handle in self.db.person_map.keys():
@@ -1018,14 +1019,14 @@ class CheckIntegrity(object):
             person.unserialize(info)
             handle_list = person.get_referenced_handles_recursively()
             bad_handles = [ item[1] for item in handle_list
-                            if item[0] == 'Source' and
+                            if item[0] == 'Citation' and
                             item[1] not in known_handles ]
             if bad_handles:
-                person.remove_source_references(bad_handles)
+                person.remove_citation_refs(bad_handles)
                 self.db.commit_person(person,self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
-                                   not in self.invalid_source_references]
-                self.invalid_source_references += new_bad_handles
+                                   not in self.invalid_citation_references]
+                self.invalid_citation_references += new_bad_handles
 
         for handle in self.db.family_map.keys():
             self.progress.step()
@@ -1034,14 +1035,14 @@ class CheckIntegrity(object):
             family.unserialize(info)
             handle_list = family.get_referenced_handles_recursively()
             bad_handles = [ item[1] for item in handle_list
-                            if item[0] == 'Source' and
+                            if item[0] == 'Citation' and
                             item[1] not in known_handles ]
             if bad_handles:
-                family.remove_source_references(bad_handles)
+                family.remove_citation_refs(bad_handles)
                 self.db.commit_family(family, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
-                                   not in self.invalid_source_references]
-                self.invalid_source_references += new_bad_handles
+                                   not in self.invalid_citation_references]
+                self.invalid_citation_references += new_bad_handles
 
         for handle in self.db.place_map.keys():
             self.progress.step()
@@ -1050,14 +1051,14 @@ class CheckIntegrity(object):
             place.unserialize(info)
             handle_list = place.get_referenced_handles_recursively()
             bad_handles = [ item[1] for item in handle_list
-                            if item[0] == 'Source' and
+                            if item[0] == 'Citation' and
                             item[1] not in known_handles ]
             if bad_handles:
-                place.remove_source_references(bad_handles)
+                place.remove_citation_refs(bad_handles)
                 self.db.commit_place(place,self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
-                                   not in self.invalid_source_references]
-                self.invalid_source_references += new_bad_handles
+                                   not in self.invalid_citation_references]
+                self.invalid_citation_references += new_bad_handles
 
         for handle in self.db.repository_map.keys():
             self.progress.step()
@@ -1066,31 +1067,31 @@ class CheckIntegrity(object):
             repo.unserialize(info)
             handle_list = repo.get_referenced_handles_recursively()
             bad_handles = [ item[1] for item in handle_list
-                            if item[0] == 'Source' and
+                            if item[0] == 'Citation' and
                             item[1] not in known_handles ]
             if bad_handles:
-                repo.remove_source_references(bad_handles)
+                repo.remove_citation_refs(bad_handles)
                 self.db.commit_repository(repo, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
-                                   not in self.invalid_source_references]
-                self.invalid_source_references += new_bad_handles
+                                   not in self.invalid_citation_references]
+                self.invalid_citation_references += new_bad_handles
 
-        #I think this for loop is useless! sources in sources map exist...
+        #I think this for loop is useless! citations in citations map exist...
         for handle in known_handles:
             self.progress.step()
-            info = self.db.source_map[handle]
-            source = gen.lib.Source()
-            source.unserialize(info)
-            handle_list = source.get_referenced_handles_recursively()
+            info = self.db.citation_map[handle]
+            citation = gen.lib.Citation()
+            citation.unserialize(info)
+            handle_list = citation.get_referenced_handles_recursively()
             bad_handles = [ item[1] for item in handle_list
-                            if item[0] == 'Source' and
+                            if item[0] == 'Citation' and
                             item[1] not in known_handles ]
             if bad_handles:
-                source.remove_source_references(bad_handles)
-                self.db.commit_source(source, self.trans)
+                citation.remove_citation_refs(bad_handles)
+                self.db.commit_citation(citation, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
-                                   not in self.invalid_source_references]
-                self.invalid_source_references += new_bad_handles
+                                   not in self.invalid_citation_references]
+                self.invalid_citation_references += new_bad_handles
 
         for handle in self.db.media_map.keys():
             self.progress.step()
@@ -1099,14 +1100,14 @@ class CheckIntegrity(object):
             obj.unserialize(info)
             handle_list = obj.get_referenced_handles_recursively()
             bad_handles = [ item[1] for item in handle_list
-                            if item[0] == 'Source' and
+                            if item[0] == 'Citation' and
                             item[1] not in known_handles ]
             if bad_handles:
-                obj.remove_source_references(bad_handles)
+                obj.remove_citation_refs(bad_handles)
                 self.db.commit_media_object(obj, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
-                                   not in self.invalid_source_references]
-                self.invalid_source_references += new_bad_handles
+                                   not in self.invalid_citation_references]
+                self.invalid_citation_references += new_bad_handles
 
         for handle in self.db.event_map.keys():
             self.progress.step()
@@ -1115,14 +1116,14 @@ class CheckIntegrity(object):
             event.unserialize(info)
             handle_list = event.get_referenced_handles_recursively()
             bad_handles = [ item[1] for item in handle_list
-                            if item[0] == 'Source' and
+                            if item[0] == 'Citation' and
                             item[1] not in known_handles ]
             if bad_handles:
-                event.remove_source_references(bad_handles)
+                event.remove_citation_refs(bad_handles)
                 self.db.commit_event(event, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
-                                   not in self.invalid_source_references]
-                self.invalid_source_references += new_bad_handles
+                                   not in self.invalid_citation_references]
+                self.invalid_citation_references += new_bad_handles
 
     def check_media_references(self):
         known_handles = self.db.get_media_object_handles(False)
@@ -1367,7 +1368,7 @@ class CheckIntegrity(object):
         family_references = len(self.invalid_family_references)
         invalid_dates = len(self.invalid_dates)
         place_references = len(self.invalid_place_references)
-        source_references = len(self.invalid_source_references)
+        citation_references = len(self.invalid_citation_references)
         repo_references = len(self.invalid_repo_references)
         media_references = len(self.invalid_media_references)
         note_references = len(self.invalid_note_references)
@@ -1377,7 +1378,7 @@ class CheckIntegrity(object):
         errors = (photos + efam + blink + plink + slink + rel +
                   event_invalid + person +
                   person_references  + family_references + place_references +
-                  source_references + repo_references + media_references  +
+                  citation_references + repo_references + media_references  +
                   note_references + name_format + empty_objs + invalid_dates
                  )
         
@@ -1559,11 +1560,11 @@ class CheckIntegrity(object):
                          place_references) % {'quantity': place_references}
                 )
 
-        if source_references:
+        if citation_references:
             self.text.write(
-                ngettext("%(quantity)d source was referenced but not found\n",
-                         "%(quantity)d sources were referenced, but not found\n",
-                         source_references) % {'quantity': source_references}
+                ngettext("%(quantity)d citation was referenced but not found\n",
+                         "%(quantity)d citations were referenced, but not found\n",
+                         citation_references) % {'quantity': citation_references}
                 )
 
         if media_references:

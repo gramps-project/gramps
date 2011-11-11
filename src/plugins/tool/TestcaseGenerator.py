@@ -336,6 +336,30 @@ class TestcaseGenerator(tool.BatchTool):
            #     self.rand_media()
             
 
+        # FIXME: generate_tags needs to be run before generate_broken_relations
+        # otherwise you get
+        
+#          File "/Users/tim/gramps/gramps33/src/plugins/tool/TestcaseGenerator.py", line 1404, in rand_tags
+#    tag = choice(self.generated_tags)
+#  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/random.py", line 261, in choice
+#    return seq[int(self.random() * len(seq))]  # raises IndexError if seq is empty
+#IndexError: list index out of range
+
+        # FIXME: If tags have arbitrary forms, then you can get errors because
+        # add_ui_from_string parses the tag as part of parsing
+        
+        
+#        Traceback (most recent call last):
+#  File "/Users/tim/gramps/gramps33/src/gui/viewmanager.py", line 1265, in view_changed
+#    self.__change_page(page_num)
+#  File "/Users/tim/gramps/gramps33/src/gui/viewmanager.py", line 1278, in __change_page
+#    self.active_page.set_active()
+#  File "/Users/tim/gramps/gramps33/src/plugins/lib/libpersonview.py", line 399, in set_active
+#    self.uistate.viewmanager.tags.tag_enable()
+#  File "/Users/tim/gramps/gramps33/src/gui/views/tags.py", line 122, in tag_enable
+#    self.tag_id = self.uistate.uimanager.add_ui_from_string(self.tag_ui)
+#GError: Error on line 6 char 470: '#+#000001#-#' is not a valid name 
+
         if self.options.handler.options_dict['bugs']:
             self.generate_broken_relations()
         

@@ -32,7 +32,7 @@ Basic Primary Object class for GRAMPS.
 #-------------------------------------------------------------------------
 from gen.lib.tableobj import TableObject
 from gen.lib.privacybase import PrivacyBase
-from gen.lib.srcbase import SourceBase
+from gen.lib.citationbase import CitationBase
 from gen.lib.mediabase import MediaBase
 
 #-------------------------------------------------------------------------
@@ -140,7 +140,7 @@ class BasicPrimaryObject(TableObject, PrivacyBase):
         """
         return False
 
-    def remove_source_references(self, handle_list):
+    def remove_citation_references(self, handle_list):
         """
         Remove the specified source references from the object. 
         
@@ -158,7 +158,7 @@ class BasicPrimaryObject(TableObject, PrivacyBase):
         """
         pass
 
-    def replace_source_references(self, old_handle, new_handle):
+    def replace_citation_references(self, old_handle, new_handle):
         pass
 
     def replace_media_references(self, old_handle, new_handle):
@@ -206,9 +206,8 @@ class PrimaryObject(BasicPrimaryObject):
           of this object type.
         :rtype: bool
         """
-        # FIXME: SourceBase is no longer used so this needs to be changed
-        if classname == 'Source' and isinstance(self, SourceBase):
-            return self.has_source_reference(handle)
+        if classname == 'Citation' and isinstance(self, CitationBase):
+            return self.has_citation_reference(handle)
         elif classname == 'MediaObject' and isinstance(self, MediaBase):
             return self.has_media_reference(handle)
         else:
@@ -223,8 +222,8 @@ class PrimaryObject(BasicPrimaryObject):
         :param handle_list: The list of handles to be removed.
         :type handle_list: str
         """
-        if classname == 'Source' and isinstance(self, SourceBase):
-            self.remove_source_references(handle_list)
+        if classname == 'Citation' and isinstance(self, CitationBase):
+            self.remove_citation_references(handle_list)
         elif classname == 'MediaObject' and isinstance(self, MediaBase):
             self.remove_media_references(handle_list)
         else:
@@ -241,8 +240,8 @@ class PrimaryObject(BasicPrimaryObject):
         :param new_handle: The handle to replace the old one with.
         :type new_handle: str
         """
-        if classname == 'Source' and isinstance(self, SourceBase):
-            self.replace_source_references(old_handle, new_handle)
+        if classname == 'Citation' and isinstance(self, CitationBase):
+            self.replace_citation_references(old_handle, new_handle)
         elif classname == 'MediaObject' and isinstance(self, MediaBase):
             self.replace_media_references(old_handle, new_handle)
         else:

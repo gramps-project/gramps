@@ -449,41 +449,41 @@ class DeleteCitationQuery(object):
             (person_list, family_list, event_list, place_list, source_list, 
              media_list, repo_list) = self.the_lists
 
-            ctn_handle = self.citation.get_handle()
+            ctn_handle_list = [self.citation.get_handle()]
 
             for handle in person_list:
                 person = self.db.get_person_from_handle(handle)
-                person.remove_citation(ctn_handle)
+                person.remove_citation_refs(ctn_handle_list)
                 self.db.commit_person(person, trans)
 
             for handle in family_list:
                 family = self.db.get_family_from_handle(handle)
-                family.remove_citation(ctn_handle)
+                family.remove_citation_refs(ctn_handle_list)
                 self.db.commit_family(family, trans)
 
             for handle in event_list:
                 event = self.db.get_event_from_handle(handle)
-                event.remove_citation(ctn_handle)
+                event.remove_citation_refs(ctn_handle_list)
                 self.db.commit_event(event, trans)
 
             for handle in place_list:
                 place = self.db.get_place_from_handle(handle)
-                place.remove_citation(ctn_handle)
+                place.remove_citation_refs(ctn_handle_list)
                 self.db.commit_place(place, trans)
 
             for handle in source_list:
                 source = self.db.get_source_from_handle(handle)
-                source.remove_citation(ctn_handle)
+                source.remove_citation_refs(ctn_handle_list)
                 self.db.commit_source(source, trans)
 
             for handle in media_list:
                 media = self.db.get_object_from_handle(handle)
-                media.remove_citation(ctn_handle)
+                media.remove_citation_refs(ctn_handle_list)
                 self.db.commit_media_object(media, trans)
 
             for handle in repo_list:
                 repo = self.db.get_repository_from_handle(handle)
-                repo.remove_citation(ctn_handle)
+                repo.remove_citation_refs(ctn_handle_list)
                 self.db.commit_repository(repo, trans)
 
             self.db.enable_signals()

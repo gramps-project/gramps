@@ -93,25 +93,25 @@ class CitationBase(object):
             self.citation_list.append(handle)
             return True
 
-    def remove_citation(self, handle):
+    def remove_citation_refs(self, citation_handle_list):
         """
-        Remove the specified handle from the list of citation handles, and all
+        Remove the specified handles from the list of citation handles, and all
         secondary child objects.
 
-        :param handle: :class:`~gen.lib.citation.Citation` handle to remove 
-            from the list of citations
-        :type handle: str
+        :param citation_handle_list: The list of citation handles to be removed
+        :type handle: list
         """
         LOG.debug('enter remove_citation handle: %s self: %s citation_list: %s'
-                   % (handle, self, self.citation_list))
-        if handle in self.citation_list:
-            LOG.debug('remove handle %s from citation_list %s' % 
-                      (handle, self.citation_list))
-            self.citation_list.remove(handle)
+                   % (citation_handle_list, self, self.citation_list))
+        for handle in citation_handle_list:
+            if handle in self.citation_list:
+                LOG.debug('remove handle %s from citation_list %s' % 
+                          (handle, self.citation_list))
+                self.citation_list.remove(handle)
         LOG.debug('get_citation_child_list %s' % 
                   self.get_citation_child_list())
         for item in self.get_citation_child_list():
-            item.remove_citation(handle)
+            item.remove_citation_refs(citation_handle_list)
     
     def get_citation_child_list(self):
         """

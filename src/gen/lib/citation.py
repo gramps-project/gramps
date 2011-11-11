@@ -181,20 +181,6 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
         """
         return self.media_list
 
-# FIXME: get_sourceRef_child_list needs to be removed
-
-#    def get_sourcref_child_list(self):
-#        """
-#        Return the list of child secondary objects that may refer sources.
-#        Only the Citation Primary object refers to sources, none of the 
-#        child objects do.
-#
-#        :returns: Returns the list of child secondary child objects that may 
-#                refer sources.
-#        :rtype: list
-#        """
-#        return []
-
     def get_note_child_list(self):
         """
         Return the list of child secondary objects that may refer notes.
@@ -227,35 +213,6 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
         if self.get_reference_handle():
             ret += [('Source', self.get_reference_handle())]
         return ret
-
-# FIXME: Remove all has_source_refernce and consequently all
-# get_sourceref_child_list, because these seem to be only used in the filter
-# _HasSourceOf and mergesource, and it is better to make the test directly,
-# because, only citations refer to sources, and they have only one reference.
-# need to check remove and replace source reference.
-    def remove_source_references(self, src_handle_list):
-        """
-        Remove references to all source handles in the list in all child 
-        objects.
-
-        :param src_handle_list: The list of source handles to be removed.
-        :type src_handle_list: list
-        """
-        if self.get_reference_handle() in src_handle_list:
-            self.set_reference_handle(None)
-
-    def replace_source_references(self, old_handle, new_handle):
-        """
-        Replace references to source_handles in the list in this object and
-        all child objects and merge equivalent entries.
-
-        :param old_handle: The source handle to be replaced.
-        :type old_handle: str
-        :param new_handle: The source handle to replace the old one with.
-        :type new_handle: str
-        """
-        if old_handle == self.get_reference_handle():
-            self.set_reference_handle(new_handle)
 
     def merge(self, acquisition):
         """
