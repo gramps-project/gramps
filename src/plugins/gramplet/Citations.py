@@ -1,5 +1,6 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
+# Copyright (C) 2011 Nick Hall
 # Copyright (C) 2011 Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
@@ -19,7 +20,7 @@
 # $Id$
 #
 
-from gui.editors import EditCitation
+from gui.editors import EditSource, EditCitation
 from ListModel import ListModel, NOSORT
 from gen.plug import Gramplet
 from gen.ggettext import gettext as _
@@ -40,14 +41,15 @@ class Citations(Gramplet):
         """
         Build the GUI interface.
         """
-        tip = _('Double-click on a row to edit the selected citation.')
+        tip = _('Double-click on a row to edit the selected source/citation.')
         self.set_tooltip(tip)
         top = gtk.TreeView()
         titles = [('', NOSORT, 50,),
-                  (_('Source'), 1, 200),
-                  (_('Volume/Page'), 2, 300),
-                  (_('Author'), 3, 100)]
-        self.model = ListModel(top, titles, event_func=self.edit_citation)
+                  (_('Source/Citation'), 1, 350),
+                  (_('Author'), 2, 200),
+                  (_('Publisher'), 3, 150)]
+        self.model = ListModel(top, titles, list_mode="tree", 
+                               event_func=self.invoke_editor)
         return top
         
     def add_citations(self, obj):
@@ -115,11 +117,20 @@ class Citations(Gramplet):
         """
         citation = self.dbstate.db.get_citation_from_handle(citation_handle)
         page = citation.get_page()
+        if not page:
+            page = _('<No Citation>')
         source_handle = citation.get_reference_handle()
         source = self.dbstate.db.get_source_from_handle(source_handle)
         title = source.get_title()
         author = source.get_author()
-        self.model.add((citation_handle, title, page, author))
+        publisher = source.get_publication_info()
+
+        if source_handle not in self.source_nodes:
+            node = self.model.add([source_handle, title, author, publisher])
+            self.source_nodes[source_handle] = node
+            
+        self.model.add([citation_handle, page, '', ''], 
+                       node=self.source_nodes[source_handle])
 
     def check_citations(self, obj):
         return True if obj.get_citation_list() else False
@@ -206,20 +217,39 @@ class Citations(Gramplet):
                 return True
         return False
 
-    def edit_citation(self, treeview):
+    def invoke_editor(self, treeview):
         """
-        Edit the selected citation.
+        Edit the selected source or citation.
         """
         model, iter_ = treeview.get_selection().get_selected()
         if iter_:
             handle = model.get_value(iter_, 0)
-            try:
-                citation = self.dbstate.db.get_citation_from_handle(handle)
-                source_handle = citation.get_reference_handle()
-                source = self.dbstate.db.get_source_from_handle(source_handle)
-                EditCitation(self.dbstate, self.uistate, [], citation, source)
-            except Errors.WindowActiveError:
-                pass
+            if len(model.get_path(iter_)) == 1:
+                self.edit_source(handle)
+            else:
+                self.edit_citation(handle)
+
+    def edit_source(self, handle):
+        """
+        Edit the selected source.
+        """
+        try:
+            source = self.dbstate.db.get_source_from_handle(handle)
+            EditSource(self.dbstate, self.uistate, [], source)
+        except Errors.WindowActiveError:
+            pass
+
+    def edit_citation(self, handle):
+        """
+        Edit the selected citation.
+        """
+        try:
+            citation = self.dbstate.db.get_citation_from_handle(handle)
+            source_handle = citation.get_reference_handle()
+            source = self.dbstate.db.get_source_from_handle(source_handle)
+            EditCitation(self.dbstate, self.uistate, [], citation, source)
+        except Errors.WindowActiveError:
+            pass
 
 class PersonCitations(Citations):
     """
@@ -251,6 +281,7 @@ class PersonCitations(Citations):
         """
         Display the citations for the active person.
         """
+        self.source_nodes = {}
         self.add_citations(person)
         self.add_eventref_citations(person)
         for handle in person.get_family_handle_list():
@@ -264,6 +295,7 @@ class PersonCitations(Citations):
         self.add_lds_citations(person)
 
         self.set_has_data(self.model.count > 0)
+        self.model.tree.expand_all()
 
     def get_has_data(self, person):
         """
@@ -321,8 +353,10 @@ class EventCitations(Citations):
         """
         Display the citations for the active event.
         """
+        self.source_nodes = {}
         self.add_event_citations(event)
         self.set_has_data(self.model.count > 0)
+        self.model.tree.expand_all()
 
     def get_has_data(self, event):
         """
@@ -362,6 +396,7 @@ class FamilyCitations(Citations):
         """
         Display the citations for the active family.
         """
+        self.source_nodes = {}
         self.add_citations(family)
         self.add_eventref_citations(family)
         self.add_attribute_citations(family)
@@ -369,6 +404,7 @@ class FamilyCitations(Citations):
         self.add_lds_citations(family)
 
         self.set_has_data(self.model.count > 0)
+        self.model.tree.expand_all()
 
     def get_has_data(self, family):
         """
@@ -416,8 +452,10 @@ class PlaceCitations(Citations):
         """
         Display the citations for the active place.
         """
+        self.source_nodes = {}
         self.add_place_citations(place)
         self.set_has_data(self.model.count > 0)
+        self.model.tree.expand_all()
 
     def get_has_data(self, place):
         """
@@ -457,8 +495,10 @@ class MediaCitations(Citations):
         """
         Display the citations for the active media object.
         """
+        self.source_nodes = {}
         self.add_media_citations(media)
         self.set_has_data(self.model.count > 0)
+        self.model.tree.expand_all()
 
     def get_has_data(self, media):
         """
