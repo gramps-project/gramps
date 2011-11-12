@@ -87,6 +87,7 @@ for (name, file) in (
     ('name', 'geo-show-person.png'),
     ('repository', 'gramps-repository.png'),
     ('source', 'gramps-source.png'),
+    ('citation', 'gramps-citation.png'),
     ('text', 'gramps-font.png'),
     ('url', 'gramps-geo.png'),
     ):
@@ -104,7 +105,7 @@ def map2class(target):
          'personref': ScratchPersonRef,
          'childref': ScratchChildRef,
          'source-link': ScratchSourceLink,
-         'srcref': ScratchSourceRef,
+         'citation-link': ScratchCitation,
          'repo-link': ScratchRepositoryLink,
          'pevent': ScratchEvent,
          'eventref': ScratchEventRef,
@@ -119,6 +120,7 @@ def obj2class(target):
     d= {"Person": ScratchPersonLink,
         "Family": ScratchFamilyLink,
         'Source': ScratchSourceLink,
+        'Citation': ScratchCitation,
         'Repository': ScratchRepositoryLink,
         'Event': ScratchEvent,
         'Media': ScratchMediaObj,
@@ -131,6 +133,7 @@ def obj2target(target):
     d = {"Person": 'person-link',
          "Family": 'family-link',
          'Source': 'source-link',
+         'Citation': 'citation-link',
          'Repository': 'repo-link',
          'Event': 'pevent',
          'Media': 'mediaobj',
@@ -437,24 +440,25 @@ class ScratchFamilyAttribute(ScratchObjWrapper):
             self._title = str(self._obj.get_type())
             self._value = self._obj.get_value()
 
-class ScratchSourceRef(ScratchObjWrapper):
+class ScratchCitation(ScratchHandleWrapper):
 
-    DROP_TARGETS = [DdTargets.SOURCEREF]
-    DRAG_TARGET  = DdTargets.SOURCEREF
-    ICON         = LINK_PIC
+    DROP_TARGETS = [DdTargets.CITATION_LINK]
+    DRAG_TARGET  = DdTargets.CITATION_LINK
+    ICON         = ICONS["citation"]
 
     def __init__(self, dbstate, obj):
-        super(ScratchSourceRef, self).__init__(dbstate, obj)
-        self._type  = _("Source ref")
-        if self._obj:
-            base = self._db.get_source_from_handle(self._obj.get_reference_handle())
-            if base:
-                self._title = base.get_title()
+        super(ScratchCitation, self).__init__(dbstate, obj)
+        self._type  = _("Citation")
+        self._objclass = 'Citation'
+        if self._handle:
+            citation = self._db.get_citation_from_handle(self._handle)
+            if citation:
+                self._title = citation.get_gramps_id()
                 notelist = map(self._db.get_note_from_handle, 
-                               self._obj.get_note_list())
+                               citation.get_note_list())
                 srctxtlist = [note for note in notelist 
-                               if note.get_type() == gen.lib.NoteType.SOURCE_TEXT]
-                page = self._obj.get_page()
+                        if note.get_type() == gen.lib.NoteType.SOURCE_TEXT]
+                page = citation.get_page()
                 if not page:
                     page = _('not available|NA')
                 text = ""
@@ -469,6 +473,14 @@ class ScratchSourceRef(ScratchObjWrapper):
                                     'pag'        : page,
                                     'sourcetext' : text,
                                     }
+
+    def is_valid(self):
+        data = pickle.loads(self._obj)
+        handle = data[2]
+        obj = self._db.get_citation_from_handle(handle)
+        if obj:
+            return True
+        return False
 
 class ScratchRepoRef(ScratchObjWrapper):
 
@@ -968,7 +980,6 @@ class ScratchPadListView(object):
         self.register_wrapper_class(ScratchEvent)
         self.register_wrapper_class(ScratchPlace)
         self.register_wrapper_class(ScratchEventRef)
-        self.register_wrapper_class(ScratchSourceRef)
         self.register_wrapper_class(ScratchRepoRef)
         self.register_wrapper_class(ScratchFamilyEvent)
         self.register_wrapper_class(ScratchUrl)
@@ -979,6 +990,7 @@ class ScratchPadListView(object):
         self.register_wrapper_class(ScratchMediaObj)
         self.register_wrapper_class(ScratchMediaRef)
         self.register_wrapper_class(ScratchSourceLink)
+        self.register_wrapper_class(ScratchCitation)
         self.register_wrapper_class(ScratchPersonLink)
         self.register_wrapper_class(ScratchFamilyLink)
         self.register_wrapper_class(ScratchDropList)

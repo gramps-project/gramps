@@ -63,7 +63,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
     """
 
     _HANDLE_COL = 4  # Column number from CitationRefModel
-    _DND_TYPE = DdTargets.NOTE_LINK
+    _DND_TYPE = DdTargets.CITATION_LINK
 
     _MSG = {
         'add'   : _('Create and add a new citation and new source'),

@@ -196,7 +196,20 @@ class CitationTreeView(ListView):
         return self.dbstate.db.get_citation_bookmarks()
 
     def drag_info(self):
-        return DdTargets.SOURCE_LINK
+        selection = self.selected_handles()
+        if len(selection) == 1:
+            handle = selection[0]
+            # The handle will either be a Source handle or a Citation handle
+            source = self.dbstate.db.get_source_from_handle(handle)
+            citation = self.dbstate.db.get_citation_from_handle(handle)
+            if (not source and not citation) or (source and citation):
+                raise ValueError("selection must be either source or citation")
+            if source:
+                return DdTargets.SOURCE_LINK
+            else:
+                return DdTargets.CITATION_LINK
+        else:
+            return DdTargets.CITATION_LINK
     
     def type_list(self):
         """
