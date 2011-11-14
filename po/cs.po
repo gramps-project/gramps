@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-09 13:53+0100\n"
-"PO-Revision-Date: 2011-11-09 13:54+0100\n"
+"POT-Creation-Date: 2011-11-14 10:48+0100\n"
+"PO-Revision-Date: 2011-11-14 10:49+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -10239,8 +10239,8 @@ msgid "The bold style used for the text display."
 msgstr "Styl zvýraznění používaný pro zobrazení textu."
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:33
-msgid "Produces a graphical ancestral tree (Book)"
-msgstr "Vytvoří grafický strom předků (Kniha)"
+msgid "Produces a graphical ancestral tree (Book report)"
+msgstr "Vytvoří grafický strom předků (Knižní zpráva)"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:49
 msgid "Produces a graphical ancestral tree"
@@ -10262,8 +10262,8 @@ msgid "Descendant Tree"
 msgstr "Strom potomků"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:93
-msgid "Produces a graphical descendant tree (Book)"
-msgstr "Vytvoří grafický strom potomků (Kniha)"
+msgid "Produces a graphical descendant tree (Book report)"
+msgstr "Vytvoří grafický strom potomků (Knižní zpráva)"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:109
 msgid "Produces a graphical descendant tree"
@@ -10275,8 +10275,8 @@ msgid "Family Descendant Tree"
 msgstr "Strom potomků rodiny"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:131
-msgid "Produces a graphical descendant tree around a family (Book)"
-msgstr "Vytvoří grafický strom potomků rodiny (Kniha)"
+msgid "Produces a graphical descendant tree around a family (Book report)"
+msgstr "Vytvoří grafický strom potomků rodiny (Knižní zpráva)"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:148
 msgid "Produces a graphical descendant tree around a family"
@@ -17629,47 +17629,51 @@ msgid "Hanuka"
 msgstr "Chanuka"
 
 #: ../src/plugins/lib/holidays.xml.in.h:31
+msgid "Japan"
+msgstr "Japonsko"
+
+#: ../src/plugins/lib/holidays.xml.in.h:32
 msgid "Jewish Holidays"
 msgstr "Židovské svátky"
 
-#: ../src/plugins/lib/holidays.xml.in.h:32
+#: ../src/plugins/lib/holidays.xml.in.h:33
 msgid "Passover"
 msgstr "Pesach"
 
-#: ../src/plugins/lib/holidays.xml.in.h:33
+#: ../src/plugins/lib/holidays.xml.in.h:34
 msgid "Purim"
 msgstr "Purim"
 
-#: ../src/plugins/lib/holidays.xml.in.h:34
+#: ../src/plugins/lib/holidays.xml.in.h:35
 msgid "Rosh Ha'Shana"
 msgstr "Rosh Hashanah"
 
-#: ../src/plugins/lib/holidays.xml.in.h:35
+#: ../src/plugins/lib/holidays.xml.in.h:36
 msgid "Rosh Ha'Shana 2"
 msgstr "Rosh Hashanah 2"
 
-#: ../src/plugins/lib/holidays.xml.in.h:36
+#: ../src/plugins/lib/holidays.xml.in.h:37
 msgid "Shavuot"
 msgstr "Šavuot"
 
-#: ../src/plugins/lib/holidays.xml.in.h:37
+#: ../src/plugins/lib/holidays.xml.in.h:38
 msgid "Simhat Tora"
 msgstr "Simchat Tóra"
 
-#: ../src/plugins/lib/holidays.xml.in.h:38
+#: ../src/plugins/lib/holidays.xml.in.h:39
 msgid "Sukot"
 msgstr "Sukot"
 
-#: ../src/plugins/lib/holidays.xml.in.h:39
+#: ../src/plugins/lib/holidays.xml.in.h:40
 msgid "Sweden - Holidays"
 msgstr "Švédsko - svátky"
 
-#: ../src/plugins/lib/holidays.xml.in.h:40
+#: ../src/plugins/lib/holidays.xml.in.h:41
 #: ../src/plugins/tool/ExtractCity.py:62
 msgid "United States of America"
 msgstr "Spojené státy americké"
 
-#: ../src/plugins/lib/holidays.xml.in.h:41
+#: ../src/plugins/lib/holidays.xml.in.h:42
 msgid "Yom Kippur"
 msgstr "Jom kipur"
 
