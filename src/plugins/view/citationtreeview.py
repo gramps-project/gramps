@@ -196,18 +196,21 @@ class CitationTreeView(ListView):
         return self.dbstate.db.get_citation_bookmarks()
 
     def drag_info(self):
+        # Since drag only needs to work when just one row is selected, ideally,
+        # this should just return SOURCE_LINK if one source is selected and
+        # CITATION_LINK if one citation is selected, and probably None
+        # otherwise. However, this doesn't work. Drag and drop failed to work at
+        # all for citationtree view, and I think this was because None is
+        # returned during initialisation. There is also a problem where it seems
+        # at some point during a citation merge, neither a Source nor a Citation
+        # is selected. Hence the simplistic solution implemented below, where
+        # CITATION_LINK is always returned except when it is obviously correct
+        # to return SOURCE_LINK.
+        
         selection = self.selected_handles()
-        if len(selection) == 1:
-            handle = selection[0]
-            # The handle will either be a Source handle or a Citation handle
-            source = self.dbstate.db.get_source_from_handle(handle)
-            citation = self.dbstate.db.get_citation_from_handle(handle)
-            if (not source and not citation) or (source and citation):
-                raise ValueError("selection must be either source or citation")
-            if source:
+        if len(selection) == 1 and \
+            self.dbstate.db.get_source_from_handle(selection[0]):
                 return DdTargets.SOURCE_LINK
-            else:
-                return DdTargets.CITATION_LINK
         else:
             return DdTargets.CITATION_LINK
     
