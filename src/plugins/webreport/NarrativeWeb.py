@@ -343,7 +343,7 @@ class BasePage(object):
         self.inc_families = report.options['inc_families']
         self.inc_events = report.options['inc_events']
 
-    def complete_people(self, tcell, first_person, handle_list, ppl_handle_list, up =True):
+    def complete_people(self, tcell, first_person, handle_list, ppl_handle_list, up  =True):
         """
         completes the person column for classes EventListPage and EventPage
 
@@ -359,15 +359,13 @@ class BasePage(object):
             if classname == "Person":
                 _obj = db.get_person_from_handle(handle)
                 if _obj:
-                    person_name = self.get_name(_obj)
-                    if check_person_database(handle, ppl_handle_list):
+                    use_link = check_person_database(handle, ppl_handle_list)
+                    if use_link:
                         url = self.report.build_url_fname_html(handle, "ppl", up) 
-                        tcell += Html("span", self.person_link(url, _obj,
-                            _NAME_STYLE_DEFAULT, gid=_obj.get_gramps_id()),
+                        tcell += Html("span", self.person_link(url, _obj, _NAME_STYLE_DEFAULT, gid =_obj.get_gramps_id()),
                             class_="person", inline=True)
                     else:
-                        tcell += Html("span", person_name, class_="person",
-                                      inline=True)
+                        tcell += Html("span", self.get_name(obj_), class_="person", inline =True)
 
             # family event
             else:
@@ -383,32 +381,28 @@ class BasePage(object):
                     if spouse_handle:
                         spouse = db.get_person_from_handle(spouse_handle)
                     if husband:
-                        husband_name = self.get_name(husband)
-                        if check_person_database(husband_handle, ppl_handle_list):
+                        use_link = check_person_database(husband_handle, ppl_handle_list)
+                        if use_link:
                             url = self.report.build_url_fname_html(husband_handle, "ppl", up)
-                            hlink = self.person_link(url, husband, _NAME_STYLE_DEFAULT,
-                                gid = husband.gramps_id)
+                            hlink = self.person_link(url, husband, _NAME_STYLE_DEFAULT, gid =husband.get_gramps_id())
                         else:
-                            hlink = husband_name
+                            hlink = self.get_name(husband)
 
                     if spouse:
-                        spouse_name = self.get_name(spouse)
-                        if check_person_database(spouse_handle, ppl_handle_list):
+                        use_link = check_person_database(spouse_handle, ppl_handle_list)
+                        if use_link:
                             url = self.report.build_url_fname_html(spouse_handle, "ppl", up)
-                            slink = self.person_link(url, spouse, _NAME_STYLE_DEFAULT,
-                                gid = spouse.gramps_id)
+                            slink = self.person_link(url, spouse, _NAME_STYLE_DEFAULT, gid =spouse.get_gramps_id())
                         else:
-                            slink = spouse_name
+                            slink = self.get_name(spouse)
 
                     if spouse and husband:
-                        tcell += Html("span", hlink, class_ = "father", inline=True)
-                        tcell += Html("span", slink, class_ = "mother", inline=True)
+                        tcell += Html("span", hlink, class_ = "father", inline =True)
+                        tcell += Html("span", slink, class_ = "mother", inline =True)
                     elif spouse:
-                        tcell += Html("span", slink, class_ = "mother", inline=True)
+                        tcell += Html("span", slink, class_ = "mother", inline =True)
                     elif husband:
-                        tcell += Html("span", hlink, class_ = "father", inline=True)
-
-        # return tcell, and first_person back to its callers
+                        tcell += Html("span", hlink, class_ = "father", inline =True)
         return tcell
 
     def dump_attribute(self, attr):
@@ -681,7 +675,8 @@ class BasePage(object):
         db = self.report.database
 
         # check to see if this person is in the report database?
-        if check_person_database(person.get_handle(), ppl_handle_list):
+        use_link = check_person_database(person.get_handle(), ppl_handle_list)
+        if use_link: 
             evt_ref_list = person.get_event_ref_list()
             if evt_ref_list:
                 for evt_ref in evt_ref_list:
@@ -1981,7 +1976,7 @@ class BasePage(object):
             spouse = db.get_person_from_handle(spouse_handle)
         rtype = str(family.get_relationship())
 
-        # display family relationship status...
+        # display family relationship status, and add spouse to FamilyMapPages
         if spouse:
             if self.familymappages:
                 self._get_event_place(spouse, ppl_handle_list, place_lat_long)
@@ -1995,11 +1990,10 @@ class BasePage(object):
             tcell = Html("td", class_ ="ColumnValue")
             trow += tcell
 
-            use_link = check_person_database(spouse, ppl_handle_list)
-            gid = spouse.get_gramps_id()
+            use_link = check_person_database(spouse_handle, ppl_handle_list)
             if use_link:
                 url = self.report.build_url_fname_html(spouse_handle, "ppl", True)
-                tcell += self.person_link(url, spouse, _NAME_STYLE_DEFAULT, gid =gid)
+                tcell += self.person_link(url, spouse, _NAME_STYLE_DEFAULT, gid =spouse.get_gramps_id())
             else:
                 tcell += self.get_name(spouse)
 
@@ -2021,13 +2015,12 @@ class BasePage(object):
         child = db.get_person_from_handle(chandle)
 
         list = Html("li")
-        if check_person_database(chandle, ppl_handle_list):
+        use_link = check_person_database(chandle, ppl_handle_list)
+        if use_link:
             url = self.report.build_url_fname_html(chandle, "ppl", True)
             list += self.person_link(url, child, _NAME_STYLE_DEFAULT, gid =child.get_gramps_id())
         else:
             list += self.get_name(child)
-
-        # return list to its caller
         return list
 
     def person_link(self, url, person, name_style, first = True, gid = None, thumbnailUrl = None):
@@ -2439,15 +2432,15 @@ class IndividualListPage(BasePage):
                                 partner_handle = ReportUtils.find_spouse(person, family)
                                 if partner_handle:
                                     partner = db.get_person_from_handle(partner_handle)
-                                    partner_name = self.get_name(partner)
                                     if not first_family:
                                         tcell += ", "  
-                                    if check_person_database(partner_handle, ppl_handle_list):
+                                    use_link = check_person_database(partner_handle, ppl_handle_list)
+                                    if use_link:
                                         url = self.report.build_url_fname_html(partner_handle, "ppl")
                                         tcell += self.person_link(url, partner, _NAME_STYLE_DEFAULT,
-                                            gid = partner.gramps_id)
+                                            gid = partner.get_gramps_id())
                                     else:
-                                        tcell += partner_name
+                                        tcell += self.get_name(partner)
                                     first_family = False
                         else:
                             tcell += "&nbsp;"
@@ -2602,15 +2595,15 @@ class SurnamePage(BasePage):
                                 partner_handle = ReportUtils.find_spouse(person, family)
                                 if partner_handle:
                                     partner = db.get_person_from_handle(partner_handle)
-                                    partner_name = self.get_name(partner)
                                     if not first_family:
                                         tcell += ','
-                                    if check_person_database(partner_handle, ppl_handle_list):
+                                    use_link = check_person_database(partner_handle, ppl_handle_list)
+                                    if use_link:
                                         url = self.report.build_url_fname_html(partner_handle, "ppl", True) 
                                         tcell += self.person_link(url, partner, _NAME_STYLE_DEFAULT, 
-                                            gid = partner.gramps_id)
+                                            gid = partner.get_gramps_id())
                                     else:
-                                        tcell += partner_name
+                                        tcell += self.get_name(partner)
                                     first_family = False
                         else:
                             tcell += "&nbsp;"
@@ -2763,7 +2756,8 @@ class FamilyListPage(BasePage):
                                                 partner = db.get_person_from_handle(partner_handle)
                                                 if partner:
                                                     displayed.add(partner_handle)
-                                                    if check_person_database(partner_handle, ind_list):
+                                                    use_link = check_person_database(partner_handle, ind_list)
+                                                    if use_link:
                                                         url = self.report.build_url_fname_html(fhandle, "fam")
                                                         tcell += self.family_link(url, self.get_name(partner),
                                                             partner.get_gramps_id())
@@ -2858,7 +2852,8 @@ class FamilyPage(BasePage):
             person_link = self.person_link(url, person, _NAME_STYLE_DEFAULT, gid = person.get_gramps_id())
 
             if partner:
-                if check_person_database(partner_handle, ppl_handle_list):
+                use_link = check_person_database(partner_handle, ppl_handle_list)
+                if use_link:
                     url = self.report.build_url_fname_html(partner_handle, 'ppl', up =self.up)
                     partner_link = self.person_link(url, partner, _NAME_STYLE_DEFAULT,
                         gid = partner.get_gramps_id())
@@ -2917,12 +2912,13 @@ class FamilyPage(BasePage):
 
                     # display partner's name
                     if partner_handle:
-                        if check_person_database(partner_handle, ppl_handle_list):
+                        use_link = check_person_database(partner_handle, ppl_handle_list)
+                        if use_link:
                             url = self.report.build_url_fname_html(partner_handle, "ppl", True)
                             tcell += self.person_link(url, partner, _NAME_STYLE_DEFAULT,
-                                gid = partner.gramps_id)
+                                gid = partner.get_gramps_id())
                         else:
-                            tcell += partner_name
+                            tcell += self.get_name(partner)
                     else:
                         tcell += '&nbsp;'
 
@@ -5126,7 +5122,8 @@ class IndividualPage(BasePage):
                    )
                       
         person_name = self.get_name(person)
-        if check_person_database(person.get_handle(), self.ind_list):
+        use_link = check_person_database(person.get_handle(), self.ind_list)
+        if use_link:
             thumbnailUrl = None
             if self.create_media and col < 5:
                 photolist = person.get_media_list()
@@ -5563,7 +5560,8 @@ class IndividualPage(BasePage):
         tcell1 = Html("td", title, class_ = "ColumnAttribute", inline = True)
         tcell2 = Html("td", class_ = "ColumnValue")
 
-        if check_person_database(handle, self.ind_list):
+        use_link = check_person_database(handle, self.ind_list)
+        if use_link:
             url = self.report.build_url_fname_html(handle, "ppl", True)
             tcell2 += self.person_link(url, person, _NAME_STYLE_DEFAULT, gid =person.get_gramps_id())
         else:
@@ -5839,15 +5837,12 @@ class IndividualPage(BasePage):
         will produce a hyperlink for a pedigree person ...
         """
 
-        person_name = self.get_name(person)
-        if check_person_database(person.get_handle(), self.ind_list):
+        use_link = check_person_database(person.get_handle(), self.ind_list)
+        if use_link:
             url = self.report.build_url_fname_html(person.handle, "ppl", True)
             hyper = self.person_link(url, person, _NAME_STYLE_DEFAULT)
         else:
-            hyper = person_name
-
-        # return hyperlink to its callers
-        # can be an actual hyperlink or just a person's name
+            hyper = self.get_name(person)
         return hyper
 
     def pedigree_family(self):
