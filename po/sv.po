@@ -33,8 +33,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-10 08:57+0100\n"
-"PO-Revision-Date: 2011-11-12 09:27+0100\n"
+"POT-Creation-Date: 2011-11-15 18:33+0100\n"
+"PO-Revision-Date: 2011-11-15 18:36+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -118,7 +118,7 @@ msgstr "Ordna bokmärken"
 #: ../src/plugins/BookReport.py:773 ../src/plugins/drawreport/TimeLine.py:70
 #: ../src/plugins/gramplet/Backlinks.py:44
 #: ../src/plugins/lib/libpersonview.py:91
-#: ../src/plugins/textreport/IndivComplete.py:559
+#: ../src/plugins/textreport/IndivComplete.py:561
 #: ../src/plugins/textreport/TagReport.py:123
 #: ../src/plugins/tool/NotRelated.py:130
 #: ../src/plugins/tool/RemoveUnused.py:200 ../src/plugins/tool/Verify.py:506
@@ -628,7 +628,7 @@ msgstr ""
 #: ../src/plugins/lib/maps/geography.py:853
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
-#: ../src/plugins/textreport/IndivComplete.py:576
+#: ../src/plugins/textreport/IndivComplete.py:578
 #: ../src/plugins/tool/Check.py:1410 ../src/plugins/view/geofamily.py:402
 #: ../src/plugins/view/geoperson.py:448 ../src/plugins/view/relview.py:450
 #: ../src/plugins/view/relview.py:995 ../src/plugins/view/relview.py:1042
@@ -850,9 +850,9 @@ msgstr "ex-partner"
 #: ../src/plugins/quickview/all_relations.py:301
 #: ../src/plugins/textreport/FamilyGroup.py:199
 #: ../src/plugins/textreport/FamilyGroup.py:210
-#: ../src/plugins/textreport/IndivComplete.py:309
 #: ../src/plugins/textreport/IndivComplete.py:311
-#: ../src/plugins/textreport/IndivComplete.py:607
+#: ../src/plugins/textreport/IndivComplete.py:313
+#: ../src/plugins/textreport/IndivComplete.py:609
 #: ../src/plugins/textreport/TagReport.py:210
 #: ../src/plugins/view/familyview.py:79 ../src/plugins/view/relview.py:883
 #: ../src/plugins/webreport/NarrativeWeb.py:4918
@@ -868,9 +868,9 @@ msgstr "Far"
 #: ../src/plugins/quickview/all_relations.py:298
 #: ../src/plugins/textreport/FamilyGroup.py:216
 #: ../src/plugins/textreport/FamilyGroup.py:227
-#: ../src/plugins/textreport/IndivComplete.py:318
 #: ../src/plugins/textreport/IndivComplete.py:320
-#: ../src/plugins/textreport/IndivComplete.py:612
+#: ../src/plugins/textreport/IndivComplete.py:322
+#: ../src/plugins/textreport/IndivComplete.py:614
 #: ../src/plugins/textreport/TagReport.py:216
 #: ../src/plugins/view/familyview.py:80 ../src/plugins/view/relview.py:884
 #: ../src/plugins/webreport/NarrativeWeb.py:4933
@@ -1477,7 +1477,7 @@ msgstr ""
 #: ../src/plugins/textreport/DetAncestralReport.py:582
 #: ../src/plugins/textreport/DetDescendantReport.py:544
 #: ../src/plugins/textreport/DetDescendantReport.py:551
-#: ../src/plugins/textreport/IndivComplete.py:412
+#: ../src/plugins/textreport/IndivComplete.py:414
 #: ../src/plugins/view/relview.py:652
 #: ../src/plugins/webreport/NarrativeWeb.py:3889
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:90
@@ -2430,7 +2430,8 @@ msgstr "Byrå"
 
 #: ../src/gen/lib/attrtype.py:74
 #: ../src/plugins/drawreport/StatisticsChart.py:351
-#: ../src/plugins/gramplet/AgeStats.py:170
+#: ../src/plugins/gramplet/AgeStats.py:179
+#: ../src/plugins/gramplet/AgeStats.py:326
 #: ../src/plugins/quickview/AgeOnDate.py:55
 msgid "Age"
 msgstr "Ålder"
@@ -3478,7 +3479,7 @@ msgstr "Diverse"
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
 msgstr ""
-"FEL: Misslyckades med att läsa registrering för instickmodul %(filename)s"
+"FEL: Misslyckades med att läsa registrering för insticksmodul %(filename)s"
 
 #: ../src/gen/plug/_pluginreg.py:1100
 #, python-format
@@ -3964,7 +3965,7 @@ msgid "Endnotes"
 msgstr "Slutnoter"
 
 #: ../src/gen/plug/report/utils.py:143
-#: ../src/plugins/textreport/IndivComplete.py:553
+#: ../src/plugins/textreport/IndivComplete.py:555
 #: ../src/plugins/webreport/NarrativeWeb.py:1315
 #: ../src/plugins/webreport/NarrativeWeb.py:1497
 #: ../src/plugins/webreport/NarrativeWeb.py:1568
@@ -3973,7 +3974,7 @@ msgid "Could not add photo to page"
 msgstr "Kunde inte lägga foto till sidan"
 
 #: ../src/gen/plug/report/utils.py:144 ../src/gui/utils.py:335
-#: ../src/plugins/textreport/IndivComplete.py:554
+#: ../src/plugins/textreport/IndivComplete.py:556
 msgid "File does not exist"
 msgstr "Filen finns inte"
 
@@ -5124,7 +5125,7 @@ msgstr "Filtertest"
 #: ../src/plugins/graph/GVRelGraph.py:476
 #: ../src/plugins/quickview/quickview.gpr.py:126
 #: ../src/plugins/textreport/BirthdayReport.py:350
-#: ../src/plugins/textreport/IndivComplete.py:649
+#: ../src/plugins/textreport/IndivComplete.py:654
 #: ../src/plugins/tool/SortEvents.py:168
 #: ../src/plugins/webreport/NarrativeWeb.py:6498
 #: ../src/plugins/webreport/WebCal.py:1364
@@ -5300,7 +5301,7 @@ msgstr "Slå samman"
 #: ../src/plugins/gramplet/bottombar.gpr.py:356
 #: ../src/plugins/gramplet/bottombar.gpr.py:370
 #: ../src/plugins/quickview/FilterByName.py:112
-#: ../src/plugins/textreport/IndivComplete.py:251
+#: ../src/plugins/textreport/IndivComplete.py:253
 #: ../src/plugins/textreport/TagReport.py:369
 #: ../src/plugins/view/noteview.py:107 ../src/plugins/view/view.gpr.py:100
 #: ../src/plugins/webreport/NarrativeWeb.py:136
@@ -5533,6 +5534,12 @@ msgstr "' och '"
 #: ../src/gui/viewmanager.py:447
 msgid "Available Gramps Updates for Addons"
 msgstr "Tillgängliga uppdateringar av Gramps tillägg"
+
+#: ../src/gui/viewmanager.py:476
+msgid "t"
+msgid_plural "t"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../src/gui/viewmanager.py:533
 msgid "Downloading and installing selected addons..."
@@ -6169,7 +6176,7 @@ msgstr "Nr."
 #: ../src/plugins/import/ImportCsv.py:180
 #: ../src/plugins/lib/libpersonview.py:93
 #: ../src/plugins/quickview/siblings.py:47
-#: ../src/plugins/textreport/IndivComplete.py:570
+#: ../src/plugins/textreport/IndivComplete.py:572
 #: ../src/plugins/webreport/NarrativeWeb.py:4722
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:127
 msgid "Gender"
@@ -7877,7 +7884,7 @@ msgstr "Välj alternativ"
 #: ../src/plugins/textreport/DetDescendantReport.py:844
 #: ../src/plugins/textreport/EndOfLineReport.py:240
 #: ../src/plugins/textreport/FamilyGroup.py:618
-#: ../src/plugins/textreport/IndivComplete.py:646
+#: ../src/plugins/textreport/IndivComplete.py:651
 #: ../src/plugins/textreport/KinshipReport.py:326
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:180
 #: ../src/plugins/textreport/PlaceReport.py:365
@@ -8675,7 +8682,7 @@ msgid "Merge People"
 msgstr "Slå samman personer"
 
 #: ../src/Merge/mergeperson.py:189
-#: ../src/plugins/textreport/IndivComplete.py:335
+#: ../src/plugins/textreport/IndivComplete.py:337
 msgid "Alternate Names"
 msgstr "Alternativa namn"
 
@@ -8701,7 +8708,7 @@ msgid "No spouses or children found"
 msgstr "Inga makar eller barn hittades"
 
 #: ../src/Merge/mergeperson.py:245
-#: ../src/plugins/textreport/IndivComplete.py:365
+#: ../src/plugins/textreport/IndivComplete.py:367
 #: ../src/plugins/webreport/NarrativeWeb.py:844
 msgid "Addresses"
 msgstr "Adresser"
@@ -9150,7 +9157,7 @@ msgstr "Avgör vilka personer, som tas med i rapporten."
 #: ../src/plugins/drawreport/StatisticsChart.py:913
 #: ../src/plugins/drawreport/TimeLine.py:331
 #: ../src/plugins/graph/GVRelGraph.py:482
-#: ../src/plugins/textreport/IndivComplete.py:655
+#: ../src/plugins/textreport/IndivComplete.py:660
 #: ../src/plugins/tool/SortEvents.py:173
 #: ../src/plugins/webreport/NarrativeWeb.py:6504
 #: ../src/plugins/webreport/WebCal.py:1370
@@ -9216,7 +9223,7 @@ msgstr "Mall som används för rubriker."
 #: ../src/plugins/textreport/EndOfLineReport.py:277
 #: ../src/plugins/textreport/EndOfLineReport.py:295
 #: ../src/plugins/textreport/FamilyGroup.py:712
-#: ../src/plugins/textreport/IndivComplete.py:747
+#: ../src/plugins/textreport/IndivComplete.py:762
 #: ../src/plugins/textreport/KinshipReport.py:382
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:205
 #: ../src/plugins/textreport/Summary.py:292
@@ -9393,7 +9400,7 @@ msgstr ""
 "Detta skulle kunna skapa problem med filhantering. Det rekommenderas att du "
 "bör välja en annan mapp till att lagra webbsidor."
 
-#: ../src/plugins/docgen/HtmlDoc.py:548
+#: ../src/plugins/docgen/HtmlDoc.py:532
 #, python-format
 msgid "Could not create jpeg version of image %(name)s"
 msgstr "Kunde inte skapa jpeg-version av bild %(name)s"
@@ -10533,7 +10540,7 @@ msgid "%s (persons):"
 msgstr "%s (personer):"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:914
-#: ../src/plugins/textreport/IndivComplete.py:656
+#: ../src/plugins/textreport/IndivComplete.py:661
 msgid "The center person for the filter."
 msgstr "Huvudpersonen för filtret."
 
@@ -10620,7 +10627,7 @@ msgstr "Mall som används för objekt och värden."
 #: ../src/plugins/textreport/DetDescendantReport.py:993
 #: ../src/plugins/textreport/EndOfLineReport.py:259
 #: ../src/plugins/textreport/FamilyGroup.py:703
-#: ../src/plugins/textreport/IndivComplete.py:715
+#: ../src/plugins/textreport/IndivComplete.py:730
 #: ../src/plugins/textreport/KinshipReport.py:364
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:198
 #: ../src/plugins/textreport/SimpleBookTitle.py:156
@@ -10702,6 +10709,10 @@ msgstr "_Web Family Tree"
 msgid "Web Family Tree format"
 msgstr "Web Family Tree-format."
 
+#: ../src/plugins/export/export.gpr.py:62
+msgid "Web Family Tree export options"
+msgstr "Web Family Tree-exportalternativ"
+
 #: ../src/plugins/export/export.gpr.py:73
 #: ../src/plugins/import/import.gpr.py:51 ../data/gramps.keys.in.h:1
 #: ../data/gramps.xml.in.h:1
@@ -10721,6 +10732,10 @@ msgstr ""
 "GEDCOM används för att överföra data mellan släktforskningsprogram. De "
 "flesta släktforskningsprogram accepterar en GEDCOM-fil som indata."
 
+#: ../src/plugins/export/export.gpr.py:84
+msgid "GEDCOM export options"
+msgstr "GEDCOM exportalternativ"
+
 #: ../src/plugins/export/export.gpr.py:95
 #: ../src/plugins/import/import.gpr.py:70 ../data/gramps.keys.in.h:2
 msgid "GeneWeb"
@@ -10733,6 +10748,10 @@ msgstr "_GeneWeb"
 #: ../src/plugins/export/export.gpr.py:97
 msgid "GeneWeb is a web based genealogy program."
 msgstr "GeneWeb är ett webbaserat släktforskningsprogram."
+
+#: ../src/plugins/export/export.gpr.py:105
+msgid "GeneWeb export options"
+msgstr "GeneWeb exportalternativ"
 
 #: ../src/plugins/export/export.gpr.py:116
 msgid "Gramps XML Package (family tree and media)"
@@ -10748,6 +10767,10 @@ msgid ""
 "files."
 msgstr ""
 "Gramps-paket är en arkiverad XML-databas tillsammans med mediaobjektfiler."
+
+#: ../src/plugins/export/export.gpr.py:127
+msgid "Gramps package export options"
+msgstr "Gramps paket exportalternativ"
 
 #: ../src/plugins/export/export.gpr.py:138
 msgid "Gramps XML (family tree)"
@@ -10765,6 +10788,10 @@ msgstr ""
 "Gramps XML-export är en komplett arkiverad XML-databas utan "
 "mediaobjektfiler. Den är lämplig som säkerhetskopia."
 
+#: ../src/plugins/export/export.gpr.py:150
+msgid "Gramps XML export options"
+msgstr "Gramps XML exportalternativ"
+
 #: ../src/plugins/export/export.gpr.py:161
 msgid "vCalendar"
 msgstr "vCalendar"
@@ -10776,6 +10803,10 @@ msgstr "vCa_lender"
 #: ../src/plugins/export/export.gpr.py:163
 msgid "vCalendar is used in many calendaring and PIM applications."
 msgstr "vCalendar används av många kalender- och PIM-program."
+
+#: ../src/plugins/export/export.gpr.py:171
+msgid "vCalendar export options"
+msgstr "vCalendar exportalternativ"
 
 #: ../src/plugins/export/export.gpr.py:182
 #: ../src/plugins/import/import.gpr.py:164
@@ -10789,6 +10820,10 @@ msgstr "_vCard"
 #: ../src/plugins/export/export.gpr.py:184
 msgid "vCard is used in many addressbook and pim applications."
 msgstr "vCard används av många adressboks- och pimprogram."
+
+#: ../src/plugins/export/export.gpr.py:192
+msgid "vCard export options"
+msgstr "vCard exportalternativ"
 
 #: ../src/plugins/export/ExportCsv.py:194
 msgid "Include people"
@@ -10970,77 +11005,84 @@ msgstr ""
 msgid "Run"
 msgstr "Kör"
 
-#: ../src/plugins/gramplet/AgeStats.py:47
-#: ../src/plugins/gramplet/AgeStats.py:57
-#: ../src/plugins/gramplet/AgeStats.py:73
+#: ../src/plugins/gramplet/AgeStats.py:56
+#: ../src/plugins/gramplet/AgeStats.py:66
+#: ../src/plugins/gramplet/AgeStats.py:82
 msgid "Max age"
 msgstr "Max ålder"
 
-#: ../src/plugins/gramplet/AgeStats.py:49
 #: ../src/plugins/gramplet/AgeStats.py:58
-#: ../src/plugins/gramplet/AgeStats.py:74
+#: ../src/plugins/gramplet/AgeStats.py:67
+#: ../src/plugins/gramplet/AgeStats.py:83
 msgid "Max age of Mother at birth"
 msgstr "Maximal ålder hos mor vid födelse"
 
-#: ../src/plugins/gramplet/AgeStats.py:51
-#: ../src/plugins/gramplet/AgeStats.py:59
-#: ../src/plugins/gramplet/AgeStats.py:75
+#: ../src/plugins/gramplet/AgeStats.py:60
+#: ../src/plugins/gramplet/AgeStats.py:68
+#: ../src/plugins/gramplet/AgeStats.py:84
 msgid "Max age of Father at birth"
 msgstr "Maximal ålder hos far vid födelse"
 
-#: ../src/plugins/gramplet/AgeStats.py:53
-#: ../src/plugins/gramplet/AgeStats.py:60
-#: ../src/plugins/gramplet/AgeStats.py:76
+#: ../src/plugins/gramplet/AgeStats.py:62
+#: ../src/plugins/gramplet/AgeStats.py:69
+#: ../src/plugins/gramplet/AgeStats.py:85
 msgid "Chart width"
 msgstr "Diagrambredd"
 
-#: ../src/plugins/gramplet/AgeStats.py:170
+#: ../src/plugins/gramplet/AgeStats.py:179
+#: ../src/plugins/gramplet/AgeStats.py:180
 msgid "Lifespan Age Distribution"
 msgstr "Livslängdsfördelning"
 
-#: ../src/plugins/gramplet/AgeStats.py:171
+#: ../src/plugins/gramplet/AgeStats.py:181
+#: ../src/plugins/gramplet/AgeStats.py:182
 msgid "Father - Child Age Diff Distribution"
 msgstr "Fördelning av far - barn åldersskillnad"
 
-#: ../src/plugins/gramplet/AgeStats.py:171
-#: ../src/plugins/gramplet/AgeStats.py:172
+#: ../src/plugins/gramplet/AgeStats.py:181
+#: ../src/plugins/gramplet/AgeStats.py:183
 msgid "Diff"
 msgstr "Skillnad"
 
-#: ../src/plugins/gramplet/AgeStats.py:172
+#: ../src/plugins/gramplet/AgeStats.py:183
+#: ../src/plugins/gramplet/AgeStats.py:184
 msgid "Mother - Child Age Diff Distribution"
 msgstr "Fördelning av mor - barn åldersskillnad"
 
-#: ../src/plugins/gramplet/AgeStats.py:229
+#: ../src/plugins/gramplet/AgeStats.py:241
 #: ../src/plugins/gramplet/gramplet.gpr.py:227
 #: ../src/plugins/gramplet/gramplet.gpr.py:234
 msgid "Statistics"
 msgstr "Statistik"
 
-#: ../src/plugins/gramplet/AgeStats.py:230
+#: ../src/plugins/gramplet/AgeStats.py:242
 msgid "Total"
 msgstr "Totalt "
 
-#: ../src/plugins/gramplet/AgeStats.py:231
+#: ../src/plugins/gramplet/AgeStats.py:243
 msgid "Minimum"
 msgstr "Minimum"
 
-#: ../src/plugins/gramplet/AgeStats.py:232
+#: ../src/plugins/gramplet/AgeStats.py:244
 msgid "Average"
 msgstr "Medel  "
 
-#: ../src/plugins/gramplet/AgeStats.py:233
+#: ../src/plugins/gramplet/AgeStats.py:245
 msgid "Median"
 msgstr "Median "
 
-#: ../src/plugins/gramplet/AgeStats.py:234
+#: ../src/plugins/gramplet/AgeStats.py:246
 msgid "Maximum"
 msgstr "Maximum"
 
-#: ../src/plugins/gramplet/AgeStats.py:277
+#: ../src/plugins/gramplet/AgeStats.py:289
 #, python-format
 msgid "Double-click to see %d people"
 msgstr "Dubbelklicka för att kunna se %d personer"
+
+#: ../src/plugins/gramplet/AgeStats.py:327 ../src/plugins/tool/Leak.py:88
+msgid "Number"
+msgstr "Antal"
 
 #: ../src/plugins/gramplet/Attributes.py:42
 msgid ""
@@ -11339,7 +11381,7 @@ msgstr "Gramplet visande en persons barn"
 #: ../src/plugins/gramplet/bottombar.gpr.py:468
 #: ../src/plugins/gramplet/FanChartGramplet.py:799
 #: ../src/plugins/textreport/FamilyGroup.py:575
-#: ../src/plugins/textreport/IndivComplete.py:426
+#: ../src/plugins/textreport/IndivComplete.py:428
 #: ../src/plugins/view/fanchartview.py:868
 #: ../src/plugins/view/pedigreeview.py:1909
 #: ../src/plugins/view/relview.py:1358
@@ -19278,6 +19320,7 @@ msgstr "Matchar personer utan efternamn"
 #: ../src/plugins/quickview/SameSurnames.py:53
 #: ../src/plugins/quickview/SameSurnames.py:66
 #: ../src/plugins/quickview/SameSurnames.py:83
+#: ../src/Filters/Rules/_ChangedSinceBase.py:32
 #: ../src/Filters/Rules/_Everything.py:46
 #: ../src/Filters/Rules/_HasGrampsId.py:49
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:49
@@ -19772,11 +19815,13 @@ msgstr "Släktskap med: %s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:720
 #: ../src/plugins/textreport/DetDescendantReport.py:870
+#: ../src/plugins/textreport/IndivComplete.py:671
 msgid "Page break before end notes"
 msgstr "Sidbrytning före slutnotiser"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:722
 #: ../src/plugins/textreport/DetDescendantReport.py:872
+#: ../src/plugins/textreport/IndivComplete.py:673
 msgid "Whether to start a new page before the end notes."
 msgstr "Huruvida påbörja en ny sida före slutnotiserna."
 
@@ -19930,11 +19975,13 @@ msgstr "Huruvida ta med källreferenser."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:800
 #: ../src/plugins/textreport/DetDescendantReport.py:950
+#: ../src/plugins/textreport/IndivComplete.py:680
 msgid "Include sources notes"
 msgstr "Ta med källnotiser"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:801
 #: ../src/plugins/textreport/DetDescendantReport.py:951
+#: ../src/plugins/textreport/IndivComplete.py:681
 msgid ""
 "Whether to include source notes in the Endnotes section. Only works if "
 "Include sources is selected."
@@ -20242,66 +20289,66 @@ msgstr "Sektioner"
 msgid "Individual Facts"
 msgstr "Individuella fakta"
 
-#: ../src/plugins/textreport/IndivComplete.py:192
+#: ../src/plugins/textreport/IndivComplete.py:194
 #, python-format
 msgid "%s in %s. "
 msgstr "%s i %s. "
 
-#: ../src/plugins/textreport/IndivComplete.py:281
+#: ../src/plugins/textreport/IndivComplete.py:283
 msgid "Alternate Parents"
 msgstr "Alternativa föräldrar"
 
-#: ../src/plugins/textreport/IndivComplete.py:393
+#: ../src/plugins/textreport/IndivComplete.py:395
 msgid "Marriages/Children"
 msgstr "Giftermål/Barn"
 
-#: ../src/plugins/textreport/IndivComplete.py:533
+#: ../src/plugins/textreport/IndivComplete.py:535
 #, python-format
 msgid "Summary of %s"
 msgstr "Sammanfattning av %s"
 
-#: ../src/plugins/textreport/IndivComplete.py:572
+#: ../src/plugins/textreport/IndivComplete.py:574
 msgid "Male"
 msgstr "Man"
 
-#: ../src/plugins/textreport/IndivComplete.py:574
+#: ../src/plugins/textreport/IndivComplete.py:576
 msgid "Female"
 msgstr "Kvinna"
 
-#: ../src/plugins/textreport/IndivComplete.py:651
+#: ../src/plugins/textreport/IndivComplete.py:656
 msgid "Select the filter to be applied to the report."
 msgstr "Välj det filter som skall tillämpas för rapporten."
 
-#: ../src/plugins/textreport/IndivComplete.py:662
+#: ../src/plugins/textreport/IndivComplete.py:667
 msgid "List events chronologically"
 msgstr "Lista händelser kronologiskt"
 
-#: ../src/plugins/textreport/IndivComplete.py:663
+#: ../src/plugins/textreport/IndivComplete.py:668
 msgid "Whether to sort events into chronological order."
 msgstr "Huruvida sortera händelser kronologiskt."
 
-#: ../src/plugins/textreport/IndivComplete.py:666
+#: ../src/plugins/textreport/IndivComplete.py:676
 msgid "Include Source Information"
 msgstr "Ta med källinformation"
 
-#: ../src/plugins/textreport/IndivComplete.py:667
+#: ../src/plugins/textreport/IndivComplete.py:677
 msgid "Whether to cite sources."
 msgstr "Huruvida citera källor."
 
 #. ###############################
-#: ../src/plugins/textreport/IndivComplete.py:673
+#: ../src/plugins/textreport/IndivComplete.py:688
 msgid "Event groups"
 msgstr "Händelsegrupper"
 
-#: ../src/plugins/textreport/IndivComplete.py:674
+#: ../src/plugins/textreport/IndivComplete.py:689
 msgid "Check if a separate section is required."
 msgstr "Kontrollera om en särskild sektion krävs."
 
-#: ../src/plugins/textreport/IndivComplete.py:727
+#: ../src/plugins/textreport/IndivComplete.py:742
 msgid "The style used for category labels."
 msgstr "Mall som används för kategorietiketter."
 
-#: ../src/plugins/textreport/IndivComplete.py:738
+#: ../src/plugins/textreport/IndivComplete.py:753
 msgid "The style used for the spouse's name."
 msgstr "Mall som används för makans/makens namn."
 
@@ -21351,10 +21398,6 @@ msgstr "Slå samman misstänkta dubbletter"
 #: ../src/plugins/tool/Leak.py:67
 msgid "Uncollected Objects Tool"
 msgstr "Verktyg för ej skräpsamlade objekt"
-
-#: ../src/plugins/tool/Leak.py:88
-msgid "Number"
-msgstr "Antal"
 
 #: ../src/plugins/tool/Leak.py:92
 msgid "Uncollected object"
@@ -24259,6 +24302,55 @@ msgstr " %s är inte"
 msgid "%s does not contain"
 msgstr "%s innehåller inte"
 
+#: ../src/Filters/Rules/_ChangedSinceBase.py:27
+#: ../src/Filters/Rules/Person/_ChangedSince.py:23
+#: ../src/Filters/Rules/Family/_ChangedSince.py:23
+#: ../src/Filters/Rules/Event/_ChangedSince.py:23
+#: ../src/Filters/Rules/Place/_ChangedSince.py:23
+#: ../src/Filters/Rules/Source/_ChangedSince.py:23
+#: ../src/Filters/Rules/MediaObject/_ChangedSince.py:23
+#: ../src/Filters/Rules/Repository/_ChangedSince.py:23
+#: ../src/Filters/Rules/Note/_ChangedSince.py:23
+msgid "Changed after:"
+msgstr "Ändrat efter:"
+
+#: ../src/Filters/Rules/_ChangedSinceBase.py:27
+#: ../src/Filters/Rules/Person/_ChangedSince.py:23
+#: ../src/Filters/Rules/Family/_ChangedSince.py:23
+#: ../src/Filters/Rules/Event/_ChangedSince.py:23
+#: ../src/Filters/Rules/Place/_ChangedSince.py:23
+#: ../src/Filters/Rules/Source/_ChangedSince.py:23
+#: ../src/Filters/Rules/MediaObject/_ChangedSince.py:23
+#: ../src/Filters/Rules/Repository/_ChangedSince.py:23
+#: ../src/Filters/Rules/Note/_ChangedSince.py:23
+msgid "but before:"
+msgstr "men före:"
+
+#: ../src/Filters/Rules/_ChangedSinceBase.py:28
+msgid "Objects changed after <date time>"
+msgstr "Objekt ändrat efter <datum tid>"
+
+#: ../src/Filters/Rules/_ChangedSinceBase.py:29
+msgid ""
+"Matches object records changed after a specified date/time (yyyy-mm-dd hh:mm:"
+"ss) or in range, if a second date/time is given."
+msgstr ""
+"Matchar objektposter ändrade efter en specificerad datum/tid (yyyy-mm-dd hh:"
+"mm:ss) eller i intervall, om ett andra datum/tid givits."
+
+#: ../src/Filters/Rules/_ChangedSinceBase.py:58
+msgid "Wrong format of date-time"
+msgstr "Fel format på datum-tid"
+
+#: ../src/Filters/Rules/_ChangedSinceBase.py:59
+#, python-format
+msgid ""
+"Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
+"part is optional, are accepted. %s does not satisfy."
+msgstr ""
+"Endast datum-tid i ISO-format enligt yyyy-mm-dd hh:mm:ss, där tidsdelen är "
+"valfri, godkännes. %s uppfyller ej detta."
+
 #: ../src/Filters/Rules/_Everything.py:45
 msgid "Every object"
 msgstr "Alla objekt"
@@ -24296,28 +24388,6 @@ msgstr "Matchar objekt som indikerats som privata"
 #: ../src/Filters/Rules/_Rule.py:49
 msgid "Miscellaneous filters"
 msgstr "Diverse filter"
-
-#: ../src/Filters/Rules/Person/_ChangedSince.py:23
-#: ../src/Filters/Rules/Family/_ChangedSince.py:23
-#: ../src/Filters/Rules/Event/_ChangedSince.py:23
-#: ../src/Filters/Rules/Place/_ChangedSince.py:23
-#: ../src/Filters/Rules/Source/_ChangedSince.py:23
-#: ../src/Filters/Rules/MediaObject/_ChangedSince.py:23
-#: ../src/Filters/Rules/Repository/_ChangedSince.py:23
-#: ../src/Filters/Rules/Note/_ChangedSince.py:23
-msgid "Changed after:"
-msgstr "Ändrat efter:"
-
-#: ../src/Filters/Rules/Person/_ChangedSince.py:23
-#: ../src/Filters/Rules/Family/_ChangedSince.py:23
-#: ../src/Filters/Rules/Event/_ChangedSince.py:23
-#: ../src/Filters/Rules/Place/_ChangedSince.py:23
-#: ../src/Filters/Rules/Source/_ChangedSince.py:23
-#: ../src/Filters/Rules/MediaObject/_ChangedSince.py:23
-#: ../src/Filters/Rules/Repository/_ChangedSince.py:23
-#: ../src/Filters/Rules/Note/_ChangedSince.py:23
-msgid "but before:"
-msgstr "men före:"
 
 #: ../src/Filters/Rules/Person/_ChangedSince.py:24
 msgid "Persons changed after <date time>"
@@ -29360,26 +29430,6 @@ msgstr ""
 "formatet &quot;mellan 4 january 2000 och 20 mars 2003&quot;. Du kan även "
 "indikera konfidensnivån på ett datum samt även välja mellan flera olika "
 "kalendrar. Prova knappen bredvid datumfältet i händelseredigeraren."
-
-#~ msgid "Objects changed after <date time>"
-#~ msgstr "Objekt ändrat efter <datum tid>"
-
-#~ msgid ""
-#~ "Matches object records changed after a specified date/time (yyyy-mm-dd hh:"
-#~ "mm:ss) or in range, if a second date/time is given."
-#~ msgstr ""
-#~ "Matchar objektposter ändrade efter en specificerad datum/tid (yyyy-mm-dd "
-#~ "hh:mm:ss) eller i intervall, om ett andra datum/tid givits."
-
-#~ msgid "Wrong format of date-time"
-#~ msgstr "Fel format på datum-tid"
-
-#~ msgid ""
-#~ "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
-#~ "part is optional, are accepted. %s does not satisfy."
-#~ msgstr ""
-#~ "Endast datum-tid i ISO-format enligt yyyy-mm-dd hh:mm:ss, där tidsdelen "
-#~ "är valfri, godkännes. %s uppfyller ej detta."
 
 #~ msgid "Baptism:"
 #~ msgstr "Dop:"
