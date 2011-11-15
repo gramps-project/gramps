@@ -36,7 +36,8 @@ from QuickReports import run_quick_report_by_name, get_quick_report_list
 from gen.plug  import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,
                          CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE, CATEGORY_QR_NOTE,
                          CATEGORY_QR_MISC, CATEGORY_QR_PLACE, CATEGORY_QR_MEDIA,
-                         CATEGORY_QR_REPOSITORY)
+                         CATEGORY_QR_REPOSITORY, CATEGORY_QR_CITATION, 
+                         CATEGORY_QR_SOURCE_OR_CITATION)
 
 #------------------------------------------------------------------------
 #
@@ -52,6 +53,7 @@ class QuickViewGramplet(Gramplet):
         self.connect_signal('Event', self._active_changed)
         self.connect_signal('Place', self._active_changed)
         self.connect_signal('Source', self._active_changed)
+        self.connect_signal('Citation', self._active_changed)
         self.connect_signal('Repository', self._active_changed)
         self.connect_signal('Media', self._active_changed)
         self.connect_signal('Note', self._active_changed)
@@ -108,6 +110,7 @@ class QuickViewGramplet(Gramplet):
                      ("Place", _("Place")), 
                      ("Repository", _("Repository")),
                      ("Source", _("Source")), 
+                     ("Citation", _("Citation")), 
                      ]:
             type_list.add_item(item[0], item[1])
         # Add particular lists:
@@ -129,6 +132,8 @@ class QuickViewGramplet(Gramplet):
                     "Family": CATEGORY_QR_FAMILY,
                     "Event": CATEGORY_QR_EVENT, 
                     "Source": CATEGORY_QR_SOURCE, 
+                    "Citation": CATEGORY_QR_CITATION, 
+                    "Source or Citation": CATEGORY_QR_SOURCE_OR_CITATION,
                     "Place": CATEGORY_QR_PLACE, 
                     "Media": CATEGORY_QR_MEDIA,
                     "Note": CATEGORY_QR_NOTE,

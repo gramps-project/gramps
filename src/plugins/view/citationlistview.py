@@ -46,7 +46,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from gui.views.treemodels.citationlistmodel import CitationListModel
-from gen.plug import CATEGORY_QR_SOURCE
+from gen.plug import CATEGORY_QR_CITATION
 import gen.lib
 from gui.views.listview import ListView
 import Utils
@@ -120,7 +120,7 @@ class CitationListView(ListView):
     DEL_MSG = _("Delete the selected citation")
     MERGE_MSG = _("Merge the selected citations")
     FILTER_TYPE = "Citation"
-    QR_CATEGORY = CATEGORY_QR_SOURCE
+    QR_CATEGORY = CATEGORY_QR_CITATION
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
 

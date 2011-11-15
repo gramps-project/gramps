@@ -57,7 +57,8 @@ from gui.pluginmanager import GuiPluginManager
 from gen.plug import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY, CATEGORY_QR_MEDIA,
                       CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE, CATEGORY_QR_MISC,
                       CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY, 
-                      CATEGORY_QR_NOTE)
+                      CATEGORY_QR_NOTE,  CATEGORY_QR_CITATION, 
+                      CATEGORY_QR_SOURCE_OR_CITATION)
 
 def flatten(L):
     """
@@ -119,7 +120,8 @@ def create_quickreport_menu(category,dbstate,uistate, handle) :
         It collects the reports of the requested category, which must be one of
                         CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,
                         CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE, CATEGORY_QR_MEDIA,
-                        CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY
+                        CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY,
+                        CATEGORY_QR_CITATION, CATEGORY_QR_SOURCE_OR_CITATION
         It constructs the ui string of the quick report menu, and it's actions
         The action callback function is constructed, using the dbstate and the
             handle as input method.
@@ -166,7 +168,8 @@ def get_quick_report_list(qv_category=None):
     Returns a list of PluginData of quick views of category qv_category
     CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY, CATEGORY_QR_EVENT, 
     CATEGORY_QR_SOURCE, CATEGORY_QR_MISC, CATEGORY_QR_PLACE, 
-    CATEGORY_QR_REPOSITORY, CATEGORY_QR_MEDIA or None for all
+    CATEGORY_QR_REPOSITORY, CATEGORY_QR_MEDIA,
+    CATEGORY_QR_CITATION, CATEGORY_QR_SOURCE_OR_CITATION or None for all
     """
     names = []
     pmgr = GuiPluginManager.get_instance()
@@ -254,6 +257,17 @@ def run_report(dbstate, uistate, category, handle, pdata, container=None,
                     obj = dbstate.db.get_event_from_handle(handle)
                 elif category == CATEGORY_QR_SOURCE :
                     obj = dbstate.db.get_source_from_handle(handle)
+                elif category == CATEGORY_QR_CITATION :
+                    obj = dbstate.db.get_citation_from_handle(handle)
+                elif category == CATEGORY_QR_SOURCE_OR_CITATION :
+                    source = dbstate.db.get_source_from_handle(handle)
+                    citation = dbstate.db.get_citation_from_handle(handle)
+                    if (not source and not citation) or (source and citation):
+                        raise ValueError("selection must be either source or citation")
+                    if citation:
+                        obj = citation
+                    else:
+                        obj = source
                 elif category == CATEGORY_QR_PLACE :
                     obj = dbstate.db.get_place_from_handle(handle)
                 elif category == CATEGORY_QR_MEDIA :

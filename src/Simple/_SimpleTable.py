@@ -352,6 +352,10 @@ class SimpleTable(object):
                 retval.append(self.access.describe(item))
                 if (self.__link_col == col or link is None):
                     link = ('Source', item.handle)
+            elif isinstance(item, gen.lib.Citation): 
+                retval.append(self.access.describe(item))
+                if (self.__link_col == col or link is None):
+                    link = ('Citation', item.handle)
             elif isinstance(item, gen.lib.Event):
                 retval.append(self.access.describe(item))
                 if (self.__link_col == col or link is None):

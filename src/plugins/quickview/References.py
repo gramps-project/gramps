@@ -41,6 +41,8 @@ def get_ref(db, objclass, handle):
         ref = db.get_event_from_handle(handle)
     elif objclass == 'Source':
         ref = db.get_source_from_handle(handle)
+    elif objclass == 'Citation':
+        ref = db.get_citation_from_handle(handle)
     elif objclass == 'Place':
         ref = db.get_place_from_handle(handle)
     elif objclass == 'Note':
@@ -83,6 +85,9 @@ run_person = lambda db, doc, obj: run(db, doc, obj, 'person', _("Person"))
 run_family = lambda db, doc, obj: run(db, doc, obj, 'family', _("Family"))
 run_event  = lambda db, doc, obj: run(db, doc, obj, 'event', _("Event"))
 run_source = lambda db, doc, obj: run(db, doc, obj, 'source', _("Source"))
+run_citation = lambda db, doc, obj: run(db, doc, obj, 'citation', _("Citation"))
+run_source_or_citation = lambda db, doc, obj: run(db, doc, obj, 
+                                'source or citation', _("Source or Citation"))
 run_place  = lambda db, doc, obj: run(db, doc, obj, 'place', _("Place"))
 run_media  = lambda db, doc, obj: run(db, doc, obj, 'media', _("Media"))
 run_note  = lambda db, doc, obj: run(db, doc, obj, 'note', _("Note"))
