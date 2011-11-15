@@ -1535,59 +1535,59 @@ class BasePage(object):
 
         # begin individualgallery division and section title
         with Html("div", class_ = "subsection", id = "indivgallery") as section: 
-            section += Html("h4", _("Media"), inline = True)
+            section += Html("h4", _("Media"), inline =True)
 
             displayed = []
             for mediaref in photolist_ordered:
 
                 photo_handle = mediaref.get_reference_handle()
                 photo = self.report.database.get_object_from_handle(photo_handle)
+                if photo:
 
-                if photo_handle in displayed:
-                    continue
-                mime_type = photo.get_mime_type()
+                    if photo_handle in displayed:
+                        continue
+                    mime_type = photo.get_mime_type()
 
-                # get media description
-                descr = photo.get_description()
+                    # get media description
+                    descr = photo.get_description()
 
-                if mime_type:
-                    try:
+                    if mime_type:
+                        try:
 
-                        lnkref = (self.report.cur_fname, self.page_title, self.gid)
-                        self.report.add_lnkref_to_photo(photo, lnkref)
-                        real_path, newpath = self.report.prepare_copy_media(photo)
+                            lnkref = (self.report.cur_fname, self.page_title, self.gid)
+                            self.report.add_lnkref_to_photo(photo, lnkref)
+                            real_path, newpath = self.report.prepare_copy_media(photo)
 
-                        # create thumbnail url
-                        # extension needs to be added as it is not already there
-                        url = self.report.build_url_fname(photo_handle, "thumb", True) + ".png"
+                            # create thumbnail url
+                            # extension needs to be added as it is not already there
+                            url = self.report.build_url_fname(photo_handle, "thumb", True) + ".png"
  
-                        # begin hyperlink
-                        section += self.media_link(photo_handle, url, descr, True)
+                            # begin hyperlink
+                            section += self.media_link(photo_handle, url, descr, True)
 
-                    except (IOError, OSError), msg:
-                        WarningDialog(_("Could not add photo to page"), str(msg))
-                else:
-                    try:
+                        except (IOError, OSError), msg:
+                            WarningDialog(_("Could not add photo to page"), str(msg))
+                    else:
+                        try:
 
-                        # begin hyperlink
-                        section += self.doc_link(photo_handle, descr, up = True)
+                            # begin hyperlink
+                            section += self.doc_link(photo_handle, descr, up = True)
 
-                        lnk = (self.report.cur_fname, self.page_title, self.gid)
-                        # FIXME. Is it OK to add to the photo_list of report?
-                        photo_list = self.report.photo_list
-                        if photo_handle in photo_list:
-                            if lnk not in photo_list[photo_handle]:
-                                photo_list[photo_handle].append(lnk)
-                        else:
-                            photo_list[photo_handle] = [lnk]
-                    except (IOError, OSError), msg:
-                        WarningDialog(_("Could not add photo to page"), str(msg))
-                displayed.append(photo_handle)
+                            lnk = (self.report.cur_fname, self.page_title, self.gid)
+                            # FIXME. Is it OK to add to the photo_list of report?
+                            photo_list = self.report.photo_list
+                            if photo_handle in photo_list:
+                                if lnk not in photo_list[photo_handle]:
+                                    photo_list[photo_handle].append(lnk)
+                            else:
+                                photo_list[photo_handle] = [lnk]
+                        except (IOError, OSError), msg:
+                            WarningDialog(_("Could not add photo to page"), str(msg))
+                    displayed.append(photo_handle)
 
         # add fullclear for proper styling
         section += fullclear
 
-        # return indivgallery division to its caller
         return section
 
     def display_note_list(self, notelist = None):
