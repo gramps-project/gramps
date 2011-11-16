@@ -21,10 +21,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 3.3.1\n"
+"Project-Id-Version: 3.3.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-10 08:57+0100\n"
-"PO-Revision-Date: 2011-11-10 08:58+0100\n"
+"POT-Creation-Date: 2011-11-16 17:35+0100\n"
+"PO-Revision-Date: 2011-11-16 17:49+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "Language: \n"
@@ -4165,8 +4165,8 @@ msgstr "Références bibliographiques"
 #: ../src/plugins/textreport/IndivComplete.py:553
 #: ../src/plugins/webreport/NarrativeWeb.py:1315
 #: ../src/plugins/webreport/NarrativeWeb.py:1497
-#: ../src/plugins/webreport/NarrativeWeb.py:1568
-#: ../src/plugins/webreport/NarrativeWeb.py:1584
+#: ../src/plugins/webreport/NarrativeWeb.py:1569
+#: ../src/plugins/webreport/NarrativeWeb.py:1585
 msgid "Could not add photo to page"
 msgstr "Impossible d'ajouter une photo à cette page"
 
@@ -4480,7 +4480,6 @@ msgstr "Format du nom"
 msgid "Edit"
 msgstr "Éditer"
 
-# trunk
 #: ../src/gui/configure.py:858
 msgid "Consider single pa/matronymic as surname"
 msgstr "Considérer le simple pa/matronyme comme nom de famille"
@@ -4611,67 +4610,54 @@ msgstr "Le nombre de générations pour les relations"
 msgid "Base path for relative media paths"
 msgstr "Base pour le chemin relatif des media"
 
-# trunk
 #: ../src/gui/configure.py:1056
 msgid "Once a month"
 msgstr "Une fois par mois"
 
-# trunk
 #: ../src/gui/configure.py:1057
 msgid "Once a week"
 msgstr "Une fois par semaine"
 
-# trunk
 #: ../src/gui/configure.py:1058
 msgid "Once a day"
 msgstr "Une fois par jour"
 
-# trunk
 #: ../src/gui/configure.py:1059
 msgid "Always"
 msgstr "Toujours"
 
-# trunk
 #: ../src/gui/configure.py:1064
 msgid "Check for updates"
 msgstr "Vérification des mises à jour"
 
-# trunk
 #: ../src/gui/configure.py:1069
 msgid "Updated addons only"
 msgstr "Les greffons mis à jour"
 
-# trunk
 #: ../src/gui/configure.py:1070
 msgid "New addons only"
 msgstr "Les nouveaux greffons"
 
-# trunk
 #: ../src/gui/configure.py:1071
 msgid "New and updated addons"
 msgstr "Les greffons mis à jour et les nouveaux"
 
-# trunk
 #: ../src/gui/configure.py:1081
 msgid "What to check"
 msgstr "Vérifier"
 
-# trunk
 #: ../src/gui/configure.py:1086
 msgid "Do not ask about previously notified addons"
 msgstr "Ne plus poser la question sur les greffons notifiés"
 
-# trunk
 #: ../src/gui/configure.py:1091
 msgid "Check now"
 msgstr "Vérifier maintenant"
 
-# trunk
 #: ../src/gui/configure.py:1105
 msgid "Family Tree Database path"
 msgstr "Chemin de l'arbre familial"
 
-# trunk
 #: ../src/gui/configure.py:1108
 msgid "Automatically load last family tree"
 msgstr "Charger automatiquement le dernier arbre familial"
@@ -4900,7 +4886,6 @@ msgstr ""
 "\n"
 "%s"
 
-# trunk
 #: ../src/gui/dbman.py:625
 msgid "Repair family tree?"
 msgstr "Réparer l'arbre familial ?"
@@ -4927,12 +4912,10 @@ msgstr ""
 "http://gramps-project.org/wiki/index.php?title=Recover_corrupted_family_tree/fr\n"
 "Avant de faire la réparation, essayez d'ouvrir votre arbre familial avec la méthode normale. Certaines erreurs qui peuvent être corrigées automatiquement activent parfois le bouton de réparation. Dans ce cas, vous pouvez désactiver cette action de réparation en supprimant le fichier <i>need_recover</i> dans le répertoire de votre arbre familial."
 
-# trunk
 #: ../src/gui/dbman.py:646
 msgid "Proceed, I have taken a backup"
 msgstr "Oui, la sauvegarde a été faite"
 
-# trunk
 #: ../src/gui/dbman.py:647
 msgid "Stop"
 msgstr "Annuler"
@@ -5085,13 +5068,11 @@ msgstr "Type de relation :"
 msgid "Note type:"
 msgstr "Type de note :"
 
-# trunk
 #: ../src/gui/filtereditor.py:100
 #: ../src/Filters/Rules/Person/_HasNameType.py:44
 msgid "Name type:"
 msgstr "Type de nom :"
 
-# trunk
 #: ../src/gui/filtereditor.py:101
 #: ../src/Filters/Rules/Person/_HasNameOriginType.py:44
 msgid "Surname origin type:"
@@ -5220,7 +5201,6 @@ msgstr "Nom du filtre événement :"
 msgid "Source filter name:"
 msgstr "Nom du filtre source :"
 
-# trunk
 #: ../src/gui/filtereditor.py:526
 #: ../src/Filters/Rules/Source/_MatchesRepositoryFilter.py:41
 msgid "Repository filter name:"
@@ -5268,7 +5248,6 @@ msgstr "Inclure les événements familiaux :"
 msgid "Also family events where person is wife/husband"
 msgstr "Également les événements familiaux dont l'individu est le conjoint"
 
-# trunk
 #: ../src/gui/filtereditor.py:539
 #: ../src/Filters/Rules/Person/_HasTag.py:48
 #: ../src/Filters/Rules/Family/_HasTag.py:48
@@ -5365,23 +5344,19 @@ msgstr "Supprimer le filtre"
 msgid "Unnamed Gramplet"
 msgstr "Gramplet sans nom"
 
-# trunk
 #: ../src/gui/grampsbar.py:295
 msgid "Gramps Bar"
 msgstr "Barre Gramps"
 
-# trunk
 #: ../src/gui/grampsbar.py:297
 msgid "Right-click to the right of the tab to add a gramplet."
 msgstr "Un clic droit sur l'onglet pour ajouter un gramplet."
 
-# trunk
 #: ../src/gui/grampsbar.py:408
 #: ../src/plugins/view/grampletview.py:95
 msgid "Add a gramplet"
 msgstr "Ajouter un gramplet"
 
-# trunk
 #: ../src/gui/grampsbar.py:418
 msgid "Remove a gramplet"
 msgstr "Enlever un gramplet"
@@ -5485,25 +5460,21 @@ msgstr "Gramplets"
 msgid "Geography"
 msgstr "Géographie"
 
-# trunk
 #: ../src/gui/grampsgui.py:122
 #: ../src/plugins/view/geoperson.py:165
 msgid "GeoPerson"
 msgstr "GéoIndividu"
 
-# trunk
 #: ../src/gui/grampsgui.py:123
 #: ../src/plugins/view/geofamily.py:137
 msgid "GeoFamily"
 msgstr "GéoFamille"
 
-# trunk
 #: ../src/gui/grampsgui.py:124
 #: ../src/plugins/view/geoevents.py:138
 msgid "GeoEvents"
 msgstr "GéoÉvénements"
 
-# trunk
 #: ../src/gui/grampsgui.py:125
 #: ../src/plugins/view/geoplaces.py:138
 msgid "GeoPlaces"
@@ -5513,7 +5484,6 @@ msgstr "GéoLieux"
 msgid "Public"
 msgstr "Public"
 
-# trunk
 #: ../src/gui/grampsgui.py:128
 msgid "Merge"
 msgstr "Fusion"
@@ -5615,7 +5585,6 @@ msgstr "Sources"
 msgid "Add Spouse"
 msgstr "Ajouter un conjoint"
 
-# trunk
 #: ../src/gui/grampsgui.py:141
 #: ../src/gui/views/tags.py:219
 #: ../src/gui/views/tags.py:224
@@ -5629,7 +5598,6 @@ msgstr "Ajouter un conjoint"
 msgid "Tag"
 msgstr "Étiquette"
 
-# trunk
 #: ../src/gui/grampsgui.py:142
 #: ../src/gui/views/tags.py:581
 msgid "New Tag"
@@ -5726,13 +5694,11 @@ msgstr ""
 msgid "Error parsing arguments"
 msgstr "Erreur dans l'analyse des arguments"
 
-# trunk
 #: ../src/gui/makefilter.py:21
 #, python-format
 msgid "Filter %s from Clipboard"
 msgstr "Filtre %s depuis le presse-papiers"
 
-# trunk
 #: ../src/gui/makefilter.py:26
 #, python-format
 msgid "Created on %4d/%02d/%02d"
@@ -5766,40 +5732,32 @@ msgstr "Erreur à l'ouverture du fichier"
 msgid "Unsupported"
 msgstr "Non supportés"
 
-# trunk
 #: ../src/gui/viewmanager.py:434
 msgid "There are no available addons of this type"
 msgstr "Il n'y a pas de greffons supplémentaires de ce type"
 
-# trunk
 #: ../src/gui/viewmanager.py:435
 #, python-format
 msgid "Checked for '%s'"
-msgstr "Vérifier pour '%s'"
+msgstr "Vérification pour '%s'"
 
-# trunk
 #: ../src/gui/viewmanager.py:436
 msgid "' and '"
 msgstr "' et '"
 
-# trunk
 #: ../src/gui/viewmanager.py:447
 msgid "Available Gramps Updates for Addons"
 msgstr "Les mises à jour disponibles pour les greffons Gramps"
 
-# trunk
 #: ../src/gui/viewmanager.py:533
 msgid "Downloading and installing selected addons..."
 msgstr "Téléchargement et installation des greffons sélectionnés..."
 
-# trunk
-# contexte ?
 #: ../src/gui/viewmanager.py:565
 #: ../src/gui/viewmanager.py:572
 msgid "Done downloading and installing addons"
 msgstr "Greffons téléchargés et installés"
 
-# trunk
 #: ../src/gui/viewmanager.py:566
 #, python-format
 msgid "%d addon was installed."
@@ -5807,12 +5765,10 @@ msgid_plural "%d addons were installed."
 msgstr[0] "%d greffon a été installé."
 msgstr[1] "%d greffons ont été installés."
 
-# trunk
 #: ../src/gui/viewmanager.py:569
 msgid "You need to restart Gramps to see new views."
 msgstr "Vous avez besoin de redémarrer Gramps pour voir les nouvelles vues."
 
-# trunk
 #: ../src/gui/viewmanager.py:573
 msgid "No addons were installed."
 msgstr "Aucun greffon installé."
@@ -5901,12 +5857,10 @@ msgstr "_Manuel utilisateur"
 msgid "_Export..."
 msgstr "_Exporter..."
 
-# trunk
 #: ../src/gui/viewmanager.py:772
 msgid "Make Backup..."
 msgstr "Faire une sauvegarde..."
 
-# trunk
 #: ../src/gui/viewmanager.py:773
 msgid "Make a Gramps XML backup of the database"
 msgstr "Générer une sauvegarde de la base de données au format Gramps XML"
@@ -5966,7 +5920,6 @@ msgstr "_Configurer la vue..."
 msgid "Configure the active view"
 msgstr "Configurer la vue active"
 
-# trunk
 #: ../src/gui/viewmanager.py:831
 msgid "_Navigator"
 msgstr "_Navigateur"
@@ -6027,7 +5980,6 @@ msgstr "Erreur d'enregistrement des données de sauvegarde"
 msgid "Abort changes?"
 msgstr "Abandonner les changements ?"
 
-# trunk
 # Substantif (GNOME fr)
 #: ../src/gui/viewmanager.py:1034
 msgid "Aborting changes will return the database to the state it was before you started this editing session."
@@ -6045,7 +5997,6 @@ msgstr "Impossible d'abandonner les changements de la session"
 msgid "Changes cannot be completely abandoned because the number of changes made in the session exceeded the limit."
 msgstr "Les changements ne peuvent être complètement abandonner car le nombre de modifications effectuées pendant la session excèdent la limite."
 
-# trunk
 #: ../src/gui/viewmanager.py:1201
 msgid "View failed to load. Check error output."
 msgstr "Échec au chargement de la vue. Regardez l'erreur."
@@ -6058,7 +6009,6 @@ msgstr "Les statistiques d'importation"
 msgid "Read Only"
 msgstr "Lecture seule"
 
-# trunk
 #: ../src/gui/viewmanager.py:1474
 msgid "Gramps XML Backup"
 msgstr "Sauvegarde Gramps XML"
@@ -6076,7 +6026,6 @@ msgstr "Chemin :"
 msgid "File:"
 msgstr "Fichier :"
 
-# trunk
 #: ../src/gui/viewmanager.py:1536
 msgid "Media:"
 msgstr "Media :"
@@ -6095,7 +6044,6 @@ msgstr "Media :"
 msgid "Include"
 msgstr "Inclure"
 
-# trunk
 #: ../src/gui/viewmanager.py:1542
 #: ../src/plugins/gramplet/StatsGramplet.py:190
 msgid "Megabyte|MB"
@@ -6106,12 +6054,10 @@ msgstr "MB"
 msgid "Exclude"
 msgstr "Exclure"
 
-# trunk
 #: ../src/gui/viewmanager.py:1560
 msgid "Backup file already exists! Overwrite?"
 msgstr "Le fichier de sauvegarde existe déjà ! L'écraser ?"
 
-# trunk
 #: ../src/gui/viewmanager.py:1561
 #, python-format
 msgid "The file '%s' exists."
@@ -11134,6 +11080,10 @@ msgstr "_Web Family Tree"
 msgid "Web Family Tree format"
 msgstr "Format Web Family Tree"
 
+#: ../src/plugins/export/export.gpr.py:62
+msgid "Web Family Tree export options"
+msgstr "Options de l'exportation Web Family Tree"
+
 #: ../src/plugins/export/export.gpr.py:73
 #: ../src/plugins/import/import.gpr.py:51
 #: ../data/gramps.keys.in.h:1
@@ -11150,6 +11100,10 @@ msgstr "GE_DCOM"
 msgid "GEDCOM is used to transfer data between genealogy programs. Most genealogy software will accept a GEDCOM file as input."
 msgstr "Le format GEDCOM est utilisé pour transférer des données entre différents logiciels de généalogie. La plupart des logiciels de généalogie acceptent ce format."
 
+#: ../src/plugins/export/export.gpr.py:84
+msgid "GEDCOM export options"
+msgstr "Options de l'exportation GEDCOM"
+
 #: ../src/plugins/export/export.gpr.py:95
 #: ../src/plugins/import/import.gpr.py:70
 #: ../data/gramps.keys.in.h:2
@@ -11164,6 +11118,10 @@ msgstr "_GeneWeb"
 msgid "GeneWeb is a web based genealogy program."
 msgstr "GeneWeb est un logiciel de généalogie basé sur un serveur et un navigateur internet."
 
+#: ../src/plugins/export/export.gpr.py:105
+msgid "GeneWeb export options"
+msgstr "Options de l'exportation GeneWeb"
+
 #: ../src/plugins/export/export.gpr.py:116
 msgid "Gramps XML Package (family tree and media)"
 msgstr "Paquet Gramps XML (Arbre familial et media)"
@@ -11175,6 +11133,10 @@ msgstr "Paquet Gra_mps XML (Arbre familial et media)"
 #: ../src/plugins/export/export.gpr.py:118
 msgid "Gramps package is an archived XML family tree together with the media object files."
 msgstr "Le paquet Gramps est une base de données XML comprenant les fichiers media."
+
+#: ../src/plugins/export/export.gpr.py:127
+msgid "Gramps package export options"
+msgstr "Options de l'exportation paquet Gramps"
 
 #: ../src/plugins/export/export.gpr.py:138
 msgid "Gramps XML (family tree)"
@@ -11188,6 +11150,10 @@ msgstr "Base de données Gramps _XML (Arbre familial)"
 msgid "Gramps XML export is a complete archived XML backup of a Gramps family tree without the media object files. Suitable for backup purposes."
 msgstr "L'exportation au format Gramps XML est une archive au format XML de votre base de données Gramps sans les objets media. Approprié pour les sauvegardes."
 
+#: ../src/plugins/export/export.gpr.py:150
+msgid "Gramps XML export options"
+msgstr "Options de l'exportation Gramps XML"
+
 #: ../src/plugins/export/export.gpr.py:161
 msgid "vCalendar"
 msgstr "vCalendar"
@@ -11199,6 +11165,10 @@ msgstr "vC_alendar"
 #: ../src/plugins/export/export.gpr.py:163
 msgid "vCalendar is used in many calendaring and PIM applications."
 msgstr "Le format vCalendar est utilisé dans plusieurs applications de gestion d'agenda et de gestion d'informations personnelles."
+
+#: ../src/plugins/export/export.gpr.py:171
+msgid "vCalendar export options"
+msgstr "Options de l'exportation VCalendar"
 
 #: ../src/plugins/export/export.gpr.py:182
 #: ../src/plugins/import/import.gpr.py:164
@@ -11212,6 +11182,10 @@ msgstr "_vCard"
 #: ../src/plugins/export/export.gpr.py:184
 msgid "vCard is used in many addressbook and pim applications."
 msgstr "Les vCards sont utilisées dans la plupart des logiciels de carnets d'adresses et de gestion de données personnelles."
+
+#: ../src/plugins/export/export.gpr.py:192
+msgid "vCard export options"
+msgstr "Options de l'exportation vCard"
 
 #: ../src/plugins/export/ExportCsv.py:194
 msgid "Include people"
