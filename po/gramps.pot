@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-10 08:57+0100\n"
+"POT-Creation-Date: 2011-11-16 17:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3731,8 +3731,8 @@ msgstr ""
 #: ../src/plugins/textreport/IndivComplete.py:553
 #: ../src/plugins/webreport/NarrativeWeb.py:1315
 #: ../src/plugins/webreport/NarrativeWeb.py:1497
-#: ../src/plugins/webreport/NarrativeWeb.py:1568
-#: ../src/plugins/webreport/NarrativeWeb.py:1584
+#: ../src/plugins/webreport/NarrativeWeb.py:1569
+#: ../src/plugins/webreport/NarrativeWeb.py:1585
 msgid "Could not add photo to page"
 msgstr ""
 
@@ -10153,6 +10153,10 @@ msgstr ""
 msgid "Web Family Tree format"
 msgstr ""
 
+#: ../src/plugins/export/export.gpr.py:62
+msgid "Web Family Tree export options"
+msgstr ""
+
 #: ../src/plugins/export/export.gpr.py:73
 #: ../src/plugins/import/import.gpr.py:51 ../data/gramps.keys.in.h:1
 #: ../data/gramps.xml.in.h:1
@@ -10170,6 +10174,10 @@ msgid ""
 "software will accept a GEDCOM file as input."
 msgstr ""
 
+#: ../src/plugins/export/export.gpr.py:84
+msgid "GEDCOM export options"
+msgstr ""
+
 #: ../src/plugins/export/export.gpr.py:95
 #: ../src/plugins/import/import.gpr.py:70 ../data/gramps.keys.in.h:2
 msgid "GeneWeb"
@@ -10181,6 +10189,10 @@ msgstr ""
 
 #: ../src/plugins/export/export.gpr.py:97
 msgid "GeneWeb is a web based genealogy program."
+msgstr ""
+
+#: ../src/plugins/export/export.gpr.py:105
+msgid "GeneWeb export options"
 msgstr ""
 
 #: ../src/plugins/export/export.gpr.py:116
@@ -10197,6 +10209,10 @@ msgid ""
 "files."
 msgstr ""
 
+#: ../src/plugins/export/export.gpr.py:127
+msgid "Gramps package export options"
+msgstr ""
+
 #: ../src/plugins/export/export.gpr.py:138
 msgid "Gramps XML (family tree)"
 msgstr ""
@@ -10211,6 +10227,10 @@ msgid ""
 "without the media object files. Suitable for backup purposes."
 msgstr ""
 
+#: ../src/plugins/export/export.gpr.py:150
+msgid "Gramps XML export options"
+msgstr ""
+
 #: ../src/plugins/export/export.gpr.py:161
 msgid "vCalendar"
 msgstr ""
@@ -10221,6 +10241,10 @@ msgstr ""
 
 #: ../src/plugins/export/export.gpr.py:163
 msgid "vCalendar is used in many calendaring and PIM applications."
+msgstr ""
+
+#: ../src/plugins/export/export.gpr.py:171
+msgid "vCalendar export options"
 msgstr ""
 
 #: ../src/plugins/export/export.gpr.py:182
@@ -10234,6 +10258,10 @@ msgstr ""
 
 #: ../src/plugins/export/export.gpr.py:184
 msgid "vCard is used in many addressbook and pim applications."
+msgstr ""
+
+#: ../src/plugins/export/export.gpr.py:192
+msgid "vCard export options"
 msgstr ""
 
 #: ../src/plugins/export/ExportCsv.py:194
