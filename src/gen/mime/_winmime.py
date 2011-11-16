@@ -47,9 +47,12 @@ def get_description(mime_type):
     progid = _get_prog_id(extension)
     
     if progid:
-        hcr = ConnectRegistry(None, HKEY_CLASSES_ROOT)
-        desc = QueryValue(hcr, progid)
-        CloseKey(hcr)
+        try:
+            hcr = ConnectRegistry(None, HKEY_CLASSES_ROOT)
+            desc = QueryValue(hcr, progid)
+            CloseKey(hcr)
+        except WindowsError:
+            pass
 
     if not desc:
         desc = _("unknown")
