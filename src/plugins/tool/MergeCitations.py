@@ -205,7 +205,14 @@ class MergeCitations(tool.BatchTool,ManagedWindow.ManagedWindow):
                         citation_match_handle = dict[key]
                         citation_match = \
                             db.get_citation_from_handle(citation_match_handle)
-                        self.Merge(db, citation_match, citation, trans)
+                        try:
+                            self.Merge(db, citation_match, citation, trans)
+                        except AssertionError:
+                            print "Tool/Family Tree processing/MergeCitations", \
+                            "citation1 gramps_id", citation_match.get_gramps_id(), \
+                            "citation2 gramps_id", citation.get_gramps_id() , \
+                            "citation backlink handles", \
+                            list(db.find_backlink_handles(citation.get_handle()))
                         num_merges += 1
                     else:
                         dict[key] = citation_handle
