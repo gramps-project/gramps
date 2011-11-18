@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2005-2007  Donald N. Allingham
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2011       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -38,7 +39,6 @@ log = logging.getLogger(".")
 #
 #-------------------------------------------------------------------------
 import const
-import Utils
 from gen.display.name import displayer as name_displayer
 import Errors
 from gen.plug._options import (Options, OptionHandler, OptionList,
@@ -86,6 +86,11 @@ class Tool(object):
             self.options = options_class
         
         self.options.load_previous_values()
+        if hasattr(options_class, 'options_dict'):
+            old_opts = options_class.saved_options_dict
+            for key in options_class.options_dict:
+                if options_class.options_dict[key] != old_opts[key]:
+                    self.options.options_dict[key] = old_opts[key]
 
     def run_tool(self):
         pass
@@ -181,10 +186,12 @@ class CommandLineTool(object):
                 self.options_help[key] = self.option_class.options_help[key]
 
     def parse_option_str(self):
+        from cli.plug import _convert_str_to_match_type
         for opt in self.options_str_dict:
             if opt in self.options_dict:
-                converter = Utils.get_type_converter(self.options_dict[opt])
-                self.options_dict[opt] = converter(self.options_str_dict[opt])
+                self.options_dict[opt] = \
+                    _convert_str_to_match_type(self.options_str_dict[opt],
+                                               self.options_dict[opt])
                 self.option_class.handler.options_dict[opt] = self.options_dict[opt]
             else:
                 print "Ignoring unknown option: %s" % opt
@@ -254,6 +261,7 @@ def cli_tool(dbstate, name, category, tool_class, options_class, options_str_dic
 
     clt = CommandLineTool(dbstate.db, name, category,
                           options_class, options_str_dict)
+    clt.option_class.saved_options_dict = clt.options_dict
 
     # Exit here if show option was given
     if clt.show:
