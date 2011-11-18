@@ -4,7 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2011       PaulFranklin
+# Copyright (C) 2011       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -81,6 +81,7 @@ WIKI_HELP_SEC = _('manual|Verify_the_Data...')
 _person_cache = {}
 _family_cache = {}
 _event_cache = {}
+_today = gen.lib.date.Today().get_sort_value()
 
 def find_event(db, handle):
     if handle in _event_cache:
@@ -359,6 +360,7 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
                 BirthAfterDeath(self.db,person),
                 BaptAfterBury(self.db,person),
                 OldAge(self.db,person, oldage,estimate_age),
+                OldAgeButNoDeath(self.db,person, oldage,estimate_age),
                 UnknownGender(self.db,person),
                 MultipleParents(self.db,person),
                 MarriedOften(self.db,person,wedder),
@@ -736,7 +738,7 @@ class VerifyOptions(tool.ToolOptions):
                               "Number of years"),
             'oldunm'       : ("=num","Maximum age for an unmarried person"
                               "Number of years"),
-            'estimate_age' : ("=0/1","Whether to estimate missing dates",
+            'estimate_age' : ("=0/1","Whether to estimate missing or inexact dates",
                               ["Do not estimate","Estimate dates"],
                               True),
             'invdate'      : ("=0/1","Whether to check for invalid dates"
@@ -1539,3 +1541,26 @@ class MarriedRelation(FamilyRule):
 
     def get_message(self):
         return _("Marriage date but not married")
+
+class OldAgeButNoDeath(PersonRule):
+    ID = 32
+    SEVERITY = Rule.WARNING
+    def __init__(self,db,person, old_age,est):
+        PersonRule.__init__(self,db,person)
+        self.old_age = old_age
+        self.est = est
+
+    def _get_params(self):
+        return (self.old_age,self.est)
+
+    def broken(self):
+        birth_date = get_birth_date(self.db,self.obj,self.est)
+        dead = get_death_date(self.db,self.obj,True) # if no death use burial
+        if dead or not birth_date:
+            return 0
+        age = ( _today - birth_date ) / 365
+        return ( age > self.old_age )
+
+    def get_message(self):
+        return _("Old age but no death")
+
