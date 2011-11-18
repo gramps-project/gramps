@@ -38,7 +38,7 @@ plg.fname = 'ExportCsv.py'
 plg.ptype = EXPORT
 plg.export_function = 'exportData'
 plg.export_options = 'CSVWriterOptionBox'
-plg.export_options_title = ('CSV spreadsheet options')
+plg.export_options_title = _('CSV spreadsheet options')
 plg.extension = "csv"
 
 #------------------------------------------------------------------------
