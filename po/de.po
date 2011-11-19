@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-15 18:56+0100\n"
-"PO-Revision-Date: 2011-11-15 19:10+0100\n"
+"POT-Creation-Date: 2011-11-19 01:06+0100\n"
+"PO-Revision-Date: 2011-11-19 01:08+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -10744,6 +10744,10 @@ msgstr "Durch _Komma getrennte Werte Tabelle (CSV)"
 #: ../src/plugins/export/export.gpr.py:33
 msgid "CSV is a common spreadsheet format."
 msgstr "CSV ist ein gebräuchliches Tabellenformat."
+
+#: ../src/plugins/export/export.gpr.py:41
+msgid "CSV spreadsheet options"
+msgstr "CSV Tabelle Optionen"
 
 #: ../src/plugins/export/export.gpr.py:52
 msgid "Web Family Tree"
