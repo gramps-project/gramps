@@ -309,6 +309,9 @@ class DbLoader(CLIDbLoader):
                     self.dbstate.db.set_save_path(filename)
                 else:
                     self.dbstate.no_database()
+        except gen.db.exceptions.BsddbDowngradeError, msg:
+            self.dbstate.no_database()
+            self._errordialog( _("Cannot open database"), str(msg))
         except gen.db.exceptions.DbVersionError, msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))

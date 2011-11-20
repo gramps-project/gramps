@@ -56,9 +56,9 @@ else:
 from gen.lib import (GenderStats, Person, Family, Event, Place, Source, 
                      MediaObject, Repository, Note, Tag)
 from gen.db import (DbBsddbRead, DbWriteBase, BSDDBTxn, 
-                    DbTxn, BsddbBaseCursor, DbVersionError, DbEnvironmentError, 
-                    DbUpgradeRequiredError, find_surname, find_surname_name,
-                    DbUndoBSDDB as DbUndo)
+                    DbTxn, BsddbBaseCursor, BsddbDowngradeError, DbVersionError,
+                    DbEnvironmentError, DbUpgradeRequiredError, find_surname,
+                    find_surname_name, DbUndoBSDDB as DbUndo)
 from gen.db.dbconst import *
 from gen.utils.callback import Callback
 from gen.updatecallback import UpdateCallback
@@ -224,6 +224,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.secondary_connected = False
         self.has_changed = False
         self.brief_name = None
+        self.update_env_version = False
 
     def catch_db_error(func):
         """
@@ -349,6 +350,27 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             with BSDDBTxn(self.env, self.metadata) as txn:
                 txn.put('mediapath', path)            
 
+    def __check_bdb_version(self, name):
+        """Older version of Berkeley DB can't read data created by a newer
+        version."""
+        bdb_version = db.version()
+        env_version = (0, 0, 0)
+        versionpath = os.path.join(self.path, BDBVERSFN)
+        try:
+            with open(versionpath, "r") as version_file:
+                env_version = version_file.read().strip()
+                env_version = tuple(map(int, env_version[1:-1].split(', ')))
+        except:
+            # Just assume that the Berkeley DB version is OK.
+            pass
+        if (env_version[0] > bdb_version[0]) or \
+            (env_version[0] == bdb_version[0] and
+             env_version[1] > bdb_version[1]):
+            clear_lock_file(name)
+            raise BsddbDowngradeError(env_version, bdb_version)
+        elif env_version != bdb_version and not self.readonly:
+            self.update_env_version = True
+
     @catch_db_error
     def version_supported(self):
         dbversion = self.metadata.get('version', default=0)
@@ -399,6 +421,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.full_name = os.path.abspath(name)
         self.path = self.full_name
         self.brief_name = os.path.basename(name)
+
+        self.__check_bdb_version(name)
 
         # Set up database environment
         self.env = db.DBEnv()
@@ -1098,6 +1122,15 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.redo_callback = None
         self.undo_history_callback = None
         self.undodb = None
+
+        if self.update_env_version:
+            versionpath = os.path.join(self.path, BDBVERSFN)
+            try:
+                with open(versionpath, "w") as version_file:
+                    version_file.write(str(db.version()))
+            except:
+                # Storing the version of Berkeley Db is not really vital.
+                pass
 
         try:
             clear_lock_file(self.get_save_path())
