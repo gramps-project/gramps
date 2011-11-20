@@ -365,7 +365,7 @@ class BasePage(object):
                         tcell += Html("span", self.person_link(url, _obj, _NAME_STYLE_DEFAULT, gid =_obj.get_gramps_id()),
                             class_="person", inline=True)
                     else:
-                        tcell += Html("span", self.get_name(obj_), class_="person", inline =True)
+                        tcell += Html("span", self.get_name(_obj), class_="person", inline =True)
 
             # family event
             else:
