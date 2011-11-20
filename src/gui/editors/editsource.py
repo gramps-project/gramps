@@ -246,37 +246,37 @@ class DeleteSrcQuery(object):
                 
                 for handle in person_list:
                     person = self.db.get_person_from_handle(handle)
-                    person.remove_citation_refs(ctn_handle_list)
+                    person.remove_citation_references(ctn_handle_list)
                     self.db.commit_person(person, trans)
     
                 for handle in family_list:
                     family = self.db.get_family_from_handle(handle)
-                    family.remove_citation_refs(ctn_handle_list)
+                    family.remove_citation_references(ctn_handle_list)
                     self.db.commit_family(family, trans)
     
                 for handle in event_list:
                     event = self.db.get_event_from_handle(handle)
-                    event.remove_citation_refs(ctn_handle_list)
+                    event.remove_citation_references(ctn_handle_list)
                     self.db.commit_event(event, trans)
     
                 for handle in place_list:
                     place = self.db.get_place_from_handle(handle)
-                    place.remove_citation_refs(ctn_handle_list)
+                    place.remove_citation_references(ctn_handle_list)
                     self.db.commit_place(place, trans)
     
                 for handle in source_list:
                     source = self.db.get_source_from_handle(handle)
-                    source.remove_citation_refs(ctn_handle_list)
+                    source.remove_citation_references(ctn_handle_list)
                     self.db.commit_source(source, trans)
     
                 for handle in media_list:
                     media = self.db.get_object_from_handle(handle)
-                    media.remove_citation_refs(ctn_handle_list)
+                    media.remove_citation_references(ctn_handle_list)
                     self.db.commit_media_object(media, trans)
     
                 for handle in repo_list:
                     repo = self.db.get_repository_from_handle(handle)
-                    repo.remove_citation_refs(ctn_handle_list)
+                    repo.remove_citation_references(ctn_handle_list)
                     self.db.commit_repository(repo, trans)
 
             # (2) delete the actual citations

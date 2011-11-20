@@ -166,10 +166,13 @@ class BaseObject(object):
         :rtype: list
         """
         ret = self.get_referenced_handles()
+        # FIXME: remove this print "Directly referenced primary objects from", self, ret
+        #print self.get_handle_referents()
         
         # Run through child objects
         for obj in self.get_handle_referents():
             ret += obj.get_referenced_handles_recursively()
+            #print "cummulative refs", ret
         return ret
 
     def merge(self, acquisition):

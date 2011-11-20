@@ -93,7 +93,7 @@ class CitationBase(object):
             self.citation_list.append(handle)
             return True
 
-    def remove_citation_refs(self, citation_handle_list):
+    def remove_citation_references(self, citation_handle_list):
         """
         Remove the specified handles from the list of citation handles, and all
         secondary child objects.
@@ -111,7 +111,7 @@ class CitationBase(object):
         LOG.debug('get_citation_child_list %s' % 
                   self.get_citation_child_list())
         for item in self.get_citation_child_list():
-            item.remove_citation_refs(citation_handle_list)
+            item.remove_citation_references(citation_handle_list)
     
     def get_citation_child_list(self):
         """
@@ -166,6 +166,7 @@ class CitationBase(object):
             if citation_ref == citation_handle:
                 return True
 
+        LOG.debug("citation child list %s" % self.get_citation_child_list())
         for item in self.get_citation_child_list():
             if item.has_citation_reference(citation_handle):
                 return True

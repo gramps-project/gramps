@@ -126,9 +126,11 @@ def gramps_upgrade_16(self):
         if person_ref_list:
             person_ref_list = upgrade_person_ref_list_16(
                                     self, person_ref_list)
+        if event_ref_list:
+            event_ref_list = upgrade_event_ref_list_16(self, event_ref_list)
         if primary_name or alternate_names  or address_list or \
            media_list or attribute_list or lds_seal_list or source_list or \
-           person_ref_list:
+           person_ref_list or event_ref_list:
             new_person = (handle, gramps_id, gender, primary_name, 
                           alternate_names, death_ref_index, 
                           birth_ref_index, event_ref_list, family_list, 
@@ -244,12 +246,14 @@ def gramps_upgrade_16(self):
         if attribute_list:
             attribute_list = upgrade_attribute_list_16(
                                     self, attribute_list)
+        if event_ref_list:
+            event_ref_list = upgrade_event_ref_list_16(self, event_ref_list)
         if source_list or media_list or child_ref_list or \
-            attribute_list or lds_seal_list:
+            attribute_list or lds_seal_list or event_ref_list:
             new_family = (handle, gramps_id, father_handle, mother_handle,
                           child_ref_list, the_type, event_ref_list, media_list,
-                          attribute_list, lds_seal_list, new_citation_list, note_list,
-                          change, tag_list, private)
+                          attribute_list, lds_seal_list, new_citation_list, 
+                          note_list, change, tag_list, private)
             with BSDDBTxn(self.env, self.family_map) as txn:
                 txn.put(str(handle), new_family)
         self.update()
@@ -502,6 +506,16 @@ def upgrade_person_ref_list_16(self, person_ref_list):
         new_person_ref = (privacy, new_citation_list, note_list, ref, rel)
         new_person_ref_list.append((new_person_ref))
     return new_person_ref_list
+
+def upgrade_event_ref_list_16(self, event_ref_list):
+    new_event_ref_list = []
+    for event_ref in event_ref_list:
+        (privacy, note_list, attribute_list, ref, role) = event_ref
+        new_attribute_list = upgrade_attribute_list_16(
+                                        self, attribute_list)
+        new_event_ref = (privacy, note_list, new_attribute_list, ref, role)
+        new_event_ref_list.append((new_event_ref))
+    return new_event_ref_list
 
 def convert_source_list_to_citation_list_16(self, source_list):
     citation_list = []

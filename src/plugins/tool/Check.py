@@ -1022,7 +1022,7 @@ class CheckIntegrity(object):
                             if item[0] == 'Citation' and
                             item[1] not in known_handles ]
             if bad_handles:
-                person.remove_citation_refs(bad_handles)
+                person.remove_citation_references(bad_handles)
                 self.db.commit_person(person,self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_citation_references]
@@ -1038,7 +1038,7 @@ class CheckIntegrity(object):
                             if item[0] == 'Citation' and
                             item[1] not in known_handles ]
             if bad_handles:
-                family.remove_citation_refs(bad_handles)
+                family.remove_citation_references(bad_handles)
                 self.db.commit_family(family, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_citation_references]
@@ -1054,7 +1054,7 @@ class CheckIntegrity(object):
                             if item[0] == 'Citation' and
                             item[1] not in known_handles ]
             if bad_handles:
-                place.remove_citation_refs(bad_handles)
+                place.remove_citation_references(bad_handles)
                 self.db.commit_place(place,self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_citation_references]
@@ -1070,7 +1070,7 @@ class CheckIntegrity(object):
                             if item[0] == 'Citation' and
                             item[1] not in known_handles ]
             if bad_handles:
-                repo.remove_citation_refs(bad_handles)
+                repo.remove_citation_references(bad_handles)
                 self.db.commit_repository(repo, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_citation_references]
@@ -1087,7 +1087,7 @@ class CheckIntegrity(object):
                             if item[0] == 'Citation' and
                             item[1] not in known_handles ]
             if bad_handles:
-                citation.remove_citation_refs(bad_handles)
+                citation.remove_citation_references(bad_handles)
                 self.db.commit_citation(citation, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_citation_references]
@@ -1103,7 +1103,7 @@ class CheckIntegrity(object):
                             if item[0] == 'Citation' and
                             item[1] not in known_handles ]
             if bad_handles:
-                obj.remove_citation_refs(bad_handles)
+                obj.remove_citation_references(bad_handles)
                 self.db.commit_media_object(obj, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_citation_references]
@@ -1119,7 +1119,7 @@ class CheckIntegrity(object):
                             if item[0] == 'Citation' and
                             item[1] not in known_handles ]
             if bad_handles:
-                event.remove_citation_refs(bad_handles)
+                event.remove_citation_references(bad_handles)
                 self.db.commit_event(event, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_citation_references]
