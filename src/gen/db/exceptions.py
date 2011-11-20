@@ -79,6 +79,30 @@ class DbVersionError(Exception):
                  "Gramps.\nPlease upgrade to the corresponding version or use "
                  "XML for porting data between different database versions.")
     
+class BsddbDowngradeError(Exception):
+    """
+    Error used to report that the Berkeley database used to create the family
+    tree is of a version that is too new to be supported by the current version.
+    """
+    def __init__(self, env_version, bdb_version):
+        Exception.__init__(self)
+        self.env_version = str(env_version)
+        self.bdb_version = str(bdb_version)
+
+    def __str__(self):
+        return _('Gramps stores its data in a Berkeley Database. '
+                 'The family tree you try to load was created with version '
+                 '%(env_version)s of the Berkeley DB. However, the Gramps '
+                 'version in use right now employs version %(bdb_version)s '
+                 'of the Berkeley DB. So you are trying to load data created '
+                 'in a newer format into an older program; this is bound to '
+                 'fail. The right approach in this case is to use XML export '
+                 'and import. So try to open the family tree on that computer '
+                 'with that software that created the family tree, export it '
+                 'to XML and load that XML into the version of Gramps you '
+                 'intend to use.') % {'env_version': self.env_version,
+                 'bdb_version': self.bdb_version}
+
 class DbEnvironmentError(Exception):
     """
     Error used to report that the database 'environment' could not be opened.
