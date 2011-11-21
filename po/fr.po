@@ -23,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.3.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-16 17:35+0100\n"
-"PO-Revision-Date: 2011-11-16 17:49+0100\n"
+"POT-Creation-Date: 2011-11-21 17:36+0100\n"
+"PO-Revision-Date: 2011-11-21 17:58+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "Language: \n"
@@ -646,7 +646,7 @@ msgstr ""
 #: ../src/gen/lib/srcmediatype.py:62
 #: ../src/gen/lib/urltype.py:54
 #: ../src/gui/editors/editmedia.py:167
-#: ../src/gui/editors/editmediaref.py:126
+#: ../src/gui/editors/editmediaref.py:128
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:120
 #: ../src/plugins/gramplet/PersonDetails.py:160
 #: ../src/plugins/gramplet/PersonDetails.py:166
@@ -1036,7 +1036,7 @@ msgstr "Lieu"
 #: ../src/gui/editors/editlink.py:84
 #: ../src/gui/editors/editmedia.py:87
 #: ../src/gui/editors/editmedia.py:170
-#: ../src/gui/editors/editmediaref.py:129
+#: ../src/gui/editors/editmediaref.py:131
 #: ../src/gui/views/treemodels/mediamodel.py:128
 #: ../src/plugins/drawreport/AncestorTree.py:1012
 #: ../src/plugins/drawreport/DescendTree.py:1608
@@ -1525,30 +1525,30 @@ msgid "Invalid"
 msgstr "Invalide"
 
 #: ../src/Utils.py:91
-#: ../src/gui/editors/editsourceref.py:140
+#: ../src/gui/editors/editsourceref.py:149
 msgid "Very High"
 msgstr "Très haut"
 
 #: ../src/Utils.py:92
-#: ../src/gui/editors/editsourceref.py:139
+#: ../src/gui/editors/editsourceref.py:148
 #: ../src/plugins/tool/FindDupes.py:63
 msgid "High"
 msgstr "Haut"
 
 #: ../src/Utils.py:93
-#: ../src/gui/editors/editsourceref.py:138
+#: ../src/gui/editors/editsourceref.py:147
 #: ../src/plugins/webreport/NarrativeWeb.py:1734
 msgid "Normal"
 msgstr "Normal"
 
 #: ../src/Utils.py:94
-#: ../src/gui/editors/editsourceref.py:137
+#: ../src/gui/editors/editsourceref.py:146
 #: ../src/plugins/tool/FindDupes.py:61
 msgid "Low"
 msgstr "Bas"
 
 #: ../src/Utils.py:95
-#: ../src/gui/editors/editsourceref.py:136
+#: ../src/gui/editors/editsourceref.py:145
 msgid "Very Low"
 msgstr "Très bas"
 
@@ -2287,12 +2287,13 @@ msgstr "Vous n'avez pas accès en écriture au fichier sélectionné."
 #: ../src/cli/grampscli.py:162
 #: ../src/gui/dbloader.py:314
 #: ../src/gui/dbloader.py:317
+#: ../src/gui/dbloader.py:320
 msgid "Cannot open database"
 msgstr "Impossible d'ouvrir la base de données"
 
 #: ../src/cli/grampscli.py:166
 #: ../src/gui/dbloader.py:188
-#: ../src/gui/dbloader.py:321
+#: ../src/gui/dbloader.py:324
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Impossible d'ouvrir le fichier : %s"
@@ -2373,8 +2374,13 @@ msgstr ""
 "Cette version de la base de données n'est pas supportée par cette version de Gramps.\n"
 "Veuillez mettre à jour la version correspondante ou utilisez XML pour transférer les données d'une version à l'autre."
 
+#: ../src/gen/db/exceptions.py:93
+#, python-format
+msgid "Gramps stores its data in a Berkeley Database. The family tree you try to load was created with version %(env_version)s of the Berkeley DB. However, the Gramps version in use right now employs version %(bdb_version)s of the Berkeley DB. So you are trying to load data created in a newer format into an older program; this is bound to fail. The right approach in this case is to use XML export and import. So try to open the family tree on that computer with that software that created the family tree, export it to XML and load that XML into the version of Gramps you intend to use."
+msgstr "Gramps stocke les données dans une base de données Berkeley. L'arbre familial que vous essayez de charger a été créé avec la version %(env_version)s de la base de données Berkeley. Par ailleurs, votre version actuelle de Gramps utilise la version %(bdb_version)s de la base de données Berkeley. Ainsi vous essayez de charger des données créés dans un nouveau format avec une ancienne version; ceci peut conduire à un échec. La bonne approche dans ce cas est d'utiliser l'exportation XML puis l'importation. Essayez d'ouvrir votre arbre familial sur l'ordinateur avec le programme qui a créé cet arbre familial, exportez vos données vers le format Gramps XML et importez ce fichier dans la version de Gramps que vous avez l'intention d'utiliser."
+
 # trunk
-#: ../src/gen/db/exceptions.py:92
+#: ../src/gen/db/exceptions.py:116
 msgid ""
 "Gramps has detected a problem in opening the 'environment' of the underlying Berkeley database used to store this Family Tree. The most likely cause is that the database was created with an old version of the Berkeley database program, and you are now using a new version. It is quite likely that your database has not been changed by Gramps.\n"
 "If possible, you should revert to your old version of Gramps and its support software; export your database to XML; close the database; then upgrade again to this version of Gramps and import the XML file in an empty Family Tree. Alternatively, it may be possible to use the Berkeley database recovery tools."
@@ -2382,7 +2388,7 @@ msgstr ""
 "Gramps a détecté un problème en ouvrant l'environnement de votre base de données Berkeley. Ceci est le plus souvent lié au fait qu'une base de données a été créée avec une ancienne version de la base de données Berkeley, et que vous êtes en train d'utiliser une nouvelle version. C'est silencieusement que votre base de données a été modifiée par Gramps.\n"
 "Si possible, vous pouvez revenir vers votre ancienne version de Gramps et son support logiciel; exportez votre base de données vers du XML; fermez votre base de données; puis mettez à niveau une nouvelle fois et importez le fichier XML. Alternativement, il devrait être possible d'utiliser les outils Berkeley de récupération de base de données."
 
-#: ../src/gen/db/exceptions.py:115
+#: ../src/gen/db/exceptions.py:139
 msgid ""
 "You cannot open this database without upgrading it.\n"
 "If you upgrade then you won't be able to use previous versions of Gramps.\n"
@@ -3415,11 +3421,11 @@ msgstr "Lignée maternelle"
 
 #: ../src/gen/lib/notetype.py:80
 #: ../src/gui/configure.py:1096
-#: ../src/gui/editors/editeventref.py:77
-#: ../src/gui/editors/editmediaref.py:91
+#: ../src/gui/editors/editeventref.py:78
+#: ../src/gui/editors/editmediaref.py:93
 #: ../src/gui/editors/editreporef.py:73
-#: ../src/gui/editors/editsourceref.py:75
-#: ../src/gui/editors/editsourceref.py:81
+#: ../src/gui/editors/editsourceref.py:76
+#: ../src/gui/editors/editsourceref.py:82
 #: ../src/glade/editmediaref.glade.h:11
 #: ../src/glade/editname.glade.h:14
 msgid "General"
@@ -4748,16 +4754,16 @@ msgstr "Mettre à jour maintenant"
 msgid "Cancel"
 msgstr "Annuler"
 
-#: ../src/gui/dbloader.py:362
+#: ../src/gui/dbloader.py:365
 msgid "All files"
 msgstr "Tous les fichiers"
 
-#: ../src/gui/dbloader.py:403
+#: ../src/gui/dbloader.py:406
 msgid "Automatically detected"
 msgstr "Détecté automatiquement"
 
 # éviter le raccourci sur le y ou le p
-#: ../src/gui/dbloader.py:412
+#: ../src/gui/dbloader.py:415
 msgid "Select file _type:"
 msgstr "Chois_ir un type de fichier :"
 
@@ -6063,33 +6069,27 @@ msgstr "Le fichier de sauvegarde existe déjà ! L'écraser ?"
 msgid "The file '%s' exists."
 msgstr "Le fichier '%s' existe."
 
-# trunk
 #: ../src/gui/viewmanager.py:1562
 msgid "Proceed and overwrite"
 msgstr "Procéder et écraser"
 
-# trunk
 #: ../src/gui/viewmanager.py:1563
 msgid "Cancel the backup"
 msgstr "Annuler la sauvegarde"
 
-# trunk
 #: ../src/gui/viewmanager.py:1570
 msgid "Making backup..."
-msgstr "Génération de la sauvegarde..."
+msgstr "Création de la sauvegarde..."
 
-# trunk
 #: ../src/gui/viewmanager.py:1587
 #, python-format
 msgid "Backup saved to '%s'"
-msgstr "Sauvegarde vers '%s'"
+msgstr "Sauvegarde sous '%s'"
 
-# trunk
 #: ../src/gui/viewmanager.py:1590
 msgid "Backup aborted"
 msgstr "Sauvegarde échouée"
 
-# trunk
 #: ../src/gui/viewmanager.py:1608
 msgid "Select backup directory"
 msgstr "Sélection du répertoire de sauvegarde"
@@ -6277,13 +6277,13 @@ msgid "manual|Editing_Information_About_Events"
 msgstr "Édition de l'information sur les événements"
 
 #: ../src/gui/editors/editevent.py:97
-#: ../src/gui/editors/editeventref.py:233
+#: ../src/gui/editors/editeventref.py:239
 #, python-format
 msgid "Event: %s"
 msgstr "Événement : %s"
 
 #: ../src/gui/editors/editevent.py:99
-#: ../src/gui/editors/editeventref.py:235
+#: ../src/gui/editors/editeventref.py:241
 msgid "New Event"
 msgstr "Nouvel événement"
 
@@ -6324,13 +6324,11 @@ msgstr "Vous avez essayé d'utiliser l'identifiant Gramps %(id)s existant. Cette
 msgid "The event type cannot be empty"
 msgstr "Cet événement ne peut pas être vide"
 
-# trunk
 #: ../src/gui/editors/editevent.py:257
 #, python-format
 msgid "Add Event (%s)"
 msgstr "Ajouter un événement (%s)"
 
-# trunk
 #: ../src/gui/editors/editevent.py:263
 #, python-format
 msgid "Edit Event (%s)"
@@ -6342,23 +6340,23 @@ msgstr "Éditer l'événement (%s)"
 msgid "Delete Event (%s)"
 msgstr "Supprimer l'événement (%s)"
 
-#: ../src/gui/editors/editeventref.py:66
-#: ../src/gui/editors/editeventref.py:236
+#: ../src/gui/editors/editeventref.py:67
+#: ../src/gui/editors/editeventref.py:242
 msgid "Event Reference Editor"
 msgstr "Éditeur de référence d'événement"
 
-#: ../src/gui/editors/editeventref.py:83
-#: ../src/gui/editors/editmediaref.py:99
+#: ../src/gui/editors/editeventref.py:84
+#: ../src/gui/editors/editmediaref.py:101
 #: ../src/gui/editors/editname.py:130
 #: ../src/gui/editors/editreporef.py:79
 msgid "_General"
 msgstr "_Général"
 
-#: ../src/gui/editors/editeventref.py:241
+#: ../src/gui/editors/editeventref.py:247
 msgid "Modify Event"
 msgstr "Modifier l'événement"
 
-#: ../src/gui/editors/editeventref.py:244
+#: ../src/gui/editors/editeventref.py:250
 msgid "Add Event"
 msgstr "Ajouter un événement"
 
@@ -6379,12 +6377,10 @@ msgstr "Éditer la référence à l'enfant"
 msgid "Add an existing person as a child of the family"
 msgstr "Ajouter un individu existant comme enfant de la famille"
 
-# trunk
 #: ../src/gui/editors/editfamily.py:106
 msgid "Move the child up in the children list"
 msgstr "Déplacer l'enfant vers le haut dans la liste"
 
-# trunk
 #: ../src/gui/editors/editfamily.py:107
 msgid "Move the child down in the children list"
 msgstr "Déplacer l'enfant vers le bas dans la liste"
@@ -6645,25 +6641,23 @@ msgstr "Ordonnance Saints des Derniers Jours"
 msgid "Location Editor"
 msgstr "Éditeur d'emplacement"
 
-# trunk
 #: ../src/gui/editors/editlink.py:77
 #: ../src/gui/editors/editlink.py:201
 msgid "Link Editor"
 msgstr "Éditeur de lien"
 
-# trunk
 #: ../src/gui/editors/editlink.py:80
 msgid "Internet Address"
 msgstr "Adresse Internet"
 
 #: ../src/gui/editors/editmedia.py:88
-#: ../src/gui/editors/editmediaref.py:407
+#: ../src/gui/editors/editmediaref.py:426
 #, python-format
 msgid "Media: %s"
 msgstr "Medium : %s"
 
 #: ../src/gui/editors/editmedia.py:90
-#: ../src/gui/editors/editmediaref.py:409
+#: ../src/gui/editors/editmediaref.py:428
 msgid "New Media"
 msgstr "Nouveau medium"
 
@@ -6684,13 +6678,13 @@ msgid "Cannot save media object. ID already exists."
 msgstr "Impossible d'enregistrer le medium. L'identifiant existe déjà."
 
 #: ../src/gui/editors/editmedia.py:295
-#: ../src/gui/editors/editmediaref.py:595
+#: ../src/gui/editors/editmediaref.py:614
 #, python-format
 msgid "Add Media Object (%s)"
 msgstr "Ajouter le medium (%s)"
 
 #: ../src/gui/editors/editmedia.py:300
-#: ../src/gui/editors/editmediaref.py:591
+#: ../src/gui/editors/editmediaref.py:610
 #, python-format
 msgid "Edit Media Object (%s)"
 msgstr "Éditer le medium (%s)"
@@ -6700,14 +6694,14 @@ msgstr "Éditer le medium (%s)"
 msgid "Remove Media Object"
 msgstr "Enlever un medium"
 
-#: ../src/gui/editors/editmediaref.py:80
-#: ../src/gui/editors/editmediaref.py:410
+#: ../src/gui/editors/editmediaref.py:82
+#: ../src/gui/editors/editmediaref.py:429
 msgid "Media Reference Editor"
 msgstr "Éditeur de référence de medium"
 
-#: ../src/gui/editors/editmediaref.py:82
-#: ../src/gui/editors/editmediaref.py:83
-#: ../src/glade/editmediaref.glade.h:20
+#: ../src/gui/editors/editmediaref.py:84
+#: ../src/gui/editors/editmediaref.py:85
+#: ../src/glade/editmediaref.glade.h:23
 msgid "Y coordinate|Y"
 msgstr "Y"
 
@@ -6716,12 +6710,11 @@ msgstr "Y"
 msgid "Name Editor"
 msgstr "Éditeur de nom"
 
-# trunk
 # call name = prénom dans le context !
 #: ../src/gui/editors/editname.py:168
 #: ../src/gui/editors/editperson.py:301
 msgid "Call name must be the given name that is normally used."
-msgstr "Le prénom usuel est une partie du prénom utilisée pour un usage normal. "
+msgstr "Le prénom usuel est une partie du prénom utilisée pour un usage normal."
 
 #: ../src/gui/editors/editname.py:304
 msgid "New Name"
@@ -7046,7 +7039,7 @@ msgid "Delete Repository (%s)"
 msgstr "Supprimer le dépôt (%s)"
 
 #: ../src/gui/editors/editsource.py:77
-#: ../src/gui/editors/editsourceref.py:204
+#: ../src/gui/editors/editsourceref.py:213
 msgid "New Source"
 msgstr "Nouvelle source"
 
@@ -7082,21 +7075,21 @@ msgstr "Éditer la source (%s)"
 msgid "Delete Source (%s)"
 msgstr "Supprimer la source (%s)"
 
-#: ../src/gui/editors/editsourceref.py:65
-#: ../src/gui/editors/editsourceref.py:205
+#: ../src/gui/editors/editsourceref.py:66
+#: ../src/gui/editors/editsourceref.py:214
 msgid "Source Reference Editor"
 msgstr "Éditeur de référence de la source"
 
-#: ../src/gui/editors/editsourceref.py:202
+#: ../src/gui/editors/editsourceref.py:211
 #, python-format
 msgid "Source: %s"
 msgstr "Source : %s"
 
-#: ../src/gui/editors/editsourceref.py:210
+#: ../src/gui/editors/editsourceref.py:219
 msgid "Modify Source"
 msgstr "Modifier la source"
 
-#: ../src/gui/editors/editsourceref.py:213
+#: ../src/gui/editors/editsourceref.py:222
 msgid "Add Source"
 msgstr "Ajouter une source"
 
@@ -7690,48 +7683,39 @@ msgstr ""
 "\n"
 "Pour éditer cette référence à la source, vous devez fermer la source."
 
-# trunk
 #: ../src/gui/editors/displaytabs/surnametab.py:65
 msgid "Create and add a new surname"
 msgstr "Créer et ajouter une nouveau nom de famille"
 
-# trunk
 #: ../src/gui/editors/displaytabs/surnametab.py:66
 msgid "Remove the selected surname"
 msgstr "Supprimer le nom de famille sélectionné"
 
-# trunk
 #: ../src/gui/editors/displaytabs/surnametab.py:67
 msgid "Edit the selected surname"
 msgstr "Éditer le nom de famille sélectionné"
 
-# trunk
 #: ../src/gui/editors/displaytabs/surnametab.py:68
 msgid "Move the selected surname upwards"
 msgstr "Déplacer le nom de famille sélectionné vers le haut"
 
-# trunk
 #: ../src/gui/editors/displaytabs/surnametab.py:69
 msgid "Move the selected surname downwards"
 msgstr "Déplacer le nom de famille sélectionné vers le bas"
 
-# trunk
 #: ../src/gui/editors/displaytabs/surnametab.py:77
 #: ../src/Filters/Rules/Person/_HasNameOf.py:56
 msgid "Connector"
 msgstr "Connecteur"
 
-# trunk
 #: ../src/gui/editors/displaytabs/surnametab.py:79
 msgid "Origin"
 msgstr "Origine"
 
-# trunk
 #: ../src/gui/editors/displaytabs/surnametab.py:83
 msgid "<b>Multiple Surnames</b>"
 msgstr "<b>Noms multiples</b>"
 
-# trunk
 #: ../src/gui/editors/displaytabs/surnametab.py:90
 msgid "Family Surnames"
 msgstr "Noms de famille"
@@ -8027,17 +8011,14 @@ msgstr "Échec"
 msgid "OK"
 msgstr "OK"
 
-# trunk
 #: ../src/gui/plug/_windows.py:591
 msgid "Plugin name"
 msgstr "Nom du greffon"
 
-# trunk
 #: ../src/gui/plug/_windows.py:593
 msgid "Version"
 msgstr "Version"
 
-# trunk
 #: ../src/gui/plug/_windows.py:594
 msgid "Authors"
 msgstr "Auteurs"
@@ -8048,7 +8029,6 @@ msgstr "Auteurs"
 msgid "Filename"
 msgstr "Fichier"
 
-# trunk
 #: ../src/gui/plug/_windows.py:599
 msgid "Detailed Info"
 msgstr "Information détaillée"
@@ -8085,13 +8065,11 @@ msgstr "Ouvrir avec le lecteur par défaut"
 msgid "CSS file"
 msgstr "fichier CSS"
 
-# trunk
 # numéro = astuce pour éviter la liste par ordre alphabétique
 #: ../src/gui/plug/report/_papermenu.py:100
 msgid "Portrait"
 msgstr "0. Portrait"
 
-# trunk
 # numéro = astuce pour éviter la liste par ordre alphabétique
 #: ../src/gui/plug/report/_papermenu.py:101
 msgid "Landscape"
@@ -8122,7 +8100,6 @@ msgstr "Configuration"
 msgid "Style"
 msgstr "Style"
 
-# trunk
 # Substantif (GNOME fr)
 #: ../src/gui/plug/report/_reportdialog.py:378
 msgid "Selection Options"
@@ -8261,12 +8238,10 @@ msgstr "Déboguer"
 msgid "Analysis and Exploration"
 msgstr "Analyse et exploration"
 
-# trunk
 #: ../src/gui/plug/tool.py:58
 msgid "Family Tree Processing"
 msgstr "Modification de l'arbre familial"
 
-# trunk
 #: ../src/gui/plug/tool.py:59
 msgid "Family Tree Repair"
 msgstr "Réparation de l'arbre familial"
@@ -8316,7 +8291,6 @@ msgstr "Sélectionner la famille"
 msgid "Select Note"
 msgstr "Sélectionner la note"
 
-# trunk
 #: ../src/gui/selectors/selectnote.py:69
 #: ../src/plugins/lib/libpersonview.py:99
 #: ../src/plugins/tool/NotRelated.py:133
@@ -8520,7 +8494,6 @@ msgstr "Erreur : %s n'est pas un ID Gramps valide"
 msgid "_Sidebar"
 msgstr "_Barre latérale"
 
-# trunk
 #: ../src/gui/views/pageview.py:409
 msgid "_Bottombar"
 msgstr "_Barre inférieure"
@@ -8541,7 +8514,6 @@ msgstr "%(cat)s - %(view)s"
 msgid "Configure %s View"
 msgstr "Configurer la vue %s"
 
-# trunk
 #. top widget at the top
 #: ../src/gui/views/pageview.py:641
 #, python-format
@@ -8549,111 +8521,91 @@ msgid "View %(name)s: %(msg)s"
 msgstr "Vue %(name)s : %(msg)s"
 
 # manuel wiki
-# trunk
 #: ../src/gui/views/tags.py:85
 #: ../src/gui/widgets/tageditor.py:49
 msgid "manual|Tags"
 msgstr "Étiquettes"
 
-# trunk
 #: ../src/gui/views/tags.py:220
 msgid "New Tag..."
 msgstr "Nouvelle étiquette..."
 
-# trunk
 #: ../src/gui/views/tags.py:222
 msgid "Organize Tags..."
 msgstr "Organiser les étiquettes..."
 
-# trunk
 #: ../src/gui/views/tags.py:225
 msgid "Tag selected rows"
 msgstr "Lignes d'étiquette sélectionnées"
 
-# trunk
 #: ../src/gui/views/tags.py:267
 msgid "Adding Tags"
 msgstr "Ajout d'étiquette"
 
-# trunk
 #: ../src/gui/views/tags.py:272
 #, python-format
 msgid "Tag Selection (%s)"
 msgstr "Sélection de l'étiquette (%s)"
 
-# trunk
 #: ../src/gui/views/tags.py:326
 msgid "Change Tag Priority"
 msgstr "Changer la priorité de l'étiquette"
 
-# trunk
 #: ../src/gui/views/tags.py:371
 #: ../src/gui/views/tags.py:379
 msgid "Organize Tags"
 msgstr "Organiser les étiquettes"
 
-# trunk
 #: ../src/gui/views/tags.py:388
 msgid "Color"
 msgstr "Couleur"
 
-# trunk
 # contexte
 #: ../src/gui/views/tags.py:475
 #, python-format
 msgid "Remove tag '%s'?"
 msgstr "Supprimer l'étiquette '%s' ?"
 
-# trunk
 #: ../src/gui/views/tags.py:476
 msgid "The tag definition will be removed.  The tag will be also removed from all objects in the database."
 msgstr "Cette définition de l'étiquette sera supprimée. L'étiquette sera également supprimée de tous les objets de la base de données."
 
-# trunk
 #: ../src/gui/views/tags.py:505
 msgid "Removing Tags"
 msgstr "Retrait d'étiquette"
 
-# trunk
 #: ../src/gui/views/tags.py:510
 #, python-format
 msgid "Delete Tag (%s)"
 msgstr "Supprimer l'étiquette (%s)"
 
-# trunk
 #: ../src/gui/views/tags.py:558
 msgid "Cannot save tag"
 msgstr "Impossible d'enregistrer l'étiquette"
 
-# trunk
 #: ../src/gui/views/tags.py:559
 msgid "The tag name cannot be empty"
 msgstr "Le nom de l'étiquette ne peut pas être vide"
 
-# trunk
 #: ../src/gui/views/tags.py:563
 #, python-format
 msgid "Add Tag (%s)"
 msgstr "Ajouter l'étiquette(%s)"
 
-# trunk
 #: ../src/gui/views/tags.py:569
 #, python-format
 msgid "Edit Tag (%s)"
 msgstr "Éditer l'étiquette (%s)"
 
-# trunk
 #: ../src/gui/views/tags.py:579
 #, python-format
 msgid "Tag: %s"
 msgstr "Étiquette : %s"
 
-# trunk
 #: ../src/gui/views/tags.py:592
 msgid "Tag Name:"
 msgstr "Nom de l'étiquette :"
 
-# trunk
 #: ../src/gui/views/tags.py:597
 msgid "Pick a Color"
 msgstr "Choix de la couleur"
@@ -8735,7 +8687,6 @@ msgstr "Glissez le bouton propriétés pour déplacer et cliquez dessus pour l'u
 msgid "Right click to add gramplets"
 msgstr "Un clic droit pour ajouter des gramplets"
 
-# trunk
 #: ../src/gui/widgets/grampletpane.py:996
 msgid "Untitled Gramplet"
 msgstr "Gramplet sans titre"
@@ -8775,27 +8726,23 @@ msgstr ""
 "Cliquez sur l'icône Édition (activé dans le dialogue\n"
 "de configuration) pour éditer"
 
-# trunk
 #: ../src/gui/widgets/monitoredwidgets.py:766
 #: ../src/glade/editfamily.glade.h:9
 msgid "Edit the tag list"
 msgstr "Éditer la liste d'étiquette"
 
-# trunk
 #: ../src/gui/widgets/photo.py:53
 msgid "Double-click on the picture to view it in the default image viewer application."
-msgstr "Double-cliquez sur une image pour la voir dans votre visualiseur d'image."
+msgstr "Double-cliquez sur une image pour la voir dans votre lecteur d'image."
 
 #: ../src/gui/widgets/progressdialog.py:292
 msgid "Progress Information"
 msgstr "Information de progression"
 
-# trunk
 #: ../src/gui/widgets/styledtexteditor.py:368
 msgid "Spellcheck"
 msgstr "Orthographe"
 
-# trunk
 #: ../src/gui/widgets/styledtexteditor.py:373
 msgid "Search selection on web"
 msgstr "Rechercher la sélection sur internet"
@@ -8816,7 +8763,6 @@ msgstr "_Ouvrir le lien"
 msgid "Copy _Link Address"
 msgstr "Copier le _lien internet"
 
-# trunk
 #: ../src/gui/widgets/styledtexteditor.py:391
 msgid "_Edit Link"
 msgstr "É_diter le lien"
@@ -8837,7 +8783,6 @@ msgstr "Souligné"
 msgid "Background Color"
 msgstr "Couleur d'arrière-plan"
 
-# trunk
 #: ../src/gui/widgets/styledtexteditor.py:467
 msgid "Link"
 msgstr "Lien"
@@ -8846,12 +8791,10 @@ msgstr "Lien"
 msgid "Clear Markup"
 msgstr "Effacer la balise"
 
-# trunk
 #: ../src/gui/widgets/styledtexteditor.py:510
 msgid "Undo"
 msgstr "Défaire"
 
-# trunk
 #: ../src/gui/widgets/styledtexteditor.py:513
 msgid "Redo"
 msgstr "Réfaire"
@@ -8864,13 +8807,11 @@ msgstr "Sélectionner la couleur de la police"
 msgid "Select background color"
 msgstr "Sélectionner la couleur d'arrière-plan"
 
-# trunk
 #: ../src/gui/widgets/tageditor.py:69
 #: ../src/gui/widgets/tageditor.py:128
 msgid "Tag selection"
 msgstr "Sélection de l'étiquette"
 
-# trunk
 #: ../src/gui/widgets/tageditor.py:100
 msgid "Edit Tags"
 msgstr "Éditer les étiquettes"
@@ -8890,7 +8831,6 @@ msgstr "Ce champ est obligatoire"
 msgid "'%s' is not a valid date value"
 msgstr "'%s' n'est pas une date valide"
 
-# trunk
 #: ../src/Simple/_SimpleTable.py:156
 msgid "See data not in Filter"
 msgstr "Voir les données hors filtre"
@@ -8917,28 +8857,23 @@ msgid "Private Record"
 msgstr "Privé"
 
 # manuel wiki
-# trunk
 #: ../src/Merge/mergeevent.py:49
 msgid "manual|Merge_Events"
 msgstr "Fusion_des_événements"
 
-# trunk
 #: ../src/Merge/mergeevent.py:71
 msgid "Merge Events"
 msgstr "Fusion des événements"
 
-# trunk
 #: ../src/Merge/mergeevent.py:217
 msgid "Merge Event Objects"
 msgstr "Fusion des objets événements"
 
 # manuel wiki
-# trunk
 #: ../src/Merge/mergefamily.py:49
 msgid "manual|Merge_Families"
 msgstr "Fusion_des_familles"
 
-# trunk
 #: ../src/Merge/mergefamily.py:71
 msgid "Merge Families"
 msgstr "Fusion des familles"
@@ -8949,57 +8884,48 @@ msgstr "Fusion des familles"
 msgid "Cannot merge people"
 msgstr "Impossible de fusionner les individus"
 
-# trunk
 #: ../src/Merge/mergefamily.py:277
 msgid "A parent should be a father or mother."
 msgstr "Un parent devrait être un père ou une mère."
 
-# trunk
 #: ../src/Merge/mergefamily.py:290
 #: ../src/Merge/mergefamily.py:301
 #: ../src/Merge/mergeperson.py:348
 msgid "A parent and child cannot be merged. To merge these people, you must first break the relationship between them."
 msgstr "Un parent et un enfant ne peuvent pas fusionner. Pour fusionner ces individus, vous devez d'abord supprimer le lien entre eux."
 
-# trunk
 #: ../src/Merge/mergefamily.py:321
 msgid "Merge Family"
 msgstr "Fusion de la famille"
 
 # manuel wiki
-# trunk
 #: ../src/Merge/mergemedia.py:48
 msgid "manual|Merge_Media_Objects"
 msgstr "Fusion_des_objets_media"
 
-# trunk
 #: ../src/Merge/mergemedia.py:70
 #: ../src/Merge/mergemedia.py:191
 msgid "Merge Media Objects"
 msgstr "Fusion des objets media"
 
 # manuel wiki
-# trunk
 #: ../src/Merge/mergenote.py:49
 msgid "manual|Merge_Notes"
 msgstr "Fusion_des_notes"
 
-# trunk
 #: ../src/Merge/mergenote.py:71
 #: ../src/Merge/mergenote.py:204
 msgid "Merge Notes"
 msgstr "Fusion des notes"
 
-# trunk
 #: ../src/Merge/mergenote.py:96
 msgid "flowed"
 msgstr "libre"
 
 # une note
-# trunk
 #: ../src/Merge/mergenote.py:96
 msgid "preformatted"
-msgstr "Préformatée"
+msgstr "préformatée"
 
 # manuel wiki
 #: ../src/Merge/mergeperson.py:59
@@ -9047,7 +8973,6 @@ msgstr "Adresses"
 msgid "Spouses cannot be merged. To merge these people, you must first break the relationship between them."
 msgstr "Impossible de fusionner les conjoints. Pour fusionner ces individus, vous devez d'abord supprimer le lien entre eux."
 
-# trunk
 #: ../src/Merge/mergeperson.py:411
 msgid "Merge Person"
 msgstr "Fusion de l'individu"
@@ -11067,6 +10992,10 @@ msgstr "Tableur _séparé par des virgules (CSV)"
 #: ../src/plugins/export/export.gpr.py:33
 msgid "CSV is a common spreadsheet format."
 msgstr "CSV est un format courant de tableur."
+
+#: ../src/plugins/export/export.gpr.py:41
+msgid "CSV spreadsheet options"
+msgstr "Options tableur CSV"
 
 #: ../src/plugins/export/export.gpr.py:52
 msgid "Web Family Tree"
@@ -25657,6 +25586,7 @@ msgstr "Correspond à un objet medium avec l'identifiant Gramps spécifié"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
 #: ../src/Filters/Rules/Repository/_HasRepo.py:48
+#: ../src/glade/editmediaref.glade.h:22
 #: ../src/glade/mergeevent.glade.h:11
 #: ../src/glade/mergenote.glade.h:9
 #: ../src/glade/mergerepository.glade.h:9
@@ -26190,7 +26120,7 @@ msgstr "_Prénom :"
 #: ../src/glade/editreporef.glade.h:14
 #: ../src/glade/editfamily.glade.h:14
 #: ../src/glade/editmedia.glade.h:12
-#: ../src/glade/editmediaref.glade.h:21
+#: ../src/glade/editmediaref.glade.h:25
 #: ../src/glade/editeventref.glade.h:8
 #: ../src/glade/editnote.glade.h:8
 #: ../src/glade/editplace.glade.h:28
@@ -26213,7 +26143,6 @@ msgstr "_Nom de famille :"
 #: ../src/glade/editrepository.glade.h:9
 #: ../src/glade/editreporef.glade.h:17
 #: ../src/glade/editfamily.glade.h:15
-#: ../src/glade/editmediaref.glade.h:24
 #: ../src/glade/editnote.glade.h:10
 #: ../src/glade/editname.glade.h:32
 msgid "_Type:"
@@ -26265,7 +26194,7 @@ msgstr "Utiliser le chemin relatif"
 #: ../src/glade/addmedia.glade.h:3
 #: ../src/glade/editsource.glade.h:13
 #: ../src/glade/editmedia.glade.h:13
-#: ../src/glade/editmediaref.glade.h:23
+#: ../src/glade/editmediaref.glade.h:28
 #: ../src/glade/editsourceref.glade.h:24
 msgid "_Title:"
 msgstr "_Titre :"
@@ -26952,6 +26881,7 @@ msgstr "La ville ou le village de l'adresse"
 
 #: ../src/glade/editaddress.glade.h:17
 #: ../src/glade/editmedia.glade.h:11
+#: ../src/glade/editmediaref.glade.h:24
 #: ../src/glade/editeventref.glade.h:6
 #: ../src/glade/editldsord.glade.h:5
 #: ../src/glade/editsourceref.glade.h:21
@@ -27033,8 +26963,14 @@ msgstr ""
 "Si le medium est une image, sélectionnez la partie spécifique que vous souhaitez référencer.\n"
 "Vous pouvez utiliser le curseur de la souris sur l'image pour sélectionner une région, ou définir les valeurs pour le coin en haut à gauche et le coin en bas à droite de la région référencée. Le point (0,0) correspond au coin en haut à gauche, et (100,100) définit le coin en bas à droite.\n"
 
-# trunk
 #: ../src/glade/editmediaref.glade.h:17
+#: ../src/glade/editsourceref.glade.h:14
+#: ../src/glade/editname.glade.h:15
+msgid "Invoke date editor"
+msgstr "Ouvrir l'éditeur de date"
+
+# trunk
+#: ../src/glade/editmediaref.glade.h:18
 msgid ""
 "Referenced region of the image media object.\n"
 "Select a region with clicking and holding the mouse button on the top left corner of the region you want, dragging the mouse to the bottom right corner of the region, and then releasing the mouse button."
@@ -27042,14 +26978,22 @@ msgstr ""
 "Région d'une image.\n"
 "Cliquez et conservez le bouton de la souris enfoncé dans le coin en haut à gauche de la région que vous souhaitez sélectionner, puis glisser le curseur de la souris vers le coin en bas à droite de la région, enfin relachez le bouton de la souris."
 
+#: ../src/glade/editmediaref.glade.h:20
+msgid "Select a file"
+msgstr "Sélectionner un fichier"
+
 # trunk
-#: ../src/glade/editmediaref.glade.h:19
+#: ../src/glade/editmediaref.glade.h:21
 msgid "Type of media object as indicated by the computer, eg Image, Video, ..."
 msgstr "Le type de medium défini par l'ordinateur, image, video, ..."
 
-#: ../src/glade/editmediaref.glade.h:22
+#: ../src/glade/editmediaref.glade.h:26
 msgid "_Path:"
 msgstr "_Chemin :"
+
+#: ../src/glade/editmediaref.glade.h:27
+msgid "_Tags:"
+msgstr "_Étiquettes :"
 
 #: ../src/glade/editeventref.glade.h:2
 msgid "<b>Note:</b> Any changes in the shared event information will be reflected in the event itself, for all participants in the event."
@@ -27235,11 +27179,6 @@ msgstr ""
 "Bas = preuve qui nécessite une vérification (interview, recensement, généalogie orale, ou une possibilité par le biais, par exemple, d'une autobiographie)\n"
 "Haut = preuve secondaire, données officiellement enregistrées parfois après un événement\n"
 "Très haut = preuve directe et principale, ou qui n'entraîne pas de doute"
-
-#: ../src/glade/editsourceref.glade.h:14
-#: ../src/glade/editname.glade.h:15
-msgid "Invoke date editor"
-msgstr "Ouvrir l'éditeur de date"
 
 # trunk
 #: ../src/glade/editsourceref.glade.h:17
