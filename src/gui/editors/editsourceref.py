@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 #               2009       Gary Burton
+#               2011  Michiel D. Nauta / MathieuMD
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -79,6 +80,14 @@ class EditSourceRef(EditReference):
         notebook.remove_page(0)
         self.primtab = RefTab(self.dbstate, self.uistate, self.track, 
                               _('General'), tblref)
+
+    def _post_init(self):
+        title = self.top.get_object('title')
+        volume = self.top.get_object('volume')
+        if not title.get_text_length():
+            title.grab_focus();
+        elif not volume.get_text_length():
+            volume.grab_focus();
 
     def _connect_signals(self):
         self.define_ok_button(self.top.get_object('ok'),self.ok_clicked)
