@@ -357,6 +357,7 @@
                       <object class="UndoableEntry" id="gid">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="tooltip_text" translatable="yes">A unique ID to identify the event</property>
                         <property name="invisible_char">●</property>
                       </object>
                       <packing>
