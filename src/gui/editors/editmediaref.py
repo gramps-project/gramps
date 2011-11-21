@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2006  Donald N. Allingham
 #               2008-2009  Stephane Charette <stephanecharette@gmail.com>
 #               2009       Gary Burton
+#               2011       Robert Cheramy <robert@cheramy.net>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -52,7 +53,7 @@ from glade import Glade
 from displaytabs import (SourceEmbedList, AttrEmbedList, MediaBackRefList, 
                          NoteTab)
 from gui.widgets import (MonitoredSpinButton, MonitoredEntry, PrivacyButton,
-                         MonitoredDate)
+                         MonitoredDate, MonitoredTagList)
 from editreference import RefTab, EditReference
 from addmedia import AddMediaObject
 
@@ -148,7 +149,7 @@ class EditMediaRef(EditReference):
             self.subpixmap.set_from_pixbuf(pb)
 
     def _setup_fields(self):
-                                            
+       
         ebox_shared = self.top.get_object('eventbox')
         ebox_shared.connect('button-press-event', self.button_press_event)
 
@@ -256,6 +257,15 @@ class EditMediaRef(EditReference):
             self.top.get_object("date_entry"),
             self.top.get_object("date_edit"),
             self.source.get_date_object(),
+            self.uistate, self.track,
+            self.db.readonly)
+            
+        self.tags = MonitoredTagList(
+            self.top.get_object("tag_label"), 
+            self.top.get_object("tag_button"), 
+            self.source.set_tag_list, 
+            self.source.get_tag_list,
+            self.db,
             self.uistate, self.track,
             self.db.readonly)
 
