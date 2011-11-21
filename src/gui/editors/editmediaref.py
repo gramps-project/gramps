@@ -51,7 +51,8 @@ from gen.db import DbTxn
 from glade import Glade
 from displaytabs import (SourceEmbedList, AttrEmbedList, MediaBackRefList, 
                          NoteTab)
-from gui.widgets import MonitoredSpinButton, MonitoredEntry, PrivacyButton
+from gui.widgets import (MonitoredSpinButton, MonitoredEntry, PrivacyButton,
+                         MonitoredDate)
 from editreference import RefTab, EditReference
 from addmedia import AddMediaObject
 
@@ -146,7 +147,8 @@ class EditMediaRef(EditReference):
             self.pixmap.set_from_pixbuf(pb)
             self.subpixmap.set_from_pixbuf(pb)
 
-    def _setup_fields(self):                                             
+    def _setup_fields(self):
+                                            
         ebox_shared = self.top.get_object('eventbox')
         ebox_shared.connect('button-press-event', self.button_press_event)
 
@@ -248,6 +250,13 @@ class EditMediaRef(EditReference):
             self.top.get_object("path"),
             self.source.set_path,
             self.source.get_path,
+            self.db.readonly)
+            
+        self.date_field = MonitoredDate(
+            self.top.get_object("date_entry"),
+            self.top.get_object("date_edit"),
+            self.source.get_date_object(),
+            self.uistate, self.track,
             self.db.readonly)
 
     def set_corner1_x(self, value):
