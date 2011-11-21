@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-16 17:35+0100\n"
+"POT-Creation-Date: 2011-11-21 17:36+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -540,7 +540,7 @@ msgstr ""
 #: ../src/gen/lib/nameorigintype.py:80 ../src/gen/lib/notetype.py:78
 #: ../src/gen/lib/repotype.py:59 ../src/gen/lib/srcmediatype.py:62
 #: ../src/gen/lib/urltype.py:54 ../src/gui/editors/editmedia.py:167
-#: ../src/gui/editors/editmediaref.py:126
+#: ../src/gui/editors/editmediaref.py:128
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:120
 #: ../src/plugins/gramplet/PersonDetails.py:160
 #: ../src/plugins/gramplet/PersonDetails.py:166
@@ -886,7 +886,7 @@ msgstr ""
 #: ../src/gen/plug/docgen/graphdoc.py:229 ../src/gui/configure.py:462
 #: ../src/gui/filtereditor.py:295 ../src/gui/editors/editlink.py:84
 #: ../src/gui/editors/editmedia.py:87 ../src/gui/editors/editmedia.py:170
-#: ../src/gui/editors/editmediaref.py:129
+#: ../src/gui/editors/editmediaref.py:131
 #: ../src/gui/views/treemodels/mediamodel.py:128
 #: ../src/plugins/drawreport/AncestorTree.py:1012
 #: ../src/plugins/drawreport/DescendTree.py:1608
@@ -1317,26 +1317,26 @@ msgstr ""
 msgid "Invalid"
 msgstr ""
 
-#: ../src/Utils.py:91 ../src/gui/editors/editsourceref.py:140
+#: ../src/Utils.py:91 ../src/gui/editors/editsourceref.py:149
 msgid "Very High"
 msgstr ""
 
-#: ../src/Utils.py:92 ../src/gui/editors/editsourceref.py:139
+#: ../src/Utils.py:92 ../src/gui/editors/editsourceref.py:148
 #: ../src/plugins/tool/FindDupes.py:63
 msgid "High"
 msgstr ""
 
-#: ../src/Utils.py:93 ../src/gui/editors/editsourceref.py:138
+#: ../src/Utils.py:93 ../src/gui/editors/editsourceref.py:147
 #: ../src/plugins/webreport/NarrativeWeb.py:1734
 msgid "Normal"
 msgstr ""
 
-#: ../src/Utils.py:94 ../src/gui/editors/editsourceref.py:137
+#: ../src/Utils.py:94 ../src/gui/editors/editsourceref.py:146
 #: ../src/plugins/tool/FindDupes.py:61
 msgid "Low"
 msgstr ""
 
-#: ../src/Utils.py:95 ../src/gui/editors/editsourceref.py:136
+#: ../src/Utils.py:95 ../src/gui/editors/editsourceref.py:145
 msgid "Very Low"
 msgstr ""
 
@@ -1949,11 +1949,12 @@ msgstr ""
 
 #: ../src/cli/grampscli.py:159 ../src/cli/grampscli.py:162
 #: ../src/gui/dbloader.py:314 ../src/gui/dbloader.py:317
+#: ../src/gui/dbloader.py:320
 msgid "Cannot open database"
 msgstr ""
 
 #: ../src/cli/grampscli.py:166 ../src/gui/dbloader.py:188
-#: ../src/gui/dbloader.py:321
+#: ../src/gui/dbloader.py:324
 #, python-format
 msgid "Could not open file: %s"
 msgstr ""
@@ -2024,7 +2025,20 @@ msgid ""
 "between different database versions."
 msgstr ""
 
-#: ../src/gen/db/exceptions.py:92
+#: ../src/gen/db/exceptions.py:93
+#, python-format
+msgid ""
+"Gramps stores its data in a Berkeley Database. The family tree you try to "
+"load was created with version %(env_version)s of the Berkeley DB. However, "
+"the Gramps version in use right now employs version %(bdb_version)s of the "
+"Berkeley DB. So you are trying to load data created in a newer format into "
+"an older program; this is bound to fail. The right approach in this case is "
+"to use XML export and import. So try to open the family tree on that "
+"computer with that software that created the family tree, export it to XML "
+"and load that XML into the version of Gramps you intend to use."
+msgstr ""
+
+#: ../src/gen/db/exceptions.py:116
 msgid ""
 "Gramps has detected a problem in opening the 'environment' of the underlying "
 "Berkeley database used to store this Family Tree. The most likely cause is "
@@ -2038,7 +2052,7 @@ msgid ""
 "recovery tools."
 msgstr ""
 
-#: ../src/gen/db/exceptions.py:115
+#: ../src/gen/db/exceptions.py:139
 msgid ""
 "You cannot open this database without upgrading it.\n"
 "If you upgrade then you won't be able to use previous versions of Gramps.\n"
@@ -2987,9 +3001,9 @@ msgid "Matrilineal"
 msgstr ""
 
 #: ../src/gen/lib/notetype.py:80 ../src/gui/configure.py:1096
-#: ../src/gui/editors/editeventref.py:77 ../src/gui/editors/editmediaref.py:91
-#: ../src/gui/editors/editreporef.py:73 ../src/gui/editors/editsourceref.py:75
-#: ../src/gui/editors/editsourceref.py:81 ../src/glade/editmediaref.glade.h:11
+#: ../src/gui/editors/editeventref.py:78 ../src/gui/editors/editmediaref.py:93
+#: ../src/gui/editors/editreporef.py:73 ../src/gui/editors/editsourceref.py:76
+#: ../src/gui/editors/editsourceref.py:82 ../src/glade/editmediaref.glade.h:11
 #: ../src/glade/editname.glade.h:14
 msgid "General"
 msgstr ""
@@ -4267,15 +4281,15 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: ../src/gui/dbloader.py:362
+#: ../src/gui/dbloader.py:365
 msgid "All files"
 msgstr ""
 
-#: ../src/gui/dbloader.py:403
+#: ../src/gui/dbloader.py:406
 msgid "Automatically detected"
 msgstr ""
 
-#: ../src/gui/dbloader.py:412
+#: ../src/gui/dbloader.py:415
 msgid "Select file _type:"
 msgstr ""
 
@@ -5695,12 +5709,12 @@ msgstr ""
 msgid "manual|Editing_Information_About_Events"
 msgstr ""
 
-#: ../src/gui/editors/editevent.py:97 ../src/gui/editors/editeventref.py:233
+#: ../src/gui/editors/editevent.py:97 ../src/gui/editors/editeventref.py:239
 #, python-format
 msgid "Event: %s"
 msgstr ""
 
-#: ../src/gui/editors/editevent.py:99 ../src/gui/editors/editeventref.py:235
+#: ../src/gui/editors/editevent.py:99 ../src/gui/editors/editeventref.py:241
 msgid "New Event"
 msgstr ""
 
@@ -5753,21 +5767,22 @@ msgstr ""
 msgid "Delete Event (%s)"
 msgstr ""
 
-#: ../src/gui/editors/editeventref.py:66
-#: ../src/gui/editors/editeventref.py:236
+#: ../src/gui/editors/editeventref.py:67
+#: ../src/gui/editors/editeventref.py:242
 msgid "Event Reference Editor"
 msgstr ""
 
-#: ../src/gui/editors/editeventref.py:83 ../src/gui/editors/editmediaref.py:99
-#: ../src/gui/editors/editname.py:130 ../src/gui/editors/editreporef.py:79
+#: ../src/gui/editors/editeventref.py:84
+#: ../src/gui/editors/editmediaref.py:101 ../src/gui/editors/editname.py:130
+#: ../src/gui/editors/editreporef.py:79
 msgid "_General"
 msgstr ""
 
-#: ../src/gui/editors/editeventref.py:241
+#: ../src/gui/editors/editeventref.py:247
 msgid "Modify Event"
 msgstr ""
 
-#: ../src/gui/editors/editeventref.py:244
+#: ../src/gui/editors/editeventref.py:250
 msgid "Add Event"
 msgstr ""
 
@@ -6054,12 +6069,12 @@ msgstr ""
 msgid "Internet Address"
 msgstr ""
 
-#: ../src/gui/editors/editmedia.py:88 ../src/gui/editors/editmediaref.py:407
+#: ../src/gui/editors/editmedia.py:88 ../src/gui/editors/editmediaref.py:426
 #, python-format
 msgid "Media: %s"
 msgstr ""
 
-#: ../src/gui/editors/editmedia.py:90 ../src/gui/editors/editmediaref.py:409
+#: ../src/gui/editors/editmedia.py:90 ../src/gui/editors/editmediaref.py:428
 msgid "New Media"
 msgstr ""
 
@@ -6080,12 +6095,12 @@ msgstr ""
 msgid "Cannot save media object. ID already exists."
 msgstr ""
 
-#: ../src/gui/editors/editmedia.py:295 ../src/gui/editors/editmediaref.py:595
+#: ../src/gui/editors/editmedia.py:295 ../src/gui/editors/editmediaref.py:614
 #, python-format
 msgid "Add Media Object (%s)"
 msgstr ""
 
-#: ../src/gui/editors/editmedia.py:300 ../src/gui/editors/editmediaref.py:591
+#: ../src/gui/editors/editmedia.py:300 ../src/gui/editors/editmediaref.py:610
 #, python-format
 msgid "Edit Media Object (%s)"
 msgstr ""
@@ -6094,13 +6109,13 @@ msgstr ""
 msgid "Remove Media Object"
 msgstr ""
 
-#: ../src/gui/editors/editmediaref.py:80
-#: ../src/gui/editors/editmediaref.py:410
+#: ../src/gui/editors/editmediaref.py:82
+#: ../src/gui/editors/editmediaref.py:429
 msgid "Media Reference Editor"
 msgstr ""
 
-#: ../src/gui/editors/editmediaref.py:82 ../src/gui/editors/editmediaref.py:83
-#: ../src/glade/editmediaref.glade.h:20
+#: ../src/gui/editors/editmediaref.py:84 ../src/gui/editors/editmediaref.py:85
+#: ../src/glade/editmediaref.glade.h:23
 msgid "Y coordinate|Y"
 msgstr ""
 
@@ -6432,7 +6447,7 @@ msgstr ""
 msgid "Delete Repository (%s)"
 msgstr ""
 
-#: ../src/gui/editors/editsource.py:77 ../src/gui/editors/editsourceref.py:204
+#: ../src/gui/editors/editsource.py:77 ../src/gui/editors/editsourceref.py:213
 msgid "New Source"
 msgstr ""
 
@@ -6467,21 +6482,21 @@ msgstr ""
 msgid "Delete Source (%s)"
 msgstr ""
 
-#: ../src/gui/editors/editsourceref.py:65
-#: ../src/gui/editors/editsourceref.py:205
+#: ../src/gui/editors/editsourceref.py:66
+#: ../src/gui/editors/editsourceref.py:214
 msgid "Source Reference Editor"
 msgstr ""
 
-#: ../src/gui/editors/editsourceref.py:202
+#: ../src/gui/editors/editsourceref.py:211
 #, python-format
 msgid "Source: %s"
 msgstr ""
 
-#: ../src/gui/editors/editsourceref.py:210
+#: ../src/gui/editors/editsourceref.py:219
 msgid "Modify Source"
 msgstr ""
 
-#: ../src/gui/editors/editsourceref.py:213
+#: ../src/gui/editors/editsourceref.py:222
 msgid "Add Source"
 msgstr ""
 
@@ -10139,6 +10154,10 @@ msgstr ""
 
 #: ../src/plugins/export/export.gpr.py:33
 msgid "CSV is a common spreadsheet format."
+msgstr ""
+
+#: ../src/plugins/export/export.gpr.py:41
+msgid "CSV spreadsheet options"
 msgstr ""
 
 #: ../src/plugins/export/export.gpr.py:52
@@ -24687,8 +24706,8 @@ msgstr ""
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
 #: ../src/Filters/Rules/Repository/_HasRepo.py:48
-#: ../src/glade/mergeevent.glade.h:11 ../src/glade/mergenote.glade.h:9
-#: ../src/glade/mergerepository.glade.h:9
+#: ../src/glade/editmediaref.glade.h:22 ../src/glade/mergeevent.glade.h:11
+#: ../src/glade/mergenote.glade.h:9 ../src/glade/mergerepository.glade.h:9
 msgid "Type:"
 msgstr ""
 
@@ -25173,7 +25192,7 @@ msgstr ""
 #: ../src/glade/editperson.glade.h:27 ../src/glade/editsource.glade.h:11
 #: ../src/glade/editrepository.glade.h:7 ../src/glade/editreporef.glade.h:14
 #: ../src/glade/editfamily.glade.h:14 ../src/glade/editmedia.glade.h:12
-#: ../src/glade/editmediaref.glade.h:21 ../src/glade/editeventref.glade.h:8
+#: ../src/glade/editmediaref.glade.h:25 ../src/glade/editeventref.glade.h:8
 #: ../src/glade/editnote.glade.h:8 ../src/glade/editplace.glade.h:28
 #: ../src/glade/editsourceref.glade.h:22 ../src/glade/editevent.glade.h:11
 msgid "_ID:"
@@ -25189,8 +25208,8 @@ msgstr ""
 
 #: ../src/glade/editperson.glade.h:30 ../src/glade/editurl.glade.h:7
 #: ../src/glade/editrepository.glade.h:9 ../src/glade/editreporef.glade.h:17
-#: ../src/glade/editfamily.glade.h:15 ../src/glade/editmediaref.glade.h:24
-#: ../src/glade/editnote.glade.h:10 ../src/glade/editname.glade.h:32
+#: ../src/glade/editfamily.glade.h:15 ../src/glade/editnote.glade.h:10
+#: ../src/glade/editname.glade.h:32
 msgid "_Type:"
 msgstr ""
 
@@ -25236,7 +25255,7 @@ msgid "Convert to a relative path"
 msgstr ""
 
 #: ../src/glade/addmedia.glade.h:3 ../src/glade/editsource.glade.h:13
-#: ../src/glade/editmedia.glade.h:13 ../src/glade/editmediaref.glade.h:23
+#: ../src/glade/editmedia.glade.h:13 ../src/glade/editmediaref.glade.h:28
 #: ../src/glade/editsourceref.glade.h:24
 msgid "_Title:"
 msgstr ""
@@ -25886,8 +25905,9 @@ msgid "The town or city of the address"
 msgstr ""
 
 #: ../src/glade/editaddress.glade.h:17 ../src/glade/editmedia.glade.h:11
-#: ../src/glade/editeventref.glade.h:6 ../src/glade/editldsord.glade.h:5
-#: ../src/glade/editsourceref.glade.h:21 ../src/glade/editevent.glade.h:9
+#: ../src/glade/editmediaref.glade.h:24 ../src/glade/editeventref.glade.h:6
+#: ../src/glade/editldsord.glade.h:5 ../src/glade/editsourceref.glade.h:21
+#: ../src/glade/editevent.glade.h:9
 msgid "_Date:"
 msgstr ""
 
@@ -25967,7 +25987,12 @@ msgid ""
 "bottom right corner.\n"
 msgstr ""
 
-#: ../src/glade/editmediaref.glade.h:17
+#: ../src/glade/editmediaref.glade.h:17 ../src/glade/editsourceref.glade.h:14
+#: ../src/glade/editname.glade.h:15
+msgid "Invoke date editor"
+msgstr ""
+
+#: ../src/glade/editmediaref.glade.h:18
 msgid ""
 "Referenced region of the image media object.\n"
 "Select a region with clicking and holding the mouse button on the top left "
@@ -25975,12 +26000,20 @@ msgid ""
 "of the region, and then releasing the mouse button."
 msgstr ""
 
-#: ../src/glade/editmediaref.glade.h:19
+#: ../src/glade/editmediaref.glade.h:20
+msgid "Select a file"
+msgstr ""
+
+#: ../src/glade/editmediaref.glade.h:21
 msgid "Type of media object as indicated by the computer, eg Image, Video, ..."
 msgstr ""
 
-#: ../src/glade/editmediaref.glade.h:22
+#: ../src/glade/editmediaref.glade.h:26
 msgid "_Path:"
+msgstr ""
+
+#: ../src/glade/editmediaref.glade.h:27
+msgid "_Tags:"
 msgstr ""
 
 #: ../src/glade/editeventref.glade.h:2
@@ -26140,10 +26173,6 @@ msgid ""
 "genealogies, or potential for bias for example, an autobiography)\n"
 "High =Secondary evidence, data officially recorded sometime after event\n"
 "Very High =Direct and primary evidence used, or by dominance of the evidence "
-msgstr ""
-
-#: ../src/glade/editsourceref.glade.h:14 ../src/glade/editname.glade.h:15
-msgid "Invoke date editor"
 msgstr ""
 
 #: ../src/glade/editsourceref.glade.h:17
