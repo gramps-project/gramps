@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2011       Tim G Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,7 +19,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# gen/proxy/referencedbyselection.py
 # $Id$
 
 """
@@ -84,6 +84,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             "Event": set(),
             "Place": set(),
             "Source": set(),
+            "Citation": set(),
             "Repository": set(),
             "MediaObject": set(),
             "Note": set(),
@@ -111,6 +112,10 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             obj = self.db.get_source_from_handle(handle)
             if obj:
                 self.process_source(obj)
+        elif class_name == "Citation":
+            obj = self.db.get_citation_from_handle(handle)
+            if obj:
+                self.process_citation(obj)
         elif class_name == "Repository":
             obj = self.db.get_repository_from_handle(handle)
             if obj:
@@ -175,7 +180,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
 
         self.process_addresses(person)
         self.process_attributes(person)
-        self.process_source_ref_list(person)
+        self.process_citation_ref_list(person)
         self.process_urls(person)
         self.process_media_ref_list(person)
         self.process_lds_ords(person)
@@ -199,7 +204,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 continue
             self.process_object("Person", child_ref.ref)
             self.process_notes(child_ref)
-            self.process_source_ref_list(child_ref)
+            self.process_citation_ref_list(child_ref)
 
         for event_ref in family.get_event_ref_list():
             if event_ref:
@@ -207,7 +212,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 if event:
                     self.process_event_ref(event_ref)
 
-        self.process_source_ref_list(family)
+        self.process_citation_ref_list(family)
         self.process_notes(family)
         self.process_media_ref_list(family)
         self.process_attributes(family)
@@ -221,7 +226,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         if event is None or event.handle in self.referenced["Event"]:
             return
         self.referenced["Event"].add(event.handle)
-        self.process_source_ref_list(event)
+        self.process_citation_ref_list(event)
         self.process_notes(event)
         self.process_media_ref_list(event)
         self.process_attributes(event)
@@ -239,7 +244,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         if place is None or place.handle in self.referenced["Place"]:
             return
         self.referenced["Place"].add(place.handle)
-        self.process_source_ref_list(place)
+        self.process_citation_ref_list(place)
         self.process_notes(place)
         self.process_media_ref_list(place)
         self.process_urls(place)
@@ -262,6 +267,22 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         self.process_media_ref_list(source)
         self.process_notes(source)
 
+    def process_citation(self, citation):
+        """
+        Follow the citation object and find all of the primary objects
+        that it references.
+        """
+        if citation is None or citation.handle in self.referenced["Citation"]:
+            return
+        self.referenced["Citation"].add(citation.handle)
+        source_handle = citation.get_reference_handle()
+        if source_handle:
+            source = self.db.get_source_from_handle(source_handle)
+            if source:
+                self.process_source(source)
+        self.process_media_ref_list(citation)
+        self.process_notes(citation)
+
     def process_repository(self, repository):
         """
         Follow the repository object and find all of the primary objects
@@ -282,7 +303,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         if media is None or media.handle in self.referenced["MediaObject"]:
             return
         self.referenced["MediaObject"].add(media.handle)
-        self.process_source_ref_list(media)
+        self.process_citation_ref_list(media)
         self.process_attributes(media)
         self.process_notes(media)
 
@@ -316,7 +337,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
 
     def process_name(self, name):
         """ Find all of the primary objects referred to """
-        self.process_source_ref_list(name)
+        self.process_citation_ref_list(name)
         self.process_notes(name)
     
     def process_addresses(self, original_obj):
@@ -327,7 +348,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
 
     def process_address(self, address):
         """ Find all of the primary objects referred to """
-        self.process_source_ref_list(address)
+        self.process_citation_ref_list(address)
         self.process_notes(address)
 
     def process_attributes(self, original_obj):
@@ -335,23 +356,15 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         for attribute in original_obj.get_attribute_list():
             if attribute:
                 self.process_notes(attribute)
-                self.process_source_ref_list(attribute)
+                self.process_citation_ref_list(attribute)
 
-    def process_source_ref_list(self, original_obj):
+    def process_citation_ref_list(self, original_obj):
         """ Find all of the primary objects referred to """
-        for ref in original_obj.get_source_references():
-            if ref:
-                handle = ref.get_reference_handle()
-                source = self.db.get_source_from_handle(handle)
-                if source:
-                    self.process_source_ref(ref)
-
-    def process_source_ref(self, srcref):
-        """ Find all of the primary objects referred to """
-        source = self.db.get_source_from_handle(srcref.ref)
-        if source:
-            self.process_source(source)
-        self.process_notes(srcref)
+        for handle in original_obj.get_citation_list():
+            if handle:
+                citation = self.db.get_citation_from_handle(handle)
+                if citation:
+                    self.process_citation(citation)
 
     def process_urls(self, original_obj):
         """ Find all of the primary objects referred to """
@@ -363,7 +376,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             if media_ref:
                 self.process_notes(media_ref)
                 self.process_attributes(media_ref)
-                self.process_source_ref_list(media_ref)
+                self.process_citation_ref_list(media_ref)
                 handle = media_ref.get_reference_handle()
                 media_object = self.db.get_object_from_handle(handle)
                 if media_object:
@@ -387,14 +400,14 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         if place:
             self.process_place(place)
 
-        self.process_source_ref_list(lds_ord)
+        self.process_citation_ref_list(lds_ord)
         self.process_notes(lds_ord)
 
     def process_associations(self, original_obj):
         """ Find all of the primary objects referred to """
         for person_ref in original_obj.get_person_ref_list():
             if person_ref:
-                self.process_source_ref_list(person_ref)
+                self.process_citation_ref_list(person_ref)
                 self.process_notes(person_ref)
                 person = self.db.get_person_from_handle(person_ref.ref)
                 if person:
@@ -445,6 +458,12 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         Filter for sources
         """
         return handle in self.referenced["Source"]
+    
+    def include_citation(self, handle):
+        """
+        Filter for citations
+        """
+        return handle in self.referenced["Citation"]
     
     def include_repository(self, handle):
         """

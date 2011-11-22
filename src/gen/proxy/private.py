@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2007       Brian G. Matherly
 # Copyright (C) 2010       Nick Hall
+# Copyright (C) 2011       Tim G Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,15 +32,17 @@ Proxy class for the GRAMPS databases. Filter out all data marked private.
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
+import logging
+LOG = logging.getLogger(".citation")
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------
-from gen.lib import (MediaRef, SourceRef, Attribute, Address, EventRef, 
+from gen.lib import (MediaRef, Attribute, Address, EventRef, 
                      Person, Name, Source, RepoRef, MediaObject, Place, Event, 
-                     Family, ChildRef, Repository, LdsOrd, Surname)
+                     Family, ChildRef, Repository, LdsOrd, Surname, Citation)
 from proxybase import ProxyDbBase
 
 class PrivateProxyDb(ProxyDbBase):
@@ -72,6 +75,16 @@ class PrivateProxyDb(ProxyDbBase):
         source = self.db.get_source_from_handle(handle)
         if source and not source.get_privacy():
             return sanitize_source(self.db, source)
+        return None
+
+    def get_citation_from_handle(self, handle):
+        """
+        Finds a Citation in the database from the passed gramps' ID.
+        If no such Citation exists, None is returned.
+        """
+        citation = self.db.get_citation_from_handle(handle)
+        if citation and not citation.get_privacy():
+            return sanitize_citation(self.db, citation)
         return None
 
     def get_object_from_handle(self, handle):
@@ -184,6 +197,16 @@ class PrivateProxyDb(ProxyDbBase):
             return sanitize_source(self.db, source)
         return None
 
+    def get_citation_from_gramps_id(self, val):
+        """
+        Finds a Citation in the database from the passed gramps' ID.
+        If no such Citation exists, None is returned.
+        """
+        citation = self.db.get_citation_from_gramps_id(val)
+        if citation and not citation.get_privacy():
+            return sanitize_citation(self.db, citation)
+        return None
+
     def get_object_from_gramps_id(self, val):
         """
         Finds a MediaObject in the database from the passed gramps' ID.
@@ -242,6 +265,13 @@ class PrivateProxyDb(ProxyDbBase):
         Predicate returning True if object is to be included, else False
         """        
         obj = self.get_unfiltered_source(handle)
+        return obj and not obj.get_privacy()
+    
+    def include_citation(self, handle):
+        """
+        Predicate returning True if object is to be included, else False
+        """        
+        obj = self.get_unfiltered_citation(handle)
         return obj and not obj.get_privacy()
     
     def include_place(self, handle):
@@ -314,6 +344,15 @@ class PrivateProxyDb(ProxyDbBase):
             return True
         return False
 
+    def has_citation_handle(self, handle):
+        """
+        returns True if the handle exists in the current Citation database.
+        """
+        citation = self.db.get_citation_from_handle(handle)
+        if citation and not citation.get_privacy():
+            return True
+        return False
+
     def has_place_handle(self, handle):
         """
         returns True if the handle exists in the current Place database.
@@ -382,7 +421,7 @@ class PrivateProxyDb(ProxyDbBase):
         """
         
         # This isn't done yet because it doesn't check if references are
-        # private (like a SourceRef or MediaRef). It only checks if the 
+        # private (like a MediaRef). It only checks if the 
         # referenced object is private.
 
         objects = {
@@ -390,6 +429,7 @@ class PrivateProxyDb(ProxyDbBase):
             'Family'        : self.db.get_family_from_handle,
             'Event'         : self.db.get_event_from_handle,
             'Source'        : self.db.get_source_from_handle,
+            'Citation'      : self.db.get_citation_from_handle,
             'Place'         : self.db.get_place_from_handle,
             'MediaObject'   : self.db.get_object_from_handle,
             'Note'          : self.db.get_note_from_handle,
@@ -426,25 +466,27 @@ def copy_media_ref_list(db, original_obj, clean_obj):
             if media_object and not media_object.get_privacy():
                 clean_obj.add_media_reference(sanitize_media_ref(db, media_ref))
 
-def copy_source_ref_list(db, original_obj, clean_obj):
+def copy_citation_ref_list(db, original_obj, clean_obj):
     """
-    Copies source references from one object to another - excluding private 
-    references and references to private objects.
+    Copies citation references from one object to another - excluding references
+    to private citations, and references to citations that refer to private
+    sources.
 
     @param db: GRAMPS database to which the references belongs
     @type db: DbBase
     @param original_obj: Object that may have private references
-    @type original_obj: SourceBase
+    @type original_obj: CitationBase
     @param clean_obj: Object that will have only non-private references
-    @type original_obj: SourceBase
+    @type original_obj: CitationBase
     @returns: Nothing
     """
-    for ref in original_obj.get_source_references():
-        if ref and not ref.get_privacy():
-            handle = ref.get_reference_handle()
+    for citation_handle in original_obj.get_citation_list():
+        citation = db.get_citation_from_handle(citation_handle)
+        if citation and not citation.get_privacy():
+            handle = citation.get_reference_handle()
             source = db.get_source_from_handle(handle)
             if source and not source.get_privacy():
-                clean_obj.add_source_reference(sanitize_source_ref(db, ref))
+                clean_obj.add_citation(citation_handle)
                 
 def copy_notes(db, original_obj, clean_obj):
     """
@@ -504,7 +546,7 @@ def copy_attributes(db, original_obj, clean_obj):
             new_attribute.set_type(attribute.get_type())
             new_attribute.set_value(attribute.get_value())
             copy_notes(db, attribute, new_attribute)
-            copy_source_ref_list(db, attribute, new_attribute)
+            copy_citation_ref_list(db, attribute, new_attribute)
             clean_obj.add_attribute(new_attribute)
       
 def copy_urls(db, original_obj, clean_obj):
@@ -589,7 +631,7 @@ def sanitize_lds_ord(db, lds_ord):
     if place and not place.get_privacy():
         new_lds_ord.set_place_handle(place_handle)
 
-    copy_source_ref_list(db, lds_ord, new_lds_ord)
+    copy_citation_ref_list(db, lds_ord, new_lds_ord)
     copy_notes(db, lds_ord, new_lds_ord)
     
     return new_lds_ord
@@ -620,7 +662,7 @@ def sanitize_address(db, address):
     new_address.set_phone(address.get_phone())
     
     new_address.set_date_object(address.get_date_object())
-    copy_source_ref_list(db, address, new_address)
+    copy_citation_ref_list(db, address, new_address)
     copy_notes(db, address, new_address)
     
     return new_address
@@ -653,7 +695,7 @@ def sanitize_name(db, name):
     new_name.set_date_object(name.get_date_object())
     new_name.set_surname_list(name.get_surname_list())
     
-    copy_source_ref_list(db, name, new_name)
+    copy_citation_ref_list(db, name, new_name)
     copy_notes(db, name, new_name)
     
     return new_name
@@ -678,32 +720,37 @@ def sanitize_media_ref(db, media_ref):
     new_ref.set_reference_handle(media_ref.get_reference_handle())
     copy_notes(db, media_ref, new_ref)
     copy_attributes(db, media_ref, new_ref)
-    copy_source_ref_list(db, media_ref, new_ref)
+    copy_citation_ref_list(db, media_ref, new_ref)
     
     return new_ref
 
-def sanitize_source_ref(db, source_ref):
+def sanitize_citation(db, citation):
     """
-    Create a new SourceRef instance based off the passed SourceRef
+    Create a new Citation instance based off the passed Citation
     instance. The returned instance has all private records
     removed from it.
     
     @param db: GRAMPS database to which the Person object belongs
     @type db: DbBase
-    @param source_ref: source SourceRef object that will be copied with
+    @param citation: source Citation object that will be copied with
     privacy records removed
-    @type source_ref: SourceRef
-    @returns: 'cleansed' SourceRef object
-    @rtype: SourceRef
+    @type citation: Citation
+    @returns: 'cleansed' Citation object
+    @rtype: Citation
     """
-    new_ref = SourceRef()
-    new_ref.set_date_object(source_ref.get_date_object())
-    new_ref.set_page(source_ref.get_page())
-    new_ref.set_confidence_level(source_ref.get_confidence_level())
-    new_ref.set_reference_handle(source_ref.get_reference_handle())
-    copy_notes(db, source_ref, new_ref)
+    new_citation = Citation()
+    new_citation.set_date_object(citation.get_date_object())
+    new_citation.set_page(citation.get_page())
+    new_citation.set_confidence_level(citation.get_confidence_level())
+    new_citation.set_reference_handle(citation.get_reference_handle())
+    new_citation.set_data_map(citation.get_data_map())
+    new_citation.set_gramps_id(citation.get_gramps_id())
+    new_citation.set_handle(citation.get_handle())
+    new_citation.set_change_time(citation.get_change_time())
+    copy_notes(db, citation, new_citation)
+    copy_media_ref_list(db, citation, new_citation)
     
-    return new_ref
+    return new_citation
     
 def sanitize_event_ref(db, event_ref):
     """
@@ -812,7 +859,7 @@ def sanitize_person(db, person):
 
     copy_addresses(db, person, new_person)
     copy_attributes(db, person, new_person)
-    copy_source_ref_list(db, person, new_person)
+    copy_citation_ref_list(db, person, new_person)
     copy_urls(db, person, new_person)
     copy_media_ref_list(db, person, new_person)
     copy_lds_ords(db, person, new_person)
@@ -883,7 +930,7 @@ def sanitize_media(db, media):
     new_media.set_date_object(media.get_date_object())
     new_media.set_tag_list(media.get_tag_list())
 
-    copy_source_ref_list(db, media, new_media)
+    copy_citation_ref_list(db, media, new_media)
     copy_attributes(db, media, new_media)
     copy_notes(db, media, new_media)
 
@@ -914,7 +961,7 @@ def sanitize_place(db, place):
     new_place.set_main_location(place.get_main_location())
     new_place.set_alternate_locations(place.get_alternate_locations())
 
-    copy_source_ref_list(db, place, new_place)
+    copy_citation_ref_list(db, place, new_place)
     copy_notes(db, place, new_place)
     copy_media_ref_list(db, place, new_place)
     copy_urls(db, place, new_place)
@@ -944,7 +991,7 @@ def sanitize_event(db, event):
     new_event.set_date_object(event.get_date_object())
     new_event.set_change_time(event.get_change_time())
 
-    copy_source_ref_list(db, event, new_event)
+    copy_citation_ref_list(db, event, new_event)
     copy_notes(db, event, new_event)
     copy_media_ref_list(db, event, new_event)
     copy_attributes(db, event, new_event)
@@ -1006,7 +1053,7 @@ def sanitize_family(db, family):
         new_ref.set_father_relation(child_ref.get_father_relation())
         new_ref.set_mother_relation(child_ref.get_mother_relation())
         copy_notes(db, child_ref, new_ref)
-        copy_source_ref_list(db, child_ref, new_ref)
+        copy_citation_ref_list(db, child_ref, new_ref)
         new_family.add_child_ref(new_ref)
         
     # Copy event ref list.
@@ -1016,7 +1063,7 @@ def sanitize_family(db, family):
             if event and not event.get_privacy():
                 new_family.add_event_ref(sanitize_event_ref(db, event_ref))
 
-    copy_source_ref_list(db, family, new_family)
+    copy_citation_ref_list(db, family, new_family)
     copy_notes(db, family, new_family)
     copy_media_ref_list(db, family, new_family)
     copy_attributes(db, family, new_family)

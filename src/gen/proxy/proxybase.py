@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2011       Tim G Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -52,7 +53,7 @@ class ProxyDbBase(DbReadBase):
 
     def __init__(self, db):
         """
-        Create a new PrivateProxyDb instance. 
+        Create a new ProxyDb instance. 
         """
         self.db = self.basedb = db
         while isinstance(self.basedb, ProxyDbBase):
@@ -95,6 +96,7 @@ class ProxyDbBase(DbReadBase):
     include_family = \
     include_event = \
     include_source = \
+    include_citation = \
     include_place = \
     include_media_object = \
     include_repository = \
@@ -139,6 +141,16 @@ class ProxyDbBase(DbReadBase):
         """
         if self.db.is_open:
             return list(self.iter_source_handles())
+        else:
+            return []
+        
+    def get_citation_handles(self, sort_handles=False):
+        """
+        Return a list of database handles, one handle for each Citation in
+        the database. 
+        """
+        if self.db.is_open:
+            return list(self.iter_citation_handles())
         else:
             return []
         
@@ -228,6 +240,13 @@ class ProxyDbBase(DbReadBase):
         """
         return ifilter(self.include_source, self.db.iter_source_handles())       
 
+    def iter_citation_handles(self):
+        """
+        Return an iterator over database handles, one handle for each Citation 
+        in the database.
+        """
+        return ifilter(self.include_citation, self.db.iter_citation_handles())       
+
     def iter_place_handles(self):
         """
         Return an iterator over database handles, one handle for each Place in
@@ -298,6 +317,12 @@ class ProxyDbBase(DbReadBase):
         Return an iterator over Source objects in the database
         """
         return self.__iter_object(self.include_source, self.db.iter_sources)       
+        
+    def iter_citations(self):
+        """
+        Return an iterator over Citation objects in the database
+        """
+        return self.__iter_object(self.include_citation, self.db.iter_citations)       
         
     def iter_media_objects(self):
         """
@@ -390,6 +415,14 @@ class ProxyDbBase(DbReadBase):
         return self.gfilter(self.include_source,
                             self.db.get_source_from_handle(handle))
 
+    def get_citation_from_handle(self, handle):
+        """
+        Finds a Citation in the database from the passed gramps handle.
+        If no such Citation exists, None is returned.
+        """
+        return self.gfilter(self.include_citation,
+                            self.db.get_citation_from_handle(handle))
+
     def get_place_from_handle(self, handle):
         """
         Finds a Place in the database from the passed gramps handle.
@@ -470,6 +503,14 @@ class ProxyDbBase(DbReadBase):
         return self.gfilter(self.include_source,
                 self.db.get_source_from_gramps_id(val))
 
+    def get_citation_from_gramps_id(self, val):
+        """
+        Finds a Citation in the database from the passed gramps' ID.
+        If no such Citation exists, None is returned.
+        """
+        return self.gfilter(self.include_citation,
+                self.db.get_citation_from_gramps_id(val))
+
     def get_object_from_gramps_id(self, val):
         """
         Finds a MediaObject in the database from the passed gramps' ID.
@@ -549,6 +590,12 @@ class ProxyDbBase(DbReadBase):
         Return the number of sources currently in the database.
         """
         return self.db.get_number_of_sources()
+
+    def get_number_of_citations(self):
+        """
+        Return the number of Citations currently in the database.
+        """
+        return self.db.get_number_of_citations()
 
     def get_number_of_media_objects(self):
         """
@@ -666,6 +713,9 @@ class ProxyDbBase(DbReadBase):
     def get_raw_source_data(self, handle):
         return self.db.get_raw_source_data(handle)
 
+    def get_raw_citation_data(self, handle):
+        return self.db.get_raw_citation_data(handle)
+
     def get_raw_repository_data(self, handle):
         return self.db.get_raw_repository_data(handle)
 
@@ -702,6 +752,13 @@ class ProxyDbBase(DbReadBase):
         """
         return self.gfilter(self.include_source,
                 self.db.get_source_from_handle(handle)) is not None
+
+    def has_citation_handle(self, handle):
+        """
+        returns True if the handle exists in the current Citation database.
+        """
+        return self.gfilter(self.include_citation,
+                self.db.get_citation_from_handle(handle)) is not None
 
     def has_place_handle(self, handle):
         """

@@ -4,6 +4,7 @@
 # Copyright (C) 2007-2008       Brian G. Matherly
 # Copyright (C) 2008            Gary Burton
 # Copyright (C) 2008            Robert Cheramy <robert@cheramy.net>
+# Copyright (C) 2011            Tim G Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -51,7 +52,7 @@ class FilterProxyDb(ProxyDbBase):
     def __init__(self, db, person_filter=None, event_filter=None, 
                  note_filter=None):
         """
-        Create a new PrivateProxyDb instance. 
+        Create a new FilterProxyDb instance. 
         """
         ProxyDbBase.__init__(self, db)
         self.person_filter = person_filter
@@ -143,6 +144,17 @@ class FilterProxyDb(ProxyDbBase):
         self.sanitize_notebase(source)
         return source
 
+    def get_citation_from_handle(self, handle):
+        """
+        Finds a Citation in the database from the passed gramps' ID.
+        If no such Citation exists, None is returned.
+        """
+        citation = self.db.get_citation_from_handle(handle)
+        # Filter notes out
+
+        self.sanitize_notebase(citation)
+        return citation
+
     def get_object_from_handle(self, handle):
         """
         Finds a MediaObject in the database from the passed GRAMPS' handle.
@@ -151,7 +163,6 @@ class FilterProxyDb(ProxyDbBase):
         media = self.db.get_object_from_handle(handle)
         # Filter notes out
         self.sanitize_notebase(media)
-        self.sanitize_sourcebase(media)
         return media
 
     def get_place_from_handle(self, handle):
@@ -162,7 +173,6 @@ class FilterProxyDb(ProxyDbBase):
         place = self.db.get_place_from_handle(handle)
         # Filter notes out
         self.sanitize_notebase(place)
-        self.sanitize_sourcebase(place)
         return place
 
     def get_event_from_handle(self, handle):
@@ -174,7 +184,6 @@ class FilterProxyDb(ProxyDbBase):
             event = self.db.get_event_from_handle(handle)
             # Filter all notes out
             self.sanitize_notebase(event)
-            self.sanitize_sourcebase(event)
             return event
         else:
             return None
@@ -204,7 +213,6 @@ class FilterProxyDb(ProxyDbBase):
             
             # Filter notes out
             self.sanitize_notebase(family)
-            self.sanitize_sourcebase(family)
             return family
         else:
             return None
@@ -274,6 +282,15 @@ class FilterProxyDb(ProxyDbBase):
         source = self.db.get_source_from_gramps_id(val)
         if source:
             return self.get_source_from_handle(source.get_handle())
+
+    def get_citation_from_gramps_id(self, val):
+        """
+        Finds a Citation in the database from the passed gramps' ID.
+        If no such Citation exists, None is returned.
+        """
+        citation = self.db.get_citation_from_gramps_id(val)
+        if citation:
+            return self.get_citation_from_handle(citation.get_handle())
 
     def get_object_from_gramps_id(self, val):
         """
@@ -458,23 +475,11 @@ class FilterProxyDb(ProxyDbBase):
             new_note_list = [ note for note in note_list if note in self.nlist ]
             notebase.set_note_list(new_note_list)
      
-    def sanitize_sourcebase(self, sourcebase):
-        """
-        Filter notes out of an SourceBase object
-        @param event: SourceBase object to clean
-        @type event: SourceBase
-        """
-        if sourcebase:
-            sources = sourcebase.get_source_references()
-            for source in sources:
-                self.sanitize_notebase(source)
-            
     def sanitize_addressbase(self, addressbase):
         if addressbase:
             addresses = addressbase.get_address_list()
             for address in addresses:
                 self.sanitize_notebase(address)
-                self.sanitize_sourcebase(address)
        
     def sanitize_person(self, person):
         """
@@ -485,16 +490,13 @@ class FilterProxyDb(ProxyDbBase):
         if person:
             # Filter note references
             self.sanitize_notebase(person)
-            self.sanitize_sourcebase(person)
             self.sanitize_addressbase(person)
 
             name = person.get_primary_name()
             self.sanitize_notebase(name)
-            self.sanitize_sourcebase(name)
 
             altnames = person.get_alternate_names()
             for name in altnames:
                 self.sanitize_notebase(name)
-                self.sanitize_sourcebase(name)
 
             self.sanitize_addressbase(person)

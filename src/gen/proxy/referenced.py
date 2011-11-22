@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2008       Gary Burton
+# Copyright (C) 2011       Tim G Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,6 +46,7 @@ class ReferencedProxyDb(ProxyDbBase):
         ProxyDbBase.__init__(self, dbase)
         self.unreferenced_events = set()
         self.unreferenced_places = set()
+        self.unreferenced_citations = set()
         self.unreferenced_sources = set()
         self.unreferenced_repositories = set()
         self.unreferenced_media_objects = set()
@@ -72,6 +74,12 @@ class ReferencedProxyDb(ProxyDbBase):
         """
         return handle not in self.unreferenced_events
 
+    def include_citation(self, handle):
+        """
+        Filter for citations
+        """
+        return handle not in self.unreferenced_citations
+    
     def include_source(self, handle):
         """
         Filter for sources
@@ -126,6 +134,7 @@ class ReferencedProxyDb(ProxyDbBase):
         unref = {
                     "Event"         : self.unreferenced_events,
                     "Place"         : self.unreferenced_places,
+                    "Citation"      : self.unreferenced_citations,
                     "Source"        : self.unreferenced_sources,
                     "Repository"    : self.unreferenced_repositories,
                     "MediaObject"   : self.unreferenced_media_objects,
@@ -156,6 +165,7 @@ class ReferencedProxyDb(ProxyDbBase):
         unrefs = (
                 (self.unreferenced_events,      self.get_event_handles),
                 (self.unreferenced_places,      self.get_place_handles),
+                (self.unreferenced_citations,   self.get_citation_handles),
                 (self.unreferenced_sources,     self.get_source_handles),
                 (self.unreferenced_repositories,
                                                 self.get_repository_handles),
