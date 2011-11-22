@@ -75,13 +75,13 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
         self.confidence = Citation.CONF_NORMAL         #  4
         self.datamap = {}                              #  8
         
-    def serialize(self):
+    def serialize(self, no_text_date = False):
         """
         Convert the object to a serialized tuple of data.
         """
         return (self.handle,                           #  0
                 self.gramps_id,                        #  1
-                DateBase.serialize(self),              #  2
+                DateBase.serialize(self, no_text_date),#  2
                 unicode(self.page),                    #  3
                 self.confidence,                       #  4
                 self.source_handle,                    #  5
