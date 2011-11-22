@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-19 01:06+0100\n"
-"PO-Revision-Date: 2011-11-19 01:08+0100\n"
+"POT-Creation-Date: 2011-11-22 19:13+0100\n"
+"PO-Revision-Date: 2011-11-22 19:37+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -597,7 +597,7 @@ msgstr ""
 #: ../src/gen/lib/nameorigintype.py:80 ../src/gen/lib/notetype.py:78
 #: ../src/gen/lib/repotype.py:59 ../src/gen/lib/srcmediatype.py:62
 #: ../src/gen/lib/urltype.py:54 ../src/gui/editors/editmedia.py:167
-#: ../src/gui/editors/editmediaref.py:126
+#: ../src/gui/editors/editmediaref.py:128
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:120
 #: ../src/plugins/gramplet/PersonDetails.py:160
 #: ../src/plugins/gramplet/PersonDetails.py:166
@@ -957,7 +957,7 @@ msgstr "Ort"
 #: ../src/gen/plug/docgen/graphdoc.py:229 ../src/gui/configure.py:462
 #: ../src/gui/filtereditor.py:295 ../src/gui/editors/editlink.py:84
 #: ../src/gui/editors/editmedia.py:87 ../src/gui/editors/editmedia.py:170
-#: ../src/gui/editors/editmediaref.py:129
+#: ../src/gui/editors/editmediaref.py:131
 #: ../src/gui/views/treemodels/mediamodel.py:128
 #: ../src/plugins/drawreport/AncestorTree.py:1012
 #: ../src/plugins/drawreport/DescendTree.py:1608
@@ -1391,26 +1391,26 @@ msgstr "unbekannt"
 msgid "Invalid"
 msgstr "Ungültig"
 
-#: ../src/Utils.py:91 ../src/gui/editors/editsourceref.py:140
+#: ../src/Utils.py:91 ../src/gui/editors/editsourceref.py:149
 msgid "Very High"
 msgstr "Sehr hoch"
 
-#: ../src/Utils.py:92 ../src/gui/editors/editsourceref.py:139
+#: ../src/Utils.py:92 ../src/gui/editors/editsourceref.py:148
 #: ../src/plugins/tool/FindDupes.py:63
 msgid "High"
 msgstr "Hoch"
 
-#: ../src/Utils.py:93 ../src/gui/editors/editsourceref.py:138
+#: ../src/Utils.py:93 ../src/gui/editors/editsourceref.py:147
 #: ../src/plugins/webreport/NarrativeWeb.py:1734
 msgid "Normal"
 msgstr "Normal"
 
-#: ../src/Utils.py:94 ../src/gui/editors/editsourceref.py:137
+#: ../src/Utils.py:94 ../src/gui/editors/editsourceref.py:146
 #: ../src/plugins/tool/FindDupes.py:61
 msgid "Low"
 msgstr "Niedrig"
 
-#: ../src/Utils.py:95 ../src/gui/editors/editsourceref.py:136
+#: ../src/Utils.py:95 ../src/gui/editors/editsourceref.py:145
 msgid "Very Low"
 msgstr "Sehr niedrig"
 
@@ -2127,11 +2127,12 @@ msgstr "Du hast keinen Schreibzugriff auf die ausgewählte Datei."
 
 #: ../src/cli/grampscli.py:159 ../src/cli/grampscli.py:162
 #: ../src/gui/dbloader.py:314 ../src/gui/dbloader.py:317
+#: ../src/gui/dbloader.py:320
 msgid "Cannot open database"
 msgstr "Kann Datenbank nicht öffnen"
 
 #: ../src/cli/grampscli.py:166 ../src/gui/dbloader.py:188
-#: ../src/gui/dbloader.py:321
+#: ../src/gui/dbloader.py:324
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Kann folgende Datei nicht öffnen: %s"
@@ -2205,7 +2206,20 @@ msgstr ""
 "Bitte aktualisiere die entsprechende Version oder verwende XML um die Daten "
 "zwischen verschiedenen Datenbankversionen zu portieren."
 
-#: ../src/gen/db/exceptions.py:92
+#: ../src/gen/db/exceptions.py:93
+#, python-format
+msgid ""
+"Gramps stores its data in a Berkeley Database. The family tree you try to "
+"load was created with version %(env_version)s of the Berkeley DB. However, "
+"the Gramps version in use right now employs version %(bdb_version)s of the "
+"Berkeley DB. So you are trying to load data created in a newer format into "
+"an older program; this is bound to fail. The right approach in this case is "
+"to use XML export and import. So try to open the family tree on that "
+"computer with that software that created the family tree, export it to XML "
+"and load that XML into the version of Gramps you intend to use."
+msgstr ""
+
+#: ../src/gen/db/exceptions.py:116
 msgid ""
 "Gramps has detected a problem in opening the 'environment' of the underlying "
 "Berkeley database used to store this Family Tree. The most likely cause is "
@@ -2229,7 +2243,7 @@ msgstr ""
 "importiere die XML Datei. Alternative, es kann möglich sein deine Datenbank "
 "zu aktualisieren."
 
-#: ../src/gen/db/exceptions.py:115
+#: ../src/gen/db/exceptions.py:139
 msgid ""
 "You cannot open this database without upgrading it.\n"
 "If you upgrade then you won't be able to use previous versions of Gramps.\n"
@@ -3182,9 +3196,9 @@ msgid "Matrilineal"
 msgstr "Matrilineal"
 
 #: ../src/gen/lib/notetype.py:80 ../src/gui/configure.py:1096
-#: ../src/gui/editors/editeventref.py:77 ../src/gui/editors/editmediaref.py:91
-#: ../src/gui/editors/editreporef.py:73 ../src/gui/editors/editsourceref.py:75
-#: ../src/gui/editors/editsourceref.py:81 ../src/glade/editmediaref.glade.h:11
+#: ../src/gui/editors/editeventref.py:78 ../src/gui/editors/editmediaref.py:93
+#: ../src/gui/editors/editreporef.py:73 ../src/gui/editors/editsourceref.py:76
+#: ../src/gui/editors/editsourceref.py:82 ../src/glade/editmediaref.glade.h:11
 #: ../src/glade/editname.glade.h:14
 msgid "General"
 msgstr "Allgemeines"
@@ -4548,15 +4562,15 @@ msgstr "Jetzt aktualisieren"
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: ../src/gui/dbloader.py:362
+#: ../src/gui/dbloader.py:365
 msgid "All files"
 msgstr "Alle Dateien"
 
-#: ../src/gui/dbloader.py:403
+#: ../src/gui/dbloader.py:406
 msgid "Automatically detected"
 msgstr "Automatisch erkannt"
 
-#: ../src/gui/dbloader.py:412
+#: ../src/gui/dbloader.py:415
 msgid "Select file _type:"
 msgstr "Datei_typ auswählen:"
 
@@ -6068,12 +6082,12 @@ msgstr "Kindreferenzen"
 msgid "manual|Editing_Information_About_Events"
 msgstr "Informationen_Über_Ereignisse_Bearbeiten"
 
-#: ../src/gui/editors/editevent.py:97 ../src/gui/editors/editeventref.py:233
+#: ../src/gui/editors/editevent.py:97 ../src/gui/editors/editeventref.py:239
 #, python-format
 msgid "Event: %s"
 msgstr "Ereignis: %s"
 
-#: ../src/gui/editors/editevent.py:99 ../src/gui/editors/editeventref.py:235
+#: ../src/gui/editors/editevent.py:99 ../src/gui/editors/editeventref.py:241
 msgid "New Event"
 msgstr "Neues Ereignis"
 
@@ -6132,21 +6146,22 @@ msgstr "Ereignis bearbeiten (%s)"
 msgid "Delete Event (%s)"
 msgstr "Ereignis (%s) löschen"
 
-#: ../src/gui/editors/editeventref.py:66
-#: ../src/gui/editors/editeventref.py:236
+#: ../src/gui/editors/editeventref.py:67
+#: ../src/gui/editors/editeventref.py:242
 msgid "Event Reference Editor"
 msgstr "Ereignisreferenzeditor"
 
-#: ../src/gui/editors/editeventref.py:83 ../src/gui/editors/editmediaref.py:99
-#: ../src/gui/editors/editname.py:130 ../src/gui/editors/editreporef.py:79
+#: ../src/gui/editors/editeventref.py:84
+#: ../src/gui/editors/editmediaref.py:101 ../src/gui/editors/editname.py:130
+#: ../src/gui/editors/editreporef.py:79
 msgid "_General"
 msgstr "_Allgemeines"
 
-#: ../src/gui/editors/editeventref.py:241
+#: ../src/gui/editors/editeventref.py:247
 msgid "Modify Event"
 msgstr "Ereignis ändern"
 
-#: ../src/gui/editors/editeventref.py:244
+#: ../src/gui/editors/editeventref.py:250
 msgid "Add Event"
 msgstr "Ereignis hinzufügen"
 
@@ -6453,12 +6468,12 @@ msgstr "Verknüpfungeditor"
 msgid "Internet Address"
 msgstr "Internetadresse"
 
-#: ../src/gui/editors/editmedia.py:88 ../src/gui/editors/editmediaref.py:407
+#: ../src/gui/editors/editmedia.py:88 ../src/gui/editors/editmediaref.py:426
 #, python-format
 msgid "Media: %s"
 msgstr "Medium: %s"
 
-#: ../src/gui/editors/editmedia.py:90 ../src/gui/editors/editmediaref.py:409
+#: ../src/gui/editors/editmedia.py:90 ../src/gui/editors/editmediaref.py:428
 msgid "New Media"
 msgstr "Neues Medium"
 
@@ -6481,12 +6496,12 @@ msgstr ""
 msgid "Cannot save media object. ID already exists."
 msgstr "Kann Medienobjekt nicht speichern. ID existiert bereits."
 
-#: ../src/gui/editors/editmedia.py:295 ../src/gui/editors/editmediaref.py:595
+#: ../src/gui/editors/editmedia.py:295 ../src/gui/editors/editmediaref.py:614
 #, python-format
 msgid "Add Media Object (%s)"
 msgstr "Medienobjekt (%s) hinzufügen"
 
-#: ../src/gui/editors/editmedia.py:300 ../src/gui/editors/editmediaref.py:591
+#: ../src/gui/editors/editmedia.py:300 ../src/gui/editors/editmediaref.py:610
 #, python-format
 msgid "Edit Media Object (%s)"
 msgstr "Medienobjekt (%s) bearbeiten"
@@ -6495,13 +6510,13 @@ msgstr "Medienobjekt (%s) bearbeiten"
 msgid "Remove Media Object"
 msgstr "Medienobjekt entfernen"
 
-#: ../src/gui/editors/editmediaref.py:80
-#: ../src/gui/editors/editmediaref.py:410
+#: ../src/gui/editors/editmediaref.py:82
+#: ../src/gui/editors/editmediaref.py:429
 msgid "Media Reference Editor"
 msgstr "Medienreferenzeditor"
 
-#: ../src/gui/editors/editmediaref.py:82 ../src/gui/editors/editmediaref.py:83
-#: ../src/glade/editmediaref.glade.h:20
+#: ../src/gui/editors/editmediaref.py:84 ../src/gui/editors/editmediaref.py:85
+#: ../src/glade/editmediaref.glade.h:23
 msgid "Y coordinate|Y"
 msgstr "Y"
 
@@ -6850,7 +6865,7 @@ msgstr "Aufbewahrungsort (%s) bearbeiten"
 msgid "Delete Repository (%s)"
 msgstr "Aufbewahrungsort (%s) löschen"
 
-#: ../src/gui/editors/editsource.py:77 ../src/gui/editors/editsourceref.py:204
+#: ../src/gui/editors/editsource.py:77 ../src/gui/editors/editsourceref.py:213
 msgid "New Source"
 msgstr "Neue Quelle"
 
@@ -6887,21 +6902,21 @@ msgstr "Ereignis (%s) bearbeiten"
 msgid "Delete Source (%s)"
 msgstr "Quelle (%s) löschen"
 
-#: ../src/gui/editors/editsourceref.py:65
-#: ../src/gui/editors/editsourceref.py:205
+#: ../src/gui/editors/editsourceref.py:66
+#: ../src/gui/editors/editsourceref.py:214
 msgid "Source Reference Editor"
 msgstr "Quellenreferenzeditor"
 
-#: ../src/gui/editors/editsourceref.py:202
+#: ../src/gui/editors/editsourceref.py:211
 #, python-format
 msgid "Source: %s"
 msgstr "Quelle: %s"
 
-#: ../src/gui/editors/editsourceref.py:210
+#: ../src/gui/editors/editsourceref.py:219
 msgid "Modify Source"
 msgstr "Quelle bearbeiten"
 
-#: ../src/gui/editors/editsourceref.py:213
+#: ../src/gui/editors/editsourceref.py:222
 msgid "Add Source"
 msgstr "Quelle hinzufügen"
 
@@ -26277,8 +26292,8 @@ msgstr "Liefert ein Medienobjekt mit einer bestimmten Gramps-ID"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
 #: ../src/Filters/Rules/Repository/_HasRepo.py:48
-#: ../src/glade/mergeevent.glade.h:11 ../src/glade/mergenote.glade.h:9
-#: ../src/glade/mergerepository.glade.h:9
+#: ../src/glade/editmediaref.glade.h:22 ../src/glade/mergeevent.glade.h:11
+#: ../src/glade/mergenote.glade.h:9 ../src/glade/mergerepository.glade.h:9
 msgid "Type:"
 msgstr "Typ:"
 
@@ -26802,7 +26817,7 @@ msgstr "_Vorname:"
 #: ../src/glade/editperson.glade.h:27 ../src/glade/editsource.glade.h:11
 #: ../src/glade/editrepository.glade.h:7 ../src/glade/editreporef.glade.h:14
 #: ../src/glade/editfamily.glade.h:14 ../src/glade/editmedia.glade.h:12
-#: ../src/glade/editmediaref.glade.h:21 ../src/glade/editeventref.glade.h:8
+#: ../src/glade/editmediaref.glade.h:25 ../src/glade/editeventref.glade.h:9
 #: ../src/glade/editnote.glade.h:8 ../src/glade/editplace.glade.h:28
 #: ../src/glade/editsourceref.glade.h:22 ../src/glade/editevent.glade.h:11
 msgid "_ID:"
@@ -26818,8 +26833,8 @@ msgstr "_Nachname:"
 
 #: ../src/glade/editperson.glade.h:30 ../src/glade/editurl.glade.h:7
 #: ../src/glade/editrepository.glade.h:9 ../src/glade/editreporef.glade.h:17
-#: ../src/glade/editfamily.glade.h:15 ../src/glade/editmediaref.glade.h:24
-#: ../src/glade/editnote.glade.h:10 ../src/glade/editname.glade.h:32
+#: ../src/glade/editfamily.glade.h:15 ../src/glade/editnote.glade.h:10
+#: ../src/glade/editname.glade.h:32
 msgid "_Type:"
 msgstr "_Typ:"
 
@@ -26865,7 +26880,7 @@ msgid "Convert to a relative path"
 msgstr "Ändere in ein relatives Verzeichnis"
 
 #: ../src/glade/addmedia.glade.h:3 ../src/glade/editsource.glade.h:13
-#: ../src/glade/editmedia.glade.h:13 ../src/glade/editmediaref.glade.h:23
+#: ../src/glade/editmedia.glade.h:13 ../src/glade/editmediaref.glade.h:28
 #: ../src/glade/editsourceref.glade.h:24
 msgid "_Title:"
 msgstr "_Titel:"
@@ -27568,8 +27583,9 @@ msgid "The town or city of the address"
 msgstr "Das Dorf oder die Stadt der Adresse"
 
 #: ../src/glade/editaddress.glade.h:17 ../src/glade/editmedia.glade.h:11
-#: ../src/glade/editeventref.glade.h:6 ../src/glade/editldsord.glade.h:5
-#: ../src/glade/editsourceref.glade.h:21 ../src/glade/editevent.glade.h:9
+#: ../src/glade/editmediaref.glade.h:24 ../src/glade/editeventref.glade.h:7
+#: ../src/glade/editldsord.glade.h:5 ../src/glade/editsourceref.glade.h:21
+#: ../src/glade/editevent.glade.h:9
 msgid "_Date:"
 msgstr "_Datum:"
 
@@ -27671,7 +27687,12 @@ msgstr ""
 "gewünschten Bereich zu setzen. Punkt (0,0) ist die linke obere und (100,100) "
 "die rechte untere Ecke.\n"
 
-#: ../src/glade/editmediaref.glade.h:17
+#: ../src/glade/editmediaref.glade.h:17 ../src/glade/editsourceref.glade.h:14
+#: ../src/glade/editname.glade.h:15
+msgid "Invoke date editor"
+msgstr "Datumseditor aufrufen"
+
+#: ../src/glade/editmediaref.glade.h:18
 msgid ""
 "Referenced region of the image media object.\n"
 "Select a region with clicking and holding the mouse button on the top left "
@@ -27683,13 +27704,21 @@ msgstr ""
 "Ecke des Bereichs den du wünscht, ziehe die Maus in die untere rechte Ecke "
 "und dann lass die Mausschaltfläche los."
 
-#: ../src/glade/editmediaref.glade.h:19
+#: ../src/glade/editmediaref.glade.h:20
+msgid "Select a file"
+msgstr "Eine Datei wählen"
+
+#: ../src/glade/editmediaref.glade.h:21
 msgid "Type of media object as indicated by the computer, eg Image, Video, ..."
 msgstr "Art des Medienobjekts wie es der Rechner angibt, z.B. Bild, Video, ..."
 
-#: ../src/glade/editmediaref.glade.h:22
+#: ../src/glade/editmediaref.glade.h:26
 msgid "_Path:"
 msgstr "_Pfad:"
+
+#: ../src/glade/editmediaref.glade.h:27
+msgid "_Tags:"
+msgstr "_Markierung:"
 
 #: ../src/glade/editeventref.glade.h:2
 msgid ""
@@ -27700,20 +27729,24 @@ msgstr ""
 "Ereignisinformationen werden auch das Ereignis selber und damit auch die "
 "davon abhängigen Personen ändern."
 
-#: ../src/glade/editeventref.glade.h:5 ../src/glade/editevent.glade.h:5
+#: ../src/glade/editeventref.glade.h:5 ../src/glade/editevent.glade.h:1
+msgid "A unique ID to identify the event"
+msgstr "Eine eindeutige ID zur Identifizierung des Ereignis"
+
+#: ../src/glade/editeventref.glade.h:6 ../src/glade/editevent.glade.h:5
 msgid "De_scription:"
 msgstr "Be_schreibung:"
 
-#: ../src/glade/editeventref.glade.h:7 ../src/glade/editevent.glade.h:10
+#: ../src/glade/editeventref.glade.h:8 ../src/glade/editevent.glade.h:10
 msgid "_Event type:"
 msgstr "_Ereignisart:"
 
-#: ../src/glade/editeventref.glade.h:9 ../src/glade/editldsord.glade.h:6
+#: ../src/glade/editeventref.glade.h:10 ../src/glade/editldsord.glade.h:6
 #: ../src/glade/editevent.glade.h:12
 msgid "_Place:"
 msgstr "_Ort:"
 
-#: ../src/glade/editeventref.glade.h:10
+#: ../src/glade/editeventref.glade.h:11
 msgid "_Role:"
 msgstr "_Rolle:"
 
@@ -27894,10 +27927,6 @@ msgstr ""
 "Sehr große = Direkte und primäre Beweismittel verwendet, oder durch Dominanz "
 "der Beweise "
 
-#: ../src/glade/editsourceref.glade.h:14 ../src/glade/editname.glade.h:15
-msgid "Invoke date editor"
-msgstr "Datumseditor aufrufen"
-
 #: ../src/glade/editsourceref.glade.h:17
 msgid ""
 "Specific location within the information referenced. For a published work, "
@@ -28033,10 +28062,6 @@ msgstr "_Spitzname:"
 #: ../src/glade/editname.glade.h:31
 msgid "_Sort as:"
 msgstr "_Sortieren als:"
-
-#: ../src/glade/editevent.glade.h:1
-msgid "A unique ID to identify the event"
-msgstr "Eine eindeutige ID zur Identifizierung des Ereignis"
 
 #: ../src/glade/editevent.glade.h:3
 msgid "Close window without changes"
