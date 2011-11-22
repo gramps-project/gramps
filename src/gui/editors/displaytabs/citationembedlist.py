@@ -64,6 +64,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
 
     _HANDLE_COL = 4  # Column number from CitationRefModel
     _DND_TYPE = DdTargets.CITATION_LINK
+    _DND_EXTRA = DdTargets.SOURCE_LINK
 
     _MSG = {
         'add'   : _('Create and add a new citation and new source'),
@@ -233,3 +234,42 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
             if handle in self.data:
                 self.rebuild()
                 break
+
+    def _handle_drag(self, row, handle):
+        """
+        A CITATION_LINK has been dragged
+        """
+        if handle:
+            object = self.dbstate.db.get_citation_from_handle(handle)
+            if isinstance(object, Citation):
+                try:
+                    from gui.editors import EditCitation
+                    EditCitation(self.dbstate, self.uistate, self.track, 
+                                 object, callback=self.add_callback, 
+                                 callertitle=self.callertitle)
+                except Errors.WindowActiveError:
+                    from QuestionDialog import WarningDialog
+                    WarningDialog(_("Cannot share this reference"),
+                                  self.__blocked_text())
+            else:
+                raise ValueError("selection must be either source or citation")
+
+    def handle_extra_type(self, objtype, handle):
+        """
+        A SOURCE_LINK object has been dragged
+        """
+        if handle:
+            object = self.dbstate.db.get_source_from_handle(handle)
+            if isinstance(object, Source):
+                try:
+                    from gui.editors import EditCitation
+                    EditCitation(self.dbstate, self.uistate, self.track, 
+                                 gen.lib.Citation(), object, 
+                                 callback=self.add_callback, 
+                                 callertitle=self.callertitle)
+                except Errors.WindowActiveError:
+                    from QuestionDialog import WarningDialog
+                    WarningDialog(_("Cannot share this reference"),
+                                  self.__blocked_text())
+            else:
+                raise ValueError("selection must be either source or citation")
