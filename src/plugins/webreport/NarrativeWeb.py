@@ -4874,22 +4874,27 @@ class IndividualPage(BasePage):
 
         # create the array, if there are more than one set of coordinates to be displayed?
         if number_markers > 1:
-            tracelife = """
+            if self.googleopts == "FamilyLinks":
+                tracelife = """
     var tracelife = ["""
 
-            titleArray = """
+                # place titles Array for place maps...
+                titleArray = """
     var titleArray = ["""
 
-            for index in xrange(0, (number_markers - 1)):
-                dataline = place_lat_long[index]
-                latitude, longitude, placetitle = dateline[0], dataline[1], dataline[2]
-                tracelife += """    new google.maps.LatLng(%s, %s),""" % (latitude, longitude)
-                titleArray += """    ['%s'],""" % placetitle
+                for index in xrange(0, (number_markers - 1)):
+                    dataline = place_lat_long[index]
+                    latitude, longitude, placetitle = dataline[0], dataline[1], dataline[2]
+                    tracelife += """
+      new google.maps.LatLng(%s, %s),""" % (latitude, longitude)
+                    titleArray += """'%s',""" % placetitle
 
-            dataline = place_lat_long[-1] 
-            latitude, longitude, placetitle = dataline[0], dataline[1], dataline[2]
-            tracelife += """    new google.maps.LatLng(%s, %s) ];""" % (latitude, longitude)
-            titleArray += """    ['%s'] ];""" % placetitle
+                dataline = place_lat_long[-1] 
+                latitude, longitude, placetitle = dataline[0], dataline[1], dataline[2]
+                tracelife += """
+      new google.maps.LatLng(%s, %s) ];""" % (latitude, longitude)
+                titleArray += """
+      '%s' ];""" % placetitle
 
         of = self.report.create_file(person.get_handle(), "maps")
         self.up = True
@@ -4914,18 +4919,19 @@ class IndividualPage(BasePage):
                 src ="http://www.openlayers.org/api/OpenLayers.js", inline =True)
 
         # begin inline javascript code
-        # because jsc is a string, it does NOT have to properly indented
+        # because jsc is a docstring, it does NOT have to properly indented
         with Html("script", type ="text/javascript", indent =False) as jsc:
 
+            # Google Maps add their javascript inside of the head element...
             if self.mapservice == "Google":
                 head += jsc
 
                 # if the number of places is only 1, then use code from imported javascript?
                 if number_markers == 1:
-                    data = place_lat_long[0]
-                    jsc += google_jsc % (data[0], data[1])
+                    dataline = place_lat_long[0]
+                    latitude, longitude = dataline[0], dataline[1]
+                    jsc += google_jsc % (latitude, longitude)
 
-                # Google Maps add their javascript inside of the head element...
                 else:
                     if self.googleopts == "FamilyLinks":
                         jsc += """
@@ -4941,63 +4947,88 @@ class IndividualPage(BasePage):
     var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
     var flightPath = new google.maps.Polyline({
-      path: lifeHistory,
+      path: %s,
       strokeColor:   "#FF0000",
       strokeOpacity: 1.0,
       strokeWeight:  2
     });
 
    flightPath.setMap(map);
-  }""" % (latitude, longitude)
+  }""" % (midX_, midY_, zoomlevel, lifetrace)
 
                     # Google Maps Markers only...
                     elif self.googleopts == "Markers":
                         if (not midX_ and not midY_):
                             midX_, midY_ = conv_lat_lon(place_lat_long[0][0], place_lat_long[0][1], "D.D8")
+
                         jsc += """
   //<![CDATA[
-  var centre = new google.maps.LatLng(%s, %s);
-  var gpsCoords = [""" % (midX_, midY_)
+  var centre = new google.maps.LatLng(%s, %s);""" % (midX_, midY_)
+                        jsc += """
+    var myCoordinates = ["""
                         for index in xrange(0, (number_markers - 1)):
-                            latitude, longitude = place_lat_long[index][0], place_lat_long[index][1]
-                            jsc += """      new google.maps.LatLng(%s, %s),""" %  (latitude, longitude)
-                        latitude, longitude = place_lat_long[-1][0], place_lat_long[-1][1]
+                            dataline = place_lat_long[index]
+                            latitude, longitude, placetitle = dataline[0], dataline[1], dataline[2]
+                            jsc += """     new google.maps.LatLng(%s, %s),""" % (latitude, longitude)
+
+                        dataline = place_lat_long[-1]
+                        latitude, longitude, placetitle = dataline[0], dataline[1], dataline[2]
                         jsc += """      new google.maps.LatLng(%s, %s)
-  ];
- var markers = [];
+    ];""" % (latitude, longitude)
+                        jsc += """
+  var markers = [];
   var iterator = 0;
-   var map;
+  var map;
  
   function initialize() {
-
     var mapOptions = {
-      zoom:      %d,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      center:    centre
+      scrollwheel:     false,
+      scaleControl:    false,
+      backgroundColor: '#FFFFFF',
+      zoom:            %d,
+      center:          centre,
+      mapTypeId:       google.maps.MapTypeId.ROADMAP
     }
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
   }
-  function drop() {
 
-    for (var i = 0; i < gpsCoords.length; i++) {
+  function drop() {
+    for (var i = 0; i < myCoordinates.length; i++) {
       setTimeout(function() {
-        addMarker();
+        addMarkers();
       }, i * 1000);
     }
   }
-  function addMarker() {
 
+  function addMarkers() {
     markers.push(new google.maps.Marker({
-      position:  gpsCoords[iterator],
+      position:  myCoordinates[iterator],
       map:       map,
       draggable: true,
       animation: google.maps.Animation.DROP
     }));
     iterator++;
   }
-  //]]>""" % (latitude, longitude, zoomlevel)
+  //]]>""" % zoomlevel
 # there is no need to add an ending "</script>",
 # as it will be added automatically by libhtml()!
+
+                        dont = """
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+  function setMarkers(map, locations) {
+    var bounds = new google.maps.LatLngBounds();
+    for (var i = 0; i < locations.length; i++) {
+      var coordinates = locations[i];
+
+      var myLatLng = new google.maps.LatLng(coordinates[1], coordinates[2]);
+      var marker = new google.maps.Marker({
+        position: myLatLng,
+        map:      map,
+        title:    coordinates[0]
+    });
+    bounds.extend(locations[i]);
+    map.fitBounds(bounds);
+  }"""
 
         with Html("div", class_ ="content", id ="FamilyMapDetail") as mapbackground:
             body += mapbackground
