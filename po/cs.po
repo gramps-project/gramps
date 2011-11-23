@@ -16,6 +16,7 @@
 #  event           událost
 #  location        umístění
 #  media object    objekt média(í)
+#  option          možnost, volba (dle kontextu)
 #  person          osoba
 #  preferences     předvolby
 #  remove          odstranit
@@ -10848,7 +10849,7 @@ msgstr "CSV je obvyklý formát tabulky."
 
 #: ../src/plugins/export/export.gpr.py:41
 msgid "CSV spreadsheet options"
-msgstr "Možnosti exportu CSV tabulky"
+msgstr "Možnosti CSV tabulky"
 
 #: ../src/plugins/export/export.gpr.py:52
 msgid "Web Family Tree"
