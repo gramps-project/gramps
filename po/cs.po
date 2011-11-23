@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-14 10:48+0100\n"
-"PO-Revision-Date: 2011-11-14 10:49+0100\n"
+"POT-Creation-Date: 2011-11-23 12:59+0100\n"
+"PO-Revision-Date: 2011-11-23 13:01+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -646,7 +646,7 @@ msgstr ""
 #: ../src/gen/lib/srcmediatype.py:62
 #: ../src/gen/lib/urltype.py:54
 #: ../src/gui/editors/editmedia.py:167
-#: ../src/gui/editors/editmediaref.py:126
+#: ../src/gui/editors/editmediaref.py:128
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:120
 #: ../src/plugins/gramplet/PersonDetails.py:160
 #: ../src/plugins/gramplet/PersonDetails.py:166
@@ -1034,7 +1034,7 @@ msgstr "Místo"
 #: ../src/gui/editors/editlink.py:84
 #: ../src/gui/editors/editmedia.py:87
 #: ../src/gui/editors/editmedia.py:170
-#: ../src/gui/editors/editmediaref.py:129
+#: ../src/gui/editors/editmediaref.py:131
 #: ../src/gui/views/treemodels/mediamodel.py:128
 #: ../src/plugins/drawreport/AncestorTree.py:1012
 #: ../src/plugins/drawreport/DescendTree.py:1608
@@ -1522,30 +1522,30 @@ msgid "Invalid"
 msgstr "Neplatné"
 
 #: ../src/Utils.py:91
-#: ../src/gui/editors/editsourceref.py:140
+#: ../src/gui/editors/editsourceref.py:149
 msgid "Very High"
 msgstr "Velmi vysoká"
 
 #: ../src/Utils.py:92
-#: ../src/gui/editors/editsourceref.py:139
+#: ../src/gui/editors/editsourceref.py:148
 #: ../src/plugins/tool/FindDupes.py:63
 msgid "High"
 msgstr "Vysoká"
 
 #: ../src/Utils.py:93
-#: ../src/gui/editors/editsourceref.py:138
+#: ../src/gui/editors/editsourceref.py:147
 #: ../src/plugins/webreport/NarrativeWeb.py:1734
 msgid "Normal"
 msgstr "Standardní"
 
 #: ../src/Utils.py:94
-#: ../src/gui/editors/editsourceref.py:137
+#: ../src/gui/editors/editsourceref.py:146
 #: ../src/plugins/tool/FindDupes.py:61
 msgid "Low"
 msgstr "Nízká"
 
 #: ../src/Utils.py:95
-#: ../src/gui/editors/editsourceref.py:136
+#: ../src/gui/editors/editsourceref.py:145
 msgid "Very Low"
 msgstr "Velmi nízká"
 
@@ -2267,12 +2267,13 @@ msgstr "Do vybraného souboru nemáte právo zápisu."
 #: ../src/cli/grampscli.py:162
 #: ../src/gui/dbloader.py:314
 #: ../src/gui/dbloader.py:317
+#: ../src/gui/dbloader.py:320
 msgid "Cannot open database"
 msgstr "Databázi nelze otevřít"
 
 #: ../src/cli/grampscli.py:166
 #: ../src/gui/dbloader.py:188
-#: ../src/gui/dbloader.py:321
+#: ../src/gui/dbloader.py:324
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Nelze otevřít soubor %s"
@@ -2349,7 +2350,12 @@ msgstr ""
 "Verze databáze není touto verzí Gramps podporována.\n"
 "Povyšte prosím program na odpovídající verzi nebo pro přenos dat mezi různými verzemi Gramps použijte XML."
 
-#: ../src/gen/db/exceptions.py:92
+#: ../src/gen/db/exceptions.py:93
+#, python-format
+msgid "Gramps stores its data in a Berkeley Database. The family tree you try to load was created with version %(env_version)s of the Berkeley DB. However, the Gramps version in use right now employs version %(bdb_version)s of the Berkeley DB. So you are trying to load data created in a newer format into an older program; this is bound to fail. The right approach in this case is to use XML export and import. So try to open the family tree on that computer with that software that created the family tree, export it to XML and load that XML into the version of Gramps you intend to use."
+msgstr "Gramps ukládá svá data do Berkeley databáze. Rodokmen, který se pokoušíte nahrát byl vytvořen Berkeley DB verze %(env_version)s. Gramps, které používáte ale využívá Berkeley DB verze %(bdb_version)s. To znamená,že se snažíte nahrát data vytvořená v novějším formátu do staršího programu. Tato opearace selže. Správný postup v tomto případě je použít XML export a import. Otevřte tedy rodokmen na počítači s tou verzí programu ve které byl vytvořen,exportujte do XML a takto formátovaný soubor nahrajte do verze Gramps, kterou používáte."
+
+#: ../src/gen/db/exceptions.py:116
 msgid ""
 "Gramps has detected a problem in opening the 'environment' of the underlying Berkeley database used to store this Family Tree. The most likely cause is that the database was created with an old version of the Berkeley database program, and you are now using a new version. It is quite likely that your database has not been changed by Gramps.\n"
 "If possible, you should revert to your old version of Gramps and its support software; export your database to XML; close the database; then upgrade again to this version of Gramps and import the XML file in an empty Family Tree. Alternatively, it may be possible to use the Berkeley database recovery tools."
@@ -2357,7 +2363,7 @@ msgstr ""
 "Gramps zaznamenal problém při otevírání 'prostředí' Berkeley databáze použité pro uložení tohoto rodokmenu. S největší pravděpodobností byla databáze vytvořena starou verzí Berkeley databáze zatímco nyní používáte verzi novou. Je také možné, že vaše databáze nebyla změněna Gramps.\n"
 "Pokud je to možné, měli byste se vrátit k starší verzi Gramps a jí požadovanému podpůrnému programovému vybavení; exportovat vaši databázi do XML a zavřít ji. Poté proveďte znovu upgrade na tuto verzi a importujte XML soubor do prázdného rodokmenu.  Eventuálně můžete zkusit upgradovat vaši databázi."
 
-#: ../src/gen/db/exceptions.py:115
+#: ../src/gen/db/exceptions.py:139
 msgid ""
 "You cannot open this database without upgrading it.\n"
 "If you upgrade then you won't be able to use previous versions of Gramps.\n"
@@ -3372,11 +3378,11 @@ msgstr "Linie matek"
 
 #: ../src/gen/lib/notetype.py:80
 #: ../src/gui/configure.py:1096
-#: ../src/gui/editors/editeventref.py:77
-#: ../src/gui/editors/editmediaref.py:91
+#: ../src/gui/editors/editeventref.py:78
+#: ../src/gui/editors/editmediaref.py:93
 #: ../src/gui/editors/editreporef.py:73
-#: ../src/gui/editors/editsourceref.py:75
-#: ../src/gui/editors/editsourceref.py:81
+#: ../src/gui/editors/editsourceref.py:76
+#: ../src/gui/editors/editsourceref.py:82
 #: ../src/glade/editmediaref.glade.h:11
 #: ../src/glade/editname.glade.h:14
 msgid "General"
@@ -4117,8 +4123,8 @@ msgstr "Závěrečné poznámky"
 #: ../src/plugins/textreport/IndivComplete.py:553
 #: ../src/plugins/webreport/NarrativeWeb.py:1315
 #: ../src/plugins/webreport/NarrativeWeb.py:1497
-#: ../src/plugins/webreport/NarrativeWeb.py:1568
-#: ../src/plugins/webreport/NarrativeWeb.py:1584
+#: ../src/plugins/webreport/NarrativeWeb.py:1569
+#: ../src/plugins/webreport/NarrativeWeb.py:1585
 msgid "Could not add photo to page"
 msgstr "Nelze přidat fotografii na stránku"
 
@@ -4688,15 +4694,15 @@ msgstr "Akutalizovat nyní"
 msgid "Cancel"
 msgstr "Storno"
 
-#: ../src/gui/dbloader.py:362
+#: ../src/gui/dbloader.py:365
 msgid "All files"
 msgstr "Všechny soubory"
 
-#: ../src/gui/dbloader.py:403
+#: ../src/gui/dbloader.py:406
 msgid "Automatically detected"
 msgstr "Automaticky detekován"
 
-#: ../src/gui/dbloader.py:412
+#: ../src/gui/dbloader.py:415
 msgid "Select file _type:"
 msgstr "Vyberte _typ souboru"
 
@@ -6180,13 +6186,13 @@ msgid "manual|Editing_Information_About_Events"
 msgstr "Úprava informací o událostech"
 
 #: ../src/gui/editors/editevent.py:97
-#: ../src/gui/editors/editeventref.py:233
+#: ../src/gui/editors/editeventref.py:239
 #, python-format
 msgid "Event: %s"
 msgstr "Událost: %s"
 
 #: ../src/gui/editors/editevent.py:99
-#: ../src/gui/editors/editeventref.py:235
+#: ../src/gui/editors/editeventref.py:241
 msgid "New Event"
 msgstr "Nová událost"
 
@@ -6242,23 +6248,23 @@ msgstr "Upravit událost (%s)"
 msgid "Delete Event (%s)"
 msgstr "Odstranit událost (%s)"
 
-#: ../src/gui/editors/editeventref.py:66
-#: ../src/gui/editors/editeventref.py:236
+#: ../src/gui/editors/editeventref.py:67
+#: ../src/gui/editors/editeventref.py:242
 msgid "Event Reference Editor"
 msgstr "Editor odkazů"
 
-#: ../src/gui/editors/editeventref.py:83
-#: ../src/gui/editors/editmediaref.py:99
+#: ../src/gui/editors/editeventref.py:84
+#: ../src/gui/editors/editmediaref.py:101
 #: ../src/gui/editors/editname.py:130
 #: ../src/gui/editors/editreporef.py:79
 msgid "_General"
 msgstr "_Obecné"
 
-#: ../src/gui/editors/editeventref.py:241
+#: ../src/gui/editors/editeventref.py:247
 msgid "Modify Event"
 msgstr "Upravit událost"
 
-#: ../src/gui/editors/editeventref.py:244
+#: ../src/gui/editors/editeventref.py:250
 msgid "Add Event"
 msgstr "Přidat událost"
 
@@ -6548,13 +6554,13 @@ msgid "Internet Address"
 msgstr "Internetová adresa"
 
 #: ../src/gui/editors/editmedia.py:88
-#: ../src/gui/editors/editmediaref.py:407
+#: ../src/gui/editors/editmediaref.py:426
 #, python-format
 msgid "Media: %s"
 msgstr "Média: %s"
 
 #: ../src/gui/editors/editmedia.py:90
-#: ../src/gui/editors/editmediaref.py:409
+#: ../src/gui/editors/editmediaref.py:428
 msgid "New Media"
 msgstr "Nové médium"
 
@@ -6575,13 +6581,13 @@ msgid "Cannot save media object. ID already exists."
 msgstr "Mediální objekt nelze uložit. ID již existuje."
 
 #: ../src/gui/editors/editmedia.py:295
-#: ../src/gui/editors/editmediaref.py:595
+#: ../src/gui/editors/editmediaref.py:614
 #, python-format
 msgid "Add Media Object (%s)"
 msgstr "Přidat mediální objekt (%s)"
 
 #: ../src/gui/editors/editmedia.py:300
-#: ../src/gui/editors/editmediaref.py:591
+#: ../src/gui/editors/editmediaref.py:610
 #, python-format
 msgid "Edit Media Object (%s)"
 msgstr "Upravit mediální objekt (%s)"
@@ -6590,14 +6596,14 @@ msgstr "Upravit mediální objekt (%s)"
 msgid "Remove Media Object"
 msgstr "Odstranit objekt"
 
-#: ../src/gui/editors/editmediaref.py:80
-#: ../src/gui/editors/editmediaref.py:410
+#: ../src/gui/editors/editmediaref.py:82
+#: ../src/gui/editors/editmediaref.py:429
 msgid "Media Reference Editor"
 msgstr "Editor mediálních odkazů"
 
-#: ../src/gui/editors/editmediaref.py:82
-#: ../src/gui/editors/editmediaref.py:83
-#: ../src/glade/editmediaref.glade.h:20
+#: ../src/gui/editors/editmediaref.py:84
+#: ../src/gui/editors/editmediaref.py:85
+#: ../src/glade/editmediaref.glade.h:23
 msgid "Y coordinate|Y"
 msgstr "Y"
 
@@ -6929,7 +6935,7 @@ msgid "Delete Repository (%s)"
 msgstr "Odstranit archiv (%s)"
 
 #: ../src/gui/editors/editsource.py:77
-#: ../src/gui/editors/editsourceref.py:204
+#: ../src/gui/editors/editsourceref.py:213
 msgid "New Source"
 msgstr "Nový pramen"
 
@@ -6964,21 +6970,21 @@ msgstr "Upravit pramen (%s)"
 msgid "Delete Source (%s)"
 msgstr "Odstranit pramen (%s)"
 
-#: ../src/gui/editors/editsourceref.py:65
-#: ../src/gui/editors/editsourceref.py:205
+#: ../src/gui/editors/editsourceref.py:66
+#: ../src/gui/editors/editsourceref.py:214
 msgid "Source Reference Editor"
 msgstr "Editor pramenů"
 
-#: ../src/gui/editors/editsourceref.py:202
+#: ../src/gui/editors/editsourceref.py:211
 #, python-format
 msgid "Source: %s"
 msgstr "Pramen: %s"
 
-#: ../src/gui/editors/editsourceref.py:210
+#: ../src/gui/editors/editsourceref.py:219
 msgid "Modify Source"
 msgstr "Upravit pramen"
 
-#: ../src/gui/editors/editsourceref.py:213
+#: ../src/gui/editors/editsourceref.py:222
 msgid "Add Source"
 msgstr "Přidat pramen"
 
@@ -10698,6 +10704,10 @@ msgstr "Dokument CSV"
 msgid "CSV is a common spreadsheet format."
 msgstr "CSV je obvyklý formát tabulky."
 
+#: ../src/plugins/export/export.gpr.py:41
+msgid "CSV spreadsheet options"
+msgstr "Možnosti CSV tabulky"
+
 #: ../src/plugins/export/export.gpr.py:52
 msgid "Web Family Tree"
 msgstr "Webový rodokmen"
@@ -10709,6 +10719,10 @@ msgstr "_Web Family Tree"
 #: ../src/plugins/export/export.gpr.py:54
 msgid "Web Family Tree format"
 msgstr "Formát Web Family Tree"
+
+#: ../src/plugins/export/export.gpr.py:62
+msgid "Web Family Tree export options"
+msgstr "Možnosti exportu  Web Family Tree"
 
 #: ../src/plugins/export/export.gpr.py:73
 #: ../src/plugins/import/import.gpr.py:51
@@ -10726,6 +10740,10 @@ msgstr "GE_DCOM"
 msgid "GEDCOM is used to transfer data between genealogy programs. Most genealogy software will accept a GEDCOM file as input."
 msgstr "GEDCOM se používá pro přenos dat mezi genealogickými programy. Většina genealogického softwaru soubory GEDCOM přijímá jako vstup."
 
+#: ../src/plugins/export/export.gpr.py:84
+msgid "GEDCOM export options"
+msgstr "Možnosti exportu GEDCOM"
+
 #: ../src/plugins/export/export.gpr.py:95
 #: ../src/plugins/import/import.gpr.py:70
 #: ../data/gramps.keys.in.h:2
@@ -10740,6 +10758,10 @@ msgstr "_GeneWeb"
 msgid "GeneWeb is a web based genealogy program."
 msgstr "GeneWeb je webově založený genealogický program."
 
+#: ../src/plugins/export/export.gpr.py:105
+msgid "GeneWeb export options"
+msgstr "Možnosti exportu GeneWeb"
+
 #: ../src/plugins/export/export.gpr.py:116
 msgid "Gramps XML Package (family tree and media)"
 msgstr "Gramps XML balíček (rodokmen a média)"
@@ -10751,6 +10773,10 @@ msgstr "Gra_mps XML balíček (rodokmen a média)"
 #: ../src/plugins/export/export.gpr.py:118
 msgid "Gramps package is an archived XML family tree together with the media object files."
 msgstr "Balíček Gramps je rodokmen archivovaný v XML spolu s objekty médií."
+
+#: ../src/plugins/export/export.gpr.py:127
+msgid "Gramps package export options"
+msgstr "Možnosti exportu Gramps balíčku"
 
 #: ../src/plugins/export/export.gpr.py:138
 msgid "Gramps XML (family tree)"
@@ -10764,6 +10790,10 @@ msgstr "Gramps _XML (rodokmen)"
 msgid "Gramps XML export is a complete archived XML backup of a Gramps family tree without the media object files. Suitable for backup purposes."
 msgstr "Gramps XML export je kompletní archivní XML záloha Gramps  rodokmenu bez objektů médií. Je vhodný pro účely zálohování."
 
+#: ../src/plugins/export/export.gpr.py:150
+msgid "Gramps XML export options"
+msgstr "Možnosti exportu Gramps XML"
+
 #: ../src/plugins/export/export.gpr.py:161
 msgid "vCalendar"
 msgstr "vCalendar"
@@ -10775,6 +10805,10 @@ msgstr "vC_alendar"
 #: ../src/plugins/export/export.gpr.py:163
 msgid "vCalendar is used in many calendaring and PIM applications."
 msgstr "vCalendar je používán v mnoha kalendářových a PIM aplikacích."
+
+#: ../src/plugins/export/export.gpr.py:171
+msgid "vCalendar export options"
+msgstr "Možnosti exportu vCalendar"
 
 #: ../src/plugins/export/export.gpr.py:182
 #: ../src/plugins/import/import.gpr.py:164
@@ -10788,6 +10822,10 @@ msgstr "_vCard"
 #: ../src/plugins/export/export.gpr.py:184
 msgid "vCard is used in many addressbook and pim applications."
 msgstr "vCard se používá v mnoha adresářových a pim aplikacích."
+
+#: ../src/plugins/export/export.gpr.py:192
+msgid "vCard export options"
+msgstr "Možnosti exportu vCard"
 
 #: ../src/plugins/export/ExportCsv.py:194
 msgid "Include people"
@@ -24789,6 +24827,7 @@ msgstr "Vyhovuje mediální objekt se zadaným Gramps ID"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
 #: ../src/Filters/Rules/Repository/_HasRepo.py:48
+#: ../src/glade/editmediaref.glade.h:22
 #: ../src/glade/mergeevent.glade.h:11
 #: ../src/glade/mergenote.glade.h:9
 #: ../src/glade/mergerepository.glade.h:9
@@ -25284,8 +25323,8 @@ msgstr "_Křestní jméno:"
 #: ../src/glade/editreporef.glade.h:14
 #: ../src/glade/editfamily.glade.h:14
 #: ../src/glade/editmedia.glade.h:12
-#: ../src/glade/editmediaref.glade.h:21
-#: ../src/glade/editeventref.glade.h:8
+#: ../src/glade/editmediaref.glade.h:25
+#: ../src/glade/editeventref.glade.h:9
 #: ../src/glade/editnote.glade.h:8
 #: ../src/glade/editplace.glade.h:28
 #: ../src/glade/editsourceref.glade.h:22
@@ -25306,7 +25345,6 @@ msgstr "Příj_mení"
 #: ../src/glade/editrepository.glade.h:9
 #: ../src/glade/editreporef.glade.h:17
 #: ../src/glade/editfamily.glade.h:15
-#: ../src/glade/editmediaref.glade.h:24
 #: ../src/glade/editnote.glade.h:10
 #: ../src/glade/editname.glade.h:32
 msgid "_Type:"
@@ -25357,7 +25395,7 @@ msgstr "Změnit na relativní cestu"
 #: ../src/glade/addmedia.glade.h:3
 #: ../src/glade/editsource.glade.h:13
 #: ../src/glade/editmedia.glade.h:13
-#: ../src/glade/editmediaref.glade.h:23
+#: ../src/glade/editmediaref.glade.h:28
 #: ../src/glade/editsourceref.glade.h:24
 msgid "_Title:"
 msgstr "_Titul:"
@@ -26029,7 +26067,8 @@ msgstr "Město z adresy:"
 
 #: ../src/glade/editaddress.glade.h:17
 #: ../src/glade/editmedia.glade.h:11
-#: ../src/glade/editeventref.glade.h:6
+#: ../src/glade/editmediaref.glade.h:24
+#: ../src/glade/editeventref.glade.h:7
 #: ../src/glade/editldsord.glade.h:5
 #: ../src/glade/editsourceref.glade.h:21
 #: ../src/glade/editevent.glade.h:9
@@ -26107,6 +26146,12 @@ msgstr ""
 "Výběr můžete provést výběrem oblasti myší, nebo posuvníky uřčit souřadnice levého horního a pravého spodního rohu výběru. Bod (0,0) je levý horní roh obrázku, bod (100,100) je pravý dolní roh.\n"
 
 #: ../src/glade/editmediaref.glade.h:17
+#: ../src/glade/editsourceref.glade.h:14
+#: ../src/glade/editname.glade.h:15
+msgid "Invoke date editor"
+msgstr "Spustit editor data"
+
+#: ../src/glade/editmediaref.glade.h:18
 msgid ""
 "Referenced region of the image media object.\n"
 "Select a region with clicking and holding the mouse button on the top left corner of the region you want, dragging the mouse to the bottom right corner of the region, and then releasing the mouse button."
@@ -26114,35 +26159,48 @@ msgstr ""
 "Odkazovaná oblast obrázku objektu média.\n"
 "Vyberte kliknutím a držením tlačítka myši v místě levého horního rohu oblasti, táhněte myší do pravého spodního rohu oblasti a uvolněte tlačítko myši."
 
-#: ../src/glade/editmediaref.glade.h:19
+#: ../src/glade/editmediaref.glade.h:20
+msgid "Select a file"
+msgstr "Vybrat soubor"
+
+#: ../src/glade/editmediaref.glade.h:21
 msgid "Type of media object as indicated by the computer, eg Image, Video, ..."
 msgstr "Typ objektu média jak by označen počítačem, např. obrázek, video, ..."
 
-#: ../src/glade/editmediaref.glade.h:22
+#: ../src/glade/editmediaref.glade.h:26
 msgid "_Path:"
 msgstr "_Cesta:"
+
+#: ../src/glade/editmediaref.glade.h:27
+msgid "_Tags:"
+msgstr "Š_títky:"
 
 #: ../src/glade/editeventref.glade.h:2
 msgid "<b>Note:</b> Any changes in the shared event information will be reflected in the event itself, for all participants in the event."
 msgstr "<b>Poznámka:</b> Jakákoli změna informací o sdílené události se projeví u všech jejích účastníků."
 
 #: ../src/glade/editeventref.glade.h:5
+#: ../src/glade/editevent.glade.h:1
+msgid "A unique ID to identify the event"
+msgstr "Unikátní ID identifikující událost"
+
+#: ../src/glade/editeventref.glade.h:6
 #: ../src/glade/editevent.glade.h:5
 msgid "De_scription:"
 msgstr "Popi_s:"
 
-#: ../src/glade/editeventref.glade.h:7
+#: ../src/glade/editeventref.glade.h:8
 #: ../src/glade/editevent.glade.h:10
 msgid "_Event type:"
 msgstr "Typ události:"
 
-#: ../src/glade/editeventref.glade.h:9
+#: ../src/glade/editeventref.glade.h:10
 #: ../src/glade/editldsord.glade.h:6
 #: ../src/glade/editevent.glade.h:12
 msgid "_Place:"
 msgstr "_Místo:"
 
-#: ../src/glade/editeventref.glade.h:10
+#: ../src/glade/editeventref.glade.h:11
 msgid "_Role:"
 msgstr "_Role:"
 
@@ -26290,11 +26348,6 @@ msgstr ""
 "Vysoká = Nepřímý důkaz, data kýmkoli oficiálně zaznamenaná po události\n"
 "Velmi vysoká = Přímé důkazy nebo převaha důkazů "
 
-#: ../src/glade/editsourceref.glade.h:14
-#: ../src/glade/editname.glade.h:15
-msgid "Invoke date editor"
-msgstr "Spustit editor data"
-
 #: ../src/glade/editsourceref.glade.h:17
 msgid "Specific location within the information referenced. For a published work, this could include the volume of a multi-volume work and the page number(s). For a periodical, it could include volume, issue, and page numbers. For a newspaper, it could include a column number and page number. For an unpublished source, this could be a sheet number, page number, frame number, etc. A census record might have a line number or dwelling and family numbers in addition to the page number. "
 msgstr "Konkrétní místo v odkazované informaci. V publikované práci může zahrnovat svazek z vícesvazkové práce a čísla stran. V periodiku jím může být ročník, číslo a čísla stran. V novinách může zahrnovat číslo sloupce a číslo strany. Pro nepublikované prameny může zahrnovat číslo strany, tabulky, rámu, ...atd. Záznam ze sčítání osob/domů by krom toho měl obsahovat číslo řádky nebo obydlí a čísla rodin. "
@@ -26386,10 +26439,6 @@ msgstr "Přez_dívka"
 #: ../src/glade/editname.glade.h:31
 msgid "_Sort as:"
 msgstr "_Třídit podle:"
-
-#: ../src/glade/editevent.glade.h:1
-msgid "A unique ID to identify the event"
-msgstr "Unikátní ID identifikující událost"
 
 #: ../src/glade/editevent.glade.h:3
 msgid "Close window without changes"
