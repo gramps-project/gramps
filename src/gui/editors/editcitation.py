@@ -381,6 +381,9 @@ class EditCitation(EditPrimary):
     def save(self, *obj):
         """Save the data."""
         self.ok_button.set_sensitive(False)
+        # FIXME: CITATION: It should be possible to save a citation even when
+        # there is no data in it. On the other hand, it should not be possible
+        # to save a source that has no data.
         if self.object_is_empty():
             ErrorDialog(_("Cannot save citation"),
                         _("No data exists for this citation. Please "
@@ -388,6 +391,8 @@ class EditCitation(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
         
+        # FIXME: CITATION: Not only citations, but also sources should be
+        # checked for duplicate Gramps IDs.
         (uses_dupe_id, gramps_id) = self._uses_duplicate_id()
         if uses_dupe_id:
             prim_object = self.get_from_gramps_id(gramps_id)
@@ -439,7 +444,8 @@ class EditCitation(EditPrimary):
         entered date when importing from a XML file, so we can get an
         incorrect fail.
         """
-        
+        # FIXME: CITATION: This should check whether either the citation data or
+        # the source data has changed.
         if self.db.readonly:
             return False
         elif self.obj.handle:

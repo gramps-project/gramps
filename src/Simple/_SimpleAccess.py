@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2007  Donald N. Allingham
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2011  Tim G Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

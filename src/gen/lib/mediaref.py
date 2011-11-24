@@ -89,7 +89,7 @@ class MediaRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase,
         :returns: Returns the list of child objects that may carry textual data.
         :rtype: list
         """
-        return self.attribute_list # + self.source_list
+        return self.attribute_list
 
     def get_citation_child_list(self):
         """

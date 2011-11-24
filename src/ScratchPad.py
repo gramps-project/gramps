@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2011       Tim G Lyons
 #
 # This program is free software; you can redistribute it and/or modiy
 # it under the terms of the GNU General Public License as published by
@@ -141,15 +142,6 @@ def obj2target(target):
          'Note': 'note-link',
          }
     return d[target] if target in d else None
-
-# FIXME: CITATION: Dropping a citation onto an embedded tab should open 
-# CitationEdit. However, note should behave similarly, and although there is
-# code to call EditNote, EditNote does not appear to be called. I don't
-# understand how to get the editor called.
-
-# FIXME: CITATION: It should be possible to drop a source onto an embedded tab,
-# with CitationEdit being opened, However, It is not possible to do the drop,
-# and as described above I do not understand how to get the editor called.
 
 def model_contains(model, data):
     """
