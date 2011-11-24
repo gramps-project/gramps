@@ -221,7 +221,7 @@
                     </child>
                     <child>
                       <object class="GtkCheckButton" id="estimate_age">
-                        <property name="label" translatable="yes">_Estimate missing dates</property>
+                        <property name="label" translatable="yes">_Estimate missing or inexact dates</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>

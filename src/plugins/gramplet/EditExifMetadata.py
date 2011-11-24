@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#!/usr/bin/python
+#!/usr/bin/env python
 
 #
 # Gramps - a GTK+/GNOME based genealogy program
@@ -62,7 +62,7 @@ from gen.plug import Gramplet
 from libmetadata import MetadataView, format_datetime
 from gui.widgets import ValidatableMaskedEntry
 from Errors import ValidationError
-from QuestionDialog import WarningDialog, QuestionDialog, OptionDialog
+from QuestionDialog import QuestionDialog, OptionDialog
 
 from gen.lib import Date
 
@@ -93,7 +93,6 @@ else:
 #------------------------------------------------
 # support functions
 #------------------------------------------------
-
 def _parse_datetime(value):
     """
     Parse date and time and return a datetime object.
@@ -163,8 +162,8 @@ _DATAMAP = {
     "Exif.GPSInfo.GPSAltitudeRef"  : "AltitudeRef",
     "Exif.GPSInfo.GPSAltitude"     : "Altitude",
     "Exif.Photo.DateTimeDigitized" : "Digitized" }
-_DATAMAP  = dict((key, val) for key, val in _DATAMAP.items() )
-_DATAMAP.update( (val, key) for key, val in _DATAMAP.items() )
+_DATAMAP  = dict( (key, val) for key, val in _DATAMAP.items())
+_DATAMAP.update(  (val, key) for key, val in _DATAMAP.items())
 
 # define tooltips for all data entry fields
 _TOOLTIPS = {
@@ -202,7 +201,8 @@ _TOOLTIPS = {
     # GPS Altitude (in meters)
     "Altitude" : _("This is the measurement of Above or Below Sea Level.  It is measured in meters."
         "Example: 200.558, -200.558") }
-_TOOLTIPS  = dict( (key, tooltip) for key, tooltip in _TOOLTIPS.items() )
+_TOOLTIPS  = dict(
+    (key, tooltip) for key, tooltip in _TOOLTIPS.items())
 
 # define tooltips for all buttons
 # common buttons for all images
@@ -230,7 +230,7 @@ _BUTTONTIPS = {
 
     # Delete/ Erase/ Wipe Exif metadata button
     "Delete" : _("WARNING:  This will completely erase all Exif metadata "
-        "from this image!  Are you sure that you want to do this?") }
+        "from this image!  Are you sure that you want to do this?")}
 
 # ------------------------------------------------------------------------
 #
@@ -292,25 +292,25 @@ class EditExifMetadata(Gramplet):
         main_vbox.pack_start(messagearea, expand =False, fill =True, padding =0)
 
         # Separator line before the buttons
-        main_vbox.pack_start(gtk.HSeparator(), expand =False, fill =True, padding =5)
+        main_vbox.pack_start(gtk.HSeparator(), expand =False, fill =False, padding =0)
 
         # Thumbnail, ImageType, and Convert buttons
         new_hbox = gtk.HBox(False, 0)
-        main_vbox.pack_start(new_hbox, expand =False, fill =True, padding =5)
+        main_vbox.pack_start(new_hbox, expand =False, fill =False, padding =0)
         new_hbox.show()
 
         # Thumbnail button
         event_box = gtk.EventBox()
-        new_hbox.pack_start(event_box, expand =False, fill =True, padding =5)
+        new_hbox.pack_start(event_box, expand =False, fill =False, padding =0)
         event_box.show()
 
         button = self.__create_button(
-            "Thumbnail", _("Thumbnail"), [self.thumbnail_view])
+            "Thumbnail", _("Thumbnail"), [self.thumbnail_view], )
         event_box.add(button)
 
         # Image Types
         event_box = gtk.EventBox()
-        new_hbox.pack_start(event_box, expand =False, fill =True, padding =5)
+        new_hbox.pack_start(event_box, expand =False, fill =False, padding =0)
         event_box.show()
 
         combo_box = gtk.combo_box_new_text()
@@ -323,7 +323,7 @@ class EditExifMetadata(Gramplet):
 
         # Convert button
         event_box = gtk.EventBox()
-        new_hbox.pack_start(event_box, expand =False, fill =True, padding =5)
+        new_hbox.pack_start(event_box, expand =False, fill =False, padding =0)
         event_box.show()        
 
         button = self.__create_button(
@@ -335,7 +335,7 @@ class EditExifMetadata(Gramplet):
 
         # Help, Edit, and Delete buttons
         new_hbox = gtk.HBox(False, 0)
-        main_vbox.pack_start(new_hbox, expand =False, fill =True, padding =5)
+        main_vbox.pack_start(new_hbox, expand =False, fill =False, padding =0)
         new_hbox.show()
 
         for (widget, text, callback, icon, is_sensitive) in [
@@ -343,9 +343,13 @@ class EditExifMetadata(Gramplet):
             ("Edit",   False, [self.display_edit],  gtk.STOCK_EDIT,   False),
             ("Delete", False, [self._wipe_dialog], gtk.STOCK_DELETE, False) ]:
 
+            event_box = gtk.EventBox()
+            new_hbox.pack_start(event_box, expand =False, fill =False, padding =0)
+            event_box.show()
+
             button = self.__create_button(
                 widget, text, callback, icon, is_sensitive)
-            new_hbox.pack_start(button, expand =False, fill =True, padding =5) 
+            event_box.add(button)
 
         # add viewing model
         self.view = MetadataView()
@@ -362,15 +366,8 @@ class EditExifMetadata(Gramplet):
         return main_vbox
 
     def db_changed(self):
-        """
-        if media changes, then update addon...
-        """
-        self.dbstate.db.connect('media-add', self.update)
-        self.dbstate.db.connect('media-delete', self.update)
-        self.dbstate.db.connect('media-edit', self.update)
-        self.dbstate.db.connect('media-rebuild', self.update)
-
-        self.connect_signal("Media", self.update)
+        self.dbstate.db.connect('media-update', self.update)
+        self.connect_signal('Media', self.update)
         self.update()
 
     def active_changed(self, handle):
@@ -927,92 +924,91 @@ class EditExifMetadata(Gramplet):
         """
         creates the editing area fields.
         """
-
         tip = _("Click the close button when you are finished modifying this "
                 "image's Exif metadata.")
 
-        self.edtarea = gtk.Window(gtk.WINDOW_TOPLEVEL)
-        self.edtarea.tooltip = tip
-        self.edtarea.set_title( self.orig_image.get_description() )
-        self.edtarea.set_default_size(525, 560)
-        self.edtarea.set_border_width(10)
-        self.edtarea.connect("destroy", lambda w: self.edtarea.destroy() )
+        main_scr_width = self.uistate.screen_width()
+        # on a screen of 1024 x 768, width = 614, height will always remain at 600 for netbooks
+        # with a screen height of 600 maximum...
+        width_  =  int(main_scr_width * 0.60)
+
+        edtarea = gtk.Window(gtk.WINDOW_TOPLEVEL)
+        edtarea.tooltip = tip
+        edtarea.set_title( self.orig_image.get_description())
+        edtarea.set_size_request((width_ + 45), 550)
+        edtarea.set_border_width(10)
+        width_ -= 10 # width = 604
+        edtarea.connect("destroy", lambda w: edtarea.destroy())
 
         # create a new scrolled window.
         scrollwindow = gtk.ScrolledWindow()
+        scrollwindow.set_size_request(width_, 600)
         scrollwindow.set_border_width(10)
+        width_ -= 10 # width = 594
+
+        # will show scrollbars only when necessary
         scrollwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        self.edtarea.add(scrollwindow)
+        edtarea.add(scrollwindow)
         scrollwindow.show()
 
-        vbox = self.__build_edit_gui()
+        vbox = self.__build_edit_gui(width_)
         scrollwindow.add_with_viewport(vbox)
-        self.edtarea.show()
+        vbox.show_all()
+        edtarea.show()
 
         # display all fields and button tooltips...
-        # need to add Save and Close over here...
-        _BUTTONTIPS.update( (key, tip) for key, tip in {
+        # need to add Save, Clear, and Close over here...
+        _BUTTONTIPS.update(
+            (key, tip) for key, tip in {
 
-            # Add the Save button...
-            "Save" : _("Saves a copy of the data fields into the image's Exif metadata."),
+                # Add the Save button...
+                "Save" : _("Saves a copy of the data fields into the image's Exif metadata."),
 
-            # Add the Close button...
-            "Close" : _("Closes this popup Edit window.\n"
-                "WARNING: This action will NOT Save any changes/ modification made to this "
-                "image's Exif metadata."),
+                # Re- display the data fields button...
+                "Copy" : _("Re -display the data fields that were cleared from the Edit Area."),
 
-            # Clear button...
-            "Clear" : _("This button will clear all of the data fields shown here."),
+                # Add the Clear button...
+                "Clear" : _("This button will clear all of the data fields shown here."),
 
-            # Re- display the data fields button...
-            "Copy" : _("Re -display the data fields that were cleared from the Edit Area.") }.items() )
+                # Add the Close button...
+                "Close" : _("Closes this popup Edit window.\n"
+                    "WARNING: This action will NOT Save any changes/ modification made to this "
+                    "image's Exif metadata.") }.items() )
 
         # True, True -- all data fields and button tooltips will be displayed...
         self._setup_widget_tips(fields =True, buttons = True)
  
         # display all data fields and their values...
-        self.edit_area(_get_exif_keypairs(self.plugin_image) )
+        self.edit_area(_get_exif_keypairs(self.plugin_image))
 
-    def __build_edit_gui(self):
+    def __build_edit_gui(self, width_):
         """
-        will build the edit screen ...
+        creates the content for the edit window...
         """
         main_vbox = gtk.VBox()
         main_vbox.set_border_width(10)
-        main_vbox.set_size_request(480, 460)
+        width_ -= 10 # width = 584
 
-        # Notification Area for the Edit Area...
-        label = self.__create_label("EditMessage", False, width =440, height = 25)
-        main_vbox.pack_start(label, expand = False, fill =True, padding =5)
+        # 520 is the normal height of this vertical box...
+        main_vbox.set_size_request(width_, 500)
+
+        # Notification Area for the Edit Area window...
+        label = self.__create_label("EditMessage", False, width =(width_ - 62), height =25)
+        main_vbox.pack_start(label, expand = False, fill =True, padding =0)
 
         # Media Title Frame...
+        width_ -= 10 # 574 on a screen width of 1024
         title_frame = gtk.Frame(_("Media Object Title"))
-        title_frame.set_size_request(470, 60)
+        title_frame.set_size_request(width_, 60) # width = 574
         main_vbox.pack_start(title_frame, expand =False, fill =True, padding =10)
         title_frame.show()
 
-        new_hbox = gtk.HBox(False, 0)
-        title_frame.add(new_hbox)
-        new_hbox.show()
-
-        event_box = self.__create_event_entry("MediaTitle", 440, 40, 100, "Entry", [] )
-        new_hbox.pack_start(event_box, expand =False, fill =True, padding =10)
-
-        # create the data fields...
-        # ***Description, Artist, and Copyright
-        gen_frame = gtk.Frame(_("General Data"))
-        gen_frame.set_size_request(470, 155)
-        main_vbox.pack_start(gen_frame, expand =False, fill =True, padding =10)
-        gen_frame.show()
-
         new_vbox = gtk.VBox(False, 0)
-        gen_frame.add(new_vbox)
+        title_frame.add(new_vbox)
         new_vbox.show()
 
         for widget, text in [
-            ("Description", _("Description :") ),
-            ("Artist",      _("Artist :") ),
-            ("Copyright",   _("Copyright :") ) ]:
+            ("MediaTitle", _("media Title: ")) ]:
  
             new_hbox = gtk.HBox(False, 0)
             new_vbox.pack_start(new_hbox, expand =False, fill =False, padding =5)
@@ -1021,17 +1017,42 @@ class EditExifMetadata(Gramplet):
             label = self.__create_label(False, text, width =90, height =25)
             new_hbox.pack_start(label, expand =False, fill =False, padding =0)
 
-            event_box = self.__create_event_entry(widget, 360, 30, 100, "Entry", [] )
+            event_box = self.__create_event_entry(widget, 464, 30, 100, "Entry", [])
+            new_hbox.pack_start(event_box, expand =False, fill =False, padding =0)
+
+        # create the data fields...
+        # ***Description, Artist, and Copyright
+        gen_frame = gtk.Frame(_("General Data"))
+        gen_frame.set_size_request(width_, 155) # width = 574
+        main_vbox.pack_start(gen_frame, expand =False, fill =True, padding =10)
+        gen_frame.show()
+
+        new_vbox = gtk.VBox(False, 0)
+        gen_frame.add(new_vbox)
+        new_vbox.show()
+
+        for widget, text in [
+            ("Description", _("Description: ")),
+            ("Artist",      _("Artist: ")),
+            ("Copyright",   _("Copyright: ")) ]:
+ 
+            new_hbox = gtk.HBox(False, 0)
+            new_vbox.pack_start(new_hbox, expand =False, fill =False, padding =5)
+            new_hbox.show()
+
+            label = self.__create_label(False, text, width =90, height =25)
+            new_hbox.pack_start(label, expand =False, fill =False, padding =0)
+
+            event_box = self.__create_event_entry(widget, 464, 30, 100, "Entry", [])
             new_hbox.pack_start(event_box, expand =False, fill =False, padding =0)
 
         # iso format: Year, Month, Day spinners...
         datetime_frame = gtk.Frame(_("Date/ Time"))
-        datetime_frame.set_size_request(470, 90)
+        datetime_frame.set_size_request(width_, 90) # width = 574
         main_vbox.pack_start(datetime_frame, expand =False, fill =False, padding =0)
         datetime_frame.show()
 
         new_vbox = gtk.VBox(False, 0)
-        new_vbox.set_border_width(5)
         datetime_frame.add(new_vbox)
         new_vbox.show()
 
@@ -1040,25 +1061,26 @@ class EditExifMetadata(Gramplet):
         new_hbox.show()
 
         for widget, text in [
-            ("Original",     _("Original Date/ Time :") ),
-            ("Modified",     _("Last Changed :") ) ]:
+            ("Original", _("Original: ")),
+            ("Modified", _("Modified: ")) ]:
 
             vbox2 = gtk.VBox(False, 0)
             new_hbox.pack_start(vbox2, expand =False, fill =False, padding =5)
             vbox2.show()
 
-            label = self.__create_label(widget, text, width =150, height =25)
+            label = self.__create_label(widget, text, width =90, height =25)
             vbox2.pack_start(label, expand =False, fill =False, padding =0)
             label.show()
 
-            event_box = self.__create_event_entry(widget, 215, 30, 0, "Validate", [self.validate_datetime] )
+            # each box width = 157
+            event_box = self.__create_event_entry(widget, 272, 30, 0, "Validate", [self.validate_datetime])
             vbox2.pack_start(event_box, expand =False, fill =False, padding =0)
 
             self.dates[widget] = None
 
         # GPS coordinates...
         latlong_frame = gtk.Frame(_("Latitude/ Longitude/ Altitude GPS coordinates"))
-        latlong_frame.set_size_request(470, 80)
+        latlong_frame.set_size_request(width_, 80) # width = 574
         main_vbox.pack_start(latlong_frame, expand =False, fill =False, padding =0)
         latlong_frame.show()
 
@@ -1083,7 +1105,7 @@ class EditExifMetadata(Gramplet):
             vbox2.pack_start(label, expand =False, fill =False, padding =0)
             label.show()
 
-            event_box = self.__create_event_entry(widget, 141, 30, 0, "Validate", [self.validate_coordinate])
+            event_box = self.__create_event_entry(widget, 178, 30, 0, "Validate", [self.validate_coordinate])
             vbox2.pack_start(event_box, expand =False, fill =False, padding =0)
 
         # Help, Save, Clear, Copy, and Close buttons...
@@ -1093,21 +1115,19 @@ class EditExifMetadata(Gramplet):
 
         for (widget, text, callback, icon, is_sensitive) in [
             ("Help",  False, [self.__help_page],                 gtk.STOCK_HELP, True),
-            ("Save",  False, [self.save_metadata,
-                             self.update],                       gtk.STOCK_SAVE, True), 
+            ("Save",  False, [self.save_metadata, self.update],  gtk.STOCK_SAVE, True), 
             ("Clear", False, [self.clear_metadata],              gtk.STOCK_CLEAR, True),
             ("Copy",  False, [self.__display_exif_tags],         gtk.STOCK_COPY, True),
             ("Close", False, [lambda w: self.edtarea.destroy()], gtk.STOCK_CLOSE, True) ]:
 
             event_box = gtk.EventBox()
-            event_box.set_size_request(81, 30)
-            new_hbox.pack_start(event_box, expand =False, fill =True, padding =5)
+            event_box.set_size_request(112, 30)
+            new_hbox.pack_start(event_box, expand =False, fill =True, padding =1)
             event_box.show()
 
-            event_box.add( self.__create_button(
-                widget, text, callback, icon, is_sensitive) )
-
-        main_vbox.show_all()
+            event_box.add(self.__create_button(
+                widget, text, callback, icon, is_sensitive)
+            )
         return main_vbox
 
     def set_datetime(self, widget, field):
@@ -1149,7 +1169,6 @@ class EditExifMetadata(Gramplet):
         """
         QuestionDialog(_("Edit Image Exif Metadata"), _("WARNING!  You are about to completely "
             "delete the Exif metadata from this image?"), gtk.STOCK_DELETE, self.strip_metadata)
-
         self.update()
 
     def clear_metadata(self, object):

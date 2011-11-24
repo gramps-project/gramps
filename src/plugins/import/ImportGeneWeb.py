@@ -587,8 +587,8 @@ class GeneWebParser(object):
                 title = self.create_event(
                            gen.lib.EventType.NOB_TITLE, ttitle, tstart, tplace)
                 # TODO: Geneweb has a start date and an end date, and therefore
-                # supprts stuff like: FROM about 1955 TO between 1998 and 1999
-                # gramps only supports one single date ore range.
+                # supports stuff like: FROM about 1955 TO between 1998 and 1999
+                # gramps only supports one single date or range.
                 if tname and tname != "*":
                     n = gen.lib.Note()
                     n.set(tname)

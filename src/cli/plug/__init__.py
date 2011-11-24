@@ -88,14 +88,14 @@ def _convert_str_to_match_type(str_val, type_val):
         if str_val.isdigit():
             return int(str_val)
         else:
-            print "%s is not an integer number" % str_val
+            print "'%s' is not an integer number" % str_val
             return 0
         
     elif ret_type == float:
         try:
             return float(str_val)
         except ValueError:
-            print "%s is not a decimal number" % str_val
+            print "'%s' is not a decimal number" % str_val
             return 0.0
         
     elif ret_type == bool:
@@ -104,13 +104,13 @@ def _convert_str_to_match_type(str_val, type_val):
         elif str_val == str(False):
             return False
         else:
-            print "%s is not a boolean-- try 'True' or 'False'" % str_val
+            print "'%s' is not a boolean-- try 'True' or 'False'" % str_val
             return False
     
     elif ret_type == list:
         ret_val = []
         if not ( str_val.startswith("[") and str_val.endswith("]") ):
-            print "%s is not a list-- try: [%s]" % (str_val, str_val)
+            print "'%s' is not a list-- try: [%s]" % (str_val, str_val)
             return ret_val
         
         entry = ""
@@ -526,7 +526,7 @@ class CommandLineReport(object):
 
         else:
             #there was a show option given, but the option is invalid
-            print ("option %s not valid. Use 'show=all' to see all valid "  
+            print ("option '%s' not valid. Use 'show=all' to see all valid "  
                   "options." % self.show)
 
 #------------------------------------------------------------------------

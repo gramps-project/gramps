@@ -1,9 +1,8 @@
 /*
-# encoding: utf-8
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2010 Rob G. Healey <robhealey1@gmail.com>
+# Copyright (C) 2011 Rob G. Healey <robhealey1@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,31 +20,27 @@
 #
 # $Id$
 #
-# 
-
-    place title Holder
-------------------------------------------------- */
-div#geo-info {
-    font: bold 11px sans-serif;
+###################################################### */
+body#FamilyMap {
+    background-color: #000;
+    margin-left:      7px;
+    margin-right:     7px;
+    width:            965px;
 }
-
-/*    Map holder
-------------------------------------------------- */
 div#map_canvas {
-    margin: 5px;
-    border: solid 4px #00029D;
-    width: 98%;
-    height: 800px;
+    margin-left:      10px;
+    margin-right:     10px;
+    border:           solid 4px #000;
+    width:            931px;
+    height:           800px;
 }
-
-/*    Drop button Holder
-------------------------------------------------- */
 button#drop {
-    font-weight: bold;
-    margin-left: 5px;
-    padding: 5px;
-    text-align: center;
-    width: auto;
-    height: auto;
-    border: solid 2px #00029D;
+    background-color: purple;
+    color:            #FFF;
+    font:             bold .8em sans-serif;
+    padding:          10px;
+    margin-top:       0px;
+    margin-bottom:    10px;
+    margin-left:      10px;
+    border:           solid 2px green;
 }

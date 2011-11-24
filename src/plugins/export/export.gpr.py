@@ -38,7 +38,7 @@ plg.fname = 'ExportCsv.py'
 plg.ptype = EXPORT
 plg.export_function = 'exportData'
 plg.export_options = 'CSVWriterOptionBox'
-plg.export_options_title = ('CSV spreadsheet options')
+plg.export_options_title = _('CSV spreadsheet options')
 plg.extension = "csv"
 
 #------------------------------------------------------------------------
@@ -59,7 +59,7 @@ plg.fname = 'ExportFtree.py'
 plg.ptype = EXPORT
 plg.export_function = 'writeData'
 plg.export_options = 'WriterOptionBox'
-plg.export_options_title = ('Web Family Tree export options')
+plg.export_options_title = _('Web Family Tree export options')
 plg.extension = "wft"
 
 #------------------------------------------------------------------------
@@ -81,7 +81,7 @@ plg.fname = 'ExportGedcom.py'
 plg.ptype = EXPORT
 plg.export_function = 'export_data'
 plg.export_options = 'WriterOptionBox'
-plg.export_options_title = ('GEDCOM export options')
+plg.export_options_title = _('GEDCOM export options')
 plg.extension = "ged"
 
 #------------------------------------------------------------------------
@@ -102,7 +102,7 @@ plg.fname = 'ExportGeneWeb.py'
 plg.ptype = EXPORT
 plg.export_function = 'exportData'
 plg.export_options = 'WriterOptionBox'
-plg.export_options_title = ('GeneWeb export options')
+plg.export_options_title = _('GeneWeb export options')
 plg.extension = "gw"
 
 #------------------------------------------------------------------------
@@ -124,7 +124,7 @@ plg.fname = 'ExportPkg.py'
 plg.ptype = EXPORT
 plg.export_function = 'writeData'
 plg.export_options = 'WriterOptionBox'
-plg.export_options_title = ('Gramps package export options')
+plg.export_options_title = _('Gramps package export options')
 plg.extension = "gpkg"
 
 #------------------------------------------------------------------------
@@ -147,7 +147,7 @@ plg.fname = 'ExportXml.py'
 plg.ptype = EXPORT
 plg.export_function = 'export_data'
 plg.export_options = 'WriterOptionBox'
-plg.export_options_title = ('Gramps XML export options')
+plg.export_options_title = _('Gramps XML export options')
 plg.extension = "gramps"
 
 #------------------------------------------------------------------------
@@ -168,7 +168,7 @@ plg.fname = 'ExportVCalendar.py'
 plg.ptype = EXPORT
 plg.export_function = 'exportData'
 plg.export_options = 'WriterOptionBox'
-plg.export_options_title = ('vCalendar export options')
+plg.export_options_title = _('vCalendar export options')
 plg.extension = "vcs"
 
 #------------------------------------------------------------------------
@@ -189,5 +189,5 @@ plg.fname = 'ExportVCard.py'
 plg.ptype = EXPORT
 plg.export_function = 'exportData'
 plg.export_options = 'WriterOptionBox'
-plg.export_options_title = ('vCard export options')
+plg.export_options_title = _('vCard export options')
 plg.extension = "vcf"

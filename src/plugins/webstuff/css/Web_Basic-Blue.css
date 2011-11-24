@@ -20,14 +20,14 @@
 #
 # $Id: Web_Basic-Blue.css 15540 2010-06-07 16:32:00Z robhealey1 $
 #
-**************************************************************************************************
+*************************************************
 GRAMPS Cascading Style Sheet
 Style Name: Basic Blue Stylesheet
 Original Style Author: Jason M. Simanek (2008)
-***************************************************************************************************
---------------------------------------------------------------------------------------------------
+*************************************************
+-------------------------------------------------
 Color Palette
---------------------------------------------------------------------------------------------------
+-------------------------------------------------
 DK. Blue	#00029D
 Lt. Blue	#BCEAF6
 Green		#13A926
@@ -42,47 +42,13 @@ Unknown     #000
 ===== Web Graphics =====
 Males       Web_Gender_Male.png
 Females     Web_Gender_Female.png
+
+*************************************************
 */
 
 /* NarrativeWeb Styles
 ================================================= */
 body {
-    background-color: #000;
-    color: #FFF;
-}
-
-/* Menu Elements
-================================================= */
-div#navigation ul, div#subnavigation ul {
-    font: normal .9em sans-serif;
-    background-color: #00029D;
-}
-div#navigation ul li, 
-div#subnavigation ul li {
-    border-color: #BCEAF6;
-}
-#navigation ul li:after, #subnavigation ul li:after,
-#alphabet ul li:after {
-    color: #139A26;
-}
-div#navigation ul li a, div#subnavigation ul li a {
-    color: #FFF;
-}
-div#navigation ul li a:hover,
-div#subnavigation ul li a:hover {
-    color: #000;
-}
-div#navigation ul li.CurrentSection a,
-div#subnavigation ul li.CurrentSection a {
-    background-color: #BCEAF6;
-    font: bold 14px sans;
-    color: #000;
-}
-div#navigation ul li.CurrentSection a:hover {
-    background-color: #BCEAF6;
-    color: #000;
-}
-div#subnavigation ul li.CurrentSection a:hover {
     background-color: #000;
     color: #FFF;
 }
@@ -130,7 +96,7 @@ img {
     padding: 2em 0 0 0;
     background: none;
 }
-.content div.snapshot div.thumbnail a {
+.content div.snapshot div.thumbnail a, .content div.snapshot div.thumbnail img {
     display: block;
     width: 96px;
     margin: 0 auto;
@@ -141,13 +107,6 @@ img {
     margin: 0;
     padding: 0;
     clear: both;
-}
-
-/* Gramps Styled Notes
-------------------------------------------------------- */
-div#grampsstylednote a {
-    color:  Navy;
-    text-decoration: underline;
 }
 
 /* General Text
@@ -214,6 +173,7 @@ ol li a:hover {
 }
 a {
     color: #000;
+    text-decoration: underline;
 }
 a:visited {
     color: #000;
@@ -230,6 +190,49 @@ span.preposition {
 .grampsid {
     font:normal .8em/1.2em monospace;
     color: #000;
+}
+
+/* Menu Elements
+================================================= */
+div#navigation ul, div#subnavigation ul {
+    font: normal .9em sans-serif;
+    background-color: #00029D;
+}
+div#navigation ul li, 
+div#subnavigation ul li {
+    border-color: #BCEAF6;
+}
+#navigation ul li:after, #subnavigation ul li:after,
+#alphabet ul li:after {
+    color: #139A26;
+}
+div#navigation ul li a, div#subnavigation ul li a {
+    color: #FFF;
+}
+div#navigation ul li a:hover,
+div#subnavigation ul li a:hover {
+    color: #000;
+}
+div#navigation ul li.CurrentSection a,
+div#subnavigation ul li.CurrentSection a {
+    background-color: #BCEAF6;
+    font: bold 14px sans;
+    color: #000;
+}
+div#navigation ul li.CurrentSection a:hover {
+    background-color: #BCEAF6;
+    color: #000;
+}
+div#subnavigation ul li.CurrentSection a:hover {
+    background-color: #000;
+    color: #FFF;
+}
+
+/* Gramps Styled Notes
+------------------------------------------------------- */
+div#grampsstylednote a {
+    color:  Navy;
+    text-decoration: underline;
 }
 
 /* Header

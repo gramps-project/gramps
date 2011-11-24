@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 #               2009       Gary Burton
+#               2011  Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -81,6 +82,11 @@ class EditEventRef(EditReference):
         notebook.remove_page(0)
         self.primtab = RefTab(self.dbstate, self.uistate, self.track, 
                               _('_General'), tblref)
+
+    def _post_init(self):
+        date = self.top.get_object('eer_date_entry')
+        if not date.get_text_length():
+            date.grab_focus();
 
     def _init_event(self):
         if not self.db.readonly:

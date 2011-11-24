@@ -5558,7 +5558,10 @@ class GedcomParser(UpdateCallback):
         """
         if not state.location:
             state.location = gen.lib.Location()
-        self.__parse_note(line, state.event, state.level+1)
+        if state.event:
+            self.__parse_note(line, state.event, state.level+1)
+        else:
+            self.__not_recognized(line, state.level)
 
     def __optional_note(self, line, state):
         """

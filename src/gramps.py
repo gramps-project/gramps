@@ -351,14 +351,14 @@ def run():
     try:
         build_user_paths()   
     except OSError, msg:
-        error += [(_("Configuration error"), str(msg))]
+        error += [(_("Configuration error:"), str(msg))]
         return error
     except msg:
         LOG.error("Error reading configuration.", exc_info=True)
         return [(_("Error reading configuration"), str(msg))]
         
     if not mime_type_is_defined(const.APP_GRAMPS):
-        error += [(_("Configuration error"), 
+        error += [(_("Configuration error:"), 
                     _("A definition for the MIME-type %s could not "
                       "be found \n\n Possibly the installation of Gramps "
                       "was incomplete. Make sure the MIME-types "
@@ -425,7 +425,12 @@ def run():
             from guiQML.grampsqml import startqml
             startqml(error, argpars)
         else:
-            from gui.grampsgui import startgtkloop
+            try:
+                from gui.grampsgui import startgtkloop
+            # no DISPLAY is a RuntimeError in an older pygtk (e.g. F14's 2.17)
+            except RuntimeError, msg:
+                error += [(_("Configuration error:"), str(msg))]
+                return error
             startgtkloop(error, argpars)
     else:
         #CLI use of GRAMPS

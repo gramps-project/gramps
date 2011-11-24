@@ -39,7 +39,8 @@ Declare constants used by database modules
 __all__ = (
             ('DBPAGE', 'DBMODE', 'DBCACHE', 'DBLOCKS', 'DBOBJECTS', 'DBUNDO',
              'DBEXT', 'DBMODE_R', 'DBMODE_W', 'DBUNDOFN', 'DBLOCKFN',
-             'DBRECOVFN', 'DBLOGNAME', 'DBFLAGS_O',  'DBFLAGS_R', 'DBFLAGS_D',
+             'DBRECOVFN','BDBVERSFN', 'DBLOGNAME', 'DBFLAGS_O',  'DBFLAGS_R',
+             'DBFLAGS_D',
             ) +
             
             ('PERSON_KEY', 'FAMILY_KEY', 'SOURCE_KEY', 'CITATION_KEY',
@@ -54,9 +55,10 @@ DBEXT     = ".db"           # File extension to be used for database files
 DBUNDOFN  = "undo.db"       # File name of 'undo' database
 DBLOCKFN  = "lock"          # File name of lock file
 DBRECOVFN = "need_recover"  # File name of recovery file
+BDBVERSFN = "bdbversion.txt"# File name of Berkeley DB version file
 DBLOGNAME = ".Db"           # Name of logger
 DBMODE_R  = "r"             # Read-only access
-DBMODE_W  = "w"             # Full Reaw/Write access
+DBMODE_W  = "w"             # Full Read/Write access
 DBPAGE    = 16384           # Size of the pages used to hold items in the database
 DBMODE    = 0666            # Unix mode for database creation
 DBCACHE   = 0x4000000       # Size of the shared memory buffer pool

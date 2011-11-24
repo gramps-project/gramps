@@ -95,17 +95,12 @@ import gen.mime
 from gen.display.name import displayer as _nd
 from DateHandler import displayer as _dd
 from gen.proxy import PrivateProxyDb, LivingProxyDb
-from libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
+from libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS, openstreet_jsc, google_jsc
 
-# import for Place Map Pages...
-from libhtmlconst import openstreet_jsc, google_jsc
-
-# import HTML Class from
-# src/plugins/lib/libhtml.py
+# import HTML Class from src/plugins/lib/libhtml.py
 from libhtml import Html
 
-# import styled notes from
-# src/plugins/lib/libhtmlbackend.py
+# import styled notes from src/plugins/lib/libhtmlbackend.py
 from libhtmlbackend import HtmlBackend, process_spaces
 
 from libgedcom import make_gedcom_date
@@ -344,7 +339,7 @@ class BasePage(object):
         self.noid = report.options['nogid']
         self.linkhome = report.options['linkhome']
         self.create_media = report.options['gallery']
-        self.inc_thumbnails = report.options['inc_thumbnails']
+        self.create_thumbs_only = report.options['create_thumbs_only']
         self.inc_families = report.options['inc_families']
         self.inc_events = report.options['inc_events']
 
@@ -653,8 +648,6 @@ class BasePage(object):
         @param: place_lat_long -- for use in Family Map Pages
         """
         placetitle = place.get_title()
-        latitude, longitude = "", ""
-
         latitude = place.get_latitude()
         longitude = place.get_longitude()
 
@@ -1249,12 +1242,13 @@ class BasePage(object):
         inc_repos = True   
         if (not self.report.inc_repository or
             not len(self.report.database.get_repository_handles()) ):
-                inc_repos = False  
+                inc_repos = False
 
-        # include thumbnails preview page or not?
-        inc_thumbnails = True
-        if (not self.create_media or not self.report.inc_thumbnails):
-            inc_thumbnails = False
+        # create media pages...
+        if self.create_media:
+            _create_media_link = True
+            if self.create_thumbs_only:
+                _create_media_link = False 
 
         # determine which menu items will be available?
         navs = [
@@ -1265,8 +1259,8 @@ class BasePage(object):
             ('families',                _("Families"),      self.report.inc_families),
             ('places',                  _("Places"),        True),
             ('events',                  _("Events"),        self.report.inc_events), 
-            ('media',                   _("Media"),         self.create_media),
-            ('thumbnails',              _("Thumbnails"),    inc_thumbnails),
+            ('media',                   _("Media"),         _create_media_link),
+            ('thumbnails',              _("Thumbnails"),    True),
             ('sources',                 _("Sources"),       True),
             ('repositories',            _("Repositories"),  inc_repos),
             ("addressbook",             _("Address Book"),  self.report.inc_addressbook),
@@ -1982,7 +1976,7 @@ class BasePage(object):
             spouse = db.get_person_from_handle(spouse_handle)
         rtype = str(family.get_relationship())
 
-        # display family relationship status...
+        # display family relationship status, and add spouse to FamilyMapPages
         if spouse:
             if self.familymappages:
                 self._get_event_place(spouse, ppl_handle_list, place_lat_long)
@@ -2093,9 +2087,12 @@ class BasePage(object):
         with Html("div", class_ = "thumbnail") as thumbnail:
 
             # begin hyperlink
-            hyper = Html("a", href = url, title = name) + (
-                Html("img", src = img_url, alt = name)
-            )
+            if not self.create_thumbs_only:
+                hyper = Html("a", href = url, title = name) + (
+                    Html("img", src = img_url, alt = name)
+                )
+            else:
+                hyper = Html("img", src =img_url, alt =name)
             thumbnail += hyper
 
             if usedescr:
@@ -2114,20 +2111,24 @@ class BasePage(object):
         @param: usedescr - add description to hyperlink
         """
         url = self.report.build_url_fname(handle, "img", up)
+        name = html_escape(name)
 
         # begin thumbnail division
         with Html("div", class_ = "thumbnail") as thumbnail:
+            document_url = self.report.build_url_image("document.png", "images", up)
 
-            # begin hyperlink
-            hyper = Html("a", href = url, title = html_escape(name))
-            thumbnail += hyper
-
-            url = self.report.build_url_image("document.png", "images", up)
-            hyper += Html("img", src = url, alt = html_escape(name), title = html_escape(name))
+            if not self.create_thumbs_only:
+                document_link = Html("a", href =url, title = name) + (
+                    Html("img", src =document_url, alt =name)
+                    )
+            else:
+                document_link = Html("img", src =document_url, alt =name)
 
             if usedescr:
-                hyper += Html('br')
-                hyper += Html("span", html_escape(name), inline = True)
+                document_link += Html('br') + (
+                    Html("span", name, inline =True)
+                    )
+            thumbnail += document_link
 
         # return thumbnail division to its callers
         return thumbnail
@@ -2441,10 +2442,10 @@ class IndividualListPage(BasePage):
                                     if not first_family:
                                         tcell += ", "  
                                     use_link = check_person_database(partner_handle, ppl_handle_list)
-                                    if use_link: 
+                                    if use_link:
                                         url = self.report.build_url_fname_html(partner_handle, "ppl")
                                         tcell += self.person_link(url, partner, _NAME_STYLE_DEFAULT,
-                                            gid = partner.gramps_id)
+                                            gid = partner.get_gramps_id())
                                     else:
                                         tcell += self.get_name(partner)
                                     first_family = False
@@ -2861,7 +2862,8 @@ class FamilyPage(BasePage):
                 use_link = check_person_database(partner_handle, ppl_handle_list)
                 if use_link:
                     url = self.report.build_url_fname_html(partner_handle, 'ppl', up =self.up)
-                    partner_link = self.person_link(url, partner, _NAME_STYLE_DEFAULT, gid = partner.get_gramps_id())
+                    partner_link = self.person_link(url, partner, _NAME_STYLE_DEFAULT,
+                        gid = partner.get_gramps_id())
                 else:
                     partner_link = self.get_name(partner)
 
@@ -4307,6 +4309,7 @@ class ThumbnailPreviewPage(BasePage):
     def __init__(self, report, title, cb_progress):
         BasePage.__init__(self, report, title)
         db = report.database
+        self.create_thumbs_only = report.options['create_thumbs_only']
 
         sort = Sort.Sort(db)
         self.photo_keys = sorted(self.report.photo_list, key =sort.by_media_title_key)
@@ -4316,8 +4319,13 @@ class ThumbnailPreviewPage(BasePage):
         media_list = []
         for phandle in self.photo_keys:
             photo = db.get_object_from_handle(phandle)
-            if (photo and photo.get_mime_type().startswith("image/")):
-                media_list.append( (photo.get_description(), phandle, photo) )
+            if photo:
+                if photo.get_mime_type().startswith("image"):
+                    media_list.append((photo.get_description(), phandle, photo))
+
+                    if self.create_thumbs_only:
+                        copy_thumbnail(self.report, phandle, photo)
+
         if not media_list:
             return
         media_list.sort()
@@ -4452,19 +4460,27 @@ class ThumbnailPreviewPage(BasePage):
         """
         return Html("a", index, title =html_escape(name), href ="#%d" % index)
 
-    def thumb_hyper_image(self, img_src, subdir, fname, name):
+    def thumb_hyper_image(self, thumbnailUrl, subdir, fname, name):
         """
         eplaces media_link() because it doesn't work for this instance
         """
         name = html_escape(name)
         url = "/".join(self.report.build_subdirs(subdir, fname) + [fname]) + self.ext
 
-        with Html("div", class_ ="thumbnail") as section:
-            thumb = Html("a", title =name, href =url) + (
-                Html("img", alt =name, src =img_src)
-            )
-            section += thumb
+        with Html("div", class_ ="content", id ="ThumbnailPreview") as section:
+            with Html("div", class_="snapshot") as snapshot:
+                section += snapshot
 
+                with Html("div", class_ ="thumbnail") as thumbnail:
+                    snapshot += thumbnail
+
+                    if not self.create_thumbs_only:
+                        thumbnail_link = Html("a", href =url, title =name) + (
+                            Html("img", src =thumbnailUrl, alt =name)
+                        )
+                    else:
+                        thumbnail_link = Html("img", src =thumbnailUrl, alt =name)
+                    thumbnail += thumbnail_link
         return section
 
 class DownloadPage(BasePage):
@@ -4857,6 +4873,30 @@ class IndividualPage(BasePage):
         # sort place_lat_long based on latitude and longitude order...
         place_lat_long.sort()
 
+        # create the array, if there are more than one set of coordinates to be displayed?
+        if number_markers > 1:
+            if self.googleopts == "FamilyLinks":
+                tracelife = """
+    var tracelife = ["""
+
+                # place titles Array for place maps...
+                titleArray = """
+    var titleArray = ["""
+
+                for index in xrange(0, (number_markers - 1)):
+                    dataline = place_lat_long[index]
+                    latitude, longitude, placetitle = dataline[0], dataline[1], dataline[2]
+                    tracelife += """
+      new google.maps.LatLng(%s, %s),""" % (latitude, longitude)
+                    titleArray += """'%s',""" % placetitle
+
+                dataline = place_lat_long[-1] 
+                latitude, longitude, placetitle = dataline[0], dataline[1], dataline[2]
+                tracelife += """
+      new google.maps.LatLng(%s, %s) ];""" % (latitude, longitude)
+                titleArray += """
+      '%s' ];""" % placetitle
+
         of = self.report.create_file(person.get_handle(), "maps")
         self.up = True
         familymappage, head, body = self.write_header(_("Family Map"))
@@ -4880,18 +4920,19 @@ class IndividualPage(BasePage):
                 src ="http://www.openlayers.org/api/OpenLayers.js", inline =True)
 
         # begin inline javascript code
-        # because jsc is a string, it does NOT have to properly indented
+        # because jsc is a docstring, it does NOT have to properly indented
         with Html("script", type ="text/javascript", indent =False) as jsc:
 
+            # Google Maps add their javascript inside of the head element...
             if self.mapservice == "Google":
                 head += jsc
 
                 # if the number of places is only 1, then use code from imported javascript?
                 if number_markers == 1:
-                    data = place_lat_long[0]
-                    jsc += google_jsc % (data[0], data[1])
+                    dataline = place_lat_long[0]
+                    latitude, longitude = dataline[0], dataline[1]
+                    jsc += google_jsc % (latitude, longitude)
 
-                # Google Maps add their javascript inside of the head element...
                 else:
                     if self.googleopts == "FamilyLinks":
                         jsc += """
@@ -4906,71 +4947,89 @@ class IndividualPage(BasePage):
 
     var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
-    var lifeHistory = [""" % (midX_, midY_, zoomlevel)
-                        for index in xrange(0, (number_markers - 1)):
-                            latitude, longitude = place_lat_long[index][0], place_lat_long[index][1]
-                            jsc += """    new google.maps.LatLng(%s, %s),""" % (latitude, longitude)
-                        latitude, longitude = place_lat_long[-1][0], place_lat_long[-1][1]
-                        jsc += """    new google.maps.LatLng(%s, %s) ];
-
     var flightPath = new google.maps.Polyline({
-      path: lifeHistory,
+      path: %s,
       strokeColor:   "#FF0000",
       strokeOpacity: 1.0,
       strokeWeight:  2
     });
 
    flightPath.setMap(map);
-  }""" % (latitude, longitude)
+  }""" % (midX_, midY_, zoomlevel, lifetrace)
 
                     # Google Maps Markers only...
                     elif self.googleopts == "Markers":
                         if (not midX_ and not midY_):
                             midX_, midY_ = conv_lat_lon(place_lat_long[0][0], place_lat_long[0][1], "D.D8")
+
                         jsc += """
   //<![CDATA[
-  var centre = new google.maps.LatLng(%s, %s);
-  var gpsCoords = [""" % (midX_, midY_)
+  var centre = new google.maps.LatLng(%s, %s);""" % (midX_, midY_)
+                        jsc += """
+    var myCoordinates = ["""
                         for index in xrange(0, (number_markers - 1)):
-                            latitude, longitude = place_lat_long[index][0], place_lat_long[index][1]
-                            jsc += """      new google.maps.LatLng(%s, %s),""" %  (latitude, longitude)
-                        latitude, longitude = place_lat_long[-1][0], place_lat_long[-1][1]
+                            dataline = place_lat_long[index]
+                            latitude, longitude, placetitle = dataline[0], dataline[1], dataline[2]
+                            jsc += """     new google.maps.LatLng(%s, %s),""" % (latitude, longitude)
+
+                        dataline = place_lat_long[-1]
+                        latitude, longitude, placetitle = dataline[0], dataline[1], dataline[2]
                         jsc += """      new google.maps.LatLng(%s, %s)
-  ];
- var markers = [];
+    ];""" % (latitude, longitude)
+                        jsc += """
+  var markers = [];
   var iterator = 0;
-   var map;
+  var map;
  
   function initialize() {
-
     var mapOptions = {
-      zoom:      %d,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      center:    centre
+      scrollwheel:     false,
+      scaleControl:    false,
+      backgroundColor: '#FFFFFF',
+      zoom:            %d,
+      center:          centre,
+      mapTypeId:       google.maps.MapTypeId.ROADMAP
     }
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
   }
-  function drop() {
 
-    for (var i = 0; i < gpsCoords.length; i++) {
+  function drop() {
+    for (var i = 0; i < myCoordinates.length; i++) {
       setTimeout(function() {
-        addMarker();
+        addMarkers();
       }, i * 1000);
     }
   }
-  function addMarker() {
 
+  function addMarkers() {
     markers.push(new google.maps.Marker({
-      position:  gpsCoords[iterator],
+      position:  myCoordinates[iterator],
       map:       map,
       draggable: true,
       animation: google.maps.Animation.DROP
     }));
     iterator++;
   }
-  //]]>""" % (latitude, longitude, zoomlevel)
+  //]]>""" % zoomlevel
 # there is no need to add an ending "</script>",
 # as it will be added automatically by libhtml()!
+
+                        dont = """
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+  function setMarkers(map, locations) {
+    var bounds = new google.maps.LatLngBounds();
+    for (var i = 0; i < locations.length; i++) {
+      var coordinates = locations[i];
+
+      var myLatLng = new google.maps.LatLng(coordinates[1], coordinates[2]);
+      var marker = new google.maps.Marker({
+        position: myLatLng,
+        map:      map,
+        title:    coordinates[0]
+    });
+    bounds.extend(locations[i]);
+    map.fitBounds(bounds);
+  }"""
 
         with Html("div", class_ ="content", id ="FamilyMapDetail") as mapbackground:
             body += mapbackground
@@ -5848,9 +5907,6 @@ class IndividualPage(BasePage):
             hyper = self.person_link(url, person, _NAME_STYLE_DEFAULT)
         else:
             hyper = self.get_name(person)
-
-        # return hyperlink to its callers
-        # can be an actual hyperlink or just a person's name
         return hyper
 
     def pedigree_family(self):
@@ -6284,8 +6340,9 @@ class NavWebReport(Report):
         self.navigation = self.options["navigation"]
 
         self.title = self.options['title']
+
         self.inc_gallery = self.options['gallery']
-        self.inc_thumbnails = self.options['inc_thumbnails']
+        self.create_thumbs_only = self.options['create_thumbs_only']
 
         self.inc_contact = self.options['contactnote'] or \
                            self.options['contactimg']
@@ -6295,9 +6352,6 @@ class NavWebReport(Report):
 
         # include families or not?
         self.inc_families = self.options['inc_families']
-
-        # create a media thumbnail preview page or not?
-        self.inc_thumbnails = self.options['inc_thumbnails']
 
         # create an event pages or not?
         self.inc_events = self.options['inc_events']
@@ -6457,11 +6511,11 @@ class NavWebReport(Report):
 
         # build classes MediaListPage and MediaPage
         if self.inc_gallery:
-            self.gallery_pages(source_list)
+            if not self.create_thumbs_only:
+                self.media_pages(source_list)
 
             # build Thumbnail Preview Page...
-            if self.inc_thumbnails:
-                self.thumbnail_preview_page()
+            self.thumbnail_preview_page()
 
         # Build classes source pages a second time to pick up sources referenced
         # by galleries
@@ -6727,7 +6781,7 @@ class NavWebReport(Report):
             self.user.step_progress()
         self.user.end_progress()
 
-    def gallery_pages(self, source_list):
+    def media_pages(self, source_list):
         """
         creates MediaListPage and MediaPage
         """
@@ -7267,6 +7321,12 @@ class NavWebOptions(MenuReportOptions):
         addopt( "gallery", self.__gallery )
         self.__gallery.connect('value-changed', self.__gallery_changed)
 
+        self.__create_thumbs_only = BooleanOption(_("Create and only use thumbnail- sized images"), True)
+        self.__create_thumbs_only.set_help(_("This options allows you the choice to not create any full- sized"
+            "images as in the Media Page, and only a thumb- sized images or not?"))
+        addopt("create_thumbs_only", self.__create_thumbs_only)
+        self.__create_thumbs_only.connect("value-changed", self.__gallery_changed)
+
         self.__maxinitialimagewidth = NumberOption(_("Max width of initial image"), 
             _DEFAULT_MAX_IMG_WIDTH, 0, 2000)
         self.__maxinitialimagewidth.set_help(_("This allows you to set the maximum width "
@@ -7278,12 +7338,6 @@ class NavWebOptions(MenuReportOptions):
         self.__maxinitialimageheight.set_help(_("This allows you to set the maximum height "
                               "of the image shown on the media page. Set to 0 for no limit."))
         addopt( "maxinitialimageheight", self.__maxinitialimageheight)
-
-        self.__inc_thumbnails = BooleanOption(_("Create a media thumbnails preview page"), False)
-        self.__inc_thumbnails.set_help(_("Whether to create a thumbnail's preview page?  "
-            "This will be hyper- linked to the Media List Page only!")
-                            )
-        addopt("inc_thumbnails", self.__inc_thumbnails)
 
         self.__gallery_changed()
 
@@ -7525,17 +7579,30 @@ class NavWebOptions(MenuReportOptions):
         """
         Handles the changing nature of gallery
         """
+        _gallery_option = self.__gallery.get_value()
+        _create_thumbs_only_option = self.__create_thumbs_only.get_value()
 
-        if not self.__gallery.get_value():
-            self.__maxinitialimagewidth.set_available(False)
-            self.__maxinitialimageheight.set_available(False)
-
-            self.__inc_thumbnails.set_available(False)
-        else:
+        # images and media objects to be used, make all opti8ons available...
+        if _gallery_option:
+            self.__create_thumbs_only.set_available(True)
             self.__maxinitialimagewidth.set_available(True)
             self.__maxinitialimageheight.set_available(True)
 
-            self.__inc_thumbnails.set_available(True)
+            # thumbnail-sized images only...
+            if _create_thumbs_only_option:
+                self.__maxinitialimagewidth.set_available(False)
+                self.__maxinitialimageheight.set_available(False)
+
+            # full- sized images and Media Pages will be created... 
+            else:
+                self.__maxinitialimagewidth.set_available(True)
+                self.__maxinitialimageheight.set_available(True)
+
+        # no images or media objects are to be used...
+        else:
+            self.__create_thumbs_only.set_available(False)
+            self.__maxinitialimagewidth.set_available(False)
+            self.__maxinitialimageheight.set_available(False)
 
     def __living_changed(self):
         """
@@ -7897,6 +7964,8 @@ def build_event_data(db, ppl_handle_list):
                                 if event:  
                                     event_types.append(str(event.type))
                                     event_handle_list.append(evt_ref.ref)
+            
+    # return event_handle_list and event types to its caller
     return event_handle_list, event_types
 
 def check_person_database(phandle, ppl_handle_list):

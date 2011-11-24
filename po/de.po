@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-25 19:41+0200\n"
-"PO-Revision-Date: 2011-10-12 22:34+0200\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2011-11-22 19:13+0100\n"
+"PO-Revision-Date: 2011-11-22 19:37+0100\n"
+"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -597,7 +597,7 @@ msgstr ""
 #: ../src/gen/lib/nameorigintype.py:80 ../src/gen/lib/notetype.py:78
 #: ../src/gen/lib/repotype.py:59 ../src/gen/lib/srcmediatype.py:62
 #: ../src/gen/lib/urltype.py:54 ../src/gui/editors/editmedia.py:167
-#: ../src/gui/editors/editmediaref.py:126
+#: ../src/gui/editors/editmediaref.py:128
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:120
 #: ../src/plugins/gramplet/PersonDetails.py:160
 #: ../src/plugins/gramplet/PersonDetails.py:166
@@ -673,7 +673,7 @@ msgid ""
 "the Repair button"
 msgstr ""
 "Gramps hat ein Problem in der darunter liegenden Berkeley Datenbank "
-"festgestellt. Dies kann mit dem Stammbaum-Manager repariert werden. Die "
+"festgestellt. Dies kann mit dem Stammbaumverwaltung repariert werden. Die "
 "Datenbank wählen und auf die Reparatur-Schaltfläche klicken"
 
 #: ../src/QuestionDialog.py:318 ../src/gui/utils.py:304
@@ -957,10 +957,10 @@ msgstr "Ort"
 #: ../src/gen/plug/docgen/graphdoc.py:229 ../src/gui/configure.py:462
 #: ../src/gui/filtereditor.py:295 ../src/gui/editors/editlink.py:84
 #: ../src/gui/editors/editmedia.py:87 ../src/gui/editors/editmedia.py:170
-#: ../src/gui/editors/editmediaref.py:129
+#: ../src/gui/editors/editmediaref.py:131
 #: ../src/gui/views/treemodels/mediamodel.py:128
 #: ../src/plugins/drawreport/AncestorTree.py:1012
-#: ../src/plugins/drawreport/DescendTree.py:1613
+#: ../src/plugins/drawreport/DescendTree.py:1608
 #: ../src/plugins/export/ExportCsv.py:341
 #: ../src/plugins/export/ExportCsv.py:458
 #: ../src/plugins/gramplet/QuickViewGramplet.py:107
@@ -1391,26 +1391,26 @@ msgstr "unbekannt"
 msgid "Invalid"
 msgstr "Ungültig"
 
-#: ../src/Utils.py:91 ../src/gui/editors/editsourceref.py:140
+#: ../src/Utils.py:91 ../src/gui/editors/editsourceref.py:149
 msgid "Very High"
 msgstr "Sehr hoch"
 
-#: ../src/Utils.py:92 ../src/gui/editors/editsourceref.py:139
+#: ../src/Utils.py:92 ../src/gui/editors/editsourceref.py:148
 #: ../src/plugins/tool/FindDupes.py:63
 msgid "High"
 msgstr "Hoch"
 
-#: ../src/Utils.py:93 ../src/gui/editors/editsourceref.py:138
+#: ../src/Utils.py:93 ../src/gui/editors/editsourceref.py:147
 #: ../src/plugins/webreport/NarrativeWeb.py:1734
 msgid "Normal"
 msgstr "Normal"
 
-#: ../src/Utils.py:94 ../src/gui/editors/editsourceref.py:137
+#: ../src/Utils.py:94 ../src/gui/editors/editsourceref.py:146
 #: ../src/plugins/tool/FindDupes.py:61
 msgid "Low"
 msgstr "Niedrig"
 
-#: ../src/Utils.py:95 ../src/gui/editors/editsourceref.py:136
+#: ../src/Utils.py:95 ../src/gui/editors/editsourceref.py:145
 msgid "Very Low"
 msgstr "Sehr niedrig"
 
@@ -1795,7 +1795,7 @@ msgstr "Bestätigung zum Löschen"
 
 #: ../src/UndoHistory.py:177
 msgid "Are you sure you want to clear the Undo history?"
-msgstr "Bist du sich sicher, die Bearbeitungschronik zu leeren?"
+msgstr "Willst du wirklich die Bearbeitungschronik leeren?"
 
 #: ../src/UndoHistory.py:178
 msgid "Clear"
@@ -2127,11 +2127,12 @@ msgstr "Du hast keinen Schreibzugriff auf die ausgewählte Datei."
 
 #: ../src/cli/grampscli.py:159 ../src/cli/grampscli.py:162
 #: ../src/gui/dbloader.py:314 ../src/gui/dbloader.py:317
+#: ../src/gui/dbloader.py:320
 msgid "Cannot open database"
 msgstr "Kann Datenbank nicht öffnen"
 
 #: ../src/cli/grampscli.py:166 ../src/gui/dbloader.py:188
-#: ../src/gui/dbloader.py:321
+#: ../src/gui/dbloader.py:324
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Kann folgende Datei nicht öffnen: %s"
@@ -2205,7 +2206,20 @@ msgstr ""
 "Bitte aktualisiere die entsprechende Version oder verwende XML um die Daten "
 "zwischen verschiedenen Datenbankversionen zu portieren."
 
-#: ../src/gen/db/exceptions.py:92
+#: ../src/gen/db/exceptions.py:93
+#, python-format
+msgid ""
+"Gramps stores its data in a Berkeley Database. The family tree you try to "
+"load was created with version %(env_version)s of the Berkeley DB. However, "
+"the Gramps version in use right now employs version %(bdb_version)s of the "
+"Berkeley DB. So you are trying to load data created in a newer format into "
+"an older program; this is bound to fail. The right approach in this case is "
+"to use XML export and import. So try to open the family tree on that "
+"computer with that software that created the family tree, export it to XML "
+"and load that XML into the version of Gramps you intend to use."
+msgstr ""
+
+#: ../src/gen/db/exceptions.py:116
 msgid ""
 "Gramps has detected a problem in opening the 'environment' of the underlying "
 "Berkeley database used to store this Family Tree. The most likely cause is "
@@ -2229,7 +2243,7 @@ msgstr ""
 "importiere die XML Datei. Alternative, es kann möglich sein deine Datenbank "
 "zu aktualisieren."
 
-#: ../src/gen/db/exceptions.py:115
+#: ../src/gen/db/exceptions.py:139
 msgid ""
 "You cannot open this database without upgrading it.\n"
 "If you upgrade then you won't be able to use previous versions of Gramps.\n"
@@ -3182,9 +3196,9 @@ msgid "Matrilineal"
 msgstr "Matrilineal"
 
 #: ../src/gen/lib/notetype.py:80 ../src/gui/configure.py:1096
-#: ../src/gui/editors/editeventref.py:77 ../src/gui/editors/editmediaref.py:91
-#: ../src/gui/editors/editreporef.py:73 ../src/gui/editors/editsourceref.py:75
-#: ../src/gui/editors/editsourceref.py:81 ../src/glade/editmediaref.glade.h:11
+#: ../src/gui/editors/editeventref.py:78 ../src/gui/editors/editmediaref.py:93
+#: ../src/gui/editors/editreporef.py:73 ../src/gui/editors/editsourceref.py:76
+#: ../src/gui/editors/editsourceref.py:82 ../src/glade/editmediaref.glade.h:11
 #: ../src/glade/editname.glade.h:14
 msgid "General"
 msgstr "Allgemeines"
@@ -3469,7 +3483,7 @@ msgstr "Sonstiges"
 #: ../src/gen/plug/_pluginreg.py:1081 ../src/gen/plug/_pluginreg.py:1086
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
-msgstr "FEHLER: Lesen der Zusatzmodul Registrierung %(filename)s gescheitert"
+msgstr "FEHLER: Lesen der Zusatzmodulregistrierung %(filename)s gescheitert"
 
 #: ../src/gen/plug/_pluginreg.py:1100
 #, python-format
@@ -3477,8 +3491,8 @@ msgid ""
 "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s"
 "\" which is invalid for Gramps \"%(gramps_version)s\"."
 msgstr ""
-"FEHLER: Plugin Datei %(filename)s hat die falsche Version: sollte sein "
-"\"%(gramps_version)s\" aber ist aktuell \"%(gramps_target_version)s\"."
+"FEHLER: Zusatzmoduldatei %(filename)s hat die falsche Version: sollte sein "
+"\"%(gramps_version)s\" ist aber aktuell \"%(gramps_target_version)s\"."
 
 #: ../src/gen/plug/_pluginreg.py:1121
 #, python-format
@@ -3958,8 +3972,8 @@ msgstr "Schlussnotizen"
 #: ../src/plugins/textreport/IndivComplete.py:553
 #: ../src/plugins/webreport/NarrativeWeb.py:1315
 #: ../src/plugins/webreport/NarrativeWeb.py:1497
-#: ../src/plugins/webreport/NarrativeWeb.py:1568
-#: ../src/plugins/webreport/NarrativeWeb.py:1584
+#: ../src/plugins/webreport/NarrativeWeb.py:1569
+#: ../src/plugins/webreport/NarrativeWeb.py:1585
 msgid "Could not add photo to page"
 msgstr "Kann Photo nicht zur Seite hinzufügen"
 
@@ -4029,7 +4043,7 @@ msgstr "Zum ändern der Reihenfolge Spalten an neue Position ziehen"
 #. #################
 #: ../src/gui/columnorder.py:127 ../src/gui/configure.py:932
 #: ../src/plugins/drawreport/AncestorTree.py:905
-#: ../src/plugins/drawreport/DescendTree.py:1491
+#: ../src/plugins/drawreport/DescendTree.py:1486
 msgid "Display"
 msgstr "Anzeige"
 
@@ -4548,15 +4562,15 @@ msgstr "Jetzt aktualisieren"
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: ../src/gui/dbloader.py:362
+#: ../src/gui/dbloader.py:365
 msgid "All files"
 msgstr "Alle Dateien"
 
-#: ../src/gui/dbloader.py:403
+#: ../src/gui/dbloader.py:406
 msgid "Automatically detected"
 msgstr "Automatisch erkannt"
 
-#: ../src/gui/dbloader.py:412
+#: ../src/gui/dbloader.py:415
 msgid "Select file _type:"
 msgstr "Datei_typ auswählen:"
 
@@ -5631,7 +5645,7 @@ msgstr "_Info"
 
 #: ../src/gui/viewmanager.py:759
 msgid "_Plugin Manager"
-msgstr "_Plug-in Manager"
+msgstr "_Zusatzmodulverwaltung"
 
 #: ../src/gui/viewmanager.py:761
 msgid "_FAQ"
@@ -5825,7 +5839,7 @@ msgstr "Medium:"
 #. #########################
 #: ../src/gui/viewmanager.py:1541
 #: ../src/plugins/drawreport/AncestorTree.py:983
-#: ../src/plugins/drawreport/DescendTree.py:1585
+#: ../src/plugins/drawreport/DescendTree.py:1580
 #: ../src/plugins/textreport/DetAncestralReport.py:770
 #: ../src/plugins/textreport/DetDescendantReport.py:919
 #: ../src/plugins/textreport/DetDescendantReport.py:920
@@ -5879,7 +5893,7 @@ msgstr "Sicherungsverzeichnis wählen"
 
 #: ../src/gui/viewmanager.py:1873
 msgid "Failed Loading Plugin"
-msgstr "Laden des Plug-in fehlgeschlagen"
+msgstr "Laden des Zusatzmodul fehlgeschlagen"
 
 #: ../src/gui/viewmanager.py:1874
 msgid ""
@@ -5887,10 +5901,10 @@ msgid ""
 "Use http://bugs.gramps-project.org to submit bugs of official plugins, "
 "contact the plugin author otherwise. "
 msgstr ""
-"Das Erweiterung wurde nicht geladen. Siehe Hilfemenü Erweiterung Manager für "
-"mehr Informationen.\n"
+"Das Zusatzmodul wurde nicht geladen. Siehe Hilfemenü Zusatzmodulverwaltung "
+"für mehr Informationen.\n"
 "Verwende http://bugs.gramps-project.org um einen Fehler für offizielle "
-"Erweiterungen zu melden, anderenfalls kontaktiere den Autor der Erweiterung. "
+"Zusatzmodule zu melden, anderenfalls kontaktiere den Autor der Erweiterung. "
 
 #: ../src/gui/viewmanager.py:1914
 msgid "Failed Loading View"
@@ -5904,8 +5918,8 @@ msgid ""
 "Use http://bugs.gramps-project.org to submit bugs of official views, contact "
 "the view author (%(firstauthoremail)s) otherwise. "
 msgstr ""
-"Die Ansicht %(name)s wurde nicht geladen. Siehe Hilfemenü, Plugin Manager "
-"für mehr Informationen.\n"
+"Die Ansicht %(name)s wurde nicht geladen. Siehe Hilfemenü, "
+"Zusatzmodulverwaltung für mehr Informationen.\n"
 "Gehe auf http://bugs.gramps-project.org bei offiziellen Ansichten einen "
 "Fehlerbericht zu erstellen, anderenfalls kontaktiere den Autor der Ansicht "
 "(%(firstauthoremail)s). "
@@ -6068,12 +6082,12 @@ msgstr "Kindreferenzen"
 msgid "manual|Editing_Information_About_Events"
 msgstr "Informationen_Über_Ereignisse_Bearbeiten"
 
-#: ../src/gui/editors/editevent.py:97 ../src/gui/editors/editeventref.py:233
+#: ../src/gui/editors/editevent.py:97 ../src/gui/editors/editeventref.py:239
 #, python-format
 msgid "Event: %s"
 msgstr "Ereignis: %s"
 
-#: ../src/gui/editors/editevent.py:99 ../src/gui/editors/editeventref.py:235
+#: ../src/gui/editors/editevent.py:99 ../src/gui/editors/editeventref.py:241
 msgid "New Event"
 msgstr "Neues Ereignis"
 
@@ -6132,21 +6146,22 @@ msgstr "Ereignis bearbeiten (%s)"
 msgid "Delete Event (%s)"
 msgstr "Ereignis (%s) löschen"
 
-#: ../src/gui/editors/editeventref.py:66
-#: ../src/gui/editors/editeventref.py:236
+#: ../src/gui/editors/editeventref.py:67
+#: ../src/gui/editors/editeventref.py:242
 msgid "Event Reference Editor"
 msgstr "Ereignisreferenzeditor"
 
-#: ../src/gui/editors/editeventref.py:83 ../src/gui/editors/editmediaref.py:99
-#: ../src/gui/editors/editname.py:130 ../src/gui/editors/editreporef.py:79
+#: ../src/gui/editors/editeventref.py:84
+#: ../src/gui/editors/editmediaref.py:101 ../src/gui/editors/editname.py:130
+#: ../src/gui/editors/editreporef.py:79
 msgid "_General"
 msgstr "_Allgemeines"
 
-#: ../src/gui/editors/editeventref.py:241
+#: ../src/gui/editors/editeventref.py:247
 msgid "Modify Event"
 msgstr "Ereignis ändern"
 
-#: ../src/gui/editors/editeventref.py:244
+#: ../src/gui/editors/editeventref.py:250
 msgid "Add Event"
 msgstr "Ereignis hinzufügen"
 
@@ -6453,12 +6468,12 @@ msgstr "Verknüpfungeditor"
 msgid "Internet Address"
 msgstr "Internetadresse"
 
-#: ../src/gui/editors/editmedia.py:88 ../src/gui/editors/editmediaref.py:407
+#: ../src/gui/editors/editmedia.py:88 ../src/gui/editors/editmediaref.py:426
 #, python-format
 msgid "Media: %s"
 msgstr "Medium: %s"
 
-#: ../src/gui/editors/editmedia.py:90 ../src/gui/editors/editmediaref.py:409
+#: ../src/gui/editors/editmedia.py:90 ../src/gui/editors/editmediaref.py:428
 msgid "New Media"
 msgstr "Neues Medium"
 
@@ -6481,12 +6496,12 @@ msgstr ""
 msgid "Cannot save media object. ID already exists."
 msgstr "Kann Medienobjekt nicht speichern. ID existiert bereits."
 
-#: ../src/gui/editors/editmedia.py:295 ../src/gui/editors/editmediaref.py:595
+#: ../src/gui/editors/editmedia.py:295 ../src/gui/editors/editmediaref.py:614
 #, python-format
 msgid "Add Media Object (%s)"
 msgstr "Medienobjekt (%s) hinzufügen"
 
-#: ../src/gui/editors/editmedia.py:300 ../src/gui/editors/editmediaref.py:591
+#: ../src/gui/editors/editmedia.py:300 ../src/gui/editors/editmediaref.py:610
 #, python-format
 msgid "Edit Media Object (%s)"
 msgstr "Medienobjekt (%s) bearbeiten"
@@ -6495,13 +6510,13 @@ msgstr "Medienobjekt (%s) bearbeiten"
 msgid "Remove Media Object"
 msgstr "Medienobjekt entfernen"
 
-#: ../src/gui/editors/editmediaref.py:80
-#: ../src/gui/editors/editmediaref.py:410
+#: ../src/gui/editors/editmediaref.py:82
+#: ../src/gui/editors/editmediaref.py:429
 msgid "Media Reference Editor"
 msgstr "Medienreferenzeditor"
 
-#: ../src/gui/editors/editmediaref.py:82 ../src/gui/editors/editmediaref.py:83
-#: ../src/glade/editmediaref.glade.h:20
+#: ../src/gui/editors/editmediaref.py:84 ../src/gui/editors/editmediaref.py:85
+#: ../src/glade/editmediaref.glade.h:23
 msgid "Y coordinate|Y"
 msgstr "Y"
 
@@ -6850,7 +6865,7 @@ msgstr "Aufbewahrungsort (%s) bearbeiten"
 msgid "Delete Repository (%s)"
 msgstr "Aufbewahrungsort (%s) löschen"
 
-#: ../src/gui/editors/editsource.py:77 ../src/gui/editors/editsourceref.py:204
+#: ../src/gui/editors/editsource.py:77 ../src/gui/editors/editsourceref.py:213
 msgid "New Source"
 msgstr "Neue Quelle"
 
@@ -6887,21 +6902,21 @@ msgstr "Ereignis (%s) bearbeiten"
 msgid "Delete Source (%s)"
 msgstr "Quelle (%s) löschen"
 
-#: ../src/gui/editors/editsourceref.py:65
-#: ../src/gui/editors/editsourceref.py:205
+#: ../src/gui/editors/editsourceref.py:66
+#: ../src/gui/editors/editsourceref.py:214
 msgid "Source Reference Editor"
 msgstr "Quellenreferenzeditor"
 
-#: ../src/gui/editors/editsourceref.py:202
+#: ../src/gui/editors/editsourceref.py:211
 #, python-format
 msgid "Source: %s"
 msgstr "Quelle: %s"
 
-#: ../src/gui/editors/editsourceref.py:210
+#: ../src/gui/editors/editsourceref.py:219
 msgid "Modify Source"
 msgstr "Quelle bearbeiten"
 
-#: ../src/gui/editors/editsourceref.py:213
+#: ../src/gui/editors/editsourceref.py:222
 msgid "Add Source"
 msgstr "Quelle hinzufügen"
 
@@ -7687,7 +7702,7 @@ msgstr "Sichtbar"
 #: ../src/gui/plug/_windows.py:81 ../src/plugins/gramplet/gramplet.gpr.py:167
 #: ../src/plugins/gramplet/gramplet.gpr.py:174
 msgid "Plugin Manager"
-msgstr "Plug-in Manager"
+msgstr "Zusatzmodulverwaltung"
 
 #: ../src/gui/plug/_windows.py:128 ../src/gui/plug/_windows.py:183
 msgid "Info"
@@ -7705,7 +7720,7 @@ msgstr "Lade"
 
 #: ../src/gui/plug/_windows.py:145
 msgid "Registered Plugins"
-msgstr "Registrierte Plug-ins"
+msgstr "Registrierte Zusatzmodule"
 
 #: ../src/gui/plug/_windows.py:159
 msgid "Loaded"
@@ -7721,7 +7736,7 @@ msgstr "Nachricht"
 
 #: ../src/gui/plug/_windows.py:201
 msgid "Loaded Plugins"
-msgstr "Geladene Plug-ins"
+msgstr "Geladene Zusatzmodule"
 
 #. self.addon_list.connect('button-press-event', self.button_press)
 #: ../src/gui/plug/_windows.py:221
@@ -7801,7 +7816,7 @@ msgstr "OK"
 
 #: ../src/gui/plug/_windows.py:591
 msgid "Plugin name"
-msgstr "Plug-in Name"
+msgstr "Zusatzmodulname"
 
 #: ../src/gui/plug/_windows.py:593
 msgid "Version"
@@ -7822,7 +7837,7 @@ msgstr "Detailierte Information"
 
 #: ../src/gui/plug/_windows.py:656
 msgid "Plugin Error"
-msgstr "Plug-In Fehler"
+msgstr "Zusatzmodul Fehler"
 
 #: ../src/gui/plug/_windows.py:1020 ../src/plugins/tool/OwnerEditor.py:161
 msgid "Main window"
@@ -9250,7 +9265,7 @@ msgstr "Der Stil für Überschriften."
 
 #: ../src/plugins/Records.py:611
 #: ../src/plugins/drawreport/AncestorTree.py:1064
-#: ../src/plugins/drawreport/DescendTree.py:1673
+#: ../src/plugins/drawreport/DescendTree.py:1668
 #: ../src/plugins/drawreport/FanChart.py:456
 #: ../src/plugins/textreport/AncestorReport.py:347
 #: ../src/plugins/textreport/DetAncestralReport.py:873
@@ -9453,19 +9468,19 @@ msgstr "Konnte %s nicht öffnen"
 #.
 #. ------------------------------------------------------------------------
 #: ../src/plugins/drawreport/AncestorTree.py:74
-#: ../src/plugins/drawreport/DescendTree.py:64
+#: ../src/plugins/drawreport/DescendTree.py:59
 #: ../src/plugins/view/pedigreeview.py:83
 msgid "short for born|b."
 msgstr "*"
 
 #: ../src/plugins/drawreport/AncestorTree.py:75
-#: ../src/plugins/drawreport/DescendTree.py:65
+#: ../src/plugins/drawreport/DescendTree.py:60
 #: ../src/plugins/view/pedigreeview.py:84
 msgid "short for died|d."
 msgstr "†"
 
 #: ../src/plugins/drawreport/AncestorTree.py:76
-#: ../src/plugins/drawreport/DescendTree.py:66
+#: ../src/plugins/drawreport/DescendTree.py:61
 msgid "short for married|m."
 msgstr "⚭"
 
@@ -9490,7 +9505,7 @@ msgstr "Drucke den Baum..."
 
 #. #################
 #: ../src/plugins/drawreport/AncestorTree.py:862
-#: ../src/plugins/drawreport/DescendTree.py:1456
+#: ../src/plugins/drawreport/DescendTree.py:1451
 msgid "Tree Options"
 msgstr "Baumoptionen"
 
@@ -9514,7 +9529,7 @@ msgid "The center person for the tree"
 msgstr "Die Hauptperson für den Baum"
 
 #: ../src/plugins/drawreport/AncestorTree.py:868
-#: ../src/plugins/drawreport/DescendTree.py:1476
+#: ../src/plugins/drawreport/DescendTree.py:1471
 #: ../src/plugins/drawreport/FanChart.py:400
 #: ../src/plugins/textreport/AncestorReport.py:262
 #: ../src/plugins/textreport/DescendReport.py:333
@@ -9524,7 +9539,7 @@ msgid "Generations"
 msgstr "Generationen"
 
 #: ../src/plugins/drawreport/AncestorTree.py:869
-#: ../src/plugins/drawreport/DescendTree.py:1477
+#: ../src/plugins/drawreport/DescendTree.py:1472
 msgid "The number of generations to include in the tree"
 msgstr "Anzahl der im Baum berücksichtigten Generationen"
 
@@ -9541,7 +9556,7 @@ msgid "The number of generations of empty boxes that will be displayed"
 msgstr "Die Anzahl der Generationen mit leeren Boxen die angezeigt werden"
 
 #: ../src/plugins/drawreport/AncestorTree.py:882
-#: ../src/plugins/drawreport/DescendTree.py:1485
+#: ../src/plugins/drawreport/DescendTree.py:1480
 msgid "Co_mpress tree"
 msgstr "Baum ko_mprimieren"
 
@@ -9614,17 +9629,17 @@ msgid "Display format for the mothers box."
 msgstr "Anzeigeformat für die Mutterbox."
 
 #: ../src/plugins/drawreport/AncestorTree.py:933
-#: ../src/plugins/drawreport/DescendTree.py:1525
+#: ../src/plugins/drawreport/DescendTree.py:1520
 msgid "Include Marriage box"
 msgstr "Heiratsboxen aufnehmen"
 
 #: ../src/plugins/drawreport/AncestorTree.py:935
-#: ../src/plugins/drawreport/DescendTree.py:1527
+#: ../src/plugins/drawreport/DescendTree.py:1522
 msgid "Whether to include a separate marital box in the report"
 msgstr "Ob eine extra Ehebox in dem Bericht enthalten ist"
 
 #: ../src/plugins/drawreport/AncestorTree.py:938
-#: ../src/plugins/drawreport/DescendTree.py:1530
+#: ../src/plugins/drawreport/DescendTree.py:1525
 msgid ""
 "Marriage\n"
 "Display Format"
@@ -9633,43 +9648,43 @@ msgstr ""
 "Anzeigeformat"
 
 #: ../src/plugins/drawreport/AncestorTree.py:939
-#: ../src/plugins/drawreport/DescendTree.py:1531
+#: ../src/plugins/drawreport/DescendTree.py:1526
 msgid "Display format for the marital box."
 msgstr "Anzeigeformat für die Ehebox."
 
 #. #################
 #: ../src/plugins/drawreport/AncestorTree.py:943
-#: ../src/plugins/drawreport/DescendTree.py:1544
+#: ../src/plugins/drawreport/DescendTree.py:1539
 msgid "Size"
 msgstr "Größe"
 
 #: ../src/plugins/drawreport/AncestorTree.py:945
-#: ../src/plugins/drawreport/DescendTree.py:1546
+#: ../src/plugins/drawreport/DescendTree.py:1541
 msgid "Scale tree to fit"
 msgstr "Baum passend skalieren"
 
 #: ../src/plugins/drawreport/AncestorTree.py:946
-#: ../src/plugins/drawreport/DescendTree.py:1547
+#: ../src/plugins/drawreport/DescendTree.py:1542
 msgid "Do not scale tree"
 msgstr "Baum nicht skalieren"
 
 #: ../src/plugins/drawreport/AncestorTree.py:947
-#: ../src/plugins/drawreport/DescendTree.py:1548
+#: ../src/plugins/drawreport/DescendTree.py:1543
 msgid "Scale tree to fit page width only"
 msgstr "Baum nur auf Seitenbreite skalieren"
 
 #: ../src/plugins/drawreport/AncestorTree.py:948
-#: ../src/plugins/drawreport/DescendTree.py:1549
+#: ../src/plugins/drawreport/DescendTree.py:1544
 msgid "Scale tree to fit the size of the page"
 msgstr "Baum auf Seitengröße skalieren"
 
 #: ../src/plugins/drawreport/AncestorTree.py:950
-#: ../src/plugins/drawreport/DescendTree.py:1551
+#: ../src/plugins/drawreport/DescendTree.py:1546
 msgid "Whether to scale the tree to fit a specific paper size"
 msgstr "Ob der Baum auf eine bestimmte Papiergröße skaliert wird"
 
 #: ../src/plugins/drawreport/AncestorTree.py:956
-#: ../src/plugins/drawreport/DescendTree.py:1557
+#: ../src/plugins/drawreport/DescendTree.py:1552
 msgid ""
 "Resize Page to Fit Tree size\n"
 "\n"
@@ -9680,7 +9695,7 @@ msgstr ""
 "Beachte: Überschreibt Optionen im Papieroptionen Reiter"
 
 #: ../src/plugins/drawreport/AncestorTree.py:962
-#: ../src/plugins/drawreport/DescendTree.py:1563
+#: ../src/plugins/drawreport/DescendTree.py:1558
 msgid ""
 "Whether to resize the page to fit the size \n"
 "of the tree.  Note:  the page will have a \n"
@@ -9713,13 +9728,13 @@ msgstr ""
 "  angepasst das jeder Abstand in der Höhe und Breite entfernt wird"
 
 #: ../src/plugins/drawreport/AncestorTree.py:985
-#: ../src/plugins/drawreport/DescendTree.py:1587
+#: ../src/plugins/drawreport/DescendTree.py:1582
 msgid "Report Title"
 msgstr "Berichttitel"
 
 #: ../src/plugins/drawreport/AncestorTree.py:986
-#: ../src/plugins/drawreport/DescendTree.py:1588
-#: ../src/plugins/drawreport/DescendTree.py:1636
+#: ../src/plugins/drawreport/DescendTree.py:1583
+#: ../src/plugins/drawreport/DescendTree.py:1631
 msgid "Do not include a title"
 msgstr "Ohne Titel"
 
@@ -9728,22 +9743,22 @@ msgid "Include Report Title"
 msgstr "Berichttitel aufnehmen"
 
 #: ../src/plugins/drawreport/AncestorTree.py:988
-#: ../src/plugins/drawreport/DescendTree.py:1589
+#: ../src/plugins/drawreport/DescendTree.py:1584
 msgid "Choose a title for the report"
 msgstr "Wähle einen Titel für den Bericht"
 
 #: ../src/plugins/drawreport/AncestorTree.py:991
-#: ../src/plugins/drawreport/DescendTree.py:1593
+#: ../src/plugins/drawreport/DescendTree.py:1588
 msgid "Include a border"
 msgstr "Mit Rand"
 
 #: ../src/plugins/drawreport/AncestorTree.py:992
-#: ../src/plugins/drawreport/DescendTree.py:1594
+#: ../src/plugins/drawreport/DescendTree.py:1589
 msgid "Whether to make a border around the report."
 msgstr "Ob ein Rand um den Bericht gelegt wird."
 
 #: ../src/plugins/drawreport/AncestorTree.py:995
-#: ../src/plugins/drawreport/DescendTree.py:1597
+#: ../src/plugins/drawreport/DescendTree.py:1592
 msgid "Include Page Numbers"
 msgstr "Mit Seitennummern"
 
@@ -9752,28 +9767,28 @@ msgid "Whether to print page numbers on each page."
 msgstr "Ob Seitennummern auf jeder Seite des Berichts gedruckt werden."
 
 #: ../src/plugins/drawreport/AncestorTree.py:999
-#: ../src/plugins/drawreport/DescendTree.py:1601
+#: ../src/plugins/drawreport/DescendTree.py:1596
 msgid "Include Blank Pages"
 msgstr "Enthält leere Seiten"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1000
-#: ../src/plugins/drawreport/DescendTree.py:1602
+#: ../src/plugins/drawreport/DescendTree.py:1597
 msgid "Whether to include pages that are blank."
 msgstr "Ob leere Seiten enthalten sind."
 
 #. category_name = _("Notes")
 #: ../src/plugins/drawreport/AncestorTree.py:1007
-#: ../src/plugins/drawreport/DescendTree.py:1607
+#: ../src/plugins/drawreport/DescendTree.py:1602
 msgid "Include a note"
 msgstr "Eine Notiz aufnehmen"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1008
-#: ../src/plugins/drawreport/DescendTree.py:1609
+#: ../src/plugins/drawreport/DescendTree.py:1604
 msgid "Whether to include a note on the report."
 msgstr "Ob eine Notiz auf dem Bericht enthalten ist."
 
 #: ../src/plugins/drawreport/AncestorTree.py:1013
-#: ../src/plugins/drawreport/DescendTree.py:1614
+#: ../src/plugins/drawreport/DescendTree.py:1609
 msgid ""
 "Add a note\n"
 "\n"
@@ -9784,12 +9799,12 @@ msgstr ""
 "$T heutiges Datum einfügen"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1018
-#: ../src/plugins/drawreport/DescendTree.py:1619
+#: ../src/plugins/drawreport/DescendTree.py:1614
 msgid "Note Location"
 msgstr "Position der Notiz"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1021
-#: ../src/plugins/drawreport/DescendTree.py:1622
+#: ../src/plugins/drawreport/DescendTree.py:1617
 msgid "Where to place the note."
 msgstr "Wo die Notiz platziert wird."
 
@@ -9806,12 +9821,12 @@ msgid " Generations of empty boxes for unknown ancestors"
 msgstr " Generationen leerer Boxen für unbekannte Vorfahren"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1075
-#: ../src/plugins/drawreport/DescendTree.py:1663
+#: ../src/plugins/drawreport/DescendTree.py:1658
 msgid "The basic style used for the title display."
 msgstr "Der Basisstil, der für die Titelanzeige verwendet wird."
 
 #: ../src/plugins/drawreport/Calendar.py:98
-#: ../src/plugins/drawreport/DescendTree.py:672
+#: ../src/plugins/drawreport/DescendTree.py:667
 #: ../src/plugins/drawreport/FanChart.py:165
 #: ../src/plugins/graph/GVHourGlass.py:102
 #: ../src/plugins/textreport/AncestorReport.py:104
@@ -10102,92 +10117,92 @@ msgstr "Text unten, Zeile 3"
 msgid "Borders"
 msgstr "Ränder"
 
-#: ../src/plugins/drawreport/DescendTree.py:164
+#: ../src/plugins/drawreport/DescendTree.py:159
 #, python-format
 msgid "Descendant Chart for %(person)s and %(father1)s, %(mother1)s"
 msgstr "Nachkommenbericht für %(person)s und %(father1)s, %(mother1)s"
 
 #. Should be 2 items in names list
-#: ../src/plugins/drawreport/DescendTree.py:171
+#: ../src/plugins/drawreport/DescendTree.py:166
 #, python-format
 msgid "Descendant Chart for %(person)s, %(father1)s and %(mother1)s"
 msgstr "Nachkommendiagramm für %(person)s, %(father1)s und %(mother1)s"
 
 #. Should be 2 items in both names and names2 lists
-#: ../src/plugins/drawreport/DescendTree.py:178
+#: ../src/plugins/drawreport/DescendTree.py:173
 #, python-format
 msgid ""
 "Descendant Chart for %(father1)s, %(father2)s and %(mother1)s, %(mother2)s"
 msgstr ""
 "Nachkommendiagramm für %(father1)s, %(father2)s und %(mother1)s, %(mother2)s"
 
-#: ../src/plugins/drawreport/DescendTree.py:187
+#: ../src/plugins/drawreport/DescendTree.py:182
 #, python-format
 msgid "Descendant Chart for %(person)s"
 msgstr "Nachkommendiagramm für %(person)s"
 
 #. Should be two items in names list
-#: ../src/plugins/drawreport/DescendTree.py:190
+#: ../src/plugins/drawreport/DescendTree.py:185
 #, python-format
 msgid "Descendant Chart for %(father)s and %(mother)s"
 msgstr "Nachkommendiagramm von %(father)s und %(mother)s"
 
-#: ../src/plugins/drawreport/DescendTree.py:327
+#: ../src/plugins/drawreport/DescendTree.py:322
 #, python-format
 msgid "Family Chart for %(person)s"
 msgstr "Familiendiagramm für %(person)s"
 
-#: ../src/plugins/drawreport/DescendTree.py:329
+#: ../src/plugins/drawreport/DescendTree.py:324
 #, python-format
 msgid "Family Chart for %(father1)s and %(mother1)s"
 msgstr "Familiendiagramm für %(father1)s und %(mother1)s"
 
-#: ../src/plugins/drawreport/DescendTree.py:352
+#: ../src/plugins/drawreport/DescendTree.py:347
 msgid "Cousin Chart for "
 msgstr "Cousinendiagramm für "
 
-#: ../src/plugins/drawreport/DescendTree.py:740
+#: ../src/plugins/drawreport/DescendTree.py:735
 #, python-format
 msgid "Family %s is not in the Database"
 msgstr "Familie %s ist nicht in der Datenbank"
 
 #. if self.name == "familial_descend_tree":
-#: ../src/plugins/drawreport/DescendTree.py:1459
-#: ../src/plugins/drawreport/DescendTree.py:1463
+#: ../src/plugins/drawreport/DescendTree.py:1454
+#: ../src/plugins/drawreport/DescendTree.py:1458
 msgid "Report for"
 msgstr "Bericht für"
 
-#: ../src/plugins/drawreport/DescendTree.py:1460
+#: ../src/plugins/drawreport/DescendTree.py:1455
 msgid "The main person for the report"
 msgstr "Die Hauptperson für den Bericht"
 
-#: ../src/plugins/drawreport/DescendTree.py:1464
+#: ../src/plugins/drawreport/DescendTree.py:1459
 msgid "The main family for the report"
 msgstr "Die zentrale Familie für den Bericht"
 
-#: ../src/plugins/drawreport/DescendTree.py:1468
+#: ../src/plugins/drawreport/DescendTree.py:1463
 msgid "Start with the parent(s) of the selected first"
 msgstr "Starte mit den Elter(n) des zuerst gewählten"
 
-#: ../src/plugins/drawreport/DescendTree.py:1471
+#: ../src/plugins/drawreport/DescendTree.py:1466
 msgid "Will show the parents, brother and sisters of the selected person."
 msgstr "Zeigt die Eltern, Brüder und Schwestern der gewählten Person."
 
-#: ../src/plugins/drawreport/DescendTree.py:1480
+#: ../src/plugins/drawreport/DescendTree.py:1475
 msgid "Level of Spouses"
 msgstr "Ebene der Partner"
 
-#: ../src/plugins/drawreport/DescendTree.py:1481
+#: ../src/plugins/drawreport/DescendTree.py:1476
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
 msgstr "0=keine Partner, 1=mit Partnern, 2=mit Partnern der Partner, usw."
 
-#: ../src/plugins/drawreport/DescendTree.py:1486
+#: ../src/plugins/drawreport/DescendTree.py:1481
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
 msgstr ""
 "Ob Personen wo möglich nach oben verschoben werden um einen schmaleren Baum "
 "zu erhalten"
 
-#: ../src/plugins/drawreport/DescendTree.py:1493
+#: ../src/plugins/drawreport/DescendTree.py:1488
 msgid ""
 "Descendant\n"
 "Display Format"
@@ -10195,15 +10210,15 @@ msgstr ""
 "Nachkommen\n"
 "Anzeigeformat"
 
-#: ../src/plugins/drawreport/DescendTree.py:1497
+#: ../src/plugins/drawreport/DescendTree.py:1492
 msgid "Display format for a descendant."
 msgstr "Anzeigeformat für einen Nachkommen."
 
-#: ../src/plugins/drawreport/DescendTree.py:1500
+#: ../src/plugins/drawreport/DescendTree.py:1495
 msgid "Bold direct descendants"
 msgstr "Direkte Nachkommen fett gedruckt"
 
-#: ../src/plugins/drawreport/DescendTree.py:1502
+#: ../src/plugins/drawreport/DescendTree.py:1497
 msgid ""
 "Whether to bold those people that are direct (not step or half) descendants."
 msgstr ""
@@ -10216,15 +10231,15 @@ msgstr ""
 #. True)
 #. diffspouse.set_help(_("Whether spouses can have a different format."))
 #. menu.add_option(category_name, "diffspouse", diffspouse)
-#: ../src/plugins/drawreport/DescendTree.py:1514
+#: ../src/plugins/drawreport/DescendTree.py:1509
 msgid "Indent Spouses"
 msgstr "Partner einrücken"
 
-#: ../src/plugins/drawreport/DescendTree.py:1515
+#: ../src/plugins/drawreport/DescendTree.py:1510
 msgid "Whether to indent the spouses in the tree."
 msgstr "Ob Partner im Baum eingerückt werden."
 
-#: ../src/plugins/drawreport/DescendTree.py:1518
+#: ../src/plugins/drawreport/DescendTree.py:1513
 msgid ""
 "Spousal\n"
 "Display Format"
@@ -10232,16 +10247,16 @@ msgstr ""
 "Ehegatten\n"
 "Anzeigeformat"
 
-#: ../src/plugins/drawreport/DescendTree.py:1522
+#: ../src/plugins/drawreport/DescendTree.py:1517
 msgid "Display format for a spouse."
 msgstr "Anzeigeformat für eine(n) Partner(in)."
 
 #. #################
-#: ../src/plugins/drawreport/DescendTree.py:1535
+#: ../src/plugins/drawreport/DescendTree.py:1530
 msgid "Replace"
 msgstr "Ersetze"
 
-#: ../src/plugins/drawreport/DescendTree.py:1538
+#: ../src/plugins/drawreport/DescendTree.py:1533
 msgid ""
 "Replace Display Format:\n"
 "'Replace this'/' with this'"
@@ -10249,7 +10264,7 @@ msgstr ""
 "Anzeigeformat austauschen:\n"
 "'Ersetze dieses'/'Durch dieses'"
 
-#: ../src/plugins/drawreport/DescendTree.py:1540
+#: ../src/plugins/drawreport/DescendTree.py:1535
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A"
@@ -10257,27 +10272,30 @@ msgstr ""
 "z.B.\n"
 "Vereinigte Staaten von Amerika/U.S.A"
 
-#: ../src/plugins/drawreport/DescendTree.py:1598
+#: ../src/plugins/drawreport/DescendTree.py:1593
 msgid "Whether to include page numbers on each page."
 msgstr "Ob Seitennummern auf jeder Seite enthalten sind."
 
-#: ../src/plugins/drawreport/DescendTree.py:1637
+#: ../src/plugins/drawreport/DescendTree.py:1632
 msgid "Descendant Chart for [selected person(s)]"
 msgstr "Nachkommendiagramm für [gewählte Person(en)]"
 
-#: ../src/plugins/drawreport/DescendTree.py:1641
+#: ../src/plugins/drawreport/DescendTree.py:1636
 msgid "Family Chart for [names of chosen family]"
 msgstr "Familiendiagramm für [Namen der gewählten Familie]"
 
-#: ../src/plugins/drawreport/DescendTree.py:1645
+#: ../src/plugins/drawreport/DescendTree.py:1640
 msgid "Cousin Chart for [names of children]"
 msgstr "Cousinendiagramm für [Namen der Kinder]"
 
-#: ../src/plugins/drawreport/DescendTree.py:1685
+#: ../src/plugins/drawreport/DescendTree.py:1680
 msgid "The bold style used for the text display."
 msgstr "Der Fettdruckstil, der für die Textanzeige verwendet wird."
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:33
+msgid "Produces a graphical ancestral tree (Book report)"
+msgstr "Erstellt eine grafische Ahnentafel in Baumstruktur (Buchbericht)"
+
 #: ../src/plugins/drawreport/drawplugins.gpr.py:49
 msgid "Produces a graphical ancestral tree"
 msgstr "Erstellt eine grafische Ahnentafel in Baumstruktur"
@@ -10298,6 +10316,9 @@ msgid "Descendant Tree"
 msgstr "Nachkommenbaum"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:93
+msgid "Produces a graphical descendant tree (Book report)"
+msgstr "Erstellt eine grafischen Nachkommenbaum (Buchbericht)"
+
 #: ../src/plugins/drawreport/drawplugins.gpr.py:109
 msgid "Produces a graphical descendant tree"
 msgstr "Erstellt eine grafischen Nachkommenbaum"
@@ -10308,6 +10329,9 @@ msgid "Family Descendant Tree"
 msgstr "Familiennachkommenbaum"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:131
+msgid "Produces a graphical descendant tree around a family (Book report)"
+msgstr "Erstellt eine grafischen Nachkommenbaum um eine Familie (Buchbericht)"
+
 #: ../src/plugins/drawreport/drawplugins.gpr.py:148
 msgid "Produces a graphical descendant tree around a family"
 msgstr "Erstellt eine grafischen Nachkommenbaum um eine Familie"
@@ -10736,6 +10760,10 @@ msgstr "Durch _Komma getrennte Werte Tabelle (CSV)"
 msgid "CSV is a common spreadsheet format."
 msgstr "CSV ist ein gebräuchliches Tabellenformat."
 
+#: ../src/plugins/export/export.gpr.py:41
+msgid "CSV spreadsheet options"
+msgstr "CSV Tabelle Optionen"
+
 #: ../src/plugins/export/export.gpr.py:52
 msgid "Web Family Tree"
 msgstr "Web Family Tree"
@@ -10747,6 +10775,10 @@ msgstr "_Web Family Tree"
 #: ../src/plugins/export/export.gpr.py:54
 msgid "Web Family Tree format"
 msgstr "Web Family Tree Format"
+
+#: ../src/plugins/export/export.gpr.py:62
+msgid "Web Family Tree export options"
+msgstr "Web Family Tree Exportoptionen"
 
 #: ../src/plugins/export/export.gpr.py:73
 #: ../src/plugins/import/import.gpr.py:51 ../data/gramps.keys.in.h:1
@@ -10768,6 +10800,10 @@ msgstr ""
 "transferieren. Die meisten Genealogieprogramme können GEDCOM-Dateien "
 "importieren."
 
+#: ../src/plugins/export/export.gpr.py:84
+msgid "GEDCOM export options"
+msgstr "GEDCOM Exportoptionen"
+
 #: ../src/plugins/export/export.gpr.py:95
 #: ../src/plugins/import/import.gpr.py:70 ../data/gramps.keys.in.h:2
 msgid "GeneWeb"
@@ -10780,6 +10816,10 @@ msgstr "_GeneWeb"
 #: ../src/plugins/export/export.gpr.py:97
 msgid "GeneWeb is a web based genealogy program."
 msgstr "GeneWeb ist ein webbasiertes Ahnenforschungsprogramm."
+
+#: ../src/plugins/export/export.gpr.py:105
+msgid "GeneWeb export options"
+msgstr "GeneWeb Exportoptionen"
 
 #: ../src/plugins/export/export.gpr.py:116
 msgid "Gramps XML Package (family tree and media)"
@@ -10797,6 +10837,10 @@ msgstr ""
 "Das Gramps-Paket ist ein archivierter XML-Stammbaum zusammen mit den "
 "Medienobjektdateien."
 
+#: ../src/plugins/export/export.gpr.py:127
+msgid "Gramps package export options"
+msgstr "Gramps-Paket Exportoptionen"
+
 #: ../src/plugins/export/export.gpr.py:138
 msgid "Gramps XML (family tree)"
 msgstr "Gramps XML (Stammbaum)"
@@ -10813,6 +10857,10 @@ msgstr ""
 "Der Gramps-XML Export ist eine komplett archivierte XML-Sicherung des Gramps "
 "Stammbaum ohne die Medienobjektdateien. Passend für Sicherungszwecke."
 
+#: ../src/plugins/export/export.gpr.py:150
+msgid "Gramps XML export options"
+msgstr "Gramps-XML Exportoptionen"
+
 #: ../src/plugins/export/export.gpr.py:161
 msgid "vCalendar"
 msgstr "vKalender"
@@ -10824,6 +10872,10 @@ msgstr "vK_alender"
 #: ../src/plugins/export/export.gpr.py:163
 msgid "vCalendar is used in many calendaring and PIM applications."
 msgstr "vKalender wird von vielen Kalender- und PIM-Anwendungen verwendet."
+
+#: ../src/plugins/export/export.gpr.py:171
+msgid "vCalendar export options"
+msgstr "vKalender Exportoptionen"
 
 #: ../src/plugins/export/export.gpr.py:182
 #: ../src/plugins/import/import.gpr.py:164
@@ -10837,6 +10889,10 @@ msgstr "_vKarte"
 #: ../src/plugins/export/export.gpr.py:184
 msgid "vCard is used in many addressbook and pim applications."
 msgstr "vKarte wird von vielen Adressbuch- und PIM-Anwendungen verwendet."
+
+#: ../src/plugins/export/export.gpr.py:192
+msgid "vCard export options"
+msgstr "vKarte Exportoptionen"
 
 #: ../src/plugins/export/ExportCsv.py:194
 msgid "Include people"
@@ -13730,7 +13786,7 @@ msgstr ""
 "Der Medienbasispfad dieses Stammbaum wurde auf %s gesetzt. Überlege einen "
 "einfacheren Pfad zu wählen. Kannst dies in den Präferenzen ändern, durch "
 "verschieben deiner Medienobjekte an die neue Position und das "
-"Medienmanagerwerkzeug mit Ersetze Zeichenfolge im Pfad, um die korrekten "
+"Medienverwaltungwerkzeug mit Ersetze Zeichenfolge im Pfad, um die korrekten "
 "Pfade in ihren Medienobjekten zu setzen, erledigen."
 
 #: ../src/plugins/import/ImportGpkg.py:116
@@ -13753,8 +13809,8 @@ msgstr ""
 "%(path)s. Du kannst den Medienpfad in den Präferenzen ändern oder die "
 "importierten Mediendateien in den bestehende Medienbasispfad ändern. Du "
 "kannst das durch verschieben deiner Medienobjekte an die neue Position und "
-"das Medienmanagerwerkzeug mit Ersetze Zeichenfolge im Pfad, um die korrekten "
-"Pfade in deinen Medienobjekten zu setzen, erledigen."
+"das Medienverwaltungwerkzeug mit Ersetze Zeichenfolge im Pfad, um die "
+"korrekten Pfade in deinen Medienobjekten zu setzen, erledigen."
 
 #. -------------------------------------------------------------------------
 #.
@@ -18651,47 +18707,51 @@ msgid "Hanuka"
 msgstr "Chanuka"
 
 #: ../src/plugins/lib/holidays.xml.in.h:31
+msgid "Japan"
+msgstr "Japan"
+
+#: ../src/plugins/lib/holidays.xml.in.h:32
 msgid "Jewish Holidays"
 msgstr "Jüdische Feiertage"
 
-#: ../src/plugins/lib/holidays.xml.in.h:32
+#: ../src/plugins/lib/holidays.xml.in.h:33
 msgid "Passover"
 msgstr "Passah"
 
-#: ../src/plugins/lib/holidays.xml.in.h:33
+#: ../src/plugins/lib/holidays.xml.in.h:34
 msgid "Purim"
 msgstr "Purim"
 
-#: ../src/plugins/lib/holidays.xml.in.h:34
+#: ../src/plugins/lib/holidays.xml.in.h:35
 msgid "Rosh Ha'Shana"
 msgstr "Rosch ha-Schana"
 
-#: ../src/plugins/lib/holidays.xml.in.h:35
+#: ../src/plugins/lib/holidays.xml.in.h:36
 msgid "Rosh Ha'Shana 2"
 msgstr "Rosch ha-Schana 2"
 
-#: ../src/plugins/lib/holidays.xml.in.h:36
+#: ../src/plugins/lib/holidays.xml.in.h:37
 msgid "Shavuot"
 msgstr "Schawuot"
 
-#: ../src/plugins/lib/holidays.xml.in.h:37
+#: ../src/plugins/lib/holidays.xml.in.h:38
 msgid "Simhat Tora"
 msgstr "Simchat Tora"
 
-#: ../src/plugins/lib/holidays.xml.in.h:38
+#: ../src/plugins/lib/holidays.xml.in.h:39
 msgid "Sukot"
 msgstr "Laubhüttenfest"
 
-#: ../src/plugins/lib/holidays.xml.in.h:39
+#: ../src/plugins/lib/holidays.xml.in.h:40
 msgid "Sweden - Holidays"
 msgstr "Feiertage Schweden"
 
-#: ../src/plugins/lib/holidays.xml.in.h:40
+#: ../src/plugins/lib/holidays.xml.in.h:41
 #: ../src/plugins/tool/ExtractCity.py:62
 msgid "United States of America"
 msgstr "Vereinigte Staaten von Amerika"
 
-#: ../src/plugins/lib/holidays.xml.in.h:41
+#: ../src/plugins/lib/holidays.xml.in.h:42
 msgid "Yom Kippur"
 msgstr "Jom Kippur"
 
@@ -18800,12 +18860,12 @@ msgstr "Zoom der beim Zentrieren verwendet wird"
 msgid "The map"
 msgstr "Die Karte"
 
-#: ../src/plugins/lib/maps/grampsmaps.py:167
+#: ../src/plugins/lib/maps/grampsmaps.py:168
 #, python-format
 msgid "Can't create tiles cache directory %s"
 msgstr "Kann Kachelzwischenspeicher Verzeichnis nicht erstellen %s"
 
-#: ../src/plugins/lib/maps/grampsmaps.py:185
+#: ../src/plugins/lib/maps/grampsmaps.py:186
 #, python-format
 msgid "Can't create tiles cache directory for '%s'."
 msgstr "Kann Titelcacheverzeichnis nicht für '%s' erstellen."
@@ -21602,11 +21662,11 @@ msgstr "Medienverwalter..."
 
 #: ../src/plugins/tool/MediaManager.py:90 ../src/plugins/tool/tools.gpr.py:263
 msgid "Media Manager"
-msgstr "Medienverwalter"
+msgstr "Medienverwaltung"
 
 #: ../src/plugins/tool/MediaManager.py:94
 msgid "Gramps Media Manager"
-msgstr "Gramps Medienverwalter"
+msgstr "Gramps Medienverwaltung"
 
 #: ../src/plugins/tool/MediaManager.py:96
 msgid "Selecting operation"
@@ -26232,8 +26292,8 @@ msgstr "Liefert ein Medienobjekt mit einer bestimmten Gramps-ID"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
 #: ../src/Filters/Rules/Repository/_HasRepo.py:48
-#: ../src/glade/mergeevent.glade.h:11 ../src/glade/mergenote.glade.h:9
-#: ../src/glade/mergerepository.glade.h:9
+#: ../src/glade/editmediaref.glade.h:22 ../src/glade/mergeevent.glade.h:11
+#: ../src/glade/mergenote.glade.h:9 ../src/glade/mergerepository.glade.h:9
 msgid "Type:"
 msgstr "Typ:"
 
@@ -26757,7 +26817,7 @@ msgstr "_Vorname:"
 #: ../src/glade/editperson.glade.h:27 ../src/glade/editsource.glade.h:11
 #: ../src/glade/editrepository.glade.h:7 ../src/glade/editreporef.glade.h:14
 #: ../src/glade/editfamily.glade.h:14 ../src/glade/editmedia.glade.h:12
-#: ../src/glade/editmediaref.glade.h:21 ../src/glade/editeventref.glade.h:8
+#: ../src/glade/editmediaref.glade.h:25 ../src/glade/editeventref.glade.h:9
 #: ../src/glade/editnote.glade.h:8 ../src/glade/editplace.glade.h:28
 #: ../src/glade/editsourceref.glade.h:22 ../src/glade/editevent.glade.h:11
 msgid "_ID:"
@@ -26773,8 +26833,8 @@ msgstr "_Nachname:"
 
 #: ../src/glade/editperson.glade.h:30 ../src/glade/editurl.glade.h:7
 #: ../src/glade/editrepository.glade.h:9 ../src/glade/editreporef.glade.h:17
-#: ../src/glade/editfamily.glade.h:15 ../src/glade/editmediaref.glade.h:24
-#: ../src/glade/editnote.glade.h:10 ../src/glade/editname.glade.h:32
+#: ../src/glade/editfamily.glade.h:15 ../src/glade/editnote.glade.h:10
+#: ../src/glade/editname.glade.h:32
 msgid "_Type:"
 msgstr "_Typ:"
 
@@ -26820,7 +26880,7 @@ msgid "Convert to a relative path"
 msgstr "Ändere in ein relatives Verzeichnis"
 
 #: ../src/glade/addmedia.glade.h:3 ../src/glade/editsource.glade.h:13
-#: ../src/glade/editmedia.glade.h:13 ../src/glade/editmediaref.glade.h:23
+#: ../src/glade/editmedia.glade.h:13 ../src/glade/editmediaref.glade.h:28
 #: ../src/glade/editsourceref.glade.h:24
 msgid "_Title:"
 msgstr "_Titel:"
@@ -27523,8 +27583,9 @@ msgid "The town or city of the address"
 msgstr "Das Dorf oder die Stadt der Adresse"
 
 #: ../src/glade/editaddress.glade.h:17 ../src/glade/editmedia.glade.h:11
-#: ../src/glade/editeventref.glade.h:6 ../src/glade/editldsord.glade.h:5
-#: ../src/glade/editsourceref.glade.h:21 ../src/glade/editevent.glade.h:9
+#: ../src/glade/editmediaref.glade.h:24 ../src/glade/editeventref.glade.h:7
+#: ../src/glade/editldsord.glade.h:5 ../src/glade/editsourceref.glade.h:21
+#: ../src/glade/editevent.glade.h:9
 msgid "_Date:"
 msgstr "_Datum:"
 
@@ -27563,8 +27624,8 @@ msgstr ""
 "Gramps speichert die Medien nicht intern, es wird nur der Pfad gespeichert! "
 "Setze den 'Relativen Pfad' in den Präferenzen um zu vermeiden, das das "
 "Basisverzeichnis in dem alle deine Medien gespeichert sind neu eingeben zu "
-"müssen. Das 'Medienmanager' Werkzeug kann dabei helfen, die Pfade für eine "
-"Sammlung von Medienobjekten zu verwalten. "
+"müssen. Das 'Medienmverwaltung' Werkzeug kann dabei helfen, die Pfade für "
+"eine Sammlung von Medienobjekten zu verwalten. "
 
 #: ../src/glade/editmediaref.glade.h:2
 msgid ""
@@ -27626,7 +27687,12 @@ msgstr ""
 "gewünschten Bereich zu setzen. Punkt (0,0) ist die linke obere und (100,100) "
 "die rechte untere Ecke.\n"
 
-#: ../src/glade/editmediaref.glade.h:17
+#: ../src/glade/editmediaref.glade.h:17 ../src/glade/editsourceref.glade.h:14
+#: ../src/glade/editname.glade.h:15
+msgid "Invoke date editor"
+msgstr "Datumseditor aufrufen"
+
+#: ../src/glade/editmediaref.glade.h:18
 msgid ""
 "Referenced region of the image media object.\n"
 "Select a region with clicking and holding the mouse button on the top left "
@@ -27638,13 +27704,21 @@ msgstr ""
 "Ecke des Bereichs den du wünscht, ziehe die Maus in die untere rechte Ecke "
 "und dann lass die Mausschaltfläche los."
 
-#: ../src/glade/editmediaref.glade.h:19
+#: ../src/glade/editmediaref.glade.h:20
+msgid "Select a file"
+msgstr "Eine Datei wählen"
+
+#: ../src/glade/editmediaref.glade.h:21
 msgid "Type of media object as indicated by the computer, eg Image, Video, ..."
 msgstr "Art des Medienobjekts wie es der Rechner angibt, z.B. Bild, Video, ..."
 
-#: ../src/glade/editmediaref.glade.h:22
+#: ../src/glade/editmediaref.glade.h:26
 msgid "_Path:"
 msgstr "_Pfad:"
+
+#: ../src/glade/editmediaref.glade.h:27
+msgid "_Tags:"
+msgstr "_Markierung:"
 
 #: ../src/glade/editeventref.glade.h:2
 msgid ""
@@ -27655,20 +27729,24 @@ msgstr ""
 "Ereignisinformationen werden auch das Ereignis selber und damit auch die "
 "davon abhängigen Personen ändern."
 
-#: ../src/glade/editeventref.glade.h:5 ../src/glade/editevent.glade.h:5
+#: ../src/glade/editeventref.glade.h:5 ../src/glade/editevent.glade.h:1
+msgid "A unique ID to identify the event"
+msgstr "Eine eindeutige ID zur Identifizierung des Ereignis"
+
+#: ../src/glade/editeventref.glade.h:6 ../src/glade/editevent.glade.h:5
 msgid "De_scription:"
 msgstr "Be_schreibung:"
 
-#: ../src/glade/editeventref.glade.h:7 ../src/glade/editevent.glade.h:10
+#: ../src/glade/editeventref.glade.h:8 ../src/glade/editevent.glade.h:10
 msgid "_Event type:"
 msgstr "_Ereignisart:"
 
-#: ../src/glade/editeventref.glade.h:9 ../src/glade/editldsord.glade.h:6
+#: ../src/glade/editeventref.glade.h:10 ../src/glade/editldsord.glade.h:6
 #: ../src/glade/editevent.glade.h:12
 msgid "_Place:"
 msgstr "_Ort:"
 
-#: ../src/glade/editeventref.glade.h:10
+#: ../src/glade/editeventref.glade.h:11
 msgid "_Role:"
 msgstr "_Rolle:"
 
@@ -27849,10 +27927,6 @@ msgstr ""
 "Sehr große = Direkte und primäre Beweismittel verwendet, oder durch Dominanz "
 "der Beweise "
 
-#: ../src/glade/editsourceref.glade.h:14 ../src/glade/editname.glade.h:15
-msgid "Invoke date editor"
-msgstr "Datumseditor aufrufen"
-
 #: ../src/glade/editsourceref.glade.h:17
 msgid ""
 "Specific location within the information referenced. For a published work, "
@@ -27988,10 +28062,6 @@ msgstr "_Spitzname:"
 #: ../src/glade/editname.glade.h:31
 msgid "_Sort as:"
 msgstr "_Sortieren als:"
-
-#: ../src/glade/editevent.glade.h:1
-msgid "A unique ID to identify the event"
-msgstr "Eine eindeutige ID zur Identifizierung des Ereignis"
 
 #: ../src/glade/editevent.glade.h:3
 msgid "Close window without changes"
@@ -28922,7 +28992,7 @@ msgid ""
 "documents and other digital sources."
 msgstr ""
 "<b>Ein Bild hinzufügen</b><br/>Ein Bild kann zu jeder Galerie oder "
-"Medienansicht durch das Ziehen von einem Dateimanager zu einem Browser "
+"Medienansicht durch das Ziehen von einem Dateiverwaltung zu einem Browser "
 "hinzugefügt werden. Aktuell kannst du jede Art von Datei auf diese Weise "
 "hinzufügen, hilfreich für Scans von Dokumenten und andere digitale Quellen."
 
@@ -29740,6 +29810,15 @@ msgstr ""
 "werden. Du kannst auch den Vertrauensgrad eines Datums und sogar zwischen "
 "sieben verschiedenen Kalendern wählen. Probiere die Schaltfläche neben dem "
 "Datumsfeld im Ereigniseditor."
+
+#~ msgid "Ancestor Tree (BKI)"
+#~ msgstr "Ahnenbaum (BKI)"
+
+#~ msgid "Descendant Tree (BKI)"
+#~ msgstr "Nachkommenbaum (BKI)"
+
+#~ msgid "Family Descendant Tree (BKI)"
+#~ msgstr "Familiennachkommenbaum (BKI)"
 
 #~ msgid "Baptism:"
 #~ msgstr "Taufe:"

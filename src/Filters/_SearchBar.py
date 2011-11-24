@@ -164,6 +164,7 @@ class SearchBar(object):
         self.filter_button.set_sensitive(False)
         self.uistate.status_text(_('Updating display...'))
         self.on_apply_callback()
+        self.filter_text.grab_focus()
         self.uistate.modify_statusbar(self.dbstate)
 
     def show(self):
