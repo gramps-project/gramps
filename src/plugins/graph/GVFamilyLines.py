@@ -6,6 +6,7 @@
 # Copyright (C) 2009-2010  Gary Burton 
 # Contribution 2009 by     Bob Ham <rah@bash.sh>
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2011       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -112,7 +113,7 @@ class FamilyLinesOptions(MenuReportOptions):
 
         person_list = PersonListOption(_('People of interest'))
         person_list.set_help(_('People of interest are used as a starting '
-                              'point when determining "family lines".'))
+                               'point when determining "family lines".'))
         add_option('gidlist', person_list)
 
         followpar = BooleanOption(
@@ -124,7 +125,7 @@ class FamilyLinesOptions(MenuReportOptions):
         followchild = BooleanOption(_('Follow children to determine '
                                       '"family lines"'), True)
         followchild.set_help(_('Children will be considered when '
-                                   'determining "family lines".'))
+                               'determining "family lines".'))
         add_option('followchild', followchild)
 
         remove_extra_people = BooleanOption(
@@ -156,54 +157,56 @@ class FamilyLinesOptions(MenuReportOptions):
         add_option('colorfemales', color_females)
 
         color_unknown = ColorOption(_('Unknown'), '#e0e0e0')
-        color_unknown.set_help(
-            _('The colour to use when the gender is unknown.'))
+        color_unknown.set_help(_('The colour to use '
+                                 'when the gender is unknown.'))
         add_option('colorunknown', color_unknown)
 
         color_family = ColorOption(_('Families'), '#ffffe0')
         color_family.set_help(_('The colour to use to display families.'))
         add_option('colorfamilies', color_family)
 
-        self.limit_parents = BooleanOption(_('Limit the number of parents'), 
+        self.limit_parents = BooleanOption(_('Limit the number of ancestors'), 
                                            False)
-        self.limit_parents.set_help(
-                            _('The maximum number of ancestors to include.'))
+        self.limit_parents.set_help(_('Whether to '
+                                      'limit the number of ancestors.'))
         add_option('limitparents', self.limit_parents)
         self.limit_parents.connect('value-changed', self.limit_changed)
 
         self.max_parents = NumberOption('', 50, 10, 9999)
-        self.max_parents.set_help(
-                            _('The maximum number of ancestors to include.'))
+        self.max_parents.set_help(_('The maximum number '
+                                    'of ancestors to include.'))
         add_option('maxparents', self.max_parents)
 
-        self.limit_children = BooleanOption(_('Limit the number of children'), 
+        self.limit_children = BooleanOption(_('Limit the number '
+                                              'of descendants'), 
                                             False)
-        self.limit_children.set_help(
-                            _('The maximum number of children to include.'))
+        self.limit_children.set_help(_('Whether to '
+                                       'limit the number of descendants.'))
         add_option('limitchildren', self.limit_children)
         self.limit_children.connect('value-changed', self.limit_changed)
 
         self.max_children = NumberOption('', 50, 10, 9999)
-        self.max_children.set_help(
-                            _('The maximum number of children to include.'))
+        self.max_children.set_help(_('The maximum number '
+                                     'of descendants to include.'))
         add_option('maxchildren', self.max_children)
 
         # --------------------
         add_option = partial(menu.add_option, _('Images'))
         # --------------------
 
-        self.include_images = BooleanOption(
-                                _('Include thumbnail images of people'), True)
-        self.include_images.set_help(
-                                _('The maximum number of children to include.'))
+        self.include_images = BooleanOption(_('Include '
+                                              'thumbnail images of people'),
+                                            True)
+        self.include_images.set_help(_('Whether to '
+                                       'include thumbnail images of people.'))
         add_option('incimages', self.include_images)
         self.include_images.connect('value-changed', self.images_changed)
 
         self.image_location = EnumeratedListOption(_('Thumbnail location'), 0)
         self.image_location.add_item(0, _('Above the name'))
         self.image_location.add_item(1, _('Beside the name'))
-        self.image_location.set_help(
-             _('Where the thumbnail image should appear relative to the name'))
+        self.image_location.set_help(_('Where the thumbnail image '
+                                       'should appear relative to the name'))
         add_option('imageonside', self.image_location)
 
         # ---------------------
@@ -214,8 +217,8 @@ class FamilyLinesOptions(MenuReportOptions):
         for i in range(len(_COLORS)):
             color.add_item(_COLORS[i]["value"], _COLORS[i]["name"])
         color.set_help(_("Males will be shown with blue, females "
-                         "with red, unless otherwise set above for filled."
-                         " If the sex of an individual "
+                         "with red, unless otherwise set above for filled. "
+                         "If the sex of an individual "
                          "is unknown it will be shown with gray."))
         add_option("color", color)
 
@@ -250,7 +253,7 @@ class FamilyLinesOptions(MenuReportOptions):
 
         include_private = BooleanOption(_('Include private records'), False)
         include_private.set_help(_('Whether to include names, dates, and '
-                                  'families that are marked as private.'))
+                                   'families that are marked as private.'))
         add_option('incprivate', include_private)
         
         self.limit_changed()
