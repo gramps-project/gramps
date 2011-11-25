@@ -13,6 +13,7 @@
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2010       Serge Noiraud
+# Copyright (C) 2011       Tim G Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -423,38 +424,40 @@ class BasePage(object):
                 ["Type",    str(attr.get_type()) ],
                 ["Value",   attr.get_value() ],
                 ["Notes",   self.dump_notes(attr.get_note_list()) ],
-                ["Sources", self.get_citation_links(attr.get_source_references()) ] ]
+                ["Sources", self.get_citation_links(attr.get_citation_list()) ] ]
         )
 
         # return table row to its caller
         return trow
 
-    def get_citation_links(self, source_ref_list):
+    def get_citation_links(self, citation_handle_list):
         """
-        get citation link from the source reference list
+        get citation link from the citation handle list
 
-        @param: source_ref_list = list of source references
+        @param: citation_handle_list = list of gen/lib/Citation
         """
 
-        gid_list = []
         lnk = (self.report.cur_fname, self.page_title, self.gid)
-
-        for sref in source_ref_list:
-            handle = sref.get_reference_handle()
-            gid_list.append(sref)
-
-            if handle in self.src_list:
-                if lnk not in self.src_list[handle]:
-                    self.src_list[handle].append(lnk)
-            else:
-                self.src_list[handle] = [lnk]
-
         text = ""
-        if len(gid_list):
-            for ref in gid_list:
-                index, key = self.bibli.add_reference(ref)
-                id_ = "%d%s" % (index+1, key)
-                text += ' [<a href="#sref%s ">%s</a>]' % (id_, id_)
+
+        for citation_handle in citation_handle_list:
+            citation = self.report.database.get_citation_from_handle(
+                                                citation_handle)
+            
+            # Add the source information to src_list for use when displaying the
+            # Sources page
+            source_handle = citation.get_reference_handle()
+            if source_handle in self.src_list:
+                if lnk not in self.src_list[source_handle]:
+                    self.src_list[source_handle].append(lnk)
+            else:
+                self.src_list[source_handle] = [lnk]
+                
+            # Add the citation information to the bibliography, and construct
+            # the citation reference text
+            index, key = self.bibli.add_reference(citation)
+            id_ = "%d%s" % (index+1, key)
+            text += ' [<a href="#sref%s ">%s</a>]' % (id_, id_)
 
         # return citation list text to its callers
         return text
@@ -633,7 +636,7 @@ class BasePage(object):
         trow += Html("td", htmllist, class_ = "ColumnNotes")
 
         # get event source references
-        srcrefs = self.get_citation_links(event.get_source_references()) or "&nbsp;"
+        srcrefs = self.get_citation_links(event.get_citation_list()) or "&nbsp;"
         trow += Html("td", srcrefs, class_ = "ColumnSources")
 
         # return events table row to its callers
@@ -823,7 +826,7 @@ class BasePage(object):
                         ["LDSTemple",   ord.get_temple()],
                         ["LDSPlace",    place_hyper],
                         ["LDSStatus",   ord.get_status()],
-                        ["LDSSources",  self.get_citation_links(ord.get_source_references() )] ]
+                        ["LDSSources",  self.get_citation_links(ord.get_citation_list() )] ]
                 )
 
         # return table to its callers
@@ -961,7 +964,7 @@ class BasePage(object):
                     # get source citation list
                     if showsrc in [True, None]:
                         addr_data_row.append(["Sources",    self.get_citation_links(
-                            address.get_source_references() )])
+                            address.get_citation_list() )])
 
                     trow.extend(
                         Html("td", value or "&nbsp;", class_="Column" + colclass, inline=True)
@@ -1756,7 +1759,9 @@ class BasePage(object):
         will create the "Source References" section for an object
         """
 
-        map(self.bibli.add_reference, srcobj.get_source_references())
+        map(lambda i: self.bibli.add_reference(
+                            self.report.database.get_citation_from_handle(i)), 
+            srcobj.get_citation_list())
         sourcerefs = self.display_source_refs(self.bibli)
 
         # return to its callers
@@ -3803,7 +3808,9 @@ class MediaPage(BasePage):
 
     def display_media_sources(self, photo):
 
-        map(self.bibli.add_reference, photo.get_source_references())
+        map(lambda i: self.bibli.add_reference(
+                            self.report.database.get_citation_from_handle(i)), 
+            photo.get_citation_list())
         sourcerefs = self.display_source_refs(self.bibli)
 
         # return source references to its caller
@@ -5362,7 +5369,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
                         person_link,
                         person_ref.get_relation(),
                         self.dump_notes(person_ref.get_note_list()),
-                        self.get_citation_links(person_ref.get_source_references()),
+                        self.get_citation_links(person_ref.get_citation_list()),
                         ]: 
 
                         # get colclass from assoc_row
@@ -5475,8 +5482,8 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
                 for name in all_names:
                     pname =  _nd.display_name(name)
                     if name == primary_name:
-                        pname += self.get_citation_links(self.person.get_source_references() ) 
-                    pname += self.get_citation_links( name.get_source_references() )
+                        pname += self.get_citation_links(self.person.get_citation_list() ) 
+                    pname += self.get_citation_links( name.get_citation_list() )
 
                     # if we have just a firstname, then the name is preceeded by ", "
                     # which doesn't exactly look very nice printed on the web page
@@ -5514,7 +5521,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
                 for name in all_names:
                     call_name = name.get_call_name()
                     if call_name and call_name != first_name:
-                        call_name += self.get_citation_links(name.get_source_references() )
+                        call_name += self.get_citation_links(name.get_citation_list() )
                         trow = Html("tr") + (
                             Html("td", _("Call Name"), class_ = "ColumnAttribute", inline = True),
                             Html("td", call_name, class_ = "ColumnValue", inline = True)
@@ -5524,7 +5531,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
                 # display the nickname attribute
                 nick_name = self.person.get_nick_name()
                 if nick_name and nick_name != first_name:
-                    nick_name += self.get_citation_links(self.person.get_source_references() )
+                    nick_name += self.get_citation_links(self.person.get_citation_list() )
                     trow = Html("tr") + (
                         Html("td", _("Nick Name"), class_ = "ColumnAttribute", inline = True),
                         Html("td", nick_name, class_ = "ColumnValue", inline = True)

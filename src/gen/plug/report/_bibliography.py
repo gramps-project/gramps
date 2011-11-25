@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2007  Brian G. Matherly
 # Copyright (C) 2010  Jakim Friant
+# Copyright (C) 2011  Tim G Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -71,7 +72,7 @@ class Citation(object):
         add another one.
 
         @param source_ref: Source Reference
-        @type source_ref: L{gen.lib.srcref}
+        @type source_ref: L{gen.lib.citation}
         @return: The key of the added reference among all the references.
         @rtype: char
         """
@@ -113,7 +114,7 @@ class Bibliography(object):
     def __init__(self, mode=MODE_ALL):
         """
         A bibliography will store citations (sources) and references to those
-        citations (source refs). Duplicate entries will not be added. To change
+        citations (citations). Duplicate entries will not be added. To change
         what is considered duplicate, you can tell the bibliography what source
         ref information you are interested in by passing in the mode.
         
@@ -131,20 +132,28 @@ class Bibliography(object):
         self.__citation_list = []
         self.mode = mode
 
-    def add_reference(self, source_ref):
+    def add_reference(self, lib_citation):
         """
         Add a reference to a source to this bibliography. If the source already
         exists, don't add it again. If a similar reference exists, don't
         add another one.
 
-        @param source_ref: Source Reference
-        @type source_ref: L{gen.lib.srcref}
+        @param citation: Citation object
+        @type citation: L{gen.lib.Citation}
         @return: A tuple containing the index of the source among all the 
         sources and the key of the reference among all the references. If 
         there is no reference information, the second element will be None.
         @rtype: (int,char) or (int,None)
+        
+        N.B. Within this file, the name 'citation' is used both for
+        gen.lib.Citation, and for _bibliography.Citation. It is not clear how
+        best to rename the concepts in this file to avoid the clash, so the
+        names have been retained. In this function, lib_citation is used for
+        gen.lib.Citation instances, and citation for _bibliography.Citation
+        instances. Elsewhere in this file, source_ref is used for
+        gen.lib.Citation instances.
         """
-        source_handle = source_ref.get_reference_handle()
+        source_handle = lib_citation.get_reference_handle()
         cindex = 0
         rkey = ""
         citation = None
@@ -161,13 +170,13 @@ class Bibliography(object):
             cindex = len(self.__citation_list)
             self.__citation_list.append(citation)
 
-        if self.__sref_has_info(source_ref):
+        if self.__sref_has_info(lib_citation):
             for key, ref in citation.get_ref_list():
-                if self.__srefs_are_equal(ref, source_ref):
+                if self.__srefs_are_equal(ref, lib_citation):
                     # if a reference like this already exists, don't add 
                     # another one
                     return (cindex, key)
-            rkey = citation.add_reference(source_ref)
+            rkey = citation.add_reference(lib_citation)
         
         return (cindex, rkey)
     
@@ -216,8 +225,17 @@ class Bibliography(object):
         Determine if two source references are equal based on the 
         current mode.
         """
+        # The criterion for equality (in mode==MODE_ALL) is changed for
+        # citations. Previously, it was based on is_equal from SecondaryObject,
+        # which does a 'cmp' on the serialised data. (Note that this might not
+        # have worked properly for Dates; see comments in Date.is_equal and
+        # EditCitation.data_has_changed). The comparison is now made as to
+        # whether the two gen.lib.Citations have the same handle (i.e. they are
+        # actually the same database objects). It is felt that this better
+        # reflects the intent of Citation objects, which can be merged if they
+        # are intended to represent the same citation.
         if self.mode == self.MODE_ALL:
-            return source_ref1.is_equal(source_ref2)
+            return source_ref1.handle == source_ref2.handle
         if ( self.mode & self.MODE_PAGE ) == self.MODE_PAGE:
             if source_ref1.get_page() != source_ref2.get_page():
                 return False
