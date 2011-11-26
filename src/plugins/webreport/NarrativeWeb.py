@@ -4970,7 +4970,6 @@ class IndividualPage(BasePage):
                             midX_, midY_ = conv_lat_lon(place_lat_long[0][0], place_lat_long[0][1], "D.D8")
 
                         jsc += """
-  //<![CDATA[
   var centre = new google.maps.LatLng(%s, %s);""" % (midX_, midY_)
                         jsc += """
     var myCoordinates = ["""
@@ -5016,27 +5015,9 @@ class IndividualPage(BasePage):
       animation: google.maps.Animation.DROP
     }));
     iterator++;
-  }
-  //]]>""" % zoomlevel
+  }""" % zoomlevel
 # there is no need to add an ending "</script>",
 # as it will be added automatically by libhtml()!
-
-                        dont = """
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-  function setMarkers(map, locations) {
-    var bounds = new google.maps.LatLngBounds();
-    for (var i = 0; i < locations.length; i++) {
-      var coordinates = locations[i];
-
-      var myLatLng = new google.maps.LatLng(coordinates[1], coordinates[2]);
-      var marker = new google.maps.Marker({
-        position: myLatLng,
-        map:      map,
-        title:    coordinates[0]
-    });
-    bounds.extend(locations[i]);
-    map.fitBounds(bounds);
-  }"""
 
         with Html("div", class_ ="content", id ="FamilyMapDetail") as mapbackground:
             body += mapbackground
