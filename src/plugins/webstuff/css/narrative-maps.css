@@ -39,8 +39,7 @@ button#drop {
     color:            #FFF;
     font:             bold .8em sans-serif;
     padding:          10px;
-    margin-top:       0px;
-    margin-bottom:    10px;
+    margin-top:       10px;
     margin-left:      10px;
-    border:           solid 2px green;
+    border:           solid 4px #00029D;
 }

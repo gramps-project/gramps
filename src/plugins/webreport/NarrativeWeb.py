@@ -4989,9 +4989,9 @@ class IndividualPage(BasePage):
  
   function initialize() {
     var mapOptions = {
-      scrollwheel:     false,
-      scaleControl:    false,
-      backgroundColor: '#FFFFFF',
+      scrollwheel:     true,
+      scaleControl:    true,
+      backgroundColor: '#000000',
       zoom:            %d,
       center:          centre,
       mapTypeId:       google.maps.MapTypeId.ROADMAP
@@ -5032,14 +5032,13 @@ class IndividualPage(BasePage):
                    "take you to that page&#8217;s page.") 
             mapbackground += Html("p", msg, id = "description")
 
-            # if Google and Markers are selected, then add "Drop Markers" button?
-            if (self.mapservice == "Google" and self.googleopts == "Markers"):
-                button_ = Html("button", _("Drop Markers"), id ="drop", onclick ="drop()", inline =True)
-                mapbackground += button_
-
             # here is where the map is held in the CSS/ Page
             with Html("div", id ="map_canvas", inline =True) as canvas:
                 mapbackground += canvas
+
+            # if Google and Markers are selected, then add "Drop Markers" button?
+            if (self.mapservice == "Google" and self.googleopts == "Markers"):
+                mapbackground += Html("button", _("Drop Markers"), id ="drop", onclick ="drop()", inline =True)
 
             if self.mapservice == "OpenStreetMap":
                 with Html("script", type ="text/javascript") as jsc:
