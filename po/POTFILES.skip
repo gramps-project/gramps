@@ -72,6 +72,7 @@ src/Filters/Rules/_HasNoteRegexBase.py
 src/Filters/Rules/_HasNoteSubstrBase.py
 src/Filters/Rules/_HasReferenceCountBase.py
 src/Filters/Rules/_HasSourceBase.py
+src/Filters/Rules/_HasSourceCountBase.py
 src/Filters/Rules/_HasTagBase.py
 src/Filters/Rules/_HasTextMatchingRegexpOf.py
 src/Filters/Rules/__init__.py

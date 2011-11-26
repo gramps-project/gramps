@@ -104,6 +104,7 @@ src/gui/editors/objectentries.py
 src/gui/editors/editaddress.py
 src/gui/editors/editattribute.py
 src/gui/editors/editchildref.py
+src/gui/editors/editcitation.py
 src/gui/editors/editevent.py
 src/gui/editors/editeventref.py
 src/gui/editors/editfamily.py
@@ -282,11 +283,11 @@ src/plugins/gramplet/PedigreeGramplet.py
 src/plugins/gramplet/PersonDetails.py
 src/plugins/gramplet/PersonResidence.py
 src/plugins/gramplet/PlaceDetails.py
+src/plugins/gramplet/PopulateGramplet.gpr.py
 src/plugins/gramplet/QuickViewGramplet.py
 src/plugins/gramplet/RelativeGramplet.py
 src/plugins/gramplet/RepositoryDetails.py
 src/plugins/gramplet/SessionLogGramplet.py
-src/plugins/gramplet/Sources.py
 src/plugins/gramplet/StatsGramplet.py
 src/plugins/gramplet/SurnameCloudGramplet.py
 src/plugins/gramplet/ToDoGramplet.py
@@ -387,6 +388,7 @@ src/plugins/tool/ExtractCity.py
 src/plugins/tool/FindDupes.py
 src/plugins/tool/Leak.py
 src/plugins/tool/MediaManager.py
+src/plugins/tool/MergeCitations.py
 src/plugins/tool/NotRelated.py
 src/plugins/tool/OwnerEditor.py
 src/plugins/tool/PatchNames.py
@@ -461,6 +463,7 @@ src/Filters/Rules/Person/_HasAlternateName.py
 src/Filters/Rules/Person/_HasAssociation.py
 src/Filters/Rules/Person/_HasAttribute.py
 src/Filters/Rules/Person/_HasBirth.py
+src/Filters/Rules/Person/_HasCitation.py
 src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py
 src/Filters/Rules/Person/_HasCommonAncestorWith.py
 src/Filters/Rules/Person/_HasDeath.py
@@ -478,7 +481,7 @@ src/Filters/Rules/Person/_HasNote.py
 src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py
 src/Filters/Rules/Person/_HasNoteRegexp.py
 src/Filters/Rules/Person/_HasRelationship.py
-src/Filters/Rules/Person/_HasSource.py
+src/Filters/Rules/Person/_HasSourceCount.py
 src/Filters/Rules/Person/_HasSourceOf.py
 src/Filters/Rules/Person/_HasTag.py
 src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py
@@ -535,6 +538,7 @@ src/Filters/Rules/Family/_FamilyPrivate.py
 src/Filters/Rules/Family/_FatherHasIdOf.py
 src/Filters/Rules/Family/_FatherHasNameOf.py
 src/Filters/Rules/Family/_HasAttribute.py
+src/Filters/Rules/Family/_HasCitation.py
 src/Filters/Rules/Family/_HasEvent.py
 src/Filters/Rules/Family/_HasGallery.py
 src/Filters/Rules/Family/_HasIdOf.py
@@ -544,7 +548,7 @@ src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py
 src/Filters/Rules/Family/_HasNoteRegexp.py
 src/Filters/Rules/Family/_HasReferenceCountOf.py
 src/Filters/Rules/Family/_HasRelType.py
-src/Filters/Rules/Family/_HasSource.py
+src/Filters/Rules/Family/_HasSourceCount.py
 src/Filters/Rules/Family/_HasTag.py
 src/Filters/Rules/Family/_IsBookmarked.py
 src/Filters/Rules/Family/_MatchesFilter.py
@@ -564,6 +568,7 @@ src/Filters/Rules/Event/_AllEvents.py
 src/Filters/Rules/Event/_ChangedSince.py
 src/Filters/Rules/Event/_EventPrivate.py
 src/Filters/Rules/Event/_HasAttribute.py
+src/Filters/Rules/Event/_HasCitation.py
 src/Filters/Rules/Event/_HasData.py
 src/Filters/Rules/Event/_HasGallery.py
 src/Filters/Rules/Event/_HasIdOf.py
@@ -571,7 +576,7 @@ src/Filters/Rules/Event/_HasNote.py
 src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py
 src/Filters/Rules/Event/_HasNoteRegexp.py
 src/Filters/Rules/Event/_HasReferenceCountOf.py
-src/Filters/Rules/Event/_HasSource.py
+src/Filters/Rules/Event/_HasSourceCount.py
 src/Filters/Rules/Event/_HasType.py
 src/Filters/Rules/Event/_MatchesFilter.py
 src/Filters/Rules/Event/_MatchesPersonFilter.py
@@ -607,12 +612,26 @@ src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py
 src/Filters/Rules/Source/_HasReferenceCountOf.py
 src/Filters/Rules/Source/_HasRepository.py
 src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py
-src/Filters/Rules/Source/_HasSource.py
 src/Filters/Rules/Source/_MatchesFilter.py
 src/Filters/Rules/Source/_MatchesRepositoryFilter.py
 src/Filters/Rules/Source/_MatchesTitleSubstringOf.py
 src/Filters/Rules/Source/_SourcePrivate.py
 src/Filters/Rules/Source/_RegExpIdOf.py
+
+# Filters.Rules.Citation package
+src/Filters/Rules/Citation/_AllCitations.py
+src/Filters/Rules/Citation/_ChangedSince.py
+src/Filters/Rules/Citation/_CitationPrivate.py
+src/Filters/Rules/Citation/_HasGallery.py
+src/Filters/Rules/Citation/_HasIdOf.py
+src/Filters/Rules/Citation/_HasNote.py
+src/Filters/Rules/Citation/_HasNoteMatchingSubstringOf.py
+src/Filters/Rules/Citation/_HasNoteRegexp.py
+src/Filters/Rules/Citation/_HasReferenceCountOf.py
+src/Filters/Rules/Citation/_HasSource.py
+src/Filters/Rules/Citation/_MatchesFilter.py
+src/Filters/Rules/Citation/_MatchesPageSubstringOf.py
+src/Filters/Rules/Citation/_MatchesRepositoryFilter.py
 
 # Filters.Rules.MediaObject package
 src/Filters/Rules/MediaObject/_AllMedia.py
@@ -655,6 +674,7 @@ src/Filters/Rules/Note/_RegExpIdOf.py
 src/Filters/Rules/Note/_NotePrivate.py
 
 # Filters.SideBar package
+src/Filters/SideBar/_CitationSidebarFilter.py
 src/Filters/SideBar/_EventSidebarFilter.py
 src/Filters/SideBar/_FamilySidebarFilter.py
 src/Filters/SideBar/_PersonSidebarFilter.py
@@ -682,6 +702,7 @@ src/glade/dateedit.glade
 src/glade/editsource.glade
 src/glade/styleeditor.glade
 src/glade/dbman.glade
+src/glade/editcitation.glade
 src/glade/editurl.glade
 src/glade/editrepository.glade
 src/glade/editreporef.glade
@@ -701,6 +722,7 @@ src/glade/editplace.glade
 src/glade/editsourceref.glade
 src/glade/editname.glade
 src/glade/editevent.glade
+src/glade/mergecitation.glade
 src/glade/mergedata.glade
 src/glade/mergeevent.glade
 src/glade/mergefamily.glade
@@ -725,6 +747,7 @@ src/plugins/tool/eventcmp.glade
 src/plugins/import/importgedcom.glade
 src/plugins/tool/leak.glade
 src/plugins/tool/finddupes.glade
+src/plugins/tool/mergecitations.glade
 src/plugins/tool/ownereditor.glade
 src/plugins/tool/patchnames.glade
 src/plugins/tool/phpgedview.glade
