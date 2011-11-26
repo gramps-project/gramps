@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-26 14:11+0100\n"
+"POT-Creation-Date: 2011-11-26 14:46+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -108,11 +108,13 @@ msgstr ""
 #: ../src/Bookmarks.py:213 ../src/gui/filtereditor.py:892
 #: ../src/gui/editors/editfamily.py:115
 #: ../src/gui/editors/displaytabs/backreflist.py:61
+#: ../src/gui/editors/displaytabs/citationembedlist.py:84
 #: ../src/gui/editors/displaytabs/eventembedlist.py:76
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:63
 #: ../src/gui/editors/displaytabs/repoembedlist.py:66
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:66
 #: ../src/gui/plug/_guioptions.py:1110 ../src/gui/plug/_guioptions.py:1287
+#: ../src/gui/selectors/selectcitation.py:67
 #: ../src/gui/selectors/selectevent.py:62
 #: ../src/gui/selectors/selectfamily.py:61
 #: ../src/gui/selectors/selectnote.py:67
@@ -127,6 +129,8 @@ msgstr ""
 #: ../src/plugins/tool/NotRelated.py:131 ../src/plugins/tool/PatchNames.py:399
 #: ../src/plugins/tool/RemoveUnused.py:194
 #: ../src/plugins/tool/SortEvents.py:58 ../src/plugins/tool/Verify.py:501
+#: ../src/plugins/view/citationtreeview.py:91
+#: ../src/plugins/view/citationlistview.py:96
 #: ../src/plugins/view/eventview.py:81 ../src/plugins/view/familyview.py:79
 #: ../src/plugins/view/mediaview.py:93 ../src/plugins/view/noteview.py:78
 #: ../src/plugins/view/placetreeview.py:71 ../src/plugins/view/relview.py:604
@@ -644,10 +648,12 @@ msgstr ""
 #: ../src/plugins/gramplet/gramplet.gpr.py:181
 #: ../src/plugins/gramplet/gramplet.gpr.py:188
 #: ../src/plugins/lib/libpersonview.py:356
-#: ../src/plugins/lib/libplaceview.py:174 ../src/plugins/view/eventview.py:221
-#: ../src/plugins/view/familyview.py:213 ../src/plugins/view/mediaview.py:227
-#: ../src/plugins/view/noteview.py:214 ../src/plugins/view/repoview.py:152
-#: ../src/plugins/view/sourceview.py:138
+#: ../src/plugins/lib/libplaceview.py:174
+#: ../src/plugins/view/citationtreeview.py:266
+#: ../src/plugins/view/citationlistview.py:179
+#: ../src/plugins/view/eventview.py:221 ../src/plugins/view/familyview.py:213
+#: ../src/plugins/view/mediaview.py:227 ../src/plugins/view/noteview.py:214
+#: ../src/plugins/view/repoview.py:152 ../src/plugins/view/sourceview.py:138
 msgid "Quick View"
 msgstr ""
 
@@ -948,6 +954,7 @@ msgstr ""
 #: ../src/ScratchPad.py:452 ../src/gen/lib/notetype.py:84
 #: ../src/gui/filtereditor.py:297 ../src/gui/editors/editcitation.py:140
 #: ../src/gui/editors/editcitation.py:146
+#: ../src/gui/views/treemodels/citationtreemodel.py:143
 #: ../src/plugins/gramplet/QuickViewGramplet.py:114
 #: ../src/plugins/quickview/quickview.gpr.py:206
 #: ../src/plugins/quickview/References.py:89
@@ -1101,6 +1108,7 @@ msgstr ""
 #: ../src/gui/filtereditor.py:293 ../src/gui/editors/editlink.py:88
 #: ../src/gui/editors/editsource.py:77
 #: ../src/gui/editors/displaytabs/nameembedlist.py:76
+#: ../src/gui/views/treemodels/citationtreemodel.py:143
 #: ../src/plugins/export/ExportCsv.py:458
 #: ../src/plugins/gramplet/QuickViewGramplet.py:113
 #: ../src/plugins/import/ImportCsv.py:181
@@ -1164,7 +1172,9 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: ../src/ScratchPad.py:841 ../src/gui/editors/displaytabs/repoembedlist.py:67
+#: ../src/ScratchPad.py:841
+#: ../src/gui/editors/displaytabs/citationembedlist.py:81
+#: ../src/gui/editors/displaytabs/repoembedlist.py:67
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:67
 #: ../src/gui/selectors/selectobject.py:74
 #: ../src/gui/selectors/selectplace.py:62
@@ -4776,6 +4786,7 @@ msgstr ""
 
 #: ../src/gui/filtereditor.py:531
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:48
+#: ../src/Filters/Rules/Citation/_MatchesSourceFilter.py:49
 msgid "Source filter name:"
 msgstr ""
 
@@ -4989,8 +5000,10 @@ msgstr ""
 #: ../src/plugins/textreport/PlaceReport.py:256
 #: ../src/plugins/textreport/TagReport.py:300
 #: ../src/plugins/textreport/TagReport.py:468
-#: ../src/plugins/tool/SortEvents.py:56 ../src/plugins/view/eventview.py:83
-#: ../src/plugins/view/mediaview.py:96
+#: ../src/plugins/tool/SortEvents.py:56
+#: ../src/plugins/view/citationtreeview.py:92
+#: ../src/plugins/view/citationlistview.py:97
+#: ../src/plugins/view/eventview.py:83 ../src/plugins/view/mediaview.py:96
 #: ../src/plugins/webreport/NarrativeWeb.py:121
 #: ../src/plugins/webreport/NarrativeWeb.py:556
 #: ../src/plugins/webreport/NarrativeWeb.py:764
@@ -6768,6 +6781,73 @@ msgstr ""
 msgid "Move Down"
 msgstr ""
 
+#: ../src/gui/editors/displaytabs/citationembedlist.py:70
+msgid "Create and add a new citation and new source"
+msgstr ""
+
+#: ../src/gui/editors/displaytabs/citationembedlist.py:71
+msgid "Remove the existing citation"
+msgstr ""
+
+#: ../src/gui/editors/displaytabs/citationembedlist.py:72
+#: ../src/plugins/view/citationlistview.py:119
+msgid "Edit the selected citation"
+msgstr ""
+
+#: ../src/gui/editors/displaytabs/citationembedlist.py:73
+msgid "Add an existing citation or source"
+msgstr ""
+
+#: ../src/gui/editors/displaytabs/citationembedlist.py:74
+msgid "Move the selected citation upwards"
+msgstr ""
+
+#: ../src/gui/editors/displaytabs/citationembedlist.py:75
+msgid "Move the selected citation downwards"
+msgstr ""
+
+#: ../src/gui/editors/displaytabs/citationembedlist.py:82
+#: ../src/gui/editors/displaytabs/sourceembedlist.py:68
+#: ../src/plugins/gramplet/Citations.py:49
+#: ../src/plugins/view/sourceview.py:81
+#: ../src/plugins/webreport/NarrativeWeb.py:4160
+#: ../src/Filters/SideBar/_SourceSidebarFilter.py:81
+msgid "Author"
+msgstr ""
+
+#: ../src/gui/editors/displaytabs/citationembedlist.py:83
+#: ../src/gui/editors/displaytabs/sourceembedlist.py:69
+#: ../src/gui/selectors/selectcitation.py:66
+#: ../src/plugins/webreport/NarrativeWeb.py:1807
+msgid "Page"
+msgstr ""
+
+#: ../src/gui/editors/displaytabs/citationembedlist.py:91
+msgid "_Source Citations"
+msgstr ""
+
+#: ../src/gui/editors/displaytabs/citationembedlist.py:169
+#: ../src/gui/editors/displaytabs/citationembedlist.py:179
+#: ../src/gui/editors/displaytabs/citationembedlist.py:252
+#: ../src/gui/editors/displaytabs/citationembedlist.py:272
+#: ../src/gui/editors/displaytabs/eventembedlist.py:251
+#: ../src/gui/editors/displaytabs/gallerytab.py:316
+#: ../src/gui/editors/displaytabs/sourceembedlist.py:144
+#: ../src/plugins/view/citationtreeview.py:414
+#: ../src/plugins/view/citationtreeview.py:469
+msgid "Cannot share this reference"
+msgstr ""
+
+#: ../src/gui/editors/displaytabs/citationembedlist.py:188
+#: ../src/plugins/view/citationtreeview.py:476
+msgid ""
+"This citation cannot be created at this time. Either the associated Source "
+"object is already being edited, or another citation associated with the same "
+"source is being edited.\n"
+"\n"
+"To edit this citation, you need to close the object."
+msgstr ""
+
 #: ../src/gui/editors/displaytabs/dataembedlist.py:49
 msgid "Create and add a new data entry"
 msgstr ""
@@ -6853,12 +6933,6 @@ msgid ""
 "with the same event is being edited.\n"
 "\n"
 "To edit this event reference, you need to close the event."
-msgstr ""
-
-#: ../src/gui/editors/displaytabs/eventembedlist.py:251
-#: ../src/gui/editors/displaytabs/gallerytab.py:316
-#: ../src/gui/editors/displaytabs/sourceembedlist.py:144
-msgid "Cannot share this reference"
 msgstr ""
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:264
@@ -7199,18 +7273,6 @@ msgstr ""
 
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:60
 msgid "Move the selected source downwards"
-msgstr ""
-
-#: ../src/gui/editors/displaytabs/sourceembedlist.py:68
-#: ../src/plugins/view/sourceview.py:81
-#: ../src/plugins/webreport/NarrativeWeb.py:4160
-#: ../src/Filters/SideBar/_SourceSidebarFilter.py:81
-msgid "Author"
-msgstr ""
-
-#: ../src/gui/editors/displaytabs/sourceembedlist.py:69
-#: ../src/plugins/webreport/NarrativeWeb.py:1807
-msgid "Page"
 msgstr ""
 
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:74
@@ -7764,6 +7826,10 @@ msgstr ""
 
 #: ../src/gui/plug/tool.py:140 ../src/plugins/tool/RelCalc.py:149
 msgid "You must select an active person for this tool to work properly."
+msgstr ""
+
+#: ../src/gui/selectors/selectcitation.py:59
+msgid "Select Source or Citation"
 msgstr ""
 
 #: ../src/gui/selectors/selectevent.py:54
@@ -8323,6 +8389,18 @@ msgstr ""
 
 #: ../src/config.py:294
 msgid "Private Record"
+msgstr ""
+
+#: ../src/Merge/mergecitation.py:50
+msgid "manual|Merge_Citations"
+msgstr ""
+
+#: ../src/Merge/mergecitation.py:72 ../src/plugins/tool/tools.gpr.py:529
+msgid "Merge Citations"
+msgstr ""
+
+#: ../src/Merge/mergecitation.py:193 ../src/plugins/tool/MergeCitations.py:187
+msgid "Merge Citation"
 msgstr ""
 
 #: ../src/Merge/mergeevent.py:49
@@ -10635,6 +10713,7 @@ msgstr ""
 
 #. GUI setup:
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:59
+#: ../src/plugins/gramplet/PopulateGramplet.py:61
 msgid "Enter a date, click Run"
 msgstr ""
 
@@ -10646,6 +10725,7 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:75
+#: ../src/plugins/gramplet/PopulateGramplet.py:79
 #: ../src/glade/plugins.glade.h:4
 msgid "Run"
 msgstr ""
@@ -11216,6 +11296,22 @@ msgstr ""
 #: ../src/plugins/gramplet/Children.py:80
 #: ../src/plugins/gramplet/Children.py:177
 msgid "Double-click on a row to edit the selected child."
+msgstr ""
+
+#: ../src/plugins/gramplet/Citations.py:44
+msgid "Double-click on a row to edit the selected source/citation."
+msgstr ""
+
+#: ../src/plugins/gramplet/Citations.py:48
+msgid "Source/Citation"
+msgstr ""
+
+#: ../src/plugins/gramplet/Citations.py:50
+msgid "Publisher"
+msgstr ""
+
+#: ../src/plugins/gramplet/Citations.py:121
+msgid "<No Citation>"
 msgstr ""
 
 #: ../src/plugins/gramplet/DescendGramplet.py:49
@@ -12034,6 +12130,21 @@ msgstr ""
 #: ../src/plugins/webreport/NarrativeWeb.py:127
 #: ../src/plugins/webreport/NarrativeWeb.py:3052
 msgid "Longitude"
+msgstr ""
+
+#: ../src/plugins/gramplet/PopulateGramplet.py:69
+msgid ""
+"Enter a valid number of sources and citations. This will create the "
+"requested number of sources, and for each source, will create the requested "
+"number of citations."
+msgstr ""
+
+#: ../src/plugins/gramplet/PopulateGramplet.py:74
+msgid "Number of sources"
+msgstr ""
+
+#: ../src/plugins/gramplet/PopulateGramplet.py:77
+msgid "Number of citations"
 msgstr ""
 
 #: ../src/plugins/gramplet/PopulateGramplet.gpr.py:30
@@ -16728,10 +16839,13 @@ msgid "Also relationship with %(spouse)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libpersonview.py:101
-#: ../src/plugins/lib/libplaceview.py:104 ../src/plugins/view/eventview.py:85
-#: ../src/plugins/view/familyview.py:85 ../src/plugins/view/mediaview.py:98
-#: ../src/plugins/view/noteview.py:81 ../src/plugins/view/placetreeview.py:82
-#: ../src/plugins/view/repoview.py:94 ../src/plugins/view/sourceview.py:84
+#: ../src/plugins/lib/libplaceview.py:104
+#: ../src/plugins/view/citationtreeview.py:94
+#: ../src/plugins/view/citationlistview.py:99
+#: ../src/plugins/view/eventview.py:85 ../src/plugins/view/familyview.py:85
+#: ../src/plugins/view/mediaview.py:98 ../src/plugins/view/noteview.py:81
+#: ../src/plugins/view/placetreeview.py:82 ../src/plugins/view/repoview.py:94
+#: ../src/plugins/view/sourceview.py:84
 msgid "Last Changed"
 msgstr ""
 
@@ -18091,6 +18205,7 @@ msgstr ""
 #: ../src/Filters/Rules/Source/_MatchesTitleSubstringOf.py:47
 #: ../src/Filters/Rules/Citation/_MatchesPageSubstringOf.py:47
 #: ../src/Filters/Rules/Citation/_MatchesRepositoryFilter.py:51
+#: ../src/Filters/Rules/Citation/_MatchesSourceFilter.py:53
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:54
 #: ../src/Filters/Rules/Repository/_HasRepo.py:54
 #: ../src/Filters/Rules/Repository/_MatchesNameSubstringOf.py:46
@@ -20314,10 +20429,6 @@ msgstr ""
 msgid "Looking for citation fields"
 msgstr ""
 
-#: ../src/plugins/tool/MergeCitations.py:187
-msgid "Merge Citation"
-msgstr ""
-
 #: ../src/plugins/tool/MergeCitations.py:224
 msgid "Number of merges done"
 msgstr ""
@@ -20758,10 +20869,6 @@ msgstr ""
 msgid "Verifies the data against user-defined tests"
 msgstr ""
 
-#: ../src/plugins/tool/tools.gpr.py:529
-msgid "Merge Citations"
-msgstr ""
-
 #: ../src/plugins/tool/tools.gpr.py:530
 msgid ""
 "Searches the entire database, looking for citations that have the same "
@@ -20931,6 +21038,179 @@ msgstr ""
 
 #: ../src/plugins/tool/Verify.py:1565
 msgid "Old age but no death"
+msgstr ""
+
+#: ../src/plugins/view/citationtreeview.py:90
+msgid "Title or Page"
+msgstr ""
+
+#: ../src/plugins/view/citationtreeview.py:93
+#: ../src/plugins/view/citationlistview.py:98
+#: ../src/plugins/webreport/NarrativeWeb.py:1808
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:97
+msgid "Confidence"
+msgstr ""
+
+#: ../src/plugins/view/citationtreeview.py:95
+#: ../src/plugins/view/citationlistview.py:102
+msgid "Source: Author"
+msgstr ""
+
+#: ../src/plugins/view/citationtreeview.py:96
+#: ../src/plugins/view/citationlistview.py:103
+msgid "Source: Abbreviation"
+msgstr ""
+
+#: ../src/plugins/view/citationtreeview.py:97
+#: ../src/plugins/view/citationlistview.py:104
+msgid "Source: Publication Information"
+msgstr ""
+
+#: ../src/plugins/view/citationtreeview.py:108
+#: ../src/plugins/view/citationlistview.py:116
+msgid "Add a new citation and a new source"
+msgstr ""
+
+#: ../src/plugins/view/citationtreeview.py:109
+#: ../src/plugins/view/citationlistview.py:117
+#: ../src/plugins/view/sourceview.py:93
+msgid "Add a new source"
+msgstr ""
+
+#: ../src/plugins/view/citationtreeview.py:110
+#: ../src/plugins/view/citationlistview.py:118
+msgid "Add a new citation to an existing source"
+msgstr ""
+
+#: ../src/plugins/view/citationtreeview.py:111
+msgid "Edit the selected citation or source"
+msgstr ""
+
+#: ../src/plugins/view/citationtreeview.py:112
+msgid "Delete the selected citation or source"
+msgstr ""
+
+#: ../src/plugins/view/citationtreeview.py:113
+msgid "Merge the selected citations or selected sources"
+msgstr ""
+
+#: ../src/plugins/view/citationtreeview.py:131
+#: ../src/plugins/view/view.gpr.py:233
+msgid "Citation Tree View"
+msgstr ""
+
+#: ../src/plugins/view/citationtreeview.py:251
+msgid "Add source..."
+msgstr ""
+
+#: ../src/plugins/view/citationtreeview.py:256
+msgid "Add citation..."
+msgstr ""
+
+#: ../src/plugins/view/citationtreeview.py:264
+#: ../src/plugins/view/citationlistview.py:177
+msgid "Citation Filter Editor"
+msgstr ""
+
+#: ../src/plugins/view/citationtreeview.py:273
+#: ../src/plugins/view/persontreeview.py:82
+#: ../src/plugins/view/placetreeview.py:123
+msgid "Expand all Nodes"
+msgstr ""
+
+#: ../src/plugins/view/citationtreeview.py:275
+#: ../src/plugins/view/persontreeview.py:84
+#: ../src/plugins/view/placetreeview.py:125
+msgid "Collapse all Nodes"
+msgstr ""
+
+#: ../src/plugins/view/citationtreeview.py:417
+msgid "Cannot add citation."
+msgstr ""
+
+#: ../src/plugins/view/citationtreeview.py:418
+msgid ""
+"In order to add a citation to an existing source,  you must select a source."
+msgstr ""
+
+#: ../src/plugins/view/citationtreeview.py:486
+msgid ""
+"This source cannot be edited at this time. Either the associated Source "
+"object is already being edited, or another citation associated with the same "
+"source is being edited.\n"
+"\n"
+"To edit this source, you need to close the object."
+msgstr ""
+
+#: ../src/plugins/view/citationtreeview.py:499
+#: ../src/plugins/view/citationtreeview.py:519
+#: ../src/plugins/view/citationlistview.py:318
+#: ../src/plugins/view/citationlistview.py:329
+msgid "Cannot merge citations."
+msgstr ""
+
+#: ../src/plugins/view/citationtreeview.py:500
+#: ../src/plugins/view/citationlistview.py:319
+msgid ""
+"Exactly two citations must be selected to perform a merge. A second citation "
+"can be selected by holding down the control key while clicking on the "
+"desired citation."
+msgstr ""
+
+#: ../src/plugins/view/citationtreeview.py:520
+#: ../src/plugins/view/citationlistview.py:330
+msgid ""
+"The two selected citations must have the same source to perform a merge. If "
+"you want to merge these two citations, then you must merge the sources first."
+msgstr ""
+
+#: ../src/plugins/view/citationtreeview.py:534
+msgid "Cannot perform merge."
+msgstr ""
+
+#: ../src/plugins/view/citationtreeview.py:535
+msgid ""
+"Both objects must be of the same type, either both must be sources, or both "
+"must be citations."
+msgstr ""
+
+#: ../src/plugins/view/citationlistview.py:95
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:95
+msgid "Volume/Page"
+msgstr ""
+
+#: ../src/plugins/view/citationlistview.py:100
+msgid "Source: Title"
+msgstr ""
+
+#: ../src/plugins/view/citationlistview.py:101
+msgid "Source: ID"
+msgstr ""
+
+#: ../src/plugins/view/citationlistview.py:105
+msgid "Source: Last Changed"
+msgstr ""
+
+#: ../src/plugins/view/citationlistview.py:120
+msgid "Delete the selected citation"
+msgstr ""
+
+#: ../src/plugins/view/citationlistview.py:121
+msgid "Merge the selected citations"
+msgstr ""
+
+#: ../src/plugins/view/citationlistview.py:135
+#: ../src/plugins/view/view.gpr.py:218
+msgid "Citation View"
+msgstr ""
+
+#: ../src/plugins/view/citationlistview.py:305
+msgid ""
+"This citation cannot be edited at this time. Either the associated citation "
+"is already being edited or another object that is associated with the same "
+"citation is being edited.\n"
+"\n"
+"To edit this citation, you need to close the object."
 msgstr ""
 
 #: ../src/plugins/view/eventview.py:97
@@ -21349,16 +21629,6 @@ msgstr ""
 msgid "People Tree View"
 msgstr ""
 
-#: ../src/plugins/view/persontreeview.py:82
-#: ../src/plugins/view/placetreeview.py:123
-msgid "Expand all Nodes"
-msgstr ""
-
-#: ../src/plugins/view/persontreeview.py:84
-#: ../src/plugins/view/placetreeview.py:125
-msgid "Collapse all Nodes"
-msgstr ""
-
 #: ../src/plugins/view/placelistview.py:52 ../src/plugins/view/view.gpr.py:171
 msgid "Place View"
 msgstr ""
@@ -21600,10 +21870,6 @@ msgstr ""
 msgid "Publication Information"
 msgstr ""
 
-#: ../src/plugins/view/sourceview.py:93
-msgid "Add a new source"
-msgstr ""
-
 #: ../src/plugins/view/sourceview.py:95
 msgid "Delete the selected source"
 msgstr ""
@@ -21703,16 +21969,8 @@ msgstr ""
 msgid "The view showing all the repositories"
 msgstr ""
 
-#: ../src/plugins/view/view.gpr.py:218
-msgid "Citation View"
-msgstr ""
-
 #: ../src/plugins/view/view.gpr.py:219
 msgid "The view showing all the citations"
-msgstr ""
-
-#: ../src/plugins/view/view.gpr.py:233
-msgid "Citation Tree View"
 msgstr ""
 
 #: ../src/plugins/view/view.gpr.py:234
@@ -21813,11 +22071,6 @@ msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1772
 msgid "Source References"
-msgstr ""
-
-#: ../src/plugins/webreport/NarrativeWeb.py:1808
-#: ../src/Filters/SideBar/_CitationSidebarFilter.py:97
-msgid "Confidence"
 msgstr ""
 
 #. return hyperlink to its caller
@@ -24749,6 +25002,14 @@ msgstr ""
 msgid "Matches citations whose Volume/Page contains a certain substring"
 msgstr ""
 
+#: ../src/Filters/Rules/Citation/_RegExpIdOf.py:49
+msgid "Citations with <Id> matching regular expression"
+msgstr ""
+
+#: ../src/Filters/Rules/Citation/_RegExpIdOf.py:50
+msgid "Matches citations whose Gramps ID matches the regular expression"
+msgstr ""
+
 #: ../src/Filters/Rules/Citation/_MatchesRepositoryFilter.py:47
 msgid ""
 "Citations with a source with a repository reference matching the <repository "
@@ -24759,6 +25020,15 @@ msgstr ""
 msgid ""
 "Matches citations with sources with a repository reference that match a "
 "certain repository filter"
+msgstr ""
+
+#: ../src/Filters/Rules/Citation/_MatchesSourceFilter.py:50
+msgid "Citations with source matching the <source filter>"
+msgstr ""
+
+#: ../src/Filters/Rules/Citation/_MatchesSourceFilter.py:51
+msgid ""
+"Matches citations with sources that match the specified source filter name"
 msgstr ""
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:45
@@ -25071,10 +25341,6 @@ msgstr ""
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:76
 #: ../src/Filters/SideBar/_NoteSidebarFilter.py:72
 msgid "Use regular expressions"
-msgstr ""
-
-#: ../src/Filters/SideBar/_CitationSidebarFilter.py:95
-msgid "Volume/Page"
 msgstr ""
 
 #: ../src/Filters/SideBar/_CitationSidebarFilter.py:99

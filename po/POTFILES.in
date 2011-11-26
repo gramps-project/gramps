@@ -131,6 +131,7 @@ src/gui/editors/displaytabs/attrembedlist.py
 src/gui/editors/displaytabs/backreflist.py
 src/gui/editors/displaytabs/backrefmodel.py
 src/gui/editors/displaytabs/buttontab.py
+src/gui/editors/displaytabs/citationembedlist.py
 src/gui/editors/displaytabs/dataembedlist.py
 src/gui/editors/displaytabs/embeddedlist.py
 src/gui/editors/displaytabs/eventembedlist.py
@@ -162,6 +163,7 @@ src/gui/plug/report/_styleeditor.py
 src/gui/plug/tool.py
 
 # gui/selectors - the GUI selectors package
+src/gui/selectors/selectcitation.py
 src/gui/selectors/selectevent.py
 src/gui/selectors/selectfamily.py
 src/gui/selectors/selectnote.py
@@ -178,6 +180,7 @@ src/gui/views/pageview.py
 src/gui/views/tags.py
 
 # gui/views/treemodels - the GUI views package
+src/gui/views/treemodels/citationtreemodel.py
 src/gui/views/treemodels/mediamodel.py
 src/gui/views/treemodels/peoplemodel.py
 src/gui/views/treemodels/placemodel.py
@@ -203,6 +206,7 @@ src/Simple/_SimpleTable.py
 src/config.py
 
 # Merge package
+src/Merge/mergecitation.py
 src/Merge/mergeevent.py
 src/Merge/mergefamily.py
 src/Merge/mergemedia.py
@@ -270,6 +274,7 @@ src/plugins/gramplet/Backlinks.py
 src/plugins/gramplet/bottombar.gpr.py
 src/plugins/gramplet/CalendarGramplet.py
 src/plugins/gramplet/Children.py
+src/plugins/gramplet/Citations.py
 src/plugins/gramplet/DescendGramplet.py
 src/plugins/gramplet/EditExifMetadata.py
 src/plugins/gramplet/Events.py
@@ -283,6 +288,7 @@ src/plugins/gramplet/PedigreeGramplet.py
 src/plugins/gramplet/PersonDetails.py
 src/plugins/gramplet/PersonResidence.py
 src/plugins/gramplet/PlaceDetails.py
+src/plugins/gramplet/PopulateGramplet.py
 src/plugins/gramplet/PopulateGramplet.gpr.py
 src/plugins/gramplet/QuickViewGramplet.py
 src/plugins/gramplet/RelativeGramplet.py
@@ -403,6 +409,8 @@ src/plugins/tool/tools.gpr.py
 src/plugins/tool/Verify.py
 
 #plugins/view directory
+src/plugins/view/citationtreeview.py
+src/plugins/view/citationlistview.py
 src/plugins/view/eventview.py
 src/plugins/view/familyview.py
 src/plugins/view/fanchartview.py
@@ -631,7 +639,9 @@ src/Filters/Rules/Citation/_HasReferenceCountOf.py
 src/Filters/Rules/Citation/_HasSource.py
 src/Filters/Rules/Citation/_MatchesFilter.py
 src/Filters/Rules/Citation/_MatchesPageSubstringOf.py
+src/Filters/Rules/Citation/_RegExpIdOf.py
 src/Filters/Rules/Citation/_MatchesRepositoryFilter.py
+src/Filters/Rules/Citation/_MatchesSourceFilter.py
 
 # Filters.Rules.MediaObject package
 src/Filters/Rules/MediaObject/_AllMedia.py
