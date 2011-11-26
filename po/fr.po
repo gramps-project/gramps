@@ -27180,10 +27180,9 @@ msgstr ""
 "Haut = preuve secondaire, données officiellement enregistrées parfois après un événement\n"
 "Très haut = preuve directe et principale, ou qui n'entraîne pas de doute"
 
-# trunk
 #: ../src/glade/editsourceref.glade.h:17
 msgid "Specific location within the information referenced. For a published work, this could include the volume of a multi-volume work and the page number(s). For a periodical, it could include volume, issue, and page numbers. For a newspaper, it could include a column number and page number. For an unpublished source, this could be a sheet number, page number, frame number, etc. A census record might have a line number or dwelling and family numbers in addition to the page number. "
-msgstr "Un emplacement spécifique avec l'information référencée. Pour un travail de publication, ceci peut comprendre au volume d'un travail en plusieurs parties et le numéro de(s) page(s). Pour un périodique, ceci peut correspondre à un volume, et les numéros de pages. Pour un journal, ceci correspond à un numéro de colonne et de page. Pour une source non-publiée, ceci peut être le numéro de feuillet, le numéro de page, de partie, etc. Un enregistrement pour le recensement peut avoir un numéro de ligne ou la localisation d'une famille en supplément du numéro de page. "
+msgstr "Un emplacement spécifique avec l'information référencée. Pour un travail de publication, ceci peut correspondre au volume d'un travail en plusieurs parties et le numéro de(s) page(s). Pour un périodique, ceci peut correspondre à un volume, et les numéros de pages. Pour un journal, ceci peut correspondre à un numéro de colonne et de page. Pour une source non-publiée, ceci peut être le numéro de feuillet, le numéro de page, de partie, etc. Un enregistrement pour le recensement peut avoir un numéro de ligne ou la localisation d'une famille en supplément du numéro de page. "
 
 # trunk
 #: ../src/glade/editsourceref.glade.h:18
