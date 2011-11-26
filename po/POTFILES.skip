@@ -298,6 +298,7 @@ src/plugins/tool/DumpGenderStats.py
 src/plugins/tool/PHPGedViewConnector.py
 src/plugins/tool/TestcaseGenerator.py
 src/plugins/tool/phpgedview.glade
+src/plugins/tool/toolsdebug.gpr.py
 
 # plugins/gramplet directory
 src/plugins/gramplet/DeepConnections.py
