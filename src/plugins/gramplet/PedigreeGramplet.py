@@ -240,10 +240,10 @@ class PedigreeGramplet(Gramplet):
         self.gui.buffer.set_text("")
         active_handle = self.get_active('Person')
         active_person = self.dbstate.db.get_person_from_handle(active_handle)
-        if not active_person:
-            yield False
         #no wrap in Gramplet
         self.no_wrap()
+        if active_person is None:
+            return
         self.process_person(active_person.handle, 1, "f") # father
         self.process_person(active_person.handle, 0, "a") # active #FIXME: should be 1?
         self.process_person(active_person.handle, 1, "m") # mother
