@@ -3,6 +3,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2009 Benny Malengier
+# Copyright (C) 2011 Tim G Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -197,21 +198,20 @@ viewclass = 'RepositoryView',
 order = START,
   )
 
-# FIXME: REDUNDANT As of gramps 3.4, sourceview.py is redundant.
-#register(VIEW, 
-#id    = 'sourceview',
-#name  = _("Source View"),
-#description =  _("The view showing all the sources"),
-#version = '1.0',
-#gramps_target_version = '3.4',
-#status = STABLE,
-#fname = 'sourceview.py',
-#authors = [u"The Gramps project"],
-#authors_email = ["http://gramps-project.org"],
-#category = ("Sources", _("Sources")),
-#viewclass = 'SourceView',
-#order = START,
-#  )
+register(VIEW, 
+id    = 'sourceview',
+name  = _("Source View"),
+description =  _("The view showing all the sources"),
+version = '1.0',
+gramps_target_version = '3.4',
+status = STABLE,
+fname = 'sourceview.py',
+authors = [u"The Gramps project"],
+authors_email = ["http://gramps-project.org"],
+category = ("Sources", _("Sources")),
+viewclass = 'SourceView',
+order = START,
+  )
 
 register(VIEW, 
 id    = 'citationlistview',
