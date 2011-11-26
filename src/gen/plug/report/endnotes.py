@@ -5,6 +5,7 @@
 # Copyright (C) 2010  Peter Landgren
 # Copyright (C) 2010  Jakim Friant
 # Copyright (C) 2011  Adam Stein <adam@csh.rit.edu>
+# Copyright (C) 2011  Tim G Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -76,7 +77,7 @@ def add_endnote_styles(style_sheet):
     para.set_description(_('The basic style used for the endnotes reference notes display.'))
     style_sheet.add_paragraph_style("Endnotes-Ref-Notes", para)
 
-def cite_source(bibliography, obj):
+def cite_source(bibliography, database, obj):
     """
     Cite any sources for the object and add them to the bibliography.
     
@@ -86,14 +87,15 @@ def cite_source(bibliography, obj):
     @type obj: L{gen.lib.srcbase}
     """
     txt = ""
-    slist = obj.get_source_references()
+    slist = obj.get_citation_list()
     if slist:
         first = 1
         for ref in slist:
             if not first:
                 txt += ', '
             first = 0
-            (cindex, key) = bibliography.add_reference(ref)
+            citation = database.get_citation_from_handle(ref)
+            (cindex, key) = bibliography.add_reference(citation)
             txt += "%d" % (cindex + 1)
             if key is not None:
                 txt += key

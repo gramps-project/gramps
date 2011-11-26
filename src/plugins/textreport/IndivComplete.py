@@ -6,6 +6,7 @@
 # Copyright (C) 2009      Nick Hall
 # Copyright (C) 2009      Benny Malengier
 # Copyright (C) 2010      Jakim Friant
+# Copyright (C) 2011      Tim G Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -219,7 +220,7 @@ class IndivCompleteReport(Report):
 
         endnotes = ""
         if self.use_srcs:
-            endnotes = Endnotes.cite_source(self.bibli, event)
+            endnotes = Endnotes.cite_source(self.bibli, self.database, event)
 
         self.doc.start_row()
         self.normal_cell(column_1)
@@ -359,7 +360,7 @@ class IndivCompleteReport(Report):
             text = self._name_display.display_name(name)
             endnotes = ""
             if self.use_srcs:
-                endnotes = Endnotes.cite_source(self.bibli, name)
+                endnotes = Endnotes.cite_source(self.bibli, self.database, name)
             self.normal_cell(text, endnotes)
             self.doc.end_row()
         self.doc.end_table()
@@ -387,7 +388,7 @@ class IndivCompleteReport(Report):
             date = DateHandler.get_date(addr)
             endnotes = ""
             if self.use_srcs:
-                endnotes = Endnotes.cite_source(self.bibli, addr)
+                endnotes = Endnotes.cite_source(self.bibli, self.database, addr)
             self.doc.start_row()
             self.normal_cell(date)
             self.normal_cell(text, endnotes)
@@ -579,7 +580,7 @@ class IndivCompleteReport(Report):
         mark = ReportUtils.get_person_mark(self.database, self.person)
         endnotes = ""
         if self.use_srcs:
-            endnotes = Endnotes.cite_source(self.bibli, name)
+            endnotes = Endnotes.cite_source(self.bibli, self.database, name)
         self.normal_cell(text, endnotes, mark)
         self.doc.end_row()
 

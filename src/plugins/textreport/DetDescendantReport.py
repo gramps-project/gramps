@@ -10,6 +10,7 @@
 # Copyright (C) 2010      Jakim Friant
 # Copyright (C) 2010      Vlada Peri\u0107
 # Copyright (C) 2011      Matt Keenan <matt.keenan@gmail.com>
+# Copyright (C) 2011      Tim G Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -858,7 +859,7 @@ class DetDescendantReport(Report):
         if not obj or not self.inc_sources:
             return ""
         
-        txt = endnotes.cite_source(self.bibli, obj)
+        txt = endnotes.cite_source(self.bibli, self.database, obj)
         if txt:
             txt = '<super>' + txt + '</super>'
         return txt
