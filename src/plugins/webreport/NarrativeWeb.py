@@ -7319,9 +7319,10 @@ class NavWebOptions(MenuReportOptions):
         addopt( "gallery", self.__gallery )
         self.__gallery.connect('value-changed', self.__gallery_changed)
 
-        self.__create_thumbs_only = BooleanOption(_("Create and only use thumbnail- sized images"), True)
-        self.__create_thumbs_only.set_help(_("This options allows you the choice to not create any full- sized"
-            "images as in the Media Page, and only a thumb- sized images or not?"))
+        self.__create_thumbs_only = BooleanOption(_("Create and only use thumbnail- sized images"), False)
+        self.__create_thumbs_only.set_help(_("This options allows you the choice to not create any full- sized "
+            "images as in the Media Page, and only a thumb- sized images.  This will allow you to have a much "
+            "smaller total upload size to your web hosting site."))
         addopt("create_thumbs_only", self.__create_thumbs_only)
         self.__create_thumbs_only.connect("value-changed", self.__gallery_changed)
 
