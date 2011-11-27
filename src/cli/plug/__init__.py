@@ -165,7 +165,7 @@ def _validate_options(options, dbase):
                         phandle = None
                     person = dbase.get_person_from_handle(phandle)
                     if not person:
-                        print "ERROR: Please specify a person"
+                        print _("ERROR: Please specify a person")
             if person:
                 option.set_value(person.get_gramps_id())
             
@@ -189,7 +189,7 @@ def _validate_options(options, dbase):
                     family = dbase.get_family_from_handle(family_handle)
                     option.set_value(family.get_gramps_id())
                 else:
-                    print "ERROR: Please specify a family"
+                    print _("ERROR: Please specify a family")
 
 #------------------------------------------------------------------------
 #
@@ -400,9 +400,12 @@ class CommandLineReport(object):
             elif isinstance(option, Option):
                 self.options_help[name].append(option.get_help())
             else:
-                print "Unknown option: ", option
-                print "   Valid options are:", ", ".join(self.options_dict.keys())
-                print "   Use 'show=option' to see description and acceptable values"
+                print _("Unknown option: %s") % option
+                print (_("   Valid options are:"),
+                       ", ".join(self.options_dict.keys()))
+                print (_("   Use '%(donottranslate)s' to see description "
+                         "and acceptable values") %
+                       {'donottranslate' : "show=option"})
                 
     def parse_options(self):
         """
@@ -427,9 +430,12 @@ class CommandLineReport(object):
                     option.set_value(self.options_dict[opt])
                 
             else:
-                print "Ignoring unknown option: %s" % opt
-                print "   Valid options are:", ", ".join(self.options_dict.keys())
-                print "   Use 'show=option' to see description and acceptable values"
+                print _("Ignoring unknown option: %s") % opt
+                print (_("   Valid options are:"),
+                       ", ".join(self.options_dict.keys()))
+                print (_("   Use '%(donottranslate)s' to see description "
+                         "and acceptable values") %
+                       {'donottranslate' : "show=option"})
         
         self.option_class.handler.output = self.options_dict['of']
 
@@ -498,23 +504,25 @@ class CommandLineReport(object):
         if not self.show:
             return
         elif self.show == 'all':
-            print "   Available options:"
+            print _("   Available options:")
             for key in sorted(self.options_dict.keys()):
                 if key in self.options_help:
                     opt = self.options_help[key]
-                # Make the output nicer to read, assume that tab has 8 spaces
+                    # Make the output nicer to read, assume a tab has 8 spaces
                     tabs = '\t\t' if len(key) < 10 else '\t'
                     optmsg = "      %s%s%s (%s)" % (key, tabs, opt[1], opt[0])
                     print optmsg.encode(sys.getfilesystemencoding())
                 else:
                     optmsg = " %s" % key
                     print optmsg.encode(sys.getfilesystemencoding())
-            print "   Use 'show=option' to see description and acceptable values"
+            print (_("   Use '%(donottranslate)s' to see description "
+                     "and acceptable values") %
+                   {'donottranslate' : "show=option"})
         elif self.show in self.options_help:
             opt = self.options_help[self.show]
             tabs = '\t\t' if len(self.show) < 10 else '\t'
             print '   %s%s%s (%s)' % (self.show, tabs, opt[1], opt[0])
-            print "   Available values are:"
+            print _("   Available values are:")
             vals = opt[2]
             if isinstance(vals, (list, tuple)):
                 for val in vals:
@@ -526,8 +534,9 @@ class CommandLineReport(object):
 
         else:
             #there was a show option given, but the option is invalid
-            print ("option '%s' not valid. Use 'show=all' to see all valid "  
-                  "options." % self.show)
+            print (_("option '%(optionname)s' not valid. "
+                     "Use '%(donottranslate)s' to see all valid options.") %
+                   {'optionname' : self.show, 'donottranslate' : "show=all"})
 
 #------------------------------------------------------------------------
 #
