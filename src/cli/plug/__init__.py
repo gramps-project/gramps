@@ -401,8 +401,8 @@ class CommandLineReport(object):
                 self.options_help[name].append(option.get_help())
             else:
                 print _("Unknown option: %s") % option
-                print (_("   Valid options are:"),
-                       ", ".join(self.options_dict.keys()))
+                print _("   Valid options are:"), ", ".join(
+                                                     self.options_dict.keys())
                 print (_("   Use '%(donottranslate)s' to see description "
                          "and acceptable values") %
                        {'donottranslate' : "show=option"})
@@ -431,8 +431,8 @@ class CommandLineReport(object):
                 
             else:
                 print _("Ignoring unknown option: %s") % opt
-                print (_("   Valid options are:"),
-                       ", ".join(self.options_dict.keys()))
+                print _("   Valid options are:"), ", ".join(
+                                                     self.options_dict.keys())
                 print (_("   Use '%(donottranslate)s' to see description "
                          "and acceptable values") %
                        {'donottranslate' : "show=option"})
