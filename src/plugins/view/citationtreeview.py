@@ -96,6 +96,14 @@ class CitationTreeView(ListView):
         _('Source: Abbreviation'),
         _('Source: Publication Information'),
         ]
+    COLUMN_FILTERABLE = [
+        COL_TITLE_PAGE, 
+        COL_ID,
+        COL_CHAN,
+        COL_SRC_AUTH,
+        COL_SRC_ABBR,
+        COL_SRC_PINFO
+        ]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_TITLE_PAGE, COL_ID, COL_SRC_AUTH,
@@ -142,6 +150,23 @@ class CitationTreeView(ListView):
             })
 
         self.additional_uis.append(self.additional_ui())
+
+    def setup_filter(self):
+        """
+        Override the setup of the default Search Bar in listview, so that only
+        the searchable source fields are shown. This includes renaming the
+        'Title or Page' search to 'Title'
+        """
+        def name(i):
+            if i == 0:
+                return _('Title')
+            else:
+                return self.colinfo[i]
+             
+        self.search_bar.setup_filter(
+            [(name(pair[1]), pair[1], pair[1] in self.exact_search())
+                for pair in self.column_order() if pair[0] and 
+                                pair[1] in self.COLUMN_FILTERABLE])
 
     def _print_handles(self, text, handle_list):
         for handle in handle_list:
