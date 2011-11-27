@@ -27,7 +27,7 @@
 Provide utilities for printing endnotes in text reports.
 """
 from gen.plug.docgen import FontStyle, ParagraphStyle, FONT_SANS_SERIF
-from gen.lib import NoteType, SourceRef
+from gen.lib import NoteType, Citation
 from gen.ggettext import gettext as _
 from Utils import confidence
 from DateHandler import displayer
@@ -84,7 +84,7 @@ def cite_source(bibliography, database, obj):
     @param bibliography: The bibliography to contain the citations.
     @type bibliography: L{Bibliography}
     @param obj: An object with source references.
-    @type obj: L{gen.lib.srcbase}
+    @type obj: L{gen.lib.CitationBase}
     """
     txt = ""
     slist = obj.get_citation_list()
@@ -188,7 +188,7 @@ def _format_ref_text(ref, key):
         ref_txt = ref.get_page()
         
     # Print only confidence level if it is not Normal
-    if ref.get_confidence_level() != SourceRef.CONF_NORMAL:
+    if ref.get_confidence_level() != Citation.CONF_NORMAL:
         ref_txt += " [" + confidence[ref.get_confidence_level()] + "]"
     
     return ref_txt

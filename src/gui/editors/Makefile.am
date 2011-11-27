@@ -34,7 +34,6 @@ pkgdata_PYTHON = \
 	editreporef.py \
 	editsecondary.py \
 	editsource.py \
-	editsourceref.py \
 	editurl.py \
 	objectentries.py
 

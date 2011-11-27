@@ -60,5 +60,4 @@ from placebackreflist import PlaceBackRefList
 from repoembedlist import RepoEmbedList
 from surnametab import SurnameTab
 from sourcebackreflist import SourceBackRefList
-from sourceembedlist import SourceEmbedList
 from webembedlist import WebEmbedList

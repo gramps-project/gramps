@@ -43,8 +43,6 @@ pkgdata_PYTHON = \
 	repoembedlist.py \
 	reporefmodel.py \
 	sourcebackreflist.py \
-	sourceembedlist.py \
-	sourcerefmodel.py \
 	surnamemodel.py \
 	surnametab.py \
 	webembedlist.py \

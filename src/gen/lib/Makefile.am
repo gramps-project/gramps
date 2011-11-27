@@ -56,11 +56,9 @@ pkgdata_PYTHON = \
 	repotype.py \
 	researcher.py \
 	secondaryobj.py \
-	srcbase.py \
 	srcmediatype.py \
 	srcnote.py \
 	src.py \
-	srcref.py \
 	surname.py \
 	surnamebase.py \
 	styledtext.py \

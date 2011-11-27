@@ -110,10 +110,10 @@ MIME2GED = {
     }
 
 QUALITY_MAP = {
-    gen.lib.SourceRef.CONF_VERY_HIGH : "3", 
-    gen.lib.SourceRef.CONF_HIGH      : "2", 
-    gen.lib.SourceRef.CONF_LOW       : "1", 
-    gen.lib.SourceRef.CONF_VERY_LOW  : "0", 
+    gen.lib.Citation.CONF_VERY_HIGH : "3", 
+    gen.lib.Citation.CONF_HIGH      : "2", 
+    gen.lib.Citation.CONF_LOW       : "1", 
+    gen.lib.Citation.CONF_VERY_LOW  : "0", 
     }
 
 #-------------------------------------------------------------------------
@@ -1310,8 +1310,8 @@ class GedcomWriter(UpdateCallback):
 
 
         conf = min(citation.get_confidence_level(), 
-                   gen.lib.SourceRef.CONF_VERY_HIGH)
-        if conf != gen.lib.SourceRef.CONF_NORMAL and conf != -1:
+                   gen.lib.Citation.CONF_VERY_HIGH)
+        if conf != gen.lib.Citation.CONF_NORMAL and conf != -1:
             self.__writeln(level+1, "QUAY", QUALITY_MAP[conf])
 
         if not citation.get_date_object().is_empty():

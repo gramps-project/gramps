@@ -41,7 +41,6 @@ from editplace import EditPlace, DeletePlaceQuery
 from editrepository import EditRepository, DeleteRepositoryQuery
 from editreporef import EditRepoRef
 from editsource import EditSource, DeleteSrcQuery
-from editsourceref import EditSourceRef
 from editurl import EditUrl
 from editlink import EditLink
 

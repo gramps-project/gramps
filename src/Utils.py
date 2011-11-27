@@ -89,11 +89,11 @@ def format_gender( type):
     return gender.get(type[0], _("Invalid"))
 
 confidence = {
-    gen.lib.SourceRef.CONF_VERY_HIGH : _("Very High"), 
-    gen.lib.SourceRef.CONF_HIGH      : _("High"), 
-    gen.lib.SourceRef.CONF_NORMAL    : _("Normal"), 
-    gen.lib.SourceRef.CONF_LOW       : _("Low"), 
-    gen.lib.SourceRef.CONF_VERY_LOW  : _("Very Low"), 
+    gen.lib.Citation.CONF_VERY_HIGH : _("Very High"), 
+    gen.lib.Citation.CONF_HIGH      : _("High"), 
+    gen.lib.Citation.CONF_NORMAL    : _("Normal"), 
+    gen.lib.Citation.CONF_LOW       : _("Low"), 
+    gen.lib.Citation.CONF_VERY_LOW  : _("Very Low"), 
    }
 
 family_rel_descriptions = {

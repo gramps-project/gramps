@@ -36,7 +36,6 @@ from gen.lib.ldsord import LdsOrd
 from gen.lib.mediaref import MediaRef 
 from gen.lib.name import Name
 from gen.lib.reporef import RepoRef
-from gen.lib.srcref import SourceRef
 from gen.lib.surname import Surname
 from gen.lib.url import Url
 from gen.lib.witness import Witness

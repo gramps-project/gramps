@@ -1366,11 +1366,11 @@ class Narrator(object):
         :type translate_text: callable(str)
         :param get_endnote_numbers: A callable to use for getting a string 
             representing endnote numbers. 
-            The function takes a :class:`~gen.lib.srcbase,SourceBase` instance.
+            The function takes a :class:`~gen.lib.CitationBase` instance.
             A typical return value from get_endnote_numbers() would be "2a" and 
             would represent a reference to an endnote in a document.
         :type get_endnote_numbers: 
-            callable( :class:`~gen.lib.srcbase,SourceBase` )
+            callable( :class:`~gen.lib.CitationBase` )
         """ 
         self.__db = dbase
         self.__verbose = verbose
