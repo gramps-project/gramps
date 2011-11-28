@@ -4,6 +4,9 @@
 # If not using GNU make, then list all .py files individually
 
 DATAFILES = \
+	blue_marker.jpg \
+	purple_marker.jpg \
+	red_marker.jpg \
         blank.gif \
 	crosshairs.png \
 	document.png \

@@ -23,23 +23,34 @@
 ###################################################### */
 body#FamilyMap {
     background-color: #000;
-    margin-left:      7px;
-    margin-right:     7px;
-    width:            965px;
-}
-div#map_canvas {
-    margin-left:      10px;
-    margin-right:     10px;
-    border:           solid 4px #000;
-    width:            931px;
-    height:           800px;
+    padding: 0 14px;
+    width: 965px;
 }
 button#drop {
     background-color: purple;
-    color:            #FFF;
-    font:             bold .8em sans-serif;
-    padding:          10px;
-    margin-top:       10px;
-    margin-left:      10px;
-    border:           solid 4px #00029D;
+    color: #FFF;
+    font: bold .8em sans-serif;
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    border: solid 4px #00029D;
+}
+
+/*    Family Maps
+------------------------------------------------------ */
+div#map_canvas {
+    margin-left: 10px;
+    margin-right: 10px;
+    border: solid 4px #000;
+    width: 931px;
+    height: 800px;
+}
+
+/*    Place Maps
+------------------------------------------------------ */
+div#place_canvas {
+    margin-left: 210px;
+    border: solid 4px #000;
+    width: 500px;
+    height: 400px;
 }

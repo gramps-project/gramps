@@ -96,9 +96,6 @@ def load_on_reg(dbstate, uistate, plugin):
         ["Visually Impaired", 1, _("Visually Impaired"), 
          path_css('Web_Visually.css'),  "narrative-menus.css", [], [] ],
 
-        # no style sheet option
-        ["No style sheet",1, _("No style sheet"),    [],    None, [], [] ],
-
         # ancestor tree style sheet and its images
         ["ancestortree",  0, "ancestortree",
          path_css("ancestortree.css"), None,
@@ -137,12 +134,10 @@ def load_on_reg(dbstate, uistate, plugin):
           path_img("gramps-geo-birth.png"),
           path_img("gramps-geo-death.png"),
           path_img("gramps-geo-mainmap.png"),
-          path_img("gramps-geo-marriage.png")],
+          path_img("gramps-geo-marriage.png")], [] ],
 
-         [path_js("mapstraction", "mxn.core.js"),
-          path_js("mapstraction", "mxn.googlev3.core.js"),
-          path_js("mapstraction", "mxn.js"),
-          path_js("mapstraction", "mxn.openlayers.core.js")]],
+        # no style sheet option
+        ["No style sheet",1, _("No style sheet"),    [],    None, [], [] ],
 
         # all other images for use in NarrativeWeb
         ['All Images', 0, 'All Images', None, None, 
@@ -161,17 +156,11 @@ def load_on_reg(dbstate, uistate, plugin):
         ['Document', 0, 'Document',
          path_img("document.png"), None, [], []],
 
-        # Google core javascript
-        ["Google Core", 0, "Google Core", 
-         path_js("mapstraction", "mxn.google.core.js"), None, [], []],
-
-        # Google Earth core javascript
-        ["Google Earth", 0, "Google Earth",
-         path_js("mapstraction", "mxn.googleearth.core.js"), None, [], []],
-
-        # Google GeoCoder javascript
-        ["Google GeoCoder", 0, "Google GeoCoder",
-         path_js("mapstraction", "mxn.google.geocoder.js"), None, [], []],
+        # markers for use in NarrativeWeb's Family Maps
+        ["FamilyMaps",  0, "", [], None, 
+          [path_img("blue_marker.png"),
+           path_img("purple_marker.png"),
+           path_img("red_marker.png")], [] ],
 
         ]
 

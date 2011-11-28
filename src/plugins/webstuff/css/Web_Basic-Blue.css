@@ -55,6 +55,13 @@ body {
 
 /* General Elements
 ================================================= */
+button#FamilyMap, button#Next, button#Prev {
+    background-color: purple;
+    color: #FFF;
+    font: bold .8em sans-serif;
+    padding: 10px;
+    border: solid 2px #00029D;
+}
 div {
     margin: 0;
     padding: 0;
