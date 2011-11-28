@@ -117,7 +117,6 @@ src/gui/editors/editprimary.py
 src/gui/editors/editreporef.py
 src/gui/editors/editrepository.py
 src/gui/editors/editsource.py
-src/gui/editors/editsourceref.py
 src/gui/editors/editurl.py
 
 # gui/editors/displaytabs - the GUI display tabs package
@@ -141,7 +140,6 @@ src/gui/editors/displaytabs/notetab.py
 src/gui/editors/displaytabs/personeventembedlist.py
 src/gui/editors/displaytabs/personrefembedlist.py
 src/gui/editors/displaytabs/repoembedlist.py
-src/gui/editors/displaytabs/sourceembedlist.py
 src/gui/editors/displaytabs/surnametab.py
 src/gui/editors/displaytabs/webembedlist.py
 
@@ -277,7 +275,7 @@ src/plugins/gramplet/FanChartGramplet.py
 src/plugins/gramplet/FaqGramplet.py
 src/plugins/gramplet/GivenNameGramplet.py
 src/plugins/gramplet/gramplet.gpr.py
-src/plugins/gramplet/MetadataViewer.py
+#src/plugins/gramplet/MetadataViewer.py
 src/plugins/gramplet/Notes.py
 src/plugins/gramplet/PedigreeGramplet.py
 src/plugins/gramplet/PersonDetails.py
