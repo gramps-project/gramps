@@ -440,6 +440,7 @@ class CommandLineReport(object):
         self.option_class.handler.output = self.options_dict['of']
 
         self.css_filename = None
+        _chosen_format = None
         if self.category == CATEGORY_TEXT:
             for plugin in self.__textdoc_plugins:
                 if plugin.get_extension() == self.options_dict['off']:
@@ -448,6 +449,7 @@ class CommandLineReport(object):
             if self.format is None:
                 # Pick the first one as the default.
                 self.format = self.__textdoc_plugins[0].get_basedoc()
+                _chosen_format = self.__textdoc_plugins[0].get_extension()
         elif self.category == CATEGORY_DRAW:
             for plugin in self.__drawdoc_plugins:
                 if plugin.get_extension() == self.options_dict['off']:
@@ -455,6 +457,7 @@ class CommandLineReport(object):
             if self.format is None:
                 # Pick the first one as the default.
                 self.format = self.__drawdoc_plugins[0].get_basedoc()
+                _chosen_format = self.__drawdoc_plugins[0].get_extension()
         elif self.category == CATEGORY_BOOK:
             for plugin in self.__bookdoc_plugins:
                 if plugin.get_extension() == self.options_dict['off']:
@@ -462,6 +465,7 @@ class CommandLineReport(object):
             if self.format is None:
                 # Pick the first one as the default.
                 self.format = self.__bookdoc_plugins[0].get_basedoc()
+                _chosen_format = self.__bookdoc_plugins[0].get_extension()
         elif self.category == CATEGORY_GRAPHVIZ:
             for graph_format in graphdoc.FORMATS:
                 if graph_format['ext'] == self.options_dict['off']:
@@ -470,8 +474,17 @@ class CommandLineReport(object):
             if self.format is None:
                 # Pick the first one as the default.
                 self.format = graphdoc.FORMATS[0]["class"]
+                _chosen_format = graphdoc.FORMATS[0]["ext"]
         else:
             self.format = None
+        if _chosen_format:
+            print (_("Ignoring '%(notranslate1)s=%(notranslate2)s' "
+                     "and using '%(notranslate1)s=%(notranslate3)s'.") %
+                   {'notranslate1' : "off",
+                    'notranslate2' : self.options_dict['off'],
+                    'notranslate3' : _chosen_format})
+            print (_("Use '%(notranslate)s' to see valid values.") %
+                   {'notranslate' : "show=off"})
 
         for paper in paper_sizes:
             if paper.get_name() == self.options_dict['papers']:
