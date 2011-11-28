@@ -5,7 +5,8 @@
 # Copyright (C) 2009  Benny Malengier
 # Copyright (C) 2009  Brian Matherly
 # Copyright (C) 2010  Peter Landgren
-# Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2010  Jakim Friant
+# Copyright (C) 2011  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1224,6 +1225,8 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
     # BaseDoc implementation
     
     def open(self, filename):
+        if filename[-4:] != '.pdf':
+            filename = filename + '.pdf'
         self._backend = CairoBackend(filename)
         self._doc = GtkDocDocument()
         self._active_element = self._doc
