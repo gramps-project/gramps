@@ -477,7 +477,7 @@ class ViewManager(CLIManager):
         for (status,plugin_url,plugin_dict) in addon_update_list:
             count = get_count(addon_update_list, plugin_dict["t"])
             category = _("%(adjective)s %(addon)s") % {
-                "adjective": status, 
+                "adjective": _(status), 
                 "addon": ngettext(plugin_dict["t"], plugin_dict["t"] + "s", count)}
             if last_category != category:
                 last_category = category
