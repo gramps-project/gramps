@@ -104,6 +104,8 @@ class CitationTreeView(ListView):
         COL_SRC_ABBR,
         COL_SRC_PINFO
         ]
+    # columns that contain markup
+    MARKUP_COLS = [COL_DATE]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_TITLE_PAGE, COL_ID, COL_SRC_AUTH,
@@ -142,7 +144,8 @@ class CitationTreeView(ListView):
             dbstate.db.get_citation_bookmarks(),
             Bookmarks.CitationBookmarks, nav_group,
             multiple=True,
-            filter_class=SourceSidebarFilter)
+            filter_class=SourceSidebarFilter,
+            markup = CitationTreeView.MARKUP_COLS)
 
         self.func_list.update({
             '<CONTROL>J' : self.jump,

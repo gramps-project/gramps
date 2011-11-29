@@ -104,6 +104,8 @@ class CitationListView(ListView):
         _('Source: Publication Information'),
         _('Source: Last Changed'),
         ]
+    # columns that contain markup
+    MARKUP_COLS = [COL_DATE]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_TITLE_PAGE, COL_ID, COL_DATE,
@@ -138,7 +140,8 @@ class CitationListView(ListView):
             dbstate.db.get_citation_bookmarks(),
             Bookmarks.CitationBookmarks, nav_group,
             multiple=True,
-            filter_class=CitationSidebarFilter)
+            filter_class=CitationSidebarFilter,
+            markup = CitationListView.MARKUP_COLS)
 
         self.func_list.update({
             '<CONTROL>J' : self.jump,
