@@ -155,13 +155,6 @@ def load_on_reg(dbstate, uistate, plugin):
         # document image in case the media object is not an image
         ['Document', 0, 'Document',
          path_img("document.png"), None, [], []],
-
-        # markers for use in NarrativeWeb's Family Maps
-        ["FamilyMaps",  0, "", [], None, 
-          [path_img("blue_marker.png"),
-           path_img("purple_marker.png"),
-           path_img("red_marker.png")], [] ],
-
         ]
 
     return CSS_FILES

@@ -6606,13 +6606,6 @@ class NavWebReport(Report):
             fname = CSS["NarrativeMaps"]["filename"] 
             self.copy_file(fname, "narrative-maps.css", "styles")
 
-            # if Family Map Pages is selected, then copy the colored markers too?
-            imgs += CSS["FamilyMaps"]["images"]
-
-            # if OpenStreetMap is being used, copy blue marker?
-            if self.mapservice == "OpenStreetMap":
-                imgs += CSS["NarrativeMaps"]["images"]
-
         # Copy the Creative Commons icon if the Creative Commons
         # license is requested
         if 0 < self.copyright <= len(_CC):
