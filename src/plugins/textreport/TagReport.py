@@ -76,7 +76,7 @@ class TagReport(Report):
         menu = options.menu
         self.tag = menu.get_option_by_name('tag').get_value()
         if not self.tag:
-            raise ReportError(
+            raise ReportError(_('Tag Report'),
                 _('You must first create a tag before running this report.'))
        
     def write_report(self):
