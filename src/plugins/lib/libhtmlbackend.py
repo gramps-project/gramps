@@ -45,6 +45,7 @@ import os.path
 from gen.plug.docbackend import DocBackend
 from libhtml import Html
 from Utils import xml_lang
+import Errors
 
 
 #------------------------------------------------------------------------
@@ -242,9 +243,25 @@ class HtmlBackend(DocBackend):
         overwrite method, htmlbackend creates a html object that is written on
         close
         """
-        DocBackend.open(self)
+        try:
+            DocBackend.open(self)
+        except IOError,msg:
+            errmsg = "%s\n%s" % (_("Could not create %s") %
+                                 self._filename, msg)
+            raise Errors.ReportError(errmsg)
+        except:
+            raise Errors.ReportError(_("Could not create %s") %
+                                     self._filename)
         if not os.path.isdir(self.datadirfull()): 
-            os.mkdir(self.datadirfull())
+            try:
+                os.mkdir(self.datadirfull())
+            except IOError,msg:
+                errmsg = "%s\n%s" % (_("Could not create %s") %
+                                     self.datadirfull(), msg)
+                raise Errors.ReportError(errmsg)
+            except:
+                raise Errors.ReportError(_("Could not create %s") %
+                                         self.datadirfull())
         self.html_page, self.html_header, self.html_body = Html.page(
                         lang=xml_lang(), title=self.title)
 
