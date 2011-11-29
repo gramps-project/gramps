@@ -592,6 +592,8 @@ def cl_report(database, name, category, report_class, options_class,
         (m1, m2) = msg.messages()
         print err_msg
         print m1
+        if m2:
+            print m2
     except:
         if len(log.handlers) > 0:
             log.error(err_msg, exc_info=True)
