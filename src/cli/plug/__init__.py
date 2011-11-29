@@ -477,7 +477,7 @@ class CommandLineReport(object):
                 _chosen_format = graphdoc.FORMATS[0]["ext"]
         else:
             self.format = None
-        if _chosen_format:
+        if _chosen_format and self.options_str_dict.has_key('off'):
             print (_("Ignoring '%(notranslate1)s=%(notranslate2)s' "
                      "and using '%(notranslate1)s=%(notranslate3)s'.") %
                    {'notranslate1' : "off",
