@@ -94,6 +94,17 @@ class CitationBaseModel(object):
                 return retval
         return u''
 
+    def citation_sort_date(self, data):
+        if data[COLUMN_DATE]:
+            citation = gen.lib.Citation()
+            citation.unserialize(data)
+            retval = "%09d" % citation.get_date_object().get_sort_value()
+            if not DateHandler.get_date_valid(citation):
+                return INVALID_DATE_FORMAT % retval
+            else:
+                return retval
+        return u''    
+    
     def citation_id(self, data):
         return unicode(data[COLUMN_ID])
 

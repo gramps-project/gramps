@@ -79,7 +79,7 @@ class CitationListModel(CitationBaseModel, FlatBaseModel):
         self.smap = [
             self.citation_page,
             self.citation_id,
-            self.citation_date,
+            self.citation_sort_date,
             self.citation_confidence,
             self.citation_sort_change,
             self.citation_src_title,
