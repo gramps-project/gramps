@@ -5,6 +5,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008       Raphael Ackerman
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2011       Tim G Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -482,17 +483,7 @@ class CSVParser(object):
         if source:
             # add, if new
             dummy_new, source = self.get_or_create_source(source)
-            source_refs = child.get_source_references()
-            found = 0
-            for ref in source_refs:
-                LOG.debug("child: %s looking for ref: %s", ref.ref,
-                          source.get_handle())
-                if ref.ref == source.get_handle():
-                    found = 1
-            if not found:
-                sref = gen.lib.SourceRef()
-                sref.set_reference_handle(source.get_handle())
-                child.add_source_reference(sref)
+            self.find_and_set_citation(child, source)
         # put note on child
         if note:
             # append notes, if previous notes
@@ -695,17 +686,7 @@ class CSVParser(object):
         if source:
             # add, if new
             new, source = self.get_or_create_source(source)
-            source_refs = person.get_source_references()
-            found = 0
-            for ref in source_refs:
-                LOG.debug("person: %s looking for ref: %s", ref.ref,
-                          source.get_handle())
-                if ref.ref == source.get_handle():
-                    found = 1
-            if not found:
-                sref = gen.lib.SourceRef()
-                sref.set_reference_handle(source.get_handle())
-                person.add_source_reference(sref)
+            self.find_and_set_citation(person, source)
         self.db.commit_person(person, self.trans)
 
     def get_or_create_family(self, family_ref, husband, wife):
@@ -772,17 +753,7 @@ class CSVParser(object):
                 if place:
                     event.set_place_handle(place.get_handle())
                 if source:
-                    source_refs = event.get_source_references()
-                    found = 0
-                    for ref in source_refs:
-                        LOG.debug("get_or_create_event: %s looking for ref: %s",
-                                  ref.ref, source.get_handle())
-                        if ref.ref == source.get_handle():
-                            found = 1
-                    if not found:
-                        sref = gen.lib.SourceRef()
-                        sref.set_reference_handle(source.get_handle())
-                        event.add_source_reference(sref)
+                    self.find_and_set_citation(event, source)
                 self.db.commit_event(event, self.trans)
                 LOG.debug("   returning existing event")
                 return (0, event)
@@ -796,16 +767,7 @@ class CSVParser(object):
         if place:
             event.set_place_handle(place.get_handle())
         if source:
-            source_refs = event.get_source_references()
-            found = 0
-            for ref in source_refs:
-                LOG.debug("%s looking for ref: %s", ref.ref, source.get_handle())
-                if ref.ref == source.get_handle():
-                    found = 1
-            if not found:
-                sref = gen.lib.SourceRef()
-                sref.set_reference_handle(source.get_handle())
-                event.add_source_reference(sref)
+            self.find_and_set_citation(event, source)
         self.db.add_event(event, self.trans)
         return (1, event)
     
@@ -836,8 +798,35 @@ class CSVParser(object):
         for source_handle in source_list:
             source = self.db.get_source_from_handle(source_handle)
             if source.get_title() == source_text:
+                LOG.debug("   returning existing source")
                 return (0, source)
+        LOG.debug("   creating source")
         source = gen.lib.Source()
         source.set_title(source_text)
         self.db.add_source(source, self.trans)
         return (1, source)
+
+    def find_and_set_citation(self, obj, source):
+        # look for the source in the existing citations for the object
+        LOG.debug("find_and_set_citation: looking for source: %s",
+                  source.get_gramps_id())
+        for citation_handle in obj.get_citation_list():
+            citation = self.db.get_citation_from_handle(citation_handle)
+            LOG.debug("find_and_set_citation: existing citation: %s",
+                      citation.get_gramps_id())
+            poss_source = self.db.get_source_from_handle(
+                                    citation.get_reference_handle())
+            LOG.debug("   compare source %s == %s", source.get_gramps_id(),
+                      poss_source.get_gramps_id())
+            if poss_source.get_handle() == source.get_handle():
+                # The source is already cited
+                LOG.debug("   source already cited")
+                return
+        # we couldn't find an appropriate citation, so we have to create one.
+        citation = gen.lib.Citation()
+        LOG.debug("   creating citation")
+        citation.set_reference_handle(source.get_handle())
+        self.db.add_citation(citation, self.trans)
+        LOG.debug("   created citation, citation %s %s" % 
+                  (citation, citation.get_gramps_id()))
+        obj.add_citation(citation.get_handle())
