@@ -406,7 +406,9 @@ class EditFamilyLdsOrd(EditSecondary):
 
     def _create_tabbed_pages(self):
         notebook = gtk.Notebook()
-        self.srcref_list = CitationEmbedList(self.dbstate,self.uistate, self.track,self.obj)
+        self.srcref_list = CitationEmbedList(self.dbstate,self.uistate, 
+                                             self.track, 
+                                             self.obj.get_citation_list())
         self._add_tab(notebook, self.srcref_list)
         self.track_ref_for_deletion("srcref_list")
         
