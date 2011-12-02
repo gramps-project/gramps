@@ -131,15 +131,15 @@ class ArgParser(object):
     Possible: 
         1/ FAMTREE : Just the family tree (name or database dir)
         2/ -O, --open=FAMTREE, Open of a family tree
-        3/ -i, --import=FILE, Import a family tree of any format understood by an 
-                 importer, optionally provide- f to indicate format
-        4/ -e, --export=FILE, export a family tree in required format, optionally 
-                 provide -f to indicate format
+        3/ -i, --import=FILE, Import a family tree of any format understood 
+                 by an importer, optionally provide -f to indicate format
+        4/ -e, --export=FILE, export a family tree in required format,
+                 optionally provide -f to indicate format
         5/ -f, --format=FORMAT : format after a -i or -e option
         6/ -a, --action: An action (possible: 'report', 'tool')
         7/ -p, --options=OPTIONS_STRING : specify options
-        8/ -u, --force-unlock: A locked database can be unlocked by giving this
-                argument when opening it
+        8/ -u, --force-unlock: A locked database can be unlocked by giving
+                 this argument when opening it
     
     If the filename (no flags) is specified, the interactive session is 
     launched using data from filename. 
@@ -191,18 +191,18 @@ class ArgParser(object):
         Possible: 
         1/ Just the family tree (name or database dir)
         2/ -O, --open:   Open of a family tree
-        3/ -i, --import: Import a family tree of any format understood by an importer, 
-                 optionally provide -f to indicate format
-        4/ -e, --export: export a family tree in required format, optionally provide
-                 -f to indicate format
+        3/ -i, --import: Import a family tree of any format understood by
+                 an importer, optionally provide -f to indicate format
+        4/ -e, --export: export a family tree in required format, optionally
+                 provide -f to indicate format
         5/ -f, --format=FORMAT : format after a -i or -e option
         6/ -a, --action: An action (possible: 'report', 'tool')
         7/ -p, --options=OPTIONS_STRING : specify options
-        8/ -u, --force-unlock: A locked database can be unlocked by giving this
-                 argument when opening it
+        8/ -u, --force-unlock: A locked database can be unlocked by giving
+                 this argument when opening it
         9/ -s  --show : Show config settings
-        10/ -c --config=config.setting:value : Set config.setting and start Gramps
-                 without :value, the actual config.setting is shown
+        10/ -c --config=config.setting:value : Set config.setting and start
+                 Gramps without :value, the actual config.setting is shown
                             
         """
         try:
