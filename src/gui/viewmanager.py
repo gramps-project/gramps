@@ -427,13 +427,16 @@ class ViewManager(CLIManager):
             if fp:
                 fp.close()
             LOG.debug("Done checking!")
+            # List of translated strings used here
+            # Dead code for l10n
+            _('new'), _('update'), _('New'), _('Updated') 
             if addon_update_list:
                 self.update_addons(addon_update_list)
             elif force:
                 from QuestionDialog import OkDialog
                 OkDialog(_("There are no available addons of this type"),
                          _("Checked for '%s'") %
-                         _("' and '").join(config.get('behavior.check-for-update-types')),
+                         _("' and '").join([_(t) for t in config.get('behavior.check-for-update-types')]),
                          self.window)
 
     def update_addons(self, addon_update_list):
@@ -473,9 +476,9 @@ class ViewManager(CLIManager):
         last_category = None
         for (status,plugin_url,plugin_dict) in addon_update_list:
             count = get_count(addon_update_list, plugin_dict["t"])
-            category = "%s %s" % (_(status), ngettext(plugin_dict["t"],
-                                                      plugin_dict["t"] + "s",
-                                                      count))
+            category = _("%(adjective)s %(addon)s") % {
+                "adjective": _(status), 
+                "addon": ngettext(plugin_dict["t"], plugin_dict["t"] + "s", count)}
             if last_category != category:
                 last_category = category
                 node = self.list.add([False, # initially selected?

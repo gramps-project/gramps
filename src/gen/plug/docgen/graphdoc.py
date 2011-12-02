@@ -443,7 +443,7 @@ class GVDocBase(BaseDoc, GVDoc):
         self._dot.write(text.encode('utf8', 'xmlcharrefreplace'))
 
     def open(self, filename):
-        """ Implement BaseDoc.open() """
+        """ Implement GVDocBase.open() """
         self._filename = os.path.normpath(os.path.abspath(filename))
 
     def close(self):
@@ -478,7 +478,7 @@ class GVDocBase(BaseDoc, GVDoc):
         Add a node to this graph. Nodes can be different shapes like boxes and
         circles.
         
-        Implements GVDoc.add_node().
+        Implements GVDocBase.add_node().
         """
         text = '['
 
@@ -512,7 +512,7 @@ class GVDocBase(BaseDoc, GVDoc):
         """
         Add a link between two nodes.
         
-        Implements GVDoc.add_link().
+        Implements GVDocBase.add_link().
         """
         self.write('  %s -> %s' % (id1, id2))
         
@@ -548,7 +548,7 @@ class GVDocBase(BaseDoc, GVDoc):
         """
         Add a comment.
         
-        Implements GVDoc.add_comment().
+        Implements GVDocBase.add_comment().
         """
         tmp = comment.split('\n')
         for line in tmp:
@@ -561,7 +561,7 @@ class GVDocBase(BaseDoc, GVDoc):
                 self.write('# %s\n' % text)
 
     def start_subgraph(self, graph_id):
-        """ Implement GVDoc.start_subgraph() """
+        """ Implement GVDocBase.start_subgraph() """
         self.write(
             '  subgraph cluster_%s\n' % graph_id +
             '  {\n' +
@@ -569,7 +569,7 @@ class GVDocBase(BaseDoc, GVDoc):
             )
     
     def end_subgraph(self):
-        """ Implement GVDoc.end_subgraph() """
+        """ Implement GVDocBase.end_subgraph() """
         self.write('  }\n')
 
 #-------------------------------------------------------------------------------
@@ -581,7 +581,7 @@ class GVDotDoc(GVDocBase):
     """ GVDoc implementation that generates a .gv text file. """
     
     def close(self):
-        """ Implements GVDocBase.close() """
+        """ Implements GVDotDoc.close() """
         GVDocBase.close(self)
         
         # Make sure the extension is correct
@@ -614,7 +614,7 @@ class GVPsDoc(GVDocBase):
         GVDocBase.__init__(self, options, paper_style)
     
     def close(self):
-        """ Implements GVDocBase.close() """
+        """ Implements GVPsDoc.close() """
         GVDocBase.close(self)
         
         # Make sure the extension is correct
@@ -669,7 +669,7 @@ class GVSvgDoc(GVDocBase):
         GVDocBase.__init__(self, options, paper_style)
     
     def close(self):
-        """ Implements GVDocBase.close() """
+        """ Implements GVSvgDoc.close() """
         GVDocBase.close(self)
         
         # Make sure the extension is correct
@@ -706,7 +706,7 @@ class GVSvgzDoc(GVDocBase):
         GVDocBase.__init__(self, options, paper_style)
     
     def close(self):
-        """ Implements GVDocBase.close() """
+        """ Implements GVSvgzDoc.close() """
         GVDocBase.close(self)
         
         # Make sure the extension is correct
@@ -743,7 +743,7 @@ class GVPngDoc(GVDocBase):
         GVDocBase.__init__(self, options, paper_style)
     
     def close(self):
-        """ Implements GVDocBase.close() """
+        """ Implements GVPngDoc.close() """
         GVDocBase.close(self)
         
         # Make sure the extension is correct
@@ -780,7 +780,7 @@ class GVJpegDoc(GVDocBase):
         GVDocBase.__init__(self, options, paper_style)
     
     def close(self):
-        """ Implements GVDocBase.close() """
+        """ Implements GVJpegDoc.close() """
         GVDocBase.close(self)
         
         # Make sure the extension is correct
@@ -817,7 +817,7 @@ class GVGifDoc(GVDocBase):
         GVDocBase.__init__(self, options, paper_style)
     
     def close(self):
-        """ Implements GVDocBase.close() """
+        """ Implements GVGifDoc.close() """
         GVDocBase.close(self)
         
         # Make sure the extension is correct
@@ -857,7 +857,7 @@ class GVPdfGvDoc(GVDocBase):
         GVDocBase.__init__(self, options, paper_style)
     
     def close(self):
-        """ Implements GVDocBase.close() """
+        """ Implements GVPdfGvDoc.close() """
         GVDocBase.close(self)
         
         # Make sure the extension is correct
@@ -892,7 +892,7 @@ class GVPdfGsDoc(GVDocBase):
         GVDocBase.__init__(self, options, paper_style)
     
     def close(self):
-        """ Implements GVDocBase.close() """
+        """ Implements GVPdfGsDoc.close() """
         GVDocBase.close(self)
         
         # Make sure the extension is correct

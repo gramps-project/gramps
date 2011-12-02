@@ -1365,7 +1365,7 @@ def cl_report(database, name, category, options_str_dict):
         item.option_class.set_document(doc)
         report_class = item.get_write_item()
         obj = write_book_item(database,
-                              report_class, item.option_class)
+                              report_class, item.option_class, user)
         rptlist.append(obj)
 
     doc.open(clr.option_class.get_output())

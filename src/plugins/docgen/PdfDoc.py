@@ -38,6 +38,7 @@ import sys
 #
 #------------------------------------------------------------------------
 import libcairodoc
+import Errors
 
 #------------------------------------------------------------------------
 #
@@ -86,7 +87,13 @@ class PdfDoc(libcairodoc.CairoDoc):
 
         # create cairo context and pango layout
         filename = self._backend.filename.encode(sys.getfilesystemencoding())
-        surface = cairo.PDFSurface(filename, paper_width, paper_height)
+        try:
+            surface = cairo.PDFSurface(filename, paper_width, paper_height)
+        except IOError,msg:
+            errmsg = "%s\n%s" % (_("Could not create %s") % filename, msg)
+            raise Errors.ReportError(errmsg)
+        except:
+            raise Errors.ReportError(_("Could not create %s") % filename)
         surface.set_fallback_resolution(300, 300)
         cr = pangocairo.CairoContext(cairo.Context(surface))
 
