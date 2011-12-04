@@ -381,23 +381,32 @@ class EditCitation(EditPrimary):
     def save(self, *obj):
         """Save the data."""
         self.ok_button.set_sensitive(False)
-        # FIXME: CITATION: It should be possible to save a citation even when
-        # there is no data in it. On the other hand, it should not be possible
-        # to save a source that has no data.
-        if self.object_is_empty():
-            ErrorDialog(_("Cannot save citation"),
-                        _("No data exists for this citation. Please "
+        if self.source_is_empty(self.source):
+            ErrorDialog(_("Cannot save source"),
+                        _("No data exists for this source. Please "
                           "enter data or cancel the edit."))
             self.ok_button.set_sensitive(True)
             return
         
-        # FIXME: CITATION: Not only citations, but also sources should be
-        # checked for duplicate Gramps IDs.
         (uses_dupe_id, gramps_id) = self._uses_duplicate_id()
         if uses_dupe_id:
             prim_object = self.get_from_gramps_id(gramps_id)
             name = prim_object.get_page()
             msg1 = _("Cannot save citation. ID already exists.")
+            msg2 = _("You have attempted to use the existing Gramps ID with "
+                     "value %(gramps_id)s. This value is already used by '" 
+                     "%(prim_object)s'. Please enter a different ID or leave "
+                     "blank to get the next available ID value.") % {
+                         'gramps_id' : gramps_id, 'prim_object' : name }
+            ErrorDialog(msg1, msg2)
+            self.ok_button.set_sensitive(True)
+            return
+
+        (uses_dupe_id, gramps_id) = self.source_uses_duplicate_id(self.source)
+        if uses_dupe_id:
+            prim_object = self.db.get_source_from_gramps_id(gramps_id)
+            name = prim_object.get_title()
+            msg1 = _("Cannot save source. ID already exists.")
             msg2 = _("You have attempted to use the existing Gramps ID with "
                      "value %(gramps_id)s. This value is already used by '" 
                      "%(prim_object)s'. Please enter a different ID or leave "
@@ -437,15 +446,40 @@ class EditCitation(EditPrimary):
             self.callback(self.obj.get_handle())
         self.close()
 
-    def data_has_changed(self):
+    def source_is_empty(self, obj):
+        empty_object = gen.lib.Source()
+        return cmp(obj.serialize()[1:],
+                   empty_object.serialize()[1:]) == 0
+    
+    def source_uses_duplicate_id(self, obj):
         """
+        Check whether a changed or added GRAMPS ID already exists in the DB.
+        
+        Return True if a duplicate GRAMPS ID has been detected.
+        
+        """
+        original = self.db.get_source_from_handle(obj.get_handle())
+        if original and original.get_gramps_id() == obj.get_gramps_id():
+            return (False, 0)
+        else:
+            idval = obj.get_gramps_id()
+            if self.db.get_source_from_gramps_id(idval):
+                return (True, idval)
+            return (False, 0)
+            
+    def data_has_changed(self):
+        return self.citation_data_has_changed() or \
+                self.source_data_has_changed()
+    
+    def citation_data_has_changed(self):
+        """
+        This checks whether the citation data has changed
+        
         A date comparison can fail incorrectly because we have made the
         decision to store entered text in the date. However, there is no
         entered date when importing from a XML file, so we can get an
         incorrect fail.
         """
-        # FIXME: CITATION: This should check whether either the citation data or
-        # the source data has changed.
         if self.db.readonly:
             return False
         elif self.obj.handle:
@@ -460,6 +494,25 @@ class EditCitation(EditPrimary):
             cmp_obj = self.empty_object()
             return cmp(cmp_obj.serialize(True)[1:],
                        self.obj.serialize()[1:]) != 0
+
+    def source_data_has_changed(self):
+        """
+        This checks whether the source data has changed
+        """
+        if self.db.readonly:
+            return False
+        elif self.source.handle:
+            orig = self.db.get_source_from_handle(self.source.handle)
+            if orig:
+                cmp_obj = orig
+            else:
+                cmp_obj = gen.lib.Source()
+            return cmp(cmp_obj.serialize()[1:],
+                       self.source.serialize()[1:]) != 0
+        else:
+            cmp_obj = gen.lib.Source()
+            return cmp(cmp_obj.serialize()[1:],
+                       self.source.serialize()[1:]) != 0
 
 class DeleteCitationQuery(object):
     def __init__(self, dbstate, uistate, citation, the_lists):
