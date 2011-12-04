@@ -1300,7 +1300,7 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
     def end_cell(self):
         self._active_element = self._active_element.get_parent()
 
-    def write_styled_note(self, styledtext, format, style_name,                                                   
+    def write_styled_note(self, styledtext, format, style_name,
                           contains_html=False, links=False):
         """
         Convenience function to write a styledtext to the cairo doc. 
