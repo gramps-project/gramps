@@ -4,6 +4,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -135,6 +136,7 @@ class _DdTargets(object):
         self.SOURCE_LINK        = _DdType(self, 'source-link')
         self.URL                = _DdType(self, 'url')
         self.SURNAME            = _DdType(self, 'surname')
+        self.CITATION_LINK      = _DdType(self, 'citation-link')
 
         # List of all types that are used between
         # gramps widgets but should not be exported
@@ -162,7 +164,8 @@ class _DdTargets(object):
             self.SOURCEREF, 
             self.SOURCE_LINK, 
             self.URL, 
-            self.SURNAME
+            self.SURNAME,
+            self.CITATION_LINK
         ]
         
         self.CHILD         = _DdType(self, 'child')

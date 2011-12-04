@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2004-2006 Donald N. Allingham
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,6 +26,8 @@ from __future__ import with_statement
 from gen.lib.markertype import MarkerType
 from gen.lib.tag import Tag
 import time
+import logging
+LOG = logging.getLogger(".citation")
 
 """
 methods to upgrade a database from version 13 to current version
@@ -37,6 +40,507 @@ else:
 from gen.db import BSDDBTxn
 from gen.lib.nameorigintype import NameOriginType
 from gen.db.write import _mkname, SURNAMES
+from gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, EVENT_KEY, 
+                            MEDIA_KEY, PLACE_KEY, REPOSITORY_KEY)
+from QuestionDialog import (InfoDialog)
+
+def gramps_upgrade_16(self):
+    """Upgrade database from version 15 to 16. This upgrade converts all
+       SourceRef child objects to Citation Primary objects.
+       
+       For each primary object that has a sourceref, what we have to do is: 
+       
+             (1) create each citation
+             (2) update the object to reference the Citations
+             (3) remove backlinks for references from object to Source
+             (4) add backlinks for references from object to Citations
+             (5) add backlinks for references from Citation to Source
+            
+        the backlinks are all updated at the end by calling
+        reindex_reference_map
+
+    """
+    length = (len(self.note_map) + len(self.person_map) +
+              len(self.event_map) + len(self.family_map) +
+              len(self.repository_map) + len(self.media_map) +
+              len(self.place_map) + len(self.source_map)) + 10
+    self.set_total(length)
+
+    # Setup data for upgrade statistics information dialogue
+    keyorder = [PERSON_KEY, FAMILY_KEY, EVENT_KEY, MEDIA_KEY, 
+                PLACE_KEY, REPOSITORY_KEY]
+    key2data = {
+            PERSON_KEY : 0,
+            FAMILY_KEY : 1,
+            EVENT_KEY: 2, 
+            MEDIA_KEY: 3, 
+            PLACE_KEY: 4,
+            REPOSITORY_KEY: 5, 
+            }
+    key2string = {
+        PERSON_KEY      : _('%6d  People        upgraded with %6d citations in %6d secs\n'),
+        FAMILY_KEY      : _('%6d  Families      upgraded with %6d citations in %6d secs\n'),
+        EVENT_KEY       : _('%6d  Events        upgraded with %6d citations in %6d secs\n'),
+        MEDIA_KEY       : _('%6d  Media Objects upgraded with %6d citations in %6d secs\n'),
+        PLACE_KEY       : _('%6d  Places        upgraded with %6d citations in %6d secs\n'),
+        REPOSITORY_KEY  : _('%6d  Repositories  upgraded with %6d citations in %6d secs\n'),
+        }
+    data_upgradeobject = [0] * 6
+
+    # Initialise the citation gramps ID number
+    self.cmap_index = 0
+
+    # ---------------------------------
+    # Modify Person
+    # ---------------------------------
+    start_num_citations = self.cmap_index
+    start_time = time.time()
+    for person_handle in self.person_map.keys():
+        person = self.person_map[person_handle]
+        (handle, gramps_id, gender, primary_name, alternate_names, 
+         death_ref_index, birth_ref_index, event_ref_list, family_list, 
+         parent_family_list, media_list, address_list, attribute_list, 
+         urls, lds_seal_list, source_list, note_list, change, tag_list, 
+         private, person_ref_list) = person
+        if primary_name:
+            primary_name = upgrade_name_16(self, primary_name)
+        if alternate_names:
+            alternate_names = upgrade_name_list_16(
+                                    self, alternate_names)
+        if address_list:
+            address_list = upgrade_address_list_16(
+                                    self, address_list)
+        if media_list:
+            media_list = upgrade_media_list_16(
+                                    self, media_list)
+        if attribute_list:
+            attribute_list = upgrade_attribute_list_16(
+                                    self, attribute_list)
+        if lds_seal_list:
+            lds_seal_list = upgrade_lds_seal_list_16(
+                                    self, lds_seal_list)
+        if source_list:
+            new_citation_list = convert_source_list_to_citation_list_16(
+                                    self, source_list)
+        else:
+            new_citation_list = []
+        if person_ref_list:
+            person_ref_list = upgrade_person_ref_list_16(
+                                    self, person_ref_list)
+        if event_ref_list:
+            event_ref_list = upgrade_event_ref_list_16(self, event_ref_list)
+        if primary_name or alternate_names  or address_list or \
+           media_list or attribute_list or lds_seal_list or source_list or \
+           person_ref_list or event_ref_list:
+            new_person = (handle, gramps_id, gender, primary_name, 
+                          alternate_names, death_ref_index, 
+                          birth_ref_index, event_ref_list, family_list, 
+                          parent_family_list, media_list, address_list, 
+                          attribute_list, urls, lds_seal_list, 
+                          new_citation_list, note_list, change, tag_list, 
+                          private, person_ref_list)
+            with BSDDBTxn(self.env, self.person_map) as txn:
+                txn.put(str(handle), new_person)
+        self.update()
+
+    LOG.debug("%d persons upgraded with %d citations in %d seconds. " % 
+              (len(self.person_map.keys()), 
+               self.cmap_index - start_num_citations, 
+               time.time() - start_time))
+    data_upgradeobject[key2data[PERSON_KEY]] = (len(self.person_map.keys()),
+                                       self.cmap_index - start_num_citations,
+                                       time.time() - start_time)
+
+    # ---------------------------------
+    # Modify Media
+    # ---------------------------------
+    start_num_citations = self.cmap_index
+    start_time = time.time()
+    for media_handle in self.media_map.keys():
+        media = self.media_map[media_handle]
+        LOG.debug("upgrade media %s" % media[4])
+        (handle, gramps_id, path, mime, desc,
+         attribute_list, source_list, note_list, change,
+         date, tag_list, private) = media
+        new_citation_list = convert_source_list_to_citation_list_16(
+                                   self, source_list)
+        new_attribute_list = upgrade_attribute_list_16(
+                                   self, attribute_list)
+            
+        new_media = (handle, gramps_id, path, mime, desc,
+                     new_attribute_list, new_citation_list, note_list, 
+                     change, date, tag_list, private)
+        LOG.debug("      upgrade new_media %s" % [new_media])
+        with BSDDBTxn(self.env, self.media_map) as txn:
+            txn.put(str(handle), new_media)
+        LOG.debug("      update ref map media %s" % [handle,
+                        self.get_object_from_handle(handle) ])
+        self.update()
+
+    LOG.debug("Media upgrade %d citations upgraded in %d seconds" % 
+              (self.cmap_index - start_num_citations, 
+               int(time.time() - start_time)))
+    data_upgradeobject[key2data[MEDIA_KEY]] = (len(self.media_map.keys()),
+                                       self.cmap_index - start_num_citations,
+                                       time.time() - start_time)
+
+    # ---------------------------------
+    # Modify Places
+    # ---------------------------------
+    start_num_citations = self.cmap_index
+    start_time = time.time()
+    for place_handle in self.place_map.keys():
+        place = self.place_map[place_handle]
+        (handle, gramps_id, title, long, lat,
+         main_loc, alt_loc, urls, media_list, source_list, note_list,
+         change, private) = place
+        if source_list:
+            new_citation_list = convert_source_list_to_citation_list_16(
+                                    self, source_list)
+        else:
+            new_citation_list = []
+        if media_list:
+            media_list = upgrade_media_list_16(
+                                    self, media_list)
+        if source_list or media_list:
+            new_place = (handle, gramps_id, title, 
+                         long, lat, main_loc, alt_loc, urls,
+                         media_list, new_citation_list, note_list, 
+                         change, private)
+            with BSDDBTxn(self.env, self.place_map) as txn:
+                txn.put(str(handle), new_place)
+        self.update()
+
+    LOG.debug("%d places upgraded with %d citations in %d seconds. " % 
+              (len(self.place_map.keys()), 
+               self.cmap_index - start_num_citations, 
+               time.time() - start_time))
+    data_upgradeobject[key2data[PLACE_KEY]] = (len(self.place_map.keys()),
+                                       self.cmap_index - start_num_citations,
+                                       time.time() - start_time)
+
+    # ---------------------------------
+    # Modify Families
+    # ---------------------------------
+    start_num_citations = self.cmap_index
+    start_time = time.time()
+    for family_handle in self.family_map.keys():
+        family = self.family_map[family_handle]
+        (handle, gramps_id, father_handle, mother_handle,
+         child_ref_list, the_type, event_ref_list, media_list,
+         attribute_list, lds_seal_list, source_list, note_list,
+         change, tag_list, private) = family
+        if source_list:
+            new_citation_list = convert_source_list_to_citation_list_16(
+                                    self, source_list)
+        else:
+            new_citation_list = []
+        if child_ref_list:
+            child_ref_list = upgrade_child_ref_list_16(
+                                    self, child_ref_list)
+        if lds_seal_list:
+            lds_seal_list = upgrade_lds_seal_list_16(
+                                    self, lds_seal_list)
+        if media_list:
+            media_list = upgrade_media_list_16(
+                                    self, media_list)
+        if attribute_list:
+            attribute_list = upgrade_attribute_list_16(
+                                    self, attribute_list)
+        if event_ref_list:
+            event_ref_list = upgrade_event_ref_list_16(self, event_ref_list)
+        if source_list or media_list or child_ref_list or \
+            attribute_list or lds_seal_list or event_ref_list:
+            new_family = (handle, gramps_id, father_handle, mother_handle,
+                          child_ref_list, the_type, event_ref_list, media_list,
+                          attribute_list, lds_seal_list, new_citation_list, 
+                          note_list, change, tag_list, private)
+            with BSDDBTxn(self.env, self.family_map) as txn:
+                txn.put(str(handle), new_family)
+        self.update()
+
+    LOG.debug("%d familys upgraded with %d citations in %d seconds. " % 
+              (len(self.family_map.keys()), 
+               self.cmap_index - start_num_citations, 
+               time.time() - start_time))
+    data_upgradeobject[key2data[FAMILY_KEY]] = (len(self.family_map.keys()),
+                                       self.cmap_index - start_num_citations,
+                                       time.time() - start_time)
+    # ---------------------------------
+    # Modify Events
+    # ---------------------------------
+    upgrade_time = 0
+    backlink_time = 0
+    start_num_citations = self.cmap_index
+    start_time = time.time()
+    for event_handle in self.event_map.keys():
+        t1 = time.time()
+        event = self.event_map[event_handle]
+        (handle, gramps_id, the_type, date, description, place, 
+         source_list, note_list, media_list, attribute_list,
+         change, private) = event
+        if source_list:
+            new_citation_list = convert_source_list_to_citation_list_16(
+                                    self, source_list)
+        else:
+            new_citation_list = []
+        if attribute_list:
+            attribute_list = upgrade_attribute_list_16(
+                                    self, attribute_list)
+        if media_list:
+            media_list = upgrade_media_list_16(
+                                    self, media_list)
+        if source_list or attribute_list or media_list:
+            new_event = (handle, gramps_id, the_type, date, description, place,
+                         new_citation_list, note_list, media_list,
+                         attribute_list, 
+                         change, private)
+            with BSDDBTxn(self.env, self.event_map) as txn:
+                txn.put(str(handle), new_event)
+        t2 = time.time()
+        upgrade_time += t2 - t1
+        t3 = time.time()
+        backlink_time += t3 - t2
+        self.update()
+
+    LOG.debug("%d events upgraded with %d citations in %d seconds. "
+              "Backlinks took %d seconds" % 
+              (len(self.event_map.keys()), 
+               self.cmap_index - start_num_citations, 
+               int(upgrade_time), int(backlink_time)))
+    data_upgradeobject[key2data[EVENT_KEY]] = (len(self.event_map.keys()),
+                                       self.cmap_index - start_num_citations,
+                                       time.time() - start_time)
+
+    # ---------------------------------
+    # Modify Repositories
+    # ---------------------------------
+    start_num_citations = self.cmap_index
+    start_time = time.time()
+    for repository_handle in self.repository_map.keys():
+        repository = self.repository_map[repository_handle]
+        (handle, gramps_id, the_type, name, note_list,
+         address_list, urls, change, private) = repository
+        if address_list:
+            address_list = upgrade_address_list_16(
+                                    self, address_list)
+        if address_list:
+            new_repository = (handle, gramps_id, the_type, name, note_list,
+                              address_list, urls, change, private)
+            with BSDDBTxn(self.env, self.repository_map) as txn:
+                txn.put(str(handle), new_repository)
+        self.update()
+
+    LOG.debug("%d repositorys upgraded with %d citations in %d seconds. " % 
+              (len(self.repository_map.keys()), 
+               self.cmap_index - start_num_citations, 
+               time.time() - start_time))
+    data_upgradeobject[key2data[REPOSITORY_KEY]] = (len(self.repository_map.keys()),
+                                       self.cmap_index - start_num_citations,
+                                       time.time() - start_time)
+    # ---------------------------------
+
+    
+    # ---------------------------------
+    # Example database from repository took:
+    # 3403 events upgraded with 8 citations in 23 seconds. Backlinks took 1071 seconds
+    # actually 4 of these citations were from:
+    # Media upgrade 4 citations upgraded in 4 seconds         
+    # by only doing the backlinks when there might be something to do,
+    # improved to:
+    # 3403 events upgraded with 8 citations in 19 seconds. Backlinks took 1348 seconds
+    # further improved by skipping debug logging:
+    # 3403 events upgraded with 8 citations in 2 seconds. Backlinks took 167 seconds
+    
+    #Number of new objects upgraded:
+#  2090  People        upgraded with   2092 citations in 2148 secs
+#   734  Families      upgraded with    735 citations in 768 secs
+#  3403  Events        upgraded with      4 citations in 212 secs
+#     7  Media Objects upgraded with      4 citations in 3 secs
+#   852  Places        upgraded with      0 citations in 39 secs
+
+# with reduced diagnostics
+#Number of new objects upgraded:
+#    73  People        upgraded with     76 citations in     74 secs
+#    35  Families      upgraded with     36 citations in     31 secs
+#  3403  Events        upgraded with      4 citations in      7 secs
+#     7  Media Objects upgraded with      4 citations in      3 secs
+#   852  Places        upgraded with      0 citations in      1 secs
+
+# without doing any backlinks
+#Number of new objects upgraded:
+#    73  People        upgraded with     76 citations in     43 secs
+#    35  Families      upgraded with     36 citations in     24 secs
+#  3403  Events        upgraded with      4 citations in      6 secs
+#     7  Media Objects upgraded with      4 citations in      2 secs
+#   852  Places        upgraded with      0 citations in      1 secs
+
+# another run about the same code:
+#Number of new objects upgraded:
+#    73  People        upgraded with     76 citations in     48 secs
+#    35  Families      upgraded with     36 citations in     21 secs
+#  3403  Events        upgraded with      4 citations in      9 secs
+#     7  Media Objects upgraded with      4 citations in      4 secs
+#   852  Places        upgraded with      0 citations in      1 secs
+
+# another run
+#Number of new objects upgraded:
+#    73  People        upgraded with     76 citations in     36 secs
+#    35  Families      upgraded with     36 citations in     18 secs
+#  3403  Events        upgraded with      4 citations in      9 secs
+#     7  Media Objects upgraded with      4 citations in      2 secs
+#   852  Places        upgraded with      0 citations in      1 secs
+
+# without incorrect nestetd tranaction structure:
+#Number of new objects upgraded:
+#    73  People        upgraded with     76 citations in      0 secs
+#    35  Families      upgraded with     36 citations in      0 secs
+#  3403  Events        upgraded with      4 citations in      0 secs
+#     7  Media Objects upgraded with      4 citations in      0 secs
+#   852  Places        upgraded with      0 citations in      0 secs
+
+#[[(73, 76, 0.12430405616760254), (35, 36, 0.042523860931396484), (3403, 4, 0.52303886413574219), (7, 4, 0.058229923248291016), (852, 0, 0.14816904067993164)]]
+
+
+
+
+
+
+    # Bump up database version. Separate transaction to save metadata.
+    with BSDDBTxn(self.env, self.metadata) as txn:
+        txn.put('version', 16)
+        
+    LOG.debug([data_upgradeobject])
+    txt = _("Number of new objects upgraded:\n")
+    for key in keyorder:
+        try:
+            txt += key2string[key] % data_upgradeobject[key2data[key]]
+        except:
+            txt += key2string[key]
+    txt += _("\n\nYou may want to run\n"
+             "Tools -> Family Tree Processing -> Merge\n"
+             "in order to merge citations that contain similar\n"
+             "information")
+    InfoDialog(_('Upgrade Statistics'), txt)
+
+def upgrade_media_list_16(self, media_list):
+    new_media_list = []
+    for media in media_list:
+        (privacy, source_list, note_list, attribute_list, ref, rect) = media
+        new_citation_list = convert_source_list_to_citation_list_16(
+                                        self, source_list)
+        new_attribute_list = upgrade_attribute_list_16(
+                                        self, attribute_list)
+        new_media = (privacy, new_citation_list, note_list, new_attribute_list, 
+                     ref, rect)
+        new_media_list.append((new_media))
+    return new_media_list
+
+def upgrade_attribute_list_16(self, attribute_list):
+    new_attribute_list = []
+    for attribute in attribute_list:
+        (privacy, source_list, note_list, the_type, 
+         value) = attribute
+        new_citation_list = convert_source_list_to_citation_list_16(
+                                self, source_list)
+        new_attribute = (privacy, new_citation_list, note_list, 
+                         the_type, value)
+        new_attribute_list.append((new_attribute))
+    return new_attribute_list
+    
+def upgrade_child_ref_list_16(self, child_ref_list):
+    new_child_ref_list = []
+    for child_ref in child_ref_list:
+        (privacy, source_list, note_list, ref, frel, mrel) = child_ref
+        new_citation_list = convert_source_list_to_citation_list_16(
+                                        self, source_list)
+        new_child_ref = (privacy, new_citation_list, note_list, ref, frel, mrel)
+        new_child_ref_list.append((new_child_ref))
+    return new_child_ref_list
+
+def upgrade_lds_seal_list_16(self, lds_seal_list):
+    new_lds_seal_list = []
+    for lds_seal in lds_seal_list:
+        (source_list, note_list, date, type, place,
+         famc, temple, status, private) = lds_seal
+        new_citation_list = convert_source_list_to_citation_list_16(
+                                        self, source_list)
+        new_lds_seal = (new_citation_list, note_list, date, type, place,
+                        famc, temple, status, private)
+        new_lds_seal_list.append((new_lds_seal))
+    return new_lds_seal_list
+
+def upgrade_address_list_16(self, address_list):
+    new_address_list = []
+    for address in address_list:
+        (privacy, source_list, note_list, date, location) = address
+        new_citation_list = convert_source_list_to_citation_list_16(
+                                        self, source_list)
+        new_address = (privacy, new_citation_list, note_list, date, location)
+        new_address_list.append((new_address))
+    return new_address_list
+
+def upgrade_name_list_16(self, name_list):
+    new_name_list = []
+    for name in name_list:
+        new_name = upgrade_name_16(self, name)
+        new_name_list.append((new_name))
+    return new_name_list
+
+def upgrade_name_16(self, name):
+    (privacy, source_list, note, date, first_name, surname_list, suffix, 
+     title, name_type, group_as, sort_as, display_as, call, nick, 
+     famnick) = name
+    new_citation_list = convert_source_list_to_citation_list_16(
+                                    self, source_list)
+    new_name = (privacy, new_citation_list, note, date, first_name, 
+                surname_list, suffix, title, name_type, group_as, sort_as, 
+                display_as, call, nick, famnick)
+    return new_name
+
+def upgrade_person_ref_list_16(self, person_ref_list):
+    new_person_ref_list = []
+    for person_ref in person_ref_list:
+        (privacy, source_list, note_list, ref, rel) = person_ref
+        new_citation_list = convert_source_list_to_citation_list_16(
+                                        self, source_list)
+        new_person_ref = (privacy, new_citation_list, note_list, ref, rel)
+        new_person_ref_list.append((new_person_ref))
+    return new_person_ref_list
+
+def upgrade_event_ref_list_16(self, event_ref_list):
+    new_event_ref_list = []
+    for event_ref in event_ref_list:
+        (privacy, note_list, attribute_list, ref, role) = event_ref
+        new_attribute_list = upgrade_attribute_list_16(
+                                        self, attribute_list)
+        new_event_ref = (privacy, note_list, new_attribute_list, ref, role)
+        new_event_ref_list.append((new_event_ref))
+    return new_event_ref_list
+
+def convert_source_list_to_citation_list_16(self, source_list):
+    citation_list = []
+    for source in source_list:
+        (date, private, note_list, confidence, ref, page) = source
+        new_handle = self.create_id()
+        new_media_list = []
+        new_data_map = {}
+        new_change = time.time()
+        new_gramps_id = self.citation_prefix % self.cmap_index
+        new_citation = (new_handle, new_gramps_id,
+                        date, page, confidence, ref, note_list, new_media_list,
+                        new_data_map, new_change, private)
+        with BSDDBTxn(self.env, self.citation_map) as txn:
+            txn.put(str(new_handle), new_citation)
+        self.cmap_index += 1
+#        # add backlinks for references from Citation to Source
+#        with BSDDBTxn(self.env) as txn:
+#            self.update_reference_map( 
+#                    self.get_citation_from_handle(new_handle),
+#                    transaction,
+#                    txn.txn)
+        citation_list.append((new_handle))
+    return citation_list
 
 def gramps_upgrade_15(self):
     """Upgrade database from version 14 to 15. This upgrade adds:

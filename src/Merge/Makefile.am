@@ -12,6 +12,7 @@ pkgdata_PYTHON = \
 	mergeevent.py \
 	mergeplace.py \
 	mergesource.py \
+	mergecitation.py \
 	mergerepository.py \
 	mergemedia.py \
 	mergenote.py

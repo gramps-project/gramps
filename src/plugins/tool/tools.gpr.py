@@ -517,3 +517,27 @@ toolclass = 'Verify',
 optionclass = 'VerifyOptions',
 tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
   )
+
+#------------------------------------------------------------------------
+#
+# Merge citations
+#
+#------------------------------------------------------------------------
+
+register(TOOL, 
+id    = 'mergecitations',
+name  = _("Merge Citations"),
+description =  _("Searches the entire database, looking for "
+                    "citations that have the same Volume/Page, Date and Confidence."),
+version = '1.0',
+gramps_target_version = '3.4',
+status = STABLE,
+fname = 'MergeCitations.py',
+authors = ["Tim G L Lyons"],
+authors_email = ["gramps-project.org"],
+category = TOOL_DBPROC,
+toolclass = 'MergeCitations',
+optionclass = 'MergeCitationsOptions',
+tool_modes = [TOOL_MODE_GUI]
+  )
+

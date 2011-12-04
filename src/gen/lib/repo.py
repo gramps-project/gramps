@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -99,12 +100,12 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         """
         return self.address_list + self.urls
 
-    def get_sourcref_child_list(self):
+    def get_citation_child_list(self):
         """
-        Return the list of child secondary objects that may refer sources.
+        Return the list of child secondary objects that may refer citations.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer sources.
+                refer citations.
         :rtype: list
         """
         return self.address_list
@@ -127,7 +128,7 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
-        return self.address_list
+        return self.get_citation_child_list()
 
     def get_referenced_handles(self):
         """
@@ -139,46 +140,44 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         """
         return self.get_referenced_note_handles()
 
-    def has_source_reference(self, src_handle) :
+    def has_citation_reference(self, citation_handle) :
         """
-        Return True if any of the child objects has reference to this source 
+        Return True if any of the child objects has reference to this citation 
         handle.
+        
+        Note: for most objects, this is inherited from citationbase, which
+        checks both the object and the child objects. However, uniquely,
+        Repositories do not have citations for the primary object, but only for
+        child (secondary) objects. Hence, this function has to be implemented
+        directly in the primary object; it only checks the child objects.
 
-        :param src_handle: The source handle to be checked.
-        :type src_handle: str
+        :param citation_handle: The citation handle to be checked.
+        :type citation_handle: str
         :returns: Returns whether any of it's child objects has reference to 
-                this source handle.
+                this citation handle.
         :rtype: bool
         """
-        for item in self.get_sourcref_child_list():
-            if item.has_source_reference(src_handle):
+        for item in self.get_citation_child_list():
+            if item.has_citation_reference(citation_handle):
                 return True
 
         return False
 
-    def remove_source_references(self, src_handle_list):
+    def replace_citation_references(self, old_handle, new_handle):
         """
-        Remove references to all source handles in the list in all child 
-        objects.
-
-        :param src_handle_list: The list of source handles to be removed.
-        :type src_handle_list: list
-        """
-        for item in self.get_sourcref_child_list():
-            item.remove_source_references(src_handle_list)
-
-    def replace_source_references(self, old_handle, new_handle):
-        """
-        Replace references to source handles in the list in this object and 
+        Replace references to citation handles in the list in this object and 
         all child objects and merge equivalent entries.
+        
+        Note: the same comment about citationbase in has_citation_reference
+        applies here too.
 
-        :param old_handle: The source handle to be replaced.
+        :param old_handle: The citation handle to be replaced.
         :type old_handle: str
-        :param new_handle: The source handle to replace the old one with.
+        :param new_handle: The citation handle to replace the old one with.
         :type new_handle: str
         """
-        for item in self.get_sourcref_child_list():
-            item.replace_source_references(old_handle, new_handle)
+        for item in self.get_citation_child_list():
+            item.replace_citation_references(old_handle, new_handle)
 
     def merge(self, acquisition):
         """

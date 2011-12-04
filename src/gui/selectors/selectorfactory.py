@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -38,6 +39,9 @@ def SelectorFactory(classname):
     elif classname == 'Source':
         from selectsource import SelectSource
         cls = SelectSource
+    elif classname == 'Citation':
+        from selectcitation import SelectCitation
+        cls = SelectCitation
     elif classname in ['MediaObject', 'Media']:
         from selectobject import SelectObject
         cls = SelectObject

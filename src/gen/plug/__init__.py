@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2008  Brian G. Matherly
 # Copyright (C) 2010  Jakim Friant
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,6 +34,7 @@ from _pluginreg import (PluginData, PluginRegister, REPORT, TOOL,
             CATEGORY_QR_FAMILY, CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE,
             CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY, CATEGORY_QR_NOTE,
             CATEGORY_QR_DATE, PTYPE_STR, CATEGORY_QR_MEDIA,
+            CATEGORY_QR_CITATION, CATEGORY_QR_SOURCE_OR_CITATION,
             START, END, make_environment,
             )
 from _manager import BasePluginManager
@@ -54,4 +56,5 @@ __all__ = [ "docbackend", "docgen", "menu", Plugin, PluginData,
             CATEGORY_QR_FAMILY, CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE,
             CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY, CATEGORY_QR_NOTE,
             CATEGORY_QR_DATE, PTYPE_STR, CATEGORY_QR_MEDIA,
+            CATEGORY_QR_CITATION, CATEGORY_QR_SOURCE_OR_CITATION,
             START, END, make_environment]

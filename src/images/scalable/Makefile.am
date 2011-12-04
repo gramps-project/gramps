@@ -19,6 +19,7 @@ dist_pkgdata_DATA = \
 	gramps-bookmark-edit.svg \
 	gramps-bookmark-new.svg \
 	gramps-bookmark.svg \
+	gramps-citation.png \
 	gramps-config.svg \
 	gramps-date-edit.svg \
 	gramps-date.svg \

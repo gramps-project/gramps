@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2009 Benny Malengier
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,6 +45,7 @@ EVENTKEY = 'event'
 PLACEKEY = 'place'
 MEDIAKEY = 'media'
 SOURCEKEY = 'source'
+CITATIONKEY = 'citation'
 REPOKEY = 'repository'
 NOTEKEY = 'note'
 
@@ -53,7 +55,7 @@ DELETE = '-delete'
 REBUILD = '-rebuild'
 
 KEYS = [PERSONKEY, FAMILYKEY, EVENTKEY, PLACEKEY, MEDIAKEY, SOURCEKEY,
-        REPOKEY, NOTEKEY]
+        CITATIONKEY, REPOKEY, NOTEKEY]
 
 METHODS = [ADD, UPDATE, DELETE, REBUILD]
 METHODS_LIST = [ADD, UPDATE, DELETE]
@@ -65,6 +67,7 @@ EVENTCLASS = 'Event'
 PLACECLASS = 'Place'
 MEDIACLASS = 'MediaObject'
 SOURCECLASS = 'Source'
+CITATIONCLASS = 'Citation'
 REPOCLASS = 'Repository'
 NOTECLASS = 'Note'
 
@@ -75,6 +78,7 @@ CLASS2KEY = {
             PLACECLASS: PLACEKEY,
             MEDIACLASS: MEDIAKEY,
             SOURCECLASS: SOURCEKEY,
+            CITATIONCLASS: CITATIONKEY,
             REPOCLASS: REPOKEY,
             NOTECLASS: NOTEKEY
             }
@@ -116,6 +120,7 @@ class CallbackManager(object):
                 PLACEKEY: [],
                 MEDIAKEY: [],
                 SOURCEKEY: [],
+                CITATIONKEY: [],
                 REPOKEY: [],
                 NOTEKEY: [],
                 }
@@ -198,6 +203,7 @@ class CallbackManager(object):
                 PLACEKEY: [],
                 MEDIAKEY: [],
                 SOURCEKEY: [],
+                CITATIONKEY: [],
                 REPOKEY: [],
                 NOTEKEY: [],
                 }
@@ -334,6 +340,7 @@ def directhandledict(baseobj):
                 PLACEKEY: [],
                 MEDIAKEY: [],
                 SOURCEKEY: [],
+                CITATIONKEY: [],
                 REPOKEY: [],
                 NOTEKEY: [],
                 }
@@ -353,6 +360,7 @@ def handledict(baseobj):
                 PLACEKEY: [],
                 MEDIAKEY: [],
                 SOURCEKEY: [],
+                CITATIONKEY: [],
                 REPOKEY: [],
                 NOTEKEY: [],
                 }

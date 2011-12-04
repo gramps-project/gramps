@@ -151,6 +151,7 @@ def register_stock_icons ():
         ('gramps-zoom-out', _('Zoom Out'), gtk.gdk.CONTROL_MASK, 0, ''),
         ('gramps-zoom-fit-width', _('Fit Width'), gtk.gdk.CONTROL_MASK, 0, ''),
         ('gramps-zoom-best-fit', _('Fit Page'), gtk.gdk.CONTROL_MASK, 0, ''),
+        ('gramps-citation', _('Citations'), gtk.gdk.CONTROL_MASK, 0, ''),
         ]
     # the following icons are not yet in new directory structure
     # they should be ported in the near future

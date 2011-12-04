@@ -28,7 +28,8 @@ pkgdata_PYTHON = \
 	SortEvents.py \
 	SoundGen.py \
 	tools.gpr.py \
-	Verify.py
+	Verify.py \
+	MergeCitations.py
 #	DumpGenderStats.py \
 #	PHPGedViewConnector.py \
 #	TestcaseGenerator.py
@@ -52,7 +53,8 @@ GLADEFILES = \
 	relcalc.glade \
 	removeunused.glade \
 	soundgen.glade \
-	verify.glade
+	verify.glade \
+	mergecitations.glade
 
 dist_pkgdata_DATA = $(GLADEFILES)
 

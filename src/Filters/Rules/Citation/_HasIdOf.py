@@ -1,7 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,29 +23,25 @@
 
 #-------------------------------------------------------------------------
 #
-# GTK libraries
+# Standard Python modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS classes
+# GRAMPS modules
 #
 #-------------------------------------------------------------------------
-
+from Filters.Rules import HasGrampsId
 
 #-------------------------------------------------------------------------
 #
-# SourceRefModel
+# HasIdOf
 #
 #-------------------------------------------------------------------------
-class SourceRefModel(gtk.ListStore):
+class HasIdOf(HasGrampsId):
+    """Rule that checks for a citation with a specific GRAMPS ID"""
 
-    def __init__(self, sref_list, db):
-        gtk.ListStore.__init__(self, str, str, str, str, object)
-        self.db = db
-        for sref in sref_list:
-            src = self.db.get_source_from_handle(sref.get_reference_handle())
-            self.append(row=[src.gramps_id, src.title, src.author, 
-                             sref.page, sref, ])
+    name        = _('Citation with <Id>')
+    description = _("Matches a citation with a specified Gramps ID")

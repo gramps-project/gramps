@@ -2,6 +2,7 @@
 #
 # Copyright (C) 2001-2007  Donald N. Allingham
 # Copyright (C) 2008       Gary Burton
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -291,7 +292,7 @@ class EventView(ListView):
         """
         return (("Event Filter",),
                 ("Event Gallery",
-                 "Event Sources",
+                 "Event Citations",
                  "Event Notes",
                  "Event Attributes",
                  "Event Backlinks"))

@@ -16,6 +16,9 @@ pkgdata_PYTHON = \
 	placemodel.py \
 	repomodel.py \
 	sourcemodel.py \
+	citationbasemodel.py \
+	citationlistmodel.py \
+	citationtreemodel.py \
 	treebasemodel.py
 
 pkgpyexecdir = @pkgpyexecdir@/gui/views/treemodels

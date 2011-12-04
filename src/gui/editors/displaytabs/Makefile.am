@@ -11,6 +11,9 @@ pkgdata_PYTHON = \
 	backrefmodel.py \
 	buttontab.py \
 	childmodel.py \
+	citationbackreflist.py \
+	citationembedlist.py \
+	citationrefmodel.py \
 	dataembedlist.py \
 	datamodel.py \
 	embeddedlist.py \
@@ -40,8 +43,6 @@ pkgdata_PYTHON = \
 	repoembedlist.py \
 	reporefmodel.py \
 	sourcebackreflist.py \
-	sourceembedlist.py \
-	sourcerefmodel.py \
 	surnamemodel.py \
 	surnametab.py \
 	webembedlist.py \

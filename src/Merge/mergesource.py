@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2005  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,7 +32,7 @@ Provide merge capabilities for sources.
 #
 #-------------------------------------------------------------------------
 from gen.lib import (Person, Family, Event, Place, Source, Repository,
-                     MediaObject)
+                     MediaObject, Citation)
 from gen.db import DbTxn
 from gen.ggettext import sgettext as _
 import const
@@ -206,41 +207,11 @@ class MergeSourceQuery(object):
             self.database.commit_source(self.phoenix, trans)
             for (class_name, handle) in self.database.find_backlink_handles(
                     old_handle):
-                if class_name == Person.__name__:
-                    person = self.database.get_person_from_handle(handle)
-                    assert(person.has_source_reference(old_handle))
-                    person.replace_source_references(old_handle, new_handle)
-                    self.database.commit_person(person, trans)
-                elif class_name == Family.__name__:
-                    family = self.database.get_family_from_handle(handle)
-                    assert(family.has_source_reference(old_handle))
-                    family.replace_source_references(old_handle, new_handle)
-                    self.database.commit_family(family, trans)
-                elif class_name == Event.__name__:
-                    event = self.database.get_event_from_handle(handle)
-                    assert(event.has_source_reference(old_handle))
-                    event.replace_source_references(old_handle, new_handle)
-                    self.database.commit_event(event, trans)
-                elif class_name == Source.__name__:
-                    source = self.database.get_source_from_handle(handle)
-                    assert(source.has_source_reference(old_handle))
-                    source.replace_source_references(old_handle, new_handle)
-                    self.database.commit_source(source, trans)
-                elif class_name == Place.__name__:
-                    place = self.database.get_place_from_handle(handle)
-                    assert(place.has_source_reference(old_handle))
-                    place.replace_source_references(old_handle, new_handle)
-                    self.database.commit_place(place, trans)
-                elif class_name == MediaObject.__name__:
-                    obj = self.database.get_object_from_handle(handle)
-                    assert(obj.has_source_reference(old_handle))
-                    obj.replace_source_references(old_handle, new_handle)
-                    self.database.commit_media_object(obj, trans)
-                elif class_name == Repository.__name__:
-                    repo = self.database.get_repository_from_handle(handle)
-                    assert(repo.has_source_reference(old_handle))
-                    repo.replace_source_references(old_handle, new_handle)
-                    self.database.commit_repository(repo, trans)
+                if class_name == Citation.__name__:
+                    citation = self.database.get_citation_from_handle(handle)
+                    assert(citation.get_reference_handle() == old_handle)
+                    citation.set_reference_handle(new_handle)
+                    self.database.commit_citation(citation, trans)
                 else:
                     raise MergeError("Encounter an object of type %s that has "
                             "a source reference." % class_name)

@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,6 +25,7 @@
 from editaddress import EditAddress
 from editattribute import EditAttribute, EditFamilyAttribute
 from editchildref import EditChildRef
+from editcitation import EditCitation, DeleteCitationQuery
 from editevent import EditEvent, DeleteEventQuery
 from editeventref import EditEventRef, EditFamilyEventRef
 from editfamily import EditFamily
@@ -39,7 +41,6 @@ from editplace import EditPlace, DeletePlaceQuery
 from editrepository import EditRepository, DeleteRepositoryQuery
 from editreporef import EditRepoRef
 from editsource import EditSource, DeleteSrcQuery
-from editsourceref import EditSourceRef
 from editurl import EditUrl
 from editlink import EditLink
 
@@ -50,6 +51,7 @@ EDITORS = {
     'Family': EditFamily,
     'Media': EditMedia,
     'Source': EditSource,
+    'Citation': EditCitation,
     'Place': EditPlace,
     'Repository': EditRepository,
     'Note': EditNote,

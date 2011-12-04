@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2002-2006  Donald N. Allingham
 # Copyright (C) 2010  Benny Malengier
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -49,7 +50,7 @@ class MatchesSourceFilter(MatchesSourceFilterBase):
     name        = _('Events with source matching the <source filter>')
     description = _("Matches events with sources that match the "
                     "specified source filter name")
-    category    = _('General filters')
+    category    = _('Citation/source filters')
 
     # we want to have this filter show source filters
     namespace   = 'Source'

@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2008  Donald N. Allingham
 # Copyright (C) 2009  Douglas S. Blank
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -352,6 +353,10 @@ class SimpleTable(object):
                 retval.append(self.access.describe(item))
                 if (self.__link_col == col or link is None):
                     link = ('Source', item.handle)
+            elif isinstance(item, gen.lib.Citation): 
+                retval.append(self.access.describe(item))
+                if (self.__link_col == col or link is None):
+                    link = ('Citation', item.handle)
             elif isinstance(item, gen.lib.Event):
                 retval.append(self.access.describe(item))
                 if (self.__link_col == col or link is None):

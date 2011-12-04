@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#!/usr/bin/python
+#!/usr/bin/env python
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -13,6 +13,7 @@
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2010       Serge Noiraud
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -343,7 +344,7 @@ class BasePage(object):
         self.inc_families = report.options['inc_families']
         self.inc_events = report.options['inc_events']
 
-    def complete_people(self, tcell, first_person, handle_list, ppl_handle_list, up  =True):
+    def complete_people(self, tcell, first_person, handle_list, ppl_handle_list, up =True):
         """
         completes the person column for classes EventListPage and EventPage
 
@@ -362,10 +363,11 @@ class BasePage(object):
                     use_link = check_person_database(handle, ppl_handle_list)
                     if use_link:
                         url = self.report.build_url_fname_html(handle, "ppl", up) 
-                        tcell += Html("span", self.person_link(url, _obj, _NAME_STYLE_DEFAULT, gid =_obj.get_gramps_id()),
-                            class_="person", inline=True)
+                        tcell += Html("span", self.person_link(url, _obj,
+                            _NAME_STYLE_DEFAULT, gid=_obj.get_gramps_id()), class_ ="person", inline =True)
                     else:
-                        tcell += Html("span", self.get_name(_obj), class_="person", inline =True)
+                        tcell += Html("span", self.get_name(_obj), class_="person",
+                                      inline=True)
 
             # family event
             else:
@@ -384,7 +386,7 @@ class BasePage(object):
                         use_link = check_person_database(husband_handle, ppl_handle_list)
                         if use_link:
                             url = self.report.build_url_fname_html(husband_handle, "ppl", up)
-                            hlink = self.person_link(url, husband, _NAME_STYLE_DEFAULT, gid =husband.get_gramps_id())
+                            hlink = self.person_link(url, husband, _NAME_STYLE_DEFAULT, gid = husband.get_gramps_id())
                         else:
                             hlink = self.get_name(husband)
 
@@ -392,7 +394,7 @@ class BasePage(object):
                         use_link = check_person_database(spouse_handle, ppl_handle_list)
                         if use_link:
                             url = self.report.build_url_fname_html(spouse_handle, "ppl", up)
-                            slink = self.person_link(url, spouse, _NAME_STYLE_DEFAULT, gid =spouse.get_gramps_id())
+                            slink = self.person_link(url, spouse, _NAME_STYLE_DEFAULT, gid = spouse.get_gramps_id())
                         else:
                             slink = self.get_name(spouse)
 
@@ -422,38 +424,40 @@ class BasePage(object):
                 ["Type",    str(attr.get_type()) ],
                 ["Value",   attr.get_value() ],
                 ["Notes",   self.dump_notes(attr.get_note_list()) ],
-                ["Sources", self.get_citation_links(attr.get_source_references()) ] ]
+                ["Sources", self.get_citation_links(attr.get_citation_list()) ] ]
         )
 
         # return table row to its caller
         return trow
 
-    def get_citation_links(self, source_ref_list):
+    def get_citation_links(self, citation_handle_list):
         """
-        get citation link from the source reference list
+        get citation link from the citation handle list
 
-        @param: source_ref_list = list of source references
+        @param: citation_handle_list = list of gen/lib/Citation
         """
 
-        gid_list = []
         lnk = (self.report.cur_fname, self.page_title, self.gid)
-
-        for sref in source_ref_list:
-            handle = sref.get_reference_handle()
-            gid_list.append(sref)
-
-            if handle in self.src_list:
-                if lnk not in self.src_list[handle]:
-                    self.src_list[handle].append(lnk)
-            else:
-                self.src_list[handle] = [lnk]
-
         text = ""
-        if len(gid_list):
-            for ref in gid_list:
-                index, key = self.bibli.add_reference(ref)
-                id_ = "%d%s" % (index+1, key)
-                text += ' [<a href="#sref%s ">%s</a>]' % (id_, id_)
+
+        for citation_handle in citation_handle_list:
+            citation = self.report.database.get_citation_from_handle(
+                                                citation_handle)
+            
+            # Add the source information to src_list for use when displaying the
+            # Sources page
+            source_handle = citation.get_reference_handle()
+            if source_handle in self.src_list:
+                if lnk not in self.src_list[source_handle]:
+                    self.src_list[source_handle].append(lnk)
+            else:
+                self.src_list[source_handle] = [lnk]
+                
+            # Add the citation information to the bibliography, and construct
+            # the citation reference text
+            index, key = self.bibli.add_reference(citation)
+            id_ = "%d%s" % (index+1, key)
+            text += ' [<a href="#sref%s ">%s</a>]' % (id_, id_)
 
         # return citation list text to its callers
         return text
@@ -632,7 +636,7 @@ class BasePage(object):
         trow += Html("td", htmllist, class_ = "ColumnNotes")
 
         # get event source references
-        srcrefs = self.get_citation_links(event.get_source_references()) or "&nbsp;"
+        srcrefs = self.get_citation_links(event.get_citation_list()) or "&nbsp;"
         trow += Html("td", srcrefs, class_ = "ColumnSources")
 
         # return events table row to its callers
@@ -646,21 +650,37 @@ class BasePage(object):
         @param: event -- event object from database
         @param: place_lat_long -- for use in Family Map Pages
         """
+        place_handle = place.get_handle()
         placetitle = place.get_title()
         latitude = place.get_latitude()
         longitude = place.get_longitude()
 
         if (latitude and longitude):
-            found = any(data[3] == place.get_handle() for data in place_lat_long)
+            found = any(data[3] == place_handle for data in place_lat_long)
             if not found:
 
                 latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
 
                 # 0 = latitude, 1 = longitude, 2 = place title,
-                # 3 = place handle, 4 = event date...
+                # 3 = place handle, 4 = event date, 5 = Marker color
+                #                                       red = birth, blue = death, purple = census
                 if latitude is not None:
-                    place_lat_long.append( [latitude, longitude, placetitle,
-                                       place.get_handle(), event.get_date_object()] )
+
+                    # get event type for color marker chooser...
+                    etype = event.get_type()
+                    if etype in [gen.lib.EventType.BIRTH, gen.lib.EventType.BAPTISM, 
+                                 gen.lib.EventType.ADULT_CHRISTEN, gen.lib.EventType.CHRISTEN]:
+                        marker = "Red"
+                    elif etype in [gen.lib.EventType.DEATH, gen.lib.EventType.BURIAL]:
+                        marker = "Blue"
+                    elif etype == gen.lib.EventType.CENSUS:
+                        marker = "Purple"
+                    else:
+                        marker = None
+ 
+                    if marker is not None:
+                        place_lat_long.append([latitude, longitude, placetitle,
+                                              place.get_handle(), event.get_date_object(), marker])
 
     def _get_event_place(self, person, ppl_handle_list, place_lat_long):
         """
@@ -674,7 +694,7 @@ class BasePage(object):
 
         # check to see if this person is in the report database?
         use_link = check_person_database(person.get_handle(), ppl_handle_list)
-        if use_link: 
+        if use_link:
             evt_ref_list = person.get_event_ref_list()
             if evt_ref_list:
                 for evt_ref in evt_ref_list:
@@ -822,7 +842,7 @@ class BasePage(object):
                         ["LDSTemple",   ord.get_temple()],
                         ["LDSPlace",    place_hyper],
                         ["LDSStatus",   ord.get_status()],
-                        ["LDSSources",  self.get_citation_links(ord.get_source_references() )] ]
+                        ["LDSSources",  self.get_citation_links(ord.get_citation_list() )] ]
                 )
 
         # return table to its callers
@@ -960,7 +980,7 @@ class BasePage(object):
                     # get source citation list
                     if showsrc in [True, None]:
                         addr_data_row.append(["Sources",    self.get_citation_links(
-                            address.get_source_references() )])
+                            address.get_citation_list() )])
 
                     trow.extend(
                         Html("td", value or "&nbsp;", class_="Column" + colclass, inline=True)
@@ -1755,7 +1775,9 @@ class BasePage(object):
         will create the "Source References" section for an object
         """
 
-        map(self.bibli.add_reference, srcobj.get_source_references())
+        map(lambda i: self.bibli.add_reference(
+                            self.report.database.get_citation_from_handle(i)), 
+            srcobj.get_citation_list())
         sourcerefs = self.display_source_refs(self.bibli)
 
         # return to its callers
@@ -1853,10 +1875,7 @@ class BasePage(object):
         """
         creates a link to the family map
         """
-
-        # return hyperlink to its caller
-        return Html("a", _("Family Map"), href = url, title = _("Family Map"), 
-            class_ = "familymap", inline = True)
+        return Html("a", _("Family Map"), href = url, title =_("Family Map"), class_ ="familymap", inline =True)
 
     def display_relationships(self, ppl_handle_list, place_lat_long):
         """
@@ -3209,21 +3228,19 @@ class PlacePage(BasePage):
                     placedetail += Html("h4", _("Place Map"), inline =True)
 
                     # begin map_canvas division
-                    with Html("div", id ="map_canvas") as canvas:
+                    with Html("div", id ="place_canvas") as canvas:
                         placedetail += canvas
 
                         # begin inline javascript code
                         # because jsc is a docstring, it does NOT have to be properly indented
                         with Html("script", type = "text/javascript") as jsc:
+                            head += jsc
 
                             if self.mapservice == "Google":
-                                head += jsc
                                 jsc += google_jsc % (latitude, longitude)
                             else:
                                 # do not need to write on head, load into canvas
-                                jsc += openstreet_jsc % (Utils.xml_lang()[3:5].lower(),
-                                                         longitude, latitude)
-                                canvas += jsc
+                                jsc += openstreet_jsc % (Utils.xml_lang()[3:5].lower(), longitude, latitude)
                         # there is no need to add an ending "</script>",
                         # as it will be added automatically!
 
@@ -3792,17 +3809,18 @@ class MediaPage(BasePage):
         self.XHTMLWriter(mediapage, of)
 
     def media_nav_link(self, handle, name, up = False):
-
+        """
+        Creates the Media Page Navigation hyperlinks for Next and Prev
+        """
         url = self.report.build_url_fname_html(handle, "img", up)
-        img_name = html_escape(name)
-        hyper = Html("a", img_name, name = img_name, id = img_name, href = url,  title = img_name, inline = True)
-
-        # return hyperlink to its callers
-        return hyper
+        name = html_escape(name)
+        return Html("a", name, name =name, id =name, href =url,  title =name, inline =True)
 
     def display_media_sources(self, photo):
 
-        map(self.bibli.add_reference, photo.get_source_references())
+        map(lambda i: self.bibli.add_reference(
+                            self.report.database.get_citation_from_handle(i)), 
+            photo.get_citation_list())
         sourcerefs = self.display_source_refs(self.bibli)
 
         # return source references to its caller
@@ -4688,12 +4706,16 @@ class IndividualPage(BasePage):
         self.place_list = place_list
         self.sort_name = self.get_name(person)
         self.name = self.get_name(person)
+
+        self.familymappages = self.report.options['familymappages']
+        self.placemappages = self.report.options['placemappages']
+        self.mapservice = self.report.options['mapservice']
+        self.googleopts = self.report.options['googleopts']
         db = report.database
 
         of = self.report.create_file(person.get_handle(), "ppl")
         self.up = True
         indivdetpage, head, body = self.write_header(self.sort_name)
-        self.familymappages = self.report.options['familymappages']
 
         # attach the ancestortree style sheet if ancestor graph is being created?
         if self.report.options["ancestortree"]:
@@ -4821,10 +4843,6 @@ class IndividualPage(BasePage):
         if not place_lat_long:
             return
 
-        self.familymappages = self.report.options['familymappages']
-        self.mapservice = self.report.options['mapservice']
-        self.googleopts = self.report.options['googleopts']
-
         minx, maxx = Decimal("0.00000001"), Decimal("0.00000001")
         miny, maxy = Decimal("0.00000001"), Decimal("0.00000001")
         xwidth, yheight = [], []
@@ -4832,7 +4850,7 @@ class IndividualPage(BasePage):
 
         number_markers = len(place_lat_long)
         if number_markers > 1:
-            for (lat, long, p, h, d) in place_lat_long:
+            for (lat, long, p, h, d, marker) in place_lat_long:
                 xwidth.append(lat)
                 yheight.append(long)
             xwidth.sort()
@@ -4939,15 +4957,15 @@ class IndividualPage(BasePage):
     var myLatLng = new google.maps.LatLng(%s, %s);
 
     var myOptions = {
-      zoom: %d,
-      center: myLatLng,
+      zoom:      %d,
+      center:    myLatLng,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
     var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
     var flightPath = new google.maps.Polyline({
-      path: %s,
+      path:          %s,
       strokeColor:   "#FF0000",
       strokeOpacity: 1.0,
       strokeWeight:  2
@@ -4962,73 +4980,68 @@ class IndividualPage(BasePage):
                             midX_, midY_ = conv_lat_lon(place_lat_long[0][0], place_lat_long[0][1], "D.D8")
 
                         jsc += """
-  //<![CDATA[
   var centre = new google.maps.LatLng(%s, %s);""" % (midX_, midY_)
                         jsc += """
-    var myCoordinates = ["""
+  var myCoordinates = ["""
                         for index in xrange(0, (number_markers - 1)):
-                            dataline = place_lat_long[index]
-                            latitude, longitude, placetitle = dataline[0], dataline[1], dataline[2]
-                            jsc += """     new google.maps.LatLng(%s, %s),""" % (latitude, longitude)
+                            data = place_lat_long[index]
+                            latitude, longitude, placetitle, marker = data[0], data[1], data[2], data[5]
+                            jsc += """    [%s, %s, '%s', '%s', %d],""" % (latitude, longitude, placetitle, marker, index)
 
-                        dataline = place_lat_long[-1]
-                        latitude, longitude, placetitle = dataline[0], dataline[1], dataline[2]
-                        jsc += """      new google.maps.LatLng(%s, %s)
-    ];""" % (latitude, longitude)
+                        data = place_lat_long[-1]
+                        latitude, longitude, placetitle, marker = data[0], data[1], data[2], data[5]
+                        jsc += """    [%s, %s, '%s', '%s', %d]
+   ];""" % (latitude, longitude, placetitle, marker, index+1)
                         jsc += """
-  var markers = [];
-  var iterator = 0;
+  var bounds;
   var map;
- 
+
   function initialize() {
     var mapOptions = {
-      scrollwheel:     false,
-      scaleControl:    false,
-      backgroundColor: '#FFFFFF',
+      scrollwheel:     true,
+      scaleControl:    true,
+      backgroundColor: '#000000',
       zoom:            %d,
       center:          centre,
-      mapTypeId:       google.maps.MapTypeId.ROADMAP
+      mapTypeId:       google.maps.MapTypeId.ROADMAP,
     }
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-  }
-
-  function drop() {
-    for (var i = 0; i < myCoordinates.length; i++) {
-      setTimeout(function() {
-        addMarkers();
-      }, i * 1000);
-    }
+    addMarkers();
   }
 
   function addMarkers() {
-    markers.push(new google.maps.Marker({
-      position:  myCoordinates[iterator],
-      map:       map,
-      draggable: true,
-      animation: google.maps.Animation.DROP
-    }));
-    iterator++;
-  }
-  //]]>""" % zoomlevel
+     bounds = new google.LatLngBounds();
+
+    for (var iterator = 0; iterator < myCoordinates.length; iterator++) {
+      var locations = myCoordinates[iterator];
+
+      var myLatLng = new google.maps.LatLng(locations[0], locations[1]);
+
+      var image;
+      if (locations[2] = 'Red')
+        {
+          image = '../../../images/red_marker.png';
+        } else if (locations[2] = 'Blue') 
+        {
+          image = '../../../images/blue_marker.png';
+        } else {
+        image = '../../../images/purple_marker.png';
+      }
+
+      var marker = new google.maps.Marker({
+        position:  myLatLng,
+        draggable: true,
+        title:     locations[2],
+        icon:      image,
+        map:       map,
+        zIndex:    locations[6]
+      });
+      bounds.extend(myLatLng);
+      map.fitBounds(bounds);
+    }
+  }""" % zoomlevel
 # there is no need to add an ending "</script>",
 # as it will be added automatically by libhtml()!
-
-                        dont = """
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-  function setMarkers(map, locations) {
-    var bounds = new google.maps.LatLngBounds();
-    for (var i = 0; i < locations.length; i++) {
-      var coordinates = locations[i];
-
-      var myLatLng = new google.maps.LatLng(coordinates[1], coordinates[2]);
-      var marker = new google.maps.Marker({
-        position: myLatLng,
-        map:      map,
-        title:    coordinates[0]
-    });
-    bounds.extend(locations[i]);
-    map.fitBounds(bounds);
-  }"""
 
         with Html("div", class_ ="content", id ="FamilyMapDetail") as mapbackground:
             body += mapbackground
@@ -5043,14 +5056,13 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
                    "take you to that page&#8217;s page.") 
             mapbackground += Html("p", msg, id = "description")
 
-            # if Google and Markers are selected, then add "Drop Markers" button?
-            if (self.mapservice == "Google" and self.googleopts == "Markers"):
-                button_ = Html("button", _("Drop Markers"), id ="drop", onclick ="drop()", inline =True)
-                mapbackground += button_
-
             # here is where the map is held in the CSS/ Page
             with Html("div", id ="map_canvas", inline =True) as canvas:
                 mapbackground += canvas
+
+            # if Google and Markers are selected, then add "Drop Markers" button?
+            #if (self.mapservice == "Google" and self.googleopts == "Markers"):
+            #    mapbackground += Html("button", _("Drop Markers"), id ="drop", onclick ="drop()", inline =True)
 
             if self.mapservice == "OpenStreetMap":
                 with Html("script", type ="text/javascript") as jsc:
@@ -5061,7 +5073,6 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
                         jsc += openstreet_jsc % (Utils.xml_lang()[3:5].lower(), data[0], data[1] )
                     else:
                         jsc += """
-    //<![CDATA[
     OpenLayers.Lang.setCode("%s");
 
     map = new OpenLayers.Map("map_canvas");
@@ -5108,8 +5119,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
       feature.popup = null;
     }
     map.addControl(controls['selector']);
-    controls['selector'].activate();
-    //]]>"""
+    controls['selector'].activate();"""
 
             with Html("div", class_ ="subsection", id ="references") as section:
                 mapbackground += section
@@ -5120,7 +5130,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     
                 # 0 = latitude, 1 = longitude, 2 = place title, 3 = handle, and 4 = date
                 place_lat_long = sorted(place_lat_long, key =operator.itemgetter(4, 3, 0, 1))
-                for (lat, long, pname, handle, date) in place_lat_long:
+                for (lat, long, pname, handle, date, marker) in place_lat_long:
     
                     list = Html("li", self.place_link(handle, pname, up =self.up))
                     ordered += list
@@ -5361,7 +5371,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
                         person_link,
                         person_ref.get_relation(),
                         self.dump_notes(person_ref.get_note_list()),
-                        self.get_citation_links(person_ref.get_source_references()),
+                        self.get_citation_links(person_ref.get_citation_list()),
                         ]: 
 
                         # get colclass from assoc_row
@@ -5474,8 +5484,8 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
                 for name in all_names:
                     pname =  _nd.display_name(name)
                     if name == primary_name:
-                        pname += self.get_citation_links(self.person.get_source_references() ) 
-                    pname += self.get_citation_links( name.get_source_references() )
+                        pname += self.get_citation_links(self.person.get_citation_list() ) 
+                    pname += self.get_citation_links( name.get_citation_list() )
 
                     # if we have just a firstname, then the name is preceeded by ", "
                     # which doesn't exactly look very nice printed on the web page
@@ -5513,7 +5523,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
                 for name in all_names:
                     call_name = name.get_call_name()
                     if call_name and call_name != first_name:
-                        call_name += self.get_citation_links(name.get_source_references() )
+                        call_name += self.get_citation_links(name.get_citation_list() )
                         trow = Html("tr") + (
                             Html("td", _("Call Name"), class_ = "ColumnAttribute", inline = True),
                             Html("td", call_name, class_ = "ColumnValue", inline = True)
@@ -5523,7 +5533,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
                 # display the nickname attribute
                 nick_name = self.person.get_nick_name()
                 if nick_name and nick_name != first_name:
-                    nick_name += self.get_citation_links(self.person.get_source_references() )
+                    nick_name += self.get_citation_links(self.person.get_citation_list() )
                     trow = Html("tr") + (
                         Html("td", _("Nick Name"), class_ = "ColumnAttribute", inline = True),
                         Html("td", nick_name, class_ = "ColumnValue", inline = True)
@@ -5646,9 +5656,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
             return None
 
         db = self.report.database
-
         birthorder = self.report.options['birthorder']
-        familymappages = self.report.options['familymappages']
 
         # begin parents division
         with Html("div", class_ = "subsection", id = "parents") as section:
@@ -6598,10 +6606,6 @@ class NavWebReport(Report):
             fname = CSS["NarrativeMaps"]["filename"] 
             self.copy_file(fname, "narrative-maps.css", "styles")
 
-            # if OpenStreetMap is being used, copy blue marker?
-            if self.mapservice == "OpenStreetMap":
-                imgs += CSS["NarrativeMaps"]["images"]
-
         # Copy the Creative Commons icon if the Creative Commons
         # license is requested
         if 0 < self.copyright <= len(_CC):
@@ -6800,7 +6804,8 @@ class NavWebReport(Report):
             gc.collect() # Reduce memory usage when there are many images.
             next = None if index == total else photo_keys[index]
             # Notice. Here self.photo_list[photo_handle] is used not self.photo_list
-            MediaPage(self, self.title, photo_handle, source_list, self.photo_list[photo_handle], (prev, next, index, total))
+            MediaPage(self, self.title, photo_handle, source_list, self.photo_list[photo_handle],
+                      (prev, next, index, total))
             self.user.step_progress()
             prev = photo_handle
             index += 1

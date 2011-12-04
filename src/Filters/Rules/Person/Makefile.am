@@ -13,6 +13,7 @@ pkgdata_PYTHON = \
 	_HasAlternateName.py \
 	_HasAssociation.py \
 	_HasBirth.py \
+	_HasCitation.py \
 	_HasCommonAncestorWith.py \
 	_HasCommonAncestorWithFilterMatch.py \
 	_HasDeath.py \
@@ -29,7 +30,7 @@ pkgdata_PYTHON = \
 	_HasNote.py \
 	_HasNoteMatchingSubstringOf.py \
 	_HasRelationship.py \
-	_HasSource.py \
+	_HasSourceCount.py \
 	_HasSourceOf.py \
 	_HasTag.py \
 	_HasTextMatchingRegexpOf.py \

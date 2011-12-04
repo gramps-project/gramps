@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -107,12 +108,12 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
         """
         return  self.attribute_list
 
-    def get_sourcref_child_list(self):
+    def get_citation_child_list(self):
         """
-        Return the list of child secondary objects that may refer sources.
+        Return the list of child secondary objects that may refer citations.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer sources.
+                refer citations.
         :rtype: list
         """
         return self.attribute_list
@@ -149,48 +150,48 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
-        return self.get_sourcref_child_list()
+        return self.get_citation_child_list()
 
-    def has_source_reference(self, src_handle) :
+    def has_citation_reference(self, citation_handle) :
         """
-        Return True if any of the child objects has reference to this source 
+        Return True if any of the child objects has reference to this citation 
         handle.
 
-        :param src_handle: The source handle to be checked.
-        :type src_handle: str
+        :param citation_handle: The citation handle to be checked.
+        :type citation_handle: str
         :returns: Returns whether any of it's child objects has reference to 
-                this source handle.
+                this citation handle.
         :rtype: bool
         """
-        for item in self.get_sourcref_child_list():
-            if item.has_source_reference(src_handle):
+        for item in self.get_citation_child_list():
+            if item.has_citation_reference(citation_handle):
                 return True
 
         return False
 
-    def remove_source_references(self, src_handle_list):
+    def remove_citation_references(self, citation_handle_list):
         """
-        Remove references to all source handles in the list in all child 
+        Remove references to all citation handles in the list in all child 
         objects.
 
-        :param src_handle_list: The list of source handles to be removed.
-        :type src_handle_list: list
+        :param citation_handle_list: The list of citation handles to be removed.
+        :type citation_handle_list: list
         """
-        for item in self.get_sourcref_child_list():
-            item.remove_source_references(src_handle_list)
+        for item in self.get_citation_child_list():
+            item.remove_citation_references(citation_handle_list)
 
-    def replace_source_references(self, old_handle, new_handle):
+    def replace_citation_references(self, old_handle, new_handle):
         """
-        Replace references to source handles in the list in this object and 
+        Replace references to citation handles in the list in this object and 
         all child objects and merge equivalent entries.
 
-        :param old_handle: The source handle to be replaced.
+        :param old_handle: The citation handle to be replaced.
         :type old_handle: str
-        :param new_handle: The source handle to replace the old one with.
+        :param new_handle: The citation handle to replace the old one with.
         :type new_handle: str
         """
-        for item in self.get_sourcref_child_list():
-            item.replace_source_references(old_handle, new_handle)
+        for item in self.get_citation_child_list():
+            item.replace_citation_references(old_handle, new_handle)
 
     def is_equivalent(self, other):
         """

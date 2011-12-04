@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2009       Gary Burton
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,6 +30,7 @@
 from gen.ggettext import gettext as _
 import logging
 log = logging.getLogger(".")
+LOG = logging.getLogger(".citation")
 
 #-------------------------------------------------------------------------
 #
@@ -47,7 +49,7 @@ from gen.db import DbTxn
 from editprimary import EditPrimary
 
 from displaytabs import (NoteTab, GalleryTab, DataEmbedList,
-                         SourceBackRefList, RepoEmbedList)
+                         CitationBackRefList, RepoEmbedList)
 from gui.widgets import MonitoredEntry, PrivacyButton
 from QuestionDialog import ErrorDialog
 from glade import Glade
@@ -158,7 +160,7 @@ class EditSource(EditPrimary):
         self._add_tab(notebook, self.repo_tab)
         self.track_ref_for_deletion("repo_tab")
         
-        self.backref_list = SourceBackRefList(self.dbstate,
+        self.backref_list = CitationBackRefList(self.dbstate,
                                               self.uistate,
                                               self.track,
                               self.db.find_backlink_handles(self.obj.handle))
@@ -220,46 +222,69 @@ class DeleteSrcQuery(object):
         with DbTxn(_("Delete Source (%s)") % self.source.get_title(),
                    self.db) as trans:
             self.db.disable_signals()
+            
+            # we can have:
+            # object(CitationBase) -> Citation(source_handle) -> Source
+            # We first have to remove the CitationBase references to the 
+            # Citation. Then we remove the Citations. (We don't need to 
+            # remove the source_handle references to the Source, because we are
+            # removing the whole Citation). Then we can remove the Source
         
-            (person_list, family_list, event_list, place_list, source_list, 
-             media_list, repo_list) = self.the_lists
+            (citation_list, citation_referents_list) = self.the_lists
+            # citation_list is a tuple of lists. Only the first, for Citations,
+            # exists.
+            citation_list = citation_list[0]
 
-            src_handle_list = [self.source.get_handle()]
+            # (1) delete the references to the citation
+            for (citation_handle, refs) in citation_referents_list:
+                LOG.debug('delete citation %s references %s' % 
+                          (citation_handle, refs))
+                (person_list, family_list, event_list, place_list, source_list, 
+                 media_list, repo_list) = refs
+                 
+                ctn_handle_list = [citation_handle]
+                
+                for handle in person_list:
+                    person = self.db.get_person_from_handle(handle)
+                    person.remove_citation_references(ctn_handle_list)
+                    self.db.commit_person(person, trans)
+    
+                for handle in family_list:
+                    family = self.db.get_family_from_handle(handle)
+                    family.remove_citation_references(ctn_handle_list)
+                    self.db.commit_family(family, trans)
+    
+                for handle in event_list:
+                    event = self.db.get_event_from_handle(handle)
+                    event.remove_citation_references(ctn_handle_list)
+                    self.db.commit_event(event, trans)
+    
+                for handle in place_list:
+                    place = self.db.get_place_from_handle(handle)
+                    place.remove_citation_references(ctn_handle_list)
+                    self.db.commit_place(place, trans)
+    
+                for handle in source_list:
+                    source = self.db.get_source_from_handle(handle)
+                    source.remove_citation_references(ctn_handle_list)
+                    self.db.commit_source(source, trans)
+    
+                for handle in media_list:
+                    media = self.db.get_object_from_handle(handle)
+                    media.remove_citation_references(ctn_handle_list)
+                    self.db.commit_media_object(media, trans)
+    
+                for handle in repo_list:
+                    repo = self.db.get_repository_from_handle(handle)
+                    repo.remove_citation_references(ctn_handle_list)
+                    self.db.commit_repository(repo, trans)
 
-            for handle in person_list:
-                person = self.db.get_person_from_handle(handle)
-                person.remove_source_references(src_handle_list)
-                self.db.commit_person(person, trans)
-
-            for handle in family_list:
-                family = self.db.get_family_from_handle(handle)
-                family.remove_source_references(src_handle_list)
-                self.db.commit_family(family, trans)
-
-            for handle in event_list:
-                event = self.db.get_event_from_handle(handle)
-                event.remove_source_references(src_handle_list)
-                self.db.commit_event(event, trans)
-
-            for handle in place_list:
-                place = self.db.get_place_from_handle(handle)
-                place.remove_source_references(src_handle_list)
-                self.db.commit_place(place, trans)
-
-            for handle in source_list:
-                source = self.db.get_source_from_handle(handle)
-                source.remove_source_references(src_handle_list)
-                self.db.commit_source(source, trans)
-
-            for handle in media_list:
-                media = self.db.get_object_from_handle(handle)
-                media.remove_source_references(src_handle_list)
-                self.db.commit_media_object(media, trans)
-
-            for handle in repo_list:
-                repo = self.db.get_repository_from_handle(handle)
-                repo.remove_source_references(src_handle_list)
-                self.db.commit_repository(repo, trans)
-
+            # (2) delete the actual citations
+            LOG.debug('remove the actual citations %s' % citation_list)
+            for citation_handle in citation_list:
+                LOG.debug("remove_citation %s" % citation_handle)
+                self.db.remove_citation(citation_handle, trans)
+            
+            # (3) delete the source
             self.db.enable_signals()
             self.db.remove_source(self.source.get_handle(), trans)

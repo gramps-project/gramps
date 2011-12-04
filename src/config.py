@@ -5,6 +5,7 @@
 # Copyright (C) 2005-2007  Donald N. Allingham
 # Copyright (C) 2008-2009  Gary Burton 
 # Copyright (C) 2009       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -177,13 +178,17 @@ register('interface.attribute-height', 350)
 register('interface.attribute-width', 600)
 register('interface.child-ref-height', 450)
 register('interface.child-ref-width', 600)
+register('interface.citation-height', 450)
+register('interface.citation-sel-height', 450)
+register('interface.citation-sel-width', 600)
+register('interface.citation-width', 600)
 register('interface.clipboard-height', 300)
 register('interface.clipboard-width', 300)
 register('interface.dont-ask', False)
 register('interface.view-categories',
          ["Gramplets", "People", "Relationships", "Families", 
           "Ancestry", "Events", "Places", "Geography", "Sources",
-          "Repositories", "Media", "Notes"])
+          "Citations", "Repositories", "Media", "Notes"])
 register('interface.edit-rule-width', 600)
 register('interface.edit-rule-height', 450)
 register('interface.event-height', 450)
@@ -266,6 +271,7 @@ register('paths.quick-backup-filename',
 
 register('preferences.date-format', 0)
 register('preferences.calendar-format-report', 0)
+register('preferences.cprefix', 'C%04d')
 register('preferences.default-source', False)
 register('preferences.eprefix', 'E%04d')
 register('preferences.family-warn', True)

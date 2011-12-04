@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2009-2011  Gary Burton
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -135,7 +136,8 @@ class BackRefList(EmbeddedList):
     def edit_button_clicked(self, obj):
         
         from gui.editors import EditEvent, EditPerson, EditFamily, EditSource, \
-                                EditPlace, EditMedia, EditRepository
+                                EditPlace, EditMedia, EditRepository, \
+                                EditCitation
 
         (reftype, ref) = self.find_node()
         if reftype == 'Person':
@@ -154,6 +156,12 @@ class BackRefList(EmbeddedList):
             try:
                 source = self.dbstate.db.get_source_from_handle(ref)
                 EditSource(self.dbstate, self.uistate, [], source)
+            except Errors.WindowActiveError:
+                pass
+        elif reftype == 'Citation':
+            try:
+                citation = self.dbstate.db.get_citation_from_handle(ref)
+                EditCitation(self.dbstate, self.uistate, [], citation)
             except Errors.WindowActiveError:
                 pass
         elif reftype == 'Place':

@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2007  Donald N. Allingham
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -849,6 +850,20 @@ class SimpleAccess(object):
             return source.get_title()
         return u''
 
+    def page(self, citation):
+        """
+        Return the page of the citation.
+
+        @param citation: Source object
+        @type citation: L{gen.lib.Citation}
+        @return: title of the citation
+        @rtype: unicode
+        """
+        assert(isinstance(citation, (gen.lib.Citation, NoneType)))
+        if citation:
+            return citation.get_page()
+        return u''
+
     def author(self, source):
         """
         Return the author of the source.
@@ -952,6 +967,8 @@ class SimpleAccess(object):
             return obj.desc
         elif isinstance(obj, gen.lib.Source):
             return self.title(obj)
+        elif isinstance(obj, gen.lib.Citation):
+            return self.page(obj)
         elif isinstance(obj, gen.lib.Place):
             return place_name(self.dbase, obj.handle)
         elif isinstance(obj, gen.lib.Repository):

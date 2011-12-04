@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2002-2007  Donald N. Allingham
 # Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -41,8 +42,9 @@ from _RegExpIdOf import RegExpIdOf
 from _HasNote import HasNote
 from _HasNoteRegexp import HasNoteRegexp
 from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
-from _HasSource import HasSource
+from _HasSourceCount import HasSourceCount
 from _HasReferenceCountOf import HasReferenceCountOf
+from _HasCitation import HasCitation
 from _FamilyPrivate import FamilyPrivate
 from _HasAttribute import HasAttribute
 from _HasEvent import HasEvent
@@ -69,7 +71,8 @@ editor_rule_list = [
     HasNoteRegexp,
     HasNoteMatchingSubstringOf,
     HasReferenceCountOf,
-    HasSource,
+    HasSourceCount,
+    HasCitation, 
     FamilyPrivate,
     HasEvent,
     HasAttribute,

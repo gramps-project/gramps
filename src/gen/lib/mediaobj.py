@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2010       Nick Hall
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,6 +33,8 @@ Media object for GRAMPS.
 #
 #-------------------------------------------------------------------------
 import os
+import logging
+LOG = logging.getLogger(".citation")
 
 #-------------------------------------------------------------------------
 #
@@ -39,7 +42,7 @@ import os
 #
 #-------------------------------------------------------------------------
 from gen.lib.primaryobj import PrimaryObject
-from gen.lib.srcbase import SourceBase
+from gen.lib.citationbase import CitationBase
 from gen.lib.notebase import NoteBase
 from gen.lib.datebase import DateBase
 from gen.lib.attrbase import AttributeBase
@@ -50,7 +53,7 @@ from gen.lib.tagbase import TagBase
 # MediaObject class
 #
 #-------------------------------------------------------------------------
-class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
+class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
                   TagBase, PrimaryObject):
     """
     Container for information about an image file, including location,
@@ -68,7 +71,7 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
         :type source: MediaObject
         """
         PrimaryObject.__init__(self, source)
-        SourceBase.__init__(self, source)
+        CitationBase.__init__(self, source)
         NoteBase.__init__(self, source)
         DateBase.__init__(self, source)
         AttributeBase.__init__(self, source)
@@ -105,7 +108,7 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
         """
         return (self.handle, self.gramps_id, self.path, self.mime, self.desc,
                 AttributeBase.serialize(self),
-                SourceBase.serialize(self),
+                CitationBase.serialize(self),
                 NoteBase.serialize(self),
                 self.change,
                 DateBase.serialize(self, no_text_date),
@@ -121,11 +124,11 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
         :type data: tuple
         """
         (self.handle, self.gramps_id, self.path, self.mime, self.desc,
-         attribute_list, source_list, note_list, self.change,
+         attribute_list, citation_list, note_list, self.change,
          date, tag_list, self.private) = data
 
         AttributeBase.unserialize(self, attribute_list)
-        SourceBase.unserialize(self, source_list)
+        CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
         DateBase.unserialize(self, date)
         TagBase.unserialize(self, tag_list)
@@ -146,14 +149,14 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
         :returns: Returns the list of child objects that may carry textual data.
         :rtype: list
         """
-        return self.attribute_list + self.source_list
+        return self.attribute_list
 
-    def get_sourcref_child_list(self):
+    def get_citation_child_list(self):
         """
-        Return the list of child secondary objects that may refer sources.
+        Return the list of child secondary objects that may refer to citations.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer sources.
+                refer to citations.
         :rtype: list
         """
         return self.attribute_list
@@ -166,7 +169,7 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
                 refer notes.
         :rtype: list
         """
-        return self.attribute_list + self.source_list
+        return self.attribute_list + self.citation_list
 
     def get_referenced_handles(self):
         """
@@ -177,7 +180,8 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
         :rtype: list
         """
         return self.get_referenced_note_handles() + \
-               self.get_referenced_tag_handles()
+               self.get_referenced_tag_handles()  + \
+               self.get_referenced_citation_handles()
 
     def get_handle_referents(self):
         """
@@ -187,7 +191,7 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
-        return self.attribute_list + self.source_list
+        return self.get_citation_child_list()
 
     def merge(self, acquisition):
         """
@@ -201,8 +205,9 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
         self._merge_privacy(acquisition)
         self._merge_attribute_list(acquisition)
         self._merge_note_list(acquisition)
-        self._merge_source_reference_list(acquisition)
+        self._merge_citation_list(acquisition)
         self._merge_tag_list(acquisition)
+        self.merge_citation_list(acquisition)
 
     def set_mime_type(self, mime_type):
         """

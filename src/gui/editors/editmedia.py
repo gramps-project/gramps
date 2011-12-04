@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2009       Gary Burton
 # Copyright (C) 2010       Nick Hall
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -50,7 +51,7 @@ import Utils
 from editprimary import EditPrimary
 from gui.widgets import (MonitoredDate, MonitoredEntry, PrivacyButton,
                          MonitoredTagList)
-from displaytabs import (SourceEmbedList, AttrEmbedList, NoteTab, 
+from displaytabs import (CitationEmbedList, AttrEmbedList, NoteTab, 
                          MediaBackRefList)
 from addmedia import AddMediaObject
 from QuestionDialog import ErrorDialog
@@ -191,13 +192,14 @@ class EditMedia(EditPrimary):
     def _create_tabbed_pages(self):
         notebook = gtk.Notebook()
 
-        self.src_tab = SourceEmbedList(self.dbstate,
-                                       self.uistate,
-                                       self.track,
-                                       self.obj)
-        self._add_tab(notebook, self.src_tab)
-        self.track_ref_for_deletion("src_tab")
-        
+        self.citation_tab = CitationEmbedList(self.dbstate,
+                                              self.uistate,
+                                              self.track,
+                                              self.obj.get_citation_list(), 
+                                              self.get_menu_title())
+        self._add_tab(notebook, self.citation_tab)
+        self.track_ref_for_deletion("citation_tab")
+
         self.attr_tab = AttrEmbedList(self.dbstate,
                                       self.uistate,
                                       self.track,
@@ -340,7 +342,7 @@ class DeleteMediaQuery(object):
             self.db.disable_signals()
         
             (person_list, family_list, event_list,
-                    place_list, source_list) = self.the_lists
+                    place_list, source_list, citation_list) = self.the_lists
 
             for handle in person_list:
                 person = self.db.get_person_from_handle(handle)
@@ -376,6 +378,13 @@ class DeleteMediaQuery(object):
                             if photo.get_reference_handle() != self.media_handle]
                 source.set_media_list(new_list)
                 self.db.commit_source(source, trans)
+
+            for handle in citation_list:
+                citation = self.db.get_citation_from_handle(handle)
+                new_list = [photo for photo in citation.get_media_list()
+                            if photo.get_reference_handle() != self.media_handle]
+                citation.set_media_list(new_list)
+                self.db.commit_citation(citation, trans)
 
             self.db.enable_signals()
             self.db.remove_object(self.media_handle, trans)

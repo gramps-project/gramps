@@ -2,6 +2,7 @@
 #
 # Copyright (C) 2001-2006  Donald N. Allingham
 # Copyright (C) 2008       Gary Burton
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,6 +31,8 @@ Source View
 #
 #-------------------------------------------------------------------------
 import gtk
+import logging
+LOG = logging.getLogger(".citation")
 
 #-------------------------------------------------------------------------
 #
@@ -210,7 +213,10 @@ class SourceView(ListView):
         self.remove_selected_objects()
 
     def remove_object_from_handle(self, handle):
-        the_lists = Utils.get_source_referents(handle, self.dbstate.db)
+        the_lists = Utils.get_source_and_citation_referents(handle, 
+                                                            self.dbstate.db)
+        LOG.debug('the_lists %s' % [the_lists])    
+
         object = self.dbstate.db.get_source_from_handle(handle)
         query = DeleteSrcQuery(self.dbstate, self.uistate, object, the_lists)
         is_used = any(the_lists)

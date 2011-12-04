@@ -1,6 +1,6 @@
 # This is the src/Filters/Rules level Makefile for Gramps
 
-SUBDIRS = Person Family Event Place Source MediaObject Repository Note
+SUBDIRS = Person Family Event Place Source MediaObject Repository Note Citation
 
 pkgdatadir = $(datadir)/@PACKAGE@/Filters/Rules
 
@@ -16,6 +16,7 @@ pkgdata_PYTHON = \
 	_HasNoteRegexBase.py\
 	_HasNoteSubstrBase.py\
 	_HasReferenceCountBase.py \
+	_HasSourceCountBase.py \
 	_HasSourceBase.py \
 	_HasTagBase.py \
 	_HasTextMatchingRegexpOf.py\
@@ -25,9 +26,10 @@ pkgdata_PYTHON = \
 	_RegExpIdBase.py\
 	_Rule.py\
 	_MatchesFilterBase.py\
-        _MatchesEventFilterBase.py \
-        _MatchesSourceConfidenceBase.py \
-        _MatchesSourceFilterBase.py 
+    _MatchesEventFilterBase.py \
+    _MatchesSourceConfidenceBase.py \
+    _MatchesSourceFilterBase.py \
+    _HasCitationBase.py
 
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/Rules

@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 # DateHandler/_Date_zh.py
-# $Id$
+# $Id: _Date_zh.py 18361 2011-10-23 03:13:50Z paul-franklin $
 #
 
 #-------------------------------------------------------------------------

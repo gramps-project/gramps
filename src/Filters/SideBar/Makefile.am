@@ -9,6 +9,7 @@ pkgdata_PYTHON = \
 	_SidebarFilter.py \
 	_PersonSidebarFilter.py\
 	_SourceSidebarFilter.py\
+	_CitationSidebarFilter.py\
 	_PlaceSidebarFilter.py\
 	_MediaSidebarFilter.py\
 	_RepoSidebarFilter.py\

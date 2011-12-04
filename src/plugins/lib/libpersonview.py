@@ -4,6 +4,7 @@
 # Copyright (C) 2008       Gary Burton
 # Copyright (C) 2009-2010  Nick Hall
 # Copyright (C) 2010       Benny Malengier
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -450,7 +451,7 @@ class BasePersonView(ListView):
                  "Person Gallery",
                  "Person Events",
                  "Person Children",
-                 "Person Sources",
+                 "Person Citations",
                  "Person Notes",
                  "Person Attributes",
                  "Person Backlinks"))

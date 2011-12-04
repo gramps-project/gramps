@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2002-2007  Donald N. Allingham
 # Copyright (C) 2007-2008   Brian G. Matherly
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,6 +34,7 @@ from _HasAlternateName import HasAlternateName
 from _HasAssociation import HasAssociation
 from _HasAttribute import HasAttribute
 from _HasBirth import HasBirth
+from _HasCitation import HasCitation
 from _HasCommonAncestorWith import HasCommonAncestorWith
 from _HasCommonAncestorWithFilterMatch import HasCommonAncestorWithFilterMatch
 from _HasDeath import HasDeath
@@ -50,7 +52,7 @@ from _HasNote import HasNote
 from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
 from _HasNoteRegexp import HasNoteRegexp
 from _HasRelationship import HasRelationship
-from _HasSource import HasSource
+from _HasSourceCount import HasSourceCount
 from _HasSourceOf import HasSourceOf
 from _HasTag import HasTag
 from _HasTextMatchingRegexpOf import HasTextMatchingRegexpOf
@@ -132,12 +134,13 @@ editor_rule_list = [
     HasRelationship,
     HasDeath,
     HasBirth,
+    HasCitation, 
     HasEvent,
     HasFamilyEvent,
     HasAttribute,
     HasFamilyAttribute,
     HasTag,
-    HasSource,
+    HasSourceCount,
     HasSourceOf,
     HaveAltFamilies,
     HavePhotos,

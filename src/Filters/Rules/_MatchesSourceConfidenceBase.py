@@ -4,6 +4,7 @@
 # Copyright (C) 2011  Jerome Rapinat
 # Copyright (C) 2011  Douglas S. Blank
 # Copyright (C) 2011  Benny Malengier
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -47,11 +48,12 @@ class MatchesSourceConfidenceBase(Rule):
     labels    = [_('Confidence level:')]
     name        = _('Object with at least one direct source >= <confidence level>')
     description = _("Matches objects with at least one direct source with confidence level(s)")
-    category    = _('General filters')
+    category    = _('Citation/source filters')
     
     def apply(self, db, obj):
-        for source in obj.get_source_references():
-            required_conf = int(self.list[0])
-            if required_conf <= source.get_confidence_level():
+        required_conf = int(self.list[0])
+        for citation_handle in obj.get_citation_list():
+            citation = db.get_citation_from_handle(citation_handle)
+            if required_conf <= citation.get_confidence_level():
                 return True
         return False

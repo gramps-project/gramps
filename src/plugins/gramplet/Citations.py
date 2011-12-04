@@ -1,6 +1,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2011 Nick Hall
+# Copyright (C) 2011 Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,16 +20,16 @@
 # $Id$
 #
 
-from gui.editors import EditSource
+from gui.editors import EditSource, EditCitation
 from ListModel import ListModel, NOSORT
 from gen.plug import Gramplet
 from gen.ggettext import gettext as _
 import Errors
 import gtk
 
-class Sources(Gramplet):
+class Citations(Gramplet):
     """
-    Displays the sources for an object.
+    Displays the citations for an object.
     """
     def init(self):
         self.gui.WIDGET = self.build_gui()
@@ -40,186 +41,219 @@ class Sources(Gramplet):
         """
         Build the GUI interface.
         """
-        tip = _('Double-click on a row to edit the selected source.')
+        tip = _('Double-click on a row to edit the selected source/citation.')
         self.set_tooltip(tip)
         top = gtk.TreeView()
         titles = [('', NOSORT, 50,),
-                  (_('Source'), 1, 200),
-                  (_('Reference'), 2, 300),
-                  (_('Author'), 3, 100)]
-        self.model = ListModel(top, titles, event_func=self.edit_source)
+                  (_('Source/Citation'), 1, 350),
+                  (_('Author'), 2, 200),
+                  (_('Publisher'), 3, 150)]
+        self.model = ListModel(top, titles, list_mode="tree", 
+                               event_func=self.invoke_editor)
         return top
         
-    def add_sources(self, obj):
-        for source_ref in obj.get_source_references():
-            self.add_source_ref(source_ref)
+    def add_citations(self, obj):
+        for citation_handle in obj.get_citation_list():
+            self.add_citation_ref(citation_handle)
         
-    def add_name_sources(self, obj):
+    def add_name_citations(self, obj):
         names = [obj.get_primary_name()] + obj.get_alternate_names()
         for name in names:
-            self.add_sources(name)
+            self.add_citations(name)
 
-    def add_attribute_sources(self, obj):
+    def add_attribute_citations(self, obj):
         for attr in obj.get_attribute_list():
-            self.add_sources(attr)
+            self.add_citations(attr)
 
-    def add_mediaref_sources(self, obj):
+    def add_mediaref_citations(self, obj):
         for media_ref in obj.get_media_list():
-            self.add_sources(media_ref)
-            self.add_attribute_sources(media_ref)
+            self.add_citations(media_ref)
+            self.add_attribute_citations(media_ref)
             media = self.dbstate.db.get_object_from_handle(media_ref.ref)
-            self.add_media_sources(media)
+            self.add_media_citations(media)
 
-    def add_media_sources(self, media):
-        self.add_sources(media)
-        self.add_attribute_sources(media)
+    def add_media_citations(self, media):
+        self.add_citations(media)
+        self.add_attribute_citations(media)
 
-    def add_eventref_sources(self, obj):
+    def add_eventref_citations(self, obj):
         for event_ref in obj.get_event_ref_list():
-            self.add_attribute_sources(event_ref)
+            self.add_attribute_citations(event_ref)
             event = self.dbstate.db.get_event_from_handle(event_ref.ref)
-            self.add_event_sources(event)
+            self.add_event_citations(event)
 
-    def add_event_sources(self, event):
-        self.add_sources(event)
-        self.add_attribute_sources(event)
-        self.add_mediaref_sources(event)
+    def add_event_citations(self, event):
+        self.add_citations(event)
+        self.add_attribute_citations(event)
+        self.add_mediaref_citations(event)
         place_handle = event.get_place_handle()
         place = self.dbstate.db.get_place_from_handle(place_handle)
         if place:
-            self.add_place_sources(place)
+            self.add_place_citations(place)
 
-    def add_place_sources(self, place):
-        self.add_sources(place)
-        self.add_mediaref_sources(place)
+    def add_place_citations(self, place):
+        self.add_citations(place)
+        self.add_mediaref_citations(place)
 
-    def add_address_sources(self, obj):
+    def add_address_citations(self, obj):
         for address in obj.get_address_list():
-            self.add_sources(address)
+            self.add_citations(address)
 
-    def add_lds_sources(self, obj):
+    def add_lds_citations(self, obj):
         for lds in obj.get_lds_ord_list():
-            self.add_sources(lds)
+            self.add_citations(lds)
             place_handle = lds.get_place_handle()
             place = self.dbstate.db.get_place_from_handle(place_handle)
             if place:
-                self.add_place_sources(place)
+                self.add_place_citations(place)
 
-    def add_association_sources(self, obj):
+    def add_association_citations(self, obj):
         for assoc in obj.get_person_ref_list():
-            self.add_sources(assoc)
+            self.add_citations(assoc)
 
-    def add_source_ref(self, source_ref):
+    def add_citation_ref(self, citation_handle):
         """
-        Add a source reference to the model.
+        Add a citation to the model.
         """
-        page = source_ref.get_page()
-        source = self.dbstate.db.get_source_from_handle(source_ref.ref)
+        citation = self.dbstate.db.get_citation_from_handle(citation_handle)
+        page = citation.get_page()
+        if not page:
+            page = _('<No Citation>')
+        source_handle = citation.get_reference_handle()
+        source = self.dbstate.db.get_source_from_handle(source_handle)
         title = source.get_title()
         author = source.get_author()
-        self.model.add((source_ref.ref, title, page, author))
+        publisher = source.get_publication_info()
 
-    def check_sources(self, obj):
-        return True if obj.get_source_references() else False
+        if source_handle not in self.source_nodes:
+            node = self.model.add([source_handle, title, author, publisher])
+            self.source_nodes[source_handle] = node
+            
+        self.model.add([citation_handle, page, '', ''], 
+                       node=self.source_nodes[source_handle])
+
+    def check_citations(self, obj):
+        return True if obj.get_citation_list() else False
         
-    def check_name_sources(self, obj):
+    def check_name_citations(self, obj):
         names = [obj.get_primary_name()] + obj.get_alternate_names()
         for name in names:
-            if self.check_sources(name):
+            if self.check_citations(name):
                 return True
         return False
 
-    def check_attribute_sources(self, obj):
+    def check_attribute_citations(self, obj):
         for attr in obj.get_attribute_list():
-            if self.check_sources(attr):
+            if self.check_citations(attr):
                 return True
         return False
 
-    def check_mediaref_sources(self, obj):
+    def check_mediaref_citations(self, obj):
         for media_ref in obj.get_media_list():
-            if self.check_sources(media_ref):
+            if self.check_citations(media_ref):
                 return True
-            if self.check_attribute_sources(media_ref):
+            if self.check_attribute_citations(media_ref):
                 return True
             media = self.dbstate.db.get_object_from_handle(media_ref.ref)
-            if self.check_media_sources(media):
+            if self.check_media_citations(media):
                 return True
         return False
 
-    def check_media_sources(self, media):
-        if self.check_sources(media):
+    def check_media_citations(self, media):
+        if self.check_citations(media):
             return True
-        if self.check_attribute_sources(media):
+        if self.check_attribute_citations(media):
             return True
         return False
 
-    def check_eventref_sources(self, obj):
+    def check_eventref_citations(self, obj):
         for event_ref in obj.get_event_ref_list():
-            if self.check_attribute_sources(event_ref):
+            if self.check_attribute_citations(event_ref):
                 return True
             event = self.dbstate.db.get_event_from_handle(event_ref.ref)
-            if self.check_event_sources(event):
+            if self.check_event_citations(event):
                 return True
         return False
 
-    def check_event_sources(self, event):
-        if self.check_sources(event):
+    def check_event_citations(self, event):
+        if self.check_citations(event):
             return True
-        if self.check_attribute_sources(event):
+        if self.check_attribute_citations(event):
             return True
-        if self.check_mediaref_sources(event):
+        if self.check_mediaref_citations(event):
             return True
         place_handle = event.get_place_handle()
         place = self.dbstate.db.get_place_from_handle(place_handle)
-        if place and self.check_place_sources(place):
+        if place and self.check_place_citations(place):
             return True
         return False
 
-    def check_place_sources(self, place):
-        if self.check_sources(place):
+    def check_place_citations(self, place):
+        if self.check_citations(place):
             return True
-        if self.check_mediaref_sources(place):
+        if self.check_mediaref_citations(place):
             return True
         return False
 
-    def check_address_sources(self, obj):
+    def check_address_citations(self, obj):
         for address in obj.get_address_list():
-            if self.check_sources(address):
+            if self.check_citations(address):
                 return True
         return False
 
-    def check_lds_sources(self, obj):
+    def check_lds_citations(self, obj):
         for lds in obj.get_lds_ord_list():
-            if self.check_sources(lds):
+            if self.check_citations(lds):
                 return True
             place_handle = lds.get_place_handle()
             place = self.dbstate.db.get_place_from_handle(place_handle)
-            if place and self.check_place_sources(place):
+            if place and self.check_place_citations(place):
                 return True
         return False
 
-    def check_association_sources(self, obj):
+    def check_association_citations(self, obj):
         for assoc in obj.get_person_ref_list():
-            if self.check_sources(assoc):
+            if self.check_citations(assoc):
                 return True
         return False
 
-    def edit_source(self, treeview):
+    def invoke_editor(self, treeview):
         """
-        Edit the selected source.
+        Edit the selected source or citation.
         """
         model, iter_ = treeview.get_selection().get_selected()
         if iter_:
             handle = model.get_value(iter_, 0)
-            try:
-                source = self.dbstate.db.get_source_from_handle(handle)
-                EditSource(self.dbstate, self.uistate, [], source)
-            except Errors.WindowActiveError:
-                pass
+            if len(model.get_path(iter_)) == 1:
+                self.edit_source(handle)
+            else:
+                self.edit_citation(handle)
 
-class PersonSources(Sources):
+    def edit_source(self, handle):
+        """
+        Edit the selected source.
+        """
+        try:
+            source = self.dbstate.db.get_source_from_handle(handle)
+            EditSource(self.dbstate, self.uistate, [], source)
+        except Errors.WindowActiveError:
+            pass
+
+    def edit_citation(self, handle):
+        """
+        Edit the selected citation.
+        """
+        try:
+            citation = self.dbstate.db.get_citation_from_handle(handle)
+            source_handle = citation.get_reference_handle()
+            source = self.dbstate.db.get_source_from_handle(source_handle)
+            EditCitation(self.dbstate, self.uistate, [], citation, source)
+        except Errors.WindowActiveError:
+            pass
+
+class PersonCitations(Citations):
     """
-    Displays the sources for a person.
+    Displays the citations for a person.
     """
     def db_changed(self):
         self.dbstate.db.connect('person-update', self.update)
@@ -239,27 +273,29 @@ class PersonSources(Sources):
             
         self.model.clear()
         if active:
-            self.display_sources(active)
+            self.display_citations(active)
         else:
             self.set_has_data(False)
 
-    def display_sources(self, person):
+    def display_citations(self, person):
         """
-        Display the sources for the active person.
+        Display the citations for the active person.
         """
-        self.add_sources(person)
-        self.add_eventref_sources(person)
+        self.source_nodes = {}
+        self.add_citations(person)
+        self.add_eventref_citations(person)
         for handle in person.get_family_handle_list():
             family = self.dbstate.db.get_family_from_handle(handle)
-            self.add_eventref_sources(family)
-        self.add_name_sources(person)
-        self.add_attribute_sources(person)
-        self.add_address_sources(person)
-        self.add_mediaref_sources(person)
-        self.add_association_sources(person)
-        self.add_lds_sources(person)
+            self.add_eventref_citations(family)
+        self.add_name_citations(person)
+        self.add_attribute_citations(person)
+        self.add_address_citations(person)
+        self.add_mediaref_citations(person)
+        self.add_association_citations(person)
+        self.add_lds_citations(person)
 
         self.set_has_data(self.model.count > 0)
+        self.model.tree.expand_all()
 
     def get_has_data(self, person):
         """
@@ -267,31 +303,31 @@ class PersonSources(Sources):
         """
         if person is None:
             return False
-        if self.check_sources(person):
+        if self.check_citations(person):
             return True
-        if self.check_eventref_sources(person):
+        if self.check_eventref_citations(person):
             return True
         for handle in person.get_family_handle_list():
             family = self.dbstate.db.get_family_from_handle(handle)
-            if self.check_eventref_sources(family):
+            if self.check_eventref_citations(family):
                 return True
-        if self.check_name_sources(person):
+        if self.check_name_citations(person):
             return True
-        if self.check_attribute_sources(person):
+        if self.check_attribute_citations(person):
             return True
-        if self.check_address_sources(person):
+        if self.check_address_citations(person):
             return True
-        if self.check_mediaref_sources(person):
+        if self.check_mediaref_citations(person):
             return True
-        if self.check_association_sources(person):
+        if self.check_association_citations(person):
             return True
-        if self.check_lds_sources(person):
+        if self.check_lds_citations(person):
             return True
         return False
 
-class EventSources(Sources):
+class EventCitations(Citations):
     """
-    Displays the sources for an event.
+    Displays the citations for an event.
     """
     def db_changed(self):
         self.dbstate.db.connect('event-update', self.update)
@@ -309,16 +345,18 @@ class EventSources(Sources):
             
         self.model.clear()
         if active:
-            self.display_sources(active)
+            self.display_citations(active)
         else:
             self.set_has_data(False)
 
-    def display_sources(self, event):
+    def display_citations(self, event):
         """
-        Display the sources for the active event.
+        Display the citations for the active event.
         """
-        self.add_event_sources(event)
+        self.source_nodes = {}
+        self.add_event_citations(event)
         self.set_has_data(self.model.count > 0)
+        self.model.tree.expand_all()
 
     def get_has_data(self, event):
         """
@@ -326,13 +364,13 @@ class EventSources(Sources):
         """
         if event is None:
             return False
-        if self.check_event_sources(event):
+        if self.check_event_citations(event):
             return True
         return False
 
-class FamilySources(Sources):
+class FamilyCitations(Citations):
     """
-    Displays the sources for a family.
+    Displays the citations for a family.
     """
     def db_changed(self):
         self.dbstate.db.connect('family-update', self.update)
@@ -350,21 +388,23 @@ class FamilySources(Sources):
             
         self.model.clear()
         if active:
-            self.display_sources(active)
+            self.display_citations(active)
         else:
             self.set_has_data(False)
 
-    def display_sources(self, family):
+    def display_citations(self, family):
         """
-        Display the sources for the active family.
+        Display the citations for the active family.
         """
-        self.add_sources(family)
-        self.add_eventref_sources(family)
-        self.add_attribute_sources(family)
-        self.add_mediaref_sources(family)
-        self.add_lds_sources(family)
+        self.source_nodes = {}
+        self.add_citations(family)
+        self.add_eventref_citations(family)
+        self.add_attribute_citations(family)
+        self.add_mediaref_citations(family)
+        self.add_lds_citations(family)
 
         self.set_has_data(self.model.count > 0)
+        self.model.tree.expand_all()
 
     def get_has_data(self, family):
         """
@@ -372,21 +412,21 @@ class FamilySources(Sources):
         """
         if family is None:
             return False
-        if self.check_sources(family):
+        if self.check_citations(family):
             return True
-        if self.check_eventref_sources(family):
+        if self.check_eventref_citations(family):
             return True
-        if self.check_attribute_sources(family):
+        if self.check_attribute_citations(family):
             return True
-        if self.check_mediaref_sources(family):
+        if self.check_mediaref_citations(family):
             return True
-        if self.check_lds_sources(family):
+        if self.check_lds_citations(family):
             return True
         return False
 
-class PlaceSources(Sources):
+class PlaceCitations(Citations):
     """
-    Displays the sources for a place.
+    Displays the citations for a place.
     """
     def db_changed(self):
         self.dbstate.db.connect('place-update', self.update)
@@ -404,16 +444,18 @@ class PlaceSources(Sources):
             
         self.model.clear()
         if active:
-            self.display_sources(active)
+            self.display_citations(active)
         else:
             self.set_has_data(False)
 
-    def display_sources(self, place):
+    def display_citations(self, place):
         """
-        Display the sources for the active place.
+        Display the citations for the active place.
         """
-        self.add_place_sources(place)
+        self.source_nodes = {}
+        self.add_place_citations(place)
         self.set_has_data(self.model.count > 0)
+        self.model.tree.expand_all()
 
     def get_has_data(self, place):
         """
@@ -421,13 +463,13 @@ class PlaceSources(Sources):
         """
         if place is None:
             return False
-        if self.check_place_sources(place):
+        if self.check_place_citations(place):
             return True
         return False
 
-class MediaSources(Sources):
+class MediaCitations(Citations):
     """
-    Displays the sources for a media object.
+    Displays the citations for a media object.
     """
     def db_changed(self):
         self.dbstate.db.connect('media-update', self.update)
@@ -445,16 +487,18 @@ class MediaSources(Sources):
             
         self.model.clear()
         if active:
-            self.display_sources(active)
+            self.display_citations(active)
         else:
             self.set_has_data(False)
 
-    def display_sources(self, media):
+    def display_citations(self, media):
         """
-        Display the sources for the active media object.
+        Display the citations for the active media object.
         """
-        self.add_media_sources(media)
+        self.source_nodes = {}
+        self.add_media_citations(media)
         self.set_has_data(self.model.count > 0)
+        self.model.tree.expand_all()
 
     def get_has_data(self, media):
         """
@@ -462,6 +506,6 @@ class MediaSources(Sources):
         """
         if media is None:
             return False
-        if self.check_media_sources(media):
+        if self.check_media_citations(media):
             return True
         return False

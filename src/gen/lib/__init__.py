@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -35,7 +36,6 @@ from gen.lib.ldsord import LdsOrd
 from gen.lib.mediaref import MediaRef 
 from gen.lib.name import Name
 from gen.lib.reporef import RepoRef
-from gen.lib.srcref import SourceRef
 from gen.lib.surname import Surname
 from gen.lib.url import Url
 from gen.lib.witness import Witness
@@ -52,6 +52,7 @@ from gen.lib.src import Source
 from gen.lib.mediaobj import MediaObject
 from gen.lib.repo import Repository
 from gen.lib.note import Note
+from gen.lib.citation import Citation
 
 # Table objects
 from gen.lib.tag import Tag

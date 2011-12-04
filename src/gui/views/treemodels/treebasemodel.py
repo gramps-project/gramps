@@ -5,6 +5,7 @@
 # Copyright (C) 2009       Gary Burton
 # Copyright (C) 2009-2010  Nick Hall
 # Copyright (C) 2009       Benny Malengier
+# Copyright (C) 2011       Nick Hall, Tim G L lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -81,10 +82,10 @@ class Node(object):
     children    A list of (sortkey, nodeid) tuples for the children of the node.
                 This list is always kept sorted.
     """
-    __slots__ = ('name', 'sortkey', 'ref', 'handle', 'parent', 'prev', 
-                 'next', 'children')#, '__weakref__')
+    __slots__ = ('name', 'sortkey', 'ref', 'handle', 'secondary', 'parent',
+                 'prev', 'next', 'children')#, '__weakref__')
 
-    def __init__(self, ref, parent, sortkey, handle):
+    def __init__(self, ref, parent, sortkey, handle, secondary):
         self.name = sortkey
         if sortkey:
             self.sortkey = map(conv_unicode_tosrtkey_ongtk, sortkey)
@@ -92,17 +93,19 @@ class Node(object):
             self.sortkey = None
         self.ref = ref
         self.handle = handle
+        self.secondary = secondary
         self.parent = parent
         self.prev = None
         self.next = None
         self.children = []
 
-    def set_handle(self, handle):
+    def set_handle(self, handle, secondary=False):
         """
         Assign the handle of a Gramps object to this node.
         """
-        if not self.handle:
+        if not self.handle or handle == None:
             self.handle = handle
+            self.secondary = secondary
         else:
             print ('WARNING: Attempt to add handle twice to the node (%s)' %
                     handle)
@@ -356,10 +359,12 @@ class TreeBaseModel(gtk.GenericTreeModel):
         self.gen_cursor = None
         self.number_items = None   # function 
         self.map = None
+        self.map2 = None
         
         self.smap = None
         self.fmap = None
-        self.hmap = None
+        self.smap2 = None
+        self.fmap2 = None
 
     def displayed(self):
         """
@@ -407,7 +412,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
         self.handle2node.clear()
         self.nodemap.clear()
         #start with creating the new iters
-        topnode = Node(None, None, None, None)
+        topnode = Node(None, None, None, None, False)
         self.nodemap.add_node(topnode)
         self.tree[None] = topnode
 
@@ -540,7 +545,8 @@ class TreeBaseModel(gtk.GenericTreeModel):
         status_col.end()
         status.end()
         
-    def add_node(self, parent, child, sortkey, handle, add_parent=True):
+    def add_node(self, parent, child, sortkey, handle, add_parent=True,
+                 secondary=False):
         """
         Add a node to the map.
         
@@ -563,10 +569,12 @@ class TreeBaseModel(gtk.GenericTreeModel):
         if child in self.tree:
             #a node is added that is already present,
             child_node = self.tree[child]
-            self._add_dup_node(child_node, parent, child, sortkey, handle)
+            self._add_dup_node(child_node, parent, child, sortkey, handle,
+                               secondary)
         else:
             parent_node = self.tree[parent]
-            child_node = Node(child, id(parent_node), sortkey, handle)
+            child_node = Node(child, id(parent_node), sortkey, handle,
+                              secondary)
             parent_node.add_child(child_node, self.nodemap)
             self.tree[child] = child_node
             self.nodemap.add_node(child_node)
@@ -583,7 +591,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
         if handle:
             self.handle2node[handle] = child_node
 
-    def _add_dup_node(self, node, parent, child, sortkey, handle):
+    def _add_dup_node(self, node, parent, child, sortkey, handle, secondary):
         """
         How to handle adding a node a second time
         Default: if group nodes can have handles, it is allowed to add it 
@@ -595,7 +603,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
                    % (str(parent), str(child)))
             return
         if handle:
-            node.set_handle(handle)
+            node.set_handle(handle, secondary)
             if not self._in_build:
                 self.__total += 1
                 self.__displayed += 1
@@ -605,6 +613,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
         Remove a node from the map.
         """
         if node.children:
+            del self.handle2node[node.handle]
             node.set_handle(None)
             self.__displayed -= 1
             self.__total -= 1
@@ -676,10 +685,15 @@ class TreeBaseModel(gtk.GenericTreeModel):
                 (self.search and self.search.match(handle, self.db)):
             #row needs to be added to the model
             data = self.map(handle)
-            self.add_row(handle, data)
+            if data:
+                self.add_row(handle, data)
+            else:
+                self.add_secondary_row(handle, self.map2(handle))
 
         _LOG.debug(self.__class__.__name__ + ' add_row_by_handle ' +
                     str(time.clock() - cput) + ' sec')
+        _LOG.debug("displayed %d / total: %d" % 
+                   (self.__displayed, self.__total))
 
     def delete_row_by_handle(self, handle):
         """
@@ -708,6 +722,8 @@ class TreeBaseModel(gtk.GenericTreeModel):
             
         _LOG.debug(self.__class__.__name__ + ' delete_row_by_handle ' +
                     str(time.clock() - cput) + ' sec')
+        _LOG.debug("displayed %d / total: %d" % 
+                   (self.__displayed, self.__total))
 
     def update_row_by_handle(self, handle):
         """
@@ -777,30 +793,34 @@ class TreeBaseModel(gtk.GenericTreeModel):
             if col == self.color_column():
                 return None
 
-            # Look for header fuction for column and call it
-            if self.hmap[col] is not None:
-                return self.hmap[col](node)
-
-            # If no header fuction return an empty string
-            return u''
+            # Return the node name for the first column
+            if col == 0:
+                return self.column_header(node)
 
         else:
             # return values for 'data' row, calling a function
             # according to column_defs table
-            return self._get_value(node.handle, col)
+            return self._get_value(node.handle, col, node.secondary)
             
-    def _get_value(self, handle, col):
+    def _get_value(self, handle, col, secondary=False):
         """
         Returns the contents of a given column of a gramps object
         """
-        try:
-            if handle in self.lru_data:
-                data = self.lru_data[handle]
-            else:
+        if handle in self.lru_data:
+            data = self.lru_data[handle]
+        else:
+            if not secondary:
                 data = self.map(handle)
-                if not self._in_build:
-                    self.lru_data[handle] = data
-            return (self.fmap[col](data))
+            else:
+                data = self.map2(handle)
+        if not self._in_build:
+            self.lru_data[handle] = data
+
+        try:
+            if not secondary:
+                return (self.fmap[col](data))
+            else:
+                return (self.fmap2[col](data))
         except:
             return None
 

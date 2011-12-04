@@ -123,7 +123,7 @@ _COPY_OPTIONS = [
 openstreet_jsc = """
     OpenLayers.Lang.setCode("%s");
 
-    map = new OpenLayers.Map("map_canvas");
+    map = new OpenLayers.Map("place_canvas");
     var osm = new OpenLayers.Layer.OSM()
     map.addLayer(osm);
 
@@ -155,7 +155,7 @@ function initialize() {
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         center: myLatlng
     };
-    var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    var map = new google.maps.Map(document.getElementById("place_canvas"), mapOptions);
           
     var marker = new google.maps.Marker({
         map:       map,

@@ -6,6 +6,7 @@
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2011       Vlada Perić <vlada.peric@gmail.com>
 # Copyright (C) 2011       Matt Keenan <matt.keenan@gmail.com>
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1366,11 +1367,11 @@ class Narrator(object):
         :type translate_text: callable(str)
         :param get_endnote_numbers: A callable to use for getting a string 
             representing endnote numbers. 
-            The function takes a :class:`~gen.lib.srcbase,SourceBase` instance.
+            The function takes a :class:`~gen.lib.CitationBase` instance.
             A typical return value from get_endnote_numbers() would be "2a" and 
             would represent a reference to an endnote in a document.
         :type get_endnote_numbers: 
-            callable( :class:`~gen.lib.srcbase,SourceBase` )
+            callable( :class:`~gen.lib.CitationBase` )
         """ 
         self.__db = dbase
         self.__verbose = verbose

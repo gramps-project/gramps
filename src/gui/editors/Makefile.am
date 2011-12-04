@@ -14,6 +14,7 @@ pkgdata_PYTHON = \
 	editaddress.py \
 	editattribute.py \
 	editchildref.py \
+	editcitation.py \
 	editevent.py \
 	editeventref.py \
 	editfamily.py \
@@ -33,7 +34,6 @@ pkgdata_PYTHON = \
 	editreporef.py \
 	editsecondary.py \
 	editsource.py \
-	editsourceref.py \
 	editurl.py \
 	objectentries.py
 

@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: basicentry.py 17965 2011-07-25 22:47:57Z nick-h $
 
 __all__ = ["BasicEntry"]
 

@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2009       Benny Malengier
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -116,6 +117,8 @@ CATEGORY_QR_REPOSITORY = 5
 CATEGORY_QR_NOTE       = 6
 CATEGORY_QR_DATE       = 7
 CATEGORY_QR_MEDIA      = 8
+CATEGORY_QR_CITATION   = 9
+CATEGORY_QR_SOURCE_OR_CITATION = 10
 
 # Modes for generating reports
 REPORT_MODE_GUI = 1    # Standalone report using GUI
@@ -1009,6 +1012,8 @@ def make_environment(**kwargs):
         'CATEGORY_QR_FAMILY': CATEGORY_QR_FAMILY,
         'CATEGORY_QR_EVENT': CATEGORY_QR_EVENT,
         'CATEGORY_QR_SOURCE': CATEGORY_QR_SOURCE,
+        'CATEGORY_QR_CITATION': CATEGORY_QR_CITATION,
+        'CATEGORY_QR_SOURCE_OR_CITATION': CATEGORY_QR_SOURCE_OR_CITATION,
         'CATEGORY_QR_PLACE': CATEGORY_QR_PLACE,
         'CATEGORY_QR_MEDIA': CATEGORY_QR_MEDIA,
         'CATEGORY_QR_REPOSITORY': CATEGORY_QR_REPOSITORY,

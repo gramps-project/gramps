@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2010  Benny Malengier
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -48,7 +49,7 @@ class MatchesSourceFilterBase(MatchesFilterBase):
     name        = _('Objects with source matching the <source filter>')
     description = _("Matches objects with sources that match the "
                     "specified source filter name")
-    category    = _('General filters')
+    category    = _('Citation/source filters')
 
     # we want to have this filter show source filters
     namespace   = 'Source'
@@ -61,9 +62,9 @@ class MatchesSourceFilterBase(MatchesFilterBase):
         if self.MSF_filt is None :
             return False
         
-        sourcelist = [x.ref for x in object.get_source_references()]
-        for sourcehandle in sourcelist:
-            #check if source in source filter
+        for citation_handle in object.get_citation_list():
+            citation = db.get_citation_from_handle(citation_handle)
+            sourcehandle = citation.get_reference_handle()
             if self.MSF_filt.check(db, sourcehandle):
                 return True
         return False

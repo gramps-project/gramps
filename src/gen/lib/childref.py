@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2006-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,7 +32,7 @@ Child Reference class for GRAMPS.
 #-------------------------------------------------------------------------
 from gen.lib.secondaryobj import SecondaryObject
 from gen.lib.privacybase import PrivacyBase
-from gen.lib.srcbase import SourceBase
+from gen.lib.citationbase import CitationBase
 from gen.lib.notebase import NoteBase
 from gen.lib.refbase import RefBase
 from gen.lib.childreftype import ChildRefType
@@ -42,7 +43,7 @@ from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
 # Person References for Person/Family
 #
 #-------------------------------------------------------------------------
-class ChildRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
+class ChildRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
     """
     Person reference class.
 
@@ -53,7 +54,7 @@ class ChildRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
 
     def __init__(self, source=None):
         PrivacyBase.__init__(self, source)
-        SourceBase.__init__(self, source)
+        CitationBase.__init__(self, source)
         NoteBase.__init__(self, source)
         RefBase.__init__(self, source)
         if source:
@@ -68,7 +69,7 @@ class ChildRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
         Convert the object to a serialized tuple of data.
         """
         return (PrivacyBase.serialize(self),
-                SourceBase.serialize(self),
+                CitationBase.serialize(self),
                 NoteBase.serialize(self),
                 RefBase.serialize(self),
                 self.frel.serialize(),
@@ -78,9 +79,9 @@ class ChildRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
         """
         Convert a serialized tuple of data to an object.
         """
-        (privacy, source_list, note_list, ref, frel, mrel) = data
+        (privacy, citation_list, note_list, ref, frel, mrel) = data
         PrivacyBase.unserialize(self, privacy)
-        SourceBase.unserialize(self, source_list)
+        CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
         RefBase.unserialize(self, ref)
         self.frel = ChildRefType()
@@ -105,7 +106,7 @@ class ChildRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
         :returns: Returns the list of child objects that may carry textual data.
         :rtype: list
         """
-        return self.source_list
+        return []
 
     def get_note_child_list(self):
         """
@@ -115,7 +116,7 @@ class ChildRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
                 refer notes.
         :rtype: list
         """
-        return self.source_list
+        return []
 
     def get_referenced_handles(self):
         """
@@ -125,7 +126,8 @@ class ChildRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        ret = self.get_referenced_note_handles()
+        ret = self.get_referenced_note_handles() + \
+                self.get_referenced_citation_handles()
         if self.ref:
             ret += [('Person', self.ref)]
         return ret
@@ -138,7 +140,7 @@ class ChildRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
-        return self.source_list
+        return []
 
     def is_equivalent(self, other):
         """
@@ -169,7 +171,7 @@ class ChildRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
         """
         self._merge_privacy(acquisition)
         self._merge_note_list(acquisition)
-        self._merge_source_reference_list(acquisition)
+        self._merge_citation_list(acquisition)
         if (self.mrel != acquisition.mrel) or (self.frel != acquisition.frel):
             if self.mrel == ChildRefType.UNKNOWN:
                 self.set_mother_relation(acquisition.mrel)

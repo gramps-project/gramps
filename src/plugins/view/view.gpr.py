@@ -3,6 +3,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2009 Benny Malengier
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -209,5 +210,35 @@ authors = [u"The Gramps project"],
 authors_email = ["http://gramps-project.org"],
 category = ("Sources", _("Sources")),
 viewclass = 'SourceView',
+order = START,
+  )
+
+register(VIEW, 
+id    = 'citationlistview',
+name  = _("Citation View"),
+description =  _("The view showing all the citations"),
+version = '1.0',
+gramps_target_version = '3.4',
+status = STABLE,
+fname = 'citationlistview.py',
+authors = [u"The Gramps project"],
+authors_email = ["http://gramps-project.org"],
+category = ("Citations", _("Citations")),
+viewclass = 'CitationListView',
+order = START,
+  )
+
+register(VIEW, 
+id = 'citationtreeview',
+name = _("Citation Tree View"),
+description =  _("A view displaying citations and sources in a tree format."),
+version = '1.0',
+gramps_target_version = '3.4',
+status = STABLE,
+fname = 'citationtreeview.py',
+authors = [u"Tim G L Lyons", u"Nick Hall"],
+authors_email = [""],
+category = ("Sources", _("Sources")),
+viewclass = 'CitationTreeView',
 order = START,
   )

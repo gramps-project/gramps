@@ -1,7 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2011  Benny Malengier
+# Copyright (C) 2011  Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,6 +26,8 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
+import logging
+LOG = logging.getLogger(".citation")
 from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -32,32 +35,38 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._Rule import Rule
+from Filters.Rules import MatchesFilterBase
 
 #-------------------------------------------------------------------------
-#
-# HasSource
-#
+# "Sources which reference a repository by selection"
 #-------------------------------------------------------------------------
-class HasSource(Rule):
-    """Rule that checks for a person with a particular value"""
+class MatchesRepositoryFilter(MatchesFilterBase):
+    """Citations which have a source which references the selected repository"""
 
-
-    labels      = [ _('Title:'), 
-                    _('Author:'), 
-                    _('Publication:') ]
-    name        = _('Sources matching parameters')
-    description = _("Matches sources with particular parameters")
+    labels      = [ _('Repository filter name:') ]
+    name        = _('Citations with a source with a repository reference '
+                    'matching the <repository filter>')
+    description = _("Matches citations with sources with a repository "
+                    "reference that match a certain repository filter")
     category    = _('General filters')
-
-    def apply(self,db,source):
-        if not self.match_substring(0,source.get_title()):
+    
+    # we want to have this filter show repository filters
+    namespace = 'Repository'
+    
+    
+    def prepare(self, db):
+        MatchesFilterBase.prepare(self, db)
+        self.MRF_filt = self.find_filter()
+            
+    def apply(self, db, object):
+        if self.MRF_filt is None :
             return False
-
-        if not self.match_substring(1,source.get_author()):
-            return False
-
-        if not self.match_substring(2,source.get_publication_info()):
-            return False
-
-        return True
+        
+        source_handle = object.source_handle
+        source = db.get_source_from_handle(source_handle)
+        repolist = [x.ref for x in source.get_reporef_list()]
+        for repohandle in repolist:
+            #check if repo in repository filter
+            if self.MRF_filt.check(db, repohandle):
+                return True
+        return False

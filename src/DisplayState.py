@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2010       Nick Hall
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -365,6 +366,7 @@ class DisplayState(gen.utils.Callback):
         'Event': _("No active event"),
         'Place': _("No active place"),
         'Source': _("No active source"),
+        'Citation': _("No active citation"),
         'Repository': _("No active repository"),
         'Media': _("No active media"),
         'Note': _("No active note"),

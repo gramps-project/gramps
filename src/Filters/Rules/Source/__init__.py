@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2002-2007  Donald N. Allingham
 # Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,6 +26,8 @@
 Package providing filter rules for GRAMPS.
 """
 
+from Filters.Rules._HasSourceBase import HasSourceBase as HasSource
+
 from _AllSources import AllSources
 from _HasGallery import HasGallery
 from _HasIdOf import HasIdOf
@@ -35,7 +38,6 @@ from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
 from _HasReferenceCountOf import HasReferenceCountOf
 from _SourcePrivate import SourcePrivate
 from _MatchesFilter import MatchesFilter
-from _HasSource import HasSource
 from _ChangedSince import ChangedSince
 from _HasRepository import HasRepository
 from _MatchesTitleSubstringOf import MatchesTitleSubstringOf

@@ -256,14 +256,12 @@ class GeneWebParser(object):
         self.current_mode = None
         return None
 
-
-
     def read_source_line(self,line,fields):
         if not self.current_family:
             LOG.warn("Unknown family of child in line %d!" % self.lineno)
             return None
         source = self.get_or_create_source(self.decode(fields[1]))
-        self.current_family.add_source_reference(source)
+        self.current_family.add_citation(source.get_handle())
         self.db.commit_family(self.current_family,self.trans)
         return None
     
@@ -341,7 +339,7 @@ class GeneWebParser(object):
                         birth.set_place_handle(self.current_child_birthplace_handle)
                         self.db.commit_event(birth,self.trans)
                     if self.current_child_source_handle:
-                        child.add_source_reference(self.current_child_source_handle)
+                        child.add_citation(self.current_child_source_handle)
                     self.db.commit_person(child,self.trans)
             else:
                 break
@@ -745,7 +743,7 @@ class GeneWebParser(object):
             person.add_alternate_name(name)
 
         if source:
-            person.add_source_reference(source)
+            person.add_citation(source.get_handle())
 
         if birth_date or birth_place or birth_source:
             birth = self.create_event(gen.lib.EventType.BIRTH, None, birth_date, birth_place, birth_source)
@@ -833,7 +831,7 @@ class GeneWebParser(object):
         if place:
             event.set_place_handle(place.get_handle())
         if source:
-            event.add_source_reference(source)
+            event.add_citation(source.get_handle())
         self.db.add_event(event,self.trans)
         self.db.commit_event(event,self.trans)
         return event
@@ -872,9 +870,11 @@ class GeneWebParser(object):
             self.db.add_source(source,self.trans)
             self.db.commit_source(source,self.trans)
             self.skeys[source_name] = source.get_handle()
-        sref = gen.lib.SourceRef()
-        sref.set_reference_handle(source.get_handle())
-        return sref
+        citation = gen.lib.Citation()
+        citation.set_reference_handle(source.get_handle())
+        self.db.add_citation(citation, self.trans)
+        self.db.commit_citation(citation, self.trans)
+        return citation
 
     def decode(self,s):
         s = s.replace('_',' ')

@@ -1,10 +1,9 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2007  Donald N. Allingham
-# Copyright (C) 2007-2008  Brian G. Matherly
-# Copyright (C) 2008  Jerome Rapinat
-# Copyright (C) 2008  Benny Malengier
+# Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2010  Benny Malengier
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -35,13 +34,36 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._HasSourceBase import HasSourceBase
+from Filters.Rules import MatchesFilterBase
 
 #-------------------------------------------------------------------------
-# "Families having sources"
+#
+# MatchesFilter
+#
 #-------------------------------------------------------------------------
-class HasSource(HasSourceBase):
-    """Families with sources"""
+class MatchesSourceFilter(MatchesFilterBase):
+    """
+    Rule that checks against another filter.
+    """
 
-    name        = _('Families with <count> sources')
-    description = _("Matches families with a certain number of sources connected to it")
+    labels      = [_('Source filter name:')]
+    name        = _('Citations with source matching the <source filter>')
+    description = _("Matches citations with sources that match the "
+                    "specified source filter name")
+    category    = _('General filters')
+
+    # we want to have this filter show source filters
+    namespace   = 'Source'
+
+    def prepare(self, db):
+        MatchesFilterBase.prepare(self, db)
+        self.MRF_filt = self.find_filter()
+            
+    def apply(self, db, object):
+        if self.MRF_filt is None :
+            return False
+        
+        source_handle = object.source_handle
+        if self.MRF_filt.check(db, source_handle):
+            return True
+        return False

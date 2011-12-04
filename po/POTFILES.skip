@@ -65,6 +65,7 @@ src/Filters/Rules/Note/__init__.py
 # Filters.Rules package
 src/Filters/Rules/_ChangedSinceBase.py
 src/Filters/Rules/_HasAttributeBase.py
+src/Filters/Rules/_HasCitationBase.py
 src/Filters/Rules/_HasEventBase.py
 src/Filters/Rules/_HasGalleryBase.py
 src/Filters/Rules/_HasLDSBase.py
@@ -73,6 +74,7 @@ src/Filters/Rules/_HasNoteRegexBase.py
 src/Filters/Rules/_HasNoteSubstrBase.py
 src/Filters/Rules/_HasReferenceCountBase.py
 src/Filters/Rules/_HasSourceBase.py
+src/Filters/Rules/_HasSourceCountBase.py
 src/Filters/Rules/_HasTagBase.py
 src/Filters/Rules/_HasTextMatchingRegexpOf.py
 src/Filters/Rules/__init__.py

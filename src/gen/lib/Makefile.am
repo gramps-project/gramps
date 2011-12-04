@@ -15,6 +15,8 @@ pkgdata_PYTHON = \
 	calendar.py \
 	childref.py \
 	childreftype.py \
+	citation.py \
+	citationbase.py \
 	const.py \
 	datebase.py \
 	date.py \
@@ -54,11 +56,9 @@ pkgdata_PYTHON = \
 	repotype.py \
 	researcher.py \
 	secondaryobj.py \
-	srcbase.py \
 	srcmediatype.py \
 	srcnote.py \
 	src.py \
-	srcref.py \
 	surname.py \
 	surnamebase.py \
 	styledtext.py \

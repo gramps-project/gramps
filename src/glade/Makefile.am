@@ -21,6 +21,7 @@ dist_pkgdata_DATA = \
 	configure.glade \
 	dateedit.glade \
 	editsource.glade \
+	editcitation.glade \
 	styleeditor.glade \
 	dbman.glade \
 	editurl.glade \
@@ -47,6 +48,7 @@ dist_pkgdata_DATA = \
 	mergeevent.glade \
 	mergeplace.glade \
 	mergesource.glade \
+	mergecitation.glade \
 	mergerepository.glade \
 	mergemedia.glade \
 	mergenote.glade \

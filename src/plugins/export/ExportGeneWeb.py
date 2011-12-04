@@ -130,12 +130,12 @@ class GeneWebWriter(object):
                             (self.get_ref_name(father), 
                             self.get_full_person_info_fam(father), 
                             self.get_wedding_data(family), 
-                            self.get_ref_name(mother), 
+                            self.get_ref_name(mother),
                             self.get_full_person_info_fam(mother)
                             )
                          )
                     self.write_witness( family)
-                    self.write_sources( family.get_source_references())
+                    self.write_sources( family.get_citation_list())
                     self.write_children( family, father)
                     self.write_notes( family, father, mother)
                     if True: # FIXME: not (self.restrict and self.exclnotes):
@@ -186,14 +186,14 @@ class GeneWebWriter(object):
         #    return
             
         if reflist:
-            for sr in reflist:
-                sbase = sr.get_reference_handle()
-                if sbase:
-                    source = self.db.get_source_from_handle(sbase)
-                    if source:
-                        self.writeln( "src %s" % 
-                            (self.rem_spaces(source.get_title()))
-                            )
+            for handle in reflist:
+                citation = self.db.get_citation_from_handle(handle)
+                src_handle = citation.get_reference_handle()
+                source = self.db.get_source_from_handle(src_handle)
+                if source:
+                    self.writeln( "src %s" % 
+                        (self.rem_spaces(source.get_title()))
+                        )
 
     def write_children(self,family, father):
         father_lastname = father.get_primary_name().get_surname()
@@ -380,7 +380,7 @@ class GeneWebWriter(object):
                 if place_handle:
                     place = self.db.get_place_from_handle(place_handle)
                     m_place = place.get_title()
-                m_source = self.get_primary_source( event.get_source_references())
+                m_source = self.get_primary_source( event.get_citation_list())
             if event.get_type() == gen.lib.EventType.ENGAGEMENT:
                 engaged = 1
                 eng_date = self.format_date( event.get_date_object())
@@ -388,7 +388,7 @@ class GeneWebWriter(object):
                 if place_handle:
                     place = self.db.get_place_from_handle(place_handle)
                     eng_place = place.get_title()
-                eng_source = self.get_primary_source( event.get_source_references())
+                eng_source = self.get_primary_source( event.get_citation_list())
             if event.get_type() == gen.lib.EventType.DIVORCE:
                 divorced = 1
                 div_date = self.format_date( event.get_date_object())
@@ -427,13 +427,13 @@ class GeneWebWriter(object):
     def get_primary_source(self,reflist):
         ret = ""
         if reflist:
-            for sr in reflist:
-                sbase = sr.get_reference_handle()
-                if sbase:
-                    source = self.db.get_source_from_handle(sbase)
-                    if source:
-                        if ret != "":
-                            ret = ret + ", "
+            for handle in reflist:
+                citation = self.db.get_citation_from_handle(handle)
+                src_handle = citation.get_reference_handle()
+                source = self.db.get_source_from_handle(src_handle)
+                if source:
+                    if ret != "":
+                        ret = ret + ", "
                         ret = ret + source.get_title()
         return ret
     

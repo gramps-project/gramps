@@ -5,6 +5,7 @@
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2009       Benny Malengier
 # Copyright (C) 2010       Nick Hall
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -69,7 +70,9 @@ CATEGORY_ICON = {
     'Sources': 'gramps-source',
     'Repositories': 'gramps-repository',
     'Media': 'gramps-media',
-    'Notes': 'gramps-notes'}
+    'Notes': 'gramps-notes',
+    'Citations': 'gramps-citation',
+}
 
 #-------------------------------------------------------------------------
 #

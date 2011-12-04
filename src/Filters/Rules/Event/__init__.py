@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2002-2006  Donald N. Allingham
 # Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,11 +33,12 @@ from _AllEvents import AllEvents
 from _HasGallery import HasGallery
 from _HasIdOf import HasIdOf
 from _RegExpIdOf import RegExpIdOf
+from _HasCitation import HasCitation
 from _HasNote import HasNote
 from _HasNoteRegexp import HasNoteRegexp
 from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
 from _HasReferenceCountOf import HasReferenceCountOf
-from _HasSource import HasSource
+from _HasSourceCount import HasSourceCount
 from _EventPrivate import EventPrivate
 from _MatchesFilter import MatchesFilter
 from _MatchesPersonFilter import MatchesPersonFilter
@@ -52,11 +54,12 @@ editor_rule_list = [
     HasIdOf,
     HasGallery,
     RegExpIdOf,
+    HasCitation, 
     HasNote,
     HasNoteRegexp,
     HasNoteMatchingSubstringOf,
     HasReferenceCountOf,
-    HasSource,
+    HasSourceCount,
     EventPrivate,
     MatchesFilter,
     MatchesPersonFilter,

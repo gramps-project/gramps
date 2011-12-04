@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,7 +33,7 @@ Name class for GRAMPS.
 #-------------------------------------------------------------------------
 from gen.lib.secondaryobj import SecondaryObject
 from gen.lib.privacybase import PrivacyBase
-from gen.lib.srcbase import SourceBase
+from gen.lib.citationbase import CitationBase
 from gen.lib.notebase import NoteBase
 from gen.lib.datebase import DateBase
 from gen.lib.surnamebase import SurnameBase
@@ -44,7 +45,7 @@ from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
 # Personal Name
 #
 #-------------------------------------------------------------------------
-class Name(SecondaryObject, PrivacyBase, SurnameBase, SourceBase, NoteBase,
+class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
            DateBase):
     """
     Provide name information about a person.
@@ -73,18 +74,18 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, SourceBase, NoteBase,
         """
         PrivacyBase.__init__(self, source)
         SurnameBase.__init__(self, source)
-        SourceBase.__init__(self, source)
+        CitationBase.__init__(self, source)
         NoteBase.__init__(self, source)
         DateBase.__init__(self, source)
         if data:
-            (privacy, source_list, note, date,
+            (privacy, citation_list, note, date,
              self.first_name, surname_list, self.suffix, self.title, name_type,
              self.group_as, self.sort_as, self.display_as, self.call,
              self.nick, self.famnick) = data
             self.type = NameType(name_type)
             SurnameBase.unserialize(self, surname_list)
             PrivacyBase.unserialize(self, privacy)
-            SourceBase.unserialize(self, source_list)
+            CitationBase.unserialize(self, citation_list)
             NoteBase.unserialize(self, note)
             DateBase.unserialize(self, date)
         elif source:
@@ -115,7 +116,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, SourceBase, NoteBase,
         Convert the object to a serialized tuple of data.
         """
         return (PrivacyBase.serialize(self),
-                SourceBase.serialize(self),
+                CitationBase.serialize(self),
                 NoteBase.serialize(self),
                 DateBase.serialize(self),
                 self.first_name, 
@@ -140,14 +141,14 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, SourceBase, NoteBase,
         """
         Convert a serialized tuple of data to an object.
         """
-        (privacy, source_list, note_list, date,
+        (privacy, citation_list, note_list, date,
          self.first_name, surname_list, self.suffix, self.title, name_type,
          self.group_as, self.sort_as, self.display_as, self.call, 
          self.nick, self.famnick) = data
         self.type = NameType(name_type)
         PrivacyBase.unserialize(self, privacy)
         SurnameBase.unserialize(self, surname_list)
-        SourceBase.unserialize(self, source_list)
+        CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
         DateBase.unserialize(self, date)
         return self
@@ -169,7 +170,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, SourceBase, NoteBase,
         :returns: Returns the list of child objects that may carry textual data.
         :rtype: list
         """
-        return self.source_list + self.surname_list
+        return self.surname_list
 
     def get_note_child_list(self):
         """
@@ -179,7 +180,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, SourceBase, NoteBase,
                 refer notes.
         :rtype: list
         """
-        return self.source_list
+        return []
 
     def get_handle_referents(self):
         """
@@ -189,7 +190,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, SourceBase, NoteBase,
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
-        return self.source_list
+        return []
 
     def get_referenced_handles(self):
         """
@@ -199,7 +200,8 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, SourceBase, NoteBase,
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        return self.get_referenced_note_handles()
+        return self.get_referenced_note_handles() + \
+               self.get_referenced_citation_handles()
 
     def is_equivalent(self, other):
         """
@@ -238,7 +240,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, SourceBase, NoteBase,
         self._merge_privacy(acquisition)
         self._merge_surname_list(acquisition)
         self._merge_note_list(acquisition)
-        self._merge_source_reference_list(acquisition)
+        self._merge_citation_list(acquisition)
 
     def set_group_as(self, name):
         """

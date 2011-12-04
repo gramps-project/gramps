@@ -5,6 +5,7 @@
 # Copyright (C) 2004-2007 Donald N. Allingham
 # Copyright (C) 2008      Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -93,8 +94,9 @@ def get_primary_event_ref_from_type(db, person, event_name):
     return None
 
 def get_primary_source_title(db, obj):
-    for ref in obj.get_source_references():
-        source = db.get_source_from_handle(ref.ref)
+    for citation_handle in obj.get_citation_list():
+        citation = db.get_citation_from_handle(citation_handle)
+        source = db.get_source_from_handle(citation.get_reference_handle())
         if source:
             return source.get_title()
     return ""

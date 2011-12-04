@@ -4,7 +4,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2005-2007  Donald N. Allingham
-# Copyright (C) 2010       Nick Hall
+# Copyright (C) 2010-2011  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@
 
 <grammar
   datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"  
-  ns="http://gramps-project.org/xml/1.4.0/"
+  ns="http://gramps-project.org/xml/1.5.0/"
   xmlns="http://relaxng.org/ns/structure/1.0">
 
   <start><element name="database">
@@ -84,6 +84,12 @@
       <optional><element name="families">
           <zeroOrMore><element name="family">
               <ref name="family-content"/>
+          </element></zeroOrMore>
+      </element></optional>
+
+      <optional><element name="citations">
+          <zeroOrMore><element name="citation">
+              <ref name="citation-content"/>
           </element></zeroOrMore>
       </element></optional>
 
@@ -196,8 +202,8 @@
     <zeroOrMore><element name="noteref">
         <ref name="noteref-content"/>
     </element></zeroOrMore>
-    <zeroOrMore><element name="sourceref">
-        <ref name="sourceref-content"/>
+    <zeroOrMore><element name="citationref">
+        <ref name="citationref-content"/>
     </element></zeroOrMore>
     <zeroOrMore><element name="tagref">
         <ref name="tagref-content"/>
@@ -248,8 +254,8 @@
     <zeroOrMore><element name="noteref">
         <ref name="noteref-content"/>
     </element></zeroOrMore>
-    <zeroOrMore><element name="sourceref">
-        <ref name="sourceref-content"/>
+    <zeroOrMore><element name="citationref">
+        <ref name="citationref-content"/>
     </element></zeroOrMore>
   </define>
 
@@ -293,8 +299,8 @@
     <zeroOrMore><element name="noteref">
         <ref name="noteref-content"/>
     </element></zeroOrMore>
-    <zeroOrMore><element name="sourceref">
-        <ref name="sourceref-content"/>
+    <zeroOrMore><element name="citationref">
+        <ref name="citationref-content"/>
     </element></zeroOrMore>
   </define>
 
@@ -380,8 +386,8 @@
         <optional><attribute name="frel">
             <ref name="child-rel"/>
         </attribute></optional>
-        <zeroOrMore><element name="sourceref">
-            <ref name="sourceref-content"/>
+        <zeroOrMore><element name="citationref">
+            <ref name="citationref-content"/>
         </element></zeroOrMore>
         <zeroOrMore><element name="noteref">
             <ref name="noteref-content"/>
@@ -394,8 +400,8 @@
         <ref name="noteref-content"/>
     </element></zeroOrMore>
     <optional><ref name="date-content"/></optional>
-    <zeroOrMore><element name="sourceref">
-        <ref name="sourceref-content"/>
+    <zeroOrMore><element name="citationref">
+        <ref name="citationref-content"/>
     </element></zeroOrMore>
     <zeroOrMore><element name="tagref">
         <ref name="tagref-content"/>
@@ -416,12 +422,32 @@
     <zeroOrMore><element name="noteref">
         <ref name="noteref-content"/>
     </element></zeroOrMore>
-    <zeroOrMore><element name="sourceref">
-        <ref name="sourceref-content"/>
+    <zeroOrMore><element name="citationref">
+        <ref name="citationref-content"/>
     </element></zeroOrMore>
     <zeroOrMore><element name="objref">
         <ref name="objref-content"/>
     </element></zeroOrMore>
+  </define>
+
+  <define name="citation-content">
+    <ref name="primary-object"/>
+    <optional><ref name="date-content"/></optional>
+    <optional><element name="page"><text/></element></optional>
+    <optional><element name="confidence"><text/></element></optional>
+    <zeroOrMore><element name="noteref">
+        <ref name="noteref-content"/>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="objref">
+        <ref name="objref-content"/>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="data_item">
+        <attribute name="key"><text/></attribute>
+        <attribute name="value"><text/></attribute>
+    </element></zeroOrMore>
+    <element name="sourceref">
+        <ref name="sourceref-content"/>
+    </element>
   </define>
 
   <define name="source-content">
@@ -472,8 +498,8 @@
     <zeroOrMore><element name="noteref">
         <ref name="noteref-content"/>
     </element></zeroOrMore>
-    <zeroOrMore><element name="sourceref">
-        <ref name="sourceref-content"/>
+    <zeroOrMore><element name="citationref">
+        <ref name="citationref-content"/>
     </element></zeroOrMore>
   </define>
 
@@ -491,8 +517,8 @@
         <ref name="noteref-content"/>
     </element></zeroOrMore>
     <optional><ref name="date-content"/></optional>
-    <zeroOrMore><element name="sourceref">
-        <ref name="sourceref-content"/>
+    <zeroOrMore><element name="citationref">
+        <ref name="citationref-content"/>
     </element></zeroOrMore>
     <zeroOrMore><element name="tagref">
         <ref name="tagref-content"/>
@@ -581,33 +607,14 @@
     </element></zeroOrMore>
   </define>
 
-  <define name="personref-content">
+  <define name="citationref-content">
     <attribute name="hlink"><data type="IDREF"/></attribute>
-        <optional><attribute name="priv">
-            <ref name="priv-content"/>
-        </attribute></optional>
-        <attribute name="rel"><text/></attribute>
-    <optional><zeroOrMore><element name="sourceref">
-        <ref name="sourceref-content"/>
-    </element></zeroOrMore></optional>
-    <optional><zeroOrMore><element name="noteref">
-        <ref name="noteref-content"/>
-    </element></zeroOrMore></optional>
   </define>
-
+    
   <define name="sourceref-content">
     <attribute name="hlink"><data type="IDREF"/></attribute>
-    <optional><attribute name="priv">
-        <ref name="priv-content"/>
-    </attribute></optional>
-    <optional><attribute name="conf"><text/></attribute></optional>
-    <optional><element name="spage"><text/></element></optional>
-    <zeroOrMore><element name="noteref">
-        <ref name="noteref-content"/>
-    </element></zeroOrMore>
-    <optional><ref name="date-content"/></optional>
   </define>
-
+    
   <define name="eventref-content">
     <attribute name="hlink"><data type="IDREF"/></attribute>
     <optional><attribute name="priv">
@@ -651,8 +658,8 @@
     </attribute></optional>
     <attribute name="type"><text/></attribute>
     <attribute name="value"><text/></attribute>
-    <zeroOrMore><element name="sourceref">
-        <ref name="sourceref-content"/>
+    <zeroOrMore><element name="citationref">
+        <ref name="citationref-content"/>
     </element></zeroOrMore>
     <zeroOrMore><element name="noteref">
         <ref name="noteref-content"/>
@@ -679,8 +686,8 @@
     <zeroOrMore><element name="attribute">
         <ref name="attribute-content"/>
     </element></zeroOrMore>
-    <zeroOrMore><element name="sourceref">
-        <ref name="sourceref-content"/>
+    <zeroOrMore><element name="citationref">
+        <ref name="citationref-content"/>
     </element></zeroOrMore>
     <zeroOrMore><element name="noteref">
         <ref name="noteref-content"/>
@@ -709,8 +716,8 @@
         <ref name="noteref-content"/>
     </element></zeroOrMore>
     <optional><ref name="date-content"/></optional>
-    <zeroOrMore><element name="sourceref">
-        <ref name="sourceref-content"/>
+    <zeroOrMore><element name="citationref">
+        <ref name="citationref-content"/>
     </element></zeroOrMore>
   </define>
 

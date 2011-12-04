@@ -8,6 +8,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/gui/selectors
 pkgdata_PYTHON = \
 	__init__.py \
 	baseselector.py \
+	selectcitation.py \
 	selectevent.py \
 	selectfamily.py \
 	selectnote.py \

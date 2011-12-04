@@ -1,3 +1,4 @@
+
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -8,6 +9,7 @@
 # Copyright (C) 2009      Benny Malengier <benny.malengier@gramps-project.org>
 # Copyright (C) 2010      Jakim Friant
 # Copyright (C) 2010      Vlada Peri\u0107
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -696,7 +698,7 @@ class DetAncestorReport(Report):
         if not obj or not self.inc_sources:
             return ""
         
-        txt = endnotes.cite_source(self.bibli, obj)
+        txt = endnotes.cite_source(self.bibli, self.database, obj)
         if txt:
             txt = '<super>' + txt + '</super>'
         return txt

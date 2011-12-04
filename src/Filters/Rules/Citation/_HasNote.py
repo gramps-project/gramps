@@ -5,6 +5,7 @@
 # Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2008  Jerome Rapinat
 # Copyright (C) 2008  Benny Malengier
+# Copyright (C) 2011        Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -35,13 +36,13 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._HasSourceBase import HasSourceBase
+from Filters.Rules._HasNoteBase import HasNoteBase
 
 #-------------------------------------------------------------------------
-# "People having sources"
+# "Sources having notes"
 #-------------------------------------------------------------------------
-class HasSource(HasSourceBase):
-    """People with sources"""
+class HasNote(HasNoteBase):
+    """Citations having notes"""
 
-    name        = _('People with <count> sources')
-    description = _("Matches people with a certain number of sources connected to it")
+    name        = _('Citations having <count> notes')
+    description = _("Matches citations having a certain number of notes")
