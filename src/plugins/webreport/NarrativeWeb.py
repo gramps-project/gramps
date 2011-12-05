@@ -5051,7 +5051,7 @@ class IndividualPage(BasePage):
 
             # page message
             msg = _("This map page represents the person and their descendants only.  "
-                    "The markers and the Referene list are sorted in chronological order.  "
+                    "The markers and the Reference list are sorted in chronological order.  "
                    "Clicking on a place&#8217;s name in the Reference section will "
                    "take you to that page&#8217;s page.") 
             mapbackground += Html("p", msg, id = "description")
