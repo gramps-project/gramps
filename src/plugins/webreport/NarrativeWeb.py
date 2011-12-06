@@ -111,6 +111,114 @@ from gui.pluginmanager import GuiPluginManager
 #------------------------------------------------
 # constants
 #------------------------------------------------
+familylinks = """
+  var tracelife = %s
+
+  function initialize() {
+    var myLatLng = new google.maps.LatLng(%s, %s);
+
+    var mapOptions = {
+      scrollwheel:     false,
+      scaleControl:    true,
+      panControl:      true,
+      backgroundColor: '#000000',
+      zoom:            %d,
+      center:          myLatLng,
+      mapTypeId:       google.maps.MapTypeId.ROADMAP
+    }
+    var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+    var flightPath = new google.maps.Polyline({
+      path:          tracelife,
+      strokeColor:   "#FF0000",
+      strokeOpacity: 1.0,
+      strokeWeight:  2
+    });
+
+   flightPath.setMap(map);
+  }"""
+
+dropmarkers = """
+  var markers = [];
+  var iterator = 0;
+
+  var tracelife = %s
+
+  var map;
+
+  function initialize() {
+    var mapOptions = {
+      scaleControl: true,
+      zoomControl:  true, 
+      zoom:         %d,
+      mapTypeId:    google.maps.MapTypeId.ROADMAP,
+      center:       new google.maps.LatLng(0, 0)
+    };
+    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+  }
+
+  function drop() {
+    for (var i = 0; i < tracelife.length; i++) {
+      setTimeout(function() {
+        addMarker();
+      }, i * 1000);
+    }
+  }
+
+  function addMarker() {
+    var location = tracelife[iterator];
+    var myLatLng = new google.maps.LatLng(location[1], location[2]);
+
+    markers.push(new google.maps.Marker({
+      position:  myLatLng,
+      map:       map,
+      draggable: true,
+      title:     location[0],
+      animation: google.maps.Animation.DROP
+    }));
+    iterator++;
+  }"""
+
+markers = """
+  var tracelife = %s
+  var map;
+
+  function initialize() {
+    var mapOptions = {
+      scrollwheel:     false,
+      scaleControl:    true,
+      panControl:      true,
+      backgroundColor: '#000000',
+      zoom:            %d,
+      center:          new google.maps.LatLng(0, 0),
+      mapTypeId:       google.maps.MapTypeId.ROADMAP
+    }
+    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    addMarkers();
+  }
+
+  function addMarkers() {
+    var bounds = new google.maps.LatLngBounds();
+
+    for (var i = 0; i < tracelife.length; i++) {
+      var location = tracelife[i];
+      var myLatLng = new google.maps.LatLng(location[1], location[2]);
+
+      var marker = new google.maps.Marker({
+        position:  myLatLng,
+        draggable: true,
+        title:     location[0],
+        map:       map,
+        zIndex:    location[3] 
+      });
+      bounds.extend(myLatLng);
+      map.fitBounds(bounds);
+    }
+  }"""
+# there is no need to add an ending "</script>",
+# as it will be added automatically by libhtml()
+
+
 # Translatable strings for variables within this plugin
 # gettext carries a huge footprint with it.
 AHEAD = _("Attributes")
@@ -649,7 +757,7 @@ class BasePage(object):
         place_handle = place.get_handle()
 
         # 0 = latitude, 1 = longitude, 2 - placetitle,
-        # 3 = place handle, 4 = event date
+        # 3 = place handle, 4 = event date, 5 = event type
         found = any(data[3] == place_handle for data in place_lat_long)
         if not found:
             placetitle = place.get_title()
@@ -659,9 +767,8 @@ class BasePage(object):
                 latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
                 if latitude is not None:
                     event_date = event.get_date_object()
-                    etype = event.get_type()
-                    if etype in [gen.lib.EventType.BIRTH, gen.lib.EventType.DEATH]:
-                        place_lat_long.append([latitude, longitude, placetitle, place_handle, event_date])
+                    etype = str(event.get_type())
+                    place_lat_long.append([latitude, longitude, placetitle, place_handle, event_date, etype])
 
     def _get_event_place(self, person, ppl_handle_list, place_lat_long):
         """
@@ -4825,7 +4932,7 @@ class IndividualPage(BasePage):
 
         number_markers = len(place_lat_long)
         if number_markers > 1:
-            for (lat, long, p, h, d) in place_lat_long:
+            for (lat, long, p, h, d, etype) in place_lat_long:
                 xwidth.append(lat)
                 yheight.append(long)
             xwidth.sort()
@@ -4894,126 +5001,51 @@ class IndividualPage(BasePage):
 
             # if the number of places is only 1, then use code from imported javascript?
             if number_markers == 1:
-                dataline = place_lat_long[0]
-                latitude, longitude = dataline[0], dataline[1]
-
+                latitude, longitude, pname, handle, date, etype_ = place_lat_long[0]
                 if self.mapservice == "Google":
                     jsc += google_jsc % (latitude, longitude)
                 else:
                     jsc += openstreetmap_jsc % (latitude, longitude)
 
-            # number of markers is more than one...
+            # number of markers > 1
             else:
                 if self.mapservice == "Google":
                     tracelife = """["""
+
+                    seq_ = 1
                     for index in xrange(0, (number_markers - 1)):
-                        latitude, longitude, p, h, d = place_lat_long[index]
-                        tracelife += """
+                        latitude, longitude, placetitle, handle, date, etype = place_lat_long[index]
+
+                        if self.googleopts == "FamilyLinks":
+                            tracelife += """
     new google.maps.LatLng(%s, %s),""" % (latitude, longitude)
 
-                    latitude, longitude, p, h ,d = place_lat_long[-1]
-                    tracelife += """
+                        elif self.googleopts in ["Drop", "Markers"]:
+                            tracelife += """
+    ['%s', %s, %s, %d],""" % (placetitle, latitude, longitude, seq_)
+                            seq_ += 1
+
+                    latitude, longitude, placetitle, handle ,date, etype = place_lat_long[-1]
+                    if self.googleopts == "FamilyLinks":
+                        tracelife += """
     new google.maps.LatLng(%s, %s)
   ];""" % (latitude, longitude)
 
+                    elif self.googleopts in ["Drop", "Markers"]:
+                        tracelife += """
+    ['%s', %s, %s, %d]
+  ];""" % (placetitle, latitude, longitude, seq_+1)
+
                     if self.googleopts == "FamilyLinks":
-                        jsc += """
-  var tracelife = %s
-
-  function initialize() {
-    var myLatLng = new google.maps.LatLng(%s, %s);
-
-    var mapOptions = {
-      zoom:      %d,
-      center:    myLatLng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-
-    var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-
-    var flightPath = new google.maps.Polyline({
-      path:          tracelife,
-      strokeColor:   "#FF0000",
-      strokeOpacity: 1.0,
-      strokeWeight:  2
-    });
-
-   flightPath.setMap(map);
-  }""" % (midX_, midY_, tracelife, zoomlevel)
+                        jsc += familylinks % (tracelife, midX_, midY_, zoomlevel)
 
                     # Google Drop Markers...
                     if self.googleopts == "Drop":
-                        jsc += """
-  var centre = new google.maps.LatLng(%s, %s);
-  var markers = [];
-  var iterator = 0;
-
-  var tracelife = %s
-
-  var map;
-
-  function initialize() {
-    var mapOptions = {
-      scaleControl: true,
-      zoomControl:  true, 
-      zoom:         %d,
-      mapTypeId:    google.maps.MapTypeId.ROADMAP,
-      center:       centre
-    };
-
-    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-  }
-
-  function drop() {
-    for (var i = 0; i < neighborhoods.length; i++) {
-      setTimeout(function() {
-        addMarker();
-      }, i * 1000);
-    }
-  }
-
-  function addMarker() {
-    markers.push(new google.maps.Marker({
-      position:  tracelife[iterator],
-      map:       map,
-      draggable: true,
-      animation: google.maps.Animation.DROP
-    }));
-    iterator++;
-  }""" % (midX_, midY_, tracelife, zoomlevel)
+                        jsc += dropmarkers  % (tracelife, zoomlevel)
 
                     # Google Maps Markers only...
                     elif self.googleopts == "Markers":
-                        jsc += """
-  var centre = new google.maps.LatLng(%s, %s);
-  var tracelife = %s
-  var map;
-
-  function initialize() {
-    var mapOptions = {
-      scrollwheel:     true,
-      scaleControl:    true,
-      backgroundColor: '#000000',
-      zoom:            %d,
-      center:          centre,
-      mapTypeId:       google.maps.MapTypeId.ROADMAP,
-    }
-    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-    addMarkers();
-  }
-
-  function addMarkers() {
-    for (var iterator = 0; iterator < tracelife.length; iterator++) {
-
-      var marker = new google.maps.Marker({
-        position:  tracelife[iterator],
-        draggable: true,
-        map:       map
-      });
-    }
-  }""" % (midX_, midY_, tracelife, zoomlevel)
-# there is no need to add an ending "</script>",
-# as it will be added automatically by libhtml()
+                        jsc += markers % (tracelife, zoomlevel)
 
                 elif self.mapservice == "OpenStreetMap":
                     jsc += """
@@ -5074,10 +5106,11 @@ class IndividualPage(BasePage):
                                   self.get_name(person)), inline=True)
 
             # page message
-            msg = _("This map page represents the person and their descendants only of their birth and death.  "
-                    "The markers and the Reference list are sorted in chronological order.  "
-                   "Clicking on a place&#8217;s name in the Reference section will "
-                   "take you to that page&#8217;s page.") 
+            msg = _("This map page represents the person and their descendants with "
+                    "all of their event/ places.  If you place your mouse over "
+                    "the marker it will display the place name.  The markers and the Reference "
+                    "list are sorted in date order (if any?).  Clicking on a place&#8217;s "
+                    "name in the Reference section will take you to that place&#8217;s page.") 
             mapdetail += Html("p", msg, id = "description")
 
             # here is where the map is held in the CSS/ Page
@@ -5088,33 +5121,49 @@ class IndividualPage(BasePage):
             if (self.mapservice == "Google" and self.googleopts == "Drop"):
                 mapdetail += Html("button", _("Drop Markers"), id ="drop", onclick ="drop()", inline =True)
 
+            # begin place reference section and its table...
             with Html("div", class_ ="subsection", id ="references") as section:
                 mapdetail += section
-                section += Html("h4", _("References"), inline =True) 
+                section += Html("h4", _("References"), inline =True)
+
+                with Html("table", class_ ="infolist") as table:
+                    section += table
+
+                    thead = Html("thead")
+                    table += thead
+
+                    trow = Html("tr")
+                    thead += trow
+
+                    trow.extend(
+                        Html("th", label, class_ =colclass, inline =True)
+                        for (label, colclass) in [
+                            (_("Place Title"), "ColumnName"),
+                            (_("Date"),        "ColumnDate"),
+                            (_("Event Type"),  "ColumnType") ]
+                    )
+
+                    tbody = Html("tbody")
+                    table += tbody
     
-                ordered = Html("ol")
-                section += ordered
+                    # 0 = latitude, 1 = longitude, 2 = place title, 3 = handle, and 4 = date
+                    place_lat_long = sorted(place_lat_long, key =operator.itemgetter(4, 3, 0, 1))
+                    for (latitude, longitude, placetitle, handle, date, etype) in place_lat_long:
     
-                # 0 = latitude, 1 = longitude, 2 = place title, 3 = handle, and 4 = date
-                place_lat_long = sorted(place_lat_long, key =operator.itemgetter(4, 3, 0, 1))
-                for (lat, long, pname, handle, date) in place_lat_long:
-    
-                    list = Html("li", self.place_link(handle, pname, up =self.up))
-                    ordered += list
-    
-                    if date:
-                        ordered1 = Html("ol")
-                        list += ordered1 
-                       
-                        list1 = Html("li", _dd.display(date), inline =True)
-                        ordered1 += list1
+                        trow = Html("tr")
+                        tbody += trow
+
+                        trow.extend(
+                            Html("td", data, class_ =colclass)
+                            for data, colclass in [
+                                (self.place_link(handle, placetitle, up =True), "ColumnName"),
+                                (date,                                          "ColumnDate"),
+                                (etype,                                         "ColumnType")
+                            ]
+                        )
                         
         # add body id for this page...
-        body.attr = 'id ="FamilyMap"'
-
-        # add body onload to initialize map for Google Maps only...
-        if self.mapservice == "Google":
-            body.attr += ' onload ="initialize()"'
+        body.attr = 'id ="FamilyMap" onload ="initialize()"'
 
         # add clearline for proper styling
         # add footer section

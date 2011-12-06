@@ -45,6 +45,22 @@ div#map_canvas {
     width: 931px;
     height: 1000px;
 }
+div#FamilyMapDeatail div#references table.infolist {
+    width: 100%;
+}
+div#FamilyMapDeatail div#references table.infolist thead tr th {
+    font-weight: bold;
+    font-size: .6em;
+}
+div#FamilyMapDeatail div#references table.infolist thead tr th.ColumnName {
+    width: 25%;
+}
+div#FamilyMapDeatail div#references table.infolist thead tr th.ColumnDate {
+    width: 20%;
+}
+div#FamilyMapDeatail div#references table.infolist thead tr th.ColumnType {
+    width: 10%;
+}
 
 /*    Place Maps
 ------------------------------------------------------ */
