@@ -44,7 +44,7 @@ from webapp.grampsdb.views import (main_page, user_page, logout_page,
 
 urlpatterns = patterns('',
     # Specific matches first:
-    (r'^admin/(.*)', admin.site.root),
+    url(r'^admin/', include(admin.site.urls)),
 )
 
 urlpatterns += patterns('',

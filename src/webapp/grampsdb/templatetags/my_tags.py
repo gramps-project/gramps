@@ -24,11 +24,13 @@
 import re
 
 from django import template
-from django.template import escape, Library
+from django.template import Library
 from django.utils.safestring import mark_safe
 from webapp.utils import *
 from webapp.grampsdb.views import VIEWS
 import webapp.utils
+
+#escape = lambda text: text
 
 register = Library()
 
@@ -105,8 +107,9 @@ register.filter('person_get_events', person_get_event)
 
 def preview(text, width=40):
     text = text.replace("\n", " ")
-    return escape(text[:width])
-preview.is_safe = True
+    #return escape(text[:width])
+    return text
+#preview.is_safe = True
 register.filter('preview', preview)
 
 make_name.is_safe = True
@@ -124,8 +127,9 @@ register.filter('preferred', preferred)
 def missing(data):
     if data.strip() == "":
         return "[Missing]"
-    return escape(data)
-missing.is_safe = True
+    #return escape(data)
+    return data
+#missing.is_safe = True
 register.filter('missing', missing)
 
 def getViewName(item):

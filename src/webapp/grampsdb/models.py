@@ -487,13 +487,26 @@ class Family(PrimaryObject):
         mother = self.mother.get_primary_name() if self.mother else "No mother"
         return str("%s and %s" % (father, mother))
 
+class Citation(PrimaryObject):
+    confidence = models.IntegerField(blank=True)
+    page = models.CharField(max_length=50, blank=True)
+    abbrev = models.CharField(max_length=50, blank=True)
+    #source = models.ForeignKey('Source')
+    source = generic.GenericForeignKey("object_type", "object_id")
+
+    def __unicode__(self):
+        return "Citation to " + str(self.source)
+
+    # Other keys here:
+    #   .datamap_set
+
 class Source(PrimaryObject):
     title = models.CharField(max_length=50, blank=True)
     author = models.CharField(max_length=50, blank=True)
     pubinfo = models.CharField(max_length=50, blank=True)
     abbrev = models.CharField(max_length=50, blank=True)
     #datamaps = models.ManyToManyField('Datamap', null=True, blank=True)
-    references = generic.GenericRelation('SourceRef', related_name="refs",
+    references = generic.GenericRelation('Citation', related_name="citation",
                                          content_type_field="object_type",
                                          object_id_field="object_id")
     # Other keys here:
@@ -688,8 +701,12 @@ class Markup(models.Model):
 class Datamap(models.Model):
     key = models.CharField(max_length=80, blank=True)
     value = models.CharField(max_length=80, blank=True)
-
     source = models.ForeignKey("Source", null=True, blank=True)
+
+class CitationDatamap(models.Model):
+    key = models.CharField(max_length=80, blank=True)
+    value = models.CharField(max_length=80, blank=True)
+    source = models.ForeignKey("Citation", null=True, blank=True)
 
 class Address(DateObject, SecondaryObject):
     #locations = models.ManyToManyField('Location', null=True)
@@ -764,14 +781,6 @@ class NoteRef(BaseRef):
 
     def __unicode__(self):
         return "NoteRef to " + str(self.ref_object)
-
-class SourceRef(DateObject, BaseRef):
-    ref_object = models.ForeignKey('Source')
-    page = models.CharField(max_length=50)
-    confidence = models.IntegerField()
-
-    def __unicode__(self):
-        return "SourceRef to " + str(self.ref_object)
 
 class EventRef(BaseRef):
     ref_object = models.ForeignKey('Event')
@@ -856,6 +865,7 @@ TABLES = [
     ("abstract", PrimaryObject),
     ("primary", Person),
     ("primary", Family),
+    ("primary", Citation),
     ("primary", Source),
     ("primary", Event),
     ("primary", Repository),
@@ -874,7 +884,6 @@ TABLES = [
     ("secondary", Url),
     ("abstract", BaseRef),
     ("ref", NoteRef),
-    ("ref", SourceRef),
     ("ref", EventRef),
     ("ref", RepositoryRef),
     ("ref", PersonRef),

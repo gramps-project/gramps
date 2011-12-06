@@ -33,7 +33,7 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response, redirect
-from django.template import Context, RequestContext, escape
+from django.template import Context, RequestContext
 from django.db.models import Q
 
 #------------------------------------------------------------------------

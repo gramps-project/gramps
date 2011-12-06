@@ -34,7 +34,6 @@ import sys
 # Django Modules
 #
 #------------------------------------------------------------------------
-from django.template import escape
 from django.utils.safestring import mark_safe
 from django.contrib.contenttypes.models import ContentType
 
@@ -127,7 +126,10 @@ def probably_alive(handle):
 def format_number(number, with_grouping=True):
     # FIXME: should be user's setting
     locale.setlocale(locale.LC_ALL, "en_US.utf8")
-    return locale.format("%d", number, with_grouping)
+    if number != "":
+        return locale.format("%d", number, with_grouping)
+    else:
+        return locale.format("%d", 0, with_grouping)
 
 def nbsp(string):
     """
