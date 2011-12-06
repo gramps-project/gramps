@@ -645,42 +645,23 @@ class BasePage(object):
     def append_to_place_lat_long(self, place, event, place_lat_long):
         """
         Create a list of places with coordinates.
-
-        @param: place -- place object from database
-        @param: event -- event object from database
-        @param: place_lat_long -- for use in Family Map Pages
         """
         place_handle = place.get_handle()
-        placetitle = place.get_title()
-        latitude = place.get_latitude()
-        longitude = place.get_longitude()
 
-        if (latitude and longitude):
-            found = any(data[3] == place_handle for data in place_lat_long)
-            if not found:
-
+        # 0 = latitude, 1 = longitude, 2 - placetitle,
+        # 3 = place handle, 4 = event date
+        found = any(data[3] == place_handle for data in place_lat_long)
+        if not found:
+            placetitle = place.get_title()
+            latitude  =  place.get_latitude()
+            longitude = place.get_longitude()
+            if (latitude and longitude):
                 latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
-
-                # 0 = latitude, 1 = longitude, 2 = place title,
-                # 3 = place handle, 4 = event date, 5 = Marker color
-                #                                       red = birth, blue = death, purple = census
                 if latitude is not None:
-
-                    # get event type for color marker chooser...
+                    event_date = event.get_date_object()
                     etype = event.get_type()
-                    if etype in [gen.lib.EventType.BIRTH, gen.lib.EventType.BAPTISM, 
-                                 gen.lib.EventType.ADULT_CHRISTEN, gen.lib.EventType.CHRISTEN]:
-                        marker = "Red"
-                    elif etype in [gen.lib.EventType.DEATH, gen.lib.EventType.BURIAL]:
-                        marker = "Blue"
-                    elif etype == gen.lib.EventType.CENSUS:
-                        marker = "Purple"
-                    else:
-                        marker = None
- 
-                    if marker is not None:
-                        place_lat_long.append([latitude, longitude, placetitle,
-                                              place.get_handle(), event.get_date_object(), marker])
+                    if etype in [gen.lib.EventType.BIRTH, gen.lib.EventType.DEATH]:
+                        place_lat_long.append([latitude, longitude, placetitle, place_handle, event_date])
 
     def _get_event_place(self, person, ppl_handle_list, place_lat_long):
         """
@@ -1925,7 +1906,8 @@ class BasePage(object):
                             if self.familymappages:
                                 for handle in childlist:
                                     child = db.get_person_from_handle(handle)
-                                    self._get_event_place(child, ppl_handle_list, place_lat_long)
+                                    if child:
+                                        self._get_event_place(child, ppl_handle_list, place_lat_long)
 
                             children = add_birthdate(db, childlist)
                             if birthorder:
@@ -1967,11 +1949,6 @@ class BasePage(object):
     def display_spouse(self, family, table, ppl_handle_list, place_lat_long):
         """
         display an individual's partner
-
-        @param: family -- family from the database
-        @param: table -- Html element from its caller
-        @param: ppl_handle_list -- people handle list from the filter that was applied to database
-        @param: place_lat_long -- for use in Family Map Pages
         """
         db = self.report.database
 
@@ -4729,8 +4706,6 @@ class IndividualPage(BasePage):
 
             # display a person's general data
             thumbnail, name, summary = self.display_ind_general()
-
-            # if there is a thumbnail, add it also?
             if thumbnail is not None:
                 individualdetail += thumbnail
             individualdetail += (name, summary)
@@ -4850,7 +4825,7 @@ class IndividualPage(BasePage):
 
         number_markers = len(place_lat_long)
         if number_markers > 1:
-            for (lat, long, p, h, d, marker) in place_lat_long:
+            for (lat, long, p, h, d) in place_lat_long:
                 xwidth.append(lat)
                 yheight.append(long)
             xwidth.sort()
@@ -4890,30 +4865,6 @@ class IndividualPage(BasePage):
         # sort place_lat_long based on latitude and longitude order...
         place_lat_long.sort()
 
-        # create the array, if there are more than one set of coordinates to be displayed?
-        if number_markers > 1:
-            if self.googleopts == "FamilyLinks":
-                tracelife = """
-    var tracelife = ["""
-
-                # place titles Array for place maps...
-                titleArray = """
-    var titleArray = ["""
-
-                for index in xrange(0, (number_markers - 1)):
-                    dataline = place_lat_long[index]
-                    latitude, longitude, placetitle = dataline[0], dataline[1], dataline[2]
-                    tracelife += """
-      new google.maps.LatLng(%s, %s),""" % (latitude, longitude)
-                    titleArray += """'%s',""" % placetitle
-
-                dataline = place_lat_long[-1] 
-                latitude, longitude, placetitle = dataline[0], dataline[1], dataline[2]
-                tracelife += """
-      new google.maps.LatLng(%s, %s) ];""" % (latitude, longitude)
-                titleArray += """
-      '%s' ];""" % placetitle
-
         of = self.report.create_file(person.get_handle(), "maps")
         self.up = True
         familymappage, head, body = self.write_header(_("Family Map"))
@@ -4939,61 +4890,103 @@ class IndividualPage(BasePage):
         # begin inline javascript code
         # because jsc is a docstring, it does NOT have to properly indented
         with Html("script", type ="text/javascript", indent =False) as jsc:
+            head += jsc
 
-            # Google Maps add their javascript inside of the head element...
-            if self.mapservice == "Google":
-                head += jsc
+            # if the number of places is only 1, then use code from imported javascript?
+            if number_markers == 1:
+                dataline = place_lat_long[0]
+                latitude, longitude = dataline[0], dataline[1]
 
-                # if the number of places is only 1, then use code from imported javascript?
-                if number_markers == 1:
-                    dataline = place_lat_long[0]
-                    latitude, longitude = dataline[0], dataline[1]
+                if self.mapservice == "Google":
                     jsc += google_jsc % (latitude, longitude)
-
                 else:
+                    jsc += openstreetmap_jsc % (latitude, longitude)
+
+            # number of markers is more than one...
+            else:
+                if self.mapservice == "Google":
+                    tracelife = """["""
+                    for index in xrange(0, (number_markers - 1)):
+                        latitude, longitude, p, h, d = place_lat_long[index]
+                        tracelife += """
+    new google.maps.LatLng(%s, %s),""" % (latitude, longitude)
+
+                    latitude, longitude, p, h ,d = place_lat_long[-1]
+                    tracelife += """
+    new google.maps.LatLng(%s, %s)
+  ];""" % (latitude, longitude)
+
                     if self.googleopts == "FamilyLinks":
                         jsc += """
+  var tracelife = %s
+
   function initialize() {
     var myLatLng = new google.maps.LatLng(%s, %s);
 
-    var myOptions = {
+    var mapOptions = {
       zoom:      %d,
       center:    myLatLng,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
-    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 
     var flightPath = new google.maps.Polyline({
-      path:          %s,
+      path:          tracelife,
       strokeColor:   "#FF0000",
       strokeOpacity: 1.0,
       strokeWeight:  2
     });
 
    flightPath.setMap(map);
-  }""" % (midX_, midY_, zoomlevel, lifetrace)
+  }""" % (midX_, midY_, tracelife, zoomlevel)
+
+                    # Google Drop Markers...
+                    if self.googleopts == "Drop":
+                        jsc += """
+  var centre = new google.maps.LatLng(%s, %s);
+  var markers = [];
+  var iterator = 0;
+
+  var tracelife = %s
+
+  var map;
+
+  function initialize() {
+    var mapOptions = {
+      scaleControl: true,
+      zoomControl:  true, 
+      zoom:         %d,
+      mapTypeId:    google.maps.MapTypeId.ROADMAP,
+      center:       centre
+    };
+
+    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+  }
+
+  function drop() {
+    for (var i = 0; i < neighborhoods.length; i++) {
+      setTimeout(function() {
+        addMarker();
+      }, i * 1000);
+    }
+  }
+
+  function addMarker() {
+    markers.push(new google.maps.Marker({
+      position:  tracelife[iterator],
+      map:       map,
+      draggable: true,
+      animation: google.maps.Animation.DROP
+    }));
+    iterator++;
+  }""" % (midX_, midY_, tracelife, zoomlevel)
 
                     # Google Maps Markers only...
                     elif self.googleopts == "Markers":
-                        if (not midX_ and not midY_):
-                            midX_, midY_ = conv_lat_lon(place_lat_long[0][0], place_lat_long[0][1], "D.D8")
-
                         jsc += """
-  var centre = new google.maps.LatLng(%s, %s);""" % (midX_, midY_)
-                        jsc += """
-  var myCoordinates = ["""
-                        for index in xrange(0, (number_markers - 1)):
-                            data = place_lat_long[index]
-                            latitude, longitude, placetitle, marker = data[0], data[1], data[2], data[5]
-                            jsc += """    [%s, %s, '%s', '%s', %d],""" % (latitude, longitude, placetitle, marker, index)
-
-                        data = place_lat_long[-1]
-                        latitude, longitude, placetitle, marker = data[0], data[1], data[2], data[5]
-                        jsc += """    [%s, %s, '%s', '%s', %d]
-   ];""" % (latitude, longitude, placetitle, marker, index+1)
-                        jsc += """
-  var bounds;
+  var centre = new google.maps.LatLng(%s, %s);
+  var tracelife = %s
   var map;
 
   function initialize() {
@@ -5010,69 +5003,20 @@ class IndividualPage(BasePage):
   }
 
   function addMarkers() {
-     bounds = new google.LatLngBounds();
-
-    for (var iterator = 0; iterator < myCoordinates.length; iterator++) {
-      var locations = myCoordinates[iterator];
-
-      var myLatLng = new google.maps.LatLng(locations[0], locations[1]);
-
-      var image;
-      if (locations[2] = 'Red')
-        {
-          image = '../../../images/red_marker.png';
-        } else if (locations[2] = 'Blue') 
-        {
-          image = '../../../images/blue_marker.png';
-        } else {
-        image = '../../../images/purple_marker.png';
-      }
+    for (var iterator = 0; iterator < tracelife.length; iterator++) {
 
       var marker = new google.maps.Marker({
-        position:  myLatLng,
+        position:  tracelife[iterator],
         draggable: true,
-        title:     locations[2],
-        icon:      image,
-        map:       map,
-        zIndex:    locations[6]
+        map:       map
       });
-      bounds.extend(myLatLng);
-      map.fitBounds(bounds);
     }
-  }""" % zoomlevel
+  }""" % (midX_, midY_, tracelife, zoomlevel)
 # there is no need to add an ending "</script>",
-# as it will be added automatically by libhtml()!
+# as it will be added automatically by libhtml()
 
-        with Html("div", class_ ="content", id ="FamilyMapDetail") as mapbackground:
-            body += mapbackground
-
-            mapbackground += Html("h3", html_escape("Tracking %s" %
-                                  self.get_name(person)), inline=True)
-
-            # page message
-            msg = _("This map page represents the person and their descendants only.  "
-                    "The markers and the Reference list are sorted in chronological order.  "
-                   "Clicking on a place&#8217;s name in the Reference section will "
-                   "take you to that page&#8217;s page.") 
-            mapbackground += Html("p", msg, id = "description")
-
-            # here is where the map is held in the CSS/ Page
-            with Html("div", id ="map_canvas", inline =True) as canvas:
-                mapbackground += canvas
-
-            # if Google and Markers are selected, then add "Drop Markers" button?
-            #if (self.mapservice == "Google" and self.googleopts == "Markers"):
-            #    mapbackground += Html("button", _("Drop Markers"), id ="drop", onclick ="drop()", inline =True)
-
-            if self.mapservice == "OpenStreetMap":
-                with Html("script", type ="text/javascript") as jsc:
-                    mapbackground += jsc
-
-                    if number_markers == 1:
-                        data = place_lat_long[0]
-                        jsc += openstreet_jsc % (Utils.xml_lang()[3:5].lower(), data[0], data[1] )
-                    else:
-                        jsc += """
+                elif self.mapservice == "OpenStreetMap":
+                    jsc += """
     OpenLayers.Lang.setCode("%s");
 
     map = new OpenLayers.Map("map_canvas");
@@ -5087,8 +5031,8 @@ class IndividualPage(BasePage):
 
     var vectorLayer = new OpenLayers.Layer.Vector("Overlay");""" % (Utils.xml_lang()[3:5].lower(),
                                                                     midY_, midX_, zoomlevel)
-                        for (latitude, longitude, pname, h, d) in place_lat_long:
-                            jsc += """
+                    for (latitude, longitude, pname, h, d) in place_lat_long:
+                        jsc += """
     var feature = new OpenLayers.Feature.Vector(
         new OpenLayers.Geometry.Point( %s, %s ).transform(epsg4326, projectTo),
         {description:'%s'}
@@ -5120,9 +5064,32 @@ class IndividualPage(BasePage):
     }
     map.addControl(controls['selector']);
     controls['selector'].activate();"""
+# there is no need to add an ending "</script>",
+# as it will be added automatically by libhtml()
+
+        with Html("div", class_ ="content", id ="FamilyMapDetail") as mapdetail:
+            body += mapdetail
+
+            mapdetail += Html("h3", html_escape("Tracking %s" %
+                                  self.get_name(person)), inline=True)
+
+            # page message
+            msg = _("This map page represents the person and their descendants only of their birth and death.  "
+                    "The markers and the Reference list are sorted in chronological order.  "
+                   "Clicking on a place&#8217;s name in the Reference section will "
+                   "take you to that page&#8217;s page.") 
+            mapdetail += Html("p", msg, id = "description")
+
+            # here is where the map is held in the CSS/ Page
+            with Html("div", id ="map_canvas", inline =True) as canvas:
+                mapdetail += canvas
+
+            # if Google and Markers are selected, then add "Drop Markers" button?
+            if (self.mapservice == "Google" and self.googleopts == "Drop"):
+                mapdetail += Html("button", _("Drop Markers"), id ="drop", onclick ="drop()", inline =True)
 
             with Html("div", class_ ="subsection", id ="references") as section:
-                mapbackground += section
+                mapdetail += section
                 section += Html("h4", _("References"), inline =True) 
     
                 ordered = Html("ol")
@@ -5130,7 +5097,7 @@ class IndividualPage(BasePage):
     
                 # 0 = latitude, 1 = longitude, 2 = place title, 3 = handle, and 4 = date
                 place_lat_long = sorted(place_lat_long, key =operator.itemgetter(4, 3, 0, 1))
-                for (lat, long, pname, handle, date, marker) in place_lat_long:
+                for (lat, long, pname, handle, date) in place_lat_long:
     
                     list = Html("li", self.place_link(handle, pname, up =self.up))
                     ordered += list
@@ -5591,7 +5558,6 @@ class IndividualPage(BasePage):
         event_ref_list = self.person.get_event_ref_list()
         if not event_ref_list:
             return None
-
         db = self.report.database
             
         # begin events division and section title
@@ -5619,8 +5585,6 @@ class IndividualPage(BasePage):
                         tbody += self.display_event_row(
                                                         event, evt_ref, place_lat_long,
                                                         True, True, EventRoleType.PRIMARY)
-
-        # return section to its caller
         return section
 
     def display_parent(self, handle, title, rel):
@@ -6625,10 +6589,6 @@ class NavWebReport(Report):
         # Anything css-specific:
         imgs += CSS[self.css]["images"]
 
-        # copy blue-marker if FamilyMap and OpenStreetMap are being created?
-        if (self.familymappages and self.mapservice == "OpenStreetMap"):
-            imgs += CSS["NarrativeMaps"]["images"]
-
         # copy all to images subdir:
         for from_path in imgs:
             fdir, fname = os.path.split(from_path)
@@ -6643,6 +6603,10 @@ class NavWebReport(Report):
                                   len(ind_list) + 1)
         IndividualListPage(self, self.title, ind_list)
         for person_handle in ind_list:
+
+            # clear other's places
+            place_lat_long = []
+
             self.user.step_progress()
             person = self.database.get_person_from_handle(person_handle)
 
@@ -7519,8 +7483,9 @@ class NavWebOptions(MenuReportOptions):
         addopt("familymappages", self.__familymappages)
 
         googleopts = [
-            (_("Markers"),      "Markers"),
-            (_("Family Links"), "FamilyLinks") ]
+            (_("Family Links"), "FamilyLinks"),
+            (_("Drop"),         "Drop"),
+            (_("Markers"),      "Markers") ]
         self.__googleopts = EnumeratedListOption(_("Google/ FamilyMap Option"), googleopts[0][1])
         for trans, opt in googleopts:
             self.__googleopts.add_item(opt, trans)

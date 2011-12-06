@@ -40,8 +40,9 @@ button#drop {
 ------------------------------------------------------ */
 div#map_canvas {
     margin-left: 10px;
+    margin-right: 10px;
     border: solid 4px #000;
-    width: 1200px;
+    width: 931px;
     height: 1000px;
 }
 
