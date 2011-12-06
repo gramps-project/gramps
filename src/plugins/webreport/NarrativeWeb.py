@@ -6740,12 +6740,12 @@ class NavWebReport(Report):
         """
         db = self.database
 
-        self.user.begin_progress(_("Narrated Web Site Report"),
-                                  _("Creating family pages..."), 
-                                  len(db.get_family_handles() ))
-
         displayed = set()
         FamilyListPage(self, self.title, ppl_handle_list, displayed)
+
+        self.user.begin_progress(_("Narrated Web Site Report"),
+                                  _("Creating family pages..."), 
+                                  len(displayed))
 
         for phandle in ppl_handle_list:
             person = db.get_person_from_handle(phandle)
