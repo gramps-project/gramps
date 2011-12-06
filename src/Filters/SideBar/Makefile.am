@@ -1,4 +1,5 @@
 # This is the src/Filters/SideBar level Makefile for Gramps
+# $Id$
 
 pkgdatadir = $(datadir)/@PACKAGE@/Filters/SideBar
 

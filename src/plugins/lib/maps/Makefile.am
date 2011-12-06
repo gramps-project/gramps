@@ -1,4 +1,5 @@
 pkgdatadir = $(datadir)/@PACKAGE@/plugins/lib/maps
+# $Id$
 
 pkgdata_PYTHON = \
 	constants.py\

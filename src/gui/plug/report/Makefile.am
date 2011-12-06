@@ -1,4 +1,5 @@
 # This is the src/gui/plug/report level Makefile for Gramps
+# $Id$
 
 pkgdatadir = $(datadir)/@PACKAGE@/gui/plug/report
 

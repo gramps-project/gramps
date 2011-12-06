@@ -1,4 +1,5 @@
 # This is the src/gui/editors/displaytabs level Makefile for Gramps
+# $Id$
 
 pkgdatadir = $(datadir)/@PACKAGE@/gui/editors/displaytabs
 

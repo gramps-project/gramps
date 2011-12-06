@@ -1,4 +1,5 @@
 # This is the src/Filters/Rules/Note level Makefile for Gramps
+# $Id$
 
 pkgdatadir = $(datadir)/@PACKAGE@/Filters/Rules/Note
 

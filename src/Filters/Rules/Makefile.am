@@ -1,4 +1,5 @@
 # This is the src/Filters/Rules level Makefile for Gramps
+# $Id$
 
 SUBDIRS = Person Family Event Place Source MediaObject Repository Note Citation
 

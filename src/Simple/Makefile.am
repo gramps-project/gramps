@@ -1,4 +1,5 @@
 # This is the src/Report level Makefile for Gramps
+# $Id$
 
 pkgdatadir = $(datadir)/@PACKAGE@/Simple
 

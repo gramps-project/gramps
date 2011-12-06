@@ -1,4 +1,5 @@
 # This is the src/gen/plug/report level Makefile for Gramps
+# $Id$
 
 pkgdatadir = $(datadir)/@PACKAGE@/gen/plug/report
 
