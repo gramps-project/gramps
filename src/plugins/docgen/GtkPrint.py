@@ -60,11 +60,13 @@ log = logging.getLogger(".GtkPrint")
 # GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk
 import cairo
-
-if gtk.pygtk_version < (2, 10, 0):
-    raise Errors.UnavailableError(_("PyGtk 2.10 or later is required"))
+try: # the Gramps-Connect server has no DISPLAY
+    import gtk
+    if gtk.pygtk_version < (2, 10, 0):
+        raise Errors.UnavailableError(_("PyGtk 2.10 or later is required"))
+except:
+    pass
 
 #------------------------------------------------------------------------
 #

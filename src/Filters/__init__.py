@@ -48,8 +48,11 @@ def reload_custom_filters():
 if not CustomFilters:
     reload_custom_filters()
 
-from _FilterComboBox import FilterComboBox
-from _FilterMenu import build_filter_model
-from _FilterStore import FilterStore
-from _SearchBar import SearchBar
+try: # the Gramps-Connect server has no DISPLAY
+    from _FilterComboBox import FilterComboBox
+    from _FilterMenu import build_filter_model
+    from _FilterStore import FilterStore
+    from _SearchBar import SearchBar
+except:
+    pass
 from _SearchFilter import SearchFilter, ExactSearchFilter
