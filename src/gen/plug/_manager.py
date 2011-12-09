@@ -253,7 +253,10 @@ class BasePluginManager(object):
             else:
                 print "WARNING: module cannot be loaded"
         else:
-            module = __import__(pdata.mod_name)
+            try:
+                module = __import__(pdata.mod_name)
+            except:
+                print "WARNING: module '%s' cannot be loaded" % pdata.mod_name
         return module
 
     def empty_managed_plugins(self):
