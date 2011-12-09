@@ -36,6 +36,7 @@ import os
 import time
 import copy
 import subprocess
+import urlparse
 from gen.ggettext import gettext as _
 #-------------------------------------------------------------------------
 #
@@ -736,13 +737,13 @@ class DbManager(CLIDbManager):
         fname = None
         type = None
         title = None
-        # we are only interested in this if it is a file:// URL.
-        if drag_value and drag_value[0:7] == "file://":
-
-            drag_value = drag_value.strip()
-
-            fname, title = self.import_new_db(drag_value[7:], None)
-
+        # Allow any type of URL ("file://", "http://", etc):
+        if drag_value and urlparse.urlparse(drag_value).scheme != "":
+            fname, title = [], []
+            for treename in [v.strip() for v in drag_value.split("\n") if v.strip() != '']:
+                f, t = self.import_new_db(treename, None)
+                fname.append(f)
+                title.append(t)
         return fname, title
 
 def drag_motion(wid, context, xpos, ypos, time_stamp):
