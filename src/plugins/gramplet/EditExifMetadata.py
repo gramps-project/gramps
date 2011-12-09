@@ -951,7 +951,7 @@ class EditExifMetadata(Gramplet):
         edtarea.add(scrollwindow)
         scrollwindow.show()
 
-        vbox = self.__build_edit_gui(width_)
+        vbox = self.__build_edit_gui(width_, edtarea)
         scrollwindow.add_with_viewport(vbox)
         vbox.show_all()
         edtarea.show()
@@ -981,7 +981,7 @@ class EditExifMetadata(Gramplet):
         # display all data fields and their values...
         self.edit_area(_get_exif_keypairs(self.plugin_image))
 
-    def __build_edit_gui(self, width_):
+    def __build_edit_gui(self, width_, edtarea):
         """
         creates the content for the edit window...
         """
@@ -1114,11 +1114,11 @@ class EditExifMetadata(Gramplet):
         new_hbox.show()
 
         for (widget, text, callback, icon, is_sensitive) in [
-            ("Help",  False, [self.__help_page],                 gtk.STOCK_HELP, True),
-            ("Save",  False, [self.save_metadata, self.update],  gtk.STOCK_SAVE, True), 
+            ("Help",  False, [self.__help_page],                 gtk.STOCK_HELP,  True),
+            ("Save",  False, [self.save_metadata, self.update],  gtk.STOCK_SAVE,  True), 
             ("Clear", False, [self.clear_metadata],              gtk.STOCK_CLEAR, True),
-            ("Copy",  False, [self.__display_exif_tags],         gtk.STOCK_COPY, True),
-            ("Close", False, [lambda w: self.edtarea.destroy()], gtk.STOCK_CLOSE, True) ]:
+            ("Copy",  False, [self.__display_exif_tags],         gtk.STOCK_COPY,  True),
+            ("Close", False, [lambda w: edtarea.destroy()],      gtk.STOCK_CLOSE, True) ]:
 
             event_box = gtk.EventBox()
             event_box.set_size_request(112, 30)
