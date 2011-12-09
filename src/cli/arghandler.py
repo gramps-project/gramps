@@ -274,8 +274,12 @@ class ArgHandler(object):
                         {'name' : fullpath})
                 answer = None
                 while not answer:
-                    answer = raw_input(_('OK to overwrite? (yes/no) ') \
-                                        .encode(sys.getfilesystemencoding()))
+                    try:
+                        answer = raw_input(_('OK to overwrite? (yes/no) ') \
+                                            .encode(sys.getfilesystemencoding()))
+                    except EOFError:
+                        print
+                        sys.exit(0)
                 if answer.upper() in ('Y', 'YES', _('YES').upper()):
                     self.__error( _("Will overwrite the existing file: %s") 
                                     % fullpath)
