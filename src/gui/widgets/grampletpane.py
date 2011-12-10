@@ -937,6 +937,7 @@ class GridGramplet(GuiGramplet):
 class GrampletPane(gtk.ScrolledWindow):
     def __init__(self, configfile, pageview, dbstate, uistate, **kwargs):
         self._config = Configuration(self)
+        self.track = []
         gtk.ScrolledWindow.__init__(self)
         self.configfile = os.path.join(const.VERSION_DIR, "%s.ini" % configfile)
         # default for new user; may be overridden in config:
