@@ -120,7 +120,7 @@ _COPY_OPTIONS = [
         ]
 
 # NarrativeWeb javascript code for PlacePage's "Open Street Map"...
-openstreet_jsc = """
+openstreetmap_jsc = """
     OpenLayers.Lang.setCode("%s");
 
     map = new OpenLayers.Map("place_canvas");

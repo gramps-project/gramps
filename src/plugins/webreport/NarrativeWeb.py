@@ -96,7 +96,7 @@ import gen.mime
 from gen.display.name import displayer as _nd
 from DateHandler import displayer as _dd
 from gen.proxy import PrivateProxyDb, LivingProxyDb
-from libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS, openstreet_jsc, google_jsc
+from libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS, openstreetmap_jsc, google_jsc
 
 # import HTML Class from src/plugins/lib/libhtml.py
 from libhtml import Html
@@ -3324,7 +3324,7 @@ class PlacePage(BasePage):
                                 jsc += google_jsc % (latitude, longitude)
                             else:
                                 # do not need to write on head, load into canvas
-                                jsc += openstreet_jsc % (Utils.xml_lang()[3:5].lower(), longitude, latitude)
+                                jsc += openstreetmap_jsc % (Utils.xml_lang()[3:5].lower(), longitude, latitude)
                         # there is no need to add an ending "</script>",
                         # as it will be added automatically!
 
@@ -5000,7 +5000,7 @@ class IndividualPage(BasePage):
                 if self.mapservice == "Google":
                     jsc += google_jsc % (latitude, longitude)
                 else:
-                    jsc += openstreetmap_jsc % (latitude, longitude)
+                    jsc += openstreetmap_jsc % (Utils.xml_lang()[3:5].lower(), longitude, latitude)
 
             # number of markers > 1
             else:
@@ -5058,7 +5058,7 @@ class IndividualPage(BasePage):
 
     var vectorLayer = new OpenLayers.Layer.Vector("Overlay");""" % (Utils.xml_lang()[3:5].lower(),
                                                                     midY_, midX_, zoomlevel)
-                    for (latitude, longitude, pname, h, d) in place_lat_long:
+                    for (latitude, longitude, pname, h, d, etype) in place_lat_long:
                         jsc += """
     var feature = new OpenLayers.Feature.Vector(
         new OpenLayers.Geometry.Point( %s, %s ).transform(epsg4326, projectTo),
@@ -5097,10 +5097,11 @@ class IndividualPage(BasePage):
         with Html("div", class_ ="content", id ="FamilyMapDetail") as mapdetail:
             body += mapdetail
 
+            # add page title
             mapdetail += Html("h3", html_escape("Tracking %s" %
                                   self.get_name(person)), inline=True)
 
-            # page message
+            # page description
             msg = _("This map page represents the person and their descendants with "
                     "all of their event/ places.  If you place your mouse over "
                     "the marker it will display the place name.  The markers and the Reference "
@@ -5149,7 +5150,7 @@ class IndividualPage(BasePage):
                         tbody += trow
 
                         trow.extend(
-                            Html("td", data, class_ =colclass)
+                            Html("td", data, class_ =colclass, inline =True)
                             for data, colclass in [
                                 (self.place_link(handle, placetitle, up =True), "ColumnName"),
                                 (date,                                          "ColumnDate"),
