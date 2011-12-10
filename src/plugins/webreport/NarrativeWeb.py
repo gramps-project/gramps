@@ -4216,13 +4216,10 @@ class SourceListPage(BasePage):
         self.XHTMLWriter(sourcelistpage, of)
 
 class SourcePage(BasePage):
-
-    def __init__(self, report, title, handle, src_list):
-        db = report.database 
-
-        source = db.get_source_from_handle(handle)
+    def __init__(self, report, title, source, handle, src_list):
         if not source:
             return None
+        db = report.database
 
         BasePage.__init__(self, report, title, source.get_gramps_id())
         self.page_title = source.get_title()
@@ -4233,31 +4230,31 @@ class SourcePage(BasePage):
         sourcepage, head, body = self.write_header(_('Sources'))
 
         # begin source detail division
-        with Html("div", class_ = "content", id = "SourceDetail") as section:
-            body += section
+        with Html("div", class_ = "content", id = "SourceDetail") as sourcedetail:
+            body += sourcedetail
 
             if self.create_media:
                 media_list = source.get_media_list()
                 thumbnail = self.display_first_image_as_thumbnail(media_list, source)
                 if thumbnail is not None:
-                    section += thumbnail
+                    sourcedetail += thumbnail
 
             # add section title
-            section += Html("h3", html_escape(source.get_title()), inline = True)
+            sourcedetail += Html("h3", html_escape(source.get_title()), inline = True)
 
             # begin sources table
             with Html("table", class_ = "infolist source") as table:
-                section += table
+                sourcedetail += table
 
                 tbody = Html("tbody")
                 table += tbody
 
-                grampsid = None
+                source_gid = False 
                 if not self.noid and self.gid:
-                    grampsid = self.gid
+                    source_gid = source.get_gramps_id()
 
                 for (label, val) in [
-                    (_("Gramps ID"),               grampsid),
+                    (_("Gramps ID"),               source_gid),
                     (_("Author"),                  source.author),
                     (_("Publication information"), source.pubinfo),
                     (_("Abbreviation"),            source.abbrev) ]:
@@ -4273,23 +4270,22 @@ class SourcePage(BasePage):
                 # additional media
                 sourcemedia = self.display_additional_images_as_gallery(media_list, source)
                 if sourcemedia is not None:
-                    section += sourcemedia
+                    sourcedetail += sourcemedia
 
             # additional notes
-            notelist = self.display_note_list(source.get_note_list()
-            )
+            notelist = self.display_note_list(source.get_note_list())
             if notelist is not None:
-                section += notelist
+                sourcedetail += notelist
 
             # source repository list
             repo_ref_list = source.get_reporef_list()
             if repo_ref_list:
-                with Html("div", id = "subsection", class_ = "Repositories") as reposection:
-                    section += reposection
-                    reposection += Html("h4", _("Repositories"), inline = True)
+                with Html("div", id = "subsection", class_ = "references") as repo_references:
+                    sourcedetail += repo_references
+                    repo_references += Html("h4", _("Repositories"), inline = True)
 
                     ordered = Html("ol")
-                    reposection += ordered
+                    repo_references += ordered
 
                     for repo_ref in repo_ref_list:
                         repository = db.get_repository_from_handle(repo_ref.ref)
@@ -4302,10 +4298,9 @@ class SourcePage(BasePage):
                         ordered += list                            
 
             # references
-            references = self.display_references(src_list[source.get_handle()]
-            )
+            references = self.display_references(src_list[source.get_handle()])
             if references is not None:
-                section += references
+                sourcedetail += references
 
         # add clearline for proper styling
         # add footer section
@@ -6723,14 +6718,17 @@ class NavWebReport(Report):
         """
         creates SourceListPage and SourcePage
         """
-
+        db = self.database
         self.user.begin_progress(_("Narrated Web Site Report"),
-                                  _("Creating source pages"), len(source_list))
+                                 _("Creating source pages"),
+                                 len(source_list))
 
         SourceListPage(self, self.title, source_list.keys())
 
-        for key in source_list:
-            SourcePage(self, self.title, key, source_list)
+        for shandle in source_list:
+            source = db.get_source_from_handle(shandle)
+
+            SourcePage(self, self.title, source, shandle, source_list)
             self.user.step_progress()
         self.user.end_progress()
 
