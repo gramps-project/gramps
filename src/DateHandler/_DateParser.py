@@ -518,7 +518,7 @@ class DateParser(object):
             d = self._get_int(groups[2])
             value = (d, m, y, False)
             if not check((d, m, y)):
-                value = Date.Empty
+                value = Date.EMPTY
             return value
 
         match = self._rfc.match(text)
