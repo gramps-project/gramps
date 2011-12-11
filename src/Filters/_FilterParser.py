@@ -211,6 +211,7 @@ old_names_2_class = {
     "Families with incomplete events" :Rules.Person.FamilyWithIncompleteEvent,
     "People probably alive"         : Rules.Person.ProbablyAlive,
     "People marked private"         : Rules.Person.PeoplePrivate,
+    "People marked public"         : Rules.Person.PeoplePublic,
     "Witnesses"                     : Rules.Person.IsWitness,
     "Has text matching substring of": Rules.Person.HasTextMatchingSubstringOf,
 }
