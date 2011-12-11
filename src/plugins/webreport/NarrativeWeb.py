@@ -3228,8 +3228,6 @@ class PlacePage(BasePage):
         self.bibli = Bibliography()
         db = report.database
         place = db.get_place_from_handle(place_handle)
-
-        # if place exists, but has nothing, return
         if not place:
             return None
 
@@ -3291,9 +3289,7 @@ class PlacePage(BasePage):
             # add place map here
             if self.placemappages:
                 if (place and (place.lat and place.long)):
-
-                    # get reallatitude and reallongitude from place
-                    latitude, longitude = conv_lat_lon(place.lat, place.long, "D.D8")
+                    latitude, longitude = conv_lat_lon(place.get_latitude(), place.get_longitude(), "D.D8")
 
                     # add narrative-maps CSS...
                     fname = "/".join(["styles", "narrative-maps.css"])
@@ -3318,32 +3314,32 @@ class PlacePage(BasePage):
                         # begin inline javascript code
                         # because jsc is a docstring, it does NOT have to be properly indented
                         with Html("script", type = "text/javascript") as jsc:
-                            head += jsc
 
                             if self.mapservice == "Google":
-                                jsc += google_jsc % (latitude, longitude)
-                            else:
-                                # do not need to write on head, load into canvas
-                                jsc += openstreetmap_jsc % (Utils.xml_lang()[3:5].lower(), longitude, latitude)
-                        # there is no need to add an ending "</script>",
-                        # as it will be added automatically!
+                                head += jsc
 
-                        # add fullclear for proper styling
-                        canvas += fullclear  
+                                # Google adds Latitude/ Longitude to its maps...
+                                jsc += google_jsc % (latitude, longitude)
+
+                            else:
+                                canvas += jsc
+
+                                # OpenStreetMap (OSM) adds Longitude/ Latitude to its maps,
+                                # and needs a country code in lowercase letters...
+                                jsc += openstreetmap_jsc % (Utils.xml_lang()[3:5].lower(), longitude, latitude)
 
             # add javascript function call to body element
-            if self.mapservice == "Google":
-                body.attr ='onload ="initialize();" '
-
-            # source references
-            srcrefs = self.display_ind_sources(place) 
-            if srcrefs is not None:
-                placedetail += srcrefs
+            body.attr +=' onload ="initialize();" '
 
             # place references
             reflist = self.display_references(place_list[place.handle])
             if reflist is not None:
                 placedetail += reflist
+
+            # source references
+            srcrefs = self.display_ind_sources(place) 
+            if srcrefs is not None:
+                placedetail += srcrefs
 
         # add clearline for proper styling
         # add footer section
