@@ -4,6 +4,7 @@
 # Copyright (C) 2002-2007  Donald N. Allingham
 # Copyright (C) 2007-2008   Brian G. Matherly
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2011       Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -97,6 +98,7 @@ from _NeverMarried import NeverMarried
 from _NoBirthdate import NoBirthdate
 from _NoDeathdate import NoDeathdate
 from _PeoplePrivate import PeoplePrivate
+from _PeoplePublic import PeoplePublic
 from _PersonWithIncompleteEvent import PersonWithIncompleteEvent
 from _ProbablyAlive import ProbablyAlive
 from _RelationshipPathBetween import RelationshipPathBetween
@@ -154,6 +156,7 @@ editor_rule_list = [
     FamilyWithIncompleteEvent,
     ProbablyAlive,
     PeoplePrivate,
+    PeoplePublic,
     IsWitness,
     IsDescendantOf,
     IsDescendantFamilyOf,

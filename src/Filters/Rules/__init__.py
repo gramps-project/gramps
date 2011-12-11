@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2002-2006  Donald N. Allingham
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2011       Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,6 +47,7 @@ _HasTagBase                  Object has a particular tag
 _HasTextMatchingRegexpOf     Object has text matching regular expression
 _HasTextMatchingSubstringOf  Object has text containing substring
 _IsPrivate                   Object is marked as private
+_IsPublic                    Object is not marked as private
 _MatchesFilterBase           Object matches another filter
 _RegExpldBase                Object has Gramps Id matching regular expression
 
@@ -72,6 +74,7 @@ from Filters.Rules._Rule import Rule
 from Filters.Rules._Everything import Everything
 from Filters.Rules._HasGrampsId import HasGrampsId
 from Filters.Rules._IsPrivate import IsPrivate
+from Filters.Rules._IsPublic import IsPublic
 from Filters.Rules._HasTextMatchingSubstringOf import HasTextMatchingSubstringOf
 from Filters.Rules._HasTextMatchingRegexpOf import HasTextMatchingRegexpOf
 from Filters.Rules._MatchesFilterBase import MatchesFilterBase
