@@ -104,6 +104,46 @@ class ProxyDbBase(DbReadBase):
     include_tag = \
         None
         
+    def get_person_cursor(self):
+        for handle in self.get_person_handles():
+            yield handle, self.basedb.person_map[handle]
+
+    def get_family_cursor(self):
+        for handle in self.get_family_handles():
+            yield handle, self.basedb.family_map[handle]
+
+    def get_event_cursor(self):
+        for handle in self.get_event_handles():
+            yield handle, self.basedb.event_map[handle]
+
+    def get_source_cursor(self):
+        for handle in self.get_source_handles():
+            yield handle, self.basedb.source_map[handle]
+
+    def get_citation_cursor(self):
+        for handle in self.get_citation_handles():
+            yield handle, self.basedb.citation_map[handle]
+
+    def get_place_cursor(self):
+        for handle in self.get_place_handles():
+            yield handle, self.basedb.place_map[handle]
+
+    def get_media_cursor(self):
+        for handle in self.get_media_object_handles():
+            yield handle, self.basedb.media_map[handle]
+
+    def get_repository_cursor(self):
+        for handle in self.get_repository_handles():
+            yield handle, self.basedb.repository_map[handle]
+
+    def get_note_cursor(self):
+        for handle in self.get_note_handles():
+            yield handle, self.basedb.note_map[handle]
+
+    def get_tag_cursor(self):
+        for handle in self.get_tag_handles():
+            yield handle, self.basedb.tag_map[handle]
+
     def get_person_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each Person in
