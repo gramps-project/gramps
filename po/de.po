@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-22 19:13+0100\n"
-"PO-Revision-Date: 2011-11-22 19:37+0100\n"
+"POT-Creation-Date: 2011-12-11 00:57+0100\n"
+"PO-Revision-Date: 2011-12-11 13:29+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -1204,7 +1204,7 @@ msgstr "Art"
 #: ../src/gui/selectors/selectplace.py:62
 #: ../src/gui/selectors/selectrepository.py:61
 #: ../src/gui/selectors/selectsource.py:61
-#: ../src/gui/widgets/grampletpane.py:1497
+#: ../src/gui/widgets/grampletpane.py:1498
 #: ../src/plugins/gramplet/PersonDetails.py:125
 #: ../src/plugins/textreport/TagReport.py:456
 #: ../src/plugins/view/mediaview.py:92 ../src/plugins/view/sourceview.py:76
@@ -2218,6 +2218,15 @@ msgid ""
 "computer with that software that created the family tree, export it to XML "
 "and load that XML into the version of Gramps you intend to use."
 msgstr ""
+"Gramps speichert seine Daten in einer Berkeley Datenbank. Der Stammbaum, den "
+"du versuchst zu öffnen, wurde mit Version  %(env_version)s der Berkeley DB "
+"erstellt. Jedoch verwendet diese Gramps Version die Version  %(env_version)s "
+"der Berkeley DB. Du versuchst Daten, die in einem neueren Format erstellt "
+"wurden in einem älteren Programm zu laden; das muss fehlschlagen. Das "
+"richtige Vorgehen in solch einem Fall ist die Verwendung des XML Ex- und "
+"Import. Also versuch den Stammbaum auf dem Rechner zu öffnen auf dem du ihn "
+"erstellt hast, exportiere ihn nach XML und lade diese XML Datei in die "
+"Version von Gramps, die du verwenden möchtest."
 
 #: ../src/gen/db/exceptions.py:116
 msgid ""
@@ -5176,7 +5185,7 @@ msgstr ""
 msgid "Delete Filter"
 msgstr "Filter löschen"
 
-#: ../src/gui/grampsbar.py:150 ../src/gui/widgets/grampletpane.py:1129
+#: ../src/gui/grampsbar.py:150 ../src/gui/widgets/grampletpane.py:1130
 msgid "Unnamed Gramplet"
 msgstr "Unbenanntes Gramplet"
 
@@ -8467,35 +8476,35 @@ msgstr ""
 "Eigenschaftenschaltfläche zum verschieben ziehen und klicken zum einrichten"
 
 #. build the GUI:
-#: ../src/gui/widgets/grampletpane.py:957
+#: ../src/gui/widgets/grampletpane.py:958
 msgid "Right click to add gramplets"
 msgstr "Rechts-klick zum hinzufügen von Gramplets"
 
-#: ../src/gui/widgets/grampletpane.py:996
+#: ../src/gui/widgets/grampletpane.py:997
 msgid "Untitled Gramplet"
 msgstr "Unbenanntes Gramplet"
 
-#: ../src/gui/widgets/grampletpane.py:1469
+#: ../src/gui/widgets/grampletpane.py:1470
 msgid "Number of Columns"
 msgstr "Spaltenanzahl"
 
-#: ../src/gui/widgets/grampletpane.py:1474
+#: ../src/gui/widgets/grampletpane.py:1475
 msgid "Gramplet Layout"
 msgstr "Gramplet Layout"
 
-#: ../src/gui/widgets/grampletpane.py:1504
+#: ../src/gui/widgets/grampletpane.py:1505
 msgid "Use maximum height available"
 msgstr "Verwende maximale verfügbare Höhe"
 
-#: ../src/gui/widgets/grampletpane.py:1510
+#: ../src/gui/widgets/grampletpane.py:1511
 msgid "Height if not maximized"
 msgstr "Höhe wenn nicht maximiert"
 
-#: ../src/gui/widgets/grampletpane.py:1517
+#: ../src/gui/widgets/grampletpane.py:1518
 msgid "Detached width"
 msgstr "Freistehende Breite"
 
-#: ../src/gui/widgets/grampletpane.py:1524
+#: ../src/gui/widgets/grampletpane.py:1525
 msgid "Detached height"
 msgstr "Freistehende Höhe"
 
@@ -14142,17 +14151,17 @@ msgstr "Zeile %d wurde nicht verstanden und deshalb ignoriert."
 msgid "Line %d: empty event note was ignored."
 msgstr "Zeile %d: leere Ereignisnotiz wurde ignoriert."
 
-#: ../src/plugins/lib/libgedcom.py:5209 ../src/plugins/lib/libgedcom.py:5849
+#: ../src/plugins/lib/libgedcom.py:5209 ../src/plugins/lib/libgedcom.py:5852
 #, python-format
 msgid "Could not import %s"
 msgstr "Kann Datei %s nicht importieren"
 
-#: ../src/plugins/lib/libgedcom.py:5610
+#: ../src/plugins/lib/libgedcom.py:5613
 #, python-format
 msgid "Import from %s"
 msgstr "Aus %s importieren"
 
-#: ../src/plugins/lib/libgedcom.py:5645
+#: ../src/plugins/lib/libgedcom.py:5648
 #, python-format
 msgid ""
 "Import of GEDCOM file %s with DEST=%s, could cause errors in the resulting "
@@ -14161,21 +14170,21 @@ msgstr ""
 "Import der GEDCOM Datei %s mit dem ZIEL=%s kann Fehler in der resultierenden "
 "Datenbank verursachen!"
 
-#: ../src/plugins/lib/libgedcom.py:5648
+#: ../src/plugins/lib/libgedcom.py:5651
 msgid "Look for nameless events."
 msgstr "Suche nach namenlosen Ereignissen."
 
-#: ../src/plugins/lib/libgedcom.py:5707 ../src/plugins/lib/libgedcom.py:5721
+#: ../src/plugins/lib/libgedcom.py:5710 ../src/plugins/lib/libgedcom.py:5724
 #, python-format
 msgid "Line %d: empty note was ignored."
 msgstr "Zeile %d: leere Notiz wurde ignoriert."
 
-#: ../src/plugins/lib/libgedcom.py:5758
+#: ../src/plugins/lib/libgedcom.py:5761
 #, python-format
 msgid "skipped %(skip)d subordinate(s) at line %(line)d"
 msgstr "übersprungen %(skip)d untergeordnet(e) in Zeile %(line)d"
 
-#: ../src/plugins/lib/libgedcom.py:6025
+#: ../src/plugins/lib/libgedcom.py:6028
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
@@ -14183,11 +14192,11 @@ msgstr ""
 "Deine GEDCOM Datei ist beschädigt. Die Datei scheint UTF16 kodiert zu sein, "
 "aber die BOM Markierung fehlt."
 
-#: ../src/plugins/lib/libgedcom.py:6028
+#: ../src/plugins/lib/libgedcom.py:6031
 msgid "Your GEDCOM file is empty."
 msgstr "Deine GEDCOM-Datei ist leer."
 
-#: ../src/plugins/lib/libgedcom.py:6091
+#: ../src/plugins/lib/libgedcom.py:6094
 #, python-format
 msgid "Invalid line %d in GEDCOM file."
 msgstr "Ungültige Zeile %d in der GEDCOM-Datei."
@@ -26817,7 +26826,7 @@ msgstr "_Vorname:"
 #: ../src/glade/editperson.glade.h:27 ../src/glade/editsource.glade.h:11
 #: ../src/glade/editrepository.glade.h:7 ../src/glade/editreporef.glade.h:14
 #: ../src/glade/editfamily.glade.h:14 ../src/glade/editmedia.glade.h:12
-#: ../src/glade/editmediaref.glade.h:25 ../src/glade/editeventref.glade.h:9
+#: ../src/glade/editmediaref.glade.h:25 ../src/glade/editeventref.glade.h:10
 #: ../src/glade/editnote.glade.h:8 ../src/glade/editplace.glade.h:28
 #: ../src/glade/editsourceref.glade.h:22 ../src/glade/editevent.glade.h:11
 msgid "_ID:"
@@ -27559,6 +27568,7 @@ msgid "Postal code"
 msgstr "Postleitzahl"
 
 #: ../src/glade/editaddress.glade.h:12 ../src/glade/editmedia.glade.h:9
+#: ../src/glade/editeventref.glade.h:7 ../src/glade/editldsord.glade.h:5
 #: ../src/glade/editevent.glade.h:7
 msgid "Show Date Editor"
 msgstr "Zeige Datumseditor"
@@ -27583,8 +27593,8 @@ msgid "The town or city of the address"
 msgstr "Das Dorf oder die Stadt der Adresse"
 
 #: ../src/glade/editaddress.glade.h:17 ../src/glade/editmedia.glade.h:11
-#: ../src/glade/editmediaref.glade.h:24 ../src/glade/editeventref.glade.h:7
-#: ../src/glade/editldsord.glade.h:5 ../src/glade/editsourceref.glade.h:21
+#: ../src/glade/editmediaref.glade.h:24 ../src/glade/editeventref.glade.h:8
+#: ../src/glade/editldsord.glade.h:6 ../src/glade/editsourceref.glade.h:21
 #: ../src/glade/editevent.glade.h:9
 msgid "_Date:"
 msgstr "_Datum:"
@@ -27737,16 +27747,16 @@ msgstr "Eine eindeutige ID zur Identifizierung des Ereignis"
 msgid "De_scription:"
 msgstr "Be_schreibung:"
 
-#: ../src/glade/editeventref.glade.h:8 ../src/glade/editevent.glade.h:10
+#: ../src/glade/editeventref.glade.h:9 ../src/glade/editevent.glade.h:10
 msgid "_Event type:"
 msgstr "_Ereignisart:"
 
-#: ../src/glade/editeventref.glade.h:10 ../src/glade/editldsord.glade.h:6
+#: ../src/glade/editeventref.glade.h:11 ../src/glade/editldsord.glade.h:7
 #: ../src/glade/editevent.glade.h:12
 msgid "_Place:"
 msgstr "_Ort:"
 
-#: ../src/glade/editeventref.glade.h:11
+#: ../src/glade/editeventref.glade.h:12
 msgid "_Role:"
 msgstr "_Rolle:"
 
@@ -27762,7 +27772,7 @@ msgstr "HLT-Tempel:"
 msgid "Ordinance:"
 msgstr "Ordination:"
 
-#: ../src/glade/editldsord.glade.h:7
+#: ../src/glade/editldsord.glade.h:8
 msgid "_Status:"
 msgstr "_Status:"
 
