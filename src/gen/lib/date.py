@@ -356,7 +356,7 @@ class Span(object):
                     #v = self.date1.sortval - self.date2.sortval
                     #self.sort = (v, -Span.ABOUT)
                     #self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                    self.repr = _("more than") + " " + self._format(self._diff(self.date1, self.date2))
+                    self.repr = _("less than") + " " + self._format(self._diff(self.date1, self.date2))
             elif self.date1.get_modifier() == Date.MOD_AFTER:    # AFTER----------------------------
                 if   self.date2.get_modifier() == Date.MOD_NONE:
                     #v = self.date1.sortval - self.date2.sortval
