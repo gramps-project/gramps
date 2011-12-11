@@ -764,9 +764,8 @@ class EditFilter(ManagedWindow.ManagedWindow):
         self.fname.connect('changed', self.filter_name_changed)
 
         op = self.filter.get_logical_op()
-        self.logical.set_active(
-            1 if op == 'or' else 2 if op == 'one' else 2
-            )
+        # WARNING: must be listed in this order:
+        self.logical.set_active(["and", "or", "one", "sequence"].index(op))
         self.logical_not.set_active(self.filter.get_invert())
         if self.filter.get_name():
             self.fname.set_text(self.filter.get_name())
@@ -819,7 +818,12 @@ class EditFilter(ManagedWindow.ManagedWindow):
                 self.filterdb.get_filters(self.namespace).remove(f)
                 break
         val = self.logical.get_active()
-        op = 'or' if val == 1 else 'one' if val == 2 else 'and'
+        # WARNING: must be listed in this order:
+        op = ('and' if val == 0 else 
+              'or' if val == 1 else 
+              'one' if val == 2 else 
+              'sequence')
+        self.logical.set_active(val)
         self.filter.set_logical_op(op)
         self.filter.set_invert(self.logical_not.get_active())
         self.filterdb.add(self.namespace,self.filter)
