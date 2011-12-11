@@ -155,7 +155,25 @@ class LRU(object):
         """
         Empties LRU
         """
-        for obj, node in self.data.iteritems():
-            node.prev = None
-            node.next = None
+        # Step through the doubly linked list, setting prev and next to None.
+        # This ensures that each node is unreachable and therefore eligible for
+        # garbage collection. "del" is also called for each node, but it is
+        # unclear whether this actually has any effect, of just removes the
+        # binding to nobj
+        nobj = self.first
+        # The references first and last are removed so that the nodes are not
+        # reachable from these
+        self.first = None
+        self.last = None
+        # The references from self.data are removed
         self.data.clear()
+        while nobj is not None and nobj.next is not None:
+            # each node except the last is processed
+            nobj.next.prev = None
+            nextobj = nobj.next
+            nobj.next = None
+            del nobj
+            nobj = nextobj
+        if nobj is not None:
+            # The last node is processed
+            del nobj
