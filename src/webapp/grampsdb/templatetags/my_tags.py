@@ -149,10 +149,32 @@ def breadcrumb(path, arg=None):
     retval = ""
     for item in path.split(","):
         p, name = item.split("|")
-        retval += '<a href="%s">%s</a> > ' % (p, name)
+        if retval != "":
+            retval += " > "
+        retval += '<a href="%s"><b>%s</b></a>' % (p, name)
     return "<p>%s</p>" % retval
 breadcrumb.is_safe = True
 register.filter('breadcrumb', breadcrumb)
+
+def format(string, arg0=None, arg1=None, arg2=None, arg3=None, arg4=None, arg5=None, arg6=None):
+    if arg0 is None:
+        return string
+    elif arg1 is None:
+        return string % arg0
+    elif arg2 is None:
+        return string % (arg0, arg1)
+    elif arg3 is None:
+        return string % (arg0, arg1, arg2)
+    elif arg4 is None:
+        return string % (arg0, arg1, arg2, arg3)
+    elif arg5 is None:
+        return string % (arg0, arg1, arg2, arg3, arg4)
+    elif arg6 is None:
+        return string % (arg0, arg1, arg2, arg3, arg4, arg5)
+    else:
+        return string % (arg0, arg1, arg2, arg3, arg4, arg5, arg6)
+format.is_safe = True
+register.simple_tag(format)
 
 def currentSection(view1, view2): # tview, menu
     if view1.strip().lower() in [view[1] for view in VIEWS] and view2 == "browse":

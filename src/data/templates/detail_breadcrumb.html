@@ -1,0 +1,5 @@
+{% load my_tags %}
+
+   {% filter breadcrumb %}
+      {% format "/browse|Browse,/%s|%s,/%s/%s|%s [%s]" view tviews view object.handle tview object.gramps_id %}
+   {% endfilter %}

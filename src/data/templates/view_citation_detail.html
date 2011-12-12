@@ -13,7 +13,7 @@
 
 <div class="content" id="IndividualDetail">
 
-{{ "/browse|Browse,/source|Sources"|breadcrumb}}
+{% include "detail_breadcrumb.html" %}
 
 <h3>{{source.title|escape}}</h3>
 <div id="summaryarea">

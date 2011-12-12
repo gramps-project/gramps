@@ -236,10 +236,12 @@ def view_name_detail(request, handle, order, action="view"):
     context = RequestContext(request)
     context["action"] = action
     context["tview"] = _('Name')
+    context["tviews"] = _('Names')
     context["view"] = 'name'
     context["handle"] = handle
     context["id"] = id
     context["person"] = person
+    context["object"] = person
     context["form"] = form
     context["order"] = name.order
     context["next"] = "/person/%s/name/%d" % (person.handle, name.order)
@@ -358,6 +360,7 @@ def view_detail(request, view, handle, action="view"):
             raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_event_detail.html'
         context["tview"] = _("Event")
+        context["tviews"] = _("Events")
     elif view == "family":
         try:
             obj = Family.objects.get(handle=handle)
@@ -365,6 +368,7 @@ def view_detail(request, view, handle, action="view"):
             raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_family_detail.html'
         context["tview"] = _("Family")
+        context["tviews"] = _("Families")
     elif view == "media":
         try:
             obj = Media.objects.get(handle=handle)
@@ -372,6 +376,7 @@ def view_detail(request, view, handle, action="view"):
             raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_media_detail.html'
         context["tview"] = _("Media")
+        context["tviews"] = _("Media")
     elif view == "note":
         try:
             obj = Note.objects.get(handle=handle)
@@ -379,7 +384,12 @@ def view_detail(request, view, handle, action="view"):
             raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_note_detail.html'
         context["tview"] = _("Note")
+        context["tviews"] = _("Notes")
     elif view == "person":
+        try:
+            obj = Person.objects.get(handle=handle)
+        except:
+            raise Http404(_("Requested %s does not exist.") % view)
         return view_person_detail(request, view, handle, action)
     elif view == "place":
         try:
@@ -388,6 +398,7 @@ def view_detail(request, view, handle, action="view"):
             raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_place_detail.html'
         context["tview"] = _("Place")
+        context["tviews"] = _("Places")
     elif view == "repository":
         try:
             obj = Repository.objects.get(handle=handle)
@@ -395,6 +406,7 @@ def view_detail(request, view, handle, action="view"):
             raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_repository_detail.html'
         context["tview"] = _("Repository")
+        context["tviews"] = _("Repositories")
     elif view == "citation":
         try:
             obj = Citation.objects.get(handle=handle)
@@ -402,6 +414,7 @@ def view_detail(request, view, handle, action="view"):
             raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_citation_detail.html'
         context["tview"] = _("Citation")
+        context["tviews"] = _("Citations")
     elif view == "source":
         try:
             obj = Source.objects.get(handle=handle)
@@ -409,6 +422,7 @@ def view_detail(request, view, handle, action="view"):
             raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_source_detail.html'
         context["tview"] = _("Source")
+        context["tviews"] = _("Sources")
     elif view == "tag":
         try:
             obj = Tag.objects.get(handle=handle)
@@ -416,6 +430,7 @@ def view_detail(request, view, handle, action="view"):
             raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_tag_detail.html'
         context["tview"] = _("Tag")
+        context["tviews"] = _("Tags")
     elif view == "report":
         try:
             obj = Report.objects.get(handle=handle)
@@ -423,14 +438,18 @@ def view_detail(request, view, handle, action="view"):
             raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_report_detail.html'
         context["tview"] = _("Report")
+        context["tviews"] = _("Reports")
     else:
         raise Http404(_("Requested page type not known"))
     context[view] = obj
+    context["object"] = obj
     context["next"] = "/%s/%s" % (view, obj.handle)
     return render_to_response(view_template, context)
 
 def view_person_detail(request, view, handle, action="view"):
     context = RequestContext(request)
+    context["tview"] = _("Person")
+    context["tviews"] = _("People")
     if handle == "add":
         if request.POST.has_key("action"):
             action = request.POST.get("action")
@@ -526,13 +545,16 @@ def view_person_detail(request, view, handle, action="view"):
     context["personform"] = pf
     context["nameform"] = nf
     context["person"] = person
+    context["object"] = person
     context["next"] = "/person/%s" % person.handle
     view_template = 'view_person_detail.html'
     return render_to_response(view_template, context)
 
 def view(request, view):
+    context = RequestContext(request)
     search = ""
     if view == "event":
+        context["tviews"] = _("Events")
         if request.user.is_authenticated():
             private = Q()
         else:
@@ -552,6 +574,7 @@ def view(request, view):
         view_template = 'view_events.html'
         total = Event.objects.all().count()
     elif view == "family":
+        context["tviews"] = _("Families")
         if request.user.is_authenticated():
             if request.GET.has_key("search"):
                 search = request.GET.get("search")
@@ -605,6 +628,7 @@ def view(request, view):
         view_template = 'view_families.html'
         total = Family.objects.all().count()
     elif view == "media":
+        context["tviews"] = _("Media")
         if request.user.is_authenticated():
             private = Q()
         else:
@@ -622,6 +646,7 @@ def view(request, view):
         view_template = 'view_media.html'
         total = Media.objects.all().count()
     elif view == "note":
+        context["tviews"] = _("Notes")
         if request.user.is_authenticated():
             private = Q()
         else:
@@ -641,6 +666,7 @@ def view(request, view):
         view_template = 'view_notes.html'
         total = Note.objects.all().count()
     elif view == "person":
+        context["tviews"] = _("People")
         if request.user.is_authenticated():
             if request.GET.has_key("search"):
                 search = request.GET.get("search")
@@ -688,6 +714,7 @@ def view(request, view):
         view_template = 'view_people.html'
         total = Name.objects.all().count()
     elif view == "place":
+        context["tviews"] = _("Places")
         if request.user.is_authenticated():
             private = Q()
         else:                 
@@ -707,6 +734,7 @@ def view(request, view):
         view_template = 'view_places.html'
         total = Place.objects.all().count()
     elif view == "repository":
+        context["tviews"] = _("Repositories")
         if request.user.is_authenticated():
             private = Q()
         else:
@@ -727,6 +755,7 @@ def view(request, view):
         view_template = 'view_repositories.html'
         total = Repository.objects.all().count()
     elif view == "citation":
+        context["tviews"] = _("Citations")
         if request.user.is_authenticated():
             private = Q()
         else:
@@ -744,6 +773,7 @@ def view(request, view):
         view_template = 'view_citations.html'
         total = Citation.objects.all().count()
     elif view == "source":
+        context["tviews"] = _("Sources")
         if request.user.is_authenticated():
             private = Q()
         else:
@@ -761,6 +791,7 @@ def view(request, view):
         view_template = 'view_sources.html'
         total = Source.objects.all().count()
     elif view == "tag":
+        context["tviews"] = _("Tags")
         if request.GET.has_key("search"):
             search = request.GET.get("search")
             object_list = Tag.objects \
@@ -771,6 +802,7 @@ def view(request, view):
         view_template = 'view_tags.html'
         total = Tag.objects.all().count()
     elif view == "report":
+        context["tviews"] = _("Reports")
         if request.GET.has_key("search"):
             search = request.GET.get("search")
             object_list = Report.objects \
@@ -798,7 +830,6 @@ def view(request, view):
     except (EmptyPage, InvalidPage):
         page = paginator.page(paginator.num_pages)
 
-    context = RequestContext(request)
     context["page"] = page
     context["view"] = view
     context["tview"] = _(view.title())

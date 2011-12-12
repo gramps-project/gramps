@@ -12,7 +12,7 @@
 
 <div class="content" id="IndividualDetail">
 
-{{ "/browse|Browse,/person|People"|breadcrumb}}
+{% include "detail_breadcrumb.html" %}
 
 <div id="summaryarea">
 <table class="infolist"> {% comment %} 5 cols {% endcomment %}
@@ -30,7 +30,7 @@
 {% endif %}
 
 <tr>
- <td colspan="4">{{nameform|render_name:user}} [{{person.gramps_id}}]</td>
+ <td colspan="4">{{nameform|render_name:user}}</td>
  <td class="ColumnAttribute" align="right">{{nameform.name_type.label}}:</td>
  <td class="ColumnValue" id="data">{% render nameform.name_type user action %}</td>
 </tr>

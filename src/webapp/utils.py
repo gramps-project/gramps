@@ -232,7 +232,7 @@ def event_table(obj, user, action, url=None, *args):
         event_list = [(obj.ref_object, obj) for obj in event_ref_list]
         for (djevent, event_ref) in event_list:
             table.row(
-                djevent.description,
+                djevent.description or str(djevent),
                 table.db.get_event_from_handle(djevent.handle),
                 djevent.gramps_id, 
                 display_date(djevent),
@@ -322,7 +322,8 @@ def citation_table(obj, user, action, url=None, *args):
                                                object_id=obj.id)
         for citation_ref in citation_refs:
             if citation_ref.citation:
-                citation = citation_ref.citation
+                citation = table.db.get_citation_from_handle(
+                    citation_ref.citation.handle)
                 table.row(citation,
                           str(citation.confidence),
                           str(citation.page),
