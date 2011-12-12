@@ -257,8 +257,8 @@ def name_table(obj, user, action, url=None, *args):
         links = []
         for name in obj.name_set.all().order_by("order"):
             obj_type = ContentType.objects.get_for_model(name)
-            sourceq = dji.SourceRef.filter(object_type=obj_type,
-                                           object_id=name.id).count() > 0
+            citationq = dji.CitationRef.filter(object_type=obj_type,
+                                               object_id=name.id).count() > 0
             note_refs = dji.NoteRef.filter(object_type=obj_type,
                                            object_id=name.id)
             note = ""
@@ -270,7 +270,7 @@ def name_table(obj, user, action, url=None, *args):
             table.row(make_name(name, user),
                       str(name.name_type) + ["", " (preferred)"][int(name.preferred)],
                       name.group_as,
-                      ["No", "Yes"][sourceq],
+                      ["No", "Yes"][citationq],
                       note)
             links.append(('URL', 
                           # url is "/person/%s/name"
@@ -292,15 +292,17 @@ def source_table(obj, user, action, url=None, *args):
                   _("Page"))
     if user.is_authenticated():
         obj_type = ContentType.objects.get_for_model(obj)
-        source_refs = dji.SourceRef.filter(object_type=obj_type,
-                                           object_id=obj.id)
-        for source_ref in source_refs:
-            source = table.db.get_source_from_handle(source_ref.ref_object.handle)
-            table.row(source,
-                      source_ref.ref_object.title,
-                      source_ref.ref_object.author,
-                      source_ref.page,
-                      )
+        citation_refs = dji.CitationRef.filter(object_type=obj_type,
+                                             object_id=obj.id)
+        for citation_ref in citation_refs:
+            if citation_ref.citation:
+                if citation_ref.citation.source:
+                    source = citation_ref.citation.source
+                    table.row(source,
+                              source_ref.ref_object.title,
+                              source_ref.ref_object.author,
+                              source_ref.page,
+                              )
     retval += table.get_html()
     if user.is_authenticated() and url and action == "view":
         retval += make_button(_("Add source"), (url + "/add") % args)
@@ -319,11 +321,12 @@ def citation_table(obj, user, action, url=None, *args):
         citation_refs = dji.CitationRef.filter(object_type=obj_type,
                                                object_id=obj.id)
         for citation_ref in citation_refs:
-            citation = table.db.get_citation_from_handle(citation_ref.citation.handle)
-            table.row(citation,
-                      citation.confidence,
-                      citation.page,
-                      )
+            if citation_ref.citation:
+                citation = citation_ref.citation
+                table.row(citation,
+                          str(citation.confidence),
+                          str(citation.page),
+                          )
     retval += table.get_html()
     if user.is_authenticated() and url and action == "view":
         retval += make_button(_("Add citation"), (url + "/add") % args)

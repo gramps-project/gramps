@@ -78,7 +78,7 @@
   <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
     <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tab-events">Events</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-names">Names</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-sources">Sources</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-citations">Citations</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-attributes">Attributes</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-addresses">Addresses</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Notes</a></li>
@@ -95,8 +95,8 @@
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-names">
     {% name_table person user action "/person/%s/name" person.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-sources">
-    {% source_table person user action "/person/%s/source" person.handle %}
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-citations">
+    {% citation_table person user action "/person/%s/citation" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-attributes">
     {% attribute_table person user action "/person/%s/attribute" person.handle %}

@@ -923,6 +923,9 @@ class SimpleAccess(object):
                     return "%s: %s [%s]" % (_(object_class), 
                                             self.title(obj), 
                                             self.gid(obj))
+                elif isinstance(obj, gen.lib.Citation):
+                    return "%s: [%s]" % (_(object_class), 
+                                            self.gid(obj))
                 elif isinstance(obj, gen.lib.Place):
                     return "%s: %s [%s]" % (_(object_class), 
                                             place_name(self.dbase, 
@@ -965,10 +968,10 @@ class SimpleAccess(object):
             return "%s and %s" % (mother_text, father_text)
         elif isinstance(obj, gen.lib.MediaObject):
             return obj.desc
+        elif isinstance(obj, gen.lib.Citation):
+            return obj.gramps_id
         elif isinstance(obj, gen.lib.Source):
             return self.title(obj)
-        elif isinstance(obj, gen.lib.Citation):
-            return self.page(obj)
         elif isinstance(obj, gen.lib.Place):
             return place_name(self.dbase, obj.handle)
         elif isinstance(obj, gen.lib.Repository):

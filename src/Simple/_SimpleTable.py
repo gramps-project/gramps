@@ -156,7 +156,7 @@ class SimpleTable(object):
                 if (objclass == 'Filter' and 
                     handle[0] in ['Person', 'Family', 'Place', 'Event',
                                   'Repository', 'Note', 'MediaObject',
-                                  'Source']):
+                                  'Citation', 'Source']):
                     menu_item = gtk.MenuItem(_("See data not in Filter"))
                     menu_item.connect("activate", 
                       lambda widget: self.show_not_in_filter(handle[0]))
@@ -178,7 +178,7 @@ class SimpleTable(object):
         """
         Handle events on tables. obj is a treeview
         """
-        from gui.editors import (EditPerson, EditEvent, EditFamily, EditSource,
+        from gui.editors import (EditPerson, EditEvent, EditFamily, EditCitation, EditSource,
                                  EditPlace, EditRepository, EditNote, EditMedia)
         selection = obj.get_selection()
         store, paths = selection.get_selected_rows()
@@ -216,6 +216,15 @@ class SimpleTable(object):
                     try:
                         EditFamily(self.simpledoc.doc.dbstate, 
                                    self.simpledoc.doc.uistate, [], ref)
+                        return True # handled event
+                    except Errors.WindowActiveError:
+                        pass
+            elif objclass == 'Citation':
+                ref = self.access.dbase.get_citation_from_handle(handle)
+                if ref:
+                    try:
+                        EditCitation(self.simpledoc.doc.dbstate, 
+                                     self.simpledoc.doc.uistate, [], ref)
                         return True # handled event
                     except Errors.WindowActiveError:
                         pass
@@ -349,14 +358,14 @@ class SimpleTable(object):
                 retval.append(self.access.describe(item))
                 if (self.__link_col == col or link is None):
                     link = ('Family', item.handle)
-            elif isinstance(item, gen.lib.Source): 
-                retval.append(self.access.describe(item))
-                if (self.__link_col == col or link is None):
-                    link = ('Source', item.handle)
             elif isinstance(item, gen.lib.Citation): 
                 retval.append(self.access.describe(item))
                 if (self.__link_col == col or link is None):
                     link = ('Citation', item.handle)
+            elif isinstance(item, gen.lib.Source): 
+                retval.append(self.access.describe(item))
+                if (self.__link_col == col or link is None):
+                    link = ('Source', item.handle)
             elif isinstance(item, gen.lib.Event):
                 retval.append(self.access.describe(item))
                 if (self.__link_col == col or link is None):
