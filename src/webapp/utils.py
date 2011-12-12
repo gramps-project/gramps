@@ -75,6 +75,7 @@ util_tags = [
     "get_person_from_handle", 
     "event_table",
     "name_table",
+    "citation_table",
     "source_table",
     "note_table",
     "attribute_table",
@@ -276,6 +277,29 @@ def source_table(obj, user, action, url=None, *args):
     retval += table.get_html()
     if user.is_authenticated() and url and action == "view":
         retval += make_button(_("Add source"), (url + "/add") % args)
+    else:
+        retval += nbsp("") # to keep tabs same height
+    return retval
+
+def citation_table(obj, user, action, url=None, *args):
+    retval = ""
+    table = Table()
+    table.columns(_("ID"), 
+                  _("Confidence"),
+                  _("Page"))
+    if user.is_authenticated():
+        obj_type = ContentType.objects.get_for_model(obj)
+        citation_refs = dji.CitationRef.filter(object_type=obj_type,
+                                               object_id=obj.id)
+        for citation_ref in citation_refs:
+            citation = table.db.get_citation_from_handle(citation_ref.citation.handle)
+            table.row(citation,
+                      citation.confidence,
+                      citation.page,
+                      )
+    retval += table.get_html()
+    if user.is_authenticated() and url and action == "view":
+        retval += make_button(_("Add citation"), (url + "/add") % args)
     else:
         retval += nbsp("") # to keep tabs same height
     return retval

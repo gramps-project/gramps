@@ -65,6 +65,7 @@ VIEWS = [
     (_('Events'), 'event', Event),
     (_('Notes'), 'note', Note),
     (_('Media'), 'media', Media),
+    (_('Citations'), 'citation', Citation),
     (_('Sources'), 'source', Source),
     (_('Places'), 'place', Place),
     (_('Repositories'), 'repository', Repository),
@@ -394,6 +395,13 @@ def view_detail(request, view, handle, action="view"):
             raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_repository_detail.html'
         context["tview"] = _("Repository")
+    elif view == "citation":
+        try:
+            obj = Citation.objects.get(handle=handle)
+        except:
+            raise Http404(_("Requested %s does not exist.") % view)
+        view_template = 'view_citation_detail.html'
+        context["tview"] = _("Citation")
     elif view == "source":
         try:
             obj = Source.objects.get(handle=handle)
@@ -718,6 +726,23 @@ def view(request, view):
             object_list = Repository.objects.filter(private).order_by("gramps_id")
         view_template = 'view_repositories.html'
         total = Repository.objects.all().count()
+    elif view == "citation":
+        if request.user.is_authenticated():
+            private = Q()
+        else:
+            # NON-AUTHENTICATED users
+            private = Q(private=False)
+        if request.GET.has_key("search"):
+            search = request.GET.get("search")
+            object_list = Citation.objects \
+                .filter(Q(gramps_id__icontains=search) &
+                        private
+                        ) \
+                .order_by("gramps_id")
+        else:
+            object_list = Citation.objects.filter(private).order_by("gramps_id")
+        view_template = 'view_citations.html'
+        total = Citation.objects.all().count()
     elif view == "source":
         if request.user.is_authenticated():
             private = Q()

@@ -1,0 +1,70 @@
+{% extends "view_page_detail.html" %}
+{% load my_tags %}
+
+{% block content %} 
+
+   <script type="text/javascript">
+     $(function(){
+
+            $('#tabs').tabs();
+      });
+   </script>
+
+
+<div class="content" id="IndividualDetail">
+
+{{ "/browse|Browse,/source|Sources"|breadcrumb}}
+
+<h3>{{source.title|escape}}</h3>
+<div id="summaryarea">
+<table class="infolist"> {% comment %} 2 cols {% endcomment %}
+<tbody>
+<tr>
+<td class="ColumnAttribute">Title:</td>
+<td class="ColumnValue" id="data">{{source.title|escape}}</td>
+</tr>
+<tr>
+<td class="ColumnAttribute">Author:</td>
+<td class="ColumnValue" id="data">{{source.author|escape}}</td>
+</tr>
+<tr>
+<td class="ColumnAttribute">ID:</td>
+<td class="ColumnValue" id="data">{{source.gramps_id|escape}}</td>
+</tr>
+<tr>
+<td class="ColumnAttribute">Abbreviation:</td>
+<td class="ColumnValue" id="data">{{source.abbrev|escape}}</td>
+</tr>
+<tr>
+<td class="ColumnAttribute">Public information:</td>
+<td class="ColumnValue" id="data">{{source.pubinfo|escape}}</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- Tabs -->
+<h2 class="demoHeaders">Tabs</h2>
+
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
+  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tab-notes">Notes</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-gallery">Gallery</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-data">Data</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-repositories">Repositories</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-references">References</a></li>
+  </ul>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-notes"> 
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-gallery">
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-data">
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-repositories">
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-references">
+  </div>
+</div>
+
+{% endblock %}

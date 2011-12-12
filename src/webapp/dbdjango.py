@@ -34,6 +34,7 @@ import re
 from gen.db import DbReadBase, DbWriteBase, DbTxn
 from gen.db import (PERSON_KEY,
                     FAMILY_KEY,
+                    CITATION_KEY,
                     SOURCE_KEY,
                     EVENT_KEY,
                     MEDIA_KEY,
@@ -105,6 +106,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         self.family_bookmarks = Bookmarks()
         self.event_bookmarks = Bookmarks()
         self.place_bookmarks = Bookmarks()
+        self.citation_bookmarks = Bookmarks()
         self.source_bookmarks = Bookmarks()
         self.repo_bookmarks = Bookmarks()
         self.media_bookmarks = Bookmarks()
@@ -112,6 +114,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         self.set_person_id_prefix('I%04d')
         self.set_object_id_prefix('O%04d')
         self.set_family_id_prefix('F%04d')
+        self.set_citation_id_prefix('C%04d')
         self.set_source_id_prefix('S%04d')
         self.set_place_id_prefix('P%04d')
         self.set_event_id_prefix('E%04d')
@@ -121,11 +124,13 @@ class DbDjango(DbWriteBase, DbReadBase):
         self.id_trans  = DjangoTxn("ID Transaction", self, self.dji.Person)
         self.fid_trans = DjangoTxn("FID Transaction", self, self.dji.Family)
         self.pid_trans = DjangoTxn("PID Transaction", self, self.dji.Place)
+        self.cid_trans = DjangoTxn("CID Transaction", self, self.dji.Citation)
         self.sid_trans = DjangoTxn("SID Transaction", self, self.dji.Source)
         self.oid_trans = DjangoTxn("OID Transaction", self, self.dji.Media)
         self.rid_trans = DjangoTxn("RID Transaction", self, self.dji.Repository)
         self.nid_trans = DjangoTxn("NID Transaction", self, self.dji.Note)
         self.eid_trans = DjangoTxn("EID Transaction", self, self.dji.Event)
+        self.cmap_index = 0
         self.smap_index = 0
         self.emap_index = 0
         self.pmap_index = 0
@@ -138,6 +143,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         self.person_map = {}
         self.family_map = {}
         self.place_map  = {}
+        self.citation_map = {}
         self.source_map = {}
         self.repository_map  = {}
         self.note_map = {}
@@ -182,6 +188,8 @@ class DbDjango(DbWriteBase, DbReadBase):
                 self.dji.add_place(obj.serialize())
             elif isinstance(obj, gen.lib.Repository):
                 self.dji.add_repository(obj.serialize())
+            elif isinstance(obj, gen.lib.Citation):
+                self.dji.add_citation(obj.serialize())
             elif isinstance(obj, gen.lib.Source):
                 self.dji.add_source(obj.serialize())
             elif isinstance(obj, gen.lib.Note):
@@ -199,6 +207,8 @@ class DbDjango(DbWriteBase, DbReadBase):
                 self.dji.add_place_detail(obj.serialize())
             elif isinstance(obj, gen.lib.Repository):
                 self.dji.add_repository_detail(obj.serialize())
+            elif isinstance(obj, gen.lib.Citation):
+                self.dji.add_citation_detail(obj.serialize())
             elif isinstance(obj, gen.lib.Source):
                 self.dji.add_source_detail(obj.serialize())
             elif isinstance(obj, gen.lib.Note):
@@ -279,6 +289,17 @@ class DbDjango(DbWriteBase, DbReadBase):
         self.person_prefix = self._validated_id_prefix(val, "I")
         self.id2user_format = self.__id2user_format(self.person_prefix)
 
+    def set_citation_id_prefix(self, val):
+        """
+        Set the naming template for GRAMPS Citation ID values. 
+        
+        The string is expected to be in the form of a simple text string, or 
+        in a format that contains a C/Python style format string using %d, 
+        such as C%d or C%04d.
+        """
+        self.source_prefix = self._validated_id_prefix(val, "C")
+        self.cid2user_format = self.__id2user_format(self.citation_prefix)
+            
     def set_source_id_prefix(self, val):
         """
         Set the naming template for GRAMPS Source ID values. 
@@ -402,6 +423,15 @@ class DbDjango(DbWriteBase, DbReadBase):
                                           self.omap_index, self.oid_trans)
         return gid
 
+    def find_next_citation_gramps_id(self):
+        """
+        Return the next available GRAMPS' ID for a Citation object based off the 
+        citation ID prefix.
+        """
+        self.cmap_index, gid = self.__find_next_gramps_id(self.citation_prefix,
+                                          self.cmap_index, self.cid_trans)
+        return gid
+
     def find_next_source_gramps_id(self):
         """
         Return the next available GRAMPS' ID for a Source object based off the 
@@ -459,6 +489,9 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def get_event_handles(self):
         return [item.handle for item in self.dji.Event.all()]
+
+    def get_citation_handles(self):
+        return [item.handle for item in self.dji.Citation.all()]
 
     def get_source_handles(self):
         return [item.handle for item in self.dji.Source.all()]
@@ -532,6 +565,13 @@ class DbDjango(DbWriteBase, DbReadBase):
             data = self.dji.get_repository(repository)
         return gen.lib.Repository.create(data)
 
+    def make_citation(self, citation):
+        if self.use_db_cache and citation.cache:
+            data = cPickle.loads(base64.decodestring(citation.cache))
+        else:
+            data = self.dji.get_citation(citation)
+        return gen.lib.Citation.create(data)
+
     def make_source(self, source):
         if self.use_db_cache and source.cache:
             data = cPickle.loads(base64.decodestring(source.cache))
@@ -596,6 +636,15 @@ class DbDjango(DbWriteBase, DbReadBase):
                 obj.unserialize(tuple_obj)
                 return obj
         return None
+
+    def get_citation_from_handle(self, handle):
+        if handle in self.import_cache:
+            return self.import_cache[handle]
+        try:
+            citation = self.dji.Citation.get(handle=handle)
+        except:
+            return None
+        return self.make_citation(citation)
 
     def get_source_from_handle(self, handle):
         if handle in self.import_cache:
@@ -676,6 +725,9 @@ class DbDjango(DbWriteBase, DbReadBase):
     def get_number_of_notes(self):
         return self.dji.Note.count()
 
+    def get_number_of_citations(self):
+        return self.dji.Citation.count()
+
     def get_number_of_sources(self):
         return self.dji.Source.count()
 
@@ -697,6 +749,9 @@ class DbDjango(DbWriteBase, DbReadBase):
     def get_events_cursor(self):
         return Cursor(self.dji.Event, self.get_raw_event_data).iter()
 
+    def get_citation_cursor(self):
+        return Cursor(self.dji.Citation, self.get_raw_citation_data).iter()
+
     def get_source_cursor(self):
         return Cursor(self.dji.Source, self.get_raw_source_data).iter()
 
@@ -708,6 +763,9 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def has_family_handle(self, handle):
         return self.dji.Family.filter(handle=handle).count() == 1
+
+    def has_citation_handle(self, handle):
+        return self.dji.Citation.filter(handle=handle).count() == 1
 
     def has_source_handle(self, handle):
         return self.dji.Source.filter(handle=handle).count() == 1
@@ -756,6 +814,15 @@ class DbDjango(DbWriteBase, DbReadBase):
     def get_raw_family_data(self, handle):
         try:
             return self.dji.get_family(self.dji.Family.get(handle=handle))
+        except:
+            if handle in self.import_cache:
+                return self.import_cache[handle].serialize()
+            else:
+                return None
+
+    def get_raw_citation_data(self, handle):
+        try:
+            return self.dji.get_citation(self.dji.Citation.get(handle=handle))
         except:
             if handle in self.import_cache:
                 return self.import_cache[handle].serialize()
@@ -823,6 +890,14 @@ class DbDjango(DbWriteBase, DbReadBase):
         self.commit_family(family, trans)
         return family.handle
 
+    def add_citation(self, citation, trans, set_gid=True):
+        if not citation.handle:
+            citation.handle = Utils.create_id()
+        if not citation.gramps_id or set_gid:
+            citation.gramps_id = self.find_next_citation_gramps_id()
+        self.commit_citation(citation, trans)
+        return citation.handle
+
     def add_source(self, source, trans, set_gid=True):
         if not source.handle:
             source.handle = Utils.create_id()
@@ -889,6 +964,9 @@ class DbDjango(DbWriteBase, DbReadBase):
     def commit_family(self, family, trans, change_time=None):
         self.import_cache[family.handle] = family
 
+    def commit_citation(self, citation, trans, change_time=None):
+        self.import_cache[citation.handle] = citation
+
     def commit_source(self, source, trans, change_time=None):
         self.import_cache[source.handle] = source
 
@@ -918,6 +996,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         key2table = {
             PERSON_KEY:     self.id_trans, 
             FAMILY_KEY:     self.fid_trans, 
+            CITATION_KEY:   self.cid_trans, 
             SOURCE_KEY:     self.sid_trans, 
             EVENT_KEY:      self.eid_trans, 
             MEDIA_KEY:      self.oid_trans, 
