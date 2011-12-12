@@ -487,12 +487,13 @@ class Family(PrimaryObject):
         mother = self.mother.get_primary_name() if self.mother else "No mother"
         return str("%s and %s" % (father, mother))
 
-class Citation(PrimaryObject):
+class Citation(DateObject, PrimaryObject):
     confidence = models.IntegerField(blank=True)
     page = models.CharField(max_length=50, blank=True)
-    abbrev = models.CharField(max_length=50, blank=True)
-    #source = models.ForeignKey('Source')
-    source = generic.GenericForeignKey("object_type", "object_id")
+    source = models.ForeignKey('Source', null=True, blank=True)
+    references = generic.GenericRelation('CitationRef', related_name="refs",
+                                         content_type_field="object_type",
+                                         object_id_field="object_id")
 
     def __unicode__(self):
         return "Citation to " + str(self.source)
@@ -505,10 +506,7 @@ class Source(PrimaryObject):
     author = models.CharField(max_length=50, blank=True)
     pubinfo = models.CharField(max_length=50, blank=True)
     abbrev = models.CharField(max_length=50, blank=True)
-    #datamaps = models.ManyToManyField('Datamap', null=True, blank=True)
-    references = generic.GenericRelation('Citation', related_name="citation",
-                                         content_type_field="object_type",
-                                         object_id_field="object_id")
+
     # Other keys here:
     #   .datamap_set
 
@@ -698,15 +696,15 @@ class Markup(models.Model):
     string = models.TextField(blank=True, null=True)
     start_stop_list = models.TextField(default="[]")
 
-class Datamap(models.Model):
+class SourceDatamap(models.Model):
     key = models.CharField(max_length=80, blank=True)
     value = models.CharField(max_length=80, blank=True)
-    source = models.ForeignKey("Source", null=True, blank=True)
+    source = models.ForeignKey("Source")
 
 class CitationDatamap(models.Model):
     key = models.CharField(max_length=80, blank=True)
     value = models.CharField(max_length=80, blank=True)
-    source = models.ForeignKey("Citation", null=True, blank=True)
+    citation = models.ForeignKey("Citation")
 
 class Address(DateObject, SecondaryObject):
     #locations = models.ManyToManyField('Location', null=True)
@@ -775,7 +773,7 @@ class BaseRef(models.Model):
 
     #attributes = models.ManyToManyField("Attribute", null=True)
     private = models.BooleanField()
-  
+
 class NoteRef(BaseRef):
     ref_object = models.ForeignKey('Note') 
 
@@ -804,6 +802,12 @@ class PersonRef(BaseRef):
     def __unicode__(self):
         return "PersonRef to " + str(self.ref_object)
 
+class CitationRef(BaseRef):
+    citation = models.ForeignKey('Citation') 
+
+    def __unicode__(self):
+        return "CitationRef to " + str(self.citation)
+  
 class ChildRef(BaseRef):
     father_rel_type = models.ForeignKey('ChildRefType', 
                                         related_name="child_father_rel")
@@ -874,7 +878,8 @@ TABLES = [
     ("primary", Note),
     ("abstract", SecondaryObject),
     ("secondary", Attribute),
-    ("secondary", Datamap),
+    ("secondary", SourceDatamap),
+    ("secondary", CitationDatamap),
     ("secondary", Name),
     ("secondary", Surname),
     ("secondary", Lds),
@@ -883,6 +888,7 @@ TABLES = [
     ("secondary", Location),
     ("secondary", Url),
     ("abstract", BaseRef),
+    ("ref", CitationRef),
     ("ref", NoteRef),
     ("ref", EventRef),
     ("ref", RepositoryRef),

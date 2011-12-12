@@ -185,8 +185,11 @@ class DjangoInterface(object):
         else:
             return map(self.pack_name, names)
      
-    def get_datamap(self, obj): # obj is source
-        return dict([map.key, map.value] for map in obj.datamap_set.all())
+    def get_source_datamap(self, source): 
+        return dict([map.key, map.value] for map in source.sourcedatamap_set.all())
+
+    def get_citation_datamap(self, citation): 
+        return dict([map.key, map.value] for map in citation.citationdatamap_set.all())
 
     def get_media_list(self, obj):
         obj_type = ContentType.objects.get_for_model(obj)
@@ -220,11 +223,11 @@ class DjangoInterface(object):
                                         object_type=obj_type).order_by("order")
         return map(self.pack_child_ref, childrefs)
 
-    def get_source_ref_list(self, obj):
+    def get_citation_list(self, obj):
         obj_type = ContentType.objects.get_for_model(obj)
-        sourcerefs = models.SourceRef.objects.filter(object_id=obj.id,
-                                        object_type=obj_type).order_by("order")
-        return map(self.pack_source_ref, sourcerefs)
+        citationrefs = models.CitationRef.objects.filter(object_id=obj.id,
+                                                         object_type=obj_type).order_by("order")
+        return [citationref.citation.handle for citationref in citationrefs]
 
     def get_event_refs(self, obj, order="order"):
         obj_type = ContentType.objects.get_for_model(obj)
@@ -268,13 +271,13 @@ class DjangoInterface(object):
         change = totime(event.last_changed)
         private = event.private
         note_list = self.get_note_list(event)           
-        source_list = self.get_source_ref_list(event)   
+        citation_list = self.get_citation_list(event)   
         media_list = self.get_media_list(event)         
         attribute_list = self.get_attribute_list(event)
         date = self.get_date(event)
         place = self.get_place_handle(event)
         return (str(handle), gid, the_type, date, description, place, 
-                source_list, note_list, media_list, attribute_list,
+                citation_list, note_list, media_list, attribute_list,
                 change, private)
 
     def get_note(self, note):
@@ -302,7 +305,7 @@ class DjangoInterface(object):
         media_list = self.get_media_list(family)
         attribute_list = self.get_attribute_list(family)
         lds_seal_list = self.get_lds_list(family)
-        source_list = self.get_source_ref_list(family)
+        citation_list = self.get_citation_list(family)
         note_list = self.get_note_list(family)
         if family.father:
             father_handle = family.father.handle
@@ -317,7 +320,7 @@ class DjangoInterface(object):
                 child_ref_list, tuple(family.family_rel_type), 
                 event_ref_list, media_list,
                 attribute_list, lds_seal_list, 
-                source_list, note_list,
+                citation_list, note_list,
                 totime(family.last_changed), 
                 tuple(family.make_tag_list()), 
                 family.private)
@@ -336,10 +339,27 @@ class DjangoInterface(object):
                 totime(repository.last_changed), 
                 repository.private)
 
+    def get_citation(self, citation):
+        note_list = self.get_note_list(citation)
+        media_list = self.get_media_list(citation)
+        datamap = self.get_citation_datamap(citation)
+        date = self.get_date(citation)
+        return (str(citation.handle),  
+                citation.gramps_id, 
+                date,
+                citation.page, 
+                citation.confidence, 
+                citation.source.handle,
+                note_list, 
+                media_list, 
+                datamap, 
+                totime(citation.last_changed), 
+                citation.private) 
+
     def get_source(self, source):
         note_list = self.get_note_list(source)
         media_list = self.get_media_list(source)
-        datamap = self.get_datamap(source)
+        datamap = self.get_source_datamap(source)
         reporef_list = self.get_repository_ref_list(source)
         return (str(source.handle), 
                 source.gramps_id, 
@@ -356,7 +376,7 @@ class DjangoInterface(object):
 
     def get_media(self, media):
         attribute_list = self.get_attribute_list(media)
-        source_list = self.get_source_ref_list(media)
+        citation_list = self.get_citation_list(media)
         note_list = self.get_note_list(media)
         date = self.get_date(media)
         return (str(media.handle), 
@@ -365,7 +385,7 @@ class DjangoInterface(object):
                 media.mime, 
                 media.desc,
                 attribute_list,
-                source_list,
+                citation_list,
                 note_list,
                 totime(media.last_changed),
                 date,
@@ -383,7 +403,7 @@ class DjangoInterface(object):
         attribute_list = self.get_attribute_list(person)
         url_list = self.get_url_list(person)
         lds_ord_list = self.get_lds_list(person)
-        psource_list = self.get_source_ref_list(person)
+        pcitation_list = self.get_citation_list(person)
         pnote_list = self.get_note_list(person)
         person_ref_list = self.get_person_ref_list(person)
         # This looks up the events for the first EventType given:
@@ -405,7 +425,7 @@ class DjangoInterface(object):
                 attribute_list,     
                 url_list,               
                 lds_ord_list,       
-                psource_list,       
+                pcitation_list,       
                 pnote_list,         
                 totime(person.last_changed),             
                 tuple(person.make_tag_list()), 
@@ -438,7 +458,7 @@ class DjangoInterface(object):
                 alt_location_list.append(self.pack_location(location, True))
         url_list = self.get_url_list(place)
         media_list = self.get_media_list(place)
-        source_list = self.get_source_ref_list(place)
+        citation_list = self.get_citation_list(place)
         note_list = self.get_note_list(place)
         return (str(place.handle), 
                 place.gramps_id,
@@ -449,7 +469,7 @@ class DjangoInterface(object):
                 alt_location_list,
                 url_list,
                 media_list,
-                source_list,
+                citation_list,
                 note_list,
                 totime(place.last_changed), 
                 place.private)
@@ -463,22 +483,22 @@ class DjangoInterface(object):
     ## Reference packers
 
     def pack_child_ref(self, child_ref):
-        source_list = self.get_source_ref_list(child_ref)
+        citation_list = self.get_citation_list(child_ref)
         note_list = self.get_note_list(child_ref) 
-        return (child_ref.private, source_list, note_list, child_ref.ref_object.handle, 
+        return (child_ref.private, citation_list, note_list, child_ref.ref_object.handle, 
                 tuple(child_ref.father_rel_type), tuple(child_ref.mother_rel_type))
 
     def pack_person_ref(self, personref):
-        source_list = self.get_source_ref_list(personref)
+        citation_list = self.get_citation_list(personref)
         note_list = self.get_note_list(personref)
         return (personref.private, 
-                source_list,
+                citation_list,
                 note_list,
                 personref.ref_object.handle,
                 personref.description)
 
     def pack_media_ref(self, media_ref):
-        source_list = self.get_source_ref_list(media_ref)
+        citation_list = self.get_citation_list(media_ref)
         note_list = self.get_note_list(media_ref)
         attribute_list = self.get_attribute_list(media_ref)
         if ((media_ref.x1 == media_ref.y1 == media_ref.x2 == media_ref.y2 == -1) or
@@ -486,7 +506,7 @@ class DjangoInterface(object):
             role = None
         else:
             role = (media_ref.x1, media_ref.y1, media_ref.x2, media_ref.y2)
-        return (media_ref.private, source_list, note_list, attribute_list, 
+        return (media_ref.private, citation_list, note_list, attribute_list, 
                 media_ref.ref_object.handle, role)
 
     def pack_repository_ref(self, repo_ref):
@@ -500,8 +520,8 @@ class DjangoInterface(object):
     def pack_media_ref(self, media_ref):
         note_list = self.get_note_list(media_ref)
         attribute_list = self.get_attribute_list(media_ref)
-        source_list = self.get_source_ref_list(media_ref)
-        return (media_ref.private, source_list, note_list, attribute_list, 
+        citation_list = self.get_citation_list(media_ref)
+        return (media_ref.private, citation_list, note_list, attribute_list, 
                 media_ref.ref_object.handle, (media_ref.x1,
                                               media_ref.y1,
                                               media_ref.x2,
@@ -513,17 +533,23 @@ class DjangoInterface(object):
         return (event_ref.private, note_list, attribute_list, 
                 event_ref.ref_object.handle, tuple(event_ref.role_type))
 
-    def pack_source_ref(self, source_ref):
-        ref = source_ref.ref_object.handle
-        confidence = source_ref.confidence
-        page = source_ref.page
-        private = source_ref.private
-        date = self.get_date(source_ref)
-        note_list = self.get_note_list(source_ref)
-        return (date, private, note_list, confidence, ref, page)
+    def pack_citation(self, citation):
+        handle = citation.handle
+        gid = citation.gramps_id
+        date = self.get_date(citation)
+        page = citation.page
+        confidence = citation.confidence
+        source_handle = citation.source.handle
+        note_list = self.get_note_list(citation)
+        media_list = self.get_media_list(citation)
+        datamap = self.get_citation_datamap(citation)
+        changed = totime(citation.last_changed)
+        private = citation.private
+        return (handle, gid, date, page, confidence, source_handle,
+                note_list, media_list, datamap, changed, private) 
 
     def pack_address(self, address, with_parish):
-        source_list = self.get_source_ref_list(address)
+        citation_list = self.get_citation_list(address)
         date = self.get_date(address)
         note_list = self.get_note_list(address)
         locations = address.location_set.all().order_by("order")
@@ -534,10 +560,10 @@ class DjangoInterface(object):
                 location = (("", "", "", "", "", "", ""), "")
             else:
                 location = ("", "", "", "", "", "", "")
-        return (address.private, source_list, note_list, date, location)
+        return (address.private, citation_list, note_list, date, location)
 
     def pack_lds(self, lds):
-        source_list = self.get_source_ref_list(lds)
+        citation_list = self.get_citation_list(lds)
         note_list = self.get_note_list(lds)
         date = self.get_date(lds)
         if lds.famc:
@@ -545,14 +571,14 @@ class DjangoInterface(object):
         else:
             famc = None
         place = self.get_place_handle(lds)
-        return (source_list, note_list, date, lds.lds_type[0], place,
+        return (citation_list, note_list, date, lds.lds_type[0], place,
                 famc, lds.temple, lds.status[0], lds.private)
 
     def pack_source(self, source):
         note_list = self.get_note_list(source)
         media_list = self.get_media_list(source)
         reporef_list = self.get_repository_ref_list(source)
-        datamap = self.get_datamap(source)
+        datamap = self.get_source_datamap(source)
         return (source.handle, source.gramps_id, source.title,
                 source.author, source.pubinfo,
                 note_list,
@@ -563,10 +589,10 @@ class DjangoInterface(object):
                 source.private)
 
     def pack_name(self, name):
-        source_list = self.get_source_ref_list(name)
+        citation_list = self.get_citation_list(name)
         note_list = self.get_note_list(name)
         date = self.get_date(name)
-        return (name.private, source_list, note_list, date,
+        return (name.private, citation_list, note_list, date,
                 name.first_name, name.make_surname_list(), name.suffix,
                 name.title, tuple(name.name_type), 
                 name.group_as, name.sort_as.val, 
@@ -585,10 +611,10 @@ class DjangoInterface(object):
         return  (url.private, url.path, url.desc, tuple(url.url_type))
 
     def pack_attribute(self, attribute):
-        source_list = self.get_source_ref_list(attribute)
+        citation_list = self.get_citation_list(attribute)
         note_list = self.get_note_list(attribute)
         return (attribute.private, 
-                source_list, 
+                citation_list, 
                 note_list, 
                 tuple(attribute.attribute_type), 
                 attribute.value)
@@ -601,9 +627,9 @@ class DjangoInterface(object):
         for child_data in ref_list:
             self.add_child_ref(obj, child_data)
     
-    def add_source_ref_list(self, obj, source_list):
-        for source_data in source_list:
-            self.add_source_ref(obj, source_data)
+    def add_citation_list(self, obj, citation_list):
+        for citation_handle in citation_list:
+            self.add_citation_ref(obj, citation_handle)
     
     def add_event_ref_list(self, obj, event_ref_list):
         for event_ref in event_ref_list:
@@ -687,7 +713,7 @@ class DjangoInterface(object):
     
     def add_person_ref(self, obj, person_ref_data):
         (private, 
-         source_list,
+         citation_list,
          note_list,
          handle,
          desc) = person_ref_data
@@ -706,7 +732,7 @@ class DjangoInterface(object):
                                   description=desc)
         person_ref.save()
         self.add_note_list(person_ref, note_list)
-        self.add_source_ref_list(person_ref, source_list)
+        self.add_citation_list(person_ref, citation_list)
     
     def add_note_ref(self, obj, note):
         count = note.references.count()
@@ -717,7 +743,7 @@ class DjangoInterface(object):
         note_ref.save()
     
     def add_media_ref(self, obj, media_ref_data):
-        (private, source_list, note_list, attribute_list, 
+        (private, citation_list, note_list, attribute_list, 
          ref, role) = media_ref_data
         try:
             media = models.Media.objects.get(handle=ref)
@@ -739,29 +765,59 @@ class DjangoInterface(object):
         media_ref.save()
         self.add_note_list(media_ref, note_list)
         self.add_attribute_list(media_ref, attribute_list)
-        self.add_source_ref_list(media_ref, source_list)
+        self.add_citation_list(media_ref, citation_list)
     
-    def add_source_ref(self, obj, source_data):
-        (date, private, note_list, confidence, ref, page) = source_data
+    def add_citation_ref(self, obj, handle):
         try:
-            source = models.Source.objects.get(handle=ref)
+            citation = models.Citation.objects.get(handle=handle)
+        except:
+            print >> sys.stderr, ("ERROR: Citation does not exist: '%s'" % 
+                                  handle)
+            return
+
+        count = models.CitationRef.objects.filter(object_id=obj.id,object_type=obj).count()
+        citation_ref = models.CitationRef(private=False,
+                                          referenced_by=obj,
+                                          citation=citation,
+                                          order=count + 1)
+        citation_ref.save()
+
+    def add_citation(self, citation_data):
+        (handle, gid, date, page, confidence, source_handle, note_list,
+         media_list, datamap, changed, private) = citation_data
+        citation = models.Citation(
+            handle=handle,
+            gramps_id=gid,
+            private=private, 
+            last_changed=todate(changed),
+            confidence=confidence, 
+            page=page)
+        citation.save()
+
+    def add_citation_detail(self, citation_data):
+        (handle, gid, date, page, confidence, source_handle, note_list,
+         media_list, datamap, change, private) = citation_data
+        try:
+            citation = models.Citation.objects.get(handle=handle)
+        except:
+            print >> sys.stderr, ("ERROR: Citation does not exist: '%s'" % 
+                                  handle)
+            return
+        try:
+            source = models.Source.objects.get(handle=source_handle)
         except:
             print >> sys.stderr, ("ERROR: Source does not exist: '%s'" % 
-                                  ref)
+                                  source_handle)
             return
-        count = source.references.count()
-        source_ref = models.SourceRef(private=private, 
-                                  confidence=confidence, 
-                                  page=page, 
-                                  order=count + 1,
-                                  referenced_by=obj, 
-                                  ref_object=source)
-        self.add_date(source_ref, date)
-        source_ref.save()
-        self.add_note_list(source_ref, note_list) 
-        
+        citation.source = source
+        self.add_date(citation, date)
+        citation.save()
+        self.add_note_list(citation, note_list) 
+        self.add_media_ref_list(citation, media_list) 
+        self.add_citation_datamap_dict(citation, datamap)
+
     def add_child_ref(self, obj, data):
-        (private, source_list, note_list, ref, frel, mrel) = data
+        (private, citation_list, note_list, ref, frel, mrel) = data
         try:
             child = models.Person.objects.get(handle=ref)
         except:
@@ -776,7 +832,7 @@ class DjangoInterface(object):
                                 father_rel_type=models.get_type(models.ChildRefType, frel),
                                 mother_rel_type=models.get_type(models.ChildRefType, mrel))
         child_ref.save()
-        self.add_source_ref_list(child_ref, source_list)
+        self.add_citation_list(child_ref, citation_list)
         self.add_note_list(child_ref, note_list)
     
     def add_event_ref(self, obj, event_data):
@@ -832,17 +888,22 @@ class DjangoInterface(object):
     
     ## Export individual objects:
     
-    def add_datamap_dict(self, source, datamap_dict):
+    def add_source_datamap_dict(self, source, datamap_dict):
         for key in datamap_dict:
             value = datamap_dict[key]
-            datamap = models.Datamap(key=key, value=value)
+            datamap = models.SourceDatamap(key=key, value=value)
             datamap.source = source
             datamap.save()
-            #source.datamaps.add(datamap)
-            #source.save()
+    
+    def add_citation_datamap_dict(self, citation, datamap_dict):
+        for key in datamap_dict:
+            value = datamap_dict[key]
+            datamap = models.CitationDatamap(key=key, value=value)
+            datamap.citation = citation
+            datamap.save()
     
     def add_lds(self, field, obj, data, order):
-        (lsource_list, lnote_list, date, type, place_handle,
+        (lcitation_list, lnote_list, date, type, place_handle,
          famc_handle, temple, status, private) = data
         if place_handle:
             try:
@@ -872,7 +933,7 @@ class DjangoInterface(object):
         self.add_date(lds, date)
         lds.save()
         self.add_note_list(lds, lnote_list)
-        self.add_source_ref_list(lds, lsource_list)
+        self.add_citation_list(lds, lcitation_list)
         if field == "person":
             lds.person = obj
         elif field == "family":
@@ -884,13 +945,13 @@ class DjangoInterface(object):
         return lds
     
     def add_address(self, field, obj, address_data, order):
-        (private, asource_list, anote_list, date, location) = address_data
+        (private, acitation_list, anote_list, date, location) = address_data
         address = models.Address(private=private, order=order)
         self.add_date(address, date)
         address.save()
         self.add_location("address", address, location, 1)
         self.add_note_list(address, anote_list) 
-        self.add_source_ref_list(address, asource_list)
+        self.add_citation_list(address, acitation_list)
         if field == "person":
             address.person = obj
         elif field == "repository":
@@ -904,14 +965,14 @@ class DjangoInterface(object):
         #obj.save()
     
     def add_attribute(self, obj, attribute_data):
-        (private, source_list, note_list, the_type, value) = attribute_data
+        (private, citation_list, note_list, the_type, value) = attribute_data
         attribute_type = models.get_type(models.AttributeType, the_type)
         attribute = models.Attribute(private=private,
                                  attribute_of=obj,
                                  attribute_type=attribute_type,
                                  value=value)
         attribute.save()
-        self.add_source_ref_list(attribute, source_list)
+        self.add_citation_list(attribute, citation_list)
         self.add_note_list(attribute, note_list)
         #obj.attributes.add(attribute)
         #obj.save()
@@ -989,7 +1050,7 @@ class DjangoInterface(object):
     
     def add_name(self, person, data, preferred):
         if data:
-            (private, source_list, note_list, date,
+            (private, citation_list, note_list, date,
              first_name, surname_list, suffix, title,
              name_type, group_as, sort_as, 
              display_as, call, nick, famnick) = data
@@ -1016,7 +1077,7 @@ class DjangoInterface(object):
             name.save()
             self.add_surname_list(name, surname_list)
             self.add_note_list(name, note_list)
-            self.add_source_ref_list(name, source_list)
+            self.add_citation_list(name, citation_list)
             #person.save()
            
     ## Export primary objects:
@@ -1038,7 +1099,7 @@ class DjangoInterface(object):
          attribute_list,     # 12
          url_list,               # 13
          lds_ord_list,       # 14
-         psource_list,       # 15
+         pcitation_list,       # 15
          pnote_list,         # 16
          change,             # 17
          tag_list,             # 18
@@ -1071,7 +1132,7 @@ class DjangoInterface(object):
          attribute_list,     # 12
          url_list,               # 13
          lds_ord_list,       # 14
-         psource_list,       # 15
+         pcitation_list,       # 15
          pnote_list,         # 16
          change,             # 17
          tag_list,             # 18
@@ -1096,7 +1157,7 @@ class DjangoInterface(object):
         self.add_attribute_list(person, attribute_list)
         self.add_url_list("person", person, url_list) 
         self.add_person_ref_list(person, person_ref_list)
-        self.add_source_ref_list(person, psource_list)
+        self.add_citation_list(person, pcitation_list)
         self.add_address_list("person", person, address_list)
         self.add_lds_list("person", person, lds_ord_list)
         # set person.birth and birth.death to correct events:
@@ -1157,7 +1218,7 @@ class DjangoInterface(object):
         # Unpack from the BSDDB:
         (handle, gid, father_handle, mother_handle,
          child_ref_list, the_type, event_ref_list, media_list,
-         attribute_list, lds_seal_list, source_list, note_list,
+         attribute_list, lds_seal_list, citation_list, note_list,
          change, tag_list, private) = data
     
         family = models.Family(handle=handle, gramps_id=gid, 
@@ -1171,7 +1232,7 @@ class DjangoInterface(object):
         # Unpack from the BSDDB:
         (handle, gid, father_handle, mother_handle,
          child_ref_list, the_type, event_ref_list, media_list,
-         attribute_list, lds_seal_list, source_list, note_list,
+         attribute_list, lds_seal_list, citation_list, note_list,
          change, tag_list, private) = data
     
         try:
@@ -1199,7 +1260,7 @@ class DjangoInterface(object):
         self.add_child_ref_list(family, child_ref_list)
         self.add_note_list(family, note_list)
         self.add_attribute_list(family, attribute_list)
-        self.add_source_ref_list(family, source_list)
+        self.add_citation_list(family, citation_list)
         self.add_media_ref_list(family, media_list)
         self.add_event_ref_list(family, event_ref_list)
         self.add_lds_list("family", family, lds_seal_list)
@@ -1236,7 +1297,7 @@ class DjangoInterface(object):
             return
         self.add_note_list(source, note_list) 
         self.add_media_ref_list(source, media_list)
-        self.add_datamap_dict(source, datamap)
+        self.add_source_datamap_dict(source, datamap)
         self.add_repository_ref_list(source, reporef_list)
     
     def add_repository(self, data):
@@ -1307,7 +1368,7 @@ class DjangoInterface(object):
          main_loc, alt_location_list,
          url_list,
          media_list,
-         source_list,
+         citation_list,
          note_list,
          change, private) = data
         place = models.Place(handle=handle, gramps_id=gid, title=title,
@@ -1321,7 +1382,7 @@ class DjangoInterface(object):
          main_loc, alt_location_list,
          url_list,
          media_list,
-         source_list,
+         citation_list,
          note_list,
          change, private) = data
         try:
@@ -1332,7 +1393,7 @@ class DjangoInterface(object):
             return
         self.add_url_list("place", place, url_list)
         self.add_media_ref_list(place, media_list)
-        self.add_source_ref_list(place, source_list)
+        self.add_citation_list(place, citation_list)
         self.add_note_list(place, note_list) 
         self.add_location("place", place, main_loc, 1)
         count = 2
@@ -1343,7 +1404,7 @@ class DjangoInterface(object):
     def add_media(self, data):
         (handle, gid, path, mime, desc,
          attribute_list,
-         source_list,
+         citation_list,
          note_list,
          change,
          date,
@@ -1360,7 +1421,7 @@ class DjangoInterface(object):
     def add_media_detail(self, data):
         (handle, gid, path, mime, desc,
          attribute_list,
-         source_list,
+         citation_list,
          note_list,
          change,
          date,
@@ -1373,12 +1434,12 @@ class DjangoInterface(object):
                                   handle)
             return
         self.add_note_list(media, note_list) 
-        self.add_source_ref_list(media, source_list)
+        self.add_citation_list(media, citation_list)
         self.add_attribute_list(media, attribute_list)
     
     def add_event(self, data):
         (handle, gid, the_type, date, description, place_handle, 
-         source_list, note_list, media_list, attribute_list,
+         citation_list, note_list, media_list, attribute_list,
          change, private) = data
         event = models.Event(handle=handle,
                              gramps_id=gid, 
@@ -1392,7 +1453,7 @@ class DjangoInterface(object):
 
     def add_event_detail(self, data):
         (handle, gid, the_type, date, description, place_handle, 
-         source_list, note_list, media_list, attribute_list,
+         citation_list, note_list, media_list, attribute_list,
          change, private) = data
         try:
             event = models.Event.objects.get(handle=handle)
@@ -1404,7 +1465,7 @@ class DjangoInterface(object):
         self.add_note_list(event, note_list)
         self.add_attribute_list(event, attribute_list)
         self.add_media_ref_list(event, media_list)
-        self.add_source_ref_list(event, source_list)
+        self.add_citation_list(event, citation_list)
     
     def rebuild_caches(self, callback=None):
         """
