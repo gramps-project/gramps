@@ -155,12 +155,10 @@ class GrampsTab(gtk.VBox):
         """
         if event.type == gtk.gdk.KEY_PRESS:
             if event.keyval in (_LEFT,) and \
-                    event.state in (gtk.gdk.MOD1_MASK, 
-                                    gtk.gdk.MOD1_MASK | gtk.gdk.MOD2_MASK):
+                    (event.state & gtk.gdk.MOD1_MASK):
                 self.prev_page()
             elif event.keyval in (_RIGHT,) and \
-                    event.state in (gtk.gdk.MOD1_MASK, 
-                                    gtk.gdk.MOD1_MASK | gtk.gdk.MOD2_MASK):
+                    (event.state & gtk.gdk.MOD1_MASK):
                 self.next_page()
             else:
                 return

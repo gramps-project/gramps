@@ -184,11 +184,10 @@ class DbManager(CLIDbManager):
         Grab ENTER so it does not start editing the cell, but behaves
         like double click instead
         """
-        if not event.state or event.state in (gtk.gdk.MOD2_MASK,):
-            if event.keyval in (_RETURN, _KP_ENTER):
-                if self.connect.get_property('sensitive'):
-                    self.top.response(gtk.RESPONSE_OK)
-                    return True
+        if event.keyval in (_RETURN, _KP_ENTER):
+            if self.connect.get_property('sensitive'):
+                self.top.response(gtk.RESPONSE_OK)
+                return True
         return False
 
     def __selection_changed(self, selection):

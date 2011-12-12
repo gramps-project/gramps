@@ -809,10 +809,9 @@ class ListView(NavigationView):
         """
         if not self.dbstate.open:
             return False
-        if not event.state or event.state in (gtk.gdk.MOD2_MASK, ):
-            if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
-                self.edit(obj)
-                return True
+        if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
+            self.edit(obj)
+            return True
         return False
 
     def _key_press_tree(self, obj, event):
@@ -823,7 +822,15 @@ class ListView(NavigationView):
         """
         if not self.dbstate.open:
             return False
-        if not event.state or event.state  in (gtk.gdk.MOD2_MASK, ):
+        elif event.state & gtk.gdk.SHIFT_MASK:
+            if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
+                store, paths = self.selection.get_selected_rows()
+                if paths:
+                    firstsel = paths[0]
+                    firstnode = self.model.on_get_iter(firstsel)
+                    if len(paths) == 1 and firstnode.handle is None:
+                        return self.expand_collapse_tree_branch()
+        else:
             if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
                 store, paths = self.selection.get_selected_rows()
                 if paths:
@@ -834,14 +841,6 @@ class ListView(NavigationView):
                     else:
                         self.edit(obj)
                         return True
-        elif event.state in (gtk.gdk.SHIFT_MASK, ):
-            if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
-                store, paths = self.selection.get_selected_rows()
-                if paths:
-                    firstsel = paths[0]
-                    firstnode = self.model.on_get_iter(firstsel)
-                    if len(paths) == 1 and firstnode.handle is None:
-                        return self.expand_collapse_tree_branch()
             
         return False
 

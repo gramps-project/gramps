@@ -127,7 +127,7 @@ class SidebarFilter(DbGUIElement):
             widget.set_tooltip_text(tooltip)
 
     def key_press(self, obj, event):
-        if not event.state or event.state in (gtk.gdk.MOD2_MASK,):
+        if not (event.state & gtk.gdk.CONTROL_MASK):
             if event.keyval in (_RETURN, _KP_ENTER):
                 self.clicked(obj)
         return False

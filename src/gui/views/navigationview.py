@@ -503,7 +503,7 @@ class NavigationView(PageView):
         if self.active:
             if event.type == gtk.gdk.KEY_PRESS:
                 if (event.keyval == gtk.keysyms.c and 
-                    event.state == gtk.gdk.CONTROL_MASK | gtk.gdk.MOD2_MASK):
+                    (event.state & gtk.gdk.CONTROL_MASK)):
                     self.call_copy()
                     return True
         return super(NavigationView, self).key_press_handler(widget, event)

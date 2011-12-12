@@ -220,16 +220,13 @@ class ButtonTab(GrampsTab):
                     return
                 self.add_button_clicked(obj)
             elif event.keyval in (_OPEN,) and self.share_btn and \
-                    event.state in (gtk.gdk.CONTROL_MASK, 
-                                    gtk.gdk.CONTROL_MASK | gtk.gdk.MOD2_MASK):
+                    (event.state & gtk.gdk.CONTROL_MASK):
                 self.share_button_clicked(obj)
             elif event.keyval in (_LEFT,) and \
-                    event.state in (gtk.gdk.MOD1_MASK, 
-                                    gtk.gdk.MOD1_MASK | gtk.gdk.MOD2_MASK):
+                    (event.state & gtk.gdk.MOD1_MASK):
                 self.prev_page()
             elif event.keyval in (_RIGHT,) and \
-                    event.state in (gtk.gdk.MOD1_MASK, 
-                                    gtk.gdk.MOD1_MASK | gtk.gdk.MOD2_MASK):
+                    (event.state & gtk.gdk.MOD1_MASK):
                 self.next_page()
             else:
                 return

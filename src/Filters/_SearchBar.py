@@ -138,7 +138,7 @@ class SearchBar(object):
             self.clear_button.set_sensitive(True)
 
     def key_press(self, obj, event):
-        if not event.state or event.state in (gtk.gdk.MOD2_MASK,):
+        if not (event.state & gtk.gdk.CONTROL_MASK):
             if event.keyval in (_RETURN, _KP_ENTER):
                 self.filter_button.set_sensitive(False)
                 self.clear_button.set_sensitive(True)

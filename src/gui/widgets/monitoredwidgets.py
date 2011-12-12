@@ -791,15 +791,14 @@ class MonitoredTagList(object):
         """
         Invoke the tag editor.
         """
-        if not event.state or event.state in (gtk.gdk.MOD2_MASK,):
-            if (event.type == gtk.gdk.BUTTON_PRESS or
-               (event.type == gtk.gdk.KEY_PRESS and
-                event.keyval in (_RETURN, _KP_ENTER))):
-                editor = TagEditor(self.tag_list, self.all_tags,
-                                   self.uistate, self.track)
-                if editor.return_list is not None:
-                    self.tag_list = editor.return_list
-                    self._display()
-                    self.set_list([item[0] for item in self.tag_list])
-                return True
+        if (event.type == gtk.gdk.BUTTON_PRESS or
+           (event.type == gtk.gdk.KEY_PRESS and
+            event.keyval in (_RETURN, _KP_ENTER))):
+            editor = TagEditor(self.tag_list, self.all_tags,
+                               self.uistate, self.track)
+            if editor.return_list is not None:
+                self.tag_list = editor.return_list
+                self._display()
+                self.set_list([item[0] for item in self.tag_list])
+            return True
         return False
