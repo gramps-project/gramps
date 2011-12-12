@@ -241,15 +241,14 @@ class RelCalc(tool.Tool, ManagedWindow.ManagedWindow):
         self.textbuffer.set_text(textval)
     
     def _key_press(self, obj, event):
-        if not event.state or event.state  in (gtk.gdk.MOD2_MASK, ):
-            if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
-                store, paths = self.selection.get_selected_rows()
-                if paths and len(paths[0]) == 1 :
-                    if self.tree.row_expanded(paths[0]):
-                        self.tree.collapse_row(paths[0])
-                    else:
-                        self.tree.expand_row(paths[0], 0)
-                    return True
+        if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
+            store, paths = self.selection.get_selected_rows()
+            if paths and len(paths[0]) == 1 :
+                if self.tree.row_expanded(paths[0]):
+                    self.tree.collapse_row(paths[0])
+                else:
+                    self.tree.expand_row(paths[0], 0)
+                return True
         return False
 
 #------------------------------------------------------------------------

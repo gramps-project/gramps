@@ -635,9 +635,8 @@ class EditRule(ManagedWindow.ManagedWindow):
             return self.expand_collapse()
 
     def _key_press(self, obj, event):
-        if not event.state or event.state  in (gtk.gdk.MOD2_MASK, ):
-            if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
-                return self.expand_collapse()
+        if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
+            return self.expand_collapse()
         return False    
     
     def expand_collapse(self):

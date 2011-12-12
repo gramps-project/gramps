@@ -323,9 +323,11 @@ class SurnameTab(EmbeddedList):
         """
         if not EmbeddedList.key_pressed(self, obj, event):
             if event.type == gtk.gdk.KEY_PRESS and event.keyval in (_TAB,):
-                if event.state not in (gtk.gdk.SHIFT_MASK, gtk.gdk.CONTROL_MASK):
+                if not (event.state & (gtk.gdk.SHIFT_MASK |
+                                       gtk.gdk.CONTROL_MASK)):
                     return self.next_cell()
-                elif event.state in (gtk.gdk.SHIFT_MASK, gtk.gdk.CONTROL_MASK):
+                elif (event.state & (gtk.gdk.SHIFT_MASK |
+                                     gtk.gdk.CONTROL_MASK)):
                     return self.prev_cell()
                 else:
                     return

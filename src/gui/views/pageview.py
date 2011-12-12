@@ -216,7 +216,7 @@ class PageView(DbGUIElement):
         if self.active:
             if event.type == gtk.gdk.KEY_PRESS:
                 if (event.keyval == gtk.keysyms.v and 
-                    event.state == gtk.gdk.CONTROL_MASK | gtk.gdk.MOD2_MASK):
+                    (event.state & gtk.gdk.CONTROL_MASK)):
                     self.call_paste()
                     return True
         return False
@@ -513,11 +513,9 @@ class PageView(DbGUIElement):
         Define the action for a key press event
         """
         # TODO: This is never used? (replaced in ListView)
-        #act if no modifier, and allow Num Lock as MOD2_MASK
-        if not event.state or event.state  in (gtk.gdk.MOD2_MASK, ):
-            if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
-                self.edit(obj)
-                return True
+        if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
+            self.edit(obj)
+            return True
         return False
 
     def on_delete(self):
