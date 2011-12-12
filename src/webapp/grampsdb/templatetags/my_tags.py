@@ -93,6 +93,9 @@ register.filter('probably_alive', probably_alive)
 format_number.is_safe = True
 register.filter('format_number', format_number)
 
+table_count.is_safe = True
+register.filter('table_count', table_count)
+
 person_get_birth_date.is_safe = True
 register.filter('person_get_birth_date', person_get_birth_date)
 

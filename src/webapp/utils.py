@@ -132,6 +132,33 @@ def format_number(number, with_grouping=True):
     else:
         return locale.format("%d", 0, with_grouping)
 
+def table_count(table, with_grouping=True):
+    # FIXME: should be user's setting
+    locale.setlocale(locale.LC_ALL, "en_US.utf8")
+    if table == "person":
+        number = models.Person.objects.count()
+    elif table == "family":
+        number = models.Family.objects.count()
+    elif table == "event":
+        number = models.Event.objects.count()
+    elif table == "note":
+        number = models.Note.objects.count()
+    elif table == "media":
+        number = models.Media.objects.count()
+    elif table == "citation":
+        number = models.Citation.objects.count()
+    elif table == "source":
+        number = models.Source.objects.count()
+    elif table == "place":
+        number = models.Place.objects.count()
+    elif table == "repository":
+        number = models.Repository.objects.count()
+    elif table == "tag":
+        number = models.Tag.objects.count()
+    else:
+        return "[unknown table]"
+    return locale.format("%d", number, with_grouping)
+
 def nbsp(string):
     """
     """

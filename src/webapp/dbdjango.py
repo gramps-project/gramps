@@ -297,7 +297,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         in a format that contains a C/Python style format string using %d, 
         such as C%d or C%04d.
         """
-        self.source_prefix = self._validated_id_prefix(val, "C")
+        self.citation_prefix = self._validated_id_prefix(val, "C")
         self.cid2user_format = self.__id2user_format(self.citation_prefix)
             
     def set_source_id_prefix(self, val):
