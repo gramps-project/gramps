@@ -112,6 +112,7 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
         DateBase.unserialize(self, date)
         NoteBase.unserialize(self, note_list)
         MediaBase.unserialize(self, media_list)
+        return self
         
     def _has_handle_reference(self, classname, handle):
         """
