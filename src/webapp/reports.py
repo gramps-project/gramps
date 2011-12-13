@@ -47,6 +47,7 @@ def import_file(db, filename, callback):
 
     >>> import_file(DbDjango(), "/home/user/Untitled_1.ged", lambda a: a)
     """
+    from grampsdb.models import Person
     dbstate = DbState.DbState()
     climanager = CLIManager(dbstate, False) # do not load db_loader
     climanager.do_reg_plugins(dbstate, None)
@@ -68,6 +69,10 @@ def import_file(db, filename, callback):
             db.prepare_import()
             import_function(db, filename, callback)
             db.commit_import()
+            # FIXME: need to call probably_alive
+            for person in Person.objects.all():
+                person.probably_alive = not bool(person.death)
+                person.save()
             return True
     return False
 

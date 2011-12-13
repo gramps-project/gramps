@@ -233,6 +233,8 @@ def view_name_detail(request, handle, order, action="view"):
             n = form.save()
         else:
             action = "edit"
+        # FIXME: need to update cache
+        # FIXME: need to reset probabily_alive
     context = RequestContext(request)
     context["action"] = action
     context["tview"] = _('Name')
