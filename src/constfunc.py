@@ -98,8 +98,7 @@ def is_quartz():
 
 def has_display():
     """
-    Tests to see if Python is currently running with gtk and 
-    windowing system is Mac OS-X's "quartz".
+    Tests to see if Python is currently running with gtk 
     """
     # FIXME: currently, gtk.init_check() requires all strings
     # in argv, and we might have unicode.

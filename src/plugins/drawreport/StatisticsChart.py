@@ -695,8 +695,8 @@ class StatisticsChart(Report):
         The arguments are:
 
         database        - the GRAMPS database instance
-        person          - currently selected person
-        options   - instance of the Options class for this report
+        options         - instance of the Options class for this report
+        user            - a gen.user.User() instance
 
         To see what the options are, check the options help in the options class.
         """

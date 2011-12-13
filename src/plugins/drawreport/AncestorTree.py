@@ -651,8 +651,8 @@ class AncestorTree(Report):
         The arguments are:
 
         database        - the GRAMPS database instance
-        person          - currently selected person
         options         - instance of the Options class for this report
+        user            - a gen.user.User() instance
 
         """
         Report.__init__(self, database, options, user)

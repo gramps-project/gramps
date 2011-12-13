@@ -374,7 +374,7 @@ class DescendantReport(Report):
 
 #------------------------------------------------------------------------
 #
-# AncestorOptions
+# DescendantOptions
 #
 #------------------------------------------------------------------------
 class DescendantOptions(MenuReportOptions):

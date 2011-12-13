@@ -260,7 +260,7 @@ class ArgHandler(object):
         """
         if self.gui:
             return
-        # Need to covert path/filename to unicode before openingh
+        # Need to convert path/filename to unicode before opening
         # For non latin characters in Windows path/file/user names
         value = Utils.get_unicode_path_from_env_var(value)
         fname = value
