@@ -26,6 +26,25 @@ body#FamilyMap {
     padding: 0 14px;
     width: 965px;
 }
+
+/*    Family Maps
+------------------------------------------------------ */
+#map_canvas {
+    margin-left: 10px;
+    margin-right: 10px;
+    border: solid 4px #000;
+    width: 931px;
+    height: 1000px;
+}
+
+/*    Place Maps
+------------------------------------------------------ */
+div#place_canvas {
+    margin-left: 210px;
+    border: solid 4px #000;
+    width: 500px;
+    height: 400px;
+}
 button#drop {
     background-color: purple;
     color: #FFF;
@@ -36,37 +55,24 @@ button#drop {
     border: solid 4px #00029D;
 }
 
-/*    Family Maps
+/*    Subsection: References
 ------------------------------------------------------ */
-div#map_canvas {
-    margin-left: 10px;
-    margin-right: 10px;
-    border: solid 4px #000;
-    width: 931px;
-    height: 1000px;
-}
-div#FamilyMapDeatail div#references table.infolist {
+div#FamilyMapDetail div#references table.infolist {
     width: 100%;
 }
-div#FamilyMapDeatail div#references table.infolist thead tr th {
+div#FamilyMapDetail div#references table.infolist thead tr th {
     font-weight: bold;
-    font-size: .6em;
+    font-size: .9em;
 }
-div#FamilyMapDeatail div#references table.infolist thead tr th.ColumnName {
-    width: 25%;
+div#FamilyMapDetail div#references table.infolist thead tr th.ColumnDate {
+    width: 8%;
 }
-div#FamilyMapDeatail div#references table.infolist thead tr th.ColumnDate {
-    width: 20%;
+div#FamilyMapDetail div#references table.infolist thead tr th.ColumnName {
+    width: 55%;
 }
-div#FamilyMapDeatail div#references table.infolist thead tr th.ColumnType {
+div#FamilyMapDetail div#references table.infolist thead tr th.ColumnType {
     width: 10%;
 }
-
-/*    Place Maps
------------------------------------------------------- */
-div#place_canvas {
-    margin-left: 210px;
-    border: solid 4px #000;
-    width: 500px;
-    height: 400px;
+div#FamilyMapDetail div#references table.infolist tbody tr td {
+    font-size: .9em;
 }

@@ -353,7 +353,7 @@ table.infolist thead tr th a:hover {
     color: #FFF;
 }
 table.infolist tr td {
-    font: normal 1.1em/1.4em serif;
+    font: normal .9em serif;
     vertical-align: middle;
     padding: 6px 0 6px 10px;
 }

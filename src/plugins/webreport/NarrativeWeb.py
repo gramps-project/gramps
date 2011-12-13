@@ -96,7 +96,8 @@ import gen.mime
 from gen.display.name import displayer as _nd
 from DateHandler import displayer as _dd
 from gen.proxy import PrivateProxyDb, LivingProxyDb
-from libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS, openstreetmap_jsc, google_jsc
+from libhtmlconst import (_CHARACTER_SETS, _CC, _COPY_OPTIONS,
+                          openstreetmap_jsc, google_jsc)
 
 # import HTML Class from src/plugins/lib/libhtml.py
 from libhtml import Html
@@ -111,6 +112,8 @@ from gui.pluginmanager import GuiPluginManager
 #------------------------------------------------
 # constants
 #------------------------------------------------
+
+# javascript code for Google's FamilyLinks...
 familylinks = """
   var tracelife = %s
 
@@ -138,6 +141,7 @@ familylinks = """
    flightPath.setMap(map);
   }"""
 
+# javascript for Google's Drop Markers...
 dropmarkers = """
   var markers = [];
   var iterator = 0;
@@ -179,6 +183,7 @@ dropmarkers = """
     iterator++;
   }"""
 
+# javascript for Google's Markers...
 markers = """
   var tracelife = %s
   var map;
@@ -213,6 +218,49 @@ markers = """
       });
       bounds.extend(myLatLng);
       map.fitBounds(bounds);
+    }
+  }"""
+
+# javascript for OpenStreetMap's markers...
+osm_markers = """
+  OpenLayers.Lang.setCode("%s");
+  var map;
+
+  var tracelife = %s
+
+  function initialize(){
+    map = new OpenLayers.Map('map_canvas');
+
+    var wms = new OpenLayers.Layer.WMS(
+      "OpenLayers WMS",
+      "http://vmap0.tiles.osgeo.org/wms/vmap0",
+      {'layers':'basic'});
+    var dm_wms = new OpenLayers.Layer.WMS(
+      "Canadian Data",
+      "http://www2.dmsolutions.ca/cgi-bin/mswms_gmap",
+      {layers: "bathymetry,land_fn,park,drain_fn,drainage," +
+         "prov_bound,fedlimit,rail,road,popplace",
+         transparent: "true",
+         format: "image/png"},
+       {isBaseLayer: false});
+     map.addLayers([wms, dm_wms]);
+
+    map.setCenter(new OpenLayers.LonLat(%s, %s), %d);
+
+    var markers = new OpenLayers.Layer.Markers("Markers");
+    map.addLayer(markers);
+
+    addMarkers(markers, map);
+  }
+
+  function addMarkers(markers, map) {
+    for (var i = 0; i < tracelife.length; i++) {
+      var location = tracelife[i];
+
+      marker = new OpenLayers.Marker(new OpenLayers.LonLat(location[0], location[1]));
+      markers.addMarker(marker); 
+      map.addControl(new OpenLayers.Control.LayerSwitcher());
+      map.zoomToMaxExtent();
     }
   }"""
 # there is no need to add an ending "</script>",
@@ -1267,11 +1315,13 @@ class BasePage(object):
 
         # Header constants
         xmllang = Utils.xml_lang()
-        _META1 = 'name ="viewport" content ="width=device-width, initial-scale=1.0, user-scalable=yes" '
-        _META2 = 'name="generator" content="%s %s %s"' % (
+        _META1 = 'name ="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1"'
+        _META2 = 'name ="apple-mobile-web-app-capable" content="yes"'
+        _META3 = 'name="generator" content="%s %s %s"' % (
                     const.PROGRAM_NAME, const.VERSION, const.URL_HOMEPAGE)
-        _META3 = 'name="author" content="%s"' % self.author
+        _META4 = 'name="author" content="%s"' % self.author
 
+        # begin each html page...
         page, head, body = Html.page('%s - %s' % 
                                     (html_escape(self.title_str.strip()), 
                                      html_escape(title)),
@@ -1285,7 +1335,8 @@ class BasePage(object):
         meta = Html("meta", attr = _META1) + (
                 Html("meta", attr = _META2, indent = False),
                 Html("meta", attr = _META3, indent =False),
-               )
+                Html("meta", attr = _META4, indent = False)
+        )
 
         # Link to _NARRATIVESCREEN  stylesheet
         fname = "/".join(["styles", _NARRATIVESCREEN])
@@ -1352,6 +1403,7 @@ class BasePage(object):
                 inc_repos = False
 
         # create media pages...
+        _create_media_link = False
         if self.create_media:
             _create_media_link = True
             if self.create_thumbs_only:
@@ -4911,10 +4963,12 @@ class IndividualPage(BasePage):
         @param: person -- person from database
         @param: place_lat_long -- for use in Family Map Pages
         """
-
-        # if there is no latitude/ longitude data, then return?
         if not place_lat_long:
             return
+
+        of = self.report.create_file(person.get_handle(), "maps")
+        self.up = True
+        familymappage, head, body = self.write_header(_("Family Map"))
 
         minx, maxx = Decimal("0.00000001"), Decimal("0.00000001")
         miny, maxy = Decimal("0.00000001"), Decimal("0.00000001")
@@ -4923,9 +4977,9 @@ class IndividualPage(BasePage):
 
         number_markers = len(place_lat_long)
         if number_markers > 1:
-            for (lat, long, p, h, d, etype) in place_lat_long:
-                xwidth.append(lat)
-                yheight.append(long)
+            for (latitude, longitude, placetitle, handle, date, etype) in place_lat_long:
+                xwidth.append(latitude)
+                yheight.append(longitude)
             xwidth.sort()
             yheight.sort()
 
@@ -4960,12 +5014,9 @@ class IndividualPage(BasePage):
         else:
             zoomlevel = 3 
 
-        # sort place_lat_long based on latitude and longitude order...
-        place_lat_long.sort()
-
-        of = self.report.create_file(person.get_handle(), "maps")
-        self.up = True
-        familymappage, head, body = self.write_header(_("Family Map"))
+        # 0 = latitude, 1 = longitude, 2 = place title, 3 = handle, and 4 = date, 5 = event type...
+        # being sorted by date, latitude, and longitude...
+        place_lat_long = sorted(place_lat_long, key =operator.itemgetter(4, 0, 1))
 
         # for all plugins
         # if family_detail_page
@@ -4985,111 +5036,55 @@ class IndividualPage(BasePage):
             head += Html("script", type ="text/javascript",
                 src ="http://www.openlayers.org/api/OpenLayers.js", inline =True)
 
-        # begin inline javascript code
-        # because jsc is a docstring, it does NOT have to properly indented
-        with Html("script", type ="text/javascript", indent =False) as jsc:
-            head += jsc
+        if number_markers > 1:
+            tracelife = "["
+            seq_ = 1
 
-            # if the number of places is only 1, then use code from imported javascript?
-            if number_markers == 1:
-                latitude, longitude, pname, handle, date, etype_ = place_lat_long[0]
+            for index in xrange(0, (number_markers - 1)):
+                latitude, longitude, placetitle, handle, date, etype = place_lat_long[index]
+
+                # are we using Google?
                 if self.mapservice == "Google":
-                    jsc += google_jsc % (latitude, longitude)
-                else:
-                    jsc += openstreetmap_jsc % (Utils.xml_lang()[3:5].lower(), longitude, latitude)
 
-            # number of markers > 1
-            else:
-                if self.mapservice == "Google":
-                    tracelife = """["""
-
-                    seq_ = 1
-                    for index in xrange(0, (number_markers - 1)):
-                        latitude, longitude, placetitle, handle, date, etype = place_lat_long[index]
-
-                        if self.googleopts == "FamilyLinks":
-                            tracelife += """
-    new google.maps.LatLng(%s, %s),""" % (latitude, longitude)
-
-                        elif self.googleopts in ["Drop", "Markers"]:
-                            tracelife += """
-    ['%s', %s, %s, %d],""" % (placetitle, latitude, longitude, seq_)
-                            seq_ += 1
-
-                    latitude, longitude, placetitle, handle ,date, etype = place_lat_long[-1]
+                    # are we creating Family Links?
                     if self.googleopts == "FamilyLinks":
                         tracelife += """
+    new google.maps.LatLng(%s, %s),""" % (latitude, longitude)
+
+                    # are we creating Drop Markers or Markers?
+                    elif self.googleopts in ["Drop", "Markers"]:
+                        tracelife += """
+    ['%s', %s, %s, %d],""" % (placetitle, latitude, longitude, seq_)
+
+                # are we using OpenStreetMap?
+                else:
+                    tracelife += """
+    [%s, %s],""" % (longitude, latitude)
+                seq_ += 1
+            latitude, longitude, placetitle, handle ,date, etype = place_lat_long[-1]
+
+            # are we using Google?
+            if self.mapservice == "Google":
+
+                # are we creating Family Links?
+                if self.googleopts == "FamilyLinks":
+                    tracelife += """
     new google.maps.LatLng(%s, %s)
   ];""" % (latitude, longitude)
 
-                    elif self.googleopts in ["Drop", "Markers"]:
-                        tracelife += """
+                # are we creating Drop Markers or Markers?
+                elif self.googleopts in ["Drop", "Markers"]:
+                    tracelife += """
     ['%s', %s, %s, %d]
-  ];""" % (placetitle, latitude, longitude, seq_+1)
+  ];""" % (placetitle, latitude, longitude, seq_)
 
-                    if self.googleopts == "FamilyLinks":
-                        jsc += familylinks % (tracelife, midX_, midY_, zoomlevel)
+            # are we using OpenStreetMap?
+            elif self.mapservice == "OpenStreetMap":
+                tracelife += """
+    [%s, %s]
+  ];""" % (longitude, latitude)
 
-                    # Google Drop Markers...
-                    if self.googleopts == "Drop":
-                        jsc += dropmarkers  % (tracelife, zoomlevel)
-
-                    # Google Maps Markers only...
-                    elif self.googleopts == "Markers":
-                        jsc += markers % (tracelife, zoomlevel)
-
-                elif self.mapservice == "OpenStreetMap":
-                    jsc += """
-    OpenLayers.Lang.setCode("%s");
-
-    map = new OpenLayers.Map("map_canvas");
-    map.addLayer(new OpenLayers.Layer.OSM());
-    
-    epsg4326 =  new OpenLayers.Projection("EPSG:4326"); //WGS 1984 projection
-    projectTo = map.getProjectionObject(); //The map projection (Spherical Mercator)
-   
-    var centre = new OpenLayers.LonLat( %s, %s ).transform(epsg4326, projectTo);
-    var zoom = %d;
-    map.setCenter(centre, zoom);
-
-    var vectorLayer = new OpenLayers.Layer.Vector("Overlay");""" % (Utils.xml_lang()[3:5].lower(),
-                                                                    midY_, midX_, zoomlevel)
-                    for (latitude, longitude, pname, h, d, etype) in place_lat_long:
-                        jsc += """
-    var feature = new OpenLayers.Feature.Vector(
-        new OpenLayers.Geometry.Point( %s, %s ).transform(epsg4326, projectTo),
-        {description:'%s'}
-    );  
-    vectorLayer.addFeatures(feature);""" % (longitude, latitude, pname)
-                        jsc += """   
-    map.addLayer(vectorLayer);
- 
-    //Add a selector control to the vectorLayer with popup functions
-    var controls = {
-        selector: new OpenLayers.Control.SelectFeature(vectorLayer, { onSelect: 
-        createPopup, onUnselect: destroyPopup })
-    };
-    function createPopup(feature) {
-        feature.popup = new OpenLayers.Popup.FramedCloud("pop",
-            feature.geometry.getBounds().getCenterLonLat(),
-            null,
-            '<div id="geo-info">'+feature.attributes.description+'</div>',
-            null,
-            true,
-        function() { controls['selector'].unselectAll(); }
-        );
-        //feature.popup.closeOnMove = true;
-        map.addPopup(feature.popup);
-    }
-    function destroyPopup(feature) {
-      feature.popup.destroy();
-      feature.popup = null;
-    }
-    map.addControl(controls['selector']);
-    controls['selector'].activate();"""
-# there is no need to add an ending "</script>",
-# as it will be added automatically by libhtml()
-
+        # begin MapDetail division...
         with Html("div", class_ ="content", id ="FamilyMapDetail") as mapdetail:
             body += mapdetail
 
@@ -5105,11 +5100,49 @@ class IndividualPage(BasePage):
                     "name in the Reference section will take you to that place&#8217;s page.") 
             mapdetail += Html("p", msg, id = "description")
 
-            # here is where the map is held in the CSS/ Page
-            with Html("div", id ="map_canvas", inline =True) as canvas:
+            # this is the style element where the Map is held in the CSS...
+            with Html("div", id ="map_canvas") as canvas:
                 mapdetail += canvas
 
-            # if Google and Markers are selected, then add "Drop Markers" button?
+                # begin javascript inline code...
+                with Html("script", deter ="deter", type ="text/javascript", indent =False) as jsc:
+                    head += jsc
+
+                    # if there is only one marker?
+                    if number_markers == 1:
+                        latitude, longitude, placetitle, handle, date, etype = place_lat_long[0]
+
+                        # are we using Google?
+                        if self.mapservice == "Google":
+                            jsc += google_jsc % (latitude, longitude)
+
+                        # we are using OpenStreetMap?
+                        else:
+                            jsc += openstreetmap_jsc % (Utils.xml_lang()[3:5].lower(), longitude, latitude)
+
+                    # there is more than one marker...
+                    else:
+
+                        # are we using Google?
+                        if self.mapservice == "Google":
+
+                            # are we creating Family Links?
+                            if self.googleopts == "FamilyLinks":
+                                jsc += familylinks % (tracelife, midX_, midY_, zoomlevel)
+
+                            # are we creating Drop Markers?
+                            elif self.googleopts == "Drop":
+                                jsc += dropmarkers  % (tracelife, zoomlevel)
+
+                            # we are creating Markers only...
+                            else:
+                                jsc += markers % (tracelife, zoomlevel)
+
+                        # we are using OpenStreetMap...
+                        else:
+                            jsc += osm_markers % (Utils.xml_lang()[3:5].lower(), tracelife, midY_, midX_, zoomlevel)
+
+            # if Google and Drop Markers are selected, then add "Drop Markers" button?
             if (self.mapservice == "Google" and self.googleopts == "Drop"):
                 mapdetail += Html("button", _("Drop Markers"), id ="drop", onclick ="drop()", inline =True)
 
@@ -5129,29 +5162,27 @@ class IndividualPage(BasePage):
 
                     trow.extend(
                         Html("th", label, class_ =colclass, inline =True)
-                        for (label, colclass) in [
-                            (_("Place Title"), "ColumnName"),
-                            (_("Date"),        "ColumnDate"),
-                            (_("Event Type"),  "ColumnType") ]
+                            for (label, colclass) in [
+                                (_("Date"),        "ColumnDate"),
+                                (_("Place Title"), "ColumnName"),
+                                (_("Event Type"),  "ColumnType")
+                            ]
                     )
 
                     tbody = Html("tbody")
                     table += tbody
     
-                    # 0 = latitude, 1 = longitude, 2 = place title, 3 = handle, and 4 = date
-                    place_lat_long = sorted(place_lat_long, key =operator.itemgetter(4, 3, 0, 1))
                     for (latitude, longitude, placetitle, handle, date, etype) in place_lat_long:
-    
                         trow = Html("tr")
                         tbody += trow
 
                         trow.extend(
                             Html("td", data, class_ =colclass, inline =True)
-                            for data, colclass in [
-                                (self.place_link(handle, placetitle, up =True), "ColumnName"),
-                                (date,                                          "ColumnDate"),
-                                (etype,                                         "ColumnType")
-                            ]
+                                for data, colclass in [
+                                    (date,                                          "ColumnDate"),
+                                    (self.place_link(handle, placetitle, up =True), "ColumnName"),
+                                    (etype,                                         "ColumnType")
+                                ]
                         )
                         
         # add body id for this page...
