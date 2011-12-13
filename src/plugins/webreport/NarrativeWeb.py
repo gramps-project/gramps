@@ -598,7 +598,6 @@ class BasePage(object):
 
         lnk = (self.report.cur_fname, self.page_title, self.gid)
         text = ""
-
         for citation_handle in citation_handle_list:
             citation = self.report.database.get_citation_from_handle(
                                                 citation_handle)
@@ -616,7 +615,7 @@ class BasePage(object):
             # the citation reference text
             index, key = self.bibli.add_reference(citation)
             id_ = "%d%s" % (index+1, key)
-            text += ' [<a href="#sref%s ">%s</a>]' % (id_, id_)
+            text += ' [<a href="#sref%s">%s</a>]' % (id_, id_)
 
         # return citation list text to its callers
         return text
@@ -691,7 +690,6 @@ class BasePage(object):
 
         @param: notelist -- list of notes
         """
-
         if not notelist:
             return Html("div")
 
@@ -894,7 +892,7 @@ class BasePage(object):
                                             omit =EventRoleType.FAMILY)
         return table
 
-    def get_event_data(self, evt, evt_ref, up, gid = None):
+    def get_event_data(self, evt, evt_ref, up, gid =None):
         """
         retrieve event data from event and evt_ref
 
@@ -5168,7 +5166,7 @@ class IndividualPage(BasePage):
                         Html("th", label, class_ =colclass, inline =True)
                             for (label, colclass) in [
                                 (_("Date"),        "ColumnDate"),
-                                (_("Place Title"), "ColumnName"),
+                                (_("Place Title"), "ColumnPlace"),
                                 (_("Event Type"),  "ColumnType")
                             ]
                     )
@@ -5184,7 +5182,7 @@ class IndividualPage(BasePage):
                             Html("td", data, class_ =colclass, inline =True)
                                 for data, colclass in [
                                     (date,                                          "ColumnDate"),
-                                    (self.place_link(handle, placetitle, up =True), "ColumnName"),
+                                    (self.place_link(handle, placetitle, up =True), "ColumnPlace"),
                                     (etype,                                         "ColumnType")
                                 ]
                         )

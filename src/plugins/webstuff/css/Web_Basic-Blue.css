@@ -372,6 +372,9 @@ table.infolist tr td.ColumnLetter {
     width: 3%;
     text-align: center;
 }
+table.infolist tbody tr td.ColumnDate {
+    width: 12%;
+}
 table.infolist tbody tr td.ColumnBirth {
     font-size:.9em;
     width: 10%;
@@ -561,7 +564,7 @@ div#Relationships table.infolist tbody tr td {
 }
 
 /* Places
-================================================= */
+=================================================----- */
 div#Places, div#PlaceDetail {
     font: normal 1em sans;
     margin: 0;
@@ -610,7 +613,7 @@ div#PlaceDetail h5 {
     
 
 /* EventList and EventDetail
------------------------------------------------------ */
+------------------------------------------------------ */
 div#EventList, div#EventDetail {
     margin: 0;
     padding: 0;
@@ -619,10 +622,7 @@ table.eventlist tbody tr td {
     border-bottom: dashed 1px #000;
 }
 table.eventlist tbody tr td.ColumnEvent {
-    width: 15%;
-}
-table.eventlist tbody tr td.ColumnDate {
-    width: 12%;
+    width: 10%;
 }
 table.eventlist tbody tr td.ColumnPlace {
     width: 25%;
@@ -631,7 +631,7 @@ table.eventlist tbody tr td.ColumnNotes {
     width: 20%;
 }
 table.eventlist tbody tr td.ColumnSources {
-    width: 10%;
+    width: 17%;
 }
 table.eventlist tbody tr td.ColumnPerson {
     width: 35%;
@@ -666,9 +666,6 @@ div#EventList table.alphaevent tbody tr td.ColumnType a:hover {
 }
 div#EventList table.alphaevent tbody tr td.ColumnGRAMPSID {
     width: 10%;
-}
-div#EventList table.alphaevent tbody tr td.ColumnDate {
-    width: 20%;
 }
 div#EventList table.alphaevent tbody tr td.ColumnPerson {
     width: 50%;
@@ -743,9 +740,6 @@ div#EventDetail table.eventlist tbody tr td.ColumnDate {
 #Gallery table.infolist tbody tr td.ColumnName a {
     display: block;
     padding: .2em 10px .4em 10px;
-}
-#Gallery table.infolist tbody tr td.ColumnDate {
-    width: 20%;
 }
 #Gallery table.infolist tbody tr td.ColumnMime {
     width: 20%;
@@ -1250,9 +1244,6 @@ div#Addresses {
 }
 div#Addresses table.infolist {
     font-size: 10px;
-}
-div#Addresses table.infolist tbody tr td.ColumnDate {
-    width: 15%;
 }
 div#Addresses table.infolist tbody tr td.ColumnStreetAddress {
     width: 30%;

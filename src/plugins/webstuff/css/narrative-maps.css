@@ -63,16 +63,14 @@ div#FamilyMapDetail div#references table.infolist {
 div#FamilyMapDetail div#references table.infolist thead tr th {
     font-weight: bold;
     font-size: .9em;
-}
-div#FamilyMapDetail div#references table.infolist thead tr th.ColumnDate {
-    width: 8%;
-}
-div#FamilyMapDetail div#references table.infolist thead tr th.ColumnName {
-    width: 55%;
-}
-div#FamilyMapDetail div#references table.infolist thead tr th.ColumnType {
-    width: 10%;
+    margin-left: 5%;
 }
 div#FamilyMapDetail div#references table.infolist tbody tr td {
     font-size: .9em;
+}
+div#FamilyMapDetail div#references table.infolist tbody tr td.ColumnPlace {
+    width: 55%;
+}
+div#FamilyMapDetail div#references table.infolist tbody tr td.ColumnType {
+    width: 10%;
 }
