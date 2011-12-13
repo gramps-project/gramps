@@ -221,6 +221,18 @@ markers = """
     }
   }"""
 
+canada_map = """
+    var dm_wms = new OpenLayers.Layer.WMS(
+      "Canadian Data",
+      "http://www2.dmsolutions.ca/cgi-bin/mswms_gmap",
+      {layers: "bathymetry,land_fn,park,drain_fn,drainage," +
+         "prov_bound,fedlimit,rail,road,popplace",
+         transparent: "true",
+         format: "image/png"},
+       {isBaseLayer: false});
+     map.addLayers([wms, dm_wms]);
+"""
+
 # javascript for OpenStreetMap's markers...
 osm_markers = """
   OpenLayers.Lang.setCode("%s");
@@ -235,15 +247,7 @@ osm_markers = """
       "OpenLayers WMS",
       "http://vmap0.tiles.osgeo.org/wms/vmap0",
       {'layers':'basic'});
-    var dm_wms = new OpenLayers.Layer.WMS(
-      "Canadian Data",
-      "http://www2.dmsolutions.ca/cgi-bin/mswms_gmap",
-      {layers: "bathymetry,land_fn,park,drain_fn,drainage," +
-         "prov_bound,fedlimit,rail,road,popplace",
-         transparent: "true",
-         format: "image/png"},
-       {isBaseLayer: false});
-     map.addLayers([wms, dm_wms]);
+    map.addLayer(wms);
 
     map.setCenter(new OpenLayers.LonLat(%s, %s), %d);
 
@@ -260,7 +264,6 @@ osm_markers = """
       marker = new OpenLayers.Marker(new OpenLayers.LonLat(location[0], location[1]));
       markers.addMarker(marker); 
       map.addControl(new OpenLayers.Control.LayerSwitcher());
-      map.zoomToMaxExtent();
     }
   }"""
 # there is no need to add an ending "</script>",
@@ -5105,7 +5108,8 @@ class IndividualPage(BasePage):
                 mapdetail += canvas
 
                 # begin javascript inline code...
-                with Html("script", deter ="deter", type ="text/javascript", indent =False) as jsc:
+                with Html("script", deter ="deter", style = 'width =100%; height =100%;',
+                                                    type ="text/javascript", indent =False) as jsc:
                     head += jsc
 
                     # if there is only one marker?
