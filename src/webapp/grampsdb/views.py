@@ -466,7 +466,7 @@ def view_person_detail(request, view, handle, action="view"):
             except:
                 name = Name(person=person, preferred=True)
             primary_surname = name.surname_set.get(primary=True)
-            default_data = {"surname": "XX" or primary_surname.surname, 
+            default_data = {"surname": primary_surname.surname, 
                             "prefix": primary_surname.prefix or "prefix",
                             "suffix": name.suffix or "suffix",
                             "first_name": name.first_name,
@@ -519,7 +519,11 @@ def view_person_detail(request, view, handle, action="view"):
                 return fix_person(request, person)
             pf = PersonForm(instance=person)
             pf.model = person
+            primary = name.surname_set.get(primary=True)
             nf = NameForm(instance=name)
+            nf.prefix=primary.prefix
+            nf.surname=primary.surname
+            nf.origin=primary.name_origin_type
             nf.model = name
     else: # view person detail
         # BEGIN NON-AUTHENTICATED ACCESS

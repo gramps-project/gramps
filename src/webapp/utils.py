@@ -582,7 +582,11 @@ def render(formfield, user, action, test=False, truetext=""):
             try:
                 retval = str(getattr(formfield.form.model, fieldname))
             except:
-                retval = "???" # formfield._data()
+                # name, "prefix"
+                try:
+                    retval = str(getattr(formfield.form, fieldname)) # formfield._data()
+                except:
+                    retval = "XXX"
         else:
             retval = truetext
     else:
