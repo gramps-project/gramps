@@ -77,7 +77,8 @@ else:
             try:
                 lang = locale.getdefaultlocale()[0] + '.UTF-8'
             except TypeError:
-                pass
+                print 'Unable to determine your Locale, using English'
+                lang = 'en.UTF-8'
 
     os.environ["LANG"] = lang
     os.environ["LANGUAGE"] = lang
