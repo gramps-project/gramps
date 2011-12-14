@@ -53,10 +53,12 @@ langLookup = {
             'es' : 'Spanish',
             'fi' : 'Finnish',
             'fr' : 'French',
+            'ga' : 'Irish',
             'he' : 'Hebrew',
             'hr' : 'Croatian',
             'hu' : 'Hungarian',
             'it' : 'Italian',
+            'ja' : 'Japanese',
             'lt' : 'Lithuanian',
             'mk' : 'Macedonian',
             'nb' : '',
@@ -72,6 +74,8 @@ langLookup = {
             'sr' : 'Serbian',
             'sv' : 'Swedish',
             'tr' : 'Turkish',
+            'uk' : 'Ukrainian',
+            'vi' : 'Vietnamese',
             'zh_CN' : 'Chinese (PRC)',
             }
 
