@@ -20,22 +20,14 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-**************************************************************************************************
+******************************************************
 GRAMPS Cascading Style Sheet
 Style Name: Web_Navigation-Horizontal.css
-***************************************************************************************************
+******************************************************
 
-# $Id: $
+# $Id$
 
- Body Element
------------------------------------------------------ */
-body {
-    margin: 0 auto;
-    padding: 5px;
-    width: 969px;
-}
-
-/* Navigation
+   Navigation
 ----------------------------------------------------- */
 div#navigation, div#subnavigation {
     width: 100%;
@@ -45,7 +37,6 @@ div#navigation, div#subnavigation {
 div#navigation ul, div#subnavigation ul {
     list-style: none;
     min-width: 900px;
-    height: 24px;
     margin: 0;
     padding: 0px 0px 0px 18px;
     border-bottom: solid 2px #000;
@@ -57,18 +48,19 @@ div#navigation ul li a, div#subnavigation ul li a {
     display: block;
     padding: 4px 12px 7px 1px;
     float: left;
-    font: .8em bold italic small-caps verdana, serif;
+    font-size: .8em;
+    font-weight: bold;
+    font-family: Helvetica, Arial, sans;
     text-decoration: none;
     margin: 0;
 }
 #navigation ul li.CurrentSection a, #subnavigation ul li.CurrentSection a {
-    padding: 3px 0px 3px 1px;
     border-width: 0px 1px 1px 1px;    
     border-style: solid;
-    border-color: #000;
+    border-color: purple;
 }
 #subnavigation ul li.CurrentSection a {
-    border-width: 0 0 1px 0;
+    border-width: 0px 0px 1px 0px;
 }
 
 /* Alphabet Navigation
@@ -80,25 +72,27 @@ div#alphabet {
 div#alphabet ul {
     list-style: none;
     min-width: 770px;
-    height: 32px;
+    height: 24px;
     margin: 0;
     padding: 0px 0px 0px 16px;
     border-width: 2px 0px 4px 0px;
     border-style: solid;
     border-color: #000;
 }
-div#alphabet ul li:after {
-    content: "  |";
-}
 div#alphabet ul li {
     margin: 0;
     float: left;
+}
+div#alphabet ul li:after {
+    content: "  |";
 }
 div#alphabet ul li a {
     display: block;
     padding: 8px 8px 8px 8px;
     float: left;
-    font: 1em bold sans;
+    font-size: .8em;
+    font-weight: bold;
+    font-family: sans-serif;
     margin: 0;
     text-decoration: none;
 }

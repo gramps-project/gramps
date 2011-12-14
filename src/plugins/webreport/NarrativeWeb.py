@@ -4233,11 +4233,11 @@ class SourceListPage(BasePage):
                 thead += trow
 
                 header_row = [
-                    (None, "RowLabel"),
-                    (_("Source Name|Name"), "Name") ]
+                    (None,                  "ColumnRowLabel"),
+                    (_("Source Name|Name"), "ColumnName") ]
 
                 trow.extend(
-                    Html("th", label or "&nbsp;", class_ = "Column" + colclass, inline = True)
+                    Html("th", label or "&nbsp;", class_ =colclass, inline =True)
                     for (label, colclass) in header_row)
                     
                 # begin table body
@@ -4245,14 +4245,14 @@ class SourceListPage(BasePage):
                 table += tbody
 
                 for index, key in enumerate(keys):
-                    (source, handle) = source_dict[key]
+                    source, handle = source_dict[key]
 
                     trow = Html("tr") + (
-                        Html("td", index + 1, class_ = "ColumnRowLabel", inline = True)
-                        )
+                        Html("td", index + 1, class_ ="ColumnRowLabel", inline =True)
+                    )
                     tbody += trow
                     trow.extend(
-                        Html("td", self.source_link(source, None), class_ = "ColumnName")
+                        Html("td", self.source_link(source, None), class_ ="ColumnName")
                     )
 
         # add clearline for proper styling
