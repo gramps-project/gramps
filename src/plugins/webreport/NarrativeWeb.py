@@ -4888,16 +4888,25 @@ class IndividualPage(BasePage):
 
             photo_list = self.person.get_media_list()
             media_list = photo_list[:]
-            for handle in self.person.get_family_handle_list():
-                family = db.get_family_from_handle(handle)
-                media_list += family.get_media_list()
-                for evt_ref in family.get_event_ref_list():
+
+            # if Family Pages are not being created, then include the Family Media objects?
+            # there is no reason to add these objects to the Individual Pages...
+            if not self.inc_families:
+                for handle in self.person.get_family_handle_list():
+                    family = db.get_family_from_handle(handle)
+                    if family:
+                        media_list += family.get_media_list()
+                        for evt_ref in family.get_event_ref_list():
+                            event = db.get_event_from_handle(evt_ref.ref)
+                            media_list += event.get_media_list()
+
+            # if the Event Pages are not being createsd, then include the Event Media objects?
+            # there is no reason to add these objects to the Individual Pages...
+            if not self.inc_events:
+                for evt_ref in self.person.get_primary_event_ref_list():
                     event = db.get_event_from_handle(evt_ref.ref)
-                    media_list += event.get_media_list()
-            for evt_ref in self.person.get_primary_event_ref_list():
-                event = db.get_event_from_handle(evt_ref.ref)
-                if event:
-                    media_list += event.get_media_list()
+                    if event:
+                        media_list += event.get_media_list()
 
             # display additional images as gallery
             sect7 = self.display_additional_images_as_gallery(media_list, person)
