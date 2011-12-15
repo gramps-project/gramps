@@ -60,17 +60,6 @@ button#drop {
 div#FamilyMapDetail div#references table.infolist {
     width: 100%;
 }
-div#FamilyMapDetail div#references table.infolist thead tr th {
-    font-weight: bold;
-    font-size: .9em;
-    margin-left: 5%;
-}
-div#FamilyMapDetail div#references table.infolist tbody tr td {
-    font-size: .9em;
-}
 div#FamilyMapDetail div#references table.infolist tbody tr td.ColumnPlace {
-    width: 55%;
-}
-div#FamilyMapDetail div#references table.infolist tbody tr td.ColumnType {
-    width: 10%;
+    width: 40%;
 }
