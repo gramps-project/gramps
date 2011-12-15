@@ -1088,6 +1088,7 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         if book:
             self.open_book(book)
             self.name_entry.set_text(book.get_name())
+            self.book.name = book.get_name()
 
     def on_edit_clicked(self, obj):
         """
@@ -1193,6 +1194,7 @@ class BookReportDialog(DocReportDialog):
         DocReportDialog.__init__(self, dbstate, uistate, options,
                                   'book', _("Book Report"))
         self.book = book
+        self.options.options_dict['bookname'] = self.book.name
         self.database = dbstate.db
         self.selected_style = StyleSheet()
 
