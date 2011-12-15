@@ -121,7 +121,6 @@ familylinks = """
     var myLatLng = new google.maps.LatLng(%s, %s);
 
     var mapOptions = {
-      scrollwheel:     false,
       scaleControl:    true,
       panControl:      true,
       backgroundColor: '#000000',
@@ -190,7 +189,6 @@ markers = """
 
   function initialize() {
     var mapOptions = {
-      scrollwheel:     false,
       scaleControl:    true,
       panControl:      true,
       backgroundColor: '#000000',
@@ -904,8 +902,12 @@ class BasePage(object):
                 latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
                 if latitude is not None:
                     event_date = event.get_date_object()
-                    etype = str(event.get_type())
-                    place_lat_long.append([latitude, longitude, placetitle, place_handle, event_date, etype])
+                    etype = event.get_type()
+
+                    # only allow Birth, Death, Census, Marriage, and Divorce events...
+                    if etype in [gen.lib.EventType.BIRTH, gen.lib.EventType.DEATH, gen.lib.EventType.CENSUS,
+                                 gen.lib.EventType.MARRIAGE, gen.lib.EventType.DIVORCE]:
+                        place_lat_long.append([latitude, longitude, placetitle, place_handle, event_date, etype])
 
     def _get_event_place(self, person, ppl_handle_list, place_lat_long):
         """
@@ -5112,7 +5114,7 @@ class IndividualPage(BasePage):
                                 for data, colclass in [
                                     (date,                                          "ColumnDate"),
                                     (self.place_link(handle, placetitle, up =True), "ColumnPlace"),
-                                    (etype,                                         "ColumnType")
+                                    (str(etype),                                    "ColumnType")
                                 ]
                         )
                         
