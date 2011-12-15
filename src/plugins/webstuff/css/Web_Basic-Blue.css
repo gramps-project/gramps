@@ -183,26 +183,22 @@ span.preposition {
 
 /* Menu Elements
 ================================================= */
-div#navigation ul, div#subnavigation ul {
+div#navigation ul, div#subnavigation ul, div#alphabet ul {
     background-color: #00029D;
 }
-div#navigation ul li, 
-div#subnavigation ul li {
+div#navigation ul li, div#subnavigation ul li, div#alphabet ul li {
     border-color: #BCEAF6;
 }
-#navigation ul li:after, #subnavigation ul li:after,
-#alphabet ul li:after {
+div#alphabet ul li:after {
     color: #FFF;
 }
-div#navigation ul li a, div#subnavigation ul li a {
+div#navigation ul li a, div#subnavigation ul li a, div#alphabet ul li a {
     color: #FFF;
 }
-div#navigation ul li a:hover,
-div#subnavigation ul li a:hover {
+div#navigation ul li a:hover, div#subnavigation ul li a:hover, div#alphabet ul li a:hover {
     color: #000;
 }
-div#navigation ul li.CurrentSection a,
-div#subnavigation ul li.CurrentSection a {
+div#navigation ul li.CurrentSection a, div#subnavigation ul li.CurrentSection a {
     background-color: #FFF;
     color: #00029D;
     font: bold .9em sans;
@@ -318,10 +314,10 @@ table.infolist {
 }
 table.infolist thead tr th {
     color: #00029D;
-    margin-left: 5px;
-    padding-left: 20px;
+    margin-left: 10px;
     background-color: #BCEAF6;
     border: solid 1px #000;
+    font-size: 1em;
 }
 table.infolist tr td {
     border-bottom: dashed 1px #000;
@@ -406,6 +402,15 @@ div#Individuals div table.infolist tr td p {
 div#Individuals div table.infolist tr td p a {
     display: inline;
 }
+div#Individuals table.infolist tbody tr td.ColumnSurname a {
+    text-decoration: none;
+}
+div#Individuals table.infolist tbody tr td.ColumnSurname a:hover {
+    background: none;
+}
+div#Individuals table.infolist tbody tr td.ColumnName {
+    width: 20%;
+}
 div#IndividualDetail {
     padding: 0;
     margin: 0;
@@ -437,38 +442,20 @@ div#IndividualDetail div.subsection table tr td:first-child {
     margin: 0;
     padding: 0;
 }
-#SurnameDetail p#description {
-    padding-top: 0;
-}
 table.surnamelist thead tr th.ColumnSurname, 
 #Surnames table.surnamelist tbody tr td.ColumnSurname {
     width: 50%;
-}
-table.surnamelist thead tr th.ColumnSurname a {
-    color: #FFF;
-}
-table.surnamelist thead tr th {
-    padding: 0;
-}
-table.surnamelist thead tr th a, table.surnamelist thead tr th a:visited {
-    display: block;
-    text-align: left;
-    text-decoration: none;
-    padding: .2em 10px;
-}
-table.surnamelist thead tr th.ColumnLetter {
-    padding: 0px 10px 0px 20px;
-}
-table.surnamelist tbody tr td {
-    border-bottom: dashed 1px #000;
-}
-table.surnamelist tbody tr td.ColumnLetter a {
-    background: none;
 }
 table#SortByName thead tr th.ColumnSurname, 
 table#SortByCount thead tr th.ColumnQuantity {
     background-color: #00029D;
     color: #FFF;
+}
+table.surnamelist thead tr th.ColumnSurname a {
+    color: #FFF;
+}
+table.surnamelist thead tr th.ColumnSurname a:hover {
+    color: #000;
 }
 table#SortByName thead tr th.ColumnSurname a:after, 
 table#SortByCount thead tr th.ColumnQuantity a:after {
@@ -485,70 +472,29 @@ table.surname {
     border-bottom: solid 1px #000;
 }
 table.surname thead tr th.ColumnName {
-    width: 20%;
     padding-left: 20px;
-}
-table.surname tbody tr td {
-    border-bottom: dashed 1px #000;
-}
-table.surname tbody tr td.ColumnName {
-    width: 20%;
-    padding: 0;
-}
-table.surname tbody tr td.ColumnName a {
-    color: #000;
-}
-table.surname tbody tr td.ColumnName a span.grampsid {
-    color: #000;
 }
 table.surname tbody tr td.ColumnName:hover {
     background-color: #00029D;
     color: #FFF;
 }
-table.surname thead tr th.ColumnParents, 
-table.surname tbody tr td.ColumnParents {
-    width: 25%;
-}
 
 /*    Relationships
 ================================================= */
-div#Relationships, div#RelationshipDetail {
+div#RelationshipList, div#RelationshipDetail {
     margin: 0 auto;
     padding: 0;
     width: 100%;
 }
-div#Relationships table.infolist {
-    width: 100%;
-}
-div#Relationships table.infolist thead tr th.ColumnMarriage,
-div#Relationships table.infolist thead tr th.ColumnDivorce {
-    width: 10%;
-}
-div#Relationships table.infolist tbody tr.BeginFamily {
-    border-top: solid 1px #000;
-}
-div#Relationships table.infolist tbody tr td {
-    border-bottom: dashed 1px #000;
+div#RelationshipDetail div#FamilyDetail table.infolist tbody tr td {
+    border: none;
 }
 
 /* Places
 =================================================----- */
 div#Places, div#PlaceDetail {
-    font: normal 1em sans;
     margin: 0;
     padding: 0;
-}
-div#Places table.infolist tbody tr td {
-    border-bottom: dashed 1px #000;
-}
-div#Places table.infolist tbody tr td.ColumnLetter {
-    width: 3%;
-}
-div#Places table.infolist tbody tr td.ColumnLetter a:hover {
-    background: none;
-}
-div#Places table.infolist tbody tr td.ColumnName {
-    width: 25%;
 }
 div#Places table.infolist tbody tr td.ColumnState {
     width: 7%;
@@ -556,21 +502,9 @@ div#Places table.infolist tbody tr td.ColumnState {
 div#Places table.infolist tbody tr td.ColumnCountry {
     width: 6%;
 }
-div#Places table.infolist tbody tr td.ColumnLatitude {
-    width: 8%;
-}
+div#Places table.infolist tbody tr td.ColumnLatitude,
 div#Places table.infolist tbody tr td.ColumnLongitude {
     width: 8%;
-}
-div#PlaceDetail table.infolist tbody tr td {
-    border-bottom: dashed 1px #000;
-}
-div#PlaceDetail div#References a {
-    color: #000;
-}
-#div#PlaceDetail table.infolist tbody tr td.ColumnAttribute,
-div#PlaceDetail table.infolist tbody tr td.ColumnValue {
-    color: #000;
 }
 div#PlaceDetail h5 {
     font: bold .7cm serif;
@@ -585,9 +519,6 @@ div#PlaceDetail h5 {
 div#EventList, div#EventDetail {
     margin: 0;
     padding: 0;
-}
-table.eventlist tbody tr td {
-    border-bottom: dashed 1px #000;
 }
 table.eventlist tbody tr td.ColumnEvent {
     width: 10%;
@@ -609,9 +540,6 @@ div#IndividualDetail div#families table.eventlist tr td {
 }
 div#EventList table.infolist tbody tr td {
     border-bottom: dashed 1px #000;
-}
-div#EventList table.infolist tbody tr td.ColumnLetter a:hover {
-    background: none;
 }
 div#EventList table.eventlist tbody tr.BeginName {
     border-top: solid 1px #000;
@@ -982,25 +910,14 @@ div#events h4 {
     margin-bottom: 0;
     border: none;
 }
-div#events table.eventlist {
-    margin-top: .3em;
-}
-#IndividualDetail {
-    background-color: #FFF;
-}
 #IndividualDetail div#events table.eventtable {
     width: 100%;
 }
-#IndividualDetail div#events table.infolist thead tr th {
-    font-weight: bold;
-    font-size: 10px;
-    line-height: 12px;
-    color: #000;
-    padding: 6px 0px 4px 0px;
-    background-color: #BCEAF6;
-}
 #IndividualDetail div#events table.infolist thead tr th:first-child {
     padding-left: 20px;
+}
+table.eventlist tbody tr td.ColumnEvent {
+    width: 12%;
 }
 #IndividualDetail div#events table.infolist tbody tr td {
     padding-top: .4em;
@@ -1048,9 +965,6 @@ table.attrlist tbody tr td.ColumnSources {
 div#parents {
     margin: 0;
     padding: 0;
-}
-div#parents table.infolist tbody tr td.ColumnAttribute {
-    width: 19%;
 }
 div#parents table.infolist tbody tr td.ColumnValue ol {
     margin: 0;
