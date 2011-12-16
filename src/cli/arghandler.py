@@ -178,7 +178,7 @@ class ArgHandler(object):
         if self.errorfunc:
             self.errorfunc(msg1)
         else:
-            # Need to convert to system file encoding  before printing
+            # Need to convert to system file encoding before printing
             # For non latin characters in path/file/user names
             print >> sys.stderr, msg1.encode(sys.getfilesystemencoding())
             if msg2 is not None:
@@ -199,7 +199,7 @@ class ArgHandler(object):
     def __handle_open_option(self, value):
         """
         Handle the "-O" or "--open" option.
-        Only Family trees or a dir with a family tree can be opened.                  
+        Only Family trees or a dir with a family tree can be opened.
         """
         if value is None:
             return None
@@ -248,9 +248,9 @@ class ArgHandler(object):
             self.imports.append((fname, family_tree_format))
         else:
             self.__error(_('Error: Unrecognized type: "%(format)s" for '
-                    'import file: %(filename)s') \
-                  % {'format' : family_tree_format, 
-                     'filename' : fname})
+                           'import file: %(filename)s') % 
+                           {'format' : family_tree_format, 
+                            'filename' : fname})
             sys.exit(0)
             
     def __handle_export_option(self, value, family_tree_format):
@@ -270,8 +270,8 @@ class ArgHandler(object):
             fullpath = os.path.abspath(os.path.expanduser(fname))
             if os.path.exists(fullpath):
                 self.__error(_("WARNING: Output file already exists!\n"
-                        "WARNING: It will be overwritten:\n   %(name)s") % \
-                        {'name' : fullpath})
+                               "WARNING: It will be overwritten:\n   %s") % 
+                               fullpath)
                 answer = None
                 while not answer:
                     try:
@@ -336,9 +336,9 @@ class ArgHandler(object):
         method to handle the arguments that can be given for a GUI session.
         Returns the filename of the family tree that should be opened if 
         user just passed a famtree or a filename
-            1/no options: a family tree can be given, if so, this name is tested
-                        and returned. If a filename, it is imported in a new db
-                        and name of new db returned
+            1/no options: a family tree can be given, if so, this name is
+                        tested and returned. If a filename, it is imported
+                        in a new db and name of new db returned
             2/an open and/or import option can have been given, if so, this 
                 is handled, and None is returned
             
@@ -388,16 +388,18 @@ class ArgHandler(object):
         """
 
         if self.list:
-            print 'List of known family trees in your database path\n'
+            print _('List of known family trees in your database path\n')
             for name, dirname in sorted(self.dbman.family_tree_list(), key=lambda pair: pair[0].lower()):
-                print "%s with name \"%s\"" % (dirname, name.encode(sys.getfilesystemencoding()))
+                print _("%(full_DB_path)s with name \"%(f_t_name)s\"") % \
+                        {'full_DB_path' : dirname,
+                         'f_t_name' : name.encode(sys.getfilesystemencoding())}
             sys.exit(0)
             
         if self.list_more:
-            print 'Gramps Family Trees:'
+            print _('Gramps Family Trees:')
             summary_list = self.dbman.family_tree_summary()
             for summary in sorted(summary_list, key=lambda summary: summary["Family tree"].lower()):
-                print "Family Tree \"%s\":" % summary["Family tree"]
+                print _("Family Tree \"%s\":") % summary["Family tree"]
                 for item in sorted(summary):
                     if item != "Family tree":
                         print "   %s: %s" % (item, summary[item])
@@ -407,9 +409,9 @@ class ArgHandler(object):
         self.__import_action()
             
         for (action, options_str) in self.actions:
-            print >> sys.stderr, "Performing action: %s." % action
+            print >> sys.stderr, _("Performing action: %s.") % action
             if options_str:
-                print >> sys.stderr, "Using options string: %s" % options_str
+                print >> sys.stderr, _("Using options string: %s") % options_str
             self.cl_action(action, options_str)
 
         for expt in self.exports:
@@ -417,16 +419,19 @@ class ArgHandler(object):
             # For non latin characters in Windows path/file/user names
             fn = expt[0].encode(sys.getfilesystemencoding())
             fmt = str(expt[1])
-            print >> sys.stderr, "Exporting: file %s, format %s." % (fn, fmt)
+            print >> sys.stderr, _("Exporting: file %(filename)s, "
+                                   "format %(format)s.") % \
+                                   {'filename' : fn,
+                                    'format' : fmt}
             self.cl_export(expt[0], expt[1])
 
         if cleanup:
             self.cleanup()
-            print >> sys.stderr, "Exiting."
+            print >> sys.stderr, _("Exiting.")
             sys.exit(0)
 
     def cleanup(self):
-        print >> sys.stderr, "Cleaning up."
+        print >> sys.stderr, _("Cleaning up.")
         # remove files in import db subdir after use
         self.dbstate.db.close()
         if self.imp_db_path:
@@ -434,12 +439,12 @@ class ArgHandler(object):
 
     def __import_action(self):
         """
-        Take action for all given to import files. Note: Family trees are not
-            supported.
-        If a family tree is open, the import happens on top of it. If not open, 
-        a new family tree is created, and the import done. If this is CLI, 
-        the created tree is deleted at the end (as some action will have 
-        happened that is now finished), if this is GUI, it is opened.
+        Take action for all given import files. Note: Family trees are
+            not supported.
+        If a family tree is open, the import happens on top of it. If not
+        open, a new family tree is created, and the import done. If this
+        is CLI, the created tree is deleted at the end (as some action will
+        have happened that is now finished), if this is GUI, it is opened.
         """
         if self.imports:
             self.cl = bool(self.exports or self.actions or self.cl)
@@ -456,16 +461,18 @@ class ArgHandler(object):
                 
                 try:
                     self.sm.open_activate(self.imp_db_path)
-                    print >> sys.stderr, "Created empty family tree successfully"
+                    msg = _("Created empty family tree successfully")
+                    print >> sys.stderr, msg
                 except:
-                    print >> sys.stderr, "Error opening the file." 
-                    print >> sys.stderr, "Exiting..." 
+                    print >> sys.stderr, _("Error opening the file.")
+                    print >> sys.stderr, _("Exiting...")
                     sys.exit(0)
 
             for imp in self.imports:
                 fn = imp[0].encode(sys.getfilesystemencoding())
                 fmt = str(imp[1])
-                print >> sys.stderr, "Importing: file %s, format %s." % (fn, fmt)
+                msg = _("Importing: file %s, format %s.") % (fn, fmt)
+                print >> sys.stderr, msg
                 self.cl_import(imp[0], imp[1])
 
     def __open_action(self):
@@ -481,10 +488,10 @@ class ArgHandler(object):
             # we load this file for use
             try:
                 self.sm.open_activate(self.open)
-                print >> sys.stderr, "Opened successfully!"
+                print >> sys.stderr, _("Opened successfully!")
             except:
-                print >> sys.stderr, "Error opening the file." 
-                print >> sys.stderr, "Exiting..." 
+                print >> sys.stderr, _("Error opening the file.")
+                print >> sys.stderr, _("Exiting...")
                 sys.exit(0)
 
     def check_db(self, dbpath, force_unlock = False):
@@ -510,7 +517,8 @@ class ArgHandler(object):
     #-------------------------------------------------------------------------
     def cl_import(self, filename, family_tree_format):
         """
-        Command-line import routine. Try to import filename using the family_tree_format.
+        Command-line import routine.
+        Try to import filename using the family_tree_format.
         """
         pmgr = BasePluginManager.get_instance()
         for plugin in pmgr.get_import_plugins():
@@ -555,7 +563,7 @@ class ArgHandler(object):
                 options_str_dict = _split_options(options_str)
             except:
                 options_str_dict = {}
-                print >> sys.stderr, "Ignoring invalid options string."
+                print >> sys.stderr, _("Ignoring invalid options string.")
 
             name = options_str_dict.pop('name', None)
             _cl_list = pmgr.get_reg_reports(gui=False)
@@ -578,13 +586,15 @@ class ArgHandler(object):
                                       options_str_dict)
                         return
                 # name exists, but is not in the list of valid report names
-                msg = "Unknown report name."
+                msg = _("Unknown report name.")
             else:
-                msg = "Report name not given. Please use one of [-p|--options] name=reportname."
+                msg = _("Report name not given. "
+                        "Please use one of %(donottranslate)s=reportname.") % \
+                        {'donottranslate' : '[-p|--options] name'}
             
-            print >> sys.stderr, "%s\n Available names are:" % msg
+            print >> sys.stderr, _("%s\n Available names are:") % msg
             for pdata in sorted(_cl_list, key= lambda pdata: pdata.id.lower()):
-                # Print cli report name ([item[0]) and GUI report name (item[4])
+                # Print cli report name ([item[0]), GUI report name (item[4])
                 if len(pdata.id) <= 25:
                     print >> sys.stderr, \
                         "   %s%s- %s" % ( pdata.id, " " * (26 - len(pdata.id)),
@@ -600,7 +610,7 @@ class ArgHandler(object):
                                            chunk in options_str.split(',') ] )
             except:
                 options_str_dict = {}
-                print >> sys.stderr, "Ignoring invalid options string."
+                print >> sys.stderr, _("Ignoring invalid options string.")
 
             name = options_str_dict.pop('name', None)
             _cli_tool_list = pmgr.get_reg_tools(gui=False)
@@ -617,13 +627,15 @@ class ArgHandler(object):
                         tool.cli_tool(self.dbstate, name, category, tool_class,
                                       options_class, options_str_dict)
                         return
-                msg = "Unknown tool name."
+                msg = _("Unknown tool name.")
             else:
-                msg = "Tool name not given. Please use one of [-p|--options] name=toolname."
+                msg = _("Tool name not given. "
+                        "Please use one of %(donottranslate)s=toolname.") % \
+                        {'donottranslate' : '[-p|--options] name'}
             
-            print >> sys.stderr, "%s\n Available names are:" % msg
+            print >> sys.stderr, _("%s\n Available names are:") % msg
             for pdata in sorted(_cli_tool_list, key=lambda pdata: pdata.id.lower()):
-                # Print cli report name ([item[0]) and GUI report name (item[4])
+                # Print cli report name ([item[0]), GUI report name (item[4])
                 if len(pdata.id) <= 25:
                     print >> sys.stderr, \
                         "   %s%s- %s" % ( pdata.id, " " * (26 - len(pdata.id)),
@@ -632,5 +644,5 @@ class ArgHandler(object):
                     print >> sys.stderr, "   %s\t- %s" % (pdata.id,
                                  pdata.name.encode(sys.getfilesystemencoding()))
         else:
-            print >> sys.stderr, "Unknown action: %s." % action
+            print >> sys.stderr, _("Unknown action: %s.") % action
             sys.exit(0)
