@@ -26993,7 +26993,7 @@ msgstr "_Chemin :"
 
 #: ../src/glade/editmediaref.glade.h:27
 msgid "_Tags:"
-msgstr "_Étiquettes :"
+msgstr "É_tiquettes :"
 
 #: ../src/glade/editeventref.glade.h:2
 msgid "<b>Note:</b> Any changes in the shared event information will be reflected in the event itself, for all participants in the event."
