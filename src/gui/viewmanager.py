@@ -404,7 +404,7 @@ class ViewManager(CLIManager):
                             if "update" in whattypes:
                                 if (not config.get('behavior.do-not-show-previously-seen-updates') or
                                      plugin_dict["i"] not in config.get('behavior.previously-seen-updates')):
-                                    addon_update_list.append(("Updated",
+                                    addon_update_list.append((_("Updated"),
                                                               "%s/download/%s" %
                                                               (ADDONS_URL,
                                                                plugin_dict["z"]),
@@ -416,7 +416,7 @@ class ViewManager(CLIManager):
                         if "new" in whattypes:
                             if (not config.get('behavior.do-not-show-previously-seen-updates') or
                                  plugin_dict["i"] not in config.get('behavior.previously-seen-updates')):
-                                addon_update_list.append(("New",
+                                addon_update_list.append((_("New"),
                                                           "%s/download/%s" %
                                                           (ADDONS_URL,
                                                            plugin_dict["z"]),
@@ -427,14 +427,17 @@ class ViewManager(CLIManager):
             if fp:
                 fp.close()
             LOG.debug("Done checking!")
+            # List of translated strings used here
+            # Dead code for l10n
+            _('new'), _('update')
             if addon_update_list:
                 self.update_addons(addon_update_list)
             elif force:
                 from QuestionDialog import OkDialog
                 OkDialog(_("There are no available addons of this type"),
-                         _("Checked for '%s'") %
-                         _("' and '").join(config.get('behavior.check-for-update-types')),
-                         self.window)
+                          _("Checked for '%s'") %
+                          _("' and '").join([_(t) for t in config.get('behavior.check-for-update-types')]),
+                          self.window)
 
     def update_addons(self, addon_update_list):
         from glade import Glade
@@ -469,13 +472,13 @@ class ViewManager(CLIManager):
                 {"name": '', "type": TOGGLE},               # 6 visible? bool
                 ], list_mode="tree")
         pos = None
-        addon_update_list.sort(key=lambda x: "%s %s" % (_(x[0]), x[2]["t"]))
+        addon_update_list.sort(key=lambda x: "%s %s" % (x[0], x[2]["t"]))
         last_category = None
         for (status,plugin_url,plugin_dict) in addon_update_list:
             count = get_count(addon_update_list, plugin_dict["t"])
-            category = "%s %s" % (_(status), ngettext(plugin_dict["t"],
-                                                      plugin_dict["t"] + "s",
-                                                      count))
+            category = _("%(adjective)s: %(addon)s") % {
+                "adjective": status,
+                "addon": _(plugin_dict["t"])}
             if last_category != category:
                 last_category = category
                 node = self.list.add([False, # initially selected?
@@ -486,7 +489,7 @@ class ViewManager(CLIManager):
                                       "",
                                       False]) # checkbox visible?
             iter = self.list.add([False, # initially selected?
-                                  "%s %s" % (_(status), plugin_dict["t"]),
+                                  "%s %s" % (status, _(plugin_dict["t"])),
                                   "%s (%s)" % (plugin_dict["n"],
                                                plugin_dict["v"]),
                                   plugin_dict["d"],
