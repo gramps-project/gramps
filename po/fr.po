@@ -26100,7 +26100,7 @@ msgstr "_Nom de famille :"
 #: ../src/glade/editmediaref.glade.h:32
 #: ../src/glade/editnote.glade.h:13
 msgid "_Tags:"
-msgstr "_Étiquettes :"
+msgstr "É_tiquettes :"
 
 # éviter le raccourci sur le y ou le p
 #: ../src/glade/editperson.glade.h:38
