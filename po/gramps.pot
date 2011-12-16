@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-21 17:36+0100\n"
+"POT-Creation-Date: 2011-12-16 18:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -81,8 +81,8 @@ msgstr ""
 #. Name Column
 #: ../src/Bookmarks.py:212 ../src/ScratchPad.py:510 ../src/ToolTips.py:175
 #: ../src/ToolTips.py:201 ../src/ToolTips.py:212 ../src/gui/configure.py:429
-#: ../src/gui/filtereditor.py:734 ../src/gui/filtereditor.py:882
-#: ../src/gui/viewmanager.py:465 ../src/gui/editors/editfamily.py:113
+#: ../src/gui/filtereditor.py:733 ../src/gui/filtereditor.py:881
+#: ../src/gui/viewmanager.py:468 ../src/gui/editors/editfamily.py:113
 #: ../src/gui/editors/editname.py:302
 #: ../src/gui/editors/displaytabs/backreflist.py:61
 #: ../src/gui/editors/displaytabs/nameembedlist.py:71
@@ -108,7 +108,7 @@ msgstr ""
 
 #. Add column with object gramps_id
 #. GRAMPS ID
-#: ../src/Bookmarks.py:212 ../src/gui/filtereditor.py:885
+#: ../src/Bookmarks.py:212 ../src/gui/filtereditor.py:884
 #: ../src/gui/editors/editfamily.py:112
 #: ../src/gui/editors/displaytabs/backreflist.py:60
 #: ../src/gui/editors/displaytabs/eventembedlist.py:76
@@ -1089,7 +1089,7 @@ msgstr ""
 
 #. Create the tree columns
 #. 0 selected?
-#: ../src/ScratchPad.py:806 ../src/gui/viewmanager.py:464
+#: ../src/ScratchPad.py:806 ../src/gui/viewmanager.py:467
 #: ../src/gui/editors/displaytabs/attrembedlist.py:62
 #: ../src/gui/editors/displaytabs/backreflist.py:59
 #: ../src/gui/editors/displaytabs/eventembedlist.py:74
@@ -1133,7 +1133,7 @@ msgstr ""
 #: ../src/gui/selectors/selectplace.py:62
 #: ../src/gui/selectors/selectrepository.py:61
 #: ../src/gui/selectors/selectsource.py:61
-#: ../src/gui/widgets/grampletpane.py:1497
+#: ../src/gui/widgets/grampletpane.py:1498
 #: ../src/plugins/gramplet/PersonDetails.py:125
 #: ../src/plugins/textreport/TagReport.py:456
 #: ../src/plugins/view/mediaview.py:92 ../src/plugins/view/sourceview.py:76
@@ -1203,7 +1203,7 @@ msgid "On"
 msgstr ""
 
 #: ../src/TipOfDay.py:68 ../src/TipOfDay.py:69 ../src/TipOfDay.py:120
-#: ../src/gui/viewmanager.py:765
+#: ../src/gui/viewmanager.py:768
 msgid "Tip of the Day"
 msgstr ""
 
@@ -1253,43 +1253,43 @@ msgstr ""
 msgid "Child"
 msgstr ""
 
-#: ../src/TransUtils.py:308
+#: ../src/TransUtils.py:309
 msgid "the person"
 msgstr ""
 
-#: ../src/TransUtils.py:310
+#: ../src/TransUtils.py:311
 msgid "the family"
 msgstr ""
 
-#: ../src/TransUtils.py:312
+#: ../src/TransUtils.py:313
 msgid "the place"
 msgstr ""
 
-#: ../src/TransUtils.py:314
+#: ../src/TransUtils.py:315
 msgid "the event"
 msgstr ""
 
-#: ../src/TransUtils.py:316
+#: ../src/TransUtils.py:317
 msgid "the repository"
 msgstr ""
 
-#: ../src/TransUtils.py:318
+#: ../src/TransUtils.py:319
 msgid "the note"
 msgstr ""
 
-#: ../src/TransUtils.py:320
+#: ../src/TransUtils.py:321
 msgid "the media"
 msgstr ""
 
-#: ../src/TransUtils.py:322
+#: ../src/TransUtils.py:323
 msgid "the source"
 msgstr ""
 
-#: ../src/TransUtils.py:324
+#: ../src/TransUtils.py:325
 msgid "the filter"
 msgstr ""
 
-#: ../src/TransUtils.py:326
+#: ../src/TransUtils.py:327
 msgid "See details"
 msgstr ""
 
@@ -2200,7 +2200,7 @@ msgstr ""
 
 #. 2 name (version)
 #. Image Description
-#: ../src/gen/lib/attrtype.py:66 ../src/gui/viewmanager.py:466
+#: ../src/gen/lib/attrtype.py:66 ../src/gui/viewmanager.py:469
 #: ../src/gui/editors/displaytabs/eventembedlist.py:73
 #: ../src/gui/editors/displaytabs/webembedlist.py:66
 #: ../src/gui/plug/_windows.py:118 ../src/gui/plug/_windows.py:229
@@ -2298,9 +2298,6 @@ msgstr ""
 #. self.sort = (v, -Span.BEFORE)
 #. self.minmax = (v, v + Span.BEFORE)
 #. v = self.date1.sortval - self.date2.sortval
-#. self.sort = (v, -Span.ABOUT)
-#. self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-#. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, Span.AFTER)
 #. self.minmax = (v, v + Span.AFTER)
 #. v = self.date1.sortval - self.date2.sortval
@@ -2319,10 +2316,9 @@ msgstr ""
 #. self.sort = (v, Span.BEFORE)
 #. self.minmax = (v - Span.BEFORE, v + Span.BEFORE)
 #: ../src/gen/lib/date.py:306 ../src/gen/lib/date.py:338
-#: ../src/gen/lib/date.py:354 ../src/gen/lib/date.py:360
-#: ../src/gen/lib/date.py:365 ../src/gen/lib/date.py:370
-#: ../src/gen/lib/date.py:381 ../src/gen/lib/date.py:392
-#: ../src/gen/lib/date.py:425
+#: ../src/gen/lib/date.py:360 ../src/gen/lib/date.py:365
+#: ../src/gen/lib/date.py:370 ../src/gen/lib/date.py:381
+#: ../src/gen/lib/date.py:392 ../src/gen/lib/date.py:425
 msgid "more than"
 msgstr ""
 
@@ -2336,10 +2332,14 @@ msgstr ""
 #. self.sort = (v, -Span.AFTER)
 #. self.minmax = (0, v)
 #. v = self.date1.sortval - self.date2.sortval
+#. self.sort = (v, -Span.ABOUT)
+#. self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
+#. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, -Span.AFTER)
 #. self.minmax = (v - Span.AFTER, v + Span.AFTER)
 #: ../src/gen/lib/date.py:311 ../src/gen/lib/date.py:333
-#: ../src/gen/lib/date.py:343 ../src/gen/lib/date.py:430
+#: ../src/gen/lib/date.py:343 ../src/gen/lib/date.py:354
+#: ../src/gen/lib/date.py:430
 msgid "less than"
 msgstr ""
 
@@ -3873,7 +3873,7 @@ msgid " Name Editor"
 msgstr ""
 
 #: ../src/gui/configure.py:130 ../src/gui/configure.py:148
-#: ../src/gui/configure.py:1188 ../src/gui/views/pageview.py:620
+#: ../src/gui/configure.py:1188 ../src/gui/views/pageview.py:618
 msgid "Preferences"
 msgstr ""
 
@@ -4275,7 +4275,7 @@ msgstr ""
 msgid "Upgrade now"
 msgstr ""
 
-#: ../src/gui/dbloader.py:306 ../src/gui/viewmanager.py:1037
+#: ../src/gui/dbloader.py:306 ../src/gui/viewmanager.py:1040
 #: ../src/plugins/BookReport.py:674 ../src/plugins/BookReport.py:1065
 #: ../src/plugins/view/familyview.py:258
 msgid "Cancel"
@@ -4301,11 +4301,11 @@ msgstr ""
 msgid "_Archive"
 msgstr ""
 
-#: ../src/gui/dbman.py:271
+#: ../src/gui/dbman.py:270
 msgid "Family tree name"
 msgstr ""
 
-#: ../src/gui/dbman.py:281
+#: ../src/gui/dbman.py:280
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:53
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:63
 #: ../src/gui/plug/_windows.py:111 ../src/gui/plug/_windows.py:169
@@ -4313,16 +4313,16 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: ../src/gui/dbman.py:287
+#: ../src/gui/dbman.py:286
 msgid "Last accessed"
 msgstr ""
 
-#: ../src/gui/dbman.py:369
+#: ../src/gui/dbman.py:368
 #, python-format
 msgid "Break the lock on the '%s' database?"
 msgstr ""
 
-#: ../src/gui/dbman.py:370
+#: ../src/gui/dbman.py:369
 msgid ""
 "Gramps believes that someone else is actively editing this database. You "
 "cannot edit this database while it is locked. If no one is editing the "
@@ -4330,15 +4330,15 @@ msgid ""
 "the database and you break the lock, you may corrupt the database."
 msgstr ""
 
-#: ../src/gui/dbman.py:376
+#: ../src/gui/dbman.py:375
 msgid "Break lock"
 msgstr ""
 
-#: ../src/gui/dbman.py:453
+#: ../src/gui/dbman.py:452
 msgid "Rename failed"
 msgstr ""
 
-#: ../src/gui/dbman.py:454
+#: ../src/gui/dbman.py:453
 #, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
@@ -4346,58 +4346,58 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../src/gui/dbman.py:468
+#: ../src/gui/dbman.py:467
 msgid "Could not rename the Family Tree."
 msgstr ""
 
-#: ../src/gui/dbman.py:469
+#: ../src/gui/dbman.py:468
 msgid "Family Tree already exists, choose a unique name."
 msgstr ""
 
-#: ../src/gui/dbman.py:507
+#: ../src/gui/dbman.py:506
 msgid "Extracting archive..."
 msgstr ""
 
-#: ../src/gui/dbman.py:512
+#: ../src/gui/dbman.py:511
 msgid "Importing archive..."
 msgstr ""
 
-#: ../src/gui/dbman.py:528
+#: ../src/gui/dbman.py:527
 #, python-format
 msgid "Remove the '%s' family tree?"
 msgstr ""
 
-#: ../src/gui/dbman.py:529
+#: ../src/gui/dbman.py:528
 msgid "Removing this family tree will permanently destroy the data."
 msgstr ""
 
-#: ../src/gui/dbman.py:530
+#: ../src/gui/dbman.py:529
 msgid "Remove family tree"
 msgstr ""
 
-#: ../src/gui/dbman.py:536
+#: ../src/gui/dbman.py:535
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr ""
 
-#: ../src/gui/dbman.py:540
+#: ../src/gui/dbman.py:539
 msgid ""
 "Removing this version will prevent you from extracting it in the future."
 msgstr ""
 
-#: ../src/gui/dbman.py:542
+#: ../src/gui/dbman.py:541
 msgid "Remove version"
 msgstr ""
 
-#: ../src/gui/dbman.py:571
+#: ../src/gui/dbman.py:570
 msgid "Could not delete family tree"
 msgstr ""
 
-#: ../src/gui/dbman.py:596
+#: ../src/gui/dbman.py:595
 msgid "Deletion failed"
 msgstr ""
 
-#: ../src/gui/dbman.py:597
+#: ../src/gui/dbman.py:596
 #, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
@@ -4405,11 +4405,11 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../src/gui/dbman.py:625
+#: ../src/gui/dbman.py:624
 msgid "Repair family tree?"
 msgstr ""
 
-#: ../src/gui/dbman.py:627
+#: ../src/gui/dbman.py:626
 #, python-format
 msgid ""
 "If you click <b>Proceed</b>, Gramps will attempt to recover your family tree "
@@ -4436,31 +4436,31 @@ msgid ""
 "<i>need_recover</i> in the family tree directory."
 msgstr ""
 
-#: ../src/gui/dbman.py:646
+#: ../src/gui/dbman.py:645
 msgid "Proceed, I have taken a backup"
 msgstr ""
 
-#: ../src/gui/dbman.py:647
+#: ../src/gui/dbman.py:646
 msgid "Stop"
 msgstr ""
 
-#: ../src/gui/dbman.py:670
+#: ../src/gui/dbman.py:669
 msgid "Rebuilding database from backup files"
 msgstr ""
 
-#: ../src/gui/dbman.py:675
+#: ../src/gui/dbman.py:674
 msgid "Error restoring backup data"
 msgstr ""
 
-#: ../src/gui/dbman.py:710
+#: ../src/gui/dbman.py:709
 msgid "Could not create family tree"
 msgstr ""
 
-#: ../src/gui/dbman.py:824
+#: ../src/gui/dbman.py:823
 msgid "Retrieve failed"
 msgstr ""
 
-#: ../src/gui/dbman.py:825
+#: ../src/gui/dbman.py:824
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -4468,11 +4468,11 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../src/gui/dbman.py:865 ../src/gui/dbman.py:893
+#: ../src/gui/dbman.py:864 ../src/gui/dbman.py:892
 msgid "Archiving failed"
 msgstr ""
 
-#: ../src/gui/dbman.py:866
+#: ../src/gui/dbman.py:865
 #, python-format
 msgid ""
 "An attempt to create the archive failed with the following message:\n"
@@ -4480,15 +4480,15 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../src/gui/dbman.py:871
+#: ../src/gui/dbman.py:870
 msgid "Creating data to be archived..."
 msgstr ""
 
-#: ../src/gui/dbman.py:880
+#: ../src/gui/dbman.py:879
 msgid "Saving archive..."
 msgstr ""
 
-#: ../src/gui/dbman.py:894
+#: ../src/gui/dbman.py:893
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
@@ -4769,33 +4769,33 @@ msgstr ""
 msgid "Rule Name"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:679 ../src/gui/filtereditor.py:690
+#: ../src/gui/filtereditor.py:678 ../src/gui/filtereditor.py:689
 #: ../src/glade/rule.glade.h:20
 msgid "No rule selected"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:730
+#: ../src/gui/filtereditor.py:729
 msgid "Define filter"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:734
+#: ../src/gui/filtereditor.py:733
 msgid "Values"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:827
+#: ../src/gui/filtereditor.py:826
 msgid "Add Rule"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:839
+#: ../src/gui/filtereditor.py:838
 msgid "Edit Rule"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:874
+#: ../src/gui/filtereditor.py:873
 msgid "Filter Test"
 msgstr ""
 
 #. ###############################
-#: ../src/gui/filtereditor.py:1004 ../src/plugins/Records.py:516
+#: ../src/gui/filtereditor.py:1003 ../src/plugins/Records.py:516
 #: ../src/plugins/drawreport/Calendar.py:406
 #: ../src/plugins/drawreport/StatisticsChart.py:907
 #: ../src/plugins/drawreport/TimeLine.py:325
@@ -4817,30 +4817,30 @@ msgstr ""
 msgid "Filter"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:1004
+#: ../src/gui/filtereditor.py:1003
 msgid "Comment"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:1011
+#: ../src/gui/filtereditor.py:1010
 msgid "Custom Filter Editor"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:1077
+#: ../src/gui/filtereditor.py:1076
 msgid "Delete Filter?"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:1078
+#: ../src/gui/filtereditor.py:1077
 msgid ""
 "This filter is currently being used as the base for other filters. "
 "Deletingthis filter will result in removing all other filters that depend on "
 "it."
 msgstr ""
 
-#: ../src/gui/filtereditor.py:1082
+#: ../src/gui/filtereditor.py:1081
 msgid "Delete Filter"
 msgstr ""
 
-#: ../src/gui/grampsbar.py:150 ../src/gui/widgets/grampletpane.py:1129
+#: ../src/gui/grampsbar.py:150 ../src/gui/widgets/grampletpane.py:1130
 msgid "Unnamed Gramplet"
 msgstr ""
 
@@ -5090,7 +5090,7 @@ msgid "List"
 msgstr ""
 
 #. name, click?, width, toggle
-#: ../src/gui/grampsgui.py:146 ../src/gui/viewmanager.py:459
+#: ../src/gui/grampsgui.py:146 ../src/gui/viewmanager.py:462
 #: ../src/plugins/tool/ChangeNames.py:194
 #: ../src/plugins/tool/ExtractCity.py:540
 #: ../src/plugins/tool/PatchNames.py:396 ../src/glade/mergedata.glade.h:12
@@ -5188,301 +5188,324 @@ msgstr ""
 msgid "Unsupported"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:434
+#: ../src/gui/viewmanager.py:407
+msgid "Updated"
+msgstr ""
+
+#: ../src/gui/viewmanager.py:419
+msgid "New"
+msgstr ""
+
+#. List of translated strings used here
+#. Dead code for l10n
+#: ../src/gui/viewmanager.py:432
+msgid "new"
+msgstr ""
+
+#: ../src/gui/viewmanager.py:432
+msgid "update"
+msgstr ""
+
+#: ../src/gui/viewmanager.py:437
 msgid "There are no available addons of this type"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:435
+#: ../src/gui/viewmanager.py:438
 #, python-format
 msgid "Checked for '%s'"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:436
+#: ../src/gui/viewmanager.py:439
 msgid "' and '"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:447
+#: ../src/gui/viewmanager.py:450
 msgid "Available Gramps Updates for Addons"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:533
+#: ../src/gui/viewmanager.py:479
+#, python-format
+msgid "%(adjective)s: %(addon)s"
+msgstr ""
+
+#: ../src/gui/viewmanager.py:536
 msgid "Downloading and installing selected addons..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:565 ../src/gui/viewmanager.py:572
+#: ../src/gui/viewmanager.py:568 ../src/gui/viewmanager.py:575
 msgid "Done downloading and installing addons"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:566
+#: ../src/gui/viewmanager.py:569
 #, python-format
 msgid "%d addon was installed."
 msgid_plural "%d addons were installed."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/gui/viewmanager.py:569
+#: ../src/gui/viewmanager.py:572
 msgid "You need to restart Gramps to see new views."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:573
+#: ../src/gui/viewmanager.py:576
 msgid "No addons were installed."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:719
+#: ../src/gui/viewmanager.py:722
 msgid "Connect to a recent database"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:737
+#: ../src/gui/viewmanager.py:740
 msgid "_Family Trees"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:738
+#: ../src/gui/viewmanager.py:741
 msgid "_Manage Family Trees..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:739
+#: ../src/gui/viewmanager.py:742
 msgid "Manage databases"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:740
+#: ../src/gui/viewmanager.py:743
 msgid "Open _Recent"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:741
+#: ../src/gui/viewmanager.py:744
 msgid "Open an existing database"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:742
+#: ../src/gui/viewmanager.py:745
 msgid "_Quit"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:744
+#: ../src/gui/viewmanager.py:747
 msgid "_View"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:745
+#: ../src/gui/viewmanager.py:748
 msgid "_Edit"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:746
+#: ../src/gui/viewmanager.py:749
 msgid "_Preferences..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:748
+#: ../src/gui/viewmanager.py:751
 msgid "_Help"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:749
+#: ../src/gui/viewmanager.py:752
 msgid "Gramps _Home Page"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:751
+#: ../src/gui/viewmanager.py:754
 msgid "Gramps _Mailing Lists"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:753
+#: ../src/gui/viewmanager.py:756
 msgid "_Report a Bug"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:755
+#: ../src/gui/viewmanager.py:758
 msgid "_Extra Reports/Tools"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:757
+#: ../src/gui/viewmanager.py:760
 msgid "_About"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:759
+#: ../src/gui/viewmanager.py:762
 msgid "_Plugin Manager"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:761
+#: ../src/gui/viewmanager.py:764
 msgid "_FAQ"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:762
+#: ../src/gui/viewmanager.py:765
 msgid "_Key Bindings"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:763
+#: ../src/gui/viewmanager.py:766
 msgid "_User Manual"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:770
+#: ../src/gui/viewmanager.py:773
 msgid "_Export..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:772
+#: ../src/gui/viewmanager.py:775
 msgid "Make Backup..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:773
+#: ../src/gui/viewmanager.py:776
 msgid "Make a Gramps XML backup of the database"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:775
+#: ../src/gui/viewmanager.py:778
 msgid "_Abandon Changes and Quit"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:776 ../src/gui/viewmanager.py:779
+#: ../src/gui/viewmanager.py:779 ../src/gui/viewmanager.py:782
 msgid "_Reports"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:777
+#: ../src/gui/viewmanager.py:780
 msgid "Open the reports dialog"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:778
+#: ../src/gui/viewmanager.py:781
 msgid "_Go"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:780
+#: ../src/gui/viewmanager.py:783
 msgid "_Windows"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:817
+#: ../src/gui/viewmanager.py:820
 msgid "Clip_board"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:818
+#: ../src/gui/viewmanager.py:821
 msgid "Open the Clipboard dialog"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:819
+#: ../src/gui/viewmanager.py:822
 msgid "_Import..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:821 ../src/gui/viewmanager.py:824
+#: ../src/gui/viewmanager.py:824 ../src/gui/viewmanager.py:827
 msgid "_Tools"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:822
+#: ../src/gui/viewmanager.py:825
 msgid "Open the tools dialog"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:823
+#: ../src/gui/viewmanager.py:826
 msgid "_Bookmarks"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:825
+#: ../src/gui/viewmanager.py:828
 msgid "_Configure View..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:826
+#: ../src/gui/viewmanager.py:829
 msgid "Configure the active view"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:831
+#: ../src/gui/viewmanager.py:834
 msgid "_Navigator"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:833
+#: ../src/gui/viewmanager.py:836
 msgid "_Toolbar"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:835
+#: ../src/gui/viewmanager.py:838
 msgid "F_ull Screen"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:840 ../src/gui/viewmanager.py:1422
+#: ../src/gui/viewmanager.py:843 ../src/gui/viewmanager.py:1425
 msgid "_Undo"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:845 ../src/gui/viewmanager.py:1439
+#: ../src/gui/viewmanager.py:848 ../src/gui/viewmanager.py:1442
 msgid "_Redo"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:851
+#: ../src/gui/viewmanager.py:854
 msgid "Undo History..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:865
+#: ../src/gui/viewmanager.py:868
 #, python-format
 msgid "Key %s is not bound"
 msgstr ""
 
 #. load plugins
-#: ../src/gui/viewmanager.py:966
+#: ../src/gui/viewmanager.py:969
 msgid "Loading plugins..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:973 ../src/gui/viewmanager.py:988
+#: ../src/gui/viewmanager.py:976 ../src/gui/viewmanager.py:991
 msgid "Ready"
 msgstr ""
 
 #. registering plugins
-#: ../src/gui/viewmanager.py:981
+#: ../src/gui/viewmanager.py:984
 msgid "Registering plugins..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1018
+#: ../src/gui/viewmanager.py:1021
 msgid "Autobackup..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1022
+#: ../src/gui/viewmanager.py:1025
 msgid "Error saving backup data"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1033
+#: ../src/gui/viewmanager.py:1036
 msgid "Abort changes?"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1034
+#: ../src/gui/viewmanager.py:1037
 msgid ""
 "Aborting changes will return the database to the state it was before you "
 "started this editing session."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1036
+#: ../src/gui/viewmanager.py:1039
 msgid "Abort changes"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1046
+#: ../src/gui/viewmanager.py:1049
 msgid "Cannot abandon session's changes"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1047
+#: ../src/gui/viewmanager.py:1050
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1201
+#: ../src/gui/viewmanager.py:1204
 msgid "View failed to load. Check error output."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1340
+#: ../src/gui/viewmanager.py:1343
 msgid "Import Statistics"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1391
+#: ../src/gui/viewmanager.py:1394
 msgid "Read Only"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1474
+#: ../src/gui/viewmanager.py:1477
 msgid "Gramps XML Backup"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1484
+#: ../src/gui/viewmanager.py:1487
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
 #: ../src/glade/editmedia.glade.h:8 ../src/glade/mergemedia.glade.h:7
 msgid "Path:"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1504
+#: ../src/gui/viewmanager.py:1507
 #: ../src/plugins/import/importgedcom.glade.h:11
 #: ../src/plugins/tool/phpgedview.glade.h:3
 msgid "File:"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1536
+#: ../src/gui/viewmanager.py:1539
 msgid "Media:"
 msgstr ""
 
 #. #################
 #. What to include
 #. #########################
-#: ../src/gui/viewmanager.py:1541
+#: ../src/gui/viewmanager.py:1544
 #: ../src/plugins/drawreport/AncestorTree.py:983
 #: ../src/plugins/drawreport/DescendTree.py:1580
 #: ../src/plugins/textreport/DetAncestralReport.py:770
@@ -5493,65 +5516,65 @@ msgstr ""
 msgid "Include"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1542 ../src/plugins/gramplet/StatsGramplet.py:190
+#: ../src/gui/viewmanager.py:1545 ../src/plugins/gramplet/StatsGramplet.py:190
 msgid "Megabyte|MB"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1543
+#: ../src/gui/viewmanager.py:1546
 #: ../src/plugins/webreport/NarrativeWeb.py:6655
 msgid "Exclude"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1560
+#: ../src/gui/viewmanager.py:1563
 msgid "Backup file already exists! Overwrite?"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1561
+#: ../src/gui/viewmanager.py:1564
 #, python-format
 msgid "The file '%s' exists."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1562
+#: ../src/gui/viewmanager.py:1565
 msgid "Proceed and overwrite"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1563
+#: ../src/gui/viewmanager.py:1566
 msgid "Cancel the backup"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1570
+#: ../src/gui/viewmanager.py:1573
 msgid "Making backup..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1587
+#: ../src/gui/viewmanager.py:1590
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1590
+#: ../src/gui/viewmanager.py:1593
 msgid "Backup aborted"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1608
+#: ../src/gui/viewmanager.py:1611
 msgid "Select backup directory"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1873
+#: ../src/gui/viewmanager.py:1876
 msgid "Failed Loading Plugin"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1874
+#: ../src/gui/viewmanager.py:1877
 msgid ""
 "The plugin did not load. See Help Menu, Plugin Manager for more info.\n"
 "Use http://bugs.gramps-project.org to submit bugs of official plugins, "
 "contact the plugin author otherwise. "
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1914
+#: ../src/gui/viewmanager.py:1917
 msgid "Failed Loading View"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1915
+#: ../src/gui/viewmanager.py:1918
 #, python-format
 msgid ""
 "The view %(name)s did not load. See Help Menu, Plugin Manager for more "
@@ -7729,28 +7752,28 @@ msgstr ""
 msgid "Column clicked, sorting..."
 msgstr ""
 
-#: ../src/gui/views/listview.py:922
+#: ../src/gui/views/listview.py:921
 msgid "Export View as Spreadsheet"
 msgstr ""
 
-#: ../src/gui/views/listview.py:930 ../src/glade/mergenote.glade.h:4
+#: ../src/gui/views/listview.py:929 ../src/glade/mergenote.glade.h:4
 msgid "Format:"
 msgstr ""
 
-#: ../src/gui/views/listview.py:935
+#: ../src/gui/views/listview.py:934
 msgid "CSV"
 msgstr ""
 
-#: ../src/gui/views/listview.py:936
+#: ../src/gui/views/listview.py:935
 msgid "OpenDocument Spreadsheet"
 msgstr ""
 
-#: ../src/gui/views/listview.py:1063 ../src/gui/views/listview.py:1083
+#: ../src/gui/views/listview.py:1062 ../src/gui/views/listview.py:1082
 #: ../src/Filters/_SearchBar.py:165
 msgid "Updating display..."
 msgstr ""
 
-#: ../src/gui/views/listview.py:1129
+#: ../src/gui/views/listview.py:1128
 msgid "Columns"
 msgstr ""
 
@@ -7821,23 +7844,23 @@ msgstr ""
 msgid "_Bottombar"
 msgstr ""
 
-#: ../src/gui/views/pageview.py:591
+#: ../src/gui/views/pageview.py:589
 #, python-format
 msgid "Configure %(cat)s - %(view)s"
 msgstr ""
 
-#: ../src/gui/views/pageview.py:608
+#: ../src/gui/views/pageview.py:606
 #, python-format
 msgid "%(cat)s - %(view)s"
 msgstr ""
 
-#: ../src/gui/views/pageview.py:627
+#: ../src/gui/views/pageview.py:625
 #, python-format
 msgid "Configure %s View"
 msgstr ""
 
 #. top widget at the top
-#: ../src/gui/views/pageview.py:641
+#: ../src/gui/views/pageview.py:639
 #, python-format
 msgid "View %(name)s: %(msg)s"
 msgstr ""
@@ -7999,35 +8022,35 @@ msgid "Drag Properties Button to move and click it for setup"
 msgstr ""
 
 #. build the GUI:
-#: ../src/gui/widgets/grampletpane.py:957
+#: ../src/gui/widgets/grampletpane.py:958
 msgid "Right click to add gramplets"
 msgstr ""
 
-#: ../src/gui/widgets/grampletpane.py:996
+#: ../src/gui/widgets/grampletpane.py:997
 msgid "Untitled Gramplet"
 msgstr ""
 
-#: ../src/gui/widgets/grampletpane.py:1469
+#: ../src/gui/widgets/grampletpane.py:1470
 msgid "Number of Columns"
 msgstr ""
 
-#: ../src/gui/widgets/grampletpane.py:1474
+#: ../src/gui/widgets/grampletpane.py:1475
 msgid "Gramplet Layout"
 msgstr ""
 
-#: ../src/gui/widgets/grampletpane.py:1504
+#: ../src/gui/widgets/grampletpane.py:1505
 msgid "Use maximum height available"
 msgstr ""
 
-#: ../src/gui/widgets/grampletpane.py:1510
+#: ../src/gui/widgets/grampletpane.py:1511
 msgid "Height if not maximized"
 msgstr ""
 
-#: ../src/gui/widgets/grampletpane.py:1517
+#: ../src/gui/widgets/grampletpane.py:1518
 msgid "Detached width"
 msgstr ""
 
-#: ../src/gui/widgets/grampletpane.py:1524
+#: ../src/gui/widgets/grampletpane.py:1525
 msgid "Detached height"
 msgstr ""
 
@@ -13312,48 +13335,48 @@ msgstr ""
 msgid "Line %d: empty event note was ignored."
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:5209 ../src/plugins/lib/libgedcom.py:5849
+#: ../src/plugins/lib/libgedcom.py:5209 ../src/plugins/lib/libgedcom.py:5852
 #, python-format
 msgid "Could not import %s"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:5610
+#: ../src/plugins/lib/libgedcom.py:5613
 #, python-format
 msgid "Import from %s"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:5645
+#: ../src/plugins/lib/libgedcom.py:5648
 #, python-format
 msgid ""
 "Import of GEDCOM file %s with DEST=%s, could cause errors in the resulting "
 "database!"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:5648
+#: ../src/plugins/lib/libgedcom.py:5651
 msgid "Look for nameless events."
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:5707 ../src/plugins/lib/libgedcom.py:5721
+#: ../src/plugins/lib/libgedcom.py:5710 ../src/plugins/lib/libgedcom.py:5724
 #, python-format
 msgid "Line %d: empty note was ignored."
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:5758
+#: ../src/plugins/lib/libgedcom.py:5761
 #, python-format
 msgid "skipped %(skip)d subordinate(s) at line %(line)d"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6025
+#: ../src/plugins/lib/libgedcom.py:6028
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6028
+#: ../src/plugins/lib/libgedcom.py:6031
 msgid "Your GEDCOM file is empty."
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6091
+#: ../src/plugins/lib/libgedcom.py:6094
 #, python-format
 msgid "Invalid line %d in GEDCOM file."
 msgstr ""
@@ -25192,7 +25215,7 @@ msgstr ""
 #: ../src/glade/editperson.glade.h:27 ../src/glade/editsource.glade.h:11
 #: ../src/glade/editrepository.glade.h:7 ../src/glade/editreporef.glade.h:14
 #: ../src/glade/editfamily.glade.h:14 ../src/glade/editmedia.glade.h:12
-#: ../src/glade/editmediaref.glade.h:25 ../src/glade/editeventref.glade.h:8
+#: ../src/glade/editmediaref.glade.h:25 ../src/glade/editeventref.glade.h:10
 #: ../src/glade/editnote.glade.h:8 ../src/glade/editplace.glade.h:28
 #: ../src/glade/editsourceref.glade.h:22 ../src/glade/editevent.glade.h:11
 msgid "_ID:"
@@ -25883,6 +25906,7 @@ msgid "Postal code"
 msgstr ""
 
 #: ../src/glade/editaddress.glade.h:12 ../src/glade/editmedia.glade.h:9
+#: ../src/glade/editeventref.glade.h:7 ../src/glade/editldsord.glade.h:5
 #: ../src/glade/editevent.glade.h:7
 msgid "Show Date Editor"
 msgstr ""
@@ -25905,8 +25929,8 @@ msgid "The town or city of the address"
 msgstr ""
 
 #: ../src/glade/editaddress.glade.h:17 ../src/glade/editmedia.glade.h:11
-#: ../src/glade/editmediaref.glade.h:24 ../src/glade/editeventref.glade.h:6
-#: ../src/glade/editldsord.glade.h:5 ../src/glade/editsourceref.glade.h:21
+#: ../src/glade/editmediaref.glade.h:24 ../src/glade/editeventref.glade.h:8
+#: ../src/glade/editldsord.glade.h:6 ../src/glade/editsourceref.glade.h:21
 #: ../src/glade/editevent.glade.h:9
 msgid "_Date:"
 msgstr ""
@@ -26022,20 +26046,24 @@ msgid ""
 "in the event itself, for all participants in the event."
 msgstr ""
 
-#: ../src/glade/editeventref.glade.h:5 ../src/glade/editevent.glade.h:5
+#: ../src/glade/editeventref.glade.h:5 ../src/glade/editevent.glade.h:1
+msgid "A unique ID to identify the event"
+msgstr ""
+
+#: ../src/glade/editeventref.glade.h:6 ../src/glade/editevent.glade.h:5
 msgid "De_scription:"
 msgstr ""
 
-#: ../src/glade/editeventref.glade.h:7 ../src/glade/editevent.glade.h:10
+#: ../src/glade/editeventref.glade.h:9 ../src/glade/editevent.glade.h:10
 msgid "_Event type:"
 msgstr ""
 
-#: ../src/glade/editeventref.glade.h:9 ../src/glade/editldsord.glade.h:6
+#: ../src/glade/editeventref.glade.h:11 ../src/glade/editldsord.glade.h:7
 #: ../src/glade/editevent.glade.h:12
 msgid "_Place:"
 msgstr ""
 
-#: ../src/glade/editeventref.glade.h:10
+#: ../src/glade/editeventref.glade.h:12
 msgid "_Role:"
 msgstr ""
 
@@ -26051,7 +26079,7 @@ msgstr ""
 msgid "Ordinance:"
 msgstr ""
 
-#: ../src/glade/editldsord.glade.h:7
+#: ../src/glade/editldsord.glade.h:8
 msgid "_Status:"
 msgstr ""
 
@@ -26279,10 +26307,6 @@ msgstr ""
 
 #: ../src/glade/editname.glade.h:31
 msgid "_Sort as:"
-msgstr ""
-
-#: ../src/glade/editevent.glade.h:1
-msgid "A unique ID to identify the event"
 msgstr ""
 
 #: ../src/glade/editevent.glade.h:3
