@@ -276,7 +276,7 @@ def encodingdefs():
     pass
 
 if constfunc.win():
-    # python encoding is ascii, but C functions need to recieve the 
+    # python encoding is ascii, but C functions need to receive the 
     # windows codeset, so convert over to it
     conv_utf8_tosrtkey = lambda x: locale.strxfrm(x.decode("utf-8").encode(
                                                         codeset))
@@ -287,7 +287,7 @@ if constfunc.win():
                                                                     codeset))
     conv_unicode_tosrtkey_ongtk = lambda x: locale.strxfrm(x.encode(codeset,'replace'))
 else:
-    # on unix C functions need to recieve utf-8. Default conversion would
+    # on unix C functions need to receive utf-8. Default conversion would
     # use ascii, so it is needed to be explicit about the resulting encoding 
     conv_utf8_tosrtkey = lambda x: locale.strxfrm(x)
     conv_unicode_tosrtkey = lambda x: locale.strxfrm(x.encode("utf-8"))
@@ -343,7 +343,7 @@ def find_folder( filename):
     except:
         pass
     
-    # Build list of elternate encodings
+    # Build list of alternate encodings
     try:
         encodings = [sys.getfilesystemencoding(), 
                      locale.getpreferredencoding(), 
@@ -371,7 +371,7 @@ def get_unicode_path_from_file_chooser(path):
     :rtype:      unicode
     :returns:    The Unicode version of path.
     """
-    # make omly unicode of path of type 'str'
+    # make only unicode of path of type 'str'
     if not (isinstance(path,  str)):
         return path
 
@@ -398,12 +398,12 @@ def get_unicode_path_from_env_var(path):
     :rtype:      unicode
     :returns:    The Unicode version of path.
     """
-    # make omly unicode of path of type 'str'
+    # make only unicode of path of type 'str'
     if not (isinstance(path,  str)):
         return path
 
     if constfunc.win():
-        # In Windows path/filename returned from a emvironment variable is in filesystemencoding
+        # In Windows path/filename returned from a environment variable is in filesystemencoding
         try:
             new_path = unicode(path, sys.getfilesystemencoding())
             return new_path
@@ -890,7 +890,7 @@ def probably_alive(person, db,
     """
     Return true if the person may be alive on current_date.
 
-    This works by a process of emlimination. If we can't find a good
+    This works by a process of elimination. If we can't find a good
     reason to believe that someone is dead then we assume they must
     be alive.
 
@@ -952,7 +952,7 @@ def probably_alive_range(person, db,
 def get_referents(handle, db, primary_objects):
     """ Find objects that refer to an object.
     
-    This function is the base for other get_<object>_referents finctions.
+    This function is the base for other get_<object>_referents functions.
     
     """
     # Use one pass through the reference map to grab all the references

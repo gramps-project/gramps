@@ -339,16 +339,17 @@ class ArgParser(object):
         if len(options) > 0 and self.open is None and self.imports == [] \
                 and not (self.list or self.list_more or self.help or self.runqml):
             # Extract and convert to unicode the arguments in the list.
-            # The % operator replaces the list elements with repr() of the list elemements
-            # which is OK for latin characters, but not for non latin characters in list elements
+            # The % operator replaces the list elements with repr() of
+            # the list elements, which is OK for latin characters
+            # but not for non-latin characters in list elements
             cliargs = "[ "
             for arg in range(len(self.args) - 1):
                 cliargs += Utils.get_unicode_path_from_env_var(self.args[arg + 1]) + " "
             cliargs += "]"
-            self.errors += [(_('Error parsing the arguments'), 
-                        _("Error parsing the arguments: %s \n" 
-                        "To use in the command-line mode," \
-                "supply at least one input file to process.") % cliargs)]
+            self.errors += [(_('Error parsing the arguments'),
+                             _("Error parsing the arguments: %s \n"
+                               "To use in the command-line mode, supply at "
+                               "least one input file to process.") % cliargs)]
         if need_to_quit:
             sys.exit(0)
 
