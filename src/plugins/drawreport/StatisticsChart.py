@@ -643,6 +643,11 @@ class Extract(object):
                 data.append((ext[name][1], {}, ext[name][2], ext[name][3]))
         
         # go through the people and collect data
+        self.progress = ProgressMeter(_('Statistics Charts'))
+        self.progress.set_pass(total=100, 
+                    mode=ProgressMeter.MODE_ACTIVITY, 
+                    header=_('Collecting data...'))
+                    
         for person_handle in filter_func.apply(db, db.iter_person_handles()):
 
             person = db.get_person_from_handle(person_handle)
@@ -674,6 +679,8 @@ class Extract(object):
                 continue
 
             self.get_person_data(person, data)
+            self.progress.step()
+        self.progress.close()    
         return data
 
 # GLOBAL: required so that we get access to _Extract.extractors[]
@@ -727,16 +734,12 @@ class StatisticsChart(Report):
             'year_from': year_from,
             'year_to': year_to
         }
-        self.progress = ProgressMeter(_('Statistics Charts'))
 
         # extract requested items from the database and count them
-        self.progress.set_pass(_('Collecting data...'), 1)
         tables = _Extract.collect_data(database, self.filter, menu,
                         gender, year_from, year_to, 
                         get_value('no_years'))
-        self.progress.step()
 
-        self.progress.set_pass(_('Sorting data...'), len(tables))
         self.data = []
         sortby = get_value('sortby')
         reverse = get_value('reverse')
@@ -750,8 +753,7 @@ class StatisticsChart(Report):
             else:
                 heading = _("Persons born %(year_from)04d-%(year_to)04d: %(chart_title)s") % mapping
             self.data.append((heading, table[0], table[1], lookup))
-        self.progress.step()
-    #DEBUG
+        #DEBUG
         #print heading
         #print table[1]
 
@@ -777,7 +779,8 @@ class StatisticsChart(Report):
         return index
 
     def write_report(self):
-        "output the selected statistics..."
+        """output the selected statistics..."""
+        self.progress = ProgressMeter(_('Statistics Charts'))
 
         self.progress.set_pass(_('Saving charts...'), len(self.data))
         for data in self.data:
@@ -787,7 +790,7 @@ class StatisticsChart(Report):
             else:
                 self.output_barchart(*data[:4])
             self.doc.end_page()
-        self.progress.step()
+            self.progress.step()
         self.progress.close()
 
 
