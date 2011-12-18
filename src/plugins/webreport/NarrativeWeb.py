@@ -7502,7 +7502,7 @@ class NavWebOptions(MenuReportOptions):
         addopt( "birthorder", birthorder )
 
         inc_families = BooleanOption(_("Include family pages"), False)
-        inc_families.set_help(_("Whether to include family pages or not?"))
+        inc_families.set_help(_("Whether or not to include family pages."))
         addopt("inc_families", inc_families)
 
         inc_events = BooleanOption(_('Include event pages'), False)
@@ -7510,7 +7510,7 @@ class NavWebOptions(MenuReportOptions):
         addopt( "inc_events", inc_events )
 
         inc_repository = BooleanOption(_('Include repository pages'), False)
-        inc_repository.set_help(_('Whether to include the Repository Pages or not?'))
+        inc_repository.set_help(_('Whether or not to include the Repository Pages.'))
         addopt( "inc_repository", inc_repository )
 
         inc_gendex = BooleanOption(_('Include GENDEX file (/gendex.txt)'), False)
@@ -7518,10 +7518,10 @@ class NavWebOptions(MenuReportOptions):
         addopt( "inc_gendex", inc_gendex )
 
         inc_addressbook = BooleanOption(_("Include address book pages"), False)
-        inc_addressbook.set_help(_("Whether to add Address Book pages or not "
+        inc_addressbook.set_help(_("Whether or not to add Address Book pages,"
                                    "which can include e-mail and website "
                                    "addresses and personal address/ residence "
-                                   "events?"))
+                                   "events."))
         addopt( "inc_addressbook", inc_addressbook )
 
     def __add_place_map_options(self, menu):
