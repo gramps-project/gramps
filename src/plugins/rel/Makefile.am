@@ -8,6 +8,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/plugins/rel
 
 pkgdata_PYTHON = \
 	relplugins.gpr.py\
+        rel_ca.py\
 	rel_cs.py\
 	rel_da.py\
 	rel_de.py\

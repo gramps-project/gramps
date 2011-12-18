@@ -26,6 +26,19 @@
 # Relationship calculators
 #
 
+# ca
+plg = newplugin()
+plg.id    = 'relcalc_ca'
+plg.name  = _("Catalan Relationship Calculator")
+plg.description =  _("Calculates relationships between people")
+plg.version = '1.0'
+plg.gramps_target_version = '3.4'
+plg.status = STABLE
+plg.fname = 'rel_ca.py'
+plg.ptype = RELCALC
+plg.relcalcclass = 'RelationshipCalculator'
+plg.lang_list = ['ca_ES', 'ca', u'català', 'Catalan', 'ca_FR', 'ca_AD', 'ca_IT']
+
 # cs
 plg = newplugin()
 plg.id    = 'relcalc_cs'
@@ -67,8 +80,9 @@ plg.fname = 'rel_de.py'
 plg.ptype = RELCALC
 plg.relcalcclass = 'RelationshipCalculator'
 plg.lang_list = ["de", "DE", "de_DE", "deutsch", "Deutsch", "de_DE.UTF8", 
-                 "de_DE@euro", "de_DE.UTF8@euro", "de_AT.UTF-8",
-                 "german","German", "de_DE.UTF-8", "de_DE.utf-8", "de_DE.utf8"]
+                 "de_DE@euro", "de_DE.UTF8@euro", "de_AT.UTF-8", "de_AT.utf-8",
+                 "german","German", "de_DE.UTF-8", "de_DE.utf-8", "de_DE.utf8",
+                 "de_CH.UTF-8", "de_CH.utf-8"]
 
 # es
 plg = newplugin()
