@@ -274,7 +274,7 @@ class EmbeddedList(ButtonTab):
             del dlist[row_from]
         else:
             del dlist[row_from]
-            dlist.insert(row_to-1, obj)
+            dlist.insert(row_to, obj)
         self.changed = True
         self.rebuild()
     

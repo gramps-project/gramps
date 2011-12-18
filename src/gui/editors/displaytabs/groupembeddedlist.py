@@ -258,7 +258,7 @@ class GroupEmbeddedList(EmbeddedList):
                 del dlist[row_from[1]]
             else:
                 del dlist[row_from[1]]
-                dlist.insert(row_to[1]-1, obj)
+                dlist.insert(row_to[1], obj)
             self.changed = True
             self.rebuild()
         elif row_from[0] == self._WORKGROUP:
