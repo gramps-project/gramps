@@ -833,12 +833,6 @@ div#RepositoryList table.repolist tbody tr td.ColumnType {
 div#RepositoryList table.repolist tbody tr td.ColumnName {
     width: 80%;
 }
-div#RepositoryDetail table.repolist tbody tr td.ColumnAttribute {
-    width: 40%;
-}
-div#RepositoryDetail table.repolist tbody tr td.ColumnValue {
-    width: 40%;
-}
 
 /* Address Book
 ------------------------------------------------------ */
