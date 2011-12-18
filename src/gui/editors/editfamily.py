@@ -151,11 +151,15 @@ class ChildEmbedList(EmbeddedList):
         return reflist.index(obj)
 
     def _find_row(self, x, y):
-        row = self.tree.get_path_at_pos(x, y)
+        row = self.tree.get_dest_row_at_pos(x, y)
         if row is None:
             return len(self.family.get_child_ref_list())
         else:
-            return row[0][0]
+            if row[1] in (gtk.TREE_VIEW_DROP_BEFORE,
+                          gtk.TREE_VIEW_DROP_INTO_OR_BEFORE):
+                return row[0][0]
+            else:
+                return row[0][0]+1
 
     def _handle_drag(self, row, obj):
         self.family.get_child_ref_list().insert(row, obj)
