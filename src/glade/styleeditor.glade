@@ -60,6 +60,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
+                        <property name="tooltip_text" translatable="yes">Add a new style</property>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="button3-atkobject">
                             <property name="AtkObject::accessible-name" translatable="yes">Add</property>
@@ -89,6 +90,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
+                        <property name="tooltip_text" translatable="yes">Edit the selected style</property>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="button4-atkobject">
                             <property name="AtkObject::accessible-name" translatable="yes">Edit</property>
@@ -118,6 +120,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
+                        <property name="tooltip_text" translatable="yes">Delete the selected style</property>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="button5-atkobject">
                             <property name="AtkObject::accessible-name" translatable="yes">Remove</property>
