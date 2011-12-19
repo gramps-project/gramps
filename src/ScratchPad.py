@@ -1304,6 +1304,7 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
         """Deletes the selected object from the object list"""
         selection = self.object_list.get_selection()
         model, paths = selection.get_selected_rows()
+        paths.reverse()
         for path in paths:
             node = model.get_iter(path)
             if node:
