@@ -1306,6 +1306,7 @@ class BasePage(object):
                         image.attr += 'height = "%d"'  % height
 
                     descr = html_escape(obj.get_description() )
+                    newpath = self.report.build_url_fname(newpath)
                     image.attr += ' src = "%s" alt = "%s"' % (newpath, descr )
 
                     # return an image
@@ -3761,6 +3762,7 @@ class DownloadPage(BasePage):
                         tbody += trow
 
                         fname = os.path.basename(dlfname1)
+                        # TODO dlfname1 is filename, convert disk path to URL 
                         tcell = Html("td", class_ = "ColumnFilename") + (
                             Html("a", fname, href = dlfname1, title = html_escape(dldescr1))
                         )
