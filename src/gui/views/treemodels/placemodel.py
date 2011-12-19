@@ -156,7 +156,7 @@ class PlaceBaseModel(object):
     def sort_longitude(self, data):
         if not data[3]:
             return u' '
-        value = conv_lat_lon('0', data[3], format='ISO-DMS') if data[3] else u''
+        value = conv_lat_lon('0', data[3], format='ISO-DMS')
         if not value:
              return _("Error in format")
         return value
@@ -164,7 +164,7 @@ class PlaceBaseModel(object):
     def sort_latitude(self, data):
         if not data[4]:
             return u' '
-        value = conv_lat_lon(data[4], '0', format='ISO-DMS') if data[4] else u''
+        value = conv_lat_lon(data[4], '0', format='ISO-DMS')
         if not value:
             return _("Error in format")
         return value 
