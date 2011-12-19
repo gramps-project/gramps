@@ -619,7 +619,7 @@ class TitleBox(BoxBase):
     Holds information about the Title that will print on a page
     """
     def __init__(self, doc, boxstr):
-        """ initalize the title box """
+        """ initialize the title box """
         BoxBase.__init__(self)
         self.doc = doc
         self.boxstr = boxstr
@@ -659,7 +659,7 @@ class PageNumberBox(BoxBase):
     each page """
     
     def __init__(self, doc, boxstr):
-        """ initalize the page number box """
+        """ initialize the page number box """
         BoxBase.__init__(self)
         self.doc = doc
         self.boxstr = boxstr
@@ -673,7 +673,7 @@ class PageNumberBox(BoxBase):
         style_name = style_name.get_paragraph_style()
         font = style_sheet.get_paragraph_style(style_name).get_font()
         
-        #calcualate how much space is needed
+        #calculate how much space is needed
         if page.canvas.x_pages > 10:
             tmp = "00"
         else:
@@ -722,7 +722,7 @@ class NoteType(object):
         ]
     
     def __init__(self, value, exclude=None):
-        """ initalize GrampsType """
+        """ initialize GrampsType """
         self.value = value
         self.exclude = exclude
         #GrampsType.__init__(self, value)
@@ -737,7 +737,7 @@ class NoteBox(BoxBase, NoteType):
     """ Box that will hold the note to display on the page """
     
     def __init__(self, doc, boxstr, locale, exclude=None):
-        """ initalize the NoteBox """
+        """ initialize the NoteBox """
         BoxBase.__init__(self)
         NoteType.__init__(self, locale, exclude)
         self.doc = doc
@@ -831,7 +831,7 @@ class LineBase(object):
                     # and 0 < yme < usable_height and \
                     doc.draw_line(linestr, xbegin, yme, x34, yme)
         
-            #2 - veritcal line
+            #2 - vertical line
             mid = []
             for box in self.start + self.end:
                 tmp = box.y_cm + box.height/2
@@ -869,7 +869,7 @@ class ReportOptions(object):
     """
     
     def __init__(self, doc, normal_font, normal_line):
-        """ initalize various report variables that are used """
+        """ initialize various report variables that are used """
         self.box_pgap = PT2CM(1.25*normal_font.get_size()) #gap between persons
         self.box_mgap = self.box_pgap /2 #gap between marriage information
         self.box_shadow = PT2CM(normal_font.get_size()) * .6 #normal text
@@ -900,6 +900,6 @@ class ReportOptions(object):
 
 #=====================================
 #"And Jesus said unto them ... , "If ye have faith as a grain of mustard
-#seed, ye shall say unto this mountain, Remove hence to younder place; and
+#seed, ye shall say unto this mountain, Remove hence to yonder place; and
 #it shall remove; and nothing shall be impossible to you."
 #Romans 1:17

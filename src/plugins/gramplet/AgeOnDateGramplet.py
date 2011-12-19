@@ -67,8 +67,8 @@ class AgeOnDateGramplet(Gramplet):
         buffer.set_text(_("Enter a valid date (like YYYY-MM-DD) in the"
                           " entry below and click Run. This will compute"
                           " the ages for everyone in your Family Tree on"
-                          " that date. You can then sort by the age column"
-                          " ,and double-click the row to view or edit."))
+                          " that date. You can then sort by the age column,"
+                          " and double-click the row to view or edit."))
         label = gtk.Label()
         label.set_text(_("Date") + ":")
         self.entry = gtk.Entry()

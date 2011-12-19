@@ -82,7 +82,7 @@ class DescendantBoxBase(BoxBase):
         self.father = None
 
     def calc_text(self, database, person, family):
-        """  A sinble place to calculate box text """
+        """  A single place to calculate box text """
 
         gui = GuiConnect()
         calc = gui.calc_lines(database)
