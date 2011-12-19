@@ -135,8 +135,15 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         if not self.person:
             self.person = self.dbstate.db.find_initial_person()
             
-        self.logo      = gtk.gdk.pixbuf_new_from_file(_gramps_png)
-        self.splash    = gtk.gdk.pixbuf_new_from_file(_splash_jpg)
+        try:
+            self.logo      = gtk.gdk.pixbuf_new_from_file(_gramps_png)
+        except:
+            self.logo = None
+        try:
+            self.splash    = gtk.gdk.pixbuf_new_from_file(_splash_jpg)
+        except:
+            self.splash = None
+
             
         pmgr = GuiPluginManager.get_instance()
         self.__exporters = pmgr.get_export_plugins()
