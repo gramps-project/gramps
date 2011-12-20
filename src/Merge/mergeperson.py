@@ -196,10 +196,15 @@ class MergePeople(ManagedWindow.ManagedWindow):
             self.add(tobj, title, _("Events"))
             for event_ref in person.get_event_ref_list():
                 event_handle = event_ref.ref
+                role = event_ref.get_role()
                 name = str(
                     self.database.get_event_from_handle(event_handle).get_type())
-                self.add(tobj, normal, "%s:\t%s" % 
-                            (name, self.get_event_info(event_handle)))
+                if role.is_primary():
+                    self.add(tobj, normal, "%s:\t%s" % 
+                                (name, self.get_event_info(event_handle)))
+                else:
+                    self.add(tobj, normal, "%s (%s):\t%s" % 
+                                (name, role, self.get_event_info(event_handle)))
         plist = person.get_parent_family_handle_list()
 
         if len(plist) > 0:
