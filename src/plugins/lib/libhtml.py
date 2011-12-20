@@ -74,6 +74,7 @@ _XHTML10_BASIC = '"-//W3C//DTD XHTML Basic 1.0//EN"\n' \
                  '\t"http://www.w3.org/TR/xhtml-basic/xhtml-basic10.dtd"'
 _XHTML11_BASIC = '"-//W3C//DTD XHTML Basic 1.1//EN"\n ' \
                  '\t"http://www.w3.org/TR/xhtml-basic/xhtml-basic11.dtd"'
+_HTML5 = ""
 
 #------------------------------------------------------------------------
 #
@@ -135,7 +136,7 @@ class Html(list):
             )
 #
     @staticmethod
-    def doctype(name='html', public='PUBLIC', external_id=_XHTML10_STRICT):
+    def doctype(name='HTML', public='', external_id=_HTML5):
         """
         Build and return a DOCTYPE statement
 
@@ -150,11 +151,13 @@ class Html(list):
         :param args: 0 or more positional parameters to be added to this    
                      DOCTYPE.
         """
-        return '<!DOCTYPE %s %s %s>' % (
-            name,
-            public, 
-            external_id,
-            )
+        return (
+            '<!DOCTYPE %s %s %s' % (
+                name,
+                public, 
+                external_id,
+                )
+            ).rstrip() + '>'
 #
     @staticmethod
     def html(xmlns=_XMLNS, lang='en', *args, **keywargs):
