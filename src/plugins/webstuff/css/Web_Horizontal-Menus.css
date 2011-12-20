@@ -27,7 +27,14 @@ Style Name: Web_Navigation-Horizontal.css
 
 # $Id$
 
-   Navigation Menus
+    Body Element
+---------------------------------------------------=== */
+body {
+    padding: 0px 7px;
+    width: 979px;
+}
+
+/*   Navigation Menus
 ----------------------------------------------------- */
 div#navigation, div#subnavigation, div#alphabet {
     width: 100%;

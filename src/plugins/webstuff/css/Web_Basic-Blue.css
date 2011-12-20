@@ -126,9 +126,9 @@ h4 {
     font: normal 1em serif;
     background-color: #00029D;
     color: #FFF;
-    padding: .2em 0 .2em 20px;
+    padding: 0px 0px 0px 20px;
     border-width: 4px 0px 4px 0px;
-    border-style: grooved;
+    border-style: solid;
     border-color: #13A926;
 }
 h5, h6 {

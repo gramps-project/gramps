@@ -96,8 +96,7 @@ import gen.mime
 from gen.display.name import displayer as _nd
 from DateHandler import displayer as _dd
 from gen.proxy import PrivateProxyDb, LivingProxyDb
-from libhtmlconst import (_CHARACTER_SETS, _CC, _COPY_OPTIONS,
-                          openstreetmap_jsc, google_jsc)
+from libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
 
 # import HTML Class from src/plugins/lib/libhtml.py
 from libhtml import Html
@@ -112,6 +111,29 @@ from gui.pluginmanager import GuiPluginManager
 #------------------------------------------------
 # constants
 #------------------------------------------------
+# javascript code for Google single Marker...
+google_jsc = """
+   var map;
+
+  function initialize() {
+    var mapOptions = {
+      scaleControl:    true,
+      panControl:      true,
+      backgroundColor: '#000000',
+      zoom:            14,
+      center:          new google.maps.LatLng(0, 0),
+      mapTypeId:       google.maps.MapTypeId.ROADMAP
+    }
+    map = new google.maps.Map(document.getElementById("place_canvas"), mapOptions);
+
+    var marker = new google.maps.Marker({
+      position:  new google.maps.LatLng(%s, %s),
+      draggable: true,
+        map:     map,
+        title:   %s
+      });
+    google.maps.event.addDomListener(window, 'load', initialize);
+  }"""
 
 # javascript code for Google's FamilyLinks...
 familylinks = """
@@ -230,6 +252,29 @@ canada_map = """
        {isBaseLayer: false});
      map.addLayers([wms, dm_wms]);
 """
+
+# javascript code for OpenStreetMap single marker
+openstreetmap_jsc = """
+  OpenLayers.Lang.setCode("%s");
+
+  function initialize(){
+    var map = new OpenLayers.Map('place_canvas');
+
+    var wms = new OpenLayers.Layer.WMS(
+      "OpenLayers WMS",
+      "http://vmap0.tiles.osgeo.org/wms/vmap0",
+      {'layers':'basic'});
+    map.addLayer(wms);
+
+    map.setCenter(new OpenLayers.LonLat(0, 0), 0);
+
+    var markers = new OpenLayers.Layer.Markers("Markers");
+    map.addLayer(markers);
+
+      marker = new OpenLayers.Marker(new OpenLayers.LonLat(%s, %s);
+      markers.addMarker(marker); 
+      map.addControl(new OpenLayers.Control.LayerSwitcher());
+  }"""
 
 # javascript for OpenStreetMap's markers...
 osm_markers = """
@@ -1997,8 +2042,7 @@ class BasePage(object):
         if bibli.get_citation_count() == 0:
             return None
 
-        db = self.report.database
-        with Html("div", id = "sourcerefs", class_ = "subsection") as section:
+        with Html("div", class_ = "subsection", id = "sourcerefs") as section:
             section += Html("h4", _("Source References"), inline = True)
 
             ordered = Html("ol")
@@ -2033,7 +2077,8 @@ class BasePage(object):
                     confidence = Utils.confidence.get(sref.confidence, _('Unknown'))
                     if confidence == _('Normal'):
                         confidence = None
-                    for (label, data) in [[DHEAD,           _dd.display(sref.date)],
+                    for (label, data) in [
+                                          [_("Date"),       _dd.display(sref.date)],
                                           [_("Page"),       sref.page],
                                           [_("Confidence"), confidence] ]:
                         if data:
@@ -3253,11 +3298,11 @@ class PlacePage(BasePage):
 
                     # add MapService specific javascript code
                     if self.mapservice == "Google":
-                        head += Html("script", type ="text/javascript",
-                            src ="http://maps.googleapis.com/maps/api/js?sensor=false", inline =True)
+                            head += Html("script", type = "text/javascript",
+                                src = "http://maps.googleapis.com/maps/api/js?sensor=false", inline = True)
                     else:
-                        head += Html("script", type ="text/javascript",
-                            src ="http://www.openlayers.org/api/OpenLayers.js", inline =True)
+                        head += Html("script", type = "text/javascript",
+                            src = "http://www.openlayers.org/api/OpenLayers.js", inline = True)
 
                     # section title
                     placedetail += Html("h4", _("Place Map"), inline =True)
@@ -3274,7 +3319,7 @@ class PlacePage(BasePage):
                                 head += jsc
 
                                 # Google adds Latitude/ Longitude to its maps...
-                                jsc += google_jsc % (latitude, longitude)
+                                jsc += google_jsc % (latitude, longitude, place.get_title())
 
                             else:
                                 canvas += jsc
@@ -3284,7 +3329,10 @@ class PlacePage(BasePage):
                                 jsc += openstreetmap_jsc % (Utils.xml_lang()[3:5].lower(), longitude, latitude)
 
             # add javascript function call to body element
-            body.attr +=' onload ="initialize();" '
+            if self.mapservice == "Google":
+                pass
+            else:
+                body.attr +=' onload ="initialize();" '
 
             # place references
             reflist = self.display_references(place_list[place.handle])
@@ -4202,16 +4250,15 @@ class SourcePage(BasePage):
                 if not self.noid and self.gid:
                     source_gid = source.get_gramps_id()
 
-                for (label, val) in [
+                for (label, value) in [
                     (_("Gramps ID"),               source_gid),
                     (_("Author"),                  source.author),
                     (_("Publication information"), source.pubinfo),
                     (_("Abbreviation"),            source.abbrev) ]:
-
-                    if val:
+                    if value:
                         trow = Html("tr") + (
                             Html("td", label, class_ = "ColumnAttribute", inline = True),
-                            Html("td", val, class_ = "ColumnValue", inline = True)
+                            Html("td", value, class_ = "ColumnValue", inline = True)
                         )
                         tbody += trow
 
@@ -4229,22 +4276,38 @@ class SourcePage(BasePage):
             # source repository list
             repo_ref_list = source.get_reporef_list()
             if repo_ref_list:
-                with Html("div", id = "subsection", class_ = "references") as repo_references:
-                    sourcedetail += repo_references
-                    repo_references += Html("h4", _("Repositories"), inline = True)
+                with Html("div", class_ ="subsection", id ="repositories") as repositories:
+                    sourcedetail += repositories
+                    repositories += Html("h4", _("Repositories"), inline = True)
 
-                    ordered = Html("ol")
-                    repo_references += ordered
+                    with Html("table", class_ ="infolist") as table:
+                        repositories += table
 
-                    for repo_ref in repo_ref_list:
-                        repository = self.dbase_.get_repository_from_handle(repo_ref.ref)
-                        list = Html("li", self.repository_link(repository.get_handle(),
-                                                                repository.name,
-                                                                inc_repos,
-                                                                repository.get_gramps_id(),
-                                                                up =True)
+                        thead = Html("thead")
+                        table += thead
+
+                        trow = Html("tr") + (
+                            Html("th", _("Number"), class_ ="ColumnRowLabel", inline =True),
+                            Html("th", _("Name"), class_ ="ColumnName", inline =True)
                         )
-                        ordered += list
+                        thead += trow
+
+                        tbody = Html("tbody")
+                        table += tbody
+
+                        index = 1
+                        for repo_ref in repo_ref_list:
+                            repository = self.dbase_.get_repository_from_handle(repo_ref.ref)
+                            if repository:
+                                trow = Html("tr") + (
+                                    Html("td", index, class_ ="ColumnRowLabel", inline =True),
+                                    Html("td", self.repository_link(repo_ref.ref,
+                                                                    repository.get_name(),
+                                                                    inc_repos,
+                                                                    repository.get_gramps_id(),
+                                                                    up =True))
+                                )
+                                tbody += trow
 
             # get source and its citation references
             the_lists = Utils.get_source_and_citation_referents(handle, self.dbase_)
@@ -4256,135 +4319,160 @@ class SourcePage(BasePage):
                     sourcedetail += section
                     section += Html("h4", _("Citation References"), inline =True)
 
+                    # ordered list (ol)
+                    ordered = Html("ol")
+                    section += ordered
+
                     for (citation_handle, refs) in citation_referents_list:
                         citation = self.dbase_.get_citation_from_handle(citation_handle)
+                        if citation:
+                            list = Html("li", citation.get_page(), inline =True)
+                            ordered += list
 
-                        ordered = Html("ol")
-                        section += ordered
+                            # if citation references?
+                            if refs:
+                                (ppl_list, fml_list, event_list, place_list, source_list, media_list, repo_list) = refs
 
-                        list = Html("li", citation.get_page(), inline =True)
-                        ordered += list
+                                # Citation Referents have Person objects... 
+                                if ppl_list:
+                                    ppl_list = set([phandle for phandle in ppl_list])
 
-                        if refs:
-                            (ppl_list, fml_list, event_list, place_list, source_list, media_list, repo_list) = refs
+                                    ordered1 = Html("ol", _("Person(s)"))
+                                    for person_handle in ppl_list:
+                                        _obj = self.dbase_.get_person_from_handle(person_handle)
+                                        if _obj:
+                                            list1 = Html("li")
 
-                            ordered1 = Html("ol")
-                            list += ordered1
+                                            use_link = check_person_database(person_handle, ppl_handle_list)
+                                            if use_link:
+                                                url = self.report.build_url_fname_html(person_handle, "ppl", up = True)
+                                                list1 += self.person_link(url, _obj, _NAME_STYLE_DEFAULT,
+                                                    gid=_obj.get_gramps_id())
+                                            else:
+                                                list1 += self.get_name(_obj)
+                                            ordered1 += list1
+                                    list += ordered1
 
-                            for person_handle in ppl_list:
-                                _obj = self.dbase_.get_person_from_handle(person_handle)
-                                if _obj:
+                                # Citation Referents have Family objects...
+                                if fml_list:
+                                    ffml_list = set([fhandle for fhandle in fml_list])
 
-                                    list1 = Html("li")
-                                    ordered1 += list1
+                                    ordered2 = Html("ol", _("Families"))
+                                    for fhandle in families:
+                                        _obj = self.dbase_.get_family_from_handle(fhandle)
+                                        if _obj:
+                                            list2 = tml("li")
 
-                                    use_link = check_person_database(person_handle, ppl_handle_list)
-                                    if use_link:
-                                        url = self.report.build_url_fname_html(person_handle, "ppl", up = True)
-                                        list1 += Html("a", self.person_link(url, _obj, _NAME_STYLE_DEFAULT,
-                                            gid=_obj.get_gramps_id()), class_ ="person")
-                                    else:
-                                        list1 += self.get_name(_obj)
-
-                            for fhandle in fml_list:
-                                _obj = self.dbase_.get_family_from_handle(fhandle)
-                                if _obj:
-                                    list1 = Html("li")
-                                    ordered1 += list1
-
-                                    father_handle = _obj.get_father_handle()
-                                    mother_handle = _obj.get_mother_handle()
-                                    if father_handle:
-                                        father = self.dbase_.get_person_from_handle(father_handle)
-                                        father_name = self.get_name(father)
-                                    if mother_handle:
-                                        mother = self.dbase_.get_person_from_handle(mother_handle)
-                                        mother_name = self.get_name(mother)
-                                    if mother and father:
-                                        use_link = check_person_database(father_handle, ppl_handle_list)
-                                        if use_link:
-                                            url = self.report.build_url_fname_html(father_handle, "ppl", up = True)
-                                            hlink = Html("span", self.person_link(father, father_handle, 
-                                                _NAME_STYLE_DEFAULT), class_ = "father fatherNmother")
-                                        else:
-                                            hlink = father_name
+                                            father_handle = _obj.get_father_handle()
+                                            mother_handle = _obj.get_mother_handle()
+                                            if father_handle:
+                                                father = self.dbase_.get_person_from_handle(father_handle)
+                                                father_name = self.get_name(father)
+                                            if mother_handle:
+                                                mother = self.dbase_.get_person_from_handle(mother_handle)
+                                                mother_name = self.get_name(mother)
+                                            if mother and father:
+                                                use_link = check_person_database(father_handle, ppl_handle_list)
+                                                if use_link:
+                                                    url = self.report.build_url_fname_html(father_handle, "ppl", up = True)
+                                                    hlink = Html("span", self.person_link(father, father_handle, 
+                                                        _NAME_STYLE_DEFAULT), class_ = "father fatherNmother")
+                                                else:
+                                                    hlink = father_name
                    
-                                        use_link = check_person_database(mother_handle, ppl_handle_list)
-                                        if use_link:
-                                            url = self.report.build_url_fname_html(mother_handle, "ppl", up = True)
-                                            hlink = Html("span", self.person_link(mother, mother_handle, 
-                                                _NAME_STYLE_DEFAULT), class_ = "Nmother")
-                                        else:
-                                            hlink = mother_name
+                                                use_link = check_person_database(mother_handle, ppl_handle_list)
+                                                if use_link:
+                                                    url = self.report.build_url_fname_html(mother_handle, "ppl", up = True)
+                                                    hlink += Html("span", self.person_link(mother, mother_handle, 
+                                                        _NAME_STYLE_DEFAULT), class_ = "Nmother")
+                                                else:
+                                                    hlink += mother_name
 
-                                    elif mother:
-                                        use_link = check_person_database(mother_handle, ppl_handle_list)
-                                        if use_link:
-                                            url = self.report.build_url_fname_html(mother_handle, "ppl", up = True)
-                                            hlink = Html("span", self.person_link(mother, mother_handle, 
-                                                _NAME_STYLE_DEFAULT), class_ = "Nmother")
-                                        else:
-                                            hlink = mother_name
+                                            elif mother:
+                                                use_link = check_person_database(mother_handle, ppl_handle_list)
+                                                if use_link:
+                                                    url = self.report.build_url_fname_html(mother_handle, "ppl", up = True)
+                                                    hlink = Html("span", self.person_link(mother, mother_handle, 
+                                                        _NAME_STYLE_DEFAULT), class_ = "Nmother")
+                                                else:
+                                                    hlink = mother_name
 
-                                    elif father:
-                                        use_link = check_person_database(father_handle, ppl_handle_list)
-                                        if use_link:
-                                            url = self.report.build_url_fname_html(father_handle, "ppl", up = True)
-                                            hlink = Html("span", self.person_link(father, father_handle, 
-                                                _NAME_STYLE_DEFAULT), class_ = "father")
-                                        else:
-                                            hlink = father_name
-                                    list1 += hlink
+                                            elif father:
+                                                use_link = check_person_database(father_handle, ppl_handle_list)
+                                                if use_link:
+                                                    url = self.report.build_url_fname_html(father_handle, "ppl", up = True)
+                                                    hlink = Html("span", self.person_link(father, father_handle, 
+                                                        _NAME_STYLE_DEFAULT), class_ = "father")
+                                                else:
+                                                    hlink = father_name
+                                            list2 += hlink
+                                            ordered2 += list2
+                                    list += ordered2
 
-                            for evt_handle in event_list:
-                                _obj = self.dbase_.get_event_from_handle(evt_handle)
-                                if _obj:
+                                # Citation Referents have Event objects...
+                                if event_list:
+                                    event_list = set([evt_handle for evt_handle in event_list])
 
-                                    list1 = Html("li")
-                                    ordered1 += list1
+                                    ordered3 = Html("ol", _("Events"))
+                                    for evt_handle in event_list:
+                                        _obj = self.dbase_.get_event_from_handle(evt_handle)
+                                        if _obj:
+                                            list3 = Html("li") + self.event_link(_obj.get_type(), evt_handle,
+                                                gid = _obj.get_gramps_id(), up =True)
+                                            ordered3 += list3
+                                    list += ordered3
 
-                                    list1 += Html("a", self.event_link(_obj.get_type(), evt_handle,
-                                        gid = _obj.get_gramps_id(), up =True))
+                                # Citation Referents have Place objects...
+                                if place_list:
+                                    place_list = set([plc_handle for plc_handle in place_list])
 
-                            for plc_handle in place_list:
-                                _obj = self.dbase_.get_place_from_handle(plc_handle)
-                                if _obj:
+                                    ordered4 = Html("ol", _("Place"))
+                                    for plc_handle in place_list:
+                                        _obj = self.dbase_.get_place_from_handle(plc_handle)
+                                        if _obj:
+                                            list4 = Html("li") + self.place_link(plc_handle, _obj.get_title(), up = True)
+                                            ordered4 += list4
+                                    list += ordered4
 
-                                    list1 = Html("li")
-                                    ordered1 += list1
+                                # Citation Referents have Source objects...
+                                if source_list:
+                                    source_list = set([src_handle for src_handle in source_list])
 
-                                    list1 += self.place_link(plc_handle, _obj.get_title(), up = True)
+                                    ordered5 = Html("ol", _("Sources"))
+                                    for src_handle in source_list:
+                                        _obj = self.dbase_.get_source_from_handle(src_handle)
+                                        if _obj:
+                                            list5 = Html("li") + self.source_link(_obj, up = True)
+                                            ordered5 += list5
+                                    list += ordered5
 
-                            for src_handle in source_list:
-                                _obj = self.dbase_.get_source_from_handle(src_handle)
-                                if _obj:
+                                # Citation Referents have Media objects...
+                                if media_list:
+                                    media_list = set([mhandle for mhandle in media_list])
 
-                                    list1 = Html("li")
-                                    ordered1 += list1
+                                    ordered6 = Html("ol", _("Sources"))
+                                    for mhandle in media_list:
+                                        _obj = self.dbase_.get_object_from_handle(mhandle)
+                                        if _obj:
+                                            real_path, newpath = self.report.prepare_copy_media(_obj)
+                                            ewpath = self.report.build_url_fname(newpath, up = True)
 
-                                    list1 += self.source_link(_obj, up = True)
+                                            list6 = Html("li") + self.media_link(mhandle,
+                                                newpath, _obj.get_description(), up = True)
+                                            ordered6 += list6
+                                    list += ordered6
 
-                            for mhandle in media_list:
-                                _obj = self.dbase_.get_object_from_handle(mhandle)
-                                if _obj:
+                                # Citation Referents have Repository objects...
+                                if repo_list:
+                                    repo_list = set([rhandle for rhandle in repo_list])
 
-                                    list1 = Html("li")
-                                    ordered1 += list1
-
-                                    real_path, newpath = self.report.prepare_copy_media(_obj)
-                                    ewpath = self.report.build_url_fname(newpath, up = True)
-
-                                    list1 += self.media_link(mhandle,
-                                        newpath, _obj.get_description(), up=True, usedescr = True)
-
-                            for repo_handle in repo_list:
-                                _obj = self.dbase_.get_repository_from_handle(repo_handle)
-                                if _obj:
-
-                                    list1 = Html("li")
-                                    ordered1 += list1
-
-                                    list1 += self.repository_link(repo_handle, _obj.get_name(), up = True)
+                                    ordered7 = Html("ol", _("Media"))
+                                    for repo_handle in repo_list:
+                                        _obj = self.dbase_.get_repository_from_handle(repo_handle)
+                                        if _obj:
+                                            list7 = Html("li") + self.repository_link(repo_handle, _obj.get_name(), up = True)
+                                            ordered7 += list7
+                                    list += ordered7
 
         # add clearline for proper styling
         # add footer section
@@ -5159,7 +5247,7 @@ class IndividualPage(BasePage):
 
                         # are we using Google?
                         if self.mapservice == "Google":
-                            jsc += google_jsc % (latitude, longitude)
+                            jsc += google_jsc % (latitude, longitude, placetitle)
 
                         # we are using OpenStreetMap?
                         else:
@@ -5339,8 +5427,9 @@ class IndividualPage(BasePage):
         return [bv, gv, bh, gh]
 
     def draw_connected_box(self, center1, center2, col, handle):
-        db = self.report.database
-
+        """
+        draws the connected box for Ancestor Tree on the Individual Page
+        """
         box = []
         if not handle:
             return box
@@ -5372,8 +5461,9 @@ class IndividualPage(BasePage):
         return tree
 
     def draw_tree(self, gen_nr, maxgen, max_size, old_center, new_center, phandle):
-        db = self.report.database
-
+        """
+        draws the Abcestor Tree
+        """
         tree = []
         if gen_nr > maxgen:
             return tree
@@ -5473,11 +5563,9 @@ class IndividualPage(BasePage):
         """
         Display an individual's pedigree
         """
-        db = self.report.database
         birthorder = self.report.options["birthorder"]
 
         # Define helper functions
-        
         def children_ped(ol):
             if family:
                 childlist = family.get_child_ref_list()
@@ -5489,7 +5577,7 @@ class IndividualPage(BasePage):
                     children = sorted(children)
                 
                 for birthdate, handle in children:
-                    if handle == self.person.handle:
+                    if handle == self.person.get_handle():
                         child_ped(ol)
                     else:
                         child = self.dbase_.get_person_from_handle(handle)
@@ -5504,7 +5592,6 @@ class IndividualPage(BasePage):
                 if family:
                     pedfam += Html("ol", class_ = "spouselist") + family
             return ol + pedfam
-        
         # End of helper functions
 
         parent_handle_list = self.person.get_parent_family_handle_list()
@@ -7185,11 +7272,13 @@ class NavWebReport(Report):
                       "web pages."))
                 self.warn_dir = False
 
+#################################################
+#
+#    Creates the NarrativeWeb Report Menu Options
+#        Defines options and provides handling interface.
+#
+#################################################
 class NavWebOptions(MenuReportOptions):
-    """
-    Defines options and provides handling interface.
-    """
-
     def __init__(self, name, dbase):
         self.__db = dbase
         self.__archive = None
