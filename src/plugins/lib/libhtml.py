@@ -60,6 +60,8 @@ __all__ = ['Html']
 #
 # XHTML DOCTYPE constants to be used in <!DOCTYPE ... > statements
 #
+# Reference: http://www.w3.org/QA/2002/04/valid-dtd-list.html
+#
 #------------------------------------------------------------------------
 
 _XHTML10_STRICT = '"-//W3C//DTD XHTML 1.0 Strict//EN"\n' \
@@ -427,8 +429,8 @@ class Html(list):
             )
         self[0:0] = [xmldecl]
 #
-    def addDOCTYPE(self, name='html', public='PUBLIC',
-            external_id=_XHTML10_STRICT, *args):
+    def addDOCTYPE(self, name='HTML', public='',
+            external_id=_HTML5, *args):
         """
         Add a DOCTYPE statement to the start of the list
 
@@ -441,12 +443,14 @@ class Html(list):
         :param args: 0 or more positional parameters to be added to this    
                      DOCTYPE.
         """
-        doctype = '<!DOCTYPE %s %s %s%s>' % (
-            name,
-            public,
-            external_id,
-            ' %s'*len(args) % args
-            )
+        doctype = (
+            '<!DOCTYPE %s %s %s%s' % (
+                name,
+                public,
+                external_id,
+                ' %s'*len(args) % args
+                )
+            ).rstrip() + '>'
         # Note: DOCTYPE declaration must follow XML declaration
 
         if len(self) and self[0][:6] == '<?xml ':
