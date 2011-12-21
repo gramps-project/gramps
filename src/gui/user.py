@@ -75,7 +75,7 @@ class User(gen.user.User):
     
     def end_progress(self):
         """
-        Start showing a progress indicator to the user.
+        Stop showing the progress indicator to the user.
         """
         if self.progress:
             self.progress.close()

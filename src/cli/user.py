@@ -95,11 +95,9 @@ class User(gen.user.User):
     
     def end_progress(self):
         """
-        Start showing a progress indicator to the user.
+        Stop showing the progress indicator to the user.
         """
-        if self.steps != 0:
-            sys.stdout.write("\r100%")
-        sys.stdout.write("\n")
+        sys.stdout.write("\r100%\n")
     
     def prompt(self, title, question):
         """
