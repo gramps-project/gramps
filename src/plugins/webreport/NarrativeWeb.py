@@ -3313,18 +3313,19 @@ class PlacePage(BasePage):
 
                         # begin inline javascript code
                         # because jsc is a docstring, it does NOT have to be properly indented
-                        with Html("script", type = "text/javascript") as jsc:
-                            if self.mapservice == "Google":
+                        if self.mapservice == "Google":
+                            with Html("script", type = "text/javascript", indent = False) as jsc:
                                 head += jsc
 
                                 # Google adds Latitude/ Longitude to its maps...
                                 jsc += google_jsc % (latitude, longitude, placetitle)
 
-                            elif self.mapservice == "OpenStreetMap":
+                        else:
+                            # OpenStreetMap (OSM) adds Longitude/ Latitude to its maps,
+                            # and needs a country code in lowercase letters...
+                            with Html("script", type = "text/javascript") as jsc:
                                 canvas += jsc
 
-                                # OpenStreetMap (OSM) adds Longitude/ Latitude to its maps,
-                                # and needs a country code in lowercase letters...
                                 jsc += openstreetmap_jsc % (Utils.xml_lang()[3:5].lower(), longitude, latitude)
 
             # add javascript function call to body element
