@@ -113,26 +113,26 @@ from gui.pluginmanager import GuiPluginManager
 #------------------------------------------------
 # javascript code for Google single Marker...
 google_jsc = """
-   var map;
+  var myLatLng = new google.maps.LatLng(%s, %s);
 
   function initialize() {
     var mapOptions = {
       scaleControl:    true,
       panControl:      true,
       backgroundColor: '#000000',
-      zoom:            14,
-      center:          new google.maps.LatLng(0, 0),
+      draggable:       true,
+      zoom:            10,
+      center:          myLatLng,
       mapTypeId:       google.maps.MapTypeId.ROADMAP
     }
-    map = new google.maps.Map(document.getElementById("place_canvas"), mapOptions);
+    var map = new google.maps.Map(document.getElementById("place_canvas"), mapOptions);
 
     var marker = new google.maps.Marker({
-      position:  new google.maps.LatLng(%s, %s),
+      position:  myLatLng,
       draggable: true,
-        map:     map,
-        title:   %s
-      });
-    google.maps.event.addDomListener(window, 'load', initialize);
+      title:     "%s",
+      map:       map
+    });
   }"""
 
 # javascript code for Google's FamilyLinks...
@@ -168,7 +168,6 @@ dropmarkers = """
   var iterator = 0;
 
   var tracelife = %s
-
   var map;
 
   function initialize() {
@@ -178,7 +177,7 @@ dropmarkers = """
       zoom:         %d,
       mapTypeId:    google.maps.MapTypeId.ROADMAP,
       center:       new google.maps.LatLng(0, 0)
-    };
+    }
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
   }
 
@@ -3290,6 +3289,7 @@ class PlacePage(BasePage):
             if self.placemappages:
                 if (place and (place.lat and place.long)):
                     latitude, longitude = conv_lat_lon(place.get_latitude(), place.get_longitude(), "D.D8")
+                    placetitle = place.get_title()
 
                     # add narrative-maps CSS...
                     fname = "/".join(["styles", "narrative-maps.css"])
@@ -3298,8 +3298,8 @@ class PlacePage(BasePage):
 
                     # add MapService specific javascript code
                     if self.mapservice == "Google":
-                            head += Html("script", type = "text/javascript",
-                                src = "http://maps.googleapis.com/maps/api/js?sensor=false", inline = True)
+                        head += Html("script", type ="text/javascript",
+                            src ="http://maps.googleapis.com/maps/api/js?sensor=false", inline =True)
                     else:
                         head += Html("script", type = "text/javascript",
                             src = "http://www.openlayers.org/api/OpenLayers.js", inline = True)
@@ -3308,20 +3308,19 @@ class PlacePage(BasePage):
                     placedetail += Html("h4", _("Place Map"), inline =True)
 
                     # begin map_canvas division
-                    with Html("div", id ="place_canvas") as canvas:
+                    with Html("div", id ="place_canvas", inline = True) as canvas:
                         placedetail += canvas
 
                         # begin inline javascript code
                         # because jsc is a docstring, it does NOT have to be properly indented
                         with Html("script", type = "text/javascript") as jsc:
-
                             if self.mapservice == "Google":
                                 head += jsc
 
                                 # Google adds Latitude/ Longitude to its maps...
-                                jsc += google_jsc % (latitude, longitude, place.get_title())
+                                jsc += google_jsc % (latitude, longitude, placetitle)
 
-                            else:
+                            elif self.mapservice == "OpenStreetMap":
                                 canvas += jsc
 
                                 # OpenStreetMap (OSM) adds Longitude/ Latitude to its maps,
@@ -3329,10 +3328,7 @@ class PlacePage(BasePage):
                                 jsc += openstreetmap_jsc % (Utils.xml_lang()[3:5].lower(), longitude, latitude)
 
             # add javascript function call to body element
-            if self.mapservice == "Google":
-                pass
-            else:
-                body.attr +=' onload ="initialize();" '
+            body.attr +=' onload = "initialize();" '
 
             # place references
             reflist = self.display_references(place_list[place.handle])
