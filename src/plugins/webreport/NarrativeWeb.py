@@ -1539,67 +1539,83 @@ class BasePage(object):
             ('repositories',            _("Repositories"),  inc_repos),
             ("addressbook",             _("Address Book"),  self.report.inc_addressbook),
             ('download',                _("Download"),      self.report.inc_download),
-            ('contact',                 _("Contact"),       self.report.use_contact),
+            ('contact',                 _("Contact"),       self.report.use_contact)
         ]
 
         # Remove menu sections if they are not being created?
         navs = ((u, n) for u, n, c in navs if c)
+        menu_items = [[url, text] for url, text in navs]
+
+        number_items = len(menu_items)
+        num_cols = 9
+        num_rows = (number_items // num_cols) + 1
 
         with Html("div", id ="navigation") as navigation:
-            unordered = Html("ul")
-            navigation += unordered
+            
+            index = 0
+            for rows in range(num_rows):
+                unordered = Html("ul")
+                navigation += unordered
 
-            for url_fname, nav_text in navs:
-                if not _has_webpage_extension(url_fname):
-                    url_fname += self.ext
+                cols = 0
+                while (cols != num_cols and index < number_items):
+                    url_fname, nav_text = menu_items[index]
 
-                url = self.report.build_url_fname(url_fname, None, self.up)
+                    print(index, number_items, num_rows, url_fname, nav_text)
 
-                # Define 'currentsection' to correctly set navlink item CSS id
-                # 'CurrentSection' for Navigation styling.
-                # Use 'self.report.cur_fname' to determine 'CurrentSection' for individual
-                # elements for Navigation styling.
+                    if not _has_webpage_extension(url_fname):
+                        url_fname += self.ext
 
-                # Figure out if we need <li class="CurrentSection"> of just <li>
-                cs = False
-                if nav_text == currentsection:
-                    cs = True
-                elif nav_text == _("Surnames"):
-                    if "srn" in self.report.cur_fname:
-                        cs = True
-                    elif _("Surnames") in currentsection:
-                        cs = True
-                elif nav_text == _("Individuals"):
-                    if "ppl" in self.report.cur_fname:
-                        cs = True
-                elif nav_text == _("Families"):
-                    if "fam" in self.report.cur_fname:
-                        cs = True
-                elif nav_text == _("Sources"):
-                    if "src" in self.report.cur_fname:
-                        cs = True
-                elif nav_text == _("Places"):
-                    if "plc" in self.report.cur_fname:
-                        cs = True
-                elif nav_text == _("Events"):
-                    if "evt" in self.report.cur_fname:
-                        cs = True 
-                elif nav_text == _("Media"):
-                    if "img" in self.report.cur_fname:
-                        cs = True
-                elif nav_text == _("Address Book"):
-                    if "addr" in self.report.cur_fname:
-                        cs = True 
+                    url = self.report.build_url_fname(url_fname, None, self.up)
 
-                cs = 'class = "CurrentSection"' if cs else False
-                if not cs:
-                    unordered += Html("li", inline =True) + (
-                       Html("a", nav_text, href =url, title =nav_text)
-                    )
-                else:
-                    unordered += Html("li", attr =cs, inline =True) + (
-                       Html("a", nav_text, href =url, title =nav_text)
-                    )
+                    # Define 'currentsection' to correctly set navlink item CSS id
+                    # 'CurrentSection' for Navigation styling.
+                    # Use 'self.report.cur_fname' to determine 'CurrentSection' for individual
+                    # elements for Navigation styling.
+
+                    # Figure out if we need <li class="CurrentSection"> of just <li>
+                    cs = False
+                    if nav_text == currentsection:
+                        cs = True
+                    elif nav_text == _("Surnames"):
+                        if "srn" in self.report.cur_fname:
+                            cs = True
+                        elif _("Surnames") in currentsection:
+                            cs = True
+                    elif nav_text == _("Individuals"):
+                        if "ppl" in self.report.cur_fname:
+                            cs = True
+                    elif nav_text == _("Families"):
+                        if "fam" in self.report.cur_fname:
+                            cs = True
+                    elif nav_text == _("Sources"):
+                        if "src" in self.report.cur_fname:
+                            cs = True
+                    elif nav_text == _("Places"):
+                        if "plc" in self.report.cur_fname:
+                            cs = True
+                    elif nav_text == _("Events"):
+                        if "evt" in self.report.cur_fname:
+                            cs = True 
+                    elif nav_text == _("Media"):
+                        if "img" in self.report.cur_fname:
+                            cs = True
+                    elif nav_text == _("Address Book"):
+                        if "addr" in self.report.cur_fname:
+                            cs = True 
+
+                    cs = 'class = "CurrentSection"' if cs else False
+                    if not cs:
+                        unordered += Html("li", inline =True) + (
+                           Html("a", nav_text, href =url, title =nav_text)
+                        )
+                    else:
+                        unordered += Html("li", attr =cs, inline =True) + (
+                           Html("a", nav_text, href =url, title =nav_text)
+                        )
+                    index += 1
+                    cols += 1
+
         # return navigation menu bar to its caller
         return navigation
 
