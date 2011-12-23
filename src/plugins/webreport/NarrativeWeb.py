@@ -1561,8 +1561,6 @@ class BasePage(object):
                 while (cols != num_cols and index < number_items):
                     url_fname, nav_text = menu_items[index]
 
-                    print(index, number_items, num_rows, url_fname, nav_text)
-
                     if not _has_webpage_extension(url_fname):
                         url_fname += self.ext
 
