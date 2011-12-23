@@ -604,7 +604,7 @@ class BasePage(object):
                             trow = Html("tr") + (
                                 Html("td", "&nbsp;", class_ = "ColumnType", inline = True),
                                 Html("td", _("LDS Ordinance"), class_ = "ColumnAttribute", inline = True),
-                                Html("td", self.dump_ordinance(self.dbase_, family, "Family"), class_ = "ColumnValue")
+                                Html("td", self.dump_ordinance(family, "Family"), class_ = "ColumnValue")
                             )
                             table += trow
 
@@ -1035,7 +1035,7 @@ class BasePage(object):
                (_("Date"),  "ColumnDate",  _dd.display(evt.get_date_object()) ),
                (_("Place"), "ColumnPlace", place_hyper) ]
 
-    def dump_ordinance(self, ldsobj, LDSSealedType = "Person"):
+    def dump_ordinance(self, ldsobj, LDSSealedType):
         """
         will dump the LDS Ordinance information for either
         a person or a family ...
@@ -2032,7 +2032,7 @@ class BasePage(object):
             section += Html("h4", _("Latter-Day Saints/ LDS Ordinance"), inline = True)
 
             # ump individual LDS ordinance list
-            section += self.dump_ordinance(db_obj_)
+            section += self.dump_ordinance(db_obj_, "Person")
 
         # return section to its caller
         return section
