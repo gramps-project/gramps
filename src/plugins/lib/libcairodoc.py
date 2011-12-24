@@ -265,12 +265,12 @@ class GtkDocBaseElement(object):
     Support document element structuring and can render itself onto
     a Cairo surface.
     
-    There are two cathegories of methods:
+    There are two categories of methods:
       1. hierarchy building methods (add_child, get_children, set_parent,
          get_parent);
       2. rendering methods (divide, draw).
       
-    The hierarchy building methods generally don't have to be overriden in
+    The hierarchy building methods generally don't have to be overridden in
     the subclass, while the rendering methods (divide, draw) must be
     implemented in the subclasses.
     
@@ -311,7 +311,7 @@ class GtkDocBaseElement(object):
                       (element.__class__, self.__class__))
             return False
         
-        # append the child and set it's parent
+        # append the child and set its parent
         self._children.append(element)
         element.set_parent(self)
         return True
@@ -836,7 +836,7 @@ class GtkDocTableCell(GtkDocBaseElement):
         if cell_height <> 0:
             cell_height += 2 * v_padding
         
-        # a cell can't be divided, return the heigth
+        # a cell can't be divided, return the height
         return (self, new_cell), cell_height
     
     def draw(self, cr, layout, width, cell_height, dpi_x, dpi_y):
@@ -926,7 +926,9 @@ class GtkDocPicture(GtkDocBaseElement):
             l_margin = 0
         
         # load the image and get its extents
-        pixbuf = ImgManip.resize_to_buffer(self._filename, [img_width, img_height], self._crop)
+        pixbuf = ImgManip.resize_to_buffer(self._filename,
+                                           [img_width, img_height],
+                                           self._crop)
         pixbuf_width = pixbuf.get_width()
         pixbuf_height = pixbuf.get_height()
         

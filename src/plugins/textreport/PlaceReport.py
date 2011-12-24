@@ -347,7 +347,7 @@ class PlaceReport(Report):
     
 #------------------------------------------------------------------------
 #
-# AncestorOptions
+# PlaceOptions
 #
 #------------------------------------------------------------------------
 class PlaceOptions(MenuReportOptions):

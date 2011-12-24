@@ -114,7 +114,7 @@ class FamilyBox(DescendantBoxBase):
 class PlaceHolderBox(BoxBase):
     """
     I am a box that does not print.  I am used to make sure information
-    does not run over areas that we don't wnat information (boxes)
+    does not run over areas that we don't want information (boxes)
     """
 
     def __init__(self, level):
@@ -363,7 +363,7 @@ class RecurseDown:
         self.database = dbase
         self.canvas = canvas
 
-        self.famalies_seen = set()
+        self.families_seen = set()
         self.cols = []
         self.__last_direct = []
         
@@ -486,7 +486,7 @@ class RecurseDown:
         if not person_handle: return
         if x_level > self.max_generations: return
         if s_level > 0 and s_level == self.max_spouses: return
-        if person_handle in self.famalies_seen: return
+        if person_handle in self.families_seen: return
 
         myself = None
         person = self.database.get_person_from_handle(person_handle)
@@ -504,8 +504,8 @@ class RecurseDown:
             self.bold_now = 0
 
         for family_handle in family_handles:
-            if family_handle not in self.famalies_seen:
-                self.famalies_seen.add(family_handle)
+            if family_handle not in self.families_seen:
+                self.families_seen.add(family_handle)
 
                 family = self.database.get_family_from_handle(family_handle)
 
@@ -517,7 +517,7 @@ class RecurseDown:
 
                 spouse_handle = ReportUtils.find_spouse(person, family)
                 if self.max_spouses > s_level and \
-                   spouse_handle not in self.famalies_seen:
+                   spouse_handle not in self.families_seen:
                     def _spouse_box(who):
                         return self.add_person_box((x_level, s_level+1), 
                                             spouse_handle, family_handle, who)
@@ -541,7 +541,7 @@ class RecurseDown:
                         _child_recurse(myself)
 
                 if self.max_spouses > s_level and \
-                   spouse_handle not in self.famalies_seen:
+                   spouse_handle not in self.families_seen:
                     #spouse_handle = ReportUtils.find_spouse(person,family)
                     self.recurse(spouse_handle, x_level, s_level+1, spouse)
 
@@ -571,7 +571,7 @@ class RecurseDown:
             family_b = self.add_marriage_box(
                 (level, 1), father_h, family_h, father_b)
             retrn.append(family_b)
-        self.famalies_seen.add(family_h)
+        self.families_seen.add(family_h)
         
         if mother_h:
             mother_b = self.add_person_box(
@@ -600,16 +600,16 @@ class RecurseDown:
     def has_children(self, person_handle):
         """
         Quickly check to see if this person has children
-        still we want to respect the FamaliesSeen list
+        still we want to respect the FamiliesSeen list
         """
 
-        if not person_handle or person_handle in self.famalies_seen:
+        if not person_handle or person_handle in self.families_seen:
             return False
 
         person = self.database.get_person_from_handle(person_handle)
 
         for family_handle in person.get_family_handle_list():
-            if family_handle not in self.famalies_seen:
+            if family_handle not in self.families_seen:
 
                 family = self.database.get_family_from_handle(family_handle)
 
@@ -620,7 +620,7 @@ class RecurseDown:
     def recurse_if(self, person_handle, level):
         """
         Quickly check to see if we want to continue recursion
-        still we want to respect the FamaliesSeen list
+        still we want to respect the FamiliesSeen list
         """
         
         person = self.database.get_person_from_handle(person_handle)
@@ -635,7 +635,7 @@ class RecurseDown:
                 show = self.has_children(person_handle)
         
         #if self.max_spouses == 0 and not self.has_children(person_handle):
-        #    self.famalies_seen.add(person_handle)
+        #    self.families_seen.add(person_handle)
         #    show = False
 
         if show:
@@ -681,7 +681,7 @@ class MakePersonTree(RecurseDown):
         #######################
         #don't do center person's parents family.
         if family2_h:
-            self.famalies_seen.add(family2_h)
+            self.families_seen.add(family2_h)
 
         #######################
         #Center person's Fathers OTHER wives
@@ -764,7 +764,7 @@ class MakeFamilyTree(RecurseDown):
         #######################
         #don't do my fathers parents family.  will be done later
         if family2_h:
-            self.famalies_seen.add(family2_h)
+            self.families_seen.add(family2_h)
         
         #######################
         #my father mothers OTHER husbands
@@ -782,10 +782,10 @@ class MakeFamilyTree(RecurseDown):
         
         #######################
         #don't do my parents family in recurse.  will be done later
-        self.famalies_seen.add(family1_h)
+        self.families_seen.add(family1_h)
         ##If dad has no other children from other marriages.  remove him
         if self.max_spouses == 0 and not self.has_children(father1_h):
-            self.famalies_seen.add(father1_h)
+            self.families_seen.add(father1_h)
         
         #######################
         #my fathers parents!
@@ -802,7 +802,7 @@ class MakeFamilyTree(RecurseDown):
                     #this parent again IF s/he has children
                     show = self.has_children(father1_h)
             if not show:
-                self.famalies_seen.add(father1_h)
+                self.families_seen.add(father1_h)
             
             family2_l = self.add_family( 0, family2, None )
         
@@ -865,17 +865,17 @@ class MakeFamilyTree(RecurseDown):
 
         #######################
         #don't do my parents family.
-        self.famalies_seen = set([family1_h]  )
+        self.families_seen = set([family1_h]  )
         ##If mom has no other children from other marriages.  remove her
         if self.max_spouses == 0 and not self.has_children(mother1_h):
-            self.famalies_seen.add(mother1_h)
+            self.families_seen.add(mother1_h)
 
         if mother1_h:
             myfams = mother1.get_family_handle_list()
             if len(myfams) < 2:
                 #If mom didn't have any other families, don't even do her
                 #she is already here with dad and will be added later
-                self.famalies_seen.add(mother1_h)
+                self.families_seen.add(mother1_h)
 
         #######################
         #my mother other spouses (if no parents)
@@ -1029,7 +1029,7 @@ class MakeReport(object):
         return None, None
     
     def __reverse_family_group(self):
-        """ go through the n-1 to 0 cols of boxes looking for famalies
+        """ go through the n-1 to 0 cols of boxes looking for families
         (parents with children) that may need to be moved. """
         for x_col in range(len(self.cols)-1, -1, -1):
             box = self.cols[x_col][0]   #The first person in this col
@@ -1105,7 +1105,7 @@ class MakeReport(object):
                 self.__move_col_from_here_down(left_group[0],  amt)
             
             #6. now check to see if we are working with dad and mom.
-            #if so we need to move down mariage information
+            #if so we need to move down marriage information
             #and mom!  
             left_line = left_group[0].line_to
             if not left_line:
@@ -1335,7 +1335,7 @@ class DescendTree(Report):
         lines = self.Connect.get_val('note_disp')
 
         #####################
-        #Setup page infomation
+        #Setup page information
 
         colsperpage = self.doc.get_usable_width()
         colsperpage += self.doc.report_opts.col_width

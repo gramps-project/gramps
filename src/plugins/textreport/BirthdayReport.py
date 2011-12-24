@@ -296,7 +296,7 @@ class CalendarReport(Report):
                         if spouse:
                             spouse_name = self.get_name(spouse)
                             short_name = self.get_name(person)
-                            # TEMP: this will hanlde ordered events
+                            # TEMP: this will handle ordered events
                             # GRAMPS 3.0 will have a new mechanism for start/stop events
                             are_married = None
                             for event_ref in fam.get_event_ref_list():

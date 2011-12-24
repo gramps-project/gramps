@@ -203,7 +203,7 @@ class CalcItems(object):
             return self.__calc_l.calc_lines(indi_handle, fams_handle,
                                     working_lines)
         
-    def calc_marrage(self, indi_handle, fams_handle):
+    def calc_marriage(self, indi_handle, fams_handle):
         if indi_handle == fams_handle == None:
             return self.__blank_marriage
         else:
@@ -244,13 +244,13 @@ class MakeAncestorTree(object):
         myself = FamilyBox(index)
 
         #calculate the text.
-        myself.text = self.calc_items.calc_marrage(indi_handle, fams_handle)
+        myself.text = self.calc_items.calc_marriage(indi_handle, fams_handle)
 
         self.canvas.add_box(myself)
     
     def iterate(self, person_handle, index):
         """ Fills out the Ancestor tree as desired/needed.
-            this is an iterative apporach.  
+            this is an iterative approach.  
         """
         if self.max_generations < 1:
             return
@@ -351,7 +351,7 @@ class MakeAncestorTree(object):
                 #Set __fams[cur_gen] and __pers[cur_gen]
                 #make sure there is a NEW int.
                 __index.pop()
-                #not a refernce that will clobber dads (other peoples) info
+                #not a reference that will clobber dads (other peoples) info
                 __index.append((__index[cur_gen-1] *2) +1)
 
                 _get_person(cur_gen)
@@ -388,7 +388,7 @@ class MakeAncestorTree(object):
     
     def __fill(self, index, max_fill):
         """ Fills out the Ancestor tree as desired/needed.
-            this is an iterative apporach.  
+            this is an iterative approach.  
         """
         if max_fill < 1:
             return
@@ -444,7 +444,7 @@ class MakeAncestorTree(object):
                 
                 #make sure there is a NEW int.
                 __index.pop()
-                #not a refernce that will clobber dada info
+                #not a reference that will clobber dads info
                 __index.append((__index[cur_gen-1] *2) +1)
                 #__index[cur_gen] +=1
                 
@@ -755,7 +755,7 @@ class AncestorTree(Report):
         prnnum = self.connect.get_val("inc_pagenum")
 
         #####################
-        #Setup page infomation
+        #Setup page information
 
         colsperpage = self.doc.get_usable_width() 
         colsperpage += self.doc.report_opts.col_width
