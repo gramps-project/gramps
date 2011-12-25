@@ -238,16 +238,14 @@ _BUTTONTIPS = {
 #
 # ------------------------------------------------------------------------
 class EditExifMetadata(Gramplet):
-    """
-    Special symbols...
-
-    degrees symbol = [Ctrl] [Shift] u \00b0
-    minutes symbol =                  \2032
-    seconds symbol =                  \2033
-    """
     def init(self):
         """
         create variables, and build display
+
+        Special symbols...
+            degrees symbol = [Ctrl] [Shift] u \00b0
+            minutes symbol =                  \2032
+            seconds symbol =                  \2033
         """
         self.exif_widgets = {}
         self.dates        = {}
@@ -258,6 +256,23 @@ class EditExifMetadata(Gramplet):
         self.gui.get_container_widget().add_with_viewport(vbox)
 
         self.dbstate.db.connect('media-update', self.update)
+        self.connect_signal('Media', self.update)
+
+    def post_init(self):
+        """
+        disconnects the active signal upon closing
+        """
+        self.disconnect("active-changed")
+
+    def db_changed(self):
+        """
+        connects the media signals to self.update; which updates the display...
+        """
+        self.dbstate.db.connect('media-add', self.update)
+        self.dbstate.db.connect('media-edit', self.update)
+        self.dbstate.db.connect('media-delete', self.update)
+        self.dbstate.db.connect('media-rebuild', self.update)
+
         self.connect_signal('Media', self.update)
 
     def __build_gui(self):
@@ -364,11 +379,6 @@ class EditExifMetadata(Gramplet):
 
         main_vbox.show_all()
         return main_vbox
-
-    def db_changed(self):
-        self.dbstate.db.connect('media-update', self.update)
-        self.connect_signal('Media', self.update)
-        self.update()
 
     def active_changed(self, handle):
         self.update()
