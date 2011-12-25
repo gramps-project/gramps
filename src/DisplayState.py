@@ -495,6 +495,11 @@ class DisplayState(gen.utils.Callback):
             return self.disprel_old
 
         active = dbstate.db.get_person_from_handle(active_handle)
+        if active is None:
+            # During merger this method can be called at a time when treemodel
+            # and database are not in sync, resulting in active_handle != None,
+            # but active == None; see bug 5290 for the details.
+            return u''
         name = self.relationship.get_one_relationship(
                                             dbstate.db, default_person, active)
         #store present call data
