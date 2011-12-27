@@ -477,7 +477,7 @@ class PluginStatus(ManagedWindow.ManagedWindow):
                     '<span weight="bold" color="red">%s</span>' % _('Fail'),
                     i[0], str(i[1][1]), i[1], pdata.id, hiddenstr])
 
-        success_list = self.__pmgr.get_success_list()
+        success_list = sorted(self.__pmgr.get_success_list())
         for i in success_list:
             # i = (filename, module, pdata)
             pdata = i[2]
@@ -494,6 +494,7 @@ class PluginStatus(ManagedWindow.ManagedWindow):
     def __populate_reg_list(self):
         """ Build list of registered plugins"""
         for (type, typestr) in PTYPE_STR.iteritems():
+            registered_plugins = []
             for pdata in self.__preg.type_plugins(type):
                 #  model: plugintype, hidden, pluginname, plugindescr, pluginid
                 hidden = pdata.id in self.hidden
@@ -501,9 +502,10 @@ class PluginStatus(ManagedWindow.ManagedWindow):
                     hiddenstr = self.HIDDEN
                 else:
                     hiddenstr = self.AVAILABLE
-                self.model_reg.append(row=[
-                    typestr, hiddenstr, pdata.name, pdata.description, 
-                    pdata.id])
+                registered_plugins.append([typestr, hiddenstr, pdata.name,
+                                           pdata.description, pdata.id])
+            for row in sorted(registered_plugins):
+                self.model_reg.append(row)
 
     def __rebuild_load_list(self):
         self.model.clear()
