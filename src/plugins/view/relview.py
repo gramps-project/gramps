@@ -146,7 +146,7 @@ class RelationshipView(NavigationView):
         uistate.connect('nameformat-changed', self.build_tree)
         self.redrawing = False
 
-        self.color = gtk.TextView().style.white
+        self.color = self.uistate.window.style.light[gtk.STATE_NORMAL]
         self.child = None
         self.old_handle = None
 
