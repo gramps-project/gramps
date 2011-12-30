@@ -4390,10 +4390,10 @@ class SourcePage(BasePage):
                                     ordered2 = Html("ol")
                                     list1 += ordered2
 
-                                    for fhandle in families:
+                                    for fhandle in fml_list:
                                         _obj = self.dbase_.get_family_from_handle(fhandle)
                                         if _obj:
-                                            list2 = tml("li")
+                                            list2 = Html("li")
 
                                             father_handle = _obj.get_father_handle()
                                             mother_handle = _obj.get_mother_handle()
