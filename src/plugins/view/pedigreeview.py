@@ -726,6 +726,7 @@ class PedigreeView(NavigationView):
                                 'interface.pedview-show-marriage')
         # Tree draw direction
         self.tree_direction = self._config.get('interface.pedview-tree-direction')
+        self.cb_change_scroll_direction(None, self.tree_direction < 2)
         # Show on not unknown people.
         # Default - not show, for mo fast display hight tree
         self.show_unknown_people = self._config.get(
