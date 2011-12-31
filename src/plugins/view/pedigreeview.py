@@ -1017,6 +1017,11 @@ class PedigreeView(NavigationView):
         lst = [None] * (2**self.force_size)
         self.find_tree(person, 0, 1, lst)
 
+        # Purge current table content
+        for child in self.table.get_children():
+            child.destroy()
+        self.table.resize(1, 1)
+
         if person:
             self.rebuild(self.table, pos, lst, self.force_size)
 
@@ -1027,11 +1032,6 @@ class PedigreeView(NavigationView):
         For style C position calculated, for others style use static posotins.
         All display options process in this function.
         """
-
-        # Purge current table content
-        for child in table_widget.get_children():
-            child.destroy()
-        table_widget.resize(1, 1)
 
         # Calculate maximum table size
         xmax = 0
