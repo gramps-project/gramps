@@ -860,6 +860,19 @@ class PedigreeView(NavigationView):
         except AttributeError, msg:
             RunDatabaseRepair(str(msg))
 
+    def _connect_db_signals(self):
+        """
+        Connect database signals.
+        """
+        self._add_db_signal('person-add', self.person_rebuild)
+        self._add_db_signal('person-update', self.person_rebuild)
+        self._add_db_signal('person-delete', self.person_rebuild)
+        self._add_db_signal('person-rebuild', self.person_rebuild_bm)
+        self._add_db_signal('family-update', self.person_rebuild)
+        self._add_db_signal('family-add', self.person_rebuild)
+        self._add_db_signal('family-delete', self.person_rebuild)
+        self._add_db_signal('family-rebuild', self.person_rebuild)
+        
     def change_db(self, db):
         """
         Callback associated with DbState. Whenever the database
@@ -868,14 +881,7 @@ class PedigreeView(NavigationView):
         is no need to store the database, since we will get the value
         from self.state.db
         """
-        db.connect('person-add', self.person_rebuild)
-        db.connect('person-update', self.person_rebuild)
-        db.connect('person-delete', self.person_rebuild)
-        db.connect('person-rebuild', self.person_rebuild_bm)
-        db.connect('family-update', self.person_rebuild)
-        db.connect('family-add', self.person_rebuild)
-        db.connect('family-delete', self.person_rebuild)
-        db.connect('family-rebuild', self.person_rebuild)
+        self._change_db(db)
         self.bookmarks.update_bookmarks(self.dbstate.db.get_bookmarks())
         if self.active:
             self.bookmarks.redraw()
