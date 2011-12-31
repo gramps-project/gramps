@@ -71,6 +71,7 @@ pkgdata_PYTHON = \
 	_NoBirthdate.py \
         _NoDeathdate.py \
 	_PeoplePrivate.py \
+        _PeoplePublic.py \
 	_PersonWithIncompleteEvent.py \
 	_ProbablyAlive.py \
 	_RelationshipPathBetween.py \
