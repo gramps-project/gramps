@@ -197,11 +197,13 @@ class MergeFamilies(ManagedWindow.ManagedWindow):
         if use_handle1:
             phoenix = self.fy1
             titanic = self.fy2
-            unselect_path = (1,)
         else:
             phoenix = self.fy2
             titanic = self.fy1
-            unselect_path = (0,)
+            # Add second handle to history so that when merge is complete, 
+            # phoenix is the selected row.
+            self.uistate.viewmanager.active_page.get_history().push(
+                    phoenix.get_handle())
 
         phoenix_fh = phoenix.get_father_handle()
         phoenix_mh = phoenix.get_mother_handle()
@@ -221,9 +223,6 @@ class MergeFamilies(ManagedWindow.ManagedWindow):
             query.execute()
         except MergeError, err:
             ErrorDialog( _("Cannot merge people"), str(err))
-        if self.uistate.viewmanager.active_page.selection:
-            self.uistate.viewmanager.active_page.selection.unselect_path(
-                    unselect_path)
         self.uistate.set_busy_cursor(False)
         self.close()
 

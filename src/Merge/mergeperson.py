@@ -308,11 +308,13 @@ class MergePeople(ManagedWindow.ManagedWindow):
         if use_handle1:
             phoenix = self.pr1
             titanic = self.pr2
-            unselect_path = (1,)
         else:
             phoenix = self.pr2
             titanic = self.pr1
-            unselect_path = (0,)
+            # Add second handle to history so that when merge is complete, 
+            # phoenix is the selected row.
+            self.uistate.viewmanager.active_page.get_history().push(
+                    phoenix.get_handle())
 
         if self.get_widget("name_btn1").get_active() ^ use_handle1:
             swapname = phoenix.get_primary_name()
@@ -330,9 +332,6 @@ class MergePeople(ManagedWindow.ManagedWindow):
             query.execute()
         except MergeError, err:
             ErrorDialog( _("Cannot merge people"), str(err))
-        if self.uistate.viewmanager.active_page.selection:
-            self.uistate.viewmanager.active_page.selection.unselect_path(
-                    unselect_path)
         self.uistate.set_busy_cursor(False)
         self.close()
         if self.update:
