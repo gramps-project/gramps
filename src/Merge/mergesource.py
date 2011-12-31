@@ -159,11 +159,13 @@ class MergeSources(ManagedWindow.ManagedWindow):
         if use_handle1:
             phoenix = self.src1
             titanic = self.src2
-            unselect_path = (1,)
         else:
             phoenix = self.src2
             titanic = self.src1
-            unselect_path = (0,)
+            # Add second handle to history so that when merge is complete, 
+            # phoenix is the selected row.
+            self.uistate.viewmanager.active_page.get_history().push(
+                    phoenix.get_handle())
 
         if self.get_widget("title_btn1").get_active() ^ use_handle1:
             phoenix.set_title(titanic.get_title())
@@ -178,9 +180,6 @@ class MergeSources(ManagedWindow.ManagedWindow):
 
         query = MergeSourceQuery(self.dbstate, phoenix, titanic)
         query.execute()
-        if self.uistate.viewmanager.active_page.selection:
-            self.uistate.viewmanager.active_page.selection.unselect_path(
-                    unselect_path)
         self.uistate.set_busy_cursor(False)
         self.close()
 

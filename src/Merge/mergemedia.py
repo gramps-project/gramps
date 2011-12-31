@@ -147,11 +147,13 @@ class MergeMediaObjects(ManagedWindow.ManagedWindow):
         if use_handle1:
             phoenix = self.mo1
             titanic = self.mo2
-            unselect_path = (1,)
         else:
             phoenix = self.mo2
             titanic = self.mo1
-            unselect_path = (0,)
+            # Add second handle to history so that when merge is complete, 
+            # phoenix is the selected row.
+            self.uistate.viewmanager.active_page.get_history().push(
+                    phoenix.get_handle())
 
         if self.get_widget("path_btn1").get_active() ^ use_handle1:
             phoenix.set_path(titanic.get_path())
@@ -165,9 +167,6 @@ class MergeMediaObjects(ManagedWindow.ManagedWindow):
 
         query = MergeMediaQuery(self.dbstate, phoenix, titanic)
         query.execute()
-        if self.uistate.viewmanager.active_page.selection:
-            self.uistate.viewmanager.active_page.selection.unselect_path(
-                    unselect_path)
         self.close()
 
 class MergeMediaQuery(object):
