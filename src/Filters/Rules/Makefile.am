@@ -24,6 +24,7 @@ pkgdata_PYTHON = \
 	_HasTextMatchingSubstringOf.py\
 	__init__.py\
 	_IsPrivate.py\
+        _IsPublic.py\
 	_RegExpIdBase.py\
 	_Rule.py\
 	_MatchesFilterBase.py\
