@@ -90,7 +90,6 @@ class PersonGallery(Gallery):
     """
     def db_changed(self):
         self.dbstate.db.connect('person-update', self.update)
-        self.update()
 
     def active_changed(self, handle):
         self.update()
@@ -117,7 +116,6 @@ class FamilyGallery(Gallery):
     def db_changed(self):
         self.dbstate.db.connect('family-update', self.update)
         self.connect_signal('Family', self.update)
-        self.update()
 
     def update_has_data(self):
         active_handle = self.get_active('Family')
@@ -141,7 +139,6 @@ class EventGallery(Gallery):
     def db_changed(self):
         self.dbstate.db.connect('event-update', self.update)
         self.connect_signal('Event', self.update)
-        self.update()
 
     def update_has_data(self):
         active_handle = self.get_active('Event')
@@ -165,7 +162,6 @@ class PlaceGallery(Gallery):
     def db_changed(self):
         self.dbstate.db.connect('place-update', self.update)
         self.connect_signal('Place', self.update)
-        self.update()
 
     def update_has_data(self):
         active_handle = self.get_active('Place')
@@ -189,7 +185,6 @@ class SourceGallery(Gallery):
     def db_changed(self):
         self.dbstate.db.connect('event-update', self.update)
         self.connect_signal('Source', self.update)
-        self.update()
 
     def update_has_data(self):
         active_handle = self.get_active('Source')

@@ -53,7 +53,6 @@ class PersonResidence(Gramplet):
         
     def db_changed(self):
         self.dbstate.db.connect('person-update', self.update)
-        self.update()
 
     def active_changed(self, handle):
         self.update()

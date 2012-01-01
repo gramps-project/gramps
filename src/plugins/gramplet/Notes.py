@@ -137,7 +137,6 @@ class PersonNotes(Notes):
     """
     def db_changed(self):
         self.dbstate.db.connect('person-update', self.update)
-        self.update()
 
     def active_changed(self, handle):
         self.update()
@@ -163,7 +162,6 @@ class EventNotes(Notes):
     def db_changed(self):
         self.dbstate.db.connect('event-update', self.update)
         self.connect_signal('Event', self.update)
-        self.update()
 
     def update_has_data(self):
         active_handle = self.get_active('Event')
@@ -186,7 +184,6 @@ class FamilyNotes(Notes):
     def db_changed(self):
         self.dbstate.db.connect('family-update', self.update)
         self.connect_signal('Family', self.update)
-        self.update()
 
     def update_has_data(self):
         active_handle = self.get_active('Family')
@@ -209,7 +206,6 @@ class PlaceNotes(Notes):
     def db_changed(self):
         self.dbstate.db.connect('place-update', self.update)
         self.connect_signal('Place', self.update)
-        self.update()
 
     def update_has_data(self):
         active_handle = self.get_active('Place')
@@ -232,7 +228,6 @@ class SourceNotes(Notes):
     def db_changed(self):
         self.dbstate.db.connect('source-update', self.update)
         self.connect_signal('Source', self.update)
-        self.update()
 
     def update_has_data(self):
         active_handle = self.get_active('Source')
@@ -255,7 +250,6 @@ class RepositoryNotes(Notes):
     def db_changed(self):
         self.dbstate.db.connect('repository-update', self.update)
         self.connect_signal('Repository', self.update)
-        self.update()
 
     def update_has_data(self):
         active_handle = self.get_active('Repository')
@@ -278,7 +272,6 @@ class MediaNotes(Notes):
     def db_changed(self):
         self.dbstate.db.connect('media-update', self.update)
         self.connect_signal('Media', self.update)
-        self.update()
 
     def update_has_data(self):
         active_handle = self.get_active('Media')
