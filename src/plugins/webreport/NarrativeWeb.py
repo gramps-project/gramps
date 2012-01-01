@@ -4331,7 +4331,7 @@ class SourcePage(BasePage):
                     section += Html("h4", _("Citation References"), inline =True)
 
                     # ordered list #1, Citation Reference Page...
-                    ordered1 = Html("ol", class_ = "Col1 - CitationReference")
+                    ordered1 = Html("ol", class_ = "Col1 CitationReference")
                     section += ordered1
 
                     for (citation_handle, refs) in citation_referents_list:
@@ -4346,7 +4346,7 @@ class SourcePage(BasePage):
                                 (people_list, family_list, event_list, place_list, source_list, media_list, repo_list) = refs
 
                                 # ordered list #2, Object Type...
-                                ordered2 = Html("ol", class_ = "Col2 - ObjectType")
+                                ordered2 = Html("ol", class_ = "Col2 ObjectType")
 
                                 # Citation Referents have Person objects... 
                                 if people_list:
@@ -4361,7 +4361,7 @@ class SourcePage(BasePage):
                                     ppl_list = sort_people(self.dbase_, ppl_list)
 
                                     # ordered list #3, Surname...
-                                    ordered3 = Html("ol", class_ = "Col3 - Surname")
+                                    ordered3 = Html("ol", class_ = "Col3 Surname")
 
                                     displayed = []
                                     for (surname, handle_list) in ppl_list:
@@ -4371,7 +4371,7 @@ class SourcePage(BasePage):
                                             ordered3 += list3
 
                                             # ordered list #4, full name...
-                                            ordered4 = Html("ol", clss_ = "Col4 - FullName")
+                                            ordered4 = Html("ol", class_ = "Col4 FullName")
 
                                             for handle in handle_list:
                                                 individual = self.dbase_.get_person_from_handle(handle)
@@ -4393,7 +4393,7 @@ class SourcePage(BasePage):
                                     ordered2 += list2
 
                                     # ordered list, Column 3, Husband and Wife...
-                                    ordered3 = Html("ol", class_ = "Col3 - Partners")
+                                    ordered3 = Html("ol", class_ = "Col3 HusbandSpouse")
 
                                     for handle in family_list:
                                         family = self.dbase_.get_family_from_handle(fhandle)
@@ -4444,7 +4444,7 @@ class SourcePage(BasePage):
                                     db_event_handles = self.dbase_.get_event_handles()
 
                                     # Ordered list 3, Event Types
-                                    ordered3 = Html("ol", class_ = "Col3 - EventTypes")
+                                    ordered3 = Html("ol", class_ = "Col3 EventTypes")
 
                                     # separate events by their types and then thier event handles
                                     for (etype, handle_list) in sort_event_types(self.dbase_, event_types, event_handle_list):
@@ -4453,12 +4453,11 @@ class SourcePage(BasePage):
                                         ordered3 += list3
 
                                         # Ordered list4, Event Date...
-                                        ordered4 = Html("ol", class_ = "Col4 - EventDate")
+                                        ordered4 = Html("ol", class_ = "Col4 EventDate")
 
                                         for handle in handle_list:
                                             event = self.dbase_.get_event_from_handle(handle)
                                             if (event and handle in db_event_handles):
-
                                                 list4 = Html("li", self.event_link(_dd.display(event.get_date_object()) or etype,
                                                                                    handle, event.get_gramps_id(), self.up))
                                                 ordered4 += list4
@@ -4473,12 +4472,11 @@ class SourcePage(BasePage):
                                     ordered2 += list2
 
                                     # Column and list 3, Place Link...
-                                    ordered3 = Html("ol", class_ = "Col3 - PlaceLink")
+                                    ordered3 = Html("ol", class_ = "Col3 PlaceLink")
 
                                     for place_handle in place_list:
                                         place = self.dbase_.get_place_from_handle(place_handle)
                                         if (place and place_handle in db_place_handles):
-
                                             list3 = Html("li", self.place_link(place_handle, place.get_title(),
                                                                                place.get_gramps_id(), self.up))
                                             ordered3 += list3
@@ -4492,12 +4490,11 @@ class SourcePage(BasePage):
                                     ordered2 += list2
 
                                     # Column and list 3, Source Link
-                                    ordered3 = Html("ol", class_ = "Col3 - SourceLink")
+                                    ordered3 = Html("ol", class_ = "Col3 SourceLink")
 
                                     for source_handle in source_list:
                                         source = self.dbase_.get_source_from_handle(source_handle)
                                         if (source and source_handle in db_source_handles):
-
                                             list3 = Html("li", self.source_link(source, up = self.up))
                                             ordered3 += list3
                                     list2 += ordered3
@@ -4509,7 +4506,7 @@ class SourcePage(BasePage):
                                     ordered2 += list2
 
                                     # Column and list 3, Media Link
-                                    ordered3 = Html("ol", class_ = "Col3 - MediaLink")
+                                    ordered3 = Html("ol", class_ = "Col3 MediaLink")
 
                                     for handle in media_list:
                                         media = self.dbase_.get_object_from_handle(handle)
@@ -4522,16 +4519,15 @@ class SourcePage(BasePage):
                                                     newpath = self.report.build_url_fname(newpath, up = True)
 
                                                     list3 = Html("li", self.media_link(handle, newpath, media.get_description(),
-                                                                                       self.up, False))
+                                                                                       self.up, True))
                                                 except:
                                                     list3 += _("Media error...")
                                             else:
                                                 try:
                                                     list3 = Html("li", self.doc_link(handle, media.get_description(),
-                                                                                     self.up, False))
+                                                                                     self.up, True))
                                                 except:
                                                     list3 += _("Media error...")
-
                                             ordered3 += list3
                                     list2 += ordered3
 
@@ -4542,17 +4538,17 @@ class SourcePage(BasePage):
                                     ordered2 += list2
 
                                     # Column and list 3, Repository Link...
-                                    ordered3 = tml("ol", class_ = "Col3 - RepositoryLink")
+                                    ordered3 = tml("ol", class_ = "Col3 RepositoryLink")
 
                                     for repo_handle in repo_list:
                                         repository = self.dbase_.get_repository_from_handle(repo_handle)
                                         if repository:
-
                                             list3 = Html("li", self.repository_link(repo_handle, repository.get_name(), True,
                                                                                     repository.get_gramps_id(), self.up))
                                             ordered3 += list3
-
                                     list2 += ordered3
+
+                                # these two are common to all of these seven object types...
                                 list1 += ordered2
                     ordered1 += list1
 

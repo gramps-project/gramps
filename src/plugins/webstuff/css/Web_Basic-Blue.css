@@ -816,6 +816,18 @@ div#Download table.download td.ColumnModified {
 div#SourceDetail div#references ol li {
     padding-bottom: .5em;
 }
+div#SourceCitationReferents ol.Col1 {
+    list-style-type: decimal-leading-zero;
+}
+div#SourceCitationReferents ol.Col2 {
+    list-style-type: upper-alpha;
+}
+div#SourceCitationReferents ol.Col3 {
+    list-style-type: lower-alpha;
+}
+div#SourceCitationReferents ol.Col4 {
+    list-style-type: upper-roman;;
+}
 
 
 /* Repositories
