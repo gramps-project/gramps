@@ -81,7 +81,6 @@ class PlaceDetails(Gramplet):
     def db_changed(self):
         self.dbstate.db.connect('place-update', self.update)
         self.connect_signal('Place', self.update)
-        self.update()
 
     def update_has_data(self): 
         active_handle = self.get_active('Person')

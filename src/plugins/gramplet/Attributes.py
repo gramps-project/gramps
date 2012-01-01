@@ -84,7 +84,6 @@ class PersonAttributes(Attributes):
     """
     def db_changed(self):
         self.dbstate.db.connect('person-update', self.update)
-        self.update()
 
     def active_changed(self, handle):
         self.update()
@@ -111,7 +110,6 @@ class EventAttributes(Attributes):
     def db_changed(self):
         self.dbstate.db.connect('event-update', self.update)
         self.connect_signal('Event', self.update)
-        self.update()
 
     def update_has_data(self):
         active_handle = self.get_active('Event')
@@ -135,7 +133,6 @@ class FamilyAttributes(Attributes):
     def db_changed(self):
         self.dbstate.db.connect('family-update', self.update)
         self.connect_signal('Family', self.update)
-        self.update()
 
     def update_has_data(self):
         active_handle = self.get_active('Family')
@@ -159,7 +156,6 @@ class MediaAttributes(Attributes):
     def db_changed(self):
         self.dbstate.db.connect('media-update', self.update)
         self.connect_signal('Media', self.update)
-        self.update()
 
     def update_has_data(self):
         active_handle = self.get_active('Media')

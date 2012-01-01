@@ -67,9 +67,9 @@ class Gramplet(object):
                      self.gui.on_motion)
         self.connect_signal('Person', self._active_changed)
         
+        self._db_changed(self.dbstate.db)
         active_person = self.get_active('Person')
         if active_person: # already changed
-            self._db_changed(self.dbstate.db)
             self._active_changed(active_person)
         self.post_init()
 
@@ -284,6 +284,8 @@ class Gramplet(object):
             if self.dbstate.open:
                 #print "  %s is not active" % self.gui.gname
                 self.update_has_data()
+            else:
+                self.set_has_data(False)
             return
         #print "     %s is UPDATING" % self.gui.gname
         self.dirty = False

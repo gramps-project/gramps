@@ -72,7 +72,6 @@ class PersonBacklinks(Backlinks):
     """
     def db_changed(self):
         self.dbstate.db.connect('person-update', self.update)
-        self.update()
 
     def active_changed(self, handle):
         self.update()
@@ -96,7 +95,6 @@ class EventBacklinks(Backlinks):
     def db_changed(self):
         self.dbstate.db.connect('event-update', self.update)
         self.connect_signal('Event', self.update)
-        self.update()
 
     def update_has_data(self):
         active_handle = self.get_active('Event')
@@ -117,7 +115,6 @@ class FamilyBacklinks(Backlinks):
     def db_changed(self):
         self.dbstate.db.connect('family-update', self.update)
         self.connect_signal('Family', self.update)
-        self.update()
 
     def update_has_data(self):
         active_handle = self.get_active('Family')
@@ -138,7 +135,6 @@ class PlaceBacklinks(Backlinks):
     def db_changed(self):
         self.dbstate.db.connect('place-update', self.update)
         self.connect_signal('Place', self.update)
-        self.update()
 
     def update_has_data(self):
         active_handle = self.get_active('Place')
@@ -159,7 +155,6 @@ class SourceBacklinks(Backlinks):
     def db_changed(self):
         self.dbstate.db.connect('source-update', self.update)
         self.connect_signal('Source', self.update)
-        self.update()
 
     def update_has_data(self):
         active_handle = self.get_active('Source')
@@ -180,7 +175,6 @@ class CitationBacklinks(Backlinks):
     def db_changed(self):
         self.dbstate.db.connect('citation-update', self.update)
         self.connect_signal('Citation', self.update)
-        self.update()
 
     def update_has_data(self):
         active_handle = self.get_active('Citation')
@@ -201,7 +195,6 @@ class RepositoryBacklinks(Backlinks):
     def db_changed(self):
         self.dbstate.db.connect('repository-update', self.update)
         self.connect_signal('Repository', self.update)
-        self.update()
 
     def update_has_data(self):
         active_handle = self.get_active('Repository')
@@ -222,7 +215,6 @@ class MediaBacklinks(Backlinks):
     def db_changed(self):
         self.dbstate.db.connect('media-update', self.update)
         self.connect_signal('Media', self.update)
-        self.update()
 
     def update_has_data(self):
         active_handle = self.get_active('Media')
@@ -243,7 +235,6 @@ class NoteBacklinks(Backlinks):
     def db_changed(self):
         self.dbstate.db.connect('note-update', self.update)
         self.connect_signal('Note', self.update)
-        self.update()
 
     def update_has_data(self):
         active_handle = self.get_active('Note')

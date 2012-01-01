@@ -92,7 +92,6 @@ class PersonChildren(Children):
 
     def db_changed(self):
         self.dbstate.db.connect('person-update', self.update)
-        self.update()
 
     def active_changed(self, handle):
         self.update()
@@ -189,7 +188,6 @@ class FamilyChildren(Children):
     def db_changed(self):
         self.dbstate.db.connect('family-update', self.update)
         self.connect_signal('Family', self.update)
-        self.update()
 
     def main(self):
         active_handle = self.get_active('Family')
