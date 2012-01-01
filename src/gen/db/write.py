@@ -538,6 +538,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 self.gramps_upgrade(callback)
             else:
                 self.__close_early()
+                clear_lock_file(name)
                 raise DbUpgradeRequiredError()
 
         if callback:
