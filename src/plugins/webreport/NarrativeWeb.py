@@ -6962,19 +6962,29 @@ class NavWebReport(Report):
         """
         self.dbase_ = self.database
 
-        # set up progress bar for event pages; using ind list
-        event_handle_list, event_types = build_event_data(self.dbase_, self.dbase_.iter_event_handles())
+        # set up progress bar for event pages; using database event handles...
         self.user.begin_progress(_("Narrated Web Site Report"),
                                   _("Creating event pages"), 
                                   len(self.dbase_.get_event_handles()))
 
-        # send all data to the events list page
+        # begin progress bar incremental step so as there is not so much wait time...
+        self.user.step_progress()
+
+        # get event types and the handles that go with that type...
+        event_handle_list, event_types = build_event_data(self.dbase_, self.dbase_.iter_event_handles())
+
+        # send all data to class EventListPage
         EventListPage(self, self.title, event_types, event_handle_list, ind_list)
 
         for event_handle in event_handle_list:
-            # create individual event pages
+
+            # send data to class EventPage 
             EventPage(self, self.title, event_handle, ind_list)
+
+            # increment progress bar
             self.user.step_progress()
+
+        # terminate this progress bar instance...
         self.user.end_progress()
 
     def source_pages(self, source_list, ppl_handle_list):
