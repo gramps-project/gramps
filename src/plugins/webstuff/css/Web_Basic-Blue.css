@@ -137,12 +137,13 @@ h5, h6 {
     margin:1.3em 0 .5em 1em;
 }
 p#description {
-    max-width:800px;
-    margin:0;
-    padding:1em 20px;
+    max-width: 800px;
+    margin: 0;
+    padding: 1em 20px;
+    text-indent: 30px;
 }
 p#description:first-letter {
-    color: purple;
+    color: #903;
     font-size: 36px;
     font-weight: bold;
     font-style: italic;
@@ -171,7 +172,7 @@ a {
 }
 a:hover {
     background-color: #BCEAF6;
-    text-decoration: none;
+    text-decoration: blink;
 }
 span.preposition {
     padding-left:1em;
