@@ -353,6 +353,24 @@ table#SortByCount thead th.ColumnQuantity a:after {
     border: solid 1px #7D5925;
 }
 
+/*    Sources
+------------------------------------------------------ */
+div#SourceDetail {
+    margin: 0 auto;
+}
+div#SourceCitationReferents ol.Col1 {
+    list-style-type: decimal-leading-zero;
+}
+div#SourceCitationReferents ol.Col2 {
+    list-style-type: upper-alpha;
+}
+div#SourceCitationReferents ol.Col3 {
+    list-style-type: lower-alpha;
+}
+div#SourceCitationReferents ol.Col4 {
+    list-style-type: upper-roman;;
+}
+
 /* Contact
 -----------------------------------------------------------------*/
 #Contact h3 {
