@@ -900,6 +900,19 @@ class GrampsPreferences(ConfigureDialog):
         table.attach(obox, 1, 3, row, row+1, yoptions=0)
         row += 1
         
+        # Default Family Relationship
+        obox = gtk.combo_box_new_text()
+        formats = gen.lib.FamilyRelType().get_standard_names()
+        map(obox.append_text, formats)
+        obox.set_active(config.get('preferences.family-relation-type'))
+        obox.connect('changed', 
+                     lambda obj: config.set('preferences.family-relation-type',
+                                            obj.get_active()))
+        lwidget = BasicLabel("%s: " % _('Default family relationship'))
+        table.attach(lwidget, 0, 1, row, row+1, yoptions=0)
+        table.attach(obox, 1, 3, row, row+1, yoptions=0)
+        row += 1
+
         #height multiple surname table 
         self.add_pos_int_entry(table, 
                 _('Height multiple surname box (pixels)'),

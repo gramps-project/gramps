@@ -35,6 +35,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from gen.lib.grampstype import GrampsType
+import config
 
 class FamilyRelType(GrampsType):
 
@@ -57,5 +58,5 @@ class FamilyRelType(GrampsType):
 
     def __init__(self, value=None):
         if value is None:
-            value = self.UNKNOWN
+            value = config.get("preferences.family-relation-type")
         GrampsType.__init__(self, value)
