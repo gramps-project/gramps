@@ -24057,9 +24057,10 @@ msgstr "Correspond aux individus ayant un nombre d'événements mormons"
 msgid "Given name:"
 msgstr "Prénom :"
 
+# toutes les parties du nom !
 #: ../src/Filters/Rules/Person/_HasNameOf.py:49
 msgid "Full Family name:"
-msgstr "Nom de famille complet :"
+msgstr "Nom complet :"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:50
 msgid "person|Title:"
