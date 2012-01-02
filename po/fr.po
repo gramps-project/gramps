@@ -4983,7 +4983,7 @@ msgstr "Impossible de renommer l'arbre familial."
 
 #: ../src/gui/dbman.py:469
 msgid "Family Tree already exists, choose a unique name."
-msgstr "Cet arbre familial existe, choisissez un nom présent."
+msgstr "Cet arbre familial existe, choisissez un nom non-présent."
 
 # Substantif (GNOME fr)
 #: ../src/gui/dbman.py:507
