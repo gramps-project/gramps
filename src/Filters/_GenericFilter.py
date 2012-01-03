@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2002-2006  Donald N. Allingham
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2012       Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -62,10 +63,9 @@ class GenericFilter(object):
             return False
 
     def is_empty(self):
-        return (len(self.flist) == 0 or 
-                (len(self.flist) == 1 and 
-                 ((self.flist[0].is_empty() and not self.invert) or
-                  (not self.flist[0].is_empty() and self.invert))))
+        return ((len(self.flist) == 0) or 
+                (len(self.flist) == 1 and ((self.flist[0].is_empty() and 
+                                            not self.invert))))
 
     def set_logical_op(self, val):
         if val in GenericFilter.logical_functions:
