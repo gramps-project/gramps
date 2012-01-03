@@ -2112,7 +2112,7 @@ class IndividualListPage(BasePage):
 
                 # show surname and first name
                 trow += Html("th", _("Surname"), class_ = "ColumnSurname", inline = True)
-                trow += Html("th", _("Name"), class_ = "ColumnName", inline = True)
+                trow += Html("th", _("Given Name"), class_ = "ColumnName", inline = True)
 
                 if showbirth:
                     trow += Html("th", BIRTH, class_ = "ColumnBirth", inline = True)
@@ -2299,7 +2299,7 @@ class SurnamePage(BasePage):
                 thead += trow
 
                 # Name Column
-                trow += Html("th", _("Name"), class_ = "ColumnName", inline = True) 
+                trow += Html("th", _("Given Name"), class_ = "ColumnName", inline = True) 
 
                 if showbirth:
                     trow += Html("th", BIRTH, class_ = "ColumnBirth", inline = True)
