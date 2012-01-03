@@ -36,51 +36,42 @@ body {
 
 /*   Navigation Menus
 ----------------------------------------------------- */
-div#navigation, div#subnavigation, div#alphabet {
+div#nav, div#alphanav {
+    clear: both;
+    padding-top: 1px;
+    font: .7em/1 "Helvetica, Arial, sans, sans-serif";
+}
+div#nav ul, div#alphanav ul {
+    float: left;
     width: 100%;
     margin: 0;
     padding: 0;
+    list-style: circle;
+    background: #00029D;
 }
-div#navigation ul, div#subnavigation ul {
-    list-style: none;
-    min-width: 900px;
+div#nav li, div#alphanav li {
+    display: inline;
     margin: 0;
-    padding: 0px 0px 0px 18px;
-    border-bottom: solid 2px #000;
+    padding: 0;
 }
-div#alphabet ul {
-    list-style: none;
-    min-width: 900px;
-    height: 28px;
-    margin: 0;
-    padding: 0px 0px 0px 18px;
-    border-top: solid 4px #13A926;
-    border-bottom: solid 2px #000;
-}
-div#navigation ul li, div#subnavigation ul li, div#alphabet ul li {
-    float: left;
-}
-div#navigation ul li a, div#subnavigation ul li a {
+div#nav a, div#alphanav a {
     display: block;
-    padding: 4px 12px 7px 1px;
     float: left;
-    font-size: .9em;
-    font-weight: bold;
-    font-family: Helvetica, Arial, sans;
+    padding: 0 12px;
+    border-right: 1px solid #13A926;
+    border-bottom: 0;
+    border-left: 1px solid #13A926;
+    color: #FFF;
     text-decoration: none;
-    margin: 0;
 }
-#navigation ul li.CurrentSection a, #subnavigation ul li.CurrentSection a {
-    border-width: 0px 1px 1px 1px;    
-    border-style: solid;
-    border-color: purple;
+div#nav a:hover, div#nav a:focus,
+div#alphanav a:hover, div#alphanav a:focus {
+    background: #000;
 }
-#subnavigation ul li.CurrentSection a {
-    border-width: 0px 0px 1px 0px;
+div#nav .CurrentSection a {
+    background: #BCEAF6;
+    color: #000;
 }
-div#alphabet ul li a {
-    padding: 8px;
-}
-div#alphabet ul li:after {
-    content: "  |";
+div#nav .CurrentSection a:hover, div#nav .CurrentSection a:focus {
+    background: #b31203
 }
