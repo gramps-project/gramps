@@ -35,6 +35,7 @@ LOG = logging.getLogger(".citation")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -144,10 +145,12 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         """
         Called to update the screen when a new citation is added
         """
-        self.get_data().append(value)
+        data = self.get_data()
+        data.append(value)
         self.callman.register_handles({'citation': [value]})
         self.changed = True
         self.rebuild()
+        gobject.idle_add(self.tree.scroll_to_cell, len(data) - 1)
 
     def share_button_clicked(self, obj):
         SelectCitation = SelectorFactory('Citation')

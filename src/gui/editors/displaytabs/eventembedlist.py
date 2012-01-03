@@ -28,6 +28,7 @@
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
 import gtk
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -270,10 +271,13 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
 
     def object_added(self, reference, primary):
         reference.ref = primary.handle
-        self.get_data()[self._WORKGROUP].append(reference)
+        data = self.get_data()[self._WORKGROUP]
+        data.append(reference)
         self.callman.register_handles({'event': [primary.handle]}) 
         self.changed = True
         self.rebuild()
+        gobject.idle_add(self.tree.scroll_to_cell,
+                         (self._WORKGROUP, len(data) - 1))
 
     def object_edited(self, ref, event):
         """

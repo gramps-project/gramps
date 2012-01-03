@@ -53,6 +53,7 @@ from DdTargets import DdTargets
 import gtk
 from gtk import gdk
 import pango
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -192,6 +193,8 @@ class ChildEmbedList(EmbeddedList):
         ref.ref = person.get_handle()
         self.family.add_child_ref(ref)
         self.rebuild()
+        gobject.idle_add(self.tree.scroll_to_cell,
+                         len(self.family.get_child_ref_list()) - 1)
         self.call_edit_childref(ref)
 
     def child_ref_edited(self, person):
@@ -212,6 +215,8 @@ class ChildEmbedList(EmbeddedList):
             ref.ref = person.get_handle()
             self.family.add_child_ref(ref)
             self.rebuild()
+            gobject.idle_add(self.tree.scroll_to_cell,
+                             len(self.family.get_child_ref_list()) - 1)
             self.call_edit_childref(ref)
 
     def run(self, skip):

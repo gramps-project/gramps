@@ -279,10 +279,18 @@ class GalleryTab(ButtonTab, DbGUIElement):
 
     def add_callback(self, media_ref, media):
         media_ref.ref = media.handle
-        self.get_data().append(media_ref)
+        data = self.get_data()
+        data.append(media_ref)
         self.callman.register_handles({'media': [media.handle]})
         self.changed = True
         self.rebuild()
+        model = self.iconlist.get_model()
+        if model:
+            itr_last = model.iter_nth_child(None, len(data) - 1)
+            if itr_last:
+                path = model.get_path(itr_last)
+                gobject.idle_add(self.iconlist.scroll_to_path, path, False,
+                                                                     0.0, 0.0)
 
     def __blocked_text(self):
         """
@@ -517,7 +525,6 @@ class GalleryTab(ButtonTab, DbGUIElement):
     def _handle_drag(self, row, obj):
         self.get_data().insert(row, obj)
         self.changed = True
-        self.rebuild()
 
     def _move(self, row_from, row_to, obj):
         dlist = self.get_data()
@@ -528,7 +535,6 @@ class GalleryTab(ButtonTab, DbGUIElement):
             del dlist[row_from]
             dlist.insert(row_to, obj)
         self.changed = True
-        self.rebuild()
 
     def find_index(self, obj):
         """

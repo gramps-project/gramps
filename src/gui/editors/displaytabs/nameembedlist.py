@@ -27,6 +27,7 @@
 #
 #-------------------------------------------------------------------------
 import gtk
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -163,8 +164,11 @@ class NameEmbedList(GroupEmbeddedList):
             pass
 
     def add_callback(self, name):
-        self.get_data()[self._WORKGROUP].append(name)
+        data = self.get_data()[self._WORKGROUP]
+        data.append(name)
         self.rebuild()
+        gobject.idle_add(self.tree.scroll_to_cell,
+                         (self._WORKGROUP, len(data) - 1))
 
     def edit_button_clicked(self, obj):
         name = self.get_selected()

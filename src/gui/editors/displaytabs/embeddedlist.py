@@ -34,6 +34,7 @@ import cPickle as pickle
 # GTK libraries
 #
 #-------------------------------------------------------------------------
+import gobject
 import gtk
 import pango
 
@@ -265,7 +266,6 @@ class EmbeddedList(ButtonTab):
     def _handle_drag(self, row, obj):
         self.get_data().insert(row, obj)
         self.changed = True
-        self.rebuild()
 
     def _move(self, row_from, row_to, obj):
         dlist = self.get_data()
@@ -276,7 +276,6 @@ class EmbeddedList(ButtonTab):
             del dlist[row_from]
             dlist.insert(row_to, obj)
         self.changed = True
-        self.rebuild()
     
     def _move_up(self, row_from, obj, selmethod=None):
         """ 
@@ -294,6 +293,9 @@ class EmbeddedList(ButtonTab):
         #select the row
         path = '%d' % (row_from-1) 
         self.tree.get_selection().select_path(path)
+        # The height/location of gtk.treecells is calculated in an idle handler
+        # so use idle_add to scroll cell into view.
+        gobject.idle_add(self.tree.scroll_to_cell, path)
         
     def _move_down(self, row_from, obj, selmethod=None):
         """ 
@@ -311,6 +313,7 @@ class EmbeddedList(ButtonTab):
         #select the row
         path = '%d' % (row_from+1) 
         self.tree.get_selection().select_path(path)
+        gobject.idle_add(self.tree.scroll_to_cell, path)
 
     def get_icon_name(self):
         """
@@ -375,7 +378,6 @@ class EmbeddedList(ButtonTab):
         """
         (model, node) = self.selection.get_selected()
         if node:
-            obj = self.model.get_value(node, self._HANDLE_COL)
             return model.get_value(node, self._HANDLE_COL)
         return None
 
@@ -463,6 +465,7 @@ class EmbeddedList(ButtonTab):
         Rebuilds the data in the database by creating a new model,
         using the build_model function passed at creation time.
         """
+        offset = self.tree.get_visible_rect()
         #during rebuild, don't do _selection_changed
         self.dirty_selection = True
         (model, node) = self.selection.get_selected()
@@ -490,6 +493,8 @@ class EmbeddedList(ButtonTab):
         #model and tree are reset, allow _selection_changed again, and force it
         self.dirty_selection = False
         self._selection_changed()
+        if self.tree.flags() & gtk.REALIZED:
+            gobject.idle_add(self.tree.scroll_to_point, offset.x, offset.y)
         self.post_rebuild(selectedpath)
     
     def post_rebuild(self, prebuildpath):

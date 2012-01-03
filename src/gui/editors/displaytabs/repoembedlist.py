@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -145,10 +146,12 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
 
     def add_callback(self, value):
         value[0].ref = value[1].handle
-        self.get_data().append(value[0])
+        data = self.get_data()
+        data.append(value[0])
         self.callman.register_handles({'repository': [value[1].handle]})
         self.changed = True
         self.rebuild()
+        gobject.idle_add(self.tree.scroll_to_cell, len(data) - 1)
 
     def edit_button_clicked(self, obj):
         ref = self.get_selected()

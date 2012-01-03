@@ -30,6 +30,7 @@ Address List display tab.
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -118,8 +119,10 @@ class AddrEmbedList(EmbeddedList):
         """
         Called to update the screen when a new address is added
         """
-        self.get_data().append(name)
+        data = self.get_data()
+        data.append(name)
         self.rebuild()
+        gobject.idle_add(self.tree.scroll_to_cell, len(data) - 1)
 
     def edit_button_clicked(self, obj):
         """

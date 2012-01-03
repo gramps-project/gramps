@@ -27,6 +27,7 @@
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -149,6 +150,11 @@ class PersonEventEmbedList(EventEmbedList):
         flist.insert(index-1, handle)
         self.changed = True
         self.rebuild()
+        # select the row
+        # New index is index-1 but for path, add another 1 for person events.
+        path = (index,)
+        self.tree.get_selection().select_path(path)
+        gobject.idle_add(self.tree.scroll_to_cell, path)
 
     def _move_down_group(self, groupindex):
         """
@@ -172,3 +178,8 @@ class PersonEventEmbedList(EventEmbedList):
         flist.insert(index+1, handle)
         self.changed = True
         self.rebuild()
+        # select the row
+        # New index is index+1 but for path, add another 1 for person events.
+        path = (index + 2,)
+        self.tree.get_selection().select_path(path)
+        gobject.idle_add(self.tree.scroll_to_cell, path)

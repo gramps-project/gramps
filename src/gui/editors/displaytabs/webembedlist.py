@@ -27,6 +27,7 @@
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
 import gtk
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -90,8 +91,10 @@ class WebEmbedList(EmbeddedList):
             pass
 
     def add_callback(self, url):
-        self.get_data().append(url)
+        data = self.get_data()
+        data.append(url)
         self.rebuild()
+        gobject.idle_add(self.tree.scroll_to_cell, len(data) - 1)
 
     def edit_button_clicked(self, obj):
         from gui.editors import EditUrl

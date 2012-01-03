@@ -35,6 +35,7 @@ import cPickle as pickle
 #-------------------------------------------------------------------------
 import gtk
 import pango
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -237,7 +238,6 @@ class GroupEmbeddedList(EmbeddedList):
         if row[0] == self._WORKGROUP:
             self.get_data()[self._WORKGROUP].insert(row[1], obj)
             self.changed = True
-            self.rebuild()
         else:
             self.dropnotworkgroup(row, obj)
 
@@ -260,7 +260,6 @@ class GroupEmbeddedList(EmbeddedList):
                 del dlist[row_from[1]]
                 dlist.insert(row_to[1], obj)
             self.changed = True
-            self.rebuild()
         elif row_from[0] == self._WORKGROUP:
             self.move_away_work(row_from, row_to, obj)
         elif row_to[0] == self._WORKGROUP:
@@ -295,8 +294,9 @@ class GroupEmbeddedList(EmbeddedList):
             self.changed = True
             self.rebuild()
             #select the row
-            self.tree.get_selection().select_path((self._WORKGROUP, 
-                                                   row_from[1]-1))
+            path = (self._WORKGROUP, row_from[1]-1)
+            self.tree.get_selection().select_path(path)
+            gobject.idle_add(self.tree.scroll_to_cell, path)
         else:
             self._move_up_notwork(row_from, obj, selmethod)
 
@@ -327,8 +327,9 @@ class GroupEmbeddedList(EmbeddedList):
             self.changed = True
             self.rebuild()
             #select the row
-            self.tree.get_selection().select_path((self._WORKGROUP, 
-                                                   row_from[1]+1))
+            path = (self._WORKGROUP, row_from[1]+1)
+            self.tree.get_selection().select_path(path)
+            gobject.idle_add(self.tree.scroll_to_cell, path)
         else:
             self._move_down_notwork(row_from, obj, selmethod)
 
