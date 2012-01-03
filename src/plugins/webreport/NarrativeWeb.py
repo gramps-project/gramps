@@ -4476,7 +4476,7 @@ class SourcePage(BasePage):
                             ordered2 += list2
 
                             # get event handles and types for these events...
-                            event_handle_list, event_types = build_event_data(self.dbase_, event_list)
+                            event_handle_list, event_types = build_event_data_by_events(self.dbase_, event_list)
                             db_event_handles = self.dbase_.get_event_handles()
 
                             # Ordered list 3, Event Types
@@ -6994,31 +6994,20 @@ class NavWebReport(Report):
         a dump of all the events sorted by event type, date, and surname
         for classes EventListPage and EventPage
         """
-        self.dbase_ = self.database
+        # get event types and the handles that go with that type by individuals
+        event_handle_list, event_types = build_event_data_by_individuals(self.database, ind_list)
 
-        # set up progress bar for event pages; using database event handles...
         self.user.begin_progress(_("Narrated Web Site Report"),
                                   _("Creating event pages"), 
-                                  len(self.dbase_.get_event_handles()))
+                                  len(event_handle_list)
+        )
 
-        # begin progress bar incremental step so as there is not so much wait time...
-        self.user.step_progress()
-
-        # get event types and the handles that go with that type...
-        event_handle_list, event_types = build_event_data(self.dbase_, self.dbase_.iter_event_handles())
-
-        # send all data to class EventListPage
         EventListPage(self, self.title, event_types, event_handle_list, ind_list)
 
         for event_handle in event_handle_list:
-
-            # send data to class EventPage 
             EventPage(self, self.title, event_handle, ind_list)
 
-            # increment progress bar
             self.user.step_progress()
-
-        # terminate this progress bar instance...
         self.user.end_progress()
 
     def source_pages(self, source_list, ppl_handle_list):
@@ -8183,7 +8172,44 @@ def _find_death_date(dbase, individual):
                         break
     return date_out
 
-def build_event_data(dbase_, event_handles):
+def build_event_data_by_individuals(dbase, ppl_handle_list):
+    """
+    creates a list of event handles and event types for this database
+    """
+    event_handle_list = []
+    event_types = []
+
+    for phandle in ppl_handle_list:
+        person = dbase.get_person_from_handle(phandle)
+        if person:
+
+            evt_ref_list = person.get_event_ref_list()
+            if evt_ref_list:
+                for evt_ref in evt_ref_list:
+                    event = dbase.get_event_from_handle(evt_ref.ref)
+                    if event:
+
+                        event_types.append(str(event.get_type()))
+                        event_handle_list.append(evt_ref.ref)
+
+            person_family_handle_list = person.get_family_handle_list()
+            if person_family_handle_list:
+                for fhandle in person_family_handle_list:
+                    family = dbase.get_family_from_handle(fhandle)
+                    if family:
+
+                        family_evt_ref_list = family.get_event_ref_list()
+                        if family_evt_ref_list:
+                            for evt_ref in family_evt_ref_list:
+                                event = dbase.get_event_from_handle(evt_ref.ref)
+                                if event:  
+                                    event_types.append(str(event.type))
+                                    event_handle_list.append(evt_ref.ref)
+            
+    # return event_handle_list and event types to its caller
+    return event_handle_list, event_types
+
+def build_event_data_by_events(dbase_, event_handles):
     """
     creates a list of event handles and event types for these event handles
     """
