@@ -2497,7 +2497,7 @@ class BasePage(object):
 
                 trow = Html("tr") + (
                     Html("th", _("Number"), class_ ="ColumnRowLabel", inline =True),
-                    Html("th", _("Name"), class_ ="ColumnName", inline =True)
+                    Html("th", _("Title"), class_ ="ColumnName", inline =True)
                 )
                 thead += trow
 
@@ -2614,20 +2614,20 @@ class IndividualListPage(BasePage):
                 thead += trow    
 
                 # show surname and first name
-                trow += Html("th", _("Surname"), class_ = "ColumnSurname", inline = True)
-                trow += Html("th", _("Name"), class_ = "ColumnName", inline = True)
+                trow += Html("th", _("Surname"),    class_ = "ColumnSurname", inline = True)
+                trow += Html("th", _("Given Name"), class_ = "ColumnName", inline = True)
 
                 if showbirth:
-                    trow += Html("th", BIRTH, class_ = "ColumnBirth", inline = True)
+                    trow += Html("th", _("Birth"), class_ = "ColumnDate", inline = True)
 
                 if showdeath:
-                    trow += Html("th", DEATH, class_ = "ColumnDeath", inline = True)
+                    trow += Html("th", _("Death"), class_ = "ColumnDate", inline = True)
 
                 if showpartner:
-                    trow += Html("th", _PARTNER, class_ = "ColumnPartner", inline = True)
+                    trow += Html("th", _("Partner"), class_ = "ColumnPartner", inline = True)
 
                 if showparents:
-                    trow += Html("th", PARENTS, class_ = "ColumnParents", inline = True)
+                    trow += Html("th", _("Parents"), class_ = "ColumnParents", inline = True)
 
             tbody = Html("tbody")
             table += tbody
@@ -2808,19 +2808,19 @@ class SurnamePage(BasePage):
                 thead += trow
 
                 # Name Column
-                trow += Html("th", _("Name"), class_ = "ColumnName", inline = True) 
+                trow += Html("th", _("Given Name"), class_ = "ColumnName", inline = True) 
 
                 if showbirth:
-                    trow += Html("th", BIRTH, class_ = "ColumnBirth", inline = True)
+                    trow += Html("th", _("Birth"), class_ = "ColumnDate", inline = True)
 
                 if showdeath:
-                    trow += Html("th", DEATH, class_ = "ColumnDeath", inline = True)
+                    trow += Html("th", _("Death"), class_ = "ColumnDate", inline = True)
 
                 if showpartner:
-                    trow += Html("th", _PARTNER, class_ = "ColumnPartner", inline = True)
+                    trow += Html("th", _("Partner"), class_ = "ColumnPartner", inline = True)
 
                 if showparents:
-                    trow += Html("th", PARENTS, class_ = "ColumnParents", inline = True)
+                    trow += Html("th", _("Parents"), class_ = "ColumnParents", inline = True)
 
                 # begin table body 
                 tbody = Html("tbody")
@@ -4653,13 +4653,13 @@ class MediaListPage(BasePage):
                         tbody += trow
 
                         media_data_row = [
-                            [index,                                 "RowLabel"],
-                            [self.media_ref_link(handle, title),    "Name"],
-                            [_dd.display(media.get_date_object() ), "Date"],
-                            [media.get_mime_type(),                 "Mime"] ]
+                            [index,                                 "ColumnRowLabel"],
+                            [self.media_ref_link(handle, title),    "ColumnName"],
+                            [_dd.display(media.get_date_object() ), "ColumnDate"],
+                            [media.get_mime_type(),                 "ColumnMime"] ]
 
                         trow.extend(
-                            Html("td", data, class_ =colclass)
+                            Html("td", data, class_ = colclass)
                                 for data, colclass in media_data_row
                         )  
                         index += 1
@@ -6445,13 +6445,13 @@ class AddressBookListPage(BasePage):
                 thead += trow
 
                 trow.extend(
-                    Html("th", label, class_="Column" + colclass, inline=True)
+                    Html("th", label, class_= colclass, inline = True)
                     for (label, colclass) in [
-                        ["&nbsp;",       "RowLabel"],
-                        [_("Name"),      "Name"],
-                        [_("Address"),   "Address"],
-                        [_("Residence"), "Residence"],
-                        [_("Web Links"), "WebLinks"] ]
+                        ["&nbsp;",       "ColumnRowLabel"],
+                        [_("Full Name"), "ColumnName"],
+                        [_("Address"),   "ColumnAddress"],
+                        [_("Residence"), "ColumnResidence"],
+                        [_("Web Links"), "ColumnWebLinks"] ]
                         )
 
                 tbody = Html("tbody")
@@ -6485,13 +6485,13 @@ class AddressBookListPage(BasePage):
                     tbody += trow
 
                     trow.extend(
-                        Html("td", data or "&nbsp;", class_="Column" + colclass, inline = True)
+                        Html("td", data or "&nbsp;", class_= colclass, inline = True)
                         for (colclass, data) in [
-                            ["RowLabel",  index],
-                            ["Name",      self.addressbook_link(person_handle)],
-                            ["Address",   address],
-                            ["Residence", residence],
-                            ["WebLinks",  weblinks] ]
+                            ["ColumnRowLabel",  index],
+                            ["ColumnName",      self.addressbook_link(person_handle)],
+                            ["ColumnAddress",   address],
+                            ["ColumnResidence", residence],
+                            ["ColumnWebLinks",  weblinks] ]
                             )
                     index += 1
 
