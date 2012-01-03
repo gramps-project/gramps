@@ -36,12 +36,12 @@ body {
 
 /*   Navigation Menus
 ----------------------------------------------------- */
-div#nav, div#alphanav {
+div#nav {
     clear: both;
     padding-top: 1px;
     font: .7em/1 "Helvetica, Arial, sans, sans-serif";
 }
-div#nav ul, div#alphanav ul {
+div#nav ul {
     float: left;
     width: 100%;
     margin: 0;
@@ -50,12 +50,12 @@ div#nav ul, div#alphanav ul {
     background: #00029D;
     border-bottom: 2px solid #13A926;
 }
-div#nav li, div#alphanav li {
+div#nav li {
     display: inline;
     margin: 0;
     padding: 0;
 }
-div#nav a, div#alphanav a {
+div#nav a {
     display: block;
     float: left;
     padding: 2px 12px;
@@ -65,8 +65,7 @@ div#nav a, div#alphanav a {
     color: #FFF;
     text-decoration: none;
 }
-div#nav a:hover, div#nav a:focus,
-div#alphanav a:hover, div#alphanav a:focus {
+div#nav a:hover, div#nav a:focus {
     background: #000
 }
 div#nav .CurrentSection a {
@@ -77,4 +76,40 @@ div#nav .CurrentSection a {
 div#nav .CurrentSection a:hover, div#nav .CurrentSection a:focus {
     background: #903;
     color: #FFF;
+}
+
+/*    Alphabet Navigation Menu
+------------------------------------------------------ */
+div#alphanav {
+    clear: both;
+    padding-top: 1px;
+    font: bold .9em/1.1 "sans, sans-serif";
+}
+div#alphanav ul {
+    float: left;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    background: #00029D;
+    border-top: 2px solid #13A926;
+    border-bottom: 2px solid #13A926;
+}
+div#alphanav li {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+div#alphanav a {
+    display: block;
+    float: left;
+    padding: 2px 12px;
+    border-right: 2px solid #13A926;
+    border-bottom: 0;
+    border-left: 2px solid #13A926;
+    color: #FFF;
+    text-decoration: none;
+}
+div#alphanav a:hover, div#alphanav a:focus {
+    background: #000
 }
