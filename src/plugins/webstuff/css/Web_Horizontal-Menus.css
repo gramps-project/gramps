@@ -46,8 +46,9 @@ div#nav ul, div#alphanav ul {
     width: 100%;
     margin: 0;
     padding: 0;
-    list-style: circle;
+    list-style-type: none;
     background: #00029D;
+    border-bottom: 2px solid #13A926;
 }
 div#nav li, div#alphanav li {
     display: inline;
@@ -57,21 +58,23 @@ div#nav li, div#alphanav li {
 div#nav a, div#alphanav a {
     display: block;
     float: left;
-    padding: 0 12px;
-    border-right: 1px solid #13A926;
+    padding: 2px 12px;
+    border-right: 2px solid #13A926;
     border-bottom: 0;
-    border-left: 1px solid #13A926;
+    border-left: 2px solid #13A926;
     color: #FFF;
     text-decoration: none;
 }
 div#nav a:hover, div#nav a:focus,
 div#alphanav a:hover, div#alphanav a:focus {
-    background: #000;
+    background: #000
 }
 div#nav .CurrentSection a {
+    font-weight: bold;
     background: #BCEAF6;
     color: #000;
 }
 div#nav .CurrentSection a:hover, div#nav .CurrentSection a:focus {
-    background: #b31203
+    background: #903;
+    color: #FFF;
 }
