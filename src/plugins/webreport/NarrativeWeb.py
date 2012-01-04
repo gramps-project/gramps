@@ -713,29 +713,27 @@ class BasePage(object):
 
         @param: citation_handle_list = list of gen/lib/Citation
         """
-
         lnk = (self.report.cur_fname, self.page_title, self.gid)
         text = ""
         for citation_handle in citation_handle_list:
             citation = self.report.database.get_citation_from_handle(
                                                 citation_handle)
+            if citation:
             
-            # Add the source information to src_list for use when displaying the
-            # Sources page
-            source_handle = citation.get_reference_handle()
-            if source_handle in self.src_list:
-                if lnk not in self.src_list[source_handle]:
-                    self.src_list[source_handle].append(lnk)
-            else:
-                self.src_list[source_handle] = [lnk]
+                # Add the source information to src_list for use when displaying the
+                # Sources page
+                source_handle = citation.get_reference_handle()
+                if source_handle in self.src_list:
+                    if lnk not in self.src_list[source_handle]:
+                        self.src_list[source_handle].append(lnk)
+                else:
+                    self.src_list[source_handle] = [lnk]
                 
-            # Add the citation information to the bibliography, and construct
-            # the citation reference text
-            index, key = self.bibli.add_reference(citation)
-            id_ = "%d%s" % (index+1, key)
-            text += ' [<a href="#sref%s">%s</a>]' % (id_, id_)
-
-        # return citation list text to its callers
+                # Add the citation information to the bibliography, and construct
+                # the citation reference text
+                index, key = self.bibli.add_reference(citation)
+                id_ = "%d%s" % (index+1, key)
+                text += ' [<a href="#sref%s">%s</a>]' % (id_, id_)
         return text
 
     def get_note_format(self, note, link_prefix_up):
