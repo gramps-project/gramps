@@ -1574,13 +1574,13 @@ class ViewManager(CLIManager):
             if include.get_active():
                 from ExportPkg import PackageWriter
                 writer = PackageWriter(self.dbstate.db, filename,
-                       msg_callback=lambda m1, m2: ErrorDialog(m1[0], m1[1]),
+                       msg_callback=lambda m1, m2: ErrorDialog(m1, m2),
                        callback=self.pulse_progressbar)
                 writer.export()
             else:
                 from ExportXml import XmlWriter
                 writer = XmlWriter(self.dbstate.db,
-                       msg_callback=lambda m1, m2: ErrorDialog(m1[0], m1[1]),
+                       msg_callback=lambda m1, m2: ErrorDialog(m1, m2),
                        callback=self.pulse_progressbar,
                        strip_photos=0, compress=1)
                 writer.write(filename)

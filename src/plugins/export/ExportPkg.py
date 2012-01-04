@@ -176,7 +176,12 @@ class PackageWriter(object):
             fs_top.destroy()
         #---------------------------------------------------------------
 
-        archive = tarfile.open(self.filename,'w:gz')
+        try:
+            archive = tarfile.open(self.filename,'w:gz')
+        except EnvironmentError, msg:
+            log.warn(str(msg))
+            self.msg_callback(_('Failure writing %s') % self.filename, str(msg))
+            return 0
         
         # Write media files first, since the database may be modified 
         # during the process (i.e. when removing object)
