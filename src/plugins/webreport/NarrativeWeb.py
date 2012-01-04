@@ -693,21 +693,18 @@ class BasePage(object):
 
         @param: attr = attribute object
         """
-
         trow = Html("tr")
 
-        # display attribute list
         trow.extend(
-            Html("td", data or "&nbsp;", class_ = "Column" + colclass,
+            Html("td", data or "&nbsp;", class_ = colclass,
                 inline = True if (colclass == "Type" or "Sources") else False)
-            for (colclass, data) in [
-                ["Type",    str(attr.get_type()) ],
-                ["Value",   attr.get_value() ],
-                ["Notes",   self.dump_notes(attr.get_note_list()) ],
-                ["Sources", self.get_citation_links(attr.get_citation_list()) ] ]
-        )
-
-        # return table row to its caller
+                for (data, colclass) in [
+                    (str(attr.get_type()),                              "ColumnType"),
+                    (attr.get_value(),                                  "ColumnValue"),
+                    (self.dump_notes(attr.get_note_list()),             "ColumnNotes"),
+                    (self.get_citation_links(attr.get_citation_list()), "ColumnSources")
+                ]
+        )  
         return trow
 
     def get_citation_links(self, citation_handle_list):
@@ -1069,14 +1066,15 @@ class BasePage(object):
             thead += trow
 
             trow.extend(
-                Html("th", label, class_ = "Column" + colclass, inline = True)
-                for (label, colclass) in [
-                    [THEAD,   "LDSType"],
-                    [DHEAD,   "LDSDate"],
-                    [TEMPLE,  "LDSTemple"],
-                    [PHEAD,   "LDSPlace"],
-                    [ST,      "LDSStatus"],
-                    [SHEAD,   "LDSSources"] ]
+                Html("th", label, class_ = colclass, inline = True)
+                    for (label, colclass) in [
+                        [_("Type"),   "ColumnLDSType"],
+                        [_("Date"),   "ColumnDate"],
+                        [_("Temple"),  "ColumnLDSTemple"],
+                        [_("Place"),   "ColumnLDSPlace"],
+                        [_("Status"),  "ColumnLDSStatus"],
+                        [_("Sources"), "ColumnLDSSources"]
+                    ]
             )
 
             # start table body
@@ -1090,25 +1088,24 @@ class BasePage(object):
                     place = self.dbase_.get_place_from_handle(place_handle)
                     if place:
                         place_hyper = self.place_link(place_handle, place.get_title(),
-                            place.gramps_id, True)
+                            place.get_gramps_id(), True)
 
                 # begin ordinance rows
                 trow = Html("tr")
-                tbody += trow
 
                 trow.extend(
-                    Html("td", value or "&nbsp;", class_ = "Column" + colclass,
-                        inline = (not value or colclass == "LDSDate"))
-                    for (colclass, value) in [
-                        ["LDSType",     ord.type2xml() ],
-                        ["LDSDate",     _dd.display(ord.get_date_object() )],
-                        ["LDSTemple",   ord.get_temple()],
-                        ["LDSPlace",    place_hyper],
-                        ["LDSStatus",   ord.get_status()],
-                        ["LDSSources",  self.get_citation_links(ord.get_citation_list() )] ]
+                    Html("td", value or "&nbsp;", class_ = colclass,
+                        inline = (not value or colclass == "ColumnDate"))
+                        for (value, colclass) in [
+                            (ord.type2xml(),                                   "ColumnType"),
+                            (_dd.display(ord.get_date_object()),               "ColumnDate"),
+                            (ord.get_temple(),                                 "ColumnLDSTemple"),
+                            (place_hyper,                                      "ColumnLDSPlace"),
+                            (ord.get_status(),                                 "ColumnLDSStatus"),
+                            (self.get_citation_links(ord.get_citation_list()), "ColumnSources")
+                        ]
                 )
-
-        # return table to its callers
+                tbody += trow
         return table
 
     def write_data_map(self, data_map):
@@ -1264,24 +1261,24 @@ class BasePage(object):
                     tbody += trow
 
                     addr_data_row = [
-                        ["Date",           _dd.display(address.get_date_object() )],
-                        ["Streetaddress",  address.get_street()],
-                        ["Locality",       address.get_locality()],
-                        ["City",           address.get_city()],
-                        ["State",          address.get_state()],
-                        ["County",         address.get_county()],
-                        ["Postslcode",     address.get_postal_code()],
-                        ["Cntry",          address.get_country()],
-                        ["Phone",          address.get_phone()] ]
+                        (_dd.display(address.get_date_object()), "ColumnDate"),
+                        (address.get_street(),                   "ColumnStreetAddress"),
+                        (address.get_locality(),                 "ColumnLocality"),
+                        (address.get_city(),                     "ColumnCity"),
+                        (address.get_state(),                    "ColumnState"),
+                        (address.get_county(),                   "ColumnCounty"),
+                        (address.get_postal_code(),              "ColumnPostalCode"),
+                        (address.get_country(),                  "ColumnCntry"),
+                        (address.get_phone(),                    "ColumnPhone")
+                    ]
 
                     # get source citation list
                     if showsrc in [True, None]:
-                        addr_data_row.append(["Sources",    self.get_citation_links(
-                            address.get_citation_list() )])
+                        addr_data_row.append([self.get_citation_links(address.get_citation_list()), "ColumnSources"])
 
                     trow.extend(
-                        Html("td", value or "&nbsp;", class_="Column" + colclass, inline=True)
-                        for (colclass, value) in addr_data_row
+                        Html("td", value or "&nbsp;", class_= colclass, inline = True)
+                            for (value, colclass) in addr_data_row
                     )
                     
                     # address: notelist
@@ -1289,8 +1286,6 @@ class BasePage(object):
                         notelist = self.display_note_list(address.get_note_list())
                         if notelist is not None:
                             summaryarea += notelist
-                   
-        # return summaryarea division to its callers
         return summaryarea
 
     def addressbook_link(self, person_handle, up = False):
@@ -2018,11 +2013,12 @@ class BasePage(object):
                 thead += trow
 
                 trow.extend(
-                    Html('th', label, class_ = "Column" + colclass, inline = True)
-                    for (label, colclass) in [
-                        (THEAD,      "Type"),
-                        (_("Url"),   "Path"),
-                        (DESCRHEAD,  "Description") ]
+                    Html('th', label, class_ = colclass, inline = True)
+                        for (label, colclass) in [
+                            (_("Type"),        "ColumnType"),
+                            (_("Url"),         "ColumnPath"),
+                            (_("Description"), "ColumnDescription")
+                        ]
                     )
 
                 tbody = Html("tbody")
@@ -2054,14 +2050,13 @@ class BasePage(object):
 
                     uri = Html("a", uri, href = uri, title = html_escape(descr))
                     trow.extend(
-                        Html("td", data, class_ = "Column" + colclass, inline = True)
-                        for (data, colclass) in [
-                            (str(_type), "Type"),
-                            (uri,        "Path"),
-                            (descr,      "Description") ]
-                        ) 
-                
-        # return weblinks to its caller
+                        Html("td", data, class_ = colclass, inline = True)
+                            for (data, colclass) in [
+                                (str(_type), "ColumnType"),
+                                (uri,        "ColumnPath"),
+                                (descr,      "ColumnDescription")
+                            ]
+                    ) 
         return section
 
     def display_lds_ordinance(self, db_obj_):
@@ -3470,14 +3465,15 @@ class EventListPage(BasePage):
                 thead += trow
 
                 trow.extend(
-                    Html("th", label, class_ = "Column" + colclass, inline = True)
-                    for (label, colclass) in [
-                        [_("Letter"),  "Letter"], 
-                        [THEAD,        "Type"],
-                        [DHEAD,        "Date"],
-                        [GRAMPSID,     "GRAMPSID"],
-                        [_PERSON,      "Person"] ]
-                    ) 
+                    Html("th", label, class_ = colclass, inline = True)
+                        for (label, colclass) in [
+                            (_("Letter"),    "ColumnRowLabel"),
+                            (_("Type"),      "ColumnType"),
+                            (_("Date"),      "ColumnDate"),
+                            (_("Gramps ID"), "ColumnGRAMPSID"),
+                            (_("Person"),    "ColumnPerson")
+                        ]
+                )
 
                 tbody = Html("tbody")
                 table += tbody
@@ -3668,7 +3664,6 @@ class EventPage(BasePage):
 
                 for (label, colclass, data) in event_data:
                     if data:
-
                         trow = Html("tr") + (
                             Html("td", label, class_ = "ColumnAttribute", inline = True),
                             Html('td', data, class_ = "Column" + colclass)
