@@ -3478,16 +3478,16 @@ class EventListPage(BasePage):
 
                 prev_letter = ""
                 # separate events by their type and then thier event handles
-                for (evt_type, datalist) in sort_event_types(self.dbase_, event_types, event_handle_list):
+                for (evt_type, data_list) in sort_event_types(self.dbase_, event_types, event_handle_list):
                     first_letter = True
                     _EVENT_DISPLAYED = []
 
                     # sort datalist by date of event
-                    datalist = sorted(datalist, key = self._getEventDate)
+                    data_list = sorted(data_list, key = self._getEventDate)
                     first_event = True
 
-                    while datalist:
-                        event_handle = datalist[0]
+                    while data_list:
+                        event_handle = data_list[0]
                         event = self.dbase_.get_event_from_handle(event_handle)
                         _type = event.get_type()
                         gid = event.get_gramps_id()
@@ -3568,7 +3568,7 @@ class EventListPage(BasePage):
 
                         _EVENT_DISPLAYED.append( gid )
                         first_event = False
-                        datalist.remove(str(event_handle))
+                        data_list.remove(str(event_handle))
 
         # add clearline for proper styling
         # add footer section
@@ -4381,6 +4381,12 @@ class SourcePage(BasePage):
 
                         (people_list, family_list, event_list, place_list, source_list, media_list, repo_list) = refs
 
+                        # only add the person handle if the individual is in the report database, and reove any duplication if any?
+                        people_list = [person_handle for person_handle in people_list if check_person_database(person_handle, ppl_handle_list)]
+
+                        # Sort the person list by  the individual's surname...
+                        people_list = sort_people(self.dbase_, people_list)
+
                         # ordered list #2, Object Type...
                         ordered2 = Html("ol", class_ = "Col2 ObjectType")
 
@@ -4390,17 +4396,11 @@ class SourcePage(BasePage):
                             list2 = Html("li", _("Person(s)"))
                             ordered2 += list2
 
-                            # only add the person handle if the individual is in the report database, and reove any duplication if any?
-                            ppl_list = [phandle for phandle in people_list if check_person_database(phandle, ppl_handle_list)]
-
-                            # Sort the person list by  the individual's surname...
-                            ppl_list = sort_people(self.dbase_, ppl_list)
-
                             # ordered list #3, Surname...
                             ordered3 = Html("ol", class_ = "Col3 Surname")
 
                             displayed = []
-                            for (surname, handle_list) in ppl_list:
+                            for (surname, handle_list) in people_list:
                                 if surname not in displayed:
 
                                     list3 = Html("li", surname)
@@ -4409,13 +4409,13 @@ class SourcePage(BasePage):
                                     # ordered list #4, full name...
                                     ordered4 = Html("ol", class_ = "Col4 FullName")
 
-                                    for handle in handle_list:
-                                        individual = self.dbase_.get_person_from_handle(handle)
-                                        if individual:
+                                    for person_handle in handle_list:
+                                        person = self.dbase_.get_person_from_handle(person_handle)
+                                        if person:
 
-                                            url = self.report.build_url_fname_html(handle, "ppl", up = True)
-                                            list4 = Html("li", self.person_link(url, individual, _NAME_STYLE_DEFAULT, 
-                                                gid = individual.get_gramps_id()))
+                                            url = self.report.build_url_fname_html(person_handle, "ppl", up = self.up)
+                                            list4 = Html("li", self.person_link(url, person, _NAME_STYLE_DEFAULT, 
+                                                                                gid = person.get_gramps_id()))
                                             ordered4 += list4
 
                                     list3 += ordered4
@@ -4476,7 +4476,10 @@ class SourcePage(BasePage):
                             ordered3 = Html("ol", class_ = "Col3 EventTypes")
 
                             # separate events by their types and then thier event handles
-                            for (etype, handle_list) in sort_event_types(self.dbase_, event_types, event_handle_list):
+                            for (etype, data_list) in sort_event_types(self.dbase_, event_types, event_handle_list):
+
+                                # sort data_list by date of event
+#                                data_list = sorted(data_list, key = self._getEventDate)
 
                                 list3 = Html("li", etype)
                                 ordered3 += list3
@@ -4484,12 +4487,14 @@ class SourcePage(BasePage):
                                 # Ordered list4, Event Date...
                                 ordered4 = Html("ol", class_ = "Col4 EventDate")
 
-                                for handle in handle_list:
-                                   event = self.dbase_.get_event_from_handle(handle)
-                                   if (event and handle in db_event_handles):
+                                while data_list:
+                                    event_handle = data_list[0]
+                                    event = self.dbase_.get_event_from_handle(event_handle)
+                                    if (event and event_handle in db_event_handles):
                                         list4 = Html("li", self.event_link(_dd.display(event.get_date_object()) or etype,
-                                                                          handle, event.get_gramps_id(), self.up))
+                                                                           event_handle, event.get_gramps_id(), self.up))
                                         ordered4 += list4
+                                    data_list.remove(str(event_handle))
                                 list3 += ordered4
                             list2 += ordered3
 

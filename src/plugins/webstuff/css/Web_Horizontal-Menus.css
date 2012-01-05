@@ -58,15 +58,15 @@ div#nav li {
 div#nav a {
     display: block;
     float: left;
-    padding: 2px 12px;
-    border-right: 2px solid #13A926;
-    border-bottom: 0;
-    border-left: 2px solid #13A926;
+    padding: 4px 12px;
+    border-right: 1px solid #13A926;
+    border-left: 1px solid #13A926;
     color: #FFF;
     text-decoration: none;
 }
 div#nav a:hover, div#nav a:focus {
-    background: #000
+    background: #FFF;
+    color: #000;
 }
 div#nav .CurrentSection a {
     font-weight: bold;
@@ -103,13 +103,13 @@ div#alphanav li {
 div#alphanav a {
     display: block;
     float: left;
-    padding: 2px 12px;
-    border-right: 2px solid #13A926;
-    border-bottom: 0;
-    border-left: 2px solid #13A926;
+    padding: 4px 12px;
+    border-right: 1px solid #13A926;
+    border-left: 1px solid #13A926;
     color: #FFF;
     text-decoration: none;
 }
 div#alphanav a:hover, div#alphanav a:focus {
-    background: #000
+    background: #FFF;
+    color: #000;
 }
