@@ -68,6 +68,7 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
     def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None,
                  skip=set(), sort_map=None):
         self.db = db
+        self.number_items = self.db.get_number_of_sources
         self.map = self.db.get_raw_source_data
         self.gen_cursor = self.db.get_source_cursor
         # The items here must correspond, in order, with data in 
@@ -101,7 +102,8 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
                                tooltip_column=9,
                                search=search, skip=skip, sort_map=sort_map,
                                nrgroups = 1,
-                               group_can_have_handle = True)
+                               group_can_have_handle = True,
+                               has_secondary=True)
 
     def destroy(self):
         """
@@ -111,18 +113,22 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
         self.gen_cursor = None
         self.map = None
         self.fmap = None
-        self.map2 = None
-        self.fmap2 = None
         self.smap = None
         self.number_items = None
+        self.gen_cursor2 = None
+        self.map2 = None
+        self.fmap2 = None
+        self.smap2 = None
+        self.number_items2 = None
         TreeBaseModel.destroy(self)
 
     def _set_base_data(self):
         """See TreeBaseModel, for citations, most have been set in init of
         CitationBaseModel
         """
-        self.number_items = self.db.get_number_of_citations
+        self.number_items2 = self.db.get_number_of_citations
         self.map2 = self.db.get_raw_citation_data
+        self.gen_cursor2 = self.db.get_citation_cursor
         self.fmap2 = [
             self.citation_page,
             self.citation_id,
@@ -135,6 +141,18 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
             self.citation_handle,
             self.citation_tooltip
             ]
+        self.smap2 = [
+            self.citation_page,
+            self.citation_id,
+            self.citation_sort_date,
+            self.citation_confidence,
+            self.citation_sort_change,
+            self.dummy_sort_key,
+            self.dummy_sort_key,
+            self.dummy_sort_key,
+            self.citation_handle,
+            self.citation_tooltip
+            ]
 
     def get_tree_levels(self):
         """
@@ -144,49 +162,24 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
 
     def add_row(self, handle, data):
         """
-        Add nodes to the node map for a single citation.
+        Add source nodes to the node map.
 
         handle      The handle of the gramps object.
         data        The object data.
         """
-        # first add the source
-#        source_name = self.source_src_title(data)
         sort_key = self.sort_func(data)
-        # add as node: parent, child, sortkey, handle; parent and child are 
-        # nodes in the treebasemodel, and will be used as iters
-        if self.get_node(handle) is None:
-            self.add_node(None, handle, sort_key, handle)
-        # now add all the related citations
-        source_handle_list = []
-        for i in get_source_referents(handle, self.db):
-            for j in i:
-                source_handle_list.append(j)
-        for citation_handle in source_handle_list:
-            if self.get_node(citation_handle) is None:
-    #            # add as node: parent, child, sortkey, handle; parent and child are 
-    #            # nodes in the treebasemodel, and will be used as iters
-                citation = self.db.get_citation_from_handle(citation_handle)
-                citation_page = citation.get_page()
-                self.add_node(handle, citation_handle, citation_page, 
-                              citation_handle, secondary=True)
-#        try:
-#            source_handle = data[COLUMN_SOURCE]
-#        except:
-#            LOG.debug("add_row: data %s is empty, handle %s citation %s data %s" %
-#                      (data, handle, self.db.get_citation_from_handle(handle),
-#                       self.db.get_citation_from_handle(handle).serialize()))
-#        source = self.db.get_source_from_handle(source_handle)
-#        if source is not None:
-#            source_name = source.get_title()
-#            sort_key = self.sort_func(data)
-#            if self.get_node(source_handle) is None:
-#                self.add_node(None, source_handle, source_name, source_handle,
-#                              secondary=True)
-#            self.add_node(source_handle, handle, sort_key, handle)
-#        else:
-#            log.warn("Citation %s does not have a source" % 
-#                     unicode(data[COLUMN_PAGE]),
-#                      exc_info=True)
+        self.add_node(None, handle, sort_key, handle)
+
+    def add_row2(self, handle, data):
+        """
+        Add citation nodes to the node map.
+
+        handle      The handle of the gramps object.
+        data        The object data.
+        """
+        sort_key = self.sort_func2(data)
+        if self.get_node(data[5]):
+            self.add_node(data[5], handle, sort_key, handle, secondary=True)
 
     def add_secondary_row(self, handle, data):
         """

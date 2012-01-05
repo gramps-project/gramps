@@ -3,9 +3,9 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2009       Gary Burton
-# Copyright (C) 2009-2010  Nick Hall
+# Copyright (C) 2009-2011  Nick Hall
 # Copyright (C) 2009       Benny Malengier
-# Copyright (C) 2011       Nick Hall, Tim G L lyons
+# Copyright (C) 2011       Tim G L lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -269,6 +269,9 @@ class TreeBaseModel(gtk.GenericTreeModel):
                       can groups have a handle. If False, this means groups 
                       are only used to group subnodes, not for holding data and
                       showing subnodes
+    has_secondary  :  If True, the model contains two Gramps object types.
+                      The suffix '2' is appended to variables relating to the
+                      secondary object type.
     """
 
     # LRU cache size
@@ -278,7 +281,8 @@ class TreeBaseModel(gtk.GenericTreeModel):
                     search=None, skip=set(),
                     scol=0, order=gtk.SORT_ASCENDING, sort_map=None,
                     nrgroups = 1,
-                    group_can_have_handle = False):
+                    group_can_have_handle = False,
+                    has_secondary=False):
         cput = time.clock()
         gtk.GenericTreeModel.__init__(self)
         #two unused attributes pesent to correspond to flatbasemodel
@@ -289,6 +293,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
         self.scol = scol
         self.nrgroups = nrgroups
         self.group_can_have_handle = group_can_have_handle
+        self.has_secondary = has_secondary
         self.db = db
         
         self._set_base_data()
@@ -307,9 +312,13 @@ class TreeBaseModel(gtk.GenericTreeModel):
             #we need the model col, that corresponds with scol
             col = self.sort_map[scol][1]
             self.sort_func = self.smap[col]
+            if self.has_secondary:
+                self.sort_func2 = self.smap2[col]
             self.sort_col = col
         else:
             self.sort_func = self.smap[scol]
+            if self.has_secondary:
+                self.sort_func2 = self.smap2[scol]
             self.sort_col = scol
     
         self._in_build = False
@@ -333,6 +342,8 @@ class TreeBaseModel(gtk.GenericTreeModel):
         """
         self.db = None
         self.sort_func = None
+        if self.has_secondary:
+            self.sort_func2 = None
         if self.nodemap:
             self.nodemap.destroy()
         self.nodemap = None
@@ -354,17 +365,19 @@ class TreeBaseModel(gtk.GenericTreeModel):
         map     : function to obtain the raw bsddb object datamap
         smap    : the map with functions to obtain sort value based on sort col
         fmap    : the map with functions to obtain value of a row with handle
-        hmap    : the map with functions to obtain value of a row without handle
         """
         self.gen_cursor = None
         self.number_items = None   # function 
         self.map = None
-        self.map2 = None
-        
         self.smap = None
         self.fmap = None
-        self.smap2 = None
-        self.fmap2 = None
+
+        if self.has_secondary:
+            self.gen_cursor2 = None
+            self.number_items2 = None   # function 
+            self.map2 = None
+            self.smap2 = None
+            self.fmap2 = None
 
     def displayed(self):
         """
@@ -478,15 +491,28 @@ class TreeBaseModel(gtk.GenericTreeModel):
         """
         self.__total = 0
         self.__displayed = 0
-        
+
         items = self.number_items()
+        self.__rebuild_search(dfilter, skip, items, 
+                              self.gen_cursor, self.add_row)
+
+        if self.has_secondary:
+            items = self.number_items2()
+            self.__rebuild_search(dfilter, skip, items, 
+                                  self.gen_cursor2, self.add_row2)
+
+    def __rebuild_search(self, dfilter, skip, items, gen_cursor, add_func):
+        """
+        Rebuild the data map for a single Gramps object type, where a search 
+        condition is applied.
+        """
         pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog, 
                                             popup_time=2)
         status = progressdlg.LongOpStatus(msg=_("Building View"),
                             total_steps=items, interval=items//20, 
                             can_cancel=True)
         pmon.add_op(status)
-        with self.gen_cursor() as cursor:
+        with gen_cursor() as cursor:
             for handle, data in cursor:
                 status.heartbeat()
                 if status.should_cancel():
@@ -495,7 +521,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
                 if not (handle in skip or (dfilter and not
                                         dfilter.match(handle, self.db))):
                     self.__displayed += 1
-                    self.add_row(handle, data)
+                    add_func(handle, data)
         if not status.was_cancelled():
             status.end()
 
@@ -503,29 +529,46 @@ class TreeBaseModel(gtk.GenericTreeModel):
         """
         Rebuild the data map where a filter is applied.
         """
+        self.__total = 0
+        self.__displayed = 0
+
+        items = self.number_items()
+        self.__rebuild_filter(dfilter, skip, items, 
+                              self.gen_cursor, self.map, self.add_row)
+        if self.has_secondary:
+            items = self.number_items2()
+            self.__rebuild_filter(dfilter, skip, items, 
+                                  self.gen_cursor2, self.map2, self.add_row2)
+            
+    def __rebuild_filter(self, dfilter, skip, items, gen_cursor, data_map, 
+                         add_func):
+        """
+        Rebuild the data map for a single Gramps object type, where a filter 
+        is applied.
+        """
         pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog, 
                                             popup_time=2)
-        status = progressdlg.LongOpStatus(msg=_("Building People View"),
+        status = progressdlg.LongOpStatus(msg=_("Building View"),
                               total_steps=3, interval=1)
         pmon.add_op(status)
-        self.__total = self.number_items()
-        status_ppl = progressdlg.LongOpStatus(msg=_("Obtaining all people"),
-                        total_steps=self.__total, interval=self.__total//10)
+        status_ppl = progressdlg.LongOpStatus(msg=_("Obtaining all rows"),
+                        total_steps=items, interval=items//10)
         pmon.add_op(status_ppl)
         
+        self.__total += items
+
         def beat(key):
             status_ppl.heartbeat()
             return key
         
-        with self.gen_cursor() as cursor:
+        with gen_cursor() as cursor:
             handle_list = [beat(key) for key, data in cursor]
         status_ppl.end()
-        self.__displayed = 0
         status.heartbeat()
 
         if dfilter:
             status_filter = progressdlg.LongOpStatus(msg=_("Applying filter"),
-                        total_steps=self.__total, interval=self.__total//10)
+                        total_steps=items, interval=items//10)
             pmon.add_op(status_filter)
             handle_list = dfilter.apply(self.db, handle_list, 
                                         cb_progress=status_filter.heartbeat)
@@ -538,9 +581,9 @@ class TreeBaseModel(gtk.GenericTreeModel):
         pmon.add_op(status_col)
         for handle in handle_list:
             status_col.heartbeat()
-            data = self.map(handle)
+            data = data_map(handle)
             if not handle in skip:
-                self.add_row(handle, data)
+                add_func(handle, data)
                 self.__displayed += 1
         status_col.end()
         status.end()
