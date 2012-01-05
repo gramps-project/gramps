@@ -169,7 +169,8 @@ class CalendarReport(Report):
         if self.relationships:
             name = self.center_person.get_primary_name()
             self.doc.start_paragraph('BIR-Text3style')
-            self.doc.write_text(_("Relationships shown are to %s") % _nd.display_name(name))
+            self.doc.write_text(_("Relationships shown are to %s") %
+                                self._name_display.display_name(name))
             self.doc.end_paragraph()
         self._user.begin_progress(_('Birthday and Anniversary Report'), 
                                   _('Formatting months...'), 12)
