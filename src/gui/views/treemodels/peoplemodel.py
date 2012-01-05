@@ -502,7 +502,6 @@ class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
         Unset all elements that can prevent garbage collection
         """
         PeopleBaseModel.destroy(self)
-        self.hmap = None
         self.number_items = None
         TreeBaseModel.destroy(self)
 
@@ -510,7 +509,6 @@ class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
         """See TreeBaseModel, we also set some extra lru caches
         """
         self.number_items = self.db.get_number_of_people
-        self.hmap = [self.column_header] + [None]*len(self.smap)
 
     def clear_cache(self, handle=None):
         """ Clear the LRU cache 

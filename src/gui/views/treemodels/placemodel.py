@@ -288,7 +288,6 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
         Unset all elements that can prevent garbage collection
         """
         PlaceBaseModel.destroy(self)
-        self.hmap = None
         self.number_items = None
         TreeBaseModel.destroy(self)
 
@@ -297,7 +296,6 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
         PlaceBaseModel
         """
         self.number_items = self.db.get_number_of_places
-        self.hmap = [self.column_header] + [None]*14
 
     def get_tree_levels(self):
         """
