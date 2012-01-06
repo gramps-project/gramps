@@ -3,6 +3,7 @@
 # Copyright (C) 2003-2006  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2011       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,6 +29,7 @@
 #------------------------------------------------------------------------
 import time
 from gen.ggettext import sgettext as _
+import os
 
 #------------------------------------------------------------------------
 #
@@ -68,6 +70,7 @@ class SimpleBookTitle(Report):
         footer    - Footer string.
         """
         Report.__init__(self, database, options, user)
+        self._user = user
 
         menu = options.menu
         self.title_string = menu.get_option_by_name('title').get_value()
@@ -88,14 +91,19 @@ class SimpleBookTitle(Report):
 
         if self.object_id:
             the_object = self.database.get_object_from_gramps_id(self.object_id)
-            name = media_path_full(self.database, the_object.get_path())
-            if self.image_size:
-                image_size = self.image_size
+            filename = media_path_full(self.database, the_object.get_path())
+            if os.path.exists(filename):
+                if self.image_size:
+                    image_size = self.image_size
+                else:
+                    image_size = min(
+                            0.8 * self.doc.get_usable_width(), 
+                            0.7 * self.doc.get_usable_height() )
+                self.doc.add_media_object(filename, 'center',
+                                          image_size, image_size)
             else:
-                image_size = min(
-                        0.8 * self.doc.get_usable_width(), 
-                        0.7 * self.doc.get_usable_height() )
-            self.doc.add_media_object(name, 'center', image_size, image_size)
+                self._user.warn(_('Could not add photo to page'),
+                                _('File %s does not exist') % filename)
 
         self.doc.start_paragraph('SBT-Footer')
         self.doc.write_text(self.footer_string)
