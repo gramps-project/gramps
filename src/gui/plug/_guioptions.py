@@ -358,6 +358,7 @@ class GuiTextOption(gtk.ScrolledWindow):
         # Add a TextView
         value = self.__option.get_value()
         gtext = gtk.TextView()
+        gtext.set_size_request(-1, 70)
         gtext.get_buffer().set_text("\n".join(value))
         gtext.set_editable(1)
         self.add(gtext)
