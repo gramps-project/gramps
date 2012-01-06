@@ -453,13 +453,15 @@ class GrampsPreferences(ConfigureDialog):
                        self.update_idformat_entry)
         self.add_entry(table, _('Source'), 3, 'preferences.sprefix',
                        self.update_idformat_entry)
-        self.add_entry(table, _('Media Object'), 4, 'preferences.oprefix',
+        self.add_entry(table, _('Citation'), 4, 'preferences.cprefix',
                        self.update_idformat_entry)
-        self.add_entry(table, _('Event'), 5, 'preferences.eprefix',
+        self.add_entry(table, _('Media Object'), 5, 'preferences.oprefix',
                        self.update_idformat_entry)
-        self.add_entry(table, _('Repository'), 6, 'preferences.rprefix',
+        self.add_entry(table, _('Event'), 6, 'preferences.eprefix',
                        self.update_idformat_entry)
-        self.add_entry(table, _('Note'), 7, 'preferences.nprefix',
+        self.add_entry(table, _('Repository'), 7, 'preferences.rprefix',
+                       self.update_idformat_entry)
+        self.add_entry(table, _('Note'), 8, 'preferences.nprefix',
                        self.update_idformat_entry)
         return _('ID Formats'), table
 
@@ -1156,6 +1158,7 @@ class GrampsPreferences(ConfigureDialog):
             config.get('preferences.oprefix'),
             config.get('preferences.fprefix'),
             config.get('preferences.sprefix'),
+            config.get('preferences.cprefix'),
             config.get('preferences.pprefix'),
             config.get('preferences.eprefix'),
             config.get('preferences.rprefix'),
