@@ -124,7 +124,12 @@ def history_broken():
 data_recover_msg = _('The data can only be recovered by Undo operation '
             'or by quitting with abandoning changes.')
 
-def fix_encoding(value):
+def fix_encoding(value, errors='strict'):
+    # The errors argument specifies the response when the input string can't be
+    # converted according to the encoding's rules. Legal values for this
+    # argument are 'strict' (raise a UnicodeDecodeError exception), 'replace'
+    # (add U+FFFD, 'REPLACEMENT CHARACTER'), or 'ignore' (just leave the
+    # character out of the Unicode result).
     if not isinstance(value, unicode):
         try:
             return unicode(value)
@@ -136,7 +141,7 @@ def fix_encoding(value):
                     codeset = locale.getpreferredencoding()
             except:
                 codeset = "UTF-8"
-            return unicode(value, codeset)
+            return unicode(value, codeset, errors)
     else:
         return value
 

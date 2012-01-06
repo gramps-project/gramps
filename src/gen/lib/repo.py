@@ -163,6 +163,20 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
 
         return False
 
+    def remove_citation_references(self, citation_handle_list):
+        """
+        Remove references to all citation handles in the list in all child 
+        objects.
+
+        Note: the same comment about citationbase in has_citation_reference
+        applies here too.
+
+        :param citation_handle_list: The list of citation handles to be removed.
+        :type citation_handle_list: list
+        """
+        for item in self.get_citation_child_list():
+            item.remove_citation_references(citation_handle_list)
+
     def replace_citation_references(self, old_handle, new_handle):
         """
         Replace references to citation handles in the list in this object and 

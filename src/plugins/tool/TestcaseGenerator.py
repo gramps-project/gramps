@@ -33,6 +33,7 @@
 #-------------------------------------------------------------------------
 from random import randint,choice,random
 from gen.ggettext import gettext as _
+import time
 
 #-------------------------------------------------------------------------
 #
@@ -47,10 +48,15 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gen.lib
+from gen.lib import StyledText, StyledTextTag, StyledTextTagType
 from gen.db import DbTxn
+import gen.mime
 from gui.plug import tool
 import Utils
+from gui.utils import ProgressMeter
 import LdsUtils
+from gen.db.dbconst import *
+import const
 
 #-------------------------------------------------------------------------
 #
@@ -66,6 +72,38 @@ class TestcaseGenerator(tool.BatchTool):
     NOTE = 5
     SHORT = 6
     LONG = 7
+    TAG = 8
+    STYLED_TEXT = 9
+    
+#    GEDCON definition:
+#    
+#    FAMILY_EVENT_STRUCTURE:=
+#    [
+#    n [ ANUL | CENS | DIV | DIVF ] [Y|<NULL>] {1:1}
+#    +1 <<EVENT_DETAIL>> {0:1} p.29
+#    |
+#    n [ ENGA | MARR | MARB | MARC ] [Y|<NULL>] {1:1}
+#    +1 <<EVENT_DETAIL>> {0:1} p.29
+#    |
+#    n [ MARL | MARS ] [Y|<NULL>] {1:1}
+#    +1 <<EVENT_DETAIL>> {0:1} p.29
+#    |
+#    n EVEN {1:1}
+#    +1 <<EVENT_DETAIL>> {0:1} p.29
+#    ]
+
+    FAMILY_EVENTS = set([
+            gen.lib.EventType.ANNULMENT,
+            gen.lib.EventType.CENSUS,
+            gen.lib.EventType.DIVORCE,
+            gen.lib.EventType.DIV_FILING,
+            gen.lib.EventType.ENGAGEMENT,
+            gen.lib.EventType.MARRIAGE,
+            gen.lib.EventType.MARR_BANNS,
+            gen.lib.EventType.MARR_CONTR,
+            gen.lib.EventType.MARR_LIC,
+            gen.lib.EventType.MARR_SETTL,
+            gen.lib.EventType.CUSTOM            ])
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.person = None
@@ -83,6 +121,7 @@ class TestcaseGenerator(tool.BatchTool):
         self.person_dates = {}
         self.generated_repos = []
         self.generated_sources = []
+        self.generated_citations = []
         self.generated_media = []
         self.generated_places = []
         self.generated_events = []
@@ -134,20 +173,19 @@ class TestcaseGenerator(tool.BatchTool):
         label.set_use_markup(True)
         self.top.vbox.pack_start(label,0,0,5)
 
-        self.check_bugs = gtk.CheckButton( _("Generate Database errors"))
+        self.check_lowlevel = gtk.CheckButton( _("Generate low level database "
+                                "errors\nCorrection needs database reload"))
+        self.check_lowlevel.set_active( self.options.handler.options_dict['lowlevel'])
+        self.top.vbox.pack_start(self.check_lowlevel,0,0,5)
+
+        self.check_bugs = gtk.CheckButton( _("Generate database errors"))
         self.check_bugs.set_active( self.options.handler.options_dict['bugs'])
         self.top.vbox.pack_start(self.check_bugs,0,0,5)
 
-        self.check_persons = gtk.CheckButton( _("Generate dummy families"))
+        self.check_persons = gtk.CheckButton( _("Generate dummy data"))
         self.check_persons.set_active( self.options.handler.options_dict['persons'])
+        self.check_persons.connect('clicked', self.on_dummy_data_clicked)
         self.top.vbox.pack_start(self.check_persons,0,0,5)
-
-        # doesn't work any more since revision ... (earlier than version 3.3)
-        self.check_trans = gtk.CheckButton( _("Don't block transactions"))
-        #self.check_trans.set_active( self.options.handler.options_dict['no_trans'])
-        self.check_trans.set_active(False)
-        self.check_trans.set_sensitive(False)
-        self.top.vbox.pack_start(self.check_trans,0,0,5)
 
         self.check_longnames = gtk.CheckButton( _("Generate long names"))
         self.check_longnames.set_active( self.options.handler.options_dict['long_names'])
@@ -165,8 +203,15 @@ class TestcaseGenerator(tool.BatchTool):
         self.check_linebreak.set_active( self.options.handler.options_dict['add_linebreak'])
         self.top.vbox.pack_start(self.check_linebreak,0,0,5)
 
+        self.label = gtk.Label(_("Number of people to generate\n"
+                                 "(Number is approximate because families "
+                                 "are generated)"))
+        self.label.set_alignment(0.0, 0.5)
+        self.top.vbox.pack_start(self.label,0,0,5)
+
         self.entry_count = gtk.Entry()
         self.entry_count.set_text( unicode( self.options.handler.options_dict['person_count']))
+        self.on_dummy_data_clicked(self.check_persons)
         self.top.vbox.pack_start(self.entry_count,0,0,5)
 
         self.top.add_button(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL)
@@ -175,12 +220,12 @@ class TestcaseGenerator(tool.BatchTool):
         self.top.show_all()
 
         response = self.top.run()
+        self.options.handler.options_dict['lowlevel']  = int(
+            self.check_lowlevel.get_active())
         self.options.handler.options_dict['bugs']  = int(
             self.check_bugs.get_active())
         self.options.handler.options_dict['persons']  = int(
             self.check_persons.get_active())
-        self.options.handler.options_dict['no_trans']  = int(
-            self.check_trans.get_active())
         self.options.handler.options_dict['long_names']  = int(
             self.check_longnames.get_active())
         self.options.handler.options_dict['specialchars']  = int(
@@ -197,175 +242,38 @@ class TestcaseGenerator(tool.BatchTool):
             self.run_tool( cli=False)
             # Save options
             self.options.handler.save_options()
+
+    def on_dummy_data_clicked(self, obj):
+        self.label.set_sensitive(obj.get_active())
+        self.entry_count.set_sensitive(obj.get_active())
         
     def run_tool(self, cli=False):
         self.cli = cli
         if( not cli):
-            title = "%s - Gramps" % _("Generate testcases")
-            self.top = gtk.Window()
-            self.top.set_title(title)
-            self.top.set_position(gtk.WIN_POS_MOUSE)
-            self.top.set_modal(True)
-            self.top.set_default_size(400,150)
-            vbox = gtk.VBox()
-            self.top.add(vbox)
-            label = gtk.Label(_("Generating persons and families.\nPlease wait."))
-            vbox.pack_start(label,0,0,5)
-            self.progress = gtk.ProgressBar()
-            self.progress.set_fraction(0.0)
-            vbox.pack_end(self.progress,0,0,5)
-            self.top.show_all()
             while gtk.events_pending():
                 gtk.main_iteration()
         
+        self.progress = ProgressMeter(_('Generating testcases'),'')
         self.transaction_count = 0;
         
-        if not self.options.handler.options_dict['no_trans']:
-            batch = False
-            self.db.disable_signals()
-        else:
-            batch = False
-        with DbTxn(_("Testcase generator"), self.db) as self.trans:
+        if self.options.handler.options_dict['lowlevel']:
+            self.progress.set_pass(_('Generating low level database errors'),
+                            1)
+            self.test_low_level(); self.progress.step()
 
-            if False and self.options.handler.options_dict['no_trans']:
-    
-                print "TESTING SIGNALS..."
-    
-                print "\nCREATE PERSON"
-                p = gen.lib.Person()
-                h = self.db.add_person( p, self.trans)
-                print "\nUPDATE PERSON"
-                self.db.commit_person( p, self.trans)
-                print "\nDELETE PERSON"
-                self.db.remove_person( h, self.trans)
-    
-                print "\nCREATE FAMILY"
-                f = gen.lib.Family()
-                h = self.db.add_family( f, self.trans)
-                print "\nUPDATE FAMILY"
-                self.db.commit_family( f, self.trans)
-                print "\nDELETE FAMILY"
-                self.db.remove_family( h, self.trans)
-    
-                print "\nCREATE EVENT"
-                e = gen.lib.Event()
-                h = self.db.add_event( e, self.trans)
-                print "\nUPDATE EVENT"
-                self.db.commit_event( e, self.trans)
-                print "\nDELETE EVENT"
-                self.db.remove_event( h, self.trans)
-    
-                print "\nCREATE PLACE"
-                p = gen.lib.Place()
-                h = self.db.add_place( p, self.trans)
-                print "\nUPDATE PLACE"
-                self.db.commit_place( p, self.trans)
-                print "\nDELETE PLACE"
-                self.db.remove_place( h, self.trans)
-    
-                print "\nCREATE SOURCE"
-                s = gen.lib.Source()
-                h = self.db.add_source( s, self.trans)
-                print "\nUPDATE SOURCE"
-                self.db.commit_source( s, self.trans)
-                print "\nDELETE SOURCE"
-                self.db.remove_source( h, self.trans)
-    
-                print "\nCREATE MEDIA"
-                m = gen.lib.MediaObject()
-                h = self.db.add_object( m, self.trans)
-                print "\nUPDATE MEDIA"
-                self.db.commit_media_object( m, self.trans)
-                print "\nDELETE MEDIA"
-                self.db.remove_object( h, self.trans)
-    
-                print "DONE."
-
-
-                print "TESTING DB..."
-    
-                print "\nCREATE PERSON None"
-                self.db.add_person( None, self.trans)
-                print "\nUPDATE PERSON None"
-                self.db.commit_person( None, self.trans)
-                print "\nDELETE PERSON Invalid Handle"
-                self.db.remove_person( "Invalid Handle", self.trans)
-    
-                print "\nCREATE FAMILY None"
-                self.db.add_family( None, self.trans)
-                print "\nUPDATE FAMILY None"
-                self.db.commit_family( None, self.trans)
-                print "\nDELETE FAMILY Invalid Handle"
-                self.db.remove_family( "Invalid Handle", self.trans)
-    
-                print "\nCREATE EVENT None"
-                self.db.add_event( None, self.trans)
-                print "\nUPDATE EVENT None"
-                self.db.commit_event( None, self.trans)
-                print "\nDELETE EVENT Invalid Handle"
-                self.db.remove_event( "Invalid Handle", self.trans)
-    
-                print "\nCREATE PLACE None"
-                self.db.add_place( None, self.trans)
-                print "\nUPDATE PLACE None"
-                self.db.commit_place( None, self.trans)
-                print "\nDELETE PLACE Invalid Handle"
-                self.db.remove_place( "Invalid Handle", self.trans)
-    
-                print "\nCREATE SOURCE None"
-                self.db.add_source( None, self.trans)
-                print "\nUPDATE SOURCE None"
-                self.db.commit_source( None, self.trans)
-                print "\nDELETE SOURCE Invalid Handle"
-                self.db.remove_source( "Invalid Handle", self.trans)
-    
-                print "\nCREATE MEDIA None"
-                self.db.add_object( None, self.trans)
-                print "\nUPDATE MEDIA None"
-                self.db.commit_media_object( None, self.trans)
-                print "\nDELETE MEDIA Invalid Handle"
-                self.db.remove_object( "Invalid Handle", self.trans)
-    
-                print "DONE."
-        
-        
-           # if self.options.handler.options_dict['bugs']\
-           #     or self.options.handler.options_dict['dates']\
-           #     or self.options.handler.options_dict['persons']:
-           #     # bootstrap random source and media
-           #     self.rand_source()
-           #     self.rand_media()
-            
-
-        # FIXME: generate_tags needs to be run before generate_broken_relations
-        # otherwise you get
-        
-#          File "/Users/tim/gramps/gramps33/src/plugins/tool/TestcaseGenerator.py", line 1404, in rand_tags
-#    tag = choice(self.generated_tags)
-#  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/random.py", line 261, in choice
-#    return seq[int(self.random() * len(seq))]  # raises IndexError if seq is empty
-#IndexError: list index out of range
-
-        # FIXME: If tags have arbitrary forms, then you can get errors because
-        # add_ui_from_string parses the tag as part of parsing
-        
-        
-#        Traceback (most recent call last):
-#  File "/Users/tim/gramps/gramps33/src/gui/viewmanager.py", line 1265, in view_changed
-#    self.__change_page(page_num)
-#  File "/Users/tim/gramps/gramps33/src/gui/viewmanager.py", line 1278, in __change_page
-#    self.active_page.set_active()
-#  File "/Users/tim/gramps/gramps33/src/plugins/lib/libpersonview.py", line 399, in set_active
-#    self.uistate.viewmanager.tags.tag_enable()
-#  File "/Users/tim/gramps/gramps33/src/gui/views/tags.py", line 122, in tag_enable
-#    self.tag_id = self.uistate.uimanager.add_ui_from_string(self.tag_ui)
-#GError: Error on line 6 char 470: '#+#000001#-#' is not a valid name 
+        if self.options.handler.options_dict['bugs'] or \
+            self.options.handler.options_dict['persons']:
+            self.generate_tags()
 
         if self.options.handler.options_dict['bugs']:
-            self.generate_broken_relations()
+            self.generate_data_errors()
         
         if self.options.handler.options_dict['persons']:
-            self.generate_tags()
+            self.progress.set_pass(_('Generating families'),
+                            self.options.handler.options_dict['person_count'])
+            self.person_count = 0
+            self.progress_step = self.progress.step
+
             while True:
                 if not self.persons_todo:
                     ph = self.generate_person(0)
@@ -383,16 +291,174 @@ class TestcaseGenerator(tool.BatchTool):
                     self.generate_parents(child_h)
                     if self.person_count > self.options.handler.options_dict['person_count']:
                         break
+        self.progress.close()
             
-        if not self.options.handler.options_dict['no_trans']:
-            self.db.enable_signals()
-            self.db.request_rebuild()
         if( not cli):
             self.top.destroy()
         
+    def generate_data_errors(self):
+        """This generates errors in the database to test src/plugins/tool/Check
+        The module names correspond to the checking methods in 
+        src/plugins/tool/Check.CheckIntegrity """
+        self.progress.set_pass(_('Generating database errors'),
+                               18)
+        # The progress meter is normally stepped every time a person is
+        # generated by generate_person. However in this case, generate_person is
+        # called by some of the constituent functions, but we only want the
+        # meter to be stepped every time a test function has been completed.
+        self.progress_step = lambda: None
 
-    def generate_broken_relations(self):
-        # Create a family, that links to father and mother, but father does not link back
+        self.test_fix_encoding(); self.progress.step()
+        self.test_fix_ctrlchars_in_notes(); self.progress.step()
+        self.test_cleanup_missing_photos(); self.progress.step()
+        self.test_cleanup_deleted_name_formats(); self.progress.step()
+        self.test_cleanup_empty_objects(); self.progress.step()
+        self.test_check_for_broken_family_links(); self.progress.step()
+        self.test_check_parent_relationships(); self.progress.step()
+        self.test_cleanup_empty_families(); self.progress.step()
+        self.test_cleanup_duplicate_spouses(); self.progress.step()
+        self.test_check_events(); self.progress.step()
+        self.test_check_person_references(); self.progress.step()
+        self.test_check_family_references(); self.progress.step()
+        self.test_check_place_references(); self.progress.step()
+        self.test_check_source_references(); self.progress.step()
+        self.test_check_citation_references(); self.progress.step()
+        self.test_check_media_references(); self.progress.step()
+        self.test_check_repo_references(); self.progress.step()
+        self.test_check_note_references(); self.progress.step()
+        self.progress.close()
+        
+    def test_low_level(self):
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+
+            o = gen.lib.Note()
+            o.set("dup 1" + self.rand_text(self.NOTE))
+            o.set_format( choice( (gen.lib.Note.FLOWED,gen.lib.Note.FORMATTED)))
+            o.set_type( self.rand_type(gen.lib.NoteType()))
+            h = self.db.add_note(o, self.trans)
+            print "object %s, handle %s, Gramps_Id %s" % (o, o.handle, 
+                                                          o.gramps_id)
+            
+            handle = o.get_handle()
+    
+            o = gen.lib.Source()
+            o.set_title("dup 2" + self.rand_text(self.SHORT))
+            if randint(0,1) == 1:
+                o.set_author( self.rand_text(self.SHORT))
+            if randint(0,1) == 1:
+                o.set_publication_info( self.rand_text(self.LONG))
+            if randint(0,1) == 1:
+                o.set_abbreviation( self.rand_text(self.SHORT))
+            while randint(0,1) == 1:
+                o.set_data_item( self.rand_text(self.SHORT), self.rand_text(self.SHORT))
+            o.set_handle(handle)
+            self.db.add_source(o, self.trans)
+            print "object %s, handle %s, Gramps_Id %s" % (o, o.handle, 
+                                                          o.gramps_id)
+
+    def test_fix_encoding(self):
+        # Creates a media object with character encoding errors. This tests
+        # Check.fix_encoding() and also cleanup_missing_photos
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+
+            m = gen.lib.MediaObject()
+            self.fill_object(m)
+            m.set_description("leave this media object invalid description\x9f")
+            m.set_path("/tmp/click_on_keep_reference.png\x9f")
+            m.set_mime_type("image/png\x9f")
+            self.db.add_object(m, self.trans)
+
+            m = gen.lib.MediaObject()
+            self.fill_object(m)
+            m.set_description("reselect this media object invalid description\x9f")
+            m.set_path("/tmp/click_on_select_file.png\x9f")
+            m.set_mime_type("image/png\x9f")
+            self.db.add_object(m, self.trans)
+            
+            # setup media attached to Source and Citation to be removed
+            
+            m = gen.lib.MediaObject()
+            self.fill_object(m)
+            m.set_description(u'remove this media object')
+            m.set_path(u"/tmp/click_on_remove_object.png")
+            m.set_mime_type("image/png")
+            self.db.add_object(m, self.trans)
+            
+            s = gen.lib.Source()
+            s.set_title(u'media should be removed from this source')
+            r = gen.lib.MediaRef()
+            r.set_reference_handle(m.handle)
+            s.add_media_reference(r)
+            self.db.add_source( s, self.trans)
+
+            c = gen.lib.Citation()
+            self.fill_object(c)
+            c.set_reference_handle(s.handle)
+            c.set_page(u'media should be removed from this citation')
+            r = gen.lib.MediaRef()
+            r.set_reference_handle(m.handle)
+            c.add_media_reference(r)
+            self.db.add_citation(c, self.trans)
+
+    def test_fix_ctrlchars_in_notes(self):
+        # Creates a note with control characters. This tests
+        # Check.fix_ctrlchars_in_notes()
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+
+            o = gen.lib.Note()
+            o.set("This is a text note with a \x03 control character")
+            o.set_format(choice( (gen.lib.Note.FLOWED,gen.lib.Note.FORMATTED)))
+            o.set_type(self.rand_type(gen.lib.NoteType()))
+            self.db.add_note(o, self.trans)
+
+    def test_cleanup_missing_photos(self):
+        pass
+    
+    def test_cleanup_deleted_name_formats(self):
+        pass
+    
+    def test_cleanup_empty_objects(self):
+        # Generate empty objects to test their deletion
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+
+            p = gen.lib.Person()
+            self.db.add_person( p, self.trans)
+    
+            f = gen.lib.Family()
+            self.db.add_family( f, self.trans)
+    
+            e = gen.lib.Event()
+            self.db.add_event( e, self.trans)
+    
+            p = gen.lib.Place()
+            self.db.add_place( p, self.trans)
+    
+            s = gen.lib.Source()
+            self.db.add_source( s, self.trans)
+    
+            c = gen.lib.Citation()
+            self.db.add_citation( c, self.trans)
+    
+            m = gen.lib.MediaObject()
+            self.db.add_object( m, self.trans)
+    
+            r = gen.lib.Repository()
+            self.db.add_repository( r, self.trans)
+    
+            n = gen.lib.Note()
+            self.db.add_note( n, self.trans)
+    
+    def test_check_for_broken_family_links(self):
+        # Create a family, that links to father and mother, but father does not
+        # link back
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
@@ -446,7 +512,8 @@ class TestcaseGenerator(tool.BatchTool):
             person2.add_family_handle(fam_h)
             self.db.commit_person(person2,self.trans)
 
-        # Create a family, that links to father and mother, but father does not link back
+        # Create a family, that links to father and mother, but mother does not
+        # link back
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
@@ -465,6 +532,7 @@ class TestcaseGenerator(tool.BatchTool):
             #self.db.commit_person(person2,self.trans)
 
         # Create two married people of same sex.
+        # This is NOT detected as an error by plugins/tool/Check.py
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
@@ -555,7 +623,32 @@ class TestcaseGenerator(tool.BatchTool):
             fam.set_father_handle(person1_h)
             fam.set_mother_handle(person2_h)
             fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
-            #fam.add_child_handle(child_h)
+            # child_ref = gen.lib.ChildRef()
+            # child_ref.set_reference_handle(child_h)
+            # self.fill_object(child_ref)
+            # fam.add_child_ref(child_ref)
+            fam_h = self.db.add_family(fam,self.trans)
+            person1 = self.db.get_person_from_handle(person1_h)
+            person1.add_family_handle(fam_h)
+            self.db.commit_person(person1,self.trans)
+            person2 = self.db.get_person_from_handle(person2_h)
+            person2.add_family_handle(fam_h)
+            self.db.commit_person(person2,self.trans)
+            child = self.db.get_person_from_handle(child_h)
+            child.add_parent_family_handle(fam_h)
+            self.db.commit_person(child,self.trans)
+
+        # Creates a family where the child is one of the parents
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+            person1_h = self.generate_person(gen.lib.Person.MALE,"Broken19",None)
+            person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken19",None)
+            child_h = person2_h
+            fam = gen.lib.Family()
+            fam.set_father_handle(person1_h)
+            fam.set_mother_handle(person2_h)
+            fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
             child_ref = gen.lib.ChildRef()
             child_ref.set_reference_handle(child_h)
             self.fill_object(child_ref)
@@ -571,6 +664,42 @@ class TestcaseGenerator(tool.BatchTool):
             child.add_parent_family_handle(fam_h)
             self.db.commit_person(child,self.trans)
 
+        # Creates a couple that refer to a family that does not exist in the
+        # database.
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+            person1_h = self.generate_person(gen.lib.Person.MALE,"Broken20",None)
+            person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken20",None)
+#            fam = gen.lib.Family()
+#            fam.set_father_handle(person1_h)
+#            fam.set_mother_handle(person2_h)
+#            fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
+#            child_ref = gen.lib.ChildRef()
+#            # child_ref.set_reference_handle(child_h)
+#            # self.fill_object(child_ref)
+#            # fam.add_child_ref(child_ref)
+#            fam_h = self.db.add_family(fam,self.trans)
+            person1 = self.db.get_person_from_handle(person1_h)
+            person1.add_family_handle("InvalidHandle3")
+            self.db.commit_person(person1,self.trans)
+            person2 = self.db.get_person_from_handle(person2_h)
+            person2.add_family_handle("InvalidHandle3")
+            self.db.commit_person(person2,self.trans)
+#            child = self.db.get_person_from_handle(child_h)
+#            child.add_parent_family_handle(fam_h)
+#            self.db.commit_person(child,self.trans)
+
+    def test_check_parent_relationships(self):
+        pass
+    
+    def test_cleanup_empty_families(self):
+        pass
+    
+    def test_cleanup_duplicate_spouses(self):
+        pass
+    
+    def test_check_events(self):
         # Creates a person having a non existing birth event handle set
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
@@ -610,6 +739,7 @@ class TestcaseGenerator(tool.BatchTool):
             self.transaction_count += 1
             person_h = self.generate_person(None,"Broken14",None)
             event = gen.lib.Event()
+            # The default type _DEFAULT = BIRTH is set in eventtype
             event.set_type('')
             event.set_description("Test for Broken14")
             event_h = self.db.add_event(event,self.trans)
@@ -625,6 +755,8 @@ class TestcaseGenerator(tool.BatchTool):
             self.transaction_count += 1
             person_h = self.generate_person(None,"Broken15",None)
             event = gen.lib.Event()
+            # The default type _DEFAULT = BIRTH is set in eventtype
+            event.set_type('')
             event.set_description("Test for Broken15")
             event_h = self.db.add_event(event,self.trans)
             event_ref = gen.lib.EventRef()
@@ -634,11 +766,14 @@ class TestcaseGenerator(tool.BatchTool):
             self.db.commit_person(person,self.trans)
 
         # Creates a person with an event having an empty type
+        # This is NOT detected as an error by plugins/tool/Check.py
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
             person_h = self.generate_person(None,"Broken16",None)
             event = gen.lib.Event()
+            # The default type _DEFAULT = BIRTH is set in eventtype
+            event.set_type('')
             event.set_description("Test for Broken16")
             event_h = self.db.add_event(event,self.trans)
             event_ref = gen.lib.EventRef()
@@ -647,6 +782,13 @@ class TestcaseGenerator(tool.BatchTool):
             person.add_event_ref(event_ref)
             self.db.commit_person(person,self.trans)
 
+    def test_check_person_references(self):
+        pass
+    
+    def test_check_family_references(self):
+        pass
+    
+    def test_check_place_references(self):
         # Creates a person with a birth event pointing to nonexisting place
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
@@ -679,10 +821,289 @@ class TestcaseGenerator(tool.BatchTool):
             person.add_event_ref(event_ref)
             self.db.commit_person(person,self.trans)
 
+    def test_check_source_references(self):
+
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+
+            c = gen.lib.Citation()
+            self.fill_object(c)
+            c.set_reference_handle("unknownsourcehandle")
+            c.set_page(u'unreferenced citation with invalid source ref')
+            self.db.add_citation(c, self.trans)
+            
+            c = gen.lib.Citation()
+            self.fill_object(c)
+            c.set_reference_handle(None)
+            c.set_page(u'unreferenced citation with invalid source ref')
+            self.db.add_citation(c, self.trans)
+            
+            c = gen.lib.Citation()
+            self.fill_object(c)
+            c.set_reference_handle("unknownsourcehandle")
+            c.set_page(u'citation and references to it should be removed')
+            c_h1 = self.db.add_citation(c, self.trans)
+            
+            c = gen.lib.Citation()
+            self.fill_object(c)
+            c.set_reference_handle(None)
+            c.set_page(u'citation and references to it should be removed')
+            c_h2 = self.db.add_citation(c, self.trans)
+
+            self.create_all_possible_citations([c_h1, c_h2], "Broken21",
+                                               u'non-existent source')
+
+    def test_check_citation_references(self):
+        # Generate objects that refer to non-existant citations
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+            
+            c_h = "unknowncitationhandle"
+            self.create_all_possible_citations([c_h, None], "Broken22",
+                                               u'non-existent citation')
+        
+    def create_all_possible_citations(self, c_h_list, name, message):
+        # Create citations attached to each of the following objects:
+        #        Person
+        #         Name
+        #         Address
+        #         Attribute
+        #         PersonRef
+        #         MediaRef
+        #          Attribute
+        #         LdsOrd
+        #        
+        #        Family
+        #         Attribute
+        #         ChildRef
+        #         MediaRef
+        #          Attribute
+        #         LdsOrd
+        #        
+        #        Event
+        #         Attribute
+        #         MediaRef
+        #          Attribute
+        #        
+        #        MediaObject
+        #         Attribute
+        #        
+        #        Place
+        #         MediaRef
+        #          Attribute
+        #        
+        #        Repository (Repositories themselves do not have SourceRefs)
+        #         Address
+        m = gen.lib.MediaObject()
+        m.set_description(message)
+        m.set_path(unicode(const.ICON))
+        m.set_mime_type(gen.mime.get_type(m.get_path()))
+        m.add_citation(choice(c_h_list))
+        # MediaObject : Attribute
+        a = gen.lib.Attribute()
+        a.set_type(self.rand_type(gen.lib.AttributeType()))
+        a.set_value(message)
+        a.add_citation(choice(c_h_list))
+        m.add_attribute(a)
+        self.db.add_object(m, self.trans)
+        
+        person1_h = self.generate_person(gen.lib.Person.MALE,name,None)
+        person2_h = self.generate_person(gen.lib.Person.FEMALE,name,None)
+        child_h = self.generate_person(None,name,None)
+        fam = gen.lib.Family()
+        fam.set_father_handle(person1_h)
+        fam.set_mother_handle(person2_h)
+        fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
+        # Family
+        fam.add_citation(choice(c_h_list))
+        # Family : Attribute
+        a = gen.lib.Attribute()
+        a.set_type(self.rand_type(gen.lib.AttributeType()))
+        a.set_value(message)
+        a.add_citation(choice(c_h_list))
+        fam.add_attribute(a)
+        # Family : ChildRef
+        child_ref = gen.lib.ChildRef()
+        child_ref.set_reference_handle(child_h)
+        self.fill_object(child_ref)
+        child_ref.add_citation(choice(c_h_list))
+        fam.add_child_ref(child_ref)
+        # Family : MediaRef
+        mr = gen.lib.MediaRef()
+        mr.set_reference_handle(m.handle)
+        mr.add_citation(choice(c_h_list))
+        # Family : MediaRef : Attribute
+        a = gen.lib.Attribute()
+        a.set_type(self.rand_type(gen.lib.AttributeType()))
+        a.set_value(message)
+        a.add_citation(choice(c_h_list))
+        mr.add_attribute(a)
+        fam.add_media_reference(mr)
+        # Family : LDSORD
+        ldsord = gen.lib.LdsOrd()
+        self.fill_object( ldsord)
+        # TODO: adapt type and status to family/person
+        #if isinstance(o,gen.lib.Person):
+        #if isinstance(o,gen.lib.Family):
+        ldsord.set_type( choice(
+            [item[0] for item in gen.lib.LdsOrd._TYPE_MAP] ))
+        ldsord.set_status( randint(0,len(gen.lib.LdsOrd._STATUS_MAP)-1))
+        ldsord.add_citation(choice(c_h_list))
+        fam.add_lds_ord(ldsord)
+        # Family : EventRef
+        e = gen.lib.Event()
+        e.set_type(gen.lib.EventType.MARRIAGE)
+        (year, d) = self.rand_date()
+        e.set_date_object(d)
+        e.set_description(message)
+        event_h = self.db.add_event(e, self.trans)
+        er = gen.lib.EventRef()
+        er.set_reference_handle(event_h)
+        er.set_role(self.rand_type(gen.lib.EventRoleType()))
+        # Family : EventRef : Attribute
+        a = gen.lib.Attribute()
+        a.set_type(self.rand_type(gen.lib.AttributeType()))
+        a.set_value(message)
+        a.add_citation(choice(c_h_list))
+        er.add_attribute(a)
+        fam.add_event_ref(er)
+        fam_h = self.db.add_family(fam,self.trans)
+        person1 = self.db.get_person_from_handle(person1_h)
+        person1.add_family_handle(fam_h)
+        # Person
+        person1.add_citation(choice(c_h_list))
+        # Person : Name
+        alt_name = gen.lib.Name(person1.get_primary_name())
+        alt_name.set_first_name(message)
+        alt_name.add_citation(choice(c_h_list))
+        person1.add_alternate_name(alt_name)
+        # Person : Address
+        a = gen.lib.Address()
+        a.set_street(message)
+        a.add_citation(choice(c_h_list))
+        person1.add_address(a)
+        # Person : Attribute
+        a = gen.lib.Attribute()
+        a.set_type(self.rand_type(gen.lib.AttributeType()))
+        a.set_value(message)
+        a.add_citation(choice(c_h_list))
+        person1.add_attribute(a)
+        # Person : PersonRef
+        asso_h = self.generate_person()
+        asso = gen.lib.PersonRef()
+        asso.set_reference_handle(asso_h)
+        asso.set_relation(self.rand_text(self.SHORT))
+        self.fill_object(asso)
+        asso.add_citation(choice(c_h_list))
+        person1.add_person_ref(asso)
+        # Person : MediaRef
+        mr = gen.lib.MediaRef()
+        mr.set_reference_handle(m.handle)
+        mr.add_citation(choice(c_h_list))
+        # Person : MediaRef : Attribute
+        a = gen.lib.Attribute()
+        a.set_type(self.rand_type(gen.lib.AttributeType()))
+        a.set_value(self.rand_text(self.SHORT))
+        a.add_citation(choice(c_h_list))
+        mr.add_attribute(a)
+        person1.add_media_reference(mr)
+        # Person : LDSORD
+        ldsord = gen.lib.LdsOrd()
+        self.fill_object( ldsord)
+        # TODO: adapt type and status to family/person
+        #if isinstance(o,gen.lib.Person):
+        #if isinstance(o,gen.lib.Family):
+        ldsord.set_type( choice(
+            [item[0] for item in gen.lib.LdsOrd._TYPE_MAP] ))
+        ldsord.set_status( randint(0,len(gen.lib.LdsOrd._STATUS_MAP)-1))
+        ldsord.add_citation(choice(c_h_list))
+        person1.add_lds_ord(ldsord)
+        # Person : EventRef
+        e = gen.lib.Event()
+        e.set_type(gen.lib.EventType.ELECTED)
+        (year, d) = self.rand_date()
+        e.set_date_object(d)
+        e.set_description(message)
+        event_h = self.db.add_event(e, self.trans)
+        er = gen.lib.EventRef()
+        er.set_reference_handle(event_h)
+        er.set_role(self.rand_type(gen.lib.EventRoleType()))
+        # Person : EventRef : Attribute
+        a = gen.lib.Attribute()
+        a.set_type(self.rand_type(gen.lib.AttributeType()))
+        a.set_value(message)
+        a.add_citation(choice(c_h_list))
+        er.add_attribute(a)
+        person1.add_event_ref(er)
+        self.db.commit_person(person1,self.trans)
+        person2 = self.db.get_person_from_handle(person2_h)
+        person2.add_family_handle(fam_h)
+        self.db.commit_person(person2,self.trans)
+
+        e = gen.lib.Event()
+        e.set_description(message)
+        e.set_type(gen.lib.EventType.MARRIAGE)
+        # Event
+        e.add_citation(choice(c_h_list))
+        # Event : Attribute
+        a = gen.lib.Attribute()
+        a.set_type(self.rand_type(gen.lib.AttributeType()))
+        a.set_value(message)
+        a.add_citation(choice(c_h_list))
+        e.add_attribute(a)
+        # Event : MediaRef
+        mr = gen.lib.MediaRef()
+        mr.set_reference_handle(m.handle)
+        mr.add_citation(choice(c_h_list))
+        # Event : MediaRef : Attribute
+        a = gen.lib.Attribute()
+        a.set_type(self.rand_type(gen.lib.AttributeType()))
+        a.set_value(self.rand_text(self.SHORT))
+        a.add_citation(choice(c_h_list))
+        mr.add_attribute(a)
+        e.add_media_reference(mr)
+        self.db.add_event(e, self.trans)
+
+        p = gen.lib.Place()
+        p.set_title(message)
+        p.add_citation(choice(c_h_list))
+        # Place : MediaRef
+        mr = gen.lib.MediaRef()
+        mr.set_reference_handle(m.handle)
+        mr.add_citation(choice(c_h_list))
+        # Place : MediaRef : Attribute
+        a = gen.lib.Attribute()
+        a.set_type(self.rand_type(gen.lib.AttributeType()))
+        a.set_value(self.rand_text(self.SHORT))
+        a.add_citation(choice(c_h_list))
+        mr.add_attribute(a)
+        p.add_media_reference(mr)
+        self.db.add_place(p, self.trans)
+
+        r = gen.lib.Repository()
+        r.set_name(message)
+        r.set_type(gen.lib.RepositoryType.LIBRARY)
+        # Repository : Address
+        a = gen.lib.Address()
+        a.set_street(message)
+        a.add_citation(choice(c_h_list))
+        r.add_address(a)
+        self.db.add_repository(r, self.trans)
+
+    def test_check_media_references(self):
+        pass
+    
+    def test_check_repo_references(self):
+        pass
+    
+    def test_check_note_references(self):
+        pass
+    
 
     def generate_person(self,gender=None,lastname=None, note=None, alive_in_year=None):
         if not self.cli:
-            self.progress.set_fraction(min(1.0,max(0.0, 1.0*self.person_count/self.options.handler.options_dict['person_count'])))
             if self.person_count % 10 == 0:
                 while gtk.events_pending():
                     gtk.main_iteration()
@@ -798,7 +1219,7 @@ class TestcaseGenerator(tool.BatchTool):
         # some other events
         while randint(0,5) == 1:
             (birth_year, eref) = self.rand_personal_event( None, by,dy)
-            np.set_birth_ref(eref)
+            np.add_event_ref(eref)
 
         # some shared events
         if self.generated_events:
@@ -829,6 +1250,9 @@ class TestcaseGenerator(tool.BatchTool):
         person_handle = self.db.add_person(np,self.trans)
         
         self.person_count = self.person_count+1
+        self.progress_step()
+        if self.person_count % 10 == 1:
+            print "person count", self.person_count
         self.person_dates[person_handle] = (by,dy)
 
         return( person_handle)
@@ -874,6 +1298,39 @@ class TestcaseGenerator(tool.BatchTool):
                 fam.set_father_handle(person1_h)
             if person2_h:
                 fam.set_mother_handle(person2_h)
+            
+            # Avoid adding the same event more than once to the same family
+            event_set = set()
+            
+            # Generate at least one family event with a probability of 75%
+            if randint(0, 3) > 0:
+                (birth_year, eref) = self.rand_family_event(None)
+                fam.add_event_ref(eref)
+                event_set.add(eref.get_reference_handle())
+            
+            # generate some more events with a lower probability
+            while randint(0, 3) == 1:
+                (birth_year, eref) = self.rand_family_event(None)
+                if eref.get_reference_handle() in event_set:
+                    continue
+                fam.add_event_ref(eref)
+                event_set.add(eref.get_reference_handle())
+    
+            # some shared events
+            if self.generated_events:
+                while randint(0, 5) == 1:
+                    typeval = gen.lib.EventType.UNKNOWN
+                    while int(typeval) not in self.FAMILY_EVENTS:
+                        e_h = choice(self.generated_events)
+                        typeval = self.db.get_event_from_handle(e_h).get_type()
+                    if e_h in event_set:
+                        break
+                    eref = gen.lib.EventRef()
+                    self.fill_object( eref)
+                    eref.set_reference_handle(e_h)
+                    fam.add_event_ref(eref)
+                    event_set.add(e_h)
+
             fam_h = self.db.add_family(fam,self.trans)
             self.generated_families.append(fam_h)
             fam = self.db.commit_family(fam,self.trans)
@@ -962,7 +1419,7 @@ class TestcaseGenerator(tool.BatchTool):
             self.transaction_count += 1
             for counter in range(10):
                 tag = gen.lib.Tag()
-                tag.set_name(self.rand_text(self.SHORT))
+                tag.set_name(self.rand_text(self.TAG))
                 tag.set_color(self.rand_color())
                 tag.set_priority(self.db.get_number_of_tags())
                 tag_handle = self.db.add_tag(tag, self.trans)
@@ -1115,15 +1572,20 @@ class TestcaseGenerator(tool.BatchTool):
                 o.set_county( self.rand_text(self.SHORT))
 
         if issubclass(o.__class__,gen.lib.mediabase.MediaBase):
-            while randint(0,1) == 1:
+            # FIXME: frequency changed to prevent recursion
+            while randint(0,10) == 1:
                 o.add_media_reference( self.fill_object( gen.lib.MediaRef()))
 
         if isinstance(o,gen.lib.MediaObject):
             if randint(0,3) == 1:
-                o.set_description( self.rand_text(self.LONG))
+                o.set_description(unicode(self.rand_text(self.LONG)))
+                path = choice((const.ICON, const.LOGO, const.SPLASH))
+                o.set_path(unicode(path))
+                mime = gen.mime.get_type(path)
+                o.set_mime_type(mime)
             else:
-                o.set_description( self.rand_text(self.SHORT))
-                o.set_path("/tmp/TestcaseGenerator.png")
+                o.set_description(unicode(self.rand_text(self.SHORT)))
+                o.set_path(unicode(const.ICON))
                 o.set_mime_type("image/png")
 
         if isinstance(o,gen.lib.MediaRef):
@@ -1157,9 +1619,13 @@ class TestcaseGenerator(tool.BatchTool):
             # o.set_sort_as()
 
         if isinstance(o,gen.lib.Note):
-            o.set( self.rand_text(self.NOTE))
+            type = self.rand_type(gen.lib.NoteType())
+            if type == gen.lib.NoteType.HTML_CODE:
+                o.set( self.rand_text(self.NOTE))
+            else:
+                o.set_styledtext(self.rand_text(self.STYLED_TEXT))
             o.set_format( choice( (gen.lib.Note.FLOWED,gen.lib.Note.FORMATTED)))
-            o.set_type( self.rand_type(gen.lib.NoteType()))
+            o.set_type(type)
 
         if issubclass(o.__class__,gen.lib.notebase.NoteBase):
             while randint(0,1) == 1:
@@ -1228,13 +1694,17 @@ class TestcaseGenerator(tool.BatchTool):
                 self.fill_object(r)
                 o.add_repo_reference( r)
 
-        if issubclass(o.__class__,gen.lib.srcbase.SourceBase):
+        if issubclass(o.__class__,gen.lib.citationbase.CitationBase):
             while randint(0,1) == 1:
-                s = gen.lib.SourceRef()
-                self.fill_object(s)
-                o.add_source_reference( s)
+                if not self.generated_citations or randint(1,10) == 1:
+                    s = gen.lib.Citation()
+                    self.fill_object(s)
+                    self.db.add_citation( s, self.trans)
+                    self.generated_citations.append(s.get_handle())
+                s_h = choice(self.generated_citations)
+                o.add_citation(s_h)
 
-        if isinstance(o,gen.lib.SourceRef):
+        if isinstance(o,gen.lib.Citation):
             if not self.generated_sources or randint(0,10) == 1:
                 s = gen.lib.Source()
                 self.fill_object(s)
@@ -1278,7 +1748,9 @@ class TestcaseGenerator(tool.BatchTool):
         if type:
             typeval = gen.lib.EventType(type)
         else:
-            typeval = self.rand_type(gen.lib.EventType())
+            typeval = gen.lib.EventType.UNKNOWN
+            while int(typeval) not in self.FAMILY_EVENTS:
+                typeval = self.rand_type(gen.lib.EventType())
         return self._rand_event( typeval, start, end)
     
     def _rand_event( self, type, start, end):
@@ -1327,17 +1799,22 @@ class TestcaseGenerator(tool.BatchTool):
         minsyllables = 2
         maxsyllables = 5
 
-        result = ""
-        if self.options.handler.options_dict['specialchars']:
-            result = result + u"ä<ö&ü%ß'\""
-        if self.options.handler.options_dict['add_serial']:
-            result = result + "#+#%06d#-#" % self.text_serial_number
-            self.text_serial_number = self.text_serial_number + 1
+        if type == self.STYLED_TEXT:
+            result = StyledText("")
+        else:
+            result = ""
+        
+        if type <> self.TAG:
+            if self.options.handler.options_dict['specialchars']:
+                result = result + u"ä<ö&ü%ß'\""
+            if self.options.handler.options_dict['add_serial']:
+                result = result + "#+#%06d#-#" % self.text_serial_number
+                self.text_serial_number = self.text_serial_number + 1
         
         if not type:
             type = self.SHORT
             
-        if type == self.SHORT:
+        if type == self.SHORT or type == self.TAG:
             minwords = 1
             maxwords = 3
             minsyllables = 2
@@ -1371,7 +1848,7 @@ class TestcaseGenerator(tool.BatchTool):
             if not self.options.handler.options_dict['long_names']:
                 maxsyllables = 3
 
-        if type == self.NOTE:
+        if type == self.NOTE or type == self.STYLED_TEXT:
             result = result + "Generated by TestcaseGenerator."
             minwords = 20
             maxwords = 100
@@ -1405,7 +1882,26 @@ class TestcaseGenerator(tool.BatchTool):
                     word = word + "."
                 elif randint(0,30) == 1:
                     word = word + ".\n"
-            result = result + word
+            if type == self.STYLED_TEXT:
+                tags = []
+                if randint(0,10) == 1:
+                    tags += [StyledTextTag(StyledTextTagType.BOLD, True,
+                                                [(0, len(word))])]
+                elif randint(0,10) == 1:
+                    tags += [StyledTextTag(StyledTextTagType.ITALIC, True,
+                                                [(0, len(word))])]
+                elif randint(0,10) == 1:
+                    tags += [StyledTextTag(StyledTextTagType.UNDERLINE, True,
+                                                [(0, len(word))])]
+                word = StyledText(word, tags)
+                if randint(0,20) == 1:
+                    word = word + "."
+                elif randint(0,30) == 1:
+                    word = word + ".\n"
+            if type == self.STYLED_TEXT:
+                result = StyledText("").join((result, word))
+            else:
+                result += word
         
         if type == self.LASTNAME:
             n = randint(0,2)
@@ -1414,7 +1910,8 @@ class TestcaseGenerator(tool.BatchTool):
             elif n == 1:
                 result = result.upper()
 
-        if self.options.handler.options_dict['add_linebreak']:
+        if self.options.handler.options_dict['add_linebreak'] and \
+                type <> self.TAG:
             result = result + u"\nNEWLINE"
 
         return result
@@ -1431,16 +1928,6 @@ class TestcaseGenerator(tool.BatchTool):
                 taglist.append(tag)
         return taglist
 
-    def commit_transaction(self):
-        # The way transactions are used in this file is outdated; use a with
-        # statement so that transaction abort is called on failure. It is too
-        # much effort to update this file.
-        #if self.options.handler.options_dict['no_trans']:
-        self.db.transaction_commit(self.trans,_("Testcase generator step %d") % self.transaction_count)
-        self.transaction_count += 1
-        self.trans = self.db.transaction_begin()
-
-
 #------------------------------------------------------------------------
 #
 # 
@@ -1456,16 +1943,20 @@ class TestcaseGeneratorOptions(tool.ToolOptions):
 
         # Options specific for this report
         self.options_dict = {
+            'lowlevel'      : 0,
             'bugs'          : 0,
             'persons'       : 1,
             'person_count'  : 2000,
-            'no_trans'      : 0,
             'long_names'    : 0,
             'specialchars'  : 0,
             'add_serial'    : 0,
             'add_linebreak' : 0,
         }
         self.options_help = {
+            'lowlevel'      : ("=0/1",
+                                "Whether to create low level database errors.",
+                                ["Skip test","Create low level database errors"],
+                                True),
             'bugs'          : ("=0/1",
                                 "Whether to create invalid database references.",
                                 ["Skip test","Create invalid Database references"],
@@ -1477,24 +1968,20 @@ class TestcaseGeneratorOptions(tool.ToolOptions):
             'person_count'  : ("=int",
                                 "Number of dummy persons to generate",
                                 "Number of persons"),
-            'no_trans'      : ("=0/1",
-                                "Wheter to use one transaction or multiple small ones",
-                                ["One transaction","Multiple transactions"],
-                                True),
             'long_names'    : ("=0/1",
-                                "Wheter to create short or long names",
+                                "Whether to create short or long names",
                                 ["Short names","Long names"],
                                 True),
             'specialchars'    : ("=0/1",
-                                "Wheter to ass some special characters to every text field",
+                                "Whether to ass some special characters to every text field",
                                 ["No special characters","Add special characters"],
                                 True),
             'add_serial'    : ("=0/1",
-                                "Wheter to add a serial number to every text field",
+                                "Whether to add a serial number to every text field",
                                 ["No serial","Add serial number"],
                                 True),
             'add_linebreak' : ("=0/1",
-                                "Wheter to add a line break to every text field",
+                                "Whether to add a line break to every text field",
                                 ["No linebreak","Add line break"],
                                 True),
         }
