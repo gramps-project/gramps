@@ -4429,22 +4429,15 @@ class SourcePage(BasePage):
                             for (surname, handle_list) in people_list:
                                 if surname not in displayed:
 
-                                    list3 = Html("li", surname)
-                                    ordered3 += list3
-
-                                    # ordered list #4, full name...
-                                    ordered4 = Html("ol", class_ = "Col4 FullName")
-
                                     for person_handle in handle_list:
                                         person = self.dbase_.get_person_from_handle(person_handle)
                                         if person:
 
                                             url = self.report.build_url_fname_html(person_handle, "ppl", up = self.up)
-                                            list4 = Html("li", self.person_link(url, person, _NAME_STYLE_DEFAULT, 
+                                            list3 = Html("li", self.person_link(url, person, _NAME_STYLE_DEFAULT, 
                                                                                 gid = person.get_gramps_id()))
-                                            ordered4 += list4
+                                            ordered3 += list3
 
-                                    list3 += ordered4
                                 displayed.append(surname)
                             list2 += ordered3
 
