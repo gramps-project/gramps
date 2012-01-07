@@ -62,8 +62,8 @@ def _split_options(options_str):
     Split the options for the action.
     
     Rules:
-        * Entries in the list of options are separated by commas without spaces
-          between entries
+        * Entries in the list of options are separated by commas without
+          spaces between entries
         * List values must be inclosed in brackets ("[" and "]")
         * Entries within a list value are separated by commas
         * Text values (as a value or as entries in a list) do not have to be
@@ -214,8 +214,8 @@ class ArgHandler(object):
             return db_path
         else:
             self.__error( _('Error: Input family tree "%s" does not exist.\n'
-                    "If GEDCOM, Gramps-xml or grdb, use the -i option to "
-                    "import into a family tree instead.") % value)
+                            "If GEDCOM, Gramps-xml or grdb, use the -i option "
+                            "to import into a family tree instead.") % value)
             sys.exit(0)
 
     def __handle_import_option(self, value, family_tree_format):
@@ -275,12 +275,12 @@ class ArgHandler(object):
                 answer = None
                 while not answer:
                     try:
-                        answer = raw_input(_('OK to overwrite? (yes/no) ') \
-                                            .encode(sys.getfilesystemencoding()))
+                        ans = raw_input(_('OK to overwrite? (yes/no) ') \
+                                         .encode(sys.getfilesystemencoding()))
                     except EOFError:
                         print
                         sys.exit(0)
-                if answer.upper() in ('Y', 'YES', _('YES').upper()):
+                if ans.upper() in ('Y', 'YES', _('YES').upper()):
                     self.__error( _("Will overwrite the existing file: %s") 
                                     % fullpath)
                 else:
@@ -389,7 +389,8 @@ class ArgHandler(object):
 
         if self.list:
             print _('List of known family trees in your database path\n')
-            for name, dirname in sorted(self.dbman.family_tree_list(), key=lambda pair: pair[0].lower()):
+            for name, dirname in sorted(self.dbman.family_tree_list(),
+                                        key=lambda pair: pair[0].lower()):
                 print _("%(full_DB_path)s with name \"%(f_t_name)s\"") % \
                         {'full_DB_path' : dirname,
                          'f_t_name' : name.encode(sys.getfilesystemencoding())}
@@ -398,7 +399,8 @@ class ArgHandler(object):
         if self.list_more:
             print _('Gramps Family Trees:')
             summary_list = self.dbman.family_tree_summary()
-            for summary in sorted(summary_list, key=lambda summary: summary["Family tree"].lower()):
+            for summary in sorted(summary_list,
+                                  key=lambda sum: sum["Family tree"].lower()):
                 print _("Family Tree \"%s\":") % summary["Family tree"]
                 for item in sorted(summary):
                     if item != "Family tree":
@@ -408,11 +410,11 @@ class ArgHandler(object):
         self.__open_action()
         self.__import_action()
             
-        for (action, options_str) in self.actions:
+        for (action, op_string) in self.actions:
             print >> sys.stderr, _("Performing action: %s.") % action
-            if options_str:
-                print >> sys.stderr, _("Using options string: %s") % options_str
-            self.cl_action(action, options_str)
+            if op_string:
+                print >> sys.stderr, _("Using options string: %s") % op_string
+            self.cl_action(action, op_string)
 
         for expt in self.exports:
             # Need to convert path/filename to str before printing
@@ -471,7 +473,10 @@ class ArgHandler(object):
             for imp in self.imports:
                 fn = imp[0].encode(sys.getfilesystemencoding())
                 fmt = str(imp[1])
-                msg = _("Importing: file %s, format %s.") % (fn, fmt)
+                msg = _("Importing: file %(filename)s, "
+                                   "format %(format)s.") % \
+                                   {'filename' : fn,
+                                    'format' : fmt}
                 print >> sys.stderr, msg
                 self.cl_import(imp[0], imp[1])
 
@@ -589,7 +594,7 @@ class ArgHandler(object):
                 msg = _("Unknown report name.")
             else:
                 msg = _("Report name not given. "
-                        "Please use one of %(donottranslate)s=reportname.") % \
+                        "Please use one of %(donottranslate)s=reportname") % \
                         {'donottranslate' : '[-p|--options] name'}
             
             print >> sys.stderr, _("%s\n Available names are:") % msg
@@ -634,7 +639,8 @@ class ArgHandler(object):
                         {'donottranslate' : '[-p|--options] name'}
             
             print >> sys.stderr, _("%s\n Available names are:") % msg
-            for pdata in sorted(_cli_tool_list, key=lambda pdata: pdata.id.lower()):
+            for pdata in sorted(_cli_tool_list,
+                                key=lambda pdata: pdata.id.lower()):
                 # Print cli report name ([item[0]), GUI report name (item[4])
                 if len(pdata.id) <= 25:
                     print >> sys.stderr, \
