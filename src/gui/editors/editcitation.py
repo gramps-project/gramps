@@ -207,6 +207,13 @@ class EditCitation(EditPrimary):
         self.primtab = RefTab(self.dbstate, self.uistate, self.track, 
                               _('General'), tblref)
 
+    def _post_init(self):
+        title = self.glade.get_object('title')
+        volume = self.glade.get_object('volume')
+        if not title.get_text_length():
+            title.grab_focus();
+        elif not volume.get_text_length():
+            volume.grab_focus(); 
 
     def _connect_signals(self):
         """Connects any signals that need to be connected.
