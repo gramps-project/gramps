@@ -473,10 +473,8 @@ class ArgHandler(object):
             for imp in self.imports:
                 fn = imp[0].encode(sys.getfilesystemencoding())
                 fmt = str(imp[1])
-                msg = _("Importing: file %(filename)s, "
-                                   "format %(format)s.") % \
-                                   {'filename' : fn,
-                                    'format' : fmt}
+                msg = _("Importing: file %(filename)s, format %(format)s.") % \
+                        {'filename' : fn, 'format' : fmt}
                 print >> sys.stderr, msg
                 self.cl_import(imp[0], imp[1])
 
