@@ -1572,32 +1572,41 @@ class BasePage(object):
                 _create_media_link = False 
 
         # determine which menu items will be available?
+        # menu items have been adjusted to concide with Gramps Navigation Sidebar order...
         navs = [
             (self.report.index_fname,   _("Html|Home"),     self.report.use_home),
             (self.report.intro_fname,    _("Introduction"), self.report.use_intro),
             ('individuals',             _("Individuals"),   True),
             (self.report.surname_fname, _("Surnames"),      True),
             ('families',                _("Families"),      self.report.inc_families),
-            ('places',                  _("Places"),        True),
             ('events',                  _("Events"),        self.report.inc_events), 
-            ('media',                   _("Media"),         _create_media_link),
-            ('thumbnails',              _("Thumbnails"),    True),
+            ('places',                  _("Places"),        True),
             ('sources',                 _("Sources"),       True),
             ('repositories',            _("Repositories"),  inc_repos),
-            ("addressbook",             _("Address Book"),  self.report.inc_addressbook),
+            ('media',                   _("Media"),         _create_media_link),
+            ('thumbnails',              _("Thumbnails"),    True),
             ('download',                _("Download"),      self.report.inc_download),
-            ('contact',                 _("Contact"),       self.report.use_contact)
-        ]
+            ("addressbook",             _("Address Book"),  self.report.inc_addressbook),
+            ('contact',                 _("Contact"),       self.report.use_contact)]
 
         # Remove menu sections if they are not being created?
         navs = ((u, n) for u, n, c in navs if c)
         menu_items = [[url, text] for url, text in navs]
 
         number_items = len(menu_items)
-        num_cols = 11
+
+        # if screen width is equal or less than 1024px then break the
+        # navigation menu into two lines if there are more links than one line?
+#        main_scr_width = self.uistate.screen_width()
+
+        num_cols = 16
+#        if main_scr_width <= 1024:
+#            num_cols = 11
         num_rows = (number_items // num_cols) + 1
 
+        # begin navigation menu division...
         with Html("div", id ="nav") as navigation:
+#            navigation += Html("nav", role = "navigation", inline = True)
             
             index = 0
             for rows in range(num_rows):
@@ -1605,13 +1614,14 @@ class BasePage(object):
                 navigation += unordered
 
                 cols = 0
-                while (cols != num_cols and index < number_items):
+                while (cols <= num_cols and index < number_items):
                     url_fname, nav_text = menu_items[index]
 
                     if not _has_webpage_extension(url_fname):
                         url_fname += self.ext
 
                     url = self.report.build_url_fname(url_fname, None, self.up)
+                    hyper = Html("a", nav_text, href = url, title = nav_text)
 
                     # Define 'currentsection' to correctly set navlink item CSS id
                     # 'CurrentSection' for Navigation styling.
@@ -1648,20 +1658,17 @@ class BasePage(object):
                     elif nav_text == _("Address Book"):
                         if "addr" in self.report.cur_fname:
                             cs = True 
-
                     cs = 'class = "CurrentSection"' if cs else False
-                    if not cs:
-                        unordered += Html("li", inline =True) + (
-                           Html("a", nav_text, href =url, title =nav_text)
+                    if cs:
+                        unordered.extend(
+                            Html("li", hyper, attr = cs, inline = True)
                         )
-                    else:
-                        unordered += Html("li", attr =cs, inline =True) + (
-                           Html("a", nav_text, href =url, title =nav_text)
+                    else: 
+                        unordered.extend(
+                            Html("li", hyper, inline = True)
                         )
                     index += 1
                     cols += 1
-
-        # return navigation menu bar to its caller
         return navigation
 
     def add_image(self, option_name, height = 0):
