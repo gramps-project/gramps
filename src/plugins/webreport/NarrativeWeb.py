@@ -1582,6 +1582,7 @@ class BasePage(object):
             ('events',                  _("Events"),        self.report.inc_events), 
             ('places',                  _("Places"),        True),
             ('sources',                 _("Sources"),       True),
+#            ("citations",               _("Citations"),     True),
             ('repositories',            _("Repositories"),  inc_repos),
             ('media',                   _("Media"),         _create_media_link),
             ('thumbnails',              _("Thumbnails"),    True),
@@ -4624,6 +4625,30 @@ class SourcePage(BasePage):
         # and close the file
         self.XHTMLWriter(sourcepage, of)
 
+class CitationPage(BasePage):
+    def __(self, report, title, citation_handle):
+        self.dbase_ = report.database
+        citation = self.dbase_.get_citation_from_handle(citation_handle)
+        if not citation:
+            return
+        BasePage.__init__(self, report, title, citation.get_gramps_id())
+
+        of = self.report.create_file(citation_handle, "cit")
+        citationpage, head, body = self.write_header(_("Citation"))
+
+        # begin citation detail division...
+        with Html("div", class_ = "content", id = "CitationDetail") as citationdetail:
+            body += citationdetail
+
+        # add footer section
+        # add clearline for proper styling
+        footer = self.write_footer()
+        body += (fullclear, footer)
+
+        # send page out for processing
+        # and close the file
+        self.XHTMLWriter(citationpage, of)
+        
 class MediaListPage(BasePage):
     def __init__(self, report, title):
         self.dbase_ = report.database
