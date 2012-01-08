@@ -51,6 +51,7 @@ Females     Web_Gender_Female.png
 body {
     background-color: #00029D;
     color: #00029D;
+    width: 100%;
 }
 div {
     margin: 0;
@@ -788,16 +789,16 @@ div#SourceDetail div#references ol li {
     padding-bottom: .5em;
 }
 div#SourceCitationReferents ol.Col1 {
-    list-style-type: decimal-leading-zero;
+    list-style-type: upper-roman
 }
 div#SourceCitationReferents ol.Col2 {
-    list-style-type: upper-alpha;
+    list-style-type: upper-alpha
 }
 div#SourceCitationReferents ol.Col3 {
-    list-style-type: lower-alpha;
+    list-style-type: lower-alpha
 }
 div#SourceCitationReferents ol.Col4 {
-    list-style-type: upper-roman;
+    list-style-type: square
 }
 
 

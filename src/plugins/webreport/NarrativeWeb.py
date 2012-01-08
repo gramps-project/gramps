@@ -882,7 +882,7 @@ class BasePage(object):
         event_role = event_ref.get_role()
         if not event_role == omit:
             etype += " (%s)" % event_role
-        event_hyper = self.event_link(etype, event_ref.ref, event_gid, up) if hyperlink else etype
+        event_hyper = self.event_link(event_ref.ref, etype, event_gid, up) if hyperlink else etype
         trow += Html("td", event_hyper, class_ = "ColumnEvent")
 
         # get event data
@@ -972,35 +972,31 @@ class BasePage(object):
                             if place:
                                 self.append_to_place_lat_long(place, event, place_lat_long)
 
-    def family_link(self, handle, name, gid = None, up = False):
+    def family_link(self, family_handle, name, gid = None, uplink = False):
         """
         create the url and link for FamilyPage
         """
         name = html_escape(name)
-        url = self.report.build_url_fname_html(handle, "fam", up = up)
+        url = self.report.build_url_fname_html(family_handle, "fam", up = uplink)
 
-        # begin hyperlink
         hyper = Html("a", name, href = url, title = name)
 
-        # attach gramps_id to hyperlink
         if not self.noid and gid:
-            hyper += Html("span", " [%s]" % gid, class_ = "grampsid", inline =True)
-
+            hyper += Html("span", " [%s]" % gid, class_ = "grampsid", inline = True)
         return hyper
 
-    def event_link(self, eventtype, handle, gid = None, up = False):
+    def event_link(self, event_handle, event_title, gid = None, uplink = False):
         """
         creates a hyperlink for an event based on its type
         """
         if not self.inc_events:
-            return eventtype
+            return event_title
 
-        url = self.report.build_url_fname_html(handle, "evt", up)
-        hyper = Html("a", eventtype, href = url, title = eventtype)
+        url = self.report.build_url_fname_html(event_handle, "evt", uplink)
+        hyper = Html("a", event_title, href = url, title = event_title)
 
         if not self.noid and gid:
             hyper += Html("span", " [%s]" % gid, class_ = "grampsid", inline = True)
-
         return hyper
 
     def format_family_events(self, event_ref_list, place_lat_long):
@@ -1852,7 +1848,7 @@ class BasePage(object):
                     newpath = self.report.build_url_fname(newpath, up = True)
 
                     snapshot += self.media_link(photo_handle, newpath, descr,
-                                                up=True, usedescr=False)
+                                                uplink = self.up, usedescr = False)
                 else:
 
                     real_path, newpath = self.report.prepare_copy_media(photo)
@@ -1871,22 +1867,21 @@ class BasePage(object):
                                                 style="left:%d%%; top:%d%%; width:%d%%; height:%d%%;"
                                                 % (x, y, w, h)) + Html("a", name, href = linkurl)
                             # Need to add link to mediadisplay to get the links:
-                            mediadisplay += self.media_link(photo_handle,
-                                        newpath, descr, up=True, usedescr=False)
+                            mediadisplay += self.media_link(photo_handle, ewpath,
+                                                            descr, uplink = self.up, usedescr = False)
                     else:
                         try:
 
                             # begin hyperlink
                             # description is given only for the purpose of the alt tag in img element
                             snapshot += self.media_link(photo_handle, newpath,
-                                                 descr, up=True, usedescr=False)
+                                                 descr, uplink = self.up, usedescr = False)
 
                         except (IOError, OSError), msg:
                             self.report.user.warn(_("Could not add photo to page"), str(msg))
             else:
                 # begin hyperlink
-                snapshot += self.doc_link(photo_handle, descr, up = True,
-                                          usedescr = False)
+                snapshot += self.doc_link(photo_handle, descr, uplink = self.up, usedescr = False)
 
                 lnk = (self.report.cur_fname, self.page_title, self.gid)
                 # FIXME. Is it OK to add to the photo_list of report?
@@ -1950,7 +1945,7 @@ class BasePage(object):
                         url = self.report.build_url_fname(photo_handle, "thumb", True) + ".png"
  
                         # begin hyperlink
-                        section += self.media_link(photo_handle, url, descr, True)
+                        section += self.media_link(photo_handle, url, descr, uplink = self.up, usedescr = True)
 
                     except (IOError, OSError), msg:
                         self.report.user.warn(_("Could not add photo to page"), str(msg))
@@ -1958,7 +1953,7 @@ class BasePage(object):
                     try:
 
                         # begin hyperlink
-                        section += self.doc_link(photo_handle, descr, up = True)
+                        section += self.doc_link(photo_handle, descr, uplink = self.up)
 
                         lnk = (self.report.cur_fname, self.page_title, self.gid)
                         # FIXME. Is it OK to add to the photo_list of report?
@@ -2275,14 +2270,14 @@ class BasePage(object):
         @param: first = show person's name and gramps id if requested and available
         """
         # the only place that this will ever equal False
-        # is first there is more than one event for a person
+        # is first there is more than one event for a person...
         if first:
 
             # see above for explanation
             if name_style:
                 person_name = self.get_name(person)
             elif name_style == False:
-                person_name = _get_short_name(person.gender, person.primary_name)
+                person_name = _get_short_name(person.get_gender(), person.get_primary_name())
             elif name_style == None:    # abnormal specialty situation
                 person_name = person
 
@@ -2310,17 +2305,17 @@ class BasePage(object):
         # return hyperlink to its caller
         return hyper
 
-    def media_link(self, handle, img_url, name, up, usedescr = True):
+    def media_link(self, media_handle, img_url, name, uplink = False, usedescr = True):
         """
         creates and returns a hyperlink to the thumbnail image
 
-        @param: handle - photo handle
+        @param: media_handle - photo handle from report database
         @param: img_url - thumbnail url
         @param: name - photo description
-        @param: up - whether to add "../../.." to url
+        @param: uplink - whether to add "../../.." to url
         @param: usedescr - add media description
         """
-        url = self.report.build_url_fname_html(handle, "img", up)
+        url = self.report.build_url_fname_html(media_handle, "img", uplink)
         name = html_escape(name)
 
         # begin thumbnail division
@@ -2332,45 +2327,41 @@ class BasePage(object):
                     Html("img", src = img_url, alt = name)
                 )
             else:
-                hyper = Html("img", src =img_url, alt =name)
+                hyper = Html("img", src = img_url, alt = name)
             thumbnail += hyper
 
             if usedescr:
                 hyper += Html("p", name, inline = True)
-
-        # return thumbnail division to its callers
         return thumbnail
 
-    def doc_link(self, handle, name, up, usedescr = True):
+    def doc_link(self, handle, name, uplink = False, usedescr = True):
         """
         create a hyperlink for the media object and returns it
   
         @param: handle - document handle
         @param: name - document name
-        @param: up - whether to add "../../.." or not
+        @param: uplink - whether to add "../../.." or not
         @param: usedescr - add description to hyperlink
         """
-        url = self.report.build_url_fname(handle, "img", up)
+        url = self.report.build_url_fname(handle, "img", uplink)
         name = html_escape(name)
 
         # begin thumbnail division
         with Html("div", class_ = "thumbnail") as thumbnail:
-            document_url = self.report.build_url_image("document.png", "images", up)
+            document_url = self.report.build_url_image("document.png", "images", uplink)
 
             if not self.create_thumbs_only:
-                document_link = Html("a", href =url, title = name) + (
-                    Html("img", src =document_url, alt =name)
-                    )
+                document_link = Html("a", href = url, title = name) + (
+                    Html("img", src = document_url, alt = name)
+                )
             else:
-                document_link = Html("img", src =document_url, alt =name)
+                document_link = Html("img", src = document_url, alt = name)
 
             if usedescr:
                 document_link += Html('br') + (
-                    Html("span", name, inline =True)
-                    )
+                    Html("span", name, inline = True)
+                )
             thumbnail += document_link
-
-        # return thumbnail division to its callers
         return thumbnail
 
     def place_link(self, handle, name, gid = None, up = False):
@@ -2467,22 +2458,22 @@ class BasePage(object):
         # return place table to its callers
         return table
 
-    def repository_link(self, handle, name, gid = None, up = False):
+    def repository_link(self, repository_handle, name, gid = None, uplink = False):
         """
         returns a hyperlink for repository links
 
-        @param: handle -- repository handle
+        @param: repository_handle -- repository handle from report database
         @param: name -- repository title
         @param: gid -- gramps id
-        @param: up -- whether to add backward reference
+        @param: uplink -- whether to add backward reference
         """
+        url = self.report.build_url_fname_html(repository_handle, 'repo', uplink)
         name = html_escape(name)
 
-        url = self.report.build_url_fname_html(handle, 'repo', up)
+        hyper = Html("a", name, href = url, title = name)
 
-        hyper = Html("a", name, href =url, title =name)
         if not self.noid and gid:
-            hyper += Html("span", '[%s]' % gid, class_ ="grampsid", inline =True)
+            hyper += Html("span", '[%s]' % gid, class_ = "grampsid", inline = True)
         return hyper
 
     def dump_repository_ref_list(self, repo_ref_list):
@@ -3028,7 +3019,7 @@ class FamilyListPage(BasePage):
                                                 trow.attr = 'class ="BeginFamily"'
  
                                                 tcell += self.family_link(fhandle, self.get_name(person),
-                                                    person.get_gramps_id())
+                                                    family.get_gramps_id(), self.up)
 
                                                 first_family = False
                                             else:
@@ -3046,7 +3037,7 @@ class FamilyListPage(BasePage):
                                                     use_link = check_person_database(partner_handle, ind_list)
                                                     if use_link:
                                                         tcell += self.family_link(fhandle, self.get_name(partner),
-                                                            partner.get_gramps_id())
+                                                            family.get_gramps_id(), self.up)
                                                     else:
                                                         tcell += self.get_name(partner)
                                             else:
@@ -4304,8 +4295,9 @@ class SourcePage(BasePage):
         BasePage.__init__(self, report, title, source.get_gramps_id())
 
         inc_repositories = self.report.options["inc_repository"]
-        db_event_handles = self.dbase_.iter_event_handles()
+
         db_family_handles = self.dbase_.iter_family_handles()
+        db_event_handles = self.dbase_.iter_event_handles()
         db_place_handles = self.dbase_.iter_place_handles()
         db_source_handles = self.dbase_.iter_source_handles()
         db_media_object_handles = self.dbase_.iter_media_object_handles()
@@ -4375,232 +4367,246 @@ class SourcePage(BasePage):
                 if repo_list is not None:
                     sourcedetail += repo_list
 
-            # begin Citation Referents and section title
-            with Html("div", class_ ="subsection", id ="SourceCitationReferents") as section:
-                sourcedetail += section
-                section += Html("h4", _("Citation References"), inline =True)
+            # get the Source and its Citation Referents too...
+            the_lists = Utils.get_source_and_citation_referents(source_handle, self.dbase_)
+            if the_lists:
+                (citation_list, citation_referents_list) = the_lists
 
-                # get the Source and its Citation Referents too...
-                (citation_list, citation_referents_list) = \
-                    Utils.get_source_and_citation_referents(source_handle, self.dbase_)
+                # begin Citation Referents and section title
+                with Html("div", class_ ="subsection", id ="SourceCitationReferents") as section:
+                    sourcedetail += section
+                    section += Html("h4", _("Citation References"), inline =True)
 
-                for (citation_handle, refs) in citation_referents_list:
-                    citation = self.dbase_.get_citation_from_handle(citation_handle)
-                    if citation:
+                    # ordered list #1, Citation Volume/ Page...
+                    ordered1 = Html("ol", class_ = "Col1")
 
-                        # ordered list #1, Citation Volume/ Page...
-                        ordered1 = Html("ol", class_ = "Col1")
-                        section += ordered1
+                    for (citation_handle, refs) in citation_referents_list:
+                        citation = self.dbase_.get_citation_from_handle(citation_handle)
+                        if citation:
 
-                        # list item 1 cannot be attached until the end.....
-                        list1 = Html("li", citation.get_page())
+                            # gets all citation referents no matter on the filters...
+                            (people_list, family_list, event_list, place_list, source_list, media_list, repo_list) = refs
 
-                        # gets all citation referents no matter on the filters...
-                        (people_list, family_list, event_list, place_list, source_list, media_list, repo_list) = refs
+                            # only add the handle if it is part of this report database?
+                            people_list = [phandle for phandle in people_list if phandle in ppl_handle_list]
+                            family_list = [fhandle for fhandle in family_list if fhandle in db_family_handles]
+                            event_list = [ehandle for ehandle in event_list if ehandle in db_event_handles]
+                            place_lost = [phandle for phandle in place_list if phandle in db_place_handles]
+                            source_list = [shandle for shandle in source_list if shandle in db_source_handles]
+                            media_list = [mhandle for mhandle in media_list if mhandle in db_media_object_handles]
 
-                        # isolate and remove references that are not in this report database...
-                        # repositories are NOT removed by filtering yet...
-                        # TODO: fix repositories
-                        family_list = [fhandle for fhandle in family_list if fhandle in db_family_handles]
-                        event_list = [ehandle for ehandle in event_list if ehandle in db_event_handles]
-                        place_list = [phandle for phandle in place_list if phandle in db_place_handles]
-                        source_list = [shandle for shandle in source_list if shandle in db_source_handles]
-                        media_list = [mhandle for mhandle in media_list if mhandle in db_media_object_handles]
+                            # Sort the person list by  the individual's surname...
+                            people_list = sort_people(self.dbase_, people_list)
 
-                        # only add the person handle if the individual is in the report database, and reove any duplication if any?
-                        people_list = [person_handle for person_handle in people_list if check_person_database(person_handle, ppl_handle_list)]
+                            # list item #1 cannot be attached until the end.....
+                            list1 = Html("li", citation.get_page())
 
-                        # Sort the person list by  the individual's surname...
-                        people_list = sort_people(self.dbase_, people_list)
+                            # ordered and list item #2, Object Type...
+                            ordered2 = Html("ol", class_ = "Col2 Object Type")
 
-                        # ordered list #2, Object Type...
-                        ordered2 = Html("ol", class_ = "Col2 ObjectType")
+                            # Citation Referents have Person objects... 
+                            if people_list:
 
-                        # Citation Referents have Person objects... 
-                        if people_list:
+                                list2 = Html("li", _("Person(s)"))
 
-                            list2 = Html("li", _("Person(s)"))
-                            ordered2 += list2
+                                # ordered and list item #3, Surname...
+                                ordered3 = Html("ol", class_ = "Col3 Surname")
 
-                            # ordered list #3, Surname...
-                            ordered3 = Html("ol", class_ = "Col3 Surname")
+                                displayed = []
+                                for (surname, handle_list) in people_list:
+                                    if surname not in displayed:
+                                        list3 = Html("li", surname)
 
-                            displayed = []
-                            for (surname, handle_list) in people_list:
-                                if surname not in displayed:
+                                        # ordered #4, Display Name...
+                                        ordered4 = Html("ol", class_ = "Col4 DisplayName")
 
-                                    for person_handle in handle_list:
-                                        person = self.dbase_.get_person_from_handle(person_handle)
-                                        if person:
+                                        for person_handle in handle_list:
+                                            person = self.dbase_.get_person_from_handle(person_handle)
+                                            if person:
 
-                                            url = self.report.build_url_fname_html(person_handle, "ppl", up = self.up)
-                                            list3 = Html("li", self.person_link(url, person, _NAME_STYLE_DEFAULT, 
+                                                url = self.report.build_url_fname_html(person_handle, "ppl", up = self.up)
+                                                ordered4.extend(
+
+                                                    # since Surname is already displayed, only show given name and sufix (if any?)
+                                                    Html("li", self.person_link(url, person, name_style = False, 
                                                                                 gid = person.get_gramps_id()))
-                                            ordered3 += list3
-
-                                displayed.append(surname)
-                            list2 += ordered3
-
-                        # Citation Referents have Family objects... 
-                        if (self.inc_families and family_list):
-
-                            list2 = Html("li", _("Families"))
-                            ordered2 += list2
-
-                            # ordered list, Column 3, Husband and Wife...
-                            ordered3 = Html("ol", class_ = "Col3 HusbandSpouse")
-
-                            for family_handle in family_list:
-                                family = self.dbase_.get_family_from_handle(family_handle)
-                                if family:
-                                    mother, father = [None] * 2
-
-                                    mother_handle = family.get_mother_handle()
-                                    father_handle = family.get_father_handle()
-
-                                    if (mother_handle and check_person_database(mother_handle, ppl_handle_list)):
-                                        mother = self.dbase_.get_person_from_handle(mother_handle)
-                                        if mother:
-                                            mother_name = self.get_name(mother)
-                                            wlink = self.family_link(mother_handle, mother_name, family.get_gramps_id(), self.up)
-
-                                    if (father_handle and check_person_database(father_handle, ppl_handle_list)):
-                                        father = self.dbase_.get_person_from_handle(father_handle)
-                                        if father:
-                                            father_name = self.get_name(father)
-                                            hlink = self.family_link(family_handle, father_name, family.get_gramps_id(), self.up)
-
-                                    if mother and father:
-                                        list3 = Html("li", '%s' % wlink + _("and") + '%s' % hlink)
-                                    elif mother:
-                                        list3 = wlink
-                                    elif father:
-                                        list3 = hlink
-                                    ordered3 += list3
-                            list2 += ordered3
-
-                        # Citation Referents have Event Objects...
-                        if (self.inc_events and event_list):
-
-                            list2 = Html("li", _("Events"))
-                            ordered2 += list2
-
-                            # get event types and the handles that go with them...
-                            event_handle_list, event_types = build_event_data_by_events(self.dbase_, event_list)
-
-                            # Ordered list 3, Event Types
-                            ordered3 = Html("ol", class_ = "Col3 EventTypes")
-
-                            # separate events by their types and then thier event handles
-                            for (etype, data_list) in sort_event_types(self.dbase_, event_types, event_handle_list):
-
-                                # sort data_list by date of event
-#                                data_list = sorted(data_list, key = self._getEventDate)
-
-                                list3 = Html("li", etype)
-                                ordered3 += list3
-
-                                # Ordered list4, Event Date...
-                                ordered4 = Html("ol", class_ = "Col4 EventDate")
-
-                                while data_list:
-                                    event_handle = data_list[0]
-                                    event = self.dbase_.get_event_from_handle(event_handle)
-                                    if event:
-                                        list4 = Html("li", self.event_link(_dd.display(event.get_date_object()) or etype,
-                                                                           event_handle, event.get_gramps_id(), self.up))
-                                        ordered4 += list4
-                                    data_list.remove(str(event_handle))
-                                list3 += ordered4
-                            list2 += ordered3
-
-                        # Citation Referents have Place objects...
-                        if place_list:
-
-                            list2 = Html("li", _("Places"))
-                            ordered2 += list2
-
-                            # Column and list 3, Place Link...
-                            ordered3 = Html("ol", class_ = "Col3 PlaceLink")
-
-                            for place_handle in place_list:
-                                place = self.dbase_.get_place_from_handle(place_handle)
-                                if place:
-                                    list3 = Html("li", self.place_link(place_handle, place.get_title(),
-                                                                       place.get_gramps_id(), self.up))
-                                    ordered3 += list3
-                            list2 += ordered3
-
-                        # Citation Referents has Source Objects...
-                        if source_list:
-
-                            list2 = Html("li", _("Sources"))
-                            ordered2 += list2
-
-                            # Column and list 3, Source Link
-                            ordered3 = Html("ol", class_ = "Col3 SourceLink")
-
-                            for shandle in source_list:
-                                source = self.dbase_.get_source_from_handle(shandle)
-                                if source:
-                                    list3 = Html("li", self.source_link(source, up = self.up))
-
-                                    ordered3 += list3
-                            list2 += ordered3
-
-                        # Citation Referents have Media Objects...
-                        if (self.create_media and media_list):
-
-                            list2 = Html("li", _("Media"))
-                            ordered2 += list2
-
-                            # Column and list 3, Media Link
-                            ordered3 = Html("ol", class_ = "Col3 MediaLink")
-
-                            for photo_handle in media_list:
-                                media = self.dbase_.get_object_from_handle(photo_handle)
-                                if media:
-
-                                    mime_type = media.get_mime_type()
-                                    if mime_type:
-                                        try:
-                                            real_path, newpath = self.report.prepare_copy_media(media)
-                                            newpath = self.report.build_url_fname(newpath, up = True)
-
-                                            list3 = Html("li", self.media_link(photo_handle, newpath, media.get_description(),
-                                                                               self.up, False))
-                                        except:
-                                            list3 = _("Media error...")
-                                    else:
-                                        try:
-                                            list3 = Html("li", self.doc_link(photo_handle, media.get_description(),
-                                                                             self.up, False))
-                                        except:
-                                            list3 = _("Media error...")
-
-                                    ordered3 += list3
+                                                )
+                                        list3 += ordered4
+                                        ordered3 += list3
+                                    displayed.append(surname)
                                 list2 += ordered3
+                                ordered2 += list2
 
-                        # Citation Referents have Repository Objects...
-                        if (inc_repositories and repo_list):
+                            # Citation Referents have Family Objects...
+                            if family_list:
 
-                            list2 = Html("li", _("Repositories"))
-                            ordered2 += list2
+                                list2 = Html("li", _("Families"))
 
-                            # Column and list 3, Repository Link...
-                            ordered3 = Html("ol", class_ = "Col3 RepositoryLink")
+                                # ordered and list item #3, Husband and Spouse FamilyLink...
+                                ordered3 = Html("ol", class_ = "Col3 Husband-n-Spouse")
 
-                            for repository_handle in repo_list:
-                                repository = self.dbase_.get_repository_from_handle(repository_handle)
-                                if repository:
-                                    list3 = Html("li", self.repository_link(repository_handle, repository.get_name(),
+                                for family_handle in family_list:
+                                    family = self.dbase_.get_family_from_handle(family_handle)
+                                    if family:
+                                        husband, spouse = [None]*2
+
+                                        husband_handle = family.get_father_handle()
+                                        spouse_handle = family.get_mother_handle()
+
+                                        if (husband_handle and husband_handle in ppl_handle_list):
+                                            husband = self.dbase_.get_person_from_handle(husband_handle)
+                                            if husband:
+                                                husband_name = self.get_name(husband)
+                                                husband_link = self.family_link(family_handle, husband_name,
+                                                                                family.get_gramps_id(), self.up)
+
+                                        if (spouse_handle and spouse_handle in ppl_handle_list):
+                                            spouse = self.dbase_.get+person_from_handle(spouse_handle)
+                                            if spouse:
+                                                spouse_name = self.get_name(spouse)
+                                                spouse_link = self.family_link(family_handle, spouse_name,
+                                                                               family.get_gramps_id(), self.up)
+                                        
+
+                                        if spouse and husband:
+                                            ordered3.extend(
+                                                Html("li", '%s' % husband_link + _("and") + '%s' % spouse_link)
+                                            )
+                                        elif spouse:
+                                            ordered3.extend(
+                                                Html("li", spouse_link)
+                                            )
+                                        elif husband:
+                                            ordered3.extend(
+                                                Html("li", husband_link)
+                                            )
+                                list2 += ordered3
+                                ordered2 += list2
+
+                            # Citation Referents have Event Objects...
+                            if (self.inc_events and event_list):
+
+                                list2 = Html("li", _("Events"))
+
+                                # get event types and the handles that go with them...
+                                event_handle_list, event_types = build_event_data_by_events(self.dbase_, event_list)
+
+                                # Ordered and list item #3, EventType
+                                ordered3 = Html("ol", class_ = "Col3 EventType")
+
+                                # separate events by their types and then thier event handles
+                                for (evt_type, handle_list) in sort_event_types(self.dbase_, event_types, event_handle_list):
+
+                                    # sort data_list by date of event
+#                                   data_list = sorted(data_list, key = self._getEventDate)
+
+                                    list3 = Html("li", evt_type)
+
+                                    # Ordered list4, Event Date...
+                                    ordered4 = Html("ol", class_ = "Col4 EventDate")
+
+                                    for event_handle in handle_list:
+                                        event = self.dbase_.get_event_from_handle(event_handle)
+                                        if event:
+                                            ordered4.extend(
+                                                Html("li", self.event_link(event_handle, _dd.display(event.get_date_object()) or evt_type,
+                                                                           event.get_gramps_id(), self.up))
+                                            )
+                                        list3 += ordered4
+                                        ordered3 += list3
+                                list2 += ordered3
+                                ordered2 += list2
+
+                            # Citation Referents have Place Objects...
+                            if place_list:
+
+                                list2 = Html("li", _("Places"))
+
+                                # ordered and list item #3, Place Title...
+                                ordered3 = Html("ol", class_ = "Col3 PlaceTitle")
+
+                                for place_handle in place_list:
+                                    place = self.dbase_.get_place_from_handle(place_handle)
+                                    if place:
+                                        ordered3.extend(
+                                            Html("li", self.place_link(place_handle, place.get_title(),
+                                                                       place.get_gramps_id(), self.up))
+                                        )
+                                list2 += ordered3
+                                ordered2 += list2
+
+                            # Citation Referents have Source Objects...
+                            if source_list:
+
+                                list2 = Html("li", _("Sources"))
+
+                                # ordered and list item #3, Source Title...
+                                ordered3 = Html("ol", class_ = "Col3 SourceTitle")
+
+                                for source_handle in source_list:
+                                    source = self.dbase_.get_source_from_handle(source_handle)
+                                    if source:
+                                        ordered3.extend(
+                                            Html("li", self.source_link(source_handle, source.get_title(),
+                                                                        source.get_gramps_id(), self.up))
+                                        )
+                                list2 += ordered3
+                                ordered2 += list2
+
+                            # Citation Referents have Repository Objects...
+                            if (inc_repositories and repo_list):
+
+                                list2 = Html("li", _("Repositories"))
+
+                                # ordered and list item #3, Repository Name...
+                                ordered3 = Html("ol", class_ = "Col3 RepositoryName")
+
+                                for repository_handle in repo_list:
+                                    repository = self.dbase_.get_repository_from_handle(repository_handle)
+                                    if repository:
+                                        ordered3.extend(
+                                            Html("li", self.repository_link(repository_handle, repository.get_name(),
                                                                             repository.get_gramps_id(), self.up))
-                                    ordered3 += list3
-                            list2 += ordered3
+                                        )
 
-                        # these two are common to all of these seven object types...
-                        list1 += ordered2
-                        ordered1 += list1
+                                list2 += ordered3
+                                ordered2 += list2
+
+                            # Citation Referents has Media Objects...
+                            if (self.create_media and media_list):
+
+                                list2 = Html("li", _("Media"))
+
+                                # ordered and list item #3, Thumbnail Link...
+                                ordered3 = Html("ol", class_ = "Col3 MediaLink")
+
+                                for media_handle in media_list:
+                                    media = self.dbase_.get_object_from_handle(media_handle)
+                                    if media:
+                                        mime_type = gen.mime.get_description(media.get_mime_type())
+                                        if mime_type:
+                                            if mime_type.startswith("image"):
+                                                real_path, newpath = self.report.prepare_copy_media(media)
+                                                newpath = self.report.build_url_fname(newpath, up = self.up)
+
+                                                ordered3.extend(
+                                                    Html("li", self.media_link(media_handle, newpath, media.get_description(),
+                                                                               uplink = self.up, usedescr = False))
+                                                )
+                                            else:
+                                                ordered3.extend(
+                                                    Html("li", self.doc_link(media_handle, media.get_description(),
+                                                                             uplink = self.up, usedescr = False))
+                                                )
+                                list2 += ordered3
+                                ordered2 += list2
+
+                            # these are connected at the end of the loop...
+                            list1 += ordered2
+                            ordered1 += list1
+
+                    # to be connected at the very end...
+                    section += ordered1
 
         # add clearline for proper styling
         # add footer section
@@ -5515,7 +5521,7 @@ class IndividualPage(BasePage):
                             if constfunc.win():
                                 newpath = newpath.replace('\\',"/")
                             thumbnailUrl = newpath
-                            #snapshot += self.media_link(photo_handle, newpath, '', up = True)
+                            #snapshot += self.media_link(photo_handle, newpath, '', uplink = True)
 
                         else:
                             (photoUrl, thumbnailUrl) = self.report.prepare_copy_media(photo)
@@ -6300,10 +6306,9 @@ class RepositoryListPage(BasePage):
                     trow += Html("td", rtype, class_ = "ColumnType", inline = True)
 
                     # repository name and hyperlink
-                    if repo.name:
+                    if repo.get_name():
                         trow += Html("td", self.repository_link(handle, repo.get_name(),
-                                                                repo.get_gramps_id()), 
-                                     class_ = "ColumnName")
+                                                                repo.get_gramps_id(), self.up), class_ = "ColumnName")
                     else:
                         trow += Html("td", "[ untitled ]", class_ = "ColumnName")
 
@@ -6773,19 +6778,15 @@ class NavWebReport(Report):
         # build classes PlaceListPage and PlacePage
         self.place_pages(place_list, source_list)
 
-        # build classes ddressBookList and AddressBookPage
-        if self.inc_addressbook:
-            self.addressbook_pages(ind_list)
+        # build classes SourceListPage and SourcePage
+        # has been moved so that all Sources can be found before processing...
+        self.source_pages(source_list, ind_list)
 
         # build classes RepositoryListPage and RepositoryPage
         if self.inc_repository:
             repolist = self.database.get_repository_handles()
             if len(repolist):
                 self.repository_pages(repolist, source_list)
-
-        # build classes SourceListPage and SourcePage
-        # has been moved so that all Sources can be found before processing...
-        self.source_pages(source_list, ind_list)
 
         # build classes MediaListPage and MediaPage
         if self.inc_gallery:
@@ -6798,6 +6799,10 @@ class NavWebReport(Report):
         # Build classes source pages a second time to pick up sources referenced
         # by galleries
         self.source_pages(source_list, ind_list)
+
+        # build classes ddressBookList and AddressBookPage
+        if self.inc_addressbook:
+            self.addressbook_pages(ind_list)
 
         # if an archive is being used, close it?
         if self.archive:
