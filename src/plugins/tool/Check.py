@@ -62,6 +62,7 @@ import gtk
 #-------------------------------------------------------------------------
 import gen.lib
 from gen.db import DbTxn
+import config
 import Utils
 from gui.utils import ProgressMeter
 import ManagedWindow
@@ -219,6 +220,7 @@ class CheckIntegrity(object):
         self.invalid_dates = []
         self.removed_name_format = []
         self.empty_objects = defaultdict(list)
+        self.last_img_dir = config.get('behavior.addmedia-image-dir')
         self.progress = ProgressMeter(_('Checking Database'),'')
 
     def family_errors(self):
@@ -624,6 +626,7 @@ class CheckIntegrity(object):
                     obj.set_path(name)
                     self.db.commit_media_object(obj, self.trans)
                     self.replaced_photo.append(ObjectId)
+                    self.last_img_dir = os.path.dirname(name)
                     LOG('        FAIL: media object reselected to "%s"' % name)
                 else:
                     self.bad_photo.append(ObjectId)
@@ -633,6 +636,7 @@ class CheckIntegrity(object):
                         buttons=(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
                                  gtk.STOCK_OK, gtk.RESPONSE_OK)
                         )
+            fs_top.set_current_folder(self.last_img_dir)
             response = fs_top.run()
             if response == gtk.RESPONSE_OK:
                 fs_ok_clicked(fs_top)
