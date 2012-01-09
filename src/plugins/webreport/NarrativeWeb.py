@@ -1582,7 +1582,6 @@ class BasePage(object):
             ('events',                  _("Events"),        self.report.inc_events), 
             ('places',                  _("Places"),        True),
             ('sources',                 _("Sources"),       True),
-#            ("citations",               _("Citations"),     True),
             ('repositories',            _("Repositories"),  inc_repos),
             ('media',                   _("Media"),         _create_media_link),
             ('thumbnails',              _("Thumbnails"),    True),
@@ -1595,14 +1594,7 @@ class BasePage(object):
         menu_items = [[url, text] for url, text in navs]
 
         number_items = len(menu_items)
-
-        # if screen width is equal or less than 1024px then break the
-        # navigation menu into two lines if there are more links than one line?
-#        main_scr_width = self.uistate.screen_width()
-
-        num_cols = 16
-#        if main_scr_width <= 1024:
-#            num_cols = 11
+        num_cols = 10
         num_rows = (number_items // num_cols) + 1
 
         # begin navigation menu division...
@@ -1630,39 +1622,39 @@ class BasePage(object):
                     # elements for Navigation styling.
 
                     # Figure out if we need <li class="CurrentSection"> of just <li>
-                    cs = False
+                    check_cs = False
                     if nav_text == currentsection:
-                        cs = True
+                        check_cs = True
                     elif nav_text == _("Surnames"):
                         if "srn" in self.report.cur_fname:
-                            cs = True
+                            check_cs = True
                         elif _("Surnames") in currentsection:
-                            cs = True
+                            check_cs = True
                     elif nav_text == _("Individuals"):
                         if "ppl" in self.report.cur_fname:
-                            cs = True
+                            check_cs = True
                     elif nav_text == _("Families"):
                         if "fam" in self.report.cur_fname:
-                            cs = True
+                            check_cs = True
                     elif nav_text == _("Sources"):
                         if "src" in self.report.cur_fname:
-                            cs = True
+                            check_cs = True
                     elif nav_text == _("Places"):
                         if "plc" in self.report.cur_fname:
-                            cs = True
+                            check_cs = True
                     elif nav_text == _("Events"):
                         if "evt" in self.report.cur_fname:
-                            cs = True 
+                            check_cs = True 
                     elif nav_text == _("Media"):
                         if "img" in self.report.cur_fname:
-                            cs = True
+                            check_cs = True
                     elif nav_text == _("Address Book"):
                         if "addr" in self.report.cur_fname:
-                            cs = True 
-                    cs = 'class = "CurrentSection"' if cs else False
-                    if cs:
+                            check_cs = True 
+                    check_cs = 'class = "CurrentSection"' if check_cs else False
+                    if check_cs:
                         unordered.extend(
-                            Html("li", hyper, attr = cs, inline = True)
+                            Html("li", hyper, attr = check_cs, inline = True)
                         )
                     else: 
                         unordered.extend(
@@ -4469,12 +4461,11 @@ class SourcePage(BasePage):
                                                                                 family.get_gramps_id(), self.up)
 
                                         if (spouse_handle and spouse_handle in ppl_handle_list):
-                                            spouse = self.dbase_.get+person_from_handle(spouse_handle)
+                                            spouse = self.dbase_.get_person_from_handle(spouse_handle)
                                             if spouse:
                                                 spouse_name = self.get_name(spouse)
                                                 spouse_link = self.family_link(family_handle, spouse_name,
                                                                                family.get_gramps_id(), self.up)
-                                        
 
                                         if spouse and husband:
                                             ordered3.extend(
