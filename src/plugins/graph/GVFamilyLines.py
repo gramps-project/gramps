@@ -305,6 +305,7 @@ class FamilyLinesReport(Report):
         self._families = set() # handle of families we need in the report
         self._deleted_people = 0
         self._deleted_families = 0
+        self._user = user
         
         menu = options.menu
         get_option_by_name = menu.get_option_by_name
@@ -336,6 +337,9 @@ class FamilyLinesReport(Report):
         # the GIDs to either Person or to handles, so we may as well convert the
         # entire list right now and not have to deal with it ever again
         self._interest_set = set()
+        if not self._gidlist:
+            self._user.warn(_('Empty report'),
+                            _('You did not specify anybody'))
         for gid in self._gidlist.split():
             person = self._db.get_person_from_gramps_id(gid)
             if person:
