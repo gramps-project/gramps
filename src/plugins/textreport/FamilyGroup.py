@@ -133,7 +133,7 @@ class FamilyGroup(Report):
         self.doc.end_cell()
         
         if descr:
-            self.doc.start_cell("FGR-TextContents",2)
+            self.doc.start_cell("FGR-TextContentsEnd",2)
             self.doc.start_paragraph('FGR-Normal')
             self.doc.write_text(descr)
             self.doc.end_paragraph()
