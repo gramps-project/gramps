@@ -27,13 +27,7 @@ Style Name: Web_Navigation-Horizontal.css
 
 # $Id$
 
-    Body Element
----------------------------------------------------=== */
-body {
-    padding: 0px 14px;
-}
-
-/*   Navigation Menus
+   Navigation Menus
 ----------------------------------------------------- */
 div#nav {
     clear: both;

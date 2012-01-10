@@ -126,13 +126,13 @@ a[href]:hover, a[href]:active {
 
 /* Navigation
 ----------------------------------------------------- */
-#navigation, #subnavigation {
+div#nav, #subnavigation {
     border: solid 1px #E0E0E9; /* needed by IE7 */
 }
 #subnavigation ul {
     overflow: hidden;
 }
-#navigation ul, #subnavigation ul {
+div#nav ul, #subnavigation ul {
     list-style: none;
     margin: 0px;
     padding-left: 15px;
@@ -140,22 +140,22 @@ a[href]:hover, a[href]:active {
 #subnavigation ul {
     border-bottom: solid 1px #669;
 }
-#navigation ul li, #subnavigation ul li {
+div#nav ul li, #subnavigation ul li {
     float: left;
 }
-#navigation ul li a, #subnavigation ul li a {
+div#nav ul li a, #subnavigation ul li a {
     display: block;
     font-size: smaller;
     font-weight: bold;
     padding: 5px;
     border-bottom: solid 1px #E0E0E9;
 }
-#navigation ul li a:hover, #subnavigation ul li a:hover {
+div#nav ul li a:hover, #subnavigation ul li a:hover {
     text-decoration: none;
     background-color: #B4B4CB;
     border-bottom: solid 1px black;
 }
-#navigation ul li.CurrentSection a {
+div#nav ul li.CurrentSection a {
     position: relative;
     top: 1px;
     border: solid 1px #669;
@@ -168,10 +168,10 @@ a[href]:hover, a[href]:active {
 
 /* Alphabet Navigation
 ----------------------------------------------------- */
-#alphabet {
+div#alphanav {
     background-color: #E0E0E9;
 }
-#alphabet ul {
+div#alphanav ul {
     list-style: none;
     border-width: 2px 0px 4px 0px;
     border-style: solid;
@@ -181,21 +181,21 @@ a[href]:hover, a[href]:active {
     /* float container stretch, see www.quirksmode.org/css/clearing.html */
     overflow: hidden;
 }
-#alphabet ul li {
+div#alphanav ul li {
     float: left;
     font-size: larger;
     font-weight: bold;
 }
-#alphabet ul li:after {
+div#alphanav ul li:after {
     content: " |";
 }
-#alphabet ul li a {
+div#alphanav ul li a {
     display: block;
     padding: 4px 8px;
     line-height: 100%;
     float: left;
 }
-#alphabet ul li a:hover {
+div#alphanav ul li a:hover {
     text-decoration: none;
     background-color: black;
     color: #FAFAFF;

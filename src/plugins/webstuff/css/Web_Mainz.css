@@ -132,28 +132,28 @@ a[href]:hover, a[href]:active {
 
 /* Navigation
 -----------------------------------------------------------------*/
-#navigation, #subnavigation {
+div#nav, #subnavigation {
     background: url(../images/Web_Mainz_MidLight.png) #FFF2C6 repeat;
 }
-#navigation ul, #subnavigation ul {
+div#nav ul, #subnavigation ul {
     list-style-type: none;
     margin: 0px;
     padding-left: 0px;
 }
-#navigation ul li, #subnavigation ul li {
+div#nav ul li, #subnavigation ul li {
     float: left;
 }
-#navigation ul li a, #subnavigation ul li a {
+div#nav ul li a, #subnavigation ul li a {
     display: block;
     padding: 0.4em 0.8em 0.3em 0.8em;
     font-size: smaller;
     font-family: sans-serif;
 }
-#navigation ul li a:hover, #subnavigation ul li a:hover {
+div#nav ul li a:hover, #subnavigation ul li a:hover {
     text-decoration: none;
     background-color: #FFFFE7;
 }
-#navigation ul li.CurrentSection a, #subnavigation ul li.CurrentSection a {
+div#nav ul li.CurrentSection a, #subnavigation ul li.CurrentSection a {
     font-weight: bold;
     font-style: italic;
     background-image: url(../images/Web_Mainz_Mid.png);
@@ -167,7 +167,7 @@ a[href]:hover, a[href]:active {
 
 /* Alphabet Navigation
 -----------------------------------------------------------------*/
-#alphabet ul {
+div#alphanav ul {
     list-style: none;
     border-width: 2px 0px 4px 0px;
     border-style: solid;
@@ -176,23 +176,23 @@ a[href]:hover, a[href]:active {
     /* float container stretch, see www.quirksmode.org/css/clearing.html */
     overflow: hidden;
 }
-#alphabet ul li {
+div#alphanav ul li {
     float: left;
     font-size: larger;
     font-family: sans-serif;
     font-weight: bold;
 }
-#alphabet ul li:after {
+div#alphanav ul li:after {
     content: " |";
 }
-#alphabet ul li a {
+div#alphanav ul li a {
     display: block;
     padding: 4px 8px;
     line-height: 100%;
     float: left;
     color: black;
 }
-#alphabet ul li a:hover {
+div#alphanav ul li a:hover {
     text-decoration: none;
     background-color: black;
     color: white;
