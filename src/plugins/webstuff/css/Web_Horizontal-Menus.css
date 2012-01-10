@@ -32,7 +32,7 @@ Style Name: Web_Navigation-Horizontal.css
 div#nav {
     clear: both;
     padding-top: 1px;
-    font: .7em/1 "Helvetica, Arial, sans, sans-serif";
+    font: 1.2em/1.4 "sans-serif, Helvetica, Arial";
 }
 div#nav ul {
     float: left;
@@ -51,7 +51,7 @@ div#nav li {
 div#nav a {
     display: block;
     float: left;
-    padding: 4px 12px;
+    padding: 6px 12px;
     border-right: 1px solid #13A926;
     border-left: 1px solid #13A926;
     color: #FFF;
@@ -65,6 +65,7 @@ div#nav .CurrentSection a {
     font-weight: bold;
     background: #BCEAF6;
     color: #000;
+    border-bottom: none;
 }
 div#nav .CurrentSection a:hover, div#nav .CurrentSection a:focus {
     background: #903;
@@ -76,7 +77,7 @@ div#nav .CurrentSection a:hover, div#nav .CurrentSection a:focus {
 div#alphanav {
     clear: both;
     padding-top: 1px;
-    font: bold .9em/1.1 "sans, sans-serif";
+    font: bold 1.2em/1.4 "sans, sans-serif";
 }
 div#alphanav ul {
     float: left;
@@ -96,7 +97,7 @@ div#alphanav li {
 div#alphanav a {
     display: block;
     float: left;
-    padding: 4px 12px;
+    padding: 6px 12px;
     border-right: 1px solid #13A926;
     border-left: 1px solid #13A926;
     color: #FFF;
