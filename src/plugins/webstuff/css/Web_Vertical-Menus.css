@@ -27,7 +27,15 @@ Style Name: Web_Navigation-Vertical.css Stylesheet
 
 # $Id: Web_Navigation-Vertical.css 15241 2010-04-19 11:07:00Z robhealey1 $
 
- Header
+ Body Element
+----------------------------------------------------- */
+body { background: -webkit-gradient
+           (linear, left top, left bottom, from(#ccc), to(#fff));
+    color: #000;
+    padding: 60px 0px 0px 120px;
+}
+
+/*    Header
 ----------------------------------------------------- */
 #header  {
     position: fixed;
@@ -38,78 +46,40 @@ Style Name: Web_Navigation-Vertical.css Stylesheet
     height: 65px;
 }
 
-/* Body Element
------------------------------------------------------ */
-body {
-    color: #000;
-    background-color: #FFF;
-    padding: 60px 0px 0px 136px;
-}
-
-/* Alphabet Navigation
------------------------------------------------------ */
-div#alphabet {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    border: solid 2px #000;
-}
-div#alphabet ul {
-    list-style:none;
-    min-width: 900px;
-    height: 24px;
-    margin:0;
-    padding: 0px 0px 0px 9px;
-    border-bottom: solid 2px #000;
-}
-div#alphabet ul li {
-    float: left;
-}
-div#alphabet ul li:first-child {
-    margin-left: 10px;
-}
-div#alphabet ul li:after {
-    content: "| ";
-}
-div#alphabet ul li a {
-    display: block;
-    padding: 4px 8px 4px 8px;
-    float: left;
-    font: .8em bold italic small-caps verdana, serif;
-    color: #000;
-    text-decoration:none;
-    margin:0;
-}
-
 /* Navigation
 ----------------------------------------------------- */
-div#navigation {
-    position: fixed;
-    left: 0px;
-    top: 55px;
+div#nav {
+    padding: 0px;
+    margin: 0 auto;
+    overflow: auto;
 }
-div#navigation ul {
-    width: 132px;
-    height: 424px;
-    list-style: none;
-    padding: 0px 0px 0px 8px;
-    border: solid 4px #000;
-}
-div#navigation ul li {
-    display: inline;
-    font: bold 14px/100% sans;
-    float: left;
-    border-width: 0px 0px 2px 0px;
-    border-style: solid;
-}
-div#navigation ul li:first-child {
-    border-top: none;
-    padding-top: 20px;
-}
-div#navigation ul li a {
-    text-decoration: none;
+div#nav ul {
+    list-style-type: none;
     display: block;
-    padding: 8px;
+    width: 320px;
+    position: fixed;
+    top: 53px;
+    left: 0px;
+    padding: 0px;
+    background: url(shad2.png) no-repeat;
+    -webkit-background-size: 50% 100%;
+}
+div#nav ul li a {
+    -webkit-transition: all 0.3s ease-out;
+    background: #cbcbcb url(border.png) no-repeat;
+    color: #174867;
+    padding: 7px 15px 7px 15px;
+    -webkit-border-top-right-radius: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+    width: 100px;
+    display: block;
+    text-decoration: none;
+    -webkit-box-shadow: 2px 2px 4px #888;
+}
+div#nav ul li a:hover {
+    background: #ebebeb url(border.png) no-repeat;
+    color: #67a5cd;
+    padding: 7px 0px 7px 30px;
 }
 
 /* SubNavigation
@@ -145,4 +115,39 @@ div#subnavigation ul li a {
 }
 div#subnavigation ul li a:hover {
     background-color: #C1B398;
+}
+
+/* Alphabet Navigation
+----------------------------------------------------- */
+div#alphanav {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: solid 2px #000;
+}
+div#alphanav ul {
+    list-style:none;
+    min-width: 900px;
+    height: 24px;
+    margin:0;
+    padding: 0px 0px 0px 9px;
+    border-bottom: solid 2px #000;
+}
+div#alphanav ul li {
+    float: left;
+}
+div#alphanav ul li:first-child {
+    margin-left: 10px;
+}
+div#alphanav ul li:after {
+    content: "| ";
+}
+div#alphanav ul li a {
+    display: block;
+    padding: 4px 8px 4px 8px;
+    float: left;
+    font: .8em bold italic small-caps verdana, serif;
+    color: #000;
+    text-decoration:none;
+    margin:0;
 }

@@ -27,7 +27,16 @@ Style Name: Web_Navigation-Horizontal.css
 
 # $Id$
 
-   Navigation Menus
+    Body Element
+------------------------------------------------------ */
+body {
+    background-color: #00029D;
+    color: #00029D;
+    width: 100%;
+    padding: 0px 14px;
+}
+
+/*   Navigation Menus
 ----------------------------------------------------- */
 div#nav {
     clear: both;
