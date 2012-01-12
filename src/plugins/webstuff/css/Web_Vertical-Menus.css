@@ -32,7 +32,7 @@ Style Name: Web_Navigation-Vertical.css Stylesheet
 body { background: -webkit-gradient
            (linear, left top, left bottom, from(#ccc), to(#fff));
     color: #000;
-    padding: 60px 0px 0px 120px;
+    padding: 60px 0px 0px 146px;
 }
 
 /*    Header
@@ -56,7 +56,7 @@ div#nav {
 div#nav ul {
     list-style-type: none;
     display: block;
-    width: 320px;
+    width: 330px;
     position: fixed;
     top: 53px;
     left: 0px;
@@ -71,7 +71,7 @@ div#nav ul li a {
     padding: 7px 15px 7px 15px;
     -webkit-border-top-right-radius: 10px;
     -webkit-border-bottom-right-radius: 10px;
-    width: 100px;
+    width: 120px;
     display: block;
     text-decoration: none;
     -webkit-box-shadow: 2px 2px 4px #888;
@@ -80,6 +80,10 @@ div#nav ul li a:hover {
     background: #ebebeb url(border.png) no-repeat;
     color: #67a5cd;
     padding: 7px 0px 7px 30px;
+}
+div#nav ul li.CurrentSection a {
+    background-color: #000;
+    color: #FFF;
 }
 
 /* SubNavigation

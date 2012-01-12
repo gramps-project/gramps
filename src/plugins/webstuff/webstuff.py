@@ -58,27 +58,27 @@ def load_on_reg(dbstate, uistate, plugin):
 
         # Basic Ash style sheet
         ["Basic-Ash",     1, _("Basic-Ash"),         
-         path_css('Web_Basic-Ash.css'),     None, [], []],
+         path_css('Web_Basic-Ash.css'),     None, [], [] ],
 
         # Basic Blue style sheet with navigation menus
         ["Basic-Blue",    1, _("Basic-Blue"),        
-         path_css('Web_Basic-Blue.css'),    "narrative-menus.css", [], []],
+         path_css('Web_Basic-Blue.css'),    "narrative-menus.css", [], [] ],
 
         # Basic Cypress style sheet
         ["Basic-Cypress", 1, _("Basic-Cypress"),     
-         path_css('Web_Basic-Cypress.css'), None, [], []],
+         path_css('Web_Basic-Cypress.css'), None, [], [] ],
 
         # basic Lilac style sheet
         ["Basic-Lilac",   1, _("Basic-Lilac"),       
-         path_css('Web_Basic-Lilac.css'),   None, [], []],
+         path_css('Web_Basic-Lilac.css'),   None, [], [] ],
 
         # basic Peach style sheet
         ["Basic-Peach",   1, _("Basic-Peach"),       
-         path_css('Web_Basic-Peach.css'),   None, [], []],
+         path_css('Web_Basic-Peach.css'),   None, [], [] ],
 
         # basic Spruce style sheet
         ["Basic-Spruce",  1, _("Basic-Spruce"),      
-         path_css('Web_Basic-Spruce.css'),  None, [], []],
+         path_css('Web_Basic-Spruce.css'),  None, [], [] ],
 
         # Mainz style sheet with its images
         ["Mainz",         1, _("Mainz"),             
@@ -86,11 +86,11 @@ def load_on_reg(dbstate, uistate, plugin):
          [path_img("Web_Mainz_Bkgd.png"), 
           path_img("Web_Mainz_Header.png"), 
           path_img("Web_Mainz_Mid.png"), 
-          path_img("Web_Mainz_MidLight.png")], []],
+          path_img("Web_Mainz_MidLight.png")], [] ],
 
         # Nebraska style sheet
         ["Nebraska",      1, _("Nebraska"),          
-         path_css('Web_Nebraska.css'),      None, [], []],
+         path_css('Web_Nebraska.css'),      None, [], [] ],
 
         # Visually Impaired style sheet with its navigation menus
         ["Visually Impaired", 1, _("Visually Impaired"), 
@@ -119,12 +119,12 @@ def load_on_reg(dbstate, uistate, plugin):
          path_css('Web_Print-Default.css'), None, [], [] ],
 
         # vertical navigation style sheet
-        ["Vertica-Menusl", 0, "", 
+        ["Vertical-Menus", 0, "", 
          path_css('Web_Vertical-Menus.css'), None, [], [] ],
 
         # horizontal navigation style sheet
         ["Horizontal-Menus", 0, "", 
-         path_css('Web_Horizontal-Menus.css'), None, [], []],
+         path_css('Web_Horizontal-Menus.css'), None, [], [] ],
 
         # GeoView style sheet with its image
         ["GeoView", 0, "GeoView", 
@@ -142,21 +142,20 @@ def load_on_reg(dbstate, uistate, plugin):
         # all other images for use in NarrativeWeb
         ['All Images', 0, 'All Images', None, None, 
          [path_img("blank.gif"),
-          path_img("document.png")], []],
+          path_img("document.png")], [] ],
 
         # Gramps Fav icon #2
         ["favicon2", 0, "favicon2", 
-         path_img("favicon2.ico"), None, [], []],
+         path_img("favicon2.ico"), None, [], [] ],
 
         # copyright image
         ['Copyright', 0, 'Copyright',
-         path_img("somerights20.gif"), None, [], []],
+         path_img("somerights20.gif"), None, [], [] ],
 
         # document image in case the media object is not an image
         ['Document', 0, 'Document',
-         path_img("document.png"), None, [], []],
+         path_img("document.png"), None, [], [] ],
         ]
-
     return CSS_FILES
 
 def process_list(data):
