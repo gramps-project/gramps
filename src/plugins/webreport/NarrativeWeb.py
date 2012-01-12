@@ -1594,8 +1594,7 @@ class BasePage(object):
         menu_items = [[url, text] for url, text in navs]
 
         number_items = len(menu_items)
-
-        num_cols = 16
+        num_cols = 10
         num_rows = (number_items // num_cols) + 1
 
         # begin navigation menu division...
@@ -1611,9 +1610,11 @@ class BasePage(object):
                     while (cols <= num_cols and index < number_items):
                         url_fname, nav_text = menu_items[index]
 
+                        # check for web page file extension?
                         if not _has_webpage_extension(url_fname):
                             url_fname += self.ext
 
+                        # get menu item url and begin hyperlink...
                         url = self.report.build_url_fname(url_fname, None, self.up)
                         hyper = Html("a", nav_text, href = url, title = nav_text)
 
@@ -1622,7 +1623,7 @@ class BasePage(object):
                         # Use 'self.report.cur_fname' to determine 'CurrentSection' for individual
                         # elements for Navigation styling.
 
-                        # Figure out if we need <li class="CurrentSection"> of just <li>
+                        # Figure out if we need <li class = "CurrentSection"> or just <li>
                         check_cs = False
                         if nav_text == currentsection:
                             check_cs = True
@@ -1655,14 +1656,15 @@ class BasePage(object):
                         check_cs = 'class = "CurrentSection"' if check_cs else False
                         if check_cs:
                             unordered.extend(
-                                Html("li", hyper, attr = check_cs)
+                                Html("li", hyper, attr = check_cs, inline = True)
                             )
                         else: 
                             unordered.extend(
-                                Html("li", hyper)
+                                Html("li", hyper, inline = True)
                             )
                         index += 1
                         cols += 1
+
                     container += unordered
                 navigation += container
         return navigation
