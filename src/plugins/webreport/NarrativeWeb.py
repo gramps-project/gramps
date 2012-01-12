@@ -4357,12 +4357,12 @@ class SourcePage(BasePage):
                 (citation_list, citation_referents_list) = the_lists
 
                 # begin Citation Referents and section title
-                with Html("div", class_ ="subsection", id ="SourceCitationReferents") as section:
+                with Html("div", class_ ="subsection", id = "SourceCitationReferents") as section:
                     sourcedetail += section
                     section += Html("h4", _("Citation References"), inline =True)
 
-                    # ordered list #1, Citation Volume/ Page...
-                    ordered1 = Html("ol", class_ = "Col1")
+                    # ordered and list item #1, Citation Volume/ Page...
+                    ordered1 = Html("ol", class_ = "Col1 Volume-n-Page")
 
                     for (citation_handle, refs) in citation_referents_list:
                         citation = self.dbase_.get_citation_from_handle(citation_handle)
@@ -4414,7 +4414,7 @@ class SourcePage(BasePage):
                                 ordered2 += list2
 
                             # Citation Referents have Family Objects...
-                            if family_list:
+                            if (self.inc_families and family_list):
 
                                 list2 = Html("li", _("Families"))
 
@@ -4477,7 +4477,7 @@ class SourcePage(BasePage):
 
                                     list3 = Html("li", event_type)
 
-                                    # Ordered list4, Event Date...
+                                    # Ordered and list item #4, Event Date...
                                     ordered4 = Html("ol", class_ = "Col4 EventDate")
 
                                     for (sort_value, event_handle) in data_list:
@@ -4539,7 +4539,7 @@ class SourcePage(BasePage):
 
                                 for repository_handle in repo_list:
                                     repository = self.dbase_.get_repository_from_handle(repository_handle)
-                                    if repository:
+                                    if (repository and repository_handle in db_repository_handles):
                                         ordered3.extend(
                                             Html("li", self.repository_link(repository_handle, repository.get_name(),
                                                                             repository.get_gramps_id(), self.up))
@@ -4558,9 +4558,9 @@ class SourcePage(BasePage):
                                 for media_handle in media_list:
                                     media = self.dbase_.get_object_from_handle(media_handle)
                                     if (media and media_handle in db_media_handles):
-                                        mime_type = gen.mime.get_description(media.get_mime_type())
+                                        mime_type = media.get_mime_type()
                                         if mime_type:
-                                            if mime_type.startswith("image"):
+                                            if mime_type.startswith("image/"):
                                                 real_path, newpath = self.report.prepare_copy_media(media)
                                                 newpath = self.report.build_url_fname(newpath, up = self.up)
 
