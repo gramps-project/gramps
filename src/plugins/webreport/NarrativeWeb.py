@@ -3473,12 +3473,11 @@ class EventListPage(BasePage):
                     first_letter = True
                     _EVENT_DISPLAYED = []
 
-                    # sort datalist by date of event
-                    data_list = sorted(data_list, key = self._getEventDate)
+                    # sort datalist by date of event and by event handle...
+                    data_list = sorted(data_list, key = operator.itemgetter(0, 1))
                     first_event = True
 
-                    while data_list:
-                        event_handle = data_list[0]
+                    for (sort_value, event_handle) in data_list:
                         event = self.dbase_.get_event_from_handle(event_handle)
                         _type = event.get_type()
                         gid = event.get_gramps_id()
@@ -3559,7 +3558,6 @@ class EventListPage(BasePage):
 
                         _EVENT_DISPLAYED.append( gid )
                         first_event = False
-                        data_list.remove(str(event_handle))
 
         # add clearline for proper styling
         # add footer section
@@ -4273,24 +4271,22 @@ class SourceListPage(BasePage):
 #
 #################################################
 class SourcePage(BasePage):
-    def __init__(self, report, title, source_handle, src_list, ppl_handle_list):
+    def __init__(self, report, title, src_handle, src_list, ppl_handle_list, database_handles_list):
         self.dbase_ = report.database
-        source = self.dbase_.get_source_from_handle(source_handle)
+        source = self.dbase_.get_source_from_handle(src_handle)
         if not source:
             return
+
+        # for use in determining if a citation referent is in the report database?
+        (db_family_handles, db_event_handles, db_place_handles, db_source_handles, db_repository_handles,
+            db_media_handles, db_note_handles) = database_handles_list
 
         self.page_title = source.get_title()
         BasePage.__init__(self, report, title, source.get_gramps_id())
 
         inc_repositories = self.report.options["inc_repository"]
 
-        db_family_handles = self.dbase_.iter_family_handles()
-        db_event_handles = self.dbase_.iter_event_handles()
-        db_place_handles = self.dbase_.iter_place_handles()
-        db_source_handles = self.dbase_.iter_source_handles()
-        db_media_object_handles = self.dbase_.iter_media_object_handles()
-
-        of = self.report.create_file(source_handle, "src")
+        of = self.report.create_file(src_handle, "src")
         self.up = True
         sourcepage, head, body = self.write_header(_('Sources'))
 
@@ -4356,7 +4352,7 @@ class SourcePage(BasePage):
                     sourcedetail += repo_list
 
             # get the Source and its Citation Referents too...
-            the_lists = Utils.get_source_and_citation_referents(source_handle, self.dbase_)
+            the_lists = Utils.get_source_and_citation_referents(src_handle, self.dbase_)
             if the_lists:
                 (citation_list, citation_referents_list) = the_lists
 
@@ -4374,14 +4370,6 @@ class SourcePage(BasePage):
 
                             # gets all citation referents no matter on the filters...
                             (people_list, family_list, event_list, place_list, source_list, media_list, repo_list) = refs
-
-                            # only add the handle if it is part of this report database?
-                            people_list = [phandle for phandle in people_list if phandle in ppl_handle_list]
-                            family_list = [fhandle for fhandle in family_list if fhandle in db_family_handles]
-                            event_list = [ehandle for ehandle in event_list if ehandle in db_event_handles]
-                            place_lost = [phandle for phandle in place_list if phandle in db_place_handles]
-                            source_list = [shandle for shandle in source_list if shandle in db_source_handles]
-                            media_list = [mhandle for mhandle in media_list if mhandle in db_media_object_handles]
 
                             # Sort the person list by  the individual's surname...
                             people_list = sort_people(self.dbase_, people_list)
@@ -4435,7 +4423,7 @@ class SourcePage(BasePage):
 
                                 for family_handle in family_list:
                                     family = self.dbase_.get_family_from_handle(family_handle)
-                                    if family:
+                                    if (family and family_handle in db_family_handles):
                                         husband, spouse = [None]*2
 
                                         husband_handle = family.get_father_handle()
@@ -4482,25 +4470,26 @@ class SourcePage(BasePage):
                                 ordered3 = Html("ol", class_ = "Col3 EventType")
 
                                 # separate events by their types and then thier event handles
-                                for (evt_type, handle_list) in sort_event_types(self.dbase_, event_types, event_handle_list):
+                                for (event_type, data_list) in sort_event_types(self.dbase_, event_types, event_handle_list):
 
-                                    # sort data_list by date of event
-#                                   data_list = sorted(data_list, key = self._getEventDate)
+                                    # sort data_list by date of event and event handle...
+                                    data_list = sorted(data_list, key = operator.itemgetter(0, 1))
 
-                                    list3 = Html("li", evt_type)
+                                    list3 = Html("li", event_type)
 
                                     # Ordered list4, Event Date...
                                     ordered4 = Html("ol", class_ = "Col4 EventDate")
 
-                                    for event_handle in handle_list:
+                                    for (sort_value, event_handle) in data_list:
                                         event = self.dbase_.get_event_from_handle(event_handle)
-                                        if event:
+                                        if (event and event_handle in db_event_handles):
                                             ordered4.extend(
-                                                Html("li", self.event_link(event_handle, _dd.display(event.get_date_object()) or evt_type,
-                                                                           event.get_gramps_id(), self.up))
+                                                Html("li", self.event_link(event_handle,
+                                                           _dd.display(event.get_date_object()) or event_type,
+                                                           event.get_gramps_id(), self.up))
                                             )
-                                        list3 += ordered4
-                                        ordered3 += list3
+                                    list3 += ordered4
+                                    ordered3 += list3
                                 list2 += ordered3
                                 ordered2 += list2
 
@@ -4514,7 +4503,7 @@ class SourcePage(BasePage):
 
                                 for place_handle in place_list:
                                     place = self.dbase_.get_place_from_handle(place_handle)
-                                    if place:
+                                    if (place and place_handle in db_place_handles):
                                         ordered3.extend(
                                             Html("li", self.place_link(place_handle, place.get_title(),
                                                                        place.get_gramps_id(), self.up))
@@ -4532,7 +4521,7 @@ class SourcePage(BasePage):
 
                                 for source_handle in source_list:
                                     source = self.dbase_.get_source_from_handle(source_handle)
-                                    if source:
+                                    if (source and source_handle in db_source_handles):
                                         ordered3.extend(
                                             Html("li", self.source_link(source_handle, source.get_title(),
                                                                         source.get_gramps_id(), self.up))
@@ -4555,7 +4544,6 @@ class SourcePage(BasePage):
                                             Html("li", self.repository_link(repository_handle, repository.get_name(),
                                                                             repository.get_gramps_id(), self.up))
                                         )
-
                                 list2 += ordered3
                                 ordered2 += list2
 
@@ -4569,7 +4557,7 @@ class SourcePage(BasePage):
 
                                 for media_handle in media_list:
                                     media = self.dbase_.get_object_from_handle(media_handle)
-                                    if media:
+                                    if (media and media_handle in db_media_handles):
                                         mime_type = gen.mime.get_description(media.get_mime_type())
                                         if mime_type:
                                             if mime_type.startswith("image"):
@@ -6770,6 +6758,10 @@ class NavWebReport(Report):
         place_list = {}
         source_list = {}
 
+        database_handles_list = (self.database.get_family_handles(), self.database.get_event_handles(),
+            self.database.get_place_handles(), self.database.get_source_handles(), self.database.get_repository_handles(),
+            self.database.get_media_object_handles(), self.database.get_note_handles())
+
         self.base_pages()
 
         # build classes IndividualListPage and IndividualPage
@@ -6791,7 +6783,7 @@ class NavWebReport(Report):
 
         # build classes SourceListPage and SourcePage
         # has been moved so that all Sources can be found before processing...
-        self.source_pages(source_list, ind_list)
+        self.source_pages(source_list, ind_list, database_handles_list)
 
         # build classes RepositoryListPage and RepositoryPage
         if self.inc_repository:
@@ -6809,7 +6801,7 @@ class NavWebReport(Report):
 
         # Build classes source pages a second time to pick up sources referenced
         # by galleries
-        self.source_pages(source_list, ind_list)
+        self.source_pages(source_list, ind_list, database_handles_list)
 
         # build classes ddressBookList and AddressBookPage
         if self.inc_addressbook:
@@ -7150,7 +7142,7 @@ class NavWebReport(Report):
             self.user.step_progress()
         self.user.end_progress()
 
-    def source_pages(self, source_list, ppl_handle_list):
+    def source_pages(self, source_list, ppl_handle_list, database_handles_list):
         """
         creates SourceListPage and SourcePage
         """
@@ -7160,7 +7152,7 @@ class NavWebReport(Report):
         SourceListPage(self, self.title, source_list.keys())
 
         for source_handle in source_list:
-            SourcePage(self, self.title, source_handle, source_list, ppl_handle_list)
+            SourcePage(self, self.title, source_handle, source_list, ppl_handle_list, database_handles_list)
 
             self.user.step_progress()
         self.user.end_progress()
@@ -7965,16 +7957,17 @@ def sort_event_types(dbase, event_types, event_handle_list):
     @param: event_handle_list -- all event handles in this database
     """
 
-    event_dict = dict( (evt_type, []) for evt_type in event_types)
+    event_dict = dict((evt_type, list()) for evt_type in event_types)
 
-    for handle in event_handle_list:
+    for event_handle in event_handle_list:
 
-        event = dbase.get_event_from_handle(handle)
-        etype = str(event.type)
+        event = dbase.get_event_from_handle(event_handle)
+        event_type = str(event.get_type())
 
         # add (gramps_id, date, handle) from this event
-        if etype in event_dict:
-            event_dict[etype].append( handle )
+        if event_type in event_dict:
+            sort_value = event.get_date_object().get_sort_value()
+            event_dict[event_type].append((sort_value, event_handle))
 
     for tup_list in event_dict.values():
         tup_list.sort()
@@ -7982,6 +7975,7 @@ def sort_event_types(dbase, event_types, event_handle_list):
     # return a list of sorted tuples, one per event
     retval = [(event_type, event_list) for (event_type, event_list) in event_dict.iteritems()]
     retval.sort(key=lambda item: str(item[0]))
+
     return retval
 
 # Modified _get_regular_surname from WebCal.py to get prefix, first name, and suffix
