@@ -1591,65 +1591,80 @@ class BasePage(object):
 
         # Remove menu sections if they are not being created?
         navs = ((u, n) for u, n, c in navs if c)
+        menu_items = [[url, text] for url, text in navs]
+
+        number_items = len(menu_items)
+
+        num_cols = 16
+        num_rows = (number_items // num_cols) + 1
 
         # begin navigation menu division...
-        with Html("div", id ="nav", role = "Navigation") as navigation:
-            
-            unordered = Html("ul")
-            navigation += unordered
+        with Html("div", class_ = "wrapper", id = "nav", role = "navigation") as navigation:
 
-            for (url_fname, nav_text) in navs:
+            with Html("div", class_ = "container") as container:
 
-                if not _has_webpage_extension(url_fname):
-                    url_fname += self.ext
+                index = 0
+                for rows in range(num_rows):
+                    unordered = Html("ul", class_ = "menu")
 
-                url = self.report.build_url_fname(url_fname, None, self.up)
-                hyper = Html("a", nav_text, href = url, title = nav_text)
+                    cols = 0
+                    while (cols <= num_cols and index < number_items):
+                        url_fname, nav_text = menu_items[index]
 
-                # Define 'currentsection' to correctly set navlink item CSS id
-                # 'CurrentSection' for Navigation styling.
-                # Use 'self.report.cur_fname' to determine 'CurrentSection' for individual
-                # elements for Navigation styling.
+                        if not _has_webpage_extension(url_fname):
+                            url_fname += self.ext
 
-                # Figure out if we need <li class="CurrentSection"> of just <li>
-                check_cs = False
-                if nav_text == currentsection:
-                    check_cs = True
-                elif nav_text == _("Surnames"):
-                    if "srn" in self.report.cur_fname:
-                        check_cs = True
-                    elif _("Surnames") in currentsection:
-                        check_cs = True
-                elif nav_text == _("Individuals"):
-                    if "ppl" in self.report.cur_fname:
-                        check_cs = True
-                elif nav_text == _("Families"):
-                    if "fam" in self.report.cur_fname:
-                        check_cs = True
-                elif nav_text == _("Sources"):
-                    if "src" in self.report.cur_fname:
-                        check_cs = True
-                elif nav_text == _("Places"):
-                    if "plc" in self.report.cur_fname:
-                        check_cs = True
-                elif nav_text == _("Events"):
-                    if "evt" in self.report.cur_fname:
-                        check_cs = True 
-                elif nav_text == _("Media"):
-                    if "img" in self.report.cur_fname:
-                        check_cs = True
-                elif nav_text == _("Address Book"):
-                    if "addr" in self.report.cur_fname:
-                        check_cs = True 
-                check_cs = 'class = "CurrentSection"' if check_cs else False
-                if check_cs:
-                    unordered.extend(
-                        Html("li", hyper, attr = check_cs, inline = True)
-                    )
-                else: 
-                    unordered.extend(
-                        Html("li", hyper, inline = True)
-                    )
+                        url = self.report.build_url_fname(url_fname, None, self.up)
+                        hyper = Html("a", nav_text, href = url, title = nav_text)
+
+                        # Define 'currentsection' to correctly set navlink item CSS id
+                        # 'CurrentSection' for Navigation styling.
+                        # Use 'self.report.cur_fname' to determine 'CurrentSection' for individual
+                        # elements for Navigation styling.
+
+                        # Figure out if we need <li class="CurrentSection"> of just <li>
+                        check_cs = False
+                        if nav_text == currentsection:
+                            check_cs = True
+                        elif nav_text == _("Surnames"):
+                            if "srn" in self.report.cur_fname:
+                                check_cs = True
+                            elif _("Surnames") in currentsection:
+                                check_cs = True
+                        elif nav_text == _("Individuals"):
+                            if "ppl" in self.report.cur_fname:
+                                check_cs = True
+                        elif nav_text == _("Families"):
+                            if "fam" in self.report.cur_fname:
+                                check_cs = True
+                        elif nav_text == _("Sources"):
+                            if "src" in self.report.cur_fname:
+                                check_cs = True
+                        elif nav_text == _("Places"):
+                            if "plc" in self.report.cur_fname:
+                                check_cs = True
+                        elif nav_text == _("Events"):
+                            if "evt" in self.report.cur_fname:
+                                check_cs = True 
+                        elif nav_text == _("Media"):
+                            if "img" in self.report.cur_fname:
+                                check_cs = True
+                        elif nav_text == _("Address Book"):
+                            if "addr" in self.report.cur_fname:
+                                check_cs = True 
+                        check_cs = 'class = "CurrentSection"' if check_cs else False
+                        if check_cs:
+                            unordered.extend(
+                                Html("li", hyper, attr = check_cs)
+                            )
+                        else: 
+                            unordered.extend(
+                                Html("li", hyper)
+                            )
+                        index += 1
+                        cols += 1
+                    container += unordered
+                navigation += container
         return navigation
 
     def add_image(self, option_name, height = 0):
@@ -6865,9 +6880,12 @@ class NavWebReport(Report):
         # copy Menu Layout stylesheet if Blue or Visually is being used?
         if CSS[self.css]["navigation"]: 
             if self.navigation == "Horizontal":
-                fname = CSS["Horizontal-Menus"]["filename"] 
+                fname = CSS["Horizontal-Menus"]["filename"]
+
+            elif self.navigation == "Vertical":
+                fname = CSS["Vertical-Menus"]["filename"]
             else:
-                fname = CSS["Vertical-Menus"]["filename"] 
+                fname = CSS["Fade-Menus"]["filename"]
             self.copy_file(fname, "narrative-menus.css", "styles")
 
         # copy narrative-maps if Place or Family Map pages?
@@ -7512,8 +7530,9 @@ class NavWebOptions(MenuReportOptions):
         self.__css.connect("value-changed", self.__stylesheet_changed)
 
         _nav_opts = [
-            [_("Horizontal -- No Change"), "Horizontal"],
-            [_("Vertical"),                "Vertical"]
+            (_("Horizontal - Default"),   "Horizontal"),
+            (_("Vertical"),               "Vertical"),
+            (_("Fade - WebKit browsers"), "Fade")
             ]
         self.__navigation = EnumeratedListOption(_("Navigation Menu Layout"), _nav_opts[0][1])
         for layout in _nav_opts:

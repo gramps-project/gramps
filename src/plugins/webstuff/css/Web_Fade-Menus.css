@@ -1,0 +1,131 @@
+/*
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2012    Rob G. Healey <robhealey1@gmail.com>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful, 
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+# $Id$
+#
+*************************************************
+GRAMPS Cascading Style Sheet
+Style Name: Fade-Menus Style Sheet
+*************************************************
+
+    Body Element
+------------------------------------------------------ */
+body {
+    background-color: #00029D;
+    color: #00029D;
+    width: 100%;
+}
+
+/*    Header
+------------------------------------------------------ */
+div#header {
+    border-bottom: solid 8px #13A926;
+}
+
+/*    Fade Horizontal Navigation Menu
+------------------------------------------------------ */
+div.wrapper {
+    width: 100%;
+    height: 50px;
+    background : #464646;
+    background : -webkit-gradient(linear, left top, left bottombottom, from(rgb(168,168,168)), to(rgb(69,69,69)));
+    background : -moz-linear-gradient(top, rgb(168,168,168), rgb(69,69,69));
+    border-top: 2px solid #939393;
+    position: relative;
+}
+ul {
+    margin: 0;
+    padding: 0;
+}
+ul.menu {
+    height: 80px;
+    border-left: 1px solid rgba(0,0,0,0.3);
+    border-right: 1px solid rgba(255,255,255,0.3);
+    float: left;
+}
+ul.menu li {
+    list-style-type: none;
+    float: left;
+    height: 45px;
+    text-align: center;
+    background: -webkit-gradient(radial, 50% 100%, 10, 50% 50%, 90, from(rgba(31,169,244,1)), to(rgba(0,28,78, 1)) );
+    background: -moz-radial-gradient(center 80px 45deg, circle cover, rgba(31,169,244,1) 0%, rgba(0,28,78, 1) 100%);
+}
+ul li a {
+    font: bold .9em "Helvetica, Courier, Arial, sans-serif, sans";
+    display: block;
+    padding: 0 6px;
+    border-left: 1px solid rgba(255,255,255,0.1);
+    border-right: 1px solid rgba(0,0,0,0.1);
+    text-align: center;
+    line-height: 45px;
+    background : -webkit-gradient(linear, left top, left bottombottom, from(rgb(168,168,168)), to(rgb(69,69,69)));
+    background : -moz-linear-gradient(top, rgb(168,168,168), rgb(69,69,69));
+    -webkit-transition-property: background;
+    -webkit-transition-duration: 700ms;
+    -moz-transition-property: background;
+    -moz-transition-duration: 700ms;
+    text-decoration: none;
+}
+ul li a:hover {
+    background: transparent none;
+    color: #FFF;
+}
+ul li.CurrentSection a {
+    background: -webkit-gradient(radial, 50% 100%, 10, 50% 50%, 90, from(rgba(31,169,244,1)), to(rgba(0,28,78, 1)) );
+    background: -moz-radial-gradient(center 80px 45deg, circle cover, rgba(31,169,244,1) 0%, rgba(0,28,78, 1) 100%);
+    Color: #FFF;
+}
+
+/*    Alphabet Navigation Menu
+------------------------------------------------------ */
+div#alphanav {
+    clear: both;
+    padding-top: 1px;
+    font: bold 1.2em/1.4 "sans, sans-serif";
+}
+div#alphanav ul {
+    float: left;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    background: #00029D;
+    border-top: 2px solid #13A926;
+    border-bottom: 2px solid #13A926;
+}
+div#alphanav li {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+div#alphanav a {
+    display: block;
+    float: left;
+    padding: 6px 12px;
+    border-right: 1px solid #13A926;
+    border-left: 1px solid #13A926;
+    color: #FFF;
+    text-decoration: none;
+}
+div#alphanav a:hover, div#alphanav a:focus {
+    background: #FFF;
+    color: #000;
+}
