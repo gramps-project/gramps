@@ -731,7 +731,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
             if data:
                 self.add_row(handle, data)
             else:
-                self.add_secondary_row(handle, self.map2(handle))
+                self.add_row2(handle, self.map2(handle))
 
         _LOG.debug(self.__class__.__name__ + ' add_row_by_handle ' +
                     str(time.clock() - cput) + ' sec')

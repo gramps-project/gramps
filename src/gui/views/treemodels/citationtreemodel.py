@@ -181,14 +181,6 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
         if self.get_node(data[5]):
             self.add_node(data[5], handle, sort_key, handle, secondary=True)
 
-    def add_secondary_row(self, handle, data):
-        """
-        Add a secondary node to the node map for a citation.
-        """
-        # parameters are parent, child, sortkey, handle
-        self.add_node(self.citation_source(data), handle, 
-                      self.citation_page(data), handle, secondary=True)
-
     def on_get_n_columns(self):
         return len(self.fmap)+1
 
