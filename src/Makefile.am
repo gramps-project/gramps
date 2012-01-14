@@ -1,5 +1,5 @@
 # This is the src level Makefile for Gramps
-# $Id: Makefile.am 16464 2011-01-24 21:50:06Z bmcage $
+# $Id$
 
 SUBDIRS = \
 	cli \

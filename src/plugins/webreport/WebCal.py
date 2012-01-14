@@ -99,7 +99,8 @@ class WebCalReport(Report):
     """
     def __init__(self, database, options, user):
         Report.__init__(self, database, options, user)
-        mgobn = lambda name:options.menu.get_option_by_name(name).get_value()
+        get_option_by_name = options.menu.get_option_by_name
+        mgobn = lambda name:get_option_by_name(name).get_value()
         self._user = user
 
         # class to do conversion of styled notes to html markup
@@ -1284,26 +1285,27 @@ class WebCalOptions(MenuReportOptions):
         Options on the "Report Options" tab.
         """
         category_name = _("Report Options")
+        add_option = partial(menu.add_option, category_name)
 
         target = DestinationOption( _("Destination"),
                                     os.path.join(const.USER_HOME, "WEBCAL"))
         target.set_help( _("The destination directory for the web files"))
         target.set_directory_entry(True)
-        menu.add_option(category_name, "target", target)
+        add_option("target", target)
 
         title = StringOption(_('Calendar Title'), _('My Family Calendar'))
         title.set_help(_("The title of the calendar"))
-        menu.add_option(category_name, "title", title)
+        add_option("title", title)
 
         self.__filter = FilterOption(_("Filter"), 0)
         self.__filter.set_help(
                _("Select filter to restrict people that appear on calendar"))
-        menu.add_option(category_name, "filter", self.__filter)
+        add_option("filter", self.__filter)
         self.__filter.connect('value-changed', self.__filter_changed)
 
         self.__pid = PersonOption(_("Filter Person"))
         self.__pid.set_help(_("The center person for the filter"))
-        menu.add_option(category_name, "pid", self.__pid)
+        add_option("pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
 
         self.__update_filters()
@@ -1322,19 +1324,19 @@ class WebCalOptions(MenuReportOptions):
         for num, name, fmt_str, act in fmt_list:
             name_format.add_item(num, name)
         name_format.set_help(_("Select the format to display names"))
-        menu.add_option(category_name, "name_format", name_format)
+        add_option("name_format", name_format)
 
         ext = EnumeratedListOption(_("File extension"), ".html" )
         for etype in _WEB_EXT:
             ext.add_item(etype, etype)
         ext.set_help( _("The extension to be used for the web files"))
-        menu.add_option(category_name, "ext", ext)
+        add_option("ext", ext)
 
         cright = EnumeratedListOption(_('Copyright'), 0 )
         for index, copt in enumerate(_COPY_OPTIONS):
             cright.add_item(index, copt)
         cright.set_help( _("The copyright to be used for the web files"))
-        menu.add_option(category_name, "cright", cright)
+        add_option("cright", cright)
 
         css_list = sorted([(CSS[key]["translation"], CSS[key]["id"]) 
                             for key in CSS.keys()
@@ -1343,33 +1345,34 @@ class WebCalOptions(MenuReportOptions):
         for css_item in css_list:                              
             css.add_item(css_item[1], css_item[0])
         css.set_help( _('The stylesheet to be used for the web pages'))
-        menu.add_option(category_name, "css", css)
+        add_option("css", css)
 
     def __add_content_options(self, menu):
         """
         Options on the "Content Options" tab.
         """
         category_name = _("Content Options")
+        add_option = partial(menu.add_option, category_name)
 
         # set to today's date for use in menu, etc.
         today = gen.lib.date.Today()
 
         self.__multiyear = BooleanOption(_('Create multiple year calendars'), False)
         self.__multiyear.set_help(_('Whether to create Multiple year calendars or not.'))
-        menu.add_option(category_name, 'multiyear', self.__multiyear)
+        add_option('multiyear', self.__multiyear)
         self.__multiyear.connect('value-changed', self.__multiyear_changed) 
 
         self.__start_year = NumberOption(_('Start Year for the Calendar(s)'), today.get_year(),
             1900, 3000)
         self.__start_year.set_help(_('Enter the starting year for the calendars '
                                      'between 1900 - 3000'))
-        menu.add_option(category_name, 'start_year', self.__start_year)
+        add_option('start_year', self.__start_year)
 
         self.__end_year = NumberOption(_('End Year for the Calendar(s)'), today.get_year(),
              1900, 3000)
         self.__end_year.set_help(_('Enter the ending year for the calendars '
                                    'between 1900 - 3000.'))
-        menu.add_option(category_name, 'end_year', self.__end_year)
+        add_option('end_year', self.__end_year)
 
         self.__multiyear_changed()
 
@@ -1386,7 +1389,7 @@ class WebCalOptions(MenuReportOptions):
             count += 1
         country.set_help(_("Holidays will be included for the selected "
                             "country"))
-        menu.add_option(category_name, "country", country)
+        add_option("country", country)
 
         maiden_name = EnumeratedListOption(_("Birthday surname"), "own")
         maiden_name.add_item('spouse_first', _("Wives use husband's surname "
@@ -1395,120 +1398,121 @@ class WebCalOptions(MenuReportOptions):
                              "(from last family listed)"))
         maiden_name.add_item("own", _("Wives use their own surname"))
         maiden_name.set_help(_("Select married women's displayed surname"))
-        menu.add_option(category_name, "maiden_name", maiden_name)
+        add_option("maiden_name", maiden_name)
 
         # Default selection ????
         start_dow = EnumeratedListOption(_("First day of week"), 1)
         for count in range(1, 8):
             start_dow.add_item(count, GrampsLocale.long_days[count].capitalize()) 
         start_dow.set_help(_("Select the first day of the week for the calendar"))
-        menu.add_option(category_name, "start_dow", start_dow)
+        add_option("start_dow", start_dow)
 
         home_link = StringOption(_('Home link'), '../../NAVWEB/index.html')
         home_link.set_help(_("The link to be included to direct the user to "
                          "the main page of the web site"))
-        menu.add_option(category_name, "home_link", home_link)
+        add_option("home_link", home_link)
 
         alive = BooleanOption(_("Include only living people"), True)
         alive.set_help(_("Include only living people in the calendar"))
-        menu.add_option(category_name, "alive", alive)
+        add_option("alive", alive)
 
         birthdays = BooleanOption(_("Include birthdays"), True)
         birthdays.set_help(_("Include birthdays in the calendar"))
-        menu.add_option(category_name, "birthdays", birthdays)
+        add_option("birthdays", birthdays)
 
         anniversaries = BooleanOption(_("Include anniversaries"), True)
         anniversaries.set_help(_("Include anniversaries in the calendar"))
-        menu.add_option(category_name, "anniversaries", anniversaries)
+        add_option("anniversaries", anniversaries)
 
     def __add_notes_options(self, menu):
         """
         Options on the "Months Notes" tabs.
         """
         category_name = _("Jan - Jun Notes")
+        add_option = partial(menu.add_option, category_name)
 
         note_jan = NoteOption(_('January Note'))
         note_jan.set_help(_("The note for the month of January"))
-        menu.add_option(category_name, "note_jan", note_jan)
+        add_option("note_jan", note_jan)
 
         note_feb = NoteOption(_('February Note'))
         note_feb.set_help(_("The note for the month of February"))
-        menu.add_option(category_name, "note_feb", note_feb)
+        add_option("note_feb", note_feb)
 
         note_mar = NoteOption(_('March Note'))
         note_mar.set_help(_("The note for the month of March"))
-        menu.add_option(category_name, "note_mar", note_mar)
+        add_option("note_mar", note_mar)
 
         note_apr = NoteOption(_('April Note'))
         note_apr.set_help(_("The note for the month of April"))
-        menu.add_option(category_name, "note_apr", note_apr)
+        add_option("note_apr", note_apr)
 
         note_may = NoteOption(_('May Note'))
         note_may.set_help(_("The note for the month of May"))
-        menu.add_option(category_name, "note_may", note_may)
+        add_option("note_may", note_may)
 
         note_jun = NoteOption(_('June Note'))
         note_jun.set_help(_("The note for the month of June"))
-        menu.add_option(category_name, "note_jun", note_jun)
+        add_option("note_jun", note_jun)
 
         category_name = _("Jul - Dec Notes")
 
         note_jul = NoteOption(_('July Note'))
         note_jul.set_help(_("The note for the month of July"))
-        menu.add_option(category_name, "note_jul", note_jul)
+        add_option("note_jul", note_jul)
 
         note_aug = NoteOption(_('August Note'))
         note_aug.set_help(_("The note for the month of August"))
-        menu.add_option(category_name, "note_aug", note_aug)
+        add_option("note_aug", note_aug)
 
         note_sep = NoteOption(_('September Note'))
         note_sep.set_help(_("The note for the month of September"))
-        menu.add_option(category_name, "note_sep", note_sep)
+        add_option("note_sep", note_sep)
 
         note_oct = NoteOption(_('October Note'))
         note_oct.set_help(_("The note for the month of October"))
-        menu.add_option(category_name, "note_oct", note_oct)
+        add_option("note_oct", note_oct)
 
         note_nov = NoteOption(_('November Note'))
         note_nov.set_help(_("The note for the month of November"))
-        menu.add_option(category_name, "note_nov", note_nov)
+        add_option("note_nov", note_nov)
 
         note_dec = NoteOption(_('December Note'))
         note_dec.set_help(_("The note for the month of December"))
-        menu.add_option(category_name, "note_dec", note_dec)
+        add_option("note_dec", note_dec)
 
     def __add_advanced_options(self, menu):
         """
         Options for the advanced menu
         """
-
         category_name = _('Advanced Options')
+        add_option = partial(menu.add_option, category_name)
 
         encoding = EnumeratedListOption(_('Character set encoding'), _CHARACTER_SETS[0][1])
         for eopt in _CHARACTER_SETS:
             encoding.add_item(eopt[1], eopt[0])
         encoding.set_help( _('The encoding to be used for the web files'))
-        menu.add_option(category_name, "encoding", encoding)
+        add_option("encoding", encoding)
 
         fullyear = BooleanOption(_('Create "Year At A Glance" Calendar'), False)
         fullyear.set_help(_('Whether to create A one-page mini calendar '
                             'with dates highlighted'))
-        menu.add_option(category_name, 'fullyear', fullyear)
+        add_option('fullyear', fullyear)
 
         makeoneday = BooleanOption(_('Create one day event pages for'
                                      ' Year At A Glance calendar'), False)
         makeoneday.set_help(_('Whether to create one day pages or not'))
-        menu.add_option(category_name, 'makeoneday', makeoneday)  
+        add_option('makeoneday', makeoneday)  
 
         self.__links = BooleanOption(_('Link to Narrated Web Report'), False)
         self.__links.set_help(_('Whether to link data to web report or not'))
-        menu.add_option(category_name, 'link_to_narweb', self.__links)  
+        add_option('link_to_narweb', self.__links)  
         self.__links.connect('value-changed', self.__links_changed)
 
         self.__prefix = StringOption(_('Link prefix'), "../../NAVWEB/")
         self.__prefix.set_help(_("A Prefix on the links to take you to "
                                  "Narrated Web Report"))
-        menu.add_option(category_name, "prefix", self.__prefix)
+        add_option("prefix", self.__prefix)
 
         self.__links_changed()
 

@@ -181,7 +181,7 @@ class Html(list):
             )
 #
     @staticmethod
-    def head(title=None, encoding='utf-8', *args, **keywargs):
+    def head(title=None, encoding='utf-8', html5=True, *args, **keywargs):
         """
         Build and return a properly-formated <head> object
     
@@ -190,20 +190,26 @@ class Html(list):
                     title tag is written
         :type  encoding: string
         :param encoding: encoding to be used. Default = 'utf-8'
+        :param html5: generate html5 syntax. Default = True. Set to False
+                      if pre-html5 syntax required
         :rtype:  reference to new Html instance
         :returns: reference to the newly-created Html instances for <head> object
         """ 
-        meta1 = 'http-equiv="content-type" content="text/html;charset=%s"'
-        meta2 = 'http-equiv="Content-Style-Type" content="text/css"'
+
         head = Html('head', *args, **keywargs) 
         if title is not None: 
             head += (Html('title', title, inline=True, indent=True))
-        head += Html('meta', attr=meta1 % encoding, indent=True)
-        head += Html('meta', attr=meta2, indent=True)
+        if html5:
+            head += Html('meta', charset="utf-8", indent=True)
+        else:
+            meta1 = 'http-equiv="content-type" content="text/html;charset=%s"'
+            meta2 = 'http-equiv="Content-Style-Type" content="text/css"'
+            head += Html('meta', attr=meta1 % encoding, indent=True)
+            head += Html('meta', attr=meta2, indent=True)
         return head
 #
     @staticmethod
-    def page(title=None, encoding='utf-8', lang='en', *args, **keywargs):
+    def page(title=None, encoding='utf-8', lang='en', html5=True, *args, **keywargs):
         """
         This function prepares a new Html class based page and returns
     
@@ -213,17 +219,23 @@ class Html(list):
         :param encoding: encoding to be used. Default = 'utf-8'
         :type  lang: string
         :param lang: language to be used. Defaul = 'en'
+        :param html5: generate html5 syntax. Default = True. Set to False
+                      if pre-html5 syntax required
         :rtype:   three object references
         :returns:  references to the newly-created Html instances for
                   page, head and body
         """
         page = Html.html(lang=lang, *args, **keywargs)
-        page.addXML(encoding=encoding)
-        page.addDOCTYPE()
+        if html5:
+            page.addDOCTYPE(external_id=_HTML5)
+        else:
+            page.addXML(encoding=encoding)
+            page.addDOCTYPE(external_id=_XHTML10_STRICT)
 #
         head = Html.head(title=title,
                encoding=encoding,
                lang=lang,
+               html5=html5,
                indent=False,
                *args, **keywargs 
                )
@@ -429,7 +441,7 @@ class Html(list):
             )
         self[0:0] = [xmldecl]
 #
-    def addDOCTYPE(self, name='HTML', public='',
+    def addDOCTYPE(self, name='html', public='PUBLIC',
             external_id=_HTML5, *args):
         """
         Add a DOCTYPE statement to the start of the list
@@ -446,7 +458,7 @@ class Html(list):
         doctype = (
             '<!DOCTYPE %s %s %s%s' % (
                 name,
-                public,
+                ('' if external_id ==_HTML5 else public),
                 external_id,
                 ' %s'*len(args) % args
                 )
