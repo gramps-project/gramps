@@ -60,6 +60,9 @@ The following packages are optional
                     It can be in python-gnome2-extras or python-gtkhtml2
                     depending on distributions.
 
+   python-pygoocanvas:
+                    Required for the experimental Graphview plugin
+
 No longer needed in 3.3:
    python-enchant Enchant
 No longer needed in 3.2:
