@@ -649,7 +649,7 @@ class DbManager(CLIDbManager):
         if not prompt:
             return
         
-        opened = store[node][5]
+        opened = store[node][OPEN_COL]
         if opened:
             self.dbstate.no_database()
         
