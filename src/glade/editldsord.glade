@@ -44,7 +44,7 @@
                     <property name="label" translatable="yes">_Place:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
-                    <property name="mnemonic_widget">place</property>
+                    <property name="mnemonic_widget">share_place</property>
                   </object>
                   <packing>
                     <property name="top_attach">4</property>
