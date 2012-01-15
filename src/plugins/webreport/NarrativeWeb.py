@@ -1872,8 +1872,8 @@ class BasePage(object):
                                                 style="left:%d%%; top:%d%%; width:%d%%; height:%d%%;"
                                                 % (x, y, w, h)) + Html("a", name, href = linkurl)
                             # Need to add link to mediadisplay to get the links:
-                            mediadisplay += self.media_link(photo_handle, ewpath,
-                                                            descr, uplink = self.up, usedescr = False)
+                            mediadisplay += self.media_link(photo_handle, newpath,
+                                                            descr, self.up, False)
                     else:
                         try:
 
