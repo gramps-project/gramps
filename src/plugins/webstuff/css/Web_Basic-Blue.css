@@ -395,9 +395,6 @@ div#IndividualDetail table.infolist tr td a:hover {
 div#IndividualDetail table.infolist tbody tr td.ColumnAttribute {
     width: 10%;
 }
-div#IndividualDetail div.subsection table tr td:first-child {
-    padding-left: 20px;
-}
 #familymap a.familymap {
     margin-left:20px;
 }
@@ -578,14 +575,6 @@ div#EventDetail table.eventlist tbody tr td.ColumnDate {
 #EventDetail table.infolist tr td span.mother:after {
     content: ", ";
 }
-#EventList table.infolist tr td span.person:last-child:after,
-#EventList table.infolist tr td span.father:last-child:after,
-#EventList table.infolist tr td span.mother:last-child:after,
-#EventDetail table.infolist tr td span.person:last-child:after,
-#EventDetail table.infolist tr td span.father:last-child:after,
-#EventDetail table.infolist tr td span.mother:last-child:after {
-    content: "";
-}
 
 /* Gallery
 ----------------------------------------------------- */
@@ -656,7 +645,7 @@ div#EventDetail table.eventlist tbody tr td.ColumnDate {
 }
 #GalleryDetail div#summaryarea table.gallery {
     padding-bottom: 0;
-    margin: 1 .5em 0 0 0;
+    margin: 1 .5em 0 0;
     border-style: solid;
     border-width: 2px 0 1px 0;
     border-color: #000;
@@ -750,7 +739,7 @@ div#Download table.download {
     margin: .5em 0 .5em 2.5%;
     border: solid 1px #000;
     width: 95%;
-    float: center;
+    text-align: center;
 }
 div#Download table.download tbody tr#Row02 {
     border-bottom: solid 2px #000;
@@ -885,9 +874,6 @@ div#events h4 {
 #IndividualDetail div#events table.eventtable {
     width: 100%;
 }
-#IndividualDetail div#events table.infolist thead tr th:first-child {
-    padding-left: 20px;
-}
 table.eventlist tbody tr td.ColumnEvent {
     width: 12%;
 }
@@ -981,12 +967,6 @@ div#families table.infolist tbody tr td.ColumnValue ol li a {
 div#families table.fixed_subtables table.eventlist {
     table-layout:fixed;
 }
-div#families table.fixed_subtables table.eventlist th:first-child {
-    width:9em;
-}
-div#families table.fixed_subtables table.eventlist th:last-child {
-    width:5em;
-}
 
 /* Subsection: Families: Attributes
 ------------------------------------------------- */
@@ -997,7 +977,7 @@ div#families able.infolist {
 div#families table.infolist tbody tr.BeginAttribute {
     border-top: solid 1px #000;
 }
-div#families table.infolist tbody tr td.Type {
+SourcesType {
     width: 8%;
 }
 div#families table.infolist tbody tr td.Value {
@@ -1007,7 +987,7 @@ div#families table.infolist tr td.Notes {
     width: 40%;
 }
 div#families table.infolist tbody tr td.Sources {
-    with: 15%;
+    width: 15%;
 }
 
 /* Subsection: Families: LDS Ordinance
@@ -1373,12 +1353,6 @@ div#pedigree {
 .calendar tbody tr td.sunday {
     border-left: solid 1px #000;
 }
-.calendar tbody tr td:first-child {
-    border-left: solid 1px #000;
-}
-.calendar tbody tr:first-child td {
-    border-top:none;
-}
 
 /* Calendar : Date Detail */
 .calendar tbody tr td ul {
@@ -1395,9 +1369,6 @@ div#pedigree {
     margin:0 4%;
     padding:.2em 0 .3em 0;
     border-top: dashed 1px #000;
-}
-.calendar tbody tr td ul li:first-child {
-    border:none;
 }
 
 /* Calendar : Birthday, Anniversary, Highlight */
