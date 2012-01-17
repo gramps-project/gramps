@@ -319,8 +319,13 @@ class WebCalReport(Report):
 
         # copy Navigation Menu Layout if Blue or Visually is being used
         if CSS[self.css]["navigation"]:
-            fname = CSS["Horizontal-Menus"]["filename"] 
-            self.copy_file(fname, "narrative-menus.css", "styles")
+
+            # if there are multiple years, add Horizontal else add Fade...
+            if self.multiyear:
+                fname = CSS["Horizontal-Menus"]["filename"]
+            else:
+                fname = CSS["Fade-Menus"]["filename"]
+            self.copy_file(fname, "calendar-menus.css", "styles")
 
         # copy print stylesheet
         fname = CSS["Print-Default"]["filename"]
@@ -385,11 +390,23 @@ class WebCalReport(Report):
 
         # Header contants
         xmllang = xml_lang()
-        _META1 = 'name="generator" content="%s %s %s"' % \
-                    (const.PROGRAM_NAME, const.VERSION, const.URL_HOMEPAGE)
-        _META2 = 'name="author" content="%s"' % self.author
+        _META1 = 'name ="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1"'
+        _META2 = 'name ="apple-mobile-web-app-capable" content="yes"'
+        _META3 = 'name="generator" content="%s %s %s"' % (
+                    const.PROGRAM_NAME, const.VERSION, const.URL_HOMEPAGE)
+        _META4 = 'name="author" content="%s"' % self.author
 
-        page, head, body = Html.page(title, self.encoding, xmllang)
+        # create additional meta tags
+        meta = Html("meta", attr = _META1) + (
+                Html("meta", attr = _META2, indent = False),
+                Html("meta", attr = _META3, indent =False),
+                Html("meta", attr = _META4, indent = False)
+        )
+
+        # begin each html page...
+        page, head, body = Html.page(title,
+                                     self.encoding,
+                                     xmllang)
 
         # add body id tag if not None
         if body_id is not None:
@@ -401,54 +418,45 @@ class WebCalReport(Report):
         # _CALENDARSCREEN stylesheet
         fname2 = "/".join(subdirs + ["styles", _CALENDARSCREEN])
 
-        # create additional meta tags
-        meta = Html("meta", attr = _META1) + (
-            Html("meta", attr = _META2, indent = False)
-            )
-
         # links for GRAMPS favicon and stylesheets
         links = Html("link", rel = 'shortcut icon', href = fname1, type = "image/x-icon") + (
-            Html("link",rel = "stylesheet", href = fname2, type = "text/css", media = "screen", indent = False)
+            Html("link",href = fname2, type = "text/css", media = "screen", rel = "stylesheet", indent = False)
+        )
+
+        # add horizontal menu if css == Blue or Visually because there is no menus?
+        if CSS[self.css]["navigation"]:
+            fname = "/".join(subdirs + ["styles", "calendar-menus.css"])
+            links.extend( 
+                Html("link", href = fname, type = "text/css", media = "screen", rel = "stylesheet", indent = False)
             )
 
         # add printer stylesheet to webcalendar() and one_day() only
         if add_print:
             fname = "/".join(subdirs + ["styles", _CALENDARPRINT])
-            links += Html("link",rel = "stylesheet", href = fname,type = "text/css", media = "print", indent = False)
-
-        # add horizontal menu if css == Blue or Visually because there is no menus?
-        if CSS[self.css]["navigation"]:
-
-            # Link to Navigation Menus stylesheet
-            fname = "/".join(subdirs + ["styles", "narrative-menus.css"])
-            links.extend( 
-                Html("link", href =fname, type ="text/css", media ="screen", rel ="stylesheet")
+            links.extend(
+                Html("link",href = fname,type = "text/css", media = "print", rel = "stylesheet", indent = False)
             )
 
         # add meta tags and links to head section
         head += (meta, links)
 
-        # start header division section
-        header = Html("div", id = "header") + (
+        # start header section and page title...
+        with Html("div", id = "header", role = "Title-n-Navigation") as header:
+            header += Html("h1", title, id = "SiteTitle", inline = True)
 
-            # page title 
-            Html("h1", title, id = "SiteTitle", inline = True)
-            )
-        body += header
+            # Created for ?
+            msg = None
+            if self.author and self.email:  
+                msg = _('Created for <a href="mailto:%(email)s?'
+                        'subject=WebCal">%(author)s</a>') % {'email'  : self.email,
+                                                             'author' : self.author}
+            elif self.author:
+                msg = _('Created for %(author)s') % {'author' : self.author}
 
-        # Created for ?
-        msg = None
-        if self.author and self.email:  
-            msg = _('Created for <a href="mailto:%(email)s?'
-                    'subject=WebCal">%(author)s</a>') % {'email'  : self.email,
-                                                         'author' : self.author}
-        elif self.author:
-            msg = _('Created for %(author)s') % {'author' : self.author}
+            if msg:
+                header += Html("p", msg, id = "CreatorInfo")
 
-        if msg is not None:
-            header += Html("p", msg, id = "CreatorInfo")
-
-        # return to its callers; either webcalendar(), year_glance(), or one_day()
+            body += header 
         return page, body
 
     def year_navigation(self, nr_up, currentsection):
@@ -518,50 +526,55 @@ class WebCalReport(Report):
         # Add a link for year_glance() if requested
         navs.append(('fullyearlinked', _('Year Glance'), self.fullyear))
 
+        # remove menu items if they are not True
+        navs = [(u, n) for u, n, c in navs if c]
+
         # begin month subnavigation
         with Html("div", class_ = "wrapper", id = "nav", role = "navigation") as navigation:
-            unordered = Html("ul")
+            with Html("div", class_ = "container") as container:
 
-            navs = [(u, n) for u, n, c in navs if c]
-            for url_fname, nav_text in navs:
+                unordered = Html("ul", class_ = "menu")
 
-                # Note. We use '/' here because it is a URL, not a OS dependent pathname
-                # need to leave home link alone, so look for it ...
-                url = url_fname
-                add_subdirs = True
-                if not (url.startswith('http:') or url.startswith('/')):
-                    add_subdirs = not any(url.endswith(ext)
-                                            for ext in _WEB_EXT)
+                for url_fname, nav_text in navs:
+
+                    # Note. We use '/' here because it is a URL, not a OS dependent pathname
+                    # need to leave home link alone, so look for it ...
+                    url = url_fname
+                    add_subdirs = True
+                    if not (url.startswith('http:') or url.startswith('/')):
+                        add_subdirs = not any(url.endswith(ext)
+                                                for ext in _WEB_EXT)
                          
-                # whether to add subdirs or not???
-                if add_subdirs: 
-                    subdirs = ['..'] * nr_up
-                    subdirs.append(str(year)) 
-                    url = '/'.join(subdirs + [url_fname])
+                    # whether to add subdirs or not???
+                    if add_subdirs: 
+                        subdirs = ['..'] * nr_up
+                        subdirs.append(str(year)) 
+                        url = '/'.join(subdirs + [url_fname])
 
-                if not _has_webpage_extension(url):
-                    url += self.ext
+                    if not _has_webpage_extension(url):
+                        url += self.ext
 
-                # Figure out if we need <li class="CurrentSection"> or just plain <li>
-                check_cs = url_fname == currentsection and 'class = "CurrentSection"' or False
+                    # Figure out if we need <li class="CurrentSection"> or just plain <li>
+                    check_cs = url_fname == currentsection and 'class = "CurrentSection"' or False
 
-                if url == self.home_link:
-                    myTitle = _("NarrativeWeb Home")
-                elif url_fname == 'fullyearlinked':
-                    myTitle = _('Full year at a Glance')
-                else:
-	             myTitle = _(url_fname)
-                hyper = Html("a", nav_text, href = url, name = url_fname, title = myTitle)
+                    if url == self.home_link:
+                        myTitle = _("NarrativeWeb Home")
+                    elif url_fname == 'fullyearlinked':
+                        myTitle = _('Full year at a Glance')
+                    else:
+	                 myTitle = _(url_fname)
+                    hyper = Html("a", nav_text, href = url, name = url_fname, title = myTitle)
 
-                if check_cs:
-                    unordered.extend(
-                        Html("li", hyper, attr = check_cs, inline = True)
-                    )
-                else:
-                    unordered.extend(
-                        Html("li", hyper, inline = True)
-                    )
-            navigation += unordered
+                    if check_cs:
+                        unordered.extend(
+                            Html("li", hyper, attr = check_cs, inline = True)
+                        )
+                    else:
+                        unordered.extend(
+                            Html("li", hyper, inline = True)
+                        )
+                container += unordered
+            navigation += container
         return navigation
 
     def calendar_build(self, cal, year, month):
@@ -602,11 +615,11 @@ class WebCalReport(Report):
         def __get_previous_month_day(year, month, day_col):
 
             if month == 1:
-                prevmonth = calendar.monthcalendar(year - 1, 12)
+                prevmonth = calendar.monthcalendar((year - 1), 12)
             else:
-                prevmonth = calendar.monthcalendar(year, month-1)
+                prevmonth = calendar.monthcalendar(year, (month - 1))
             num_weeks = len(prevmonth)
-            lastweek_prevmonth = prevmonth[num_weeks - 1]
+            lastweek_prevmonth = prevmonth[(num_weeks - 1)]
             previous_month_day = lastweek_prevmonth[day_col]
 
             # return previous month day number based on day_col
@@ -616,9 +629,9 @@ class WebCalReport(Report):
         def __get_next_month_day(year, month, day_col):  
 
             if month == 12:
-                nextmonth = calendar.monthcalendar(year + 1, 1)
+                nextmonth = calendar.monthcalendar((year + 1), 1)
             else:
-                nextmonth = calendar.monthcalendar(year, month + 1)
+                nextmonth = calendar.monthcalendar(year, (month + 1))
             firstweek_nextmonth = nextmonth[0]
             next_month_day = firstweek_nextmonth[day_col]
 
@@ -635,8 +648,7 @@ class WebCalReport(Report):
                 th_txt = '%s %04d' % (month_name, year)
 
         # begin calendar table and table head
-        with Html("table", class_ = "calendar", id = month_name) as table:
-
+        with Html("table", class_ = "calendar", id = month_name, role = "Calendar-Grid") as table:
             thead = Html("thead")
             table += thead 
 
@@ -1173,7 +1185,7 @@ class WebCalReport(Report):
         """
 
         # begin calendar footer
-        with Html("div", id = "footer") as footer:
+        with Html("div", id = "footer", role = "Footer-End") as footer:
 
             # Display date as user set in preferences
             msg = _('Generated by <a href="http://gramps-project.org">'
