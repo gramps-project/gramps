@@ -403,7 +403,7 @@ class WebCalReport(Report):
 
         # create additional meta tags
         meta = Html("meta", attr = _META1) + (
-            Html("meta", attr = _META2, indent=False)
+            Html("meta", attr = _META2, indent = False)
             )
 
         # links for GRAMPS favicon and stylesheets
@@ -464,9 +464,8 @@ class WebCalReport(Report):
         num_years = nyears if 0 < nyears < 19 else 18
 
         # begin year division and begin unordered list
-        with Html("div", id = "subnavigation") as section: 
+        with Html("div", id = "subnavigation", role = "subnavigation") as submenu:
             unordered = Html("ul")
-            section += unordered
 
             for cal_year in xrange(self.start_year, (self.start_year + num_years)):
                 url = ''
@@ -482,14 +481,20 @@ class WebCalReport(Report):
                 # Note. We use '/' here because it is a URL, not a OS dependent 
                 # pathname.
                 url = '/'.join(subdirs + [full_month_name]) + self.ext
+                hyper = Html("a", str(cal_year), href = url, title = str(cal_year))
 
                 # Figure out if we need <li class="CurrentSection"> or just plain <li>
-                cs = str(cal_year) == currentsection and 'class="CurrentSection"' or ''
-                unordered += Html("li", attr = cs, inline = True) + (
-                    Html("a", str(cal_year), href = url, title = str(cal_year) ) )
-
-        # return yearnav to its caller
-        return section
+                check_cs = str(cal_year) == currentsection and 'class = "CurrentSection"' or False
+                if check_cs:
+                    unordered.extend(
+                        Html("li", hyper, attr = check_cs, inline = True)
+                    )
+                else:
+                    unordered.extend(
+                        Html("li", hyper, inline = True)
+                    )
+            submenu += unordered
+        return submenu
 
     def month_navigation(self, nr_up, year, currentsection, add_home):
         """
@@ -502,7 +507,6 @@ class WebCalReport(Report):
         use_home = if creating a link to home 
             -- a link to root directory of website
         """
-
         navs = []
 
         # An optional link to a home page
@@ -515,10 +519,8 @@ class WebCalReport(Report):
         navs.append(('fullyearlinked', _('Year Glance'), self.fullyear))
 
         # begin month subnavigation
-        with Html("div", id = "navigation") as calendarmenu:
-
+        with Html("div", class_ = "wrapper", id = "nav", role = "navigation") as navigation:
             unordered = Html("ul")
-            calendarmenu += unordered 
 
             navs = [(u, n) for u, n, c in navs if c]
             for url_fname, nav_text in navs:
@@ -541,7 +543,7 @@ class WebCalReport(Report):
                     url += self.ext
 
                 # Figure out if we need <li class="CurrentSection"> or just plain <li>
-                cs = url_fname == currentsection and 'class="CurrentSection"' or ''
+                check_cs = url_fname == currentsection and 'class = "CurrentSection"' or False
 
                 if url == self.home_link:
                     myTitle = _("NarrativeWeb Home")
@@ -549,11 +551,18 @@ class WebCalReport(Report):
                     myTitle = _('Full year at a Glance')
                 else:
 	             myTitle = _(url_fname)
+                hyper = Html("a", nav_text, href = url, name = url_fname, title = myTitle)
 
-                unordered += Html("li", attr = cs, inline = True) + (
-                    Html("a", nav_text, href = url, name = url_fname, title = myTitle) )
-
-        return calendarmenu
+                if check_cs:
+                    unordered.extend(
+                        Html("li", hyper, attr = check_cs, inline = True)
+                    )
+                else:
+                    unordered.extend(
+                        Html("li", hyper, inline = True)
+                    )
+            navigation += unordered
+        return navigation
 
     def calendar_build(self, cal, year, month):
         """
@@ -626,7 +635,7 @@ class WebCalReport(Report):
                 th_txt = '%s %04d' % (month_name, year)
 
         # begin calendar table and table head
-        with Html("table", class_ ="calendar", id = month_name) as table:
+        with Html("table", class_ = "calendar", id = month_name) as table:
 
             thead = Html("thead")
             table += thead 

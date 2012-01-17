@@ -81,14 +81,14 @@ div#nav .CurrentSection a:hover, div#nav .CurrentSection a:focus {
     color: #FFF;
 }
 
-/*    Alphabet Navigation Menu
+/*    Alphabet Navigation and Year Menu
 ------------------------------------------------------ */
-div#alphanav {
+div#alphanav, div#subnavigation {
     clear: both;
     padding-top: 1px;
     font: bold 1.2em/1.4 "sans, sans-serif";
 }
-div#alphanav ul {
+div#alphanav ul, div#subnavigation ul {
     float: left;
     width: 100%;
     margin: 0;
@@ -98,12 +98,12 @@ div#alphanav ul {
     border-top: 2px solid #13A926;
     border-bottom: 2px solid #13A926;
 }
-div#alphanav li {
+div#alphanav ul li, div#subnavigation ul li {
     display: inline;
     margin: 0;
     padding: 0;
 }
-div#alphanav a {
+div#alphanav ul li a, div#subnavigation ul li a {
     display: block;
     float: left;
     padding: 6px 12px;
@@ -112,7 +112,14 @@ div#alphanav a {
     color: #FFF;
     text-decoration: none;
 }
-div#alphanav a:hover, div#alphanav a:focus {
+div#alphanav ul li a:hover, div#alphanav ul li a:focus,
+div#subnavigation ul li a:hover, div#subnavigation ul li a:focus {
     background: #FFF;
     color: #000;
+}
+div#subnavigation ul li.CurrentSection a {
+    border-left: solid 1px #13A926;
+    border-right: solid 1px #13A926;
+    background-color: #FFF;
+    color: #00029D;
 }
