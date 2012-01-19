@@ -4500,6 +4500,9 @@ class SourcePage(BasePage):
                                     for (sort_value, event_handle) in data_list:
                                         event = self.dbase_.get_event_from_handle(event_handle)
                                         if (event and event_handle in db_event_handles):
+                                            event_date = _dd.display(event.get_date_object())
+
+                                            # marriage or Divorce Event...
                                             if event.get_type() in [gen.lib.EventType.MARRIAGE, gen.lib.EventType.DIVORCE]:
 
                                                 for (classname, newhandle) in self.dbase_.find_backlink_handles(event_handle, ["Family"]):
@@ -4525,24 +4528,48 @@ class SourcePage(BasePage):
                                                                                          family.get_gramps_id(), self.up)
 
                                                         if spouse and husband:
-                                                            title_str = (_("Marriage of ") + "%s" % hlink + _(" and ") + "%s" % slink)
+                                                            title_str = ("%s" % hlink + _(" and ") + "%s" % slink + ", %s" % event_date)
                                                             ordered4.extend(
                                                                 Html("li", title_str)
                                                             )
                                                         elif spouse:
                                                             ordered4.extend(
-                                                                Html("li", slink, inline = True)
+                                                                Html("li", slink + ", %s" % event_date, inline = True)
                                                             )
                                                         elif husband:
                                                             ordered4.extend(
-                                                                Html("li", hlink, inline = True)
+                                                                Html("li", hlink + ", %s" % event_date, inline = True)
                                                             )
+
+                                            # any other event type...
+                                            # this occurs when an event has multiple participants...
                                             else:
-                                                ordered4.extend(
-                                                    Html("li", self.event_link(event_handle,
-                                                         _dd.display(event.get_date_object()) or event_type,
-                                                            event.get_gramps_id(), self.up))
-                                                )
+                                                back_handle_list = self.dbase_.find_backlink_handles(event_handle, ["Person"])
+                                                back_handle_list = [(classname, handle) for (classname, handle) in back_handle_list]
+                                                if back_handle_list:
+                                                    if len(back_handle_list) == 1:
+                                                        for (classname, newhandle) in back_handle_list:
+                                                            obj = self.dbase_.get_person_from_handle(newhandle)
+                                                            if obj:
+                                                                ordered4.extend(
+                                                                    Html("li", self.event_link(event_handle, self.get_name(obj) + ", %s" % event_date,
+                                                                                               event.get_gramps_id(), self.up))
+                                                                )
+                                                    else:
+                                                        list4 = Html("li", event_date)
+
+                                                        # ordered and list item #5, Multiple Participants...
+                                                        ordered5 = Html("ol", class_ = "Col5 Multiple-Participants")
+
+                                                        for (classname, newhandle) in back_handle_list:
+                                                            obj = self.dbase_.get_person_from_handle(newhandle)
+                                                            if obj:
+                                                                ordered5.extend(
+                                                                    Html("li", self.event_link(event_handle, self.get_name(obj),
+                                                                                               event.get_gramps_id(), self.up))
+                                                                )
+                                                        list4 += ordered5
+                                                        ordered4 += list4
                                     list3 += ordered4
                                     ordered3 += list3
                                 list2 += ordered3

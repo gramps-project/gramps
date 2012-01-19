@@ -783,7 +783,9 @@ div#SourceCitationReferents ol.Col3 {
 div#SourceCitationReferents ol.Col4 {
     list-style-type: square
 }
-
+div#SourceCitationReferents ol.Col5 {
+    list-style-type: lower-roman
+}
 
 /* Repositories
 ------------------------------------------------------ */

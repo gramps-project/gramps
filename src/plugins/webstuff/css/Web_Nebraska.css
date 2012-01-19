@@ -518,9 +518,11 @@ div#SourceCitationReferents ol.Col3 {
     list-style-type: lower-alpha
 }
 div#SourceCitationReferents ol.Col4 {
-    list-style-type: square
+    list-style-type: disc
 }
-
+div#SourceCitationReferents ol.Col5 {
+    list-style-type: lower-roman
+}
 
 /*    Relationships
 ================================================= */

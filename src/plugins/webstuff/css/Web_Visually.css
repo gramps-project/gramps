@@ -964,18 +964,20 @@ div#SourceDetail {
     margin: 0 auto;
 }
 div#SourceCitationReferents ol.Col1 {
-    list-style-type: decimal-leading-zero;
+    list-style-type: decimal
 }
 div#SourceCitationReferents ol.Col2 {
-    list-style-type: upper-alpha;
+    list-style-type: upper-alpha
 }
 div#SourceCitationReferents ol.Col3 {
-    list-style-type: lower-alpha;
+    list-style-type: lower-alpha
 }
 div#SourceCitationReferents ol.Col4 {
-    list-style-type: upper-roman;;
+    list-style-type: disc
 }
-
+div#SourceCitationReferents ol.Col5 {
+    list-style-type: lower-roman
+}
 
 
 /* Repositories
