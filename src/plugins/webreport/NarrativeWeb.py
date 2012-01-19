@@ -4500,11 +4500,49 @@ class SourcePage(BasePage):
                                     for (sort_value, event_handle) in data_list:
                                         event = self.dbase_.get_event_from_handle(event_handle)
                                         if (event and event_handle in db_event_handles):
-                                            ordered4.extend(
-                                                Html("li", self.event_link(event_handle,
-                                                           _dd.display(event.get_date_object()) or event_type,
-                                                           event.get_gramps_id(), self.up))
-                                            )
+                                            if event.get_type() in [gen.lib.EventType.MARRIAGE, gen.lib.EventType.DIVORCE]:
+
+                                                for (classname, newhandle) in self.dbase_.find_backlink_handles(event_handle, ["Family"]):
+                                                    family = self.dbase_.get_family_from_handle(newhandle)
+                                                    if (family and newhandle in db_family_handles):
+                                                        husband, spouse = [None]*2
+
+                                                        husband_handle = family.get_father_handle()
+                                                        spouse_handle = family.get_mother_handle()
+
+                                                        if (husband_handle and husband_handle in ppl_handle_list):
+                                                            husband = self.dbase_.get_person_from_handle(husband_handle)
+                                                            if husband:
+                                                                husband_name = self.get_name(husband)
+                                                                hlink = self.family_link(newhandle, husband_name,
+                                                                                         family.get_gramps_id(), self.up)
+
+                                                        if (spouse_handle and spouse_handle in ppl_handle_list):
+                                                            spouse = self.dbase_.get_person_from_handle(spouse_handle)
+                                                            if spouse:
+                                                                spouse_name = self.get_name(spouse)
+                                                                slink = self.family_link(newhandle, spouse_name,
+                                                                                         family.get_gramps_id(), self.up)
+
+                                                        if spouse and husband:
+                                                            title_str = (_("Marriage of ") + "%s" % hlink + _(" and ") + "%s" % slink)
+                                                            ordered4.extend(
+                                                                Html("li", title_str)
+                                                            )
+                                                        elif spouse:
+                                                            ordered4.extend(
+                                                                Html("li", slink, inline = True)
+                                                            )
+                                                        elif husband:
+                                                            ordered4.extend(
+                                                                Html("li", hlink, inline = True)
+                                                            )
+                                            else:
+                                                ordered4.extend(
+                                                    Html("li", self.event_link(event_handle,
+                                                         _dd.display(event.get_date_object()) or event_type,
+                                                            event.get_gramps_id(), self.up))
+                                                )
                                     list3 += ordered4
                                     ordered3 += list3
                                 list2 += ordered3
