@@ -1407,6 +1407,8 @@ class GedcomWriter(UpdateCallback):
             if location.get_phone():
                 self.__writeln(level, 'PHON', location.get_phone())
 
+        self.__note_references(place.get_note_list(), level+1)
+
 #-------------------------------------------------------------------------
 #
 #
