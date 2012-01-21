@@ -754,10 +754,12 @@ class EditFilter(ManagedWindow.ManagedWindow):
                                           self.close_window)
         self.fname.connect('changed', self.filter_name_changed)
 
-        op = self.filter.get_logical_op()
-        self.logical.set_active(
-            1 if op == 'or' else 2 if op == 'one' else 2
-            )
+        if self.filter.get_logical_op() == 'or':
+            self.logical.set_active(1)
+        elif self.filter.get_logical_op() == 'one':
+            self.logical.set_active(2)
+        else:
+            self.logical.set_active(0)
         self.logical_not.set_active(self.filter.get_invert())
         if self.filter.get_name():
             self.fname.set_text(self.filter.get_name())
