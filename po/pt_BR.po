@@ -2871,7 +2871,7 @@ msgstr "Casamento alternativo"
 
 #: ../src/gen/lib/eventtype.py:192
 msgid "birth abbreviation|b."
-msgstr "an."
+msgstr "na."
 
 #: ../src/gen/lib/eventtype.py:193
 msgid "death abbreviation|d."
