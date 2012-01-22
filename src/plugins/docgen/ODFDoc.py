@@ -1064,7 +1064,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
 
         if len(alt):
             self.cntnt.write(
-                '%s' % alt +
+                '%s' % '<text:line-break/>'.join(alt) +
                 '</text:p>' +
                 '</draw:text-box>' +
                 '</draw:frame>'

@@ -1413,7 +1413,7 @@ links (like ODF) and write PDF from that format.
             else:
                 style.set_right_margin(self.get_usable_width() - new_image._width)
             new_paragraph = GtkDocParagraph(style)
-            new_paragraph.add_text(alt)
+            new_paragraph.add_text('\n'.join(alt))
             self._active_element.add_child(new_paragraph)
 
     # DrawDoc implementation

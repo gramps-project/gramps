@@ -409,7 +409,7 @@ class RTFDoc(BaseDoc,TextDoc):
         self.f.write('}}\\par\n')
 
         if len(alt):
-            self.f.write('%s\n\\par\n' % alt)
+            self.f.write('%s\n\\par\n' % '\\par'.join(alt))
 
     def write_styled_note(self, styledtext, format, style_name,
                           contains_html=False, links=False):

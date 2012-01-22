@@ -546,6 +546,9 @@ class HtmlDoc(BaseDoc, TextDoc):
                         {'name' : name})
             return
 
+        if len(alt):
+            alt = '<br />'.join(alt)
+
         if pos not in ["right", "left"] :
             if len(alt):
                 self.htmllist[-1] += Html('div') + (
