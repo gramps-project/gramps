@@ -59,7 +59,7 @@ import Utils
 def impData(database, name, cb=None):
     # Create tempdir, if it does not exist, then check for writability
     #     THE TEMP DIR is named as the filname.gpkg.media and is created
-    #     in the mediapath dir of the family tree we import too
+    #     in the mediapath dir of the family tree we import to
     oldmediapath = database.get_mediapath()
     #use home dir if no media path
     media_path = Utils.media_path(database)
