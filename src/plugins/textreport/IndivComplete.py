@@ -642,7 +642,7 @@ class IndivCompleteReport(Report):
         self.write_addresses()
         self.write_note()
         if self.use_srcs:
-            if self.use_pagebreak:
+            if self.use_pagebreak and self.bibli.get_citation_count():
                 self.doc.page_break()
             Endnotes.write_endnotes(self.bibli, self.database, self.doc,
                                     printnotes=self.use_srcs_notes)
