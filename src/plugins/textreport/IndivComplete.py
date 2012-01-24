@@ -518,6 +518,10 @@ class IndivCompleteReport(Report):
 
     def normal_cell(self, text, endnotes=None, mark=None):
         self.doc.start_cell('IDS-NormalCell')
+        self.normal_paragraph(text, endnotes, mark)
+        self.doc.end_cell()
+
+    def normal_paragraph(self, text, endnotes=None, mark=None):
         self.doc.start_paragraph('IDS-Normal')
         self.doc.write_text(text, mark)
         if endnotes:
@@ -525,7 +529,6 @@ class IndivCompleteReport(Report):
             self.doc.write_text(endnotes)
             self.doc.end_superscript()
         self.doc.end_paragraph()
-        self.doc.end_cell()
 
     def write_report(self):
         plist = self.database.get_person_handles(sort_handles=True)
@@ -555,44 +558,12 @@ class IndivCompleteReport(Report):
         self.doc.start_paragraph("IDS-Normal")
         self.doc.end_paragraph()
 
-        if self.use_images and len(media_list) > 0:
-            media_handle = media_list[0].get_reference_handle()
-            media = self.database.get_object_from_handle(media_handle)
-            mime_type = media.get_mime_type()
-            if mime_type and mime_type.startswith("image"):
-                filename = media_path_full(self.database, media.get_path())
-                if os.path.exists(filename):
-                    self.doc.start_paragraph("IDS-Normal")
-                    self.doc.add_media_object(filename, "right", 4.0, 4.0,
-                                              style_name="DDR-Caption",
-                                              crop=media_list[0].get_rectangle())
-                    self.doc.end_paragraph()
-                else:
-                    self._user.warn(_("Could not add photo to page"),
-                          "%s: %s" % (filename, _('File does not exist')))
-
-        self.doc.start_table("one","IDS-IndTable")
-
-        self.doc.start_row()
-        self.normal_cell("%s:" % _("Name"))
         name = self.person.get_primary_name()
         text = self._name_display.display_name(name)
         mark = ReportUtils.get_person_mark(self.database, self.person)
         endnotes = ""
         if self.use_srcs:
             endnotes = Endnotes.cite_source(self.bibli, self.database, name)
-        self.normal_cell(text, endnotes, mark)
-        self.doc.end_row()
-
-        self.doc.start_row()
-        self.normal_cell("%s:" % _("Gender"))
-        if self.person.get_gender() == Person.MALE:
-            self.normal_cell(_("Male"))
-        elif self.person.get_gender() == Person.FEMALE:
-            self.normal_cell(_("Female"))
-        else:
-            self.normal_cell(_("Unknown"))
-        self.doc.end_row()
 
         family_handle = self.person.get_main_parents_family_handle()
         if family_handle:
@@ -621,14 +592,44 @@ class IndivCompleteReport(Report):
             mother = ""
             mmark = None
 
+        self.doc.start_table('person','IDS-PersonTable')
         self.doc.start_row()
-        self.normal_cell("%s:" % _("Father"))
-        self.normal_cell(father, mark=fmark)
-        self.doc.end_row()
 
-        self.doc.start_row()
-        self.normal_cell("%s:" % _("Mother"))
-        self.normal_cell(mother, mark=mmark)
+        self.doc.start_cell('IDS-NormalCell')
+        self.normal_paragraph("%s:" % _("Name"))
+        self.normal_paragraph("%s:" % _("Gender"))
+        self.normal_paragraph("%s:" % _("Father"))
+        self.normal_paragraph("%s:" % _("Mother"))
+        self.doc.end_cell()
+
+        self.doc.start_cell('IDS-NormalCell')
+        self.normal_paragraph(text, endnotes, mark)
+        if self.person.get_gender() == Person.MALE:
+            self.normal_paragraph(_("Male"))
+        elif self.person.get_gender() == Person.FEMALE:
+            self.normal_paragraph(_("Female"))
+        else:
+            self.normal_paragraph(_("Unknown"))
+        self.normal_paragraph(father, mark=fmark)
+        self.normal_paragraph(mother, mark=mmark)
+        self.doc.end_cell()
+
+        self.doc.start_cell('IDS-NormalCell')
+        if self.use_images and len(media_list) > 0:
+            media0 = media_list[0]
+            media_handle = media0.get_reference_handle()
+            media = self.database.get_object_from_handle(media_handle)
+            mime_type = media.get_mime_type()
+            if mime_type and mime_type.startswith("image"):
+                filename = media_path_full(self.database, media.get_path())
+                if os.path.exists(filename):
+                    self.doc.add_media_object(filename, "right", 4.0, 4.0,
+                                              crop=media0.get_rectangle())
+                else:
+                    self._user.warn(_("Could not add photo to page"),
+                          "%s: %s" % (filename, _('File does not exist')))
+        self.doc.end_cell()
+
         self.doc.end_row()
         self.doc.end_table()
 
@@ -820,6 +821,14 @@ class IndivCompleteOptions(MenuReportOptions):
         cell.set_longlist(1)
         default_style.add_cell_style("IDS-ListCell", cell)
         
+        tbl = TableStyle()
+        tbl.set_width(100)
+        tbl.set_columns(3)
+        tbl.set_column_width(0,20)
+        tbl.set_column_width(1,40)
+        tbl.set_column_width(2,40)
+        default_style.add_table_style('IDS-PersonTable', tbl)
+
         Endnotes.add_endnote_styles(default_style)
 
 #------------------------------------------------------------------------
