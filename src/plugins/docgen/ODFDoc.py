@@ -112,7 +112,8 @@ _esc_map = {
 #
 #-------------------------------------------------------------------------
 import re
-NewStyle = re.compile('style-name="([a-zA-Z0-9]*)__([#a-zA-Z0-9 ]*)__">')
+# Hyphen is added because it is used to replace spaces in the font name
+NewStyle = re.compile('style-name="([a-zA-Z0-9]*)__([#a-zA-Z0-9 -]*)__">')
 
 #-------------------------------------------------------------------------
 #
@@ -156,6 +157,7 @@ _FONTS = '''\
     svg:font-family="Arial"
     style:font-family-generic="swiss"
     style:font-pitch="variable"/>
+
 '''
 
 _META_XML = '''\
@@ -298,6 +300,7 @@ _AUTOMATIC_STYLES = '''\
     <style:text-properties
         style:font-name="Courier"/>
 </style:style>
+
 '''
 
 _CLEAR_STYLE = '''\
@@ -444,6 +447,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.mimetype = None
         self.meta = None
         self.mfile = None
+        self.stfile = None
         self.filename = None
         self.lang = None
         self._backend = None
@@ -810,6 +814,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.finish_cntnt_creation()
         self._write_styles_file()
         self._write_manifest()
+        self._write_settings()
         self._write_meta_file()
         self._write_mimetype_file()
         self._write_zip()
@@ -822,11 +827,14 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         wrt1 = self.cntnt1.write
         for style in self.StyleList_notes:
             if style[1] == "FontFace":
+                # Restore any spaced that were replaced by hyphens in
+                # libodfbackend
                 wrt1(
                     '<style:font-face ' +
-                        'style:name="%s" ' %  style[2] +
-                        'svg:font-family="&apos;%s&apos;" ' % style[2] +
-                        'style:font-pitch="fixed"/>\n'
+                    '    style:name="%s"\n' %  style[2].replace("-", " ") +
+                    '    svg:font-family="&apos;%s&apos;"\n' % 
+                                    style[2].replace("-", " ") +
+                    '    style:font-pitch="fixed"/>\n\n'
                     )
 
     def add_styled_notes_styles(self):
@@ -839,44 +847,49 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             if style[1] == "FontSize":
                 wrt2(
                     '<style:style ' +
-                        'style:name="FontSize__%s__" ' % style[2] +
-                        'style:family="text"> ' +
-                        '<style:text-properties ' +
-                            'fo:font-size="%spt" ' % style[2] +
-                            'style:font-size-asian="%spt" ' % style[2] +
-                            'style:font-size-complex="%spt"/>' %  style[2] +
-                    '</style:style>\n'
+                        'style:name="FontSize__%s__"\n' % style[2] +
+                    '    style:family="text">\n' +
+                    '    <style:text-properties\n' +
+                    '        fo:font-size="%spt"\n' % style[2] +
+                    '        style:font-size-asian="%spt"\n' % style[2] +
+                    '        style:font-size-complex="%spt"/>\n' %  style[2] +
+                    '</style:style>\n\n'
                     )
 
             elif style[1] == "FontColor":
+                # Restore the hash at the start that was removed by
+                # libodfbackend
                 wrt2(
                     '<style:style ' +
-                        'style:name="FontColor__%s__" ' % style[2] +
-                        'style:family="text">' +
-                        ' <style:text-properties ' +
-                            'fo:color="%s"/>' % style[2] +
-                    '</style:style>\n'
+                        'style:name="FontColor__%s__"\n' % style[2] +
+                    '    style:family="text">\n' +
+                    '    <style:text-properties\n' +
+                    '        fo:color="#%s"/>\n' % style[2] +
+                    '</style:style>\n\n'
                     )
 
             elif style[1] == "FontHighlight":
                 wrt2(
                     '<style:style ' +
-                        'style:name="FontHighlight__%s__" ' % style[2]  +
-                        'style:family="text"> ' +
-                        '<style:text-properties ' +
-                            'fo:background-color="%s"/>' % style[2] +
-                    '</style:style>\n'
+                        'style:name="FontHighlight__%s__"\n' % style[2]  +
+                    '    style:family="text">\n' +
+                    '    <style:text-properties\n' +
+                    '        fo:background-color="#%s"/>\n' % style[2] +
+                    '</style:style>\n\n'
                     )
 
             elif style[1] == "FontFace":
+                # Restore any spaced that were replaced by hyphens in
+                # libodfbackend
                 wrt2(
                     '<style:style ' +
-                        'style:name="FontFace__%s__" ' % style[2] +
-                        'style:family="text"> ' +
-                        '<style:text-properties ' +
-                            'style:font-name="%s" ' % style[2]  +
-                            'style:font-pitch="variable"/>' +
-                    '</style:style>\n'
+                        'style:name="FontFace__%s__"\n' % style[2] +
+                    '    style:family="text">\n' +
+                    '    <style:text-properties\n' +
+                    '        style:font-name="%s"\n' % 
+                                    style[2].replace("-", " ")  +
+                    '        style:font-pitch="variable"/>\n' +
+                    '</style:style>\n\n'
                     )
 
     def add_styled_photo_styles(self):
@@ -1184,12 +1197,14 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self._add_zip(zfile, "META-INF/manifest.xml", self.mfile.getvalue(), t)
         self._add_zip(zfile, "content.xml", self.cntntx.getvalue(), t)
         self._add_zip(zfile, "meta.xml", self.meta.getvalue(), t)
+        self._add_zip(zfile, "settings.xml", self.stfile.getvalue(), t)
         self._add_zip(zfile, "styles.xml", self.sfile.getvalue(), t)
         self._add_zip(zfile, "mimetype", self.mimetype.getvalue(), t)
 
         self.mfile.close()
         self.cntnt.close()
         self.meta.close()
+        self.stfile.close()
         self.sfile.close()
         self.mimetype.close()
         
@@ -1618,10 +1633,29 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             '<manifest:file-entry manifest:media-type="text/xml" '
                 'manifest:full-path="styles.xml"/>'
             '<manifest:file-entry manifest:media-type="text/xml" '
+                'manifest:full-path="settings.xml"/>'
+            '<manifest:file-entry manifest:media-type="text/xml" '
                 'manifest:full-path="meta.xml"/>'
             '</manifest:manifest>\n'
             )
 
+    def _write_settings(self):
+        """
+        create the settings.xml file
+        """
+        self.stfile = StringIO()
+        # This minimal settings file has been taken from
+        # http://mashupguide.net/1.0/html/ch17s03.xhtml (Creative commons
+        # licence): http://mashupguide.net/1.0/html/apas02.xhtml
+        self.stfile.write(
+          '<?xml version="1.0" encoding="UTF-8"?>\n' +
+          '<office:document-settings office:version="1.0"\n' +
+          'xmlns:config="urn:oasis:names:tc:opendocument:xmlns:config:1.0"\n' +
+          'xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"\n' +
+          'xmlns:ooo="http://openoffice.org/2004/office"\n' +
+          'xmlns:xlink="http://www.w3.org/1999/xlink" />'
+            )
+    
     def _write_mimetype_file(self):
         """
         create the mimetype.xml file

@@ -121,18 +121,25 @@ class OdfBackend(DocBackend):
         """
         if tagtype not in self.SUPPORTED_MARKUP:
             return None
+        # The ODF validator does not like spaces or hash in style-names. the
+        # font name needs to have the spaces restored, we just hope that the
+        # name did not have a hyphen in it originally. The colour is represented
+        # without the leading hash, this can be replaced when used in the text-
+        # property font colour
         if ( tagtype == DocBackend.FONTCOLOR ):
-            return ('<text:span text:style-name=\"FontColor__%s__\">' % value,
+            return ('<text:span text:style-name=\"FontColor__%s__\">' % 
+                                value.replace("#", ""),
                     '</text:span>')
         elif ( tagtype == DocBackend.FONTFACE ):
             return ('<text:span text:style-name=\"FontFace__%s__\">' %
-                                self.ESCAPE_FUNC()(value),
+                                self.ESCAPE_FUNC()(value).replace(" ", "-"),
                     '</text:span>')
         elif ( tagtype == DocBackend.FONTSIZE ):
             return ('<text:span text:style-name=\"FontSize__%d__\">' % value,
                     '</text:span>')
         else: #elif ( tagtype == DocBackend.HIGHLIGHT ):
-            return ('<text:span text:style-name=\"FontHighlight__%s__\">' % value,
+            return ('<text:span text:style-name=\"FontHighlight__%s__\">' % 
+                                value.replace("#", ""),
                     '</text:span>')
 
     def format_link(self, value):
