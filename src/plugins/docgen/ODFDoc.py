@@ -82,7 +82,8 @@ from xml.sax.saxutils import escape
 from gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc, graphicstyle,
                     FONT_SANS_SERIF, SOLID, PAPER_PORTRAIT,
                     INDEX_TYPE_TOC, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT, 
-                    INDEX_TYPE_ALP, PARA_ALIGN_RIGHT, URL_PATTERN)
+                    INDEX_TYPE_ALP, PARA_ALIGN_RIGHT, URL_PATTERN,
+                    LOCAL_HYPERLINK, LOCAL_TARGET)
 from gen.plug.docgen.fontscale import string_width
 from libodfbackend import OdfBackend
 import const
@@ -1596,6 +1597,16 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                     'text:string-value="%s" ' % key +
                     'text:outline-level="%d" />' % mark.level
                     )
+            elif mark.type == LOCAL_HYPERLINK:
+                self.cntnt.write(
+                    '<text:a xlink:type="simple" xlink:href="%s">' % key)
+                self.cntnt.write(text)
+                self.cntnt.write('</text:a>')
+                return
+            elif mark.type == LOCAL_TARGET:
+                self.cntnt.write(
+                    '<text:bookmark text:name="%s"/>' % key)
+
         self.cntnt.write(text)
 
     def _write_manifest(self):

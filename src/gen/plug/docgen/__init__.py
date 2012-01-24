@@ -35,6 +35,7 @@ from paragraphstyle import ParagraphStyle, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT,\
 from tablestyle import TableStyle, TableCellStyle
 from stylesheet import StyleSheetList, StyleSheet, SheetParser
 from graphicstyle import GraphicsStyle, SOLID, DASHED, DOTTED
-from textdoc import TextDoc, IndexMark,INDEX_TYPE_ALP, INDEX_TYPE_TOC, URL_PATTERN
+from textdoc import TextDoc, IndexMark,INDEX_TYPE_ALP, INDEX_TYPE_TOC,\
+    URL_PATTERN, LOCAL_HYPERLINK, LOCAL_TARGET
 from drawdoc import DrawDoc
 from graphdoc import GVDoc
