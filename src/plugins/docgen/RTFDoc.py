@@ -30,6 +30,8 @@
 #
 #------------------------------------------------------------------------
 from gen.ggettext import gettext as _
+import logging
+LOG = logging.getLogger(".rtfdoc")
 
 #------------------------------------------------------------------------
 #
@@ -240,6 +242,9 @@ class RTFDoc(BaseDoc,TextDoc):
         # there is no newline between the description and the note.
         if not self.in_table:
             self.f.write(self.text)
+            LOG.debug("end_paragraph: opened: %d write: %s" % 
+                      (self.opened,
+                       self.text + '}' if self.opened else "" + "newline"))
             if self.opened:
                 self.f.write('}')
                 self.opened = 0
@@ -264,9 +269,12 @@ class RTFDoc(BaseDoc,TextDoc):
     #
     #--------------------------------------------------------------------
     def start_bold(self):
+        LOG.debug("start_bold: opened: %d saved text: %s" % 
+                  (self.opened, 
+                   '}' if self.opened else "" + '{%s\\b ' % self.font_type))
         if self.opened:
-            self.f.write('}')
-        self.f.write('{%s\\b ' % self.font_type)
+            self.text += '}'
+        self.text += '{%s\\b ' % self.font_type
         self.opened = 1
 
     #--------------------------------------------------------------------
@@ -275,10 +283,14 @@ class RTFDoc(BaseDoc,TextDoc):
     #
     #--------------------------------------------------------------------
     def end_bold(self):
+        LOG.debug("end_bold: opened: %d saved text: %s" % 
+                  (self.opened, 
+                   self.text + '}'))
+        if not self.opened == 1:
+            print self.opened
+            raise RuntimeError
         self.opened = 0
-        self.f.write(self.text)
-        self.text = ""
-        self.f.write('}')
+        self.text += '}'
 
     def start_superscript(self):
         self.text += '{{\*\updnprop5801}\up10 '
@@ -463,6 +475,9 @@ class RTFDoc(BaseDoc,TextDoc):
     # Convert to unicode, just in case it's not. Fix of bug 2449.
         text = unicode(text)
         text = text.replace('\n','\n\\par ')
+        LOG.debug("write_text: opened: %d input text: %s" % 
+                  (self.opened, 
+                   text))
         if self.opened == 0:
             self.opened = 1
             self.text += '{%s ' % self.font_type
@@ -483,6 +498,9 @@ class RTFDoc(BaseDoc,TextDoc):
         if links ==  True:
             import re
             self.text = re.sub(URL_PATTERN, _CLICKABLE, self.text)
+        LOG.debug("write_text, exit: opened: %d saved text: %s" % 
+                  (self.opened, 
+                   self.text))
 
 def process_spaces(line, format):
     """
