@@ -15,6 +15,7 @@ DATAFILES = \
 	Web_Basic-Lilac.css \
 	Web_Basic-Peach.css \
 	Web_Basic-Spruce.css \
+	Web_DropDown-Menus.css \
 	Web_Fade-Menus.css \
 	Web_Horizontal-Menus.css \
 	Web_Mainz.css \
