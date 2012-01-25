@@ -1552,11 +1552,9 @@ class BasePage(object):
         # return to its caller, page and body
         return page, head, body
 
-    def display_nav_links(self, currentsection):
+    def get_navigation_menu(self):
         """
-        Creates the navigation menu
-
-        @param: currentsection = which menu item are you on
+        get the navigation menu items for main navigation...
         """
         # include repositories or not?
         inc_repos = True   
@@ -1590,8 +1588,15 @@ class BasePage(object):
             ('contact',                 _("Contact"),       self.report.use_contact)]
 
         # Remove menu sections if they are not being created?
-        navs = ((u, n) for u, n, c in navs if c)
-        menu_items = [[url, text] for url, text in navs]
+        nreturn ((u, n) for u, n, c in navs if c)
+
+    def display_nav_links(self, currentsection):
+        """
+        Creates the navigation menu
+
+        @param: currentsection = which menu item are you on
+        """
+        menu_items = [[url, text] for url, text in self.get_navigation_menu()]
 
         number_items = len(menu_items)
         num_cols = 10
@@ -7597,10 +7602,12 @@ class NavWebOptions(MenuReportOptions):
         self.__css.connect("value-changed", self.__stylesheet_changed)
 
         _nav_opts = [
-            (_("Horizontal - Default"),   "Horizontal"),
-            (_("Vertical"),               "Vertical"),
-            (_("Fade - WebKit browsers"), "Fade")
+            (_("Horizontal - Default"),              "Horizontal"),
+            (_("Vertical - Left side"),              "Vertical"),
+            (_("Fade - WebKit browsers Only"),       "Fade"),
+            (_("Drop-Down -- WebKit browsers Only"), "DropDown")
             ]
+
         self.__navigation = EnumeratedListOption(_("Navigation Menu Layout"), _nav_opts[0][1])
         for layout in _nav_opts:
             self.__navigation.add_item(layout[1], layout[0])
