@@ -1695,11 +1695,9 @@ class BasePage(object):
                 _create_media_link = False 
 
         welcome = [
-            (self.report.index_fname,    _("Html | Home"),  self.report.use_home),
+            (self.report.index_fname,    _("Html |Home"),   self.report.use_home),
             (self.report.intro_fname,    _("Introduction"), self.report.use_intro)
         ]
-
-        # Remove menu sections if they are not being created?
         welcome = ((url_text, nav_text) for url_text, nav_text, cond in welcome if cond)
         welcome = [[url, text] for url, text in welcome]
 
@@ -1708,8 +1706,6 @@ class BasePage(object):
             (self.report.surname_fname,  _("Surnames"),     True),
             ("families",                 _("Families"),     self.report.inc_families)
         ]
-
-        # Remove menu sections if they are not being created?
         personal = ((url_text, nav_text) for url_text, nav_text, cond in personal if cond)
         personal = [[url, text] for url, text in personal]
 
@@ -1719,8 +1715,6 @@ class BasePage(object):
             ("sources",                  _("Sources"),      True),
             ("repositories",             _("Repositories"), inc_repos)
         ]
-
-        # Remove menu sections if they are not being created?
         navs1 = ((url_text, nav_text) for url_text, nav_text, cond in navs1 if cond)
         navs1 = [[url, text] for url, text in navs1]
 
@@ -1728,20 +1722,21 @@ class BasePage(object):
             ("media",                    _("Media"),        _create_media_link),
             ("thumbnails",               _("Thumbnails"),   True)
         ]
-
-        # Remove menu sections if they are not being created?
         media = ((url_text, nav_text) for url_text, nav_text, cond in media if cond)
         media = [[url, text] for url, text in media]
 
         misc = [
             ('download',                _("Download"),      self.report.inc_download),
-            ("addressbook",             _("Address Book"),  self.report.inc_addressbook),
-            ('contact',                 _("Contact"),       self.report.use_contact)
+            ("addressbook",             _("Address Book"),  self.report.inc_addressbook)
         ]
-
-        # Remove menu sections if they are not being created?
         misc = ((url_text, nav_text) for url_text, nav_text, cond in misc if cond)
         misc = [[url, text] for url, text in misc]
+
+        contact = [
+            ('contact',                 _("Contact"),       self.report.use_contact)
+        ]
+        contact = ((url_text, nav_text) for url_text, nav_text, cond in contact if cond)
+        contact = [[url, text] for url, text in contact]
 
         # begin navigation menu division...
         with Html("div", class_ = "wrapper", id = "nav", role = "navigation") as navigation:
@@ -1756,7 +1751,7 @@ class BasePage(object):
                     unordered1 = Html("ul")
                     for url_fname, nav_text in welcome:
                         unordered1.extend(
-                            Html("li", self.get_nav_menu_hyperlink(url_fname, nav_text))
+                            Html("li", self.get_nav_menu_hyperlink(url_fname, nav_text), inline = True)
                         )
                     list += unordered1
                     unordered += list
@@ -1769,7 +1764,7 @@ class BasePage(object):
                     unordered1 = Html("ul")
                     for url_fname, nav_text in personal:
                         unordered1.extend(
-                            Html("li", self.get_nav_menu_hyperlink(url_fname, nav_text))
+                            Html("li", self.get_nav_menu_hyperlink(url_fname, nav_text), inline = True)
                         )
                     list += unordered1
                     unordered += list
@@ -1777,19 +1772,18 @@ class BasePage(object):
                 if len(navs1):
                     for url_fname, nav_text in navs1:
                         unordered.extend(
-                            Html("li", self.get_nav_menu_hyperlink(url_fname, nav_text))
+                            Html("li", self.get_nav_menu_hyperlink(url_fname, nav_text), inline = True)
                         )
-
 
                 if len(media):
                     list = Html("li") + (
-                        Html("a", _("Media | Gallery"), href = "#", title = _("Media | Gallery"), inline = True)
+                        Html("a", _("Media |Gallery"), href = "#", title = _("Media | Gallery"), inline = True)
                     )
 
                     unordered1 = Html("ul")
                     for url_fname, nav_text in media:
                         unordered1.extend(
-                            Html("li", self.get_nav_menu_hyperlink(url_fname, nav_text))
+                            Html("li", self.get_nav_menu_hyperlink(url_fname, nav_text), inline = True)
                         )
                     list += unordered1
                     unordered += list
@@ -1802,13 +1796,17 @@ class BasePage(object):
                     unordered1 = Html("ul")
                     for url_fname, nav_text in misc:
                         unordered1.extend(
-                            Html("li", self.get_nav_menu_hyperlink(url_fname, nav_text))
+                            Html("li", self.get_nav_menu_hyperlink(url_fname, nav_text), inline = True)
                         )
                     list += unordered1
                     unordered += list
 
+                if len(contact):
+                    unordered.extend(
+                        Html("li", self.get_nav_menu_hyperlink("contact", _("Contact")), inline = True)
+                    )
                 container += unordered
-                navigation += container
+            navigation += container
         return navigation
 
     def add_image(self, option_name, height = 0):
