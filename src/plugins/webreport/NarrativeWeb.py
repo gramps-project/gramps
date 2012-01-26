@@ -1555,20 +1555,6 @@ class BasePage(object):
         if self.report.navigation == "Drop":
             body += self.display_drop_menu()
 
-            head += Html("script", type = "text/javascript", src = "http://code.jquery.com/jquery-latest.min.js", inline = True)
-            with Html("script", type = "text/javascript") as ie6:
-                head += ie6
-                ie6 += """
-        $(function() {
-          if ($.browser.msie && $.browser.version.substr(0,1)<7)
-          {
-                $('li').has('ul').mouseover(function(){
-                        $(this).children('ul').show();
-                        }).mouseout(function(){
-                        $(this).children('ul').hide();
-                        })
-          }
-        });"""
         else: 
             body += self.display_nav_links(title)
 
@@ -1714,14 +1700,8 @@ class BasePage(object):
             if self.create_thumbs_only:
                 _create_media_link = False 
 
-        welcome = [
-            (self.report.index_fname,    _("Html |Home"),   self.report.use_home),
-            (self.report.intro_fname,    _("Introduction"), self.report.use_intro)
-        ]
-        welcome = ((url_text, nav_text) for url_text, nav_text, cond in welcome if cond)
-        welcome = [[url, text] for url, text in welcome]
-
         personal = [
+            (self.report.intro_fname,    _("Introduction"), self.report.use_intro),
             ("individuals",              _("Individuals"),  True),
             (self.report.surname_fname,  _("Surnames"),     True),
             ("families",                 _("Families"),     self.report.inc_families)
@@ -1763,17 +1743,8 @@ class BasePage(object):
             with Html("div", class_ = "container") as container:
                 unordered = Html("ul", class_ = "menu", id = "menu")
 
-                if len(welcome):
-                    list = Html("li") + (
-                        Html("a", _("Welcome"), href = "#", title = _("Welcome"), inline = True)
-                    )
-
-                    unordered1 = Html("ul")
-                    for url_fname, nav_text in welcome:
-                        unordered1.extend(
-                            Html("li", self.get_nav_menu_hyperlink(url_fname, nav_text), inline = True)
-                        )
-                    list += unordered1
+                if self.report.use_home:
+                    list = Html("li", self.get_nav_menu_hyperlink(self.report.index_fname, _("Html|Home")))
                     unordered += list
 
                 if len(personal):
