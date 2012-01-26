@@ -144,6 +144,10 @@ def load_on_reg(dbstate, uistate, plugin):
           path_img("gramps-geo-mainmap.png"),
           path_img("gramps-geo-marriage.png")], [] ],
 
+        # WebKit/ Html5/ CSS3 Drop Down Source/ Citations Style Sheet
+        ["Source-Citations", 0, "",
+         path_css("Web_Source-Citations.css"), None, [], [] ],
+
         # no style sheet option
         ["No style sheet",1, _("No style sheet"),    [],    None, [], [] ],
 

@@ -745,7 +745,12 @@ class BasePage(object):
                 # the citation reference text
                 index, key = self.bibli.add_reference(citation)
                 id_ = "%d%s" % (index+1, key)
-                text += ' [<a href="#sref%s">%s</a>]' % (id_, id_)
+
+                source = self.dbase_.get_source_from_handle(source_handle)
+                if source:
+
+                    hyper = self.source_link(source, up = self.up)
+                    text += ' [<a href = %s>%s</a>]' % (hyper, id_)
         return text
 
     def get_note_format(self, note, link_prefix_up):
@@ -1549,6 +1554,21 @@ class BasePage(object):
         # Begin Navigation Menu
         if self.report.navigation == "Drop":
             body += self.display_drop_menu()
+
+            head += Html("script", type = "text/javascript", src = "http://code.jquery.com/jquery-latest.min.js", inline = True)
+            with Html("script", type = "text/javascript") as ie6:
+                head += ie6
+                ie6 += """
+        $(function() {
+          if ($.browser.msie && $.browser.version.substr(0,1)<7)
+          {
+                $('li').has('ul').mouseover(function(){
+                        $(this).children('ul').show();
+                        }).mouseout(function(){
+                        $(this).children('ul').hide();
+                        })
+          }
+        });"""
         else: 
             body += self.display_nav_links(title)
 

@@ -21,6 +21,7 @@ DATAFILES = \
 	Web_Mainz.css \
 	Web_Nebraska.css \
 	Web_Print-Default.css \
+	Web_Source-Citations.css \
 	Web_Vertical-Menus.css \
 	Web_Visually.css
 
