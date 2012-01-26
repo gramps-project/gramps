@@ -1,4 +1,45 @@
-/*     Main
+/*
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2012    Rob G. Healey <robhealey1@gmail.com>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful, 
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+# $Id$
+#
+*************************************************
+GRAMPS Cascading Style Sheet
+Style Name: Fade-Menus Style Sheet
+*************************************************
+
+    Body Element
+------------------------------------------------------ */
+body {
+    background-color: #00029D;
+    color: #00029D;
+    width: 100%;
+}
+
+/*    Header
+------------------------------------------------------ */
+div#header {
+    border-bottom: solid 8px #13A926;
+}
+
+/*     Drop Down Navigation Menu
 ------------------------------------------------------ */
 #menu {
     width: 100%;
@@ -144,3 +185,46 @@
 
 * html #menu             { zoom: 1; } /* IE6 */
 *:first-child+html #menu { zoom: 1; } /* IE7 */
+
+/*    Alphabet Navigation and Year Menu
+------------------------------------------------------ */
+div#alphanav, div#subnavigation {
+    clear: both;
+    padding-top: 1px;
+    font: bold 1.2em/1.4 "sans, sans-serif";
+}
+div#alphanav ul, div#subnavigation ul {
+    float: left;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    background: #00029D;
+    border-top: 2px solid #13A926;
+    border-bottom: 2px solid #13A926;
+}
+div#alphanav ul li, div#subnavigation ul li {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+div#alphanav ul li a, div#subnavigation ul li a {
+    display: block;
+    float: left;
+    padding: 6px 12px;
+    border-right: 1px solid #13A926;
+    border-left: 1px solid #13A926;
+    color: #FFF;
+    text-decoration: none;
+}
+div#alphanav ul li a:hover, div#alphanav ul li a:focus,
+div#subnavigation ul li a:hover, div#subnavigation ul li a:focus {
+    background: #FFF;
+    color: #000;
+}
+div#subnavigation ul li.CurrentSection a {
+    border-left: solid 1px #13A926;
+    border-right: solid 1px #13A926;
+    background-color: #FFF;
+    color: #00029D;
+}

@@ -1547,14 +1547,32 @@ class BasePage(object):
             user_header += note
 
         # Begin Navigation Menu
-        body += self.display_nav_links(title)
+        if self.report.navigation == "Drop":
+            body += self.display_drop_menu()
+        else: 
+            body += self.display_nav_links(title)
 
         # return to its caller, page and body
         return page, head, body
 
-    def get_navigation_menu(self):
+    def get_nav_menu_hyperlink(self, url_fname, nav_text):
         """
-        get the navigation menu items for main navigation...
+        returns the navigation menu hyperlink
+        """
+        # check for web page file extension?
+        if not _has_webpage_extension(url_fname):
+            url_fname += self.ext
+
+        # get menu item url and begin hyperlink...
+        url = self.report.build_url_fname(url_fname, None, self.up)
+
+        return Html("a", nav_text, href = url, title = nav_text, inline = True)
+
+    def display_nav_links(self, currentsection):
+        """
+        Creates the navigation menu
+
+        @param: currentsection = which menu item are you on
         """
         # include repositories or not?
         inc_repos = True   
@@ -1588,15 +1606,8 @@ class BasePage(object):
             ('contact',                 _("Contact"),       self.report.use_contact)]
 
         # Remove menu sections if they are not being created?
-        nreturn ((u, n) for u, n, c in navs if c)
-
-    def display_nav_links(self, currentsection):
-        """
-        Creates the navigation menu
-
-        @param: currentsection = which menu item are you on
-        """
-        menu_items = [[url, text] for url, text in self.get_navigation_menu()]
+        navs = ((url_text, nav_text) for url_text, nav_text, cond in navs if cond)
+        menu_items = [[url, text] for url, text in navs]
 
         number_items = len(menu_items)
         num_cols = 10
@@ -1604,24 +1615,16 @@ class BasePage(object):
 
         # begin navigation menu division...
         with Html("div", class_ = "wrapper", id = "nav", role = "navigation") as navigation:
-
             with Html("div", class_ = "container") as container:
-
                 index = 0
                 for rows in range(num_rows):
-                    unordered = Html("ul", class_ = "menu")
+                    unordered = Html("ul", class_ = "menu", id = "menu")
 
                     cols = 0
                     while (cols <= num_cols and index < number_items):
                         url_fname, nav_text = menu_items[index]
 
-                        # check for web page file extension?
-                        if not _has_webpage_extension(url_fname):
-                            url_fname += self.ext
-
-                        # get menu item url and begin hyperlink...
-                        url = self.report.build_url_fname(url_fname, None, self.up)
-                        hyper = Html("a", nav_text, href = url, title = nav_text)
+                        hyper = self.get_nav_menu_hyperlink(url_fname, nav_text)
 
                         # Define 'currentsection' to correctly set navlink item CSS id
                         # 'CurrentSection' for Navigation styling.
@@ -1671,6 +1674,140 @@ class BasePage(object):
                         cols += 1
 
                     container += unordered
+                navigation += container
+        return navigation
+
+    def display_drop_menu(self):
+        """
+        creates the Drop Down Navigation Menu
+        """
+        # include repositories or not?
+        inc_repos = True   
+        if (not self.report.inc_repository or
+            not len(self.report.database.get_repository_handles()) ):
+                inc_repos = False
+
+        # create media pages...
+        _create_media_link = False
+        if self.create_media:
+            _create_media_link = True
+            if self.create_thumbs_only:
+                _create_media_link = False 
+
+        welcome = [
+            (self.report.index_fname,    _("Html | Home"),  self.report.use_home),
+            (self.report.intro_fname,    _("Introduction"), self.report.use_intro)
+        ]
+
+        # Remove menu sections if they are not being created?
+        welcome = ((url_text, nav_text) for url_text, nav_text, cond in welcome if cond)
+        welcome = [[url, text] for url, text in welcome]
+
+        personal = [
+            ("individuals",              _("Individuals"),  True),
+            (self.report.surname_fname,  _("Surnames"),     True),
+            ("families",                 _("Families"),     self.report.inc_families)
+        ]
+
+        # Remove menu sections if they are not being created?
+        personal = ((url_text, nav_text) for url_text, nav_text, cond in personal if cond)
+        personal = [[url, text] for url, text in personal]
+
+        navs1 = [
+            ("events",                   _("Events"),       self.report.inc_events),
+            ("places",                   _("Places"),       True),
+            ("sources",                  _("Sources"),      True),
+            ("repositories",             _("Repositories"), inc_repos)
+        ]
+
+        # Remove menu sections if they are not being created?
+        navs1 = ((url_text, nav_text) for url_text, nav_text, cond in navs1 if cond)
+        navs1 = [[url, text] for url, text in navs1]
+
+        media = [
+            ("media",                    _("Media"),        _create_media_link),
+            ("thumbnails",               _("Thumbnails"),   True)
+        ]
+
+        # Remove menu sections if they are not being created?
+        media = ((url_text, nav_text) for url_text, nav_text, cond in media if cond)
+        media = [[url, text] for url, text in media]
+
+        misc = [
+            ('download',                _("Download"),      self.report.inc_download),
+            ("addressbook",             _("Address Book"),  self.report.inc_addressbook),
+            ('contact',                 _("Contact"),       self.report.use_contact)
+        ]
+
+        # Remove menu sections if they are not being created?
+        misc = ((url_text, nav_text) for url_text, nav_text, cond in misc if cond)
+        misc = [[url, text] for url, text in misc]
+
+        # begin navigation menu division...
+        with Html("div", class_ = "wrapper", id = "nav", role = "navigation") as navigation:
+            with Html("div", class_ = "container") as container:
+                unordered = Html("ul", class_ = "menu", id = "menu")
+
+                if len(welcome):
+                    list = Html("li") + (
+                        Html("a", _("Welcome"), href = "#", title = _("Welcome"), inline = True)
+                    )
+
+                    unordered1 = Html("ul")
+                    for url_fname, nav_text in welcome:
+                        unordered1.extend(
+                            Html("li", self.get_nav_menu_hyperlink(url_fname, nav_text))
+                        )
+                    list += unordered1
+                    unordered += list
+
+                if len(personal):
+                    list = Html("li") + (
+                        Html("a", _("Personal"), href = "#", title = _("Personal"), inline = True)
+                    )
+
+                    unordered1 = Html("ul")
+                    for url_fname, nav_text in personal:
+                        unordered1.extend(
+                            Html("li", self.get_nav_menu_hyperlink(url_fname, nav_text))
+                        )
+                    list += unordered1
+                    unordered += list
+
+                if len(navs1):
+                    for url_fname, nav_text in navs1:
+                        unordered.extend(
+                            Html("li", self.get_nav_menu_hyperlink(url_fname, nav_text))
+                        )
+
+
+                if len(media):
+                    list = Html("li") + (
+                        Html("a", _("Media | Gallery"), href = "#", title = _("Media | Gallery"), inline = True)
+                    )
+
+                    unordered1 = Html("ul")
+                    for url_fname, nav_text in media:
+                        unordered1.extend(
+                            Html("li", self.get_nav_menu_hyperlink(url_fname, nav_text))
+                        )
+                    list += unordered1
+                    unordered += list
+
+                if len(misc):
+                    list = Html("li") + (
+                        Html("a", _("Miscellaneous"), href = "#", title = _("Miscellaneous"), inline = True)
+                    )
+
+                    unordered1 = Html("ul")
+                    for url_fname, nav_text in misc:
+                        unordered1.extend(
+                            Html("li", self.get_nav_menu_hyperlink(url_fname, nav_text))
+                        )
+                    list += unordered1
+                    unordered += list
+
+                container += unordered
                 navigation += container
         return navigation
 
@@ -4426,8 +4563,7 @@ class SourcePage(BasePage):
                                                 ordered4.extend(
 
                                                     # since Surname is already displayed, only show given name and sufix (if any?)
-                                                    Html("li", self.person_link(url, person, name_style = False, 
-                                                                                gid = person.get_gramps_id()))
+                                                    Html("li", self.person_link(url, person, name_style = False, gid = person.get_gramps_id()))
                                                 )
                                         list3 += ordered4
                                         ordered3 += list3
@@ -6949,15 +7085,17 @@ class NavWebReport(Report):
         fname = CSS["behaviour"]["filename"] 
         self.copy_file(fname, "behaviour.css", "styles")
 
-        # copy Menu Layout stylesheet if Blue or Visually is being used?
+        # copy Menu Layout Cascade Style Sheet if Blue or Visually is being used?
         if CSS[self.css]["navigation"]: 
             if self.navigation == "Horizontal":
                 fname = CSS["Horizontal-Menus"]["filename"]
 
             elif self.navigation == "Vertical":
                 fname = CSS["Vertical-Menus"]["filename"]
-            else:
+            elif self.navigation == "Fade":
                 fname = CSS["Fade-Menus"]["filename"]
+            elif self.navigation == "Drop":
+                fname = CSS["Drop-Menus"]["filename"]
             self.copy_file(fname, "narrative-menus.css", "styles")
 
         # copy narrative-maps if Place or Family Map pages?
@@ -7604,8 +7742,8 @@ class NavWebOptions(MenuReportOptions):
         _nav_opts = [
             (_("Horizontal - Default"),              "Horizontal"),
             (_("Vertical - Left side"),              "Vertical"),
-            (_("Fade - WebKit browsers Only"),       "Fade"),
-            (_("Drop-Down -- WebKit browsers Only"), "DropDown")
+            (_("Fade      -- WebKit Browsers Only"), "Fade"),
+            (_("Drop-Down -- WebKit Browsers Only"), "Drop")
             ]
 
         self.__navigation = EnumeratedListOption(_("Navigation Menu Layout"), _nav_opts[0][1])

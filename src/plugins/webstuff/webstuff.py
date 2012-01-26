@@ -126,8 +126,8 @@ def load_on_reg(dbstate, uistate, plugin):
         ["Fade-Menus", 0, "", 
          path_css('Web_Fade-Menus.css'), None, [], [] ],
 
-        # webkit/Html5/CSS3 Drop Down Menus Style Sheet
-        ["DropDown-Menus", 0, "",
+        # WebKit/ Html5/ CSS3 Drop Down Menus Style Sheet
+        ["Drop-Menus", 0, "",
          path_css("Web_DropDown-Menus.css"), None, [], [] ],
 
         # Vertical Navigation Menus Style Sheet
