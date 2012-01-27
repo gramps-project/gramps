@@ -48,6 +48,8 @@ from QuestionDialog import ErrorDialog, DBErrorDialog
 from glade import Glade
 from libmixin import DbMixin
 import libgedcom
+module = __import__("libgedcom")
+reload (module)
 
 try:
     import config

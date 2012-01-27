@@ -250,6 +250,7 @@ TOKEN_FACT = 123
 TOKEN_EMAIL = 124
 TOKEN_WWW = 125
 TOKEN_URL = 126
+TOKEN_ROLE = 127
 
 TOKENS = {
     "HEAD"         : TOKEN_HEAD,    "MEDI"         : TOKEN_MEDI,
@@ -318,7 +319,8 @@ TOKENS = {
     "REFERENCE"      : TOKEN_REFN,  "RELI"          : TOKEN_RELI,
     "RELIGION"       : TOKEN_RELI,  "REPO"          : TOKEN_REPO,
     "REPOSITORY"     : TOKEN_REPO,  "RFN"           : TOKEN_RFN,
-    "RIN"            : TOKEN_RIN,   "_SCHEMA"       : TOKEN__SCHEMA,
+    "RIN"            : TOKEN_RIN,   "ROLE"          : TOKEN_ROLE,
+    "_SCHEMA"        : TOKEN__SCHEMA,
     "SEX"            : TOKEN_SEX,   "SCHEMA"        : TOKEN__SCHEMA,
     "SLGC"           : TOKEN_SLGC,  "SLGS"          : TOKEN_SLGS,
     "SOUR"           : TOKEN_SOUR,  "SOURCE"        : TOKEN_SOUR,
@@ -2044,7 +2046,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_DATA   : self.__citation_data, 
             TOKEN_OBJE   : self.__citation_obje, 
             TOKEN_REFN   : self.__citation_refn, 
-            TOKEN_EVEN   : self.__ignore, 
+            TOKEN_EVEN   : self.__citation_even, 
             TOKEN_IGNORE : self.__ignore, 
             TOKEN__LKD   : self.__ignore, 
             TOKEN_QUAY   : self.__citation_quay, 
@@ -2226,6 +2228,10 @@ class GedcomParser(UpdateCallback):
             TOKEN_NOTE   : self.__citation_data_note, 
             }
 
+        self.citation_even_tbl = {
+            TOKEN_ROLE   : self.__citation_even_role,
+            }
+        
         self.header_sour = {
             TOKEN_SOUR   : self.__header_sour, 
             TOKEN_NAME   : self.__ignore, 
@@ -4922,6 +4928,32 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         self.__skip_subordinate_levels(state.level+1)
+
+    def __citation_even(self, line, state): 
+        """
+        Parses the EVEN line of an SOUR instance tag
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.citation.set_data_item("EVEN", line.data)
+        sub_state = CurrentState(level=state.level+1)
+        sub_state.citation = state.citation
+
+        self.__parse_level(sub_state, self.citation_even_tbl, self.__undefined)
+
+    def __citation_even_role(self, line, state): 
+        """
+        Parses the EVEN line of an SOUR instance tag
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.citation.set_data_item("EVEN:ROLE", line.data)
 
     def __citation_quay(self, line, state): 
         """

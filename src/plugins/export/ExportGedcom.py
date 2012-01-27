@@ -1341,6 +1341,13 @@ class GedcomWriter(UpdateCallback):
                           if n and n.get_type() != gen.lib.NoteType.SOURCE_TEXT]
             self.__note_references(note_list, level+1)
             self.__photos(citation.get_media_list(), level+1)
+            
+        if "EVEN" in citation.get_data_map().keys():
+            self.__writeln(level+1, "EVEN", citation.get_data_map()["EVEN"])
+            if "EVEN:ROLE" in citation.get_data_map().keys():
+                self.__writeln(level+2, "ROLE", 
+                               citation.get_data_map()["EVEN:ROLE"])
+                
 
     def __photo(self, photo, level):
         """
