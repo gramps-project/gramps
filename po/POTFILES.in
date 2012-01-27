@@ -281,8 +281,6 @@ src/plugins/gramplet/PedigreeGramplet.py
 src/plugins/gramplet/PersonDetails.py
 src/plugins/gramplet/PersonResidence.py
 src/plugins/gramplet/PlaceDetails.py
-src/plugins/gramplet/PopulateGramplet.py
-src/plugins/gramplet/PopulateGramplet.gpr.py
 src/plugins/gramplet/QuickViewGramplet.py
 src/plugins/gramplet/RelativeGramplet.py
 src/plugins/gramplet/RepositoryDetails.py
@@ -508,6 +506,7 @@ src/Filters/Rules/Person/_IsMale.py
 src/Filters/Rules/Person/_IsMoreThanNthGenerationAncestorOf.py
 src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py
 src/Filters/Rules/Person/_IsParentOfFilterMatch.py
+src/Filters/Rules/Person/_PeoplePublic.py
 src/Filters/Rules/Person/_IsRelatedWith.py
 src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py
 src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py

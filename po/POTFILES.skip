@@ -41,6 +41,7 @@ src/DateHandler/_DateParser.py
 src/DateHandler/_Date_ru.py
 src/DateHandler/_Date_sk.py
 src/DateHandler/_Date_sv.py
+src/DateHandler/_Date_zh.py
 src/DateHandler/__init__.py
 
 # Filters package
@@ -78,6 +79,7 @@ src/Filters/Rules/_HasSourceCountBase.py
 src/Filters/Rules/_HasTagBase.py
 src/Filters/Rules/_HasTextMatchingRegexpOf.py
 src/Filters/Rules/__init__.py
+src/Filters/Rules/_IsPublic.py
 src/Filters/Rules/_MatchesEventFilterBase.py
 src/Filters/Rules/_MatchesFilterBase.py
 src/Filters/Rules/_MatchesSourceConfidenceBase.py
@@ -309,12 +311,14 @@ src/plugins/tool/toolsdebug.gpr.py
 
 # plugins/gramplet directory
 src/plugins/gramplet/DeepConnections.py
+src/plugins/gramplet/Gallery.py
 src/plugins/gramplet/HeadlineNewsGramplet.py
 src/plugins/gramplet/MediaPreview.py
 src/plugins/gramplet/MetadataViewer.py
 src/plugins/gramplet/NoteGramplet.py
-src/plugins/gramplet/Gallery.py
 src/plugins/gramplet/PluginManagerGramplet.py
+src/plugins/gramplet/PopulateGramplet.py
+src/plugins/gramplet/PopulateGramplet.gpr.py
 src/plugins/gramplet/PythonGramplet.py
 
 # plugins/quickview directory
