@@ -11,7 +11,6 @@ pkgdata_PYTHON = \
 	filter.py \
 	living.py \
 	private.py \
-	referenced.py \
 	referencedbyselection.py \
 	proxybase.py
 
