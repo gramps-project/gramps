@@ -48,25 +48,20 @@ chmod +w $PREFIX/lib/libpython2.6.dylib
 
 before running
 
-ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
+gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 
 
 -->
 
 
 
-  <include href="https://raw.github.com/jralls/gtk-osx-build/master/modulesets-stable/gtk-osx.modules"/>
+  <include href="http://git.gnome.org/browse/gtk-osx/plain/modulesets-stable/gtk-osx.modules"/>
   <!--include href="/Users/john/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/-->
 
 
   <autotools id="gramps" autogen-sh="configure">
-    <branch module="gramps/gramps-3.2.6.tar.gz" version="3.2.6"
+    <branch module="gramps/gramps-3.3.1.tar.gz" version="3.3.1"
 	    repo="sourceforge">
-      <patch file="http://raw.github.com/jralls/gtk-osx-build/master/patches/gramps.patch" strip="1"/>
-      <patch file="http://raw.github.com/jralls/gtk-osx-build/master/patches/gramps-viewmanager.patch" strip="1"/>
-      <patch file="http://raw.github.com/jralls/gtk-osx-build/master/patches/gramps-accelmap.patch" strip="1"/>
-      <patch file="http://raw.github.com/jralls/gtk-osx-build/master/patches/gramps-pedigree.patch" strip="1"/>
-      <patch file="http://raw.github.com/jralls/gtk-osx-build/master/patches/gramps-accel.patch" strip="1"/>
     </branch>
     <dependencies>
       <dep package="meta-gtk-osx-python"/>
@@ -80,7 +75,7 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     </dependencies>
   </autotools>
 
-  <autotools id="gramps33" >
+  <autotools id="gramps-svn" >
     <branch module="gramps" revision="maintenance/gramps33" repo="gramps"/>
     <dependencies>
       <dep package="meta-gtk-osx-python"/>
@@ -97,49 +92,17 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
    </after>
   </autotools>
 
-  <autotools id="gramps-svn" >
-    <branch module="gramps" repo="gramps"/>
-    <dependencies>
-      <dep package="meta-gtk-osx-python"/>
-      <dep package="librsvg2"/>
-      <dep package="pygoocanvas"/>
-      <dep package="shared-mime-info"/>
-      <dep package="hunspell"/>
-      <dep package="pygtk-extras"/>
-      <dep package="osmgpsmap-py"/>
-      <dep package="graphviz"/>
-   </dependencies>
-   <after>
-      <dep package="pyexiv2"/>
-   </after>
-  </autotools>
-
-  <distutils id="gramps-addons">
-    <branch module="branches/gramps32/contrib"
-	    repo="gramps-addons"/>
-    <dependencies>
-      <dep package="gramps"/>
-    </dependencies>
-  </distutils>
-
-  <autotools id="gramps33-addons" skip-autogen="true" >
+  <distutils id="gramps-addons" skip-autogen="true" >
     <branch module="branches/gramps33/contrib"
-	    repo="gramps-addons"/>
-    <dependencies>
-      <dep package="gramps33"/>
-    </dependencies>
-  </autotools>
-
-  <distutils id="gramps-addons-svn">
-    <branch module="gramps-addons/trunk/contrib"
 	    repo="gramps-addons"/>
     <dependencies>
       <dep package="gramps-svn"/>
     </dependencies>
   </distutils>
 
+
   <autotools id="pyWebKitGtk" >
-    <branch module="pywebkitgtk-1.1.7.tar.bz2" version="1.1.7"
+    <branch module="pywebkitgtk-1.1.8.tar.bz2" version="1.1.8"
 	    repo="pywebkitgtk"/>
     <dependencies>
       <dep package="WebKit"/>
@@ -154,7 +117,7 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 	    repo="ftp.gnome.org"/>
     <dependencies>
       <dep package="libgsf"/>
-      <dep package="libart_lgpl"/><!-- goffice.modules -->
+      <dep package="libart_lgpl"/>
     </dependencies>
   </autotools>
 
