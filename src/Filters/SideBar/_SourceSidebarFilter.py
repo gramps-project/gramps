@@ -59,6 +59,7 @@ class SourceSidebarFilter(SidebarFilter):
         self.filter_id = widgets.BasicEntry()
         self.filter_title = widgets.BasicEntry()
         self.filter_author = widgets.BasicEntry()
+        self.filter_abbr = widgets.BasicEntry()
         self.filter_pub = widgets.BasicEntry()
         self.filter_note = widgets.BasicEntry()
 
@@ -79,6 +80,7 @@ class SourceSidebarFilter(SidebarFilter):
         self.add_text_entry(_('ID'), self.filter_id)
         self.add_text_entry(_('Title'), self.filter_title)
         self.add_text_entry(_('Author'), self.filter_author)
+        self.add_text_entry(_('Abbreviation'), self.filter_abbr)
         self.add_text_entry(_('Publication'), self.filter_pub)
         self.add_text_entry(_('Note'), self.filter_note)
         self.add_filter_entry(_('Custom filter'), self.generic)
@@ -88,6 +90,7 @@ class SourceSidebarFilter(SidebarFilter):
         self.filter_id.set_text('')
         self.filter_title.set_text('')
         self.filter_author.set_text('')
+        self.filter_abbr.set_text('')
         self.filter_pub.set_text('')
         self.filter_note.set_text('')
         self.generic.set_active(0)
@@ -96,12 +99,14 @@ class SourceSidebarFilter(SidebarFilter):
         gid = unicode(self.filter_id.get_text()).strip()
         title = unicode(self.filter_title.get_text()).strip()
         author = unicode(self.filter_author.get_text()).strip()
+        abbr = unicode(self.filter_abbr.get_text()).strip()
         pub = unicode(self.filter_pub.get_text()).strip()
         note = unicode(self.filter_note.get_text()).strip()
         regex = self.filter_regex.get_active()
         gen = self.generic.get_active() > 0
 
-        empty = not (gid or title or author or pub or note or regex or gen)
+        empty = not (gid or title or author or abbr or pub or note or regex or
+                     gen)
         if empty:
             generic_filter = None
         else:
@@ -113,7 +118,7 @@ class SourceSidebarFilter(SidebarFilter):
                     rule = HasIdOf([gid])
                 generic_filter.add_rule(rule)
 
-            rule = HasSource([title, author, pub], use_regex=regex)
+            rule = HasSource([title, author, abbr, pub], use_regex=regex)
             generic_filter.add_rule(rule)
                 
             if note:

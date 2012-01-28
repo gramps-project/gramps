@@ -46,6 +46,7 @@ class HasSourceBase(Rule):
 
     labels      = [ _('Title:'), 
                     _('Author:'), 
+                    _('Abbreviation:'),
                     _('Publication:') ]
     name        = _('Sources matching parameters')
     description = _("Matches sources with particular parameters")
@@ -58,7 +59,10 @@ class HasSourceBase(Rule):
         if not self.match_substring(1,source.get_author()):
             return False
 
-        if not self.match_substring(2,source.get_publication_info()):
+        if not self.match_substring(2,source.get_abbreviation()):
+            return False
+
+        if not self.match_substring(3,source.get_publication_info()):
             return False
 
         return True
