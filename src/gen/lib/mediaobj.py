@@ -207,7 +207,6 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
         self._merge_note_list(acquisition)
         self._merge_citation_list(acquisition)
         self._merge_tag_list(acquisition)
-        self.merge_citation_list(acquisition)
 
     def set_mime_type(self, mime_type):
         """
