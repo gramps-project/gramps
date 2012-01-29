@@ -1,2 +1,7 @@
 gtk-icon-theme-name = "Tango"
 gtk-enable-mnemonics = 0
+style "UniFont" {
+  font_name = "Arial Unicode MS"
+}
+
+widget_class "*" style "UniFont"
