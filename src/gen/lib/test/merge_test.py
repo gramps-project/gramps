@@ -46,12 +46,13 @@ class NoteBaseTest:
         self.phoenix.merge(self.titanic)
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
-class SourceBaseTest:
-    def test_source_merge(self):
-        srcref = gen.lib.SourceRef()
-        srcref.set_page('p.10')
-        self.titanic.add_source_reference(srcref)
-        self.ref_obj.add_source_reference(srcref)
+class CitationBaseTest:
+    def test_citation_merge(self):
+        citation = gen.lib.Citation()
+        citation.set_reference_handle('123456')
+        citation.set_page('p.10')
+        self.titanic.add_citation(citation.handle)
+        self.ref_obj.add_citation(citation.handle)
         self.phoenix.merge(self.titanic)
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
@@ -166,7 +167,7 @@ class UrlBaseCheck(unittest.TestCase):
         self.assertEqual(self.phoenix.serialize(), ref_url_list.serialize())
 
 class AddressCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
-        SourceBaseTest):
+        CitationBaseTest):
     def setUp(self):
         self.phoenix = gen.lib.Address()
         self.phoenix.set_city('Amsterdam')
@@ -230,7 +231,7 @@ class AddressBaseCheck(unittest.TestCase):
         self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
 
 class AttributeCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
-        SourceBaseTest):
+        CitationBaseTest):
     def setUp(self):
         self.phoenix = gen.lib.Attribute()
         self.phoenix.set_type(gen.lib.AttributeType.AGE)
@@ -297,7 +298,7 @@ class AttributeBaseCheck(unittest.TestCase):
         self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
 
 class ChildRefCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
-        SourceBaseTest):
+        CitationBaseTest):
     def setUp(self):
         self.phoenix = gen.lib.ChildRef()
         self.phoenix.set_reference_handle('123456')
@@ -334,7 +335,7 @@ class ChildRefCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.is_equal(self.ref_obj), True)
 
 class EventCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
-        SourceBaseTest, MediaBaseTest, AttrBaseTest):
+        CitationBaseTest, MediaBaseTest, AttrBaseTest):
     def setUp(self):
         self.phoenix = gen.lib.Event()
         self.phoenix.set_description("hello world")
@@ -366,32 +367,32 @@ class EventRefCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         attr1 = gen.lib.Attribute()
         attr1.set_type(gen.lib.AttributeType.AGE)
         attr1.set_value(10)
-        srcref1 = gen.lib.SourceRef()
-        srcref1.set_reference_handle('123456')
-        srcref1.set_page('p.10')
-        srcref2 = gen.lib.SourceRef()
-        srcref2.set_reference_handle('234567')
-        srcref2.set_page('p.20')
-        attr1.add_source_reference(srcref1)
-        attr1.add_source_reference(srcref2)
+        citation1 = gen.lib.Citation()
+        citation1.set_reference_handle('123456')
+        citation1.set_page('p.10')
+        citation2 = gen.lib.Citation()
+        citation2.set_reference_handle('234567')
+        citation2.set_page('p.20')
+        attr1.add_citation(citation1.handle)
+        attr1.add_citation(citation2.handle)
         attr2 = gen.lib.Attribute()
         attr2.set_type(gen.lib.AttributeType.AGE)
         attr2.set_value(10)
-        srcref3 = gen.lib.SourceRef()
-        srcref3.set_reference_handle('123456')
-        srcref3.set_page('p.10')
-        srcref4 = gen.lib.SourceRef()
-        srcref4.set_reference_handle('654321')
-        srcref4.set_page('p.20')
-        attr2.add_source_reference(srcref3)
-        attr2.add_source_reference(srcref4)
+        citation3 = gen.lib.Citation()
+        citation3.set_reference_handle('123456')
+        citation3.set_page('p.10')
+        citation4 = gen.lib.Citation()
+        citation4.set_reference_handle('654321')
+        citation4.set_page('p.20')
+        attr2.add_citation(citation3.handle)
+        attr2.add_citation(citation4.handle)
         self.phoenix.add_attribute(attr1)
         self.ref_obj.add_attribute(attr2)
-        self.phoenix.replace_source_references('234567','654321')
+        self.phoenix.replace_citation_references('234567','654321')
         self.assert_(self.phoenix.is_equal(self.ref_obj))
 
 class FamilyCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
-        SourceBaseTest, MediaBaseTest, AttrBaseTest):
+        CitationBaseTest, MediaBaseTest, AttrBaseTest):
     def setUp(self):
         self.phoenix = gen.lib.Family()
         self.phoenix.set_father_handle('123456')
@@ -686,7 +687,7 @@ class FamilyCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
 
 
 class LdsordCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
-        SourceBaseTest):
+        CitationBaseTest):
     def setUp(self):
         self.phoenix = gen.lib.LdsOrd()
         self.phoenix.set_temple('London, England')
@@ -888,7 +889,7 @@ class MediaBaseCheck(unittest.TestCase):
         self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
 
 class MediaObjectCheck(unittest.TestCase, PrivacyBaseTest, AttrBaseTest,
-        NoteBaseTest, SourceBaseTest):
+        NoteBaseTest, CitationBaseTest):
     def setUp(self):
         self.phoenix = gen.lib.MediaObject()
         self.phoenix.set_path('example.png')
@@ -896,7 +897,7 @@ class MediaObjectCheck(unittest.TestCase, PrivacyBaseTest, AttrBaseTest,
         self.ref_obj = gen.lib.MediaObject(self.phoenix)
 
 class MediaRefCheck(unittest.TestCase, PrivacyBaseTest, AttrBaseTest,
-        SourceBaseTest, NoteBaseTest):
+        CitationBaseTest, NoteBaseTest):
     def setUp(self):
         self.phoenix = gen.lib.MediaRef()
         self.phoenix.set_rectangle("10 10 90 90")
@@ -917,7 +918,7 @@ class MediaRefCheck(unittest.TestCase, PrivacyBaseTest, AttrBaseTest,
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), EQUAL)
 
 class NameCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
-        SourceBaseTest):
+        CitationBaseTest):
     def setUp(self):
         self.phoenix = gen.lib.Name()
         self.phoenix.set_first_name('Willem')
@@ -1002,7 +1003,7 @@ class NoteBaseCheck(unittest.TestCase):
         self.assertEqual(self.phoenix.serialize(), ref_note_list.serialize())
 
 class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
-        AttrBaseTest, NoteBaseTest, SourceBaseTest):
+        AttrBaseTest, NoteBaseTest, CitationBaseTest):
     def setUp(self):
         self.phoenix = gen.lib.Person()
         name = gen.lib.Name()
@@ -1368,7 +1369,7 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
 class PlaceCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
-        UrlBaseTest, NoteBaseTest, SourceBaseTest):
+        UrlBaseTest, NoteBaseTest, CitationBaseTest):
     def setUp(self):
         self.phoenix = gen.lib.Place()
         self.phoenix.set_title('Place 1')
@@ -1485,17 +1486,17 @@ class RepoCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest, UrlBaseTest):
     def test_replace(self):
         address = gen.lib.Address()
         address.set_city('Utrecht')
-        srcref = gen.lib.SourceRef()
-        srcref.set_reference_handle('123456')
-        address.add_source_reference(srcref)
+        citation = gen.lib.Citation()
+        citation.set_reference_handle('123456')
+        address.add_citation(citation.handle)
         self.phoenix.add_address(address)
         address2 = gen.lib.Address()
         address2.set_city('Utrecht')
-        srcref2 = gen.lib.SourceRef()
-        srcref2.set_reference_handle('654321')
-        address2.add_source_reference(srcref2)
+        citation2 = gen.lib.Citation()
+        citation2.set_reference_handle('654321')
+        address2.add_citation(citation2.handle)
         self.ref_obj.add_address(address2)
-        self.phoenix.replace_source_references('123456','654321')
+        self.phoenix.replace_citation_references('123456','654321')
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
 class RepoRefCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest):
@@ -1644,116 +1645,69 @@ class SourceCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.phoenix.replace_repo_references('123456','654321')
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
-class SourceBaseCheck(unittest.TestCase):
+class CitationBaseCheck(unittest.TestCase):
     def setUp(self):
-        self.phoenix = gen.lib.srcbase.SourceBase()
-        srcref = gen.lib.SourceRef()
-        srcref.set_reference_handle('123456')
-        self.phoenix.add_source_reference(srcref)
-        self.titanic = gen.lib.srcbase.SourceBase()
-        self.obj_list = gen.lib.srcbase.SourceBase()
+        self.phoenix = gen.lib.citationbase.CitationBase()
+        citation = gen.lib.Citation()
+        citation.set_reference_handle('123456')
+        self.phoenix.add_citation(citation.handle)
+        self.titanic = gen.lib.citationbase.CitationBase()
+        self.obj_list = gen.lib.citationbase.CitationBase()
 
     def test_replace_nonew(self):
-        srcref = gen.lib.SourceRef()
-        srcref.set_reference_handle('654321')
-        self.obj_list.add_source_reference(srcref)
-        self.phoenix.replace_source_references('123456','654321')
+        citation = gen.lib.Citation()
+        citation.set_reference_handle('654321')
+        self.obj_list.add_citation(citation.handle)
+        self.phoenix.replace_citation_references('123456','654321')
         self.assertEqual(self.phoenix.serialize(), self.obj_list.serialize())
 
-    def test_replace_different(self):
-        srcref = gen.lib.SourceRef()
-        srcref.set_reference_handle('654321')
-        srcref.set_page('p.10')
-        srcref2 = gen.lib.SourceRef()
-        srcref2.set_reference_handle('654321')
-        self.obj_list.add_source_reference(srcref2)
-        self.obj_list.add_source_reference(srcref)
-        self.phoenix.add_source_reference(srcref)
-        self.phoenix.replace_source_references('123456','654321')
-        self.assertEqual(self.phoenix.serialize(), self.obj_list.serialize())
-
-    def test_replace_identical(self):
-        srcref = gen.lib.SourceRef()
-        srcref.set_reference_handle('654321')
-        srcref2 = gen.lib.SourceRef()
-        srcref2.set_reference_handle('234567')
-        self.phoenix.add_source_reference(srcref2)
-        self.phoenix.add_source_reference(srcref)
-        self.obj_list.add_source_reference(srcref2)
-        self.obj_list.add_source_reference(srcref)
-        self.phoenix.replace_source_references('123456','654321')
-        self.assertEqual(self.phoenix.serialize(), self.obj_list.serialize())
-
-    def test_replace_equal(self):
-        srcref = gen.lib.SourceRef()
-        srcref.set_reference_handle('654321')
-        srcref.set_privacy(True)
-        srcref2 = gen.lib.SourceRef()
-        srcref2.set_reference_handle('234567')
-        self.phoenix.add_source_reference(srcref2)
-        self.phoenix.add_source_reference(srcref)
-        self.obj_list.add_source_reference(srcref2)
-        self.obj_list.add_source_reference(srcref)
-        self.phoenix.replace_source_references('123456','654321')
+    def test_replace_newpresent(self):
+        citation = gen.lib.Citation()
+        citation.set_reference_handle('654321')
+        citation.set_page('p.10')
+        citation2 = gen.lib.Citation()
+        citation2.set_reference_handle('234567')
+        self.phoenix.add_citation(citation.handle)
+        self.phoenix.add_citation(citation2.handle)
+        self.obj_list.add_citation(citation2.handle)
+        self.obj_list.add_citation(citation.handle)
+        self.phoenix.replace_citation_references('123456','654321')
         self.assertEqual(self.phoenix.serialize(), self.obj_list.serialize())
 
     def todo_test_replace_child(self):
         pass
 
     def test_merge_identical(self):
-        srcref = gen.lib.SourceRef()
-        srcref.set_reference_handle('123456')
-        self.titanic.add_source_reference(srcref)
-        self.obj_list.add_source_reference(srcref)
-        self.phoenix._merge_source_reference_list(self.titanic)
+        citation = gen.lib.Citation()
+        citation.set_reference_handle('123456')
+        self.titanic.add_citation(citation.handle)
+        self.obj_list.add_citation(citation.handle)
+        self.phoenix._merge_citation_list(self.titanic)
         self.assertEqual(self.phoenix.serialize(), self.obj_list.serialize())
             
-    def test_merge_equal(self):
-        srcref = gen.lib.SourceRef()
-        srcref.set_reference_handle('123456')
-        srcref.set_privacy(True)
-        self.titanic.add_source_reference(srcref)
-        self.obj_list.add_source_reference(srcref)
-        self.phoenix._merge_source_reference_list(self.titanic)
+    def test_merge_different(self):
+        citation = gen.lib.Citation()
+        citation.set_reference_handle('234567')
+        citation2 = gen.lib.Citation()
+        citation2.set_reference_handle('123456')
+        self.titanic.add_citation(citation.handle)
+        self.obj_list.add_citation(citation2.handle)
+        self.obj_list.add_citation(citation.handle)
+        self.phoenix._merge_citation_list(self.titanic)
         self.assertEqual(self.phoenix.serialize(), self.obj_list.serialize())
 
-    def test_merge_different(self):
-        srcref = gen.lib.SourceRef()
-        srcref.set_reference_handle('234567')
-        srcref2 = gen.lib.SourceRef()
-        srcref2.set_reference_handle('123456')
-        self.titanic.add_source_reference(srcref)
-        self.obj_list.add_source_reference(srcref2)
-        self.obj_list.add_source_reference(srcref)
-        self.phoenix._merge_source_reference_list(self.titanic)
-        self.assertEqual(self.phoenix.serialize(), self.obj_list.serialize())
-            
-class SourceRefCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest):
+class CitationCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
+        NoteBaseTest):
     def setUp(self):
-        self.phoenix = gen.lib.SourceRef()
+        self.phoenix = gen.lib.Citation()
         self.phoenix.set_reference_handle('123456')
         self.phoenix.set_page('p.10')
-        self.titanic = gen.lib.SourceRef(self.phoenix)
-        self.ref_obj = gen.lib.SourceRef(self.phoenix)
-
-    def test_ref_equivalence(self):
-        self.titanic.set_reference_handle('654321')
-        self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
-
-    def test_page_equivalence(self):
-        self.assertEqual(self.phoenix.is_equivalent(self.titanic), IDENTICAL)
-        self.titanic.set_page('p.20')
-        self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
-
-    def test_date_equivalence(self):
-        date = gen.lib.Date()
-        date.set_yr_mon_day(1999, 12, 5)
-        self.titanic.set_date_object(date)
-        self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
-
-    def test_privacy_equivalence(self):
-        self.titanic.set_privacy(True)
-        self.assertEqual(self.phoenix.is_equivalent(self.titanic), EQUAL)
+        self.titanic = gen.lib.Citation()
+        self.titanic.set_reference_handle('123456')
+        self.titanic.set_page('p.10')
+        self.ref_obj = gen.lib.Citation()
+        self.ref_obj.set_reference_handle('123456')
+        self.ref_obj.set_page('p.10')
 
     def test_merge_confidence(self):
         known_values = ( (0, 0, 0), (0, 1, 0), (0, 2, 0), (0, 3, 0), (0, 4, 0),
@@ -1767,6 +1721,17 @@ class SourceRefCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest):
             self.ref_obj.set_confidence_level(val_merge)
             self.phoenix.merge(self.titanic)
             self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
+    def test_merge_datamap(self):
+        self.phoenix.set_data_item('A', 'a')
+        self.phoenix.set_data_item('B', 'b')
+        self.titanic.set_data_item('B', 'bb')
+        self.titanic.set_data_item('C', 'c')
+        self.ref_obj.set_data_item('A', 'a')
+        self.ref_obj.set_data_item('B', 'b')
+        self.ref_obj.set_data_item('C', 'c')
+        self.phoenix.merge(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
 class SurnameCheck(unittest.TestCase):
     def setUp(self):
