@@ -28,9 +28,10 @@ export GVBINDIR="$bundle_lib/graphviz"
 
 
 #Set $PYTHON to point inside the bundle
-PYVER=2.6
+PYVER=2.7
 export PYTHON="$bundle_contents/MacOS/python"
 export PYTHONHOME="$bundle_res"
+PYTHONPATH="$bundle_lib/python$PYVER/site-packages/pyenchant-1.6.1-py$PYVER.egg:$PYTHONPATH"
 export PYTHONPATH="$bundle_lib/python$PYVER/site-packages/gtk-2.0:$PYTHONPATH"
 
 export GRAMPSDIR="$bundle_data"/gramps
@@ -38,8 +39,8 @@ export GRAMPSI18N="$bundle_data"/locale
 export GRAMPSHOME="$HOME/Library/Application Support"
 
 # Strip out the argument added by the OS.
-if [ x`echo "x$1" | /usr/bin/sed -e "s/^x-psn_.*//"` == x ]; then
+if /bin/expr "x$1" : '^x-psn_' > /dev/null; then
     shift 1
 fi
-exec $PYTHON -O "$GRAMPSDIR/gramps.py" "$@"
+exec "$PYTHON" -O "$GRAMPSDIR/gramps.py" "$@"
 
