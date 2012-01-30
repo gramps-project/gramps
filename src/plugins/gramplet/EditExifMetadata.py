@@ -161,91 +161,82 @@ _DATAMAP = {
     "Exif.GPSInfo.GPSLongitude"    : "Longitude",
     "Exif.GPSInfo.GPSAltitudeRef"  : "AltitudeRef",
     "Exif.GPSInfo.GPSAltitude"     : "Altitude",
-    "Exif.Photo.DateTimeDigitized" : "Digitized" }
+    "Exif.Photo.DateTimeDigitized" : "Digitized"}
 _DATAMAP  = dict( (key, val) for key, val in _DATAMAP.items())
 _DATAMAP.update(  (val, key) for key, val in _DATAMAP.items())
 
 # define tooltips for all data entry fields
 _TOOLTIPS = {
-
-    # Media Object's Title
     "MediaTitle" : _("Warning:  Changing this entry will update the Media "
         "object title field in Gramps not Exiv2 metadata."),
 
-    # Description
     "Description" : _("Provide a short descripion for this image."),
 
-    # Artist
     "Artist" : _("Enter the Artist/ Author of this image.  The person's name or "
         "the company who is responsible for the creation of this image."),
 
-    # Copyright
     "Copyright" : _("Enter the copyright information for this image. \n"),
 
-    # Original Date/ Time
     "Original" : _("The original date/ time when the image was first created/ taken as in a photograph.\n"
         "Example: 1830-01-1 09:30:59"),
 
-    # Last Change/ Modify Date/ Time
     "Modified" : _("This is the date/ time that the image was last changed/ modified.\n"
         "Example: 2011-05-24 14:30:00"),
 
-    # GPS Latitude coordinates
     "Latitude" : _("Enter the Latitude GPS coordinates for this image,\n"
         "Example: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"),
 
-    # GPS Longitude coordinates
     "Longitude" : _("Enter the Longitude GPS coordinates for this image,\n"
         "Example: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"),
 
-    # GPS Altitude (in meters)
     "Altitude" : _("This is the measurement of Above or Below Sea Level.  It is measured in meters."
-        "Example: 200.558, -200.558") }
+        "Example: 200.558, -200.558")
+}
 _TOOLTIPS  = dict(
     (key, tooltip) for key, tooltip in _TOOLTIPS.items())
 
 # define tooltips for all buttons
 # common buttons for all images
 _BUTTONTIPS = {
-
-    # Wiki Help button
     "Help" : _("Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' "
         "in your web browser."),
 
-    # Edit screen button
     "Edit" : _("This will open up a new window to allow you to edit/ modify "
         "this image's Exif metadata.\n  It will also allow you to be able to "
         "Save the modified metadata."),
 
-    # Thumbnail Viewing Window button
     "Thumbnail" : _("Will produce a Popup window showing a Thumbnail Viewing Area"),
 
-    # Image Type button
     "ImageTypes" : _("Select from a drop- down box the image file type that you "
         "would like to convert your non- Exiv2 compatible media object to."),
 
-    # Convert to different image type
     "Convert" : _("If your image is not of an image type that can have "
         "Exif metadata read/ written to/from, convert it to a type that can?"),
 
-    # Delete/ Erase/ Wipe Exif metadata button
     "Delete" : _("WARNING:  This will completely erase all Exif metadata "
-        "from this image!  Are you sure that you want to do this?")}
+        "from this image!  Are you sure that you want to do this?")
+}
 
-# ------------------------------------------------------------------------
-#
-# 'Edit Image Exif metadata' Class
-#
-# ------------------------------------------------------------------------
-class EditExifMetadata(Gramplet):
-    def init(self):
-        """
-        create variables, and build display
+# ----------------------------------------------------
+"""
+    Edit Image Exif Metadata
+
+    This gramplet/ add-on allows the adding, editting, and manipulating of
+        an image's exif metadata.  These metadata items are being used and added by most modern cameras today.
+
+    Most modern graphic software is also able to add, edit, and manipulate these  items.
+
+   This add- on brings this ability/ functionality to Gramps...
 
         Special symbols...
             degrees symbol = [Ctrl] [Shift] u \00b0
             minutes symbol =                  \2032
             seconds symbol =                  \2033
+"""
+class EditExifMetadata(Gramplet):
+    def init(self):
+        """
+        create variables, and build display
         """
         self.exif_widgets = {}
         self.dates        = {}
@@ -258,11 +249,11 @@ class EditExifMetadata(Gramplet):
         self.dbstate.db.connect('media-update', self.update)
         self.connect_signal('Media', self.update)
 
-    def post_init(self):
+    def active_changed(self, handle):
         """
-        disconnects the active signal upon closing
+        handles when a media object has changed
         """
-        self.disconnect("active-changed")
+        self.update()
 
     def db_changed(self):
         """
@@ -379,9 +370,6 @@ class EditExifMetadata(Gramplet):
 
         main_vbox.show_all()
         return main_vbox
-
-    def active_changed(self, handle):
-        self.update()
 
     def main(self): # return false finishes
         """
@@ -505,7 +493,6 @@ class EditExifMetadata(Gramplet):
                 previews = self.plugin_image.previews
             except (IOError, OSError):
                 return False
-
         return True
 
     def __display_exif_tags(self, full_path):
@@ -528,7 +515,6 @@ class EditExifMetadata(Gramplet):
         will show the Convert Button once an Image Type has been selected, and if
             image extension is not an Exiv2- compatible image?
         """
-
         # get convert image type and check it from ImageTypes drop- down
         ext_value = self.exif_widgets["ImageTypes"].get_active()
         if ext_value >= 1:
@@ -547,7 +533,6 @@ class EditExifMetadata(Gramplet):
             * data fields
             * buttons
         """
-
         # if True, setup tooltips for all Data Entry Fields
         if fields:
             for widget, tooltip in _TOOLTIPS.items():
@@ -565,7 +550,6 @@ class EditExifMetadata(Gramplet):
             * setup the tooltips for the data fields,
             * setup the tooltips for the buttons,
         """
-
         if OLD_API:  # prior to pyexiv2-0.2.0
             metadata = pyexiv2.Image(full_path)
             try:
@@ -585,6 +569,10 @@ class EditExifMetadata(Gramplet):
         return metadata
 
     def update_has_data(self):
+        """
+        updates the has_data functionality to show on the sidebar/ bottombar
+            highlighted tab if there is any data to show...
+        """
         active_handle = self.get_active('Media')
         active = self.dbstate.db.get_object_from_handle(active_handle)
         self.set_has_data(self.get_has_data(active))
@@ -670,8 +658,8 @@ class EditExifMetadata(Gramplet):
 
         evt_box.add(entry)
         self.exif_widgets[pos] = entry
-        entry.show()
 
+        entry.show()
         return evt_box
 
     def thumbnail_view(self, object):
@@ -737,7 +725,6 @@ class EditExifMetadata(Gramplet):
         """
         builds the thumbnail viewing area.
         """
-
         main_vbox = gtk.VBox()
         main_vbox.set_size_request((width - 30), (height - 30))
 
@@ -761,7 +748,6 @@ class EditExifMetadata(Gramplet):
         """
         Handles the Convert question Dialog
         """
-
         # Convert and delete original file or just convert
         OptionDialog(_("Edit Image Exif Metadata"), _("WARNING: You are about to convert this "
             "image into a .jpeg image.  Are you sure that you want to do this?"), 
@@ -770,11 +756,10 @@ class EditExifMetadata(Gramplet):
         self.update()
         return
 
-    def __convert_copy(self, full_path =None):
+    def __convert_copy(self, full_path = None):
         """
         Will attempt to convert an image to jpeg if it is not?
         """
-
         if full_path is None:
             full_path = self.image_path
 
@@ -826,14 +811,12 @@ class EditExifMetadata(Gramplet):
 
                 # writes all Exif Metadata to image even if the fields are all empty so as to remove the value
                 self.write_metadata(dest_meta)
-
         return dest_file
 
-    def __convert_delete(self, full_path =None):
+    def __convert_delete(self, full_path = None):
         """
         will convert an image file and delete original non-jpeg image.
         """
-
         if full_path is None:
             full_path = self.image_path
 
@@ -864,11 +847,10 @@ class EditExifMetadata(Gramplet):
             self.exif_widgets["MessageArea"].set_text(_("There was an error in "
                 "deleting the original file.  You will need to delete it yourself!"))
 
-    def __convert_only(self, full_path =None):
+    def __convert_only(self, full_path = None):
         """
         This will only convert the file and update the media object path.
         """
-
         if full_path is None:
             full_path = self.image_path
 
@@ -882,11 +864,10 @@ class EditExifMetadata(Gramplet):
             self.exif_widgets["MessageArea"].set_text(_("There was an error "
                 "in converting your image file."))
 
-    def __update_media_path(self, newfilepath =None):
+    def __update_media_path(self, newfilepath = None):
         """
         update the media object's media path.
         """
-
         if newfilepath:
             db = self.dbstate.db
 
@@ -900,19 +881,17 @@ class EditExifMetadata(Gramplet):
             self.exif_widgets["MessageArea"].set_text(_("There has been an "
                 "error in updating the image file's path!"))
 
-    def __help_page(self, addonwiki =None):
+    def __help_page(self, addonwiki = None):
         """
         will bring up a Wiki help page.
         """
-
         addonwiki = 'Edit Image Exif Metadata' 
-        GrampsDisplay.help(webpage =addonwiki)
+        GrampsDisplay.help(webpage = addonwiki)
 
     def activate_buttons(self, buttonlist):
         """
         Enable/ activate the buttons that are in buttonlist
         """
-
         for widget in buttonlist:
             self.exif_widgets[widget].set_sensitive(True)
 
@@ -922,7 +901,6 @@ class EditExifMetadata(Gramplet):
 
         *** if All, then disable ALL buttons in the current display
         """
-
         if buttonlist == ["All"]:
             buttonlist = [(buttonname) for buttonname in _BUTTONTIPS.keys()
                     if buttonname is not "Help"]
@@ -1193,7 +1171,8 @@ class EditExifMetadata(Gramplet):
         displays the image Exif metadata in the Edit Area...
         """
         if mediadatatags:
-            mediadatatags = [key for key in mediadatatags if key in _DATAMAP]
+            mediadatatags = [key for key in mediadatatags
+                    if key in _DATAMAP]
 
             for key in mediadatatags:
                 widget = _DATAMAP[key]
@@ -1275,23 +1254,10 @@ class EditExifMetadata(Gramplet):
         self.media_title = self.orig_image.get_description()
         self.exif_widgets["MediaTitle"].set_text(self.media_title)
 
-    def write_metadata(self, plugininstance):
-        """
-        writes the Exif metadata to the image.
-
-        OLD_API -- prior to pyexiv2-0.2.0
-                      -- pyexiv2-0.2.0 and above... 
-        """
-        if OLD_API:
-            plugininstance.writeMetadata()
-        else:
-            plugininstance.write()
-
     def convert_format(self, latitude, longitude, format):
         """
         Convert GPS coordinates into a specified format.
         """
-
         if (not latitude and not longitude):
             return [False]*2
 
@@ -1305,7 +1271,6 @@ class EditExifMetadata(Gramplet):
         will convert a decimal GPS coordinates into degrees, minutes, seconds
         for display only
         """
-
         if (not latitude or not longitude):
             return [False]*2
 
@@ -1318,7 +1283,6 @@ class EditExifMetadata(Gramplet):
         gets the information from the plugin data fields
         and sets the key = widgetvaluee image metadata
         """
-
         # set up default variables...
         db = self.dbstate.db
         valid = 0
@@ -1462,7 +1426,19 @@ class EditExifMetadata(Gramplet):
             # update the display...
             self.update()
 
-    def strip_metadata(self, mediadatatags =None):
+    def write_metadata(self, plugininstance):
+        """
+        writes the Exif metadata to the image.
+
+        OLD_API -- prior to pyexiv2-0.2.0
+                      -- pyexiv2-0.2.0 and above... 
+        """
+        if OLD_API:
+            plugininstance.writeMetadata()
+        else:
+            plugininstance.write()
+
+    def strip_metadata(self, mediadatatags = None):
         """
         Will completely and irrevocably erase all Exif metadata from this image.
         """
@@ -1497,12 +1473,11 @@ class EditExifMetadata(Gramplet):
                 self.exif_widgets["MessageArea"].set_text(_("There was an error "
                     "in stripping the Exif metadata from this image..."))
 
-
-    def close_window(self, widgetWindow):
+    def post_init(self):
         """
-        closes the window title by widgetWindow.
+        disconnects the active signal upon closing
         """
-        lambda w: widgetWindow.destroy()
+        self.disconnect("active-changed")
 
 def string_to_rational(coordinate):
     """
@@ -1532,7 +1507,6 @@ def convert_value(value):
     """
     if isinstance(value, (Fraction, pyexiv2.Rational)):
         return str((Decimal(value.numerator) / Decimal(value.denominator)))
-
     return value
 
 def rational_to_dms(coordinates):
@@ -1561,47 +1535,39 @@ def _get_exif_keypairs(plugin_image):
 #          * gets from and sets to the image...
 #          * it will still need to be saved...
 #------------------------------------------------
-def _get_value(plugininstance, exiv2_key):
+def _get_value(plugininstance, exif2_key):
     """
     gets the value from the Exif Key, and returns it...
 
-    @param: key -- image metadata key
+    @param: exif2_key -- image metadata key
     """
-    exiv_value = ''
-
+    exif_value = ''
     try:
         if OLD_API:
-            exiv_value = plugininstance[exiv2_key]
-
+            exif_value = plugininstance[exif2_key]
         else:
-            exiv_value = plugininstance[exiv2_key].value
-
+            exif_value = plugininstance[exif2_key].value
     except (KeyError, ValueError, AttributeError):
         pass
+    return exif_value
 
-    return exiv_value
-
-def _set_value(plugininstance, key, widgetvalue_):
+def _set_value(plugininstance, key, widget_value):
     """
     sets the value for the metadata keys
     """
     if not plugininstance:
         return False
- 
     valid = 0
     try:
         if OLD_API:
-            plugininstance[key] = widgetvalue_
+            plugininstance[key] = widget_value
             valid = 1
         else:
-            plugininstance[key].value = widgetvalue_
+            plugininstance[key].value = widget_value
             valid = 2
-
     except KeyError:
-        plugininstance[key] = pyexiv2.ExifTag(key, widgetvalue_)
+        plugininstance[key] = pyexiv2.ExifTag(key, widget_value)
         valid = 3
-
     except (ValueError, AttributeError):
         valid = 4
-
     return valid
