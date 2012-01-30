@@ -211,6 +211,7 @@ authors_email = ["http://gramps-project.org"],
 category = ("Sources", _("Sources")),
 viewclass = 'SourceView',
 order = START,
+stock_icon = 'gramps-tree-list',
   )
 
 register(VIEW, 
@@ -240,5 +241,5 @@ authors = [u"Tim G L Lyons", u"Nick Hall"],
 authors_email = [""],
 category = ("Sources", _("Sources")),
 viewclass = 'CitationTreeView',
-order = START,
+stock_icon = 'gramps-tree-select',
   )
