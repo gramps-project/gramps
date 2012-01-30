@@ -122,17 +122,22 @@ def load_on_reg(dbstate, uistate, plugin):
         ["Horizontal-Menus", 0, "", 
          path_css('Web_Horizontal-Menus.css'), None, [], [] ],
 
-        # Horizontal Fade Navigation Style Sheet
-        ["Fade-Menus", 0, "", 
-         path_css('Web_Fade-Menus.css'), None, [], [] ],
-
-        # WebKit/ Html5/ CSS3 Drop Down Menus Style Sheet
-        ["Drop-Menus", 0, "",
-         path_css("Web_DropDown-Menus.css"), None, [], [] ],
-
         # Vertical Navigation Menus Style Sheet
         ["Vertical-Menus", 0, "", 
          path_css('Web_Vertical-Menus.css'), None, [], [] ],
+
+        # WebKit/ Html5/ CSS3 Fade Navigation Menus Style Sheet
+        ["Fade-Menus", 0, "", 
+         path_css('Web_Fade-Menus.css'), None, [], [] ],
+
+        # WebKit/ Html5/ CSS3 Drop Down Navigation Menus Style Sheet
+        ["DropDown-Menus", 0, "",
+         path_css("Web_DropDown-Menus.css"), None, [], [], ],
+
+        # WebKit/ Html5/ CSS3 Drop Down Citations Style Sheet
+        ["DropDown-Citations", 0, "",
+         path_css("Web_DropDown-Citations.css"), None, [],
+         path_js("jquery-1.3.2.min.js"),                 ],
 
         # GeoView style sheet with its image
         ["GeoView", 0, "GeoView", 
