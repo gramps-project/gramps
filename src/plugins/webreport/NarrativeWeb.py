@@ -551,6 +551,47 @@ class BasePage(object):
         l = l.strip().translate(strip_dict)
         return html_escape(l)
 
+    def get_nav_menu_hyperlink(self, url_fname, nav_text):
+        """
+        returns the navigation menu hyperlink
+        """
+        # check for web page file extension?
+        if not _has_webpage_extension(url_fname):
+            url_fname += self.ext
+
+        # get menu item url and begin hyperlink...
+        url = self.report.build_url_fname(url_fname, None, self.up)
+
+        return Html("a", nav_text, href = url, title = nav_text, inline = True)
+
+    def get_column_data(self, unordered, data_list, column_title):
+        """
+        returns the menu column for Drop Down Menus and Drop Down Citations
+        """
+        if len(data_list) == 0:
+            return
+
+        elif len(data_list) == 1:
+            url_fname, nav_text = data_list[0][0], data_list[0][1]
+            hyper = self.get_nav_menu_hyperlink(url_fname, nav_text)
+            unordered.extend(
+                Html("li", hyper, inline = True)
+            )
+        else:
+            list = Html("li") + (
+                Html("a", column_title, href = "#", title = column_title, inline = True)
+            )
+            unordered += list
+
+            unordered1 = Html("ul")
+            list += unordered1
+
+            for url_fname, nav_text in data_list:
+               hyper = self.get_nav_menu_hyperlink(url_fname, nav_text)
+               unordered1.extend(
+                   Html("li", hyper, inline = True)
+                )
+
     def display_relationships(self, individual, ppl_handle_list, place_lat_long):
         """
         Displays a person's relationships ...
@@ -1610,19 +1651,6 @@ class BasePage(object):
         # return page, head, and body
         return page, head, body
 
-    def get_nav_menu_hyperlink(self, url_fname, nav_text):
-        """
-        returns the navigation menu hyperlink
-        """
-        # check for web page file extension?
-        if not _has_webpage_extension(url_fname):
-            url_fname += self.ext
-
-        # get menu item url and begin hyperlink...
-        url = self.report.build_url_fname(url_fname, None, self.up)
-
-        return Html("a", nav_text, href = url, title = nav_text, inline = True)
-
     def display_nav_links(self, currentsection):
         """
         Creates the navigation menu
@@ -1796,18 +1824,8 @@ class BasePage(object):
                     list = Html("li", self.get_nav_menu_hyperlink(self.report.index_fname, _("Html|Home")))
                     unordered += list
 
-                if len(personal):
-                    list = Html("li") + (
-                        Html("a", _("Personal"), href = "#", title = _("Personal"), inline = True)
-                    )
-
-                    unordered1 = Html("ul")
-                    for url_fname, nav_text in personal:
-                        unordered1.extend(
-                            Html("li", self.get_nav_menu_hyperlink(url_fname, nav_text), inline = True)
-                        )
-                    list += unordered1
-                    unordered += list
+                # add personal column
+                self.get_column_data(unordered, personal, _("Personal"))
 
                 if len(navs1):
                     for url_fname, nav_text in navs1:
@@ -1815,36 +1833,15 @@ class BasePage(object):
                             Html("li", self.get_nav_menu_hyperlink(url_fname, nav_text), inline = True)
                         )
 
-                if len(media):
-                    list = Html("li") + (
-                        Html("a", _("Media |Gallery"), href = "#", title = _("Media | Gallery"), inline = True)
-                    )
+                # add media column
+                self.get_column_data(unordered, media, _("Media"))
 
-                    unordered1 = Html("ul")
-                    for url_fname, nav_text in media:
-                        unordered1.extend(
-                            Html("li", self.get_nav_menu_hyperlink(url_fname, nav_text), inline = True)
-                        )
-                    list += unordered1
-                    unordered += list
+                # add miscellaneous column
+                self.get_column_data(unordered, misc, _("Miscellaneous"))
 
-                if len(misc):
-                    list = Html("li") + (
-                        Html("a", _("Miscellaneous"), href = "#", title = _("Miscellaneous"), inline = True)
-                    )
-
-                    unordered1 = Html("ul")
-                    for url_fname, nav_text in misc:
-                        unordered1.extend(
-                            Html("li", self.get_nav_menu_hyperlink(url_fname, nav_text), inline = True)
-                        )
-                    list += unordered1
-                    unordered += list
-
-                if len(contact):
-                    unordered.extend(
-                        Html("li", self.get_nav_menu_hyperlink("contact", _("Contact")), inline = True)
-                    )
+                # add contact column
+                self.get_column_data(unordered, contact, _("Contact"))
+ 
                 container += unordered
             navigation += container
         return navigation
