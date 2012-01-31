@@ -1622,30 +1622,13 @@ class IdFinder(object):
 #-------------------------------------------------------------------------
 class IdMapper(object):
 
-    def __init__(self, trans, find_next, id2user_format, translate):
-        self.translate = translate
+    def __init__(self, trans, find_next, id2user_format):
         self.trans = trans
         self.find_next = find_next
         self.id2user_format = id2user_format
         self.swap = {}
     
     def __getitem__(self, gid):
-        if self.translate:
-            return self.get_translate(gid)
-        else:
-            return self.no_translate(gid)
-    
-    def clean(self, gid):
-        temp = gid.strip()
-        if len(temp) > 1 and temp[0] == '@' and temp[-1] == '@':
-            temp = temp[1:-1]
-        temp = self.id2user_format(temp)
-        return temp
-
-    def no_translate(self, gid):
-        return self.clean(gid)
-        
-    def get_translate(self, gid):
         gid = self.clean(gid)
         if gid in self.swap:
             return self.swap[gid]
@@ -1656,6 +1639,13 @@ class IdMapper(object):
                 new_val = gid
         self.swap[gid] = new_val
         return new_val
+    
+    def clean(self, gid):
+        temp = gid.strip()
+        if len(temp) > 1 and temp[0] == '@' and temp[-1] == '@':
+            temp = temp[1:-1]
+        temp = self.id2user_format(temp)
+        return temp
 
 #-------------------------------------------------------------------------
 #
@@ -1751,33 +1741,27 @@ class GedcomParser(UpdateCallback):
         self.pid_map = IdMapper(
             self.dbase.id_trans, 
             self.dbase.find_next_person_gramps_id, 
-            self.dbase.id2user_format,
-            self.dbase.get_number_of_people())
+            self.dbase.id2user_format)
         self.fid_map = IdMapper(
             self.dbase.fid_trans, 
             self.dbase.find_next_family_gramps_id, 
-            self.dbase.fid2user_format,
-            self.dbase.get_number_of_families())
+            self.dbase.fid2user_format)
         self.sid_map = IdMapper(
             self.dbase.sid_trans, 
             self.dbase.find_next_source_gramps_id, 
-            self.dbase.sid2user_format,
-            self.dbase.get_number_of_sources())
+            self.dbase.sid2user_format)
         self.oid_map = IdMapper(
             self.dbase.oid_trans, 
             self.dbase.find_next_object_gramps_id, 
-            self.dbase.oid2user_format,
-            self.dbase.get_number_of_media_objects())
+            self.dbase.oid2user_format)
         self.rid_map = IdMapper(
             self.dbase.rid_trans, 
             self.dbase.find_next_repository_gramps_id, 
-            self.dbase.rid2user_format,
-            self.dbase.get_number_of_repositories())
+            self.dbase.rid2user_format)
         self.nid_map = IdMapper(
             self.dbase.nid_trans, 
             self.dbase.find_next_note_gramps_id, 
-            self.dbase.nid2user_format,
-            self.dbase.get_number_of_notes())
+            self.dbase.nid2user_format)
 
         self.gid2id = {}
         self.oid2id = {}
