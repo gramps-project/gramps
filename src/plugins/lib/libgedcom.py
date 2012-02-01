@@ -1772,8 +1772,18 @@ class GedcomParser(UpdateCallback):
         self.nid2id = {}
 
         #
-        # Parse table for SUBM tag
+        # Parse table for <<SUBMITTER_RECORD>> below the level 0 SUBM tag
         #
+        # n @<XREF:SUBM>@   SUBM                          {1:1}
+        #   +1 NAME <SUBMITTER_NAME>                      {1:1}
+        #   +1 <<ADDRESS_STRUCTURE>>                      {0:1}
+        #   +1 <<MULTIMEDIA_LINK>>                        {0:M}
+        #   +1 LANG <LANGUAGE_PREFERENCE>                 {0:3}
+        #   +1 RFN <SUBMITTER_REGISTERED_RFN>             {0:1}
+        #   +1 RIN <AUTOMATED_RECORD_ID>                  {0:1}
+        #   +1 <<CHANGE_DATE>>                            {0:1}
+
+        # (N.B. GEDCOM allows multiple SUBMitter records)
         self.subm_parse_tbl = {
             # +1 NAME <SUBMITTER_NAME>
             TOKEN_NAME  : self.__subm_name, 
@@ -1789,8 +1799,32 @@ class GedcomParser(UpdateCallback):
             }
 
         #
-        # Parse table for INDI tag
+        # Parse table for <<INDIVIDUAL_RECORD>> below the level 0  INDI tag
         #
+        # n @<XREF:INDI>@  INDI                           {1:1}
+        #   +1 RESN <RESTRICTION_NOTICE>                  {0:1}
+        #   +1 <<PERSONAL_NAME_STRUCTURE>>                {0:M}
+        #   +1 SEX <SEX_VALUE>                            {0:1}
+        #   +1 <<INDIVIDUAL_EVENT_STRUCTURE>>             {0:M}
+        #   +1 <<INDIVIDUAL_ATTRIBUTE_STRUCTURE>>         {0:M}
+        #   +1 <<LDS_INDIVIDUAL_ORDINANCE>>               {0:M}
+        #   +1 <<CHILD_TO_FAMILY_LINK>>                   {0:M}
+        #   +1 <<SPOUSE_TO_FAMILY_LINK>>                  {0:M}
+        #   +1 SUBM @<XREF:SUBM>@                         {0:M}
+        #   +1 <<ASSOCIATION_STRUCTURE>>                  {0:M}
+        #   +1 ALIA @<XREF:INDI>@                         {0:M}
+        #   +1 ANCI @<XREF:SUBM>@                         {0:M}
+        #   +1 DESI @<XREF:SUBM>@                         {0:M}
+        #   +1 <<SOURCE_CITATION>>                        {0:M}
+        #   +1 <<MULTIMEDIA_LINK>>                        {0:M}
+        #   +1 <<NOTE_STRUCTURE>>                         {0:M}
+        #   +1 RFN <PERMANENT_RECORD_FILE_NUMBER>         {0:1}
+        #   +1 AFN <ANCESTRAL_FILE_NUMBER>                {0:1}
+        #   +1 REFN <USER_REFERENCE_NUMBER>               {0:M}
+        #     +2 TYPE <USER_REFERENCE_TYPE>               {0:1}
+        #   +1 RIN <AUTOMATED_RECORD_ID>                  {0:1}
+        #   +1 <<CHANGE_DATE>>                            {0:1}
+
         self.indi_parse_tbl = {
             # +1 RESN <RESTRICTION_NOTICE> {0:1}
             TOKEN_RESN  : self.__person_resn, 
@@ -1854,9 +1888,6 @@ class GedcomParser(UpdateCallback):
             TOKEN_TITL  : self.__person_titl, 
             }
 
-        #
-        # Parse table for INDI.NAME
-        # 
         self.name_parse_tbl = {
             # +1 NPFX <NAME_PIECE_PREFIX> {0:1}
             TOKEN_NPFX   : self.__name_npfx, 
@@ -1882,6 +1913,18 @@ class GedcomParser(UpdateCallback):
             TOKEN_TYPE   : self.__name_type, 
             TOKEN_BIRT   : self.__ignore, 
             }
+
+        #
+        # Parse table for <<REPOSITORY_RECORD>> below the level 0 REPO tag
+        # 
+        # n @<XREF:REPO>@ REPO                            {1:1}
+        #   +1 NAME <NAME_OF_REPOSITORY>                  {0:1}
+        #   +1 <<ADDRESS_STRUCTURE>>                      {0:1}
+        #   +1 <<NOTE_STRUCTURE>>                         {0:M}
+        #   +1 REFN <USER_REFERENCE_NUMBER>               {0:M}
+        #     +2 TYPE <USER_REFERENCE_TYPE>               {0:1}
+        #   +1 RIN <AUTOMATED_RECORD_ID>                  {0:1}
+        #   +1 <<CHANGE_DATE>>                            {0:1}
 
         self.repo_parse_tbl = {
             TOKEN_NAME   : self.__repo_name, 
@@ -2066,8 +2109,23 @@ class GedcomParser(UpdateCallback):
             }
         
         #
-        # FAM 
+        # Parse table for <<FAM_RECORD>> below the level 0 FAM tag
         # 
+        # n @<XREF:FAM>@   FAM                            {1:1}
+        #   +1 <<FAMILY_EVENT_STRUCTURE>>                 {0:M}
+        #   +1 HUSB @<XREF:INDI>@                         {0:1}
+        #   +1 WIFE @<XREF:INDI>@                         {0:1}
+        #   +1 CHIL @<XREF:INDI>@                         {0:M}
+        #   +1 NCHI <COUNT_OF_CHILDREN>                   {0:1}
+        #   +1 SUBM @<XREF:SUBM>@                         {0:M}
+        #   +1 <<LDS_SPOUSE_SEALING>>                     {0:M}
+        #   +1 <<SOURCE_CITATION>>                        {0:M}
+        #   +1 <<MULTIMEDIA_LINK>>                        {0:M}
+        #   +1 <<NOTE_STRUCTURE>>                         {0:M}
+        #   +1 REFN <USER_REFERENCE_NUMBER>               {0:M}
+        #   +1 RIN <AUTOMATED_RECORD_ID>                  {0:1}
+        #   +1 <<CHANGE_DATE>>                            {0:1}
+
         self.family_func = {
             # +1 <<FAMILY_EVENT_STRUCTURE>>  {0:M}
             TOKEN_GEVENT : self.__family_std_event, 
@@ -2110,6 +2168,33 @@ class GedcomParser(UpdateCallback):
             TOKEN__STAT  : self.__family_stat, 
             }
 
+        #
+        # Parse table for <<SOURCE_RECORD>> below the level 0 SOUR tag
+        # 
+        # n @<XREF:SOUR>@ SOUR                            {1:1}
+        #   +1 DATA                                       {0:1}
+        #     +2 EVEN <EVENTS_RECORDED>                   {0:M}
+        #       +3 DATE <DATE_PERIOD>                     {0:1}
+        #       +3 PLAC <SOURCE_JURISDICTION_PLACE>       {0:1}
+        #     +2 AGNC <RESPONSIBLE_AGENCY>                {0:1}
+        #     +2 <<NOTE_STRUCTURE>>                       {0:M}
+        #   +1 AUTH <SOURCE_ORIGINATOR>                   {0:1}
+        #     +2 [CONT|CONC] <SOURCE_ORIGINATOR>          {0:M}
+        #   +1 TITL <SOURCE_DESCRIPTIVE_TITLE>            {0:1}
+        #     +2 [CONT|CONC] <SOURCE_DESCRIPTIVE_TITLE>   {0:M}
+        #   +1 ABBR <SOURCE_FILED_BY_ENTRY>               {0:1}
+        #   +1 PUBL <SOURCE_PUBLICATION_FACTS>            {0:1}
+        #     +2 [CONT|CONC] <SOURCE_PUBLICATION_FACTS>   {0:M}
+        #   +1 TEXT <TEXT_FROM_SOURCE>                    {0:1}
+        #     +2 [CONT|CONC] <TEXT_FROM_SOURCE>           {0:M}
+        #   +1 <<SOURCE_REPOSITORY_CITATION>>             {0:1}
+        #   +1 <<MULTIMEDIA_LINK>>                        {0:M}
+        #   +1 <<NOTE_STRUCTURE>>                         {0:M}
+        #   +1 REFN <USER_REFERENCE_NUMBER>               {0:M}
+        #     +2 TYPE <USER_REFERENCE_TYPE>               {0:1}
+        #   +1 RIN <AUTOMATED_RECORD_ID>                  {0:1}
+        #   +1 <<CHANGE_DATE>>                            {0:1}
+
         self.source_func = {
             TOKEN_TITL   : self.__source_title, 
             TOKEN_TAXT   : self.__source_taxt_peri, 
@@ -2134,6 +2219,21 @@ class GedcomParser(UpdateCallback):
             TOKEN_DATE   : self.__ignore,  
             TOKEN_IGNORE : self.__ignore, 
         }
+
+        #
+        # Parse table for <<MULTIMEDIA_RECORD>> below the level 0 OBJE tag
+        # 
+        # n @<XREF:OBJE>@ OBJE                            {1:1}
+        #   +1 FORM <MULTIMEDIA_FORMAT>                   {1:1}
+        #   +1 TITL <DESCRIPTIVE_TITLE>                   {0:1}
+        #   +1 <<NOTE_STRUCTURE>>                         {0:M}
+        #   +1 <<SOURCE_CITATION>>                        {0:M}
+        #   +1 BLOB                                       {1:1}
+        #     +2 CONT <ENCODED_MULTIMEDIA_LINE>           {1:M}
+        #   +1 OBJE @<XREF:OBJE>@     /* chain to continued object */  {0:1}
+        #   +1 REFN <USER_REFERENCE_NUMBER>               {0:M}
+        #     +2 TYPE <USER_REFERENCE_TYPE>               {0:1}
+        #   +1 RIN <AUTOMATED_RECORD_ID>                  {0:1}
 
         self.obje_func = {
             TOKEN_FORM   : self.__obje_form, 
@@ -2216,10 +2316,44 @@ class GedcomParser(UpdateCallback):
             TOKEN_ROLE   : self.__citation_even_role,
             }
         
+        #
+        # Parse table for <<HEADER>> record below the level 0 HEAD tag
+        # 
+        # n HEAD                                          {1:1}
+        #   +1 SOUR <APPROVED_SYSTEM_ID>                  {1:1}
+        #     +2 VERS <VERSION_NUMBER>                    {0:1}
+        #     +2 NAME <NAME_OF_PRODUCT>                   {0:1}
+        #     +2 CORP <NAME_OF_BUSINESS>                  {0:1}
+        #       +3 <<ADDRESS_STRUCTURE>>                  {0:1}
+        #     +2 DATA <NAME_OF_SOURCE_DATA>               {0:1}
+        #       +3 DATE <PUBLICATION_DATE>                {0:1}
+        #       +3 COPR <COPYRIGHT_SOURCE_DATA>           {0:1}
+        #   +1 DEST <RECEIVING_SYSTEM_NAME>               {0:1*}
+        #   +1 DATE <TRANSMISSION_DATE>                   {0:1}
+        #     +2 TIME <TIME_VALUE>                        {0:1}
+        #   +1 SUBM @<XREF:SUBM>@                         {1:1}
+        #   +1 SUBN @<XREF:SUBN>@                         {0:1}
+        #   +1 FILE <FILE_NAME>                           {0:1}
+        #   +1 COPR <COPYRIGHT_GEDCOM_FILE>               {0:1}
+        #   +1 GEDC                                       {1:1}
+        #     +2 VERS <VERSION_NUMBER>                    {1:1}
+        #     +2 FORM <GEDCOM_FORM>                       {1:1}
+        #   +1 CHAR <CHARACTER_SET>                       {1:1}
+        #     +2 VERS <VERSION_NUMBER>                    {0:1}
+        #   +1 LANG <LANGUAGE_OF_TEXT>                    {0:1}
+        #   +1 PLAC                                       {0:1}
+        #     +2 FORM <PLACE_HIERARCHY>                   {1:1}
+        #   +1 NOTE <GEDCOM_CONTENT_DESCRIPTION>          {0:1}
+        #     +2 [CONT|CONC] <GEDCOM_CONTENT_DESCRIPTION> {0:M}
+
+        #  * NOTE: Submissions to the Family History Department for Ancestral
+        #  File submission or for clearing temple ordinances must use a
+        #  DESTination of ANSTFILE or TempleReady.
+        
         self.header_sour = {
             TOKEN_SOUR   : self.__header_sour, 
             TOKEN_NAME   : self.__ignore, 
-            TOKEN_VERS   : self.__header_vers, 
+            TOKEN_VERS   : self.__header_vers,  # This should be below SOUR
             TOKEN_FILE   : self.__header_file, 
             TOKEN_COPR   : self.__header_copr, 
             TOKEN_SUBM   : self.__header_subm, 
@@ -2283,6 +2417,13 @@ class GedcomParser(UpdateCallback):
     def parse_gedcom_file(self, use_trans=False):
         """
         Parses the opened GEDCOM file.
+        
+        LINEAGE_LINKED_GEDCOM: =
+          0 <<HEADER>>                                    {1:1}
+          0 <<SUBMISSION_RECORD>>                         {0:1}
+          0 <<RECORD>>                                    {1:M}
+          0 TRLR                                          {1:1}
+
         """
         no_magic = self.maxpeople < 1000
         with DbTxn(_("GEDCOM import"), self.dbase, not use_trans,
@@ -2592,13 +2733,13 @@ class GedcomParser(UpdateCallback):
         Parses the submitter data
 
         n @<XREF:SUBM>@ SUBM
-        +1 NAME <SUBMITTER_NAME>
-        +1 <<ADDRESS_STRUCTURE>>
-        +1 <<MULTIMEDIA_LINK>>
-        +1 LANG <LANGUAGE_PREFERENCE>
-        +1 RFN <SUBMITTER_REGISTERED_RFN>
-        +1 RIN <AUTOMATED_RECORD_ID>
-        +1 <<CHANGE_DATE>>
+          +1 NAME <SUBMITTER_NAME>
+          +1 <<ADDRESS_STRUCTURE>>
+          +1 <<MULTIMEDIA_LINK>>
+          +1 LANG <LANGUAGE_PREFERENCE>
+          +1 RFN <SUBMITTER_REGISTERED_RFN>
+          +1 RIN <AUTOMATED_RECORD_ID>
+          +1 <<CHANGE_DATE>>
         """
         researcher = gen.lib.Researcher()
         state = CurrentState()
@@ -2610,6 +2751,25 @@ class GedcomParser(UpdateCallback):
     def __parse_record(self):
         """
         Parse the top level (0 level) instances.
+        RECORD: =
+          [
+          n <<FAM_RECORD>>                                {1:1}
+          |
+          n <<INDIVIDUAL_RECORD>>                         {1:1}
+          |
+          n <<MULTIMEDIA_RECORD>>                         {1:M}
+          |
+          n <<NOTE_RECORD>>                               {1:1}
+          |
+          n <<REPOSITORY_RECORD>>                         {1:1}
+          |
+          n <<SOURCE_RECORD>>                             {1:1}
+          |
+          n <<SUBMITTER_RECORD>>                          {1:1}
+          ] 
+        
+        This also deals with the SUBN (submission) record, of which there should
+        be exactly one.
         """
         while True:
             line = self.__get_next_line()
@@ -2685,34 +2845,35 @@ class GedcomParser(UpdateCallback):
     # INDI parsing
     #
     #----------------------------------------------------------------------
+
     def __parse_indi(self, line):
         """
         Handling of the GEDCOM INDI tag and all lines subordinate to the current
         line.
 
         n  @XREF:INDI@ INDI {1:1}
-        +1 RESN <RESTRICTION_NOTICE> {0:1}
-        +1 <<PERSONAL_NAME_STRUCTURE>> {0:M}
-        +1 SEX <SEX_VALUE> {0:1}
-        +1 <<INDIVIDUAL_EVENT_STRUCTURE>> {0:M}
-        +1 <<INDIVIDUAL_ATTRIBUTE_STRUCTURE>> {0:M}
-        +1 <<LDS_INDIVIDUAL_ORDINANCE>> {0:M}
-        +1 <<CHILD_TO_FAMILY_LINK>> {0:M}
-        +1 <<SPOUSE_TO_FAMILY_LINK>> {0:M}
-        +1 SUBM @<XREF:SUBM>@ {0:M}
-        +1 <<ASSOCIATION_STRUCTURE>> {0:M}
-        +1 ALIA @<XREF:INDI>@ {0:M}
-        +1 ANCI @<XREF:SUBM>@ {0:M}
-        +1 DESI @<XREF:SUBM>@ {0:M}
-        +1 <<SOURCE_CITATION>> {0:M}
-        +1 <<MULTIMEDIA_LINK>> {0:M}
-        +1 <<NOTE_STRUCTURE>> {0:M} 
-        +1 RFN <PERMANENT_RECORD_FILE_NUMBER> {0:1}
-        +1 AFN <ANCESTRAL_FILE_NUMBER> {0:1}
-        +1 REFN <USER_REFERENCE_NUMBER> {0:M}
-        +2 TYPE <USER_REFERENCE_TYPE> {0:1}
-        +1 RIN <AUTOMATED_RECORD_ID> {0:1}
-        +1 <<CHANGE_DATE>> {0:1}
+          +1 RESN <RESTRICTION_NOTICE> {0:1}
+          +1 <<PERSONAL_NAME_STRUCTURE>> {0:M}
+          +1 SEX <SEX_VALUE> {0:1}
+          +1 <<INDIVIDUAL_EVENT_STRUCTURE>> {0:M}
+          +1 <<INDIVIDUAL_ATTRIBUTE_STRUCTURE>> {0:M}
+          +1 <<LDS_INDIVIDUAL_ORDINANCE>> {0:M}
+          +1 <<CHILD_TO_FAMILY_LINK>> {0:M}
+          +1 <<SPOUSE_TO_FAMILY_LINK>> {0:M}
+          +1 SUBM @<XREF:SUBM>@ {0:M}
+          +1 <<ASSOCIATION_STRUCTURE>> {0:M}
+          +1 ALIA @<XREF:INDI>@ {0:M}
+          +1 ANCI @<XREF:SUBM>@ {0:M}
+          +1 DESI @<XREF:SUBM>@ {0:M}
+          +1 <<SOURCE_CITATION>> {0:M}
+          +1 <<MULTIMEDIA_LINK>> {0:M}
+          +1 <<NOTE_STRUCTURE>> {0:M} 
+          +1 RFN <PERMANENT_RECORD_FILE_NUMBER> {0:1}
+          +1 AFN <ANCESTRAL_FILE_NUMBER> {0:1}
+          +1 REFN <USER_REFERENCE_NUMBER> {0:M}
+          +2 TYPE <USER_REFERENCE_TYPE> {0:1}
+          +1 RIN <AUTOMATED_RECORD_ID> {0:1}
+          +1 <<CHANGE_DATE>> {0:1}
         """
 
         # find the person
@@ -3771,13 +3932,13 @@ class GedcomParser(UpdateCallback):
 
     #-------------------------------------------------------------------
     # 
-    # Family parsing
+    # FAM parsing
     #
     #-------------------------------------------------------------------
         
     def __parse_fam(self, line):
         """
-          n @<XREF:FAM>@   FAM   {1:1}
+        n @<XREF:FAM>@   FAM   {1:1}
           +1 <<FAMILY_EVENT_STRUCTURE>>  {0:M}
           +1 HUSB @<XREF:INDI>@  {0:1}
           +1 WIFE @<XREF:INDI>@  {0:1}
@@ -4970,9 +5131,15 @@ class GedcomParser(UpdateCallback):
         """
         self.__parse_note(line, state.citation, state.level+1)
 
+    #----------------------------------------------------------------------
+    #
+    # SOUR parsing
+    #
+    #----------------------------------------------------------------------
+
     def __parse_source(self, name, level):
         """
-          n @<XREF:SOUR>@ SOUR {1:1}
+        n @<XREF:SOUR>@ SOUR {1:1}
           +1 DATA {0:1}
           +2 EVEN <EVENTS_RECORDED> {0:M}
           +3 DATE <DATE_PERIOD> {0:1} 
@@ -5171,9 +5338,15 @@ class GedcomParser(UpdateCallback):
         if state.source.get_title() == "":
             state.source.set_title(line.data.replace('\n', ' '))
 
+    #----------------------------------------------------------------------
+    #
+    # OBJE parsing
+    #
+    #----------------------------------------------------------------------
+
     def __parse_obje(self, line):
         """
-           n  @XREF:OBJE@ OBJE {1:1}
+        n  @XREF:OBJE@ OBJE {1:1}
            +1 FORM <MULTIMEDIA_FORMAT> {1:1} p.*
            +1 TITL <DESCRIPTIVE_TITLE> {0:1} p.*
            +1 <<NOTE_STRUCTURE>> {0:M} p.*
@@ -5344,16 +5517,16 @@ class GedcomParser(UpdateCallback):
     # REPO parsing
     #
     #----------------------------------------------------------------------
+
     def __parse_repo(self, line):
         """
-        REPOSITORY_RECORD:=
-          n @<XREF:REPO>@ REPO {1:1}
-         +1 NAME <NAME_OF_REPOSITORY> {0:1} p.*
-         +1 <<ADDRESS_STRUCTURE>> {0:1} p.*
-         +1 <<NOTE_STRUCTURE>> {0:M} p.*
-         +1 REFN <USER_REFERENCE_NUMBER> {0:M} p.*
-         +1 RIN <AUTOMATED_RECORD_ID> {0:1} p.*
-         +1 <<CHANGE_DATE>> {0:1} p.
+        n @<XREF:REPO>@ REPO {1:1}
+          +1 NAME <NAME_OF_REPOSITORY> {0:1} p.*
+          +1 <<ADDRESS_STRUCTURE>> {0:1} p.*
+          +1 <<NOTE_STRUCTURE>> {0:M} p.*
+          +1 REFN <USER_REFERENCE_NUMBER> {0:M} p.*
+          +1 RIN <AUTOMATED_RECORD_ID> {0:1} p.*
+          +1 <<CHANGE_DATE>> {0:1} p.
         """
         repo = self.__find_or_create_repository(line.token_text)
 
@@ -5589,7 +5762,48 @@ class GedcomParser(UpdateCallback):
         """
         self.__parse_note(line, state.obj, state.level)
 
+    #----------------------------------------------------------------------
+    #
+    # HEAD parsing
+    #
+    #----------------------------------------------------------------------
+
     def __parse_header_source(self):
+        """
+        Handling of the lines subordinate to the HEAD GEDCOM tag
+        
+         n HEAD                                          {1:1}
+           +1 SOUR <APPROVED_SYSTEM_ID>                  {1:1}
+             +2 VERS <VERSION_NUMBER>                    {0:1}
+             +2 NAME <NAME_OF_PRODUCT>                   {0:1}
+             +2 CORP <NAME_OF_BUSINESS>                  {0:1}
+               +3 <<ADDRESS_STRUCTURE>>                  {0:1}
+             +2 DATA <NAME_OF_SOURCE_DATA>               {0:1}
+               +3 DATE <PUBLICATION_DATE>                {0:1}
+               +3 COPR <COPYRIGHT_SOURCE_DATA>           {0:1}
+           +1 DEST <RECEIVING_SYSTEM_NAME>               {0:1*}
+           +1 DATE <TRANSMISSION_DATE>                   {0:1}
+             +2 TIME <TIME_VALUE>                        {0:1}
+           +1 SUBM @<XREF:SUBM>@                         {1:1}
+           +1 SUBN @<XREF:SUBN>@                         {0:1}
+           +1 FILE <FILE_NAME>                           {0:1}
+           +1 COPR <COPYRIGHT_GEDCOM_FILE>               {0:1}
+           +1 GEDC                                       {1:1}
+             +2 VERS <VERSION_NUMBER>                    {1:1}
+             +2 FORM <GEDCOM_FORM>                       {1:1}
+           +1 CHAR <CHARACTER_SET>                       {1:1}
+             +2 VERS <VERSION_NUMBER>                    {0:1}
+           +1 LANG <LANGUAGE_OF_TEXT>                    {0:1}
+           +1 PLAC                                       {0:1}
+             +2 FORM <PLACE_HIERARCHY>                   {1:1}
+           +1 NOTE <GEDCOM_CONTENT_DESCRIPTION>          {0:1}
+             +2 [CONT|CONC] <GEDCOM_CONTENT_DESCRIPTION> {0:M}
+
+          * NOTE: Submissions to the Family History Department for Ancestral
+          File submission or for clearing temple ordinances must use a
+          DESTination of ANSTFILE or TempleReady.
+        
+        """
         state = CurrentState(level=1)
         self.__parse_level(state, self.header_sour, self.__undefined)
 
@@ -5732,7 +5946,24 @@ class GedcomParser(UpdateCallback):
                 self.__skip_subordinate_levels(level+1)
                 obj.add_note(new_note.get_handle())
 
+    #----------------------------------------------------------------------
+    #
+    # NOTE parsing
+    #
+    #----------------------------------------------------------------------
+
     def __parse_inline_note(self, line, level):
+        """
+        Handling of lines subordinate to the NOTE GEDCOM tag
+        
+        n @<XREF:NOTE>@ NOTE <SUBMITTER_TEXT>  {1:1}
+          +1 [ CONC | CONT] <SUBMITTER_TEXT>  {0:M}
+          +1 <<SOURCE_CITATION>>  {0:M}
+          +1 REFN <USER_REFERENCE_NUMBER>  {0:M}
+            +2 TYPE <USER_REFERENCE_TYPE>  {0:1}
+          +1 RIN <AUTOMATED_RECORD_ID>  {0:1}
+          +1 <<CHANGE_DATE>>  {0:1}
+        """
         gid = self.nid_map[line.token_text]
         handle = self.nid2id.get(gid)
         if not line.data and handle is None:
