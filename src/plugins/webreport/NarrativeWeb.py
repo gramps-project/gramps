@@ -790,7 +790,7 @@ class BasePage(object):
                 source = self.dbase_.get_source_from_handle(source_handle)
                 if source:
 
-                    hyper = self.source_link(source, up = self.up)
+                    hyper = self.source_link(source, uplink = self.up)
                     text += ' [<a href = %s>%s</a>]' % (hyper, id_)
         return text
 
@@ -1137,7 +1137,7 @@ class BasePage(object):
         place_hyper = None
         if place: 
             place_name = ReportUtils.place_name(self.dbase_, place_handle)
-            place_hyper = self.place_link(place_handle, place_name, up = up)
+            place_hyper = self.place_link(place_handle, place_name, uplink = up)
 
         # wrap it all up and return to its callers
         # position 0 = translatable label, position 1 = column class
@@ -1190,7 +1190,7 @@ class BasePage(object):
                     place = self.dbase_.get_place_from_handle(place_handle)
                     if place:
                         place_hyper = self.place_link(place_handle, place.get_title(),
-                            place.get_gramps_id(), True)
+                            place.get_gramps_id(), uplink = True)
 
                 # begin ordinance rows
                 trow = Html("tr")
@@ -1253,7 +1253,7 @@ class BasePage(object):
         @param: up - rather to add back directories or not?
         """
 
-        url = self.report.build_url_fname_html(source.get_handle(), "src", up)
+        url = self.report.build_url_fname_html(source.get_handle(), "src", uplink)
         gid = source.get_gramps_id()
         title = html_escape(source.get_title())
 
@@ -2306,7 +2306,7 @@ class BasePage(object):
                 # Add this source and its references to the page
                 source = self.dbase_.get_source_from_handle(shandle)
                 if source is not None:
-                    list = Html("li", self.source_link(source, cindex, up = True))
+                    list = Html("li", self.source_link(source, cindex, uplink = True))
                 else:
                     list = Html("li", "None")
 
@@ -2549,7 +2549,7 @@ class BasePage(object):
 
     def place_link(self, handle, name, gid = None, uplink = False):
 
-        url = self.report.build_url_fname_html(handle, "plc", up)
+        url = self.report.build_url_fname_html(handle, "plc", uplink)
 
         hyper = Html("a", html_escape(name), href = url, title = html_escape(name))
         if not self.noid and gid:
@@ -3434,7 +3434,7 @@ class PlaceListPage(BasePage):
                         else:
                             tcell += "&nbsp;"
 
-                        trow += Html("td", self.place_link(place.get_handle(), place_title, place.get_gramps_id() ), 
+                        trow += Html("td", self.place_link(place.get_handle(), place_title, place.get_gramps_id()),
                             class_ = "ColumnName")
 
                         trow.extend(
@@ -4810,7 +4810,7 @@ class SourcePage(BasePage):
                                             hyper = self.repository_link(repository_handle, "", uplink = self.up)
 
                                             list3 = Html("li") + (
-                                                Html("a", repo_title, href = hyper, title = rpo_title, inline = True)
+                                                Html("a", repo_title, href = hyper, title = repo_title, inline = True)
                                             )
                                             unordered3 += list3
 
@@ -5690,9 +5690,9 @@ class IndividualPage(BasePage):
                         trow.extend(
                             Html("td", data, class_ =colclass, inline =True)
                                 for data, colclass in [
-                                    (date,                                          "ColumnDate"),
-                                    (self.place_link(handle, placetitle, up =True), "ColumnPlace"),
-                                    (str(etype),                                    "ColumnType")
+                                    (date,                                               "ColumnDate"),
+                                    (self.place_link(handle, placetitle, uplink = True), "ColumnPlace"),
+                                    (str(etype),                                         "ColumnType")
                                 ]
                         )
                         
@@ -6661,7 +6661,7 @@ class RepositoryPage(BasePage):
                             source_nbr += 1
 
                             if source_handle in source_list:
-                                source_name = self.source_link(source, up =True)
+                                source_name = self.source_link(source, uplink = True)
                             else:
                                 source_name = source.get_title()
 
