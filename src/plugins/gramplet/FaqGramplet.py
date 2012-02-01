@@ -62,7 +62,7 @@ class FAQGramplet(Gramplet):
         self.render_text("\n<b>%s</b>\n\n" % _("Miscellaneous"))
 
         self.render_text(_(" 10. <a wiki='%s_-_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>How can I make a website with Gramps and my tree?</a>\n") % WIKI)
-        self.render_text(_(" 11. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-ts21786114.html#a21786114'>How do I record one's occupation?</a>\n"))
+        self.render_text(_(" 11. <a href='http://sourceforge.net/mailarchive/message.php?msg_id=21487967'>How do I record one's occupation?</a>\n"))
         self.render_text(_(" 12. <a wiki='%s_-_FAQ#What_do_I_do_if_I_have_found_a_bug.3F'>What do I do if I have found a bug?</a>\n") % WIKI)
         self.render_text(_(" 13. <a wiki='Portal:Using_GRAMPS'>Is there a manual for Gramps?</a>\n"))
         self.render_text(_(" 14. <a wiki='Category:Tutorials'>Are there tutorials available?</a>\n"))
