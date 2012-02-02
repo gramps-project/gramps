@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the GRAMPS package.
 # Radek Malcic <malcic@atlas.cz>, 2004
 # Jiří Pejchal <jiri.pejchal@gmail.com>, 2005
-# Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006, 2007, 2008, 2009, 2010, 2011.
+# Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006 - 2012.
 #
 # Common terms and translations:
 #  ancestor        předek
@@ -36,7 +36,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-02-02 10:49+0100\n"
-"PO-Revision-Date: 2012-02-02 11:31+0100\n"
+"PO-Revision-Date: 2012-02-02 13:55+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -319,7 +319,7 @@ msgstr "Pomocník exportu"
 
 #: ../src/ExportAssistant.py:212
 msgid "Saving your data"
-msgstr "Ukožení vašich dat"
+msgstr "Uložení vašich dat"
 
 #: ../src/ExportAssistant.py:261
 msgid "Choose the output format"
@@ -571,7 +571,7 @@ msgstr "Nelze upravit systémový filtr"
 
 #: ../src/ExportOptions.py:643
 msgid "Please select a different filter to edit"
-msgstr "Vybrerte prosím jiný filtr pro úpravu"
+msgstr "Vyberte prosím jiný filtr pro úpravu"
 
 #: ../src/ExportOptions.py:672
 #: ../src/ExportOptions.py:697
@@ -601,7 +601,7 @@ msgstr "Nezahrnovat záznamy které nejsou spojené se zvolenou osobu"
 #. FIXME: This should use LOG.warn, but logging has not been initialised yet
 #: ../src/gramps.py:68
 msgid "WARNING: Setting locale failed. Please fix the LC_* and/or the LANG environment variables to prevent this error"
-msgstr "POZOR: Nastabení locale selhalo. Této chybě zabráníte opravou proměnných prostředí LC_* a/nebo LANG"
+msgstr "POZOR: Nastavení locale selhalo. Této chybě zabráníte opravou proměnných prostředí LC_* a/nebo LANG"
 
 #: ../src/gramps.py:78
 msgid "ERROR: Setting the 'C' locale didn't work either"
@@ -2560,7 +2560,7 @@ msgstr ""
 #: ../src/gen/db/exceptions.py:93
 #, python-format
 msgid "Gramps stores its data in a Berkeley Database. The family tree you try to load was created with version %(env_version)s of the Berkeley DB. However, the Gramps version in use right now employs version %(bdb_version)s of the Berkeley DB. So you are trying to load data created in a newer format into an older program; this is bound to fail. The right approach in this case is to use XML export and import. So try to open the family tree on that computer with that software that created the family tree, export it to XML and load that XML into the version of Gramps you intend to use."
-msgstr "Gramps ukládá svá data do Berkeley databáze. Rodokmen, který se pokoušíte nahrát byl vytvořen Berkeley DB verze %(env_version)s. Gramps, které používáte ale využívá Berkeley DB verze %(bdb_version)s. To znamená,že se snažíte nahrát data vytvořená v novějším formátu do staršího programu. Tato opearace selže. Správný postup v tomto případě je použít XML export a import. Otevřte tedy rodokmen na počítači s tou verzí programu ve které byl vytvořen,exportujte do XML a takto formátovaný soubor nahrajte do verze Gramps, kterou používáte."
+msgstr "Gramps ukládá svá data do Berkeley databáze. Rodokmen, který se pokoušíte nahrát byl vytvořen Berkeley DB verze %(env_version)s. Gramps, které používáte ale využívá Berkeley DB verze %(bdb_version)s. To znamená,že se snažíte nahrát data vytvořená v novějším formátu do staršího programu. Tato operace selže. Správný postup v tomto případě je použít XML export a import. Otevřete tedy rodokmen na počítači s tou verzí programu ve které byl vytvořen,exportujte do XML a takto formátovaný soubor nahrajte do verze Gramps, kterou používáte."
 
 #: ../src/gen/db/exceptions.py:116
 msgid ""
@@ -2568,7 +2568,7 @@ msgid ""
 "If possible, you should revert to your old version of Gramps and its support software; export your database to XML; close the database; then upgrade again to this version of Gramps and import the XML file in an empty Family Tree. Alternatively, it may be possible to use the Berkeley database recovery tools."
 msgstr ""
 "Gramps zaznamenal problém při otevírání 'prostředí' Berkeley databáze použité pro uložení tohoto rodokmenu. S největší pravděpodobností byla databáze vytvořena starou verzí Berkeley databáze zatímco nyní používáte verzi novou. Je také možné, že vaše databáze nebyla změněna Gramps.\n"
-"Pokud je to možné, měli byste se vrátit k starší verzi Gramps a jí požadovanému podpůrnému programovému vybavení; exportovat vaši databázi do XML a zavřít ji. Poté proveďte znovu upgrade na tuto verzi a importujte XML soubor do prázdného rodokmenu.  Eventuálně můžete zkusit upgradovat vaši databázi."
+"Pokud je to možné, měli byste se vrátit k starší verzi Gramps a jí požadovanému podpůrnému programovému vybavení; exportovat vaši databázi do XML a zavřít ji. Poté proveďte znovu upgrade na tuto verzi a importujte XML soubor do prázdného rodokmenu. Eventuálně můžete zkusit aktualizovat vaši databázi."
 
 #: ../src/gen/db/exceptions.py:139
 msgid ""
@@ -2708,7 +2708,7 @@ msgstr "ne po otci"
 #: ../src/gen/display/name.py:580
 #: ../src/gen/display/name.py:673
 msgid "Remaining names|rest"
-msgstr "zbyek"
+msgstr "zbytek"
 
 #: ../src/gen/display/name.py:583
 #: ../src/gen/display/name.py:675
@@ -4946,7 +4946,7 @@ msgstr "Nutný upgrade databáze!"
 
 #: ../src/gui/dbloader.py:305
 msgid "Upgrade now"
-msgstr "Akutalizovat nyní"
+msgstr "Aktutalizovat nyní"
 
 #: ../src/gui/dbloader.py:306
 #: ../src/gui/viewmanager.py:1040
@@ -6561,9 +6561,9 @@ msgstr "Citaci nelze uložit. ID již existuje."
 
 #: ../src/gui/editors/editcitation.py:403
 #: ../src/gui/editors/editcitation.py:417
-#, fuzzy, python-format
+#, python-format
 msgid "You have attempted to use the existing Gramps ID with value %(gramps_id)s. This value is already used by '%(prim_object)s'. Please enter a different ID or leave blank to get the next available ID value."
-msgstr "Snažíte se použít existující Gramps ID s hodnotou %(id)s. Tuto hodnotu už používá '%(prim_object)s'. Zvolte prosím jiné ID. Ponecháte-li pole prázdné, bude zvolena nejbližší volná hodnota."
+msgstr "Snažíte se použít existující Gramps ID s hodnotou %(gramps_id)s. Tuto hodnotu už používá '%(prim_object)s'. Zvolte prosím jiné ID. Ponecháte-li pole prázdné, bude zvolena nejbližší volná hodnota."
 
 #: ../src/gui/editors/editcitation.py:416
 #: ../src/gui/editors/editsource.py:191
@@ -6800,7 +6800,7 @@ msgstr "Vybrat dítě"
 
 #: ../src/gui/editors/editfamily.py:355
 msgid "Adding parents to a person"
-msgstr "Přidávávám rodiče k osobě"
+msgstr "Přidávají se rodiče k osobě"
 
 #: ../src/gui/editors/editfamily.py:356
 msgid "It is possible to accidentally create multiple families with the same parents. To help avoid this problem, only the buttons to select parents are available when you create a new family. The remaining fields will become available after you attempt to select a parent."
@@ -7534,15 +7534,14 @@ msgstr "Tento zdroj není možné sdílet"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:191
 #: ../src/plugins/view/citationtreeview.py:504
-#, fuzzy
 msgid ""
 "This citation cannot be created at this time. Either the associated Source object is already being edited, or another citation associated with the same source is being edited.\n"
 "\n"
 "To edit this citation, you need to close the object."
 msgstr ""
-"Odkaz na tento pramen nemůže být nyní upravován. Buď už jej upravujete, nebo je měněn jiný odkaz na tento pramen připojený.\n"
+"Citace nemůže být nyní vytvořena. Buď upravujete přiřazený objekt pramene, nebo je měněna jiná citace napojená na stejný pramen.\n"
 "\n"
-"Pokud chcete pramen upravovat, musíte jej nejdříve zavřít."
+"Pokud chcete citaci upravovat, musíte objekt uzavřít."
 
 #: ../src/gui/editors/displaytabs/dataembedlist.py:49
 msgid "Create and add a new data entry"
@@ -7703,7 +7702,7 @@ msgstr "Přesunout vybraný obřad SPD výše"
 
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:56
 msgid "Move the selected LDS ordinance downwards"
-msgstr "Přesunout vybranoý obřad SPD níže"
+msgstr "Přesunout vybraný obřad SPD níže"
 
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:71
 msgid "_LDS"
@@ -8647,7 +8646,7 @@ msgstr "O_dstranit záznam"
 
 #: ../src/gui/views/listview.py:565
 msgid "Column clicked, sorting..."
-msgstr "Kiknuto na sloupec, třídí se..."
+msgstr "Kliknuto na sloupec, třídí se..."
 
 #: ../src/gui/views/listview.py:921
 msgid "Export View as Spreadsheet"
@@ -9295,7 +9294,7 @@ msgstr "Nahlásit chybu: Krok 5 z 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:81
 msgid "Gramps is an Open Source project. Its success depends on its users. User feedback is important. Thank you for taking the time to submit a bug report."
-msgstr "Gramps je Open Source projekt. Jeho úspěch závisí jeho uživatelích. Zpětná vazba je důkežitá. Děkujeme že si uděláte čas na odeslání hlášení o chybě."
+msgstr "Gramps je Open Source projekt. Jeho úspěch závisí jeho uživatelích. Zpětná vazba je důležitá. Děkujeme že si uděláte čas na odeslání hlášení o chybě."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:187
 msgid "If you can see that there is any personal information included in the error please remove it."
@@ -10977,7 +10976,7 @@ msgstr "Osoby narozené %(year_from)04d-%(year_to)04d: %(chart_title)s"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:786
 msgid "Saving charts..."
-msgstr "Ukádají se grafy..."
+msgstr "Ukládají se grafy..."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:833
 #: ../src/plugins/drawreport/StatisticsChart.py:867
@@ -11435,9 +11434,8 @@ msgid "Enter a date, click Run"
 msgstr "Vložte datum, klikněte na Spustit"
 
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:67
-#, fuzzy
 msgid "Enter a valid date (like YYYY-MM-DD) in the entry below and click Run. This will compute the ages for everyone in your Family Tree on that date. You can then sort by the age column, and double-click the row to view or edit."
-msgstr "Vložte platné datum (RRRR-MM-DD) do pole níže a klikněte na Spustit. Bude vypočítán věk pro každou osobou ve vašem rodokmeny k tomuto datu. Výsledky můžete setřídit podle sloupce věku, nebo dvojklikem na řádek prohlížet, či upravovat."
+msgstr "Vložte platné datum (RRRR-MM-DD) do pole níže a klikněte na Spustit. Bude vypočítán věk pro každou osobou ve vašem rodokmenu k tomuto datu. Výsledky můžete setřídit podle sloupce věku, nebo dvojklikem na řádek prohlížet, či upravovat."
 
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:75
 #: ../src/glade/plugins.glade.h:4
@@ -11518,7 +11516,7 @@ msgstr "Dvojklikem zobrazit %d osob"
 
 #: ../src/plugins/gramplet/Attributes.py:42
 msgid "Double-click on a row to view a quick report showing all people with the selected attribute."
-msgstr "Dvouklik na řádek zobrazí rychlý náhled  ukazující  všechny osoby se zvoleným atributem."
+msgstr "Dvojklik na řádek zobrazí rychlý náhled  ukazující  všechny osoby se zvoleným atributem."
 
 #: ../src/plugins/gramplet/AttributesGramplet.py:49
 #, python-format
@@ -11844,7 +11842,7 @@ msgstr "Zpětné linky osoby"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:504
 msgid "Gramplet showing the backlinks for a person"
-msgstr "Gramplet zobrazující pětné linky k osobě"
+msgstr "Gramplet zobrazující zpětné linky k osobě"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:511
 #: ../src/plugins/gramplet/bottombar.gpr.py:525
@@ -11867,7 +11865,7 @@ msgstr "Zpětné linky události"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:518
 msgid "Gramplet showing the backlinks for an event"
-msgstr "Gramplet zobrazující pětné linky k události"
+msgstr "Gramplet zobrazující zpětné linky k události"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:531
 msgid "Family Backlinks"
@@ -11875,7 +11873,7 @@ msgstr "Zpětné linky rodiny"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:532
 msgid "Gramplet showing the backlinks for a family"
-msgstr "Gramplet zobrazující pětné linky k rodině"
+msgstr "Gramplet zobrazující zpětné linky k rodině"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:545
 msgid "Place Backlinks"
@@ -11883,7 +11881,7 @@ msgstr "Zpětné linky  místa"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:546
 msgid "Gramplet showing the backlinks for a place"
-msgstr "Gramplet zobrazující pětné linky k místu"
+msgstr "Gramplet zobrazující zpětné linky k místu"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:559
 msgid "Source Backlinks"
@@ -11891,7 +11889,7 @@ msgstr "Zpětné linky  pramene"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:560
 msgid "Gramplet showing the backlinks for a source"
-msgstr "Gramplet zobrazující pětné linky k pramenu"
+msgstr "Gramplet zobrazující zpětné linky k pramenu"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:573
 msgid "Citation Backlinks"
@@ -11907,7 +11905,7 @@ msgstr "Zpětné linky archivu"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:588
 msgid "Gramplet showing the backlinks for a repository"
-msgstr "Gramplet zobrazující pětné linky k archivu"
+msgstr "Gramplet zobrazující zpětné linky k archivu"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:601
 msgid "Media Backlinks"
@@ -11915,7 +11913,7 @@ msgstr "Zpětné linky média"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:602
 msgid "Gramplet showing the backlinks for a media object"
-msgstr "Gramplet zobrazující pětné linky k objektu médií"
+msgstr "Gramplet zobrazující zpětné linky k objektu médií"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:615
 msgid "Note Backlinks"
@@ -11923,7 +11921,7 @@ msgstr "Zpětné linky poznámky"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:616
 msgid "Gramplet showing the backlinks for a note"
-msgstr "Gramplet zobrazující pětné linky k pramenu"
+msgstr "Gramplet zobrazující zpětné linky k pramenu"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:629
 msgid "Person Filter"
@@ -12004,11 +12002,11 @@ msgstr "Dvojklikem na den zobrazit podrobnosti"
 #: ../src/plugins/gramplet/Children.py:80
 #: ../src/plugins/gramplet/Children.py:176
 msgid "Double-click on a row to edit the selected child."
-msgstr "Dvouklik na řádek upraví zvoleného potomka."
+msgstr "Dvojklik na řádek upraví zvoleného potomka."
 
 #: ../src/plugins/gramplet/Citations.py:44
 msgid "Double-click on a row to edit the selected source/citation."
-msgstr "Dvouklik na řádek upraví zvolený pramen/citaci."
+msgstr "Dvojklik na řádek upraví zvolený pramen/citaci."
 
 #: ../src/plugins/gramplet/Citations.py:48
 msgid "Source/Citation"
@@ -12025,7 +12023,7 @@ msgstr "<No Citation>"
 #: ../src/plugins/gramplet/DescendGramplet.py:49
 #: ../src/plugins/gramplet/PedigreeGramplet.py:51
 msgid "Move mouse over links for options"
-msgstr "Pro nastavení tahněte myší přes odkazy"
+msgstr "Pro nastavení táhněte myší přes odkazy"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:63
 msgid "No Active Person selected."
@@ -12075,7 +12073,7 @@ msgid ""
 "The original date/ time when the image was first created/ taken as in a photograph.\n"
 "Example: 1830-01-1 09:30:59"
 msgstr ""
-"Původní datum/čas kdy byl obrázek vytořen/vyfotografován.\n"
+"Původní datum/čas kdy byl obrázek vytvořen/vyfotografován.\n"
 "Příklad: 1830-01-1 09:30:59"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:183
@@ -12252,7 +12250,7 @@ msgid ""
 "WARNING: This action will NOT Save any changes/ modification made to this image's Exif metadata."
 msgstr ""
 "Zavře toto okno úprav.\n"
-"POZOR: Tato akce NEukládá jakékoli změny, které byly v Exif metadatech provedeny."
+"POZOR: Tato akce NEUKLÁDÁ jakékoli změny, které byly v Exif metadatech provedeny."
 
 #. Media Title Frame...
 #. 574 on a screen width of 1024
@@ -12322,7 +12320,7 @@ msgstr "POZOR! Chystáte se úplně odstranit Exif metadata z tohot obrázku?"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1323
 msgid "Media Title Update"
-msgstr "Akutalizovat titulek média"
+msgstr "Aktualizovat titulek média"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1349
 msgid "Media Object Date Created"
@@ -12344,7 +12342,7 @@ msgstr "Při odstraňování Exif metadat z obrázku došlo k chybě..."
 #: ../src/plugins/gramplet/Events.py:45
 #: ../src/plugins/gramplet/PersonResidence.py:45
 msgid "Double-click on a row to edit the selected event."
-msgstr "Dvouklik na řádek upraví zvolenou událost."
+msgstr "Dvojklik na řádek upraví zvolenou událost."
 
 #: ../src/plugins/gramplet/FanChartGramplet.py:554
 msgid ""
@@ -12453,7 +12451,7 @@ msgstr "  9. <a wiki='%s_-_FAQ#How_do_you_find_unused_media_objects.3F'>Jak najd
 #: ../src/plugins/gramplet/FaqGramplet.py:64
 #, python-format
 msgid " 10. <a wiki='%s_-_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>How can I make a website with Gramps and my tree?</a>\n"
-msgstr " 10. <a wiki='%s_-_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>Jak mohu pomocéí Gramps vytvořit web s rodokmenem?</a>\n"
+msgstr " 10. <a wiki='%s_-_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>Jak mohu pomocí Gramps vytvořit web s rodokmenem?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:65
 msgid " 11. <a href='http://sourceforge.net/mailarchive/message.php?msg_id=21487967'>How do I record one's occupation?</a>\n"
@@ -12523,7 +12521,7 @@ msgstr "Gramplet zobrazující atributy zvolené osoby"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:77
 msgid "Gramplet showing calendar and events on specific dates in history"
-msgstr "Gramplet zobrazující kalenář a události ke specifickým datům v historii"
+msgstr "Gramplet zobrazující kalendář a události ke specifickým datům v historii"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:89
 msgid "Descendant"
@@ -12578,7 +12576,7 @@ msgstr "Příbuzní"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:198
 msgid "Gramplet showing active person's relatives"
-msgstr "Gramplet zobrazující příbuzené zvolené osoby"
+msgstr "Gramplet zobrazující příbuzné zvolené osoby"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:213
 #: ../src/plugins/gramplet/gramplet.gpr.py:220
@@ -13068,7 +13066,7 @@ msgid ""
 "Gramps is created by genealogists for genealogists, organized in the Gramps Project. Gramps is an Open Source Software package, which means you are free to make copies and distribute it to anyone you like. It's developed and maintained by a worldwide team of volunteers whose goal is to make Gramps powerful, yet easy to use.\n"
 "\n"
 msgstr ""
-"Gramps je vytvořen genealogy pro genealogy, organizovanými v Gramps projektu. Gramps je Open Source programový balík. To znamená, že jej můžete zdama šířit a kopírovat komu budete chtít. Je vyvíjen a spravován mezinárodním týmem dobrovolníků, jejichž cílem je budovat Gramps robustní, ale přesto uživatelsky přívětivý.\n"
+"Gramps je vytvořen genealogy pro genealogy, organizovanými v Gramps projektu. Gramps je Open Source programový balík. To znamená, že jej můžete zdarma šířit a kopírovat komu budete chtít. Je vyvíjen a spravován mezinárodním týmem dobrovolníků, jejichž cílem je budovat Gramps robustní, ale přesto uživatelsky přívětivý.\n"
 "\n"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:125
@@ -13504,7 +13502,7 @@ msgstr "Prázdná zpráva"
 
 #: ../src/plugins/graph/GVFamilyLines.py:342
 msgid "You did not specify anybody"
-msgstr "NIkdo nebyl vybrán"
+msgstr "Nikdo nebyl vybrán"
 
 #: ../src/plugins/graph/GVFamilyLines.py:921
 #, python-format
@@ -14130,7 +14128,7 @@ msgstr "  Místa: %d\n"
 #: ../src/plugins/import/ImportXml.py:280
 #, python-format
 msgid "  Repositories: %d\n"
-msgstr "  Archivye: %d\n"
+msgstr "  Archivy: %d\n"
 
 #: ../src/plugins/import/ImportXml.py:281
 #, python-format
@@ -14198,7 +14196,7 @@ msgstr "Nemohu změnit cestu k médiím"
 #: ../src/plugins/import/ImportXml.py:872
 #, python-format
 msgid "The opened file has media path %s, which conflicts with the media path of the family tree you import into. The original media path has been retained. Copy the files to a correct directory or change the media path in the Preferences."
-msgstr "Cesta %s k médiím otevřeného souboru je v konfliktu s cestou k médiím rodokmenu do kterého importujete. Původní cesta k médiím byla zachována. Zkopírujte prosím soubory do správného adresáře, nebo v Předvolbách změnte cestu k médiím."
+msgstr "Cesta %s k médiím otevřeného souboru je v konfliktu s cestou k médiím rodokmenu do kterého importujete. Původní cesta k médiím byla zachována. Zkopírujte prosím soubory do správného adresáře, nebo v Předvolbách změňte cestu k médiím."
 
 #: ../src/plugins/import/ImportXml.py:927
 msgid ""
@@ -14365,7 +14363,7 @@ msgstr "vynechán(o) %(skip)d podřízený(ch)  na řádce %(line)d"
 
 #: ../src/plugins/lib/libgedcom.py:6276
 msgid "Your GEDCOM file is corrupted. The file appears to be encoded using the UTF16 character set, but is missing the BOM marker."
-msgstr "Váš GEDCOM soubor je porušený. Zdá se, že soubor je v UTF-16 kódováná, ale neobsahuje značku BOM."
+msgstr "Váš GEDCOM soubor je porušený. Zdá se, že soubor je v UTF-16 kódování, ale neobsahuje značku BOM."
 
 #: ../src/plugins/lib/libgedcom.py:6279
 msgid "Your GEDCOM file is empty."
@@ -15413,7 +15411,7 @@ msgstr "Tato osoba byla pohřbena %(modified_date)s%(endnotes)s."
 #: ../src/plugins/lib/libnarrate.py:547
 #, python-format
 msgid "Buried %(modified_date)s%(endnotes)s."
-msgstr "Phřben %(modified_date)s%(endnotes)s."
+msgstr "Pohřben %(modified_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:552
 #, python-format
@@ -17401,7 +17399,7 @@ msgstr "Poskytuje základ potřebný pro seznam pohledů osob."
 
 #: ../src/plugins/lib/libplugins.gpr.py:280
 msgid "Provides the Base needed for the List Place views."
-msgstr "Posktyuje základ potřebný pro seznam pohledů míst."
+msgstr "Poskytuje základ potřebný pro seznam pohledů míst."
 
 #: ../src/plugins/lib/libplugins.gpr.py:297
 msgid "Provides variable substitution on display lines."
@@ -18353,7 +18351,7 @@ msgstr "V tento konkrétní den nejsou žádné události"
 
 #: ../src/plugins/quickview/OnThisDay.py:124
 msgid "Other events on this month/day in history"
-msgstr "Další události k tomuto dni/měsící v minulosti"
+msgstr "Další události k tomuto dni/měsíci v minulosti"
 
 #: ../src/plugins/quickview/OnThisDay.py:127
 msgid "No other events on this month/day in history"
@@ -18879,7 +18877,7 @@ msgstr "Závěrečný text"
 
 #: ../src/plugins/textreport/CustomBookText.py:128
 msgid "Text to display last."
-msgstr "Text, který bude zobrazen nakonci."
+msgstr "Text, který bude zobrazen na konci."
 
 #: ../src/plugins/textreport/CustomBookText.py:139
 msgid "The style used for the first portion of the custom text."
@@ -20087,11 +20085,11 @@ msgstr "Změnit typy události"
 #: ../src/plugins/tool/ChangeTypes.py:114
 #: ../src/plugins/tool/ChangeTypes.py:154
 msgid "Change types"
-msgstr "Změněnit typy"
+msgstr "Změnit typy"
 
 #: ../src/plugins/tool/ChangeTypes.py:117
 msgid "Analyzing Events"
-msgstr "Proíhá analýza událostí"
+msgstr "Probíhá analýza událostí"
 
 #: ../src/plugins/tool/ChangeTypes.py:134
 msgid "No event record was modified."
@@ -20970,7 +20968,7 @@ msgstr "Získávají se údaje ze jmen"
 
 #: ../src/plugins/tool/PatchNames.py:173
 msgid "Analyzing names"
-msgstr "Analzuji jména"
+msgstr "Analyzuji jména"
 
 #: ../src/plugins/tool/PatchNames.py:365
 msgid "No titles, nicknames or prefixes were found"
@@ -21565,13 +21563,12 @@ msgid "In order to add a citation to an existing source,  you must select a sour
 msgstr "Abyste mohli přidat citaci k existujícímu prameni, musíte jej nejprve označit."
 
 #: ../src/plugins/view/citationtreeview.py:514
-#, fuzzy
 msgid ""
 "This source cannot be edited at this time. Either the associated Source object is already being edited, or another citation associated with the same source is being edited.\n"
 "\n"
 "To edit this source, you need to close the object."
 msgstr ""
-"Odkaz na tento pramen nemůže být nyní upravován. Buď už jej upravujete, nebo je měněn jiný odkaz na tento pramen připojený.\n"
+"Pramen nemůže být nyní upravován.Zřejmě už upravujete objekt přiřazený prameni nebo je upravována jiný citace spojená s tímto pramenem.\n"
 "\n"
 "Pokud chcete pramen upravovat, musíte jej nejdříve zavřít."
 
@@ -21631,15 +21628,14 @@ msgid "Citation View"
 msgstr "Pohled citací"
 
 #: ../src/plugins/view/citationlistview.py:308
-#, fuzzy
 msgid ""
 "This citation cannot be edited at this time. Either the associated citation is already being edited or another object that is associated with the same citation is being edited.\n"
 "\n"
 "To edit this citation, you need to close the object."
 msgstr ""
-"Tento odkaz na média nemůže být v tuto chvíli upravován.  Zřejmě je už upravujete  přidružený objekt médií nebo je upravován jiný odkaz na tuto objekt.\n"
+"Citace nemůže být v tuto chvíli upravována. Tuto citaci zřejmě už upravujete nebo je upravován jiný objekt s ní spojený.\n"
 "\n"
-"Chcete-li měnit tento odkaz, musíte objekt médií nejprve uzavřít."
+"Chcete-li měnit tuto citaci, musíte objekt uzavřít."
 
 #: ../src/plugins/view/eventview.py:98
 msgid "Add a new event"
@@ -21874,7 +21870,7 @@ msgid ""
 "<br>\n"
 "For example: <b>http://gramps-project.org</p>"
 msgstr ""
-"Pro načtení webové stránky do této strany vyplňte její adresu nahoře a stiskěnte tlačítko Spustit<br>\n"
+"Pro načtení webové stránky do této strany vyplňte její adresu nahoře a stiskněte tlačítko Spustit<br>\n"
 "Například: <b>http://gramps-project.org?</p>"
 
 #: ../src/plugins/view/htmlrenderer.gpr.py:50
@@ -22394,7 +22390,7 @@ msgstr "Pohled ukazující všechny osoby v rodokmeny"
 
 #: ../src/plugins/view/view.gpr.py:156
 msgid "The view showing all people in the family tree in a flat list"
-msgstr "Pohled ukazující všechny osoby v rodokemu v plochém seznamu"
+msgstr "Pohled ukazující všechny osoby v rodokmenu v plochém seznamu"
 
 #: ../src/plugins/view/view.gpr.py:173
 msgid "The view showing all the places of the family tree"
@@ -22708,9 +22704,8 @@ msgstr "Poslední změna"
 
 #. page description
 #: ../src/plugins/webreport/NarrativeWeb.py:5606
-#, fuzzy
 msgid "This map page represents the person and their descendants with all of their event/ places.  If you place your mouse over the marker it will display the place name.  The markers and the Reference list are sorted in date order (if any?).  Clicking on a place&#8217;s name in the Reference section will take you to that place&#8217;s page."
-msgstr "Tato mapová stránka reprezentuje pouze osobu a její potomky. Značky a seznam odkazů je chonologicky setříděn. Kliknutí na název místa v sekci Odkazy vás přenese na stránku místa."
+msgstr "Tato mapová stránka reprezentuje osobu a její potomky se všemi jejich událostmi/místy. Umístíte-li kurzor myši na značku, zobrazí se název místa. Značky a seznam odkazů jsou chonologicky setříděny. Kliknutí na název místa v sekci Odkazy vás přenese na stránku místa."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5658
 msgid "Drop Markers"
@@ -23768,7 +23763,7 @@ msgstr "Objekty se záznamy obsahujícími <substring>"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:47
 msgid "Matches objects whose records contain text matching a substring"
-msgstr "Vyhovují obiekty jejichž záznamy obsahují text vyhovující podřetězci"
+msgstr "Vyhovují objekty jejichž záznamy obsahují text vyhovující podřetězci"
 
 #: ../src/Filters/Rules/_IsPrivate.py:43
 msgid "Objects marked private"
@@ -24647,7 +24642,7 @@ msgstr "Rodiny s rodinným <atributem>"
 
 #: ../src/Filters/Rules/Family/_HasAttribute.py:47
 msgid "Matches families with the family attribute of a particular value"
-msgstr "Vyhovují roidny s rodinným atributem určité hodnoty"
+msgstr "Vyhovují rodiny s rodinným atributem určité hodnoty"
 
 #: ../src/Filters/Rules/Family/_HasCitation.py:52
 msgid "Family with the <citation>"
@@ -24782,7 +24777,7 @@ msgstr "Vyhovují rodiny se zadaným Gramps ID matky"
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:49
 #: ../src/Filters/Rules/Family/_RegExpMotherName.py:49
 msgid "Mother filters"
-msgstr "FIltr matek"
+msgstr "Filtr matek"
 
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:46
 msgid "Families with mother with the <name>"
@@ -24919,7 +24914,7 @@ msgstr "Události mající poznámky obsahující <substring>"
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches events whose notes contain text matching a substring"
-msgstr "Vyhovují události jejichž poznámky obsahují text který odovídá podřetězci"
+msgstr "Vyhovují události jejichž poznámky obsahují text který odpovídá podřetězci"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:42
 msgid "Events having notes containing <regular expression>"
@@ -24927,7 +24922,7 @@ msgstr "Události se záznamy obsahujícími <podřetězec>"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:43
 msgid "Matches events whose notes contain text matching a regular expression"
-msgstr "Vyhovují události jejichž poznámky obsahují text který odovídá reg. výrazu"
+msgstr "Vyhovují události jejichž poznámky obsahují text který odpovídá reg. výrazu"
 
 #: ../src/Filters/Rules/Event/_HasReferenceCountOf.py:43
 msgid "Events with a reference count of <count>"
@@ -24967,11 +24962,11 @@ msgstr "Události osob odpovídající filtru <person filter>"
 
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:53
 msgid "Matches events of persons matched by the specified person filter name"
-msgstr "Vyhovují osobní události odpovídající uvedenéímu filtru osob"
+msgstr "Vyhovují osobní události odpovídající uvedenému filtru osob"
 
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:50
 msgid "Events with source matching the <source filter>"
-msgstr "Události s pramenem odpovádajícím filtru <source filter>"
+msgstr "Události s pramenem odpovídajícím filtru <source filter>"
 
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:51
 msgid "Matches events with sources that match the specified source filter name"
@@ -25134,7 +25129,7 @@ msgstr "Místa vyhovující <filtru>"
 
 #: ../src/Filters/Rules/Place/_MatchesFilter.py:46
 msgid "Matches places matched by the specified filter name"
-msgstr "Vyhovují místa oodpovídající uvedenému filtru"
+msgstr "Vyhovují místa odpovídající uvedenému filtru"
 
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:51
 msgid "Places of events matching the <event filter>"
@@ -25384,7 +25379,7 @@ msgstr "Publikace:"
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:52
 msgid "Sources matching parameters"
-msgstr "Prameny vyhovující paramerům"
+msgstr "Prameny vyhovující parametrům"
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:53
 msgid "Matches citations with a source of a particular value"
@@ -26942,7 +26937,7 @@ msgid ""
 "You can use the mouse on the picture to select a region, or use these spinbuttons to set the top left, and bottom right corner of the referenced region. Point (0,0) is the top left corner of the picture, and (100,100) the bottom right corner."
 msgstr ""
 "Pokud je médium obrázek, vyberte konkrétní část která bude použita jako reference.\n"
-"Vybrat oblast můžete pomocí myši  nebo prostřednictvím otočných tlačítek pro nastavení levého horního a pravého spodního rohu obasti. Bod (0,0) reprezentuje levý horní roh a (100,100) pravý spodní roh obrázku."
+"Vybrat oblast můžete pomocí myši  nebo prostřednictvím otočných tlačítek pro nastavení levého horního a pravého spodního rohu oblasti. Bod (0,0) reprezentuje levý horní roh a (100,100) pravý spodní roh obrázku."
 
 #: ../src/glade/editmediaref.glade.h:13
 msgid ""
@@ -26950,7 +26945,7 @@ msgid ""
 "You can use the mouse on the picture to select a region, or use these spinbuttons to set the top left, and bottom right corner of the referenced region. Point (0,0) is the top left corner of the picture, and (100,100) the bottom right corner.\n"
 msgstr ""
 "Pokud je médium obrázkem, vyberte z něj prosím konkrétní část kterou chcete odkazovat.\n"
-"Výběr můžete provést výběrem oblasti myší, nebo posuvníky uřčit souřadnice levého horního a pravého spodního rohu výběru. Bod (0,0) je levý horní roh obrázku, bod (100,100) je pravý dolní roh.\n"
+"Výběr můžete provést výběrem oblasti myší, nebo posuvníky určit souřadnice levého horního a pravého spodního rohu výběru. Bod (0,0) je levý horní roh obrázku, bod (100,100) je pravý dolní roh.\n"
 
 #: ../src/glade/editmediaref.glade.h:20
 msgid ""
@@ -27709,7 +27704,7 @@ msgstr "Původní typ udál_osti:"
 
 #: ../src/plugins/tool/desbrowser.glade.h:1
 msgid "<i>Double-click on the row to edit personal information</i>"
-msgstr "<i>Dvouklik na řádku upraví údaje o osobě</i>"
+msgstr "<i>Dvojklik na řádku upraví údaje o osobě</i>"
 
 #: ../src/plugins/tool/eval.glade.h:1
 msgid "<b>Error Window</b>"
@@ -27908,7 +27903,7 @@ msgstr "Kód SoundEx:"
 #: ../src/plugins/tool/removeunused.glade.h:1
 #: ../src/plugins/tool/verify.glade.h:1
 msgid "<b>Double-click on a row to view/edit data</b>"
-msgstr "<b>Dvouklik na řádek upraví/prohlédne data</b>"
+msgstr "<b>Dvojklik na řádek upraví/prohlédne data</b>"
 
 #: ../src/plugins/tool/removeunused.glade.h:2
 #: ../src/plugins/tool/verify.glade.h:6
@@ -28135,7 +28130,7 @@ msgstr "<b>Duplicitní záznamy</b><br/>&quot;Nástroje  &gt;  Zpracování rodo
 
 #: ../src/data/tips.xml.in.h:11
 msgid "<b>Editing Objects</b><br/>In most cases double clicking on a name, source, place or media entry will bring up a window to allow you to edit the object. Note that the result can be dependent on context. For example, in the Family View clicking on a parent or child will bring up the Relationship Editor."
-msgstr "<b>Upravujeme objekty</b><br/>Dvojklik na jméno, pramen, místo nebo mediální záznam vyvolá ve většině případů okno, ve kterém lze objekt upravit. Všimněte si, že výsledek může být závislý na kontextu. Například kliknutí na rodiče nebo dítěv Pohledu na rodinu spustí Editor vztahů."
+msgstr "<b>Upravujeme objekty</b><br/>Dvojklik na jméno, pramen, místo nebo mediální záznam vyvolá ve většině případů okno, ve kterém lze objekt upravit. Všimněte si, že výsledek může být závislý na kontextu. Například kliknutí na rodiče nebo dítě v Pohledu na rodinu spustí Editor vztahů."
 
 #: ../src/data/tips.xml.in.h:12
 msgid "<b>Editing the Parent-Child Relationship</b><br/> You can edit the relationship of a child to its parents by double clicking the child in the Family Editor. Relationships can be any of Adopted, Birth, Foster, None, Sponsored, Stepchild and Unknown."
@@ -28143,7 +28138,7 @@ msgstr "<b>Úprava vztahu rodič-potomek</b><br/> Vztahy dětí ke svým rodič�
 
 #: ../src/data/tips.xml.in.h:13
 msgid "<b>Extra Reports and Tools</b><br/>Extra tools and reports can be added to Gramps with the &quot;Addon&quot; system. See them under &quot;Help &gt; Extra Reports/Tools&quot;. This is the best way for advanced users to experiment and create new functionality."
-msgstr "<b>Další zprávy a nástroje</b><br/>Další zprávy a nástroje mohou být do Gramps přidány prostřednictvím systému &quot;Rozšíření&quot; . Najleznete jej pod &quot;Nápověda &gt; Další zprávy/Nástroje&quot;. Toto je nejlepší cesta jak umožnit pokročilým uživatelům experimentovat a přidávat nové funkčnosti."
+msgstr "<b>Další zprávy a nástroje</b><br/>Další zprávy a nástroje mohou být do Gramps přidány prostřednictvím systému &quot;Rozšíření&quot; . Naleznete jej pod &quot;Nápověda &gt; Další zprávy/Nástroje&quot;. Toto je nejlepší cesta jak umožnit pokročilým uživatelům experimentovat a přidávat nové funkčnosti."
 
 #: ../src/data/tips.xml.in.h:14
 msgid "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals based on many criteria. To define a new filter go to &quot;Edit &gt; Person Filter Editor&quot;. There you can name your filter and add and combine rules using the many preset rules. For example, you can define a filter to find all adopted people in the family tree. People without a birth date mentioned can also be filtered. To get the results save your filter and select it at the bottom of the Filter Sidebar, then click Apply. If the Filter Sidebar is not visible, select View &gt; Filter."
