@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the GRAMPS package.
 # Radek Malcic <malcic@atlas.cz>, 2004
 # Jiří Pejchal <jiri.pejchal@gmail.com>, 2005
-# Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006, 2007, 2008, 2009, 2010, 2011.
+# Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006 - 2012.
 #
 # Common terms and translations:
 #  ancestor        předek
@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-23 12:59+0100\n"
-"PO-Revision-Date: 2011-11-23 13:01+0100\n"
+"POT-Creation-Date: 2012-02-02 13:09+0100\n"
+"PO-Revision-Date: 2012-02-02 13:10+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -100,9 +100,9 @@ msgstr "Záložky"
 
 #. pylint: disable-msg=E1101
 #: ../src/Bookmarks.py:198
-#: ../src/gui/views/tags.py:371
-#: ../src/gui/views/tags.py:582
-#: ../src/gui/views/tags.py:597
+#: ../src/gui/views/tags.py:372
+#: ../src/gui/views/tags.py:583
+#: ../src/gui/views/tags.py:598
 #: ../src/gui/widgets/tageditor.py:100
 #, python-format
 msgid "%(title)s - Gramps"
@@ -119,25 +119,24 @@ msgstr "Organizovat záložky"
 #. Priority
 #. Handle
 #. Add column with object name
-#. Name Column
 #: ../src/Bookmarks.py:212
 #: ../src/ScratchPad.py:510
 #: ../src/ToolTips.py:175
 #: ../src/ToolTips.py:201
 #: ../src/ToolTips.py:212
 #: ../src/gui/configure.py:429
-#: ../src/gui/filtereditor.py:734
-#: ../src/gui/filtereditor.py:882
-#: ../src/gui/viewmanager.py:465
+#: ../src/gui/filtereditor.py:733
+#: ../src/gui/filtereditor.py:883
+#: ../src/gui/viewmanager.py:468
 #: ../src/gui/editors/editfamily.py:113
 #: ../src/gui/editors/editname.py:302
 #: ../src/gui/editors/displaytabs/backreflist.py:61
 #: ../src/gui/editors/displaytabs/nameembedlist.py:71
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:62
-#: ../src/gui/plug/_guioptions.py:1108
+#: ../src/gui/plug/_guioptions.py:1109
 #: ../src/gui/plug/_windows.py:114
 #: ../src/gui/selectors/selectperson.py:74
-#: ../src/gui/views/tags.py:387
+#: ../src/gui/views/tags.py:388
 #: ../src/gui/views/treemodels/peoplemodel.py:526
 #: ../src/plugins/BookReport.py:773
 #: ../src/plugins/drawreport/TimeLine.py:70
@@ -149,9 +148,7 @@ msgstr "Organizovat záložky"
 #: ../src/plugins/tool/RemoveUnused.py:200
 #: ../src/plugins/tool/Verify.py:506
 #: ../src/plugins/view/repoview.py:82
-#: ../src/plugins/webreport/NarrativeWeb.py:2114
-#: ../src/plugins/webreport/NarrativeWeb.py:2301
-#: ../src/plugins/webreport/NarrativeWeb.py:5558
+#: ../src/plugins/webreport/NarrativeWeb.py:5560
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:125
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
 msgid "Name"
@@ -160,15 +157,15 @@ msgstr "Jméno"
 #. Add column with object gramps_id
 #. GRAMPS ID
 #: ../src/Bookmarks.py:212
-#: ../src/gui/filtereditor.py:885
+#: ../src/gui/filtereditor.py:886
 #: ../src/gui/editors/editfamily.py:112
 #: ../src/gui/editors/displaytabs/backreflist.py:60
 #: ../src/gui/editors/displaytabs/eventembedlist.py:76
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:63
 #: ../src/gui/editors/displaytabs/repoembedlist.py:66
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:66
-#: ../src/gui/plug/_guioptions.py:1109
-#: ../src/gui/plug/_guioptions.py:1286
+#: ../src/gui/plug/_guioptions.py:1110
+#: ../src/gui/plug/_guioptions.py:1287
 #: ../src/gui/selectors/selectevent.py:62
 #: ../src/gui/selectors/selectfamily.py:61
 #: ../src/gui/selectors/selectnote.py:67
@@ -215,7 +212,7 @@ msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
 "2004 Radek Malcic <malcic@atlas.cz>\n"
 "2005 Jiří Pejchal <jiri.pejchal@gmail.com>\n"
-"2006 - 2011 Zdeněk Hataš <zdenek.hatas@gmail.com>"
+"2006 - 2012 Zdeněk Hataš <zdenek.hatas@gmail.com>"
 
 #: ../src/const.py:234
 #: ../src/const.py:235
@@ -279,7 +276,7 @@ msgid "Date selection"
 msgstr "Výběr data"
 
 #: ../src/DisplayState.py:363
-#: ../src/plugins/gramplet/PersonDetails.py:133
+#: ../src/plugins/gramplet/PersonDetails.py:132
 msgid "No active person"
 msgstr "Žádná osoba není aktivní"
 
@@ -317,32 +314,32 @@ msgstr "Žádná poznámka není aktivní"
 msgid "Export Assistant"
 msgstr "Pomocník exportu"
 
-#: ../src/ExportAssistant.py:203
+#: ../src/ExportAssistant.py:210
 msgid "Saving your data"
 msgstr "Ukožení vašich dat"
 
-#: ../src/ExportAssistant.py:252
+#: ../src/ExportAssistant.py:259
 msgid "Choose the output format"
 msgstr "Zvolte výstupní formát"
 
-#: ../src/ExportAssistant.py:336
+#: ../src/ExportAssistant.py:343
 msgid "Select Save File"
 msgstr "Vybrat soubor"
 
-#: ../src/ExportAssistant.py:374
+#: ../src/ExportAssistant.py:381
 #: ../src/plugins/tool/MediaManager.py:274
 msgid "Final confirmation"
 msgstr "Poslední potvrzení před uložením"
 
-#: ../src/ExportAssistant.py:387
+#: ../src/ExportAssistant.py:394
 msgid "Please wait while your data is selected and exported"
 msgstr "Vyčkejte prosím než budou vaše data vybrána a exportována"
 
-#: ../src/ExportAssistant.py:400
+#: ../src/ExportAssistant.py:407
 msgid "Summary"
 msgstr "Souhrn"
 
-#: ../src/ExportAssistant.py:472
+#: ../src/ExportAssistant.py:479
 #, python-format
 msgid ""
 "The data will be exported as follows:\n"
@@ -357,7 +354,7 @@ msgstr ""
 "\n"
 "Stiskněte OK pro pokračování, Zpět pro změnu vašich nastavení, nebo Zrušit pro přerušení"
 
-#: ../src/ExportAssistant.py:485
+#: ../src/ExportAssistant.py:492
 #, python-format
 msgid ""
 "The data will be saved as follows:\n"
@@ -376,7 +373,7 @@ msgstr ""
 "\n"
 "Stiskněte OK pro pokračování, Zrušit pro skončení, nebo Zpět pro změnu vašich nastavení"
 
-#: ../src/ExportAssistant.py:492
+#: ../src/ExportAssistant.py:499
 msgid ""
 "The selected file and folder to save to cannot be created or found.\n"
 "\n"
@@ -386,11 +383,11 @@ msgstr ""
 "\n"
 "Stiskněte Zpět a vyberte validní jméno souboru."
 
-#: ../src/ExportAssistant.py:518
+#: ../src/ExportAssistant.py:525
 msgid "Your data has been saved"
 msgstr "Vaše data byla uložena"
 
-#: ../src/ExportAssistant.py:520
+#: ../src/ExportAssistant.py:527
 msgid ""
 "The copy of your data has been successfully saved. You may press Close button now to continue.\n"
 "\n"
@@ -401,16 +398,16 @@ msgstr ""
 "Upozornění: nyní otevřená databáze v okně Gramps NENÍ souborem, který jste právě uložili. Budoucí úpravy aktuálně otevřené databáze nezmění právě vytvořenou kopii. "
 
 #. add test, what is dir
-#: ../src/ExportAssistant.py:528
+#: ../src/ExportAssistant.py:535
 #, python-format
 msgid "Filename: %s"
 msgstr "Soubor: %s"
 
-#: ../src/ExportAssistant.py:530
+#: ../src/ExportAssistant.py:537
 msgid "Saving failed"
 msgstr "Ukládání selhalo"
 
-#: ../src/ExportAssistant.py:532
+#: ../src/ExportAssistant.py:539
 msgid ""
 "There was an error while saving your data. You may try starting the export again.\n"
 "\n"
@@ -419,7 +416,7 @@ msgstr ""
 "Při ukládání vašich dat došlo k chybě. Prosím vraťte se zpět a zkuste to znovu.\n"
 "Upozornění: nyní otevřená databáze není ovlivněna. Selhalo pouze uložení kopie vašich dat."
 
-#: ../src/ExportAssistant.py:559
+#: ../src/ExportAssistant.py:566
 msgid ""
 "Under normal circumstances, Gramps does not require you to directly save your changes. All changes you make are immediately saved to the database.\n"
 "\n"
@@ -648,10 +645,10 @@ msgstr ""
 #: ../src/gui/editors/editmedia.py:167
 #: ../src/gui/editors/editmediaref.py:128
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:120
-#: ../src/plugins/gramplet/PersonDetails.py:160
-#: ../src/plugins/gramplet/PersonDetails.py:166
+#: ../src/plugins/gramplet/PersonDetails.py:159
+#: ../src/plugins/gramplet/PersonDetails.py:165
+#: ../src/plugins/gramplet/PersonDetails.py:167
 #: ../src/plugins/gramplet/PersonDetails.py:168
-#: ../src/plugins/gramplet/PersonDetails.py:169
 #: ../src/plugins/gramplet/RelativeGramplet.py:123
 #: ../src/plugins/gramplet/RelativeGramplet.py:134
 #: ../src/plugins/graph/GVFamilyLines.py:158
@@ -669,8 +666,8 @@ msgstr ""
 #: ../src/plugins/view/relview.py:995
 #: ../src/plugins/view/relview.py:1042
 #: ../src/plugins/webreport/NarrativeWeb.py:152
-#: ../src/plugins/webreport/NarrativeWeb.py:1733
-#: ../src/plugins/webreport/NarrativeWeb.py:1778
+#: ../src/plugins/webreport/NarrativeWeb.py:1734
+#: ../src/plugins/webreport/NarrativeWeb.py:1779
 msgid "Unknown"
 msgstr "Neznámý"
 
@@ -755,7 +752,7 @@ msgid "Quick View"
 msgstr "Rychlý pohled"
 
 #: ../src/Relationship.py:800
-#: ../src/plugins/view/pedigreeview.py:1669
+#: ../src/plugins/view/pedigreeview.py:1676
 msgid "Relationship loop detected"
 msgstr "Detekována smyčka ve vztazích"
 
@@ -882,8 +879,8 @@ msgstr "partner(ka)"
 #: ../src/Reorder.py:38
 #: ../src/ToolTips.py:235
 #: ../src/gui/selectors/selectfamily.py:62
-#: ../src/Merge/mergeperson.py:211
-#: ../src/plugins/gramplet/PersonDetails.py:171
+#: ../src/Merge/mergeperson.py:216
+#: ../src/plugins/gramplet/PersonDetails.py:170
 #: ../src/plugins/import/ImportCsv.py:224
 #: ../src/plugins/quickview/all_relations.py:301
 #: ../src/plugins/textreport/FamilyGroup.py:199
@@ -894,7 +891,7 @@ msgstr "partner(ka)"
 #: ../src/plugins/textreport/TagReport.py:210
 #: ../src/plugins/view/familyview.py:79
 #: ../src/plugins/view/relview.py:883
-#: ../src/plugins/webreport/NarrativeWeb.py:4918
+#: ../src/plugins/webreport/NarrativeWeb.py:4920
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:112
 msgid "Father"
 msgstr "Otec"
@@ -903,8 +900,8 @@ msgstr "Otec"
 #: ../src/Reorder.py:38
 #: ../src/ToolTips.py:240
 #: ../src/gui/selectors/selectfamily.py:63
-#: ../src/Merge/mergeperson.py:213
-#: ../src/plugins/gramplet/PersonDetails.py:172
+#: ../src/Merge/mergeperson.py:218
+#: ../src/plugins/gramplet/PersonDetails.py:171
 #: ../src/plugins/import/ImportCsv.py:221
 #: ../src/plugins/quickview/all_relations.py:298
 #: ../src/plugins/textreport/FamilyGroup.py:216
@@ -915,14 +912,14 @@ msgstr "Otec"
 #: ../src/plugins/textreport/TagReport.py:216
 #: ../src/plugins/view/familyview.py:80
 #: ../src/plugins/view/relview.py:884
-#: ../src/plugins/webreport/NarrativeWeb.py:4933
+#: ../src/plugins/webreport/NarrativeWeb.py:4935
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:113
 msgid "Mother"
 msgstr "Matka"
 
 #: ../src/Reorder.py:39
 #: ../src/gui/selectors/selectperson.py:81
-#: ../src/Merge/mergeperson.py:227
+#: ../src/Merge/mergeperson.py:232
 #: ../src/plugins/gramplet/Children.py:89
 #: ../src/plugins/lib/libpersonview.py:98
 #: ../src/plugins/textreport/FamilyGroup.py:510
@@ -933,7 +930,7 @@ msgstr "Partner"
 #: ../src/Reorder.py:39
 #: ../src/plugins/textreport/TagReport.py:222
 #: ../src/plugins/view/familyview.py:81
-#: ../src/plugins/webreport/NarrativeWeb.py:4513
+#: ../src/plugins/webreport/NarrativeWeb.py:4515
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:115
 msgid "Relationship"
 msgstr "Vztah"
@@ -961,9 +958,9 @@ msgstr "Nedostupné"
 #: ../src/gui/configure.py:430
 #: ../src/gui/grampsgui.py:103
 #: ../src/gui/editors/editaddress.py:152
-#: ../src/plugins/gramplet/RepositoryDetails.py:124
+#: ../src/plugins/gramplet/RepositoryDetails.py:123
 #: ../src/plugins/textreport/FamilyGroup.py:315
-#: ../src/plugins/webreport/NarrativeWeb.py:5559
+#: ../src/plugins/webreport/NarrativeWeb.py:5561
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:93
 msgid "Address"
 msgstr "Adresa"
@@ -972,7 +969,7 @@ msgstr "Adresa"
 #: ../src/ToolTips.py:142
 #: ../src/gen/lib/nameorigintype.py:93
 #: ../src/gui/plug/_windows.py:597
-#: ../src/plugins/gramplet/PlaceDetails.py:126
+#: ../src/plugins/gramplet/PlaceDetails.py:125
 msgid "Location"
 msgstr "Místo"
 
@@ -1000,7 +997,7 @@ msgstr "Událost"
 #: ../src/gui/editors/displaytabs/eventembedlist.py:79
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:55
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:65
-#: ../src/gui/plug/_guioptions.py:1285
+#: ../src/gui/plug/_guioptions.py:1286
 #: ../src/gui/selectors/selectevent.py:66
 #: ../src/gui/views/treemodels/placemodel.py:306
 #: ../src/plugins/export/ExportCsv.py:458
@@ -1062,7 +1059,7 @@ msgid "Family Event"
 msgstr "Rodinná událost"
 
 #: ../src/ScratchPad.py:409
-#: ../src/plugins/webreport/NarrativeWeb.py:1641
+#: ../src/plugins/webreport/NarrativeWeb.py:1642
 msgid "Url"
 msgstr "Url"
 
@@ -1110,14 +1107,14 @@ msgstr "Událost odk"
 #: ../src/gui/configure.py:525
 #: ../src/gui/editors/displaytabs/surnametab.py:76
 #: ../src/gui/plug/_guioptions.py:87
-#: ../src/gui/plug/_guioptions.py:1434
+#: ../src/gui/plug/_guioptions.py:1435
 #: ../src/plugins/drawreport/StatisticsChart.py:319
 #: ../src/plugins/export/ExportCsv.py:334
 #: ../src/plugins/import/ImportCsv.py:169
 #: ../src/plugins/quickview/FilterByName.py:318
-#: ../src/plugins/webreport/NarrativeWeb.py:2113
-#: ../src/plugins/webreport/NarrativeWeb.py:2277
-#: ../src/plugins/webreport/NarrativeWeb.py:3283
+#: ../src/plugins/webreport/NarrativeWeb.py:2114
+#: ../src/plugins/webreport/NarrativeWeb.py:2278
+#: ../src/plugins/webreport/NarrativeWeb.py:3284
 msgid "Surname"
 msgstr "Příjmení"
 
@@ -1147,9 +1144,9 @@ msgstr "Text"
 #: ../src/plugins/view/view.gpr.py:85
 #: ../src/plugins/webreport/NarrativeWeb.py:1221
 #: ../src/plugins/webreport/NarrativeWeb.py:1266
-#: ../src/plugins/webreport/NarrativeWeb.py:1538
-#: ../src/plugins/webreport/NarrativeWeb.py:2974
-#: ../src/plugins/webreport/NarrativeWeb.py:3609
+#: ../src/plugins/webreport/NarrativeWeb.py:1539
+#: ../src/plugins/webreport/NarrativeWeb.py:2975
+#: ../src/plugins/webreport/NarrativeWeb.py:3610
 msgid "Media"
 msgstr "Média"
 
@@ -1200,7 +1197,7 @@ msgstr "Osoba odk"
 #: ../src/plugins/tool/EventCmp.py:250
 #: ../src/plugins/view/geography.gpr.py:48
 #: ../src/plugins/webreport/NarrativeWeb.py:141
-#: ../src/plugins/webreport/NarrativeWeb.py:4512
+#: ../src/plugins/webreport/NarrativeWeb.py:4514
 msgid "Person"
 msgstr "Osoba"
 
@@ -1213,7 +1210,7 @@ msgstr "Osoba"
 #: ../src/gui/configure.py:450
 #: ../src/gui/filtereditor.py:289
 #: ../src/gui/grampsgui.py:113
-#: ../src/gui/editors/editfamily.py:583
+#: ../src/gui/editors/editfamily.py:587
 #: ../src/gui/editors/editlink.py:82
 #: ../src/plugins/export/ExportCsv.py:501
 #: ../src/plugins/gramplet/QuickViewGramplet.py:105
@@ -1267,7 +1264,7 @@ msgstr "Archiv"
 #. Create the tree columns
 #. 0 selected?
 #: ../src/ScratchPad.py:806
-#: ../src/gui/viewmanager.py:464
+#: ../src/gui/viewmanager.py:467
 #: ../src/gui/editors/displaytabs/attrembedlist.py:62
 #: ../src/gui/editors/displaytabs/backreflist.py:59
 #: ../src/gui/editors/displaytabs/eventembedlist.py:74
@@ -1282,7 +1279,7 @@ msgstr "Archiv"
 #: ../src/gui/selectors/selectevent.py:63
 #: ../src/gui/selectors/selectnote.py:68
 #: ../src/gui/selectors/selectobject.py:76
-#: ../src/Merge/mergeperson.py:230
+#: ../src/Merge/mergeperson.py:235
 #: ../src/plugins/BookReport.py:774
 #: ../src/plugins/BookReport.py:778
 #: ../src/plugins/gramplet/Backlinks.py:43
@@ -1318,8 +1315,8 @@ msgstr "Typ"
 #: ../src/gui/selectors/selectplace.py:62
 #: ../src/gui/selectors/selectrepository.py:61
 #: ../src/gui/selectors/selectsource.py:61
-#: ../src/gui/widgets/grampletpane.py:1497
-#: ../src/plugins/gramplet/PersonDetails.py:125
+#: ../src/gui/widgets/grampletpane.py:1498
+#: ../src/plugins/gramplet/PersonDetails.py:124
 #: ../src/plugins/textreport/TagReport.py:456
 #: ../src/plugins/view/mediaview.py:92
 #: ../src/plugins/view/sourceview.py:76
@@ -1355,25 +1352,25 @@ msgstr "Rodokmen"
 #: ../src/ScratchPad.py:1201
 #: ../src/ScratchPad.py:1207
 #: ../src/ScratchPad.py:1246
-#: ../src/ScratchPad.py:1289
+#: ../src/ScratchPad.py:1290
 #: ../src/glade/scratchpad.glade.h:2
 msgid "Clipboard"
 msgstr "Schránka"
 
-#: ../src/ScratchPad.py:1331
+#: ../src/ScratchPad.py:1332
 #: ../src/Simple/_SimpleTable.py:133
 #, python-format
 msgid "the object|See %s details"
 msgstr "Zobrazit  %s detaily"
 
 #. ---------------------------
-#: ../src/ScratchPad.py:1337
+#: ../src/ScratchPad.py:1338
 #: ../src/Simple/_SimpleTable.py:143
 #, python-format
 msgid "the object|Make %s active"
 msgstr "Nastavit aktivní %s"
 
-#: ../src/ScratchPad.py:1353
+#: ../src/ScratchPad.py:1354
 #, python-format
 msgid "the object|Create Filter from %s selected..."
 msgstr "Vytvořit filtr z vybraného %s..."
@@ -1397,7 +1394,7 @@ msgstr "Zap"
 #: ../src/TipOfDay.py:68
 #: ../src/TipOfDay.py:69
 #: ../src/TipOfDay.py:120
-#: ../src/gui/viewmanager.py:765
+#: ../src/gui/viewmanager.py:768
 msgid "Tip of the Day"
 msgstr "Tip dne"
 
@@ -1417,7 +1414,7 @@ msgstr ""
 "%s"
 
 #: ../src/ToolTips.py:150
-#: ../src/plugins/webreport/NarrativeWeb.py:1983
+#: ../src/plugins/webreport/NarrativeWeb.py:1984
 msgid "Telephone"
 msgstr "Telefon"
 
@@ -1446,52 +1443,52 @@ msgstr "Primární pramen"
 #. ----------------------------------
 #: ../src/ToolTips.py:245
 #: ../src/gen/lib/ldsord.py:104
-#: ../src/Merge/mergeperson.py:238
+#: ../src/Merge/mergeperson.py:243
 #: ../src/plugins/export/ExportCsv.py:501
 #: ../src/plugins/gramplet/Children.py:84
-#: ../src/plugins/gramplet/Children.py:181
+#: ../src/plugins/gramplet/Children.py:180
 #: ../src/plugins/import/ImportCsv.py:218
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:114
 msgid "Child"
 msgstr "Potomek"
 
-#: ../src/TransUtils.py:308
+#: ../src/TransUtils.py:309
 msgid "the person"
 msgstr "osoba"
 
-#: ../src/TransUtils.py:310
+#: ../src/TransUtils.py:311
 msgid "the family"
 msgstr "rodina"
 
-#: ../src/TransUtils.py:312
+#: ../src/TransUtils.py:313
 msgid "the place"
 msgstr "místo"
 
-#: ../src/TransUtils.py:314
+#: ../src/TransUtils.py:315
 msgid "the event"
 msgstr "událost"
 
-#: ../src/TransUtils.py:316
+#: ../src/TransUtils.py:317
 msgid "the repository"
 msgstr "archiv"
 
-#: ../src/TransUtils.py:318
+#: ../src/TransUtils.py:319
 msgid "the note"
 msgstr "poznámka"
 
-#: ../src/TransUtils.py:320
+#: ../src/TransUtils.py:321
 msgid "the media"
 msgstr "média"
 
-#: ../src/TransUtils.py:322
+#: ../src/TransUtils.py:323
 msgid "the source"
 msgstr "pramen"
 
-#: ../src/TransUtils.py:324
+#: ../src/TransUtils.py:325
 msgid "the filter"
 msgstr "filtr"
 
-#: ../src/TransUtils.py:326
+#: ../src/TransUtils.py:327
 msgid "See details"
 msgstr "Zobrazit podrobnosti"
 
@@ -1499,7 +1496,7 @@ msgstr "Zobrazit podrobnosti"
 #: ../src/gui/editors/editperson.py:324
 #: ../src/gui/views/treemodels/peoplemodel.py:96
 #: ../src/Merge/mergeperson.py:62
-#: ../src/plugins/webreport/NarrativeWeb.py:3887
+#: ../src/plugins/webreport/NarrativeWeb.py:3889
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:90
 msgid "male"
 msgstr "muž"
@@ -1508,7 +1505,7 @@ msgstr "muž"
 #: ../src/gui/editors/editperson.py:323
 #: ../src/gui/views/treemodels/peoplemodel.py:96
 #: ../src/Merge/mergeperson.py:62
-#: ../src/plugins/webreport/NarrativeWeb.py:3888
+#: ../src/plugins/webreport/NarrativeWeb.py:3890
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:90
 msgid "female"
 msgstr "žena"
@@ -1534,7 +1531,7 @@ msgstr "Vysoká"
 
 #: ../src/Utils.py:93
 #: ../src/gui/editors/editsourceref.py:147
-#: ../src/plugins/webreport/NarrativeWeb.py:1734
+#: ../src/plugins/webreport/NarrativeWeb.py:1735
 msgid "Normal"
 msgstr "Standardní"
 
@@ -1597,7 +1594,7 @@ msgstr "Data mohou být obnovena pouze operací Zpět nebo Zrušit změny a skon
 #: ../src/plugins/textreport/DetDescendantReport.py:551
 #: ../src/plugins/textreport/IndivComplete.py:412
 #: ../src/plugins/view/relview.py:652
-#: ../src/plugins/webreport/NarrativeWeb.py:3889
+#: ../src/plugins/webreport/NarrativeWeb.py:3891
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:90
 msgid "unknown"
 msgstr "neznámý"
@@ -2548,7 +2545,7 @@ msgstr "Kasta"
 #. 2 name (version)
 #. Image Description
 #: ../src/gen/lib/attrtype.py:66
-#: ../src/gui/viewmanager.py:466
+#: ../src/gui/viewmanager.py:469
 #: ../src/gui/editors/displaytabs/eventembedlist.py:73
 #: ../src/gui/editors/displaytabs/webembedlist.py:66
 #: ../src/gui/plug/_windows.py:118
@@ -2652,9 +2649,6 @@ msgstr "Pěstoun"
 #. self.sort = (v, -Span.BEFORE)
 #. self.minmax = (v, v + Span.BEFORE)
 #. v = self.date1.sortval - self.date2.sortval
-#. self.sort = (v, -Span.ABOUT)
-#. self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-#. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, Span.AFTER)
 #. self.minmax = (v, v + Span.AFTER)
 #. v = self.date1.sortval - self.date2.sortval
@@ -2674,7 +2668,6 @@ msgstr "Pěstoun"
 #. self.minmax = (v - Span.BEFORE, v + Span.BEFORE)
 #: ../src/gen/lib/date.py:306
 #: ../src/gen/lib/date.py:338
-#: ../src/gen/lib/date.py:354
 #: ../src/gen/lib/date.py:360
 #: ../src/gen/lib/date.py:365
 #: ../src/gen/lib/date.py:370
@@ -2694,11 +2687,15 @@ msgstr "více než"
 #. self.sort = (v, -Span.AFTER)
 #. self.minmax = (0, v)
 #. v = self.date1.sortval - self.date2.sortval
+#. self.sort = (v, -Span.ABOUT)
+#. self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
+#. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, -Span.AFTER)
 #. self.minmax = (v - Span.AFTER, v + Span.AFTER)
 #: ../src/gen/lib/date.py:311
 #: ../src/gen/lib/date.py:333
 #: ../src/gen/lib/date.py:343
+#: ../src/gen/lib/date.py:354
 #: ../src/gen/lib/date.py:430
 msgid "less than"
 msgstr "méně než"
@@ -2982,7 +2979,7 @@ msgstr "Počet sňatků"
 
 #: ../src/gen/lib/eventtype.py:171
 #: ../src/gen/lib/nameorigintype.py:92
-#: ../src/plugins/gramplet/PersonDetails.py:124
+#: ../src/plugins/gramplet/PersonDetails.py:123
 msgid "Occupation"
 msgstr "Zaměstnání"
 
@@ -2999,14 +2996,14 @@ msgid "Property"
 msgstr "Majetek"
 
 #: ../src/gen/lib/eventtype.py:175
-#: ../src/plugins/gramplet/PersonDetails.py:126
+#: ../src/plugins/gramplet/PersonDetails.py:125
 msgid "Religion"
 msgstr "Náboženství"
 
 #: ../src/gen/lib/eventtype.py:176
 #: ../src/plugins/gramplet/bottombar.gpr.py:118
-#: ../src/plugins/webreport/NarrativeWeb.py:2027
-#: ../src/plugins/webreport/NarrativeWeb.py:5560
+#: ../src/plugins/webreport/NarrativeWeb.py:2028
+#: ../src/plugins/webreport/NarrativeWeb.py:5562
 msgid "Residence"
 msgstr "Bydliště"
 
@@ -3019,7 +3016,7 @@ msgid "Will"
 msgstr "Závěť"
 
 #: ../src/gen/lib/eventtype.py:179
-#: ../src/Merge/mergeperson.py:234
+#: ../src/Merge/mergeperson.py:239
 #: ../src/plugins/export/ExportCsv.py:457
 #: ../src/plugins/import/ImportCsv.py:227
 #: ../src/plugins/textreport/FamilyGroup.py:373
@@ -3595,7 +3592,7 @@ msgstr "Hledání na webu"
 msgid "FTP"
 msgstr "FTP"
 
-#: ../src/gen/plug/_gramplet.py:333
+#: ../src/gen/plug/_gramplet.py:335
 #, python-format
 msgid "Gramplet %s caused an error"
 msgstr "V grampletu %s došlo k chybě"
@@ -3735,14 +3732,14 @@ msgstr "Soubor %s je již otevřený, nejprve jej zavřete."
 #: ../src/plugins/docgen/SvgDrawDoc.py:81
 #: ../src/plugins/export/ExportCsv.py:299
 #: ../src/plugins/export/ExportCsv.py:303
-#: ../src/plugins/export/ExportGedcom.py:1424
+#: ../src/plugins/export/ExportGedcom.py:1426
 #: ../src/plugins/export/ExportGeneWeb.py:97
 #: ../src/plugins/export/ExportGeneWeb.py:101
 #: ../src/plugins/export/ExportVCalendar.py:104
 #: ../src/plugins/export/ExportVCalendar.py:108
 #: ../src/plugins/export/ExportVCard.py:70
 #: ../src/plugins/export/ExportVCard.py:74
-#: ../src/plugins/webreport/NarrativeWeb.py:5833
+#: ../src/plugins/webreport/NarrativeWeb.py:5835
 #, python-format
 msgid "Could not create %s"
 msgstr "Nemohu vytvořit %s"
@@ -3829,22 +3826,22 @@ msgid "TrueType / FreeSans"
 msgstr "Truetype / FreeSans"
 
 #: ../src/gen/plug/docgen/graphdoc.py:67
-#: ../src/plugins/view/pedigreeview.py:2190
+#: ../src/plugins/view/pedigreeview.py:2197
 msgid "Vertical (top to bottom)"
 msgstr "Vertikální (shora dolů)"
 
 #: ../src/gen/plug/docgen/graphdoc.py:68
-#: ../src/plugins/view/pedigreeview.py:2191
+#: ../src/plugins/view/pedigreeview.py:2198
 msgid "Vertical (bottom to top)"
 msgstr "Vertikální (zdola nahoru)"
 
 #: ../src/gen/plug/docgen/graphdoc.py:69
-#: ../src/plugins/view/pedigreeview.py:2192
+#: ../src/plugins/view/pedigreeview.py:2199
 msgid "Horizontal (left to right)"
 msgstr "Horizontální (zleva doprava)"
 
 #: ../src/gen/plug/docgen/graphdoc.py:70
-#: ../src/plugins/view/pedigreeview.py:2193
+#: ../src/plugins/view/pedigreeview.py:2200
 msgid "Horizontal (right to left)"
 msgstr "Horizontální (zprava doleva)"
 
@@ -4121,10 +4118,10 @@ msgstr "Závěrečné poznámky"
 
 #: ../src/gen/plug/report/utils.py:143
 #: ../src/plugins/textreport/IndivComplete.py:553
-#: ../src/plugins/webreport/NarrativeWeb.py:1315
-#: ../src/plugins/webreport/NarrativeWeb.py:1497
-#: ../src/plugins/webreport/NarrativeWeb.py:1569
-#: ../src/plugins/webreport/NarrativeWeb.py:1585
+#: ../src/plugins/webreport/NarrativeWeb.py:1316
+#: ../src/plugins/webreport/NarrativeWeb.py:1498
+#: ../src/plugins/webreport/NarrativeWeb.py:1570
+#: ../src/plugins/webreport/NarrativeWeb.py:1586
 msgid "Could not add photo to page"
 msgstr "Nelze přidat fotografii na stránku"
 
@@ -4270,7 +4267,7 @@ msgstr " Editor jmen"
 #: ../src/gui/configure.py:130
 #: ../src/gui/configure.py:148
 #: ../src/gui/configure.py:1188
-#: ../src/gui/views/pageview.py:620
+#: ../src/gui/views/pageview.py:618
 msgid "Preferences"
 msgstr "Předvolby"
 
@@ -4317,7 +4314,7 @@ msgstr "Stát/Okres"
 #: ../src/plugins/view/placetreeview.py:77
 #: ../src/plugins/view/repoview.py:90
 #: ../src/plugins/webreport/NarrativeWeb.py:127
-#: ../src/plugins/webreport/NarrativeWeb.py:2462
+#: ../src/plugins/webreport/NarrativeWeb.py:2463
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:92
 msgid "Country"
 msgstr "Země"
@@ -4331,7 +4328,7 @@ msgid "ZIP/Postal Code"
 msgstr "PSČ"
 
 #: ../src/gui/configure.py:436
-#: ../src/plugins/gramplet/RepositoryDetails.py:112
+#: ../src/plugins/gramplet/RepositoryDetails.py:111
 #: ../src/plugins/webreport/NarrativeWeb.py:142
 msgid "Phone"
 msgstr "Telefon"
@@ -4415,7 +4412,7 @@ msgstr "Příklad"
 #: ../src/gui/configure.py:844
 #: ../src/plugins/drawreport/Calendar.py:421
 #: ../src/plugins/textreport/BirthdayReport.py:365
-#: ../src/plugins/webreport/NarrativeWeb.py:6520
+#: ../src/plugins/webreport/NarrativeWeb.py:6522
 #: ../src/plugins/webreport/WebCal.py:1386
 msgid "Name format"
 msgstr "Formát jména"
@@ -4687,7 +4684,7 @@ msgid "Upgrade now"
 msgstr "Akutalizovat nyní"
 
 #: ../src/gui/dbloader.py:306
-#: ../src/gui/viewmanager.py:1037
+#: ../src/gui/viewmanager.py:1040
 #: ../src/plugins/BookReport.py:674
 #: ../src/plugins/BookReport.py:1065
 #: ../src/plugins/view/familyview.py:258
@@ -4715,11 +4712,11 @@ msgstr "_Rozbalit"
 msgid "_Archive"
 msgstr "_Archiv"
 
-#: ../src/gui/dbman.py:271
+#: ../src/gui/dbman.py:270
 msgid "Family tree name"
 msgstr "Název rodokmenu"
 
-#: ../src/gui/dbman.py:281
+#: ../src/gui/dbman.py:280
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:53
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:63
 #: ../src/gui/plug/_windows.py:111
@@ -4728,28 +4725,28 @@ msgstr "Název rodokmenu"
 msgid "Status"
 msgstr "Stav"
 
-#: ../src/gui/dbman.py:287
+#: ../src/gui/dbman.py:286
 msgid "Last accessed"
 msgstr "Poslední přístup"
 
-#: ../src/gui/dbman.py:369
+#: ../src/gui/dbman.py:368
 #, python-format
 msgid "Break the lock on the '%s' database?"
 msgstr "Zlomit zámek na databázi %s?"
 
-#: ../src/gui/dbman.py:370
+#: ../src/gui/dbman.py:369
 msgid "Gramps believes that someone else is actively editing this database. You cannot edit this database while it is locked. If no one is editing the database you may safely break the lock. However, if someone else is editing the database and you break the lock, you may corrupt the database."
 msgstr "Gramps se domnívá, že někdo jiný pracuje s databází. Pokud je uzamčená, nemůžete s touto databází pracovat. Pokud jste si jistí, že s databází nikdo nepracuje, můžete zámek prolomit. V opačném případě může prolomení znamenat porušení databáze."
 
-#: ../src/gui/dbman.py:376
+#: ../src/gui/dbman.py:375
 msgid "Break lock"
 msgstr "Zlomit zámek"
 
-#: ../src/gui/dbman.py:453
+#: ../src/gui/dbman.py:452
 msgid "Rename failed"
 msgstr "Přejmenování selhalo"
 
-#: ../src/gui/dbman.py:454
+#: ../src/gui/dbman.py:453
 #, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
@@ -4760,57 +4757,57 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:468
+#: ../src/gui/dbman.py:467
 msgid "Could not rename the Family Tree."
 msgstr "Nelze přejmenovat rodokmen."
 
-#: ../src/gui/dbman.py:469
+#: ../src/gui/dbman.py:468
 msgid "Family Tree already exists, choose a unique name."
 msgstr "Tento rodokmen už existuje, zvolte prosím jiné unikátní jméno."
 
-#: ../src/gui/dbman.py:507
+#: ../src/gui/dbman.py:506
 msgid "Extracting archive..."
 msgstr "Rozbalit archiv..."
 
-#: ../src/gui/dbman.py:512
+#: ../src/gui/dbman.py:511
 msgid "Importing archive..."
 msgstr "Importuji archiv..."
 
-#: ../src/gui/dbman.py:528
+#: ../src/gui/dbman.py:527
 #, python-format
 msgid "Remove the '%s' family tree?"
 msgstr "Odstranit rodokmen '%s'?"
 
-#: ../src/gui/dbman.py:529
+#: ../src/gui/dbman.py:528
 msgid "Removing this family tree will permanently destroy the data."
 msgstr "Odstraněním rodokmenu dojde k permanentnímu vymazání dat."
 
-#: ../src/gui/dbman.py:530
+#: ../src/gui/dbman.py:529
 msgid "Remove family tree"
 msgstr "Odstranit rodokmen"
 
-#: ../src/gui/dbman.py:536
+#: ../src/gui/dbman.py:535
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Odstranit '%(revision)s' verzi z %(database)s'"
 
-#: ../src/gui/dbman.py:540
+#: ../src/gui/dbman.py:539
 msgid "Removing this version will prevent you from extracting it in the future."
 msgstr "Pokud tuto verzi odstraníte, nebude možné ji v budoucnu rozbalit."
 
-#: ../src/gui/dbman.py:542
+#: ../src/gui/dbman.py:541
 msgid "Remove version"
 msgstr "Odstranit verzi"
 
-#: ../src/gui/dbman.py:571
+#: ../src/gui/dbman.py:570
 msgid "Could not delete family tree"
 msgstr "Nemohu vymazat rodokmen"
 
-#: ../src/gui/dbman.py:596
+#: ../src/gui/dbman.py:595
 msgid "Deletion failed"
 msgstr "Operace mazání selhala"
 
-#: ../src/gui/dbman.py:597
+#: ../src/gui/dbman.py:596
 #, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
@@ -4821,11 +4818,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:625
+#: ../src/gui/dbman.py:624
 msgid "Repair family tree?"
 msgstr "Opravit rodokmen?"
 
-#: ../src/gui/dbman.py:627
+#: ../src/gui/dbman.py:626
 #, python-format
 msgid ""
 "If you click <b>Proceed</b>, Gramps will attempt to recover your family tree from the last good backup. There are several ways this can cause unwanted effects, so <b>backup</b> the family tree first.\n"
@@ -4846,31 +4843,31 @@ msgstr ""
 "http://gramps-project.org/wiki/index.php?title=Recover_corrupted_family_tree\n"
 "Před započetím opravy se pokuste otevřít rodokmen normálně. Mnoho chyb aktivujících tlačítko oprav může být opraveno automaticky. Pokud je to tento případ, můžete tlačítko oprav deaktivovat odstraněním souboru  <i>need_recover</i> ve složce s rodokmenem."
 
-#: ../src/gui/dbman.py:646
+#: ../src/gui/dbman.py:645
 msgid "Proceed, I have taken a backup"
 msgstr "Hotovo, záloha byla získána"
 
-#: ../src/gui/dbman.py:647
+#: ../src/gui/dbman.py:646
 msgid "Stop"
 msgstr "Zastavit"
 
-#: ../src/gui/dbman.py:670
+#: ../src/gui/dbman.py:669
 msgid "Rebuilding database from backup files"
 msgstr "Databáze se obnovuje ze záložních souborů"
 
-#: ../src/gui/dbman.py:675
+#: ../src/gui/dbman.py:674
 msgid "Error restoring backup data"
 msgstr "Chyba při obnově zálohy"
 
-#: ../src/gui/dbman.py:710
+#: ../src/gui/dbman.py:709
 msgid "Could not create family tree"
 msgstr "Nemohu vytvořit rodokmen"
 
-#: ../src/gui/dbman.py:824
+#: ../src/gui/dbman.py:823
 msgid "Retrieve failed"
 msgstr "Získání selhalo"
 
-#: ../src/gui/dbman.py:825
+#: ../src/gui/dbman.py:824
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -4881,12 +4878,12 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:865
-#: ../src/gui/dbman.py:893
+#: ../src/gui/dbman.py:864
+#: ../src/gui/dbman.py:892
 msgid "Archiving failed"
 msgstr "Archivace selhala"
 
-#: ../src/gui/dbman.py:866
+#: ../src/gui/dbman.py:865
 #, python-format
 msgid ""
 "An attempt to create the archive failed with the following message:\n"
@@ -4897,15 +4894,15 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:871
+#: ../src/gui/dbman.py:870
 msgid "Creating data to be archived..."
 msgstr "Vytvářejí se data pro archivaci..."
 
-#: ../src/gui/dbman.py:880
+#: ../src/gui/dbman.py:879
 msgid "Saving archive..."
 msgstr "Ukládá se archiv...."
 
-#: ../src/gui/dbman.py:894
+#: ../src/gui/dbman.py:893
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
@@ -5196,37 +5193,37 @@ msgstr "Úroveň důvěryhodnosti:"
 msgid "Rule Name"
 msgstr "Název pravidla"
 
-#: ../src/gui/filtereditor.py:679
-#: ../src/gui/filtereditor.py:690
+#: ../src/gui/filtereditor.py:678
+#: ../src/gui/filtereditor.py:689
 #: ../src/glade/rule.glade.h:20
 msgid "No rule selected"
 msgstr "Žádné pravidlo nevybráno"
 
-#: ../src/gui/filtereditor.py:730
+#: ../src/gui/filtereditor.py:729
 msgid "Define filter"
 msgstr "Definovat filtr"
 
-#: ../src/gui/filtereditor.py:734
+#: ../src/gui/filtereditor.py:733
 msgid "Values"
 msgstr "Hodnoty"
 
-#: ../src/gui/filtereditor.py:827
+#: ../src/gui/filtereditor.py:828
 msgid "Add Rule"
 msgstr "Přidat pravidlo"
 
-#: ../src/gui/filtereditor.py:839
+#: ../src/gui/filtereditor.py:840
 msgid "Edit Rule"
 msgstr "Upravit pravidlo"
 
-#: ../src/gui/filtereditor.py:874
+#: ../src/gui/filtereditor.py:875
 msgid "Filter Test"
 msgstr "Test filtru"
 
 #. ###############################
-#: ../src/gui/filtereditor.py:1004
+#: ../src/gui/filtereditor.py:1005
 #: ../src/plugins/Records.py:516
 #: ../src/plugins/drawreport/Calendar.py:406
-#: ../src/plugins/drawreport/StatisticsChart.py:907
+#: ../src/plugins/drawreport/StatisticsChart.py:910
 #: ../src/plugins/drawreport/TimeLine.py:325
 #: ../src/plugins/gramplet/bottombar.gpr.py:594
 #: ../src/plugins/gramplet/bottombar.gpr.py:608
@@ -5241,33 +5238,33 @@ msgstr "Test filtru"
 #: ../src/plugins/textreport/BirthdayReport.py:350
 #: ../src/plugins/textreport/IndivComplete.py:649
 #: ../src/plugins/tool/SortEvents.py:168
-#: ../src/plugins/webreport/NarrativeWeb.py:6498
+#: ../src/plugins/webreport/NarrativeWeb.py:6500
 #: ../src/plugins/webreport/WebCal.py:1364
 msgid "Filter"
 msgstr "Filtr"
 
-#: ../src/gui/filtereditor.py:1004
+#: ../src/gui/filtereditor.py:1005
 msgid "Comment"
 msgstr "Komentář"
 
-#: ../src/gui/filtereditor.py:1011
+#: ../src/gui/filtereditor.py:1012
 msgid "Custom Filter Editor"
 msgstr "Editor vlastních filtrů"
 
-#: ../src/gui/filtereditor.py:1077
+#: ../src/gui/filtereditor.py:1078
 msgid "Delete Filter?"
 msgstr "Odstranit filtr?"
 
-#: ../src/gui/filtereditor.py:1078
+#: ../src/gui/filtereditor.py:1079
 msgid "This filter is currently being used as the base for other filters. Deletingthis filter will result in removing all other filters that depend on it."
 msgstr "This filter is currently being used as the base for other filters. Deletingthis filter will result in removing all other filters that depend on it.Tento filtr je používán jako základ pro další filtry. Jeho odstranění bude mít za následek odstranění všech ostatních filtrů které na něm závisí."
 
-#: ../src/gui/filtereditor.py:1082
+#: ../src/gui/filtereditor.py:1083
 msgid "Delete Filter"
 msgstr "Odstranit filtr"
 
 #: ../src/gui/grampsbar.py:150
-#: ../src/gui/widgets/grampletpane.py:1129
+#: ../src/gui/widgets/grampletpane.py:1130
 msgid "Unnamed Gramplet"
 msgstr "Gramplet bez jména"
 
@@ -5344,9 +5341,9 @@ msgstr "Upravit datum"
 #: ../src/plugins/view/view.gpr.py:40
 #: ../src/plugins/webreport/NarrativeWeb.py:1220
 #: ../src/plugins/webreport/NarrativeWeb.py:1263
-#: ../src/plugins/webreport/NarrativeWeb.py:2671
-#: ../src/plugins/webreport/NarrativeWeb.py:2857
-#: ../src/plugins/webreport/NarrativeWeb.py:4765
+#: ../src/plugins/webreport/NarrativeWeb.py:2672
+#: ../src/plugins/webreport/NarrativeWeb.py:2858
+#: ../src/plugins/webreport/NarrativeWeb.py:4767
 msgid "Events"
 msgstr "Události"
 
@@ -5436,12 +5433,12 @@ msgstr "Poznámky"
 #. Go over parents and build their menu
 #. don't show rest
 #: ../src/gui/grampsgui.py:130
-#: ../src/Merge/mergeperson.py:206
+#: ../src/Merge/mergeperson.py:211
 #: ../src/plugins/gramplet/FanChartGramplet.py:836
 #: ../src/plugins/quickview/all_relations.py:306
 #: ../src/plugins/tool/NotRelated.py:132
 #: ../src/plugins/view/fanchartview.py:905
-#: ../src/plugins/view/pedigreeview.py:1949
+#: ../src/plugins/view/pedigreeview.py:1956
 #: ../src/plugins/view/relview.py:511
 #: ../src/plugins/view/relview.py:848
 #: ../src/plugins/view/relview.py:882
@@ -5461,7 +5458,7 @@ msgstr "Vybrat rodiče"
 #: ../src/plugins/gramplet/gramplet.gpr.py:150
 #: ../src/plugins/gramplet/gramplet.gpr.py:156
 #: ../src/plugins/view/pedigreeview.py:689
-#: ../src/plugins/webreport/NarrativeWeb.py:4606
+#: ../src/plugins/webreport/NarrativeWeb.py:4608
 msgid "Pedigree"
 msgstr "Rodokmen"
 
@@ -5472,8 +5469,8 @@ msgstr "Rodokmen"
 #: ../src/plugins/view/view.gpr.py:179
 #: ../src/plugins/webreport/NarrativeWeb.py:1219
 #: ../src/plugins/webreport/NarrativeWeb.py:1260
-#: ../src/plugins/webreport/NarrativeWeb.py:2427
-#: ../src/plugins/webreport/NarrativeWeb.py:2542
+#: ../src/plugins/webreport/NarrativeWeb.py:2428
+#: ../src/plugins/webreport/NarrativeWeb.py:2543
 msgid "Places"
 msgstr "Místa"
 
@@ -5486,9 +5483,9 @@ msgstr "Zprávy"
 #: ../src/plugins/view/repoview.py:123
 #: ../src/plugins/view/view.gpr.py:195
 #: ../src/plugins/webreport/NarrativeWeb.py:1223
-#: ../src/plugins/webreport/NarrativeWeb.py:3573
-#: ../src/plugins/webreport/NarrativeWeb.py:5386
-#: ../src/plugins/webreport/NarrativeWeb.py:5458
+#: ../src/plugins/webreport/NarrativeWeb.py:3574
+#: ../src/plugins/webreport/NarrativeWeb.py:5388
+#: ../src/plugins/webreport/NarrativeWeb.py:5460
 msgid "Repositories"
 msgstr "Archivy"
 
@@ -5503,8 +5500,8 @@ msgstr "Archivy"
 #: ../src/plugins/view/view.gpr.py:210
 #: ../src/plugins/webreport/NarrativeWeb.py:144
 #: ../src/plugins/webreport/NarrativeWeb.py:1042
-#: ../src/plugins/webreport/NarrativeWeb.py:3444
-#: ../src/plugins/webreport/NarrativeWeb.py:3520
+#: ../src/plugins/webreport/NarrativeWeb.py:3445
+#: ../src/plugins/webreport/NarrativeWeb.py:3521
 msgid "Sources"
 msgstr "Prameny"
 
@@ -5513,8 +5510,8 @@ msgid "Add Spouse"
 msgstr "Přidat partnera"
 
 #: ../src/gui/grampsgui.py:141
-#: ../src/gui/views/tags.py:219
-#: ../src/gui/views/tags.py:224
+#: ../src/gui/views/tags.py:220
+#: ../src/gui/views/tags.py:225
 #: ../src/gui/widgets/tageditor.py:109
 #: ../src/plugins/textreport/TagReport.py:534
 #: ../src/plugins/textreport/TagReport.py:538
@@ -5526,7 +5523,7 @@ msgid "Tag"
 msgstr "Štítek"
 
 #: ../src/gui/grampsgui.py:142
-#: ../src/gui/views/tags.py:581
+#: ../src/gui/views/tags.py:582
 msgid "New Tag"
 msgstr "Nový štítek"
 
@@ -5544,7 +5541,7 @@ msgstr "Seznam"
 
 #. name, click?, width, toggle
 #: ../src/gui/grampsgui.py:146
-#: ../src/gui/viewmanager.py:459
+#: ../src/gui/viewmanager.py:462
 #: ../src/plugins/tool/ChangeNames.py:194
 #: ../src/plugins/tool/ExtractCity.py:540
 #: ../src/plugins/tool/PatchNames.py:396
@@ -5655,33 +5652,56 @@ msgstr "Chyba při otevírání souboru"
 msgid "Unsupported"
 msgstr "Nepodporované"
 
-#: ../src/gui/viewmanager.py:434
+#: ../src/gui/viewmanager.py:407
+msgid "Updated"
+msgstr "Aktualizované"
+
+#: ../src/gui/viewmanager.py:419
+msgid "New"
+msgstr "Nový"
+
+#. List of translated strings used here
+#. Dead code for l10n
+#: ../src/gui/viewmanager.py:432
+msgid "new"
+msgstr "new"
+
+#: ../src/gui/viewmanager.py:432
+msgid "update"
+msgstr "aktualizovat"
+
+#: ../src/gui/viewmanager.py:437
 msgid "There are no available addons of this type"
 msgstr "Žádná rozšíření tohoto typu nejsou k dispozici"
 
-#: ../src/gui/viewmanager.py:435
+#: ../src/gui/viewmanager.py:438
 #, python-format
 msgid "Checked for '%s'"
 msgstr "Kontrolováno '%s'"
 
-#: ../src/gui/viewmanager.py:436
+#: ../src/gui/viewmanager.py:439
 msgid "' and '"
 msgstr "' a '"
 
-#: ../src/gui/viewmanager.py:447
+#: ../src/gui/viewmanager.py:450
 msgid "Available Gramps Updates for Addons"
 msgstr "Dostupné aktualizace rozšíření Gramps"
 
-#: ../src/gui/viewmanager.py:533
+#: ../src/gui/viewmanager.py:479
+#, python-format
+msgid "%(adjective)s: %(addon)s"
+msgstr "%(adjective)s: %(addon)s"
+
+#: ../src/gui/viewmanager.py:536
 msgid "Downloading and installing selected addons..."
 msgstr "Stahují a instalují se zvolená rozšíření..."
 
-#: ../src/gui/viewmanager.py:565
-#: ../src/gui/viewmanager.py:572
+#: ../src/gui/viewmanager.py:568
+#: ../src/gui/viewmanager.py:575
 msgid "Done downloading and installing addons"
 msgstr "Stahování a instalace rozšíření byla dokončena"
 
-#: ../src/gui/viewmanager.py:566
+#: ../src/gui/viewmanager.py:569
 #, python-format
 msgid "%d addon was installed."
 msgid_plural "%d addons were installed."
@@ -5689,330 +5709,330 @@ msgstr[0] "%d rozšíření bylo instalováno."
 msgstr[1] "%d rozšíření byla instalována."
 msgstr[2] "%d rozšíření bylo instalováno."
 
-#: ../src/gui/viewmanager.py:569
+#: ../src/gui/viewmanager.py:572
 msgid "You need to restart Gramps to see new views."
 msgstr "Nové pohledy se objeví po restartu Gramps."
 
-#: ../src/gui/viewmanager.py:573
+#: ../src/gui/viewmanager.py:576
 msgid "No addons were installed."
 msgstr "Žádná rozšíření nebyla instalována."
 
-#: ../src/gui/viewmanager.py:719
+#: ../src/gui/viewmanager.py:722
 msgid "Connect to a recent database"
 msgstr "Připojit poslední databázi"
 
-#: ../src/gui/viewmanager.py:737
+#: ../src/gui/viewmanager.py:740
 msgid "_Family Trees"
 msgstr "_Rodokmeny"
 
-#: ../src/gui/viewmanager.py:738
+#: ../src/gui/viewmanager.py:741
 msgid "_Manage Family Trees..."
 msgstr "Spravovat rodok_meny..."
 
-#: ../src/gui/viewmanager.py:739
+#: ../src/gui/viewmanager.py:742
 msgid "Manage databases"
 msgstr "Spravovat databáze"
 
-#: ../src/gui/viewmanager.py:740
+#: ../src/gui/viewmanager.py:743
 msgid "Open _Recent"
 msgstr "Otevřít _nedávné"
 
-#: ../src/gui/viewmanager.py:741
+#: ../src/gui/viewmanager.py:744
 msgid "Open an existing database"
 msgstr "Otevřít existující databázi"
 
-#: ../src/gui/viewmanager.py:742
+#: ../src/gui/viewmanager.py:745
 msgid "_Quit"
 msgstr "U_končit"
 
-#: ../src/gui/viewmanager.py:744
+#: ../src/gui/viewmanager.py:747
 msgid "_View"
 msgstr "_Zobrazit"
 
-#: ../src/gui/viewmanager.py:745
+#: ../src/gui/viewmanager.py:748
 msgid "_Edit"
 msgstr "Úpr_avy"
 
-#: ../src/gui/viewmanager.py:746
+#: ../src/gui/viewmanager.py:749
 msgid "_Preferences..."
 msgstr "_Předvolby..."
 
-#: ../src/gui/viewmanager.py:748
+#: ../src/gui/viewmanager.py:751
 msgid "_Help"
 msgstr "_Nápověda"
 
-#: ../src/gui/viewmanager.py:749
+#: ../src/gui/viewmanager.py:752
 msgid "Gramps _Home Page"
 msgstr "Domovská _stránka Gramps"
 
-#: ../src/gui/viewmanager.py:751
+#: ../src/gui/viewmanager.py:754
 msgid "Gramps _Mailing Lists"
 msgstr "Diskuzní skupiny Gra_mps"
 
-#: ../src/gui/viewmanager.py:753
+#: ../src/gui/viewmanager.py:756
 msgid "_Report a Bug"
 msgstr "_Zaslat hlášení o chybě"
 
-#: ../src/gui/viewmanager.py:755
+#: ../src/gui/viewmanager.py:758
 msgid "_Extra Reports/Tools"
 msgstr "Další zprávy/Nástroj_e"
 
-#: ../src/gui/viewmanager.py:757
+#: ../src/gui/viewmanager.py:760
 msgid "_About"
 msgstr "_O programu"
 
-#: ../src/gui/viewmanager.py:759
+#: ../src/gui/viewmanager.py:762
 msgid "_Plugin Manager"
 msgstr "S_právce zásuvných modulů"
 
-#: ../src/gui/viewmanager.py:761
+#: ../src/gui/viewmanager.py:764
 msgid "_FAQ"
 msgstr "_FAQ"
 
-#: ../src/gui/viewmanager.py:762
+#: ../src/gui/viewmanager.py:765
 msgid "_Key Bindings"
 msgstr "_Klávesové zkratky"
 
-#: ../src/gui/viewmanager.py:763
+#: ../src/gui/viewmanager.py:766
 msgid "_User Manual"
 msgstr "_Uživatelská příručka"
 
-#: ../src/gui/viewmanager.py:770
+#: ../src/gui/viewmanager.py:773
 msgid "_Export..."
 msgstr "_Exportovat..."
 
-#: ../src/gui/viewmanager.py:772
+#: ../src/gui/viewmanager.py:775
 msgid "Make Backup..."
 msgstr "Vytvořit zálohu..."
 
-#: ../src/gui/viewmanager.py:773
+#: ../src/gui/viewmanager.py:776
 msgid "Make a Gramps XML backup of the database"
 msgstr "Vytvořit zálohu databáze Gramps v XML"
 
-#: ../src/gui/viewmanager.py:775
+#: ../src/gui/viewmanager.py:778
 msgid "_Abandon Changes and Quit"
 msgstr "_Zrušit změny a skončit"
 
-#: ../src/gui/viewmanager.py:776
 #: ../src/gui/viewmanager.py:779
+#: ../src/gui/viewmanager.py:782
 msgid "_Reports"
 msgstr "Z_právy"
 
-#: ../src/gui/viewmanager.py:777
+#: ../src/gui/viewmanager.py:780
 msgid "Open the reports dialog"
 msgstr "Otevřít dialog zpráv"
 
-#: ../src/gui/viewmanager.py:778
+#: ../src/gui/viewmanager.py:781
 msgid "_Go"
 msgstr "Pře_jít"
 
-#: ../src/gui/viewmanager.py:780
+#: ../src/gui/viewmanager.py:783
 msgid "_Windows"
 msgstr "_Okna"
 
-#: ../src/gui/viewmanager.py:817
+#: ../src/gui/viewmanager.py:820
 msgid "Clip_board"
 msgstr "Schránka"
 
-#: ../src/gui/viewmanager.py:818
+#: ../src/gui/viewmanager.py:821
 msgid "Open the Clipboard dialog"
 msgstr "Dialog pro otevření schránky"
 
-#: ../src/gui/viewmanager.py:819
+#: ../src/gui/viewmanager.py:822
 msgid "_Import..."
 msgstr "_Import..."
 
-#: ../src/gui/viewmanager.py:821
 #: ../src/gui/viewmanager.py:824
+#: ../src/gui/viewmanager.py:827
 msgid "_Tools"
 msgstr "_Nástroje"
 
-#: ../src/gui/viewmanager.py:822
+#: ../src/gui/viewmanager.py:825
 msgid "Open the tools dialog"
 msgstr "Otevřít dialog nástrojů"
 
-#: ../src/gui/viewmanager.py:823
+#: ../src/gui/viewmanager.py:826
 msgid "_Bookmarks"
 msgstr "_Záložky"
 
-#: ../src/gui/viewmanager.py:825
+#: ../src/gui/viewmanager.py:828
 msgid "_Configure View..."
 msgstr "_Nastavit pohled..."
 
-#: ../src/gui/viewmanager.py:826
+#: ../src/gui/viewmanager.py:829
 msgid "Configure the active view"
 msgstr "Nastavit aktivní pohled"
 
-#: ../src/gui/viewmanager.py:831
+#: ../src/gui/viewmanager.py:834
 msgid "_Navigator"
 msgstr "_Navigátor"
 
-#: ../src/gui/viewmanager.py:833
+#: ../src/gui/viewmanager.py:836
 msgid "_Toolbar"
 msgstr "_Lišta nástrojů"
 
-#: ../src/gui/viewmanager.py:835
+#: ../src/gui/viewmanager.py:838
 msgid "F_ull Screen"
 msgstr "Celá stránka"
 
-#: ../src/gui/viewmanager.py:840
-#: ../src/gui/viewmanager.py:1422
+#: ../src/gui/viewmanager.py:843
+#: ../src/gui/viewmanager.py:1425
 msgid "_Undo"
 msgstr "_Zpět"
 
-#: ../src/gui/viewmanager.py:845
-#: ../src/gui/viewmanager.py:1439
+#: ../src/gui/viewmanager.py:848
+#: ../src/gui/viewmanager.py:1442
 msgid "_Redo"
 msgstr "Zn_ovu"
 
-#: ../src/gui/viewmanager.py:851
+#: ../src/gui/viewmanager.py:854
 msgid "Undo History..."
 msgstr "Historie změn..."
 
-#: ../src/gui/viewmanager.py:865
+#: ../src/gui/viewmanager.py:868
 #, python-format
 msgid "Key %s is not bound"
 msgstr "Klávesa %s není přiřazena"
 
 #. load plugins
-#: ../src/gui/viewmanager.py:966
+#: ../src/gui/viewmanager.py:969
 msgid "Loading plugins..."
 msgstr "Nahrávám zásuvné moduly..."
 
-#: ../src/gui/viewmanager.py:973
-#: ../src/gui/viewmanager.py:988
+#: ../src/gui/viewmanager.py:976
+#: ../src/gui/viewmanager.py:991
 msgid "Ready"
 msgstr "Připraven"
 
 #. registering plugins
-#: ../src/gui/viewmanager.py:981
+#: ../src/gui/viewmanager.py:984
 msgid "Registering plugins..."
 msgstr "Registrují se zásuvné moduly..."
 
-#: ../src/gui/viewmanager.py:1018
+#: ../src/gui/viewmanager.py:1021
 msgid "Autobackup..."
 msgstr "Automatická záloha..."
 
-#: ../src/gui/viewmanager.py:1022
+#: ../src/gui/viewmanager.py:1025
 msgid "Error saving backup data"
 msgstr "Chyba při ukládání zálohy"
 
-#: ../src/gui/viewmanager.py:1033
+#: ../src/gui/viewmanager.py:1036
 msgid "Abort changes?"
 msgstr "Zahodit změny?"
 
-#: ../src/gui/viewmanager.py:1034
+#: ../src/gui/viewmanager.py:1037
 msgid "Aborting changes will return the database to the state it was before you started this editing session."
 msgstr "Odvolání změn vrátí databázi do stavu v jakém jste začínali její modifikaci."
 
-#: ../src/gui/viewmanager.py:1036
+#: ../src/gui/viewmanager.py:1039
 msgid "Abort changes"
 msgstr "Zahodit změny"
 
-#: ../src/gui/viewmanager.py:1046
+#: ../src/gui/viewmanager.py:1049
 msgid "Cannot abandon session's changes"
 msgstr "Nelze odvolat změny v aktuální relaci"
 
-#: ../src/gui/viewmanager.py:1047
+#: ../src/gui/viewmanager.py:1050
 msgid "Changes cannot be completely abandoned because the number of changes made in the session exceeded the limit."
 msgstr "Změny nemohou být kompletně odvolány, protože jejich počet v této relaci překročil limit."
 
-#: ../src/gui/viewmanager.py:1201
+#: ../src/gui/viewmanager.py:1204
 msgid "View failed to load. Check error output."
 msgstr "Pohled se nepodařilo nahrát. Zkontrolujte chybový výstup."
 
-#: ../src/gui/viewmanager.py:1340
+#: ../src/gui/viewmanager.py:1343
 msgid "Import Statistics"
 msgstr "Statistiky importu"
 
-#: ../src/gui/viewmanager.py:1391
+#: ../src/gui/viewmanager.py:1394
 msgid "Read Only"
 msgstr "Jen pro čtení"
 
-#: ../src/gui/viewmanager.py:1474
+#: ../src/gui/viewmanager.py:1477
 msgid "Gramps XML Backup"
 msgstr "XML záloha Gramps"
 
-#: ../src/gui/viewmanager.py:1484
+#: ../src/gui/viewmanager.py:1487
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
 #: ../src/glade/editmedia.glade.h:8
 #: ../src/glade/mergemedia.glade.h:7
 msgid "Path:"
 msgstr "Cesta:"
 
-#: ../src/gui/viewmanager.py:1504
+#: ../src/gui/viewmanager.py:1507
 #: ../src/plugins/import/importgedcom.glade.h:11
 #: ../src/plugins/tool/phpgedview.glade.h:3
 msgid "File:"
 msgstr "Soubor:"
 
-#: ../src/gui/viewmanager.py:1536
+#: ../src/gui/viewmanager.py:1539
 msgid "Media:"
 msgstr "Média:"
 
 #. #################
 #. What to include
 #. #########################
-#: ../src/gui/viewmanager.py:1541
+#: ../src/gui/viewmanager.py:1544
 #: ../src/plugins/drawreport/AncestorTree.py:983
 #: ../src/plugins/drawreport/DescendTree.py:1580
 #: ../src/plugins/textreport/DetAncestralReport.py:770
 #: ../src/plugins/textreport/DetDescendantReport.py:919
 #: ../src/plugins/textreport/DetDescendantReport.py:920
 #: ../src/plugins/textreport/FamilyGroup.py:631
-#: ../src/plugins/webreport/NarrativeWeb.py:6661
+#: ../src/plugins/webreport/NarrativeWeb.py:6663
 msgid "Include"
 msgstr "Zahrnout"
 
-#: ../src/gui/viewmanager.py:1542
+#: ../src/gui/viewmanager.py:1545
 #: ../src/plugins/gramplet/StatsGramplet.py:190
 msgid "Megabyte|MB"
 msgstr "Megabyte|MB"
 
-#: ../src/gui/viewmanager.py:1543
-#: ../src/plugins/webreport/NarrativeWeb.py:6655
+#: ../src/gui/viewmanager.py:1546
+#: ../src/plugins/webreport/NarrativeWeb.py:6657
 msgid "Exclude"
 msgstr "Vyjmout"
 
-#: ../src/gui/viewmanager.py:1560
+#: ../src/gui/viewmanager.py:1563
 msgid "Backup file already exists! Overwrite?"
 msgstr "Soubor se zálohou již existuje! Přepsat?"
 
-#: ../src/gui/viewmanager.py:1561
+#: ../src/gui/viewmanager.py:1564
 #, python-format
 msgid "The file '%s' exists."
 msgstr "Soubor '%s' existuje."
 
-#: ../src/gui/viewmanager.py:1562
+#: ../src/gui/viewmanager.py:1565
 msgid "Proceed and overwrite"
 msgstr "Pokračovat a přepsat"
 
-#: ../src/gui/viewmanager.py:1563
+#: ../src/gui/viewmanager.py:1566
 msgid "Cancel the backup"
 msgstr "Přerušit zálohu"
 
-#: ../src/gui/viewmanager.py:1570
+#: ../src/gui/viewmanager.py:1573
 msgid "Making backup..."
 msgstr "Provádí se záloha..."
 
-#: ../src/gui/viewmanager.py:1587
+#: ../src/gui/viewmanager.py:1590
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "Záloha byla uložena do '%s'"
 
-#: ../src/gui/viewmanager.py:1590
+#: ../src/gui/viewmanager.py:1593
 msgid "Backup aborted"
 msgstr "Zálohování bylo přerušeno"
 
-#: ../src/gui/viewmanager.py:1608
+#: ../src/gui/viewmanager.py:1611
 msgid "Select backup directory"
 msgstr "Vybrat adresář záloh"
 
-#: ../src/gui/viewmanager.py:1873
+#: ../src/gui/viewmanager.py:1876
 msgid "Failed Loading Plugin"
 msgstr "Zásuvný moduly se nepodařilo nahrát"
 
-#: ../src/gui/viewmanager.py:1874
+#: ../src/gui/viewmanager.py:1877
 msgid ""
 "The plugin did not load. See Help Menu, Plugin Manager for more info.\n"
 "Use http://bugs.gramps-project.org to submit bugs of official plugins, contact the plugin author otherwise. "
@@ -6020,11 +6040,11 @@ msgstr ""
 "Zásuvný modul nebyl nahrán. Pro více informací se podívejte do nabídky Pomoc, Správce zásuvných modulů.\n"
 "Pro hlášení chyb oficiálních zásuvných modulů použijte http://bugs.gramps-project.org, v případě ostatních kontaktujte autora. "
 
-#: ../src/gui/viewmanager.py:1914
+#: ../src/gui/viewmanager.py:1917
 msgid "Failed Loading View"
 msgstr "Nahrání pohledu selhalo"
 
-#: ../src/gui/viewmanager.py:1915
+#: ../src/gui/viewmanager.py:1918
 #, python-format
 msgid ""
 "The view %(name)s did not load. See Help Menu, Plugin Manager for more info.\n"
@@ -6098,7 +6118,7 @@ msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr "Pro výběr média použijte drag-and-drop nebo tlačítka"
 
 #: ../src/gui/editors/objectentries.py:302
-#: ../src/gui/plug/_guioptions.py:1048
+#: ../src/gui/plug/_guioptions.py:1049
 msgid "No image given, click button to select one"
 msgstr "Nebyl zvolen žádný obrázek. Pro volbu klikněte na tlačítko"
 
@@ -6107,7 +6127,7 @@ msgid "Edit media object"
 msgstr "Upravit mediální objekt"
 
 #: ../src/gui/editors/objectentries.py:304
-#: ../src/gui/plug/_guioptions.py:1026
+#: ../src/gui/plug/_guioptions.py:1027
 msgid "Select an existing media object"
 msgstr "Vybrat existující mediální objekt"
 
@@ -6125,7 +6145,7 @@ msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr "Pro výběr poznámky použijte drag-and-drop nebo tlačítka"
 
 #: ../src/gui/editors/objectentries.py:353
-#: ../src/gui/plug/_guioptions.py:947
+#: ../src/gui/plug/_guioptions.py:948
 msgid "No note given, click button to select one"
 msgstr "Nebylo zvolena žádná poznámka. Pro volbu klikněte na tlačítko"
 
@@ -6136,7 +6156,7 @@ msgid "Edit Note"
 msgstr "Upravit poznámku"
 
 #: ../src/gui/editors/objectentries.py:355
-#: ../src/gui/plug/_guioptions.py:922
+#: ../src/gui/plug/_guioptions.py:923
 msgid "Select an existing note"
 msgstr "Vybrat existující poznámku"
 
@@ -6305,7 +6325,7 @@ msgstr "#"
 #: ../src/plugins/lib/libpersonview.py:93
 #: ../src/plugins/quickview/siblings.py:47
 #: ../src/plugins/textreport/IndivComplete.py:570
-#: ../src/plugins/webreport/NarrativeWeb.py:4722
+#: ../src/plugins/webreport/NarrativeWeb.py:4724
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:127
 msgid "Gender"
 msgstr "Pohlaví"
@@ -6322,7 +6342,7 @@ msgstr "Vztah k matce"
 #: ../src/gui/selectors/selectperson.py:77
 #: ../src/plugins/drawreport/TimeLine.py:69
 #: ../src/plugins/gramplet/Children.py:85
-#: ../src/plugins/gramplet/Children.py:182
+#: ../src/plugins/gramplet/Children.py:181
 #: ../src/plugins/lib/libpersonview.py:94
 #: ../src/plugins/quickview/FilterByName.py:129
 #: ../src/plugins/quickview/FilterByName.py:209
@@ -6342,7 +6362,7 @@ msgstr "Datum narození"
 #: ../src/gui/editors/editfamily.py:118
 #: ../src/gui/selectors/selectperson.py:79
 #: ../src/plugins/gramplet/Children.py:87
-#: ../src/plugins/gramplet/Children.py:184
+#: ../src/plugins/gramplet/Children.py:183
 #: ../src/plugins/lib/libpersonview.py:96
 #: ../src/plugins/quickview/lineage.py:60
 #: ../src/plugins/quickview/lineage.py:91
@@ -6378,25 +6398,25 @@ msgstr "Přidat existující dítě"
 msgid "Edit relationship"
 msgstr "Upravit vztah"
 
-#: ../src/gui/editors/editfamily.py:252
-#: ../src/gui/editors/editfamily.py:265
+#: ../src/gui/editors/editfamily.py:256
+#: ../src/gui/editors/editfamily.py:269
 #: ../src/plugins/view/relview.py:1520
 msgid "Select Child"
 msgstr "Vybrat dítě"
 
-#: ../src/gui/editors/editfamily.py:451
+#: ../src/gui/editors/editfamily.py:455
 msgid "Adding parents to a person"
 msgstr "Přidávávám rodiče k osobě"
 
-#: ../src/gui/editors/editfamily.py:452
+#: ../src/gui/editors/editfamily.py:456
 msgid "It is possible to accidentally create multiple families with the same parents. To help avoid this problem, only the buttons to select parents are available when you create a new family. The remaining fields will become available after you attempt to select a parent."
 msgstr "Je možné náhodně vytvořit více rodin se stejnými rodiči. Aby se tomuto problému předešlo, jsou při vytváření nové rodiny k dispozici pouze tlačítka pro výběr rodičů, kteří připadají v úvahu. Ostatní pole budou zpřístupněna poté co vyberete rodiče."
 
-#: ../src/gui/editors/editfamily.py:546
+#: ../src/gui/editors/editfamily.py:550
 msgid "Family has changed"
 msgstr "Rodina byla změněna"
 
-#: ../src/gui/editors/editfamily.py:547
+#: ../src/gui/editors/editfamily.py:551
 #, python-format
 msgid ""
 "The %(object)s you are editing has changed outside this editor. This can be due to a change in one of the main views, for example a source used here is deleted in the source view.\n"
@@ -6405,64 +6425,64 @@ msgstr ""
 "Záznam %(object)s který upravujete byl změněn mimo tento editor. To může být způsobeno změnou v některém z hlavních pohledů, např. pramen zde použitý byl vymazán v Pohledu pramenů. \n"
 "Ujistěte se, že informace je stále platná, zobrazená data byla aktualizována. Některé změny, které jste provedli mohly být ztraceny."
 
-#: ../src/gui/editors/editfamily.py:552
+#: ../src/gui/editors/editfamily.py:556
 #: ../src/plugins/import/ImportCsv.py:219
 #: ../src/plugins/view/familyview.py:257
 msgid "family"
 msgstr "rodina"
 
-#: ../src/gui/editors/editfamily.py:582
-#: ../src/gui/editors/editfamily.py:585
+#: ../src/gui/editors/editfamily.py:586
+#: ../src/gui/editors/editfamily.py:589
 msgid "New Family"
 msgstr "Nová rodina"
 
-#: ../src/gui/editors/editfamily.py:589
-#: ../src/gui/editors/editfamily.py:1091
+#: ../src/gui/editors/editfamily.py:593
+#: ../src/gui/editors/editfamily.py:1095
 #: ../src/plugins/view/geofamily.py:363
 msgid "Edit Family"
 msgstr "Změnit rodinu"
 
-#: ../src/gui/editors/editfamily.py:622
+#: ../src/gui/editors/editfamily.py:626
 msgid "Select a person as the mother"
 msgstr "Vybrat osobu jako matku"
 
-#: ../src/gui/editors/editfamily.py:623
+#: ../src/gui/editors/editfamily.py:627
 msgid "Add a new person as the mother"
 msgstr "Přidat novou osobu jako matku"
 
-#: ../src/gui/editors/editfamily.py:624
+#: ../src/gui/editors/editfamily.py:628
 msgid "Remove the person as the mother"
 msgstr "Ostranit osobu jako matku"
 
-#: ../src/gui/editors/editfamily.py:637
+#: ../src/gui/editors/editfamily.py:641
 msgid "Select a person as the father"
 msgstr "Vybrat osobu jako otce"
 
-#: ../src/gui/editors/editfamily.py:638
+#: ../src/gui/editors/editfamily.py:642
 msgid "Add a new person as the father"
 msgstr "Přidat novou osobu jako otce"
 
-#: ../src/gui/editors/editfamily.py:639
+#: ../src/gui/editors/editfamily.py:643
 msgid "Remove the person as the father"
 msgstr "Odstranit osobu jako otce"
 
-#: ../src/gui/editors/editfamily.py:837
+#: ../src/gui/editors/editfamily.py:841
 msgid "Select Mother"
 msgstr "Vybrat matku"
 
-#: ../src/gui/editors/editfamily.py:882
+#: ../src/gui/editors/editfamily.py:886
 msgid "Select Father"
 msgstr "Vybrat otce"
 
-#: ../src/gui/editors/editfamily.py:906
+#: ../src/gui/editors/editfamily.py:910
 msgid "Duplicate Family"
 msgstr "Duplikovat rodinu"
 
-#: ../src/gui/editors/editfamily.py:907
+#: ../src/gui/editors/editfamily.py:911
 msgid "A family with these parents already exists in the database. If you save, you will create a duplicate family. It is recommended that you cancel the editing of this window, and select the existing family"
 msgstr "Rodina s těmito rodiči už v databázi existuje. Pokud budete pokračovat, vytvoříte duplicitní rodinu. Doporučuji zrušit editaci v tomto okně a vybrat existující rodinu"
 
-#: ../src/gui/editors/editfamily.py:955
+#: ../src/gui/editors/editfamily.py:959
 #: ../src/plugins/view/relview.py:586
 #: ../src/plugins/view/relview.py:989
 #: ../src/plugins/view/relview.py:1037
@@ -6472,43 +6492,43 @@ msgstr "Rodina s těmito rodiči už v databázi existuje. Pokud budete pokračo
 msgid "Edit %s"
 msgstr "Upravit %s"
 
-#: ../src/gui/editors/editfamily.py:1023
+#: ../src/gui/editors/editfamily.py:1027
 msgid "A father cannot be his own child"
 msgstr "Otec nemůže být svým vlastním dítětem"
 
-#: ../src/gui/editors/editfamily.py:1024
+#: ../src/gui/editors/editfamily.py:1028
 #, python-format
 msgid "%s is listed as both the father and child of the family."
 msgstr "%s je vypsán zároveň jako otec i syn rodiny."
 
-#: ../src/gui/editors/editfamily.py:1033
+#: ../src/gui/editors/editfamily.py:1037
 msgid "A mother cannot be her own child"
 msgstr "Matka nemůže být svým vlastním dítětem"
 
-#: ../src/gui/editors/editfamily.py:1034
+#: ../src/gui/editors/editfamily.py:1038
 #, python-format
 msgid "%s is listed as both the mother and child of the family."
 msgstr "%s je vypsána zároveň jako matka i dcera rodiny."
 
-#: ../src/gui/editors/editfamily.py:1041
+#: ../src/gui/editors/editfamily.py:1045
 msgid "Cannot save family"
 msgstr "Nelze uložit rodinu"
 
-#: ../src/gui/editors/editfamily.py:1042
+#: ../src/gui/editors/editfamily.py:1046
 msgid "No data exists for this family. Please enter data or cancel the edit."
 msgstr "O této rodině neexistují žádné informace. Vložte informace, nebo operaci zrušte."
 
-#: ../src/gui/editors/editfamily.py:1049
+#: ../src/gui/editors/editfamily.py:1053
 msgid "Cannot save family. ID already exists."
 msgstr "Rodinu nelze uložit. ID již existuje."
 
-#: ../src/gui/editors/editfamily.py:1050
+#: ../src/gui/editors/editfamily.py:1054
 #: ../src/gui/editors/editnote.py:312
 #, python-format
 msgid "You have attempted to use the existing Gramps ID with value %(id)s. This value is already used. Please enter a different ID or leave blank to get the next available ID value."
 msgstr "Pokusili jste se použít existující Gramps ID  s hodnotou %(id)s. Tato hodnota je již použita. Vložte prosím jiné ID, nebo ponechte pole prázdné - automaticky bude použito další volná hodnota."
 
-#: ../src/gui/editors/editfamily.py:1065
+#: ../src/gui/editors/editfamily.py:1069
 msgid "Add Family"
 msgstr "Vytvořit rodinu"
 
@@ -6536,7 +6556,7 @@ msgstr "%(mother)s [%(gramps_id)s]"
 
 #: ../src/gui/editors/editldsord.py:301
 #: ../src/gui/editors/editldsord.py:421
-#: ../src/plugins/webreport/NarrativeWeb.py:5192
+#: ../src/plugins/webreport/NarrativeWeb.py:5194
 msgid "LDS Ordinance"
 msgstr "Vysvěcení"
 
@@ -7283,7 +7303,7 @@ msgstr "Okres"
 #: ../src/plugins/lib/maps/geography.py:186
 #: ../src/plugins/tool/ExtractCity.py:387
 #: ../src/plugins/view/placetreeview.py:76
-#: ../src/plugins/webreport/NarrativeWeb.py:2461
+#: ../src/plugins/webreport/NarrativeWeb.py:2462
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:91
 msgid "State"
 msgstr "Kraj"
@@ -7335,17 +7355,17 @@ msgstr "Nastavit výchozí jméno"
 #.
 #. -------------------------------------------------------------------------
 #: ../src/gui/editors/displaytabs/namemodel.py:52
-#: ../src/gui/plug/_guioptions.py:1190
+#: ../src/gui/plug/_guioptions.py:1191
 #: ../src/gui/views/listview.py:500
-#: ../src/gui/views/tags.py:478
+#: ../src/gui/views/tags.py:479
 #: ../src/plugins/quickview/all_relations.py:307
 msgid "Yes"
 msgstr "Ano"
 
 #: ../src/gui/editors/displaytabs/namemodel.py:53
-#: ../src/gui/plug/_guioptions.py:1189
+#: ../src/gui/plug/_guioptions.py:1190
 #: ../src/gui/views/listview.py:501
-#: ../src/gui/views/tags.py:479
+#: ../src/gui/views/tags.py:480
 #: ../src/plugins/quickview/all_relations.py:311
 msgid "No"
 msgstr "Ne"
@@ -7538,13 +7558,13 @@ msgstr "Posunout vybraný pramen výše"
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:68
 #: ../src/plugins/gramplet/Sources.py:49
 #: ../src/plugins/view/sourceview.py:78
-#: ../src/plugins/webreport/NarrativeWeb.py:3547
+#: ../src/plugins/webreport/NarrativeWeb.py:3548
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:80
 msgid "Author"
 msgstr "Autor"
 
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:69
-#: ../src/plugins/webreport/NarrativeWeb.py:1737
+#: ../src/plugins/webreport/NarrativeWeb.py:1738
 msgid "Page"
 msgstr "Strana"
 
@@ -7697,55 +7717,55 @@ msgstr "Hledají se příjmení"
 msgid "Finding surnames"
 msgstr "Hledají se příjmení"
 
-#: ../src/gui/plug/_guioptions.py:628
+#: ../src/gui/plug/_guioptions.py:629
 msgid "Select a different person"
 msgstr "Vybrat jinou osobu"
 
-#: ../src/gui/plug/_guioptions.py:655
+#: ../src/gui/plug/_guioptions.py:656
 msgid "Select a person for the report"
 msgstr "Vybrat osobu do zprávy"
 
-#: ../src/gui/plug/_guioptions.py:736
+#: ../src/gui/plug/_guioptions.py:737
 msgid "Select a different family"
 msgstr "Vybrat jinou rodinu"
 
-#: ../src/gui/plug/_guioptions.py:834
+#: ../src/gui/plug/_guioptions.py:835
 #: ../src/plugins/BookReport.py:183
 msgid "unknown father"
 msgstr "neznámý otec"
 
-#: ../src/gui/plug/_guioptions.py:840
+#: ../src/gui/plug/_guioptions.py:841
 #: ../src/plugins/BookReport.py:189
 msgid "unknown mother"
 msgstr "neznámá matka"
 
-#: ../src/gui/plug/_guioptions.py:842
+#: ../src/gui/plug/_guioptions.py:843
 #: ../src/plugins/textreport/PlaceReport.py:224
 #, python-format
 msgid "%s and %s (%s)"
 msgstr "%s a %s (%s)"
 
-#: ../src/gui/plug/_guioptions.py:1185
+#: ../src/gui/plug/_guioptions.py:1186
 #, python-format
 msgid "Also include %s?"
 msgstr "Zahrnout také %s?"
 
-#: ../src/gui/plug/_guioptions.py:1187
+#: ../src/gui/plug/_guioptions.py:1188
 #: ../src/gui/selectors/selectperson.py:67
 msgid "Select Person"
 msgstr "Vybrat osobu"
 
-#: ../src/gui/plug/_guioptions.py:1435
+#: ../src/gui/plug/_guioptions.py:1436
 msgid "Colour"
 msgstr "Barva"
 
-#: ../src/gui/plug/_guioptions.py:1663
-#: ../src/gui/plug/report/_reportdialog.py:504
+#: ../src/gui/plug/_guioptions.py:1664
+#: ../src/gui/plug/report/_reportdialog.py:467
 msgid "Save As"
 msgstr "Uložit jako"
 
-#: ../src/gui/plug/_guioptions.py:1743
-#: ../src/gui/plug/report/_reportdialog.py:354
+#: ../src/gui/plug/_guioptions.py:1744
+#: ../src/gui/plug/report/_reportdialog.py:317
 #: ../src/gui/plug/report/_styleeditor.py:102
 msgid "Style Editor"
 msgstr "Editor stylů"
@@ -7892,7 +7912,7 @@ msgstr "Autoři"
 
 #. Save Frame
 #: ../src/gui/plug/_windows.py:596
-#: ../src/gui/plug/report/_reportdialog.py:523
+#: ../src/gui/plug/report/_reportdialog.py:486
 msgid "Filename"
 msgstr "Název souboru"
 
@@ -7950,21 +7970,17 @@ msgstr "cm"
 msgid "inch|in."
 msgstr "palec"
 
-#: ../src/gui/plug/report/_reportdialog.py:93
-msgid "Processing File"
-msgstr "Soubor se zpracovává"
-
-#: ../src/gui/plug/report/_reportdialog.py:180
+#: ../src/gui/plug/report/_reportdialog.py:143
 msgid "Configuration"
 msgstr "Nastavení"
 
 #. Styles Frame
-#: ../src/gui/plug/report/_reportdialog.py:350
+#: ../src/gui/plug/report/_reportdialog.py:313
 #: ../src/gui/plug/report/_styleeditor.py:106
 msgid "Style"
 msgstr "Styl"
 
-#: ../src/gui/plug/report/_reportdialog.py:378
+#: ../src/gui/plug/report/_reportdialog.py:341
 msgid "Selection Options"
 msgstr "Možnosti výběru"
 
@@ -7972,11 +7988,11 @@ msgstr "Možnosti výběru"
 #. Report Options
 #. #########################
 #. ###############################
-#: ../src/gui/plug/report/_reportdialog.py:400
+#: ../src/gui/plug/report/_reportdialog.py:363
 #: ../src/plugins/Records.py:514
 #: ../src/plugins/drawreport/Calendar.py:400
 #: ../src/plugins/drawreport/FanChart.py:394
-#: ../src/plugins/drawreport/StatisticsChart.py:904
+#: ../src/plugins/drawreport/StatisticsChart.py:907
 #: ../src/plugins/drawreport/TimeLine.py:323
 #: ../src/plugins/graph/GVRelGraph.py:473
 #: ../src/plugins/textreport/AncestorReport.py:256
@@ -7992,22 +8008,22 @@ msgstr "Možnosti výběru"
 #: ../src/plugins/textreport/PlaceReport.py:365
 #: ../src/plugins/textreport/SimpleBookTitle.py:120
 #: ../src/plugins/textreport/TagReport.py:526
-#: ../src/plugins/webreport/NarrativeWeb.py:6476
+#: ../src/plugins/webreport/NarrativeWeb.py:6478
 #: ../src/plugins/webreport/WebCal.py:1352
 msgid "Report Options"
 msgstr "Nastavení zprávy"
 
 #. need any labels at top:
-#: ../src/gui/plug/report/_reportdialog.py:508
+#: ../src/gui/plug/report/_reportdialog.py:471
 msgid "Document Options"
 msgstr "Nastavení dokumentu"
 
-#: ../src/gui/plug/report/_reportdialog.py:555
-#: ../src/gui/plug/report/_reportdialog.py:580
+#: ../src/gui/plug/report/_reportdialog.py:518
+#: ../src/gui/plug/report/_reportdialog.py:543
 msgid "Permission problem"
 msgstr "Problém oprávnění"
 
-#: ../src/gui/plug/report/_reportdialog.py:556
+#: ../src/gui/plug/report/_reportdialog.py:519
 #, python-format
 msgid ""
 "You do not have permission to write under the directory %s\n"
@@ -8018,23 +8034,23 @@ msgstr ""
 "\n"
 "Zvolte prosím jiný adresář s odpovídajícím oprávněním."
 
-#: ../src/gui/plug/report/_reportdialog.py:565
+#: ../src/gui/plug/report/_reportdialog.py:528
 msgid "File already exists"
 msgstr "Soubor již existuje"
 
-#: ../src/gui/plug/report/_reportdialog.py:566
+#: ../src/gui/plug/report/_reportdialog.py:529
 msgid "You can choose to either overwrite the file, or change the selected filename."
 msgstr "Můžete buď soubor přepsat nebo změnit vybrané jméno souboru."
 
-#: ../src/gui/plug/report/_reportdialog.py:568
+#: ../src/gui/plug/report/_reportdialog.py:531
 msgid "_Overwrite"
 msgstr "_Přepsat"
 
-#: ../src/gui/plug/report/_reportdialog.py:569
+#: ../src/gui/plug/report/_reportdialog.py:532
 msgid "_Change filename"
 msgstr "_Změnit jméno souboru"
 
-#: ../src/gui/plug/report/_reportdialog.py:581
+#: ../src/gui/plug/report/_reportdialog.py:544
 #, python-format
 msgid ""
 "You do not have permission to create %s\n"
@@ -8045,18 +8061,18 @@ msgstr ""
 "\n"
 "Vyberte prosím jinou cestu, nebo opravte oprávnění."
 
-#: ../src/gui/plug/report/_reportdialog.py:654
+#: ../src/gui/plug/report/_reportdialog.py:617
 #: ../src/gui/plug/tool.py:134
 #: ../src/plugins/tool/RelCalc.py:148
 msgid "Active person has not been set"
 msgstr "Nebyla zvolena aktivní osoba"
 
-#: ../src/gui/plug/report/_reportdialog.py:655
+#: ../src/gui/plug/report/_reportdialog.py:618
 msgid "You must select an active person for this report to work properly."
 msgstr "Aby report pracoval správně, musíte zvolit aktivní osobu."
 
-#: ../src/gui/plug/report/_reportdialog.py:716
-#: ../src/gui/plug/report/_reportdialog.py:721
+#: ../src/gui/plug/report/_reportdialog.py:679
+#: ../src/gui/plug/report/_reportdialog.py:684
 #: ../src/plugins/drawreport/TimeLine.py:119
 msgid "Report could not be created"
 msgstr "Zprávu nelze vytvořit"
@@ -8257,30 +8273,30 @@ msgstr "O_dstranit záznam"
 msgid "Column clicked, sorting..."
 msgstr "Kiknuto na sloupec, třídí se..."
 
-#: ../src/gui/views/listview.py:922
+#: ../src/gui/views/listview.py:921
 msgid "Export View as Spreadsheet"
 msgstr "Exportovat pohled jako tabulku"
 
-#: ../src/gui/views/listview.py:930
+#: ../src/gui/views/listview.py:929
 #: ../src/glade/mergenote.glade.h:4
 msgid "Format:"
 msgstr "Formát:"
 
-#: ../src/gui/views/listview.py:935
+#: ../src/gui/views/listview.py:934
 msgid "CSV"
 msgstr "Dokument CSV"
 
-#: ../src/gui/views/listview.py:936
+#: ../src/gui/views/listview.py:935
 msgid "OpenDocument Spreadsheet"
 msgstr "Tabulka OpenDocument"
 
-#: ../src/gui/views/listview.py:1063
-#: ../src/gui/views/listview.py:1083
+#: ../src/gui/views/listview.py:1062
+#: ../src/gui/views/listview.py:1082
 #: ../src/Filters/_SearchBar.py:165
 msgid "Updating display..."
 msgstr "Aktualizace zobrazení..."
 
-#: ../src/gui/views/listview.py:1129
+#: ../src/gui/views/listview.py:1128
 msgid "Columns"
 msgstr "Sloupce"
 
@@ -8351,23 +8367,23 @@ msgstr "Po_stranní lišta"
 msgid "_Bottombar"
 msgstr "S_podní lišta"
 
-#: ../src/gui/views/pageview.py:591
+#: ../src/gui/views/pageview.py:589
 #, python-format
 msgid "Configure %(cat)s - %(view)s"
 msgstr "Nastavit %(cat)s - %(view)s"
 
-#: ../src/gui/views/pageview.py:608
+#: ../src/gui/views/pageview.py:606
 #, python-format
 msgid "%(cat)s - %(view)s"
 msgstr "%(cat)s - %(view)s"
 
-#: ../src/gui/views/pageview.py:627
+#: ../src/gui/views/pageview.py:625
 #, python-format
 msgid "Configure %s View"
 msgstr "Nastavit pohled %s"
 
 #. top widget at the top
-#: ../src/gui/views/pageview.py:641
+#: ../src/gui/views/pageview.py:639
 #, python-format
 msgid "View %(name)s: %(msg)s"
 msgstr "Zobrazit %(name)s: %(msg)s"
@@ -8377,86 +8393,86 @@ msgstr "Zobrazit %(name)s: %(msg)s"
 msgid "manual|Tags"
 msgstr "Štítky"
 
-#: ../src/gui/views/tags.py:220
+#: ../src/gui/views/tags.py:221
 msgid "New Tag..."
 msgstr "Nový štítek..."
 
-#: ../src/gui/views/tags.py:222
+#: ../src/gui/views/tags.py:223
 msgid "Organize Tags..."
 msgstr "Organizovat štítky..."
 
-#: ../src/gui/views/tags.py:225
+#: ../src/gui/views/tags.py:226
 msgid "Tag selected rows"
 msgstr "Opatřit vybraný řádek štítkem"
 
-#: ../src/gui/views/tags.py:267
+#: ../src/gui/views/tags.py:268
 msgid "Adding Tags"
 msgstr "Štítky jsou přidávány"
 
-#: ../src/gui/views/tags.py:272
+#: ../src/gui/views/tags.py:273
 #, python-format
 msgid "Tag Selection (%s)"
 msgstr "Výběr štítků (%s)"
 
-#: ../src/gui/views/tags.py:326
+#: ../src/gui/views/tags.py:327
 msgid "Change Tag Priority"
 msgstr "Změnit prioritu štítků"
 
-#: ../src/gui/views/tags.py:371
-#: ../src/gui/views/tags.py:379
+#: ../src/gui/views/tags.py:372
+#: ../src/gui/views/tags.py:380
 msgid "Organize Tags"
 msgstr "Organizovat štítky"
 
-#: ../src/gui/views/tags.py:388
+#: ../src/gui/views/tags.py:389
 msgid "Color"
 msgstr "Barva"
 
-#: ../src/gui/views/tags.py:475
+#: ../src/gui/views/tags.py:476
 #, python-format
 msgid "Remove tag '%s'?"
 msgstr "Odstranit štítek '%s'?"
 
-#: ../src/gui/views/tags.py:476
+#: ../src/gui/views/tags.py:477
 msgid "The tag definition will be removed.  The tag will be also removed from all objects in the database."
 msgstr "Definice štítku bude odstraněna. Štítek bude také odstraněn ze všech objektů v databázi."
 
-#: ../src/gui/views/tags.py:505
+#: ../src/gui/views/tags.py:506
 msgid "Removing Tags"
 msgstr "Štítky jsou odstraňovány"
 
-#: ../src/gui/views/tags.py:510
+#: ../src/gui/views/tags.py:511
 #, python-format
 msgid "Delete Tag (%s)"
 msgstr "Odstranit štítek (%s)"
 
-#: ../src/gui/views/tags.py:558
+#: ../src/gui/views/tags.py:559
 msgid "Cannot save tag"
 msgstr "Štítek nelze uložit"
 
-#: ../src/gui/views/tags.py:559
+#: ../src/gui/views/tags.py:560
 msgid "The tag name cannot be empty"
 msgstr "Název štítku nemůže být prázdný"
 
-#: ../src/gui/views/tags.py:563
+#: ../src/gui/views/tags.py:564
 #, python-format
 msgid "Add Tag (%s)"
 msgstr "Přidat štítek (%s)"
 
-#: ../src/gui/views/tags.py:569
+#: ../src/gui/views/tags.py:570
 #, python-format
 msgid "Edit Tag (%s)"
 msgstr "Upravit štítek (%s)"
 
-#: ../src/gui/views/tags.py:579
+#: ../src/gui/views/tags.py:580
 #, python-format
 msgid "Tag: %s"
 msgstr "Štítek: %s"
 
-#: ../src/gui/views/tags.py:592
+#: ../src/gui/views/tags.py:593
 msgid "Tag Name:"
 msgstr "Název štítku:"
 
-#: ../src/gui/views/tags.py:597
+#: ../src/gui/views/tags.py:598
 msgid "Pick a Color"
 msgstr "Vybrat barvu"
 
@@ -8529,35 +8545,35 @@ msgid "Drag Properties Button to move and click it for setup"
 msgstr "Táhněte tlačítko Vlastnosti pro přesun, klikněte na něj pro nastavení"
 
 #. build the GUI:
-#: ../src/gui/widgets/grampletpane.py:957
+#: ../src/gui/widgets/grampletpane.py:958
 msgid "Right click to add gramplets"
 msgstr "Pravým tlačítkem myši přidejte gramplety"
 
-#: ../src/gui/widgets/grampletpane.py:996
+#: ../src/gui/widgets/grampletpane.py:997
 msgid "Untitled Gramplet"
 msgstr "Gramplet bez jména"
 
-#: ../src/gui/widgets/grampletpane.py:1469
+#: ../src/gui/widgets/grampletpane.py:1470
 msgid "Number of Columns"
 msgstr "Počet sloupců"
 
-#: ../src/gui/widgets/grampletpane.py:1474
+#: ../src/gui/widgets/grampletpane.py:1475
 msgid "Gramplet Layout"
 msgstr "Rozložení grampletu"
 
-#: ../src/gui/widgets/grampletpane.py:1504
+#: ../src/gui/widgets/grampletpane.py:1505
 msgid "Use maximum height available"
 msgstr "Použít maximální možnou výšku"
 
-#: ../src/gui/widgets/grampletpane.py:1510
+#: ../src/gui/widgets/grampletpane.py:1511
 msgid "Height if not maximized"
 msgstr "Výška pokud není maximalizovaný"
 
-#: ../src/gui/widgets/grampletpane.py:1517
+#: ../src/gui/widgets/grampletpane.py:1518
 msgid "Detached width"
 msgstr "Samostatná šířka"
 
-#: ../src/gui/widgets/grampletpane.py:1524
+#: ../src/gui/widgets/grampletpane.py:1525
 msgid "Detached height"
 msgstr "Samostatná výška"
 
@@ -8709,7 +8725,7 @@ msgstr "Sloučit_místa"
 msgid "Merge Events"
 msgstr "Sloučit události"
 
-#: ../src/Merge/mergeevent.py:217
+#: ../src/Merge/mergeevent.py:216
 msgid "Merge Event Objects"
 msgstr "Sloučit objekty událostí"
 
@@ -8721,23 +8737,23 @@ msgstr "Sloučit_rodiny"
 msgid "Merge Families"
 msgstr "Sloučit rodiny"
 
-#: ../src/Merge/mergefamily.py:223
-#: ../src/Merge/mergeperson.py:327
+#: ../src/Merge/mergefamily.py:225
+#: ../src/Merge/mergeperson.py:334
 #: ../src/plugins/lib/libpersonview.py:416
 msgid "Cannot merge people"
 msgstr "Osoby nelze sloučit"
 
-#: ../src/Merge/mergefamily.py:277
+#: ../src/Merge/mergefamily.py:276
 msgid "A parent should be a father or mother."
 msgstr "Rodičem může být otec nebo matka."
 
-#: ../src/Merge/mergefamily.py:290
-#: ../src/Merge/mergefamily.py:301
-#: ../src/Merge/mergeperson.py:348
+#: ../src/Merge/mergefamily.py:289
+#: ../src/Merge/mergefamily.py:300
+#: ../src/Merge/mergeperson.py:352
 msgid "A parent and child cannot be merged. To merge these people, you must first break the relationship between them."
 msgstr "Rodič a potomek nemohou být sloučeni. Chcete-li tyto osoby sloučit, musíte nejdříve zrušit vztah mezi nimi."
 
-#: ../src/Merge/mergefamily.py:321
+#: ../src/Merge/mergefamily.py:320
 msgid "Merge Family"
 msgstr "Sloučit rodinu"
 
@@ -8746,7 +8762,7 @@ msgid "manual|Merge_Media_Objects"
 msgstr "Sloučit_objekty_médií"
 
 #: ../src/Merge/mergemedia.py:70
-#: ../src/Merge/mergemedia.py:191
+#: ../src/Merge/mergemedia.py:190
 msgid "Merge Media Objects"
 msgstr "Sloučit objekty médií"
 
@@ -8755,7 +8771,7 @@ msgid "manual|Merge_Notes"
 msgstr "Sloučit_poznámky"
 
 #: ../src/Merge/mergenote.py:71
-#: ../src/Merge/mergenote.py:204
+#: ../src/Merge/mergenote.py:203
 msgid "Merge Notes"
 msgstr "Sloučit poznámky"
 
@@ -8780,47 +8796,47 @@ msgstr "Sloučit osoby"
 msgid "Alternate Names"
 msgstr "Alternativní jména"
 
-#: ../src/Merge/mergeperson.py:209
-#: ../src/Merge/mergeperson.py:223
+#: ../src/Merge/mergeperson.py:214
+#: ../src/Merge/mergeperson.py:228
 msgid "Family ID"
 msgstr "ID rodiny"
 
-#: ../src/Merge/mergeperson.py:215
+#: ../src/Merge/mergeperson.py:220
 msgid "No parents found"
 msgstr "Nenalezeni žádní rodiče"
 
 #. Go over spouses and build their menu
-#: ../src/Merge/mergeperson.py:217
+#: ../src/Merge/mergeperson.py:222
 #: ../src/plugins/gramplet/FanChartGramplet.py:722
 #: ../src/plugins/textreport/KinshipReport.py:113
 #: ../src/plugins/view/fanchartview.py:791
-#: ../src/plugins/view/pedigreeview.py:1829
+#: ../src/plugins/view/pedigreeview.py:1836
 msgid "Spouses"
 msgstr "Partneři(ky)"
 
-#: ../src/Merge/mergeperson.py:241
+#: ../src/Merge/mergeperson.py:246
 msgid "No spouses or children found"
 msgstr "Nebyli nalezeni žádní partneři nebo potomci"
 
-#: ../src/Merge/mergeperson.py:245
+#: ../src/Merge/mergeperson.py:250
 #: ../src/plugins/textreport/IndivComplete.py:365
 #: ../src/plugins/webreport/NarrativeWeb.py:844
 msgid "Addresses"
 msgstr "Adresy"
 
-#: ../src/Merge/mergeperson.py:345
+#: ../src/Merge/mergeperson.py:349
 msgid "Spouses cannot be merged. To merge these people, you must first break the relationship between them."
 msgstr "Manželé nemohou být sloučeni. Chcete-li tyto osoby sloučit, musíte nejdříve zrušit vztah mezi nimi."
 
-#: ../src/Merge/mergeperson.py:411
+#: ../src/Merge/mergeperson.py:415
 msgid "Merge Person"
 msgstr "Sloučit osobu"
 
-#: ../src/Merge/mergeperson.py:450
+#: ../src/Merge/mergeperson.py:454
 msgid "A person with multiple relations with the same spouse is about to be merged. This is beyond the capabilities of the merge routine. The merge is aborted."
 msgstr "Osoba s více vztahy ke stejnému partnerovi má být sloučena. Toto je nad možnosti funkce slučování. Sloučení je zrušeno."
 
-#: ../src/Merge/mergeperson.py:461
+#: ../src/Merge/mergeperson.py:465
 msgid "Multiple families get merged. This is unusual, the merge is aborted."
 msgstr "Má být sloučeno více rodin. To je neobvyklé, sloučení je zrušeno."
 
@@ -8838,7 +8854,7 @@ msgid "manual|Merge_Repositories"
 msgstr "Sloučit_archivy"
 
 #: ../src/Merge/mergerepository.py:69
-#: ../src/Merge/mergerepository.py:178
+#: ../src/Merge/mergerepository.py:177
 msgid "Merge Repositories"
 msgstr "Sloučit archivy"
 
@@ -8850,7 +8866,7 @@ msgstr "Sloučit prameny"
 msgid "Merge Sources"
 msgstr "Sloučit prameny"
 
-#: ../src/Merge/mergesource.py:205
+#: ../src/Merge/mergesource.py:204
 msgid "Merge Source"
 msgstr "Sloučit pramen"
 
@@ -9169,17 +9185,17 @@ msgid " (%(value)s)"
 msgstr " (%(value)s)"
 
 #: ../src/plugins/Records.py:518
-#: ../src/plugins/drawreport/StatisticsChart.py:909
+#: ../src/plugins/drawreport/StatisticsChart.py:912
 msgid "Determines what people are included in the report."
 msgstr "Určí které osoby budou zahrnuty do zprávy."
 
 #: ../src/plugins/Records.py:522
-#: ../src/plugins/drawreport/StatisticsChart.py:913
+#: ../src/plugins/drawreport/StatisticsChart.py:916
 #: ../src/plugins/drawreport/TimeLine.py:331
 #: ../src/plugins/graph/GVRelGraph.py:482
 #: ../src/plugins/textreport/IndivComplete.py:655
 #: ../src/plugins/tool/SortEvents.py:173
-#: ../src/plugins/webreport/NarrativeWeb.py:6504
+#: ../src/plugins/webreport/NarrativeWeb.py:6506
 #: ../src/plugins/webreport/WebCal.py:1370
 msgid "Filter Person"
 msgstr "Filtrovat osobu"
@@ -9188,7 +9204,7 @@ msgstr "Filtrovat osobu"
 #: ../src/plugins/drawreport/TimeLine.py:332
 #: ../src/plugins/graph/GVRelGraph.py:483
 #: ../src/plugins/tool/SortEvents.py:174
-#: ../src/plugins/webreport/NarrativeWeb.py:6505
+#: ../src/plugins/webreport/NarrativeWeb.py:6507
 #: ../src/plugins/webreport/WebCal.py:1371
 msgid "The center person for the filter"
 msgstr "Výchozí osoba filtru"
@@ -9402,13 +9418,13 @@ msgid "of %d"
 msgstr "z %d"
 
 #: ../src/plugins/docgen/HtmlDoc.py:263
-#: ../src/plugins/webreport/NarrativeWeb.py:6434
+#: ../src/plugins/webreport/NarrativeWeb.py:6436
 #: ../src/plugins/webreport/WebCal.py:246
 msgid "Possible destination error"
 msgstr "Možná chyba cíle"
 
 #: ../src/plugins/docgen/HtmlDoc.py:264
-#: ../src/plugins/webreport/NarrativeWeb.py:6435
+#: ../src/plugins/webreport/NarrativeWeb.py:6437
 #: ../src/plugins/webreport/WebCal.py:247
 msgid "You appear to have set your target directory to a directory used for data storage. This could create problems with file management. It is recommended that you consider using a different directory to store your generated web pages."
 msgstr "Pravděpodobně jste jako cílový zvolili adresář pro ukládání dat. To může způsobit problémy se správou souborů. Pro uložení generovaných webových stránek je doporučujeme zvážit použití jiného adresáře."
@@ -9813,7 +9829,7 @@ msgstr "Formátují se měsíce..."
 
 #: ../src/plugins/drawreport/Calendar.py:264
 #: ../src/plugins/textreport/BirthdayReport.py:205
-#: ../src/plugins/webreport/NarrativeWeb.py:5913
+#: ../src/plugins/webreport/NarrativeWeb.py:5915
 #: ../src/plugins/webreport/WebCal.py:1105
 msgid "Applying Filter..."
 msgstr "Aplikuje se filtr..."
@@ -9896,7 +9912,7 @@ msgstr "Výchozí osoba pro zprávu"
 
 #: ../src/plugins/drawreport/Calendar.py:424
 #: ../src/plugins/textreport/BirthdayReport.py:368
-#: ../src/plugins/webreport/NarrativeWeb.py:6524
+#: ../src/plugins/webreport/NarrativeWeb.py:6526
 #: ../src/plugins/webreport/WebCal.py:1390
 msgid "Select the format to display names"
 msgstr "Vyberte formát zobrazení jmen"
@@ -10292,8 +10308,10 @@ msgstr "Vytvoří grafický strom potomků rodiny"
 msgid "Produces fan charts"
 msgstr "Vytvoří vějířové grafy"
 
+#. go through the people and collect data
 #: ../src/plugins/drawreport/drawplugins.gpr.py:192
-#: ../src/plugins/drawreport/StatisticsChart.py:730
+#: ../src/plugins/drawreport/StatisticsChart.py:646
+#: ../src/plugins/drawreport/StatisticsChart.py:783
 msgid "Statistics Charts"
 msgstr "Statistické grafy"
 
@@ -10388,13 +10406,13 @@ msgstr "Obě"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:301
 #: ../src/plugins/drawreport/StatisticsChart.py:392
-#: ../src/plugins/drawreport/StatisticsChart.py:718
+#: ../src/plugins/drawreport/StatisticsChart.py:725
 msgid "Men"
 msgstr "Muži"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:302
 #: ../src/plugins/drawreport/StatisticsChart.py:394
-#: ../src/plugins/drawreport/StatisticsChart.py:720
+#: ../src/plugins/drawreport/StatisticsChart.py:727
 msgid "Women"
 msgstr "Ženy"
 
@@ -10520,113 +10538,108 @@ msgstr "Chybí narození"
 msgid "Personal information missing"
 msgstr "Chybí osobní informace"
 
-#. extract requested items from the database and count them
-#: ../src/plugins/drawreport/StatisticsChart.py:733
+#: ../src/plugins/drawreport/StatisticsChart.py:649
 msgid "Collecting data..."
 msgstr "Sbírají se data..."
 
-#: ../src/plugins/drawreport/StatisticsChart.py:739
-msgid "Sorting data..."
-msgstr "Třídím data..."
-
-#: ../src/plugins/drawreport/StatisticsChart.py:749
+#: ../src/plugins/drawreport/StatisticsChart.py:752
 #, python-format
 msgid "%(genders)s born %(year_from)04d-%(year_to)04d: %(chart_title)s"
 msgstr "%(genders)s narozen(a) %(year_from)04d-%(year_to)04d: %(chart_title)s"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:751
+#: ../src/plugins/drawreport/StatisticsChart.py:754
 #, python-format
 msgid "Persons born %(year_from)04d-%(year_to)04d: %(chart_title)s"
 msgstr "Osoby narozené %(year_from)04d-%(year_to)04d: %(chart_title)s"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:782
+#: ../src/plugins/drawreport/StatisticsChart.py:785
 msgid "Saving charts..."
 msgstr "Ukádají se grafy..."
 
-#: ../src/plugins/drawreport/StatisticsChart.py:829
-#: ../src/plugins/drawreport/StatisticsChart.py:863
+#: ../src/plugins/drawreport/StatisticsChart.py:832
+#: ../src/plugins/drawreport/StatisticsChart.py:866
 #, python-format
 msgid "%s (persons):"
 msgstr "%s (osoby):"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:914
+#: ../src/plugins/drawreport/StatisticsChart.py:917
 #: ../src/plugins/textreport/IndivComplete.py:656
 msgid "The center person for the filter."
 msgstr "Výchozí osoba filtru."
 
-#: ../src/plugins/drawreport/StatisticsChart.py:920
+#: ../src/plugins/drawreport/StatisticsChart.py:923
 msgid "Sort chart items by"
 msgstr "Seřadit položky grafu podle"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:925
+#: ../src/plugins/drawreport/StatisticsChart.py:928
 msgid "Select how the statistical data is sorted."
 msgstr "Vybrat způsob třídění statistických dat."
 
-#: ../src/plugins/drawreport/StatisticsChart.py:928
+#: ../src/plugins/drawreport/StatisticsChart.py:931
 msgid "Sort in reverse order"
 msgstr "Třídit v opačném pořadí"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:929
+#: ../src/plugins/drawreport/StatisticsChart.py:932
 msgid "Check to reverse the sorting order."
 msgstr "Zaškrtnout k obrácení třídícího pořadí."
 
-#: ../src/plugins/drawreport/StatisticsChart.py:933
+#: ../src/plugins/drawreport/StatisticsChart.py:936
 msgid "People Born After"
 msgstr "Lidé narození po"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:935
+#: ../src/plugins/drawreport/StatisticsChart.py:938
 msgid "Birth year from which to include people."
 msgstr "Zahrnout osoby narozené od daného roku."
 
-#: ../src/plugins/drawreport/StatisticsChart.py:938
+#: ../src/plugins/drawreport/StatisticsChart.py:941
 msgid "People Born Before"
 msgstr "Lidé narození před"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:940
+#: ../src/plugins/drawreport/StatisticsChart.py:943
 msgid "Birth year until which to include people"
 msgstr "Zahrnout osoby narozené do roku"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:943
+#: ../src/plugins/drawreport/StatisticsChart.py:946
 msgid "Include people without known birth years"
 msgstr "Zařadit osoby s neznámým datem narození"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:945
+#: ../src/plugins/drawreport/StatisticsChart.py:948
 msgid "Whether to include people without known birth years."
 msgstr "Zda zařadit osoby s neznámým rokem narození."
 
-#: ../src/plugins/drawreport/StatisticsChart.py:949
+#: ../src/plugins/drawreport/StatisticsChart.py:952
 msgid "Genders included"
 msgstr "Včetně pohlaví"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:954
+#: ../src/plugins/drawreport/StatisticsChart.py:957
 msgid "Select which genders are included into statistics."
 msgstr "Vybrat, která pohlaví jsou zahrnuta do statistik."
 
-#: ../src/plugins/drawreport/StatisticsChart.py:958
+#: ../src/plugins/drawreport/StatisticsChart.py:961
 msgid "Max. items for a pie"
 msgstr "Max. položek pro kruhový graf"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:959
+#: ../src/plugins/drawreport/StatisticsChart.py:962
 msgid "With fewer items pie chart and legend will be used instead of a bar chart."
 msgstr "Pro méně položek bude místo sloupcového grafu vytvořen kruhový graf."
 
-#: ../src/plugins/drawreport/StatisticsChart.py:970
+#: ../src/plugins/drawreport/StatisticsChart.py:973
 msgid "Charts 1"
 msgstr "Grafy 1"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:972
+#: ../src/plugins/drawreport/StatisticsChart.py:975
 msgid "Charts 2"
 msgstr "Grafy 2"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:975
+#: ../src/plugins/drawreport/StatisticsChart.py:978
 msgid "Include charts with indicated data."
 msgstr "Zda zahrnout grafy s uvedenými údaji."
 
-#: ../src/plugins/drawreport/StatisticsChart.py:1015
+#: ../src/plugins/drawreport/StatisticsChart.py:1018
 msgid "The style used for the items and values."
 msgstr "Styl používaný pro položky a hodnoty."
 
-#: ../src/plugins/drawreport/StatisticsChart.py:1024
+#: ../src/plugins/drawreport/StatisticsChart.py:1027
 #: ../src/plugins/drawreport/TimeLine.py:394
 #: ../src/plugins/textreport/AncestorReport.py:324
 #: ../src/plugins/textreport/DescendReport.py:358
@@ -10898,14 +10911,14 @@ msgstr "Pramen pohřbu"
 #: ../src/plugins/export/ExportCsv.py:457
 #: ../src/plugins/import/ImportCsv.py:224
 #: ../src/plugins/textreport/FamilyGroup.py:556
-#: ../src/plugins/webreport/NarrativeWeb.py:5226
+#: ../src/plugins/webreport/NarrativeWeb.py:5228
 msgid "Husband"
 msgstr "Manžel"
 
 #: ../src/plugins/export/ExportCsv.py:457
 #: ../src/plugins/import/ImportCsv.py:221
 #: ../src/plugins/textreport/FamilyGroup.py:565
-#: ../src/plugins/webreport/NarrativeWeb.py:5228
+#: ../src/plugins/webreport/NarrativeWeb.py:5230
 msgid "Wife"
 msgstr "Manželka"
 
@@ -10929,7 +10942,7 @@ msgstr "Zapisují se poznámky"
 msgid "Writing repositories"
 msgstr "Zapisují se archivy"
 
-#: ../src/plugins/export/ExportGedcom.py:1427
+#: ../src/plugins/export/ExportGedcom.py:1429
 msgid "Export failed"
 msgstr "Export selhal"
 
@@ -10941,6 +10954,14 @@ msgstr "Vybranému filtru nevyhovují žádné rodiny"
 #: ../src/plugins/tool/Check.py:587
 msgid "Select file"
 msgstr "Vybrat soubor"
+
+#: ../src/plugins/export/ExportPkg.py:183
+#: ../src/plugins/export/ExportXml.py:137
+#: ../src/plugins/export/ExportXml.py:147
+#: ../src/plugins/export/ExportXml.py:165
+#, python-format
+msgid "Failure writing %s"
+msgstr "Zápis %s selhal"
 
 #: ../src/plugins/export/ExportVCalendar.py:139
 #, python-format
@@ -10963,13 +10984,6 @@ msgstr "Úmrtí: %s"
 #, python-format
 msgid "Anniversary: %s"
 msgstr "Výročí: %s"
-
-#: ../src/plugins/export/ExportXml.py:137
-#: ../src/plugins/export/ExportXml.py:147
-#: ../src/plugins/export/ExportXml.py:165
-#, python-format
-msgid "Failure writing %s"
-msgstr "Zápis %s selhal"
 
 #: ../src/plugins/export/ExportXml.py:138
 msgid "The database cannot be saved because you do not have permission to write to the directory. Please make sure you have write access to the directory and try again."
@@ -11217,7 +11231,7 @@ msgstr "Gramplet zobrazující atributy osoby"
 #: ../src/plugins/gramplet/gramplet.gpr.py:66
 #: ../src/plugins/webreport/NarrativeWeb.py:123
 #: ../src/plugins/webreport/NarrativeWeb.py:1024
-#: ../src/plugins/webreport/NarrativeWeb.py:5202
+#: ../src/plugins/webreport/NarrativeWeb.py:5204
 msgid "Attributes"
 msgstr "Atributy"
 
@@ -11356,9 +11370,9 @@ msgstr "Gramplet zobrazující děti dané osoby"
 #: ../src/plugins/textreport/FamilyGroup.py:575
 #: ../src/plugins/textreport/IndivComplete.py:426
 #: ../src/plugins/view/fanchartview.py:868
-#: ../src/plugins/view/pedigreeview.py:1909
+#: ../src/plugins/view/pedigreeview.py:1916
 #: ../src/plugins/view/relview.py:1358
-#: ../src/plugins/webreport/NarrativeWeb.py:5161
+#: ../src/plugins/webreport/NarrativeWeb.py:5163
 msgid "Children"
 msgstr "Děti"
 
@@ -11386,8 +11400,8 @@ msgstr "Gramplet zobrazující pětné linky k osobě"
 #: ../src/plugins/gramplet/bottombar.gpr.py:552
 #: ../src/plugins/gramplet/bottombar.gpr.py:566
 #: ../src/plugins/gramplet/bottombar.gpr.py:580
-#: ../src/plugins/webreport/NarrativeWeb.py:1766
-#: ../src/plugins/webreport/NarrativeWeb.py:4297
+#: ../src/plugins/webreport/NarrativeWeb.py:1767
+#: ../src/plugins/webreport/NarrativeWeb.py:4299
 msgid "References"
 msgstr "Odkazy"
 
@@ -11516,7 +11530,7 @@ msgid "Double-click a day for details"
 msgstr "Dvojklikem na den zobrazit podrobnosti"
 
 #: ../src/plugins/gramplet/Children.py:80
-#: ../src/plugins/gramplet/Children.py:177
+#: ../src/plugins/gramplet/Children.py:176
 msgid "Double-click on a row to edit the selected child."
 msgstr "Dvouklik na řádek upraví zvoleného potomka."
 
@@ -11678,7 +11692,7 @@ msgstr "Autor"
 
 #. copyright field
 #: ../src/plugins/gramplet/EditExifMetadata.py:285
-#: ../src/plugins/webreport/NarrativeWeb.py:6533
+#: ../src/plugins/webreport/NarrativeWeb.py:6535
 #: ../src/plugins/webreport/WebCal.py:1399
 msgid "Copyright"
 msgstr "Copyright"
@@ -11708,20 +11722,20 @@ msgstr "St. Min. Sec."
 
 #. Latitude and Longitude for this image
 #: ../src/plugins/gramplet/EditExifMetadata.py:301
-#: ../src/plugins/gramplet/PlaceDetails.py:117
+#: ../src/plugins/gramplet/PlaceDetails.py:116
 #: ../src/plugins/lib/libplaceview.py:101
 #: ../src/plugins/view/placetreeview.py:80
 #: ../src/plugins/webreport/NarrativeWeb.py:133
-#: ../src/plugins/webreport/NarrativeWeb.py:2463
+#: ../src/plugins/webreport/NarrativeWeb.py:2464
 msgid "Latitude"
 msgstr "Zeměpisná šířka"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:302
-#: ../src/plugins/gramplet/PlaceDetails.py:119
+#: ../src/plugins/gramplet/PlaceDetails.py:118
 #: ../src/plugins/lib/libplaceview.py:102
 #: ../src/plugins/view/placetreeview.py:81
 #: ../src/plugins/webreport/NarrativeWeb.py:135
-#: ../src/plugins/webreport/NarrativeWeb.py:2464
+#: ../src/plugins/webreport/NarrativeWeb.py:2465
 msgid "Longitude"
 msgstr "Zeměpisná délka"
 
@@ -11877,8 +11891,8 @@ msgstr ""
 
 #: ../src/plugins/gramplet/FanChartGramplet.py:694
 #: ../src/plugins/view/fanchartview.py:763
-#: ../src/plugins/view/pedigreeview.py:1773
-#: ../src/plugins/view/pedigreeview.py:1799
+#: ../src/plugins/view/pedigreeview.py:1780
+#: ../src/plugins/view/pedigreeview.py:1806
 msgid "People Menu"
 msgstr "Menu osob"
 
@@ -11886,16 +11900,16 @@ msgstr "Menu osob"
 #: ../src/plugins/gramplet/FanChartGramplet.py:756
 #: ../src/plugins/quickview/quickview.gpr.py:312
 #: ../src/plugins/view/fanchartview.py:825
-#: ../src/plugins/view/pedigreeview.py:1864
+#: ../src/plugins/view/pedigreeview.py:1871
 #: ../src/plugins/view/relview.py:898
-#: ../src/plugins/webreport/NarrativeWeb.py:4955
+#: ../src/plugins/webreport/NarrativeWeb.py:4957
 msgid "Siblings"
 msgstr "Sourozenci"
 
 #. Go over parents and build their menu
 #: ../src/plugins/gramplet/FanChartGramplet.py:873
 #: ../src/plugins/view/fanchartview.py:942
-#: ../src/plugins/view/pedigreeview.py:1997
+#: ../src/plugins/view/pedigreeview.py:2004
 msgid "Related"
 msgstr "Související"
 
@@ -12275,7 +12289,7 @@ msgstr[0] " zahrnují %d osobu\n"
 msgstr[1] " zahrnují %d osoby\n"
 msgstr[2] " zahrnují %d osob\n"
 
-#: ../src/plugins/gramplet/PersonDetails.py:183
+#: ../src/plugins/gramplet/PersonDetails.py:182
 #: ../src/plugins/gramplet/WhatsNext.py:371
 #: ../src/plugins/gramplet/WhatsNext.py:393
 #: ../src/plugins/gramplet/WhatsNext.py:443
@@ -12284,12 +12298,12 @@ msgstr[2] " zahrnují %d osob\n"
 msgid ", "
 msgstr ", "
 
-#: ../src/plugins/gramplet/PersonDetails.py:212
+#: ../src/plugins/gramplet/PersonDetails.py:211
 #, python-format
 msgid "%(date)s - %(place)s."
 msgstr "%(date)s - %(place)s."
 
-#: ../src/plugins/gramplet/PersonDetails.py:215
+#: ../src/plugins/gramplet/PersonDetails.py:214
 #, python-format
 msgid "%(date)s."
 msgstr "%(date)s."
@@ -12408,7 +12422,7 @@ msgstr "méně než 1"
 #: ../src/plugins/textreport/Summary.py:102
 #: ../src/plugins/webreport/NarrativeWeb.py:1217
 #: ../src/plugins/webreport/NarrativeWeb.py:1254
-#: ../src/plugins/webreport/NarrativeWeb.py:2085
+#: ../src/plugins/webreport/NarrativeWeb.py:2086
 msgid "Individuals"
 msgstr "Jednotlivci"
 
@@ -12868,7 +12882,7 @@ msgstr "Barva, která indikuje neznámé pohlaví."
 #: ../src/plugins/textreport/TagReport.py:193
 #: ../src/plugins/view/familyview.py:113
 #: ../src/plugins/view/view.gpr.py:55
-#: ../src/plugins/webreport/NarrativeWeb.py:5143
+#: ../src/plugins/webreport/NarrativeWeb.py:5145
 msgid "Families"
 msgstr "Rodiny"
 
@@ -13812,45 +13826,45 @@ msgid "Line %d: empty event note was ignored."
 msgstr "Řádek %d: prázdná poznámka události byla ignorována."
 
 #: ../src/plugins/lib/libgedcom.py:5209
-#: ../src/plugins/lib/libgedcom.py:5849
+#: ../src/plugins/lib/libgedcom.py:5852
 #, python-format
 msgid "Could not import %s"
 msgstr "Nemohu importovat %s"
 
-#: ../src/plugins/lib/libgedcom.py:5610
+#: ../src/plugins/lib/libgedcom.py:5613
 #, python-format
 msgid "Import from %s"
 msgstr "Importovat z %s"
 
-#: ../src/plugins/lib/libgedcom.py:5645
+#: ../src/plugins/lib/libgedcom.py:5648
 #, python-format
 msgid "Import of GEDCOM file %s with DEST=%s, could cause errors in the resulting database!"
 msgstr "Importovat GEDCOM soubor %s umístěný v DEST=%s může výsledné databázi způsobit problémy!"
 
-#: ../src/plugins/lib/libgedcom.py:5648
+#: ../src/plugins/lib/libgedcom.py:5651
 msgid "Look for nameless events."
 msgstr "Najít nepojmenované události."
 
-#: ../src/plugins/lib/libgedcom.py:5707
-#: ../src/plugins/lib/libgedcom.py:5721
+#: ../src/plugins/lib/libgedcom.py:5710
+#: ../src/plugins/lib/libgedcom.py:5724
 #, python-format
 msgid "Line %d: empty note was ignored."
 msgstr "Řádek %d: prázdná poznámka byla ignorována."
 
-#: ../src/plugins/lib/libgedcom.py:5758
+#: ../src/plugins/lib/libgedcom.py:5761
 #, python-format
 msgid "skipped %(skip)d subordinate(s) at line %(line)d"
 msgstr "vynechán(o) %(skip)d podřízený(ch)  na řádce %(line)d"
 
-#: ../src/plugins/lib/libgedcom.py:6025
+#: ../src/plugins/lib/libgedcom.py:6028
 msgid "Your GEDCOM file is corrupted. The file appears to be encoded using the UTF16 character set, but is missing the BOM marker."
 msgstr "Váš GEDCOM soubor je porušený. Zdá se, že soubor je v UTF-16 kódováná, ale neobsahuje značku BOM."
 
-#: ../src/plugins/lib/libgedcom.py:6028
+#: ../src/plugins/lib/libgedcom.py:6031
 msgid "Your GEDCOM file is empty."
 msgstr "GEDCOM soubor je prázdný."
 
-#: ../src/plugins/lib/libgedcom.py:6091
+#: ../src/plugins/lib/libgedcom.py:6094
 #, python-format
 msgid "Invalid line %d in GEDCOM file."
 msgstr "Neplatný řádek %d v GEDCOM souboru."
@@ -17232,7 +17246,7 @@ msgid "Delete Person (%s)"
 msgstr "Odstranit osobu (%s)"
 
 #: ../src/plugins/lib/libpersonview.py:351
-#: ../src/plugins/view/pedigreeview.py:834
+#: ../src/plugins/view/pedigreeview.py:835
 #: ../src/plugins/view/relview.py:412
 msgid "Person Filter Editor"
 msgstr "Editor filtrů osob"
@@ -17895,7 +17909,7 @@ msgid "Open on maps.google.com"
 msgstr "Otevřít maps.google.com"
 
 #: ../src/plugins/mapservices/mapservice.gpr.py:69
-#: ../src/plugins/webreport/NarrativeWeb.py:6782
+#: ../src/plugins/webreport/NarrativeWeb.py:6784
 msgid "OpenStreetMap"
 msgstr "OpenStreetMap"
 
@@ -18623,90 +18637,95 @@ msgid "self"
 msgstr "vlastní"
 
 #: ../src/plugins/rel/relplugins.gpr.py:32
-msgid "Czech Relationship Calculator"
-msgstr "Český kalkulátor vztahů"
+msgid "Catalan Relationship Calculator"
+msgstr "Katalánský kalkulátor vztahů"
 
 #: ../src/plugins/rel/relplugins.gpr.py:33
 #: ../src/plugins/rel/relplugins.gpr.py:46
-#: ../src/plugins/rel/relplugins.gpr.py:62
-#: ../src/plugins/rel/relplugins.gpr.py:77
-#: ../src/plugins/rel/relplugins.gpr.py:92
-#: ../src/plugins/rel/relplugins.gpr.py:107
-#: ../src/plugins/rel/relplugins.gpr.py:124
+#: ../src/plugins/rel/relplugins.gpr.py:59
+#: ../src/plugins/rel/relplugins.gpr.py:75
+#: ../src/plugins/rel/relplugins.gpr.py:91
+#: ../src/plugins/rel/relplugins.gpr.py:106
+#: ../src/plugins/rel/relplugins.gpr.py:121
 #: ../src/plugins/rel/relplugins.gpr.py:138
-#: ../src/plugins/rel/relplugins.gpr.py:151
-#: ../src/plugins/rel/relplugins.gpr.py:164
-#: ../src/plugins/rel/relplugins.gpr.py:181
-#: ../src/plugins/rel/relplugins.gpr.py:198
-#: ../src/plugins/rel/relplugins.gpr.py:214
-#: ../src/plugins/rel/relplugins.gpr.py:230
-#: ../src/plugins/rel/relplugins.gpr.py:246
+#: ../src/plugins/rel/relplugins.gpr.py:152
+#: ../src/plugins/rel/relplugins.gpr.py:165
+#: ../src/plugins/rel/relplugins.gpr.py:178
+#: ../src/plugins/rel/relplugins.gpr.py:195
+#: ../src/plugins/rel/relplugins.gpr.py:212
+#: ../src/plugins/rel/relplugins.gpr.py:228
+#: ../src/plugins/rel/relplugins.gpr.py:244
 #: ../src/plugins/rel/relplugins.gpr.py:260
-#: ../src/plugins/rel/relplugins.gpr.py:273
+#: ../src/plugins/rel/relplugins.gpr.py:274
+#: ../src/plugins/rel/relplugins.gpr.py:287
 msgid "Calculates relationships between people"
 msgstr "Vypočítá vztahy mezi osobami"
 
 #: ../src/plugins/rel/relplugins.gpr.py:45
+msgid "Czech Relationship Calculator"
+msgstr "Český kalkulátor vztahů"
+
+#: ../src/plugins/rel/relplugins.gpr.py:58
 msgid "Danish Relationship Calculator"
 msgstr "Dánský kalkulátor vztahů"
 
-#: ../src/plugins/rel/relplugins.gpr.py:61
+#: ../src/plugins/rel/relplugins.gpr.py:74
 msgid "German Relationship Calculator"
 msgstr "Německý kalkulátor vztahů"
 
-#: ../src/plugins/rel/relplugins.gpr.py:76
+#: ../src/plugins/rel/relplugins.gpr.py:90
 msgid "Spanish Relationship Calculator"
 msgstr "Španělský kalkulátor vztahů"
 
-#: ../src/plugins/rel/relplugins.gpr.py:91
+#: ../src/plugins/rel/relplugins.gpr.py:105
 msgid "Finnish Relationship Calculator"
 msgstr "Finský kalkulátor vztahů"
 
-#: ../src/plugins/rel/relplugins.gpr.py:106
+#: ../src/plugins/rel/relplugins.gpr.py:120
 msgid "French Relationship Calculator"
 msgstr "Francouzský kalkulátor vztahů"
 
-#: ../src/plugins/rel/relplugins.gpr.py:123
+#: ../src/plugins/rel/relplugins.gpr.py:137
 msgid "Croatian Relationship Calculator"
 msgstr "Chorvatský kalkulátor vztahů"
 
-#: ../src/plugins/rel/relplugins.gpr.py:137
+#: ../src/plugins/rel/relplugins.gpr.py:151
 msgid "Hungarian Relationship Calculator"
 msgstr "Maďarský kalkulátor vztahů"
 
-#: ../src/plugins/rel/relplugins.gpr.py:150
+#: ../src/plugins/rel/relplugins.gpr.py:164
 msgid "Italian Relationship Calculator"
 msgstr "Italský kalkulátor vztahů"
 
-#: ../src/plugins/rel/relplugins.gpr.py:163
+#: ../src/plugins/rel/relplugins.gpr.py:177
 msgid "Dutch Relationship Calculator"
 msgstr "Holandský kalkulátor vztahů"
 
-#: ../src/plugins/rel/relplugins.gpr.py:180
+#: ../src/plugins/rel/relplugins.gpr.py:194
 msgid "Norwegian Relationship Calculator"
 msgstr "Norský kalkulátor vztahů"
 
-#: ../src/plugins/rel/relplugins.gpr.py:197
+#: ../src/plugins/rel/relplugins.gpr.py:211
 msgid "Polish Relationship Calculator"
 msgstr "Polský kalkulátor vztahů"
 
-#: ../src/plugins/rel/relplugins.gpr.py:213
+#: ../src/plugins/rel/relplugins.gpr.py:227
 msgid "Portuguese Relationship Calculator"
 msgstr "Portugalský kalkulátor vztahů"
 
-#: ../src/plugins/rel/relplugins.gpr.py:229
+#: ../src/plugins/rel/relplugins.gpr.py:243
 msgid "Russian Relationship Calculator"
 msgstr "Ruský kalkulátor vztahů"
 
-#: ../src/plugins/rel/relplugins.gpr.py:245
+#: ../src/plugins/rel/relplugins.gpr.py:259
 msgid "Slovak Relationship Calculator"
 msgstr "Slovenský kalkulátor vztahů"
 
-#: ../src/plugins/rel/relplugins.gpr.py:259
+#: ../src/plugins/rel/relplugins.gpr.py:273
 msgid "Slovenian Relationship Calculator"
 msgstr "Slovinský kalkulátor vztahů"
 
-#: ../src/plugins/rel/relplugins.gpr.py:272
+#: ../src/plugins/rel/relplugins.gpr.py:286
 msgid "Swedish Relationship Calculator"
 msgstr "Švédský kalkulátor vztahů"
 
@@ -21627,87 +21646,87 @@ msgstr "pohř."
 msgid "short for cremated|crem."
 msgstr "krem."
 
-#: ../src/plugins/view/pedigreeview.py:1281
+#: ../src/plugins/view/pedigreeview.py:1288
 msgid "Jump to child..."
 msgstr "Přejít na potomka..."
 
-#: ../src/plugins/view/pedigreeview.py:1294
+#: ../src/plugins/view/pedigreeview.py:1301
 msgid "Jump to father"
 msgstr "Přejít na otce"
 
-#: ../src/plugins/view/pedigreeview.py:1307
+#: ../src/plugins/view/pedigreeview.py:1314
 msgid "Jump to mother"
 msgstr "Přejít na matku"
 
-#: ../src/plugins/view/pedigreeview.py:1670
+#: ../src/plugins/view/pedigreeview.py:1677
 msgid "A person was found to be his/her own ancestor."
 msgstr "Osoba nemůže být svým vlastním rodičem."
 
-#: ../src/plugins/view/pedigreeview.py:1717
-#: ../src/plugins/view/pedigreeview.py:1723
-#: ../src/plugins/webreport/NarrativeWeb.py:3407
+#: ../src/plugins/view/pedigreeview.py:1724
+#: ../src/plugins/view/pedigreeview.py:1730
+#: ../src/plugins/webreport/NarrativeWeb.py:3408
 msgid "Home"
 msgstr "Domů"
 
 #. Mouse scroll direction setting.
-#: ../src/plugins/view/pedigreeview.py:1743
+#: ../src/plugins/view/pedigreeview.py:1750
 msgid "Mouse scroll direction"
 msgstr "Směr pohybu kolečka myši"
 
-#: ../src/plugins/view/pedigreeview.py:1751
+#: ../src/plugins/view/pedigreeview.py:1758
 msgid "Top <-> Bottom"
 msgstr "nahoru <-> dolů"
 
-#: ../src/plugins/view/pedigreeview.py:1758
+#: ../src/plugins/view/pedigreeview.py:1765
 msgid "Left <-> Right"
 msgstr "vlevo <-> vpravo"
 
-#: ../src/plugins/view/pedigreeview.py:1986
+#: ../src/plugins/view/pedigreeview.py:1993
 #: ../src/plugins/view/relview.py:401
 msgid "Add New Parents..."
 msgstr "Přidat nové rodiče..."
 
-#: ../src/plugins/view/pedigreeview.py:2046
+#: ../src/plugins/view/pedigreeview.py:2053
 msgid "Family Menu"
 msgstr "Menu rodin"
 
-#: ../src/plugins/view/pedigreeview.py:2172
+#: ../src/plugins/view/pedigreeview.py:2179
 msgid "Show images"
 msgstr "Zobrazení obrázků"
 
-#: ../src/plugins/view/pedigreeview.py:2175
+#: ../src/plugins/view/pedigreeview.py:2182
 msgid "Show marriage data"
 msgstr "Zobrazit informace o sňatku"
 
-#: ../src/plugins/view/pedigreeview.py:2178
+#: ../src/plugins/view/pedigreeview.py:2185
 msgid "Show unknown people"
 msgstr "Ukázat neznámé osoby"
 
-#: ../src/plugins/view/pedigreeview.py:2181
+#: ../src/plugins/view/pedigreeview.py:2188
 msgid "Tree style"
 msgstr "Styl stromu"
 
-#: ../src/plugins/view/pedigreeview.py:2183
+#: ../src/plugins/view/pedigreeview.py:2190
 msgid "Standard"
 msgstr "Standardní"
 
-#: ../src/plugins/view/pedigreeview.py:2184
+#: ../src/plugins/view/pedigreeview.py:2191
 msgid "Compact"
 msgstr "Kompaktní"
 
-#: ../src/plugins/view/pedigreeview.py:2185
+#: ../src/plugins/view/pedigreeview.py:2192
 msgid "Expanded"
 msgstr "Rozbaleno"
 
-#: ../src/plugins/view/pedigreeview.py:2188
+#: ../src/plugins/view/pedigreeview.py:2195
 msgid "Tree direction"
 msgstr "Směr stromu"
 
-#: ../src/plugins/view/pedigreeview.py:2195
+#: ../src/plugins/view/pedigreeview.py:2202
 msgid "Tree size"
 msgstr "Velikost stromu"
 
-#: ../src/plugins/view/pedigreeview.py:2199
+#: ../src/plugins/view/pedigreeview.py:2206
 #: ../src/plugins/view/relview.py:1652
 msgid "Layout"
 msgstr "Uspořádání"
@@ -21978,7 +21997,7 @@ msgid "Exactly two repositories must be selected to perform a merge. A second re
 msgstr "Aby mohlo být provedeno sloučení, musí být vybrány právě dva archivy. Druhý archiv lze vybrat stiskem klávesy Ctrl a současným kliknutím myší na požadovaný archiv."
 
 #: ../src/plugins/view/sourceview.py:79
-#: ../src/plugins/webreport/NarrativeWeb.py:3549
+#: ../src/plugins/webreport/NarrativeWeb.py:3550
 msgid "Abbreviation"
 msgstr "Zkratka"
 
@@ -22130,34 +22149,34 @@ msgid "Html|Home"
 msgstr "Domů"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1216
-#: ../src/plugins/webreport/NarrativeWeb.py:3370
+#: ../src/plugins/webreport/NarrativeWeb.py:3371
 msgid "Introduction"
 msgstr "Úvod"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1218
 #: ../src/plugins/webreport/NarrativeWeb.py:1249
 #: ../src/plugins/webreport/NarrativeWeb.py:1252
-#: ../src/plugins/webreport/NarrativeWeb.py:3238
-#: ../src/plugins/webreport/NarrativeWeb.py:3283
+#: ../src/plugins/webreport/NarrativeWeb.py:3239
+#: ../src/plugins/webreport/NarrativeWeb.py:3284
 msgid "Surnames"
 msgstr "Příjmení"
 
 #. Add xml, doctype, meta and stylesheets
 #: ../src/plugins/webreport/NarrativeWeb.py:1224
 #: ../src/plugins/webreport/NarrativeWeb.py:1269
-#: ../src/plugins/webreport/NarrativeWeb.py:5530
-#: ../src/plugins/webreport/NarrativeWeb.py:5633
+#: ../src/plugins/webreport/NarrativeWeb.py:5532
+#: ../src/plugins/webreport/NarrativeWeb.py:5635
 msgid "Address Book"
 msgstr "Adresář"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1225
-#: ../src/plugins/webreport/NarrativeWeb.py:3722
-#: ../src/plugins/webreport/NarrativeWeb.py:6680
+#: ../src/plugins/webreport/NarrativeWeb.py:3723
+#: ../src/plugins/webreport/NarrativeWeb.py:6682
 msgid "Download"
 msgstr "Stáhnout"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1226
-#: ../src/plugins/webreport/NarrativeWeb.py:3822
+#: ../src/plugins/webreport/NarrativeWeb.py:3824
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -22167,400 +22186,406 @@ msgid "Main Navigation Item %s"
 msgstr "Hlavní navigační položka %s"
 
 #. add section title
-#: ../src/plugins/webreport/NarrativeWeb.py:1608
+#: ../src/plugins/webreport/NarrativeWeb.py:1609
 msgid "Narrative"
 msgstr "Vyprávění"
 
 #. begin web title
-#: ../src/plugins/webreport/NarrativeWeb.py:1625
-#: ../src/plugins/webreport/NarrativeWeb.py:5561
+#: ../src/plugins/webreport/NarrativeWeb.py:1626
+#: ../src/plugins/webreport/NarrativeWeb.py:5563
 msgid "Web Links"
 msgstr "Webové odkazy"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1702
+#: ../src/plugins/webreport/NarrativeWeb.py:1703
 msgid "Source References"
 msgstr "Odkaz na pramen"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1738
+#: ../src/plugins/webreport/NarrativeWeb.py:1739
 msgid "Confidence"
 msgstr "Důvěryhodnost"
 
 #. return hyperlink to its caller
-#: ../src/plugins/webreport/NarrativeWeb.py:1789
-#: ../src/plugins/webreport/NarrativeWeb.py:4093
-#: ../src/plugins/webreport/NarrativeWeb.py:4339
+#: ../src/plugins/webreport/NarrativeWeb.py:1790
+#: ../src/plugins/webreport/NarrativeWeb.py:4095
+#: ../src/plugins/webreport/NarrativeWeb.py:4341
 msgid "Family Map"
 msgstr "Rodinná mapa"
 
 #. Individual List page message
-#: ../src/plugins/webreport/NarrativeWeb.py:2092
+#: ../src/plugins/webreport/NarrativeWeb.py:2093
 msgid "This page contains an index of all the individuals in the database, sorted by their last names. Selecting the person&#8217;s name will take you to that person&#8217;s individual page."
 msgstr "Tato stránka obsahuje seznam všech osob v databázi tříděný podle příjmení. Kliknutím na jméno osoby se zobrazí detailní stránka této osoby."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2286
+#. Name Column
+#: ../src/plugins/webreport/NarrativeWeb.py:2115
+#: ../src/plugins/webreport/NarrativeWeb.py:2302
+msgid "Given Name"
+msgstr "Křestní jméno"
+
+#: ../src/plugins/webreport/NarrativeWeb.py:2287
 #, python-format
 msgid "This page contains an index of all the individuals in the database with the surname of %s. Selecting the person&#8217;s name will take you to that person&#8217;s individual page."
 msgstr "Tato stránka obsahuje seznam všech jednotlivců v databázi s příjmením %s. Kliknutím na jméno osoby se zobrazí detailní stránka této osoby."
 
 #. place list page message
-#: ../src/plugins/webreport/NarrativeWeb.py:2434
+#: ../src/plugins/webreport/NarrativeWeb.py:2435
 msgid "This page contains an index of all the places in the database, sorted by their title. Clicking on a place&#8217;s title will take you to that place&#8217;s page."
 msgstr "Tato stránka obsahuje seznam všech míst v databázi, řazený podle názvu. Kliknutím na název se zobrazí stránka tohoto místa."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2460
+#: ../src/plugins/webreport/NarrativeWeb.py:2461
 msgid "Place Name | Name"
 msgstr "Název"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2492
+#: ../src/plugins/webreport/NarrativeWeb.py:2493
 #, python-format
 msgid "Places with letter %s"
 msgstr "Místa s písmenem %s"
 
 #. section title
-#: ../src/plugins/webreport/NarrativeWeb.py:2612
+#: ../src/plugins/webreport/NarrativeWeb.py:2613
 msgid "Place Map"
 msgstr "Mapa míst"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2677
+#: ../src/plugins/webreport/NarrativeWeb.py:2678
 msgid "This page contains an index of all the events in the database, sorted by their type and date (if one is present). Clicking on an event&#8217;s Gramps ID will open a page for that event."
 msgstr "Tato stránka obsahuje seznam všech událostí v databázi, řazený podle typu a data (pokud je k dispozici). Kliknutím na Gramps ID události  se zobrazí stránka této události."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2702
-#: ../src/plugins/webreport/NarrativeWeb.py:3277
+#: ../src/plugins/webreport/NarrativeWeb.py:2703
+#: ../src/plugins/webreport/NarrativeWeb.py:3278
 msgid "Letter"
 msgstr "Písmeno"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2759
+#: ../src/plugins/webreport/NarrativeWeb.py:2760
 msgid "Event types beginning with letter "
 msgstr "Typy událostí začínající písmenem "
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2898
+#: ../src/plugins/webreport/NarrativeWeb.py:2899
 msgid "Person(s)"
 msgstr "Osoba(y)"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2991
+#: ../src/plugins/webreport/NarrativeWeb.py:2992
 msgid "Previous"
 msgstr "Předchozí"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2992
+#: ../src/plugins/webreport/NarrativeWeb.py:2993
 #, python-format
 msgid "<strong id = \"GalleryCurrent\">%(page_number)d</strong> of <strong id = \"GalleryTotal\">%(total_pages)d</strong>"
 msgstr "<strong id=\"GalleryCurrent\">%(page_number)d</strong> z <strong id=\"GalleryTotal\">%(total_pages)d</strong>"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2997
+#: ../src/plugins/webreport/NarrativeWeb.py:2998
 msgid "Next"
 msgstr "Další"
 
 #. missing media error message
-#: ../src/plugins/webreport/NarrativeWeb.py:3000
+#: ../src/plugins/webreport/NarrativeWeb.py:3001
 msgid "The file has been moved or deleted."
 msgstr "Soubor byl přesunut nebo smazán."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3137
+#: ../src/plugins/webreport/NarrativeWeb.py:3138
 msgid "File Type"
 msgstr "Typ souboru"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3222
+#: ../src/plugins/webreport/NarrativeWeb.py:3223
 msgid "Missing media object:"
 msgstr "Chybějící mediální objekt:"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3241
+#: ../src/plugins/webreport/NarrativeWeb.py:3242
 msgid "Surnames by person count"
 msgstr "Příjmení dle počtu osob"
 
 #. page message
-#: ../src/plugins/webreport/NarrativeWeb.py:3248
+#: ../src/plugins/webreport/NarrativeWeb.py:3249
 msgid "This page contains an index of all the surnames in the database. Selecting a link will lead to a list of individuals in the database with this same surname."
 msgstr "Tato stránka obsahuje seznam všech příjmen v databázi. Kliknutím na odkaz se zobrazí seznam osob s tímto příjmením."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3290
+#: ../src/plugins/webreport/NarrativeWeb.py:3291
 msgid "Number of People"
 msgstr "Počet osob"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3459
+#: ../src/plugins/webreport/NarrativeWeb.py:3460
 msgid "This page contains an index of all the sources in the database, sorted by their title. Clicking on a source&#8217;s title will take you to that source&#8217;s page."
 msgstr "Tato stránka obsahuje seznam všech pramenů v databázi, řazený podle názvu. Kliknutím na název se otevře detailní stránka pramenu."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3475
+#: ../src/plugins/webreport/NarrativeWeb.py:3476
 msgid "Source Name|Name"
 msgstr "Název pramene"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3548
+#: ../src/plugins/webreport/NarrativeWeb.py:3549
 msgid "Publication information"
 msgstr "Informace o publikaci"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3615
+#: ../src/plugins/webreport/NarrativeWeb.py:3616
 msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object&#8217;s page.  If you see media size dimensions above an image, click on the image to see the full sized version.  "
 msgstr "Tato stránka obsahuje seznam všech médií v databázi, řazený podle názvu. Kliknutím na název se otevře stránka s detailem média. Pokud je přes obrázek zobrazena informace o rozměrech, klikněte na obrázek a ten zobrazí se v plné velikosti. "
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3634
+#: ../src/plugins/webreport/NarrativeWeb.py:3635
 msgid "Media | Name"
 msgstr "Název"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3636
+#: ../src/plugins/webreport/NarrativeWeb.py:3637
 msgid "Mime Type"
 msgstr "Mime typ"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3728
+#: ../src/plugins/webreport/NarrativeWeb.py:3729
 msgid "This page is for the user/ creator of this Family Tree/ Narrative website to share a couple of files with you regarding their family.  If there are any files listed below, clicking on them will allow you to download them. The download page and files have the same copyright as the remainder of these web pages."
 msgstr "Tato stránka je určena pro uživatele/tvůrce tohoto rodokmenu/vyprávěného webu pro sdílení pár souborů týkajících se jeho rodiny. Pokud jsou v seznamu níže nějaké soubory, klikněte na ně abyste si je mohli stahnout. Stránka se soubory ke stažení i soubory samotné jsou chráněny stejnými autorskými právy jako zbytek těchto webových stránek."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3749
+#: ../src/plugins/webreport/NarrativeWeb.py:3750
 msgid "File Name"
 msgstr "Název souboru"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3751
+#: ../src/plugins/webreport/NarrativeWeb.py:3752
 msgid "Last Modified"
 msgstr "Poslední změna"
 
 #. page message
-#: ../src/plugins/webreport/NarrativeWeb.py:4219
+#: ../src/plugins/webreport/NarrativeWeb.py:4221
 msgid "The place markers on this page represent different locations based upon spouse, children (if any), and personal events and their places of the main person. The list is sorted in chronological order."
 msgstr "Značky míst na této stránce reprezentují různé lokace založené na událostech partnera(ky), potomků (pokud jsou) a vašich osobních událostech a jejich místech. Seznam je chronologicky setříděný."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4227
+#: ../src/plugins/webreport/NarrativeWeb.py:4229
 msgid "Drop Markers"
 msgstr "Odstranit značky"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4445
+#: ../src/plugins/webreport/NarrativeWeb.py:4447
 msgid "Ancestors"
 msgstr "Předci"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4500
+#: ../src/plugins/webreport/NarrativeWeb.py:4502
 msgid "Associations"
 msgstr "Asociace"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4695
+#: ../src/plugins/webreport/NarrativeWeb.py:4697
 msgid "Call Name"
 msgstr "Běžné jméno"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4705
+#: ../src/plugins/webreport/NarrativeWeb.py:4707
 msgid "Nick Name"
 msgstr "Přezdívka"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4743
+#: ../src/plugins/webreport/NarrativeWeb.py:4745
 msgid "Age at Death"
 msgstr "Age at Death"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4808
+#: ../src/plugins/webreport/NarrativeWeb.py:4810
 msgid "Latter-Day Saints/ LDS Ordinance"
 msgstr "Církev Ježíše Krista Svatých posledních dnů/Obřad SPD"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5392
+#: ../src/plugins/webreport/NarrativeWeb.py:5394
 msgid "This page contains an index of all the repositories in the database, sorted by their title. Clicking on a repositories&#8217;s title will take you to that repositories&#8217;s page."
 msgstr "Tato stránka obsahuje seznam všech archivů v databázi, řazený podle názvu. Kliknutím na název archivu se zobrazí stránka tohoto archivu."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5407
+#: ../src/plugins/webreport/NarrativeWeb.py:5409
 msgid "Repository |Name"
 msgstr "Název"
 
 #. Address Book Page message
-#: ../src/plugins/webreport/NarrativeWeb.py:5537
+#: ../src/plugins/webreport/NarrativeWeb.py:5539
 msgid "This page contains an index of all the individuals in the database, sorted by their surname, with one of the following: Address, Residence, or Web Links. Selecting the person&#8217;s name will take you to their individual Address Book page."
 msgstr "Tato stránka obsahuje seznam všech osob v databázi tříděný podle příjmení s jedním z: Adresa, Bydliště nebo webové odkazy. Kliknutím na jméno osoby se zobrazí stránka Adresář této osoby."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5794
+#: ../src/plugins/webreport/NarrativeWeb.py:5796
 #, python-format
 msgid "Neither %s nor %s are directories"
 msgstr "%s ani %s nejsou adresářem"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5801
-#: ../src/plugins/webreport/NarrativeWeb.py:5805
-#: ../src/plugins/webreport/NarrativeWeb.py:5818
-#: ../src/plugins/webreport/NarrativeWeb.py:5822
+#: ../src/plugins/webreport/NarrativeWeb.py:5803
+#: ../src/plugins/webreport/NarrativeWeb.py:5807
+#: ../src/plugins/webreport/NarrativeWeb.py:5820
+#: ../src/plugins/webreport/NarrativeWeb.py:5824
 #, python-format
 msgid "Could not create the directory: %s"
 msgstr "Nemohu vytvořit adresář: %s"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5827
+#: ../src/plugins/webreport/NarrativeWeb.py:5829
 msgid "Invalid file name"
 msgstr "Neplatný název souboru"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5828
+#: ../src/plugins/webreport/NarrativeWeb.py:5830
 msgid "The archive file must be a file, not a directory"
 msgstr "Archiv musí být soubor, ne adresář"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5837
+#: ../src/plugins/webreport/NarrativeWeb.py:5839
 msgid "Narrated Web Site Report"
 msgstr "Zpráva Vyprávěné WWW stránky"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5896
+#: ../src/plugins/webreport/NarrativeWeb.py:5898
 #, python-format
 msgid "ID=%(grampsid)s, path=%(dir)s"
 msgstr "ID=%(grampsid)s, cesta=%(dir)s"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5901
+#: ../src/plugins/webreport/NarrativeWeb.py:5903
 msgid "Missing media objects:"
 msgstr "Chybějící objekty médií:"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5986
+#: ../src/plugins/webreport/NarrativeWeb.py:5988
 msgid "Creating individual pages"
 msgstr "Vytvářejí se individuální stránky"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6000
+#: ../src/plugins/webreport/NarrativeWeb.py:6002
 msgid "Creating GENDEX file"
 msgstr "Vytváří se GENDEX soubor"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6040
+#: ../src/plugins/webreport/NarrativeWeb.py:6042
 msgid "Creating surname pages"
 msgstr "Vytvářejí se stránky příjmení"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6057
+#: ../src/plugins/webreport/NarrativeWeb.py:6059
 msgid "Creating source pages"
 msgstr "Vytvářejí se stránky pramenů"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6070
+#: ../src/plugins/webreport/NarrativeWeb.py:6072
 msgid "Creating place pages"
 msgstr "Vytvářejí se stránky míst"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6087
+#: ../src/plugins/webreport/NarrativeWeb.py:6089
 msgid "Creating event pages"
 msgstr "Vytvářejí se stránky událostí"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6104
+#: ../src/plugins/webreport/NarrativeWeb.py:6106
 msgid "Creating media pages"
 msgstr "Vytvářejí se stránky médií"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6159
+#: ../src/plugins/webreport/NarrativeWeb.py:6161
 msgid "Creating repository pages"
 msgstr "Vytvářejí se stránky archivů"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6208
+#: ../src/plugins/webreport/NarrativeWeb.py:6210
 msgid "Creating address book pages ..."
 msgstr "Vytvářejí se stránky adresáře ..."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6479
+#: ../src/plugins/webreport/NarrativeWeb.py:6481
 msgid "Store web pages in .tar.gz archive"
 msgstr "Uložit webové stránky jako .tar.gz archiv"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6481
+#: ../src/plugins/webreport/NarrativeWeb.py:6483
 msgid "Whether to store the web pages in an archive file"
 msgstr "Zda uložit webové stránky v souboru archivu"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6486
+#: ../src/plugins/webreport/NarrativeWeb.py:6488
 #: ../src/plugins/webreport/WebCal.py:1354
 msgid "Destination"
 msgstr "Cíl"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6488
+#: ../src/plugins/webreport/NarrativeWeb.py:6490
 #: ../src/plugins/webreport/WebCal.py:1356
 msgid "The destination directory for the web files"
 msgstr "Cílový adresář pro soubory webových stránek"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6494
+#: ../src/plugins/webreport/NarrativeWeb.py:6496
 msgid "Web site title"
 msgstr "Hlavička nadpisu na WWW"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6494
+#: ../src/plugins/webreport/NarrativeWeb.py:6496
 msgid "My Family Tree"
 msgstr "Můj rodokmen"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6495
+#: ../src/plugins/webreport/NarrativeWeb.py:6497
 msgid "The title of the web site"
 msgstr "Název webové stránky"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6500
+#: ../src/plugins/webreport/NarrativeWeb.py:6502
 msgid "Select filter to restrict people that appear on web site"
 msgstr "Vyberte filtr pro omezení osob, které se objeví v na webových stránkách"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6527
+#: ../src/plugins/webreport/NarrativeWeb.py:6529
 #: ../src/plugins/webreport/WebCal.py:1393
 msgid "File extension"
 msgstr "přípona souboru"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6530
+#: ../src/plugins/webreport/NarrativeWeb.py:6532
 #: ../src/plugins/webreport/WebCal.py:1396
 msgid "The extension to be used for the web files"
 msgstr "Koncovka použitá pro soubory webu"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6536
+#: ../src/plugins/webreport/NarrativeWeb.py:6538
 #: ../src/plugins/webreport/WebCal.py:1402
 msgid "The copyright to be used for the web files"
 msgstr "Autorská práva použitá pro webové stránky"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6539
+#: ../src/plugins/webreport/NarrativeWeb.py:6541
 #: ../src/plugins/webreport/WebCal.py:1408
 msgid "StyleSheet"
 msgstr "Katalog stylů"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6544
+#: ../src/plugins/webreport/NarrativeWeb.py:6546
 #: ../src/plugins/webreport/WebCal.py:1411
 msgid "The stylesheet to be used for the web pages"
 msgstr "Katalog stylů, který bude použit pro webové stránky"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6549
+#: ../src/plugins/webreport/NarrativeWeb.py:6551
 msgid "Horizontal -- No Change"
 msgstr "vodorovný -- bez změn"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6550
+#: ../src/plugins/webreport/NarrativeWeb.py:6552
 msgid "Vertical"
 msgstr "Svislý"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6552
+#: ../src/plugins/webreport/NarrativeWeb.py:6554
 msgid "Navigation Menu Layout"
 msgstr "Rozložení navigační nabídky"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6555
+#: ../src/plugins/webreport/NarrativeWeb.py:6557
 msgid "Choose which layout for the Navigation Menus."
 msgstr "Vyberte rozložení pro Navigační nabídky."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6560
+#: ../src/plugins/webreport/NarrativeWeb.py:6562
 msgid "Include ancestor's tree"
 msgstr "Zahrnout strom předků"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6561
+#: ../src/plugins/webreport/NarrativeWeb.py:6563
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr "Zda na každé stránce zahrnout graf předků"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6566
+#: ../src/plugins/webreport/NarrativeWeb.py:6568
 msgid "Graph generations"
 msgstr "Generační graf"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6567
+#: ../src/plugins/webreport/NarrativeWeb.py:6569
 msgid "The number of generations to include in the ancestor graph"
 msgstr "Počet generací zahrnutý ve zprávě o předcích"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6577
+#: ../src/plugins/webreport/NarrativeWeb.py:6579
 msgid "Page Generation"
 msgstr "Vytváření stránky"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6580
+#: ../src/plugins/webreport/NarrativeWeb.py:6582
 msgid "Home page note"
 msgstr "Poznámka domovské stránky"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6581
+#: ../src/plugins/webreport/NarrativeWeb.py:6583
 msgid "A note to be used on the home page"
 msgstr "Záznam použitý na domovské stránce"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6584
+#: ../src/plugins/webreport/NarrativeWeb.py:6586
 msgid "Home page image"
 msgstr "Obrázek domovské stránky"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6585
+#: ../src/plugins/webreport/NarrativeWeb.py:6587
 msgid "An image to be used on the home page"
 msgstr "Obrázek, který bude použit na domovské stránce"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6588
+#: ../src/plugins/webreport/NarrativeWeb.py:6590
 msgid "Introduction note"
 msgstr "Úvodní text"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6589
+#: ../src/plugins/webreport/NarrativeWeb.py:6591
 msgid "A note to be used as the introduction"
 msgstr "Záznam použitý jako úvod"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6592
+#: ../src/plugins/webreport/NarrativeWeb.py:6594
 msgid "Introduction image"
 msgstr "Úvodní obrázek"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6593
+#: ../src/plugins/webreport/NarrativeWeb.py:6595
 msgid "An image to be used as the introduction"
 msgstr "Obrázek, který bude použít jako úvod"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6596
+#: ../src/plugins/webreport/NarrativeWeb.py:6598
 msgid "Publisher contact note"
 msgstr "Záznam kontaktu na vydavatele"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6597
+#: ../src/plugins/webreport/NarrativeWeb.py:6599
 msgid ""
 "A note to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -22570,11 +22595,11 @@ msgstr ""
 "Pokud není dána žádná informace o vydavateli,\n"
 "nebude vytvořena stránka s kontaktem"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6603
+#: ../src/plugins/webreport/NarrativeWeb.py:6605
 msgid "Publisher contact image"
 msgstr "Obrázek kontaktu na vydavatele"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6604
+#: ../src/plugins/webreport/NarrativeWeb.py:6606
 msgid ""
 "An image to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -22584,178 +22609,178 @@ msgstr ""
 "Pokud není dána žádná informace o vydavateli,\n"
 "nebude vytvořena stránka s kontaktem"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6610
+#: ../src/plugins/webreport/NarrativeWeb.py:6612
 msgid "HTML user header"
 msgstr "Uživatelská HTML hlavička"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6611
+#: ../src/plugins/webreport/NarrativeWeb.py:6613
 msgid "A note to be used as the page header"
 msgstr "Záznam použitý jako hlavička stránky"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6614
+#: ../src/plugins/webreport/NarrativeWeb.py:6616
 msgid "HTML user footer"
 msgstr "Uživatelská HTML patička"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6615
+#: ../src/plugins/webreport/NarrativeWeb.py:6617
 msgid "A note to be used as the page footer"
 msgstr "Záznam použitý jako patička stránky"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6618
+#: ../src/plugins/webreport/NarrativeWeb.py:6620
 msgid "Include images and media objects"
 msgstr "Zahrnout obrázky a mediální objekty"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6619
+#: ../src/plugins/webreport/NarrativeWeb.py:6621
 msgid "Whether to include a gallery of media objects"
 msgstr "Zda zahrnout galerii mediálních objektů"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6623
+#: ../src/plugins/webreport/NarrativeWeb.py:6625
 msgid "Max width of initial image"
 msgstr "Maximální šířka výchozího obrázku"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6625
+#: ../src/plugins/webreport/NarrativeWeb.py:6627
 msgid "This allows you to set the maximum width of the image shown on the media page. Set to 0 for no limit."
 msgstr "Umožní vám nastavit maximální šířku obrázku zobrazeného na stránce média. Nastavení na 0 ruší limit."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6629
+#: ../src/plugins/webreport/NarrativeWeb.py:6631
 msgid "Max height of initial image"
 msgstr "Maximální výška výchozího obrázku"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6631
+#: ../src/plugins/webreport/NarrativeWeb.py:6633
 msgid "This allows you to set the maximum height of the image shown on the media page. Set to 0 for no limit."
 msgstr "Umožní vám nastavit maximální výšku obrázku zobrazeného na stránce média. Nastavení na 0 ruší limit."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6637
+#: ../src/plugins/webreport/NarrativeWeb.py:6639
 msgid "Suppress Gramps ID"
 msgstr "Potlačit Gramps ID"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6638
+#: ../src/plugins/webreport/NarrativeWeb.py:6640
 msgid "Whether to include the Gramps ID of objects"
 msgstr "Zda zahrnout Gramps ID objektů"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6645
+#: ../src/plugins/webreport/NarrativeWeb.py:6647
 msgid "Privacy"
 msgstr "Soukromí"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6648
+#: ../src/plugins/webreport/NarrativeWeb.py:6650
 msgid "Include records marked private"
 msgstr "Zahrnout soukromé záznamy"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6649
+#: ../src/plugins/webreport/NarrativeWeb.py:6651
 msgid "Whether to include private objects"
 msgstr "Zda zahrnout soukromé objekty"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6652
+#: ../src/plugins/webreport/NarrativeWeb.py:6654
 msgid "Living People"
 msgstr "Žijící osoby"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6657
+#: ../src/plugins/webreport/NarrativeWeb.py:6659
 msgid "Include Last Name Only"
 msgstr "Zahrnout pouze příjmení"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6659
+#: ../src/plugins/webreport/NarrativeWeb.py:6661
 msgid "Include Full Name Only"
 msgstr "Zahrnout pouze celá jména"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6662
+#: ../src/plugins/webreport/NarrativeWeb.py:6664
 msgid "How to handle living people"
 msgstr "Jak jednat s živými osobami"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6666
+#: ../src/plugins/webreport/NarrativeWeb.py:6668
 msgid "Years from death to consider living"
 msgstr "Počet let od úmrtí v kterých jsou osoby považovány za živé"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6668
+#: ../src/plugins/webreport/NarrativeWeb.py:6670
 msgid "This allows you to restrict information on people who have not been dead for very long"
 msgstr "Umožní omezit informace na osoby, které nezemřely dávno"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6683
+#: ../src/plugins/webreport/NarrativeWeb.py:6685
 msgid "Include download page"
 msgstr "Zahrnout možnost stažení"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6684
+#: ../src/plugins/webreport/NarrativeWeb.py:6686
 msgid "Whether to include a database download option"
 msgstr "Zda zahrnout možnost stažení databáze"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6688
-#: ../src/plugins/webreport/NarrativeWeb.py:6697
+#: ../src/plugins/webreport/NarrativeWeb.py:6690
+#: ../src/plugins/webreport/NarrativeWeb.py:6699
 msgid "Download Filename"
 msgstr "Název staženého souboru"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6690
-#: ../src/plugins/webreport/NarrativeWeb.py:6699
+#: ../src/plugins/webreport/NarrativeWeb.py:6692
+#: ../src/plugins/webreport/NarrativeWeb.py:6701
 msgid "File to be used for downloading of database"
 msgstr "Soubor, který bude použit pro stažení databáze"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6693
-#: ../src/plugins/webreport/NarrativeWeb.py:6702
+#: ../src/plugins/webreport/NarrativeWeb.py:6695
+#: ../src/plugins/webreport/NarrativeWeb.py:6704
 msgid "Description for download"
 msgstr "Popis tohoto stažení"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6693
+#: ../src/plugins/webreport/NarrativeWeb.py:6695
 msgid "Smith Family Tree"
 msgstr "Smithův rodokmen"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6694
-#: ../src/plugins/webreport/NarrativeWeb.py:6703
+#: ../src/plugins/webreport/NarrativeWeb.py:6696
+#: ../src/plugins/webreport/NarrativeWeb.py:6705
 msgid "Give a description for this file."
 msgstr "Vložit popis souboru."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6702
+#: ../src/plugins/webreport/NarrativeWeb.py:6704
 msgid "Johnson Family Tree"
 msgstr "Johnsonův rodokmen"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6712
+#: ../src/plugins/webreport/NarrativeWeb.py:6714
 #: ../src/plugins/webreport/WebCal.py:1551
 msgid "Advanced Options"
 msgstr "Pokročilé volby"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6715
+#: ../src/plugins/webreport/NarrativeWeb.py:6717
 #: ../src/plugins/webreport/WebCal.py:1553
 msgid "Character set encoding"
 msgstr "Znaková sada"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6718
+#: ../src/plugins/webreport/NarrativeWeb.py:6720
 #: ../src/plugins/webreport/WebCal.py:1556
 msgid "The encoding to be used for the web files"
 msgstr "Kódování webových stránek"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6721
+#: ../src/plugins/webreport/NarrativeWeb.py:6723
 msgid "Include link to active person on every page"
 msgstr "Na každou stránku vložit odkaz na výchozí osobu"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6722
+#: ../src/plugins/webreport/NarrativeWeb.py:6724
 msgid "Include a link to the active person (if they have a webpage)"
 msgstr "Na každou stránku vložit odkaz na výchozí osobu (pokud má webové stránky)"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6725
+#: ../src/plugins/webreport/NarrativeWeb.py:6727
 msgid "Include a column for birth dates on the index pages"
 msgstr "Zahrnout sloupec s daty narození na indexových stránkách"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6726
+#: ../src/plugins/webreport/NarrativeWeb.py:6728
 msgid "Whether to include a birth column"
 msgstr "Zda zahrnout sloupec narození"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6729
+#: ../src/plugins/webreport/NarrativeWeb.py:6731
 msgid "Include a column for death dates on the index pages"
 msgstr "Zahrnout sloupec s daty úmrtí na indexových stránkách"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6730
+#: ../src/plugins/webreport/NarrativeWeb.py:6732
 msgid "Whether to include a death column"
 msgstr "Zda zahrnout sloupec úmrtí"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6733
+#: ../src/plugins/webreport/NarrativeWeb.py:6735
 msgid "Include a column for partners on the index pages"
 msgstr "Zahrnout sloupec s rodiči na indexových stránkách"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6735
+#: ../src/plugins/webreport/NarrativeWeb.py:6737
 msgid "Whether to include a partners column"
 msgstr "Zda zahrnout sloupec rodičů"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6738
+#: ../src/plugins/webreport/NarrativeWeb.py:6740
 msgid "Include a column for parents on the index pages"
 msgstr "Zahrnout sloupec s daty úmrtí na indexových stránkách"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6740
+#: ../src/plugins/webreport/NarrativeWeb.py:6742
 msgid "Whether to include a parents column"
 msgstr "Zda zahrnout sloupec rodičů"
 
@@ -22765,96 +22790,96 @@ msgstr "Zda zahrnout sloupec rodičů"
 #. showallsiblings.set_help(_( "Whether to include half and/ or "
 #. "step-siblings with the parents and siblings"))
 #. menu.add_option(category_name, 'showhalfsiblings', showallsiblings)
-#: ../src/plugins/webreport/NarrativeWeb.py:6750
+#: ../src/plugins/webreport/NarrativeWeb.py:6752
 msgid "Sort all children in birth order"
 msgstr "Řadit potomky podle narození"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6751
+#: ../src/plugins/webreport/NarrativeWeb.py:6753
 msgid "Whether to display children in birth order or in entry order?"
 msgstr "Zda zobrazit potomky seřazené podle narození nebo pořadí záznamů?"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6754
+#: ../src/plugins/webreport/NarrativeWeb.py:6756
 msgid "Include event pages"
 msgstr "Zahrnout stránky událostí"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6755
+#: ../src/plugins/webreport/NarrativeWeb.py:6757
 msgid "Add a complete events list and relevant pages or not"
 msgstr "Přidat či nepřidat seznam událostí a relevantní stránky"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6758
+#: ../src/plugins/webreport/NarrativeWeb.py:6760
 msgid "Include repository pages"
 msgstr "Zahrnout stránky archivů"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6759
+#: ../src/plugins/webreport/NarrativeWeb.py:6761
 msgid "Whether to include the Repository Pages or not?"
 msgstr "Zda zahrnovat stránky archivů či nikoli?"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6762
+#: ../src/plugins/webreport/NarrativeWeb.py:6764
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr "Zahrnout soubor GENDEX (/gendex.txt)"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6763
+#: ../src/plugins/webreport/NarrativeWeb.py:6765
 msgid "Whether to include a GENDEX file or not"
 msgstr "Zda zahrnovat soubor GENDEX či nikoli"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6766
+#: ../src/plugins/webreport/NarrativeWeb.py:6768
 msgid "Include address book pages"
 msgstr "Zahrnout stránky adresáře"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6767
+#: ../src/plugins/webreport/NarrativeWeb.py:6769
 msgid "Whether to add Address Book pages or not which can include e-mail and website addresses and personal address/ residence events?"
 msgstr "Zda přidat stránky adresáře který obsahuje e-mailové, webové adresy a adresy osob/události bydliště?"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6777
+#: ../src/plugins/webreport/NarrativeWeb.py:6779
 msgid "Place Map Options"
 msgstr "Možnosti mapy míst"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6781
+#: ../src/plugins/webreport/NarrativeWeb.py:6783
 msgid "Google"
 msgstr "Google"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6783
+#: ../src/plugins/webreport/NarrativeWeb.py:6785
 msgid "Map Service"
 msgstr "Mapová služba"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6786
+#: ../src/plugins/webreport/NarrativeWeb.py:6788
 msgid "Choose your choice of map service for creating the Place Map Pages."
 msgstr "Zvolte mapovou službu pro vytváření stránek map míst."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6791
+#: ../src/plugins/webreport/NarrativeWeb.py:6793
 msgid "Include Place map on Place Pages"
 msgstr "Zahrnout mapu místa na stránce míst"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6792
+#: ../src/plugins/webreport/NarrativeWeb.py:6794
 msgid "Whether to include a place map on the Place Pages, where Latitude/ Longitude are available."
 msgstr "Zda zahrnout mapu míst na stránkách míst pokud jsou dostupné zeměpisné souřadnice."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6797
+#: ../src/plugins/webreport/NarrativeWeb.py:6799
 msgid "Include Family Map Pages with all places shown on the map"
 msgstr "Zahrnout stránky Family Map se všemi místy zobrazenými na mapě"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6799
+#: ../src/plugins/webreport/NarrativeWeb.py:6801
 msgid "Whether or not to add an individual page map showing all the places on this page. This will allow you to see how your family traveled around the country."
 msgstr "Zda přidat zvláštní mapovou stránku ukazující všechna místa. To vám umožní sledovat jak vaše rodina cestovala po celé zemi(státě)."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6807
+#: ../src/plugins/webreport/NarrativeWeb.py:6809
 msgid "Markers"
 msgstr "Značkay"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6808
+#: ../src/plugins/webreport/NarrativeWeb.py:6810
 msgid "Family Links"
 msgstr "Linky rodiny"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6809
+#: ../src/plugins/webreport/NarrativeWeb.py:6811
 msgid "Google/ FamilyMap Option"
 msgstr "Volba Google/ FamilyMap"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6812
+#: ../src/plugins/webreport/NarrativeWeb.py:6814
 msgid "Select which option that you would like to have for the Google Maps Family Map pages..."
 msgstr "Vyberte možnosti, které byste chtěli mít na stránkách Mapa rodiny v mapách Google..."
 
 #. adding title to hyperlink menu for screen readers and braille writers
-#: ../src/plugins/webreport/NarrativeWeb.py:7108
+#: ../src/plugins/webreport/NarrativeWeb.py:7110
 msgid "Alphabet Navigation Menu Item "
 msgstr "Abecední položka navigační nabídky "
 
@@ -25324,7 +25349,7 @@ msgstr "_Křestní jméno:"
 #: ../src/glade/editfamily.glade.h:14
 #: ../src/glade/editmedia.glade.h:12
 #: ../src/glade/editmediaref.glade.h:25
-#: ../src/glade/editeventref.glade.h:9
+#: ../src/glade/editeventref.glade.h:10
 #: ../src/glade/editnote.glade.h:8
 #: ../src/glade/editplace.glade.h:28
 #: ../src/glade/editsourceref.glade.h:22
@@ -26045,6 +26070,8 @@ msgstr "PSČ"
 
 #: ../src/glade/editaddress.glade.h:12
 #: ../src/glade/editmedia.glade.h:9
+#: ../src/glade/editeventref.glade.h:7
+#: ../src/glade/editldsord.glade.h:5
 #: ../src/glade/editevent.glade.h:7
 msgid "Show Date Editor"
 msgstr "Zobrazit editor data"
@@ -26068,8 +26095,8 @@ msgstr "Město z adresy:"
 #: ../src/glade/editaddress.glade.h:17
 #: ../src/glade/editmedia.glade.h:11
 #: ../src/glade/editmediaref.glade.h:24
-#: ../src/glade/editeventref.glade.h:7
-#: ../src/glade/editldsord.glade.h:5
+#: ../src/glade/editeventref.glade.h:8
+#: ../src/glade/editldsord.glade.h:6
 #: ../src/glade/editsourceref.glade.h:21
 #: ../src/glade/editevent.glade.h:9
 msgid "_Date:"
@@ -26189,18 +26216,18 @@ msgstr "Unikátní ID identifikující událost"
 msgid "De_scription:"
 msgstr "Popi_s:"
 
-#: ../src/glade/editeventref.glade.h:8
+#: ../src/glade/editeventref.glade.h:9
 #: ../src/glade/editevent.glade.h:10
 msgid "_Event type:"
 msgstr "Typ události:"
 
-#: ../src/glade/editeventref.glade.h:10
-#: ../src/glade/editldsord.glade.h:6
+#: ../src/glade/editeventref.glade.h:11
+#: ../src/glade/editldsord.glade.h:7
 #: ../src/glade/editevent.glade.h:12
 msgid "_Place:"
 msgstr "_Místo:"
 
-#: ../src/glade/editeventref.glade.h:11
+#: ../src/glade/editeventref.glade.h:12
 msgid "_Role:"
 msgstr "_Role:"
 
@@ -26216,7 +26243,7 @@ msgstr "Kostel SPD:"
 msgid "Ordinance:"
 msgstr "Vysvěcení:"
 
-#: ../src/glade/editldsord.glade.h:7
+#: ../src/glade/editldsord.glade.h:8
 msgid "_Status:"
 msgstr "_Stav:"
 
@@ -27531,6 +27558,12 @@ msgstr "<b>Kdo se kdy narodil?</b><br/>Pod &quot;Nástroje &gt; Analýzy a bád�
 #: ../src/data/tips.xml.in.h:63
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr "<b>Práce s datem</b><br/>Rozsah data může být dán použitím formátu &quot;mezi 4. lednem 2000 a  20. březnem 2003&quot;. Můžete také uvést úroveň důvěry v datum a dokonce vybrat mezi sedmi různými kalendáři. Zkuste tlačítko vedle pole data v Editoru událostí."
+
+#~ msgid "Processing File"
+#~ msgstr "Soubor se zpracovává"
+
+#~ msgid "Sorting data..."
+#~ msgstr "Třídím data..."
 
 #~ msgid "Baptism:"
 #~ msgstr "Baptistické křtiny:"
