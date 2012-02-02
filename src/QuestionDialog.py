@@ -242,7 +242,7 @@ class InfoDialog(object):
     """
     Non modal dialog to show selectable info in a scrolled window
     """
-    def __init__(self, msg1, infotext, parent=None):
+    def __init__(self, msg1, infotext, parent=None, monospaced=False):
         self.xml = Glade(toplevel='infodialog')
               
         self.top = self.xml.toplevel
@@ -256,6 +256,10 @@ class InfoDialog(object):
         infoview = self.xml.get_object('infoview')
         infobuffer = gtk.TextBuffer()
         infobuffer.set_text(infotext)
+        if monospaced:
+            startiter, enditer = infobuffer.get_bounds()
+            tag = infobuffer.create_tag(family="Monospace")
+            infobuffer.apply_tag(tag, startiter, enditer)
         infoview.set_buffer(infobuffer)
 
         if parent:
