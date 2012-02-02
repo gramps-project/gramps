@@ -121,7 +121,7 @@ import LdsUtils
 import Utils
 from DateHandler._DateParser import DateParser
 from gen.db.dbconst import EVENT_KEY
-from QuestionDialog import WarningDialog
+from QuestionDialog import WarningDialog, InfoDialog
 
 #-------------------------------------------------------------------------
 #
@@ -1499,6 +1499,7 @@ class CurrentState(object):
         self.event = event
         self.event_ref = event_ref
         self.source_ref = None
+        self.msg = ""
 
     def __getattr__(self, name):
         """
@@ -1716,6 +1717,8 @@ class GedcomParser(UpdateCallback):
         self.set_total(stage_one.get_line_count())
         self.repo2id = {}
         self.trans = None
+        self.errors = []
+        self.number_of_errors = 0
         self.maxpeople = stage_one.get_person_count()
         self.dbase = dbase
         self.emapper = IdFinder(dbase.get_gramps_ids(EVENT_KEY),
@@ -2446,6 +2449,12 @@ class GedcomParser(UpdateCallback):
             
         self.dbase.enable_signals()
         self.dbase.request_rebuild()
+        if self.number_of_errors == 0:
+            message  = _("GEDCOM import report: No errors detected")
+        else:
+            message = _("GEDCOM import report: %s errors detected") % \
+                self.number_of_errors
+        InfoDialog(message, "".join(self.errors), monospaced=True)
         
     def __find_person_handle(self, gramps_id):
         """
@@ -2684,14 +2693,19 @@ class GedcomParser(UpdateCallback):
             # EOF ?
             if not self.groups:
                 self.backoff = False
-                self.__warn(self.__TRUNC_MSG)
+                # We will add the truncation warning message to the error
+                # messages report, even though it probably won't be reported
+                # because the exception below gets raised before the report is
+                # produced. We do this in case __add_msg is changed in the
+                # future to do something else
+                self.__add_msg(self.__TRUNC_MSG)
                 self.groups = None
                 raise Errors.GedcomError(self.__TRUNC_MSG)
 
         self.backoff = False
         return self.groups
             
-    def __not_recognized(self, line, level):
+    def __not_recognized(self, line, level, state):
         """
         Prints a message when an undefined token is found. All subordinate items
         to the current item are ignored.
@@ -2699,16 +2713,35 @@ class GedcomParser(UpdateCallback):
         @param level: Current level in the file
         @type level: int
         """
-        msg = _("Line %d was not understood, so it was ignored.") % line.line
-        self.__warn(msg)
-        self.__skip_subordinate_levels(level)
+        self.__add_msg(_("Line ignored as not understood"), line, state)
+        self.__skip_subordinate_levels(level, state)
 
-    def __warn(self, msg):
-        """
-        Displays a msg using the logging facilities.
-        """
-        LOG.warning(msg)
-        self.error_count += 1
+    def __add_msg(self, problem, line=None, state=None):
+        if problem != "":
+            self.number_of_errors += 1
+        if line:
+            problem = problem.ljust(33)[0:32]
+            message = "%s   Line %5d: %s %s %s\n" % (problem, line.line,
+                                                       line.level, 
+                                                       line.token_text,
+                                                       line.data)
+        else:
+            message = problem + "\n"
+        if state:
+            state.msg += message
+        self.errors.append(message)
+
+    def __check_msgs(self, record_name, state, object, trans):
+        if state.msg == "":
+            return
+        message = "Records not inported into " + record_name + ":\n\n" + \
+                    state.msg
+        new_note = gen.lib.Note(message)
+        new_note.set_handle(Utils.create_id())
+        self.dbase.add_note(new_note, self.trans)
+        # If possible, attach the note to the relevant object
+        if object:
+            object.add_note(new_note.get_handle())
 
     def _backup(self):
         """
@@ -2724,7 +2757,9 @@ class GedcomParser(UpdateCallback):
         try:
             line = self.__get_next_line()
             if line and line.token != TOKEN_TRLR:
-                self.__not_recognized(line, 0)
+                state = CurrentState()
+                self.__not_recognized(line, 0, state)
+                self.__check_msgs("TRLR (trailer)", state, None, self.trans)
         except TypeError:
             return
         
@@ -2746,6 +2781,7 @@ class GedcomParser(UpdateCallback):
         state.res = researcher
         state.level = 1
         self.__parse_level(state, self.subm_parse_tbl, self.__undefined)
+        self.__check_msgs("SUBM (submitter)", state, None, self.trans)
         self.dbase.set_researcher(state.res)
 
     def __parse_record(self):
@@ -2778,7 +2814,9 @@ class GedcomParser(UpdateCallback):
                 self._backup()
                 break
             if line.token == TOKEN_UNKNOWN:
-                self.__skip_subordinate_levels(1)
+                state = CurrentState()
+                self.__skip_subordinate_levels(1, state)
+                self.__check_msgs("Top Level", state, None, self.trans)
             elif key in ("FAM", "FAMILY"):
                 self.__parse_fam(line)
             elif key in ("INDI", "INDIVIDUAL"):
@@ -2790,9 +2828,13 @@ class GedcomParser(UpdateCallback):
             elif key in ("SUBM", "SUBMITTER"):
                 self.__parse_submitter(line)
             elif key in ("SUBN"):
-                self.__skip_subordinate_levels(1)
+                state = CurrentState()
+                self.__skip_subordinate_levels(1, state)
+                self.__check_msgs("Top Level", state, None, self.trans)
             elif line.token in (TOKEN_SUBM, TOKEN_SUBN, TOKEN_IGNORE):
-                self.__skip_subordinate_levels(1)
+                state = CurrentState()
+                self.__skip_subordinate_levels(1, state)
+                self.__check_msgs("Top Level", state, None, self.trans)
             elif key in ("SOUR", "SOURCE"):
                 self.__parse_source(line.token_text, 1)
             elif (line.data.startswith("SOUR ") or
@@ -2811,8 +2853,8 @@ class GedcomParser(UpdateCallback):
                     line.data = None
                 self.__parse_inline_note(line, 1)
             else:
-                self.__not_recognized(line, 1)
-
+                self.__not_recognized(line, 1, state)
+        
     def __parse_level(self, state, __map, default):
         """
         Loop trough the current GEDCOM level, calling the appropriate 
@@ -2838,7 +2880,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__not_recognized(line, state.level+1)
+        self.__not_recognized(line, state.level+1, state)
 
     #----------------------------------------------------------------------
     #
@@ -2889,6 +2931,8 @@ class GedcomParser(UpdateCallback):
         # Add the default reference if no source has found
         self.__add_default_source(person)
 
+        self.__check_msgs("INDI (individual) Gramps ID %s" % 
+                          person.get_gramps_id(), state, person, self.trans)
         # commit the person to the database
         self.dbase.commit_person(person, self.trans, state.person.change)
 
@@ -2899,7 +2943,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        citation_handle = self.handle_source(line, state.level)
+        citation_handle = self.handle_source(line, state.level, state)
         state.person.add_citation(citation_handle)
 
     def __person_attr(self, line, state):
@@ -2913,7 +2957,7 @@ class GedcomParser(UpdateCallback):
         attr.set_type((gen.lib.AttributeType.CUSTOM, line.token_text))
         attr.set_value(line.data)
         state.person.add_attribute(attr)
-        self.__skip_subordinate_levels(state.level+1)
+        self.__skip_subordinate_levels(state.level+1, state)
 
     def __person_event(self, line, state):
         """
@@ -2944,7 +2988,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__skip_subordinate_levels(2)
+        self.__skip_subordinate_levels(2, state)
 
     def __person_chan(self, line, state):
         """
@@ -2953,7 +2997,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_change(line, state.person, state.level+1)
+        self.__parse_change(line, state.person, state.level+1, state)
         
     def __person_resn(self, line, state):
         """
@@ -2992,6 +3036,7 @@ class GedcomParser(UpdateCallback):
         sub_state.level = 2
 
         self.__parse_level(sub_state, self.name_parse_tbl, self.__undefined)
+        state.msg += sub_state.msg
 
     def __person_object(self, line, state):
         """
@@ -3020,7 +3065,7 @@ class GedcomParser(UpdateCallback):
             ref.set_reference_handle(handle)
             state.person.add_media_reference(ref)
         else:
-            (form, filename, title, note) = self.__obje(state.level+1)
+            (form, filename, title, note) = self.__obje(state.level+1, state)
             self.build_media_object(state.person, form, filename, title, note)
 
     def __person_name(self, line, state):
@@ -3074,6 +3119,7 @@ class GedcomParser(UpdateCallback):
         sub_state.level = state.level+1
 
         self.__parse_level(sub_state, self.name_parse_tbl, self.__undefined)
+        state.msg += sub_state.msg
 
     def __person_sex(self, line, state):
         """
@@ -3129,6 +3175,7 @@ class GedcomParser(UpdateCallback):
         sub_state.event_ref = event_ref
 
         self.__parse_level(sub_state, self.event_parse_tbl, self.__undefined)
+        state.msg += sub_state.msg
 
         self.dbase.commit_event(event, self.trans)
         event_ref.ref = event.handle
@@ -3225,7 +3272,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.person, 1)
+        self.__parse_note(line, state.person, 1, state)
 
     def __person_rnote(self, line, state):
         """
@@ -3236,7 +3283,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.person, 1)
+        self.__parse_note(line, state.person, 1, state)
 
     def __person_addr(self, line, state):
         """
@@ -3263,6 +3310,7 @@ class GedcomParser(UpdateCallback):
         sub_state.addr.set_street(line.data)
         state.person.add_address(sub_state.addr)
         self.__parse_level(sub_state, self.parse_addr_tbl, self.__ignore)
+        state.msg += sub_state.msg
 
     def __person_phon(self, line, state):
         """
@@ -3277,7 +3325,7 @@ class GedcomParser(UpdateCallback):
         addr.set_street("Unknown")
         addr.set_phone(line.data)
         state.person.add_address(addr)
-        self.__skip_subordinate_levels(state.level+1)
+        self.__skip_subordinate_levels(state.level+1, state)
     
     def __person_email(self, line, state):
         """
@@ -3329,6 +3377,7 @@ class GedcomParser(UpdateCallback):
         sub_state.event_ref = event_ref
 
         self.__parse_level(sub_state, self.event_parse_tbl, self.__undefined)
+        state.msg += sub_state.msg
 
         self.dbase.add_event(event, self.trans)
         event_ref.ref = event.handle
@@ -3363,7 +3412,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.name, state.level+1)
+        self.__parse_note(line, state.name, state.level+1, state)
 
     def __name_alia(self, line, state):
         """
@@ -3385,7 +3434,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         state.name.set_title(line.data.strip())
-        self.__skip_subordinate_levels(state.level+1)
+        self.__skip_subordinate_levels(state.level+1, state)
 
     def __name_givn(self, line, state):
         """
@@ -3395,7 +3444,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         state.name.set_first_name(line.data.strip())
-        self.__skip_subordinate_levels(state.level+1)
+        self.__skip_subordinate_levels(state.level+1, state)
 
     def __name_spfx(self, line, state):
         """
@@ -3411,7 +3460,7 @@ class GedcomParser(UpdateCallback):
             surn.set_prefix(line.data.strip())
             surn.set_primary()
             state.name.set_surname_list([surn])
-        self.__skip_subordinate_levels(state.level+1)
+        self.__skip_subordinate_levels(state.level+1, state)
 
     def __name_surn(self, line, state):
         """
@@ -3427,7 +3476,7 @@ class GedcomParser(UpdateCallback):
             surn.set_surname(line.data.strip())
             surn.set_primary()
             state.name.set_surname_list([surn])
-        self.__skip_subordinate_levels(state.level+1)
+        self.__skip_subordinate_levels(state.level+1, state)
 
     def __name_marnm(self, line, state):
         """
@@ -3464,7 +3513,7 @@ class GedcomParser(UpdateCallback):
         else:
             #previously set suffix different, to not loose information, append
             state.name.set_suffix(state.name.get_suffix() + ' ' + line.data)
-        self.__skip_subordinate_levels(state.level+1)
+        self.__skip_subordinate_levels(state.level+1, state)
 
     def __name_nick(self, line, state):
         """
@@ -3474,7 +3523,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         state.name.set_nick_name(line.data.strip())
-        self.__skip_subordinate_levels(state.level+1)
+        self.__skip_subordinate_levels(state.level+1, state)
 
     def __name_aka(self, line, state):
         """
@@ -3506,7 +3555,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        citation_handle = self.handle_source(line, state.level)
+        citation_handle = self.handle_source(line, state.level, state)
         state.name.add_citation(citation_handle)
 
     def __ignore(self, line, state):
@@ -3518,7 +3567,8 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__skip_subordinate_levels(state.level+1)
+        self.__add_msg(_("Tag recognised but not supported"), line, state)
+        self.__skip_subordinate_levels(state.level+1, state)
 
     def __person_std_attr(self, line, state):
         """
@@ -3536,6 +3586,7 @@ class GedcomParser(UpdateCallback):
         state.person.add_attribute(sub_state.attr)
         self.__parse_level(sub_state, self.person_attr_parse_tbl, 
                          self.__ignore)
+        state.msg += sub_state.msg
 
     def __person_fact(self, line, state):
         """
@@ -3554,6 +3605,7 @@ class GedcomParser(UpdateCallback):
         state.person.add_attribute(sub_state.attr)
         self.__parse_level(sub_state, self.person_fact_parse_tbl, 
                          self.__ignore)
+        state.msg += sub_state.msg
 
     def __person_fact_type(self, line, state):
         state.attr.set_type(line.data)
@@ -3621,6 +3673,7 @@ class GedcomParser(UpdateCallback):
         state.person.lds_ord_list.append(sub_state.lds_ord)
 
         self.__parse_level(sub_state, self.lds_parse_tbl, self.__ignore)
+        state.msg += sub_state.msg
 
         if sub_state.place:
             sub_state.place_fields.load_place(sub_state.place, 
@@ -3700,7 +3753,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        citation_handle = self.handle_source(line, state.level)
+        citation_handle = self.handle_source(line, state.level, state)
         state.lds_ord.add_citation(citation_handle)
 
     def __lds_note(self, line, state):
@@ -3712,7 +3765,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.lds_ord, state.level+1)
+        self.__parse_note(line, state.lds_ord, state.level+1, state)
 
     def __lds_stat(self, line, state): 
         """
@@ -3751,6 +3804,7 @@ class GedcomParser(UpdateCallback):
         handle = self.__find_family_handle(gid)
 
         self.__parse_level(sub_state, self.famc_parse_tbl, self.__undefined)
+        state.msg += sub_state.msg
 
         # if the handle is not already in the person's parent family list, we
         # need to add it to thie list.
@@ -3808,7 +3862,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.person, state.level+1)
+        self.__parse_note(line, state.person, state.level+1, state)
 
     def __person_famc_primary(self, line, state): 
         """
@@ -3833,7 +3887,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        citation_handle = self.handle_source(line, state.level)
+        citation_handle = self.handle_source(line, state.level, state)
         state.person.add_citation(citation_handle)
 
     def __person_fams(self, line, state):
@@ -3855,6 +3909,7 @@ class GedcomParser(UpdateCallback):
         sub_state = CurrentState(level=state.level+1)
         sub_state.obj = state.person
         self.__parse_level(sub_state, self.opt_note_tbl, self.__ignore)
+        state.msg += sub_state.msg
 
     def __person_asso(self, line, state):
         """
@@ -3894,6 +3949,7 @@ class GedcomParser(UpdateCallback):
         sub_state.ignore = False
 
         self.__parse_level(sub_state, self.asso_parse_tbl, self.__ignore)
+        state.msg += sub_state.msg
         if not sub_state.ignore:
             state.person.add_person_ref(sub_state.ref)
 
@@ -3917,7 +3973,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.ref.add_citation(self.handle_source(line, state.level))
+        state.ref.add_citation(self.handle_source(line, state.level, state))
 
     def __person_asso_note(self, line, state):
         """
@@ -3928,7 +3984,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.ref, state.level)
+        self.__parse_note(line, state.ref, state.level, state)
 
     #-------------------------------------------------------------------
     # 
@@ -3987,6 +4043,8 @@ class GedcomParser(UpdateCallback):
         # add default reference if no reference exists
         self.__add_default_source(family)
 
+        self.__check_msgs("FAM (family) Gramps ID %s" % family.get_gramps_id(), 
+                          state, family, self.trans)
         # commit family to database
         self.dbase.commit_family(family, self.trans, family.change)
     
@@ -4043,6 +4101,7 @@ class GedcomParser(UpdateCallback):
         sub_state.event_ref = event_ref
 
         self.__parse_level(sub_state, self.event_parse_tbl, self.__undefined)
+        state.msg += sub_state.msg
 
         if event.type == gen.lib.EventType.MARRIAGE:
             descr = event.get_description()
@@ -4085,6 +4144,7 @@ class GedcomParser(UpdateCallback):
         sub_state.event_ref = event_ref
 
         self.__parse_level(sub_state, self.event_parse_tbl, self.__undefined)
+        state.msg += sub_state.msg
 
         self.dbase.commit_event(event, self.trans)
         event_ref.ref = event.handle
@@ -4108,6 +4168,7 @@ class GedcomParser(UpdateCallback):
         sub_state.frel = None
 
         self.__parse_level(sub_state, self.family_rel_tbl, self.__ignore)
+        state.msg += sub_state.msg
 
         child = self.__find_or_create_person(self.pid_map[line.data])
 
@@ -4166,6 +4227,7 @@ class GedcomParser(UpdateCallback):
         state.family.lds_ord_list.append(sub_state.lds_ord)
 
         self.__parse_level(sub_state, self.lds_parse_tbl, self.__ignore)
+        state.msg += sub_state.msg
 
         if sub_state.place:
             sub_state.place_fields.load_place(sub_state.place, 
@@ -4192,7 +4254,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        citation_handle = self.handle_source(line, state.level)
+        citation_handle = self.handle_source(line, state.level, state)
         state.family.add_citation(citation_handle)
 
     def __family_object(self, line, state):
@@ -4205,9 +4267,9 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if line.data and line.data[0] == '@':
-            self.__not_recognized(line, state.level)
+            self.__not_recognized(line, state.level, state)
         else:
-            (form, filename, title, note) = self.__obje(state.level + 1)
+            (form, filename, title, note) = self.__obje(state.level + 1, state)
             self.build_media_object(state.family, form, filename, title, note)
 
     def __family_comm(self, line, state):
@@ -4219,7 +4281,7 @@ class GedcomParser(UpdateCallback):
         """
         note = line.data
         state.family.add_note(note)
-        self.__skip_subordinate_levels(state.level+1)
+        self.__skip_subordinate_levels(state.level+1, state)
 
     def __family_note(self, line, state):
         """
@@ -4230,7 +4292,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.family, state.level)
+        self.__parse_note(line, state.family, state.level, state)
 
     def __family_chan(self, line, state):
         """
@@ -4241,7 +4303,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_change(line, state.family, state.level+1)
+        self.__parse_change(line, state.family, state.level+1, state)
 
     def __family_addr(self, line, state):
         """
@@ -4275,7 +4337,7 @@ class GedcomParser(UpdateCallback):
         attr.set_value(line.data)
         state.family.add_attribute(attr)
 
-    def __obje(self, level):
+    def __obje(self, level, state):
         """
           n  OBJE {1:1}
           +1 FORM <MULTIMEDIA_FORMAT> {1:1}
@@ -4296,6 +4358,7 @@ class GedcomParser(UpdateCallback):
         sub_state.level = level
 
         self.__parse_level(sub_state, self.object_parse_tbl, self.__ignore)
+        state.msg += sub_state.msg
         return (sub_state.form, sub_state.filename, sub_state.title, 
                 sub_state.note)
 
@@ -4403,9 +4466,9 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if line.data and line.data[0] == '@':
-            self.__not_recognized(line, state.level)
+            self.__not_recognized(line, state.level, state)
         else:
-            (form, filename, title, note) = self.__obje(state.level + 1)
+            (form, filename, title, note) = self.__obje(state.level + 1, state)
             self.build_media_object(state.event, form, filename, title, note)
 
     def __event_type(self, line, state):
@@ -4479,6 +4542,7 @@ class GedcomParser(UpdateCallback):
 
             self.__parse_level(sub_state, self.event_place_map, 
                              self.__undefined)
+            state.msg += sub_state.msg
 
             sub_state.pf.load_place(place, place.get_title())
             self.dbase.commit_place(place, self.trans)
@@ -4490,7 +4554,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.place, state.level+1)
+        self.__parse_note(line, state.place, state.level+1, state)
 
     def __event_place_form(self, line, state):
         """
@@ -4509,9 +4573,9 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if line.data and line.data[0] == '@':
-            self.__not_recognized(line, state.level)
+            self.__not_recognized(line, state.level, state)
         else:
-            (form, filename, title, note) = self.__obje(state.level)
+            (form, filename, title, note) = self.__obje(state.level, state)
             self.build_media_object(state.place, form, filename, title, note)
 
     def __event_place_sour(self, line, state):
@@ -4521,7 +4585,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.place.add_citation(self.handle_source(line, state.level))
+        state.place.add_citation(self.handle_source(line, state.level, state))
 
     def __place_map(self, line, state):
         """
@@ -4539,6 +4603,7 @@ class GedcomParser(UpdateCallback):
         sub_state.level = state.level + 1
         sub_state.place = state.place
         self.__parse_level(sub_state, self.place_map_tbl, self.__undefined)
+        state.msg += sub_state.msg
         state.place = sub_state.place
 
     def __place_lati(self, line, state):
@@ -4573,6 +4638,7 @@ class GedcomParser(UpdateCallback):
         sub_state.event = state.event
 
         self.__parse_level(sub_state, self.parse_loc_tbl, self.__undefined)
+        state.msg += sub_state.msg
 
         location = sub_state.location
         note_list = sub_state.note
@@ -4622,7 +4688,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.event, state.level+1)
+        self.__parse_note(line, state.event, state.level+1, state)
 
     def __event_inline_note(self, line, state):
         """
@@ -4637,15 +4703,13 @@ class GedcomParser(UpdateCallback):
             if not line.data:
                 # empty: discard, with warning and skip subs
                 # Note: level+2
-                msg = _("Line %d: empty event note was ignored.") % (
-                            line.line)
-                self.__warn(msg)
-                self.__skip_subordinate_levels(state.level+2)
+                self.__add_msg(_("Empty event note ignored"), line, state)
+                self.__skip_subordinate_levels(state.level+2, state)
             else:
                 new_note = gen.lib.Note(line.data)
                 new_note.set_handle(Utils.create_id())
                 self.dbase.add_note(new_note, self.trans)
-                self.__skip_subordinate_levels(state.level+2)
+                self.__skip_subordinate_levels(state.level+2, state)
                 state.event.add_note(new_note.get_handle())
                 
     def __event_source(self, line, state):
@@ -4655,7 +4719,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.event.add_citation(self.handle_source(line, state.level))
+        state.event.add_citation(self.handle_source(line, state.level, state))
 
     def __event_cause(self, line, state):
         """
@@ -4675,6 +4739,7 @@ class GedcomParser(UpdateCallback):
         sub_state.attr = attr
 
         self.__parse_level(sub_state, self.event_cause_tbl, self.__undefined)
+        state.msg += sub_state.msg
 
     def __event_cause_source(self, line, state):
         """
@@ -4683,7 +4748,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.attr.add_citation(self.handle_source(line, state.level))
+        state.attr.add_citation(self.handle_source(line, state.level, state))
 
     def __event_age(self, line, state):
         """
@@ -4819,6 +4884,7 @@ class GedcomParser(UpdateCallback):
 
         self.__parse_level(sub_state, self.parse_person_adopt, 
                          self.__undefined)
+        state.msg += sub_state.msg
 
         if (int(sub_state.mrel) == gen.lib.ChildRefType.BIRTH  and
             int(sub_state.frel) == gen.lib.ChildRefType.BIRTH):
@@ -4973,7 +5039,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.addr.add_citation(self.handle_source(line, state.level))
+        state.addr.add_citation(self.handle_source(line, state.level, state))
             
     def __address_note(self, line, state):
         """
@@ -4984,7 +5050,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.addr, state.level+1)
+        self.__parse_note(line, state.addr, state.level+1, state)
 
     def __citation_page(self, line, state):
         """
@@ -5021,6 +5087,7 @@ class GedcomParser(UpdateCallback):
         sub_state.citation = state.citation
 
         self.__parse_level(sub_state, self.citation_data_tbl, self.__undefined)
+        state.msg += sub_state.msg
 
     def __citation_data_date(self, line, state):
         state.citation.set_date_object(line.data)
@@ -5046,7 +5113,7 @@ class GedcomParser(UpdateCallback):
         state.citation.add_note(note.get_handle())
 
     def __citation_data_note(self, line, state):
-        self.__parse_note(line, state.citation, state.level)
+        self.__parse_note(line, state.citation, state.level, state)
 
     def __citation_obje(self, line, state): 
         """
@@ -5058,9 +5125,9 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if line.data and line.data[0] == '@':
-            self.__not_recognized(line, state.level)
+            self.__not_recognized(line, state.level, state)
         else:
-            (form, filename, title, note) = self.__obje(state.level)
+            (form, filename, title, note) = self.__obje(state.level, state)
             self.build_media_object(state.citation, form, filename, title, note)
 
     def __citation_refn(self, line, state): 
@@ -5072,7 +5139,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__skip_subordinate_levels(state.level+1)
+        self.__skip_subordinate_levels(state.level+1, state)
 
     def __citation_even(self, line, state): 
         """
@@ -5088,6 +5155,7 @@ class GedcomParser(UpdateCallback):
         sub_state.citation = state.citation
 
         self.__parse_level(sub_state, self.citation_even_tbl, self.__undefined)
+        state.msg += sub_state.msg
 
     def __citation_even_role(self, line, state): 
         """
@@ -5129,7 +5197,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.citation, state.level+1)
+        self.__parse_note(line, state.citation, state.level+1, state)
 
     #----------------------------------------------------------------------
     #
@@ -5167,6 +5235,9 @@ class GedcomParser(UpdateCallback):
         state.level = level
 
         self.__parse_level(state, self.source_func, self.__undefined)
+        self.__check_msgs("SOUR (source) Gramps ID %s" % 
+                            state.source.get_gramps_id(), 
+                          state, state.source, self.trans)
         self.dbase.commit_source(state.source, self.trans, state.source.change)
 
     def __source_attr(self, line, state):
@@ -5186,9 +5257,9 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if line.data and line.data[0] == '@':
-            self.__not_recognized(line, state.level)
+            self.__not_recognized(line, state.level, state)
         else:
-            (form, filename, title, note) = self.__obje(state.level+1)
+            (form, filename, title, note) = self.__obje(state.level+1, state)
             self.build_media_object(state.source, form, filename, title, note)
 
     def __source_chan(self, line, state):
@@ -5198,7 +5269,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_change(line, state.source, state.level+1)
+        self.__parse_change(line, state.source, state.level+1, state)
 
     def __source_undef(self, line, state):
         """
@@ -5207,7 +5278,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__not_recognized(line, state.level+1)
+        self.__not_recognized(line, state.level+1, state)
 
     def __source_repo(self, line, state):
         """
@@ -5233,6 +5304,7 @@ class GedcomParser(UpdateCallback):
         sub_state.level = state.level + 1
 
         self.__parse_level(sub_state, self.repo_ref_tbl, self.__undefined)
+        state.msg += sub_state.msg
 
         state.source.add_repo_reference(repo_ref)
 
@@ -5244,7 +5316,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         state.repo_ref.set_call_number(line.data)
-        #self.__skip_subordinate_levels(state.level+1)
+        #self.__skip_subordinate_levels(state.level+1, state)
 
     def __repo_ref_medi(self, line, state):
         name = line.data
@@ -5259,7 +5331,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.repo_ref, state.level+1)
+        self.__parse_note(line, state.repo_ref, state.level+1, state)
 
     def __repo_chan(self, line, state):
         """
@@ -5268,7 +5340,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_change(line, state.repo, state.level+1)
+        self.__parse_change(line, state.repo, state.level+1, state)
 
     def __source_abbr(self, line, state):
         """
@@ -5298,7 +5370,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.source, state.level+1)
+        self.__parse_note(line, state.source, state.level+1, state)
 
     def __source_auth(self, line, state):
         """
@@ -5317,7 +5389,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         state.source.set_publication_info(line.data)
-        self.__skip_subordinate_levels(state.level+1)
+        self.__skip_subordinate_levels(state.level+1, state)
 
     def __source_title(self, line, state):
         """
@@ -5370,6 +5442,8 @@ class GedcomParser(UpdateCallback):
         # Add the default reference if no source has found
         self.__add_default_source(media)
 
+        self.__check_msgs("OBJE (multi-media object) Gramps ID %s" % 
+                          media.get_gramps_id(), state, media, self.trans)
         # commit the person to the database
         self.dbase.commit_media_object(media, self.trans, media.change)
 
@@ -5382,7 +5456,7 @@ class GedcomParser(UpdateCallback):
         """
         # TODO: FIX THIS!!!
         state.media_form = line.data.strip()
-        self.__skip_subordinate_levels(state.level+1)
+        self.__skip_subordinate_levels(state.level+1, state)
 
     def __obje_file(self, line, state):
         """
@@ -5394,7 +5468,8 @@ class GedcomParser(UpdateCallback):
         (file_ok, filename) = self.__find_file(line.data, self.dir_path)
         if state.media != "URL":
             if not file_ok:
-                self.__warn(_("Could not import %s") % filename[0])
+                self.__add_msg(_("Could not import %s") % filename[0], line,
+                               state)
         path = filename[0].replace('\\', os.path.sep)
         state.media.set_path(path)
         state.media.set_mime_type(gen.mime.get_type(path))
@@ -5417,7 +5492,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.media, state.level+1)
+        self.__parse_note(line, state.media, state.level+1, state)
 
     def __obje_blob(self, line, state):
         """
@@ -5426,7 +5501,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__skip_subordinate_levels(state.level+1)
+        self.__skip_subordinate_levels(state.level+1, state)
 
     def __obje_refn(self, line, state):
         """
@@ -5435,7 +5510,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__skip_subordinate_levels(state.level+1)
+        self.__skip_subordinate_levels(state.level+1, state)
 
     def __obje_type(self, line, state):
         """
@@ -5444,7 +5519,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__skip_subordinate_levels(state.level+1)
+        self.__skip_subordinate_levels(state.level+1, state)
 
     def __obje_rin(self, line, state):
         """
@@ -5453,7 +5528,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__skip_subordinate_levels(state.level+1)
+        self.__skip_subordinate_levels(state.level+1, state)
 
     def __obje_chan(self, line, state):
         """
@@ -5462,7 +5537,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_change(line, state.media, state.level+1)
+        self.__parse_change(line, state.media, state.level+1, state)
 
     def __person_attr_type(self, line, state):
         """
@@ -5489,7 +5564,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.attr.add_citation(self.handle_source(line, state.level))
+        state.attr.add_citation(self.handle_source(line, state.level, state))
 
     def __person_attr_place(self, line, state):
         """
@@ -5501,7 +5576,7 @@ class GedcomParser(UpdateCallback):
         val = line.data
         if state.attr.get_value() == "":
             state.attr.set_value(val)
-        self.__skip_subordinate_levels(state.level)
+        self.__skip_subordinate_levels(state.level, state)
 
     def __person_attr_note(self, line, state):
         """
@@ -5510,7 +5585,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.attr, state.level+1)
+        self.__parse_note(line, state.attr, state.level+1, state)
 
     #----------------------------------------------------------------------
     #
@@ -5535,6 +5610,8 @@ class GedcomParser(UpdateCallback):
         state.level = 1
         self.__parse_level(state, self.repo_parse_tbl, self.__ignore)
 
+        self.__check_msgs("REPO (repository) Gramps ID %s" % 
+                          repo.get_gramps_id(), state, repo, self.trans)
         self.dbase.commit_repository(repo, self.trans, repo.change)
 
     def __repo_name(self, line, state):
@@ -5553,7 +5630,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.repo, state.level+1)
+        self.__parse_note(line, state.repo, state.level+1, state)
 
     def __repo_addr(self, line, state):
         """
@@ -5580,6 +5657,7 @@ class GedcomParser(UpdateCallback):
         sub_state.addr = addr
 
         self.__parse_level(sub_state, self.parse_addr_tbl, self.__ignore)
+        state.msg += sub_state.msg
 
         text = addr.get_street()
         if not (addr.get_city() or addr.get_state() or
@@ -5749,9 +5827,9 @@ class GedcomParser(UpdateCallback):
         if not state.location:
             state.location = gen.lib.Location()
         if state.event:
-            self.__parse_note(line, state.event, state.level+1)
+            self.__parse_note(line, state.event, state.level+1, state)
         else:
-            self.__not_recognized(line, state.level)
+            self.__not_recognized(line, state.level, state)
 
     def __optional_note(self, line, state):
         """
@@ -5760,7 +5838,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.obj, state.level)
+        self.__parse_note(line, state.obj, state.level, state)
 
     #----------------------------------------------------------------------
     #
@@ -5806,6 +5884,7 @@ class GedcomParser(UpdateCallback):
         """
         state = CurrentState(level=1)
         self.__parse_level(state, self.header_sour, self.__undefined)
+        self.__check_msgs("SOUR (header level source)", state, None, self.trans)
 
     def __header_sour(self, line, state):
         """
@@ -5860,6 +5939,7 @@ class GedcomParser(UpdateCallback):
         """
         sub_state = CurrentState(level=state.level+1)
         self.__parse_level(sub_state, self.header_subm, self.__ignore)
+        state.msg += sub_state.msg
 
     def __header_dest(self, line, state):
         """
@@ -5872,13 +5952,13 @@ class GedcomParser(UpdateCallback):
             self.gedsource = self.gedmap.get_from_source_tag(line.data)
 
         if state.genby.upper() == "LEGACY":
-             fname = os.path.basename(self.filename)
-             WarningDialog(
-                _("Import of GEDCOM file %s with DEST=%s, "
-                  "could cause errors in the resulting database!")
-                    % (fname, state.genby),
-                _("Look for nameless events.")
-                )
+            fname = os.path.basename(self.filename)
+            WarningDialog(
+               _("Import of GEDCOM file %s with DEST=%s, "
+                 "could cause errors in the resulting database!")
+                   % (fname, state.genby),
+               _("Look for nameless events.")
+               )
  
     def __header_plac(self, line, state):
         """
@@ -5889,6 +5969,7 @@ class GedcomParser(UpdateCallback):
         """
         sub_state = CurrentState(level=state.level+1)
         self.__parse_level(sub_state, self.place_form, self.__undefined)
+        state.msg += sub_state.msg
 
     def __place_form(self, line, state):
         """
@@ -5917,7 +5998,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if self.use_def_src:
-            self.__parse_note(line, self.def_src, 2)
+            self.__parse_note(line, self.def_src, 2, state)
 
     def __header_subm_name(self, line, state):
         """
@@ -5929,21 +6010,20 @@ class GedcomParser(UpdateCallback):
         if self.use_def_src:
             self.def_src.set_author(line.data)
 
-    def __parse_note(self, line, obj, level):
+    def __parse_note(self, line, obj, level, state):
         if line.token == TOKEN_RNOTE:
             # reference to a named note defined elsewhere
             gid = line.data.strip()
             obj.add_note(self.__find_note_handle(self.nid_map[gid]))
         else:
             if not line.data:
-                msg = _("Line %d: empty note was ignored.") % line.line
-                self.__warn(msg)
-                self.__skip_subordinate_levels(level+1)
+                self.__add_msg(_("Empty note ignored"), line, state)
+                self.__skip_subordinate_levels(level+1, state)
             else:
                 new_note = gen.lib.Note(line.data)
                 new_note.set_handle(Utils.create_id())
                 self.dbase.add_note(new_note, self.trans)
-                self.__skip_subordinate_levels(level+1)
+                self.__skip_subordinate_levels(level+1, state)
                 obj.add_note(new_note.get_handle())
 
     #----------------------------------------------------------------------
@@ -5964,28 +6044,31 @@ class GedcomParser(UpdateCallback):
           +1 RIN <AUTOMATED_RECORD_ID>  {0:1}
           +1 <<CHANGE_DATE>>  {0:1}
         """
+        state = CurrentState()
         gid = self.nid_map[line.token_text]
         handle = self.nid2id.get(gid)
         if not line.data and handle is None:
-            msg = _("Line %d: empty note was ignored.") % line.line
-            self.__warn(msg)
-            self.__skip_subordinate_levels(level)
+            self.__add_msg(_("Empty note ignored"), line, state)
+            self.__skip_subordinate_levels(level, state)
         else:
             new_note = gen.lib.Note(line.data)
             new_note.set_handle(handle)
             new_note.set_gramps_id(gid)
             self.dbase.add_note(new_note, self.trans)
             self.nid2id[new_note.gramps_id] = new_note.handle
-            self.__skip_subordinate_levels(level)
+            self.__skip_subordinate_levels(level, state)
+        self.__check_msgs("NOTE Gramps ID %s" % new_note.get_gramps_id(), 
+                          state, None, self.trans)
 
-    def __parse_source_reference(self, citation, level, handle):
+    def __parse_source_reference(self, citation, level, handle, state):
         """
         Read the data associated with a SOUR reference.
         """
-        state = CurrentState(level=level+1)
-        state.citation = citation
-        state.handle = handle
-        self.__parse_level(state, self.citation_parse_tbl, self.__ignore)
+        sub_state = CurrentState(level=level+1)
+        sub_state.citation = citation
+        sub_state.handle = handle
+        self.__parse_level(sub_state, self.citation_parse_tbl, self.__ignore)
+        state.msg += sub_state.msg
     
     def __parse_header_head(self):
         """
@@ -5995,7 +6078,7 @@ class GedcomParser(UpdateCallback):
         if line.token != TOKEN_HEAD:
             raise Errors.GedcomError("%s is not a GEDCOM file" % self.filename)
     
-    def __skip_subordinate_levels(self, level):
+    def __skip_subordinate_levels(self, level, state):
         """
         Skip add lines of the specified level or lower.
         """
@@ -6003,14 +6086,15 @@ class GedcomParser(UpdateCallback):
         while True:
             line = self.__get_next_line()
             if self.__level_is_finished(line, level):
-                if skips and self.want_parse_warnings:
-                    msg = _("skipped %(skip)d subordinate(s) at line %(line)d") % {
-                        'skip' : skips, 'line' : line.line - skips }
-                    self.__warn(msg)
+                if skips:
+                    # This improves formatting when there are long sequences of
+                    # skipped lines
+                    self.__add_msg("", None, None)
                 return
+            self.__add_msg(_("Skipped subordinate line"), line, state)
             skips += 1
     
-    def handle_source(self, line, level):
+    def handle_source(self, line, level, state):
         """
         Handle the specified source, building a source reference to
         the object.
@@ -6026,12 +6110,12 @@ class GedcomParser(UpdateCallback):
         else:
             src = self.__find_or_create_source(self.sid_map[line.data])
         self.dbase.commit_source(src, self.trans)
-        self.__parse_source_reference(citation, level, src.handle)
+        self.__parse_source_reference(citation, level, src.handle, state)
         citation.set_reference_handle(src.handle)
         self.dbase.add_citation(citation, self.trans)
         return citation.handle
 
-    def __parse_change(self, line, obj, level):
+    def __parse_change(self, line, obj, level, state):
         """
         CHANGE_DATE:=
 
@@ -6061,9 +6145,9 @@ class GedcomParser(UpdateCallback):
                 #Lexer converted already to Date object
                 dobj = line.data
             elif line.token == TOKEN_NOTE:
-                self.__skip_subordinate_levels(level+1)
+                self.__skip_subordinate_levels(level+1, state)
             else:
-                self.__not_recognized(line, level+1)
+                self.__not_recognized(line, level+1, state)
 
         # Attempt to convert the values to a valid change time
         if dobj:
@@ -6096,7 +6180,7 @@ class GedcomParser(UpdateCallback):
         else:
             (valid, path) = self.__find_file(filename, self.dir_path)
             if not valid:
-                self.__warn(_("Could not import %s") % filename)
+                self.__add_msg(_("Could not import %s") % filename)
                 path = filename.replace('\\', os.path.sep)
             photo_handle = self.media_map.get(path)
             if photo_handle is None:
@@ -6147,6 +6231,7 @@ class GedcomParser(UpdateCallback):
         sub_state.person = state.person
 
         self.__parse_level(sub_state, event_map, self.__undefined)
+        state.msg += sub_state.msg
         self.dbase.commit_event(event, self.trans)
 
         event_ref.set_reference_handle(event.handle)
@@ -6170,6 +6255,7 @@ class GedcomParser(UpdateCallback):
         sub_state.event_ref = event_ref
 
         self.__parse_level(sub_state, event_map, self.__undefined)
+        state.msg += sub_state.msg
 
         self.dbase.commit_event(event, self.trans)
         event_ref.set_reference_handle(event.handle)
@@ -6193,7 +6279,7 @@ class GedcomParser(UpdateCallback):
 
         ## Okay we have no clue which temple this is.
         ## We should tell the user and store it anyway.
-        self.__warn("Invalid temple code '%s'" % (line.data, ))
+        self.__add_msg(_("Invalid temple code"), line, None)
         return line.data
 
     def __add_default_source(self, obj):
@@ -6227,6 +6313,7 @@ class GedcomParser(UpdateCallback):
         sub_state.location.set_street(line.data)
 
         self.__parse_level(sub_state, self.parse_loc_tbl, self.__undefined)
+        state.msg += sub_state.msg
 
         location = sub_state.location
         state.res.set_address(location.get_street())
