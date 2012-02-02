@@ -222,8 +222,8 @@ class MergeCitations(tool.BatchTool,ManagedWindow.ManagedWindow):
         self.progress.close()
         OkDialog(
             _("Number of merges done"),
-            _("%d citations merges" % num_merges),
-            parent=self.window)
+            _("%d citations merges" % num_merges))
+        self.close(obj)
             
     def Merge (self, db, citation1, citation2, trans):
         """
