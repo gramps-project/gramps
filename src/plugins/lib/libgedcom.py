@@ -6286,7 +6286,7 @@ class GedcomParser(UpdateCallback):
         """
         Add the default source to the object.
         """
-        if self.use_def_src and len(obj.get_source_references()) == 0:
+        if self.use_def_src and len(obj.get_citation_list()) == 0:
             citation = gen.lib.Citation()
             citation.set_reference_handle(self.def_src.handle)
             self.dbase.add_citation(citation, self.trans)
