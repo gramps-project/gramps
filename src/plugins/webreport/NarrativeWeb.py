@@ -4583,7 +4583,6 @@ class SourcePage(BasePage):
                         for (citation_handle, refs) in citation_referents_list:
                             citation = self.dbase_.get_citation_from_handle(citation_handle)
                             if citation:
-                                citation_page = citation.get_page()
 
                                 # gets all citation referents no matter on the filters...
                                 (people_list, family_list, event_list, place_list, source_list, media_list, repo_list) = refs
@@ -4591,9 +4590,7 @@ class SourcePage(BasePage):
                                 # Sort the person list by  the individual's surname...
                                 people_list = sort_people(self.dbase_, people_list)
 
-                                list1 = Html("li") + (
-                                    Html("a", citation_page, href = "#", title = citation_page, inline = True)
-                                )
+                                list1 = Html("li", citation.get_page())
                                 ordered1 += list1
 
                                 # unordered and list item #2, Object Type...
@@ -4603,38 +4600,38 @@ class SourcePage(BasePage):
                                 # Citation Referents have Person objects... 
                                 if people_list:
 
-                                    list2 = Html("li") + (
-                                        Html("a", _("People"), href = "#", title = _("People"), inline = True)
-                                    )
+                                    list2 = Html("li")
                                     unordered2 += list2
+
+                                    hyper2 = Html("a", _("People"), href = "#", title = _("People"))
+                                    list2 += hyper2
 
                                     # ordered and list item #3, Surname...
                                     unordered3 = Html("ul", class_ = "Col3 Surname")
-                                    list2 += unordered3
+                                    hyper2 += unordered3
 
                                     displayed = []
                                     for (surname, handle_list) in people_list:
                                         if surname not in displayed:
-                                            list3 = Html("li") + (
-                                                Html("a", surname, href = "#", title = surname, inline = True)
-                                            )
-                                            unordered3 += list3
+                                            list3 = Html("li")
+
+                                            hyper3 = Html("a", surname, href = "#", title = surname)
 
                                             # ordered #4, Display Name...
                                             unordered4 = Html("ul", class_ = "Col4 DisplayName")
-                                            list3 += unordered4
 
                                             for person_handle in handle_list:
                                                 person = self.dbase_.get_person_from_handle(person_handle)
                                                 if person:
 
                                                     url = self.report.build_url_fname_html(person_handle, "ppl", up = self.up)
-                                                    hyper = self.person_link(url, person, name_style = None)
-                                                    list4 = Html("li") + (
-                                                        Html("a", _get_short_name(person.get_gender(), person.get_primary_name()),
-                                                            href = hyper, title = self.get_name(person), inline = True)
-                                                    )
-                                                    unordered4 += list4
+
+                                                    unordered4.extend(
+                                                        Html("li", self.person_link(url, person, False))
+                                                    ) 
+                                            hyper3 += unordered4
+                                            list3 += hyper3
+                                            unordered3 += list3
                                         displayed.append(surname)
 
                                 # Citation Referents have Family Objects...
@@ -4817,14 +4814,16 @@ class SourcePage(BasePage):
                                 # Citation Referents has Media Objects...
                                 if (self.create_media and media_list):
 
-                                    list2 = Html("li") + (
-                                        Html("a", _("Media"), href = "#", title = _("Media"), inline = True)
-                                    )
+                                    sort = Sort.Sort(self.dbase_)
+                                    media_list = sorted(media_list, key = sort.by_media_title_key)
+
+                                    list2 = Html("li")
                                     unordered2 += list2
+
+                                    hyper2 = Html("a", _("Media"), href = "#", title = _("Media"))
 
                                     # unordered and list item #3, Thumbnail Link...
                                     unordered3 = Html("ul", class_ = "Col3 MediaLink")
-                                    list2 += unordered3
 
                                     for media_handle in media_list:
                                         media = self.dbase_.get_object_from_handle(media_handle)
@@ -4837,20 +4836,17 @@ class SourcePage(BasePage):
                                                     real_path, newpath = self.report.prepare_copy_media(media)
                                                     newpath = self.report.build_url_fname(newpath, up = self.up)
 
-                                                    hyper = self.media_link(media_handle, newpath, "", self.up, False)
-
-                                                    list3 = Html("li") + (
-                                                        Html("a", media_title, href = hyper, title = media_title, inline = True)
+                                                    unordered3.extend(
+                                                        Html("li", self.media_link(media_handle, newpath,
+                                                            media.get_description(), self.up, usedescr = False))
                                                     )
-                                                    unordered3 += list3
-
                                                 else:
-                                                    hyper = self.doc_link(media_handle, "", self.up, False)
-
-                                                    list3 = Html("li") + (
-                                                        Html("a", media_title, href = hyper, title = media_title, inline = True)
+                                                    unordered3.extend(
+                                                        Html("li", self.doc_link(media_handle, media.get_description(),
+                                                            self.up, usedescr = False))
                                                     )
-                                                    unordered3 += list3
+                                    hyper2 += unordered3
+                                    list2 += hyper2
 
         # add clearline for proper styling
         # add footer section
@@ -4906,7 +4902,7 @@ class MediaListPage(BasePage):
 
                 index = 1
                 sort = Sort.Sort(self.dbase_)
-                mlist = sorted(self.report.photo_list, key=sort.by_media_title_key)
+                mlist = sorted(self.report.photo_list, key = sort.by_media_title_key)
         
                 for handle in mlist:
                     media = self.dbase_.get_object_from_handle(handle)
