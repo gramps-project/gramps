@@ -2459,7 +2459,7 @@ class BasePage(object):
             if name_style:
                 person_name = self.get_name(person)
             elif name_style == False:
-                person_name = 4642
+                person_name = _get_short_name(person.get_gender(), person.get_primary_name())
 
             elif name_style == None:    # abnormal specialty situation
                 person_name = person
@@ -2478,14 +2478,12 @@ class BasePage(object):
             # 3. insert the person's name
             hyper += person_name
 
-            # 3. insert gramps id if requested and available
+            # 3. insert gramps ID if requested and available?
             if (not self.noid and gid):
                 hyper += Html("span", " [%s]" % gid, class_ = "grampsid", inline = True)
 
         else:
             hyper = "&nbsp;"
-
-        # return hyperlink to its caller
         return hyper
 
     def media_link(self, media_handle, img_url, name, uplink = False, usedescr = True):
