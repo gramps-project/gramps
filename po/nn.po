@@ -11894,7 +11894,7 @@ msgstr "  6. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#How_can_I_publish_web_sites_g
 #: ../src/plugins/gramplet/FaqGramplet.py:65
 #, fuzzy
 msgid " 11. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-ts21786114.html#a21786114'>How do I record one's occupation?</a>\n"
-msgstr "  7. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-ts21786114.html#a21786114'>Korleis registrerer eg yrket til einkvan?</a>\n"
+msgstr "  7. <a href='http://sourceforge.net/mailarchive/message.php?msg_id=21487967'>Korleis registrerer eg yrket til einkvan?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:66
 #, fuzzy, python-format

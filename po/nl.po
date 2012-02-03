@@ -11570,7 +11570,7 @@ msgstr " 10. <a wiki='%s_-_FAQ/nl#Hoe_kan_ik_webstekken_die_aangemaakt_zijn_via_
 
 #: ../src/plugins/gramplet/FaqGramplet.py:65
 msgid " 11. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-ts21786114.html#a21786114'>How do I record one's occupation?</a>\n"
-msgstr " 11. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-ts21786114.html#a21786114'>Hoe registreer ik een beroep van iemand?</a>\n"
+msgstr " 11. <a href='http://sourceforge.net/mailarchive/message.php?msg_id=21487967'>Hoe registreer ik een beroep van iemand?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:66
 #, python-format

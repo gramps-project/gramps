@@ -11910,7 +11910,7 @@ msgstr "  10. <a wiki='%s_-_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.
 
 #: ../src/plugins/gramplet/FaqGramplet.py:65
 msgid " 11. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-ts21786114.html#a21786114'>How do I record one's occupation?</a>\n"
-msgstr " 11. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-ts21786114.html#a21786114'>Jak zapisać czyjeś zajęcie?</a>\n"
+msgstr " 11. <a href='http://sourceforge.net/mailarchive/message.php?msg_id=21487967'>Jak zapisać czyjeś zajęcie?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:66
 #, python-format

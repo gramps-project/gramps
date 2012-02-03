@@ -25803,7 +25803,7 @@ msgstr ""
 #~ msgstr "  6. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>Como é que posso publicar uma página web com a minha árvore genealógica produzida pelo Gramps?</a>\n"
 
 #~ msgid "  7. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-ts21786114.html#a21786114'>How do I record one's occupation?</a>\n"
-#~ msgstr "  7. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-ts21786114.html#a21786114'>Como registo a ocupação de uma pessoa?</a>\n"
+#~ msgstr "  7. <a href='http://sourceforge.net/mailarchive/message.php?msg_id=21487967'>Como registo a ocupação de uma pessoa?</a>\n"
 
 #~ msgid "  8. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#What_do_I_do_if_I_have_found_a_bug.3F'>What do I do if I have found a bug?</a>\n"
 #~ msgstr "  8. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#What_do_I_do_if_I_have_found_a_bug.3F'>O que faço se encontrar um erro?</a>\n"
