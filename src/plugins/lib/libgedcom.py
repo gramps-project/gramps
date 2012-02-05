@@ -1499,6 +1499,7 @@ class CurrentState(object):
         self.event = event
         self.event_ref = event_ref
         self.source_ref = None
+        self.note = None
         self.msg = ""
 
     def __getattr__(self, name):
@@ -1630,15 +1631,24 @@ class IdMapper(object):
         self.swap = {}
     
     def __getitem__(self, gid):
-        gid = self.clean(gid)
-        if gid in self.swap:
-            return self.swap[gid]
-        else:
-            if self.trans.get(str(gid)):
+        if gid == "":
+            # We need to find the next gramps ID provided it is not already
+            # the target of a swap
+            new_val = self.find_next()
+            while new_val in self.swap.values():
                 new_val = self.find_next()
+        else:
+            gid = self.clean(gid)
+            if gid in self.swap:
+                return self.swap[gid]
             else:
-                new_val = gid
-        self.swap[gid] = new_val
+                if self.trans.get(str(gid)) or (gid in self.swap.values()):
+                    new_val = self.find_next()
+                    while new_val in self.swap.values():
+                        new_val = self.find_next()
+                else:
+                    new_val = gid
+            self.swap[gid] = new_val
         return new_val
     
     def clean(self, gid):
@@ -2380,6 +2390,24 @@ class GedcomParser(UpdateCallback):
 
         self.place_form = {
             TOKEN_FORM   : self.__place_form, 
+            }
+
+        #
+        # Parse table for <<NOTE_RECORD>> below the level 0 NOTE tag
+        # 
+        # n @<XREF:NOTE>@ NOTE <SUBMITTER_TEXT>           {1:1}
+        #   +1 [ CONC | CONT] <SUBMITTER_TEXT>            {0:M}
+        #   +1 <<SOURCE_CITATION>>                        {0:M}
+        #   +1 REFN <USER_REFERENCE_NUMBER>               {0:M}
+        #     +2 TYPE <USER_REFERENCE_TYPE>               {0:1}
+        #   +1 RIN <AUTOMATED_RECORD_ID>                  {0:1}
+        #   +1 <<CHANGE_DATE>>                            {0:1}
+
+        self.note_parse_tbl = {
+            TOKEN_SOUR   : self.__ignore, 
+            TOKEN_REFN   : self.__ignore, 
+            TOKEN_RIN    : self.__ignore, 
+            TOKEN_CHAN   : self.__note_chan, 
             }
 
         # look for existing place titles, build a map 
@@ -4406,6 +4434,10 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
+        LOG.debug("Line %5d: %s %s %s" % (line.line,
+                                          line.level, 
+                                          line.token_text,
+                                          line.data))
         state.note = line.data
 
     def __family_adopt(self, line, state):
@@ -4575,6 +4607,7 @@ class GedcomParser(UpdateCallback):
         if line.data and line.data[0] == '@':
             self.__not_recognized(line, state.level, state)
         else:
+            # FIXME this should probably be level+1
             (form, filename, title, note) = self.__obje(state.level, state)
             self.build_media_object(state.place, form, filename, title, note)
 
@@ -5127,7 +5160,7 @@ class GedcomParser(UpdateCallback):
         if line.data and line.data[0] == '@':
             self.__not_recognized(line, state.level, state)
         else:
-            (form, filename, title, note) = self.__obje(state.level, state)
+            (form, filename, title, note) = self.__obje(state.level+1, state)
             self.build_media_object(state.citation, form, filename, title, note)
 
     def __citation_refn(self, line, state): 
@@ -6011,18 +6044,35 @@ class GedcomParser(UpdateCallback):
             self.def_src.set_author(line.data)
 
     def __parse_note(self, line, obj, level, state):
+        LOG.debug("Line %5d: %s %s %s" % (line.line,
+                                          line.level, 
+                                          line.token_text,
+                                          line.data))
         if line.token == TOKEN_RNOTE:
             # reference to a named note defined elsewhere
+            #NOTE_STRUCTURE: =
+            #  n  NOTE @<XREF:NOTE>@  {1:1}
+            #    +1 SOUR @<XREF:SOUR>@  {0:M}
             gid = line.data.strip()
-            obj.add_note(self.__find_note_handle(self.nid_map[gid]))
+            gramps_id = self.nid_map[gid]
+            obj.add_note(self.__find_note_handle(gramps_id))
+            LOG.debug("Note linked: mapped gid %s\n" % gramps_id)
         else:
+            # Embedded note
+            #NOTE_STRUCTURE: =
+            #  n  NOTE [<SUBMITTER_TEXT> | <NULL>]  {1:1}
+            #    +1 [ CONC | CONT ] <SUBMITTER_TEXT>  {0:M}
+            #    +1 SOUR @<XREF:SOUR>@  {0:M}
             if not line.data:
                 self.__add_msg(_("Empty note ignored"), line, state)
                 self.__skip_subordinate_levels(level+1, state)
             else:
                 new_note = gen.lib.Note(line.data)
+                new_note.set_gramps_id(self.nid_map[""])
                 new_note.set_handle(Utils.create_id())
-                self.dbase.add_note(new_note, self.trans)
+                self.dbase.commit_note(new_note, self.trans)
+                LOG.debug("Note commited: mapped gid %s\n" % 
+                          new_note.get_gramps_id())
                 self.__skip_subordinate_levels(level+1, state)
                 obj.add_note(new_note.get_handle())
 
@@ -6044,6 +6094,10 @@ class GedcomParser(UpdateCallback):
           +1 RIN <AUTOMATED_RECORD_ID>  {0:1}
           +1 <<CHANGE_DATE>>  {0:1}
         """
+        LOG.debug("Line %5d: %s %s %s" % (line.line,
+                                          line.level, 
+                                          line.token_text,
+                                          line.data))
         state = CurrentState()
         gid = self.nid_map[line.token_text]
         handle = self.nid2id.get(gid)
@@ -6054,12 +6108,23 @@ class GedcomParser(UpdateCallback):
             new_note = gen.lib.Note(line.data)
             new_note.set_handle(handle)
             new_note.set_gramps_id(gid)
-            self.dbase.add_note(new_note, self.trans)
+
+            sub_state = CurrentState(level=state.level+1)
+            sub_state.note = new_note
+            self.__parse_level(sub_state, self.note_parse_tbl, self.__undefined)
+            state.msg += sub_state.msg
+
+            self.dbase.commit_note(new_note, self.trans, new_note.change)
+            LOG.debug("Note commited: mapped gid %s\n" % 
+                      new_note.get_gramps_id())
             self.nid2id[new_note.gramps_id] = new_note.handle
-            self.__skip_subordinate_levels(level, state)
         self.__check_msgs("NOTE Gramps ID %s" % new_note.get_gramps_id(), 
                           state, None, self.trans)
 
+    def __note_chan(self, line, state):
+        if state.note:
+            self.__parse_change(line, state.note, state.level+1, state)
+    
     def __parse_source_reference(self, citation, level, handle, state):
         """
         Read the data associated with a SOUR reference.
@@ -6199,7 +6264,9 @@ class GedcomParser(UpdateCallback):
             oref = gen.lib.MediaRef()
             oref.set_reference_handle(photo.handle)
             if note:
-                oref.add_note(self.__find_note_handle(self.nid_map[note]))
+                gramps_id = self.nid_map[note]
+                oref.add_note(self.__find_note_handle(gramps_id))
+                LOG.debug("Note linked: mapped gid %s\n" % gramps_id)
             obj.add_media_reference(oref)
 
     def __build_event_pair(self, state, event_type, event_map, description):
