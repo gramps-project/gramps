@@ -2843,6 +2843,7 @@ class GedcomParser(UpdateCallback):
                 break
             if line.token == TOKEN_UNKNOWN:
                 state = CurrentState()
+                self.__add_msg(_("Unknown tag"), line, state)
                 self.__skip_subordinate_levels(1, state)
                 self.__check_msgs("Top Level", state, None, self.trans)
             elif key in ("FAM", "FAMILY"):
@@ -2881,7 +2882,9 @@ class GedcomParser(UpdateCallback):
                     line.data = None
                 self.__parse_inline_note(line, 1)
             else:
+                state = CurrentState()
                 self.__not_recognized(line, 1, state)
+                self.__check_msgs("Top Level", state, None, self.trans)
         
     def __parse_level(self, state, __map, default):
         """
