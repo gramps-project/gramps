@@ -2370,11 +2370,11 @@ class GedcomParser(UpdateCallback):
             TOKEN_FILE   : self.__header_file, 
             TOKEN_COPR   : self.__header_copr, 
             TOKEN_SUBM   : self.__header_subm, 
-            TOKEN_CORP   : self.__ignore, 
-            TOKEN_DATA   : self.__ignore, 
+            TOKEN_CORP   : self.__ignore,       # This should be below SOUR
+            TOKEN_DATA   : self.__ignore,       # This should be below SOUR
             TOKEN_SUBN   : self.__ignore, 
             TOKEN_LANG   : self.__ignore, 
-            TOKEN_TIME   : self.__ignore, 
+            TOKEN_TIME   : self.__ignore,       # This should be below DATE 
             TOKEN_DEST   : self.__header_dest, 
             TOKEN_CHAR   : self.__ignore, 
             TOKEN_GEDC   : self.__ignore, 
@@ -4429,10 +4429,6 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        LOG.debug("Line %5d: %s %s %s" % (line.line,
-                                          line.level, 
-                                          line.token_text,
-                                          line.data))
         state.note = line.data
 
     def __family_adopt(self, line, state):
@@ -6039,10 +6035,6 @@ class GedcomParser(UpdateCallback):
             self.def_src.set_author(line.data)
 
     def __parse_note(self, line, obj, level, state):
-        LOG.debug("Line %5d: %s %s %s" % (line.line,
-                                          line.level, 
-                                          line.token_text,
-                                          line.data))
         if line.token == TOKEN_RNOTE:
             # reference to a named note defined elsewhere
             #NOTE_STRUCTURE: =
@@ -6051,7 +6043,6 @@ class GedcomParser(UpdateCallback):
             gid = line.data.strip()
             gramps_id = self.nid_map[gid]
             obj.add_note(self.__find_note_handle(gramps_id))
-            LOG.debug("Note linked: mapped gid %s\n" % gramps_id)
         else:
             # Embedded note
             #NOTE_STRUCTURE: =
@@ -6066,8 +6057,6 @@ class GedcomParser(UpdateCallback):
                 new_note.set_gramps_id(self.nid_map[""])
                 new_note.set_handle(Utils.create_id())
                 self.dbase.commit_note(new_note, self.trans)
-                LOG.debug("Note commited: mapped gid %s\n" % 
-                          new_note.get_gramps_id())
                 self.__skip_subordinate_levels(level+1, state)
                 obj.add_note(new_note.get_handle())
 
@@ -6089,10 +6078,6 @@ class GedcomParser(UpdateCallback):
           +1 RIN <AUTOMATED_RECORD_ID>  {0:1}
           +1 <<CHANGE_DATE>>  {0:1}
         """
-        LOG.debug("Line %5d: %s %s %s" % (line.line,
-                                          line.level, 
-                                          line.token_text,
-                                          line.data))
         state = CurrentState()
         gid = self.nid_map[line.token_text]
         handle = self.nid2id.get(gid)
@@ -6110,8 +6095,6 @@ class GedcomParser(UpdateCallback):
             state.msg += sub_state.msg
 
             self.dbase.commit_note(new_note, self.trans, new_note.change)
-            LOG.debug("Note commited: mapped gid %s\n" % 
-                      new_note.get_gramps_id())
             self.nid2id[new_note.gramps_id] = new_note.handle
         self.__check_msgs("NOTE Gramps ID %s" % new_note.get_gramps_id(), 
                           state, None, self.trans)
@@ -6261,7 +6244,6 @@ class GedcomParser(UpdateCallback):
             if note:
                 gramps_id = self.nid_map[note]
                 oref.add_note(self.__find_note_handle(gramps_id))
-                LOG.debug("Note linked: mapped gid %s\n" % gramps_id)
             obj.add_media_reference(oref)
 
     def __build_event_pair(self, state, event_type, event_map, description):
