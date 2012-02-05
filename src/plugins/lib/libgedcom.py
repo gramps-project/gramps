@@ -2586,12 +2586,6 @@ class GedcomParser(UpdateCallback):
         repository inline instead of in a object. 
         """
         repository = gen.lib.Repository()
-        if not gramps_id:
-            need_commit = True
-            gramps_id = self.dbase.find_next_repository_gramps_id()
-        else:
-            need_commit = False
-
         intid = self.rid2id.get(gramps_id)
         if self.dbase.has_repository_handle(intid):
             repository.unserialize(self.dbase.get_raw_repository_data(intid))
@@ -2599,8 +2593,6 @@ class GedcomParser(UpdateCallback):
             intid = self.__find_from_handle(gramps_id, self.rid2id)
             repository.set_handle(intid)
             repository.set_gramps_id(gramps_id)
-        if need_commit:
-            self.dbase.commit_repository(repository, self.trans)
         return repository
 
     def __find_or_create_note(self, gramps_id):
@@ -5639,7 +5631,7 @@ class GedcomParser(UpdateCallback):
           +1 RIN <AUTOMATED_RECORD_ID> {0:1} p.*
           +1 <<CHANGE_DATE>> {0:1} p.
         """
-        repo = self.__find_or_create_repository(line.token_text)
+        repo = self.__find_or_create_repository(self.rid_map[line.token_text])
 
         state = CurrentState()
         state.repo = repo
