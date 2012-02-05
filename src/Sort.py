@@ -158,14 +158,16 @@ class Sort(object):
             return 0
         a_obj = self.database.get_event_from_handle(a_id)
         b_obj = self.database.get_event_from_handle(b_id)
-        return cmp(a_obj.get_date_object(), b_obj.get_date_object())
+        dsv1 = a_obj.get_date_object().get_sort_value()
+        dsv2 = b_obj.get_date_object().get_sort_value()
+        return cmp(dsv1, dsv2)
 
     def by_date_key(self, a_id):
         """Sort routine for comparing two events by their dates. """
         if not a_id:
             return 0
         a_obj = self.database.get_event_from_handle(a_id)
-        return a_obj.get_date_object()
+        return a_obj.get_date_object().get_sort_value()
 
     def by_place_title(self, a_id, b_id):
         """Sort routine for comparing two places. """
