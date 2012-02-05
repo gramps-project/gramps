@@ -1031,55 +1031,33 @@ class BasePage(object):
             hyper += Html("span", " [%s]" % gid, class_ = "grampsid", inline = True)
         return hyper
 
-    def get_family_link(self, family, ppl_handle_list, type_ = "Html"):
+    def get_family_string(self, family):
         """
-        returns the husband and spouse link...
+        returns  a hyperlink for each person linked to the Family Page
         """
-        husband, spouse = [None]*2
+        husband, spouse = [False]*2
 
         husband_handle = family.get_father_handle()
         spouse_handle = family.get_mother_handle()
 
-        if (husband_handle and husband_handle in ppl_handle_list):
-            husband = self.dbase_.get_person_from_handle(husband_handle)
-            if husband:
-                husband_name = self.get_name(husband)
+        husband = self.dbase_.get_person_from_handle(husband_handle)
+        spouse = self.dbase_.get_person_from_handle(spouse_handle)
 
-                if type_ == "String":
-                    url = self.report.build_url_fname_html(husband_handle, 'ppl', up = self.up)
-                    husband_link = self.person_link(url, husband, _NAME_STYLE_DEFAULT, gid = husband.get_gramps_id())
-                else:
-                    husband_link = self.family_link(family.get_handle(), husband_name, family.get_gramps_id(), self.up)
+        if husband:
+            husband_name = self.get_name(husband)
+            hlink = self.family_link(family.get_handle(), husband_name, uplink = self.up)
+        if spouse:
+            spouse_name = self.get_name(spouse)
+            slink = self.family_link(family.get_handle(), spouse_name, uplink = self.up)
 
-        if (spouse_handle and spouse_handle in ppl_handle_list):
-            spouse = self.dbase_.get_person_from_handle(spouse_handle)
-            if spouse:
-                spouse_name = self.get_name(spouse)
-
-                if type_ == "String":
-                    url = self.report.build_url_fname_html(spouse_handle, 'ppl', up = self.up)
-                    spouse_link = self.person_link(url, spouse, _NAME_STYLE_DEFAULT, gid = spouse.get_gramps_id())
-                else:
-                    spouse_link = self.family_link(family.get_handle(), spouse_name, family.get_gramps_id(), self.up)
-
-        # return Html instead of a string...
-        if type_ == "Html":
-            web_link = Html("li")
-            if spouse and husband:
-                web_link += 'H%s ' % husband_link + _("and") + ' %s' % spouse_link
-            elif spouse:
-                web_link += spouse_link
-            elif husband:
-                web_link += husband_link
-            return web_link
-        else:
-            if husband and spouse:
-                self.page_title += "%s and %s" % (husband_link, spouse_link)
-            elif husband:
-               self.page_title += "%s" % husband_link
-            elif spouse:
-                self.page_title += "%s" % spouse_link
-            return self.page_title
+        title_str = ''
+        if husband and spouse:
+            title_str = '%s ' % hlink + _("and") + ' %s' % slink
+        elif husband:
+            title_str = '%s ' % hlink
+        elif spouse:
+            title_str = '%s ' % slink
+        return title_str
 
     def event_link(self, event_handle, event_title, gid = None, uplink = False):
         """
@@ -3307,7 +3285,7 @@ class FamilyPage(BasePage):
                 self.person = spouse
 
             # determine if husband and wife, husband only, or spouse only....
-            self.page_title = _("Family of ") + self.get_family_link(family, ppl_handle_list, type_ = "String")
+            self.page_title = _("Family of ") + self.get_family_string(family)
             relationshipdetail += Html("h2", self.page_title, inline = True)
 
             # display relationships
@@ -3936,7 +3914,7 @@ class MediaPage(BasePage):
             body += mediadetail
 
             # media navigation
-            with Html("div", id = "GalleryNav") as medianav: 
+            with Html("div", id = "GalleryNav", role = "navigation") as medianav: 
                 mediadetail += medianav
                 if prev:
                     medianav += self.media_nav_link(prev, _("Previous"), True)
@@ -4570,8 +4548,11 @@ class SourcePage(BasePage):
           }
         });"""
 
+                    # begin Source Citation Referents section
                     with Html("div", class_ ="subsection", id = "SourceCitationReferents") as section:
                         sourcedetail += section
+
+                        # add secion title
                         section += Html("h4", _("Citation References"), inline =True)
 
                         # ordered and list item #1, Citation Volume/ Page...
@@ -4593,102 +4574,111 @@ class SourcePage(BasePage):
 
                                 # unordered and list item #2, Object Type...
                                 unordered2 = Html("ul", class_ = "Col2 ObjectType", id = "menu")
-                                list1 += unordered2
 
                                 # Citation Referents have Person objects... 
                                 if people_list:
 
                                     list2 = Html("li")
-                                    unordered2 += list2
 
-                                    hyper2 = Html("a", _("People"), href = "#", title = _("People"))
-                                    list2 += hyper2
+                                    list2.extend(
+                                        Html("a", _("People"), href = "#", title = _("People"), inline = True)
+                                    )
 
-                                    # ordered and list item #3, Surname...
+                                    # unordered and list item #3, Surname...
                                     unordered3 = Html("ul", class_ = "Col3 Surname")
-                                    hyper2 += unordered3
 
                                     displayed = []
-                                    for (surname, handle_list) in people_list:
+                                    for (surname, people_handle_list) in people_list:
                                         if surname not in displayed:
+
                                             list3 = Html("li")
 
-                                            hyper3 = Html("a", surname, href = "#", title = surname)
+                                            list3.extend(
+                                                Html("a", surname, href = "#", title = surname, inline = True)
+                                            )
 
-                                            # ordered #4, Display Name...
+                                            # unordered list #4, Display Name...
                                             unordered4 = Html("ul", class_ = "Col4 DisplayName")
 
-                                            for person_handle in handle_list:
+                                            for person_handle in people_handle_list:
                                                 person = self.dbase_.get_person_from_handle(person_handle)
                                                 if person:
-
                                                     url = self.report.build_url_fname_html(person_handle, "ppl", up = self.up)
-
                                                     unordered4.extend(
-                                                        Html("li", self.person_link(url, person, False))
-                                                    ) 
-                                            hyper3 += unordered4
-                                            list3 += hyper3
+                                                        Html("li", self.person_link(url, person, False), inline = True)
+                                                    )
+
+                                            list3 += unordered4
                                             unordered3 += list3
                                         displayed.append(surname)
+                                    list2 += unordered3
+                                    unordered2 += list2   
 
                                 # Citation Referents have Family Objects...
                                 if (self.inc_families and family_list):
 
-                                    list2 = Html("li") + (
+                                    list2 = Html("li")
+
+                                    list2.extend(
                                         Html("a", _("Families"), href = "#", title = _("Families"), inline = True)
                                     )
-                                    unordered2 += list2
 
                                     # unordered and list item #3, Husband and Spouse FamilyLink...
                                     unordered3 = Html("ul", class_ = "Col3 Husband-n-Spouse")
-                                    list2 += unordered3
 
                                     for family_handle in family_list:
                                         family = self.dbase_.get_family_from_handle(family_handle)
                                         if (family and family_handle in db_family_handles):
-                                            family_title = self.get_family_link(family, ppl_handle_list, "String")
-                                            hyper = self.family_link(family_handle, "", uplink = self.up)
 
-                                            list3 = Html("li") + (
-                                                Html("a", family_title, href = hyper, title = family_title, inline = True)
+                                            unordered3.extend(
+                                                Html("li", self.get_family_string(family))
                                             )
-                                            unordered3 += list3
+                                    list2 += unordered3
+                                    unordered2 += list2
 
                                 # Citation Referents have Event Objects...
                                 if (self.inc_events and event_list):
 
-                                    list2 = Html("li") + (
+                                    list2 = Html("li")
+
+                                    list2.extend(
                                         Html("a", _("Events"), href = "#", title = _("Events"), inline = True)
                                     )
-                                    unordered2 += list2
-
+                                    
                                     # get event types and the handles that go with them...
                                     event_handle_list, event_types = build_event_data_by_events(self.dbase_, event_list)
 
-                                    # unOrdered and list item #3, EventType
+                                    # unOrdered and list item #3, EventType...
                                     unordered3 = Html("ul", class_ = "Col3 EventType")
-                                    list2 += unordered3
 
                                     # separate events by their types and then thier event handles
-                                    for (event_type, data_list) in sort_event_types(self.dbase_, event_types, event_handle_list):
+                                    for (event_type, event_list) in sort_event_types(self.dbase_, event_types, event_handle_list):
 
                                         # sort data_list by date of event and event handle...
-                                        data_list = sorted(data_list, key = operator.itemgetter(0, 1))
+                                        event_list = sorted(event_list, key = operator.itemgetter(0, 1))
 
-                                        list3 = Html("li") + (
+                                        list3 = Html("li")
+
+                                        list3.extend(
                                             Html("a", event_type, href = "#", title = event_type, inline = True)
                                         )
-                                        unordered3 += list3
 
                                         # unOrdered and list item #4, Event Date...
                                         unordered4 = Html("ul", class_ = "Col4 EventDate")
-                                        list3 += unordered4
 
-                                        for (sort_value, event_handle) in data_list:
+                                        for (sort_value, event_handle) in event_list:
                                             event = self.dbase_.get_event_from_handle(event_handle)
                                             if (event and event_handle in db_event_handles):
                                                 event_date = _dd.display(event.get_date_object())
+
+                                                list4 = Html("li")
+
+                                                list4.extend(
+                                                    Html("a", event_date, href = "#", title = event_date, inline = True)
+                                                )
+
+                                                # unordered list #5, Husband-n-Spouse
+                                                unordered5 = Html("ul", class_ = "Col5")
 
                                                 # marriage or Divorce Event...
                                                 if event.get_type() in [gen.lib.EventType.MARRIAGE, gen.lib.EventType.DIVORCE]:
@@ -4696,13 +4686,9 @@ class SourcePage(BasePage):
                                                     for (classname, newhandle) in self.dbase_.find_backlink_handles(event_handle, ["Family"]):
                                                         family = self.dbase_.get_family_from_handle(newhandle)
                                                         if (family and newhandle in db_family_handles):
-                                                            family_title = self.get_family_link(family, ppl_handle_list, "String")
-                                                            hyper = self.family_link(newhandle, "", uplink = self.up)
-
-                                                            list4 = Html("li") + (
-                                                                Html("a", family_title, href = hyper, title = family_title, inline = True)
+                                                            unordered5.extend(
+                                                                Html("li", self.get_family_string(family))
                                                             )
-                                                            unordered4 += list4
 
                                                 # any other event types...
                                                 else:
@@ -4713,101 +4699,94 @@ class SourcePage(BasePage):
                                                             for (classname, newhandle) in back_handle_list:
                                                                 obj = self.dbase_.get_person_from_handle(newhandle)
                                                                 if obj:
-                                                                    hyper = self.event_link(event_handle, "", uplink = self.up)
-                                                                    list4 = Html("li") + (
-                                                                        Html("a", self.get_name(obj), href = hyper, inline = True)
+                                                                    unordered5.extend(
+                                                                        Html("li", self.event_link(event_handle, self.get_name(obj),
+                                                                            uplink = self.up), inline = True)
                                                                     )
-                                                                    unordered4 += list4
  
                                                         # this occurs when an event has multiple participants...
                                                         else:
-                                                            list4 = Html("li") + (
-                                                                Html("a", event_date, href = "#", title = event_date, inline = True)
-                                                            )
-                                                            unordered4 += list4
-
-                                                            # unordered and list item #5, Multiple Participants in an event...
-                                                            unordered5 = Html("ul", class_ = "Col5 Multiple-Participants")
-                                                            list4 += unordered5
 
                                                             for (classname, newhandle) in back_handle_list:
                                                                 obj = self.dbase_.get_person_from_handle(newhandle)
                                                                 if obj:
-                                                                    hyper = self.event_link(event_handle, "", uplink = self.up)
-                                                                    list5 = Html("li") + (
-                                                                        Html("a", self.get_name(obj), href = hyper, inline = True)
+                                                                    unordered5.extend(
+                                                                        Html("li", self.event_link(event_handle, self.get_name(obj),
+                                                                            uplink = self.up), inline = True)
                                                                     )
-                                                                    unordered5 += list5
-
+                                                list4 += unordered5
+                                                unordered4 += list4
+                                        list3 += unordered4
+                                        unordered3 += list3
+                                    list2 += unordered3
+                                    unordered2 += list2
+  
                                 # Citation Referents have Place Objects...
                                 if place_list:
 
-                                    list2 = Html("li") + (
+                                    list2 = Html("li")
+
+                                    list2.extend(
                                         Html("a", _("Places"), href = "#", title = _("Places"), inline = True)
                                     )
-                                    unordered2 += list2
 
                                     # unordered and list item #3, Place Title...
                                     unordered3 = Html("ul", class_ = "Col3 PlaceTitle")
-                                    list2 += unordered3
 
                                     for place_handle in place_list:
                                         place = self.dbase_.get_place_from_handle(place_handle)
                                         if (place and place_handle in db_place_handles):
 
-                                            hyper = self.place_link(place_handle, "", uplink = self.up)
-                                            list3 = Html("li") + (
-                                                Html("a", place.get_title(), href = hyper, title = place.get_title(), inline = True)
+                                            unordered3.extend(
+                                                Html("li", self.place_link(place_handle, place.get_title(), uplink = self.up),
+                                                        inline = True)
                                             )
-                                            unordered3 += list3
+                                    list2 += unordered3
+                                    unordered2 += list2
   
                                 # Citation Referents have Source Objects...
                                 if source_list:
 
-                                    list2 = Html("li") + (
+                                    list2 = Html("li")
+
+                                    list2.extend(
                                         Html("a", _("Sources"), href = "#", title = _("Sources"), inline = True)
                                     )
-                                    unordered2 += list2
 
                                     # unordered and list item #3, Source Title...
                                     unordered3 = Html("ul", class_ = "Col3 SourceTitle")
-                                    list2 += unordered3
 
                                     for source_handle in source_list:
                                         source = self.dbase_.get_source_from_handle(source_handle)
                                         if (source and source_handle in db_source_handles):
-                                            source_title = source.get_title()
-
-                                            hyper = self.source_link(source_handle, "", uplink = self.up)
-
-                                            list3 = Html("li") + (
-                                                Html("a", source_title, href = hyper, title = source_title, inline = True)
+                                            unordered3.extend(
+                                                Html("li", self.source_link(source, uplink = self.up), inline = True)
                                             )
-                                            unordered3 += list3
+                                    list2 += unordered3
+                                    unordered2 += list2
 
                                 # Citation Referents have Repository Objects...
                                 if (inc_repositories and repo_list):
 
-                                    list2 = Html("li") + (
+                                    list2 = Html("li")
+
+                                    list2.extend(
                                         Html("a", _("Repositories"), href = "#", title = _("Repositories"), inline = True)
                                     )
-                                    unordered2 += list2
 
                                     # unordered and list item #3, Repository Name...
                                     unordered3 = Html("ul", class_ = "Col3 RepositoryName")
-                                    list2 += unordered3
 
                                     for repository_handle in repo_list:
                                         repository = self.dbase_.get_repository_from_handle(repository_handle)
                                         if (repository and repository_handle in db_repository_handles):
 
-                                            repo_title = repository.get_name()
-                                            hyper = self.repository_link(repository_handle, "", uplink = self.up)
-
-                                            list3 = Html("li") + (
-                                                Html("a", repo_title, href = hyper, title = repo_title, inline = True)
+                                            unordered3.extend(
+                                                Html("li", self.repository_link(repository_handle, repository.get_name(),
+                                                    uplink = self.up), inline = True)
                                             )
-                                            unordered3 += list3
+                                    list2 += unordered3
+                                    unordered2 += list2
 
                                 # Citation Referents has Media Objects...
                                 if (self.create_media and media_list):
@@ -4816,9 +4795,10 @@ class SourcePage(BasePage):
                                     media_list = sorted(media_list, key = sort.by_media_title_key)
 
                                     list2 = Html("li")
-                                    unordered2 += list2
 
-                                    hyper2 = Html("a", _("Media"), href = "#", title = _("Media"))
+                                    list2.extend(
+                                        Html("a", _("Media"), href = "#", title = _("Media"), inline = True)
+                                    )
 
                                     # unordered and list item #3, Thumbnail Link...
                                     unordered3 = Html("ul", class_ = "Col3 MediaLink")
@@ -4826,7 +4806,6 @@ class SourcePage(BasePage):
                                     for media_handle in media_list:
                                         media = self.dbase_.get_object_from_handle(media_handle)
                                         if (media and media_handle in db_media_handles):
-                                            media_title = media.get_description()
 
                                             mime_type = media.get_mime_type()
                                             if mime_type:
@@ -4835,16 +4814,19 @@ class SourcePage(BasePage):
                                                     newpath = self.report.build_url_fname(newpath, up = self.up)
 
                                                     unordered3.extend(
-                                                        Html("li", self.media_link(media_handle, newpath,
-                                                            media.get_description(), self.up, usedescr = False))
+                                                        Html("li", self.media_link(media_handle, newpath, media.get_description(),
+                                                            self.up, usedescr = False), inline = True)
                                                     )
                                                 else:
                                                     unordered3.extend(
                                                         Html("li", self.doc_link(media_handle, media.get_description(),
-                                                            self.up, usedescr = False))
+                                                            self.up, usedescr = False), inline = True)
                                                     )
-                                    hyper2 += unordered3
-                                    list2 += hyper2
+                                    list2 += unordered3
+                                    unordered2 += list2
+
+                                # must be attached at the very end of the refs list...
+                                list1 += unordered2
 
         # add clearline for proper styling
         # add footer section
