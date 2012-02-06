@@ -2758,6 +2758,9 @@ class GedcomParser(UpdateCallback):
                     state.msg
         new_note = gen.lib.Note(message)
         new_note.set_handle(Utils.create_id())
+        note_type = gen.lib.NoteType()
+        note_type.set((gen.lib.NoteType.CUSTOM, "GEDCOM import"))
+        new_note.set_type(note_type)
         self.dbase.add_note(new_note, self.trans)
         # If possible, attach the note to the relevant object
         if object:
