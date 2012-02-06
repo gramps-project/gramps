@@ -207,7 +207,7 @@ class Sort(object):
         evt_a = self.database.get_event_from_handle(a_id)
         plc_a = self.database.get_place_from_handle(evt_a.get_place_handle())
         plc_a_title = plc_a.title if plc_a else ""
-        return locale.strxfrml(plc_a_title)
+        return locale.strxfrm(plc_a_title)
 
     def by_event_description(self, a_id, b_id):
         """Sort routine for comparing two events by their descriptions. """
