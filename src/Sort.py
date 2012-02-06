@@ -234,7 +234,7 @@ class Sort(object):
 
     def by_event_id_key(self, a_id):
         """Sort routine for comparing two events by their ID. """
-        if not (a_id and b_id):
+        if not a_id:
             return 0
         evt_a = self.database.get_event_from_handle(a_id)
         return locale.strxfrm(evt_a.get_gramps_id())
