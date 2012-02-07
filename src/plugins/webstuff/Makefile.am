@@ -1,10 +1,11 @@
 # This is the src/plugins/webstuff level Makefile for Gramps
-# $Id$
 # We could use GNU make's ':=' syntax for nice wildcard use,
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-SUBDIRS = css images 
+# $Id$
+
+SUBDIRS = css images js
 
 pkgdatadir = $(datadir)/@PACKAGE@/plugins/webstuff
 
