@@ -4440,14 +4440,14 @@ class SourcePage(BasePage):
             return
 
         # for use in determining if a citation referent is in the report database?
-        (db_family_handles, db_event_handles, db_place_handles, db_source_handles, db_repository_handles,
-            db_media_handles, db_note_handles) = database_handles_list
+        (db_family_handles, db_event_handles, db_place_handles, db_source_handles,
+            db_media_handles) = database_handles_list
 
         self.page_title = source.get_title()
         BasePage.__init__(self, report, title, source.get_gramps_id())
 
         inc_repositories = self.report.options["inc_repository"]
-        self.navigation = self.report.options["navigation"]
+        self.navigation  = self.report.options["navigation"]
 
         of = self.report.create_file(src_handle, "src")
         self.up = True
@@ -4483,8 +4483,8 @@ class SourcePage(BasePage):
                 for (label, value) in [
                     (_("Gramps ID"),               source_gid),
                     (_("Author"),                  source.get_author()),
-                    (_("Publication information"), source.get_publication_info()),
-                    (_("Abbreviation"),            source.get_abbreviation()) ]:
+                    (_("Abbreviation"),            source.get_abbreviation()),
+                    (_("Publication information"), source.get_publication_info()) ]:
                     if value:
                         trow = Html("tr") + (
                             Html("td", label, class_ = "ColumnAttribute", inline = True),
@@ -4529,9 +4529,9 @@ class SourcePage(BasePage):
                         head += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet")
 
                         # add javascript code to handle if the user's browser is IE6?
-                        fname = "/".join(["js", "jquery-1.3.2.min.js"])
+                        fname = "/".join(["js", "jQuery-1.7.1.js"])
                         url = self.report.build_url_fname(fname, None, self.up)
-                        head += Html("script", type = "text/javascript", language = "javascript", src = url, inline = True)
+                        head += Html("script", src = url, type = "text/javascript", language = "javascript", inline = True)
 
                         with Html("script", type = "text/javascript", language = "javascript") as jsc:
                             head += jsc
@@ -4779,8 +4779,7 @@ class SourcePage(BasePage):
 
                                     for repository_handle in repo_list:
                                         repository = self.dbase_.get_repository_from_handle(repository_handle)
-                                        if (repository and repository_handle in db_repository_handles):
-
+                                        if repository:
                                             unordered3.extend(
                                                 Html("li", self.repository_link(repository_handle, repository.get_name(),
                                                     uplink = self.up), inline = True)
@@ -6980,8 +6979,7 @@ class NavWebReport(Report):
         source_list = {}
 
         database_handles_list = (self.database.get_family_handles(), self.database.get_event_handles(),
-            self.database.get_place_handles(), self.database.get_source_handles(), self.database.get_repository_handles(),
-            self.database.get_media_object_handles(), self.database.get_note_handles())
+            self.database.get_place_handles(), self.database.get_source_handles(), self.database.get_media_object_handles())
 
         self.base_pages()
 
@@ -7083,7 +7081,7 @@ class NavWebReport(Report):
         fname = CSS["behaviour"]["filename"] 
         self.copy_file(fname, "behaviour.css", "styles")
 
-        # copy Menu Layout Cascade Style Sheet if Blue or Visually is being used?
+        # copy Menu Layout Style Sheet if Blue or Visually is being used as the stylesheet?
         if CSS[self.css]["navigation"]: 
             if self.navigation == "Horizontal":
                 fname = CSS["Horizontal-Menus"]["filename"]
@@ -7095,13 +7093,14 @@ class NavWebReport(Report):
                 fname = CSS["DropDown-Menus"]["filename"]
             self.copy_file(fname, "narrative-menus.css", "styles")
 
-            # copy SourcePage DropDown Citations Style Sheet
-            fname = CSS["DropDown-Citations"]["filename"]
-            self.copy_file(fname, "narrative-citations.css", "styles")
+            if self.navigation == "DropDown":
+                # copy SourcePage DropDown Citations Style Sheet
+                fname = CSS["DropDown-Citations"]["filename"]
+                self.copy_file(fname, "narrative-citations.css", "styles")
 
-            # copy jquery javascript file...
-            fname = CSS["DropDown-Citations"]["javascript"]
-            self.copy_file(fname, "jquery-1.3.2.min.js", "js")
+                # copy jquery javascript files for use in the Drop Down Citations section...
+                fname = CSS["DropDown-Citations"]["javascript"]
+                self.copy_file(fname, "jQuery-1.7.1.js", "js")
 
         # copy narrative-maps Style Sheet if Place or Family Map pages are being created?
         if (self.placemappages or self.familymappages):

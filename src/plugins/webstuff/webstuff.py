@@ -119,25 +119,25 @@ def load_on_reg(dbstate, uistate, plugin):
          path_css('Web_Print-Default.css'), None, [], [] ],
 
         # Horizontal Navigation Menus Style Sheet
-        ["Horizontal-Menus", 0, "", 
+        ["Horizontal-Menus", 0, "Horizontal Menus", 
          path_css('Web_Horizontal-Menus.css'), None, [], [] ],
 
         # Vertical Navigation Menus Style Sheet
-        ["Vertical-Menus", 0, "", 
+        ["Vertical-Menus", 0, "Vertical Menus", 
          path_css('Web_Vertical-Menus.css'), None, [], [] ],
 
         # WebKit/ Html5/ CSS3 Fade Navigation Menus Style Sheet
-        ["Fade-Menus", 0, "", 
+        ["Fade-Menus", 0, "Fade In/ Out Menus", 
          path_css('Web_Fade-Menus.css'), None, [], [] ],
 
         # WebKit/ Html5/ CSS3 Drop Down Navigation Menus Style Sheet
-        ["DropDown-Menus", 0, "",
-         path_css("Web_DropDown-Menus.css"), None, [], [], ],
+        ["DropDown-Menus", 0, "Drop Down Menus",
+         path_css("Web_DropDown-Menus.css"), None, [], [] ],
 
         # WebKit/ Html5/ CSS3 Drop Down Citations Style Sheet
-        ["DropDown-Citations", 0, "",
+        ["DropDown-Citations", 0, "Drop Down Citations",
          path_css("Web_DropDown-Citations.css"), None, [],
-         path_js("jquery-1.3.2.min.js"),                 ],
+         path_js("jQuery-1.7.1.js")                       ],
 
         # GeoView style sheet with its image
         ["GeoView", 0, "GeoView", 
@@ -162,16 +162,12 @@ def load_on_reg(dbstate, uistate, plugin):
           path_img("document.png")], [] ],
 
         # Gramps Fav icon #2
-        ["favicon2", 0, "favicon2", 
+        ["favicon2", 0, "FavIcon2", 
          path_img("favicon2.ico"), None, [], [] ],
 
         # copyright image
         ['Copyright', 0, 'Copyright',
          path_img("somerights20.gif"), None, [], [] ],
-
-        # document image in case the media object is not an image
-        ['Document', 0, 'Document',
-         path_img("document.png"), None, [], [] ],
         ]
     return CSS_FILES
 
