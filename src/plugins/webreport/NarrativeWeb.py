@@ -615,8 +615,8 @@ class BasePage(object):
             with Html("table", class_ = table_class) as table:
                 section += table
 
-                for fhandle in family_list:
-                    family = self.dbase_.get_family_from_handle(fhandle)
+                for family_handle in family_list:
+                    family = self.dbase_.get_family_from_handle(family_handle)
                     if family:
                         self.display_spouse(family, table, ppl_handle_list, place_lat_long)
 
@@ -3083,7 +3083,7 @@ class SurnamePage(BasePage):
         self.XHTMLWriter(surnamepage, of)  
 
 class FamilyListPage(BasePage):
-    def __init__(self, report, title, ind_list):
+    def __init__(self, report, title, ind_list, db_family_handles):
         self.dbase_ = report.database
         BasePage.__init__(self, report, title)
 
@@ -3142,16 +3142,16 @@ class FamilyListPage(BasePage):
                         letter ='&nbsp;'
 
                     # get person from sorted database list
-                    for phandle in handle_list:
-                        person = self.dbase_.get_person_from_handle(phandle)
+                    for person_handle in handle_list:
+                        person = self.dbase_.get_person_from_handle(person_handle)
                         if person:
                             family_handle_list = person.get_family_handle_list()
                             if family_handle_list:
 
                                 first_family = True
-                                for fhandle in family_handle_list:
+                                for family_handle in family_handle_list:
 
-                                    family = self.dbase_.get_family_from_handle(fhandle)
+                                    family = self.dbase_.get_family_from_handle(family_handle)
                                     if family:
 
                                         trow = Html("tr")
@@ -3175,7 +3175,7 @@ class FamilyListPage(BasePage):
                                         if first_family:
                                             trow.attr = 'class ="BeginFamily"'
  
-                                            tcell += self.family_link(fhandle, self.get_name(person),
+                                            tcell += self.family_link(family_handle, self.get_name(person),
                                                 family.get_gramps_id(), self.up)
 
                                             first_family = False
@@ -3192,7 +3192,7 @@ class FamilyListPage(BasePage):
                                             if partner:
                                                 use_link = check_person_database(partner_handle, ind_list)
                                                 if use_link:
-                                                    tcell += self.family_link(fhandle, self.get_name(partner),
+                                                    tcell += self.family_link(family_handle, self.get_name(partner),
                                                         family.get_gramps_id(), self.up)
                                                 else:
                                                     tcell += self.get_name(partner)
@@ -3226,6 +3226,7 @@ class FamilyListPage(BasePage):
                                             tcell1 += '&nbsp;'
                                             tcell2 += '&nbsp;'
                                         first_family = False
+                                    db_family_handles.append(family_handle)
 
         # add clearline for proper styling
         # add footer section
@@ -3332,7 +3333,7 @@ class FamilyPage(BasePage):
         self.XHTMLWriter(familydetailpage, of)
 
 class PlaceListPage(BasePage):
-    def __init__(self, report, title, place_handles):
+    def __init__(self, report, title, place_handles, db_place_handles):
         self.dbase_ = report.database
         BasePage.__init__(self, report, title)
 
@@ -3385,8 +3386,8 @@ class PlaceListPage(BasePage):
                 tbody = Html("tbody")
                 table += tbody
 
-                for handle in handle_list:
-                    place = self.dbase_.get_place_from_handle(handle)
+                for place_handle in handle_list:
+                    place = self.dbase_.get_place_from_handle(place_handle)
                     if place: 
                         place_title = place.get_title()
                         ml = place.get_main_location()
@@ -3433,6 +3434,7 @@ class PlaceListPage(BasePage):
                         else:
                             tcell1 += '&nbsp;'
                             tcell2 += '&nbsp;'
+                    db_place_handles.append(place_handles)
  
         # add clearline for proper styling
         # add footer section
@@ -3576,7 +3578,7 @@ class PlacePage(BasePage):
         self.XHTMLWriter(placepage, of)
 
 class EventListPage(BasePage):
-    def __init__(self, report, title, event_types, event_handle_list, ppl_handle_list):
+    def __init__(self, report, title, event_types, event_handle_list, ppl_handle_list, db_event_handles):
         """
         Will create the event list page
 
@@ -3718,8 +3720,9 @@ class EventListPage(BasePage):
                                 self.complete_people(tcell, first_person, handle_list,
                                                      ppl_handle_list, up =False)
 
-                        _EVENT_DISPLAYED.append( gid )
+                        _EVENT_DISPLAYED.append(gid)
                         first_event = False
+                        db_event_handles.append(event_handle)
 
         # add clearline for proper styling
         # add footer section
@@ -4427,11 +4430,11 @@ class SourceListPage(BasePage):
         # and close the file
         self.XHTMLWriter(sourcelistpage, of)
 
-#################################################
+"""
 #
 #    Creates the individual source pages from SourceListPage
 #
-#################################################
+"""
 class SourcePage(BasePage):
     def __init__(self, report, title, src_handle, src_list, ppl_handle_list, database_handles_list):
         self.dbase_ = report.database
@@ -4440,8 +4443,9 @@ class SourcePage(BasePage):
             return
 
         # for use in determining if a citation referent is in the report database?
-        (db_family_handles, db_event_handles, db_place_handles, db_source_handles,
-            db_media_handles) = database_handles_list
+        (db_people_handles, db_family_handles, db_event_handles, db_place_handles,
+                db_repository_handles, db_media_handles) = database_handles_list
+        db_source_handles = src_list
 
         self.page_title = source.get_title()
         BasePage.__init__(self, report, title, source.get_gramps_id())
@@ -4566,6 +4570,10 @@ class SourcePage(BasePage):
                                 # gets all citation referents no matter on the filters...
                                 (people_list, family_list, event_list, place_list, source_list, media_list, repo_list) = refs
 
+
+                                # remove people that are not in this report database...
+                                people_list = [person_handle for person_handle in people_list if person_handle in db_people_handles]
+
                                 # Sort the person list by  the individual's surname...
                                 people_list = sort_people(self.dbase_, people_list)
 
@@ -4612,7 +4620,10 @@ class SourcePage(BasePage):
                                             unordered3 += list3
                                         displayed.append(surname)
                                     list2 += unordered3
-                                    unordered2 += list2   
+                                    unordered2 += list2
+
+                                # remove family handles if they are not in this report database?
+                                family_list = [family_handle for family_handle in family_list if family_handle in db_family_handles]  
 
                                 # Citation Referents have Family Objects...
                                 if (self.inc_families and family_list):
@@ -4628,13 +4639,16 @@ class SourcePage(BasePage):
 
                                     for family_handle in family_list:
                                         family = self.dbase_.get_family_from_handle(family_handle)
-                                        if (family and family_handle in db_family_handles):
+                                        if family:
 
                                             unordered3.extend(
                                                 Html("li", self.get_family_string(family))
                                             )
                                     list2 += unordered3
                                     unordered2 += list2
+
+                                # remove event handles if they are not in this report database...
+                                event_list = [event_handle for event_handle in event_list if event_handle in db_event_handles]
 
                                 # Citation Referents have Event Objects...
                                 if (self.inc_events and event_list):
@@ -4668,7 +4682,7 @@ class SourcePage(BasePage):
 
                                         for (sort_value, event_handle) in event_list:
                                             event = self.dbase_.get_event_from_handle(event_handle)
-                                            if (event and event_handle in db_event_handles):
+                                            if event:
                                                 event_date = _dd.display(event.get_date_object())
 
                                                 list4 = Html("li")
@@ -4720,6 +4734,9 @@ class SourcePage(BasePage):
                                         unordered3 += list3
                                     list2 += unordered3
                                     unordered2 += list2
+
+                                # remove place handles if they are not in this report database...
+                                place_list = [place_handle for place_handle in place_list if place_handle in db_place_handles]
   
                                 # Citation Referents have Place Objects...
                                 if place_list:
@@ -4735,8 +4752,7 @@ class SourcePage(BasePage):
 
                                     for place_handle in place_list:
                                         place = self.dbase_.get_place_from_handle(place_handle)
-                                        if (place and place_handle in db_place_handles):
-
+                                        if place:
                                             unordered3.extend(
                                                 Html("li", self.place_link(place_handle, place.get_title(), uplink = self.up),
                                                         inline = True)
@@ -4744,6 +4760,9 @@ class SourcePage(BasePage):
                                     list2 += unordered3
                                     unordered2 += list2
   
+                                # remove sources if they are not in this report database...
+                                source_list = [source_handle for source_handle in source_list if source_handle in db_source_handles]
+
                                 # Citation Referents have Source Objects...
                                 if source_list:
 
@@ -4758,12 +4777,15 @@ class SourcePage(BasePage):
 
                                     for source_handle in source_list:
                                         source = self.dbase_.get_source_from_handle(source_handle)
-                                        if (source and source_handle in db_source_handles):
+                                        if source:
                                             unordered3.extend(
                                                 Html("li", self.source_link(source, uplink = self.up), inline = True)
                                             )
                                     list2 += unordered3
                                     unordered2 += list2
+
+                                # remove repositories if they are not in this report database...
+                                repo_list = [repo_handle for repo_handle in repo_list if repo_handle in db_repository_handles]
 
                                 # Citation Referents have Repository Objects...
                                 if (inc_repositories and repo_list):
@@ -4787,6 +4809,9 @@ class SourcePage(BasePage):
                                     list2 += unordered3
                                     unordered2 += list2
 
+                                # remove media if they are not in this report database...
+                                media_list = [media_handle for media_handle in media_list if media_handle in db_media_handles]
+
                                 # Citation Referents has Media Objects...
                                 if (self.create_media and media_list):
 
@@ -4804,8 +4829,7 @@ class SourcePage(BasePage):
 
                                     for media_handle in media_list:
                                         media = self.dbase_.get_object_from_handle(media_handle)
-                                        if (media and media_handle in db_media_handles):
-
+                                        if media:
                                             mime_type = media.get_mime_type()
                                             if mime_type:
                                                 if mime_type.startswith("image/"):
@@ -4821,6 +4845,7 @@ class SourcePage(BasePage):
                                                         Html("li", self.doc_link(media_handle, media.get_description(),
                                                             self.up, usedescr = False), inline = True)
                                                     )
+
                                     list2 += unordered3
                                     unordered2 += list2
 
@@ -4837,7 +4862,7 @@ class SourcePage(BasePage):
         self.XHTMLWriter(sourcepage, of)
 
 class MediaListPage(BasePage):
-    def __init__(self, report, title):
+    def __init__(self, report, title, db_media_handles):
         self.dbase_ = report.database
         BasePage.__init__(self, report, title)
 
@@ -4868,11 +4893,12 @@ class MediaListPage(BasePage):
 
                 trow.extend(
                     Html("th", trans, class_ =colclass, inline =True)
-                    for trans, colclass in [
-                        ["&nbsp;",          "ColumnRowLabel"],
-                        [_("Media | Name"), "ColumnName"],
-                        [_("Date"),         "ColumnDate"],
-                        [_("Mime Type"),    "ColumnMime"] ]
+                        for trans, colclass in [
+                            ("&nbsp;",          "ColumnRowLabel"),
+                            (_("Media | Name"), "ColumnName"),
+                            (_("Date"),         "ColumnDate"),
+                            (_("Mime Type"),    "ColumnMime")
+                        ]
                 )
   
                 # begin table body
@@ -4883,8 +4909,8 @@ class MediaListPage(BasePage):
                 sort = Sort.Sort(self.dbase_)
                 mlist = sorted(self.report.photo_list, key = sort.by_media_title_key)
         
-                for handle in mlist:
-                    media = self.dbase_.get_object_from_handle(handle)
+                for media_handle in mlist:
+                    media = self.dbase_.get_object_from_handle(media_handle)
                     if media:
                         title = media.get_description() or "[untitled]"
 
@@ -4892,16 +4918,18 @@ class MediaListPage(BasePage):
                         tbody += trow
 
                         media_data_row = [
-                            [index,                                 "ColumnRowLabel"],
-                            [self.media_ref_link(handle, title),    "ColumnName"],
-                            [_dd.display(media.get_date_object() ), "ColumnDate"],
-                            [media.get_mime_type(),                 "ColumnMime"] ]
+                            [index,                                    "ColumnRowLabel"],
+                            [self.media_ref_link(media_handle, title), "ColumnName"],
+                            [_dd.display(media.get_date_object() ),    "ColumnDate"],
+                            [media.get_mime_type(),                    "ColumnMime"] ]
 
                         trow.extend(
                             Html("td", data, class_ = colclass)
                                 for data, colclass in media_data_row
-                        )  
+                        )
+ 
                         index += 1
+                    db_media_handles.append(media_handle)
 
         # add footer section
         # add clearline for proper styling
@@ -4938,14 +4966,14 @@ class ThumbnailPreviewPage(BasePage):
             return
 
         media_list = []
-        for phandle in self.photo_keys:
-            photo = self.dbase_.get_object_from_handle(phandle)
+        for person_handle in self.photo_keys:
+            photo = self.dbase_.get_object_from_handle(person_handle)
             if photo:
                 if photo.get_mime_type().startswith("image"):
-                    media_list.append((photo.get_description(), phandle, photo))
+                    media_list.append((photo.get_description(), person_handle, photo))
 
                     if self.create_thumbs_only:
-                        copy_thumbnail(self.report, phandle, photo)
+                        copy_thumbnail(self.report, person_handle, photo)
 
         if not media_list:
             return
@@ -4999,7 +5027,7 @@ class ThumbnailPreviewPage(BasePage):
                     cols = 0
                     while (cols < num_of_cols and indexpos < num_of_images):
                         ptitle = media_list[indexpos][0]
-                        phandle = media_list[indexpos][1]
+                        person_handle = media_list[indexpos][1]
                         photo = media_list[indexpos][2]
 
                         # begin table cell and attach to table row(trow)...
@@ -5025,7 +5053,7 @@ class ThumbnailPreviewPage(BasePage):
                         unordered += list
 
                         # attach thumbnail to list...
-                        list += self.thumb_hyper_image(newpath, "img", phandle, ptitle)
+                        list += self.thumb_hyper_image(newpath, "img", person_handle, ptitle)
 
                         index += 1
                         indexpos += 1
@@ -5049,7 +5077,7 @@ class ThumbnailPreviewPage(BasePage):
                 table += tbody 
 
                 index = 1
-                for ptitle, phandle, photo in media_list:
+                for ptitle, person_handle, photo in media_list:
                     trow = Html("tr")
                     tbody += trow
 
@@ -5813,7 +5841,7 @@ class IndividualPage(BasePage):
                                             0, center, self.person.handle)
         return tree
 
-    def draw_tree(self, gen_nr, maxgen, max_size, old_center, new_center, phandle):
+    def draw_tree(self, gen_nr, maxgen, max_size, old_center, new_center, person_handle):
         """
         draws the Abcestor Tree
         """
@@ -5821,14 +5849,14 @@ class IndividualPage(BasePage):
         if gen_nr > maxgen:
             return tree
         gen_offset = int(max_size / pow(2, gen_nr+1))
-        person = self.dbase_.get_person_from_handle(phandle)
+        person = self.dbase_.get_person_from_handle(person_handle)
         if not person:
             return tree
 
         if gen_nr == 1:
             tree = self.draw_box(new_center, 0, person)
         else:
-            tree = self.draw_connected_box(old_center, new_center, gen_nr-1, phandle)
+            tree = self.draw_connected_box(old_center, new_center, gen_nr-1, person_handle)
 
         if gen_nr == maxgen:
             return tree
@@ -6476,7 +6504,7 @@ class IndividualPage(BasePage):
         return trow
 
 class RepositoryListPage(BasePage):
-    def __init__(self, report, title, repos_dict, keys):
+    def __init__(self, report, title, repos_dict, keys, db_repository_handles):
         self.dbase_ = report.database
         BasePage.__init__(self, report, title)
         inc_repos = self.report.options["inc_repository"]
@@ -6530,6 +6558,7 @@ class RepositoryListPage(BasePage):
                                                                 repo.get_gramps_id(), self.up), class_ = "ColumnName")
                     else:
                         trow += Html("td", "[ untitled ]", class_ = "ColumnName")
+                    db_repository_handles.append(handle)
 
         # add clearline for proper styling
         # add footer section
@@ -6978,9 +7007,6 @@ class NavWebReport(Report):
         place_list = {}
         source_list = {}
 
-        database_handles_list = (self.database.get_family_handles(), self.database.get_event_handles(),
-            self.database.get_place_handles(), self.database.get_source_handles(), self.database.get_media_object_handles())
-
         self.base_pages()
 
         # build classes IndividualListPage and IndividualPage
@@ -6990,41 +7016,45 @@ class NavWebReport(Report):
         self.surname_pages(ind_list)
 
         # build classes FamilyListPage and FamilyPage
+        db_family_handles = []
         if self.inc_families:
-            self.family_pages(ind_list, place_list, place_lat_long, self.database.get_family_handles())
+            self.family_pages(ind_list, place_list, place_lat_long, db_family_handles)
 
         # build classes EventListPage and EventPage
+        db_event_handles = []
         if self.inc_events:
-            self.event_pages(ind_list)
+            self.event_pages(ind_list, db_event_handles)
 
         # build classes PlaceListPage and PlacePage
-        self.place_pages(place_list, source_list)
-
-        # build classes SourceListPage and SourcePage
-        # has been moved so that all Sources can be found before processing...
-        self.source_pages(source_list, ind_list, database_handles_list)
+        db_place_handles = []
+        self.place_pages(place_list, source_list, db_place_handles)
 
         # build classes RepositoryListPage and RepositoryPage
+        db_repository_handles = []
         if self.inc_repository:
             repolist = self.database.get_repository_handles()
             if len(repolist):
-                self.repository_pages(repolist, source_list)
+                self.repository_pages(repolist, source_list, db_repository_handles)
 
         # build classes MediaListPage and MediaPage
+        db_media_handles = []
         if self.inc_gallery:
             if not self.create_thumbs_only:
-                self.media_pages(source_list)
+                self.media_pages(source_list, db_media_handles)
 
             # build Thumbnail Preview Page...
             self.thumbnail_preview_page()
 
-        # Build classes source pages a second time to pick up sources referenced
-        # by galleries
-        self.source_pages(source_list, ind_list, database_handles_list)
-
-        # build classes ddressBookList and AddressBookPage
+        # build classes AddressBookListPage and AddressBookPage
         if self.inc_addressbook:
             self.addressbook_pages(ind_list)
+
+        database_handles_list = (ind_list, db_family_handles, db_event_handles, db_place_handles,
+                db_repository_handles, db_media_handles)
+
+        # build classes SourceListPage and SourcePage
+        # has been moved so that all Sources can be found before processing...
+        self.source_pages(source_list, ind_list, database_handles_list)
 
         # if an archive is being used, close it?
         if self.archive:
@@ -7210,31 +7240,32 @@ class NavWebReport(Report):
         """
         creates the FamiliesListPage and FamilyPages
         """
+        FamilyListPage(self, self.title, ppl_handle_list, db_family_handles)
+
         self.user.begin_progress(_("Narrated Web Site Report"),
                                   _("Creating family pages..."), 
-                                  self.database.get_number_of_families())
-        FamilyListPage(self, self.title, ppl_handle_list)
+                                  len(db_family_handles))
 
         for family_handle in db_family_handles:
             FamilyPage(self, self.title, family_handle, place_list, ppl_handle_list, place_lat_long)
             self.user.step_progress()
         self.user.end_progress()
 
-    def place_pages(self, place_list, source_list):
+    def place_pages(self, place_list, source_list, db_place_handles):
         """
         creates PlaceListPage and PlacePage
         """
         self.user.begin_progress(_("Narrated Web Site Report"),
                                   _("Creating place pages"), len(place_list))
 
-        PlaceListPage(self, self.title, place_list)
+        PlaceListPage(self, self.title, place_list, db_place_handles)
 
         for place in place_list:
             PlacePage(self, self.title, place, source_list, place_list)
             self.user.step_progress()
         self.user.end_progress()
 
-    def event_pages(self, ind_list):
+    def event_pages(self, ind_list, db_event_handles):
         """
         a dump of all the events sorted by event type, date, and surname
         for classes EventListPage and EventPage
@@ -7245,7 +7276,7 @@ class NavWebReport(Report):
         self.user.begin_progress(_("Narrated Web Site Report"),
                                   _("Creating event pages"), 
                                   len(event_handle_list))
-        EventListPage(self, self.title, event_types, event_handle_list, ind_list)
+        EventListPage(self, self.title, event_types, event_handle_list, ind_list, db_event_handles)
 
         for event_handle in event_handle_list:
             EventPage(self, self.title, event_handle, ind_list)
@@ -7253,7 +7284,7 @@ class NavWebReport(Report):
             self.user.step_progress()
         self.user.end_progress()
 
-    def media_pages(self, source_list):
+    def media_pages(self, source_list, db_media_handles):
         """
         creates MediaListPage and MediaPage
         """
@@ -7261,7 +7292,7 @@ class NavWebReport(Report):
                                   _("Creating media pages"), 
                                   len(self.photo_list))
 
-        MediaListPage(self, self.title)
+        MediaListPage(self, self.title, db_media_handles)
 
         prev = None
         total = len(self.photo_list)
@@ -7290,19 +7321,19 @@ class NavWebReport(Report):
         ThumbnailPreviewPage(self, self.title, self.user.step_progress)
         self.user.end_progress()
 
-    def repository_pages(self, repolist, source_list):
+    def repository_pages(self, repolist, source_list, db_repository_handles):
         """
         will create RepositoryPage() and RepositoryListPage()
         """
         repos_dict = {}
 
         # Sort the repositories
-        for handle in repolist:
-            repository = self.database.get_repository_from_handle(handle)
+        for repository_handle in repolist:
+            repository = self.database.get_repository_from_handle(repository_handle)
             key = repository.get_name() + str(repository.get_gramps_id())
-            repos_dict[key] = (repository, handle)
+            repos_dict[key] = (repository, repository_handle)
             
-        keys = sorted(repos_dict, key =locale.strxfrm)
+        keys = sorted(repos_dict, key = locale.strxfrm)
 
         # set progress bar pass for Repositories
         repository_size = len(repos_dict)
@@ -7311,7 +7342,7 @@ class NavWebReport(Report):
                                   _('Creating repository pages'), 
                                   repository_size)
         # RepositoryListPage Class
-        RepositoryListPage(self, self.title, repos_dict, keys)
+        RepositoryListPage(self, self.title, repos_dict, keys, db_repository_handles)
 
         for index, key in enumerate(keys):
             (repo, handle) = repos_dict[key]
@@ -8353,8 +8384,8 @@ def add_birthdate(dbase, ppl_handle_list):
     """
     sortable_individuals = []
     birth_date = False
-    for phandle in ppl_handle_list:
-        person = dbase.get_person_from_handle(phandle)
+    for person_handle in ppl_handle_list:
+        person = dbase.get_person_from_handle(person_handle)
         if person:
 
             # get birth date: if birth_date equals nothing, then generate a fake one?
@@ -8364,7 +8395,7 @@ def add_birthdate(dbase, ppl_handle_list):
                 birth = dbase.get_event_from_handle(birth_ref.ref)
                 if birth:
                     birth_date = birth.get_date_object().get_sort_value()
-        sortable_individuals.append((birth_date, phandle))
+        sortable_individuals.append((birth_date, person_handle))
 
     # return a list of handles with the individual's birthdate attached
     return sortable_individuals
@@ -8424,8 +8455,8 @@ def build_event_data_by_individuals(dbase, ppl_handle_list):
     event_handle_list = []
     event_types = []
 
-    for phandle in ppl_handle_list:
-        person = dbase.get_person_from_handle(phandle)
+    for person_handle in ppl_handle_list:
+        person = dbase.get_person_from_handle(person_handle)
         if person:
 
             evt_ref_list = person.get_event_ref_list()
@@ -8439,8 +8470,8 @@ def build_event_data_by_individuals(dbase, ppl_handle_list):
 
             person_family_handle_list = person.get_family_handle_list()
             if person_family_handle_list:
-                for fhandle in person_family_handle_list:
-                    family = dbase.get_family_from_handle(fhandle)
+                for family_handle in person_family_handle_list:
+                    family = dbase.get_family_from_handle(family_handle)
                     if family:
 
                         family_evt_ref_list = family.get_event_ref_list()
@@ -8469,10 +8500,10 @@ def build_event_data_by_events(dbase_, event_handles):
 
     return event_handle_list, event_types
 
-def check_person_database(phandle, ppl_handle_list):
+def check_person_database(person_handle, ppl_handle_list):
     """
     check to see if a person is in the report database
 
     @param: person -- person object from the database presumably
     """
-    return any(person_handle == phandle for person_handle in ppl_handle_list)
+    return any(person_handle == person_handle for person_handle in ppl_handle_list)
