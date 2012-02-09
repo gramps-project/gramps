@@ -134,10 +134,10 @@ def load_on_reg(dbstate, uistate, plugin):
         ["DropDown-Menus", 0, "Drop Down Menus",
          path_css("Web_DropDown-Menus.css"), None, [], [] ],
 
-        # WebKit/ Html5/ CSS3 Drop Down Citations Style Sheet
+        # WebKit/ Html5/ CSS3 Animated DropDown Citations Style Sheet
         ["DropDown-Citations", 0, "Drop Down Citations",
          path_css("Web_DropDown-Citations.css"), None, [],
-         path_js("jQuery-1.7.1.js")                       ],
+         path_js("jquery-1.7.min.js")                     ], 
 
         # GeoView style sheet with its image
         ["GeoView", 0, "GeoView", 
@@ -148,10 +148,6 @@ def load_on_reg(dbstate, uistate, plugin):
           path_img("gramps-geo-death.png"),
           path_img("gramps-geo-mainmap.png"),
           path_img("gramps-geo-marriage.png")], [] ],
-
-        # WebKit/ Html5/ CSS3 Drop Down Source/ Citations Style Sheet
-        ["Source-Citations", 0, "",
-         path_css("Web_Source-Citations.css"), None, [], [] ],
 
         # no style sheet option
         ["No style sheet",1, _("No style sheet"),    [],    None, [], [] ],

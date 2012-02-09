@@ -4527,13 +4527,13 @@ class SourcePage(BasePage):
                     # if the menu layout if DropDown, then add these items to the web page?
                     if self.navigation == "DropDown":
 
-                        # add DropDown Citations Style Sheet
+                        # add Animated Drop Down Citations Style Sheet
                         fname = "/".join(["styles", "narrative-citations.css"])
                         url = self.report.build_url_fname(fname, None, self.up)
                         head += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet")
 
                         # add javascript code to handle if the user's browser is IE6?
-                        fname = "/".join(["js", "jQuery-1.7.1.js"])
+                        fname = "/".join(["js", "jquery-1.7..min.js"])
                         url = self.report.build_url_fname(fname, None, self.up)
                         head += Html("script", src = url, type = "text/javascript", language = "javascript", inline = True)
 
@@ -7128,9 +7128,9 @@ class NavWebReport(Report):
                 fname = CSS["DropDown-Citations"]["filename"]
                 self.copy_file(fname, "narrative-citations.css", "styles")
 
-                # copy jquery javascript files for use in the Drop Down Citations section...
+                # copy jquery javascript file for use in the Drop Down Citations section...
                 fname = CSS["DropDown-Citations"]["javascript"]
-                self.copy_file(fname, "jQuery-1.7.1.js", "js")
+                self.copy_file(fname, "jquery-1.7.min.js", "js")
 
         # copy narrative-maps Style Sheet if Place or Family Map pages are being created?
         if (self.placemappages or self.familymappages):
