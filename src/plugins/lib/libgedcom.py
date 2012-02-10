@@ -1739,6 +1739,9 @@ class GedcomParser(UpdateCallback):
         self.place_parser = PlaceParser()
         self.inline_srcs = {}
         self.media_map = {}
+        self.genby = ""
+        self.genvers = ""
+        self.subm = ""
         self.gedmap = GedcomInfoDB()
         self.gedsource = self.gedmap.get_from_source_tag('GEDCOM 5.5')
         self.use_def_src = default_source
@@ -1809,6 +1812,7 @@ class GedcomParser(UpdateCallback):
             # +1 RFN <SUBMITTER_REGISTERED_RFN>
             # +1 RIN <AUTOMATED_RECORD_ID>
             # +1 <<CHANGE_DATE>>
+            TOKEN_CHAN   : self.__repo_chan,
             }
 
         #
@@ -1888,8 +1892,10 @@ class GedcomParser(UpdateCallback):
             # +1 REFN <USER_REFERENCE_NUMBER> {0:M}
             # +2 TYPE <USER_REFERENCE_TYPE> {0:1}
             TOKEN_REFN  : self.__person_attr, 
+            # TYPE should be eblow REFN, but will work here anyway
+            TOKEN_TYPE  : self.__person_attr, 
             # +1 RIN <AUTOMATED_RECORD_ID> {0:1}
-            TOKEN_RIN   : self.__skip_record, 
+            TOKEN_RIN   : self.__person_attr, 
             # +1 <<CHANGE_DATE>> {0:1}
             TOKEN_CHAN  : self.__person_chan, 
 
@@ -2163,6 +2169,8 @@ class GedcomParser(UpdateCallback):
             TOKEN_RNOTE  : self.__family_note, 
             # +1 REFN <USER_REFERENCE_NUMBER>  {0:M}
             TOKEN_REFN   : self.__family_cust_attr, 
+            # TYPE should be below REFN, but will work here anyway
+            TOKEN_TYPE   : self.__family_cust_attr, 
             # +1 RIN <AUTOMATED_RECORD_ID>  {0:1}
             # +1 <<CHANGE_DATE>>  {0:1}
             TOKEN_CHAN   : self.__family_chan, 
@@ -2219,13 +2227,14 @@ class GedcomParser(UpdateCallback):
             TOKEN_TEXT   : self.__source_text, 
             TOKEN_ABBR   : self.__source_abbr, 
             TOKEN_REFN   : self.__source_attr, 
-            TOKEN_RIN    : self.__ignore, 
+            TOKEN_RIN    : self.__source_attr, 
             TOKEN_REPO   : self.__source_repo, 
             TOKEN_OBJE   : self.__source_object, 
             TOKEN_CHAN   : self.__source_chan, 
             TOKEN_MEDI   : self.__source_attr, 
             TOKEN__NAME  : self.__source_attr, 
             TOKEN_DATA   : self.__ignore, 
+            # TYPE should be below REFN, but will work here anyway
             TOKEN_TYPE   : self.__source_attr, 
             TOKEN_CALN   : self.__ignore, 
             # not legal, but Ultimate Family Tree does this
@@ -2363,25 +2372,42 @@ class GedcomParser(UpdateCallback):
         #  File submission or for clearing temple ordinances must use a
         #  DESTination of ANSTFILE or TempleReady.
         
-        self.header_sour = {
+        self.head_parse_tbl = {
             TOKEN_SOUR   : self.__header_sour, 
-            TOKEN_NAME   : self.__ignore, 
-            TOKEN_VERS   : self.__header_vers,  # This should be below SOUR
+            TOKEN_NAME   : self.__header_sour_name, # This should be below SOUR
+            TOKEN_VERS   : self.__header_sour_vers, # This should be below SOUR
             TOKEN_FILE   : self.__header_file, 
             TOKEN_COPR   : self.__header_copr, 
             TOKEN_SUBM   : self.__header_subm, 
-            TOKEN_CORP   : self.__ignore,       # This should be below SOUR
+            TOKEN_CORP   : self.__ignore,           # This should be below SOUR
             TOKEN_DATA   : self.__ignore,       # This should be below SOUR
-            TOKEN_SUBN   : self.__ignore, 
-            TOKEN_LANG   : self.__ignore, 
+            TOKEN_SUBN   : self.__header_subn, 
+            TOKEN_LANG   : self.__header_lang, 
             TOKEN_TIME   : self.__ignore,       # This should be below DATE 
             TOKEN_DEST   : self.__header_dest, 
-            TOKEN_CHAR   : self.__ignore, 
-            TOKEN_GEDC   : self.__ignore, 
+            TOKEN_CHAR   : self.__header_char, 
+            TOKEN_GEDC   : self.__header_gedc, 
             TOKEN__SCHEMA: self.__ignore, 
             TOKEN_PLAC   : self.__header_plac, 
             TOKEN_DATE   : self.__header_date, 
             TOKEN_NOTE   : self.__header_note, 
+            }
+
+        self.header_sour_parse_tbl = {
+            TOKEN_VERS   : self.__header_sour_vers,
+            TOKEN_NAME   : self.__header_sour_name, 
+            TOKEN_CORP   : self.__header_sour_corp,
+            TOKEN_DATA   : self.__header_sour_data,
+            }
+
+        self.header_sour_data = {
+            TOKEN_DATE   : self.__header_sour_date, 
+            TOKEN_COPR   : self.__header_sour_copr, 
+            }
+
+        self.header_corp_addr = {
+            TOKEN_ADDR   : self.__repo_addr, 
+            TOKEN_PHON   : self.__repo_phon, 
             }
 
         self.header_subm = {
@@ -2463,7 +2489,7 @@ class GedcomParser(UpdateCallback):
             self.dbase.disable_signals()
             self.__parse_header_head()
             self.want_parse_warnings = False
-            self.__parse_header_source()
+            self.__parse_header()
             self.want_parse_warnings = True
             if self.use_def_src:
                 self.dbase.add_source(self.def_src, self.trans)
@@ -2803,9 +2829,52 @@ class GedcomParser(UpdateCallback):
         state = CurrentState()
         state.res = researcher
         state.level = 1
+        repo = gen.lib.Repository()
+        state.repo = repo
         self.__parse_level(state, self.subm_parse_tbl, self.__undefined)
-        self.__check_msgs("SUBM (submitter)", state, None, self.trans)
-        self.dbase.set_researcher(state.res)
+        # If this is the submitter that we were told about in the HEADer, then 
+        # we will need to update the researcher
+        if line.token_text == self.subm:
+            self.dbase.set_researcher(state.res)
+        
+        submitter_name = _("Submitter (SUBM): @%s@") % line.token_text
+        if self.use_def_src:
+            repo.set_name(submitter_name)
+            repo.set_handle(Utils.create_id())
+            repo.set_gramps_id(self.dbase.find_next_repository_gramps_id())
+            
+            addr = gen.lib.Address()
+            addr.set_street(state.res.get_address())
+            addr.set_locality(state.res.get_locality())
+            addr.set_city(state.res.get_city())
+            addr.set_state(state.res.get_state())
+            addr.set_country(state.res.get_country())
+            addr.set_postal_code(state.res.get_postal_code())
+            addr.set_county(state.res.get_county())
+            addr.set_phone(state.res.get_phone())
+            repo.add_address(addr)
+            
+            if state.res.get_email():
+                url = gen.lib.Url()
+                url.set_path(state.res.get_email())
+                url.set_type(gen.lib.UrlType(gen.lib.UrlType.EMAIL))
+                repo.add_url(url)
+            
+            rtype = gen.lib.RepositoryType()
+            rtype.set((gen.lib.RepositoryType.CUSTOM, 'GEDCOM data'))
+            repo.set_type(rtype)
+            self.__check_msgs(submitter_name, state, repo, self.trans)
+            self.dbase.commit_repository(repo, self.trans, state.repo.change)
+            repo_ref = gen.lib.RepoRef()
+            repo_ref.set_reference_handle(repo.handle)
+            mtype = gen.lib.SourceMediaType()
+            mtype.set((gen.lib.SourceMediaType.UNKNOWN, ''))
+            repo_ref.set_media_type(mtype)
+            self.def_src.add_repo_reference(repo_ref)
+            self.dbase.commit_source(self.def_src, self.trans)
+        else:
+            self.__check_msgs(submitter_name, state, None, self.trans)
+        
 
     def __parse_record(self):
         """
@@ -2853,7 +2922,7 @@ class GedcomParser(UpdateCallback):
                 self.__parse_submitter(line)
             elif key in ("SUBN"):
                 state = CurrentState()
-                self.__skip_subordinate_levels(1, state)
+                self.__parse_submission(line, state)
                 self.__check_msgs("Top Level", state, None, self.trans)
             elif line.token in (TOKEN_SUBM, TOKEN_SUBN, TOKEN_IGNORE):
                 state = CurrentState()
@@ -2983,7 +3052,6 @@ class GedcomParser(UpdateCallback):
         attr.set_type((gen.lib.AttributeType.CUSTOM, line.token_text))
         attr.set_value(line.data)
         state.person.add_attribute(attr)
-        self.__skip_subordinate_levels(state.level+1, state)
 
     def __person_event(self, line, state):
         """
@@ -5000,6 +5068,9 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
+        # The ADDR may already have been parsed by the level above
+        if state.addr.get_street() != "":
+            self.__add_msg(_("Warn: ADDR overwritten"), line, state)
         state.addr.set_street(line.data)
 
     def __address_adr2(self, line, state):
@@ -5166,6 +5237,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
+        self.__add_msg(_("REFN ignored"), line, state)
         self.__skip_subordinate_levels(state.level+1, state)
 
     def __citation_even(self, line, state): 
@@ -5528,6 +5600,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
+        self.__add_msg(_("BLOB ignored"), line, state)
         self.__skip_subordinate_levels(state.level+1, state)
 
     def __obje_refn(self, line, state):
@@ -5537,6 +5610,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
+        self.__add_msg(_("REFN ignored"), line, state)
         self.__skip_subordinate_levels(state.level+1, state)
 
     def __obje_type(self, line, state):
@@ -5546,6 +5620,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
+        self.__add_msg(_("Multimedia REFN:TYPE ignored"), line, state)
         self.__skip_subordinate_levels(state.level+1, state)
 
     def __obje_rin(self, line, state):
@@ -5555,6 +5630,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
+        self.__add_msg(_("Mutimedia RIN ignored"), line, state)
         self.__skip_subordinate_levels(state.level+1, state)
 
     def __obje_chan(self, line, state):
@@ -5603,7 +5679,7 @@ class GedcomParser(UpdateCallback):
         val = line.data
         if state.attr.get_value() == "":
             state.attr.set_value(val)
-        self.__skip_subordinate_levels(state.level, state)
+        self.__skip_subordinate_levels(state.level+1, state)
 
     def __person_attr_note(self, line, state):
         """
@@ -5787,6 +5863,8 @@ class GedcomParser(UpdateCallback):
         """
         if not state.location:
             state.location = gen.lib.Location()
+        if state.location.get_street() != "":
+            self.__add_msg(_("Warn: ADDR overwritten"), line, state)
         state.location.set_street(line.data)
 
     def __location_adr2(self, line, state):
@@ -5873,7 +5951,7 @@ class GedcomParser(UpdateCallback):
     #
     #----------------------------------------------------------------------
 
-    def __parse_header_source(self):
+    def __parse_header(self):
         """
         Handling of the lines subordinate to the HEAD GEDCOM tag
         
@@ -5910,8 +5988,8 @@ class GedcomParser(UpdateCallback):
         
         """
         state = CurrentState(level=1)
-        self.__parse_level(state, self.header_sour, self.__undefined)
-        self.__check_msgs("SOUR (header level source)", state, None, self.trans)
+        self.__parse_level(state, self.head_parse_tbl, self.__undefined)
+        self.__check_msgs(_("Head (header)"), state, None, self.trans)
 
     def __header_sour(self, line, state):
         """
@@ -5923,9 +6001,74 @@ class GedcomParser(UpdateCallback):
         self.gedsource = self.gedmap.get_from_source_tag(line.data)
         if line.data.strip() in ["FTW", "FTM"]:
             self.is_ftw = True
-        state.genby = line.data
+        # We will use the approved system ID as the name of the generating
+        # software, in case we do not get the name in the proper place
+        self.genby = line.data
+        if self.use_def_src:
+            self.def_src.set_data_item(_("Approved system identification"), "%s" % self.genby)
+        sub_state = CurrentState(level=state.level+1)
+        self.__parse_level(sub_state, self.header_sour_parse_tbl,
+                           self.__undefined)
+        state.msg += sub_state.msg
+        # We can't produce the 'Generated by' statement till the end of the SOUR
+        # level, because the name and version may come in any order
+        if self.use_def_src:
+            self.def_src.set_data_item(_("Generated by"), "%s %s" %
+                                       (self.genby, self.genvers))
 
-    def __header_vers(self, line, state):
+    def __header_sour_name(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        # This is where the name of the product that generated the GEDCOM file
+        # should appear, and this will overwrite the approved system ID (if any)
+        self.genby = line.data
+        if self.use_def_src:
+            self.def_src.set_data_item(_("Name of software product"), 
+                                       self.genby)
+        
+    def __header_sour_vers(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        self.genvers = line.data
+        if self.use_def_src:
+            self.def_src.set_data_item(_("Version number of software product"),
+                                       self.genvers)
+        
+    def __header_sour_corp(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        repo = gen.lib.Repository()
+        sub_state = CurrentState(level=state.level + 1)
+        sub_state.repo = repo
+        self.__parse_level(sub_state, self.header_corp_addr, self.__undefined)
+        state.msg += sub_state.msg
+
+        if self.use_def_src:
+            repo.set_name(_("Business that produced the product: %s") % line.data)
+            rtype = gen.lib.RepositoryType()
+            rtype.set((gen.lib.RepositoryType.CUSTOM, 'GEDCOM data'))
+            repo.set_type(rtype)
+            self.dbase.add_repository(repo, self.trans)
+            repo_ref = gen.lib.RepoRef()
+            repo_ref.set_reference_handle(repo.handle)
+            mtype = gen.lib.SourceMediaType()
+            mtype.set((gen.lib.SourceMediaType.UNKNOWN, ''))
+            repo_ref.set_media_type(mtype)
+            self.def_src.add_repo_reference(repo_ref)
+        
+    def __header_sour_data(self, line, state):
         """
         @param line: The current line in GedLine format
         @type line: GedLine
@@ -5933,8 +6076,32 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if self.use_def_src:
-            self.def_src.set_data_item('Generated by', "%s %s" %
-                                       (state.genby, line.data))
+            self.def_src.set_data_item(_("Name of source data"), line.data)
+        sub_state = CurrentState(level=state.level+1)
+        self.__parse_level(sub_state, self.header_sour_data,
+                           self.__undefined)
+        state.msg += sub_state.msg
+        
+    def __header_sour_copr(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        if self.use_def_src:
+            self.def_src.set_data_item(_("Copyright of source data"), line.data)
+        
+    def __header_sour_date(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        if self.use_def_src:
+            self.def_src.set_data_item(_("Publication date of source data"), 
+                                       line.data)
         
     def __header_file(self, line, state):
         """
@@ -5963,10 +6130,38 @@ class GedcomParser(UpdateCallback):
         @type line: GedLine
         @param state: The current state
         @type state: CurrentState
+        
+        +1 SUBM @<XREF:SUBM>@  {1:1}
+        This should be simply be a cross-reference to the correct Submitter 
+        record. Note that there can be multiple Submitter records, so it is 
+        necessary to remember which one should be applied.
+
         """
+        self.subm = line.data[1:-1]
         sub_state = CurrentState(level=state.level+1)
         self.__parse_level(sub_state, self.header_subm, self.__ignore)
         state.msg += sub_state.msg
+
+    def __header_subn(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        if self.use_def_src:
+            self.def_src.set_data_item(_('Submission record identifier'), 
+                                       line.token_text)
+
+    def __header_lang(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        if self.use_def_src:
+            self.def_src.set_data_item(_('Language of GEDCOM text'), line.data)
 
     def __header_dest(self, line, state):
         """
@@ -5975,18 +6170,74 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        if state.genby == "GRAMPS":
+        # FIXME: Gramps does not seem to produce a DEST line, so this processing
+        # seems to be useless
+        if self.genby == "GRAMPS":
             self.gedsource = self.gedmap.get_from_source_tag(line.data)
 
-        if state.genby.upper() == "LEGACY":
+        # FIXME: This processing does not depend on DEST, so there seems to be
+        # no reason for it to be placed here. Perhaps it is supposed to be after
+        # all the SOUR levels have been processed, but self.genby was only
+        # assigned by the initial SOUR tag, so this could have been done there.
+        # Perhaps, as suggested by the text of the error message, it was
+        # supposed to test whenther the_DEST_ was LEGACY, in which case the
+        # coding is now wrong.
+        if self.genby.upper() == "LEGACY":
             fname = os.path.basename(self.filename)
             WarningDialog(
                _("Import of GEDCOM file %s with DEST=%s, "
                  "could cause errors in the resulting database!")
-                   % (fname, state.genby),
+                   % (fname, self.genby),
                _("Look for nameless events.")
                )
  
+    def __header_char(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        #   +1 CHAR <CHARACTER_SET>                       {1:1}
+        #     +2 VERS <VERSION_NUMBER>                    {0:1}
+        encoding = line.data
+        version = ""
+        while True:
+            line = self.__get_next_line()
+            if self.__level_is_finished(line, state.level+1):
+                break
+            elif line.token == TOKEN_VERS:
+                version = line.data
+                
+        if self.use_def_src:
+            if version == "":
+                self.def_src.set_data_item(_('Character set'), encoding)
+            else:
+                self.def_src.set_data_item(_('Character set and version'), 
+                                           "%s %s" % (encoding, version))
+            
+    def __header_gedc(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        while True:
+            line = self.__get_next_line()
+            if self.__level_is_finished(line, state.level+1):
+                break
+            elif line.token == TOKEN_VERS:
+                if line.data[0] != "5":
+                    self.__add_msg(_("GEDCOM version not supported"), line, state)
+                if self.use_def_src:
+                    self.def_src.set_data_item(_('GEDCOM version'), line.data)
+            elif line.token == TOKEN_FORM:
+                if line.data != "LINEAGE-LINKED":
+                    self.__add_msg(_("GEDCOM form not supported"), line, state)
+                if self.use_def_src:
+                    self.def_src.set_data_item(_('GEDCOM form'), line.data)
+            
     def __header_plac(self, line, state):
         """
         @param line: The current line in GedLine format
@@ -6013,10 +6264,29 @@ class GedcomParser(UpdateCallback):
         @type line: GedLine
         @param state: The current state
         @type state: CurrentState
+        
+        This processes the <TRANSMISSION_DATE>, i.e. the date when this [GEDCOM]
+        transmission was created (as opposed to the date when the source data 
+        that was used to create the transmission was published or created
         """
+        # Because there is a DATE tag, line.data is automatically converted to a
+        # Date object before getting to this point, so it has to be converted
+        # back to a string
+        date = str(line.data)
+        time = ""
+        line = self.__get_next_line()
+        if self.__level_is_finished(line, state.level):
+            pass
+        elif line.token == TOKEN_TIME:
+            time = str(line.data)
+            
         if self.use_def_src:
-            self.def_src.set_data_item('Creation date', line.data)
-
+            if time == "":
+                self.def_src.set_data_item(_('Creation date of GEDCOM'), date)
+            else:
+                self.def_src.set_data_item(_('Creation date and time of GEDCOM'), 
+                                           "%s %s" % (date, time))
+                
     def __header_note(self, line, state):
         """
         @param line: The current line in GedLine format
@@ -6081,7 +6351,7 @@ class GedcomParser(UpdateCallback):
           +1 RIN <AUTOMATED_RECORD_ID>  {0:1}
           +1 <<CHANGE_DATE>>  {0:1}
         """
-        state = CurrentState()
+        state = CurrentState(level=1)
         gid = self.nid_map[line.token_text]
         handle = self.nid2id.get(gid)
         if not line.data and handle is None:
@@ -6092,7 +6362,7 @@ class GedcomParser(UpdateCallback):
             new_note.set_handle(handle)
             new_note.set_gramps_id(gid)
 
-            sub_state = CurrentState(level=state.level+1)
+            sub_state = CurrentState(level=state.level)
             sub_state.note = new_note
             self.__parse_level(sub_state, self.note_parse_tbl, self.__undefined)
             state.msg += sub_state.msg
@@ -6124,6 +6394,49 @@ class GedcomParser(UpdateCallback):
         if line.token != TOKEN_HEAD:
             raise Errors.GedcomError("%s is not a GEDCOM file" % self.filename)
     
+    def __parse_submission(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        
+        Handling of lines subordinate to the level 0 SUMN (Submission) GEDCOM 
+        tag
+        
+          n  @<XREF:SUBN>@ SUBN  {1:1]
+            +1 SUBM @<XREF:SUBM>@ {0:1}
+            +1 FAMF <NAME_OF_FAMILY_FILE>  {0:1}
+            +1 TEMP <TEMPLE_CODE>  {0:1}
+            +1 ANCE <GENERATIONS_OF_ANCESTORS>  {0:1}
+            +1 DESC <GENERATIONS_OF_DESCENDANTS>  {0:1}
+            +1 ORDI <ORDINANCE_PROCESS_FLAG>  {0:1}
+            +1 RIN <AUTOMATED_RECORD_ID>  {0:1}
+        """
+        while True:
+            line = self.__get_next_line()
+            msg = ""
+            if self.__level_is_finished(line, state.level+1):
+                break
+            elif line.token == TOKEN_SUBM:
+                msg = _("Submission: Submitter")
+            elif line.token == TOKEN_UNKNOWN and line.token_text == "FAMF":
+                msg = _("Submission: Family file")
+            elif line.token == TOKEN_TEMP:
+                msg = _("Submission: Temple code")
+            elif line.token == TOKEN_UNKNOWN and line.token_text == "ANCE":
+                msg = _("Submission: Generations of ancestors")
+            elif line.token == TOKEN_UNKNOWN and line.token_text == "DESC":
+                msg = _("Submission: Generations of descendants")
+            elif line.token == TOKEN_UNKNOWN and line.token_text == "ORDI":
+                msg = _("Submission: Ordinance process flag")
+            else:
+                self.__not_recognized(line, state.level+1, state)
+                continue
+                
+            if self.use_def_src and msg != "":
+                self.def_src.set_data_item(msg, line.data)
+            
     def __skip_subordinate_levels(self, level, state):
         """
         Skip add lines of the specified level or lower.
