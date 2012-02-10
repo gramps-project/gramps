@@ -89,7 +89,7 @@ all lines until the next level 2 token is found (in this case, skipping the
 # standard python modules
 #
 #-------------------------------------------------------------------------
-import os, sys
+import os
 import re
 import time
 import codecs
@@ -335,7 +335,7 @@ TOKENS = {
     "TEXT"           : TOKEN_TEXT,  "TIME"          : TOKEN_TIME,
     "TITL"           : TOKEN_TITL,  "TITLE"         : TOKEN_TITL,
     "_TODO"          : TOKEN__TODO, "TRLR"          : TOKEN_TRLR,
-    "TRAILER"        : TOKEN_TRLR,  "TYPE"          : TOKEN_TYPE,
+    "TYPE"           : TOKEN_TYPE,
     "_UID"           : TOKEN__UID,  "VERS"          : TOKEN_VERS,
     "VERSION"        : TOKEN_VERS,  "WIFE"          : TOKEN_WIFE,
     "_WITN"          : TOKEN__WITN, "_WTN"          : TOKEN__WTN,
@@ -350,7 +350,7 @@ TOKENS = {
     "_LEVEL"         : TOKEN_IGNORE,"_PUBLISHER"    : TOKEN_IGNORE,
     "MAP"            : TOKEN_MAP,   "LATI"          : TOKEN_LATI,
     "LONG"           : TOKEN_LONG,  "_ITALIC"       : TOKEN_IGNORE,
-    "_PAREN"         : TOKEN_IGNORE,"_PLACE"        : TOKEN_IGNORE,
+    "_PLACE"         : TOKEN_IGNORE,
     "FACT"           : TOKEN_FACT,  "EMAIL"         : TOKEN_EMAIL,
     "EMAI"           : TOKEN_EMAIL, "WWW"           : TOKEN_WWW,
     "_URL"           : TOKEN_URL,   "URL"           : TOKEN_URL,
@@ -456,7 +456,7 @@ SEX_MAP = {
     'M' : gen.lib.Person.MALE,
 }
 
-familyConstantEvents = {
+FAMILYCONSTANTEVENTS = {
     gen.lib.EventType.ANNULMENT  : "ANUL",
     gen.lib.EventType.DIV_FILING : "DIVF",
     gen.lib.EventType.DIVORCE    : "DIV",
@@ -469,7 +469,7 @@ familyConstantEvents = {
     gen.lib.EventType.MARRIAGE   : "MARR"
     }
 
-personalConstantEvents = {
+PERSONALCONSTANTEVENTS = {
     gen.lib.EventType.ADOPT            : "ADOP",
     gen.lib.EventType.ADULT_CHRISTEN   : "CHRA",
     gen.lib.EventType.BIRTH            : "BIRT",
@@ -507,11 +507,11 @@ personalConstantEvents = {
     gen.lib.EventType.WILL             : "WILL",
     }
 
-familyConstantAttributes = {
+FAMILYCONSTANTATTRIBUTES = {
     gen.lib.AttributeType.NUM_CHILD   : "NCHI",
     }
 
-personalConstantAttributes = {
+PERSONALCONSTANTATTRIBUTES = {
     gen.lib.AttributeType.CASTE       : "CAST",
     gen.lib.AttributeType.DESCRIPTION : "DSCR",
     gen.lib.AttributeType.ID          : "IDNO",
@@ -525,7 +525,7 @@ personalConstantAttributes = {
 # Gedcom to int constants
 #
 #-------------------------------------------------------------------------
-lds_status = {
+LDS_STATUS = {
     "BIC"      : gen.lib.LdsOrd.STATUS_BIC,
     "CANCELED" : gen.lib.LdsOrd.STATUS_CANCELED,
     "CHILD"    : gen.lib.LdsOrd.STATUS_CHILD,
@@ -543,7 +543,7 @@ lds_status = {
 
 # table for skipping illegal control chars in GEDCOM import
 # Only 09, 0A, 0D are allowed.
-strip_dict = dict.fromkeys(range(9)+range(11,13)+range(14, 32))
+STRIP_DICT = dict.fromkeys(range(9)+range(11, 13)+range(14, 32))
 
 #-------------------------------------------------------------------------
 #
@@ -551,16 +551,16 @@ strip_dict = dict.fromkeys(range(9)+range(11,13)+range(14, 32))
 #
 #-------------------------------------------------------------------------
 GED_TO_GRAMPS_EVENT = {}
-for __val, __key in personalConstantEvents.iteritems():
+for __val, __key in PERSONALCONSTANTEVENTS.iteritems():
     if __key != "":
         GED_TO_GRAMPS_EVENT[__key] = __val
 
-for __val, __key in familyConstantEvents.iteritems():
+for __val, __key in FAMILYCONSTANTEVENTS.iteritems():
     if __key != "":
         GED_TO_GRAMPS_EVENT[__key] = __val
 
 GED_TO_GRAMPS_ATTR = {}
-for __val, __key in personalConstantAttributes.iteritems():
+for __val, __key in PERSONALCONSTANTATTRIBUTES.iteritems():
     if __key != "":
         GED_TO_GRAMPS_ATTR[__key] = __val
         
@@ -894,7 +894,8 @@ class GedLine(object):
         Converts the data field to a gen.lib token indicating the gender
         """
         try:
-            self.data = SEX_MAP.get(self.data.strip()[0], gen.lib.Person.UNKNOWN)
+            self.data = SEX_MAP.get(self.data.strip()[0], 
+                                    gen.lib.Person.UNKNOWN)
         except:
             self.data = gen.lib.Person.UNKNOWN
 
@@ -982,76 +983,76 @@ class GedcomDescription(object):
         self.prefix = PREFIX_YES
         self.endl = "\n"
         
-    def set_dest(self,val):
+    def set_dest(self, val):
         self.dest = val
 
     def get_dest(self):
         return self.dest
 
-    def set_endl(self,val):
+    def set_endl(self, val):
         self.endl = val.replace('\\r','\r').replace('\\n','\n')
 
     def get_endl(self):
         return self.endl
 
-    def set_adopt(self,val):
+    def set_adopt(self, val):
         self.adopt = val
 
     def get_adopt(self):
         return self.adopt
 
-    def set_prefix(self,val):
-        self.prefix=val
+    def set_prefix(self, val):
+        self.prefix = val
 
     def get_prefix(self):
         return self.prefix
     
-    def set_conc(self,val):
+    def set_conc(self, val):
         self.conc = val
 
     def get_conc(self):
         return self.conc
 
-    def set_alt_name(self,val):
+    def set_alt_name(self, val):
         self.altname = val
 
     def get_alt_name(self):
         return self.altname
 
-    def set_alt_calendar(self,val):
+    def set_alt_calendar(self, val):
         self.cal = val
 
     def get_alt_calendar(self):
         return self.cal
 
-    def set_obje(self,val):
+    def set_obje(self, val):
         self.obje = val
 
     def get_obje(self):
         return self.obje
 
-    def set_resi(self,val):
+    def set_resi(self, val):
         self.resi = val
 
     def get_resi(self):
         return self.resi
 
-    def set_source_refs(self,val):
+    def set_source_refs(self, val):
         self.source_refs = val
 
     def get_source_refs(self):
         return self.source_refs
 
-    def add_tag_value(self,tag,value):
+    def add_tag_value(self, tag, value):
         self.gramps2tag_map[value] = tag
         self.tag2gramps_map[tag] = value
 
-    def gramps2tag(self,key):
+    def gramps2tag(self, key):
         if key in self.gramps2tag_map:
             return self.gramps2tag_map[key]
         return ""
 
-    def tag2gramps(self,key):
+    def tag2gramps(self, key):
         if key in self.tag2gramps_map:
             return self.tag2gramps_map[key]
         return key
@@ -1070,13 +1071,13 @@ class GedcomInfoDB(object):
 
         try:
             filepath = os.path.join(const.DATA_DIR,"gedcom.xml")
-            f = open(filepath.encode('iso8859-1'),"r")
+            ged_file = open(filepath.encode('iso8859-1'),"r")
         except:
             return
 
         parser = GedInfoParser(self)
-        parser.parse(f)
-        f.close()
+        parser.parse(ged_file)
+        ged_file.close()
 
     def add_description(self, name, obj):
         self.map[name] = obj
@@ -1101,20 +1102,20 @@ class GedcomInfoDB(object):
 #
 #-------------------------------------------------------------------------
 class GedInfoParser(object):
-    def __init__(self,parent):
+    def __init__(self, parent):
         self.parent = parent
         self.current = None
 
-    def parse(self,file):
+    def parse(self, ged_file):
         p = ParserCreate()
         p.StartElementHandler = self.startElement
-        p.ParseFile(file)
+        p.ParseFile(ged_file)
         
-    def startElement(self,tag,attrs):
+    def startElement(self, tag, attrs):
         if tag == "target":
             name = attrs['name']
             self.current = GedcomDescription(name)
-            self.parent.add_description(name,self.current)
+            self.parent.add_description(name, self.current)
         elif tag == "dest":
             self.current.set_dest(attrs['val'])
         elif tag == "endl":
@@ -1150,7 +1151,7 @@ class GedInfoParser(object):
             if attrs['val'] == 'no':
                 self.current.set_alt_calendar(CALENDAR_NO)
         elif tag == "event":
-            self.current.add_tag_value(attrs['tag'],attrs['value'])
+            self.current.add_tag_value(attrs['tag'], attrs['value'])
         elif tag == "object_support":
             if attrs['val'] == 'no':
                 self.current.set_obje(OBJE_NO)
@@ -1181,7 +1182,7 @@ class BaseReader(object):
         line = unicode(self.ifile.readline(), 
                        encoding=self.enc,
                        errors='replace')
-        return line.translate(strip_dict)
+        return line.translate(STRIP_DICT)
 
 class UTF8Reader(BaseReader):
 
@@ -1199,7 +1200,7 @@ class UTF8Reader(BaseReader):
         line =  unicode(self.ifile.readline(),
                        encoding=self.enc,
                        errors='replace')
-        return line.translate(strip_dict)
+        return line.translate(STRIP_DICT)
 
 class UTF16Reader(BaseReader):
 
@@ -1495,12 +1496,38 @@ class CurrentState(object):
         """
         self.name_cnt = 0
         self.person = person
+        self.family = None
         self.level = level
         self.event = event
         self.event_ref = event_ref
         self.source_ref = None
+        self.citation = None
         self.note = None
+        self.lds_ord = None
         self.msg = ""
+        self.primary = False        # _PRIM tag on an INDI.FAMC tag
+        self.filename = ""
+        self.title = ""
+        self.addr = None
+        self.res = None
+        self.source = None
+        self.ftype = None
+        self.pf = None              # method for parsing places
+        self.location = None
+        self.place_fields = None    # method for parsing places
+        self.ref = None             # PersonRef
+        self.handle = None          # 
+        self.form = ""              # Multimedia format
+        self.frel = None            # Child relation to father
+        self.mrel = None
+        self.repo = None
+        self.attr = None
+        self.obj = None
+        self.name = ""
+        self.ignore = False
+        self.repo_ref = None
+        self.place = None
+        self.media = None
 
     def __getattr__(self, name):
         """
@@ -1721,7 +1748,8 @@ class GedcomParser(UpdateCallback):
                 name.set_first_name(text.strip())
         return name
 
-    def __init__(self, dbase, ifile, filename, callback, stage_one, default_source):
+    def __init__(self, dbase, ifile, filename, callback, stage_one, 
+                 default_source):
         UpdateCallback.__init__(self, callback)
 
         self.set_total(stage_one.get_line_count())
@@ -2465,7 +2493,7 @@ class GedcomParser(UpdateCallback):
         self.geddir = os.path.dirname(fullpath)
     
         self.error_count = 0
-        amap = personalConstantAttributes
+        amap = PERSONALCONSTANTATTRIBUTES
         
         self.attrs = amap.values()
         self.gedattr = dict([key, val] for val, key in amap.iteritems())
@@ -2777,7 +2805,7 @@ class GedcomParser(UpdateCallback):
             state.msg += message
         self.errors.append(message)
 
-    def __check_msgs(self, record_name, state, object, trans):
+    def __check_msgs(self, record_name, state, obj):
         if state.msg == "":
             return
         message = "Records not inported into " + record_name + ":\n\n" + \
@@ -2789,8 +2817,8 @@ class GedcomParser(UpdateCallback):
         new_note.set_type(note_type)
         self.dbase.add_note(new_note, self.trans)
         # If possible, attach the note to the relevant object
-        if object:
-            object.add_note(new_note.get_handle())
+        if obj:
+            obj.add_note(new_note.get_handle())
 
     def _backup(self):
         """
@@ -2808,7 +2836,7 @@ class GedcomParser(UpdateCallback):
             if line and line.token != TOKEN_TRLR:
                 state = CurrentState()
                 self.__not_recognized(line, 0, state)
-                self.__check_msgs("TRLR (trailer)", state, None, self.trans)
+                self.__check_msgs("TRLR (trailer)", state, None)
         except TypeError:
             return
         
@@ -2863,7 +2891,7 @@ class GedcomParser(UpdateCallback):
             rtype = gen.lib.RepositoryType()
             rtype.set((gen.lib.RepositoryType.CUSTOM, 'GEDCOM data'))
             repo.set_type(rtype)
-            self.__check_msgs(submitter_name, state, repo, self.trans)
+            self.__check_msgs(submitter_name, state, repo)
             self.dbase.commit_repository(repo, self.trans, state.repo.change)
             repo_ref = gen.lib.RepoRef()
             repo_ref.set_reference_handle(repo.handle)
@@ -2873,7 +2901,7 @@ class GedcomParser(UpdateCallback):
             self.def_src.add_repo_reference(repo_ref)
             self.dbase.commit_source(self.def_src, self.trans)
         else:
-            self.__check_msgs(submitter_name, state, None, self.trans)
+            self.__check_msgs(submitter_name, state, None)
         
 
     def __parse_record(self):
@@ -2909,7 +2937,7 @@ class GedcomParser(UpdateCallback):
                 state = CurrentState()
                 self.__add_msg(_("Unknown tag"), line, state)
                 self.__skip_subordinate_levels(1, state)
-                self.__check_msgs("Top Level", state, None, self.trans)
+                self.__check_msgs("Top Level", state, None)
             elif key in ("FAM", "FAMILY"):
                 self.__parse_fam(line)
             elif key in ("INDI", "INDIVIDUAL"):
@@ -2923,11 +2951,11 @@ class GedcomParser(UpdateCallback):
             elif key in ("SUBN"):
                 state = CurrentState()
                 self.__parse_submission(line, state)
-                self.__check_msgs("Top Level", state, None, self.trans)
+                self.__check_msgs("Top Level", state, None)
             elif line.token in (TOKEN_SUBM, TOKEN_SUBN, TOKEN_IGNORE):
                 state = CurrentState()
                 self.__skip_subordinate_levels(1, state)
-                self.__check_msgs("Top Level", state, None, self.trans)
+                self.__check_msgs("Top Level", state, None)
             elif key in ("SOUR", "SOURCE"):
                 self.__parse_source(line.token_text, 1)
             elif (line.data.startswith("SOUR ") or
@@ -2948,7 +2976,7 @@ class GedcomParser(UpdateCallback):
             else:
                 state = CurrentState()
                 self.__not_recognized(line, 1, state)
-                self.__check_msgs("Top Level", state, None, self.trans)
+                self.__check_msgs("Top Level", state, None)
         
     def __parse_level(self, state, __map, default):
         """
@@ -3027,7 +3055,7 @@ class GedcomParser(UpdateCallback):
         self.__add_default_source(person)
 
         self.__check_msgs("INDI (individual) Gramps ID %s" % 
-                          person.get_gramps_id(), state, person, self.trans)
+                          person.get_gramps_id(), state, person)
         # commit the person to the database
         self.dbase.commit_person(person, self.trans, state.person.change)
 
@@ -3071,8 +3099,10 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        event_ref = self.__build_family_event_pair(state, gen.lib.EventType.CUSTOM, 
-                                            self.event_parse_tbl, line.data)
+        event_ref = self.__build_family_event_pair(state, 
+                                                   gen.lib.EventType.CUSTOM, 
+                                                   self.event_parse_tbl, 
+                                                   line.data)
         state.family.add_event_ref(event_ref)
 
     def __skip_record(self, line, state):
@@ -3601,7 +3631,8 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        if state.name.get_suffix() == "" or state.name.get_suffix() == line.data:
+        if state.name.get_suffix() == "" or \
+           state.name.get_suffix() == line.data:
             #suffix might be set before when parsing name string
             state.name.set_suffix(line.data)
         else:
@@ -3870,7 +3901,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        status = lds_status.get(line.data, gen.lib.LdsOrd.STATUS_NONE)
+        status = LDS_STATUS.get(line.data, gen.lib.LdsOrd.STATUS_NONE)
         state.lds_ord.set_status(status)
 
     def __person_famc(self, line, state):
@@ -4138,7 +4169,7 @@ class GedcomParser(UpdateCallback):
         self.__add_default_source(family)
 
         self.__check_msgs("FAM (family) Gramps ID %s" % family.get_gramps_id(), 
-                          state, family, self.trans)
+                          state, family)
         # commit family to database
         self.dbase.commit_family(family, self.trans, family.change)
     
@@ -5335,8 +5366,8 @@ class GedcomParser(UpdateCallback):
 
         self.__parse_level(state, self.source_func, self.__undefined)
         self.__check_msgs("SOUR (source) Gramps ID %s" % 
-                            state.source.get_gramps_id(), 
-                          state, state.source, self.trans)
+                          state.source.get_gramps_id(), 
+                          state, state.source)
         self.dbase.commit_source(state.source, self.trans, state.source.change)
 
     def __source_attr(self, line, state):
@@ -5542,7 +5573,7 @@ class GedcomParser(UpdateCallback):
         self.__add_default_source(media)
 
         self.__check_msgs("OBJE (multi-media object) Gramps ID %s" % 
-                          media.get_gramps_id(), state, media, self.trans)
+                          media.get_gramps_id(), state, media)
         # commit the person to the database
         self.dbase.commit_media_object(media, self.trans, media.change)
 
@@ -5714,7 +5745,7 @@ class GedcomParser(UpdateCallback):
         self.__parse_level(state, self.repo_parse_tbl, self.__ignore)
 
         self.__check_msgs("REPO (repository) Gramps ID %s" % 
-                          repo.get_gramps_id(), state, repo, self.trans)
+                          repo.get_gramps_id(), state, repo)
         self.dbase.commit_repository(repo, self.trans, repo.change)
 
     def __repo_name(self, line, state):
@@ -5989,7 +6020,7 @@ class GedcomParser(UpdateCallback):
         """
         state = CurrentState(level=1)
         self.__parse_level(state, self.head_parse_tbl, self.__undefined)
-        self.__check_msgs(_("Head (header)"), state, None, self.trans)
+        self.__check_msgs(_("Head (header)"), state, None)
 
     def __header_sour(self, line, state):
         """
@@ -6005,7 +6036,8 @@ class GedcomParser(UpdateCallback):
         # software, in case we do not get the name in the proper place
         self.genby = line.data
         if self.use_def_src:
-            self.def_src.set_data_item(_("Approved system identification"), "%s" % self.genby)
+            self.def_src.set_data_item(_("Approved system identification"), 
+                                       "%s" % self.genby)
         sub_state = CurrentState(level=state.level+1)
         self.__parse_level(sub_state, self.header_sour_parse_tbl,
                            self.__undefined)
@@ -6056,7 +6088,8 @@ class GedcomParser(UpdateCallback):
         state.msg += sub_state.msg
 
         if self.use_def_src:
-            repo.set_name(_("Business that produced the product: %s") % line.data)
+            repo.set_name(_("Business that produced the product: %s") % 
+                          line.data)
             rtype = gen.lib.RepositoryType()
             rtype.set((gen.lib.RepositoryType.CUSTOM, 'GEDCOM data'))
             repo.set_type(rtype)
@@ -6229,7 +6262,8 @@ class GedcomParser(UpdateCallback):
                 break
             elif line.token == TOKEN_VERS:
                 if line.data[0] != "5":
-                    self.__add_msg(_("GEDCOM version not supported"), line, state)
+                    self.__add_msg(_("GEDCOM version not supported"), 
+                                   line, state)
                 if self.use_def_src:
                     self.def_src.set_data_item(_('GEDCOM version'), line.data)
             elif line.token == TOKEN_FORM:
@@ -6272,20 +6306,22 @@ class GedcomParser(UpdateCallback):
         # Because there is a DATE tag, line.data is automatically converted to a
         # Date object before getting to this point, so it has to be converted
         # back to a string
-        date = str(line.data)
-        time = ""
+        tx_date = str(line.data)
+        tx_time = ""
         line = self.__get_next_line()
         if self.__level_is_finished(line, state.level):
             pass
         elif line.token == TOKEN_TIME:
-            time = str(line.data)
+            tx_time = str(line.data)
             
         if self.use_def_src:
-            if time == "":
-                self.def_src.set_data_item(_('Creation date of GEDCOM'), date)
+            if tx_time == "":
+                self.def_src.set_data_item(_('Creation date of GEDCOM'), 
+                                           tx_date)
             else:
-                self.def_src.set_data_item(_('Creation date and time of GEDCOM'), 
-                                           "%s %s" % (date, time))
+                self.def_src.set_data_item(
+                        _('Creation date and time of GEDCOM'), 
+                        "%s %s" % (tx_date, tx_time))
                 
     def __header_note(self, line, state):
         """
@@ -6370,7 +6406,7 @@ class GedcomParser(UpdateCallback):
             self.dbase.commit_note(new_note, self.trans, new_note.change)
             self.nid2id[new_note.gramps_id] = new_note.handle
         self.__check_msgs("NOTE Gramps ID %s" % new_note.get_gramps_id(), 
-                          state, None, self.trans)
+                          state, None)
 
     def __note_chan(self, line, state):
         if state.note:
@@ -6441,7 +6477,7 @@ class GedcomParser(UpdateCallback):
         """
         Skip add lines of the specified level or lower.
         """
-        skips = 0;
+        skips = 0
         while True:
             line = self.__get_next_line()
             if self.__level_is_finished(line, level):
