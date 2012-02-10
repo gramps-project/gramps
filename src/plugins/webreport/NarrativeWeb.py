@@ -4559,9 +4559,7 @@ class SourcePage(BasePage):
                         # add secion title
                         section += Html("h4", _("Citation References"), inline =True)
 
-                        # ordered and list item #1, Citation Volume/ Page...
-                        ordered1 = Html("ol", class_ = "Col1 Volume-n-Page")
-                        section += ordered1
+                        ordered1 = Html("ol", class_ = "Col1", role = "Volume-n-Page")
 
                         for (citation_handle, refs) in citation_referents_list:
                             citation = self.dbase_.get_citation_from_handle(citation_handle)
@@ -4578,10 +4576,8 @@ class SourcePage(BasePage):
                                 people_list = sort_people(self.dbase_, people_list)
 
                                 list1 = Html("li", citation.get_page())
-                                ordered1 += list1
 
-                                # unordered and list item #2, Object Type...
-                                unordered2 = Html("ul", class_ = "Col2 ObjectType", id = "menu")
+                                unordered2 = Html("ul", class_ = "Col2", id = "menu", role = "Object Type")
 
                                 # Citation Referents have Person objects... 
                                 if people_list:
@@ -4592,33 +4588,27 @@ class SourcePage(BasePage):
                                         Html("a", _("People"), href = "#", title = _("People"), inline = True)
                                     )
 
-                                    # unordered and list item #3, Surname...
-                                    unordered3 = Html("ul", class_ = "Col3 Surname")
+                                    unordered3 = Html("ul", class_ = "Col3", role = "Surname")
 
-                                    displayed = []
                                     for (surname, people_handle_list) in people_list:
-                                        if surname not in displayed:
+                                        list3 = Html("li")
 
-                                            list3 = Html("li")
+                                        list3.extend(
+                                            Html("a", surname, href = "#", title = surname, inline = True)
+                                        )
 
-                                            list3.extend(
-                                                Html("a", surname, href = "#", title = surname, inline = True)
-                                            )
+                                        unordered4 = Html("ul", class_ = "Col4", role = "Short Name")
 
-                                            # unordered list #4, Display Name...
-                                            unordered4 = Html("ul", class_ = "Col4 DisplayName")
+                                        for person_handle in people_handle_list:
+                                            person = self.dbase_.get_person_from_handle(person_handle)
+                                            if person:
+                                                url = self.report.build_url_fname_html(person_handle, "ppl", up = self.up)
+                                                unordered4.extend(
+                                                    Html("li", self.person_link(url, person, name_style = False), inline = True)
+                                                )
 
-                                            for person_handle in people_handle_list:
-                                                person = self.dbase_.get_person_from_handle(person_handle)
-                                                if person:
-                                                    url = self.report.build_url_fname_html(person_handle, "ppl", up = self.up)
-                                                    unordered4.extend(
-                                                        Html("li", self.person_link(url, person, False), inline = True)
-                                                    )
-
-                                            list3 += unordered4
-                                            unordered3 += list3
-                                        displayed.append(surname)
+                                        list3 += unordered4
+                                        unordered3 += list3
                                     list2 += unordered3
                                     unordered2 += list2
 
@@ -4634,16 +4624,15 @@ class SourcePage(BasePage):
                                         Html("a", _("Families"), href = "#", title = _("Families"), inline = True)
                                     )
 
-                                    # unordered and list item #3, Husband and Spouse FamilyLink...
-                                    unordered3 = Html("ul", class_ = "Col3 Husband-n-Spouse")
+                                    unordered3 = Html("ul", class_ = "Col3", role = "Husband-n-Spouse")
 
                                     for family_handle in family_list:
                                         family = self.dbase_.get_family_from_handle(family_handle)
                                         if family:
-
                                             unordered3.extend(
                                                 Html("li", self.get_family_string(family))
                                             )
+
                                     list2 += unordered3
                                     unordered2 += list2
 
@@ -4659,11 +4648,9 @@ class SourcePage(BasePage):
                                         Html("a", _("Events"), href = "#", title = _("Events"), inline = True)
                                     )
                                     
-                                    # get event types and the handles that go with them...
                                     event_handle_list, event_types = build_event_data_by_events(self.dbase_, event_list)
 
-                                    # unOrdered and list item #3, EventType...
-                                    unordered3 = Html("ul", class_ = "Col3 EventType")
+                                    unordered3 = Html("ul", class_ = "Col3", role = "Event Type")
 
                                     # separate events by their types and then thier event handles
                                     for (event_type, event_list) in sort_event_types(self.dbase_, event_types, event_handle_list):
@@ -4677,8 +4664,7 @@ class SourcePage(BasePage):
                                             Html("a", event_type, href = "#", title = event_type, inline = True)
                                         )
 
-                                        # unOrdered and list item #4, Event Date...
-                                        unordered4 = Html("ul", class_ = "Col4 EventDate")
+                                        unordered4 = Html("ul", class_ = "Col4", role = "HyperLinked Event Date")
 
                                         for (sort_value, event_handle) in event_list:
                                             event = self.dbase_.get_event_from_handle(event_handle)
@@ -4691,7 +4677,6 @@ class SourcePage(BasePage):
                                                     Html("a", event_date, href = "#", title = event_date, inline = True)
                                                 )
 
-                                                # unordered list #5, Husband-n-Spouse
                                                 unordered5 = Html("ul", class_ = "Col5")
 
                                                 # marriage or Divorce Event...
@@ -4728,6 +4713,7 @@ class SourcePage(BasePage):
                                                                         Html("li", self.event_link(event_handle, self.get_name(obj),
                                                                             uplink = self.up), inline = True)
                                                                     )
+
                                                 list4 += unordered5
                                                 unordered4 += list4
                                         list3 += unordered4
@@ -4747,8 +4733,7 @@ class SourcePage(BasePage):
                                         Html("a", _("Places"), href = "#", title = _("Places"), inline = True)
                                     )
 
-                                    # unordered and list item #3, Place Title...
-                                    unordered3 = Html("ul", class_ = "Col3 PlaceTitle")
+                                    unordered3 = Html("ul", class_ = "Col3", role = "Place Title")
 
                                     for place_handle in place_list:
                                         place = self.dbase_.get_place_from_handle(place_handle)
@@ -4757,6 +4742,7 @@ class SourcePage(BasePage):
                                                 Html("li", self.place_link(place_handle, place.get_title(), uplink = self.up),
                                                         inline = True)
                                             )
+
                                     list2 += unordered3
                                     unordered2 += list2
   
@@ -4772,8 +4758,7 @@ class SourcePage(BasePage):
                                         Html("a", _("Sources"), href = "#", title = _("Sources"), inline = True)
                                     )
 
-                                    # unordered and list item #3, Source Title...
-                                    unordered3 = Html("ul", class_ = "Col3 SourceTitle")
+                                    unordered3 = Html("ul", class_ = "Col3", role = "Source Title")
 
                                     for source_handle in source_list:
                                         source = self.dbase_.get_source_from_handle(source_handle)
@@ -4781,6 +4766,7 @@ class SourcePage(BasePage):
                                             unordered3.extend(
                                                 Html("li", self.source_link(source, uplink = self.up), inline = True)
                                             )
+
                                     list2 += unordered3
                                     unordered2 += list2
 
@@ -4796,8 +4782,7 @@ class SourcePage(BasePage):
                                         Html("a", _("Repositories"), href = "#", title = _("Repositories"), inline = True)
                                     )
 
-                                    # unordered and list item #3, Repository Name...
-                                    unordered3 = Html("ul", class_ = "Col3 RepositoryName")
+                                    unordered3 = Html("ul", class_ = "Col3", role = "Repository Name")
 
                                     for repository_handle in repo_list:
                                         repository = self.dbase_.get_repository_from_handle(repository_handle)
@@ -4806,6 +4791,7 @@ class SourcePage(BasePage):
                                                 Html("li", self.repository_link(repository_handle, repository.get_name(),
                                                     uplink = self.up), inline = True)
                                             )
+
                                     list2 += unordered3
                                     unordered2 += list2
 
@@ -4824,8 +4810,7 @@ class SourcePage(BasePage):
                                         Html("a", _("Media"), href = "#", title = _("Media"), inline = True)
                                     )
 
-                                    # unordered and list item #3, Thumbnail Link...
-                                    unordered3 = Html("ul", class_ = "Col3 MediaLink")
+                                    unordered3 = Html("ul", class_ = "Col3", role = "Media Link")
 
                                     for media_handle in media_list:
                                         media = self.dbase_.get_object_from_handle(media_handle)
@@ -4840,6 +4825,7 @@ class SourcePage(BasePage):
                                                         Html("li", self.media_link(media_handle, newpath, media.get_description(),
                                                             self.up, usedescr = False), inline = True)
                                                     )
+
                                                 else:
                                                     unordered3.extend(
                                                         Html("li", self.doc_link(media_handle, media.get_description(),
@@ -4848,9 +4834,9 @@ class SourcePage(BasePage):
 
                                     list2 += unordered3
                                     unordered2 += list2
-
-                                # must be attached at the very end of the refs list...
                                 list1 += unordered2
+                                ordered1 += list1
+                        section += ordered1
 
         # add clearline for proper styling
         # add footer section
@@ -7124,7 +7110,7 @@ class NavWebReport(Report):
             self.copy_file(fname, "narrative-menus.css", "styles")
 
             if self.navigation == "DropDown":
-                # copy SourcePage DropDown Citations Style Sheet
+                # copy SourcePage Animated Drop Down Citations Style Sheet
                 fname = CSS["DropDown-Citations"]["filename"]
                 self.copy_file(fname, "narrative-citations.css", "styles")
 
