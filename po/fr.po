@@ -28302,3 +28302,16 @@ msgstr "<b>Qui est né quand</b><br/>La comparaison des événements individuels
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr "<b>Travail sur les dates</b><br/>Une période peut être définie en utilisant le format &quot;entre 4/01/2000 et 20/03/2003&quot;. Vous pouvez également indiquer le niveau de confiance dans la date et toujours choisir entre 7 calendriers différents. Essayez le bouton à côté du champ date dans l'éditeur d'événements."
 
+#. List of translated strings used here
+#. Dead code for l10n; added on translation template
+#. Translation string should be same as key name
+#. ex: AttributeType
+#. (FATHER_AGE  , _("Father's Age"), "Father Age"),
+#. (MOTHER_AGE  , _("Mother's Age"), "Mother Age"),
+#: ../src/plugins/lib/libtranslate.py:246
+msgid "Father Age"
+msgstr "Âge du mari / compagnon"
+
+#: ../src/plugins/lib/libtranslate.py:246
+msgid "Mother Age"
+msgstr "Âge de la femme / compagne"

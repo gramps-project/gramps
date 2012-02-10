@@ -236,3 +236,11 @@ class Translator:
         :rtype: unicode
         """
         return GrampsType.xml_str(name)
+
+        # List of translated strings used here
+        # Dead code for l10n; added on translation template
+        # Translation string should be same as key name
+        # ex: AttributeType
+        #(FATHER_AGE  , _("Father's Age"), "Father Age"),
+        #(MOTHER_AGE  , _("Mother's Age"), "Mother Age"),
+        _("Father Age"), _("Mother Age")
