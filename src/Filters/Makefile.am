@@ -4,7 +4,7 @@ SUBDIRS = Rules SideBar
 
 pkgdatadir = $(datadir)/@PACKAGE@/Filters
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	_FilterComboBox.py \
 	_FilterList.py \
 	_FilterMenu.py \
@@ -17,7 +17,7 @@ pkgdata_PYTHON = \
 	_SearchFilter.py
 
 pkgpyexecdir = @pkgpyexecdir@/Filters
-pkgpythondir = @pkgpythondir@/Filters
+pkgpythondir = $(datadir)/@PACKAGE@/Filters
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -26,4 +26,4 @@ GRAMPS_PY_MODPATH = "../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

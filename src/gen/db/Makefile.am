@@ -5,7 +5,7 @@
 
 pkgdatadir = $(datadir)/@PACKAGE@/gen/db
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	__init__.py \
 	backup.py \
 	base.py \
@@ -20,7 +20,7 @@ pkgdata_PYTHON = \
 	write.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen/db
-pkgpythondir = @pkgpythondir@/gen/db
+pkgpythondir = $(datadir)/@PACKAGE@/gen/db
 
 
 # Clean up all the byte-compiled files
@@ -30,4 +30,4 @@ GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

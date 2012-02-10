@@ -5,7 +5,7 @@
 
 pkgdatadir = $(datadir)/@PACKAGE@/plugins/drawreport
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	AncestorTree.py \
 	Calendar.py\
 	DescendTree.py \
@@ -15,7 +15,7 @@ pkgdata_PYTHON = \
 	TimeLine.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/drawreport
-pkgpythondir = @pkgpythondir@/plugins/drawreport
+pkgpythondir = $(datadir)/@PACKAGE@/plugins/drawreport
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -24,4 +24,4 @@ GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

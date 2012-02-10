@@ -5,7 +5,7 @@
 
 pkgdatadir = $(datadir)/@PACKAGE@/Merge
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	__init__.py \
 	mergeperson.py \
 	mergefamily.py \
@@ -17,7 +17,7 @@ pkgdata_PYTHON = \
 	mergenote.py
 
 pkgpyexecdir = @pkgpyexecdir@/Merge
-pkgpythondir = @pkgpythondir@/Merge
+pkgpythondir = $(datadir)/@PACKAGE@/Merge
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -26,4 +26,4 @@ GRAMPS_PY_MODPATH = "../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

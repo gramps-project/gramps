@@ -5,7 +5,7 @@
 
 pkgdatadir = $(datadir)/@PACKAGE@/plugins/docgen
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	AsciiDoc.py \
 	docgen.gpr.py\
 	GtkPrint.py \
@@ -18,7 +18,7 @@ pkgdata_PYTHON = \
 	SvgDrawDoc.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/docgen
-pkgpythondir = @pkgpythondir@/plugins/docgen
+pkgpythondir = $(datadir)/@PACKAGE@/plugins/docgen
 
 GLADEFILES = \
 	gtkprint.glade 
@@ -36,4 +36,4 @@ GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

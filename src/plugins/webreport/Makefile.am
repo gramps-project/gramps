@@ -5,13 +5,13 @@
 
 pkgdatadir = $(datadir)/@PACKAGE@/plugins/webreport
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	NarrativeWeb.py\
 	WebCal.py\
 	webplugins.gpr.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/webreport
-pkgpythondir = @pkgpythondir@/plugins/webreport
+pkgpythondir = $(datadir)/@PACKAGE@/plugins/webreport
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -20,4 +20,4 @@ GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

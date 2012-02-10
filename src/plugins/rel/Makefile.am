@@ -5,7 +5,7 @@
 
 pkgdatadir = $(datadir)/@PACKAGE@/plugins/rel
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	relplugins.gpr.py\
         rel_ca.py\
 	rel_cs.py\
@@ -27,7 +27,7 @@ pkgdata_PYTHON = \
 	rel_sv.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/rel
-pkgpythondir = @pkgpythondir@/plugins/rel
+pkgpythondir = $(datadir)/@PACKAGE@/plugins/rel
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -36,4 +36,4 @@ GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

@@ -2,7 +2,7 @@
 
 pkgdatadir = $(datadir)/@PACKAGE@/Filters/Rules/MediaObject
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	_AllMedia.py\
 	_ChangedSince.py\
 	_HasIdOf.py\
@@ -18,7 +18,7 @@ pkgdata_PYTHON = \
 	__init__.py
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/Rules/MediaObject
-pkgpythondir = @pkgpythondir@/Filters/Rules/MediaObject
+pkgpythondir = $(datadir)/@PACKAGE@/Filters/Rules/MediaObject 
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -27,4 +27,4 @@ GRAMPS_PY_MODPATH = "../../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

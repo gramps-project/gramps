@@ -5,7 +5,7 @@
 
 pkgdatadir = $(datadir)/@PACKAGE@/DateHandler
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	_Date_bg.py\
 	_Date_ca.py\
 	_Date_cs.py\
@@ -33,7 +33,7 @@ pkgdata_PYTHON = \
 	__init__.py
 
 pkgpyexecdir = @pkgpyexecdir@/DateHandler
-pkgpythondir = @pkgpythondir@/DateHandler
+pkgpythondir = $(datadir)/@PACKAGE@/DateHandler
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -51,4 +51,4 @@ docs:
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

@@ -5,7 +5,7 @@
 
 pkgdatadir = $(datadir)/@PACKAGE@/gen/proxy
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	__init__.py \
 	filter.py \
 	living.py \
@@ -15,7 +15,7 @@ pkgdata_PYTHON = \
 	proxybase.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen/proxy
-pkgpythondir = @pkgpythondir@/gen/proxy
+pkgpythondir = $(datadir)/@PACKAGE@/gen/proxy
 
 
 # Clean up all the byte-compiled files
@@ -25,4 +25,4 @@ GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

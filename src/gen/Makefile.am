@@ -14,13 +14,13 @@ SUBDIRS = \
 
 pkgdatadir = $(datadir)/@PACKAGE@/gen
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	__init__.py \
 	ggettext.py \
 	updatecallback.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen
-pkgpythondir = @pkgpythondir@/gen
+pkgpythondir = $(datadir)/@PACKAGE@/gen
 
 
 # Clean up all the byte-compiled files
@@ -30,4 +30,4 @@ GRAMPS_PY_MODPATH = "../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

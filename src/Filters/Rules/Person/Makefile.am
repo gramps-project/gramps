@@ -2,7 +2,7 @@
 
 pkgdatadir = $(datadir)/@PACKAGE@/Filters/Rules/Person
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	_ChangedSince.py\
 	_Disconnected.py \
 	_DeepRelationshipPathBetween.py \
@@ -80,7 +80,7 @@ pkgdata_PYTHON = \
 	__init__.py
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/Rules/Person
-pkgpythondir = @pkgpythondir@/Filters/Rules/Person
+pkgpythondir = $(datadir)/@PACKAGE@/Filters/Rules/Person
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -89,4 +89,4 @@ GRAMPS_PY_MODPATH = "../../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

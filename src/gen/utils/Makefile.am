@@ -5,7 +5,7 @@
 
 pkgdatadir = $(datadir)/@PACKAGE@/gen/utils
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	__init__.py \
 	callback.py \
 	callman.py \
@@ -13,7 +13,7 @@ pkgdata_PYTHON = \
 	fallback.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen/utils
-pkgpythondir = @pkgpythondir@/gen/utils
+pkgpythondir = $(datadir)/@PACKAGE@/gen/utils
 
 
 # Clean up all the byte-compiled files
@@ -23,4 +23,4 @@ GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

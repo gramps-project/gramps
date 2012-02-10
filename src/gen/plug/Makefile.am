@@ -11,7 +11,7 @@ SUBDIRS = \
 
 pkgdatadir = $(datadir)/@PACKAGE@/gen/plug
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	__init__.py \
 	_docgenplugin.py \
 	_export.py \
@@ -24,7 +24,7 @@ pkgdata_PYTHON = \
 	utils.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen/plug
-pkgpythondir = @pkgpythondir@/gen/plug
+pkgpythondir = $(datadir)/@PACKAGE@/gen/plug
 
 
 # Clean up all the byte-compiled files
@@ -34,4 +34,4 @@ GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

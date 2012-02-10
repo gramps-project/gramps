@@ -7,12 +7,12 @@ SUBDIRS = css images
 
 pkgdatadir = $(datadir)/@PACKAGE@/plugins/webstuff
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
       webstuff.py \
       webstuff.gpr.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/webstuff
-pkgpythondir = @pkgpythondir@/plugins/webstuff
+pkgpythondir = $(datadir)/@PACKAGE@/plugins/webstuff
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -21,4 +21,4 @@ GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

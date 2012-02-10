@@ -2,7 +2,7 @@
 
 pkgdatadir = $(datadir)/@PACKAGE@/gui/editors/displaytabs
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	addrembedlist.py \
 	addressmodel.py \
 	attrembedlist.py \
@@ -49,7 +49,7 @@ pkgdata_PYTHON = \
 	__init__.py
 
 pkgpyexecdir = @pkgpyexecdir@/gui/editors/displaytabs
-pkgpythondir = @pkgpythondir@/gui/editors/displaytabs
+pkgpythondir = $(datadir)/@PACKAGE@/gui/editors/displaytabs
 
 # clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -58,4 +58,4 @@ GRAMPS_PY_MODPATH = "../../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));
