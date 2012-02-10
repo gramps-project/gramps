@@ -4533,7 +4533,7 @@ class SourcePage(BasePage):
                         head += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet")
 
                         # add javascript code to handle if the user's browser is IE6?
-                        fname = "/".join(["js", "jquery-1.7..min.js"])
+                        fname = "/".join(["scripts", "jquery-1.7..min.js"])
                         url = self.report.build_url_fname(fname, None, self.up)
                         head += Html("script", src = url, type = "text/javascript", language = "javascript", inline = True)
 
@@ -7116,7 +7116,7 @@ class NavWebReport(Report):
 
                 # copy jquery javascript file for use in the Drop Down Citations section...
                 fname = CSS["DropDown-Citations"]["javascript"]
-                self.copy_file(fname, "jquery-1.7.min.js", "js")
+                self.copy_file(fname, "jquery-1.7.min.js", "scripts")
 
         # copy narrative-maps Style Sheet if Place or Family Map pages are being created?
         if (self.placemappages or self.familymappages):
