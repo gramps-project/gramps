@@ -3,6 +3,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2012       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -245,6 +246,7 @@ NO_GIVEN         = "(%s)" % _("none")
 POPT_TABLE = [
     ("config",  'c',  str, None, 0, "Set config setting(s) and start Gramps",  ""),
     ("open",    'O', str, None, 0, "Open family tree",  "FAMILY_TREE"), 
+    ("create",  'C', str, None, 0, "Create or Open family tree",  "FAMILY_TREE"), 
     ("import",  'i', str, None, 0, "Import file",       "FILENAME"), 
     ("export",  'e', str, None, 0, "Export file",       "FILENAME"),
     ("format",  'f', str, None, 0, 'Specify format',    "FORMAT"), 
@@ -286,6 +288,7 @@ LONGOPTS = [
     "oaf-ior-fd=", 
     "oaf-private",
     "open=",
+    "create=",
     "options=",
     "screen=",
     "show", 
@@ -298,6 +301,6 @@ LONGOPTS = [
     "qml",
 ]
 
-SHORTOPTS = "O:i:e:f:a:p:d:c:lLhuv?s"
+SHORTOPTS = "O:C:i:e:f:a:p:d:c:lLhuv?s"
 
 GRAMPS_UUID =  uuid.UUID('516cd010-5a41-470f-99f8-eb22f1098ad6')

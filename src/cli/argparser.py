@@ -4,9 +4,11 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham, A. Roitman
 # Copyright (C) 2007-2009  B. Malengier
-# Copyright (C) 2008 Lukasz Rymarczyk
-# Copyright (C) 2008 Raphael Ackermann
-# Copyright (C) 2008 Brian G. Matherly
+# Copyright (C) 2008       Lukasz Rymarczyk
+# Copyright (C) 2008       Raphael Ackermann
+# Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2012       Doug Blank
+# Copyright (C) 2012       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -60,6 +62,7 @@ Help options
 
 Application options
   -O, --open=FAMILY_TREE                 Open family tree
+  -C, --create=FAMILY_TREE               Create on open if new family tree
   -i, --import=FILENAME                  Import file
   -e, --export=FILENAME                  Export file
   -f, --format=FORMAT                    Specify family tree format
@@ -174,6 +177,7 @@ class ArgParser(object):
         self.help = False
         self.usage = False
         self.force_unlock = False
+        self.create = None
         self.runqml = False
 
         self.errors = []
@@ -252,6 +256,8 @@ class ArgParser(object):
             option, value = options[opt_ix]
             if option in ( '-O', '--open'):
                 self.open = value
+            elif option in ( '-C', '--create'):
+                self.create = value
             elif option in ( '-i', '--import'):
                 family_tree_format = None
                 if opt_ix < len(options) - 1 \
@@ -376,6 +382,12 @@ class ArgParser(object):
             if (self.exports or self.actions):
                 # have both data and what to do with it => no GUI
                 return False
+            elif self.create:
+                if self.open: # create an empty DB, open a GUI to fill it
+                    return True
+                else: # create a DB, then do the import, with no GUI
+                    self.open = self.create
+                    return False
             else:
                 # data given, but no action/export => GUI
                 return True

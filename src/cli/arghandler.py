@@ -3,10 +3,12 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham, A. Roitman
 # Copyright (C) 2007-2009  B. Malengier
-# Copyright (C) 2008 Lukasz Rymarczyk
-# Copyright (C) 2008 Raphael Ackermann
-# Copyright (C) 2008 Brian G. Matherly
-# Copyright (C) 2010 Jakim Friant
+# Copyright (C) 2008       Lukasz Rymarczyk
+# Copyright (C) 2008       Raphael Ackermann
+# Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2012       Doug Blank
+# Copyright (C) 2012       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -168,7 +170,7 @@ class ArgHandler(object):
         self.imports = []
         self.exports = []
 
-        self.open = self.__handle_open_option(parser.open)
+        self.open = self.__handle_open_option(parser.open, parser.create)
         self.sanitize_args(parser.imports, parser.exports)
     
     def __error(self, msg1, msg2=None):
@@ -196,10 +198,11 @@ class ArgHandler(object):
         for (value, family_tree_format) in exportlist:
             self.__handle_export_option(value, family_tree_format)
 
-    def __handle_open_option(self, value):
+    def __handle_open_option(self, value, create):
         """
-        Handle the "-O" or "--open" option.
+        Handle the "-O" or "--open" and "-C" or "--create" options.
         Only Family trees or a dir with a family tree can be opened.
+        If create is True, then create the tree if it doesn't exist.
         """
         if value is None:
             return None
@@ -211,6 +214,14 @@ class ArgHandler(object):
             # Check if it is good.
             if not self.check_db(db_path, self.force_unlock):
                 sys.exit(0)
+            if create:
+                self.__error( _("Error: Family tree '%s' already exists.\n"
+                                "The '-C' option cannot be used.") % value)
+                sys.exit(0)
+            return db_path
+        elif create:
+            # create the tree here, and continue
+            db_path, title = self.dbman.create_new_db_cli(title=value)
             return db_path
         else:
             self.__error( _('Error: Input family tree "%s" does not exist.\n'
