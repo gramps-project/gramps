@@ -1575,11 +1575,11 @@ class BasePage(object):
         )
 
         # Link to _NARRATIVESCREEN  stylesheet
-        fname = "/".join(["styles", _NARRATIVESCREEN])
+        fname = "/".join(["css", _NARRATIVESCREEN])
         url2 = self.report.build_url_fname(fname, None, self.up)
 
         # Link to _NARRATIVEPRINT stylesheet
-        fname = "/".join(["styles", _NARRATIVEPRINT])
+        fname = "/".join(["css", _NARRATIVEPRINT])
         url3 = self.report.build_url_fname(fname, None, self.up)
 
         # Link to GRAMPS favicon
@@ -1594,7 +1594,7 @@ class BasePage(object):
 
         # Link to Navigation Menus stylesheet
         if CSS[self.report.css]["navigation"]: 
-            fname = "/".join(["styles", "narrative-menus.css"])
+            fname = "/".join(["css", "narrative-menus.css"])
             url = self.report.build_url_fname(fname, None, self.up)
             links += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet", indent = False)
 
@@ -3519,7 +3519,7 @@ class PlacePage(BasePage):
                     placetitle = place.get_title()
 
                     # add narrative-maps CSS...
-                    fname = "/".join(["styles", "narrative-maps.css"])
+                    fname = "/".join(["css", "narrative-maps.css"])
                     url = self.report.build_url_fname(fname, None, self.up)
                     head += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet")
 
@@ -3908,7 +3908,7 @@ class MediaPage(BasePage):
         # if there are media rectangle regions, attach behaviour style sheet
         if _region_items:
 
-            fname = "/".join(["styles", "behaviour.css"])
+            fname = "/".join(["css", "behaviour.css"])
             url = self.report.build_url_fname(fname, None, self.up)
             head += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet")
 
@@ -4528,7 +4528,7 @@ class SourcePage(BasePage):
                     if self.navigation == "DropDown":
 
                         # add Animated Drop Down Citations Style Sheet
-                        fname = "/".join(["styles", "narrative-citations.css"])
+                        fname = "/".join(["css", "narrative-citations.css"])
                         url = self.report.build_url_fname(fname, None, self.up)
                         head += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet")
 
@@ -5336,7 +5336,7 @@ class IndividualPage(BasePage):
 
         # attach the ancestortree style sheet if ancestor graph is being created?
         if self.report.options["ancestortree"]:
-            fname = "/".join(["styles", "ancestortree.css"])
+            fname = "/".join(["css", "ancestortree.css"])
             url = self.report.build_url_fname(fname, None, self.up)
             head += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet")
 
@@ -5523,7 +5523,7 @@ class IndividualPage(BasePage):
         # call_(report, up, head)
 
         # add narrative-maps style sheet
-        fname = "/".join(["styles", "narrative-maps.css"])
+        fname = "/".join(["css", "narrative-maps.css"])
         url = self.report.build_url_fname(fname, None, self.up)
         head += Html("link", href =url, type ="text/css", media ="screen", rel ="stylesheet")
 
@@ -7082,20 +7082,20 @@ class NavWebReport(Report):
         # copy screen style sheet
         if CSS[self.css]["filename"]:
             fname = CSS[self.css]["filename"]
-            self.copy_file(fname, _NARRATIVESCREEN, "styles")
+            self.copy_file(fname, _NARRATIVESCREEN, "css")
 
         # copy printer style sheet
         fname = CSS["Print-Default"]["filename"] 
-        self.copy_file(fname, _NARRATIVEPRINT, "styles")
+        self.copy_file(fname, _NARRATIVEPRINT, "css")
 
         # copy ancestor tree style sheet if tree is being created?
         if self.ancestortree:
             fname = CSS["ancestortree"]["filename"]
-            self.copy_file(fname, "ancestortree.css", "styles")
+            self.copy_file(fname, "ancestortree.css", "css")
 
         # copy behaviour style sheet
         fname = CSS["behaviour"]["filename"] 
-        self.copy_file(fname, "behaviour.css", "styles")
+        self.copy_file(fname, "behaviour.css", "css")
 
         # copy Menu Layout Style Sheet if Blue or Visually is being used as the stylesheet?
         if CSS[self.css]["navigation"]: 
@@ -7107,12 +7107,12 @@ class NavWebReport(Report):
                 fname = CSS["Fade-Menus"]["filename"]
             elif self.navigation == "DropDown":
                 fname = CSS["DropDown-Menus"]["filename"]
-            self.copy_file(fname, "narrative-menus.css", "styles")
+            self.copy_file(fname, "narrative-menus.css", "css")
 
             if self.navigation == "DropDown":
                 # copy SourcePage Animated Drop Down Citations Style Sheet
                 fname = CSS["DropDown-Citations"]["filename"]
-                self.copy_file(fname, "narrative-citations.css", "styles")
+                self.copy_file(fname, "narrative-citations.css", "css")
 
                 # copy jquery javascript file for use in the Drop Down Citations section...
                 fname = CSS["DropDown-Citations"]["javascript"]
@@ -7121,7 +7121,7 @@ class NavWebReport(Report):
         # copy narrative-maps Style Sheet if Place or Family Map pages are being created?
         if (self.placemappages or self.familymappages):
             fname = CSS["NarrativeMaps"]["filename"] 
-            self.copy_file(fname, "narrative-maps.css", "styles")
+            self.copy_file(fname, "narrative-maps.css", "css")
 
         # Copy the Creative Commons icon if the Creative Commons
         # license is requested
