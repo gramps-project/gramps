@@ -4,9 +4,7 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/GrampsLogger
-
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	_ErrorReportAssistant.py\
 	_ErrorView.py\
 	_GtkHandler.py\
@@ -14,7 +12,7 @@ pkgdata_PYTHON = \
 	_RotateHandler.py
 
 pkgpyexecdir = @pkgpyexecdir@/GrampsLogger
-pkgpythondir = @pkgpythondir@/GrampsLogger
+pkgpythondir = $(datadir)/@PACKAGE@/GrampsLogger
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -23,4 +21,4 @@ GRAMPS_PY_MODPATH = "../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

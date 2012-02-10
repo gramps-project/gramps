@@ -1,9 +1,9 @@
 # This is the src/gui/plug/report level Makefile for Gramps
 # $Id$
 
-pkgdatadir = $(datadir)/@PACKAGE@/gui/plug/report
+pkgpythondir = $(datadir)/@PACKAGE@/gui/plug/report
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	__init__.py\
 	_docreportdialog.py\
 	_drawreportdialog.py\
@@ -17,7 +17,6 @@ pkgdata_PYTHON = \
 	_webreportdialog.py
 
 pkgpyexecdir = @pkgpyexecdir@/gui/plug/report
-pkgpythondir = @pkgpythondir@/gui/plug/report
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -26,4 +25,4 @@ GRAMPS_PY_MODPATH = "../../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

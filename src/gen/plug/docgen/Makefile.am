@@ -6,7 +6,7 @@
 
 pkgdatadir = $(datadir)/@PACKAGE@/gen/plug/docgen
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	__init__.py \
 	basedoc.py  \
 	drawdoc.py \
@@ -21,7 +21,7 @@ pkgdata_PYTHON = \
 	textdoc.py 
 
 pkgpyexecdir = @pkgpyexecdir@/gen/plug/docgen
-pkgpythondir = @pkgpythondir@/gen/plug/docgen
+pkgpythondir = $(datadir)/@PACKAGE@/gen/plug/docgen
 
 
 # Clean up all the byte-compiled files
@@ -31,4 +31,4 @@ GRAMPS_PY_MODPATH = "../../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

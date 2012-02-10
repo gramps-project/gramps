@@ -4,16 +4,15 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/plugins/graph
+pkgpythondir = $(datadir)/@PACKAGE@/plugins/graph
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	graphplugins.gpr.py\
 	GVFamilyLines.py \
 	GVHourGlass.py \
 	GVRelGraph.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/graph
-pkgpythondir = @pkgpythondir@/plugins/graph
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -22,4 +21,4 @@ GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

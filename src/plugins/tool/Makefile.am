@@ -6,7 +6,7 @@
 
 pkgdatadir = $(datadir)/@PACKAGE@/plugins/tool
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	ChangeNames.py \
 	ChangeTypes.py \
 	Check.py \
@@ -36,7 +36,7 @@ pkgdata_PYTHON = \
 #	TestcaseGenerator.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/tool
-pkgpythondir = @pkgpythondir@/plugins/tool
+pkgpythondir = $(datadir)/@PACKAGE@/plugins/tool
 
 GLADEFILES = \
 	changenames.glade \
@@ -66,4 +66,4 @@ GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

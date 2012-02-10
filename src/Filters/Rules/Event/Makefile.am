@@ -1,9 +1,9 @@
 # This is the src/Filters/Rules/Event level Makefile for Gramps
 # $Id$
 
-pkgdatadir = $(datadir)/@PACKAGE@/Filters/Rules/Event
+pkgpythondir = $(datadir)/@PACKAGE@/Filters/Rules/Event
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	_ChangedSince.py\
 	_MatchesFilter.py\
 	_EventPrivate.py\
@@ -26,7 +26,7 @@ pkgdata_PYTHON = \
 	__init__.py
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/Rules/Event
-pkgpythondir = @pkgpythondir@/Filters/Rules/Event
+
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -35,4 +35,4 @@ GRAMPS_PY_MODPATH = "../../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

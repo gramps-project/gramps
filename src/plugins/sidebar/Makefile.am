@@ -4,14 +4,13 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/plugins/sidebar
+pkgpythondir = $(datadir)/@PACKAGE@/plugins/sidebar
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	categorysidebar.py\
 	sidebar.gpr.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/sidebar
-pkgpythondir = @pkgpythondir@/plugins/sidebar
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -20,4 +19,4 @@ GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

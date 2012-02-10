@@ -4,9 +4,9 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/Merge
+pkgpythondir = $(datadir)/@PACKAGE@/Merge
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	__init__.py \
 	mergeperson.py \
 	mergefamily.py \
@@ -19,7 +19,6 @@ pkgdata_PYTHON = \
 	mergenote.py
 
 pkgpyexecdir = @pkgpyexecdir@/Merge
-pkgpythondir = @pkgpythondir@/Merge
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -28,4 +27,4 @@ GRAMPS_PY_MODPATH = "../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

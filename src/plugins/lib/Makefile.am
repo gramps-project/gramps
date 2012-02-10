@@ -15,7 +15,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/plugins/lib
 
 SUBDIRS = maps
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	libcairodoc.py\
 	libformatting.py\
 	libgedcom.py\
@@ -38,7 +38,7 @@ pkgdata_PYTHON = \
 	libtreebase.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/lib
-pkgpythondir = @pkgpythondir@/plugins/lib
+pkgpythondir = $(datadir)/@PACKAGE@/plugins/lib
 
 GLADEFILES = 
 
@@ -59,4 +59,4 @@ GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

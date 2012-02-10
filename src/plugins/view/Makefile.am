@@ -4,9 +4,9 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/plugins/view
+pkgpythondir = $(datadir)/@PACKAGE@/plugins/view
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	citationlistview.py \
 	citationtreeview.py \
 	eventview.py \
@@ -35,7 +35,6 @@ pkgdata_PYTHON = \
 	view.gpr.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/view
-pkgpythondir = @pkgpythondir@/plugins/view
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -44,4 +43,4 @@ GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

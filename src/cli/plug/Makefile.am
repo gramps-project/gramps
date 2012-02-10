@@ -4,13 +4,13 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/cli/plug
+pkgpythondir = $(datadir)/@PACKAGE@/cli/plug
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	__init__.py
 
 pkgpyexecdir = @pkgpyexecdir@/cli/plug
-pkgpythondir = @pkgpythondir@/cli/plug
+
 
 
 # Clean up all the byte-compiled files
@@ -20,4 +20,4 @@ GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

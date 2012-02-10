@@ -6,9 +6,9 @@
 
 SUBDIRS = report
 
-pkgdatadir = $(datadir)/@PACKAGE@/gui/plug
+pkgpythondir = $(datadir)/@PACKAGE@/gui/plug
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	__init__.py\
 	_guioptions.py\
 	_windows.py\
@@ -16,7 +16,6 @@ pkgdata_PYTHON = \
 	tool.py
 
 pkgpyexecdir = @pkgpyexecdir@/gui/plug
-pkgpythondir = @pkgpythondir@/gui/plug
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -25,4 +24,4 @@ GRAMPS_PY_MODPATH = "../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

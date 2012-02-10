@@ -1,9 +1,9 @@
 # This is the src/Filters/Rules/Family level Makefile for Gramps
 # $Id$
 
-pkgdatadir = $(datadir)/@PACKAGE@/Filters/Rules/Family
+pkgpythondir = $(datadir)/@PACKAGE@/Filters/Rules/Family
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	_AllFamilies.py\
 	_ChangedSince.py\
 	_FamilyPrivate.py\
@@ -41,7 +41,6 @@ pkgdata_PYTHON = \
 
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/Rules/Family
-pkgpythondir = @pkgpythondir@/Filters/Rules/Family
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -50,4 +49,4 @@ GRAMPS_PY_MODPATH = "../../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

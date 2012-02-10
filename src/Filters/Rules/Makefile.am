@@ -3,9 +3,9 @@
 
 SUBDIRS = Person Family Event Place Source MediaObject Repository Note Citation
 
-pkgdatadir = $(datadir)/@PACKAGE@/Filters/Rules
+pkgpythondir = $(datadir)/@PACKAGE@/Filters/Rules
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	_ChangedSinceBase.py\
 	_Everything.py\
 	_HasEventBase.py\
@@ -35,7 +35,6 @@ pkgdata_PYTHON = \
 
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/Rules
-pkgpythondir = @pkgpythondir@/Filters/Rules
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -44,4 +43,4 @@ GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));
