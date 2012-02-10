@@ -130,8 +130,8 @@ def reformat_para(para='',left=0,right=72,just=LEFT,right_pad=0,first=0):
 #------------------------------------------------------------------------
 class AsciiDoc(BaseDoc,TextDoc):
 
-    def __init__(self, styles, type, index_opts):
-        BaseDoc.__init__(self, styles, type, index_opts)
+    def __init__(self, styles, type):
+        BaseDoc.__init__(self, styles, type)
         self.__note_format = False
 
     #--------------------------------------------------------------------

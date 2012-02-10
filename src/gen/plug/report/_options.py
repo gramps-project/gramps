@@ -83,8 +83,6 @@ class OptionList(_options.OptionList):
         self.margins = [2.54, 2.54, 2.54, 2.54]
         self.format_name = None
         self.css_filename = None
-        self.toc = None
-        self.index = None
     
     def set_style_name(self, style_name):
         """
@@ -236,38 +234,6 @@ class OptionList(_options.OptionList):
         """
         return self.format_name
 
-    def set_toc(self, toc):
-        """
-        Set the template name for the OptionList.
-        @param template_name: name of the template to set.
-        @type template_name: str
-        """
-        self.toc = toc
-
-    def get_toc(self):
-        """
-        Return the template name of the OptionList.
-        @returns: template name
-        @rtype: str
-        """
-        return self.toc
-
-    def set_index(self, index):
-        """
-        Set the template name for the OptionList.
-        @param template_name: name of the template to set.
-        @type template_name: str
-        """
-        self.index = index
-
-    def get_index(self):
-        """
-        Return the template name of the OptionList.
-        @returns: template name
-        @rtype: str
-        """
-        return self.index
-
 #-------------------------------------------------------------------------
 #
 # Collection of option lists
@@ -290,8 +256,6 @@ class OptionListCollection(_options.OptionListCollection):
         self.default_custom_paper_size = [29.7, 21.0]
         self.default_margins = [2.54, 2.54, 2.54, 2.54]
         self.default_format_name = 'print'
-        self.default_toc = False
-        self.default_index = False
 
         self.last_paper_metric = self.default_paper_metric
         self.last_paper_name = self.default_paper_name
@@ -300,8 +264,6 @@ class OptionListCollection(_options.OptionListCollection):
         self.last_margins = copy.copy(self.default_margins)
         self.last_css_filename = self.default_css_filename
         self.last_format_name = self.default_format_name
-        self.last_toc = self.default_toc
-        self.last_index = self.default_index
         self.option_list_map = {}
 
     def set_last_paper_metric(self, paper_metric):
@@ -436,34 +398,6 @@ class OptionListCollection(_options.OptionListCollection):
         """
         return self.last_format_name
 
-    def set_last_toc(self, toc):
-        """
-        Set the last format used for the any report in this collection.
-        
-        format_name: name of the format to set.
-        """
-        self.last_toc = toc
-
-    def get_last_toc(self):
-        """
-        Return the last format used for the any report in this collection.
-        """
-        return self.last_toc
-
-    def set_last_index(self, index):
-        """
-        Set the last format used for the any report in this collection.
-        
-        format_name: name of the format to set.
-        """
-        self.last_index = index
-
-    def get_last_index(self):
-        """
-        Return the last format used for the any report in this collection.
-        """
-        return self.last_index
-
     def write_common(self, f):
         f.write('<last-common>\n')
         if self.get_last_paper_metric() != self.default_paper_metric:
@@ -479,10 +413,6 @@ class OptionListCollection(_options.OptionListCollection):
             f.write('  <format name="%s"/>\n' % escxml(self.get_last_format_name()) )
         if self.get_last_orientation() != self.default_orientation:
             f.write('  <orientation value="%d"/>\n' % self.get_last_orientation() )
-        if self.get_last_toc() != self.default_toc:
-            f.write('  <toc include="%d"/>\n' % self.get_last_toc())
-        if self.get_last_index() != self.default_index:
-            f.write('  <index include="%d"/>\n' % self.get_last_index())
         f.write('</last-common>\n')
 
     def write_module_common(self, f, option_list):
@@ -511,13 +441,6 @@ class OptionListCollection(_options.OptionListCollection):
                     for pos in range(len(margins)): 
                         f.write('  <margin number="%s" value="%f"/>\n' %
                                     (pos, margins[pos]))
-            if option_list.get_format_name() == 'pdf':
-                if option_list.get_toc():
-                    f.write('  <toc include="%s"/>\n' % 
-                            'True' if option_list.get_toc() else False)
-                if option_list.get_index():
-                    f.write('  <index include="%s"/>\n' % 
-                            'True' if option_list.get_index() else False)
 
         if option_list.get_style_name():
             f.write('  <style name="%s"/>\n' %
@@ -599,22 +522,13 @@ class OptionParser(_options.OptionParser):
                 self.collection.set_last_custom_paper_size([width, height])
             else:
                 self.option_list.set_custom_paper_size([width, height])
+
         elif tag == "margin":
             pos, value = int(attrs['number']), float(attrs['value'])
             if self.common:
                 self.collection.set_last_margin(pos, value)
             else:
                 self.option_list.set_margin(pos, value)
-        elif tag == "toc":
-            if self.common:
-                self.collection.set_last_toc(attrs['include'] == 'True')
-            else:
-                self.option_list.set_toc(attrs['include'] == 'True')
-        elif tag == "index":
-            if self.common:
-                self.collection.set_last_index(attrs['include'] == 'True')
-            else:
-                self.option_list.set_index(attrs['include'] == 'True')
         else:
             # Tag is not report-specific, so we let the base class handle it.
             _options.OptionParser.startElement(self, tag, attrs)
@@ -683,8 +597,6 @@ class OptionHandler(_options.OptionHandler):
         self.css_filename = self.option_list_collection.get_last_css_filename()
         self.margins = self.option_list_collection.get_last_margins()
         self.format_name = self.option_list_collection.get_last_format_name()
-        self.toc = self.option_list_collection.get_last_toc()
-        self.index = self.option_list_collection.get_last_index()
 
     def set_common_options(self):
         if self.saved_option_list.get_style_name():
@@ -703,10 +615,6 @@ class OptionHandler(_options.OptionHandler):
             self.paper_name = self.saved_option_list.get_paper_name()
         if self.saved_option_list.get_format_name():
             self.format_name = self.saved_option_list.get_format_name()
-        if self.saved_option_list.get_toc():
-            self.toc = self.saved_option_list.get_toc()
-        if self.saved_option_list.get_index():
-            self.index = self.saved_option_list.get_index()
 
     def save_options(self):
         """
@@ -735,8 +643,6 @@ class OptionHandler(_options.OptionHandler):
         self.saved_option_list.set_paper_name(self.paper_name)
         self.saved_option_list.set_css_filename(self.css_filename)
         self.saved_option_list.set_format_name(self.format_name)
-        self.saved_option_list.set_toc(self.toc)
-        self.saved_option_list.set_index(self.index)
         self.option_list_collection.set_option_list(self.module_name,
                                                     self.saved_option_list)
 
@@ -748,8 +654,6 @@ class OptionHandler(_options.OptionHandler):
         self.option_list_collection.set_last_paper_name(self.paper_name)
         self.option_list_collection.set_last_css_filename(self.css_filename)
         self.option_list_collection.set_last_format_name(self.format_name)
-        self.option_list_collection.set_last_toc(self.toc)
-        self.option_list_collection.set_last_index(self.index)
 
     def get_stylesheet_savefile(self):
         """Where to save user defined styles for this report."""
@@ -815,18 +719,6 @@ class OptionHandler(_options.OptionHandler):
 
     def set_margins(self,margins):
         self.margins = copy.copy(margins)
-
-    def get_toc(self):
-        return copy.copy(self.toc)
-
-    def set_toc(self, toc):
-        self.toc = copy.copy(toc)
-
-    def get_index(self):
-        return copy.copy(self.index)
-
-    def set_index(self, index):
-        self.index = copy.copy(index)
 
 #------------------------------------------------------------------------
 #

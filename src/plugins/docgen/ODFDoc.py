@@ -433,11 +433,11 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
     The ODF document class
     """
 
-    def __init__(self, styles, ftype, index_opts):
+    def __init__(self, styles, ftype):
         """
         Class init
         """
-        BaseDoc.__init__(self, styles, ftype, index_opts)
+        BaseDoc.__init__(self, styles, ftype)
         self.media_list = []
         self.init_called = False
         self.cntnt = None

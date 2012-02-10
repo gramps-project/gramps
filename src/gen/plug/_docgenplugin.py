@@ -30,8 +30,7 @@ class DocGenPlugin(Plugin):
     """
     This class represents a plugin for generating documents from Gramps
     """
-    def __init__(self, name, description, basedoc, paper, style, index, 
-                 extension):
+    def __init__(self, name, description, basedoc, paper, style, extension):
         """
         @param name: A friendly name to call this plugin.
             Example: "Plain Text"
@@ -48,10 +47,6 @@ class DocGenPlugin(Plugin):
         @param style: Indicates whether the plugin uses styles or not.
             True = use styles; False = do not use styles
         @type style: bool
-        @param index: Indicates whether the plugin supports an Alphabetical 
-            Index and Table of Contents or not.
-            True = supports indexing; False = does not support indexing
-        @type index: bool
         @param extension: The extension for the output file.
             Example: "txt"
         @type extension: str
@@ -61,7 +56,6 @@ class DocGenPlugin(Plugin):
         self.__basedoc = basedoc
         self.__paper = paper
         self.__style = style
-        self.__index = index
         self.__extension = extension
     
     def get_basedoc(self):
@@ -87,14 +81,6 @@ class DocGenPlugin(Plugin):
         @return: bool - True = use styles; False = do not use styles
         """
         return self.__style
-    
-    def get_index_support(self):
-        """
-        Get the index flag for this plugin.
-        
-        @return: bool - True = index support; False = no index support
-        """
-        return self.__index
     
     def get_extension(self):
         """

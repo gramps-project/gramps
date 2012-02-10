@@ -35,7 +35,6 @@
 #------------------------------------------------------------------------
 from gen.ggettext import gettext as _
 from math import radians
-import re
 
 #------------------------------------------------------------------------
 #
@@ -174,18 +173,6 @@ def tabstops_to_tabarray(tab_stops, dpi):
         tab_array.set_tab(index, pango.TAB_LEFT, int(location))
         
     return tab_array
-
-def raw_length(s):
-    """
-    Return the length of the raw string after all pango markup has been removed.
-    """
-    s = re.sub('<.*?>', '', s)
-    s = s.replace('&amp;', '&')
-    s = s.replace('&lt;', '<')
-    s = s.replace('&gt;', '>')
-    s = s.replace('&quot;', '"')
-    s = s.replace('&apos;', "'")
-    return len(s)
 
 ###------------------------------------------------------------------------
 ###
@@ -334,14 +321,6 @@ class GtkDocBaseElement(object):
         """
         return self._children
     
-    def get_marks(self):
-        """Get the list of index marks for this element.
-        """
-        marks = []
-        for child in self._children:
-            marks.extend(child.get_marks())
-        return marks
-
     def divide(self, layout, width, height, dpi_x, dpi_y):
         """Divide the element into two depending on available space.
         
@@ -431,32 +410,12 @@ class GtkDocParagraph(GtkDocBaseElement):
         self._plaintext = None
         self._attrlist = None
         
-        self._marklist = []
-        
     def add_text(self, text):
         if self._plaintext is not None:
             raise PluginError('CairoDoc: text is already parsed.'
                             ' You cannot add text anymore')
         self._text = self._text + text
     
-    def add_mark(self, mark):
-        """
-        Add an index mark to this paragraph
-        """
-        self._marklist.append((mark, raw_length(self._text)))
-
-    def get_marks(self):
-        """
-        Return a list of index marks for this paragraph
-        """
-        return [elem[0] for elem in self._marklist]
-
-    def __set_marklist(self, marklist):
-        """
-        Internal method to allow for splitting of paragraphs
-        """
-        self._marklist = marklist
-
     def __set_plaintext(self, plaintext):
         """
         Internal method to allow for splitting of paragraphs
@@ -603,18 +562,7 @@ class GtkDocParagraph(GtkDocBaseElement):
         # then update the first one
         self.__set_plaintext(self._plaintext.encode('utf-8')[:index])
         self._style.set_bottom_margin(0)
-
-        # split the list of index marks
-        para1 = []
-        para2 = []
-        for mark, position in self._marklist:
-            if position < index:
-                para1.append((mark, position))
-            else:
-                para2.append((mark, position - index))
-        self.__set_marklist(para1)
-        new_paragraph.__set_marklist(para2)
-
+        
         paragraph_height = endheight - startheight + spacing + t_margin + 2 * v_padding
         return (self, new_paragraph), paragraph_height
 
@@ -1426,10 +1374,6 @@ links (like ODF) and write PDF from that format.
             # The markup in the note editor is not in the text so is not 
             # considered. It must be added by pango too
             text = self._backend.ESCAPE_FUNC()(text)
-
-        if mark:
-            self._active_element.add_mark(mark)
-
         self._active_element.add_text(text)
 
     def write_text(self, text, mark=None, links=False):
@@ -1570,12 +1514,6 @@ links (like ODF) and write PDF from that format.
         
         """
         raise NotImplementedError
-
-    def paginate_document(self, layout, page_width, page_height, dpi_x, dpi_y):
-        """Paginate the entire document.
-        """
-        while not self.paginate(layout, page_width, page_height, dpi_x, dpi_y):
-            pass
 
     def paginate(self, layout, page_width, page_height, dpi_x, dpi_y):
         """Paginate the meta document in chunks.

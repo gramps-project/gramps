@@ -29,7 +29,6 @@ A docgen plugin should fully implement this api for TextDoc or DrawDoc
 
 from basedoc import BaseDoc
 from paperstyle import PaperSize, PaperStyle, PAPER_PORTRAIT, PAPER_LANDSCAPE
-from indexoptions import IndexOptions
 from fontstyle import FontStyle, FONT_SANS_SERIF, FONT_SERIF, FONT_MONOSPACE
 from paragraphstyle import ParagraphStyle, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT,\
                            PARA_ALIGN_RIGHT, PARA_ALIGN_JUSTIFY

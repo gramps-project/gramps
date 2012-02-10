@@ -48,9 +48,8 @@ log = logging.getLogger(".")
 #-------------------------------------------------------------------------
 import Utils
 from gen.plug import BasePluginManager
-from gen.plug.docgen import (StyleSheet, StyleSheetList, PaperStyle, 
-                             PAPER_PORTRAIT, PAPER_LANDSCAPE, graphdoc, 
-                             IndexOptions)
+from gen.plug.docgen import (StyleSheet, StyleSheetList, PaperStyle,
+                             PAPER_PORTRAIT, PAPER_LANDSCAPE, graphdoc)
 from gen.plug.menu import (FamilyOption, PersonOption, NoteOption, 
                            MediaOption, PersonListOption, NumberOption, 
                            BooleanOption, DestinationOption, StringOption, 
@@ -60,7 +59,6 @@ from Errors import ReportError
 from gen.plug.report import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
                              CATEGORY_GRAPHVIZ, CATEGORY_CODE)
 from gen.plug.report._paper import paper_sizes
-from gen.plug.report.toc_index import add_toc_index_styles
 import const
 import DbState
 from cli.grampscli import CLIManager
@@ -258,8 +256,6 @@ class CommandLineReport(object):
             'papermt'   : self.option_class.handler.get_margins()[2],
             'papermb'   : self.option_class.handler.get_margins()[3],
             'css'       : self.option_class.handler.get_css_filename(),
-            'toc'       : self.option_class.handler.get_toc(),
-            'index'     : self.option_class.handler.get_index(),
             }
 
         self.options_help = {
@@ -274,10 +270,6 @@ class CommandLineReport(object):
             'papermb'   : ["=num", "Bottom paper margin", "Size in cm"],
             'css'       : ["=css filename", "CSS filename to use, html format"
                             " only", ""],
-            'toc'       : ["=bool", "Include table of contents.", 
-                            ["False", "True"]],
-            'index'     : ["=bool", "Include alphabetical index.", 
-                            ["False", "True"]],
             }
 
         if noopt:
@@ -319,7 +311,6 @@ class CommandLineReport(object):
         if self.category in (CATEGORY_TEXT, CATEGORY_DRAW):
             default_style = StyleSheet()
             self.option_class.make_default_style(default_style)
-            add_toc_index_styles(default_style)
 
             # Read all style sheets available for this item
             style_file = self.option_class.handler.get_stylesheet_savefile()
@@ -507,13 +498,9 @@ class CommandLineReport(object):
         self.margint = self.options_dict['papermt']
         self.marginb = self.options_dict['papermb']
 
-        self.toc = self.options_dict['toc']
-        self.index = self.options_dict['index']
-
         if self.category in (CATEGORY_TEXT, CATEGORY_DRAW):
             default_style = StyleSheet()
             self.option_class.make_default_style(default_style)
-            add_toc_index_styles(default_style)
 
             # Read all style sheets available for this item
             style_file = self.option_class.handler.get_stylesheet_savefile()
@@ -586,14 +573,12 @@ def cl_report(database, name, category, report_class, options_class,
             clr.option_class.handler.doc = clr.format(
                         clr.selected_style,
                         PaperStyle(clr.paper,clr.orien,clr.marginl,
-                                   clr.marginr,clr.margint,clr.marginb),
-                        IndexOptions(clr.toc, clr.index))
+                                   clr.marginr,clr.margint,clr.marginb))
         elif category == CATEGORY_GRAPHVIZ:
             clr.option_class.handler.doc = clr.format(
                         clr.option_class,
                         PaperStyle(clr.paper,clr.orien,clr.marginl,
-                                   clr.marginr,clr.margint,clr.marginb),
-                        IndexOptions(clr.toc, clr.index))
+                                   clr.marginr,clr.margint,clr.marginb))
         if clr.css_filename is not None and \
            hasattr(clr.option_class.handler.doc, 'set_css_filename'):
             clr.option_class.handler.doc.set_css_filename(clr.css_filename)

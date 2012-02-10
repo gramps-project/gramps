@@ -75,7 +75,6 @@ src/gen/plug/docgen/graphdoc.py
 src/gen/plug/report/_constants.py
 src/gen/plug/report/_paper.py
 src/gen/plug/report/endnotes.py
-src/gen/plug/report/toc_index.py
 src/gen/plug/report/utils.py
 
 # gen proxy API

@@ -45,7 +45,6 @@ import const
 import config
 from _reportdialog import ReportDialog
 from _papermenu import PaperFrame
-from gen.plug.docgen import IndexOptions
 from gui.pluginmanager import GuiPluginManager
 PLUGMAN = GuiPluginManager.get_instance()
 
@@ -95,13 +94,7 @@ class DocReportDialog(ReportDialog):
         """
         pstyle = self.paper_frame.get_paper_style()
         
-        if self.format_menu.get_active_plugin().get_index_support():
-            index_opts = IndexOptions(self.toc.get_active(), 
-                                      self.index.get_active())
-        else:
-            index_opts = None
-
-        self.doc = self.format(self.selected_style, pstyle, index_opts)
+        self.doc = self.format(self.selected_style, pstyle)
         if not self.format_menu.get_active_plugin().get_paper_used():
             #set css filename
             self.doc.set_css_filename(self.css_filename)
@@ -123,19 +116,21 @@ class DocReportDialog(ReportDialog):
 
         # Is this to be a printed report or an electronic report
         # (i.e. a set of web pages)
+
+        if self.firstpage_added:
+            self.notebook.remove_page(0)
         if docgen_plugin.get_paper_used():
+            self.paper_label = gtk.Label('<b>%s</b>'%_("Paper Options"))
+            self.paper_label.set_use_markup(True)
+            self.notebook.insert_page(self.paper_frame, self.paper_label, 0)
             self.paper_frame.show_all()
-            self.html_table.hide_all()
         else:
-            self.paper_frame.hide_all()
+            self.html_label = gtk.Label('<b>%s</b>' % _("HTML Options"))
+            self.html_label.set_use_markup(True)
+            self.notebook.insert_page(self.html_table, self.html_label, 0)
             self.html_table.show_all()
-            
-        # Does this report format support indexing?
-        if docgen_plugin.get_index_support():
-            self.index_table.show_all()
-        else:
-            self.index_table.hide_all()
-            
+        self.firstpage_added = True
+
         ext_val = docgen_plugin.get_extension()
         if ext_val:
             fname = self.target_fileentry.get_full_path(0)
@@ -152,13 +147,12 @@ class DocReportDialog(ReportDialog):
         if self.style_button:
             self.style_button.set_sensitive(docgen_plugin.get_style_support())
             self.style_menu.set_sensitive(docgen_plugin.get_style_support())
-            
-        self.notebook.set_current_page(3) # Report options
 
     def setup_format_frame(self):
         """Set up the format frame of the dialog.  This function
         relies on the make_doc_menu() function to do all the hard
         work."""
+
         self.make_doc_menu(self.options.handler.get_format_name())
         self.format_menu.connect('changed', self.doc_type_changed)
         label = gtk.Label("%s:" % _("Output Format"))
@@ -192,19 +186,6 @@ class DocReportDialog(ReportDialog):
                                       self.options.handler.get_custom_paper_size()
                                       )
         self.setup_html_frame()
-        self.setup_index_frame()
-
-        self.paper_label = gtk.Label('<b>%s</b>'%_("Paper Options"))
-        self.paper_label.set_use_markup(True)
-        self.notebook.insert_page(self.paper_frame, self.paper_label)
-
-        self.html_label = gtk.Label('<b>%s</b>' % _("HTML Options"))
-        self.html_label.set_use_markup(True)
-        self.notebook.insert_page(self.html_table, self.html_label)
-        
-        self.index_label = gtk.Label('<b>%s</b>' % _("Index Options"))
-        self.index_label.set_use_markup(True)
-        self.notebook.insert_page(self.index_table, self.index_label)
         ReportDialog.setup_report_options_frame(self)
 
     def setup_html_frame(self):
@@ -240,23 +221,6 @@ class DocReportDialog(ReportDialog):
         self.html_table.attach(self.css_combo,2,3,1,2, yoptions=gtk.SHRINK)
         self.css_combo.set_active(active_index)
 
-    def setup_index_frame(self):
-        """Set up the index frame of the dialog.  This sole purpose of
-        this function is to grab a pointer for later use in the parse
-        index frame function."""
-        self.index_table = gtk.Table(3,3)
-        self.index_table.set_col_spacings(12)
-        self.index_table.set_row_spacings(6)
-        self.index_table.set_border_width(6)
-        self.toc = gtk.CheckButton(_("Include Table of Contents"))
-        self.toc.set_active(self.options.handler.get_toc())
-        self.index_table.attach(self.toc, 1, 2, 1, 2, gtk.SHRINK|gtk.FILL,
-                               yoptions=gtk.SHRINK)
-        self.index = gtk.CheckButton(_("Include Alphbetical Index"))
-        self.index.set_active(self.options.handler.get_index())
-        self.index_table.attach(self.index, 1, 2, 2, 3, gtk.SHRINK|gtk.FILL,
-                               yoptions=gtk.SHRINK)
-
     def parse_format_frame(self):
         """Parse the format frame of the dialog.  Save the user
         selected output format for later use."""
@@ -275,16 +239,6 @@ class DocReportDialog(ReportDialog):
         self.css_filename = self.CSS[self.css_combo.get_active()]["filename"]
         self.options.handler.set_css_filename(self.css_filename)
 
-    def parse_index_frame(self):
-        """Parse the index frame of the dialog.  Save the user selections for
-        including a table of contents and alphabetical index.  Note that this 
-        routine retrieves a value whether or not the file entry box is
-        displayed on the screen.  The subclass will know whether this
-        entry was enabled.  This is for simplicity of programming."""
-
-        self.options.handler.set_toc(self.toc.get_active())
-        self.options.handler.set_index(self.index.get_active())
-
     def on_ok_clicked(self, obj):
         """The user is satisfied with the dialog choices.  Validate
         the output file name before doing anything else.  If there is
@@ -298,7 +252,6 @@ class DocReportDialog(ReportDialog):
         self.parse_format_frame()
         self.parse_style_frame()
         self.parse_html_frame()
-        self.parse_index_frame()
 
         self.options.handler.set_paper_metric(self.paper_frame.get_paper_metric())
         self.options.handler.set_paper_name(self.paper_frame.get_paper_name())

@@ -38,7 +38,6 @@ plg.ptype = DOCGEN
 plg.basedocclass = 'AsciiDoc'
 plg.paper = True
 plg.style = True
-plg.index = False
 plg.extension = "txt"
 
 #------------------------------------------------------------------------
@@ -59,7 +58,6 @@ plg.ptype = DOCGEN
 plg.basedocclass = 'GtkPrint'
 plg.paper = True
 plg.style = True
-plg.index = False
 plg.extension = ""
 
 #------------------------------------------------------------------------
@@ -80,7 +78,6 @@ plg.ptype = DOCGEN
 plg.basedocclass = 'HtmlDoc'
 plg.paper = False
 plg.style = True
-plg.index = False
 plg.extension = "html"
 
 #------------------------------------------------------------------------
@@ -101,7 +98,6 @@ plg.ptype = DOCGEN
 plg.basedocclass = 'LaTeXDoc'
 plg.paper = True
 plg.style = False
-plg.index = False
 plg.extension = "tex"
 
 #------------------------------------------------------------------------
@@ -123,7 +119,6 @@ plg.ptype = DOCGEN
 plg.basedocclass = 'ODFDoc'
 plg.paper = True
 plg.style = True
-plg.index = False
 plg.extension = "odt"
 
 #------------------------------------------------------------------------
@@ -144,7 +139,6 @@ plg.ptype = DOCGEN
 plg.basedocclass = 'PdfDoc'
 plg.paper = True
 plg.style = True
-plg.index = True
 plg.extension = "pdf"
 
 #------------------------------------------------------------------------
@@ -165,7 +159,6 @@ plg.ptype = DOCGEN
 plg.basedocclass = 'PSDrawDoc'
 plg.paper = True
 plg.style = True
-plg.index = False
 plg.extension = "ps"
 
 #------------------------------------------------------------------------
@@ -186,7 +179,6 @@ plg.ptype = DOCGEN
 plg.basedocclass = 'RTFDoc'
 plg.paper = True
 plg.style = True
-plg.index = False
 plg.extension = "rtf"
 
 #------------------------------------------------------------------------
@@ -208,5 +200,4 @@ plg.ptype = DOCGEN
 plg.basedocclass = 'SvgDrawDoc'
 plg.paper = True
 plg.style = True
-plg.index = False
 plg.extension = "svg"

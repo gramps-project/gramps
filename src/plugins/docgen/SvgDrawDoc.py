@@ -49,8 +49,8 @@ import Errors
 #-------------------------------------------------------------------------
 class SvgDrawDoc(BaseDoc, DrawDoc):
 
-    def __init__(self, styles, type, index_opts):
-        BaseDoc.__init__(self, styles, type, index_opts)
+    def __init__(self, styles, type):
+        BaseDoc.__init__(self, styles, type)
         self.f = None
         self.filename = None
         self.level = 0

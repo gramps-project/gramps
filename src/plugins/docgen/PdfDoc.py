@@ -38,8 +38,6 @@ import sys
 #
 #------------------------------------------------------------------------
 import libcairodoc
-from gen.plug.docgen import INDEX_TYPE_ALP, INDEX_TYPE_TOC
-from gen.plug.report.toc_index import write_toc, write_index
 import Errors
 
 #------------------------------------------------------------------------
@@ -87,10 +85,6 @@ class PdfDoc(libcairodoc.CairoDoc):
         left_margin = self.paper.get_left_margin() * DPI / 2.54
         top_margin = self.paper.get_top_margin() * DPI / 2.54
 
-        # get index options
-        include_toc = self.index_options.get_include_toc()
-        include_index = self.index_options.get_include_index()
-
         # create cairo context and pango layout
         filename = self._backend.filename.encode(sys.getfilesystemencoding())
         try:
@@ -115,39 +109,11 @@ class PdfDoc(libcairodoc.CairoDoc):
         cr.update_context(pango_context)
         
         # paginate the document
-        self.paginate_document(layout, page_width, page_height, DPI, DPI)
-        body_pages = self._pages
-
-        # build the table of contents and alphabetical index
-        toc = []
-        index = {}
-        for page_nr, page in enumerate(body_pages):
-            for mark in page.get_marks():
-                if mark.type == INDEX_TYPE_ALP:
-                    if mark.key in index:
-                        if page_nr not in index[mark.key]:
-                            index[mark.key].append(page_nr)
-                    else:
-                        index[mark.key] = [page_nr]
-                elif mark.type == INDEX_TYPE_TOC:
-                    toc.append([mark, page_nr])
-
-        # paginate the table of contents
-        if include_toc:
-            toc_pages = self.__generate_toc(layout, page_width, page_height, 
-                                            toc)
-        else:
-            toc_pages = []
-        
-        # paginate the index
-        if include_index:
-            index_pages = self.__generate_index(layout, page_width, page_height,
-                                                index, len(toc_pages))
-        else:
-            index_pages = []
+        finished = self.paginate(layout, page_width, page_height, DPI, DPI)
+        while not finished:
+            finished = self.paginate(layout, page_width, page_height, DPI, DPI)
 
         # render the pages
-        self._pages = toc_pages + body_pages + index_pages
         for page_nr in range(len(self._pages)):
             cr.save()
             cr.translate(left_margin, top_margin)
@@ -164,37 +130,3 @@ class PdfDoc(libcairodoc.CairoDoc):
         # if we don't restore the resolution.
         fontmap.set_resolution(saved_resolution)
 
-    def __generate_toc(self, layout, page_width, page_height, toc):
-        '''
-        Generate the table of contents
-        '''
-        self._doc = libcairodoc.GtkDocDocument()
-        self._active_element = self._doc
-        self._pages = []
-        write_toc(toc, self, 1) # assume single page
-        self.paginate_document(layout, page_width, page_height, DPI, DPI)
-        toc_pages = self._pages
-
-        # re-generate if table spans more than one page
-        offset = len(toc_pages)
-        if offset != 1:
-            self._doc = libcairodoc.GtkDocDocument()
-            self._active_element = self._doc
-            self._pages = []
-            write_toc(toc, self, offset)
-            self.paginate_document(layout, page_width, page_height, DPI, DPI)
-            toc_pages = self._pages
-            
-        return self._pages
-
-    def __generate_index(self, layout, page_width, page_height, index, offset):
-        '''
-        Generate the index
-        '''
-        self._doc = libcairodoc.GtkDocDocument()
-        self._active_element = self._doc
-        self._pages = []
-        write_index(index, self, offset)
-        self.paginate_document(layout, page_width, page_height, DPI, DPI)
-        return self._pages
-        

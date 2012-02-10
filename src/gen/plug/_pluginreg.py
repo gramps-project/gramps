@@ -268,9 +268,6 @@ class PluginData(object):
        bool, Indicates whether the plugin uses paper or not, default=True
     .. attribute :: style
        bool, Indicates whether the plugin uses styles or not, default=True
-    .. attribute :: index
-       bool, Indicates whether the plugin supports an Alphabetical Index and 
-       Table of Contents or not, default=False
     
     Attribute for DOCGEN, EXPORT plugins
     .. attribute :: extension
@@ -379,7 +376,6 @@ class PluginData(object):
         self._basedocclass = None
         self._paper = True
         self._style = True  
-        self._index = False
         self._extension = ''
         #QUICKREPORT attr
         self._runfunc = None
@@ -707,16 +703,6 @@ class PluginData(object):
     def _get_style(self):
         return self._style
     
-    def _set_index(self, index):
-        if not self._ptype == DOCGEN:
-            raise ValueError, 'index may only be set for DOCGEN plugins'
-        if not isinstance(index, bool):
-            raise ValueError, 'Plugin must have index=True or False'
-        self._index = index
-    
-    def _get_index(self):
-        return self._index
-    
     def _set_extension(self, extension):
         if not (self._ptype == DOCGEN or self._ptype == EXPORT 
                 or self._ptype == IMPORT):
@@ -729,8 +715,7 @@ class PluginData(object):
     
     basedocclass = property(_get_basedocclass, _set_basedocclass)
     paper = property(_get_paper, _set_paper)
-    style = property(_get_style, _set_style)
-    index = property(_get_index, _set_index)
+    style = property(_get_style, _set_style)    
     extension = property(_get_extension, _set_extension)
     
     #QUICKREPORT attributes
