@@ -51,12 +51,7 @@ import libgedcom
 module = __import__("libgedcom")
 reload (module)
 
-try:
-    import config
-    DEFAULT_SOURCE = config.get('preferences.default-source')
-except ImportError:
-    LOG.warn("No Config module available using defaults.")
-    DEFAULT_SOURCE = False
+import config
     
 #-------------------------------------------------------------------------
 #
@@ -111,8 +106,9 @@ def importData(database, filename, callback=None):
         if code_set:
             stage_one.set_encoding(code_set)
         ifile.seek(0)
-        gedparse = libgedcom.GedcomParser(database, ifile, filename, callback, 
-                                          stage_one, DEFAULT_SOURCE)
+        gedparse = libgedcom.GedcomParser(
+                            database, ifile, filename, callback, stage_one, 
+                            config.get('preferences.default-source'))
     except IOError, msg:
         ErrorDialog(_("%s could not be opened\n") % filename, str(msg))
         return
