@@ -3,7 +3,7 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-# $Id: Makefile.am 18796 2012-01-30 06:35:05Z robhealey1 $
+# $Id$
 
 DATAFILES = \
 	jquery-1.3.2.min.js \
