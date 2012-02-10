@@ -122,6 +122,7 @@ import Utils
 from DateHandler._DateParser import DateParser
 from gen.db.dbconst import EVENT_KEY
 from QuestionDialog import WarningDialog, InfoDialog
+from gen.lib.const import IDENTICAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #
@@ -4653,10 +4654,22 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
 
+        location = None
         if self.is_ftw and state.event.type in FTW_BAD_PLACE:
             state.event.set_description(line.data)
         else:
-            place = self.__find_or_create_place(line.data)
+            # It is possible that we have already got an address structure
+            # associated with this event. In that case, we will remember the
+            # location to re-insert later, and set the place as the place name
+            # and primary location
+            place_handle = state.event.get_place_handle()
+            if place_handle:
+                place = self.dbase.get_place_from_handle(place_handle)
+                location = place.get_main_location()
+                empty_loc = gen.lib.Location()
+                place.set_main_location(empty_loc)
+            else:
+                place = self.__find_or_create_place(line.data)
             place.set_title(line.data)
             state.event.set_place_handle(place.handle)
 
@@ -4670,6 +4683,13 @@ class GedcomParser(UpdateCallback):
             state.msg += sub_state.msg
 
             sub_state.pf.load_place(place, place.get_title())
+            # If we already had a remembered location, we set it into the main
+            # location if that is empty, else the alternate location
+            if location and not location.is_empty():
+                if place.get_main_location().is_empty():
+                    place.set_main_location(location)
+                else:
+                    place.add_alternate_locations(location)
             self.dbase.commit_place(place, self.trans)
 
     def __event_place_note(self, line, state):
@@ -4777,13 +4797,34 @@ class GedcomParser(UpdateCallback):
             place.set_title(line.data)
             place_handle = place.handle
 
-        place.set_main_location(location)
+        self.__add_location(place, location)
+        # place.set_main_location(location)
 
         map(place.add_note, note_list)
 
         state.event.set_place_handle(place_handle)
         self.dbase.commit_place(place, self.trans)
 
+    def __add_location(self, place, location):
+        """
+        @param place: A place object we have found or created
+        @type place: gen.lib.Place
+        @param location: A location we want to add to this place
+        @type location: gen.lib.location
+        """
+        # If there is no main location, we add the location
+        if place.main_loc is None:
+            place.set_main_location(location)
+        elif place.get_main_location().is_equivalent(location) == IDENTICAL:
+            # the location is already present as the main location
+            pass
+        else:
+            for loc in place.get_alternate_locations():
+                if loc.is_equivalent(location) == IDENTICAL:
+                    return
+            place.add_alternate_locations(location)
+                
+    
     def __event_phon(self, line, state):
         """
         @param line: The current line in GedLine format
