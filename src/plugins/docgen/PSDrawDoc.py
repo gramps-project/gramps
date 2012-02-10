@@ -56,8 +56,8 @@ def coords(grp):
 #-------------------------------------------------------------------------
 class PSDrawDoc(BaseDoc, DrawDoc):
 
-    def __init__(self, styles, type):
-        BaseDoc.__init__(self, styles, type)
+    def __init__(self, styles, type, index_opts):
+        BaseDoc.__init__(self, styles, type, index_opts)
         self.file = None
         self.filename = None
         self.level = 0

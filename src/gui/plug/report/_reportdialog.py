@@ -58,6 +58,7 @@ from QuestionDialog import ErrorDialog, OptionDialog
 from gen.plug.report import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
                              CATEGORY_CODE, CATEGORY_WEB, CATEGORY_GRAPHVIZ,
                              standalone_categories)
+from gen.plug.report.toc_index import add_toc_index_styles
 from gen.plug.docgen import StyleSheet, StyleSheetList
 import ManagedWindow
 from _stylecombobox import StyleComboBox
@@ -304,6 +305,7 @@ class ReportDialog(ManagedWindow.ManagedWindow):
         # Build the default style set for this report.
         self.default_style = StyleSheet()
         self.options.make_default_style(self.default_style)
+        add_toc_index_styles(self.default_style)
 
         if self.default_style.is_empty():
             # Don't display the option of no styles are used

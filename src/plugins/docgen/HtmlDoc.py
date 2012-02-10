@@ -93,8 +93,8 @@ class HtmlDoc(BaseDoc, TextDoc):
     Fontface is removed. Size, italic, bold, margins, borders are retained
     """
 
-    def __init__(self, styles, paper_style):
-        BaseDoc.__init__(self, styles, None)
+    def __init__(self, styles, paper_style, index_opts):
+        BaseDoc.__init__(self, styles, None, index_opts)
         self.style_declaration = ''
         self.htmllist = []
         self._backend = None

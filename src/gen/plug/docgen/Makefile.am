@@ -14,6 +14,7 @@ pkgdata_PYTHON = \
 	fontstyle.py \
 	graphdoc.py \
 	graphicstyle.py \
+	indexoptions.py \
 	paperstyle.py \
 	paragraphstyle.py \
 	stylesheet.py \

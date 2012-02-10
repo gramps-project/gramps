@@ -72,7 +72,7 @@ import Utils
 import ListModel
 import Errors
 from gui.pluginmanager import GuiPluginManager
-from gen.plug.docgen import StyleSheet, StyleSheetList, PaperStyle
+from gen.plug.docgen import StyleSheet, StyleSheetList, PaperStyle, IndexOptions
 from QuestionDialog import WarningDialog, ErrorDialog
 from gen.plug.menu import PersonOption, FilterOption, FamilyOption
 import ManagedWindow
@@ -85,6 +85,7 @@ from gen.plug.report import CATEGORY_BOOK, book_categories
 from gui.plug.report._reportdialog import ReportDialog
 from gui.plug.report._docreportdialog import DocReportDialog
 from gen.plug.report._options import ReportOptions
+from gen.plug.report.toc_index import add_toc_index_styles
 from cli.plug import CommandLineReport
 import cli.user
 
@@ -1203,6 +1204,7 @@ class BookReportDialog(DocReportDialog):
             default_style = StyleSheet()
             make_default_style = item.option_class.make_default_style
             make_default_style(default_style)
+            add_toc_index_styles(default_style)
 
             # Read all style sheets available for this item
             style_file = item.option_class.handler.get_stylesheet_savefile()
@@ -1255,7 +1257,14 @@ class BookReportDialog(DocReportDialog):
     def make_document(self):
         """Create a document of the type requested by the user."""
         pstyle = self.paper_frame.get_paper_style()
-        self.doc = self.format(self.selected_style, pstyle)
+
+        if self.format_menu.get_active_plugin().get_index_support():
+            index_opts = IndexOptions(self.toc.get_active(), 
+                                      self.index.get_active())
+        else:
+            index_opts = None
+
+        self.doc = self.format(self.selected_style, pstyle, index_opts)
         user = gui.user.User()
         self.rptlist = []
         for item in self.book.get_item_list():
@@ -1319,6 +1328,7 @@ def cl_report(database, name, category, options_str_dict):
         default_style = StyleSheet()
         make_default_style = item.option_class.make_default_style
         make_default_style(default_style)
+        add_toc_index_styles(default_style)
 
         # Read all style sheets available for this item
         style_file = item.option_class.handler.get_stylesheet_savefile()

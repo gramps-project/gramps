@@ -7,10 +7,11 @@ pkgdata_PYTHON = \
 	__init__.py\
 	_bibliography.py\
 	_constants.py\
-        _options.py\
+    _options.py\
 	_paper.py\
 	_reportbase.py\
 	endnotes.py\
+	toc_index.py\
 	utils.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen/plug/report

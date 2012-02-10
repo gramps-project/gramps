@@ -533,6 +533,7 @@ class BasePluginManager(object):
                             basedoc     = getattr(mod, pdata.basedocclass),
                             paper       = pdata.paper,
                             style       = pdata.style, 
+                            index       = pdata.index, 
                             extension   = pdata.extension )
                     self.__docgen_plugins.append(dgp)
                 
