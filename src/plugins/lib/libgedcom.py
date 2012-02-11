@@ -6638,10 +6638,15 @@ class GedcomParser(UpdateCallback):
             url.set_type(gen.lib.UrlType.WEB_HOME)
             obj.add_url(url)
         else:
-            (valid, path) = self.__find_file(filename, self.dir_path)
-            if not valid:
-                self.__add_msg(_("Could not import %s") % filename)
-                path = filename.replace('\\', os.path.sep)
+            # to allow import of references to URLs (especially for import from
+            # geni.com), do not try to find the files if they are blatently URLs
+            if filename[0:7] == "http://" or filename[0:8] == "https://":
+                path = filename
+            else:
+                (valid, path) = self.__find_file(filename, self.dir_path)
+                if not valid:
+                    self.__add_msg(_("Could not import %s") % filename)
+                    path = filename.replace('\\', os.path.sep)
             photo_handle = self.media_map.get(path)
             if photo_handle is None:
                 photo = gen.lib.MediaObject()
