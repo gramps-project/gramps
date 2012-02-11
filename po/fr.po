@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-02-11 13:48+0100\n"
-"PO-Revision-Date: 2012-02-11 14:17+0100\n"
+"PO-Revision-Date: 2012-02-11 19:56+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "Language: \n"
@@ -602,12 +602,12 @@ msgstr "Ne pas inclure les enregistrements non-liés aux individus sélectionné
 #. FIXME: This should use LOG.warn, but logging has not been initialised yet
 #: ../src/gramps.py:68
 msgid "WARNING: Setting locale failed. Please fix the LC_* and/or the LANG environment variables to prevent this error"
-msgstr ""
+msgstr "ATTENTION : échec à la définition de votre locale. Essayez de corriger LC_* et/ou vos variables d'environement LANG pour prévenir cette erreur."
 
 # trunk
 #: ../src/gramps.py:78
 msgid "ERROR: Setting the 'C' locale didn't work either"
-msgstr ""
+msgstr "ERREUR : définir la locale 'C' ne marchera pas"
 
 #: ../src/gramps.py:115
 #, python-format
@@ -2054,6 +2054,8 @@ msgid ""
 "Error: Family tree '%s' already exists.\n"
 "The '-C' option cannot be used."
 msgstr ""
+"Erreur : l'arbre familial '%s' existe déjà.\n"
+"L'option '-C' ne peut pas être utilisée."
 
 #: ../src/cli/arghandler.py:227
 #, python-format
@@ -2108,13 +2110,13 @@ msgstr "Erreur : format non reconnu pour le fichier %s à exporter"
 # trunk
 #: ../src/cli/arghandler.py:402
 msgid "List of known family trees in your database path\n"
-msgstr ""
+msgstr "Liste des arbres familiaux dans votre chemin de base de données\n"
 
 # trunk
 #: ../src/cli/arghandler.py:405
 #, python-format
 msgid "%(full_DB_path)s with name \"%(f_t_name)s\""
-msgstr ""
+msgstr "%(full_DB_path)s avec le nom \"%(f_t_name)s\""
 
 # trunk
 #: ../src/cli/arghandler.py:411
@@ -2129,9 +2131,9 @@ msgstr "Arbre familial \"%s\" :"
 
 # trunk
 #: ../src/cli/arghandler.py:425
-#, fuzzy, python-format
+#, python-format
 msgid "Performing action: %s."
-msgstr "Citations de l'individu"
+msgstr "Action demandée : %s."
 
 # trunk
 #: ../src/cli/arghandler.py:427
@@ -2140,25 +2142,26 @@ msgid "Using options string: %s"
 msgstr "Utilisation de la chaîne d'options : %s"
 
 # trunk
+# Substantif (GNOME fr)
 #: ../src/cli/arghandler.py:435
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
-msgstr ""
+msgstr "Exportation : fichier %(filename)s, format %(format)s."
 
 # trunk
 #: ../src/cli/arghandler.py:443
 msgid "Exiting."
-msgstr ""
+msgstr "Sortie."
 
 # trunk
 #: ../src/cli/arghandler.py:447
 msgid "Cleaning up."
-msgstr ""
+msgstr "Nettoyage."
 
 # trunk
 #: ../src/cli/arghandler.py:477
 msgid "Created empty family tree successfully"
-msgstr ""
+msgstr "Arbre familial vide créé avec succès"
 
 # trunk
 #: ../src/cli/arghandler.py:480
@@ -2173,10 +2176,11 @@ msgid "Exiting..."
 msgstr "Sortie..."
 
 # trunk
+# Substantif (GNOME fr)
 #: ../src/cli/arghandler.py:487
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
-msgstr ""
+msgstr "Importation : fichier %(filename)s, format %(format)s."
 
 # trunk
 #: ../src/cli/arghandler.py:505
@@ -2212,7 +2216,7 @@ msgstr "Nom de rapport inconnu."
 #: ../src/cli/arghandler.py:605
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
-msgstr ""
+msgstr "Nom de rapport absent. Utilisez %(donottranslate)s=reportname."
 
 # trunk
 #: ../src/cli/arghandler.py:609
@@ -2234,7 +2238,7 @@ msgstr "Nom d'outil inconnu."
 #: ../src/cli/arghandler.py:646
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
-msgstr ""
+msgstr "Nom d'outil absent. Utilisez %(donottranslate)s=toolname."
 
 # trunk
 #: ../src/cli/arghandler.py:662
@@ -2245,7 +2249,6 @@ msgstr "Action inconnue : %s."
 # trunk
 #. Note: Make sure to edit const.py.in POPT_TABLE too!
 #: ../src/cli/argparser.py:55
-#, fuzzy
 msgid ""
 "\n"
 "Usage: gramps.py [OPTION...]\n"
@@ -2281,6 +2284,7 @@ msgstr ""
 "\n"
 "Options de l'application\n"
 "  -O, --open=FAMILY_TREE                 Ouvre l'arbre familial\n"
+"  -C, --create=FAMILY_TREE               Créé à l'ouverture si arbre familial\n"
 "  -i, --import=FILENAME                  Importe un fichier\n"
 "  -e, --export=FILENAME                  Exporte un fichier\n"
 "  -f, --format=FORMAT                    Spécifie le format de l'arbre\n"
@@ -2554,7 +2558,7 @@ msgstr "   Les options valides sont :"
 #: ../src/cli/plug/__init__.py:531
 #, python-format
 msgid "   Use '%(donottranslate)s' to see description and acceptable values"
-msgstr ""
+msgstr "    Utilisez '%(donottranslate)s' pour voir la description et les valeurs supportées"
 
 # trunk
 #: ../src/cli/plug/__init__.py:433
@@ -2563,16 +2567,17 @@ msgid "Ignoring unknown option: %s"
 msgstr "Ignore l'option inconnue : %s"
 
 # trunk
+# Substantif (GNOME fr)
 #: ../src/cli/plug/__init__.py:481
 #, python-format
 msgid "Ignoring '%(notranslate1)s=%(notranslate2)s' and using '%(notranslate1)s=%(notranslate3)s'."
-msgstr ""
+msgstr "Ignore '%(notranslate1)s=%(notranslate2)s' et utilise '%(notranslate1)s=%(notranslate3)s'."
 
 # trunk
 #: ../src/cli/plug/__init__.py:486
 #, python-format
 msgid "Use '%(notranslate)s' to see valid values."
-msgstr ""
+msgstr "Utilisez '%(notranslate)s' pour voir les valeurs supportées."
 
 # trunk
 #: ../src/cli/plug/__init__.py:520
@@ -2589,7 +2594,7 @@ msgstr "   Les valeurs disponibles sont :"
 #: ../src/cli/plug/__init__.py:550
 #, python-format
 msgid "option '%(optionname)s' not valid. Use '%(donottranslate)s' to see all valid options."
-msgstr ""
+msgstr "option '%(optionname)s' non valide. Utilisez '%(donottranslate)s' pour voir les valeurs supportées."
 
 #: ../src/cli/plug/__init__.py:562
 msgid "Failed to write report. "
@@ -5696,17 +5701,17 @@ msgstr "Enlever un gramplet"
 # trunk
 #: ../src/gui/grampsbar.py:441
 msgid "Restore default gramplets"
-msgstr "Restorer les gramplets par défaut"
+msgstr "Rétablir les gramplets par défaut"
 
 # trunk
 #: ../src/gui/grampsbar.py:481
 msgid "Restore to defaults?"
-msgstr "Restorer les défauts ?"
+msgstr "Rétablir les défauts ?"
 
 # trunk
 #: ../src/gui/grampsbar.py:482
 msgid "The Grampsbar will be restored to contain its default gramplets.  This action cannot be undone."
-msgstr ""
+msgstr "La barre Gramps sera restaurée pour contenir les gramplets par défaut. Cette action ne pourra pas être annulée par un retour en arrière."
 
 #: ../src/gui/grampsbar.py:484
 #: ../src/gui/plug/_windows.py:491
@@ -9662,7 +9667,7 @@ msgstr "Procéder"
 # trunk
 #: ../src/plugins/BookReport.py:705
 msgid "Name of the book. MANDATORY"
-msgstr ""
+msgstr "Nom du livre. OBLIGATOIRE"
 
 #: ../src/plugins/BookReport.py:727
 #: ../src/plugins/BookReport.py:1195
@@ -9762,7 +9767,7 @@ msgstr "S'il vous plaît, définissez un nom au livre."
 #: ../src/plugins/BookReport.py:1309
 #, python-format
 msgid "No such book '%s'"
-msgstr ""
+msgstr "Aucun livre '%s'"
 
 #: ../src/plugins/bookreport.gpr.py:32
 msgid "Produces a book containing several reports."
@@ -12375,7 +12380,7 @@ msgstr "<-- Types d'image -->"
 # trunk
 #: ../src/plugins/gramplet/EditExifMetadata.py:170
 msgid "Warning:  Changing this entry will update the Media object title field in Gramps not Exiv2 metadata."
-msgstr ""
+msgstr "Attention : en changeant cette entrée vous allez mettre à jour le champ du titre de l'objet stocké par Gramps pas les métadonnées Exiv2."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:173
 msgid "Provide a short descripion for this image."
@@ -12396,6 +12401,8 @@ msgid ""
 "The original date/ time when the image was first created/ taken as in a photograph.\n"
 "Example: 1830-01-1 09:30:59"
 msgstr ""
+"La date originelle lorsque l'image fut créée/prise par le photographe.\n"
+"Exemple: 1830-01-1 09:30:59"
 
 # trunk
 #: ../src/plugins/gramplet/EditExifMetadata.py:183
@@ -12403,6 +12410,8 @@ msgid ""
 "This is the date/ time that the image was last changed/ modified.\n"
 "Example: 2011-05-24 14:30:00"
 msgstr ""
+"Ceci est la date de modification du dernier changement de l'image.\n"
+"Exemple: 2011-05-24 14:30:00"
 
 # trunk
 #: ../src/plugins/gramplet/EditExifMetadata.py:186
@@ -12441,7 +12450,7 @@ msgstr ""
 # trunk
 #: ../src/plugins/gramplet/EditExifMetadata.py:208
 msgid "Will produce a Popup window showing a Thumbnail Viewing Area"
-msgstr ""
+msgstr "Va générer une fenêtre avec une aire pour visualiser l'aperçu"
 
 # trunk
 #: ../src/plugins/gramplet/EditExifMetadata.py:210
@@ -12494,7 +12503,7 @@ msgstr "Vous pouvez essayer de convertir cette image vers Exiv2- type d'image co
 #: ../src/plugins/gramplet/EditExifMetadata.py:469
 #, python-format
 msgid "Image Size : %04d x %04d pixels"
-msgstr ""
+msgstr "Taille de l'image : %04d x %04d pixels"
 
 # Substantif (GNOME fr)
 # trunk
@@ -12505,12 +12514,12 @@ msgstr "Affichage des métadonnées Exif de l'image..."
 # trunk
 #: ../src/plugins/gramplet/EditExifMetadata.py:669
 msgid "Click Close to close this Thumbnail View Area."
-msgstr ""
+msgstr "Cliquez ici pour fermer l'aire d'affichage de l'aperçu"
 
 # trunk
 #: ../src/plugins/gramplet/EditExifMetadata.py:673
 msgid "Thumbnail View Area"
-msgstr ""
+msgstr "Aire d'aperçu"
 
 #. Convert and delete original file or just convert
 #: ../src/plugins/gramplet/EditExifMetadata.py:752
@@ -12541,7 +12550,7 @@ msgstr "Votre image a été convertie et le fichier original a été supprimé. 
 # trunk
 #: ../src/plugins/gramplet/EditExifMetadata.py:844
 msgid "There has been an error, Please check your source and destination file paths..."
-msgstr ""
+msgstr "Il y a eut une erreur. Vérifiez votre source et la destination des chemins de fichier..."
 
 # trunk
 #: ../src/plugins/gramplet/EditExifMetadata.py:847
@@ -12652,7 +12661,7 @@ msgstr "Modifié :"
 #. GPS coordinates...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1070
 msgid "Latitude/ Longitude/ Altitude GPS coordinates"
-msgstr ""
+msgstr "Latitude / Longitude / Altitude des coordonnées GPS"
 
 # trunk
 #: ../src/plugins/gramplet/EditExifMetadata.py:1084
@@ -13877,12 +13886,12 @@ msgstr "Inclure ou non les noms, dates, et familles définis comme privés."
 # trunk
 #: ../src/plugins/graph/GVFamilyLines.py:341
 msgid "Empty report"
-msgstr ""
+msgstr "Rapport vide"
 
 # trunk
 #: ../src/plugins/graph/GVFamilyLines.py:342
 msgid "You did not specify anybody"
-msgstr ""
+msgstr "Vous avez spécifié personne"
 
 #: ../src/plugins/graph/GVFamilyLines.py:921
 #, python-format
@@ -14709,13 +14718,13 @@ msgstr "Importation GEDCOM"
 # trunk
 #: ../src/plugins/lib/libgedcom.py:2536
 msgid "GEDCOM import report: No errors detected"
-msgstr ""
+msgstr "Rapport d'importation GEDCOM : aucune erreur détectée"
 
 # trunk
 #: ../src/plugins/lib/libgedcom.py:2538
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
-msgstr ""
+msgstr "Rapport d'importation GEDCOM : %s erreurs détectées"
 
 # trunk
 #: ../src/plugins/lib/libgedcom.py:2791
@@ -14726,7 +14735,7 @@ msgstr "Ligne ignorée car non comprise"
 #: ../src/plugins/lib/libgedcom.py:2869
 #, python-format
 msgid "Submitter (SUBM): @%s@"
-msgstr ""
+msgstr "Soumetteur (SUBM) : @%s@"
 
 # trunk
 #: ../src/plugins/lib/libgedcom.py:2939
@@ -14736,26 +14745,26 @@ msgstr "Balise inconnue"
 # trunk
 #: ../src/plugins/lib/libgedcom.py:3696
 msgid "Tag recognised but not supported"
-msgstr ""
+msgstr "Balise reconnue mais non-supportée"
 
 # trunk
 #. empty: discard, with warning and skip subs
 #. Note: level+2
 #: ../src/plugins/lib/libgedcom.py:4873
 msgid "Empty event note ignored"
-msgstr ""
+msgstr "Note vide de l'événement ignorée"
 
 # trunk
 #: ../src/plugins/lib/libgedcom.py:5145
 #: ../src/plugins/lib/libgedcom.py:5939
 msgid "Warn: ADDR overwritten"
-msgstr ""
+msgstr "Attention : ADDR réécrite"
 
 # trunk
 #: ../src/plugins/lib/libgedcom.py:5312
 #: ../src/plugins/lib/libgedcom.py:5685
 msgid "REFN ignored"
-msgstr ""
+msgstr "REFN ignoré"
 
 #: ../src/plugins/lib/libgedcom.py:5642
 #: ../src/plugins/lib/libgedcom.py:6619
@@ -14766,17 +14775,17 @@ msgstr "Impossible d'importer %s"
 # trunk
 #: ../src/plugins/lib/libgedcom.py:5675
 msgid "BLOB ignored"
-msgstr ""
+msgstr "BLOB ignoré"
 
 # trunk
 #: ../src/plugins/lib/libgedcom.py:5695
 msgid "Multimedia REFN:TYPE ignored"
-msgstr ""
+msgstr "REFN multimedia : TYPE ignoré"
 
 # trunk
 #: ../src/plugins/lib/libgedcom.py:5705
 msgid "Mutimedia RIN ignored"
-msgstr ""
+msgstr "RIN multimedia ignoré"
 
 # trunk
 #: ../src/plugins/lib/libgedcom.py:6064
@@ -14786,7 +14795,7 @@ msgstr "En-tête (header)"
 # trunk
 #: ../src/plugins/lib/libgedcom.py:6080
 msgid "Approved system identification"
-msgstr ""
+msgstr "Système d'identification approuvé"
 
 # trunk
 #: ../src/plugins/lib/libgedcom.py:6089
@@ -14796,43 +14805,44 @@ msgstr "Généré par"
 # trunk
 #: ../src/plugins/lib/libgedcom.py:6103
 msgid "Name of software product"
-msgstr "Nom du produit logiciel"
+msgstr "Nom du logiciel source"
 
 # trunk
 #: ../src/plugins/lib/libgedcom.py:6115
 msgid "Version number of software product"
-msgstr "Numéro de version du produit logiciel"
+msgstr "Numéro de version du logiciel source"
 
 # trunk
 #: ../src/plugins/lib/libgedcom.py:6132
 #, python-format
 msgid "Business that produced the product: %s"
-msgstr ""
+msgstr "Entreprise produisant : %s"
 
 # trunk
 #: ../src/plugins/lib/libgedcom.py:6153
 msgid "Name of source data"
-msgstr "Nom de la source de données"
+msgstr "Nom de la source des données"
 
 # trunk
 #: ../src/plugins/lib/libgedcom.py:6167
 msgid "Copyright of source data"
-msgstr "Droit à la copie des données de la source"
+msgstr "Droit à la copie des données"
 
 # trunk
 #: ../src/plugins/lib/libgedcom.py:6177
 msgid "Publication date of source data"
-msgstr "Date de publication de la source de données"
+msgstr "Date de publication des données"
 
+# trunk
 #: ../src/plugins/lib/libgedcom.py:6189
 #, python-format
 msgid "Import from %s"
-msgstr "Importer depuis %s"
+msgstr "Importé depuis %s"
 
 # trunk
 #: ../src/plugins/lib/libgedcom.py:6227
 msgid "Submission record identifier"
-msgstr ""
+msgstr "Identifiant de soumission de l'enregistrement"
 
 # trunk
 #: ../src/plugins/lib/libgedcom.py:6238
@@ -14882,12 +14892,12 @@ msgstr "Forme de GEDCOM"
 # trunk
 #: ../src/plugins/lib/libgedcom.py:6360
 msgid "Creation date of GEDCOM"
-msgstr ""
+msgstr "Date de création du GEDCOM"
 
 # trunk
 #: ../src/plugins/lib/libgedcom.py:6364
 msgid "Creation date and time of GEDCOM"
-msgstr ""
+msgstr "Date et heure de création du GEDCOM"
 
 # trunk
 #: ../src/plugins/lib/libgedcom.py:6403
@@ -14898,7 +14908,7 @@ msgstr "Note vide ignorée"
 # trunk
 #: ../src/plugins/lib/libgedcom.py:6499
 msgid "Submission: Submitter"
-msgstr ""
+msgstr "Soumission : soumetteur"
 
 # trunk
 #: ../src/plugins/lib/libgedcom.py:6501
@@ -14908,7 +14918,7 @@ msgstr "Soumission : fichier de famille"
 # trunk
 #: ../src/plugins/lib/libgedcom.py:6503
 msgid "Submission: Temple code"
-msgstr ""
+msgstr "Soumission : code du temple (LDS)"
 
 # trunk
 #: ../src/plugins/lib/libgedcom.py:6505
@@ -14923,7 +14933,7 @@ msgstr "Soumission : générations de descendants"
 # trunk
 #: ../src/plugins/lib/libgedcom.py:6509
 msgid "Submission: Ordinance process flag"
-msgstr ""
+msgstr "Soumission : marque de l'ordinance (LDS)"
 
 # trunk
 #: ../src/plugins/lib/libgedcom.py:6530
@@ -20881,9 +20891,8 @@ msgstr "Vérification de la base de données"
 # Substantif (GNOME fr)
 # trunk
 #: ../src/plugins/tool/Check.py:101
-#, fuzzy
 msgid "Looking for cross table duplicates"
-msgstr "Recherche de doublons de conjoint"
+msgstr "Recherche de doublons dans les tables croisées"
 
 #: ../src/plugins/tool/Check.py:143
 msgid ""
@@ -20972,9 +20981,8 @@ msgstr "Recherche de problèmes dans les sources"
 # Substantif (GNOME fr)
 # trunk
 #: ../src/plugins/tool/Check.py:764
-#, fuzzy
 msgid "Looking for empty citation records"
-msgstr "Recherche de problèmes dans les objets media"
+msgstr "Recherche de citations vides"
 
 # Substantif (GNOME fr)
 #: ../src/plugins/tool/Check.py:772
@@ -21034,7 +21042,6 @@ msgstr "Recherche de problèmes dans la référence du lieu"
 # trunk
 # Substantif (GNOME fr)
 #: ../src/plugins/tool/Check.py:1187
-#, fuzzy
 msgid "Looking for source and citation reference problems"
 msgstr "Recherche de problèmes dans la référence de la citation"
 
@@ -22427,7 +22434,7 @@ msgstr "Impossible d'ajouter la citation."
 # trunk
 #: ../src/plugins/view/citationtreeview.py:446
 msgid "In order to add a citation to an existing source,  you must select a source."
-msgstr ""
+msgstr "Pour ajouter une citation à une source existante, vous devez sélectionner une source."
 
 # trunk
 #: ../src/plugins/view/citationtreeview.py:514
@@ -22458,7 +22465,7 @@ msgstr "Exactement deux citations doivent être sélectionnées pour accomplir u
 #: ../src/plugins/view/citationtreeview.py:548
 #: ../src/plugins/view/citationlistview.py:333
 msgid "The two selected citations must have the same source to perform a merge. If you want to merge these two citations, then you must merge the sources first."
-msgstr ""
+msgstr "Les deux citations sélectionnées doivent avoir la même source pour une fusion. Si vous souhaitez fusionner ces deux citations, alors vous devez d'abord fusionner les sources."
 
 # trunk
 #: ../src/plugins/view/citationtreeview.py:562
@@ -22468,7 +22475,7 @@ msgstr "Impossible de fusionner."
 # trunk
 #: ../src/plugins/view/citationtreeview.py:563
 msgid "Both objects must be of the same type, either both must be sources, or both must be citations."
-msgstr ""
+msgstr "Les deux objets doivent être du même type, soit tous les deux sont des sources, soit tous les deux sont des citations."
 
 # trunk
 #: ../src/plugins/view/citationlistview.py:95
@@ -23493,12 +23500,12 @@ msgstr "Lettre"
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:3126
 msgid "Partner 1"
-msgstr "Partenaire 1"
+msgstr "Conjoint 1"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:3127
 msgid "Partner 2"
-msgstr "Partenaire 2"
+msgstr "Conjoint 2"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:3257
@@ -23606,7 +23613,7 @@ msgstr "Références de citation"
 # &#8217 ?
 #: ../src/plugins/webreport/NarrativeWeb.py:4863
 msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object&#8217;s page.  If you see media size dimensions above an image, click on the image to see the full sized version.  "
-msgstr "Cette page contient un index de tous les objets media de la base de données, classés par nom. Cliquez sur le nom pour ouvrir la page. Si vous voyez les dimensions au-dessus de l'image, cliquez sur l'image pour la voir dans sa taille réelle."
+msgstr "Cette page contient un index de tous les objets media de la base de données, classés par titre. Cliquez sur le nom pour ouvrir la page. Si vous voyez les dimensions au-dessus de l'image, cliquez sur l'image pour la voir dans sa taille réelle."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4885
 msgid "Media | Name"
@@ -23618,9 +23625,8 @@ msgstr "Type mime"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:4976
-#, fuzzy
 msgid "This page displays a indexed list of all the media objects in this database.  It is sorted by media title.  There is an index of all the media objects in this database.  Clicking on a thumbnail will take you to that image&#8217;s page."
-msgstr "Cette page contient un index de tous les lieux de la base de données, classés par nom. Cliquez sur le lieux pour accéder à sa page."
+msgstr "Cette page affiche une liste indexée de tous les media de la base de données, classés par titre. Il y a un index de tous les objets media de la base de données. Cliquez sur un aperçu pour aller sur la page de l'image."
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:4992
@@ -23682,9 +23688,8 @@ msgstr "Demi-Frères et demi-sœurs"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:6381
-#, fuzzy
 msgid "Step Siblings"
-msgstr "Afficher les frères et sœurs"
+msgstr " Demi-frères et demi-sœurs"
 
 # titre = nom
 #: ../src/plugins/webreport/NarrativeWeb.py:6475
@@ -23879,14 +23884,13 @@ msgstr "La feuille de style utilisée pour les pages internet"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:7727
-#, fuzzy
 msgid "Horizontal -- Default"
-msgstr "Horizontal (de droite à gauche)"
+msgstr "Horizontal -- défaut"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:7728
 msgid "Vertical   -- Left Side"
-msgstr ""
+msgstr "Vertical -- côté gauche"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:7729
@@ -24017,7 +24021,7 @@ msgstr "Inclure ou non une galerie des objets media"
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:7802
 msgid "Create and only use thumbnail- sized images"
-msgstr ""
+msgstr "Créer et utiliser uniquement les aperçus des images"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:7803
@@ -24202,15 +24206,13 @@ msgstr "Inclure ou non une colonne parents"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:7929
-#, fuzzy
 msgid "Include half and/ or step-siblings on the individual pages"
-msgstr "Inclure une colonne pour les parents dans les pages index"
+msgstr "Inclure les demi-frères et demi-sœurs sur la page de l'individu"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:7931
-#, fuzzy
 msgid "Whether to include half and/ or step-siblings with the parents and siblings"
-msgstr "Inclure ou non les noms de lieu pour les individus et les familles."
+msgstr "Inclure ou non les demi-frères et demi-sœurs avec les parents, frères et sœurs."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7935
 msgid "Sort all children in birth order"
@@ -24227,9 +24229,8 @@ msgstr "Inclure les pages de la famille"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:7940
-#, fuzzy
 msgid "Whether or not to include family pages."
-msgstr "Inclure ou non des pages de la famille ?"
+msgstr "Inclure ou non des pages de la famille."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7943
 msgid "Include event pages"
@@ -24245,9 +24246,8 @@ msgstr "Inclure les pages dépôt"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:7948
-#, fuzzy
 msgid "Whether or not to include the Repository Pages."
-msgstr "Inclure ou non des pages dépôt ?"
+msgstr "Inclure ou non des pages dépôt."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7951
 msgid "Include GENDEX file (/gendex.txt)"
@@ -24263,9 +24263,8 @@ msgstr "Inclure les pages adresses"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:7956
-#, fuzzy
 msgid "Whether or not to add Address Book pages,which can include e-mail and website addresses and personal address/ residence events."
-msgstr "Ajouter ou non les adresses qui peuvent être des adresses de messagerie, des adresses de site internet, des adresses individuelles et des événements résidence ?"
+msgstr "Ajouter ou non les adresses qui peuvent être des adresses de messagerie, des adresses de site internet, des adresses individuelles et des événements résidence."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7966
 msgid "Place Map Options"
@@ -24325,9 +24324,9 @@ msgstr "Sélectionnez l'option que vous souhaitez utiliser pour la carte familia
 # trunk
 #. adding title to hyperlink menu for screen readers and braille writers
 #: ../src/plugins/webreport/NarrativeWeb.py:8316
-#, fuzzy, python-format
+#, python-format
 msgid "Alphabet Menu: %s"
-msgstr "Menu :"
+msgstr "Menu alphabétique : %s"
 
 #. _('translation')
 #. Number of directory levels up to get to self.html_dir / root
