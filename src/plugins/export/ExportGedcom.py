@@ -570,7 +570,7 @@ class GedcomWriter(UpdateCallback):
             if role != gen.lib.EventRoleType.PRIMARY:
                 continue
                 
-            val = libgedcom.personalConstantEvents.get(etype, "").strip()
+            val = libgedcom.PERSONALCONSTANTEVENTS.get(etype, "").strip()
                         
             if val and val.strip():
                 if val in NEEDS_PARAMETER:
@@ -650,7 +650,7 @@ class GedcomWriter(UpdateCallback):
         for attr in attr_list:
 
             attr_type = int(attr.get_type())
-            name = libgedcom.personalConstantAttributes.get(attr_type)
+            name = libgedcom.PERSONALCONSTANTATTRIBUTES.get(attr_type)
             key = str(attr.get_type())
             value = attr.get_value().strip().replace('\r', ' ')
             
@@ -852,7 +852,7 @@ class GedcomWriter(UpdateCallback):
             event = self.dbase.get_event_from_handle(event_ref.ref)
             if event is None: continue
             etype = int(event.get_type())
-            val = libgedcom.familyConstantEvents.get(etype)
+            val = libgedcom.FAMILYCONSTANTEVENTS.get(etype)
             
             if val:
                 if event_has_subordinate_data(event, event_ref):
@@ -907,7 +907,7 @@ class GedcomWriter(UpdateCallback):
         for attr in attr_list:
             
             attr_type = int(attr.get_type())
-            name = libgedcom.familyConstantAttributes.get(attr_type)
+            name = libgedcom.FAMILYCONSTANTATTRIBUTES.get(attr_type)
             value = attr.get_value().replace('\r', ' ')
 
             if attr_type in ("AFN", "RFN", "REFN", "_UID"):
