@@ -11,15 +11,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-04 02:55+0100\n"
-"PO-Revision-Date: 2012-01-04 02:56+0100\n"
-"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
+"POT-Creation-Date: 2012-02-11 17:34+0100\n"
+"PO-Revision-Date: 2012-02-11 18:16+0100\n"
+"Last-Translator: Mirko Leonhäuser <mirko@lonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.2\n"
+"X-Generator: Lokalize 1.4\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../src/Assistant.py:338 ../src/Filters/Rules/Place/_HasPlace.py:48
@@ -84,13 +84,13 @@ msgstr "Lesezeichen organisieren"
 #. Add column with object name
 #: ../src/Bookmarks.py:212 ../src/ScratchPad.py:510 ../src/ToolTips.py:175
 #: ../src/ToolTips.py:201 ../src/ToolTips.py:212 ../src/gui/configure.py:429
-#: ../src/gui/filtereditor.py:733 ../src/gui/filtereditor.py:881
+#: ../src/gui/filtereditor.py:733 ../src/gui/filtereditor.py:883
 #: ../src/gui/viewmanager.py:468 ../src/gui/editors/editfamily.py:113
 #: ../src/gui/editors/editname.py:302
 #: ../src/gui/editors/displaytabs/backreflist.py:61
 #: ../src/gui/editors/displaytabs/nameembedlist.py:71
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:62
-#: ../src/gui/plug/_guioptions.py:1108 ../src/gui/plug/_windows.py:114
+#: ../src/gui/plug/_guioptions.py:1109 ../src/gui/plug/_windows.py:114
 #: ../src/gui/selectors/selectperson.py:74 ../src/gui/views/tags.py:388
 #: ../src/gui/views/treemodels/peoplemodel.py:526
 #: ../src/plugins/BookReport.py:773 ../src/plugins/drawreport/TimeLine.py:70
@@ -109,14 +109,14 @@ msgstr "Name"
 
 #. Add column with object gramps_id
 #. GRAMPS ID
-#: ../src/Bookmarks.py:212 ../src/gui/filtereditor.py:884
+#: ../src/Bookmarks.py:212 ../src/gui/filtereditor.py:886
 #: ../src/gui/editors/editfamily.py:112
 #: ../src/gui/editors/displaytabs/backreflist.py:60
 #: ../src/gui/editors/displaytabs/eventembedlist.py:76
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:63
 #: ../src/gui/editors/displaytabs/repoembedlist.py:66
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:66
-#: ../src/gui/plug/_guioptions.py:1109 ../src/gui/plug/_guioptions.py:1286
+#: ../src/gui/plug/_guioptions.py:1110 ../src/gui/plug/_guioptions.py:1287
 #: ../src/gui/selectors/selectevent.py:62
 #: ../src/gui/selectors/selectfamily.py:61
 #: ../src/gui/selectors/selectnote.py:67
@@ -927,7 +927,7 @@ msgstr "Ereignis"
 #: ../src/gui/editors/displaytabs/eventembedlist.py:79
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:55
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:65
-#: ../src/gui/plug/_guioptions.py:1285 ../src/gui/selectors/selectevent.py:66
+#: ../src/gui/plug/_guioptions.py:1286 ../src/gui/selectors/selectevent.py:66
 #: ../src/gui/views/treemodels/placemodel.py:306
 #: ../src/plugins/export/ExportCsv.py:458 ../src/plugins/gramplet/Events.py:53
 #: ../src/plugins/gramplet/PersonResidence.py:50
@@ -1020,7 +1020,7 @@ msgstr "Ereignisref."
 #: ../src/gui/configure.py:519 ../src/gui/configure.py:522
 #: ../src/gui/configure.py:523 ../src/gui/configure.py:524
 #: ../src/gui/configure.py:525 ../src/gui/editors/displaytabs/surnametab.py:76
-#: ../src/gui/plug/_guioptions.py:87 ../src/gui/plug/_guioptions.py:1434
+#: ../src/gui/plug/_guioptions.py:87 ../src/gui/plug/_guioptions.py:1435
 #: ../src/plugins/drawreport/StatisticsChart.py:319
 #: ../src/plugins/export/ExportCsv.py:334
 #: ../src/plugins/import/ImportCsv.py:169
@@ -3544,7 +3544,7 @@ msgstr "Datei %s ist bereits geöffnet, erst schließen."
 #: ../src/plugins/docgen/SvgDrawDoc.py:81
 #: ../src/plugins/export/ExportCsv.py:299
 #: ../src/plugins/export/ExportCsv.py:303
-#: ../src/plugins/export/ExportGedcom.py:1424
+#: ../src/plugins/export/ExportGedcom.py:1426
 #: ../src/plugins/export/ExportGeneWeb.py:97
 #: ../src/plugins/export/ExportGeneWeb.py:101
 #: ../src/plugins/export/ExportVCalendar.py:104
@@ -5121,20 +5121,20 @@ msgstr "Filter definieren"
 msgid "Values"
 msgstr "Werte"
 
-#: ../src/gui/filtereditor.py:826
+#: ../src/gui/filtereditor.py:828
 msgid "Add Rule"
 msgstr "Regel hinzufügen"
 
-#: ../src/gui/filtereditor.py:838
+#: ../src/gui/filtereditor.py:840
 msgid "Edit Rule"
 msgstr "Regel bearbeiten"
 
-#: ../src/gui/filtereditor.py:873
+#: ../src/gui/filtereditor.py:875
 msgid "Filter Test"
 msgstr "Filtertest"
 
 #. ###############################
-#: ../src/gui/filtereditor.py:1003 ../src/plugins/Records.py:516
+#: ../src/gui/filtereditor.py:1005 ../src/plugins/Records.py:516
 #: ../src/plugins/drawreport/Calendar.py:406
 #: ../src/plugins/drawreport/StatisticsChart.py:910
 #: ../src/plugins/drawreport/TimeLine.py:325
@@ -5156,19 +5156,19 @@ msgstr "Filtertest"
 msgid "Filter"
 msgstr "Filter"
 
-#: ../src/gui/filtereditor.py:1003
+#: ../src/gui/filtereditor.py:1005
 msgid "Comment"
 msgstr "Kommentar"
 
-#: ../src/gui/filtereditor.py:1010
+#: ../src/gui/filtereditor.py:1012
 msgid "Custom Filter Editor"
 msgstr "Benutzerfiltereditor"
 
-#: ../src/gui/filtereditor.py:1076
+#: ../src/gui/filtereditor.py:1078
 msgid "Delete Filter?"
 msgstr "Filter löschen?"
 
-#: ../src/gui/filtereditor.py:1077
+#: ../src/gui/filtereditor.py:1079
 msgid ""
 "This filter is currently being used as the base for other filters. "
 "Deletingthis filter will result in removing all other filters that depend on "
@@ -5178,7 +5178,7 @@ msgstr ""
 "Löschen dieses Filters hat zur Folge das alle Filter die von ihm abhängen "
 "auch gelöscht werden."
 
-#: ../src/gui/filtereditor.py:1081
+#: ../src/gui/filtereditor.py:1083
 msgid "Delete Filter"
 msgstr "Filter löschen"
 
@@ -6029,7 +6029,7 @@ msgstr ""
 "Um ein Medienobjekt auszuwählen, verwende ziehen und ablegen  oder die "
 "Schaltflächen"
 
-#: ../src/gui/editors/objectentries.py:302 ../src/gui/plug/_guioptions.py:1048
+#: ../src/gui/editors/objectentries.py:302 ../src/gui/plug/_guioptions.py:1049
 msgid "No image given, click button to select one"
 msgstr "Kein Bild angegeben, auf Schaltfläche klicken um eines zu wählen"
 
@@ -6037,7 +6037,7 @@ msgstr "Kein Bild angegeben, auf Schaltfläche klicken um eines zu wählen"
 msgid "Edit media object"
 msgstr "Medienobjekt bearbeiten"
 
-#: ../src/gui/editors/objectentries.py:304 ../src/gui/plug/_guioptions.py:1026
+#: ../src/gui/editors/objectentries.py:304 ../src/gui/plug/_guioptions.py:1027
 msgid "Select an existing media object"
 msgstr "Ein bestehendes Medienobjekt auswählen"
 
@@ -6055,7 +6055,7 @@ msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr ""
 "Um eine Notiz zu wählen, verwende ziehen und ablegen oder die Schaltflächen"
 
-#: ../src/gui/editors/objectentries.py:353 ../src/gui/plug/_guioptions.py:947
+#: ../src/gui/editors/objectentries.py:353 ../src/gui/plug/_guioptions.py:948
 msgid "No note given, click button to select one"
 msgstr "Kein Notiz angegeben, auf Schaltfläche klicken um einen zu wählen"
 
@@ -6064,7 +6064,7 @@ msgstr "Kein Notiz angegeben, auf Schaltfläche klicken um einen zu wählen"
 msgid "Edit Note"
 msgstr "Notiz bearbeiten"
 
-#: ../src/gui/editors/objectentries.py:355 ../src/gui/plug/_guioptions.py:922
+#: ../src/gui/editors/objectentries.py:355 ../src/gui/plug/_guioptions.py:923
 msgid "Select an existing note"
 msgstr "Einen existierende Notiz auswählen"
 
@@ -7304,13 +7304,13 @@ msgstr "Als Standardnamen setzen"
 #.
 #. -------------------------------------------------------------------------
 #: ../src/gui/editors/displaytabs/namemodel.py:52
-#: ../src/gui/plug/_guioptions.py:1190 ../src/gui/views/listview.py:500
+#: ../src/gui/plug/_guioptions.py:1191 ../src/gui/views/listview.py:500
 #: ../src/gui/views/tags.py:479 ../src/plugins/quickview/all_relations.py:307
 msgid "Yes"
 msgstr "Ja"
 
 #: ../src/gui/editors/displaytabs/namemodel.py:53
-#: ../src/gui/plug/_guioptions.py:1189 ../src/gui/views/listview.py:501
+#: ../src/gui/plug/_guioptions.py:1190 ../src/gui/views/listview.py:501
 #: ../src/gui/views/tags.py:480 ../src/plugins/quickview/all_relations.py:311
 msgid "No"
 msgstr "Nein"
@@ -7670,51 +7670,51 @@ msgstr "Finde Familiennamen"
 msgid "Finding surnames"
 msgstr "Finde Familiennamen"
 
-#: ../src/gui/plug/_guioptions.py:628
+#: ../src/gui/plug/_guioptions.py:629
 msgid "Select a different person"
 msgstr "Eine andere Person wählen"
 
-#: ../src/gui/plug/_guioptions.py:655
+#: ../src/gui/plug/_guioptions.py:656
 msgid "Select a person for the report"
 msgstr "Eine Person für den Bericht wählen"
 
-#: ../src/gui/plug/_guioptions.py:736
+#: ../src/gui/plug/_guioptions.py:737
 msgid "Select a different family"
 msgstr "Eine andere Familie wählen"
 
-#: ../src/gui/plug/_guioptions.py:834 ../src/plugins/BookReport.py:183
+#: ../src/gui/plug/_guioptions.py:835 ../src/plugins/BookReport.py:183
 msgid "unknown father"
 msgstr "unbekannter Vater"
 
-#: ../src/gui/plug/_guioptions.py:840 ../src/plugins/BookReport.py:189
+#: ../src/gui/plug/_guioptions.py:841 ../src/plugins/BookReport.py:189
 msgid "unknown mother"
 msgstr "unbekannte Mutter"
 
-#: ../src/gui/plug/_guioptions.py:842
+#: ../src/gui/plug/_guioptions.py:843
 #: ../src/plugins/textreport/PlaceReport.py:224
 #, python-format
 msgid "%s and %s (%s)"
 msgstr "%s und %s (%s)"
 
-#: ../src/gui/plug/_guioptions.py:1185
+#: ../src/gui/plug/_guioptions.py:1186
 #, python-format
 msgid "Also include %s?"
 msgstr "%s auch berücksichtigen?"
 
-#: ../src/gui/plug/_guioptions.py:1187 ../src/gui/selectors/selectperson.py:67
+#: ../src/gui/plug/_guioptions.py:1188 ../src/gui/selectors/selectperson.py:67
 msgid "Select Person"
 msgstr "Person wählen"
 
-#: ../src/gui/plug/_guioptions.py:1435
+#: ../src/gui/plug/_guioptions.py:1436
 msgid "Colour"
 msgstr "Farbe"
 
-#: ../src/gui/plug/_guioptions.py:1663
+#: ../src/gui/plug/_guioptions.py:1664
 #: ../src/gui/plug/report/_reportdialog.py:467
 msgid "Save As"
 msgstr "Speichern als"
 
-#: ../src/gui/plug/_guioptions.py:1743
+#: ../src/gui/plug/_guioptions.py:1744
 #: ../src/gui/plug/report/_reportdialog.py:317
 #: ../src/gui/plug/report/_styleeditor.py:102
 msgid "Style Editor"
@@ -11018,7 +11018,7 @@ msgstr "Schreibe Notizen"
 msgid "Writing repositories"
 msgstr "Schreibe Aufbewahrungsorte"
 
-#: ../src/plugins/export/ExportGedcom.py:1427
+#: ../src/plugins/export/ExportGedcom.py:1429
 msgid "Export failed"
 msgstr "Export fehlgeschlagen"
 
@@ -11029,6 +11029,14 @@ msgstr "Keine Familien entsprechen dem ausgewählten Filter"
 #: ../src/plugins/export/ExportPkg.py:166 ../src/plugins/tool/Check.py:587
 msgid "Select file"
 msgstr "Datei wählen"
+
+#: ../src/plugins/export/ExportPkg.py:183
+#: ../src/plugins/export/ExportXml.py:137
+#: ../src/plugins/export/ExportXml.py:147
+#: ../src/plugins/export/ExportXml.py:165
+#, python-format
+msgid "Failure writing %s"
+msgstr "Fehler beim Schreiben von %s"
 
 #: ../src/plugins/export/ExportVCalendar.py:139
 #, python-format
@@ -11051,13 +11059,6 @@ msgstr "Tod von %s"
 #, python-format
 msgid "Anniversary: %s"
 msgstr "Jahrestag: %s"
-
-#: ../src/plugins/export/ExportXml.py:137
-#: ../src/plugins/export/ExportXml.py:147
-#: ../src/plugins/export/ExportXml.py:165
-#, python-format
-msgid "Failure writing %s"
-msgstr "Fehler beim Schreiben von %s"
 
 #: ../src/plugins/export/ExportXml.py:138
 msgid ""
@@ -18588,6 +18589,20 @@ msgstr "Portugal"
 #, python-format
 msgid "%(language)s (%(country)s)"
 msgstr "%(language)s (%(country)s)"
+
+#. List of translated strings used here
+#. Dead code for l10n; added on translation template
+#. Translation string should be same as key name
+#. ex: AttributeType
+#. (FATHER_AGE  , _("Father's Age"), "Father Age"),
+#. (MOTHER_AGE  , _("Mother's Age"), "Mother Age"),
+#: ../src/plugins/lib/libtranslate.py:246
+msgid "Father Age"
+msgstr "Alter des Vaters"
+
+#: ../src/plugins/lib/libtranslate.py:246
+msgid "Mother Age"
+msgstr "Alter der Mutter"
 
 #: ../src/plugins/lib/libtreebase.py:718
 msgid "Top Left"
