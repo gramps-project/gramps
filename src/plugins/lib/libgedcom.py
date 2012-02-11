@@ -2028,6 +2028,9 @@ class GedcomParser(UpdateCallback):
             # Not legal, but inserted by Ultimate Family Tree
             TOKEN_CHAN   : self.__ignore, 
             TOKEN_QUAY  : self.__ignore, 
+            # Not legal, but inserted by FamilyTreeBuilder
+            TOKEN_RIN    : self.__event_rin,
+            TOKEN_ATTR   : self.__event_attr, # _UID
             }
 
         self.adopt_parse_tbl = {
@@ -4887,6 +4890,27 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         state.event.add_citation(self.handle_source(line, state.level, state))
+
+    def __event_rin(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        attr = gen.lib.Attribute()
+        attr.set_type(line.token_text)
+        attr.set_value(line.data)
+        state.event.add_attribute(attr)
+
+    def __event_attr(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.event.add_attribute(line.data)
 
     def __event_cause(self, line, state):
         """
