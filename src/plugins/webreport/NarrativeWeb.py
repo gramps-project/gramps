@@ -108,6 +108,7 @@ from libgedcom import make_gedcom_date
 from PlaceUtils import conv_lat_lon
 from gui.pluginmanager import GuiPluginManager
 
+import Relationship
 #------------------------------------------------
 # constants
 #------------------------------------------------
@@ -5313,7 +5314,7 @@ class IndividualPage(BasePage):
         gen.lib.Person.UNKNOWN : _('unknown'),
         }
 
-    def __init__(self, report, title, person, ind_list, place_list, src_list, place_lat_long):
+    def __init__(self, report, title, person, ind_list, place_list, src_list, place_lat_long, rel_class):
         self.dbase_ = report.database
         BasePage.__init__(self, report, title, person.get_gramps_id())
 
@@ -5325,10 +5326,15 @@ class IndividualPage(BasePage):
         self.sort_name = self.get_name(person)
         self.name = self.get_name(person)
 
+        # to be used in the Family Map Pages...
         self.familymappages = self.report.options['familymappages']
         self.placemappages = self.report.options['placemappages']
         self.mapservice = self.report.options['mapservice']
         self.googleopts = self.report.options['googleopts']
+
+        # decide if we will sort the birth order of siblings...
+        self.birthorder = self.report.options['birthorder']
+        self.rel_class = rel_class
 
         of = self.report.create_file(person.get_handle(), "ppl")
         self.up = True
@@ -5356,7 +5362,7 @@ class IndividualPage(BasePage):
                 individualdetail += sect2
 
             # display parents
-            sect3 = self.display_ind_parents(ind_list)
+            sect3 = self.display_ind_parents()
             if sect3 is not None:
                 individualdetail += sect3
 
@@ -6172,21 +6178,18 @@ class IndividualPage(BasePage):
             tcell2 += self.get_name(person)
 
         if rel and rel != gen.lib.ChildRefType(gen.lib.ChildRefType.BIRTH):
-            tcell2 +=  ''.join(['&mnsp;'] *3 + ['(%s)']) % str(rel)
+            tcell2 +=  ''.join(['&nbsp;'] *3 + ['(%s)']) % str(rel)
 
         # return table columns to its caller
         return tcell1, tcell2
 
-    def display_ind_parents(self, ppl_handle_list):
+    def display_ind_parents(self):
         """
         Display a person's parents
         """
-
         parent_list = self.person.get_parent_family_handle_list()
         if not parent_list:
             return None
-
-        birthorder = self.report.options['birthorder']
 
         # begin parents division
         with Html("div", class_ = "subsection", id = "parents") as section:
@@ -6204,7 +6207,7 @@ class IndividualPage(BasePage):
                         # Get the mother and father relationships
                         frel = None
                         mrel = None
-                        sibling = []
+                        all_children = []
   
                         child_handle = self.person.get_handle()
                         child_ref_list = family.get_child_ref_list()
@@ -6243,189 +6246,156 @@ class IndividualPage(BasePage):
                                 table += trow
 
                         first = False
-                        if len(child_ref_list) > 1:
 
-                            # remove sibling if it is yourself?
-                            childlist = [child_ref.ref for child_ref in child_ref_list
-                                if child_ref.ref != self.person.handle]
-                            sibling.extend(childlist)
+                    showallsiblings = self.report.options['showhalfsiblings']
+                    # if we have a known father...
+                    if showallsiblings:
 
-                    # now that we have all siblings in families of the person,
-                    # display them...    
-                    if sibling:
-                        trow = Html("tr") + (
-                            Html("td", _("Siblings"), class_ = "ColumnAttribute", inline = True)
-                            )
-                        table += trow
+                        if father_handle:
+                            father = self.dbase_.get_person_from_handle(father_handle)
+                            for family_handle in father.get_family_handle_list():
+                                family = self.dbase_.get_family_from_handle(family_handle)
+                                if family:
+                                    for child_ref in family.get_child_ref_list():
+                                        child_handle = child_ref.ref
 
-                        tcell = Html("td", class_ = "ColumnValue")
-                        trow += tcell
+                                        # if sibling is not already in this list and it is not yourself?
+                                        if (child_handle not in all_children and
+                                            child_handle != self.person.get_handle()):
+                                                all_children.append(child_handle)
 
-                        ordered = Html("ol")
-                        tcell += ordered 
-
-                        sibling = add_birthdate(self.dbase_, sibling)
-                        if birthorder:
-                            sibling = sorted(sibling)
+                                spouse_handle = ReportUtils.find_spouse(father, family)
+                                if spouse_handle != mother_handle:
+                                    spouse = self.dbase_.get_person_from_handle(spouse_handle)
+                                    if spouse:
+                                        for family_handle in spouse.get_family_handle_list():
+                                            family = self.dbase_.get_family_from_handle(family_handle)
+                                            if family:
+                                                for child_ref in family.get_child_ref_list():
+                                                    child_handle = child_ref.ref
  
-                        ordered.extend(
-                            self.display_child_link(chandle, ppl_handle_list)
-                                for birth_date, chandle in sibling
-                        )
+                                                    # if sibling is not already in this list and it is not yourself?
+                                                    if (child_handle not in all_children and
+                                                        child_handle != self.person.get_handle()):
+                                                            all_children.append(child_handle)
 
-                    # Also try to identify half-siblings
-                    half_siblings = []
+                        # do the same thing with the mother (see "father" just above):
+                        if mother_handle:
+                            mother = self.dbase_.get_person_from_handle(mother_handle)
+                            for family_handle in mother.get_family_handle_list():
+                                family = self.dbase_.get_family_from_handle(family_handle)
+                                if family:
+                                    for child_ref in family.get_child_ref_list():
+                                        child_handle = child_ref.ref
 
-                    ## FOLLOWING CODE IS WRONG, AS showallsiblings = False
-                    ## THIS CODE WILL NOT RUN
-                    ## TO FIX: the code only works if the user has his
-                    ## half/step siblings in a specific way in the database,
-                    ## however this way is not the official way
-                    ## The official way is:
-                    ##    1. step or half siblings _must_ be present 
-                    ##       somewhere in the same family. So the search
-                    ##       here over other families is wrong
-                    ##    2. to determine the relationship, only the child
-                    ##       relationship must be looked at, nothing else! 
-                    showallsiblings = False #self.report.options['showhalfsiblings']
-##                    # if we have a known father...
-##                    if father_handle and showallsiblings:
-##                        # 1) get all of the families in which this father is involved
-##                        # 2) get all of the children from those families
-##                        # 3) if the children are not already listed as siblings...
-##                        # 4) then remember those children since we're going to list them
-##                        father = self.dbase_.get_person_from_handle(father_handle)
-##                        for family_handle in father.get_family_handle_list():
-##                            family = self.dbase_.get_family_from_handle(family_handle)
-##                            for half_child_ref in family.get_child_ref_list():
-##                                half_child_handle = half_child_ref.ref
-##                                if half_child_handle not in sibling:
-##                                    if half_child_handle != self.person.handle:
-##                                        # we have a new step/half sibling
-##                                        half_siblings.append(half_child_handle)
-##
-##                    # do the same thing with the mother (see "father" just above):
-##                    if mother_handle and showallsiblings:
-##                        mother = self.dbase_.get_person_from_handle(mother_handle)
-##                        for family_handle in mother.get_family_handle_list():
-##                            family = self.dbase_.get_family_from_handle(family_handle)
-##                            for half_child_ref in family.get_child_ref_list():
-##                                half_child_handle = half_child_ref.ref
-##                                if half_child_handle not in sibling:
-##                                    if half_child_handle != self.person.handle:
-##                                        # we have a new half sibling
-##                                        half_siblings.append(half_child_handle)
-##
-##                    # now that we have all half- siblings, display them...    
-##                    if half_siblings:
-##                        trow = Html("tr") + (
-##                            Html("td", _("Half Siblings"), class_ = "ColumnAttribute", inline = True)
-##                            )
-##                        table += trow
-##
-##                        tcell = Html("td", class_ = "ColumnValue")
-##                        trow += tcell
-##
-##                        ordered = Html("ol")
-##                        tcell += ordered
-##
-##                          half_siblings = add_birthdate(self.dbase_, half_siblings)
-##                          if birthorder:
-##                              half_siblings = sorted(half_siblings)
-##
-##                          ordered.extend(
-##                              self.display_child_link(chandle, ind_list)
-##                                  for birth_date, chandle in half_siblings
-##                            ) 
-##
-##                    # get step-siblings
-##                    if showallsiblings:
-##                        step_siblings = []
-##
-##                        # to find the step-siblings, we need to identify
-##                        # all of the families that can be linked back to
-##                        # the current person, and then extract the children
-##                        # from those families
-##                        all_family_handles = set()
-##                        all_parent_handles = set()
-##                        tmp_parent_handles = set()
-##
-##                        # first we queue up the parents we know about
-##                        if mother_handle:
-##                            tmp_parent_handles.add(mother_handle)
-##                        if father_handle:
-##                            tmp_parent_handles.add(father_handle)
-##
-##                        while len(tmp_parent_handles):
-##                            # pop the next parent from the set
-##                            parent_handle = tmp_parent_handles.pop()
-##
-##                            # add this parent to our official list
-##                            all_parent_handles.add(parent_handle)
-##
-##                            # get all families with this parent
-##                            parent = self.dbase_.get_person_from_handle(parent_handle)
-##                            for family_handle in parent.get_family_handle_list():
-##
-##                                all_family_handles.add(family_handle)
-##
-##                                # we already have 1 parent from this family
-##                                # (see "parent" above) so now see if we need
-##                                # to queue up the other parent
-##                                family = self.dbase_.get_family_from_handle(family_handle)
-##                                tmp_mother_handle = family.get_mother_handle()
-##                                if  tmp_mother_handle and \
-##                                    tmp_mother_handle != parent and \
-##                                    tmp_mother_handle not in tmp_parent_handles and \
-##                                    tmp_mother_handle not in all_parent_handles:
-##                                    tmp_parent_handles.add(tmp_mother_handle)
-##                                tmp_father_handle = family.get_father_handle()
-##                                if  tmp_father_handle and \
-##                                    tmp_father_handle != parent and \
-##                                    tmp_father_handle not in tmp_parent_handles and \
-##                                    tmp_father_handle not in all_parent_handles:
-##                                    tmp_parent_handles.add(tmp_father_handle)
-##
-##                        # once we get here, we have all of the families
-##                        # that could result in step-siblings; note that
-##                        # we can only have step-siblings if the number
-##                        # of families involved is > 1
-##
-##                        if len(all_family_handles) > 1:
-##                            while len(all_family_handles):
-##                                # pop the next family from the set
-##                                family_handle = all_family_handles.pop()
-##                                # look in this family for children we haven't yet seen
-##                                family = self.dbase_.get_family_from_handle(family_handle)
-##                                for step_child_ref in family.get_child_ref_list():
-##                                    step_child_handle = step_child_ref.ref
-##                                    if step_child_handle not in sibling and \
-##                                           step_child_handle not in half_siblings and \
-##                                           step_child_handle != self.person.handle:
-##                                        # we have a new step sibling
-##                                        step_siblings.append(step_child_handle)
-##
-##                        # now that we have all step- siblings, display them...    
-##                        if len(step_siblings):
-##                            trow = Html("tr") + (
-##                                Html("td", _("Step Siblings"), class_ = "ColumnAttribute", inline = True)
-##                                )
-##                            table += trow
-##
-##                            tcell = Html("td", class_ = "ColumnValue")
-##                            trow += tcell
-##
-##                            ordered = Html("ol")
-##                            tcell += ordered
-##
-##                              step_siblings = add_birthdate(self.dbase_, step_siblings)
-##                              if birthorder:
-##                                  step_siblings = sorted(step_siblings)
-##
-##                              ordered.extend(
-##                                  self.display_child_link(chandle, ind_list)
-##                                      for birth_date, chandle in step_siblings
-##                                )
+                                        # if sibling is not already in this list and it is not yourself?
+                                        if (child_handle not in all_children and
+                                            child_handle != self.person.get_handle()):
+                                                all_children.append(child_handle)
+
+                                spouse_handle = ReportUtils.find_spouse(mother, family)
+                                if spouse_handle != father_handle:
+                                    spouse = self.dbase_.get_person_from_handle(spouse_handle)
+                                    if spouse:
+                                        for family_handle in spouse.get_family_handle_list():
+                                            family = self.dbase_.get_family_from_handle(family_handle)
+                                            for child_ref in family.get_child_ref_list():
+                                                child_handle = child_ref.ref
+
+                                                # if sibling is not already in this list and it is not yourself?
+                                                if (child_handle not in all_children and
+                                                    child_handle != self.person.get_handle()):
+                                                        all_children.append(child_handle)
+
+                        child_list = [child_handle for child_handle in all_children]
+
+                        # separate all children into biological, half, and step- siblings...
+                        siblings, half_siblings, step_siblings = [], [], []
+
+                        if len(child_list):
+                            for sibling_handle in child_list:
+                                sibling = self.dbase_.get_person_from_handle(sibling_handle)
+                                if sibling:
+                                    sibling_type = self.rel_class.get_sibling_type(
+                                        self.dbase_, self.person, sibling)
+
+                                    # biological/ natural sibling
+                                    if sibling_type == 0:
+                                        siblings.append(sibling_handle)
+
+                                    # half siblings
+                                    elif (sibling_type == 1 or sibling_type == 2):
+                                        half_siblings.append(sibling_handle)
+
+                                    # step siblings
+                                    elif (sibling_type == 3 or sibling_type == 4):
+                                        step_siblings.append(sibling_handle)
+
+                        # now that we have all siblings, display them...    
+                        if len(siblings):
+                            trow = Html("tr") + (
+                                Html("td", _("Siblings"), class_ = "ColumnAttribute", inline = True)
+                            )
+                            table += trow
+
+                            tcell = Html("td", class_ = "ColumnValue")
+                            trow += tcell
+
+                            ordered = Html("ol")
+                            tcell += ordered
+
+                            siblings = add_birthdate(self.dbase_, siblings)
+                            if self.birthorder:
+                                siblings = sorted(siblings)
+
+                            ordered.extend(
+                                self.display_child_link(child_handle, self.ind_list)
+                                    for birth_date, child_handle in siblings
+                            )
+
+                        # now that we have all half- siblings, display them...    
+                        if len(half_siblings):
+                            trow = Html("tr") + (
+                                Html("td", _("Half Siblings"), class_ = "ColumnAttribute", inline = True)
+                            )
+                            table += trow
+
+                            tcell = Html("td", class_ = "ColumnValue")
+                            trow += tcell
+
+                            ordered = Html("ol")
+                            tcell += ordered
+
+                            half_siblings = add_birthdate(self.dbase_, half_siblings)
+                            if self.birthorder:
+                                half_siblings = sorted(half_siblings)
+
+                            ordered.extend(
+                                self.display_child_link(child_handle, self.ind_list)
+                                    for birth_date, child_handle in half_siblings
+                            )
+
+                        # now that we have all step- siblings, display them...    
+                        if len(step_siblings):
+                            trow = Html("tr") + (
+                                Html("td", _("Step Siblings"), class_ = "ColumnAttribute", inline = True)
+                            )
+                            table += trow
+
+                            tcell = Html("td", class_ = "ColumnValue")
+                            trow += tcell
+
+                            ordered = Html("ol")
+                            tcell += ordered
+
+                            step_siblings = add_birthdate(self.dbase_, step_siblings)
+                            if self.birthorder:
+                                step_siblings = sorted(step_siblings)
+
+                            ordered.extend(
+                                self.display_child_link(child_handle, self.ind_list)
+                                    for birth_date, child_handle in step_siblings
+                            )
 
         # return parents division to its caller
         return section
@@ -6995,8 +6965,11 @@ class NavWebReport(Report):
 
         self.base_pages()
 
+        # for use with discovering biological, half, and step siblings for use in display_ind_parents()...
+        rel_class = Relationship.get_relationship_calculator()
+
         # build classes IndividualListPage and IndividualPage
-        self.person_pages(ind_list, place_list, source_list, place_lat_long)
+        self.person_pages(ind_list, place_list, source_list, place_lat_long, rel_class)
 
         # build classes SurnameListPage and SurnamePage
         self.surname_pages(ind_list)
@@ -7147,7 +7120,7 @@ class NavWebReport(Report):
             fdir, fname = os.path.split(from_path)
             self.copy_file(from_path, fname, "images")
 
-    def person_pages(self, ind_list, place_list, source_list, place_lat_long):
+    def person_pages(self, ind_list, place_list, source_list, place_lat_long, rel_class):
         """
         creates IndividualListPage, IndividualPage, and gendex page
         """
@@ -7163,7 +7136,7 @@ class NavWebReport(Report):
             self.user.step_progress()
             person = self.database.get_person_from_handle(person_handle)
 
-            IndividualPage(self, self.title, person, ind_list, place_list, source_list, place_lat_long)
+            IndividualPage(self, self.title, person, ind_list, place_list, source_list, place_lat_long, rel_class)
         self.user.end_progress()
 
         if self.inc_gendex:
@@ -7953,12 +7926,11 @@ class NavWebOptions(MenuReportOptions):
         showparents.set_help(_('Whether to include a parents column'))
         addopt( "showparents", showparents )
 
-        # This is programmed wrong, remove
-        #showallsiblings = BooleanOption(_("Include half and/ or "
-        #                                   "step-siblings on the individual pages"), False)
-        #showallsiblings.set_help(_( "Whether to include half and/ or "
-        #                            "step-siblings with the parents and siblings"))
-        #menu.add_option(category_name, 'showhalfsiblings', showallsiblings)
+        showallsiblings = BooleanOption(_("Include half and/ or "
+                                           "step-siblings on the individual pages"), False)
+        showallsiblings.set_help(_( "Whether to include half and/ or "
+                                    "step-siblings with the parents and siblings"))
+        addopt('showhalfsiblings', showallsiblings)
 
         birthorder = BooleanOption(_('Sort all children in birth order'), False)
         birthorder.set_help(_('Whether to display children in birth order or in entry order?'))
