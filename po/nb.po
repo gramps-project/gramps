@@ -2122,7 +2122,7 @@ msgstr ""
 #: ../src/gen/db/exceptions.py:93
 #, python-format
 msgid "Gramps stores its data in a Berkeley Database. The family tree you try to load was created with version %(env_version)s of the Berkeley DB. However, the Gramps version in use right now employs version %(bdb_version)s of the Berkeley DB. So you are trying to load data created in a newer format into an older program; this is bound to fail. The right approach in this case is to use XML export and import. So try to open the family tree on that computer with that software that created the family tree, export it to XML and load that XML into the version of Gramps you intend to use."
-msgstr ""
+msgstr "Gramps lagrer sine data i en Berkeley-database. Slektsdatabasen du prøver å åpne ble laget med versjon %(env_version)s av Berkeley DB. Den versjonen av Gramps du bruker nå forholder seg til versjon %(bdb_version)s av Berkeley DB. Dette betyr at du prøver å laste data som er laget med en nyere versjon inn i en eldre program, noe som vil gå galt. Den riktige fremgangsmåten i dette tilfellet er å bruke XML-eksport og import. Du bør altså forsøke å åpne slektsdatabasen din på den datamaskinen med den programvaren som du brukte for å lage slektsdatabasen. Deretter må du eksportere til Gramps XML og så kopiere denne XML-fila til den maskinen og den versjonen av Gramps du vil bruke."
 
 #: ../src/gen/db/exceptions.py:116
 msgid ""
@@ -11494,7 +11494,7 @@ msgstr "  10. <a wiki='%s_-_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.
 
 #: ../src/plugins/gramplet/FaqGramplet.py:65
 msgid " 11. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-ts21786114.html#a21786114'>How do I record one's occupation?</a>\n"
-msgstr " 11. <a href='http://sourceforge.net/mailarchive/message.php?msg_id=21487967'>Hvordan registrerer jeg noen yrke?</a>\n"
+msgstr " 11. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-ts21786114.html#a21786114'>Hvordan registrerer jeg noens yrke?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:66
 #, python-format
@@ -26859,6 +26859,20 @@ msgstr "<b>Hvem ble født når?</b><br/>Under &quot;Verktøy &gt; Analysere og u
 #: ../src/data/tips.xml.in.h:63
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr "<b>Arbeide med datoer</b><br/>En serie med datoer can angis ved å bruke formatet &quot;mellom 4.januar 2000 og 20.mars 2003&quot;. Du kan også indikere troverdighetsnivå og velge blant sju ulike kalendre. Prøv knappen ved siden av datofeltet i Hendelsesbehandleren."
+
+#. List of translated strings used here
+#. Dead code for l10n; added on translation template
+#. Translation string should be same as key name
+#. ex: AttributeType
+#. (FATHER_AGE  , _("Father's Age"), "Father Age"),
+#. (MOTHER_AGE  , _("Mother's Age"), "Mother Age"),
+#: ../src/plugins/lib/libtranslate.py:246
+msgid "Father Age"
+msgstr "Fars alder"
+
+#: ../src/plugins/lib/libtranslate.py:246
+msgid "Mother Age"
+msgstr "Mors alder"
 
 #~ msgid "Baptism:"
 #~ msgstr "Dåp (voksen):"
