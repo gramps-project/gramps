@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-21 21:05+0100\n"
-"PO-Revision-Date: 2012-01-21 21:09+0100\n"
+"PO-Revision-Date: 2012-02-12 15:02+0100\n"
 "Last-Translator: Joan Creus <joan.creusandreu at gmail dot com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: \n"
@@ -28436,7 +28436,7 @@ msgstr "S'han de complir totes les regles"
 
 #: ../src/glade/rule.glade.h:11
 msgid "At least one rule must apply"
-msgstr "Al menys una regla s'ha de complir"
+msgstr "Almenys una regla s'ha de complir"
 
 #: ../src/glade/rule.glade.h:12
 msgid "Clone the selected filter"
@@ -29837,6 +29837,20 @@ msgstr ""
 "indicar el nivell de confiança en una data i fins i tot triar entre set "
 "calendaris diferents. Provi el botó del costat del camp de data a l'Editor "
 "d'Esdeveniments."
+
+#. List of translated strings used here
+#. Dead code for l10n; added on translation template
+#. Translation string should be same as key name
+#. ex: AttributeType
+#. (FATHER_AGE  , _("Father's Age"), "Father Age"),
+#. (MOTHER_AGE  , _("Mother's Age"), "Mother Age"),
+#: ../src/plugins/lib/libtranslate.py:246
+msgid "Father Age"
+msgstr "Edat del Pare"
+
+#: ../src/plugins/lib/libtranslate.py:246
+msgid "Mother Age"
+msgstr "Edat de la Mare"
 
 #~ msgid "Processing File"
 #~ msgstr "Processant Fitxer"
