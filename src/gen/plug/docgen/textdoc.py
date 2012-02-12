@@ -299,3 +299,16 @@ class TextDoc(object):
         """
         pass
 
+    def insert_toc(self):
+        """
+        Insert a Table of Contents at this point in the document. This passes 
+        without error so that docgen types are not required to have this.
+        """
+        pass
+
+    def insert_index(self):
+        """
+        Insert an Alphabetical Index at this point in the document. This passes 
+        without error so that docgen types are not required to have this.
+        """
+        pass

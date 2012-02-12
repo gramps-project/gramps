@@ -353,3 +353,48 @@ plg.reportclass = 'SummaryReport'
 plg.optionclass = 'SummaryOptions'
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
 plg.require_active = False
+
+#------------------------------------------------------------------------
+#
+# Table Of Contents
+#
+#------------------------------------------------------------------------
+
+plg = newplugin()
+plg.id = 'table_of_contents'
+plg.name = _("Table Of Contents")
+plg.description =  _("Produces a table of contents for book reports.")
+plg.version = '1.0'
+plg.gramps_target_version = '3.4'
+plg.status = STABLE
+plg.fname = 'TableOfContents.py'
+plg.ptype = REPORT
+plg.authors = ["Brian G. Matherly"]
+plg.authors_email = ["brian@gramps-project.org"]
+plg.category = CATEGORY_TEXT
+plg.reportclass = 'TableOfContents'
+plg.optionclass = 'TableOfContentsOptions'
+plg.report_modes = [REPORT_MODE_BKI]
+
+#------------------------------------------------------------------------
+#
+# Alphabetical Index
+#
+#------------------------------------------------------------------------
+
+plg = newplugin()
+plg.id = 'alphabetical_index'
+plg.name = _("Alphabetical Index")
+plg.description =  _("Produces aa alphabetical index for book reports.")
+plg.version = '1.0'
+plg.gramps_target_version = '3.4'
+plg.status = STABLE
+plg.fname = 'AlphabeticalIndex.py'
+plg.ptype = REPORT
+plg.authors = ["Brian G. Matherly"]
+plg.authors_email = ["brian@gramps-project.org"]
+plg.category = CATEGORY_TEXT
+plg.reportclass = 'AlphabeticalIndex'
+plg.optionclass = 'AlphabeticalIndexOptions'
+plg.report_modes = [REPORT_MODE_BKI]
+

@@ -356,6 +356,7 @@ src/plugins/rel/relplugins.gpr.py
 src/plugins/sidebar/sidebar.gpr.py
 
 # plugins/textreport directory
+src/plugins/textreport/AlphabeticalIndex.py
 src/plugins/textreport/AncestorReport.py
 src/plugins/textreport/BirthdayReport.py
 src/plugins/textreport/CustomBookText.py
@@ -370,6 +371,7 @@ src/plugins/textreport/NumberOfAncestorsReport.py
 src/plugins/textreport/PlaceReport.py
 src/plugins/textreport/SimpleBookTitle.py
 src/plugins/textreport/Summary.py
+src/plugins/textreport/TableOfContents.py
 src/plugins/textreport/TagReport.py
 src/plugins/textreport/textplugins.gpr.py
 
