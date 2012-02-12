@@ -11,7 +11,7 @@
 #               2009       Benny Malengier
 #               2010       Peter Landgren
 # Copyright (C) 2011       Adam Stein <adam@csh.rit.edu>
-#               2011       Harald Rosemann
+#               2011-2012  Harald Rosemann
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@
 #------------------------------------------------------------------------
 from gen.ggettext import gettext as _
 from bisect import bisect
-import re
+import re, os, sys
 
 #----------------------------------------------------------------------- -
 #
@@ -48,7 +48,7 @@ import re
 #------------------------------------------------------------------------
 from gen.plug.docgen import BaseDoc, TextDoc, PAPER_LANDSCAPE, FONT_SANS_SERIF, URL_PATTERN
 from gen.plug.docbackend import DocBackend
-import ImgManip
+import Image
 import Errors
 import Utils
 
@@ -59,28 +59,14 @@ _CLICKABLE = r'''\url{\1}'''
 # Special settings for LaTeX output
 #
 #------------------------------------------------------------------------
-#   If there is one overwide column consuming too much space of paperwidth its
-#   line(s) must be broken and wrapped in a 'minipage' with appropriate width.
-#   The table construction beneath does this job but for now must know which
-#   column. (Later it shall be determined in another way)
-#   As to gramps in most cases it is the last column, hence:
-
-MINIPAGE_COL = -1   #   Python indexing: last one
-
-#   In trunk there is a 'LastChangeReport' where the last but one
-#   is such a column. If you like, you can instead choose this setting:
-
-# MINIPAGE_COL = -2   #   Python indexing: last but one
-
-#   ----------------------------------
-#   For an interim mark of an intended linebreak I use a special pattern. It
-#   shouldn't interfere with normal text. The charackter '&' is used in LaTeX
+#   For an interim mark e.g. for an intended linebreak I use a special pattern.
+#   It shouldn't interfere with normal text. In LaTeX charackter '&' is used
 #   for column separation in tables and may occur there in series. The pattern
 #   is used here before column separation is set. On the other hand incoming
 #   text can't show this pattern for it would have been replaced by '\&\&'.
 #   So the choosen pattern will do the job without confusion:
 
-PAT_FOR_LINE_BREAK = '&&'
+SEPARATION_PAT = '&&'
 
 #------------------------------------------------------------------------
 #
@@ -91,27 +77,7 @@ PAT_FOR_LINE_BREAK = '&&'
 _LATEX_TEMPLATE_1 = '\\documentclass[%s]{article}\n'
 _LATEX_TEMPLATE = '''%
 %
-% Vertical spacing between paragraphs:
-% take one of three possibilities or modify to your taste:
-%\\setlength{\\parskip}{1.0ex plus0.2ex minus0.2ex}
-\\setlength{\\parskip}{1.5ex plus0.3ex minus0.3ex}
-%\\setlength{\\parskip}{2.0ex plus0.4ex minus0.4ex}
-%
-% Vertical spacing between lines:
-% take one of three possibilities or modify to your taste:
-\\renewcommand{\\baselinestretch}{1.0}
-%\\renewcommand{\\baselinestretch}{1.1}
-%\\renewcommand{\\baselinestretch}{1.2}
-%
-% Indentation; substitute for '1cm' of gramps
-% take one of three possibilities or modify to your taste:
-\\newlength{\\grbaseindent}%
-\\setlength{\\grbaseindent}{3.0em}
-%\\setlength{\\grbaseindent}{2.5em}
-%\\setlength{\\grbaseindent}{2.0em}
-%
-%
-\\usepackage[T1]{fontenc}
+\\usepackage[T1]{fontenc}%
 %
 % We use latin1 encoding at a minimum by default.
 % GRAMPS uses unicode UTF-8 encoding for its
@@ -124,64 +90,309 @@ _LATEX_TEMPLATE = '''%
 % (If you do not have ucs.sty, you may obtain it from
 %  http://www.tug.org/tex-archive/macros/latex/contrib/supported/unicode/)
 %
-\\usepackage[latin1]{inputenc}
-%\\usepackage[latin1,utf8]{inputenc}
-\\usepackage{graphicx}  % Extended graphics support
-\\usepackage{longtable} % For multi-page tables
-\\usepackage{calc} % For some calculations
-\\usepackage{ifthen} % For table width calculations
+\\usepackage[latin1]{inputenc}%
+%\\usepackage[latin1,utf8]{inputenc}%
+\\usepackage{graphicx}% Extended graphics support
+\\usepackage{longtable}% For multi-page tables
+\\usepackage{calc}% For some calculations
+\\usepackage{ifthen}% For table width calculations
+\\usepackage{ragged2e}% For left aligning with hyphenation
+\\usepackage{wrapfig}% wrap pictures in text
 %
 % Depending on your LaTeX installation, the margins may be too
 % narrow.  This can be corrected by uncommenting the following
 % two lines and adjusting the width appropriately. The example
 % removes 0.5in from each margin. (Adds 1 inch to the text)
-%\\addtolength{\\oddsidemargin}{-0.5in}
-%\\addtolength{\\textwidth}{1.0in}
+%\\addtolength{\\oddsidemargin}{-0.5in}%
+%\\addtolength{\\textwidth}{1.0in}%
+%
+% Vertical spacing between paragraphs:
+% take one of three possibilities or modify to your taste:
+%\\setlength{\\parskip}{1.0ex plus0.2ex minus0.2ex}%
+\\setlength{\\parskip}{1.5ex plus0.3ex minus0.3ex}%
+%\\setlength{\\parskip}{2.0ex plus0.4ex minus0.4ex}%
+%
+% Vertical spacing between lines:
+% take one of three possibilities or modify to your taste:
+\\renewcommand{\\baselinestretch}{1.0}%
+%\\renewcommand{\\baselinestretch}{1.1}%
+%\\renewcommand{\\baselinestretch}{1.2}%
+%
+% Indentation; substitute for '1cm' of gramps, 2.5em is right for 12pt
+% take one of three possibilities or modify to your taste:
+\\newlength{\\grbaseindent}%
+%\\setlength{\\grbaseindent}{3.0em}%
+\\setlength{\\grbaseindent}{2.5em}%
+%\\setlength{\\grbaseindent}{2.0em}%
 %
 %
-% New lengths and commands
-% for calculating widths and struts in tables
+% -------------------------------------------------------------
+% New lengths, counters and commands for calculations in tables
+% -------------------------------------------------------------
 %
-\\newlength{\\grtempint}%
-\\newlength{\\grminpgwidth}%
-\\setlength{\\grminpgwidth}{0.8\\textwidth}
+\\newlength{\\grtabwidth}%
+\\newlength{\\grtabprepos}%
+\\newlength{\\grreqwidth}%
+\\newlength{\\grtempwd}%
+\\newlength{\\grmaxwidth}%
+\\newlength{\\grprorated}%
+\\newlength{\\grxwd}%
+\\newlength{\\grwidthused}%
+\\newlength{\\grreduce}%
+\\newlength{\\grcurcolend}%
+\\newlength{\\grspanwidth}%
+\\newlength{\\grleadlabelwidth}%
+\\newlength{\\grminpgindent}%
+\\newlength{\\grlistbacksp}%
+\\newlength{\\grpictsize}%
+\\newlength{\\grmaxpictsize}%
+\\newlength{\\grtextsize}%
+\\newlength{\\grmaxtextsize}%
+\\newcounter{grtofixcnt}%
+\\newcounter{grxwdcolcnt}%
 %
-\\newcommand{\\inittabvars}[2]{%
+%
+\\newcommand{\\grinitlength}[2]{%
   \\ifthenelse{\\isundefined{#1}}%
     {\\newlength{#1}}{}%
   \\setlength{#1}{#2}%
 }%
 %
-\\newcommand{\\grcalctextwidth}[2]{%
-  \\settowidth{\\grtempint}{#1}%                #1: text
-  \\ifthenelse{\\lengthtest{\\grtempint > #2}}% #2: grcolwidth_
-    {\\setlength{#2}{\\grtempint}}{}%
-}%
-%
-\\newcommand{\\grminvaltofirst}[2]{%
-  \\setlength{\\grtempint}{#2}%
-  \\ifthenelse{\\lengthtest{#1 > \\grtempint}}%
-    {\\setlength{#1}{\\grtempint}}{}%
+\\newcommand{\\grinittab}[2]{%    #1: tabwidth, #2 = 1.0/anz-cols
+  \\setlength{\\grtabwidth}{#1}%
+  \\setlength{\\grprorated}{#2\\grtabwidth}%
+  \\setlength{\\grwidthused}{0em}%
+  \\setlength{\\grreqwidth}{0em}%
+  \\setlength{\\grmaxwidth }{0em}%
+  \\setlength{\\grxwd}{0em}%
+  \\setlength{\\grtempwd}{0em}%
+  \\setlength{\\grpictsize}{0em}%
+  \\setlength{\\grmaxpictsize}{0em}%
+  \\setlength{\\grtextsize}{0em}%
+  \\setlength{\\grmaxtextsize}{0em}%
+  \\setlength{\\grcurcolend}{0em}%
+  \\setcounter{grxwdcolcnt}{0}%4
+  \\setcounter{grtofixcnt}{0}%  number of wide cols%
+  \\grinitlength{\\grcolbega}{0em}% beg of first col
 }%
 %
 \\newcommand{\\grmaxvaltofirst}[2]{%
-  \\setlength{\\grtempint}{#2}%
-  \\ifthenelse{\\lengthtest{#1 < \\grtempint}}%
-    {\\setlength{#1}{\\grtempint}}{}%
+  \\ifthenelse{\\lengthtest{#1 < #2}}%
+    {\\setlength{#1}{#2}}{}%
 }%
 %
-%        lift   width   heigh
+\\newcommand{\\grsetreqfull}{%
+  \\grmaxvaltofirst{\\grmaxpictsize}{\\grpictsize}%
+  \\grmaxvaltofirst{\\grmaxtextsize}{\\grtextsize}%
+}%
+%
+\\newcommand{\\grsetreqpart}[1]{%
+  \\addtolength{\\grtextsize}{#1 - \\grcurcolend}%
+  \\addtolength{\\grpictsize}{#1 - \\grcurcolend}%
+  \\grsetreqfull%
+}%
+%
+\\newcommand{\\grdividelength}{%
+ \\setlength{\\grtempwd}{\\grtabwidth - \\grwidthused}%
+%    rough division of lengths:
+%    if 0 < #1 <= 10: \\grxwd = ~\\grtempwd / grtofixcnt
+%    otherwise: \\grxwd =  \\grprorated
+ \\ifthenelse{\\value{grtofixcnt} > 0}%
+  {\\ifthenelse{\\value{grtofixcnt}=1}
+                    {\\setlength{\\grxwd}{\\grtempwd}}{%
+    \\ifthenelse{\\value{grtofixcnt}=2}
+                    {\\setlength{\\grxwd}{0.5\\grtempwd}}{%
+     \\ifthenelse{\\value{grtofixcnt}=3}
+                    {\\setlength{\\grxwd}{0.333\\grtempwd}}{%
+      \\ifthenelse{\\value{grtofixcnt}=4}
+                    {\\setlength{\\grxwd}{0.25\\grtempwd}}{%
+       \\ifthenelse{\\value{grtofixcnt}=5}
+                    {\\setlength{\\grxwd}{0.2\\grtempwd}}{%
+        \\ifthenelse{\\value{grtofixcnt}=6}
+                    {\\setlength{\\grxwd}{0.166\\grtempwd}}{%
+         \\ifthenelse{\\value{grtofixcnt}=7}
+                    {\\setlength{\\grxwd}{0.143\\grtempwd}}{%
+          \\ifthenelse{\\value{grtofixcnt}=8}
+                    {\\setlength{\\grxwd}{0.125\\grtempwd}}{%
+           \\ifthenelse{\\value{grtofixcnt}=9}
+                    {\\setlength{\\grxwd}{0.111\\grtempwd}}{%
+            \\ifthenelse{\\value{grtofixcnt}=10}
+                    {\\setlength{\\grxwd}{0.1\\grtempwd}}{%
+             \\setlength{\\grxwd}{\\grprorated}% give up, take \\grprorated%
+    }}}}}}}}}}%
+  \\setlength{\\grreduce}{0em}%
+  }{\\setlength{\\grxwd}{0em}}%
+}%
+%
+\\newcommand{\\grtextneedwidth}[1]{%
+  \\settowidth{\\grtempwd}{#1}%
+  \\grmaxvaltofirst{\\grtextsize}{\\grtempwd}%
+}%
+%
+\\newcommand{\\grcolsfirstfix}[5]{%
+  \\grinitlength{#1}{\\grcurcolend}%
+  \\grinitlength{#3}{0em}%
+  \\grinitlength{#4}{\\grmaxpictsize}%
+  \\grinitlength{#5}{\\grmaxtextsize}%
+  \\grinitlength{#2}{#5}%
+  \\grmaxvaltofirst{#2}{#4}%
+  \\addtolength{#2}{2\\tabcolsep}%
+  \\grmaxvaltofirst{\\grmaxwidth}{#2}%
+  \\ifthenelse{\\lengthtest{#2 < #4} \\or \\lengthtest{#2 < \\grprorated}}%
+    { \\setlength{#3}{#2}%
+      \\addtolength{\\grwidthused}{#2} }%
+    { \\stepcounter{grtofixcnt} }%
+  \\addtolength{\\grcurcolend}{#2}%
+}%
+%
+\\newcommand{\\grcolssecondfix}[4]{%
+  \\ifthenelse{\\lengthtest{\\grcurcolend < \\grtabwidth}}%
+    { \\setlength{#3}{#2} }%
+    { \\addtolength{#1}{-\\grreduce}%
+      \\ifthenelse{\\lengthtest{#2 = \\grmaxwidth}}%
+        { \\stepcounter{grxwdcolcnt}}%
+        { \\ifthenelse{\\lengthtest{#3 = 0em} \\and %
+                       \\lengthtest{#4 > 0em}}%
+            { \\setlength{\\grtempwd}{#4}%
+              \\grmaxvaltofirst{\\grtempwd}{\\grxwd}%
+              \\addtolength{\\grreduce}{#2 - \\grtempwd}%
+              \\setlength{#2}{\\grtempwd}%
+              \\addtolength{\\grwidthused}{#2}%
+              \\addtocounter{grtofixcnt}{-1}%
+              \\setlength{#3}{#2}%
+            }{}%
+        }%
+    }%
+}%
+%
+\\newcommand{\\grcolsthirdfix}[3]{%
+  \\ifthenelse{\\lengthtest{\\grcurcolend < \\grtabwidth}}%
+    {}{ \\addtolength{#1}{-\\grreduce}%
+        \\ifthenelse{\\lengthtest{#3 = 0em} \\and %
+                     \\lengthtest{#2 < \\grmaxwidth}}%
+          { \\ifthenelse{\\lengthtest{#2 < 0.5\\grmaxwidth}}%
+              { \\setlength{\\grtempwd}{0.5\\grxwd}%
+                \\grmaxvaltofirst{\\grtempwd}{0.7\\grprorated}}%
+              { \\setlength{\\grtempwd}{\\grxwd}}%
+            \\addtolength{\\grreduce}{#2 - \\grtempwd}%
+            \\setlength{#2}{\\grtempwd}%
+            \\addtolength{\\grwidthused}{#2}%
+            \\addtocounter{grtofixcnt}{-1}%
+            \\setlength{#3}{#2}%
+          }{}%
+      }%
+}%
+%
+\\newcommand{\\grcolsfourthfix}[3]{%
+  \\ifthenelse{\\lengthtest{\\grcurcolend < \\grtabwidth}}%
+    {}{ \\addtolength{#1}{-\\grreduce}%
+        \\ifthenelse{\\lengthtest{#3 = 0em}}%
+          { \\addtolength{\\grreduce}{#2 - \\grxwd}%
+            \\setlength{#2}{\\grxwd}%
+            \\setlength{#3}{#2}%
+          }{}%
+      }%
+}%
+%
+\\newcommand{\\grgetspanwidth}[4]{%
+  \\grinitlength{#1}{#3 - #2 + #4}%
+}%
+%
 \\newcommand{\\tabheadstrutceil}{%
- \\rule[0.0ex]{0.00em}{3.5ex}}%
+  \\rule[0.0ex]{0.00em}{3.5ex}}%
 \\newcommand{\\tabheadstrutfloor}{%
- \\rule[-2.0ex]{0.00em}{2.5ex}}%
+  \\rule[-2.0ex]{0.00em}{2.5ex}}%
 \\newcommand{\\tabrowstrutceil}{%
- \\rule[0.0ex]{0.00em}{3.0ex}}%
+  \\rule[0.0ex]{0.00em}{2.9ex}}%
 \\newcommand{\\tabrowstrutfloor}{%
- \\rule[-1.0ex]{0.00em}{3.0ex}}%
+  \\rule[-0.1ex]{0.00em}{2.0ex}}%
+%
+\\newcommand{\\grempty}[1]{}%
+%
+\\newcommand{\\graddvdots}[1]{%
+  \\hspace*{\\fill}\\hspace*{\\fill}\\raisebox{#1}{\\vdots}%
+}%
+%
+\\newcommand{\\grtabpgbreak}[4]{%
+  #1 { \\parbox[t]{ #2 - 2\\tabcolsep}{\\tabheadstrutceil\\hspace*{\\fill}%
+  \\raisebox{#4}{\\vdots} #3{#4} \\hspace*{\\fill}\\tabheadstrutfloor}}%
+}%
+%
+\\newcommand{\\grcolpart}[3]{%
+  #1 { \\parbox[t]{ #2 - 2\\tabcolsep}%
+  {\\tabrowstrutceil #3\\\\[-1.6ex]\\tabrowstrutfloor}}%
+}%
+%
+\\newcommand{\\grminpghead}[2]{%
+% \\settowidth{\\grminpgindent}{#1}%
+% \\addtolength{\\grminpgindent}{\\grbaseindent-\\grlistbacksp}%
+  \\setlength{\\grminpgindent}{#1\\grbaseindent-\\grlistbacksp}%
+  \\hspace*{\\grminpgindent}%
+  \\ifthenelse{\\not \\lengthtest{#2em > 0em}}
+    { \\begin{minipage}[t]{\\textwidth -\\grminpgindent}}%
+    { \\begin{minipage}[t]{\\textwidth -\\grminpgindent%
+        -#2\\grbaseindent -4\\tabcolsep}}%
+}%
+%
+\\newcommand{\\grminpgtail}{%
+  \\end{minipage}\\parindent0em%
+}%
+%
+\\newcommand{\\grlisthead}[1]{%
+  \\begin{list}{#1}%
+    { \\setlength{\\labelsep}{0.5em}%
+      \\setlength{\\labelwidth}{\\grleadlabelwidth}%
+      \\setlength{\\leftmargin}{\\grlistbacksp}%
+    }\\item%
+}%
+%
+\\newcommand{\\grlisttail}{%
+  \\end{list}%
+}%
+%
+\\newcommand{\\grprepleader}[1]{%
+  \\settowidth{\\grtempwd}{#1}%
+  \\ifthenelse{\\lengthtest{\\grtempwd > \\grleadlabelwidth}}%
+    { \\setlength{\\grleadlabelwidth}{\\grtempwd}}{}%
+  \\setlength{\\grlistbacksp}{\\grleadlabelwidth + 1.0em}%
+}%
+%
+\\newcommand{\\grprepnoleader}{%
+  \\setlength{\\grleadlabelwidth}{0em}%
+  \\setlength{\\grlistbacksp}{0em}%
+}%
+%
+\\newcommand{\\grmkpicture}[4]{%
+    \\begin{wrapfigure}{r}{#2\\grbaseindent}%
+      \\vspace{-6ex}%
+      \\begin{center}%
+      \\includegraphics[%
+        width= #2\\grbaseindent,%
+        height= #3\\grbaseindent,%
+          keepaspectratio]%
+        {#1}\\\\%
+      {\\RaggedRight\\footnotesize#4}%
+      \\end{center}%
+    \\end{wrapfigure}%
+    \\settowidth{\\grtempwd}{\\footnotesize#4}%
+    \\setlength{\\grxwd}{#2\\grbaseindent}%
+    \\ifthenelse{\\lengthtest{\\grtempwd < 0.7\\grxwd}}%
+                    {\\setlength{\\grxwd}{1ex}}{%
+      \\ifthenelse{\\lengthtest{\\grtempwd < 1.2\\grxwd}}%
+                    {\\setlength{\\grxwd}{2ex}}{%
+        \\ifthenelse{\\lengthtest{\\grtempwd < 1.8\\grxwd}}%
+                    {\\setlength{\\grxwd}{6ex}}{%
+          \\ifthenelse{\\lengthtest{\\grtempwd < 2.0\\grxwd}}%
+                    {\\setlength{\\grxwd}{10ex}}{%
+                     \\setlength{\\grxwd}{12ex}}%
+                    }}}%
+  \\setlength{\\grtempwd}{#3\\grbaseindent + \\grxwd}%
+  \\rule[-\\grtempwd]{0pt}{\\grtempwd}%
+  \\setlength{\\grtabprepos}{-\\grtempwd}
+}%
 %
 %
-\\begin{document}
+\\begin{document}%
 '''
 
 
@@ -219,8 +430,7 @@ TBLFMT_PAT = re.compile(r'({\|?)l(\|?})')
 
 # constants for routing in table construction:
 (CELL_BEG, CELL_TEXT, CELL_END,
-    ROW_BEG, ROW_END, TAB_BEG, TAB_END,
-    NESTED_MINPG) = range(8)
+    ROW_BEG, ROW_END, TAB_BEG, TAB_END) = range(7)
 FIRST_ROW, SUBSEQ_ROW = range(2)
 
 
@@ -242,11 +452,13 @@ def get_numform(col_char):
 
 
 #------------------------------------------
-#   'aa' is sufficient for up to 676 table-rows in each table;
+#   row_alph_counter = str_incr(MULTCOL_COUNT_BASE)
+#
+#   'aaa' is sufficient for up to 17576 multicolumns in each table;
 #   do you need more?
 #   uncomment one of the two lines
-ROW_COUNT_BASE = 'aa'
-# ROW_COUNT_BASE = 'aaa'
+MULTCOL_COUNT_BASE = 'aaa'
+# MULTCOL_COUNT_BASE = 'aaaa'
 #------------------------------------------
 def str_incr(str_counter):
     """ for counting table rows """
@@ -271,19 +483,16 @@ def str_incr(str_counter):
 #------------------------------------------------------------------------
 
 class Tab_Cell():
-    def __init__(self, colchar, span, head):
+    def __init__(self, colchar, span, head, content):
         self.colchar = colchar
         self.span = span
         self.head = head
-        self.content = ''
-        self.nested_minpg = False
+        self.content = content
 class Tab_Row():
     def __init__(self):
         self.cells =[]
         self.tail = ''
         self.addit = '' # for: \\hline, \\cline{}
-        self.spec_var_cell_width = ''
-        self.total_width = ''
 class Tab_Mem():
     def __init__(self, head):
         self.head = head
@@ -307,6 +516,8 @@ def latexescape(text):
     text = text.replace('_','\\_')
     text = text.replace('{','\\{')
     text = text.replace('}','\\}')
+    # replace character unknown to LaTeX
+    text = text.replace('→','$\\longrightarrow$')
     return text
 
 def latexescapeverbatim(text):
@@ -323,11 +534,13 @@ def latexescapeverbatim(text):
     text = text.replace('{', '\\{')
     text = text.replace('}', '\\}')
     text = text.replace(' ', '\\ ')
-    text = text.replace('\n', '~\\newline\n')
+    text = text.replace('\n', '~\\newline \n')
     #spaces at begin are normally ignored, make sure they are not.
     #due to above a space at begin is now \newline\n\
     text = text.replace('\\newline\n\\ ',
                         '\\newline\n\\hspace*{0.1\\grbaseindent}\\ ')
+    # replace character unknown to LaTeX
+    text = text.replace('→','$\\longrightarrow$')
     return text
 
 #------------------------------------------------------------------------
@@ -423,27 +636,31 @@ class TexFont(object):
             self.firstLineIndent = ""
 
 
-#------------------------------------------------------------------------
+#------------------------------------------------------------------
 #
 # LaTeXDoc
 #
-#------------------------------------------------------------------------
+#------------------------------------------------------------------
 
 class LaTeXDoc(BaseDoc, TextDoc):
     """LaTeX document interface class. Derived from BaseDoc"""
 
-#   ---------------------------------------------------------------------
+#   ---------------------------------------------------------------
 #   some additional variables
-#   -------------------------------------------------------------------------
+#   ---------------------------------------------------------------
     in_table = False
-    spec_var_col = 0
+    in_multrow_cell = False
+    pict = ''
+    pict_in_table = False
+    pict_width = 0
+    pict_height = 0
     textmem = []
     in_title = True
 
 
-#   ---------------------------------------------------------------------
+#   ---------------------------------------------------------------
 #   begin of table special treatment
-#   -------------------------------------------------------------------------
+#   ---------------------------------------------------------------
     def emit(self, text, tab_state=CELL_TEXT, span=1):
         """
         Hand over all text but tables to self._backend.write(), (line 1-2).
@@ -467,39 +684,34 @@ class LaTeXDoc(BaseDoc, TextDoc):
             if span > 1: # phantom columns prior to multicolumns
                 for col in range(self.curcol - span, self.curcol - 1):
                     col_char = get_charform(col)
-                    phantom = Tab_Cell(col_char, 0, '')
+                    phantom = Tab_Cell(col_char, 0, '', '')
                     self.tabrow.cells.append(phantom)
-            if not self.tabrow.cells and text.rfind('{|l') != -1:
-                self.leftmost_vrule = True
-            if (self.leftmost_vrule and
-                    self.curcol == self.numcols and
-                    text.endswith('l}')):
-                text =  text.replace('l}', 'l|}')
-            self.tabcell = Tab_Cell(self.curcol_char, span, text)
+            self.tabcell = Tab_Cell(self.curcol_char, span, text, '')
         elif tab_state == CELL_TEXT:
             self.textmem.append(text)
         elif tab_state == CELL_END: # text == ''
-            self.tabcell.content = ''.join(self.textmem)
+            self.tabcell.content = ''.join(self.textmem).strip()
+
             if self.tabcell.content.find('\\centering') != -1:
                 self.tabcell.content = self.tabcell.content.replace(
                         '\\centering', '')
                 self.tabcell.head = re.sub(
                     TBLFMT_PAT, '\\1c\\2', self.tabcell.head)
-                self.tabcell.content = self.tabcell.content.replace('\n\n}', '}')
             self.tabrow.cells.append(self.tabcell)
             self.textmem = []
         elif tab_state == ROW_BEG:
             self.tabrow = Tab_Row()
-            self.leftmost_vrule  = False
         elif tab_state == ROW_END:
-            self.tabrow.tail = ''.join(self.textmem)
             self.tabrow.addit = text # text: \\hline, \\cline{}
-            self.tabmem.rows.append(self.tabrow)
-        elif tab_state == TAB_BEG: # text: \\begin{longtable}[l]{<tblfmt>}
+            self.tabrow.tail = ''.join(self.textmem) # \\\\ row-termination
+            if self.in_multrow_cell:
+                self.repack_row()
+            else:
+                self.tabmem.rows.append(self.tabrow)
+        elif tab_state == TAB_BEG: # text: \\begin{longtable}[l]{
+            self._backend.write(''.join(('\\grinittab{\\textwidth}{',
+                repr(1.0/self.numcols), '}%\n')))
             self.tabmem = Tab_Mem(text)
-        elif tab_state == NESTED_MINPG:
-            self.tabcell.nested_minpg = True
-            self.tabcell.content.append(text)
         elif tab_state == TAB_END: # text: \\end{longtable}
             self.tabmem.tail = text
 
@@ -508,103 +720,158 @@ class LaTeXDoc(BaseDoc, TextDoc):
             self.write_table()
 
 
+    def repack_row(self):
+        """
+        Transpose contents contained in a row of mult-row cells
+        to rows of cells with corresponding contents.
+        Rows in the mult-row-cell are ended by SEPARATION_PAT
+        """
+        # extract cell.contents
+        bare_contents = [cell.content.strip(SEPARATION_PAT).replace(
+                                               '\n', '').split(SEPARATION_PAT)
+                                               for cell in self.tabrow.cells]
+        # mk equal length & transpose
+        num_new_rows = max([len(mult_row_cont)
+                            for mult_row_cont in bare_contents])
+        cols_equ_len = []
+        for mrc in bare_contents:
+            for i in range(num_new_rows - len(mrc)):
+                mrc.append('')
+            cols_equ_len.append(mrc)
+        transp_cont = zip(*cols_equ_len)
+
+        # picts? extract
+        first_cell, last_cell = (0, self.numcols)
+        if self.pict_in_table:
+            if transp_cont[0][-1].startswith('\\grmkpicture'):
+                self.pict = transp_cont[0][-1]
+                last_cell -= 1
+                self.numcols -= 1
+                self._backend.write(''.join(('\\addtolength{\\grtabwidth}{-',
+                   repr(self.pict_width), '\\grbaseindent -2\\tabcolsep}%\n')))
+            self.pict_in_table = False
+
+        # new row-col structure
+        for row in range(num_new_rows):
+            new_row = Tab_Row()
+            for i in range(first_cell, last_cell):
+                new_cell = Tab_Cell(get_charform(i + first_cell),
+                        self.tabrow.cells[i].span, self.tabrow.cells[i].head,
+                        transp_cont[row][i + first_cell])
+                new_row.cells.append(new_cell)
+            new_row.tail = self.tabrow.tail
+            new_row.addit = ''
+            self.tabmem.rows.append(new_row)
+
+        self.tabmem.rows[-1].addit = self.tabrow.addit
+        self.in_multrow_cell = False
+        return
+
+
     def calc_latex_widths(self):
         """
-        In tab-cells LaTeX needs fixed width for minipages.
-        Evaluations are set up here and passed to LaTeX:
-        Calculate needed/usable widths (lengths),
-        adjust rows to equal widths (lengths), thus prepared to put something
-        like hints as '→ ...' in the FamilySheet at rightmost position.
+        Control width settings in latex table construction
+        Evaluations are set up here and passed to LaTeX
+        to calculate required and to fix suitable widths.
         ??? Can all this be done exclusively in TeX? Don't know how.
         """
-        self._backend.write('\\inittabvars{\\grwidthused}{\\tabcolsep}%\n')
-        width_used = ['\\tabcolsep']
-
+        tabcol_chars = []
         for col_num in range(self.numcols):
             col_char = get_charform(col_num)
-
-            if MINIPAGE_COL < 0:
-                self.spec_var_col = self.numcols + MINIPAGE_COL
-            else:
-                self.spec_var_col = MINIPAGE_COL
-
-            # for all columns but spec_var_col: calculate needed col width
-            if col_num == self.spec_var_col:
-                continue
-            self._backend.write(''.join(('\\inittabvars{\\grcolwidth',
-                col_char, '}{0.0em}%\n')))
+            tabcol_chars.append(col_char)
             for row in self.tabmem.rows:
                 cell = row.cells[col_num]
-                if cell.span:
-                    for part in cell.content.split(PAT_FOR_LINE_BREAK):
-                        self._backend.write(''.join(('\\grcalctextwidth{',
-                            part, '}{\\grcolwidth', col_char, '}%\n')))
+                if cell.span == 0:
+                    continue
+                if cell.content.startswith('\\grmkpicture'):
+                    self._backend.write(''.join(('\\setlength{\\grpictsize}{',
+                        self.pict_width, '\\grbaseindent}%\n')))
+                else:
+                    for part in cell.content.split(SEPARATION_PAT):
+                        self._backend.write(''.join(('\\grtextneedwidth{',
+                            part, '}%\n')))
                     row.cells[col_num].content = cell.content.replace(
-                            PAT_FOR_LINE_BREAK, '~\\newline %\n')
-            self._backend.write(''.join(('\\addtolength{\\grwidthused}{',
-                '\\grcolwidth', col_char, '+\\tabcolsep}%\n')))
-            self._backend.write(''.join(('\\inittabvars{',
-                '\\grwidthusedtill', col_char, '}{ \\grwidthused}%\n')))
-            width_used.append('\\grwidthusedtill' + col_char)
-        self._backend.write(''.join(('\\inittabvars{\\grwidthavailable}{',
-            '\\textwidth-\\grwidthused}%\n')))
+                            SEPARATION_PAT, '~\\newline \n')
 
-        # spec_var_col
-        self._backend.write('\\inittabvars{\\grmaxrowwidth}{0.0em}%\n')
-        row_alph_counter = str_incr(ROW_COUNT_BASE)
+                if cell.span == 1:
+                    self._backend.write(''.join(('\\grsetreqfull%\n')))
+                elif cell.span > 1:
+                    self._backend.write(''.join(('\\grsetreqpart{\\grcolbeg',
+                        get_charform(get_numform(cell.colchar) - cell.span +1),
+                        '}%\n')))
+
+            self._backend.write(''.join(('\\grcolsfirstfix',
+                ' {\\grcolbeg',     col_char, '}{\\grtempwidth', col_char,
+                '}{\\grfinalwidth', col_char, '}{\\grpictreq',   col_char,
+                '}{\\grtextreq',    col_char, '}%\n')))
+
+        self._backend.write(''.join(('\\grdividelength%\n')))
+        for col_char in tabcol_chars:
+            self._backend.write(''.join(('\\grcolssecondfix',
+                ' {\\grcolbeg',     col_char, '}{\\grtempwidth', col_char,
+                '}{\\grfinalwidth', col_char, '}{\\grpictreq',   col_char,
+                '}%\n')))
+
+        self._backend.write(''.join(('\\grdividelength%\n')))
+        for col_char in tabcol_chars:
+            self._backend.write(''.join(('\\grcolsthirdfix',
+                ' {\\grcolbeg',     col_char, '}{\\grtempwidth', col_char,
+                '}{\\grfinalwidth', col_char, '}%\n')))
+
+        self._backend.write(''.join(('\\grdividelength%\n')))
+        for col_char in tabcol_chars:
+            self._backend.write(''.join(('\\grcolsfourthfix',
+                ' {\\grcolbeg',     col_char, '}{\\grtempwidth', col_char,
+                '}{\\grfinalwidth', col_char, '}%\n')))
+
+        self.multcol_alph_counter = str_incr(MULTCOL_COUNT_BASE)
         for row in self.tabmem.rows:
-            row_alph_id = row_alph_counter.next()
-            row.spec_var_cell_width = ''.join(('\\grcellwidth', row_alph_id))
-
-            cell = row.cells[self.spec_var_col]
-            self._backend.write(''.join(('\\inittabvars{',
-                row.spec_var_cell_width, '}{0.0em}%\n')))
-
-            lines = cell.content.split(PAT_FOR_LINE_BREAK)
-            for part in  lines:
-                self._backend.write(''.join(('\\grcalctextwidth{', part, '}{',
-                    row.spec_var_cell_width, '}%\n')))
-            row.cells[self.spec_var_col].content = '~\\newline %\n'.join(lines)
-
-            # shorten cells too long, calc row-length, search max row width
-            self._backend.write('\\inittabvars{\\grspangain}{0.0em}')
-            if cell.span > 1:
-                self._backend.write(''.join(('\\inittabvars{\\grspangain}{',
-                    width_used[self.spec_var_col], '-',
-                    width_used[self.spec_var_col - cell.span + 1], '}%\n')))
-            self._backend.write(''.join(('\\inittabvars{\\grspecavailable}{',
-                '\\grwidthavailable+\\grspangain}%\n')))
-            self._backend.write(''.join(('\\grminvaltofirst{',
-                row.spec_var_cell_width, '}{\\grspecavailable}%\n')))
-            row.total_width = ''.join(('\\grrowwidth', row_alph_id))
-            self._backend.write(''.join(('\\inittabvars{', row.total_width,
-                '}{\\grwidthused +', row.spec_var_cell_width,
-                '-\\grspangain}%\n')))
-            self._backend.write(''.join(('\\grmaxvaltofirst{\\grmaxrowwidth}{',
-                row.total_width, '}%\n')))
-
-        # widen spec_var cell:
-        # (special feature; allows text to be placed at the right border.
-        # for later use, doesn't matter here)
-        for row in self.tabmem.rows:
-            self._backend.write(''.join(('\\grmaxvaltofirst{',
-                row.spec_var_cell_width, '}{', row.spec_var_cell_width,
-                '+\\grmaxrowwidth-\\grspangain-', row.total_width, '}%\n')))
-
+            for cell in row.cells:
+                if cell.span > 1:
+                    multcol_alph_id = self.multcol_alph_counter.next()
+                    self._backend.write(''.join(('\\grgetspanwidth{',
+                        '\\grspanwidth', multcol_alph_id,
+                        '}{\\grcolbeg', get_charform(get_numform(cell.colchar)-
+                                                     cell.span + 1),
+                        '}{\\grcolbeg', cell.colchar,
+                        '}{\\grtempwidth', cell.colchar,
+                        '}%\n')))
 
     def write_table(self):
-        # open table with '\\begin{longtable}':
+        # Choosing RaggedRight (with hyphenation) in table and
+        # provide manually adjusting of column widths
+        self._backend.write(''.join((
+            '%\n', self.pict,
+            '%\n%\n',
+            '%  ==> Comment out one of the two lines ',
+            'by a leading "%" (first position)\n',
+            '{ \\RaggedRight%       left align with hyphenation in table \n',
+            '%{%                no left align in table \n%\n',
+            '%  ==>  You may add pos or neg values ',
+            'to the following ', repr(self.numcols), ' column widths %\n')))
+        for col_num in range(self.numcols):
+            self._backend.write(''.join(('\\addtolength{\\grtempwidth',
+                get_charform(col_num), '}{+0.0cm}%\n')))
+        self._backend.write('%  === %\n')
+
+        # adjust & open table':
+        if self.pict:
+            self._backend.write(''.join(('%\n\\vspace{\\grtabprepos}%\n',
+                '\\setlength{\\grtabprepos}{0ex}%\n')))
+            self.pict = ''
         self._backend.write(''.join(self.tabmem.head))
 
         # special treatment at begin of longtable for heading and
         # closing at top and bottom of table
         # and parts of it at pagebreak separating
-        (separate,
-        complete_row) = self.mk_first_row(self.tabmem.rows[FIRST_ROW])
-        self._backend.write(separate)
+        self.multcol_alph_counter = str_incr(MULTCOL_COUNT_BASE)
+        splitting_row = self.mk_splitting_row(self.tabmem.rows[FIRST_ROW])
+        self.multcol_alph_counter = str_incr(MULTCOL_COUNT_BASE)
+        complete_row = self.mk_complete_row(self.tabmem.rows[FIRST_ROW])
+
+        self._backend.write(splitting_row)
         self._backend.write('\\endhead%\n')
-        self._backend.write(separate.replace('raisebox{+1ex}',
-            'raisebox{-2ex}'))
+        self._backend.write(splitting_row.replace('{+2ex}', '{-2ex}'))
         self._backend.write('\\endfoot%\n')
         if self.head_line:
             self._backend.write('\\hline%\n')
@@ -615,65 +882,48 @@ class LaTeXDoc(BaseDoc, TextDoc):
         self._backend.write('\\endfirsthead%\n')
         self._backend.write('\\endlastfoot%\n')
 
-        # now hand over subsequent rows
+        # hand over subsequent rows
         for row in self.tabmem.rows[SUBSEQ_ROW:]:
-            complete_row = self.mk_subseq_rows(row)
-            self._backend.write(complete_row)
+            self._backend.write(self.mk_complete_row(row))
 
-        # close table with '\\end{longtable}':
-        self._backend.write(''.join(self.tabmem.tail))
+        # close table by '\\end{longtable}', end '{\\RaggedRight' or '{' by '}'
+        self._backend.write(''.join((''.join(self.tabmem.tail), '}%\n\n')))
 
-
-    def mk_first_row(self, first_row):
-        complete =[]
-        separate =[]
-        add_vdots = ''
-        for cell in first_row.cells:
-            if cell.span == 0: # phantom columns prior to multicolumns
+    def mk_splitting_row(self, row):
+        splitting =[]
+        add_vdots = '\\grempty'
+        for cell in row.cells:
+            if cell.span == 0:
                 continue
-            leading = '{'
-            closing = '} & %\n'
-            if get_numform(cell.colchar) == self.spec_var_col:
-                leading = ''.join(('{\\tabheadstrutceil\\begin{minipage}[t]{',
-                    first_row.spec_var_cell_width, '}{'))
-                closing = '\\tabheadstrutfloor}\\end{minipage}} & %\n'
-            if (not separate and
-                get_numform(cell.colchar) == self.numcols - 1):
-                add_vdots = ''.join(('\\hspace*{\\fill}\\hspace*{\\fill}',
-                                     '\\raisebox{+1ex}{\\vdots}'))
-            complete.append(''.join((cell.head, leading,
-                cell.content, closing)))
-            separate.append(''.join((cell.head, leading,
-                '\\hspace*{\\fill}\\raisebox{+1ex}{\\vdots}',
-                add_vdots, '\\hspace*{\\fill}', closing)))
-        return (''.join((''.join(separate)[:-4], '%\n', first_row.tail)),
-                ''.join((''.join(complete)[:-4], '%\n', first_row.tail,
-                    first_row.addit)))
+            if (not splitting and
+                    get_numform(cell.colchar) == self.numcols - 1):
+                add_vdots = '\\graddvdots'
+            if cell.span == 1:
+                cell_width = ''.join(('\\grtempwidth', cell.colchar))
+            else:
+                cell_width = ''.join(('\\grspanwidth',
+                    self.multcol_alph_counter.next()))
+            splitting.append(''.join(('\\grtabpgbreak{', cell.head, '}{',
+                cell_width, '}{', add_vdots, '}{+2ex}%\n')))
+        return ''.join((' & '.join(splitting), '%\n', row.tail))
 
-
-    def mk_subseq_rows(self, row):
+    def mk_complete_row(self, row):
         complete =[]
         for cell in row.cells:
-            if cell.span == 0: # phantom columns prior to multicolumns
+            if cell.span == 0:
                 continue
-            leading = '{'
-            closing = '} & %\n'
-            if get_numform(cell.colchar) == self.spec_var_col: # last col
-                if cell.nested_minpg:
-                    cell.content.replace('\\begin{minipage}{\\grminpgwidth}',
-                            ''.join(('\\begin{minipage}{0.8',
-                                     row.spec_var_cell_width, '}')))
-                leading = ''.join(('{\\tabrowstrutceil\\begin{minipage}[t]{',
-                    row.spec_var_cell_width, '}{'))
-                closing = '}\\end{minipage}} & %\n'
-            complete.append(''.join((cell.head, leading,
-                cell.content, closing)))
-        return ''.join((''.join(complete)[:-4], '%\n', row.tail, row.addit))
+            elif cell.span == 1:
+                cell_width = ''.join(('\\grtempwidth', cell.colchar))
+            else:
+                cell_width = ''.join(('\\grspanwidth',
+                    self.multcol_alph_counter.next()))
+            complete.append(''.join(('\\grcolpart{%\n  ', cell.head,
+                '}{%\n', cell_width, '}{%\n  ', cell.content, '%\n}%\n')))
+        return ''.join((' & '.join(complete), '%\n', row.tail, row.addit))
 
 #       ---------------------------------------------------------------------
 #       end of special table treatment
 #       ---------------------------------------------------------------------
-
 
     def page_break(self):
         "Forces a page break, creating a new page"
@@ -708,7 +958,6 @@ class LaTeXDoc(BaseDoc, TextDoc):
         self.in_list = False
         self.in_table = False
         self.head_line = False
-        self.imagenum = 0
 
         #Establish some local styles for the report
         self.latexstyle = {}
@@ -759,6 +1008,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
             thisstyle.firstLineIndent = first
             self.latexstyle[style_name] = thisstyle
 
+
     def close(self):
         """Clean up and close the document"""
         if self.in_list:
@@ -793,38 +1043,29 @@ class LaTeXDoc(BaseDoc, TextDoc):
         if self.in_title and ltxstyle.font_beg.find('centering') == -1:
             self.in_title = False
             self._backend.write('\\vspace{5ex}%\n')
-
-        self._backend.write('\\inittabvars{\\grleadinglabelwidth}{0.0em}%\n')
-        if leader:
-            self._backend.write(''.join((
-                '\\grcalctextwidth{', leader, '}{\\grleadinglabelwidth}%\n')))
-            self._backend.write(
-                '\\inittabvars{\\grlistbacksp}{\\grleadinglabelwidth +1em}%\n')
+        if self.in_table:
+            self.in_multrow_cell = True
         else:
-            self._backend.write(
-                '\\inittabvars{\\grlistbacksp}{0em}%\n')
+            if leader:
+                self._backend.write(''.join(('\\grprepleader{', leader,
+                    '}%\n')))
+            else:
+                self._backend.write('\\grprepnoleader%\n')
 
-#       -------------------------------------------------------------------
-        #   Gramps presumes 'cm' as units; here '\\grbaseindent' is used
-        #   as equivalent, set in '_LATEX_TEMPLATE' above to '3em';
-        #   there another value might be choosen.
-#       -------------------------------------------------------------------
-        if self.indent is not None and not self.in_table:
-            self.emit(''.join(('\\inittabvars{'
-                '\\grminpgindent}{%s\\grbaseindent-\\grlistbacksp}' %
-                repr(self.indent), '%\n\\hspace*{\\grminpgindent}%\n',
-                '\\begin{minipage}[t]{\\textwidth-\\grminpgindent}',
-                '%\n')))
-            self.fix_indent = True
+#           -------------------------------------------------------------------
+            #   Gramps presumes 'cm' as units; here '\\grbaseindent' is used
+            #   as equivalent, set in '_LATEX_TEMPLATE' above to '3em';
+            #   there another value might be choosen.
+#           -------------------------------------------------------------------
+            if self.indent is not None:
+                self._backend.write(''.join(('\\grminpghead{',
+                    repr(self.indent), '}{', repr(self.pict_width), '}%\n')))
+                self.fix_indent = True
 
-            if leader is not None and not self.in_list:
-                self.in_list = True
-                self._backend.write(''.join(('\\begin{list}{%\n', leader,
-                '}{%\n', '\\labelsep0.5em %\n',
-                '\\setlength{\\labelwidth}{\\grleadinglabelwidth}%\n',
-                '\\setlength{\\leftmargin}{\\grlistbacksp}}%\n',
-                '\\item%\n')))
-
+                if leader is not None and not self.in_list:
+                    self.in_list = True
+                    self._backend.write(''.join(('\\grlisthead{', leader,
+                        '}%\n')))
 
         if leader is None:
             self.emit('\n')
@@ -835,15 +1076,19 @@ class LaTeXDoc(BaseDoc, TextDoc):
         newline = '%\n\n'
         if self.in_list:
             self.in_list = False
-            self.emit('\n\\end{list}\n')
+            self.emit('\n\\grlisttail%\n')
             newline = ''
         elif self.in_table:
-            newline = ''
+            newline = SEPARATION_PAT
 
         self.emit('%s%s' % (self.fend, newline))
         if self.fix_indent:
-            self.emit('\\end{minipage}\\parindent0em%\n\n')
+            self.emit('\\grminpgtail%\n\n')
             self.fix_indent = False
+
+        if self.pict_width:
+            self.pict_width = 0
+            self.pict_height = 0
 
     def start_bold(self):
         """Bold face"""
@@ -869,18 +1114,12 @@ class LaTeXDoc(BaseDoc, TextDoc):
         self.tblstyle = styles.get_table_style(style_name)
         self.numcols = self.tblstyle.get_columns()
 
-        # early test of column count:
-        z = get_charform(self.numcols-1)
-
         tblfmt = '*{%d}{l}' % self.numcols
-        self.emit(
-            '\\begin{longtable}[l]{%s}\n' % (tblfmt), TAB_BEG)
+        self.emit('\\begin{longtable}[l]{%s}\n' % (tblfmt), TAB_BEG)
 
     def end_table(self):
         """Close the table environment"""
-        # Create a paragraph separation below the table.
-        self.emit(
-                '%\n\\end{longtable}%\n\\par%\n', TAB_END)
+        self.emit('%\n\\end{longtable}%\n', TAB_END)
         self.in_table = False
 
     def start_row(self):
@@ -905,7 +1144,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
             self.emit('%\n', ROW_END)
         self.emit('%\n')
 
-    def start_cell(self,style_name,span=1):
+    def start_cell(self, style_name, span=1):
         """Add an entry to the table.
         We always place our data inside braces
         for safety of formatting."""
@@ -916,7 +1155,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
         self.cstyle = styles.get_cell_style(style_name)
 
 #       ------------------------------------------------------------------
-#         begin special modification for boolean values
+        # begin special modification for boolean values
         # values imported here are used for test '==1' and '!=0'. To get
         # local boolean values the tests are now transfered to the import lines
 #       ------------------------------------------------------------------
@@ -925,8 +1164,9 @@ class LaTeXDoc(BaseDoc, TextDoc):
         self.bborder = 1 == self.cstyle.get_bottom_border()
         self.tborder = 0 != self.cstyle.get_top_border()
 
-        # self.llist not needed, LaTeX has to decide on its own
-        # wether a line fits or not. See comment in calc_latex_widths() above.
+        # self.llist not needed any longer.
+        # now column widths are arranged in self.calc_latex_widths()
+        # serving for fitting of cell contents at any column position.
         # self.llist = 1 == self.cstyle.get_longlist()
 
         cellfmt = "l"
@@ -947,9 +1187,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
 #         end special modification for boolean values
 #       ------------------------------------------------------------------
 
-        self.emit(
-            ''.join(('%\n', '\\multicolumn{%d}{%s}' % (span, cellfmt))),
-            CELL_BEG, span)
+        self.emit('\\multicolumn{%d}{%s}' % (span, cellfmt), CELL_BEG, span)
 
 
     def end_cell(self):
@@ -957,35 +1195,31 @@ class LaTeXDoc(BaseDoc, TextDoc):
         self.emit('', CELL_END)
 
 
-    def add_media_object(self, name, pos, x, y, alt='',
+    def add_media_object(self, infile, pos, x, y, alt='',
                          style_name=None, crop=None):
         """Add photo to report"""
-        return
+        outfile = os.path.splitext(infile)[0]
+        pictname = latexescape(os.path.split(outfile)[1])
+        outfile = ''.join((outfile, '.jpg'))
+        if infile != outfile:
+            try:
+                curr_img = Image.open(infile)
+                curr_img.save(outfile)
+                px, py = curr_img.size
+                if py > px:
+                    y = y*py/px
+            except IOError:
+                self.emit(''.join(('%\n *** Error: cannot convert ', infile,
+                                    '\n ***                    to ', outfile,
+                                    '%\n')))
+        if self.in_table:
+            self.pict_in_table = True
 
-        try:
-            pic = ImgManip.ImgManip(name)
-        except:
-            return
+        self.emit(''.join(('\\grmkpicture{', outfile, '}{', repr(x), '}{',
+            repr(y), '}{', pictname, '}\n')))
+        self.pict_width = x
+        self.pict_height = y
 
-        self.imagenum = self.imagenum + 1
-        picf = self.filename[:-4] + '_img' + str(self.imagenum) + '.eps'
-        pic.eps_convert(picf)
-
-#       -------------------------------------------------------------------
-        # x and y will be maximum width OR height in units of cm
-        #   here '\\grbaseindent' is used as equivalent, see above
-#       -------------------------------------------------------------------
-        mysize = ''.join(('width=%d\\grbaseindent, ', 
-                         'height=%d\\grbaseindent,keepaspectratio' % (x,y)))
-        if pos == "right":
-            self.emit((
-                '\\hfill\\includegraphics[%s]{%s}\n' % (mysize,picf)))
-        elif pos == "left":
-            self.emit((
-                '\\includegraphics[%s]{%s}\\hfill\n' % (mysize,picf)))
-        else:
-            self.emit((
-                '\\centering{\\includegraphics[%s]{%s}}\n' % (mysize,picf)))
 
     def write_text(self,text,mark=None,links=False):
         """Write the text to the file"""
@@ -999,6 +1233,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
         #hard coded replace of the underline used for missing names/data
         text = text.replace('\\_'*13, '\\underline{\hspace{3\\grbaseindent}}')
         self.emit(text + ' ')
+
 
     def write_styled_note(self, styledtext, format, style_name,
                           contains_html=False, links=False):
@@ -1026,15 +1261,12 @@ class LaTeXDoc(BaseDoc, TextDoc):
 
         if links == True:
             markuptext = re.sub(URL_PATTERN, _CLICKABLE, markuptext)
+        markuptext = self._backend.add_markup_from_styled(text, s_tags)
 
-        #there is a problem if we write out a note in a table. No newline is
-        # possible, the note runs over the margin into infinity.
-        # A good solution for this ???
-        # A quick solution: create a minipage for the note and add that always
-        #   hoping that the user will have left sufficient room for the page
-        #
-        # now solved by postprocessing in emit()
-        # by explicitely calculating column widths
+        #there is a problem if we write out a note in a table.
+        # ..................
+        # now solved by postprocessing in self.calc_latex_widths()
+        # by explicitely setting suitable width for all columns.
         #
         if format:
             self.start_paragraph(style_name)
@@ -1043,10 +1275,10 @@ class LaTeXDoc(BaseDoc, TextDoc):
             #preformatted finished, go back to normal escape function
             self._backend.setescape(False)
         else:
-            for line in markuptext.split('%\n%\n'):
+            for line in markuptext.split('%\n%\n '):
                 self.start_paragraph(style_name)
                 for realline in line.split('\n'):
                     self.emit(realline)
-                    self.emit("~\\newline%\n")
+                    self.emit("~\\newline \n")
                 self.end_paragraph()
 
