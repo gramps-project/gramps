@@ -39,7 +39,6 @@ import sys
 #------------------------------------------------------------------------
 import libcairodoc
 from gen.plug.docgen import INDEX_TYPE_ALP, INDEX_TYPE_TOC
-from gen.plug.report.toc_index import write_toc, write_index
 import Errors
 
 #------------------------------------------------------------------------
