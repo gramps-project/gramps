@@ -66,7 +66,7 @@ plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
 
 #------------------------------------------------------------------------
 #
-# Custem text BookItem
+# Custom text BookItem
 #
 #------------------------------------------------------------------------
 
@@ -385,7 +385,7 @@ plg.report_modes = [REPORT_MODE_BKI]
 plg = newplugin()
 plg.id = 'alphabetical_index'
 plg.name = _("Alphabetical Index")
-plg.description =  _("Produces aa alphabetical index for book reports.")
+plg.description = _("Produces an alphabetical index for book reports.")
 plg.version = '1.0'
 plg.gramps_target_version = '3.4'
 plg.status = STABLE
