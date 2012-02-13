@@ -2815,12 +2815,12 @@ class GedcomParser(UpdateCallback):
     def __check_msgs(self, record_name, state, obj):
         if state.msg == "":
             return
-        message = "Records not inported into " + record_name + ":\n\n" + \
+        message = _("Records not imported into ") + record_name + ":\n\n" + \
                     state.msg
         new_note = gen.lib.Note(message)
         new_note.set_handle(Utils.create_id())
         note_type = gen.lib.NoteType()
-        note_type.set((gen.lib.NoteType.CUSTOM, "GEDCOM import"))
+        note_type.set((gen.lib.NoteType.CUSTOM, _("GEDCOM import")))
         new_note.set_type(note_type)
         self.dbase.add_note(new_note, self.trans)
         # If possible, attach the note to the relevant object
@@ -2843,7 +2843,7 @@ class GedcomParser(UpdateCallback):
             if line and line.token != TOKEN_TRLR:
                 state = CurrentState()
                 self.__not_recognized(line, 0, state)
-                self.__check_msgs("TRLR (trailer)", state, None)
+                self.__check_msgs(_("TRLR (trailer)"), state, None)
         except TypeError:
             return
         
@@ -2896,7 +2896,7 @@ class GedcomParser(UpdateCallback):
                 repo.add_url(url)
             
             rtype = gen.lib.RepositoryType()
-            rtype.set((gen.lib.RepositoryType.CUSTOM, 'GEDCOM data'))
+            rtype.set((gen.lib.RepositoryType.CUSTOM, _('GEDCOM data')))
             repo.set_type(rtype)
             self.__check_msgs(submitter_name, state, repo)
             self.dbase.commit_repository(repo, self.trans, state.repo.change)
@@ -2944,7 +2944,7 @@ class GedcomParser(UpdateCallback):
                 state = CurrentState()
                 self.__add_msg(_("Unknown tag"), line, state)
                 self.__skip_subordinate_levels(1, state)
-                self.__check_msgs("Top Level", state, None)
+                self.__check_msgs(_("Top Level"), state, None)
             elif key in ("FAM", "FAMILY"):
                 self.__parse_fam(line)
             elif key in ("INDI", "INDIVIDUAL"):
@@ -2958,11 +2958,11 @@ class GedcomParser(UpdateCallback):
             elif key in ("SUBN"):
                 state = CurrentState()
                 self.__parse_submission(line, state)
-                self.__check_msgs("Top Level", state, None)
+                self.__check_msgs(_("Top Level"), state, None)
             elif line.token in (TOKEN_SUBM, TOKEN_SUBN, TOKEN_IGNORE):
                 state = CurrentState()
                 self.__skip_subordinate_levels(1, state)
-                self.__check_msgs("Top Level", state, None)
+                self.__check_msgs(_("Top Level"), state, None)
             elif key in ("SOUR", "SOURCE"):
                 self.__parse_source(line.token_text, 1)
             elif (line.data.startswith("SOUR ") or
@@ -2983,7 +2983,7 @@ class GedcomParser(UpdateCallback):
             else:
                 state = CurrentState()
                 self.__not_recognized(line, 1, state)
-                self.__check_msgs("Top Level", state, None)
+                self.__check_msgs(_("Top Level"), state, None)
         
     def __parse_level(self, state, __map, default):
         """
@@ -3061,7 +3061,7 @@ class GedcomParser(UpdateCallback):
         # Add the default reference if no source has found
         self.__add_default_source(person)
 
-        self.__check_msgs("INDI (individual) Gramps ID %s" % 
+        self.__check_msgs(_("INDI (individual) Gramps ID %s") % 
                           person.get_gramps_id(), state, person)
         # commit the person to the database
         self.dbase.commit_person(person, self.trans, state.person.change)
@@ -4175,7 +4175,7 @@ class GedcomParser(UpdateCallback):
         # add default reference if no reference exists
         self.__add_default_source(family)
 
-        self.__check_msgs("FAM (family) Gramps ID %s" % family.get_gramps_id(), 
+        self.__check_msgs(_("FAM (family) Gramps ID %s") % family.get_gramps_id(), 
                           state, family)
         # commit family to database
         self.dbase.commit_family(family, self.trans, family.change)
@@ -5428,12 +5428,12 @@ class GedcomParser(UpdateCallback):
 
         state = CurrentState()
         state.source = self.__find_or_create_source(self.sid_map[name]) 
-        state.source.set_title("No title - ID %s" % 
+        state.source.set_title(_("No title - ID %s") % 
                                state.source.get_gramps_id())
         state.level = level
 
         self.__parse_level(state, self.source_func, self.__undefined)
-        self.__check_msgs("SOUR (source) Gramps ID %s" % 
+        self.__check_msgs(_("SOUR (source) Gramps ID %s") % 
                           state.source.get_gramps_id(), 
                           state, state.source)
         self.dbase.commit_source(state.source, self.trans, state.source.change)
@@ -5640,7 +5640,7 @@ class GedcomParser(UpdateCallback):
         # Add the default reference if no source has found
         self.__add_default_source(media)
 
-        self.__check_msgs("OBJE (multi-media object) Gramps ID %s" % 
+        self.__check_msgs(_("OBJE (multi-media object) Gramps ID %s") % 
                           media.get_gramps_id(), state, media)
         # commit the person to the database
         self.dbase.commit_media_object(media, self.trans, media.change)
@@ -5812,7 +5812,7 @@ class GedcomParser(UpdateCallback):
         state.level = 1
         self.__parse_level(state, self.repo_parse_tbl, self.__ignore)
 
-        self.__check_msgs("REPO (repository) Gramps ID %s" % 
+        self.__check_msgs(_("REPO (repository) Gramps ID %s") % 
                           repo.get_gramps_id(), state, repo)
         self.dbase.commit_repository(repo, self.trans, repo.change)
 
@@ -6473,7 +6473,7 @@ class GedcomParser(UpdateCallback):
 
             self.dbase.commit_note(new_note, self.trans, new_note.change)
             self.nid2id[new_note.gramps_id] = new_note.handle
-        self.__check_msgs("NOTE Gramps ID %s" % new_note.get_gramps_id(), 
+        self.__check_msgs(_("NOTE Gramps ID %s") % new_note.get_gramps_id(), 
                           state, None)
 
     def __note_chan(self, line, state):
