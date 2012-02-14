@@ -248,7 +248,7 @@ def write_toc(toc, doc):
         doc.end_paragraph()
         doc.end_cell()
         doc.start_cell('TOC-Cell')
-        doc.start_paragraph('TOC-Number')
+        doc.start_paragraph(style_name)
         doc.write_text(str(page_nr))
         doc.end_paragraph()
         doc.end_cell()
@@ -262,20 +262,20 @@ def write_index(index, doc):
     if not index:
         return
 
-    doc.start_paragraph('Index-Title')
+    doc.start_paragraph('IDX-Title')
     doc.write_text(_('Index'))
     doc.end_paragraph()
     
-    doc.start_table('index', 'Index-Table')
+    doc.start_table('index', 'IDX-Table')
     for key in sorted(index.iterkeys()):
         doc.start_row()
-        doc.start_cell('Index-Cell')
-        doc.start_paragraph('Index-Number')
+        doc.start_cell('IDX-Cell')
+        doc.start_paragraph('IDX-Entry')
         doc.write_text(key)
         doc.end_paragraph()
         doc.end_cell()
-        doc.start_cell('Index-Cell')
-        doc.start_paragraph('Index-Number')
+        doc.start_cell('IDX-Cell')
+        doc.start_paragraph('IDX-Entry')
         pages = [str(page_nr) for page_nr in index[key]]
         doc.write_text(', '.join(pages))
         doc.end_paragraph()
