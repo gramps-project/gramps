@@ -52,6 +52,7 @@ src/gen/lib/markertype.py
 src/gen/lib/nametype.py
 src/gen/lib/nameorigintype.py
 src/gen/lib/notetype.py
+src/gen/lib/person.py
 src/gen/lib/repotype.py
 src/gen/lib/srcmediatype.py
 src/gen/lib/surnamebase.py

@@ -48,6 +48,7 @@ from gen.lib.attrtype import AttributeType
 from gen.lib.eventroletype import EventRoleType
 from gen.lib.attribute import Attribute
 from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
+from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
