@@ -772,10 +772,12 @@ class ReportOptions(_options.Options):
                     FTA-    FTM Style Ancestral report
                     FTD-    FTM Style Descendant report
                     IDS-    Individual Complete Report
+                    IDX-    Alphabetical Index
                     IVS-    Individual Summary Report
                     PLC-    Place Report
-                    SBT-    Simple Boot Title
+                    SBT-    Simple Book Title
                     TLG-    Timeline Graph
+                    TOC-    Table Of Contents
         """
         pass
 

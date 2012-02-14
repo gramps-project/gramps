@@ -1609,6 +1609,81 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
 
         self.cntnt.write(text)
 
+    def insert_toc(self):
+        """
+        Insert a Table of Contents at this point in the document.
+        """
+        title = _('Contents')
+        self.cntnt.write('<text:table-of-content>')
+
+        self.cntnt.write('<text:table-of-content-source ' +
+                         'text:outline-level="3" ' +
+                         'text:use-outline-level="false">')
+
+        self.cntnt.write('<text:index-title-template ' + 
+                         'text:style-name="TOC-Title">' + title)
+        self.cntnt.write('</text:index-title-template>')
+
+        for level in range(1, 4):
+            self.cntnt.write('<text:table-of-content-entry-template ' +
+                             'text:outline-level="%d" ' % level +
+                             'text:style-name="TOC-Heading%d">' % level)
+
+            self.cntnt.write('<text:index-entry-chapter/>')
+            self.cntnt.write('<text:index-entry-text/>')
+            self.cntnt.write('<text:index-entry-tab-stop ' +
+                             'style:type="right" ' +
+                             'style:leader-char="."/>')
+            self.cntnt.write('<text:index-entry-page-number/>')
+            self.cntnt.write('</text:table-of-content-entry-template>')
+
+        self.cntnt.write('</text:table-of-content-source>')
+
+        self.cntnt.write('<text:index-body>')
+        self.cntnt.write('<text:index-title>')
+        self.cntnt.write('<text:p text:style-name="NLTOC-Title">%s</text:p>' % 
+                        title)
+        self.cntnt.write('</text:index-title>')
+        self.cntnt.write('</text:index-body>')
+
+        self.cntnt.write('</text:table-of-content>')
+
+    def insert_index(self):
+        """
+        Insert an Alphabetical Index at this point in the document.
+        """
+        title = _('Index')
+        self.cntnt.write('<text:alphabetical-index>')
+        self.cntnt.write('<text:alphabetical-index-source ' +
+                         'text:ignore-case="true"  ' +
+                         'text:combine-entries="false"  ' +
+                         'text:combineentries-with-pp="false">')
+
+        self.cntnt.write('<text:index-title-template ' + 
+                         'text:style-name="IDX-Title">' + title)
+        self.cntnt.write('</text:index-title-template>')
+        
+        self.cntnt.write('<text:alphabetical-index-entry-template ' +
+                         'text:outline-level="1" ' +
+                         'text:style-name="IDX-Entry">')
+        self.cntnt.write('<text:index-entry-text/>')
+        self.cntnt.write('<text:index-entry-tab-stop ' +
+                         'style:type="right" ' +
+                         'style:leader-char="."/>')
+        self.cntnt.write('<text:index-entry-page-number/>')
+        self.cntnt.write('</text:alphabetical-index-entry-template>')
+
+        self.cntnt.write('</text:alphabetical-index-source>')
+
+        self.cntnt.write('<text:index-body>')
+        self.cntnt.write('<text:index-title>')
+        self.cntnt.write('<text:p text:style-name="NLIDX-Title">%s</text:p>' % 
+                        title)
+        self.cntnt.write('</text:index-title>')
+        self.cntnt.write('</text:index-body>')
+
+        self.cntnt.write('</text:alphabetical-index>')
+
     def _write_manifest(self):
         """
         create the manifest.xml file

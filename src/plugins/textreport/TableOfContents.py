@@ -87,7 +87,7 @@ class TableOfContentsOptions(MenuReportOptions):
         para = ParagraphStyle()
         para.set_font(font)
         para.set_bottom_margin(0.25)
-        para.set_description(_('The style used for the TOC title.'))
+        para.set_description(_('The style used for the title.'))
         default_style.add_paragraph_style("TOC-Title", para)
         
         table = TableStyle()
@@ -100,26 +100,19 @@ class TableOfContentsOptions(MenuReportOptions):
         cell = TableCellStyle()
         default_style.add_cell_style("TOC-Cell", cell)
         
-        font = FontStyle()
-        font.set(face=FONT_SANS_SERIF, size=10)
         para = ParagraphStyle()
         para.set_font(font)
-        para.set_description(_('The style used for the TOC page numbers.'))
-        default_style.add_paragraph_style("TOC-Number", para)
-
-        para = ParagraphStyle()
-        para.set_font(font)
-        para.set_description(_('The style used for the TOC first level heading.'))
+        para.set_description(_('The style used for first level headings.'))
         default_style.add_paragraph_style("TOC-Heading1", para)
 
         para = ParagraphStyle()
         para.set_font(font)
         para.set_first_indent(0.5)
-        para.set_description(_('The style used for the TOC second level heading.'))
+        para.set_description(_('The style used for second level headings.'))
         default_style.add_paragraph_style("TOC-Heading2", para)
 
         para = ParagraphStyle()
         para.set_font(font)
         para.set_first_indent(1)
-        para.set_description(_('The style used for the TOC third level heading.'))
+        para.set_description(_('The style used for third level headings.'))
         default_style.add_paragraph_style("TOC-Heading3", para)
