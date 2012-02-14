@@ -6159,7 +6159,7 @@ class GedcomParser(UpdateCallback):
             repo.set_name(_("Business that produced the product: %s") % 
                           line.data)
             rtype = gen.lib.RepositoryType()
-            rtype.set((gen.lib.RepositoryType.CUSTOM, 'GEDCOM data'))
+            rtype.set((gen.lib.RepositoryType.CUSTOM, _('GEDCOM data')))
             repo.set_type(rtype)
             self.dbase.add_repository(repo, self.trans)
             repo_ref = gen.lib.RepoRef()
