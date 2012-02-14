@@ -23,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-11 13:48+0100\n"
-"PO-Revision-Date: 2012-02-11 19:56+0100\n"
+"POT-Creation-Date: 2012-02-14 10:03+0100\n"
+"PO-Revision-Date: 2012-02-14 11:11+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "Language: \n"
@@ -795,7 +795,7 @@ msgstr "L'individu %(person)s est connecté à lui-même via %(relation)s"
 
 #: ../src/Relationship.py:1196
 msgid "undefined"
-msgstr "non défini(e)"
+msgstr "non-défini(e)"
 
 #: ../src/Relationship.py:1673
 #: ../src/plugins/import/ImportCsv.py:227
@@ -911,7 +911,7 @@ msgstr "l'ancien concubin"
 #: ../src/plugins/textreport/TagReport.py:210
 #: ../src/plugins/view/familyview.py:80
 #: ../src/plugins/view/relview.py:883
-#: ../src/plugins/webreport/NarrativeWeb.py:6234
+#: ../src/plugins/webreport/NarrativeWeb.py:6237
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:115
 #: ../src/glade/editfamily.glade.h:13
 msgid "Father"
@@ -933,7 +933,7 @@ msgstr "Père"
 #: ../src/plugins/textreport/TagReport.py:216
 #: ../src/plugins/view/familyview.py:81
 #: ../src/plugins/view/relview.py:884
-#: ../src/plugins/webreport/NarrativeWeb.py:6244
+#: ../src/plugins/webreport/NarrativeWeb.py:6247
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:116
 #: ../src/glade/editfamily.glade.h:15
 msgid "Mother"
@@ -983,7 +983,7 @@ msgstr "Non-disponible"
 #: ../src/gui/editors/editaddress.py:156
 #: ../src/plugins/gramplet/RepositoryDetails.py:123
 #: ../src/plugins/textreport/FamilyGroup.py:324
-#: ../src/plugins/webreport/NarrativeWeb.py:6675
+#: ../src/plugins/webreport/NarrativeWeb.py:6711
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:95
 msgid "Address"
 msgstr "Adresse"
@@ -1358,7 +1358,7 @@ msgstr "Dépôt"
 #: ../src/plugins/webreport/NarrativeWeb.py:1464
 #: ../src/plugins/webreport/NarrativeWeb.py:2184
 #: ../src/plugins/webreport/NarrativeWeb.py:3625
-#: ../src/plugins/webreport/NarrativeWeb.py:6565
+#: ../src/plugins/webreport/NarrativeWeb.py:6601
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:95
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:90
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:94
@@ -1611,7 +1611,7 @@ msgstr "Une relation légalisée par le droit coutumier entre un homme et une fe
 
 #: ../src/Utils.py:102
 msgid "No legal or common-law relationship between man and woman"
-msgstr "Relation non légalisée entre un homme et une femme"
+msgstr "Relation non-légalisée entre un homme et une femme"
 
 #: ../src/Utils.py:104
 msgid "An established relationship between members of the same sex"
@@ -1619,11 +1619,11 @@ msgstr "Relation homosexuelle"
 
 #: ../src/Utils.py:106
 msgid "Unknown relationship between a man and woman"
-msgstr "Relation non identifiée entre un homme et une femme"
+msgstr "Relation non-identifiée entre un homme et une femme"
 
 #: ../src/Utils.py:108
 msgid "An unspecified relationship between a man and woman"
-msgstr "Relation non spécifiée entre un homme et une femme"
+msgstr "Relation non-spécifiée entre un homme et une femme"
 
 #: ../src/Utils.py:124
 msgid "The data can only be recovered by Undo operation or by quitting with abandoning changes."
@@ -2074,7 +2074,7 @@ msgstr "Erreur : le fichier %s à importer est introuvable."
 #: ../src/cli/arghandler.py:261
 #, python-format
 msgid "Error: Unrecognized type: \"%(format)s\" for import file: %(filename)s"
-msgstr "Erreur : type non reconnu : \"%(format)s\" pour le fichier à importer : %(filename)s"
+msgstr "Erreur : type non-reconnu : \"%(format)s\" pour le fichier à importer : %(filename)s"
 
 # trunk
 #: ../src/cli/arghandler.py:283
@@ -2105,7 +2105,7 @@ msgstr "Écrasera le fichier existant : %s"
 #: ../src/cli/arghandler.py:315
 #, python-format
 msgid "ERROR: Unrecognized format for export file %s"
-msgstr "Erreur : format non reconnu pour le fichier %s à exporter"
+msgstr "Erreur : format non-reconnu pour le fichier %s à exporter"
 
 # trunk
 #: ../src/cli/arghandler.py:402
@@ -2594,7 +2594,7 @@ msgstr "   Les valeurs disponibles sont :"
 #: ../src/cli/plug/__init__.py:550
 #, python-format
 msgid "option '%(optionname)s' not valid. Use '%(donottranslate)s' to see all valid options."
-msgstr "option '%(optionname)s' non valide. Utilisez '%(donottranslate)s' pour voir les valeurs supportées."
+msgstr "option '%(optionname)s' non-valide. Utilisez '%(donottranslate)s' pour voir les valeurs supportées."
 
 #: ../src/cli/plug/__init__.py:562
 msgid "Failed to write report. "
@@ -2633,7 +2633,7 @@ msgid ""
 "Please upgrade to the corresponding version or use XML for porting data between different database versions."
 msgstr ""
 "Cette version de la base de données n'est pas supportée par cette version de Gramps.\n"
-"Veuillez mettre à jour la version correspondante ou utilisez XML pour transférer les données d'une version à l'autre."
+"Veuillez mettre à jour la version correspondante ou utilisez le format Gramps XML pour transférer les données d'une version à l'autre."
 
 #: ../src/gen/db/exceptions.py:93
 #, python-format
@@ -3313,7 +3313,7 @@ msgstr "Religion"
 #: ../src/gen/lib/eventtype.py:176
 #: ../src/plugins/gramplet/bottombar.gpr.py:119
 #: ../src/plugins/webreport/NarrativeWeb.py:2684
-#: ../src/plugins/webreport/NarrativeWeb.py:6676
+#: ../src/plugins/webreport/NarrativeWeb.py:6712
 msgid "Residence"
 msgstr "Résidence"
 
@@ -4056,7 +4056,7 @@ msgstr "Le fichier %s est déjà ouvert, fermez-le."
 #: ../src/plugins/export/ExportVCalendar.py:108
 #: ../src/plugins/export/ExportVCard.py:70
 #: ../src/plugins/export/ExportVCard.py:74
-#: ../src/plugins/webreport/NarrativeWeb.py:6950
+#: ../src/plugins/webreport/NarrativeWeb.py:6986
 #, python-format
 msgid "Could not create %s"
 msgstr "Impossible de créer %s"
@@ -4782,7 +4782,7 @@ msgstr "Exemple"
 #: ../src/plugins/textreport/IndivComplete.py:685
 #: ../src/plugins/textreport/KinshipReport.py:346
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:200
-#: ../src/plugins/webreport/NarrativeWeb.py:7698
+#: ../src/plugins/webreport/NarrativeWeb.py:7734
 #: ../src/plugins/webreport/WebCal.py:1341
 msgid "Name format"
 msgstr "Format du nom"
@@ -5649,7 +5649,7 @@ msgstr "Test du filtre"
 #: ../src/plugins/textreport/BirthdayReport.py:364
 #: ../src/plugins/textreport/IndivComplete.py:671
 #: ../src/plugins/tool/SortEvents.py:168
-#: ../src/plugins/webreport/NarrativeWeb.py:7676
+#: ../src/plugins/webreport/NarrativeWeb.py:7712
 #: ../src/plugins/webreport/WebCal.py:1319
 msgid "Filter"
 msgstr "Filtre"
@@ -5901,7 +5901,7 @@ msgstr "Notes"
 #: ../src/plugins/webreport/NarrativeWeb.py:332
 #: ../src/plugins/webreport/NarrativeWeb.py:2786
 #: ../src/plugins/webreport/NarrativeWeb.py:2979
-#: ../src/plugins/webreport/NarrativeWeb.py:6196
+#: ../src/plugins/webreport/NarrativeWeb.py:6199
 msgid "Parents"
 msgstr "Parents"
 
@@ -5947,8 +5947,8 @@ msgstr "Rapports"
 #: ../src/plugins/webreport/NarrativeWeb.py:1772
 #: ../src/plugins/webreport/NarrativeWeb.py:2646
 #: ../src/plugins/webreport/NarrativeWeb.py:4783
-#: ../src/plugins/webreport/NarrativeWeb.py:6469
-#: ../src/plugins/webreport/NarrativeWeb.py:6541
+#: ../src/plugins/webreport/NarrativeWeb.py:6505
+#: ../src/plugins/webreport/NarrativeWeb.py:6577
 msgid "Repositories"
 msgstr "Dépôts"
 
@@ -6130,7 +6130,7 @@ msgstr "Erreur à l'ouverture du fichier"
 #: ../src/gui/plug/_dialogs.py:59
 #: ../src/plugins/BookReport.py:98
 msgid "Unsupported"
-msgstr "Non supportés"
+msgstr "Non-supportés"
 
 #: ../src/gui/viewmanager.py:407
 msgid "Updated"
@@ -6463,7 +6463,7 @@ msgstr "Media :"
 #: ../src/plugins/textreport/DetDescendantReport.py:973
 #: ../src/plugins/textreport/DetDescendantReport.py:974
 #: ../src/plugins/textreport/FamilyGroup.py:651
-#: ../src/plugins/webreport/NarrativeWeb.py:7847
+#: ../src/plugins/webreport/NarrativeWeb.py:7883
 msgid "Include"
 msgstr "Inclure"
 
@@ -6473,7 +6473,7 @@ msgid "Megabyte|MB"
 msgstr "MB"
 
 #: ../src/gui/viewmanager.py:1546
-#: ../src/plugins/webreport/NarrativeWeb.py:7841
+#: ../src/plugins/webreport/NarrativeWeb.py:7877
 msgid "Exclude"
 msgstr "Exclure"
 
@@ -8585,7 +8585,7 @@ msgstr "Style"
 #: ../src/plugins/textreport/PlaceReport.py:366
 #: ../src/plugins/textreport/SimpleBookTitle.py:129
 #: ../src/plugins/textreport/TagReport.py:526
-#: ../src/plugins/webreport/NarrativeWeb.py:7654
+#: ../src/plugins/webreport/NarrativeWeb.py:7690
 #: ../src/plugins/webreport/WebCal.py:1307
 msgid "Report Options"
 msgstr "Options du rapport"
@@ -8643,7 +8643,7 @@ msgstr ""
 #: ../src/gui/plug/tool.py:139
 #: ../src/plugins/tool/RelCalc.py:148
 msgid "Active person has not been set"
-msgstr "Individu actif non défini"
+msgstr "Individu actif non-défini"
 
 #: ../src/gui/plug/report/_reportdialog.py:610
 msgid "You must select an active person for this report to work properly."
@@ -8819,7 +8819,7 @@ msgstr "É_diter..."
 
 #: ../src/gui/views/listview.py:400
 msgid "Active object not visible"
-msgstr "Objet actif non visible"
+msgstr "Objet actif non-visible"
 
 #: ../src/gui/views/listview.py:411
 #: ../src/gui/views/navigationview.py:255
@@ -9841,7 +9841,7 @@ msgstr "Détermine quels individus seront inclus dans le rapport."
 #: ../src/plugins/graph/GVRelGraph.py:482
 #: ../src/plugins/textreport/IndivComplete.py:677
 #: ../src/plugins/tool/SortEvents.py:173
-#: ../src/plugins/webreport/NarrativeWeb.py:7682
+#: ../src/plugins/webreport/NarrativeWeb.py:7718
 #: ../src/plugins/webreport/WebCal.py:1325
 msgid "Filter Person"
 msgstr "Filtre sur l'individu"
@@ -9850,7 +9850,7 @@ msgstr "Filtre sur l'individu"
 #: ../src/plugins/drawreport/TimeLine.py:374
 #: ../src/plugins/graph/GVRelGraph.py:483
 #: ../src/plugins/tool/SortEvents.py:174
-#: ../src/plugins/webreport/NarrativeWeb.py:7683
+#: ../src/plugins/webreport/NarrativeWeb.py:7719
 #: ../src/plugins/webreport/WebCal.py:1326
 msgid "The center person for the filter"
 msgstr "L'individu central pour ce filtre"
@@ -10069,13 +10069,13 @@ msgid "of %d"
 msgstr "sur %d"
 
 #: ../src/plugins/docgen/HtmlDoc.py:271
-#: ../src/plugins/webreport/NarrativeWeb.py:7610
+#: ../src/plugins/webreport/NarrativeWeb.py:7646
 #: ../src/plugins/webreport/WebCal.py:244
 msgid "Possible destination error"
 msgstr "Possible erreur de destination"
 
 #: ../src/plugins/docgen/HtmlDoc.py:272
-#: ../src/plugins/webreport/NarrativeWeb.py:7611
+#: ../src/plugins/webreport/NarrativeWeb.py:7647
 #: ../src/plugins/webreport/WebCal.py:245
 msgid "You appear to have set your target directory to a directory used for data storage. This could create problems with file management. It is recommended that you consider using a different directory to store your generated web pages."
 msgstr "Il semble que le répertoire cible est le répertoire de stockage des données. Cela peut générer des problèmes dans la gestion de fichier. Il est recommandé d'utiliser un répertoire différent pour stocker les pages internet générées."
@@ -10497,7 +10497,7 @@ msgstr "Formatage des mois..."
 # Substantif (GNOME fr)
 #: ../src/plugins/drawreport/Calendar.py:265
 #: ../src/plugins/textreport/BirthdayReport.py:214
-#: ../src/plugins/webreport/NarrativeWeb.py:7040
+#: ../src/plugins/webreport/NarrativeWeb.py:7076
 #: ../src/plugins/webreport/WebCal.py:1072
 msgid "Applying Filter..."
 msgstr "Application du filtre..."
@@ -10586,7 +10586,7 @@ msgstr "L'individu central pour ce rapport"
 #: ../src/plugins/textreport/IndivComplete.py:689
 #: ../src/plugins/textreport/KinshipReport.py:350
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:204
-#: ../src/plugins/webreport/NarrativeWeb.py:7702
+#: ../src/plugins/webreport/NarrativeWeb.py:7738
 #: ../src/plugins/webreport/WebCal.py:1345
 msgid "Select the format to display names"
 msgstr "Sélection du format d'affichage pour le nom"
@@ -12555,7 +12555,7 @@ msgstr "Il y a eut une erreur. Vérifiez votre source et la destination des chem
 # trunk
 #: ../src/plugins/gramplet/EditExifMetadata.py:847
 msgid "There was an error in deleting the original file.  You will need to delete it yourself!"
-msgstr ""
+msgstr "Il y a eut une erreur dans la suppression du fichier original. Vous devez le supprimer vous-même !"
 
 # trunk
 #: ../src/plugins/gramplet/EditExifMetadata.py:864
@@ -12577,7 +12577,7 @@ msgstr "Il y a eut une erreur dans la mise à jour du chemin de l'image !"
 # trunk
 #: ../src/plugins/gramplet/EditExifMetadata.py:915
 msgid "Click the close button when you are finished modifying this image's Exif metadata."
-msgstr ""
+msgstr "Cliquez sur le bouton fermer lorsque vous avez terminé de modifier les métadonnées Exif de l'image."
 
 # trunk
 #. Add the Save button...
@@ -12595,7 +12595,7 @@ msgstr ""
 #. Add the Clear button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:959
 msgid "This button will clear all of the data fields shown here."
-msgstr ""
+msgstr "Ce bouton effacera toutes les données affichées ici."
 
 # trunk
 #. Add the Close button...
@@ -12604,6 +12604,8 @@ msgid ""
 "Closes this popup Edit window.\n"
 "WARNING: This action will NOT Save any changes/ modification made to this image's Exif metadata."
 msgstr ""
+"Ferme la fenêtre d'édition.\n"
+"ATTENTION : cette action N'enregistre RIEN sur les métadonnées Exif de l'image."
 
 # trunk
 # metadata Exiv pour image
@@ -12742,7 +12744,7 @@ msgstr "Menu Individus"
 #: ../src/plugins/view/fanchartview.py:825
 #: ../src/plugins/view/pedigreeview.py:1871
 #: ../src/plugins/view/relview.py:898
-#: ../src/plugins/webreport/NarrativeWeb.py:6337
+#: ../src/plugins/webreport/NarrativeWeb.py:6263
 msgid "Siblings"
 msgstr "Frères et sœurs"
 
@@ -13203,7 +13205,7 @@ msgstr "%d. Conjoint : "
 #: ../src/plugins/gramplet/RelativeGramplet.py:91
 #, python-format
 msgid "%d. Partner: Not known"
-msgstr "%d. Conjoint : non connu"
+msgstr "%d. Conjoint : non-connu"
 
 #: ../src/plugins/gramplet/RelativeGramplet.py:106
 msgid "Parents:"
@@ -13517,7 +13519,7 @@ msgstr "Étiquette pour indiquer que cet individu ou cette famille doit être ig
 
 #: ../src/plugins/gramplet/WhatsNext.py:164
 msgid "No Home Person set."
-msgstr "Individu par défaut (souche) non défini."
+msgstr "Individu par défaut (souche) non-défini."
 
 #: ../src/plugins/gramplet/WhatsNext.py:346
 msgid "first name unknown"
@@ -13690,11 +13692,11 @@ msgstr "Les enfants seront estimés pour déterminer les \"lignées familiales\"
 
 #: ../src/plugins/graph/GVFamilyLines.py:132
 msgid "Try to remove extra people and families"
-msgstr "Essayer d'enlever les individus et familles non désirés"
+msgstr "Essayer d'enlever les individus et familles non-désirés"
 
 #: ../src/plugins/graph/GVFamilyLines.py:133
 msgid "People and families not directly related to people of interest will be removed when determining \"family lines\"."
-msgstr "Les individus et familles non liés directement aux individus seront enlevés pour déterminer les \"lignées familiales\"."
+msgstr "Les individus et familles non-liés directement aux individus seront enlevés pour déterminer les \"lignées familiales\"."
 
 #. ----------------------------
 #: ../src/plugins/graph/GVFamilyLines.py:140
@@ -14177,7 +14179,7 @@ msgstr "date de décès"
 #: ../src/plugins/webreport/NarrativeWeb.py:3627
 #: ../src/plugins/webreport/NarrativeWeb.py:3807
 #: ../src/plugins/webreport/NarrativeWeb.py:4489
-#: ../src/plugins/webreport/NarrativeWeb.py:6559
+#: ../src/plugins/webreport/NarrativeWeb.py:6595
 msgid "Gramps ID"
 msgstr "id Gramps"
 
@@ -14312,7 +14314,7 @@ msgstr "Pas un fichier Pro-Gen valide"
 #: ../src/plugins/import/ImportProGen.py:381
 #, python-format
 msgid "Field '%(fldname)s' not found"
-msgstr "L'emplacement '%(fldname)s' non trouvé"
+msgstr "L'emplacement '%(fldname)s' non-trouvé"
 
 #: ../src/plugins/import/ImportProGen.py:456
 #, python-format
@@ -14331,7 +14333,7 @@ msgstr "Importation Pro-Gen"
 #: ../src/plugins/import/ImportProGen.py:698
 #, python-format
 msgid "date did not match: '%(text)s' (%(msg)s)"
-msgstr "date non correspondante : '%(text)s' (%(msg)s)"
+msgstr "date non-correspondante : '%(text)s' (%(msg)s)"
 
 # Substantif (GNOME fr)
 #. The records are numbered 1..N
@@ -14702,260 +14704,322 @@ msgstr "Toute référence à la note doit avoir un attribut 'hlink'."
 msgid "Witness comment: %s"
 msgstr "Commentaire du témoin : %s"
 
-#: ../src/plugins/lib/libgedcom.py:1700
+#: ../src/plugins/lib/libgedcom.py:1702
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
 msgstr "Votre fichier GEDCOM est corrompu. Il semble avoir été tronqué."
 
-#: ../src/plugins/lib/libgedcom.py:1780
+#: ../src/plugins/lib/libgedcom.py:1782
 #, python-format
 msgid "Import from GEDCOM (%s)"
 msgstr "Importé du GEDCOM (%s)"
 
-#: ../src/plugins/lib/libgedcom.py:2515
+#: ../src/plugins/lib/libgedcom.py:2521
+#: ../src/plugins/lib/libgedcom.py:2823
 msgid "GEDCOM import"
 msgstr "Importation GEDCOM"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:2536
+#: ../src/plugins/lib/libgedcom.py:2542
 msgid "GEDCOM import report: No errors detected"
 msgstr "Rapport d'importation GEDCOM : aucune erreur détectée"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:2538
+#: ../src/plugins/lib/libgedcom.py:2544
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
 msgstr "Rapport d'importation GEDCOM : %s erreurs détectées"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:2791
+#: ../src/plugins/lib/libgedcom.py:2797
 msgid "Line ignored as not understood"
-msgstr "Ligne ignorée car non comprise"
+msgstr "Ligne ignorée car non-comprise"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:2869
+#: ../src/plugins/lib/libgedcom.py:2818
+msgid "Records not inported into "
+msgstr "Enregistrements non-importés dans "
+
+# trunk
+#: ../src/plugins/lib/libgedcom.py:2846
+msgid "TRLR (trailer)"
+msgstr "TRLR (trailer-piste)"
+
+# trunk
+#: ../src/plugins/lib/libgedcom.py:2875
 #, python-format
 msgid "Submitter (SUBM): @%s@"
 msgstr "Soumetteur (SUBM) : @%s@"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:2939
+#: ../src/plugins/lib/libgedcom.py:2899
+msgid "GEDCOM data"
+msgstr "Donnée GEDCOM"
+
+# trunk
+#: ../src/plugins/lib/libgedcom.py:2945
 msgid "Unknown tag"
 msgstr "Balise inconnue"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:3696
-msgid "Tag recognised but not supported"
-msgstr "Balise reconnue mais non-supportée"
+#: ../src/plugins/lib/libgedcom.py:2947
+#: ../src/plugins/lib/libgedcom.py:2961
+#: ../src/plugins/lib/libgedcom.py:2965
+#: ../src/plugins/lib/libgedcom.py:2986
+msgid "Top Level"
+msgstr "Niveau supérieur"
 
 # trunk
+#: ../src/plugins/lib/libgedcom.py:3064
+#, python-format
+msgid "INDI (individual) Gramps ID %s"
+msgstr "INDI (individu) Gramps ID %s"
+
+# trunk
+# limite à 32 caractères !
+#: ../src/plugins/lib/libgedcom.py:3702
+msgid "Tag recognised but not supported"
+msgstr "Reconnu mais non-supporté (TAG)"
+
+# trunk
+#: ../src/plugins/lib/libgedcom.py:4178
+#, python-format
+msgid "FAM (family) Gramps ID %s"
+msgstr "FAM (famille) Gramps ID %s"
+
+# trunk
+# limite à 32 caractères !
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/plugins/lib/libgedcom.py:4873
+#: ../src/plugins/lib/libgedcom.py:4879
 msgid "Empty event note ignored"
-msgstr "Note vide de l'événement ignorée"
+msgstr "Note vide ignorée (événement)"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:5145
-#: ../src/plugins/lib/libgedcom.py:5939
+#: ../src/plugins/lib/libgedcom.py:5172
+#: ../src/plugins/lib/libgedcom.py:5966
 msgid "Warn: ADDR overwritten"
 msgstr "Attention : ADDR réécrite"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:5312
-#: ../src/plugins/lib/libgedcom.py:5685
+#: ../src/plugins/lib/libgedcom.py:5339
+#: ../src/plugins/lib/libgedcom.py:5712
 msgid "REFN ignored"
 msgstr "REFN ignoré"
 
-#: ../src/plugins/lib/libgedcom.py:5642
-#: ../src/plugins/lib/libgedcom.py:6619
+# trunk
+#: ../src/plugins/lib/libgedcom.py:5436
+#, python-format
+msgid "SOUR (source) Gramps ID %s"
+msgstr "SOUR (source) Gramps ID %s"
+
+# trunk
+#: ../src/plugins/lib/libgedcom.py:5643
+#, python-format
+msgid "OBJE (multi-media object) Gramps ID %s"
+msgstr "OBJE (objet multimédia) Gramps ID %s"
+
+#: ../src/plugins/lib/libgedcom.py:5669
+#: ../src/plugins/lib/libgedcom.py:6651
 #, python-format
 msgid "Could not import %s"
 msgstr "Impossible d'importer %s"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:5675
+#: ../src/plugins/lib/libgedcom.py:5702
 msgid "BLOB ignored"
 msgstr "BLOB ignoré"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:5695
+#: ../src/plugins/lib/libgedcom.py:5722
 msgid "Multimedia REFN:TYPE ignored"
 msgstr "REFN multimedia : TYPE ignoré"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:5705
+#: ../src/plugins/lib/libgedcom.py:5732
 msgid "Mutimedia RIN ignored"
 msgstr "RIN multimedia ignoré"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6064
+#: ../src/plugins/lib/libgedcom.py:5815
+#, python-format
+msgid "REPO (repository) Gramps ID %s"
+msgstr "REPO (dépôt) Gramps ID %s"
+
+# trunk
+#: ../src/plugins/lib/libgedcom.py:6091
 msgid "Head (header)"
 msgstr "En-tête (header)"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6080
+#: ../src/plugins/lib/libgedcom.py:6107
 msgid "Approved system identification"
 msgstr "Système d'identification approuvé"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6089
+#: ../src/plugins/lib/libgedcom.py:6116
 msgid "Generated by"
 msgstr "Généré par"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6103
+#: ../src/plugins/lib/libgedcom.py:6130
 msgid "Name of software product"
 msgstr "Nom du logiciel source"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6115
+#: ../src/plugins/lib/libgedcom.py:6142
 msgid "Version number of software product"
 msgstr "Numéro de version du logiciel source"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6132
+#: ../src/plugins/lib/libgedcom.py:6159
 #, python-format
 msgid "Business that produced the product: %s"
 msgstr "Entreprise produisant : %s"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6153
+#: ../src/plugins/lib/libgedcom.py:6180
 msgid "Name of source data"
 msgstr "Nom de la source des données"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6167
+#: ../src/plugins/lib/libgedcom.py:6194
 msgid "Copyright of source data"
 msgstr "Droit à la copie des données"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6177
+#: ../src/plugins/lib/libgedcom.py:6204
 msgid "Publication date of source data"
 msgstr "Date de publication des données"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6189
+#: ../src/plugins/lib/libgedcom.py:6216
 #, python-format
 msgid "Import from %s"
 msgstr "Importé depuis %s"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6227
+#: ../src/plugins/lib/libgedcom.py:6254
 msgid "Submission record identifier"
 msgstr "Identifiant de soumission de l'enregistrement"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6238
+#: ../src/plugins/lib/libgedcom.py:6265
 msgid "Language of GEDCOM text"
 msgstr "Language du texte GEDCOM"
 
-#: ../src/plugins/lib/libgedcom.py:6262
+#: ../src/plugins/lib/libgedcom.py:6289
 #, python-format
 msgid "Import of GEDCOM file %s with DEST=%s, could cause errors in the resulting database!"
 msgstr "Importation du fichier GEDCOM %s avec DEST=%s, peut générer des erreurs dans la base de données !"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/lib/libgedcom.py:6265
+#: ../src/plugins/lib/libgedcom.py:6292
 msgid "Look for nameless events."
 msgstr "Recherche des événements sans nom."
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6288
+#: ../src/plugins/lib/libgedcom.py:6315
 msgid "Character set"
 msgstr "Encodage du caractère"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6290
+#: ../src/plugins/lib/libgedcom.py:6317
 msgid "Character set and version"
 msgstr "Encodage du caractère et la version"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6306
+#: ../src/plugins/lib/libgedcom.py:6333
 msgid "GEDCOM version not supported"
-msgstr "Version du GEDCOM non supportée"
+msgstr "Version du GEDCOM non-supportée"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6309
+#: ../src/plugins/lib/libgedcom.py:6336
 msgid "GEDCOM version"
 msgstr "Version du GEDCOM"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6312
+#: ../src/plugins/lib/libgedcom.py:6339
 msgid "GEDCOM form not supported"
 msgstr "Forme de GEDCOM non-supportée"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6314
+#: ../src/plugins/lib/libgedcom.py:6341
 msgid "GEDCOM form"
 msgstr "Forme de GEDCOM"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6360
+#: ../src/plugins/lib/libgedcom.py:6387
 msgid "Creation date of GEDCOM"
 msgstr "Date de création du GEDCOM"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6364
+#: ../src/plugins/lib/libgedcom.py:6391
 msgid "Creation date and time of GEDCOM"
 msgstr "Date et heure de création du GEDCOM"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6403
-#: ../src/plugins/lib/libgedcom.py:6435
+#: ../src/plugins/lib/libgedcom.py:6430
+#: ../src/plugins/lib/libgedcom.py:6462
 msgid "Empty note ignored"
 msgstr "Note vide ignorée"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6499
+#: ../src/plugins/lib/libgedcom.py:6476
+#, python-format
+msgid "NOTE Gramps ID %s"
+msgstr "NOTE Gramps ID %s"
+
+# trunk
+#: ../src/plugins/lib/libgedcom.py:6526
 msgid "Submission: Submitter"
 msgstr "Soumission : soumetteur"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6501
+#: ../src/plugins/lib/libgedcom.py:6528
 msgid "Submission: Family file"
 msgstr "Soumission : fichier de famille"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6503
+#: ../src/plugins/lib/libgedcom.py:6530
 msgid "Submission: Temple code"
 msgstr "Soumission : code du temple (LDS)"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6505
+#: ../src/plugins/lib/libgedcom.py:6532
 msgid "Submission: Generations of ancestors"
 msgstr "Soumission : générations d'ascendants"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6507
+#: ../src/plugins/lib/libgedcom.py:6534
 msgid "Submission: Generations of descendants"
 msgstr "Soumission : générations de descendants"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6509
+#: ../src/plugins/lib/libgedcom.py:6536
 msgid "Submission: Ordinance process flag"
 msgstr "Soumission : marque de l'ordinance (LDS)"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6530
+#: ../src/plugins/lib/libgedcom.py:6557
 msgid "Skipped subordinate line"
 msgstr "Ligne suivante ignorée"
 
 # trunk
 #. # Okay we have no clue which temple this is.
 #. # We should tell the user and store it anyway.
-#: ../src/plugins/lib/libgedcom.py:6719
+#: ../src/plugins/lib/libgedcom.py:6751
 msgid "Invalid temple code"
 msgstr "Code de temple invalide"
 
-#: ../src/plugins/lib/libgedcom.py:6800
+#: ../src/plugins/lib/libgedcom.py:6832
 msgid "Your GEDCOM file is corrupted. The file appears to be encoded using the UTF16 character set, but is missing the BOM marker."
 msgstr "Votre fichier GEDCOM est corrompu. Ce fichier apparaît comme utilisant l'encodage de caractères UTF-16, mais il manque le marqueur BOM."
 
-#: ../src/plugins/lib/libgedcom.py:6803
+#: ../src/plugins/lib/libgedcom.py:6835
 msgid "Your GEDCOM file is empty."
 msgstr "Votre fichier GEDCOM est vide."
 
-#: ../src/plugins/lib/libgedcom.py:6866
+#: ../src/plugins/lib/libgedcom.py:6898
 #, python-format
 msgid "Invalid line %d in GEDCOM file."
 msgstr "Ligne %d  invalide dans le fichier GEDCOM."
@@ -17261,316 +17325,316 @@ msgstr "Épousa également %(spouse)s%(endnotes)s."
 #: ../src/plugins/lib/libnarrate.py:1093
 #, python-format
 msgid "This person had an unmarried relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Cet individu eut une relation non mariée avec %(spouse)s en %(partial_date)s à %(place)s%(endnotes)s."
+msgstr "Cet individu eut une relation non-mariée avec %(spouse)s en %(partial_date)s à %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1094
 #, python-format
 msgid "This person had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Cet individu eut une relation non mariée avec %(spouse)s le %(full_date)s à %(place)s%(endnotes)s."
+msgstr "Cet individu eut une relation non-mariée avec %(spouse)s le %(full_date)s à %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1095
 #, python-format
 msgid "This person had an unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Cet individu eut une relation non mariée avec %(spouse)s %(modified_date)s à %(place)s%(endnotes)s."
+msgstr "Cet individu eut une relation non-mariée avec %(spouse)s %(modified_date)s à %(place)s%(endnotes)s."
 
 # en 1900
 #: ../src/plugins/lib/libnarrate.py:1098
 #, python-format
 msgid "He had an unmarried relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Il eut une relation non mariée avec %(spouse)s en %(partial_date)s à %(place)s%(endnotes)s."
+msgstr "Il eut une relation non-mariée avec %(spouse)s en %(partial_date)s à %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1099
 #, python-format
 msgid "He had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Il eut une relation non mariée avec %(spouse)s le %(full_date)s à %(place)s%(endnotes)s."
+msgstr "Il eut une relation non-mariée avec %(spouse)s le %(full_date)s à %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1100
 #, python-format
 msgid "He had an unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Il eut une relation non mariée avec %(spouse)s %(modified_date)s à %(place)s%(endnotes)s."
+msgstr "Il eut une relation non-mariée avec %(spouse)s %(modified_date)s à %(place)s%(endnotes)s."
 
 # en 1900
 #: ../src/plugins/lib/libnarrate.py:1103
 #, python-format
 msgid "She had an unmarried relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Elle eut une relation non mariée avec %(spouse)s en %(partial_date)s à %(place)s%(endnotes)s."
+msgstr "Elle eut une relation non-mariée avec %(spouse)s en %(partial_date)s à %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1104
 #, python-format
 msgid "She had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Elle eut une relation non mariée avec %(spouse)s le %(full_date)s à %(place)s%(endnotes)s."
+msgstr "Elle eut une relation non-mariée avec %(spouse)s le %(full_date)s à %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1105
 #, python-format
 msgid "She had an unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Elle eut une relation non mariée avec %(spouse)s %(modified_date)s à %(place)s%(endnotes)s."
+msgstr "Elle eut une relation non-mariée avec %(spouse)s %(modified_date)s à %(place)s%(endnotes)s."
 
 # en 1900
 #: ../src/plugins/lib/libnarrate.py:1108
 #: ../src/plugins/lib/libnarrate.py:1131
 #, python-format
 msgid "Unmarried relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Une relation non mariée avec %(spouse)s en %(partial_date)s à %(place)s%(endnotes)s."
+msgstr "Une relation non-mariée avec %(spouse)s en %(partial_date)s à %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1109
 #: ../src/plugins/lib/libnarrate.py:1132
 #, python-format
 msgid "Unmarried relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Une relation non mariée avec %(spouse)s le %(full_date)s à %(place)s%(endnotes)s."
+msgstr "Une relation non-mariée avec %(spouse)s le %(full_date)s à %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1110
 #: ../src/plugins/lib/libnarrate.py:1133
 #, python-format
 msgid "Unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Une relation non mariée avec %(spouse)s %(modified_date)s à %(place)s%(endnotes)s."
+msgstr "Une relation non-mariée avec %(spouse)s %(modified_date)s à %(place)s%(endnotes)s."
 
 # en 1900
 #: ../src/plugins/lib/libnarrate.py:1116
 #, python-format
 msgid "This person also had an unmarried relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Cet individu eut également une relation non mariée avec %(spouse)s en %(partial_date)s à %(place)s%(endnotes)s."
+msgstr "Cet individu eut également une relation non-mariée avec %(spouse)s en %(partial_date)s à %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1117
 #, python-format
 msgid "This person also had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Cet individu eut également une relation non mariée avec %(spouse)s le %(full_date)s à %(place)s%(endnotes)s."
+msgstr "Cet individu eut également une relation non-mariée avec %(spouse)s le %(full_date)s à %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1118
 #, python-format
 msgid "This person also had an unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Cet individu eut également une relation non mariée avec %(spouse)s %(modified_date)s à %(place)s%(endnotes)s."
+msgstr "Cet individu eut également une relation non-mariée avec %(spouse)s %(modified_date)s à %(place)s%(endnotes)s."
 
 # en 1900
 #: ../src/plugins/lib/libnarrate.py:1121
 #, python-format
 msgid "He also had an unmarried relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Il eut également une relation non mariée avec %(spouse)s en %(partial_date)s à %(place)s%(endnotes)s."
+msgstr "Il eut également une relation non-mariée avec %(spouse)s en %(partial_date)s à %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1122
 #, python-format
 msgid "He also had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Il eut également une relation non mariée avec %(spouse)s le %(full_date)s à %(place)s%(endnotes)s."
+msgstr "Il eut également une relation non-mariée avec %(spouse)s le %(full_date)s à %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1123
 #, python-format
 msgid "He also had an unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Il eut également une relation non mariée avec %(spouse)s %(modified_date)s à %(place)s%(endnotes)s."
+msgstr "Il eut également une relation non-mariée avec %(spouse)s %(modified_date)s à %(place)s%(endnotes)s."
 
 # en 1900
 #: ../src/plugins/lib/libnarrate.py:1126
 #, python-format
 msgid "She also had an unmarried relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Elle eut également une relation non mariée avec %(spouse)s en %(partial_date)s à %(place)s%(endnotes)s."
+msgstr "Elle eut également une relation non-mariée avec %(spouse)s en %(partial_date)s à %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1127
 #, python-format
 msgid "She also had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Elle eut également une relation non mariée avec %(spouse)s le %(full_date)s à %(place)s%(endnotes)s."
+msgstr "Elle eut également une relation non-mariée avec %(spouse)s le %(full_date)s à %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1128
 #, python-format
 msgid "She also had an unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Elle eut également une relation non mariée avec %(spouse)s %(modified_date)s à %(place)s%(endnotes)s."
+msgstr "Elle eut également une relation non-mariée avec %(spouse)s %(modified_date)s à %(place)s%(endnotes)s."
 
 # en 1900
 #: ../src/plugins/lib/libnarrate.py:1139
 #, python-format
 msgid "This person had an unmarried relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Cet individu eut une relation non mariée avec %(spouse)s en %(partial_date)s%(endnotes)s."
+msgstr "Cet individu eut une relation non-mariée avec %(spouse)s en %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1140
 #, python-format
 msgid "This person had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Cet individu eut une relation non mariée avec %(spouse)s le %(full_date)s%(endnotes)s."
+msgstr "Cet individu eut une relation non-mariée avec %(spouse)s le %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1141
 #, python-format
 msgid "This person had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Cet individu eut une relation non mariée avec %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Cet individu eut une relation non-mariée avec %(spouse)s %(modified_date)s%(endnotes)s."
 
 # en 1900
 #: ../src/plugins/lib/libnarrate.py:1144
 #, python-format
 msgid "He had an unmarried relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Il eut une relation non mariée avec %(spouse)s en %(partial_date)s%(endnotes)s."
+msgstr "Il eut une relation non-mariée avec %(spouse)s en %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1145
 #, python-format
 msgid "He had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Il eut une relation non mariée avec %(spouse)s le %(full_date)s%(endnotes)s."
+msgstr "Il eut une relation non-mariée avec %(spouse)s le %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1146
 #, python-format
 msgid "He had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Il eut une relation non mariée avec %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Il eut une relation non-mariée avec %(spouse)s %(modified_date)s%(endnotes)s."
 
 # en 1900
 #: ../src/plugins/lib/libnarrate.py:1149
 #, python-format
 msgid "She had an unmarried relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Elle eut une relation non mariée avec %(spouse)s en %(partial_date)s%(endnotes)s."
+msgstr "Elle eut une relation non-mariée avec %(spouse)s en %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1150
 #, python-format
 msgid "She had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Elle eut une relation non mariée avec %(spouse)s le %(full_date)s%(endnotes)s."
+msgstr "Elle eut une relation non-mariée avec %(spouse)s le %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1151
 #, python-format
 msgid "She had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Elle eut une relation non mariée avec %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Elle eut une relation non-mariée avec %(spouse)s %(modified_date)s%(endnotes)s."
 
 # en 1900
 #: ../src/plugins/lib/libnarrate.py:1154
 #, python-format
 msgid "Unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr "Une relation non mariée avec %(spouse)s en %(partial_date)s%(endnotes)s."
+msgstr "Une relation non-mariée avec %(spouse)s en %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1155
 #, python-format
 msgid "Unmarried relationship with %(spouse)s %(full_date)s%(endnotes)s."
-msgstr "Une relation non mariée avec %(spouse)s le %(full_date)s%(endnotes)s."
+msgstr "Une relation non-mariée avec %(spouse)s le %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1156
 #, python-format
 msgid "Unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Une relation non mariée avec %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Une relation non-mariée avec %(spouse)s %(modified_date)s%(endnotes)s."
 
 # en 1900
 #: ../src/plugins/lib/libnarrate.py:1162
 #, python-format
 msgid "This person also had an unmarried relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Cet individu eut également une relation non mariée avec %(spouse)s en %(partial_date)s%(endnotes)s."
+msgstr "Cet individu eut également une relation non-mariée avec %(spouse)s en %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1163
 #, python-format
 msgid "This person also had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Cet individu eut également une relation non mariée avec %(spouse)s le %(full_date)s%(endnotes)s."
+msgstr "Cet individu eut également une relation non-mariée avec %(spouse)s le %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1164
 #, python-format
 msgid "This person also had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Cet individu eut également une relation non mariée avec %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Cet individu eut également une relation non-mariée avec %(spouse)s %(modified_date)s%(endnotes)s."
 
 # en 1900
 #: ../src/plugins/lib/libnarrate.py:1167
 #, python-format
 msgid "He also had an unmarried relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Il eut également une relation non mariée avec %(spouse)s en %(partial_date)s%(endnotes)s."
+msgstr "Il eut également une relation non-mariée avec %(spouse)s en %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1168
 #, python-format
 msgid "He also had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Il eut également une relation non mariée avec %(spouse)s le %(full_date)s%(endnotes)s."
+msgstr "Il eut également une relation non-mariée avec %(spouse)s le %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1169
 #, python-format
 msgid "He also had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Il eut également une relation non mariée avec %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Il eut également une relation non-mariée avec %(spouse)s %(modified_date)s%(endnotes)s."
 
 # en 1900
 #: ../src/plugins/lib/libnarrate.py:1172
 #, python-format
 msgid "She also had an unmarried relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Elle eut également une relation non mariée avec %(spouse)s en %(partial_date)s%(endnotes)s."
+msgstr "Elle eut également une relation non-mariée avec %(spouse)s en %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1173
 #, python-format
 msgid "She also had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Elle eut également une relation non mariée avec %(spouse)s le %(full_date)s%(endnotes)s."
+msgstr "Elle eut également une relation non-mariée avec %(spouse)s le %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1174
 #, python-format
 msgid "She also had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Elle eut également une relation non mariée avec %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Elle eut également une relation non-mariée avec %(spouse)s %(modified_date)s%(endnotes)s."
 
 # en 1900
 #: ../src/plugins/lib/libnarrate.py:1177
 #, python-format
 msgid "Also unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr "Également une relation non mariée avec %(spouse)s en %(partial_date)s%(endnotes)s."
+msgstr "Également une relation non-mariée avec %(spouse)s en %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1178
 #, python-format
 msgid "Also unmarried relationship with %(spouse)s %(full_date)s%(endnotes)s."
-msgstr "Également une relation non mariée avec %(spouse)s le %(full_date)s%(endnotes)s."
+msgstr "Également une relation non-mariée avec %(spouse)s le %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1179
 #, python-format
 msgid "Also unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Également une relation non mariée avec %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Également une relation non-mariée avec %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1184
 #, python-format
 msgid "This person had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Cet individu eut une relation non mariée avec %(spouse)s à %(place)s%(endnotes)s."
+msgstr "Cet individu eut une relation non-mariée avec %(spouse)s à %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1185
 #, python-format
 msgid "He had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Il eut une relation non mariée avec %(spouse)s à %(place)s%(endnotes)s."
+msgstr "Il eut une relation non-mariée avec %(spouse)s à %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1186
 #, python-format
 msgid "She had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Cet individu eut une relation non mariée avec %(spouse)s à %(place)s%(endnotes)s."
+msgstr "Cet individu eut une relation non-mariée avec %(spouse)s à %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1187
 #: ../src/plugins/lib/libnarrate.py:1194
 #, python-format
 msgid "Unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Une relation non mariée avec %(spouse)s à %(place)s%(endnotes)s."
+msgstr "Une relation non-mariée avec %(spouse)s à %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1191
 #, python-format
 msgid "This person also had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Cet individu eut également une relation non mariée avec %(spouse)s à %(place)s%(endnotes)s."
+msgstr "Cet individu eut également une relation non-mariée avec %(spouse)s à %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1192
 #, python-format
 msgid "He also had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Il eut également une relation non mariée avec %(spouse)s à %(place)s%(endnotes)s."
+msgstr "Il eut également une relation non-mariée avec %(spouse)s à %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1193
 #, python-format
 msgid "She also had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Elle eut également une relation non mariée avec %(spouse)s à %(place)s%(endnotes)s."
+msgstr "Elle eut également une relation non-mariée avec %(spouse)s à %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1198
 #, python-format
 msgid "This person had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr "Cet individu eut une relation non mariée avec %(spouse)s%(endnotes)s."
+msgstr "Cet individu eut une relation non-mariée avec %(spouse)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1199
 #, python-format
 msgid "He had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr "Il eut une relation non mariée avec %(spouse)s%(endnotes)s."
+msgstr "Il eut une relation non-mariée avec %(spouse)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1200
 #, python-format
 msgid "She had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr "Cet individu eut une relation non mariée avec %(spouse)s%(endnotes)s."
+msgstr "Cet individu eut une relation non-mariée avec %(spouse)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1201
 #: ../src/plugins/lib/libnarrate.py:1208
 #, python-format
 msgid "Unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr "Une relation non mariée avec %(spouse)s%(endnotes)s."
+msgstr "Une relation non-mariée avec %(spouse)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1205
 #, python-format
 msgid "This person also had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr "Cet individu eut également une relation non mariée avec %(spouse)s%(endnotes)s."
+msgstr "Cet individu eut également une relation non-mariée avec %(spouse)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1206
 #, python-format
 msgid "He also had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr "Il eut une relation non mariée avec %(spouse)s%(endnotes)s."
+msgstr "Il eut une relation non-mariée avec %(spouse)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1207
 #, python-format
 msgid "She also had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr "Cet individu eut une relation non mariée avec %(spouse)s%(endnotes)s."
+msgstr "Cet individu eut une relation non-mariée avec %(spouse)s%(endnotes)s."
 
 # en 1900
 #: ../src/plugins/lib/libnarrate.py:1219
@@ -18609,12 +18673,12 @@ msgstr " région/province"
 #: ../src/plugins/mapservices/eniroswedenmap.py:139
 #, python-format
 msgid "Latitude not within %s to %s\n"
-msgstr "Latitude non comprise entre %s et %s\n"
+msgstr "Latitude non-comprise entre %s et %s\n"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:140
 #, python-format
 msgid "Longitude not within %s to %s"
-msgstr "Longitude non comprise entre %s et %s"
+msgstr "Longitude non-comprise entre %s et %s"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:142
 #: ../src/plugins/mapservices/eniroswedenmap.py:169
@@ -18651,7 +18715,7 @@ msgid "Open on maps.google.com"
 msgstr "Ouvrir dans maps.google.com"
 
 #: ../src/plugins/mapservices/mapservice.gpr.py:69
-#: ../src/plugins/webreport/NarrativeWeb.py:7971
+#: ../src/plugins/webreport/NarrativeWeb.py:8007
 msgid "OpenStreetMap"
 msgstr "OpenStreetMap"
 
@@ -18724,7 +18788,7 @@ msgstr "Événements individuels des enfants"
 
 #: ../src/plugins/quickview/all_relations.py:71
 msgid "Home person not set."
-msgstr "Individu actif non défini."
+msgstr "Individu actif non-défini."
 
 #: ../src/plugins/quickview/all_relations.py:80
 #: ../src/plugins/tool/RelCalc.py:189
@@ -20809,6 +20873,26 @@ msgstr "Produit la page titre du rapport livre."
 msgid "Provides a summary of the current database"
 msgstr "Fournit un résumé de la base de données active"
 
+# trunk
+#: ../src/plugins/textreport/textplugins.gpr.py:365
+msgid "Table Of Contents"
+msgstr "Sommaire"
+
+# trunk
+#: ../src/plugins/textreport/textplugins.gpr.py:366
+msgid "Produces a table of contents for book reports."
+msgstr "Produit un sommaire du contenu pour les rapports livre."
+
+# trunk
+#: ../src/plugins/textreport/textplugins.gpr.py:387
+msgid "Alphabetical Index"
+msgstr "Index alphabétique"
+
+# trunk
+#: ../src/plugins/textreport/textplugins.gpr.py:388
+msgid "Produces an alphabetical index for book reports."
+msgstr "Produit un index alphabétique pour les rapports livre."
+
 # manuel wiki
 #: ../src/plugins/tool/ChangeNames.py:65
 msgid "manual|Fix_Capitalization_of_Family_Names..."
@@ -20941,7 +21025,7 @@ msgstr "Recherche de liens familiaux brisés"
 # Substantif (GNOME fr)
 #: ../src/plugins/tool/Check.py:563
 msgid "Looking for unused objects"
-msgstr "Recherche d'objets non référencés"
+msgstr "Recherche d'objets non-référencés"
 
 #: ../src/plugins/tool/Check.py:663
 msgid "Media object could not be found"
@@ -21073,7 +21157,7 @@ msgstr[1] "%(quantity)d liens enfant/famille ont été réparés\n"
 
 #: ../src/plugins/tool/Check.py:1573
 msgid "Non existing child"
-msgstr "Enfant non existant"
+msgstr "Enfant non-existant"
 
 #: ../src/plugins/tool/Check.py:1581
 #, python-format
@@ -21091,7 +21175,7 @@ msgstr[1] "%(quantity)d liens conjoint/famille ont été réparés\n"
 #: ../src/plugins/tool/Check.py:1596
 #: ../src/plugins/tool/Check.py:1619
 msgid "Non existing person"
-msgstr "Individu non existant"
+msgstr "Individu non-existant"
 
 #: ../src/plugins/tool/Check.py:1604
 #: ../src/plugins/tool/Check.py:1627
@@ -21126,15 +21210,15 @@ msgstr[1] "%d relations familiales corrompues ont été corrigées\n"
 #, python-format
 msgid "%d person was referenced but not found\n"
 msgid_plural "%d persons were referenced, but not found\n"
-msgstr[0] "%d individu a été référencé, mais non trouvé\n"
-msgstr[1] "%d individus ont été référencés, mais non trouvés\n"
+msgstr[0] "%d individu a été référencé, mais non-trouvé\n"
+msgstr[1] "%d individus ont été référencés, mais non-trouvés\n"
 
 #: ../src/plugins/tool/Check.py:1658
 #, python-format
 msgid "%d family was referenced but not found\n"
 msgid_plural "%d families were referenced, but not found\n"
-msgstr[0] "%d famille a été référencée, mais non trouvée\n"
-msgstr[1] "%d familles ont été référencées, mais non trouvées\n"
+msgstr[0] "%d famille a été référencée, mais non-trouvée\n"
+msgstr[1] "%d familles ont été référencées, mais non-trouvées\n"
 
 #: ../src/plugins/tool/Check.py:1664
 #, python-format
@@ -21147,15 +21231,15 @@ msgstr[1] "%d dates ont été corrigées\n"
 #, python-format
 msgid "%(quantity)d repository was referenced but not found\n"
 msgid_plural "%(quantity)d repositories were referenced, but not found\n"
-msgstr[0] "%(quantity)d dépôt a été référencé, mais non trouvé\n"
-msgstr[1] "%(quantity)d dépôts ont été référencés, mais non trouvés\n"
+msgstr[0] "%(quantity)d dépôt a été référencé, mais non-trouvé\n"
+msgstr[1] "%(quantity)d dépôts ont été référencés, mais non-trouvés\n"
 
 #: ../src/plugins/tool/Check.py:1676
 #, python-format
 msgid "%(quantity)d media object was referenced, but not found\n"
 msgid_plural "%(quantity)d media objects were referenced, but not found\n"
-msgstr[0] "%(quantity)d objet medium a été référencé, mais non trouvé\n"
-msgstr[1] "%(quantity)d objets media ont été référencés, mais non trouvés\n"
+msgstr[0] "%(quantity)d objet medium a été référencé, mais non-trouvé\n"
+msgstr[1] "%(quantity)d objets media ont été référencés, mais non-trouvés\n"
 
 #: ../src/plugins/tool/Check.py:1683
 #, python-format
@@ -21182,8 +21266,8 @@ msgstr[1] "%(quantity)d media manquants ont été supprimés\n"
 #, python-format
 msgid "%(quantity)d invalid event reference was removed\n"
 msgid_plural "%(quantity)d invalid event references were removed\n"
-msgstr[0] "%(quantity)d événement non référencé a été enlevé\n"
-msgstr[1] "%(quantity)d événements non référencés ont été enlevés\n"
+msgstr[0] "%(quantity)d événement non-référencé a été enlevé\n"
+msgstr[1] "%(quantity)d événements non-référencés ont été enlevés\n"
 
 #: ../src/plugins/tool/Check.py:1711
 #, python-format
@@ -21203,38 +21287,38 @@ msgstr[1] "%(quantity)d décès invalides ont été réparés\n"
 #, python-format
 msgid "%(quantity)d place was referenced but not found\n"
 msgid_plural "%(quantity)d places were referenced, but not found\n"
-msgstr[0] "%(quantity)d lieu a été référencé, mais non trouvé\n"
-msgstr[1] "%(quantity)d lieux ont été référencés, mais non trouvés\n"
+msgstr[0] "%(quantity)d lieu a été référencé, mais non-trouvé\n"
+msgstr[1] "%(quantity)d lieux ont été référencés, mais non-trouvés\n"
 
 # trunk
 #: ../src/plugins/tool/Check.py:1732
 #, python-format
 msgid "%(quantity)d citation was referenced but not found\n"
 msgid_plural "%(quantity)d citations were referenced, but not found\n"
-msgstr[0] "%(quantity)d citation a été référencé, mais non trouvé\n"
-msgstr[1] "%(quantity)d citations ont été référencées, mais non trouvées\n"
+msgstr[0] "%(quantity)d citation a été référencé, mais non-trouvé\n"
+msgstr[1] "%(quantity)d citations ont été référencées, mais non-trouvées\n"
 
 # trunk
 #: ../src/plugins/tool/Check.py:1739
 #, python-format
 msgid "%(quantity)d source was referenced but not found\n"
 msgid_plural "%(quantity)d sources were referenced, but not found\n"
-msgstr[0] "%(quantity)d source a été référencée, mais non trouvée\n"
-msgstr[1] "%(quantity)d sources ont été référencées, mais non trouvées\n"
+msgstr[0] "%(quantity)d source a été référencée, mais non-trouvée\n"
+msgstr[1] "%(quantity)d sources ont été référencées, mais non-trouvées\n"
 
 #: ../src/plugins/tool/Check.py:1746
 #, python-format
 msgid "%(quantity)d media object was referenced but not found\n"
 msgid_plural "%(quantity)d media objects were referenced but not found\n"
-msgstr[0] "%(quantity)d objet medium a été référencé, mais non trouvé\n"
-msgstr[1] "%(quantity)d objets media ont été référencés, mais non trouvés\n"
+msgstr[0] "%(quantity)d objet medium a été référencé, mais non-trouvé\n"
+msgstr[1] "%(quantity)d objets media ont été référencés, mais non-trouvés\n"
 
 #: ../src/plugins/tool/Check.py:1753
 #, python-format
 msgid "%(quantity)d note object was referenced but not found\n"
 msgid_plural "%(quantity)d note objects were referenced but not found\n"
-msgstr[0] "%(quantity)d note a été référencée, mais non trouvée\n"
-msgstr[1] "%(quantity)d notes ont été référencées, mais non trouvées\n"
+msgstr[0] "%(quantity)d note a été référencée, mais non-trouvée\n"
+msgstr[1] "%(quantity)d notes ont été référencées, mais non-trouvées\n"
 
 #: ../src/plugins/tool/Check.py:1759
 #, python-format
@@ -21484,7 +21568,7 @@ msgstr "Nombre"
 
 #: ../src/plugins/tool/Leak.py:92
 msgid "Uncollected object"
-msgstr "Objet non chargé"
+msgstr "Objet non-chargé"
 
 #: ../src/plugins/tool/Leak.py:131
 #, python-format
@@ -21499,7 +21583,7 @@ msgstr "%d réfère à"
 #: ../src/plugins/tool/Leak.py:158
 #, python-format
 msgid "Uncollected Objects: %s"
-msgstr "Objets non collectés : %s"
+msgstr "Objets non-collectés : %s"
 
 # manuel wiki
 # points de suspension et url ?
@@ -21694,16 +21778,16 @@ msgstr "%d citations fusionnées"
 # points de suspension et url ?
 #: ../src/plugins/tool/NotRelated.py:67
 msgid "manual|Not_Related..."
-msgstr "Non lié"
+msgstr "Non-lié"
 
 #: ../src/plugins/tool/NotRelated.py:86
 #, python-format
 msgid "Not related to \"%s\""
-msgstr "Non lié à \"%s\""
+msgstr "Non-lié à \"%s\""
 
 #: ../src/plugins/tool/NotRelated.py:109
 msgid "NotRelated"
-msgstr "Non lié"
+msgstr "Non-lié"
 
 #. start the progress indicator
 #: ../src/plugins/tool/NotRelated.py:117
@@ -21880,7 +21964,7 @@ msgstr "Leurs ascendants communs sont : "
 # supprimer pour marquer la disparition
 #: ../src/plugins/tool/RemoveUnused.py:78
 msgid "Unused Objects"
-msgstr "Objets non référencés"
+msgstr "Objets non-référencés"
 
 #. Add mark column
 #. Add ignore column
@@ -21892,7 +21976,7 @@ msgstr "Marquer"
 # supprimer pour marquer la disparition
 #: ../src/plugins/tool/RemoveUnused.py:283
 msgid "Remove unused objects"
-msgstr "Supprimer les objets non référencés"
+msgstr "Supprimer les objets non-référencés"
 
 # Substantif (GNOME fr)
 #: ../src/plugins/tool/ReorderIds.py:67
@@ -21948,7 +22032,7 @@ msgstr "Réorganiser des identifiants des notes"
 # utiliser plutôt que référencer
 #: ../src/plugins/tool/ReorderIds.py:221
 msgid "Finding and assigning unused IDs"
-msgstr "Recherche et assignation d'un ID non utilisé"
+msgstr "Recherche et assignation d'un ID non-utilisé"
 
 # nom de l'outil
 #: ../src/plugins/tool/SortEvents.py:78
@@ -22071,7 +22155,7 @@ msgstr "Gère des opérations groupées sur les fichiers media"
 
 #: ../src/plugins/tool/tools.gpr.py:285
 msgid "Not Related"
-msgstr "Non lié"
+msgstr "Non-lié"
 
 #: ../src/plugins/tool/tools.gpr.py:286
 msgid "Find people who are not in any way related to the selected person"
@@ -22120,12 +22204,12 @@ msgstr "Calcul des relations entre deux individus"
 # supprimer pour marquer la disparition
 #: ../src/plugins/tool/tools.gpr.py:418
 msgid "Remove Unused Objects"
-msgstr "Supprimer les objets non référencés"
+msgstr "Supprimer les objets non-référencés"
 
 # supprimer pour marquer la disparition
 #: ../src/plugins/tool/tools.gpr.py:419
 msgid "Removes unused objects from the database"
-msgstr "Supprime les objets non référencés de la base de données"
+msgstr "Supprime les objets non-référencés de la base de données"
 
 #: ../src/plugins/tool/tools.gpr.py:441
 msgid "Reorders the Gramps IDs according to Gramps' default rules."
@@ -22648,7 +22732,7 @@ msgstr "Carte des lieux des événements"
 
 #: ../src/plugins/view/geoevents.py:252
 msgid "incomplete or unreferenced event ?"
-msgstr "Événement incomplet ou non référencé ?"
+msgstr "Événement incomplet ou non-référencé ?"
 
 #: ../src/plugins/view/geoevents.py:364
 msgid "Show all events"
@@ -23357,6 +23441,8 @@ msgstr "Région/Province"
 msgid "Alternate Locations"
 msgstr "Noms alternatifs"
 
+# ???? context ?
+# à vérifier!
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:890
 msgid "Pkace"
@@ -23412,7 +23498,7 @@ msgstr "Aperçus"
 #: ../src/plugins/webreport/NarrativeWeb.py:1666
 #: ../src/plugins/webreport/NarrativeWeb.py:1785
 #: ../src/plugins/webreport/NarrativeWeb.py:5145
-#: ../src/plugins/webreport/NarrativeWeb.py:7866
+#: ../src/plugins/webreport/NarrativeWeb.py:7902
 msgid "Download"
 msgstr "Télécharger"
 
@@ -23421,8 +23507,8 @@ msgstr "Télécharger"
 #: ../src/plugins/webreport/NarrativeWeb.py:1667
 #: ../src/plugins/webreport/NarrativeWeb.py:1723
 #: ../src/plugins/webreport/NarrativeWeb.py:1786
-#: ../src/plugins/webreport/NarrativeWeb.py:6646
-#: ../src/plugins/webreport/NarrativeWeb.py:6740
+#: ../src/plugins/webreport/NarrativeWeb.py:6682
+#: ../src/plugins/webreport/NarrativeWeb.py:6776
 msgid "Address Book"
 msgstr "Adresses"
 
@@ -23448,7 +23534,7 @@ msgstr "Anecdote"
 
 #. begin web title
 #: ../src/plugins/webreport/NarrativeWeb.py:2169
-#: ../src/plugins/webreport/NarrativeWeb.py:6677
+#: ../src/plugins/webreport/NarrativeWeb.py:6713
 msgid "Web Links"
 msgstr "Liens internet"
 
@@ -23488,7 +23574,7 @@ msgstr "Cette page contient un index de tous les individus de la base de donnée
 #. Families list page message
 #: ../src/plugins/webreport/NarrativeWeb.py:3099
 msgid "This page contains an index of all the families/ relationships in the database, sorted by their family name/ surname. Clicking on a person&#8217;s name will take you to their family/ relationship&#8217;s page."
-msgstr ""
+msgstr "Cette page contient un index de toutes les familles et relations de la base de données, trié par le nom de famille. Cliquez sur le nom pour accéder à la page de la famille."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3125
 #: ../src/plugins/webreport/NarrativeWeb.py:3374
@@ -23649,7 +23735,7 @@ msgstr "Dernière modification"
 #. page description
 #: ../src/plugins/webreport/NarrativeWeb.py:5601
 msgid "This map page represents the person and their descendants with all of their event/ places.  If you place your mouse over the marker it will display the place name.  The markers and the Reference list are sorted in date order (if any?).  Clicking on a place&#8217;s name in the Reference section will take you to that place&#8217;s page."
-msgstr ""
+msgstr "Cette page carte représente l'individu et ses descendants avec leurs événements / lieux. Si vous passez le curseur de votre souris au-dessus du marqueur vous obtiendrez le nom du lieu. Les marqueurs et la liste de référence sont triés par date (si elle existe). Cliquez sur le nom du lieu dans la section référence pour accéder la page du lieu."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5653
 msgid "Drop Markers"
@@ -23681,294 +23767,284 @@ msgstr "Surnom"
 msgid "Age at Death"
 msgstr "Âge au décès"
 
-# trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:6359
-msgid "Half Siblings"
-msgstr "Demi-Frères et demi-sœurs"
-
-# trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:6381
-msgid "Step Siblings"
-msgstr " Demi-frères et demi-sœurs"
-
 # titre = nom
-#: ../src/plugins/webreport/NarrativeWeb.py:6475
+#: ../src/plugins/webreport/NarrativeWeb.py:6511
 msgid "This page contains an index of all the repositories in the database, sorted by their title. Clicking on a repositories&#8217;s title will take you to that repositories&#8217;s page."
 msgstr "Cette page contient un index de tous les dépôts de la base de données, classés par nom. Cliquez sur le nom d'un dépôt pour accéder à sa page."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6490
+#: ../src/plugins/webreport/NarrativeWeb.py:6526
 msgid "Repository |Name"
 msgstr "Nom du dépôt"
 
 # trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:6610
+#: ../src/plugins/webreport/NarrativeWeb.py:6646
 msgid "Referenced Sources"
 msgstr "Sources référencées"
 
 # &#8217;s ?
 #. Address Book Page message
-#: ../src/plugins/webreport/NarrativeWeb.py:6653
+#: ../src/plugins/webreport/NarrativeWeb.py:6689
 msgid "This page contains an index of all the individuals in the database, sorted by their surname, with one of the following: Address, Residence, or Web Links. Selecting the person&#8217;s name will take you to their individual Address Book page."
 msgstr "Cette page contient un index de tous les individus de la base de données, classés par nom de famille, avec soit une adresse, une résidence ou des liens internet. Sélectionnez le nom d'un individu pour accéder à sa page."
 
 # trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:6674
+#: ../src/plugins/webreport/NarrativeWeb.py:6710
 msgid "Full Name"
 msgstr "Nom complet"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6907
+#: ../src/plugins/webreport/NarrativeWeb.py:6943
 #, python-format
 msgid "Neither %s nor %s are directories"
 msgstr "Ni %s ni %s ne sont des répertoires"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6915
-#: ../src/plugins/webreport/NarrativeWeb.py:6920
-#: ../src/plugins/webreport/NarrativeWeb.py:6933
-#: ../src/plugins/webreport/NarrativeWeb.py:6938
+#: ../src/plugins/webreport/NarrativeWeb.py:6951
+#: ../src/plugins/webreport/NarrativeWeb.py:6956
+#: ../src/plugins/webreport/NarrativeWeb.py:6969
+#: ../src/plugins/webreport/NarrativeWeb.py:6974
 #, python-format
 msgid "Could not create the directory: %s"
 msgstr "Impossible de créer le répertoire : %s"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6944
+#: ../src/plugins/webreport/NarrativeWeb.py:6980
 msgid "Invalid file name"
 msgstr "Nom de fichier invalide"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6945
+#: ../src/plugins/webreport/NarrativeWeb.py:6981
 msgid "The archive file must be a file, not a directory"
 msgstr "L'archive doit être un fichier, pas un répertoire"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7023
+#: ../src/plugins/webreport/NarrativeWeb.py:7059
 #, python-format
 msgid "ID=%(grampsid)s, path=%(dir)s"
 msgstr "ID=%(grampsid)s, chemin=%(dir)s"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7028
+#: ../src/plugins/webreport/NarrativeWeb.py:7064
 msgid "Missing media objects:"
 msgstr "Objets media manquants :"
 
 # Site internet descriptif ou narratif ?
-#: ../src/plugins/webreport/NarrativeWeb.py:7039
-#: ../src/plugins/webreport/NarrativeWeb.py:7127
-#: ../src/plugins/webreport/NarrativeWeb.py:7143
-#: ../src/plugins/webreport/NarrativeWeb.py:7184
-#: ../src/plugins/webreport/NarrativeWeb.py:7204
-#: ../src/plugins/webreport/NarrativeWeb.py:7217
-#: ../src/plugins/webreport/NarrativeWeb.py:7235
-#: ../src/plugins/webreport/NarrativeWeb.py:7250
-#: ../src/plugins/webreport/NarrativeWeb.py:7277
-#: ../src/plugins/webreport/NarrativeWeb.py:7300
-#: ../src/plugins/webreport/NarrativeWeb.py:7349
-#: ../src/plugins/webreport/NarrativeWeb.py:7361
+#: ../src/plugins/webreport/NarrativeWeb.py:7075
+#: ../src/plugins/webreport/NarrativeWeb.py:7163
+#: ../src/plugins/webreport/NarrativeWeb.py:7179
+#: ../src/plugins/webreport/NarrativeWeb.py:7220
+#: ../src/plugins/webreport/NarrativeWeb.py:7240
+#: ../src/plugins/webreport/NarrativeWeb.py:7253
+#: ../src/plugins/webreport/NarrativeWeb.py:7271
+#: ../src/plugins/webreport/NarrativeWeb.py:7286
+#: ../src/plugins/webreport/NarrativeWeb.py:7313
+#: ../src/plugins/webreport/NarrativeWeb.py:7336
+#: ../src/plugins/webreport/NarrativeWeb.py:7385
+#: ../src/plugins/webreport/NarrativeWeb.py:7397
 msgid "Narrated Web Site Report"
 msgstr "Saga"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/webreport/NarrativeWeb.py:7128
+#: ../src/plugins/webreport/NarrativeWeb.py:7164
 msgid "Creating individual pages"
 msgstr "Création des pages pour l'individu"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7144
+#: ../src/plugins/webreport/NarrativeWeb.py:7180
 msgid "Creating GENDEX file"
 msgstr "Création d'un fichier GENDEX"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/webreport/NarrativeWeb.py:7185
+#: ../src/plugins/webreport/NarrativeWeb.py:7221
 msgid "Creating surname pages"
 msgstr "Création des pages pour le patronyme"
 
 # trunk
 # Substantif (GNOME fr)
-#: ../src/plugins/webreport/NarrativeWeb.py:7205
+#: ../src/plugins/webreport/NarrativeWeb.py:7241
 msgid "Creating family pages..."
 msgstr "Création des pages familiales..."
 
 # Substantif (GNOME fr)
-#: ../src/plugins/webreport/NarrativeWeb.py:7218
+#: ../src/plugins/webreport/NarrativeWeb.py:7254
 msgid "Creating place pages"
 msgstr "Création des pages pour le lieu"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/webreport/NarrativeWeb.py:7236
+#: ../src/plugins/webreport/NarrativeWeb.py:7272
 msgid "Creating event pages"
 msgstr "Création des pages pour l'événement"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/webreport/NarrativeWeb.py:7251
+#: ../src/plugins/webreport/NarrativeWeb.py:7287
 msgid "Creating media pages"
 msgstr "Création des pages pour le medium"
 
 # trunk
 # Substantif (GNOME fr)
-#: ../src/plugins/webreport/NarrativeWeb.py:7278
+#: ../src/plugins/webreport/NarrativeWeb.py:7314
 msgid "Creating thumbnail preview page..."
 msgstr "Création des pages pour les miniatures..."
 
 # Substantif (GNOME fr)
-#: ../src/plugins/webreport/NarrativeWeb.py:7301
+#: ../src/plugins/webreport/NarrativeWeb.py:7337
 msgid "Creating repository pages"
 msgstr "Création des pages dépôt"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/webreport/NarrativeWeb.py:7350
+#: ../src/plugins/webreport/NarrativeWeb.py:7386
 msgid "Creating address book pages ..."
 msgstr "Création des pages adresses ..."
 
 # Substantif (GNOME fr)
-#: ../src/plugins/webreport/NarrativeWeb.py:7362
+#: ../src/plugins/webreport/NarrativeWeb.py:7398
 msgid "Creating source pages"
 msgstr "Création des pages pour la source"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7657
+#: ../src/plugins/webreport/NarrativeWeb.py:7693
 msgid "Store web pages in .tar.gz archive"
 msgstr "Extrait les pages Web en archive .tar.gz"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7659
+#: ../src/plugins/webreport/NarrativeWeb.py:7695
 msgid "Whether to store the web pages in an archive file"
 msgstr "Conserver ou non les pages internet dans un format d'archive"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7664
+#: ../src/plugins/webreport/NarrativeWeb.py:7700
 #: ../src/plugins/webreport/WebCal.py:1309
 msgid "Destination"
 msgstr "Destination"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7666
+#: ../src/plugins/webreport/NarrativeWeb.py:7702
 #: ../src/plugins/webreport/WebCal.py:1311
 msgid "The destination directory for the web files"
 msgstr "Le répertoire de destination pour les fichiers internet"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7672
+#: ../src/plugins/webreport/NarrativeWeb.py:7708
 msgid "Web site title"
 msgstr "Titre du site"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7672
+#: ../src/plugins/webreport/NarrativeWeb.py:7708
 msgid "My Family Tree"
 msgstr "Mon arbre généalogique"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7673
+#: ../src/plugins/webreport/NarrativeWeb.py:7709
 msgid "The title of the web site"
 msgstr "Le titre du site internet"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7678
+#: ../src/plugins/webreport/NarrativeWeb.py:7714
 msgid "Select filter to restrict people that appear on web site"
 msgstr "Sélectionnez un filtre pour restreindre les individus qui apparaîtront dans le site web"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7705
+#: ../src/plugins/webreport/NarrativeWeb.py:7741
 #: ../src/plugins/webreport/WebCal.py:1348
 msgid "File extension"
 msgstr "Extension"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7708
+#: ../src/plugins/webreport/NarrativeWeb.py:7744
 #: ../src/plugins/webreport/WebCal.py:1351
 msgid "The extension to be used for the web files"
 msgstr "L'extension utilisée pour les fichiers internet"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7711
+#: ../src/plugins/webreport/NarrativeWeb.py:7747
 #: ../src/plugins/webreport/WebCal.py:1354
 msgid "Copyright"
 msgstr "Licence"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7714
+#: ../src/plugins/webreport/NarrativeWeb.py:7750
 #: ../src/plugins/webreport/WebCal.py:1357
 msgid "The copyright to be used for the web files"
 msgstr "Le droit d'auteur utilisé pour les fichiers internet"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7717
+#: ../src/plugins/webreport/NarrativeWeb.py:7753
 #: ../src/plugins/webreport/WebCal.py:1363
 msgid "StyleSheet"
 msgstr "Feuille de style"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7722
+#: ../src/plugins/webreport/NarrativeWeb.py:7758
 #: ../src/plugins/webreport/WebCal.py:1366
 msgid "The stylesheet to be used for the web pages"
 msgstr "La feuille de style utilisée pour les pages internet"
 
 # trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:7727
+#: ../src/plugins/webreport/NarrativeWeb.py:7763
 msgid "Horizontal -- Default"
 msgstr "Horizontal -- défaut"
 
 # trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:7728
+#: ../src/plugins/webreport/NarrativeWeb.py:7764
 msgid "Vertical   -- Left Side"
 msgstr "Vertical -- côté gauche"
 
 # trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:7729
+#: ../src/plugins/webreport/NarrativeWeb.py:7765
 msgid "Fade       -- WebKit Browsers Only"
-msgstr ""
+msgstr "Fondu   -- que pour les navigateurs Webkit"
 
 # trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:7730
+#: ../src/plugins/webreport/NarrativeWeb.py:7766
 msgid "Drop-Down  -- WebKit Browsers Only"
-msgstr ""
+msgstr "Abaissé  -- que pour les navigateurs Webkit"
 
 # espace limité
-#: ../src/plugins/webreport/NarrativeWeb.py:7732
+#: ../src/plugins/webreport/NarrativeWeb.py:7768
 msgid "Navigation Menu Layout"
 msgstr "Mise en page"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7735
+#: ../src/plugins/webreport/NarrativeWeb.py:7771
 msgid "Choose which layout for the Navigation Menus."
 msgstr "Choisissez la mise en page pour les menus de navigation."
 
 # en général plusieurs ascendants
-#: ../src/plugins/webreport/NarrativeWeb.py:7740
+#: ../src/plugins/webreport/NarrativeWeb.py:7776
 msgid "Include ancestor's tree"
 msgstr "Inclure un arbre des ascendants"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7741
+#: ../src/plugins/webreport/NarrativeWeb.py:7777
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr "Inclure ou non un arbre des ascendants sur chaque page des individus"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7745
+#: ../src/plugins/webreport/NarrativeWeb.py:7781
 msgid "Graph generations"
 msgstr "Générations"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7746
+#: ../src/plugins/webreport/NarrativeWeb.py:7782
 msgid "The number of generations to include in the ancestor graph"
 msgstr "Le nombre de générations à inclure dans l'arbre des ascendants"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7756
+#: ../src/plugins/webreport/NarrativeWeb.py:7792
 msgid "Page Generation"
 msgstr "Création de page"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7759
+#: ../src/plugins/webreport/NarrativeWeb.py:7795
 msgid "Home page note"
 msgstr "Note de la page d'accueil"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7760
+#: ../src/plugins/webreport/NarrativeWeb.py:7796
 msgid "A note to be used on the home page"
 msgstr "La note utilisée pour la page d'accueil"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7763
+#: ../src/plugins/webreport/NarrativeWeb.py:7799
 msgid "Home page image"
 msgstr "Image de la page d'accueil"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7764
+#: ../src/plugins/webreport/NarrativeWeb.py:7800
 msgid "An image to be used on the home page"
 msgstr "L'image utilisée en page d'accueil"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7767
+#: ../src/plugins/webreport/NarrativeWeb.py:7803
 msgid "Introduction note"
 msgstr "Note d'introduction"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7768
+#: ../src/plugins/webreport/NarrativeWeb.py:7804
 msgid "A note to be used as the introduction"
 msgstr "La note utilisée en introduction"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7771
+#: ../src/plugins/webreport/NarrativeWeb.py:7807
 msgid "Introduction image"
 msgstr "Image d'introduction"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7772
+#: ../src/plugins/webreport/NarrativeWeb.py:7808
 msgid "An image to be used as the introduction"
 msgstr "L'image utilisée en introduction"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7775
+#: ../src/plugins/webreport/NarrativeWeb.py:7811
 msgid "Publisher contact note"
 msgstr "Note de la page contact"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7776
+#: ../src/plugins/webreport/NarrativeWeb.py:7812
 msgid ""
 "A note to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -23978,11 +24054,11 @@ msgstr ""
 "Si aucune information sur l'auteur n'est donnée,\n"
 "alors aucune page contact ne sera créée."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7782
+#: ../src/plugins/webreport/NarrativeWeb.py:7818
 msgid "Publisher contact image"
 msgstr "Image de la page contact"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7783
+#: ../src/plugins/webreport/NarrativeWeb.py:7819
 msgid ""
 "An image to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -23993,66 +24069,68 @@ msgstr ""
 "alors aucune page contact ne sera créée."
 
 # espace limité dans la fenêtre, bug #3596
-#: ../src/plugins/webreport/NarrativeWeb.py:7789
+#: ../src/plugins/webreport/NarrativeWeb.py:7825
 msgid "HTML user header"
 msgstr "En-tête HTML"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7790
+#: ../src/plugins/webreport/NarrativeWeb.py:7826
 msgid "A note to be used as the page header"
 msgstr "La note utilisée pour l'en-tête de la page"
 
 # espace limité dans la fenêtre, bug #3596
-#: ../src/plugins/webreport/NarrativeWeb.py:7793
+#: ../src/plugins/webreport/NarrativeWeb.py:7829
 msgid "HTML user footer"
 msgstr "Pied de page HTML"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7794
+#: ../src/plugins/webreport/NarrativeWeb.py:7830
 msgid "A note to be used as the page footer"
 msgstr "La note utilisée pour le pied de page"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7797
+#: ../src/plugins/webreport/NarrativeWeb.py:7833
 msgid "Include images and media objects"
 msgstr "Inclure images et objets media"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7798
+#: ../src/plugins/webreport/NarrativeWeb.py:7834
 msgid "Whether to include a gallery of media objects"
 msgstr "Inclure ou non une galerie des objets media"
 
 # trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:7802
+#: ../src/plugins/webreport/NarrativeWeb.py:7838
 msgid "Create and only use thumbnail- sized images"
 msgstr "Créer et utiliser uniquement les aperçus des images"
 
 # trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:7803
-msgid "This options allows you the choice to not create any full- sized images as in the Media Page, and only a thumb- sized images.  This will allow you to have a much smaller total upload size to your web hosting site."
-msgstr ""
+# These options ???
+# context ?
+#: ../src/plugins/webreport/NarrativeWeb.py:7839
+msgid "This option allows you the choice to not create any full- sized images as in the Media Page, and only a thumb- sized images.  This will allow you to have a much smaller total upload size to your web hosting site."
+msgstr "Cette option vous permet de choisir de créer des images en taille réelle dans la page Media, ou uniquement des aperçus de ces images. Ceci vous permettra d'obtenir une archive plus petite à envoyer sur votre site internet hébergé."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7809
+#: ../src/plugins/webreport/NarrativeWeb.py:7845
 msgid "Max width of initial image"
 msgstr "Largeur max de l'image initiale"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7811
+#: ../src/plugins/webreport/NarrativeWeb.py:7847
 msgid "This allows you to set the maximum width of the image shown on the media page. Set to 0 for no limit."
 msgstr "Permet de définir la largeur maximum de l'image affichée dans la page media. Définissez 0 pour ignorer la limitation."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7815
+#: ../src/plugins/webreport/NarrativeWeb.py:7851
 msgid "Max height of initial image"
 msgstr "Hauteur max de l'image initiale"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7817
+#: ../src/plugins/webreport/NarrativeWeb.py:7853
 msgid "This allows you to set the maximum height of the image shown on the media page. Set to 0 for no limit."
 msgstr "Permet de définir la hauteur maximum de l'image affichée dans la page media. Définissez 0 pour ignorer la limitation."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7823
+#: ../src/plugins/webreport/NarrativeWeb.py:7859
 msgid "Suppress Gramps ID"
 msgstr "Supprimer les identifiants Gramps"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7824
+#: ../src/plugins/webreport/NarrativeWeb.py:7860
 msgid "Whether to include the Gramps ID of objects"
 msgstr "Inclure ou non les identifiants Gramps des objets"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7831
+#: ../src/plugins/webreport/NarrativeWeb.py:7867
 #: ../src/glade/editperson.glade.h:23
 #: ../src/glade/editsource.glade.h:7
 #: ../src/glade/editcitation.glade.h:18
@@ -24076,254 +24154,249 @@ msgstr "Inclure ou non les identifiants Gramps des objets"
 msgid "Privacy"
 msgstr "Vie privée"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7834
+#: ../src/plugins/webreport/NarrativeWeb.py:7870
 msgid "Include records marked private"
 msgstr "Inclure les enregistrements privés"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7835
+#: ../src/plugins/webreport/NarrativeWeb.py:7871
 msgid "Whether to include private objects"
 msgstr "Inclure ou non les objets privés"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7838
+#: ../src/plugins/webreport/NarrativeWeb.py:7874
 msgid "Living People"
 msgstr "Individus vivants"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7843
+#: ../src/plugins/webreport/NarrativeWeb.py:7879
 msgid "Include Last Name Only"
 msgstr "N'inclure que le nom"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7845
+#: ../src/plugins/webreport/NarrativeWeb.py:7881
 msgid "Include Full Name Only"
 msgstr "Inclure le nom complet"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/webreport/NarrativeWeb.py:7848
+#: ../src/plugins/webreport/NarrativeWeb.py:7884
 msgid "How to handle living people"
 msgstr "Gestion des individus vivants"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7852
+#: ../src/plugins/webreport/NarrativeWeb.py:7888
 msgid "Years from death to consider living"
 msgstr "Années depuis le décès"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7854
+#: ../src/plugins/webreport/NarrativeWeb.py:7890
 msgid "This allows you to restrict information on people who have not been dead for very long"
 msgstr "Ceci vous permet de restreindre l'information sur les individus décédés il y a peu de temps"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7869
+#: ../src/plugins/webreport/NarrativeWeb.py:7905
 msgid "Include download page"
 msgstr "Inclure une page téléchargement"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7870
+#: ../src/plugins/webreport/NarrativeWeb.py:7906
 msgid "Whether to include a database download option"
 msgstr "Inclure ou non une option pour télécharger une base de données"
 
 # espace limité dans la fenêtre, bug #3596
-#: ../src/plugins/webreport/NarrativeWeb.py:7874
-#: ../src/plugins/webreport/NarrativeWeb.py:7883
+#: ../src/plugins/webreport/NarrativeWeb.py:7910
+#: ../src/plugins/webreport/NarrativeWeb.py:7919
 msgid "Download Filename"
 msgstr "Nom du fichier"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7876
-#: ../src/plugins/webreport/NarrativeWeb.py:7885
+#: ../src/plugins/webreport/NarrativeWeb.py:7912
+#: ../src/plugins/webreport/NarrativeWeb.py:7921
 msgid "File to be used for downloading of database"
 msgstr "Fichier prévu pour être téléchargé"
 
 # espace limité dans la fenêtre, bug #3596
-#: ../src/plugins/webreport/NarrativeWeb.py:7879
-#: ../src/plugins/webreport/NarrativeWeb.py:7888
+#: ../src/plugins/webreport/NarrativeWeb.py:7915
+#: ../src/plugins/webreport/NarrativeWeb.py:7924
 msgid "Description for download"
 msgstr "Description"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7879
+#: ../src/plugins/webreport/NarrativeWeb.py:7915
 msgid "Smith Family Tree"
 msgstr "Arbre de la famille Martin"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7880
-#: ../src/plugins/webreport/NarrativeWeb.py:7889
+#: ../src/plugins/webreport/NarrativeWeb.py:7916
+#: ../src/plugins/webreport/NarrativeWeb.py:7925
 msgid "Give a description for this file."
 msgstr "Donnez une description pour ce fichier."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7888
+#: ../src/plugins/webreport/NarrativeWeb.py:7924
 msgid "Johnson Family Tree"
 msgstr "Arbre de la famille Bernard"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7898
+#: ../src/plugins/webreport/NarrativeWeb.py:7934
 #: ../src/plugins/webreport/WebCal.py:1506
 msgid "Advanced Options"
 msgstr "Options avancées"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7901
+#: ../src/plugins/webreport/NarrativeWeb.py:7937
 #: ../src/plugins/webreport/WebCal.py:1508
 msgid "Character set encoding"
 msgstr "Encodage de caractères"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7904
+#: ../src/plugins/webreport/NarrativeWeb.py:7940
 #: ../src/plugins/webreport/WebCal.py:1511
 msgid "The encoding to be used for the web files"
 msgstr "L'encodage utilisé pour les fichiers internet"
 
 # phrase courte, place limitée
-#: ../src/plugins/webreport/NarrativeWeb.py:7907
+#: ../src/plugins/webreport/NarrativeWeb.py:7943
 msgid "Include link to active person on every page"
 msgstr "Inclure un lien vers la personne active"
 
 # plus de détails dans le tooltip
-#: ../src/plugins/webreport/NarrativeWeb.py:7908
+#: ../src/plugins/webreport/NarrativeWeb.py:7944
 msgid "Include a link to the active person (if they have a webpage)"
 msgstr "Inclure un lien vers la personne active sur chaque page"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7911
+#: ../src/plugins/webreport/NarrativeWeb.py:7947
 msgid "Include a column for birth dates on the index pages"
 msgstr "Inclure une colonne pour les dates de naissance dans les pages index"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7912
+#: ../src/plugins/webreport/NarrativeWeb.py:7948
 msgid "Whether to include a birth column"
 msgstr "Inclure ou non une colonne naissance"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7915
+#: ../src/plugins/webreport/NarrativeWeb.py:7951
 msgid "Include a column for death dates on the index pages"
 msgstr "Inclure une colonne pour les dates de décès dans les pages index"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7916
+#: ../src/plugins/webreport/NarrativeWeb.py:7952
 msgid "Whether to include a death column"
 msgstr "Inclure ou non une colonne décès"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7919
+#: ../src/plugins/webreport/NarrativeWeb.py:7955
 msgid "Include a column for partners on the index pages"
 msgstr "Inclure une colonne pour les conjoints dans les pages index"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7921
+#: ../src/plugins/webreport/NarrativeWeb.py:7957
 msgid "Whether to include a partners column"
 msgstr "Inclure ou non une colonne conjoints"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7924
+#: ../src/plugins/webreport/NarrativeWeb.py:7960
 msgid "Include a column for parents on the index pages"
 msgstr "Inclure une colonne pour les parents dans les pages index"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7926
+#: ../src/plugins/webreport/NarrativeWeb.py:7962
 msgid "Whether to include a parents column"
 msgstr "Inclure ou non une colonne parents"
 
-# trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:7929
-msgid "Include half and/ or step-siblings on the individual pages"
-msgstr "Inclure les demi-frères et demi-sœurs sur la page de l'individu"
-
-# trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:7931
-msgid "Whether to include half and/ or step-siblings with the parents and siblings"
-msgstr "Inclure ou non les demi-frères et demi-sœurs avec les parents, frères et sœurs."
-
-#: ../src/plugins/webreport/NarrativeWeb.py:7935
+#. #        showallsiblings = BooleanOption(_("Include half and/ or "
+#. #                                           "step-siblings on the individual pages"), False)
+#. #        showallsiblings.set_help(_( "Whether to include half and/ or "
+#. #                                    "step-siblings with the parents and siblings"))
+#. #        addopt('showhalfsiblings', showallsiblings)
+#: ../src/plugins/webreport/NarrativeWeb.py:7971
 msgid "Sort all children in birth order"
 msgstr "Trier les enfants selon la date de naissance"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7936
+#: ../src/plugins/webreport/NarrativeWeb.py:7972
 msgid "Whether to display children in birth order or in entry order?"
 msgstr "Affiche les enfants selon leurs dates de naissance ou selon l'ordre actuel ?"
 
 # trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:7939
+#: ../src/plugins/webreport/NarrativeWeb.py:7975
 msgid "Include family pages"
 msgstr "Inclure les pages de la famille"
 
 # trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:7940
+#: ../src/plugins/webreport/NarrativeWeb.py:7976
 msgid "Whether or not to include family pages."
 msgstr "Inclure ou non des pages de la famille."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7943
+#: ../src/plugins/webreport/NarrativeWeb.py:7979
 msgid "Include event pages"
 msgstr "Inclure les pages événement"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7944
+#: ../src/plugins/webreport/NarrativeWeb.py:7980
 msgid "Add a complete events list and relevant pages or not"
 msgstr "Ajouter ou non une liste complète des événements et pages liées"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7947
+#: ../src/plugins/webreport/NarrativeWeb.py:7983
 msgid "Include repository pages"
 msgstr "Inclure les pages dépôt"
 
 # trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:7948
+#: ../src/plugins/webreport/NarrativeWeb.py:7984
 msgid "Whether or not to include the Repository Pages."
 msgstr "Inclure ou non des pages dépôt."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7951
+#: ../src/plugins/webreport/NarrativeWeb.py:7987
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr "Inclure un fichier GENDEX (gendex.txt)"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7952
+#: ../src/plugins/webreport/NarrativeWeb.py:7988
 msgid "Whether to include a GENDEX file or not"
 msgstr "Inclure ou non un fichier GENDEX"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7955
+#: ../src/plugins/webreport/NarrativeWeb.py:7991
 msgid "Include address book pages"
 msgstr "Inclure les pages adresses"
 
 # trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:7956
+#: ../src/plugins/webreport/NarrativeWeb.py:7992
 msgid "Whether or not to add Address Book pages,which can include e-mail and website addresses and personal address/ residence events."
 msgstr "Ajouter ou non les adresses qui peuvent être des adresses de messagerie, des adresses de site internet, des adresses individuelles et des événements résidence."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7966
+#: ../src/plugins/webreport/NarrativeWeb.py:8002
 msgid "Place Map Options"
 msgstr "Options Carte du lieu"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7970
+#: ../src/plugins/webreport/NarrativeWeb.py:8006
 msgid "Google"
 msgstr "Google"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7972
+#: ../src/plugins/webreport/NarrativeWeb.py:8008
 msgid "Map Service"
 msgstr "Service cartographique"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7975
+#: ../src/plugins/webreport/NarrativeWeb.py:8011
 msgid "Choose your choice of map service for creating the Place Map Pages."
 msgstr "Choisissez votre service cartographique pour la création des pages Carte du lieu."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7980
+#: ../src/plugins/webreport/NarrativeWeb.py:8016
 msgid "Include Place map on Place Pages"
 msgstr "Inclure une carte dans les pages du lieu"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7981
+#: ../src/plugins/webreport/NarrativeWeb.py:8017
 msgid "Whether to include a place map on the Place Pages, where Latitude/ Longitude are available."
 msgstr "Inclure ou non une carte du lieu sur la page des lieux, quand Latitude/ Longitude est disponible."
 
 # traduction qui tient compte du résultat généré ...
-#: ../src/plugins/webreport/NarrativeWeb.py:7986
+#: ../src/plugins/webreport/NarrativeWeb.py:8022
 msgid "Include Family Map Pages with all places shown on the map"
 msgstr "Inclure des liens vers une carte avec tous les lieux familiaux"
 
 # traduction qui tient compte du résultat généré ...
-#: ../src/plugins/webreport/NarrativeWeb.py:7988
+#: ../src/plugins/webreport/NarrativeWeb.py:8024
 msgid "Whether or not to add an individual page map showing all the places on this page. This will allow you to see how your family traveled around the country."
 msgstr "Ajouter ou non une carte avec tous les lieux familiaux et un lien sur la page de l'individu. Ceci vous permettera de voir votre famille à travers ses lieux."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7996
+#: ../src/plugins/webreport/NarrativeWeb.py:8032
 msgid "Family Links"
 msgstr "Liens familiaux"
 
 # trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:7997
+#: ../src/plugins/webreport/NarrativeWeb.py:8033
 msgid "Drop"
 msgstr "Déposer"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7998
+#: ../src/plugins/webreport/NarrativeWeb.py:8034
 msgid "Markers"
 msgstr "Marqueurs"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7999
+#: ../src/plugins/webreport/NarrativeWeb.py:8035
 msgid "Google/ FamilyMap Option"
 msgstr "Google/ Option Carte familiale"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8002
+#: ../src/plugins/webreport/NarrativeWeb.py:8038
 msgid "Select which option that you would like to have for the Google Maps Family Map pages..."
 msgstr "Sélectionnez l'option que vous souhaitez utiliser pour la carte familiale Google Maps..."
 
 # trunk
 #. adding title to hyperlink menu for screen readers and braille writers
-#: ../src/plugins/webreport/NarrativeWeb.py:8316
+#: ../src/plugins/webreport/NarrativeWeb.py:8352
 #, python-format
 msgid "Alphabet Menu: %s"
 msgstr "Menu alphabétique : %s"
@@ -29182,7 +29255,7 @@ msgstr "Version :"
 
 #: ../src/plugins/tool/leak.glade.h:1
 msgid "<b>Uncollected Objects</b>"
-msgstr "<b>Objets non collectés</b>"
+msgstr "<b>Objets non-collectés</b>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/plugins/tool/finddupes.glade.h:1
@@ -29512,7 +29585,7 @@ msgstr "<b>Signets</b><br/>Le menu Signets conserve les noms des objets utilisé
 # Substantif (GNOME fr)
 #: ../src/data/tips.xml.in.h:6
 msgid "<b>Calculating Relationships</b><br/>To check if two people in the database are related (by blood, not marriage) try the tool under &quot;Tools &gt; Utilities &gt; Relationship Calculator...&quot;. The exact relationship as well as all common ancestors are reported."
-msgstr "<b>Calcul des relations</b><br/> L'outil, sous &quot;Outils &gt; Utilitaires &gt; Calcul Relationnel&quot; vous permet de vérifier si personne d'autre dans la famille ne vous est relié (par le sang, non marié). Les relations précises tout comme les ascendants communs sont rapportés."
+msgstr "<b>Calcul des relations</b><br/> L'outil, sous &quot;Outils &gt; Utilitaires &gt; Calcul Relationnel&quot; vous permet de vérifier si personne d'autre dans la famille ne vous est relié (par le sang, non-marié). Les relations précises tout comme les ascendants communs sont rapportés."
 
 #: ../src/data/tips.xml.in.h:7
 msgid "<b>Changing the Active Person</b><br/>Changing the Active Person in views is easy. In the Relationship view just click on anyone. In the Ancestry View doubleclick on the person or right click to select any of their spouses, siblings, children or parents."
@@ -29587,7 +29660,7 @@ msgstr "<b>Amélioration de Gramps</b><br/>Vous êtes encouragé(e) à proposer 
 
 #: ../src/data/tips.xml.in.h:24
 msgid "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an invalid format. Incorrect date formats will show up in Gramps with a reddish background. You can fix the date using the Date Selection dialog which can be opened by clicking on the date button. The format of the date is set under &quot;Edit &gt; Preferences &gt; Display&quot;."
-msgstr "<b>Dates incorrectes</b><br/>Tout le monde entre occasionnellement des dates non valides. Dans ce cas, la couleur d'arrière-plan du champ de saisie devient rouge et un bouton rouge marqué d'une croix s'affiche à droite. Le sélecteur de dates peut être appelé en cliquant sur le bouton Date. Le format de la date est défini dans &quot;Édition &gt; Préférences &gt; Affichage&quot;."
+msgstr "<b>Dates incorrectes</b><br/>Tout le monde entre occasionnellement des dates non-valides. Dans ce cas, la couleur d'arrière-plan du champ de saisie devient rouge et un bouton rouge marqué d'une croix s'affiche à droite. Le sélecteur de dates peut être appelé en cliquant sur le bouton Date. Le format de la date est défini dans &quot;Édition &gt; Préférences &gt; Affichage&quot;."
 
 #: ../src/data/tips.xml.in.h:25
 msgid "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the 'invert' option. For instance, by inverting the 'People with children' filter you can select all people without children."
@@ -29748,6 +29821,18 @@ msgstr "<b>Qui est né quand</b><br/>La comparaison des événements individuels
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr "<b>Travail sur les dates</b><br/>Une période peut être définie en utilisant le format &quot;entre 4/01/2000 et 20/03/2003&quot;. Vous pouvez également indiquer le niveau de confiance dans la date et toujours choisir entre 7 calendriers différents. Essayez le bouton à côté du champ date dans l'éditeur d'événements."
 
+# trunk
+#~ msgid "Half Siblings"
+#~ msgstr "Demi-Frères et demi-sœurs"
+# trunk
+#~ msgid "Step Siblings"
+#~ msgstr " Demi-frères et demi-sœurs"
+# trunk
+#~ msgid "Include half and/ or step-siblings on the individual pages"
+#~ msgstr "Inclure les demi-frères et demi-sœurs sur la page de l'individu"
+# trunk
+#~ msgid "Whether to include half and/ or step-siblings with the parents and siblings"
+#~ msgstr "Inclure ou non les demi-frères et demi-sœurs avec les parents, frères et sœurs."
 # trunk
 #~ msgid "Media |Gallery"
 #~ msgstr "Galerie"
