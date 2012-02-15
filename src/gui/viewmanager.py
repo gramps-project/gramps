@@ -6,6 +6,7 @@
 # Copyright (C) 2009       Benny Malengier
 # Copyright (C) 2010       Nick Hall
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2012       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1874,10 +1875,18 @@ def run_plugin(pdata, dbstate, uistate):
         #import of plugin failed
         ErrorDialog(
             _('Failed Loading Plugin'),
-            _('The plugin did not load. See Help Menu, Plugin Manager'
-              ' for more info.\nUse http://bugs.gramps-project.org to'
-              ' submit bugs of official plugins, contact the plugin '
-              'author otherwise. '))
+            _('The plugin %(name)s did not load and reported an error.\n\n'
+              '%(error_msg)s\n\n'
+              'If you are unable to fix the fault yourself then you can '
+              'submit a bug at http://bugs.gramps-project.org or contact '
+              'the plugin author (%(firstauthoremail)s).\n\n'
+              'If you do not want Gramps to try and load this plugin again, '
+              'you can hide it by using the Plugin Manager on the '
+              'Help menu.') % {
+                'name': pdata.name,
+                'firstauthoremail': pdata.authors_email[0] if
+                        pdata.authors_email else '...',
+                'error_msg': pmgr.get_fail_list()[-1][1][1]})
         return
 
     if pdata.ptype == REPORT:
@@ -1915,13 +1924,18 @@ def get_available_views():
             #import of plugin failed
             ErrorDialog(
                 _('Failed Loading View'),
-                _('The view %(name)s did not load. See Help Menu, Plugin Manager'
-                  ' for more info.\nUse http://bugs.gramps-project.org to'
-                  ' submit bugs of official views, contact the view '
-                  'author (%(firstauthoremail)s) otherwise. ') % {
+                _('The view %(name)s did not load and reported an error.\n\n'
+                  '%(error_msg)s\n\n'
+                  'If you are unable to fix the fault yourself then you can '
+                  'submit a bug at http://bugs.gramps-project.org or contact '
+                  'the view author (%(firstauthoremail)s).\n\n'
+                  'If you do not want Gramps to try and load this view again, '
+                  'you can hide it by using the Plugin Manager on the '
+                  'Help menu.') % {
                     'name': pdata.name,
                     'firstauthoremail': pdata.authors_email[0] if
-                            pdata.authors_email else '...'})
+                            pdata.authors_email else '...',
+                    'error_msg': pmgr.get_fail_list()[-1][1][1]})
             continue
         viewclass = getattr(mod, pdata.viewclass)
 
