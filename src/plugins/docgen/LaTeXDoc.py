@@ -171,7 +171,7 @@ _LATEX_TEMPLATE = '''%
   \\setlength{\\grtextsize}{0em}%
   \\setlength{\\grmaxtextsize}{0em}%
   \\setlength{\\grcurcolend}{0em}%
-  \\setcounter{grxwdcolcnt}{0}%4
+  \\setcounter{grxwdcolcnt}{0}%
   \\setcounter{grtofixcnt}{0}%  number of wide cols%
   \\grinitlength{\\grcolbega}{0em}% beg of first col
 }%
@@ -198,7 +198,7 @@ _LATEX_TEMPLATE = '''%
 %    if 0 < #1 <= 10: \\grxwd = ~\\grtempwd / grtofixcnt
 %    otherwise: \\grxwd =  \\grprorated
  \\ifthenelse{\\value{grtofixcnt} > 0}%
-  {\\ifthenelse{\\value{grtofixcnt}=1}
+  {\\ifthenelse{\\value{grtofixcnt}=1}%
                     {\\setlength{\\grxwd}{\\grtempwd}}{%
     \\ifthenelse{\\value{grtofixcnt}=2}
                     {\\setlength{\\grxwd}{0.5\\grtempwd}}{%
@@ -320,17 +320,15 @@ _LATEX_TEMPLATE = '''%
 %
 \\newcommand{\\grcolpart}[3]{%
   #1 { \\parbox[t]{ #2 - 2\\tabcolsep}%
-  {\\tabrowstrutceil #3\\\\[-1.6ex]\\tabrowstrutfloor}}%
+  {\\tabrowstrutceil #3~\\\\[-1.6ex]\\tabrowstrutfloor}}%
 }%
 %
 \\newcommand{\\grminpghead}[2]{%
-% \\settowidth{\\grminpgindent}{#1}%
-% \\addtolength{\\grminpgindent}{\\grbaseindent-\\grlistbacksp}%
   \\setlength{\\grminpgindent}{#1\\grbaseindent-\\grlistbacksp}%
   \\hspace*{\\grminpgindent}%
-  \\ifthenelse{\\not \\lengthtest{#2em > 0em}}
-    { \\begin{minipage}[t]{\\textwidth -\\grminpgindent}}%
-    { \\begin{minipage}[t]{\\textwidth -\\grminpgindent%
+  \\ifthenelse{\\not \\lengthtest{#2em > 0em}}%
+    {\\begin{minipage}[t]{\\textwidth -\\grminpgindent}}%
+    {\\begin{minipage}[t]{\\textwidth -\\grminpgindent%
         -#2\\grbaseindent -4\\tabcolsep}}%
 }%
 %
@@ -388,7 +386,7 @@ _LATEX_TEMPLATE = '''%
                     }}}%
   \\setlength{\\grtempwd}{#3\\grbaseindent + \\grxwd}%
   \\rule[-\\grtempwd]{0pt}{\\grtempwd}%
-  \\setlength{\\grtabprepos}{-\\grtempwd}
+  \\setlength{\\grtabprepos}{-\\grtempwd}%
 }%
 %
 %
@@ -460,6 +458,7 @@ def get_numform(col_char):
 MULTCOL_COUNT_BASE = 'aaa'
 # MULTCOL_COUNT_BASE = 'aaaa'
 #------------------------------------------
+
 def str_incr(str_counter):
     """ for counting table rows """
     lili = list(str_counter)
@@ -1216,7 +1215,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
             self.pict_in_table = True
 
         self.emit(''.join(('\\grmkpicture{', outfile, '}{', repr(x), '}{',
-            repr(y), '}{', pictname, '}\n')))
+            repr(y), '}{', pictname, '}%\n')))
         self.pict_width = x
         self.pict_height = y
 
