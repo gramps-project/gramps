@@ -770,8 +770,7 @@ class BasePage(object):
         lnk = (self.report.cur_fname, self.page_title, self.gid)
         text = ""
         for citation_handle in citation_handle_list:
-            citation = self.report.database.get_citation_from_handle(
-                                                citation_handle)
+            citation = self.report.database.get_citation_from_handle(citation_handle)
             if citation:
             
                 # Add the source information to src_list for use when displaying the
@@ -4437,8 +4436,10 @@ class SourceListPage(BasePage):
 #
 """
 class SourcePage(BasePage):
-    def __init__(self, report, title, src_handle, src_list, ppl_handle_list, database_handles_list):
+    def __init__(self, report, title, src_handle, src_list, ppl_handle_list,
+                                        database_handles_list):
         self.dbase_ = report.database
+
         source = self.dbase_.get_source_from_handle(src_handle)
         if not source:
             return
@@ -4524,34 +4525,6 @@ class SourcePage(BasePage):
             if the_lists:
                 (citation_list, citation_referents_list) = the_lists
                 if citation_referents_list:
-
-                    # if the menu layout if DropDown, then add these items to the web page?
-                    if self.navigation == "DropDown":
-
-                        # add Animated Drop Down Citations Style Sheet
-                        fname = "/".join(["css", "narrative-citations.css"])
-                        url = self.report.build_url_fname(fname, None, self.up)
-                        head += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet")
-
-                        # add javascript code to handle if the user's browser is IE6?
-                        fname = "/".join(["scripts", "jquery-1.7..min.js"])
-                        url = self.report.build_url_fname(fname, None, self.up)
-                        head += Html("script", src = url, type = "text/javascript", language = "javascript", inline = True)
-
-                        with Html("script", type = "text/javascript", language = "javascript") as jsc:
-                            head += jsc
-
-                            jsc += """
-        $(function() {
-          if ($.browser.msie && $.browser.version.substr(0,1)<7)
-          {
-			$('li').has('ul').mouseover(function(){
-				$(this).children('ul').show();
-				}).mouseout(function(){
-				$(this).children('ul').hide();
-				})
-          }
-        });"""
 
                     # begin Source Citation Referents section
                     with Html("div", class_ ="subsection", id = "SourceCitationReferents") as section:
@@ -7008,9 +6981,6 @@ class NavWebReport(Report):
         # initialize place_lat_long variable for use in Family Map Pages
         place_lat_long = []
 
-        # copy all of the neccessary files
-        self.copy_narrated_files()
-
         place_list = {}
         source_list = {}
 
@@ -7065,6 +7035,9 @@ class NavWebReport(Report):
         # build classes SourceListPage and SourcePage
         # has been moved so that all Sources can be found before processing...
         self.source_pages(source_list, ind_list, database_handles_list)
+
+        # copy all of the neccessary files
+        self.copy_narrated_files()
 
         # if an archive is being used, close it?
         if self.archive:
@@ -7132,15 +7105,6 @@ class NavWebReport(Report):
             elif self.navigation == "DropDown":
                 fname = CSS["DropDown-Menus"]["filename"]
             self.copy_file(fname, "narrative-menus.css", "css")
-
-            if self.navigation == "DropDown":
-                # copy SourcePage Animated Drop Down Citations Style Sheet
-                fname = CSS["DropDown-Citations"]["filename"]
-                self.copy_file(fname, "narrative-citations.css", "css")
-
-                # copy jquery javascript file for use in the Drop Down Citations section...
-                fname = CSS["DropDown-Citations"]["javascript"]
-                self.copy_file(fname, "jquery-1.7.min.js", "scripts")
 
         # copy narrative-maps Style Sheet if Place or Family Map pages are being created?
         if (self.placemappages or self.familymappages):
