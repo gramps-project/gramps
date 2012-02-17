@@ -549,6 +549,7 @@ class IndivCompleteReport(Report):
         
         media_list = self.person.get_media_list()
         name = self._name_display.display(self.person)
+        # feature request 2356: avoid genitive form
         title = _("Summary of %s") % name
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.start_paragraph("IDS-Title")

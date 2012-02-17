@@ -53,6 +53,7 @@ def run(database, document, person):
 
     # display the results
 
+    # feature request 2356: avoid genitive form
     sdoc.title(_("Sorted events of %s") % sdb.name(person))
     sdoc.paragraph("")
 

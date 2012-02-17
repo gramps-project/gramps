@@ -67,6 +67,7 @@ class DescendantGramplet(Gramplet):
         if self.center_person is None:
             return
         name = name_displayer.display(self.center_person)
+        # feature request 2356: avoid genitive form
         title = _("Descendants of %s") % name
         self.append_text(title)
         self.append_text("\n\n")

@@ -123,7 +123,9 @@ class EventNames(tool.BatchTool, ManagedWindow.ManagedWindow):
 #
 #-------------------------------------------------------------------------
 
+# feature requests 2356, 1658: avoid genitive form
 EVENT_FAMILY_STR = _("%(event_name)s of %(family)s")
+# feature requests 2356, 1658: avoid genitive form
 EVENT_PERSON_STR = _("%(event_name)s of %(person)s")
 
 def person_event_name(event, person):

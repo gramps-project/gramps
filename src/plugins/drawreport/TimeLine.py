@@ -242,7 +242,9 @@ class TimeLine(Report):
         Draws the title for the page.
         """
         width = self.doc.get_usable_width()
+        # feature request 2356: avoid genitive form
         byline = _("Sorted by %s") % self.sort_name
+        # feature request 2356: avoid genitive form
         title = _("Timeline Graph for %s") % self.filter.get_name()
         self.doc.center_text('TLG-title', title + "\n" + byline, width / 2.0, 0)
         

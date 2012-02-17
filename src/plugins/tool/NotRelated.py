@@ -173,6 +173,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
 
         # populate the treeview model with the names of unrelated people
         if self.numberOfUnrelatedPeople == 0:
+            # feature request 2356: avoid genitive form
             title.set_text(_('Everyone in the database is related to %s') % self.name)
         else:
             self.populateModel()

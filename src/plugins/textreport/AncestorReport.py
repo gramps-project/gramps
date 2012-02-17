@@ -187,6 +187,7 @@ class AncestorReport(Report):
         # identified as a major category if this is included in a Book report.
 
         name = self._name_display.display_formal(self.center_person)
+        # feature request 2356: avoid genitive form
         title = self._("Ahnentafel Report for %s") % name
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)        
         self.doc.start_paragraph("AHN-Title")

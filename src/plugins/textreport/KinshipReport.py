@@ -113,6 +113,7 @@ class KinshipReport(Report):
         pname = self._name_display.display(self.person)
         
         self.doc.start_paragraph("KIN-Title")
+        # feature request 2356: avoid genitive form
         title = _("Kinship Report for %s") % pname
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)

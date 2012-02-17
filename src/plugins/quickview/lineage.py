@@ -48,6 +48,7 @@ def run_father(database, document, person):
 
     # display the results
 
+    # feature request 2356: avoid genitive form
     sd.title(_("Father lineage for %s") % sa.name(person))
     sd.paragraph("")
     sd.paragraph(_(""
@@ -78,6 +79,7 @@ def run_mother(database, document, person):
 
     # display the results
 
+    # feature request 2356: avoid genitive form
     sd.title(_("Mother lineage for %s") % sa.name(person))
     sd.paragraph("")
     sd.paragraph(_(""

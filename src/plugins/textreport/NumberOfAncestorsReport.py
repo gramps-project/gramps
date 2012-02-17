@@ -100,6 +100,7 @@ class NumberOfAncestorsReport(Report):
         
         self.doc.start_paragraph("NOA-Title")
         name = self._name_display.display(self.__person)
+        # feature request 2356: avoid genitive form
         title = _("Number of Ancestors for %s") % name
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)
