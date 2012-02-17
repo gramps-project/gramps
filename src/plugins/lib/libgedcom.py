@@ -124,6 +124,7 @@ from DateHandler._DateParser import DateParser
 from gen.db.dbconst import EVENT_KEY
 from QuestionDialog import WarningDialog, InfoDialog
 from gen.lib.const import IDENTICAL, DIFFERENT
+from gen.lib import (StyledText, StyledTextTag, StyledTextTagType)
 
 #-------------------------------------------------------------------------
 #
@@ -2820,7 +2821,11 @@ class GedcomParser(UpdateCallback):
             return
         message = _("Records not imported into ") + record_name + ":\n\n" + \
                     state.msg
-        new_note = gen.lib.Note(message)
+        new_note = gen.lib.Note()
+        tag = StyledTextTag(StyledTextTagType.FONTFACE, 'Monospace', 
+                            [(0, len(message))])
+        text = StyledText(message, [tag])
+        new_note.set_styledtext(text)
         new_note.set_handle(Utils.create_id())
         note_type = gen.lib.NoteType()
         note_type.set((gen.lib.NoteType.CUSTOM, _("GEDCOM import")))
