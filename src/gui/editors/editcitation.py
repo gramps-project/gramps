@@ -440,13 +440,13 @@ class EditCitation(EditPrimary):
             # Now commit the Citation Primary object
             if not self.obj.get_handle():
                 self.db.add_citation(self.obj, trans)
-                msg += _(" " + "Add Citation (%s)") % self.obj.get_page()
+                msg += "\n" + _("Add Citation (%s)") % self.obj.get_page()
             else:
                 if not self.obj.get_gramps_id():
                     self.obj.set_gramps_id(
                                     self.db.find_next_citation_gramps_id())
                 self.db.commit_citation(self.obj, trans)
-                msg += _("\n" + "Edit Citation (%s)") % self.obj.get_page()
+                msg += "\n" + _("Edit Citation (%s)") % self.obj.get_page()
             trans.set_description(msg)
                         
         if self.callback:
