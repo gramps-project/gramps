@@ -1870,7 +1870,8 @@ def run_plugin(pdata, dbstate, uistate):
       1/ load plugin.
       2/ the report is run
     """
-    mod = GuiPluginManager.get_instance().load_plugin(pdata)
+    pmgr = GuiPluginManager.get_instance()
+    mod = pmgr.load_plugin(pdata)
     if not mod:
         #import of plugin failed
         ErrorDialog(
