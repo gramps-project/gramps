@@ -118,7 +118,7 @@ def image_dpi(source):
         else:
             try:
                 dpi = img.info["dpi"]
-            except AttributeError, KeyError:
+            except (AttributeError, KeyError):
                 dpi = None
 
     return dpi
