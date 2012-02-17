@@ -146,12 +146,14 @@ class EndOfLineReport(Report):
         pname = self._name_display.display(self.center_person)
         
         self.doc.start_paragraph("EOL-Title")
+        # feature request 2356: avoid genitive form
         title = _("End of Line Report for %s") % pname
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
         
         self.doc.start_paragraph("EOL-Subtitle")
+        # feature request 2356: avoid genitive form
         title = _("All the ancestors of %s who are missing a parent") % pname
         self.doc.write_text(title)
         self.doc.end_paragraph()

@@ -363,6 +363,7 @@ class DescendantReport(Report):
     def write_report(self):
         self.doc.start_paragraph("DR-Title")
         name = self._name_display.display(self.center_person)
+        # feature request 2356: avoid genitive form
         title = _("Descendants of %s") % name
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)

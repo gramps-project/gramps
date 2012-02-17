@@ -268,14 +268,17 @@ def get_person_filters(person, include_single=True):
     all.add_rule(Rules.Person.Everyone([]))
 
     des = GenericFilter()
+    # feature request 2356: avoid genitive form
     des.set_name(_("Descendants of %s") % name)
     des.add_rule(Rules.Person.IsDescendantOf([gramps_id, 1]))
 
     df = GenericFilter()
+    # feature request 2356: avoid genitive form
     df.set_name(_("Descendant Families of %s") % name)
     df.add_rule(Rules.Person.IsDescendantFamilyOf([gramps_id, 1]))
 
     ans = GenericFilter()
+    # feature request 2356: avoid genitive form
     ans.set_name(_("Ancestors of %s") % name)
     ans.add_rule(Rules.Person.IsAncestorOf([gramps_id, 1]))
 

@@ -193,6 +193,7 @@ class DetAncestorReport(Report):
 
         name = self._name_display.display_name(self.center_person.get_primary_name())
         self.doc.start_paragraph("DAR-Title")
+        # feature request 2356: avoid genitive form
         title = self._("Ancestral Report for %s") % name
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)
@@ -313,6 +314,7 @@ class DetAncestorReport(Report):
         notelist = person.get_note_list()
         if len(notelist) > 0 and self.includenotes:
             self.doc.start_paragraph("DAR-NoteHeader")
+            # feature request 2356: avoid genitive form
             self.doc.write_text(self._("Notes for %s") % name)
             self.doc.end_paragraph()
             for notehandle in notelist:

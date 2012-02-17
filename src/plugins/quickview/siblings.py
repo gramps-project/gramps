@@ -42,6 +42,7 @@ def run(database, document, person):
     rel_class = Relationship.get_relationship_calculator()
 
     # display the title
+    # feature request 2356: avoid genitive form
     sdoc.title(_("Siblings of %s") % sdb.name(person))
     sdoc.paragraph("")
     stab.columns(_("Sibling"), _("Gender"), _("Birth Date"), _("Type"))

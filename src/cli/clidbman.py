@@ -462,6 +462,7 @@ def find_locker_name(dirpath):
         # Otherwise problems with non ASCII characters in
         # username in Windows
         username = unicode(username, sys.getfilesystemencoding())
+        # feature request 2356: avoid genitive form
         last = _("Locked by %s") % username
         ifile.close()
     except (OSError, IOError):

@@ -81,6 +81,7 @@ class TagReport(Report):
        
     def write_report(self):
         self.doc.start_paragraph("TR-Title")
+        # feature request 2356: avoid genitive form
         title = _("Tag Report for %s Items") % self.tag
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)

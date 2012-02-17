@@ -136,6 +136,7 @@ class CalendarWriter(object):
                 if event.get_type() == EventType.MARRIAGE:
                     m_date = event.get_date_object()
                     place_handle = event.get_place_handle()
+                    # feature requests 2356, 1657: avoid genitive form
                     text = _("Marriage of %s") % Utils.family_name(family, 
                                                                    self.db)
                     if place_handle:
@@ -155,10 +156,12 @@ class CalendarWriter(object):
                     place_handle = birth.get_place_handle()
                     if place_handle:
                         place = self.db.get_place_from_handle(place_handle)
+                        # feature requests 2356, 1657: avoid genitive form
                         self.write_vevent(_("Birth of %s") % 
                             person.get_primary_name().get_name(), 
                             b_date, place.get_title())
                     else:
+                        # feature requests 2356, 1657: avoid genitive form
                         self.write_vevent(_("Birth of %s") %
                             person.get_primary_name().get_name(), 
                             b_date)
@@ -171,11 +174,13 @@ class CalendarWriter(object):
                     place_handle = death.get_place_handle()
                     if place_handle:
                         place = self.db.get_place_from_handle(place_handle)
+                        # feature requests 2356, 1657: avoid genitive form
                         self.write_vevent(_("Death of %s") % 
                             person.get_primary_name().get_name(), 
                             d_date, 
                             place.get_title())
                     else:
+                        # feature requests 2356, 1657: avoid genitive form
                         self.write_vevent(_("Death of %s") % 
                             person.get_primary_name().get_name(), 
                             d_date)

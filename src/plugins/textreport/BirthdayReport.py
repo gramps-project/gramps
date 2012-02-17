@@ -169,6 +169,7 @@ class CalendarReport(Report):
         if self.relationships:
             name = self.center_person.get_primary_name()
             self.doc.start_paragraph('BIR-Text3style')
+            # feature request 2356: avoid genitive form
             self.doc.write_text(_("Relationships shown are to %s") %
                                 self._name_display.display_name(name))
             self.doc.end_paragraph()

@@ -147,6 +147,7 @@ class TitleA(TitleBox):
         if center is not None:
             name = name_displayer.display(center)
         
+        # feature request 2356: avoid genitive form
         self.text = _("Ancestor Graph for %s") % name
         self.set_box_height_width()
 

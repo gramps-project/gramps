@@ -2948,6 +2948,7 @@ class SurnamePage(BasePage):
             # section title
             surnamedetail += Html("h3", html_escape(surname), inline = True)
 
+            # feature request 2356: avoid genitive form
             msg = _("This page contains an index of all the individuals in the "
                     "database with the surname of %s. Selecting the person&#8217;s name "
                     "will take you to that person&#8217;s individual page.") % surname
