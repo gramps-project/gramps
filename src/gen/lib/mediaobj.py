@@ -33,6 +33,7 @@ Media object for GRAMPS.
 #
 #-------------------------------------------------------------------------
 import os
+from urlparse import urlparse
 import logging
 LOG = logging.getLogger(".citation")
 
@@ -228,7 +229,14 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
     
     def set_path(self, path):
         """Set the file path to the passed path."""
-        self.path = os.path.normpath(path)
+        res = urlparse(path)
+        if res.scheme == '' or res.scheme == 'file':
+            self.path = os.path.normpath(path)
+        else:
+            # The principal case this path caters for is where the scheme is
+            # 'http' or 'https'. It would be possible to do some more extensive
+            # checking or processing, but for now we just store the reference
+            self.path = path
 
     def get_path(self):
         """Return the file path."""

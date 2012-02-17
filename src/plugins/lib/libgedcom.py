@@ -97,6 +97,7 @@ from gen.ggettext import gettext as _
 from xml.parsers.expat import ParserCreate
 from collections import defaultdict
 import cStringIO
+from urlparse import urlparse
 
 #------------------------------------------------------------------------
 #
@@ -2033,7 +2034,9 @@ class GedcomParser(UpdateCallback):
             TOKEN_QUAY  : self.__ignore, 
             # Not legal, but inserted by FamilyTreeBuilder
             TOKEN_RIN    : self.__event_rin,
-            TOKEN_ATTR   : self.__event_attr, # _UID
+            TOKEN_ATTR   : self.__event_attr,   # FTB for _UID
+            TOKEN_EMAIL  : self.__event_email,  # FTB for RESI events
+            TOKEN_WWW    : self.__event_www,    # FTB for RESI events
             }
 
         self.adopt_parse_tbl = {
@@ -3197,6 +3200,10 @@ class GedcomParser(UpdateCallback):
             state.person.add_media_reference(ref)
         else:
             (form, filename, title, note) = self.__obje(state.level+1, state)
+            if filename == "":
+                self.__add_msg(_("Filename omitted"), line, state)
+            if form == "":
+                self.__add_msg(_("Form omitted"), line, state)
             self.build_media_object(state.person, form, filename, title, note)
 
     def __person_name(self, line, state):
@@ -4402,6 +4409,10 @@ class GedcomParser(UpdateCallback):
             self.__not_recognized(line, state.level, state)
         else:
             (form, filename, title, note) = self.__obje(state.level + 1, state)
+            if filename == "":
+                self.__add_msg(_("Filename omitted"), line, state)
+            if form == "":
+                self.__add_msg(_("Form omitted"), line, state)
             self.build_media_object(state.family, form, filename, title, note)
 
     def __family_comm(self, line, state):
@@ -4601,6 +4612,10 @@ class GedcomParser(UpdateCallback):
             self.__not_recognized(line, state.level, state)
         else:
             (form, filename, title, note) = self.__obje(state.level + 1, state)
+            if filename == "":
+                self.__add_msg(_("Filename omitted"), line, state)
+            if form == "":
+                self.__add_msg(_("Form omitted"), line, state)
             self.build_media_object(state.event, form, filename, title, note)
 
     def __event_type(self, line, state):
@@ -4728,6 +4743,10 @@ class GedcomParser(UpdateCallback):
         else:
             # FIXME this should probably be level+1
             (form, filename, title, note) = self.__obje(state.level, state)
+            if filename == "":
+                self.__add_msg(_("Filename omitted"), line, state)
+            if form == "":
+                self.__add_msg(_("Form omitted"), line, state)
             self.build_media_object(state.place, form, filename, title, note)
 
     def __event_place_sour(self, line, state):
@@ -4914,6 +4933,30 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         state.event.add_attribute(line.data)
+
+    def __event_email(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        attr = gen.lib.Attribute()
+        attr.set_type(line.token_text)
+        attr.set_value(line.data)
+        state.event.add_attribute(attr)
+
+    def __event_www(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        attr = gen.lib.Attribute()
+        attr.set_type(line.token_text)
+        attr.set_value(line.data)
+        state.event.add_attribute(attr)
 
     def __event_cause(self, line, state):
         """
@@ -5325,6 +5368,10 @@ class GedcomParser(UpdateCallback):
             self.__not_recognized(line, state.level, state)
         else:
             (form, filename, title, note) = self.__obje(state.level+1, state)
+            if filename == "":
+                self.__add_msg(_("Filename omitted"), line, state)
+            if form == "":
+                self.__add_msg(_("Form omitted"), line, state)
             self.build_media_object(state.citation, form, filename, title, note)
 
     def __citation_refn(self, line, state): 
@@ -5458,6 +5505,10 @@ class GedcomParser(UpdateCallback):
             self.__not_recognized(line, state.level, state)
         else:
             (form, filename, title, note) = self.__obje(state.level+1, state)
+            if filename == "":
+                self.__add_msg(_("Filename omitted"), line, state)
+            if form == "":
+                self.__add_msg(_("Form omitted"), line, state)
             self.build_media_object(state.source, form, filename, title, note)
 
     def __source_chan(self, line, state):
@@ -5663,12 +5714,17 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        (file_ok, filename) = self.__find_file(line.data, self.dir_path)
-        if state.media != "URL":
-            if not file_ok:
-                self.__add_msg(_("Could not import %s") % filename[0], line,
-                               state)
-        path = filename[0].replace('\\', os.path.sep)
+        res = urlparse(line.data)
+        if line.data != '' and (res.scheme == '' or res.scheme == 'file'):
+            (file_ok, filename) = self.__find_file(line.data, self.dir_path)
+            if state.media != "URL":
+                if not file_ok:
+                    self.__add_msg(_("Could not import %s") % filename[0], line,
+                                   state)
+            path = filename[0].replace('\\', os.path.sep)
+        else:
+            path = line.data
+            
         state.media.set_path(path)
         state.media.set_mime_type(gen.mime.get_type(path))
         if not state.media.get_description():
@@ -5758,6 +5814,8 @@ class GedcomParser(UpdateCallback):
                 else:
                     name = line.data
             state.attr.set_type(name)
+        else:
+            self.__ignore(line, state)
 
     def __person_attr_source(self, line, state):
         """
@@ -5778,7 +5836,9 @@ class GedcomParser(UpdateCallback):
         val = line.data
         if state.attr.get_value() == "":
             state.attr.set_value(val)
-        self.__skip_subordinate_levels(state.level+1, state)
+            self.__skip_subordinate_levels(state.level+1, state)
+        else:
+            self.__ignore(line, state)
 
     def __person_attr_note(self, line, state):
         """
@@ -6433,8 +6493,14 @@ class GedcomParser(UpdateCallback):
                 new_note = gen.lib.Note(line.data)
                 new_note.set_gramps_id(self.nid_map[""])
                 new_note.set_handle(Utils.create_id())
-                self.dbase.commit_note(new_note, self.trans)
-                self.__skip_subordinate_levels(level+1, state)
+
+                sub_state = CurrentState(level=state.level+1)
+                sub_state.note = new_note
+                self.__parse_level(sub_state, self.note_parse_tbl, 
+                                   self.__undefined)
+                state.msg += sub_state.msg
+
+                self.dbase.commit_note(new_note, self.trans, new_note.change)
                 obj.add_note(new_note.get_handle())
 
     #----------------------------------------------------------------------
@@ -6643,13 +6709,14 @@ class GedcomParser(UpdateCallback):
         else:
             # to allow import of references to URLs (especially for import from
             # geni.com), do not try to find the files if they are blatently URLs
-            if filename[0:7] == "http://" or filename[0:8] == "https://":
-                path = filename
-            else:
+            res = urlparse(filename)
+            if filename != '' and (res.scheme == '' or res.scheme == 'file'):
                 (valid, path) = self.__find_file(filename, self.dir_path)
                 if not valid:
                     self.__add_msg(_("Could not import %s") % filename)
                     path = filename.replace('\\', os.path.sep)
+            else:
+                path = filename
             photo_handle = self.media_map.get(path)
             if photo_handle is None:
                 photo = gen.lib.MediaObject()
