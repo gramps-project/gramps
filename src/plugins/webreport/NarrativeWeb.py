@@ -785,13 +785,9 @@ class BasePage(object):
                 # Add the citation information to the bibliography, and construct
                 # the citation reference text
                 index, key = self.bibli.add_reference(citation)
-                id_ = "%d%s" % (index+1, key)
+                id_ = "%d%s" % (index+1,key)
 
-                source = self.dbase_.get_source_from_handle(source_handle)
-                if source:
-
-                    hyper = self.source_link(source, uplink = self.up)
-                    text += ' [<a href = %s>%s</a>]' % (hyper, id_)
+                text += ' <a href="#sref%s">%s</a>' % (id_, id_)
         return text
 
     def get_note_format(self, note, link_prefix_up):
@@ -1222,24 +1218,21 @@ class BasePage(object):
                     tbody += trow
         return section
 
-    def source_link(self, source, cindex = None, uplink = False):
+    def source_link(self, source_handle, source_title, gid = None, cindex = None, uplink = False):
         """
         creates a link to the source object
 
-        @param: source -- source object from database
+        @param: source_handle -- source handle from database
+        @param: source_title from the source object
+        @param: gid -- source gramps id from the source object
         @param: cindex - count index
         @param: up - rather to add back directories or not?
         """
 
-        url = self.report.build_url_fname_html(source.get_handle(), "src", uplink)
-        gid = source.get_gramps_id()
-        title = html_escape(source.get_title())
-
-        # begin hyperlink
-        hyper = Html("a", title, 
-                     href =url, 
-                     title =_("Source Reference: %s") % title, 
-                     inline =True)
+        url = self.report.build_url_fname_html(source_handle, "src", uplink)
+        hyper = Html("a", source_title, 
+                     href = url, 
+                     title = source_title)
 
         # if not None, add name reference to hyperlink element
         if cindex:
@@ -1248,8 +1241,6 @@ class BasePage(object):
         # add GRAMPS ID
         if not self.noid and gid:
             hyper += Html("span", ' [%s]' % gid, class_ = "grampsid", inline = True)
-
-        # return hyperlink to its callers
         return hyper
 
     def display_addr_list(self, addrlist, showsrc):
@@ -2284,7 +2275,8 @@ class BasePage(object):
                 # Add this source and its references to the page
                 source = self.dbase_.get_source_from_handle(shandle)
                 if source is not None:
-                    list = Html("li", self.source_link(source, cindex, uplink = True))
+                    list = Html("li", self.source_link(source.get_handle(), source.get_title(),
+                        source.get_gramps_id(), cindex, uplink = self.up))
                 else:
                     list = Html("li", "None")
 
@@ -4412,14 +4404,15 @@ class SourceListPage(BasePage):
                 table += tbody
 
                 for index, key in enumerate(keys):
-                    source, handle = source_dict[key]
+                    source, source_handle = source_dict[key]
 
                     trow = Html("tr") + (
-                        Html("td", index + 1, class_ ="ColumnRowLabel", inline =True)
+                        Html("td", index + 1, class_ ="ColumnRowLabel", inline = True)
                     )
                     tbody += trow
                     trow.extend(
-                        Html("td", self.source_link(source, None), class_ ="ColumnName")
+                        Html("td", self.source_link(source_handle, source.get_title(),
+                            source.get_gramps_id()), class_ ="ColumnName")
                     )
 
         # add clearline for proper styling
@@ -4739,14 +4732,17 @@ class SourcePage(BasePage):
                                         source = self.dbase_.get_source_from_handle(source_handle)
                                         if source:
                                             unordered3.extend(
-                                                Html("li", self.source_link(source, uplink = self.up), inline = True)
+                                                Html("li", self.source_link(source_handle,
+                                                source.get_title(), source.get_gramps_id(),
+                                                        uplink = self.up), inline = True)
                                             )
 
                                     list2 += unordered3
                                     unordered2 += list2
 
                                 # remove repositories if they are not in this report database...
-                                repo_list = [repo_handle for repo_handle in repo_list if repo_handle in db_repository_handles]
+                                repo_list = [repo_handle for repo_handle in repo_list
+                                                if repo_handle in db_repository_handles]
 
                                 # Citation Referents have Repository Objects...
                                 if (inc_repositories and repo_list):
@@ -6646,7 +6642,8 @@ class RepositoryPage(BasePage):
                             source_nbr += 1
 
                             if source_handle in source_list:
-                                source_name = self.source_link(source, uplink = True)
+                                source_name = self.source_link(source_handle, source.get_title(),
+                                    source.get_gramps_id(), uplink = self.up)
                             else:
                                 source_name = source.get_title()
 
