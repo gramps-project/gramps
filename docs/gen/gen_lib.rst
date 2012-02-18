@@ -31,6 +31,14 @@ AttributeBase
    :members:
    :undoc-members:
    :show-inheritance:
+
+CitationBase
+====================================
+.. automodule:: gen.lib.citationbase
+.. autoclass:: CitationBase
+   :members:
+   :undoc-members:
+   :show-inheritance:
    
 DateBase
 ====================================
@@ -92,14 +100,6 @@ RefBase
 ====================================
 .. automodule:: gen.lib.refbase
 .. autoclass:: RefBase
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-SourceBase
-====================================
-.. automodule:: gen.lib.srcbase
-.. autoclass:: SourceBase
    :members:
    :undoc-members:
    :show-inheritance:
@@ -183,6 +183,14 @@ Source
 ====================================
 .. automodule:: gen.lib.src
 .. autoclass:: Source
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Citation
+====================================
+.. automodule:: gen.lib.citation
+.. autoclass:: Citation
    :members:
    :undoc-members:
    :show-inheritance:
@@ -323,14 +331,6 @@ RepoRef
    :undoc-members:
    :show-inheritance:
    
-SourceRef
-====================================
-.. automodule:: gen.lib.srcref
-.. autoclass:: SourceRef
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 *****************************
 Table object
 *****************************
@@ -510,6 +510,19 @@ StyledTextTagType
 UrlType
 ========
 .. automodule:: gen.lib.urltype
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+*****************************
+Privacy
+*****************************
+
+PrivateSourceNote
+============
+
+.. automodule:: gen.lib.privsrcnote
+.. autoclass:: PrivateSourceNote
    :members:
    :undoc-members:
    :show-inheritance:
