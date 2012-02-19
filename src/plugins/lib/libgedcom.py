@@ -6736,8 +6736,13 @@ class GedcomParser(UpdateCallback):
                     tstruct = time.strptime(dstr, "%d %m %Y")
                 val = time.mktime(tstruct)
                 obj.change = val
-            except ValueError:
-                # parse of time structure failed, so ignore
+            except (ValueError, OverflowError):
+                # parse of time structure failed, so ignore. According to the
+                # Python manual: "The functions in this [time] module do not
+                # handle dates and times before the epoch or far in the future.
+                # The cut-off point in the future is determined by the C
+                # library; for Unix, it is typically in 2038." If the time is
+                # too far in the future, this gives OverflowError.
                 pass
         
     def build_media_object(self, obj, form, filename, title, note):
