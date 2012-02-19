@@ -54,6 +54,7 @@ import GrampsDisplay
 import DateHandler
 import ManagedWindow
 from gen.ggettext import sgettext as _
+from gen.ggettext import ngettext
 from glade import Glade
 from gen.db import DbTxn
 from gen.lib import (Person, Family, Event, Place, MediaObject, Citation, 
@@ -222,7 +223,8 @@ class MergeCitations(tool.BatchTool,ManagedWindow.ManagedWindow):
         self.progress.close()
         OkDialog(
             _("Number of merges done"),
-            _("%d citations merges") % num_merges)
+            ngettext("%(num)d citation merges",
+            "%(num)d citations merges", num_merges) % {'num': num_merges})
         self.close(obj)
             
     def Merge (self, db, citation1, citation2, trans):
