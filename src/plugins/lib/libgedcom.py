@@ -2755,17 +2755,6 @@ class GedcomParser(UpdateCallback):
         else:
             return (0, tries)
 
-    def __level_is_finished(self, text, level):
-        """
-        Check to see if the level has been completed, indicated by finding
-        a level indiciated by the passed level value. If the level is finished, 
-        then make sure to call self._backup to reset the text pointer.
-        """
-        done = text.level < level
-        if done:
-            self._backup()
-        return done
-
     def __get_next_line(self):
         """
         Get the next line for analysis from the lexical analyzer. Return the
@@ -2790,6 +2779,27 @@ class GedcomParser(UpdateCallback):
         self.backoff = False
         return self.groups
             
+    def __undefined(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        self.__not_recognized(line, state.level+1, state)
+
+    def __ignore(self, line, state):
+        """
+        Ignores an unsupported tag
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        self.__add_msg(_("Tag recognised but not supported"), line, state)
+        self.__skip_subordinate_levels(state.level+1, state)
+
     def __not_recognized(self, line, level, state):
         """
         Prints a message when an undefined token is found. All subordinate items
@@ -2800,6 +2810,42 @@ class GedcomParser(UpdateCallback):
         """
         self.__add_msg(_("Line ignored as not understood"), line, state)
         self.__skip_subordinate_levels(level, state)
+
+    def __skip_record(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        self.__skip_subordinate_levels(2, state)
+
+    def __skip_subordinate_levels(self, level, state):
+        """
+        Skip add lines of the specified level or lower.
+        """
+        skips = 0
+        while True:
+            line = self.__get_next_line()
+            if self.__level_is_finished(line, level):
+                if skips:
+                    # This improves formatting when there are long sequences of
+                    # skipped lines
+                    self.__add_msg("", None, None)
+                return
+            self.__add_msg(_("Skipped subordinate line"), line, state)
+            skips += 1
+    
+    def __level_is_finished(self, text, level):
+        """
+        Check to see if the level has been completed, indicated by finding
+        a level indiciated by the passed level value. If the level is finished, 
+        then make sure to call self._backup to reset the text pointer.
+        """
+        done = text.level < level
+        if done:
+            self._backup()
+        return done
 
     def __add_msg(self, problem, line=None, state=None):
         if problem != "":
@@ -3011,15 +3057,6 @@ class GedcomParser(UpdateCallback):
                 func = __map.get(line.token, default)
                 func(line, state)
 
-    def __undefined(self, line, state):
-        """
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        self.__not_recognized(line, state.level+1, state)
-
     #----------------------------------------------------------------------
     #
     # INDI parsing
@@ -3119,15 +3156,6 @@ class GedcomParser(UpdateCallback):
                                                    self.event_parse_tbl, 
                                                    line.data)
         state.family.add_event_ref(event_ref)
-
-    def __skip_record(self, line, state):
-        """
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        self.__skip_subordinate_levels(2, state)
 
     def __person_chan(self, line, state):
         """
@@ -3735,18 +3763,6 @@ class GedcomParser(UpdateCallback):
         """
         citation_handle = self.handle_source(line, state.level, state)
         state.name.add_citation(citation_handle)
-
-    def __ignore(self, line, state):
-        """
-        Ignores an unsupported tag
-
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        self.__add_msg(_("Tag recognised but not supported"), line, state)
-        self.__skip_subordinate_levels(state.level+1, state)
 
     def __person_std_attr(self, line, state):
         """
@@ -6648,22 +6664,6 @@ class GedcomParser(UpdateCallback):
             if self.use_def_src and msg != "":
                 self.def_src.set_data_item(msg, line.data)
             
-    def __skip_subordinate_levels(self, level, state):
-        """
-        Skip add lines of the specified level or lower.
-        """
-        skips = 0
-        while True:
-            line = self.__get_next_line()
-            if self.__level_is_finished(line, level):
-                if skips:
-                    # This improves formatting when there are long sequences of
-                    # skipped lines
-                    self.__add_msg("", None, None)
-                return
-            self.__add_msg(_("Skipped subordinate line"), line, state)
-            skips += 1
-    
     def handle_source(self, line, level, state):
         """
         Handle the specified source, building a source reference to
