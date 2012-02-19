@@ -3153,6 +3153,26 @@ class GedcomParser(UpdateCallback):
 
     def __person_alt_name(self, line, state):
         """
+        The ALIA tag is supposed to cross reference another person. We will
+        store this in the Association record.
+        
+        ALIA {ALIAS}: = An indicator to link different record descriptions of a
+        person who may be the same person.
+
+        Some systems use the ALIA tag as an alternate NAME tag, which
+        is not legal in GEDCOM, but oddly enough, is easy to support.
+        """
+        if line.data[0] == '@':
+            handle = self.__find_person_handle(self.pid_map[line.data])
+            ref = gen.lib.PersonRef()
+            ref.ref = handle
+            ref.rel = "Alias"
+            state.person.add_person_ref(ref)
+        else:
+            self.__parse_alias_name(line, state)
+        
+    def __parse_alias_name(self, line, state):
+        """
         Parse a altername name, usually indicated by a AKA or _AKA
         tag. This is not valid GEDCOM, but several programs will add
         this just to make life interesting. Odd, since GEDCOM supports
@@ -3172,7 +3192,7 @@ class GedcomParser(UpdateCallback):
         sub_state = CurrentState()
         sub_state.person = state.person
         sub_state.name = name
-        sub_state.level = 2
+        sub_state.level = state.level+1
 
         self.__parse_level(sub_state, self.name_parse_tbl, self.__undefined)
         state.msg += sub_state.msg
@@ -3559,15 +3579,29 @@ class GedcomParser(UpdateCallback):
 
     def __name_alia(self, line, state):
         """
-        The ALIA tag is supposed to cross reference another person.
-        However, we do not support this.
+        This handles the ALIA (or _ALIA or ALIAS) tag as a subsidiary of the
+        NAME tag. For example:
+        
+        0 @PERSON1@ INDI
+          1 NAME John /Doe/
+            2 GIVN John
+            2 SURN Doe
+            2 ALIA Richard /Roe/
+              2 NPFX Dr.
+              2 GIVN Richard
+              2 NICK Rich
+              2 SPFX Le
+              
+        Note that the subsidiary name structure detail will overwrite the ALIA
+        name (if the same elements are provided in both), so the names should
+        match.
 
-        Some systems use the ALIA tag as an alternate NAME tag, which
-        is not legal in GEDCOM, but oddly enough, is easy to support.
+        There does not appear to be any evidence that this usage exists, but as
+        it was supported (though probably incorrectly coded as it would only
+        work if the name started with'@'), in previous versions of Gramps, we
+        had better support it here.
         """
-        if line.data[0] == '@':
-            aka = self.__parse_name_personal(line.data)
-            state.person.add_alternate_name(aka)
+        self.__parse_alias_name(line, state)
 
     def __name_npfx(self, line, state):
         """
