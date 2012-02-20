@@ -5,6 +5,15 @@ The :mod:`gui` Module
 .. automodule:: gui
 
 *****************************
+Gramps
+*****************************
+.. automodule:: gui.grampsgui
+.. autoclass:: Gramps
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+*****************************
 About Dialog
 *****************************
 .. automodule:: gui.aboutdialog
@@ -145,5 +154,71 @@ Filter Editor
    :show-inheritance:
 
 *****************************
-Todo
+Gramps Bar
 *****************************
+.. automodule:: gui.grampsbar
+.. autoclass::  DetachedWindow
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. autoclass::  GrampsBar
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. autoclass::  TabGramplet
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+*****************************
+Navigator
+*****************************
+.. automodule:: gui.navigator
+.. autoclass::  Navigator
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+*****************************
+Plugins Manager
+*****************************
+.. automodule:: gui.pluginmanager
+.. autoclass::  GuiPluginManager
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+*****************************
+User
+*****************************
+.. automodule:: gui.user
+.. autoclass:: User
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+*****************************
+Utils
+*****************************
+.. automodule:: gui.utils
+.. autoclass::  CLIDialog
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. autoclass::  CLIVbox
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. autoclass::  ProgressMeter
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+*****************************
+Views Manager
+*****************************
+.. automodule:: gui.viewmanager
+.. autoclass:: ViewManager
+   :members:
+   :undoc-members:
+   :show-inheritance:

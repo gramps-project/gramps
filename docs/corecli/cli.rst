@@ -43,3 +43,12 @@ Gramps CLI
    :members:
    :undoc-members:
    :show-inheritance:
+
+*****************************
+User
+*****************************
+.. automodule:: cli.user
+.. autoclass:: User
+   :members:
+   :undoc-members:
+   :show-inheritance:
