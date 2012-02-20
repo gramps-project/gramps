@@ -15,6 +15,7 @@ Contents:
    :maxdepth: 2
 
    gen/gen_lib
+   gen/gen
    gen/gen_db
    gen/gen_display
    gen/gen_plug

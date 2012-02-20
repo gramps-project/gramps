@@ -127,6 +127,10 @@ DocGen
 
 Menu
 ====================================
+.. automodule:: gen.plug.menu._menu
+   :members:
+   :undoc-members:
+   :show-inheritance:
 .. automodule:: gen.plug.menu._boolean
    :members:
    :undoc-members:
@@ -202,6 +206,10 @@ Menu
 
 Report
 ====================================
+.. automodule:: gen.plug.report._options
+   :members:
+   :undoc-members:
+   :show-inheritance:
 .. automodule:: gen.plug.report._bibliography
    :members:
    :undoc-members:
