@@ -18,13 +18,6 @@ BaseManager
    :undoc-members:
    :show-inheritance:
 
-Docgen
-====================================
-.. automodule:: gen.plug._docgenplugin
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 Export
 ====================================
 .. automodule:: gen.plug._export
@@ -42,85 +35,6 @@ Gramplet
 Import
 ====================================
 .. automodule:: gen.plug._import
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Options
-====================================
-.. automodule:: gen.plug._options
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Register
-====================================
-.. automodule:: gen.plug._pluginreg
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Utils
-====================================
-.. automodule:: gen.plug.utils
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Docbackend
-====================================
-.. automodule:: gen.plug.docbackend.cairobackend
-   :members:
-   :undoc-members:
-   :show-inheritance:
-.. automodule:: gen.plug.docbackend.docbackend
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-DocGen
-====================================
-.. automodule:: gen.plug.docgen.basedoc
-   :members:
-   :undoc-members:
-   :show-inheritance:
-.. automodule:: gen.plug.docgen.drawdoc
-   :members:
-   :undoc-members:
-   :show-inheritance:
-.. automodule:: gen.plug.docgen.fontscale
-   :members:
-   :undoc-members:
-   :show-inheritance:
-.. automodule:: gen.plug.docgen.fontstyle
-   :members:
-   :undoc-members:
-   :show-inheritance:
-.. automodule:: gen.plug.docgen.graphdoc
-   :members:
-   :undoc-members:
-   :show-inheritance:
-.. automodule:: gen.plug.docgen.graphicstyle
-   :members:
-   :undoc-members:
-   :show-inheritance:
-.. automodule:: gen.plug.docgen.paperstyle
-   :members:
-   :undoc-members:
-   :show-inheritance:
-.. automodule:: gen.plug.docgen.paragraphstyle
-   :members:
-   :undoc-members:
-   :show-inheritance:
-.. automodule:: gen.plug.docgen.stylesheet
-   :members:
-   :undoc-members:
-   :show-inheritance:
-.. automodule:: gen.plug.docgen.tablestyle
-   :members:
-   :undoc-members:
-   :show-inheritance:
-.. automodule:: gen.plug.docgen.textdoc
    :members:
    :undoc-members:
    :show-inheritance:
@@ -204,7 +118,15 @@ Menu
    :undoc-members:
    :show-inheritance:
 
-Report
+*****************************
+Options
+*****************************
+.. automodule:: gen.plug._options
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Reports
 ====================================
 .. automodule:: gen.plug.report._options
    :members:
@@ -231,6 +153,88 @@ Report
    :undoc-members:
    :show-inheritance:
 .. automodule:: gen.plug.report.utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+*****************************
+Docgen
+*****************************
+.. automodule:: gen.plug._docgenplugin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+*****************************
+Generators
+*****************************
+.. automodule:: gen.plug.docgen.basedoc
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.docgen.drawdoc
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.docgen.fontscale
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.docgen.fontstyle
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.docgen.graphdoc
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.docgen.graphicstyle
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.docgen.paperstyle
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.docgen.paragraphstyle
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.docgen.stylesheet
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.docgen.tablestyle
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.docgen.textdoc
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+*****************************
+Doc Backend
+*****************************
+.. automodule:: gen.plug.docbackend.cairobackend
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.docbackend.docbackend
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Register
+====================================
+.. automodule:: gen.plug._pluginreg
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Utils
+====================================
+.. automodule:: gen.plug.utils
    :members:
    :undoc-members:
    :show-inheritance:
