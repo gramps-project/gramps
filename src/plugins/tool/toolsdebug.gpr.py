@@ -97,3 +97,26 @@ optionclass = 'TestcaseGeneratorOptions',
 tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
   )
 
+#------------------------------------------------------------------------
+#
+# Generate Testcases for Sources and citations
+#
+#------------------------------------------------------------------------
+
+register(TOOL, 
+id    = 'populatesources',
+name  = "Populate Sources and Citations",
+description =  ("This tool generates sources and citations ofr each source in "
+                "order to populate the database for testing with significant "
+                "numbers of sources and citations"),
+version = '1.0',
+gramps_target_version = '3.4',
+status = UNSTABLE,
+fname = 'PopulateSources.py',
+authors = ["Tim Lyons"],
+authors_email = [""],
+category = TOOL_DEBUG,
+toolclass = 'PopulateSources',
+optionclass = 'PopulateSourcesOptions',
+tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
+  )
