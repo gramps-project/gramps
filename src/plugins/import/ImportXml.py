@@ -1973,6 +1973,8 @@ class GrampsParser(UpdateCallback):
             self.person.add_media_reference(self.objref)
         elif self.placeobj:
             self.placeobj.add_media_reference(self.objref)
+        elif self.citation:
+            self.citation.add_media_reference(self.objref)
 
     def start_region(self, attrs):
         rect = (int(attrs.get('corner1_x')),
