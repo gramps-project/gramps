@@ -6317,8 +6317,12 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if self.use_def_src:
+            # Because there is a DATE tag, line.data is automatically converted
+            # to a Date object before getting to this point, so it has to be
+            # converted back to a string
+            text_date = str(line.data)
             self.def_src.set_data_item(_("Publication date of source data"), 
-                                       line.data)
+                                       text_date)
         
     def __header_file(self, line, state):
         """
