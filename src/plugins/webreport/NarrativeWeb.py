@@ -7173,6 +7173,7 @@ class NavWebReport(Report):
                     self.write_gendex(gendex_io, person)
                 else:
                     self.write_gendex(fp_gendex, person)
+            self.close_file(fp_gendex, gendex_io)
             self.user.end_progress()
 
     def write_gendex(self, fp, person):
