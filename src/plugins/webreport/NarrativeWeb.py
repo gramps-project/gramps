@@ -2056,7 +2056,7 @@ class BasePage(object):
 # ---------------------------------------------------------------------------------------
 #              # Web Page Fortmatter and writer                   
 # ---------------------------------------------------------------------------------------
-    def XHTMLWriter(self, htmlinstance, of):
+    def XHTMLWriter(self, htmlinstance, of, sio):
         """
         Will format, write, and close the file
 
@@ -2068,7 +2068,7 @@ class BasePage(object):
         htmlinstance.write(partial(print, file=of)) 
 
         # closes the file
-        self.report.close_file(of)
+        self.report.close_file(of, sio)
 
 class IndividualListPage(BasePage):
 
@@ -2082,7 +2082,7 @@ class IndividualListPage(BasePage):
         showpartner = report.options['showpartner']
         showparents = report.options['showparents']
 
-        of = self.report.create_file("individuals")
+        of, sio = self.report.create_file("individuals")
         indlistpage, head, body = self.write_header(_("Individuals"))
 
         # begin Individuals division
@@ -2256,7 +2256,7 @@ class IndividualListPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(indlistpage, of)
+        self.XHTMLWriter(indlistpage, of, sio)
 
 class SurnamePage(BasePage):
     """
@@ -2273,7 +2273,7 @@ class SurnamePage(BasePage):
         showpartner = report.options['showpartner']
         showparents = report.options['showparents']
 
-        of = self.report.create_file(name_to_md5(surname), "srn")
+        of, sio = self.report.create_file(name_to_md5(surname), "srn")
         self.up = True
         surnamepage, head, body = self.write_header("%s - %s" % (_("Surname"), surname))
 
@@ -2416,7 +2416,7 @@ class SurnamePage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(surnamepage, of)  
+        self.XHTMLWriter(surnamepage, of, sio)
 
 class PlaceListPage(BasePage):
 
@@ -2424,7 +2424,7 @@ class PlaceListPage(BasePage):
         BasePage.__init__(self, report, title)
         db = report.database
 
-        of = self.report.create_file("places")
+        of, sio = self.report.create_file("places")
         placelistpage, head, body = self.write_header(_("Places"))
 
         # begin places division
@@ -2519,7 +2519,7 @@ class PlaceListPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(placelistpage, of)
+        self.XHTMLWriter(placelistpage, of, sio)
 
 class PlacePage(BasePage):
     def __init__(self, report, title, place_handle, src_list, place_list):
@@ -2536,7 +2536,7 @@ class PlacePage(BasePage):
 
         BasePage.__init__(self, report, title, place.gramps_id)
 
-        of = self.report.create_file(place_handle, "plc")
+        of, sio = self.report.create_file(place_handle, "plc")
         self.src_list = src_list
         self.up = True
         self.page_title = place.get_title()
@@ -2655,7 +2655,7 @@ class PlacePage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(placepage, of)
+        self.XHTMLWriter(placepage, of, sio)
 
 class EventListPage(BasePage):
     def __init__(self, report, title, event_types, event_handle_list):
@@ -2668,7 +2668,7 @@ class EventListPage(BasePage):
         BasePage.__init__(self, report, title)
         db = report.database
 
-        of = self.report.create_file("events")
+        of, sio = self.report.create_file("events")
         eventslistpage, head, body = self.write_header(_("Events"))
 
         # begin events list  division
@@ -2810,7 +2810,7 @@ class EventListPage(BasePage):
 
         # send page ut for processing
         # and close the file
-        self.XHTMLWriter(eventslistpage, of)
+        self.XHTMLWriter(eventslistpage, of, sio)
 
     def _getEventDate(self, event_handle):
         event_date = gen.lib.Date.EMPTY
@@ -2854,7 +2854,7 @@ class EventPage(BasePage):
         subdirs = True
         self.bibli = Bibliography()
 
-        of = self.report.create_file(event_handle, "evt")
+        of, sio = self.report.create_file(event_handle, "evt")
         eventpage, head, body = self.write_header(_("Events"))
 
         # start event detail division
@@ -2937,7 +2937,7 @@ class EventPage(BasePage):
 
         # send page out for processing
         # and close the page
-        self.XHTMLWriter(eventpage, of)
+        self.XHTMLWriter(eventpage, of, sio)
 
 class MediaPage(BasePage):
 
@@ -2952,7 +2952,7 @@ class MediaPage(BasePage):
         # get media rectangles
         _region_items = self.media_ref_rect_regions(handle)
 
-        of = self.report.create_file(handle, "img")
+        of, sio = self.report.create_file(handle, "img")
         self.up = True
 
         self.src_list = src_list
@@ -3179,7 +3179,7 @@ class MediaPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(mediapage, of)
+        self.XHTMLWriter(mediapage, of, sio)
 
     def media_nav_link(self, handle, name, up = False):
 
@@ -3235,10 +3235,10 @@ class SurnameListPage(BasePage):
         db = report.database
 
         if order_by == self.ORDER_BY_NAME:
-            of = self.report.create_file(filename)
+            of, sio = self.report.create_file(filename)
             surnamelistpage, head, body = self.write_header(_('Surnames'))
         else:
-            of = self.report.create_file("surnames_count")
+            of, sio = self.report.create_file("surnames_count")
             surnamelistpage, head, body = self.write_header(_('Surnames by person count'))
 
         # begin surnames division
@@ -3347,7 +3347,7 @@ class SurnameListPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(surnamelistpage, of)  
+        self.XHTMLWriter(surnamelistpage, of, sio)
 
     def surname_link(self, fname, name, opt_val = None, up = False):
         url = self.report.build_url_fname_html(fname, "srn", up)
@@ -3367,7 +3367,7 @@ class IntroductionPage(BasePage):
         BasePage.__init__(self, report, title)
         db = report.database
 
-        of = self.report.create_file(report.intro_fname)
+        of, sio = self.report.create_file(report.intro_fname)
         intropage, head, body = self.write_header(_('Introduction'))
 
         # begin Introduction division
@@ -3393,7 +3393,7 @@ class IntroductionPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(intropage, of)
+        self.XHTMLWriter(intropage, of, sio)
 
 class HomePage(BasePage):
     """
@@ -3404,7 +3404,7 @@ class HomePage(BasePage):
         BasePage.__init__(self, report, title)
         db = report.database
 
-        of = self.report.create_file("index")
+        of, sio = self.report.create_file("index")
         homepage, head, body = self.write_header(_('Home'))
 
         # begin home division
@@ -3430,7 +3430,7 @@ class HomePage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(homepage, of)  
+        self.XHTMLWriter(homepage, of, sio)
 
 class SourceListPage(BasePage):
 
@@ -3441,7 +3441,7 @@ class SourceListPage(BasePage):
         handle_list = list(handle_set)
         source_dict = {}
 
-        of = self.report.create_file("sources")
+        of, sio = self.report.create_file("sources")
         sourcelistpage, head, body = self.write_header(_("Sources"))
 
         # begin source list division
@@ -3501,7 +3501,7 @@ class SourceListPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(sourcelistpage, of)
+        self.XHTMLWriter(sourcelistpage, of, sio)
 
 class SourcePage(BasePage):
 
@@ -3516,7 +3516,7 @@ class SourcePage(BasePage):
         self.page_title = source.get_title()
         inc_repos = self.report.options["inc_repository"]
 
-        of = self.report.create_file(source.get_handle(), "src")
+        of, sio = self.report.create_file(source.get_handle(), "src")
         self.up = True
         sourcepage, head, body = self.write_header(_('Sources'))
 
@@ -3598,7 +3598,7 @@ class SourcePage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(sourcepage, of)
+        self.XHTMLWriter(sourcepage, of, sio)
 
 class MediaListPage(BasePage):
 
@@ -3606,7 +3606,7 @@ class MediaListPage(BasePage):
         BasePage.__init__(self, report, title)
         db = report.database
 
-        of = self.report.create_file("media")
+        of, sio = self.report.create_file("media")
         medialistpage, head, body = self.write_header(_('Media'))
 
         # begin gallery division
@@ -3677,7 +3677,7 @@ class MediaListPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(medialistpage, of)
+        self.XHTMLWriter(medialistpage, of, sio)
 
     def media_ref_link(self, handle, name, up = False):
 
@@ -3719,7 +3719,7 @@ class DownloadPage(BasePage):
         # if no filenames at all, return???
         if dlfname1 or dlfname2:
 
-            of = self.report.create_file("download")
+            of, sio = self.report.create_file("download")
             downloadpage, head, body = self.write_header(_('Download'))
 
             # begin download page and table
@@ -3812,7 +3812,7 @@ class DownloadPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(downloadpage, of)
+        self.XHTMLWriter(downloadpage, of, sio)
 
 class ContactPage(BasePage):
 
@@ -3820,7 +3820,7 @@ class ContactPage(BasePage):
         BasePage.__init__(self, report, title)
         db = report.database
 
-        of = self.report.create_file("contact")
+        of, sio = self.report.create_file("contact")
         contactpage, head, body = self.write_header(_('Contact'))
 
         # begin contact division
@@ -3879,7 +3879,7 @@ class ContactPage(BasePage):
 
         # send page out for porcessing
         # and close the file
-        self.XHTMLWriter(contactpage, of)
+        self.XHTMLWriter(contactpage, of, sio)
 
 class IndividualPage(BasePage):
     """
@@ -3905,7 +3905,7 @@ class IndividualPage(BasePage):
         global place_lat_long
         place_lat_long = []
 
-        of = self.report.create_file(person.handle, "ppl")
+        of, sio = self.report.create_file(person.handle, "ppl")
         self.up = True
         indivdetpage, head, body = self.write_header(self.sort_name)
         self.familymappages = self.report.options['familymappages']
@@ -3998,7 +3998,15 @@ class IndividualPage(BasePage):
             # create family map link
             if self.familymappages:
                 if len(place_lat_long):
+                    # save of, string_io and cur_fname before creating a new page
+                    sof = of
+                    sstring_io = sio
+                    sfname = self.report.cur_fname
                     individualdetail += self.display_ind_family_map(person)
+                    # restore of, string_io and cur_fname after creating a new page
+                    of = sof
+                    sio = sstring_io
+                    self.report.cur_fname = sfname
 
             # display pedigree
             sect13 = self.display_ind_pedigree()
@@ -4023,7 +4031,7 @@ class IndividualPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(indivdetpage, of)
+        self.XHTMLWriter(indivdetpage, of, sio)
 
     def __create_family_map(self, person):
         """
@@ -4090,7 +4098,7 @@ class IndividualPage(BasePage):
         # sort place_lat_long based on latitude and longitude order...
         place_lat_long.sort()
 
-        of = self.report.create_file(person.handle, "maps")
+        of, sio = self.report.create_file(person.handle, "maps")
         self.up = True
         familymappage, head, body = self.write_header(_("Family Map"))
 
@@ -4326,7 +4334,7 @@ class IndividualPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(familymappage, of)
+        self.XHTMLWriter(familymappage, of, sio)
 
     def display_ind_family_map(self, person):
         """
@@ -5384,7 +5392,7 @@ class RepositoryListPage(BasePage):
         db = report.database
         inc_repos = self.report.options["inc_repository"]
 
-        of = self.report.create_file("repositories")
+        of, sio = self.report.create_file("repositories")
         repolistpage, head, body = self.write_header(_("Repositories"))
 
         # begin RepositoryList division
@@ -5444,7 +5452,7 @@ class RepositoryListPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(repolistpage, of)
+        self.XHTMLWriter(repolistpage, of, sio)
 
 class RepositoryPage(BasePage):
     """
@@ -5455,7 +5463,7 @@ class RepositoryPage(BasePage):
         BasePage.__init__(self, report, title, gid)
         db = report.database
 
-        of = self.report.create_file(handle, 'repo')
+        of, sio = self.report.create_file(handle, 'repo')
         self.up = True
         repositorypage, head, body = self.write_header(_('Repositories'))
 
@@ -5511,7 +5519,7 @@ class RepositoryPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(repositorypage, of)
+        self.XHTMLWriter(repositorypage, of, sio)
 
 class AddressBookListPage(BasePage):
 
@@ -5526,7 +5534,7 @@ class AddressBookListPage(BasePage):
         db = report.database
 
         # Name the file, and create it
-        of = self.report.create_file("addressbook")
+        of, sio = self.report.create_file("addressbook")
 
         # Add xml, doctype, meta and stylesheets
         addressbooklistpage, head, body = self.write_header(_("Address Book"))
@@ -5610,7 +5618,7 @@ class AddressBookListPage(BasePage):
 
         # send the page out for processing
         # and close the file
-        self.XHTMLWriter(addressbooklistpage, of)
+        self.XHTMLWriter(addressbooklistpage, of, sio)
 
 class AddressBookPage(BasePage):
 
@@ -5631,7 +5639,7 @@ class AddressBookPage(BasePage):
         self.up = True
 
         # set the file name and open file
-        of = self.report.create_file(person_handle, "addr")
+        of, sio = self.report.create_file(person_handle, "addr")
         addressbookpage, head, body = self.write_header(_("Address Book"))
 
         # begin address book page division and section title
@@ -5663,7 +5671,7 @@ class AddressBookPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(addressbookpage, of)
+        self.XHTMLWriter(addressbookpage, of, sio)
 
 class NavWebReport(Report):
     
@@ -6000,12 +6008,15 @@ class NavWebReport(Report):
 
         if self.inc_gendex:
             self.progress.set_pass(_('Creating GENDEX file'), len(ind_list))
-            fp_gendex = self.create_file("gendex", ext=".txt")
+            fp_gendex, gendex_io = self.create_file("gendex", ext=".txt")
             for person_handle in ind_list:
                 self.progress.step()
                 person = self.database.get_person_from_handle(person_handle)
-                self.write_gendex(fp_gendex, person)
-            self.close_file(fp_gendex)
+                if self.archive:
+                    self.write_gendex(gendex_io, person)
+                else:
+                    self.write_gendex(fp_gendex, person)
+            self.close_file(fp_gendex, gendex_io)
 
     def write_gendex(self, fp, person):
         """
@@ -6345,10 +6356,11 @@ class NavWebReport(Report):
         else:
             self.cur_fname = fname + ext
         if self.archive:
-            self.string_io = StringIO()
-            of = codecs.EncodedFile(self.string_io, 'utf-8',
+            string_io = StringIO()
+            of = codecs.EncodedFile(string_io, 'utf-8',
                                     self.encoding, 'xmlcharrefreplace')
         else:
+            string_io = None
             if subdir:
                 subdir = os.path.join(self.html_dir, subdir)
                 if not os.path.isdir(subdir):
@@ -6356,27 +6368,25 @@ class NavWebReport(Report):
             fname = os.path.join(self.html_dir, self.cur_fname)
             of = codecs.EncodedFile(open(fname, "w"), 'utf-8',
                                     self.encoding, 'xmlcharrefreplace')
-        return of
+        return (of, string_io)
 
-    def close_file(self, of):
+    def close_file(self, of, string_io):
         """
         will close any file passed to it
         """
 
         if self.archive:
             tarinfo = tarfile.TarInfo(self.cur_fname)
-            tarinfo.size = len(self.string_io.getvalue())
+            tarinfo.size = len(string_io.getvalue())
             tarinfo.mtime = time.time()
             if not constfunc.win():
                 tarinfo.uid = os.getuid()
                 tarinfo.gid = os.getgid()
-            self.string_io.seek(0)
-            self.archive.addfile(tarinfo, self.string_io)
-            self.string_io = None
+            string_io.seek(0)
+            self.archive.addfile(tarinfo, string_io)
             of.close()
         else:
             of.close()
-        self.cur_fname = None
 
     def add_lnkref_to_photo(self, photo, lnkref):
         """
