@@ -62,7 +62,7 @@ msgstr ""
 "Project-Id-Version: gramps 3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-02-17 11:15+0100\n"
-"PO-Revision-Date: 2012-02-16 02:49+0100\n"
+"PO-Revision-Date: 2012-02-22 02:13+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "Language: it\n"
@@ -646,7 +646,6 @@ msgstr ""
 "Gramps sarà chiuso adesso."
 
 #: ../src/gramps.py:354 ../src/gramps.py:361 ../src/gramps.py:432
-#, fuzzy
 msgid "Configuration error:"
 msgstr "Errore nella configurazione:"
 
@@ -2006,44 +2005,41 @@ msgstr "Esecuzione azione: %s."
 #: ../src/cli/arghandler.py:427
 #, python-format
 msgid "Using options string: %s"
-msgstr ""
+msgstr "Uso delle opzioni: %s"
 
 #: ../src/cli/arghandler.py:435
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
-msgstr ""
+msgstr "Esportazione: file %(filename)s, formato %(format)s."
 
 #: ../src/cli/arghandler.py:443
 msgid "Exiting."
-msgstr ""
+msgstr "Uscita."
 
 #: ../src/cli/arghandler.py:447
 msgid "Cleaning up."
-msgstr ""
+msgstr "Pulizia."
 
 #: ../src/cli/arghandler.py:477
 msgid "Created empty family tree successfully"
-msgstr ""
+msgstr "Albero genealogico vuoto creato con successo"
 
 #: ../src/cli/arghandler.py:480 ../src/cli/arghandler.py:507
-#, fuzzy
 msgid "Error opening the file."
-msgstr "Errore apertura file"
+msgstr "Errore nell'apertura del file."
 
 #: ../src/cli/arghandler.py:481 ../src/cli/arghandler.py:508
-#, fuzzy
 msgid "Exiting..."
-msgstr "Selezione..."
+msgstr "Uscita..."
 
 #: ../src/cli/arghandler.py:487
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
-msgstr ""
+msgstr "Importazione: file %(filename)s, formato %(format)s."
 
 #: ../src/cli/arghandler.py:505
-#, fuzzy
 msgid "Opened successfully!"
-msgstr "Operazione completata con successo."
+msgstr "Aperto con successo!"
 
 #: ../src/cli/arghandler.py:519
 msgid "Database is locked, cannot open it!"
@@ -2064,7 +2060,6 @@ msgstr ""
 
 #. name exists, but is not in the list of valid report names
 #: ../src/cli/arghandler.py:603
-#, fuzzy
 msgid "Unknown report name."
 msgstr "Nome resoconto sconosciuto."
 
@@ -2072,6 +2067,7 @@ msgstr "Nome resoconto sconosciuto."
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr ""
+"Nome resoconto non fornito. Usare uno di %(donottranslate)s=nomeresoconto"
 
 #: ../src/cli/arghandler.py:609 ../src/cli/arghandler.py:650
 #, python-format
@@ -2090,6 +2086,7 @@ msgstr "Nome strumento sconosciuto."
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
+"Nome strumento non fornito. Usare uno di %(donottranslate)s=nomestrumento."
 
 #: ../src/cli/arghandler.py:662
 #, python-format
@@ -2098,7 +2095,6 @@ msgstr "Azione sconosciuta: %s."
 
 #. Note: Make sure to edit const.py.in POPT_TABLE too!
 #: ../src/cli/argparser.py:55
-#, fuzzy
 msgid ""
 "\n"
 "Usage: gramps.py [OPTION...]\n"
@@ -2136,6 +2132,8 @@ msgstr ""
 "\n"
 "Opzioni dell'applicazione\n"
 "  -O, --open=ALBERO_GENEALOGICO          Apri albero genealogico\n"
+"  -C, --create=ALBERO_GENEALOGICO        Crea all'apertura se nuovo albero "
+"genealogico\n"
 "  -i, --import=NOMEFILE                  Importa file\n"
 "  -e, --export=NOMEFILE                  Esporta file\n"
 "  -f, --format=FORMATO                   Specifica il formato dell'albero\n"
@@ -2226,7 +2224,7 @@ msgstr ""
 "pagine di manuale."
 
 #: ../src/cli/argparser.py:356
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Error parsing the arguments: %s \n"
 "To use in the command-line mode, supply at least one input file to process."
@@ -2334,14 +2332,12 @@ msgid "Error encountered in argument parsing: %s"
 msgstr "Errore rilevato durante l'analisi degli argomenti: %s"
 
 #: ../src/cli/plug/__init__.py:168
-#, fuzzy
 msgid "ERROR: Please specify a person"
-msgstr "Specifica un nome per il libro"
+msgstr "ERRORE: Specificare una persona"
 
 #: ../src/cli/plug/__init__.py:192
-#, fuzzy
 msgid "ERROR: Please specify a family"
-msgstr "Specifica un nome per il libro"
+msgstr "ERRORE: Specificare una famiglia"
 
 #. FIXME it is wrong to use translatable text in comparison.
 #. How can we distinguish custom size though?
@@ -3528,7 +3524,6 @@ msgid "Child Reference Note"
 msgstr "Nota rifermento figlio"
 
 #: ../src/gen/lib/person.py:450
-#, fuzzy
 msgid "Merged Gramps ID"
 msgstr "Riordina ID Gramps"
 
@@ -4551,9 +4546,8 @@ msgid "Surname guessing"
 msgstr "Stima cognome"
 
 #: ../src/gui/configure.py:913
-#, fuzzy
 msgid "Default family relationship"
-msgstr "È stato corretta una relazione familiare danneggiata\n"
+msgstr "Relazione familiare predefinita"
 
 #: ../src/gui/configure.py:920
 msgid "Height multiple surname box (pixels)"
@@ -5442,20 +5436,20 @@ msgid "Remove a gramplet"
 msgstr "Rimuovi gramplet"
 
 #: ../src/gui/grampsbar.py:441
-#, fuzzy
 msgid "Restore default gramplets"
-msgstr "Ripristina una gramplet"
+msgstr "Ripristina gramplet predefinite"
 
 #: ../src/gui/grampsbar.py:481
-#, fuzzy
 msgid "Restore to defaults?"
-msgstr "Va alla persona predefinita"
+msgstr "Ripristinare ai valori predefiniti?"
 
 #: ../src/gui/grampsbar.py:482
 msgid ""
 "The Grampsbar will be restored to contain its default gramplets.  This "
 "action cannot be undone."
 msgstr ""
+"La barra di Gramps sarà ripristinata in modo che contenga le gramplet "
+"predefinite. Questa operazione non può essere annullata."
 
 #: ../src/gui/grampsbar.py:484 ../src/gui/plug/_windows.py:491
 msgid "OK"
@@ -7435,7 +7429,6 @@ msgstr "Impossibile condividere questo riferimento"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:191
 #: ../src/plugins/view/citationtreeview.py:504
-#, fuzzy
 msgid ""
 "This citation cannot be created at this time. Either the associated Source "
 "object is already being edited, or another citation associated with the same "
@@ -7444,9 +7437,9 @@ msgid ""
 "To edit this citation, you need to close the object."
 msgstr ""
 "Questa citazione non può essere modificata adesso. Qualcuno sta modificando "
-"o la fonte associata o un'altra citazione associata alla stessa fonte.\n"
+"la fonte associata o un'altra citazione associata alla stessa fonte.\n"
 "\n"
-"Per modificare questa citazione è necessario chiudere la l'oggetto."
+"Per modificare questa citazione è necessario chiudere l'oggetto."
 
 #: ../src/gui/editors/displaytabs/dataembedlist.py:49
 msgid "Create and add a new data entry"
@@ -8610,9 +8603,8 @@ msgid "_Forward"
 msgstr "_Avanti"
 
 #: ../src/gui/views/navigationview.py:292
-#, fuzzy
 msgid "Go to the next object in the history"
-msgstr "Va alla pagina seguente nella cronologia"
+msgstr "Va all'oggetto seguente nella cronologia"
 
 #: ../src/gui/views/navigationview.py:299
 #: ../src/plugins/view/htmlrenderer.py:644
@@ -8620,9 +8612,8 @@ msgid "_Back"
 msgstr "_Indietro"
 
 #: ../src/gui/views/navigationview.py:300
-#, fuzzy
 msgid "Go to the previous object in the history"
-msgstr "Va alla pagina precedente nella cronologia"
+msgstr "Va all'oggetto precedente nella cronologia"
 
 #: ../src/gui/views/navigationview.py:304
 msgid "_Home"
@@ -8651,7 +8642,6 @@ msgid "_Sidebar"
 msgstr "_Barra laterale"
 
 #: ../src/gui/views/pageview.py:409
-#, fuzzy
 msgid "_Bottombar"
 msgstr "Barra in _basso"
 
@@ -8789,9 +8779,8 @@ msgstr "<Luoghi>"
 #: ../src/gui/views/treemodels/placemodel.py:153
 #: ../src/gui/views/treemodels/placemodel.py:161
 #: ../src/gui/views/treemodels/placemodel.py:169
-#, fuzzy
 msgid "Error in format"
-msgstr "Resoconto errori"
+msgstr "Errore nel formato"
 
 #: ../src/gui/views/treemodels/placemodel.py:364
 msgid "<no name>"
@@ -8803,9 +8792,8 @@ msgid "Building View"
 msgstr "Costruzione vista"
 
 #: ../src/gui/views/treemodels/treebasemodel.py:554
-#, fuzzy
 msgid "Obtaining all rows"
-msgstr "Estrazione di tutte le persone"
+msgstr "Estrazione di tutte le righe"
 
 #: ../src/gui/views/treemodels/treebasemodel.py:570
 msgid "Applying filter"
@@ -8901,9 +8889,8 @@ msgstr "Informazioni di avanzamento"
 
 #. spell checker submenu
 #: ../src/gui/widgets/styledtexteditor.py:367
-#, fuzzy
 msgid "Spellcheck"
-msgstr "Ortografia"
+msgstr "Controllo ortografico"
 
 #: ../src/gui/widgets/styledtexteditor.py:372
 msgid "Search selection on web"
@@ -9445,7 +9432,7 @@ msgstr "Procedere"
 
 #: ../src/plugins/BookReport.py:705
 msgid "Name of the book. MANDATORY"
-msgstr ""
+msgstr "Nome del libro. RICHIESTO"
 
 #: ../src/plugins/BookReport.py:727 ../src/plugins/BookReport.py:1195
 #: ../src/plugins/BookReport.py:1244 ../src/plugins/bookreport.gpr.py:31
@@ -9539,12 +9526,12 @@ msgstr "Libro Gramps"
 
 #: ../src/plugins/BookReport.py:1302 ../src/plugins/BookReport.py:1313
 msgid "Please specify a book name"
-msgstr "Specifica un nome per il libro"
+msgstr "Specificare un nome per il libro"
 
 #: ../src/plugins/BookReport.py:1309
 #, python-format
 msgid "No such book '%s'"
-msgstr ""
+msgstr "Libro «%s» sconosciuto"
 
 #: ../src/plugins/bookreport.gpr.py:32
 msgid "Produces a book containing several reports."
@@ -9864,13 +9851,12 @@ msgid "Could not open %s"
 msgstr "Impossibile aprire %s"
 
 #: ../src/plugins/docgen/ODFDoc.py:1616
-#, fuzzy
 msgid "Contents"
-msgstr "Indice"
+msgstr "Contenuti"
 
 #: ../src/plugins/docgen/ODFDoc.py:1655
 msgid "Index"
-msgstr ""
+msgstr "Indice"
 
 #. cm2pt = ReportUtils.cm2pt
 #. ------------------------------------------------------------------------
@@ -10210,17 +10196,14 @@ msgid "Where to place the note."
 msgstr "Dove posizionare la nota."
 
 #: ../src/plugins/drawreport/AncestorTree.py:1038
-#, fuzzy
 msgid "No generations of empty boxes for unknown ancestors"
 msgstr "Nessuna generazione di riquadri vuoti per gli ascendenti sconosciuti"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1041
-#, fuzzy
 msgid "One Generation of empty boxes for unknown ancestors"
 msgstr "Una generazione di riquadri vuoti per gli ascendenti sconosciuti"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1045
-#, fuzzy
 msgid " Generations of empty boxes for unknown ancestors"
 msgstr " generazioni di riquadri vuoti per gli ascendenti sconosciuti"
 
@@ -10502,9 +10485,8 @@ msgid "Daily text display"
 msgstr "Visualizzazione testo giornaliero"
 
 #: ../src/plugins/drawreport/Calendar.py:548
-#, fuzzy
 msgid "Holiday text display"
-msgstr "Visualizzazione testo giornaliero"
+msgstr "Visualizzazione testo festività"
 
 #: ../src/plugins/drawreport/Calendar.py:551
 msgid "Days of the week text"
@@ -10617,13 +10599,12 @@ msgstr ""
 "più piccolo"
 
 #: ../src/plugins/drawreport/DescendTree.py:1489
-#, fuzzy
 msgid ""
 "Descendant\n"
 "Display Format"
 msgstr ""
 "Formato di\n"
-"visualizzazione discendenti"
+"visualizzazione discendente"
 
 #: ../src/plugins/drawreport/DescendTree.py:1493
 msgid "Display format for a descendant."
@@ -10650,7 +10631,6 @@ msgid "Indent Spouses"
 msgstr "Rientrare (graficamente) i coniugi"
 
 #: ../src/plugins/drawreport/DescendTree.py:1511
-#, fuzzy
 msgid "Whether to indent the spouses in the tree."
 msgstr "Indica se far rientrare (graficamente) i coniugi nell'albero."
 
@@ -10660,7 +10640,7 @@ msgid ""
 "Display Format"
 msgstr ""
 "Formato di\n"
-"visualizzazione coniugi"
+"visualizzazione coniuge"
 
 #: ../src/plugins/drawreport/DescendTree.py:1518
 msgid "Display format for a spouse."
@@ -10708,14 +10688,12 @@ msgid "The bold style used for the text display."
 msgstr "Lo stile grassetto usato per la visualizzazione del testo."
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:32
-#, fuzzy
 msgid "Ancestor Chart"
-msgstr "Albero ascendenti"
+msgstr "Grafico ascendenza"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:33
-#, fuzzy
 msgid "Produces a graphical ancestral chart"
-msgstr "Produce un grafico ad albero dell'ascendenza"
+msgstr "Produce un grafico dell'ascendenza"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:49
 msgid "Produces a graphical ancestral tree"
@@ -10732,14 +10710,12 @@ msgid "Produces a graphical calendar"
 msgstr "Produce un calendario"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:92
-#, fuzzy
 msgid "Descendant Chart"
-msgstr "Resoconto discendenza"
+msgstr "Grafico discendenza"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:93
-#, fuzzy
 msgid "Produces a graphical descendant chart"
-msgstr "Produce un grafico ad albero della discendenza"
+msgstr "Produce un grafico della discendenza"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:108
 msgid "Descendant Tree"
@@ -10750,14 +10726,12 @@ msgid "Produces a graphical descendant tree"
 msgstr "Produce un grafico ad albero della discendenza"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:130
-#, fuzzy
 msgid "Family Descendant Chart"
-msgstr "Albero discendenza famiglia"
+msgstr "Grafico discendenza famiglia"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:131
-#, fuzzy
 msgid "Produces a graphical descendant chart around a family"
-msgstr "Produce un grafico ad albero della discendenza attorno ad una famiglia"
+msgstr "Produce un grafico della discendenza relativo ad una famiglia"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:147
 msgid "Family Descendant Tree"
@@ -11090,7 +11064,7 @@ msgstr "Seleziona quali sessi vanno inclusi nelle statistiche."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:962
 msgid "Max. items for a pie"
-msgstr "Max.elementi per grafico"
+msgstr "Elementi max. per grafico"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:963
 msgid ""
@@ -11142,7 +11116,6 @@ msgid "Timeline"
 msgstr "Linea temporale"
 
 #: ../src/plugins/drawreport/TimeLine.py:110
-#, fuzzy
 msgid "Applying filter..."
 msgstr "Applicazione dei filtri..."
 
@@ -11167,14 +11140,12 @@ msgid "Timeline Graph for %s"
 msgstr "Grafico temporale per %s"
 
 #: ../src/plugins/drawreport/TimeLine.py:275
-#, fuzzy
 msgid "No Date Information"
-msgstr "Informazioni contestuali"
+msgstr "Nessuna informazione sulle date"
 
 #: ../src/plugins/drawreport/TimeLine.py:301
-#, fuzzy
 msgid "Finding date range..."
-msgstr "Stampa dell'albero..."
+msgstr "Ricerca intervallo di date..."
 
 #: ../src/plugins/drawreport/TimeLine.py:371
 msgid "Determines what people are included in the report"
@@ -11288,7 +11259,6 @@ msgstr ""
 "aggregato ai file multimediali."
 
 #: ../src/plugins/export/export.gpr.py:127
-#, fuzzy
 msgid "Gramps package export options"
 msgstr "Opzioni esportazione pacchetto GRAMPS"
 
@@ -11309,7 +11279,6 @@ msgstr ""
 "Gramps senza gli oggetti multimediali. Adatto per il backup."
 
 #: ../src/plugins/export/export.gpr.py:150
-#, fuzzy
 msgid "Gramps XML export options"
 msgstr "Opzioni esportazione GRAMPS XML"
 
@@ -11519,7 +11488,6 @@ msgid "Enter a date, click Run"
 msgstr "Inserire una data, premere Esegui"
 
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:67
-#, fuzzy
 msgid ""
 "Enter a valid date (like YYYY-MM-DD) in the entry below and click Run. This "
 "will compute the ages for everyone in your Family Tree on that date. You can "
@@ -11612,6 +11580,8 @@ msgid ""
 "Double-click on a row to view a quick report showing all people with the "
 "selected attribute."
 msgstr ""
+"Doppio clic su una riga per visualizzare un resoconto sintetico che mostra "
+"tutte le persone con l'attributo selezionato."
 
 #: ../src/plugins/gramplet/AttributesGramplet.py:49
 #, python-format
@@ -11678,9 +11648,8 @@ msgid "Image Metadata"
 msgstr "Metadati immagine"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:111
-#, fuzzy
 msgid "Person Residence"
-msgstr "Residenza persona"
+msgstr "Residenza di una persona"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:112
 msgid "Gramplet showing residence events for a person"
@@ -11930,23 +11899,20 @@ msgid "Children"
 msgstr "Figli"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:489
-#, fuzzy
 msgid "Family Children"
-msgstr "Gramplet Figli di una famiglia"
+msgstr "Figli di una famiglia"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:490
 msgid "Gramplet showing the children of a family"
 msgstr "Gramplet che mostra i figli di una famiglia"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:503
-#, fuzzy
 msgid "Person Backlinks"
-msgstr "Gramplet Età in data"
+msgstr "Collegamenti inversi persona"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:504
-#, fuzzy
 msgid "Gramplet showing the backlinks for a person"
-msgstr "Gramplet che mostra gli ascendenti della persona attiva"
+msgstr "Gramplet che mostra i collegamenti inversi di una persona"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:511
 #: ../src/plugins/gramplet/bottombar.gpr.py:525
@@ -11964,84 +11930,68 @@ msgid "References"
 msgstr "Riferimenti"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:517
-#, fuzzy
 msgid "Event Backlinks"
-msgstr "Gramplet Cognomi principali"
+msgstr "Collegamenti inversi evento"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:518
-#, fuzzy
 msgid "Gramplet showing the backlinks for an event"
-msgstr "Gramplet che mostra i discendenti della persona attiva"
+msgstr "Gramplet che mostra i collegamenti inversi di un evento"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:531
-#, fuzzy
 msgid "Family Backlinks"
-msgstr "Alberi genealogici - Gramps"
+msgstr "Collegamenti inversi famiglia"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:532
-#, fuzzy
 msgid "Gramplet showing the backlinks for a family"
-msgstr "Gramplet che mostra un riepilogo dei dati dell'albero genealogico"
+msgstr "Gramplet che mostra i collegamenti inversi di una famiglia"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:545
-#, fuzzy
 msgid "Place Backlinks"
-msgstr "Gramplet Statistiche età"
+msgstr "Collegamenti inversi luogo"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:546
-#, fuzzy
 msgid "Gramplet showing the backlinks for a place"
-msgstr "Gramplet che mostra i grafici delle varie età"
+msgstr "Gramplet che mostra i collegamenti inversi di un luogo"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:559
-#, fuzzy
 msgid "Source Backlinks"
-msgstr "Gramplet Galleria delle fonti"
+msgstr "Collegamenti inversi fonti"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:560
-#, fuzzy
 msgid "Gramplet showing the backlinks for a source"
-msgstr "Gramplet che mostra gli ascendenti della persona attiva"
+msgstr "Gramplet che mostra i collegamenti inversi di una fonte"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:573
-#, fuzzy
 msgid "Citation Backlinks"
-msgstr "Gramplet Pedigree"
+msgstr "Collegamenti inversi citazione"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:574
-#, fuzzy
 msgid "Gramplet showing the backlinks for a citation"
-msgstr "Gramplet che mostra gli ascendenti della persona attiva"
+msgstr "Gramplet che mostra i collegamenti inversi di una citazione"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:587
-#, fuzzy
 msgid "Repository Backlinks"
-msgstr "Deposito"
+msgstr "Collegamenti inversi deposito"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:588
-#, fuzzy
 msgid "Gramplet showing the backlinks for a repository"
-msgstr "Gramplet che mostra gli ascendenti della persona attiva"
+msgstr "Gramplet che mostra i collegamenti inversi di un deposito"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:601
-#, fuzzy
 msgid "Media Backlinks"
-msgstr "Gramplet Pedigree"
+msgstr "Collegamenti inversi oggetto multimediale"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:602
-#, fuzzy
 msgid "Gramplet showing the backlinks for a media object"
-msgstr "Gramplet che mostra gli attributi della persona attiva"
+msgstr "Gramplet che mostra i collegamenti inversi di un oggetto multimediale"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:615
-#, fuzzy
 msgid "Note Backlinks"
-msgstr "Gramplet Note"
+msgstr "Collegamentin inversi nota"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:616
-#, fuzzy
 msgid "Gramplet showing the backlinks for a note"
-msgstr "Gramplet che mostra gli ascendenti della persona attiva"
+msgstr "Gramplet che mostra i collegamenti inversi di una nota"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:629
 msgid "Person Filter"
@@ -12271,13 +12221,12 @@ msgid "Select an image to begin..."
 msgstr "Selezionare un'immagine per iniziare..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:418
-#, fuzzy
 msgid ""
 "Image is NOT readable,\n"
 "Please choose a different image..."
 msgstr ""
 "L'immagine NON è leggibile,\n"
-"Scegliere un'immagine differente..."
+"Scegliere un'altra immagine..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:434
 msgid ""
@@ -12290,7 +12239,7 @@ msgstr ""
 #. Convert message
 #: ../src/plugins/gramplet/EditExifMetadata.py:446
 msgid "Please convert this image to an Exiv2- compatible image type..."
-msgstr ""
+msgstr "Converire il tipo dell'immagine in uno compatibile con Exiv2..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:469
 #, python-format
@@ -12298,16 +12247,14 @@ msgid "Image Size : %04d x %04d pixels"
 msgstr "Dimensione immagine : %04d x %04d pixel"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:502
-#, fuzzy
 msgid "Displaying Exif metadata..."
 msgstr "Visualizzazione dei metadati Exif..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:669
 msgid "Click Close to close this Thumbnail View Area."
-msgstr ""
+msgstr "Clic su Chiudi per chiudere questa area di visualizzazione miniature"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:673
-#, fuzzy
 msgid "Thumbnail View Area"
 msgstr "Area visualizzazione miniature"
 
@@ -12323,6 +12270,8 @@ msgid ""
 "WARNING: You are about to convert this image into a .jpeg image.  Are you "
 "sure that you want to do this?"
 msgstr ""
+"ATTENZIONE: l'immagine sta per essere convertita nel formato .jpeg. Si vuole "
+"davvero eseguire questa operazione?"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:754
 msgid "Convert and Delete"
@@ -12346,12 +12295,16 @@ msgid ""
 "There has been an error, Please check your source and destination file "
 "paths..."
 msgstr ""
+"Si è verificato un errore. Verificare il percorso dei file sorgente e "
+"destinazione..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:847
 msgid ""
 "There was an error in deleting the original file.  You will need to delete "
 "it yourself!"
 msgstr ""
+"Si è verificato un errore durante l'eliminazione del file originale. Deve "
+"essere eliminato manualmente!"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:864
 msgid "There was an error in converting your image file."
@@ -12359,12 +12312,10 @@ msgstr "Si è verificato un errore nella conversione del file dell'immagine."
 
 #. begin database tranaction to save media object new path
 #: ../src/plugins/gramplet/EditExifMetadata.py:875
-#, fuzzy
 msgid "Media Path Update"
 msgstr "Aggiornamento percorso oggetto multimediale"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:881
-#, fuzzy
 msgid "There has been an error in updating the image file's path!"
 msgstr ""
 "Si è verificato un errore nell'aggiornamento del percorso del file "
@@ -12375,21 +12326,25 @@ msgid ""
 "Click the close button when you are finished modifying this image's Exif "
 "metadata."
 msgstr ""
+"Fare clic sul pulsante chiudi dopo aver completato le modifiche ai metadati "
+"Exif di questa immagine."
 
 #. Add the Save button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:953
 msgid "Saves a copy of the data fields into the image's Exif metadata."
-msgstr ""
+msgstr "Salva una copia dei campi di dati nei metadati Exif dell'immagine."
 
 #. Re- display the data fields button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:956
 msgid "Re -display the data fields that were cleared from the Edit Area."
 msgstr ""
+"Mostra nuovamente i campi di dati che sono stati cancellati dall'area di "
+"modifica."
 
 #. Add the Clear button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:959
 msgid "This button will clear all of the data fields shown here."
-msgstr ""
+msgstr "Questo pulsante cancellerà tutti i campi di dati mostrati qui."
 
 #. Add the Close button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:962
@@ -12412,9 +12367,8 @@ msgstr "Titolo oggetto multimediale: "
 #. create the data fields...
 #. ***Description, Artist, and Copyright
 #: ../src/plugins/gramplet/EditExifMetadata.py:1013
-#, fuzzy
 msgid "General Data"
-msgstr "Generale"
+msgstr "Dati generali"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1023
 msgid "Description: "
@@ -12438,9 +12392,8 @@ msgid "Original: "
 msgstr "Originale: "
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1053
-#, fuzzy
 msgid "Modified: "
-msgstr "Ultima modifica: "
+msgstr "Modificato: "
 
 #. GPS coordinates...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1070
@@ -12460,29 +12413,29 @@ msgid "Altitude :"
 msgstr "Altitudine :"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1138
-#, fuzzy
 msgid "Bad Date/Time"
 msgstr "Data/ora non corretta"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1158
+#, fuzzy
 msgid ""
 "WARNING!  You are about to completely delete the Exif metadata from this "
 "image?"
 msgstr ""
+"ATTENZIONE! Si vogliono davvero eliminare totalmente i metadati Exif da "
+"questa immagine?"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1323
 #, fuzzy
 msgid "Media Title Update"
-msgstr "Filtro oggetti multimediali"
+msgstr "Aggiornamento titolo oggetto multimediale"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1349
-#, fuzzy
 msgid "Media Object Date Created"
-msgstr "Oggetti multimediali marcati come privati"
+msgstr "Data di creazione oggetto multimediale"
 
 #. set Edit Message to Saved...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1421
-#, fuzzy
 msgid "Saving Exif metadata to this image..."
 msgstr "Salvataggio dei metadati Exif nell'immagine..."
 
@@ -12548,7 +12501,7 @@ msgid "Editing Spouses"
 msgstr "Modifica coniugi"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:43
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "  1. <a wiki='%s_-_FAQ#How_do_I_change_the_order_of_spouses.3F'>How do I "
 "change the order of spouses?</a>\n"
@@ -12584,7 +12537,7 @@ msgid ""
 "  4. <a wiki='%s_-_FAQ#How_do_I_keep_backups.3F'>How do I make backups "
 "safely?</a>\n"
 msgstr ""
-"  3. <a wiki='%s_-_FAQ#How_do_I_keep_backups.3F'>Come si possono effettuare "
+"  4. <a wiki='%s_-_FAQ#How_do_I_keep_backups.3F'>Come si possono effettuare "
 "backup in sicurezza?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:50
@@ -12593,7 +12546,7 @@ msgid ""
 "  5. <a wiki='%s_-_FAQ#How_do_I_upgrade_GRAMPS.3F'>Is it necessary to update "
 "Gramps every time an update is released?</a>\n"
 msgstr ""
-"  2. <a wiki='%s_-_FAQ#How_do_I_upgrade_GRAMPS.3F'>È necessario aggiornare "
+"  5. <a wiki='%s_-_FAQ#How_do_I_upgrade_GRAMPS.3F'>È necessario aggiornare "
 "Gramps ogni volta che viene rilasciato un aggiornamento?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:52
@@ -12607,7 +12560,7 @@ msgid ""
 "_part_1#Editing_Information_About_Relationships'>How should information "
 "about marriages be entered?</a>\n"
 msgstr ""
-"  4. <a wiki='%s_-_Entering_and_Editing_Data:_Detailed_-"
+"  6. <a wiki='%s_-_Entering_and_Editing_Data:_Detailed_-"
 "_part_1#Editing_Information_About_Relationships'>Come bisogna inserire le "
 "informazioni sui matrimoni?</a>\n"
 
@@ -12618,7 +12571,7 @@ msgid ""
 "_FAQ#What_is_the_difference_between_a_residence_and_an_address.3F'>What's "
 "the difference between a residence and an address?</a>\n"
 msgstr ""
-"  5. <a wiki='%s_-"
+"  7. <a wiki='%s_-"
 "_FAQ#What_is_the_difference_between_a_residence_and_an_address.3F'>Qual è la "
 "differenza tra una residenza e un'indirizzo?</a>\n"
 
@@ -12647,18 +12600,17 @@ msgid ""
 "_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>How can I make a "
 "website with Gramps and my tree?</a>\n"
 msgstr ""
-"  6. <a wiki='%s_-"
+" 10. <a wiki='%s_-"
 "_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>Come si realizza un "
 "sito web con Gramps ed il proprio albero?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:65
-#, fuzzy
 msgid ""
 " 11. <a href='http://sourceforge.net/mailarchive/message.php?"
 "msg_id=21487967'>How do I record one's occupation?</a>\n"
 msgstr ""
-" 11. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-"
-"ts21786114.html#a21786114'>Come si registra il lavoro di qualcuno?</a>\n"
+" 11. <a href='http://sourceforge.net/mailarchive/message.php?"
+"msg_id=21487967'>Come si registra il lavoro di qualcuno?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:66
 #, fuzzy, python-format
@@ -12670,24 +12622,19 @@ msgstr ""
 "si trova un bug?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:67
-#, fuzzy
 msgid " 13. <a wiki='Portal:Using_GRAMPS'>Is there a manual for Gramps?</a>\n"
 msgstr ""
 " 13. <a wiki='Portal:Using_GRAMPS'>È disponibile un manuale per Gramps?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:68
-#, fuzzy
 msgid " 14. <a wiki='Category:Tutorials'>Are there tutorials available?</a>\n"
-msgstr ""
-" 14. <a wiki='Category:Tutorials'>Ci sono dei tutorial disponibili?</a>\n"
+msgstr " 14. <a wiki='Category:Tutorials'>Sono disponibili dei tutorial?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:69
-#, fuzzy
 msgid " 15. <a wiki='Category:How_do_I...'>How do I ...?</a>\n"
 msgstr " 15. <a wiki='Category:How_do_I...'>Come si fa a ...?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:70
-#, fuzzy
 msgid " 16. <a wiki='How_you_can_help'>How can I help with Gramps?</a>\n"
 msgstr " 16. <a wiki='How_you_can_help'>Come si può aiutare Gramps?</a>\n"
 
@@ -12820,7 +12767,6 @@ msgid "Gramplet showing all surnames as a text cloud"
 msgstr "Gramplet che mostra tutti i cognomi come una «nuvola» di testo"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:255
-#, fuzzy
 msgid "TODO"
 msgstr "Cose da fare"
 
@@ -12842,9 +12788,8 @@ msgid "Gramplet showing most frequent surnames in this tree"
 msgstr "Gramplet che mostra i cognomi più frequenti in questo albero"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:282
-#, fuzzy
 msgid "Welcome"
-msgstr "Benvenuto"
+msgstr "Benvenuti"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:283
 msgid "Gramplet showing a welcome message"
@@ -13266,7 +13211,7 @@ msgstr "http://gramps-project.org/"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:111
 msgid "Start with Genealogy and Gramps"
-msgstr ""
+msgstr "Iniziare con la genealogia e Gramps"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:112
 msgid "http://www.gramps-project.org/wiki/index.php?title=Start_with_Genealogy"
@@ -13290,7 +13235,6 @@ msgid "http://gramps-project.org/contact/"
 msgstr "http://gramps-project.org/contact/"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:118
-#, fuzzy
 msgid "Who makes Gramps?"
 msgstr "Chi scrive Gramps?"
 
@@ -13306,7 +13250,7 @@ msgstr ""
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:125
 msgid "Getting Started"
-msgstr ""
+msgstr "Iniziare"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:126
 msgid ""
@@ -13616,33 +13560,28 @@ msgid "The colour to use to display families."
 msgstr "Il colore usato per evidenziare le famiglie."
 
 #: ../src/plugins/graph/GVFamilyLines.py:168
-#, fuzzy
 msgid "Limit the number of ancestors"
-msgstr "Limita il numero dei genitori"
+msgstr "Limita il numero degli ascendenti"
 
 #: ../src/plugins/graph/GVFamilyLines.py:170
-#, fuzzy
 msgid "Whether to limit the number of ancestors."
-msgstr "Indica se omettere gli ascendenti duplicati."
+msgstr "Indica se limitare il numero degli ascendenti."
 
 #: ../src/plugins/graph/GVFamilyLines.py:176
 msgid "The maximum number of ancestors to include."
 msgstr "Numero massimo di ascendenti da includere."
 
 #: ../src/plugins/graph/GVFamilyLines.py:180
-#, fuzzy
 msgid "Limit the number of descendants"
-msgstr "Limita il numero dei genitori"
+msgstr "Limita il numero dei discendenti"
 
 #: ../src/plugins/graph/GVFamilyLines.py:183
-#, fuzzy
 msgid "Whether to limit the number of descendants."
-msgstr "Indica se stampare i numeri di pagina in ogni pagina."
+msgstr "Indica se limitare il numero dei discendenti."
 
 #: ../src/plugins/graph/GVFamilyLines.py:189
-#, fuzzy
 msgid "The maximum number of descendants to include."
-msgstr "Numero massimo di ascendenti da includere."
+msgstr "Il numero massimo di discendenti da includere."
 
 #. --------------------
 #: ../src/plugins/graph/GVFamilyLines.py:194
@@ -13656,7 +13595,6 @@ msgid "Include thumbnail images of people"
 msgstr "Include miniature delle persone"
 
 #: ../src/plugins/graph/GVFamilyLines.py:200
-#, fuzzy
 msgid "Whether to include thumbnail images of people."
 msgstr "Indica se includere le miniature delle persone."
 
@@ -13769,11 +13707,11 @@ msgstr "Indica se includere nomi, date e famiglie marcate come private."
 
 #: ../src/plugins/graph/GVFamilyLines.py:341
 msgid "Empty report"
-msgstr ""
+msgstr "Record vuoto"
 
 #: ../src/plugins/graph/GVFamilyLines.py:342
 msgid "You did not specify anybody"
-msgstr ""
+msgstr "Non è stato specificato nessuno"
 
 #: ../src/plugins/graph/GVFamilyLines.py:921
 #, python-format
@@ -14643,14 +14581,12 @@ msgid "Witness name: %s"
 msgstr "Nome testimone: %s"
 
 #: ../src/plugins/import/ImportXml.py:1163
-#, fuzzy
 msgid "Any event reference must have a 'hlink' attribute."
-msgstr "Tutte le mappe dei riferimenti sono state ricostruite."
+msgstr "Tutti i riferimenti a un evento devono avere un attributo 'hlink'."
 
 #: ../src/plugins/import/ImportXml.py:1408
-#, fuzzy
 msgid "Any person reference must have a 'hlink' attribute."
-msgstr "Tutte le mappe dei riferimenti sono state ricostruite."
+msgstr "Tutti i riferimenti a una persona devono avere un attributo 'hlink'."
 
 #: ../src/plugins/import/ImportXml.py:1568
 #, python-format
@@ -14667,9 +14603,8 @@ msgid "Gramps ignored namemap value"
 msgstr "Pagina web di Gramps"
 
 #: ../src/plugins/import/ImportXml.py:1774
-#, fuzzy
 msgid "Any note reference must have a 'hlink' attribute."
-msgstr "Tutte le mappe dei riferimenti sono state ricostruite."
+msgstr "Tutti i riferimenti a una nota devono avere un attributo 'hlink'."
 
 #: ../src/plugins/import/ImportXml.py:2304
 #, python-format
@@ -14691,21 +14626,20 @@ msgstr "Importazione GEDCOM"
 
 #: ../src/plugins/lib/libgedcom.py:2545
 msgid "GEDCOM import report: No errors detected"
-msgstr ""
+msgstr "Resconto importazione GEDCOM: nessun errore riscontrato"
 
 #: ../src/plugins/lib/libgedcom.py:2547
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
-msgstr ""
+msgstr "Resconto importazione GEDCOM: riscontrati %s errori"
 
 #: ../src/plugins/lib/libgedcom.py:2800
 msgid "Line ignored as not understood"
 msgstr "Riga ignorata perché incomprensibile"
 
 #: ../src/plugins/lib/libgedcom.py:2821
-#, fuzzy
 msgid "Records not imported into "
-msgstr "Resoconto dei record"
+msgstr "Record non importati in "
 
 #: ../src/plugins/lib/libgedcom.py:2849
 msgid "TRLR (trailer)"
@@ -14721,9 +14655,8 @@ msgid "GEDCOM data"
 msgstr "Dati GEDCOM"
 
 #: ../src/plugins/lib/libgedcom.py:2948
-#, fuzzy
 msgid "Unknown tag"
-msgstr "Sconosciuto"
+msgstr "Tag sconosciuto"
 
 #: ../src/plugins/lib/libgedcom.py:2950 ../src/plugins/lib/libgedcom.py:2964
 #: ../src/plugins/lib/libgedcom.py:2968 ../src/plugins/lib/libgedcom.py:2989
@@ -14739,9 +14672,8 @@ msgstr ""
 #: ../src/plugins/lib/libgedcom.py:3204 ../src/plugins/lib/libgedcom.py:4413
 #: ../src/plugins/lib/libgedcom.py:4616 ../src/plugins/lib/libgedcom.py:4747
 #: ../src/plugins/lib/libgedcom.py:5372 ../src/plugins/lib/libgedcom.py:5509
-#, fuzzy
 msgid "Filename omitted"
-msgstr "Nome file"
+msgstr "Nome file omesso"
 
 #: ../src/plugins/lib/libgedcom.py:3206 ../src/plugins/lib/libgedcom.py:4415
 #: ../src/plugins/lib/libgedcom.py:4618 ../src/plugins/lib/libgedcom.py:4749
@@ -14751,7 +14683,7 @@ msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:3709
 msgid "Tag recognised but not supported"
-msgstr ""
+msgstr "Tag riconosciuto ma non supportato"
 
 #: ../src/plugins/lib/libgedcom.py:4185
 #, python-format
@@ -14766,7 +14698,7 @@ msgstr "Ignorata nota evento vuota"
 
 #: ../src/plugins/lib/libgedcom.py:5215 ../src/plugins/lib/libgedcom.py:6026
 msgid "Warn: ADDR overwritten"
-msgstr ""
+msgstr "Attenzione: ADDR sovrascritto"
 
 #: ../src/plugins/lib/libgedcom.py:5386 ../src/plugins/lib/libgedcom.py:5768
 msgid "REFN ignored"
@@ -14775,7 +14707,7 @@ msgstr ""
 #: ../src/plugins/lib/libgedcom.py:5478
 #, python-format
 msgid "No title - ID %s"
-msgstr ""
+msgstr "Nessun titolo - ID %s"
 
 #: ../src/plugins/lib/libgedcom.py:5483
 #, python-format
@@ -14785,7 +14717,7 @@ msgstr "ID Gramps SOUR (fonte) %s"
 #: ../src/plugins/lib/libgedcom.py:5694
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
-msgstr ""
+msgstr "ID Gramps OBJE (oggetto multimediale) %s"
 
 #: ../src/plugins/lib/libgedcom.py:5722 ../src/plugins/lib/libgedcom.py:6718
 #, python-format
@@ -14794,7 +14726,7 @@ msgstr "Impossibile importare %s"
 
 #: ../src/plugins/lib/libgedcom.py:5758
 msgid "BLOB ignored"
-msgstr ""
+msgstr "BLOB ignorato"
 
 #: ../src/plugins/lib/libgedcom.py:5778
 msgid "Multimedia REFN:TYPE ignored"
@@ -14820,22 +14752,21 @@ msgstr ""
 
 #. feature request 2356: avoid genitive form
 #: ../src/plugins/lib/libgedcom.py:6177
-#, fuzzy
 msgid "Generated by"
 msgstr "Generato da"
 
 #: ../src/plugins/lib/libgedcom.py:6191
 msgid "Name of software product"
-msgstr ""
+msgstr "Nome del prodotto software"
 
 #: ../src/plugins/lib/libgedcom.py:6203
 msgid "Version number of software product"
-msgstr ""
+msgstr "Versione del prodotto software"
 
 #: ../src/plugins/lib/libgedcom.py:6220
-#, python-format
+#, fuzzy, python-format
 msgid "Business that produced the product: %s"
-msgstr ""
+msgstr "La compagnia che ha prodotto il prodotto: %s"
 
 #: ../src/plugins/lib/libgedcom.py:6241
 msgid "Name of source data"
@@ -14843,7 +14774,7 @@ msgstr "Nome fonte dati"
 
 #: ../src/plugins/lib/libgedcom.py:6255
 msgid "Copyright of source data"
-msgstr ""
+msgstr "Copyright fonte dati"
 
 #: ../src/plugins/lib/libgedcom.py:6265
 msgid "Publication date of source data"
@@ -14869,6 +14800,8 @@ msgid ""
 "Import of GEDCOM file %s with DEST=%s, could cause errors in the resulting "
 "database!"
 msgstr ""
+"Importazione del file GEDCOM %s con DEST=%s, può portare a degli errori nel "
+"database prodotto!"
 
 #: ../src/plugins/lib/libgedcom.py:6354
 msgid "Look for nameless events."
@@ -15034,12 +14967,11 @@ msgstr "Immagine"
 
 #: ../src/plugins/lib/libmetadata.py:90
 msgid "Camera"
-msgstr ""
+msgstr "Macchina fotografica"
 
 #: ../src/plugins/lib/libmetadata.py:91
-#, fuzzy
 msgid "GPS"
-msgstr "GRAMPS"
+msgstr "GPS"
 
 #: ../src/plugins/lib/libmetadata.py:92
 msgid "Advanced"
@@ -18738,12 +18670,10 @@ msgstr "%(language)s (%(country)s)"
 #. (FATHER_AGE  , _("Father's Age"), "Father Age"),
 #. (MOTHER_AGE  , _("Mother's Age"), "Mother Age"),
 #: ../src/plugins/lib/libtranslate.py:246
-#, fuzzy
 msgid "Father Age"
 msgstr "Età del padre"
 
 #: ../src/plugins/lib/libtranslate.py:246
-#, fuzzy
 msgid "Mother Age"
 msgstr "Età della madre"
 
@@ -19272,44 +19202,36 @@ msgid "Filtering_on|all"
 msgstr "tutti"
 
 #: ../src/plugins/quickview/FilterByName.py:42
-#, fuzzy
 msgid "Filtering_on|Inverse Person"
-msgstr "femmine"
+msgstr "persone non presenti"
 
 #: ../src/plugins/quickview/FilterByName.py:43
-#, fuzzy
 msgid "Filtering_on|Inverse Family"
-msgstr "famiglia inversa"
+msgstr "famiglie non presenti"
 
 #: ../src/plugins/quickview/FilterByName.py:44
-#, fuzzy
 msgid "Filtering_on|Inverse Event"
-msgstr "maschi"
+msgstr "eventi non presenti"
 
 #: ../src/plugins/quickview/FilterByName.py:45
-#, fuzzy
 msgid "Filtering_on|Inverse Place"
-msgstr "femmine"
+msgstr "luoghi non presenti"
 
 #: ../src/plugins/quickview/FilterByName.py:46
-#, fuzzy
 msgid "Filtering_on|Inverse Source"
-msgstr "cognomi unici"
+msgstr "fonti non presenti"
 
 #: ../src/plugins/quickview/FilterByName.py:47
-#, fuzzy
 msgid "Filtering_on|Inverse Repository"
-msgstr "oggetti multimediali unici"
+msgstr "depositi non presenti"
 
 #: ../src/plugins/quickview/FilterByName.py:48
-#, fuzzy
 msgid "Filtering_on|Inverse MediaObject"
-msgstr "oggetti multimediali unici"
+msgstr "oggetti multimediali non presenti"
 
 #: ../src/plugins/quickview/FilterByName.py:49
-#, fuzzy
 msgid "Filtering_on|Inverse Note"
-msgstr "maschi"
+msgstr "note non presenti"
 
 #: ../src/plugins/quickview/FilterByName.py:50
 msgid "Filtering_on|all people"
@@ -19397,9 +19319,8 @@ msgid "Filtering_on|list of people"
 msgstr "elenco persone"
 
 #: ../src/plugins/quickview/FilterByName.py:86
-#, fuzzy
 msgid "Summary counts of current selection"
-msgstr "Salva l'insieme attuale delle selezioni configurate"
+msgstr "Totali riepilogativi della selezione attuale"
 
 #: ../src/plugins/quickview/FilterByName.py:88
 msgid "Right-click row (or press ENTER) to see selected items."
@@ -19408,12 +19329,10 @@ msgstr ""
 "selezionati."
 
 #: ../src/plugins/quickview/FilterByName.py:90
-#, fuzzy
 msgid "Object"
-msgstr "Soggetto"
+msgstr "Oggetto"
 
 #: ../src/plugins/quickview/FilterByName.py:90
-#, fuzzy
 msgid "Count/Total"
 msgstr "Totale"
 
@@ -19666,14 +19585,12 @@ msgid "Display references for a %s"
 msgstr "Mostra riferimenti per %s"
 
 #: ../src/plugins/quickview/quickview.gpr.py:228
-#, fuzzy
 msgid "Link References"
-msgstr "Riferimenti"
+msgstr "Riferimenti a collegamenti"
 
 #: ../src/plugins/quickview/quickview.gpr.py:229
-#, fuzzy
 msgid "Display link references for a note"
-msgstr "Mostra riferimenti per una nota"
+msgstr "Mostra i riferimenti a collegamenti di una nota"
 
 #: ../src/plugins/quickview/quickview.gpr.py:248
 msgid "Repository References"
@@ -19683,7 +19600,7 @@ msgstr "Riferimenti a depositi"
 msgid ""
 "Display the repository reference for sources related to the active repository"
 msgstr ""
-"Mostra i riferimenti ai depositi per le fonti correlate al deposito attivo"
+"Mostra i riferimenti a depositi per le fonti correlate al deposito attivo"
 
 #: ../src/plugins/quickview/quickview.gpr.py:269
 msgid "Same Surnames"
@@ -19723,12 +19640,10 @@ msgstr "Nessun riferimento per %s"
 
 #. display the title
 #: ../src/plugins/quickview/LinkReferences.py:43
-#, fuzzy
 msgid "Link References for this note"
-msgstr "Riferimenti per questa nota"
+msgstr "Riferimenti a collegamenti per questa nota"
 
 #: ../src/plugins/quickview/LinkReferences.py:45
-#, fuzzy
 msgid "Link check"
 msgstr "Verifica collegamenti"
 
@@ -19745,9 +19660,8 @@ msgid "Internet"
 msgstr "Internet"
 
 #: ../src/plugins/quickview/LinkReferences.py:71
-#, fuzzy
 msgid "No link references for this note"
-msgstr "Nessun riferimento (collegamento) per questa nota"
+msgstr "Nessun riferimento a collegamenti per questa nota"
 
 #: ../src/plugins/quickview/Reporef.py:62
 msgid "Type of media"
@@ -19896,9 +19810,8 @@ msgid "self"
 msgstr "se stesso"
 
 #: ../src/plugins/rel/relplugins.gpr.py:32
-#, fuzzy
 msgid "Catalan Relationship Calculator"
-msgstr "Calcolatrice relazioni italiana"
+msgstr "Calcolatrice relazioni catalana"
 
 #: ../src/plugins/rel/relplugins.gpr.py:33
 #: ../src/plugins/rel/relplugins.gpr.py:46
@@ -19994,11 +19907,9 @@ msgid "Category Sidebar"
 msgstr "Barra laterale delle categorie"
 
 #: ../src/plugins/sidebar/sidebar.gpr.py:31
-#, fuzzy
 msgid "A sidebar to allow the selection of view categories"
 msgstr ""
-"Una barra laterale per consentire la selezione delle categorie da "
-"visualizzare"
+"Una barra laterale che consente la selezione delle categorie da visualizzare"
 
 #: ../src/plugins/sidebar/sidebar.gpr.py:39
 msgid "Category"
@@ -20184,14 +20095,12 @@ msgid "Whether to show divorce information in the report."
 msgstr "Indica se includere le informazioni sui divorzi nel resoconto."
 
 #: ../src/plugins/textreport/DescendReport.py:427
-#, fuzzy
 msgid "Show duplicate trees"
-msgstr "Mostra date"
+msgstr "Mostra alberi duplicati"
 
 #: ../src/plugins/textreport/DescendReport.py:428
-#, fuzzy
 msgid "Whether to show duplicate family trees in the report."
-msgstr "Indica se includere le informazioni sui divorzi nel resoconto."
+msgstr "Indica se mostrare gli alberi genealogici duplicati nel resoconto."
 
 #: ../src/plugins/textreport/DescendReport.py:456
 #, python-format
@@ -20575,14 +20484,12 @@ msgid "Whether to include detailed spouse information."
 msgstr "Indica se includere le informazioni dettagliate sul coniuge."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:1015
-#, fuzzy
 msgid "Include spouse reference"
-msgstr "Indica se includere i riferimenti alle fonti."
+msgstr "Includere un riferimento al coniuge"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:1016
-#, fuzzy
 msgid "Whether to include reference to spouse."
-msgstr "Indica se includere gli eventi per i genitori."
+msgstr "Indica se includere un riferimento al coniuge."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:1019
 msgid "Include sign of succession ('+') in child-list"
@@ -21181,19 +21088,16 @@ msgid "Total size of media objects: %s MB"
 msgstr "Dimensione totale degli oggetti multimediali: %s MB"
 
 #: ../src/plugins/textreport/TableOfContents.py:105
-#, fuzzy
 msgid "The style used for first level headings."
-msgstr "Lo stile usato per le intestazioni."
+msgstr "Lo stile usato per le intestazioni di primo livello."
 
 #: ../src/plugins/textreport/TableOfContents.py:111
-#, fuzzy
 msgid "The style used for second level headings."
-msgstr "Lo stile usato per le intestazioni."
+msgstr "Lo stile usato per le intestazioni di secondo livello."
 
 #: ../src/plugins/textreport/TableOfContents.py:117
-#, fuzzy
 msgid "The style used for third level headings."
-msgstr "Lo stile usato per le intestazioni."
+msgstr "Lo stile usato per le intestazioni di terzo livello."
 
 #: ../src/plugins/textreport/TagReport.py:79
 #: ../src/plugins/textreport/textplugins.gpr.py:252
@@ -21209,7 +21113,7 @@ msgstr "Bisogna creare un'etichetta prima di eseguire questo resoconto."
 #: ../src/plugins/textreport/TagReport.py:85
 #, fuzzy, python-format
 msgid "Tag Report for %s Items"
-msgstr "Resoconto marcatore per %s elementi"
+msgstr "Resoconto etichetta per %s elementi"
 
 #: ../src/plugins/textreport/TagReport.py:118
 #: ../src/plugins/textreport/TagReport.py:205
@@ -21335,21 +21239,19 @@ msgstr "Fornisce un riepilogo del database attuale"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:365
 msgid "Table Of Contents"
-msgstr ""
+msgstr "Sommari"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:366
-#, fuzzy
 msgid "Produces a table of contents for book reports."
-msgstr "Produce una pagina con il titolo per i resoconti di tipo libro."
+msgstr "Produce un sommario per i resoconti di tipo libro."
 
 #: ../src/plugins/textreport/textplugins.gpr.py:387
 msgid "Alphabetical Index"
-msgstr ""
+msgstr "Indice alfabetico"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:388
-#, fuzzy
 msgid "Produces an alphabetical index for book reports."
-msgstr "Produce una pagina con il titolo per i resoconti di tipo libro."
+msgstr "Produce un indice alfabetico per i resoconti di tipo libro."
 
 #: ../src/plugins/tool/ChangeNames.py:65
 #, fuzzy
@@ -21425,7 +21327,7 @@ msgstr "Controllo database"
 #: ../src/plugins/tool/Check.py:101
 #, fuzzy
 msgid "Looking for cross table duplicates"
-msgstr "Ricerca di coniugi duplicati"
+msgstr "Ricerca di duplicati tra le tabelle"
 
 #: ../src/plugins/tool/Check.py:143
 msgid ""
@@ -22223,7 +22125,7 @@ msgstr "Ignora data e confidenza"
 #: ../src/plugins/tool/MergeCitations.py:81
 #, fuzzy
 msgid "manual|Merge citations..."
-msgstr "Fusione famiglie..."
+msgstr "Fusione citazioni..."
 
 #: ../src/plugins/tool/MergeCitations.py:158
 msgid "Merge citations tool"
@@ -22324,7 +22226,7 @@ msgstr "Strumento di estrazione nomi e titoli"
 
 #: ../src/plugins/tool/PatchNames.py:114
 msgid "Default prefix and connector settings"
-msgstr ""
+msgstr "Impostazioni predefinite prefisso e connettore"
 
 #: ../src/plugins/tool/PatchNames.py:122
 msgid "Prefixes to search for:"
@@ -22332,11 +22234,11 @@ msgstr "Prefissi da ricercare:"
 
 #: ../src/plugins/tool/PatchNames.py:129
 msgid "Connectors splitting surnames:"
-msgstr ""
+msgstr "Connettori che dividono i cognomi:"
 
 #: ../src/plugins/tool/PatchNames.py:136
 msgid "Connectors not splitting surnames:"
-msgstr ""
+msgstr "Connettori che non dividino i cognomi:"
 
 #: ../src/plugins/tool/PatchNames.py:172
 msgid "Extracting Information from Names"
@@ -22962,7 +22864,6 @@ msgstr ""
 "selezionare la fonte."
 
 #: ../src/plugins/view/citationtreeview.py:514
-#, fuzzy
 msgid ""
 "This source cannot be edited at this time. Either the associated Source "
 "object is already being edited, or another citation associated with the same "
@@ -22971,7 +22872,7 @@ msgid ""
 "To edit this source, you need to close the object."
 msgstr ""
 "Questa fonte non può essere modificato adesso. Qualcuno sta modificando la "
-"fonte associata, o un'altra citazione assiociata alla stessa fonte.\n"
+"fonte associata o un'altra citazione associata alla stessa fonte.\n"
 "\n"
 "Per modificare questa fonte è necessario chiudere l'oggetto."
 
@@ -22999,9 +22900,11 @@ msgid ""
 "The two selected citations must have the same source to perform a merge. If "
 "you want to merge these two citations, then you must merge the sources first."
 msgstr ""
+"Le due citazioni selezionate devono avere la stessa fonte perché possano "
+"essere fuse. Se si desidera fondere queste due citazioni, bisogna prima "
+"fondere le fonti."
 
 #: ../src/plugins/view/citationtreeview.py:562
-#, fuzzy
 msgid "Cannot perform merge."
 msgstr "Impossibile fondere."
 
@@ -23010,6 +22913,8 @@ msgid ""
 "Both objects must be of the same type, either both must be sources, or both "
 "must be citations."
 msgstr ""
+"Entrambi gli oggetti devono essere dello stesso tipo, devono essere entrambi "
+"o fonti o citazioni."
 
 #: ../src/plugins/view/citationlistview.py:95
 #: ../src/Filters/SideBar/_CitationSidebarFilter.py:95
@@ -23029,23 +22934,19 @@ msgid "Source: Last Changed"
 msgstr "Fonte: ultima modifica"
 
 #: ../src/plugins/view/citationlistview.py:122
-#, fuzzy
 msgid "Delete the selected citation"
-msgstr "Elimina la famiglia selezionata"
+msgstr "Elimina la citazione selezionata"
 
 #: ../src/plugins/view/citationlistview.py:123
-#, fuzzy
 msgid "Merge the selected citations"
-msgstr "Elimina la persona selezionata"
+msgstr "Fonde le citazioni selezionate"
 
 #: ../src/plugins/view/citationlistview.py:137
 #: ../src/plugins/view/view.gpr.py:219
-#, fuzzy
 msgid "Citation View"
-msgstr "Citazione"
+msgstr "Vista citazione"
 
 #: ../src/plugins/view/citationlistview.py:308
-#, fuzzy
 msgid ""
 "This citation cannot be edited at this time. Either the associated citation "
 "is already being edited or another object that is associated with the same "
@@ -23053,13 +22954,11 @@ msgid ""
 "\n"
 "To edit this citation, you need to close the object."
 msgstr ""
-"Questo riferimento ad un oggetto multimediale non può essere modificato "
-"adesso. Qualcuno sta modificando l'oggetto multimediale associato o un altro "
-"riferimento ad oggetto multimediale, associato con lo stesso oggetto "
-"multimediale che si viole modificare.\n"
+"Questa citazione non può essere modificata adesso. Qualcuno sta modificando "
+"la citazione associata o un altro oggetto associato con la stessa "
+"citazione.\n"
 "\n"
-"Per modificare questo riferimento ad un oggetto multimediale è necessario "
-"chiudere l'oggetto multimediale."
+"Per modificare questa citazione necessario chiudere l'oggetto."
 
 #: ../src/plugins/view/eventview.py:98
 msgid "Add a new event"
@@ -23120,19 +23019,16 @@ msgid "Family Filter Editor"
 msgstr "Editor filtri famiglie"
 
 #: ../src/plugins/view/familyview.py:209
-#, fuzzy
 msgid "Make Father Active Person"
-msgstr "Imposta come persona attiva"
+msgstr "Imposta il padre come persona attiva"
 
 #: ../src/plugins/view/familyview.py:211
-#, fuzzy
 msgid "Make Mother Active Person"
-msgstr "Imposta come persona attiva"
+msgstr "Imposta la madre come persona attiva"
 
 #: ../src/plugins/view/familyview.py:282
-#, fuzzy
 msgid "Cannot merge families."
-msgstr "Impossibile fondere i luoghi."
+msgstr "Impossibile fondere le famiglie."
 
 #: ../src/plugins/view/familyview.py:283
 msgid ""
@@ -23162,11 +23058,10 @@ msgstr "La vista che mostra le relazioni tremite un grafico a ventaglio"
 msgid ""
 "WARNING: osmgpsmap module not loaded. osmgpsmap must be >= 0.7.0. yours is %s"
 msgstr ""
-"ATTENZIONE: modulo osmgpsmap non trovato. La versione di osmgpsmap deve "
+"ATTENZIONE: modulo osmgpsmap non caricato. La versione di osmgpsmap deve "
 "essere >= 0.7.0. è stata trovata la %s"
 
 #: ../src/plugins/view/geography.gpr.py:41
-#, fuzzy
 msgid ""
 "WARNING: osmgpsmap module not loaded. Geography functionality will not be "
 "available."
@@ -23175,38 +23070,35 @@ msgstr ""
 "saranno disponibili."
 
 #: ../src/plugins/view/geography.gpr.py:49
-#, fuzzy
 msgid "A view showing the places visited by one person during his life."
-msgstr "Una vista che permette di vedere pagine html integrate in Gramps"
+msgstr ""
+"Una vista che mostra i luoghi visitati da una persona durante la sua vita."
 
 #: ../src/plugins/view/geography.gpr.py:66
-#, fuzzy
 msgid "A view showing all places of the database."
-msgstr "Una vista che permette di vedere pagine html integrate in Gramps"
+msgstr "Una vista che mostra tutti i luoghi del database."
 
 #: ../src/plugins/view/geography.gpr.py:81
-#, fuzzy
 msgid "A view showing all the event places of the database."
-msgstr "La vista che mostra tutti i luoghi presenti nell'albero genealogico"
+msgstr "Una vista che mostra tutti i luoghi degli eventi del database."
 
 #: ../src/plugins/view/geography.gpr.py:97
-#, fuzzy
 msgid "A view showing the places visited by one family during all their life."
-msgstr "Una vista che permette di vedere pagine html integrate in Gramps"
+msgstr ""
+"Una vista che mostra i luoghi visitati dai membri di una famiglia durante "
+"tutte le loro vite."
 
 #: ../src/plugins/view/geoevents.py:116
-#, fuzzy
 msgid "Events places map"
-msgstr "Luogo evento"
+msgstr "Mappa luoghi eventi"
 
 #: ../src/plugins/view/geoevents.py:252
 msgid "incomplete or unreferenced event ?"
 msgstr ""
 
 #: ../src/plugins/view/geoevents.py:364
-#, fuzzy
 msgid "Show all events"
-msgstr "Mostra eventi"
+msgstr "Mostra tutti gli eventi"
 
 #: ../src/plugins/view/geoevents.py:368 ../src/plugins/view/geoevents.py:372
 #: ../src/plugins/view/geoplaces.py:328 ../src/plugins/view/geoplaces.py:332
@@ -23215,7 +23107,6 @@ msgid "Centering on Place"
 msgstr "Persona centrale"
 
 #: ../src/plugins/view/geofamily.py:116
-#, fuzzy
 msgid "Family places map"
 msgstr "Mappa luoghi familiari"
 
@@ -23332,9 +23223,8 @@ msgid "Html View"
 msgstr "Vista Html"
 
 #: ../src/plugins/view/htmlrenderer.gpr.py:51
-#, fuzzy
 msgid "A view showing html pages embedded in Gramps"
-msgstr "Una vista che permette di vedere pagine html integrate in Gramps"
+msgstr "Una vista che mostra le pagine html integrate in Gramps"
 
 #: ../src/plugins/view/htmlrenderer.gpr.py:58
 msgid "Web"
@@ -23446,7 +23336,6 @@ msgstr "Home"
 
 #. Mouse scroll direction setting.
 #: ../src/plugins/view/pedigreeview.py:1750
-#, fuzzy
 msgid "Mouse scroll direction"
 msgstr "Direzione scorrimento del mouse"
 
@@ -23475,7 +23364,6 @@ msgid "Show marriage data"
 msgstr "Mostra dati matrimonio"
 
 #: ../src/plugins/view/pedigreeview.py:2185
-#, fuzzy
 msgid "Show unknown people"
 msgstr "Mostra persone sconosciute"
 
@@ -23731,9 +23619,8 @@ msgid "Delete the selected repository"
 msgstr "Elimina il deposito selezionato"
 
 #: ../src/plugins/view/repoview.py:109
-#, fuzzy
 msgid "Merge the selected repositories"
-msgstr "Elimina il deposito selezionato"
+msgstr "Fondi i depositi selezionati"
 
 #: ../src/plugins/view/repoview.py:149
 msgid "Repository Filter Editor"
@@ -23810,9 +23697,8 @@ msgid "The view showing all families"
 msgstr "La vista che mostra tutte le famiglie"
 
 #: ../src/plugins/view/view.gpr.py:64
-#, fuzzy
 msgid "The view showing Gramplets"
-msgstr "La vista che consente di vedere le Gramplet"
+msgstr "La vista che mostra le Gramplet"
 
 #: ../src/plugins/view/view.gpr.py:78
 msgid "Media View"
@@ -23881,19 +23767,16 @@ msgid "The view showing all the sources"
 msgstr "La vista che mostra tutte le fonti"
 
 #: ../src/plugins/view/view.gpr.py:220
-#, fuzzy
 msgid "The view showing all the citations"
-msgstr "La vista che mostra tutte le note"
+msgstr "La vista che mostra tutte le citazioni"
 
 #: ../src/plugins/view/view.gpr.py:235
-#, fuzzy
 msgid "A view displaying citations and sources in a tree format."
-msgstr "Una vista che mostra i luoghi disposti ad albero."
+msgstr "Una vista che mostra citazioni e fonti disposte ad albero."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:327
-#, fuzzy
 msgid "Gramps&nbsp;ID"
-msgstr "Id Gramps"
+msgstr "ID&nbsp;Gramps"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:338
 msgid "Postal Code"
@@ -23909,9 +23792,8 @@ msgid "Alternate Locations"
 msgstr "Posizioni alternative"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1200
-#, fuzzy
 msgid "Data Map"
-msgstr "Database"
+msgstr "Mappa dati"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1241
 #, python-format
@@ -23953,9 +23835,8 @@ msgstr "Cognomi"
 #: ../src/plugins/webreport/NarrativeWeb.py:1664
 #: ../src/plugins/webreport/NarrativeWeb.py:1778
 #: ../src/plugins/webreport/NarrativeWeb.py:4945
-#, fuzzy
 msgid "Thumbnails"
-msgstr "Posizione miniature"
+msgstr "Miniature"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1665
 #: ../src/plugins/webreport/NarrativeWeb.py:1784
@@ -23985,7 +23866,7 @@ msgstr "Contatti"
 #: ../src/plugins/webreport/NarrativeWeb.py:1806
 #, fuzzy
 msgid "Personal"
-msgstr "Persona"
+msgstr "Personale"
 
 #. add section title
 #: ../src/plugins/webreport/NarrativeWeb.py:2151
@@ -24051,9 +23932,9 @@ msgid ""
 "database, sorted by their family name/ surname. Clicking on a person&#8217;s "
 "name will take you to their family/ relationship&#8217;s page."
 msgstr ""
-"Questa pagina contiene l'indice di tutti i luoghi nel database, ordinati in "
-"base al titolo. Facendo clic sul titolo di un luogo si accede alla relativa "
-"pagina."
+"Questa pagina contiene l'indice di tutte le famiglie/relazioni nel database, "
+"ordinate in base al rispettivo nome familiare/cognome. Facendo clic sul nome "
+"di una persona si accede alla relativa pagina delle famiglia/relazioni."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3125
 #: ../src/plugins/webreport/NarrativeWeb.py:3374
@@ -24063,25 +23944,22 @@ msgid "Letter"
 msgstr "Lettera"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3126
-#, fuzzy
 msgid "Partner 1"
-msgstr "Partner"
+msgstr "Partner 1"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3127
-#, fuzzy
 msgid "Partner 2"
-msgstr "Partner"
+msgstr "Partner 2"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3257
 #, fuzzy
 msgid "Family/ Relationship"
-msgstr "<b>Relazioni famiglia</b>"
+msgstr "Famiglia/Relazioni"
 
 #. determine if husband and wife, husband only, or spouse only....
 #: ../src/plugins/webreport/NarrativeWeb.py:3290
-#, fuzzy
 msgid "Family of "
-msgstr "Nota famiglia"
+msgstr "Famiglia di "
 
 #. place list page message
 #: ../src/plugins/webreport/NarrativeWeb.py:3349
@@ -24101,11 +23979,10 @@ msgstr "Località"
 #: ../src/plugins/webreport/NarrativeWeb.py:3411
 #, python-format
 msgid "Places with letter %s"
-msgstr "Luoghi con lettare %s"
+msgstr "Luoghi con lettera %s"
 
 #. section title
 #: ../src/plugins/webreport/NarrativeWeb.py:3536
-#, fuzzy
 msgid "Place Map"
 msgstr "Mappa dei luoghi"
 
@@ -24196,9 +24073,8 @@ msgstr "Informazioni pubblicazione"
 
 #. add secion title
 #: ../src/plugins/webreport/NarrativeWeb.py:4535
-#, fuzzy
 msgid "Citation References"
-msgstr "Riferimenti"
+msgstr "Riferimenti a citazioni"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4837
 msgid ""
@@ -24229,17 +24105,16 @@ msgid ""
 "objects in this database.  Clicking on a thumbnail will take you to that "
 "image&#8217;s page."
 msgstr ""
-"Questa pagina contiene l'indice di tutti i luoghi nel database, ordinati in "
-"base al titolo. Facendo clic sul titolo di un luogo si accede alla relativa "
-"pagina."
+"Questa pagina contiene un elenco indicizzato di tutti gli oggetti "
+"multimediali del database. È ordinato in base al titolo dell'oggetto "
+"multimediale. C'è un'indice di tutti gli oggetti multimediali in questo "
+"database. Facendo clic su una miniatura si accede alla relativa pagina."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4966
-#, fuzzy
 msgid "Thumbnail Preview"
-msgstr "Posizione miniature"
+msgstr "Anteprima miniature"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5125
-#, fuzzy
 msgid ""
 "This page is for the user/ creator of this Family Tree/ Narrative website to "
 "share a couple of files with you regarding their family.  If there are any "
@@ -24250,7 +24125,7 @@ msgstr ""
 "Questa pagina serve all'utente/creatore di questo albero genealogico o sito "
 "web narrativo per condividere alcuni file relativi alla famiglia. Se i file "
 "elencati di seguito sono presenti, è possibile scaricarli facendo clic su di "
-"essi. La pagina di scaricamento ed i file hanno lo stesso copyright dei "
+"essi. La pagina di scaricamento ed i file hanno lo stesso copyright del "
 "promemoria di queste pagine web."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5146
@@ -24277,7 +24152,6 @@ msgid "Drop Markers"
 msgstr "Marcatore"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5650
-#, fuzzy
 msgid "Place Title"
 msgstr "Titolo luogo"
 
@@ -24326,7 +24200,7 @@ msgstr "Deposito"
 #: ../src/plugins/webreport/NarrativeWeb.py:6635
 #, fuzzy
 msgid "Referenced Sources"
-msgstr "Riferimenti"
+msgstr "Fonti con riferimenti"
 
 #. Address Book Page message
 #: ../src/plugins/webreport/NarrativeWeb.py:6678
@@ -24342,9 +24216,8 @@ msgstr ""
 "pagina personale della rubrica."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6699
-#, fuzzy
 msgid "Full Name"
-msgstr "Pseudonimo"
+msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6932
 #, python-format
@@ -24404,9 +24277,8 @@ msgid "Creating surname pages"
 msgstr "Generazione pagine dei cognomi"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7221
-#, fuzzy
 msgid "Creating family pages..."
-msgstr "Generazione pagine degli oggetti multimediali"
+msgstr "Generazione pagine delle famiglie..."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7234
 msgid "Creating place pages"
@@ -24423,7 +24295,7 @@ msgstr "Generazione pagine degli oggetti multimediali"
 #: ../src/plugins/webreport/NarrativeWeb.py:7294
 #, fuzzy
 msgid "Creating thumbnail preview page..."
-msgstr "Generazione pagine dei cognomi"
+msgstr "Generazione pagina delle miniature per anteprima..."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7317
 msgid "Creating repository pages"
@@ -24505,11 +24377,11 @@ msgstr "Il foglio di stile da usare per le pagine web"
 #: ../src/plugins/webreport/NarrativeWeb.py:7743
 #, fuzzy
 msgid "Horizontal -- Default"
-msgstr "Orizzontale -- nessuna modifica"
+msgstr "Orizzontale -- predefinito"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7744
 msgid "Vertical   -- Left Side"
-msgstr ""
+msgstr "Verticale   -- Lato sinistro"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7745
 msgid "Fade       -- WebKit Browsers Only"
@@ -24839,14 +24711,12 @@ msgid "Whether to display children in birth order or in entry order?"
 msgstr "Indica se mostrare i figli in ordine di nascita o di inserimento."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7955
-#, fuzzy
 msgid "Include family pages"
-msgstr "Includere eventi familiari"
+msgstr "Includere pagine familiari"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7956
-#, fuzzy
 msgid "Whether or not to include family pages."
-msgstr "Indica se includere le immagini."
+msgstr "Indica se includere o meno le pagine familiari."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7959
 msgid "Include event pages"
@@ -24862,7 +24732,6 @@ msgid "Include repository pages"
 msgstr "Includere le pagine dei depositi"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7964
-#, fuzzy
 msgid "Whether or not to include the Repository Pages."
 msgstr "Indica se includere o meno le pagine dei depositi"
 
@@ -24933,7 +24802,7 @@ msgstr ""
 #: ../src/plugins/webreport/NarrativeWeb.py:8012
 #, fuzzy
 msgid "Family Links"
-msgstr "Alberi genealogici - Gramps"
+msgstr "Collegamenti famiglia"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8013
 msgid "Drop"
@@ -24957,7 +24826,7 @@ msgstr ""
 #: ../src/plugins/webreport/NarrativeWeb.py:8332
 #, python-format
 msgid "Alphabet Menu: %s"
-msgstr ""
+msgstr "Menu alfabetico: %s"
 
 #. _('translation')
 #. Number of directory levels up to get to self.html_dir / root
@@ -25471,7 +25340,6 @@ msgid "Preparing sub-filter"
 msgstr "Preparazione sotto-filtro"
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:53
-#, fuzzy
 msgid "Retrieving all sub-filter matches"
 msgstr "Recupero di tutti i sotto-filtri di corrispondenza"
 
@@ -25631,14 +25499,12 @@ msgid "Volume/Page:"
 msgstr "Volume/Pagina:"
 
 #: ../src/Filters/Rules/Person/_HasCitation.py:51
-#, fuzzy
 msgid "People with the <citation>"
 msgstr "Persone con <citazione>"
 
 #: ../src/Filters/Rules/Person/_HasCitation.py:52
-#, fuzzy
 msgid "Matches people with a citation of a particular value"
-msgstr "Estrae le persone con dati di nascita aventi uno specifico valore"
+msgstr "Estrae le persone con una citazione avente uno specifico valore"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:49
 msgid "People with a common ancestor with <filter> match"
@@ -25879,9 +25745,8 @@ msgstr "Persone con <fonte>"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:48
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:53
-#, fuzzy
 msgid "Citation/source filters"
-msgstr "Filtri posizione"
+msgstr "Filtri citazione/fonte"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:49
 msgid "Matches people who have a particular source"
@@ -26392,14 +26257,12 @@ msgstr ""
 "valore"
 
 #: ../src/Filters/Rules/Family/_HasCitation.py:52
-#, fuzzy
 msgid "Family with the <citation>"
-msgstr "Famiglie con <etichetta>"
+msgstr "Famiglie con <citazione>"
 
 #: ../src/Filters/Rules/Family/_HasCitation.py:53
-#, fuzzy
 msgid "Matches families with a citation of a particular value"
-msgstr "Estrae le famiglie con un evento avente uno specifico valore"
+msgstr "Estrae le famiglie con una citazione avente uno specifico valore"
 
 #: ../src/Filters/Rules/Family/_HasEvent.py:53
 msgid "Families with the <event>"
@@ -26647,14 +26510,12 @@ msgstr ""
 "Estrae gli eventi con uno specifico valore per un certo attributo evento"
 
 #: ../src/Filters/Rules/Event/_HasCitation.py:52
-#, fuzzy
 msgid "Event with the <citation>"
-msgstr "Evento con <dati>"
+msgstr "Evento con <citazione>"
 
 #: ../src/Filters/Rules/Event/_HasCitation.py:53
-#, fuzzy
 msgid "Matches events with a citation of a particular value"
-msgstr "Estrae gli eventi con specifici dati"
+msgstr "Estrae gli eventi con una citazione avente uno specifico valore"
 
 #: ../src/Filters/Rules/Event/_HasData.py:49
 msgid "Events with <data>"
@@ -26819,7 +26680,6 @@ msgid "Places with no latitude or longitude given"
 msgstr "Posti senza dati di latitudine o longitudine"
 
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:50
-#, fuzzy
 msgid "Matches places with empty latitude or longitude"
 msgstr "Estrae i luoghi con latitudine o longitudine vuota"
 
@@ -27110,19 +26970,16 @@ msgid "Matches sources whose Gramps ID matches the regular expression"
 msgstr "Estrae le fonti il cui ID Gramps corrisponde all'espressione regolare"
 
 #: ../src/Filters/Rules/Citation/_AllCitations.py:46
-#, fuzzy
 msgid "Every citation"
-msgstr "Citazione"
+msgstr "Ogni citazione"
 
 #: ../src/Filters/Rules/Citation/_AllCitations.py:47
-#, fuzzy
 msgid "Matches every citation in the database"
-msgstr "Estrae tutte le persone nel database"
+msgstr "Estrae tutte le citazioni nel database"
 
 #: ../src/Filters/Rules/Citation/_ChangedSince.py:47
-#, fuzzy
 msgid "Citations changed after <date time>"
-msgstr "Persone modificate dopo <data ora>"
+msgstr "Citazioni modificate dopo <data ora>"
 
 #: ../src/Filters/Rules/Citation/_ChangedSince.py:48
 #, fuzzy
@@ -27135,79 +26992,65 @@ msgstr ""
 "un'ulteriore data/ora."
 
 #: ../src/Filters/Rules/Citation/_CitationPrivate.py:44
-#, fuzzy
 msgid "Citations marked private"
-msgstr "Note marcate come private"
+msgstr "Citazioni marcate come private"
 
 #: ../src/Filters/Rules/Citation/_CitationPrivate.py:45
-#, fuzzy
 msgid "Matches citations that are indicated as private"
-msgstr "Estrae gli oggetti che sono indicati come privati"
+msgstr "Estrae le citazioni che sono indicate come private"
 
 #: ../src/Filters/Rules/Citation/_HasGallery.py:46
-#, fuzzy
 msgid "Citations with <count> media"
-msgstr "Famiglie con <totale> oggetti multimediali"
+msgstr "Citazioni con <totale> oggetti multimediali"
 
 #: ../src/Filters/Rules/Citation/_HasGallery.py:47
-#, fuzzy
 msgid "Matches citations with a certain number of items in the gallery"
-msgstr "Estrae le famiglie con certo numero di elementi nella galleria"
+msgstr "Estrae le citazioni con certo numero di elementi nella galleria"
 
 #: ../src/Filters/Rules/Citation/_HasIdOf.py:46
-#, fuzzy
 msgid "Citation with <Id>"
-msgstr "Persone con <Id>"
+msgstr "Citazioni con <Id>"
 
 #: ../src/Filters/Rules/Citation/_HasIdOf.py:47
-#, fuzzy
 msgid "Matches a citation with a specified Gramps ID"
-msgstr "Estrae la famiglia con un ID Gramps specifico"
+msgstr "Estrae le citazioni con un ID Gramps specifico"
 
 #: ../src/Filters/Rules/Citation/_HasNote.py:47
-#, fuzzy
 msgid "Citations having <count> notes"
-msgstr "Famiglie con <totale> note"
+msgstr "Citazioni con <totale> note"
 
 #: ../src/Filters/Rules/Citation/_HasNote.py:48
-#, fuzzy
 msgid "Matches citations having a certain number of notes"
-msgstr "Estrae gli eventi con un certo numero di note"
+msgstr "Estrae le citazioni con un certo numero di note"
 
 #: ../src/Filters/Rules/Citation/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Citations having notes containing <substring>"
-msgstr "Famiglie con note contenenti <sottostringa>"
+msgstr "Citazioni con note contenenti <sottostringa>"
 
 #: ../src/Filters/Rules/Citation/_HasNoteMatchingSubstringOf.py:45
-#, fuzzy
 msgid "Matches citations whose notes contain text matching a substring"
 msgstr ""
-"Estrae gli oggetti le cui note contengono testo corrispondente ad una "
+"Estrae le citazioni le cui note contengono testo corrispondente ad una "
 "sottostringa"
 
 #: ../src/Filters/Rules/Citation/_HasNoteRegexp.py:43
-#, fuzzy
 msgid "Citations having notes containing <regular expression>"
-msgstr "Famiglie con note contenenti <espressione regolare>"
+msgstr "Citazioni con note contenenti <espressione regolare>"
 
 #: ../src/Filters/Rules/Citation/_HasNoteRegexp.py:44
-#, fuzzy
 msgid ""
 "Matches citations whose notes contain text matching a regular expression"
 msgstr ""
-"Estrae gli oggetti le cui note contengono testo corrispondente ad "
+"Estrae le citazioni le cui note contengono testo corrispondente ad "
 "un'espressione regolare"
 
 #: ../src/Filters/Rules/Citation/_HasReferenceCountOf.py:44
-#, fuzzy
 msgid "Citations with a reference count of <count>"
-msgstr "Note con un numero di riferimenti pari a <totale>"
+msgstr "Citazioni con un numero di riferimenti pari a <totale>"
 
 #: ../src/Filters/Rules/Citation/_HasReferenceCountOf.py:45
-#, fuzzy
 msgid "Matches citations with a certain reference count"
-msgstr "Estrae gli oggetti con un certo numero di riferimenti"
+msgstr "Estrae le citazioni con un certo numero di riferimenti"
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:49
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:47
@@ -27232,24 +27075,20 @@ msgid "Sources matching parameters"
 msgstr "Fonti che corrispondono a parametri"
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:53
-#, fuzzy
 msgid "Matches citations with a source of a particular value"
-msgstr "Estrae le note con uno specifico marcatore"
+msgstr "Estrae le citazioni con una fonte avente uno specifico valore"
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:55
-#, fuzzy
 msgid "Source filters"
 msgstr "Filtri fonti"
 
 #: ../src/Filters/Rules/Citation/_MatchesFilter.py:46
-#, fuzzy
 msgid "Citations matching the <filter>"
-msgstr "Note corrispondenti al <filtro>"
+msgstr "Citazioni corrispondenti al <filtro>"
 
 #: ../src/Filters/Rules/Citation/_MatchesFilter.py:47
-#, fuzzy
 msgid "Matches citations matched by the specified filter name"
-msgstr "Estrae gli oggetti che corrispondono al filtro indicato"
+msgstr "Estrae le citazioni che corrispondono al filtro indicato"
 
 #: ../src/Filters/Rules/Citation/_MatchesPageSubstringOf.py:44
 #, fuzzy
@@ -27264,42 +27103,39 @@ msgstr ""
 "sottostringa"
 
 #: ../src/Filters/Rules/Citation/_RegExpIdOf.py:49
-#, fuzzy
 msgid "Citations with <Id> matching regular expression"
-msgstr "Note con <Id> che corrisponde all'espressione regolare"
+msgstr "Citazioni con <Id> che corrisponde all'espressione regolare"
 
 #: ../src/Filters/Rules/Citation/_RegExpIdOf.py:50
-#, fuzzy
 msgid "Matches citations whose Gramps ID matches the regular expression"
 msgstr ""
-"Estrae gli oggetti il cui ID Gramps corrisponde all'espressione regolare"
+"Estrae le citazioni il cui ID Gramps corrisponde all'espressione regolare"
 
 #: ../src/Filters/Rules/Citation/_MatchesRepositoryFilter.py:47
-#, fuzzy
 msgid ""
 "Citations with a source with a repository reference matching the <repository "
 "filter>"
-msgstr "Eventi con fonti che corrispondono al <filtro fonti>"
+msgstr ""
+"Citazioni con fonte con un riferimento a deposito che corrisponde al <filtro "
+"deposito>"
 
 #: ../src/Filters/Rules/Citation/_MatchesRepositoryFilter.py:49
-#, fuzzy
 msgid ""
 "Matches citations with sources with a repository reference that match a "
 "certain repository filter"
 msgstr ""
-"Estrae le persone che hanno eventi corrispondenti ad un certo filtro eventi"
+"Estrae le citazioni con fonti con riferimenti a depiositi corrispondenti ad "
+"un certo filtro depositi"
 
 #: ../src/Filters/Rules/Citation/_MatchesSourceFilter.py:50
-#, fuzzy
 msgid "Citations with source matching the <source filter>"
-msgstr "Eventi con fonti che corrispondono al <filtro fonti>"
+msgstr "Citazioni con fonti che corrispondono al <filtro fonti>"
 
 #: ../src/Filters/Rules/Citation/_MatchesSourceFilter.py:51
-#, fuzzy
 msgid ""
 "Matches citations with sources that match the specified source filter name"
 msgstr ""
-"Estrae gli eventi le cui fonti corrispondono al filtro di fonti indicato"
+"Estrae le citazioni le cui fonti corrispondono al filtro di fonti indicato"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:45
 msgid "Every media object"
@@ -27498,16 +27334,12 @@ msgid "Matches repositories matched by the specified filter name"
 msgstr "Estrae i depositi che corrispondono al filtro indicato"
 
 #: ../src/Filters/Rules/Repository/_MatchesNameSubstringOf.py:44
-#, fuzzy
 msgid "Repository name containing <substring>"
-msgstr "Depositi con note contenenti <sottostringa>"
+msgstr "Nomi di depositi contenenti <sottostringa>"
 
 #: ../src/Filters/Rules/Repository/_MatchesNameSubstringOf.py:45
-#, fuzzy
 msgid "Matches repositories whose name contains a certain substring"
-msgstr ""
-"Estrae i depositi le cui note contengono testo corrispondente ad una "
-"sottostringa"
+msgstr "Estrae i depositi il cui nome contiene una certa sottostringa"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:48
 msgid "Repositories with <Id> matching regular expression"
@@ -27560,7 +27392,6 @@ msgid "Notes containing <substring>"
 msgstr "Note contenenti <sottostringa>"
 
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:46
-#, fuzzy
 msgid "Matches notes that contain text which matches a substring"
 msgstr "Estrae le note che contengono testo corrispondente ad una sottostringa"
 
@@ -27573,7 +27404,6 @@ msgid "Notes containing <regular expression>"
 msgstr "Note contenenti <espressione regolare>"
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:46
-#, fuzzy
 msgid "Matches notes that contain text which matches a regular expression"
 msgstr ""
 "Estrae le note che contengono testo corrispondente ad un'espressione regolare"
@@ -27655,9 +27485,8 @@ msgid "Custom filter"
 msgstr "Filtro personalizzato"
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:96
-#, fuzzy
 msgid "Participants"
-msgstr "Partecipanti principali"
+msgstr "Partecipanti"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:90
 msgid "any"
@@ -27886,9 +27715,8 @@ msgstr "_Cognome"
 #: ../src/glade/editperson.glade.h:37 ../src/glade/editfamily.glade.h:23
 #: ../src/glade/editmedia.glade.h:19 ../src/glade/editmediaref.glade.h:32
 #: ../src/glade/editnote.glade.h:13
-#, fuzzy
 msgid "_Tags:"
-msgstr "Etichette:"
+msgstr "E_tichette:"
 
 #: ../src/glade/editperson.glade.h:38 ../src/glade/editurl.glade.h:9
 #: ../src/glade/editrepository.glade.h:11 ../src/glade/editreporef.glade.h:19
@@ -27940,31 +27768,27 @@ msgstr "<b>Relazioni genitore</b>"
 
 #: ../src/glade/reorder.glade.h:3
 msgid "Arrow bottom"
-msgstr ""
+msgstr "Freccia in basso"
 
 #: ../src/glade/reorder.glade.h:4
 msgid "Arrow top"
-msgstr ""
+msgstr "Freccia in alto"
 
 #: ../src/glade/reorder.glade.h:5
-#, fuzzy
 msgid "Move family down"
-msgstr "Rimuovi albero genealogico"
+msgstr "Sposta famiglia in basso"
 
 #: ../src/glade/reorder.glade.h:6
-#, fuzzy
 msgid "Move family up"
-msgstr "Tutte le famiglie"
+msgstr "Sposta famiglia in alto"
 
 #: ../src/glade/reorder.glade.h:7
-#, fuzzy
 msgid "Move parent down"
-msgstr "Nessun genitore trovato"
+msgstr "Sposta genitore in basso"
 
 #: ../src/glade/reorder.glade.h:8
-#, fuzzy
 msgid "Move parent up"
-msgstr "Nessun genitore trovato"
+msgstr "Sposta genitore in alto"
 
 #: ../src/glade/tipofday.glade.h:1
 msgid "_Display on startup"
@@ -28249,9 +28073,8 @@ msgid "Abo_ve:"
 msgstr "So_pra:"
 
 #: ../src/glade/styleeditor.glade.h:15
-#, fuzzy
 msgid "Add a new style"
-msgstr "Aggiunge una nuova nota"
+msgstr "Aggiunge un nuovo stile"
 
 #: ../src/glade/styleeditor.glade.h:16
 msgid "Belo_w:"
@@ -28262,20 +28085,17 @@ msgid "Cen_ter"
 msgstr "_Centrato"
 
 #: ../src/glade/styleeditor.glade.h:18
-#, fuzzy
 msgid "Delete the selected style"
-msgstr "Elimina la nota selezionata"
+msgstr "Elimina lo stile selezionato"
 
 #: ../src/glade/styleeditor.glade.h:20
-#, fuzzy
 msgid "Edit the selected style"
-msgstr "Modifica la nota selezionata"
+msgstr "Modifica lo stile selezionato"
 
 #: ../src/glade/styleeditor.glade.h:21 ../src/glade/editfamily.glade.h:12
 #: ../src/glade/editchildref.glade.h:3 ../src/glade/rule.glade.h:20
-#, fuzzy
 msgid "Edition"
-msgstr "Istruzione"
+msgstr "Edizione"
 
 #: ../src/glade/styleeditor.glade.h:22
 msgid "First li_ne:"
@@ -28378,19 +28198,17 @@ msgid "_Rename"
 msgstr "_Rinomina"
 
 #: ../src/glade/editcitation.glade.h:1
-#, fuzzy
 msgid "<b>Citation information</b>"
-msgstr "<b>Informazioni relazione</b>"
+msgstr "<b>Informazioni citazione</b>"
 
 #: ../src/glade/editcitation.glade.h:3
-#, fuzzy
 msgid ""
 "<b>Note:</b> Any changes in the shared citation information will be "
 "reflected in the citation itself, for all items that reference the citation."
 msgstr ""
-"<b>Nota:</b> Ogni modifica alle informazioni condivise del deposito si "
-"rifletterà sul deposito stesso, per tutti gli elementi che fanno riferimento "
-"al deposito."
+"<b>Nota:</b> Ogni modifica alle informazioni condivise della citazione si "
+"rifletterà sulla citazione stessa, per tutti gli elementi che fanno "
+"riferimento alla citazione."
 
 #: ../src/glade/editcitation.glade.h:4 ../src/glade/editsourceref.glade.h:2
 msgid ""
@@ -28406,9 +28224,8 @@ msgid "<b>Shared source information</b>"
 msgstr "<b>Fonti informazioni condivise</b>"
 
 #: ../src/glade/editcitation.glade.h:6
-#, fuzzy
 msgid "A unique ID to identify the citation"
-msgstr "Un ID univoco per identificare l'evento"
+msgstr "Un ID univoco per identificare la citazione"
 
 #: ../src/glade/editcitation.glade.h:10 ../src/glade/editsourceref.glade.h:8
 msgid "Con_fidence:"
@@ -28580,7 +28397,7 @@ msgstr ""
 #: ../src/glade/editevent.glade.h:12
 #, fuzzy
 msgid "Selector"
-msgstr "Seleziona"
+msgstr "Selettore"
 
 #: ../src/glade/editpersonref.glade.h:10
 msgid ""
@@ -28682,9 +28499,8 @@ msgid "Internet Address:"
 msgstr "Indirizzo Internet:"
 
 #: ../src/glade/editlink.glade.h:6
-#, fuzzy
 msgid "_Link Type:"
-msgstr "Tipo di collegamento:"
+msgstr "Tipo di co_llegamento:"
 
 #: ../src/glade/editfamily.glade.h:1
 msgid "<b>Father</b>"
@@ -28826,9 +28642,8 @@ msgid "Folder"
 msgstr ""
 
 #: ../src/glade/editmedia.glade.h:7
-#, fuzzy
 msgid "Image preview"
-msgstr "Dimensione immagine"
+msgstr "Anteprima immagine"
 
 #: ../src/glade/editmedia.glade.h:9
 msgid "Open File Browser to select a media file on your computer."
@@ -28915,12 +28730,12 @@ msgstr ""
 #: ../src/glade/editmediaref.glade.h:27
 #, fuzzy
 msgid "_Corner 1:  X"
-msgstr "Angolo 1:  X"
+msgstr "An_golo 1:  X"
 
 #: ../src/glade/editmediaref.glade.h:28
 #, fuzzy
 msgid "_Corner 2:  X"
-msgstr "Angolo 2:  X"
+msgstr "An_golo 2:  X"
 
 #: ../src/glade/editeventref.glade.h:2
 msgid ""
@@ -29215,9 +29030,8 @@ msgstr ""
 "automaticamente con lo strumento «Estrai descrizione evento»."
 
 #: ../src/glade/editevent.glade.h:13
-#, fuzzy
 msgid "Show Date Editor"
-msgstr "Mostra l'editor della date"
+msgstr "Mostra editor della date"
 
 #: ../src/glade/editevent.glade.h:14
 msgid "What type of event this is. Eg 'Burial', 'Graduation', ... ."
@@ -29255,20 +29069,18 @@ msgid "Gramps ID:"
 msgstr "Id Gramps:"
 
 #: ../src/glade/mergecitation.glade.h:7
-#, fuzzy
 msgid "Notes, media objects and data-items of both citations will be combined."
 msgstr ""
-"Note, oggetti multimediali, elementi di dati e riferimenti a depositi di "
-"entrambe le fonti saranno combinati."
+"Note, oggetti multimediali ed elementi di dati di entrambe le citazioni "
+"saranno combinati."
 
 #: ../src/glade/mergecitation.glade.h:8
-#, fuzzy
 msgid ""
 "Select the citation that will provide the\n"
 "primary data for the merged citation."
 msgstr ""
-"Selezionare la persona che fornirà i dati\n"
-"primari dopo la fusione delle persone."
+"Selezionare la citazione che fornirà i dati\n"
+"primari dopo la fusione delle citazioni."
 
 #: ../src/glade/mergedata.glade.h:3
 msgid "<b>Title selection</b>"
@@ -29484,7 +29296,6 @@ msgstr ""
 "primari dopo la fusione dei depositi."
 
 #: ../src/glade/mergesource.glade.h:7
-#, fuzzy
 msgid ""
 "Notes, media objects, data-items and repository references of both sources "
 "will be combined."
