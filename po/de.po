@@ -11,15 +11,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-20 10:24+0100\n"
-"PO-Revision-Date: 2012-02-20 10:34+0100\n"
-"Last-Translator: Mirko Leonhäuser <mirko@lonhaeuser.de>\n"
+"POT-Creation-Date: 2012-02-22 21:01+0100\n"
+"PO-Revision-Date: 2012-02-22 21:27+0100\n"
+"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.4\n"
+"X-Generator: Lokalize 1.2\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../src/Assistant.py:338 ../src/Filters/Rules/Place/_HasPlace.py:48
@@ -9064,9 +9064,8 @@ msgid "manual|Merge_Citations"
 msgstr "Fundstellen_zusammenfassen"
 
 #: ../src/Merge/mergecitation.py:72 ../src/plugins/tool/tools.gpr.py:529
-#, fuzzy
 msgid "Merge Citations"
-msgstr "Zitat"
+msgstr "Fundstellen zusammenfassen"
 
 #: ../src/Merge/mergecitation.py:193 ../src/plugins/tool/MergeCitations.py:188
 #, fuzzy
@@ -14699,7 +14698,7 @@ msgid "Old xml file"
 msgstr "Alte XML Datei"
 
 #: ../src/plugins/import/ImportXml.py:1086
-#: ../src/plugins/import/ImportXml.py:2415
+#: ../src/plugins/import/ImportXml.py:2417
 #, python-format
 msgid "Witness name: %s"
 msgstr "Namen des Zeugen: %s"
@@ -14729,7 +14728,7 @@ msgstr "Gramps hat Namenskartenwert ignoriert"
 msgid "Any note reference must have a 'hlink' attribute."
 msgstr "Alle Notizreferenzen müssen ein 'hlink' Attribut besitzen."
 
-#: ../src/plugins/import/ImportXml.py:2306
+#: ../src/plugins/import/ImportXml.py:2308
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Kommentar für Zeugen: %s"
@@ -14855,7 +14854,7 @@ msgstr "Ordne Gramps-IDs neu"
 msgid "OBJE (multi-media object) Gramps ID %s"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:5777 ../src/plugins/lib/libgedcom.py:6762
+#: ../src/plugins/lib/libgedcom.py:5777 ../src/plugins/lib/libgedcom.py:6766
 #, python-format
 msgid "Could not import %s"
 msgstr "Kann Datei %s nicht importieren"
@@ -14914,26 +14913,26 @@ msgstr "Anzahl der Quellen"
 msgid "Copyright of source data"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6320
+#: ../src/plugins/lib/libgedcom.py:6324
 #, fuzzy
 msgid "Publication date of source data"
 msgstr "Publikationsinformation"
 
 #. feature request 2356: avoid genitive form
-#: ../src/plugins/lib/libgedcom.py:6333
+#: ../src/plugins/lib/libgedcom.py:6337
 #, python-format
 msgid "Import from %s"
 msgstr "Aus %s importieren"
 
-#: ../src/plugins/lib/libgedcom.py:6371
+#: ../src/plugins/lib/libgedcom.py:6375
 msgid "Submission record identifier"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6382
+#: ../src/plugins/lib/libgedcom.py:6386
 msgid "Language of GEDCOM text"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6406
+#: ../src/plugins/lib/libgedcom.py:6410
 #, python-format
 msgid ""
 "Import of GEDCOM file %s with DEST=%s, could cause errors in the resulting "
@@ -14942,92 +14941,92 @@ msgstr ""
 "Import der GEDCOM Datei %s mit dem ZIEL=%s kann Fehler in der resultierenden "
 "Datenbank verursachen!"
 
-#: ../src/plugins/lib/libgedcom.py:6409
+#: ../src/plugins/lib/libgedcom.py:6413
 msgid "Look for nameless events."
 msgstr "Suche nach namenlosen Ereignissen."
 
-#: ../src/plugins/lib/libgedcom.py:6432
+#: ../src/plugins/lib/libgedcom.py:6436
 #, fuzzy
 msgid "Character set"
 msgstr "Codierung der Zeichensetzung"
 
-#: ../src/plugins/lib/libgedcom.py:6434
+#: ../src/plugins/lib/libgedcom.py:6438
 #, fuzzy
 msgid "Character set and version"
 msgstr "Codierung der Zeichensetzung"
 
-#: ../src/plugins/lib/libgedcom.py:6450
+#: ../src/plugins/lib/libgedcom.py:6454
 msgid "GEDCOM version not supported"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6453
+#: ../src/plugins/lib/libgedcom.py:6457
 #, fuzzy
 msgid "GEDCOM version"
 msgstr "GEDCOM Exportoptionen"
 
-#: ../src/plugins/lib/libgedcom.py:6456
+#: ../src/plugins/lib/libgedcom.py:6460
 #, fuzzy
 msgid "GEDCOM form not supported"
 msgstr "GEDCOM-Import"
 
-#: ../src/plugins/lib/libgedcom.py:6458
+#: ../src/plugins/lib/libgedcom.py:6462
 #, fuzzy
 msgid "GEDCOM form"
 msgstr "GEDCOM-Import"
 
-#: ../src/plugins/lib/libgedcom.py:6504
+#: ../src/plugins/lib/libgedcom.py:6508
 msgid "Creation date of GEDCOM"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6508
+#: ../src/plugins/lib/libgedcom.py:6512
 msgid "Creation date and time of GEDCOM"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6547 ../src/plugins/lib/libgedcom.py:6585
+#: ../src/plugins/lib/libgedcom.py:6551 ../src/plugins/lib/libgedcom.py:6589
 #, fuzzy
 msgid "Empty note ignored"
 msgstr "Zeile %d: leere Notiz wurde ignoriert."
 
-#: ../src/plugins/lib/libgedcom.py:6599
+#: ../src/plugins/lib/libgedcom.py:6603
 #, fuzzy, python-format
 msgid "NOTE Gramps ID %s"
 msgstr "Gramps ID: %s "
 
-#: ../src/plugins/lib/libgedcom.py:6649
-msgid "Submission: Submitter"
-msgstr ""
-
-#: ../src/plugins/lib/libgedcom.py:6651
-#, fuzzy
-msgid "Submission: Family file"
-msgstr "Smith Stammbaum"
-
 #: ../src/plugins/lib/libgedcom.py:6653
-msgid "Submission: Temple code"
+msgid "Submission: Submitter"
 msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:6655
 #, fuzzy
+msgid "Submission: Family file"
+msgstr "Smith Stammbaum"
+
+#: ../src/plugins/lib/libgedcom.py:6657
+msgid "Submission: Temple code"
+msgstr ""
+
+#: ../src/plugins/lib/libgedcom.py:6659
+#, fuzzy
 msgid "Submission: Generations of ancestors"
 msgstr "Anzahl der Ahnen begrenzen"
 
-#: ../src/plugins/lib/libgedcom.py:6657
+#: ../src/plugins/lib/libgedcom.py:6661
 #, fuzzy
 msgid "Submission: Generations of descendants"
 msgstr "Anzahl der Nachkommen begrenzen"
 
-#: ../src/plugins/lib/libgedcom.py:6659
+#: ../src/plugins/lib/libgedcom.py:6663
 msgid "Submission: Ordinance process flag"
 msgstr ""
 
 #. # Okay we have no clue which temple this is.
 #. # We should tell the user and store it anyway.
-#: ../src/plugins/lib/libgedcom.py:6864
+#: ../src/plugins/lib/libgedcom.py:6868
 #, fuzzy
 msgid "Invalid temple code"
 msgstr "Ungültiger Dateiname"
 
-#: ../src/plugins/lib/libgedcom.py:6945
+#: ../src/plugins/lib/libgedcom.py:6949
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
@@ -15035,11 +15034,11 @@ msgstr ""
 "Deine GEDCOM Datei ist beschädigt. Die Datei scheint UTF16 kodiert zu sein, "
 "aber die BOM Markierung fehlt."
 
-#: ../src/plugins/lib/libgedcom.py:6948
+#: ../src/plugins/lib/libgedcom.py:6952
 msgid "Your GEDCOM file is empty."
 msgstr "Deine GEDCOM-Datei ist leer."
 
-#: ../src/plugins/lib/libgedcom.py:7011
+#: ../src/plugins/lib/libgedcom.py:7015
 #, python-format
 msgid "Invalid line %d in GEDCOM file."
 msgstr "Ungültige Zeile %d in der GEDCOM-Datei."
@@ -22944,25 +22943,21 @@ msgstr "Die gewählten Quellen zusammenfassen"
 
 #: ../src/plugins/view/citationtreeview.py:141
 #: ../src/plugins/view/view.gpr.py:234
-#, fuzzy
 msgid "Citation Tree View"
-msgstr "Personenbaumansicht"
+msgstr "Fundstellenbaumansicht"
 
 #: ../src/plugins/view/citationtreeview.py:279
-#, fuzzy
 msgid "Add source..."
-msgstr "Quelle hinzufügen"
+msgstr "Quelle hinzufügen..."
 
 #: ../src/plugins/view/citationtreeview.py:284
-#, fuzzy
 msgid "Add citation..."
-msgstr "Partner hinzufügen..."
+msgstr "Fundstelle hinzufügen..."
 
 #: ../src/plugins/view/citationtreeview.py:292
 #: ../src/plugins/view/citationlistview.py:180
-#, fuzzy
 msgid "Citation Filter Editor"
-msgstr "Benutzerfiltereditor"
+msgstr "Filtereditor für Fundstellen"
 
 #: ../src/plugins/view/citationtreeview.py:301
 #: ../src/plugins/view/persontreeview.py:82
@@ -22977,14 +22972,15 @@ msgid "Collapse all Nodes"
 msgstr "Alle Knoten schließen"
 
 #: ../src/plugins/view/citationtreeview.py:445
-#, fuzzy
 msgid "Cannot add citation."
-msgstr "Kann Markierung nicht speichern"
+msgstr "Kann Fundstelle nicht hinzufügen."
 
 #: ../src/plugins/view/citationtreeview.py:446
 msgid ""
 "In order to add a citation to an existing source,  you must select a source."
 msgstr ""
+"Um eine Fundstelle einer bestehenden Quelle hinzuzufüge, musst du eine Quelle "
+"auswählen."
 
 #: ../src/plugins/view/citationtreeview.py:514
 #, fuzzy
@@ -23005,21 +23001,19 @@ msgstr ""
 #: ../src/plugins/view/citationtreeview.py:547
 #: ../src/plugins/view/citationlistview.py:321
 #: ../src/plugins/view/citationlistview.py:332
-#, fuzzy
 msgid "Cannot merge citations."
-msgstr "Kann Notizen nicht zusammenfassen."
+msgstr "Kann Fundstellen nicht zusammenfassen."
 
 #: ../src/plugins/view/citationtreeview.py:528
 #: ../src/plugins/view/citationlistview.py:322
-#, fuzzy
 msgid ""
 "Exactly two citations must be selected to perform a merge. A second citation "
 "can be selected by holding down the control key while clicking on the "
 "desired citation."
 msgstr ""
-"Genau zwei Notizen müssen ausgewählt sein, um eine Zusammenfassung "
-"durchzuführen. Eine zweite Notiz kann durch Anklicken bei gehaltener Strg-"
-"Taste gewählt werden."
+"Genau zwei Fundstellen müssen ausgewählt sein, um eine Zusammenfassung "
+"durchzuführen. Eine zweite Fundstelle kann durch Anklicken der gewünschten "
+"Fundstelle bei gehaltener Strg-Taste gewählt werden."
 
 #: ../src/plugins/view/citationtreeview.py:548
 #: ../src/plugins/view/citationlistview.py:333
@@ -23029,26 +23023,25 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/view/citationtreeview.py:562
-#, fuzzy
 msgid "Cannot perform merge."
-msgstr "Kann Notizen nicht zusammenfassen."
+msgstr "Kann zusammenfassen nicht durchführen."
 
 #: ../src/plugins/view/citationtreeview.py:563
 msgid ""
 "Both objects must be of the same type, either both must be sources, or both "
 "must be citations."
 msgstr ""
+"Beide Objekte müssen vom selben Typ sein entweder müssen beide Quellen sein "
+"oder beide müssen Fundstellen sein."
 
 #: ../src/plugins/view/citationlistview.py:95
 #: ../src/Filters/SideBar/_CitationSidebarFilter.py:95
-#, fuzzy
 msgid "Volume/Page"
-msgstr "_Band/Film/Seite:"
+msgstr "Band/Seite"
 
 #: ../src/plugins/view/citationlistview.py:100
-#, fuzzy
 msgid "Source: Title"
-msgstr "Quellenfilter"
+msgstr "Quelle: Titel"
 
 #: ../src/plugins/view/citationlistview.py:101
 msgid "Source: ID"
@@ -23059,20 +23052,17 @@ msgid "Source: Last Changed"
 msgstr "Quelle: Letzte Änderung"
 
 #: ../src/plugins/view/citationlistview.py:122
-#, fuzzy
 msgid "Delete the selected citation"
-msgstr "Gewählte Familie löschen"
+msgstr "Gewählte Fundstelle löschen"
 
 #: ../src/plugins/view/citationlistview.py:123
-#, fuzzy
 msgid "Merge the selected citations"
-msgstr "Gewählte Personen zusammenfassen"
+msgstr "Gewählte Fundstellen zusammenfassen"
 
 #: ../src/plugins/view/citationlistview.py:137
 #: ../src/plugins/view/view.gpr.py:219
-#, fuzzy
 msgid "Citation View"
-msgstr "Zitat"
+msgstr "Fundstellenansicht"
 
 #: ../src/plugins/view/citationlistview.py:308
 #, fuzzy
@@ -23201,26 +23191,23 @@ msgstr ""
 "zur Verfügung."
 
 #: ../src/plugins/view/geography.gpr.py:49
-#, fuzzy
 msgid "A view showing the places visited by one person during his life."
 msgstr ""
-"Eine Ansicht die es erlaubt alle Plätze die von einer Person während ihres "
-"Lebens besucht wurden zu sehen."
+"Eine Ansicht die alle Orte zeiget, die von einer Person "
+"während ihres gesamten Lebens besucht wurden."
 
 #: ../src/plugins/view/geography.gpr.py:66
 msgid "A view showing all places of the database."
-msgstr "Eine Ansicht zeigt alle Orte einer Datenbank."
+msgstr "Eine Ansicht die alle Orte einer Datenbank zeigt."
 
 #: ../src/plugins/view/geography.gpr.py:81
-#, fuzzy
 msgid "A view showing all the event places of the database."
-msgstr "Die Ansicht ermöglicht das Ansehen alle Ereignisorte der Datenbank."
+msgstr "Eine Ansicht die alle Ereignisorte einer Datenbank zeigt."
 
 #: ../src/plugins/view/geography.gpr.py:97
-#, fuzzy
 msgid "A view showing the places visited by one family during all their life."
 msgstr ""
-"Eine Ansicht die es ermöglicht, die Orte zu zeigen, die von einer Familie "
+"Eine Ansicht die alle Orte zeiget, die von einer Familie "
 "während ihres gesamten Lebens besucht wurden."
 
 #: ../src/plugins/view/geoevents.py:116
@@ -23902,14 +23889,12 @@ msgid "The view showing all the sources"
 msgstr "Die Ansicht zeigt alle Quellen"
 
 #: ../src/plugins/view/view.gpr.py:220
-#, fuzzy
 msgid "The view showing all the citations"
-msgstr "Die Ansicht zeigt alle Notizen"
+msgstr "Die Ansicht zeigt alle Fundstellen"
 
 #: ../src/plugins/view/view.gpr.py:235
-#, fuzzy
 msgid "A view displaying citations and sources in a tree format."
-msgstr "Eine Ansicht die Orte in einem Baumformat anzeigt."
+msgstr "Eine Ansicht die Fundstellen und Quellen in einem Baumformat anzeigt."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:327
 msgid "Gramps&nbsp;ID"
@@ -23996,9 +23981,8 @@ msgstr "Kontakt"
 
 #. add personal column
 #: ../src/plugins/webreport/NarrativeWeb.py:1796
-#, fuzzy
 msgid "Personal"
-msgstr "Person"
+msgstr "Persönlich"
 
 #. add section title
 #: ../src/plugins/webreport/NarrativeWeb.py:2141
@@ -24082,9 +24066,8 @@ msgid "Partner 2"
 msgstr "Partner 2"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3248
-#, fuzzy
 msgid "Family/ Relationship"
-msgstr "<b>Familienbeziehungen</b>"
+msgstr "Familie/ Beziehung"
 
 #. determine if husband and wife, husband only, or spouse only....
 #: ../src/plugins/webreport/NarrativeWeb.py:3281
@@ -24202,9 +24185,8 @@ msgstr "Informationen zur Veröffentlichung"
 
 #. add secion title
 #: ../src/plugins/webreport/NarrativeWeb.py:4527
-#, fuzzy
 msgid "Citation References"
-msgstr "Verknüpfung Referenzen"
+msgstr "Fundstelle Referenzen"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4831
 msgid ""
@@ -24303,14 +24285,12 @@ msgid "Age at Death"
 msgstr "Alter beim Tod"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6377
-#, fuzzy
 msgid "Half Siblings"
-msgstr "Geschwister"
+msgstr "Halbgeschwister"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6399
-#, fuzzy
 msgid "Step Siblings"
-msgstr "Geschwister zeigen"
+msgstr "Stiefgeschwister"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6494
 msgid ""
@@ -24327,9 +24307,8 @@ msgid "Repository |Name"
 msgstr "Name"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6629
-#, fuzzy
 msgid "Referenced Sources"
-msgstr "Referenzen"
+msgstr "Referenzierte Quellen"
 
 #. Address Book Page message
 #: ../src/plugins/webreport/NarrativeWeb.py:6673
@@ -24345,9 +24324,8 @@ msgstr ""
 "Adressbuchseite der Person bringen."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6694
-#, fuzzy
 msgid "Full Name"
-msgstr "Rufname"
+msgstr "Kompletter Name"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6927
 #, python-format
@@ -24503,21 +24481,20 @@ msgid "The stylesheet to be used for the web pages"
 msgstr "Die Layoutvorlage, für die Webseiten"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7738
-#, fuzzy
 msgid "Horizontal -- Default"
-msgstr "Horizontal (von rechts nach links)"
+msgstr "Horizontal -- Standard"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7739
 msgid "Vertical   -- Left Side"
-msgstr ""
+msgstr "Vertikal -- Linke Seite"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7740
 msgid "Fade       -- WebKit Browsers Only"
-msgstr ""
+msgstr "Überblenden  -- Nur WebKit Browser"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7741
 msgid "Drop-Down  -- WebKit Browsers Only"
-msgstr ""
+msgstr "Drop-Down  -- Nur WebKit Browser"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7743
 msgid "Navigation Menu Layout"
@@ -24641,6 +24618,10 @@ msgid ""
 "the Media Page, and only a thumb- sized images.  This will allow you to have "
 "a much smaller total upload size to your web hosting site."
 msgstr ""
+"Diese Option gibt dir die Möglichkeit, keine vollauflösenden Bilder wie auf "
+"der Medienseite sondern nur Bilder in Vorschaugröße zu erstellen. Dadurch "
+"ist die Datenmenge, die du zu deinen Website Anbieter hochladen musst "
+"erheblich kleiner."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7820
 msgid "Max width of initial image"
@@ -24925,7 +24906,7 @@ msgstr "Familienverknüpfungen"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8008
 msgid "Drop"
-msgstr ""
+msgstr "Abbrechen"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8009
 msgid "Markers"
