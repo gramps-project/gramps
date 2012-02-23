@@ -1791,7 +1791,7 @@ msgstr "aucune preuve"
 #: ../src/plugins/import/ImportCsv.py:178
 #: ../src/plugins/tool/PatchNames.py:439
 msgid "Person|Title"
-msgstr "Titre (Dr ou Me)"
+msgstr "Titre"
 
 #: ../src/Utils.py:1273
 msgid "Person|TITLE"
@@ -2709,7 +2709,7 @@ msgstr "Patronyme, Prénom"
 #: ../src/gen/display/name.py:640
 #: ../src/plugins/import/ImportCsv.py:178
 msgid "Person|title"
-msgstr "Titre (Dr ou Me)"
+msgstr "titre"
 
 #: ../src/gen/display/name.py:542
 #: ../src/gen/display/name.py:642
@@ -4609,7 +4609,7 @@ msgstr ""
 "Les mots clé suivants seront affichés pour le nom :\n"
 "<tt>  \n"
 "  <b>Prénom</b>      - prénom  |  <b>Nom</b>    - nom (avec préfixe et connecteurs)\n"
-"  <b>Titre</b>       - titre (Dr., Me.)  |  <b>Suffixe</b>    - suffixe (Jr., Sr.)\n"
+"  <b>Titre</b>       - titre (Dr., Me., Duc)  |  <b>Suffixe</b>    - suffixe (Jr., Sr.)\n"
 "  <b>Usuel</b>       - prénom usuel  |  <b>Surnom</b>    - surnom\n"
 "  <b>Initiales</b>   - premières lettres du prénom  <b>Courant</b>    - surnom, sinon souvent le premier prénom\n"
 "  <b>Nom[pre] ou [nom] ou [con]</b>- nom de famille principal complet, préfixe, nom seul, connecteur   \n"
@@ -11160,7 +11160,7 @@ msgstr "Femmes"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:316
 msgid "person|Title"
-msgstr "Titre (Dr ou Me)"
+msgstr "Titre"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:320
 msgid "Forename"
@@ -25293,7 +25293,7 @@ msgstr "Nom de famille complet :"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:50
 msgid "person|Title:"
-msgstr "Titre (Dr. ou Me.) :"
+msgstr "Titre :"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:51
 msgid "Suffix:"
@@ -27307,7 +27307,7 @@ msgstr "Un prénom descriptif à la place ou en addition du prénom officiel."
 #: ../src/glade/editperson.glade.h:5
 #: ../src/glade/editname.glade.h:6
 msgid "A title used to refer to the person, such as 'Dr.' or 'Rev.'"
-msgstr "Un titre de référence utilisé pour la personne, tel que 'Dr.' ou 'Me.'"
+msgstr "Un titre de référence utilisé pour la personne, tel que 'Dr.', 'Me.' ou un titre de noblesse."
 
 #: ../src/glade/editperson.glade.h:6
 msgid "A unique ID for the person."
