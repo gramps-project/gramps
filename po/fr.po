@@ -27307,7 +27307,7 @@ msgstr "Un prénom descriptif à la place ou en addition du prénom officiel."
 #: ../src/glade/editperson.glade.h:5
 #: ../src/glade/editname.glade.h:6
 msgid "A title used to refer to the person, such as 'Dr.' or 'Rev.'"
-msgstr "Un titre de référence utilisé pour la personne, tel que 'Dr.', 'Me.' ou un titre de noblesse."
+msgstr "Un titre de référence utilisé pour la personne, tel que 'Dr.' ou 'Me.'"
 
 #: ../src/glade/editperson.glade.h:6
 msgid "A unique ID for the person."
