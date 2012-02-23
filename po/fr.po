@@ -1731,7 +1731,7 @@ msgstr "aucune preuve"
 #: ../src/plugins/import/ImportCsv.py:177
 #: ../src/plugins/tool/PatchNames.py:439
 msgid "Person|Title"
-msgstr "Titre (Dr ou Me)"
+msgstr "Titre"
 
 #: ../src/Utils.py:1200
 msgid "Person|TITLE"
@@ -2440,7 +2440,7 @@ msgstr "Patronyme, Prénom"
 #: ../src/gen/display/name.py:640
 #: ../src/plugins/import/ImportCsv.py:177
 msgid "Person|title"
-msgstr "Titre (Dr ou Me)"
+msgstr "titre"
 
 #: ../src/gen/display/name.py:542
 #: ../src/gen/display/name.py:642
@@ -10605,7 +10605,7 @@ msgstr "Femmes"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:317
 msgid "person|Title"
-msgstr "Titre (Dr ou Me)"
+msgstr "Titre"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:321
 msgid "Forename"
@@ -24063,7 +24063,7 @@ msgstr "Nom de famille complet :"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:50
 msgid "person|Title:"
-msgstr "Titre (Dr. ou Me.) :"
+msgstr "Titre :"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:51
 msgid "Suffix:"
