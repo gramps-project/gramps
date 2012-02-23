@@ -223,8 +223,8 @@ class MergeCitations(tool.BatchTool,ManagedWindow.ManagedWindow):
         self.progress.close()
         OkDialog(
             _("Number of merges done"),
-            ngettext("%(num)d citation merges",
-            "%(num)d citations merges", num_merges) % {'num': num_merges})
+            ngettext("%(num)d citation merged",
+            "%(num)d citations merged", num_merges) % {'num': num_merges})
         self.close(obj)
             
     def Merge (self, db, citation1, citation2, trans):
