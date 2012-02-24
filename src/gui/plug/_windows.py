@@ -264,8 +264,8 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         hbutbox.add(self.__refresh_btn)
         self.__refresh_btn.connect('clicked', self.__refresh_addon_list) 
         install_page.pack_start(hbutbox, expand=False, padding=5)
-        notebook.append_page(install_page, 
-                             tab_label=gtk.Label(_('Install Addons')))
+        # notebook.append_page(install_page, 
+        #                      tab_label=gtk.Label(_('Install Addons')))
 
         #add the notebook to the window
         self.window.vbox.add(notebook)
