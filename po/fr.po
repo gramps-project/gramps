@@ -10128,7 +10128,7 @@ msgstr "Impossible d'ouvrir %s"
 # trunk
 #: ../src/plugins/docgen/ODFDoc.py:1616
 msgid "Contents"
-msgstr "Contenus"
+msgstr "Sommaire"
 
 # trunk
 #: ../src/plugins/docgen/ODFDoc.py:1655
