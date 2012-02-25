@@ -6344,21 +6344,23 @@ msgstr "Vous avez essayé d'utiliser l'identifiant Gramps %(id)s existant. Cette
 msgid "The event type cannot be empty"
 msgstr "Cet événement ne peut pas être vide"
 
+# historique (action)
 #: ../src/gui/editors/editevent.py:257
 #, python-format
 msgid "Add Event (%s)"
-msgstr "Ajouter un événement (%s)"
+msgstr "Ajout de l'événement (%s)"
 
+# historique (action)
 #: ../src/gui/editors/editevent.py:263
 #, python-format
 msgid "Edit Event (%s)"
-msgstr "Éditer l'événement (%s)"
+msgstr "Édition de l'événement (%s)"
 
-# objet sélectionné
+# historique (action)
 #: ../src/gui/editors/editevent.py:335
 #, python-format
 msgid "Delete Event (%s)"
-msgstr "Supprimer l'événement (%s)"
+msgstr "Suppression de l'événement (%s)"
 
 #: ../src/gui/editors/editeventref.py:67
 #: ../src/gui/editors/editeventref.py:242
@@ -6813,11 +6815,11 @@ msgstr "Impossible d'enregistrer la note. L'identifiant existe déjà."
 msgid "Add Note"
 msgstr "Ajouter une note"
 
-# objet sélectionné
+# historique (action)
 #: ../src/gui/editors/editnote.py:344
 #, python-format
 msgid "Delete Note (%s)"
-msgstr "Supprimer la note (%s)"
+msgstr "Suppression de la note (%s)"
 
 #: ../src/gui/editors/editperson.py:148
 #, python-format
@@ -6875,15 +6877,17 @@ msgstr "Aucune donnée n'existe pour cet individu. Veuillez entrer une donnée o
 msgid "Cannot save person. ID already exists."
 msgstr "Impossible d'enregistrer l'individu. L'identifiant existe déjà."
 
+# historique (action)
 #: ../src/gui/editors/editperson.py:825
 #, python-format
 msgid "Add Person (%s)"
-msgstr "Ajouter l'individu (%s)"
+msgstr "Ajout de l'individu (%s)"
 
+# historique (action)
 #: ../src/gui/editors/editperson.py:831
 #, python-format
 msgid "Edit Person (%s)"
-msgstr "Éditeur d'individu (%s)"
+msgstr "Édition de l'individu (%s)"
 
 #: ../src/gui/editors/editperson.py:920
 #: ../src/gui/editors/displaytabs/gallerytab.py:254
@@ -17524,11 +17528,11 @@ msgstr "La suppression de l'individu l'enlèvera de la base de données."
 msgid "_Delete Person"
 msgstr "_Supprimer l'individu"
 
-# objet sélectionné
+# historique (action)
 #: ../src/plugins/lib/libpersonview.py:314
 #, python-format
 msgid "Delete Person (%s)"
-msgstr "Supprimer l'individu (%s)"
+msgstr "Suppression de l'individu (%s)"
 
 #: ../src/plugins/lib/libpersonview.py:351
 #: ../src/plugins/view/pedigreeview.py:835
