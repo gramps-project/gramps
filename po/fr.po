@@ -6847,21 +6847,23 @@ msgstr "Vous avez essayé d'utiliser l'identifiant Gramps %(id)s existant. Cette
 msgid "The event type cannot be empty"
 msgstr "Cet événement ne peut pas être vide"
 
+# historique (action)
 #: ../src/gui/editors/editevent.py:259
 #, python-format
 msgid "Add Event (%s)"
-msgstr "Ajouter un événement (%s)"
+msgstr "Ajout de l'événement (%s)"
 
+# historique (action)
 #: ../src/gui/editors/editevent.py:265
 #, python-format
 msgid "Edit Event (%s)"
-msgstr "Éditer l'événement (%s)"
+msgstr "Édition de l'événement (%s)"
 
-# objet sélectionné
+# historique (action)
 #: ../src/gui/editors/editevent.py:337
 #, python-format
 msgid "Delete Event (%s)"
-msgstr "Supprimer l'événement (%s)"
+msgstr "Suppression de l'événement (%s)"
 
 #: ../src/gui/editors/editeventref.py:68
 #: ../src/gui/editors/editeventref.py:243
@@ -7316,11 +7318,11 @@ msgstr "Impossible d'enregistrer la note. L'identifiant existe déjà."
 msgid "Add Note"
 msgstr "Ajouter une note"
 
-# objet sélectionné
+# historique (action)
 #: ../src/gui/editors/editnote.py:345
 #, python-format
 msgid "Delete Note (%s)"
-msgstr "Supprimer la note (%s)"
+msgstr "Suppression de la note (%s)"
 
 #: ../src/gui/editors/editperson.py:149
 #, python-format
@@ -7378,15 +7380,17 @@ msgstr "Aucune donnée n'existe pour cet individu. Veuillez entrer une donnée o
 msgid "Cannot save person. ID already exists."
 msgstr "Impossible d'enregistrer l'individu. L'identifiant existe déjà."
 
+# historique (action)
 #: ../src/gui/editors/editperson.py:827
 #, python-format
 msgid "Add Person (%s)"
-msgstr "Ajouter l'individu (%s)"
+msgstr "Ajout de l'individu (%s)"
 
+# historique (action)
 #: ../src/gui/editors/editperson.py:833
 #, python-format
 msgid "Edit Person (%s)"
-msgstr "Éditeur d'individu (%s)"
+msgstr "Édition de l'individu (%s)"
 
 #: ../src/gui/editors/editperson.py:922
 #: ../src/gui/editors/displaytabs/gallerytab.py:251
@@ -7549,21 +7553,23 @@ msgstr "Aucune donnée n'existe pour ce dépôt. Veuillez entrer une donnée ou 
 msgid "Cannot save repository. ID already exists."
 msgstr "Impossible d'enregistrer le dépôt. L'identifiant existe déjà."
 
+# historique (action)
 #: ../src/gui/editors/editrepository.py:184
 #, python-format
 msgid "Add Repository (%s)"
-msgstr "Ajouter le dépôt (%s)"
+msgstr "Ajout du dépôt (%s)"
 
+# historique (action)
 #: ../src/gui/editors/editrepository.py:189
 #, python-format
 msgid "Edit Repository (%s)"
-msgstr "Éditeur de dépôt (%s)"
+msgstr "Édition du dépôt (%s)"
 
-# objet sélectionné
+# historique (action)
 #: ../src/gui/editors/editrepository.py:202
 #, python-format
 msgid "Delete Repository (%s)"
-msgstr "Supprimer le dépôt (%s)"
+msgstr "Suppression du dépôt (%s)"
 
 #: ../src/gui/editors/editsource.py:79
 msgid "New Source"
@@ -7573,11 +7579,11 @@ msgstr "Nouvelle source"
 msgid "Edit Source"
 msgstr "Éditer la source"
 
-# objet sélectionné
+# historique (action)
 #: ../src/gui/editors/editsource.py:222
 #, python-format
 msgid "Delete Source (%s)"
-msgstr "Supprimer la source (%s)"
+msgstr "Suppression de la source (%s)"
 
 #: ../src/gui/editors/editurl.py:61
 #: ../src/gui/editors/editurl.py:91
@@ -18108,11 +18114,11 @@ msgstr "La suppression de l'individu l'enlèvera de la base de données."
 msgid "_Delete Person"
 msgstr "_Supprimer l'individu"
 
-# objet sélectionné
+# historique (action)
 #: ../src/plugins/lib/libpersonview.py:315
 #, python-format
 msgid "Delete Person (%s)"
-msgstr "Supprimer l'individu (%s)"
+msgstr "Suppression de l'individu (%s)"
 
 #: ../src/plugins/lib/libpersonview.py:352
 #: ../src/plugins/view/pedigreeview.py:835
