@@ -3575,7 +3575,7 @@ msgstr "Fiche"
 
 #: ../src/gen/lib/srcmediatype.py:67
 msgid "Electronic"
-msgstr "Électronique"
+msgstr "Numérique"
 
 #: ../src/gen/lib/srcmediatype.py:68
 msgid "Fiche"
@@ -7079,21 +7079,23 @@ msgstr "Aucune donnée n'existe pour cette source. Veuillez entrer une donnée o
 msgid "Cannot save source. ID already exists."
 msgstr "Impossible d'enregistrer la source. L'identifiant existe déjà."
 
+# historique (action)
 #: ../src/gui/editors/editsource.py:202
 #, python-format
 msgid "Add Source (%s)"
-msgstr "Ajouter la source (%s)"
+msgstr "Ajout de la source (%s)"
 
+# historique (action)
 #: ../src/gui/editors/editsource.py:207
 #, python-format
 msgid "Edit Source (%s)"
-msgstr "Éditer la source (%s)"
+msgstr "Édition de la source (%s)"
 
-# objet sélectionné
+# historique (action)
 #: ../src/gui/editors/editsource.py:220
 #, python-format
 msgid "Delete Source (%s)"
-msgstr "Supprimer la source (%s)"
+msgstr "Suppression de la source (%s)"
 
 #: ../src/gui/editors/editsourceref.py:66
 #: ../src/gui/editors/editsourceref.py:214
@@ -13618,7 +13620,7 @@ msgstr "Reconstruire la table de référence"
 #: ../src/plugins/import/ImportXml.py:395
 #, python-format
 msgid "%s could not be opened"
-msgstr "%s ouverture impossible"
+msgstr "Ouverture impossible de %s"
 
 #: ../src/plugins/import/ImportGrdb.py:2793
 msgid "The Database version is not supported by this version of Gramps."
