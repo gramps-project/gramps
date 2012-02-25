@@ -3856,7 +3856,7 @@ msgstr "Fiche"
 
 #: ../src/gen/lib/srcmediatype.py:67
 msgid "Electronic"
-msgstr "Électronique"
+msgstr "Numérique"
 
 #: ../src/gen/lib/srcmediatype.py:68
 msgid "Fiche"
@@ -6759,12 +6759,14 @@ msgstr "Vous avez essayé d'utiliser l'identifiant Gramps %(gramps_id)s existant
 msgid "Cannot save source. ID already exists."
 msgstr "Impossible d'enregistrer la source. L'identifiant existe déjà."
 
+# historique (action)
 #: ../src/gui/editors/editcitation.py:430
 #: ../src/gui/editors/editsource.py:204
 #, python-format
 msgid "Add Source (%s)"
 msgstr "Ajout de la source (%s)"
 
+# historique (action)
 #: ../src/gui/editors/editcitation.py:436
 #: ../src/gui/editors/editsource.py:209
 #, python-format
@@ -6772,18 +6774,21 @@ msgid "Edit Source (%s)"
 msgstr "Édition de la source (%s)"
 
 # trunk
+# historique (action)
 #: ../src/gui/editors/editcitation.py:443
 #, python-format
 msgid "Add Citation (%s)"
 msgstr "Ajout de la citation (%s)"
 
 # trunk
+# historique (action)
 #: ../src/gui/editors/editcitation.py:449
 #, python-format
 msgid "Edit Citation (%s)"
 msgstr "Édition de la citation (%s)"
 
 # trunk
+# historique (action)
 #: ../src/gui/editors/editcitation.py:532
 #, python-format
 msgid "Delete Citation (%s)"
@@ -14343,7 +14348,7 @@ msgstr "Reconstruire la table de référence"
 #: ../src/plugins/import/ImportXml.py:403
 #, python-format
 msgid "%s could not be opened"
-msgstr "%s ouverture impossible"
+msgstr "Ouverture impossible de %s"
 
 #: ../src/plugins/import/ImportGrdb.py:2793
 msgid "The Database version is not supported by this version of Gramps."
