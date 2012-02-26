@@ -197,6 +197,9 @@ def _get_subject(options, dbase):
                                                 'id' : family_id }
             return name
         
+    # both will be removed and are added to beat the "string freeze" deadline:
+    needed_soon1 = _('Entire Book')
+    needed_soon2 = _('ERROR: create a tag first')
     return ""
 
 #------------------------------------------------------------------------
