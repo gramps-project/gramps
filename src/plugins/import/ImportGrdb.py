@@ -52,7 +52,7 @@ LOG = logging.getLogger(".Db")
 #-------------------------------------------------------------------------
 from gen.lib import (GenderStats, Source, Person, Family, Event, Place, 
                      MediaObject, Repository, Note, Attribute, AttributeType, 
-                     NoteType)
+                     NoteType, NameOriginType)
 from gen.db.write import (KEY_TO_CLASS_MAP, CLASS_TO_KEY_MAP)
 from libgrdb import DbGrdb
 from gen.db.txn import DbTxn as Transaction
