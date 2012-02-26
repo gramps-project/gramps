@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-25 02:20+0100\n"
-"PO-Revision-Date: 2012-02-25 04:12+0100\n"
+"POT-Creation-Date: 2012-02-26 10:11+0100\n"
+"PO-Revision-Date: 2012-02-26 10:21+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -12398,16 +12398,13 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:864
-#, fuzzy
 msgid "There was an error in converting your image file."
-msgstr ""
-"Beim reinitialisieren ihrer jpeg Exif Metadaten ist ein Fehler aufgetreten..."
+msgstr "Beim Konvertieren deines Bildes ist ein Fehler aufgetreten."
 
 #. begin database tranaction to save media object new path
 #: ../src/plugins/gramplet/EditExifMetadata.py:875
-#, fuzzy
 msgid "Media Path Update"
-msgstr "Sterbedatum"
+msgstr "Medienpfad aktualisiert"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:881
 #, fuzzy
@@ -12435,7 +12432,7 @@ msgstr ""
 #. Add the Clear button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:959
 msgid "This button will clear all of the data fields shown here."
-msgstr ""
+msgstr "Diese Schaltfläche leert alle hier gezeigten Datenfelder."
 
 #. Add the Close button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:962
@@ -12490,7 +12487,7 @@ msgstr "Geändert: "
 #. GPS coordinates...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1070
 msgid "Latitude/ Longitude/ Altitude GPS coordinates"
-msgstr ""
+msgstr "Breite/Länge/Höhe GPS Koordinaten"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1084
 msgid "Latitude :"
@@ -12515,14 +12512,12 @@ msgid ""
 msgstr "ACHTUNG! Du bist dabei alle Exif Metadaten von diesem Bild zu löschen?"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1323
-#, fuzzy
 msgid "Media Title Update"
-msgstr "Medienfilter"
+msgstr "Medientitel aktualisiert"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1349
-#, fuzzy
 msgid "Media Object Date Created"
-msgstr "Als vertraulich markierte Medienobjekte"
+msgstr "Medienobjektdatum erstellt"
 
 #. set Edit Message to Saved...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1421
@@ -12699,13 +12694,12 @@ msgstr ""
 "kann ich eine Website mit Gramps und meinem Stammbaum erstellen?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:65
-#, fuzzy
 msgid ""
 " 11. <a href='http://sourceforge.net/mailarchive/message.php?"
 "msg_id=21487967'>How do I record one's occupation?</a>\n"
 msgstr ""
-" 11. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-"
-"ts21786114.html#a21786114'>Wie gebe ich den Beruf einer Person ein</a>\n"
+" 11. <a href='http://sourceforge.net/mailarchive/message.php?"
+"msg_id=21487967'>Wie gebe ich den Beruf einer Person ein?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:66
 #, python-format
@@ -14481,9 +14475,9 @@ msgid "  Note %(id)s with %(id2)s\n"
 msgstr "  Notiz %(id)s mit %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:268
-#, fuzzy, python-format
+#, python-format
 msgid "  Citation %(id)s with %(id2)s\n"
-msgstr "  Familie %(id)s mit %(id2)s\n"
+msgstr "  Fundstelle %(id)s mit %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:276
 #, python-format
@@ -14531,9 +14525,9 @@ msgid "  Tags: %d\n"
 msgstr "  Markierung: %d\n"
 
 #: ../src/plugins/import/ImportXml.py:285
-#, fuzzy, python-format
+#, python-format
 msgid "  Citations: %d\n"
-msgstr "Zitat"
+msgstr "  Fundstellen: %d\n"
 
 #: ../src/plugins/import/ImportXml.py:287
 msgid "Number of new objects imported:\n"
@@ -14745,12 +14739,12 @@ msgstr "GEDCOM-Import"
 
 #: ../src/plugins/lib/libgedcom.py:2546
 msgid "GEDCOM import report: No errors detected"
-msgstr ""
+msgstr "GEDCOM Importbericht: keine Fehler gefunden"
 
 #: ../src/plugins/lib/libgedcom.py:2548
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
-msgstr ""
+msgstr "GEDCOM Importbericht: %s Fehler gefunden"
 
 #: ../src/plugins/lib/libgedcom.py:2800
 msgid "Tag recognised but not supported"
@@ -14781,9 +14775,8 @@ msgid "SUBM (Submitter): @%s@"
 msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:2953 ../src/plugins/lib/libgedcom.py:6278
-#, fuzzy
 msgid "GEDCOM data"
-msgstr "GEDCOM"
+msgstr "GEDCOM Daten"
 
 #: ../src/plugins/lib/libgedcom.py:2999
 #, fuzzy
@@ -14799,7 +14792,7 @@ msgstr "Oben Links"
 #: ../src/plugins/lib/libgedcom.py:3109
 #, python-format
 msgid "INDI (individual) Gramps ID %s"
-msgstr ""
+msgstr "INDI (Individium) Gramps ID %s"
 
 #: ../src/plugins/lib/libgedcom.py:3257 ../src/plugins/lib/libgedcom.py:4468
 #: ../src/plugins/lib/libgedcom.py:4671 ../src/plugins/lib/libgedcom.py:4802
@@ -14815,9 +14808,9 @@ msgid "Form omitted"
 msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:4240
-#, fuzzy, python-format
+#, python-format
 msgid "FAM (family) Gramps ID %s"
-msgstr "Gramps ID: %s "
+msgstr "FAM (Familie) Gramps ID: %s "
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
@@ -14857,7 +14850,7 @@ msgstr "Kann Datei %s nicht importieren"
 
 #: ../src/plugins/lib/libgedcom.py:5813
 msgid "BLOB ignored"
-msgstr ""
+msgstr "BLOB ignoriert"
 
 #: ../src/plugins/lib/libgedcom.py:5833
 msgid "Multimedia REFN:TYPE ignored"
@@ -14883,17 +14876,16 @@ msgstr ""
 
 #. feature request 2356: avoid genitive form
 #: ../src/plugins/lib/libgedcom.py:6232
-#, fuzzy
 msgid "Generated by"
-msgstr "_Erstellen"
+msgstr "Erstellt von"
 
 #: ../src/plugins/lib/libgedcom.py:6246
 msgid "Name of software product"
-msgstr ""
+msgstr "Name der Siftware"
 
 #: ../src/plugins/lib/libgedcom.py:6258
 msgid "Version number of software product"
-msgstr ""
+msgstr "Versionsnummer des Programms"
 
 #: ../src/plugins/lib/libgedcom.py:6275
 #, python-format
@@ -14901,13 +14893,12 @@ msgid "Business that produced the product: %s"
 msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:6296
-#, fuzzy
 msgid "Name of source data"
-msgstr "Anzahl der Quellen"
+msgstr "Name der Quelldaten"
 
 #: ../src/plugins/lib/libgedcom.py:6310
 msgid "Copyright of source data"
-msgstr ""
+msgstr "Copyright der Quelldaten"
 
 #: ../src/plugins/lib/libgedcom.py:6324
 #, fuzzy
@@ -14926,7 +14917,7 @@ msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:6386
 msgid "Language of GEDCOM text"
-msgstr ""
+msgstr "Sprache des GEDCOM Text"
 
 #: ../src/plugins/lib/libgedcom.py:6410
 #, python-format
@@ -14942,9 +14933,8 @@ msgid "Look for nameless events."
 msgstr "Suche nach namenlosen Ereignissen."
 
 #: ../src/plugins/lib/libgedcom.py:6436
-#, fuzzy
 msgid "Character set"
-msgstr "Codierung der Zeichensetzung"
+msgstr "Zeichensatz"
 
 #: ../src/plugins/lib/libgedcom.py:6438
 #, fuzzy
@@ -14953,12 +14943,11 @@ msgstr "Codierung der Zeichensetzung"
 
 #: ../src/plugins/lib/libgedcom.py:6454
 msgid "GEDCOM version not supported"
-msgstr ""
+msgstr "GEDCOM Version nicht unterstützt"
 
 #: ../src/plugins/lib/libgedcom.py:6457
-#, fuzzy
 msgid "GEDCOM version"
-msgstr "GEDCOM Exportoptionen"
+msgstr "GEDCOM Version"
 
 #: ../src/plugins/lib/libgedcom.py:6460
 #, fuzzy
@@ -14972,21 +14961,20 @@ msgstr "GEDCOM-Import"
 
 #: ../src/plugins/lib/libgedcom.py:6508
 msgid "Creation date of GEDCOM"
-msgstr ""
+msgstr "Erstellungsdatum von GEDCOM"
 
 #: ../src/plugins/lib/libgedcom.py:6512
 msgid "Creation date and time of GEDCOM"
 msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:6551 ../src/plugins/lib/libgedcom.py:6589
-#, fuzzy
 msgid "Empty note ignored"
-msgstr "Zeile %d: leere Notiz wurde ignoriert."
+msgstr "Leere Notiz ignoriert"
 
 #: ../src/plugins/lib/libgedcom.py:6603
-#, fuzzy, python-format
+#, python-format
 msgid "NOTE Gramps ID %s"
-msgstr "Gramps ID: %s "
+msgstr "Notiz Gramps ID: %s "
 
 #: ../src/plugins/lib/libgedcom.py:6653
 msgid "Submission: Submitter"
@@ -15112,9 +15100,8 @@ msgid "GPS"
 msgstr "GPS"
 
 #: ../src/plugins/lib/libmetadata.py:92
-#, fuzzy
 msgid "Advanced"
-msgstr "Erweiterte Optionen"
+msgstr "Erweitert"
 
 #: ../src/plugins/lib/libnarrate.py:83
 #, python-format
@@ -15468,12 +15455,12 @@ msgid "%(male_name)s died %(death_date)s in %(death_place)s."
 msgstr "%(male_name)s starb am %(death_date)s in %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:224
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
 "%(male_name)s starb am %(death_date)s in %(death_place)s im Alter von "
-"%(age)d Tagen."
+"%(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:227
 #, python-format
@@ -15481,12 +15468,12 @@ msgid "%(female_name)s died %(death_date)s in %(death_place)s."
 msgstr "%(female_name)s starb am %(death_date)s in %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:228
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
 "%(female_name)s starb am %(death_date)s in %(death_place)s im Alter von "
-"%(age)d Tagen."
+"%(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:232
 #, python-format
@@ -15494,12 +15481,11 @@ msgid "This person died %(death_date)s in %(death_place)s."
 msgstr "Diese Person starb am %(death_date)s in %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:233
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person died %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
-"Diese Person starb am %(death_date)s in %(death_place)s im Alter von %(age)d "
-"Tagen."
+"Diese Person starb am %(death_date)s in %(death_place)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:236
 #, python-format
@@ -15507,10 +15493,9 @@ msgid "He died %(death_date)s in %(death_place)s."
 msgstr "Er starb am %(death_date)s in %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:237
-#, fuzzy, python-format
+#, python-format
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr ""
-"Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Tagen."
+msgstr "Er starb am %(death_date)s in %(death_place)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:240
 #, python-format
@@ -15518,10 +15503,9 @@ msgid "She died %(death_date)s in %(death_place)s."
 msgstr "Sie starb am %(death_date)s in %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:241
-#, fuzzy, python-format
+#, python-format
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr ""
-"Sie starb am%(death_date)s in %(death_place)s im Alter von %(age)d Tagen."
+msgstr "Sie starb am%(death_date)s in %(death_place)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:252
 #, python-format
@@ -15529,10 +15513,9 @@ msgid "%(unknown_gender_name)s died on %(death_date)s."
 msgstr "%(unknown_gender_name)s starb am %(death_date)s."
 
 #: ../src/plugins/lib/libnarrate.py:253
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)s."
-msgstr ""
-"%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d Tagen."
+msgstr "%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:256
 #, python-format
@@ -15540,9 +15523,9 @@ msgid "%(male_name)s died on %(death_date)s."
 msgstr "%(male_name)s starb am %(death_date)s."
 
 #: ../src/plugins/lib/libnarrate.py:257
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)s."
-msgstr "%(male_name)s starb am %(death_date)s im Alter von %(age)d Tagen."
+msgstr "%(male_name)s starb am %(death_date)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:260
 #, python-format
@@ -15550,9 +15533,9 @@ msgid "%(female_name)s died on %(death_date)s."
 msgstr "%(female_name)s starb am %(death_date)s."
 
 #: ../src/plugins/lib/libnarrate.py:261
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)s."
-msgstr "%(female_name)s starb am %(death_date)s im Alter von %(age)d Tagen."
+msgstr "%(female_name)s starb am %(death_date)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:265
 #, python-format
@@ -15560,9 +15543,9 @@ msgid "This person died on %(death_date)s."
 msgstr "Die Person starb am %(death_date)s."
 
 #: ../src/plugins/lib/libnarrate.py:266
-#, fuzzy, python-format
+#, python-format
 msgid "This person died on %(death_date)s at the age of %(age)s."
-msgstr "Die Person starb am %(death_date)s im Alter von %(age)d Tagen."
+msgstr "Die Person starb am %(death_date)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:269
 #, python-format
@@ -15570,9 +15553,9 @@ msgid "He died on %(death_date)s."
 msgstr "Er starb am %(death_date)s."
 
 #: ../src/plugins/lib/libnarrate.py:270
-#, fuzzy, python-format
+#, python-format
 msgid "He died on %(death_date)s at the age of %(age)s."
-msgstr "Er starb am %(death_date)s im Alter von %(age)d Tagen."
+msgstr "Er starb am %(death_date)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:273
 #, python-format
@@ -15580,9 +15563,9 @@ msgid "She died on %(death_date)s."
 msgstr "Sie starb am %(death_date)s."
 
 #: ../src/plugins/lib/libnarrate.py:274
-#, fuzzy, python-format
+#, python-format
 msgid "She died on %(death_date)s at the age of %(age)s."
-msgstr "Sie starb am %(death_date)s im Alter von %(age)d Tagen."
+msgstr "Sie starb am %(death_date)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:278 ../src/plugins/lib/libnarrate.py:311
 #, python-format
@@ -15590,9 +15573,9 @@ msgid "Died %(death_date)s."
 msgstr "Starb %(death_date)s."
 
 #: ../src/plugins/lib/libnarrate.py:279 ../src/plugins/lib/libnarrate.py:312
-#, fuzzy, python-format
+#, python-format
 msgid "Died %(death_date)s (%(age)s)."
-msgstr "Starb %(death_date)s (mit %(age)d Tagen)."
+msgstr "Starb %(death_date)s (mit %(age)s)."
 
 #: ../src/plugins/lib/libnarrate.py:285
 #, python-format
@@ -15600,10 +15583,9 @@ msgid "%(unknown_gender_name)s died %(death_date)s."
 msgstr "%(unknown_gender_name)s starb am %(death_date)s."
 
 #: ../src/plugins/lib/libnarrate.py:286
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)s."
-msgstr ""
-"%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d Tagen."
+msgstr "%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:289
 #, python-format
@@ -15611,9 +15593,9 @@ msgid "%(male_name)s died %(death_date)s."
 msgstr "%(male_name)s starb am %(death_date)s."
 
 #: ../src/plugins/lib/libnarrate.py:290
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died %(death_date)s at the age of %(age)s."
-msgstr "%(male_name)s starb am %(death_date)s im Alter von %(age)d Tagen."
+msgstr "%(male_name)s starb am %(death_date)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:293
 #, python-format
@@ -15621,9 +15603,9 @@ msgid "%(female_name)s died %(death_date)s."
 msgstr "%(female_name)s starb am %(death_date)s."
 
 #: ../src/plugins/lib/libnarrate.py:294
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died %(death_date)s at the age of %(age)s."
-msgstr "%(female_name)s starb am %(death_date)s im Alter von %(age)d Tagen."
+msgstr "%(female_name)s starb am %(death_date)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:298
 #, python-format
@@ -15631,9 +15613,9 @@ msgid "This person died %(death_date)s."
 msgstr "Die Person starb %(death_date)s."
 
 #: ../src/plugins/lib/libnarrate.py:299
-#, fuzzy, python-format
+#, python-format
 msgid "This person died %(death_date)s at the age of %(age)s."
-msgstr "Die Person starb am %(death_date)s im Alter von %(age)d Tagen."
+msgstr "Die Person starb am %(death_date)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:302
 #, python-format
@@ -15641,9 +15623,9 @@ msgid "He died %(death_date)s."
 msgstr "Er starb am %(death_date)s."
 
 #: ../src/plugins/lib/libnarrate.py:303
-#, fuzzy, python-format
+#, python-format
 msgid "He died %(death_date)s at the age of %(age)s."
-msgstr "Er starb am %(death_date)s im Alter von %(age)d Tagen."
+msgstr "Er starb am %(death_date)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:306
 #, python-format
@@ -15651,9 +15633,9 @@ msgid "She died %(death_date)s."
 msgstr "Sie starb am %(death_date)s."
 
 #: ../src/plugins/lib/libnarrate.py:307
-#, fuzzy, python-format
+#, python-format
 msgid "She died %(death_date)s at the age of %(age)s."
-msgstr "Sie starb am %(death_date)s im Alter von %(age)d Tagen."
+msgstr "Sie starb am %(death_date)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:318
 #, python-format
@@ -15661,13 +15643,13 @@ msgid "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s."
 msgstr "%(unknown_gender_name)s starb im %(month_year)s in %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:319
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age "
 "of %(age)s."
 msgstr ""
 "%(unknown_gender_name)s starb im %(month_year)s in %(death_place)s im Alter "
-"von %(age)d Tagen."
+"von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:322
 #, python-format
@@ -15675,13 +15657,13 @@ msgid "%(male_name)s died in %(month_year)s in %(death_place)s."
 msgstr "%(male_name)s starb im %(month_year)s in %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:323
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
 "%(male_name)s starb im %(month_year)s in %(death_place)s im Alter von "
-"%(age)d Tagen."
+"%(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:326
 #, python-format
@@ -15689,13 +15671,13 @@ msgid "%(female_name)s died in %(month_year)s in %(death_place)s."
 msgstr "%(female_name)s starb im %(month_year)s in %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:327
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
 "%(female_name)s starb im %(month_year)s in %(death_place)s im Alter von "
-"%(age)d Tagen."
+"%(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:331
 #, python-format
@@ -15703,12 +15685,11 @@ msgid "This person died in %(month_year)s in %(death_place)s."
 msgstr "Diese Person starb im %(month_year)s in %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:332
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person died in %(month_year)s in %(death_place)s at the age of %(age)s."
 msgstr ""
-"Die Person starb im %(month_year)s in %(death_place)s im Alter von %(age)d "
-"Tagen."
+"Die Person starb im %(month_year)s in %(death_place)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:335
 #, python-format
@@ -15716,10 +15697,9 @@ msgid "He died in %(month_year)s in %(death_place)s."
 msgstr "Er starb im %(month_year)s in %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:336
-#, fuzzy, python-format
+#, python-format
 msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)s."
-msgstr ""
-"Er starb im %(month_year)s in %(death_place)s im Alter von %(age)d Tagen."
+msgstr "Er starb im %(month_year)s in %(death_place)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:339
 #, python-format
@@ -15727,10 +15707,9 @@ msgid "She died in %(month_year)s in %(death_place)s."
 msgstr "Sie starb im %(month_year)s in %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:340
-#, fuzzy, python-format
+#, python-format
 msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)s."
-msgstr ""
-"Sie starb im %(month_year)s in %(death_place)s im Alter von %(age)d Tagen."
+msgstr "Sie starb im %(month_year)s in %(death_place)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:344
 #, python-format
@@ -15738,9 +15717,9 @@ msgid "Died %(month_year)s in %(death_place)s."
 msgstr "Starb im %(month_year)s in %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:345
-#, fuzzy, python-format
+#, python-format
 msgid "Died %(month_year)s in %(death_place)s (%(age)s)."
-msgstr "Starb im %(month_year)s in %(death_place)s (mit %(age)d Tagen)."
+msgstr "Starb im %(month_year)s in %(death_place)s (mit %(age)s)."
 
 #: ../src/plugins/lib/libnarrate.py:351
 #, python-format
@@ -15748,10 +15727,9 @@ msgid "%(unknown_gender_name)s died in %(month_year)s."
 msgstr "%(unknown_gender_name)s starb im %(month_year)s."
 
 #: ../src/plugins/lib/libnarrate.py:352
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)s."
-msgstr ""
-"%(unknown_gender_name)s starb im %(month_year)s im Alter von %(age)d Tagen."
+msgstr "%(unknown_gender_name)s starb im %(month_year)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:355
 #, python-format
@@ -15759,9 +15737,9 @@ msgid "%(male_name)s died in %(month_year)s."
 msgstr "%(male_name)s starb im %(month_year)s."
 
 #: ../src/plugins/lib/libnarrate.py:356
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)s."
-msgstr "%(male_name)s starb im %(month_year)s im Alter von %(age)d Tagen."
+msgstr "%(male_name)s starb im %(month_year)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:359
 #, python-format
@@ -15769,9 +15747,9 @@ msgid "%(female_name)s died in %(month_year)s."
 msgstr "%(female_name)s starb im %(month_year)s."
 
 #: ../src/plugins/lib/libnarrate.py:360
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)s."
-msgstr "%(female_name)s starb im %(month_year)s im Alter von %(age)d Tagen."
+msgstr "%(female_name)s starb im %(month_year)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:364
 #, python-format
@@ -15779,9 +15757,9 @@ msgid "This person died in %(month_year)s."
 msgstr "Die Person starb im %(month_year)s."
 
 #: ../src/plugins/lib/libnarrate.py:365
-#, fuzzy, python-format
+#, python-format
 msgid "This person died in %(month_year)s at the age of %(age)s."
-msgstr "Die Person starb im %(month_year)s im Alter von %(age)d Tagen."
+msgstr "Die Person starb im %(month_year)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:368
 #, python-format
@@ -15789,9 +15767,9 @@ msgid "He died in %(month_year)s."
 msgstr "Er starb im %(month_year)s."
 
 #: ../src/plugins/lib/libnarrate.py:369
-#, fuzzy, python-format
+#, python-format
 msgid "He died in %(month_year)s at the age of %(age)s."
-msgstr "Er starb im %(month_year)s im Alter von %(age)d Tagen."
+msgstr "Er starb im %(month_year)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:372
 #, python-format
@@ -15799,9 +15777,9 @@ msgid "She died in %(month_year)s."
 msgstr "Sie starb im %(month_year)s."
 
 #: ../src/plugins/lib/libnarrate.py:373
-#, fuzzy, python-format
+#, python-format
 msgid "She died in %(month_year)s at the age of %(age)s."
-msgstr "Sie starb im %(month_year)s im Alter von %(age)d Tagen."
+msgstr "Sie starb im %(month_year)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:377
 #, python-format
@@ -15809,9 +15787,9 @@ msgid "Died %(month_year)s."
 msgstr "Starb im %(month_year)s."
 
 #: ../src/plugins/lib/libnarrate.py:378
-#, fuzzy, python-format
+#, python-format
 msgid "Died %(month_year)s (%(age)s)."
-msgstr "Starb im %(month_year)s (mit %(age)d Tagen)."
+msgstr "Starb im %(month_year)s (mit %(age)ds)."
 
 #: ../src/plugins/lib/libnarrate.py:384
 #, python-format
@@ -15819,10 +15797,9 @@ msgid "%(unknown_gender_name)s died in %(death_place)s."
 msgstr "%(unknown_gender_name)s starb in %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:385
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)s."
-msgstr ""
-"%(unknown_gender_name)s starb in %(death_place)s im Alter von %(age)d Tagen."
+msgstr "%(unknown_gender_name)s starb in %(death_place)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:388
 #, python-format
@@ -15830,9 +15807,9 @@ msgid "%(male_name)s died in %(death_place)s."
 msgstr "%(male_name)s starb in %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:389
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)s."
-msgstr "%(male_name)s starb in %(death_place)s im Alter von %(age)d Tagen."
+msgstr "%(male_name)s starb in %(death_place)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:392
 #, python-format
@@ -15840,9 +15817,9 @@ msgid "%(female_name)s died in %(death_place)s."
 msgstr "%(female_name)s starb in %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:393
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)s."
-msgstr "%(female_name)s starb in %(death_place)s im Alter von %(age)d Tagen."
+msgstr "%(female_name)s starb in %(death_place)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:398
 #, python-format
@@ -15850,9 +15827,9 @@ msgid "This person died in %(death_place)s."
 msgstr "Die Person starb in %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:399
-#, fuzzy, python-format
+#, python-format
 msgid "This person died in %(death_place)s at the age of %(age)s."
-msgstr "Die Person starb in %(death_place)s im Alter von %(age)d Tagen."
+msgstr "Die Person starb in %(death_place)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:402
 #, python-format
@@ -15860,9 +15837,9 @@ msgid "He died in %(death_place)s."
 msgstr "Er starb in %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:403
-#, fuzzy, python-format
+#, python-format
 msgid "He died in %(death_place)s at the age of %(age)s."
-msgstr "Er starb in %(death_place)s im Alter von %(age)d Tagen."
+msgstr "Er starb in %(death_place)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:406
 #, python-format
@@ -15870,9 +15847,9 @@ msgid "She died in %(death_place)s."
 msgstr "Sie starb in %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:407
-#, fuzzy, python-format
+#, python-format
 msgid "She died in %(death_place)s at the age of %(age)s."
-msgstr "Sie starb in %(death_place)s im Alter von %(age)d Tagen."
+msgstr "Sie starb in %(death_place)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:411
 #, python-format
@@ -22963,8 +22940,8 @@ msgid ""
 "To edit this source, you need to close the object."
 msgstr ""
 "Diese Quelle kann im Moment nicht bearbeitet werden. Entweder wird das "
-"zugehörige Quellenobjekt schon bearbeitet oder eine andere"
-"Fundstelle die mit der selben Quelle verbunden ist, wird gerade bearbeitet.\n"
+"zugehörige Quellenobjekt schon bearbeitet oder eine andereFundstelle die mit "
+"der selben Quelle verbunden ist, wird gerade bearbeitet.\n"
 "\n"
 "Um diese Quellezu bearbeiten, muss das Objekt geschlossen werden."
 
@@ -23047,8 +23024,8 @@ msgid ""
 "To edit this citation, you need to close the object."
 msgstr ""
 "Diese Fundstelle kann im Moment nicht bearbeitet werden. Entweder wird die "
-"zugehörige Fundstelle schon bearbeitet oder eine anderes"
-"Objekt das mit der selben Fundstelle verbunden ist, wird bearbeitet.\n"
+"zugehörige Fundstelle schon bearbeitet oder eine anderesObjekt das mit der "
+"selben Fundstelle verbunden ist, wird bearbeitet.\n"
 "\n"
 "Um die Fundstelle zu bearbeiten, muss das Objekt geschlossen werden."
 
