@@ -290,6 +290,9 @@ class ScratchAddress(ScratchObjWrapper):
     def __init__(self, dbstate, obj):
         super(ScratchAddress, self).__init__(dbstate, obj)
         self._type  = _("Address")
+        self.refresh()
+
+    def refresh(self):
         if self._obj:
             self._title = DateHandler.get_date(self._obj)
             self._value = "%s %s %s %s" % (self._obj.get_street(),
@@ -307,6 +310,9 @@ class ScratchLocation(ScratchObjWrapper):
     def __init__(self, dbstate, obj):
         super(ScratchLocation, self).__init__(dbstate, obj)
         self._type  = _("Location")
+        self.refresh()
+
+    def refresh(self):
         self._value = "%s %s %s" % (self._obj.get_city(),
                                     self._obj.get_state(),
                                     self._obj.get_country(),
@@ -322,6 +328,9 @@ class ScratchEvent(ScratchHandleWrapper):
         super(ScratchEvent, self).__init__(dbstate, obj)
         self._type  = _("Event")
         self._objclass = 'Event'
+        self.refresh()
+
+    def refresh(self):
         if self._handle:
             value = self._db.get_event_from_handle(self._handle)
             if value:
@@ -346,6 +355,9 @@ class ScratchPlace(ScratchHandleWrapper):
         super(ScratchPlace, self).__init__(dbstate, obj)
         self._type  = _("Place")
         self._objclass = 'Place'
+        self.refresh()
+
+    def refresh(self):
         if self._handle:
             value = self._db.get_place_from_handle(self._handle)
             if value:
@@ -370,6 +382,9 @@ class ScratchNote(ScratchHandleWrapper):
         super(ScratchNote, self).__init__(dbstate, obj)
         self._type  = _("Note")
         self._objclass = 'Note'
+        self.refresh()
+
+    def refresh(self):
         value = self._db.get_note_from_handle(self._handle)
         if value:
             self._title = value.get_gramps_id()
@@ -399,6 +414,9 @@ class ScratchFamilyEvent(ScratchObjWrapper):
     def __init__(self, dbstate, obj):
         super(ScratchFamilyEvent, self).__init__(dbstate, obj)
         self._type  = _("Family Event")
+        self.refresh()
+
+    def refresh(self):
         if self._obj:
             self._title = str(self._obj.get_type())
             self._value = self._obj.get_description()
@@ -412,6 +430,9 @@ class ScratchUrl(ScratchObjWrapper):
     def __init__(self, dbstate, obj):
         super(ScratchUrl, self).__init__(dbstate, obj)
         self._type  = _("Url")
+        self.refresh()
+
+    def refresh(self):
         if self._obj:
             self._title = self._obj.get_path()
             self._value = self._obj.get_description()
@@ -425,6 +446,9 @@ class ScratchAttribute(ScratchObjWrapper):
     def __init__(self, dbstate, obj):
         super(ScratchAttribute, self).__init__(dbstate, obj)
         self._type  = _("Attribute")
+        self.refresh()
+
+    def refresh(self):
         self._title = str(self._obj.get_type())
         self._value = self._obj.get_value()
 
@@ -437,6 +461,9 @@ class ScratchFamilyAttribute(ScratchObjWrapper):
     def __init__(self, dbstate, obj):
         super(ScratchFamilyAttribute, self).__init__(dbstate, obj)
         self._type  = _("Family Attribute")
+        self.refresh()
+
+    def refresh(self):
         if self._obj:
             self._title = str(self._obj.get_type())
             self._value = self._obj.get_value()
@@ -451,6 +478,9 @@ class ScratchCitation(ScratchHandleWrapper):
         super(ScratchCitation, self).__init__(dbstate, obj)
         self._type  = _("Citation")
         self._objclass = 'Citation'
+        self.refresh()
+
+    def refresh(self):
         if self._handle:
             citation = self._db.get_citation_from_handle(self._handle)
             if citation:
@@ -492,6 +522,9 @@ class ScratchRepoRef(ScratchObjWrapper):
     def __init__(self, dbstate, obj):
         super(ScratchRepoRef, self).__init__(dbstate, obj)
         self._type  = _("Repository ref")
+        self.refresh()
+
+    def refresh(self):
         if self._obj:
             base = self._db.get_repository_from_handle(self._obj.ref)
             if base:
@@ -507,6 +540,9 @@ class ScratchEventRef(ScratchObjWrapper):
     def __init__(self, dbstate, obj):
         super(ScratchEventRef, self).__init__(dbstate, obj)
         self._type  = _("Event ref")
+        self.refresh()
+
+    def refresh(self):
         if self._obj:
             base = self._db.get_event_from_handle(self._obj.ref)
             if base:
@@ -522,6 +558,9 @@ class ScratchName(ScratchObjWrapper):
     def __init__(self, dbstate, obj):
         super(ScratchName, self).__init__(dbstate, obj)
         self._type  = _("Name")
+        self.refresh()
+
+    def refresh(self):
         if self._obj:
             self._title = str(self._obj.get_type())
             self._value = self._obj.get_name()
@@ -535,6 +574,9 @@ class ScratchSurname(ScratchObjWrapper):
     def __init__(self, dbstate, obj):
         super(ScratchSurname, self).__init__(dbstate, obj)
         self._type  = _("Surname")
+        self.refresh()
+
+    def refresh(self):
         if self._obj:
             self._title = self._obj.get_surname()
             self._value = self._obj.get_surname()
@@ -548,9 +590,12 @@ class ScratchText(ScratchWrapper):
     def __init__(self, dbstate, obj):
         super(ScratchText, self).__init__(dbstate, obj)
         self._type  = _("Text")
+        self._pickle = self._obj
+        self.refresh()
+
+    def refresh(self):
         self._title = _("Text")
         self._value = self._obj
-        self._pickle = self._obj
 
 class ScratchMediaObj(ScratchHandleWrapper):
 
@@ -562,6 +607,9 @@ class ScratchMediaObj(ScratchHandleWrapper):
         super(ScratchMediaObj, self).__init__(dbstate, obj)
         self._type  = _("Media")
         self._objclass = 'Media'
+        self.refresh()
+
+    def refresh(self):
         if self._handle:
             obj = self._db.get_object_from_handle(self._handle)
             if obj:
@@ -585,6 +633,9 @@ class ScratchMediaRef(ScratchObjWrapper):
     def __init__(self, dbstate, obj):
         super(ScratchMediaRef, self).__init__(dbstate, obj)
         self._type  = _("Media ref")
+        self.refresh()
+
+    def refresh(self):
         if self._obj:
             base = self._db.get_object_from_handle(self._obj.get_reference_handle())
             if base:
@@ -600,6 +651,9 @@ class ScratchPersonRef(ScratchObjWrapper):
     def __init__(self, dbstate, obj):
         super(ScratchPersonRef, self).__init__(dbstate, obj)
         self._type  = _("Person ref")
+        self.refresh()
+
+    def refresh(self):
         if self._obj:
             person = self._db.get_person_from_handle(self._obj.get_reference_handle())
             if person:
@@ -615,6 +669,9 @@ class ScratchChildRef(ScratchObjWrapper):
     def __init__(self, dbstate, obj):
         super(ScratchChildRef, self).__init__(dbstate, obj)
         self._type  = _("Child ref")
+        self.refresh()
+
+    def refresh(self):
         if self._obj:
             person = self._db.get_person_from_handle(self._obj.get_reference_handle())
             if person:
@@ -634,6 +691,9 @@ class ScratchPersonLink(ScratchHandleWrapper):
         super(ScratchPersonLink, self).__init__(dbstate, obj)
         self._type  = _("Person")
         self._objclass = 'Person'
+        self.refresh()
+
+    def refresh(self):
         if self._handle:
             person = self._db.get_person_from_handle(self._handle)
             if person:
@@ -660,6 +720,9 @@ class ScratchFamilyLink(ScratchHandleWrapper):
         super(ScratchFamilyLink, self).__init__(dbstate, obj)
         self._type  = _("Family")
         self._objclass = 'Family'
+        self.refresh()
+
+    def refresh(self):
         if self._handle:
             family = self._db.get_family_from_handle(self._handle)
             if family:
@@ -685,6 +748,9 @@ class ScratchSourceLink(ScratchHandleWrapper):
         super(ScratchSourceLink, self).__init__(dbstate, obj)
         self._type  = _("Source")
         self._objclass = 'Source'
+        self.refresh()
+
+    def refresh(self):
         if self._handle:
             source = self._db.get_source_from_handle(self._handle)
             if source:
@@ -709,6 +775,9 @@ class ScratchRepositoryLink(ScratchHandleWrapper):
         super(ScratchRepositoryLink, self).__init__(dbstate, obj)
         self._type  = _("Repository")
         self._objclass = 'Repository'
+        self.refresh()
+
+    def refresh(self):
         if self._handle:
             source = self._db.get_repository_from_handle(self._handle)
             if source:
@@ -915,7 +984,7 @@ class ScratchPadListView(object):
             )
 
         for signal in db_signals:
-            self._db.connect(signal,self.remove_invalid_objects)
+            self._db.connect(signal,self.refresh_objects)
 
         self._db.connect('person-delete', 
                          gen_del_obj(self.delete_object, 'person-link'))
@@ -943,15 +1012,18 @@ class ScratchPadListView(object):
                          gen_del_obj(self.delete_object, 'note-link'))
         # family-delete not needed, cannot be dragged!
 
-        self.remove_invalid_objects()
+        self.refresh_objects()
 
-    def remove_invalid_objects(self,dummy=None):
+    def refresh_objects(self,dummy=None):
         model = self._widget.get_model()
 
         if model:
             for o in model:
                 if not o[1].is_valid():
                     model.remove(o.iter)
+                else:
+                    o[1].refresh()
+                    o[4] = o[1].get_value() # Force listview to update
 
     def delete_object(self, handle_list, link_type):
         model = self._widget.get_model()
