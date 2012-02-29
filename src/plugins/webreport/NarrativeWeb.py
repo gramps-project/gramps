@@ -4764,7 +4764,6 @@ class SourcePage(BasePage):
         """
         displays the citations referents list
         """
-
         keys = sorted(citations_dict, key = locale.strxfrm)
         max_per_column = 5
 
@@ -4778,28 +4777,26 @@ class SourcePage(BasePage):
 
             list3 = Html("li")
             list3.extend(
-                Html("A", key, href = "#", title = key, inline = True)
+                Html("a", key, href = "#", title = key, inline = True)
             )
-            unordered4 = Html("ul", class_ = "Col4", role = "Name/ Date") 
+            unordered4 = Html("ul", class_ = "Col4", role = "Short Name/ Event Date")
 
             # determine the length of the values for this key
             value_len = len(citations_dict[key])
 
-            # if value is more than 5, then we have to make groups...
-            if value_len > max_per_column:
-
-                num_of_cols = ((value_len // max_per_column) + 1)
-                for x in range(num_of_cols):
+            # if value is more than max per column, then we have to make groups...
+            if (value_len > max_per_column):
+                for x in range(value_len/5 + 1):
 
                     list4 = Html("li")
                     list4.extend(
-                        Html("a", key + str((x + 1)), href = "#", inline = True)
+                        Html("a", key + ' ' + str((x + 1)), href = "#", title = key + ' ' + str((x + 1)), inline = True)
                     )
-                    unordered5 = Html("ul", class_ = "Col5", role = "Surname/ Type divide")
+                    unordered5 = Html("ul", class_ = "Col5", role = "Surname/ Event Type groupings")
 
                     for y in range(max_per_column):
-                        if ((x * max_per_column + y) < value_len):
-                            obj_handle = citations_dict[key][((x * max_per_column) + y)]
+                        if ((x* max_per_column + y) < value_len):
+                            obj_handle = citations_dict[key][(x * max_per_column + y)]
 
                             list5 = Html("li")
                             list5.extend(
@@ -4807,7 +4804,10 @@ class SourcePage(BasePage):
                             )
                             unordered5 += list5
                     list4 += unordered5
-            # else, we are not required to make groups and we can loop through them as it is
+                    unordered4 += list4
+
+            # else, we are not required to make groups and
+            # we can loop through them as it is...
             else:
                 for x in range(value_len):
                     obj_handle = citations_dict[key][x]
