@@ -130,6 +130,11 @@ def load_on_reg(dbstate, uistate, plugin):
         ["Fade-Menus", 0, "Fade In/ Out Menus", 
          path_css('Web_Fade-Menus.css'), None, [], [] ],
 
+        # WebKit/ Html5/ CSS3 Animated Drop Down Style Sheet
+        ["Animated Dropdown", 0, "Animated Dropdown",
+         path_css("Web_Animated-Dropdown.css"), None, [],
+         path_js("jquery-1.7.1.min.js")                                  ],
+
         # WebKit/ Html5/ CSS3 Drop Down Navigation Menus Style Sheet
         ["DropDown-Menus", 0, "Drop Down Menus",
          path_css("Web_DropDown-Menus.css"), None, [], [] ],

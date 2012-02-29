@@ -9,6 +9,7 @@ DATAFILES = \
 	ancestortree.css \
 	behaviour.css \
 	narrative-maps.css \
+	Web_Animated-Dropdown.css \
 	Web_Basic-Ash.css \
 	Web_Basic-Blue.css \
 	Web_Basic-Cypress.css  \
