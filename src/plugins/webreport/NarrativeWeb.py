@@ -3327,7 +3327,7 @@ class FamilyPage(BasePage):
         self.XHTMLWriter(familydetailpage, of, sio)
 
 class PlaceListPage(BasePage):
-    def __init__(self, report, title, place_handles, db_place_handles):
+    def __init__(self, report, title, place_handles):
         self.dbase_ = report.database
         BasePage.__init__(self, report, title)
 
@@ -3428,7 +3428,6 @@ class PlaceListPage(BasePage):
                         else:
                             tcell1 += '&nbsp;'
                             tcell2 += '&nbsp;'
-                    db_place_handles.append(place_handles)
  
         # add clearline for proper styling
         # add footer section
@@ -3572,7 +3571,7 @@ class PlacePage(BasePage):
         self.XHTMLWriter(placepage, of, sio)
 
 class EventListPage(BasePage):
-    def __init__(self, report, title, event_types, event_handle_list, ppl_handle_list, db_event_handles):
+    def __init__(self, report, title, event_types, event_handle_list, ppl_handle_list):
         """
         Will create the event list page
 
@@ -3627,7 +3626,9 @@ class EventListPage(BasePage):
 
                 prev_letter = ""
                 # separate events by their type and then thier event handles
-                for (evt_type, data_list) in sort_event_types(self.dbase_, event_handle_list, event_types):
+                for (evt_type, data_list) in sort_event_types(self.dbase_,
+                                                               event_types,
+                                                               event_handle_list):
                     first_letter = True
                     _EVENT_DISPLAYED = []
 
@@ -3645,15 +3646,11 @@ class EventListPage(BasePage):
 
                             # family event 
                             if int(_type) in _EVENTMAP:
-                                handle_list = set(self.dbase_.find_backlink_handles(
-                                    event_handle, 
-                                    include_classes=['Family', 'Person']))
-
-                            # personal event
+                                handle_list = set(self.dbase_.find_backlink_handles(event_handle, 
+                                                                                    include_classes = ['Family', 'Person']))
                             else:
-                                handle_list = set(self.dbase_.find_backlink_handles(
-                                    event_handle, 
-                                    include_classes=['Person']))
+                                handle_list = set(self.dbase_.find_backlink_handles(event_handle, 
+                                                                                    include_classes = ['Person']))
                             if handle_list:
 
                                 trow = Html("tr")
@@ -3716,7 +3713,6 @@ class EventListPage(BasePage):
 
                         _EVENT_DISPLAYED.append(gid)
                         first_event = False
-                        db_event_handles.append(event_handle)
 
         # add clearline for proper styling
         # add footer section
@@ -4431,8 +4427,9 @@ class SourceListPage(BasePage):
 #
 """
 class SourcePage(BasePage):
-    def __init__(self, report, title, src_handle, src_list, database_handles_list):
+    def __init__(self, report, title, src_handle, src_list, ind_list, database_handles_list):
         self.dbase_ = report.database
+        self.ind_list = ind_list
 
         source = self.dbase_.get_source_from_handle(src_handle)
         if not source:
@@ -4441,13 +4438,12 @@ class SourcePage(BasePage):
         self.page_title = source.get_title()
         BasePage.__init__(self, report, title, source.get_gramps_id())
 
-        # for use in determining if a citation referent is in the report database?
-        (self.ind_list, db_family_handles, db_event_handles, db_place_handles,
-            db_media_handles) = database_handles_list
-        db_source_handles = src_list
-
         inc_repositories = self.report.options["inc_repository"]
         self.navigation = self.report.options['navigation']
+
+        # for use in determining if an object is in the report database or not?
+        (db_family_handles, db_event_handles, db_place_handles, db_repository_handles,
+                db_media_handles) = database_handles_list
 
         of, sio = self.report.create_file(src_handle, "src")
         self.up = True
@@ -4547,7 +4543,6 @@ class SourcePage(BasePage):
                 })
   }
 });"""
-
                     # begin Source Citation Referents section
                     with Html("div", class_ ="subsection", id = "SourceCitationReferents") as section:
                         sourcedetail += section
@@ -4566,7 +4561,7 @@ class SourcePage(BasePage):
 
                                 # remove people that are not in this report database...
                                 people_list = [person_handle for person_handle in people_list
-                                                if person_handle in self.ind_list]
+                                                if person_handle in ind_list]
 
                                 list1 = Html("li")
                                 list1.extend(
@@ -4607,26 +4602,36 @@ class SourcePage(BasePage):
                                     list2 += unordered3
                                     unordered2 += list2
 
-                                # remove event handles if they are not in this report database...
+                                # remove event handles if they are not in this report database?
                                 event_list = [event_handle for event_handle in event_list
                                                 if event_handle in db_event_handles]
 
                                 # Citation Referents have Event Objects...
                                 if (self.inc_events and event_list):
-                                    event_handle_list, event_types = build_event_data_by_events(self.dbase_, event_list)
+
+                                    event_handle_list, event_types = self.build_event_data_by_events(event_list)
 
                                     events_dict = {}
-                                    for (event_type, event_list) in sort_event_types(self.dbase_,
-                                                                                     event_handle_list, event_types):
-                                        event_handle_list = []
-                                        for (sort_value, event_handle) in event_list:
-                                            event_handle_list.append(event_handle)
-                                        events_dict[event_type] = event_handle_list
 
-#                                    self.display_citation_refs_list(unorered2, events_dict, "Events")
+                                    # separate events by their types and then thier event handles
+                                    for (event_type, event_list) in sort_event_types(self.dbase_,
+                                                                                     event_types,
+                                                                                     event_handle_list):
+
+                                        # sort event_list by date of event and event handle...
+                                        event_list = sorted(event_list, key = itemgetter(0, 1))
+
+                                        tmp_event_handle_list = []
+                                        for (sort_value, event_handle) in event_list:
+
+                                            tmp_event_handle_list.append(event_handle)
+                                        events_dict[event_type] = tmp_event_handle_list
+
+                                    self.display_citation_refs_list(unordered2, events_dict, "Events")
 
                                 # remove place handles if they are not in this report database...
-                                place_list = [place_handle for place_handle in place_list if place_handle in db_place_handles]
+                                place_list = [place_handle for place_handle in place_list
+                                                if place_handle in db_place_handles]
   
                                 # Citation Referents have Place Objects...
                                 if place_list:
@@ -4649,7 +4654,7 @@ class SourcePage(BasePage):
   
                                 # remove sources if they are not in this report database...
                                 source_list = [source_handle for source_handle in source_list
-                                                if source_handle in db_source_handles]
+                                                if source_handle in src_list]
 
                                 # Citation Referents have Source Objects...
                                 if source_list:
@@ -4670,6 +4675,10 @@ class SourcePage(BasePage):
                                             )
                                     list2 += unordered3
                                     unordered2 += list2
+
+                                # remove repository object if it is not in this report database?
+                                repo_list = [repo_handle for repo_handle in repo_list
+                                                if repo_handle in db_repository_handles] 
 
                                 # Citation Referents have Repository Objects...
                                 if (inc_repositories and repo_list):
@@ -4743,22 +4752,20 @@ class SourcePage(BasePage):
         # and close the file
         self.XHTMLWriter(sourcepage, of, sio)
 
-    def get_citation_ref_link(self, obj_handle, citation_type):
+    def build_event_data_by_events(self, event_handles):
         """
-        returns the hyper link for the handle that was passed to it
+        creates a list of event handles and event types for these event handles
         """
-        hyper = None
+        event_handle_list = []
+        event_types = []
 
-        if citation_type == "People":
-            obj_ = self.dbase_.get_person_from_handle(obj_handle)
-            url = self.report.build_url_fname_html(obj_handle, "ppl", up = self.up)
-            hyper = self.person_link(url, obj_, name_style = False)
-        else:
-            obj_ = self.dbase_.get_event_from_handle(obj_handle)
-            event_date = _dd.display(obj_.get_date_object()) or '&nbsp;'
+        for event_handle in event_handles:
+            event = self.dbase_.get_event_from_handle(event_handle)
+            if event:
+                event_types.append(str(event.get_type()))
+                event_handle_list.append(event_handle)
 
-            hyper = self.event_link(obj_handle, event_date, uplink = self.up)
-        return hyper
+        return event_handle_list, event_types
 
     def display_citation_refs_list(self, unordered2, citations_dict, citation_type):
         """
@@ -4786,7 +4793,7 @@ class SourcePage(BasePage):
 
             # if value is more than max per column, then we have to make groups...
             if (value_len > max_per_column):
-                for x in range(value_len/5 + 1):
+                for x in range(value_len / max_per_column + 1):
 
                     list4 = Html("li")
                     list4.extend(
@@ -4795,7 +4802,7 @@ class SourcePage(BasePage):
                     unordered5 = Html("ul", class_ = "Col5", role = "Surname/ Event Type groupings")
 
                     for y in range(max_per_column):
-                        if ((x* max_per_column + y) < value_len):
+                        if ((x * max_per_column + y) < value_len):
                             obj_handle = citations_dict[key][(x * max_per_column + y)]
 
                             list5 = Html("li")
@@ -4822,8 +4829,25 @@ class SourcePage(BasePage):
         list2 += unordered3
         unordered2 += list2
 
+    def get_citation_ref_link(self, obj_handle, citation_type):
+        """
+        returns the hyper link for the handle that was passed to it
+        """
+        hyper = None
+
+        if citation_type == "People":
+            obj_ = self.dbase_.get_person_from_handle(obj_handle)
+            url = self.report.build_url_fname_html(obj_handle, "ppl", up = self.up)
+            hyper = self.person_link(url, obj_, name_style = False)
+        else:
+            obj_ = self.dbase_.get_event_from_handle(obj_handle)
+            event_date = _dd.display(obj_.get_date_object()) or '&nbsp;'
+
+            hyper = self.event_link(obj_handle, event_date, uplink = self.up)
+        return hyper
+
 class MediaListPage(BasePage):
-    def __init__(self, report, title, db_media_handles):
+    def __init__(self, report, title):
         self.dbase_ = report.database
         BasePage.__init__(self, report, title)
 
@@ -4890,7 +4914,6 @@ class MediaListPage(BasePage):
                         )
  
                         index += 1
-                    db_media_handles.append(media_handle)
 
         # add footer section
         # add clearline for proper styling
@@ -6493,7 +6516,7 @@ class IndividualPage(BasePage):
         return trow
 
 class RepositoryListPage(BasePage):
-    def __init__(self, report, title, repos_dict, keys, db_repository_handles):
+    def __init__(self, report, title, repos_dict, keys):
         self.dbase_ = report.database
         BasePage.__init__(self, report, title)
         inc_repos = self.report.options["inc_repository"]
@@ -6547,7 +6570,6 @@ class RepositoryListPage(BasePage):
                                                                 repo.get_gramps_id(), self.up), class_ = "ColumnName")
                     else:
                         trow += Html("td", "[ untitled ]", class_ = "ColumnName")
-                    db_repository_handles.append(handle)
 
         # add clearline for proper styling
         # add footer section
@@ -7011,29 +7033,28 @@ class NavWebReport(Report):
         # build classes FamilyListPage and FamilyPage
         db_family_handles = []
         if self.inc_families:
-            self.family_pages(ind_list, place_list, place_lat_long, db_family_handles)
+            db_family_handles = self.family_pages(ind_list, place_list, place_lat_long)
 
         # build classes EventListPage and EventPage
         db_event_handles = []
         if self.inc_events:
-            self.event_pages(ind_list, db_event_handles)
+            db_event_handles = self.event_pages(ind_list)
 
         # build classes PlaceListPage and PlacePage
-        db_place_handles = []
-        self.place_pages(place_list, source_list, db_place_handles)
+        db_place_handles = self.place_pages(place_list, source_list)
 
         # build classes RepositoryListPage and RepositoryPage
         db_repository_handles = []
         if self.inc_repository:
             repolist = self.database.get_repository_handles()
             if len(repolist):
-                self.repository_pages(repolist, source_list, db_repository_handles)
+                db_repository_handles = self.repository_pages(repolist, source_list)
 
         # build classes MediaListPage and MediaPage
         db_media_handles = []
         if self.inc_gallery:
             if not self.create_thumbs_only:
-                self.media_pages(source_list, db_media_handles)
+                db_media_handles = self.media_pages(source_list)
 
             # build Thumbnail Preview Page...
             self.thumbnail_preview_page()
@@ -7042,8 +7063,9 @@ class NavWebReport(Report):
         if self.inc_addressbook:
             self.addressbook_pages(ind_list)
 
-        database_handles_list = (ind_list, db_family_handles, db_event_handles,
-                db_place_handles, db_media_handles)
+        # for use in class SourcePage's Citations Referents section...
+        database_handles_list = (db_family_handles, db_event_handles, db_place_handles,
+                db_repository_handles, db_media_handles)
 
         # build classes SourceListPage and SourcePage
         # has been moved so that all Sources can be found before processing...
@@ -7232,10 +7254,11 @@ class NavWebReport(Report):
             self.user.step_progress()
         self.user.end_progress()
 
-    def family_pages(self, ppl_handle_list, place_list, place_lat_long, db_family_handles):
+    def family_pages(self, ppl_handle_list, place_list, place_lat_long):
         """
         creates the FamiliesListPage and FamilyPages
         """
+        db_family_handles = []
         FamilyListPage(self, self.title, ppl_handle_list, db_family_handles)
 
         self.user.begin_progress(_("Narrated Web Site Report"),
@@ -7247,21 +7270,25 @@ class NavWebReport(Report):
             self.user.step_progress()
         self.user.end_progress()
 
-    def place_pages(self, place_list, source_list, db_place_handles):
+        return db_family_handles
+
+    def place_pages(self, place_list, source_list):
         """
         creates PlaceListPage and PlacePage
         """
         self.user.begin_progress(_("Narrated Web Site Report"),
                                   _("Creating place pages"), len(place_list))
 
-        PlaceListPage(self, self.title, place_list, db_place_handles)
+        PlaceListPage(self, self.title, place_list)
 
         for place in place_list:
             PlacePage(self, self.title, place, source_list, place_list)
             self.user.step_progress()
         self.user.end_progress()
 
-    def event_pages(self, ind_list, db_event_handles):
+        return place_list
+
+    def event_pages(self, ind_list):
         """
         a dump of all the events sorted by event type, date, and surname
         for classes EventListPage and EventPage
@@ -7272,7 +7299,7 @@ class NavWebReport(Report):
         self.user.begin_progress(_("Narrated Web Site Report"),
                                   _("Creating event pages"), 
                                   len(event_handle_list))
-        EventListPage(self, self.title, event_types, event_handle_list, ind_list, db_event_handles)
+        EventListPage(self, self.title, event_types, event_handle_list, ind_list)
 
         for event_handle in event_handle_list:
             EventPage(self, self.title, event_handle, ind_list)
@@ -7280,7 +7307,9 @@ class NavWebReport(Report):
             self.user.step_progress()
         self.user.end_progress()
 
-    def media_pages(self, source_list, db_media_handles):
+        return event_handle_list
+
+    def media_pages(self, source_list):
         """
         creates MediaListPage and MediaPage
         """
@@ -7288,7 +7317,7 @@ class NavWebReport(Report):
                                   _("Creating media pages"), 
                                   len(self.photo_list))
 
-        MediaListPage(self, self.title, db_media_handles)
+        MediaListPage(self, self.title)
 
         prev = None
         total = len(self.photo_list)
@@ -7307,6 +7336,8 @@ class NavWebReport(Report):
             index += 1
         self.user.end_progress()
 
+        return photo_keys
+
     def thumbnail_preview_page(self):
         """
         creates the thumbnail preview page
@@ -7317,7 +7348,7 @@ class NavWebReport(Report):
         ThumbnailPreviewPage(self, self.title, self.user.step_progress)
         self.user.end_progress()
 
-    def repository_pages(self, repolist, source_list, db_repository_handles):
+    def repository_pages(self, repolist, source_list):
         """
         will create RepositoryPage() and RepositoryListPage()
         """
@@ -7338,7 +7369,7 @@ class NavWebReport(Report):
                                   _('Creating repository pages'), 
                                   repository_size)
         # RepositoryListPage Class
-        RepositoryListPage(self, self.title, repos_dict, keys, db_repository_handles)
+        RepositoryListPage(self, self.title, repos_dict, keys)
 
         for index, key in enumerate(keys):
             (repo, handle) = repos_dict[key]
@@ -7346,6 +7377,8 @@ class NavWebReport(Report):
             RepositoryPage(self, self.title, repository, handle, source_list)
             self.user.step_progress()
         self.user.end_progress()
+
+        return repolist
 
     def addressbook_pages(self, ind_list):
         """
@@ -7401,7 +7434,7 @@ class NavWebReport(Report):
         SourceListPage(self, self.title, source_list.keys())
 
         for source_handle in source_list:
-            SourcePage(self, self.title, source_handle, source_list, database_handles_list)
+            SourcePage(self, self.title, source_handle, source_list, ind_list, database_handles_list)
 
             self.user.step_progress()
         self.user.end_progress()
@@ -8196,7 +8229,7 @@ def sort_people(dbase, handle_list):
 
     return sorted_lists
 
-def sort_event_types(dbase, event_handle_list, event_types):
+def sort_event_types(dbase, event_types, event_handle_list):
     """
     sort a list of event types and their associated event handles
 
@@ -8204,16 +8237,17 @@ def sort_event_types(dbase, event_handle_list, event_types):
     @param: event_types -- a dict of event types
     @param: event_handle_list -- all event handles in this database
     """
+
     event_dict = dict((evt_type, list()) for evt_type in event_types)
 
     for event_handle in event_handle_list:
+
         event = dbase.get_event_from_handle(event_handle)
-        event_type = event.get_type()
+        event_type = str(event.get_type())
 
         # add (gramps_id, date, handle) from this event
         if event_type in event_dict:
             sort_value = event.get_date_object().get_sort_value()
-
             event_dict[event_type].append((sort_value, event_handle))
 
     for tup_list in event_dict.values():
@@ -8221,7 +8255,7 @@ def sort_event_types(dbase, event_handle_list, event_types):
 
     # return a list of sorted tuples, one per event
     retval = [(event_type, event_list) for (event_type, event_list) in event_dict.iteritems()]
-    retval.sort(key = lambda item: str(item[0]))
+    retval.sort(key=lambda item: str(item[0]))
 
     return retval
 
@@ -8476,21 +8510,6 @@ def build_event_data_by_individuals(dbase, ppl_handle_list):
                                     event_handle_list.append(evt_ref.ref)
             
     # return event_handle_list and event types to its caller
-    return event_handle_list, event_types
-
-def build_event_data_by_events(dbase_, event_handles):
-    """
-    creates a list of event handles and event types for these event handles
-    """
-    event_handle_list = []
-    event_types = []
-
-    for event_handle in event_handles:
-        event = dbase_.get_event_from_handle(event_handle)
-        if event:
-            event_types.append(str(event.get_type()))
-            event_handle_list.append(event_handle)
-
     return event_handle_list, event_types
 
 def check_person_database(person_handle, ppl_handle_list):
