@@ -3227,7 +3227,6 @@ class GedcomParser(UpdateCallback):
 
     def __person_object(self, line, state):
         """
-        Currently, the embedded form is not supported
         
         Embedded form
         
@@ -3247,8 +3246,10 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if line.data and line.data[0] == '@':
+            # Reference to a named multimedia object defined elsewhere
+            gramps_id = self.oid_map[line.data]
+            handle = self.__find_object_handle(gramps_id)
             ref = gen.lib.MediaRef()
-            handle = self.__find_object_handle(line.data[1:-1])
             ref.set_reference_handle(handle)
             state.person.add_media_reference(ref)
         else:
