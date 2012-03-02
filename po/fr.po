@@ -22383,13 +22383,15 @@ msgstr "Recherche dans la base de données, des citations qui ont les mêmes vol
 msgid "manual|Verify_the_Data..."
 msgstr "Vérifier les données..."
 
+# vérification des données
 #: ../src/plugins/tool/Verify.py:244
 msgid "Database Verify tool"
-msgstr "Vérification de la base de données"
+msgstr "Vérification des données"
 
+# vérification des données
 #: ../src/plugins/tool/Verify.py:431
 msgid "Database Verification Results"
-msgstr "Résultat de la vérification de la base de données"
+msgstr "Résultat de la vérification des données"
 
 #. Add column with the warning text
 #: ../src/plugins/tool/Verify.py:494
