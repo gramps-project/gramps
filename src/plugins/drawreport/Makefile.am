@@ -15,7 +15,6 @@ pkgpython_PYTHON = \
 	TimeLine.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/drawreport
-pkgpythondir = $(datadir)/@PACKAGE@/plugins/drawreport
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo

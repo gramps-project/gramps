@@ -18,7 +18,6 @@ pkgpython_PYTHON = \
 	__init__.py
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/Rules/MediaObject
-pkgpythondir = $(datadir)/@PACKAGE@/Filters/Rules/MediaObject 
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo

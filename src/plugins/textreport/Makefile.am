@@ -24,7 +24,6 @@ pkgpython_PYTHON = \
 	textplugins.gpr.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/textreport
-pkgpythondir = $(datadir)/@PACKAGE@/plugins/textreport
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo

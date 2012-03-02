@@ -12,7 +12,6 @@ pkgpython_PYTHON = \
 	_pythonmime.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen/mime
-pkgpythondir = $(datadir)/@PACKAGE@/gen/mime 
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo

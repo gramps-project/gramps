@@ -10,7 +10,6 @@ pkgpython_PYTHON = \
 	sidebar.gpr.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/sidebar
-pkgpythondir = $(datadir)/@PACKAGE@/plugins/sidebar
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo

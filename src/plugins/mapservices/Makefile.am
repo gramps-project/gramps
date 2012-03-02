@@ -12,7 +12,6 @@ pkgpython_PYTHON = \
 	eniroswedenmap.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/mapservices
-pkgpythondir = $(datadir)/@PACKAGE@/plugins/mapservices
 
 GLADEFILES = 
 

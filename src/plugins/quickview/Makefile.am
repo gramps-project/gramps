@@ -21,7 +21,6 @@ pkgpython_PYTHON = \
 	siblings.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/quickview
-pkgpythondir = $(datadir)/@PACKAGE@/plugins/quickview
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo

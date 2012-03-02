@@ -12,7 +12,6 @@ pkgpython_PYTHON = \
 	GVRelGraph.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/graph
-pkgpythondir = $(datadir)/@PACKAGE@/plugins/graph
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo

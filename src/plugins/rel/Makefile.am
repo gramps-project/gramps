@@ -27,7 +27,6 @@ pkgpython_PYTHON = \
 	rel_sv.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/rel
-pkgpythondir = $(datadir)/@PACKAGE@/plugins/rel
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo

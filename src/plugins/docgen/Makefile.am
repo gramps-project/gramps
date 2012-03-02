@@ -18,7 +18,6 @@ pkgpython_PYTHON = \
 	SvgDrawDoc.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/docgen
-pkgpythondir = $(datadir)/@PACKAGE@/plugins/docgen
 
 GLADEFILES = \
 	gtkprint.glade 

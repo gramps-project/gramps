@@ -17,7 +17,6 @@ pkgpython_PYTHON = \
 	ImportXml.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/import
-pkgpythondir = $(datadir)/@PACKAGE@/plugins/import
 
 GLADEFILES = \
 	importgedcom.glade

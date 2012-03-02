@@ -44,7 +44,6 @@ pkgpython_PYTHON = \
 	WhatsNext.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/gramplet
-pkgpythondir = $(datadir)/@PACKAGE@/plugins/gramplet
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo

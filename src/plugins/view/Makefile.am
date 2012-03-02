@@ -32,7 +32,6 @@ pkgpython_PYTHON = \
 	view.gpr.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/view
-pkgpythondir = $(datadir)/@PACKAGE@/plugins/view
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
