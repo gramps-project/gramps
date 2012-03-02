@@ -770,7 +770,7 @@ div#Download table.download td.ColumnModified {
     padding: 0;
 }
 div#SourceDetail {
-    min-height: 800px
+    min-height: 900px
 }
 div#SourceDetail div#references ol li {
     padding-bottom: .5em;
