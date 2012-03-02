@@ -21562,13 +21562,15 @@ msgstr "Vérifie les données selon les définitions de l'utilisateur"
 msgid "manual|Verify_the_Data..."
 msgstr "Vérifier les données..."
 
+# vérification des données
 #: ../src/plugins/tool/Verify.py:243
 msgid "Database Verify tool"
-msgstr "Vérification de la base de données"
+msgstr "Vérification des données"
 
+# vérification des données
 #: ../src/plugins/tool/Verify.py:429
 msgid "Database Verification Results"
-msgstr "Résultat de la vérification de la base de données"
+msgstr "Résultat de la vérification des données"
 
 #. Add column with the warning text
 #: ../src/plugins/tool/Verify.py:492
