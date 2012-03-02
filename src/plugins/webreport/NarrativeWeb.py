@@ -4841,7 +4841,7 @@ class SourcePage(BasePage):
             hyper = self.person_link(url, obj_, name_style = False)
         else:
             obj_ = self.dbase_.get_event_from_handle(obj_handle)
-            event_date = _dd.display(obj_.get_date_object()) or '&nbsp;'
+            event_date = _dd.display(obj_.get_date_object()) or _("Unknown")
 
             hyper = self.event_link(obj_handle, event_date, uplink = self.up)
         return hyper
