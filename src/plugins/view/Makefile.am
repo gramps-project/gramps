@@ -3,7 +3,7 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/plugins/view
+pkgpythondir = $(datadir)/@PACKAGE@/plugins/view
 
 pkgpython_PYTHON = \
 	eventview.py \

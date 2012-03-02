@@ -3,7 +3,7 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/plugins/quickview
+pkgpythondir = $(datadir)/@PACKAGE@/plugins/quickview
 
 pkgpython_PYTHON = \
 	AgeOnDate.py \

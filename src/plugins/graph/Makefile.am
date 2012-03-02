@@ -3,7 +3,7 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/plugins/graph
+pkgpythondir = $(datadir)/@PACKAGE@/plugins/graph
 
 pkgpython_PYTHON = \
 	graphplugins.gpr.py\

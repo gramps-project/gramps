@@ -4,6 +4,7 @@
 # If not using GNU make, then list all .py files individually
 
 pkgdatadir = $(datadir)/@PACKAGE@/plugins/docgen
+pkgpythondir = $(datadir)/@PACKAGE@/plugins/docgen
 
 pkgpython_PYTHON = \
 	AsciiDoc.py \

@@ -3,7 +3,7 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/plugins/rel
+pkgpythondir = $(datadir)/@PACKAGE@/plugins/rel
 
 pkgpython_PYTHON = \
 	relplugins.gpr.py\

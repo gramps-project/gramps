@@ -1,6 +1,6 @@
 # This is the src/Filters/Rules/MediaObject level Makefile for Gramps
 
-pkgdatadir = $(datadir)/@PACKAGE@/Filters/Rules/MediaObject
+pkgpythondir = $(datadir)/@PACKAGE@/Filters/Rules/MediaObject
 
 pkgpython_PYTHON = \
 	_AllMedia.py\

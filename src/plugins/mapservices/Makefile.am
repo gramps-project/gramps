@@ -3,7 +3,7 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/plugins/mapservices
+pkgpythondir = $(datadir)/@PACKAGE@/plugins/mapservices
 
 pkgpython_PYTHON = \
 	googlemap.py\

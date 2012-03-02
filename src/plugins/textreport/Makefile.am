@@ -3,7 +3,7 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/plugins/textreport
+pkgpythondir = $(datadir)/@PACKAGE@/plugins/textreport
 
 pkgpython_PYTHON = \
 	AncestorReport.py\

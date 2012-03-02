@@ -3,7 +3,7 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/gen/mime
+pkgpythondir = $(datadir)/@PACKAGE@/gen/mime
 
 pkgpython_PYTHON = \
 	__init__.py\
