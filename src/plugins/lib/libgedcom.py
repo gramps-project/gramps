@@ -1689,6 +1689,9 @@ class IdMapper(object):
             temp = temp[1:-1]
         temp = self.id2user_format(temp)
         return temp
+    
+    def map(self):
+        return self.swap
 
 #-------------------------------------------------------------------------
 #
@@ -6539,9 +6542,7 @@ class GedcomParser(UpdateCallback):
             #NOTE_STRUCTURE: =
             #  n  NOTE @<XREF:NOTE>@  {1:1}
             #    +1 SOUR @<XREF:SOUR>@  {0:M}
-            gid = line.data.strip()
-            gramps_id = self.nid_map[gid]
-            obj.add_note(self.__find_note_handle(gramps_id))
+            obj.add_note(self.__find_note_handle(self.nid_map[line.data]))
         else:
             # Embedded note
             #NOTE_STRUCTURE: =
@@ -6584,12 +6585,13 @@ class GedcomParser(UpdateCallback):
           +1 <<CHANGE_DATE>>  {0:1}
         """
         state = CurrentState(level=1)
-        gid = self.nid_map[line.token_text]
-        handle = self.nid2id.get(gid)
-        if not line.data and handle is None:
-            self.__add_msg(_("Empty note ignored"), line, state)
+        if not line.data and \
+                self.nid_map.clean(line.token_text) not in self.nid_map.map():
+            self.__add_msg(_("Empty note ignored"), line)
             self.__skip_subordinate_levels(level, state)
         else:
+            gid = self.nid_map[line.token_text]
+            handle = self.__find_note_handle(gid)
             new_note = gen.lib.Note(line.data)
             new_note.set_handle(handle)
             new_note.set_gramps_id(gid)
@@ -6600,9 +6602,8 @@ class GedcomParser(UpdateCallback):
             state.msg += sub_state.msg
 
             self.dbase.commit_note(new_note, self.trans, new_note.change)
-            self.nid2id[new_note.gramps_id] = new_note.handle
-        self.__check_msgs(_("NOTE Gramps ID %s") % new_note.get_gramps_id(), 
-                          state, None)
+            self.__check_msgs(_("NOTE Gramps ID %s") % new_note.get_gramps_id(), 
+                              state, None)
 
     def __note_chan(self, line, state):
         if state.note:
