@@ -17,6 +17,7 @@ pkgpython_PYTHON = \
 	ExportXml.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/export
+pkgpythondir = $(datadir)/@PACKAGE@/plugins/export
 
 GLADEFILES = \
 	exportcsv.glade \
