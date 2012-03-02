@@ -1602,22 +1602,23 @@ class BasePage(object):
         header_note = self.report.options['headernote']
         if header_note:
             note = self.get_note_format(
-                self.report.database.get_note_from_gramps_id(header_note),
-                False
-                )
+                self.report.database.get_note_from_gramps_id(header_note), False)
+
             user_header = Html("div", id = 'user_header')
             headerdiv += user_header  
  
             # attach note
             user_header += note
 
-        # Begin Navigation Menu
-        if self.report.navigation == "DropDown":
-            body += self.display_drop_menu()
+        # Begin Navigation Menu--
+        # is the style sheet either Blue or Visually, and menu layout is Drop Down?
+        if (self.report.css == "Blue" or self.report.css == "Visually"):
+            if self.report.navigation == "dropdown":
+                body += self.display_drop_menu()
         else: 
             body += self.display_nav_links(title)
 
-        # return page, head, and body
+        # return page, head, and body to its classes...
         return page, head, body
 
     def display_nav_links(self, currentsection):
@@ -1655,7 +1656,8 @@ class BasePage(object):
             ('thumbnails',              _("Thumbnails"),    True),
             ('download',                _("Download"),      self.report.inc_download),
             ("addressbook",             _("Address Book"),  self.report.inc_addressbook),
-            ('contact',                 _("Contact"),       self.report.use_contact)]
+            ('contact',                 _("Contact"),       self.report.use_contact)
+        ]
 
         # Remove menu sections if they are not being created?
         navs = ((url_text, nav_text) for url_text, nav_text, cond in navs if cond)
@@ -1663,14 +1665,15 @@ class BasePage(object):
 
         number_items = len(menu_items)
         num_cols = 10
-        num_rows = (number_items // num_cols) + 1
+        num_rows = ((number_items // num_cols) + 1)
 
         # begin navigation menu division...
         with Html("div", class_ = "wrapper", id = "nav", role = "navigation") as navigation:
             with Html("div", class_ = "container") as container:
+
                 index = 0
                 for rows in range(num_rows):
-                    unordered = Html("ul", class_ = "menu", id = "dropmenu")
+                    unordered = Html("ul", class_ = "menu")
 
                     cols = 0
                     while (cols <= num_cols and index < number_items):
@@ -4516,19 +4519,20 @@ class SourcePage(BasePage):
                 if citation_referents_list:
 
                     # Drop Down is being used, add Style sheet and javascript file...
-                    if self.navigation == "DropDown":
+                    if (report.css == "Blue" or report.css == "Visually"):
+                        if self.navigation == "dropdown":
 
-                        # link- in Animated Drop Down style sheet
-                        fname = "/".join(["css", "narrative-dropdown.css"])
-                        url = self.report.build_url_fname(fname, None, self.up)
-                        head += Html("link", type = "text/css", href = url, media = "screen",
-                                rel = "stylesheet", inline = True)
+                            # link- in Animated Drop Down style sheet
+                            fname = "/".join(["css", "narrative-dropdown.css"])
+                            url = self.report.build_url_fname(fname, None, self.up)
+                            head += Html("link", type = "text/css", href = url, media = "screen",
+                                    rel = "stylesheet", inline = True)
 
-                        # javascript if the user's browser is IE6?
-                        fname = "/".join(["scripts", "jquery-1.7.1.min.js"])
-                        url = self.report.build_url_fname(fname, None, self.up)
-                        head += Html("script", type = "text/javascript", href = url,
-                                language ="javascript", inline = True)
+                            # javascript if the user's browser is IE6?
+                            fname = "/".join(["scripts", "jquery-1.7.1.min.js"])
+                            url = self.report.build_url_fname(fname, None, self.up)
+                            head += Html("script", type = "text/javascript", href = url,
+                                    language ="javascript", inline = True)
 
                         with Html("script", type = "text/javascript", language = "javascript") as jsc:
                             head += jsc
@@ -4769,7 +4773,11 @@ class SourcePage(BasePage):
 
     def display_citation_refs_list(self, unordered2, citations_dict, citation_type):
         """
-        displays the citations referents list
+        displays the citations referents list for People and Event subsections
+
+        @param: unordered2 -- unordered list element for proper styling of section output
+        @param: citations_dict -- dictionary containing data to be displayed
+        @param: citation_type -- can either be People or Events...
         """
         keys = sorted(citations_dict, key = locale.strxfrm)
         max_per_column = 5
@@ -4807,8 +4815,9 @@ class SourcePage(BasePage):
 
                             list5 = Html("li")
                             list5.extend(
-                                self.get_citation_ref_link(obj_handle, citation_type)
+                                self.citation_referents_link(obj_handle, citation_type)
                             )
+
                             unordered5 += list5
                     list4 += unordered5
                     unordered4 += list4
@@ -4821,20 +4830,22 @@ class SourcePage(BasePage):
 
                     list4 = Html("li")
                     list4.extend(
-                        self.get_citation_ref_link(obj_handle, citation_type)
+                        self.citation_referents_link(obj_handle, citation_type)
                     )
+
                     unordered4 += list4
             list3 += unordered4
             unordered3 += list3
         list2 += unordered3
         unordered2 += list2
 
-    def get_citation_ref_link(self, obj_handle, citation_type):
+    def citation_referents_link(self, obj_handle, citation_type):
         """
         returns the hyper link for the handle that was passed to it
-        """
-        hyper = None
 
+        @param: obj_handle -- object handle for either Person or Event
+        @param: citation_type -- can be either People or Events
+        """
         if citation_type == "People":
             obj_ = self.dbase_.get_person_from_handle(obj_handle)
             url = self.report.build_url_fname_html(obj_handle, "ppl", up = self.up)
@@ -7134,8 +7145,8 @@ class NavWebReport(Report):
                 fname = CSS["Vertical-Menus"]["filename"]
             elif self.navigation == "Fade":
                 fname = CSS["Fade-Menus"]["filename"]
-            elif self.navigation == "DropDown":
-                fname = CSS["DropDown-Menus"]["filename"]
+            elif self.navigation == "dropdown":
+                fname = CSS["dropdown-Menus"]["filename"]
             self.copy_file(fname, "narrative-menus.css", "css")
 
         # copy narrative-maps Style Sheet if Place or Family Map pages are being created?
@@ -7144,12 +7155,13 @@ class NavWebReport(Report):
             self.copy_file(fname, "narrative-maps.css", "css")
 
         # if Drop Down Navigation is being used, copy its style sheet and its javascript file...
-        if self.navigation == "DropDown":
-            fname = CSS["Animated Dropdown"]["filename"]
-            self.copy_file(fname, "narrative-dropdown.css", "css")
+        if (self.css == "Blue" or self.css == "Visually"):
+            if self.navigation == "dropdown":
+                fname = CSS["Animated Dropdown"]["filename"]
+                self.copy_file(fname, "narrative-dropdown.css", "css")
 
-            fname = CSS["Animated Dropdown"]["javascript"]
-            self.copy_file(fname, "jquery-1.7.1.min.js", "scripts")
+                fname = CSS["Animated Dropdown"]["javascript"]
+                self.copy_file(fname, "jquery-1.7.1.min.js", "scripts")
 
         # Copy the Creative Commons icon if the Creative Commons
         # license is requested
@@ -7796,7 +7808,7 @@ class NavWebOptions(MenuReportOptions):
             (_("Horizontal -- Default"),              "Horizontal"),
             (_("Vertical   -- Left Side"),            "Vertical"),
             (_("Fade       -- WebKit Browsers Only"), "Fade"),
-            (_("Drop-Down  -- WebKit Browsers Only"), "DropDown")
+            (_("Drop-Down  -- WebKit Browsers Only"), "dropdown")
         ]
         self.__navigation = EnumeratedListOption(_("Navigation Menu Layout"), _nav_opts[0][1])
         for layout in _nav_opts:
