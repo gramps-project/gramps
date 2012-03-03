@@ -145,7 +145,7 @@ class WriterOptionBox(object):
         button = gtk.Button(ngettext("%d Person", "%d People", people_count) % 
                             people_count)
         button.set_tooltip_text(_("Click to see preview of unfiltered data"))
-        button.set_size_request(100, -1)
+        button.set_size_request(107, -1)
         button.connect("clicked", self.show_preview_data)
         button.proxy_name = "unfiltered"
         self.preview_proxy_button["unfiltered"] = button
@@ -247,7 +247,7 @@ class WriterOptionBox(object):
         import gtk
         import gui.widgets
         button = gtk.Button(ngettext("%d Person", "%d People", 0) % 0)
-        button.set_size_request(100, -1)
+        button.set_size_request(107, -1)
         button.connect("clicked", self.show_preview_data)
         button.proxy_name = proxy_name
         if proxy_name == "person":
