@@ -9,13 +9,14 @@ DATAFILES = \
 	ancestortree.css \
 	behaviour.css \
 	narrative-maps.css \
-	Web_Animated-Dropdown.css \
 	Web_Basic-Ash.css \
 	Web_Basic-Blue.css \
 	Web_Basic-Cypress.css  \
 	Web_Basic-Lilac.css \
 	Web_Basic-Peach.css \
 	Web_Basic-Spruce.css \
+	Web_Citations-Animated.css \
+	Web_Citations-Outline.css \
 	Web_DropDown-Menus.css \
 	Web_Fade-Menus.css \
 	Web_Horizontal-Menus.css \

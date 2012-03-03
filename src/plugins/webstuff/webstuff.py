@@ -34,12 +34,12 @@ def make_css_dict(tup):
     """
     return {
         "id": tup[0],
-        "user": tup[1],
-        "translation": tup[2],
-        "filename": tup[3],
-        "navigation": tup[4],
-        "images": tup[5],
-        "javascript": tup[6],
+        "user"        : tup[1],
+        "translation" : tup[2],
+        "filename"    : tup[3],
+        "navigation"  : tup[4],
+        "images"      : tup[5],
+        "javascript"  : tup[6],
         }
 
 def load_on_reg(dbstate, uistate, plugin):
@@ -53,35 +53,36 @@ def load_on_reg(dbstate, uistate, plugin):
     path_js = partial(os.path.join, dir, "js")
     CSS_FILES = [
 
-        # id, user selectable?, translated_name, fullpath, navigation target name, images, javascript
+        # id, user selectable?, translated_name, option name, fullpath,
+        # navigation target name, images, javascript
         # "default" is used as default
 
         # Basic Ash style sheet
-        ["Basic-Ash",     1, _("Basic-Ash"),         
+        ["Basic-Ash",     1, _("Basic-Ash"),
          path_css('Web_Basic-Ash.css'),     None, [], [] ],
 
         # Basic Blue style sheet with navigation menus
-        ["Basic-Blue",    1, _("Basic-Blue"),        
+        ["Basic-Blue",    1, _("Basic-Blue"),
          path_css('Web_Basic-Blue.css'),    "narrative-menus.css", [], [] ],
 
         # Basic Cypress style sheet
-        ["Basic-Cypress", 1, _("Basic-Cypress"),     
+        ["Basic-Cypress", 1, _("Basic-Cypress"),
          path_css('Web_Basic-Cypress.css'), None, [], [] ],
 
         # basic Lilac style sheet
-        ["Basic-Lilac",   1, _("Basic-Lilac"),       
+        ["Basic-Lilac",   1, _("Basic-Lilac"),
          path_css('Web_Basic-Lilac.css'),   None, [], [] ],
 
         # basic Peach style sheet
-        ["Basic-Peach",   1, _("Basic-Peach"),       
+        ["Basic-Peach",   1, _("Basic-Peach"),
          path_css('Web_Basic-Peach.css'),   None, [], [] ],
 
         # basic Spruce style sheet
-        ["Basic-Spruce",  1, _("Basic-Spruce"),      
+        ["Basic-Spruce",  1, _("Basic-Spruce"),
          path_css('Web_Basic-Spruce.css'),  None, [], [] ],
 
         # Mainz style sheet with its images
-        ["Mainz",         1, _("Mainz"),             
+        ["Mainz",         1, _("Mainz"),
          path_css('Web_Mainz.css'),         None, 
          [path_img("Web_Mainz_Bkgd.png"), 
           path_img("Web_Mainz_Header.png"), 
@@ -89,11 +90,11 @@ def load_on_reg(dbstate, uistate, plugin):
           path_img("Web_Mainz_MidLight.png")], [] ],
 
         # Nebraska style sheet
-        ["Nebraska",      1, _("Nebraska"),          
+        ["Nebraska",      1, _("Nebraska"),
          path_css('Web_Nebraska.css'),      None, [], [] ],
 
         # Visually Impaired style sheet with its navigation menus
-        ["Visually Impaired", 1, _("Visually Impaired"), 
+        ["Visually Impaired", 1, _("Visually Impaired"),
          path_css('Web_Visually.css'),  "narrative-menus.css", [], [] ],
 
         # ancestor tree style sheet and its images
@@ -103,7 +104,7 @@ def load_on_reg(dbstate, uistate, plugin):
           path_img("Web_Gender_Male.png")],        [] ],
 
         # media reference regions style sheet
-        ["behaviour",     0, "Behaviour",            
+        ["behaviour",     0, "Behaviour",
          path_css('behaviour.css'),         None,  [], [] ], 
 
         # NarrativeMap stylesheet/ image for NarrativeWeb place maps
@@ -111,36 +112,40 @@ def load_on_reg(dbstate, uistate, plugin):
          path_css("narrative-maps.css"),      None, [], [] ],
 
         # default style sheet in the options
-        ["default",       0, _("Basic-Ash"),         
+        ["default",       0, _("Basic-Ash"),
          path_css('Web_Basic-Ash.css'),     None, [], [] ],
 
         # default printer style sheet
-        ["Print-Default", 0, "Print-Default",        
+        ["Print-Default", 0, "Print-Default",
          path_css('Web_Print-Default.css'), None, [], [] ],
 
         # Horizontal Navigation Menus Style Sheet
-        ["Horizontal-Menus", 0, "Horizontal Menus", 
+        ["Horizontal-Menus", 0, "Horizontal Menus",
          path_css('Web_Horizontal-Menus.css'), None, [], [] ],
 
         # Vertical Navigation Menus Style Sheet
-        ["Vertical-Menus", 0, "Vertical Menus", 
+        ["Vertical-Menus", 0, "Vertical Menus",
          path_css('Web_Vertical-Menus.css'), None, [], [] ],
 
         # WebKit/ Html5/ CSS3 Fade Navigation Menus Style Sheet
-        ["Fade-Menus", 0, "Fade In/ Out Menus", 
+        ["Fade-Menus", 0, "Fade In/ Out Menus",
          path_css('Web_Fade-Menus.css'), None, [], [] ],
 
         # WebKit/ Html5/ CSS3 Animated Drop Down Style Sheet
-        ["Animated Dropdown", 0, "Animated Dropdown",
-         path_css("Web_Animated-Dropdown.css"), None, [],
+        ["Animated DropDown", 0, "Animated DropDown",
+         path_css("Web_Citations-Animated.css"), None, [],
          path_js("jquery-1.7.1.min.js")                                  ],
+
+        # Source Page Citations Referents Outline Style sheet...
+        ["Outline", 0, "Outline Citations",
+         path_css("Web_Citations-Outline.css"), None, [], [] ],
 
         # WebKit/ Html5/ CSS3 Drop Down Navigation Menus Style Sheet
         ["DropDown-Menus", 0, "Drop Down Menus",
          path_css("Web_DropDown-Menus.css"), None, [], [] ],
 
         # GeoView style sheet with its image
-        ["GeoView", 0, "GeoView", 
+        ["GeoView", 0, "GeoView",
          path_css("GeoView.css"), None,
          [path_img("crosshairs.png"),
           path_img("gramps-geo-altmap.png"),
@@ -153,12 +158,12 @@ def load_on_reg(dbstate, uistate, plugin):
         ["No style sheet",1, _("No style sheet"),    [],  None, [], [] ],
 
         # all other images for use in NarrativeWeb
-        ['All Images', 0, 'All Images', None, None, 
+        ['All Images', 0, 'All Images', None, None,
          [path_img("blank.gif"),
           path_img("document.png")], [] ],
 
         # Gramps Fav icon #2
-        ["favicon2", 0, "FavIcon2", 
+        ["favicon2", 0, "FavIcon2",
          path_img("favicon2.ico"), None, [], [] ],
 
         # copyright image
@@ -178,7 +183,7 @@ def process_list(data):
         if file:
             path, filename = os.path.split(file)
             # is there a override file in the VERSION_DIR/webstuff?
-            # eg, ~/.gramps/gramps33/webstuff/Web_Nebraska.css
+            # eg, ~/.gramps/gramps34/webstuff/Web_Nebraska.css
             # if so, replace this one:
             override = os.path.join(const.VERSION_DIR, "webstuff", filename)
             if os.path.exists(override):

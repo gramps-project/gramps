@@ -406,21 +406,6 @@ table.IndividualList td.ColumnSurname {
 div#SourceDetail {
     margin: 0 auto;
 }
-div#SourceCitationReferents ul.Col1 {
-    list-style-type: decimal
-}
-div#SourceCitationReferents ul.Col2 {
-    list-style-type: upper-alpha
-}
-div#SourceCitationReferents ul.Col3 {
-    list-style-type: lower-alpha
-}
-div#SourceCitationReferents ul.Col4 {
-    list-style-type: upper-roman
-}
-div#SourceCitationReferents ul.Col5 {
-    list-style-type: disc
-}
 
 /* Contact
 ----------------------------------------------------- */

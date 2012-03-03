@@ -41,7 +41,7 @@ div#header {
 
 /*     Drop Down Navigation Menu
 ------------------------------------------------------ */
-#dropmenu {
+ul#dropmenu {
     width: 100%;
     margin: 0 auto;
     padding: 10px 0 0 0;
@@ -59,12 +59,12 @@ div#header {
     -webkit-box-shadow: 0 2px 1px #9c9c9c;
     box-shadow: 0 2px 1px #9c9c9c;
 }
-#dropmenu li {
+ul#dropmenu li {
     float: left;
     padding: 0 0 10px 0;
     position: relative;
 }
-#dropmenu a {
+ul#dropmenu a {
     float: left;
     height: 25px;
     padding: 0 25px;
@@ -74,21 +74,21 @@ div#header {
     text-decoration: none;
     text-shadow: 0 1px 0 #000;
 }
-#dropmenu li:hover > a {
+ul#dropmenu li:hover > a {
     color: #fafafa
 }
 
-*html #dropmenu li a:hover /* IE6 */
+*html ul#dropmenu li a:hover /* IE6 */
 {
     color: #fafafa
 }
-#dropmenu li:hover > ul {
+ul#dropmenu li:hover > ul {
     display: block
 }
 
 /*     Sub-menu
 ------------------------------------------------------ */
-#dropmenu ul {
+ul#dropmenu ul {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -107,7 +107,7 @@ div#header {
     -moz-border-radius: 5px;
     border-radius: 5px;
 }
-#dropmenu ul li {
+ul#dropmenu ul li {
     float: none;
     margin: 0;
     padding: 0;
@@ -116,12 +116,12 @@ div#header {
     -webkit-box-shadow: 0 1px 0 #111111, 0 2px 0 #777777;
     box-shadow: 0 1px 0 #111111, 0 2px 0 #777777;
 }
-#dropmenu ul li:last-child {
+ul#dropmenu ul li:last-child {
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
     box-shadow: none;
 }
-#dropmenu ul a {
+ul#dropmenu ul a {
     padding: 10px;
     height: auto;
     line-height: 1;
@@ -130,17 +130,17 @@ div#header {
     float: none;
     text-transform: none;
 }
-*html #dropmenu ul a /* IE6 */
+*html ul#dropmenu ul a /* IE6 */
 {
     height: 10px;
     width: 150px;
 }
-*:first-child+html #dropmenu ul a /* IE7 */
+*:first-child+html ul#dropmenu ul a /* IE7 */
 {
     height: 10px;
     width: 150px;
 }
-#dropmenu ul a:hover {
+ul#dropmenu ul a:hover {
     background: #0186ba;
     background: -moz-linear-gradient(#04acec,  #0186ba);
     background: -webkit-gradient(linear, left top, left bottom, from(#04acec), to(#0186ba));
@@ -149,11 +149,11 @@ div#header {
     background: -ms-linear-gradient(#04acec,  #0186ba);
     background: linear-gradient(#04acec,  #0186ba);
 }
-#dropmenu ul li:first-child a {
+ul#dropmenu ul li:first-child a {
     -moz-border-radius: 5px 5px 0 0;
     border-radius: 5px 5px 0 0;
 }
-#dropmenu ul li:first-child a:after {
+ul#dropmenu ul li:first-child a:after {
     content: '';
     position: absolute;
     left: 30px;
@@ -164,17 +164,17 @@ div#header {
     border-right: 5px solid transparent;
     border-bottom: 8px solid #444;
 }
-#dropmenu ul li:first-child a:hover:after {
+ul#dropmenu ul li:first-child a:hover:after {
     border-bottom-color: #04acec
 }
-#dropmenu ul li:last-child a {
+ul#dropmenu ul li:last-child a {
     -moz-border-radius: 0 0 5px 5px;
     border-radius: 0 0 5px 5px;
 }
 
 /*     Clear floated elements
 ------------------------------------------------------ */
-#dropmenu:after {
+ul#dropmenu:after {
     visibility: hidden;
     display: block;
     font-size: 0;
@@ -183,8 +183,8 @@ div#header {
     height: 0;
 }
 
-* html #dropmenu             { zoom: 1; } /* IE6 */
-*:first-child+html #dropmenu { zoom: 1; } /* IE7 */
+* html ul#dropmenu             { zoom: 1; } /* IE6 */
+*:first-child+html ul#dropmenu { zoom: 1; } /* IE7 */
 
 /*    Alphabet Navigation and Year Menu
 ------------------------------------------------------ */

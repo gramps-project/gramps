@@ -1611,8 +1611,10 @@ class BasePage(object):
             user_header += note
 
         # Begin Navigation Menu--
-        # is the style sheet either Blue or Visually, and menu layout is Drop Down?
-        if (self.report.css == "Blue" or self.report.css == "Visually"):
+        # is the style sheet either Basic-Blue or Visually Impaired,
+        # and menu layout is Drop Down?
+        if (self.report.css == _("Basic-Blue") or 
+            self.report.css == _("Visually Impaired")):
             if self.report.navigation == "dropdown":
                 body += self.display_drop_menu()
         else: 
@@ -1673,7 +1675,7 @@ class BasePage(object):
 
                 index = 0
                 for rows in range(num_rows):
-                    unordered = Html("ul", class_ = "menu")
+                    unordered = Html("ul", class_ = "menu", id = "dropmenu")
 
                     cols = 0
                     while (cols <= num_cols and index < number_items):
@@ -4443,6 +4445,7 @@ class SourcePage(BasePage):
 
         inc_repositories = self.report.options["inc_repository"]
         self.navigation = self.report.options['navigation']
+        self.citationreferents = self.report.options['citationreferents']
 
         # for use in determining if an object is in the report database or not?
         (db_family_handles, db_event_handles, db_place_handles, db_repository_handles,
@@ -4518,25 +4521,21 @@ class SourcePage(BasePage):
                 (citation_list, citation_referents_list) = the_lists
                 if citation_referents_list:
 
-                    # Drop Down is being used, add Style sheet and javascript file...
-                    if (report.css == "Blue" or report.css == "Visually"):
-                        if self.navigation == "dropdown":
+                    # link- in Animated Drop Down style sheet
+                    fname = "/".join(["css", "narrative-citations.css"])
+                    url = self.report.build_url_fname(fname, None, self.up)
+                    head += Html("link", type = "text/css", href = url, media = "screen",
+                        rel = "stylesheet", inline = True)
 
-                            # link- in Animated Drop Down style sheet
-                            fname = "/".join(["css", "narrative-dropdown.css"])
-                            url = self.report.build_url_fname(fname, None, self.up)
-                            head += Html("link", type = "text/css", href = url, media = "screen",
-                                    rel = "stylesheet", inline = True)
+                    if self.citationreferents == "DropDown":
+                        fname = "/".join(["scripts", "jquery-1.7.1.min.js"])
+                        url = self.report.build_url_fname(fname, None, self.up)
+                        head += Html("script", type = "text/javascript", href = url,
+                                language ="javascript", inline = True)
 
-                            # javascript if the user's browser is IE6?
-                            fname = "/".join(["scripts", "jquery-1.7.1.min.js"])
-                            url = self.report.build_url_fname(fname, None, self.up)
-                            head += Html("script", type = "text/javascript", href = url,
-                                    language ="javascript", inline = True)
-
+                        # create inline javascript style...
                         with Html("script", type = "text/javascript", language = "javascript") as jsc:
                             head += jsc
-
                             jsc += """
   if ($.browser.msie && $.browser.version.substr(0,1)< 7)
   {
@@ -6881,6 +6880,7 @@ class NavWebReport(Report):
         self.ext = self.options['ext']
         self.css = self.options['css']
         self.navigation = self.options["navigation"]
+        self.citationreferents = self.options['citationreferents']
 
         self.title = self.options['title']
 
@@ -7018,6 +7018,9 @@ class NavWebReport(Report):
                             str(value))
                 return
 
+        # copy all of the neccessary files for NarrativeWeb report...
+        self.copy_narrated_files()
+
         # Build the person list
         ind_list = self.build_person_list()
 
@@ -7026,9 +7029,6 @@ class NavWebReport(Report):
 
         place_list = {}
         source_list = {}
-
-        # copy all of the neccessary files for NarrativeWeb report...
-        self.copy_narrated_files()
 
         self.base_pages()
 
@@ -7146,22 +7146,27 @@ class NavWebReport(Report):
             elif self.navigation == "Fade":
                 fname = CSS["Fade-Menus"]["filename"]
             elif self.navigation == "dropdown":
-                fname = CSS["dropdown-Menus"]["filename"]
+                fname = CSS["DropDown-Menus"]["filename"]
             self.copy_file(fname, "narrative-menus.css", "css")
+
+        # copy Animated Citations Drop Down Layout if being used, copy its style sheet
+        # and its associated javascript file?
+        if (self.css == _("Basic-Blue") or self.css == _("Visually Impaired")):
+            if self.citationreferents == "DropDown":
+                fname = CSS["Animated DropDown"]["javascript"]
+                self.copy_file(fname, "jquery-1.7.1.min.js", "scripts")
+
+        if self.citationreferents == "DropDown":
+            fname = CSS["Animated DropDown"]["filename"]
+        else:
+            fname = CSS["Outline"]["filename"]
+        self.copy_file(fname, "narrative-citations.css", "css")  
+
 
         # copy narrative-maps Style Sheet if Place or Family Map pages are being created?
         if (self.placemappages or self.familymappages):
             fname = CSS["NarrativeMaps"]["filename"] 
             self.copy_file(fname, "narrative-maps.css", "css")
-
-        # if Drop Down Navigation is being used, copy its style sheet and its javascript file...
-        if (self.css == "Blue" or self.css == "Visually"):
-            if self.navigation == "dropdown":
-                fname = CSS["Animated Dropdown"]["filename"]
-                self.copy_file(fname, "narrative-dropdown.css", "css")
-
-                fname = CSS["Animated Dropdown"]["javascript"]
-                self.copy_file(fname, "jquery-1.7.1.min.js", "scripts")
 
         # Copy the Creative Commons icon if the Creative Commons
         # license is requested
@@ -7817,6 +7822,17 @@ class NavWebOptions(MenuReportOptions):
         addopt("navigation", self.__navigation)
 
         self.__stylesheet_changed()
+
+        _cit_opts = [
+            (_("Normal Outline Style"),              "Outline"),
+            (_("Drop-Down  -- WebKit Browsers Only"), "DropDown")
+        ]
+        self.__citationreferents = EnumeratedListOption(_("Citation Referents Layout"), _cit_opts[0][1])
+        for layout in _cit_opts:
+            self.__citationreferents.add_item(layout[1], layout[0])
+        self.__citationreferents.set_help(_("Determine the default layout for the "
+            "Source Page's Citation Referents section"))
+        addopt("citationreferents", self.__citationreferents)
 
         self.__ancestortree = BooleanOption(_("Include ancestor's tree"), True)
         self.__ancestortree.set_help(_('Whether to include an ancestor graph on each individual page'))
