@@ -11,15 +11,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-03 18:54+0100\n"
-"PO-Revision-Date: 2012-03-04 03:44+0100\n"
+"POT-Creation-Date: 2012-03-04 13:22+0100\n"
+"PO-Revision-Date: 2012-03-04 21:28+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.2\n"
+"X-Generator: Lokalize 1.4\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../src/Assistant.py:338 ../src/Filters/Rules/Place/_HasPlace.py:48
@@ -5511,6 +5511,8 @@ msgid ""
 "The Grampsbar will be restored to contain its default gramplets.  This "
 "action cannot be undone."
 msgstr ""
+"Die Grampsleiste wird zurückgesetzt, damit sie ihre original Gramplets "
+"enthält. Dieser Vorgang kann nicht rückgängig gemacht werden."
 
 #: ../src/gui/grampsbar.py:484 ../src/gui/plug/_windows.py:491
 msgid "OK"
@@ -7493,7 +7495,6 @@ msgstr "Kann diese Referenz nicht teilen"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:191
 #: ../src/plugins/view/citationtreeview.py:504
-#, fuzzy
 msgid ""
 "This citation cannot be created at this time. Either the associated Source "
 "object is already being edited, or another citation associated with the same "
@@ -7501,11 +7502,11 @@ msgid ""
 "\n"
 "To edit this citation, you need to close the object."
 msgstr ""
-"Diese Quellen-Referenz kann im Moment nicht bearbeitet werden. Entweder die "
-"verbundene Ereignis wird schon bearbeitet oder eine andere Ereignis-"
-"Referenz, die mit der selben Quelle verbunden ist, wird gerade bearbeitet.\n"
+"Diese Fundstelle kann im Moment nicht erstellt werden. Entweder wird das "
+"zugehörige Quellenobjekt schon bearbeitet oder eine andereFundstelle die mit "
+"der selben Quelle verbunden ist, wird gerade bearbeitet.\n"
 "\n"
-"Um die Ereignis-Referenz zu bearbeiten, muss die Quelle geschlossen werden."
+"Um diese Quelle zu bearbeiten, muss das Objekt geschlossen werden."
 
 #: ../src/gui/editors/displaytabs/dataembedlist.py:49
 msgid "Create and add a new data entry"
@@ -11204,9 +11205,8 @@ msgid "No Date Information"
 msgstr "Keine Datumsinformation"
 
 #: ../src/plugins/drawreport/TimeLine.py:301
-#, fuzzy
 msgid "Finding date range..."
-msgstr "Drucke den Baum..."
+msgstr "Finde Zeitraum..."
 
 #: ../src/plugins/drawreport/TimeLine.py:371
 msgid "Determines what people are included in the report"
@@ -11549,15 +11549,14 @@ msgid "Enter a date, click Run"
 msgstr "Ein Datum eingeben. Ausführen klicken"
 
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:67
-#, fuzzy
 msgid ""
 "Enter a valid date (like YYYY-MM-DD) in the entry below and click Run. This "
 "will compute the ages for everyone in your Family Tree on that date. You can "
 "then sort by the age column, and double-click the row to view or edit."
 msgstr ""
 "Gib ein gültiges Datum (wie JJJJ-MM-TT) im Eingabefeld unten ein und klicke "
-"Start.Dies berechnet das Alter für jeden in deinem Stammbaum an diesem "
-"Datum. Du kannst dann die Alters Spalte sortieren und dann die Zeile doppelt "
+"Start. Dies berechnet das Alter für jeden in deinem Stammbaum an diesem "
+"Datum. Du kannst dann die Alters Spalte sortieren und die Zeile doppelt "
 "klicken um sie anzuzeigen oder zu bearbeiten."
 
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:75
@@ -12175,14 +12174,14 @@ msgstr "Zum bearbeiten rechts-klicken"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:154
 msgid "   sp. "
-msgstr ""
+msgstr "  Part. "
 
 #. valid converting types for PIL.Image
 #. there are more image formats that PIL.Image can convert to,
 #. but they are not usable in exiv2/ pyexiv2
 #: ../src/plugins/gramplet/EditExifMetadata.py:147
 msgid "<-- Image Types -->"
-msgstr ""
+msgstr "<-- Bildformate -->"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:170
 msgid ""
@@ -12218,6 +12217,8 @@ msgid ""
 "This is the date/ time that the image was last changed/ modified.\n"
 "Example: 2011-05-24 14:30:00"
 msgstr ""
+"Dies ist das Datum/Zeit an dem das Bild zuletzt geändert wurde.\n"
+"Beispiel: 2011-05-24 14:30:00"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:186
 msgid ""
@@ -12255,16 +12256,22 @@ msgid ""
 "Exif metadata.\n"
 "  It will also allow you to be able to Save the modified metadata."
 msgstr ""
+"Dies öffnet ein neues Fenster in dem du die Exif Metadaten dieses Bildes "
+"ändern kannst.\n"
+" Es ermöglicht dir auch die geänderten Metadaten zu speichern."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:208
 msgid "Will produce a Popup window showing a Thumbnail Viewing Area"
 msgstr ""
+"Erstellt ein Dialogfenster welches einen Vorschaubildanzeigebereich zeigt"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:210
 msgid ""
 "Select from a drop- down box the image file type that you would like to "
 "convert your non- Exiv2 compatible media object to."
 msgstr ""
+"Wähle aus einer Aufklappliste das Bilddateiformat in das du dein nicht Exiv2 "
+"kompatibles Medienobjekt konvertieren willst."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:213
 msgid ""
@@ -12321,11 +12328,11 @@ msgstr "Exif Metadaten zeigen..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:669
 msgid "Click Close to close this Thumbnail View Area."
-msgstr ""
+msgstr "Klicke auf Schließen um den Vorschaubildanzeigebereich zu schließen."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:673
 msgid "Thumbnail View Area"
-msgstr ""
+msgstr "Vorschaubildanzeigebereich"
 
 #. Convert and delete original file or just convert
 #: ../src/plugins/gramplet/EditExifMetadata.py:752
@@ -12364,12 +12371,16 @@ msgid ""
 "There has been an error, Please check your source and destination file "
 "paths..."
 msgstr ""
+"Es ist ein Fehler aufgetreten, Bitte überprüfe deine Quell und Zieldateipfade."
+".."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:847
 msgid ""
 "There was an error in deleting the original file.  You will need to delete "
 "it yourself!"
 msgstr ""
+"Beim Löschen der original Datei ist ein Fehler aufgetreten. Du musst sie "
+"selbst löschen!"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:864
 msgid "There was an error in converting your image file."
@@ -12381,27 +12392,27 @@ msgid "Media Path Update"
 msgstr "Medienpfad aktualisiert"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:881
-#, fuzzy
 msgid "There has been an error in updating the image file's path!"
-msgstr ""
-"Beim reinitialisieren der Exif Metadaten für dieses Bild ist ein Fehler "
-"aufgetreten..."
+msgstr "Beim Aktualisieren des Bilddateipfad ist ein Fehler aufgetreten!"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:915
 msgid ""
 "Click the close button when you are finished modifying this image's Exif "
 "metadata."
 msgstr ""
+"Klicke die Schließen Schaltfläche wenn du das Ändern dieser Bild Exif "
+"Metadaten abgeschlossen hast."
 
 #. Add the Save button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:953
 msgid "Saves a copy of the data fields into the image's Exif metadata."
-msgstr ""
+msgstr "Speichert eine Kopie der Datenfelder in den Exif Metadaten des Bild."
 
 #. Re- display the data fields button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:956
 msgid "Re -display the data fields that were cleared from the Edit Area."
 msgstr ""
+"Zeigt die Datenfelder die aus dem Editorbereich entfernt wurden wieder an."
 
 #. Add the Clear button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:959
@@ -12415,6 +12426,8 @@ msgid ""
 "WARNING: This action will NOT Save any changes/ modification made to this "
 "image's Exif metadata."
 msgstr ""
+"Schließt dieses Editorfenster.\n"
+"WARNUNG: Diese Aktion speichert KEINE Änderungen, dieser Bild Exif Metadaten."
 
 #. Media Title Frame...
 #. 574 on a screen width of 1024
@@ -12429,9 +12442,8 @@ msgstr "Mediumtitel: "
 #. create the data fields...
 #. ***Description, Artist, and Copyright
 #: ../src/plugins/gramplet/EditExifMetadata.py:1013
-#, fuzzy
 msgid "General Data"
-msgstr "Allgemeines"
+msgstr "Allgemeine Daten"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1023
 msgid "Description: "
@@ -13801,7 +13813,7 @@ msgstr "Leerer Bericht"
 
 #: ../src/plugins/graph/GVFamilyLines.py:342
 msgid "You did not specify anybody"
-msgstr ""
+msgstr "Du hast niemanden angegeben"
 
 #: ../src/plugins/graph/GVFamilyLines.py:921
 #, python-format
@@ -14722,17 +14734,15 @@ msgstr "GEDCOM Importbericht: %s Fehler gefunden"
 
 #: ../src/plugins/lib/libgedcom.py:2803
 msgid "Tag recognised but not supported"
-msgstr ""
+msgstr "Tag erkannt aber nicht unterstützt"
 
 #: ../src/plugins/lib/libgedcom.py:2814
-#, fuzzy
 msgid "Line ignored as not understood"
-msgstr "Zeile %d wurde nicht verstanden und deshalb ignoriert."
+msgstr "Zeile wurde ignoriert da sie nicht verstanden wurde"
 
 #: ../src/plugins/lib/libgedcom.py:2839
-#, fuzzy
 msgid "Skipped subordinate line"
-msgstr "übersprungen %(skip)d untergeordnet(e) in Zeile %(line)d"
+msgstr "Untergeordnete Zeile übersprungen"
 
 #: ../src/plugins/lib/libgedcom.py:2871
 msgid "Records not imported into "
@@ -22619,8 +22629,8 @@ msgid ""
 "Searches the entire database, looking for citations that have the same "
 "Volume/Page, Date and Confidence."
 msgstr ""
-"Durchsucht die gesamte Datenbank nach Fundstellen mit identischen Band/Seite, "
-"Datum und Vertraulichkeit."
+"Durchsucht die gesamte Datenbank nach Fundstellen mit identischen Band/"
+"Seite, Datum und Vertraulichkeit."
 
 #: ../src/plugins/tool/Verify.py:74
 msgid "manual|Verify_the_Data..."
