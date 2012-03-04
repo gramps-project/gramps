@@ -4649,8 +4649,8 @@ class SourcePage(BasePage):
                                         place = self.dbase_.get_place_from_handle(place_handle)
                                         if place:
                                             unordered3.extend(
-                                                Html("li", self.place_link(place_handle, place.get_title(), uplink = self.up),
-                                                        inline = True)
+                                                Html("li", self.place_link(place_handle,
+                                                    place.get_title(), uplink = self.up), inline = True)
                                             )
                                     list2 += unordered3
                                     unordered2 += list2
@@ -4730,13 +4730,15 @@ class SourcePage(BasePage):
                                                     newpath = self.report.build_url_fname(newpath, up = self.up)
 
                                                     unordered3.extend(
-                                                        Html("li", self.media_link(media_handle, newpath, media.get_description(),
+                                                        Html("li", self.media_link(media_handle,
+                                                            newpath, media.get_description(),
                                                             self.up, usedescr = False), inline = True)
                                                     )
 
                                                 else:
                                                     unordered3.extend(
-                                                        Html("li", self.doc_link(media_handle, media.get_description(),
+                                                        Html("li", self.doc_link(media_handle,
+                                                            media.get_description(),
                                                             self.up, usedescr = False), inline = True)
                                                     )
 
@@ -4779,7 +4781,10 @@ class SourcePage(BasePage):
         @param: citation_type -- can either be People or Events...
         """
         keys = sorted(citations_dict, key = locale.strxfrm)
+        total_keys = len(keys)
         max_per_column = 5
+
+        levelone = ((total_keys // max_per_column) + 1)
 
         list2 = Html("li")
         list2.extend(
@@ -4799,27 +4804,27 @@ class SourcePage(BasePage):
             value_len = len(citations_dict[key])
 
             # if value is more than max per column, then we have to make groups...
-            if (value_len > max_per_column):
-                for x in range(value_len / max_per_column + 1):
+            if self.citationreferents == "DropDown":
+                if (value_len > max_per_column):
+                    for x in range(value_len / max_per_column + 1):
 
-                    list4 = Html("li")
-                    list4.extend(
-                        Html("a", key + ' ' + str((x + 1)), href = "#", title = key + ' ' + str((x + 1)), inline = True)
-                    )
-                    unordered5 = Html("ul", class_ = "Col5", role = "Surname/ Event Type groupings")
+                        list4 = Html("li")
+                        list4.extend(
+                            Html("a", key + ' ' + str((x + 1)), href = "#", title = key + ' ' + str((x + 1)), inline = True)
+                        )
+                        unordered5 = Html("ul", class_ = "Col5", role = "Surname/ Event Type groupings")
 
-                    for y in range(max_per_column):
-                        if ((x * max_per_column + y) < value_len):
-                            obj_handle = citations_dict[key][(x * max_per_column + y)]
+                        for y in range(max_per_column):
+                            if ((x * max_per_column + y) < value_len):
+                                obj_handle = citations_dict[key][(x * max_per_column + y)]
 
-                            list5 = Html("li")
-                            list5.extend(
-                                self.citation_referents_link(obj_handle, citation_type)
-                            )
-
-                            unordered5 += list5
-                    list4 += unordered5
-                    unordered4 += list4
+                                list5 = Html("li")
+                                list5.extend(
+                                    self.citation_referents_link(obj_handle, citation_type)
+                                )
+                                unordered5 += list5
+                        list4 += unordered5
+                        unordered4 += list4
 
             # else, we are not required to make groups and
             # we can loop through them as it is...
