@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-26 10:11+0100\n"
-"PO-Revision-Date: 2012-02-26 10:21+0100\n"
+"POT-Creation-Date: 2012-03-03 18:54+0100\n"
+"PO-Revision-Date: 2012-03-04 03:44+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -79,7 +79,7 @@ msgstr "Lesezeichen organisieren"
 #. Priority
 #. Handle
 #. Add column with object name
-#: ../src/Bookmarks.py:213 ../src/ScratchPad.py:524 ../src/ToolTips.py:175
+#: ../src/Bookmarks.py:213 ../src/ScratchPad.py:560 ../src/ToolTips.py:175
 #: ../src/ToolTips.py:201 ../src/ToolTips.py:212 ../src/gui/configure.py:429
 #: ../src/gui/filtereditor.py:741 ../src/gui/filtereditor.py:893
 #: ../src/gui/viewmanager.py:469 ../src/gui/editors/editfamily.py:117
@@ -926,14 +926,14 @@ msgstr "Nicht verfügbar"
 msgid "Address"
 msgstr "Adresse"
 
-#: ../src/ScratchPad.py:309 ../src/ToolTips.py:142
+#: ../src/ScratchPad.py:312 ../src/ToolTips.py:142
 #: ../src/gen/lib/nameorigintype.py:93 ../src/gui/plug/_windows.py:600
 #: ../src/plugins/gramplet/PlaceDetails.py:125
 msgid "Location"
 msgstr "Ort"
 
 #. 0 this order range above
-#: ../src/ScratchPad.py:323 ../src/gui/configure.py:460
+#: ../src/ScratchPad.py:329 ../src/gui/configure.py:460
 #: ../src/gui/filtereditor.py:292 ../src/gui/editors/editlink.py:81
 #: ../src/plugins/gramplet/QuickViewGramplet.py:107
 #: ../src/plugins/quickview/FilterByName.py:150
@@ -947,7 +947,7 @@ msgid "Event"
 msgstr "Ereignis"
 
 #. 5
-#: ../src/ScratchPad.py:347 ../src/gui/configure.py:452
+#: ../src/ScratchPad.py:356 ../src/gui/configure.py:452
 #: ../src/gui/filtereditor.py:293 ../src/gui/editors/editlink.py:86
 #: ../src/gui/editors/displaytabs/eventembedlist.py:80
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:55
@@ -979,7 +979,7 @@ msgstr "Ort"
 
 #. ###############################
 #. 3
-#: ../src/ScratchPad.py:371 ../src/ToolTips.py:161
+#: ../src/ScratchPad.py:383 ../src/ToolTips.py:161
 #: ../src/gen/plug/docgen/graphdoc.py:229 ../src/gui/configure.py:464
 #: ../src/gui/filtereditor.py:297 ../src/gui/editors/editlink.py:84
 #: ../src/gui/editors/editmedia.py:88 ../src/gui/editors/editmedia.py:171
@@ -1006,24 +1006,24 @@ msgstr "Ort"
 msgid "Note"
 msgstr "Notiz"
 
-#: ../src/ScratchPad.py:401 ../src/Filters/SideBar/_FamilySidebarFilter.py:119
+#: ../src/ScratchPad.py:416 ../src/Filters/SideBar/_FamilySidebarFilter.py:119
 msgid "Family Event"
 msgstr "Familiäres Ereignis"
 
-#: ../src/ScratchPad.py:414 ../src/plugins/webreport/NarrativeWeb.py:2175
+#: ../src/ScratchPad.py:432 ../src/plugins/webreport/NarrativeWeb.py:2175
 msgid "Url"
 msgstr "URL"
 
-#: ../src/ScratchPad.py:427 ../src/gui/grampsgui.py:104
+#: ../src/ScratchPad.py:448 ../src/gui/grampsgui.py:104
 #: ../src/gui/editors/editattribute.py:135
 msgid "Attribute"
 msgstr "Attribut"
 
-#: ../src/ScratchPad.py:439
+#: ../src/ScratchPad.py:463
 msgid "Family Attribute"
 msgstr "Familiäres Attribut"
 
-#: ../src/ScratchPad.py:452 ../src/gen/lib/notetype.py:84
+#: ../src/ScratchPad.py:479 ../src/gen/lib/notetype.py:84
 #: ../src/gui/configure.py:456 ../src/gui/filtereditor.py:298
 #: ../src/gui/editors/editcitation.py:140
 #: ../src/gui/editors/editcitation.py:146
@@ -1034,25 +1034,25 @@ msgstr "Familiäres Attribut"
 msgid "Citation"
 msgstr "Zitat"
 
-#: ../src/ScratchPad.py:464
+#: ../src/ScratchPad.py:494
 msgid "not available|NA"
 msgstr "N.V."
 
-#: ../src/ScratchPad.py:473
+#: ../src/ScratchPad.py:503
 #, python-format
 msgid "Volume/Page: %(pag)s -- %(sourcetext)s"
 msgstr "Band/Seite: %(pag)s -- %(sourcetext)s"
 
-#: ../src/ScratchPad.py:494
+#: ../src/ScratchPad.py:524
 msgid "Repository ref"
 msgstr "Aufbewahrungsortref."
 
-#: ../src/ScratchPad.py:509
+#: ../src/ScratchPad.py:542
 msgid "Event ref"
 msgstr "Ereignisref."
 
 #. show surname and first name
-#: ../src/ScratchPad.py:537 ../src/Utils.py:1275 ../src/gui/configure.py:515
+#: ../src/ScratchPad.py:576 ../src/Utils.py:1275 ../src/gui/configure.py:515
 #: ../src/gui/configure.py:517 ../src/gui/configure.py:519
 #: ../src/gui/configure.py:521 ../src/gui/configure.py:524
 #: ../src/gui/configure.py:525 ../src/gui/configure.py:526
@@ -1068,7 +1068,7 @@ msgstr "Ereignisref."
 msgid "Surname"
 msgstr "Familienname"
 
-#: ../src/ScratchPad.py:550 ../src/ScratchPad.py:551
+#: ../src/ScratchPad.py:592 ../src/ScratchPad.py:597
 #: ../src/gen/plug/report/_constants.py:56 ../src/gui/configure.py:973
 #: ../src/plugins/textreport/CustomBookText.py:117
 #: ../src/plugins/textreport/TagReport.py:393
@@ -1078,7 +1078,7 @@ msgstr "Text"
 
 #. 2
 #. add media column
-#: ../src/ScratchPad.py:563 ../src/gui/grampsgui.py:127
+#: ../src/ScratchPad.py:608 ../src/gui/grampsgui.py:127
 #: ../src/gui/editors/editlink.py:83
 #: ../src/plugins/gramplet/QuickViewGramplet.py:109
 #: ../src/plugins/quickview/FilterByName.py:109
@@ -1100,19 +1100,19 @@ msgstr "Text"
 msgid "Media"
 msgstr "Medien"
 
-#: ../src/ScratchPad.py:587
+#: ../src/ScratchPad.py:635
 msgid "Media ref"
 msgstr "Medienref"
 
-#: ../src/ScratchPad.py:602
+#: ../src/ScratchPad.py:653
 msgid "Person ref"
 msgstr "Personref"
 
-#: ../src/ScratchPad.py:617
+#: ../src/ScratchPad.py:671
 msgid "Child ref"
 msgstr "Kinderef"
 
-#: ../src/ScratchPad.py:623
+#: ../src/ScratchPad.py:680
 #, python-format
 msgid "%(frel)s %(mrel)s"
 msgstr "%(frel)s %(mrel)s"
@@ -1124,7 +1124,7 @@ msgstr "%(frel)s %(mrel)s"
 #.
 #. ------------------------------------------------------------------------
 #. functions for the actual quickreports
-#: ../src/ScratchPad.py:635 ../src/ToolTips.py:200 ../src/gui/configure.py:448
+#: ../src/ScratchPad.py:692 ../src/ToolTips.py:200 ../src/gui/configure.py:448
 #: ../src/gui/filtereditor.py:290 ../src/gui/grampsgui.py:134
 #: ../src/gui/editors/editlink.py:85 ../src/plugins/export/ExportCsv.py:336
 #: ../src/plugins/gramplet/QuickViewGramplet.py:106
@@ -1161,7 +1161,7 @@ msgstr "Person"
 #. get the family events
 #. show "> Family: ..." and nothing else
 #. show "V Family: ..." and the rest
-#: ../src/ScratchPad.py:661 ../src/ToolTips.py:230 ../src/gui/configure.py:450
+#: ../src/ScratchPad.py:721 ../src/ToolTips.py:230 ../src/gui/configure.py:450
 #: ../src/gui/filtereditor.py:291 ../src/gui/grampsgui.py:113
 #: ../src/gui/editors/editfamily.py:487 ../src/gui/editors/editlink.py:82
 #: ../src/plugins/export/ExportCsv.py:503
@@ -1180,7 +1180,7 @@ msgid "Family"
 msgstr "Familie"
 
 #. 7
-#: ../src/ScratchPad.py:686 ../src/gui/configure.py:454
+#: ../src/ScratchPad.py:749 ../src/gui/configure.py:454
 #: ../src/gui/filtereditor.py:294 ../src/gui/editors/editlink.py:88
 #: ../src/gui/editors/editsource.py:77
 #: ../src/gui/editors/displaytabs/nameembedlist.py:77
@@ -1197,7 +1197,7 @@ msgid "Source"
 msgstr "Quelle"
 
 #. 6
-#: ../src/ScratchPad.py:710 ../src/ToolTips.py:128 ../src/gui/configure.py:462
+#: ../src/ScratchPad.py:776 ../src/ToolTips.py:128 ../src/gui/configure.py:462
 #: ../src/gui/filtereditor.py:296 ../src/gui/editors/editlink.py:87
 #: ../src/gui/editors/editrepository.py:67
 #: ../src/gui/editors/editrepository.py:69
@@ -1209,7 +1209,7 @@ msgstr "Aufbewahrungsort"
 
 #. Create the tree columns
 #. 0 selected?
-#: ../src/ScratchPad.py:838 ../src/gui/viewmanager.py:468
+#: ../src/ScratchPad.py:907 ../src/gui/viewmanager.py:468
 #: ../src/gui/editors/displaytabs/attrembedlist.py:63
 #: ../src/gui/editors/displaytabs/backreflist.py:60
 #: ../src/gui/editors/displaytabs/eventembedlist.py:75
@@ -1251,7 +1251,7 @@ msgstr "Aufbewahrungsort"
 msgid "Type"
 msgstr "Art"
 
-#: ../src/ScratchPad.py:841
+#: ../src/ScratchPad.py:910
 #: ../src/gui/editors/displaytabs/citationembedlist.py:82
 #: ../src/gui/editors/displaytabs/repoembedlist.py:68
 #: ../src/gui/selectors/selectobject.py:74
@@ -1269,7 +1269,7 @@ msgstr "Art"
 msgid "Title"
 msgstr "Titel"
 
-#: ../src/ScratchPad.py:844 ../src/gui/editors/displaytabs/attrembedlist.py:64
+#: ../src/ScratchPad.py:913 ../src/gui/editors/displaytabs/attrembedlist.py:64
 #: ../src/gui/editors/displaytabs/dataembedlist.py:60
 #: ../src/plugins/gramplet/Attributes.py:47
 #: ../src/plugins/lib/libmetadata.py:161 ../src/plugins/tool/PatchNames.py:405
@@ -1284,29 +1284,29 @@ msgstr "Wert"
 #. constants
 #.
 #. -------------------------------------------------------------------------
-#: ../src/ScratchPad.py:847 ../src/cli/clidbman.py:65
+#: ../src/ScratchPad.py:916 ../src/cli/clidbman.py:65
 #: ../src/gui/configure.py:1126
 msgid "Family Tree"
 msgstr "Stammbaum"
 
-#: ../src/ScratchPad.py:1236 ../src/ScratchPad.py:1242
-#: ../src/ScratchPad.py:1281 ../src/ScratchPad.py:1325
+#: ../src/ScratchPad.py:1308 ../src/ScratchPad.py:1314
+#: ../src/ScratchPad.py:1353 ../src/ScratchPad.py:1397
 #: ../src/glade/scratchpad.glade.h:2
 msgid "Clipboard"
 msgstr "Zwischenablage"
 
-#: ../src/ScratchPad.py:1367 ../src/Simple/_SimpleTable.py:137
+#: ../src/ScratchPad.py:1439 ../src/Simple/_SimpleTable.py:137
 #, python-format
 msgid "the object|See %s details"
 msgstr "Siehe %s Details"
 
 #. ---------------------------
-#: ../src/ScratchPad.py:1373 ../src/Simple/_SimpleTable.py:147
+#: ../src/ScratchPad.py:1445 ../src/Simple/_SimpleTable.py:147
 #, python-format
 msgid "the object|Make %s active"
 msgstr "Aktiviere %s"
 
-#: ../src/ScratchPad.py:1389
+#: ../src/ScratchPad.py:1461
 #, python-format
 msgid "the object|Create Filter from %s selected..."
 msgstr "Erstelle Filter aus Auswahl %s..."
@@ -9064,9 +9064,8 @@ msgid "Merge Citations"
 msgstr "Fundstellen zusammenfassen"
 
 #: ../src/Merge/mergecitation.py:193 ../src/plugins/tool/MergeCitations.py:188
-#, fuzzy
 msgid "Merge Citation"
-msgstr "Zitat"
+msgstr "Fundstellen zusammenfassen"
 
 #: ../src/Merge/mergeevent.py:49
 msgid "manual|Merge_Events"
@@ -9576,7 +9575,7 @@ msgstr "Bitte gib einen Buchnamen an"
 #: ../src/plugins/BookReport.py:1309
 #, python-format
 msgid "No such book '%s'"
-msgstr ""
+msgstr "Kein solches Buch '%s'"
 
 #: ../src/plugins/bookreport.gpr.py:32
 msgid "Produces a book containing several reports."
@@ -9897,13 +9896,12 @@ msgid "Could not open %s"
 msgstr "Konnte %s nicht öffnen"
 
 #: ../src/plugins/docgen/ODFDoc.py:1616
-#, fuzzy
 msgid "Contents"
 msgstr "Inhalt"
 
 #: ../src/plugins/docgen/ODFDoc.py:1655
 msgid "Index"
-msgstr ""
+msgstr "Index"
 
 #. cm2pt = ReportUtils.cm2pt
 #. ------------------------------------------------------------------------
@@ -10752,9 +10750,8 @@ msgid "Ancestor Chart"
 msgstr "Ahnendiagramm"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:33
-#, fuzzy
 msgid "Produces a graphical ancestral chart"
-msgstr "Erstellt eine grafische Ahnentafel in Baumstruktur"
+msgstr "Erstellt eine grafische Ahnentafeldiagram"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:49
 msgid "Produces a graphical ancestral tree"
@@ -10775,9 +10772,8 @@ msgid "Descendant Chart"
 msgstr "Nachkommendiagramm"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:93
-#, fuzzy
 msgid "Produces a graphical descendant chart"
-msgstr "Erstellt eine grafischen Nachkommenbaum"
+msgstr "Erstellt eine grafischen Nachkommendiagram"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:108
 msgid "Descendant Tree"
@@ -10788,14 +10784,12 @@ msgid "Produces a graphical descendant tree"
 msgstr "Erstellt eine grafischen Nachkommenbaum"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:130
-#, fuzzy
 msgid "Family Descendant Chart"
-msgstr "Familiennachkommenbaum"
+msgstr "Familiennachkommendiagram"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:131
-#, fuzzy
 msgid "Produces a graphical descendant chart around a family"
-msgstr "Erstellt eine grafischen Nachkommenbaum um eine Familie"
+msgstr "Erstellt eine grafischen Nachkommendiagram um eine Familie"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:147
 msgid "Family Descendant Tree"
@@ -11785,14 +11779,12 @@ msgid "Gramplet showing media objects for a source"
 msgstr "Gramplet zeigt Medienobjekte einer Quelle"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:223
-#, fuzzy
 msgid "Citation Gallery"
-msgstr "Persongalerie"
+msgstr "Fundstellegalerie"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:224
-#, fuzzy
 msgid "Gramplet showing media objects for a citation"
-msgstr "Gramplet zeigt Medienobjekte einer Person"
+msgstr "Gramplet zeigt Medienobjekte einer Fundstelle"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:237
 msgid "Person Attributes"
@@ -11883,14 +11875,12 @@ msgid "Gramplet showing the notes for a source"
 msgstr "Gramplet zeigt Notizen für Quellen"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:363
-#, fuzzy
 msgid "Citation Notes"
-msgstr "Verknüpfung Notiz"
+msgstr "Fundstelle Notizen"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:364
-#, fuzzy
 msgid "Gramplet showing the notes for a citation"
-msgstr "Gramplet zeigt Notizen einer Person"
+msgstr "Gramplet zeigt Notizen einer Fundstelle"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:377
 msgid "Repository Notes"
@@ -11909,54 +11899,44 @@ msgid "Gramplet showing the notes for a media object"
 msgstr "Gramplet zeigt Notizen eines Medienobjekt"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:405
-#, fuzzy
 msgid "Person Citations"
-msgstr "Persondetails"
+msgstr "Personfundstellen"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:406
-#, fuzzy
 msgid "Gramplet showing the citations for a person"
-msgstr "Gramplet zeigt Referenzen einer Person"
+msgstr "Gramplet zeigt Fundstellen einer Person"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:419
-#, fuzzy
 msgid "Event Citations"
-msgstr "Zitat"
+msgstr "Ereignisfundstellen"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:420
-#, fuzzy
 msgid "Gramplet showing the citations for an event"
-msgstr "Gramplet zeigt die  Referenzen eines Ereignis"
+msgstr "Gramplet zeigt die  Fundstellen eines Ereignis"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:433
-#, fuzzy
 msgid "Family Citations"
-msgstr "Familienverknüpfungen"
+msgstr "Familienfundstellen"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:434
-#, fuzzy
 msgid "Gramplet showing the citations for a family"
-msgstr "Gramplet zeigt die Referenzen einer Familie"
+msgstr "Gramplet zeigt die Fundstellen einer Familie"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:447
-#, fuzzy
 msgid "Place Citations"
-msgstr "Ortekarteoptionen"
+msgstr "Ortfundstelle"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:448
-#, fuzzy
 msgid "Gramplet showing the citations for a place"
-msgstr "Gramplet zeigt die Referenzen für einen Ort"
+msgstr "Gramplet zeigt die Fundstelle für einen Ort"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:461
-#, fuzzy
 msgid "Media Citations"
-msgstr "Zitat"
+msgstr "Medienfundstelle"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:462
-#, fuzzy
 msgid "Gramplet showing the citations for a media object"
-msgstr "Gramplet zeigt die Referenzen eines Medienobjekt"
+msgstr "Gramplet zeigt die Fundstelle eines Medienobjekt"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:475
 msgid "Person Children"
@@ -12043,14 +12023,12 @@ msgid "Gramplet showing the backlinks for a source"
 msgstr "Gramplet zeigt die Referenzen für eine Quelle"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:573
-#, fuzzy
 msgid "Citation Backlinks"
-msgstr "Mediumreferenzen"
+msgstr "Fundstellenreferenzen"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:574
-#, fuzzy
 msgid "Gramplet showing the backlinks for a citation"
-msgstr "Gramplet zeigt Referenzen einer Person"
+msgstr "Gramplet zeigt Referenzen einer Fundstelle"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:587
 msgid "Repository Backlinks"
@@ -12109,14 +12087,12 @@ msgid "Gramplet providing a source filter"
 msgstr "Gramplet bietet einen Quellenfilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:685
-#, fuzzy
 msgid "Citation Filter"
-msgstr "Lebendfilter"
+msgstr "Fundstellenfilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:686
-#, fuzzy
 msgid "Gramplet providing a citation filter"
-msgstr "Gramplet bietet einen Medienfilter"
+msgstr "Gramplet bietet einen Fundstellenfilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:699
 msgid "Place Filter"
@@ -12160,23 +12136,21 @@ msgid "Double-click on a row to edit the selected child."
 msgstr "Doppelklick auf eine Zeile um das gewählte Kind zu bearbeiten."
 
 #: ../src/plugins/gramplet/Citations.py:44
-#, fuzzy
 msgid "Double-click on a row to edit the selected source/citation."
-msgstr "Doppelklick auf eine Zeile um die gewählte Quelle zu bearbeiten."
+msgstr ""
+"Doppelklick auf eine Zeile um die gewählte Quelle/Fundstelle zu bearbeiten."
 
 #: ../src/plugins/gramplet/Citations.py:48
-#, fuzzy
 msgid "Source/Citation"
-msgstr "Zitat"
+msgstr "Quelle/Fundstelle"
 
 #: ../src/plugins/gramplet/Citations.py:50
 msgid "Publisher"
 msgstr "Herausgeber"
 
 #: ../src/plugins/gramplet/Citations.py:121
-#, fuzzy
 msgid "<No Citation>"
-msgstr "Zitat"
+msgstr "<Keine Fundstelle>"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:49
 #: ../src/plugins/gramplet/PedigreeGramplet.py:51
@@ -12201,7 +12175,7 @@ msgstr "Zum bearbeiten rechts-klicken"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:154
 msgid "   sp. "
-msgstr "   ..+ "
+msgstr ""
 
 #. valid converting types for PIL.Image
 #. there are more image formats that PIL.Image can convert to,
@@ -14723,203 +14697,197 @@ msgstr "Alle Notizreferenzen müssen ein 'hlink' Attribut besitzen."
 msgid "Witness comment: %s"
 msgstr "Kommentar für Zeugen: %s"
 
-#: ../src/plugins/lib/libgedcom.py:1704
+#: ../src/plugins/lib/libgedcom.py:1707
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
 msgstr ""
 "Deine GEDCOM-Datei ist beschädigt. Vermutlich ist die Datei unvollständig."
 
-#: ../src/plugins/lib/libgedcom.py:1784
+#: ../src/plugins/lib/libgedcom.py:1787
 #, python-format
 msgid "Import from GEDCOM (%s)"
 msgstr "Importieren von GEDCOM (%s)"
 
-#: ../src/plugins/lib/libgedcom.py:2525 ../src/plugins/lib/libgedcom.py:2877
+#: ../src/plugins/lib/libgedcom.py:2528 ../src/plugins/lib/libgedcom.py:2880
 msgid "GEDCOM import"
 msgstr "GEDCOM-Import"
 
-#: ../src/plugins/lib/libgedcom.py:2546
+#: ../src/plugins/lib/libgedcom.py:2549
 msgid "GEDCOM import report: No errors detected"
 msgstr "GEDCOM Importbericht: keine Fehler gefunden"
 
-#: ../src/plugins/lib/libgedcom.py:2548
+#: ../src/plugins/lib/libgedcom.py:2551
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
 msgstr "GEDCOM Importbericht: %s Fehler gefunden"
 
-#: ../src/plugins/lib/libgedcom.py:2800
+#: ../src/plugins/lib/libgedcom.py:2803
 msgid "Tag recognised but not supported"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:2811
+#: ../src/plugins/lib/libgedcom.py:2814
 #, fuzzy
 msgid "Line ignored as not understood"
 msgstr "Zeile %d wurde nicht verstanden und deshalb ignoriert."
 
-#: ../src/plugins/lib/libgedcom.py:2836
+#: ../src/plugins/lib/libgedcom.py:2839
 #, fuzzy
 msgid "Skipped subordinate line"
 msgstr "übersprungen %(skip)d untergeordnet(e) in Zeile %(line)d"
 
-#: ../src/plugins/lib/libgedcom.py:2868
-#, fuzzy
+#: ../src/plugins/lib/libgedcom.py:2871
 msgid "Records not imported into "
-msgstr "%s konnte nicht importiert werden"
+msgstr "Datensätze nicht importiert nach "
 
-#: ../src/plugins/lib/libgedcom.py:2900
+#: ../src/plugins/lib/libgedcom.py:2903
 msgid "TRLR (trailer)"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:2929
+#: ../src/plugins/lib/libgedcom.py:2932
 #, python-format
 msgid "SUBM (Submitter): @%s@"
-msgstr ""
+msgstr "SUBM (Ersteller): @%s@"
 
-#: ../src/plugins/lib/libgedcom.py:2953 ../src/plugins/lib/libgedcom.py:6278
+#: ../src/plugins/lib/libgedcom.py:2956 ../src/plugins/lib/libgedcom.py:6282
 msgid "GEDCOM data"
 msgstr "GEDCOM Daten"
 
-#: ../src/plugins/lib/libgedcom.py:2999
-#, fuzzy
+#: ../src/plugins/lib/libgedcom.py:3002
 msgid "Unknown tag"
-msgstr "Unbekannt"
+msgstr "Unbekannter Tag"
 
-#: ../src/plugins/lib/libgedcom.py:3001 ../src/plugins/lib/libgedcom.py:3015
-#: ../src/plugins/lib/libgedcom.py:3019 ../src/plugins/lib/libgedcom.py:3040
+#: ../src/plugins/lib/libgedcom.py:3004 ../src/plugins/lib/libgedcom.py:3018
+#: ../src/plugins/lib/libgedcom.py:3022 ../src/plugins/lib/libgedcom.py:3043
 #, fuzzy
 msgid "Top Level"
 msgstr "Oben Links"
 
-#: ../src/plugins/lib/libgedcom.py:3109
+#: ../src/plugins/lib/libgedcom.py:3112
 #, python-format
 msgid "INDI (individual) Gramps ID %s"
 msgstr "INDI (Individium) Gramps ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:3257 ../src/plugins/lib/libgedcom.py:4468
-#: ../src/plugins/lib/libgedcom.py:4671 ../src/plugins/lib/libgedcom.py:4802
-#: ../src/plugins/lib/libgedcom.py:5427 ../src/plugins/lib/libgedcom.py:5564
+#: ../src/plugins/lib/libgedcom.py:3261 ../src/plugins/lib/libgedcom.py:4472
+#: ../src/plugins/lib/libgedcom.py:4675 ../src/plugins/lib/libgedcom.py:4806
+#: ../src/plugins/lib/libgedcom.py:5431 ../src/plugins/lib/libgedcom.py:5568
 #, fuzzy
 msgid "Filename omitted"
 msgstr "Dateiname"
 
-#: ../src/plugins/lib/libgedcom.py:3259 ../src/plugins/lib/libgedcom.py:4470
-#: ../src/plugins/lib/libgedcom.py:4673 ../src/plugins/lib/libgedcom.py:4804
-#: ../src/plugins/lib/libgedcom.py:5429 ../src/plugins/lib/libgedcom.py:5566
+#: ../src/plugins/lib/libgedcom.py:3263 ../src/plugins/lib/libgedcom.py:4474
+#: ../src/plugins/lib/libgedcom.py:4677 ../src/plugins/lib/libgedcom.py:4808
+#: ../src/plugins/lib/libgedcom.py:5433 ../src/plugins/lib/libgedcom.py:5570
 msgid "Form omitted"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:4240
+#: ../src/plugins/lib/libgedcom.py:4244
 #, python-format
 msgid "FAM (family) Gramps ID %s"
 msgstr "FAM (Familie) Gramps ID: %s "
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/plugins/lib/libgedcom.py:4953
-#, fuzzy
+#: ../src/plugins/lib/libgedcom.py:4957
 msgid "Empty event note ignored"
-msgstr "Zeile %d: leere Ereignisnotiz wurde ignoriert."
+msgstr "Leere Ereignisnotiz ignoriert"
 
-#: ../src/plugins/lib/libgedcom.py:5270 ../src/plugins/lib/libgedcom.py:6081
+#: ../src/plugins/lib/libgedcom.py:5274 ../src/plugins/lib/libgedcom.py:6085
 msgid "Warn: ADDR overwritten"
-msgstr ""
+msgstr "Warn: ADDR überschrieben"
 
-#: ../src/plugins/lib/libgedcom.py:5441 ../src/plugins/lib/libgedcom.py:5823
-#, fuzzy
+#: ../src/plugins/lib/libgedcom.py:5445 ../src/plugins/lib/libgedcom.py:5827
 msgid "REFN ignored"
-msgstr "Zeile %d: leere Notiz wurde ignoriert."
+msgstr "REFN ignoriert"
 
-#: ../src/plugins/lib/libgedcom.py:5533
+#: ../src/plugins/lib/libgedcom.py:5537
 #, python-format
 msgid "No title - ID %s"
-msgstr ""
+msgstr "Kein Titel - ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:5538
-#, fuzzy, python-format
+#: ../src/plugins/lib/libgedcom.py:5542
+#, python-format
 msgid "SOUR (source) Gramps ID %s"
-msgstr "Ordne Gramps-IDs neu"
+msgstr "SOUR (Quelle) Gramps ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:5749
+#: ../src/plugins/lib/libgedcom.py:5753
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
-msgstr ""
+msgstr "OBJE (Multimediaobjekt) Gramps ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:5777 ../src/plugins/lib/libgedcom.py:6766
+#: ../src/plugins/lib/libgedcom.py:5781 ../src/plugins/lib/libgedcom.py:6768
 #, python-format
 msgid "Could not import %s"
 msgstr "Kann Datei %s nicht importieren"
 
-#: ../src/plugins/lib/libgedcom.py:5813
+#: ../src/plugins/lib/libgedcom.py:5817
 msgid "BLOB ignored"
 msgstr "BLOB ignoriert"
 
-#: ../src/plugins/lib/libgedcom.py:5833
+#: ../src/plugins/lib/libgedcom.py:5837
 msgid "Multimedia REFN:TYPE ignored"
-msgstr ""
+msgstr "Multimedia REFN:TYPE ignoriert"
 
-#: ../src/plugins/lib/libgedcom.py:5843
+#: ../src/plugins/lib/libgedcom.py:5847
 msgid "Mutimedia RIN ignored"
-msgstr ""
+msgstr "Mutimedia RIN ignoriert"
 
-#: ../src/plugins/lib/libgedcom.py:5930
-#, fuzzy, python-format
+#: ../src/plugins/lib/libgedcom.py:5934
+#, python-format
 msgid "REPO (repository) Gramps ID %s"
-msgstr "Ordne Gramps-IDs neu"
+msgstr "REPO (Aufbewahrungsort) Gramps ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:6206
-#, fuzzy
+#: ../src/plugins/lib/libgedcom.py:6210
 msgid "Head (header)"
-msgstr "HTML Kopfzeile"
+msgstr "Kopf (Dateikopf)"
 
-#: ../src/plugins/lib/libgedcom.py:6222
+#: ../src/plugins/lib/libgedcom.py:6226
 msgid "Approved system identification"
 msgstr ""
 
 #. feature request 2356: avoid genitive form
-#: ../src/plugins/lib/libgedcom.py:6232
+#: ../src/plugins/lib/libgedcom.py:6236
 msgid "Generated by"
 msgstr "Erstellt von"
 
-#: ../src/plugins/lib/libgedcom.py:6246
+#: ../src/plugins/lib/libgedcom.py:6250
 msgid "Name of software product"
 msgstr "Name der Siftware"
 
-#: ../src/plugins/lib/libgedcom.py:6258
+#: ../src/plugins/lib/libgedcom.py:6262
 msgid "Version number of software product"
 msgstr "Versionsnummer des Programms"
 
-#: ../src/plugins/lib/libgedcom.py:6275
+#: ../src/plugins/lib/libgedcom.py:6279
 #, python-format
 msgid "Business that produced the product: %s"
-msgstr ""
+msgstr "Firma die das Produkt herstellt: %s"
 
-#: ../src/plugins/lib/libgedcom.py:6296
+#: ../src/plugins/lib/libgedcom.py:6300
 msgid "Name of source data"
 msgstr "Name der Quelldaten"
 
-#: ../src/plugins/lib/libgedcom.py:6310
+#: ../src/plugins/lib/libgedcom.py:6314
 msgid "Copyright of source data"
 msgstr "Copyright der Quelldaten"
 
-#: ../src/plugins/lib/libgedcom.py:6324
-#, fuzzy
+#: ../src/plugins/lib/libgedcom.py:6328
 msgid "Publication date of source data"
-msgstr "Publikationsinformation"
+msgstr "Publikationsdatum der Quelldaten"
 
 #. feature request 2356: avoid genitive form
-#: ../src/plugins/lib/libgedcom.py:6337
+#: ../src/plugins/lib/libgedcom.py:6341
 #, python-format
 msgid "Import from %s"
 msgstr "Aus %s importieren"
 
-#: ../src/plugins/lib/libgedcom.py:6375
+#: ../src/plugins/lib/libgedcom.py:6379
 msgid "Submission record identifier"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6386
+#: ../src/plugins/lib/libgedcom.py:6390
 msgid "Language of GEDCOM text"
 msgstr "Sprache des GEDCOM Text"
 
-#: ../src/plugins/lib/libgedcom.py:6410
+#: ../src/plugins/lib/libgedcom.py:6414
 #, python-format
 msgid ""
 "Import of GEDCOM file %s with DEST=%s, could cause errors in the resulting "
@@ -14928,89 +14896,82 @@ msgstr ""
 "Import der GEDCOM Datei %s mit dem ZIEL=%s kann Fehler in der resultierenden "
 "Datenbank verursachen!"
 
-#: ../src/plugins/lib/libgedcom.py:6413
+#: ../src/plugins/lib/libgedcom.py:6417
 msgid "Look for nameless events."
 msgstr "Suche nach namenlosen Ereignissen."
 
-#: ../src/plugins/lib/libgedcom.py:6436
+#: ../src/plugins/lib/libgedcom.py:6440
 msgid "Character set"
 msgstr "Zeichensatz"
 
-#: ../src/plugins/lib/libgedcom.py:6438
-#, fuzzy
+#: ../src/plugins/lib/libgedcom.py:6442
 msgid "Character set and version"
-msgstr "Codierung der Zeichensetzung"
+msgstr "Zeichensatz und Version"
 
-#: ../src/plugins/lib/libgedcom.py:6454
+#: ../src/plugins/lib/libgedcom.py:6458
 msgid "GEDCOM version not supported"
 msgstr "GEDCOM Version nicht unterstützt"
 
-#: ../src/plugins/lib/libgedcom.py:6457
+#: ../src/plugins/lib/libgedcom.py:6461
 msgid "GEDCOM version"
 msgstr "GEDCOM Version"
 
-#: ../src/plugins/lib/libgedcom.py:6460
-#, fuzzy
+#: ../src/plugins/lib/libgedcom.py:6464
 msgid "GEDCOM form not supported"
-msgstr "GEDCOM-Import"
+msgstr "GEDCOM Formular nicht unterstützt"
 
-#: ../src/plugins/lib/libgedcom.py:6462
-#, fuzzy
+#: ../src/plugins/lib/libgedcom.py:6466
 msgid "GEDCOM form"
-msgstr "GEDCOM-Import"
+msgstr "GEDCOM Formular"
 
-#: ../src/plugins/lib/libgedcom.py:6508
+#: ../src/plugins/lib/libgedcom.py:6512
 msgid "Creation date of GEDCOM"
 msgstr "Erstellungsdatum von GEDCOM"
 
-#: ../src/plugins/lib/libgedcom.py:6512
+#: ../src/plugins/lib/libgedcom.py:6516
 msgid "Creation date and time of GEDCOM"
-msgstr ""
+msgstr "Erstellungsdatum und Zeit des GEDCOM"
 
-#: ../src/plugins/lib/libgedcom.py:6551 ../src/plugins/lib/libgedcom.py:6589
+#: ../src/plugins/lib/libgedcom.py:6553 ../src/plugins/lib/libgedcom.py:6590
 msgid "Empty note ignored"
 msgstr "Leere Notiz ignoriert"
 
-#: ../src/plugins/lib/libgedcom.py:6603
+#: ../src/plugins/lib/libgedcom.py:6605
 #, python-format
 msgid "NOTE Gramps ID %s"
 msgstr "Notiz Gramps ID: %s "
 
-#: ../src/plugins/lib/libgedcom.py:6653
-msgid "Submission: Submitter"
-msgstr ""
-
 #: ../src/plugins/lib/libgedcom.py:6655
-#, fuzzy
-msgid "Submission: Family file"
-msgstr "Smith Stammbaum"
+msgid "Submission: Submitter"
+msgstr "Einreichung: Antragsteller"
 
 #: ../src/plugins/lib/libgedcom.py:6657
-msgid "Submission: Temple code"
-msgstr ""
+msgid "Submission: Family file"
+msgstr "Einreichung: Familiendatei"
 
 #: ../src/plugins/lib/libgedcom.py:6659
-#, fuzzy
-msgid "Submission: Generations of ancestors"
-msgstr "Anzahl der Ahnen begrenzen"
+msgid "Submission: Temple code"
+msgstr "Einreichung: Tempelkode"
 
 #: ../src/plugins/lib/libgedcom.py:6661
-#, fuzzy
-msgid "Submission: Generations of descendants"
-msgstr "Anzahl der Nachkommen begrenzen"
+msgid "Submission: Generations of ancestors"
+msgstr "Einreichung: Generationen der Vorfahren"
 
 #: ../src/plugins/lib/libgedcom.py:6663
+msgid "Submission: Generations of descendants"
+msgstr "Einreichung: Generationen der Nachkommen"
+
+#: ../src/plugins/lib/libgedcom.py:6665
 msgid "Submission: Ordinance process flag"
-msgstr ""
+msgstr "Einreichung: Ordinance process flag"
 
 #. # Okay we have no clue which temple this is.
 #. # We should tell the user and store it anyway.
-#: ../src/plugins/lib/libgedcom.py:6868
-#, fuzzy
+#: ../src/plugins/lib/libgedcom.py:6870
 msgid "Invalid temple code"
-msgstr "Ungültiger Dateiname"
+msgstr "Ungültiger Tempelkode"
 
-#: ../src/plugins/lib/libgedcom.py:6949
+#: ../src/plugins/lib/libgedcom.py:6951
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
@@ -15018,11 +14979,11 @@ msgstr ""
 "Deine GEDCOM Datei ist beschädigt. Die Datei scheint UTF16 kodiert zu sein, "
 "aber die BOM Markierung fehlt."
 
-#: ../src/plugins/lib/libgedcom.py:6952
+#: ../src/plugins/lib/libgedcom.py:6954
 msgid "Your GEDCOM file is empty."
 msgstr "Deine GEDCOM-Datei ist leer."
 
-#: ../src/plugins/lib/libgedcom.py:7015
+#: ../src/plugins/lib/libgedcom.py:7017
 #, python-format
 msgid "Invalid line %d in GEDCOM file."
 msgstr "Ungültige Zeile %d in der GEDCOM-Datei."
@@ -20131,12 +20092,12 @@ msgstr "Partner %(spouse)s"
 #: ../src/plugins/textreport/DescendReport.py:235
 #, python-format
 msgid "sp. see  %(reference)s : %(spouse)s"
-msgstr ""
+msgstr "Part. siehe %(reference)s : %(spouse)s"
 
 #: ../src/plugins/textreport/DescendReport.py:290
-#, fuzzy, python-format
+#, python-format
 msgid "%s sp."
-msgstr "   ..+ "
+msgstr "%s Part."
 
 #: ../src/plugins/textreport/DescendReport.py:407
 #: ../src/plugins/textreport/DetDescendantReport.py:906
@@ -20181,9 +20142,8 @@ msgid "Show duplicate trees"
 msgstr "Doppelte Stammbäume zeigen"
 
 #: ../src/plugins/textreport/DescendReport.py:428
-#, fuzzy
 msgid "Whether to show duplicate family trees in the report."
-msgstr "Ob Scheidungsinformationen in dem Bericht enthalten sind."
+msgstr "Ob doppelte Stammbäume in dem Bericht enthalten sind."
 
 #: ../src/plugins/textreport/DescendReport.py:456
 #, python-format
@@ -20567,14 +20527,12 @@ msgid "Whether to include detailed spouse information."
 msgstr "Ob detaillierte Informationen über den Partner enthalten sind."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:1015
-#, fuzzy
 msgid "Include spouse reference"
-msgstr "Partner einbeziehen"
+msgstr "Partner Referenzen einbeziehen"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:1016
-#, fuzzy
 msgid "Whether to include reference to spouse."
-msgstr "Ob Quellenangaben einbezogen werden."
+msgstr "Ob Referenzen zum Partner einbezogen werden."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:1019
 msgid "Include sign of succession ('+') in child-list"
@@ -21170,19 +21128,16 @@ msgid "Total size of media objects: %s MB"
 msgstr "Gesamtgröße der Medienobjekte: %s MB"
 
 #: ../src/plugins/textreport/TableOfContents.py:105
-#, fuzzy
 msgid "The style used for first level headings."
-msgstr "Der Stil für Überschriften."
+msgstr "Der Stil für Ebene eins Überschriften."
 
 #: ../src/plugins/textreport/TableOfContents.py:111
-#, fuzzy
 msgid "The style used for second level headings."
-msgstr "Der Stil für Überschriften."
+msgstr "Der Stil für Ebene zwei Überschriften."
 
 #: ../src/plugins/textreport/TableOfContents.py:117
-#, fuzzy
 msgid "The style used for third level headings."
-msgstr "Der Stil für Überschriften."
+msgstr "Der Stil für Ebene drei Überschriften."
 
 #: ../src/plugins/textreport/TagReport.py:79
 #: ../src/plugins/textreport/textplugins.gpr.py:252
@@ -21408,9 +21363,8 @@ msgid "Checking Database"
 msgstr "Datenbank überprüfen"
 
 #: ../src/plugins/tool/Check.py:101
-#, fuzzy
 msgid "Looking for cross table duplicates"
-msgstr "Suche nach doppelt vorkommenden Partnern"
+msgstr "Suche nach cross table Dupplikaten"
 
 #: ../src/plugins/tool/Check.py:143
 msgid ""
@@ -21541,9 +21495,8 @@ msgid "Looking for place reference problems"
 msgstr "Suche nach Problemen mit Referenzen von Orten"
 
 #: ../src/plugins/tool/Check.py:1187
-#, fuzzy
 msgid "Looking for source and citation reference problems"
-msgstr "Suche nach Problemen mit Referenzen von Ereignis"
+msgstr "Suche nach Problemen mit Referenzen von Quellen und Fundstellen"
 
 #: ../src/plugins/tool/Check.py:1296
 msgid "Looking for media object reference problems"
@@ -21707,11 +21660,11 @@ msgstr[0] "%(quantity)d Ort wurde referenziert, aber nicht gefunden\n"
 msgstr[1] "%(quantity)d Orte wurden referenziert, aber nicht gefunden\n"
 
 #: ../src/plugins/tool/Check.py:1732
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d citation was referenced but not found\n"
 msgid_plural "%(quantity)d citations were referenced, but not found\n"
-msgstr[0] "%(quantity)d Ort wurde referenziert, aber nicht gefunden\n"
-msgstr[1] "%(quantity)d Orte wurden referenziert, aber nicht gefunden\n"
+msgstr[0] "%(quantity)d Fundstelle wurde referenziert, aber nicht gefunden\n"
+msgstr[1] "%(quantity)d Fundstellen wurden referenziert, aber nicht gefunden\n"
 
 #: ../src/plugins/tool/Check.py:1739
 #, python-format
@@ -22178,7 +22131,7 @@ msgstr ""
 
 #: ../src/plugins/tool/MergeCitations.py:75
 msgid "Match on Page/Volume, Date and Confidence"
-msgstr ""
+msgstr "Passt auf Seite/Band, Datum und Vertraulichkeit"
 
 #: ../src/plugins/tool/MergeCitations.py:76
 msgid "Ignore Date"
@@ -22209,9 +22162,8 @@ msgid "Looking for citation fields"
 msgstr "Suche nach Fundstellenfelder"
 
 #: ../src/plugins/tool/MergeCitations.py:225
-#, fuzzy
 msgid "Number of merges done"
-msgstr "Personenzahl"
+msgstr "Anzahl erfolgter Zusammenfassungen"
 
 #: ../src/plugins/tool/MergeCitations.py:226
 #, python-format
@@ -22663,13 +22615,12 @@ msgid "Verifies the data against user-defined tests"
 msgstr "Überprüft die Daten gegen benutzerdefinierte Tests"
 
 #: ../src/plugins/tool/tools.gpr.py:530
-#, fuzzy
 msgid ""
 "Searches the entire database, looking for citations that have the same "
 "Volume/Page, Date and Confidence."
 msgstr ""
-"Durchsucht die gesamte Datenbank nach Einträgen, die die gleiche Person "
-"repräsentieren könnten."
+"Durchsucht die gesamte Datenbank nach Fundstellen mit identischen Band/Seite, "
+"Datum und Vertraulichkeit."
 
 #: ../src/plugins/tool/Verify.py:74
 msgid "manual|Verify_the_Data..."
@@ -30898,6 +30849,10 @@ msgstr ""
 "werden. Du kannst auch den Vertrauensgrad eines Datums und sogar zwischen "
 "sieben verschiedenen Kalendern wählen. Probiere die Schaltfläche neben dem "
 "Datumsfeld im Ereigniseditor."
+
+#, fuzzy
+#~ msgid "Entire Book"
+#~ msgstr "Neues Buch"
 
 #~ msgid "Install Addons"
 #~ msgstr "Addons installieren"
