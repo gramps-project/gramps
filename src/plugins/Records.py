@@ -35,14 +35,14 @@ from gen.ggettext import sgettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.lib import ChildRefType, Date, EventType, Name, StyledText, \
-        StyledTextTag, StyledTextTagType
-from gen.plug.docgen import FontStyle, ParagraphStyle, FONT_SANS_SERIF, \
-        PARA_ALIGN_CENTER
+from gen.lib import (ChildRefType, Date, Span, EventType, Name,
+        StyledText, StyledTextTag, StyledTextTagType)
+from gen.plug.docgen import (FontStyle, ParagraphStyle, FONT_SANS_SERIF,
+        PARA_ALIGN_CENTER)
 from gen.display.name import displayer as name_displayer
 from gen.plug import Gramplet
 from gen.plug.menu import (BooleanOption, EnumeratedListOption, 
-                           FilterOption, PersonOption, StringOption)
+        FilterOption, NumberOption, PersonOption, StringOption)
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
@@ -55,13 +55,7 @@ from Utils import probably_alive
 #------------------------------------------------------------------------
 
 def _good_date(date):
-    if date:
-        if RecordsReportOptions.REGULAR_DATES_ONLY:
-            return date.is_regular()
-        else:
-            return date.is_valid()
-    else:
-        return False
+    return (date is not None and date.is_valid())
 
 
 def _find_death_date(db, person):
@@ -78,7 +72,7 @@ def _find_death_date(db, person):
     return None
 
 
-def _find_records(db, filter, callname):
+def _find_records(db, filter, top_size, callname):
 
     today = datetime.date.today()
     today_date = Date(today.year, today.month, today.day)
@@ -126,11 +120,13 @@ def _find_records(db, filter, callname):
             if probably_alive(person, db):
                 # Still living, look for age records
                 _record(person_youngestliving, person_oldestliving,
-                        today_date - birth_date, name, 'Person', person_handle)
+                        today_date - birth_date, name, 'Person', person_handle,
+                        top_size)
         elif _good_date(death_date):
             # Already died, look for age records
             _record(person_youngestdied, person_oldestdied,
-                    death_date - birth_date, name, 'Person', person_handle)
+                    death_date - birth_date, name, 'Person', person_handle,
+                    top_size)
 
         for family_handle in person.get_family_handle_list():
             family = db.get_family_from_handle(family_handle)
@@ -151,12 +147,12 @@ def _find_records(db, filter, callname):
             if _good_date(marriage_date):
                 _record(person_youngestmarried, person_oldestmarried,
                         marriage_date - birth_date,
-                        name, 'Person', person_handle)
+                        name, 'Person', person_handle, top_size)
 
             if _good_date(divorce_date):
                 _record(person_youngestdivorced, person_oldestdivorced,
                         divorce_date - birth_date,
-                        name, 'Person', person_handle)
+                        name, 'Person', person_handle, top_size)
 
             for child_ref in family.get_child_ref_list():
                 if person.get_gender() == person.MALE:
@@ -183,11 +179,11 @@ def _find_records(db, filter, callname):
                 if person.get_gender() == person.MALE:
                     _record(person_youngestfather, person_oldestfather,
                             child_birth_date - birth_date,
-                            name, 'Person', person_handle)
+                            name, 'Person', person_handle, top_size)
                 elif person.get_gender() == person.FEMALE:
                     _record(person_youngestmother, person_oldestmother,
                             child_birth_date - birth_date,
-                            name, 'Person', person_handle)
+                            name, 'Person', person_handle, top_size)
 
 
     # Family records
@@ -221,7 +217,7 @@ def _find_records(db, filter, callname):
 
         _record(None, family_mostchildren,
                 len(family.get_child_ref_list()),
-                name, 'Family', family.handle)
+                name, 'Family', family.handle, top_size)
 
         marriage_date = None
         divorce = None
@@ -262,7 +258,7 @@ def _find_records(db, filter, callname):
             if probably_alive(father, db) and probably_alive(mother, db):
                 _record(family_youngestmarried, family_oldestmarried,
                         today_date - marriage_date,
-                        name, 'Family', family.handle)
+                        name, 'Family', family.handle, top_size)
         elif (_good_date(divorce_date) or 
               _good_date(father_death_date) or 
               _good_date(mother_death_date)):
@@ -281,25 +277,32 @@ def _find_records(db, filter, callname):
             duration = end - marriage_date
 
             _record(family_shortest, family_longest,
-                    duration, name, 'Family', family.handle)
+                    duration, name, 'Family', family.handle, top_size)
 
     return [(text, varname, locals()[varname]) for (text, varname, default) in RECORDS]
 
 
-def _record(lowest, highest, value, text, handle_type, handle):
+def _record(lowest, highest, value, text, handle_type, handle, top_size):
+
+    if isinstance(value, Span):
+        low_value = value.minmax[0]
+        high_value = value.minmax[1]
+    else:
+        low_value = value
+        high_value = value
 
     if lowest is not None:
-        lowest.append((value, text, handle_type, handle))
+        lowest.append((high_value, value, text, handle_type, handle))
         lowest.sort(lambda a,b: cmp(a[0], b[0]))        # FIXME: Ist das lambda notwendig?
-        for i in range(RecordsReportOptions.TOP_SIZE, len(lowest)):
+        for i in range(top_size, len(lowest)):
             if lowest[i-1][0] < lowest[i][0]:
                 del lowest[i:]
                 break
 
     if highest is not None:
-        highest.append((value, text, handle_type, handle))
+        highest.append((low_value, value, text, handle_type, handle))
         highest.sort(reverse=True)
-        for i in range(RecordsReportOptions.TOP_SIZE, len(highest)):
+        for i in range(top_size, len(highest)):
             if highest[i-1][0] > highest[i][0]:
                 del highest[i:]
                 break
@@ -405,14 +408,14 @@ class RecordsGramplet(Gramplet):
     def main(self):
         self.set_text(_("Processing...") + "\n")
         yield True
-        records = _find_records(self.dbstate.db, None, _Name_CALLNAME_DONTUSE)
+        records = _find_records(self.dbstate.db, None, 3, _Name_CALLNAME_DONTUSE)
         self.set_text("")
         for (text, varname, top) in records:
             yield True
             self.render_text("<b>%s</b>" % text)
             last_value = None
             rank = 0
-            for (number, (value, name, handletype, handle)) in enumerate(top):
+            for (number, (sort, value, name, handletype, handle)) in enumerate(top):
                 if value != last_value:
                     last_value = value
                     rank = number
@@ -439,6 +442,7 @@ class RecordsReport(Report):
         self.filter_option =  menu.get_option_by_name('filter')
         self.filter = self.filter_option.get_filter()
 
+        self.top_size = menu.get_option_by_name('top_size').get_value()
         self.callname = menu.get_option_by_name('callname').get_value()
 
         self.footer = menu.get_option_by_name('footer').get_value()
@@ -453,7 +457,7 @@ class RecordsReport(Report):
         Build the actual report.
         """
 
-        records = _find_records(self.database, self.filter, self.callname)
+        records = _find_records(self.database, self.filter, self.top_size, self.callname)
 
         self.doc.start_paragraph('REC-Title')
         self.doc.write_text(_("Records"))
@@ -473,7 +477,7 @@ class RecordsReport(Report):
 
             last_value = None
             rank = 0
-            for (number, (value, name, handletype, handle)) in enumerate(top):
+            for (number, (sort, value, name, handletype, handle)) in enumerate(top):
                 if value != last_value:
                     last_value = value
                     rank = number
@@ -497,9 +501,6 @@ class RecordsReportOptions(MenuReportOptions):
     """
     Defines options and provides handling interface.
     """
-
-    REGULAR_DATES_ONLY = True
-    TOP_SIZE = 3
 
     def __init__(self, name, dbase):
 
@@ -525,6 +526,9 @@ class RecordsReportOptions(MenuReportOptions):
         self.__pid.connect('value-changed', self.__update_filters)
         
         self.__update_filters()
+
+        top_size = NumberOption(_("Number of ranks to display"), 3, 1, 100)
+        menu.add_option(category_name, "top_size", top_size)
 
         callname = EnumeratedListOption(_("Use call name"), _Name_CALLNAME_DONTUSE)
         callname.set_items([
