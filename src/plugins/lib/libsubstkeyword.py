@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: SubstKeywords.py Version 2010-12-05
+# $Id: libsubstkeyword.py 19012 2012-03-05 19:19:45Z romjerome $
 
 """
 Provide the SubstKeywords class that will replace keywords in a passed
@@ -86,10 +86,10 @@ class GenericFormat(object):
     def generic_format(self, item, code, uppr, function):
         """the main parsing engine.
         
-        Nedded ar the following:  the input string
+        Needed are the following:  the input string
         code - List of one character (string) codes (all lowercase)
         uppr - list of one character (string) codes that can be uppercased
-            each needs to have a lowercase equivelant in code
+            each needs to have a lowercase equivalent in code
         function - list of functions.
         there is a one to one relationship with character codes and functions.
         """
@@ -135,12 +135,12 @@ class GenericFormat(object):
 #------------------------------------------------------------------------
 class NameFormat(GenericFormat):
     """ The name format class.
-    If no format string, the name is displayed as per preferance options
+    If no format string, the name is displayed as per preference options
     otherwise, parse through a format string and put the name parts in
     """
 
     def get_name(self, person):
-        """ A helper method for retreaving the persons name """
+        """ A helper method for retrieving the person's name """
         if person:
             return person.get_primary_name()
         return None
@@ -178,12 +178,12 @@ class NameFormat(GenericFormat):
 #------------------------------------------------------------------------
 class DateFormat(GenericFormat):
     """ The date format class.
-    If no format string, the date is displayed as per preferance options
+    If no format string, the date is displayed as per preference options
     otherwise, parse through a format string and put the date parts in
     """
 
     def get_date(self, event):
-        """ A helper method for retreaving a date from an event """
+        """ A helper method for retrieving a date from an event """
         if event:
             return event.get_date_object()
         return None
@@ -286,12 +286,12 @@ class DateFormat(GenericFormat):
 #------------------------------------------------------------------------
 class PlaceFormat(GenericFormat):
     """ The place format class.
-    If no format string, the place is displayed as per preferance options
+    If no format string, the place is displayed as per preference options
     otherwise, parse through a format string and put the place parts in
     """
 
     def get_place(self, database, event):
-        """ A helper method for retreaving a place from an event """
+        """ A helper method for retrieving a place from an event """
         if event:
             bplace_handle = event.get_place_handle()
             if bplace_handle:
@@ -411,7 +411,7 @@ class EventFormat(GenericFormat):
 #------------------------------------------------------------------------
 class ConsumableString(object):
     """
-    A simple string implemplamentation with extras to help with parsing.
+    A simple string implementation with extras to help with parsing.
     
     This will contain the string to be parsed.  or string in.
     There will only be one of these for each processed line.
@@ -635,7 +635,7 @@ class VarStringMain(VarStringBase):
         self.the_string.append((TXT.remove, ""))
     
     def add_variable(self, text):
-        """ A helper fuction to either call:
+        """ A helper function to either call:
             add_remove if the text string is blank
             otherwise add_display
         """
@@ -654,7 +654,7 @@ class VarStringSecond(VarStringBase):
      TXT.remove as the state
      and everything is simply added to the end of a list.
      states are still updated properly
-     it will be _combine(d) in the main level approprately.
+     it will be _combine(d) in the main level appropriately.
     """
     def __init__(self, start_state = TXT.remove):
         VarStringBase.__init__(self, start_state)
@@ -842,11 +842,11 @@ class VariableParse(object):
         return self._in.this == "$" and self._in.next is not None and \
                               "nsijbBdDmMvVauetT".find(self._in.next) != -1
 
-    def get_event_by_type(self, marrage, e_type):
+    def get_event_by_type(self, marriage, e_type):
         """ get an event from a type """
-        if marrage is None:
+        if marriage is None:
             return None
-        for e_ref in marrage.get_event_ref_list():
+        for e_ref in marriage.get_event_ref_list():
             if not e_ref:
                 continue
             event = self.friend.database.get_event_from_handle(e_ref.ref)
@@ -922,8 +922,12 @@ class VariableParse(object):
             return ""
     
     def __parse_event(self, person):
-        event = self.get_event_by_name(person, attrib_parse.get_name())
-        event_f = EventFormat(self.database, self._in)
+        #TODO; this try to avoid a key issue
+        try:
+            event = self.get_event_by_name(person, attrib_parse.get_name())
+            event_f = EventFormat(self.database, self._in)
+        except:
+            return ""
         if event:
             return event_f.parse_format(event)
         else:
@@ -1067,7 +1071,7 @@ class SubstKeywords(object):
             This will be the center person for the display
         family_handle
             this will specify the specific family/spouse to work with.
-            If none given, then the first/prefered family/spouse is used
+            If none given, then the first/preferred family/spouse is used
     """
     def __init__(self, database, person_handle, family_handle=None):
         """get the person and find the family/spouse to use for this display"""
@@ -1111,7 +1115,7 @@ class SubstKeywords(object):
         There are four things we can find here
             A {} group which will make/end as needed.
             A <> separator
-            A !  variable - Handlded seprately
+            A !  variable - Handled separately
             or text
         """
         #This is the upper most level of text
@@ -1454,4 +1458,5 @@ if __name__ == '__main__':
         32, 33, 32, 27, 26, 27, 30, 31, 30, 34, 35, 34, 38, 27, 31, 30, 31, 35,
         34, 35, 38, 39, 38, 33, 32, 33, 36, 37, 36, 40, 41, 40, 44, 33, 32, 33,
         36, 37, 36, 40, 41, 40, 44, 38, 39, 38, 42, 46] else "!! bad !!"
-
+    
+    
