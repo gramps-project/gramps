@@ -359,5 +359,4 @@ src/plugins/export/exportftree.glade
 src/plugins/export/exportgeneweb.glade
 src/plugins/export/exportvcalendar.glade
 src/plugins/export/exportvcard.glade
-src/plugins/import/importgedcom.glade
 src/plugins/tool/check.glade
