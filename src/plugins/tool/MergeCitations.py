@@ -126,8 +126,8 @@ class MergeCitations(tool.BatchTool,ManagedWindow.ManagedWindow):
 #        self.set_window(window, top.get_object('title'),
 #                        _('Merge citations'))
         self.set_window(window, top.get_object('title2'),
-                        "Notes, media objects and data-items of matching "
-                        "citations will be combined.")
+                        _("Notes, media objects and data-items of matching "
+                        "citations will be combined."))
         
         top.connect_signals({
             "on_merge_ok_clicked"   : self.on_merge_ok_clicked,
