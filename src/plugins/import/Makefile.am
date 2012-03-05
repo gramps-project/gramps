@@ -18,6 +18,7 @@ pkgpython_PYTHON = \
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/import
 
+dist_pkgdata_DATA = importgedcom.glade
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
