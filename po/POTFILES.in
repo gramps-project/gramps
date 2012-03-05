@@ -749,7 +749,6 @@ src/plugins/tool/changetypes.glade
 src/plugins/tool/desbrowser.glade
 src/plugins/tool/eval.glade
 src/plugins/tool/eventcmp.glade
-src/plugins/import/importgedcom.glade
 src/plugins/tool/leak.glade
 src/plugins/tool/finddupes.glade
 src/plugins/tool/mergecitations.glade
@@ -759,11 +758,6 @@ src/plugins/tool/phpgedview.glade
 src/plugins/tool/relcalc.glade
 src/plugins/tool/soundgen.glade
 src/plugins/tool/removeunused.glade
-src/plugins/export/exportcsv.glade
-src/plugins/export/exportftree.glade
-src/plugins/export/exportgeneweb.glade
-src/plugins/export/exportvcalendar.glade
-src/plugins/export/exportvcard.glade
 src/plugins/tool/verify.glade
 
 #

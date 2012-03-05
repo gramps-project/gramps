@@ -4,8 +4,6 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/plugins/import
-
 pkgpython_PYTHON = \
 	import.gpr.py \
 	ImportCsv.py \
@@ -20,14 +18,6 @@ pkgpython_PYTHON = \
 pkgpyexecdir = @pkgpyexecdir@/plugins/import
 pkgpythondir = $(datadir)/@PACKAGE@/plugins/import
 
-GLADEFILES = \
-	importgedcom.glade
-
-GRAPHICS = 
-
-DATAFILES = 
-
-dist_pkgdata_DATA = $(GLADEFILES) $(GRAPHICS) $(DATAFILES)
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
