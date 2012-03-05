@@ -922,8 +922,12 @@ class VariableParse(object):
             return ""
     
     def __parse_event(self, person):
-        event = self.get_event_by_name(person, attrib_parse.get_name())
-        event_f = EventFormat(self.database, self._in)
+        #TODO; this try to avoid a key issue
+        try:
+            event = self.get_event_by_name(person, attrib_parse.get_name())
+            event_f = EventFormat(self.database, self._in)
+        except:
+            return ""
         if event:
             return event_f.parse_format(event)
         else:
