@@ -3,8 +3,7 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgpythondir = $(datadir)/@PACKAGE@/plugins/import
-
+pkgdatadir = $(datadir)/@PACKAGE@/plugins/import
 pkgpython_PYTHON = \
 	import.gpr.py \
 	ImportCsv.py \
@@ -17,6 +16,7 @@ pkgpython_PYTHON = \
 	ImportXml.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/import
+pkgpythondir = $(datadir)/@PACKAGE@/plugins/import
 
 dist_pkgdata_DATA = importgedcom.glade
 
