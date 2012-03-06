@@ -342,7 +342,7 @@ def open_file_with_default_application( file_path ):
             ErrorDialog(_("Error Opening File"), str(msg))
     else:
         if constfunc.mac():
-            utility = 'open'
+            utility = '/usr/bin/open'
         else:
             utility = 'xdg-open'
         search = os.environ['PATH'].split(':')
