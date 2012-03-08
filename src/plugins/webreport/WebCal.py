@@ -315,21 +315,18 @@ class WebCalReport(Report):
         # Copy the screen stylesheet
         if self.css:
             fname = CSS[self.css]["filename"]
-            self.copy_file(fname, _CALENDARSCREEN, "styles")
+            self.copy_file(fname, _CALENDARSCREEN, "css")
 
         # copy Navigation Menu Layout if Blue or Visually is being used
         if CSS[self.css]["navigation"]:
 
-            # if there are multiple years, add Horizontal else add Fade...
-            if self.multiyear:
-                fname = CSS["Horizontal-Menus"]["filename"]
-            else:
-                fname = CSS["Fade-Menus"]["filename"]
-            self.copy_file(fname, "calendar-menus.css", "styles")
+            # copy horizontal menus...
+            fname = CSS["Horizontal-Menus"]["filename"]
+            self.copy_file(fname, "calendar-menus.css", "css")
 
         # copy print stylesheet
         fname = CSS["Print-Default"]["filename"]
-        self.copy_file(fname, _CALENDARPRINT, "styles")
+        self.copy_file(fname, _CALENDARPRINT, "css")
 
         imgs = []
 
@@ -416,7 +413,7 @@ class WebCalReport(Report):
         fname1 = "/".join(subdirs + ["images", "favicon2.ico"])
 
         # _CALENDARSCREEN stylesheet
-        fname2 = "/".join(subdirs + ["styles", _CALENDARSCREEN])
+        fname2 = "/".join(subdirs + ["css", _CALENDARSCREEN])
 
         # links for GRAMPS favicon and stylesheets
         links = Html("link", rel = 'shortcut icon', href = fname1, type = "image/x-icon") + (
@@ -425,14 +422,14 @@ class WebCalReport(Report):
 
         # add horizontal menu if css == Blue or Visually because there is no menus?
         if CSS[self.css]["navigation"]:
-            fname = "/".join(subdirs + ["styles", "calendar-menus.css"])
+            fname = "/".join(subdirs + ["css", "calendar-menus.css"])
             links.extend( 
                 Html("link", href = fname, type = "text/css", media = "screen", rel = "stylesheet", indent = False)
             )
 
         # add printer stylesheet to webcalendar() and one_day() only
         if add_print:
-            fname = "/".join(subdirs + ["styles", _CALENDARPRINT])
+            fname = "/".join(subdirs + ["css", _CALENDARPRINT])
             links.extend(
                 Html("link",href = fname,type = "text/css", media = "print", rel = "stylesheet", indent = False)
             )
@@ -845,7 +842,7 @@ class WebCalReport(Report):
             body += self.month_navigation(nr_up, year, currentsection, True)
 
             # build the calendar
-            content = Html("div", class_="content")
+            content = Html("div", class_="content", id = "WebCal")
             body += content
             monthly_calendar = self.calendar_build("wc", year, month)
             content += monthly_calendar
@@ -913,10 +910,10 @@ class WebCalReport(Report):
                        'that date, if there are any.\n'))
 
         # page description 
-        content = Html("div", class_ = "content") + (
-            Html("p", msg, id='description')
-            )
+        content = Html("div", class_ = "content", id = "YearGlance")
         body += content
+
+        content += Html("p", msg, id='description')
 
         for month in range(1, 13):
 
@@ -974,7 +971,7 @@ class WebCalReport(Report):
         body += self.month_navigation(nr_up, year, currentsection, True)
 
         # set date display as in user prevferences 
-        content = Html("div", class_="content")
+        content = Html("div", class_="content", id = "OneDay")
         body += content
         content += Html("h3", _dd.display(event_date), inline = True)
 
