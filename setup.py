@@ -20,6 +20,7 @@ from distutils.cmd import Command
 from distutils.core import setup
 from distutils.command.build import build
 from distutils.command.install_data import install_data
+from babel.messages import frontend as babel
 import sys
 import glob
 import os.path
@@ -201,6 +202,7 @@ def os_files ():
                 ('share/icons/gnome/scalable/mimetypes', ['data/gnome-mime-application-x-gramps-package.svg']),
                 ('share/icons/gnome/scalable/mimetypes', ['data/gnome-mime-application-x-gramps-xml.svg']),
                 # man-page, /!\ should be gramps.1 with variables
+                # migration to sphinx/docutils/gettext environment ?
                 (os.path.join(man_dir, 'man1'), ['data/man/gramps.1.in']),
                 (os.path.join(man_dir, 'nl', 'man1'), ['data/man/nl/gramps.1.in']),
                 (os.path.join(man_dir, 'sv', 'man1'), ['data/man/sv/gramps.1.in']),
@@ -221,6 +223,7 @@ def os_files ():
                 ]
         return files
 
+# compile_catalog class ?
 def make_po ():
     for po in glob.glob(os.path.join(PO_DIR, '*.po')):
         lang = os.path.basename(po[:-3])
@@ -350,6 +353,11 @@ if platform.system() == 'FreeBSD':
     man_dir = 'man'
 else:
     man_dir = os.path.join('share', 'man')
+    
+# TODO
+# implement environment/variables for 
+# extract_messages, init_catalog, update_catalog classes
+# message_extractors = po/POTFILES.in
 
 result = setup(
     name = name,
@@ -375,5 +383,12 @@ result = setup(
     platforms = ['Linux', 'FreeBSD', 'MacOS', 'Windows'],
     scripts = script,
     requires = ['pygtk', 'pycairo', 'pygobject'],
-    cmdclass={'build': BuildData, 'install_data': InstallData, 'uninstall': Uninstall},
+    cmdclass={
+    'build': BuildData,
+    'install_data': InstallData,
+    'uninstall': Uninstall,
+    'compile_catalog': babel.compile_catalog,
+    'extract_messages': babel.extract_messages,
+    'init_catalog': babel.init_catalog,
+    'update_catalog': babel.update_catalog},
     )
