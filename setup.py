@@ -29,7 +29,7 @@ import subprocess
 import platform
                         
 name = 'gramps'
-version = "3.4.0"
+version = "trunk"
 
 PO_DIR = 'po'
 MO_DIR = os.path.join('build', 'mo')
