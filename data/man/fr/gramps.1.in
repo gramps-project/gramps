@@ -216,10 +216,10 @@ en \fIstderr\fR (si elles ne sont pas le fait d'une manipulation). Utilisez les 
 .SH EXEMPLES
 .TP
 Pour ouvrir un arbre familial et y importer un fichier XML, on peut saisir: 
-\fBgramps\fR \fB\-O\fR \fI'Mon Arbre Familal'\fR \fB\-i\fR \fI~/db3.gramps\fR
+\fBgramps\fR \fB\-O\fR \fI'Mon Arbre Familial'\fR \fB\-i\fR \fI~/db3.gramps\fR
 .TP 
-Ceci ouvre un arbre familal, pour faire la même chose, mais importer dans un arbre familial temporaire et démarrer une session interactive, on peut saisir: 
-\fBgramps\fR \fB\-i\fR \fI'Mon Arbre Familal'\fR \fB\-i\fR \fI~/db3.gramps\fR
+Ceci ouvre un arbre familial, pour faire la même chose, mais importer dans un arbre familial temporaire et démarrer une session interactive, on peut saisir: 
+\fBgramps\fR \fB\-i\fR \fI'Mon Arbre Familial'\fR \fB\-i\fR \fI~/db3.gramps\fR
 .TP  
 Lecture de quatre bases de données dont les formats peuvent être devinés d'après les noms, puis vérification des données: 
 \fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-i\fR \fI~/db3.gramps\fR \fB\-i\fR \fIfile4.wft\fR \fB\-a\fR \fIcheck\fR 
