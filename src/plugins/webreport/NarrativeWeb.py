@@ -4012,8 +4012,8 @@ class MediaPage(BasePage):
                                                       Utils.media_path_full(self.dbase_, media.get_path()),
                                                       thmb_path, 320):
                             try:
-                                path = self.report.build_path("preview", media.handle)
-                                npath = os.path.join(path, media.handle) + ".png"
+                                path = self.report.build_path("preview", media.get_handle())
+                                npath = os.path.join(path, media.get_handle()) + ".png"
                                 self.report.copy_file(thmb_path, npath)
                                 path = npath
                                 os.unlink(thmb_path)
@@ -4612,21 +4612,16 @@ class SourcePage(BasePage):
                                 # Citation Referents have Event Objects...
                                 if (self.inc_events and event_list):
 
-                                    event_handle_list, event_types = self.build_event_data_by_events(event_list)
+                                    event_handle_list, event_types = self.__build_event_data_by_events(event_list)
 
                                     events_dict = {}
-
-                                    # separate events by their types and then thier event handles
                                     for (event_type, event_list) in sort_event_types(self.dbase_,
                                                                                      event_types,
                                                                                      event_handle_list):
-
-                                        # sort event_list by date of event and event handle...
                                         event_list = sorted(event_list, key = itemgetter(0, 1))
 
                                         tmp_event_handle_list = []
                                         for (sort_value, event_handle) in event_list:
-
                                             tmp_event_handle_list.append(event_handle)
                                         events_dict[event_type] = tmp_event_handle_list
 
@@ -4713,12 +4708,10 @@ class SourcePage(BasePage):
                                     media_list = sorted(media_list, key = sort.by_media_title_key)
 
                                     list2 = Html("li")
-
                                     list2.extend(
                                         Html("a", _("Media"), href = "#", title = _("Media"), inline = True)
                                     )
-
-                                    unordered3 = Html("ul", class_ = "Col3", role = "Media Link")
+                                    unordered3 = Html("ul", class_ = "Col3")
 
                                     for media_handle in media_list:
                                         media = self.dbase_.get_object_from_handle(media_handle)
@@ -4732,16 +4725,14 @@ class SourcePage(BasePage):
                                                     unordered3.extend(
                                                         Html("li", self.media_link(media_handle,
                                                             newpath, media.get_description(),
-                                                            self.up, usedescr = False), inline = True)
+                                                            uplink = self.up, usedescr = False), inline = True)
                                                     )
-
                                                 else:
                                                     unordered3.extend(
                                                         Html("li", self.doc_link(media_handle,
                                                             media.get_description(),
-                                                            self.up, usedescr = False), inline = True)
+                                                            uplink = self.up, usedescr = False), inline = True)
                                                     )
-
                                     list2 += unordered3
                                     unordered2 += list2
                                 list1 += unordered2
@@ -4757,7 +4748,7 @@ class SourcePage(BasePage):
         # and close the file
         self.XHTMLWriter(sourcepage, of, sio)
 
-    def build_event_data_by_events(self, event_handles):
+    def __build_event_data_by_events(self, event_handles):
         """
         creates a list of event handles and event types for these event handles
         """
@@ -4778,7 +4769,7 @@ class SourcePage(BasePage):
 
         @param: unordered2 -- unordered list element for proper styling of section output
         @param: citations_dict -- dictionary containing data to be displayed
-        @param: citation_type -- can either be People or Events...
+        @param: citation_type -- can either be People or Events
         """
         keys = sorted(citations_dict, key = locale.strxfrm)
         total_keys = len(keys)
@@ -4790,7 +4781,7 @@ class SourcePage(BasePage):
         list2.extend(
             Html("a", _(citation_type), href = "#", title = _(citation_type), inline = True)
         )
-        unordered3 = Html("ul", class_ = "Col3", role = "Surname/ Event Type")
+        unordered3 = Html("ul", class_ = "Col3")
 
         for key in keys:
 
@@ -4798,7 +4789,7 @@ class SourcePage(BasePage):
             list3.extend(
                 Html("a", key, href = "#", title = key, inline = True)
             )
-            unordered4 = Html("ul", class_ = "Col4", role = "Short Name/ Event Date")
+            unordered4 = Html("ul", class_ = "Col4")
 
             # determine the length of the values for this key
             value_len = len(citations_dict[key])
@@ -4812,7 +4803,7 @@ class SourcePage(BasePage):
                         list4.extend(
                             Html("a", key + ' ' + str((x + 1)), href = "#", title = key + ' ' + str((x + 1)), inline = True)
                         )
-                        unordered5 = Html("ul", class_ = "Col5", role = "Surname/ Event Type groupings")
+                        unordered5 = Html("ul", class_ = "Col5")
 
                         for y in range(max_per_column):
                             if ((x * max_per_column + y) < value_len):
@@ -4854,10 +4845,10 @@ class SourcePage(BasePage):
             obj_ = self.dbase_.get_person_from_handle(obj_handle)
             url = self.report.build_url_fname_html(obj_handle, "ppl", up = self.up)
             hyper = self.person_link(url, obj_, name_style = False)
-        else:
-            obj_ = self.dbase_.get_event_from_handle(obj_handle)
-            event_date = _dd.display(obj_.get_date_object()) or _("Unknown")
 
+        elif citation_type == "Events":
+            obj_ = self.dbase_.get_event_from_handle(obj_handle)
+            event_date = _dd.display(obj_.get_date_object()) or "&nbsp;"
             hyper = self.event_link(obj_handle, event_date, uplink = self.up)
         return hyper
 
@@ -4867,22 +4858,22 @@ class MediaListPage(BasePage):
         BasePage.__init__(self, report, title)
 
         of, sio = self.report.create_file("media")
-        media_listpage, head, body = self.write_header(_('Media'))
+        medialistpage, head, body = self.write_header(_('Media'))
 
         # begin gallery division
-        with Html("div", class_ = "content", id = "Gallery") as media_list:
-            body += media_list
+        with Html("div", class_ = "content", id = "Gallery") as medialist:
+            body += medialist
 
             msg = _("This page contains an index of all the media objects "
                           "in the database, sorted by their title. Clicking on "
                           "the title will take you to that media object&#8217;s page.  "
                           "If you see media size dimensions above an image, click on the "
                           "image to see the full sized version.  ")
-            media_list += Html("p", msg, id = "description")
+            medialist += Html("p", msg, id = "description")
 
             # begin gallery table and table head
             with Html("table", class_ = "infolist primobjlist gallerylist") as table:
-                media_list += table
+                medialist += table
 
                 # begin table head
                 thead = Html("thead")
@@ -4927,7 +4918,6 @@ class MediaListPage(BasePage):
                             Html("td", data, class_ = colclass)
                                 for data, colclass in media_data_row
                         )
- 
                         index += 1
 
         # add footer section
@@ -4937,7 +4927,7 @@ class MediaListPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(media_listpage, of, sio)
+        self.XHTMLWriter(medialistpage, of, sio)
 
     def media_ref_link(self, handle, name, up = False):
 
