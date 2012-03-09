@@ -45,9 +45,9 @@ def modules_check ():
         try:
             import gtk.glade
         except RuntimeError:
-            print 'Error importing GTK - is there no windowing environment available ?'
-            print "We're going to ignore this error and live dangerously. Please make"
-            print 'sure you have pygtk > 2.16 and gtk available!'
+            print ("Error importing GTK - is there no windowing environment available ? \n"
+                   "We're going to ignore this error and live dangerously. Please make \n"
+                   "sure you have pygtk > 2.16 and gtk available!")
     except ImportError:
         raise
     mod_list = [#'metakit',
@@ -68,15 +68,15 @@ def modules_check ():
                     have_mod = True
             if not have_mod:
                 ok = False
-                print 'Error: %s is Python module is required to install %s' \
-                    % (' or '.join(m), name.title())
+                print ('Error: %s is Python module is required to install %s'
+                    % (' or '.join(m), name.title()))
         else:
             try:
                 exec('import %s' % m)
             except ImportError:
                 ok = False
-                print 'Error: %s Python module is required to install %s' \
-                  % (m, name.title())
+                print ('Error: %s Python module is required to install %s'
+                  % (m, name.title()))
     if not ok:
         sys.exit(1)
 
@@ -233,7 +233,7 @@ def make_po ():
             os.makedirs(directory)
         if os.name == 'posix':
             os.system('msgfmt %s/%s.po -o %s' % (PO_DIR, lang, mo))
-        print directory
+        print (directory)
 
 def trans_files ():
     translation_files = []
@@ -360,35 +360,35 @@ else:
 # message_extractors = po/POTFILES.in
 
 result = setup(
-    name = name,
-    version = version,
-    description = 'Gramps (Genealogical Research and Analysis Management Programming System)',
-    author = '',
-    author_email = '',
-    url = 'http://gramps-project.org',
-    license = 'GNU GPL v2',
-    packages = ['gramps',
-                'gramps.cli',
-                'gramps.data',
-                'gramps.gen',
-                'gramps.glade',
-                'gramps.gui',
-                'gramps.images',
-                'gramps.plugins',
-                'gramps.webapp',
-                ],
-    package_dir = {'gramps' : 'src'},
+    name         = name,
+    version      = version,
+    description  = 'Gramps (Genealogical Research and Analysis Management Programming System)',
+    author       = 'Gramps Development Team',
+    author_email = 'don@gramps-project.org',
+    url          = 'http://gramps-project.org',
+    license      = 'GNU GPL v2 or greater',
+    packages     = ['gramps',
+                    'gramps.cli',
+                    'gramps.data',
+                    'gramps.gen',
+                    'gramps.glade',
+                    'gramps.gui',
+                    'gramps.images',
+                    'gramps.plugins',
+                    'gramps.webapp',
+                  ],
+    package_dir  = {'gramps' : 'src'},
     package_data = gramps (),
-    data_files = trans_files () + os_files(),
-    platforms = ['Linux', 'FreeBSD', 'MacOS', 'Windows'],
-    scripts = script,
-    requires = ['pygtk', 'pycairo', 'pygobject'],
-    cmdclass={
-    'build': BuildData,
-    'install_data': InstallData,
-    'uninstall': Uninstall,
-    'compile_catalog': babel.compile_catalog,
-    'extract_messages': babel.extract_messages,
-    'init_catalog': babel.init_catalog,
-    'update_catalog': babel.update_catalog},
+    data_files   = trans_files () + os_files(),
+    platforms    = ['Linux', 'FreeBSD', 'MacOS', 'Windows'],
+    scripts      = script,
+    requires     = ['pygtk', 'pycairo', 'pygobject'],
+    cmdclass     = {
+                    'build': BuildData,
+                    'install_data': InstallData,
+                    'uninstall': Uninstall,
+                    'compile_catalog': babel.compile_catalog,
+                    'extract_messages': babel.extract_messages,
+                    'init_catalog': babel.init_catalog,
+                    'update_catalog': babel.update_catalog},
     )
