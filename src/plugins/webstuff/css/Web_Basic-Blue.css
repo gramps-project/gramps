@@ -1255,6 +1255,9 @@ div#pedigree {
 
 /* Calendar Styles
 -------------------------------------------------------------------------------------------- */
+#OneDay, #WebCal, #YearGlance {
+    width: 95%
+}
 /* Calendar : General */
 .calendar {
     empty-cells:show;
