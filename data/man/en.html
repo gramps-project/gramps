@@ -1,0 +1,418 @@
+Content-type: text/html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML><HEAD><TITLE>Man page of gramps</TITLE>
+</HEAD><BODY>
+<H1>gramps</H1>
+Section: 3.4.0 (1)<BR>Updated: 3.4.0<BR><A HREF="#index">Index</A>
+<A HREF="/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+gramps - Genealogical Research and Analysis Management Programming System.
+<P>
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<B>gramps</B>
+
+[<B>-?|--help</B>]
+
+[<B>--usage</B>]
+
+[<B>--version</B>]
+
+[<B>-l</B>]
+
+[<B>-u|--force-unlock</B>]
+
+[<B>-O|--open=</B>
+
+<I>DATABASE</I>
+
+[<B>-f|--format=</B>
+
+<I>FORMAT</I>]]
+
+[<B>-i|--import=</B>
+
+<I>FILE</I>
+
+[<B>-f|--format=</B>
+
+<I>FORMAT</I>]]
+
+[<B>-i|--import=</B>
+
+<I>...</I>]
+
+[<B>-e|--export=</B>
+
+<I>FILE</I>
+
+[<B>-f|--format=</B>
+
+<I>FORMAT</I>]]
+
+[<B>-a|--action=</B>
+
+<I>ACTION</I>]
+
+[<B>-p|--options=</B>
+
+<I>OPTIONSTRING</I>]]
+
+[
+
+<I>FILE</I>
+
+]
+
+
+
+[<B>--version</B>]
+
+<P>
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+<P>
+
+<I>Gramps</I> is a Free/OpenSource genealogy program. It is written in Python, 
+using the GTK+/GNOME interface.
+Gramps should seem familiar to anyone who has used other genealogy programs 
+before such as <I>Family Tree Maker (TM)</I>,  <I>Personal Ancestral
+Files (TM)</I>, or the GNU Geneweb.
+It supports importing of the ever popular GEDCOM format which is used world 
+wide by almost all other genealogy software.
+<P>
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPTIONS</H2>
+
+<DL COMPACT>
+<DT><B>gramps</B><I> FILE</I>
+
+<DD>
+When <I>FILE</I> is given (without any flags) as a family tree name or as
+a family tree database directory, then it is opened and an interactive 
+session is started. If FILE is a file format understood by Gramps, an empty
+family tree is created  whose name is based on the <I>FILE</I> name
+and the data is imported into it. The rest of the
+options is ignored. This way of launching is suitable for using gramps
+as a handler for genealogical data in e.g. web browsers. This invocation
+can accept any data format native to gramps, see below.
+<BR>
+
+<P>
+<DT><B>-f,--format=</B><I> FORMAT</I>
+
+<DD>
+Explicitly specify format of <I>FILE</I> given by preceding
+
+<B>-i</B>, or 
+<B>-e</B> option. If the <B>-f</B> option is not given for any <I>FILE</I>, 
+the format of that file is guessed according to its extension or MIME-type. 
+<BR>
+
+<P>
+Formats 
+available for export are <B>gramps-xml</B> (guessed if <I>FILE</I> ends with
+<B>.gramps</B>), <B>gedcom</B> (guessed if <I>FILE</I> ends with <B>.ged</B>), or
+any file export available through the Gramps plugin system.
+<BR>
+
+<P>
+Formats 
+available for import are <B>grdb</B>, <B>gramps-xml</B>, <B>gedcom</B>,  
+<B>gramps-pkg</B> (guessed if <I>FILE</I> ends with <B>.gpkg</B>), and
+<B>geneweb</B> (guessed if <I>FILE</I> ends with <B>.gw</B>). 
+<BR>
+
+<P>
+Formats available for export are
+
+<B>gramps-xml</B>, <B>gedcom</B>,
+<B>gramps-pkg</B>, <B>wft</B> (guessed if <I>FILE</I> ends with <B>.wft</B>),
+<B>geneweb</B>, and <B>iso</B> (never guessed, always specify with
+<B>-f</B> option).
+<P>
+<DT><B>-l</B>
+
+<DD>
+Print a list of known family trees.
+<P>
+<DT><B>-u,--force-unlock</B>
+
+<DD>
+Unlock a locked database.
+<P>
+<DT><B>-O,--open=</B><I> DATABASE</I>
+
+<DD>
+Open <I>DATABASE</I> which must be an existing database directory or existing family tree name.
+If no action, import or export options are given on the command line then an interactive session is started using that database.
+<P>
+<DT><B>-i,--import=</B><I> FILE</I>
+
+<DD>
+Import data from <I>FILE</I>. If you haven't specified a database then a temporary database is used; this is deleted when you exit gramps.
+<BR>
+
+<P>
+When more than one input file is given, each has to be preceded by <B>-i</B> 
+flag. The files are imported in the specified order, 
+i.e. <B>-i</B> <I>FILE1</I> <B>-i</B> <I>FILE2</I>  
+and <B>-i</B> <I>FILE2</I> <B>-i</B> <I>FILE1</I> might produce different 
+gramps IDs in the resulting database. 
+<P>
+<DT><B>-a,--action=</B><I> ACTION</I>
+
+<DD>
+Perform <I>ACTION</I> on the imported data. This is done after all imports
+are successfully completed. Currently available actions are 
+<B>summary</B> (same as Reports-&gt;View-&gt;Summary), 
+<B>check</B> (same as Tools-&gt;Database Processing-&gt;Check and Repair), 
+<B>report</B> (generates report), and
+<B>tool</B> (runs a plugin tool).
+Both <B>report</B> and <B>tool</B> need the <I>OPTIONSTRING</I> supplied by the 
+<B>-p</B> flag). 
+<BR>
+
+<P>
+The <I>OPTIONSTRING</I> should satisfy the following conditions:
+<BR>
+
+It must not contain any spaces. 
+If some arguments need to include spaces, the string should
+be enclosed with quotation marks, i.e., follow the shell syntax.
+Option string is a list of pairs with name and value (separated by the 
+equality sign). The name and value pairs must be separated by commas.  
+<BR>
+
+<P>
+Most of the report or tools options are specific for each report or tool. 
+However, there are some common options.
+<P>
+<B>name=name</B>
+
+<BR>
+
+This mandatory option determines which report or tool will be run.
+If the supplied <I>name</I> does not correspond to any available report or 
+tool, an error message will be printed followed by the list of
+available reports or tools (depending on the <I>ACTION</I>).
+<P>
+<B>show=all</B>
+
+<BR>
+
+This will produce the list of names for all options available for a given 
+report or tool.
+<P>
+<B>show=optionname</B>
+
+<BR>
+
+This will print the description of
+the functionality supplied by <I>optionname</I>, as well as what are the
+acceptable types and values for this option.
+<P>
+<BR>
+
+Use the above options to find out
+everything about a given report.  
+<P>
+</DL>
+<P>
+
+When more than one output action is given, each has to be preceded 
+by <B>-a</B> flag. The actions are performed one by one, in the specified order.
+<P>
+<DL COMPACT>
+<DT><B>-d,--debug=</B><I> LOGGER_NAME</I>
+
+<DD>
+Enables debug logs for development and testing. Look at the source code for details
+<DT><B>--version</B>
+
+<DD>
+Prints the version number of gramps and then exits
+
+
+<P>
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>Operation</H2>
+
+<BR>
+
+If the first argument on the command line does not start with dash (i.e. no
+flag), gramps will attempt to open the file with the name given by the first
+argument and start interactive session, ignoring the rest of the command line
+arguments.
+<P>
+<P>
+
+If the <B>-O</B> flag is given, then gramps will try opening
+the supplied database and then work with that data, as instructed by the
+further command line parameters.
+<P>
+<P>
+
+With or without the <B>-O</B> flag, there could be multiple imports,
+exports, and actions specified further on the command line by using <B>-i</B>,
+<B>-e</B>, and <B>-a</B> flags.  
+<P>
+<P>
+
+The order of <B>-i</B>, <B>-e</B>, or <B>-a</B> options does not matter. The
+actual order always is: all imports (if any) -&gt; all actions (if any)
+-&gt; all exports (if any). But opening must always be first!
+<P>
+<P>
+
+If no <B>-O</B> or <B>-i</B> option is given, gramps will launch its main 
+window and start the usual interactive session with the empty database,
+since there is no data to process, anyway.
+<P>
+<P>
+
+If no <B>-e</B> or <B>-a</B> options are given, gramps will launch its main 
+window and start the usual interactive session with the database resulted 
+from all imports. This database resides in the <B>import_db.grdb</B>
+under <B>~/.gramps/import</B> directory.
+<P>
+<P>
+
+The error encountered during import, export, or action, will be either 
+dumped to <I>stdout</I> (if these are exceptions handled by gramps) or 
+to <I>stderr</I> (if these are not handled). Use usual shell redirections 
+of <I>stdout</I> and <I>stderr</I> to save messages and errors in files. 
+<P>
+<A NAME="lbAG">&nbsp;</A>
+<H2>EXAMPLES</H2>
+
+<DL COMPACT>
+<DT>To open an existing family tree and import an xml file  into it, one may type: <DD>
+<B>gramps</B> <B>-O</B> <I>'My Family Tree'</I> <B>-i</B> <I>~/db3.gramps</I>
+<DT>The above changes the opened family tree, to do the same, but import both in a temporary family tree and start an interactive session, one may type: <DD>
+<B>gramps</B> <B>-i</B> <I>'My Family Tree'</I> <B>-i</B> <I>~/db3.gramps</I>
+<DT>To import four databases (whose formats can be determined from their names) and then check the resulting database for errors, one may type: <DD>
+<B>gramps</B> <B>-i</B> <I>file1.ged</I> <B>-i</B> <I>file2.tgz</I> <B>-i</B> <I>~/db3.gramps</I> <B>-i</B> <I>file4.wft</I> <B>-a</B> <I>check</I> 
+<DT>To explicitly specify the formats in the above example, append filenames with appropriate <B>-f</B> options: <DD>
+<B>gramps</B> <B>-i</B> <I>file1.ged</I> <B>-f</B> <I>gedcom</I> <B>-i</B> <I>file2.tgz</I> <B>-f</B> <I>gramps-pkg</I> <B>-i</B> <I>~/db3.gramps</I> <B>-f</B> <I>gramps-xml</I> <B>-i</B> <I>file4.wft</I> <B>-f</B> <I>wft</I>  <B>-a</B> <I>check</I> 
+<DT>To record the database resulting from all imports, supply <B>-e</B> flag (use <B>-f</B> if the filename does not allow gramps to guess the format):<DD>
+<B>gramps</B> <B>-i</B> <I>file1.ged</I> <B>-i</B> <I>file2.tgz</I> <B>-e</B> <I>~/new-package</I> <B>-f</B> <I>gramps-pkg</I> 
+<DT>To import three databases and start interactive gramps session with the result: <DD>
+<B>gramps</B> <B>-i</B> <I>file1.ged</I> <B>-i</B> <I>file2.tgz</I> <B>-i</B> <I>~/db3.gramps</I> 
+<DT>To run the Verify tool from the commandline and output the result to stdout: <DD>
+<B>gramps</B> <B>-O</B> <I>'My Family Tree'</I> <B>-a</B> <I>tool</I> <B>-p</B> <B>name</B>=<I>verify</I>
+<DT>Finally, to start normal interactive session type: <DD>
+<B>gramps</B> 
+<P>
+</DL>
+<A NAME="lbAH">&nbsp;</A>
+<H2>ENVIRONMENT VARIABLES</H2>
+
+The program checks whether these environment variables are set:
+<P>
+<B>LANG</B> - describe, which language to use:
+Ex.: for polish language this variable has to be set to pl_PL.UTF-8.
+<P>
+<B>GRAMPSHOME</B> - if set, force Gramps to use the specified directory to keep 
+program settings and databases there. By default, this variable is not set and 
+gramps assumes that the folder with all databases and profile settings 
+should be created within the user profile folder (described by environment 
+variable HOME for Linux or USERPROFILE for Windows 2000/XP).
+<P>
+<A NAME="lbAI">&nbsp;</A>
+<H2>CONCEPTS</H2>
+
+Supports a python-based plugin system, allowing import and export writers, 
+report generators, tools, and display filters to be added without modification 
+of the main program.
+<P>
+
+In addition to generating direct printer output, report generators also 
+target other systems, such as <I>OpenOffice.org</I>, <I>AbiWord</I>, HTML, 
+or LaTeX to allow the users to modify the format to suit their needs. 
+<P>
+<A NAME="lbAJ">&nbsp;</A>
+<H2>KNOWN BUGS AND LIMITATIONS</H2>
+
+<P>
+<A NAME="lbAK">&nbsp;</A>
+<H2>FILES</H2>
+
+<P>
+
+<I>${PREFIX}/bin/gramps</I> 
+<BR>
+
+<I>${PREFIX}/share/gramps</I>
+<BR>
+
+<I>${HOME}/.gramps</I> 
+<P>
+<A NAME="lbAL">&nbsp;</A>
+<H2>AUTHORS</H2>
+
+Donald Allingham <I>&lt;<A HREF="mailto:don@gramps-project.org">don@gramps-project.org</A>&gt;</I>
+<BR>
+
+<I><A HREF="http://gramps.sourceforge.net">http://gramps.sourceforge.net</A></I>
+<P>
+
+This man page was originally written by:
+<BR>
+
+Brandon L. Griffith <I>&lt;<A HREF="mailto:brandon@debian.org">brandon@debian.org</A>&gt;</I>
+<BR>
+
+for inclusion in the Debian GNU/Linux system.
+<P>
+
+This man page is currently maintained by:
+<BR>
+
+Gramps project <I>&lt;<A HREF="mailto:xxx@gramps-project.org">xxx@gramps-project.org</A>&gt;</I>
+<BR>
+
+<P>
+<A NAME="lbAM">&nbsp;</A>
+<H2>DOCUMENTATION</H2>
+
+The user documentation is available through standard GNOME Help browser 
+in the form of Gramps Manual. The manual is also available in XML format
+as <B>gramps-manual.xml</B> under <I>doc/gramps-manual/$LANG</I> in the official
+source distribution.
+<P>
+
+The developer documentation can be found on the
+<I><A HREF="http://developers.gramps-project.org">http://developers.gramps-project.org</A></I> site. 
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">Operation</A><DD>
+<DT><A HREF="#lbAG">EXAMPLES</A><DD>
+<DT><A HREF="#lbAH">ENVIRONMENT VARIABLES</A><DD>
+<DT><A HREF="#lbAI">CONCEPTS</A><DD>
+<DT><A HREF="#lbAJ">KNOWN BUGS AND LIMITATIONS</A><DD>
+<DT><A HREF="#lbAK">FILES</A><DD>
+<DT><A HREF="#lbAL">AUTHORS</A><DD>
+<DT><A HREF="#lbAM">DOCUMENTATION</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 12:19:08 GMT, March 10, 2012
+</BODY>
+</HTML>

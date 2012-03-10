@@ -1,0 +1,413 @@
+Content-type: text/html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML><HEAD><TITLE>Man page of Gramps</TITLE>
+</HEAD><BODY>
+<H1>Gramps</H1>
+Section: 3.4.0 (1)<BR>Updated: 3.4.0<BR><A HREF="#index">Index</A>
+<A HREF="/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAMN</H2>
+
+Gramps - Genealogical Research and Analysis Management Programming System.
+<P>
+<A NAME="lbAC">&nbsp;</A>
+<H2>SAMMANFATTNING</H2>
+
+<B>Gramps</B>
+
+[<B>-?|--help</B>]
+
+[<B>--usage</B>]
+
+[<B>--version</B>]
+
+[<B>-l</B>]
+
+[<B>-u|--force-unlock</B>]
+
+[<B>-O|--open=</B>
+
+<I>DATABAS</I>
+
+[<B>-f|--format=</B>
+
+<I>FORMAT</I>]]
+
+[<B>-i|--import=</B>
+
+<I>FIL</I>
+
+[<B>-f|--format=</B>
+
+<I>FORMAT</I>]]
+
+[<B>-i|--import=</B>
+
+<I>...</I>]
+
+[<B>-e|--export=</B>
+
+<I>FIL</I>
+
+[<B>-f|--format=</B>
+
+<I>FORMAT</I>]]
+
+[<B>-a|--action=</B>
+
+<I>ÅTGÄRD</I>]
+
+[<B>-p|--options=</B>
+
+<I>ALTERNATIVSTRÄNG</I>]]
+
+[
+
+<I>FIL</I>
+
+]
+
+
+
+[<B>--version</B>]
+
+<P>
+<A NAME="lbAD">&nbsp;</A>
+<H2>BESKRIVNING</H2>
+
+<P>
+
+<I>Gramps</I> är ett Free/OpenSource släktforskningsprogram. Det är skrivet i Python, 
+med hjälp av GTK+/GNOME gränssnittet.
+Gramps bör kännas bekant för de flesta, som har använt andra släktforskningsprogram 
+tidigare, som <I>Family Tree Maker (TM)</I>, <I>Personal Ancestral Files (TM)</I>, 
+<I>DISGEN</I> eller GNU Geneweb.
+Det stöder import via det populära GEDCOM-formatet, som används över 
+hela världen av nästan all släktforskningsprogramvara.
+<P>
+<A NAME="lbAE">&nbsp;</A>
+<H2>ALTERNATIV</H2>
+
+<DL COMPACT>
+<DT><B>Gramps</B><I> FIL</I>
+
+<DD>
+När <I>FIL</I> ges (utan några flaggor) som namn på ett familjeträd eller som
+en mapp med familjeträd, så öppnas detta och en interaktiv session startas.
+Om FIL är en fil, vars format förstås av Gramps, skapas ett tomt famljeträd, 
+vars namn är grundat på namnet <I>FIL</I> och vars data importeras till det. 
+Resterande alternativ ignoreras. Detta sätt att starta passar vid användning av Gramps
+som en hanterare för släktforskningsdata i t. ex. en web-läsare.
+Detta startsätt accepterar alla inbyggda dataformat för Gramps, se nedan.
+<BR>
+
+<P>
+<DT><B>-f,--format=</B><I> FORMAT</I>
+
+<DD>
+Uttryckligen specificera format på <I>FIL</I> givet av föregående 
+
+<B>-i</B> eller 
+<B>-e</B>-alternativ. Om <B>-f</B>-alternativet inte ges för någon <I>FIL</I>, 
+gissas filformat för den filen utgående från dess filändelse eller dess MIME-typ. 
+<BR>
+
+<P>
+De format, som är tillgängliga för utmatnig, är <B>Gramps-xml</B> (gissas om <I>FIL</I> slutar på 
+<B>.Gramps</B>), <B>gedcom</B> (gissas om <I>FIL</I> slutar med <B>.ged</B>) eller
+någon filexport, som är tillgänglig via Gramps tilläggsprogramsystem.
+<BR>
+
+<P>
+De format, som är tillgängliga för inmatnig, är <B>grdb</B>, <B>Gramps-xml</B>, <B>gedcom</B>, 
+<B>Gramps-pkg</B> (gissas om <I>FIL</I> slutar med <B>.gpkg</B>) och
+<B>geneweb</B> (gissas om <I>FIL</I> slutar med <B>.gw</B>). 
+<BR>
+
+<P>
+De format, som är tillgängliga för export är 
+
+<B>Gramps-xml</B>, <B>gedcom</B>,
+<B>Gramps-pkg</B>, <B>wft</B> (gissas om <I>FIL</I> slutar med <B>.wft</B>),
+<B>geneweb</B> och <B>iso</B> (gissas aldrig, specificeras alltid med
+<B>-f</B>-alternativ).
+<P>
+<DT><B>-l</B>
+
+<DD>
+Listar alla databaser/familjeträd.
+<P>
+<DT><B>-u,--force-unlock</B>
+
+<DD>
+Tvingar upplåsning av databas.
+<P>
+<DT><B>-O,--open=</B><I> DATABAS</I>
+
+<DD>
+Öppnar <I>DATABAS</I>, som måste vara en befitlig databasmapp eller ett befintligt familjeträd.
+Om ingen åtgärd, import eller export-alternativ anges på kommandoraden så startas en interaktiv 
+session med den angivna databasen.
+<P>
+<DT><B>-i,--import=</B><I> FIL</I>
+
+<DD>
+Importera data från <I>FIL</I>. Om du inte har specificerat en databas, skapas en temporär sådan, 
+som tas bort när Gramps avslutas.
+<BR>
+
+<P>
+Om mer är en indatafil anges, måste varje föregås av en <B>-i</B>-flagga. 
+Filerna importeras i den givna ordningen, 
+t.ex. <B>-i</B> <I>FIL1</I> <B>-i</B> <I>FIL2</I> 
+och <B>-i</B> <I>FIL2</I> <B>-i</B> <I>FIL1</I> kan skapa skilda 
+Gramps IDs i den resulterande databasen. 
+<P>
+<DT><B>-e,--export=</B><I> FIL</I>
+
+<DD>
+Exporterar data till <I>FIL</I>. För <B>iso</B>-format, är <I>FIL</I> i själva verket namnet på den mapp, 
+som Gramps databas kommer att skrivas till. 
+För
+
+<B>Gramps-xml</B>, <B>gedcom</B>, <B>wft</B>, <B>Gramps-pkg</B> 
+och <B>geneweb</B>, är <I>FIL</I> namnet på resultatfilen. 
+<BR>
+
+<P>
+Om mer är en utdatafil anges, måste varje föregås av en <B>-e</B>-flagga. 
+Filerna skrivs en efter en i den givna ordningen.
+<P>
+<DT><B>-a,--action=</B><I> ÅTGÄRD</I>
+
+<DD>
+Utför <I>ÅTGÄRD</I> på importerade data. Detta görs efter att all import 
+har avslutats felfritt. F. n. är följand åtgärder möjliga <B>summary</B> 
+(samma som Rapporter-&gt;Visa-&gt;Sammanfattning av databasen), <B>check</B> (samma som Verktyg-&gt;Reparera databas 
+-&gt;Kontrollera och reparera) samt <B>report</B> (skapar report, kräver en 
+<BR>&nbsp;<I>ALTERNATIVSTRÄNG</I>&nbsp;lämnad&nbsp;via&nbsp;<B>-p</B>-flaggan).&nbsp;
+<BR>
+
+<P>
+<I>ALTERNATIVSTRÄNG</I>-en måste uppfylla följand villkor:
+<BR>
+
+Får ej innehålla några mellanslag. 
+Om några argument behöver inbegripa mellanslag, måste strängen omslutas av 
+anföringstecken.
+Alternativsträngen är en lista med par av namn och värden (åtskiljda av likhetstecken).
+Namn och värde måste åtskiljas med komma. 
+<BR>
+
+<P>
+De flesta rapportalternativ är unika för varje rapport eller verktyg. Emellertid finns 
+det gemensamm alternativ.
+<P>
+<B>name=rapportnamn</B>
+
+<BR>
+
+Detta är obligatoriskt och bestämmer vilken rapport som skall skapas. 
+Om det givna <I>namn</I> inte motsvarar någon möjlig rapport eller verktyg, kommer ett 
+felmeddelande att skrivas ut, följt av möjliga namn på rapporter eller verktyg.
+<P>
+<B>show=all</B>
+
+<BR>
+
+Detta ger en lista med namn på alla möjliga alternativ för en bestämd rapport eller verktyg.
+<P>
+<B>show=optionname</B>
+
+<BR>
+
+Detta skriver ut beskrivningen av den funktion, som <B>optionname</B> innebär, likväl vad som 
+är godkända typer och värden för detta alternativ.
+<P>
+<BR>
+
+Använd alternativen ovan för att ta reda på all om en viss rapport.
+<P>
+</DL>
+<P>
+
+Om mer än en utdataåtgärd givits måste varje föregås av en <B>-a</B>-flagga. 
+Åtgärderna utförs en och en i den givna turordningen.
+<P>
+<DL COMPACT>
+<DT><B>-d,--debug=</B><I> LOGGER_NAME</I>
+
+<DD>
+Kopplar på avlusningshjälpmedel för utveckling och tester. 
+För detaljer hänvisas till källkoder
+<DT><B>--version</B>
+
+<DD>
+Skriver ur Gramps versionsnummer och avslutar
+
+
+<P>
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>Operation</H2>
+
+<BR>
+
+Om första argumentet på kommandoraden inte inledds med ett minustecken (d. v. s. ingen flagga), 
+kommer Gramps att försöka öppna den fil, vars namn givits av det första argumentet samt påbörja 
+en interaktiv session utan att ta hänsyn till resten av argumenten på kommandoraden.
+<P>
+<P>
+
+Om <B>-O</B>-flagga givits, kommer Gramps att försöka öppna den omnämnda databasen 
+och sedan arbeta med dess data, enligt ytterligare instruktioner på kommandoraden.
+<P>
+<P>
+
+Med eller utan <B>-O</B>flagga, kan det ske många importeringar,
+exporteringar och åtgärder beskrivna ytterligare på kommanodraden 
+genom att använda <B>-i</B>-,
+<B>-e</B>- samt <B>-a</B>-flaggor. 
+<P>
+<P>
+
+Ordningen på <B>-i</B>-, <B>-e</B>- eller <B>-a</B>-alternativen spelar ingen roll. 
+Den gällande ordningen är alltid: all import (om någon) -&gt; alla åtgärder (om några)
+-&gt; all export (om någon). Men öppning måste alltid ske först!
+<P>
+<P>
+
+Om inget <B>-O</B>- eller <B>-i</B>-alternativ givits, kommer Gramps att starta sitt 
+huvudfönster samt påbörja den vanliga interaktiva sessionen med en tom databas,
+då hur som helst inget data finns att bearbeta.
+<P>
+<P>
+
+Om inget <B>-e</B>- eller <B>-a</B>-alternativ givits, kommer Gramps att starta sitt 
+huvudfönster samt påbörja den vanliga interaktiva sessionen med den databas, som blev 
+resultet från all import. Denna databas återfinns i <B>import_db.grdb</B>
+under <B>~/.Gramps/import</B>-mappen.
+<P>
+<P>
+
+De fel som inträffar under import, export eller vid åtgärder kommer antingen att skrivas till 
+<I>stdout</I> (om dessa avbrott hanteras av Gramps) eller 
+till <I>stderr</I> (om dessa inte hanteras). Använd vanliga skalkommandon för att styra om 
+<I>stdout</I> och <I>stderr</I> till att spara medelanden och fel i filer. 
+<P>
+<A NAME="lbAG">&nbsp;</A>
+<H2>EXAMPEL</H2>
+
+<DL COMPACT>
+<DT>För att öppna ett befintligt familjeträd och importera en xml-fil till det, kan man skriva: <DD>
+<B>Gramps</B> <B>-O</B> <I>'Mitt familjeträd'</I> <B>-i</B> <I>~/db3.Gramps</I>
+<DT>Ovanstående ändrar det öppnade familjeträdet, för att göra samma sak, men importera bägge till ett tillfälligt familjeträd och påbörja en interaktiv session, kan man skriva:<DD>
+<B>Gramps</B> <B>-i</B> <I>'My Family Tree'</I> <B>-i</B> <I>~/db3.Gramps</I>
+<DT>För att importera fyra databaser (vars format kan avgöras av deras namn) och sedan felkontrollera den resulterande  databasen, kan man skriva: <DD>
+<B>Gramps</B> <B>-i</B> <I>FIL1.ged</I> <B>-i</B> <I>FIL2.tgz</I> <B>-i</B> <I>~/db3.Gramps</I> <B>-i</B> <I>FIL4.wft</I> <B>-a</B> <I>check</I> 
+<DT>För att uttryckligen specificera formaten i examplet ovan, lägg till filnamn med passande <B>-f</B>-alternativ: <DD>
+<B>Gramps</B> <B>-i</B> <I>FIL1.ged</I> <B>-f</B> <I>gedcom</I> <B>-i</B> <I>FIL2.tgz</I> <B>-f</B> <I>Gramps-pkg</I> <B>-i</B> <I>~/db3.Gramps</I> <B>-f</B> <I>Gramps-xml</I> <B>-i</B> <I>FIL4.wft</I> <B>-f</B> <I>wft</I> <B>-a</B> <I>check</I> 
+<DT>För att spara den databas, som är resultat av all import, ange <B>-e</B>-flagga (använd <B>-f</B> om filnamnet inte tillåter Gramps att gissa dess format):<DD>
+<B>Gramps</B> <B>-i</B> <I>FIL1.ged</I> <B>-i</B> <I>FIL2.tgz</I> <B>-e</B> <I>~/new-package</I> <B>-f</B> <I>Gramps-pkg</I> 
+<DT>För att importera tre databaser och påbörja en interaklive Gramps-session med importresultatet: <DD>
+<B>Gramps</B> <B>-i</B> <I>FIL1.ged</I> <B>-i</B> <I>FIL2.tgz</I> <B>-i</B> <I>~/db3.Gramps</I> 
+<DT>För att köra verifieringsverktyget från kommandoraden och mata ut resultatet till stdout: <DD>
+<B>Gramps</B> <B>-O</B> <I>file.grdb</I> <B>-a</B> <I>tool</I> <B>-p</B> <B>name</B>=<I>verify</I>
+<DT>Slutligen, för att påbörja en normal interaktiv session skriv bara: <DD>
+<B>Gramps</B> 
+<P>
+</DL>
+<A NAME="lbAH">&nbsp;</A>
+<H2>BEGREPP</H2>
+
+Stöder ett python-baserat system för tilläggsprogram, som möjliggör att import- och export-funktioner, 
+rapportgeneratorer, verktyg samt visningsfilter, kan komplettera Gramps utan ändringar i huvudprogrammet.
+<P>
+
+Förutom att skapa utskrift på skrivare direkt, kan rapportgeneratorer ha andra målsystem som <I>OpenOffice.org</I>, <I>AbiWord</I>, HTML eller LaTeX så att användaren kan tillåtas att ändra format för att passa behoven. 
+<P>
+<A NAME="lbAI">&nbsp;</A>
+<H2>KÄNDA FEL OCH BEGRÄNSNINGAR</H2>
+
+<P>
+<A NAME="lbAJ">&nbsp;</A>
+<H2>FILER</H2>
+
+<P>
+
+<I>${PREFIX}/bin/gramps</I> 
+<BR>
+
+<I>${PREFIX}/share/gramps</I>
+<BR>
+
+<I>${HOME}/.gramps</I> 
+<P>
+<A NAME="lbAK">&nbsp;</A>
+<H2>FÖRFATTARE</H2>
+
+Donald Allingham <I>&lt;<A HREF="mailto:don@gramps-project.org">don@gramps-project.org</A>&gt;</I>
+<BR>
+
+<I><A HREF="http://gramps.sourceforge.net">http://gramps.sourceforge.net</A></I>
+<P>
+
+Denna man-sida skrevs ursprungligen av:
+<BR>
+
+Brandon L. Griffith <I>&lt;<A HREF="mailto:brandon@debian.org">brandon@debian.org</A>&gt;</I>
+<BR>
+
+till att ingå i Debians GNU/Linux-system.
+<P>
+
+Denna man-sida underhålls f. n. av:
+<BR>
+
+Alex Roitman <I>&lt;<A HREF="mailto:shura@gramps-project.org">shura@gramps-project.org</A>&gt;</I>
+<P>
+
+Denna man-sida har översatts till svenska av:
+<BR>
+
+Peter Landgren <I>&lt;<A HREF="mailto:peter.talken@telia.com">peter.talken@telia.com</A>&gt;</I>
+<BR>
+
+<P>
+<A NAME="lbAL">&nbsp;</A>
+<H2>DOCUMENTATION</H2>
+
+Användardokumentationen är tillgänglig genom GNOME's standard hjälp-bläddrare 
+i form av Gramps-handboken. Handboken finns även i XML-format
+som <B>gramps-manual.xml</B> under <I>doc/gramps-manual/$LANG</I> i den officiella
+källdistributionen. Dock ej på svenska. 
+<P>
+
+Utvecklingsdokumentationen kan hittas på
+<I><A HREF="http://developers.gramps-project.org">http://developers.gramps-project.org</A></I>. 
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAMN</A><DD>
+<DT><A HREF="#lbAC">SAMMANFATTNING</A><DD>
+<DT><A HREF="#lbAD">BESKRIVNING</A><DD>
+<DT><A HREF="#lbAE">ALTERNATIV</A><DD>
+<DT><A HREF="#lbAF">Operation</A><DD>
+<DT><A HREF="#lbAG">EXAMPEL</A><DD>
+<DT><A HREF="#lbAH">BEGREPP</A><DD>
+<DT><A HREF="#lbAI">KÄNDA FEL OCH BEGRÄNSNINGAR</A><DD>
+<DT><A HREF="#lbAJ">FILER</A><DD>
+<DT><A HREF="#lbAK">FÖRFATTARE</A><DD>
+<DT><A HREF="#lbAL">DOCUMENTATION</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 12:21:18 GMT, March 10, 2012
+</BODY>
+</HTML>

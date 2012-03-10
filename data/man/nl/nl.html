@@ -1,0 +1,410 @@
+Content-type: text/html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML><HEAD><TITLE>Man page of gramps</TITLE>
+</HEAD><BODY>
+<H1>gramps</H1>
+Section: 3.4.0 (1)<BR>Updated: 3.4.0<BR><A HREF="#index">Index</A>
+<A HREF="/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAAM</H2>
+
+gramps - Genealogisch Onderzoek en Analyse Beheersysteem.
+<P>
+<A NAME="lbAC">&nbsp;</A>
+<H2>SAMENVATTING</H2>
+
+<B>gramps</B>
+
+[<B>-?|--help</B>]
+
+[<B>--usage</B>]
+
+[<B>--version</B>]
+
+[<B>-O|--open=</B>
+
+<I>GEGEVENSBESTAND</I>
+
+[<B>-f|--format=</B>
+
+<I>FORMAAT</I>]]
+
+[<B>-i|--import=</B>
+
+<I>BESTAND</I>
+
+[<B>-f|--format=</B>
+
+<I>FORMAAT</I>]]
+
+[<B>-i|--import=</B>
+
+<I>...</I>]
+
+[<B>-e|--export=</B>
+
+<I>BESTAND</I>
+
+[<B>-f|--format=</B>
+
+<I>FORMAAT</I>]]
+
+[<B>-a|--action=</B>
+
+<I>ACTIE</I>]
+
+[<B>-p|--options=</B>
+
+<I>OPTIESTRING</I>]]
+
+[
+
+<I>BESTAND</I>
+
+]
+
+
+
+[<B>--version</B>]
+
+<P>
+<A NAME="lbAD">&nbsp;</A>
+<H2>BESCHRIJVING</H2>
+
+<P>
+
+<I>Gramps</I> is een Free/OpenSource genealogisch programma dat in Python, 
+geschreven is en gebruik maakt van de GTK+/GNOME interface.
+Gramps zal voor iedereen die al gewerkt heeft met andere genealogische
+programma's zoals <I>Family Tree Maker (TM)</I>,  <I>Personal Ancestral
+Files (TM)</I> of <I>GNU Geneweb</I>.
+Importeren vanuit het gekende GEDCOM-formaat wordt ondersteund. Dit formaat 
+wordt wereldwijd gebruikt door bijna alle genealogische software.
+<P>
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPTIES</H2>
+
+<DL COMPACT>
+<DT><B>gramps</B><I>BESTAND</I>
+
+<DD>
+Wanneer <I>BESTAND</I> opgegeven wordt (zonder vlaggen) als een familiestamboom
+of als een familistamboommap, dan wordt dit bestand geopend en een interactieve 
+sessie wordt gestart. Indien BESTAND een bestandsformaat dat door Gramps
+herkent wordt, zal een lege familiestamboom aangemaakt worden. De bestandsnaam
+wordt gebaseerd op de <I>BESTAND</I> naam en de gegevens worden in dit bestand
+geïmporteerd. Met resterende opties wordt geen rekening gehouden. Deze wijze
+van opstarten is zeer bruikbaar om Gramps te gebruiken voor genealogische
+gegevens via een webbrowser. Deze opstartmethode kan gelijk welk gegevensformaat
+eigen aan Gramps behandelen, zie onder.
+<BR>
+
+<P>
+<DT><B>-f,--format=</B><I> FORMAAT</I>
+
+<DD>
+Expliciet een formaat opgeven voor <I>BESTAND</I> door de optie
+
+<B>-i</B>, of 
+<B>-e</B> mee te geven. Indien de <B>-f</B> optie niet opgegeven wordt voor
+<I>BESTAND</I>, wordt het formaat gebaseerd op de bestandsextensie of het 
+MIME-type. 
+<BR>
+
+<P>
+Formaten 
+beschikbaar voor uitvoer zijn <B>gramps-xml</B> (guessed if <I>FILE</I> ends with
+<B>.gramps</B>), <B>gedcom</B> (guessed if <I>FILE</I> ends with <B>.ged</B>), or
+any file export available through the Gramps plugin system.
+<BR>
+
+<P>
+Formats 
+available for import are <B>grdb</B>, <B>gramps-xml</B>, <B>gedcom</B>,  
+<B>gramps-pkg</B> (guessed if <I>FILE</I> ends with <B>.gpkg</B>), and
+<B>geneweb</B> (guessed if <I>FILE</I> ends with <B>.gw</B>). 
+<BR>
+
+<P>
+Formats available for export are
+
+<B>gramps-xml</B>, <B>gedcom</B>,
+<B>gramps-pkg</B>, <B>wft</B> (guessed if <I>FILE</I> ends with <B>.wft</B>),
+<B>geneweb</B>, and <B>iso</B> (never guessed, always specify with
+<B>-f</B> option).
+<P>
+<DT><B>-O,--open=</B><I> DATABASE</I>
+
+<DD>
+Open <I>DATABASE</I> which must be an existing database directory or existing family tree name.
+If no action, import or export options are given on the command line then an interactive session is started using that database.
+<P>
+<DT><B>-i,--import=</B><I> FILE</I>
+
+<DD>
+Import data from <I>FILE</I>. If you haven't specified a database then a temporary database is used; this is deleted when you exit gramps.
+<BR>
+
+<P>
+When more than one input file is given, each has to be preceded by <B>-i</B> 
+flag. The files are imported in the specified order, 
+i.e. <B>-i</B> <I>FILE1</I> <B>-i</B> <I>FILE2</I>  
+and <B>-i</B> <I>FILE2</I> <B>-i</B> <I>FILE1</I> might produce different 
+gramps IDs in the resulting database. 
+<P>
+<DT><B>-e,--export=</B><I> FILE</I>
+
+<DD>
+Export data into <I>FILE</I>. For <B>iso</B> format, the <I>FILE</I> is actually
+the name of directory the gramps database will be written into. 
+For
+
+<B>gramps-xml</B>, <B>gedcom</B>, <B>wft</B>, <B>gramps-pkg</B>, 
+and <B>geneweb</B>, the <I>FILE</I> is the name of the resulting file. 
+<BR>
+
+<P>
+When more than one output file is given, each has to be preceded 
+by <B>-e</B> flag. The files are written one by one, in the specified order.
+<P>
+<DT><B>-a,--action=</B><I> ACTION</I>
+
+<DD>
+Perform <I>ACTION</I> on the imported data. This is done after all imports
+are successfully completed. Currently available actions are <B>summary</B> 
+(same as Reports-&gt;View-&gt;Summary), <B>check</B> (same as Tools-&gt;Database 
+Processing-&gt;Check and Repair), and <B>report</B> (generates report, needs
+the <I>OPTIONSTRING</I> supplied by the <B>-p</B> flag). 
+<BR>
+
+<P>
+The report option string should satisfy the following conditions:
+<BR>
+
+It must not contain any spaces. 
+If some arguments need to include spaces, the string should
+be enclosed with quotation marks.
+Option string must list pairs of option names and values.
+Withing a pair, option name and value must be separated by the equality sign.
+Different pairs must be separated by commas.  
+<BR>
+
+<P>
+Most of the report options are specific for every report. However, there some
+common options.
+<P>
+<B>name=reportname</B>
+
+<BR>
+
+This mandatory option determines which report
+will be generated. If the supplied report_name does not correspond to any
+available report, the error message will be printed followed by the list of
+available reports.
+<P>
+<B>show=all</B>
+
+<BR>
+
+This will produce the list of names for all options
+available for a given report.
+<P>
+<B>show=optionname</B>
+
+<BR>
+
+This will print the description of
+the functionality supplied by <B>optionname</B>, as well as what are the
+acceptable types and values for this option.
+<P>
+<BR>
+
+Use the above options to find out
+everything about a given report.  
+<P>
+</DL>
+<P>
+
+When more than one output action is given, each has to be preceded 
+by <B>-a</B> flag. The actions are performed one by one, in the specified order.
+<P>
+<DL COMPACT>
+<DT><B>-d,--debug=</B><I> LOGGER_NAME</I>
+
+<DD>
+Enables debug logs for development and testing. Look at the source code for details
+<DT><B>--version</B>
+
+<DD>
+Prints the version number of gramps and then exits
+
+
+<P>
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>werking</H2>
+
+<BR>
+
+Indien het eerste argument in de opdrachtregel niet start met dash (dus geen
+vlag) dan zal Gramps trachten om het bestand te openen met een naam die in het
+eerste argument werd opgegeven. Vervolgens wordt een interactieve sessie
+gestart en de overige argumenten van de opdrachtregel worden genegeerd.
+<P>
+<P>
+
+If the <B>-O</B> flag is given, then gramps will try opening
+the supplied database and then work with that data, as instructed by the
+further command line parameters.
+<P>
+<P>
+
+With or without the <B>-O</B> flag, there could be multiple imports,
+exports, and actions specified further on the command line by using <B>-i</B>,
+<B>-e</B>, and <B>-a</B> flags.  
+<P>
+<P>
+
+The order of <B>-i</B>, <B>-e</B>, or <B>-a</B> options does not matter. The
+actual order always is: all imports (if any) -&gt; all actions (if any)
+-&gt; all exports (if any). But opening must always be first!
+<P>
+<P>
+
+If no <B>-O</B> or <B>-i</B> option is given, gramps will launch its main 
+window and start the usual interactive session with the empty database,
+since there is no data to process, anyway.
+<P>
+<P>
+
+If no <B>-o</B> or <B>-a</B> options are given, gramps will launch its main 
+window and start the usual interactive session with the database resulted 
+from all imports. This database resides in the <B>import_db.grdb</B>
+under <B>~/.gramps/import</B> directory.
+<P>
+<P>
+
+The error encountered during import, export, or action, will be either 
+dumped to <I>stdout</I> (if these are exceptions handled by gramps) or 
+to <I>stderr</I> (if these are not handled). Use usual shell redirections 
+of <I>stdout</I> and <I>stderr</I> to save messages and errors in files. 
+<P>
+<A NAME="lbAG">&nbsp;</A>
+<H2>EXAMPLES</H2>
+
+<DL COMPACT>
+<DT>To open an existing family tree and import an xml file  into it, one may type: <DD>
+<B>gramps</B> <B>-O</B> <I>'My Family Tree'</I> <B>-i</B> <I>~/db3.gramps</I>
+<DT>The above changes the opened family tree, to do the same, but import both in a temporary family tree and start an interactive session, one may type: <DD>
+<B>gramps</B> <B>-i</B> <I>'My Family Tree'</I> <B>-i</B> <I>~/db3.gramps</I>
+<DT>To import four databases (whose formats can be determined from their names) and then check the resulting database for errors, one may type: <DD>
+<B>gramps</B> <B>-i</B> <I>file1.ged</I> <B>-i</B> <I>file2.tgz</I> <B>-i</B> <I>~/db3.gramps</I> <B>-i</B> <I>file4.wft</I> <B>-a</B> <I>check</I> 
+<DT>To explicitly specify the formats in the above example, append filenames with appropriate <B>-f</B> options: <DD>
+<B>gramps</B> <B>-i</B> <I>file1.ged</I> <B>-f</B> <I>gedcom</I> <B>-i</B> <I>file2.tgz</I> <B>-f</B> <I>gramps-pkg</I> <B>-i</B> <I>~/db3.gramps</I> <B>-f</B> <I>gramps-xml</I> <B>-i</B> <I>file4.wft</I> <B>-f</B> <I>wft</I>  <B>-a</B> <I>check</I> 
+<DT>To record the database resulting from all imports, supply <B>-e</B> flag (use <B>-f</B> if the filename does not allow gramps to guess the format):<DD>
+<B>gramps</B> <B>-i</B> <I>file1.ged</I> <B>-i</B> <I>file2.tgz</I> <B>-e</B> <I>~/new-package</I> <B>-f</B> <I>gramps-pkg</I> 
+<DT>To import three databases and start interactive gramps session with the result: <DD>
+<B>gramps</B> <B>-i</B> <I>file1.ged</I> <B>-i</B> <I>file2.tgz</I> <B>-i</B> <I>~/db3.gramps</I> 
+<DT>Finally, to start normal interactive session type: <DD>
+<B>gramps</B> 
+<P>
+</DL>
+<A NAME="lbAH">&nbsp;</A>
+<H2>CONCEPTEN</H2>
+
+Ondersteuning van een op python-gebaseerd plugin systeem. Dit laat toe om 
+verslagen, hulpgereedschappen en vensterfilters toe te voegen zonder dat het 
+hoofdprogramma dient aangepast.
+<P>
+
+De klassieke uitdrukken zijn mogelijk, maar daar bovenover kunnen de meeste
+verslagen ook gebruik maken van <I>OpenOffice.org</I>, <I>AbiWord</I>, HTML, 
+of LaTeX. Zo kunnen gebruikers het formaat wijzigen naar eigen wens. 
+<P>
+<A NAME="lbAI">&nbsp;</A>
+<H2>GEKENDE BUGS EN BEPERKINGEN</H2>
+
+<P>
+<A NAME="lbAJ">&nbsp;</A>
+<H2>BESTANDEN</H2>
+
+<P>
+
+<I>${PREFIX}/bin/gramps</I> 
+<BR>
+
+<I>${PREFIX}/share/gramps</I>
+<BR>
+
+<I>${HOME}/.gramps</I> 
+<P>
+<A NAME="lbAK">&nbsp;</A>
+<H2>AUTEURS</H2>
+
+Donald Allingham <I>&lt;<A HREF="mailto:don@gramps-project.org">don@gramps-project.org</A>&gt;</I>
+<BR>
+
+<I><A HREF="http://gramps.sourceforge.net">http://gramps.sourceforge.net</A></I>
+<P>
+
+Deze man pagina werd oorspronkelijk geschreven door:
+<BR>
+
+Brandon L. Griffith <I>&lt;<A HREF="mailto:brandon@debian.org">brandon@debian.org</A>&gt;</I>
+<BR>
+
+voor het Debian GNU/Linux systeem.
+<P>
+
+Deze man pagina wordt momenteel onderhouden door:
+<BR>
+
+Alex Roitman <I>&lt;<A HREF="mailto:shura@gramps-project.org">shura@gramps-project.org</A>&gt;</I>
+<BR>
+
+<P>
+
+Deze nederlandstalige man pagina wordt momenteel onderhouden door:
+<BR>
+
+Erik De Richter <I>&lt;<A HREF="mailto:frederik.de.richter@pandora.be">frederik.de.richter@pandora.be</A>&gt;</I>
+<BR>
+
+<P>
+<A NAME="lbAL">&nbsp;</A>
+<H2>DOCUMENTATIE</H2>
+
+De gebruikersdocumentatie is beschikbaar via de normale GNOME Help browser 
+in de vorm van een Gramps-handleiding. De handleiding is ook beschikbaar in 
+XML-formaat: <B>gramps-manual.xml</B> onder <I>doc/gramps-manual/$LANG</I> in
+de officiële brondistributie.
+<P>
+
+De ontwikkelingsdocumentatie kan gevonden worden op de
+<I><A HREF="http://developers.gramps-project.org">http://developers.gramps-project.org</A></I> webstek. 
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAAM</A><DD>
+<DT><A HREF="#lbAC">SAMENVATTING</A><DD>
+<DT><A HREF="#lbAD">BESCHRIJVING</A><DD>
+<DT><A HREF="#lbAE">OPTIES</A><DD>
+<DT><A HREF="#lbAF">werking</A><DD>
+<DT><A HREF="#lbAG">EXAMPLES</A><DD>
+<DT><A HREF="#lbAH">CONCEPTEN</A><DD>
+<DT><A HREF="#lbAI">GEKENDE BUGS EN BEPERKINGEN</A><DD>
+<DT><A HREF="#lbAJ">BESTANDEN</A><DD>
+<DT><A HREF="#lbAK">AUTEURS</A><DD>
+<DT><A HREF="#lbAL">DOCUMENTATIE</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 12:20:51 GMT, March 10, 2012
+</BODY>
+</HTML>
