@@ -11,15 +11,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-04 13:22+0100\n"
-"PO-Revision-Date: 2012-03-04 21:28+0100\n"
+"POT-Creation-Date: 2012-03-11 00:08+0100\n"
+"PO-Revision-Date: 2012-03-11 00:06+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.4\n"
+"X-Generator: Lokalize 1.2\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../src/Assistant.py:338 ../src/Filters/Rules/Place/_HasPlace.py:48
@@ -566,7 +566,7 @@ msgid ""
 "environment variables to prevent this error"
 msgstr ""
 "WARNUNG: Setzen der Sprachumgebung fehlgeschlagen. Bitte korrigiere die LC* "
-"und/oder Sprach Umgebungsvariablen um diesen Fehler zu vermeiden."
+"und/oder Sprach Umgebungsvariablen um diesen Fehler zu vermeiden"
 
 #: ../src/gramps.py:78
 msgid "ERROR: Setting the 'C' locale didn't work either"
@@ -2009,8 +2009,8 @@ msgstr "Unbekannter Berichtname."
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr ""
-"Berichtname nicht angegeben. Bitte verwende einen von %(donottranslate)"
-"=reportname"
+"Berichtname nicht angegeben. Bitte verwende einen von "
+"%(donottranslate)s=reportname"
 
 #: ../src/cli/arghandler.py:609 ../src/cli/arghandler.py:650
 #, python-format
@@ -2029,8 +2029,8 @@ msgstr "Unbekannter Werkzeugname."
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
-"Werkzeugname nicht angegeben. Bitte verwende einen von %(donottranslate)"
-"=toolname."
+"Werkzeugname nicht angegeben. Bitte verwende einen von "
+"%(donottranslate)s=toolname."
 
 #: ../src/cli/arghandler.py:662
 #, python-format
@@ -2449,7 +2449,7 @@ msgid ""
 msgstr ""
 "Gramps speichert seine Daten in einer Berkeley Datenbank. Der Stammbaum, den "
 "du versuchst zu öffnen, wurde mit Version  %(env_version)s der Berkeley DB "
-"erstellt. Jedoch verwendet diese Gramps Version die Version  %(env_version)s "
+"erstellt. Jedoch verwendet diese Gramps Version die Version  %(bdb_version)s "
 "der Berkeley DB. Du versuchst Daten, die in einem neueren Format erstellt "
 "wurden in einem älteren Programm zu laden; das muss fehlschlagen. Das "
 "richtige Vorgehen in solch einem Fall ist die Verwendung des XML Ex- und "
@@ -2507,7 +2507,7 @@ msgstr "_Wiederherstellen %s"
 
 #: ../src/gen/display/name.py:325
 msgid "Default format (defined by Gramps preferences)"
-msgstr "Standardformat (von den Gramps Präferenzen definiert)"
+msgstr "Standardformat (von den Gramps Einstellungen definiert)"
 
 #: ../src/gen/display/name.py:326
 msgid "Surname, Given Suffix"
@@ -4414,7 +4414,7 @@ msgstr " Namenseditor"
 #: ../src/gui/configure.py:130 ../src/gui/configure.py:148
 #: ../src/gui/configure.py:1204 ../src/gui/views/pageview.py:618
 msgid "Preferences"
-msgstr "Präferenzen"
+msgstr "Einstellungen"
 
 #: ../src/gui/configure.py:431
 #: ../src/gui/editors/displaytabs/addrembedlist.py:74
@@ -5997,7 +5997,7 @@ msgstr "_Bearbeiten"
 
 #: ../src/gui/viewmanager.py:750
 msgid "_Preferences..."
-msgstr "_Präferenzen..."
+msgstr "_Einstellungen..."
 
 #: ../src/gui/viewmanager.py:752
 msgid "_Help"
@@ -6204,9 +6204,8 @@ msgstr "Gramps XML Sicherung"
 msgid "Path:"
 msgstr "Pfad:"
 
-#: ../src/gui/viewmanager.py:1508
+#: ../src/gui/viewmanager.py:1508 ../src/plugins/tool/phpgedview.glade.h:3
 #: ../src/plugins/import/importgedcom.glade.h:11
-#: ../src/plugins/tool/phpgedview.glade.h:3
 msgid "File:"
 msgstr "Datei:"
 
@@ -6336,9 +6335,9 @@ msgid ""
 "Directory specified in preferences: Base path for relative media paths: %s "
 "does not exist. Change preferences or do not use relative path when importing"
 msgstr ""
-"Verzeichnis aus den Präferenzen: Basisverzeichnis für relative Medienpfade: "
-"%s existiert nicht. Ändere die Präferenzen oder verwende keine relativen "
-"Pfade beim Import"
+"Verzeichnis aus den Einstellungen: Basisverzeichnis für relative "
+"Medienpfade: %s existiert nicht. Ändere die Präferenzen oder verwende keine "
+"relativen Pfade beim Import"
 
 #: ../src/gui/editors/addmedia.py:222
 #, python-format
@@ -6708,7 +6707,6 @@ msgid "Death Place"
 msgstr "Sterbeort"
 
 #: ../src/gui/editors/editfamily.py:132
-#: ../src/plugins/export/exportcsv.glade.h:2
 msgid "Chil_dren"
 msgstr "_Kinder"
 
@@ -10648,7 +10646,7 @@ msgstr "Ebene der Partner"
 
 #: ../src/plugins/drawreport/DescendTree.py:1477
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
-msgstr "0=keine Partner, 1=mit Partnern, 2=mit Partnern der Partner, usw."
+msgstr "0=keine Partner, 1=mit Partnern, 2=mit Partnern der Partner, usw"
 
 #: ../src/plugins/drawreport/DescendTree.py:1482
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
@@ -12188,6 +12186,8 @@ msgid ""
 "Warning:  Changing this entry will update the Media object title field in "
 "Gramps not Exiv2 metadata."
 msgstr ""
+"Warnung: Änderungen an diesem Eintrag aktualisieren das "
+"Medienobjekttitelfeld in Gramps nicht die Exiv2 Metadaten."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:173
 msgid "Provide a short descripion for this image."
@@ -12211,6 +12211,8 @@ msgid ""
 "photograph.\n"
 "Example: 1830-01-1 09:30:59"
 msgstr ""
+"Das original Datm/Zeit an dem das Bild ursprünglich erstellt wurde.\n"
+"Beispiel: 1830-01-1 09:30:59"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:183
 msgid ""
@@ -12241,6 +12243,8 @@ msgid ""
 "This is the measurement of Above or Below Sea Level.  It is measured in "
 "meters.Example: 200.558, -200.558"
 msgstr ""
+"Dies ist der Messwert über oder unter dem Meeresspiegel. Es wird in Metern "
+"gemessen. Beispiel: 200.558, -200.558"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:201
 msgid ""
@@ -12371,8 +12375,8 @@ msgid ""
 "There has been an error, Please check your source and destination file "
 "paths..."
 msgstr ""
-"Es ist ein Fehler aufgetreten, Bitte überprüfe deine Quell und Zieldateipfade."
-".."
+"Es ist ein Fehler aufgetreten, Bitte überprüfe deine Quell und "
+"Zieldateipfade..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:847
 msgid ""
@@ -14364,7 +14368,7 @@ msgid ""
 "'Replace substring in the path' to set correct paths in your media objects."
 msgstr ""
 "Der Medienbasispfad dieses Stammbaum wurde auf %s gesetzt. Überlege einen "
-"einfacheren Pfad zu wählen. Kannst dies in den Präferenzen ändern, durch "
+"einfacheren Pfad zu wählen. Kannst dies in den Einstellungen ändern, durch "
 "verschieben deiner Medienobjekte an die neue Position und das "
 "Medienverwaltungwerkzeug mit Ersetze Zeichenfolge im Pfad, um die korrekten "
 "Pfade in ihren Medienobjekten zu setzen, erledigen."
@@ -14386,7 +14390,7 @@ msgid ""
 msgstr ""
 "Der Stammbaum in den du importierst hat bereits einen Medienbasispfad: "
 "%(orig_path)s. Die importierten Medienobjekte sind aber relativ zu dem Pfad "
-"%(path)s. Du kannst den Medienpfad in den Präferenzen ändern oder die "
+"%(path)s. Du kannst den Medienpfad in den Einstellungen ändern oder die "
 "importierten Mediendateien in den bestehende Medienbasispfad ändern. Du "
 "kannst das durch verschieben deiner Medienobjekte an die neue Position und "
 "das Medienverwaltungwerkzeug mit Ersetze Zeichenfolge im Pfad, um die "
@@ -14530,7 +14534,7 @@ msgstr ""
 "\n"
 "Medienobjekte mit relativen Pfaden wurden\n"
 "importiert. Diese Pfade sind relativ zum\n"
-"Medienverzeichnis das du in den Präferenzen festlegen kannst\n"
+"Medienverzeichnis das du in den Einstellungen festlegen kannst\n"
 "oder wenn nicht angegeben relativ zum Benutzerverzeichnis.\n"
 
 #: ../src/plugins/import/ImportXml.py:302
@@ -14574,7 +14578,7 @@ msgstr ""
 "Die geöffnete Datei hat den Medienpfad %s, er steht im Widerspruch zum "
 "Medienpfad des Stammbaum in den du importieren willst. Der original Pfad "
 "wurde behalten. Kopiere die Dateien in das korrekte Verzeichnis oder ändere "
-"den Medienpfad der Datenbank in den Präferenzen."
+"den Medienpfad der Datenbank in den Einstellungen."
 
 #: ../src/plugins/import/ImportXml.py:929
 msgid ""
@@ -14767,9 +14771,8 @@ msgstr "Unbekannter Tag"
 
 #: ../src/plugins/lib/libgedcom.py:3004 ../src/plugins/lib/libgedcom.py:3018
 #: ../src/plugins/lib/libgedcom.py:3022 ../src/plugins/lib/libgedcom.py:3043
-#, fuzzy
 msgid "Top Level"
-msgstr "Oben Links"
+msgstr "Oberste Ebene"
 
 #: ../src/plugins/lib/libgedcom.py:3112
 #, python-format
@@ -14779,20 +14782,19 @@ msgstr "INDI (Individium) Gramps ID %s"
 #: ../src/plugins/lib/libgedcom.py:3261 ../src/plugins/lib/libgedcom.py:4472
 #: ../src/plugins/lib/libgedcom.py:4675 ../src/plugins/lib/libgedcom.py:4806
 #: ../src/plugins/lib/libgedcom.py:5431 ../src/plugins/lib/libgedcom.py:5568
-#, fuzzy
 msgid "Filename omitted"
-msgstr "Dateiname"
+msgstr "Dateiname ausgelassen"
 
 #: ../src/plugins/lib/libgedcom.py:3263 ../src/plugins/lib/libgedcom.py:4474
 #: ../src/plugins/lib/libgedcom.py:4677 ../src/plugins/lib/libgedcom.py:4808
 #: ../src/plugins/lib/libgedcom.py:5433 ../src/plugins/lib/libgedcom.py:5570
 msgid "Form omitted"
-msgstr ""
+msgstr "Formular ausgelassen"
 
 #: ../src/plugins/lib/libgedcom.py:4244
 #, python-format
 msgid "FAM (family) Gramps ID %s"
-msgstr "FAM (Familie) Gramps ID: %s "
+msgstr "FAM (Familie) Gramps ID: %s"
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
@@ -14949,7 +14951,7 @@ msgstr "Leere Notiz ignoriert"
 #: ../src/plugins/lib/libgedcom.py:6605
 #, python-format
 msgid "NOTE Gramps ID %s"
-msgstr "Notiz Gramps ID: %s "
+msgstr "Notiz Gramps ID: %s"
 
 #: ../src/plugins/lib/libgedcom.py:6655
 msgid "Submission: Submitter"
@@ -15760,7 +15762,7 @@ msgstr "Starb im %(month_year)s."
 #: ../src/plugins/lib/libnarrate.py:378
 #, python-format
 msgid "Died %(month_year)s (%(age)s)."
-msgstr "Starb im %(month_year)s (mit %(age)ds)."
+msgstr "Starb im %(month_year)s (mit %(age)s)."
 
 #: ../src/plugins/lib/libnarrate.py:384
 #, python-format
@@ -19436,7 +19438,6 @@ msgid "Reference"
 msgstr "Referenz"
 
 #: ../src/plugins/quickview/FilterByName.py:341
-#: ../src/plugins/export/exportgeneweb.glade.h:7
 msgid "media"
 msgstr "Medien"
 
@@ -22103,8 +22104,8 @@ msgid ""
 "that is not set, it prepends user's directory."
 msgstr ""
 "Dieses Werkzeug erlaubt relative Medienpfade in absolute zu konvertieren. Es "
-"macht dies durch voranstellen des Grundpfades aus den Präferenzen oder wenn "
-"dieser nicht gesetzt wurde dein Heimatverzeichnis."
+"macht dies durch voranstellen des Grundpfades aus den Einstellungen oder "
+"wenn dieser nicht gesetzt wurde dein Heimatverzeichnis."
 
 #: ../src/plugins/tool/MediaManager.py:514
 msgid "Convert paths from absolute to r_elative"
@@ -22118,7 +22119,7 @@ msgid ""
 "to tie the file location to a base path that can change to your needs."
 msgstr ""
 "Dieses Werkzeug erlaubt absolute Medienpfade in relative zu konvertieren. "
-"Der relative Pfad ist relativ zum Grundpfad aus den Präferenzen oder wenn "
+"Der relative Pfad ist relativ zum Grundpfad aus den Einstellungen oder wenn "
 "dieser nicht gesetzt ist zu deinem Heimatverzeichnis. Ein relativer Pfad "
 "erlaubt dir, einen Dateiort an einen Grundpfad zu binden der deinen "
 "Bedürfnissen angepasst werden kann."
@@ -22157,7 +22158,14 @@ msgstr "Datum und Verlässlichkeit ignorieren"
 
 #: ../src/plugins/tool/MergeCitations.py:82
 msgid "manual|Merge citations..."
-msgstr "Fundstellen_zusammenfassen..."
+msgstr "Fundstellen zusammenfassen..."
+
+#: ../src/plugins/tool/MergeCitations.py:129
+msgid ""
+"Notes, media objects and data-items of matching citations will be combined."
+msgstr ""
+"Notizen, Medienobjekte und Datenelemente von passenden Fundstellen werden "
+"kombiniert."
 
 #: ../src/plugins/tool/MergeCitations.py:159
 msgid "Merge citations tool"
@@ -23256,7 +23264,7 @@ msgstr "HTML Ansicht"
 
 #: ../src/plugins/view/htmlrenderer.gpr.py:51
 msgid "A view showing html pages embedded in Gramps"
-msgstr "Eine Ansicht die HTML Seiten zeigt und in Gramps eingebunden ist."
+msgstr "Eine Ansicht die HTML Seiten zeigt und in Gramps eingebunden ist"
 
 #: ../src/plugins/view/htmlrenderer.gpr.py:58
 msgid "Web"
@@ -28059,11 +28067,6 @@ msgstr "<b>Markierung</b>"
 #: ../src/glade/styleeditor.glade.h:8 ../src/glade/rule.glade.h:3
 #: ../src/plugins/tool/finddupes.glade.h:2
 #: ../src/plugins/tool/mergecitations.glade.h:2
-#: ../src/plugins/export/exportcsv.glade.h:1
-#: ../src/plugins/export/exportftree.glade.h:1
-#: ../src/plugins/export/exportgeneweb.glade.h:1
-#: ../src/plugins/export/exportvcalendar.glade.h:1
-#: ../src/plugins/export/exportvcard.glade.h:1
 msgid "<b>Options</b>"
 msgstr "<b>Optionen</b>"
 
@@ -28703,7 +28706,7 @@ msgid ""
 msgstr ""
 "Pfad der Medienobjekte auf deinem Rechner.\n"
 "Gramps speichert die Medien nicht intern, es wird nur der Pfad gespeichert! "
-"Setze den 'Relativen Pfad' in den Präferenzen um zu vermeiden, das das "
+"Setze den 'Relativen Pfad' in den Einstellungen um zu vermeiden, das das "
 "Basisverzeichnis in dem alle deine Medien gespeichert sind neu eingeben zu "
 "müssen. Das 'Medienmverwaltung' Werkzeug kann dabei helfen, die Pfade für "
 "eine Sammlung von Medienobjekten zu verwalten. "
@@ -29010,7 +29013,7 @@ msgid ""
 "Here you can make sure this person is displayed according to a custom name "
 "format (extra formats can be set in the Preferences)."
 msgstr ""
-"Personen werden basierend auf dem Namensformat aus den Präferenzen (dem "
+"Personen werden basierend auf dem Namensformat aus den Einstellungen (dem "
 "Standard) angezeigt.\n"
 "Hier kannst du sicherstellen das diese Person nach einem "
 "Benutzernamensformat (zusätzliche Formate können in den Präferenzen "
@@ -29023,7 +29026,7 @@ msgid ""
 "Here you can make sure this person is sorted according to a custom name "
 "format (extra formats can be set in the Preferences)."
 msgstr ""
-"Personen werden basierend auf dem Namensformat aus den Präferenzen (dem "
+"Personen werden basierend auf dem Namensformat aus den Einstellungen (dem "
 "Standard) sortiert.\n"
 "Hier kannst du sicherstellen das diese Person nach einem "
 "Benutzernamensformat (zusätzliche Formate können in den Präferenzen "
@@ -29518,7 +29521,7 @@ msgstr ""
 "Erweiterungen auswählen, sie werden aus dem Internet von der Gramps Webseite "
 "geladen und lokal auf deinem Rechner installiert. Wenn du den Dialog jetzt "
 "schließt, kannst du Erweiterungen später über das Menü Bearbeiten -> "
-"Präferenzen installieren."
+"Einstellungen installieren."
 
 #: ../src/glade/updateaddons.glade.h:3
 msgid "Install Selected _Addons"
@@ -29640,75 +29643,6 @@ msgstr ""
 #: ../src/plugins/tool/eventcmp.glade.h:3
 msgid "_Filter:"
 msgstr "_Filter:"
-
-#: ../src/plugins/import/importgedcom.glade.h:1
-msgid "<b>Status</b>"
-msgstr "<b>Status</b>"
-
-#: ../src/plugins/import/importgedcom.glade.h:2
-msgid "<b>Warning messages</b>"
-msgstr "<b>Warnmeldungen</b>"
-
-#: ../src/plugins/import/importgedcom.glade.h:3
-msgid "<span size=\"larger\" weight=\"bold\">GEDCOM Encoding</span>"
-msgstr "<span size=\"larger\" weight=\"bold\">GEDCOM-Zeichenkodierungen</span>"
-
-#: ../src/plugins/import/importgedcom.glade.h:4
-msgid "ANSEL"
-msgstr "ANSEL"
-
-#: ../src/plugins/import/importgedcom.glade.h:5
-msgid "ANSI (iso-8859-1)"
-msgstr "ANSI (iso-8859-1)"
-
-#: ../src/plugins/import/importgedcom.glade.h:6
-msgid "ASCII"
-msgstr "ASCII"
-
-#: ../src/plugins/import/importgedcom.glade.h:7
-msgid "Created by:"
-msgstr "Erstellt von:"
-
-#: ../src/plugins/import/importgedcom.glade.h:8
-msgid "Encoding:"
-msgstr "Zeichenkodierung:"
-
-#: ../src/plugins/import/importgedcom.glade.h:9
-msgid "Encoding: "
-msgstr "Zeichenkodierung: "
-
-#: ../src/plugins/import/importgedcom.glade.h:10
-msgid "Families:"
-msgstr "Familien:"
-
-#: ../src/plugins/import/importgedcom.glade.h:12
-msgid "Gramps - GEDCOM Encoding"
-msgstr "Gramps - GEDCOM Zeichenkodierung"
-
-#: ../src/plugins/import/importgedcom.glade.h:13
-msgid "People:"
-msgstr "Personen:"
-
-#: ../src/plugins/import/importgedcom.glade.h:14
-msgid ""
-"This GEDCOM file has identified itself as using ANSEL encoding. Sometimes, "
-"this is in error. If the imported data contains unusual characters, undo the "
-"import, and override the character set by selecting a different encoding "
-"below."
-msgstr ""
-"Diese GEDCOM-Datei sagt, dass sie in der ANSEL-Kodierung gespeichert ist. "
-"Manchmal stimmt dies jedoch nicht. Wenn die Daten nach dem Import "
-"merkwürdige Sonderzeichen enthalten, mache den Import rückgängig, und "
-"überschreibe die Kodierung durch die Auswahl einer anderen Kodierung weiter "
-"unten."
-
-#: ../src/plugins/import/importgedcom.glade.h:15
-msgid "UTF8"
-msgstr "UTF8"
-
-#: ../src/plugins/import/importgedcom.glade.h:16
-msgid "Version:"
-msgstr "Version:"
 
 #: ../src/plugins/tool/leak.glade.h:1
 msgid "<b>Uncollected Objects</b>"
@@ -29874,47 +29808,6 @@ msgstr "_alles markieren"
 msgid "_Unmark all"
 msgstr "_Markierung komplett aufheben"
 
-#: ../src/plugins/export/exportcsv.glade.h:3
-msgid "Export:"
-msgstr "Export:"
-
-#: ../src/plugins/export/exportcsv.glade.h:4
-#: ../src/plugins/export/exportftree.glade.h:2
-#: ../src/plugins/export/exportgeneweb.glade.h:3
-#: ../src/plugins/export/exportvcalendar.glade.h:2
-#: ../src/plugins/export/exportvcard.glade.h:2
-msgid "Filt_er:"
-msgstr "Filt_er:"
-
-#: ../src/plugins/export/exportcsv.glade.h:5
-msgid "I_ndividuals"
-msgstr "Perso_nen"
-
-#: ../src/plugins/export/exportcsv.glade.h:6
-msgid "Translate _Headers"
-msgstr "Überschriften ü_bersetzen"
-
-#: ../src/plugins/export/exportcsv.glade.h:7
-msgid "_Marriages"
-msgstr "_Hochzeiten"
-
-#: ../src/plugins/export/exportftree.glade.h:3
-#: ../src/plugins/export/exportgeneweb.glade.h:6
-msgid "_Restrict data on living people"
-msgstr "Daten von lebenden Pe_rsonen beschränken"
-
-#: ../src/plugins/export/exportgeneweb.glade.h:2
-msgid "Exclude _notes"
-msgstr "_Notizen ausschließen"
-
-#: ../src/plugins/export/exportgeneweb.glade.h:4
-msgid "Reference i_mages from path:  "
-msgstr "B_eziehe Bilder vom Pfad:  "
-
-#: ../src/plugins/export/exportgeneweb.glade.h:5
-msgid "Use _Living as first name"
-msgstr "_Lebt als Vorname benutzen"
-
 #: ../src/plugins/tool/verify.glade.h:2
 msgid "<b>Families</b>"
 msgstr "<b>Familien</b>"
@@ -29992,6 +29885,75 @@ msgstr "Fehlenden oder ungenaue Daten _schätzen"
 #: ../src/plugins/tool/verify.glade.h:23
 msgid "_Identify invalid dates"
 msgstr "Ungültige Daten erkennen"
+
+#: ../src/plugins/import/importgedcom.glade.h:1
+msgid "<b>Status</b>"
+msgstr "<b>Status</b>"
+
+#: ../src/plugins/import/importgedcom.glade.h:2
+msgid "<b>Warning messages</b>"
+msgstr "<b>Warnmeldungen</b>"
+
+#: ../src/plugins/import/importgedcom.glade.h:3
+msgid "<span size=\"larger\" weight=\"bold\">GEDCOM Encoding</span>"
+msgstr "<span size=\"larger\" weight=\"bold\">GEDCOM-Zeichenkodierungen</span>"
+
+#: ../src/plugins/import/importgedcom.glade.h:4
+msgid "ANSEL"
+msgstr "ANSEL"
+
+#: ../src/plugins/import/importgedcom.glade.h:5
+msgid "ANSI (iso-8859-1)"
+msgstr "ANSI (iso-8859-1)"
+
+#: ../src/plugins/import/importgedcom.glade.h:6
+msgid "ASCII"
+msgstr "ASCII"
+
+#: ../src/plugins/import/importgedcom.glade.h:7
+msgid "Created by:"
+msgstr "Erstellt von:"
+
+#: ../src/plugins/import/importgedcom.glade.h:8
+msgid "Encoding:"
+msgstr "Zeichenkodierung:"
+
+#: ../src/plugins/import/importgedcom.glade.h:9
+msgid "Encoding: "
+msgstr "Zeichenkodierung: "
+
+#: ../src/plugins/import/importgedcom.glade.h:10
+msgid "Families:"
+msgstr "Familien:"
+
+#: ../src/plugins/import/importgedcom.glade.h:12
+msgid "Gramps - GEDCOM Encoding"
+msgstr "Gramps - GEDCOM Zeichenkodierung"
+
+#: ../src/plugins/import/importgedcom.glade.h:13
+msgid "People:"
+msgstr "Personen:"
+
+#: ../src/plugins/import/importgedcom.glade.h:14
+msgid ""
+"This GEDCOM file has identified itself as using ANSEL encoding. Sometimes, "
+"this is in error. If the imported data contains unusual characters, undo the "
+"import, and override the character set by selecting a different encoding "
+"below."
+msgstr ""
+"Diese GEDCOM-Datei sagt, dass sie in der ANSEL-Kodierung gespeichert ist. "
+"Manchmal stimmt dies jedoch nicht. Wenn die Daten nach dem Import "
+"merkwürdige Sonderzeichen enthalten, mache den Import rückgängig, und "
+"überschreibe die Kodierung durch die Auswahl einer anderen Kodierung weiter "
+"unten."
+
+#: ../src/plugins/import/importgedcom.glade.h:15
+msgid "UTF8"
+msgstr "UTF8"
+
+#: ../src/plugins/import/importgedcom.glade.h:16
+msgid "Version:"
+msgstr "Version:"
 
 #: ../data/gramps.desktop.in.h:1
 msgid "Gramps Genealogy System"
@@ -30344,7 +30306,7 @@ msgstr ""
 "Hintergrund gezeigt. Du kannst das Datum durch Verwendung des "
 "Datumauswahldialogs korrigieren welcher durch das Klicken auf die "
 "Datumsauswahlschaltfläche geöffnet werden kann. Das Datumsformat wird "
-"eingestellt unter &quot;Bearbeiten &gt; Präferenzen &gt; Anzeige&quot;."
+"eingestellt unter &quot;Bearbeiten &gt; Einstellungen &gt; Anzeige&quot;."
 
 #: ../src/data/tips.xml.in.h:25
 msgid ""
@@ -30609,11 +30571,12 @@ msgid ""
 "needs. Each separate view can also be configured under &quot;View &gt; "
 "Configure View...&quot;"
 msgstr ""
-"<b>Einstellen deiner Präferenzen</b><br/>&quot;Bearbeiten&gt; Präferenzen..."
-"&quot; ermöglicht dir das Ändern einer Anzahl von Einstellungen, wie z.B. "
-"den Pfad zu deinen Mediendateien, und das Abstimmen vieler Aspekte der "
-"Gramps Darstellung an deine Bedürfnisse. Jede einzelne Ansicht kann ferner "
-"konfiguriert werden unter &quot;Ansicht &gt; Ansicht konfigurieren...&quot;"
+"<b>Einstellen deiner Präferenzen</b><br/>&quot;Bearbeiten&gt; "
+"Einstellungen...&quot; ermöglicht dir das Ändern einer Anzahl von "
+"Einstellungen, wie z.B. den Pfad zu deinen Mediendateien, und das Abstimmen "
+"vieler Aspekte der Gramps Darstellung an deine Bedürfnisse. Jede einzelne "
+"Ansicht kann ferner konfiguriert werden unter &quot;Ansicht &gt; Ansicht "
+"konfigurieren...&quot;"
 
 #: ../src/data/tips.xml.in.h:46
 msgid ""
@@ -30859,6 +30822,33 @@ msgstr ""
 "werden. Du kannst auch den Vertrauensgrad eines Datums und sogar zwischen "
 "sieben verschiedenen Kalendern wählen. Probiere die Schaltfläche neben dem "
 "Datumsfeld im Ereigniseditor."
+
+#~ msgid "Export:"
+#~ msgstr "Export:"
+
+#~ msgid "Filt_er:"
+#~ msgstr "Filt_er:"
+
+#~ msgid "I_ndividuals"
+#~ msgstr "Perso_nen"
+
+#~ msgid "Translate _Headers"
+#~ msgstr "Überschriften ü_bersetzen"
+
+#~ msgid "_Marriages"
+#~ msgstr "_Hochzeiten"
+
+#~ msgid "_Restrict data on living people"
+#~ msgstr "Daten von lebenden Pe_rsonen beschränken"
+
+#~ msgid "Exclude _notes"
+#~ msgstr "_Notizen ausschließen"
+
+#~ msgid "Reference i_mages from path:  "
+#~ msgstr "B_eziehe Bilder vom Pfad:  "
+
+#~ msgid "Use _Living as first name"
+#~ msgstr "_Lebt als Vorname benutzen"
 
 #, fuzzy
 #~ msgid "Entire Book"
