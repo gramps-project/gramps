@@ -53,7 +53,7 @@ def modules_check ():
     mod_list = [#'metakit',
         ('pygtk','gtk'),
         ('pycairo','cairo'),
-        'pygobject'
+        'pygobject', 'babel',
         ]
     ok = 1
     for m in mod_list:
@@ -223,17 +223,19 @@ def os_files ():
                 ]
         return files
 
-# compile_catalog class ?
-def make_po ():
-    for po in glob.glob(os.path.join(PO_DIR, '*.po')):
-        lang = os.path.basename(po[:-3])
-        mo = os.path.join(MO_DIR, lang, 'gramps.mo')
-        directory = os.path.dirname(mo)
-        if not os.path.exists(directory):
-            os.makedirs(directory)
-        if os.name == 'posix':
-            os.system('msgfmt %s/%s.po -o %s' % (PO_DIR, lang, mo))
-        print (directory)
+
+class compile_catalog():
+          
+    def run (self):
+        for po in glob.glob(os.path.join(PO_DIR, '*.po')):
+            lang = os.path.basename(po[:-3])
+            mo = os.path.join(MO_DIR, lang, 'gramps.mo')
+            directory = os.path.dirname(mo)
+            if not os.path.exists(directory):
+                os.makedirs(directory)
+            if os.name == 'posix':
+                os.system('msgfmt %s/%s.po -o %s' % (PO_DIR, lang, mo))
+            print (directory)
 
 def trans_files ():
     translation_files = []
@@ -248,12 +250,9 @@ def trans_files ():
     return translation_files
 
 class BuildData(build):
-    def run (self):
-
-        # /!\ default install will overwrite files with admin rights on build directory
-        make_po ()
+    
+    def initialize_options (self):
         
-        # /!\ default install will overwrite files with admin rights on build directory
         if os.name == 'posix':
             # initial makefiles ... create launcher and generate const.py
             # see script !
@@ -264,8 +263,25 @@ class BuildData(build):
             os.system('intltool-merge -x po/ data/gramps.xml.in data/gramps.xml')
             os.system('intltool-merge -k po/ data/gramps.keys.in data/gramps.keys')
             
-class InstallData(install_data):
     def run (self):
+        
+        # os.name == 'posix'
+        # Run upgrade pre script
+        # /!\ should be gramps.sh with variables
+        # missing const.py (const.py.in)
+        pass
+            
+    def finalize_options (self):
+        
+        compile_catalog()
+            
+class InstallData(install_data):
+    
+    def run (self):
+        
+        install_data.run(self)
+    
+    def finalize_options (self):
         
         if os.name == 'posix':
             #update the XDG Shared MIME-Info database cache
@@ -279,8 +295,8 @@ class InstallData(install_data):
             # update the XDG .desktop file database
             sys.stdout.write('Updating the .desktop file database.\n')
             subprocess.call(["update-desktop-database"])
-        
-        install_data.run(self)
+            
+            #ldconfig
 
 class Uninstall(Command):
   description = "Attempt an uninstall from an install log file"
@@ -342,12 +358,7 @@ if os.name == 'nt':
 elif os.name == 'darwin':
     script = [os.path.join('mac','launcher.sh')]
 else:
-    # os.name == 'posix'
-    # Run upgrade pre script
-    # /!\ should be gramps.sh with variables
-    # /!\ default install will write file with admin rights on build directory
     script = [os.path.join('gramps.sh')]
-    # ldconfig
 
 if platform.system() == 'FreeBSD':
     man_dir = 'man'
@@ -382,13 +393,13 @@ result = setup(
     data_files   = trans_files () + os_files(),
     platforms    = ['Linux', 'FreeBSD', 'MacOS', 'Windows'],
     scripts      = script,
-    requires     = ['pygtk', 'pycairo', 'pygobject'],
+    requires     = ['pygtk', 'pycairo', 'pygobject', 'babel'],
     cmdclass     = {
                     'build': BuildData,
                     'install_data': InstallData,
                     'uninstall': Uninstall,
-                    'compile_catalog': babel.compile_catalog,
+#                    'compile_catalog': babel.compile_catalog,
+                    'compile_catalog': compile_catalog,
                     'extract_messages': babel.extract_messages,
-                    'init_catalog': babel.init_catalog,
                     'update_catalog': babel.update_catalog},
     )
