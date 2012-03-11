@@ -217,10 +217,11 @@ def os_files():
                 # man-page, /!\ should be gramps.1 with variables
                 # migration to sphinx/docutils/gettext environment ?
                 (os.path.join(man_dir, 'man1'), ['data/man/gramps.1.in']),
-                (os.path.join(man_dir, 'nl', 'man1'), ['data/man/nl/gramps.1.in']),
-                (os.path.join(man_dir, 'sv', 'man1'), ['data/man/sv/gramps.1.in']),
-                (os.path.join(man_dir, 'pl', 'man1'), ['data/man/pl/gramps.1.in']),
+                (os.path.join(man_dir, 'cs', 'man1'), ['data/man/cs/gramps.1.in']),
                 (os.path.join(man_dir, 'fr', 'man1'), ['data/man/fr/gramps.1.in']),
+                (os.path.join(man_dir, 'nl', 'man1'), ['data/man/nl/gramps.1.in']),
+                (os.path.join(man_dir, 'pl', 'man1'), ['data/man/pl/gramps.1.in']),
+                (os.path.join(man_dir, 'sv', 'man1'), ['data/man/sv/gramps.1.in']),
                 # icons 
                 ('share/icons/hicolor/scalable/apps', glob.glob('src/images/scalable/*.svg')),
                 ('share/icons/hicolor/16x16/apps', glob.glob('src/images/16x16/*.png')),
