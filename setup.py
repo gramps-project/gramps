@@ -37,8 +37,21 @@ MO_DIR = os.path.join('build', 'mo')
 if sys.version < '2.6':
     sys.exit('Error: Python-2.6 or newer is required. Current version:\n %s'
              % sys.version)
+             
+if os.name == 'nt':
+    script = [os.path.join('windows','gramps.pyw')]
+elif os.name == 'darwin':
+    script = [os.path.join('mac','launcher.sh')]
+else:
+    # os.name == 'posix'
+    script = [os.path.join('gramps.sh')]
 
-def modules_check ():
+if platform.system() == 'FreeBSD':
+    man_dir = 'man'
+else:
+    man_dir = os.path.join('share', 'man')
+
+def modules_check():
     '''Check if necessary modules is installed.
     The function is executed by distutils (by the install command).'''
     try:
@@ -80,7 +93,7 @@ def modules_check ():
     if not ok:
         sys.exit(1)
 
-def gramps ():
+def gramps():
     # missing const.py (const.py.in)
     libs = {'gramps': [
             '*.py', 
@@ -162,7 +175,7 @@ def gramps ():
 
     return libs
 
-def os_files ():
+def os_files():
     if os.name == 'nt' or os.name == 'darwin':
         files = [
                 # application icon
@@ -224,20 +237,26 @@ def os_files ():
         return files
 
 
-class compile_catalog():
+class CompileCatalog():
+    '''
+    Mixture between babel class and custom compilation
+    '''
+        
+    user_options = [('domain=gramps', 'directory=po', 'fr.po', 'fr.mo')]
+    
+    def initialize_options(self):
+        pass
           
     def run (self):
-        for po in glob.glob(os.path.join(PO_DIR, '*.po')):
-            lang = os.path.basename(po[:-3])
-            mo = os.path.join(MO_DIR, lang, 'gramps.mo')
-            directory = os.path.dirname(mo)
-            if not os.path.exists(directory):
-                os.makedirs(directory)
-            if os.name == 'posix':
-                os.system('msgfmt %s/%s.po -o %s' % (PO_DIR, lang, mo))
-            print (directory)
+        pass
+            
+    def finalize_options (self):
+        pass
 
-def trans_files ():
+def trans_files():
+    '''
+    List of available compiled translations; ready for installation
+    '''
     translation_files = []
     for mo in glob.glob (os.path.join (MO_DIR, '*', 'gramps.mo')):
         lang = os.path.basename(os.path.dirname(mo))
@@ -250,13 +269,16 @@ def trans_files ():
     return translation_files
 
 class BuildData(build):
+    '''
+    Custom command for 'python setup.py build' ...
+    '''
     
     def initialize_options (self):
         
         if os.name == 'posix':
             # initial makefiles ... create launcher and generate const.py
             # see script !
-            os.system('./autogen.sh')
+            #os.system('./autogen.sh')
             # related translations files
             os.system('intltool-merge -d po/ data/gramps.desktop.in data/gramps.desktop')
             os.system('intltool-merge -x po/gramps.pot src/data/tips.xml.in src/data/tips.xml')
@@ -265,17 +287,29 @@ class BuildData(build):
             
     def run (self):
         
-        # os.name == 'posix'
         # Run upgrade pre script
         # /!\ should be gramps.sh with variables
         # missing const.py (const.py.in)
+        
+        #CompileCatalog()
+        #babel.compile_catalog()
+        for po in glob.glob(os.path.join(PO_DIR, '*.po')):
+            lang = os.path.basename(po[:-3])
+            mo = os.path.join(MO_DIR, lang, 'gramps.mo')
+            directory = os.path.dirname(mo)
+            if not os.path.exists(directory):
+                os.makedirs(directory)
+            if os.name == 'posix':
+                os.system('msgfmt %s/%s.po -o %s' % (PO_DIR, lang, mo))
+            print (directory)
+                
+    def finalize_options (self):
         pass
             
-    def finalize_options (self):
-        
-        compile_catalog()
-            
 class InstallData(install_data):
+    '''
+    Custom command for 'python setup.py install' ...
+    '''
     
     def run (self):
         
@@ -297,78 +331,87 @@ class InstallData(install_data):
             subprocess.call(["update-desktop-database"])
             
             #ldconfig
+            
+class Install(Command):
+    '''
+    Standard command for 'python setup.py install' ...
+    '''
+    
+    description = "Attempt an install and generate a log file"
+    
+    user_options = [('fake', None, 'Override')]
+    
+    def initialize_options(self):
+        pass
+    
+    def run (self):
+        pass
+        
+    def finalize_options (self):
+        pass
 
 class Uninstall(Command):
-  description = "Attempt an uninstall from an install log file"
+    
+    description = "Attempt an uninstall from an install log file"
 
-  user_options = [('log=', None, 'Installation record filename')]
+    user_options = [('log=', None, 'Installation record filename')]
 
-  def initialize_options(self):
-    self.log = 'log'
+    def initialize_options(self):
+        self.log = 'log'
 
-  def finalize_options(self):
-    pass
+    def finalize_options(self):
+        pass
 
-  def get_command_name(self):
-    return 'uninstall'
+    def get_command_name(self):
+        return 'uninstall'
 
-  def run(self):
-    f = None
-    self.ensure_filename('log')
-    try:
-      try:
-        f = open(self.log)
-        files = [file.strip() for file in f]
-      except IOError, e:
-        raise DistutilsFileError("unable to open log: %s", str(e))
-    finally:
-      if f:
-        f.close()
-
-    for file in files:
-      if os.path.isfile(file) or os.path.islink(file):
-        print ("removing %s" % repr(file))
-        if not self.dry_run:
-          try:
-            os.unlink(file)
-          except OSError, e:
-            warn("could not delete: %s" % repr(file))
-      elif not os.path.isdir(file):
-        print ("skipping %s" % repr(file))
-
-    dirs = set()
-    for file in reversed(sorted(files)):
-      dir = os.path.dirname(file)
-      if dir not in dirs and os.path.isdir(dir) and len(os.listdir(dir)) == 0:
-        dirs.add(dir)
-        # Only nuke empty Python library directories, else we could destroy
-        # e.g. locale directories we're the only app with a .mo installed for.
-        if dir.find("dist-packages") > 0:
-          print ("removing %s" % repr(dir))
-          if not self.dry_run:
+    def run(self):
+        f = None
+        self.ensure_filename('log')
+        try:
             try:
-              os.rmdir(dir)
-            except OSError, e:
-              warn("could not remove directory: %s" % str(e))
-        else:
-          print ("skipping empty directory %s" % repr(dir))
+                f = open(self.log)
+                files = [file.strip() for file in f]
+            except IOError, e:
+                raise DistutilsFileError("unable to open log: %s", str(e))
+        finally:
+            if f:
+                f.close()
 
-if os.name == 'nt':
-    script = [os.path.join('windows','gramps.pyw')]
-elif os.name == 'darwin':
-    script = [os.path.join('mac','launcher.sh')]
-else:
-    script = [os.path.join('gramps.sh')]
+        for file in files:
+            if os.path.isfile(file) or os.path.islink(file):
+                print ("removing %s" % repr(file))
+            if not self.dry_run:
+                try:
+                    os.unlink(file)
+                except OSError, e:
+                    warn("could not delete: %s" % repr(file))
+            elif not os.path.isdir(file):
+                print ("skipping %s" % repr(file))
 
-if platform.system() == 'FreeBSD':
-    man_dir = 'man'
-else:
-    man_dir = os.path.join('share', 'man')
+        dirs = set()
+        for file in reversed(sorted(files)):
+            dir = os.path.dirname(file)
+            if dir not in dirs and os.path.isdir(dir) and len(os.listdir(dir)) == 0:
+                dirs.add(dir)
+                # Only nuke empty Python library directories, else we could destroy
+                # e.g. locale directories we're the only app with a .mo installed for.
+            if dir.find("dist-packages") > 0:
+                print ("removing %s" % repr(dir))
+                if not self.dry_run:
+                    try:
+                        os.rmdir(dir)
+                    except OSError, e:
+                        warn("could not remove directory: %s" % str(e))
+            else:
+                print ("skipping empty directory %s" % repr(dir))
+                  
     
 # TODO
 # implement environment/variables for 
-# extract_messages, init_catalog, update_catalog classes
+# extract_messages, update_catalog classes
 # message_extractors = po/POTFILES.in
+# see also 'setup.cfg'
 
 result = setup(
     name         = name,
@@ -396,10 +439,10 @@ result = setup(
     requires     = ['pygtk', 'pycairo', 'pygobject', 'babel'],
     cmdclass     = {
                     'build': BuildData,
+                    'install': Install,
                     'install_data': InstallData,
                     'uninstall': Uninstall,
-#                    'compile_catalog': babel.compile_catalog,
-                    'compile_catalog': compile_catalog,
+                    'compile_catalog': babel.compile_catalog,
                     'extract_messages': babel.extract_messages,
                     'update_catalog': babel.update_catalog},
     )
