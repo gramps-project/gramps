@@ -20,7 +20,6 @@ from distutils.cmd import Command
 from distutils.core import setup
 from distutils.command.build import build
 from distutils.command.install_data import install_data
-from babel.messages import frontend as babel
 import sys
 import glob
 import os.path
@@ -66,7 +65,7 @@ def modules_check():
     mod_list = [#'metakit',
         ('pygtk','gtk'),
         ('pycairo','cairo'),
-        'pygobject', 'babel',
+        'pygobject',
         ]
     ok = 1
     for m in mod_list:
@@ -105,7 +104,6 @@ def gramps():
             'GrampsLocale/*.py',
             'GrampsLogger/*.py',
             'Merge/*.py',
-            'Mime/*.py',
             'Simple/*.py'],
             'gramps.cli': [
             '*.py',
@@ -156,15 +154,15 @@ def gramps():
             '*.py',
             '*/*.py',
             'lib/*.xml',
-            'lib/maps/*.py',
-            'webstuff/css/*.css',
-            'webstuff/images/*.svg',
-            'webstuff/images/*.png',
-            'webstuff/images/*.gif',
+            'lib/maps/*.py',            
             '*.glade',
             '*/*.glade'],
             'gramps.webapp': [
             '*.py',
+            'webstuff/css/*.css',
+            'webstuff/images/*.svg',
+            'webstuff/images/*.png',
+            'webstuff/images/*.gif',
             'grampsdb/fixtures/initial_data.json',
             '*/*.py',
             'sqlite.db',
@@ -239,7 +237,7 @@ def os_files():
         
 def glade():
     
-    #POTFILES.in
+    #POTFILES.in / POTFILES.skip
     files = [
              'src/plugins/docgen/gtkprint.glade',
              'src/glade/editperson.glade',
@@ -311,51 +309,64 @@ def glade():
              ]
              
     return files
-    
-
-class CompileCatalog():
-    '''
-    Mixture between babel class and custom compilation
-    '''
-        
-    user_options = [('domain=gramps', 'directory=po', 'fr.po', 'fr.mo')]
-    
-    def initialize_options(self):
-        pass
-          
-    def run(self):
-        pass
             
-    def finalize_options(self):
-        pass
-        
 class ExtractMessages(Command):
     '''
-    Mixture between babel class and custom extraction
+    Custom extraction for gramps' files
     '''
+    
+    # message_extractors = po/POTFILES.in
     
     user_options = [('fake', None, 'Override')]
     
     def initialize_options(self):
-        for f in glade():
-            os.system('''intltool-extract --type=gettext/glade %s''' % f)
+        for g in glade():
+            os.system('''intltool-extract --type=gettext/glade %s''' % g)
         os.system('''intltool-extract --type=gettext/xml src/data/tips.xml.in''') 
         os.system('''intltool-extract --type=gettext/xml data/gramps.xml.in''')
-        #os.system('''intltool-extract --type=gettext/text data/gramps.desktop.in''')
-        #os.system('''intltool-extract --type=gettext/text data/gramps.keys.in''')
+        os.system('''intltool-extract --type=gettext/ini data/gramps.desktop.in''')
+        os.system('''intltool-extract --type=gettext/keys data/gramps.keys.in''')
         
     def run(self):
         
-        #babel.extract_messages
-        pass
-    
-    def finalize_options(self):
+        # gramps
+        for main in gramps()['gramps']:
+            os.system('''xgettext -j --language=Python --keyword=_ '''
+                      '''--keyword=ngettext --keyword=sgettext '''
+                      '''--from-code=UTF-8 -o "po/gramps.pot" '''
+                      '''src/%s''' % main)
+        # gramps.cli
+        for cli in gramps()['gramps.cli']:
+            os.system('''xgettext -j --language=Python --keyword=_ '''
+                      '''--keyword=ngettext --keyword=sgettext '''
+                      '''--from-code=UTF-8 -o "po/gramps.pot" '''
+                      '''src/cli/%s''' % cli)
+        # gramps.gen
+        for gen in gramps()['gramps.gen']:
+            os.system('''xgettext -j --language=Python --keyword=_ '''
+                      '''--keyword=ngettext --keyword=sgettext '''
+                      '''--from-code=UTF-8 -o "po/gramps.pot" '''
+                      '''src/gen/%s''' % gen)
+        # gramps.gui
+        for gui in gramps()['gramps.gui']:
+            os.system('''xgettext -j --language=Python --keyword=_ '''
+                      '''--keyword=ngettext --keyword=sgettext '''
+                      '''--from-code=UTF-8 -o "po/gramps.pot" '''
+                      '''src/gui/%s''' % gui)
+        # gramps.plugins
+        for plug in gramps()['gramps.plugins']:
+            os.system('''xgettext -j --language=Python --keyword=_ '''
+                      '''--keyword=ngettext --keyword=sgettext '''
+                      '''--from-code=UTF-8 -o "po/gramps.pot" '''
+                      '''src/plugins/%s''' % plug)
+        # glade (gramps.glade + gramps.plugins - POTFILES.skip ???)
         os.system('''xgettext -j --keyword=N_ --from-code=UTF-8'''
                   ''' -o "po/gramps.pot" '''
-                  '''src/*/*.glade.h''')
-        os.system('''xgettext -j --keyword=_ --keyword=N_'''
-                  ''' -o "po/gramps.pot" '''
-                  '''*/*/*.xml.h''')
+                  '''src/*/*.glade.h src/*/*/*.glade */*.in.h */*/*.in.h''')
+                  
+    def finalize_options (self):
+        pass
+       
 
 def trans_files():
     '''
@@ -395,8 +406,6 @@ class BuildData(build):
         # /!\ should be gramps.sh with variables
         # missing const.py (const.py.in)
         
-        #CompileCatalog()
-        #babel.compile_catalog()
         for po in glob.glob(os.path.join(PO_DIR, '*.po')):
             lang = os.path.basename(po[:-3])
             mo = os.path.join(MO_DIR, lang, 'gramps.mo')
@@ -540,13 +549,11 @@ result = setup(
     data_files   = trans_files() + os_files(),
     platforms    = ['Linux', 'FreeBSD', 'MacOS', 'Windows'],
     scripts      = script,
-    requires     = ['pygtk', 'pycairo', 'pygobject', 'babel'],
+    requires     = ['pygtk', 'pycairo', 'pygobject'],
     cmdclass     = {
                     'build': BuildData,
-                    'install': Install,
-                    'install_data': InstallData,
+                    'install': InstallData, # override Install!
+                    #'install_data': InstallData,
                     'uninstall': Uninstall,
-                    'compile_catalog': babel.compile_catalog,
-                    'extract_messages': ExtractMessages,
-                    'update_catalog': babel.update_catalog},
+                    'extract_messages': ExtractMessages,}
     )
