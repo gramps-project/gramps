@@ -40,7 +40,7 @@ if sys.version < '2.6':
 if os.name == 'nt':
     script = [os.path.join('windows','gramps.pyw')]
 elif os.name == 'darwin':
-    script = [os.path.join('mac','launcher.sh')]
+    script = [os.path.join('mac','gramps.launcher.sh')]
 else:
     # os.name == 'posix'
     script = [os.path.join('gramps.sh')]
@@ -520,12 +520,6 @@ class Uninstall(Command):
                 print ("skipping empty directory %s" % repr(dir))
                   
     
-# TODO
-# implement environment/variables for 
-# extract_messages, update_catalog classes
-# message_extractors = po/POTFILES.in
-# see also 'setup.cfg'
-
 result = setup(
     name         = name,
     version      = version,
@@ -555,5 +549,5 @@ result = setup(
                     'install': InstallData, # override Install!
                     #'install_data': InstallData,
                     'uninstall': Uninstall,
-                    'extract_messages': ExtractMessages,}
+                    'extract_messages': ExtractMessages}
     )
