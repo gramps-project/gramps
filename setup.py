@@ -236,7 +236,82 @@ def os_files():
                 ('share/doc/gramps', ['TODO'])
                 ]
         return files
-
+        
+def glade():
+    
+    #POTFILE.in
+    files = [
+             'src/plugins/docgen/gtkprint.glade',
+             'src/glade/editperson.glade',
+             'src/glade/grampletpane.glade',
+             'src/glade/baseselector.glade',
+             'src/glade/reorder.glade',
+             'src/glade/tipofday.glade',
+             'src/glade/displaystate.glade',
+             'src/glade/addmedia.glade',
+             'src/glade/questiondialog.glade',
+             'src/glade/configure.glade',
+             'src/glade/dateedit.glade',
+             'src/glade/editsource.glade',
+             'src/glade/styleeditor.glade',
+             'src/glade/dbman.glade',
+             'src/glade/editcitation.glade',
+             'src/glade/editurl.glade',
+             'src/glade/editrepository.glade',
+             'src/glade/editreporef.glade',
+             'src/glade/editpersonref.glade',
+             'src/glade/editlocation.glade',
+             'src/glade/editlink.glade',
+             'src/glade/editfamily.glade',
+             'src/glade/editchildref.glade',
+             'src/glade/editattribute.glade',
+             'src/glade/editaddress.glade',
+             'src/glade/editmedia.glade',
+             'src/glade/editmediaref.glade',
+             'src/glade/editeventref.glade',
+             'src/glade/editldsord.glade',
+             'src/glade/editnote.glade',
+             'src/glade/editplace.glade',
+             'src/glade/editsourceref.glade',
+             'src/glade/editname.glade',
+             'src/glade/editevent.glade',
+             'src/glade/mergecitation.glade',
+             'src/glade/mergedata.glade',
+             'src/glade/mergeevent.glade',
+             'src/glade/mergefamily.glade',
+             'src/glade/mergemedia.glade',
+             'src/glade/mergenote.glade',
+             'src/glade/mergeperson.glade',
+             'src/glade/mergeplace.glade',
+             'src/glade/mergerepository.glade',
+             'src/glade/mergesource.glade',
+             'src/glade/plugins.glade',
+             'src/glade/rule.glade',
+             'src/glade/scratchpad.glade',
+             'src/glade/papermenu.glade',
+             'src/glade/updateaddons.glade',
+             'src/plugins/tool/notrelated.glade',
+             'src/plugins/bookreport.glade',
+             'src/plugins/tool/changenames.glade',
+             'src/plugins/tool/changetypes.glade',
+             'src/plugins/tool/desbrowser.glade',
+             'src/plugins/tool/eval.glade',
+             'src/plugins/tool/eventcmp.glade',
+             'src/plugins/tool/leak.glade',
+             'src/plugins/tool/finddupes.glade',
+             'src/plugins/tool/mergecitations.glade',
+             'src/plugins/tool/ownereditor.glade',
+             'src/plugins/tool/patchnames.glade',
+             'src/plugins/tool/phpgedview.glade',
+             'src/plugins/tool/relcalc.glade',
+             'src/plugins/tool/soundgen.glade',
+             'src/plugins/tool/removeunused.glade',
+             'src/plugins/tool/verify.glade',
+             'src/plugins/import/importgedcom.glade'
+             ]
+             
+    return files
+    
 
 class CompileCatalog():
     '''
@@ -248,11 +323,39 @@ class CompileCatalog():
     def initialize_options(self):
         pass
           
-    def run (self):
+    def run(self):
         pass
             
-    def finalize_options (self):
+    def finalize_options(self):
         pass
+        
+class ExtractMessages(Command):
+    '''
+    Mixture between babel class and custom extraction
+    '''
+    
+    user_options = [('fake', None, 'Override')]
+    
+    def initialize_options(self):
+        for f in glade():
+            os.system('''intltool-extract --type=gettext/glade %s''' % f)
+        os.system('''intltool-extract --type=gettext/xml src/data/tips.xml.in''') 
+        os.system('''intltool-extract --type=gettext/xml data/gramps.xml.in''')
+        #os.system('''intltool-extract --type=gettext/text data/gramps.desktop.in''')
+        #os.system('''intltool-extract --type=gettext/text data/gramps.keys.in''')
+        
+    def run(self):
+        
+        #babel.extract_messages
+        pass
+    
+    def finalize_options(self):
+        os.system('''xgettext -j --keyword=N_ --from-code=UTF-8'''
+                  ''' -o "po/gramps.pot" '''
+                  '''src/*/*.glade.h''')
+        os.system('''xgettext -j --keyword=_ --keyword=N_'''
+                  ''' -o "po/gramps.pot" '''
+                  '''*/*/*.xml.h''')
 
 def trans_files():
     '''
@@ -444,6 +547,6 @@ result = setup(
                     'install_data': InstallData,
                     'uninstall': Uninstall,
                     'compile_catalog': babel.compile_catalog,
-                    'extract_messages': babel.extract_messages,
+                    'extract_messages': ExtractMessages,
                     'update_catalog': babel.update_catalog},
     )
