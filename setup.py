@@ -239,7 +239,7 @@ def os_files():
         
 def glade():
     
-    #POTFILE.in
+    #POTFILES.in
     files = [
              'src/plugins/docgen/gtkprint.glade',
              'src/glade/editperson.glade',
