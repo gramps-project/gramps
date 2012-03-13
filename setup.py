@@ -300,7 +300,6 @@ def glade():
              'src/plugins/tool/mergecitations.glade',
              'src/plugins/tool/ownereditor.glade',
              'src/plugins/tool/patchnames.glade',
-             'src/plugins/tool/phpgedview.glade',
              'src/plugins/tool/relcalc.glade',
              'src/plugins/tool/soundgen.glade',
              'src/plugins/tool/removeunused.glade',
@@ -322,7 +321,8 @@ class ExtractMessages(Command):
     def initialize_options(self):
         for g in glade():
             os.system('''intltool-extract --type=gettext/glade %s''' % g)
-        os.system('''intltool-extract --type=gettext/xml src/data/tips.xml.in''') 
+        os.system('''intltool-extract --type=gettext/xml src/data/tips.xml.in''')
+        os.system('''intltool-extract --type=gettext/xml src/plugins/lib/holidays.xml.in''')
         os.system('''intltool-extract --type=gettext/xml data/gramps.xml.in''')
         os.system('''intltool-extract --type=gettext/ini data/gramps.desktop.in''')
         os.system('''intltool-extract --type=gettext/keys data/gramps.keys.in''')
@@ -362,7 +362,8 @@ class ExtractMessages(Command):
         # glade (gramps.glade + gramps.plugins - POTFILES.skip ???)
         os.system('''xgettext -j --keyword=N_ --from-code=UTF-8'''
                   ''' -o "po/gramps.pot" '''
-                  '''src/*/*.glade.h src/*/*/*.glade */*.in.h */*/*.in.h''')
+                  '''src/*/*.glade.h src/*/*/*.glade '''
+                  ''' */*.in.h */*/*.in.h */*/*/*.in.h''')
                   
     def finalize_options (self):
         pass
@@ -396,7 +397,6 @@ class BuildData(build):
             #os.system('./autogen.sh')
             # related translations files
             os.system('intltool-merge -d po/ data/gramps.desktop.in data/gramps.desktop')
-            os.system('intltool-merge -x po/gramps.pot src/data/tips.xml.in src/data/tips.xml')
             os.system('intltool-merge -x po/ data/gramps.xml.in data/gramps.xml')
             os.system('intltool-merge -k po/ data/gramps.keys.in data/gramps.keys')
             
