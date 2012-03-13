@@ -1674,16 +1674,17 @@ class IdMapper(object):
             while new_val in self.swap.values():
                 new_val = self.find_next()
         else:
-            gid = self.clean(gid)
+            clean_gid = self.clean(gid)
             if gid in self.swap:
                 return self.swap[gid]
             else:
-                if self.trans.get(str(gid)) or (gid in self.swap.values()):
+                if self.trans.get(str(clean_gid)) or \
+                        (clean_gid in self.swap.values()):
                     new_val = self.find_next()
                     while new_val in self.swap.values():
                         new_val = self.find_next()
                 else:
-                    new_val = gid
+                    new_val = clean_gid
             self.swap[gid] = new_val
         return new_val
     
