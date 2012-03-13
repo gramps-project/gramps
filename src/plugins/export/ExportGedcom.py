@@ -1257,6 +1257,14 @@ class GedcomWriter(UpdateCallback):
             nick = attr_nick
 
         self.__writeln(1, 'NAME', gedcom_name)
+        if int(name.get_type()) == gen.lib.NameType.BIRTH:
+            pass
+        elif int(name.get_type()) == gen.lib.NameType.MARRIED:
+            self.__writeln(2, 'TYPE', 'married')
+        elif int(name.get_type()) == gen.lib.NameType.AKA:
+            self.__writeln(2, 'TYPE', 'aka')
+        else:
+            self.__writeln(2, 'TYPE', name.get_type().xml_str())
 
         if firstname:
             self.__writeln(2, 'GIVN', firstname)
