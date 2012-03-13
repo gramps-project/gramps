@@ -1290,6 +1290,7 @@ class CheckIntegrity(object):
                 self.db.get_number_of_families() +
                 self.db.get_number_of_events() + 
                 self.db.get_number_of_places() +
+                self.db.get_number_of_citations() +
                 self.db.get_number_of_sources()
                 )
 
@@ -1361,6 +1362,22 @@ class CheckIntegrity(object):
                                    not in self.invalid_media_references]
                 self.invalid_media_references += new_bad_handles
         
+        for handle in self.db.citation_map.keys():
+            self.progress.step()
+            info = self.db.citation_map[handle]
+            citation = gen.lib.Citation()
+            citation.unserialize(info)
+            handle_list = citation.get_referenced_handles_recursively()
+            bad_handles = [ item[1] for item in handle_list
+                            if item[0] == 'MediaObject' and
+                            item[1] not in known_handles ]
+            if bad_handles:
+                citation.remove_media_references(bad_handles)
+                self.db.commit_citation(citation, self.trans)
+                new_bad_handles = [handle for handle in bad_handles if handle
+                                   not in self.invalid_media_references]
+                self.invalid_media_references += new_bad_handles
+
         for handle in self.db.source_map.keys():
             self.progress.step()
             info = self.db.source_map[handle]
@@ -1389,6 +1406,7 @@ class CheckIntegrity(object):
                 self.db.get_number_of_events() + 
                 self.db.get_number_of_places() +
                 self.db.get_number_of_media_objects() +
+                self.db.get_number_of_citations() +
                 self.db.get_number_of_sources() +
                 self.db.get_number_of_repositories()
                 )
@@ -1445,6 +1463,22 @@ class CheckIntegrity(object):
                                    not in self.invalid_note_references]
                 self.invalid_note_references += new_bad_handles
 
+        for handle in self.db.citation_map.keys():
+            self.progress.step()
+            info = self.db.citation_map[handle]
+            citation = gen.lib.Citation()
+            citation.unserialize(info)
+            handle_list = citation.get_referenced_handles_recursively()
+            bad_handles = [ item[1] for item in handle_list
+                            if item[0] == 'Note' and
+                            item[1] not in known_handles ]
+            if bad_handles:
+                map(citation.remove_note, bad_handles)
+                self.db.commit_citation(citation, self.trans)
+                new_bad_handles = [handle for handle in bad_handles if handle
+                                   not in self.invalid_note_references]
+                self.invalid_note_references += new_bad_handles
+
         for handle in self.db.source_map.keys():
             self.progress.step()
             info = self.db.source_map[handle]
@@ -1454,8 +1488,6 @@ class CheckIntegrity(object):
             bad_handles = [ item[1] for item in handle_list
                             if item[0] == 'Note' and
                             item[1] not in known_handles ]
-            for bad_handle in bad_handles:
-                source.remove_note(bad_handle)
             if bad_handles:
                 map(source.remove_note, bad_handles)
                 self.db.commit_source(source, self.trans)
