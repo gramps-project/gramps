@@ -20,6 +20,7 @@ from distutils.cmd import Command
 from distutils.core import setup
 from distutils.command.build import build
 from distutils.command.install_data import install_data
+import distutils.command.clean
 import sys
 import glob
 import os.path
@@ -311,10 +312,12 @@ def glade():
             
 class ExtractMessages(Command):
     '''
-    Custom extraction for gramps' files
+    Command to extract messages for translations
     '''
     
     # message_extractors = po/POTFILES.in
+    
+    description = "extraction for gramps"
     
     user_options = [('fake', None, 'Override')]
     
@@ -366,7 +369,9 @@ class ExtractMessages(Command):
                   ''' */*.in.h */*/*.in.h */*/*/*.in.h''')
                   
     def finalize_options (self):
+        # TODO: clean all files into /src which are ending with .h extension
         pass
+            
        
 
 def trans_files():
@@ -464,6 +469,9 @@ class Install(Command):
         pass
 
 class Uninstall(Command):
+    '''
+    Custom command for uninstalling
+    '''
     
     description = "Attempt an uninstall from an install log file"
 
@@ -547,7 +555,7 @@ result = setup(
     cmdclass     = {
                     'build': BuildData,
                     'install': InstallData, # override Install!
-                    #'install_data': InstallData,
+                    #'install_data': InstallData, # python setup.py --help-commands
                     'uninstall': Uninstall,
                     'extract_messages': ExtractMessages}
     )
