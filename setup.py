@@ -63,7 +63,7 @@ def modules_check():
                    "sure you have pygtk > 2.16 and gtk available!")
     except ImportError:
         raise
-    mod_list = [#'metakit',
+    mod_list = [
         ('pygtk','gtk'),
         ('pycairo','cairo'),
         'pygobject',
@@ -144,7 +144,6 @@ def gramps():
             'views/treemodels/*.py',
             'widgets/*.py'],
             'gramps.images': [
-            '*.py',
             '*/*.png',
             '*/*.svg',
             '*.png',
