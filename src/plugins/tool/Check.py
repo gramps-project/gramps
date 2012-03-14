@@ -181,6 +181,7 @@ class Check(tool.BatchTool):
             checker.check_media_references()
             checker.check_repo_references()
             checker.check_note_references()
+            checker.check_tag_references()
         self.db.enable_signals()
         self.db.request_rebuild()
 
@@ -217,6 +218,7 @@ class CheckIntegrity(object):
         self.invalid_repo_references = []
         self.invalid_media_references = []
         self.invalid_note_references = []
+        self.invalid_tag_references = []
         self.invalid_dates = []
         self.removed_name_format = []
         self.empty_objects = defaultdict(list)
@@ -1546,6 +1548,84 @@ class CheckIntegrity(object):
         if len (self.invalid_note_references) == 0:
             LOG('    OK: no note reference problems found')
 
+    def check_tag_references(self):
+        known_handles = self.db.get_tag_handles()
+
+        total = (
+                self.db.get_number_of_people() +
+                self.db.get_number_of_families() +
+                self.db.get_number_of_media_objects() +
+                self.db.get_number_of_notes()
+                )
+
+        self.progress.set_pass(_('Looking for tag reference problems'),
+                               total)
+
+        for handle in self.db.person_map.keys():
+            self.progress.step()
+            info = self.db.person_map[handle]
+            person = gen.lib.Person()
+            person.unserialize(info)
+            handle_list = person.get_referenced_handles_recursively()
+            bad_handles = [ item[1] for item in handle_list
+                            if item[0] == 'Tag' and
+                            item[1] not in known_handles ]
+            if bad_handles:
+                map(person.remove_tag, bad_handles)
+                self.db.commit_person(person, self.trans)
+                new_bad_handles = [handle for handle in bad_handles if handle
+                                   not in self.invalid_tag_references]
+                self.invalid_tag_references += new_bad_handles
+
+        for handle in self.db.family_map.keys():
+            self.progress.step()
+            info = self.db.family_map[handle]
+            family = gen.lib.Family()
+            family.unserialize(info)
+            handle_list = family.get_referenced_handles_recursively()
+            bad_handles = [ item[1] for item in handle_list
+                            if item[0] == 'Tag' and
+                            item[1] not in known_handles ]
+            if bad_handles:
+                map(family.remove_tag, bad_handles)
+                self.db.commit_family(family, self.trans)
+                new_bad_handles = [handle for handle in bad_handles if handle
+                                   not in self.invalid_tag_references]
+                self.invalid_tag_references += new_bad_handles
+
+        for handle in self.db.media_map.keys():
+            self.progress.step()
+            info = self.db.media_map[handle]
+            obj = gen.lib.MediaObject()
+            obj.unserialize(info)
+            handle_list = obj.get_referenced_handles_recursively()
+            bad_handles = [ item[1] for item in handle_list
+                            if item[0] == 'Tag' and
+                            item[1] not in known_handles ]
+            if bad_handles:
+                map(obj.remove_tag, bad_handles)
+                self.db.commit_object(obj, self.trans)
+                new_bad_handles = [handle for handle in bad_handles if handle
+                                   not in self.invalid_tag_references]
+                self.invalid_tag_references += new_bad_handles
+
+        for handle in self.db.note_map.keys():
+            self.progress.step()
+            info = self.db.note_map[handle]
+            note = gen.lib.Note()
+            note.unserialize(info)
+            handle_list = note.get_referenced_handles_recursively()
+            bad_handles = [ item[1] for item in handle_list
+                            if item[0] == 'Tag' and
+                            item[1] not in known_handles ]
+            if bad_handles:
+                map(note.remove_tag, bad_handles)
+                self.db.commit_note(note, self.trans)
+                new_bad_handles = [handle for handle in bad_handles if handle
+                                   not in self.invalid_tag_references]
+                self.invalid_tag_references += new_bad_handles
+
+
     def build_report(self, uistate=None):
         self.progress.close()
         bad_photos = len(self.bad_photo)
@@ -1570,6 +1650,7 @@ class CheckIntegrity(object):
         repo_references = len(self.invalid_repo_references)
         media_references = len(self.invalid_media_references)
         note_references = len(self.invalid_note_references)
+        tag_references = len(self.invalid_tag_references)
         name_format = len(self.removed_name_format)
         empty_objs = sum(len(obj) for obj in self.empty_objects.itervalues())
 
@@ -1577,8 +1658,8 @@ class CheckIntegrity(object):
                   event_invalid + person +
                   person_references  + family_references + place_references +
                   citation_references + repo_references + media_references  +
-                  note_references + name_format + empty_objs + invalid_dates +
-                  source_references
+                  note_references + tag_references + name_format + empty_objs +
+                  invalid_dates + source_references
                  )
         
         if errors == 0:
@@ -1785,6 +1866,12 @@ class CheckIntegrity(object):
                 ngettext("%(quantity)d note object was referenced but not found\n",
                          "%(quantity)d note objects were referenced but not found\n",
                          note_references) % {'quantity': note_references})
+
+        if tag_references:
+            self.text.write(
+                ngettext("%(quantity)d tag object was referenced but not found\n",
+                         "%(quantity)d tag objects were referenced but not found\n",
+                         tag_references) % {'quantity': tag_references})
 
         if name_format:
             self.text.write(
