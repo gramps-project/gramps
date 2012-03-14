@@ -42,6 +42,11 @@ def main():
     
     if options.all:
         print('Not implemented yet')
+
+    try:
+        os.system('''intltool-update -g gramps -o gramps.pot -p''')
+    except:
+        continue
     
     for po in args:    
         os.system('''msgmerge --no-wrap %s gramps.pot -o update.po''' % po)
