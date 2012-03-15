@@ -154,7 +154,11 @@ def gramps():
             '*.py',
             '*/*.py',
             'lib/*.xml',
-            'lib/maps/*.py',            
+            'lib/maps/*.py',
+            'webstuff/css/*.css',
+            'webstuff/images/*.svg',
+            'webstuff/images/*.png',
+            'webstuff/images/*.gif',            
             '*.glade',
             '*/*.glade'],
             'gramps.webapp': [
