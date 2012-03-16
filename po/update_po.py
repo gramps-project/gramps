@@ -24,18 +24,20 @@
 
 import os
 import sys
-from optparse import OptionParser
+from optparse import OptionParser, OptionGroup
 
 
 if sys.platform == 'win32':          
     # GetText Win 32 obtained from http://gnuwin32.sourceforge.net/packages/gettext.htm
     # ....\gettext\bin\msgmerge.exe needs to be on the path
-    msgmergeCmd = 'msgmerge.exe'
-    msgfmtCmd = 'msgfmt.exe'
-    pythonCmd = 'python.exe'
-elif sys.platform == 'linux2':
+    msgmergeCmd = 'c:\Program_files\gettext\bin\msgmerge.exe'
+    msgfmtCmd = 'c:\Program_files\gettext\bin\msgfmt.exe'
+    xgettextCmd = os.path.join('c:', 'Program_files', 'bin', 'xgettext.exe')
+    pythonCmd = 'c:\Program_files\python\bin\python.exe'
+elif sys.platform == 'linux2' or os.name == 'darwin':
     msgmergeCmd = 'msgmerge'
     msgfmtCmd = 'msgfmt'
+    xgettextCmd = 'xgettext'
     pythonCmd = 'python'
 
 def tests():
@@ -58,7 +60,13 @@ def tests():
         print('Please, install %(program)s for checking your translation' % {'program': msgfmtCmd})
         
     try:
-        print("=================='python'============================")
+        print("===='xgettext' =(generate a new template)===============")
+        os.system('''%(program)s -V''' % {'program': xgettextCmd})
+    except:
+        print('Please, install %(program)s for generating a new template' % {'program': xgettextCmd})
+    
+    try:
+        print("=================='python'=============================")
         os.system('''%(program)s -V''' % {'program': pythonCmd})
     except:
         print('Please, install python')
@@ -74,20 +82,10 @@ def XMLParse(filename, mark):
     
     tree = ElementTree.parse(filename)
     root = tree.getroot()
-    
-    tips = names = []
-                
-    for key in root:
-        if key.tag == mark:
-            tips.append((key.attrib, ElementTree.tostring(key, encoding="UTF-8")))
                        
-    if mark == '_tip':
-        for tip in tips:
-            print(tip)
+    for key in root.getiterator(mark):
+        print(ElementTree.tostring(key, encoding="UTF-8"))
         
-    if mark == '_name':
-        print(names)
-    
 
 def main():
     """
@@ -97,32 +95,46 @@ def main():
     
     parser = OptionParser( 
                          description='This program generates a new template and '
-                                      'also provide some common features.', 
+                                      'also provides some common features.', 
                          usage='%prog [options]'
                          )
+                         
+    extract = OptionGroup(
+                          parser, 
+                          "Extract Options", 
+                          "Everything around extraction for message strings."
+                          )   
+    parser.add_option_group(extract)
+    
+    update = OptionGroup(
+                          parser, 
+                          "Update Options", 
+                          "Everything around update for translation files."
+                          )   
+    parser.add_option_group(update)
                          
     parser.add_option("-t", "--test",
 			  action="store_true", dest="test", default=False,
 			  help="test if 'python' and 'gettext' are properly installed")
-                         
-    parser.add_option("-x", "--xml",
+                                       
+    extract.add_option("-x", "--xml",
 			  action="store_true", dest="xml", default=False,
 			  help="extract messages from xml based file formats")
-    parser.add_option("-g", "--glade",
+    extract.add_option("-g", "--glade",
 			  action="store_true", dest="glade", default=False,
 			  help="extract messages from glade file format only")
-    parser.add_option("-c", "--clean",
+    extract.add_option("-c", "--clean",
 			  action="store_true", dest="clean", default=False,
 			  help="remove created files")
-    parser.add_option("-p", "--pot",
+    extract.add_option("-p", "--pot",
 			  action="store_true", dest="catalog", default=False,
 			  help="create a new catalog")
               
     # need at least one argument (sv.po, de.po, etc ...)
-    parser.add_option("-m", "--merge",
+    update.add_option("-m", "--merge",
 			  action="store_true", dest="merge", default=False,
 			  help="merge lang.po files with last catalog")
-    parser.add_option("-k", "--check",
+    update.add_option("-k", "--check",
 			  action="store_true", dest="check", default=False,
 			  help="check lang.po files")
     
@@ -207,7 +219,7 @@ def extract_xml():
     os.system('''intltool-extract --type=gettext/xml ../src/data/tips.xml.in''')
     #XMLParse('../src/data/tips.xml.in', '_tip')
     os.system('''intltool-extract --type=gettext/xml ../src/plugins/lib/holidays.xml.in''')
-    #XMLParse('../src/data/tips.xml.in', '_name')
+    #XMLParse('../src/plugins/lib/holidays.xml.in', 'country')
     
     # cosmetic
     # could be simple copies without .in extension
@@ -234,8 +246,9 @@ def extract_glade():
         create_template()
 
     listing('glade.txt', '.glade')
-    os.system('''xgettext --add-comments -j -L Glade '''
+    os.system('''%(xgettext)s --add-comments -j -L Glade '''
               '''--from-code=UTF-8 -o gramps.pot --files-from=glade.txt'''
+             % {'xgettext': xgettextCmd}
              )
              
 
@@ -250,10 +263,10 @@ def retrieve():
         create_template()
         
     listing('python.txt', '.py')
-    os.system('''xgettext --add-comments -j --directory=. -d gramps '''
+    os.system('''%(xgettext)s --add-comments -j --directory=. -d gramps '''
               '''-L Python -o gramps.pot --files-from=python.txt '''
               '''--keyword=_ --keyword=ngettext '''
-              '''--keyword=sgettext --from-code=UTF-8'''
+              '''--keyword=sgettext --from-code=UTF-8''' % {'xgettext': xgettextCmd}
              )
              
     extract_glade()
@@ -261,8 +274,9 @@ def retrieve():
     # C format header (.h extension)
     for h in headers():
         print('xgettext for %s') % h
-        os.system('''xgettext --add-comments -j -o gramps.pot '''
-                  '''--keyword=N_ --from-code=UTF-8 %(head)s''' % {'head': h}
+        os.system('''%(xgettext)s --add-comments -j -o gramps.pot '''
+                  '''--keyword=N_ --from-code=UTF-8 %(head)s''' 
+                  % {'xgettext': xgettextCmd, 'head': h}
                   )
                           
     clean()
@@ -279,11 +293,11 @@ def clean():
             print('Remove %(head)s' % {'head': h})
             
     if os.path.isfile('python.txt'):
-        os.system('''rm python.txt''')
+        os.unlink('python.txt')
         print("Remove 'python.txt'")
         
     if os.path.isfile('glade.txt'):
-        os.system('''rm glade.txt''')
+        os.unlink('glade.txt')
         print("Remove 'glade.txt'")
         
             
