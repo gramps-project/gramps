@@ -18883,7 +18883,7 @@ msgstr "Kunde inte mapp %s för delrutor"
 #: ../src/plugins/lib/maps/grampsmaps.py:186
 #, python-format
 msgid "Can't create tiles cache directory for '%s'."
-msgstr "Kunde inte mapp %s för delrutor för '%s'"
+msgstr "Kunde inte mapp för delrutor för '%s'"
 
 #. Make upper case of translaed country so string search works later
 #: ../src/plugins/mapservices/eniroswedenmap.py:45
