@@ -19877,7 +19877,7 @@ msgstr "Ascendientes de %s"
 #: ../src/plugins/textreport/DetDescendantReport.py:369
 #, python-format
 msgid "%(name)s is the same person as [%(id_str)s]."
-msgstr "Es la misma persona que [%(id_str)s]."
+msgstr "%(name)s es la misma persona que [%(id_str)s]."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:304
 #: ../src/plugins/textreport/DetDescendantReport.py:733
