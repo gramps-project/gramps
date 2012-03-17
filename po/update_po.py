@@ -289,7 +289,7 @@ def clean():
     
     for h in headers():
         if os.path.isfile(h):
-            os.system('''rm %s''' % h)
+            os.unlink(h)
             print('Remove %(head)s' % {'head': h})
             
     if os.path.isfile('python.txt'):
