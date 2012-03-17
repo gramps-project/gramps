@@ -347,6 +347,7 @@ class GeoPerson(GeoGraphyView):
                     fam = dbstate.db.get_family_from_handle(fhandle)
                     handle = fam.get_father_handle()
                     father = dbstate.db.get_person_from_handle(handle)
+                    descr1 = " - "
                     if father:
                         descr1 = "%s - " % _nd.display(father)
                     handle = fam.get_mother_handle()
