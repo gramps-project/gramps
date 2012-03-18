@@ -240,7 +240,7 @@ def mac_setup_localization(dir, domain):
                 os.environ["LANGUAGE"] = ":".join(translations)
             else:
                 os.environ["LANGUAGE"] = translations[0]
-        elif (len(locale) > 0 and locale in available
+        elif (len(loc) > 0 and loc in available
               and not locale.starts_with("en")):
             os.environ["LANGUAGE"] = locale
         elif (len(collation) > 0 and collation in available
