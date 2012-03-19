@@ -1674,17 +1674,27 @@ class IdMapper(object):
             while new_val in self.swap.values():
                 new_val = self.find_next()
         else:
-            clean_gid = self.clean(gid)
+            # remove any @ signs
+            gid = self.clean(gid)
             if gid in self.swap:
                 return self.swap[gid]
             else:
-                if self.trans.get(str(clean_gid)) or \
-                        (clean_gid in self.swap.values()):
+                # now standardise the format
+                formatted_gid = self.id2user_format(gid)
+                # I1 and I0001 will both format as I0001. If we had already
+                # encountered I1, it would be in self.swap, so we would already
+                # have found it. If we had already encountered I0001 and we are
+                # now looking for I1, it wouldn't be in self.swap, and we now
+                # find that I0001 is in use, so we have to create a new id.
+                if self.trans.get(str(formatted_gid)) or \
+                        (formatted_gid in self.swap.values()):
                     new_val = self.find_next()
                     while new_val in self.swap.values():
                         new_val = self.find_next()
                 else:
-                    new_val = clean_gid
+                    new_val = formatted_gid
+            # we need to distinguish between I1 and I0001, so we record the map
+            # from the original format
             self.swap[gid] = new_val
         return new_val
     
@@ -1692,7 +1702,6 @@ class IdMapper(object):
         temp = gid.strip()
         if len(temp) > 1 and temp[0] == '@' and temp[-1] == '@':
             temp = temp[1:-1]
-        temp = self.id2user_format(temp)
         return temp
     
     def map(self):
@@ -4240,7 +4249,8 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        handle = self.__find_family_handle(self.fid_map[line.data])
+        gid = self.fid_map[line.data]
+        handle = self.__find_family_handle(gid)
         state.person.add_family_handle(handle)
 
         sub_state = CurrentState(level=state.level+1)
@@ -4348,7 +4358,8 @@ class GedcomParser(UpdateCallback):
         """
         # create a family
         
-        family = self.__find_or_create_family(self.fid_map[line.token_text])
+        gid = self.fid_map[line.token_text]
+        family = self.__find_or_create_family(gid)
 
         # parse the family
 
