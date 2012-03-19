@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #!/usr/bin/python
 #
 # Gramps - a GTK+/GNOME based genealogy program
@@ -319,12 +318,7 @@ class WebCalReport(Report):
 
         # copy Navigation Menu Layout if Blue or Visually is being used
         if CSS[self.css]["navigation"]:
-
-            # if there are multiple years, add Horizontal else add Fade...
-            if self.multiyear:
-                fname = CSS["Horizontal-Menus"]["filename"]
-            else:
-                fname = CSS["Fade-Menus"]["filename"]
+            fname = CSS["Horizontal-Menus"]["filename"]
             self.copy_file(fname, "calendar-menus.css", "styles")
 
         # copy print stylesheet
