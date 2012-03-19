@@ -32,11 +32,13 @@ if sys.platform == 'win32':
     # ....\gettext\bin\msgmerge.exe needs to be on the path
     msgmergeCmd = 'c:\Program_files\gettext\bin\msgmerge.exe'
     msgfmtCmd = 'c:\Program_files\gettext\bin\msgfmt.exe'
+    msgattribCmd = 'c:\Program_files\gettext\bin\msgfmt.exe'
     xgettextCmd = os.path.join('c:', 'Program_files', 'bin', 'xgettext.exe')
     pythonCmd = 'c:\Program_files\python\bin\python.exe'
 elif sys.platform == 'linux2' or os.name == 'darwin':
     msgmergeCmd = 'msgmerge'
     msgfmtCmd = 'msgfmt'
+    msgattribCmd = 'msgattrib'
     xgettextCmd = 'xgettext'
     pythonCmd = 'python'
 
@@ -48,30 +50,39 @@ def tests():
     """
     
     try:
-        print("====='msgmerge'=(merge our translation)=================")
+        print("\n====='msgmerge'=(merge our translation)================\n")
         os.system('''%(program)s -V''' % {'program': msgmergeCmd})
     except:
         print('Please, install %(program)s for updating your translation' % {'program': msgmergeCmd})
         
     try:
-        print("===='msgfmt'=(format our translation for installation)==")
+        print("\n==='msgfmt'=(format our translation for installation)==\n")
         os.system('''%(program)s -V''' % {'program': msgfmtCmd})
     except:
         print('Please, install %(program)s for checking your translation' % {'program': msgfmtCmd})
         
     try:
-        print("===='xgettext' =(generate a new template)===============")
+        print("\n===='msgattrib'==(list groups of messages)=============\n")
+        os.system('''%(program)s -V''' % {'program': msgattribCmd})
+    except:
+        print('Please, install %(program)s for listing groups of messages' % {'program': msgattribCmd})
+        
+    
+    try:
+        print("\n===='xgettext' =(generate a new template)==============\n")
         os.system('''%(program)s -V''' % {'program': xgettextCmd})
     except:
         print('Please, install %(program)s for generating a new template' % {'program': xgettextCmd})
     
     try:
-        print("=================='python'=============================")
+        print("\n=================='python'=============================\n")
         os.system('''%(program)s -V''' % {'program': pythonCmd})
     except:
         print('Please, install python')
-
-    
+        
+        
+# See also 'get_string' from Gramps 2.0 (sample with SAX)
+        
 def XMLParse(filename, mark):
     """
     Experimental alternative to 'intltool-extract' for XML based files.
@@ -82,10 +93,56 @@ def XMLParse(filename, mark):
     
     tree = ElementTree.parse(filename)
     root = tree.getroot()
-                       
-    for key in root.getiterator(mark):
-        print(ElementTree.tostring(key, encoding="UTF-8"))
         
+    '''
+    <?xml version="1.0" encoding="UTF-8"?>
+      <tips>
+        <_tip number="1">
+          <b>Working with Dates</b>
+            <br/>
+        A range of dates can be given by using the format &quot;between 
+        January 4, 2000 and March 20, 2003&quot;. You can also indicate 
+        the level of confidence in a date and even choose between seven 
+        different calendars. Try the button next to the date field in the
+        Events Editor.
+        </_tip>
+    gramps.pot:
+    msgid ""
+    "<b>Working with Dates</b><br/>A range of dates can be given by using the "
+    "format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also "
+    "indicate the level of confidence in a date and even choose between seven "
+    "different calendars. Try the button next to the date field in the Events "
+    "Editor."
+    '''
+    
+    for key in root.getiterator(mark):
+        tip = ElementTree.tostring(key, encoding="UTF-8")
+        tip = tip.replace("<?xml version='1.0' encoding='UTF-8'?>", "")
+        tip = tip.replace('<_tip number="%(number)s">' % key.attrib, "")
+        tip = tip.replace("<br />", "<br/>")
+        tip = tip.replace("</_tip>\n\n", "")
+        print('_("%s")' % tip)
+                
+    '''
+    <?xml version="1.0" encoding="utf-8"?>
+      calendar>
+        <country _name="Bulgaria">
+          ..
+        <country _name="Jewish Holidays">
+          <date _name="Yom Kippur" value="> passover(y)" offset="172"/>
+    gramps.pot:
+    msgid "Bulgaria"
+    msgid "Jewish Holidays"
+    msgid "Yom Kippur"
+    '''
+            
+    for key in root.getiterator():
+        if key.attrib.get(mark):
+            line = key.attrib
+            string = line.items
+            name = '_("%(_name)s")' % line
+            print(name)
+           
 
 def main():
     """
@@ -112,6 +169,13 @@ def main():
                           "Everything around update for translation files."
                           )   
     parser.add_option_group(update)
+    
+    trans = OptionGroup(
+                          parser, 
+                          "Translation Options", 
+                          "Some informations around translation."
+                          )   
+    parser.add_option_group(trans)
                          
     parser.add_option("-t", "--test",
 			  action="store_true", dest="test", default=False,
@@ -137,6 +201,14 @@ def main():
     update.add_option("-k", "--check",
 			  action="store_true", dest="check", default=False,
 			  help="check lang.po files")
+              
+    # testing stage
+    trans.add_option("-u", "--untranslated",
+			  action="store_true", dest="untranslated", default=False,
+			  help="list untranslated messages")
+    trans.add_option("-f", "--fuzzy",
+			  action="store_true", dest="fuzzy", default=False,
+			  help="list fuzzy messages")
     
     (options, args) = parser.parse_args()
     
@@ -160,6 +232,12 @@ def main():
         
     if options.check:
         check(args)
+        
+    if options.untranslated:
+        untranslated(args)
+        
+    if options.fuzzy:
+        fuzzy(args)
                 
 def listing(name, extension):
     """
@@ -217,10 +295,11 @@ def extract_xml():
     """
     
     os.system('''intltool-extract --type=gettext/xml ../src/data/tips.xml.in''')
-    #XMLParse('../src/data/tips.xml.in', '_tip')
     os.system('''intltool-extract --type=gettext/xml ../src/plugins/lib/holidays.xml.in''')
-    #XMLParse('../src/plugins/lib/holidays.xml.in', 'country')
     
+    XMLParse('../src/data/tips.xml.in', '_tip')
+    XMLParse('../src/plugins/lib/holidays.xml.in', '_name')
+        
     # cosmetic
     # could be simple copies without .in extension
     os.system('''intltool-extract --type=gettext/xml ../data/gramps.xml.in''')
@@ -337,5 +416,29 @@ def check(args):
         else:
             print("Please, try to set an argument with .po extension like '%(arg)s.po'." % {'arg': arg})
 
+def untranslated(args):
+    """
+    List untranslated messages
+    """
+    
+    if len(args) > 1:
+        print('Please, use only one argument (ex: sv.po).')
+        return
+    
+    for arg in args:
+        os.system('''%(msgattrib)s --untranslated %(lang.po)s'''  % {'msgattrib': msgattribCmd, 'lang.po': arg})
+     
+def fuzzy(args):
+    """
+    List fuzzy messages
+    """
+    
+    if len(args) > 1:
+        print('Please, use only one argument (ex: sv.po).')
+        return
+    
+    for arg in args:
+        os.system('''%(msgattrib)s --only-fuzzy --no-obsolete %(lang.po)s'''  % {'msgattrib': msgattribCmd, 'lang.po': arg})
+     
 if __name__ == "__main__":
 	main()
