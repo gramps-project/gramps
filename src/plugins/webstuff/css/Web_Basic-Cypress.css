@@ -128,15 +128,13 @@ a[href]:hover, a[href]:active {
 div#nav, #subnavigation {
     border: solid 1px #454; /* needed by IE7 */
 }
-#subnavigation ul {
-    overflow: hidden;
-}
 div#nav ul, #subnavigation ul {
     list-style: none;
     margin: 0px;
     padding-left: 15px;
 }
 #subnavigation ul {
+    overflow: hidden;
     border-bottom: solid 1px #7C8F7C;
 }
 div#nav ul li, #subnavigation ul li {

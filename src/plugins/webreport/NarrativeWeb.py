@@ -8317,7 +8317,7 @@ def alphabet_navigation(menu_set):
         return None, []
 
     num_ltrs = len(sorted_alpha_index)
-    num_of_cols = 32
+    num_of_cols = 26
     num_of_rows = ((num_ltrs // num_of_cols) + 1)
 
     # begin alphabet navigation division
@@ -8326,7 +8326,6 @@ def alphabet_navigation(menu_set):
         index = 0
         for row in xrange(num_of_rows):
             unordered = Html("ul") 
-            alphabetnavigation += unordered
 
             cols = 0
             while (cols <= num_of_cols and index < num_ltrs):
@@ -8341,13 +8340,11 @@ def alphabet_navigation(menu_set):
                 unordered.extend(
                     Html("li", hyper, inline = True)
                 )
-
-                # increase letter/ word in sorted_alpha_index
                 index += 1
                 cols += 1
             num_of_rows -= 1
 
-    # return alphabet navigation, and menu_set to its callers
+            alphabetnavigation += unordered
     # EventListPage will reuse sorted_alpha_index
     return alphabetnavigation, sorted_alpha_index
 
