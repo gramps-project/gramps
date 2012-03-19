@@ -1,13 +1,4 @@
-# translation of svny.1.po to
-# translation of sv.1.po to
-# translation of nytt_sv2.po to
-# translation of nytt_sv.po to
-# translation of ny_sv.po to
-# translation of svny1.po to
-# translation of sv99.po to
-# translation of svny.po to
 # translation of sv.po to
-# translation of sv1.po to
 # -*- coding: utf-8 -*-
 # Svenska meddelanden i Gramps.
 # Copyright (C) 2001-2006, 2007, 2008, 2009, 2010 Free Software Foundation, Inc.
@@ -18864,7 +18855,7 @@ msgstr "Kunde inte mapp %s för delrutor"
 #: ../src/plugins/lib/maps/grampsmaps.py:186
 #, python-format
 msgid "Can't create tiles cache directory for '%s'."
-msgstr "Kunde inte mapp %s för delrutor för '%s'"
+msgstr "Kunde inte skapa mapp %s för delrutor för '%s'"
 
 #. Make upper case of translaed country so string search works later
 #: ../src/plugins/mapservices/eniroswedenmap.py:45
