@@ -2159,11 +2159,8 @@ class BasePage(object):
 
         # begin web links division
         with Html("div", class_ = "subsection", id = "WebLinks") as section:
-
-            # begin web title
             section += Html("h4", _("Web Links"), inline = True)  
 
-            # begin weblinks table
             with Html("table", class_ = "infolist weblinks") as table: 
                 section += table
 
@@ -2177,7 +2174,6 @@ class BasePage(object):
                     Html('th', label, class_ = colclass, inline = True)
                         for (label, colclass) in [
                             (_("Type"),        "ColumnType"),
-                            (_("Url"),         "ColumnPath"),
                             (_("Description"), "ColumnDescription")
                         ]
                     )
@@ -2209,12 +2205,14 @@ class BasePage(object):
                         if not (uri.startswith("ftp://") or uri.startswith("ftps://")):
                             uri = "ftp://%(ftpsite)s" % { "ftpsite" : uri }   
 
-                    uri = Html("a", uri, href = uri, title = html_escape(descr))
+                    descr = Html("p", html_escape(descr)) + (
+                        Html("a", _(" [Click to Go]"), href = uri, title = uri)
+                    )
+
                     trow.extend(
                         Html("td", data, class_ = colclass, inline = True)
                             for (data, colclass) in [
                                 (str(_type), "ColumnType"),
-                                (uri,        "ColumnPath"),
                                 (descr,      "ColumnDescription")
                             ]
                     ) 
