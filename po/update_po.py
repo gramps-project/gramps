@@ -32,7 +32,7 @@ if sys.platform == 'win32':
     # ....\gettext\bin\msgmerge.exe needs to be on the path
     msgmergeCmd = 'c:\Program_files\gettext\bin\msgmerge.exe'
     msgfmtCmd = 'c:\Program_files\gettext\bin\msgfmt.exe'
-    msgattribCmd = 'c:\Program_files\gettext\bin\msgfmt.exe'
+    msgattribCmd = 'c:\Program_files\gettext\bin\msgattrib.exe'
     xgettextCmd = os.path.join('c:', 'Program_files', 'bin', 'xgettext.exe')
     pythonCmd = 'c:\Program_files\python\bin\python.exe'
 elif sys.platform == 'linux2' or os.name == 'darwin':
