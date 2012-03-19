@@ -30,11 +30,11 @@ from optparse import OptionParser, OptionGroup
 if sys.platform == 'win32':          
     # GetText Win 32 obtained from http://gnuwin32.sourceforge.net/packages/gettext.htm
     # ....\gettext\bin\msgmerge.exe needs to be on the path
-    msgmergeCmd = 'c:\Program_files\gettext\bin\msgmerge.exe'
-    msgfmtCmd = 'c:\Program_files\gettext\bin\msgfmt.exe'
-    msgattribCmd = 'c:\Program_files\gettext\bin\msgattrib.exe'
-    xgettextCmd = os.path.join('c:', 'Program_files', 'bin', 'xgettext.exe')
-    pythonCmd = 'c:\Program_files\python\bin\python.exe'
+    msgmergeCmd = 'C:\Program Files(x86)\gettext\bin\msgmerge.exe'
+    msgfmtCmd = 'C:\Program Files(x86)\gettext\bin\msgfmt.exe'
+    msgattribCmd = 'C:\Program Files(x86)\gettext\bin\msgattrib.exe'
+    xgettextCmd = os.path.join('C:', 'Program Files(x86)', 'gettext', 'bin', 'xgettext.exe')
+    pythonCmd = 'C:\Program Files(x86)\python\bin\python.exe'
 elif sys.platform == 'linux2' or os.name == 'darwin':
     msgmergeCmd = 'msgmerge'
     msgfmtCmd = 'msgfmt'
@@ -410,7 +410,7 @@ def check(args):
         if arg[-3:] == '.po':
             print("Checked file: '%(lang.po)s'. See '%(txt)s.txt'." \
                  % {'lang.po': arg, 'txt': arg[:2]})
-            os.system('''%(python)s ./check_po ./%(lang.po)s > %(lang)s.txt''' \
+            os.system('''%(python)s ./check_po --skip-fuzzy ./%(lang.po)s > %(lang)s.txt''' \
                      % {'python': pythonCmd, 'lang.po': arg, 'lang': arg[:2]})
             os.system('''%(msgfmt)s -c -v %(lang.po)s''' % {'msgfmt': msgfmtCmd, 'lang.po': arg})
         else:
@@ -426,7 +426,7 @@ def untranslated(args):
         return
     
     for arg in args:
-        os.system('''%(msgattrib)s --untranslated %(lang.po)s'''  % {'msgattrib': msgattribCmd, 'lang.po': arg})
+        os.system('''%(msgattrib)s --untranslated %(lang.po)s''' % {'msgattrib': msgattribCmd, 'lang.po': arg})
      
 def fuzzy(args):
     """
@@ -438,7 +438,7 @@ def fuzzy(args):
         return
     
     for arg in args:
-        os.system('''%(msgattrib)s --only-fuzzy --no-obsolete %(lang.po)s'''  % {'msgattrib': msgattribCmd, 'lang.po': arg})
+        os.system('''%(msgattrib)s --only-fuzzy --no-obsolete %(lang.po)s''' % {'msgattrib': msgattribCmd, 'lang.po': arg})
      
 if __name__ == "__main__":
 	main()
