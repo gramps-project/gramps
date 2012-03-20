@@ -422,11 +422,10 @@ def untranslated(args):
     """
     
     if len(args) > 1:
-        print('Please, use only one argument (ex: sv.po).')
+        print('Please, use only one argument (ex: fr.po).')
         return
     
-    for arg in args:
-        os.system('''%(msgattrib)s --untranslated %(lang.po)s''' % {'msgattrib': msgattribCmd, 'lang.po': arg})
+    os.system('''%(msgattrib)s --untranslated %(lang.po)s''' % {'msgattrib': msgattribCmd, 'lang.po': args[0]})
      
 def fuzzy(args):
     """
@@ -434,11 +433,10 @@ def fuzzy(args):
     """
     
     if len(args) > 1:
-        print('Please, use only one argument (ex: sv.po).')
+        print('Please, use only one argument (ex: fr.po).')
         return
     
-    for arg in args:
-        os.system('''%(msgattrib)s --only-fuzzy --no-obsolete %(lang.po)s''' % {'msgattrib': msgattribCmd, 'lang.po': arg})
+    os.system('''%(msgattrib)s --only-fuzzy --no-obsolete %(lang.po)s''' % {'msgattrib': msgattribCmd, 'lang.po': args[0]})
      
 if __name__ == "__main__":
 	main()
