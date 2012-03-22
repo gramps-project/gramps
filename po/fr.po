@@ -826,7 +826,7 @@ msgstr "l'ancienne conjointe"
 
 #: ../src/Relationship.py:1698
 msgid "gender unknown,unmarried|ex-spouse"
-msgstr "l'ancienne conjointe"
+msgstr "l'ancien conjoint"
 
 #: ../src/Relationship.py:1701
 msgid "male,civil union|partner"
@@ -1902,11 +1902,11 @@ msgstr "PATRONYME[CON]"
 #: ../src/Utils.py:1215
 #: ../src/gui/configure.py:534
 msgid "Rawsurnames"
-msgstr "Noms de famille brut"
+msgstr "Nomsdefamillebrut"
 
 #: ../src/Utils.py:1215
 msgid "RAWSURNAMES"
-msgstr "NOMS DE FAMILLE BRUT"
+msgstr "NOMSDEFAMILLEBRUT"
 
 # /!\ longue chaîne, voir formats de nom (Préférences)
 #: ../src/Utils.py:1216
@@ -2541,7 +2541,7 @@ msgstr "préfixe"
 #: ../src/gen/display/name.py:586
 #: ../src/gen/display/name.py:677
 msgid "rawsurnames"
-msgstr "noms de famille brut"
+msgstr "nomsdefamillebrut"
 
 #: ../src/gen/display/name.py:588
 #: ../src/gen/display/name.py:679
@@ -3372,7 +3372,7 @@ msgstr "À faire"
 
 #: ../src/gen/lib/nametype.py:55
 msgid "Also Known As"
-msgstr "Connu(e) également sous le nom de"
+msgstr "Alias"
 
 #: ../src/gen/lib/nametype.py:56
 msgid "Birth Name"
@@ -3599,7 +3599,7 @@ msgstr "Carte"
 
 #: ../src/gen/lib/srcmediatype.py:73
 msgid "Newspaper"
-msgstr "Gazette"
+msgstr "Journal"
 
 #: ../src/gen/lib/srcmediatype.py:74
 msgid "Photo"
@@ -4131,11 +4131,11 @@ msgstr "Livres"
 
 #: ../src/gen/plug/report/_constants.py:52
 msgid "Graphs"
-msgstr "Graphiques"
+msgstr "Diagrammes"
 
 #: ../src/gen/plug/report/_constants.py:57
 msgid "Graphics"
-msgstr "Graphique"
+msgstr "Graphiques"
 
 #: ../src/gen/plug/report/endnotes.py:47
 #: ../src/plugins/textreport/AncestorReport.py:337
@@ -4303,8 +4303,8 @@ msgstr ""
 "  <b>Patronyme, ou [pre] ou [nom] ou [con]</b> - patronyme complet, préfixe, nom seul, connecteur \n"
 "  <b>Nom-dit</b>    - surnom du nom de famille     <b>Préfixe</b>     - préfixe (von, de, de la)\n"
 "  <b>Reste</b>       - les noms de famille secondaires\n"
-"  <b>Pas patronyme</b> - tous les noms de famille sauf le principal &amp; le pa/matronyme\n"
-"  <b>Noms de famille brut</b>   - tous les noms de famille sans préfixe et connecteurs\n"
+"  <b>PasPatronyme</b> - tous les noms de famille sauf le principal &amp; le pa/matronyme\n"
+"  <b>Nomsdefamillebrut</b>   - tous les noms de famille sans préfixe et connecteurs\n"
 "\n"
 "</tt>\n"
 "Utilisez le même mot clé en MAJUSCULE pour forcer les lettres capitales. Parenthèses et virgules\n"
@@ -4444,7 +4444,7 @@ msgstr "Usuel"
 
 #: ../src/gui/configure.py:526
 msgid "NotPatronymic"
-msgstr "Paspatronyme"
+msgstr "PasPatronyme"
 
 #: ../src/gui/configure.py:607
 msgid "Enter to save, Esc to cancel editing"
@@ -6982,18 +6982,18 @@ msgstr "Impossible d'enregistrer le lieu. L'identifiant existe déjà."
 #: ../src/gui/editors/editplace.py:313
 #, python-format
 msgid "Add Place (%s)"
-msgstr "Ajouter le lieu (%s)"
+msgstr "Ajout du lieu (%s)"
 
 #: ../src/gui/editors/editplace.py:318
 #, python-format
 msgid "Edit Place (%s)"
-msgstr "Éditer le lieu (%s)"
+msgstr "Édition du lieu (%s)"
 
 # objet sélectionné
 #: ../src/gui/editors/editplace.py:342
 #, python-format
 msgid "Delete Place (%s)"
-msgstr "Supprimer le lieu (%s)"
+msgstr "Suppression du lieu (%s)"
 
 #: ../src/gui/editors/editprimary.py:234
 msgid "Save Changes?"
@@ -8494,7 +8494,7 @@ msgstr "S_ouche"
 
 #: ../src/gui/views/navigationview.py:306
 msgid "Go to the default person"
-msgstr "Aller à l'individu par défaut"
+msgstr "Aller à la souche"
 
 #: ../src/gui/views/navigationview.py:310
 msgid "Set _Home Person"
@@ -10345,7 +10345,7 @@ msgstr "La famille principale pour ce rapport"
 
 #: ../src/plugins/drawreport/DescendTree.py:1463
 msgid "Start with the parent(s) of the selected first"
-msgstr "Démarrer avec les parent(s) de la sélection"
+msgstr "Démarrer avec le(s) parent(s) de la sélection"
 
 #: ../src/plugins/drawreport/DescendTree.py:1466
 msgid "Will show the parents, brother and sisters of the selected person."
@@ -13423,7 +13423,7 @@ msgstr "Gramps n'a pas pu ouvrir %s\n"
 
 #: ../src/plugins/import/ImportCsv.py:171
 msgid "Given name"
-msgstr "prénom"
+msgstr "Prénom"
 
 #: ../src/plugins/import/ImportCsv.py:173
 msgid "given name"
@@ -13432,7 +13432,7 @@ msgstr "prénom"
 # call name = prénom dans le context !
 #: ../src/plugins/import/ImportCsv.py:174
 msgid "Call name"
-msgstr "prénom usuel"
+msgstr "Prénom usuel"
 
 #: ../src/plugins/import/ImportCsv.py:176
 msgid "call"
@@ -26728,7 +26728,7 @@ msgid ""
 "\n"
 "Note: Use Residence Event for genealogical address data."
 msgstr ""
-"Adresse de messagerie. \n"
+"Adresse postale. \n"
 "\n"
 "Remarque : utilisez l'événement résidence pour les adresses généalogiques."
 
@@ -26736,11 +26736,9 @@ msgstr ""
 msgid "Phone number linked to the address."
 msgstr "Numéro de téléphone lié à l'adresse."
 
-# Utilisation d'un terme général car
-# le code postal ne sert à rien en généalogie ...
 #: ../src/glade/editaddress.glade.h:11
 msgid "Postal code"
-msgstr "Code lieu"
+msgstr "Code postal"
 
 #: ../src/glade/editaddress.glade.h:12
 #: ../src/glade/editmedia.glade.h:9
@@ -27774,7 +27772,7 @@ msgstr ""
 "Ci-dessous une liste de surnoms, titres, préfixes et noms de famille composés que Gramps peut extraire de l'arbre familial.\n"
 "Si vous acceptez les changements, Gamps modifiera les données que vous avez sélectionnées.\n"
 "\n"
-"Les noms de famille composés sont affichés sous forme de liste de [préfix, surnom, connecteur].\n"
+"Les noms de famille composés sont affichés sous forme de liste de [préfix, nom de famille, connecteur].\n"
 "Par exemple, sans changement, le nom de \"de Mascarenhas da Silva e Lencastre\" sera affiché comme :\n"
 "       [de, Mascarenhas]-[da, Silva, e]-[,Lencastre]\n"
 "\n"
