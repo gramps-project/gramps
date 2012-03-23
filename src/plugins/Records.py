@@ -533,8 +533,8 @@ class RecordsReportOptions(MenuReportOptions):
         callname = EnumeratedListOption(_("Use call name"), _Name_CALLNAME_DONTUSE)
         callname.set_items([
             (_Name_CALLNAME_DONTUSE, _("Don't use call name")),
-            (_Name_CALLNAME_REPLACE, _("Replace first name with call name")),
-            (_Name_CALLNAME_UNDERLINE_ADD, _("Underline call name in first name / add call name to first name"))])
+            (_Name_CALLNAME_REPLACE, _("Replace first names with call name")),
+            (_Name_CALLNAME_UNDERLINE_ADD, _("Underline call name in first names / add call name to first name"))])
         menu.add_option(category_name, "callname", callname)
 
         footer = StringOption(_("Footer text"), "")

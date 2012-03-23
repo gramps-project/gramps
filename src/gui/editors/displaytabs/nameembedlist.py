@@ -75,7 +75,7 @@ class NameEmbedList(GroupEmbeddedList):
         None,
         (_('Group As'), NameModel.COL_GROUPAS[0],100, 0, -1),
         (_('Source'), NameModel.COL_HASSOURCE[0],60, 0, -1),
-        (_('Note Preview'), NameModel.COL_NOTEPREVIEW[0], 250, 0, -1),
+        (_('Notes Preview'), NameModel.COL_NOTEPREVIEW[0], 250, 0, -1),
         ]
     
     def __init__(self, dbstate, uistate, track, data, person, callback):

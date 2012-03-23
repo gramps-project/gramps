@@ -2194,10 +2194,10 @@ class PedigreeView(NavigationView):
         configdialog.add_combo(table, 
                 _('Tree direction'), 
                 5, 'interface.pedview-tree-direction',
-                ((0, _('Vertical (top to bottom)')),
-                (1, _('Vertical (bottom to top)')),
-                (2, _('Horizontal (left to right)')),
-                (3, _('Horizontal (right to left)'))))
+                ((0, _('Vertical (↓)')),
+                (1, _('Vertical (↑)')),
+                (2, _('Horizontal (→)')),
+                (3, _('Horizontal (←)'))))
         self.config_size_slider = configdialog.add_slider(table, 
                 _('Tree size'), 
                 6, 'interface.pedview-tree-size',

@@ -241,7 +241,7 @@ def get_marriage_date(db,family):
 class Verify(tool.Tool, ManagedWindow, UpdateCallback):
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
-        self.label = _('Database Verify tool')
+        self.label = _('Data Verify tool')
         self.vr = None
         tool.Tool.__init__(self, dbstate, options_class, name)
         ManagedWindow.__init__(self, uistate,[], self.__class__)
@@ -428,7 +428,7 @@ class VerifyResults(ManagedWindow):
     SHOW_COL       = 9
 
     def __init__(self,dbstate,uistate,track):
-        self.title = _('Database Verification Results')
+        self.title = _('Data Verification Results')
 
         ManagedWindow.__init__(self,uistate,track,self.__class__)
 
