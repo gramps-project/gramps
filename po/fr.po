@@ -17999,27 +17999,27 @@ msgstr "Pâque juive"
 
 #: ../src/plugins/lib/holidays.xml.in.h:34
 msgid "Purim"
-msgstr ""
+msgstr "Pourim"
 
 #: ../src/plugins/lib/holidays.xml.in.h:35
 msgid "Rosh Ha'Shana"
-msgstr ""
+msgstr "Roch Hachana"
 
 #: ../src/plugins/lib/holidays.xml.in.h:36
 msgid "Rosh Ha'Shana 2"
-msgstr ""
+msgstr "Roch Hachana 2"
 
 #: ../src/plugins/lib/holidays.xml.in.h:37
 msgid "Shavuot"
-msgstr ""
+msgstr "Chavouot"
 
 #: ../src/plugins/lib/holidays.xml.in.h:38
 msgid "Simhat Tora"
-msgstr ""
+msgstr "Sim'hat Torah"
 
 #: ../src/plugins/lib/holidays.xml.in.h:39
 msgid "Sukot"
-msgstr ""
+msgstr "Sukot"
 
 #: ../src/plugins/lib/holidays.xml.in.h:40
 msgid "Sweden - Holidays"
