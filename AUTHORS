@@ -1,17 +1,92 @@
-Donald N. Allingham ** Concept and main design
+<!-- $Id$ -->
 
-David Hampton ** Autocomp.py and Report.py
 
-Donald A. Peterson  ** Makefiles, LaTeXDoc.py
+Alex Roitman shura@gramps-project.org
 
-Alex Roitman ** BookReport, command line, Gramps manual, bugfixes
+Arturas Sleinius asleinius@users.sourceforge.net
 
-Tim Waugh ** Comprehensive Ancestor report, docgen, Makefiles, bugfixes
+Benny Malengier benny.malengier@gramps-project.org
 
-Martin Hawlisch - Filters
+Boril Gourinov boril.gourinov@gmail.com
 
-Richard Taylor - ScratchPad.py, GrampsDBCallback.py
+Brian Matherly brian@gramps-project.org
 
-Brian Matherly - Reports
+Craig J. Anderson ander882@hotmail.com
 
-$Id$
+Don Allingham don@gramps-project.org
+
+Donald A. Peterson
+
+Doug Blank doug.blank@gmail.com
+
+Eero Tamminen eerot@users.sourceforge.net
+
+Erik De Richter erikdrgm@users.sourceforge.net
+
+Espen Berg espenbe@gmail.com
+
+Gary Burton gary.burton@zen.co.uk
+
+Gerald Britton gerald.britton@gmail.com
+
+James G Sack jgsack@san.rr.com
+
+Janne Kovesjärvi janne.kovesjarvi@gmail.com
+
+Jason Simanek jsimanek@gmail.com
+
+Jérôme Rapinat romjerome@yahoo.fr
+
+Joan Creus joan.creus@gmail.com
+
+Josip Pisoj josip@pisoj.com
+
+Julio Sánchez julio.sanchez@gmail.com
+
+Kees Bakker kees.bakker@xs4all.nl
+
+Konstantin Dorichev kdorichev@gmail.com
+
+Lubo Vasko pgval@inMail.sk
+
+Luigi Toscano luigi.toscano@tiscali.it
+
+Luiz Gonzaga dos Santos Filho lfilho@gmail.com
+
+Łukasz Rymarczyk yenidai@poczta.onet.pl
+
+Michiel Nauta m.d.nauta@hetnet.nl
+
+Mirko Leonhäuser mirko@leonhaeuser.de
+
+Morten Bo Johansen mbj@spamcop.net
+
+Martin Hawlisch martin.hawlisch@gmx.de
+
+Nick Hall nick__hall@hotmail.com
+
+Peter Landgren peter.talken@telia.com
+
+Raphael Ackermann raphael.ackermann@gmail.com
+
+Richard Taylor rjt-gramps@thegrindstone.me.uk
+
+Rob G. Healey robhealey1@gmail.com
+
+Serge Noiraud Serge.Noiraud@free.fr
+
+Sigmund Lorentsen sigmund.lorentsen@tele2.no
+
+Stefan Bjork betula@users.sourceforge.net
+
+Stéphane Charette stephanecharette@gmail.com
+
+Tim G L Lyons tim.g.lyons@gmail.com
+
+Tim Waugh twaugh@redhat.com
+
+Vassilii Khachaturov vassilii@tarunz.org
+
+Zdeněk Hataš zdenek.hatas@gmail.com
+
+Zsolt Foldvari zfoldvar@users.sourceforge.net
