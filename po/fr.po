@@ -1798,11 +1798,11 @@ msgstr "COURANT"
 
 #: ../src/Utils.py:1205
 msgid "Initials"
-msgstr "Les initiales"
+msgstr "Initiales"
 
 #: ../src/Utils.py:1205
 msgid "INITIALS"
-msgstr "LES INITIALES"
+msgstr "INITIALES"
 
 #: ../src/Utils.py:1206
 #: ../src/gui/configure.py:513
@@ -5773,7 +5773,7 @@ msgstr "Les mises à jour disponibles pour les greffons Gramps"
 #: ../src/gui/viewmanager.py:479
 #, python-format
 msgid "%(adjective)s: %(addon)s"
-msgstr "%(adjective)s: %(addon)s"
+msgstr "%(adjective)s : %(addon)s"
 
 #: ../src/gui/viewmanager.py:536
 msgid "Downloading and installing selected addons..."
@@ -12918,7 +12918,7 @@ msgstr "naissance manquante"
 #: ../src/plugins/gramplet/WhatsNext.py:477
 #, python-format
 msgid ": %(list)s\n"
-msgstr ": %(list)s\n"
+msgstr " : %(list)s\n"
 
 #: ../src/plugins/gramplet/WhatsNext.py:388
 msgid "person not complete"
@@ -12964,7 +12964,7 @@ msgstr "lieu inconnu"
 #: ../src/plugins/gramplet/WhatsNext.py:497
 #, python-format
 msgid "%(type)s: %(list)s"
-msgstr "%(type)s: %(list)s"
+msgstr "%(type)s : %(list)s"
 
 #: ../src/plugins/gramplet/WhatsNext.py:505
 msgid "spouse missing"
@@ -12985,7 +12985,7 @@ msgstr "parents manquants"
 #: ../src/plugins/gramplet/WhatsNext.py:524
 #, python-format
 msgid ": %s\n"
-msgstr ": %s\n"
+msgstr " : %s\n"
 
 #: ../src/plugins/graph/graphplugins.gpr.py:31
 msgid "Family Lines Graph"
@@ -19313,7 +19313,7 @@ msgstr "%(place)s"
 #: ../src/plugins/textreport/DetDescendantReport.py:432
 #, python-format
 msgid "%(event_name)s: %(event_text)s"
-msgstr "%(event_name)s: %(event_text)s"
+msgstr "%(event_name)s : %(event_text)s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:536
 #: ../src/plugins/textreport/DetDescendantReport.py:566
