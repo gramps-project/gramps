@@ -66,10 +66,10 @@ _FONTS = [ { 'name' : _("Default"),                   'value' : ""          },
            { 'name' : _("PostScript / Helvetica"),    'value' : "Helvetica" },
            { 'name' : _("TrueType / FreeSans"),       'value' : "FreeSans"  }  ]
 
-_RANKDIR = [ { 'name' : _("Vertical (↓)"),      'value' : "TB" },
-             { 'name' : _("Vertical (↑)"),      'value' : "BT" },
-             { 'name' : _("Horizontal (→)"),    'value' : "LR" },
-             { 'name' : _("Horizontal (←)"),    'value' : "RL" } ]
+_RANKDIR = [ { 'name' : _(u"Vertical (↓)"),      'value' : "TB" },
+             { 'name' : _(u"Vertical (↑)"),      'value' : "BT" },
+             { 'name' : _(u"Horizontal (→)"),    'value' : "LR" },
+             { 'name' : _(u"Horizontal (←)"),    'value' : "RL" } ]
 
 _PAGEDIR = [ { 'name' : _("Bottom, left"),                  'value' :"BL" },
              { 'name' : _("Bottom, right"),                 'value' :"BR" },
