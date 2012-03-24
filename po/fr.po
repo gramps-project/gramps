@@ -22,7 +22,7 @@
 # Mathieu MD <mathieu.md@gmail.com>, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: 3.4.0\n"
+"Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-03-10 22:17+0100\n"
 "PO-Revision-Date: 2012-03-22 00:31+0100\n"
@@ -26750,9 +26750,10 @@ msgstr ""
 "Utilisation des noms composés\n"
 "Indique que le nom de famille est composé de plusieurs parties. Chaque nom de famille a son propre préfixe et un possible connecteur vers le nom suivant. Par exemple, le nom de famille  Ramón y Cajal peut être enregistré comme Ramón, lequel nom est hérité du père, les connecteur est y, et Cajal est hérité de la mère."
 
+# les prénoms (difficile de trouver une solution sur le code)
 #: ../src/glade/editperson.glade.h:33 ../src/glade/editname.glade.h:32
 msgid "_Given:"
-msgstr "_Prénom :"
+msgstr "_Prénoms :"
 
 #: ../src/glade/editperson.glade.h:34 ../src/glade/editsource.glade.h:13
 #: ../src/glade/editcitation.glade.h:27 ../src/glade/editrepository.glade.h:9
