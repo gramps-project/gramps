@@ -93,6 +93,15 @@ def XMLParse(filename, mark):
     
     tree = ElementTree.parse(filename)
     root = tree.getroot()
+
+    python_v = sys.version_info
+    
+    #if python_v[1] != 6:    
+    
+    # python 2.7
+    # iter() is the new name for getiterator; 
+    # in ET 1.3, it is implemented as a generator method,
+    # but is otherwise identical
         
     '''
     <?xml version="1.0" encoding="UTF-8"?>
