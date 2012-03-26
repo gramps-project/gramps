@@ -377,6 +377,7 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="xalign">0</property>
                             <property name="label" translatable="yes">_Surname:</property>
                             <property name="use_underline">True</property>
+                            <property name="mnemonic_widget">surname</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
