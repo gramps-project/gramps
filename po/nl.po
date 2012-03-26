@@ -7791,7 +7791,7 @@ msgstr "Om dit gereedschap correct te kunnen gebruiken moet u een actieve persoo
 
 #: ../src/gui/selectors/selectevent.py:54
 msgid "Select Event"
-msgstr "Gebeurtenis verwijderen"
+msgstr "Gebeurtenis selecteren"
 
 #: ../src/gui/selectors/selectevent.py:64 ../src/plugins/view/eventview.py:86
 msgid "Main Participants"
