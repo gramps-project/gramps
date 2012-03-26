@@ -8172,7 +8172,7 @@ msgstr "Bron selecteren"
 
 #: ../src/gui/selectors/selectevent.py:54
 msgid "Select Event"
-msgstr "Gebeurtenis verwijderen"
+msgstr "Gebeurtenis selecteren"
 
 #: ../src/gui/selectors/selectevent.py:64 ../src/plugins/view/eventview.py:87
 #: ../src/Filters/Rules/Person/_HasEvent.py:53
