@@ -249,6 +249,13 @@ class ConfigureDialog(ManagedWindow.ManagedWindow):
         """
         self.__config.set(constant, int(obj.get_value()))
 
+    def update_spinner(self, obj, constant):
+        """
+        :param obj: the SpinButton object
+        :param constant: the config setting to which the value must be saved
+        """
+        self.__config.set(constant, int(obj.get_value()))
+
     def add_checkbox(self, table, label, index, constant, start=1, stop=9,
                      config=None, extra_callback=None):
         if not config:
@@ -398,6 +405,25 @@ class ConfigureDialog(ManagedWindow.ManagedWindow):
                      xoptions=gtk.FILL)
         table.attach(slider, 2, 3, index, index+1, yoptions=0)
         return slider
+
+    def add_spinner(self, table, label, index, constant, range, callback=None,
+                   config=None):
+        """
+        A spinner allowing the selection of an integer within a specified range.
+        :param range: A tuple containing the minimum and maximum allowed values.
+        """
+        if not config:
+            config = self.__config
+        if not callback:
+            callback = self.update_spinner
+        lwidget = BasicLabel("%s: " % label)
+        adj = gtk.Adjustment(config.get(constant), range[0], range[1], 1, 0, 0)
+        spinner = gtk.SpinButton(adj)
+        spinner.connect('value-changed', callback, constant)
+        table.attach(lwidget, 1, 2, index, index+1, yoptions=0, 
+                     xoptions=gtk.FILL)
+        table.attach(spinner, 2, 3, index, index+1, yoptions=0)
+        return spinner
 
 #-------------------------------------------------------------------------
 #
@@ -1011,27 +1037,27 @@ class GrampsPreferences(ConfigureDialog):
         table.set_col_spacings(6)
         table.set_row_spacings(6)
 
-        self.add_pos_int_entry(table, 
+        self.add_spinner(table, 
                 _('Date about range'),
-                0, 'behavior.date-about-range', self.update_int_entry)
-        self.add_pos_int_entry(table, 
+                0, 'behavior.date-about-range', (20, 80))
+        self.add_spinner(table, 
                 _('Date after range'),
-                1, 'behavior.date-after-range', self.update_int_entry)
-        self.add_pos_int_entry(table, 
+                1, 'behavior.date-after-range', (20, 80))
+        self.add_spinner(table, 
                 _('Date before range'),
-                2, 'behavior.date-before-range', self.update_int_entry)
-        self.add_pos_int_entry(table, 
+                2, 'behavior.date-before-range', (20, 80))
+        self.add_spinner(table, 
                 _('Maximum age probably alive'),
-                3, 'behavior.max-age-prob-alive', self.update_int_entry)
-        self.add_pos_int_entry(table, 
+                3, 'behavior.max-age-prob-alive', (80, 140))
+        self.add_spinner(table, 
                 _('Maximum sibling age difference'),
-                4, 'behavior.max-sib-age-diff', self.update_int_entry)
-        self.add_pos_int_entry(table, 
+                4, 'behavior.max-sib-age-diff', (10, 30))
+        self.add_spinner(table, 
                 _('Minimum years between generations'),
-                5, 'behavior.min-generation-years', self.update_int_entry)
-        self.add_pos_int_entry(table, 
+                5, 'behavior.min-generation-years', (5, 20))
+        self.add_spinner(table, 
                 _('Average years between generations'),
-                6, 'behavior.avg-generation-gap', self.update_int_entry)
+                6, 'behavior.avg-generation-gap', (10, 30))
         self.add_pos_int_entry(table,
                 _('Markup for invalid date format'), 
                 7, 'preferences.invalid-date-format', self.update_entry)
@@ -1056,9 +1082,9 @@ class GrampsPreferences(ConfigureDialog):
         self.add_checkbox(table, 
                 _('Remember last view displayed'), 
                 3, 'preferences.use-last-view')
-        self.add_pos_int_entry(table, 
+        self.add_spinner(table, 
                 _('Max generations for relationships'),
-                4, 'behavior.generation-depth', self.update_gen_depth)
+                4, 'behavior.generation-depth', (5, 50), self.update_gendepth)
         self.path_entry = gtk.Entry()
         self.add_path_box(table, 
                 _('Base path for relative media paths'),
@@ -1164,24 +1190,14 @@ class GrampsPreferences(ConfigureDialog):
             config.get('preferences.rprefix'),
             config.get('preferences.nprefix') )
 
-    def update_gen_depth(self, obj, constant):
-        ok = True
-        if not obj.get_text():
-            return
-        try:
-            intval = int(obj.get_text())
-        except:
-            intval = config.get(constant)
-            ok = False
-        if intval < 0 :
-            intval = config.get(constant)
-            ok = False
-        if ok:
-            config.set(constant, intval)
-            #immediately use this value in displaystate.
-            self.uistate.set_gendepth(intval)
-        else:
-            obj.set_text(str(intval))
+    def update_gendepth(self, obj, constant):
+        """
+        Called when the generation depth setting is changed.
+        """
+        intval = int(obj.get_value())
+        config.set(constant, intval)
+        #immediately use this value in displaystate.
+        self.uistate.set_gendepth(intval)
 
     def update_surn_height(self, obj, constant):
         ok = True
