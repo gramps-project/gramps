@@ -30,17 +30,17 @@ from optparse import OptionParser, OptionGroup
 if sys.platform == 'win32':          
     # GetText Win 32 obtained from http://gnuwin32.sourceforge.net/packages/gettext.htm
     # ....\gettext\bin\msgmerge.exe needs to be on the path
-    msgmergeCmd = 'C:\Program Files(x86)\gettext\bin\msgmerge.exe'
-    msgfmtCmd = 'C:\Program Files(x86)\gettext\bin\msgfmt.exe'
-    msgattribCmd = 'C:\Program Files(x86)\gettext\bin\msgattrib.exe'
+    msgmergeCmd = os.path.join('C:', 'Program Files(x86)', 'gettext', 'bin', 'msgmerge.exe')
+    msgfmtCmd = os.path.join('C:', 'Program Files(x86)', 'gettext', 'bin', 'msgfmt.exe')
+    msgattribCmd = os.path.join('C:', 'Program Files(x86)', 'gettext', 'bin', 'msgattrib.exe')
     xgettextCmd = os.path.join('C:', 'Program Files(x86)', 'gettext', 'bin', 'xgettext.exe')
-    pythonCmd = 'C:\Program Files(x86)\python\bin\python.exe'
+    pythonCmd = os.path.join(sys.prefix, 'bin', 'python.exe')
 elif sys.platform == 'linux2' or os.name == 'darwin':
     msgmergeCmd = 'msgmerge'
     msgfmtCmd = 'msgfmt'
     msgattribCmd = 'msgattrib'
     xgettextCmd = 'xgettext'
-    pythonCmd = 'python'
+    pythonCmd = os.path.join(sys.prefix, 'bin', 'python')
 
 def tests():
     """
@@ -145,36 +145,7 @@ def TipsParse(filename, mark):
         tips.write('char *s = N_("%s");\n' % tip)
         
     tips.close()
-    
-    '''
-    <?xml version="1.0" encoding="utf-8"?>
-      calendar>
-        <country _name="Bulgaria">
-          ..
-        <country _name="Jewish Holidays">
-          <date _name="Yom Kippur" value="> passover(y)" offset="172"/>
-          
-    char *s = N_("Bulgaria");
-    char *s = N_("Jewish Holidays");
-    char *s = N_("Yom Kippur");
-    
-    gramps.pot:
-    msgid "Bulgaria"
-    msgid "Jewish Holidays"
-    msgid "Yom Kippur"
-    '''
-    
-    holidays = open('../src/plugins/lib/holidays.xml.in.h', 'w')
-            
-    for key in root.getiterator():
-        if key.attrib.get(mark):
-            line = key.attrib
-            string = line.items
-            name = 'char *s = N_("%(_name)s");\n' % line
-            holidays.write(name)
-            
-    holidays.close()
-    
+        
     root.clear()
     
 def HolidaysParse(filename, mark):
