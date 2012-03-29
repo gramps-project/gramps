@@ -83,9 +83,9 @@ def tests():
         
 # See also 'get_string' from Gramps 2.0 (sample with SAX)
         
-def XMLParse(filename, mark):
+def TipsParse(filename, mark):
     """
-    Experimental alternative to 'intltool-extract' for XML based files.
+    Experimental alternative to 'intltool-extract' for 'tips.xml'.
     """
     
     # in progress ...
@@ -115,6 +115,13 @@ def XMLParse(filename, mark):
         different calendars. Try the button next to the date field in the
         Events Editor.
         </_tip>
+        
+    char *s = N_("<b>Working with Dates</b><br/>A range of dates can be 
+    given by using the format &quot;between January 4, 2000 and March 20,
+    2003&quot;. You can also indicate the level of confidence in a date 
+    and even choose between seven different calendars. Try the button 
+    next to the date field in the Events Editor.");
+    
     gramps.pot:
     msgid ""
     "<b>Working with Dates</b><br/>A range of dates can be given by using the "
@@ -124,14 +131,21 @@ def XMLParse(filename, mark):
     "Editor."
     '''
     
+    tips = open('../src/data/tips.xml.in.h', 'w')
+    
     for key in root.getiterator(mark):
         tip = ElementTree.tostring(key, encoding="UTF-8")
         tip = tip.replace("<?xml version='1.0' encoding='UTF-8'?>", "")
-        tip = tip.replace('<_tip number="%(number)s">' % key.attrib, "")
+        tip = tip.replace('\n<_tip number="%(number)s">' % key.attrib, "")
         tip = tip.replace("<br />", "<br/>")
+        tip = tip.replace("\n</_tip>\n", "</_tip>\n") # special case tip 7
+        tip = tip.replace("\n<b>", "<b>") # special case tip 18
         tip = tip.replace("</_tip>\n\n", "")
-        print('_("%s")' % tip)
-                
+        tip = tip.replace('"', '&quot;')
+        tips.write('char *s = N_("%s");\n' % tip)
+        
+    tips.close()
+    
     '''
     <?xml version="1.0" encoding="utf-8"?>
       calendar>
@@ -139,18 +153,80 @@ def XMLParse(filename, mark):
           ..
         <country _name="Jewish Holidays">
           <date _name="Yom Kippur" value="> passover(y)" offset="172"/>
+          
+    char *s = N_("Bulgaria");
+    char *s = N_("Jewish Holidays");
+    char *s = N_("Yom Kippur");
+    
     gramps.pot:
     msgid "Bulgaria"
     msgid "Jewish Holidays"
     msgid "Yom Kippur"
     '''
+    
+    holidays = open('../src/plugins/lib/holidays.xml.in.h', 'w')
             
     for key in root.getiterator():
         if key.attrib.get(mark):
             line = key.attrib
             string = line.items
-            name = '_("%(_name)s")' % line
-            print(name)
+            name = 'char *s = N_("%(_name)s");\n' % line
+            holidays.write(name)
+            
+    holidays.close()
+    
+    root.clear()
+    
+def HolidaysParse(filename, mark):
+    """
+    Experimental alternative to 'intltool-extract' for 'holidays.xml'.
+    """
+    
+    # in progress ...
+    from xml.etree import ElementTree
+    
+    tree = ElementTree.parse(filename)
+    root = tree.getroot()
+
+    python_v = sys.version_info
+    
+    #if python_v[1] != 6:    
+    
+    # python 2.7
+    # iter() is the new name for getiterator; 
+    # in ET 1.3, it is implemented as a generator method,
+    # but is otherwise identical
+            
+    '''
+    <?xml version="1.0" encoding="utf-8"?>
+      calendar>
+        <country _name="Bulgaria">
+          ..
+        <country _name="Jewish Holidays">
+          <date _name="Yom Kippur" value="> passover(y)" offset="172"/>
+          
+    char *s = N_("Bulgaria");
+    char *s = N_("Jewish Holidays");
+    char *s = N_("Yom Kippur");
+    
+    gramps.pot:
+    msgid "Bulgaria"
+    msgid "Jewish Holidays"
+    msgid "Yom Kippur"
+    '''
+    
+    holidays = open('../src/plugins/lib/holidays.xml.in.h', 'w')
+            
+    for key in root.getiterator():
+        if key.attrib.get(mark):
+            line = key.attrib
+            string = line.items
+            name = 'char *s = N_("%(_name)s");\n' % line
+            holidays.write(name)
+            
+    holidays.close()
+    
+    root.clear()
            
 
 def main():
@@ -303,11 +379,11 @@ def extract_xml():
     Need to look at own XML files parsing and custom translation marks.
     """
     
-    os.system('''intltool-extract --type=gettext/xml ../src/data/tips.xml.in''')
-    os.system('''intltool-extract --type=gettext/xml ../src/plugins/lib/holidays.xml.in''')
+    #os.system('''intltool-extract --type=gettext/xml ../src/data/tips.xml.in''')
+    #os.system('''intltool-extract --type=gettext/xml ../src/plugins/lib/holidays.xml.in''')
     
-    XMLParse('../src/data/tips.xml.in', '_tip')
-    XMLParse('../src/plugins/lib/holidays.xml.in', '_name')
+    TipsParse('../src/data/tips.xml.in', '_tip')
+    HolidaysParse('../src/plugins/lib/holidays.xml.in', '_name')
         
     # cosmetic
     # could be simple copies without .in extension
