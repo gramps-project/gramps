@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-03-10 22:17+0100\n"
-"PO-Revision-Date: 2012-03-27 01:14+0200\n"
+"PO-Revision-Date: 2012-03-29 20:07+0200\n"
 "Last-Translator: Joan Creus <joan.creusandreu at gmail dot com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: \n"
@@ -23095,12 +23095,10 @@ msgstr "Combinar les persones seleccionades"
 
 #: ../src/plugins/view/citationlistview.py:137
 #: ../src/plugins/view/view.gpr.py:219
-#, fuzzy
 msgid "Citation View"
-msgstr "Cita"
+msgstr "Vista de Cita"
 
 #: ../src/plugins/view/citationlistview.py:308
-#, fuzzy
 msgid ""
 "This citation cannot be edited at this time. Either the associated citation "
 "is already being edited or another object that is associated with the same "
@@ -23108,12 +23106,11 @@ msgid ""
 "\n"
 "To edit this citation, you need to close the object."
 msgstr ""
-"Aquesta referència de medis audiovisuals no es pot editar en aquest moment. "
-"O bé el medi audiovisual associat ja s'està editant, o s'està editant una "
-"altra referència de medis que està associada amb el mateix objecte.\n"
+"Aquesta cita no es pot editar en aquest moment. "
+"O bé la cita associada ja s'està editant, o s'està editant un "
+"altre objecte que està associat amb la mateixa cita.\n"
 "\n"
-"Per editar aquesta referència de medis audiovisual, cal tancar l'objecte de "
-"medis."
+"Per editar aquesta cita, cal tancar l'objecte."
 
 #: ../src/plugins/view/eventview.py:98
 msgid "Add a new event"
@@ -23225,29 +23222,25 @@ msgstr ""
 "estarà disponible."
 
 #: ../src/plugins/view/geography.gpr.py:49
-#, fuzzy
 msgid "A view showing the places visited by one person during his life."
 msgstr ""
-"Una vista que permet de veure els llocs visitats per una persona durant la "
+"Una vista que mostra els llocs visitats per una persona durant la "
 "seva vida."
 
 #: ../src/plugins/view/geography.gpr.py:66
-#, fuzzy
 msgid "A view showing all places of the database."
-msgstr "Una vista que permet de veure tots els llocs de la base de dades."
+msgstr "Una vista que mostra tots els llocs de la base de dades."
 
 #: ../src/plugins/view/geography.gpr.py:81
-#, fuzzy
 msgid "A view showing all the event places of the database."
 msgstr ""
-"Una vista que permet de veure tots els llocs d'esdeveniment de la base de "
+"Una vista que mostra tots els llocs d'esdeveniment de la base de "
 "dades."
 
 #: ../src/plugins/view/geography.gpr.py:97
-#, fuzzy
 msgid "A view showing the places visited by one family during all their life."
 msgstr ""
-"Una vista que permet de veure tots els llocs visitats per una família al "
+"Una vista que mostra els llocs visitats per una família al "
 "llarg de tota la seva vida."
 
 #: ../src/plugins/view/geoevents.py:116
@@ -23383,9 +23376,8 @@ msgid "Html View"
 msgstr "Vista Html"
 
 #: ../src/plugins/view/htmlrenderer.gpr.py:51
-#, fuzzy
 msgid "A view showing html pages embedded in Gramps"
-msgstr "Una vista que permet de veure les pàgines html encastades en Gramps"
+msgstr "Una vista que mostra les pàgines html encastades en Gramps"
 
 #: ../src/plugins/view/htmlrenderer.gpr.py:58
 msgid "Web"
@@ -23856,9 +23848,8 @@ msgid "The view showing all families"
 msgstr "La vista que mostra totes les famílies"
 
 #: ../src/plugins/view/view.gpr.py:64
-#, fuzzy
 msgid "The view showing Gramplets"
-msgstr "La vista que permet de veure els Gramplets"
+msgstr "La vista que mostra els Gramplets"
 
 #: ../src/plugins/view/view.gpr.py:78
 msgid "Media View"
@@ -23928,14 +23919,12 @@ msgid "The view showing all the sources"
 msgstr "La vista que mostra totes les fonts"
 
 #: ../src/plugins/view/view.gpr.py:220
-#, fuzzy
 msgid "The view showing all the citations"
-msgstr "La vista que mostra totes les notes"
+msgstr "La vista que mostra totes les cites"
 
 #: ../src/plugins/view/view.gpr.py:235
-#, fuzzy
 msgid "A view displaying citations and sources in a tree format."
-msgstr "Una vista que mostra els llocs en format d'arbre."
+msgstr "Una vista que mostra les cites i les fonts en format d'arbre."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:327
 msgid "Gramps&nbsp;ID"
@@ -23954,9 +23943,8 @@ msgid "Alternate Locations"
 msgstr "Ubicacions Alternatives"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1196
-#, fuzzy
 msgid "Data Map"
-msgstr "_Dades"
+msgstr "Mapa de Dades"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1497
 #, python-format
@@ -23993,9 +23981,8 @@ msgstr "Cognoms"
 #: ../src/plugins/webreport/NarrativeWeb.py:1655
 #: ../src/plugins/webreport/NarrativeWeb.py:1769
 #: ../src/plugins/webreport/NarrativeWeb.py:4942
-#, fuzzy
 msgid "Thumbnails"
-msgstr "Ubicació de les imatges en miniatura"
+msgstr "Imatges en miniatura"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1656
 #: ../src/plugins/webreport/NarrativeWeb.py:1775
@@ -24023,9 +24010,8 @@ msgstr "Contacte"
 
 #. add personal column
 #: ../src/plugins/webreport/NarrativeWeb.py:1797
-#, fuzzy
 msgid "Personal"
-msgstr "Persona"
+msgstr "Personal"
 
 #. add section title
 #: ../src/plugins/webreport/NarrativeWeb.py:2142
@@ -24083,15 +24069,15 @@ msgstr ""
 
 #. Families list page message
 #: ../src/plugins/webreport/NarrativeWeb.py:3092
-#, fuzzy
 msgid ""
 "This page contains an index of all the families/ relationships in the "
 "database, sorted by their family name/ surname. Clicking on a person&#8217;s "
 "name will take you to their family/ relationship&#8217;s page."
 msgstr ""
-"Aquesta pàgina conté un índex de tots els llocs de la base de dades, "
-"ordenats pel seu títol. Si es clica en un lloc, s'anirà a la pàgina d'aquest "
-"lloc."
+"Aquesta pàgina conté un índex de totes les famílies/relacions de la base de "
+"dades, "
+"ordenats pel seu nom de família/cognom. Si es clica en el nom d'una persona, "
+"s'anirà a la pàgina de la seva família/relació."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3118
 #: ../src/plugins/webreport/NarrativeWeb.py:3367
@@ -24101,25 +24087,21 @@ msgid "Letter"
 msgstr "Lletra"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3119
-#, fuzzy
 msgid "Partner 1"
-msgstr "Company"
+msgstr "Company 1"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3120
-#, fuzzy
 msgid "Partner 2"
-msgstr "Company"
+msgstr "Company 2"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3250
-#, fuzzy
 msgid "Family/ Relationship"
-msgstr "<b>Relacions de família</b>"
+msgstr "Família/ Relació"
 
 #. determine if husband and wife, husband only, or spouse only....
 #: ../src/plugins/webreport/NarrativeWeb.py:3283
-#, fuzzy
 msgid "Family of "
-msgstr "Nota Familiar"
+msgstr "Família de "
 
 #. place list page message
 #: ../src/plugins/webreport/NarrativeWeb.py:3342
@@ -24233,9 +24215,8 @@ msgstr "Informació de publicació"
 
 #. add secion title
 #: ../src/plugins/webreport/NarrativeWeb.py:4529
-#, fuzzy
 msgid "Citation References"
-msgstr "Referències d'Enllaç"
+msgstr "Referències de Cita"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4834
 msgid ""
@@ -24258,21 +24239,22 @@ msgid "Mime Type"
 msgstr "Tipus Mime"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4947
-#, fuzzy
 msgid ""
 "This page displays a indexed list of all the media objects in this "
 "database.  It is sorted by media title.  There is an index of all the media "
 "objects in this database.  Clicking on a thumbnail will take you to that "
 "image&#8217;s page."
 msgstr ""
-"Aquesta pàgina conté un índex de tots els llocs de la base de dades, "
-"ordenats pel seu títol. Si es clica en un lloc, s'anirà a la pàgina d'aquest "
-"lloc."
+"Aquesta pàgina mostra una llista indexada de tots els objectes audiovisuals "
+"d'aquesta base de dades. Està  "
+"ordenada per títol. Hi ha un índex de tots els objectes audiovisuals "
+"d'aquesta base de dades. Si es clica en una imatge en miniatura, s'anirà a la "
+"pàgina d'aquesta "
+"imatge."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4963
-#, fuzzy
 msgid "Thumbnail Preview"
-msgstr "Ubicació de les imatges en miniatura"
+msgstr "Previsualització de les imatges en miniatura"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5122
 msgid ""
@@ -24305,15 +24287,19 @@ msgid ""
 "any?).  Clicking on a place&#8217;s name in the Reference section will take "
 "you to that place&#8217;s page."
 msgstr ""
+"Aquesta pàgina de mapa representa la persona i els seus descendents amb tots "
+"els seus esdeveniments i llocs. Si passeu el ratolí per damunt del marcador, "
+"dirà el nom del lloc. Els marcadors i la llista de Referències estan per "
+"ordre temporal (si és que estan per ordre). Clicar al nom d'un lloc a la "
+"secció de Referències us portarà a la pàgina d'aquest lloc."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5635
 msgid "Drop Markers"
-msgstr "Treure Marcadors"
+msgstr "Eliminar Marcadors"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5655
-#, fuzzy
 msgid "Place Title"
-msgstr "Títol de lloc"
+msgstr "Títol de Lloc"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5807
 msgid "Ancestors"
@@ -24336,14 +24322,12 @@ msgid "Age at Death"
 msgstr "Edat en Morir"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6388
-#, fuzzy
 msgid "Half Siblings"
-msgstr "Germans"
+msgstr "Germanastres"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6410
-#, fuzzy
 msgid "Step Siblings"
-msgstr "Mostrar Germans"
+msgstr "Germanastres"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6505
 msgid ""
@@ -24360,9 +24344,8 @@ msgid "Repository |Name"
 msgstr "Nom de Repositori"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6640
-#, fuzzy
 msgid "Referenced Sources"
-msgstr "Referències"
+msgstr "Fonts Referenciades"
 
 #. Address Book Page message
 #: ../src/plugins/webreport/NarrativeWeb.py:6684
@@ -24378,9 +24361,8 @@ msgstr ""
 "individual d'aquesta persona a l'Agenda."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6705
-#, fuzzy
 msgid "Full Name"
-msgstr "Nom Habitual"
+msgstr "Nom Sencer"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6938
 #, python-format
@@ -24440,9 +24422,8 @@ msgid "Creating surname pages"
 msgstr "Creant pàgines de cognom"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7231
-#, fuzzy
 msgid "Creating family pages..."
-msgstr "Creant pàgines d'objectes audiovisuals"
+msgstr "Creant pàgines de família..."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7244
 msgid "Creating place pages"
@@ -24457,9 +24438,8 @@ msgid "Creating media pages"
 msgstr "Creant pàgines d'objectes audiovisuals"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7304
-#, fuzzy
 msgid "Creating thumbnail preview page..."
-msgstr "Creant pàgines de cognom"
+msgstr "Creant pàgina de visualització prèvia de les imatges..."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7327
 msgid "Creating repository pages"
@@ -24538,21 +24518,20 @@ msgid "The stylesheet to be used for the web pages"
 msgstr "El full d'estil utilitzat per les pàgines web"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7752
-#, fuzzy
 msgid "Horizontal -- Default"
-msgstr "Horitzontal (esquerra a dreta)"
+msgstr "Horitzontal  -- Predeterminat"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7753
 msgid "Vertical   -- Left Side"
-msgstr ""
+msgstr "Vertical   -- Costat Esquerre"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7754
 msgid "Fade       -- WebKit Browsers Only"
-msgstr ""
+msgstr "Difuminar     -- Només Navegadors amb Webkit"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7755
 msgid "Drop-Down  -- WebKit Browsers Only"
-msgstr ""
+msgstr "Llista-Desplegable  -- Només Navegadors amb WebKit"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7757
 msgid "Navigation Menu Layout"
@@ -24668,7 +24647,7 @@ msgstr "Si s'ha d'incloure una galeria d'objectes de medis audiovisuals"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7827
 msgid "Create and only use thumbnail- sized images"
-msgstr ""
+msgstr "Crear i utilitzar només imatges petites de mostra"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7828
 msgid ""
@@ -24676,6 +24655,9 @@ msgid ""
 "the Media Page, and only a thumb- sized images.  This will allow you to have "
 "a much smaller total upload size to your web hosting site."
 msgstr ""
+"Aquesta opció us permet de no crear imatges de mida sencera, com a la Pàgina "
+"de Medis Audiovisuals, i només imatges petites de mostra. Això us permetrà de "
+"tenir una mida de càrrega total molt més petita al vostre web."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7834
 msgid "Max width of initial image"
@@ -24851,15 +24833,13 @@ msgid "Whether to include a parents column"
 msgstr "Si s'ha d'incloure una columna de pares"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7954
-#, fuzzy
 msgid "Include half and/ or step-siblings on the individual pages"
-msgstr "Incloure una columna per pares a les pàgines d'índex"
+msgstr "Incloure germanastres a les pàgines individuals"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7956
-#, fuzzy
 msgid ""
 "Whether to include half and/ or step-siblings with the parents and siblings"
-msgstr "Si s'han d'incloure noms de lloc per persones i famílies."
+msgstr "Si s'han d'incloure germanastres amb els pares i els germans"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7960
 msgid "Sort all children in birth order"
@@ -24872,14 +24852,12 @@ msgstr ""
 "d'introducció"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7964
-#, fuzzy
 msgid "Include family pages"
-msgstr "Incloure esdeveniments familiars"
+msgstr "Incloure pàgines de família"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7965
-#, fuzzy
 msgid "Whether or not to include family pages."
-msgstr "Si s'han d'incloure imatges."
+msgstr "Si s'han d'incloure o no pàgines de família."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7968
 msgid "Include event pages"
@@ -24895,9 +24873,8 @@ msgid "Include repository pages"
 msgstr "Incloure pàgines de repositori"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7973
-#, fuzzy
 msgid "Whether or not to include the Repository Pages."
-msgstr "Si s'han d'incloure les Pàgines de Repositori o no"
+msgstr "Si s'han d'incloure les Pàgines de Repositori o no."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7976
 msgid "Include GENDEX file (/gendex.txt)"
@@ -24912,7 +24889,6 @@ msgid "Include address book pages"
 msgstr "Incloure pàgines d'agenda"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7981
-#, fuzzy
 msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and "
 "website addresses and personal address/ residence events."
@@ -24967,7 +24943,7 @@ msgstr "Enllaços de Família"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8022
 msgid "Drop"
-msgstr ""
+msgstr "Eliminar"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8023
 msgid "Markers"
@@ -24989,7 +24965,7 @@ msgstr ""
 #: ../src/plugins/webreport/NarrativeWeb.py:8341
 #, python-format
 msgid "Alphabet Menu: %s"
-msgstr ""
+msgstr "Menú d'Alfabet: %s"
 
 #. _('translation')
 #. Number of directory levels up to get to self.html_dir / root
@@ -25024,14 +25000,12 @@ msgid "Year Glance"
 msgstr "Cop d'Ull a l'Any"
 
 #: ../src/plugins/webreport/WebCal.py:561
-#, fuzzy
 msgid "NarrativeWeb Home"
-msgstr "Lloc Web Explicat"
+msgstr "Pàgina d'Inici del Lloc Web Explicat"
 
 #: ../src/plugins/webreport/WebCal.py:563
-#, fuzzy
 msgid "Full year at a Glance"
-msgstr "%(year)d, en un Cop d'Ull"
+msgstr "Any sencer en un cop d'ull"
 
 #: ../src/plugins/webreport/WebCal.py:828
 msgid "Formatting months ..."
@@ -25653,21 +25627,16 @@ msgstr ""
 #: ../src/Filters/Rules/Family/_HasCitation.py:49
 #: ../src/Filters/Rules/Event/_HasCitation.py:49
 #: ../src/glade/mergecitation.glade.h:10
-#, fuzzy
 msgid "Volume/Page:"
-msgstr "_Volum/Pàgina:"
+msgstr "Volum/Pàgina:"
 
 #: ../src/Filters/Rules/Person/_HasCitation.py:51
-#, fuzzy
 msgid "People with the <citation>"
-msgstr "Persones amb l'<etiqueta>"
+msgstr "Persones amb la <cita>"
 
 #: ../src/Filters/Rules/Person/_HasCitation.py:52
-#, fuzzy
 msgid "Matches people with a citation of a particular value"
-msgstr ""
-"Concorda amb persones les dades de naixement de les quals tenen un valor "
-"concret"
+msgstr "Concorda amb persones amb una cita que tingui un valor concret"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:49
 msgid "People with a common ancestor with <filter> match"
@@ -25909,9 +25878,8 @@ msgstr "Persones amb la <font>"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:48
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:53
-#, fuzzy
 msgid "Citation/source filters"
-msgstr "Filtres de posició"
+msgstr "Filtres de cita/font"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:49
 msgid "Matches people who have a particular source"
@@ -26148,25 +26116,21 @@ msgid "Matches parents of anybody matched by a filter"
 msgstr "Concorda amb els pares de qualsevol que compleixi un filtre"
 
 #: ../src/Filters/Rules/Person/_PeoplePublic.py:44
-#, fuzzy
 msgid "People not marked private"
-msgstr "Persones marcades com a privades"
+msgstr "Persones no marcades com a privades"
 
 #: ../src/Filters/Rules/Person/_PeoplePublic.py:45
-#, fuzzy
 msgid "Matches people that are not indicated as private"
-msgstr "Troba persones que s'indiquen com a privades"
+msgstr "Concorda amb persones que no s'indiquen com a privades"
 
 #: ../src/Filters/Rules/Person/_IsRelatedWith.py:46
-#, fuzzy
 msgid "People related to <Person>"
-msgstr "Sense parentesc amb \"%s\""
+msgstr "Persones que tinguin parentesc amb <Persona>"
 
 #: ../src/Filters/Rules/Person/_IsRelatedWith.py:48
-#, fuzzy
 msgid "Matches people related to a specified person"
 msgstr ""
-"Concorda amb persones que siguin avantpassats d'una persona especificada"
+"Concorda amb persones que estiguin emparentades amb una persona especificada"
 
 #: ../src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py:47
 msgid "Siblings of <filter> match"
@@ -27206,19 +27170,16 @@ msgstr ""
 "Concorda amb les cites que tinguin un cert nombre d'elements a la galeria"
 
 #: ../src/Filters/Rules/Citation/_HasIdOf.py:46
-#, fuzzy
 msgid "Citation with <Id>"
-msgstr "Persona amb <Id>"
+msgstr "Cita amb <Id>"
 
 #: ../src/Filters/Rules/Citation/_HasIdOf.py:47
-#, fuzzy
 msgid "Matches a citation with a specified Gramps ID"
-msgstr "Concorda amb una família que tingui un Id Gramps concret"
+msgstr "Concorda amb una cita que tingui un Id Gramps concret"
 
 #: ../src/Filters/Rules/Citation/_HasNote.py:47
-#, fuzzy
 msgid "Citations having <count> notes"
-msgstr "Famílies amb <nombre> notes"
+msgstr "Cites amb <nombre> notes"
 
 #: ../src/Filters/Rules/Citation/_HasNote.py:48
 #, fuzzy
@@ -27226,39 +27187,33 @@ msgid "Matches citations having a certain number of notes"
 msgstr "Concorda amb esdeveniments que tinguin un cert nombre de notes"
 
 #: ../src/Filters/Rules/Citation/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Citations having notes containing <substring>"
-msgstr "Famílies amb notes que contenen <subcadena>"
+msgstr "Cites amb notes que contenen <subcadena>"
 
 #: ../src/Filters/Rules/Citation/_HasNoteMatchingSubstringOf.py:45
-#, fuzzy
 msgid "Matches citations whose notes contain text matching a substring"
 msgstr ""
-"Concorda amb famílies les notes de les quals continguin un text que "
+"Concorda amb cites les notes de les quals continguin un text que "
 "contingui una subcadena"
 
 #: ../src/Filters/Rules/Citation/_HasNoteRegexp.py:43
-#, fuzzy
 msgid "Citations having notes containing <regular expression>"
-msgstr "Famílies amb notes que contenen <expressió regular>"
+msgstr "Cites amb notes que contenen <expressió regular>"
 
 #: ../src/Filters/Rules/Citation/_HasNoteRegexp.py:44
-#, fuzzy
 msgid ""
 "Matches citations whose notes contain text matching a regular expression"
 msgstr ""
-"Concorda amb famílies les notes de les quals continguin un text que concordi "
+"Concorda amb cites les notes de les quals continguin un text que concordi "
 "amb una expressió regular"
 
 #: ../src/Filters/Rules/Citation/_HasReferenceCountOf.py:44
-#, fuzzy
 msgid "Citations with a reference count of <count>"
-msgstr "Notes amb un nombre de referències de <nombre>"
+msgstr "Cites amb un nombre de referències de <nombre>"
 
 #: ../src/Filters/Rules/Citation/_HasReferenceCountOf.py:45
-#, fuzzy
 msgid "Matches citations with a certain reference count"
-msgstr "Concorda amb notes que tinguin un cert nombre de referències"
+msgstr "Concorda amb cites que tinguin un cert nombre de referències"
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:49
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:47
@@ -27283,75 +27238,64 @@ msgid "Sources matching parameters"
 msgstr "Fonts que compleixin paràmetres"
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:53
-#, fuzzy
 msgid "Matches citations with a source of a particular value"
-msgstr "Concorda amb famílies amb un esdeveniment d'un tipus en particular"
+msgstr "Concorda amb cites amb una font d'un tipus en particular"
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:55
-#, fuzzy
 msgid "Source filters"
-msgstr "Filtres de Font"
+msgstr "Filtres de font"
 
 #: ../src/Filters/Rules/Citation/_MatchesFilter.py:46
-#, fuzzy
 msgid "Citations matching the <filter>"
-msgstr "Notes que concorden amb el <filtre>"
+msgstr "Cites que concorden amb el <filtre>"
 
 #: ../src/Filters/Rules/Citation/_MatchesFilter.py:47
-#, fuzzy
 msgid "Matches citations matched by the specified filter name"
-msgstr "Concorda amb notes que concorden amb el nom de filtre especificat"
+msgstr "Concorda amb cites que concorden amb el nom de filtre especificat"
 
 #: ../src/Filters/Rules/Citation/_MatchesPageSubstringOf.py:44
-#, fuzzy
 msgid "Citation Volume/Page containing <substring>"
-msgstr "Nom de repositori que contingui <subcadena>"
+msgstr "Volum/Pàgina de la cita que contingui <subcadena>"
 
 #: ../src/Filters/Rules/Citation/_MatchesPageSubstringOf.py:45
-#, fuzzy
 msgid "Matches citations whose Volume/Page contains a certain substring"
 msgstr ""
-"Concorda amb repositoris el nom dels quals contingui una certa subcadena"
+"Concorda amb cites el Volum/Pàgina dels quals contingui una certa subcadena"
 
 #: ../src/Filters/Rules/Citation/_RegExpIdOf.py:49
-#, fuzzy
 msgid "Citations with <Id> matching regular expression"
-msgstr "Notes amb <Id> que compleix una expressió regular"
+msgstr "Cites amb <Id> que compleix una expressió regular"
 
 #: ../src/Filters/Rules/Citation/_RegExpIdOf.py:50
-#, fuzzy
 msgid "Matches citations whose Gramps ID matches the regular expression"
 msgstr ""
-"Concorda amb notes l'Id Gramps de les quals compleix l'expressió regular"
+"Concorda amb cites l'Id Gramps de les quals compleix l'expressió regular"
 
 #: ../src/Filters/Rules/Citation/_MatchesRepositoryFilter.py:47
-#, fuzzy
 msgid ""
 "Citations with a source with a repository reference matching the <repository "
 "filter>"
 msgstr ""
-"Fonts amb referència a repositori que concordin amb el <filtre de repositori>"
+"Cites que tinguin una font amb referència a repositori que concordi amb el <"
+"filtre de repositori>"
 
 #: ../src/Filters/Rules/Citation/_MatchesRepositoryFilter.py:49
-#, fuzzy
 msgid ""
 "Matches citations with sources with a repository reference that match a "
 "certain repository filter"
 msgstr ""
-"Concorda amb fonts que tinguin una referència a repositori que concordi\n"
-"amb un cert filtre de repositoris"
+"Concorda amb cites que tinguin fonts amb una referència a repositori que "
+"concordi amb un cert filtre de repositoris"
 
 #: ../src/Filters/Rules/Citation/_MatchesSourceFilter.py:50
-#, fuzzy
 msgid "Citations with source matching the <source filter>"
-msgstr "Esdeveniments amb font que concordi amb el <filtre de font>"
+msgstr "Cites amb font que concordi amb el <filtre de font>"
 
 #: ../src/Filters/Rules/Citation/_MatchesSourceFilter.py:51
-#, fuzzy
 msgid ""
 "Matches citations with sources that match the specified source filter name"
 msgstr ""
-"Concorda amb esdeveniments que tinguin fonts que concorden amb el nom de "
+"Concorda amb cites que tinguin fonts que concorden amb el nom de "
 "filtre de font especificat"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:45
@@ -27710,9 +27654,8 @@ msgid "Custom filter"
 msgstr "Filtre personalitzat"
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:96
-#, fuzzy
 msgid "Participants"
-msgstr "Participants Principals"
+msgstr "Participants"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:90
 msgid "any"
@@ -29041,9 +28984,8 @@ msgid "Ordinance:"
 msgstr ""
 
 #: ../src/glade/editldsord.glade.h:11
-#, fuzzy
 msgid "_Family:"
-msgstr "Família:"
+msgstr "_Família:"
 
 #: ../src/glade/editldsord.glade.h:13
 msgid "_Status:"
@@ -29062,9 +29004,8 @@ msgid "A unique ID to identify the note."
 msgstr "Un Id únic per identificar la nota."
 
 #: ../src/glade/editnote.glade.h:6
-#, fuzzy
 msgid "Styled Text Editor"
-msgstr "Editor d'Estils"
+msgstr "Editor de Text amb Estils"
 
 #: ../src/glade/editnote.glade.h:8
 msgid ""
@@ -29310,9 +29251,8 @@ msgid "<b>Source 2</b>"
 msgstr "<b>Font 2</b>"
 
 #: ../src/glade/mergecitation.glade.h:3
-#, fuzzy
 msgid "Confidence:"
-msgstr "Con_fiança:"
+msgstr "Confiança:"
 
 #: ../src/glade/mergecitation.glade.h:5 ../src/glade/mergeevent.glade.h:6
 #: ../src/glade/mergefamily.glade.h:3 ../src/glade/mergemedia.glade.h:5
@@ -29331,20 +29271,18 @@ msgid "Gramps ID:"
 msgstr "Id Gramps:"
 
 #: ../src/glade/mergecitation.glade.h:7
-#, fuzzy
 msgid "Notes, media objects and data-items of both citations will be combined."
 msgstr ""
-"Es combinaran les notes, objectes audiovisuals, elements de dades i "
-"referències a repositori de totes dues fonts."
+"Es combinaran les notes, objectes audiovisuals i elements de dades de totes "
+"dues cites."
 
 #: ../src/glade/mergecitation.glade.h:8
-#, fuzzy
 msgid ""
 "Select the citation that will provide the\n"
 "primary data for the merged citation."
 msgstr ""
-"Seleccionar la persona que proporcionarà\n"
-"les dades primàries per la persona combinada."
+"Seleccioneu la persona que proporcionarà\n"
+"les dades primàries per a la cita combinada."
 
 #: ../src/glade/mergedata.glade.h:3
 msgid "<b>Title selection</b>"
@@ -29687,34 +29625,28 @@ msgid "Size:"
 msgstr "Mida:"
 
 #: ../src/glade/papermenu.glade.h:7
-#, fuzzy
 msgid "_Bottom:"
-msgstr "_Sota"
+msgstr "_Sota:"
 
 #: ../src/glade/papermenu.glade.h:8
-#, fuzzy
 msgid "_Height:"
-msgstr "Alçada:"
+msgstr "_Alçada:"
 
 #: ../src/glade/papermenu.glade.h:9
-#, fuzzy
 msgid "_Left:"
-msgstr "_Esquerra"
+msgstr "_Esquerra:"
 
 #: ../src/glade/papermenu.glade.h:10
-#, fuzzy
 msgid "_Right:"
-msgstr "_Dreta"
+msgstr "_Dreta:"
 
 #: ../src/glade/papermenu.glade.h:11
-#, fuzzy
 msgid "_Top:"
-msgstr "_Capdamunt"
+msgstr "_Capdamunt:"
 
 #: ../src/glade/papermenu.glade.h:12
-#, fuzzy
 msgid "_Width:"
-msgstr "Amplada:"
+msgstr "_Amplada:"
 
 #: ../src/glade/updateaddons.glade.h:1
 msgid "<b>Available Gramps Updates for Addons</b>"
@@ -29882,37 +29814,31 @@ msgstr "Utilitzar codis soundex"
 
 #: ../src/plugins/tool/mergecitations.glade.h:3
 msgid "Don't merge if citation has notes"
-msgstr ""
+msgstr "No combinar si la cita té notes"
 
 #: ../src/plugins/tool/ownereditor.glade.h:1
-#, fuzzy
 msgid "_City:"
-msgstr "Ciutat:"
+msgstr "_Ciutat:"
 
 #: ../src/plugins/tool/ownereditor.glade.h:2
-#, fuzzy
 msgid "_Country:"
-msgstr "País:"
+msgstr "_País:"
 
 #: ../src/plugins/tool/ownereditor.glade.h:3
-#, fuzzy
 msgid "_Email:"
-msgstr "Email:"
+msgstr "_Email:"
 
 #: ../src/plugins/tool/ownereditor.glade.h:6
-#, fuzzy
 msgid "_Phone:"
-msgstr "Telèfon:"
+msgstr "_Telèfon:"
 
 #: ../src/plugins/tool/ownereditor.glade.h:8
-#, fuzzy
 msgid "_Street:"
-msgstr "Carrer:"
+msgstr "Ca_rrer:"
 
 #: ../src/plugins/tool/ownereditor.glade.h:9
-#, fuzzy
 msgid "_ZIP/Postal Code:"
-msgstr "Codi Postal:"
+msgstr "Codi _Postal:"
 
 #: ../src/plugins/tool/patchnames.glade.h:1
 msgid ""
@@ -30097,9 +30023,8 @@ msgid "Mi_nimum age to marry"
 msgstr "Edat mí_nima per casar-se"
 
 #: ../src/plugins/tool/verify.glade.h:21
-#, fuzzy
 msgid "_Estimate missing or inexact dates"
-msgstr "_Estimar dates que falten"
+msgstr "_Estimar dates que falten o són inexactes"
 
 #: ../src/plugins/tool/verify.glade.h:23
 msgid "_Identify invalid dates"
