@@ -23,13 +23,6 @@
 
 #-------------------------------------------------------------------------
 #
-# Standard Python modules
-#
-#-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -41,9 +34,9 @@ from Filters.Rules import Rule
 class IsPublic(Rule):
     """Objects not marked private."""
 
-    name        = _('Objects not marked private')
-    description = _("Matches objects that are not indicated as private")
-    category    = _('General filters')
+    name        = 'Objects not marked private'
+    description = "Matches objects that are not indicated as private"
+    category    = 'General filters'
 
     def apply(self, db, obj):
         return not obj.get_privacy()

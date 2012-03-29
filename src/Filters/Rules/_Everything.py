@@ -22,13 +22,6 @@
 
 #-------------------------------------------------------------------------
 #
-# Standard Python modules
-#
-#-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -42,9 +35,9 @@ from Filters.Rules import Rule
 class Everything(Rule):
     """Match Everyone."""
 
-    name        = _('Every object')
-    category    = _('General filters')
-    description = _('Matches every object in the database')
+    name        = 'Every object'
+    category    = 'General filters'
+    description = 'Matches every object in the database'
 
     def is_empty(self):
         return True

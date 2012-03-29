@@ -24,13 +24,6 @@ Rule that checks for an object with a particular tag.
 
 #-------------------------------------------------------------------------
 #
-# Standard Python modules
-#
-#-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -46,10 +39,10 @@ class HasTagBase(Rule):
     Rule that checks for an object with a particular tag.
     """
 
-    labels      = [ _('Tag:') ]
-    name        = _('Objects with the <tag>')
-    description = _("Matches objects with the given tag")
-    category    = _('General filters')
+    labels      = [ 'Tag:' ]
+    name        = 'Objects with the <tag>'
+    description = "Matches objects with the given tag"
+    category    = 'General filters'
 
     def prepare(self, db):
         """

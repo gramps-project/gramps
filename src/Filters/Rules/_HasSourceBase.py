@@ -23,13 +23,6 @@
 
 #-------------------------------------------------------------------------
 #
-# Standard Python modules
-#
-#-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -44,13 +37,13 @@ class HasSourceBase(Rule):
     """Rule that checks for a source with a particular value"""
 
 
-    labels      = [ _('Title:'), 
-                    _('Author:'), 
-                    _('Abbreviation:'),
-                    _('Publication:') ]
-    name        = _('Sources matching parameters')
-    description = _("Matches sources with particular parameters")
-    category    = _('Citation/source filters')
+    labels      = [ 'Title:', 
+                    'Author:', 
+                    'Abbreviation:',
+                    'Publication:' ]
+    name        = 'Sources matching parameters'
+    description = "Matches sources with particular parameters"
+    category    = 'Citation/source filters'
 
     def apply(self,db,source):
         if not self.match_substring(0,source.get_title()):

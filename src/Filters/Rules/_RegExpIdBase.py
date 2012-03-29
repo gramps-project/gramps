@@ -25,7 +25,6 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
 import re
 
 #-------------------------------------------------------------------------
@@ -45,11 +44,11 @@ class RegExpIdBase(Rule):
     Rule that checks for an object whose GRAMPS ID matches regular expression.
     """
 
-    labels      = [ _('Regular expression:') ]
-    name        = _('Objects with <Id>')
-    description = _("Matches objects whose Gramps ID matches "
-                    "the regular expression")
-    category    = _('General filters')
+    labels      = [ 'Regular expression:' ]
+    name        = 'Objects with <Id>'
+    description = "Matches objects whose Gramps ID matches "
+                    "the regular expression"
+    category    = 'General filters'
 
     def __init__(self, list):
         Rule.__init__(self, list)

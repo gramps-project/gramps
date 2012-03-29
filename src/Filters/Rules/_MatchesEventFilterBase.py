@@ -22,13 +22,6 @@
 
 #-------------------------------------------------------------------------
 #
-# Standard Python modules
-#
-#-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -48,11 +41,11 @@ class MatchesEventFilterBase(MatchesFilterBase):
     
     """
 
-    labels      = [_('Event filter name:')]
-    name        = _('Objects with events matching the <event filter>')
-    description = _("Matches objects who have events that match a certain"
-                    " event filter")
-    category    = _('General filters')
+    labels      = ['Event filter name:']
+    name        = 'Objects with events matching the <event filter>'
+    description = "Matches objects who have events that match a certain"
+                    " event filter"
+    category    = 'General filters'
 
     # we want to have this filter show event filters
     namespace   = 'Event'

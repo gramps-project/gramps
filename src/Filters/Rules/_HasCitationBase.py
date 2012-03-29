@@ -23,13 +23,6 @@
 
 #-------------------------------------------------------------------------
 #
-# Standard Python modules
-#
-#-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -48,12 +41,12 @@ class HasCitationBase(Rule):
     """
 
 
-    labels      = [ _('Volume/Page:'), 
-                    _('Date:'), 
-                    _('Confidence:') ]
-    name        = _('Citations matching parameters')
-    description = _("Matches citations with particular parameters")
-    category    = _('Citation/source filters')
+    labels      = [ 'Volume/Page:', 
+                    'Date:', 
+                    'Confidence:' ]
+    name        = 'Citations matching parameters'
+    description = "Matches citations with particular parameters"
+    category    = 'Citation/source filters'
 
     def prepare(self, db):
         self.date = None

@@ -26,13 +26,6 @@
 
 #-------------------------------------------------------------------------
 #
-# Standard Python modules
-#
-#-------------------------------------------------------------------------
-from gen.ggettext import sgettext as _
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -45,10 +38,10 @@ from Filters.Rules._Rule import Rule
 class MatchesSourceConfidenceBase(Rule):
     """Objects with a specific confidence level on 'direct' Source references"""
 
-    labels    = [_('Confidence level:')]
-    name        = _('Object with at least one direct source >= <confidence level>')
-    description = _("Matches objects with at least one direct source with confidence level(s)")
-    category    = _('Citation/source filters')
+    labels    = ['Confidence level:']
+    name        = 'Object with at least one direct source >= <confidence level>'
+    description = "Matches objects with at least one direct source with confidence level(s)"
+    category    = 'Citation/source filters'
     
     def apply(self, db, obj):
         required_conf = int(self.list[0])

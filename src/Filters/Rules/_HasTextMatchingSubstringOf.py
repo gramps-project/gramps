@@ -22,13 +22,6 @@
 
 #-------------------------------------------------------------------------
 #
-# Standard Python modules
-#
-#-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -40,13 +33,13 @@ from Filters.Rules import Rule
 class HasTextMatchingSubstringOf(Rule):
     """Rule that checks for string matches in any textual information."""
 
-    labels      = [ _('Substring:'),
-                    _('Case sensitive:'), 
-                    _('Regular-Expression matching:')]
-    name        = _('Objects with records containing <substring>')
-    description = _("Matches objects whose records contain text "
-                    "matching a substring")
-    category    = _('General filters')
+    labels      = [ 'Substring:',
+                    'Case sensitive:', 
+                    'Regular-Expression matching:']
+    name        = 'Objects with records containing <substring>'
+    description = "Matches objects whose records contain text "
+                    "matching a substring"
+    category    = 'General filters'
 
     # FIXME: This needs to be written for an arbitrary object
     # if possible

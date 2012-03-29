@@ -23,13 +23,6 @@
 
 #-------------------------------------------------------------------------
 #
-# Standard Python modules
-#
-#-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -43,10 +36,10 @@ from Filters.Rules import Rule
 class HasGrampsId(Rule):
     """Rule that checks for an object with a specific GRAMPS ID."""
 
-    labels      = [ _('ID:') ]
-    name        = _('Object with <Id>')
-    description = _("Matches objects with a specified Gramps ID")
-    category    = _('General filters')
+    labels      = [ 'ID:' ]
+    name        = 'Object with <Id>'
+    description = "Matches objects with a specified Gramps ID"
+    category    = 'General filters'
 
     def apply(self, db, obj):
         """

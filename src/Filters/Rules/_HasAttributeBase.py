@@ -22,13 +22,6 @@
 
 #-------------------------------------------------------------------------
 #
-# Standard Python modules
-#
-#-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -45,11 +38,11 @@ class HasAttributeBase(Rule):
     Rule that checks for an object with a particular attribute.
     """
 
-    labels      = [ _('Attribute:'), _('Value:') ]
-    name        = _('Objects with the <attribute>')
-    description = _("Matches objects with the given attribute "
-                    "of a particular value")
-    category    = _('General filters')
+    labels      = [ 'Attribute:', 'Value:' ]
+    name        = 'Objects with the <attribute>'
+    description = "Matches objects with the given attribute "
+                    "of a particular value"
+    category    = 'General filters'
 
     def apply(self, db, obj):
         if not self.list[0]:
