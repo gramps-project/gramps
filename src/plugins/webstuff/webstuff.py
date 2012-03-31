@@ -157,6 +157,14 @@ def load_on_reg(dbstate, uistate, plugin):
         # no style sheet option
         ["No style sheet",1, _("No style sheet"),    [],  None, [], [] ],
 
+        # Document image
+        ["Document", 0, "Document",
+         path_img("document.png"), None, [], [] ],
+
+        # blank
+        ["Blank", 0, "Blank",
+         path_img("blank.gif"), None, [], [] ],
+
         # all other images for use in NarrativeWeb
         ['All Images', 0, 'All Images', None, None,
          [path_img("blank.gif"),

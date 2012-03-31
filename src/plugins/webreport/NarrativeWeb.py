@@ -508,11 +508,10 @@ def copy_thumbnail(report, handle, photo, region=None):
     report.copy_file(from_path, to_path)
     return to_path
 
-#################################################
-#
+'''
 #    Manages all the functions, variables, and everything needed 
 #    for all of the classes contained within this plugin
-#################################################
+'''
 class BasePage(object):
     def __init__(self, report, title, gid = None):
         self.up = False
