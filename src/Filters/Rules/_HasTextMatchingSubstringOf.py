@@ -37,8 +37,8 @@ class HasTextMatchingSubstringOf(Rule):
                     'Case sensitive:', 
                     'Regular-Expression matching:']
     name        = 'Objects with records containing <substring>'
-    description = "Matches objects whose records contain text "
-                    "matching a substring"
+    description = ["Matches objects whose records contain text ",
+                   "matching a substring"]
     category    = 'General filters'
 
     # FIXME: This needs to be written for an arbitrary object
