@@ -40,8 +40,8 @@ class MatchesSourceFilterBase(MatchesFilterBase):
 
     labels      = ['Source filter name:']
     name        = 'Objects with source matching the <source filter>'
-    description = "Matches objects with sources that match the "
-                    "specified source filter name"
+    description = ["Matches objects with sources that match the ",
+                   "specified source filter name"]
     category    = 'Citation/source filters'
 
     # we want to have this filter show source filters

@@ -46,8 +46,8 @@ class RegExpIdBase(Rule):
 
     labels      = [ 'Regular expression:' ]
     name        = 'Objects with <Id>'
-    description = "Matches objects whose Gramps ID matches "
-                    "the regular expression"
+    description = ["Matches objects whose Gramps ID matches ",
+                   "the regular expression"]
     category    = 'General filters'
 
     def __init__(self, list):

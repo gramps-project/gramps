@@ -38,8 +38,8 @@ class HasSourceCountBase(Rule):
 
     labels      = [  'Number of instances:', 'Number must be:']
     name        = 'Objects with <count> sources'
-    description = "Matches objects that have a certain number of sources "
-                    "connected to it (actually citations are counted)"
+    description = ["Matches objects that have a certain number of sources ",
+                   "connected to it (actually citations are counted)"]
     category    = 'Citation/source filters'
 
     def prepare(self, db):
