@@ -1903,7 +1903,7 @@ msgstr "PATRONYME[CON]"
 #: ../src/Utils.py:1215
 #: ../src/gui/configure.py:534
 msgid "Rawsurnames"
-msgstr "Nomsdefamillebrut"
+msgstr "NomsDeFamilleBrut"
 
 #: ../src/Utils.py:1215
 msgid "RAWSURNAMES"
@@ -1912,7 +1912,7 @@ msgstr "NOMSDEFAMILLEBRUT"
 # /!\ longue chaîne, voir formats de nom (Préférences)
 #: ../src/Utils.py:1216
 msgid "Notpatronymic"
-msgstr "Paspatronyme"
+msgstr "PasPatronyme"
 
 #: ../src/Utils.py:1216
 msgid "NOTPATRONYMIC"
@@ -4304,7 +4304,7 @@ msgstr ""
 "  <b>Nom-dit</b>    - surnom du nom de famille     <b>Préfixe</b>     - préfixe (von, de, de la)\n"
 "  <b>Reste</b>       - les noms de famille secondaires\n"
 "  <b>PasPatronyme</b> - tous les noms de famille sauf le principal &amp; le pa/matronyme\n"
-"  <b>Nomsdefamillebrut</b>   - tous les noms de famille sans préfixe et connecteurs\n"
+"  <b>NomsDeFamilleBrut</b>   - tous les noms de famille sans préfixe et connecteurs\n"
 "\n"
 "</tt>\n"
 "Utilisez le même mot clé en MAJUSCULE pour forcer les lettres capitales. Parenthèses et virgules\n"
