@@ -22,13 +22,6 @@
 
 #-------------------------------------------------------------------------
 #
-# Standard Python modules
-#
-#-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -40,10 +33,10 @@ from Filters.Rules import Rule
 class HasReferenceCountBase(Rule):
     """Objects with a reference count of <count>."""
 
-    labels      = [ _('Reference count must be:'), _('Reference count:')]
-    name        = _('Objects with a reference count of <count>')
-    description = _("Matches objects with a certain reference count")
-    category    = _('General filters')
+    labels      = [ 'Reference count must be:', 'Reference count:']
+    name        = 'Objects with a reference count of <count>'
+    description = "Matches objects with a certain reference count"
+    category    = 'General filters'
 
 
     def prepare(self, db):

@@ -26,7 +26,6 @@
 #
 #-------------------------------------------------------------------------
 import re
-from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -41,11 +40,11 @@ from Filters.Rules import Rule
 class HasNoteRegexBase(Rule):
     """People having notes containing <substring>."""
 
-    labels      = [ _('Regular expression:')]
-    name        = _('Objects having notes containing <regular expression>')
-    description = _("Matches objects whose notes contain text "
-                    "matching a regular expression")
-    category    = _('General filters')
+    labels      = [ 'Regular expression:']
+    name        = 'Objects having notes containing <regular expression>'
+    description = "Matches objects whose notes contain text " \
+                    "matching a regular expression"
+    category    = 'General filters'
 
     def __init__(self, list):
         Rule.__init__(self, list)

@@ -26,7 +26,6 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
 import re
 import time
 
@@ -47,12 +46,12 @@ class ChangedSinceBase(Rule):
     Rule that checks for primary objects changed since a specific time.
     """
 
-    labels      = [ _('Changed after:'), _('but before:') ]
-    name        = _('Objects changed after <date time>')
-    description = _("Matches object records changed after a specified "
-                    "date/time (yyyy-mm-dd hh:mm:ss) or in range, if a second "
-                    "date/time is given.")
-    category    = _('General filters')
+    labels      = [ 'Changed after:', 'but before:' ]
+    name        = 'Objects changed after <date time>'
+    description = "Matches object records changed after a specified " \
+                    "date/time (yyyy-mm-dd hh:mm:ss) or in range, if a second " \
+                    "date/time is given."
+    category    = 'General filters'
 
     def add_time(self, date):
         if re.search("\d.*\s+\d{1,2}:\d{2}:\d{2}", date):

@@ -22,13 +22,6 @@
 
 #-------------------------------------------------------------------------
 #
-# Standard Python modules
-#
-#-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -40,11 +33,11 @@ from Filters.Rules import Rule
 class HasNoteSubstrBase(Rule):
     """People having notes containing <substring>."""
 
-    labels      = [ _('Substring:')]
-    name        = _('Objects having notes containing <substring>')
-    description = _("Matches objects whose notes contain text matching a "
-                    "substring")
-    category    = _('General filters')
+    labels      = [ 'Substring:']
+    name        = 'Objects having notes containing <substring>'
+    description = "Matches objects whose notes contain text matching a " \
+                    "substring"
+    category    = 'General filters'
 
     def apply(self, db, person):
         notelist = person.get_note_list()
