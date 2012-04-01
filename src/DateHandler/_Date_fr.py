@@ -4,6 +4,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2004-2006  Donald N. Allingham
+# Copyright (C) 2012       Mathieu MD
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -137,48 +138,51 @@ class DateParserFR(DateParser):
 
     modifier_to_int = {
         u'avant': Date.MOD_BEFORE,
-        u'av.': Date.MOD_BEFORE,
+        u'av.'  : Date.MOD_BEFORE,
+        #u'av'  : Date.MOD_BEFORE, # Broke Hebrew "Av" month name
+        #u'<'    : Date.MOD_BEFORE, # Worrying about XML/HTML parsing
         u'après': Date.MOD_AFTER,
-        u'ap.': Date.MOD_AFTER,
-        u'ap': Date.MOD_AFTER,
-        u'env.': Date.MOD_ABOUT,
-        u'env': Date.MOD_ABOUT,
-        u'environ': Date.MOD_ABOUT,
-        u'circa': Date.MOD_ABOUT,
-        u'c.': Date.MOD_ABOUT,
-        u'ca': Date.MOD_ABOUT,
-        u'ca.': Date.MOD_ABOUT,
-        u'vers': Date.MOD_ABOUT,
-        u'~': Date.MOD_ABOUT,
+        u'ap.'  : Date.MOD_AFTER,
+        u'ap'   : Date.MOD_AFTER,
+        #u'>'    : Date.MOD_AFTER, # Worrying about XML/HTML parsing
+        u'environ'  : Date.MOD_ABOUT,
+        u'env.'     : Date.MOD_ABOUT,
+        u'env'      : Date.MOD_ABOUT,
+        u'circa'    : Date.MOD_ABOUT,
+        u'ca.'      : Date.MOD_ABOUT,
+        u'ca'       : Date.MOD_ABOUT,
+        u'c.'       : Date.MOD_ABOUT,
+        u'vers'     : Date.MOD_ABOUT,
+        u'~'        : Date.MOD_ABOUT,
         }
 
     calendar_to_int = {
         u'grégorien': Date.CAL_GREGORIAN,
-        u'g': Date.CAL_GREGORIAN,
+        u'g'        : Date.CAL_GREGORIAN,
         u'julien': Date.CAL_JULIAN,
-        u'j': Date.CAL_JULIAN,
+        u'j'     : Date.CAL_JULIAN,
         u'hébreu': Date.CAL_HEBREW,
-        u'h': Date.CAL_HEBREW,
+        u'h'     : Date.CAL_HEBREW,
         u'islamique': Date.CAL_ISLAMIC,
-        u'i': Date.CAL_ISLAMIC,
+        u'i'        : Date.CAL_ISLAMIC,
         u'révolutionnaire': Date.CAL_FRENCH,
-        u'r': Date.CAL_FRENCH,
+        u'r'              : Date.CAL_FRENCH,
         u'perse': Date.CAL_PERSIAN,
-        u'p': Date.CAL_PERSIAN,
+        u'p'    : Date.CAL_PERSIAN,
         u'suédois': Date.CAL_SWEDISH,
-        u's': Date.CAL_SWEDISH,
+        u's'      : Date.CAL_SWEDISH,
         }
 
     quality_to_int = {
         u'estimée': Date.QUAL_ESTIMATED,
-        u'est.': Date.QUAL_ESTIMATED,
-        u'est': Date.QUAL_ESTIMATED,
+        u'est.'   : Date.QUAL_ESTIMATED,
+        u'est'    : Date.QUAL_ESTIMATED,
         u'calculée': Date.QUAL_CALCULATED,
-        u'calc.': Date.QUAL_CALCULATED,
-        u'calc': Date.QUAL_CALCULATED,
-        u'comptée': Date.QUAL_CALCULATED,
-        u'compt': Date.QUAL_CALCULATED,
-        u'compt.': Date.QUAL_CALCULATED,
+        u'calc.'   : Date.QUAL_CALCULATED,
+        u'calc'    : Date.QUAL_CALCULATED,
+        u'comptée' : Date.QUAL_CALCULATED,
+        u'compt.'  : Date.QUAL_CALCULATED,
+        u'compt'   : Date.QUAL_CALCULATED,
         }
 
     bce = [u"avant le calendrier", u"avant notre ère", u"avant JC",
@@ -264,9 +268,23 @@ class DateDisplayFR(DateDisplay):
 
     _bce_str = u"%s avant le calendrier"
 
-    formats = ("AAAA-MM-JJ (ISO)", "Numérique", "Mois Jour, Année",
-               "MOI Jour, Année", "Jour. Mois Année", "Jour. MOI Année",
-               "Jour Mois Année", "Jour MOI Année")
+    # Replace the previous "Numérique" by a string which
+    # do have an explicit meaning: "System default (format)"
+    import GrampsLocale
+    _locale_tformat = GrampsLocale.tformat
+    _locale_tformat = _locale_tformat.replace('%d', "J")
+    _locale_tformat = _locale_tformat.replace('%m', "M")
+    _locale_tformat = _locale_tformat.replace('%Y', "A")
+    
+    formats = ("AAAA-MM-JJ (ISO)",  # 0
+               "Défaut système (" + _locale_tformat + ")",        # 1
+               "Jour Mois Année",   # 2
+               "Jour MOI Année",    # 3
+               "Jour. Mois Année",  # 4
+               "Jour. MOI Année",   # 5
+               "Mois Jour, Année",  # 6
+               "MOI Jour, Année",   # 7
+               )
 
     def _display_gregorian(self, date_val):
         """
@@ -274,8 +292,14 @@ class DateDisplayFR(DateDisplay):
         """
         year = self._slash_year(date_val[2], date_val[3])
         if self.format == 0:
+
+            # ISO
+
             return self.display_iso(date_val)
         elif self.format == 1:
+
+            # ISO
+
             if date_val[2] < 0 or date_val[3]:
                 return self.display_iso(date_val)
             else:
@@ -292,7 +316,7 @@ class DateDisplayFR(DateDisplay):
                     value = value.replace('%Y', str(date_val[2]))
         elif self.format == 2:
 
-            # Month Day, Year
+            # Day Month Year
 
             if date_val[0] == 0:
                 if date_val[1] == 0:
@@ -300,11 +324,12 @@ class DateDisplayFR(DateDisplay):
                 else:
                     value = "%s %s" % (self.long_months[date_val[1]], year)
             else:
-                value = "%s %d, %s" % (self.long_months[date_val[1]],
-                                       date_val[0], year)
+
+                value = "%d %s %s" % (date_val[0], 
+                                      self.long_months[date_val[1]], year)
         elif self.format == 3:
 
-            # MON Day, Year
+            # Day MON Year
 
             if date_val[0] == 0:
                 if date_val[1] == 0:
@@ -312,8 +337,9 @@ class DateDisplayFR(DateDisplay):
                 else:
                     value = "%s %s" % (self.short_months[date_val[1]], year)
             else:
-                value = "%s %d, %s" % (self.short_months[date_val[1]],
-                                       date_val[0], year)
+
+                value = "%d %s %s" % (date_val[0], 
+                                      self.short_months[date_val[1]], year)
         elif self.format == 4:
 
             # Day. Month Year
@@ -331,7 +357,7 @@ class DateDisplayFR(DateDisplay):
 
                 value = "%d. %s %s" % (date_val[0], 
                                        self.long_months[date_val[1]],
-                        year)
+                                       year)
         elif self.format == 5:
 
             # Day. MON Year
@@ -349,10 +375,9 @@ class DateDisplayFR(DateDisplay):
 
                 value = "%d. %s %s" % (date_val[0], 
                                       self.short_months[date_val[1]], year)
-
         elif self.format == 6:
 
-            # Day Month Year
+            # Month Day, Year
 
             if date_val[0] == 0:
                 if date_val[1] == 0:
@@ -360,12 +385,11 @@ class DateDisplayFR(DateDisplay):
                 else:
                     value = "%s %s" % (self.long_months[date_val[1]], year)
             else:
+                value = "%s %d, %s" % (self.long_months[date_val[1]],
+                                       date_val[0], year)
+        elif self.format == 7:
 
-                value = "%d %s %s" % (date_val[0], 
-                                      self.long_months[date_val[1]], year)
-        else:
-
-            # Day MON Year
+            # MON Day, Year
 
             if date_val[0] == 0:
                 if date_val[1] == 0:
@@ -373,9 +397,10 @@ class DateDisplayFR(DateDisplay):
                 else:
                     value = "%s %s" % (self.short_months[date_val[1]], year)
             else:
-
-                value = "%d %s %s" % (date_val[0], 
-                                      self.short_months[date_val[1]], year)
+                value = "%s %d, %s" % (self.short_months[date_val[1]],
+                                       date_val[0], year)
+        else:
+            return self.display_iso(date_val)
                         
         if date_val[2] < 0:
             return self._bce_str % value
