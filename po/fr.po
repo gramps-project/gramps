@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-02-17 11:15+0100\n"
-"PO-Revision-Date: 2012-03-22 17:45+0100\n"
+"PO-Revision-Date: 2012-04-01 13:00+0200\n"
 "Last-Translator: Mathieu MD <mathieu.md@gmail.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -3546,17 +3546,20 @@ msgstr "Nom marital (nom de l'époux)"
 msgid "Surname|Inherited"
 msgstr "Hérité"
 
+# cf. ../src/gen/lib/nameorigintype.py aux lignes 45-58 (Name Origin Types)
 #: ../src/gen/lib/nameorigintype.py:84
 msgid "Surname|Given"
-msgstr "Prénom"
+msgstr "Reçu (octroyé)"
 
+# cf. ../src/gen/lib/nameorigintype.py aux lignes 45-58 (Name Origin Types)
 #: ../src/gen/lib/nameorigintype.py:85
 msgid "Surname|Taken"
-msgstr "Pris"
+msgstr "Pris (choisi)"
 
+# cf. ../src/gen/lib/nameorigintype.py aux lignes 45-58 (Name Origin Types)
 #: ../src/gen/lib/nameorigintype.py:87
 msgid "Matronymic"
-msgstr "Matronyme"
+msgstr "Matronyme (prénom de la mère)"
 
 #: ../src/gen/lib/nameorigintype.py:88
 msgid "Surname|Feudal"
@@ -3566,15 +3569,15 @@ msgstr "Féodal"
 msgid "Pseudonym"
 msgstr "Pseudonyme"
 
-# à revoir
+# cf. ../src/gen/lib/nameorigintype.py aux lignes 45-58 (Name Origin Types)
 #: ../src/gen/lib/nameorigintype.py:90
 msgid "Patrilineal"
-msgstr "Lignée paternelle"
+msgstr "Lignée paternelle (nom du père)"
 
-# à revoir - contexte
+# cf. ../src/gen/lib/nameorigintype.py aux lignes 45-58 (Name Origin Types)
 #: ../src/gen/lib/nameorigintype.py:91
 msgid "Matrilineal"
-msgstr "Lignée maternelle"
+msgstr "Lignée maternelle (nom de la mère)"
 
 #: ../src/gen/lib/notetype.py:80 ../src/gui/configure.py:1111
 #: ../src/gui/editors/editcitation.py:202
@@ -3712,7 +3715,7 @@ msgstr "Librairie"
 msgid "Collection"
 msgstr "Collection"
 
-# à améliorer
+# à améliorer → comment ?
 #: ../src/gen/lib/repotype.py:69
 msgid "Safe"
 msgstr "Coffre-fort"
@@ -4671,7 +4674,7 @@ msgstr ""
 msgid "Warnings"
 msgstr "Messages d'avertissement"
 
-# ?
+# Name|Common
 #: ../src/gui/configure.py:516 ../src/gui/configure.py:530
 msgid "Common"
 msgstr "Courant"
@@ -6303,10 +6306,9 @@ msgstr "Ouvrir le dialogue d'outils"
 msgid "_Bookmarks"
 msgstr "_Signets"
 
-# à vérifier
 #: ../src/gui/viewmanager.py:829
 msgid "_Configure View..."
-msgstr "_Configurer la vue..."
+msgstr "_Configurer la vue active..."
 
 #: ../src/gui/viewmanager.py:830
 msgid "Configure the active view"
@@ -7434,7 +7436,6 @@ msgstr "Aucun individu sélectionné"
 msgid "You must either select a person or Cancel the edit"
 msgstr "Vous devriez plutôt sélectionner un individu ou annuler l'édition"
 
-# à vérifier (contexte)
 #: ../src/gui/editors/editplace.py:129
 msgid "_Location"
 msgstr "_Emplacement"
@@ -7935,7 +7936,7 @@ msgstr "Créer et ajouter une nouvelle ordinance"
 # enlever la référence
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:53
 msgid "Remove the existing LDS ordinance"
-msgstr "Enlever l'ordinance existante"
+msgstr "Enlever l'ordination existante"
 
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:54
 msgid "Edit the selected LDS ordinance"
@@ -10257,7 +10258,6 @@ msgstr "d."
 msgid "short for married|m."
 msgstr "m."
 
-# de ou pour ?
 #. feature request 2356: avoid genitive form
 #: ../src/plugins/drawreport/AncestorTree.py:151
 #, python-format
@@ -10474,7 +10474,6 @@ msgstr ""
 "taille de l'arbre.\n"
 "Note : ceci passe outre les 'Options Papier'."
 
-# 'Do not scale' => à demander ?
 #: ../src/plugins/drawreport/AncestorTree.py:964
 #: ../src/plugins/drawreport/DescendTree.py:1559
 msgid ""
@@ -10493,20 +10492,21 @@ msgid ""
 "With 'Scale tree to fit the size of the page' the page\n"
 "  is resized to remove any gap in either height or width"
 msgstr ""
-"Redimensionner la page pour l'adapter\n"
-"à la taille de l'arbre. \n"
-"Note : la page n'aura pas une taille standard\n"
+"Redimensionner la page pour l'adapter à la\n"
+"taille de l'arbre. Note : la page n'aura pas\n"
+"une taille standard\n"
 "\n"
-"Avec l'option 'Ne pas adapter l« arbre »\n"
-"la page utilise les options papier.\n"
+"Avec l'option « Ne pas adapter l'arbre »\n"
+"  la page est redimensionnée aux dimensions de\n"
+"  l'arbre.\n"
 "\n"
-"Avec l'option 'Adapter l'arbre seulement à\n"
-"la largeur de la page', la page est redimensionnée\n"
-"à la largeur de l'arbre.\n"
+"Avec l'option « Adapter l'arbre à la largeur\n"
+"  de la page », la hauteur de la page est\n"
+"  redimensionnée à la hauteur de l'arbre.\n"
 "\n"
-"Avec l'option 'Adapter l'arbre à la taille de\n"
-"la page', la page est redimensionnée à la\n"
-"largeur et la hauteur de l'arbre."
+"Avec l'option « Adapter l'arbre à la taille de\n"
+"  la page », la page est redimensionnée pour\n"
+"  supprimer tout espace en hauteur ou largeur."
 
 #: ../src/plugins/drawreport/AncestorTree.py:987
 #: ../src/plugins/drawreport/DescendTree.py:1583
@@ -10546,7 +10546,7 @@ msgstr "Inclure les numéros de page"
 # print dans le sens affichage
 #: ../src/plugins/drawreport/AncestorTree.py:998
 msgid "Whether to print page numbers on each page."
-msgstr "Ajouter ou non les numéros sur chaques pages."
+msgstr "Ajouter ou non les numéros sur chaque pages."
 
 #: ../src/plugins/drawreport/AncestorTree.py:1001
 #: ../src/plugins/drawreport/DescendTree.py:1597
@@ -10916,7 +10916,6 @@ msgstr "Texte en bas, ligne 3"
 msgid "Borders"
 msgstr "Les bords"
 
-# de ou pour ?
 #: ../src/plugins/drawreport/DescendTree.py:159
 #, python-format
 msgid "Descendant Chart for %(person)s and %(father1)s, %(mother1)s"
@@ -10928,7 +10927,6 @@ msgstr "Arbre des descendants de %(person)s et %(father1)s, %(mother1)s"
 msgid "Descendant Chart for %(person)s, %(father1)s and %(mother1)s"
 msgstr "Arbre des descendants de %(person)s, %(father1)s et %(mother1)s"
 
-# de ou pour ?
 #. Should be 2 items in both names and names2 lists
 #: ../src/plugins/drawreport/DescendTree.py:173
 #, python-format
@@ -10937,7 +10935,6 @@ msgid ""
 msgstr ""
 "Arbre des descendants de %(father1)s, %(father2)s et %(mother1)s, %(mother2)s"
 
-# de ou pour ?
 #: ../src/plugins/drawreport/DescendTree.py:182
 #, python-format
 msgid "Descendant Chart for %(person)s"
@@ -11080,7 +11077,6 @@ msgstr ""
 msgid "Whether to include page numbers on each page."
 msgstr "Inclure ou non les numéros sur chaques pages."
 
-# de ou pour ?
 #: ../src/plugins/drawreport/DescendTree.py:1633
 msgid "Descendant Chart for [selected person(s)]"
 msgstr "Arbre des descendants pour [individu(s) sélectionné(s)]"
@@ -11183,7 +11179,6 @@ msgstr "Graphique temporel"
 msgid "Produces a timeline chart."
 msgstr "Produit un graphique temporel."
 
-# de ou pour ?
 #: ../src/plugins/drawreport/FanChart.py:250
 #, python-format
 msgid "%(generations)d Generation Fan Chart for %(person)s"
@@ -11471,7 +11466,6 @@ msgstr "Année de naissance jusqu'à laquelle inclure les individus"
 msgid "Include people without known birth years"
 msgstr "Individus sans année de naissance"
 
-# à vérifier
 #: ../src/plugins/drawreport/StatisticsChart.py:949
 msgid "Whether to include people without known birth years."
 msgstr "Inclure ou non les individus sans année de naissance connue."
@@ -11969,15 +11963,14 @@ msgstr "Âge maximum pour être père"
 msgid "Chart width"
 msgstr "Largeur du graphique"
 
-# # durée de vie ?
 #: ../src/plugins/gramplet/AgeStats.py:170
 msgid "Lifespan Age Distribution"
-msgstr "Statistiques sur l'espérance de vie"
+msgstr "Répartition de l'espérance de vie"
 
 # traduction à améliorer à l'usage !
 #: ../src/plugins/gramplet/AgeStats.py:171
 msgid "Father - Child Age Diff Distribution"
-msgstr "Père à l'âge de ..."
+msgstr "Père à l'âge de..."
 
 #: ../src/plugins/gramplet/AgeStats.py:171
 #: ../src/plugins/gramplet/AgeStats.py:172
@@ -11987,7 +11980,7 @@ msgstr "Différence"
 # traduction à améliorer à l'usage !
 #: ../src/plugins/gramplet/AgeStats.py:172
 msgid "Mother - Child Age Diff Distribution"
-msgstr "Mère à l'âge de ..."
+msgstr "Mère à l'âge de..."
 
 #: ../src/plugins/gramplet/AgeStats.py:229
 #: ../src/plugins/gramplet/gramplet.gpr.py:227
@@ -12886,7 +12879,7 @@ msgstr ""
 #. 574 on a screen width of 1024
 #: ../src/plugins/gramplet/EditExifMetadata.py:989
 msgid "Media Object Title"
-msgstr "Titre de l'image"
+msgstr "Titre de l'objet medium"
 
 # trunk
 # metadata Exiv pour image
@@ -13032,7 +13025,7 @@ msgstr "Frères et sœurs "
 msgid "Related"
 msgstr "en relation avec"
 
-# url + /fr voir GrampsDisplay.py
+# "/fr" ajouté automatiquement (voir GrampsDisplay.py)
 #: ../src/plugins/gramplet/FaqGramplet.py:40
 #, python-format
 msgid ""
@@ -13144,14 +13137,12 @@ msgstr ""
 " 10. <a wiki='%s_-_FAQ'>Comment générer un site internet avec mes données ?<"
 "/a>\n"
 
-# url à revoir !
 #: ../src/plugins/gramplet/FaqGramplet.py:65
 msgid ""
 " 11. <a href='http://sourceforge.net/mailarchive/message.php?msg_id=21487967'>"
 "How do I record one's occupation?</a>\n"
 msgstr ""
-" 11. <a href=« http://sourceforge.net/mailarchive/message."
-"php?msg_id=21487967 »>"
+" 11. <a href='http://sourceforge.net/mailarchive/message.php?msg_id=21487967'>"
 "Comment saisir une profession ? [en]</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:66
@@ -13559,14 +13550,13 @@ msgstr "   %d.a Mère : "
 msgid "   %d.b Father: "
 msgstr "   %d.b Père : "
 
-# à vérifier
 #: ../src/plugins/gramplet/SessionLogGramplet.py:45
 msgid ""
 "Click name to change active\n"
 "Double-click name to edit"
 msgstr ""
-"Cliquez sur le nom pour changer\n"
-"Double cliquez sur le nom pour éditer"
+"Cliquer sur un nom pour l'activer\n"
+"Double-cliquer pour l'éditer"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:46
 msgid "Log for this Session"
@@ -15178,10 +15168,9 @@ msgstr ""
 "Votre arbre familial groupe le nom « %(key)s » avec « %(parent)s » ; ce "
 "regroupement n'a pas été changé en « %(value)s »."
 
-# ???
 #: ../src/plugins/import/ImportXml.py:1571
 msgid "Gramps ignored namemap value"
-msgstr "La carte des noms ignorés par Gramps"
+msgstr "Groupement de noms ignorés"
 
 #: ../src/plugins/import/ImportXml.py:1774
 msgid "Any note reference must have a 'hlink' attribute."
@@ -19608,15 +19597,15 @@ msgstr "Nouveau lieu avec des champs vides"
 msgid "Map Menu"
 msgstr "Menu Carte"
 
-# croix ?
+# cible ? croix ? mire ?
 #: ../src/plugins/lib/maps/geography.py:430
 msgid "Remove cross hair"
-msgstr "Retirer la mire"
+msgstr "Retirer la cible"
 
-# croix ?
+# cible ? croix ? mire ?
 #: ../src/plugins/lib/maps/geography.py:432
 msgid "Add cross hair"
-msgstr "Ajouter la mire"
+msgstr "Ajouter la cible"
 
 #: ../src/plugins/lib/maps/geography.py:439
 msgid "Unlock zoom and position"
@@ -20025,12 +20014,12 @@ msgstr "les références de media"
 # un medium
 #: ../src/plugins/quickview/FilterByName.py:71
 msgid "Filtering_on|unique media"
-msgstr "l'objet medium présent"
+msgstr "un seul objet medium"
 
 # un medium
 #: ../src/plugins/quickview/FilterByName.py:72
 msgid "Filtering_on|missing media"
-msgstr "l'objet medium manquant"
+msgstr "aucun objet medium"
 
 #: ../src/plugins/quickview/FilterByName.py:73
 msgid "Filtering_on|media by size"
@@ -20092,10 +20081,10 @@ msgstr "événement naissance mais pas de date"
 msgid "missing birth event"
 msgstr "événement naissance manquant"
 
-# à voir dans le contexte
+# à vérifier dans le contexte
 #: ../src/plugins/quickview/FilterByName.py:329
 msgid "Media count"
-msgstr "Calcul des media"
+msgstr "Nombre de media"
 
 #: ../src/plugins/quickview/FilterByName.py:337
 #: ../src/plugins/quickview/OnThisDay.py:80
@@ -20654,7 +20643,6 @@ msgstr "Catégorie"
 msgid "The style used for index entries."
 msgstr "Le style utilisé pour les entrées de l'index."
 
-# de ou pour ?
 #. feature request 2356: avoid genitive form
 #: ../src/plugins/textreport/AncestorReport.py:191
 #, python-format
@@ -20711,10 +20699,9 @@ msgstr "Jours de naissance et anniversaires"
 msgid "Include relationships to center person"
 msgstr "Relation avec la souche"
 
-# A revoir
 #: ../src/plugins/textreport/BirthdayReport.py:427
 msgid "Include relationships to center person (slower)"
-msgstr "Relation avec la souche (plus long)"
+msgstr "Inclure les relations avec la souche (plus lent)"
 
 #: ../src/plugins/textreport/BirthdayReport.py:432
 msgid "Title text"
@@ -20744,7 +20731,6 @@ msgstr "Style du texte pour les mois"
 msgid "Initial Text"
 msgstr "Texte initial"
 
-# à vérifier
 #: ../src/plugins/textreport/CustomBookText.py:120
 msgid "Text to display at the top."
 msgstr "Texte à afficher en haut."
@@ -20753,16 +20739,14 @@ msgstr "Texte à afficher en haut."
 msgid "Middle Text"
 msgstr "Texte du milieu"
 
-# à vérifier
 #: ../src/plugins/textreport/CustomBookText.py:124
 msgid "Text to display in the middle"
-msgstr "Texte à afficher au milieu"
+msgstr "Texte à afficher au milieu."
 
 #: ../src/plugins/textreport/CustomBookText.py:127
 msgid "Final Text"
 msgstr "Texte final"
 
-# à vérifier
 #: ../src/plugins/textreport/CustomBookText.py:128
 msgid "Text to display last."
 msgstr "Texte à afficher en dernier."
@@ -20855,7 +20839,6 @@ msgstr "Le style utilisé pour l'affichage du niveau %d."
 msgid "The style used for the spouse level %d display."
 msgstr "Le style utilisé pour l'affichage du conjoint au niveau %d."
 
-# de ou pour ?
 #. feature request 2356: avoid genitive form
 #: ../src/plugins/textreport/DetAncestralReport.py:197
 #, python-format
@@ -21187,7 +21170,6 @@ msgstr "Le style utilisé pour l'en-tête Plus de détails."
 msgid "The style used for additional detail data."
 msgstr "Style pour l'ajout de détails additionnels."
 
-# de ou pour ?
 #. feature request 2356: avoid genitive form
 #: ../src/plugins/textreport/DetDescendantReport.py:290
 #, python-format
@@ -21269,7 +21251,6 @@ msgstr ""
 msgid "The style used for the More About header and for headers of mates."
 msgstr "Le style utilisé pour les en-têtes plus de détails et conjoints."
 
-# de ou pour ?
 #. feature request 2356: avoid genitive form
 #: ../src/plugins/textreport/EndOfLineReport.py:150
 #, python-format
@@ -21523,7 +21504,6 @@ msgstr "Style pour l'étiquette des catégories."
 msgid "The style used for the spouse's name."
 msgstr "Style pour le nom de jeune fille."
 
-# de ou pour ?
 #. feature request 2356: avoid genitive form
 #: ../src/plugins/textreport/KinshipReport.py:117
 #, python-format
@@ -21865,7 +21845,6 @@ msgstr "Rapport Étiquette"
 msgid "You must first create a tag before running this report."
 msgstr "Vous devez d'abord créer une étiquette avant de lancer ce rapport."
 
-# de ou pour ?
 #. feature request 2356: avoid genitive form
 #: ../src/plugins/textreport/TagReport.py:85
 #, python-format
@@ -22921,6 +22900,7 @@ msgstr "Ignorer la date et le niveau de confiance"
 
 # trunk
 # manuel wiki
+# La page n'existe pas encore : http://www.gramps-project.org/wiki/index.php?title=Gramps_3.4_Wiki_Manual_-_Tools
 #: ../src/plugins/tool/MergeCitations.py:81
 msgid "manual|Merge citations..."
 msgstr "Fusion_des_citations..."
@@ -23215,10 +23195,10 @@ msgstr "Recherche et assignation d'un ID non-utilisé"
 msgid "Sort Events"
 msgstr "Trier les événements"
 
-# à vérifier
+# Utilisé dans l'historique d'annulation
 #: ../src/plugins/tool/SortEvents.py:99
 msgid "Sort event changes"
-msgstr "Les changements après le tri des événements"
+msgstr "Tri des événements"
 
 # Substantif (GNOME fr)
 #: ../src/plugins/tool/SortEvents.py:113
@@ -24835,7 +24815,7 @@ msgid ""
 "name will take you to their family/ relationship&#8217;s page."
 msgstr ""
 "Cette page contient un index de toutes les familles et relations de la base "
-"de données, trié par le nom de famille. Cliquez sur le nom pour accéder à la "
+"de données, trié par nom de famille. Cliquez sur le nom pour accéder à la "
 "page de la famille."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3125
@@ -24891,7 +24871,6 @@ msgstr "Lieux avec la lettre %s"
 msgid "Place Map"
 msgstr "Carte du lieu"
 
-# &#8217 ?
 #: ../src/plugins/webreport/NarrativeWeb.py:3599
 msgid ""
 "This page contains an index of all the events in the database, sorted by "
@@ -24899,8 +24878,9 @@ msgid ""
 "ID will open a page for that event."
 msgstr ""
 "Cette page contient un index de tous les événements de la base de données, "
-"classés par nom, identifiant Gramps et date (si présent). Cliquez sur un "
-"événement pour accéder à ce type d'événement."
+"classés par type et date (si présente). Cliquez sur un identifiant "
+"d'événement "
+"Gramps pour accéder à sa page."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3681
 msgid "Event types beginning with letter "
@@ -25118,7 +25098,6 @@ msgstr "Nom du dépôt"
 msgid "Referenced Sources"
 msgstr "Sources référencées"
 
-# &#8217;s ?
 #. Address Book Page message
 #: ../src/plugins/webreport/NarrativeWeb.py:6678
 msgid ""
@@ -25446,8 +25425,6 @@ msgid "Create and only use thumbnail- sized images"
 msgstr "Créer et utiliser uniquement les aperçus des images"
 
 # trunk
-# These options ???
-# context ?
 #: ../src/plugins/webreport/NarrativeWeb.py:7819
 msgid ""
 "This option allows you the choice to not create any full- sized images as in "
@@ -25749,7 +25726,7 @@ msgid ""
 "page. This will allow you to see how your family traveled around the country."
 msgstr ""
 "Ajouter ou non une carte avec tous les lieux familiaux et un lien sur la page "
-"de l'individu. Ceci vous permettera de voir votre famille à travers ses lieux."
+"de l'individu. Ceci vous permettra de voir votre famille à travers ses lieux."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8012
 msgid "Family Links"
@@ -26157,11 +26134,10 @@ msgstr "Mayence"
 msgid "Nebraska"
 msgstr "Nebraska"
 
-# ??? à vérifier
 #. Visually Impaired style sheet with its navigation menus
 #: ../src/plugins/webstuff/webstuff.py:96
 msgid "Visually Impaired"
-msgstr "Impair visuellement"
+msgstr "Malvoyants"
 
 #. no style sheet option
 #: ../src/plugins/webstuff/webstuff.py:148
@@ -30000,12 +29976,11 @@ msgstr ""
 "cet événement "
 "seront répercutées dans l'événement lui-même, et ce pour tous ses acteurs."
 
-# ? An unique ?
 #: ../src/glade/editeventref.glade.h:5 ../src/glade/editevent.glade.h:1
 msgid "A unique ID to identify the event"
 msgstr ""
-"Un enregistrement unique pour identifier l'événement, laissez Gramps le "
-"désigner. "
+"Un identifiant unique pour l'événement ; laisser vide pour que Gramps le "
+"choisisse."
 
 #: ../src/glade/editeventref.glade.h:7 ../src/glade/editevent.glade.h:6
 msgid "De_scription:"
@@ -30050,11 +30025,11 @@ msgstr "<b>Note</b>"
 msgid "A type to classify the note."
 msgstr "Un type pour définir la note."
 
-# ? An unique ?
 #: ../src/glade/editnote.glade.h:3
 msgid "A unique ID to identify the note."
 msgstr ""
-"Un enregistrement unique pour identifier la note, laissez Gramps le désigner. "
+"Un identifiant unique pour la note ; laisser vide pour que Gramps le "
+"choisisse."
 
 # trunk
 #: ../src/glade/editnote.glade.h:6
@@ -30092,11 +30067,11 @@ msgstr ""
 "Le quartier, le secteur d'une ville ou d'un village.\n"
 "Utilisez l'onglet emplacement alternatifs pour stocker le nom actuel."
 
-# ? An unique ?
 #: ../src/glade/editplace.glade.h:4
 msgid "A unique ID to identify the place"
 msgstr ""
-"Un enregistrement unique pour identifier le lieu, laissez Gramps le désigner. "
+"Un identifiant unique pour le lieu ; laisser vide pour que Gramps le "
+"choisisse."
 
 #: ../src/glade/editplace.glade.h:8
 msgid "Count_ry:"
@@ -30177,7 +30152,7 @@ msgid "_Place Name:"
 msgstr "N_om du lieu :"
 
 # trunk
-# ? pourquoi autant d'espaces ? → Aucune idée, mais sans la chaîne est mieux centrée, dont acte.
+# ? pourquoi autant d'espaces ? → Aucune idée, mais sans, la chaîne est mieux centrée, dont acte.
 #: ../src/glade/editname.glade.h:1
 msgid "<i>Family Names     </i>"
 msgstr "<i>Noms de famille</i>"
@@ -31279,7 +31254,7 @@ msgstr "Âge mi_nimal pour se marier"
 # trunk
 #: ../src/plugins/tool/verify.glade.h:21
 msgid "_Estimate missing or inexact dates"
-msgstr "_Estimer les dates manquantes ou inéxactes"
+msgstr "_Estimer les dates manquantes ou inexactes"
 
 #: ../src/plugins/tool/verify.glade.h:23
 msgid "_Identify invalid dates"
