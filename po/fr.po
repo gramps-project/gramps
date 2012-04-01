@@ -1806,7 +1806,7 @@ msgstr "PATRONYME[CON]"
 
 #: ../src/Utils.py:1288 ../src/gui/configure.py:536
 msgid "Rawsurnames"
-msgstr "Nomsdefamillebrut"
+msgstr "NomsDeFamilleBrut"
 
 #: ../src/Utils.py:1288
 msgid "RAWSURNAMES"
@@ -4328,8 +4328,8 @@ msgstr ""
 "  <b>Patronyme, ou [pre] ou [nom] ou [con]</b> - patronyme complet, préfixe, nom seul, connecteur \n"
 "  <b>Nom-dit</b>    - surnom du nom de famille     <b>Préfixe</b>     - préfixe (von, de, de la)\n"
 "  <b>Reste</b>       - les noms de familles secondaires\n"
-"  <b>Pas patronyme</b> - tous les noms de famille sauf le principal &amp; le pa/matronyme\n"
-"  <b>Noms de famille brut</b>   - tous les noms de famille sans préfixe et connecteurs\n"
+"  <b>PasPatronyme</b> - tous les noms de famille sauf le principal &amp; le pa/matronyme\n"
+"  <b>NomsDeFamilleBrut</b>   - tous les noms de famille sans préfixe et connecteurs\n"
 "\n"
 "</tt>\n"
 "Utilisez le même mot clé en MAJUSCULE pour forcer les lettres capitales. Parenthèses et virgules\n"
