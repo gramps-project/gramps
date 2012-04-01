@@ -1335,7 +1335,7 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
         
         #Database might have changed, objects might have been removed,
         #we need to reevaluate if all data is valid
-        self.object_list.remove_invalid_objects()
+        self.object_list.refresh_objects()
         
         self.top.connect_signals({
             "on_close_scratchpad" : self.close,
