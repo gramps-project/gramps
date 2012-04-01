@@ -26,6 +26,13 @@
 
 #-------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+#-------------------------------------------------------------------------
+from gen.ggettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -37,10 +44,10 @@ from Filters.Rules._Rule import Rule
 class HasNoteBase(Rule):
     """Objects having notes"""
 
-    labels      = [  'Number of instances:', 'Number must be:']
+    labels      = [  _('Number of instances:'), _('Number must be:')]
     name        = 'Object with notes'
     description = "Matches objects that have a certain number of notes"
-    category    = 'General filters'
+    category    = _('General filters')
 
     def __init__(self, arg):
         # Upgrade from pre 3.1 HasNote filter, use defaults that correspond

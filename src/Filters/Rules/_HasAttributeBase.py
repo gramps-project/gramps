@@ -22,6 +22,13 @@
 
 #-------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+#-------------------------------------------------------------------------
+from gen.ggettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -42,7 +49,7 @@ class HasAttributeBase(Rule):
     name        = 'Objects with the <attribute>'
     description = "Matches objects with the given attribute " \
                    "of a particular value"
-    category    = 'General filters'
+    category    = _('General filters')
 
     def apply(self, db, obj):
         if not self.list[0]:

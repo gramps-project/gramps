@@ -26,6 +26,13 @@
 
 #-------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+#-------------------------------------------------------------------------
+from gen.ggettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -41,7 +48,7 @@ class MatchesSourceConfidenceBase(Rule):
     labels    = ['Confidence level:']
     name        = 'Object with at least one direct source >= <confidence level>'
     description = "Matches objects with at least one direct source with confidence level(s)"
-    category    = 'Citation/source filters'
+    category    = _('Citation/source filters')
     
     def apply(self, db, obj):
         required_conf = int(self.list[0])

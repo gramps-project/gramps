@@ -25,6 +25,13 @@
 
 #-------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+#-------------------------------------------------------------------------
+from gen.ggettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -36,11 +43,11 @@ from Filters.Rules._Rule import Rule
 class HasSourceCountBase(Rule):
     """Objects having sources"""
 
-    labels      = [  'Number of instances:', 'Number must be:']
+    labels      = [  _('Number of instances:'), _('Number must be:')]
     name        = 'Objects with <count> sources'
     description = "Matches objects that have a certain number of sources " \
                    "connected to it (actually citations are counted)"
-    category    = 'Citation/source filters'
+    category    = _('Citation/source filters')
 
     def prepare(self, db):
         # things we want to do just once, not for every handle

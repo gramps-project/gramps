@@ -23,6 +23,13 @@
 
 #-------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+#-------------------------------------------------------------------------
+from gen.ggettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -38,11 +45,11 @@ class MatchesSourceFilterBase(MatchesFilterBase):
     Rule that checks against another filter.
     """
 
-    labels      = ['Source filter name:']
+    labels      = [_('Source filter name:')]
     name        = 'Objects with source matching the <source filter>'
     description = "Matches objects with sources that match the " \
                    "specified source filter name"
-    category    = 'Citation/source filters'
+    category    = _('Citation/source filters')
 
     # we want to have this filter show source filters
     namespace   = 'Source'

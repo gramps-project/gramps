@@ -22,6 +22,13 @@
 
 #-------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+#-------------------------------------------------------------------------
+from gen.ggettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -39,7 +46,7 @@ class HasTextMatchingSubstringOf(Rule):
     name        = 'Objects with records containing <substring>'
     description = "Matches objects whose records contain text " \
                    "matching a substring"
-    category    = 'General filters'
+    category    = _('General filters')
 
     # FIXME: This needs to be written for an arbitrary object
     # if possible

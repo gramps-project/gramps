@@ -22,6 +22,13 @@
 
 #-------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+#-------------------------------------------------------------------------
+from gen.ggettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -42,10 +49,10 @@ class MatchesFilterBase(Rule):
     
     """
 
-    labels      = ['Filter name:']
+    labels      = [_('Filter name:')]
     name        = 'Objects matching the <filter>'
     description = "Matches objects matched by the specified filter name"
-    category    = 'General filters'
+    category    = _('General filters')
 
     def prepare(self, db):
         if Filters.CustomFilters:

@@ -25,6 +25,13 @@
 
 #-------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+#-------------------------------------------------------------------------
+from gen.ggettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -39,10 +46,10 @@ from Filters.Rules import Rule
 class HasLDSBase(Rule):
     """Rule that checks for object with a LDS event"""
 
-    labels      = [  'Number of instances:', 'Number must be:']
+    labels      = [  _('Number of instances:'), _('Number must be:')]
     name        = 'Objects with LDS events'
     description = "Matches objects with LDS events"
-    category    = 'General filters'
+    category    = _('General filters')
     
     def prepare(self, db):
         # things we want to do just once, not for every handle

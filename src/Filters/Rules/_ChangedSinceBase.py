@@ -26,6 +26,7 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
+from gen.ggettext import gettext as _
 import re
 import time
 
@@ -51,7 +52,7 @@ class ChangedSinceBase(Rule):
     description = "Matches object records changed after a specified " \
                     "date/time (yyyy-mm-dd hh:mm:ss) or in range, if a second " \
                     "date/time is given."
-    category    = 'General filters'
+    category    = _('General filters')
 
     def add_time(self, date):
         if re.search("\d.*\s+\d{1,2}:\d{2}:\d{2}", date):

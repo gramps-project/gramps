@@ -25,6 +25,13 @@
 
 #-------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+#-------------------------------------------------------------------------
+from gen.ggettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -36,10 +43,10 @@ from Filters.Rules import Rule
 class HasGalleryBase(Rule):
     """Objects who have Media Object"""
 
-    labels      = [  'Number of instances:', 'Number must be:']
+    labels      = [  _('Number of instances:'), _('Number must be:')]
     name        = 'Object with <count> Media references'
     description = "Matches objects with certain number of items in the gallery"
-    category    = 'General filters'
+    category    = _('General filters')
 
     def prepare(self, db):
         # things we want to do just once, not for every handle

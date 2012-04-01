@@ -22,6 +22,13 @@
 
 #-------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+#-------------------------------------------------------------------------
+from gen.ggettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -46,7 +53,7 @@ class HasEventBase(Rule):
                     'Main Participants' ]
     name        =  'Events matching parameters'
     description =  "Matches events with particular parameters"
-    category    = 'Event filters'
+    category    = _('Event filters')
     
     def prepare(self, db):
         self.date = None
