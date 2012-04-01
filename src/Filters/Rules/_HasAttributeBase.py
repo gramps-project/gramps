@@ -40,8 +40,8 @@ class HasAttributeBase(Rule):
 
     labels      = [ 'Attribute:', 'Value:' ]
     name        = 'Objects with the <attribute>'
-    description = ["Matches objects with the given attribute ",
-                   "of a particular value"]
+    description = "Matches objects with the given attribute " \
+                   "of a particular value"
     category    = 'General filters'
 
     def apply(self, db, obj):
