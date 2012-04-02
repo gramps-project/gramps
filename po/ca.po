@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-03-10 22:17+0100\n"
-"PO-Revision-Date: 2012-03-29 20:07+0200\n"
+"PO-Revision-Date: 2012-04-02 19:58+0200\n"
 "Last-Translator: Joan Creus <joan.creusandreu at gmail dot com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: \n"
@@ -2003,8 +2003,8 @@ msgstr "Nom d'informe desconegut."
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr ""
-"No s'ha donat el nom d'informe. Si us plau utilitzeu algun de %"
-"(donottranslate)s=nominforme"
+"No s'ha donat el nom d'informe. Si us plau utilitzeu algun de "
+"%(donottranslate)s=nominforme"
 
 #: ../src/cli/arghandler.py:609 ../src/cli/arghandler.py:650
 #, python-format
@@ -2023,8 +2023,8 @@ msgstr "Nom d'eina desconegut."
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
-"No s'ha donat el nom d'eina. Si us plau utilitzeu algun de %"
-"(donottranslate)s=nomeina."
+"No s'ha donat el nom d'eina. Si us plau utilitzeu algun de "
+"%(donottranslate)s=nomeina."
 
 #: ../src/cli/arghandler.py:662
 #, python-format
@@ -4588,9 +4588,8 @@ msgid "Surname guessing"
 msgstr "Endevinació del cognom"
 
 #: ../src/gui/configure.py:913
-#, fuzzy
 msgid "Default family relationship"
-msgstr "%d relació de família corrompuda reparada\n"
+msgstr "Relació de família predeterminada"
 
 #: ../src/gui/configure.py:920
 msgid "Height multiple surname box (pixels)"
@@ -5148,9 +5147,8 @@ msgid "Note Filters"
 msgstr "Filtres de Nota"
 
 #: ../src/gui/filtereditor.py:89
-#, fuzzy
 msgid "Citation Filters"
-msgstr "Filtres de posició"
+msgstr "Filtres de cita"
 
 #: ../src/gui/filtereditor.py:93 ../src/Filters/Rules/Person/_HasEvent.py:49
 msgid "Personal event:"
@@ -5496,14 +5494,12 @@ msgid "Remove a gramplet"
 msgstr "Esborrar un gramplet"
 
 #: ../src/gui/grampsbar.py:441
-#, fuzzy
 msgid "Restore default gramplets"
-msgstr "Restaurar un gramplet"
+msgstr "Tornar als gramplets predeterminats"
 
 #: ../src/gui/grampsbar.py:481
-#, fuzzy
 msgid "Restore to defaults?"
-msgstr "Restaurar un gramplet"
+msgstr "Tornar als valors predeterminats?"
 
 #: ../src/gui/grampsbar.py:482
 msgid ""
@@ -6293,8 +6289,8 @@ msgstr ""
 "%(error_msg)s\n"
 "\n"
 "Si no podeu arreglar el problema podeu informar de l'error a http://bugs."
-"gramps-project.org o posar-vos en contacte amb l'autor del connector (%"
-"(firstauthoremail)s).\n"
+"gramps-project.org o posar-vos en contacte amb l'autor del connector "
+"(%(firstauthoremail)s).\n"
 "\n"
 "Si no voleu que Gramps torni a provar de carregar aquest connector, podeu "
 "amagar-lo utilitzant el Gestor de Connectors del menú d'Ajuda."
@@ -6322,8 +6318,8 @@ msgstr ""
 "%(error_msg)s\n"
 "\n"
 "Si no podeu arreglar el problema podeu informar de l'error a http://bugs."
-"gramps-project.org o posar-vos en contacte amb l'autor de la vista (%"
-"(firstauthoremail)s).\n"
+"gramps-project.org o posar-vos en contacte amb l'autor de la vista "
+"(%(firstauthoremail)s).\n"
 "\n"
 "Si no voleu que Gramps torni a provar de carregar aquesta vista, podeu "
 "amagar-la utilitzant el Gestor de Connectors del menú d'Ajuda."
@@ -6515,10 +6511,9 @@ msgid ""
 "or leave blank to get the next available ID value."
 msgstr ""
 "Heu intentat d'utilitzar l'Id de Gramps amb valor %(gramps_id)s, que ja "
-"existeix. Aquest valor "
-"ja està agafat per '%(prim_object)s'. Si us plau introduïu un Id diferent, "
-"o deixeu-lo en blanc per agafar automàticament el següent valor d'Id "
-"disponible."
+"existeix. Aquest valor ja està agafat per '%(prim_object)s'. Si us plau "
+"introduïu un Id diferent, o deixeu-lo en blanc per agafar automàticament el "
+"següent valor d'Id disponible."
 
 #: ../src/gui/editors/editcitation.py:416 ../src/gui/editors/editsource.py:191
 msgid "Cannot save source. ID already exists."
@@ -7519,9 +7514,9 @@ msgid ""
 "\n"
 "To edit this citation, you need to close the object."
 msgstr ""
-"Aquesta cita no es pot crear en aquest moment. Pot ser que "
-"ja s'estigui editant la font associada o que una altra cita "
-"que estigui associada amb la mateixa font s'estigui editant.\n"
+"Aquesta cita no es pot crear en aquest moment. Pot ser que ja s'estigui "
+"editant la font associada o que una altra cita que estigui associada amb la "
+"mateixa font s'estigui editant.\n"
 "\n"
 "Per editar aquesta cita, cal tancar la font."
 
@@ -12241,8 +12236,8 @@ msgid ""
 "This is the date/ time that the image was last changed/ modified.\n"
 "Example: 2011-05-24 14:30:00"
 msgstr ""
-"Això és la data/hora en què es va modificar/canviar la imatge per darrer cop."
-"\n"
+"Això és la data/hora en què es va modificar/canviar la imatge per darrer "
+"cop.\n"
 "Exemple: 2011-05-24 14:30:00"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:186
@@ -12283,22 +12278,31 @@ msgid ""
 "Exif metadata.\n"
 "  It will also allow you to be able to Save the modified metadata."
 msgstr ""
+"Això obrirà una finestra nova que us permetrà d'editar/modificar les "
+"metadades Exif d'aquesta imatge.\n"
+" També us permetrà de poder Desar les metadades modificades."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:208
 msgid "Will produce a Popup window showing a Thumbnail Viewing Area"
 msgstr ""
+"Crearà una finestra emergent que mostrarà una Àrea de Visionat d'Imatges en "
+"miniatura"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:210
 msgid ""
 "Select from a drop- down box the image file type that you would like to "
 "convert your non- Exiv2 compatible media object to."
 msgstr ""
+"Seleccioneu d'un menú desplegable el tipus de fitxer d'imatge al qual voleu "
+"convertir el vostre objecte audiovisual no compatible amb Exiv2."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:213
 msgid ""
 "If your image is not of an image type that can have Exif metadata read/ "
 "written to/from, convert it to a type that can?"
 msgstr ""
+"Si la vostra imatge no és d'un tipus que pugui tenir metadades Exif de "
+"lectura o escriptura, convertir-la a un tipus que sí que pugui?"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:216
 msgid ""
@@ -12309,9 +12313,8 @@ msgstr ""
 "Esteu segur que voleu fer això?"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:314
-#, fuzzy
 msgid "Thumbnail"
-msgstr "Ubicació de les imatges en miniatura"
+msgstr "Imatge en miniatura"
 
 #. set Message Ares to Select
 #: ../src/plugins/gramplet/EditExifMetadata.py:396
@@ -12319,13 +12322,12 @@ msgid "Select an image to begin..."
 msgstr "Seleccionar una imatge per començar..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:418
-#, fuzzy
 msgid ""
 "Image is NOT readable,\n"
 "Please choose a different image..."
 msgstr ""
 "La imatge NO es pot llegir,\n"
-"Trieu-ne una de diferent..."
+"Si us plau, trieu-ne una de diferent..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:434
 msgid ""
@@ -12337,27 +12339,28 @@ msgstr ""
 
 #. Convert message
 #: ../src/plugins/gramplet/EditExifMetadata.py:446
-#, fuzzy
 msgid "Please convert this image to an Exiv2- compatible image type..."
-msgstr "Convertir aquesta imatge a imatge jpeg?"
+msgstr ""
+"Convertiu si us plau aquesta imatge a un tipus d'imatge compatible amb "
+"Exiv2..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:469
 #, python-format
 msgid "Image Size : %04d x %04d pixels"
-msgstr ""
+msgstr "Mida d'Imatge : %04d x %04d píxels"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:502
-#, fuzzy
 msgid "Displaying Exif metadata..."
-msgstr "Mostrant les metadades Exif d'imatge..."
+msgstr "Mostrant les metadades Exif..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:669
 msgid "Click Close to close this Thumbnail View Area."
 msgstr ""
+"Cliqueu Tancar per tancar aquesta Àrea de Visionat d'Imatges en miniatura."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:673
 msgid "Thumbnail View Area"
-msgstr ""
+msgstr "Àrea de Visionat d'Imatges en miniatura"
 
 #. Convert and delete original file or just convert
 #: ../src/plugins/gramplet/EditExifMetadata.py:752
@@ -12367,15 +12370,12 @@ msgid "Edit Image Exif Metadata"
 msgstr "Edició de Metadades d'Imatge Exif"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:752
-#, fuzzy
 msgid ""
 "WARNING: You are about to convert this image into a .jpeg image.  Are you "
 "sure that you want to do this?"
 msgstr ""
-"AVÍS: Esteu a punt de convertir aquesta imatge en una .tiff. Les imatges "
-"Tiff són l'estàndard per a compressió sense pèrdua.\n"
-"\n"
-"Segur que voleu fer això?"
+"AVÍS: Esteu a punt de convertir aquesta imatge en una .jpeg. Segur que voleu "
+"fer això?"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:754
 msgid "Convert and Delete"
@@ -12387,60 +12387,65 @@ msgstr "Convertir"
 
 #. notify user about the convert, delete, and new filepath
 #: ../src/plugins/gramplet/EditExifMetadata.py:840
-#, fuzzy
 msgid ""
 "Your image has been converted and the original file has been deleted, and "
 "the full path has been updated!"
-msgstr "La imatge s'ha convertit i el fitxer original s'ha esborrat..."
+msgstr ""
+"La imatge s'ha convertit i el fitxer original s'ha esborrat, i el camí "
+"sencer s'ha actualitzat!"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:844
 msgid ""
 "There has been an error, Please check your source and destination file "
 "paths..."
 msgstr ""
+"Hi ha hagut un error, si us plau comproveu els camins dels fitxers origen i "
+"destí..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:847
 msgid ""
 "There was an error in deleting the original file.  You will need to delete "
 "it yourself!"
 msgstr ""
+"Hi ha hagut un error esborrant el fitxer original. L'haureu d'esborrar "
+"vosaltres mateixos!"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:864
-#, fuzzy
 msgid "There was an error in converting your image file."
-msgstr "Hi ha hagut un error en treure les metadades Exif d'aquesat imatge..."
+msgstr "Hi ha hagut un error convertint el fitxer d'imatge."
 
 #. begin database tranaction to save media object new path
 #: ../src/plugins/gramplet/EditExifMetadata.py:875
-#, fuzzy
 msgid "Media Path Update"
-msgstr "data de defunció"
+msgstr "Modificació del Camí de Mitjans Audiovisuals"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:881
-#, fuzzy
 msgid "There has been an error in updating the image file's path!"
-msgstr "Hi ha hagut un error en treure les metadades Exif d'aquesat imatge..."
+msgstr "Hi ha hagut un error en modificar el camí del fitxer d'imatge!"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:915
 msgid ""
 "Click the close button when you are finished modifying this image's Exif "
 "metadata."
 msgstr ""
+"Cliqueu el botó de tancament quan hagueu acabat de modificar les metadades "
+"Exif d'aquesta imatge."
 
 #. Add the Save button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:953
 msgid "Saves a copy of the data fields into the image's Exif metadata."
-msgstr ""
+msgstr "Desa una còpia dels camps de dades a les metadades Exif de la imatge."
 
 #. Re- display the data fields button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:956
 msgid "Re -display the data fields that were cleared from the Edit Area."
 msgstr ""
+"Tornar a mostrar els camps de dades que s'han esborrat de l'Àrea d'Edició."
 
 #. Add the Clear button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:959
 msgid "This button will clear all of the data fields shown here."
-msgstr ""
+msgstr "Aquest botó esborrarà tots els camps de dades que es mostren aquí."
 
 #. Add the Close button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:962
@@ -12449,40 +12454,37 @@ msgid ""
 "WARNING: This action will NOT Save any changes/ modification made to this "
 "image's Exif metadata."
 msgstr ""
+"Tanca aquesta finestra emergent d'Edició.\n"
+"AVÍS: Aquesta acció NO Desa cap canvi / modificació que s'hagi fet a les "
+"metadades Exif d'aquesta imatge."
 
 #. Media Title Frame...
 #. 574 on a screen width of 1024
 #: ../src/plugins/gramplet/EditExifMetadata.py:989
-#, fuzzy
 msgid "Media Object Title"
-msgstr "Filtres d'Objecte Audiovisual"
+msgstr "Títol d'Objecte Audiovisual"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:999
-#, fuzzy
 msgid "media Title: "
-msgstr "Títol de Calendari"
+msgstr "Títol de Medi Audiovisual: "
 
 #. create the data fields...
 #. ***Description, Artist, and Copyright
 #: ../src/plugins/gramplet/EditExifMetadata.py:1013
-#, fuzzy
 msgid "General Data"
-msgstr "General"
+msgstr "Dades Generals"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1023
-#, fuzzy
 msgid "Description: "
-msgstr "Descripció:"
+msgstr "Descripció: "
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1024
-#, fuzzy
 msgid "Artist: "
-msgstr "Artista"
+msgstr "Artista: "
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1025
-#, fuzzy
 msgid "Copyright: "
-msgstr "Copyright"
+msgstr "Copyright: "
 
 #. iso format: Year, Month, Day spinners...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1038
@@ -12490,39 +12492,33 @@ msgid "Date/ Time"
 msgstr "Data/Hora"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1052
-#, fuzzy
 msgid "Original: "
-msgstr "Temps original"
+msgstr "Original: "
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1053
-#, fuzzy
 msgid "Modified: "
-msgstr "Última Modificació"
+msgstr "Modificat: "
 
 #. GPS coordinates...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1070
 msgid "Latitude/ Longitude/ Altitude GPS coordinates"
-msgstr ""
+msgstr "Coordenades GPS de Latitud/Longitud/Altitud"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1084
-#, fuzzy
 msgid "Latitude :"
-msgstr "Latitud:"
+msgstr "Latitud :"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1085
-#, fuzzy
 msgid "Longitude :"
-msgstr "Longitud:"
+msgstr "Longitud :"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1086
-#, fuzzy
 msgid "Altitude :"
-msgstr "Latitud:"
+msgstr "Altitud :"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1138
-#, fuzzy
 msgid "Bad Date/Time"
-msgstr "Data/Hora"
+msgstr "Data/Hora Incorrecta"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1158
 msgid ""
@@ -12533,20 +12529,17 @@ msgstr ""
 "imatge?"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1323
-#, fuzzy
 msgid "Media Title Update"
-msgstr "Filtre d'Audiovisuals"
+msgstr "Actualització de Títol d'Audiovisuals"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1349
-#, fuzzy
 msgid "Media Object Date Created"
-msgstr "Objectes audiovisuals marcats com a privats"
+msgstr "Data de l'Objecte Audiovisual Creada"
 
 #. set Edit Message to Saved...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1421
-#, fuzzy
 msgid "Saving Exif metadata to this image..."
-msgstr "Desant metadades Exif a la imatge..."
+msgstr "Desant metadades Exif a aquesta imatge..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1468
 msgid "All Exif metadata has been deleted from this image..."
@@ -12716,13 +12709,12 @@ msgstr ""
 "web amb Gramps i el meu arbre?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:65
-#, fuzzy
 msgid ""
 " 11. <a href='http://sourceforge.net/mailarchive/message.php?"
 "msg_id=21487967'>How do I record one's occupation?</a>\n"
 msgstr ""
-" 11. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-"
-"ts21786114.html#a21786114'>Com es registra l'ofici d'algú?</a>\n"
+" 11. <a href='http://sourceforge.net/mailarchive/message.php?"
+"msg_id=21487967'>Com es registra l'ofici d'algú?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:66
 #, python-format
@@ -13693,33 +13685,28 @@ msgid "The colour to use to display families."
 msgstr "El color a utilitzar per mostrar les famílies."
 
 #: ../src/plugins/graph/GVFamilyLines.py:168
-#, fuzzy
 msgid "Limit the number of ancestors"
 msgstr "Limitar el nombre d'avantpassats"
 
 #: ../src/plugins/graph/GVFamilyLines.py:170
-#, fuzzy
 msgid "Whether to limit the number of ancestors."
-msgstr "Si s'han d'ometre els avantpassats duplicats."
+msgstr "Si s'ha de limitar el nombre d'avantpassats."
 
 #: ../src/plugins/graph/GVFamilyLines.py:176
 msgid "The maximum number of ancestors to include."
 msgstr "El nombre màxim d'avantpassats a incloure."
 
 #: ../src/plugins/graph/GVFamilyLines.py:180
-#, fuzzy
 msgid "Limit the number of descendants"
-msgstr "Limitar el nombre d'avantpassats"
+msgstr "Limitar el nombre de descendents"
 
 #: ../src/plugins/graph/GVFamilyLines.py:183
-#, fuzzy
 msgid "Whether to limit the number of descendants."
-msgstr "Si s'han d'imprimir els números de pàgina a cada pàgina."
+msgstr "Si s'ha de limitar el nombre de descendents."
 
 #: ../src/plugins/graph/GVFamilyLines.py:189
-#, fuzzy
 msgid "The maximum number of descendants to include."
-msgstr "El nombre màxim d'avantpassats a incloure."
+msgstr "El nombre màxim de descendents a incloure."
 
 #. --------------------
 #: ../src/plugins/graph/GVFamilyLines.py:194
@@ -13733,7 +13720,6 @@ msgid "Include thumbnail images of people"
 msgstr "Incloure imatges en miniatura de les persones"
 
 #: ../src/plugins/graph/GVFamilyLines.py:200
-#, fuzzy
 msgid "Whether to include thumbnail images of people."
 msgstr "Si s'han d'incloure imatges en miniatura de les persones."
 
@@ -13849,11 +13835,11 @@ msgstr ""
 
 #: ../src/plugins/graph/GVFamilyLines.py:341
 msgid "Empty report"
-msgstr ""
+msgstr "Informe buit"
 
 #: ../src/plugins/graph/GVFamilyLines.py:342
 msgid "You did not specify anybody"
-msgstr ""
+msgstr "No heu especificat ningú"
 
 #: ../src/plugins/graph/GVFamilyLines.py:921
 #, python-format
@@ -14503,9 +14489,9 @@ msgid "  Note %(id)s with %(id2)s\n"
 msgstr "  Nota %(id)s amb %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:268
-#, fuzzy, python-format
+#, python-format
 msgid "  Citation %(id)s with %(id2)s\n"
-msgstr "  Família %(id)s amb %(id2)s\n"
+msgstr "  Cita %(id)s amb %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:276
 #, python-format
@@ -14553,9 +14539,9 @@ msgid "  Tags: %d\n"
 msgstr "  Etiquetes: %d\n"
 
 #: ../src/plugins/import/ImportXml.py:285
-#, fuzzy, python-format
+#, python-format
 msgid "  Citations: %d\n"
-msgstr "Cita"
+msgstr "  Cites: %d\n"
 
 #: ../src/plugins/import/ImportXml.py:287
 msgid "Number of new objects imported:\n"
@@ -14770,109 +14756,101 @@ msgstr "Importació GEDCOM"
 
 #: ../src/plugins/lib/libgedcom.py:2549
 msgid "GEDCOM import report: No errors detected"
-msgstr ""
+msgstr "Informe d'importació de GEDCOM: No s'han detectat errors"
 
 #: ../src/plugins/lib/libgedcom.py:2551
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
-msgstr ""
+msgstr "Informe d'importació de GEDCOM: %s errors detectats"
 
 #: ../src/plugins/lib/libgedcom.py:2803
 msgid "Tag recognised but not supported"
-msgstr ""
+msgstr "Etiqueta reconeguda però no suportada"
 
 #: ../src/plugins/lib/libgedcom.py:2814
-#, fuzzy
 msgid "Line ignored as not understood"
-msgstr "La línia %d no s'ha entès, i per tant s'ha ignorat."
+msgstr "Línia ignorada perquè no s'ha entès"
 
 #: ../src/plugins/lib/libgedcom.py:2839
-#, fuzzy
 msgid "Skipped subordinate line"
-msgstr "saltades %(skip)d subordinada(es) a la línia %(line)d"
+msgstr "Saltada línia subordinada"
 
 #: ../src/plugins/lib/libgedcom.py:2871
-#, fuzzy
 msgid "Records not imported into "
-msgstr "%s no s'ha pogut importar"
+msgstr "Registres no importats a "
 
 #: ../src/plugins/lib/libgedcom.py:2903
 msgid "TRLR (trailer)"
-msgstr ""
+msgstr "TRLR (caràcters posteriors)"
 
 #: ../src/plugins/lib/libgedcom.py:2932
 #, python-format
 msgid "SUBM (Submitter): @%s@"
-msgstr ""
+msgstr "SUBM (Qui ho ha enviat): @%s@"
 
 #: ../src/plugins/lib/libgedcom.py:2956 ../src/plugins/lib/libgedcom.py:6282
-#, fuzzy
 msgid "GEDCOM data"
-msgstr "GEDCOM"
+msgstr "Dades GEDCOM"
 
 #: ../src/plugins/lib/libgedcom.py:3002
-#, fuzzy
 msgid "Unknown tag"
-msgstr "Desconegut"
+msgstr "Etiquta desconeguda"
 
 #: ../src/plugins/lib/libgedcom.py:3004 ../src/plugins/lib/libgedcom.py:3018
 #: ../src/plugins/lib/libgedcom.py:3022 ../src/plugins/lib/libgedcom.py:3043
-#, fuzzy
 msgid "Top Level"
-msgstr "Superior Esquerra"
+msgstr "Nivell més Alt"
 
 #: ../src/plugins/lib/libgedcom.py:3112
 #, python-format
 msgid "INDI (individual) Gramps ID %s"
-msgstr ""
+msgstr "INDI (individu) Id Gramps %s"
 
 #: ../src/plugins/lib/libgedcom.py:3261 ../src/plugins/lib/libgedcom.py:4472
 #: ../src/plugins/lib/libgedcom.py:4675 ../src/plugins/lib/libgedcom.py:4806
 #: ../src/plugins/lib/libgedcom.py:5431 ../src/plugins/lib/libgedcom.py:5568
-#, fuzzy
 msgid "Filename omitted"
-msgstr "Nom de fitxer"
+msgstr "Nom de fitxer omès"
 
 #: ../src/plugins/lib/libgedcom.py:3263 ../src/plugins/lib/libgedcom.py:4474
 #: ../src/plugins/lib/libgedcom.py:4677 ../src/plugins/lib/libgedcom.py:4808
 #: ../src/plugins/lib/libgedcom.py:5433 ../src/plugins/lib/libgedcom.py:5570
 msgid "Form omitted"
-msgstr ""
+msgstr "Formulari omès"
 
 #: ../src/plugins/lib/libgedcom.py:4244
-#, fuzzy, python-format
+#, python-format
 msgid "FAM (family) Gramps ID %s"
-msgstr "Id Gramps: %s "
+msgstr "FAM (família) Id Gramps %s"
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
 #: ../src/plugins/lib/libgedcom.py:4957
-#, fuzzy
 msgid "Empty event note ignored"
-msgstr "Línia %d: la nota d'esdeveniment buida s'ha ignorat."
+msgstr "Nota d'esdeveniment buida ignorada"
 
 #: ../src/plugins/lib/libgedcom.py:5274 ../src/plugins/lib/libgedcom.py:6085
 msgid "Warn: ADDR overwritten"
-msgstr ""
+msgstr "Avís: ADDR sobreescrit"
 
 #: ../src/plugins/lib/libgedcom.py:5445 ../src/plugins/lib/libgedcom.py:5827
 msgid "REFN ignored"
-msgstr ""
+msgstr "REFN ignorat"
 
 #: ../src/plugins/lib/libgedcom.py:5537
 #, python-format
 msgid "No title - ID %s"
-msgstr ""
+msgstr "Sense títol - ID %s"
 
 #: ../src/plugins/lib/libgedcom.py:5542
-#, fuzzy, python-format
+#, python-format
 msgid "SOUR (source) Gramps ID %s"
-msgstr "Reordenar IDs de Gramps"
+msgstr "SOUR (font) Id Gramps %s"
 
 #: ../src/plugins/lib/libgedcom.py:5753
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
-msgstr ""
+msgstr "OBJE (objecte audiovisual) Id Gramps %s"
 
 #: ../src/plugins/lib/libgedcom.py:5781 ../src/plugins/lib/libgedcom.py:6768
 #, python-format
@@ -14881,62 +14859,58 @@ msgstr "No s'ha pogut importar %s"
 
 #: ../src/plugins/lib/libgedcom.py:5817
 msgid "BLOB ignored"
-msgstr ""
+msgstr "BLOB ignorat"
 
 #: ../src/plugins/lib/libgedcom.py:5837
 msgid "Multimedia REFN:TYPE ignored"
-msgstr ""
+msgstr "REFN:TYPE multimèdia ignorat"
 
 #: ../src/plugins/lib/libgedcom.py:5847
 msgid "Mutimedia RIN ignored"
-msgstr ""
+msgstr "RIN multimèdia ignorat"
 
 #: ../src/plugins/lib/libgedcom.py:5934
-#, fuzzy, python-format
+#, python-format
 msgid "REPO (repository) Gramps ID %s"
-msgstr "Reordenar IDs de Gramps"
+msgstr "REPO (repositori) Id Gramps %s"
 
 #: ../src/plugins/lib/libgedcom.py:6210
-#, fuzzy
 msgid "Head (header)"
-msgstr "Capçalera HTML d'usuari"
+msgstr "Head (capçalera)"
 
 #: ../src/plugins/lib/libgedcom.py:6226
 msgid "Approved system identification"
-msgstr ""
+msgstr "Identificació de sistema aprovada"
 
 #. feature request 2356: avoid genitive form
 #: ../src/plugins/lib/libgedcom.py:6236
-#, fuzzy
 msgid "Generated by"
-msgstr "_Generar"
+msgstr "Generat per"
 
 #: ../src/plugins/lib/libgedcom.py:6250
 msgid "Name of software product"
-msgstr ""
+msgstr "Nom de producte de programari"
 
 #: ../src/plugins/lib/libgedcom.py:6262
 msgid "Version number of software product"
-msgstr ""
+msgstr "Número de versió del producte de programari"
 
 #: ../src/plugins/lib/libgedcom.py:6279
 #, python-format
 msgid "Business that produced the product: %s"
-msgstr ""
+msgstr "Empresa que ha creat el producte: %s"
 
 #: ../src/plugins/lib/libgedcom.py:6300
-#, fuzzy
 msgid "Name of source data"
-msgstr "Format de nom"
+msgstr "Nom de les dades font"
 
 #: ../src/plugins/lib/libgedcom.py:6314
 msgid "Copyright of source data"
-msgstr ""
+msgstr "Copyright de dades font"
 
 #: ../src/plugins/lib/libgedcom.py:6328
-#, fuzzy
 msgid "Publication date of source data"
-msgstr "Informació de Publicació"
+msgstr "Data de publicació de les dades font"
 
 #. feature request 2356: avoid genitive form
 #: ../src/plugins/lib/libgedcom.py:6341
@@ -14946,11 +14920,11 @@ msgstr "Importar des de %s"
 
 #: ../src/plugins/lib/libgedcom.py:6379
 msgid "Submission record identifier"
-msgstr ""
+msgstr "Identificador de registre d'enviament"
 
 #: ../src/plugins/lib/libgedcom.py:6390
 msgid "Language of GEDCOM text"
-msgstr ""
+msgstr "Llengua del text GEDCOM"
 
 #: ../src/plugins/lib/libgedcom.py:6414
 #, python-format
@@ -14966,85 +14940,75 @@ msgid "Look for nameless events."
 msgstr "Buscar esdeveniments sense nom."
 
 #: ../src/plugins/lib/libgedcom.py:6440
-#, fuzzy
 msgid "Character set"
-msgstr "Codificació de caràcters"
+msgstr "Joc de caràcters"
 
 #: ../src/plugins/lib/libgedcom.py:6442
-#, fuzzy
 msgid "Character set and version"
-msgstr "Codificació de caràcters"
+msgstr "Joc de caràcters i versió"
 
 #: ../src/plugins/lib/libgedcom.py:6458
 msgid "GEDCOM version not supported"
-msgstr ""
+msgstr "Versió de GEDCOM no suportada"
 
 #: ../src/plugins/lib/libgedcom.py:6461
-#, fuzzy
 msgid "GEDCOM version"
-msgstr "Opcions d'exportació de GEDCOM"
+msgstr "Versió de GEDCOM"
 
 #: ../src/plugins/lib/libgedcom.py:6464
-#, fuzzy
 msgid "GEDCOM form not supported"
-msgstr "Importació GEDCOM"
+msgstr "Formulari GEDCOM no suportat"
 
 #: ../src/plugins/lib/libgedcom.py:6466
-#, fuzzy
 msgid "GEDCOM form"
-msgstr "Importació GEDCOM"
+msgstr "Formulari GEDCOM"
 
 #: ../src/plugins/lib/libgedcom.py:6512
 msgid "Creation date of GEDCOM"
-msgstr ""
+msgstr "Data de creació de GEDCOM"
 
 #: ../src/plugins/lib/libgedcom.py:6516
 msgid "Creation date and time of GEDCOM"
-msgstr ""
+msgstr "Data i hora de creació de GEDCOM"
 
 #: ../src/plugins/lib/libgedcom.py:6553 ../src/plugins/lib/libgedcom.py:6590
-#, fuzzy
 msgid "Empty note ignored"
-msgstr "Línia %d: s'ha ignora una nota buida."
+msgstr "S'ha ignorat una nota buida"
 
 #: ../src/plugins/lib/libgedcom.py:6605
-#, fuzzy, python-format
+#, python-format
 msgid "NOTE Gramps ID %s"
-msgstr "Id Gramps: %s "
+msgstr "NOTA Id Gramps: %s"
 
 #: ../src/plugins/lib/libgedcom.py:6655
 msgid "Submission: Submitter"
-msgstr ""
+msgstr "Enviament: Remitent"
 
 #: ../src/plugins/lib/libgedcom.py:6657
-#, fuzzy
 msgid "Submission: Family file"
-msgstr "Arbre genealògic dels Smith"
+msgstr "Enviament: Fitxer de família"
 
 #: ../src/plugins/lib/libgedcom.py:6659
 msgid "Submission: Temple code"
-msgstr ""
+msgstr "Enviament: Codi de Temple"
 
 #: ../src/plugins/lib/libgedcom.py:6661
-#, fuzzy
 msgid "Submission: Generations of ancestors"
-msgstr "Limitar el nombre d'avantpassats"
+msgstr "Enviament: Generacions d'avantpassats"
 
 #: ../src/plugins/lib/libgedcom.py:6663
-#, fuzzy
 msgid "Submission: Generations of descendants"
-msgstr "Limitar el nombre d'avantpassats"
+msgstr "Enviament: Generacions de descendents"
 
 #: ../src/plugins/lib/libgedcom.py:6665
 msgid "Submission: Ordinance process flag"
-msgstr ""
+msgstr "Enviament: opció de procés d'Ordenança"
 
 #. # Okay we have no clue which temple this is.
 #. # We should tell the user and store it anyway.
 #: ../src/plugins/lib/libgedcom.py:6870
-#, fuzzy
 msgid "Invalid temple code"
-msgstr "Nom de fitxer no vàlid"
+msgstr "Codi de temple no vàlid"
 
 #: ../src/plugins/lib/libgedcom.py:6951
 msgid ""
@@ -15105,9 +15069,8 @@ msgstr "Sense nota de copyright"
 
 #: ../src/plugins/lib/libmetadata.py:48 ../src/plugins/lib/libmetadata.py:65
 #: ../src/plugins/lib/libmetadata.py:86
-#, fuzzy
 msgid "Invalid format"
-msgstr "Informador"
+msgstr "Format no vàlid"
 
 #: ../src/plugins/lib/libmetadata.py:52
 #, python-format
@@ -15127,16 +15090,15 @@ msgstr "Imatge"
 
 #: ../src/plugins/lib/libmetadata.py:90
 msgid "Camera"
-msgstr ""
+msgstr "Càmera"
 
 #: ../src/plugins/lib/libmetadata.py:91
 msgid "GPS"
-msgstr ""
+msgstr "GPS"
 
 #: ../src/plugins/lib/libmetadata.py:92
-#, fuzzy
 msgid "Advanced"
-msgstr "Opcions Avançades"
+msgstr "Avançat"
 
 #: ../src/plugins/lib/libnarrate.py:83
 #, python-format
@@ -15617,10 +15579,9 @@ msgid "%(unknown_gender_name)s died %(death_date)s."
 msgstr "%(unknown_gender_name)s va morir %(death_date)s."
 
 #: ../src/plugins/lib/libnarrate.py:286
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)s."
-msgstr ""
-"%(unknown_gender_name)s va morir %(death_date)s a l'edat de %(age)d dies."
+msgstr "%(unknown_gender_name)s va morir %(death_date)s a l'edat de %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:289
 #, python-format
@@ -15628,9 +15589,9 @@ msgid "%(male_name)s died %(death_date)s."
 msgstr "%(male_name)s va morir %(death_date)s."
 
 #: ../src/plugins/lib/libnarrate.py:290
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died %(death_date)s at the age of %(age)s."
-msgstr "%(male_name)s va morir %(death_date)s a l'edat de %(age)d dies."
+msgstr "%(male_name)s va morir %(death_date)s a l'edat de %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:293
 #, python-format
@@ -15638,9 +15599,9 @@ msgid "%(female_name)s died %(death_date)s."
 msgstr "%(female_name)s va morir %(death_date)s."
 
 #: ../src/plugins/lib/libnarrate.py:294
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died %(death_date)s at the age of %(age)s."
-msgstr "%(female_name)s va morir %(death_date)s a l'edat de %(age)d dies."
+msgstr "%(female_name)s va morir %(death_date)s a l'edat de %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:298
 #, python-format
@@ -15648,9 +15609,9 @@ msgid "This person died %(death_date)s."
 msgstr "Aquesta persona va morir %(death_date)s."
 
 #: ../src/plugins/lib/libnarrate.py:299
-#, fuzzy, python-format
+#, python-format
 msgid "This person died %(death_date)s at the age of %(age)s."
-msgstr "Aquesta persona va morir %(death_date)s a l'edat de %(age)d dies."
+msgstr "Aquesta persona va morir %(death_date)s a l'edat de %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:302
 #, python-format
@@ -15658,9 +15619,9 @@ msgid "He died %(death_date)s."
 msgstr "Va morir %(death_date)s."
 
 #: ../src/plugins/lib/libnarrate.py:303
-#, fuzzy, python-format
+#, python-format
 msgid "He died %(death_date)s at the age of %(age)s."
-msgstr "Va morir %(death_date)s a l'edat de %(age)d dies."
+msgstr "Va morir %(death_date)s a l'edat de %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:306
 #, python-format
@@ -15668,9 +15629,9 @@ msgid "She died %(death_date)s."
 msgstr "Va morir %(death_date)s."
 
 #: ../src/plugins/lib/libnarrate.py:307
-#, fuzzy, python-format
+#, python-format
 msgid "She died %(death_date)s at the age of %(age)s."
-msgstr "Va morir %(death_date)s a l'edat de %(age)d dies."
+msgstr "Va morir %(death_date)s a l'edat de %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:318
 #, python-format
@@ -15678,13 +15639,13 @@ msgid "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s."
 msgstr "%(unknown_gender_name)s va morir el %(month_year)s a %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:319
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age "
 "of %(age)s."
 msgstr ""
 "%(unknown_gender_name)s va morir el %(month_year)s a %(death_place)s a "
-"l'edat de %(age)d dies."
+"l'edat de %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:322
 #, python-format
@@ -15692,13 +15653,13 @@ msgid "%(male_name)s died in %(month_year)s in %(death_place)s."
 msgstr "%(male_name)s va morir el %(month_year)s a %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:323
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
 "%(male_name)s va morir el %(month_year)s a %(death_place)s a l'edat de "
-"%(age)d dies."
+"%(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:326
 #, python-format
@@ -15706,13 +15667,13 @@ msgid "%(female_name)s died in %(month_year)s in %(death_place)s."
 msgstr "%(female_name)s va morir el %(month_year)s a %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:327
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
 "%(female_name)s va morir el %(month_year)s a %(death_place)s a l'edat de "
-"%(age)d dies."
+"%(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:331
 #, python-format
@@ -15720,12 +15681,12 @@ msgid "This person died in %(month_year)s in %(death_place)s."
 msgstr "Aquesta persona va morir el %(month_year)s a %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:332
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person died in %(month_year)s in %(death_place)s at the age of %(age)s."
 msgstr ""
 "Aquesta persona va morir el %(month_year)s a %(death_place)s a l'edat de "
-"%(age)d dies."
+"%(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:335
 #, python-format
@@ -15733,9 +15694,9 @@ msgid "He died in %(month_year)s in %(death_place)s."
 msgstr "Va morir el %(month_year)s a %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:336
-#, fuzzy, python-format
+#, python-format
 msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)s."
-msgstr "Va morir el %(month_year)s a %(death_place)s a l'edat de %(age)d dies."
+msgstr "Va morir el %(month_year)s a %(death_place)s a l'edat de %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:339
 #, python-format
@@ -15743,9 +15704,9 @@ msgid "She died in %(month_year)s in %(death_place)s."
 msgstr "Va morir el %(month_year)s a %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:340
-#, fuzzy, python-format
+#, python-format
 msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)s."
-msgstr "Va morir el %(month_year)s a %(death_place)s a l'edat de %(age)d dies."
+msgstr "Va morir el %(month_year)s a %(death_place)s a l'edat de %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:344
 #, python-format
@@ -15753,9 +15714,9 @@ msgid "Died %(month_year)s in %(death_place)s."
 msgstr "Mort %(month_year)s a %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:345
-#, fuzzy, python-format
+#, python-format
 msgid "Died %(month_year)s in %(death_place)s (%(age)s)."
-msgstr "Mort %(month_year)s a %(death_place)s (%(age)d dies d'edat)."
+msgstr "Mort %(month_year)s a %(death_place)s (%(age)s d'edat)."
 
 #: ../src/plugins/lib/libnarrate.py:351
 #, python-format
@@ -15763,10 +15724,10 @@ msgid "%(unknown_gender_name)s died in %(month_year)s."
 msgstr "%(unknown_gender_name)s va morir el %(month_year)s."
 
 #: ../src/plugins/lib/libnarrate.py:352
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)s."
 msgstr ""
-"%(unknown_gender_name)s va morir el %(month_year)s a l'edat de %(age)d dies."
+"%(unknown_gender_name)s va morir el %(month_year)s a l'edat de %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:355
 #, python-format
@@ -15774,9 +15735,9 @@ msgid "%(male_name)s died in %(month_year)s."
 msgstr "%(male_name)s va morir el %(month_year)s."
 
 #: ../src/plugins/lib/libnarrate.py:356
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)s."
-msgstr "%(male_name)s va morir el %(month_year)s a l'edat de %(age)d dies."
+msgstr "%(male_name)s va morir el %(month_year)s a l'edat de %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:359
 #, python-format
@@ -15784,9 +15745,9 @@ msgid "%(female_name)s died in %(month_year)s."
 msgstr "%(female_name)s va morir el %(month_year)s."
 
 #: ../src/plugins/lib/libnarrate.py:360
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)s."
-msgstr "%(female_name)s va morir el %(month_year)s a l'edat de %(age)d dies."
+msgstr "%(female_name)s va morir el %(month_year)s a l'edat de %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:364
 #, python-format
@@ -15794,9 +15755,9 @@ msgid "This person died in %(month_year)s."
 msgstr "Aquesta persona va morir el %(month_year)s."
 
 #: ../src/plugins/lib/libnarrate.py:365
-#, fuzzy, python-format
+#, python-format
 msgid "This person died in %(month_year)s at the age of %(age)s."
-msgstr "Aquesta persona va morir el %(month_year)s a l'edat de %(age)d dies."
+msgstr "Aquesta persona va morir el %(month_year)s a l'edat de %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:368
 #, python-format
@@ -15804,9 +15765,9 @@ msgid "He died in %(month_year)s."
 msgstr "Va morir el %(month_year)s."
 
 #: ../src/plugins/lib/libnarrate.py:369
-#, fuzzy, python-format
+#, python-format
 msgid "He died in %(month_year)s at the age of %(age)s."
-msgstr "Va morir el %(month_year)s a l'edat de %(age)d dies."
+msgstr "Va morir el %(month_year)s a l'edat de %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:372
 #, python-format
@@ -15814,9 +15775,9 @@ msgid "She died in %(month_year)s."
 msgstr "Va morir el %(month_year)s."
 
 #: ../src/plugins/lib/libnarrate.py:373
-#, fuzzy, python-format
+#, python-format
 msgid "She died in %(month_year)s at the age of %(age)s."
-msgstr "Va morir el %(month_year)s a l'edat de %(age)d dies."
+msgstr "Va morir el %(month_year)s a l'edat de %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:377
 #, python-format
@@ -15824,9 +15785,9 @@ msgid "Died %(month_year)s."
 msgstr "Mort %(month_year)s."
 
 #: ../src/plugins/lib/libnarrate.py:378
-#, fuzzy, python-format
+#, python-format
 msgid "Died %(month_year)s (%(age)s)."
-msgstr "Mort %(month_year)s (%(age)d dies d'edat)."
+msgstr "Mort %(month_year)s (%(age)s d'edat)."
 
 #: ../src/plugins/lib/libnarrate.py:384
 #, python-format
@@ -15834,10 +15795,10 @@ msgid "%(unknown_gender_name)s died in %(death_place)s."
 msgstr "%(unknown_gender_name)s va morir a %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:385
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)s."
 msgstr ""
-"%(unknown_gender_name)s va morir a %(death_place)s a l'edat de %(age)d dies."
+"%(unknown_gender_name)s va morir a %(death_place)s a l'edat de %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:388
 #, python-format
@@ -15845,9 +15806,9 @@ msgid "%(male_name)s died in %(death_place)s."
 msgstr "%(male_name)s va morir a %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:389
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)s."
-msgstr "%(male_name)s va morir a %(death_place)s a l'edat de %(age)d dies."
+msgstr "%(male_name)s va morir a %(death_place)s a l'edat de %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:392
 #, python-format
@@ -15855,9 +15816,9 @@ msgid "%(female_name)s died in %(death_place)s."
 msgstr "%(female_name)s va morir a %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:393
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)s."
-msgstr "%(female_name)s va morir a %(death_place)s a l'edat de %(age)d dies."
+msgstr "%(female_name)s va morir a %(death_place)s a l'edat de %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:398
 #, python-format
@@ -15865,9 +15826,9 @@ msgid "This person died in %(death_place)s."
 msgstr "Aquesta persona va morir a %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:399
-#, fuzzy, python-format
+#, python-format
 msgid "This person died in %(death_place)s at the age of %(age)s."
-msgstr "Aquesta persona va morir a %(death_place)s a l'edat de %(age)d dies."
+msgstr "Aquesta persona va morir a %(death_place)s a l'edat de %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:402
 #, python-format
@@ -15875,9 +15836,9 @@ msgid "He died in %(death_place)s."
 msgstr "Va morir a %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:403
-#, fuzzy, python-format
+#, python-format
 msgid "He died in %(death_place)s at the age of %(age)s."
-msgstr "Va morir a %(death_place)s a l'edat de %(age)d dies."
+msgstr "Va morir a %(death_place)s a l'edat de %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:406
 #, python-format
@@ -15885,9 +15846,9 @@ msgid "She died in %(death_place)s."
 msgstr "Va morir a %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:407
-#, fuzzy, python-format
+#, python-format
 msgid "She died in %(death_place)s at the age of %(age)s."
-msgstr "Va morir a %(death_place)s a l'edat de %(age)d dies."
+msgstr "Va morir a %(death_place)s a l'edat de %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:411
 #, python-format
@@ -15895,44 +15856,44 @@ msgid "Died in %(death_place)s."
 msgstr "Mort a %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:412
-#, fuzzy, python-format
+#, python-format
 msgid "Died in %(death_place)s (%(age)s)."
-msgstr "Mort a %(death_place)s (%(age)d dies d'edat)."
+msgstr "Mort a %(death_place)s (%(age)s d'edat)."
 
 #: ../src/plugins/lib/libnarrate.py:419
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died at the age of %(age)s."
-msgstr "%(unknown_gender_name)s va morir a l'edat de %(age)d dies."
+msgstr "%(unknown_gender_name)s va morir a l'edat de %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:423
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died at the age of %(age)s."
-msgstr "%(male_name)s va morir a l'edat de %(age)d dies."
+msgstr "%(male_name)s va morir a l'edat de %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:427
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died at the age of %(age)s."
-msgstr "%(female_name)s va morir a l'edat de %(age)d dies."
+msgstr "%(female_name)s va morir a l'edat de %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:432
-#, fuzzy, python-format
+#, python-format
 msgid "This person died at the age of %(age)s."
-msgstr "Aquesta persona va morir a l'edat de %(age)d dies."
+msgstr "Aquesta persona va morir a l'edat de %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:436
-#, fuzzy, python-format
+#, python-format
 msgid "He died at the age of %(age)s."
-msgstr "Va morir a l'edat de %(age)d dies."
+msgstr "Va morir a l'edat de %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:440
-#, fuzzy, python-format
+#, python-format
 msgid "She died at the age of %(age)s."
-msgstr "Va morir a l'edat de %(age)d dies."
+msgstr "Va morir a l'edat de %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:445
-#, fuzzy, python-format
+#, python-format
 msgid "Died (%(age)s)."
-msgstr "Mort (%(age)d dies d'edat)."
+msgstr "Mort (%(age)s d'edat)."
 
 #: ../src/plugins/lib/libnarrate.py:456
 #, python-format
@@ -19697,9 +19658,8 @@ msgstr "Mostrar esdeveniments d'un dia en concret"
 
 #: ../src/plugins/quickview/quickview.gpr.py:208
 #: ../src/plugins/quickview/References.py:91
-#, fuzzy
 msgid "Source or Citation"
-msgstr "Incloure Informació de Font"
+msgstr "Font o Cita"
 
 #: ../src/plugins/quickview/quickview.gpr.py:214
 #, python-format
@@ -20044,9 +20004,8 @@ msgid "Category"
 msgstr "Categoria"
 
 #: ../src/plugins/textreport/AlphabeticalIndex.py:107
-#, fuzzy
 msgid "The style used for index entries."
-msgstr "L'estil utilitzat per al títol."
+msgstr "L'estil utilitzat per a punts de l'índex."
 
 #. feature request 2356: avoid genitive form
 #: ../src/plugins/textreport/AncestorReport.py:191
@@ -20177,12 +20136,12 @@ msgstr "esp. %(spouse)s"
 #: ../src/plugins/textreport/DescendReport.py:235
 #, python-format
 msgid "sp. see  %(reference)s : %(spouse)s"
-msgstr ""
+msgstr "vegeu esp. %(reference)s : %(spouse)s"
 
 #: ../src/plugins/textreport/DescendReport.py:290
-#, fuzzy, python-format
+#, python-format
 msgid "%s sp."
-msgstr "   esp. "
+msgstr "%s esp."
 
 #: ../src/plugins/textreport/DescendReport.py:407
 #: ../src/plugins/textreport/DetDescendantReport.py:906
@@ -20223,14 +20182,12 @@ msgid "Whether to show divorce information in the report."
 msgstr "Si s'ha d'incloure informació de divorcis a l'informe."
 
 #: ../src/plugins/textreport/DescendReport.py:427
-#, fuzzy
 msgid "Show duplicate trees"
-msgstr "Mostrar dates"
+msgstr "Mostrar arbres duplicats"
 
 #: ../src/plugins/textreport/DescendReport.py:428
-#, fuzzy
 msgid "Whether to show duplicate family trees in the report."
-msgstr "Si s'ha d'incloure informació de divorcis a l'informe."
+msgstr "Si s'han de mostrar arbres genealògics duplicats a l'informe."
 
 #: ../src/plugins/textreport/DescendReport.py:456
 #, python-format
@@ -20581,7 +20538,7 @@ msgstr "Report de Descendents per %(person_name)s"
 #: ../src/plugins/textreport/DetDescendantReport.py:576
 #, python-format
 msgid "Ref: %s. %s"
-msgstr ""
+msgstr "Ref: %s. %s"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:669
 #, python-format
@@ -20614,14 +20571,12 @@ msgid "Whether to include detailed spouse information."
 msgstr "Si s'ha d'incloure informació detallada dels esposos."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:1015
-#, fuzzy
 msgid "Include spouse reference"
-msgstr "Incloure cònjuges"
+msgstr "Incloure referència a cònjuge"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:1016
-#, fuzzy
 msgid "Whether to include reference to spouse."
-msgstr "Si s'han d'incloure referències a les fonts."
+msgstr "Si s'ha d'incloure referència al cònjuge."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:1019
 msgid "Include sign of succession ('+') in child-list"
@@ -22225,60 +22180,53 @@ msgstr ""
 
 #: ../src/plugins/tool/MergeCitations.py:75
 msgid "Match on Page/Volume, Date and Confidence"
-msgstr ""
+msgstr "Coincidir en Pàgina/Volum, Data i Confiança"
 
 #: ../src/plugins/tool/MergeCitations.py:76
-#, fuzzy
 msgid "Ignore Date"
-msgstr "Edat en Data"
+msgstr "Ignorar la Data"
 
 #: ../src/plugins/tool/MergeCitations.py:77
-#, fuzzy
 msgid "Ignore Confidence"
-msgstr "Confiança"
+msgstr "Ignorar la Confiança"
 
 #: ../src/plugins/tool/MergeCitations.py:78
 msgid "Ignore Date and Confidence"
-msgstr ""
+msgstr "Ignorar la Data i la Confiança"
 
 #: ../src/plugins/tool/MergeCitations.py:82
 msgid "manual|Merge citations..."
 msgstr ""
 
 #: ../src/plugins/tool/MergeCitations.py:129
-#, fuzzy
 msgid ""
 "Notes, media objects and data-items of matching citations will be combined."
 msgstr ""
-"Es combinaran les notes, objectes audiovisuals, elements de dades i "
-"referències a repositori de totes dues fonts."
+"Es combinaran les notes, objectes audiovisuals, i elements de dades de les "
+"cites que concordin."
 
 #: ../src/plugins/tool/MergeCitations.py:159
-#, fuzzy
 msgid "Merge citations tool"
-msgstr "Combinar candidats"
+msgstr "Eina de combinació de cites"
 
 #: ../src/plugins/tool/MergeCitations.py:180
-#, fuzzy
 msgid "Checking Sources"
-msgstr "Combinar Fonts"
+msgstr "Comprovant Fonts"
 
 #: ../src/plugins/tool/MergeCitations.py:181
-#, fuzzy
 msgid "Looking for citation fields"
-msgstr "Buscant camps de lloc"
+msgstr "Buscant camps de cita"
 
 #: ../src/plugins/tool/MergeCitations.py:225
-#, fuzzy
 msgid "Number of merges done"
-msgstr "Nombre de Persones"
+msgstr "Nombre de combinacions fetes"
 
 #: ../src/plugins/tool/MergeCitations.py:226
 #, python-format
 msgid "%(num)d citation merged"
 msgid_plural "%(num)d citations merged"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)d cita combinada"
+msgstr[1] "%(num)d cites combinades"
 
 #: ../src/plugins/tool/NotRelated.py:67
 msgid "manual|Not_Related..."
@@ -22728,13 +22676,12 @@ msgid "Verifies the data against user-defined tests"
 msgstr "Verifica les dades amb proves definides per l'usuari"
 
 #: ../src/plugins/tool/tools.gpr.py:530
-#, fuzzy
 msgid ""
 "Searches the entire database, looking for citations that have the same "
 "Volume/Page, Date and Confidence."
 msgstr ""
-"Cerca tota la base de dades, buscant entrades individuals que puguin "
-"representar la mateixa persona."
+"Cerca tota la base de dades, buscant cites que tinguin els mateixos Volum/"
+"Pàgina, Data i Confiança."
 
 #: ../src/plugins/tool/Verify.py:74
 msgid "manual|Verify_the_Data..."
@@ -22898,14 +22845,12 @@ msgid "Marriage date but not married"
 msgstr "Data de casament però no casat"
 
 #: ../src/plugins/tool/Verify.py:1565
-#, fuzzy
 msgid "Old age but no death"
-msgstr "Edat avançada en morir"
+msgstr "Edat avançada però no hi ha defunció"
 
 #: ../src/plugins/view/citationtreeview.py:90
-#, fuzzy
 msgid "Title or Page"
-msgstr "Pàgina de Títol"
+msgstr "Títol o Pàgina"
 
 #: ../src/plugins/view/citationtreeview.py:93
 #: ../src/plugins/view/citationlistview.py:98
@@ -22916,27 +22861,23 @@ msgstr "Confiança"
 
 #: ../src/plugins/view/citationtreeview.py:95
 #: ../src/plugins/view/citationlistview.py:102
-#, fuzzy
 msgid "Source: Author"
-msgstr "Font: %s"
+msgstr "Font: Autor"
 
 #: ../src/plugins/view/citationtreeview.py:96
 #: ../src/plugins/view/citationlistview.py:103
-#, fuzzy
 msgid "Source: Abbreviation"
-msgstr "Abreviació"
+msgstr "Font: Abreviació"
 
 #: ../src/plugins/view/citationtreeview.py:97
 #: ../src/plugins/view/citationlistview.py:104
-#, fuzzy
 msgid "Source: Publication Information"
-msgstr "Informació de Publicació"
+msgstr "Font: Informació de Publicació"
 
 #: ../src/plugins/view/citationtreeview.py:118
 #: ../src/plugins/view/citationlistview.py:118
-#, fuzzy
 msgid "Add a new citation and a new source"
-msgstr "Crear i afegir una nova font"
+msgstr "Afegir una nova cita i una nova font"
 
 #: ../src/plugins/view/citationtreeview.py:119
 #: ../src/plugins/view/citationlistview.py:119
@@ -22946,46 +22887,38 @@ msgstr "Afegir nova font"
 
 #: ../src/plugins/view/citationtreeview.py:120
 #: ../src/plugins/view/citationlistview.py:120
-#, fuzzy
 msgid "Add a new citation to an existing source"
-msgstr "Afegir una font existent"
+msgstr "Afegir una nova cita a una font existent"
 
 #: ../src/plugins/view/citationtreeview.py:121
-#, fuzzy
 msgid "Edit the selected citation or source"
-msgstr "Editar la font seleccionada"
+msgstr "Editar la cita o la font seleccionades"
 
 #: ../src/plugins/view/citationtreeview.py:122
-#, fuzzy
 msgid "Delete the selected citation or source"
-msgstr "Esborrar la font seleccionada"
+msgstr "Esborrar la cita o la font seleccionades"
 
 #: ../src/plugins/view/citationtreeview.py:123
-#, fuzzy
 msgid "Merge the selected citations or selected sources"
-msgstr "Combinar les fonts seleccionades"
+msgstr "Combinar les cites o les fonts seleccionades"
 
 #: ../src/plugins/view/citationtreeview.py:141
 #: ../src/plugins/view/view.gpr.py:234
-#, fuzzy
 msgid "Citation Tree View"
-msgstr "Vista de l'Arbre de Persones"
+msgstr "Vista de l'Arbre de Cites"
 
 #: ../src/plugins/view/citationtreeview.py:279
-#, fuzzy
 msgid "Add source..."
-msgstr "Afegir Font"
+msgstr "Afegir font..."
 
 #: ../src/plugins/view/citationtreeview.py:284
-#, fuzzy
 msgid "Add citation..."
-msgstr "Afegir Company..."
+msgstr "Afegir cita..."
 
 #: ../src/plugins/view/citationtreeview.py:292
 #: ../src/plugins/view/citationlistview.py:180
-#, fuzzy
 msgid "Citation Filter Editor"
-msgstr "Editor de Filtres Personalitzats"
+msgstr "Editor de Filtres de Cita"
 
 #: ../src/plugins/view/citationtreeview.py:301
 #: ../src/plugins/view/persontreeview.py:82
@@ -23000,17 +22933,16 @@ msgid "Collapse all Nodes"
 msgstr "Col·lapsar tots els Nodes"
 
 #: ../src/plugins/view/citationtreeview.py:445
-#, fuzzy
 msgid "Cannot add citation."
-msgstr "No es pot desar l'etiqueta"
+msgstr "No es pot afegir cita."
 
 #: ../src/plugins/view/citationtreeview.py:446
 msgid ""
 "In order to add a citation to an existing source,  you must select a source."
 msgstr ""
+"Per afegir una cita a una font ja existent, heu de seleccionar una font."
 
 #: ../src/plugins/view/citationtreeview.py:514
-#, fuzzy
 msgid ""
 "This source cannot be edited at this time. Either the associated Source "
 "object is already being edited, or another citation associated with the same "
@@ -23018,31 +22950,29 @@ msgid ""
 "\n"
 "To edit this source, you need to close the object."
 msgstr ""
-"Aquesta referència a una font no es pot editar en aquest moment. Pot ser que "
-"ja s'estigui editant la font associada o que una altra referència de font "
-"que estigui associada amb la mateixa font s'estigui editant.\n"
+"Aquesta font no es pot editar en aquest moment. Pot ser que ja s'estigui "
+"editant l'objecte Font associat o que una altra cita que estigui associada "
+"amb la mateixa font s'estigui editant.\n"
 "\n"
-"Per editar aquesta referència a una font, cal tancar la font."
+"Per editar aquesta font, cal tancar l'objecte."
 
 #: ../src/plugins/view/citationtreeview.py:527
 #: ../src/plugins/view/citationtreeview.py:547
 #: ../src/plugins/view/citationlistview.py:321
 #: ../src/plugins/view/citationlistview.py:332
-#, fuzzy
 msgid "Cannot merge citations."
-msgstr "No es poden combinar notes."
+msgstr "No es poden combinar cites."
 
 #: ../src/plugins/view/citationtreeview.py:528
 #: ../src/plugins/view/citationlistview.py:322
-#, fuzzy
 msgid ""
 "Exactly two citations must be selected to perform a merge. A second citation "
 "can be selected by holding down the control key while clicking on the "
 "desired citation."
 msgstr ""
-"Cal seleccionar exactament dues notes per dur a terme una combinació. Es pot "
-"seleccionar una segona nota prement la tecla de control mentre es clica la "
-"nota desitjada."
+"Cal seleccionar exactament dues cites per dur a terme una combinació. Es pot "
+"seleccionar una segona cita prement la tecla de control mentre es clica la "
+"cita desitjada."
 
 #: ../src/plugins/view/citationtreeview.py:548
 #: ../src/plugins/view/citationlistview.py:333
@@ -23050,48 +22980,46 @@ msgid ""
 "The two selected citations must have the same source to perform a merge. If "
 "you want to merge these two citations, then you must merge the sources first."
 msgstr ""
+"Les dues cites seleccionades han de tenir la mateixa font per dur a terme "
+"una combinació. Si voleu combinar aquestes dues cites, primer heu de "
+"combinar les fonts."
 
 #: ../src/plugins/view/citationtreeview.py:562
-#, fuzzy
 msgid "Cannot perform merge."
-msgstr "No es poden combinar notes."
+msgstr "No es pot dur a terme la combinació."
 
 #: ../src/plugins/view/citationtreeview.py:563
 msgid ""
 "Both objects must be of the same type, either both must be sources, or both "
 "must be citations."
 msgstr ""
+"Tots dos objectes han de ser del mateix tipus, o bé tots dos han de ser "
+"fonts, o tots dos han de ser cites."
 
 #: ../src/plugins/view/citationlistview.py:95
 #: ../src/Filters/SideBar/_CitationSidebarFilter.py:95
-#, fuzzy
 msgid "Volume/Page"
-msgstr "_Volum/Pàgina:"
+msgstr "Volum/Pàgina"
 
 #: ../src/plugins/view/citationlistview.py:100
-#, fuzzy
 msgid "Source: Title"
-msgstr "Filtre de Font"
+msgstr "Font: Títol"
 
 #: ../src/plugins/view/citationlistview.py:101
-#, fuzzy
 msgid "Source: ID"
-msgstr "Id de Font:"
+msgstr "Font: ID"
 
 #: ../src/plugins/view/citationlistview.py:105
-#, fuzzy
 msgid "Source: Last Changed"
-msgstr "Canviat per última vegada"
+msgstr "Font: Última Modificació"
 
 #: ../src/plugins/view/citationlistview.py:122
-#, fuzzy
 msgid "Delete the selected citation"
-msgstr "Esborrar la família seleccionada"
+msgstr "Esborrar la cita seleccionada"
 
 #: ../src/plugins/view/citationlistview.py:123
-#, fuzzy
 msgid "Merge the selected citations"
-msgstr "Combinar les persones seleccionades"
+msgstr "Combinar les cites seleccionades"
 
 #: ../src/plugins/view/citationlistview.py:137
 #: ../src/plugins/view/view.gpr.py:219
@@ -23106,9 +23034,9 @@ msgid ""
 "\n"
 "To edit this citation, you need to close the object."
 msgstr ""
-"Aquesta cita no es pot editar en aquest moment. "
-"O bé la cita associada ja s'està editant, o s'està editant un "
-"altre objecte que està associat amb la mateixa cita.\n"
+"Aquesta cita no es pot editar en aquest moment. O bé la cita associada ja "
+"s'està editant, o s'està editant un altre objecte que està associat amb la "
+"mateixa cita.\n"
 "\n"
 "Per editar aquesta cita, cal tancar l'objecte."
 
@@ -23224,8 +23152,7 @@ msgstr ""
 #: ../src/plugins/view/geography.gpr.py:49
 msgid "A view showing the places visited by one person during his life."
 msgstr ""
-"Una vista que mostra els llocs visitats per una persona durant la "
-"seva vida."
+"Una vista que mostra els llocs visitats per una persona durant la seva vida."
 
 #: ../src/plugins/view/geography.gpr.py:66
 msgid "A view showing all places of the database."
@@ -23234,14 +23161,13 @@ msgstr "Una vista que mostra tots els llocs de la base de dades."
 #: ../src/plugins/view/geography.gpr.py:81
 msgid "A view showing all the event places of the database."
 msgstr ""
-"Una vista que mostra tots els llocs d'esdeveniment de la base de "
-"dades."
+"Una vista que mostra tots els llocs d'esdeveniment de la base de dades."
 
 #: ../src/plugins/view/geography.gpr.py:97
 msgid "A view showing the places visited by one family during all their life."
 msgstr ""
-"Una vista que mostra els llocs visitats per una família al "
-"llarg de tota la seva vida."
+"Una vista que mostra els llocs visitats per una família al llarg de tota la "
+"seva vida."
 
 #: ../src/plugins/view/geoevents.py:116
 msgid "Events places map"
@@ -24075,9 +24001,8 @@ msgid ""
 "name will take you to their family/ relationship&#8217;s page."
 msgstr ""
 "Aquesta pàgina conté un índex de totes les famílies/relacions de la base de "
-"dades, "
-"ordenats pel seu nom de família/cognom. Si es clica en el nom d'una persona, "
-"s'anirà a la pàgina de la seva família/relació."
+"dades, ordenats pel seu nom de família/cognom. Si es clica en el nom d'una "
+"persona, s'anirà a la pàgina de la seva família/relació."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3118
 #: ../src/plugins/webreport/NarrativeWeb.py:3367
@@ -24246,11 +24171,9 @@ msgid ""
 "image&#8217;s page."
 msgstr ""
 "Aquesta pàgina mostra una llista indexada de tots els objectes audiovisuals "
-"d'aquesta base de dades. Està  "
-"ordenada per títol. Hi ha un índex de tots els objectes audiovisuals "
-"d'aquesta base de dades. Si es clica en una imatge en miniatura, s'anirà a la "
-"pàgina d'aquesta "
-"imatge."
+"d'aquesta base de dades. Està  ordenada per títol. Hi ha un índex de tots "
+"els objectes audiovisuals d'aquesta base de dades. Si es clica en una imatge "
+"en miniatura, s'anirà a la pàgina d'aquesta imatge."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4963
 msgid "Thumbnail Preview"
@@ -24656,8 +24579,8 @@ msgid ""
 "a much smaller total upload size to your web hosting site."
 msgstr ""
 "Aquesta opció us permet de no crear imatges de mida sencera, com a la Pàgina "
-"de Medis Audiovisuals, i només imatges petites de mostra. Això us permetrà de "
-"tenir una mida de càrrega total molt més petita al vostre web."
+"de Medis Audiovisuals, i només imatges petites de mostra. Això us permetrà "
+"de tenir una mida de càrrega total molt més petita al vostre web."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7834
 msgid "Max width of initial image"
@@ -27182,9 +27105,8 @@ msgid "Citations having <count> notes"
 msgstr "Cites amb <nombre> notes"
 
 #: ../src/Filters/Rules/Citation/_HasNote.py:48
-#, fuzzy
 msgid "Matches citations having a certain number of notes"
-msgstr "Concorda amb esdeveniments que tinguin un cert nombre de notes"
+msgstr "Concorda amb cites que tinguin un cert nombre de notes"
 
 #: ../src/Filters/Rules/Citation/_HasNoteMatchingSubstringOf.py:44
 msgid "Citations having notes containing <substring>"
@@ -27193,8 +27115,8 @@ msgstr "Cites amb notes que contenen <subcadena>"
 #: ../src/Filters/Rules/Citation/_HasNoteMatchingSubstringOf.py:45
 msgid "Matches citations whose notes contain text matching a substring"
 msgstr ""
-"Concorda amb cites les notes de les quals continguin un text que "
-"contingui una subcadena"
+"Concorda amb cites les notes de les quals continguin un text que contingui "
+"una subcadena"
 
 #: ../src/Filters/Rules/Citation/_HasNoteRegexp.py:43
 msgid "Citations having notes containing <regular expression>"
@@ -27276,8 +27198,8 @@ msgid ""
 "Citations with a source with a repository reference matching the <repository "
 "filter>"
 msgstr ""
-"Cites que tinguin una font amb referència a repositori que concordi amb el <"
-"filtre de repositori>"
+"Cites que tinguin una font amb referència a repositori que concordi amb el "
+"<filtre de repositori>"
 
 #: ../src/Filters/Rules/Citation/_MatchesRepositoryFilter.py:49
 msgid ""
@@ -27295,8 +27217,8 @@ msgstr "Cites amb font que concordi amb el <filtre de font>"
 msgid ""
 "Matches citations with sources that match the specified source filter name"
 msgstr ""
-"Concorda amb cites que tinguin fonts que concorden amb el nom de "
-"filtre de font especificat"
+"Concorda amb cites que tinguin fonts que concorden amb el nom de filtre de "
+"font especificat"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:45
 msgid "Every media object"
@@ -31326,22 +31248,22 @@ msgstr ""
 #~ "%(age)d dies."
 
 #~ msgid ""
-#~ "This person died on %(death_date)s in %(death_place)s at the age of "
-#~ "%(age)d years."
+#~ "This person died on %(death_date)s in %(death_place)s at the age of %(age)"
+#~ "d years."
 #~ msgstr ""
 #~ "Aquesta persona va morir el %(death_date)s a %(death_place)s a l'edat de "
 #~ "%(age)d anys."
 
 #~ msgid ""
-#~ "This person died on %(death_date)s in %(death_place)s at the age of "
-#~ "%(age)d months."
+#~ "This person died on %(death_date)s in %(death_place)s at the age of %(age)"
+#~ "d months."
 #~ msgstr ""
 #~ "Aquesta persona va morir el %(death_date)s a %(death_place)s a l'edat de "
 #~ "%(age)d mesos."
 
 #~ msgid ""
-#~ "This person died on %(death_date)s in %(death_place)s at the age of "
-#~ "%(age)d days."
+#~ "This person died on %(death_date)s in %(death_place)s at the age of %(age)"
+#~ "d days."
 #~ msgstr ""
 #~ "Aquesta persona va morir el %(death_date)s a %(death_place)s a l'edat de "
 #~ "%(age)d dies."
@@ -31408,25 +31330,25 @@ msgstr ""
 #~ "l'edat de %(age)d dies."
 
 #~ msgid ""
-#~ "%(male_name)s died %(death_date)s in %(death_place)s at the age of "
-#~ "%(age)d years."
+#~ "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)"
+#~ "d years."
 #~ msgstr ""
-#~ "%(male_name)s va morir %(death_date)s a %(death_place)s a l'edat de "
-#~ "%(age)d anys."
+#~ "%(male_name)s va morir %(death_date)s a %(death_place)s a l'edat de %(age)"
+#~ "d anys."
 
 #~ msgid ""
-#~ "%(male_name)s died %(death_date)s in %(death_place)s at the age of "
-#~ "%(age)d months."
+#~ "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)"
+#~ "d months."
 #~ msgstr ""
-#~ "%(male_name)s va morir %(death_date)s a %(death_place)s a l'edat de "
-#~ "%(age)d mesos."
+#~ "%(male_name)s va morir %(death_date)s a %(death_place)s a l'edat de %(age)"
+#~ "d mesos."
 
 #~ msgid ""
-#~ "%(male_name)s died %(death_date)s in %(death_place)s at the age of "
-#~ "%(age)d days."
+#~ "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)"
+#~ "d days."
 #~ msgstr ""
-#~ "%(male_name)s va morir %(death_date)s a %(death_place)s a l'edat de "
-#~ "%(age)d dies."
+#~ "%(male_name)s va morir %(death_date)s a %(death_place)s a l'edat de %(age)"
+#~ "d dies."
 
 #~ msgid ""
 #~ "%(female_name)s died %(death_date)s in %(death_place)s at the age of "
@@ -31700,22 +31622,22 @@ msgstr ""
 #~ "%(age)d dies."
 
 #~ msgid ""
-#~ "This person died in %(month_year)s in %(death_place)s at the age of "
-#~ "%(age)d years."
+#~ "This person died in %(month_year)s in %(death_place)s at the age of %(age)"
+#~ "d years."
 #~ msgstr ""
 #~ "Aquesta persona va morir el %(month_year)s a %(death_place)s a l'edat de "
 #~ "%(age)d anys."
 
 #~ msgid ""
-#~ "This person died in %(month_year)s in %(death_place)s at the age of "
-#~ "%(age)d months."
+#~ "This person died in %(month_year)s in %(death_place)s at the age of %(age)"
+#~ "d months."
 #~ msgstr ""
 #~ "Aquesta persona va morir el %(month_year)s a %(death_place)s a l'edat de "
 #~ "%(age)d mesos."
 
 #~ msgid ""
-#~ "This person died in %(month_year)s in %(death_place)s at the age of "
-#~ "%(age)d days."
+#~ "This person died in %(month_year)s in %(death_place)s at the age of %(age)"
+#~ "d days."
 #~ msgstr ""
 #~ "Aquesta persona va morir el %(month_year)s a %(death_place)s a l'edat de "
 #~ "%(age)d dies."
