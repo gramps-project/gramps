@@ -3,7 +3,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2011       Serge Noiraud
+# Copyright (C) 2011-2012       Serge Noiraud
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,14 +20,13 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: grampsmaps.py 18399 2011-11-02 17:15:20Z noirauds $
 
 #-------------------------------------------------------------------------
 #
 # Python modules
 #
 #-------------------------------------------------------------------------
-import sys
 import os
 import gobject
 
@@ -37,7 +36,7 @@ import gobject
 #
 #------------------------------------------------------------------------
 import logging
-_LOG = logging.getLogger("maps.osmgpsmap")
+_LOG = logging.getLogger("maps.osmgps")
 
 #-------------------------------------------------------------------------
 #
@@ -53,21 +52,17 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 import constants
+from dummylayer import DummyLayer
+from dummynogps import DummyMapNoGpsPoint
+from selectionlayer import SelectionLayer
+from lifewaylayer import LifeWayLayer
 from gen.ggettext import sgettext as _
-from gen.ggettext import ngettext
 from config import config
 from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------
 #
-# Constants
-#
-#-------------------------------------------------------------------------
-GEOGRAPHY_PATH = os.path.join(const.HOME_DIR, "maps")
-
-#-------------------------------------------------------------------------
-#
-# osmGpsMap
+# OsmGps
 #
 #-------------------------------------------------------------------------
 
@@ -76,89 +71,28 @@ try:
 except:
     raise
 
-class DummyMapNoGpsPoint(osmgpsmap.GpsMap):
-    def do_draw_gps_point(self, drawable):
-        pass
-gobject.type_register(DummyMapNoGpsPoint)
-
-class DummyLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
+class OsmGps():
     def __init__(self):
-        gobject.GObject.__init__(self)
-
-    def do_draw(self, gpsmap, gdkdrawable):
-        pass
-
-    def do_render(self, gpsmap):
-        pass
-
-    def do_busy(self):
-        return False
-
-    def do_button_press(self, gpsmap, gdkeventbutton):
-        return False
-gobject.type_register(DummyLayer)
-
-class SelectionLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
-    def __init__(self):
-        gobject.GObject.__init__(self)
-        self.circles = []
-        self.rectangles = []
-
-    def add_circle(self, r, lat, lon):
-        self.circles.append((r, lat, lon))
-
-    def add_rectangle(self, p1, p2):
-        self.rectangles.append((p1, p2))
-
-    def do_draw(self, gpsmap, drawable):
-        gc = drawable.new_gc()
-        for circle in self.circles:
-            top_left = osmgpsmap.point_new_degrees(circle[1] + circle[0],
-                                                   circle[2] - circle[0])
-            bottom_right = osmgpsmap.point_new_degrees(circle[1] - circle[0],
-                                                       circle[2] + circle[0])
-            x, y = gpsmap.convert_geographic_to_screen(top_left)
-            x2, y2 = gpsmap.convert_geographic_to_screen(bottom_right)
-            drawable.draw_arc(gc, False, x, y, x2 - x, y2 - y, 0, 360*64)
-        for rectangle in self.rectangles:
-            top_left, bottom_right = rectangle
-            x, y = gpsmap.convert_geographic_to_screen(top_left)
-            x2, y2 = gpsmap.convert_geographic_to_screen(bottom_right)
-            # be sure when can select a region in all case.
-            if ( x < x2 ):
-                if ( y < y2 ):
-                    drawable.draw_rectangle(gc, False, x, y, x2 - x, y2 - y)
-                else:
-                    drawable.draw_rectangle(gc, False, x, y2, x2 - x, y - y2)
-            else:
-                if ( y < y2 ):
-                    drawable.draw_rectangle(gc, False, x2, y, x - x2, y2 - y)
-                else:
-                    drawable.draw_rectangle(gc, False, x2, y2, x - x2, y - y2)
-
-    def do_render(self, gpsmap):
-        pass
-
-    def do_busy(self):
-        return False
-
-    def do_button_press(self, gpsmap, gdkeventbutton):
-        return False
-gobject.type_register(SelectionLayer)
-
-class osmGpsMap():
-    def __init__(self):
+        """
+        Initialize the map
+        """
         self.vbox = None
         self.cross_map = None
         self.osm = None
         self.show_tooltips = True
         self.zone_selection = False
         self.selection_layer = None
+        self.lifeway_layer = None
         self.context_id = 0
         self.begin_selection = None
         self.end_selection = None
+        self.current_map = None
+        self.places_found = None
 
     def build_widget(self):
+        """
+        create the vbox 
+        """
         self.vbox = gtk.VBox(False, 0)
         cache_path = config.get('geography.path')
         if not os.path.isdir(cache_path):
@@ -169,16 +103,20 @@ class osmGpsMap():
                              cache_path )
                 return self.vbox
 
-        self.change_map(None,config.get("geography.map_service"))
+        self.change_map(None, config.get("geography.map_service"))
         return self.vbox
 
     def change_map(self, obj, map_type):
+        """
+        Change the current map
+        """
         if obj is not None:
             self.osm.layer_remove_all()
             self.osm.image_remove_all()
             self.vbox.remove(self.osm)
             self.osm.destroy()
-        tiles_path=os.path.join(config.get('geography.path'), constants.tiles_path[map_type])
+        tiles_path = os.path.join(config.get('geography.path'),
+                                  constants.tiles_path[map_type])
         if not os.path.isdir(tiles_path):
             try:
                 os.makedirs(tiles_path, 0755) # create dir like mkdir -p
@@ -197,6 +135,7 @@ class osmGpsMap():
         self.osm.layer_add(current_map)
         self.osm.layer_add(DummyLayer())
         self.selection_layer = self.add_selection_layer()
+        self.lifeway_layer = self.add_lifeway_layer()
         self.cross_map = osmgpsmap.GpsMapOsd( show_crosshair=False)
         self.set_crosshair(config.get("geography.show_cross"))
         self.osm.set_center_and_zoom(config.get("geography.center-lat"),
@@ -209,48 +148,74 @@ class osmGpsMap():
         self.osm.connect('changed', self.zoom_changed)
         self.osm.show()
         self.vbox.pack_start(self.osm)
-        if obj is not None:
-            self._createmap(None)
 
     def add_selection_layer(self):
+        """
+        add the selection layer
+        """
         selection_layer = SelectionLayer()
         self.osm.layer_add(selection_layer)
         return selection_layer
 
     def get_selection_layer(self):
+        """
+        get the selection layer
+        """
         return self.selection_layer
 
+    def add_lifeway_layer(self):
+        """
+        add the track or life ways layer
+        """
+        lifeway_layer = LifeWayLayer()
+        self.osm.layer_add(lifeway_layer)
+        return lifeway_layer
+
+    def get_lifeway_layer(self):
+        """
+        get the track or life ways layer
+        """
+        return self.lifeway_layer
+
     def remove_layer(self, layer):
+        """
+        remove the specified layer
+        """
         self.osm.layer_remove(layer)
 
     def zoom_changed(self, zoom):
-        config.set("geography.zoom",self.osm.props.zoom)
+        """
+        save the zoom and the position
+        """
+        config.set("geography.zoom", self.osm.props.zoom)
         self.save_center(self.osm.props.latitude, self.osm.props.longitude)
 
     def motion_event(self, osmmap, event):
         """
-        Show the place name if found on the status bar
+        Moving during selection
         """
-        current = osmgpsmap.point_new_degrees(0.0,0.0)
+        current = osmgpsmap.point_new_degrees(0.0, 0.0)
         osmmap.convert_screen_to_geographic(int(event.x), int(event.y), current)
         lat, lon = current.get_degrees()
         if self.zone_selection:
-                # We draw a rectangle to show the selected region.
-                layer = self.get_selection_layer()
-                if layer:
-                    self.osm.layer_remove(layer)
-                self.selection_layer = self.add_selection_layer()
-                if self.end_selection == None:
-                    self.selection_layer.add_rectangle(self.begin_selection, current)
-                else:
-                    self.selection_layer.add_rectangle(self.begin_selection, self.end_selection)
+            # We draw a rectangle to show the selected region.
+            layer = self.get_selection_layer()
+            if layer:
+                self.osm.layer_remove(layer)
+            self.selection_layer = self.add_selection_layer()
+            if self.end_selection == None:
+                self.selection_layer.add_rectangle(self.begin_selection,
+                                                   current)
+            else:
+                self.selection_layer.add_rectangle(self.begin_selection,
+                                                   self.end_selection)
         else:
             places = self.is_there_a_place_here(lat, lon)
             mess = ""
-            for p in places:
+            for plc in places:
                 if mess != "":
                     mess += " || "
-                mess += p[0]
+                mess += plc[0]
             self.uistate.status.pop(self.context_id)
             self.context_id = self.uistate.status.push(1, mess)
 
@@ -260,8 +225,8 @@ class osmGpsMap():
         """
         _LOG.debug("save_center : %s,%s" % (lat, lon) )
         if ( -90.0 < lat < +90.0 ) and ( -180.0 < lon < +180.0 ):
-            config.set("geography.center-lat",lat)
-            config.set("geography.center-lon",lon)
+            config.set("geography.center-lat", lat)
+            config.set("geography.center-lon", lon)
         else:
             _LOG.debug("save_center : new coordinates : %s,%s" % (lat, lon) )
             _LOG.debug("save_center : old coordinates : %s,%s" % (lat, lon) )
@@ -271,13 +236,22 @@ class osmGpsMap():
                                          config.get("geography.zoom") )
 
     def activate_selection_zoom(self, osm, event):
+        """
+        Zoom when in zone selection
+        """
         if self.end_selection is not None:
             self._autozoom()
         return True
 
     def map_clicked(self, osm, event):
-        lat,lon = self.osm.get_event_location(event).get_degrees()
-        current = osmgpsmap.point_new_degrees(0.0,0.0)
+        """
+        Someone click on the map. Look at if we have a marker.
+        mouse button 1 : zone selection or marker selection
+        mouse button 2 : begin zone selection
+        mouse button 3 : call the menu
+        """
+        lat, lon = self.osm.get_event_location(event).get_degrees()
+        current = osmgpsmap.point_new_degrees(0.0, 0.0)
         osm.convert_screen_to_geographic(int(event.x), int(event.y), current)
         lat, lon = current.get_degrees()
         if event.button == 1:
@@ -286,24 +260,23 @@ class osmGpsMap():
                 self.end_selection = None
             else:
                 # do we click on a marker ?
-                marker = self.is_there_a_marker_here(event, lat, lon)
+                self.is_there_a_marker_here(event, lat, lon)
         elif event.button == 2 and event.type == gtk.gdk.BUTTON_PRESS:
-                self.begin_selection = current
-                self.end_selection = None
-                self.zone_selection = True
+            self.begin_selection = current
+            self.end_selection = None
+            self.zone_selection = True
         elif event.button == 2 and event.type == gtk.gdk.BUTTON_RELEASE:
-                self.end_selection = current
-                self.zone_selection = False
+            self.end_selection = current
+            self.zone_selection = False
         elif event.button == 3:
             self.build_nav_menu(osm, event, lat, lon )
         else:
-            self.save_center(lat,lon)
+            self.save_center(lat, lon)
 
     def is_there_a_place_here(self, lat, lon):
         """
         Is there a place at this position ?
         """
-        found = False
         mark_selected = []
         oldplace = ""
         for mark in self.places_found:
@@ -312,11 +285,12 @@ class osmGpsMap():
             if mark[0] != oldplace:
                 oldplace = mark[0]
                 precision = {
-                              1 : '%3.0f', 2 : '%3.1f', 3 : '%3.1f', 4 : '%3.1f',
-                              5 : '%3.2f', 6 : '%3.2f', 7 : '%3.2f', 8 : '%3.3f',
-                              9 : '%3.3f', 10 : '%3.3f', 11 : '%3.3f', 12 : '%3.3f',
-                             13 : '%3.3f', 14 : '%3.4f', 15 : '%3.4f', 16 : '%3.4f',
-                             17 : '%3.4f', 18 : '%3.4f'
+                              1 : '%3.0f', 2 : '%3.1f', 3 : '%3.1f',
+                              4 : '%3.1f', 5 : '%3.2f', 6 : '%3.2f',
+                              7 : '%3.2f', 8 : '%3.3f', 9 : '%3.3f',
+                             10 : '%3.3f', 11 : '%3.3f', 12 : '%3.3f',
+                             13 : '%3.3f', 14 : '%3.4f', 15 : '%3.4f',
+                             16 : '%3.4f', 17 : '%3.4f', 18 : '%3.4f'
                              }.get(config.get("geography.zoom"), '%3.1f')
                 shift = {
                           1 : 5.0, 2 : 5.0, 3 : 3.0,
@@ -339,13 +313,21 @@ class osmGpsMap():
                     lonok = True
                 if latok and lonok:
                     mark_selected.append(mark)
-                    found = True
         return mark_selected
 
-    def is_there_a_marker_here(self, lat, lon):
+    def build_nav_menu(self, osm, event, lat, lon):
+        """
+        Must be implemented in the caller class
+        """
         raise NotImplementedError
 
-    def set_crosshair(self,active):
+    def is_there_a_marker_here(self, event, lat, lon):
+        """
+        Must be implemented in the caller class
+        """
+        raise NotImplementedError
+
+    def set_crosshair(self, active):
         """
         Show or hide the crosshair ?
         """
@@ -357,4 +339,3 @@ class osmGpsMap():
             self.osm.zoom_out()
         else:
             self.osm.layer_remove(self.cross_map)
-        pass

@@ -3,7 +3,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2011       Serge Noiraud
+# Copyright (C) 2011-2012       Serge Noiraud
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,21 +28,10 @@
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import sgettext as _
-from gen.ggettext import ngettext
-import sys
 import os
 import re
 import gobject
 import time
-import math
-
-#------------------------------------------------------------------------
-#
-# Set up logging
-#
-#------------------------------------------------------------------------
-import logging
-_LOG = logging.getLogger(".geography")
 
 #-------------------------------------------------------------------------
 #
@@ -65,12 +54,24 @@ import Errors
 import Bookmarks
 import const
 import constfunc
-from grampsmaps import *
-import constants
 import ManagedWindow
 from config import config
 from gui.editors import EditPlace, EditEvent, EditFamily, EditPerson
 from gui.selectors.selectplace import SelectPlace
+
+import osmgpsmap
+from . import constants
+from osmGps import OsmGps
+from selectionlayer import SelectionLayer
+from placeselection import PlaceSelection
+
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+_LOG = logging.getLogger("maps.geography")
 
 #-------------------------------------------------------------------------
 #
@@ -89,216 +90,19 @@ def _get_sign(value):
     else:
         return 0
 
-def _get_zoom_lat(value):
-    """
-    return the zoom value for latitude depending on the distance.
-    """
-    zoomlat = 1
-    for i, distance in enumerate([80.0, 40.0, 20.0, 10.0, 3.0,
-                           2.0, 1.0, 0.5, 0.2, 0.1]):
-        if value < distance:
-            zoomlat = i+1
-    return zoomlat + 3
-
-def _get_zoom_long(value):
-    """
-    return the zoom value for longitude depending on the distance.
-    """
-    zoomlong = 1
-    for i, distance in enumerate([120.0, 60.0, 30.0, 15.0, 7.0,
-                           4.0, 2.0, 1.0, .5, .2, .1]):
-        if value < distance:
-            zoomlong = i+1
-    return zoomlong + 3
-
-def match(self, lat, lon, radius):
-    """
-    coordinates matching.
-    """
-    r = float(radius)
-    self.places = []
-
-    # place
-    for entry in self.place_list:
-        if (math.hypot(lat-float(entry[3]), lon-float(entry[4])) <= r) == True:
-            dist = math.sqrt((lat - float(entry[3])) ** 2 + (lon - float(entry[4])) ** 2)
-            # Do we already have this place ? avoid duplicates
-            self.get_location(entry[9])
-            if not [self.country, self.state, self.county] in self.places:
-                self.places.append([self.country, self.state, self.county])
-    return self.places
-
-#-------------------------------------------------------------------------
-#
-# PlaceSelection
-#
-#-------------------------------------------------------------------------
-class PlaceSelection(ManagedWindow.ManagedWindow, osmGpsMap):
-    def __init__(self, uistate, dbstate, map, layer, places, lat, lon, function, oldvalue=None):
-        """
-        We show a selection box for possible places in a region of the map.
-        We can select the diameter of the region which is a circle.
-        Depending of this region, we can show the possible choice.
-        We select the value depending of our need which open the EditPlace box.
-        """
-        try:
-            ManagedWindow.ManagedWindow.__init__(self, uistate, [], PlaceSelection)
-        except Errors.WindowActiveError:
-            return
-        self.uistate = uistate
-        self.dbstate = dbstate
-        self.lat = lat
-        self.lon = lon
-        self.osm = map
-        self.radius = 1.0
-        self.circle = None
-        self.oldvalue = oldvalue
-        self.place_list = places
-        self.function = function
-        self.selection_layer = layer
-        self.layer = layer
-        alignment = gtk.Alignment(0,1,0,0)
-        self.set_window(
-            gtk.Dialog(_('Place Selection in a region'),
-                       flags=gtk.DIALOG_NO_SEPARATOR,
-                       buttons=(gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)),
-            None, _('Place Selection in a region'), None)
-        label = gtk.Label(_('Choose the radius of the selection.\n'
-                            'On the map you should see a circle or an oval depending on the latitude.'))
-        alignment.add(label)
-        self.window.vbox.pack_start(alignment, expand=False)
-        adj = gtk.Adjustment(1.0, 0.1, 3.0, 0.1, 0, 0) # default value is 1.0, minimum is 0.1 and max is 3.0
-        slider = gtk.HScale(adj)
-        slider.set_update_policy(gtk.UPDATE_DISCONTINUOUS)
-        slider.set_digits(1)
-        slider.set_value_pos(gtk.POS_BOTTOM)
-        slider.connect('value-changed', self.slider_change, self.lat, self.lon)
-        self.window.vbox.pack_start(slider, expand=False)
-        self.vadjust = gtk.Adjustment(page_size=15)
-        self.scroll = gtk.ScrolledWindow(self.vadjust)
-        self.scroll.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
-        self.scroll.set_shadow_type(gtk.SHADOW_IN)
-        self.plist = gtk.ListStore(str, str, str)
-        self.choices = gtk.TreeView(self.plist)
-        self.scroll.add(self.choices)
-        self.renderer = gtk.CellRendererText()
-        self.tvcol1 = gtk.TreeViewColumn(_('Country'),self.renderer, markup=0)
-        self.tvcol2 = gtk.TreeViewColumn(_('State'),self.renderer, markup=1)
-        self.tvcol3 = gtk.TreeViewColumn(_('County'),self.renderer, markup=2)
-        self.tvcol1.set_sort_column_id(0)
-        self.tvcol2.set_sort_column_id(1)
-        self.tvcol3.set_sort_column_id(2)
-        self.choices.append_column(self.tvcol1)
-        self.choices.append_column(self.tvcol2)
-        self.choices.append_column(self.tvcol3)
-        self.window.vbox.pack_start(self.scroll, expand=True)
-        self.label2 = gtk.Label()
-        self.label2.set_markup('<span background="green" foreground="black">%s</span>' % 
-             _('The green values in the row correspond to the current place values.'))
-        alignment = gtk.Alignment(0,1,0,0)
-        alignment.add(self.label2)
-        self.window.vbox.pack_start(alignment, expand=False)
-        self.window.set_default_size(400, 300)
-        self.choices.connect('row-activated', self.selection, function)
-        self.window.connect('response', self.close)
-        self.window.show_all()
-        self.show()
-        self.label2.hide()
-        self.slider_change(None,lat,lon)
-
-    def close(self, *obj):
-        self.hide_the_region()
-        ManagedWindow.ManagedWindow.close(self, *obj)
-
-    def slider_change(self, obj, lat, lon):
-        """
-        Display on the map a circle in which we select all the places inside this region.
-        """
-        self.radius = obj.get_value() if obj else 1.0
-        self.show_the_region(self.radius)
-        match(self, lat, lon, self.radius)
-        self.plist.clear()
-        if self.oldvalue != None:
-            # The old values are always in the first row.
-            # In this case, we change the color of the row.
-            # display the associated message
-            self.label2.show()
-            a,b,c = self.oldvalue
-            self.plist.append((PLACE_STRING % a,
-                               PLACE_STRING % b,
-                               PLACE_STRING % c)
-                             )
-        for place in self.places:
-            self.plist.append(place)
-        # here, we could add value from geography names services ...
-
-        # if we found no place, we must create a default place.
-        self.plist.append((_("New place with empty fields"),"","..."))
-
-    def hide_the_region(self):
-        """
-        Hide the layer which contains the circle
-        """
-        layer = self.get_selection_layer()
-        if layer:
-            self.remove_layer(layer)
-
-    def show_the_region(self, r):
-        """
-        Show a circle in which we select the places.
-        """
-        # circle (r)
-        self.hide_the_region()
-        self.selection_layer = self.add_selection_layer()
-        self.selection_layer.add_circle(r, self.lat, self.lon)
-
-    def get_location(self, place):
-        """
-        get location values
-        """
-        place = self.dbstate.db.get_place_from_gramps_id(place)
-        loc = place.get_main_location()
-        data = loc.get_text_data_list()
-        # new background or font color on gtk fields ?
-        self.country = data[6]
-        self.state = data[5]
-        self.county = data[4]
-        return(self.country, self.state, self.county)
-
-    def selection(self, obj, index, column, function):
-        """
-        get location values and call the real function : add_place, edit_place
-        """
-        if self.plist[index][2] == "...":
-            # case with blank values ( New place with empty fields )
-            self.function( "", "", "", self.lat, self.lon)
-        elif self.plist[index][0][1:5] == "span":
-            # case with old values ( keep the old values of the place )
-            name = PLACE_REGEXP.search(self.plist[index][0],0)
-            country = name.group(1)
-            name = PLACE_REGEXP.search(self.plist[index][1],0)
-            state = name.group(1)
-            name = PLACE_REGEXP.search(self.plist[index][2],0)
-            county = name.group(1)
-            self.function( country, county, state, self.lat, self.lon)
-        else:
-            # Set the new values of the country, county and state fields.
-            self.function( self.plist[index][0], self.plist[index][2],
-                           self.plist[index][1], self.lat, self.lon)
-
 #-------------------------------------------------------------------------
 #
 # GeoGraphyView
 #
 #-------------------------------------------------------------------------
-class GeoGraphyView(osmGpsMap, NavigationView):
+class GeoGraphyView(OsmGps, NavigationView):
     """
     View for pedigree tree.
     Displays the ancestors of a selected individual.
     """
     #settings in the config file
     CONFIGSETTINGS = (
-        ('geography.path', GEOGRAPHY_PATH),
+        ('geography.path', constants.GEOGRAPHY_PATH),
 
         ('geography.zoom', 10),
         ('geography.zoom_when_center', 12),
@@ -306,11 +110,6 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         ('geography.lock', False),
         ('geography.center-lat', 0.0),
         ('geography.center-lon', 0.0),
-
-        #('geography.gps_mode', GPS_DISABLED),
-        #('geography.gps_update_rate', float(1.0)),
-        #('geography.max_gps_zoom', 16),
-        #('geography.gps_increment', GPS_INCREMENT),
 
         ('geography.map_service', constants.OPENSTREETMAP),
         )
@@ -329,7 +128,7 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         self.lock = config.get("geography.lock")
         if config.get('geography.path') == "" :
             config.set('geography.path', GEOGRAPHY_PATH )
-        osmGpsMap.__init__(self)
+        OsmGps.__init__(self)
 
         self.format_helper = FormattingHelper(self.dbstate)
         self.centerlat = self.centerlon = 0.0
@@ -353,16 +152,18 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         else:
             default_image = self.geo_altmap
         self.geo_othermap = {}
-        for id in ( gen.lib.EventType.BIRTH,
+        for ident in ( gen.lib.EventType.BIRTH,
                     gen.lib.EventType.DEATH,
                     gen.lib.EventType.MARRIAGE ):
-            self.geo_othermap[id] = gtk.gdk.pixbuf_new_from_file_at_size(
+            self.geo_othermap[ident] = gtk.gdk.pixbuf_new_from_file_at_size(
                 os.path.join(const.ROOT_DIR, "images", "22x22",
-                    (constants.ICONS.get(int(id), default_image) + '.png' )),
+                    (constants.ICONS.get(int(ident), default_image) + '.png' )),
                     22, 22)
 
     def change_page(self):
-        """Called when the page changes."""
+        """
+        Called when the page changes.
+        """
         NavigationView.change_page(self)
         self.uistate.clear_filter_results()
         self.end_selection = None
@@ -374,7 +175,7 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         NavigationView.on_delete(self)
         self._config.save()
 
-    def change_db(self, db):
+    def change_db(self, dbse):
         """
         Callback associated with DbState. Whenever the database
         changes, this task is called. In this case, we rebuild the
@@ -422,7 +223,9 @@ class GeoGraphyView(osmGpsMap, NavigationView):
     #
     #-------------------------------------------------------------------------
     def build_nav_menu(self, obj, event, lat, lon):
-        """Builds the menu for actions on the map."""
+        """
+        Builds the menu for actions on the map.
+        """
         menu = gtk.Menu()
         menu.set_title(_('Map Menu'))
 
@@ -499,7 +302,8 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         """
         Center the map at the new position then save it.
         """
-        self.osm.set_center_and_zoom(lat, lon, config.get("geography.zoom_when_center"))
+        self.osm.set_center_and_zoom(lat, lon,
+                                     config.get("geography.zoom_when_center"))
         self.save_center(lat, lon)
 
     #-------------------------------------------------------------------------
@@ -563,11 +367,17 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         raise NotImplementedError
 
     def add_selection_layer(self):
+        """
+        add the selection layer
+        """
         selection_layer = SelectionLayer()
         self.osm.layer_add(selection_layer)
         return selection_layer
 
     def remove_layer(self, layer):
+        """
+        Remove the specified layer
+        """
         self.osm.remove_layer(layer)
 
     def add_marker(self, menu, event, lat, lon, event_type, differtype):
@@ -716,7 +526,8 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         s_bbox_lon1 = bbox[1] + 10.0
         s_bbox_lat2 = bbox[2] + 10.0
         s_bbox_lon2 = bbox[3] + 10.0
-        result = ( s_bbox_lat1 > s_lat > s_bbox_lat2 ) and ( s_bbox_lon1 < s_lon < s_bbox_lon2 )
+        result = ( s_bbox_lat1 > s_lat > s_bbox_lat2 ) and \
+                 ( s_bbox_lon1 < s_lon < s_bbox_lon2 )
         return result
 
     def _autozoom_in(self, lvl, p1lat, p1lon, p2lat, p2lon):
@@ -728,9 +539,11 @@ class GeoGraphyView(osmGpsMap, NavigationView):
                 and lvl < 18 ):
             lvl += 1
             self.osm.set_zoom(lvl)
-            gobject.timeout_add(50, self._autozoom_in, lvl, p1lat, p1lon, p2lat, p2lon)
+            gobject.timeout_add(50, self._autozoom_in, lvl,
+                                p1lat, p1lon, p2lat, p2lon)
         else:
-            gobject.timeout_add(50, self._autozoom_out, lvl, p1lat, p1lon, p2lat, p2lon)
+            gobject.timeout_add(50, self._autozoom_out, lvl,
+                                p1lat, p1lon, p2lat, p2lon)
 
     def _autozoom_out(self, lvl, p1lat, p1lon, p2lat, p2lon):
         """
@@ -741,7 +554,8 @@ class GeoGraphyView(osmGpsMap, NavigationView):
                 and lvl > 1 ):
             lvl -= 1
             self.osm.set_zoom(lvl)
-            gobject.timeout_add(50, self._autozoom_out, lvl, p1lat, p1lon, p2lat, p2lon)
+            gobject.timeout_add(50, self._autozoom_out, lvl,
+                                p1lat, p1lon, p2lat, p2lon)
         else:
             layer = self.get_selection_layer()
             if layer:
@@ -767,7 +581,8 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         p2lat = self.end_selection.rlat
         p2lon = self.end_selection.rlon
         # We zoom in until at least one marker missing.
-        gobject.timeout_add(50, self._autozoom_in, level_start, p1lat, p1lon, p2lat, p2lon)
+        gobject.timeout_add(50, self._autozoom_in, level_start,
+                            p1lat, p1lon, p2lat, p2lon)
 
     def _set_center_and_zoom(self):
         """
@@ -829,7 +644,7 @@ class GeoGraphyView(osmGpsMap, NavigationView):
             self._autozoom()
             self.end_selection = None
             self.save_center(self.latit, self.longt)
-            config.set("geography.zoom",self.osm.props.zoom)
+            config.set("geography.zoom", self.osm.props.zoom)
 
     def _get_father_and_mother_name(self, event):
         """
@@ -958,16 +773,23 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         place = selector.run()
         if place:
             loc = place.get_main_location()
-            oldv = (loc.get_country(), loc.get_state(), loc.get_county()) if loc else None
+            oldv = (loc.get_country(), loc.get_state(),
+                    loc.get_county()) if loc else None
             places_handle = self.dbstate.db.iter_place_handles()
             for place_hdl in places_handle:
                 plce = self.dbstate.db.get_place_from_handle(place_hdl)
                 if plce.get_title() == place.get_title():
-                    self.mark = [None,None,None,None,None,None,None,
-                                 None,None,plce.gramps_id,None,None]
-                    self.select_fct = PlaceSelection(self.uistate, self.dbstate, self.osm,
-                                   self.selection_layer, self.place_list,
-                                   lat, lon, self.__edit_place, oldv)
+                    self.mark = [None, None, None, None, None, None, None,
+                                 None, None, plce.gramps_id, None, None]
+                    self.select_fct = PlaceSelection(self.uistate,
+                                                     self.dbstate,
+                                                     self.osm,
+                                                     self.selection_layer,
+                                                     self.place_list,
+                                                     lat,
+                                                     lon,
+                                                     self.__edit_place,
+                                                     oldv)
 
     def __add_place(self, pcountry, pcounty, pstate, plat, plon):
         """
@@ -1081,8 +903,9 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         Function that builds the widget in the configuration dialog
         for the map options.
         """
-        self._config.set('geography.path',config.get('geography.path'))
-        self._config.set('geography.zoom_when_center',config.get('geography.zoom_when_center'))
+        self._config.set('geography.path', config.get('geography.path'))
+        self._config.set('geography.zoom_when_center',
+                         config.get('geography.zoom_when_center'))
         table = gtk.Table(1, 1)
         table.set_border_width(12)
         table.set_col_spacings(6)
