@@ -122,6 +122,12 @@ class LifeWayLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
                 else:
                     ctx.line_to(map_points[idx_pt][0], map_points[idx_pt][1])
             ctx.stroke()
+            if len(map_points) == 1 : # We have only one point
+                crdx = map_points[0][0]
+                crdy = map_points[0][1]
+                ctx.move_to(crdx, crdy)
+                ctx.line_to(crdx + 1, crdy + 1)
+                ctx.stroke()
 
         for comment in self.lifeways_comment:
             ctx = drawable.cairo_create()

@@ -259,7 +259,12 @@ class GeoClose(GeoGraphyView):
         for mark in marks:
             startlat = float(mark[3])
             startlon = float(mark[4])
-            points.append((startlat, startlon))
+            not_stored = True
+            for idx in range(0, len(points)):
+                if points[idx][0] == startlat and points[idx][1] == startlon:
+                    not_stored = False
+            if not_stored:
+                points.append((startlat, startlon))
         self.lifeway_layer.add_way(points, color)
         if mark:
             self.lifeway_layer.add_text(points, mark[1])
