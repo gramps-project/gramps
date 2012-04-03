@@ -13,6 +13,7 @@ pkgpython_PYTHON = \
 	familyview.py \
 	fanchartview.gpr.py \
 	fanchartview.py \
+	geoclose.py \
 	geoevents.py \
 	geoplaces.py \
 	geoperson.py \

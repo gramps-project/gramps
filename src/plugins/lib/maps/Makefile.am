@@ -3,9 +3,15 @@ pkgdatadir = $(datadir)/@PACKAGE@/plugins/lib/maps
 
 pkgpython_PYTHON = \
 	constants.py\
+	dummylayer.py\
+	dummynogps.py\
 	geography.py\
-	grampsmaps.py\
-	__init__.py
+	__init__.py\
+	lifewaylayer.py\
+	osmGps.py\
+	placeselection.py\
+	selectionlayer.py
+
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/lib/maps
 pkgpythondir = $(datadir)/@PACKAGE@/plugins/lib/maps

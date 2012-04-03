@@ -9,7 +9,6 @@ icondir= $(datadir)/pixmaps
 
 dist_pkgdata_DATA = \
         gramps.png\
-	gramps.svg\
 	gramps-export.png\
 	gramps-import.png\
         gramps-undo-history.png\
@@ -18,8 +17,6 @@ dist_pkgdata_DATA = \
         logo.png\
         ped24.ico\
         splash.jpg\
-	stock_link.png\
-	stock_new_html.png\
-	stock_notes.png
+	stock_link.png
 
 EXTRA_DIST = gramps.svg 
