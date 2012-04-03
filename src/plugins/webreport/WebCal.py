@@ -313,7 +313,7 @@ class WebCalReport(Report):
         Copies all the necessary stylesheets and images for these calendars
         """
         # Copy the screen stylesheet
-        if self.css:
+        if self.css and self.css != 'No style sheet':
             fname = CSS[self.css]["filename"]
             self.copy_file(fname, _CALENDARSCREEN, "css")
 
