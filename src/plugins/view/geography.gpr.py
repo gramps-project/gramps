@@ -45,7 +45,7 @@ if OSMGPSMAP:
     # Load the view only if osmgpsmap library is present.
     register(VIEW, 
              id    = 'personmap',
-             name  = _("Person"),
+             name  = _("All known places for one Person"),
              description =  _("A view showing the places visited by "
                               "one person during his life."),
              version = '1.0',
@@ -62,7 +62,7 @@ if OSMGPSMAP:
     
     register(VIEW, 
              id    = 'placesmap',
-             name  = _("Places"),
+             name  = _("All known Places"),
              description =  _("A view showing all places of the database."),
              version = '1.0',
              gramps_target_version = '3.4',
@@ -72,12 +72,13 @@ if OSMGPSMAP:
              authors_email = [""],
              category = ("Geography", _("Geography")),
              viewclass = 'GeoPlaces',
+             order = END,
              stock_icon = 'geo-show-place',
       )
     
     register(VIEW, 
              id    = 'eventsmap',
-             name  = _("Events"),
+             name  = _("All places related to Events"),
              description =  _("A view showing all the event "
                               "places of the database."),
              version = '1.0',
@@ -88,23 +89,42 @@ if OSMGPSMAP:
              authors_email = [""],
              category = ("Geography", _("Geography")),
              viewclass = 'GeoEvents',
+             order = END,
              stock_icon = 'geo-show-event',
       )
     
     register(VIEW, 
              id    = 'familymap',
-             name  = _("Family"),
+             name  = _("All known places for one Family"),
              description =  _("A view showing the places visited by "
                               "one family during all their life."),
              version = '1.0',
              gramps_target_version = '3.4',
              status = STABLE,
-             order = START,
              fname = 'geofamily.py',
              authors = [u"Serge Noiraud"],
              authors_email = [""],
              category = ("Geography", _("Geography")),
              viewclass = 'GeoFamily',
+             order = START,
+             stock_icon = 'geo-show-family',
+      )
+    
+    register(VIEW, 
+             id    = 'closemap',
+             name  = _("Have they been able to meet?"),
+             description =  _("A view showing the places visited by "
+                              "two persons during their life: "
+                              "have these two people been able to meet?"),
+             version = '1.0.1',
+             gramps_target_version = '3.4',
+             status = STABLE,
+             fname = 'geoclose.py',
+             authors = [u"Serge Noiraud"],
+             authors_email = [""],
+             category = ("Geography", _("Geography")),
+             viewclass = 'GeoClose',
+             order = END,
              stock_icon = 'geo-show-family',
       )
     
