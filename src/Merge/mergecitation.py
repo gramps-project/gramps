@@ -163,7 +163,7 @@ class MergeCitations(ManagedWindow.ManagedWindow):
         if self.get_widget("date_btn1").get_active() ^ use_handle1:
             phoenix.set_date_object(titanic.get_date_object())
         if self.get_widget("confidence_btn1").get_active() ^ use_handle1:
-            phoenix.get_confidence_level(titanic.get_confidence_level())
+            phoenix.set_confidence_level(titanic.get_confidence_level())
         if self.get_widget("gramps_btn1").get_active() ^ use_handle1:
             phoenix.set_gramps_id(titanic.get_gramps_id())
 
