@@ -27267,6 +27267,9 @@ msgstr "_זהה תאריכים שגויים"
 msgid "Gramps Genealogy System"
 msgstr "Gramps מערכת גינאולוגית"
 
+msgid "Genealogy System"
+msgstr "מערכת גינאולוגית"
+
 #: ../data/gramps.desktop.in.h:2
 msgid "Manage genealogical information, perform genealogical research and analysis"
 msgstr ""

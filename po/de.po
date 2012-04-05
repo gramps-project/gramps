@@ -30002,6 +30002,9 @@ msgstr "Version:"
 msgid "Gramps Genealogy System"
 msgstr "Gramps Genealogiesystem"
 
+msgid "Genealogy System"
+msgstr "Genealogiesystem"
+
 #: ../data/gramps.desktop.in.h:2
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"

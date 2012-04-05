@@ -27760,6 +27760,9 @@ msgstr "Пометить _неверные даты"
 msgid "Gramps Genealogy System"
 msgstr "Генеалогическая Система Gramps"
 
+msgid "Genealogy System"
+msgstr "Генеалогическая Система"
+
 #: ../data/gramps.desktop.in.h:2
 msgid "Manage genealogical information, perform genealogical research and analysis"
 msgstr "Систематизируйте генеалогические данные, занимайтесь генеалогическими исследованиями и анализом"

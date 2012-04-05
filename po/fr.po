@@ -28816,6 +28816,9 @@ msgstr "Version :"
 msgid "Gramps Genealogy System"
 msgstr "Gramps système de généalogie"
 
+msgid "Genealogy System"
+msgstr "Système de généalogie"
+
 #: ../data/gramps.desktop.in.h:2
 msgid "Manage genealogical information, perform genealogical research and analysis"
 msgstr "Gestion des informations généalogiques, optimisation de la recherche et de l'analyse"

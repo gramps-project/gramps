@@ -28311,6 +28311,9 @@ msgstr "_Identyfikuj błędne daty"
 msgid "Gramps Genealogy System"
 msgstr "Gramps System Genealogiczny"
 
+msgid "Genealogy System"
+msgstr "System Genealogiczny"
+
 #: ../data/gramps.desktop.in.h:2
 msgid "Manage genealogical information, perform genealogical research and analysis"
 msgstr "Zarządzaj informacjami genealogicznymi, wykonuj badania genealogiczne"

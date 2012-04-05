@@ -28230,6 +28230,9 @@ msgstr "_Pronađi neispravne datume"
 msgid "Gramps Genealogy System"
 msgstr "GRAMPS rodoslovni sustav"
 
+msgid "Genealogy System"
+msgstr "Rodoslovni sustav"
+
 #: ../data/gramps.desktop.in.h:2
 msgid "Manage genealogical information, perform genealogical research and analysis"
 msgstr "Upravljanje rodoslovnim podacima, izvođenje rodoslovnih istraživanja i analiza"

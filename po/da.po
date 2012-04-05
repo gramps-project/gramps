@@ -27748,6 +27748,9 @@ msgstr "Bestem _ugyldige datoer"
 msgid "Gramps Genealogy System"
 msgstr "Slægtsforskningsprogrammet Gramps"
 
+msgid "Genealogy System"
+msgstr "Slægtsforskningsprogrammet"
+
 #: ../data/gramps.desktop.in.h:2
 msgid "Manage genealogical information, perform genealogical research and analysis"
 msgstr "Arbejd med slægtsoplysninger, udfør slægtsforskning og analyser"

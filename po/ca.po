@@ -30024,6 +30024,9 @@ msgstr "Versió:"
 msgid "Gramps Genealogy System"
 msgstr "Sistema Genealògic Gramps"
 
+msgid "Genealogy System"
+msgstr "Sistema Genealògic"
+
 #: ../data/gramps.desktop.in.h:2
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"

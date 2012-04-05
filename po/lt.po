@@ -28032,6 +28032,9 @@ msgstr "_Nustatyti blogas datas"
 msgid "Gramps Genealogy System"
 msgstr "Gramps Genealogijos Sistema"
 
+msgid "Genealogy System"
+msgstr "Genealogijos Sistema"
+
 #: ../data/gramps.desktop.in.h:2
 msgid "Manage genealogical information, perform genealogical research and analysis"
 msgstr "Tvarkyti geneologinę informaciją, atlikti geneologinius tyrinėjimus ir analizę"

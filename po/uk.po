@@ -29288,6 +29288,9 @@ msgstr "_Розпізнавати помилкові дати"
 msgid "Gramps Genealogy System"
 msgstr "Генеалогічна система Gramps"
 
+msgid "Genealogy System"
+msgstr "Генеалогічна система"
+
 #: ../data/gramps.desktop.in.h:2
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"

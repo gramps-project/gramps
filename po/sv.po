@@ -29686,6 +29686,9 @@ msgstr "_Identifiera ogiltiga datum"
 msgid "Gramps Genealogy System"
 msgstr "Gramps Genealogisystem"
 
+msgid "Genealogy System"
+msgstr "Genealogisystem"
+
 #: ../data/gramps.desktop.in.h:2
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"

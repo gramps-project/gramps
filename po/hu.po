@@ -29532,6 +29532,9 @@ msgstr "_Hibás dátumok felismerése"
 msgid "Gramps Genealogy System"
 msgstr "GRAMPS Származástani Rendszer"
 
+msgid "Genealogy System"
+msgstr "Származástani Rendszer"
+
 #: ../data/gramps.desktop.in.h:2
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"

@@ -28085,6 +28085,9 @@ msgstr "Najít neval_idní datum"
 msgid "Gramps Genealogy System"
 msgstr "Genealogický systém Gramps"
 
+msgid "Genealogy System"
+msgstr "Genealogický systém"
+
 #: ../data/gramps.desktop.in.h:2
 msgid "Manage genealogical information, perform genealogical research and analysis"
 msgstr "Spravuje genealogické informace, provádí genealogický výzkum a analýzy"

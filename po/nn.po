@@ -28256,6 +28256,9 @@ msgstr "Versjon:"
 msgid "Gramps Genealogy System"
 msgstr "Gramps Slektsgranskarsystem"
 
+msgid "Genealogy System"
+msgstr "Slektsgranskarsystem"
+
 #: ../data/gramps.desktop.in.h:2
 msgid "Manage genealogical information, perform genealogical research and analysis"
 msgstr "Handsama slektsgranskarinformasjon, utføra slektsgransking og analyse"

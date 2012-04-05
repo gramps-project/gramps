@@ -27686,6 +27686,9 @@ msgstr "_Poišči neveljavne datume"
 msgid "Gramps Genealogy System"
 msgstr "Rodoslovni sistem Gramps"
 
+msgid "Genealogy System"
+msgstr "Rodoslovni sistem"
+
 #: ../data/gramps.desktop.in.h:2
 msgid "Manage genealogical information, perform genealogical research and analysis"
 msgstr "Upravljaj z rodoslovnimi podatki, vodi rodoslovne raziskave in analize"

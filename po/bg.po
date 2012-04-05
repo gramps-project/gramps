@@ -27993,6 +27993,9 @@ msgstr "_Откриване на невалидни дати"
 msgid "Gramps Genealogy System"
 msgstr "Генеалогична система Gramps"
 
+msgid "Genealogy System"
+msgstr "Генеалогична система"
+
 #: ../data/gramps.desktop.in.h:2
 msgid "Manage genealogical information, perform genealogical research and analysis"
 msgstr "Управление на генеалогична информация, извършване на генеалогични изследвания и анализи"

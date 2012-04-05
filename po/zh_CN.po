@@ -27692,6 +27692,9 @@ msgstr "辨别无效日期(_I)"
 msgid "Gramps Genealogy System"
 msgstr "GRAMPS 家谱系统 "
 
+msgid "Genealogy System"
+msgstr "家谱系统 "
+
 #: ../data/gramps.desktop.in.h:2
 msgid "Manage genealogical information, perform genealogical research and analysis"
 msgstr "管理家谱信息，实施家谱搜索和分析"

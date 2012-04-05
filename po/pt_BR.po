@@ -27610,6 +27610,9 @@ msgstr "_Identificar datas inválidas"
 msgid "Gramps Genealogy System"
 msgstr "Sistema de genealogia Gramps"
 
+msgid "Genealogy System"
+msgstr "Sistema de genealogia"
+
 #: ../data/gramps.desktop.in.h:2
 msgid "Manage genealogical information, perform genealogical research and analysis"
 msgstr "Gerencia informações genealógicas, executa pesquisas e análises genealógicas"

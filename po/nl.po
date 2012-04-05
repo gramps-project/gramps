@@ -27974,6 +27974,9 @@ msgstr "Zoek naar foute datums"
 msgid "Gramps Genealogy System"
 msgstr "Gramps genealogiesysteem"
 
+msgid "Genealogy System"
+msgstr "Genealogiesysteem"
+
 #: ../data/gramps.desktop.in.h:2
 msgid "Manage genealogical information, perform genealogical research and analysis"
 msgstr "Beheer genealogische informatie, doe genealogisch onderzoek en analyse"
