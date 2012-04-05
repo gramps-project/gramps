@@ -27974,7 +27974,7 @@ msgstr "Version :"
 
 #: ../data/gramps.desktop.in.h:1
 msgid "Gramps Genealogy System"
-msgstr "Gramps système de généalogie"
+msgstr "Système de généalogie Gramps"
 
 #: ../data/gramps.desktop.in.h:2
 msgid "Manage genealogical information, perform genealogical research and analysis"
