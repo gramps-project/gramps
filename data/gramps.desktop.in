@@ -1,6 +1,7 @@
 [Desktop Entry]
 _Name=Gramps
 _GenericName=Genealogy System
+_X-GNOME-FullName=Gramps Genealogy System
 _Comment=Manage genealogical information, perform genealogical research and analysis
 Icon=gramps
 Terminal=false
