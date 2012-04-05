@@ -28814,7 +28814,7 @@ msgstr "Version :"
 
 #: ../data/gramps.desktop.in.h:1
 msgid "Gramps Genealogy System"
-msgstr "Gramps système de généalogie"
+msgstr "Système de généalogie Gramps"
 
 msgid "Genealogy System"
 msgstr "Système de généalogie"
