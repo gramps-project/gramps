@@ -60,7 +60,7 @@ from gui.editors import EditPlace, EditEvent, EditFamily, EditPerson
 from gui.selectors.selectplace import SelectPlace
 
 import osmgpsmap
-from . import constants
+import constants
 from osmGps import OsmGps
 from selectionlayer import SelectionLayer
 from placeselection import PlaceSelection
@@ -72,6 +72,13 @@ from placeselection import PlaceSelection
 #------------------------------------------------------------------------
 import logging
 _LOG = logging.getLogger("maps.geography")
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+GEOGRAPHY_PATH = os.path.join(const.HOME_DIR, "maps")
 
 #-------------------------------------------------------------------------
 #
@@ -102,7 +109,7 @@ class GeoGraphyView(OsmGps, NavigationView):
     """
     #settings in the config file
     CONFIGSETTINGS = (
-        ('geography.path', constants.GEOGRAPHY_PATH),
+        ('geography.path', GEOGRAPHY_PATH),
 
         ('geography.zoom', 10),
         ('geography.zoom_when_center', 12),
