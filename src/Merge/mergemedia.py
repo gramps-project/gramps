@@ -29,7 +29,7 @@ Provide merge capabilities for media objects.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.lib import Person, Family, Event, Source, Place
+from gen.lib import Person, Family, Event, Source, Citation, Place
 from gen.db import DbTxn
 from gen.ggettext import sgettext as _
 import const
@@ -211,6 +211,11 @@ class MergeMediaQuery(object):
                     assert(source.has_media_reference(old_handle))
                     source.replace_media_references(old_handle, new_handle)
                     self.database.commit_source(source, trans)
+                elif class_name == Citation.__name__:
+                    citation = self.database.get_citation_from_handle(handle)
+                    assert(citation.has_media_reference(old_handle))
+                    citation.replace_media_references(old_handle, new_handle)
+                    self.database.commit_citation(citation, trans)
                 elif class_name == Place.__name__:
                     place = self.database.get_place_from_handle(handle)
                     assert(place.has_media_reference(old_handle))
