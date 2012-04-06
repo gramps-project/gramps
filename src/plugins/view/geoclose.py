@@ -234,7 +234,8 @@ class GeoClose(GeoGraphyView):
         self.skip_list = []
         SelectPerson = SelectorFactory('Person')
         sel = SelectPerson(self.dbstate, self.uistate, self.track,
-                           _("Select Child"), skip=self.skip_list)
+                           _("Select the person which will be our reference."),
+                           skip=self.skip_list)
         self.refperson = sel.run()
         self.goto_handle(None)
 
