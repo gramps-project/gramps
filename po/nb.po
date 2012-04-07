@@ -11272,47 +11272,38 @@ msgid "Person Citations"
 msgstr "Kildehenvisninger til person"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:406
-#, fuzzy
 msgid "Gramplet showing the citations for a person"
 msgstr "Smågramps som viser referanser for en person"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:419
-#, fuzzy
 msgid "Event Citations"
-msgstr "Kildehenvisning"
+msgstr "Hendelseshenvisning"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:420
-#, fuzzy
 msgid "Gramplet showing the citations for an event"
 msgstr "Smågramps som viser referanser for en hendelse"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:433
-#, fuzzy
 msgid "Family Citations"
-msgstr "Familie/relasjon"
+msgstr "Familiehenvisninger"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:434
-#, fuzzy
 msgid "Gramplet showing the citations for a family"
 msgstr "Smågramps som viser referanser for en familie"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:447
-#, fuzzy
 msgid "Place Citations"
-msgstr "Stedskart"
+msgstr "Stedshenvisninger"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:448
-#, fuzzy
 msgid "Gramplet showing the citations for a place"
 msgstr "Smågramps som viser referanser for et sted"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:461
-#, fuzzy
 msgid "Media Citations"
-msgstr "Kildehenvisning"
+msgstr "Mediahenvisninger"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:462
-#, fuzzy
 msgid "Gramplet showing the citations for a media object"
 msgstr "Smågramps som viser referanser for et mediaobjekt"
 
@@ -11401,38 +11392,36 @@ msgid "Gramplet showing the backlinks for a source"
 msgstr "Smågramps som viser referanser for en kilde"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:573
-#, fuzzy
 msgid "Citation Backlinks"
-msgstr "Mediareferanser"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:574
-#, fuzzy
 msgid "Gramplet showing the backlinks for a citation"
-msgstr "Smågramps som viser referanser for en person"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:587
 msgid "Repository Backlinks"
-msgstr "Referanser for oppbevaringssted"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:588
 msgid "Gramplet showing the backlinks for a repository"
-msgstr "Smågramps som viser referanser for et oppbevaringssted"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:601
 msgid "Media Backlinks"
-msgstr "Mediareferanser"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:602
 msgid "Gramplet showing the backlinks for a media object"
-msgstr "Smågramps som viser referanser for et mediaobjekt"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:615
 msgid "Note Backlinks"
-msgstr "Notatreferanser"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:616
 msgid "Gramplet showing the backlinks for a note"
-msgstr "Smågramps som viser referanser for et notat"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:629
 msgid "Person Filter"
@@ -11467,14 +11456,12 @@ msgid "Gramplet providing a source filter"
 msgstr "Smågramps som også har et hendelsesfilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:685
-#, fuzzy
 msgid "Citation Filter"
-msgstr "Levendefilter"
+msgstr "Henvisningsfilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:686
-#, fuzzy
 msgid "Gramplet providing a citation filter"
-msgstr "Smågramps som også har mediafilter"
+msgstr "Smågramps som også har henvisningsfilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:699
 msgid "Place Filter"
@@ -11518,24 +11505,20 @@ msgid "Double-click on a row to edit the selected child."
 msgstr "Dobbeltklikk på en rad for å se/redigere det valgte barnet."
 
 #: ../src/plugins/gramplet/Citations.py:44
-#, fuzzy
 msgid "Double-click on a row to edit the selected source/citation."
-msgstr "Dobbeltklikk på en rad for å redigere den valgte kilden."
+msgstr "Dobbeltklikk på en rad for å redigere den valgte kilden/henvisningen."
 
 #: ../src/plugins/gramplet/Citations.py:48
-#, fuzzy
 msgid "Source/Citation"
-msgstr "Kildehenvisning"
+msgstr "Kilde/henvisning"
 
 #: ../src/plugins/gramplet/Citations.py:50
-#, fuzzy
 msgid "Publisher"
-msgstr "Åpen"
+msgstr "Utgiver"
 
 #: ../src/plugins/gramplet/Citations.py:121
-#, fuzzy
 msgid "<No Citation>"
-msgstr "Kildehenvisning"
+msgstr "<Ingen henvisning>"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:49
 #: ../src/plugins/gramplet/PedigreeGramplet.py:51
@@ -11567,11 +11550,11 @@ msgstr "   ef. "
 #. but they are not usable in exiv2/ pyexiv2
 #: ../src/plugins/gramplet/EditExifMetadata.py:147
 msgid "<-- Image Types -->"
-msgstr ""
+msgstr "<-- Bildetyper -->"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:170
 msgid "Warning:  Changing this entry will update the Media object title field in Gramps not Exiv2 metadata."
-msgstr ""
+msgstr "Advarsel: Denne forekomsten vil oppdatere tittelfeltet for mediaobjektet i Gramps, ikke Exiv2-metadata."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:173
 msgid "Provide a short descripion for this image."
@@ -11589,13 +11572,15 @@ msgstr "Skriv inn opphavsrettinformasjonen for dette bildet. \n"
 msgid ""
 "The original date/ time when the image was first created/ taken as in a photograph.\n"
 "Example: 1830-01-1 09:30:59"
-msgstr ""
+msgstr "Den opprinnelige dato/ tid for når bildet først ble laget/ tatt som i et fotografi.\n"
+"Eksempel: 1830-01-1 09:30:59"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:183
 msgid ""
 "This is the date/ time that the image was last changed/ modified.\n"
 "Example: 2011-05-24 14:30:00"
-msgstr ""
+msgstr "Dette er den datoen/ tiden da bildet sist ble endret.\n"
+"Eksempel: 2011-05-24 14:30:00"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:186
 msgid ""
@@ -11732,19 +11717,17 @@ msgid "Media Path Update"
 msgstr "Oppdatere filbane for media"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:881
-#, fuzzy
 msgid "There has been an error in updating the image file's path!"
-msgstr "Det var en feil da Exif-metadata for bildet ble fjernet..."
+msgstr "Det ble en feil da stien for bildefila skulle oppdateres!"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:915
-#, fuzzy
 msgid "Click the close button when you are finished modifying this image's Exif metadata."
-msgstr "Klikk på lukkeknappen når du er ferdig med å se alle metadata for dette bildet."
+msgstr "Klikk på lukkeknappen når du er ferdig med å se endre Exif-metadata for dette bildet."
 
 #. Add the Save button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:953
 msgid "Saves a copy of the data fields into the image's Exif metadata."
-msgstr ""
+msgstr "Lagrer en kopi av datafeltene i bildets Exif-metadata."
 
 #. Re- display the data fields button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:956
@@ -11754,7 +11737,7 @@ msgstr ""
 #. Add the Clear button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:959
 msgid "This button will clear all of the data fields shown here."
-msgstr ""
+msgstr "Denne knappen vil fjerne alle datafeltene som vises her."
 
 #. Add the Close button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:962
@@ -11766,36 +11749,30 @@ msgstr ""
 #. Media Title Frame...
 #. 574 on a screen width of 1024
 #: ../src/plugins/gramplet/EditExifMetadata.py:989
-#, fuzzy
 msgid "Media Object Title"
-msgstr "Filtre for mediaobjekter"
+msgstr "Tittel for mediaobjekt"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:999
-#, fuzzy
 msgid "media Title: "
-msgstr "Mediafilter"
+msgstr "Mediatittel: "
 
 #. create the data fields...
 #. ***Description, Artist, and Copyright
 #: ../src/plugins/gramplet/EditExifMetadata.py:1013
-#, fuzzy
 msgid "General Data"
-msgstr "Generelt"
+msgstr "Generelle data"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1023
-#, fuzzy
 msgid "Description: "
-msgstr "Beskrivelse:"
+msgstr "Beskrivelse: "
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1024
-#, fuzzy
 msgid "Artist: "
-msgstr "Artist"
+msgstr "Artist: "
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1025
-#, fuzzy
 msgid "Copyright: "
-msgstr "Opphavsrett"
+msgstr "Opphavsrett: "
 
 #. iso format: Year, Month, Day spinners...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1038
@@ -11803,54 +11780,45 @@ msgid "Date/ Time"
 msgstr "Dato/Tid"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1052
-#, fuzzy
 msgid "Original: "
-msgstr "Opprinnelig tid"
+msgstr "Opprinnelig: "
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1053
-#, fuzzy
 msgid "Modified: "
-msgstr "Sist endret"
+msgstr "Endret: "
 
 #. GPS coordinates...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1070
-#, fuzzy
 msgid "Latitude/ Longitude/ Altitude GPS coordinates"
-msgstr "Bredde-/Lengdegrad GPS-kordinater"
+msgstr "Bredde-/ Lengdegrad/ Høyde GPS-kordinater"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1084
-#, fuzzy
 msgid "Latitude :"
-msgstr "Breddegrad:"
+msgstr "Breddegrad :"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1085
-#, fuzzy
 msgid "Longitude :"
-msgstr "Lengdegrad:"
+msgstr "Lengdegrad :"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1086
-#, fuzzy
 msgid "Altitude :"
-msgstr "Breddegrad:"
+msgstr "Høyde :"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1138
-#, fuzzy
 msgid "Bad Date/Time"
-msgstr "Dato/Tid"
+msgstr "Ugyldig Dato/Tid"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1158
 msgid "WARNING!  You are about to completely delete the Exif metadata from this image?"
 msgstr "ADVARSEL!  Du er i ferd med å fullstendig slette Exif-metadata fra dette bildet?"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1323
-#, fuzzy
 msgid "Media Title Update"
-msgstr "Mediafilter"
+msgstr "Oppdatering av Mediatittel"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1349
-#, fuzzy
 msgid "Media Object Date Created"
-msgstr "Mediaobjekter som er merket private"
+msgstr "Dato for Mediaobjekter er laget"
 
 #. set Edit Message to Saved...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1421
@@ -11979,9 +11947,8 @@ msgid " 10. <a wiki='%s_-_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F
 msgstr "  10. <a wiki='%s_-_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>Hvordan kan jeg lage en Internettside med Gramps og mitt slektstre?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:65
-#, fuzzy
 msgid " 11. <a href='http://sourceforge.net/mailarchive/message.php?msg_id=21487967'>How do I record one's occupation?</a>\n"
-msgstr " 11. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-ts21786114.html#a21786114'>Hvordan registrerer jeg noen yrke?</a>\n"
+msgstr " 11. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-ts21786114.html#a21786114'>Hvordan registrerer jeg noens yrke?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:66
 #, python-format
@@ -12888,33 +12855,28 @@ msgid "The colour to use to display families."
 msgstr "Fargen som skal brukes for å vise familier."
 
 #: ../src/plugins/graph/GVFamilyLines.py:168
-#, fuzzy
 msgid "Limit the number of ancestors"
 msgstr "Begrens antall foreldre"
 
 #: ../src/plugins/graph/GVFamilyLines.py:170
-#, fuzzy
 msgid "Whether to limit the number of ancestors."
-msgstr "Utelat dobbekt oppførte aner."
+msgstr "Om antall aner skal begrenses."
 
 #: ../src/plugins/graph/GVFamilyLines.py:176
 msgid "The maximum number of ancestors to include."
 msgstr "Maksimalt antall aner som skal inkluderes."
 
 #: ../src/plugins/graph/GVFamilyLines.py:180
-#, fuzzy
 msgid "Limit the number of descendants"
-msgstr "Begrens antall foreldre"
+msgstr "Begrens antall etterkommere"
 
 #: ../src/plugins/graph/GVFamilyLines.py:183
-#, fuzzy
 msgid "Whether to limit the number of descendants."
-msgstr "Om det skal skrives sidetall på hver side."
+msgstr "Om antall etterkommere skal begrenses."
 
 #: ../src/plugins/graph/GVFamilyLines.py:189
-#, fuzzy
 msgid "The maximum number of descendants to include."
-msgstr "Maksimalt antall aner som skal inkluderes."
+msgstr "Maksimalt antall etterkommere som skal inkluderes."
 
 #. --------------------
 #: ../src/plugins/graph/GVFamilyLines.py:194
@@ -12928,9 +12890,8 @@ msgid "Include thumbnail images of people"
 msgstr "Ta med bilde av personer"
 
 #: ../src/plugins/graph/GVFamilyLines.py:200
-#, fuzzy
 msgid "Whether to include thumbnail images of people."
-msgstr "Velge å ta med bilde av personer."
+msgstr "Velge å ta med lite bilde av personer."
 
 #: ../src/plugins/graph/GVFamilyLines.py:205
 msgid "Thumbnail location"
@@ -13585,9 +13546,9 @@ msgid "  %(id)s - %(text)s with %(id2)s\n"
 msgstr "  %(id)s - %(text)s med %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:245
-#, fuzzy, python-format
+#, python-format
 msgid "  Family %(id)s with %(id2)s\n"
-msgstr "  Sted %(id)s med %(id2)s\n"
+msgstr "  Familie %(id)s med %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:248
 #, python-format
@@ -13620,9 +13581,9 @@ msgid "  Note %(id)s with %(id2)s\n"
 msgstr "  Notat %(id)s med %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:268
-#, fuzzy, python-format
+#, python-format
 msgid "  Citation %(id)s with %(id2)s\n"
-msgstr "  Sted %(id)s med %(id2)s\n"
+msgstr "  Henvisning %(id)s med %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:276
 #, python-format
@@ -13903,20 +13864,19 @@ msgstr "INDO (individ) Gramps ID %s"
 #: ../src/plugins/lib/libgedcom.py:3261 ../src/plugins/lib/libgedcom.py:4472
 #: ../src/plugins/lib/libgedcom.py:4675 ../src/plugins/lib/libgedcom.py:4806
 #: ../src/plugins/lib/libgedcom.py:5431 ../src/plugins/lib/libgedcom.py:5568
-#, fuzzy
 msgid "Filename omitted"
-msgstr "Filnavn"
+msgstr "Filnavn oversett"
 
 #: ../src/plugins/lib/libgedcom.py:3263 ../src/plugins/lib/libgedcom.py:4474
 #: ../src/plugins/lib/libgedcom.py:4677 ../src/plugins/lib/libgedcom.py:4808
 #: ../src/plugins/lib/libgedcom.py:5433 ../src/plugins/lib/libgedcom.py:5570
 msgid "Form omitted"
-msgstr ""
+msgstr "Skjema oversett"
 
 #: ../src/plugins/lib/libgedcom.py:4244
-#, fuzzy, python-format
+#, python-format
 msgid "FAM (family) Gramps ID %s"
-msgstr "Gramps ID: %s "
+msgstr "FAM (familie) Gramps ID: %s"
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
@@ -14004,9 +13964,8 @@ msgid "Copyright of source data"
 msgstr "Opphavsrett på kildedata"
 
 #: ../src/plugins/lib/libgedcom.py:6328
-#, fuzzy
 msgid "Publication date of source data"
-msgstr "Publikasjonsinformasjon"
+msgstr "Publikasjonsdato for kildedata"
 
 #. feature request 2356: avoid genitive form
 #: ../src/plugins/lib/libgedcom.py:6341
@@ -14016,11 +13975,11 @@ msgstr "Import fra %s"
 
 #: ../src/plugins/lib/libgedcom.py:6379
 msgid "Submission record identifier"
-msgstr ""
+msgstr "Innsenderinformasjon"
 
 #: ../src/plugins/lib/libgedcom.py:6390
 msgid "Language of GEDCOM text"
-msgstr ""
+msgstr "Språk for GEDCOM-tekst"
 
 #: ../src/plugins/lib/libgedcom.py:6414
 #, python-format
@@ -14068,9 +14027,9 @@ msgid "Empty note ignored"
 msgstr "Tom linje ble ignorert"
 
 #: ../src/plugins/lib/libgedcom.py:6605
-#, fuzzy, python-format
+#, python-format
 msgid "NOTE Gramps ID %s"
-msgstr "Gramps ID: %s "
+msgstr "NOTE Gramps ID %s"
 
 #: ../src/plugins/lib/libgedcom.py:6655
 msgid "Submission: Submitter"
@@ -14157,9 +14116,8 @@ msgstr "Ingen opphavsrett"
 
 #: ../src/plugins/lib/libmetadata.py:48 ../src/plugins/lib/libmetadata.py:65
 #: ../src/plugins/lib/libmetadata.py:86
-#, fuzzy
 msgid "Invalid format"
-msgstr "Inndataformat"
+msgstr "Ugyldig format"
 
 #: ../src/plugins/lib/libmetadata.py:52
 #, python-format
@@ -14179,11 +14137,11 @@ msgstr "Bilde"
 
 #: ../src/plugins/lib/libmetadata.py:90
 msgid "Camera"
-msgstr ""
+msgstr "Kamera"
 
 #: ../src/plugins/lib/libmetadata.py:91
 msgid "GPS"
-msgstr ""
+msgstr "GPS"
 
 #: ../src/plugins/lib/libmetadata.py:92
 msgid "Advanced"
@@ -17282,12 +17240,10 @@ msgstr "%(language)s (%(country)s)"
 #. (FATHER_AGE  , _("Father's Age"), "Father Age"),
 #. (MOTHER_AGE  , _("Mother's Age"), "Mother Age"),
 #: ../src/plugins/lib/libtranslate.py:246
-#, fuzzy
 msgid "Father Age"
 msgstr "Fars alder"
 
 #: ../src/plugins/lib/libtranslate.py:246
-#, fuzzy
 msgid "Mother Age"
 msgstr "Mors alder"
 
@@ -18168,9 +18124,8 @@ msgstr "Viser hendelser på en bestemt dag"
 
 #: ../src/plugins/quickview/quickview.gpr.py:208
 #: ../src/plugins/quickview/References.py:91
-#, fuzzy
 msgid "Source or Citation"
-msgstr "Ta med kildeangivelser"
+msgstr "Kilde med henvisninger"
 
 #: ../src/plugins/quickview/quickview.gpr.py:214
 #, python-format
@@ -18405,9 +18360,8 @@ msgid "self"
 msgstr "selv"
 
 #: ../src/plugins/rel/relplugins.gpr.py:32
-#, fuzzy
 msgid "Catalan Relationship Calculator"
-msgstr "Italiensk relasjonsberegning"
+msgstr "Katalansk relasjonsberegning"
 
 #: ../src/plugins/rel/relplugins.gpr.py:33
 #: ../src/plugins/rel/relplugins.gpr.py:46
@@ -18511,9 +18465,8 @@ msgid "Category"
 msgstr "Kategori"
 
 #: ../src/plugins/textreport/AlphabeticalIndex.py:107
-#, fuzzy
 msgid "The style used for index entries."
-msgstr "Stil som blir brukt på tittelen."
+msgstr "Stil som blir brukt på indekselementer."
 
 #. feature request 2356: avoid genitive form
 #: ../src/plugins/textreport/AncestorReport.py:191
@@ -18690,14 +18643,12 @@ msgid "Whether to show divorce information in the report."
 msgstr "Om skilsmisseinformasjon skal være med i rapporten."
 
 #: ../src/plugins/textreport/DescendReport.py:427
-#, fuzzy
 msgid "Show duplicate trees"
-msgstr "Vis datoer"
+msgstr "Vis duplikate trær"
 
 #: ../src/plugins/textreport/DescendReport.py:428
-#, fuzzy
 msgid "Whether to show duplicate family trees in the report."
-msgstr "Om skilsmisseinformasjon skal være med i rapporten."
+msgstr "Om duplikate familietrær skal vises i rapporten."
 
 #: ../src/plugins/textreport/DescendReport.py:456
 #, python-format
@@ -19076,14 +19027,12 @@ msgid "Whether to include detailed spouse information."
 msgstr "Ta med detaljert informasjon om ektefeller."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:1015
-#, fuzzy
 msgid "Include spouse reference"
-msgstr "Ta med ektefeller"
+msgstr "Ta med ektefellereferanser"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:1016
-#, fuzzy
 msgid "Whether to include reference to spouse."
-msgstr "Ta med kildehenvisninger."
+msgstr "Om referanser til ektefelle/partner skal tas med."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:1019
 msgid "Include sign of succession ('+') in child-list"
@@ -19661,19 +19610,16 @@ msgid "Total size of media objects: %s MB"
 msgstr "Samlet størrelse på mediaobjekter: %s MB"
 
 #: ../src/plugins/textreport/TableOfContents.py:105
-#, fuzzy
 msgid "The style used for first level headings."
-msgstr "Stilen som brukes på titler."
+msgstr "Stilen som brukes på overskrifter på første nivå."
 
 #: ../src/plugins/textreport/TableOfContents.py:111
-#, fuzzy
 msgid "The style used for second level headings."
-msgstr "Stilen som brukes på titler."
+msgstr "Stilen som brukes på overskrifter på andre nivå."
 
 #: ../src/plugins/textreport/TableOfContents.py:117
-#, fuzzy
 msgid "The style used for third level headings."
-msgstr "Stilen som brukes på titler."
+msgstr "Stilen som brukes på overskrifter på tredje nivå."
 
 #: ../src/plugins/textreport/TagReport.py:79
 #: ../src/plugins/textreport/textplugins.gpr.py:252
@@ -19808,21 +19754,19 @@ msgstr "Viser et sammendrag for denne databasen"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:365
 msgid "Table Of Contents"
-msgstr ""
+msgstr "Innholdsfortegnelse"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:366
-#, fuzzy
 msgid "Produces a table of contents for book reports."
-msgstr "Lag en tittelside for bokrapporter."
+msgstr "Lager en innholdsliste for bokrapporter."
 
 #: ../src/plugins/textreport/textplugins.gpr.py:387
 msgid "Alphabetical Index"
-msgstr ""
+msgstr "Alfabetisk indeks"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:388
-#, fuzzy
 msgid "Produces an alphabetical index for book reports."
-msgstr "Lag en tittelside for bokrapporter."
+msgstr "Lager en alfabetisk indeks for bokrapporter."
 
 #: ../src/plugins/tool/ChangeNames.py:65
 msgid "manual|Fix_Capitalization_of_Family_Names..."
@@ -19895,9 +19839,8 @@ msgid "Checking Database"
 msgstr "Kontrollerer database"
 
 #: ../src/plugins/tool/Check.py:101
-#, fuzzy
 msgid "Looking for cross table duplicates"
-msgstr "Søker etter doble ektefeller"
+msgstr ""
 
 #: ../src/plugins/tool/Check.py:143
 msgid ""
@@ -19968,9 +19911,8 @@ msgid "Looking for empty source records"
 msgstr "Søker etter tomme kildeforekomster"
 
 #: ../src/plugins/tool/Check.py:764
-#, fuzzy
 msgid "Looking for empty citation records"
-msgstr "Ser etter tomme mediaforekomster"
+msgstr "Ser etter tomme henvisningsforekomster"
 
 #: ../src/plugins/tool/Check.py:772
 msgid "Looking for empty place records"
@@ -20017,9 +19959,8 @@ msgid "Looking for place reference problems"
 msgstr "Søker etter problemer med stedsreferanser"
 
 #: ../src/plugins/tool/Check.py:1187
-#, fuzzy
 msgid "Looking for source and citation reference problems"
-msgstr "Søker etter problemer med kildereferanser"
+msgstr "Søker etter problemer med kilder og kildereferanser"
 
 #: ../src/plugins/tool/Check.py:1296
 msgid "Looking for media object reference problems"
@@ -20177,11 +20118,11 @@ msgstr[0] "%(quantity)d sted er referert til, men ble ikke funnet\n"
 msgstr[1] "%(quantity)d steder er referert til, men ble ikke funnet\n"
 
 #: ../src/plugins/tool/Check.py:1732
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d citation was referenced but not found\n"
 msgid_plural "%(quantity)d citations were referenced, but not found\n"
-msgstr[0] "%(quantity)d sted er referert til, men ble ikke funnet\n"
-msgstr[1] "%(quantity)d steder er referert til, men ble ikke funnet\n"
+msgstr[0] "%(quantity)d henvisninger er referert til, men ble ikke funnet\n"
+msgstr[1] "%(quantity)d henvisninger er referert til, men ble ikke funnet\n"
 
 #: ../src/plugins/tool/Check.py:1739
 #, python-format
@@ -20605,9 +20546,8 @@ msgid "manual|Merge citations..."
 msgstr "Flett sammen kildehenvisninger..."
 
 #: ../src/plugins/tool/MergeCitations.py:129
-#, fuzzy
 msgid "Notes, media objects and data-items of matching citations will be combined."
-msgstr "Notater, mediaobjekter, data og henvisninger til oppbevaringssteder for begge kildene vil bli satt sammen."
+msgstr "Notater, mediaobjekter og andre data for sammenfallende henvisninger vil bli satt sammen."
 
 #: ../src/plugins/tool/MergeCitations.py:159
 msgid "Merge citations tool"
@@ -21057,9 +20997,8 @@ msgid "Verifies the data against user-defined tests"
 msgstr "Verifiserer dataene mot brukerdefinerte tester"
 
 #: ../src/plugins/tool/tools.gpr.py:530
-#, fuzzy
 msgid "Searches the entire database, looking for citations that have the same Volume/Page, Date and Confidence."
-msgstr "Søk igjennom hele databasen for å lete etter personregistreringer som kanskje representerer den samme personen."
+msgstr "Søker gjennom hele databasen for å lete etter henvisninger som kan ha samme sidetall, dato eller troverdighetsnivå."
 
 #: ../src/plugins/tool/Verify.py:74
 msgid "manual|Verify_the_Data..."
@@ -21265,46 +21204,38 @@ msgstr "Legg til en ny kilde"
 
 #: ../src/plugins/view/citationtreeview.py:120
 #: ../src/plugins/view/citationlistview.py:120
-#, fuzzy
 msgid "Add a new citation to an existing source"
-msgstr "Legg til en eksisterende kilde"
+msgstr "Legg til en henvisning til en eksisterende kilde"
 
 #: ../src/plugins/view/citationtreeview.py:121
-#, fuzzy
 msgid "Edit the selected citation or source"
-msgstr "Rediger den valgte kilden"
+msgstr "Rediger den valgte henvisningen eller kilden"
 
 #: ../src/plugins/view/citationtreeview.py:122
-#, fuzzy
 msgid "Delete the selected citation or source"
-msgstr "Slett den valgte kilden"
+msgstr "Slett den valgte henvisningen eller kilden"
 
 #: ../src/plugins/view/citationtreeview.py:123
-#, fuzzy
 msgid "Merge the selected citations or selected sources"
-msgstr "Flett sammen de valgte kildene"
+msgstr "Flett sammen de valgte henvisningene eller kildene"
 
 #: ../src/plugins/view/citationtreeview.py:141
 #: ../src/plugins/view/view.gpr.py:234
-#, fuzzy
 msgid "Citation Tree View"
-msgstr "Personvisning, tre"
+msgstr ""
 
 #: ../src/plugins/view/citationtreeview.py:279
-#, fuzzy
 msgid "Add source..."
-msgstr "Legg til kilde"
+msgstr "Legg til kilde..."
 
 #: ../src/plugins/view/citationtreeview.py:284
-#, fuzzy
 msgid "Add citation..."
-msgstr "Legg til partner..."
+msgstr "Legg til henvisning..."
 
 #: ../src/plugins/view/citationtreeview.py:292
 #: ../src/plugins/view/citationlistview.py:180
-#, fuzzy
 msgid "Citation Filter Editor"
-msgstr "Selvvalgt filterbehandler"
+msgstr "Filtereditor for henvisning"
 
 #: ../src/plugins/view/citationtreeview.py:301
 #: ../src/plugins/view/persontreeview.py:82
@@ -21319,9 +21250,8 @@ msgid "Collapse all Nodes"
 msgstr "Slå sammen alle knutepunkt"
 
 #: ../src/plugins/view/citationtreeview.py:445
-#, fuzzy
 msgid "Cannot add citation."
-msgstr "Kan ikke lagre merke"
+msgstr "Kan ikke legge til henvisning."
 
 #: ../src/plugins/view/citationtreeview.py:446
 msgid "In order to add a citation to an existing source,  you must select a source."
