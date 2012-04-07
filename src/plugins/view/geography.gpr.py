@@ -34,7 +34,7 @@ try :
         OSMGPSMAP = False
         import sys
         print >> sys.stderr, _("WARNING: osmgpsmap module not loaded. "
-                "osmgpsmap must be >= 0.7.0. yours is %s" % osmgpsmap.__version__ )
+                "osmgpsmap must be >= 0.7.0. yours is %s") % osmgpsmap.__version__
 except:
     OSMGPSMAP = False
     import sys
