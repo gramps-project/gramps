@@ -283,7 +283,8 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         index = 0
         olist = other.get_citation_list()
         for a in self.get_citation_list():
-            if not a.is_equal(olist[index]):
+            # see comment in srefs_are_equal in gen/plug/report/_bibliography.py
+            if a != olist[index]:
                 return False
             index += 1
 
