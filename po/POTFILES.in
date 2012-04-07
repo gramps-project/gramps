@@ -326,7 +326,6 @@ src/plugins/lib/libtreebase.py
 src/plugins/lib/holidays.xml.in
 src/plugins/lib/maps/constants.py
 src/plugins/lib/maps/geography.py
-src/plugins/lib/maps/grampsmaps.py
 
 # plugins/mapservices  directory
 src/plugins/mapservices/eniroswedenmap.py
