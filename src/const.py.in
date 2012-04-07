@@ -43,10 +43,10 @@ from gen.ggettext import sgettext as _
 #-------------------------------------------------------------------------
 PROGRAM_NAME   = "Gramps"
 if "@VERSIONSTRING@" == "@" + "VERSIONSTRING" + "@":
-    VERSION        = "3.4.0"
+    VERSION        = "3.5.0"
 else:
     VERSION        = "@VERSIONSTRING@"
-VERSION_TUPLE  = (3, 4, 0)
+VERSION_TUPLE  = (3, 5, 0)
 
 #-------------------------------------------------------------------------
 #
@@ -57,11 +57,11 @@ URL_HOMEPAGE    = "http://gramps-project.org/"
 URL_MAILINGLIST = "http://sourceforge.net/mail/?group_id=25770"
 URL_BUGTRACKER  = "http://bugs.gramps-project.org/bug_report_advanced_page.php"
 URL_WIKISTRING  = "http://gramps-project.org/wiki/index.php?title="
-URL_MANUAL_PAGE = "Gramps_3.4_Wiki_Manual"
+URL_MANUAL_PAGE = "Gramps_3.5_Wiki_Manual"
 WIKI_FAQ = "FAQ"
-WIKI_KEYBINDINGS = "Gramps_3.4_Wiki_Manual_-_Keybindings"
-WIKI_EXTRAPLUGINS= "3.4_Addons"
-WIKI_EXTRAPLUGINS_RAWDATA = "Plugins3.4&action=raw"
+WIKI_KEYBINDINGS = "Gramps_3.5_Wiki_Manual_-_Keybindings"
+WIKI_EXTRAPLUGINS= "3.5_Addons"
+WIKI_EXTRAPLUGINS_RAWDATA = "Plugins3.5&action=raw"
 
 #-------------------------------------------------------------------------
 #
