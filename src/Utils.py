@@ -1514,7 +1514,15 @@ def navigation_label(db, nav_type, handle):
     elif nav_type == 'Event':
         obj = db.get_event_from_handle(handle)
         if obj:
-            who = get_participant_from_event(db, handle)
+            try:
+                who = get_participant_from_event(db, handle)
+            except:
+                # get_participants_from_event fails when called during a magic
+                # batch transaction because find_backlink_handles tries to
+                # access the reference_map_referenced_map which doesn't exist
+                # under those circumstances. Since setting the navigation_label
+                # is inessential, just accept this and go on.
+                who = ''
             desc = obj.get_description()
             label = obj.get_type()
             if desc:
