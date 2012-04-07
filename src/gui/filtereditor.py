@@ -704,7 +704,6 @@ class EditRule(ManagedWindow.ManagedWindow):
             new_rule = class_obj(value_list)
 
             self.update_rule(self.active_rule, new_rule)
-            self._save_size()
             self.close()
         except KeyError:
             pass
@@ -720,7 +719,8 @@ class EditFilter(ManagedWindow.ManagedWindow):
                  filterdb, update=None, selection_callback=None):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
-
+        self.width_key = "interface.edit-filter-width"
+        self.height_key = "interface.edit-filter-height"
         self.namespace = namespace
         self.update = update
         self.dbstate = dbstate
@@ -771,6 +771,7 @@ class EditFilter(ManagedWindow.ManagedWindow):
         self.comment.set_text(self.filter.get_comment())
         self.draw_rules()
 
+        self._set_size()
         self.show()
 
     def on_help_clicked(self, obj):
@@ -987,6 +988,8 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         self.db = dbstate.db
         self.filterdb = FilterList(filterdb)
         self.filterdb.load()
+        self.width_key = "interface.filter-editor-width"
+        self.height_key = "interface.filter-editor-height"
         self.namespace = namespace
 
         self.define_glade('filter_list', const.RULE_GLADE)
@@ -1022,6 +1025,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
                             self.filter_select_row,
                             self.edit_filter)
         self.draw_filters()
+        self._set_size()
         self.show()
 
     def build_menu_names(self, obj):
