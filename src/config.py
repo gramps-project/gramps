@@ -189,6 +189,8 @@ register('interface.view-categories',
          ["Gramplets", "People", "Relationships", "Families", 
           "Ancestry", "Events", "Places", "Geography", "Sources",
           "Citations", "Repositories", "Media", "Notes"])
+register('interface.edit-filter-width', 500)
+register('interface.edit-filter-height', 420)
 register('interface.edit-rule-width', 600)
 register('interface.edit-rule-height', 450)
 register('interface.event-height', 450)
@@ -202,6 +204,8 @@ register('interface.family-sel-height', 450)
 register('interface.family-sel-width', 600)
 register('interface.family-width', 700)
 register('interface.filter', False)
+register('interface.filter-editor-width', 400)
+register('interface.filter-editor-height', 350)
 register('interface.fullscreen', False)
 register('interface.height', 500)
 register('interface.lds-height', 450)
