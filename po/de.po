@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-22 21:10+0100\n"
-"PO-Revision-Date: 2012-03-22 21:12+0100\n"
+"POT-Creation-Date: 2012-04-10 20:06+0200\n"
+"PO-Revision-Date: 2012-04-10 20:09+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -23400,7 +23400,7 @@ msgid "Web Links"
 msgstr "Weblinks"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1673
-msgid " ]Click to Go]"
+msgid " [Click to Go]"
 msgstr " [Zum gehen klicken]"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1703
