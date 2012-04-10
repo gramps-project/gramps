@@ -21939,7 +21939,7 @@ msgstr "Outil d'extraction du nom et du titre"
 
 #: ../src/plugins/tool/PatchNames.py:114
 msgid "Default prefix and connector settings"
-msgstr "Paramètres par défaut du préfix et du connecteur"
+msgstr "Paramètres par défaut du préfixe et du connecteur"
 
 #: ../src/plugins/tool/PatchNames.py:122
 msgid "Prefixes to search for:"
@@ -27299,7 +27299,7 @@ msgstr "Une particule optionnelle pour le nom de famille, ignorée pour le tri, 
 #: ../src/glade/editperson.glade.h:12
 #: ../src/glade/editname.glade.h:10
 msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
-msgstr "Un suffixe optionel pour le nom, tel que \"Jr.\" ou \"III\"."
+msgstr "Un suffixe optionnel pour le nom, tel que \"Jr.\" ou \"III\"."
 
 #: ../src/glade/editperson.glade.h:13
 msgid "C_all:"
@@ -27356,7 +27356,7 @@ msgid ""
 "Indicate that the surname consists of different parts. Every surname has its own prefix and a possible connector to the next surname. Eg., the surname Ramón y Cajal can be stored as Ramón, which is inherited from the father, the connector y, and Cajal, which is inherited from the mother."
 msgstr ""
 "Utilisation des noms composés\n"
-"Indique que le nom de famille est composé de plusieurs parties. Chaque nom de famille a son propre préfixe et un possible connecteur vers le nom suivant. Par exemple, le nom de famille  Ramón y Cajal peut être enregistré comme Ramón, lequel nom est hérité du père, les connecteur est y, et Cajal est hérité de la mère."
+"Indique que le nom de famille est composé de plusieurs parties. Chaque nom de famille a son propre préfixe et un possible connecteur vers le nom suivant. Par exemple, le nom de famille Ramón y Cajal peut être enregistré comme Ramón, lequel nom est hérité du père, les connecteur est y, et Cajal est hérité de la mère."
 
 # les prénoms (difficile de trouver une solution sur le code)
 #: ../src/glade/editperson.glade.h:33
