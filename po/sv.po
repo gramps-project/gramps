@@ -14664,7 +14664,7 @@ msgstr "Flagga upptäck, men stöds ej"
 
 #: ../src/plugins/lib/libgedcom.py:2814
 msgid "Line ignored as not understood"
-msgstr "Rad %d gick inte att förstå, så den ignorerades."
+msgstr "Rad gick inte att förstå, så den ignorerades."
 
 #: ../src/plugins/lib/libgedcom.py:2839
 msgid "Skipped subordinate line"
@@ -22022,7 +22022,7 @@ msgstr "Antal utförda sammanslagningar"
 msgid "%(num)d citation merged"
 msgid_plural "%(num)d citations merged"
 msgstr[0] "%(num)d citeringar sammanslagna"
-msgstr[1] "%d citering sammanslagna"
+msgstr[1] "%(num)d citering sammanslagna"
 
 #: ../src/plugins/tool/NotRelated.py:67
 msgid "manual|Not_Related..."
