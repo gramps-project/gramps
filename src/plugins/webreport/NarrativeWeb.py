@@ -1670,7 +1670,7 @@ class BasePage(object):
                             uri = "ftp://%(ftpsite)s" % { "ftpsite" : uri }   
 
                     descr = Html("p", html_escape(descr)) + (
-                            Html("a", _(" ]Click to Go]"), href = uri, title = uri)
+                            Html("a", _(" [Click to Go]"), href = uri, title = uri)
                     )
                     trow.extend(
                         Html("td", data, class_ = "Column" + colclass, inline = True)

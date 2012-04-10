@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.3.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-17 17:56+0100\n"
-"PO-Revision-Date: 2012-03-17 18:02+0100\n"
+"POT-Creation-Date: 2012-04-10 19:09+0200\n"
+"PO-Revision-Date: 2012-04-10 19:11+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "Language: \n"
@@ -1062,7 +1062,6 @@ msgid "Family Event"
 msgstr "Événement familial"
 
 #: ../src/ScratchPad.py:409
-#: ../src/plugins/webreport/NarrativeWeb.py:1642
 msgid "Url"
 msgstr "Url"
 
@@ -21180,7 +21179,7 @@ msgstr "Outil d'extraction du nom et du titre"
 
 #: ../src/plugins/tool/PatchNames.py:114
 msgid "Default prefix and connector settings"
-msgstr "Paramètres par défaut du préfix et du connecteur"
+msgstr "Paramètres par défaut du préfixe et du connecteur"
 
 #: ../src/plugins/tool/PatchNames.py:122
 msgid "Prefixes to search for:"
@@ -22615,6 +22614,10 @@ msgstr "Anecdote"
 #: ../src/plugins/webreport/NarrativeWeb.py:5571
 msgid "Web Links"
 msgstr "Liens internet"
+
+#: ../src/plugins/webreport/NarrativeWeb.py:1673
+msgid " [Click to Go]"
+msgstr "[Cliquez pour aller]"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1703
 msgid "Source References"
@@ -25914,7 +25917,7 @@ msgstr "Une particule optionnelle pour le nom de famille, ignorée pour le tri, 
 #: ../src/glade/editperson.glade.h:11
 #: ../src/glade/editname.glade.h:10
 msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
-msgstr "Un suffixe optionel pour le nom, tel que \"Jr.\" ou \"III\"."
+msgstr "Un suffixe optionnel pour le nom, tel que \"Jr.\" ou \"III\"."
 
 #: ../src/glade/editperson.glade.h:12
 msgid "C_all:"
@@ -25978,7 +25981,7 @@ msgid ""
 "Indicate that the surname consists of different parts. Every surname has its own prefix and a possible connector to the next surname. Eg., the surname Ramón y Cajal can be stored as Ramón, which is inherited from the father, the connector y, and Cajal, which is inherited from the mother."
 msgstr ""
 "Utilisation des noms composés\n"
-"Indique que le nom de famille est composé de plusieurs parties. Chaque nom de famille a son propre préfixe et un possible connecteur vers le nom suivant. Par exemple, le nom de famille  Ramón y Cajal peut être enregistré comme Ramón, lequel nom est hérité du père, les connecteur est y, et Cajal est hérité de la mère."
+"Indique que le nom de famille est composé de plusieurs parties. Chaque nom de famille a son propre préfixe et un possible connecteur vers le nom suivant. Par exemple, le nom de famille Ramón y Cajal peut être enregistré comme Ramón, lequel nom est hérité du père, les connecteur est y, et Cajal est hérité de la mère."
 
 # les prénoms (difficile de trouver une solution sur le code)
 #: ../src/glade/editperson.glade.h:26
@@ -27746,7 +27749,7 @@ msgstr ""
 "Ci-dessous une liste de surnoms, titres, préfixes et noms de famille composés que Gramps peut extraire de l'arbre familial.\n"
 "Si vous acceptez les changements, Gamps modifiera les données que vous avez sélectionnées.\n"
 "\n"
-"Les noms de famille composés sont affichés sous forme de liste de [préfix, nom de famille, connecteur].\n"
+"Les noms de famille composés sont affichés sous forme de liste de [préfixe, nom de famille, connecteur].\n"
 "Par exemple, sans changement, le nom de \"de Mascarenhas da Silva e Lencastre\" sera affiché comme :\n"
 "       [de, Mascarenhas]-[da, Silva, e]-[,Lencastre]\n"
 "\n"
@@ -28258,23 +28261,4 @@ msgstr "<b>Qui est né quand</b><br/>La comparaison des événements individuels
 #: ../src/data/tips.xml.in.h:63
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr "<b>Travail sur les dates</b><br/>Une période peut être définie en utilisant le format &quot;entre 4/01/2000 et 20/03/2003&quot;. Vous pouvez également indiquer le niveau de confiance dans la date et toujours choisir entre 7 calendriers différents. Essayez le bouton à côté du champ date dans l'éditeur d'événements."
-
-#~ msgid "Export:"
-#~ msgstr "Exporter :"
-#~ msgid "Filt_er:"
-#~ msgstr "Filtr_e :"
-#~ msgid "I_ndividuals"
-#~ msgstr "I_ndividus"
-#~ msgid "Translate _Headers"
-#~ msgstr "Traduire les _en-têtes"
-#~ msgid "_Marriages"
-#~ msgstr "_Mariages"
-#~ msgid "_Restrict data on living people"
-#~ msgstr "_Limiter les informations sur les individus vivants"
-#~ msgid "Exclude _notes"
-#~ msgstr "Exclure les _notes"
-#~ msgid "Reference i_mages from path:  "
-#~ msgstr "Référencer les i_mages par leur chemin :  "
-#~ msgid "Use _Living as first name"
-#~ msgstr "Utiliser _Vivant comme prénom"
 
