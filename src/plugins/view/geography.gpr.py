@@ -49,7 +49,7 @@ if OSMGPSMAP:
              description =  _("A view showing the places visited by "
                               "one person during his life."),
              version = '1.0',
-             gramps_target_version = '3.4',
+             gramps_target_version = '3.5',
              status = STABLE,
              fname = 'geoperson.py',
              authors = [u"Serge Noiraud"],
@@ -65,7 +65,7 @@ if OSMGPSMAP:
              name  = _("All known Places"),
              description =  _("A view showing all places of the database."),
              version = '1.0',
-             gramps_target_version = '3.4',
+             gramps_target_version = '3.5',
              status = STABLE,
              fname = 'geoplaces.py',
              authors = [u"Serge Noiraud"],
@@ -82,7 +82,7 @@ if OSMGPSMAP:
              description =  _("A view showing all the event "
                               "places of the database."),
              version = '1.0',
-             gramps_target_version = '3.4',
+             gramps_target_version = '3.5',
              status = STABLE,
              fname = 'geoevents.py',
              authors = [u"Serge Noiraud"],
@@ -99,7 +99,7 @@ if OSMGPSMAP:
              description =  _("A view showing the places visited by "
                               "one family during all their life."),
              version = '1.0',
-             gramps_target_version = '3.4',
+             gramps_target_version = '3.5',
              status = STABLE,
              fname = 'geofamily.py',
              authors = [u"Serge Noiraud"],
@@ -117,7 +117,7 @@ if OSMGPSMAP:
                               "two persons during their life: "
                               "have these two people been able to meet?"),
              version = '1.0.1',
-             gramps_target_version = '3.4',
+             gramps_target_version = '3.5',
              status = STABLE,
              fname = 'geoclose.py',
              authors = [u"Serge Noiraud"],
