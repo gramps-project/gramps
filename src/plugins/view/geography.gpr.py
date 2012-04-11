@@ -27,6 +27,11 @@
 #
 #------------------------------------------------------------------------
 
+# As this file is only used to load the modules if the osmgpsmap library is
+# available, we can force gramps_target_version to the current version of gramps.
+from const import VERSION_TUPLE
+MODULE_VERSION="%1d.%1d" % (VERSION_TUPLE[0], VERSION_TUPLE[1])
+
 try :
     import osmgpsmap
     OSMGPSMAP = True
@@ -49,7 +54,7 @@ if OSMGPSMAP:
              description =  _("A view showing the places visited by "
                               "one person during his life."),
              version = '1.0',
-             gramps_target_version = '3.5',
+             gramps_target_version = MODULE_VERSION,
              status = STABLE,
              fname = 'geoperson.py',
              authors = [u"Serge Noiraud"],
@@ -65,7 +70,7 @@ if OSMGPSMAP:
              name  = _("All known Places"),
              description =  _("A view showing all places of the database."),
              version = '1.0',
-             gramps_target_version = '3.5',
+             gramps_target_version = MODULE_VERSION,
              status = STABLE,
              fname = 'geoplaces.py',
              authors = [u"Serge Noiraud"],
@@ -82,7 +87,7 @@ if OSMGPSMAP:
              description =  _("A view showing all the event "
                               "places of the database."),
              version = '1.0',
-             gramps_target_version = '3.5',
+             gramps_target_version = MODULE_VERSION,
              status = STABLE,
              fname = 'geoevents.py',
              authors = [u"Serge Noiraud"],
@@ -99,7 +104,7 @@ if OSMGPSMAP:
              description =  _("A view showing the places visited by "
                               "one family during all their life."),
              version = '1.0',
-             gramps_target_version = '3.5',
+             gramps_target_version = MODULE_VERSION,
              status = STABLE,
              fname = 'geofamily.py',
              authors = [u"Serge Noiraud"],
@@ -117,7 +122,7 @@ if OSMGPSMAP:
                               "two persons during their life: "
                               "have these two people been able to meet?"),
              version = '1.0.1',
-             gramps_target_version = '3.5',
+             gramps_target_version = MODULE_VERSION,
              status = STABLE,
              fname = 'geoclose.py',
              authors = [u"Serge Noiraud"],
