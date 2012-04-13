@@ -761,7 +761,6 @@ class WebCalReport(Report):
                                         fname_date = '%04d%02d%02d' % (year,month,day) + self.ext
 
                                         # create hyperlink to one_day()
-                                        fname_date = full_month_name + '/' + fname_date 
                                         tcell += Html("a", datediv, href = fname_date, inline = True)
 
                                         # only year_glance() needs this to create the one_day() pages 
@@ -975,7 +974,7 @@ class WebCalReport(Report):
              for each year being created...
         """
 
-        nr_up = 2                    # number of directory levels up to get to root
+        nr_up = 1                    # number of directory levels up to get to root
 
         # get year and month from event_date for use in this section
         year = event_date.get_year()
