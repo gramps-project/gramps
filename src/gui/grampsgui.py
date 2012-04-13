@@ -329,4 +329,6 @@ def startgtkloop(errors, argparser):
     gobject.threads_init()
 
     gobject.timeout_add(100, __startgramps, errors, argparser, priority=100)
+    if os.path.exists(os.path.join(const.DATA_DIR, "gramps.accel")):
+        gtk.accel_map_load(os.path.join(const.DATA_DIR, "gramps.accel"))
     gtk.main()
