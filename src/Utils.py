@@ -53,7 +53,7 @@ from GrampsLocale import codeset
 from Date import Date
 import DateHandler
 
-from const import TEMP_DIR, USER_HOME, GRAMPS_UUID
+from const import TEMP_DIR, USER_HOME, GRAMPS_UUID, IMAGE_DIR
 import constfunc
 from gen.ggettext import sgettext as _
 
@@ -1581,3 +1581,154 @@ def format_time(secs):
     t = time.localtime(secs)
     d = Date(t.tm_year, t.tm_mon, t.tm_mday)
     return DateHandler.displayer.display(d) + time.strftime(' %X', t)
+
+#-------------------------------------------------------------------------
+#
+# make_unknown
+#
+#-------------------------------------------------------------------------
+def make_unknown(class_arg, explanation, class_func, commit_func, transaction,
+                 **argv):
+    """
+    Make a primary object and set some property so that it qualifies as
+    "Unknown".
+
+    Some object types need extra parameters:
+    Family: db, Event: type (optional),
+    Citation: methods to create/store source.
+
+    Some theoretical underpinning
+    This function exploits the fact that all import methods basically do the
+    same thing: Create an object of the right type, fill it with some
+    attributes, store it in the database. This function does the same, so
+    the observation is why not use the creation and storage methods that the 
+    import routines use themselves, that makes nice reuse of code. To do this
+    formally correct we would need to specify a interface (in the OOP sence)
+    which the import methods would need to implement. For now, that is deemed
+    too restrictive and here we just slip through because of the similarity in
+    code of both GEDCOM and XML import methods.
+
+    :param class_arg: The argument the class_func needs, typically a kind of id.
+    :type class_arg: unspecified
+    :param explanation: Handle of a note that explains the origin of primary obj
+    :type explanation: str
+    :param class_func: Method to create primary object.
+    :type class_func: method
+    :param commit_func: Method to store primary object in db.
+    :type commit_func: method
+    :param transactino: Database transaction handle
+    :type transaction: str
+    :param argv: Possible additional parameters
+    :type param: unspecified
+    :returns: List of newly created objects.
+    :rtype: list
+    """
+    retval = []
+    obj = class_func(class_arg)
+    if isinstance(obj, gen.lib.Person):
+        surname = gen.lib.Surname()
+        surname.set_surname('Unknown')
+        name = gen.lib.Name()
+        name.add_surname(surname)
+        name.set_type(gen.lib.NameType.UNKNOWN)
+        obj.set_primary_name(name)
+    elif isinstance(obj, gen.lib.Family):
+        obj.set_relationship(gen.lib.FamilyRelType.UNKNOWN)
+        handle = obj.handle
+        if getattr(argv['db'].transaction, 'no_magic', False):
+            backlinks = argv['db'].find_backlink_handles(
+                    handle, [gen.lib.Person.__name__])
+            for dummy, person_handle in backlinks:
+                person = argv['db'].get_person_from_handle(person_handle)
+                add_personref_to_family(obj, person)
+        else:
+            for person in argv['db'].iter_people():
+                if person._has_handle_reference('Family', handle):
+                    add_personref_to_family(obj, person)
+    elif isinstance(obj, gen.lib.Event):
+        if 'type' in argv:
+            obj.set_type(argv['type'])
+        else:
+            obj.set_type(gen.lib.EventType.UNKNOWN)
+    elif isinstance(obj, gen.lib.Place):
+        obj.set_title(_('Unknown'))
+    elif isinstance(obj, gen.lib.Source):
+        obj.set_title(_('Unknown'))
+    elif isinstance(obj, gen.lib.Citation):
+        #TODO create a new source for every citation?
+        obj2 = argv['source_class_func'](argv['source_class_arg'])
+        obj2.set_title(_('Unknown'))
+        obj2.add_note(explanation)
+        argv['source_commit_func'](obj2, transaction, time.time())
+        retval.append(obj2)
+        obj.set_reference_handle(obj2.handle)
+    elif isinstance(obj, gen.lib.Repository):
+        obj.set_name(_('Unknown'))
+        obj.set_type(gen.lib.RepositoryType.UNKNOWN)
+    elif isinstance(obj, gen.lib.MediaObject):
+        obj.set_path(os.path.join(IMAGE_DIR, "image-missing.png"))
+        obj.set_mime_type('image/png')
+        obj.set_description(_('Unknown'))
+    elif isinstance(obj, gen.lib.Note):
+        obj.set_type(gen.lib.NoteType.UNKNOWN);
+        text = _('Unknown, created to replace a missing note object.')
+        link_start = text.index(',') + 2
+        link_end = len(text) - 1
+        tag = gen.lib.StyledTextTag(gen.lib.StyledTextTagType.LINK,
+                'gramps://Note/handle/%s' % explanation,
+                [(link_start, link_end)])
+        obj.set_styledtext(gen.lib.StyledText(text, [tag]))
+    elif isinstance(obj, gen.lib.Tag):
+        if not hasattr(make_unknown, 'count'):
+            make_unknown.count = 1 #primitive static variable
+        obj.set_name(_("Unknown, was missing %s (%d)") %
+                (time.strftime('%x %X', time.localtime()),
+                make_unknown.count))
+        make_unknown.count += 1
+    else:
+        raise TypeError("Object if of unsupported type")
+
+    if hasattr(obj, 'add_note'):
+        obj.add_note(explanation)
+    commit_func(obj, transaction, time.time())
+    retval.append(obj)
+    return retval
+
+def create_explanation_note(dbase):
+    """
+    When creating objects to fill missing primary objects in imported files,
+    those objects of type "Unknown" need a explanatory note. This funcion
+    provides such a note for import methods.
+    """
+    note = gen.lib.Note( _('Objects referenced by this note '
+                                    'were missing in a file imported on %s.') %
+                                    time.strftime('%x %X', time.localtime()))
+    note.set_handle(create_id())
+    note.set_gramps_id(dbase.find_next_note_gramps_id())
+    # Use defaults for privacy, format and type.
+    return note
+
+def add_personref_to_family(family, person):
+    """
+    Given a family and person, set the parent/child references in the family,
+    that match the person.
+    """
+    handle = family.handle
+    person_handle = person.handle
+    if handle in person.get_family_handle_list():
+        if ((person.get_gender() == gen.lib.Person.FEMALE) and
+                (family.get_mother_handle() is None)):
+            family.set_mother_handle(person_handle)
+        else:
+            # This includes cases of gen.lib.Person.UNKNOWN
+            if family.get_father_handle() is None:
+                family.set_father_handle(person_handle)
+            else:
+                family.set_mother_handle(person_handle)
+    if handle in person.get_parent_family_handle_list():
+        childref = gen.lib.ChildRef()
+        childref.set_reference_handle(person_handle)
+        childref.set_mother_relation(gen.lib.ChildRefType.UNKNOWN)
+        childref.set_father_relation(gen.lib.ChildRefType.UNKNOWN)
+        family.add_child_ref(childref)
+

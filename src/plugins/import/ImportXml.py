@@ -47,6 +47,7 @@ from QuestionDialog import ErrorDialog, WarningDialog
 import gen.mime
 import gen.lib
 from gen.db import DbTxn
+from gen.db.write import CLASS_TO_KEY_MAP
 from Errors import GrampsImportError
 import Utils
 import DateHandler
@@ -84,6 +85,9 @@ CHILD_REL_MAP = {
 EVENT_FAMILY_STR = _("%(event_name)s of %(family)s")
 # feature requests 2356, 1658: avoid genitive form
 EVENT_PERSON_STR = _("%(event_name)s of %(person)s")
+
+HANDLE = 0
+INSTANTIATED = 1
 
 #-------------------------------------------------------------------------
 #
@@ -215,6 +219,8 @@ class ImportInfo(object):
         """
         self.data_mergecandidate = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
         self.data_newobject = [0] * 10
+        self.data_unknownobject = [0] * 10
+        self.expl_note = ''
         self.data_relpath = False
         
     def add(self, category, key, obj, sec_obj=None):
@@ -227,6 +233,8 @@ class ImportInfo(object):
                     self._extract_mergeinfo(key, obj, sec_obj)
         elif category == 'new-object':
             self.data_newobject[self.key2data[key]] += 1
+        elif category == 'unknown-object':
+            self.data_unknownobject[self.key2data[key]] += 1
         elif category == 'relative-path':
             self.data_relpath = True
 
@@ -286,7 +294,20 @@ class ImportInfo(object):
             }
         txt = _("Number of new objects imported:\n")
         for key in self.keyorder:
-            txt += key2string[key] % self.data_newobject[self.key2data[key]]
+            if any(self.data_unknownobject):
+                strng = key2string[key][0:-1] + ' (%d)\n'
+                txt += strng % (self.data_newobject[self.key2data[key]],
+                                self.data_unknownobject[self.key2data[key]])
+            else:
+                txt += key2string[key] % self.data_newobject[self.key2data[key]]
+        if any(self.data_unknownobject):
+            txt += _("\n The imported file was not self-contained.\n"
+                     "To correct for that, %d objects were created and\n"
+                     "their typifying attribute was set to 'Unknown'.\n"
+                     "The breakdown per category is depicted by the\n"
+                     "number in parentheses. Where possible these\n"
+                     "'Unkown' objects are referenced by note %s.\n"
+                     ) % (sum(self.data_unknownobject), self.expl_note)
         if self.data_relpath:
             txt += _("\nMedia objects with relative paths have been\n"
                      "imported. These paths are considered relative to\n"
@@ -631,7 +652,7 @@ class GrampsParser(UpdateCallback):
             "stitle": (None, self.stop_stitle), 
             "street": (None, self.stop_street), 
             "style": (self.start_style, None),
-            "tag": (self.start_tag, None),
+            "tag": (self.start_tag, self.stop_tag),
             "tagref": (self.start_tagref, None),
             "tags": (None, None),
             "text": (None, self.stop_text),
@@ -666,9 +687,10 @@ class GrampsParser(UpdateCallback):
         :rtype: str
         """
         handle = str(handle.replace('_', ''))
-        if (handle in self.import_handles and
-                target in self.import_handles[handle]):
-            handle = self.import_handles[handle][target]
+        orig_handle = handle
+        if (orig_handle in self.import_handles and
+                target in self.import_handles[orig_handle]):
+            handle = self.import_handles[handle][target][HANDLE]
             if not callable(prim_obj): 
                 # This method is called by a start_<primary_object> method.
                 get_raw_obj_data = {"person": self.db.get_raw_person_data,
@@ -683,15 +705,15 @@ class GrampsParser(UpdateCallback):
                                     "tag": self.db.get_raw_tag_data}[target]
                 raw = get_raw_obj_data(handle)
                 prim_obj.unserialize(raw)
+                self.import_handles[orig_handle][target][INSTANTIATED] = True
             return handle
         elif handle in self.import_handles:
             LOG.warn("The file you import contains duplicate handles "
                     "which is illegal and being fixed now.")
-            orig_handle = handle
             handle = Utils.create_id()
             while handle in self.import_handles:
                 handle = Utils.create_id()
-            self.import_handles[orig_handle][target] = handle
+            self.import_handles[orig_handle][target] = [handle, False]
         else:
             orig_handle = handle
             if self.replace_import_handle:
@@ -711,9 +733,11 @@ class GrampsParser(UpdateCallback):
                                    "tag": self.db.has_tag_handle}[target]
                 while has_handle_func(handle):
                     handle = Utils.create_id()
-            self.import_handles[orig_handle] = {target: handle}
+            self.import_handles[orig_handle] = {target: [handle, False]}
         if callable(prim_obj): # method is called by a reference
             prim_obj = prim_obj()
+        else:
+            self.import_handles[orig_handle][target][INSTANTIATED] = True
         prim_obj.set_handle(handle)
         if target == "tag":
             self.db.add_tag(prim_obj, self.trans)
@@ -878,6 +902,7 @@ class GrampsParser(UpdateCallback):
                           "path in the Preferences."
                          ) % self.mediapath )
     
+            self.fix_not_instantiated()
             for key in self.func_map.keys():
                 del self.func_map[key]
             del self.func_map
@@ -1050,6 +1075,7 @@ class GrampsParser(UpdateCallback):
         self.placeobj.title = attrs.get('title', '')
         self.locations = 0
         self.update(self.p.CurrentLineNumber)
+        return self.placeobj
             
     def start_location(self, attrs):
         """Bypass the function calls for this one, since it appears to
@@ -1152,6 +1178,7 @@ class GrampsParser(UpdateCallback):
             self.event.private = bool(attrs.get("priv"))
             self.event.change = int(attrs.get('change', self.change))
             self.info.add('new-object', EVENT_KEY, self.event)
+        return self.event
 
     def start_eventref(self, attrs):
         """
@@ -1236,7 +1263,7 @@ class GrampsParser(UpdateCallback):
 
         # This is new XML, so we are guaranteed to have a handle ref
         handle = attrs['hlink'].replace('_', '')
-        handle = self.import_handles[handle][target]
+        handle = self.import_handles[handle][target][HANDLE]
         # Due to pre 2.2.9 bug, bookmarks might be handle of other object
         # Make sure those are filtered out.
         # Bookmarks are at end, so all handle must exist before we do bookmrks
@@ -1324,6 +1351,7 @@ class GrampsParser(UpdateCallback):
         self.person.change = int(attrs.get('change', self.change))
         self.info.add('new-object', PERSON_KEY, self.person)
         self.convert_marker(attrs, self.person)
+        return self.person
 
     def start_people(self, attrs):
         """
@@ -1459,6 +1487,7 @@ class GrampsParser(UpdateCallback):
         if 'type' in attrs:
             self.family.type.set_from_xml_str(attrs["type"])
         self.convert_marker(attrs, self.family)
+        return self.family
 
     def start_rel(self, attrs):
         if 'type' in attrs:
@@ -1606,7 +1635,7 @@ class GrampsParser(UpdateCallback):
                         val = "gramps://%s/handle/%s" % (
                                 match.group('object_class'),
                                 self.import_handles[match.group('handle')]
-                                                   [target])
+                                                   [target][HANDLE])
             tagvalue = gen.lib.StyledTextTagType.STYLE_TYPE[int(tagtype)](val)
         except KeyError:
             tagvalue = None
@@ -1629,10 +1658,17 @@ class GrampsParser(UpdateCallback):
         self.inaugurate(attrs['handle'], "tag", self.tag)
         self.tag.change = int(attrs.get('change', self.change))
         self.info.add('new-object', TAG_KEY, self.tag)
-        self.tag.set_name(attrs['name'])
-        self.tag.set_color(attrs['color'])
-        self.tag.set_priority(int(attrs['priority']))
+        self.tag.set_name(attrs.get('name', _('Unknown when imported')))
+        self.tag.set_color(attrs.get('color', '#000000000000'))
+        self.tag.set_priority(int(attrs.get('priority', 0)))
+        return self.tag
+
+    def stop_tag(self, *tag):
+        if self.note is not None:
+            # Styled text tag in notes (prior to v1.4.0)
+            return
         self.db.commit_tag(self.tag, self.trans, self.tag.get_change_time())
+        self.tag = None
 
     def start_tagref(self, attrs):
         """
@@ -1685,8 +1721,8 @@ class GrampsParser(UpdateCallback):
             self.note.change = int(attrs.get('change', self.change))
             self.info.add('new-object', NOTE_KEY, self.note)
             self.note.format = int(attrs.get('format', gen.lib.Note.FLOWED))
-            self.note.type.set_from_xml_str(attrs['type'])
-
+            self.note.type.set_from_xml_str(attrs.get('type',
+                                                      gen.lib.NoteType.UNKNOWN))
             self.convert_marker(attrs, self.note)
             
             # Since StyledText was introduced (XML v1.3.0) the clear text
@@ -1764,6 +1800,7 @@ class GrampsParser(UpdateCallback):
             #set correct change time
             self.db.commit_note(self.note, self.trans, self.change)
             self.info.add('new-object', NOTE_KEY, self.note)
+        return self.note
 
     def start_noteref(self, attrs):
         """
@@ -1877,6 +1914,7 @@ class GrampsParser(UpdateCallback):
         self.citation.change = int(attrs.get('change', self.change))
         self.citation.confidence = self.conf # default
         self.info.add('new-object', CITATION_KEY, self.citation)
+        return self.citation
 
     def start_sourceref(self, attrs):
         """
@@ -1929,6 +1967,7 @@ class GrampsParser(UpdateCallback):
         self.source.private = bool(attrs.get("priv"))
         self.source.change = int(attrs.get('change', self.change))
         self.info.add('new-object', SOURCE_KEY, self.source)
+        return self.source
 
     def start_reporef(self, attrs):
         """
@@ -2016,6 +2055,7 @@ class GrampsParser(UpdateCallback):
         src = attrs.get("src", '')
         if src:
             self.object.path = src
+        return self.object
 
     def start_repo(self, attrs):
         """
@@ -2041,6 +2081,7 @@ class GrampsParser(UpdateCallback):
         self.repo.private = bool(attrs.get("priv"))
         self.repo.change = int(attrs.get('change', self.change))
         self.info.add('new-object', REPOSITORY_KEY, self.repo)
+        return self.repo
 
     def stop_people(self, *tag):
         pass
@@ -2776,6 +2817,10 @@ class GrampsParser(UpdateCallback):
         self.db.commit_note(self.note, self.trans, self.note.get_change_time())
         self.note = None
 
+    def stop_note_asothers(self, *tag):
+        self.db.commit_note(self.note, self.trans, self.note.get_change_time())
+        self.note = None
+
     def stop_research(self, tag):
         self.owner.set_name(self.resname)
         self.owner.set_address(self.resaddr)
@@ -2871,6 +2916,44 @@ class GrampsParser(UpdateCallback):
             else:
                 tag_handle = tag.get_handle()
             obj.add_tag(tag_handle)
+
+    def fix_not_instantiated(self):
+        uninstantiated = [(orig_handle, target) for orig_handle in
+                self.import_handles.keys() if
+                [target for target in self.import_handles[orig_handle].keys() if
+                    not self.import_handles[orig_handle][target][INSTANTIATED]]]
+        if uninstantiated:
+            expl_note = Utils.create_explanation_note(self.db)
+            self.db.commit_note(expl_note, self.trans, time.time())
+            self.info.expl_note = expl_note.get_gramps_id()
+            for orig_handle, target in uninstantiated:
+                class_arg = {'handle': orig_handle, 'id': None, 'priv': False}
+                if target == 'family':
+                    objs = Utils.make_unknown(class_arg, expl_note.handle,
+                            self.func_map[target][0], self.func_map[target][1],
+                            self.trans, db=self.db)
+                elif target == 'citation':
+                    objs = Utils.make_unknown(class_arg, expl_note.handle,
+                            self.func_map[target][0], self.func_map[target][1],
+                            self.trans,
+                            source_class_func=self.func_map['source'][0],
+                            source_commit_func=self.func_map['source'][1],
+                            source_class_arg={'handle':Utils.create_id(), 'id':None, 'priv':False})
+                elif target == 'note':
+                    objs = Utils.make_unknown(class_arg, expl_note.handle,
+                            self.func_map[target][0], self.stop_note_asothers,
+                            self.trans)
+                else:
+                    if target == 'place':
+                        target = 'placeobj'
+                    elif target == 'media':
+                        target = 'object'
+                    objs = Utils.make_unknown(class_arg, expl_note.handle,
+                            self.func_map[target][0], self.func_map[target][1],
+                            self.trans)
+                for obj in objs:
+                    key = CLASS_TO_KEY_MAP[obj.__class__.__name__]
+                    self.info.add('unknown-object', key, obj)
 
 def append_value(orig, val):
     if orig:
