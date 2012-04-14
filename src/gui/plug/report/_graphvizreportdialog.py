@@ -165,7 +165,7 @@ class GraphvizReportDialog(ReportDialog):
             ext = ""
         else:
             spath = self.get_default_directory()
-            base = "%s%s" % (self.raw_name, ext)
+            base = "%s%s" % (self.report_name, ext)
             spath = os.path.normpath(os.path.join(spath, base))
             self.target_fileentry.set_filename(spath)
                 
