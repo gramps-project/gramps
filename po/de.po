@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-20 19:51+0100\n"
-"PO-Revision-Date: 2012-03-22 20:51+0100\n"
+"POT-Creation-Date: 2012-04-14 17:08+0200\n"
+"PO-Revision-Date: 2012-04-14 17:35+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -81,7 +81,7 @@ msgstr "Lesezeichen organisieren"
 #. Add column with object name
 #: ../src/Bookmarks.py:213 ../src/ScratchPad.py:560 ../src/ToolTips.py:175
 #: ../src/ToolTips.py:201 ../src/ToolTips.py:212 ../src/gui/configure.py:429
-#: ../src/gui/filtereditor.py:741 ../src/gui/filtereditor.py:893
+#: ../src/gui/filtereditor.py:741 ../src/gui/filtereditor.py:894
 #: ../src/gui/viewmanager.py:469 ../src/gui/editors/editfamily.py:117
 #: ../src/gui/editors/editname.py:305
 #: ../src/gui/editors/displaytabs/backreflist.py:62
@@ -105,7 +105,7 @@ msgstr "Name"
 
 #. Add column with object gramps_id
 #. GRAMPS ID
-#: ../src/Bookmarks.py:213 ../src/gui/filtereditor.py:896
+#: ../src/Bookmarks.py:213 ../src/gui/filtereditor.py:897
 #: ../src/gui/editors/editfamily.py:116
 #: ../src/gui/editors/displaytabs/backreflist.py:61
 #: ../src/gui/editors/displaytabs/citationembedlist.py:85
@@ -608,14 +608,15 @@ msgstr ""
 
 #. not all families have a spouse.
 #: ../src/LdsUtils.py:82 ../src/LdsUtils.py:88 ../src/ScratchPad.py:180
-#: ../src/cli/clidbman.py:469 ../src/gen/lib/attrtype.py:63
-#: ../src/gen/lib/childreftype.py:79 ../src/gen/lib/eventroletype.py:58
-#: ../src/gen/lib/eventtype.py:143 ../src/gen/lib/familyreltype.py:52
-#: ../src/gen/lib/grampstype.py:34 ../src/gen/lib/nametype.py:53
-#: ../src/gen/lib/nameorigintype.py:80 ../src/gen/lib/notetype.py:78
-#: ../src/gen/lib/repotype.py:59 ../src/gen/lib/srcmediatype.py:62
-#: ../src/gen/lib/urltype.py:54 ../src/gui/editors/editmedia.py:168
-#: ../src/gui/editors/editmediaref.py:130
+#: ../src/Utils.py:1654 ../src/Utils.py:1656 ../src/Utils.py:1660
+#: ../src/Utils.py:1666 ../src/Utils.py:1671 ../src/cli/clidbman.py:469
+#: ../src/gen/lib/attrtype.py:63 ../src/gen/lib/childreftype.py:79
+#: ../src/gen/lib/eventroletype.py:58 ../src/gen/lib/eventtype.py:143
+#: ../src/gen/lib/familyreltype.py:52 ../src/gen/lib/grampstype.py:34
+#: ../src/gen/lib/nametype.py:53 ../src/gen/lib/nameorigintype.py:80
+#: ../src/gen/lib/notetype.py:78 ../src/gen/lib/repotype.py:59
+#: ../src/gen/lib/srcmediatype.py:62 ../src/gen/lib/urltype.py:54
+#: ../src/gui/editors/editmedia.py:168 ../src/gui/editors/editmediaref.py:130
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:123
 #: ../src/plugins/gramplet/PersonDetails.py:159
 #: ../src/plugins/gramplet/PersonDetails.py:165
@@ -632,7 +633,7 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:613
-#: ../src/plugins/tool/Check.py:1691 ../src/plugins/view/geofamily.py:402
+#: ../src/plugins/tool/Check.py:1905 ../src/plugins/view/geofamily.py:402
 #: ../src/plugins/view/geoperson.py:449 ../src/plugins/view/relview.py:450
 #: ../src/plugins/view/relview.py:995 ../src/plugins/view/relview.py:1042
 #: ../src/plugins/webreport/NarrativeWeb.py:347
@@ -1830,6 +1831,23 @@ msgstr "FAMILIENSPITZNAME"
 msgid "%s, ..."
 msgstr "%s, ..."
 
+#: ../src/Utils.py:1674
+msgid "Unknown, created to replace a missing note object."
+msgstr "Unbekannt, wurde erstellt um ein fehlendes Notizobjekt zu ersetzen."
+
+#. primitive static variable
+#: ../src/Utils.py:1684
+#, python-format
+msgid "Unknown, was missing %s (%d)"
+msgstr "Unbekannt, hat gefehlt %s (%d)"
+
+#: ../src/Utils.py:1703
+#, python-format
+msgid "Objects referenced by this note were missing in a file imported on %s."
+msgstr ""
+"Objekte die mit dieser Notiz referenziert sind fehlen in der am %s "
+"importierten Datei."
+
 #: ../src/UndoHistory.py:64 ../src/gui/grampsgui.py:161
 msgid "Undo History"
 msgstr "Bearbeitungschronik"
@@ -2425,7 +2443,7 @@ msgstr "Entferne Vater aus der Familie"
 msgid "Remove mother from family"
 msgstr "Entferne Mutter aus der Familie"
 
-#: ../src/gen/db/exceptions.py:78 ../src/plugins/import/ImportGrdb.py:2786
+#: ../src/gen/db/exceptions.py:78 ../src/plugins/import/ImportGrdb.py:60
 msgid ""
 "The database version is not supported by this version of Gramps.\n"
 "Please upgrade to the corresponding version or use XML for porting data "
@@ -2696,7 +2714,7 @@ msgid "Time"
 msgstr "Zeit"
 
 #: ../src/gen/lib/childreftype.py:73 ../src/gui/configure.py:70
-#: ../src/plugins/tool/Check.py:1737
+#: ../src/plugins/tool/Check.py:1951
 #: ../src/Filters/SideBar/_CitationSidebarFilter.py:161
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:160
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:217
@@ -4558,7 +4576,7 @@ msgstr "Beispiel"
 #: ../src/plugins/textreport/KinshipReport.py:347
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:201
 #: ../src/plugins/webreport/NarrativeWeb.py:7721
-#: ../src/plugins/webreport/WebCal.py:1335
+#: ../src/plugins/webreport/WebCal.py:1334
 msgid "Name format"
 msgstr "Namensformat"
 
@@ -5414,20 +5432,20 @@ msgstr "Filter definieren"
 msgid "Values"
 msgstr "Werte"
 
-#: ../src/gui/filtereditor.py:838
+#: ../src/gui/filtereditor.py:839
 msgid "Add Rule"
 msgstr "Regel hinzufügen"
 
-#: ../src/gui/filtereditor.py:850
+#: ../src/gui/filtereditor.py:851
 msgid "Edit Rule"
 msgstr "Regel bearbeiten"
 
-#: ../src/gui/filtereditor.py:885
+#: ../src/gui/filtereditor.py:886
 msgid "Filter Test"
 msgstr "Filtertest"
 
 #. ###############################
-#: ../src/gui/filtereditor.py:1021 ../src/plugins/Records.py:516
+#: ../src/gui/filtereditor.py:1024 ../src/plugins/Records.py:516
 #: ../src/plugins/drawreport/Calendar.py:412
 #: ../src/plugins/drawreport/StatisticsChart.py:911
 #: ../src/plugins/drawreport/TimeLine.py:369
@@ -5446,23 +5464,23 @@ msgstr "Filtertest"
 #: ../src/plugins/textreport/IndivComplete.py:672
 #: ../src/plugins/tool/SortEvents.py:168
 #: ../src/plugins/webreport/NarrativeWeb.py:7699
-#: ../src/plugins/webreport/WebCal.py:1313
+#: ../src/plugins/webreport/WebCal.py:1312
 msgid "Filter"
 msgstr "Filter"
 
-#: ../src/gui/filtereditor.py:1021
+#: ../src/gui/filtereditor.py:1024
 msgid "Comment"
 msgstr "Kommentar"
 
-#: ../src/gui/filtereditor.py:1028
+#: ../src/gui/filtereditor.py:1032
 msgid "Custom Filter Editor"
 msgstr "Benutzerfiltereditor"
 
-#: ../src/gui/filtereditor.py:1094
+#: ../src/gui/filtereditor.py:1098
 msgid "Delete Filter?"
 msgstr "Filter löschen?"
 
-#: ../src/gui/filtereditor.py:1095
+#: ../src/gui/filtereditor.py:1099
 msgid ""
 "This filter is currently being used as the base for other filters. "
 "Deletingthis filter will result in removing all other filters that depend on "
@@ -5472,7 +5490,7 @@ msgstr ""
 "Löschen dieses Filters hat zur Folge das alle Filter die von ihm abhängen "
 "auch gelöscht werden."
 
-#: ../src/gui/filtereditor.py:1099
+#: ../src/gui/filtereditor.py:1103
 msgid "Delete Filter"
 msgstr "Filter löschen"
 
@@ -6292,14 +6310,13 @@ msgstr ""
 "\n"
 "%(error_msg)s\n"
 "\n"
-"Wenn du dien Fehler nicht alleine beheben kannst, du einen Fehlerbericht über "
-" "
-"http://bugs.gramps-project.org erstellen oder den Zusatzmodulautor "
-"kontaktieren "
-"(%(firstauthoremail)s).\n"
+"Wenn du dien Fehler nicht alleine beheben kannst, du einen Fehlerbericht "
+"über  http://bugs.gramps-project.org erstellen oder den Zusatzmodulautor "
+"kontaktieren (%(firstauthoremail)s).\n"
 "\n"
-"Wenn du nicht willst, das Gramps weiter versucht dieses Zusatzmodul zu laden, "
-"kannst du es in der Zusatzmodulverwaltung über das Hilfemenü verstecken."
+"Wenn du nicht willst, das Gramps weiter versucht dieses Zusatzmodul zu "
+"laden, kannst du es in der Zusatzmodulverwaltung über das Hilfemenü "
+"verstecken."
 
 #: ../src/gui/viewmanager.py:1927
 msgid "Failed Loading View"
@@ -6323,10 +6340,9 @@ msgstr ""
 "\n"
 "%(error_msg)s\n"
 "\n"
-"Wenn du dien Fehler nicht alleine beheben kannst, du einen Fehlerbericht über "
-" "
-"http://bugs.gramps-project.org erstellen oder den Ansichtautor kontaktieren "
-"(%(firstauthoremail)s).\n"
+"Wenn du dien Fehler nicht alleine beheben kannst, du einen Fehlerbericht "
+"über  http://bugs.gramps-project.org erstellen oder den Ansichtautor "
+"kontaktieren (%(firstauthoremail)s).\n"
 "\n"
 "Wenn du nicht willst, das Gramps weiter versucht diese Ansicht zu laden, "
 "kannst du sie in der Zusatzmodulverwaltung über das Hilfemenü verstecken."
@@ -8354,7 +8370,7 @@ msgstr "Stil"
 #: ../src/plugins/textreport/SimpleBookTitle.py:129
 #: ../src/plugins/textreport/TagReport.py:527
 #: ../src/plugins/webreport/NarrativeWeb.py:7677
-#: ../src/plugins/webreport/WebCal.py:1301
+#: ../src/plugins/webreport/WebCal.py:1300
 msgid "Report Options"
 msgstr "Berichtsoptionen"
 
@@ -9057,23 +9073,23 @@ msgstr "'%s' ist kein gültiger Datumswert"
 msgid "See data not in Filter"
 msgstr "Daten nicht im Filter ansehen"
 
-#: ../src/config.py:284
+#: ../src/config.py:288
 msgid "Missing Given Name"
 msgstr "Fehlender Vorname"
 
-#: ../src/config.py:285
+#: ../src/config.py:289
 msgid "Missing Record"
 msgstr "Fehlender Datensatz"
 
-#: ../src/config.py:286
+#: ../src/config.py:290
 msgid "Missing Surname"
 msgstr "Fehlender Familienname"
 
-#: ../src/config.py:293 ../src/config.py:295
+#: ../src/config.py:297 ../src/config.py:299
 msgid "Living"
 msgstr "Lebt"
 
-#: ../src/config.py:294
+#: ../src/config.py:298
 msgid "Private Record"
 msgstr "Vertraulicher Datensatz"
 
@@ -9667,7 +9683,7 @@ msgstr "Legt fest welche Personen im Bericht enthalten sind."
 #: ../src/plugins/textreport/IndivComplete.py:678
 #: ../src/plugins/tool/SortEvents.py:173
 #: ../src/plugins/webreport/NarrativeWeb.py:7705
-#: ../src/plugins/webreport/WebCal.py:1319
+#: ../src/plugins/webreport/WebCal.py:1318
 msgid "Filter Person"
 msgstr "Filter Person"
 
@@ -9675,7 +9691,7 @@ msgstr "Filter Person"
 #: ../src/plugins/graph/GVRelGraph.py:483
 #: ../src/plugins/tool/SortEvents.py:174
 #: ../src/plugins/webreport/NarrativeWeb.py:7706
-#: ../src/plugins/webreport/WebCal.py:1320
+#: ../src/plugins/webreport/WebCal.py:1319
 msgid "The center person for the filter"
 msgstr "Die Hauptperson für den Filter"
 
@@ -10321,13 +10337,13 @@ msgstr "Formatiere Monate..."
 #: ../src/plugins/drawreport/Calendar.py:265
 #: ../src/plugins/textreport/BirthdayReport.py:215
 #: ../src/plugins/webreport/NarrativeWeb.py:7069
-#: ../src/plugins/webreport/WebCal.py:1066
+#: ../src/plugins/webreport/WebCal.py:1065
 msgid "Applying Filter..."
 msgstr "Wende Filter an..."
 
 #: ../src/plugins/drawreport/Calendar.py:273
 #: ../src/plugins/textreport/BirthdayReport.py:224
-#: ../src/plugins/webreport/WebCal.py:1072
+#: ../src/plugins/webreport/WebCal.py:1071
 msgid "Reading database..."
 msgstr "Lese Datenbank..."
 
@@ -10380,7 +10396,7 @@ msgstr "Kalenderjahr"
 
 #: ../src/plugins/drawreport/Calendar.py:414
 #: ../src/plugins/textreport/BirthdayReport.py:367
-#: ../src/plugins/webreport/WebCal.py:1315
+#: ../src/plugins/webreport/WebCal.py:1314
 msgid "Select filter to restrict people that appear on calendar"
 msgstr "Filter wählen um Personen, die im Kalender erscheinen zu begrenzen"
 
@@ -10409,13 +10425,13 @@ msgstr "Die Hauptperson für den Bericht"
 #: ../src/plugins/textreport/KinshipReport.py:351
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:205
 #: ../src/plugins/webreport/NarrativeWeb.py:7725
-#: ../src/plugins/webreport/WebCal.py:1339
+#: ../src/plugins/webreport/WebCal.py:1338
 msgid "Select the format to display names"
 msgstr "Format zum anzeigen von Namen wählen"
 
 #: ../src/plugins/drawreport/Calendar.py:433
 #: ../src/plugins/textreport/BirthdayReport.py:385
-#: ../src/plugins/webreport/WebCal.py:1391
+#: ../src/plugins/webreport/WebCal.py:1390
 msgid "Country for holidays"
 msgstr "Land für Feiertage"
 
@@ -10427,25 +10443,25 @@ msgstr "Land wählen um die zugehörigen Feiertage zu sehen"
 #. Default selection ????
 #: ../src/plugins/drawreport/Calendar.py:447
 #: ../src/plugins/textreport/BirthdayReport.py:399
-#: ../src/plugins/webreport/WebCal.py:1416
+#: ../src/plugins/webreport/WebCal.py:1415
 msgid "First day of week"
 msgstr "Erster Tag der Woche"
 
 #: ../src/plugins/drawreport/Calendar.py:451
 #: ../src/plugins/textreport/BirthdayReport.py:403
-#: ../src/plugins/webreport/WebCal.py:1419
+#: ../src/plugins/webreport/WebCal.py:1418
 msgid "Select the first day of the week for the calendar"
 msgstr "Ersten Tag der Woche für den Kalender wählen"
 
 #: ../src/plugins/drawreport/Calendar.py:454
 #: ../src/plugins/textreport/BirthdayReport.py:406
-#: ../src/plugins/webreport/WebCal.py:1406
+#: ../src/plugins/webreport/WebCal.py:1405
 msgid "Birthday surname"
 msgstr "Familienname bei Geburtstagen"
 
 #: ../src/plugins/drawreport/Calendar.py:455
 #: ../src/plugins/textreport/BirthdayReport.py:407
-#: ../src/plugins/webreport/WebCal.py:1407
+#: ../src/plugins/webreport/WebCal.py:1406
 msgid "Wives use husband's surname (from first family listed)"
 msgstr ""
 "Frauen benutzen den Familiennamen vom Mann (von der ersten gelisteten "
@@ -10453,7 +10469,7 @@ msgstr ""
 
 #: ../src/plugins/drawreport/Calendar.py:456
 #: ../src/plugins/textreport/BirthdayReport.py:408
-#: ../src/plugins/webreport/WebCal.py:1409
+#: ../src/plugins/webreport/WebCal.py:1408
 msgid "Wives use husband's surname (from last family listed)"
 msgstr ""
 "Frauen benutzen den Familiennamen vom Mann (von der letzten gelisteten "
@@ -10461,49 +10477,49 @@ msgstr ""
 
 #: ../src/plugins/drawreport/Calendar.py:457
 #: ../src/plugins/textreport/BirthdayReport.py:409
-#: ../src/plugins/webreport/WebCal.py:1411
+#: ../src/plugins/webreport/WebCal.py:1410
 msgid "Wives use their own surname"
 msgstr "Frauen benutzen ihren Mädchennamen"
 
 #: ../src/plugins/drawreport/Calendar.py:458
 #: ../src/plugins/textreport/BirthdayReport.py:410
-#: ../src/plugins/webreport/WebCal.py:1412
+#: ../src/plugins/webreport/WebCal.py:1411
 msgid "Select married women's displayed surname"
 msgstr "Angezeigten Familienname für verheiratete Frauen wählen"
 
 #: ../src/plugins/drawreport/Calendar.py:461
 #: ../src/plugins/textreport/BirthdayReport.py:413
-#: ../src/plugins/webreport/WebCal.py:1427
+#: ../src/plugins/webreport/WebCal.py:1426
 msgid "Include only living people"
 msgstr "Nur lebende Personen einbeziehen"
 
 #: ../src/plugins/drawreport/Calendar.py:462
 #: ../src/plugins/textreport/BirthdayReport.py:414
-#: ../src/plugins/webreport/WebCal.py:1428
+#: ../src/plugins/webreport/WebCal.py:1427
 msgid "Include only living people in the calendar"
 msgstr "Kalender nur mit lebenden Personen"
 
 #: ../src/plugins/drawreport/Calendar.py:465
 #: ../src/plugins/textreport/BirthdayReport.py:417
-#: ../src/plugins/webreport/WebCal.py:1431
+#: ../src/plugins/webreport/WebCal.py:1430
 msgid "Include birthdays"
 msgstr "Geburtstage mit einbeziehen"
 
 #: ../src/plugins/drawreport/Calendar.py:466
 #: ../src/plugins/textreport/BirthdayReport.py:418
-#: ../src/plugins/webreport/WebCal.py:1432
+#: ../src/plugins/webreport/WebCal.py:1431
 msgid "Include birthdays in the calendar"
 msgstr "Kalender mit Geburtstagen"
 
 #: ../src/plugins/drawreport/Calendar.py:469
 #: ../src/plugins/textreport/BirthdayReport.py:421
-#: ../src/plugins/webreport/WebCal.py:1435
+#: ../src/plugins/webreport/WebCal.py:1434
 msgid "Include anniversaries"
 msgstr "Jubiläen mit einbeziehen"
 
 #: ../src/plugins/drawreport/Calendar.py:470
 #: ../src/plugins/textreport/BirthdayReport.py:422
-#: ../src/plugins/webreport/WebCal.py:1436
+#: ../src/plugins/webreport/WebCal.py:1435
 msgid "Include anniversaries in the calendar"
 msgstr "Kalender mit Jubiläen"
 
@@ -11508,7 +11524,7 @@ msgstr "Export fehlgeschlagen"
 msgid "No families matched by selected filter"
 msgstr "Keine Familien entsprechen dem ausgewählten Filter"
 
-#: ../src/plugins/export/ExportPkg.py:166 ../src/plugins/tool/Check.py:637
+#: ../src/plugins/export/ExportPkg.py:166 ../src/plugins/tool/Check.py:645
 msgid "Select file"
 msgstr "Datei wählen"
 
@@ -12305,8 +12321,8 @@ msgid ""
 "If your image is not of an image type that can have Exif metadata read/ "
 "written to/from, convert it to a type that can?"
 msgstr ""
-"Wenn dein Bild kein Bildtyp ist, aus/in den man Exif Metadaten "
-"lesen/schreiben kann, konvertiere es zu einem Typ mitdem das möglich ist."
+"Wenn dein Bild kein Bildtyp ist, aus/in den man Exif Metadaten lesen/"
+"schreiben kann, konvertiere es zu einem Typ mitdem das möglich ist."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:216
 msgid ""
@@ -14250,37 +14266,35 @@ msgstr "Fehler beim Lesen der GEDCOM-Datei"
 msgid "GeneWeb import"
 msgstr "GeneWeb importieren"
 
-#: ../src/plugins/import/ImportGrdb.py:1018
-msgid "Rebuild reference map"
-msgstr "Interne Referenzen neu erstellen"
-
-#: ../src/plugins/import/ImportGrdb.py:2779
-#: ../src/plugins/import/ImportGrdb.py:2792
+#: ../src/plugins/import/ImportGrdb.py:66
 #: ../src/plugins/import/ImportProGen.py:71
 #: ../src/plugins/import/ImportProGen.py:80
-#: ../src/plugins/import/ImportXml.py:400
-#: ../src/plugins/import/ImportXml.py:403
+#: ../src/plugins/import/ImportXml.py:421
+#: ../src/plugins/import/ImportXml.py:424
 #, python-format
 msgid "%s could not be opened"
 msgstr "%s konnte nicht geöffnet werden"
 
-#: ../src/plugins/import/ImportGrdb.py:2793
-msgid "The Database version is not supported by this version of Gramps."
-msgstr ""
-"Die Version der Datenbank wird von dieser Gramps Version nicht unterstützt."
-
-#: ../src/plugins/import/ImportGrdb.py:2930
-#, python-format
+#: ../src/plugins/import/ImportGrdb.py:67
 msgid ""
-"Your family tree groups name %(key)s together with %(present)s, did not "
-"change this grouping to %(value)s"
+"The Database version is not supported by this version of Gramps.You should "
+"use an old copy of Gramps at version 3.0.x and import your database into "
+"that version. You should then export a copy of your data to Gramps XML "
+"(family tree). Then you should upgrade to the latest version of Gramps (for "
+"example this version), create a new empty database and import the Gramps XML "
+"into that version. Please refer to:http://www.gramps-project.org/wiki/index."
+"php?title=Gramps_3.4_Wiki_Manual_-"
+"_Manage_Family_Trees#Moving_a_Gramps_2.2_databases_to_Gramps_3.x"
 msgstr ""
-"Ihr Stammbaum gruppiert Name %(key)s zusammen mit %(present)s, Gruppierung "
-"nicht geändert nach %(value)s"
-
-#: ../src/plugins/import/ImportGrdb.py:2944
-msgid "Import database"
-msgstr "Datenbank importieren"
+"Die Datenbankversion wird von dieser Grampsversion nicht unterstützt. Du "
+"solltest eine alte Version von Gramps 3.0.x verwenden und deine Datenbank in "
+"diese importieren. Dann solltest du deine Daten nach Gramps XML exportieren. "
+"Dann solltest du auf die neuste Version von Gramps aktualisieren (zum "
+"Beispiel auf diese Version), eine neue leere Datenbank erstellen und die "
+"Gramps XML Datei in diese importieren. Bitte schaue auch hier nach: "
+"http://www.gramps-project.org/wiki/index.php?title=De:Gramps_3."
+"4_Wiki_Handbuch_-_Stammb%C3%A4ume_Verwalten#2.2_Datenbanken_nach_Gramps_3."
+"x_transferieren"
 
 #: ../src/plugins/import/ImportProGen.py:77
 msgid "Pro-Gen data error"
@@ -14428,127 +14442,146 @@ msgstr ""
 #.
 #. -------------------------------------------------------------------------
 #. feature requests 2356, 1658: avoid genitive form
-#: ../src/plugins/import/ImportXml.py:84 ../src/plugins/tool/EventNames.py:127
+#: ../src/plugins/import/ImportXml.py:85 ../src/plugins/tool/EventNames.py:127
 #, python-format
 msgid "%(event_name)s of %(family)s"
 msgstr "%(event_name)s von %(family)s"
 
 #. feature requests 2356, 1658: avoid genitive form
-#: ../src/plugins/import/ImportXml.py:86 ../src/plugins/tool/EventNames.py:129
+#: ../src/plugins/import/ImportXml.py:87 ../src/plugins/tool/EventNames.py:129
 #, python-format
 msgid "%(event_name)s of %(person)s"
 msgstr "%(event_name)s von %(person)s"
 
-#: ../src/plugins/import/ImportXml.py:130
-#: ../src/plugins/import/ImportXml.py:135
+#: ../src/plugins/import/ImportXml.py:134
+#: ../src/plugins/import/ImportXml.py:139
 #, python-format
 msgid "Error reading %s"
 msgstr "Fehler beim Lesen von %s"
 
-#: ../src/plugins/import/ImportXml.py:136
+#: ../src/plugins/import/ImportXml.py:140
 msgid "The file is probably either corrupt or not a valid Gramps database."
 msgstr "Die Datei ist entweder beschädigt oder keine gültige Gramps Datenbank."
 
-#: ../src/plugins/import/ImportXml.py:239
+#: ../src/plugins/import/ImportXml.py:247
 #, python-format
 msgid "  %(id)s - %(text)s with %(id2)s\n"
 msgstr "  %(id)s - %(text)s mit %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:245
+#: ../src/plugins/import/ImportXml.py:253
 #, python-format
 msgid "  Family %(id)s with %(id2)s\n"
 msgstr "  Familie %(id)s mit %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:248
+#: ../src/plugins/import/ImportXml.py:256
 #, python-format
 msgid "  Source %(id)s with %(id2)s\n"
 msgstr "  Quelle %(id)s mit %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:251
+#: ../src/plugins/import/ImportXml.py:259
 #, python-format
 msgid "  Event %(id)s with %(id2)s\n"
 msgstr "  Ereignis %(id)s mit %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:254
+#: ../src/plugins/import/ImportXml.py:262
 #, python-format
 msgid "  Media Object %(id)s with %(id2)s\n"
 msgstr "  Medienobjekt %(id)s mit %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:257
+#: ../src/plugins/import/ImportXml.py:265
 #, python-format
 msgid "  Place %(id)s with %(id2)s\n"
 msgstr "  Ort %(id)s mit %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:260
+#: ../src/plugins/import/ImportXml.py:268
 #, python-format
 msgid "  Repository %(id)s with %(id2)s\n"
 msgstr "  Aufbewahrungsort %(id)s mit %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:263
+#: ../src/plugins/import/ImportXml.py:271
 #, python-format
 msgid "  Note %(id)s with %(id2)s\n"
 msgstr "  Notiz %(id)s mit %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:268
+#: ../src/plugins/import/ImportXml.py:276
 #, python-format
 msgid "  Citation %(id)s with %(id2)s\n"
 msgstr "  Fundstelle %(id)s mit %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:276
+#: ../src/plugins/import/ImportXml.py:284
 #, python-format
 msgid "  People: %d\n"
 msgstr "  Personen: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:277
+#: ../src/plugins/import/ImportXml.py:285
 #, python-format
 msgid "  Families: %d\n"
 msgstr "  Familien: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:278
+#: ../src/plugins/import/ImportXml.py:286
 #, python-format
 msgid "  Sources: %d\n"
 msgstr "  Quellen: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:279
+#: ../src/plugins/import/ImportXml.py:287
 #, python-format
 msgid "  Events: %d\n"
 msgstr "  Ereignisse: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:280
+#: ../src/plugins/import/ImportXml.py:288
 #, python-format
 msgid "  Media Objects: %d\n"
 msgstr "  Medienobjekte: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:281
+#: ../src/plugins/import/ImportXml.py:289
 #, python-format
 msgid "  Places: %d\n"
 msgstr "  Orte: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:282
+#: ../src/plugins/import/ImportXml.py:290
 #, python-format
 msgid "  Repositories: %d\n"
 msgstr "  Aufbewahrungsorte: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:283
+#: ../src/plugins/import/ImportXml.py:291
 #, python-format
 msgid "  Notes: %d\n"
 msgstr "  Notizen: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:284
+#: ../src/plugins/import/ImportXml.py:292
 #, python-format
 msgid "  Tags: %d\n"
 msgstr "  Markierung: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:285
+#: ../src/plugins/import/ImportXml.py:293
 #, python-format
 msgid "  Citations: %d\n"
 msgstr "  Fundstellen: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:287
+#: ../src/plugins/import/ImportXml.py:295
 msgid "Number of new objects imported:\n"
 msgstr "Anzahl von neu importierten Objekten:\n"
 
-#: ../src/plugins/import/ImportXml.py:291
+#: ../src/plugins/import/ImportXml.py:304
+#, python-format
+msgid ""
+"\n"
+" The imported file was not self-contained.\n"
+"To correct for that, %d objects were created and\n"
+"their typifying attribute was set to 'Unknown'.\n"
+"The breakdown per category is depicted by the\n"
+"number in parentheses. Where possible these\n"
+"'Unkown' objects are referenced by note %s.\n"
+msgstr ""
+"\n"
+" Die importierte Datei war nicht in sich abgeschlossen.\n"
+"Um dies zu korrigieren, wurden %d Objekte erstellt und\n"
+"und ihre versinbildlichenden Attribute wurde auf 'Unbekannt'\n"
+"gesetzt. Die Aufschlüsselung pro Kategorie wird durch die\n"
+" Zahl in Klammern dargestellt. Wo es möglich ist, werden\n"
+"diese 'Unbekannten' Objekte für Notiz %s referenziert.\n"
+
+#: ../src/plugins/import/ImportXml.py:312
 msgid ""
 "\n"
 "Media objects with relative paths have been\n"
@@ -14562,7 +14595,7 @@ msgstr ""
 "Medienverzeichnis das du in den Einstellungen festlegen kannst\n"
 "oder wenn nicht angegeben relativ zum Benutzerverzeichnis.\n"
 
-#: ../src/plugins/import/ImportXml.py:302
+#: ../src/plugins/import/ImportXml.py:323
 msgid ""
 "\n"
 "\n"
@@ -14573,26 +14606,26 @@ msgstr ""
 "Objekte, die Kandidaten für das Zusammenfassen sind:\n"
 
 #. there is no old style XML
-#: ../src/plugins/import/ImportXml.py:738
-#: ../src/plugins/import/ImportXml.py:1164
-#: ../src/plugins/import/ImportXml.py:1409
-#: ../src/plugins/import/ImportXml.py:1775
+#: ../src/plugins/import/ImportXml.py:762
+#: ../src/plugins/import/ImportXml.py:1191
+#: ../src/plugins/import/ImportXml.py:1437
+#: ../src/plugins/import/ImportXml.py:1812
 msgid "The Gramps Xml you are trying to import is malformed."
 msgstr "Die Gramps XML die du versuchst zu importieren ist missgebildet."
 
-#: ../src/plugins/import/ImportXml.py:739
+#: ../src/plugins/import/ImportXml.py:763
 msgid "Attributes that link the data together are missing."
 msgstr "Attribute die die Daten verbinden fehlen."
 
-#: ../src/plugins/import/ImportXml.py:843
+#: ../src/plugins/import/ImportXml.py:867
 msgid "Gramps XML import"
 msgstr "Gramps-XML importieren"
 
-#: ../src/plugins/import/ImportXml.py:873
+#: ../src/plugins/import/ImportXml.py:897
 msgid "Could not change media path"
 msgstr "Konnte Medienpfad nicht ändern"
 
-#: ../src/plugins/import/ImportXml.py:874
+#: ../src/plugins/import/ImportXml.py:898
 #, python-format
 msgid ""
 "The opened file has media path %s, which conflicts with the media path of "
@@ -14605,7 +14638,7 @@ msgstr ""
 "wurde behalten. Kopiere die Dateien in das korrekte Verzeichnis oder ändere "
 "den Medienpfad der Datenbank in den Einstellungen."
 
-#: ../src/plugins/import/ImportXml.py:929
+#: ../src/plugins/import/ImportXml.py:954
 msgid ""
 "The .gramps file you are importing does not contain information about the "
 "version of Gramps with, which it was produced.\n"
@@ -14617,11 +14650,11 @@ msgstr ""
 "\n"
 "Die Datei wird nicht importiert."
 
-#: ../src/plugins/import/ImportXml.py:932
+#: ../src/plugins/import/ImportXml.py:957
 msgid "Import file misses Gramps version"
 msgstr "Importdatei fehlt Grampsversion"
 
-#: ../src/plugins/import/ImportXml.py:934
+#: ../src/plugins/import/ImportXml.py:959
 msgid ""
 "The .gramps file you are importing does not contain a valid xml-namespace "
 "number.\n"
@@ -14633,11 +14666,11 @@ msgstr ""
 "\n"
 "Die Datei wird nicht importiert."
 
-#: ../src/plugins/import/ImportXml.py:937
+#: ../src/plugins/import/ImportXml.py:962
 msgid "Import file contains unacceptable XML namespace version"
 msgstr "Importdatei enthält nicht akzeptierbare XML namespace Version"
 
-#: ../src/plugins/import/ImportXml.py:940
+#: ../src/plugins/import/ImportXml.py:965
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(newer)s of Gramps, "
@@ -14649,7 +14682,7 @@ msgstr ""
 "importiert. Bitte wechsele auf die neuste Version von Gramps und versuche es "
 "erneut."
 
-#: ../src/plugins/import/ImportXml.py:948
+#: ../src/plugins/import/ImportXml.py:973
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
@@ -14670,11 +14703,11 @@ msgstr ""
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 "für mehr Informationen."
 
-#: ../src/plugins/import/ImportXml.py:960
+#: ../src/plugins/import/ImportXml.py:985
 msgid "The file will not be imported"
 msgstr "Die Datei wird nicht importiert"
 
-#: ../src/plugins/import/ImportXml.py:962
+#: ../src/plugins/import/ImportXml.py:987
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
@@ -14698,25 +14731,25 @@ msgstr ""
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 "für mehr Informationen."
 
-#: ../src/plugins/import/ImportXml.py:975
+#: ../src/plugins/import/ImportXml.py:1000
 msgid "Old xml file"
 msgstr "Alte XML Datei"
 
-#: ../src/plugins/import/ImportXml.py:1086
-#: ../src/plugins/import/ImportXml.py:2417
+#: ../src/plugins/import/ImportXml.py:1112
+#: ../src/plugins/import/ImportXml.py:2458
 #, python-format
 msgid "Witness name: %s"
 msgstr "Namen des Zeugen: %s"
 
-#: ../src/plugins/import/ImportXml.py:1165
+#: ../src/plugins/import/ImportXml.py:1192
 msgid "Any event reference must have a 'hlink' attribute."
 msgstr "Alle Ereignisreferenzen müssen ein 'hlink' Attribut besitzen."
 
-#: ../src/plugins/import/ImportXml.py:1410
+#: ../src/plugins/import/ImportXml.py:1438
 msgid "Any person reference must have a 'hlink' attribute."
 msgstr "Alle Personenreferenzen müssen ein 'hlink' Attribut besitzen."
 
-#: ../src/plugins/import/ImportXml.py:1570
+#: ../src/plugins/import/ImportXml.py:1599
 #, python-format
 msgid ""
 "Your family tree groups name \"%(key)s\" together with \"%(parent)s\", did "
@@ -14725,15 +14758,19 @@ msgstr ""
 "Ihr Stammbaum gruppiert Name \"%(key)s\" zusammen mit \"%(parent)s\", "
 "Gruppierung nicht nach \"%(value)s\" geändert."
 
-#: ../src/plugins/import/ImportXml.py:1573
+#: ../src/plugins/import/ImportXml.py:1602
 msgid "Gramps ignored namemap value"
 msgstr "Gramps hat Namenskartenwert ignoriert"
 
-#: ../src/plugins/import/ImportXml.py:1776
+#: ../src/plugins/import/ImportXml.py:1661
+msgid "Unknown when imported"
+msgstr "Beim Import unbekannt"
+
+#: ../src/plugins/import/ImportXml.py:1813
 msgid "Any note reference must have a 'hlink' attribute."
 msgstr "Alle Notizreferenzen müssen ein 'hlink' Attribut besitzen."
 
-#: ../src/plugins/import/ImportXml.py:2308
+#: ../src/plugins/import/ImportXml.py:2349
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Kommentar für Zeugen: %s"
@@ -14748,183 +14785,230 @@ msgstr ""
 msgid "Import from GEDCOM (%s)"
 msgstr "Importieren von GEDCOM (%s)"
 
-#: ../src/plugins/lib/libgedcom.py:2550 ../src/plugins/lib/libgedcom.py:2902
+#: ../src/plugins/lib/libgedcom.py:2550 ../src/plugins/lib/libgedcom.py:2903
 msgid "GEDCOM import"
 msgstr "GEDCOM-Import"
 
-#: ../src/plugins/lib/libgedcom.py:2571
+#: ../src/plugins/lib/libgedcom.py:2572
 msgid "GEDCOM import report: No errors detected"
 msgstr "GEDCOM Importbericht: keine Fehler gefunden"
 
-#: ../src/plugins/lib/libgedcom.py:2573
+#: ../src/plugins/lib/libgedcom.py:2574
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
 msgstr "GEDCOM Importbericht: %s Fehler gefunden"
 
-#: ../src/plugins/lib/libgedcom.py:2825
+#: ../src/plugins/lib/libgedcom.py:2826
 msgid "Tag recognised but not supported"
 msgstr "Tag erkannt aber nicht unterstützt"
 
-#: ../src/plugins/lib/libgedcom.py:2836
+#: ../src/plugins/lib/libgedcom.py:2837
 msgid "Line ignored as not understood"
 msgstr "Zeile wurde ignoriert da sie nicht verstanden wurde"
 
-#: ../src/plugins/lib/libgedcom.py:2861
+#: ../src/plugins/lib/libgedcom.py:2862
 msgid "Skipped subordinate line"
 msgstr "Untergeordnete Zeile übersprungen"
 
-#: ../src/plugins/lib/libgedcom.py:2893
+#: ../src/plugins/lib/libgedcom.py:2894
 msgid "Records not imported into "
 msgstr "Datensätze nicht importiert nach "
 
-#: ../src/plugins/lib/libgedcom.py:2925
+#: ../src/plugins/lib/libgedcom.py:2929
+#, python-format
+msgid ""
+"Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
+"Record synthesised"
+msgstr ""
+"Fehler: %(msg)s  '%(gramps_id)s' (eingelesen als @%(xref)s@) nicht im "
+"eingelesenen GEDCOM. Datensatz synthetisiert"
+
+#: ../src/plugins/lib/libgedcom.py:2938
+#, python-format
+msgid ""
+"Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
+"Record with typifying attribute 'Unknown' created"
+msgstr ""
+"Fehler: %(msg)s '%(gramps_id)s' (eingelesen als @%(xref)s@) nicht im "
+"eingelesenen GEDCOM. Datensatz mit versinbildlichenden Attribut 'Unbekannt' "
+"erstellt"
+
+#: ../src/plugins/lib/libgedcom.py:2977
+#, python-format
+msgid ""
+"Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s "
+"(input as %(orig_person)s) is not a member of the referenced family. Family "
+"reference removed from person"
+msgstr ""
+"Fehler: Familie '%(family)s' (eingelesen als @%(orig_family)s@) Person "
+"%(person)s (eingelesen als %(orig_person)s) ist kein referenziertes "
+"Mittglied der Familie. Familien referenz wurde von der Person entfernt"
+
+#: ../src/plugins/lib/libgedcom.py:3033
+#, python-format
+msgid ""
+"\n"
+"The imported file was not self-contained.\n"
+"To correct for that, %d objects were created and\n"
+"their typifying attribute was set to 'Unknown'.\n"
+"Where possible these 'Unkown' objects are \n"
+"referenced by note %s.\n"
+msgstr ""
+"\n"
+" Die importierte Datei war nicht in sich abgeschlossen\n"
+"Um dies zu korrigieren, wurden %d Objekte erstellt und\n"
+"und ihre versinbildlichenden Attribute wurde auf 'Unbekannt'\n"
+"gesetzt. Wo es möglich ist, werden diese 'Unbekannten' Objekte\n"
+"durch Notiz %s referenziert.\n"
+
+#: ../src/plugins/lib/libgedcom.py:3051
 msgid "TRLR (trailer)"
 msgstr "TRLR (Anhang)"
 
-#: ../src/plugins/lib/libgedcom.py:2954
+#: ../src/plugins/lib/libgedcom.py:3080
 #, python-format
 msgid "SUBM (Submitter): @%s@"
 msgstr "SUBM (Ersteller): @%s@"
 
-#: ../src/plugins/lib/libgedcom.py:2978 ../src/plugins/lib/libgedcom.py:6432
+#: ../src/plugins/lib/libgedcom.py:3104 ../src/plugins/lib/libgedcom.py:6559
 msgid "GEDCOM data"
 msgstr "GEDCOM Daten"
 
-#: ../src/plugins/lib/libgedcom.py:3024
+#: ../src/plugins/lib/libgedcom.py:3150
 msgid "Unknown tag"
 msgstr "Unbekannter Tag"
 
-#: ../src/plugins/lib/libgedcom.py:3026 ../src/plugins/lib/libgedcom.py:3040
-#: ../src/plugins/lib/libgedcom.py:3044 ../src/plugins/lib/libgedcom.py:3065
+#: ../src/plugins/lib/libgedcom.py:3152 ../src/plugins/lib/libgedcom.py:3166
+#: ../src/plugins/lib/libgedcom.py:3170 ../src/plugins/lib/libgedcom.py:3191
 msgid "Top Level"
 msgstr "Oberste Ebene"
 
-#: ../src/plugins/lib/libgedcom.py:3134
+#: ../src/plugins/lib/libgedcom.py:3260
 #, python-format
 msgid "INDI (individual) Gramps ID %s"
 msgstr "INDI (Individium) Gramps ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:3327 ../src/plugins/lib/libgedcom.py:4622
-#: ../src/plugins/lib/libgedcom.py:4825 ../src/plugins/lib/libgedcom.py:4956
-#: ../src/plugins/lib/libgedcom.py:5581 ../src/plugins/lib/libgedcom.py:5718
+#: ../src/plugins/lib/libgedcom.py:3454 ../src/plugins/lib/libgedcom.py:4749
+#: ../src/plugins/lib/libgedcom.py:4952 ../src/plugins/lib/libgedcom.py:5083
+#: ../src/plugins/lib/libgedcom.py:5708 ../src/plugins/lib/libgedcom.py:5845
 msgid "Filename omitted"
 msgstr "Dateiname ausgelassen"
 
-#: ../src/plugins/lib/libgedcom.py:3329 ../src/plugins/lib/libgedcom.py:4624
-#: ../src/plugins/lib/libgedcom.py:4827 ../src/plugins/lib/libgedcom.py:4958
-#: ../src/plugins/lib/libgedcom.py:5583 ../src/plugins/lib/libgedcom.py:5720
+#: ../src/plugins/lib/libgedcom.py:3456 ../src/plugins/lib/libgedcom.py:4751
+#: ../src/plugins/lib/libgedcom.py:4954 ../src/plugins/lib/libgedcom.py:5085
+#: ../src/plugins/lib/libgedcom.py:5710 ../src/plugins/lib/libgedcom.py:5847
 msgid "Form omitted"
 msgstr "Formular ausgelassen"
 
-#: ../src/plugins/lib/libgedcom.py:4394
+#: ../src/plugins/lib/libgedcom.py:4521
 #, python-format
 msgid "FAM (family) Gramps ID %s"
 msgstr "FAM (Familie) Gramps ID: %s"
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/plugins/lib/libgedcom.py:5107
+#: ../src/plugins/lib/libgedcom.py:5234
 msgid "Empty event note ignored"
 msgstr "Leere Ereignisnotiz ignoriert"
 
-#: ../src/plugins/lib/libgedcom.py:5424 ../src/plugins/lib/libgedcom.py:6235
+#: ../src/plugins/lib/libgedcom.py:5551 ../src/plugins/lib/libgedcom.py:6362
 msgid "Warn: ADDR overwritten"
 msgstr "Warn: ADDR überschrieben"
 
-#: ../src/plugins/lib/libgedcom.py:5595 ../src/plugins/lib/libgedcom.py:5977
+#: ../src/plugins/lib/libgedcom.py:5722 ../src/plugins/lib/libgedcom.py:6104
 msgid "REFN ignored"
 msgstr "REFN ignoriert"
 
-#: ../src/plugins/lib/libgedcom.py:5687
+#: ../src/plugins/lib/libgedcom.py:5814
 #, python-format
 msgid "No title - ID %s"
 msgstr "Kein Titel - ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:5692
+#: ../src/plugins/lib/libgedcom.py:5819
 #, python-format
 msgid "SOUR (source) Gramps ID %s"
 msgstr "SOUR (Quelle) Gramps ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:5903
+#: ../src/plugins/lib/libgedcom.py:6030
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
 msgstr "OBJE (Multimediaobjekt) Gramps ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:5931 ../src/plugins/lib/libgedcom.py:6918
+#: ../src/plugins/lib/libgedcom.py:6058 ../src/plugins/lib/libgedcom.py:7052
 #, python-format
 msgid "Could not import %s"
 msgstr "Kann Datei %s nicht importieren"
 
-#: ../src/plugins/lib/libgedcom.py:5967
+#: ../src/plugins/lib/libgedcom.py:6094
 msgid "BLOB ignored"
 msgstr "BLOB ignoriert"
 
-#: ../src/plugins/lib/libgedcom.py:5987
+#: ../src/plugins/lib/libgedcom.py:6114
 msgid "Multimedia REFN:TYPE ignored"
 msgstr "Multimedia REFN:TYPE ignoriert"
 
-#: ../src/plugins/lib/libgedcom.py:5997
+#: ../src/plugins/lib/libgedcom.py:6124
 msgid "Mutimedia RIN ignored"
 msgstr "Mutimedia RIN ignoriert"
 
-#: ../src/plugins/lib/libgedcom.py:6084
+#: ../src/plugins/lib/libgedcom.py:6211
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
 msgstr "REPO (Aufbewahrungsort) Gramps ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:6360
+#: ../src/plugins/lib/libgedcom.py:6487
 msgid "Head (header)"
 msgstr "Kopf (Dateikopf)"
 
-#: ../src/plugins/lib/libgedcom.py:6376
+#: ../src/plugins/lib/libgedcom.py:6503
 msgid "Approved system identification"
 msgstr "Anerkannte Sytemidentifikation"
 
 #. feature request 2356: avoid genitive form
-#: ../src/plugins/lib/libgedcom.py:6386
+#: ../src/plugins/lib/libgedcom.py:6513
 msgid "Generated by"
 msgstr "Erstellt von"
 
-#: ../src/plugins/lib/libgedcom.py:6400
+#: ../src/plugins/lib/libgedcom.py:6527
 msgid "Name of software product"
 msgstr "Name der Siftware"
 
-#: ../src/plugins/lib/libgedcom.py:6412
+#: ../src/plugins/lib/libgedcom.py:6539
 msgid "Version number of software product"
 msgstr "Versionsnummer des Programms"
 
-#: ../src/plugins/lib/libgedcom.py:6429
+#: ../src/plugins/lib/libgedcom.py:6556
 #, python-format
 msgid "Business that produced the product: %s"
 msgstr "Firma die das Produkt herstellt: %s"
 
-#: ../src/plugins/lib/libgedcom.py:6450
+#: ../src/plugins/lib/libgedcom.py:6577
 msgid "Name of source data"
 msgstr "Name der Quelldaten"
 
-#: ../src/plugins/lib/libgedcom.py:6464
+#: ../src/plugins/lib/libgedcom.py:6591
 msgid "Copyright of source data"
 msgstr "Copyright der Quelldaten"
 
-#: ../src/plugins/lib/libgedcom.py:6478
+#: ../src/plugins/lib/libgedcom.py:6605
 msgid "Publication date of source data"
 msgstr "Publikationsdatum der Quelldaten"
 
 #. feature request 2356: avoid genitive form
-#: ../src/plugins/lib/libgedcom.py:6491
+#: ../src/plugins/lib/libgedcom.py:6618
 #, python-format
 msgid "Import from %s"
 msgstr "Aus %s importieren"
 
-#: ../src/plugins/lib/libgedcom.py:6529
+#: ../src/plugins/lib/libgedcom.py:6656
 msgid "Submission record identifier"
 msgstr "Einreichung Datensatz Bezeichnung"
 
-#: ../src/plugins/lib/libgedcom.py:6540
+#: ../src/plugins/lib/libgedcom.py:6667
 msgid "Language of GEDCOM text"
 msgstr "Sprache des GEDCOM Text"
 
-#: ../src/plugins/lib/libgedcom.py:6564
+#: ../src/plugins/lib/libgedcom.py:6691
 #, python-format
 msgid ""
 "Import of GEDCOM file %s with DEST=%s, could cause errors in the resulting "
@@ -14933,82 +15017,82 @@ msgstr ""
 "Import der GEDCOM Datei %s mit dem ZIEL=%s kann Fehler in der resultierenden "
 "Datenbank verursachen!"
 
-#: ../src/plugins/lib/libgedcom.py:6567
+#: ../src/plugins/lib/libgedcom.py:6694
 msgid "Look for nameless events."
 msgstr "Suche nach namenlosen Ereignissen."
 
-#: ../src/plugins/lib/libgedcom.py:6590
+#: ../src/plugins/lib/libgedcom.py:6717
 msgid "Character set"
 msgstr "Zeichensatz"
 
-#: ../src/plugins/lib/libgedcom.py:6592
+#: ../src/plugins/lib/libgedcom.py:6719
 msgid "Character set and version"
 msgstr "Zeichensatz und Version"
 
-#: ../src/plugins/lib/libgedcom.py:6608
+#: ../src/plugins/lib/libgedcom.py:6735
 msgid "GEDCOM version not supported"
 msgstr "GEDCOM Version nicht unterstützt"
 
-#: ../src/plugins/lib/libgedcom.py:6611
+#: ../src/plugins/lib/libgedcom.py:6738
 msgid "GEDCOM version"
 msgstr "GEDCOM Version"
 
-#: ../src/plugins/lib/libgedcom.py:6614
+#: ../src/plugins/lib/libgedcom.py:6741
 msgid "GEDCOM form not supported"
 msgstr "GEDCOM Formular nicht unterstützt"
 
-#: ../src/plugins/lib/libgedcom.py:6616
+#: ../src/plugins/lib/libgedcom.py:6743
 msgid "GEDCOM form"
 msgstr "GEDCOM Formular"
 
-#: ../src/plugins/lib/libgedcom.py:6662
+#: ../src/plugins/lib/libgedcom.py:6789
 msgid "Creation date of GEDCOM"
 msgstr "Erstellungsdatum von GEDCOM"
 
-#: ../src/plugins/lib/libgedcom.py:6666
+#: ../src/plugins/lib/libgedcom.py:6793
 msgid "Creation date and time of GEDCOM"
 msgstr "Erstellungsdatum und Zeit des GEDCOM"
 
-#: ../src/plugins/lib/libgedcom.py:6703 ../src/plugins/lib/libgedcom.py:6740
+#: ../src/plugins/lib/libgedcom.py:6830 ../src/plugins/lib/libgedcom.py:6867
 msgid "Empty note ignored"
 msgstr "Leere Notiz ignoriert"
 
-#: ../src/plugins/lib/libgedcom.py:6755
+#: ../src/plugins/lib/libgedcom.py:6882
 #, python-format
 msgid "NOTE Gramps ID %s"
 msgstr "Notiz Gramps ID: %s"
 
-#: ../src/plugins/lib/libgedcom.py:6805
+#: ../src/plugins/lib/libgedcom.py:6932
 msgid "Submission: Submitter"
 msgstr "Einreichung: Antragsteller"
 
-#: ../src/plugins/lib/libgedcom.py:6807
+#: ../src/plugins/lib/libgedcom.py:6934
 msgid "Submission: Family file"
 msgstr "Einreichung: Familiendatei"
 
-#: ../src/plugins/lib/libgedcom.py:6809
+#: ../src/plugins/lib/libgedcom.py:6936
 msgid "Submission: Temple code"
 msgstr "Einreichung: Tempelkode"
 
-#: ../src/plugins/lib/libgedcom.py:6811
+#: ../src/plugins/lib/libgedcom.py:6938
 msgid "Submission: Generations of ancestors"
 msgstr "Einreichung: Generationen der Vorfahren"
 
-#: ../src/plugins/lib/libgedcom.py:6813
+#: ../src/plugins/lib/libgedcom.py:6940
 msgid "Submission: Generations of descendants"
 msgstr "Einreichung: Generationen der Nachkommen"
 
-#: ../src/plugins/lib/libgedcom.py:6815
+#: ../src/plugins/lib/libgedcom.py:6942
 msgid "Submission: Ordinance process flag"
 msgstr "Einreichung: Ordinance process flag"
 
 #. # Okay we have no clue which temple this is.
 #. # We should tell the user and store it anyway.
-#: ../src/plugins/lib/libgedcom.py:7020
+#: ../src/plugins/lib/libgedcom.py:7154
 msgid "Invalid temple code"
 msgstr "Ungültiger Tempelkode"
 
-#: ../src/plugins/lib/libgedcom.py:7101
+#: ../src/plugins/lib/libgedcom.py:7235
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
@@ -15016,11 +15100,11 @@ msgstr ""
 "Deine GEDCOM Datei ist beschädigt. Die Datei scheint UTF16 kodiert zu sein, "
 "aber die BOM Markierung fehlt."
 
-#: ../src/plugins/lib/libgedcom.py:7104
+#: ../src/plugins/lib/libgedcom.py:7238
 msgid "Your GEDCOM file is empty."
 msgstr "Deine GEDCOM-Datei ist leer."
 
-#: ../src/plugins/lib/libgedcom.py:7167
+#: ../src/plugins/lib/libgedcom.py:7301
 #, python-format
 msgid "Invalid line %d in GEDCOM file."
 msgstr "Ungültige Zeile %d in der GEDCOM-Datei."
@@ -21394,15 +21478,15 @@ msgid_plural "%d event records were modified."
 msgstr[0] "%d Ereigniseintrag wurde geändert."
 msgstr[1] "%d Ereigniseinträge wurden geändert."
 
-#: ../src/plugins/tool/Check.py:100 ../src/plugins/tool/Check.py:226
+#: ../src/plugins/tool/Check.py:102 ../src/plugins/tool/Check.py:229
 msgid "Checking Database"
 msgstr "Datenbank überprüfen"
 
-#: ../src/plugins/tool/Check.py:101
+#: ../src/plugins/tool/Check.py:103
 msgid "Looking for cross table duplicates"
 msgstr "Suche nach cross table Dupplikaten"
 
-#: ../src/plugins/tool/Check.py:143
+#: ../src/plugins/tool/Check.py:145
 msgid ""
 "Your family tree contains cross table duplicate handles.\n"
 " This is bad and can be fixed by making a backup of your\n"
@@ -21417,39 +21501,49 @@ msgstr ""
 "abgebrochen, das überprüfen und reparieren Werkzeug sollte auf\n"
 "dem neuen Stammbaum erneut ausgeführt werden."
 
-#: ../src/plugins/tool/Check.py:150
+#: ../src/plugins/tool/Check.py:152
 msgid "Check Integrity"
 msgstr "Integrität überprüfen"
 
-#: ../src/plugins/tool/Check.py:244
+#: ../src/plugins/tool/Check.py:230
+#, python-format
+msgid ""
+"Objects referenced by this note were referenced but missing so that is why "
+"they have been created when you ran Check and Repair on %s."
+msgstr ""
+"Objekte, die durch diese Notiz referenziert wurden, wurden referenziert "
+"fehlen aber dies ist der Grund warum sie erstellt wurden, als du überprüfen "
+"und reparieren auf %s ausgefürt hast."
+
+#: ../src/plugins/tool/Check.py:252
 msgid "Looking for invalid name format references"
 msgstr "Suche nach Referenzen mit falschen Namensformat"
 
-#: ../src/plugins/tool/Check.py:296
+#: ../src/plugins/tool/Check.py:304
 msgid "Looking for duplicate spouses"
 msgstr "Suche nach doppelt vorkommenden Partnern"
 
-#: ../src/plugins/tool/Check.py:319
+#: ../src/plugins/tool/Check.py:327
 msgid "Looking for character encoding errors"
 msgstr "Suche nach Zeichencodierungsfehlern"
 
-#: ../src/plugins/tool/Check.py:356
+#: ../src/plugins/tool/Check.py:364
 msgid "Looking for ctrl characters in notes"
 msgstr "Suche nach Strg Zeichen in den Notizen"
 
-#: ../src/plugins/tool/Check.py:381
+#: ../src/plugins/tool/Check.py:389
 msgid "Looking for broken family links"
 msgstr "Suche nach ungültige Familienverknüpfungen"
 
-#: ../src/plugins/tool/Check.py:565
+#: ../src/plugins/tool/Check.py:573
 msgid "Looking for unused objects"
 msgstr "Suche nach unbenutzten Objekten"
 
-#: ../src/plugins/tool/Check.py:665
+#: ../src/plugins/tool/Check.py:673
 msgid "Media object could not be found"
 msgstr "Medienobjekt konnte nicht gefunden werden"
 
-#: ../src/plugins/tool/Check.py:666
+#: ../src/plugins/tool/Check.py:674
 #, python-format
 msgid ""
 "The file:\n"
@@ -21466,95 +21560,99 @@ msgstr ""
 "entweder die Verknüpfung aus der Datenbank entfernen, die Verknüpfung zur "
 "fehlenden Datei behalten, oder eine neue Datei auswählen."
 
-#: ../src/plugins/tool/Check.py:734
+#: ../src/plugins/tool/Check.py:742
 msgid "Looking for empty people records"
 msgstr "Suche nach leeren Personendatensätzen"
 
-#: ../src/plugins/tool/Check.py:742
+#: ../src/plugins/tool/Check.py:750
 msgid "Looking for empty family records"
 msgstr "Suche nach leeren Familiendatensätzen"
 
-#: ../src/plugins/tool/Check.py:750
+#: ../src/plugins/tool/Check.py:758
 msgid "Looking for empty event records"
 msgstr "Suche nach leeren Ereignisdatensätzen"
 
-#: ../src/plugins/tool/Check.py:758
+#: ../src/plugins/tool/Check.py:766
 msgid "Looking for empty source records"
 msgstr "Suche nach leeren Quellendatensätzen"
 
-#: ../src/plugins/tool/Check.py:766
+#: ../src/plugins/tool/Check.py:774
 msgid "Looking for empty citation records"
 msgstr "Suche nach leeren Fundstellendatensätzen"
 
-#: ../src/plugins/tool/Check.py:774
+#: ../src/plugins/tool/Check.py:782
 msgid "Looking for empty place records"
 msgstr "Suche nach leeren Ortsdatensätzen"
 
-#: ../src/plugins/tool/Check.py:782
+#: ../src/plugins/tool/Check.py:790
 msgid "Looking for empty media records"
 msgstr "Suche nach leeren Mediendatensätzen"
 
-#: ../src/plugins/tool/Check.py:790
+#: ../src/plugins/tool/Check.py:798
 msgid "Looking for empty repository records"
 msgstr "Suche nach leeren Aufbewahrungsortedatensätzen"
 
-#: ../src/plugins/tool/Check.py:798
+#: ../src/plugins/tool/Check.py:806
 msgid "Looking for empty note records"
 msgstr "Suche nach leeren Notizdatensätzen"
 
-#: ../src/plugins/tool/Check.py:843
+#: ../src/plugins/tool/Check.py:851
 msgid "Looking for empty families"
 msgstr "Suche nach leeren Familien"
 
-#: ../src/plugins/tool/Check.py:878
+#: ../src/plugins/tool/Check.py:886
 msgid "Looking for broken parent relationships"
 msgstr "Suche nach kaputten Beziehungen von Elternteilen"
 
-#: ../src/plugins/tool/Check.py:915
+#: ../src/plugins/tool/Check.py:923
 msgid "Looking for event problems"
 msgstr "Suche nach Problemen mit Ereignissen"
 
-#: ../src/plugins/tool/Check.py:1031
+#: ../src/plugins/tool/Check.py:1075
 msgid "Looking for person reference problems"
 msgstr "Suche nach Problemen mit Referenzen von Personen"
 
-#: ../src/plugins/tool/Check.py:1052
+#: ../src/plugins/tool/Check.py:1105
 msgid "Looking for family reference problems"
 msgstr "Suche nach Problemen mit Referenzen von Familien"
 
-#: ../src/plugins/tool/Check.py:1075
+#: ../src/plugins/tool/Check.py:1129
 msgid "Looking for repository reference problems"
 msgstr "Suche nach Problemen mit Referenzen von Aufbewahrungsorten"
 
-#: ../src/plugins/tool/Check.py:1097
+#: ../src/plugins/tool/Check.py:1160
 msgid "Looking for place reference problems"
 msgstr "Suche nach Problemen mit Referenzen von Orten"
 
-#: ../src/plugins/tool/Check.py:1189
-msgid "Looking for source and citation reference problems"
-msgstr "Suche nach Problemen mit Referenzen von Quellen und Fundstellen"
+#: ../src/plugins/tool/Check.py:1234
+msgid "Looking for citation reference problems"
+msgstr "Suche nach Problemen mit Fundstellenreferenzen"
 
-#: ../src/plugins/tool/Check.py:1299
+#: ../src/plugins/tool/Check.py:1363
+msgid "Looking for source reference problems"
+msgstr "Suche nach Problemen mit Referenzen von Quellen"
+
+#: ../src/plugins/tool/Check.py:1400
 msgid "Looking for media object reference problems"
 msgstr "Suche nach Problemen mit Referenzen von Medienobjekten"
 
-#: ../src/plugins/tool/Check.py:1416
+#: ../src/plugins/tool/Check.py:1536
 msgid "Looking for note reference problems"
 msgstr "Suche nach Problemen mit Referenzen von Notizen"
 
-#: ../src/plugins/tool/Check.py:1561
+#: ../src/plugins/tool/Check.py:1688
 msgid "Looking for tag reference problems"
 msgstr "Suche nach Problemen mit Tagreferenzen"
 
-#: ../src/plugins/tool/Check.py:1667
+#: ../src/plugins/tool/Check.py:1881
 msgid "No errors were found"
 msgstr "Keine Fehler gefunden"
 
-#: ../src/plugins/tool/Check.py:1668
+#: ../src/plugins/tool/Check.py:1882
 msgid "The database has passed internal checks"
 msgstr "Die internen Prüfungen der Datenbank wurden erfolgreich durchgeführt"
 
-#: ../src/plugins/tool/Check.py:1677
+#: ../src/plugins/tool/Check.py:1891
 #, python-format
 msgid "%(quantity)d broken child/family link was fixed\n"
 msgid_plural "%(quantity)d broken child-family links were fixed\n"
@@ -21562,16 +21660,16 @@ msgstr[0] "%(quantity)d beschädigte Kind/Familie Beziehung wurde repariert\n"
 msgstr[1] ""
 "%(quantity)d beschädigte Kind/Familie Beziehungen wurden repariert\n"
 
-#: ../src/plugins/tool/Check.py:1686
+#: ../src/plugins/tool/Check.py:1900
 msgid "Non existing child"
 msgstr "Kein existierendes Kind"
 
-#: ../src/plugins/tool/Check.py:1694
+#: ../src/plugins/tool/Check.py:1908
 #, python-format
 msgid "%(person)s was removed from the family of %(family)s\n"
 msgstr "%(person)s wurde von der Familie von %(family)s entfernt\n"
 
-#: ../src/plugins/tool/Check.py:1700
+#: ../src/plugins/tool/Check.py:1914
 #, python-format
 msgid "%(quantity)d broken spouse/family link was fixed\n"
 msgid_plural "%(quantity)d broken spouse/family links were fixed\n"
@@ -21580,60 +21678,60 @@ msgstr[0] ""
 msgstr[1] ""
 "%(quantity)d beschädigte Partner/Familie Beziehungen wurden repariert\n"
 
-#: ../src/plugins/tool/Check.py:1709 ../src/plugins/tool/Check.py:1732
+#: ../src/plugins/tool/Check.py:1923 ../src/plugins/tool/Check.py:1946
 msgid "Non existing person"
 msgstr "Nicht-existierende Person"
 
-#: ../src/plugins/tool/Check.py:1717 ../src/plugins/tool/Check.py:1740
+#: ../src/plugins/tool/Check.py:1931 ../src/plugins/tool/Check.py:1954
 #, python-format
 msgid "%(person)s was restored to the family of %(family)s\n"
 msgstr "%(person)s wurde in der Familie von %(family)s wiederhergestellt\n"
 
-#: ../src/plugins/tool/Check.py:1723
+#: ../src/plugins/tool/Check.py:1937
 #, python-format
 msgid "%(quantity)d duplicate spouse/family link was found\n"
 msgid_plural "%(quantity)d duplicate spouse/family links were found\n"
 msgstr[0] "%(quantity)d doppelte Partner/Familienverbindung wurde gefunden\n"
 msgstr[1] "%(quantity)d doppelte Partner/Familienverbindungen wurde gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1746
+#: ../src/plugins/tool/Check.py:1960
 msgid "1 family with no parents or children found, removed.\n"
 msgstr "1 Familie ohne Kinder und Eltern gefunden, entfernt.\n"
 
-#: ../src/plugins/tool/Check.py:1751
+#: ../src/plugins/tool/Check.py:1965
 #, python-format
 msgid "%(quantity)d families with no parents or children, removed.\n"
 msgstr "%(quantity)d Familien ohne Kinder und Eltern gefunden, entfernt.\n"
 
-#: ../src/plugins/tool/Check.py:1757
+#: ../src/plugins/tool/Check.py:1971
 #, python-format
 msgid "%d corrupted family relationship fixed\n"
 msgid_plural "%d corrupted family relationship fixed\n"
 msgstr[0] "%d beschädigte Familienbeziehung repariert\n"
 msgstr[1] "%d beschädigte Familienbeziehungen repariert\n"
 
-#: ../src/plugins/tool/Check.py:1764
+#: ../src/plugins/tool/Check.py:1978
 #, python-format
 msgid "%d person was referenced but not found\n"
 msgid_plural "%d persons were referenced, but not found\n"
 msgstr[0] "%d Person wurde referenziert, aber nicht gefunden\n"
 msgstr[1] "%d Personen wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1771
+#: ../src/plugins/tool/Check.py:1985
 #, python-format
 msgid "%d family was referenced but not found\n"
 msgid_plural "%d families were referenced, but not found\n"
 msgstr[0] "%d Familie wurde referenziert, aber nicht gefunden\n"
 msgstr[1] "%d Familien wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1777
+#: ../src/plugins/tool/Check.py:1991
 #, python-format
 msgid "%d date was corrected\n"
 msgid_plural "%d dates were corrected\n"
 msgstr[0] "%d Datum wurde korrigiert\n"
 msgstr[1] "%d Daten wurden korrigiert\n"
 
-#: ../src/plugins/tool/Check.py:1783
+#: ../src/plugins/tool/Check.py:1997
 #, python-format
 msgid "%(quantity)d repository was referenced but not found\n"
 msgid_plural "%(quantity)d repositories were referenced, but not found\n"
@@ -21642,7 +21740,7 @@ msgstr[0] ""
 msgstr[1] ""
 "%(quantity)d Aufbewahrungsorte wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1789
+#: ../src/plugins/tool/Check.py:2003
 #, python-format
 msgid "%(quantity)d media object was referenced, but not found\n"
 msgid_plural "%(quantity)d media objects were referenced, but not found\n"
@@ -21650,70 +21748,70 @@ msgstr[0] "%(quantity)d Medienobjekt wurde referenziert, aber nicht gefunden\n"
 msgstr[1] ""
 "%(quantity)d Medienobjekte wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1796
+#: ../src/plugins/tool/Check.py:2010
 #, python-format
 msgid "Reference to %(quantity)d missing media object was kept\n"
 msgid_plural "References to %(quantity)d media objects were kept\n"
 msgstr[0] "Referenz zu %(quantity)d fehlenden Medienobjekt wurde behalten\n"
 msgstr[1] "Referenz zu %(quantity)d fehlenden Medienobjekten wurde behalten\n"
 
-#: ../src/plugins/tool/Check.py:1803
+#: ../src/plugins/tool/Check.py:2017
 #, python-format
 msgid "%(quantity)d missing media object was replaced\n"
 msgid_plural "%(quantity)d missing media objects were replaced\n"
 msgstr[0] "%(quantity)d fehlendes Medienobjekt wurde ersetzt\n"
 msgstr[1] "%(quantity)d fehlende Medienobjekte wurden ersetzt\n"
 
-#: ../src/plugins/tool/Check.py:1810
+#: ../src/plugins/tool/Check.py:2024
 #, python-format
 msgid "%(quantity)d missing media object was removed\n"
 msgid_plural "%(quantity)d missing media objects were removed\n"
 msgstr[0] "%(quantity)d fehlendes Medienobjekt wurde entfernt\n"
 msgstr[1] "%(quantity)d fehlende Medienobjekte wurden entfernt\n"
 
-#: ../src/plugins/tool/Check.py:1817
+#: ../src/plugins/tool/Check.py:2031
 #, python-format
-msgid "%(quantity)d invalid event reference was removed\n"
-msgid_plural "%(quantity)d invalid event references were removed\n"
-msgstr[0] "%(quantity)d ungültige Ereignisreferenz wurde entfernt\n"
-msgstr[1] "%(quantity)d ungültige Ereignisreferenzen wurden entfernt\n"
+msgid "%(quantity)d event was referenced but not found\n"
+msgid_plural "%(quantity)d events were referenced, but not found\n"
+msgstr[0] "%(quantity)d Ereignis wurde referenziert, aber nicht gefunden\n"
+msgstr[1] "%(quantity)d Ereignisse wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1824
+#: ../src/plugins/tool/Check.py:2038
 #, python-format
 msgid "%(quantity)d invalid birth event name was fixed\n"
 msgid_plural "%(quantity)d invalid birth event names were fixed\n"
 msgstr[0] "%(quantity)d ungültiger Geburtsereignisname wurde korrigiert\n"
 msgstr[1] "%(quantity)d ungültige Geburtsereignisnamen wurden korrigiert\n"
 
-#: ../src/plugins/tool/Check.py:1831
+#: ../src/plugins/tool/Check.py:2045
 #, python-format
 msgid "%(quantity)d invalid death event name was fixed\n"
 msgid_plural "%(quantity)d invalid death event names were fixed\n"
 msgstr[0] "%(quantity)d ungültiger Todesereignisname wurde korrigiert\n"
 msgstr[1] "%(quantity)d ungültige Todesereignisnamen wurden korrigiert\n"
 
-#: ../src/plugins/tool/Check.py:1838
+#: ../src/plugins/tool/Check.py:2052
 #, python-format
 msgid "%(quantity)d place was referenced but not found\n"
 msgid_plural "%(quantity)d places were referenced, but not found\n"
 msgstr[0] "%(quantity)d Ort wurde referenziert, aber nicht gefunden\n"
 msgstr[1] "%(quantity)d Orte wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1845
+#: ../src/plugins/tool/Check.py:2059
 #, python-format
 msgid "%(quantity)d citation was referenced but not found\n"
 msgid_plural "%(quantity)d citations were referenced, but not found\n"
 msgstr[0] "%(quantity)d Fundstelle wurde referenziert, aber nicht gefunden\n"
 msgstr[1] "%(quantity)d Fundstellen wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1852
+#: ../src/plugins/tool/Check.py:2066
 #, python-format
 msgid "%(quantity)d source was referenced but not found\n"
 msgid_plural "%(quantity)d sources were referenced, but not found\n"
 msgstr[0] "%(quantity)d Quelle wurde referenziert, aber nicht gefunden\n"
 msgstr[1] "%(quantity)d Quellen wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1859
+#: ../src/plugins/tool/Check.py:2073
 #, python-format
 msgid "%(quantity)d media object was referenced but not found\n"
 msgid_plural "%(quantity)d media objects were referenced but not found\n"
@@ -21721,7 +21819,7 @@ msgstr[0] "%(quantity)d Medienobjekt wurde referenziert, aber nicht gefunden\n"
 msgstr[1] ""
 "%(quantity)d Medienobjekte wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1866
+#: ../src/plugins/tool/Check.py:2080
 #, python-format
 msgid "%(quantity)d note object was referenced but not found\n"
 msgid_plural "%(quantity)d note objects were referenced but not found\n"
@@ -21729,7 +21827,7 @@ msgstr[0] "%(quantity)d Notizobjekt wurde referenziert, aber nicht gefunden\n"
 msgstr[1] ""
 "%(quantity)d Notizobjekte wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1872
+#: ../src/plugins/tool/Check.py:2086 ../src/plugins/tool/Check.py:2092
 #, python-format
 msgid "%(quantity)d tag object was referenced but not found\n"
 msgid_plural "%(quantity)d tag objects were referenced but not found\n"
@@ -21737,14 +21835,14 @@ msgstr[0] "%(quantity)d Markerobjekt wurde referenziert, aber nicht gefunden\n"
 msgstr[1] ""
 "%(quantity)d Markerobjekte wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1878
+#: ../src/plugins/tool/Check.py:2098
 #, python-format
 msgid "%(quantity)d invalid name format reference was removed\n"
 msgid_plural "%(quantity)d invalid name format references were removed\n"
 msgstr[0] "%(quantity)d ungültige Namensformatreferenz wurde entfernt\n"
 msgstr[1] "%(quantity)d ungültige Namensformatreferenzen wurden entfernt\n"
 
-#: ../src/plugins/tool/Check.py:1884
+#: ../src/plugins/tool/Check.py:2104
 #, python-format
 msgid ""
 "%(empty_obj)d empty objects removed:\n"
@@ -21767,11 +21865,11 @@ msgstr ""
 "   %(repo)d Aufbewahrungsorteobjekte\n"
 "   %(note)d Notizobjekte\n"
 
-#: ../src/plugins/tool/Check.py:1931
+#: ../src/plugins/tool/Check.py:2151
 msgid "Integrity Check Results"
 msgstr "Resultate der Integritätsprüfung"
 
-#: ../src/plugins/tool/Check.py:1936
+#: ../src/plugins/tool/Check.py:2156
 msgid "Check and Repair"
 msgstr "Prüfen und reparieren"
 
@@ -23999,8 +24097,8 @@ msgid ""
 "name will take you to their family/ relationship&#8217;s page."
 msgstr ""
 "Diese Seite enthält ein Verzeichnis aller Familien/Beziehungen der Datenbank "
-"sortiert nach dem Familiennamen/Nachnamen. Klicken auf den Namen einer Person "
-"bringt dich zu der Familien/Beziehungs Seite."
+"sortiert nach dem Familiennamen/Nachnamen. Klicken auf den Namen einer "
+"Person bringt dich zu der Familien/Beziehungs Seite."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3116
 #: ../src/plugins/webreport/NarrativeWeb.py:3365
@@ -24208,9 +24306,9 @@ msgid ""
 msgstr ""
 "Diese Kartenseite stellt die Person mit ihren Nachkommen und all ihren "
 "Ereignissen/Orten dar. Wenn du die Maus über einer Markierung platzierst, "
-"wird der Name des Ort angezeigt. Die Markierungen und Referenzliste sind nach "
-"Datum sortiert (wenn vorhanden). Klicken auf einen Ort im Referenzbereich "
-"bringt dich auf die Ortsseite."
+"wird der Name des Ort angezeigt. Die Markierungen und Referenzliste sind "
+"nach Datum sortiert (wenn vorhanden). Klicken auf einen Ort im "
+"Referenzbereich bringt dich auf die Ortsseite."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5633
 msgid "Drop Markers"
@@ -24381,12 +24479,12 @@ msgid "Whether to store the web pages in an archive file"
 msgstr "Ob die Webseiten in einer Archivdatei gespeichert werden"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7687
-#: ../src/plugins/webreport/WebCal.py:1303
+#: ../src/plugins/webreport/WebCal.py:1302
 msgid "Destination"
 msgstr "Ziel"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7689
-#: ../src/plugins/webreport/WebCal.py:1305
+#: ../src/plugins/webreport/WebCal.py:1304
 msgid "The destination directory for the web files"
 msgstr "Das Zielverzeichnis für die Webdateien"
 
@@ -24407,32 +24505,32 @@ msgid "Select filter to restrict people that appear on web site"
 msgstr "Filter wählen um Personen, die auf der Website erscheinen zu begrenzen"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7728
-#: ../src/plugins/webreport/WebCal.py:1342
+#: ../src/plugins/webreport/WebCal.py:1341
 msgid "File extension"
 msgstr "Dateierweiterung"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7731
-#: ../src/plugins/webreport/WebCal.py:1345
+#: ../src/plugins/webreport/WebCal.py:1344
 msgid "The extension to be used for the web files"
 msgstr "Die Erweiterung die für die Webdateien verwendet wird"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7734
-#: ../src/plugins/webreport/WebCal.py:1348
+#: ../src/plugins/webreport/WebCal.py:1347
 msgid "Copyright"
 msgstr "Copyright"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7737
-#: ../src/plugins/webreport/WebCal.py:1351
+#: ../src/plugins/webreport/WebCal.py:1350
 msgid "The copyright to be used for the web files"
 msgstr "Das Copyright das für die Webdateien verwendet wird"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7740
-#: ../src/plugins/webreport/WebCal.py:1357
+#: ../src/plugins/webreport/WebCal.py:1356
 msgid "StyleSheet"
 msgstr "Layoutvorlage"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7745
-#: ../src/plugins/webreport/WebCal.py:1360
+#: ../src/plugins/webreport/WebCal.py:1359
 msgid "The stylesheet to be used for the web pages"
 msgstr "Die Layoutvorlage, für die Webseiten"
 
@@ -24698,17 +24796,17 @@ msgid "Johnson Family Tree"
 msgstr "Johnson Stammbaum"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7921
-#: ../src/plugins/webreport/WebCal.py:1500
+#: ../src/plugins/webreport/WebCal.py:1499
 msgid "Advanced Options"
 msgstr "Erweiterte Optionen"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7924
-#: ../src/plugins/webreport/WebCal.py:1502
+#: ../src/plugins/webreport/WebCal.py:1501
 msgid "Character set encoding"
 msgstr "Codierung der Zeichensetzung"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7927
-#: ../src/plugins/webreport/WebCal.py:1505
+#: ../src/plugins/webreport/WebCal.py:1504
 msgid "The encoding to be used for the web files"
 msgstr "Die Kodierung die für die Webdateien verwendet wird"
 
@@ -24891,10 +24989,10 @@ msgstr "Alphabet Menü: %s"
 #. Number of directory levels up to get to root
 #. generate progress pass for "Year At A Glance"
 #: ../src/plugins/webreport/WebCal.py:294
-#: ../src/plugins/webreport/WebCal.py:821
-#: ../src/plugins/webreport/WebCal.py:884
-#: ../src/plugins/webreport/WebCal.py:1065
-#: ../src/plugins/webreport/WebCal.py:1071
+#: ../src/plugins/webreport/WebCal.py:820
+#: ../src/plugins/webreport/WebCal.py:883
+#: ../src/plugins/webreport/WebCal.py:1064
+#: ../src/plugins/webreport/WebCal.py:1070
 msgid "Web Calendar Report"
 msgstr "Webkalender"
 
@@ -24927,21 +25025,21 @@ msgstr "Erzählende Website Anfang"
 msgid "Full year at a Glance"
 msgstr "Jahresüberblick"
 
-#: ../src/plugins/webreport/WebCal.py:822
+#: ../src/plugins/webreport/WebCal.py:821
 msgid "Formatting months ..."
 msgstr "Formatiere Monate ..."
 
-#: ../src/plugins/webreport/WebCal.py:885
+#: ../src/plugins/webreport/WebCal.py:884
 msgid "Creating Year At A Glance calendar"
 msgstr "Erstelle Jahresüberblick Kalender"
 
 #. page title
-#: ../src/plugins/webreport/WebCal.py:890
+#: ../src/plugins/webreport/WebCal.py:889
 #, python-format
 msgid "%(year)d, At A Glance"
 msgstr "Jahresüberblick %(year)d"
 
-#: ../src/plugins/webreport/WebCal.py:904
+#: ../src/plugins/webreport/WebCal.py:903
 msgid ""
 "This calendar is meant to give you access to all your data at a glance "
 "compressed into one page. Clicking on a date will take you to a page that "
@@ -24953,229 +25051,229 @@ msgstr ""
 "sind.\n"
 
 #. page title
-#: ../src/plugins/webreport/WebCal.py:956
+#: ../src/plugins/webreport/WebCal.py:955
 msgid "One Day Within A Year"
 msgstr "Ein Tag innerhalb eines Jahres"
 
-#: ../src/plugins/webreport/WebCal.py:1167
+#: ../src/plugins/webreport/WebCal.py:1166
 #, python-format
 msgid "%(spouse)s and %(person)s"
 msgstr "%(spouse)s und %(person)s"
 
 #. Display date as user set in preferences
-#: ../src/plugins/webreport/WebCal.py:1185
+#: ../src/plugins/webreport/WebCal.py:1184
 #, python-format
 msgid ""
 "Generated by <a href=\"http://gramps-project.org\">Gramps</a> on %(date)s"
 msgstr ""
 "Erstellt mit <a href=\"http://gramps-project.org\">Gramps</a> am %(date)s"
 
-#: ../src/plugins/webreport/WebCal.py:1309
+#: ../src/plugins/webreport/WebCal.py:1308
 msgid "Calendar Title"
 msgstr "Kalendertitel"
 
-#: ../src/plugins/webreport/WebCal.py:1309
+#: ../src/plugins/webreport/WebCal.py:1308
 msgid "My Family Calendar"
 msgstr "Mein Familienkalender"
 
-#: ../src/plugins/webreport/WebCal.py:1310
+#: ../src/plugins/webreport/WebCal.py:1309
 msgid "The title of the calendar"
 msgstr "Der Titel des Kalenders"
 
-#: ../src/plugins/webreport/WebCal.py:1367
+#: ../src/plugins/webreport/WebCal.py:1366
 msgid "Content Options"
 msgstr "Inhaltsoptionen"
 
-#: ../src/plugins/webreport/WebCal.py:1372
+#: ../src/plugins/webreport/WebCal.py:1371
 msgid "Create multiple year calendars"
 msgstr "Kalender für mehrere Jahre erstellen"
 
-#: ../src/plugins/webreport/WebCal.py:1373
+#: ../src/plugins/webreport/WebCal.py:1372
 msgid "Whether to create Multiple year calendars or not."
 msgstr "Ob Kalender für mehrere Jahre erstellt wird oder nicht."
 
-#: ../src/plugins/webreport/WebCal.py:1377
+#: ../src/plugins/webreport/WebCal.py:1376
 msgid "Start Year for the Calendar(s)"
 msgstr "Startjahr de(s/r) Kalender"
 
-#: ../src/plugins/webreport/WebCal.py:1379
+#: ../src/plugins/webreport/WebCal.py:1378
 msgid "Enter the starting year for the calendars between 1900 - 3000"
 msgstr "Gib ein Startjahr der Kalender zwischen 1900 und 3000 ein"
 
-#: ../src/plugins/webreport/WebCal.py:1383
+#: ../src/plugins/webreport/WebCal.py:1382
 msgid "End Year for the Calendar(s)"
 msgstr "Endjahr de(s/r) Kalender"
 
-#: ../src/plugins/webreport/WebCal.py:1385
+#: ../src/plugins/webreport/WebCal.py:1384
 msgid "Enter the ending year for the calendars between 1900 - 3000."
 msgstr "Gib ein Endjahr der Kalender zwischen 1900 und 3000 ein."
 
-#: ../src/plugins/webreport/WebCal.py:1402
+#: ../src/plugins/webreport/WebCal.py:1401
 msgid "Holidays will be included for the selected country"
 msgstr "Feiertage werden für das gewählte Land aufgenommen"
 
-#: ../src/plugins/webreport/WebCal.py:1422
+#: ../src/plugins/webreport/WebCal.py:1421
 msgid "Home link"
 msgstr "Heimat Link"
 
-#: ../src/plugins/webreport/WebCal.py:1423
+#: ../src/plugins/webreport/WebCal.py:1422
 msgid ""
 "The link to be included to direct the user to the main page of the web site"
 msgstr ""
 "Der Link der aufgenommen wird um den Benutzer auf die Hauptseite des "
 "Webauftritt zu leiten"
 
-#: ../src/plugins/webreport/WebCal.py:1443
+#: ../src/plugins/webreport/WebCal.py:1442
 msgid "Jan - Jun Notes"
 msgstr "Jan - Jun Notizen"
 
-#: ../src/plugins/webreport/WebCal.py:1445
+#: ../src/plugins/webreport/WebCal.py:1444
 msgid "January Note"
 msgstr "Januarnotiz"
 
-#: ../src/plugins/webreport/WebCal.py:1446
+#: ../src/plugins/webreport/WebCal.py:1445
 msgid "The note for the month of January"
 msgstr "Die Notiz für den Monat Januar"
 
-#: ../src/plugins/webreport/WebCal.py:1449
+#: ../src/plugins/webreport/WebCal.py:1448
 msgid "February Note"
 msgstr "Februarnotiz"
 
-#: ../src/plugins/webreport/WebCal.py:1450
+#: ../src/plugins/webreport/WebCal.py:1449
 msgid "The note for the month of February"
 msgstr "Die Notiz für den Monat Februar"
 
-#: ../src/plugins/webreport/WebCal.py:1453
+#: ../src/plugins/webreport/WebCal.py:1452
 msgid "March Note"
 msgstr "Märznotiz"
 
-#: ../src/plugins/webreport/WebCal.py:1454
+#: ../src/plugins/webreport/WebCal.py:1453
 msgid "The note for the month of March"
 msgstr "Die Notiz für den Monat März"
 
-#: ../src/plugins/webreport/WebCal.py:1457
+#: ../src/plugins/webreport/WebCal.py:1456
 msgid "April Note"
 msgstr "Aprilnotiz"
 
-#: ../src/plugins/webreport/WebCal.py:1458
+#: ../src/plugins/webreport/WebCal.py:1457
 msgid "The note for the month of April"
 msgstr "Die Notiz für den Monat April"
 
-#: ../src/plugins/webreport/WebCal.py:1461
+#: ../src/plugins/webreport/WebCal.py:1460
 msgid "May Note"
 msgstr "Mai. Notiz"
 
-#: ../src/plugins/webreport/WebCal.py:1462
+#: ../src/plugins/webreport/WebCal.py:1461
 msgid "The note for the month of May"
 msgstr "Die Notiz für den Monat Mai"
 
-#: ../src/plugins/webreport/WebCal.py:1465
+#: ../src/plugins/webreport/WebCal.py:1464
 msgid "June Note"
 msgstr "Juninotiz"
 
-#: ../src/plugins/webreport/WebCal.py:1466
+#: ../src/plugins/webreport/WebCal.py:1465
 msgid "The note for the month of June"
 msgstr "Die Notiz für den Monat Juni"
 
-#: ../src/plugins/webreport/WebCal.py:1469
+#: ../src/plugins/webreport/WebCal.py:1468
 msgid "Jul - Dec Notes"
 msgstr "Jul. - Dez. Notizen"
 
-#: ../src/plugins/webreport/WebCal.py:1471
+#: ../src/plugins/webreport/WebCal.py:1470
 msgid "July Note"
 msgstr "Julinotiz"
 
-#: ../src/plugins/webreport/WebCal.py:1472
+#: ../src/plugins/webreport/WebCal.py:1471
 msgid "The note for the month of July"
 msgstr "Die Notiz für den Monat Juli"
 
-#: ../src/plugins/webreport/WebCal.py:1475
+#: ../src/plugins/webreport/WebCal.py:1474
 msgid "August Note"
 msgstr "Augustnotiz"
 
-#: ../src/plugins/webreport/WebCal.py:1476
+#: ../src/plugins/webreport/WebCal.py:1475
 msgid "The note for the month of August"
 msgstr "Die Notiz für den Monat August"
 
-#: ../src/plugins/webreport/WebCal.py:1479
+#: ../src/plugins/webreport/WebCal.py:1478
 msgid "September Note"
 msgstr "Septembernotiz"
 
-#: ../src/plugins/webreport/WebCal.py:1480
+#: ../src/plugins/webreport/WebCal.py:1479
 msgid "The note for the month of September"
 msgstr "Die Notiz für den Monat September"
 
-#: ../src/plugins/webreport/WebCal.py:1483
+#: ../src/plugins/webreport/WebCal.py:1482
 msgid "October Note"
 msgstr "Oktobernotiz"
 
-#: ../src/plugins/webreport/WebCal.py:1484
+#: ../src/plugins/webreport/WebCal.py:1483
 msgid "The note for the month of October"
 msgstr "Die Notiz für den Monat Oktober"
 
-#: ../src/plugins/webreport/WebCal.py:1487
+#: ../src/plugins/webreport/WebCal.py:1486
 msgid "November Note"
 msgstr "Novembernotiz"
 
-#: ../src/plugins/webreport/WebCal.py:1488
+#: ../src/plugins/webreport/WebCal.py:1487
 msgid "The note for the month of November"
 msgstr "Die Notiz für den Monat November"
 
-#: ../src/plugins/webreport/WebCal.py:1491
+#: ../src/plugins/webreport/WebCal.py:1490
 msgid "December Note"
 msgstr "Dezembernotiz"
 
-#: ../src/plugins/webreport/WebCal.py:1492
+#: ../src/plugins/webreport/WebCal.py:1491
 msgid "The note for the month of December"
 msgstr "Die Notiz für den Monat Dezember"
 
-#: ../src/plugins/webreport/WebCal.py:1508
+#: ../src/plugins/webreport/WebCal.py:1507
 msgid "Create \"Year At A Glance\" Calendar"
 msgstr "Erstelle \"Jahresüberblick\" Kalender"
 
-#: ../src/plugins/webreport/WebCal.py:1509
+#: ../src/plugins/webreport/WebCal.py:1508
 msgid "Whether to create A one-page mini calendar with dates highlighted"
 msgstr "Ob ein Einseitenminikalender mit hervorgehobenen Daten erstellt wird"
 
-#: ../src/plugins/webreport/WebCal.py:1513
+#: ../src/plugins/webreport/WebCal.py:1512
 msgid "Create one day event pages for Year At A Glance calendar"
 msgstr "Erstelle Eintagesereignissseiten für Jahresüberblick Kalender"
 
-#: ../src/plugins/webreport/WebCal.py:1515
+#: ../src/plugins/webreport/WebCal.py:1514
 msgid "Whether to create one day pages or not"
 msgstr "Ob Eintages Seiten erstellt werden oder nicht"
 
-#: ../src/plugins/webreport/WebCal.py:1518
+#: ../src/plugins/webreport/WebCal.py:1517
 msgid "Link to Narrated Web Report"
 msgstr "Link zu erzählender Website"
 
-#: ../src/plugins/webreport/WebCal.py:1519
+#: ../src/plugins/webreport/WebCal.py:1518
 msgid "Whether to link data to web report or not"
 msgstr "Ob Daten mit einem Webbericht verknüpft werden oder nicht"
 
-#: ../src/plugins/webreport/WebCal.py:1523
+#: ../src/plugins/webreport/WebCal.py:1522
 msgid "Link prefix"
 msgstr "Verknüpfungspräfix"
 
-#: ../src/plugins/webreport/WebCal.py:1524
+#: ../src/plugins/webreport/WebCal.py:1523
 msgid "A Prefix on the links to take you to Narrated Web Report"
 msgstr "Ein Präfix an den Links um dich zum erzählenden Webbericht zu bringen"
 
-#: ../src/plugins/webreport/WebCal.py:1680
+#: ../src/plugins/webreport/WebCal.py:1679
 #, python-format
 msgid "%s old"
 msgstr "%s alt"
 
-#: ../src/plugins/webreport/WebCal.py:1680
+#: ../src/plugins/webreport/WebCal.py:1679
 msgid "birth"
 msgstr "Geburt"
 
-#: ../src/plugins/webreport/WebCal.py:1687
+#: ../src/plugins/webreport/WebCal.py:1686
 #, python-format
 msgid "%(couple)s, <em>wedding</em>"
 msgstr "%(couple)s, <em>Hochzeit</em>"
 
-#: ../src/plugins/webreport/WebCal.py:1690
+#: ../src/plugins/webreport/WebCal.py:1689
 #, python-format
 msgid "%(couple)s, <em>%(years)d</em> year anniversary"
 msgid_plural "%(couple)s, <em>%(years)d</em> year anniversary"
@@ -27856,7 +27954,7 @@ msgstr "Eltern nach oben verschieben"
 msgid "_Display on startup"
 msgstr "_Beim Starten anzeigen"
 
-#: ../src/glade/displaystate.glade.h:1
+#: ../src/glade/displaystate.glade.h:1 ../data/gramps.desktop.in.h:2
 msgid "Gramps"
 msgstr "Gramps"
 
@@ -29999,13 +30097,14 @@ msgid "Version:"
 msgstr "Version:"
 
 #: ../data/gramps.desktop.in.h:1
-msgid "Gramps Genealogy System"
-msgstr "Gramps Genealogiesystem"
-
 msgid "Genealogy System"
 msgstr "Genealogiesystem"
 
-#: ../data/gramps.desktop.in.h:2
+#: ../data/gramps.desktop.in.h:3
+msgid "Gramps Genealogy System"
+msgstr "Gramps Genealogiesystem"
+
+#: ../data/gramps.desktop.in.h:4
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
 msgstr ""
@@ -30868,6 +30967,32 @@ msgstr ""
 "werden. Du kannst auch den Vertrauensgrad eines Datums und sogar zwischen "
 "sieben verschiedenen Kalendern wählen. Probiere die Schaltfläche neben dem "
 "Datumsfeld im Ereigniseditor."
+
+#~ msgid "Rebuild reference map"
+#~ msgstr "Interne Referenzen neu erstellen"
+
+#~ msgid "The Database version is not supported by this version of Gramps."
+#~ msgstr ""
+#~ "Die Version der Datenbank wird von dieser Gramps Version nicht "
+#~ "unterstützt."
+
+#~ msgid ""
+#~ "Your family tree groups name %(key)s together with %(present)s, did not "
+#~ "change this grouping to %(value)s"
+#~ msgstr ""
+#~ "Ihr Stammbaum gruppiert Name %(key)s zusammen mit %(present)s, "
+#~ "Gruppierung nicht geändert nach %(value)s"
+
+#~ msgid "Import database"
+#~ msgstr "Datenbank importieren"
+
+#~ msgid "Looking for source and citation reference problems"
+#~ msgstr "Suche nach Problemen mit Referenzen von Quellen und Fundstellen"
+
+#~ msgid "%(quantity)d invalid event reference was removed\n"
+#~ msgid_plural "%(quantity)d invalid event references were removed\n"
+#~ msgstr[0] "%(quantity)d ungültige Ereignisreferenz wurde entfernt\n"
+#~ msgstr[1] "%(quantity)d ungültige Ereignisreferenzen wurden entfernt\n"
 
 #~ msgid "Export:"
 #~ msgstr "Export:"
