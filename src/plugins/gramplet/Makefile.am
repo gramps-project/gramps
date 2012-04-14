@@ -12,7 +12,6 @@ pkgpython_PYTHON = \
 	Attributes.py \
 	AttributesGramplet.py \
 	Backlinks.py \
-	bottombar.gpr.py \
 	CalendarGramplet.py \
 	Children.py \
 	Citations.py \

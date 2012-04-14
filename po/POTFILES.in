@@ -265,7 +265,6 @@ src/plugins/gramplet/AgeStats.py
 src/plugins/gramplet/Attributes.py
 src/plugins/gramplet/AttributesGramplet.py
 src/plugins/gramplet/Backlinks.py
-src/plugins/gramplet/bottombar.gpr.py
 src/plugins/gramplet/CalendarGramplet.py
 src/plugins/gramplet/Children.py
 src/plugins/gramplet/Citations.py
@@ -407,7 +406,6 @@ src/plugins/view/citationlistview.py
 src/plugins/view/eventview.py
 src/plugins/view/familyview.py
 src/plugins/view/fanchartview.py
-src/plugins/view/fanchartview.gpr.py
 src/plugins/view/geography.gpr.py
 src/plugins/view/geoevents.py
 src/plugins/view/geofamily.py
@@ -422,7 +420,6 @@ src/plugins/view/pedigreeview.py
 src/plugins/view/personlistview.py
 src/plugins/view/persontreeview.py
 src/plugins/view/placelistview.py
-src/plugins/view/placetreeview.gpr.py
 src/plugins/view/placetreeview.py
 src/plugins/view/relview.py
 src/plugins/view/repoview.py

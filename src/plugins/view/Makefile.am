@@ -11,7 +11,6 @@ pkgpython_PYTHON = \
 	citationtreeview.py \
 	eventview.py \
 	familyview.py \
-	fanchartview.gpr.py \
 	fanchartview.py \
 	geoclose.py \
 	geoevents.py \
@@ -29,7 +28,6 @@ pkgpython_PYTHON = \
 	persontreeview.py \
 	placelistview.py \
 	placetreeview.py \
-	placetreeview.gpr.py \
 	relview.py \
 	repoview.py \
 	sourceview.py \
