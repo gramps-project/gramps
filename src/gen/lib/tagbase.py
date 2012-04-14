@@ -128,3 +128,27 @@ class TagBase(object):
         """
         for addendum in acquisition.get_tag_list():
             self.add_tag(addendum)
+
+    def replace_tag_references(self, old_handle, new_handle):
+        """
+        Replace references to note handles in the list of this object and
+        merge equivalent entries.
+
+        :param old_handle: The note handle to be replaced.
+        :type old_handle: str
+        :param new_handle: The note handle to replace the old one with.
+        :type new_handle: str
+        """
+        refs_list = self.tag_list[:]
+        new_ref = None
+        if new_handle in self.tag_list:
+            new_ref = new_handle
+        n_replace = refs_list.count(old_handle)
+        for ix_replace in xrange(n_replace):
+            idx = refs_list.index(old_handle)
+            if new_ref:
+                self.tag_list.pop(idx)
+                refs_list.pop(idx)
+            else:
+                self.tag_list[idx] = new_handle
+

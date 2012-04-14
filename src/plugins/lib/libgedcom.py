@@ -2565,6 +2565,7 @@ class GedcomParser(UpdateCallback):
                 src.set_title(title)
                 self.dbase.add_source(src, self.trans)
             
+        self.__check_xref()
         self.dbase.enable_signals()
         self.dbase.request_rebuild()
         if self.number_of_errors == 0:
@@ -2913,6 +2914,131 @@ class GedcomParser(UpdateCallback):
         """
         self.backoff = True
 
+    def __check_xref(self):
+
+        def __check(map, trans, class_func, commit_func, gramps_id2handle, msg):
+            for input_id, gramps_id in map.map().iteritems():
+                # Check whether an object exists for the mapped gramps_id
+                if not trans.get(str(gramps_id)):
+                    handle = self.__find_from_handle(gramps_id, 
+                                                     gramps_id2handle)
+                    if msg == "FAM":
+                        Utils.make_unknown(gramps_id, self.explanation.handle, 
+                                           class_func, commit_func, self.trans,
+                                           db=self.dbase)
+                        self.__add_msg(_("Error: %(msg)s  '%(gramps_id)s'"
+                                         " (input as @%(xref)s@) not in input"
+                                         " GEDCOM. Record synthesised") %
+                                         {'msg' : msg, 'gramps_id' : gramps_id,
+                                          'xref' : input_id})
+                    else:
+                        Utils.make_unknown(gramps_id, self.explanation.handle, 
+                                           class_func, commit_func, self.trans)
+                        self.missing_references +=1
+                        self.__add_msg(_("Error: %(msg)s '%(gramps_id)s'"
+                                         " (input as @%(xref)s@) not in input"
+                                         " GEDCOM. Record with typifying"
+                                         " attribute 'Unknown' created") %
+                                         {'msg' : msg, 'gramps_id' : gramps_id,
+                                          'xref' : input_id})
+    
+        self.explanation = Utils.create_explanation_note(self.dbase)
+
+        self.missing_references = 0
+        previous_errors = self.number_of_errors
+        __check(self.pid_map, self.dbase.id_trans, self.__find_or_create_person,
+                self.dbase.commit_person, self.gid2id, "INDI")
+        __check(self.fid_map, self.dbase.fid_trans, self.__find_or_create_family,
+                self.dbase.commit_family, self.fid2id, "FAM")
+        __check(self.sid_map, self.dbase.sid_trans, self.__find_or_create_source,
+                self.dbase.commit_source, self.sid2id, "SOUR")
+        __check(self.oid_map, self.dbase.oid_trans, self.__find_or_create_object,
+                self.dbase.commit_media_object, self.oid2id, "OBJE")
+        __check(self.rid_map, self.dbase.rid_trans, self.__find_or_create_repository,
+                self.dbase.commit_repository, self.rid2id, "REPO")
+        __check(self.nid_map, self.dbase.nid_trans, self.__find_or_create_note,
+                self.dbase.commit_note, self.nid2id, "NOTE")
+
+        # Check persons membership in referenced families
+        def __input_fid(gramps_id):
+            for (k,v) in self.fid_map.map().iteritems():
+                if v == gramps_id:
+                    return k
+        
+        for input_id, gramps_id in self.pid_map.map().iteritems():
+            person_handle = self.__find_from_handle(gramps_id, self.gid2id)
+            person = self.dbase.get_person_from_handle(person_handle)
+            for family_handle in person.get_family_handle_list():
+                family = self.dbase.get_family_from_handle(family_handle)
+                if family and family.get_father_handle() != person_handle and \
+                       family.get_mother_handle() != person_handle:
+                    person.remove_family_handle(family_handle)
+                    self.dbase.commit_person(person, self.trans)
+                    self.__add_msg(_("Error: family '%(family)s' (input as"
+                                     " @%(orig_family)s@) person %(person)s"
+                                     " (input as %(orig_person)s) is not a"
+                                     " member of the referenced family."
+                                     " Family reference removed from person") %
+                                     {'family' : family.gramps_id, 
+                                      'orig_family' : 
+                                            __input_fid(family.gramps_id),
+                                      'person' : person.gramps_id,
+                                      'orig_person' : input_id})
+                        
+        def __input_pid(gramps_id):
+            for (k,v) in self.pid_map.map().iteritems():
+                if v == gramps_id:
+                    return k
+        
+        for input_id, gramps_id in self.fid_map.map().iteritems():
+            family_handle = self.__find_from_handle(gramps_id, self.fid2id)
+            family = self.dbase.get_family_from_handle(family_handle)
+            father_handle = family.get_father_handle()
+            mother_handle = family.get_mother_handle()
+                        
+            if father_handle:
+                father = self.dbase.get_person_from_handle(father_handle)
+                if father and \
+                    family_handle not in father.get_family_handle_list():
+                    father.add_family_handle(family_handle)
+                    self.dbase.commit_person(father, self.trans)
+                    self.__add_msg("Error: family '%(family)s' (input as"
+                                   " @%(orig_family)s@) father '%(father)s'"
+                                   " (input as '%(orig_father)s') does not refer"
+                                   " back to the family. Reference added." % 
+                                   {'family' : family.gramps_id, 
+                                    'orig_family' : input_id, 
+                                    'father' : father.gramps_id,
+                                    'orig_father' : 
+                                            __input_pid(father.gramps_id)})
+
+            if mother_handle:
+                mother = self.dbase.get_person_from_handle(mother_handle)
+                if mother and \
+                    family_handle not in mother.get_family_handle_list():
+                    mother.add_family_handle(family_handle)
+                    self.dbase.commit_person(mother, self.trans)
+                    self.__add_msg("Error: family '%(family)s' (input as"
+                                   " @%(orig_family)s@) mother '%(mother)s'"
+                                   " (input as '%(orig_mother)s') does not refer"
+                                   " back to the family. Reference added." % 
+                                   {'family' : family.gramps_id, 
+                                    'orig_family' : input_id, 
+                                    'mother' : mother.gramps_id,
+                                    'orig_mother' : 
+                                            __input_pid(mother.gramps_id)})
+
+        if self.missing_references:
+            self.dbase.commit_note(self.explanation, self.trans, time.time())
+            txt = _("\nThe imported file was not self-contained.\n"
+                     "To correct for that, %d objects were created and\n"
+                     "their typifying attribute was set to 'Unknown'.\n"
+                     "Where possible these 'Unkown' objects are \n"
+                     "referenced by note %s.\n"
+                     ) % (self.missing_references, self.explanation.gramps_id)
+            self.__add_msg(txt)
+            self.number_of_errors -= 1
+            
     def __parse_trailer(self):
         """
         Looks for the expected TRLR token
@@ -3317,6 +3443,7 @@ class GedcomParser(UpdateCallback):
         if line.data and line.data[0] == '@':
             # Reference to a named multimedia object defined elsewhere
             gramps_id = self.oid_map[line.data]
+            
             handle = self.__find_object_handle(gramps_id)
             ref = gen.lib.MediaRef()
             ref.set_reference_handle(handle)
@@ -6835,6 +6962,13 @@ class GedcomParser(UpdateCallback):
             self.inline_srcs[title] = handle
         else:
             src = self.__find_or_create_source(self.sid_map[line.data])
+            # We need to set the title to the cross reference identifier of the
+            # SOURce record, just in case we never find the source record. If we
+            # din't find the source record, then the source object would have
+            # got deleted by Chack and repair because the record is empty. If we
+            # find the source record, the title is overwritten in
+            # __source_title.
+            src.set_title(line.data)
         self.dbase.commit_source(src, self.trans)
         self.__parse_source_reference(citation, level, src.handle, state)
         citation.set_reference_handle(src.handle)

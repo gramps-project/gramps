@@ -5,6 +5,7 @@
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2012       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -35,6 +36,7 @@ from __future__ import with_statement
 import os
 import sys
 import cStringIO
+import time
 
 from gen.ggettext import gettext as _
 from gen.ggettext import ngettext
@@ -177,7 +179,8 @@ class Check(tool.BatchTool):
             checker.check_person_references()
             checker.check_family_references()
             checker.check_place_references()
-            checker.check_source_and_citation_references()
+            checker.check_source_references()
+            checker.check_citation_references()
             checker.check_media_references()
             checker.check_repo_references()
             checker.check_note_references()
@@ -207,23 +210,28 @@ class CheckIntegrity(object):
         self.duplicate_links = []
         self.broken_parent_links = []
         self.fam_rel = []
-        self.invalid_events = []
-        self.invalid_birth_events = []
-        self.invalid_death_events = []
-        self.invalid_person_references = []
-        self.invalid_family_references = []
-        self.invalid_place_references = []
-        self.invalid_source_references = []
-        self.invalid_citation_references = []
-        self.invalid_repo_references = []
-        self.invalid_media_references = []
-        self.invalid_note_references = []
-        self.invalid_tag_references = []
+        self.invalid_events = set()
+        self.invalid_birth_events = set()
+        self.invalid_death_events = set()
+        self.invalid_person_references = set()
+        self.invalid_family_references = set()
+        self.invalid_place_references = set()
+        self.invalid_source_references = set()
+        self.invalid_citation_references = set()
+        self.invalid_repo_references = set()
+        self.invalid_media_references = set()
+        self.invalid_note_references = set()
+        self.invalid_tag_references = set()
         self.invalid_dates = []
         self.removed_name_format = []
         self.empty_objects = defaultdict(list)
         self.last_img_dir = config.get('behavior.addmedia-image-dir')
         self.progress = ProgressMeter(_('Checking Database'),'')
+        self.explanation = gen.lib.Note(_('Objects referenced by this note '
+            'were referenced but missing so that is why they have been created '
+            'when you ran Check and Repair on %s.') %
+            time.strftime('%x %X', time.localtime()))
+        self.explanation.set_handle(Utils.create_id())
 
     def family_errors(self):
         return (len(self.broken_parent_links) +
@@ -922,19 +930,25 @@ class CheckIntegrity(object):
             
             person = self.db.get_person_from_handle(key)
             birth_ref = person.get_birth_ref()
+            none_handle = False
             if birth_ref:
+                newref = birth_ref
+                if birth_ref.ref is None:
+                    none_handle = True
+                    birth_ref.ref = Utils.create_id()
                 birth_handle = birth_ref.ref
                 birth = self.db.get_event_from_handle(birth_handle)
                 if not birth:
                     # The birth event referenced by the birth handle
                     # does not exist in the database
                     # This is tested by TestcaseGenerator person "Broken11"
-                    person.set_birth_ref(None)
+                    Utils.make_unknown(birth_handle, self.explanation.handle,
+                            self.class_event, self.commit_event, self.trans,
+                            type=gen.lib.EventType.BIRTH)
                     LOG('    FAIL: the person "%s" refers to a birth event'
                         ' "%s" which does not exist in the database' % 
                               (person.gramps_id, birth_handle))
-                    self.db.commit_person(person, self.trans)
-                    self.invalid_events.append(key)
+                    self.invalid_events.add(key)
                 else:
                     if int(birth.get_type()) != gen.lib.EventType.BIRTH:
                         # Birth event was not of the type "Birth"
@@ -944,9 +958,18 @@ class CheckIntegrity(object):
                                   (person.gramps_id, int(birth.get_type())))
                         birth.set_type(gen.lib.EventType(gen.lib.EventType.BIRTH))
                         self.db.commit_event(birth, self.trans)
-                        self.invalid_birth_events.append(key)
+                        self.invalid_birth_events.add(key)
+            if none_handle:
+                person.set_birth_ref(newref)
+                self.db.commit_person(person, self.trans)
+
+            none_handle = False
             death_ref = person.get_death_ref()
             if death_ref:
+                newref = death_ref
+                if death_ref.ref is None:
+                    none_handle = True
+                    death_ref.ref = Utils.create_id()
                 death_handle = death_ref.ref
                 death = self.db.get_event_from_handle(death_handle)
                 if not death:
@@ -956,9 +979,10 @@ class CheckIntegrity(object):
                     LOG('    FAIL: the person "%s" refers to a death event'
                         ' "%s" which does not exist in the database' % 
                               (person.gramps_id, death_handle))
-                    person.set_death_ref(None)
-                    self.db.commit_person(person, self.trans)
-                    self.invalid_events.append(key)
+                    Utils.make_unknown(death_handle, self.explanation.handle,
+                            self.class_event, self.commit_event, self.trans,
+                            type=gen.lib.EventType.DEATH)
+                    self.invalid_events.add(key)
                 else:
                     if int(death.get_type()) != gen.lib.EventType.DEATH:
                         # Death event was not of the type "Death"
@@ -968,10 +992,19 @@ class CheckIntegrity(object):
                                   (person.gramps_id, int(death.get_type())))
                         death.set_type(gen.lib.EventType(gen.lib.EventType.DEATH))
                         self.db.commit_event(death, self.trans)
-                        self.invalid_death_events.append(key)
+                        self.invalid_death_events.add(key)
+            if none_handle:
+                person.set_death_ref(newref)
+                self.db.commit_person(person, self.trans)
 
+            none_handle = False
+            newlist = []
             if person.get_event_ref_list():
                 for event_ref in person.get_event_ref_list():
+                    newlist.append(event_ref)
+                    if event_ref.ref is None:
+                        none_handle = True
+                        event_ref.ref = Utils.create_id()
                     event_handle = event_ref.ref
                     event = self.db.get_event_from_handle(event_handle)
                     if not event:
@@ -984,22 +1017,32 @@ class CheckIntegrity(object):
                         LOG('    FAIL: the person "%s" refers to an event'
                             ' "%s" which does not exist in the database' % 
                                   (person.gramps_id, event_handle))
-                        person.get_event_ref_list().remove(event_ref)
-                        self.db.commit_person(person,self.trans)
-                        self.invalid_events.append(key)
+                        Utils.make_unknown(event_handle,
+                                self.explanation.handle, self.class_event,
+                                self.commit_event, self.trans)
+                        self.invalid_events.add(key)
+                if none_handle:
+                    person.set_event_ref_list(newlist)
+                    self.db.commit_person(person, self.trans)
             elif not isinstance(person.get_event_ref_list(), list):
                 # event_list is None or other garbage
                 LOG('    FAIL: the person "%s" has an event ref list'
                     ' which is invalid' % (person.gramps_id))
                 person.set_event_ref_list([])
                 self.db.commit_person(person, self.trans)
-                self.invalid_events.append(key)
+                self.invalid_events.add(key)
 
         for key in self.db.get_family_handles():
             self.progress.step()
             family = self.db.get_family_from_handle(key)
             if family.get_event_ref_list():
+                none_handle = False
+                newlist = []
                 for event_ref in family.get_event_ref_list():
+                    newlist.append(event_ref)
+                    if event_ref.ref is None:
+                        none_handle = True
+                        event_ref.ref = Utils.create_id()
                     event_handle = event_ref.ref
                     event = self.db.get_event_from_handle(event_handle)
                     if not event:
@@ -1008,18 +1051,19 @@ class CheckIntegrity(object):
                         LOG('    FAIL: the family "%s" refers to an event'
                             ' "%s" which does not exist in the database' % 
                                   (family.gramps_id, event_handle))
-                        nlist = [x for x in family.get_event_ref_list()
-                                      if x.ref != event_handle]
-                        family.set_event_ref_list(nlist)
-                        self.db.commit_family(family, self.trans)
-                        self.invalid_events.append(key)
+                        Utils.make_unknown(event_handle, self.explanation,
+                                self.class_event, self.commit_event, self.trans)
+                        self.invalid_events.add(key)
+                if none_handle:
+                    family.set_event_ref_list(newlist)
+                    self.db.commit_family(family, self.trans)
             elif not isinstance(family.get_event_ref_list(), list):
                 # event_list is None or other garbage
                 LOG('    FAIL: the family "%s" has an event ref list'
                     ' which is invalid' % (family.gramps_id))
                 family.set_event_ref_list([])
                 self.db.commit_family(family, self.trans)
-                self.invalid_events.append(key)
+                self.invalid_events.add(key)
 
         if len (self.invalid_birth_events) + len(self.invalid_death_events) +\
                 len(self.invalid_events) == 0:
@@ -1034,14 +1078,23 @@ class CheckIntegrity(object):
         
         for key in plist:
             self.progress.step()
+            none_handle = False
+            newlist = []
             person = self.db.get_person_from_handle(key)
             for pref in person.get_person_ref_list():
+                newlist.append(pref)
+                if pref.ref is None:
+                    none_handle = True
+                    pref.ref = Utils.create_id()
                 p = self.db.get_person_from_handle( pref.ref)
                 if not p:
                     # The referenced person does not exist in the database
-                    person.get_person_ref_list().remove(pref)
-                    self.db.commit_person(person, self.trans)
-                    self.invalid_person_references.append(key)
+                    Utils.make_unknown(pref.ref, self.explanation.handle,
+                            self.class_person, self.commit_person, self.trans)
+                    self.invalid_person_references.add(key)
+            if none_handle:
+                person.set_person_ref_list(newlist)
+                self.db.commit_person(person, self.trans)
 
         if len (self.invalid_person_references) == 0:
             LOG('    OK: no event problems found')
@@ -1062,9 +1115,10 @@ class CheckIntegrity(object):
                     family = self.db.get_family_from_handle(family_handle)
                     if not family:
                         # The referenced family does not exist in the database
-                        ordinance.set_family_handle(None)
-                        self.db.commit_person(person, self.trans)
-                        self.invalid_family_references.append(key)
+                        Utils.make_unknown(family_handle,
+                                self.explanation.handle, self.class_family,
+                                self.commit_family, self.trans, db=self.db)
+                        self.invalid_family_references.add(key)
 
         if len (self.invalid_family_references) == 0:
             LOG('    OK: no event problems found')
@@ -1078,14 +1132,23 @@ class CheckIntegrity(object):
         
         for key in slist:
             self.progress.step()
+            none_handle = False
+            newlist = []
             source = self.db.get_source_from_handle(key)
             for reporef in source.get_reporef_list():
+                newlist.append(reporef)
+                if reporef.ref is None:
+                    none_handle = True
+                    reporef.ref = Utils.create_id()
                 r = self.db.get_repository_from_handle(reporef.ref)
                 if not r:
                     # The referenced repository does not exist in the database
-                    source.get_reporef_list().remove(reporef)
-                    self.db.commit_source(source, self.trans)
-                    self.invalid_repo_references.append(key)
+                    Utils.make_unknown(reporef.ref, self.explanation.handle,
+                            self.class_repo, self.commit_repo, self.trans)
+                    self.invalid_repo_references.add(key)
+            if none_handle:
+                source.set_reporef_list(newlist);
+                self.db.commit_source(source, self.trans)
 
         if len (self.invalid_repo_references) == 0:
             LOG('    OK: no repository reference problems found')
@@ -1110,12 +1173,13 @@ class CheckIntegrity(object):
                         # The referenced place does not exist in the database
                         # This is tested by TestcaseGenerator person "Broken17"
                         # This is tested by TestcaseGenerator person "Broken18"
-                        ordinance.set_place_handle("")
+                        Utils.make_unknown(place_handle,
+                                self.explanation.handle, self.class_place,
+                                self.commit_place, self.trans)
                         LOG('    FAIL: the person "%s" refers to an LdsOrd'
                             ' place "%s" which does not exist in the database' % 
                                   (person.gramps_id, place_handle))
-                        self.db.commit_person(person, self.trans)
-                        self.invalid_place_references.append(key)
+                        self.invalid_place_references.add(key)
         # check families -> the LdsOrd references a place
         for key in flist:
             self.progress.step()
@@ -1126,12 +1190,13 @@ class CheckIntegrity(object):
                     place = self.db.get_place_from_handle(place_handle)
                     if not place:
                         # The referenced place does not exist in the database
-                        ordinance.set_place_handle("")
+                        Utils.make_unknown(place_handle,
+                                self.explanation.handle, self.class_place,
+                                self.commit_place, self.trans)
                         LOG('    FAIL: the family "%s" refers to an LdsOrd'
                             ' place "%s" which does not exist in the database' % 
                                   (family.gramps_id, place_handle))
-                        self.db.commit_family(family, self.trans)
-                        self.invalid_place_references.append(key)
+                        self.invalid_place_references.add(key)
         # check events
         for key in elist:
             self.progress.step()
@@ -1141,148 +1206,184 @@ class CheckIntegrity(object):
                 place = self.db.get_place_from_handle(place_handle)
                 if not place:
                     # The referenced place does not exist in the database
-                    event.set_place_handle("")
+                    Utils.make_unknown(place_handle,
+                            self.explanation.handle, self.class_place,
+                            self.commit_place, self.trans)
                     LOG('    FAIL: the event "%s" refers to an LdsOrd place'
                         ' "%s" which does not exist in the database' % 
                               (event.gramps_id, place_handle))
-                    self.db.commit_event(event, self.trans)
-                    self.invalid_place_references.append(key)
+                    self.invalid_place_references.add(key)
 
         if len (self.invalid_place_references) == 0:
             LOG('    OK: no place reference problems found')
 
-    def check_source_and_citation_references(self):
-        # We check both source and citations in one pass. If there is a problem
-        # with a citation reference from an object to a citation, then we need
-        # to remove the reference from the object. This is the same as any other
-        # reference check. However, if there is a problem with a source
-        # reference from a citation to a source, we can't just remove the source
-        # reference from the citation object (as we would in other cases),
-        # because all citations must have exactly one source. Therefore we must
-        # remove the citation as a whole, and also remove the reference to the
-        # citation from the object. Hence the reason why we do this while we are
-        # processing the object.
-        
-        # bad_citation_handles and invalid_citation_references are citation
-        # handles which occur in objects and we need to remove these citation
-        # references from the object. The citation reference needs to be removed
-        # either because there is no such citation, or because the citation will
-        # be removed as it doesn't point validly to a source object.
-        
-        # invalid_source_references are also citation handles, but these refer
-        # to real citation object which need to be deleted because the citations
-        # don't refer to valid sources.
-        
-        known_source_handles = self.db.get_source_handles()
-        good_citation_handles = set()
+    def check_citation_references(self):
+        known_handles = self.db.get_citation_handles()
 
         total = (
                 self.db.get_number_of_people() +
                 self.db.get_number_of_families() +
                 self.db.get_number_of_events() +
                 self.db.get_number_of_places() +
-                self.db.get_number_of_media_objects() +
+                self.db.get_number_of_citations() +
                 self.db.get_number_of_sources() +
+                self.db.get_number_of_media_objects() +
                 self.db.get_number_of_repositories()
                 )
 
-        self.progress.set_pass(_('Looking for source and citation reference'
-                                 ' problems'), total)
-        LOG('Looking for source and citation reference problems')
-        
-        def check(name, map_func, class_func, commit_func):
-            for handle in map_func.keys():
-                self.progress.step()
-                info = map_func[handle]
-                obj = class_func()
-                obj.unserialize(info)
-                handle_list = obj.get_referenced_handles_recursively()
-                
-                bad_citation_handles = set()
-                bad_citation_text = set()
-                for classn, handle in handle_list:
-                    if classn == 'Citation':
-                        if not handle:
-                            bad_citation_handles.add(handle)
-                            bad_citation_text.add("None")
-                        else:
-                            citation = self.db.get_citation_from_handle(handle)
-                            if not citation:
-                                bad_citation_handles.add(handle)
-                                bad_citation_text.add(handle)
-                            else:
-                                # The citation is good, check whether the
-                                # source_handle is OK
-                                source_handle = citation.source_handle
-                                if not source_handle or \
-                                    source_handle not in known_source_handles:
-                                    bad_citation_handles.add(handle)
-                                    bad_citation_text.add(citation.gramps_id + 
-                                                          ": " + citation.page)
-                                    if handle not in \
-                                            self.invalid_source_references:
-                                        self.invalid_source_references.append(
-                                                                  handle)
-                                else:
-                                    good_citation_handles.add(handle)
-                if bad_citation_handles:
-                    LOG('    FAIL: the %s "%s" refers to citation(s) "%s"'
-                        ' which do not exist in the database'
-                        ' or where the referenced source does not exist' % 
-                              (name, obj.gramps_id,
-                               " ".join(h for h in bad_citation_text)))
-                    obj.remove_citation_references(list(bad_citation_handles))
-                    commit_func(obj,self.trans)
-                    new_bad_handles = [handle for handle in bad_citation_handles
-                                        if handle
-                                       not in self.invalid_citation_references]
-                    self.invalid_citation_references += new_bad_handles
-                            
-        check("person", self.db.person_map, gen.lib.Person, 
-              self.db.commit_person)
-        check("family", self.db.family_map, gen.lib.Family, 
-              self.db.commit_family)
-        check("event", self.db.event_map, gen.lib.Event, 
-              self.db.commit_event)
-        check("media object", self.db.media_map, gen.lib.MediaObject, 
-              self.db.commit_media_object)
-        check("place", self.db.place_map, gen.lib.Place, self.db.commit_place)
-        check("repository", self.db.repository_map, gen.lib.Repository, 
-              self.db.commit_repository)
-        # There is no point in checking sources, because they don't have
-        # citations.
-        # check("source", self.db.source_map, gen.lib.Source,
-        #      self.db.commit_source)
-        
-        # Now we need to check any citations that are not referenced from other
-        # objects, in case they too have invalid source references.
-        for handle in self.db.citation_map:
-            if handle not in good_citation_handles:
-                citation = self.db.get_citation_from_handle(handle)
-                source_handle = citation.source_handle
-                if not source_handle or \
-                        source_handle not in known_source_handles:
-                    LOG('    FAIL: the citation "%s" refers to a source'
-                        ' "%s" which does not exist in the database' % 
-                              (citation.gramps_id, citation.source_handle))
-                    if handle not in \
-                            self.invalid_source_references:
-                        self.invalid_source_references.append(
-                                                  handle)
-       
-        # bad citation references in objects have already been removed. Now
-        # remove any bad citations that were detected.
-        for citation_handle in self.invalid_source_references:
-            LOG('    FAIL: the citation "%s" which refers to source handle "%s"'
-                '  has been removed' % 
-               (self.db.get_citation_from_handle(citation_handle).gramps_id,
-               self.db.get_citation_from_handle(citation_handle).source_handle))
-            self.db.remove_citation(citation_handle, self.trans)
-        
-        if len(self.invalid_source_references) + \
-                len(self.invalid_citation_references) == 0:
-            LOG('    OK: no invalid source or citation references found')
-        return
+        self.progress.set_pass(_('Looking for citation reference problems'),
+                               total)
+        LOG('Looking for citation reference problems')
+
+        for handle in self.db.person_map.keys():
+            self.progress.step()
+            info = self.db.person_map[handle]
+            person = gen.lib.Person()
+            person.unserialize(info)
+            handle_list = person.get_referenced_handles_recursively()
+            for item in handle_list:
+                if item[0] == 'Citation':
+                    if item[1] is None:
+                        new_handle = Utils.create_id()
+                        person.replace_citation_references(None, new_handle)
+                        self.db.commit_person(person, self.trans)
+                        self.invalid_citation_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_citation_references.add(item[1])
+
+        for handle in self.db.family_map.keys():
+            self.progress.step()
+            info = self.db.family_map[handle]
+            family = gen.lib.Family()
+            family.unserialize(info)
+            handle_list = family.get_referenced_handles_recursively()
+            for item in handle_list:
+                if item[0] == 'Citation':
+                    if item[1] is None:
+                        new_handle = Utils.create_id()
+                        family.replace_citation_references(None, new_handle)
+                        self.db.commit_family(family, self.trans)
+                        self.invalid_citation_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_citation_references.add(item[1])
+
+        for handle in self.db.place_map.keys():
+            self.progress.step()
+            info = self.db.place_map[handle]
+            place = gen.lib.Place()
+            place.unserialize(info)
+            handle_list = place.get_referenced_handles_recursively()
+            for item in handle_list:
+                if item[0] == 'Citation':
+                    if item[1] is None:
+                        new_handle = Utils.create_id()
+                        place.replace_citation_references(None, new_handle)
+                        self.db.commit_place(place, self.trans)
+                        self.invalid_citation_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_citation_references.add(item[1])
+
+        for handle in self.db.citation_map.keys():
+            self.progress.step()
+            info = self.db.citation_map[handle]
+            citation = gen.lib.Citation()
+            citation.unserialize(info)
+            handle_list = citation.get_referenced_handles_recursively()
+            for item in handle_list:
+                if item[0] == 'Citation':
+                    if item[1] is None:
+                        new_handle = Utils.create_id()
+                        citation.replace_citation_references(None, new_handle)
+                        self.db.commit_citation(citation, self.trans)
+                        self.invalid_citation_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_citation_references.add(item[1])
+
+        for handle in self.db.repository_map.keys():
+            self.progress.step()
+            info = self.db.repository_map[handle]
+            repository = gen.lib.Repository()
+            repository.unserialize(info)
+            handle_list = repository.get_referenced_handles_recursively()
+            for item in handle_list:
+                if item[0] == 'Citation':
+                    if item[1] is None:
+                        new_handle = Utils.create_id()
+                        repository.replace_citation_references(None, new_handle)
+                        self.db.commit_repository(repository, self.trans)
+                        self.invalid_citation_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_citation_references.add(item[1])
+
+        for handle in self.db.media_map.keys():
+            self.progress.step()
+            info = self.db.media_map[handle]
+            obj = gen.lib.MediaObject()
+            obj.unserialize(info)
+            handle_list = obj.get_referenced_handles_recursively()
+            for item in handle_list:
+                if item[0] == 'Citation':
+                    if item[1] is None:
+                        new_handle = Utils.create_id()
+                        obj.replace_citation_references(None, new_handle)
+                        self.db.commit_media_object(obj, self.trans)
+                        self.invalid_citation_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_citation_references.add(item[1])
+
+        for handle in self.db.event_map.keys():
+            self.progress.step()
+            info = self.db.event_map[handle]
+            event = gen.lib.Event()
+            event.unserialize(info)
+            handle_list = event.get_referenced_handles_recursively()
+            for item in handle_list:
+                if item[0] == 'Citation':
+                    if item[1] is None:
+                        new_handle = Utils.create_id()
+                        event.replace_citation_references(None, new_handle)
+                        self.db.commit_event(event, self.trans)
+                        self.invalid_citation_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_citation_references.add(item[1])
+
+        for bad_handle in self.invalid_citation_references:
+            created = Utils.make_unknown(bad_handle, self.explanation.handle,
+                        self.class_citation, self.commit_citation, self.trans,
+                        source_class_func=self.class_source,
+                        source_commit_func=self.commit_source,
+                        source_class_arg=Utils.create_id())
+            self.invalid_source_references.add(created[0].handle)
+
+        if len(self.invalid_citation_references) == 0:
+            LOG('   OK: no citation reference problems found')
+
+    def check_source_references(self):
+        clist = self.db.get_citation_handles()
+        self.progress.set_pass(_('Looking for source reference problems'),
+                               len(clist))
+        LOG('Looking for source reference problems')
+
+        for key in clist:
+            self.progress.step()
+            citation = self.db.get_citation_from_handle(key)
+            source_handle = citation.get_reference_handle()
+            if source_handle is None:
+                source_handle = Utils.create_id()
+                citation.set_reference_handle(source_handle)
+                self.db.commit_citation(citation, self.trans)
+            if source_handle:
+                source = self.db.get_source_from_handle(source_handle)
+                if not source:
+                    # The referenced source does not exist in the database
+                    Utils.make_unknown(source_handle, self.explanation.handle,
+                            self.class_source, self.commit_source, self.trans)
+                    LOG('    FAIL: the citation "%s" refers to source '
+                            ' "%s" which does not exist in the database' %
+                                (citation.gramps_id, source_handle))
+                    self.invalid_source_references.add(key)
+        if len(self.invalid_source_references) == 0:
+            LOG('   OK: no source reference problems found')
 
     def check_media_references(self):
         known_handles = self.db.get_media_object_handles(False)
@@ -1306,15 +1407,15 @@ class CheckIntegrity(object):
             person = gen.lib.Person()
             person.unserialize(info)
             handle_list = person.get_referenced_handles_recursively()
-            bad_handles = [ item[1] for item in handle_list
-                            if item[0] == 'MediaObject' and
-                            item[1] not in known_handles ]
-            if bad_handles:
-                person.remove_media_references(bad_handles)
-                self.db.commit_person(person, self.trans)
-                new_bad_handles = [handle for handle in bad_handles if handle
-                                   not in self.invalid_media_references]
-                self.invalid_media_references += new_bad_handles
+            for item in handle_list:
+                if item[0] == 'MediaObject':
+                    if item[1] is None:
+                        new_handle = Utils.create_id()
+                        person.replace_media_references(None, new_handle)
+                        self.db.commit_person(person, self.trans)
+                        self.invalid_media_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_media_references.add(item[1])
 
         for handle in self.db.family_map.keys():
             self.progress.step()
@@ -1322,15 +1423,15 @@ class CheckIntegrity(object):
             family = gen.lib.Family()
             family.unserialize(info)
             handle_list = family.get_referenced_handles_recursively()
-            bad_handles = [ item[1] for item in handle_list
-                            if item[0] == 'MediaObject' and
-                            item[1] not in known_handles ]
-            if bad_handles:
-                family.remove_media_references(bad_handles)
-                self.db.commit_family(family, self.trans)
-                new_bad_handles = [handle for handle in bad_handles if handle
-                                   not in self.invalid_media_references]
-                self.invalid_media_references += new_bad_handles
+            for item in handle_list:
+                if item[0] == 'MediaObject':
+                    if item[1] is None:
+                        new_handle = Utils.create_id()
+                        family.replace_media_references(None, new_handle)
+                        self.db.commit_family(family, self.trans)
+                        self.invalid_media_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_media_references.add(item[1])
 
         for handle in self.db.place_map.keys():
             self.progress.step()
@@ -1338,15 +1439,15 @@ class CheckIntegrity(object):
             place = gen.lib.Place()
             place.unserialize(info)
             handle_list = place.get_referenced_handles_recursively()
-            bad_handles = [ item[1] for item in handle_list
-                            if item[0] == 'MediaObject' and
-                            item[1] not in known_handles ]
-            if bad_handles:
-                place.remove_media_references(bad_handles)
-                self.db.commit_place(place, self.trans)
-                new_bad_handles = [handle for handle in bad_handles if handle
-                                   not in self.invalid_media_references]
-                self.invalid_media_references += new_bad_handles
+            for item in handle_list:
+                if item[0] == 'MediaObject':
+                    if item[1] is None:
+                        new_handle = Utils.create_id()
+                        place.replace_media_references(None, new_handle)
+                        self.db.commit_place(place, self.trans)
+                        self.invalid_media_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_media_references.add(item[1])
         
         for handle in self.db.event_map.keys():
             self.progress.step()
@@ -1354,15 +1455,15 @@ class CheckIntegrity(object):
             event = gen.lib.Event()
             event.unserialize(info)
             handle_list = event.get_referenced_handles_recursively()
-            bad_handles = [ item[1] for item in handle_list
-                            if item[0] == 'MediaObject' and
-                            item[1] not in known_handles ]
-            if bad_handles:
-                event.remove_media_references(bad_handles)
-                self.db.commit_event(event, self.trans)
-                new_bad_handles = [handle for handle in bad_handles if handle
-                                   not in self.invalid_media_references]
-                self.invalid_media_references += new_bad_handles
+            for item in handle_list:
+                if item[0] == 'MediaObject':
+                    if item[1] is None:
+                        new_handle = Utils.create_id()
+                        event.replace_media_references(None, new_handle)
+                        self.db.commit_event(event, self.trans)
+                        self.invalid_media_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_media_references.add(item[1])
         
         for handle in self.db.citation_map.keys():
             self.progress.step()
@@ -1370,15 +1471,15 @@ class CheckIntegrity(object):
             citation = gen.lib.Citation()
             citation.unserialize(info)
             handle_list = citation.get_referenced_handles_recursively()
-            bad_handles = [ item[1] for item in handle_list
-                            if item[0] == 'MediaObject' and
-                            item[1] not in known_handles ]
-            if bad_handles:
-                citation.remove_media_references(bad_handles)
-                self.db.commit_citation(citation, self.trans)
-                new_bad_handles = [handle for handle in bad_handles if handle
-                                   not in self.invalid_media_references]
-                self.invalid_media_references += new_bad_handles
+            for item in handle_list:
+                if item[0] == 'MediaObject':
+                    if item[1] is None:
+                        new_handle = Utils.create_id()
+                        citation.replace_media_references(None, new_handle)
+                        self.db.commit_citation(citation, self.trans)
+                        self.invalid_media_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_media_references.add(item[1])
 
         for handle in self.db.source_map.keys():
             self.progress.step()
@@ -1386,21 +1487,40 @@ class CheckIntegrity(object):
             source = gen.lib.Source()
             source.unserialize(info)
             handle_list = source.get_referenced_handles_recursively()
-            bad_handles = [ item[1] for item in handle_list
-                            if item[0] == 'MediaObject' and
-                            item[1] not in known_handles ]
-            if bad_handles:
-                source.remove_media_references(bad_handles)
-                self.db.commit_source(source, self.trans)
-                new_bad_handles = [handle for handle in bad_handles if handle
-                                   not in self.invalid_media_references]
-                self.invalid_media_references += new_bad_handles
+            for item in handle_list:
+                if item[0] == 'MediaObject':
+                    if item[1] is None:
+                        new_handle = Utils.create_id()
+                        source.replace_media_references(None, new_handle)
+                        self.db.commit_source(source, self.trans)
+                        self.invalid_media_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_media_references.add(item[1])
+
+        for bad_handle in self.invalid_media_references:
+            Utils.make_unknown(bad_handle, self.explanation.handle,
+                               self.class_object, self.commit_object, self.trans)
 
         if len (self.invalid_media_references) == 0:
             LOG('    OK: no media reference problems found')
 
     def check_note_references(self):
+        # Here I assume check note_references runs after all the next checks.
+        missing_references = (len(self.invalid_person_references) +
+                len(self.invalid_family_references) +
+                len(self.invalid_birth_events) +
+                len(self.invalid_death_events) +
+                len(self.invalid_events) +
+                len(self.invalid_place_references) +
+                len(self.invalid_citation_references) +
+                len(self.invalid_source_references) +
+                len(self.invalid_repo_references) +
+                len(self.invalid_media_references))
+        if missing_references:
+            self.db.add_note(self.explanation, self.trans, set_gid=True)
+
         known_handles = self.db.get_note_handles()
+        bad_handles = []
 
         total = (
                 self.db.get_number_of_people() + 
@@ -1423,15 +1543,15 @@ class CheckIntegrity(object):
             person = gen.lib.Person()
             person.unserialize(info)
             handle_list = person.get_referenced_handles_recursively()
-            bad_handles = [ item[1] for item in handle_list
-                            if item[0] == 'Note' and
-                            item[1] not in known_handles ]
-            if bad_handles:
-                map(person.remove_note, bad_handles)
-                self.db.commit_person(person, self.trans)
-                new_bad_handles = [handle for handle in bad_handles if handle
-                                   not in self.invalid_note_references]
-                self.invalid_note_references += new_bad_handles
+            for item in handle_list:
+                if item[0] == 'Note':
+                    if item[1] is None:
+                        new_handle = Utils.create_id()
+                        person.replace_note_references(None, new_handle)
+                        self.db.commit_person(person, self.trans)
+                        self.invalid_note_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_note_references.add(item[1])
 
         for handle in self.db.family_map.keys():
             self.progress.step()
@@ -1439,15 +1559,15 @@ class CheckIntegrity(object):
             family = gen.lib.Family()
             family.unserialize(info)
             handle_list = family.get_referenced_handles_recursively()
-            bad_handles = [ item[1] for item in handle_list
-                            if item[0] == 'Note' and
-                            item[1] not in known_handles ]
-            if bad_handles:
-                map(family.remove_note, bad_handles)
-                self.db.commit_family(family, self.trans)
-                new_bad_handles = [handle for handle in bad_handles if handle
-                                   not in self.invalid_note_references]
-                self.invalid_note_references += new_bad_handles
+            for item in handle_list:
+                if item[0] == 'Note':
+                    if item[1] is None:
+                        new_handle = Utils.create_id()
+                        family.replace_note_references(None, new_handle)
+                        self.db.commit_family(family, self.trans)
+                        self.invalid_note_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_note_references.add(item[1])
 
         for handle in self.db.place_map.keys():
             self.progress.step()
@@ -1455,15 +1575,15 @@ class CheckIntegrity(object):
             place = gen.lib.Place()
             place.unserialize(info)
             handle_list = place.get_referenced_handles_recursively()
-            bad_handles = [ item[1] for item in handle_list
-                            if item[0] == 'Note' and
-                            item[1] not in known_handles ]
-            if bad_handles:
-                map(place.remove_note, bad_handles)
-                self.db.commit_place(place, self.trans)
-                new_bad_handles = [handle for handle in bad_handles if handle
-                                   not in self.invalid_note_references]
-                self.invalid_note_references += new_bad_handles
+            for item in handle_list:
+                if item[0] == 'Note':
+                    if item[1] is None:
+                        new_handle = Utils.create_id()
+                        place.replace_note_references(None, new_handle)
+                        self.db.commit_place(place, self.trans)
+                        self.invalid_note_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_note_references.add(item[1])
 
         for handle in self.db.citation_map.keys():
             self.progress.step()
@@ -1471,15 +1591,15 @@ class CheckIntegrity(object):
             citation = gen.lib.Citation()
             citation.unserialize(info)
             handle_list = citation.get_referenced_handles_recursively()
-            bad_handles = [ item[1] for item in handle_list
-                            if item[0] == 'Note' and
-                            item[1] not in known_handles ]
-            if bad_handles:
-                map(citation.remove_note, bad_handles)
-                self.db.commit_citation(citation, self.trans)
-                new_bad_handles = [handle for handle in bad_handles if handle
-                                   not in self.invalid_note_references]
-                self.invalid_note_references += new_bad_handles
+            for item in handle_list:
+                if item[0] == 'Note':
+                    if item[1] is None:
+                        new_handle = Utils.create_id()
+                        citation.replace_note_references(None, new_handle)
+                        self.db.commit_citation(citation, self.trans)
+                        self.invalid_note_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_note_references.add(item[1])
 
         for handle in self.db.source_map.keys():
             self.progress.step()
@@ -1487,15 +1607,15 @@ class CheckIntegrity(object):
             source = gen.lib.Source()
             source.unserialize(info)
             handle_list = source.get_referenced_handles_recursively()
-            bad_handles = [ item[1] for item in handle_list
-                            if item[0] == 'Note' and
-                            item[1] not in known_handles ]
-            if bad_handles:
-                map(source.remove_note, bad_handles)
-                self.db.commit_source(source, self.trans)
-                new_bad_handles = [handle for handle in bad_handles if handle
-                                   not in self.invalid_note_references]
-                self.invalid_note_references += new_bad_handles
+            for item in handle_list:
+                if item[0] == 'Note':
+                    if item[1] is None:
+                        new_handle = Utils.create_id()
+                        source.replace_note_references(None, new_handle)
+                        self.db.commit_source(source, self.trans)
+                        self.invalid_note_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_note_references.add(item[1])
 
         for handle in self.db.media_map.keys():
             self.progress.step()
@@ -1503,15 +1623,15 @@ class CheckIntegrity(object):
             obj = gen.lib.MediaObject()
             obj.unserialize(info)
             handle_list = obj.get_referenced_handles_recursively()
-            bad_handles = [ item[1] for item in handle_list
-                            if item[0] == 'Note' and
-                            item[1] not in known_handles ]
-            if bad_handles:
-                map(obj.remove_note, bad_handles)
-                self.db.commit_media_object(obj, self.trans)
-                new_bad_handles = [handle for handle in bad_handles if handle
-                                   not in self.invalid_note_references]
-                self.invalid_note_references += new_bad_handles
+            for item in handle_list:
+                if item[0] == 'Note':
+                    if item[1] is None:
+                        new_handle = Utils.create_id()
+                        obj.replace_note_references(None, new_handle)
+                        self.db.commit_media_object(obj, self.trans)
+                        self.invalid_note_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_note_references.add(item[1])
 
         for handle in self.db.event_map.keys():
             self.progress.step()
@@ -1519,15 +1639,15 @@ class CheckIntegrity(object):
             event = gen.lib.Event()
             event.unserialize(info)
             handle_list = event.get_referenced_handles_recursively()
-            bad_handles = [ item[1] for item in handle_list
-                            if item[0] == 'Note' and
-                            item[1] not in known_handles ]
-            if bad_handles:
-                map(event.remove_note, bad_handles)
-                self.db.commit_event(event, self.trans)
-                new_bad_handles = [handle for handle in bad_handles if handle
-                                   not in self.invalid_note_references]
-                self.invalid_note_references += new_bad_handles
+            for item in handle_list:
+                if item[0] == 'Note':
+                    if item[1] is None:
+                        new_handle = Utils.create_id()
+                        event.replace_note_references(None, new_handle)
+                        self.db.commit_event(event, self.trans)
+                        self.invalid_note_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_note_references.add(item[1])
 
         for handle in self.db.repository_map.keys():
             self.progress.step()
@@ -1535,18 +1655,25 @@ class CheckIntegrity(object):
             repo = gen.lib.Repository()
             repo.unserialize(info)
             handle_list = repo.get_referenced_handles_recursively()
-            bad_handles = [ item[1] for item in handle_list
-                            if item[0] == 'Note' and
-                            item[1] not in known_handles ]
-            if bad_handles:
-                map(repo.remove_note, bad_handles)
-                self.db.commit_repository(repo, self.trans)
-                new_bad_handles = [handle for handle in bad_handles if handle
-                                   not in self.invalid_note_references]
-                self.invalid_note_references += new_bad_handles
+            for item in handle_list:
+                if item[0] == 'Note':
+                    if item[1] is None:
+                        new_handle = Utils.create_id()
+                        repo.replace_note_references(None, new_handle)
+                        self.db.commit_repository(repo, self.trans)
+                        self.invalid_note_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_note_references.add(item[1])
+
+        for bad_handle in self.invalid_note_references:
+            Utils.make_unknown(bad_handle, self.explanation.handle,
+                               self.class_note, self.commit_note, self.trans)
 
         if len (self.invalid_note_references) == 0:
             LOG('    OK: no note reference problems found')
+        else:
+            if not missing_references:
+                self.db.add_note(self.explanation, self.trans, set_gid=True)
 
     def check_tag_references(self):
         known_handles = self.db.get_tag_handles()
@@ -1560,6 +1687,7 @@ class CheckIntegrity(object):
 
         self.progress.set_pass(_('Looking for tag reference problems'),
                                total)
+        LOG('Looking for tag reference problems')
 
         for handle in self.db.person_map.keys():
             self.progress.step()
@@ -1567,15 +1695,15 @@ class CheckIntegrity(object):
             person = gen.lib.Person()
             person.unserialize(info)
             handle_list = person.get_referenced_handles_recursively()
-            bad_handles = [ item[1] for item in handle_list
-                            if item[0] == 'Tag' and
-                            item[1] not in known_handles ]
-            if bad_handles:
-                map(person.remove_tag, bad_handles)
-                self.db.commit_person(person, self.trans)
-                new_bad_handles = [handle for handle in bad_handles if handle
-                                   not in self.invalid_tag_references]
-                self.invalid_tag_references += new_bad_handles
+            for item in handle_list:
+                if item[0] == 'Tag':
+                    if item[1] is None:
+                        new_handle = Utils.create_id()
+                        person.replace_tag_references(None, new_handle)
+                        self.db.commit_person(person, self.trans)
+                        self.invalid_tag_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_tag_references.add(item[1])
 
         for handle in self.db.family_map.keys():
             self.progress.step()
@@ -1583,15 +1711,15 @@ class CheckIntegrity(object):
             family = gen.lib.Family()
             family.unserialize(info)
             handle_list = family.get_referenced_handles_recursively()
-            bad_handles = [ item[1] for item in handle_list
-                            if item[0] == 'Tag' and
-                            item[1] not in known_handles ]
-            if bad_handles:
-                map(family.remove_tag, bad_handles)
-                self.db.commit_family(family, self.trans)
-                new_bad_handles = [handle for handle in bad_handles if handle
-                                   not in self.invalid_tag_references]
-                self.invalid_tag_references += new_bad_handles
+            for item in handle_list:
+                if item[0] == 'Tag':
+                    if item[1] is None:
+                        new_handle = Utils.create_id()
+                        family.replace_tag_references(None, new_handle)
+                        self.db.commit_family(family, self.trans)
+                        self.invalid_tag_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_tag_references.add(item[1])
 
         for handle in self.db.media_map.keys():
             self.progress.step()
@@ -1599,15 +1727,15 @@ class CheckIntegrity(object):
             obj = gen.lib.MediaObject()
             obj.unserialize(info)
             handle_list = obj.get_referenced_handles_recursively()
-            bad_handles = [ item[1] for item in handle_list
-                            if item[0] == 'Tag' and
-                            item[1] not in known_handles ]
-            if bad_handles:
-                map(obj.remove_tag, bad_handles)
-                self.db.commit_object(obj, self.trans)
-                new_bad_handles = [handle for handle in bad_handles if handle
-                                   not in self.invalid_tag_references]
-                self.invalid_tag_references += new_bad_handles
+            for item in handle_list:
+                if item[0] == 'Tag':
+                    if item[1] is None:
+                        new_handle = Utils.create_id()
+                        obj.replace_tag_references(None, new_handle)
+                        self.db.commit_media_object(obj, self.trans)
+                        self.invalid_tag_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_tag_references.add(item[1])
 
         for handle in self.db.note_map.keys():
             self.progress.step()
@@ -1615,16 +1743,102 @@ class CheckIntegrity(object):
             note = gen.lib.Note()
             note.unserialize(info)
             handle_list = note.get_referenced_handles_recursively()
-            bad_handles = [ item[1] for item in handle_list
-                            if item[0] == 'Tag' and
-                            item[1] not in known_handles ]
-            if bad_handles:
-                map(note.remove_tag, bad_handles)
-                self.db.commit_note(note, self.trans)
-                new_bad_handles = [handle for handle in bad_handles if handle
-                                   not in self.invalid_tag_references]
-                self.invalid_tag_references += new_bad_handles
+            for item in handle_list:
+                if item[0] == 'Tag':
+                    if item[1] is None:
+                        new_handle = Utils.create_id()
+                        note.replace_tag_references(None, new_handle)
+                        self.db.commit_note(note, self.trans)
+                        self.invalid_tag_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_tag_references.add(item[1])
 
+        for bad_handle in self.invalid_tag_references:
+            Utils.make_unknown(bad_handle, None, self.class_tag,
+                               self.commit_tag, self.trans)
+
+        if len(self.invalid_tag_references) == 0:
+            LOG('   OK: no tag reference problems found')
+
+    def class_person(self, handle):
+        person = gen.lib.Person()
+        person.set_handle(handle)
+        return person
+
+    def commit_person(self, person, trans, change):
+        self.db.add_person(person, trans, set_gid=True)
+
+    def class_family(self, handle):
+        family = gen.lib.Family()
+        family.set_handle(handle)
+        return family
+
+    def commit_family(self, family, trans, change):
+        self.db.add_family(family, trans, set_gid=True)
+
+    def class_event(self, handle):
+        event = gen.lib.Event()
+        event.set_handle(handle)
+        return event
+
+    def commit_event(self, event, trans, change):
+        self.db.add_event(event, trans, set_gid=True)
+
+    def class_place(self, handle):
+        place = gen.lib.Place()
+        place.set_handle(handle)
+        return place
+
+    def commit_place(self, place, trans, change):
+        self.db.add_place(place, trans, set_gid=True)
+
+    def class_source(self, handle):
+        source = gen.lib.Source()
+        source.set_handle(handle)
+        return source
+
+    def commit_source(self, source, trans, change):
+        self.db.add_source(source, trans, set_gid=True)
+
+    def class_citation(self, handle):
+        citation = gen.lib.Citation()
+        citation.set_handle(handle)
+        return citation
+
+    def commit_citation(self, citation, trans, change):
+        self.db.add_citation(citation, trans, set_gid=True)
+
+    def class_repo(self, handle):
+        repo = gen.lib.Repository()
+        repo.set_handle(handle)
+        return repo
+
+    def commit_repo(self, repo, trans, change):
+        self.db.add_repository(repo, trans, set_gid=True)
+
+    def class_object(self, handle):
+        object = gen.lib.MediaObject()
+        object.set_handle(handle)
+        return object
+
+    def commit_object(self, object, trans, change):
+        self.db.add_object(object, trans, set_gid=True)
+
+    def class_note(self, handle):
+        note = gen.lib.Note()
+        note.set_handle(handle)
+        return note
+
+    def commit_note(self, note, trans, change):
+        self.db.add_note(note, trans, set_gid=True)
+
+    def class_tag(self, handle):
+        tag = gen.lib.Tag()
+        tag.set_handle(handle)
+        return tag
+
+    def commit_tag(self, tag, trans, change):
+        self.db.add_tag(tag, trans)
 
     def build_report(self, uistate=None):
         self.progress.close()
@@ -1814,8 +2028,8 @@ class CheckIntegrity(object):
 
         if event_invalid:
             self.text.write(
-                ngettext("%(quantity)d invalid event reference was removed\n",
-                         "%(quantity)d invalid event references were removed\n",
+                ngettext("%(quantity)d event was referenced but not found\n",
+                         "%(quantity)d events were referenced, but not found\n",
                          event_invalid) % {'quantity': event_invalid}
                 )
 
@@ -1866,6 +2080,12 @@ class CheckIntegrity(object):
                 ngettext("%(quantity)d note object was referenced but not found\n",
                          "%(quantity)d note objects were referenced but not found\n",
                          note_references) % {'quantity': note_references})
+
+        if tag_references:
+            self.text.write(
+                ngettext("%(quantity)d tag object was referenced but not found\n",
+                         "%(quantity)d tag objects were referenced but not found\n",
+                         tag_references) % {'quantity': tag_references})
 
         if tag_references:
             self.text.write(
