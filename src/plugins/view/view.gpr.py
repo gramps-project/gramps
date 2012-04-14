@@ -3,7 +3,9 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2009 Benny Malengier
-# Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2009 Douglas S. Blank
+# Copyright (C) 2009 Nick Hall
+# Copyright (C) 2011 Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -135,6 +137,21 @@ stock_icon = 'gramps-pedigree',
   )
 
 register(VIEW, 
+id    = 'fanchartview',
+name  = _("Fan Chart View"),
+category = ("Ancestry", _("Ancestry")),
+description =  _("The view showing relations through a fanchart"),
+version = '1.0',
+gramps_target_version = '3.5',
+status = STABLE,
+fname = 'fanchartview.py',
+authors = [u"Douglas S. Blank"],
+authors_email = ["doug.blank@gmail.com"],
+viewclass = 'FanChartView',
+stock_icon = 'gramps-fanchart',
+  )
+
+register(VIEW, 
 id    = 'personview',
 name  = _("Person Tree View"),
 description =  _("The view showing all people in the family tree"),
@@ -181,6 +198,21 @@ category = ("Places", _("Places")),
 viewclass = 'PlaceListView',
 order = START,
 stock_icon = 'gramps-tree-list',
+  )
+
+register(VIEW, 
+id = 'placetreeview',
+name = _("Place Tree View"),
+description =  _("A view displaying places in a tree format."),
+version = '1.0',
+gramps_target_version = '3.5',
+status = STABLE,
+fname = 'placetreeview.py',
+authors = [u"Donald N. Allingham", u"Gary Burton", u"Nick Hall"],
+authors_email = [""],
+category = ("Places", _("Places")),
+viewclass = 'PlaceTreeView',
+stock_icon = 'gramps-tree-group',
   )
 
 register(VIEW, 
