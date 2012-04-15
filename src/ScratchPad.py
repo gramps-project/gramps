@@ -716,13 +716,13 @@ class ScratchFamilyLink(ScratchHandleWrapper):
     ICON         = ICONS["family"]
 
     def __init__(self, dbstate, obj):
-        from Simple import SimpleAccess
         super(ScratchFamilyLink, self).__init__(dbstate, obj)
         self._type  = _("Family")
         self._objclass = 'Family'
         self.refresh()
 
     def refresh(self):
+        from Simple import SimpleAccess
         if self._handle:
             family = self._db.get_family_from_handle(self._handle)
             if family:
