@@ -396,10 +396,12 @@ class GeoClose(GeoGraphyView):
                                         else:
                                             self._append_to_places_without_coord( place.gramps_id, descr)
 
-            self.sort = sorted(self.place_list,
-                               key=operator.itemgetter(6)
-                              )
-            self.draw(None, self.sort, color, reference)
+            sort1 = sorted(self.place_list, key=operator.itemgetter(6))
+            self.draw(None, sort1, color, reference)
+            # merge with the last results
+            merge_list = []
+            for the_list in self.sort, sort1 : merge_list += the_list
+            self.sort = sorted(merge_list, key=operator.itemgetter(6))
 
     def init_new_compare(self):
         """
