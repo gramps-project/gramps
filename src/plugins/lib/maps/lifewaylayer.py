@@ -74,6 +74,7 @@ class LifeWayLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
         Initialize the layer
         """
         gobject.GObject.__init__(self)
+        self.lifeways_ref = []
         self.lifeways = []
         self.lifeways_comment = []
         self.comments = []
@@ -82,9 +83,18 @@ class LifeWayLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
         """
         reset the layer attributes.
         """
+        self.lifeways_ref = []
         self.lifeways = []
         self.lifeways_comment = []
         self.comments = []
+
+    def add_way_ref(self, points, color, radius):
+        """
+        Add a track or life way.
+        alpha is the transparence
+        radius is the size of the track.
+        """
+        self.lifeways_ref.append((points, color, radius))
 
     def add_way(self, points, color):
         """
@@ -102,8 +112,43 @@ class LifeWayLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
         """
         Draw all tracks or life ways.
         """
+        ctx = drawable.cairo_create()
+        for lifeway in self.lifeways_ref:
+            ctx.set_line_cap(cairo.LINE_CAP_ROUND)
+            ctx.set_line_join(cairo.LINE_JOIN_ROUND)
+            ctx.set_operator(cairo.OPERATOR_ADD)
+            conv_pt = osmgpsmap.point_new_degrees(0.0, 0.0)
+            coord_x, coord_y = gpsmap.convert_geographic_to_screen(conv_pt)
+            conv_pt = osmgpsmap.point_new_degrees(0.0, lifeway[2])
+            coord_x1, coord_y1 = gpsmap.convert_geographic_to_screen(conv_pt)
+            ctx.set_line_width((coord_x1-coord_x)*2)
+            map_points = []
+            for point in lifeway[0]:
+                conv_pt = osmgpsmap.point_new_degrees(point[0], point[1])
+                coord_x, coord_y = gpsmap.convert_geographic_to_screen(conv_pt)
+                map_points.append((coord_x, coord_y))
+            color = gtk.gdk.color_parse(lifeway[1])
+            ctx.set_source_rgb(color.red / 65535,
+                               color.green / 65535,
+                               color.blue / 65535)
+            first = True
+            for idx_pt in range(0, len(map_points)):
+                if first:
+                    first = False
+                    ctx.move_to(map_points[idx_pt][0], map_points[idx_pt][1])
+                else:
+                    ctx.line_to(map_points[idx_pt][0], map_points[idx_pt][1])
+            ctx.stroke()
+            if len(map_points) == 1 : # We have only one point
+                crdx = map_points[0][0]
+                crdy = map_points[0][1]
+                ctx.move_to(crdx, crdy)
+                ctx.line_to(crdx + 1, crdy + 1)
+                ctx.stroke()
+
         for lifeway in self.lifeways:
-            ctx = drawable.cairo_create()
+            ctx.set_operator(cairo.OPERATOR_ATOP)
+            ctx.set_source_rgba(0.0, 0.0, 0.0, 0.0)
             ctx.set_line_width(3.0)
             map_points = []
             for point in lifeway[0]:
@@ -138,6 +183,10 @@ class LifeWayLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
             ctx.set_font_size(13)
             points = comment[0]
             conv_pt = osmgpsmap.point_new_degrees(points[0][0], points[0][1])
+            if len(points) > 1 :
+                crd_x = -(points[0][0] - points[len(points)-1][0] )/2
+                crd_y = -(points[0][1] - points[len(points)-1][1] )/2
+                conv_pt = osmgpsmap.point_new_degrees(points[0][0]+crd_x, points[0][1]+crd_y)
             coord_x, coord_y = gpsmap.convert_geographic_to_screen(conv_pt)
             ctx.move_to(coord_x, coord_y)
             ctx.show_text(comment[1])
