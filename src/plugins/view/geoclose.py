@@ -119,6 +119,7 @@ class GeoClose(GeoGraphyView):
 
         ('geography.color1', 'red'),
         ('geography.color2', 'green'),
+        ('geography.maximum_meeting_zone', 5),
 
         )
 
@@ -201,14 +202,14 @@ class GeoClose(GeoGraphyView):
         self.lifeway_layer.clear_ways()
         if self.refperson:
             color = self._config.get('geography.color1')
-            self._createmap(self.refperson, color, self.place_list_ref)
+            self._createmap(self.refperson, color, self.place_list_ref, True)
         active = self.get_active()
         self.init_new_compare()
         if active:
             p1 = self.dbstate.db.get_person_from_handle(active)
             self.change_active(active)
             color = self._config.get('geography.color2')
-            self._createmap(p1, color, self.place_list_active)
+            self._createmap(p1, color, self.place_list_active, False)
         self.possible_meeting(self.place_list_ref, self.place_list_active)
         self.uistate.modify_statusbar(self.dbstate)
 
@@ -251,7 +252,7 @@ class GeoClose(GeoGraphyView):
         self.init_new_compare()
         self.goto_handle(handle=person)
 
-    def draw(self, menu, marks, color):
+    def draw(self, menu, marks, color, reference):
         """
         Create all moves for the people's event.
         """
@@ -267,6 +268,9 @@ class GeoClose(GeoGraphyView):
             if not_stored:
                 points.append((startlat, startlon))
         self.lifeway_layer.add_way(points, color)
+        if reference:
+            self.lifeway_layer.add_way_ref(points, color,
+                     float(self._config.get("geography.maximum_meeting_zone")) / 10)
         if mark:
             self.lifeway_layer.add_text(points, mark[1])
         return False
@@ -276,15 +280,19 @@ class GeoClose(GeoGraphyView):
         Try to see if two persons can be to the same place during their life.
         If yes, show a marker with the dates foe each person.
         """
+        radius = float(self._config.get("geography.maximum_meeting_zone")/10.0)
         for ref in place_list_ref:
             for act in place_list_active:
-                if (ref[3] == act[3] and ref[4] == act[4]):
+                if (float(act[3])-float(ref[3]))**2 + (float(act[4])-float(ref[4]))**2 <= (radius**2/2 + 0.01):
+                    # we are in the meeting zone
+                    # The 0.01 adjustment is set because the meeting zone is approximative.
+                    # Perhaps we will have some markers close to this zone. Not very important
                     self.add_marker(None, None, act[3], act[4], act[7], True)
                     self.all_place_list.append(act)
                     self.add_marker(None, None, ref[3], ref[4], ref[7], True)
                     self.all_place_list.append(ref)
 
-    def _createmap(self, person, color, place_list):
+    def _createmap(self, person, color, place_list, reference):
         """
         Create all markers for each people's event in the database which has 
         a lat/lon.
@@ -391,7 +399,7 @@ class GeoClose(GeoGraphyView):
             self.sort = sorted(self.place_list,
                                key=operator.itemgetter(6)
                               )
-            self.draw(None, self.sort, color)
+            self.draw(None, self.sort, color, reference)
 
     def init_new_compare(self):
         """
@@ -469,6 +477,13 @@ class GeoClose(GeoGraphyView):
         """ 
         Add specific entry to the navigation menu.
         """ 
+        add_item = gtk.MenuItem()
+        add_item.show()
+        menu.append(add_item)
+        add_item = gtk.MenuItem(_("Choose the reference person"))
+        add_item.connect("activate", self.selectPerson)
+        add_item.show()
+        menu.append(add_item)
         return
 
     def get_default_gramplets(self):
@@ -488,6 +503,28 @@ class GeoClose(GeoGraphyView):
         table.set_col_spacings(6)
         table.set_row_spacings(6)
         configdialog.add_text(table,
-                _('No option for this plugin'),
+                _('The meeting zone probability radius.\n'
+                  'The colored zone is approximative.\n'
+                  'The value 9 means about 42 miles or 67 kms.\n'
+                  'The value 1 means about 4.6 miles or 7.5 kms.\n'
+                  'The value is in tenth of degree.'),
                 1)
-        return _('The animation parameters'), table
+        self.config_meeting_slider = configdialog.add_slider(table, 
+                "", 
+                2, 'geography.maximum_meeting_zone',
+                (1, 9))
+        return _('The selection parameters'), table
+
+    def config_connect(self):
+        """
+        used to monitor changes in the ini file
+        """
+        self._config.connect('geography.maximum_meeting_zone',
+                          self.cb_update_meeting_radius)
+
+    def cb_update_meeting_radius(self, client, cnxn_id, entry, data):
+        """
+        Called when the radius change
+        """
+        self.goto_handle(handle=None)
+
