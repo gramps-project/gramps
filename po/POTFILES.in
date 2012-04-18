@@ -35,6 +35,7 @@ src/cli/plug/__init__.py
 src/gen/db/base.py
 src/gen/db/exceptions.py
 src/gen/db/undoredo.py
+src/gen/db/upgrade.py
 
 # gen display API
 src/gen/display/name.py
@@ -323,8 +324,9 @@ src/plugins/lib/libplugins.gpr.py
 src/plugins/lib/libtranslate.py
 src/plugins/lib/libtreebase.py
 src/plugins/lib/holidays.xml.in
-src/plugins/lib/maps/constants.py
 src/plugins/lib/maps/geography.py
+src/plugins/lib/maps/osmGps.py
+src/plugins/lib/maps/placeselection.py
 
 # plugins/mapservices  directory
 src/plugins/mapservices/eniroswedenmap.py
@@ -407,6 +409,7 @@ src/plugins/view/eventview.py
 src/plugins/view/familyview.py
 src/plugins/view/fanchartview.py
 src/plugins/view/geography.gpr.py
+src/plugins/view/geoclose.py
 src/plugins/view/geoevents.py
 src/plugins/view/geofamily.py
 src/plugins/view/geoperson.py

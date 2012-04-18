@@ -20,6 +20,11 @@
 
 # $Id$
 
+# Standard Python modules
+#
+#-------------------------------------------------------------------------
+from gen.ggettext import gettext as _
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -35,7 +40,7 @@ class IsPrivate(Rule):
 
     name        = 'Objects marked private'
     description = "Matches objects that are indicated as private"
-    category    = 'General filters'
+    category    = _('General filters')
 
     def apply(self, db, obj):
         return obj.get_privacy()
