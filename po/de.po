@@ -11,9 +11,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
+<<<<<<< .mine
+"POT-Creation-Date: 2012-04-19 22:09+0200\n"
+"PO-Revision-Date: 2012-04-19 22:30+0200\n"
+"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
+=======
 "POT-Creation-Date: 2012-04-15 12:37+0200\n"
 "PO-Revision-Date: 2012-04-15 22:23+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@lonhaeuser.de>\n"
+>>>>>>> .r19363
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -63,8 +69,8 @@ msgid "manual|Bookmarks"
 msgstr "Lesezeichen"
 
 #. pylint: disable-msg=E1101
-#: ../src/Bookmarks.py:199 ../src/gui/views/tags.py:372
-#: ../src/gui/views/tags.py:583 ../src/gui/views/tags.py:598
+#: ../src/Bookmarks.py:199 ../src/gui/views/tags.py:371
+#: ../src/gui/views/tags.py:582 ../src/gui/views/tags.py:597
 #: ../src/gui/widgets/tageditor.py:100
 #, python-format
 msgid "%(title)s - Gramps"
@@ -88,7 +94,7 @@ msgstr "Lesezeichen organisieren"
 #: ../src/gui/editors/displaytabs/nameembedlist.py:72
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:63
 #: ../src/gui/plug/_guioptions.py:1110 ../src/gui/plug/_windows.py:115
-#: ../src/gui/selectors/selectperson.py:74 ../src/gui/views/tags.py:388
+#: ../src/gui/selectors/selectperson.py:74 ../src/gui/views/tags.py:387
 #: ../src/gui/views/treemodels/peoplemodel.py:524
 #: ../src/plugins/BookReport.py:776 ../src/plugins/drawreport/TimeLine.py:68
 #: ../src/plugins/gramplet/Backlinks.py:45
@@ -1162,7 +1168,7 @@ msgstr "Person"
 #. get the family events
 #. show "> Family: ..." and nothing else
 #. show "V Family: ..." and the rest
-#: ../src/ScratchPad.py:721 ../src/ToolTips.py:230 ../src/gui/configure.py:450
+#: ../src/ScratchPad.py:720 ../src/ToolTips.py:230 ../src/gui/configure.py:450
 #: ../src/gui/filtereditor.py:291 ../src/gui/grampsgui.py:113
 #: ../src/gui/editors/editfamily.py:487 ../src/gui/editors/editlink.py:82
 #: ../src/plugins/export/ExportCsv.py:503
@@ -2523,6 +2529,60 @@ msgstr "_Rückgängig %s"
 #, python-format
 msgid "_Redo %s"
 msgstr "_Wiederherstellen %s"
+
+#: ../src/gen/db/upgrade.py:83
+#, python-format
+msgid "%6d  People        upgraded with %6d citations in %6d secs\n"
+msgstr "%6d  Personen      aktualisiert mit %6d Fundstellen in %6d sek.\n"
+
+#: ../src/gen/db/upgrade.py:84
+#, python-format
+msgid "%6d  Families      upgraded with %6d citations in %6d secs\n"
+msgstr "%6d  Familien      aktualisiert mit %6d Fundstellen in %6d sek.\n"
+
+#: ../src/gen/db/upgrade.py:85
+#, python-format
+msgid "%6d  Events        upgraded with %6d citations in %6d secs\n"
+msgstr "%6d  Ereignisse    aktualisiert mit %6d Fundstellen in %6d sek.\n"
+
+#: ../src/gen/db/upgrade.py:86
+#, python-format
+msgid "%6d  Media Objects upgraded with %6d citations in %6d secs\n"
+msgstr "%6d  Medienobjekte aktualisiert mit %6d Fundstellen in %6d Sek.\n"
+
+#: ../src/gen/db/upgrade.py:87
+#, python-format
+msgid "%6d  Places        upgraded with %6d citations in %6d secs\n"
+msgstr "%6d  Orte          aktualisiert mit %6d Fundstellen in %6d sek.\n"
+
+#: ../src/gen/db/upgrade.py:88
+#, python-format
+msgid "%6d  Repositories  upgraded with %6d citations in %6d secs\n"
+msgstr "%6d  Aufbewahrungsorte aktualisiert mit %6d Fundstellen in %6d sek.\n"
+
+#: ../src/gen/db/upgrade.py:416
+msgid "Number of new objects upgraded:\n"
+msgstr "Anzahl von neuen aktualisierten Objekten:\n"
+
+#: ../src/gen/db/upgrade.py:422
+msgid ""
+"\n"
+"\n"
+"You may want to run\n"
+"Tools -> Family Tree Processing -> Merge\n"
+"in order to merge citations that contain similar\n"
+"information"
+msgstr ""
+"\n"
+"\n"
+"Du kannst folgendes starten\n"
+"Werkzeuge -> Stammbaum -> Zusammenfassen\n"
+"um Fundstellen zusammenzufassen die identische\n"
+"Informationen enthalten"
+
+#: ../src/gen/db/upgrade.py:426
+msgid "Upgrade Statistics"
+msgstr "Aktualisierungsstatistiken"
 
 #: ../src/gen/display/name.py:325
 msgid "Default format (defined by Gramps preferences)"
@@ -5767,8 +5827,8 @@ msgstr "Quellen"
 msgid "Add Spouse"
 msgstr "Partner(in) hinzufügen"
 
-#: ../src/gui/grampsgui.py:141 ../src/gui/views/tags.py:220
-#: ../src/gui/views/tags.py:225 ../src/gui/widgets/tageditor.py:109
+#: ../src/gui/grampsgui.py:141 ../src/gui/views/tags.py:219
+#: ../src/gui/views/tags.py:224 ../src/gui/widgets/tageditor.py:109
 #: ../src/plugins/textreport/TagReport.py:535
 #: ../src/plugins/textreport/TagReport.py:539
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:121
@@ -5778,7 +5838,7 @@ msgstr "Partner(in) hinzufügen"
 msgid "Tag"
 msgstr "Markierung"
 
-#: ../src/gui/grampsgui.py:142 ../src/gui/views/tags.py:582
+#: ../src/gui/grampsgui.py:142 ../src/gui/views/tags.py:581
 msgid "New Tag"
 msgstr "Neuer Markierung"
 
@@ -7541,8 +7601,13 @@ msgid ""
 "To edit this citation, you need to close the object."
 msgstr ""
 "Diese Fundstelle kann im Moment nicht erstellt werden. Entweder wird das "
+<<<<<<< .mine
+"zugehörige Quellenobjekt schon bearbeitet oder eine andere Fundstelle die "
+"mit der selben Quelle verbunden ist, wird gerade bearbeitet.\n"
+=======
 "zugehörige Quellenobjekt schon bearbeitet oder eine andere Fundstelle die mit "
 "der selben Quelle verbunden ist, wird gerade bearbeitet.\n"
+>>>>>>> .r19363
 "\n"
 "Um diese Quelle zu bearbeiten, muss das Objekt geschlossen werden."
 
@@ -7792,13 +7857,13 @@ msgstr "Als Standardnamen setzen"
 #. -------------------------------------------------------------------------
 #: ../src/gui/editors/displaytabs/namemodel.py:53
 #: ../src/gui/plug/_guioptions.py:1192 ../src/gui/views/listview.py:500
-#: ../src/gui/views/tags.py:479 ../src/plugins/quickview/all_relations.py:307
+#: ../src/gui/views/tags.py:478 ../src/plugins/quickview/all_relations.py:307
 msgid "Yes"
 msgstr "Ja"
 
 #: ../src/gui/editors/displaytabs/namemodel.py:54
 #: ../src/gui/plug/_guioptions.py:1191 ../src/gui/views/listview.py:501
-#: ../src/gui/views/tags.py:480 ../src/plugins/quickview/all_relations.py:311
+#: ../src/gui/views/tags.py:479 ../src/plugins/quickview/all_relations.py:311
 msgid "No"
 msgstr "Nein"
 
@@ -8765,45 +8830,45 @@ msgstr "Ansicht %(name)s: %(msg)s"
 msgid "manual|Tags"
 msgstr "Markierung"
 
-#: ../src/gui/views/tags.py:221
+#: ../src/gui/views/tags.py:220
 msgid "New Tag..."
 msgstr "Neuer Markierung..."
 
-#: ../src/gui/views/tags.py:223
+#: ../src/gui/views/tags.py:222
 msgid "Organize Tags..."
 msgstr "Markierung organisieren...."
 
-#: ../src/gui/views/tags.py:226
+#: ../src/gui/views/tags.py:225
 msgid "Tag selected rows"
 msgstr "Ausgewählte Reihen markieren"
 
-#: ../src/gui/views/tags.py:268
+#: ../src/gui/views/tags.py:267
 msgid "Adding Tags"
 msgstr "Markierung hinzufügen"
 
-#: ../src/gui/views/tags.py:273
+#: ../src/gui/views/tags.py:272
 #, python-format
 msgid "Tag Selection (%s)"
 msgstr "Markierungenauswahl (%s)"
 
-#: ../src/gui/views/tags.py:327
+#: ../src/gui/views/tags.py:326
 msgid "Change Tag Priority"
 msgstr "Ändere Markierung Priorität"
 
-#: ../src/gui/views/tags.py:372 ../src/gui/views/tags.py:380
+#: ../src/gui/views/tags.py:371 ../src/gui/views/tags.py:379
 msgid "Organize Tags"
 msgstr "Markierung organisieren"
 
-#: ../src/gui/views/tags.py:389
+#: ../src/gui/views/tags.py:388
 msgid "Color"
 msgstr "Farbe"
 
-#: ../src/gui/views/tags.py:476
+#: ../src/gui/views/tags.py:475
 #, python-format
 msgid "Remove tag '%s'?"
 msgstr "Den Markierung '%s' entfernen?"
 
-#: ../src/gui/views/tags.py:477
+#: ../src/gui/views/tags.py:476
 msgid ""
 "The tag definition will be removed.  The tag will be also removed from all "
 "objects in the database."
@@ -8811,43 +8876,43 @@ msgstr ""
 "Die Markierungsfestlegung wird entfernt. Die Markierung wird auch von allen "
 "Objekten in der Datenbank entfernt."
 
-#: ../src/gui/views/tags.py:506
+#: ../src/gui/views/tags.py:505
 msgid "Removing Tags"
 msgstr "Entferne Markierung"
 
-#: ../src/gui/views/tags.py:511
+#: ../src/gui/views/tags.py:510
 #, python-format
 msgid "Delete Tag (%s)"
 msgstr "Lösche Markierung (%s)"
 
-#: ../src/gui/views/tags.py:559
+#: ../src/gui/views/tags.py:558
 msgid "Cannot save tag"
 msgstr "Kann Markierung nicht speichern"
 
-#: ../src/gui/views/tags.py:560
+#: ../src/gui/views/tags.py:559
 msgid "The tag name cannot be empty"
 msgstr "Markierungsname darf nicht leer sein"
 
-#: ../src/gui/views/tags.py:564
+#: ../src/gui/views/tags.py:563
 #, python-format
 msgid "Add Tag (%s)"
 msgstr "Markierung (%s) hinzufügen"
 
-#: ../src/gui/views/tags.py:570
+#: ../src/gui/views/tags.py:569
 #, python-format
 msgid "Edit Tag (%s)"
 msgstr "Markierung (%s) bearbeiten"
 
-#: ../src/gui/views/tags.py:580
+#: ../src/gui/views/tags.py:579
 #, python-format
 msgid "Tag: %s"
 msgstr "Markierung: %s"
 
-#: ../src/gui/views/tags.py:593
+#: ../src/gui/views/tags.py:592
 msgid "Tag Name:"
 msgstr "Markierungsname:"
 
-#: ../src/gui/views/tags.py:598
+#: ../src/gui/views/tags.py:597
 msgid "Pick a Color"
 msgstr "Eine Farbe wählen"
 
@@ -13346,7 +13411,12 @@ msgstr "Gramps online Handbuch"
 msgid ""
 "http://www.gramps-project.org/wiki/index.php?title=Gramps_3.3_Wiki_Manual"
 msgstr ""
+<<<<<<< .mine
+"http://www.gramps-project.org/wiki/index.php?title=De:"
+"Gramps_3.4_Wiki_Handbuch"
+=======
 "http://www.gramps-project.org/wiki/index.php?title=De:Gramps_3.4_Wiki_Handbuch"
+>>>>>>> .r19363
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:115
 msgid "Ask questions on gramps-users mailing list"
@@ -14840,8 +14910,13 @@ msgid ""
 "reference removed from person"
 msgstr ""
 "Fehler: Familie '%(family)s' (eingelesen als @%(orig_family)s@) Person "
+<<<<<<< .mine
+"%(person)s (eingelesen als %(orig_person)s) ist kein referenziertes Mitglied "
+"der Familie. Familienreferenz wurde von der Person entfernt"
+=======
 "%(person)s (eingelesen als %(orig_person)s) ist kein referenziertes "
 "Mitglied der Familie. Familienreferenz wurde von der Person entfernt"
+>>>>>>> .r19363
 
 #: ../src/plugins/lib/libgedcom.py:3033
 #, python-format
@@ -18877,8 +18952,13 @@ msgid "Czech Republic"
 msgstr "Tschechische Republik"
 
 #: ../src/plugins/lib/holidays.xml.in.h:4
+<<<<<<< .mine
+msgid "3 of Hanuka"
+msgstr "3 vor Chanukka"
+=======
 msgid "Chile"
 msgstr "Chile"
+>>>>>>> .r19363
 
 #: ../src/plugins/lib/holidays.xml.in.h:6
 msgid "Croatia"
@@ -18898,8 +18978,13 @@ msgid "France"
 msgstr "Frankreich"
 
 #: ../src/plugins/lib/holidays.xml.in.h:10
+<<<<<<< .mine
+msgid "5 of Hanuka"
+msgstr "5 vor Chanukka"
+=======
 msgid "Germany"
 msgstr "Deutschland"
+>>>>>>> .r19363
 
 #: ../src/plugins/lib/holidays.xml.in.h:11
 msgid "Japan"
@@ -18923,8 +19008,13 @@ msgid "Purim"
 msgstr "Purim"
 
 #: ../src/plugins/lib/holidays.xml.in.h:16
+<<<<<<< .mine
+msgid "7 of Hanuka"
+msgstr "7 vor Chanukka"
+=======
 msgid "Passover"
 msgstr "Passah"
+>>>>>>> .r19363
 
 #: ../src/plugins/lib/holidays.xml.in.h:17
 msgid "2 of Passover"
@@ -18979,8 +19069,13 @@ msgid "3 of Sukot"
 msgstr "3 vor Laubhüttenfest"
 
 #: ../src/plugins/lib/holidays.xml.in.h:30
+<<<<<<< .mine
+msgid "Hanuka"
+msgstr "Chanukka"
+=======
 msgid "4 of Sukot"
 msgstr "4 vor Laubhüttenfest"
+>>>>>>> .r19363
 
 #: ../src/plugins/lib/holidays.xml.in.h:31
 msgid "5 of Sukot"
@@ -23044,8 +23139,13 @@ msgid ""
 "To edit this source, you need to close the object."
 msgstr ""
 "Diese Quelle kann im Moment nicht bearbeitet werden. Entweder wird das "
+<<<<<<< .mine
+"zugehörige Quellenobjekt schon bearbeitet oder eine andere Fundstelle die "
+"mit der selben Quelle verbunden ist, wird gerade bearbeitet.\n"
+=======
 "zugehörige Quellenobjekt schon bearbeitet oder eine andere Fundstelle die mit "
 "der selben Quelle verbunden ist, wird gerade bearbeitet.\n"
+>>>>>>> .r19363
 "\n"
 "Um diese Quelle zu bearbeiten, muss das Objekt geschlossen werden."
 
@@ -28470,9 +28570,15 @@ msgstr "<b>Gemeinsam benutzte Quellen-Informationen</b>"
 msgid "_Web address:"
 msgstr "_Web-Adresse:"
 
+<<<<<<< .mine
+#: ../src/glade/editurl.glade.h:3
+msgid "Open the web address in the default browser."
+msgstr "Webadresse im Standardbrowser öffnen."
+=======
 #: ../src/glade/editurl.glade.h:2
 msgid "_Description:"
 msgstr "_Beschreibung:"
+>>>>>>> .r19363
 
 #: ../src/glade/editurl.glade.h:6
 msgid "Type of internet address, eg. E-mail, Web Page, ..."
@@ -28552,9 +28658,15 @@ msgstr "<b>Gemeinsam benutzte Informationen</b>"
 msgid "_Person:"
 msgstr "_Person:"
 
+<<<<<<< .mine
+#: ../src/glade/editreporef.glade.h:9
+msgid "Id number of the source in the repository."
+msgstr "Kennnummer der Quelle im Aufbewahrungsort."
+=======
 #: ../src/glade/editpersonref.glade.h:2
 msgid "_Association:"
 msgstr "_Assoziierung:"
+>>>>>>> .r19363
 
 #: ../src/glade/editpersonref.glade.h:3
 msgid ""
@@ -28773,9 +28885,21 @@ msgstr "Das Dorf oder die Stadt der Adresse"
 msgid "_State/County:"
 msgstr "Bundesland/Kre_is:"
 
+<<<<<<< .mine
+#: ../src/glade/editaddress.glade.h:8
+msgid ""
+"Mail address. \n"
+"\n"
+"Note: Use Residence Event for genealogical address data."
+msgstr ""
+"Postadresse.\n"
+"\n"
+"Bemerkung: Verwende Wohnortsereignis für genealogische Adressdaten."
+=======
 #: ../src/glade/editaddress.glade.h:7
 msgid "Postal code"
 msgstr "Postleitzahl"
+>>>>>>> .r19363
 
 #: ../src/glade/editaddress.glade.h:10
 msgid "Phone number linked to the address."
@@ -29909,8 +30033,14 @@ msgid "Search for events"
 msgstr "Suche nach Ereignissen"
 
 #: ../src/plugins/tool/removeunused.glade.h:2
+<<<<<<< .mine
+#: ../src/plugins/tool/verify.glade.h:6
+msgid "In_vert marks"
+msgstr "Markierungen in_vertieren"
+=======
 msgid "Search for sources"
 msgstr "Suche nach Quellen"
+>>>>>>> .r19363
 
 #: ../src/plugins/tool/removeunused.glade.h:3
 msgid "Search for places"
@@ -30285,12 +30415,19 @@ msgid ""
 "finding duplicate people, interactive descendant browser, and many others. "
 "All tools can be accessed through the &quot;Tools&quot; menu."
 msgstr ""
+<<<<<<< .mine
+"<b>Eltern-Kind Beziehung bearbeiten</b><br/> Du kannst die Beziehung eines "
+"Kindes zu seinen Eltern durch doppelklicken des Kindes im Familieneditor "
+"bearbeiten. Beziehung kann jede Art sein von Adoptiert, Geburt, Pflege, "
+"Keine, Gefördert, Stief und Unbekannt."
+=======
 "<b>Gramps Werkzeuge</b><br/> Gramps enthält eine Menge von nützlichen "
 "Werkzeugen. Diese erlauben Operationen wie die Überprüfung der Datenbank auf "
 "Fehler und Konsistenz einfach durchzuführen. Zum Beispiel Forschung- und "
 "Analysewerkzeuge, Vergleich von Ereignissen, das Finden von doppelten "
 "Personen, eine interaktive Übersicht der Nachkommen und vieles mehr. Alle "
 "Werkzeuge kannst du im Menü unter &quot;Werkzeuge&quot; finden."
+>>>>>>> .r19363
 
 #: ../src/data/tips.xml.in.h:13
 msgid ""
