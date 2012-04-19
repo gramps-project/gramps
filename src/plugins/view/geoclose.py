@@ -196,6 +196,7 @@ class GeoClose(GeoGraphyView):
         self.place_list_active = []
         self.place_list_ref = []
         self.all_place_list = []
+        self.sort = []
         self.place_without_coordinates = []
         self.remove_all_gps()
         self.remove_all_markers()
@@ -204,7 +205,6 @@ class GeoClose(GeoGraphyView):
             color = self._config.get('geography.color1')
             self._createmap(self.refperson, color, self.place_list_ref, True)
         active = self.get_active()
-        self.init_new_compare()
         if active:
             p1 = self.dbstate.db.get_person_from_handle(active)
             self.change_active(active)
@@ -249,7 +249,6 @@ class GeoClose(GeoGraphyView):
         active = self.get_active()
         person = self.dbstate.db.get_person_from_handle(active)
         self.lifeway_layer.clear_ways()
-        self.init_new_compare()
         self.goto_handle(handle=person)
 
     def draw(self, menu, marks, color, reference):
@@ -402,14 +401,6 @@ class GeoClose(GeoGraphyView):
             merge_list = []
             for the_list in self.sort, sort1 : merge_list += the_list
             self.sort = sorted(merge_list, key=operator.itemgetter(6))
-
-    def init_new_compare(self):
-        """
-        Initialize.
-        """
-        self.place_list = []
-        self.sort = []
-        self.place_without_coordinates = []
 
     def bubble_message(self, event, lat, lon, marks):
         """
