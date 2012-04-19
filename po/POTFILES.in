@@ -35,6 +35,7 @@ src/cli/plug/__init__.py
 src/gen/db/base.py
 src/gen/db/exceptions.py
 src/gen/db/undoredo.py
+src/gen/db/upgrade.py
 
 # gen display API
 src/gen/display/name.py
