@@ -48,7 +48,6 @@ from QuestionDialog import OkDialog
 import ManagedWindow
 import gen.lib
 from gen.db import DbTxn
-from gen.ggettext import sgettext as _
 
 class PopulateSources(tool.Tool, ManagedWindow.ManagedWindow):
     """
@@ -56,7 +55,7 @@ class PopulateSources(tool.Tool, ManagedWindow.ManagedWindow):
     """
     
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
-        self.label = _('Populate sources and citations tool')
+        self.label = 'Populate sources and citations tool'
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.set_window(gtk.Window(), gtk.Label(), '')
         tool.Tool.__init__(self, dbstate, options_class, name)
@@ -67,8 +66,8 @@ class PopulateSources(tool.Tool, ManagedWindow.ManagedWindow):
         
         if response == gtk.RESPONSE_ACCEPT:
             self.on_ok_clicked()
-            OkDialog(_('Data generated'),
-                     _("The requested sources and citations were generated"))
+            OkDialog('Data generated',
+                     "The requested sources and citations were generated")
 
         self.close()
 
@@ -83,26 +82,26 @@ class PopulateSources(tool.Tool, ManagedWindow.ManagedWindow):
         num_citations = self.options.handler.options_dict['citations']
 
         # GUI setup:
-        dialog = gtk.Dialog(_("Populate sources and citations tool"),
+        dialog = gtk.Dialog("Populate sources and citations tool",
                                 self.uistate.window,
                                 gtk.DIALOG_MODAL|gtk.DIALOG_DESTROY_WITH_PARENT,
                                 (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
                                  gtk.STOCK_OK, gtk.RESPONSE_ACCEPT))
-        label = gtk.Label(_("Enter a valid number of sources and citations."
+        label = gtk.Label("Enter a valid number of sources and citations."
                           " This will create the requested number of sources,"
                           " and for each source, will create the requested"
-                          " number of citations."))
+                          " number of citations.")
         label.set_line_wrap(True)
 
         hbox1 = gtk.HBox()
-        label_sources = gtk.Label(_("Number of sources") + ":")
+        label_sources = gtk.Label("Number of sources" + ":")
         self.sources_entry = gtk.Entry()
         self.sources_entry.set_text("%d" % num_sources)
         hbox1.pack_start(label_sources, False)
         hbox1.pack_start(self.sources_entry, True)
 
         hbox2 = gtk.HBox()
-        label_citations = gtk.Label(_("Number of citations") + ":")
+        label_citations = gtk.Label("Number of citations" + ":")
         self.citations_entry = gtk.Entry()
         self.citations_entry.set_text("%d" % num_citations)
         hbox2.pack_start(label_citations, False)
@@ -131,8 +130,8 @@ class PopulateSources(tool.Tool, ManagedWindow.ManagedWindow):
         num_citations = int(num_citations_text)
         
         self.progress = ProgressMeter(
-            _('Generating data'), '')
-        self.progress.set_pass(_('Generating data'),
+            'Generating data', '')
+        self.progress.set_pass('Generating data',
                                num_sources*num_citations)
         LOG.debug("sources %04d citations %04d" % (num_sources, 
                                                      num_citations))
