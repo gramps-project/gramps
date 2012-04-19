@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.4.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-16 10:57+0200\n"
-"PO-Revision-Date: 2012-04-16 11:24+0100\n"
+"POT-Creation-Date: 2012-04-19 16:49+0200\n"
+"PO-Revision-Date: 2012-04-19 16:56+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -84,9 +84,9 @@ msgstr "Signets"
 
 #. pylint: disable-msg=E1101
 #: ../src/Bookmarks.py:199
-#: ../src/gui/views/tags.py:372
-#: ../src/gui/views/tags.py:583
-#: ../src/gui/views/tags.py:598
+#: ../src/gui/views/tags.py:371
+#: ../src/gui/views/tags.py:582
+#: ../src/gui/views/tags.py:597
 #: ../src/gui/widgets/tageditor.py:100
 #, python-format
 msgid "%(title)s - Gramps"
@@ -121,7 +121,7 @@ msgstr "Édition des signets"
 #: ../src/gui/plug/_guioptions.py:1110
 #: ../src/gui/plug/_windows.py:115
 #: ../src/gui/selectors/selectperson.py:74
-#: ../src/gui/views/tags.py:388
+#: ../src/gui/views/tags.py:387
 #: ../src/gui/views/treemodels/peoplemodel.py:524
 #: ../src/plugins/BookReport.py:776
 #: ../src/plugins/drawreport/TimeLine.py:68
@@ -2704,6 +2704,60 @@ msgstr "Ann_uler %s"
 #, python-format
 msgid "_Redo %s"
 msgstr "_Rétablir %s"
+
+#: ../src/gen/db/upgrade.py:83
+#, python-format
+msgid "%6d  People        upgraded with %6d citations in %6d secs\n"
+msgstr "%6d  individus        mis à niveau avec %6d citations en %6d secs\n"
+
+#: ../src/gen/db/upgrade.py:84
+#, python-format
+msgid "%6d  Families      upgraded with %6d citations in %6d secs\n"
+msgstr "%6d  familles        mises à niveau avec %6d citations en %6d secs\n"
+
+#: ../src/gen/db/upgrade.py:85
+#, python-format
+msgid "%6d  Events        upgraded with %6d citations in %6d secs\n"
+msgstr "%6d  événements        mis à niveau avec %6d citations en %6d secs\n"
+
+#: ../src/gen/db/upgrade.py:86
+#, python-format
+msgid "%6d  Media Objects upgraded with %6d citations in %6d secs\n"
+msgstr "%6d  objets media        mis à niveau avec %6d citations en %6d secs\n"
+
+#: ../src/gen/db/upgrade.py:87
+#, python-format
+msgid "%6d  Places        upgraded with %6d citations in %6d secs\n"
+msgstr "%6d  lieux        mis à niveau avec %6d citations en %6d secs\n"
+
+#: ../src/gen/db/upgrade.py:88
+#, python-format
+msgid "%6d  Repositories  upgraded with %6d citations in %6d secs\n"
+msgstr "%6d  dépôts        mis à niveau avec %6d citations en %6d secs\n"
+
+#: ../src/gen/db/upgrade.py:416
+msgid "Number of new objects upgraded:\n"
+msgstr "Nombre de nouveaux objets migrés :\n"
+
+#: ../src/gen/db/upgrade.py:422
+msgid ""
+"\n"
+"\n"
+"You may want to run\n"
+"Tools -> Family Tree Processing -> Merge\n"
+"in order to merge citations that contain similar\n"
+"information"
+msgstr ""
+"\n"
+"\n"
+"Vous pourriez vouloir lancer\n"
+"Outils -> Modifications de l'arbre familial -> Fusion\n"
+"pour fusionner les citations qui contiennent une\n"
+"information similaire"
+
+#: ../src/gen/db/upgrade.py:426
+msgid "Upgrade Statistics"
+msgstr "Statistiques de migration"
 
 #: ../src/gen/display/name.py:325
 msgid "Default format (defined by Gramps preferences)"
@@ -6059,8 +6113,8 @@ msgid "Add Spouse"
 msgstr "Ajouter un conjoint"
 
 #: ../src/gui/grampsgui.py:141
-#: ../src/gui/views/tags.py:220
-#: ../src/gui/views/tags.py:225
+#: ../src/gui/views/tags.py:219
+#: ../src/gui/views/tags.py:224
 #: ../src/gui/widgets/tageditor.py:109
 #: ../src/plugins/textreport/TagReport.py:535
 #: ../src/plugins/textreport/TagReport.py:539
@@ -6072,7 +6126,7 @@ msgid "Tag"
 msgstr "Étiquette"
 
 #: ../src/gui/grampsgui.py:142
-#: ../src/gui/views/tags.py:582
+#: ../src/gui/views/tags.py:581
 msgid "New Tag"
 msgstr "Nouvelle étiquette"
 
@@ -8079,7 +8133,7 @@ msgstr "Définir comme nom par défaut"
 #: ../src/gui/editors/displaytabs/namemodel.py:53
 #: ../src/gui/plug/_guioptions.py:1192
 #: ../src/gui/views/listview.py:500
-#: ../src/gui/views/tags.py:479
+#: ../src/gui/views/tags.py:478
 #: ../src/plugins/quickview/all_relations.py:307
 msgid "Yes"
 msgstr "Oui"
@@ -8087,7 +8141,7 @@ msgstr "Oui"
 #: ../src/gui/editors/displaytabs/namemodel.py:54
 #: ../src/gui/plug/_guioptions.py:1191
 #: ../src/gui/views/listview.py:501
-#: ../src/gui/views/tags.py:480
+#: ../src/gui/views/tags.py:479
 #: ../src/plugins/quickview/all_relations.py:311
 msgid "No"
 msgstr "Non"
@@ -9097,86 +9151,86 @@ msgstr "Vue %(name)s : %(msg)s"
 msgid "manual|Tags"
 msgstr "Étiquettes"
 
-#: ../src/gui/views/tags.py:221
+#: ../src/gui/views/tags.py:220
 msgid "New Tag..."
 msgstr "Nouvelle étiquette..."
 
-#: ../src/gui/views/tags.py:223
+#: ../src/gui/views/tags.py:222
 msgid "Organize Tags..."
 msgstr "Organiser les étiquettes..."
 
-#: ../src/gui/views/tags.py:226
+#: ../src/gui/views/tags.py:225
 msgid "Tag selected rows"
 msgstr "Lignes d'étiquette sélectionnées"
 
-#: ../src/gui/views/tags.py:268
+#: ../src/gui/views/tags.py:267
 msgid "Adding Tags"
 msgstr "Ajout d'étiquette"
 
-#: ../src/gui/views/tags.py:273
+#: ../src/gui/views/tags.py:272
 #, python-format
 msgid "Tag Selection (%s)"
 msgstr "Sélection de l'étiquette (%s)"
 
-#: ../src/gui/views/tags.py:327
+#: ../src/gui/views/tags.py:326
 msgid "Change Tag Priority"
 msgstr "Changer la priorité de l'étiquette"
 
-#: ../src/gui/views/tags.py:372
-#: ../src/gui/views/tags.py:380
+#: ../src/gui/views/tags.py:371
+#: ../src/gui/views/tags.py:379
 msgid "Organize Tags"
 msgstr "Organiser les étiquettes"
 
-#: ../src/gui/views/tags.py:389
+#: ../src/gui/views/tags.py:388
 msgid "Color"
 msgstr "Couleur"
 
-#: ../src/gui/views/tags.py:476
+#: ../src/gui/views/tags.py:475
 #, python-format
 msgid "Remove tag '%s'?"
 msgstr "Supprimer l'étiquette '%s' ?"
 
-#: ../src/gui/views/tags.py:477
+#: ../src/gui/views/tags.py:476
 msgid "The tag definition will be removed.  The tag will be also removed from all objects in the database."
 msgstr "Cette définition de l'étiquette sera supprimée. L'étiquette sera également supprimée de tous les objets de la base de données."
 
-#: ../src/gui/views/tags.py:506
+#: ../src/gui/views/tags.py:505
 msgid "Removing Tags"
 msgstr "Retrait d'étiquette"
 
-#: ../src/gui/views/tags.py:511
+#: ../src/gui/views/tags.py:510
 #, python-format
 msgid "Delete Tag (%s)"
 msgstr "Supprimer l'étiquette (%s)"
 
-#: ../src/gui/views/tags.py:559
+#: ../src/gui/views/tags.py:558
 msgid "Cannot save tag"
 msgstr "Impossible d'enregistrer l'étiquette"
 
-#: ../src/gui/views/tags.py:560
+#: ../src/gui/views/tags.py:559
 msgid "The tag name cannot be empty"
 msgstr "Le nom de l'étiquette ne peut pas être vide"
 
-#: ../src/gui/views/tags.py:564
+#: ../src/gui/views/tags.py:563
 #, python-format
 msgid "Add Tag (%s)"
 msgstr "Ajouter l'étiquette(%s)"
 
-#: ../src/gui/views/tags.py:570
+#: ../src/gui/views/tags.py:569
 #, python-format
 msgid "Edit Tag (%s)"
 msgstr "Éditer l'étiquette (%s)"
 
-#: ../src/gui/views/tags.py:580
+#: ../src/gui/views/tags.py:579
 #, python-format
 msgid "Tag: %s"
 msgstr "Étiquette : %s"
 
-#: ../src/gui/views/tags.py:593
+#: ../src/gui/views/tags.py:592
 msgid "Tag Name:"
 msgstr "Nom de l'étiquette :"
 
-#: ../src/gui/views/tags.py:598
+#: ../src/gui/views/tags.py:597
 msgid "Pick a Color"
 msgstr "Choix de la couleur"
 
@@ -29892,3 +29946,4 @@ msgstr "<b>Qui est né quand</b><br/>La comparaison des événements individuels
 #: ../src/data/tips.xml.in.h:63
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr "<b>Travail sur les dates</b><br/>Une période peut être définie en utilisant le format &quot;entre 4/01/2000 et 20/03/2003&quot;. Vous pouvez également indiquer le niveau de confiance dans la date et toujours choisir entre 7 calendriers différents. Essayez le bouton à côté du champ date dans l'éditeur d'événements."
+

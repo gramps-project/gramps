@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-16 10:57+0200\n"
+"POT-Creation-Date: 2012-04-19 16:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,8 +59,8 @@ msgid "manual|Bookmarks"
 msgstr ""
 
 #. pylint: disable-msg=E1101
-#: ../src/Bookmarks.py:199 ../src/gui/views/tags.py:372
-#: ../src/gui/views/tags.py:583 ../src/gui/views/tags.py:598
+#: ../src/Bookmarks.py:199 ../src/gui/views/tags.py:371
+#: ../src/gui/views/tags.py:582 ../src/gui/views/tags.py:597
 #: ../src/gui/widgets/tageditor.py:100
 #, python-format
 msgid "%(title)s - Gramps"
@@ -84,7 +84,7 @@ msgstr ""
 #: ../src/gui/editors/displaytabs/nameembedlist.py:72
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:63
 #: ../src/gui/plug/_guioptions.py:1110 ../src/gui/plug/_windows.py:115
-#: ../src/gui/selectors/selectperson.py:74 ../src/gui/views/tags.py:388
+#: ../src/gui/selectors/selectperson.py:74 ../src/gui/views/tags.py:387
 #: ../src/gui/views/treemodels/peoplemodel.py:524
 #: ../src/plugins/BookReport.py:776 ../src/plugins/drawreport/TimeLine.py:68
 #: ../src/plugins/gramplet/Backlinks.py:45
@@ -2299,6 +2299,54 @@ msgstr ""
 #: ../src/plugins/lib/libgrdb.py:1784 ../src/plugins/lib/libgrdb.py:1826
 #, python-format
 msgid "_Redo %s"
+msgstr ""
+
+#: ../src/gen/db/upgrade.py:83
+#, python-format
+msgid "%6d  People        upgraded with %6d citations in %6d secs\n"
+msgstr ""
+
+#: ../src/gen/db/upgrade.py:84
+#, python-format
+msgid "%6d  Families      upgraded with %6d citations in %6d secs\n"
+msgstr ""
+
+#: ../src/gen/db/upgrade.py:85
+#, python-format
+msgid "%6d  Events        upgraded with %6d citations in %6d secs\n"
+msgstr ""
+
+#: ../src/gen/db/upgrade.py:86
+#, python-format
+msgid "%6d  Media Objects upgraded with %6d citations in %6d secs\n"
+msgstr ""
+
+#: ../src/gen/db/upgrade.py:87
+#, python-format
+msgid "%6d  Places        upgraded with %6d citations in %6d secs\n"
+msgstr ""
+
+#: ../src/gen/db/upgrade.py:88
+#, python-format
+msgid "%6d  Repositories  upgraded with %6d citations in %6d secs\n"
+msgstr ""
+
+#: ../src/gen/db/upgrade.py:416
+msgid "Number of new objects upgraded:\n"
+msgstr ""
+
+#: ../src/gen/db/upgrade.py:422
+msgid ""
+"\n"
+"\n"
+"You may want to run\n"
+"Tools -> Family Tree Processing -> Merge\n"
+"in order to merge citations that contain similar\n"
+"information"
+msgstr ""
+
+#: ../src/gen/db/upgrade.py:426
+msgid "Upgrade Statistics"
 msgstr ""
 
 #: ../src/gen/display/name.py:325
@@ -5399,8 +5447,8 @@ msgstr ""
 msgid "Add Spouse"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:141 ../src/gui/views/tags.py:220
-#: ../src/gui/views/tags.py:225 ../src/gui/widgets/tageditor.py:109
+#: ../src/gui/grampsgui.py:141 ../src/gui/views/tags.py:219
+#: ../src/gui/views/tags.py:224 ../src/gui/widgets/tageditor.py:109
 #: ../src/plugins/textreport/TagReport.py:535
 #: ../src/plugins/textreport/TagReport.py:539
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:121
@@ -5410,7 +5458,7 @@ msgstr ""
 msgid "Tag"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:142 ../src/gui/views/tags.py:582
+#: ../src/gui/grampsgui.py:142 ../src/gui/views/tags.py:581
 msgid "New Tag"
 msgstr ""
 
@@ -7309,13 +7357,13 @@ msgstr ""
 #. -------------------------------------------------------------------------
 #: ../src/gui/editors/displaytabs/namemodel.py:53
 #: ../src/gui/plug/_guioptions.py:1192 ../src/gui/views/listview.py:500
-#: ../src/gui/views/tags.py:479 ../src/plugins/quickview/all_relations.py:307
+#: ../src/gui/views/tags.py:478 ../src/plugins/quickview/all_relations.py:307
 msgid "Yes"
 msgstr ""
 
 #: ../src/gui/editors/displaytabs/namemodel.py:54
 #: ../src/gui/plug/_guioptions.py:1191 ../src/gui/views/listview.py:501
-#: ../src/gui/views/tags.py:480 ../src/plugins/quickview/all_relations.py:311
+#: ../src/gui/views/tags.py:479 ../src/plugins/quickview/all_relations.py:311
 msgid "No"
 msgstr ""
 
@@ -8254,87 +8302,87 @@ msgstr ""
 msgid "manual|Tags"
 msgstr ""
 
-#: ../src/gui/views/tags.py:221
+#: ../src/gui/views/tags.py:220
 msgid "New Tag..."
 msgstr ""
 
-#: ../src/gui/views/tags.py:223
+#: ../src/gui/views/tags.py:222
 msgid "Organize Tags..."
 msgstr ""
 
-#: ../src/gui/views/tags.py:226
+#: ../src/gui/views/tags.py:225
 msgid "Tag selected rows"
 msgstr ""
 
-#: ../src/gui/views/tags.py:268
+#: ../src/gui/views/tags.py:267
 msgid "Adding Tags"
 msgstr ""
 
-#: ../src/gui/views/tags.py:273
+#: ../src/gui/views/tags.py:272
 #, python-format
 msgid "Tag Selection (%s)"
 msgstr ""
 
-#: ../src/gui/views/tags.py:327
+#: ../src/gui/views/tags.py:326
 msgid "Change Tag Priority"
 msgstr ""
 
-#: ../src/gui/views/tags.py:372 ../src/gui/views/tags.py:380
+#: ../src/gui/views/tags.py:371 ../src/gui/views/tags.py:379
 msgid "Organize Tags"
 msgstr ""
 
-#: ../src/gui/views/tags.py:389
+#: ../src/gui/views/tags.py:388
 msgid "Color"
 msgstr ""
 
-#: ../src/gui/views/tags.py:476
+#: ../src/gui/views/tags.py:475
 #, python-format
 msgid "Remove tag '%s'?"
 msgstr ""
 
-#: ../src/gui/views/tags.py:477
+#: ../src/gui/views/tags.py:476
 msgid ""
 "The tag definition will be removed.  The tag will be also removed from all "
 "objects in the database."
 msgstr ""
 
-#: ../src/gui/views/tags.py:506
+#: ../src/gui/views/tags.py:505
 msgid "Removing Tags"
 msgstr ""
 
-#: ../src/gui/views/tags.py:511
+#: ../src/gui/views/tags.py:510
 #, python-format
 msgid "Delete Tag (%s)"
 msgstr ""
 
-#: ../src/gui/views/tags.py:559
+#: ../src/gui/views/tags.py:558
 msgid "Cannot save tag"
 msgstr ""
 
-#: ../src/gui/views/tags.py:560
+#: ../src/gui/views/tags.py:559
 msgid "The tag name cannot be empty"
 msgstr ""
 
-#: ../src/gui/views/tags.py:564
+#: ../src/gui/views/tags.py:563
 #, python-format
 msgid "Add Tag (%s)"
 msgstr ""
 
-#: ../src/gui/views/tags.py:570
+#: ../src/gui/views/tags.py:569
 #, python-format
 msgid "Edit Tag (%s)"
 msgstr ""
 
-#: ../src/gui/views/tags.py:580
+#: ../src/gui/views/tags.py:579
 #, python-format
 msgid "Tag: %s"
 msgstr ""
 
-#: ../src/gui/views/tags.py:593
+#: ../src/gui/views/tags.py:592
 msgid "Tag Name:"
 msgstr ""
 
-#: ../src/gui/views/tags.py:598
+#: ../src/gui/views/tags.py:597
 msgid "Pick a Color"
 msgstr ""
 
