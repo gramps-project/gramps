@@ -28,6 +28,7 @@
 ./../src/gen/db/base.py
 ./../src/gen/db/exceptions.py
 ./../src/gen/db/undoredo.py
+./../src/gen/db/upgrade.py
 ./../src/gen/display/name.py
 ./../src/gen/lib/attrtype.py
 ./../src/gen/lib/childreftype.py
@@ -254,9 +255,10 @@
 ./../src/plugins/lib/libplugins.gpr.py
 ./../src/plugins/lib/libtranslate.py
 ./../src/plugins/lib/libtreebase.py
-./../src/plugins/lib/maps/constants.py
 ./../src/plugins/lib/maps/geography.py
 ./../src/plugins/lib/maps/grampsmaps.py
+./../src/plugins/lib/maps/osmGps.py
+./../src/plugins/lib/maps/placeselection.py
 ./../src/plugins/mapservices/eniroswedenmap.py
 ./../src/plugins/mapservices/googlemap.py
 ./../src/plugins/mapservices/mapservice.gpr.py
@@ -325,6 +327,7 @@
 ./../src/plugins/view/fanchartview.py
 ./../src/plugins/view/fanchartview.gpr.py
 ./../src/plugins/view/geography.gpr.py
+./../src/plugins/view/geoclose.py
 ./../src/plugins/view/geoevents.py
 ./../src/plugins/view/geofamily.py
 ./../src/plugins/view/geoperson.py
