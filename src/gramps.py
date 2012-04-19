@@ -113,12 +113,12 @@ else: # normal case
 MIN_PYTHON_VERSION = (2, 6, 0, '', 0)
 if not sys.version_info >= MIN_PYTHON_VERSION :
     print (_("Your Python version does not meet the "
-             "requirements. At least python %d.%d.%d is needed to"
+             "requirements. At least python %(v1)d.%(v2)d.%(v3)d is needed to"
              " start Gramps.\n\n"
-             "Gramps will terminate now.") % (
-            MIN_PYTHON_VERSION[0], 
-            MIN_PYTHON_VERSION[1],
-            MIN_PYTHON_VERSION[2]))
+             "Gramps will terminate now.") % {
+             'v1': MIN_PYTHON_VERSION[0], 
+             'v2': MIN_PYTHON_VERSION[1],
+             'v3': MIN_PYTHON_VERSION[2]})
     sys.exit(1)
 
 #-------------------------------------------------------------------------

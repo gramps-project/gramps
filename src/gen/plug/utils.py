@@ -268,7 +268,10 @@ def load_addon_file(path, callback=None):
                     # If the plugin is for another version; inform and do nothing
                     if callback:
                         callback("   " + (_("'%s' is NOT for this version of Gramps.") % id)  + "\n")
-                        callback("   " + (_("It is for version %d.%d" % vtup)  + "\n"))
+                        callback("   " + (_("It is for version %(v1)d.%(v2)d") % {
+                                             'v1': vtup[0],
+                                             'v2': vtup[1]}
+                                          + "\n"))
                     continue
             else:
                 # another register function doesn't have gramps_target_version

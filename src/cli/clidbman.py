@@ -75,7 +75,9 @@ def _errordialog(title, errormessage):
     """
     Show the error. A title for the error and an errormessage
     """
-    print _('ERROR: %s \n       %s') % (title, errormessage)
+    print _('ERROR: %(title)s \n       %(message)s') % {
+                'title': title,
+                'message': errormessage}
     sys.exit()
 
 #-------------------------------------------------------------------------

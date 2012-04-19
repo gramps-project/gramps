@@ -492,9 +492,12 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
                     folder = os.path.split(filename)[0]
                     confirm_text = _(
                     'The data will be saved as follows:\n\n'
-                    'Format:\t%s\nName:\t%s\nFolder:\t%s\n\n'
+                    'Format:\t%(format)s\nName:\t%(name)s\nFolder:\t%(folder)s\n\n'
                     'Press Apply to proceed, Back to revisit '
-                    'your options, or Cancel to abort') % (format.replace("_",""), name, folder)
+                    'your options, or Cancel to abort') % {
+                    'format': format.replace("_",""),
+                    'name': name,
+                    'folder': folder}
                     page_complete = True
                 else :
                     confirm_text = _(

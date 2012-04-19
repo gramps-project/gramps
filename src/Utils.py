@@ -1681,9 +1681,9 @@ def make_unknown(class_arg, explanation, class_func, commit_func, transaction,
     elif isinstance(obj, gen.lib.Tag):
         if not hasattr(make_unknown, 'count'):
             make_unknown.count = 1 #primitive static variable
-        obj.set_name(_("Unknown, was missing %s (%d)") %
-                (time.strftime('%x %X', time.localtime()),
-                make_unknown.count))
+        obj.set_name(_("Unknown, was missing %(time)s (%(count)d)") % {
+                'time': time.strftime('%x %X', time.localtime()),
+                'count': make_unknown.count})
         make_unknown.count += 1
     else:
         raise TypeError("Object if of unsupported type")

@@ -841,7 +841,10 @@ class GuiFamilyOption(gtk.HBox):
             else:
                 mother_name = _("unknown mother")
                 
-            name = _("%s and %s (%s)") % (father_name, mother_name, family_id)
+            name = _("%(father_name)s and %(mother_name)s (%(family_id)s)") % {
+                        'father_name': father_name,
+                        'mother_name': mother_name,
+                        'family_id': family_id}
 
             self.__family_label.set_text( name )
             self.__option.set_value(family_id)

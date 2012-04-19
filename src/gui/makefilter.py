@@ -46,8 +46,10 @@ def make_filter(dbstate, uistate, objclass, gramps_ids, title=None):
         title = title()
     filter.set_name(title)
     struct_time = time.localtime()
-    filter.set_comment( _("Created on %4d/%02d/%02d") % 
-        (struct_time.tm_year, struct_time.tm_mon, struct_time.tm_mday))
+    filter.set_comment( _("Created on %(year)4d/%(month)02d/%(day)02d") % { 
+        'year': struct_time.tm_year,
+        'month': struct_time.tm_mon,
+        'day': struct_time.tm_mday})
     re = "|".join(["^%s$" % gid for gid in sorted(gramps_ids)])
     filter.add_rule(rule([re]))
     filterdb = Filters.FilterList(const.CUSTOM_FILTERS)
