@@ -377,7 +377,7 @@ class DeleteNoteQuery(object):
                 self.db.commit_source(source, trans)
 
             for handle in citation_list:
-                source = self.db.get_citation_from_handle(handle)
+                citation = self.db.get_citation_from_handle(handle)
                 citation.remove_note(note_handle)
                 self.db.commit_citation(citation, trans)
 
