@@ -1263,7 +1263,7 @@ class ScratchPadListView(object):
 
 #-------------------------------------------------------------------------
 #
-# ScatchPadWindow class
+# ScratchPadWindow class
 #
 #-------------------------------------------------------------------------
 class ScratchPadWindow(ManagedWindow.ManagedWindow):

@@ -50,7 +50,7 @@ from Filters.Rules.Place import (RegExpIdOf, HasIdOf, HasPlace, HasNoteRegexp,
 GenericPlaceFilter = GenericFilterFactory('Place')
 #-------------------------------------------------------------------------
 #
-# PersonSidebarFilter class
+# PlaceSidebarFilter class
 #
 #-------------------------------------------------------------------------
 class PlaceSidebarFilter(SidebarFilter):

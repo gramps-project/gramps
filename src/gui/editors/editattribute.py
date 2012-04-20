@@ -154,7 +154,7 @@ class EditAttribute(EditSecondary):
 
 #-------------------------------------------------------------------------
 #
-# EditAttribute class
+# EditFamilyAttribute class
 #
 #-------------------------------------------------------------------------
 class EditFamilyAttribute(EditAttribute):

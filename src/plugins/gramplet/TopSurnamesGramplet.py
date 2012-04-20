@@ -39,7 +39,7 @@ _YIELD_INTERVAL = 350
 
 #------------------------------------------------------------------------
 #
-# Gramplet class
+# TopSurnamesGramplet class
 #
 #------------------------------------------------------------------------
 class TopSurnamesGramplet(Gramplet):

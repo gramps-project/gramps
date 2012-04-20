@@ -42,7 +42,7 @@ from gen.plug  import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,
 
 #------------------------------------------------------------------------
 #
-# Gramplet class
+# QuickViewGramplet class
 #
 #------------------------------------------------------------------------
 class QuickViewGramplet(Gramplet):

@@ -30,7 +30,7 @@ import gen.lib
 
 #------------------------------------------------------------------------
 #
-# Gramplet class
+# CalendarGramplet class
 #
 #------------------------------------------------------------------------
 class CalendarGramplet(Gramplet):

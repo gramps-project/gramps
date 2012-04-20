@@ -28,7 +28,7 @@ from gen.ggettext import sgettext as _
 
 #------------------------------------------------------------------------
 #
-# Gramplet class
+# TODOGramplet class
 #
 #------------------------------------------------------------------------
 class TODOGramplet(Gramplet):

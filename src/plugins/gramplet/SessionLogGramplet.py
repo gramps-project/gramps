@@ -35,7 +35,7 @@ from Utils import family_name
 
 #------------------------------------------------------------------------
 #
-# Gramplet class
+# LogGramplet class
 #
 #------------------------------------------------------------------------
 class LogGramplet(Gramplet):

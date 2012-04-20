@@ -36,7 +36,7 @@ from gen.utils.callman import CallbackManager
 
 #-------------------------------------------------------------------------
 #
-# GUIElement class
+# DbGUIElement class
 #
 #-------------------------------------------------------------------------
 class DbGUIElement(object):

@@ -34,7 +34,7 @@ from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
-# LocationEditor class
+# EditLocation class
 #
 #-------------------------------------------------------------------------
 class EditLocation(EditSecondary):

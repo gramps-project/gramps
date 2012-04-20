@@ -35,7 +35,7 @@ from gen.ggettext import sgettext as _
 
 #------------------------------------------------------------------------
 #
-# Gramplet class
+# PluginManagerGramplet class
 #
 #------------------------------------------------------------------------
 class PluginManagerGramplet(Gramplet):

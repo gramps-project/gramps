@@ -51,7 +51,7 @@ from Filters.Rules.Note import (RegExpIdOf, HasIdOf, HasNote, MatchesFilter,
 GenericNoteFilter = GenericFilterFactory('Note')
 #-------------------------------------------------------------------------
 #
-# PersonSidebarFilter class
+# NoteSidebarFilter class
 #
 #-------------------------------------------------------------------------
 class NoteSidebarFilter(SidebarFilter):

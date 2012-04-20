@@ -75,7 +75,7 @@ _ARROWS = [ { 'name' : _("Descendants <- Ancestors"),  'value' : 'd' },
 
 #------------------------------------------------------------------------
 #
-# Report class
+# RelGraphReport class
 #
 #------------------------------------------------------------------------
 class RelGraphReport(Report):
@@ -453,7 +453,7 @@ class RelGraphReport(Report):
 
 #------------------------------------------------------------------------
 #
-# Options class 
+# RelGraphOptions class 
 #
 #------------------------------------------------------------------------
 class RelGraphOptions(MenuReportOptions):

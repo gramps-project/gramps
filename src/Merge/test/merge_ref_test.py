@@ -1195,7 +1195,7 @@ class PersonPersonCheck(BaseMergeCheck):
 
 #-------------------------------------------------------------------------
 #
-# ParentFamilyPesronCheck class
+# ParentFamilyPersonCheck class
 #
 #-------------------------------------------------------------------------
 class ParentFamilyPersonCheck(BaseMergeCheck):

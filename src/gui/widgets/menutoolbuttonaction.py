@@ -49,7 +49,7 @@ import gtk
 
 #-------------------------------------------------------------------------
 #
-# ValueAction class
+# MenuToolButtonAction class
 #
 #-------------------------------------------------------------------------
 class MenuToolButtonAction(gtk.Action):

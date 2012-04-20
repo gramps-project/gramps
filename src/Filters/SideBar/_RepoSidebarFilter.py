@@ -51,7 +51,7 @@ from Filters.Rules.Repository import (RegExpIdOf, HasIdOf, HasRepo,
 GenericRepoFilter = GenericFilterFactory('Repository')
 #-------------------------------------------------------------------------
 #
-# PersonSidebarFilter class
+# RepoSidebarFilter class
 #
 #-------------------------------------------------------------------------
 class RepoSidebarFilter(SidebarFilter):

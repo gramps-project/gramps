@@ -29,7 +29,7 @@ from gen.display.name import displayer as name_displayer
 
 #------------------------------------------------------------------------
 #
-# Gramplet class
+# RelativesGramplet class
 #
 #------------------------------------------------------------------------
 class RelativesGramplet(Gramplet):

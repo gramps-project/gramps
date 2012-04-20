@@ -51,7 +51,7 @@ from Filters.Rules.Event import (RegExpIdOf, HasIdOf, HasNoteRegexp,
 GenericEventFilter = GenericFilterFactory('Event')
 #-------------------------------------------------------------------------
 #
-# PersonSidebarFilter class
+# EventSidebarFilter class
 #
 #-------------------------------------------------------------------------
 class EventSidebarFilter(SidebarFilter):

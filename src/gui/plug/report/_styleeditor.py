@@ -60,7 +60,7 @@ from glade import Glade
 
 #------------------------------------------------------------------------
 #
-# StyleList class
+# StyleListDisplay class
 #
 #------------------------------------------------------------------------
 class StyleListDisplay(object):

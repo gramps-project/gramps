@@ -49,7 +49,7 @@ from Filters.Rules.Source import (RegExpIdOf, HasIdOf, HasSource,
 GenericSourceFilter = GenericFilterFactory('Source')
 #-------------------------------------------------------------------------
 #
-# PersonSidebarFilter class
+# SourceSidebarFilter class
 #
 #-------------------------------------------------------------------------
 class SourceSidebarFilter(SidebarFilter):

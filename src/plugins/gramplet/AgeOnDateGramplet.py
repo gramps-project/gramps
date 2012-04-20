@@ -41,7 +41,7 @@ from QuickReports import run_quick_report_by_name
 
 #------------------------------------------------------------------------
 #
-# Gramplet class
+# AgeOnDateGramplet class
 #
 #------------------------------------------------------------------------
 class AgeOnDateGramplet(Gramplet):

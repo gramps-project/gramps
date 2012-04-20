@@ -55,7 +55,7 @@ from Filters.Rules.Family import (RegExpIdOf, HasIdOf, RegExpFatherName,
 GenericFamilyFilter = GenericFilterFactory('Family')
 #-------------------------------------------------------------------------
 #
-# PersonSidebarFilter class
+# FamilySidebarFilter class
 #
 #-------------------------------------------------------------------------
 class FamilySidebarFilter(SidebarFilter):

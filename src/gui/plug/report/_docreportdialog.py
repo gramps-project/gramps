@@ -50,7 +50,7 @@ PLUGMAN = GuiPluginManager.get_instance()
 
 #-------------------------------------------------------------------------
 #
-# ReportDialog class
+# DocReportDialog class
 #
 #-------------------------------------------------------------------------
 class DocReportDialog(ReportDialog):

@@ -54,7 +54,7 @@ def make_tag_size(n, counts, mins=8, maxs=20):
 
 #------------------------------------------------------------------------
 #
-# Gramplet class
+# SurnameCloudGramplet class
 #
 #------------------------------------------------------------------------
 class SurnameCloudGramplet(Gramplet):

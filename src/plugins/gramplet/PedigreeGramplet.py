@@ -42,7 +42,7 @@ from gen.utils import get_birth_or_fallback, get_death_or_fallback
 
 #------------------------------------------------------------------------
 #
-# Gramplet class
+# PedigreeGramplet class
 #
 #------------------------------------------------------------------------
 class PedigreeGramplet(Gramplet):

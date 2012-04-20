@@ -51,7 +51,7 @@ from Utils import confidence
 GenericCitationFilter = GenericFilterFactory('Citation')
 #-------------------------------------------------------------------------
 #
-# PersonSidebarFilter class
+# CitationSidebarFilter class
 #
 #-------------------------------------------------------------------------
 class CitationSidebarFilter(SidebarFilter):

@@ -50,7 +50,7 @@ from Filters.Rules.MediaObject import (RegExpIdOf, HasIdOf, HasMedia, HasTag,
 GenericMediaFilter = GenericFilterFactory('MediaObject')
 #-------------------------------------------------------------------------
 #
-# PersonSidebarFilter class
+# MediaSidebarFilter class
 #
 #-------------------------------------------------------------------------
 class MediaSidebarFilter(SidebarFilter):

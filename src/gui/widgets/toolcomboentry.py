@@ -50,7 +50,7 @@ from gui.widgets.shortlistcomboentry import ShortlistComboEntry
 
 #-------------------------------------------------------------------------
 #
-# ToolEntry class
+# ToolComboEntry class
 #
 #-------------------------------------------------------------------------
 class ToolComboEntry(ValueToolItem):
