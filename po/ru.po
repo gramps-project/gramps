@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-04-07 12:19+0300\n"
-"PO-Revision-Date: 2012-04-07 13:33+0300\n"
+"PO-Revision-Date: 2012-04-20 11:38+0300\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -36,22 +36,18 @@ msgid "Name:"
 msgstr "Имя:"
 
 #: ../src/Assistant.py:339 ../src/Filters/Rules/Repository/_HasRepo.py:49
-#, fuzzy
 msgid "Address:"
 msgstr "Адрес:"
 
 #: ../src/Assistant.py:340 ../src/Filters/Rules/Place/_HasPlace.py:51
-#, fuzzy
 msgid "City:"
 msgstr "Город:"
 
 #: ../src/Assistant.py:341
-#, fuzzy
 msgid "State/Province:"
 msgstr "Штат/Провинция:"
 
 #: ../src/Assistant.py:342 ../src/Filters/Rules/Place/_HasPlace.py:54
-#, fuzzy
 msgid "Country:"
 msgstr "Страна:"
 
@@ -250,9 +246,8 @@ msgid "No active source"
 msgstr "Не выбран источник"
 
 #: ../src/DisplayState.py:369
-#, fuzzy
 msgid "No active citation"
-msgstr "Не выбран объект"
+msgstr "Не выбрана цитата"
 
 #: ../src/DisplayState.py:370
 msgid "No active repository"
@@ -1081,9 +1076,8 @@ msgid "Person ref"
 msgstr "ссылка на лицо"
 
 #: ../src/ScratchPad.py:671
-#, fuzzy
 msgid "Child ref"
-msgstr "Дети"
+msgstr ""
 
 #: ../src/ScratchPad.py:680
 #, python-format
@@ -1270,9 +1264,9 @@ msgid "Clipboard"
 msgstr "Буфер обмена"
 
 #: ../src/ScratchPad.py:1439 ../src/Simple/_SimpleTable.py:137
-#, fuzzy, python-format
+#, python-format
 msgid "the object|See %s details"
-msgstr "Показать подробности о заметке"
+msgstr ""
 
 #. ---------------------------
 #: ../src/ScratchPad.py:1445 ../src/Simple/_SimpleTable.py:147
@@ -1364,9 +1358,8 @@ msgid "the family"
 msgstr "семья"
 
 #: ../src/TransUtils.py:313
-#, fuzzy
 msgid "the place"
-msgstr "Место рождения"
+msgstr ""
 
 #: ../src/TransUtils.py:315
 msgid "the event"
@@ -1377,25 +1370,21 @@ msgid "the repository"
 msgstr "хранилище"
 
 #: ../src/TransUtils.py:319
-#, fuzzy
 msgid "the note"
-msgstr "Все заметки"
+msgstr ""
 
 # !!!FIXME!!!
 #: ../src/TransUtils.py:321
-#, fuzzy
 msgid "the media"
-msgstr "альбом"
+msgstr ""
 
 #: ../src/TransUtils.py:323
-#, fuzzy
 msgid "the source"
-msgstr "Источник информации о рождении"
+msgstr ""
 
 #: ../src/TransUtils.py:325
-#, fuzzy
 msgid "the filter"
-msgstr "Отцовские фильтры"
+msgstr ""
 
 #: ../src/TransUtils.py:327
 msgid "See details"
@@ -1940,14 +1929,12 @@ msgid "Created empty family tree successfully"
 msgstr "Успешно создано пустое семейное древо"
 
 #: ../src/cli/arghandler.py:480 ../src/cli/arghandler.py:507
-#, fuzzy
 msgid "Error opening the file."
-msgstr "Ошибка открытия файла"
+msgstr "Ошибка открытия файла."
 
 #: ../src/cli/arghandler.py:481 ../src/cli/arghandler.py:508
-#, fuzzy
 msgid "Exiting..."
-msgstr "Выбираю..."
+msgstr "Выход..."
 
 #: ../src/cli/arghandler.py:487
 #, python-format
@@ -1955,9 +1942,8 @@ msgid "Importing: file %(filename)s, format %(format)s."
 msgstr "Импортирую: файл %(filename)s, формат %(format)s."
 
 #: ../src/cli/arghandler.py:505
-#, fuzzy
 msgid "Opened successfully!"
-msgstr "Операция успешно завершена."
+msgstr "База данных успешно открыта!"
 
 #: ../src/cli/arghandler.py:519
 msgid "Database is locked, cannot open it!"
@@ -2005,9 +1991,9 @@ msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr "Не задано имя инструмента. Пожалуйста, укажите %(donottranslate)s=ИмяИнструмента."
 
 #: ../src/cli/arghandler.py:662
-#, fuzzy, python-format
+#, python-format
 msgid "Unknown action: %s."
-msgstr "неизв."
+msgstr "Неизвестное действие: %s."
 
 #. Note: Make sure to edit const.py.in POPT_TABLE too!
 #: ../src/cli/argparser.py:55
@@ -2271,9 +2257,8 @@ msgid "Error encountered in argument parsing: %s"
 msgstr "При разборе параметров возникла ошибка: %s"
 
 #: ../src/cli/plug/__init__.py:168
-#, fuzzy
 msgid "ERROR: Please specify a person"
-msgstr "Пожалуйста, укажите название книги"
+msgstr "ОШИБКА: Пожалуйста, укажите лицо"
 
 #: ../src/cli/plug/__init__.py:192
 msgid "ERROR: Please specify a family"
@@ -2289,9 +2274,9 @@ msgid "Custom Size"
 msgstr "Другой размер"
 
 #: ../src/cli/plug/__init__.py:403
-#, fuzzy, python-format
+#, python-format
 msgid "Unknown option: %s"
-msgstr "Неизвестная мать"
+msgstr "Неизвестный параметр: %s"
 
 #: ../src/cli/plug/__init__.py:404 ../src/cli/plug/__init__.py:434
 msgid "   Valid options are:"
@@ -2319,14 +2304,12 @@ msgid "Use '%(notranslate)s' to see valid values."
 msgstr ""
 
 #: ../src/cli/plug/__init__.py:520
-#, fuzzy
 msgid "   Available options:"
-msgstr "Существующие книги"
+msgstr "   Возможные параметры:"
 
 #: ../src/cli/plug/__init__.py:538
-#, fuzzy
 msgid "   Available values are:"
-msgstr "Доступные элементы"
+msgstr "   Возможные значения:"
 
 #. there was a show option given, but the option is invalid
 #: ../src/cli/plug/__init__.py:550
@@ -2623,9 +2606,9 @@ msgid "Foster"
 msgstr "Воспитанник"
 
 #: ../src/gen/lib/date.py:299
-#, fuzzy, python-format
+#, python-format
 msgid "less than %s years"
-msgstr "меньше чем 1"
+msgstr "меньше чем %s лет"
 
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, -Span.BEFORE)
@@ -4933,9 +4916,8 @@ msgid "Note Filters"
 msgstr "Фильтры заметок"
 
 #: ../src/gui/filtereditor.py:89
-#, fuzzy
 msgid "Citation Filters"
-msgstr "Фильтры местоположений"
+msgstr "Фильтры цитат"
 
 #: ../src/gui/filtereditor.py:93 ../src/Filters/Rules/Person/_HasEvent.py:49
 msgid "Personal event:"
@@ -5276,9 +5258,8 @@ msgid "Restore default gramplets"
 msgstr "Восстановить грамплеты по умолчанию"
 
 #: ../src/gui/grampsbar.py:481
-#, fuzzy
 msgid "Restore to defaults?"
-msgstr "Восстановить грамплет"
+msgstr "Восстановить параметры по умолчанию?"
 
 #: ../src/gui/grampsbar.py:482
 msgid "The Grampsbar will be restored to contain its default gramplets.  This action cannot be undone."
@@ -5661,14 +5642,12 @@ msgid "Unsupported"
 msgstr "Не поддерживаемые"
 
 #: ../src/gui/viewmanager.py:408
-#, fuzzy
 msgid "Updated"
-msgstr "дата"
+msgstr ""
 
 #: ../src/gui/viewmanager.py:420
-#, fuzzy
 msgid "New"
-msgstr "Новая метка"
+msgstr ""
 
 #. List of translated strings used here
 #. Dead code for l10n
@@ -5677,9 +5656,8 @@ msgid "new"
 msgstr ""
 
 #: ../src/gui/viewmanager.py:433
-#, fuzzy
 msgid "update"
-msgstr "дата"
+msgstr ""
 
 #: ../src/gui/viewmanager.py:438
 msgid "There are no available addons of this type"
@@ -5699,9 +5677,9 @@ msgid "Available Gramps Updates for Addons"
 msgstr "Доступны обновления для дополнений"
 
 #: ../src/gui/viewmanager.py:480
-#, fuzzy, python-format
+#, python-format
 msgid "%(adjective)s: %(addon)s"
-msgstr "%(type)s: %(value)s"
+msgstr "%(adjective)s: %(addon)s"
 
 # no l10n needed - i18n toolset glitch extracting strings from _(x[0]), x[2]["t"]
 #. checkbox visible?
@@ -5954,9 +5932,10 @@ msgstr "Нельзя откатить все изменения, посколь�
 msgid "View failed to load. Check error output."
 msgstr ""
 
+# statistics over import results
 #: ../src/gui/viewmanager.py:1344
 msgid "Import Statistics"
-msgstr "Импортировать статистику"
+msgstr "Статистика"
 
 #: ../src/gui/viewmanager.py:1395
 msgid "Read Only"
@@ -6213,14 +6192,12 @@ msgstr "Родство ребёнка"
 
 #: ../src/gui/editors/editcitation.py:149
 #: ../src/gui/editors/editcitation.py:155
-#, fuzzy
 msgid "New Citation"
-msgstr "Цитата"
+msgstr "Новая цитата"
 
 #: ../src/gui/editors/editcitation.py:386
-#, fuzzy
 msgid "Edit Citation"
-msgstr "Цитата"
+msgstr "Редактировать цитату"
 
 #: ../src/gui/editors/editcitation.py:392 ../src/gui/editors/editsource.py:181
 msgid "Cannot save source"
@@ -6231,9 +6208,8 @@ msgid "No data exists for this source. Please enter data or cancel the edit."
 msgstr "Нет данных об этом источнике. Пожалуйста введите данные или отмените правку."
 
 #: ../src/gui/editors/editcitation.py:402
-#, fuzzy
 msgid "Cannot save citation. ID already exists."
-msgstr "Сохранение лица невозможно. ID уже существует."
+msgstr "Сохранение цитаты невозможно. ID уже существует."
 
 #: ../src/gui/editors/editcitation.py:403
 #: ../src/gui/editors/editcitation.py:417
@@ -6256,19 +6232,19 @@ msgid "Edit Source (%s)"
 msgstr "Редактирование Источника (%s)"
 
 #: ../src/gui/editors/editcitation.py:443
-#, fuzzy, python-format
+#, python-format
 msgid "Add Citation (%s)"
-msgstr "Удалить Метку (%s)"
+msgstr ""
 
 #: ../src/gui/editors/editcitation.py:449
-#, fuzzy, python-format
+#, python-format
 msgid "Edit Citation (%s)"
-msgstr "Цитата"
+msgstr ""
 
 #: ../src/gui/editors/editcitation.py:532
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Citation (%s)"
-msgstr "Удалить Метку (%s)"
+msgstr "Удалить цитату (%s)"
 
 #: ../src/gui/editors/editevent.py:64
 msgid "manual|Editing_Information_About_Events"
@@ -7116,9 +7092,8 @@ msgid "Move Down"
 msgstr "Переместить ниже"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:71
-#, fuzzy
 msgid "Create and add a new citation and new source"
-msgstr "Создать и добавить новый источник"
+msgstr "Создать и добавить новую цитату из нового источника"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:72
 msgid "Remove the existing citation"
@@ -7126,14 +7101,12 @@ msgstr "Удалить существующую цитату"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:73
 #: ../src/plugins/view/citationlistview.py:121
-#, fuzzy
 msgid "Edit the selected citation"
-msgstr "Редактировать выделенную связь"
+msgstr "Редактировать выделенную цитату"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:74
-#, fuzzy
 msgid "Add an existing citation or source"
-msgstr "Добавить существующий источник"
+msgstr "Добавить существующий источник или цитату"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:75
 msgid "Move the selected citation upwards"
@@ -7158,9 +7131,8 @@ msgid "Page"
 msgstr "Страница"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:92
-#, fuzzy
 msgid "_Source Citations"
-msgstr "Упоминания источника"
+msgstr ""
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:172
 #: ../src/gui/editors/displaytabs/citationembedlist.py:182
@@ -7400,9 +7372,8 @@ msgid "Group As"
 msgstr "Группировать как:"
 
 #: ../src/gui/editors/displaytabs/nameembedlist.py:78
-#, fuzzy
 msgid "Notes Preview"
-msgstr "Предпросмотр заметки"
+msgstr "Предпросмотр заметок"
 
 #: ../src/gui/editors/displaytabs/nameembedlist.py:88
 msgid "_Names"
@@ -8134,9 +8105,8 @@ msgid "You must select an active person for this tool to work properly."
 msgstr "Для работы этого инструмента необходимо выбрать активное лицо."
 
 #: ../src/gui/selectors/selectcitation.py:59
-#, fuzzy
 msgid "Select Source or Citation"
-msgstr "Выберите Источник"
+msgstr "Выберите источник или цитату"
 
 #: ../src/gui/selectors/selectevent.py:54
 msgid "Select Event"
@@ -8303,9 +8273,8 @@ msgid "_Forward"
 msgstr "_Вперёд"
 
 #: ../src/gui/views/navigationview.py:292
-#, fuzzy
 msgid "Go to the next object in the history"
-msgstr "Перейти на следующую страницу в истории"
+msgstr "Перейти на следующий объект в истории"
 
 #: ../src/gui/views/navigationview.py:299
 #: ../src/plugins/view/htmlrenderer.py:644
@@ -8313,9 +8282,8 @@ msgid "_Back"
 msgstr "_Назад"
 
 #: ../src/gui/views/navigationview.py:300
-#, fuzzy
 msgid "Go to the previous object in the history"
-msgstr "Перейти на предыдущую страницу в истории"
+msgstr "Перейти на предыдущий объект в истории"
 
 #: ../src/gui/views/navigationview.py:304
 msgid "_Home"
@@ -8488,9 +8456,8 @@ msgid "Building View"
 msgstr "Подготавливаю данные к отображению"
 
 #: ../src/gui/views/treemodels/treebasemodel.py:554
-#, fuzzy
 msgid "Obtaining all rows"
-msgstr "Получаю всех людей"
+msgstr ""
 
 #: ../src/gui/views/treemodels/treebasemodel.py:570
 msgid "Applying filter"
@@ -9193,9 +9160,8 @@ msgid "The center person for the filter"
 msgstr "Главное лицо для фильтрации"
 
 #: ../src/plugins/Records.py:530
-#, fuzzy
 msgid "Number of ranks to display"
-msgstr "Минимальное количество пунктов"
+msgstr ""
 
 #: ../src/plugins/Records.py:533
 msgid "Use call name"
@@ -9434,9 +9400,8 @@ msgid "Contents"
 msgstr "Содержание"
 
 #: ../src/plugins/docgen/ODFDoc.py:1655
-#, fuzzy
 msgid "Index"
-msgstr "Включить"
+msgstr "Указатель"
 
 #. cm2pt = ReportUtils.cm2pt
 #. ------------------------------------------------------------------------
@@ -10734,9 +10699,8 @@ msgid "No Date Information"
 msgstr "Нет данных о дате"
 
 #: ../src/plugins/drawreport/TimeLine.py:301
-#, fuzzy
 msgid "Finding date range..."
-msgstr "Печатаю древо..."
+msgstr ""
 
 #: ../src/plugins/drawreport/TimeLine.py:371
 msgid "Determines what people are included in the report"
@@ -10774,9 +10738,8 @@ msgid "CSV is a common spreadsheet format."
 msgstr "CSV это широко распространенный формат, предназначенный для представления табличных данных."
 
 #: ../src/plugins/export/export.gpr.py:41
-#, fuzzy
 msgid "CSV spreadsheet options"
-msgstr "CSV это широко распространенный формат, предназначенный для представления табличных данных."
+msgstr ""
 
 #: ../src/plugins/export/export.gpr.py:52
 msgid "Web Family Tree"
@@ -10827,9 +10790,8 @@ msgid "GeneWeb is a web based genealogy program."
 msgstr "GeneWeb - генеалогическая веб-программа."
 
 #: ../src/plugins/export/export.gpr.py:105
-#, fuzzy
 msgid "GeneWeb export options"
-msgstr "Импорт GeneWeb"
+msgstr "Настройки экспорта в GeneWeb"
 
 #: ../src/plugins/export/export.gpr.py:116
 msgid "Gramps XML Package (family tree and media)"
@@ -10876,9 +10838,8 @@ msgid "vCalendar is used in many calendaring and PIM applications."
 msgstr "vCalendar используется во многих календарных программах."
 
 #: ../src/plugins/export/export.gpr.py:171
-#, fuzzy
 msgid "vCalendar export options"
-msgstr "Календарь"
+msgstr "Настройки экспорта в vCalendar"
 
 # LDS
 #: ../src/plugins/export/export.gpr.py:182
@@ -10896,9 +10857,8 @@ msgid "vCard is used in many addressbook and pim applications."
 msgstr "vCard используется во многих адресных программах."
 
 #: ../src/plugins/export/export.gpr.py:192
-#, fuzzy
 msgid "vCard export options"
-msgstr "Параметры отчёта"
+msgstr "Настройки экспорта в vCard"
 
 #: ../src/plugins/export/ExportCsv.py:196
 msgid "Include people"
@@ -11278,9 +11238,8 @@ msgid "Gramplet showing media objects for a source"
 msgstr "Отображает документы для выбранного источника"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:223
-#, fuzzy
 msgid "Citation Gallery"
-msgstr "Галерея лица"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:224
 msgid "Gramplet showing media objects for a citation"
@@ -11375,9 +11334,8 @@ msgid "Gramplet showing the notes for a source"
 msgstr "Отображает заметки для выбранного источника"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:363
-#, fuzzy
 msgid "Citation Notes"
-msgstr "Заметка о связи"
+msgstr "Заметка о цитате"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:364
 msgid "Gramplet showing the notes for a citation"
@@ -11400,18 +11358,16 @@ msgid "Gramplet showing the notes for a media object"
 msgstr "Отображает заметки для выбранного документа"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:405
-#, fuzzy
 msgid "Person Citations"
-msgstr "Детали лица"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:406
 msgid "Gramplet showing the citations for a person"
 msgstr "Отображает все цитаты для выбранного лица"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:419
-#, fuzzy
 msgid "Event Citations"
-msgstr "Цитата"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:420
 msgid "Gramplet showing the citations for an event"
@@ -11426,9 +11382,8 @@ msgid "Gramplet showing the citations for a family"
 msgstr "Отображает все цитаты для выбранной семьи"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:447
-#, fuzzy
 msgid "Place Citations"
-msgstr "Параметры бумаги"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:448
 msgid "Gramplet showing the citations for a place"
@@ -11527,9 +11482,8 @@ msgid "Gramplet showing the backlinks for a source"
 msgstr "Отображает все записи, ссылающиеся на выбранный источник"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:573
-#, fuzzy
 msgid "Citation Backlinks"
-msgstr "Упоминания документа"
+msgstr "Упоминания цитаты"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:574
 msgid "Gramplet showing the backlinks for a citation"
@@ -11592,9 +11546,8 @@ msgid "Gramplet providing a source filter"
 msgstr "Грамплет, осуществляющий отбор источников по заданным критериям"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:685
-#, fuzzy
 msgid "Citation Filter"
-msgstr "Фильтр ныне живых"
+msgstr "Фильтр цитат"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:686
 msgid "Gramplet providing a citation filter"
@@ -11642,24 +11595,20 @@ msgid "Double-click on a row to edit the selected child."
 msgstr "Щёлкните на строке дважды для правки выбранного ребёнка."
 
 #: ../src/plugins/gramplet/Citations.py:44
-#, fuzzy
 msgid "Double-click on a row to edit the selected source/citation."
-msgstr "Щёлкните на строке дважды для правки выбранного источника."
+msgstr "Щёлкните на строке дважды для правки выбранной цитаты."
 
 #: ../src/plugins/gramplet/Citations.py:48
-#, fuzzy
 msgid "Source/Citation"
-msgstr "Цитата"
+msgstr "Источник/Цитата"
 
 #: ../src/plugins/gramplet/Citations.py:50
-#, fuzzy
 msgid "Publisher"
-msgstr "Публичное"
+msgstr "Издательство"
 
 #: ../src/plugins/gramplet/Citations.py:121
-#, fuzzy
 msgid "<No Citation>"
-msgstr "Цитата"
+msgstr "<Нет цитаты>"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:49
 #: ../src/plugins/gramplet/PedigreeGramplet.py:51
@@ -11790,9 +11739,8 @@ msgstr ""
 
 #. Convert message
 #: ../src/plugins/gramplet/EditExifMetadata.py:446
-#, fuzzy
 msgid "Please convert this image to an Exiv2- compatible image type..."
-msgstr "Преобразовать изображение в .jpeg?"
+msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:469
 #, python-format
@@ -11889,7 +11837,6 @@ msgid "Media Object Title"
 msgstr "Название документа"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:999
-#, fuzzy
 msgid "media Title: "
 msgstr "Название документа: "
 
@@ -11921,9 +11868,8 @@ msgid "Original: "
 msgstr "Оригинал: "
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1053
-#, fuzzy
 msgid "Modified: "
-msgstr "Дата последнего изменения"
+msgstr "Изменено: "
 
 #. GPS coordinates...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1070
@@ -12675,7 +12621,7 @@ msgstr ""
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:111
 msgid "Start with Genealogy and Gramps"
-msgstr ""
+msgstr "Генеалогические изыскания при помощи Gramps"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:112
 msgid "http://www.gramps-project.org/wiki/index.php?title=Start_with_Genealogy"
@@ -12683,7 +12629,7 @@ msgstr ""
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:113
 msgid "Gramps online manual"
-msgstr ""
+msgstr "Руководство Gramps в Интернете"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:114
 msgid "http://www.gramps-project.org/wiki/index.php?title=Gramps_3.3_Wiki_Manual"
@@ -12711,13 +12657,15 @@ msgstr ""
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:125
 msgid "Getting Started"
-msgstr ""
+msgstr "С чего начать"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:126
 msgid ""
 "The first thing you must do is to create a new Family Tree. To create a new Family Tree (sometimes called 'database') select \"Family Trees\" from the menu, pick \"Manage Family Trees\", press \"New\" and name your family tree. For more details, please read the information at the links above\n"
 "\n"
 msgstr ""
+"Первым делом необходимо создать новое семейное древо. Для создания семейного древа (иногда назваемого «базой данных»), выберите «Семейные древеса» в главном меню, затем — «Управление семейными древесами». В диалоге управления древесами нажмите «Создать», и введите название нового древа. Для более подробных указаний, просмотрите документацию, доступную по вышеприведённым ссылкам.\n"
+"\n"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:131
 #: ../src/plugins/view/view.gpr.py:63
@@ -12730,6 +12678,9 @@ msgid ""
 "\n"
 "You can click the configuration icon in the toolbar to add additional columns, while right-click on the background allows to add gramplets. You can also drag the Properties button to reposition the gramplet  on this page, and detach the gramplet to float above Gramps."
 msgstr ""
+"Это—вид «Грамплеты». Сюда можно добавить грамплеты по Вашему вкусу. Грамплеты также можно добавлять в режиме других видов, на боковую и нижнюю панели. Для добавления нового грамплета в других видах необходимо щёлкнуть правой кнопкой мыши справа от заголовка боковой или нижней панели.\n"
+"\n"
+"Щёлкните мышью по значку настройки вида, чтобы добавить дополнительные колонки. Щелчком правой кнопкой по фону можно выбрать, какие грамплеты добавить. Грамплеты можно перетаскивать с места на место за значок «свойства». Щелчком по этому значку можно перевести окно грамплета во всплывающий режим.\t"
 
 #. Minimum number of lines we want to see. Further lines with the same
 #. distance to the main person will be added on top of this.
@@ -13690,9 +13641,9 @@ msgid "The file is probably either corrupt or not a valid Gramps database."
 msgstr "Вероятно, файл либо повреждён, либо не является корректной базой данных Gramps."
 
 #: ../src/plugins/import/ImportXml.py:239
-#, fuzzy, python-format
+#, python-format
 msgid "  %(id)s - %(text)s with %(id2)s\n"
-msgstr "  %(id)s - %(text)s\n"
+msgstr "  %(id)s - %(text)s with %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:245
 #, python-format
@@ -13700,14 +13651,14 @@ msgid "  Family %(id)s with %(id2)s\n"
 msgstr "  Семья %(id)s с %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:248
-#, fuzzy, python-format
+#, python-format
 msgid "  Source %(id)s with %(id2)s\n"
-msgstr "  Источник %(id)s\n"
+msgstr "  Источник %(id)s с %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:251
-#, fuzzy, python-format
+#, python-format
 msgid "  Event %(id)s with %(id2)s\n"
-msgstr "  Событие %(id)s\n"
+msgstr "  Событие %(id)s с %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:254
 #, python-format
@@ -13715,19 +13666,19 @@ msgid "  Media Object %(id)s with %(id2)s\n"
 msgstr "  Документ %(id)s с %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:257
-#, fuzzy, python-format
+#, python-format
 msgid "  Place %(id)s with %(id2)s\n"
-msgstr "  Место %(id)s\n"
+msgstr "  Место %(id)s с %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:260
-#, fuzzy, python-format
+#, python-format
 msgid "  Repository %(id)s with %(id2)s\n"
-msgstr "  Хранилище %(id)s\n"
+msgstr "  Хранилище%(id)s с %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:263
-#, fuzzy, python-format
+#, python-format
 msgid "  Note %(id)s with %(id2)s\n"
-msgstr "  Заметка %(id)s\n"
+msgstr "  Заметка %(id)s с %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:268
 #, python-format
@@ -13780,9 +13731,9 @@ msgid "  Tags: %d\n"
 msgstr "  Метки: %d\n"
 
 #: ../src/plugins/import/ImportXml.py:285
-#, fuzzy, python-format
+#, python-format
 msgid "  Citations: %d\n"
-msgstr "Цитата"
+msgstr "  Цитаты: %d\n"
 
 #: ../src/plugins/import/ImportXml.py:287
 msgid "Number of new objects imported:\n"
@@ -13916,14 +13867,12 @@ msgid "Witness name: %s"
 msgstr "Имя свидетеля: %s"
 
 #: ../src/plugins/import/ImportXml.py:1165
-#, fuzzy
 msgid "Any event reference must have a 'hlink' attribute."
-msgstr "Все таблицы ссылок созданы заново."
+msgstr ""
 
 #: ../src/plugins/import/ImportXml.py:1410
-#, fuzzy
 msgid "Any person reference must have a 'hlink' attribute."
-msgstr "Все таблицы ссылок созданы заново."
+msgstr ""
 
 #: ../src/plugins/import/ImportXml.py:1570
 #, python-format
@@ -13935,9 +13884,8 @@ msgid "Gramps ignored namemap value"
 msgstr "Gramps игнорирует значение namemap"
 
 #: ../src/plugins/import/ImportXml.py:1776
-#, fuzzy
 msgid "Any note reference must have a 'hlink' attribute."
-msgstr "Все таблицы ссылок созданы заново."
+msgstr ""
 
 #: ../src/plugins/import/ImportXml.py:2308
 #, python-format
@@ -13976,14 +13924,12 @@ msgstr "Строка не распознана и будет проигнори�
 
 # FIXME: is it correct term?
 #: ../src/plugins/lib/libgedcom.py:2861
-#, fuzzy
 msgid "Skipped subordinate line"
-msgstr "пропущено %(skip)d зависимостей(subordinate) в строке %(line)d"
+msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:2893
-#, fuzzy
 msgid "Records not imported into "
-msgstr "%s не может быть импортирован"
+msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:2925
 msgid "TRLR (trailer)"
@@ -13995,20 +13941,17 @@ msgid "SUBM (Submitter): @%s@"
 msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:2978 ../src/plugins/lib/libgedcom.py:6432
-#, fuzzy
 msgid "GEDCOM data"
-msgstr "GEDCOM"
+msgstr "Данные GEDCOM"
 
 #: ../src/plugins/lib/libgedcom.py:3024
-#, fuzzy
 msgid "Unknown tag"
-msgstr "Неизвестно"
+msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:3026 ../src/plugins/lib/libgedcom.py:3040
 #: ../src/plugins/lib/libgedcom.py:3044 ../src/plugins/lib/libgedcom.py:3065
-#, fuzzy
 msgid "Top Level"
-msgstr "Наверху слева"
+msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:3134
 #, python-format
@@ -14028,16 +13971,15 @@ msgid "Form omitted"
 msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:4394
-#, fuzzy, python-format
+#, python-format
 msgid "FAM (family) Gramps ID %s"
-msgstr "Gramps ID: %s "
+msgstr ""
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
 #: ../src/plugins/lib/libgedcom.py:5107
-#, fuzzy
 msgid "Empty event note ignored"
-msgstr "Строка %d: пустая заметка о событии была проигнорирована."
+msgstr "Пустая заметка о событии была проигнорирована."
 
 #: ../src/plugins/lib/libgedcom.py:5424 ../src/plugins/lib/libgedcom.py:6235
 msgid "Warn: ADDR overwritten"
@@ -14053,9 +13995,9 @@ msgid "No title - ID %s"
 msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:5692
-#, fuzzy, python-format
+#, python-format
 msgid "SOUR (source) Gramps ID %s"
-msgstr "Переупорядочить Gramps ID"
+msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:5903
 #, python-format
@@ -14080,14 +14022,13 @@ msgid "Mutimedia RIN ignored"
 msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:6084
-#, fuzzy, python-format
+#, python-format
 msgid "REPO (repository) Gramps ID %s"
-msgstr "Переупорядочить Gramps ID"
+msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:6360
-#, fuzzy
 msgid "Head (header)"
-msgstr "Верхний колонтитул (HTML)"
+msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:6376
 msgid "Approved system identification"
@@ -14095,9 +14036,8 @@ msgstr ""
 
 #. feature request 2356: avoid genitive form
 #: ../src/plugins/lib/libgedcom.py:6386
-#, fuzzy
 msgid "Generated by"
-msgstr "_Генерировать"
+msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:6400
 msgid "Name of software product"
@@ -14121,9 +14061,8 @@ msgid "Copyright of source data"
 msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:6478
-#, fuzzy
 msgid "Publication date of source data"
-msgstr "Информация о Публикации"
+msgstr ""
 
 #. feature request 2356: avoid genitive form
 #: ../src/plugins/lib/libgedcom.py:6491
@@ -14153,28 +14092,24 @@ msgid "Character set"
 msgstr "Кодировка символов"
 
 #: ../src/plugins/lib/libgedcom.py:6592
-#, fuzzy
 msgid "Character set and version"
-msgstr "Кодировка символов"
+msgstr "Кодировка символов и её версия"
 
 #: ../src/plugins/lib/libgedcom.py:6608
 msgid "GEDCOM version not supported"
 msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:6611
-#, fuzzy
 msgid "GEDCOM version"
-msgstr "Параметры отчёта"
+msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:6614
-#, fuzzy
 msgid "GEDCOM form not supported"
-msgstr "GEDCOM импорт"
+msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:6616
-#, fuzzy
 msgid "GEDCOM form"
-msgstr "GEDCOM импорт"
+msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:6662
 msgid "Creation date of GEDCOM"
@@ -14185,37 +14120,33 @@ msgid "Creation date and time of GEDCOM"
 msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:6703 ../src/plugins/lib/libgedcom.py:6740
-#, fuzzy
 msgid "Empty note ignored"
-msgstr "Строка %d: пустая заметка была проигнорирована."
+msgstr "Пустая заметка была проигнорирована."
 
 #: ../src/plugins/lib/libgedcom.py:6755
-#, fuzzy, python-format
+#, python-format
 msgid "NOTE Gramps ID %s"
-msgstr "Gramps ID: %s "
+msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:6805
 msgid "Submission: Submitter"
 msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:6807
-#, fuzzy
 msgid "Submission: Family file"
-msgstr "Семейное древо Ивановых"
+msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:6809
 msgid "Submission: Temple code"
 msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:6811
-#, fuzzy
 msgid "Submission: Generations of ancestors"
-msgstr "Ограничить число родителей"
+msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:6813
-#, fuzzy
 msgid "Submission: Generations of descendants"
-msgstr "Ограничить число родителей"
+msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:6815
 msgid "Submission: Ordinance process flag"
@@ -14224,9 +14155,8 @@ msgstr ""
 #. # Okay we have no clue which temple this is.
 #. # We should tell the user and store it anyway.
 #: ../src/plugins/lib/libgedcom.py:7020
-#, fuzzy
 msgid "Invalid temple code"
-msgstr "Некорректное имя файла"
+msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:7101
 msgid "Your GEDCOM file is corrupted. The file appears to be encoded using the UTF16 character set, but is missing the BOM marker."
@@ -14283,9 +14213,8 @@ msgstr "Не указывать авторских прав"
 
 #: ../src/plugins/lib/libmetadata.py:48 ../src/plugins/lib/libmetadata.py:65
 #: ../src/plugins/lib/libmetadata.py:86
-#, fuzzy
 msgid "Invalid format"
-msgstr "Податель заявления"
+msgstr ""
 
 #: ../src/plugins/lib/libmetadata.py:52
 #, python-format
@@ -18260,9 +18189,8 @@ msgstr "Показать события за определенный день"
 
 #: ../src/plugins/quickview/quickview.gpr.py:208
 #: ../src/plugins/quickview/References.py:91
-#, fuzzy
 msgid "Source or Citation"
-msgstr "Включать информацию об источниках"
+msgstr "Источник или цитата"
 
 #: ../src/plugins/quickview/quickview.gpr.py:214
 #, python-format
@@ -18601,9 +18529,8 @@ msgid "Category"
 msgstr "Категория"
 
 #: ../src/plugins/textreport/AlphabeticalIndex.py:107
-#, fuzzy
 msgid "The style used for index entries."
-msgstr "Стиль заголовка."
+msgstr ""
 
 #. feature request 2356: avoid genitive form
 #: ../src/plugins/textreport/AncestorReport.py:191
@@ -18737,9 +18664,9 @@ msgid "sp. see  %(reference)s : %(spouse)s"
 msgstr ""
 
 #: ../src/plugins/textreport/DescendReport.py:290
-#, fuzzy, python-format
+#, python-format
 msgid "%s sp."
-msgstr "   супр. "
+msgstr "%s супр."
 
 #: ../src/plugins/textreport/DescendReport.py:407
 #: ../src/plugins/textreport/DetDescendantReport.py:906
@@ -18780,14 +18707,12 @@ msgid "Whether to show divorce information in the report."
 msgstr "Включать или нет информацию о разводе в отчет."
 
 #: ../src/plugins/textreport/DescendReport.py:427
-#, fuzzy
 msgid "Show duplicate trees"
-msgstr "Показывать даты"
+msgstr ""
 
 #: ../src/plugins/textreport/DescendReport.py:428
-#, fuzzy
 msgid "Whether to show duplicate family trees in the report."
-msgstr "Включать или нет информацию о разводе в отчет."
+msgstr ""
 
 #: ../src/plugins/textreport/DescendReport.py:456
 #, python-format
@@ -19167,14 +19092,12 @@ msgid "Whether to include detailed spouse information."
 msgstr "Включать ли подробную информацию о супруге."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:1015
-#, fuzzy
 msgid "Include spouse reference"
-msgstr "Включить супругов"
+msgstr "Упоминать супругов"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:1016
-#, fuzzy
 msgid "Whether to include reference to spouse."
-msgstr "Включать ли ссылки на источники."
+msgstr "Включать ли упоминания супругов."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:1019
 msgid "Include sign of succession ('+') in child-list"
@@ -19755,19 +19678,16 @@ msgid "Total size of media objects: %s MB"
 msgstr "Общий размер документов: %s МБ"
 
 #: ../src/plugins/textreport/TableOfContents.py:105
-#, fuzzy
 msgid "The style used for first level headings."
-msgstr "Стиль, используемый для заголовков."
+msgstr "Стиль, используемый для заголовков первого уровня."
 
 #: ../src/plugins/textreport/TableOfContents.py:111
-#, fuzzy
 msgid "The style used for second level headings."
-msgstr "Стиль, используемый для заголовков."
+msgstr "Стиль, используемый для заголовков второго уровня."
 
 #: ../src/plugins/textreport/TableOfContents.py:117
-#, fuzzy
 msgid "The style used for third level headings."
-msgstr "Стиль, используемый для заголовков."
+msgstr "Стиль, используемый для заголовков третьего уровня."
 
 #: ../src/plugins/textreport/TagReport.py:79
 #: ../src/plugins/textreport/textplugins.gpr.py:252
@@ -19907,18 +19827,16 @@ msgid "Table Of Contents"
 msgstr ""
 
 #: ../src/plugins/textreport/textplugins.gpr.py:366
-#, fuzzy
 msgid "Produces a table of contents for book reports."
-msgstr "Создаёт титульную страницу для отчета-книги."
+msgstr ""
 
 #: ../src/plugins/textreport/textplugins.gpr.py:387
 msgid "Alphabetical Index"
 msgstr "Алфавитный указатель"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:388
-#, fuzzy
 msgid "Produces an alphabetical index for book reports."
-msgstr "Создаёт титульную страницу для отчета-книги."
+msgstr ""
 
 #: ../src/plugins/tool/ChangeNames.py:65
 msgid "manual|Fix_Capitalization_of_Family_Names..."
@@ -19993,9 +19911,8 @@ msgid "Checking Database"
 msgstr "Проверяю базу данных"
 
 #: ../src/plugins/tool/Check.py:101
-#, fuzzy
 msgid "Looking for cross table duplicates"
-msgstr "Ищу дублированных супругов"
+msgstr ""
 
 #: ../src/plugins/tool/Check.py:143
 msgid ""
@@ -20066,9 +19983,8 @@ msgid "Looking for empty source records"
 msgstr "Ищу пустые записи о источниках"
 
 #: ../src/plugins/tool/Check.py:766
-#, fuzzy
 msgid "Looking for empty citation records"
-msgstr "Ищу пустые записи о документах"
+msgstr "Ищу пустые цитаты"
 
 #: ../src/plugins/tool/Check.py:774
 msgid "Looking for empty place records"
@@ -20115,9 +20031,8 @@ msgid "Looking for place reference problems"
 msgstr "Ищу сломанные ссылки на места"
 
 #: ../src/plugins/tool/Check.py:1189
-#, fuzzy
 msgid "Looking for source and citation reference problems"
-msgstr "Ищу сломанные ссылки на источники"
+msgstr "Ищу сломанные цитаты и ссылки на источники"
 
 #: ../src/plugins/tool/Check.py:1299
 msgid "Looking for media object reference problems"
@@ -20128,9 +20043,8 @@ msgid "Looking for note reference problems"
 msgstr "Ищу сломанные ссылки на заметки"
 
 #: ../src/plugins/tool/Check.py:1561
-#, fuzzy
 msgid "Looking for tag reference problems"
-msgstr "Ищу сломанные ссылки на заметки"
+msgstr ""
 
 #: ../src/plugins/tool/Check.py:1667
 msgid "No errors were found"
@@ -20312,12 +20226,12 @@ msgstr[2] "Найдена %(quantity)d ссылок на несуществую�
 
 # !!!FIXME!!!
 #: ../src/plugins/tool/Check.py:1845
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d citation was referenced but not found\n"
 msgid_plural "%(quantity)d citations were referenced, but not found\n"
-msgstr[0] "Найдена %(quantity)d ссылка на несуществующее место\n"
-msgstr[1] "Найдено %(quantity)d ссылки на несуществующие места\n"
-msgstr[2] "Найдена %(quantity)d ссылок на несуществующие места\n"
+msgstr[0] "Найдена %(quantity)d ссылка на несуществующую цитату\n"
+msgstr[1] "Найдено %(quantity)d ссылки на несуществующую цитату\n"
+msgstr[2] "Найдена %(quantity)d ссылок на несуществующую цитату\n"
 
 # !!!FIXME!!!
 #: ../src/plugins/tool/Check.py:1852
@@ -20746,14 +20660,12 @@ msgid "Match on Page/Volume, Date and Confidence"
 msgstr ""
 
 #: ../src/plugins/tool/MergeCitations.py:76
-#, fuzzy
 msgid "Ignore Date"
-msgstr "Возраст на заданную дату"
+msgstr "Игнорировать дату"
 
 #: ../src/plugins/tool/MergeCitations.py:77
-#, fuzzy
 msgid "Ignore Confidence"
-msgstr "Достоверность"
+msgstr "Игнорировать достоверность"
 
 #: ../src/plugins/tool/MergeCitations.py:78
 msgid "Ignore Date and Confidence"
@@ -20772,14 +20684,12 @@ msgid "Merge citations tool"
 msgstr "Инструмент для объединения цитат"
 
 #: ../src/plugins/tool/MergeCitations.py:180
-#, fuzzy
 msgid "Checking Sources"
-msgstr "Объединить источники"
+msgstr ""
 
 #: ../src/plugins/tool/MergeCitations.py:181
-#, fuzzy
 msgid "Looking for citation fields"
-msgstr "Ищем части адресов"
+msgstr ""
 
 #: ../src/plugins/tool/MergeCitations.py:225
 msgid "Number of merges done"
@@ -21230,12 +21140,10 @@ msgid "manual|Verify_the_Data..."
 msgstr ""
 
 #: ../src/plugins/tool/Verify.py:244
-#, fuzzy
 msgid "Data Verify tool"
 msgstr "Инструмент проверки базы данных"
 
 #: ../src/plugins/tool/Verify.py:431
-#, fuzzy
 msgid "Data Verification Results"
 msgstr "Результаты проверки базы данных"
 
@@ -21391,14 +21299,12 @@ msgid "Marriage date but not married"
 msgstr "Указанна дата брака, но в браке не состоят"
 
 #: ../src/plugins/tool/Verify.py:1565
-#, fuzzy
 msgid "Old age but no death"
-msgstr "Большой возраст в момент смерти"
+msgstr "Большой возраст без указания смерти"
 
 #: ../src/plugins/view/citationtreeview.py:90
-#, fuzzy
 msgid "Title or Page"
-msgstr "Титульный лист"
+msgstr ""
 
 #: ../src/plugins/view/citationtreeview.py:93
 #: ../src/plugins/view/citationlistview.py:98
@@ -21409,27 +21315,24 @@ msgstr "Достоверность"
 
 #: ../src/plugins/view/citationtreeview.py:95
 #: ../src/plugins/view/citationlistview.py:102
-#, fuzzy
 msgid "Source: Author"
-msgstr "Источник: %s"
+msgstr "Источник: автор"
 
 #: ../src/plugins/view/citationtreeview.py:96
 #: ../src/plugins/view/citationlistview.py:103
-#, fuzzy
 msgid "Source: Abbreviation"
-msgstr "Аббревиатура"
+msgstr "Источник: сокращение"
 
 #: ../src/plugins/view/citationtreeview.py:97
 #: ../src/plugins/view/citationlistview.py:104
-#, fuzzy
 msgid "Source: Publication Information"
-msgstr "Информация о Публикации"
+msgstr "Источник: информация о публикации"
 
 #: ../src/plugins/view/citationtreeview.py:118
 #: ../src/plugins/view/citationlistview.py:118
 #, fuzzy
 msgid "Add a new citation and a new source"
-msgstr "Создать и добавить новый источник"
+msgstr "Создать и добавить новую цитату из нового источника"
 
 #: ../src/plugins/view/citationtreeview.py:119
 #: ../src/plugins/view/citationlistview.py:119
@@ -21439,19 +21342,16 @@ msgstr "Добавить новый источник"
 
 #: ../src/plugins/view/citationtreeview.py:120
 #: ../src/plugins/view/citationlistview.py:120
-#, fuzzy
 msgid "Add a new citation to an existing source"
-msgstr "Добавить существующий источник"
+msgstr "Добавить новую цитату из имеющегося источника"
 
 #: ../src/plugins/view/citationtreeview.py:121
-#, fuzzy
 msgid "Edit the selected citation or source"
-msgstr "Редактировать выделенный источник"
+msgstr "Редактировать выделенную цитату или источник"
 
 #: ../src/plugins/view/citationtreeview.py:122
-#, fuzzy
 msgid "Delete the selected citation or source"
-msgstr "Удалить выделенный источник"
+msgstr "Удалить выделенную цитату или источник"
 
 #: ../src/plugins/view/citationtreeview.py:123
 msgid "Merge the selected citations or selected sources"
@@ -21459,24 +21359,21 @@ msgstr "Объединить выделенные цитаты или выдел
 
 #: ../src/plugins/view/citationtreeview.py:141
 #: ../src/plugins/view/view.gpr.py:234
-#, fuzzy
 msgid "Citation Tree View"
-msgstr "Дерево фамилий"
+msgstr "Дерево цитат"
 
 #: ../src/plugins/view/citationtreeview.py:279
 msgid "Add source..."
 msgstr "Добавить источник..."
 
 #: ../src/plugins/view/citationtreeview.py:284
-#, fuzzy
 msgid "Add citation..."
-msgstr "Добавить Партнёра..."
+msgstr "Добавить цитату..."
 
 #: ../src/plugins/view/citationtreeview.py:292
 #: ../src/plugins/view/citationlistview.py:180
-#, fuzzy
 msgid "Citation Filter Editor"
-msgstr "Редактор фильтров пользователя"
+msgstr "Редактор фильтров цитат"
 
 #: ../src/plugins/view/citationtreeview.py:301
 #: ../src/plugins/view/persontreeview.py:82
@@ -21491,9 +21388,8 @@ msgid "Collapse all Nodes"
 msgstr "Свернуть все узлы"
 
 #: ../src/plugins/view/citationtreeview.py:445
-#, fuzzy
 msgid "Cannot add citation."
-msgstr "Не могу сохранить метку"
+msgstr "Не могу добавить цитату"
 
 #: ../src/plugins/view/citationtreeview.py:446
 msgid "In order to add a citation to an existing source,  you must select a source."
@@ -21527,7 +21423,6 @@ msgid "The two selected citations must have the same source to perform a merge. 
 msgstr ""
 
 #: ../src/plugins/view/citationtreeview.py:562
-#, fuzzy
 msgid "Cannot perform merge."
 msgstr "Не могу объединить цитаты."
 
@@ -21541,24 +21436,20 @@ msgid "Volume/Page"
 msgstr "Том/Страница"
 
 #: ../src/plugins/view/citationlistview.py:100
-#, fuzzy
 msgid "Source: Title"
-msgstr "Фильтр источников"
+msgstr "Источник: название"
 
 #: ../src/plugins/view/citationlistview.py:101
-#, fuzzy
 msgid "Source: ID"
-msgstr "ID Источника:"
+msgstr "Источник: ID"
 
 #: ../src/plugins/view/citationlistview.py:105
-#, fuzzy
 msgid "Source: Last Changed"
-msgstr "Последнее Изменение"
+msgstr "Источник: последнее изменение"
 
 #: ../src/plugins/view/citationlistview.py:122
-#, fuzzy
 msgid "Delete the selected citation"
-msgstr "Удалить выделенную семью"
+msgstr "Удалить выделенную цитату"
 
 #: ../src/plugins/view/citationlistview.py:123
 msgid "Merge the selected citations"
@@ -21566,9 +21457,8 @@ msgstr "Объединить выделенные цитаты"
 
 #: ../src/plugins/view/citationlistview.py:137
 #: ../src/plugins/view/view.gpr.py:219
-#, fuzzy
 msgid "Citation View"
-msgstr "Цитата"
+msgstr "Вид «Цитаты»"
 
 #: ../src/plugins/view/citationlistview.py:308
 msgid ""
@@ -21671,43 +21561,36 @@ msgid "WARNING: osmgpsmap module not loaded. Geography functionality will not be
 msgstr "ВНИМАНИЕ: модуль «osmgpsmap» не загружен. Работа с географическими данными будет недоступна."
 
 #: ../src/plugins/view/geography.gpr.py:48
-#, fuzzy
 msgid "All known places for one Person"
-msgstr "Все места событий"
+msgstr ""
 
 #: ../src/plugins/view/geography.gpr.py:49
 msgid "A view showing the places visited by one person during his life."
 msgstr ""
 
 #: ../src/plugins/view/geography.gpr.py:65
-#, fuzzy
 msgid "All known Places"
 msgstr "Все места"
 
 #: ../src/plugins/view/geography.gpr.py:66
-#, fuzzy
 msgid "A view showing all places of the database."
 msgstr "Вид, отображающий все места, связанные с данным семейным древом"
 
 #: ../src/plugins/view/geography.gpr.py:81
-#, fuzzy
 msgid "All places related to Events"
-msgstr "Не связано с «%s»"
+msgstr ""
 
 #: ../src/plugins/view/geography.gpr.py:82
-#, fuzzy
 msgid "A view showing all the event places of the database."
-msgstr "Вид, отображающий все места, связанные с данным семейным древом"
+msgstr ""
 
 #: ../src/plugins/view/geography.gpr.py:98
-#, fuzzy
 msgid "All known places for one Family"
-msgstr "Все места событий"
+msgstr ""
 
 #: ../src/plugins/view/geography.gpr.py:99
-#, fuzzy
 msgid "A view showing the places visited by one family during all their life."
-msgstr "Вид, отображающий все места, связанные с данным семейным древом"
+msgstr ""
 
 #: ../src/plugins/view/geography.gpr.py:115
 msgid "Have they been able to meet?"
@@ -21846,7 +21729,6 @@ msgid "Html View"
 msgstr "Вид HTML"
 
 #: ../src/plugins/view/htmlrenderer.gpr.py:51
-#, fuzzy
 msgid "A view showing html pages embedded in Gramps"
 msgstr "Вид, позволяющий видеть страницы html внутри программы Gramps"
 
@@ -22367,14 +22249,12 @@ msgid "The view showing all the sources"
 msgstr "Вид, отображающий все источники"
 
 #: ../src/plugins/view/view.gpr.py:220
-#, fuzzy
 msgid "The view showing all the citations"
-msgstr "Вид, отображающий все заметки"
+msgstr "Вид, отображающий все цитаты"
 
 #: ../src/plugins/view/view.gpr.py:235
-#, fuzzy
 msgid "A view displaying citations and sources in a tree format."
-msgstr "Вид, показывающий список мест в виде дерева."
+msgstr "Вид, показывающий список цитат и источников в виде дерева."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:327
 msgid "Gramps&nbsp;ID"
@@ -22393,9 +22273,8 @@ msgid "Alternate Locations"
 msgstr "Альтернативные местоположения"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1195
-#, fuzzy
 msgid "Data Map"
-msgstr "База данных"
+msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1496
 #, python-format
@@ -22478,9 +22357,8 @@ msgstr "Контакт"
 
 #. add personal column
 #: ../src/plugins/webreport/NarrativeWeb.py:1801
-#, fuzzy
 msgid "Personal"
-msgstr "Лицо"
+msgstr ""
 
 #. add section title
 #: ../src/plugins/webreport/NarrativeWeb.py:2146
@@ -22529,9 +22407,8 @@ msgstr "Эта страница содержит список всех лиц и
 
 #. Families list page message
 #: ../src/plugins/webreport/NarrativeWeb.py:3094
-#, fuzzy
 msgid "This page contains an index of all the families/ relationships in the database, sorted by their family name/ surname. Clicking on a person&#8217;s name will take you to their family/ relationship&#8217;s page."
-msgstr "Эта страница содержит список всех мест из базы данных, отсортированный по названию. Выбор названия ведёт к странице данного места."
+msgstr "Эта страница содержит указатель всех фамилий и отношений из базы данных, отсортированный по фамилии. Выбор имени ведёт к странице соответствующей семьи или отношения."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3120
 #: ../src/plugins/webreport/NarrativeWeb.py:3369
@@ -22541,25 +22418,21 @@ msgid "Letter"
 msgstr "Буква"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3121
-#, fuzzy
 msgid "Partner 1"
-msgstr "Партнёр"
+msgstr "Партнёр №1"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3122
-#, fuzzy
 msgid "Partner 2"
-msgstr "Партнёр"
+msgstr "Партнёр №2"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3252
-#, fuzzy
 msgid "Family/ Relationship"
-msgstr "<b>Семейные отношения</b>"
+msgstr ""
 
 #. determine if husband and wife, husband only, or spouse only....
 #: ../src/plugins/webreport/NarrativeWeb.py:3285
-#, fuzzy
 msgid "Family of "
-msgstr "Заметка о семье"
+msgstr ""
 
 #. place list page message
 #: ../src/plugins/webreport/NarrativeWeb.py:3344
@@ -22645,9 +22518,8 @@ msgstr "Информация о публикации"
 
 #. add secion title
 #: ../src/plugins/webreport/NarrativeWeb.py:4551
-#, fuzzy
 msgid "Citation Referents"
-msgstr "Ссылки"
+msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4864
 msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object&#8217;s page.  If you see media size dimensions above an image, click on the image to see the full sized version.  "
@@ -22666,7 +22538,6 @@ msgid "This page displays a indexed list of all the media objects in this databa
 msgstr "Эта страница содержит список всех документов из базы данных, отсортированный по названию. Выбор миниатюры ведёт к странице соответствующего изображения."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4991
-#, fuzzy
 msgid "Thumbnail Preview"
 msgstr "Миниатюра"
 
@@ -22692,7 +22563,6 @@ msgid "Drop Markers"
 msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5683
-#, fuzzy
 msgid "Place Title"
 msgstr "Название места"
 
@@ -22717,14 +22587,12 @@ msgid "Age at Death"
 msgstr "Возраст на момент смерти"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6416
-#, fuzzy
 msgid "Half Siblings"
-msgstr "Братья/Сёстры"
+msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6438
-#, fuzzy
 msgid "Step Siblings"
-msgstr "Показывать братьев/сестёр"
+msgstr "Сводные братья/сёстры"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6533
 msgid "This page contains an index of all the repositories in the database, sorted by their title. Clicking on a repositories&#8217;s title will take you to that repositories&#8217;s page."
@@ -22735,9 +22603,8 @@ msgid "Repository |Name"
 msgstr "Название"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6667
-#, fuzzy
 msgid "Referenced Sources"
-msgstr "Ссылки"
+msgstr ""
 
 #. Address Book Page message
 #: ../src/plugins/webreport/NarrativeWeb.py:6711
@@ -22806,9 +22673,8 @@ msgid "Creating surname pages"
 msgstr "Создаю страницы фамилий"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7274
-#, fuzzy
 msgid "Creating family pages..."
-msgstr "Создаю страницы документов"
+msgstr "Создаю страницы семей"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7289
 msgid "Creating place pages"
@@ -22823,9 +22689,8 @@ msgid "Creating media pages"
 msgstr "Создаю страницы документов"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7355
-#, fuzzy
 msgid "Creating thumbnail preview page..."
-msgstr "Создаю страницы фамилий"
+msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7378
 msgid "Creating repository pages"
@@ -22904,9 +22769,8 @@ msgid "The stylesheet to be used for the web pages"
 msgstr "Таблица стилей для веб-страниц"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7805
-#, fuzzy
 msgid "Horizontal -- Default"
-msgstr "Горизонтально (справа налево)"
+msgstr "Горизонтально (по умолчанию)"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7806
 msgid "Vertical   -- Left Side"
@@ -22934,9 +22798,8 @@ msgid "Normal Outline Style"
 msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7822
-#, fuzzy
 msgid "Citation Referents Layout"
-msgstr "Ссылки"
+msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7825
 msgid "Determine the default layout for the Source Page's Citation Referents section"
@@ -23220,14 +23083,12 @@ msgid "Whether to include a parents column"
 msgstr "Включать ли колонку с данными о родителях"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8018
-#, fuzzy
 msgid "Include half and/ or step-siblings on the individual pages"
-msgstr "Включить колонку с данными о партнёре на индексных страницах"
+msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8020
-#, fuzzy
 msgid "Whether to include half and/ or step-siblings with the parents and siblings"
-msgstr "Включать или нет названия мест для лиц и семей."
+msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8024
 msgid "Sort all children in birth order"
@@ -23238,14 +23099,12 @@ msgid "Whether to display children in birth order or in entry order?"
 msgstr "Показывать детей в порядке рождения или в порядке ввода их в базу данных?"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8028
-#, fuzzy
 msgid "Include family pages"
-msgstr "Включить события семьи"
+msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8029
-#, fuzzy
 msgid "Whether or not to include family pages."
-msgstr "Включать ли изображения."
+msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8032
 msgid "Include event pages"
@@ -23260,9 +23119,8 @@ msgid "Include repository pages"
 msgstr "Включить страницы с источниками"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8037
-#, fuzzy
 msgid "Whether or not to include the Repository Pages."
-msgstr "Создавать ли страницы со списком хранилищ?"
+msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8040
 msgid "Include GENDEX file (/gendex.txt)"
@@ -23277,22 +23135,18 @@ msgid "Include address book pages"
 msgstr "Включить страницы с адресами"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8045
-#, fuzzy
 msgid "Whether or not to add Address Book pages,which can include e-mail and website addresses and personal address/ residence events."
-msgstr "Добавлять ли страницы с адресами (которые могут содержать ардеса электронной почты, веб-страницы и почтовые адреса)?"
+msgstr "Добавлять ли страницы с адресами (которые могут содержать адреса электронной почты, веб-страницы и почтовые адреса)?"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8055
-#, fuzzy
 msgid "Place Map Options"
-msgstr "Параметры бумаги"
+msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8059
-#, fuzzy
 msgid "Google"
 msgstr "Карты Google"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8061
-#, fuzzy
 msgid "Map Service"
 msgstr "Картографический сервис"
 
@@ -23309,18 +23163,16 @@ msgid "Whether to include a place map on the Place Pages, where Latitude/ Longit
 msgstr "Включать ли карту на странице с местоположениями для мест с известными широтой и долготой."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8075
-#, fuzzy
 msgid "Include Family Map Pages with all places shown on the map"
-msgstr "Создать индивидуальную страницу для каждого места, изображённого на карте"
+msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8077
 msgid "Whether or not to add an individual page map showing all the places on this page. This will allow you to see how your family traveled around the country."
 msgstr "Добавлять ли отдельную страницу с картой, которая показывает все места, упомянутые на данной странице. Это позволит видеть, как ваша семья переезжала."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8085
-#, fuzzy
 msgid "Family Links"
-msgstr "Упоминания семьи"
+msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8086
 msgid "Drop"
@@ -23331,9 +23183,8 @@ msgid "Markers"
 msgstr "Отметки"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8088
-#, fuzzy
 msgid "Google/ FamilyMap Option"
-msgstr "Параметры бумаги"
+msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8091
 msgid "Select which option that you would like to have for the Google Maps Family Map pages..."
@@ -23932,14 +23783,12 @@ msgid "Volume/Page:"
 msgstr "Том/Страница:"
 
 #: ../src/Filters/Rules/Person/_HasCitation.py:51
-#, fuzzy
 msgid "People with the <citation>"
-msgstr "Люди с <пометкой>"
+msgstr "Люди с <цитатой>"
 
 #: ../src/Filters/Rules/Person/_HasCitation.py:52
-#, fuzzy
 msgid "Matches people with a citation of a particular value"
-msgstr "Выбирает людей с определённой информацией о рождении"
+msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:49
 msgid "People with a common ancestor with <filter> match"
@@ -24167,9 +24016,8 @@ msgstr "Лица с <источником>"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:48
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:53
-#, fuzzy
 msgid "Citation/source filters"
-msgstr "Фильтры местоположений"
+msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:49
 msgid "Matches people who have a particular source"
@@ -24376,14 +24224,12 @@ msgid "Matches people that are not indicated as private"
 msgstr "Выбирает людей, не помеченных как личные записи"
 
 #: ../src/Filters/Rules/Person/_IsRelatedWith.py:46
-#, fuzzy
 msgid "People related to <Person>"
-msgstr "Не связано с «%s»"
+msgstr ""
 
 #: ../src/Filters/Rules/Person/_IsRelatedWith.py:48
-#, fuzzy
 msgid "Matches people related to a specified person"
-msgstr "Выбирает предков указанного лица"
+msgstr ""
 
 #: ../src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py:47
 msgid "Siblings of <filter> match"
@@ -24633,9 +24479,8 @@ msgid "Family with the <citation>"
 msgstr "Семьи с <цитатой>"
 
 #: ../src/Filters/Rules/Family/_HasCitation.py:53
-#, fuzzy
 msgid "Matches families with a citation of a particular value"
-msgstr "Выбирает семьи с определённым событием"
+msgstr ""
 
 #: ../src/Filters/Rules/Family/_HasEvent.py:53
 msgid "Families with the <event>"
@@ -24855,14 +24700,12 @@ msgid "Matches events with the event attribute of a particular value"
 msgstr "Выбирает события с определённым значением атрибута"
 
 #: ../src/Filters/Rules/Event/_HasCitation.py:52
-#, fuzzy
 msgid "Event with the <citation>"
-msgstr "События с <данными>"
+msgstr "События с <цитатой>"
 
 #: ../src/Filters/Rules/Event/_HasCitation.py:53
-#, fuzzy
 msgid "Matches events with a citation of a particular value"
-msgstr "Выбирает события с определённым значением атрибута"
+msgstr "Выбирает события с определённым значением цитаты"
 
 #: ../src/Filters/Rules/Event/_HasData.py:49
 msgid "Events with <data>"
@@ -25014,9 +24857,8 @@ msgid "Places with no latitude or longitude given"
 msgstr "Места без координат"
 
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:50
-#, fuzzy
 msgid "Matches places with empty latitude or longitude"
-msgstr "Выбирает места, для которых не заданна широта или долгота"
+msgstr "Выбирает места, для которых не задана широта или долгота"
 
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:51
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:57
@@ -25252,7 +25094,6 @@ msgid "Sources title containing <substring>"
 msgstr ""
 
 #: ../src/Filters/Rules/Source/_MatchesTitleSubstringOf.py:45
-#, fuzzy
 msgid "Matches sources whose title contains a certain substring"
 msgstr "Выбирает источники, названия которых содержат текст, соответствующий подстроке"
 
@@ -25273,14 +25114,12 @@ msgid "Matches sources whose Gramps ID matches the regular expression"
 msgstr "Выбирает источники, Gramps ID которых удовлетворяет регулярному·выражению"
 
 #: ../src/Filters/Rules/Citation/_AllCitations.py:46
-#, fuzzy
 msgid "Every citation"
-msgstr "Цитата"
+msgstr "Все цитаты"
 
 #: ../src/Filters/Rules/Citation/_AllCitations.py:47
-#, fuzzy
 msgid "Matches every citation in the database"
-msgstr "Выбирает всех людей в базе данных"
+msgstr "Выбирает всех цитаты в базе данных"
 
 #: ../src/Filters/Rules/Citation/_ChangedSince.py:47
 msgid "Citations changed after <date time>"
@@ -25291,74 +25130,61 @@ msgid "Matches citation records changed after a specified date-time (yyyy-mm-dd 
 msgstr "Выбирает цитаты, чьи данные были изменены после определенной даты (гггг-мм-дд чч:мм:сс) или, если задана вторая дата, между двумя датами."
 
 #: ../src/Filters/Rules/Citation/_CitationPrivate.py:44
-#, fuzzy
 msgid "Citations marked private"
-msgstr "Заметки, помеченные как личные"
+msgstr "Цитаты, помеченные как личные"
 
 #: ../src/Filters/Rules/Citation/_CitationPrivate.py:45
-#, fuzzy
 msgid "Matches citations that are indicated as private"
-msgstr "Выбирает объекты, помеченных как личные"
+msgstr "Выбирает цитаты, помеченных как личные"
 
 #: ../src/Filters/Rules/Citation/_HasGallery.py:46
 msgid "Citations with <count> media"
 msgstr "Цитаты с <числом> документов"
 
 #: ../src/Filters/Rules/Citation/_HasGallery.py:47
-#, fuzzy
 msgid "Matches citations with a certain number of items in the gallery"
-msgstr "Выбирает семьи с определенным числом документов в галерее"
+msgstr "Выбирает цитаты с определенным числом документов в галерее"
 
 #: ../src/Filters/Rules/Citation/_HasIdOf.py:46
-#, fuzzy
 msgid "Citation with <Id>"
-msgstr "Лица с <Id>"
+msgstr "Цитаты с <Id>"
 
 #: ../src/Filters/Rules/Citation/_HasIdOf.py:47
-#, fuzzy
 msgid "Matches a citation with a specified Gramps ID"
-msgstr "Выбирает семьи с указанным Gramps ID"
+msgstr "Выбирает цитаты с указанным Gramps ID"
 
 #: ../src/Filters/Rules/Citation/_HasNote.py:47
-#, fuzzy
 msgid "Citations having <count> notes"
-msgstr "Семьи с <числом> заметок"
+msgstr "Цитаты с <числом> заметок"
 
 #: ../src/Filters/Rules/Citation/_HasNote.py:48
-#, fuzzy
 msgid "Matches citations having a certain number of notes"
-msgstr "Выбирает события с определённым числом заметок"
+msgstr "Выбирает цитаты с определённым числом заметок"
 
 #: ../src/Filters/Rules/Citation/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Citations having notes containing <substring>"
-msgstr "Семьи с записками, содержащими <подстроку>"
+msgstr "Цитаты с записками, содержащими <подстроку>"
 
 #: ../src/Filters/Rules/Citation/_HasNoteMatchingSubstringOf.py:45
-#, fuzzy
 msgid "Matches citations whose notes contain text matching a substring"
-msgstr "Выбирает семьи, записки которых содержат текст, соответствующий подстроке"
+msgstr "Выбирает цитаты, записки которых содержат текст, соответствующий подстроке"
 
 #: ../src/Filters/Rules/Citation/_HasNoteRegexp.py:43
-#, fuzzy
 msgid "Citations having notes containing <regular expression>"
-msgstr "Семьи с записками, содержащими <регулярное выражение>"
+msgstr "Цитаты с записками, содержащими <регулярное выражение>"
 
 #: ../src/Filters/Rules/Citation/_HasNoteRegexp.py:44
-#, fuzzy
 msgid "Matches citations whose notes contain text matching a regular expression"
-msgstr "Выбирает семьи, записки которых содержат текст, удовлетворяющий регулярному выражению"
+msgstr "Выбирает цитаты, записки которых содержат текст, удовлетворяющий регулярному выражению"
 
 # !!!FIXME!!!
 #: ../src/Filters/Rules/Citation/_HasReferenceCountOf.py:44
-#, fuzzy
 msgid "Citations with a reference count of <count>"
-msgstr "Заметки с числом ссылок <число>"
+msgstr "Цитаты с числом ссылок <число>"
 
 #: ../src/Filters/Rules/Citation/_HasReferenceCountOf.py:45
-#, fuzzy
 msgid "Matches citations with a certain reference count"
-msgstr "Выбирает заметки с определённым количеством ссылок на них"
+msgstr ""
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:49
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:47
@@ -25383,18 +25209,16 @@ msgid "Sources matching parameters"
 msgstr "Источники, удовлетворяющие параметрам"
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:53
-#, fuzzy
 msgid "Matches citations with a source of a particular value"
-msgstr "Выбирает семьи с определённым событием"
+msgstr ""
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:55
 msgid "Source filters"
 msgstr "Фильтры источников"
 
 #: ../src/Filters/Rules/Citation/_MatchesFilter.py:46
-#, fuzzy
 msgid "Citations matching the <filter>"
-msgstr "Заметки, соответствующие <фильтру>"
+msgstr "Цитаты, соответствующие <фильтру>"
 
 #: ../src/Filters/Rules/Citation/_MatchesFilter.py:47
 msgid "Matches citations matched by the specified filter name"
@@ -25409,29 +25233,24 @@ msgid "Matches citations whose Volume/Page contains a certain substring"
 msgstr "Выбирает цитаты, указанные том/страница которых содержат текст, соответствующий подстроке"
 
 #: ../src/Filters/Rules/Citation/_RegExpIdOf.py:49
-#, fuzzy
 msgid "Citations with <Id> matching regular expression"
-msgstr "Заметки с <Id>, удовлетворяющими регулярному·выражению"
+msgstr "Цитаты с <Id>, удовлетворяющими регулярному·выражению"
 
 #: ../src/Filters/Rules/Citation/_RegExpIdOf.py:50
-#, fuzzy
 msgid "Matches citations whose Gramps ID matches the regular expression"
-msgstr "Выбирает события, Gramps ID которых удовлетворяет регулярному·выражению"
+msgstr "Выбирает цитаты, Gramps ID которых удовлетворяет регулярному·выражению"
 
 #: ../src/Filters/Rules/Citation/_MatchesRepositoryFilter.py:47
-#, fuzzy
 msgid "Citations with a source with a repository reference matching the <repository filter>"
-msgstr "События с источниками, соответствующими <фильтру>"
+msgstr "Цитаты с источниками из хранилищ, соответствующих <фильтру хранилищ>"
 
 #: ../src/Filters/Rules/Citation/_MatchesRepositoryFilter.py:49
-#, fuzzy
 msgid "Matches citations with sources with a repository reference that match a certain repository filter"
-msgstr "Выбирает людей у которых происходили события, соответствующие фильтру событий"
+msgstr ""
 
 #: ../src/Filters/Rules/Citation/_MatchesSourceFilter.py:50
-#, fuzzy
 msgid "Citations with source matching the <source filter>"
-msgstr "События с источниками, соответствующими <фильтру>"
+msgstr "Цитаты с источниками, соответствующими <фильтру источников>"
 
 #: ../src/Filters/Rules/Citation/_MatchesSourceFilter.py:51
 msgid "Matches citations with sources that match the specified source filter name"
@@ -25665,7 +25484,6 @@ msgid "Notes containing <substring>"
 msgstr "Заметки, содержащие <подстроку>"
 
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:46
-#, fuzzy
 msgid "Matches notes that contain text which matches a substring"
 msgstr "Выбирает заметки, которые содержат текст, соответствующий подстроке"
 
@@ -25678,7 +25496,6 @@ msgid "Notes containing <regular expression>"
 msgstr "Заметки, содержащие <регулярное выражение>"
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:46
-#, fuzzy
 msgid "Matches notes that contain text which matches a regular expression"
 msgstr "Выбирает заметки, которые содержат текст, соответствующий регулярному выражению"
 
@@ -25760,9 +25577,8 @@ msgid "Custom filter"
 msgstr "Спец. фильтр"
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:96
-#, fuzzy
 msgid "Participants"
-msgstr "Главные участники"
+msgstr "Участники"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:90
 msgid "any"
@@ -25964,7 +25780,6 @@ msgstr "Фамилия или отчество:"
 #: ../src/glade/editperson.glade.h:37 ../src/glade/editfamily.glade.h:23
 #: ../src/glade/editmedia.glade.h:19 ../src/glade/editmediaref.glade.h:32
 #: ../src/glade/editnote.glade.h:13
-#, fuzzy
 msgid "_Tags:"
 msgstr "Метки:"
 
@@ -25996,9 +25811,8 @@ msgid "Delete"
 msgstr "Удаление"
 
 #: ../src/glade/grampletpane.glade.h:6
-#, fuzzy
 msgid "Detach"
-msgstr "Подробности"
+msgstr "Отцепить"
 
 #: ../src/glade/grampletpane.glade.h:7
 msgid "Drag to move; click to detach"
@@ -26025,24 +25839,20 @@ msgid "Arrow top"
 msgstr ""
 
 #: ../src/glade/reorder.glade.h:5
-#, fuzzy
 msgid "Move family down"
-msgstr "Удалить семейное древо"
+msgstr "Переместить семью ниже"
 
 #: ../src/glade/reorder.glade.h:6
-#, fuzzy
 msgid "Move family up"
-msgstr "Все семьи"
+msgstr "Переместить семью выше"
 
 #: ../src/glade/reorder.glade.h:7
-#, fuzzy
 msgid "Move parent down"
-msgstr "Родители не найдены"
+msgstr "Переместить родителя ниже"
 
 #: ../src/glade/reorder.glade.h:8
-#, fuzzy
 msgid "Move parent up"
-msgstr "Родители не найдены"
+msgstr "Переместить родителя выше"
 
 #: ../src/glade/tipofday.glade.h:1
 msgid "_Display on startup"
@@ -26312,9 +26122,8 @@ msgid "Abo_ve:"
 msgstr "_Над:"
 
 #: ../src/glade/styleeditor.glade.h:15
-#, fuzzy
 msgid "Add a new style"
-msgstr "Добавить заметку"
+msgstr "Добавить стиль"
 
 #: ../src/glade/styleeditor.glade.h:16
 msgid "Belo_w:"
@@ -26325,20 +26134,17 @@ msgid "Cen_ter"
 msgstr "По _центру"
 
 #: ../src/glade/styleeditor.glade.h:18
-#, fuzzy
 msgid "Delete the selected style"
-msgstr "Удалить выделенную заметку"
+msgstr "Удалить выделенный стиль"
 
 #: ../src/glade/styleeditor.glade.h:20
-#, fuzzy
 msgid "Edit the selected style"
-msgstr "Редактировать выделенную заметку"
+msgstr "Редактировать выделенный стиль"
 
 #: ../src/glade/styleeditor.glade.h:21 ../src/glade/editfamily.glade.h:12
 #: ../src/glade/editchildref.glade.h:3 ../src/glade/rule.glade.h:20
-#, fuzzy
 msgid "Edition"
-msgstr "Образование"
+msgstr "Издание"
 
 #: ../src/glade/styleeditor.glade.h:22
 msgid "First li_ne:"
@@ -26443,14 +26249,12 @@ msgid "_Rename"
 msgstr "П_ереименовать"
 
 #: ../src/glade/editcitation.glade.h:1
-#, fuzzy
 msgid "<b>Citation information</b>"
-msgstr "<b>Данные об Отношении</b>"
+msgstr "<b>Данные о цитате</b>"
 
 #: ../src/glade/editcitation.glade.h:3
-#, fuzzy
 msgid "<b>Note:</b> Any changes in the shared citation information will be reflected in the citation itself, for all items that reference the citation."
-msgstr "<b>Внимание:</b> Все изменения в общей информации о хранилище будут отражены в самом хранилище, для всех записей, ссылающихся на него."
+msgstr "<b>Внимание:</b> Все изменения в общей информации о цитате будут отражены в самой цитате, для всех записей, ссылающихся на неё."
 
 #: ../src/glade/editcitation.glade.h:4 ../src/glade/editsourceref.glade.h:2
 msgid "<b>Note:</b> Any changes in the shared source information will be reflected in the source itself, for all items that reference the source."
@@ -26461,9 +26265,8 @@ msgid "<b>Shared source information</b>"
 msgstr "<b>Общая информация об источнике</b>"
 
 #: ../src/glade/editcitation.glade.h:6
-#, fuzzy
 msgid "A unique ID to identify the citation"
-msgstr "Уникальный номер для идентификации заметки."
+msgstr "Уникальный номер для идентификации цитаты."
 
 #: ../src/glade/editcitation.glade.h:10 ../src/glade/editsourceref.glade.h:8
 msgid "Con_fidence:"
@@ -26598,9 +26401,8 @@ msgstr "Выбрать лицо, несущее основные данные д
 #: ../src/glade/editpersonref.glade.h:9 ../src/glade/editlink.glade.h:5
 #: ../src/glade/editfamily.glade.h:19 ../src/glade/editldsord.glade.h:9
 #: ../src/glade/editevent.glade.h:12
-#, fuzzy
 msgid "Selector"
-msgstr "Выбрать"
+msgstr ""
 
 #: ../src/glade/editpersonref.glade.h:10
 msgid "Use the select button to choose a person that has an association to the edited person."
@@ -26691,7 +26493,6 @@ msgid "Internet Address:"
 msgstr "Интернет-адрес:"
 
 #: ../src/glade/editlink.glade.h:6
-#, fuzzy
 msgid "_Link Type:"
 msgstr "_Тип:"
 
@@ -26827,9 +26628,8 @@ msgid "Folder"
 msgstr ""
 
 #: ../src/glade/editmedia.glade.h:7
-#, fuzzy
 msgid "Image preview"
-msgstr "Размер изображения"
+msgstr "Миниатюра"
 
 #: ../src/glade/editmedia.glade.h:9
 msgid "Open File Browser to select a media file on your computer."
@@ -26890,12 +26690,10 @@ msgid "Type of media object as indicated by the computer, eg Image, Video, ..."
 msgstr ""
 
 #: ../src/glade/editmediaref.glade.h:27
-#, fuzzy
 msgid "_Corner 1:  X"
 msgstr "Угол 1:  X"
 
 #: ../src/glade/editmediaref.glade.h:28
-#, fuzzy
 msgid "_Corner 2:  X"
 msgstr "Угол 2:  X"
 
@@ -26953,9 +26751,8 @@ msgid "A unique ID to identify the note."
 msgstr "Уникальный номер для идентификации заметки."
 
 #: ../src/glade/editnote.glade.h:6
-#, fuzzy
 msgid "Styled Text Editor"
-msgstr "Редактор стилей"
+msgstr ""
 
 #: ../src/glade/editnote.glade.h:8
 msgid ""
@@ -27508,28 +27305,24 @@ msgid "Size:"
 msgstr "Размер:"
 
 #: ../src/glade/papermenu.glade.h:7
-#, fuzzy
 msgid "_Bottom:"
-msgstr "По _нижнему краю"
+msgstr ""
 
 #: ../src/glade/papermenu.glade.h:8
 msgid "_Height:"
 msgstr "Высота:"
 
 #: ../src/glade/papermenu.glade.h:9
-#, fuzzy
 msgid "_Left:"
-msgstr "По _левому краю"
+msgstr ""
 
 #: ../src/glade/papermenu.glade.h:10
-#, fuzzy
 msgid "_Right:"
-msgstr "_По правому краю"
+msgstr ""
 
 #: ../src/glade/papermenu.glade.h:11
-#, fuzzy
 msgid "_Top:"
-msgstr "По _верхнему краю"
+msgstr ""
 
 #: ../src/glade/papermenu.glade.h:12
 msgid "_Width:"
@@ -27939,9 +27732,8 @@ msgid "Version:"
 msgstr "Версия:"
 
 #: ../data/gramps.desktop.in.h:1
-#, fuzzy
 msgid "Genealogy System"
-msgstr "Генеалогическая Система Gramps"
+msgstr "Генеалогическая система"
 
 #: ../data/gramps.desktop.in.h:3
 msgid "Gramps Genealogy System"
