@@ -227,7 +227,7 @@ UIDEFAULT = '''<ui>
 WIKI_HELP_PAGE_FAQ = '%s_-_FAQ' % const.URL_MANUAL_PAGE
 WIKI_HELP_PAGE_KEY = '%s_-_Keybindings' % const.URL_MANUAL_PAGE
 WIKI_HELP_PAGE_MAN = '%s' % const.URL_MANUAL_PAGE
-ADDONS_URL = "http://gramps-addons.svn.sourceforge.net/viewvc/gramps-addons/trunk"
+ADDONS_URL = "http://gramps-addons.svn.sourceforge.net/viewvc/gramps-addons/branches/gramps34/"
 
 #-------------------------------------------------------------------------
 #
