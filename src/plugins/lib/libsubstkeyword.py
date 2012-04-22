@@ -662,6 +662,8 @@ class VarStringSecond(VarStringBase):
     def merge(self, acquisition):
         """ Merge the content of acquisition into this place. """
         if acquisition.the_state != TXT.display:
+            #The sub {} was TXT.remove.  We don't want to simply ignore it.
+            self.add_remove() #add a remove que here to note it.
             return
         
         if acquisition.the_state > self.the_state:
