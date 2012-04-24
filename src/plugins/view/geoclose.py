@@ -33,6 +33,7 @@ Geography for two persons
 from gen.ggettext import gettext as _
 import operator
 import gtk
+from math import *
 
 #-------------------------------------------------------------------------
 #
@@ -282,10 +283,9 @@ class GeoClose(GeoGraphyView):
         radius = float(self._config.get("geography.maximum_meeting_zone")/10.0)
         for ref in place_list_ref:
             for act in place_list_active:
-                if (float(act[3])-float(ref[3]))**2 + (float(act[4])-float(ref[4]))**2 <= (radius**2/2 + 0.01):
+                if (hypot(float(act[3])-float(ref[3]),
+                          float(act[4])-float(ref[4])) <= radius) == True:
                     # we are in the meeting zone
-                    # The 0.01 adjustment is set because the meeting zone is approximative.
-                    # Perhaps we will have some markers close to this zone. Not very important
                     self.add_marker(None, None, act[3], act[4], act[7], True)
                     self.all_place_list.append(act)
                     self.add_marker(None, None, ref[3], ref[4], ref[7], True)

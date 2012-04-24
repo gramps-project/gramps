@@ -29,6 +29,7 @@
 #-------------------------------------------------------------------------
 import os
 import gobject
+from math import *
 
 #------------------------------------------------------------------------
 #
@@ -116,35 +117,42 @@ class LifeWayLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
         for lifeway in self.lifeways_ref:
             ctx.set_line_cap(cairo.LINE_CAP_ROUND)
             ctx.set_line_join(cairo.LINE_JOIN_ROUND)
-            ctx.set_operator(cairo.OPERATOR_ADD)
-            conv_pt = osmgpsmap.point_new_degrees(0.0, 0.0)
-            coord_x, coord_y = gpsmap.convert_geographic_to_screen(conv_pt)
-            conv_pt = osmgpsmap.point_new_degrees(0.0, lifeway[2])
-            coord_x1, coord_y1 = gpsmap.convert_geographic_to_screen(conv_pt)
-            ctx.set_line_width((coord_x1-coord_x)*2)
-            map_points = []
-            for point in lifeway[0]:
-                conv_pt = osmgpsmap.point_new_degrees(point[0], point[1])
-                coord_x, coord_y = gpsmap.convert_geographic_to_screen(conv_pt)
-                map_points.append((coord_x, coord_y))
+            ctx.set_line_width(3)
             color = gtk.gdk.color_parse(lifeway[1])
-            ctx.set_source_rgb(color.red / 65535,
+            ctx.set_source_rgba(color.red / 65535,
                                color.green / 65535,
-                               color.blue / 65535)
-            first = True
-            for idx_pt in range(0, len(map_points)):
-                if first:
-                    first = False
-                    ctx.move_to(map_points[idx_pt][0], map_points[idx_pt][1])
-                else:
-                    ctx.line_to(map_points[idx_pt][0], map_points[idx_pt][1])
-            ctx.stroke()
-            if len(map_points) == 1 : # We have only one point
-                crdx = map_points[0][0]
-                crdy = map_points[0][1]
-                ctx.move_to(crdx, crdy)
-                ctx.line_to(crdx + 1, crdy + 1)
-                ctx.stroke()
+                               color.blue / 65535,
+                               0.2)
+            ggc = drawable.new_gc()
+            rds = float(lifeway[2])
+            for point in lifeway[0]:
+                conv_pt1 = osmgpsmap.point_new_degrees(point[0], point[1])
+                coord_x1, coord_y1 = gpsmap.convert_geographic_to_screen(conv_pt1)
+                conv_pt2 = osmgpsmap.point_new_degrees(point[0]+rds, point[1])
+                coord_x2, coord_y2 = gpsmap.convert_geographic_to_screen(conv_pt2)
+                coy = abs(coord_y2-coord_y1)
+                conv_pt2 = osmgpsmap.point_new_degrees(point[0], point[1]+rds)
+                coord_x2, coord_y2 = gpsmap.convert_geographic_to_screen(conv_pt2)
+                cox = abs(coord_x2-coord_x1)
+                cox = cox if cox > 0.001 else 0.001
+                coy = coy if coy > 0.001 else 0.001
+                coz = abs( 1.0 / float(cox) * float(coy) )
+                coz = coz if coz > 0.001 else 0.001
+                ctx.save()
+                ctx.scale(1.0,coz)
+                ctx.move_to(coord_x1, coord_y1)
+                ctx.translate(coord_x1, coord_y1/coz)
+                ctx.arc(0.0, 0.0, cox, 0.0, 2*pi)
+                ctx.fill()
+                ctx.restore()
+                top_left = osmgpsmap.point_new_degrees(point[0] + lifeway[2],
+                                                       point[1] - lifeway[2])
+                bottom_right = osmgpsmap.point_new_degrees(point[0] - lifeway[2],
+                                                           point[1] + lifeway[2])
+                crd_x, crd_y = gpsmap.convert_geographic_to_screen(top_left)
+                crd_x2, crd_y2 = gpsmap.convert_geographic_to_screen(bottom_right)
+                drawable.draw_arc(ggc, False, crd_x, crd_y, crd_x2 - crd_x,
+                                  crd_y2 - crd_y, 0, 360*64)
 
         for lifeway in self.lifeways:
             ctx.set_operator(cairo.OPERATOR_ATOP)
@@ -176,7 +184,7 @@ class LifeWayLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
 
         for comment in self.lifeways_comment:
             ctx = drawable.cairo_create()
-            ctx.set_line_width(3.0)
+            # Does the following font is available for all language ? Is it the good one ?
             ctx.select_font_face("Purisa",
                                  cairo.FONT_SLANT_NORMAL,
                                  cairo.FONT_WEIGHT_NORMAL)
