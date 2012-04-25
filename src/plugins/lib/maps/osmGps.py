@@ -148,6 +148,7 @@ class OsmGps():
         self.osm.connect('changed', self.zoom_changed)
         self.osm.show()
         self.vbox.pack_start(self.osm)
+        self.goto_handle(handle=None)
 
     def add_selection_layer(self):
         """

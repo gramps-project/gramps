@@ -174,10 +174,7 @@ class GeoPlaces(GeoGraphyView):
         """
         Rebuild the tree with the given places handle as the root.
         """
-        if handle:
-            self.change_active(handle)
-            self._createmap(handle)
-        self.uistate.modify_statusbar(self.dbstate)
+        self.build_tree()
 
     def show_all_places(self, menu, event, lat, lon):
         """

@@ -204,6 +204,10 @@ class GeoPerson(GeoGraphyView):
         if handle:
             self.change_active(handle)
             self._createmap(handle)
+        active = self.get_active()
+        if active:
+            p1 = self.dbstate.db.get_person_from_handle(active)
+            self._createmap(p1)
         self.uistate.modify_statusbar(self.dbstate)
 
     def build_tree(self):

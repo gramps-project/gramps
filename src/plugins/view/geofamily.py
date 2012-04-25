@@ -173,10 +173,7 @@ class GeoFamily(GeoGraphyView):
         """
         Rebuild the tree with the given person handle as the root.
         """
-        if handle:
-            self.change_active(handle)
-            self._createmap(handle)
-        self.uistate.modify_statusbar(self.dbstate)
+        self.build_tree()
 
     def build_tree(self):
         """

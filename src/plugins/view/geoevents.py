@@ -174,10 +174,7 @@ class GeoEvents(GeoGraphyView):
         """
         Rebuild the tree with the given events handle as the root.
         """
-        if handle:
-            self.change_active(handle)
-            self._createmap(handle)
-        self.uistate.modify_statusbar(self.dbstate)
+        self.build_tree()
 
     def show_all_events(self, menu, event, lat, lon):
         """
@@ -289,7 +286,7 @@ class GeoEvents(GeoGraphyView):
                 self._createmap_for_one_event(event)
         else:
             if obj is None:
-                events_handle = dbstate.db.iter_event_handles()
+                events_handle = dbstate.db.get_event_handles()
                 for event_hdl in events_handle:
                     event = dbstate.db.get_event_from_handle(event_hdl)
                     self._createmap_for_one_event(event)
