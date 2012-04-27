@@ -122,7 +122,7 @@ class LifeWayLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
             ctx.set_source_rgba(color.red / 65535,
                                color.green / 65535,
                                color.blue / 65535,
-                               0.2)
+                               0.1) # transparency
             ggc = drawable.new_gc()
             rds = float(lifeway[2])
             for point in lifeway[0]:

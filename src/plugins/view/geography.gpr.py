@@ -130,6 +130,24 @@ if OSMGPSMAP:
              category = ("Geography", _("Geography")),
              viewclass = 'GeoClose',
              order = END,
+             stock_icon = 'gramps-relation',
+      )
+    
+    register(VIEW, 
+             id    = 'closefmap',
+             name  = _("Have these two families been able to meet?"),
+             description =  _("A view showing the places visited by "
+                              "all family's members during their life: "
+                              "have these two people been able to meet?"),
+             version = '1.0.1',
+             gramps_target_version = MODULE_VERSION,
+             status = STABLE,
+             fname = 'geofamclose.py',
+             authors = [u"Serge Noiraud"],
+             authors_email = [""],
+             category = ("Geography", _("Geography")),
+             viewclass = 'GeoFamClose',
+             #order = END,
              stock_icon = 'geo-show-family',
       )
     
