@@ -312,9 +312,13 @@ class GeoClose(GeoGraphyView):
                     continue
                 event = dbstate.db.get_event_from_handle(event_ref.ref)
                 role = event_ref.get_role()
-                eyear = str("%04d" % event.get_date_object().to_calendar(self.cal).get_year()) + \
-                          str("%02d" % event.get_date_object().to_calendar(self.cal).get_month()) + \
-                          str("%02d" % event.get_date_object().to_calendar(self.cal).get_day())
+                try:
+                    date = event.get_date_object().to_calendar(self.cal)
+                except:
+                    continue
+                eyear = str("%04d" % date.get_year()) + \
+                          str("%02d" % date.get_month()) + \
+                          str("%02d" % date.get_day())
                 place_handle = event.get_place_handle()
                 if place_handle:
                     place = dbstate.db.get_place_from_handle(place_handle)
