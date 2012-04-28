@@ -482,7 +482,10 @@ h4 + div.grampsstylednote, a.familymap {
     margin: 1em 15px;
 }
 i + div.grampsstylednote p {
-    margin: 0px;
+    margin: 0 0 0.3em 0;
+}
+div.grampsstylednote p {
+    margin-bottom: 0.5em;
 }
 
 /* Subsection : Family Map
