@@ -1,8 +1,6 @@
 {% load my_tags %}
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 <head>
     <title>{% block title %}Gramps-Connect{% endblock %}</title>
     {% block meta %}
@@ -13,21 +11,21 @@
     {% endblock %}
     <link href="/images/favicon2.ico" type="image/x-icon" rel="shortcut icon" />
     {% block css %}
-    <link media="screen" href="/styles/css/behaviour.css" type="text/css" rel="stylesheet" />
     <link media="screen" href="/styles/css/{{css_theme}}" type="text/css" rel="stylesheet" />
     <link media="print" href="/styles/css/Web_Print-Default.css" type="text/css" rel="stylesheet" />
     <link type="text/css" href="/styles/css/swanky-purse/jquery-ui-1.7.2.custom.css" rel="stylesheet" />	
-    <script type="text/javascript" src="/styles/js/jquery-1.3.2.min.js"></script>
-    <script type="text/javascript" src="/styles/js/jquery-ui-1.7.2.custom.min.js"></script>
+    <script type="text/javascript" src="/styles/javascript/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="/styles/javascript/jquery-ui-1.7.2.custom.min.js"></script>
     {% endblock %}
 </head>
 <body onload="document.getElementById('get_focus').focus();">
    <div id="header">
      <h1 id="SiteTitle">{% block heading %}Gramps-Connect{% endblock %}</h1>
    </div>
-   <div id="navigation">
+   <div class="wrapper" role="navigation" id="nav">
     {% block navigation %}
-    <ul>
+    <div class="container">
+    <ul class="menu" id="dropmenu">
     <li {{ tview|currentSection:"home" }}><a href="/">Home</a></li>
     {% for title in menu %}
          {# (<Nice name>, /<path>/, <Model> | None, Need authentication ) #}
@@ -69,6 +67,7 @@
   {% endif %}
     </ul>
     {% endblock %}
+    </div>
    </div>
     <div class="grampsweb">
      {% for message in messages %}
