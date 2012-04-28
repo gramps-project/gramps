@@ -521,8 +521,12 @@ def view_person_detail(request, view, handle, action="view"):
                 return fix_person(request, person)
             pf = PersonForm(instance=person)
             pf.model = person
-            primary = name.surname_set.get(primary=True)
             nf = NameForm(instance=name)
+            try:
+                primary = name.surname_set.get(primary=True)
+            except:
+                primary = Surname()
+                primary.name = name
             nf.prefix=primary.prefix
             nf.surname=primary.surname
             nf.origin=primary.name_origin_type
