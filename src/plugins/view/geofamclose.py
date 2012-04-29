@@ -198,6 +198,7 @@ class GeoFamClose(GeoGraphyView):
         self.place_list_ref = []
         self.all_place_list = []
         self.sort = []
+        self.places_found = []
         self.place_without_coordinates = []
         self.remove_all_gps()
         self.remove_all_markers()

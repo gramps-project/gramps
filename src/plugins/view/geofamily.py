@@ -173,6 +173,7 @@ class GeoFamily(GeoGraphyView):
         """
         Rebuild the tree with the given person handle as the root.
         """
+        self.places_found = []
         self.build_tree()
 
     def build_tree(self):

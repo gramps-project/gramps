@@ -174,6 +174,7 @@ class GeoPlaces(GeoGraphyView):
         """
         Rebuild the tree with the given places handle as the root.
         """
+        self.places_found = []
         self.build_tree()
 
     def show_all_places(self, menu, event, lat, lon):
@@ -251,7 +252,10 @@ class GeoPlaces(GeoGraphyView):
                 self._create_one_place(place)
         else:
             if place_x is None:
-                places_handle = dbstate.db.iter_place_handles()
+                try:
+                    places_handle = dbstate.db.get_place_handles()
+                except:
+                    return
                 for place_hdl in places_handle:
                     place = dbstate.db.get_place_from_handle(place_hdl)
                     self._create_one_place(place)

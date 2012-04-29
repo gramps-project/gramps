@@ -174,6 +174,7 @@ class GeoEvents(GeoGraphyView):
         """
         Rebuild the tree with the given events handle as the root.
         """
+        self.places_found = []
         self.build_tree()
 
     def show_all_events(self, menu, event, lat, lon):

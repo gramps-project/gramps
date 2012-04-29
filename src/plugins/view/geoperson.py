@@ -201,6 +201,7 @@ class GeoPerson(GeoGraphyView):
         """
         Rebuild the tree with the given person handle as the root.
         """
+        self.places_found = []
         if handle:
             self.change_active(handle)
             self._createmap(handle)
