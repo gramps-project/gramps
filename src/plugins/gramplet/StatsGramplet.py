@@ -105,7 +105,7 @@ class StatsGramplet(Gramplet):
 
             names = [person.get_primary_name()] + person.get_alternate_names()
             for name in names:
-                if (name.get_first_name() or name.get_group_name()) == "":
+                if (name.get_first_name() == "" or name.get_group_name() == ""):
                     incomp_names += 1
                 if name.get_group_name() not in namelist:
                     namelist.append(name.get_group_name())
