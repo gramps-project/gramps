@@ -437,11 +437,9 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         Create a list of places with coordinates.
         """
-        found = any(p[0] == place for p in self.place_list)
+        found = any(p[0] == place for p in self.places_found)
         if not found:
             self.nbplaces += 1
-            if len(self.place_list) == 0:
-                self.places_found = []
             self.places_found.append([place, lat, longit])
         self.place_list.append([place, name, evttype, lat,
                                 longit, descr, year, icontype,
