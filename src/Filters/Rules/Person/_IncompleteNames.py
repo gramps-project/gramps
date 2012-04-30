@@ -53,4 +53,6 @@ class IncompleteNames(Rule):
             for surn in name.get_surname_list():
                 if surn.get_surname().strip() == "":
                     return True
+            else:
+                return True
         return False
