@@ -103,12 +103,16 @@ class StatsGramplet(Gramplet):
                 with_media += 1
                 total_media += length
 
-            names = [person.get_primary_name()] + person.get_alternate_names()
-            for name in names:
-                if (name.get_first_name() == "" or name.get_group_name() == ""):
+            for name in [person.get_primary_name()] + person.get_alternate_names():
+                if name.get_first_name().strip() == "":
                     incomp_names += 1
-                if name.get_group_name() not in namelist:
-                    namelist.append(name.get_group_name())
+                else:
+                    if name.get_surname_list():
+                        for surname in name.get_surname_list():
+                            if surname.get_surname().strip() == "":
+                                incomp_names += 1
+                    else:
+                        incomp_names += 1
                     
             if (not person.get_main_parents_family_handle() and 
                 not len(person.get_family_handle_list())):
