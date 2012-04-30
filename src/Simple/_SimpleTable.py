@@ -192,6 +192,8 @@ class SimpleTable(object):
             return True
         elif self.__link[index]:
             objclass, handle = self.__link[index]
+            if isinstance(handle, list):
+                handle = handle[0]
             if objclass == 'Person':
                 person = self.access.dbase.get_person_from_handle(handle)
                 if person:
@@ -304,6 +306,8 @@ class SimpleTable(object):
             return True
         elif self.__link[index]:
             objclass, handle = self.__link[index]
+            if isinstance(handle, list):
+                handle = handle[0]
             if objclass == 'Person':
                 import gobject
                 # If you emmit the signal here and it causes this table to be deleted, 
