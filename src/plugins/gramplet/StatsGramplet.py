@@ -152,8 +152,8 @@ class StatsGramplet(Gramplet):
                   'Filter', 'people with unknown gender')
         self.append_text(" %s" % unknowns)
         self.append_text("\n")
-        self.link("%s:" % _("Individuals with incomplete names"),
-                  'Filter', 'people with incomplete names')
+        self.link("%s:" % _("Incomplete names"),
+                  'Filter', 'incomplete names')
         self.append_text(" %s" % incomp_names)
         self.append_text("\n")
         self.link("%s:" % _("Individuals missing birth dates"),

@@ -113,10 +113,17 @@ class SummaryReport(Report):
                 with_media += 1
             
             # Count people with incomplete names.
-            name = person.get_primary_name()
-            if name.get_first_name() == "" or name.get_surname() == "":
-                incomp_names += 1
-                
+            for name in [person.get_primary_name()] + person.get_alternate_names():
+                if name.get_first_name().strip() == "":
+                    incomp_names += 1
+                else:
+                    if name.get_surname_list():
+                        for surname in name.get_surname_list():
+                            if surname.get_surname().strip() == "":
+                                incomp_names += 1
+                    else:
+                        incomp_names += 1
+                    
             # Count people without families.
             if (not person.get_main_parents_family_handle() and
                not len(person.get_family_handle_list())):
@@ -160,7 +167,7 @@ class SummaryReport(Report):
         self.doc.end_paragraph()
                             
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(_("Individuals with incomplete names: %d") % 
+        self.doc.write_text(_("Incomplete names: %d") % 
                             incomp_names)
         self.doc.end_paragraph()
         
