@@ -278,12 +278,12 @@ def run(database, document, filter_name, *args, **kwargs):
                 matches += 1
 
     elif (filter_name == 'people with incomplete names'):
-        stab.columns(_("Person"), _("Birth Date"), _("Name type"))
+        stab.columns(_("Name"), _("Birth Date"), _("Name type"))
         for person in database.iter_people():
             for name in [person.get_primary_name()] + person.get_alternate_names():
                 if name.get_group_name() == "" or name.get_first_name() == "":
-                    stab.row(person, sdb.birth_or_fallback(person),
-                             str(person.get_primary_name().get_type()))
+                    stab.row([name.get_name(), "Person", person.handle], sdb.birth_or_fallback(person),
+                             str(name.get_type()))
                     matches += 1
 
     elif (filter_name == 'people with missing birth dates'):
