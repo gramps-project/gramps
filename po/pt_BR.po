@@ -1,19 +1,18 @@
 # Brazilian-Portuguese translation for Gramps.
-# Tradução português-brasileiro para o Gramps.
+# Tradução do Gramps para português do Brasil.
 # Copyright (C) 2002 Free Software Foundation, Inc.
 #
 #
 # Marcos Bedinelli <bedinelli@sourceforge.net>, 2002-2006.
 # Luiz Gonzaga dos Santos Filho <lfilho@gmail.com>, 2007-2007.
 # lcc <lcc@6zap.com>, 2009-2009.
-# André Marcelo Alvarenga <andrealvarenga@gmx.net>, 2011.
-# André Marcelo Alvarenga <alvarenga@kde.org>, 2012.
+# André Marcelo Alvarenga <alvarenga@kde.org>, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-04-19 16:49+0200\n"
-"PO-Revision-Date: 2012-04-28 22:37-0300\n"
+"PO-Revision-Date: 2012-04-30 22:54-0300\n"
 "Last-Translator: André Marcelo Alvarenga <alvarenga@kde.org>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_br@kde.org>\n"
 "Language: \n"
@@ -2223,7 +2222,7 @@ msgstr ""
 "\n"
 "10. Para gerar uma página da Web em outro idioma (em alemão):\n"
 "LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Árvore genealógica 1' -a report -"
-"p name=págima_web,target=/../de\n"
+"p name=página_web,target=/../de\n"
 "\n"
 "11. Finalmente, para iniciar uma sessão interativa normal, digite:\n"
 "gramps\n"
@@ -8903,7 +8902,7 @@ msgstr "<Estados>"
 
 #: ../src/gui/views/treemodels/placemodel.py:69
 msgid "<Counties>"
-msgstr "<Municípioa/Condados>"
+msgstr "<Município/Condados>"
 
 #: ../src/gui/views/treemodels/placemodel.py:70
 msgid "<Places>"
@@ -9137,7 +9136,7 @@ msgstr "Registro privado"
 
 #: ../src/Merge/mergecitation.py:50
 msgid "manual|Merge_Citations"
-msgstr "manual|Mesclar_citações"
+msgstr "Mesclar_citações"
 
 #: ../src/Merge/mergecitation.py:72 ../src/plugins/tool/tools.gpr.py:529
 msgid "Merge Citations"
@@ -9199,7 +9198,7 @@ msgstr "Mesclar objetos multimídia"
 
 #: ../src/Merge/mergenote.py:49
 msgid "manual|Merge_Notes"
-msgstr "Mescal_notas"
+msgstr "Mesclar_notas"
 
 #: ../src/Merge/mergenote.py:71 ../src/Merge/mergenote.py:203
 msgid "Merge Notes"
@@ -20000,7 +19999,7 @@ msgstr "Coincide com as pessoas com o mesmo último nome"
 
 #: ../src/plugins/quickview/SameSurnames.py:64
 msgid "People matching the <given>"
-msgstr "Pessoas coincidentes com o <noem próprio>"
+msgstr "Pessoas coincidentes com o <nome próprio>"
 
 #: ../src/plugins/quickview/SameSurnames.py:65
 msgid "Matches people with same given name"
@@ -22184,7 +22183,7 @@ msgstr "Objetos não coletados: %s"
 
 #: ../src/plugins/tool/MediaManager.py:69
 msgid "manual|Media_Manager..."
-msgstr "Gerenciado_multimídia..."
+msgstr "Gerenciador_multimídia..."
 
 #: ../src/plugins/tool/MediaManager.py:90 ../src/plugins/tool/tools.gpr.py:263
 msgid "Media Manager"
@@ -22389,7 +22388,7 @@ msgstr "Ignorar data e confiança"
 
 #: ../src/plugins/tool/MergeCitations.py:82
 msgid "manual|Merge citations..."
-msgstr "manual|Mesclar citações..."
+msgstr "Mesclar citações..."
 
 #: ../src/plugins/tool/MergeCitations.py:129
 msgid ""
@@ -24409,6 +24408,12 @@ msgid ""
 "any?).  Clicking on a place&#8217;s name in the Reference section will take "
 "you to that place&#8217;s page."
 msgstr ""
+"Esta página de mapas representa a pessoal e seus descendentes com todos "
+"os seus eventos e locais. Se você posicionar o mouse sobre o marcador, ele "
+"exibirá o nome do local. Os marcadores e a lista de referência são ordenados "
+"por data (se existir). Ao clicar no nome do local na seção Referência, você "
+"terá "
+"a página do local."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5633
 msgid "Drop Markers"
@@ -24443,9 +24448,8 @@ msgid "Half Siblings"
 msgstr "Meio irmãos"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6408
-#, fuzzy
 msgid "Step Siblings"
-msgstr "Exibir irmãos"
+msgstr "Irmãos por parte de pai/mãe"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6503
 msgid ""
@@ -24775,6 +24779,9 @@ msgid ""
 "the Media Page, and only a thumb- sized images.  This will allow you to have "
 "a much smaller total upload size to your web hosting site."
 msgstr ""
+"Esta opção permite-lhe escolher em não criar imagens em tamanho original "
+"como na Página de mídia, mas somente imagens em miniatura. Com isto, o "
+"tamanho total do envio para o site de hospedagem será muito menor."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7832
 msgid "Max width of initial image"
@@ -24949,15 +24956,17 @@ msgid "Whether to include a parents column"
 msgstr "Se deve ser incluída uma coluna para os pais"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7952
-#, fuzzy
 msgid "Include half and/ or step-siblings on the individual pages"
-msgstr "Incluir uma coluna para os pais nas páginas de índice"
+msgstr ""
+"Incluir os meio irmãos e os irmãos por parte de pai/mãe em páginas "
+"individuais"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7954
-#, fuzzy
 msgid ""
 "Whether to include half and/ or step-siblings with the parents and siblings"
-msgstr "Se devem ser incluídos os nomes dos locais das pessoas e famílias."
+msgstr ""
+"Se devem ser incluídos os meio irmãos ou os irmãos por parte de pai/mãe com "
+"os pais e irmãos"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7958
 msgid "Sort all children in birth order"
@@ -25006,13 +25015,13 @@ msgid "Include address book pages"
 msgstr "Incluir páginas de livro de endereços"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7979
-#, fuzzy
 msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and "
 "website addresses and personal address/ residence events."
 msgstr ""
 "Se devem ser incluídas páginas de livro de endereços, que podem conter "
-"informações pessoais de contato (endereço de correio, residência, etc)"
+"endereços de e-mail e página pessoal, assim como eventos residenciais e "
+"endereços pessoais."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7989
 msgid "Place Map Options"
@@ -25124,9 +25133,8 @@ msgid "NarrativeWeb Home"
 msgstr "Página inicial da NarrativeWeb"
 
 #: ../src/plugins/webreport/WebCal.py:557
-#, fuzzy
 msgid "Full year at a Glance"
-msgstr "Calendário do ano %(year)d"
+msgstr "Ano completo"
 
 #: ../src/plugins/webreport/WebCal.py:821
 msgid "Formatting months ..."
@@ -27251,12 +27259,11 @@ msgid "Citations changed after <date time>"
 msgstr "Citações alteradas após <date time>"
 
 #: ../src/Filters/Rules/Citation/_ChangedSince.py:48
-#, fuzzy
 msgid ""
 "Matches citation records changed after a specified date-time (yyyy-mm-dd hh:"
 "mm:ss) or in the range, if a second date-time is given."
 msgstr ""
-"Coincide com os registros de pessoas modificadas após uma data e hora "
+"Coincide com os registros de citação modificadas após uma data e hora "
 "especificadas (aaaa-mm-dd hh:mm:ss) ou entre um intervalo de tempo, se uma "
 "segunda data e hora for indicada."
 
@@ -27281,54 +27288,46 @@ msgid "Citation with <Id>"
 msgstr "Citação com <Id>"
 
 #: ../src/Filters/Rules/Citation/_HasIdOf.py:47
-#, fuzzy
 msgid "Matches a citation with a specified Gramps ID"
-msgstr "Localiza uma família com um ID Gramps especificado"
+msgstr "Localiza uma citação com um ID Gramps especificado"
 
 #: ../src/Filters/Rules/Citation/_HasNote.py:47
-#, fuzzy
 msgid "Citations having <count> notes"
-msgstr "Famílias com <count> notas"
+msgstr "Citações com <count> notas"
 
 #: ../src/Filters/Rules/Citation/_HasNote.py:48
-#, fuzzy
 msgid "Matches citations having a certain number of notes"
-msgstr "Localiza os eventos que possuem um determinado número notas"
+msgstr "Localiza as citações que possuem um determinado número notas"
 
 #: ../src/Filters/Rules/Citation/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Citations having notes containing <substring>"
-msgstr "Famílias que possuem notas contendo <substring>"
+msgstr "Citações que possuem notas contendo <substring>"
 
 #: ../src/Filters/Rules/Citation/_HasNoteMatchingSubstringOf.py:45
-#, fuzzy
 msgid "Matches citations whose notes contain text matching a substring"
 msgstr ""
-"Localiza as famílias cujas notas contém texto que corresponda à cadeia de "
+"Localiza as citações cujas notas contenham texto que corresponda à cadeia de "
 "caracteres"
 
 #: ../src/Filters/Rules/Citation/_HasNoteRegexp.py:43
-#, fuzzy
 msgid "Citations having notes containing <regular expression>"
-msgstr "Famílias que possuem notas contendo <regular expression>"
+msgstr "Citações que possuem notas contendo <regular expression>"
 
 #: ../src/Filters/Rules/Citation/_HasNoteRegexp.py:44
-#, fuzzy
 msgid ""
 "Matches citations whose notes contain text matching a regular expression"
 msgstr ""
-"Localiza as famílias cujas notas contém texto que coincide com uma expressão "
+"Localiza as citações cujas notas contenham texto que coincide com uma "
+"expressão "
 "regular"
 
 #: ../src/Filters/Rules/Citation/_HasReferenceCountOf.py:44
-#, fuzzy
 msgid "Citations with a reference count of <count>"
-msgstr "Notas com um número de referências <count>"
+msgstr "Citações com um número de referências <count>"
 
 #: ../src/Filters/Rules/Citation/_HasReferenceCountOf.py:45
-#, fuzzy
 msgid "Matches citations with a certain reference count"
-msgstr "Localiza as notas com um determinado número de referências"
+msgstr "Localiza as citações com um determinado número de referências"
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:49
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:47
@@ -27353,75 +27352,65 @@ msgid "Sources matching parameters"
 msgstr "Fontes de referência coincidentes com os parâmetros"
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:53
-#, fuzzy
 msgid "Matches citations with a source of a particular value"
-msgstr "Localiza as famílias com um evento que tenha um valor específico"
+msgstr "Localiza as citações com uma fonte que tenha um valor específico"
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:55
 msgid "Source filters"
 msgstr "Filtros de fontes"
 
 #: ../src/Filters/Rules/Citation/_MatchesFilter.py:46
-#, fuzzy
 msgid "Citations matching the <filter>"
-msgstr "Notas coincidentes com o <filter>"
+msgstr "Citações que coincidem com o <filter>"
 
 #: ../src/Filters/Rules/Citation/_MatchesFilter.py:47
-#, fuzzy
 msgid "Matches citations matched by the specified filter name"
-msgstr "Localiza as notas que foram encontradas pelo filtro especificado"
+msgstr "Localiza as citações que foram encontradas pelo filtro especificado"
 
 #: ../src/Filters/Rules/Citation/_MatchesPageSubstringOf.py:44
-#, fuzzy
 msgid "Citation Volume/Page containing <substring>"
-msgstr "Repositório que possui nome contendo <substring>"
+msgstr "Página/Volume da citação que contém <substring>"
 
 #: ../src/Filters/Rules/Citation/_MatchesPageSubstringOf.py:45
-#, fuzzy
 msgid "Matches citations whose Volume/Page contains a certain substring"
 msgstr ""
-"Localiza os repositórios com nome que contenha texto que coincide com uma "
+"Localiza as citações com Página/Volume que contenha uma determinada "
 "cadeia de caracteres"
 
 #: ../src/Filters/Rules/Citation/_RegExpIdOf.py:49
-#, fuzzy
 msgid "Citations with <Id> matching regular expression"
-msgstr "Notas com <Id> que coincidem com a expressão regular"
+msgstr "Citações com <Id> que coincidem com a expressão regular"
 
 #: ../src/Filters/Rules/Citation/_RegExpIdOf.py:50
-#, fuzzy
 msgid "Matches citations whose Gramps ID matches the regular expression"
-msgstr "Localiza as notas cujos ID Gramps coincidem com a expressão regular"
+msgstr "Localiza as citações cujos ID Gramps coincidem com a expressão regular"
 
 #: ../src/Filters/Rules/Citation/_MatchesRepositoryFilter.py:47
-#, fuzzy
 msgid ""
 "Citations with a source with a repository reference matching the <repository "
 "filter>"
 msgstr ""
-"Fontes de referência com repositório coincidente com o <repository filter>"
+"Citações com uma fonte de referência com repositório de referência que "
+"coincide com o <repository filter>"
 
 #: ../src/Filters/Rules/Citation/_MatchesRepositoryFilter.py:49
-#, fuzzy
 msgid ""
 "Matches citations with sources with a repository reference that match a "
 "certain repository filter"
 msgstr ""
-"Localiza as fontes de referência que tem repositórios que correspondem\n"
-"a determinado filtro de repositório"
+"Localiza as citações com fontes que tem repositórios de referência que "
+"correspondem a determinado filtro de repositório"
 
 #: ../src/Filters/Rules/Citation/_MatchesSourceFilter.py:50
-#, fuzzy
 msgid "Citations with source matching the <source filter>"
-msgstr "Eventos com a fonte de referência coincidente com o <source filter>"
+msgstr "Citações com a fonte de referência que coincide com o <source filter>"
 
 #: ../src/Filters/Rules/Citation/_MatchesSourceFilter.py:51
-#, fuzzy
 msgid ""
 "Matches citations with sources that match the specified source filter name"
 msgstr ""
-"Localiza os eventos com fontes de referência que foram encontrados pelo "
-"filtro especificado"
+"Localiza as citações com fontes de referência que coincidem com a fonte "
+"indicada no nome do filtro"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:45
 msgid "Every media object"
@@ -27777,9 +27766,8 @@ msgid "Custom filter"
 msgstr "Filtro personalizado"
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:96
-#, fuzzy
 msgid "Participants"
-msgstr "Principais participantes"
+msgstr "Participantes"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:90
 msgid "any"
@@ -28064,31 +28052,27 @@ msgstr "<b>Parentesco dos pais</b>"
 
 #: ../src/glade/reorder.glade.h:3
 msgid "Arrow bottom"
-msgstr ""
+msgstr "Seta para baixo"
 
 #: ../src/glade/reorder.glade.h:4
 msgid "Arrow top"
-msgstr ""
+msgstr "Seta para cima"
 
 #: ../src/glade/reorder.glade.h:5
-#, fuzzy
 msgid "Move family down"
-msgstr "Remover árvore genealógica"
+msgstr "Mover a família para baixo"
 
 #: ../src/glade/reorder.glade.h:6
-#, fuzzy
 msgid "Move family up"
-msgstr "Todas as famílias"
+msgstr "Mover a família para cima"
 
 #: ../src/glade/reorder.glade.h:7
-#, fuzzy
 msgid "Move parent down"
-msgstr "Nenhum pai/mãe encontrado"
+msgstr "Mover os pais para baixo"
 
 #: ../src/glade/reorder.glade.h:8
-#, fuzzy
 msgid "Move parent up"
-msgstr "Nenhum pai/mãe encontrado"
+msgstr "Mover os pais para cima"
 
 #: ../src/glade/tipofday.glade.h:1
 msgid "_Display on startup"
@@ -28374,9 +28358,8 @@ msgid "Abo_ve:"
 msgstr "Aci_ma:"
 
 #: ../src/glade/styleeditor.glade.h:15
-#, fuzzy
 msgid "Add a new style"
-msgstr "Adicionar uma nova nota"
+msgstr "Adicionar um novo estilo"
 
 #: ../src/glade/styleeditor.glade.h:16
 msgid "Belo_w:"
@@ -28504,14 +28487,13 @@ msgid "<b>Citation information</b>"
 msgstr "<b>Informações da citação</b>"
 
 #: ../src/glade/editcitation.glade.h:3
-#, fuzzy
 msgid ""
 "<b>Note:</b> Any changes in the shared citation information will be "
 "reflected in the citation itself, for all items that reference the citation."
 msgstr ""
-"<b>Observação:</b> Quaisquer alterações na informação do repositório "
-"compartilhado serão refletidas no próprio repositório, para todos os itens "
-"que tenham referência a ele."
+"<b>Observação:</b> Quaisquer alterações na informação da citação "
+"compartilhada serão refletidas na própria citação, para todos os itens "
+"que tenham referência a ela."
 
 #: ../src/glade/editcitation.glade.h:4 ../src/glade/editsourceref.glade.h:2
 msgid ""
@@ -29135,9 +29117,8 @@ msgid "A unique ID to identify the note."
 msgstr "Um ID único para identificar a nota."
 
 #: ../src/glade/editnote.glade.h:6
-#, fuzzy
 msgid "Styled Text Editor"
-msgstr "Editor de estilos"
+msgstr "Editor de texto com estilo"
 
 #: ../src/glade/editnote.glade.h:8
 msgid ""
@@ -29403,19 +29384,17 @@ msgid "Gramps ID:"
 msgstr "ID Gramps:"
 
 #: ../src/glade/mergecitation.glade.h:7
-#, fuzzy
 msgid "Notes, media objects and data-items of both citations will be combined."
 msgstr ""
-"Notas, objetos multimídia, itens de dados e repositórios de referência de "
-"ambas as fontes de referência serão combinados."
+"Notas, objetos multimídia e itens de dados de ambas as citações serão "
+"combinados."
 
 #: ../src/glade/mergecitation.glade.h:8
-#, fuzzy
 msgid ""
 "Select the citation that will provide the\n"
 "primary data for the merged citation."
 msgstr ""
-"Selecione a pessoa que proverá os dados\n"
+"Selecione a citação que proverá os dados\n"
 "primários para a pessoa mesclada."
 
 #: ../src/glade/mergedata.glade.h:3
@@ -31099,814 +31078,4 @@ msgstr ""
 "escolher entre sete diferentes calendários. Experimente o botão ao lado do "
 "campo de data no editor de eventos."
 
-#~ msgid "Rebuild reference map"
-#~ msgstr "Reconstruir mapeamento de referências"
 
-#~ msgid "The Database version is not supported by this version of Gramps."
-#~ msgstr ""
-#~ "A versão do banco de dados não é suportada por esta versão do Gramps."
-
-#~ msgid ""
-#~ "Your family tree groups name %(key)s together with %(present)s, did not "
-#~ "change this grouping to %(value)s"
-#~ msgstr ""
-#~ "A sua árvore genealógica agrupa o nome%(key)s com %(present)s, não se "
-#~ "alterou este agrupamento para %(value)s"
-
-#~ msgid "Import database"
-#~ msgstr "Importar banco de dados"
-
-#~ msgid "%(quantity)d invalid event reference was removed\n"
-#~ msgid_plural "%(quantity)d invalid event references were removed\n"
-#~ msgstr[0] "%(quantity)d referência de evento inválida foi removida\n"
-#~ msgstr[1] "%(quantity)d referências de evento inválidas foram removidas\n"
-
-#~ msgid " "
-#~ msgstr " "
-
-#~ msgid "\n"
-#~ msgstr "\n"
-
-#~ msgid "Install Addons"
-#~ msgstr "Instalar extensões"
-
-#~ msgid "Source Reference: %s"
-#~ msgstr "Referência de fontes: %s"
-
-#~ msgid "Export:"
-#~ msgstr "Exportar:"
-
-#~ msgid "Filt_er:"
-#~ msgstr "_Filtro:"
-
-#~ msgid "I_ndividuals"
-#~ msgstr "I_ndivíduos"
-
-#~ msgid "Translate _Headers"
-#~ msgstr "Traduzir cabeçalhos"
-
-#~ msgid "_Marriages"
-#~ msgstr "Casa_mentos"
-
-#~ msgid "_Restrict data on living people"
-#~ msgstr "_Restringir dados de pessoas vivas"
-
-#~ msgid "Exclude _notes"
-#~ msgstr "Excluir _notas"
-
-#~ msgid "Reference i_mages from path:  "
-#~ msgstr "R_eferenciar imagens a partir da localização:  "
-
-# Check this translation
-#~ msgid "Use _Living as first name"
-#~ msgstr "Usar _Living como primeiro nome"
-
-#~ msgid ""
-#~ "The plugin did not load. See Help Menu, Plugin Manager for more info.\n"
-#~ "Use http://bugs.gramps-project.org to submit bugs of official plugins, "
-#~ "contact the plugin author otherwise. "
-#~ msgstr ""
-#~ "O plug-in não foi carregado. Veja o menu Ajuda, Gerenciador de plug-ins "
-#~ "para mais informações.\n"
-#~ "Use http://bugs.gramps-project.org para enviar erros dos plug-ins "
-#~ "oficiais ou, alternativamente, contacte o autor do plug-in. "
-
-#~ msgid ""
-#~ "The view %(name)s did not load. See Help Menu, Plugin Manager for more "
-#~ "info.\n"
-#~ "Use http://bugs.gramps-project.org to submit bugs of official views, "
-#~ "contact the view author (%(firstauthoremail)s) otherwise. "
-#~ msgstr ""
-#~ "A visualização %(name)s não foi carregada. Veja o menu Ajuda, Gerenciador "
-#~ "de plug-ins para mais informações.\n"
-#~ "Use http://bugs.gramps-project.org para enviar erros de visualizações "
-#~ "oficiais ou, alternativamente, contacte o autor da visualização "
-#~ "(%(firstauthoremail)s). "
-
-#, fuzzy
-#~ msgid "Media |Gallery"
-#~ msgstr "Nome"
-
-#, fuzzy
-#~ msgid "Media | Gallery"
-#~ msgstr "Nome"
-
-#, fuzzy
-#~ msgid " and "
-#~ msgstr "' e '"
-
-#~ msgid "Source ref"
-#~ msgstr "Fonte de referência"
-
-#~ msgid "pyenchant must be installed"
-#~ msgstr "O pyenchant deve ser instalado"
-
-#~ msgid "Baptism:"
-#~ msgstr "Batismo:"
-
-#~ msgid "Burial:"
-#~ msgstr "Sepultamento:"
-
-#~ msgid "Source Reference Editor"
-#~ msgstr "Editor de referência de fonte"
-
-#~ msgid "Modify Source"
-#~ msgstr "Modificar fonte"
-
-#~ msgid "Remove the existing source"
-#~ msgstr "Remover a fonte existente"
-
-#~ msgid "Move the selected source upwards"
-#~ msgstr "Mover a fonte selecionada para cima"
-
-#~ msgid "Move the selected source downwards"
-#~ msgstr "Mover a fonte selecionada para baixo"
-
-#~ msgid "_Sources"
-#~ msgstr "_Fontes"
-
-#~ msgid "Processing File"
-#~ msgstr "Processando arquivo"
-
-#~ msgid "Selection Options"
-#~ msgstr "Opções de seleção"
-
-#~ msgid "Building People View"
-#~ msgstr "Construindo visualização de pessoas"
-
-#~ msgid "The range of dates chosen was not valid"
-#~ msgstr "A abrangência das datas escolhidas não foi válida"
-
-#~ msgid "Person Sources"
-#~ msgstr "Fontes de referência de pessoa"
-
-#~ msgid "Gramplet showing the sources for a person"
-#~ msgstr "Gramplet que mostra as fontes de uma pessoa"
-
-#~ msgid "Event Sources"
-#~ msgstr "Fonte de referência de evento"
-
-#~ msgid "Gramplet showing the sources for an event"
-#~ msgstr "Gramplet que mostra as fontes de um evento"
-
-#~ msgid "Family Sources"
-#~ msgstr "Fontes de referência de família"
-
-#~ msgid "Gramplet showing the sources for a family"
-#~ msgstr "Gramplet que mostra as fontes de uma família"
-
-#~ msgid "Place Sources"
-#~ msgstr "Fontes de referência de local"
-
-#~ msgid "Gramplet showing the sources for a place"
-#~ msgstr "Gramplet que mostra as fontes de um local"
-
-#~ msgid "Media Sources"
-#~ msgstr "Fontes de referência de mídia"
-
-#~ msgid "Gramplet showing the sources for a media object"
-#~ msgstr "Gramplet que mostra as fontes de um objeto multimídia"
-
-#~ msgid ""
-#~ "You need to install, %s or greater, for this addon to work. \n"
-#~ "  I would recommend installing, %s, and it may be downloaded from here: \n"
-#~ "%s"
-#~ msgstr ""
-#~ "Você precisa instalar, %s ou superior, para esta extensão funcionar. \n"
-#~ "  Recomendamos a instalação, %s, que pode ser baixado em: \n"
-#~ "%s"
-
-#~ msgid "Failed to load 'Edit Image Exif Metadata'..."
-#~ msgstr "Falha ao carregar 'Editar metadados EXIF da imagem'..."
-
-#~ msgid ""
-#~ "The minimum required version for pyexiv2 must be %s \n"
-#~ "or greater.  Or you do not have the python library installed yet.  You "
-#~ "may download it from here: %s\n"
-#~ "\n"
-#~ " I recommend getting, %s"
-#~ msgstr ""
-#~ "A versão mínima necessária para o pyexiv2 é %s \n"
-#~ "ou superior. Se você não tem a biblioteca do python instalada, é possível "
-#~ "encontrá-la em: %s\n"
-#~ "\n"
-#~ " Recomendamos obtê-la, %s"
-
-#~ msgid ""
-#~ "Original Date/ Time of this image.\n"
-#~ "Example: 1826-Apr-12 14:30:00, 1826-April-12, 1998-01-31 13:30:00"
-#~ msgstr ""
-#~ "Data/hora original desta imagem.\n"
-#~ "Exemplo: 1826-Abr-12 14:30:00, 1826-Abril-12, 1998-01-31 13:30:00"
-
-#~ msgid "Copies information from the Display area to the Edit area."
-#~ msgstr "Copia as informações da área de exibição para a área de edição..."
-
-#~ msgid "Clears the Exif metadata from the Edit area."
-#~ msgstr "Limpa os metadados EXIF da área de edição."
-
-#~ msgid ""
-#~ "Saves/ writes the Exif metadata to this image.\n"
-#~ "WARNING: Exif metadata will be erased if you save a blank entry field..."
-#~ msgstr ""
-#~ "Salva/grava os metadados EXIF para esta imagem.\n"
-#~ "AVISO: Os metadados EXIF serão apagados se você salvar um campo de item "
-#~ "em branco..."
-
-#~ msgid "Click an image to begin..."
-#~ msgstr "Clique em uma imagem para iniciar..."
-
-#~ msgid "Select Date"
-#~ msgstr "Selecionar data"
-
-#~ msgid "Convert GPS"
-#~ msgstr "Converter GPS"
-
-#~ msgid "Decimal"
-#~ msgstr "Decimal"
-
-#~ msgid "Deg. Min. Sec."
-#~ msgstr "Grau. Min. Seg."
-
-#~ msgid ""
-#~ "Image is either missing or deleted,\n"
-#~ "  Choose a different image..."
-#~ msgstr ""
-#~ "A imagem não existe ou foi excluída.\n"
-#~ "  Escolha outra imagem..."
-
-#~ msgid "Choose a different image..."
-#~ msgstr "Escolha uma imagem diferente..."
-
-#~ msgid "No Exif metadata for this image..."
-#~ msgstr "Nenhum metadados EXIF para esta imagem..."
-
-#~ msgid "Copying Exif metadata to the Edit Area..."
-#~ msgstr "Copiar os metadados EXIF para a área de edição..."
-
-#~ msgid "Edit area has been cleared..."
-#~ msgstr "A área de edição foi limpa..."
-
-#~ msgid "Image Exif metadata has been cleared from this image..."
-#~ msgstr "Os metadados EXIF da imagem foram apagados..."
-
-#~ msgid "S"
-#~ msgstr "S"
-
-#~ msgid "N"
-#~ msgstr "N"
-
-#~ msgid "Double click a day to return the date."
-#~ msgstr "Clique duas vezes sobre um dia para retornar a data."
-
-#~ msgid "Limit the number of children"
-#~ msgstr "Limitar o número de filhos"
-
-#~ msgid "The maximum number of children to include."
-#~ msgstr "O número máximo de filhos a serem incluídos."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the "
-#~ "age of %(age)d years."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s faleceu em %(death_date)s em %(death_place)s com "
-#~ "%(age)d anos de idade."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the "
-#~ "age of %(age)d months."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s faleceu em %(death_date)s em %(death_place)s com "
-#~ "%(age)d meses de idade."
-
-#~ msgid ""
-#~ "%(male_name)s died on %(death_date)s in %(death_place)s at the age of "
-#~ "%(age)d years."
-#~ msgstr ""
-#~ "%(male_name)s faleceu em %(death_date)s em %(death_place)s com %(age)d "
-#~ "anos de idade."
-
-#~ msgid ""
-#~ "%(male_name)s died on %(death_date)s in %(death_place)s at the age of "
-#~ "%(age)d months."
-#~ msgstr ""
-#~ "%(male_name)s faleceu em %(death_date)s em %(death_place)s com %(age)d "
-#~ "meses de idade."
-
-#~ msgid ""
-#~ "%(female_name)s died on %(death_date)s in %(death_place)s at the age of "
-#~ "%(age)d years."
-#~ msgstr ""
-#~ "%(female_name)s faleceu em %(death_date)s em %(death_place)s com %(age)d "
-#~ "anos de idade."
-
-#~ msgid ""
-#~ "%(female_name)s died on %(death_date)s in %(death_place)s at the age of "
-#~ "%(age)d months."
-#~ msgstr ""
-#~ "%(female_name)s faleceu em %(death_date)s em %(death_place)s com %(age)d "
-#~ "meses de idade."
-
-#~ msgid ""
-#~ "This person died on %(death_date)s in %(death_place)s at the age of %(age)"
-#~ "d years."
-#~ msgstr ""
-#~ "Esta pessoa faleceu em %(death_date)s em %(death_place)s com %(age)d anos "
-#~ "de idade."
-
-#~ msgid ""
-#~ "This person died on %(death_date)s in %(death_place)s at the age of %(age)"
-#~ "d months."
-#~ msgstr ""
-#~ "Esta pessoa faleceu em %(death_date)s em %(death_place)s com %(age)d "
-#~ "meses de idade."
-
-#~ msgid ""
-#~ "He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-#~ msgstr ""
-#~ "Ele faleceu em %(death_date)s em %(death_place)s com %(age)d anos de "
-#~ "idade."
-
-#~ msgid ""
-#~ "He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
-#~ msgstr ""
-#~ "Ele faleceu em %(death_date)s em %(death_place)s com %(age)d meses de "
-#~ "idade."
-
-#~ msgid ""
-#~ "She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-#~ msgstr ""
-#~ "Ela faleceu em %(death_date)s em %(death_place)s com %(age)d anos de "
-#~ "idade."
-
-#~ msgid ""
-#~ "She died on %(death_date)s in %(death_place)s at the age of %(age)d "
-#~ "months."
-#~ msgstr ""
-#~ "Ela faleceu em %(death_date)s em %(death_place)s com %(age)d meses de "
-#~ "idade."
-
-#~ msgid "Died %(death_date)s in %(death_place)s (age %(age)d years)."
-#~ msgstr "Faleceu %(death_date)s em %(death_place)s (%(age)d anos de idade)."
-
-#~ msgid "Died %(death_date)s in %(death_place)s (age %(age)d months)."
-#~ msgstr "Faleceu %(death_date)s em %(death_place)s (%(age)d meses de idade)."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age "
-#~ "of %(age)d years."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s faleceu em%(death_date)s em %(death_place)s com "
-#~ "%(age)d anos de idade."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age "
-#~ "of %(age)d months."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s faleceu em %(death_date)s em %(death_place)s com "
-#~ "%(age)d meses de idade."
-
-#~ msgid ""
-#~ "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)"
-#~ "d years."
-#~ msgstr ""
-#~ "%(male_name)s faleceu em %(death_date)s em %(death_place)s com %(age)d "
-#~ "anos de idade."
-
-#~ msgid ""
-#~ "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)"
-#~ "d months."
-#~ msgstr ""
-#~ "%(male_name)s faleceu em %(death_date)s em %(death_place)s com %(age)d "
-#~ "meses de idade."
-
-#~ msgid ""
-#~ "%(female_name)s died %(death_date)s in %(death_place)s at the age of "
-#~ "%(age)d years."
-#~ msgstr ""
-#~ "%(female_name)s faleceu em %(death_date)s em %(death_place)s com %(age)d "
-#~ "anos de idade."
-
-#~ msgid ""
-#~ "%(female_name)s died %(death_date)s in %(death_place)s at the age of "
-#~ "%(age)d months."
-#~ msgstr ""
-#~ "%(female_name)s faleceu em %(death_date)s em %(death_place)s com %(age)d "
-#~ "meses de idade."
-
-#~ msgid ""
-#~ "This person died %(death_date)s in %(death_place)s at the age of %(age)d "
-#~ "years."
-#~ msgstr ""
-#~ "Esta pessoa faleceu em %(death_date)s em %(death_place)s com %(age)d anos "
-#~ "de idade."
-
-#~ msgid ""
-#~ "This person died %(death_date)s in %(death_place)s at the age of %(age)d "
-#~ "months."
-#~ msgstr ""
-#~ "Esta pessoa faleceu em %(death_date)s em %(death_place)s com %(age)d "
-#~ "meses de idade."
-
-#~ msgid ""
-#~ "He died %(death_date)s in %(death_place)s at the age of %(age)d years."
-#~ msgstr ""
-#~ "Ele faleceu em %(death_date)s em %(death_place)s com %(age)d anos de "
-#~ "idade."
-
-#~ msgid ""
-#~ "He died %(death_date)s in %(death_place)s at the age of %(age)d months."
-#~ msgstr ""
-#~ "Ele faleceu em %(death_date)s em %(death_place)s com %(age)d meses de "
-#~ "idade."
-
-#~ msgid ""
-#~ "She died %(death_date)s in %(death_place)s at the age of %(age)d years."
-#~ msgstr ""
-#~ "Ela faleceu em %(death_date)s em %(death_place)s com %(age)d anos de "
-#~ "idade."
-
-#~ msgid ""
-#~ "She died %(death_date)s in %(death_place)s at the age of %(age)d months."
-#~ msgstr ""
-#~ "Ela faleceu em %(death_date)s em %(death_place)s com %(age)d meses de "
-#~ "idade."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d "
-#~ "years."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s faleceu em %(death_date)s com %(age)d anos de "
-#~ "idade."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d "
-#~ "months."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s faleceu em %(death_date)s com %(age)d meses de "
-#~ "idade."
-
-#~ msgid "%(male_name)s died on %(death_date)s at the age of %(age)d years."
-#~ msgstr "%(male_name)s faleceu em %(death_date)s com %(age)d anos de idade."
-
-#~ msgid "%(male_name)s died on %(death_date)s at the age of %(age)d months."
-#~ msgstr "%(male_name)s faleceu em %(death_date)s com %(age)d meses de idade."
-
-#~ msgid "%(female_name)s died on %(death_date)s at the age of %(age)d years."
-#~ msgstr ""
-#~ "%(female_name)s faleceu em %(death_date)s com %(age)d anos de idade."
-
-#~ msgid "%(female_name)s died on %(death_date)s at the age of %(age)d months."
-#~ msgstr ""
-#~ "%(female_name)s faleceu em %(death_date)s com %(age)d meses de idade."
-
-#~ msgid "This person died on %(death_date)s at the age of %(age)d years."
-#~ msgstr "Esta pessoa faleceu em %(death_date)s com %(age)d anos de idade."
-
-#~ msgid "This person died on %(death_date)s at the age of %(age)d months."
-#~ msgstr "Esta pessoa faleceu em %(death_date)s com %(age)d meses de idade."
-
-#~ msgid "He died on %(death_date)s at the age of %(age)d years."
-#~ msgstr "Ele faleceu em %(death_date)s com %(age)d anos de idade."
-
-#~ msgid "He died on %(death_date)s at the age of %(age)d months."
-#~ msgstr "Ele faleceu em %(death_date)s com %(age)d meses de idade."
-
-#~ msgid "She died on %(death_date)s at the age of %(age)d years."
-#~ msgstr "Ela faleceu em %(death_date)s com %(age)d anos de idade."
-
-#~ msgid "She died on %(death_date)s at the age of %(age)d months."
-#~ msgstr "Ela faleceu em %(death_date)s com %(age)d meses de idade."
-
-#~ msgid "Died %(death_date)s (age %(age)d years)."
-#~ msgstr "Faleceu %(death_date)s (%(age)d anos de idade)."
-
-#~ msgid "Died %(death_date)s (age %(age)d months)."
-#~ msgstr "Faleceu %(death_date)s (%(age)d meses de idade)."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s faleceu em %(death_date)s com %(age)d anos de "
-#~ "idade."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s faleceu em %(death_date)s com %(age)d meses de "
-#~ "idade."
-
-#~ msgid "%(male_name)s died %(death_date)s at the age of %(age)d years."
-#~ msgstr "%(male_name)s faleceu em %(death_date)s com %(age)d anos de idade."
-
-#~ msgid "%(male_name)s died %(death_date)s at the age of %(age)d months."
-#~ msgstr "%(male_name)s faleceu em %(death_date)s com %(age)d meses de idade."
-
-#~ msgid "%(female_name)s died %(death_date)s at the age of %(age)d years."
-#~ msgstr ""
-#~ "%(female_name)s faleceu em %(death_date)s com %(age)d anos de idade."
-
-#~ msgid "%(female_name)s died %(death_date)s at the age of %(age)d months."
-#~ msgstr ""
-#~ "%(female_name)s faleceu em %(death_date)s com %(age)d meses de idade."
-
-#~ msgid "This person died %(death_date)s at the age of %(age)d years."
-#~ msgstr "Esta pessoa faleceu em %(death_date)s com %(age)d anos de idade."
-
-#~ msgid "This person died %(death_date)s at the age of %(age)d months."
-#~ msgstr "Esta pessoa faleceu em %(death_date)s com %(age)d meses de idade."
-
-#~ msgid "He died %(death_date)s at the age of %(age)d years."
-#~ msgstr "Ele faleceu em %(death_date)s com %(age)d anos de idade."
-
-#~ msgid "He died %(death_date)s at the age of %(age)d months."
-#~ msgstr "Ele faleceu em %(death_date)s com %(age)d meses de idade."
-
-#~ msgid "She died %(death_date)s at the age of %(age)d years."
-#~ msgstr "Ela faleceu em %(death_date)s com %(age)d anos de idade."
-
-#~ msgid "She died %(death_date)s at the age of %(age)d months."
-#~ msgstr "Ela faleceu em %(death_date)s com %(age)d meses de idade."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the "
-#~ "age of %(age)d years."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s faleceu em %(month_year)s em %(death_place)s com "
-#~ "%(age)d anos de idade."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the "
-#~ "age of %(age)d months."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s faleceu em %(month_year)s em %(death_place)s com "
-#~ "%(age)d meses de idade."
-
-#~ msgid ""
-#~ "%(male_name)s died in %(month_year)s in %(death_place)s at the age of "
-#~ "%(age)d years."
-#~ msgstr ""
-#~ "%(male_name)s faleceu em %(month_year)s em %(death_place)s com %(age)d "
-#~ "anos de idade."
-
-#~ msgid ""
-#~ "%(male_name)s died in %(month_year)s in %(death_place)s at the age of "
-#~ "%(age)d months."
-#~ msgstr ""
-#~ "%(male_name)s faleceu em %(month_year)s em %(death_place)s com %(age)d "
-#~ "meses de idade."
-
-#~ msgid ""
-#~ "%(female_name)s died in %(month_year)s in %(death_place)s at the age of "
-#~ "%(age)d years."
-#~ msgstr ""
-#~ "%(female_name)s faleceu em %(month_year)s em %(death_place)s com %(age)d "
-#~ "anos de idade."
-
-#~ msgid ""
-#~ "%(female_name)s died in %(month_year)s in %(death_place)s at the age of "
-#~ "%(age)d months."
-#~ msgstr ""
-#~ "%(female_name)s faleceu em %(month_year)s em %(death_place)s com %(age)d "
-#~ "meses de idade."
-
-#~ msgid ""
-#~ "This person died in %(month_year)s in %(death_place)s at the age of %(age)"
-#~ "d years."
-#~ msgstr ""
-#~ "Esta pessoa faleceu em %(month_year)s em %(death_place)s com %(age)d anos "
-#~ "de idade."
-
-#~ msgid ""
-#~ "This person died in %(month_year)s in %(death_place)s at the age of %(age)"
-#~ "d months."
-#~ msgstr ""
-#~ "Esta pessoa faleceu em %(month_year)s em %(death_place)s com %(age)d "
-#~ "meses de idade."
-
-#~ msgid ""
-#~ "He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-#~ msgstr ""
-#~ "Ele faleceu em %(month_year)s em %(death_place)s com %(age)d anos de "
-#~ "idade."
-
-#~ msgid ""
-#~ "He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
-#~ msgstr ""
-#~ "Ele faleceu em %(month_year)s em %(death_place)s com %(age)d meses de "
-#~ "idade."
-
-#~ msgid ""
-#~ "She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-#~ msgstr ""
-#~ "Ela faleceu em %(month_year)s em %(death_place)s com %(age)d anos de "
-#~ "idade."
-
-#~ msgid ""
-#~ "She died in %(month_year)s in %(death_place)s at the age of %(age)d "
-#~ "months."
-#~ msgstr ""
-#~ "Ela faleceu em %(month_year)s em %(death_place)s com %(age)d meses de "
-#~ "idade."
-
-#~ msgid "Died %(month_year)s in %(death_place)s (age %(age)d years)."
-#~ msgstr "Faleceu %(month_year)s em %(death_place)s (%(age)d anos de idade)."
-
-#~ msgid "Died %(month_year)s in %(death_place)s (age %(age)d months)."
-#~ msgstr "Faleceu %(month_year)s em %(death_place)s (%(age)d meses de idade)."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d "
-#~ "years."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s faleceu em %(month_year)s com %(age)d anos de "
-#~ "idade."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d "
-#~ "months."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s faleceu em %(month_year)s com %(age)d meses de "
-#~ "idade."
-
-#~ msgid "%(male_name)s died in %(month_year)s at the age of %(age)d years."
-#~ msgstr "%(male_name)s faleceu em %(month_year)s com %(age)d anos de idade."
-
-#~ msgid "%(male_name)s died in %(month_year)s at the age of %(age)d months."
-#~ msgstr "%(male_name)s faleceu em %(month_year)s com %(age)d meses de idade."
-
-#~ msgid "%(female_name)s died in %(month_year)s at the age of %(age)d years."
-#~ msgstr ""
-#~ "%(female_name)s faleceu em %(month_year)s com %(age)d anos de idade."
-
-#~ msgid "%(female_name)s died in %(month_year)s at the age of %(age)d months."
-#~ msgstr ""
-#~ "%(female_name)s faleceu em %(month_year)s com %(age)d meses de idade."
-
-#~ msgid "This person died in %(month_year)s at the age of %(age)d years."
-#~ msgstr "Esta pessoa faleceu em %(month_year)s com %(age)d anos de idade."
-
-#~ msgid "This person died in %(month_year)s at the age of %(age)d months."
-#~ msgstr "Esta pessoa faleceu em %(month_year)s com %(age)d meses de idade."
-
-#~ msgid "He died in %(month_year)s at the age of %(age)d years."
-#~ msgstr "Ele faleceu em %(month_year)s com %(age)d anos de idade."
-
-#~ msgid "He died in %(month_year)s at the age of %(age)d months."
-#~ msgstr "Ele faleceu em %(month_year)s com %(age)d meses de idade."
-
-#~ msgid "She died in %(month_year)s at the age of %(age)d years."
-#~ msgstr "Ela faleceu em %(month_year)s com %(age)d anos de idade."
-
-#~ msgid "She died in %(month_year)s at the age of %(age)d months."
-#~ msgstr "Ela faleceu em %(month_year)s com %(age)d meses de idade."
-
-#~ msgid "Died %(month_year)s (age %(age)d years)."
-#~ msgstr "Faleceu %(month_year)s (%(age)d anos de idade)."
-
-#~ msgid "Died %(month_year)s (age %(age)d months)."
-#~ msgstr "Faleceu %(month_year)s (%(age)d meses de idade)."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d "
-#~ "years."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s faleceu em %(death_place)s com %(age)d anos de "
-#~ "idade."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d "
-#~ "months."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s faleceu em %(death_place)s com %(age)d meses de "
-#~ "idade."
-
-#~ msgid "%(male_name)s died in %(death_place)s at the age of %(age)d years."
-#~ msgstr "%(male_name)s faleceu em %(death_place)s com %(age)d anos de idade."
-
-#~ msgid "%(male_name)s died in %(death_place)s at the age of %(age)d months."
-#~ msgstr ""
-#~ "%(male_name)s faleceu em %(death_place)s com %(age)d meses de idade."
-
-#~ msgid "%(female_name)s died in %(death_place)s at the age of %(age)d years."
-#~ msgstr ""
-#~ "%(female_name)s faleceu em %(death_place)s com %(age)d anos de idade."
-
-#~ msgid ""
-#~ "%(female_name)s died in %(death_place)s at the age of %(age)d months."
-#~ msgstr ""
-#~ "%(female_name)s faleceu em %(death_place)s com %(age)d meses de idade."
-
-#~ msgid "This person died in %(death_place)s at the age of %(age)d years."
-#~ msgstr "Esta pessoa faleceu em %(death_place)s com %(age)d anos de idade."
-
-#~ msgid "This person died in %(death_place)s at the age of %(age)d months."
-#~ msgstr "Esta pessoa faleceu em %(death_place)s com %(age)d meses de idade."
-
-#~ msgid "He died in %(death_place)s at the age of %(age)d years."
-#~ msgstr "Ele faleceu em %(death_place)s com %(age)d anos de idade."
-
-#~ msgid "He died in %(death_place)s at the age of %(age)d months."
-#~ msgstr "Ele faleceu em %(death_place)s com %(age)d meses de idade."
-
-#~ msgid "She died in %(death_place)s at the age of %(age)d years."
-#~ msgstr "Ela faleceu em %(death_place)s com %(age)d anos de idade."
-
-#~ msgid "She died in %(death_place)s at the age of %(age)d months."
-#~ msgstr "Ela faleceu em %(death_place)s com %(age)d meses de idade."
-
-#~ msgid "Died in %(death_place)s (age %(age)d years)."
-#~ msgstr "Faleceu em %(death_place)s (%(age)d anos de idade)."
-
-#~ msgid "Died in %(death_place)s (age %(age)d months)."
-#~ msgstr "Faleceu em %(death_place)s (%(age)d meses de idade)."
-
-#~ msgid "%(unknown_gender_name)s died at the age of %(age)d years."
-#~ msgstr "%(unknown_gender_name)s faleceu com %(age)d anos de idade."
-
-#~ msgid "%(unknown_gender_name)s died at the age of %(age)d months."
-#~ msgstr "%(unknown_gender_name)s faleceu com %(age)d meses de idade."
-
-#~ msgid "%(male_name)s died at the age of %(age)d years."
-#~ msgstr "%(male_name)s faleceu com %(age)d anos de idade."
-
-#~ msgid "%(male_name)s died at the age of %(age)d months."
-#~ msgstr "%(male_name)s faleceu com %(age)d meses de idade."
-
-#~ msgid "%(female_name)s died at the age of %(age)d years."
-#~ msgstr "%(female_name)s faleceu com %(age)d anos de idade."
-
-#~ msgid "%(female_name)s died at the age of %(age)d months."
-#~ msgstr "%(female_name)s faleceu com %(age)d meses de idade."
-
-#~ msgid "This person died at the age of %(age)d years."
-#~ msgstr "Esta pessoa faleceu com %(age)d anos de idade."
-
-#~ msgid "This person died at the age of %(age)d months."
-#~ msgstr "Esta pessoa faleceu com %(age)d meses de idade."
-
-#~ msgid "He died at the age of %(age)d years."
-#~ msgstr "Ele faleceu com %(age)d anos de idade."
-
-#~ msgid "He died at the age of %(age)d months."
-#~ msgstr "Ele faleceu com %(age)d meses de idade."
-
-#~ msgid "She died at the age of %(age)d years."
-#~ msgstr "Ela faleceu com %(age)d anos de idade."
-
-#~ msgid "She died at the age of %(age)d months."
-#~ msgstr "Ela faleceu com %(age)d meses de idade."
-
-#~ msgid "Died (age %(age)d years)."
-#~ msgstr "Faleceu (%(age)d anos de idade)."
-
-#~ msgid "Died (age %(age)d months)."
-#~ msgstr "Faleceu (%(age)d meses de idade)."
-
-#~ msgid "Main Navigation Item %s"
-#~ msgstr "Item de navegação principal %s"
-
-#~ msgid ""
-#~ "The place markers on this page represent different locations based upon "
-#~ "spouse, children (if any), and personal events and their places of the "
-#~ "main person. The list is sorted in chronological order."
-#~ msgstr ""
-#~ "Os marcadores de locais desta página representam localizações diferentes "
-#~ "baseadas no cônjuge, filho(a), e eventos pessoais e seus locais, da "
-#~ "pessoa principal. A lista é ordenada em ordem cronológica."
-
-#~ msgid "Horizontal -- No Change"
-#~ msgstr "Horizontal -- Sem alteração"
-
-#~ msgid "Vertical"
-#~ msgstr "Vertical"
-
-#~ msgid "Alphabet Navigation Menu Item "
-#~ msgstr "Alfabeto do item do menu de navegação "
-
-#~ msgid "Sub Navigation Menu Item: Year %04d"
-#~ msgstr "Item do submenu de navegação: Ano %04d"
-
-#~ msgid "html|Home"
-#~ msgstr "Início"
-
-#~ msgid "Main Navigation Menu Item: %s"
-#~ msgstr "Item do menu de navegação principal: %s"
-
-#~ msgid "Matches sources with particular parameters"
-#~ msgstr "Localiza as fontes de referência com parâmetros específicos"
-
-#~ msgid "Bottom:"
-#~ msgstr "Inferior:"
-
-#~ msgid "Left:"
-#~ msgstr "Esquerda:"
-
-#~ msgid "Right:"
-#~ msgstr "Direita:"
-
-#~ msgid "Top:"
-#~ msgstr "Superior:"
-
-#~ msgid "State/County:"
-#~ msgstr "Cidade/Condado:"
