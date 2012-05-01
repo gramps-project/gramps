@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-02-17 11:15+0100\n"
-"PO-Revision-Date: 2012-04-28 22:37-0300\n"
+"PO-Revision-Date: 2012-04-30 23:01-0300\n"
 "Last-Translator: André Marcelo Alvarenga <alvarenga@kde.org>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_br@kde.org>\n"
 "Language: \n"
@@ -2205,7 +2205,7 @@ msgstr ""
 "\n"
 "10. Para gerar uma página da Web em outro idioma (em alemão):\n"
 "LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Árvore genealógica 1' -a report -"
-"p name=págima_web,target=/../de\n"
+"p name=página_web,target=/../de\n"
 "\n"
 "11. Finalmente, para iniciar uma sessão interativa normal, digite:\n"
 "gramps\n"
@@ -8834,7 +8834,7 @@ msgstr "<Estados>"
 
 #: ../src/gui/views/treemodels/placemodel.py:69
 msgid "<Counties>"
-msgstr "<Municípioa/Condados>"
+msgstr "<Município/Condados>"
 
 #: ../src/gui/views/treemodels/placemodel.py:70
 msgid "<Places>"
@@ -9068,7 +9068,7 @@ msgstr "Registro privado"
 
 #: ../src/Merge/mergecitation.py:50
 msgid "manual|Merge_Citations"
-msgstr "manual|Mesclar_citações"
+msgstr "Mesclar_citações"
 
 #: ../src/Merge/mergecitation.py:72 ../src/plugins/tool/tools.gpr.py:529
 msgid "Merge Citations"
@@ -9130,7 +9130,7 @@ msgstr "Mesclar objetos multimídia"
 
 #: ../src/Merge/mergenote.py:49
 msgid "manual|Merge_Notes"
-msgstr "Mescal_notas"
+msgstr "Mesclar_notas"
 
 #: ../src/Merge/mergenote.py:71 ../src/Merge/mergenote.py:203
 msgid "Merge Notes"
@@ -19861,7 +19861,7 @@ msgstr "Coincide com as pessoas com o mesmo último nome"
 
 #: ../src/plugins/quickview/SameSurnames.py:64
 msgid "People matching the <given>"
-msgstr "Pessoas coincidentes com o <noem próprio>"
+msgstr "Pessoas coincidentes com o <nome próprio>"
 
 #: ../src/plugins/quickview/SameSurnames.py:65
 msgid "Matches people with same given name"
@@ -21553,9 +21553,8 @@ msgid "Looking for place reference problems"
 msgstr "Procurando problemas nas referências a locais"
 
 #: ../src/plugins/tool/Check.py:1187
-#, fuzzy
 msgid "Looking for source and citation reference problems"
-msgstr "Procurando problemas com referências de citação"
+msgstr "Procurando problemas com referências de fonte e citação"
 
 #: ../src/plugins/tool/Check.py:1296
 msgid "Looking for media object reference problems"
@@ -22224,7 +22223,7 @@ msgstr "Ignorar data e confiança"
 
 #: ../src/plugins/tool/MergeCitations.py:81
 msgid "manual|Merge citations..."
-msgstr "manual|Mesclar citações..."
+msgstr "Mesclar citações..."
 
 #: ../src/plugins/tool/MergeCitations.py:158
 msgid "Merge citations tool"
@@ -22243,9 +22242,9 @@ msgid "Number of merges done"
 msgstr "Número de mesclagens feitas"
 
 #: ../src/plugins/tool/MergeCitations.py:225
-#, fuzzy, python-format
+#, python-format
 msgid "%d citations merges"
-msgstr "%(num)d citação mesclada"
+msgstr "%d citações mescladas"
 
 #: ../src/plugins/tool/NotRelated.py:67
 msgid "manual|Not_Related..."
@@ -24237,6 +24236,12 @@ msgid ""
 "any?).  Clicking on a place&#8217;s name in the Reference section will take "
 "you to that place&#8217;s page."
 msgstr ""
+"Esta página de mapas representa a pessoal e seus descendentes com todos "
+"os seus eventos e locais. Se você posicionar o mouse sobre o marcador, ele "
+"exibirá o nome do local. Os marcadores e a lista de referência são ordenados "
+"por data (se existir). Ao clicar no nome do local na seção Referência, você "
+"terá "
+"a página do local."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5630
 msgid "Drop Markers"
@@ -24271,9 +24276,8 @@ msgid "Half Siblings"
 msgstr "Meio irmãos"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6405
-#, fuzzy
 msgid "Step Siblings"
-msgstr "Exibir irmãos"
+msgstr "Irmãos por parte de pai/mãe"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6500
 msgid ""
@@ -24603,6 +24607,9 @@ msgid ""
 "the Media Page, and only a thumb- sized images.  This will allow you to have "
 "a much smaller total upload size to your web hosting site."
 msgstr ""
+"Esta opção permite-lhe escolher em não criar imagens em tamanho original "
+"como na Página de mídia, mas somente imagens em miniatura. Com isto, o "
+"tamanho total do envio para o site de hospedagem será muito menor."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7825
 msgid "Max width of initial image"
@@ -24777,15 +24784,17 @@ msgid "Whether to include a parents column"
 msgstr "Se deve ser incluída uma coluna para os pais"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7945
-#, fuzzy
 msgid "Include half and/ or step-siblings on the individual pages"
-msgstr "Incluir uma coluna para os pais nas páginas de índice"
+msgstr ""
+"Incluir os meio irmãos e os irmãos por parte de pai/mãe em páginas "
+"individuais"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7947
-#, fuzzy
 msgid ""
 "Whether to include half and/ or step-siblings with the parents and siblings"
-msgstr "Se devem ser incluídos os nomes dos locais das pessoas e famílias."
+msgstr ""
+"Se devem ser incluídos os meio irmãos ou os irmãos por parte de pai/mãe com "
+"os pais e irmãos"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7951
 msgid "Sort all children in birth order"
@@ -24834,13 +24843,13 @@ msgid "Include address book pages"
 msgstr "Incluir páginas de livro de endereços"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7972
-#, fuzzy
 msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and "
 "website addresses and personal address/ residence events."
 msgstr ""
 "Se devem ser incluídas páginas de livro de endereços, que podem conter "
-"informações pessoais de contato (endereço de correio, residência, etc)"
+"endereços de e-mail e página pessoal, assim como eventos residenciais e "
+"endereços pessoais."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7982
 msgid "Place Map Options"
@@ -24952,9 +24961,8 @@ msgid "NarrativeWeb Home"
 msgstr "Página inicial da NarrativeWeb"
 
 #: ../src/plugins/webreport/WebCal.py:563
-#, fuzzy
 msgid "Full year at a Glance"
-msgstr "Calendário do ano %(year)d"
+msgstr "Ano completo"
 
 #: ../src/plugins/webreport/WebCal.py:828
 msgid "Formatting months ..."
@@ -27079,12 +27087,11 @@ msgid "Citations changed after <date time>"
 msgstr "Citações alteradas após <date time>"
 
 #: ../src/Filters/Rules/Citation/_ChangedSince.py:48
-#, fuzzy
 msgid ""
 "Matches citation records changed after a specified date-time (yyyy-mm-dd hh:"
 "mm:ss) or in the range, if a second date-time is given."
 msgstr ""
-"Coincide com os registros de pessoas modificadas após uma data e hora "
+"Coincide com os registros de citação modificadas após uma data e hora "
 "especificadas (aaaa-mm-dd hh:mm:ss) ou entre um intervalo de tempo, se uma "
 "segunda data e hora for indicada."
 
@@ -27109,54 +27116,46 @@ msgid "Citation with <Id>"
 msgstr "Citação com <Id>"
 
 #: ../src/Filters/Rules/Citation/_HasIdOf.py:47
-#, fuzzy
 msgid "Matches a citation with a specified Gramps ID"
-msgstr "Localiza uma família com um ID Gramps especificado"
+msgstr "Localiza uma citação com um ID Gramps especificado"
 
 #: ../src/Filters/Rules/Citation/_HasNote.py:47
-#, fuzzy
 msgid "Citations having <count> notes"
-msgstr "Famílias com <count> notas"
+msgstr "Citações com <count> notas"
 
 #: ../src/Filters/Rules/Citation/_HasNote.py:48
-#, fuzzy
 msgid "Matches citations having a certain number of notes"
-msgstr "Localiza os eventos que possuem um determinado número notas"
+msgstr "Localiza as citações que possuem um determinado número notas"
 
 #: ../src/Filters/Rules/Citation/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Citations having notes containing <substring>"
-msgstr "Famílias que possuem notas contendo <substring>"
+msgstr "Citações que possuem notas contendo <substring>"
 
 #: ../src/Filters/Rules/Citation/_HasNoteMatchingSubstringOf.py:45
-#, fuzzy
 msgid "Matches citations whose notes contain text matching a substring"
 msgstr ""
-"Localiza as famílias cujas notas contém texto que corresponda à cadeia de "
+"Localiza as citações cujas notas contenham texto que corresponda à cadeia de "
 "caracteres"
 
 #: ../src/Filters/Rules/Citation/_HasNoteRegexp.py:43
-#, fuzzy
 msgid "Citations having notes containing <regular expression>"
-msgstr "Famílias que possuem notas contendo <regular expression>"
+msgstr "Citações que possuem notas contendo <regular expression>"
 
 #: ../src/Filters/Rules/Citation/_HasNoteRegexp.py:44
-#, fuzzy
 msgid ""
 "Matches citations whose notes contain text matching a regular expression"
 msgstr ""
-"Localiza as famílias cujas notas contém texto que coincide com uma expressão "
+"Localiza as citações cujas notas contenham texto que coincide com uma "
+"expressão "
 "regular"
 
 #: ../src/Filters/Rules/Citation/_HasReferenceCountOf.py:44
-#, fuzzy
 msgid "Citations with a reference count of <count>"
-msgstr "Notas com um número de referências <count>"
+msgstr "Citações com um número de referências <count>"
 
 #: ../src/Filters/Rules/Citation/_HasReferenceCountOf.py:45
-#, fuzzy
 msgid "Matches citations with a certain reference count"
-msgstr "Localiza as notas com um determinado número de referências"
+msgstr "Localiza as citações com um determinado número de referências"
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:49
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:47
@@ -27181,75 +27180,65 @@ msgid "Sources matching parameters"
 msgstr "Fontes de referência coincidentes com os parâmetros"
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:53
-#, fuzzy
 msgid "Matches citations with a source of a particular value"
-msgstr "Localiza as famílias com um evento que tenha um valor específico"
+msgstr "Localiza as citações com uma fonte que tenha um valor específico"
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:55
 msgid "Source filters"
 msgstr "Filtros de fontes"
 
 #: ../src/Filters/Rules/Citation/_MatchesFilter.py:46
-#, fuzzy
 msgid "Citations matching the <filter>"
-msgstr "Notas coincidentes com o <filter>"
+msgstr "Citações que coincidem com o <filter>"
 
 #: ../src/Filters/Rules/Citation/_MatchesFilter.py:47
-#, fuzzy
 msgid "Matches citations matched by the specified filter name"
-msgstr "Localiza as notas que foram encontradas pelo filtro especificado"
+msgstr "Localiza as citações que foram encontradas pelo filtro especificado"
 
 #: ../src/Filters/Rules/Citation/_MatchesPageSubstringOf.py:44
-#, fuzzy
 msgid "Citation Volume/Page containing <substring>"
-msgstr "Repositório que possui nome contendo <substring>"
+msgstr "Página/Volume da citação que contém <substring>"
 
 #: ../src/Filters/Rules/Citation/_MatchesPageSubstringOf.py:45
-#, fuzzy
 msgid "Matches citations whose Volume/Page contains a certain substring"
 msgstr ""
-"Localiza os repositórios com nome que contenha texto que coincide com uma "
+"Localiza as citações com Página/Volume que contenha uma determinada "
 "cadeia de caracteres"
 
 #: ../src/Filters/Rules/Citation/_RegExpIdOf.py:49
-#, fuzzy
 msgid "Citations with <Id> matching regular expression"
-msgstr "Notas com <Id> que coincidem com a expressão regular"
+msgstr "Citações com <Id> que coincidem com a expressão regular"
 
 #: ../src/Filters/Rules/Citation/_RegExpIdOf.py:50
-#, fuzzy
 msgid "Matches citations whose Gramps ID matches the regular expression"
-msgstr "Localiza as notas cujos ID Gramps coincidem com a expressão regular"
+msgstr "Localiza as citações cujos ID Gramps coincidem com a expressão regular"
 
 #: ../src/Filters/Rules/Citation/_MatchesRepositoryFilter.py:47
-#, fuzzy
 msgid ""
 "Citations with a source with a repository reference matching the <repository "
 "filter>"
 msgstr ""
-"Fontes de referência com repositório coincidente com o <repository filter>"
+"Citações com uma fonte de referência com repositório de referência que "
+"coincide com o <repository filter>"
 
 #: ../src/Filters/Rules/Citation/_MatchesRepositoryFilter.py:49
-#, fuzzy
 msgid ""
 "Matches citations with sources with a repository reference that match a "
 "certain repository filter"
 msgstr ""
-"Localiza as fontes de referência que tem repositórios que correspondem\n"
-"a determinado filtro de repositório"
+"Localiza as citações com fontes que tem repositórios de referência que "
+"correspondem a determinado filtro de repositório"
 
 #: ../src/Filters/Rules/Citation/_MatchesSourceFilter.py:50
-#, fuzzy
 msgid "Citations with source matching the <source filter>"
-msgstr "Eventos com a fonte de referência coincidente com o <source filter>"
+msgstr "Citações com a fonte de referência que coincide com o <source filter>"
 
 #: ../src/Filters/Rules/Citation/_MatchesSourceFilter.py:51
-#, fuzzy
 msgid ""
 "Matches citations with sources that match the specified source filter name"
 msgstr ""
-"Localiza os eventos com fontes de referência que foram encontrados pelo "
-"filtro especificado"
+"Localiza as citações com fontes de referência que coincidem com a fonte "
+"indicada no nome do filtro"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:45
 msgid "Every media object"
@@ -27605,9 +27594,8 @@ msgid "Custom filter"
 msgstr "Filtro personalizado"
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:96
-#, fuzzy
 msgid "Participants"
-msgstr "Principais participantes"
+msgstr "Participantes"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:90
 msgid "any"
@@ -27892,31 +27880,27 @@ msgstr "<b>Parentesco dos pais</b>"
 
 #: ../src/glade/reorder.glade.h:3
 msgid "Arrow bottom"
-msgstr ""
+msgstr "Seta para baixo"
 
 #: ../src/glade/reorder.glade.h:4
 msgid "Arrow top"
-msgstr ""
+msgstr "Seta para cima"
 
 #: ../src/glade/reorder.glade.h:5
-#, fuzzy
 msgid "Move family down"
-msgstr "Remover árvore genealógica"
+msgstr "Mover a família para baixo"
 
 #: ../src/glade/reorder.glade.h:6
-#, fuzzy
 msgid "Move family up"
-msgstr "Todas as famílias"
+msgstr "Mover a família para cima"
 
 #: ../src/glade/reorder.glade.h:7
-#, fuzzy
 msgid "Move parent down"
-msgstr "Nenhum pai/mãe encontrado"
+msgstr "Mover os pais para baixo"
 
 #: ../src/glade/reorder.glade.h:8
-#, fuzzy
 msgid "Move parent up"
-msgstr "Nenhum pai/mãe encontrado"
+msgstr "Mover os pais para cima"
 
 #: ../src/glade/tipofday.glade.h:1
 msgid "_Display on startup"
@@ -28207,9 +28191,8 @@ msgid "Abo_ve:"
 msgstr "Aci_ma:"
 
 #: ../src/glade/styleeditor.glade.h:15
-#, fuzzy
 msgid "Add a new style"
-msgstr "Adicionar uma nova nota"
+msgstr "Adicionar um novo estilo"
 
 #: ../src/glade/styleeditor.glade.h:16
 msgid "Belo_w:"
@@ -28337,14 +28320,13 @@ msgid "<b>Citation information</b>"
 msgstr "<b>Informações da citação</b>"
 
 #: ../src/glade/editcitation.glade.h:3
-#, fuzzy
 msgid ""
 "<b>Note:</b> Any changes in the shared citation information will be "
 "reflected in the citation itself, for all items that reference the citation."
 msgstr ""
-"<b>Observação:</b> Quaisquer alterações na informação do repositório "
-"compartilhado serão refletidas no próprio repositório, para todos os itens "
-"que tenham referência a ele."
+"<b>Observação:</b> Quaisquer alterações na informação da citação "
+"compartilhada serão refletidas na própria citação, para todos os itens "
+"que tenham referência a ela."
 
 #: ../src/glade/editcitation.glade.h:4 ../src/glade/editsourceref.glade.h:2
 msgid ""
@@ -28968,9 +28950,8 @@ msgid "A unique ID to identify the note."
 msgstr "Um ID único para identificar a nota."
 
 #: ../src/glade/editnote.glade.h:6
-#, fuzzy
 msgid "Styled Text Editor"
-msgstr "Editor de estilos"
+msgstr "Editor de texto com estilo"
 
 #: ../src/glade/editnote.glade.h:8
 msgid ""
@@ -29236,19 +29217,17 @@ msgid "Gramps ID:"
 msgstr "ID Gramps:"
 
 #: ../src/glade/mergecitation.glade.h:7
-#, fuzzy
 msgid "Notes, media objects and data-items of both citations will be combined."
 msgstr ""
-"Notas, objetos multimídia, itens de dados e repositórios de referência de "
-"ambas as fontes de referência serão combinados."
+"Notas, objetos multimídia e itens de dados de ambas as citações serão "
+"combinados."
 
 #: ../src/glade/mergecitation.glade.h:8
-#, fuzzy
 msgid ""
 "Select the citation that will provide the\n"
 "primary data for the merged citation."
 msgstr ""
-"Selecione a pessoa que proverá os dados\n"
+"Selecione a citação que proverá os dados\n"
 "primários para a pessoa mesclada."
 
 #: ../src/glade/mergedata.glade.h:3
