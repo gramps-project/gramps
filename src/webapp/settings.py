@@ -136,6 +136,10 @@ USE_L10N = True
 FORMAT_MODULE_PATH = ""
 ## End Changes for Django 1.3
 
+# Changes for Django 1.4:
+USE_TZ = True
+## End Changes for Django 1.4
+
 # In versions < 2.7 python does not properly copy methods when doing a 
 # deepcopy. This workaround makes the copy work properly. When Gramps no longer
 # supports python 2.6, this workaround can be removed.
