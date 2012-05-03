@@ -1631,7 +1631,7 @@ class DescendTreeOptions(MenuReportOptions):
             [0, _("Do not include a title") ],
             [1, _("Descendant Chart for [selected person(s)]") ],
             ]
-        if self.name != _RPT_NAME:
+        if self.name.split(",")[0] != _RPT_NAME:
             item_list.append(
                 [2, _("Family Chart for [names of chosen family]") ]
                 )
