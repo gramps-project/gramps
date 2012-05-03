@@ -156,7 +156,6 @@ class LifeWayLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
 
         for lifeway in self.lifeways:
             ctx.set_operator(cairo.OPERATOR_ATOP)
-            ctx.set_source_rgba(0.0, 0.0, 0.0, 0.0)
             ctx.set_line_width(3.0)
             map_points = []
             for point in lifeway[0]:
