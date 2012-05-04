@@ -921,13 +921,9 @@ class VariableParse(object):
         else:
             return ""
     
-    def __parse_event(self, person):
-        #TODO; this try to avoid a key issue
-        try:
-            event = self.get_event_by_name(person, attrib_parse.get_name())
-            event_f = EventFormat(self.database, self._in)
-        except:
-            return ""
+    def __parse_event(self, person, attrib_parse):
+        event = self.get_event_by_name(person, attrib_parse.get_name())
+        event_f = EventFormat(self.database, self._in)
         if event:
             return event_f.parse_format(event)
         else:
@@ -1047,11 +1043,11 @@ class VariableParse(object):
         elif next_char == "e":
             #person event
             _out.add_variable(
-                self.__parse_event(self.friend.person))
+                self.__parse_event(self.friend.person, attrib_parse))
         elif next_char == "t":
             #person event
             _out.add_variable(
-                self.__parse_event(self.friend.family))
+                self.__parse_event(self.friend.family, attrib_parse))
         
 
 #------------------------------------------------------------------------
