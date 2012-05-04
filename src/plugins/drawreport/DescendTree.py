@@ -1582,6 +1582,7 @@ class DescendTreeOptions(MenuReportOptions):
 
         self.title = EnumeratedListOption(_("Report Title"), 0)
         self.title.add_item( 0, _("Do not include a title"))
+        self.title.add_item( 1, _("Descendant Chart for [selected person(s)]"))
         self.title.set_help(_("Choose a title for the report"))
         menu.add_option(category_name, "report_title", self.title)
         self.showparents.connect('value-changed', self.__Title_enum)
