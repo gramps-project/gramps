@@ -28054,9 +28054,8 @@ msgid "Version:"
 msgstr "Version:"
 
 #: ../data/gramps.desktop.in.h:1
-#, fuzzy
 msgid "Genealogy System"
-msgstr "Slægtsforskningsprogrammet Gramps"
+msgstr "Slægtsforskningsprogrammet"
 
 #: ../data/gramps.desktop.in.h:3
 msgid "Gramps Genealogy System"
