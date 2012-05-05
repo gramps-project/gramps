@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-19 16:49+0200\n"
+"POT-Creation-Date: 2012-05-05 23:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -914,7 +914,7 @@ msgstr ""
 #: ../src/gui/editors/editmediaref.py:133
 #: ../src/gui/views/treemodels/mediamodel.py:128
 #: ../src/plugins/drawreport/AncestorTree.py:1014
-#: ../src/plugins/drawreport/DescendTree.py:1609
+#: ../src/plugins/drawreport/DescendTree.py:1610
 #: ../src/plugins/export/ExportCsv.py:343
 #: ../src/plugins/export/ExportCsv.py:460
 #: ../src/plugins/gramplet/QuickViewGramplet.py:110
@@ -9201,7 +9201,7 @@ msgstr ""
 
 #: ../src/plugins/Records.py:611
 #: ../src/plugins/drawreport/AncestorTree.py:1066
-#: ../src/plugins/drawreport/DescendTree.py:1669
+#: ../src/plugins/drawreport/DescendTree.py:1670
 #: ../src/plugins/drawreport/FanChart.py:456
 #: ../src/plugins/textreport/AncestorReport.py:367
 #: ../src/plugins/textreport/DetAncestralReport.py:904
@@ -9647,7 +9647,7 @@ msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:988
 #: ../src/plugins/drawreport/DescendTree.py:1584
-#: ../src/plugins/drawreport/DescendTree.py:1632
+#: ../src/plugins/drawreport/DescendTree.py:1633
 msgid "Do not include a title"
 msgstr ""
 
@@ -9656,22 +9656,22 @@ msgid "Include Report Title"
 msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:990
-#: ../src/plugins/drawreport/DescendTree.py:1585
+#: ../src/plugins/drawreport/DescendTree.py:1586
 msgid "Choose a title for the report"
 msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:993
-#: ../src/plugins/drawreport/DescendTree.py:1589
+#: ../src/plugins/drawreport/DescendTree.py:1590
 msgid "Include a border"
 msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:994
-#: ../src/plugins/drawreport/DescendTree.py:1590
+#: ../src/plugins/drawreport/DescendTree.py:1591
 msgid "Whether to make a border around the report."
 msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:997
-#: ../src/plugins/drawreport/DescendTree.py:1593
+#: ../src/plugins/drawreport/DescendTree.py:1594
 msgid "Include Page Numbers"
 msgstr ""
 
@@ -9680,28 +9680,28 @@ msgid "Whether to print page numbers on each page."
 msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:1001
-#: ../src/plugins/drawreport/DescendTree.py:1597
+#: ../src/plugins/drawreport/DescendTree.py:1598
 msgid "Include Blank Pages"
 msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:1002
-#: ../src/plugins/drawreport/DescendTree.py:1598
+#: ../src/plugins/drawreport/DescendTree.py:1599
 msgid "Whether to include pages that are blank."
 msgstr ""
 
 #. category_name = _("Notes")
 #: ../src/plugins/drawreport/AncestorTree.py:1009
-#: ../src/plugins/drawreport/DescendTree.py:1603
+#: ../src/plugins/drawreport/DescendTree.py:1604
 msgid "Include a note"
 msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:1010
-#: ../src/plugins/drawreport/DescendTree.py:1605
+#: ../src/plugins/drawreport/DescendTree.py:1606
 msgid "Whether to include a note on the report."
 msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:1015
-#: ../src/plugins/drawreport/DescendTree.py:1610
+#: ../src/plugins/drawreport/DescendTree.py:1611
 msgid ""
 "Add a note\n"
 "\n"
@@ -9709,12 +9709,12 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:1020
-#: ../src/plugins/drawreport/DescendTree.py:1615
+#: ../src/plugins/drawreport/DescendTree.py:1616
 msgid "Note Location"
 msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:1023
-#: ../src/plugins/drawreport/DescendTree.py:1618
+#: ../src/plugins/drawreport/DescendTree.py:1619
 msgid "Where to place the note."
 msgstr ""
 
@@ -9731,7 +9731,7 @@ msgid " Generations of empty boxes for unknown ancestors"
 msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:1077
-#: ../src/plugins/drawreport/DescendTree.py:1659
+#: ../src/plugins/drawreport/DescendTree.py:1660
 msgid "The basic style used for the title display."
 msgstr ""
 
@@ -10169,23 +10169,24 @@ msgid ""
 "United States of America/U.S.A"
 msgstr ""
 
-#: ../src/plugins/drawreport/DescendTree.py:1594
-msgid "Whether to include page numbers on each page."
-msgstr ""
-
-#: ../src/plugins/drawreport/DescendTree.py:1633
+#: ../src/plugins/drawreport/DescendTree.py:1585
+#: ../src/plugins/drawreport/DescendTree.py:1634
 msgid "Descendant Chart for [selected person(s)]"
 msgstr ""
 
-#: ../src/plugins/drawreport/DescendTree.py:1637
+#: ../src/plugins/drawreport/DescendTree.py:1595
+msgid "Whether to include page numbers on each page."
+msgstr ""
+
+#: ../src/plugins/drawreport/DescendTree.py:1638
 msgid "Family Chart for [names of chosen family]"
 msgstr ""
 
-#: ../src/plugins/drawreport/DescendTree.py:1641
+#: ../src/plugins/drawreport/DescendTree.py:1642
 msgid "Cousin Chart for [names of children]"
 msgstr ""
 
-#: ../src/plugins/drawreport/DescendTree.py:1681
+#: ../src/plugins/drawreport/DescendTree.py:1682
 msgid "The bold style used for the text display."
 msgstr ""
 
