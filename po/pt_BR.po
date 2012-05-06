@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-19 16:49+0200\n"
-"PO-Revision-Date: 2012-04-30 22:54-0300\n"
+"POT-Creation-Date: 2012-05-05 23:34+0200\n"
+"PO-Revision-Date: 2012-05-06 14:18-0300\n"
 "Last-Translator: André Marcelo Alvarenga <alvarenga@kde.org>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_br@kde.org>\n"
 "Language: \n"
@@ -370,7 +370,8 @@ msgid ""
 "Note: your currently opened database is safe. It was only a copy of your "
 "data that failed to save."
 msgstr ""
-"Ocorreu um erro enquanto seus dados eram salvos. Você pode tentar iniciar a "
+"Ocorreu um erro durante o salvamento dos seus dados. Você pode tentar "
+"iniciar a "
 "exportação novamente.\n"
 "\n"
 "Observação: o seu banco de dados atualmente aberto está seguro. A falha de "
@@ -988,7 +989,7 @@ msgstr "Local"
 #: ../src/gui/editors/editmediaref.py:133
 #: ../src/gui/views/treemodels/mediamodel.py:128
 #: ../src/plugins/drawreport/AncestorTree.py:1014
-#: ../src/plugins/drawreport/DescendTree.py:1609
+#: ../src/plugins/drawreport/DescendTree.py:1610
 #: ../src/plugins/export/ExportCsv.py:343
 #: ../src/plugins/export/ExportCsv.py:460
 #: ../src/plugins/gramplet/QuickViewGramplet.py:110
@@ -9775,7 +9776,7 @@ msgstr "O estilo usado para cabeçalhos."
 
 #: ../src/plugins/Records.py:611
 #: ../src/plugins/drawreport/AncestorTree.py:1066
-#: ../src/plugins/drawreport/DescendTree.py:1669
+#: ../src/plugins/drawreport/DescendTree.py:1670
 #: ../src/plugins/drawreport/FanChart.py:456
 #: ../src/plugins/textreport/AncestorReport.py:367
 #: ../src/plugins/textreport/DetAncestralReport.py:904
@@ -10255,7 +10256,7 @@ msgstr "Título do relatório"
 
 #: ../src/plugins/drawreport/AncestorTree.py:988
 #: ../src/plugins/drawreport/DescendTree.py:1584
-#: ../src/plugins/drawreport/DescendTree.py:1632
+#: ../src/plugins/drawreport/DescendTree.py:1633
 msgid "Do not include a title"
 msgstr "Não incluir um título"
 
@@ -10264,22 +10265,22 @@ msgid "Include Report Title"
 msgstr "Incluir o título do relatório"
 
 #: ../src/plugins/drawreport/AncestorTree.py:990
-#: ../src/plugins/drawreport/DescendTree.py:1585
+#: ../src/plugins/drawreport/DescendTree.py:1586
 msgid "Choose a title for the report"
 msgstr "Escolha um título para o relatório"
 
 #: ../src/plugins/drawreport/AncestorTree.py:993
-#: ../src/plugins/drawreport/DescendTree.py:1589
+#: ../src/plugins/drawreport/DescendTree.py:1590
 msgid "Include a border"
 msgstr "Incluir uma borda"
 
 #: ../src/plugins/drawreport/AncestorTree.py:994
-#: ../src/plugins/drawreport/DescendTree.py:1590
+#: ../src/plugins/drawreport/DescendTree.py:1591
 msgid "Whether to make a border around the report."
 msgstr "Se deve ser criada uma borda ao redor do relatório."
 
 #: ../src/plugins/drawreport/AncestorTree.py:997
-#: ../src/plugins/drawreport/DescendTree.py:1593
+#: ../src/plugins/drawreport/DescendTree.py:1594
 msgid "Include Page Numbers"
 msgstr "Incluir números de páginas"
 
@@ -10288,28 +10289,28 @@ msgid "Whether to print page numbers on each page."
 msgstr "Se deve imprimir os números de páginas em cada uma delas."
 
 #: ../src/plugins/drawreport/AncestorTree.py:1001
-#: ../src/plugins/drawreport/DescendTree.py:1597
+#: ../src/plugins/drawreport/DescendTree.py:1598
 msgid "Include Blank Pages"
 msgstr "Incluir páginas em branco"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1002
-#: ../src/plugins/drawreport/DescendTree.py:1598
+#: ../src/plugins/drawreport/DescendTree.py:1599
 msgid "Whether to include pages that are blank."
 msgstr "Se devem ser incluídas as páginas em branco."
 
 #. category_name = _("Notes")
 #: ../src/plugins/drawreport/AncestorTree.py:1009
-#: ../src/plugins/drawreport/DescendTree.py:1603
+#: ../src/plugins/drawreport/DescendTree.py:1604
 msgid "Include a note"
 msgstr "Incluir uma nota"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1010
-#: ../src/plugins/drawreport/DescendTree.py:1605
+#: ../src/plugins/drawreport/DescendTree.py:1606
 msgid "Whether to include a note on the report."
 msgstr "Se deve incluir uma nota no relatório."
 
 #: ../src/plugins/drawreport/AncestorTree.py:1015
-#: ../src/plugins/drawreport/DescendTree.py:1610
+#: ../src/plugins/drawreport/DescendTree.py:1611
 msgid ""
 "Add a note\n"
 "\n"
@@ -10320,12 +10321,12 @@ msgstr ""
 "$T insere a data de hoje"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1020
-#: ../src/plugins/drawreport/DescendTree.py:1615
+#: ../src/plugins/drawreport/DescendTree.py:1616
 msgid "Note Location"
 msgstr "Localização da nota"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1023
-#: ../src/plugins/drawreport/DescendTree.py:1618
+#: ../src/plugins/drawreport/DescendTree.py:1619
 msgid "Where to place the note."
 msgstr "Onde colocar a nota."
 
@@ -10342,7 +10343,7 @@ msgid " Generations of empty boxes for unknown ancestors"
 msgstr " Gerações de caixas vazias para ascendentes desconhecidos"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1077
-#: ../src/plugins/drawreport/DescendTree.py:1659
+#: ../src/plugins/drawreport/DescendTree.py:1660
 msgid "The basic style used for the title display."
 msgstr "O estilo básico usado para a exibição do título."
 
@@ -10801,24 +10802,25 @@ msgstr ""
 "Por exemplo:\n"
 "Estados Unidos da América/E.U.A"
 
-#: ../src/plugins/drawreport/DescendTree.py:1594
-msgid "Whether to include page numbers on each page."
-msgstr "Se deve incluir os números de páginas em cada uma delas."
-
-#: ../src/plugins/drawreport/DescendTree.py:1633
+#: ../src/plugins/drawreport/DescendTree.py:1585
+#: ../src/plugins/drawreport/DescendTree.py:1634
 msgid "Descendant Chart for [selected person(s)]"
 msgstr "Gráfico de descendentes para a(s) [pessoa(s) selecionada(s)]"
 
-#: ../src/plugins/drawreport/DescendTree.py:1637
+#: ../src/plugins/drawreport/DescendTree.py:1595
+msgid "Whether to include page numbers on each page."
+msgstr "Se deve incluir os números de páginas em cada uma delas."
+
+#: ../src/plugins/drawreport/DescendTree.py:1638
 msgid "Family Chart for [names of chosen family]"
 msgstr "Gráfico de família para [nomes de família escolhidos]"
 
-#: ../src/plugins/drawreport/DescendTree.py:1641
+#: ../src/plugins/drawreport/DescendTree.py:1642
 msgid "Cousin Chart for [names of children]"
 msgstr "Gráfico de primos para [nomes de filhos]"
 
 # VERIFICAR
-#: ../src/plugins/drawreport/DescendTree.py:1681
+#: ../src/plugins/drawreport/DescendTree.py:1682
 msgid "The bold style used for the text display."
 msgstr "O estilo negrito usado para a exibição de texto."
 
@@ -14330,12 +14332,11 @@ msgid ""
 msgstr ""
 "A versão do banco de dados não é suportada por esta versão do Gramps. Você "
 "deveria usar uma cópia antiga do Gramps na versão 3.0.x e importar o banco "
-"de "
-"para esta versão e depois exportar a cópia do seus dados para o Gramps XML "
-"(árvore genealógica). Depois você deve atualizar para a última versão do "
+"de para esta versão e depois exportar a cópia do seus dados para o Gramps "
+"XML (árvore genealógica). Depois você deve atualizar para a última versão do "
 "Gramps (esta versão, por exemplo), criar um novo banco de dados vazio e "
-"importar o Gramps XML para esta versão. Por favor, consulte: "
-"http://www.gramps-project.org/wiki/index.php?title=Gramps_3.4_Wiki_Manual_-"
+"importar o Gramps XML para esta versão. Por favor, consulte: http://www."
+"gramps-project.org/wiki/index.php?title=Gramps_3.4_Wiki_Manual_-"
 "_Manage_Family_Trees#Moving_a_Gramps_2.2_databases_to_Gramps_3.x"
 
 #: ../src/plugins/import/ImportProGen.py:77
@@ -14892,8 +14893,7 @@ msgid ""
 msgstr ""
 "Erro: family '%(family)s' (entrada como @%(orig_family)s@) pessoa %(person)s "
 "(input as %(orig_person)s) não é membro da família em referência. A "
-"referência da "
-"Família foi removida da pessoa"
+"referência da Família foi removida da pessoa"
 
 #: ../src/plugins/lib/libgedcom.py:3033
 #, python-format
@@ -21588,8 +21588,8 @@ msgid ""
 "they have been created when you ran Check and Repair on %s."
 msgstr ""
 "Os objetos referenciados por esta nota estavam referenciados mas estava "
-"faltando, por isso eles foram criados quando você executou verificação "
-"e reparação em %s."
+"faltando, por isso eles foram criados quando você executou verificação e "
+"reparação em %s."
 
 #: ../src/plugins/tool/Check.py:252
 msgid "Looking for invalid name format references"
@@ -24368,10 +24368,10 @@ msgid ""
 "objects in this database.  Clicking on a thumbnail will take you to that "
 "image&#8217;s page."
 msgstr ""
-"Esta página apresenta uma lista indexada de todos os objetos multimídia "
-"do banco de dados. Ela é ordenada pelo título da mídia. Existe um índices "
-"de todos os objetos multimídia no banco de dados. Ao clicar em uma "
-"miniatura, você será levado à página da imagem."
+"Esta página apresenta uma lista indexada de todos os objetos multimídia do "
+"banco de dados. Ela é ordenada pelo título da mídia. Existe um índices de "
+"todos os objetos multimídia no banco de dados. Ao clicar em uma miniatura, "
+"você será levado à página da imagem."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4961
 msgid "Thumbnail Preview"
@@ -24408,12 +24408,11 @@ msgid ""
 "any?).  Clicking on a place&#8217;s name in the Reference section will take "
 "you to that place&#8217;s page."
 msgstr ""
-"Esta página de mapas representa a pessoal e seus descendentes com todos "
-"os seus eventos e locais. Se você posicionar o mouse sobre o marcador, ele "
+"Esta página de mapas representa a pessoal e seus descendentes com todos os "
+"seus eventos e locais. Se você posicionar o mouse sobre o marcador, ele "
 "exibirá o nome do local. Os marcadores e a lista de referência são ordenados "
 "por data (se existir). Ao clicar no nome do local na seção Referência, você "
-"terá "
-"a página do local."
+"terá a página do local."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5633
 msgid "Drop Markers"
@@ -27318,8 +27317,7 @@ msgid ""
 "Matches citations whose notes contain text matching a regular expression"
 msgstr ""
 "Localiza as citações cujas notas contenham texto que coincide com uma "
-"expressão "
-"regular"
+"expressão regular"
 
 #: ../src/Filters/Rules/Citation/_HasReferenceCountOf.py:44
 msgid "Citations with a reference count of <count>"
@@ -27374,8 +27372,8 @@ msgstr "Página/Volume da citação que contém <substring>"
 #: ../src/Filters/Rules/Citation/_MatchesPageSubstringOf.py:45
 msgid "Matches citations whose Volume/Page contains a certain substring"
 msgstr ""
-"Localiza as citações com Página/Volume que contenha uma determinada "
-"cadeia de caracteres"
+"Localiza as citações com Página/Volume que contenha uma determinada cadeia "
+"de caracteres"
 
 #: ../src/Filters/Rules/Citation/_RegExpIdOf.py:49
 msgid "Citations with <Id> matching regular expression"
@@ -28492,8 +28490,8 @@ msgid ""
 "reflected in the citation itself, for all items that reference the citation."
 msgstr ""
 "<b>Observação:</b> Quaisquer alterações na informação da citação "
-"compartilhada serão refletidas na própria citação, para todos os itens "
-"que tenham referência a ela."
+"compartilhada serão refletidas na própria citação, para todos os itens que "
+"tenham referência a ela."
 
 #: ../src/glade/editcitation.glade.h:4 ../src/glade/editsourceref.glade.h:2
 msgid ""
@@ -31077,5 +31075,4 @@ msgstr ""
 "2003&quot;. Você também pode indicar o nível de confiança na data e até "
 "escolher entre sete diferentes calendários. Experimente o botão ao lado do "
 "campo de data no editor de eventos."
-
 
