@@ -297,6 +297,10 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
         GrampsDisplay.help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def on_apply_clicked(self, obj):
+        run_button = self.top.get_object('button4')
+        close_button = self.top.get_object('button5')
+        run_button.set_sensitive(False)
+        close_button.set_sensitive(False)
         for option in self.options.handler.options_dict:
             if option in ['estimate_age', 'invdate']:
                 self.options.handler.options_dict[option] = \
@@ -324,11 +328,13 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
 
         self.uistate.progress.hide()
         self.uistate.window.window.set_cursor(None)
-        self.window.window.set_cursor(None)
         try:
+            self.window.window.set_cursor(None)
             self.vr.window.window.set_cursor(None)
         except AttributeError:
             pass
+        run_button.set_sensitive(True)
+        close_button.set_sensitive(True)
         self.reset()
         
         # Save options
