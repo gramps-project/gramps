@@ -119,9 +119,9 @@ class LifeWayLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
             ctx.set_line_join(cairo.LINE_JOIN_ROUND)
             ctx.set_line_width(3)
             color = gtk.gdk.color_parse(lifeway[1])
-            ctx.set_source_rgba(color.red / 65535,
-                               color.green / 65535,
-                               color.blue / 65535,
+            ctx.set_source_rgba(color.red / 255,
+                               color.green / 255,
+                               color.blue / 255,
                                0.1) # transparency
             ggc = drawable.new_gc()
             rds = float(lifeway[2])
@@ -163,9 +163,9 @@ class LifeWayLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
                 coord_x, coord_y = gpsmap.convert_geographic_to_screen(conv_pt)
                 map_points.append((coord_x, coord_y))
             color = gtk.gdk.color_parse(lifeway[1])
-            ctx.set_source_rgb(color.red / 65535,
-                               color.green / 65535,
-                               color.blue / 65535)
+            ctx.set_source_rgb(color.red / 255,
+                               color.green / 255,
+                               color.blue / 255)
             first = True
             for idx_pt in range(0, len(map_points)):
                 if first:
