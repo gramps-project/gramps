@@ -827,9 +827,9 @@ class GeoGraphyView(osmGpsMap, NavigationView):
                                          config.get("geography.zoom") )
         else:
             self._autozoom()
-            self.end_selection = None
             self.save_center(self.latit, self.longt)
             config.set("geography.zoom",self.osm.props.zoom)
+        self.end_selection = None
 
     def _get_father_and_mother_name(self, event):
         """
