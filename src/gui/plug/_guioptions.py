@@ -1437,7 +1437,7 @@ class GuiSurnameColorOption(gtk.HBox):
         self.__tree_view.set_size_request(150, 150)
         self.__tree_view.connect('row-activated', self.__row_clicked)
         col1 = gtk.TreeViewColumn(_('Surname'), gtk.CellRendererText(), text=0)
-        col2 = gtk.TreeViewColumn(_('Colour'), gtk.CellRendererText(), text=1)
+        col2 = gtk.TreeViewColumn(_('Color'), gtk.CellRendererText(), text=1)
         col1.set_resizable(True)
         col2.set_resizable(True)
         col1.set_sort_column_id(0)
@@ -1505,7 +1505,7 @@ class GuiSurnameColorOption(gtk.HBox):
         surname = self.__model.get_value(i, 0)
         colour = gtk.gdk.color_parse(self.__model.get_value(i, 1))
 
-        title = 'Select colour for %s' % surname
+        title = _('Select color for %s') % surname
         colour_dialog = gtk.ColorSelectionDialog(title)
         colorsel = colour_dialog.colorsel
         colorsel.set_current_color(colour)

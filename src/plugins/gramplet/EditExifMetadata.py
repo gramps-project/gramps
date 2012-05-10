@@ -170,7 +170,7 @@ _TOOLTIPS = {
     "MediaTitle" : _("Warning:  Changing this entry will update the Media "
         "object title field in Gramps not Exiv2 metadata."),
 
-    "Description" : _("Provide a short descripion for this image."),
+    "Description" : _("Provide a short description for this image."),
 
     "Artist" : _("Enter the Artist/ Author of this image.  The person's name or "
         "the company who is responsible for the creation of this image."),

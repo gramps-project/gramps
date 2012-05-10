@@ -349,8 +349,8 @@ tool_modes = [TOOL_MODE_GUI]
 
 register(TOOL, 
 id    = 'rebuild',
-name  = _("Rebuild Secondary Indices"),
-description =  _("Rebuilds secondary indices"),
+name  = _("Rebuild Secondary Indexes"),
+description =  _("Rebuilds secondary indexes"),
 version = '1.0',
 gramps_target_version = '3.5',
 status = STABLE,

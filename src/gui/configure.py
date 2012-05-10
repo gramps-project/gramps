@@ -501,7 +501,7 @@ class GrampsPreferences(ConfigureDialog):
             0, 'preferences.family-warn')
         
         self.add_checkbox(
-            table, _('Suppress warning when cancelling with changed data.'), 
+            table, _('Suppress warning when canceling with changed data.'), 
             1, 'interface.dont-ask')
         
         self.add_checkbox(

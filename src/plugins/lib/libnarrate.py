@@ -581,135 +581,135 @@ buried_no_date_no_place = {
    }
 #------------------------------------------------------------------------
 #
-# Baptised strings
+# Baptized strings
 #
 #------------------------------------------------------------------------
 baptised_full_date_place = {
     Person.MALE: [
-    _("%(male_name)s was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."), 
-    _("He was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."), 
+    _("%(male_name)s was baptized on %(baptism_date)s in %(baptism_place)s%(endnotes)s."), 
+    _("He was baptized on %(baptism_date)s in %(baptism_place)s%(endnotes)s."), 
     ], 
     Person.FEMALE: [
-    _("%(female_name)s was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."), 
-    _("She was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."), 
+    _("%(female_name)s was baptized on %(baptism_date)s in %(baptism_place)s%(endnotes)s."), 
+    _("She was baptized on %(baptism_date)s in %(baptism_place)s%(endnotes)s."), 
     ], 
     Person.UNKNOWN: [ 
-    _("%(unknown_gender_name)s was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."), 
-    _("This person was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."), 
+    _("%(unknown_gender_name)s was baptized on %(baptism_date)s in %(baptism_place)s%(endnotes)s."), 
+    _("This person was baptized on %(baptism_date)s in %(baptism_place)s%(endnotes)s."), 
     ],
-    'succinct' : _("Baptised %(baptism_date)s in %(baptism_place)s%(endnotes)s."), 
+    'succinct' : _("Baptized %(baptism_date)s in %(baptism_place)s%(endnotes)s."), 
     }
 
 baptised_full_date_no_place = {
     Person.MALE: [
-    _("%(male_name)s was baptised on %(baptism_date)s%(endnotes)s."), 
-    _("He was baptised on %(baptism_date)s%(endnotes)s."), 
+    _("%(male_name)s was baptized on %(baptism_date)s%(endnotes)s."), 
+    _("He was baptized on %(baptism_date)s%(endnotes)s."), 
     ], 
     Person.FEMALE: [
-    _("%(female_name)s was baptised on %(baptism_date)s%(endnotes)s."), 
-    _("She was baptised on %(baptism_date)s%(endnotes)s."), 
+    _("%(female_name)s was baptized on %(baptism_date)s%(endnotes)s."), 
+    _("She was baptized on %(baptism_date)s%(endnotes)s."), 
     ], 
     Person.UNKNOWN: [
-    _("%(unknown_gender_name)s was baptised on %(baptism_date)s%(endnotes)s."), 
-    _("This person was baptised on %(baptism_date)s%(endnotes)s."), 
+    _("%(unknown_gender_name)s was baptized on %(baptism_date)s%(endnotes)s."), 
+    _("This person was baptized on %(baptism_date)s%(endnotes)s."), 
     ],
-    'succinct' : _("Baptised %(baptism_date)s%(endnotes)s.") 
+    'succinct' : _("Baptized %(baptism_date)s%(endnotes)s.") 
     }
 
 baptised_partial_date_place = {
     Person.MALE: [
-    _("%(male_name)s was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."), 
-    _("He was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."), 
+    _("%(male_name)s was baptized in %(month_year)s in %(baptism_place)s%(endnotes)s."), 
+    _("He was baptized in %(month_year)s in %(baptism_place)s%(endnotes)s."), 
     ], 
 Person.FEMALE: [
-    _("%(female_name)s was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."), 
-    _("She was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."), 
+    _("%(female_name)s was baptized in %(month_year)s in %(baptism_place)s%(endnotes)s."), 
+    _("She was baptized in %(month_year)s in %(baptism_place)s%(endnotes)s."), 
     ], 
 Person.UNKNOWN: [
-    _("%(unknown_gender_name)s was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."), 
-    _("This person was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."), 
+    _("%(unknown_gender_name)s was baptized in %(month_year)s in %(baptism_place)s%(endnotes)s."), 
+    _("This person was baptized in %(month_year)s in %(baptism_place)s%(endnotes)s."), 
     ],
-    'succinct' : _("Baptised %(month_year)s in %(baptism_place)s%(endnotes)s."), 
+    'succinct' : _("Baptized %(month_year)s in %(baptism_place)s%(endnotes)s."), 
     }
 
 baptised_partial_date_no_place = {
     Person.MALE: [
-    _("%(male_name)s was baptised in %(month_year)s%(endnotes)s."), 
-    _("He was baptised in %(month_year)s%(endnotes)s."), 
+    _("%(male_name)s was baptized in %(month_year)s%(endnotes)s."), 
+    _("He was baptized in %(month_year)s%(endnotes)s."), 
     ], 
     Person.FEMALE: [
-    _("%(female_name)s was baptised in %(month_year)s%(endnotes)s."), 
-    _("She was baptised in %(month_year)s%(endnotes)s."), 
+    _("%(female_name)s was baptized in %(month_year)s%(endnotes)s."), 
+    _("She was baptized in %(month_year)s%(endnotes)s."), 
     ], 
     Person.UNKNOWN: [
-    _("%(unknown_gender_name)s was baptised in %(month_year)s%(endnotes)s."), 
-    _("This person was baptised in %(month_year)s%(endnotes)s."), 
+    _("%(unknown_gender_name)s was baptized in %(month_year)s%(endnotes)s."), 
+    _("This person was baptized in %(month_year)s%(endnotes)s."), 
     ],
-    'succinct' : _("Baptised %(month_year)s%(endnotes)s."), 
+    'succinct' : _("Baptized %(month_year)s%(endnotes)s."), 
     }
 
 baptised_modified_date_place = {
     Person.MALE: [
-    _("%(male_name)s was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."), 
-    _("He was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."), 
+    _("%(male_name)s was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."), 
+    _("He was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."), 
     ], 
     Person.FEMALE: [
-    _("%(female_name)s was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."), 
-    _("She was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."), 
+    _("%(female_name)s was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."), 
+    _("She was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."), 
     ], 
     Person.UNKNOWN: [
-    _("%(unknown_gender_name)s was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."), 
-    _("This person was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."), 
+    _("%(unknown_gender_name)s was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."), 
+    _("This person was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."), 
     ],
-    'succinct' : _("Baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."), 
+    'succinct' : _("Baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."), 
     }
 
 baptised_modified_date_no_place = {
     Person.MALE: [
-    _("%(male_name)s was baptised %(modified_date)s%(endnotes)s."), 
-    _("He was baptised %(modified_date)s%(endnotes)s."), 
+    _("%(male_name)s was baptized %(modified_date)s%(endnotes)s."), 
+    _("He was baptized %(modified_date)s%(endnotes)s."), 
     ], 
     Person.FEMALE: [
-    _("%(female_name)s was baptised %(modified_date)s%(endnotes)s."), 
-    _("She was baptised %(modified_date)s%(endnotes)s."), 
+    _("%(female_name)s was baptized %(modified_date)s%(endnotes)s."), 
+    _("She was baptized %(modified_date)s%(endnotes)s."), 
     ], 
     Person.UNKNOWN: [
-    _("%(unknown_gender_name)s was baptised %(modified_date)s%(endnotes)s."), 
-    _("This person was baptised %(modified_date)s%(endnotes)s."), 
+    _("%(unknown_gender_name)s was baptized %(modified_date)s%(endnotes)s."), 
+    _("This person was baptized %(modified_date)s%(endnotes)s."), 
     ],
-    'succinct' : _("Baptised %(modified_date)s%(endnotes)s."), 
+    'succinct' : _("Baptized %(modified_date)s%(endnotes)s."), 
     }
 
 baptised_no_date_place = {
     Person.MALE    : [
-    _("%(male_name)s was baptised in %(baptism_place)s%(endnotes)s."), 
-    _("He was baptised in %(baptism_place)s%(endnotes)s."), 
+    _("%(male_name)s was baptized in %(baptism_place)s%(endnotes)s."), 
+    _("He was baptized in %(baptism_place)s%(endnotes)s."), 
     ], 
     Person.FEMALE  : [
-    _("%(female_name)s was baptised in %(baptism_place)s%(endnotes)s."), 
-    _("She was baptised in %(baptism_place)s%(endnotes)s."), 
+    _("%(female_name)s was baptized in %(baptism_place)s%(endnotes)s."), 
+    _("She was baptized in %(baptism_place)s%(endnotes)s."), 
     ], 
     Person.UNKNOWN : [
-    _("%(unknown_gender_name)s was baptised in %(baptism_place)s%(endnotes)s."), 
-    _("This person was baptised in %(baptism_place)s%(endnotes)s."), 
+    _("%(unknown_gender_name)s was baptized in %(baptism_place)s%(endnotes)s."), 
+    _("This person was baptized in %(baptism_place)s%(endnotes)s."), 
     ],
-    'succinct' : _("Baptised in %(baptism_place)s%(endnotes)s."), 
+    'succinct' : _("Baptized in %(baptism_place)s%(endnotes)s."), 
     }
 
 baptised_no_date_no_place = {
     Person.MALE    : [
-    _("%(male_name)s was baptised%(endnotes)s."), 
-    _("He was baptised%(endnotes)s."), 
+    _("%(male_name)s was baptized%(endnotes)s."), 
+    _("He was baptized%(endnotes)s."), 
     ], 
     Person.FEMALE  : [
-    _("%(female_name)s was baptised%(endnotes)s."), 
-    _("She was baptised%(endnotes)s."), 
+    _("%(female_name)s was baptized%(endnotes)s."), 
+    _("She was baptized%(endnotes)s."), 
     ], 
     Person.UNKNOWN : [
-    _("%(unknown_gender_name)s was baptised%(endnotes)s."), 
-    _("This person was baptised%(endnotes)s."), 
+    _("%(unknown_gender_name)s was baptized%(endnotes)s."), 
+    _("This person was baptized%(endnotes)s."), 
     ],
-    'succinct' : _("Baptised%(endnotes)s."),
+    'succinct' : _("Baptized%(endnotes)s."),
     }
 
 #------------------------------------------------------------------------
@@ -1740,11 +1740,11 @@ class Narrator(object):
         """ 
         Get a string narrating the baptism of the subject.
         Example sentences:
-            Person was baptised on Date.
-            Person was baptised on Date in Place.
-            Person was baptised in Month_Year.
-            Person was baptised in Month_Year in Place.
-            Person was baptised in Place.
+            Person was baptized on Date.
+            Person was baptized on Date in Place.
+            Person was baptized in Month_Year.
+            Person was baptized in Month_Year in Place.
+            Person was baptized in Place.
             ''
         
         :returns: A sentence about the subject's baptism.

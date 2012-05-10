@@ -545,21 +545,21 @@ class RelGraphOptions(MenuReportOptions):
         add_option("color", color)
 
         color_males = ColorOption(_('Males'), '#e0e0ff')
-        color_males.set_help(_('The colour to use to display men.'))
+        color_males.set_help(_('The color to use to display men.'))
         add_option('colormales', color_males)
 
         color_females = ColorOption(_('Females'), '#ffe0e0')
-        color_females.set_help(_('The colour to use to display women.'))
+        color_females.set_help(_('The color to use to display women.'))
         add_option('colorfemales', color_females)
 
         color_unknown = ColorOption(_('Unknown'), '#e0e0e0')
         color_unknown.set_help(
-            _('The colour to use when the gender is unknown.')
+            _('The color to use when the gender is unknown.')
             )
         add_option('colorunknown', color_unknown)
 
         color_family = ColorOption(_('Families'), '#ffffe0')
-        color_family.set_help(_('The colour to use to display families.'))
+        color_family.set_help(_('The color to use to display families.'))
         add_option('colorfamilies', color_family)
         
         arrow = EnumeratedListOption(_("Arrowhead direction"), 'd')

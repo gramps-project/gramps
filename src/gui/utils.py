@@ -222,7 +222,7 @@ class ProgressMeter(object):
         Default cancel handler (if enabled).
         """
         self.__cancel_button.set_sensitive(False)
-        self.__lbl.set_label(_("Cancelling..."))
+        self.__lbl.set_label(_("Canceling..."))
         self.__cancelled = True
 
     def get_cancelled(self):

@@ -2823,7 +2823,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__add_msg(_("Tag recognised but not supported"), line, state)
+        self.__add_msg(_("Tag recognized but not supported"), line, state)
         self.__skip_subordinate_levels(state.level+1, state)
 
     def __not_recognized(self, line, level, state):

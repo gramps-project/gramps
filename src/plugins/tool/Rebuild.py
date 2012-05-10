@@ -22,7 +22,7 @@
 
 # $Id$
 
-"""Tools/Database Processing/Rebuild Secondary Indices"""
+"""Tools/Database Processing/Rebuild Secondary Indexes"""
 
 #-------------------------------------------------------------------------
 #
@@ -74,7 +74,7 @@ class Rebuild(tool.Tool, UpdateCallback):
             self.callback = uistate.pulse_progressbar
             uistate.set_busy_cursor(1)
             uistate.progress.show()
-            uistate.push_message(dbstate, _("Rebuilding secondary indices..."))
+            uistate.push_message(dbstate, _("Rebuilding secondary indexes..."))
             
             UpdateCallback.__init__(self, self.callback)
             self.set_total(11)
@@ -83,13 +83,13 @@ class Rebuild(tool.Tool, UpdateCallback):
             
             uistate.set_busy_cursor(0)
             uistate.progress.hide()
-            OkDialog(_("Secondary indices rebuilt"),
-                     _('All secondary indices have been rebuilt.'),
+            OkDialog(_("Secondary indexes rebuilt"),
+                     _('All secondary indexes have been rebuilt.'),
                      parent=uistate.window)
         else:
-            print "Rebuilding Secondary Indices..."
+            print "Rebuilding Secondary Indexes..."
             self.db.rebuild_secondary(self.update_empty)
-            print "All secondary indices have been rebuilt."
+            print "All secondary indexes have been rebuilt."
 
         self.db.enable_signals()
 

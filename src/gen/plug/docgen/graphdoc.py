@@ -193,7 +193,7 @@ class GVOptions():
         aspect_ratio = EnumeratedListOption(_("Aspect ratio"), "fill")
         for item in _RATIO:
             aspect_ratio.add_item(item["value"], item["name"])
-        aspect_ratio.set_help(_("Affects greatly how the graph is layed out "
+        aspect_ratio.set_help(_("Affects greatly how the graph is laid out "
                                 "on the page."))
         menu.add_option(category, "ratio", aspect_ratio)
 
