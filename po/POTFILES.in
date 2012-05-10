@@ -494,6 +494,7 @@ src/Filters/Rules/Person/_IsAncestorOfFilterMatch.py
 src/Filters/Rules/Person/_IsAncestorOf.py
 src/Filters/Rules/Person/_IsBookmarked.py
 src/Filters/Rules/Person/_IsChildOfFilterMatch.py
+src/Filters/Rules/Person/_IsDescendantFamilyOfFilterMatch.py
 src/Filters/Rules/Person/_IsDefaultPerson.py
 src/Filters/Rules/Person/_IsDescendantFamilyOf.py
 src/Filters/Rules/Person/_IsDescendantOfFilterMatch.py
