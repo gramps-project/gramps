@@ -46,6 +46,7 @@ pkgpython_PYTHON = \
 	_IsChildOfFilterMatch.py \
 	_IsDefaultPerson.py \
 	_IsDescendantFamilyOf.py \
+        _IsDescendantFamilyOfFilterMatch.py \
 	_IsDescendantOf.py \
 	_IsDescendantOfFilterMatch.py \
 	_IsDuplicatedAncestorOf.py \
