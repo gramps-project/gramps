@@ -68,6 +68,7 @@ from _IsBookmarked import IsBookmarked
 from _IsChildOfFilterMatch import IsChildOfFilterMatch
 from _IsDefaultPerson import IsDefaultPerson
 from _IsDescendantFamilyOf import IsDescendantFamilyOf
+from _IsDescendantFamilyOfFilterMatch import IsDescendantFamilyOfFilterMatch
 from _IsDescendantOf import IsDescendantOf
 from _IsDescendantOfFilterMatch import IsDescendantOfFilterMatch
 from _IsDuplicatedAncestorOf import IsDuplicatedAncestorOf
@@ -160,6 +161,7 @@ editor_rule_list = [
     IsWitness,
     IsDescendantOf,
     IsDescendantFamilyOf,
+    IsDescendantFamilyOfFilterMatch,
     IsLessThanNthGenerationAncestorOfDefaultPerson,
     IsDescendantOfFilterMatch,
     IsDuplicatedAncestorOf,
