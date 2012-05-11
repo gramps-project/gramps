@@ -35,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-11 12:17+0200\n"
-"PO-Revision-Date: 2012-05-11 13:04+0100\n"
+"POT-Creation-Date: 2012-05-11 17:31+0200\n"
+"PO-Revision-Date: 2012-05-11 17:42+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -1028,7 +1028,7 @@ msgstr "Událost"
 #: ../src/gui/plug/_guioptions.py:1290
 #: ../src/gui/selectors/selectevent.py:66
 #: ../src/gui/views/treemodels/placemodel.py:304
-#: ../src/plugins/export/ExportCsv.py:460
+#: ../src/plugins/export/ExportCsv.py:459
 #: ../src/plugins/gramplet/Events.py:53
 #: ../src/plugins/gramplet/PersonResidence.py:50
 #: ../src/plugins/gramplet/QuickViewGramplet.py:111
@@ -1067,8 +1067,8 @@ msgstr "Místo"
 #: ../src/gui/views/treemodels/mediamodel.py:128
 #: ../src/plugins/drawreport/AncestorTree.py:1014
 #: ../src/plugins/drawreport/DescendTree.py:1610
-#: ../src/plugins/export/ExportCsv.py:343
-#: ../src/plugins/export/ExportCsv.py:460
+#: ../src/plugins/export/ExportCsv.py:342
+#: ../src/plugins/export/ExportCsv.py:459
 #: ../src/plugins/gramplet/QuickViewGramplet.py:110
 #: ../src/plugins/import/ImportCsv.py:183
 #: ../src/plugins/quickview/FilterByName.py:200
@@ -1150,7 +1150,7 @@ msgstr "Událost odk"
 #: ../src/gui/plug/_guioptions.py:88
 #: ../src/gui/plug/_guioptions.py:1439
 #: ../src/plugins/drawreport/StatisticsChart.py:318
-#: ../src/plugins/export/ExportCsv.py:336
+#: ../src/plugins/export/ExportCsv.py:335
 #: ../src/plugins/import/ImportCsv.py:170
 #: ../src/plugins/quickview/FilterByName.py:329
 #: ../src/plugins/webreport/NarrativeWeb.py:2767
@@ -1225,7 +1225,7 @@ msgstr "%(frel)s %(mrel)s"
 #: ../src/gui/filtereditor.py:290
 #: ../src/gui/grampsgui.py:134
 #: ../src/gui/editors/editlink.py:85
-#: ../src/plugins/export/ExportCsv.py:336
+#: ../src/plugins/export/ExportCsv.py:335
 #: ../src/plugins/gramplet/QuickViewGramplet.py:106
 #: ../src/plugins/import/ImportCsv.py:217
 #: ../src/plugins/quickview/AgeOnDate.py:55
@@ -1266,7 +1266,7 @@ msgstr "Osoba"
 #: ../src/gui/grampsgui.py:113
 #: ../src/gui/editors/editfamily.py:487
 #: ../src/gui/editors/editlink.py:82
-#: ../src/plugins/export/ExportCsv.py:503
+#: ../src/plugins/export/ExportCsv.py:502
 #: ../src/plugins/gramplet/QuickViewGramplet.py:108
 #: ../src/plugins/import/ImportCsv.py:220
 #: ../src/plugins/quickview/all_events.py:80
@@ -1290,7 +1290,7 @@ msgstr "Rodina"
 #: ../src/gui/editors/editsource.py:77
 #: ../src/gui/editors/displaytabs/nameembedlist.py:77
 #: ../src/gui/views/treemodels/citationtreemodel.py:161
-#: ../src/plugins/export/ExportCsv.py:460
+#: ../src/plugins/export/ExportCsv.py:459
 #: ../src/plugins/gramplet/QuickViewGramplet.py:113
 #: ../src/plugins/import/ImportCsv.py:182
 #: ../src/plugins/quickview/FilterByName.py:170
@@ -1501,7 +1501,7 @@ msgstr "Primární pramen"
 #: ../src/ToolTips.py:245
 #: ../src/gen/lib/ldsord.py:105
 #: ../src/Merge/mergeperson.py:243
-#: ../src/plugins/export/ExportCsv.py:503
+#: ../src/plugins/export/ExportCsv.py:502
 #: ../src/plugins/gramplet/Children.py:84
 #: ../src/plugins/gramplet/Children.py:180
 #: ../src/plugins/import/ImportCsv.py:219
@@ -1782,7 +1782,7 @@ msgstr "žádný důkaz"
 #. 'n' : nickname   = nick name
 #. 'g' : familynick = family nick name
 #: ../src/Utils.py:1273
-#: ../src/plugins/export/ExportCsv.py:338
+#: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:178
 #: ../src/plugins/tool/PatchNames.py:439
 msgid "Person|Title"
@@ -1808,7 +1808,7 @@ msgstr "Titul"
 #: ../src/gui/configure.py:560
 #: ../src/gui/configure.py:561
 #: ../src/gui/configure.py:562
-#: ../src/plugins/export/ExportCsv.py:336
+#: ../src/plugins/export/ExportCsv.py:335
 #: ../src/plugins/import/ImportCsv.py:173
 msgid "Given"
 msgstr "Křestní jméno"
@@ -1867,7 +1867,7 @@ msgstr "INICIÁLY"
 #: ../src/gui/configure.py:555
 #: ../src/gui/configure.py:560
 #: ../src/gui/configure.py:562
-#: ../src/plugins/export/ExportCsv.py:337
+#: ../src/plugins/export/ExportCsv.py:336
 #: ../src/plugins/import/ImportCsv.py:180
 #: ../src/glade/editperson.glade.h:8
 msgid "Suffix"
@@ -1964,7 +1964,7 @@ msgstr "NE PO OTCI"
 
 #: ../src/Utils.py:1290
 #: ../src/gui/editors/displaytabs/surnametab.py:75
-#: ../src/plugins/export/ExportCsv.py:337
+#: ../src/plugins/export/ExportCsv.py:336
 #: ../src/plugins/import/ImportCsv.py:179
 #: ../src/glade/editperson.glade.h:26
 msgid "Prefix"
@@ -2010,7 +2010,7 @@ msgstr ""
 #: ../src/Utils.py:1684
 #, python-format
 msgid "Unknown, was missing %(time)s (%(count)d)"
-msgstr ""
+msgstr "Neznámé, chybělo %(time)s (%(count)d)"
 
 #: ../src/Utils.py:1703
 #, python-format
@@ -3318,7 +3318,7 @@ msgstr "Závěť"
 
 #: ../src/gen/lib/eventtype.py:179
 #: ../src/Merge/mergeperson.py:239
-#: ../src/plugins/export/ExportCsv.py:459
+#: ../src/plugins/export/ExportCsv.py:458
 #: ../src/plugins/import/ImportCsv.py:228
 #: ../src/plugins/textreport/FamilyGroup.py:382
 #: ../src/plugins/webreport/NarrativeWeb.py:3123
@@ -4035,8 +4035,8 @@ msgstr "Soubor %s je již otevřený, nejprve jej zavřete."
 #: ../src/plugins/docgen/RTFDoc.py:96
 #: ../src/plugins/docgen/SvgDrawDoc.py:79
 #: ../src/plugins/docgen/SvgDrawDoc.py:81
-#: ../src/plugins/export/ExportCsv.py:301
-#: ../src/plugins/export/ExportCsv.py:305
+#: ../src/plugins/export/ExportCsv.py:300
+#: ../src/plugins/export/ExportCsv.py:304
 #: ../src/plugins/export/ExportGedcom.py:1447
 #: ../src/plugins/export/ExportGeneWeb.py:97
 #: ../src/plugins/export/ExportGeneWeb.py:101
@@ -4714,7 +4714,7 @@ msgid "Common"
 msgstr "Společné"
 
 #: ../src/gui/configure.py:549
-#: ../src/plugins/export/ExportCsv.py:337
+#: ../src/plugins/export/ExportCsv.py:336
 #: ../src/plugins/import/ImportCsv.py:176
 msgid "Call"
 msgstr "Volání"
@@ -5685,7 +5685,7 @@ msgstr "Nastavit"
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:52
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:63
 #: ../src/gui/selectors/selectevent.py:65
-#: ../src/plugins/export/ExportCsv.py:460
+#: ../src/plugins/export/ExportCsv.py:459
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:73
 #: ../src/plugins/gramplet/Events.py:51
 #: ../src/plugins/gramplet/PersonResidence.py:49
@@ -6809,7 +6809,7 @@ msgstr "#"
 #: ../src/gui/selectors/selectperson.py:76
 #: ../src/Merge/mergeperson.py:176
 #: ../src/plugins/drawreport/StatisticsChart.py:322
-#: ../src/plugins/export/ExportCsv.py:338
+#: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:181
 #: ../src/plugins/lib/libpersonview.py:94
 #: ../src/plugins/quickview/siblings.py:48
@@ -10968,13 +10968,13 @@ msgid "Death month"
 msgstr "Měsíc úmrtí"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:332
-#: ../src/plugins/export/ExportCsv.py:339
+#: ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:184
 msgid "Birth place"
 msgstr "Místo narození"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:334
-#: ../src/plugins/export/ExportCsv.py:341
+#: ../src/plugins/export/ExportCsv.py:340
 #: ../src/plugins/import/ImportCsv.py:206
 msgid "Death place"
 msgstr "Místo úmrtí"
@@ -11386,82 +11386,82 @@ msgstr "vCard se používá v mnoha adresářových a pim aplikacích."
 msgid "vCard export options"
 msgstr "Možnosti exportu vCard"
 
-#: ../src/plugins/export/ExportCsv.py:196
+#: ../src/plugins/export/ExportCsv.py:195
 msgid "Include people"
 msgstr "Zahrnout osoby"
 
-#: ../src/plugins/export/ExportCsv.py:197
+#: ../src/plugins/export/ExportCsv.py:196
 msgid "Include marriages"
 msgstr "Zahrnout sňatky"
 
-#: ../src/plugins/export/ExportCsv.py:198
+#: ../src/plugins/export/ExportCsv.py:197
 msgid "Include children"
 msgstr "Zahrnout potomky"
 
-#: ../src/plugins/export/ExportCsv.py:199
+#: ../src/plugins/export/ExportCsv.py:198
 msgid "Translate headers"
 msgstr "Přeložit záhlaví"
 
-#: ../src/plugins/export/ExportCsv.py:339
+#: ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:186
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:130
 msgid "Birth date"
 msgstr "Datum narození"
 
-#: ../src/plugins/export/ExportCsv.py:339
+#: ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:188
 msgid "Birth source"
 msgstr "Pramen narození"
 
-#: ../src/plugins/export/ExportCsv.py:340
+#: ../src/plugins/export/ExportCsv.py:339
 #: ../src/plugins/import/ImportCsv.py:194
 msgid "Baptism date"
 msgstr "Datum křtu"
 
-#: ../src/plugins/export/ExportCsv.py:340
+#: ../src/plugins/export/ExportCsv.py:339
 #: ../src/plugins/import/ImportCsv.py:192
 msgid "Baptism place"
 msgstr "Místo křtu"
 
-#: ../src/plugins/export/ExportCsv.py:340
+#: ../src/plugins/export/ExportCsv.py:339
 #: ../src/plugins/import/ImportCsv.py:197
 msgid "Baptism source"
 msgstr "Pramen křtu"
 
-#: ../src/plugins/export/ExportCsv.py:341
+#: ../src/plugins/export/ExportCsv.py:340
 #: ../src/plugins/import/ImportCsv.py:208
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:132
 msgid "Death date"
 msgstr "Datum úmrtí"
 
-#: ../src/plugins/export/ExportCsv.py:341
+#: ../src/plugins/export/ExportCsv.py:340
 #: ../src/plugins/import/ImportCsv.py:210
 msgid "Death source"
 msgstr "Pramen úmrtí"
 
-#: ../src/plugins/export/ExportCsv.py:342
+#: ../src/plugins/export/ExportCsv.py:341
 #: ../src/plugins/import/ImportCsv.py:201
 msgid "Burial date"
 msgstr "Datum pohřbu"
 
-#: ../src/plugins/export/ExportCsv.py:342
+#: ../src/plugins/export/ExportCsv.py:341
 #: ../src/plugins/import/ImportCsv.py:199
 msgid "Burial place"
 msgstr "Místo pohřbu"
 
-#: ../src/plugins/export/ExportCsv.py:342
+#: ../src/plugins/export/ExportCsv.py:341
 #: ../src/plugins/import/ImportCsv.py:204
 msgid "Burial source"
 msgstr "Pramen pohřbu"
 
-#: ../src/plugins/export/ExportCsv.py:459
+#: ../src/plugins/export/ExportCsv.py:458
 #: ../src/plugins/import/ImportCsv.py:225
 #: ../src/plugins/textreport/FamilyGroup.py:565
 #: ../src/plugins/webreport/NarrativeWeb.py:2356
 msgid "Husband"
 msgstr "Manžel"
 
-#: ../src/plugins/export/ExportCsv.py:459
+#: ../src/plugins/export/ExportCsv.py:458
 #: ../src/plugins/import/ImportCsv.py:222
 #: ../src/plugins/textreport/FamilyGroup.py:574
 #: ../src/plugins/webreport/NarrativeWeb.py:2358
@@ -11496,15 +11496,15 @@ msgstr "Export selhal"
 msgid "No families matched by selected filter"
 msgstr "Vybranému filtru nevyhovují žádné rodiny"
 
-#: ../src/plugins/export/ExportPkg.py:166
+#: ../src/plugins/export/ExportPkg.py:165
 #: ../src/plugins/tool/Check.py:645
 msgid "Select file"
 msgstr "Vybrat soubor"
 
-#: ../src/plugins/export/ExportPkg.py:183
-#: ../src/plugins/export/ExportXml.py:137
-#: ../src/plugins/export/ExportXml.py:147
-#: ../src/plugins/export/ExportXml.py:165
+#: ../src/plugins/export/ExportPkg.py:182
+#: ../src/plugins/export/ExportXml.py:136
+#: ../src/plugins/export/ExportXml.py:146
+#: ../src/plugins/export/ExportXml.py:164
 #, python-format
 msgid "Failure writing %s"
 msgstr "Zápis %s selhal"
@@ -11534,11 +11534,11 @@ msgstr "Úmrtí: %s"
 msgid "Anniversary: %s"
 msgstr "Výročí: %s"
 
-#: ../src/plugins/export/ExportXml.py:138
+#: ../src/plugins/export/ExportXml.py:137
 msgid "The database cannot be saved because you do not have permission to write to the directory. Please make sure you have write access to the directory and try again."
 msgstr "Databáze nemůže být uložena, protože nemáte právo zápisu do adresáře. Získejte prosím právo zápisu do adresáře a zkuste to znovu."
 
-#: ../src/plugins/export/ExportXml.py:148
+#: ../src/plugins/export/ExportXml.py:147
 msgid "The database cannot be saved because you do not have permission to write to the file. Please make sure you have write access to the file and try again."
 msgstr "Databáze·nemůže·být·uložena,·protože·nemáte·právo·zápisu·do·souboru.·Získejte prosím·právo·zápisu·do·souboru·a·zkuste·to·znovu."
 
@@ -14599,7 +14599,7 @@ msgstr "Uživatelská HTML hlavička"
 
 #: ../src/plugins/lib/libgedcom.py:6503
 msgid "Approved system identification"
-msgstr ""
+msgstr "Schválená identifikace systému"
 
 #. feature request 2356: avoid genitive form
 #: ../src/plugins/lib/libgedcom.py:6513
@@ -20672,9 +20672,8 @@ msgid "Looking for place reference problems"
 msgstr "Hledají se problémy s odkazy na místa"
 
 #: ../src/plugins/tool/Check.py:1234
-#, fuzzy
 msgid "Looking for citation reference problems"
-msgstr "Hledají se problémové odkazy na poznámky"
+msgstr "Hledají se problémové odkazy citací"
 
 #: ../src/plugins/tool/Check.py:1363
 msgid "Looking for source reference problems"
@@ -20689,9 +20688,8 @@ msgid "Looking for note reference problems"
 msgstr "Hledají se problémové odkazy na poznámky"
 
 #: ../src/plugins/tool/Check.py:1688
-#, fuzzy
 msgid "Looking for tag reference problems"
-msgstr "Hledají se problémové odkazy na poznámky"
+msgstr "Hledají se problémové odkazy štítků"
 
 #: ../src/plugins/tool/Check.py:1881
 msgid "No errors were found"
@@ -20827,12 +20825,12 @@ msgstr[1] "%(quantity)d chybějící objekty médií byly odstraněny\n"
 msgstr[2] "%(quantity)d chybějících objektů médií bylo odstraněno\n"
 
 #: ../src/plugins/tool/Check.py:2031
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d event was referenced but not found\n"
 msgid_plural "%(quantity)d events were referenced, but not found\n"
-msgstr[0] "%(quantity)d odkazované místo nebylo nalezeno\n"
-msgstr[1] "%(quantity)d odkazovaná místa nebyla nenalezena\n"
-msgstr[2] "%(quantity)d odkazovaných míst nebylo nenalezeno\n"
+msgstr[0] "%(quantity)d odkazovaná událost nebyla nalezena\n"
+msgstr[1] "%(quantity)d odkazované události nebyly nalezeny\n"
+msgstr[2] "%(quantity)d odkazovaných událostí nebylo nalezeno\n"
 
 #: ../src/plugins/tool/Check.py:2038
 #, python-format
@@ -20892,12 +20890,12 @@ msgstr[2] "%(quantity)d odkazovaných objektů poznámek nebylo nalezeno\n"
 
 #: ../src/plugins/tool/Check.py:2086
 #: ../src/plugins/tool/Check.py:2092
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d tag object was referenced but not found\n"
 msgid_plural "%(quantity)d tag objects were referenced but not found\n"
-msgstr[0] "%(quantity)d odkazovaný objekt poznámek nebyl nalezen\n"
-msgstr[1] "%(quantity)d odkazované objekty poznámek nebyly nalezeny\n"
-msgstr[2] "%(quantity)d odkazovaných objektů poznámek nebylo nalezeno\n"
+msgstr[0] "%(quantity)d odkazovaný štítek nebyl nalezen\n"
+msgstr[1] "%(quantity)d odkazované štítky nebyly nalezeny\n"
+msgstr[2] "%(quantity)d odkazovaných štítků nebylo nalezeno\n"
 
 #: ../src/plugins/tool/Check.py:2098
 #, python-format
@@ -22214,7 +22212,7 @@ msgstr "Pohled ukazující  místa navštívená rodinou během života jejích 
 #: ../src/plugins/view/geography.gpr.py:120
 #: ../src/plugins/view/geoclose.py:128
 msgid "Have they been able to meet?"
-msgstr ""
+msgstr "Mohli se potkat?"
 
 #: ../src/plugins/view/geography.gpr.py:121
 msgid "A view showing the places visited by two persons during their life: have these two people been able to meet?"
@@ -22222,7 +22220,7 @@ msgstr "Pohled ukazující  místa navštívená dvěma osobami během jejich ž
 
 #: ../src/plugins/view/geography.gpr.py:138
 msgid "Have these two families been able to meet?"
-msgstr ""
+msgstr "Mohly se tyto rodiny potkat?"
 
 #: ../src/plugins/view/geography.gpr.py:139
 #, fuzzy
@@ -22235,8 +22233,8 @@ msgid "GeoClose"
 msgstr "Zavřít"
 
 #: ../src/plugins/view/geoclose.py:226
-msgid "_RefPerson"
-msgstr "_Referenční osoba"
+msgid "reference _Person"
+msgstr "refe_renční osoba"
 
 #: ../src/plugins/view/geoclose.py:227
 #, fuzzy
@@ -22270,12 +22268,13 @@ msgstr "Zvolit referenční osobu"
 msgid ""
 "The meeting zone probability radius.\n"
 "The colored zone is approximative.\n"
+"The meeting zone is only shown for the reference person.\n"
 "The value 9 means about 42 miles or 67 kms.\n"
 "The value 1 means about 4.6 miles or 7.5 kms.\n"
 "The value is in tenth of degree."
 msgstr ""
 
-#: ../src/plugins/view/geoclose.py:514
+#: ../src/plugins/view/geoclose.py:515
 msgid "The selection parameters"
 msgstr "Parametry výběru"
 
@@ -24826,9 +24825,8 @@ msgid "Descendant filters"
 msgstr "Filtry potomků"
 
 #: ../src/Filters/Rules/Person/_IsDescendantFamilyOfFilterMatch.py:50
-#, fuzzy
 msgid "Matches people that are descendants or the spouse of anybody matched by a filter"
-msgstr "Vyhovují osoby, které jsou potomci kohokoli, kdo vyhovuje filtru"
+msgstr "Vyhovují osoby, které jsou potomkem nebo partnerem kohokoli, kdo vyhovuje filtru"
 
 #: ../src/Filters/Rules/Person/_IsDefaultPerson.py:45
 msgid "Default person"
@@ -28845,6 +28843,9 @@ msgstr "<b>The Gramps Software Licence</b><br/>Gramps můžete volně používat
 #: ../src/data/tips.xml.in.h:63
 msgid "<b>Gramps for Gnome or KDE?</b><br/>For Linux users Gramps works with whichever desktop environment you prefer. As long as the required GTK libraries are installed it will run fine."
 msgstr "<b>Gramps pro Gnome or KDE?</b><br/>V Linuxu můžete s Gramps pracovat v prostředí jaké vám vyhovuje. Pokud jsou ve vašem prostředí instalovány požadované GTK knihovny, bude Gramps fungovat dobře."
+
+#~ msgid "_RefPerson"
+#~ msgstr "_Referenční osoba"
 
 #~ msgid "Colour"
 #~ msgstr "Barva"
