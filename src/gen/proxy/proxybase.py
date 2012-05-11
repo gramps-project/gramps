@@ -40,6 +40,42 @@ import types
 #-------------------------------------------------------------------------
 from gen.db.base import DbReadBase, DbWriteBase
 
+class ProxyCursor(object):
+    """
+    A cursor for moving through proxied data.
+    """
+    def __init__(self, get_raw, get_handles):
+        self.get_raw = get_raw
+        self.get_handles = get_handles
+
+    def __enter__(self):
+        """
+        Context manager enter method
+        """
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        pass
+        
+    def __iter__(self):
+        for handle in self.get_handles():
+            yield handle, self.get_raw(handle)
+
+class ProxyMap(object):
+    """
+    A dictionary-like object for accessing "raw" proxied data. Of
+    course, proxied data may have been changed by the proxy.
+    """
+    def __init__(self, get_raw, get_keys):
+        self.get_raw = get_raw
+        self.get_keys = get_keys
+
+    def __getitem__(self, handle):
+        return self.get_raw(handle)
+
+    def keys(self):
+        return self.get_keys()
+
 class ProxyDbBase(DbReadBase):
     """
     ProxyDbBase is a base class for building a proxy to a Gramps database. 
@@ -64,9 +100,27 @@ class ProxyDbBase(DbReadBase):
         self.event_bookmarks = db.event_bookmarks
         self.place_bookmarks = db.place_bookmarks
         self.source_bookmarks = db.source_bookmarks
+        self.citation_bookmarks = db.citation_bookmarks
         self.repo_bookmarks = db.repo_bookmarks
         self.media_bookmarks = db.media_bookmarks
         self.note_bookmarks = db.note_bookmarks
+
+        self.person_map = ProxyMap(self.get_raw_person_data, 
+                                 self.get_person_handles)
+        self.family_map = ProxyMap(self.get_raw_family_data, 
+                                 self.get_family_handles)
+        self.event_map = ProxyMap(self.get_raw_event_data, 
+                                 self.get_event_handles)
+        self.place_map = ProxyMap(self.get_raw_place_data, 
+                                 self.get_place_handles)
+        self.source_map = ProxyMap(self.get_raw_source_data, 
+                                 self.get_source_handles)
+        self.repository_map = ProxyMap(self.get_raw_repository_data, 
+                                 self.get_repository_handles)
+        self.media_map = ProxyMap(self.get_raw_object_data, 
+                                 self.get_media_object_handles)
+        self.note_map = ProxyMap(self.get_raw_note_data, 
+                                 self.get_note_handles)
 
     def is_open(self):
         """
@@ -105,44 +159,44 @@ class ProxyDbBase(DbReadBase):
         None
         
     def get_person_cursor(self):
-        for handle in self.get_person_handles():
-            yield handle, self.basedb.person_map[handle]
+        return ProxyCursor(self.get_raw_person_data, 
+                           self.get_person_handles)
 
     def get_family_cursor(self):
-        for handle in self.get_family_handles():
-            yield handle, self.basedb.family_map[handle]
+        return ProxyCursor(self.get_raw_family_data,
+                           self.get_family_handles)
 
     def get_event_cursor(self):
-        for handle in self.get_event_handles():
-            yield handle, self.basedb.event_map[handle]
+        return ProxyCursor(self.get_raw_event_data,
+                           self.get_event_handles)
 
     def get_source_cursor(self):
-        for handle in self.get_source_handles():
-            yield handle, self.basedb.source_map[handle]
+        return ProxyCursor(self.get_raw_source_data,
+                           self.get_source_handles)
 
     def get_citation_cursor(self):
-        for handle in self.get_citation_handles():
-            yield handle, self.basedb.citation_map[handle]
+        return ProxyCursor(self.get_raw_citation_data,
+                           self.get_citation_handles)
 
     def get_place_cursor(self):
-        for handle in self.get_place_handles():
-            yield handle, self.basedb.place_map[handle]
+        return ProxyCursor(self.get_raw_place_data,
+                           self.get_place_handles)
 
     def get_media_cursor(self):
-        for handle in self.get_media_object_handles():
-            yield handle, self.basedb.media_map[handle]
+        return ProxyCursor(self.get_raw_object_data,
+                           self.get_media_object_handles)
 
     def get_repository_cursor(self):
-        for handle in self.get_repository_handles():
-            yield handle, self.basedb.repository_map[handle]
+        return ProxyCursor(self.get_raw_repository_data,
+                           self.get_repository_handles)
 
     def get_note_cursor(self):
-        for handle in self.get_note_handles():
-            yield handle, self.basedb.note_map[handle]
+        return ProxyCursor(self.get_raw_note_data,
+                           self.get_note_handles)
 
     def get_tag_cursor(self):
-        for handle in self.get_tag_handles():
-            yield handle, self.basedb.tag_map[handle]
+        return ProxyCursor(self.get_raw_tag_data,
+                           self.get_tag_handles)
 
     def get_person_handles(self, sort_handles=False):
         """
@@ -605,61 +659,61 @@ class ProxyDbBase(DbReadBase):
         """
         Return the number of people currently in the database.
         """
-        return self.db.get_number_of_people()
+        return len(self.get_person_handles())
 
     def get_number_of_families(self):
         """
         Return the number of families currently in the database.
         """
-        return self.db.get_number_of_families()
+        return len(self.get_family_handles())
 
     def get_number_of_events(self):
         """
         Return the number of events currently in the database.
         """
-        return self.db.get_number_of_events()
+        return len(self.get_event_handles())
 
     def get_number_of_places(self):
         """
         Return the number of places currently in the database.
         """
-        return self.db.get_number_of_places()
+        return len(self.get_place_handles())
 
     def get_number_of_sources(self):
         """
         Return the number of sources currently in the database.
         """
-        return self.db.get_number_of_sources()
+        return len(self.get_source_handles())
 
     def get_number_of_citations(self):
         """
         Return the number of Citations currently in the database.
         """
-        return self.db.get_number_of_citations()
+        return len(self.get_citation_handles())
 
     def get_number_of_media_objects(self):
         """
         Return the number of media objects currently in the database.
         """
-        return self.db.get_number_of_media_objects()
+        return len(self.get_media_object_handles())
 
     def get_number_of_repositories(self):
         """
         Return the number of source repositories currently in the database.
         """
-        return self.db.get_number_of_repositories()
+        return len(self.get_repository_handles())
 
     def get_number_of_notes(self):
         """
         Return the number of notes currently in the database.
         """
-        return self.db.get_number_of_notes()
+        return len(self.get_note_handles())
 
     def get_number_of_tags(self):
         """
         Return the number of tags currently in the database.
         """
-        return self.db.get_number_of_tags()
+        return len(self.get_tag_handles())
 
     def get_save_path(self):
         """returns the save path of the file, or "" if one does not exist"""
@@ -736,34 +790,34 @@ class ProxyDbBase(DbReadBase):
         return self.db.get_url_types()
 
     def get_raw_person_data(self, handle):
-        return self.db.get_raw_person_data(handle)
+        return self.get_person_from_handle(handle).serialize()
 
     def get_raw_family_data(self, handle):
-        return self.db.get_raw_family_data(handle)
+        return self.get_family_from_handle(handle).serialize()
 
     def get_raw_object_data(self, handle):
-        return self.db.get_raw_object_data(handle)
+        return self.get_object_from_handle(handle).serialize()
 
     def get_raw_place_data(self, handle):
-        return self.db.get_raw_place_data(handle)
+        return self.get_place_from_handle(handle).serialize()
 
     def get_raw_event_data(self, handle):
-        return self.db.get_raw_event_data(handle)
+        return self.get_event_from_handle(handle).serialize()
 
     def get_raw_source_data(self, handle):
-        return self.db.get_raw_source_data(handle)
+        return self.get_source_from_handle(handle).serialize()
 
     def get_raw_citation_data(self, handle):
-        return self.db.get_raw_citation_data(handle)
+        return self.get_citation_from_handle(handle).serialize()
 
     def get_raw_repository_data(self, handle):
-        return self.db.get_raw_repository_data(handle)
+        return self.get_repository_from_handle(handle).serialize()
 
     def get_raw_note_data(self, handle):
-        return self.db.get_raw_note_data(handle)
+        return self.get_note_from_handle(handle).serialize()
 
     def get_raw_tag_data(self, handle):
-        return self.db.get_raw_tag_data(handle)
+        return self.get_tag_from_handle(handle).serialize()
 
     def has_person_handle(self, handle):
         """
@@ -865,6 +919,10 @@ class ProxyDbBase(DbReadBase):
         """returns the list of Person handles in the bookmarks"""
         return self.source_bookmarks
 
+    def get_citation_bookmarks(self):
+        """returns the list of Person handles in the bookmarks"""
+        return self.citation_bookmarks
+
     def get_media_bookmarks(self):
         """returns the list of Person handles in the bookmarks"""
         return self.media_bookmarks
@@ -877,3 +935,19 @@ class ProxyDbBase(DbReadBase):
         """returns the list of Note handles in the bookmarks"""
         return self.note_bookmarks
 
+    def close(self):
+        """
+        Close on a proxy closes real database.
+        """
+        self.basedb.close()
+
+    def find_initial_person(self):
+        """
+        Find an initial person, given that they might not be
+        available.
+        """
+        person = self.basedb.find_initial_person()
+        if person and self.has_person_handle(person.handle):
+            return person
+        else:
+            return None
