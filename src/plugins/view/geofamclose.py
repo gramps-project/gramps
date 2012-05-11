@@ -89,7 +89,7 @@ _UI_DEF = '''\
   <toolitem action="Back"/>  
   <toolitem action="Forward"/>  
   <toolitem action="HomePerson"/>
-  <toolitem action="reffamily"/>
+  <toolitem action="RefFamily"/>
 </placeholder>
 </toolbar>
 </ui>
@@ -225,7 +225,7 @@ class GeoFamClose(GeoGraphyView):
 
         self.ref_family = gtk.ActionGroup(self.title + '/Selection')
         self.ref_family.add_actions([
-            ('reffamily', 'gramps-family', _('_reffamily'), None ,
+            ('RefFamily', 'gramps-family', _('reference _Family'), None ,
             _("Select the family which is the reference for life ways"),
             self.selectFamily),
             ])
@@ -663,6 +663,7 @@ class GeoFamClose(GeoGraphyView):
         configdialog.add_text(table,
                 _('The meeting zone probability radius.\n'
                   'The colored zone is approximative.\n'
+                  'The meeting zone is only shown for the reference family.\n'
                   'The value 9 means about 42 miles or 67 kms.\n'
                   'The value 1 means about 4.6 miles or 7.5 kms.\n'
                   'The value is in tenth of degree.'),

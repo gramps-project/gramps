@@ -223,7 +223,7 @@ class GeoClose(GeoGraphyView):
 
         self.ref_person = gtk.ActionGroup(self.title + '/Selection')
         self.ref_person.add_actions([
-            ('RefPerson', 'gramps-person', _('_RefPerson'), None ,
+            ('RefPerson', 'gramps-person', _('reference _Person'), None ,
             _("Select the person which is the reference for life ways"),
             self.selectPerson),
             ])
@@ -503,6 +503,7 @@ class GeoClose(GeoGraphyView):
         configdialog.add_text(table,
                 _('The meeting zone probability radius.\n'
                   'The colored zone is approximative.\n'
+                  'The meeting zone is only shown for the reference person.\n'
                   'The value 9 means about 42 miles or 67 kms.\n'
                   'The value 1 means about 4.6 miles or 7.5 kms.\n'
                   'The value is in tenth of degree.'),
