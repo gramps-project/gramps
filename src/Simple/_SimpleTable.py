@@ -284,10 +284,12 @@ class SimpleTable(object):
                                          handles=handle)
             elif objclass == 'Filter':
                 from QuickReports import run_quick_report_by_name
+                if isinstance(handle, list):
+                    handle = handle[0]
                 run_quick_report_by_name(self.simpledoc.doc.dbstate,
                                          self.simpledoc.doc.uistate, 
                                          'filterbyname', 
-                                         handle[0])
+                                         handle)
         return False # didn't handle event
 
     def on_table_click(self, obj):
