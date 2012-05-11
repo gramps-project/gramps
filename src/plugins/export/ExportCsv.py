@@ -54,7 +54,6 @@ from Filters import GenericFilter, Rules, build_filter_model
 from gen.lib.eventroletype import EventRoleType
 from ExportOptions import WriterOptionBox
 import Utils
-import gen.proxy
 import DateHandler
 from glade import Glade
 

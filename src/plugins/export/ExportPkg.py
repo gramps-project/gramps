@@ -60,7 +60,6 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from ExportOptions import WriterOptionBox
-import gen.proxy
 from ExportXml import XmlWriter
 import Utils
 import constfunc

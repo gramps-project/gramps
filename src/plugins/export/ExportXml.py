@@ -64,7 +64,6 @@ import const
 import constfunc
 #from QuestionDialog import ErrorDialog
 from ExportOptions import WriterOptionBox
-import gen.proxy
 import libgrampsxml
 
 #-------------------------------------------------------------------------
