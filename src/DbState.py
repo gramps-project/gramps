@@ -26,6 +26,7 @@ Provide the database state class
 """
 
 from gen.db import DbBsddbRead
+from gen.proxy.proxybase import ProxyDbBase
 from gen.utils import Callback
 import config
 
@@ -35,7 +36,7 @@ class DbState(Callback):
     """
 
     __signals__ = {
-        'database-changed' : (DbBsddbRead, ), 
+        'database-changed' : ((DbBsddbRead, ProxyDbBase), ), 
         'no-database' :  None, 
         }
 
@@ -47,6 +48,7 @@ class DbState(Callback):
         Callback.__init__(self)
         self.db      = DbBsddbRead()
         self.open    = False
+        self.stack = []
 
     def change_database(self, database):
         """
@@ -94,3 +96,27 @@ class DbState(Callback):
         Get a reference to the current database.
         """
         return self.db
+
+    def apply_proxy(self, proxy, *args, **kwargs):
+        """
+        Add a proxy to the current database. Use pop_proxy() to
+        revert to previous db.
+
+        >>> dbstate.apply_proxy(gen.proxy.LivingProxyDb, 1)
+        >>> dbstate.apply_proxy(gen.proxy.PrivateProxyDb)
+        """
+        self.stack.append(self.db)
+        self.db = proxy(self.db, *args, **kwargs)
+        self.emit('database-changed', (self.db, ))
+        
+    def pop_proxy(self):
+        """
+        Remove the previously applied proxy.
+
+        >>> dbstate.apply_proxy(gen.proxy.LivingProxyDb, 1)
+        >>> dbstate.pop_proxy()
+        >>> dbstate.apply_proxy(gen.proxy.PrivateProxyDb)
+        >>> dbstate.pop_proxy()
+        """
+        self.db = self.stack.pop()
+        self.emit('database-changed', (self.db, ))
