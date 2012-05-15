@@ -32,7 +32,7 @@
 <form method="post">{% csrf_token %}
 <tr>
  <td class="ColumnAttribute">{{form.surname.label}}:</td>
- <td class="ColumnValue" id="data">{% render form.surname user action %}</td>
+ <td class="ColumnValue" id="data">{% render form.surname user action False "" "get_focus" %}</td>
  <td class="ColumnAttribute">{{form.prefix.label}}:</td>
  <td class="ColumnValue" id="data">{% render form.prefix user action %}</td>
 </tr>
