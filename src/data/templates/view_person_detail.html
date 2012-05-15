@@ -25,10 +25,9 @@
     {% for error in nameform.errors %}
        Error in name: {{error}}<br>
     {% endfor %}
-    <form method="post">{% csrf_token %}
   {% endifequal %}
 {% endif %}
-
+<form method="post">{% csrf_token %}
 <tr>
  <td colspan="4">{{nameform|render_name:user}}</td>
  <td class="ColumnAttribute" align="right">{{nameform.name_type.label}}:</td>
@@ -124,20 +123,19 @@
   </div>
 </div>
 
+{% make_button "Back to People" "/person" %}
 {% if user.is_authenticated %}
   {% ifequal action "edit" %}
     {% make_button "Back to Person" "/person/%s" person.handle %}
     <input type="hidden" name="action" value="save"/>
-    <input type="submit" value="Submit"/>
-    </form>
+    <input type="submit" value="Save"/>
   {% else %}
-{% make_button "Back to People" "/person/" %}
-{% make_button "Add Person" "/person/add" %}
-{% make_button "Edit Person" "/person/%s/edit" person.handle %}
-{% make_button "Delete Person" "/person/%s/delete" person.handle %}
+    {% make_button "Edit Person" "/person/%s/edit" person.handle %}
+    {% make_button "Add Person" "/person/add" %}
+    {% make_button "Delete Person" "/person/%s/delete" person.handle %}
   {% endifequal %}
 {% else %}
 {% endif %}
-
+</form>
 {% endblock %}
 

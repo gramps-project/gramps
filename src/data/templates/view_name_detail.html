@@ -27,14 +27,14 @@
     {% for error in form.errors %}
        {{error}}<br>
     {% endfor %}
-    <form method="post">{% csrf_token %}
   {% endifequal %}
 {% endif %}
+<form method="post">{% csrf_token %}
 <tr>
  <td class="ColumnAttribute">{{form.surname.label}}:</td>
- <td class="ColumnValue" id="data"></td>
+ <td class="ColumnValue" id="data">{% render form.surname user action %}</td>
  <td class="ColumnAttribute">{{form.prefix.label}}:</td>
- <td class="ColumnValue" id="data"></td>
+ <td class="ColumnValue" id="data">{% render form.prefix user action %}</td>
 </tr>
 <tr>
  <td class="ColumnAttribute">{{form.first_name.label}}:</td>
@@ -71,7 +71,8 @@
 <div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
   <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
     <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tab-general">General</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-names">Names</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-surnames">Surnames</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-names">Other Names</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-sources">Sources</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Notes</a></li>
   </ul>
@@ -96,6 +97,9 @@
     </div>
     &nbsp;
   </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-surnames">
+    {% surname_table person user action "/person/%s/name/%s/surname" person.handle form.model.order %}
+  </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-names">
     {% name_table person user action "/person/%s/name" person.handle %}
   </div>
@@ -108,18 +112,26 @@
   </div>
 </div>
 
-[<a href="/person/{{person.handle}}/">Back to Person</a>]
+<input type="button" 
+       value="Back to Person"
+       onclick="document.location.href='/person/{{person.handle}}'"/>
 {% if user.is_authenticated %}
   {% ifequal action "edit" %}
     <input type="hidden" name="action" value="save"/>
-    <input type="submit" value="Submit"/>
-    </form>
+    <input type="submit" value="Save"/>
   {% else %}
-[<a href="/person/{{person.handle}}/name/{{order}}/edit">Edit Name</a>]
-[<a href="/person/{{person.handle}}/name/{{order}}/delete">Delete Name</a>]
-[<a href="/person/{{person.handle}}/name/add">Add Name</a>]
+    <input type="button" 
+	   value="Edit Name"
+	   onclick="document.location.href='/person/{{person.handle}}/name/{{order}}/edit'"/>
+    <input type="button" 
+	   value="Add Name"
+	   onclick="document.location.href='/person/{{person.handle}}/name/add'"/>
+    <input type="button" 
+	   value="Delete Name"
+	   onclick="document.location.href='/person/{{person.handle}}/name/{{order}}/delete'"/>
   {% endifequal %}
 {% else %}
 {% endif %}
+</form>
 {% endblock %}
 

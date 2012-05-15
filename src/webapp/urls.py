@@ -40,7 +40,8 @@ admin.autodiscover()
 
 from webapp.grampsdb.views import (main_page, user_page, logout_page, 
                                    process_action, view, view_detail, 
-                                   view_name_detail, browse_page)
+                                   view_name_detail, view_surname_detail,
+                                   browse_page)
 
 urlpatterns = patterns('',
     # Specific matches first:
@@ -76,6 +77,8 @@ urlpatterns += patterns('',
     (r'^(?P<view>(\w+))/(?P<handle>(\w+))/$', view_detail),
     (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))$', view_name_detail),
     (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/(?P<action>(\w+))$', view_name_detail),
+    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/surname/(?P<sorder>(\w+))$', view_surname_detail),
+    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/surname/(?P<sorder>(\w+))/(?P<action>(\w+))$', view_surname_detail),
     (r'^(?P<view>(\w+))/(?P<handle>(\w+))/(?P<action>(\w+))$', process_action),
     (r'^favicon\.ico$', 'django.views.generic.simple.redirect_to', {'url': '/styles/images/favicon.ico'}),
 )
