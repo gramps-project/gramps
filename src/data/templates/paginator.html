@@ -1,16 +1,17 @@
 <div class="pagination">
     <span class="step-links">
+        <form method="post">{% csrf_token %}
         <div id="alphanav" style="padding: 0pt 0 0pt 0;">
         <ul>
         {% ifequal page.number 1 %}
-        <li>first</li>
+        <li><input type="button" value="<<" disabled="disabled"></li>
         {% else %}
-        <li><a href="?page=1{{search_query}}">first</a></li>
+        <li><input type="button" value="<<" onclick="document.location.href='?page=1{{search_query}}'"></li>
 	{% endifequal %}
         {% if page.has_previous %}
-            <li><a href="?page={{page.previous_page_number}}{{search_query}}">previous</a></li>
+            <li><input type="button" value="<" onclick="document.location.href='?page={{page.previous_page_number}}{{search_query}}'"></li>
 	{% else %}
-            <li>previous</li>
+            <li><input type="button" value="<" disabled="disabled"></li>
         {% endif %}
 
         <span class="current">
@@ -18,14 +19,14 @@
         </span>
 
         {% if page.has_next %}
-            <li><a href="?page={{ page.next_page_number }}{{search_query}}">next</a></li>
+            <li><input type="button" value=">" onclick="document.location.href='?page={{page.next_page_number}}{{search_query}}'"></li>
 	{% else %}
-            <li>next</li>
+            <li><input type="button" value=">" disabled="disabled"></li>
         {% endif %}
         {% ifequal page.number page.paginator.num_pages %}
-        <li>last</li>
+        <li><input type="button" value=">>" disabled="disabled"></li>
         {% else %}
-        <li><a href="?page={{page.paginator.num_pages}}{{search_query}}">last</a></li>
+        <li><input type="button" value=">>" onclick="document.location.href='?page={{page.paginator.num_pages}}{{search_query}}'"></li>
 	{% endifequal %}
 	<b>Matches</b>: {{page.paginator.count}}/{{total}} <b>Showing</b>: {{results_this_page}}
 	</ul>
