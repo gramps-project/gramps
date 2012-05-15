@@ -27,14 +27,11 @@
 # *****************************************************************************
 import os
 import datetime
-import calendar
 import time
 from PIL import Image
 
 # abilty to escape certain characters from output
 from xml.sax.saxutils import escape as _html_escape
-
-from itertools import chain
 
 from decimal import Decimal, getcontext
 getcontext().prec = 6
@@ -71,8 +68,6 @@ import Utils
 from PlaceUtils import conv_lat_lon
 
 from gen.db import DbTxn
-
-from ListModel import ListModel
 
 import pyexiv2
 
