@@ -599,7 +599,8 @@ def display_date(obj):
     else:
         return ""
 
-def render(formfield, user, action, test=False, truetext=""):
+def render(formfield, user, action, test=False, truetext="", id=None):
+    #import pdb; pdb.set_trace()
     if not user.is_authenticated():
         action = "view"
     if action == "view":
@@ -610,13 +611,16 @@ def render(formfield, user, action, test=False, truetext=""):
             except:
                 # name, "prefix"
                 try:
-                    retval = str(getattr(formfield.form, fieldname)) # formfield._data()
+                    retval = str(formfield.form.data[fieldname]) # formfield._data()
                 except:
                     retval = "XXX"
         else:
             retval = truetext
     else:
-        retval = formfield.as_widget()
+        if id != None:
+            retval = formfield.as_widget(attrs={"id": id})
+        else:
+            retval = formfield.as_widget()
     return retval
 
 def render_name(name, user):
