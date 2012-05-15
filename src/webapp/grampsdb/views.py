@@ -500,10 +500,13 @@ def view_person_detail(request, view, handle, action="view"):
                 name = person.name_set.get(preferred=True)
             except:
                 name = Name(person=person, preferred=True)
-            primary_surname = name.surname_set.get(primary=True)
+            try:
+                primary_surname = name.surname_set.get(primary=True)
+            except:
+                primary_surname = Surname(name=name, primary=True)
             default_data = {"surname": primary_surname.surname, 
-                            "prefix": primary_surname.prefix or "prefix",
-                            "suffix": name.suffix or "suffix",
+                            "prefix": primary_surname.prefix or " prefix ",
+                            "suffix": name.suffix or " suffix ",
                             "first_name": name.first_name,
                             "name_type": name.name_type,
                             "title": name.title,
@@ -532,8 +535,16 @@ def view_person_detail(request, view, handle, action="view"):
             except:
                 person = Person(handle=create_id())
             if person.id: # editing
-                name = person.name_set.get(preferred=True)
-                surname = name.surname_set.get(primary=True)
+                try:
+                    name = person.name_set.get(preferred=True)
+                except:
+                    name = Name(person=person, preferred=True)
+                    name.save()
+                try:
+                    surname = name.surname_set.get(primary=True)
+                except:
+                    surname = Surname(name=name, primary=True)
+                    name.surname_set = [surname]
             else: # adding a new person with new name
                 name = Name(person=person, preferred=True)
                 surname = Surname(name=name, primary=True)
@@ -544,32 +555,38 @@ def view_person_detail(request, view, handle, action="view"):
             nf.model = name
             if nf.is_valid() and pf.is_valid():
                 surname.surname = nf.cleaned_data["surname"]
-                surname.prefix = nf.cleaned_data["prefix"]
-                surname.suffix = nf.cleaned_data["suffix"]
+                surname.prefix = nf.cleaned_data["prefix"] if nf.cleaned_data["prefix"] != " prefix " else ""
+                name.suffix = nf.cleaned_data["suffix"] if nf.cleaned_data["suffix"] != " suffix " else ""
                 person = pf.save()
                 name = nf.save(commit=False)
                 name.person = person
-                name.save()
                 surname.save()
+                name.save()
             else:
                 action = "edit"
         else: # view
+            # get all of the data:
             person = Person.objects.get(handle=handle)
             try:
                 name = person.name_set.get(preferred=True)
             except:
-                return fix_person(request, person)
+                name = Name(person=person, preferred=True)
+            try:
+                primary_surname = name.surname_set.get(primary=True)
+            except:
+                primary_surname = Surname(name=name, primary=True)
+            default_data = {"surname": primary_surname.surname, 
+                            "prefix": primary_surname.prefix or " prefix ",
+                            "suffix": name.suffix or " suffix ",
+                            "first_name": name.first_name,
+                            "name_type": name.name_type,
+                            "title": name.title,
+                            "nick": name.nick,
+                            "call": name.call,
+                            }
             pf = PersonForm(instance=person)
             pf.model = person
-            nf = NameForm(instance=name)
-            try:
-                primary = name.surname_set.get(primary=True)
-            except:
-                primary = Surname()
-                primary.name = name
-            nf.prefix=primary.prefix
-            nf.surname=primary.surname
-            nf.origin=primary.name_origin_type
+            nf = NameForm(default_data, instance=name)
             nf.model = name
     else: # view person detail
         # BEGIN NON-AUTHENTICATED ACCESS

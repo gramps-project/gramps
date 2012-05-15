@@ -57,29 +57,37 @@ class NameForm(forms.ModelForm):
                             widget=TextInput(attrs={'size':'15'}))
     prefix = forms.CharField(label="Prefix",
                              required=False, 
-                             initial='prefix',
+                             initial=' prefix ',
                              widget=TextInput(attrs={'size':'15',
                                                      'style': 'font-style: italic; color: gray; ',
-                                                     'onFocus': """if (this.value == 'prefix') {this.value = ''; 
-                                                                                                this.style.color = "black"; 
-                                                                                                this.style.fontStyle = 'normal';
-                                                                                               }""",
-                                                     'onBlur': """if (this.value == '') {this.value = 'prefix'; 
-                                                                                         this.style.color = "gray"; 
-                                                                                         this.style.fontStyle = 'italic';
-                                                                                         }"""}))
+                                                     'onFocus': """if (this.value == ' prefix ') {
+                                                                      this.value = ''; 
+                                                                   }
+                                                                   this.style.color = "black"; 
+                                                                   this.style.fontStyle = 'normal';
+                                                                """,
+                                                     'onBlur': """if (this.value == '') {
+                                                                     this.value = ' prefix '; 
+                                                                     this.style.color = "gray"; 
+                                                                     this.style.fontStyle = 'italic';
+                                                                   }
+                                                                """}))
     suffix = forms.CharField(required=False, 
-                             initial='suffix',
+                             initial=' suffix ',
                              widget=TextInput(attrs={'size':'15',
                                                      'style': 'font-style: italic; color: gray; ',
-                                                     'onFocus': """if (this.value == 'suffix') {this.value = ''; 
-                                                                                                this.style.color = "black"; 
-                                                                                                this.style.fontStyle = 'normal';
-                                                                                               }""",
-                                                     'onBlur': """if (this.value == '') {this.value = 'suffix'; 
-                                                                                         this.style.color = "gray"; 
-                                                                                         this.style.fontStyle = 'italic';
-                                                                                         }"""}))
+                                                     'onFocus': """if (this.value == ' suffix ') {
+                                                                      this.value = ''; 
+                                                                   }
+                                                                   this.style.color = "black"; 
+                                                                   this.style.fontStyle = 'normal';
+                                                                """,
+                                                     'onBlur': """if (this.value == '') {
+                                                                     this.value = ' suffix '; 
+                                                                     this.style.color = "gray"; 
+                                                                     this.style.fontStyle = 'italic';
+                                                                  }
+                                                               """}))
     call = forms.CharField(label="Call", 
                            required=False, 
                            widget=TextInput(attrs={'size':'15'}))
@@ -87,7 +95,7 @@ class NameForm(forms.ModelForm):
                            required=False, 
                            widget=TextInput(attrs={'size':'15'}))
     origin = forms.CharField(required=False, 
-                               widget=TextInput(attrs={'size':'15'}))
+                             widget=TextInput(attrs={'size':'15'}))
 
 class NameFormFromPerson(NameForm):
     class Meta:
