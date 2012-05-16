@@ -17,7 +17,8 @@ pkgpython_PYTHON = \
 	geoplaces.py \
 	geoperson.py \
 	geofamily.py \
-        geofamclose.py \
+    geofamclose.py \
+    geomoves.py \
 	geography.gpr.py \
 	htmlrenderer.gpr.py \
 	grampletview.py \
