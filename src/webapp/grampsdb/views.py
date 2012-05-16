@@ -523,31 +523,25 @@ def view_person_detail(request, view, handle, action="view"):
                     surname = name.surname_set.get(primary=True)
                 except:
                     surname = Surname(name=name, primary=True)
-                    name.surname_set = [surname]
             else: # adding a new person with new name
                 name = Name(person=person, preferred=True)
                 surname = Surname(name=name, primary=True)
-                name.surname_set = [surname]
             pf = PersonForm(request.POST, instance=person)
             pf.model = person
             nf = NameFormFromPerson(request.POST, instance=name)
             nf.model = name
             if nf.is_valid() and pf.is_valid():
-                name.suffix = nf.cleaned_data["suffix"] if nf.cleaned_data["suffix"] != " suffix " else ""
-                name.title = nf.cleaned_data["title"]
-                name.nick = nf.cleaned_data["nick"]
-                name.name_type = nf.cleaned_data["name_type"]
-                name.call = nf.cleaned_data["call"]
-                name.first_name = nf.cleaned_data["first_name"]
-
+                person = pf.save()
+                name = nf.save(commit=False)
+                # Manually set any name data:
+                name.preferred = True # FIXME: why is this False?
+                name.save()
+                # Manually set surname data:
                 surname.surname = nf.cleaned_data["surname"]
                 surname.prefix = nf.cleaned_data["prefix"] if nf.cleaned_data["prefix"] != " prefix " else ""
-
-                pf.save()
-                nf.save(commit=False)
+                surname.name = name
                 surname.save()
-                import pdb; pdb.set_trace()
-                #name.save() # FIXME: why this get rid of name.person?
+                # FIXME: last_saved, last_changed, last_changed_by
                 # FIXME: update cache
                 # FIXME: update probably_alive
                 return redirect("/person/%s" % person.handle)

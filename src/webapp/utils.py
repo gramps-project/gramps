@@ -607,11 +607,11 @@ def render(formfield, user, action, test=False, truetext="", id=None):
         if (not user.is_authenticated() and not test) or user.is_authenticated():
             fieldname = formfield.name # 'surname'
             try:
-                retval = "1:" + str(getattr(formfield.form.model, fieldname))
+                retval = str(getattr(formfield.form.model, fieldname))
             except:
                 # name, "prefix"
                 try:
-                    retval = "2:" + str(formfield.form.data[fieldname]) # formfield._data()
+                    retval = str(formfield.form.data[fieldname]) # formfield._data()
                 except:
                     retval = "[ERROR: %s]" % fieldname
         else:

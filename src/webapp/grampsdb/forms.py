@@ -101,6 +101,7 @@ class NameFormFromPerson(NameForm):
     class Meta:
         model = Name
         # Exclude these, so they don't get checked:
+        # Excludes sort_as and display_as
         exclude = ["order", "calendar", "modifier", 
                    "quality",
                    #"quality_estimated", "quality_calculated", 
@@ -108,3 +109,4 @@ class NameFormFromPerson(NameForm):
                    "year1", "day1", "month1",
                    "sortval", "newyear", "person",
                    "sort_as", "display_as"]
+
