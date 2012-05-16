@@ -325,9 +325,9 @@ def source_table(obj, user, action, url=None, *args):
                 if citation_ref.citation.source:
                     source = citation_ref.citation.source
                     table.row(source,
-                              source_ref.ref_object.title,
-                              source_ref.ref_object.author,
-                              source_ref.page,
+                              source.title,
+                              source.author,
+                              citation_ref.citation.page,
                               )
     retval += table.get_html()
     if user.is_authenticated() and url and action == "view":

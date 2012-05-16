@@ -94,8 +94,8 @@ class NameForm(forms.ModelForm):
     nick = forms.CharField(label="Nick", 
                            required=False, 
                            widget=TextInput(attrs={'size':'15'}))
-    origin = forms.CharField(required=False, 
-                             widget=TextInput(attrs={'size':'15'}))
+
+    name_origin_type = forms.ChoiceField()
 
 class NameFormFromPerson(NameForm):
     class Meta:

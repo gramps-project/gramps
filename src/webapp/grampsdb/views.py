@@ -587,6 +587,7 @@ def get_person_forms(handle, protect=False, empty=False):
                     "suffix": make_empty(empty, name.suffix, " suffix "),
                     "first_name": name.first_name,
                     "name_type": name.name_type,
+                    "name_origin_type": primary_surname.name_origin_type,
                     "title": name.title,
                     "nick": name.nick,
                     "call": name.call,
