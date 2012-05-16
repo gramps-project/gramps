@@ -829,6 +829,7 @@ class MediaRef(BaseRef):
         return "MediaRef to " + str(self.ref_object)
 
 class Report(models.Model):
+    gramps_id = models.TextField(blank=True, null=True)
     name = models.TextField(blank=True, null=True)
     handle = models.TextField(blank=True, null=True) # report_id
     report_type = models.TextField(blank=True, null=True)

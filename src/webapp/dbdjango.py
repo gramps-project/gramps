@@ -156,6 +156,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         self.undo_history_callback = None
         self.modified   = 0
         self.txn = DjangoTxn("DbDjango Transaction", self)
+        self.transaction = None
         # Import cache for gedcom import, uses transactions, and
         # two step adding of objects.
         self.import_cache = {}

@@ -157,22 +157,25 @@ breadcrumb.is_safe = True
 register.filter('breadcrumb', breadcrumb)
 
 def format(string, arg0=None, arg1=None, arg2=None, arg3=None, arg4=None, arg5=None, arg6=None):
-    if arg0 is None:
+    try:
+        if arg0 is None:
+            return string
+        elif arg1 is None:
+            return string % arg0
+        elif arg2 is None:
+            return string % (arg0, arg1)
+        elif arg3 is None:
+            return string % (arg0, arg1, arg2)
+        elif arg4 is None:
+            return string % (arg0, arg1, arg2, arg3)
+        elif arg5 is None:
+            return string % (arg0, arg1, arg2, arg3, arg4)
+        elif arg6 is None:
+            return string % (arg0, arg1, arg2, arg3, arg4, arg5)
+        else:
+            return string % (arg0, arg1, arg2, arg3, arg4, arg5, arg6)
+    except:
         return string
-    elif arg1 is None:
-        return string % arg0
-    elif arg2 is None:
-        return string % (arg0, arg1)
-    elif arg3 is None:
-        return string % (arg0, arg1, arg2)
-    elif arg4 is None:
-        return string % (arg0, arg1, arg2, arg3)
-    elif arg5 is None:
-        return string % (arg0, arg1, arg2, arg3, arg4)
-    elif arg6 is None:
-        return string % (arg0, arg1, arg2, arg3, arg4, arg5)
-    else:
-        return string % (arg0, arg1, arg2, arg3, arg4, arg5, arg6)
 format.is_safe = True
 register.simple_tag(format)
 

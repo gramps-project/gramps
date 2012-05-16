@@ -22,6 +22,8 @@
 """ Main view handlers """
 
 import os
+import cPickle
+import base64
 
 #------------------------------------------------------------------------
 #
@@ -45,6 +47,9 @@ import webapp
 from webapp.grampsdb.models import *
 from webapp.grampsdb.forms import *
 from webapp.dbdjango import DbDjango
+from webapp.libdjango import DjangoInterface
+
+dji = DjangoInterface()
 
 import gen.proxy
 from Utils import create_id
@@ -532,6 +537,7 @@ def view_person_detail(request, view, handle, action="view"):
             nf.model = name
             sf = SurnameForm(request.POST, instance=surname)
             if nf.is_valid() and pf.is_valid() and sf.is_valid():
+                # name.preferred and surname.primary get set False in the above is_valid()
                 person = pf.save()
                 # Process data:
                 name = nf.save(commit=False)
@@ -546,7 +552,10 @@ def view_person_detail(request, view, handle, action="view"):
                 surname.primary = True # FIXME: why is this False?
                 surname.save()
                 # FIXME: last_saved, last_changed, last_changed_by
-                # FIXME: update cache
+                # FIXME: update cache:
+                raw = dji.get_person(person)
+                person.cache = base64.encodestring(cPickle.dumps(raw))
+                person.save()
                 # FIXME: update probably_alive
                 return redirect("/person/%s" % person.handle)
             else: # not valid, try again:
