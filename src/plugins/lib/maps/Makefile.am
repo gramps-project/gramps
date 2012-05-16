@@ -3,6 +3,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/plugins/lib/maps
 
 pkgpython_PYTHON = \
 	constants.py\
+	datelayer.py\
 	dummylayer.py\
 	dummynogps.py\
 	geography.py\
