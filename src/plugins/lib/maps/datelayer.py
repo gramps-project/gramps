@@ -1,0 +1,154 @@
+# -*- python -*-
+# -*- coding: utf-8 -*-
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2011-2012       Serge Noiraud
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
+# $Id: grampsmaps.py 18399 2011-11-02 17:15:20Z noirauds $
+
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
+import os
+import gobject
+import operator
+from math import *
+
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+_LOG = logging.getLogger("maps.datelayer")
+
+#-------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+#-------------------------------------------------------------------------
+import gtk
+
+#-------------------------------------------------------------------------
+#
+# Gramps Modules
+#
+#-------------------------------------------------------------------------
+import const
+import cairo
+
+#-------------------------------------------------------------------------
+#
+# osmGpsMap
+#
+#-------------------------------------------------------------------------
+
+try:
+    import osmgpsmap
+except:
+    raise
+
+class DateLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
+    """
+    This is the layer used to display the two extreme dates on the top left of the view
+    """
+    def __init__(self):
+        """
+        Initialize the layer
+        """
+        gobject.GObject.__init__(self)
+        self.first = "    "
+        self.last = "    "
+        self.color = "black"
+        self.font = "Arial"
+        self.size = 36
+
+    def clear_dates(self):
+        """
+        reset the layer attributes.
+        """
+        self.first = "    "
+        self.last = "    "
+        self.color = "black"
+        self.font = "Arial"
+        self.size = 36
+
+    def set_font_attributes(self, font, size, color):
+        """
+        Set the font color, size and name
+        """
+        self.color = color
+        self.font = font
+        self.size = size
+
+    def add_date(self, date):
+        """
+        Add a date
+        """
+        if date == "    " or date == "0000" or date == "9999":
+            return
+        if date < self.first or self.first == "    ":
+            self.first = date
+        if date > self.last or self.last == "    ":
+            self.last = date
+
+    def do_draw(self, gpsmap, drawable):
+        """
+        Draw the two extreme dates
+        """
+        ctx = drawable.cairo_create()
+        ctx.select_font_face(self.font,
+                             cairo.FONT_SLANT_NORMAL,
+                             cairo.FONT_WEIGHT_NORMAL)
+        ctx.set_font_size(int(self.size))
+        color = gtk.gdk.color_parse(self.color)
+        ctx.set_source_rgba(float(color.red / 65535.0),
+                            float(color.green / 65535.0),
+                            float(color.blue / 65535.0),
+                            0.6) # transparency
+        coord_x = 10
+        coord_y = 15 + 2*int(self.size) # Display the oldest date
+        ctx.move_to(coord_x, coord_y)
+        ctx.show_text(self.first)
+        coord_y = 15 + 3*int(self.size) # Display the newest date
+        ctx.move_to(coord_x, coord_y)
+        ctx.show_text(self.last)
+
+    def do_render(self, gpsmap):
+        """
+        render the layer
+        """
+        pass
+
+    def do_busy(self):
+        """
+        set the layer busy
+        """
+        return False
+
+    def do_button_press(self, gpsmap, gdkeventbutton):
+        """
+        When we press a button.
+        """
+        return False
+
+gobject.type_register(DateLayer)
+

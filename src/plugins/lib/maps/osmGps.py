@@ -56,6 +56,7 @@ from dummylayer import DummyLayer
 from dummynogps import DummyMapNoGpsPoint
 from selectionlayer import SelectionLayer
 from lifewaylayer import LifeWayLayer
+from datelayer import DateLayer
 from gen.ggettext import sgettext as _
 from config import config
 from QuestionDialog import ErrorDialog
@@ -83,6 +84,7 @@ class OsmGps():
         self.zone_selection = False
         self.selection_layer = None
         self.lifeway_layer = None
+        self.date_layer = None
         self.context_id = 0
         self.begin_selection = None
         self.end_selection = None
@@ -136,6 +138,7 @@ class OsmGps():
         self.osm.layer_add(DummyLayer())
         self.selection_layer = self.add_selection_layer()
         self.lifeway_layer = self.add_lifeway_layer()
+        self.date_layer = self.add_date_layer()
         self.cross_map = osmgpsmap.GpsMapOsd( show_crosshair=False)
         self.set_crosshair(config.get("geography.show_cross"))
         self.osm.set_center_and_zoom(config.get("geography.center-lat"),
@@ -163,6 +166,20 @@ class OsmGps():
         get the selection layer
         """
         return self.selection_layer
+
+    def add_date_layer(self):
+        """
+        add the track or life ways layer
+        """
+        date_layer = DateLayer()
+        self.osm.layer_add(date_layer)
+        return date_layer
+
+    def get_date_layer(self):
+        """
+        get the track or life ways layer
+        """
+        return self.date_layer
 
     def add_lifeway_layer(self):
         """
