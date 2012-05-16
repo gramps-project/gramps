@@ -495,7 +495,7 @@ def view_person_detail(request, view, handle, action="view"):
         action = request.POST.get("action")
     if request.user.is_authenticated():
         if action == "edit":
-            pf, nf, person = get_person_forms(handle, empty=True)
+            pf, nf, sf, person = get_person_forms(handle, empty=True)
         elif action == "add":
             # make new data:
             person = Person()
@@ -530,16 +530,20 @@ def view_person_detail(request, view, handle, action="view"):
             pf.model = person
             nf = NameFormFromPerson(request.POST, instance=name)
             nf.model = name
-            if nf.is_valid() and pf.is_valid():
+            sf = SurnameForm(request.POST, instance=surname)
+            if nf.is_valid() and pf.is_valid() and sf.is_valid():
                 person = pf.save()
+                # Process data:
                 name = nf.save(commit=False)
-                # Manually set any name data:
+                # Manually set any data:
+                name.suffix = nf.cleaned_data["suffix"] if nf.cleaned_data["suffix"] != " suffix " else ""
                 name.preferred = True # FIXME: why is this False?
                 name.save()
-                # Manually set surname data:
-                surname.surname = nf.cleaned_data["surname"]
-                surname.prefix = nf.cleaned_data["prefix"] if nf.cleaned_data["prefix"] != " prefix " else ""
-                surname.name = name
+                # Process data:
+                surname = sf.save(commit=False)
+                # Manually set any data:
+                surname.prefix = sf.cleaned_data["prefix"] if sf.cleaned_data["prefix"] != " prefix " else ""
+                surname.primary = True # FIXME: why is this False?
                 surname.save()
                 # FIXME: last_saved, last_changed, last_changed_by
                 # FIXME: update cache
@@ -548,7 +552,7 @@ def view_person_detail(request, view, handle, action="view"):
             else: # not valid, try again:
                 action = "edit"
         else: # view
-            pf, nf, person = get_person_forms(handle)
+            pf, nf, sf, person = get_person_forms(handle)
     else: # view person detail
         # BEGIN NON-AUTHENTICATED ACCESS
         try:
@@ -557,13 +561,14 @@ def view_person_detail(request, view, handle, action="view"):
             raise Http404(_("Requested %s does not exist.") % view)
         if person.private:
             raise Http404(_("Requested %s is not accessible.") % view)
-        pf, nf, person = get_person_forms(handle, protect=True)
+        pf, nf, sf, person = get_person_forms(handle, protect=True)
         # END NON-AUTHENTICATED ACCESS
     context["action"] = action
     context["view"] = view
     context["tview"] = _("Person")
     context["personform"] = pf
     context["nameform"] = nf
+    context["surnameform"] = sf
     context["person"] = person
     context["object"] = person
     context["next"] = "/person/%s" % person.handle
@@ -577,26 +582,20 @@ def get_person_forms(handle, protect=False, empty=False):
     except:
         name = Name(person=person, preferred=True)
     try:
-        primary_surname = name.surname_set.get(primary=True)
+        surname = name.surname_set.get(primary=True)
     except:
-        primary_surname = Surname(name=name, primary=True)
+        surname = Surname(name=name, primary=True)
     if protect and person.probably_alive:
         name.sanitize()
-    default_data = {"surname": primary_surname.surname, 
-                    "prefix": make_empty(empty, primary_surname.prefix, " prefix "),
-                    "suffix": make_empty(empty, name.suffix, " suffix "),
-                    "first_name": name.first_name,
-                    "name_type": name.name_type,
-                    "name_origin_type": primary_surname.name_origin_type,
-                    "title": name.title,
-                    "nick": name.nick,
-                    "call": name.call,
-                    }
     pf = PersonForm(instance=person)
     pf.model = person
-    nf = NameForm(default_data, instance=name)
+    name.suffix = make_empty(empty, name.suffix, " suffix ")
+    nf = NameForm(instance=name)
     nf.model = name
-    return pf, nf, person
+    surname.prefix = make_empty(empty, surname.prefix, " prefix ")
+    sf = SurnameForm(instance=surname)
+    sf.model = surname
+    return pf, nf, sf, person
 
 def make_empty(empty, value, empty_value):
     if value:

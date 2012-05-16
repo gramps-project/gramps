@@ -25,6 +25,9 @@
     {% for error in nameform.errors %}
        Error in name: {{error}}<br>
     {% endfor %}
+    {% for error in surnameform.errors %}
+       Error in surname: {{error}}<br>
+    {% endfor %}
   {% endifequal %}
 {% endif %}
 <form method="post">{% csrf_token %}
@@ -47,11 +50,11 @@
  <td class="ColumnValue" id="data">{% render nameform.suffix user action %}</td>
 </tr>
 <tr>
- <td class="ColumnAttribute" align="right">{{nameform.surname.label}}:</td>
- <td class="ColumnValue" id="data">{% render nameform.prefix user action %}</td>
- <td class="ColumnValue" id="data" colspan="2">{% render nameform.surname user action %}</td>
- <td class="ColumnAttribute" align="right">{{nameform.name_origin_type.label}}:</td>
- <td class="ColumnValue" id="data" colspan="2">{% render nameform.name_origin_type user action %}</td>
+ <td class="ColumnAttribute" align="right">{{surnameform.surname.label}}:</td>
+ <td class="ColumnValue" id="data">{% render surnameform.prefix user action %}</td>
+ <td class="ColumnValue" id="data" colspan="2">{% render surnameform.surname user action %}</td>
+ <td class="ColumnAttribute" align="right">{{surnameform.name_origin_type.label}}:</td>
+ <td class="ColumnValue" id="data" colspan="2">{% render surnameform.name_origin_type user action %}</td>
 </tr>
 <tr>
  <td class="ColumnAttribute" align="right">{{personform.gender_type.label}}:</td>
