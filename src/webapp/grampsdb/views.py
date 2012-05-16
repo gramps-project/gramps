@@ -486,7 +486,8 @@ def view_person_detail(request, view, handle, action="view"):
     context["tview"] = _("Person")
     context["tviews"] = _("People")
     if handle == "add":
-        if request.POST.has_key("action"):
+        # FIXME: what should handle be then?
+        if request.POST.has_key("action"): # save
             action = request.POST.get("action")
         else:
             action = "add"
@@ -494,29 +495,7 @@ def view_person_detail(request, view, handle, action="view"):
         action = request.POST.get("action")
     if request.user.is_authenticated():
         if action == "edit":
-            # get all of the data:
-            person = Person.objects.get(handle=handle)
-            try:
-                name = person.name_set.get(preferred=True)
-            except:
-                name = Name(person=person, preferred=True)
-            try:
-                primary_surname = name.surname_set.get(primary=True)
-            except:
-                primary_surname = Surname(name=name, primary=True)
-            default_data = {"surname": primary_surname.surname, 
-                            "prefix": primary_surname.prefix or " prefix ",
-                            "suffix": name.suffix or " suffix ",
-                            "first_name": name.first_name,
-                            "name_type": name.name_type,
-                            "title": name.title,
-                            "nick": name.nick,
-                            "call": name.call,
-                            }
-            pf = PersonForm(instance=person)
-            pf.model = person
-            nf = NameForm(default_data, instance=name)
-            nf.model = name
+            pf, nf, person = get_person_forms(handle, empty=True)
         elif action == "add":
             # make new data:
             person = Person()
@@ -554,58 +533,38 @@ def view_person_detail(request, view, handle, action="view"):
             nf = NameFormFromPerson(request.POST, instance=name)
             nf.model = name
             if nf.is_valid() and pf.is_valid():
+                name.suffix = nf.cleaned_data["suffix"] if nf.cleaned_data["suffix"] != " suffix " else ""
+                name.title = nf.cleaned_data["title"]
+                name.nick = nf.cleaned_data["nick"]
+                name.name_type = nf.cleaned_data["name_type"]
+                name.call = nf.cleaned_data["call"]
+                name.first_name = nf.cleaned_data["first_name"]
+
                 surname.surname = nf.cleaned_data["surname"]
                 surname.prefix = nf.cleaned_data["prefix"] if nf.cleaned_data["prefix"] != " prefix " else ""
-                name.suffix = nf.cleaned_data["suffix"] if nf.cleaned_data["suffix"] != " suffix " else ""
-                person = pf.save()
-                name = nf.save(commit=False)
-                name.person = person
+
+                pf.save()
+                nf.save(commit=False)
                 surname.save()
-                name.save()
-            else:
+                import pdb; pdb.set_trace()
+                #name.save() # FIXME: why this get rid of name.person?
+                # FIXME: update cache
+                # FIXME: update probably_alive
+                return redirect("/person/%s" % person.handle)
+            else: # not valid, try again:
                 action = "edit"
         else: # view
-            # get all of the data:
-            person = Person.objects.get(handle=handle)
-            try:
-                name = person.name_set.get(preferred=True)
-            except:
-                name = Name(person=person, preferred=True)
-            try:
-                primary_surname = name.surname_set.get(primary=True)
-            except:
-                primary_surname = Surname(name=name, primary=True)
-            default_data = {"surname": primary_surname.surname, 
-                            "prefix": primary_surname.prefix or " prefix ",
-                            "suffix": name.suffix or " suffix ",
-                            "first_name": name.first_name,
-                            "name_type": name.name_type,
-                            "title": name.title,
-                            "nick": name.nick,
-                            "call": name.call,
-                            }
-            pf = PersonForm(instance=person)
-            pf.model = person
-            nf = NameForm(default_data, instance=name)
-            nf.model = name
+            pf, nf, person = get_person_forms(handle)
     else: # view person detail
         # BEGIN NON-AUTHENTICATED ACCESS
-        person = Person.objects.get(handle=handle)
-        if person:
-            if person.private:
-                raise Http404(_("Requested %s is not accessible.") % view)
-            name = person.name_set.get(preferred=True)
-            if person.probably_alive:
-                name.sanitize()
-        else:
+        try:
+            person = Person.objects.get(handle=handle)
+        except:
             raise Http404(_("Requested %s does not exist.") % view)
-        pf = PersonForm(instance=person)
-        pf.model = person
-        nf = NameForm(instance=name)
-        nf.model = name
+        if person.private:
+            raise Http404(_("Requested %s is not accessible.") % view)
+        pf, nf, person = get_person_forms(handle, protect=True)
         # END NON-AUTHENTICATED ACCESS
-    if action == "save":
-        return redirect("/person/%s" % person.handle)
     context["action"] = action
     context["view"] = view
     context["tview"] = _("Person")
@@ -616,6 +575,41 @@ def view_person_detail(request, view, handle, action="view"):
     context["next"] = "/person/%s" % person.handle
     view_template = 'view_person_detail.html'
     return render_to_response(view_template, context)
+
+def get_person_forms(handle, protect=False, empty=False):
+    person = Person.objects.get(handle=handle)
+    try:
+        name = person.name_set.get(preferred=True)
+    except:
+        name = Name(person=person, preferred=True)
+    try:
+        primary_surname = name.surname_set.get(primary=True)
+    except:
+        primary_surname = Surname(name=name, primary=True)
+    if protect and person.probably_alive:
+        name.sanitize()
+    default_data = {"surname": primary_surname.surname, 
+                    "prefix": make_empty(empty, primary_surname.prefix, " prefix "),
+                    "suffix": make_empty(empty, name.suffix, " suffix "),
+                    "first_name": name.first_name,
+                    "name_type": name.name_type,
+                    "title": name.title,
+                    "nick": name.nick,
+                    "call": name.call,
+                    }
+    pf = PersonForm(instance=person)
+    pf.model = person
+    nf = NameForm(default_data, instance=name)
+    nf.model = name
+    return pf, nf, person
+
+def make_empty(empty, value, empty_value):
+    if value:
+        return value
+    elif empty:
+        return empty_value
+    else:
+        return value
 
 def view(request, view):
     context = RequestContext(request)
