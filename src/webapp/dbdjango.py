@@ -960,31 +960,40 @@ class DbDjango(DbWriteBase, DbReadBase):
         return obj.handle
 
     def commit_person(self, person, trans, change_time=None):
-        self.import_cache[person.handle] = person
+        if person.handle not in self.import_cache:
+            self.import_cache[person.handle] = person
 
     def commit_family(self, family, trans, change_time=None):
-        self.import_cache[family.handle] = family
+        if family.handle not in self.import_cache:
+            self.import_cache[family.handle] = family
 
     def commit_citation(self, citation, trans, change_time=None):
-        self.import_cache[citation.handle] = citation
+        if citation.handle not in self.import_cache:
+            self.import_cache[citation.handle] = citation
 
     def commit_source(self, source, trans, change_time=None):
-        self.import_cache[source.handle] = source
+        if source.handle not in self.import_cache:
+            self.import_cache[source.handle] = source
 
     def commit_repository(self, repository, trans, change_time=None):
-        self.import_cache[repository.handle] = repository
+        if repository.handle not in self.import_cache:
+            self.import_cache[repository.handle] = repository
 
     def commit_note(self, note, trans, change_time=None):
-        self.import_cache[note.handle] = note
+        if note.handle not in self.import_cache:
+            self.import_cache[note.handle] = note
 
     def commit_place(self, place, trans, change_time=None):
-        self.import_cache[place.handle] = place
+        if place.handle not in self.import_cache:
+            self.import_cache[place.handle] = place
 
     def commit_event(self, event, trans, change_time=None):
-        self.import_cache[event.handle] = event
+        if event.handle not in self.import_cache:
+            self.import_cache[event.handle] = event
 
     def commit_tag(self, tag, trans, change_time=None):
-        self.import_cache[tag.handle] = tag
+        if tag.handle not in self.import_cache:
+            self.import_cache[tag.handle] = tag
 
     def commit_media_object(self, obj, transaction, change_time=None):
         """

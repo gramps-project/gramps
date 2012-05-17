@@ -65,7 +65,7 @@ def import_file(db, filename, callback):
                     etype, exception, traceback = error_tuple
                     print "ERROR:", name, exception
                 return False
-            import_function = getattr(mod, pdata.import_function)
+            retval = import_function = getattr(mod, pdata.import_function)
             db.prepare_import()
             import_function(db, filename, callback)
             db.commit_import()
@@ -73,7 +73,7 @@ def import_file(db, filename, callback):
             for person in Person.objects.all():
                 person.probably_alive = not bool(person.death)
                 person.save()
-            return True
+            return retval
     return False
 
 def download(url, filename=None):
