@@ -464,6 +464,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         try:
             self.env.open(env_name, env_flags)
         except Exception, msg:
+            _LOG.warning("Error opening db environment: " + str(msg))
             try:
                 self.__close_early()
             except:
