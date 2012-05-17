@@ -1,5 +1,9 @@
 # Initialize GRAMPS Django site
 
+empty:
+	rm sqlite.db
+	sqlite3 sqlite.db < empty.sql
+
 update: grampsdb/fixtures/initial_data.json
 	PYTHONPATH=../../src python manage.py syncdb
 
