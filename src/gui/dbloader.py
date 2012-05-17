@@ -61,6 +61,7 @@ import Utils
 from gui.pluginmanager import GuiPluginManager
 from QuestionDialog import (DBErrorDialog, ErrorDialog, QuestionDialog2, 
                             WarningDialog)
+from gui.user import User
 import Errors
 
 #-------------------------------------------------------------------------
@@ -241,7 +242,7 @@ class DbLoader(CLIDbLoader):
             #an importer can return an object with info, object.info_text() 
             #returns that info. Otherwise None is set to import_info
             self.import_info = importer(self.dbstate.db, filename,
-                            self._pulse_progress)
+                            User(callback=self._pulse_progress))
             dirname = os.path.dirname(filename) + os.path.sep
             config.set('paths.recent-import-dir', dirname)
         except UnicodeError, msg:

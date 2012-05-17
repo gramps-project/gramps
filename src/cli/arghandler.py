@@ -53,6 +53,7 @@ from clidbman import CLIDbManager, NAME_FILE, find_locker_name
 from gen.plug import BasePluginManager
 from gen.plug.report import CATEGORY_BOOK, CATEGORY_CODE
 from cli.plug import cl_report
+from cli.user import User
 
 #-------------------------------------------------------------------------
 #
@@ -291,11 +292,12 @@ class ArgHandler(object):
                     except EOFError:
                         print
                         sys.exit(0)
-                if ans.upper() in ('Y', 'YES', _('YES').upper()):
-                    self.__error( _("Will overwrite the existing file: %s") 
-                                    % fullpath)
-                else:
-                    sys.exit(0)
+                    if ans.upper() in ('Y', 'YES', _('YES').upper()):
+                        self.__error( _("Will overwrite the existing file: %s") 
+                                      % fullpath)
+                        answer = "ok"
+                    else:
+                        sys.exit(0)
 
         if family_tree_format is None:
             # Guess the file format based on the file extension.
@@ -538,7 +540,7 @@ class ArgHandler(object):
         for plugin in pmgr.get_import_plugins():
             if family_tree_format == plugin.get_extension():
                 import_function = plugin.get_import_function()
-                import_function(self.dbstate.db, filename, None)
+                import_function(self.dbstate.db, filename, User())
         
         if not self.cl:
             if self.imp_db_path:

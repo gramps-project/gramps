@@ -51,7 +51,6 @@ import Utils
 from gui.utils import ProgressMeter
 import gen.lib
 from gen.db import DbTxn
-from QuestionDialog import ErrorDialog
 
 class ProgenError(Exception):
     """Error used to report Progen errors."""
@@ -63,21 +62,21 @@ class ProgenError(Exception):
         return self.value
 
 
-def _importData(database, filename, cb=None):
+def _importData(database, filename, user):
 
     try:
         g = ProgenParser(database, filename)
     except IOError, msg:
-        ErrorDialog(_("%s could not be opened") % filename, str(msg))
+        user.notify_error(_("%s could not be opened") % filename, str(msg))
         return
 
     try:
         status = g.parse_progen_file()
     except ProgenError, msg:
-        ErrorDialog(_("Pro-Gen data error"), str(msg))
+        user.notify_error(_("Pro-Gen data error"), str(msg))
         return
     except IOError, msg:
-        ErrorDialog(_("%s could not be opened") % filename, str(msg))
+        user.notify_error(_("%s could not be opened") % filename, str(msg))
         return
 
 

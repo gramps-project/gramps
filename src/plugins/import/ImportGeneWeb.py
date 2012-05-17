@@ -49,7 +49,6 @@ LOG = logging.getLogger(".ImportGeneWeb")
 import Errors
 import gen.lib
 from gen.db import DbTxn
-from QuestionDialog import ErrorDialog
 from htmlentitydefs import name2codepoint
 
 _date_parse = re.compile('([kmes~?<>]+)?([0-9/]+)([J|H|F])?(\.\.)?([0-9/]+)?([J|H|F])?')
@@ -72,21 +71,21 @@ _cal_map = {
 #
 #
 #-------------------------------------------------------------------------
-def importData(database, filename, cb=None):
+def importData(database, filename, user):
 
     global callback
 
     try:
         g = GeneWebParser(database,filename)
     except IOError,msg:
-        ErrorDialog(_("%s could not be opened\n") % filename,str(msg))
+        user.notify_error(_("%s could not be opened\n") % filename,str(msg))
         return
 
     try:
         status = g.parse_geneweb_file()
     except IOError,msg:
         errmsg = _("%s could not be opened\n") % filename
-        ErrorDialog(errmsg,str(msg))
+        user.notify_error(errmsg,str(msg))
         return
 
 #-------------------------------------------------------------------------

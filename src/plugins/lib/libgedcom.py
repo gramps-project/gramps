@@ -1770,9 +1770,9 @@ class GedcomParser(UpdateCallback):
                 name.set_first_name(text.strip())
         return name
 
-    def __init__(self, dbase, ifile, filename, callback, stage_one, 
+    def __init__(self, dbase, ifile, filename, user, stage_one, 
                  default_source):
-        UpdateCallback.__init__(self, callback)
+        UpdateCallback.__init__(self, user.callback)
 
         self.set_total(stage_one.get_line_count())
         self.repo2id = {}

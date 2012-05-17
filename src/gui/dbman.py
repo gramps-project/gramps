@@ -38,6 +38,7 @@ import copy
 import subprocess
 import urlparse
 from gen.ggettext import gettext as _
+from gui.user import User
 #-------------------------------------------------------------------------
 #
 # set up logging
@@ -510,7 +511,7 @@ class DbManager(CLIDbManager):
         dbase.load(new_path, None)
         
         self.__start_cursor(_("Importing archive..."))
-        check_out(dbase, revision, db_path, None)
+        check_out(dbase, revision, db_path, User())
         self.__end_cursor()
         dbase.close()
 
@@ -805,7 +806,7 @@ def find_revisions(name):
 
 
 
-def check_out(dbase, rev, path, callback):
+def check_out(dbase, rev, path, user):
     """
     Checks out the revision from rcs, and loads the resulting XML file
     into the database.
@@ -820,7 +821,7 @@ def check_out(dbase, rev, path, callback):
     del proc
 
     if status != 0:
-        ErrorDialog(
+        user.notify_error(
             _("Retrieve failed"),
             _("An attempt to retrieve the data failed "
               "with the following message:\n\n%s") % message
@@ -833,7 +834,7 @@ def check_out(dbase, rev, path, callback):
             rdr = plugin.get_import_function()
 
     xml_file = os.path.join(path, ARCHIVE)
-    rdr(dbase, xml_file, callback)
+    rdr(dbase, xml_file, user)
     os.unlink(xml_file)
 
 def check_in(dbase, filename, callback, cursor_func = None):

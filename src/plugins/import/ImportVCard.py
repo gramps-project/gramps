@@ -52,24 +52,23 @@ import Errors
 import gen.lib
 from gen.db import DbTxn
 from gen.plug.utils import OpenFileOrStdin
-from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------
 #
 # Support Functions
 #
 #-------------------------------------------------------------------------
-def importData(database, filename, cb_progress=None):
+def importData(database, filename, user):
     """Function called by Gramps to import data on persons in VCard format."""
     parser = VCardParser(database)
     try:
         with OpenFileOrStdin(filename) as filehandle:
             parser.parse(filehandle)
     except EnvironmentError, msg:
-        ErrorDialog(_("%s could not be opened\n") % filename, str(msg))
+        user.notify_error(_("%s could not be opened\n") % filename, str(msg))
         return
     except Errors.GrampsImportError, msg:
-        ErrorDialog(_("%s could not be opened\n") % filename, str(msg))
+        user.notify_error(_("%s could not be opened\n") % filename, str(msg))
         return
     return None # This module doesn't provide info about what got imported.
 

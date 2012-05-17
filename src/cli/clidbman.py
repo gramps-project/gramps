@@ -281,7 +281,7 @@ class CLIDbManager(object):
         """
         return self.create_new_db_cli(title)
 
-    def import_new_db(self, filename, callback):
+    def import_new_db(self, filename, user):
         """
         Attempt to import the provided file into a new database.
         A new database will only be created if an appropriate importer was 
@@ -321,10 +321,10 @@ class CLIDbManager(object):
                 self.__start_cursor(_("Importing data..."))
                 dbclass = gen.db.DbBsddb
                 dbase = dbclass()
-                dbase.load(new_path, callback)
+                dbase.load(new_path, user.callback)
     
                 import_function = plugin.get_import_function()
-                import_function(dbase, filename, callback)
+                import_function(dbase, filename, user)
     
                 # finish up
                 self.__end_cursor()

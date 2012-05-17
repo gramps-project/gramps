@@ -44,7 +44,6 @@ LOG = logging.getLogger(".GedcomImport")
 #
 #------------------------------------------------------------------------
 import Errors
-from QuestionDialog import ErrorDialog, DBErrorDialog
 from glade import Glade
 from libmixin import DbMixin
 import libgedcom
@@ -58,7 +57,7 @@ import config
 # importData
 #
 #-------------------------------------------------------------------------
-def importData(database, filename, callback=None):
+def importData(database, filename, user):
     """
     Try to handle ANSEL encoded files that are not really ANSEL encoded
     """
@@ -107,14 +106,14 @@ def importData(database, filename, callback=None):
             stage_one.set_encoding(code_set)
         ifile.seek(0)
         gedparse = libgedcom.GedcomParser(
-                            database, ifile, filename, callback, stage_one, 
+                            database, ifile, filename, user, stage_one, 
                             config.get('preferences.default-source'))
     except IOError, msg:
-        ErrorDialog(_("%s could not be opened\n") % filename, str(msg))
+        user.notify_error(_("%s could not be opened\n") % filename, str(msg))
         return
     except Errors.GedcomError, msg:
-        ErrorDialog(_("Invalid GEDCOM file"), 
-                    _("%s could not be imported") % filename + "\n" + str(msg))
+        user.notify_error(_("Invalid GEDCOM file"), 
+                          _("%s could not be imported") % filename + "\n" + str(msg))
         return
 
     try:
@@ -125,11 +124,11 @@ def importData(database, filename, callback=None):
         ifile.close()
     except IOError, msg:
         msg = _("%s could not be opened\n") % filename
-        ErrorDialog(msg, str(msg))
+        user.notify_error(msg, str(msg))
         return
     except Errors.DbError, msg:
-        DBErrorDialog(str(msg.value))
+        user.notify_db_error(str(msg.value))
         return
     except Errors.GedcomError, msg:
-        ErrorDialog(_('Error reading GEDCOM file'), str(msg))
+        user.notify_error(_('Error reading GEDCOM file'), str(msg))
         return

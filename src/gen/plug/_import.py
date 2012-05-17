@@ -39,13 +39,12 @@ class ImportPlugin(Plugin):
         @type description: string
         @param import_function: A function to call to perform the import.
             The function must take the form:
-                def import_function(db, filename, callback):
+                def import_function(db, filename, user):
             where:
                 "db" is a Gramps database to import the data into
                 "filename" is the file that contains data to be imported
-                "callback" is a callable object that takes two parameters.
-                    The first parameter is a progress indicator.
-                    The second parameter is a text string.
+                "user" is an instance of the User class implementing
+                       GUI functions (callbacks, errors, warnings, etc)
         @type import_function: callable
         @param extension: The extension for the files imported by this plugin.
             Example: "ged"

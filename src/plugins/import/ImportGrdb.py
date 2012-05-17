@@ -35,7 +35,6 @@ LOG = logging.getLogger(".Db")
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------
 #
@@ -53,17 +52,8 @@ _DBVERSION = 14
 # http://gramps.1791082.n4.nabble.com/Status-of-GEPS-023-tp4329141p4329746.html 
 #
 #-------------------------------------------------------------------------
-def importData(database, filename, callback=None, cl=0):
-    if cl:
-        LOG.warn("Error: %s could not be opened.\n%s  Exiting." \
-              % (filename, 
-                 _("The database version is not supported "
-                   "by this version of Gramps.\n"\
-                   "Please upgrade to the corresponding version "
-                   "or use XML for porting data between different "
-                   "database versions.")))
-    else:
-        ErrorDialog(_("%s could not be opened") % filename, 
+def importData(database, filename, user):
+    user.notify_error(_("%s could not be opened") % filename, 
                     _("The Database version is not supported "
                       "by this version of Gramps."
                       "You should use an old copy of Gramps at "

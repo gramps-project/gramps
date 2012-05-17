@@ -41,11 +41,11 @@ import os
 # db = dbdjango.DbDjango()
 # run_report(db, "ancestor_report", off="txt", of="ar.txt", pid="I0363")
 
-def import_file(db, filename, callback):
+def import_file(db, filename, user):
     """
     Import a file (such as a GEDCOM file) into the given db.
 
-    >>> import_file(DbDjango(), "/home/user/Untitled_1.ged", lambda a: a)
+    >>> import_file(DbDjango(), "/home/user/Untitled_1.ged", User())
     """
     from grampsdb.models import Person
     dbstate = DbState.DbState()
@@ -67,7 +67,7 @@ def import_file(db, filename, callback):
                 return False
             retval = import_function = getattr(mod, pdata.import_function)
             db.prepare_import()
-            import_function(db, filename, callback)
+            import_function(db, filename, user)
             db.commit_import()
             # FIXME: need to call probably_alive
             for person in Person.objects.all():

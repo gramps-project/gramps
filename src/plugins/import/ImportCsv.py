@@ -52,7 +52,6 @@ from gen.ggettext import ngettext
 import gen.lib
 from gen.db import DbTxn
 from gen.plug.utils import OpenFileOrStdin
-from QuestionDialog import ErrorDialog
 from DateHandler import parser as _dp
 from Utils import gender as gender_map
 from Utils import create_id
@@ -138,14 +137,14 @@ def rd(line_number, row, col, key, default = None):
     else:
         return default
 
-def importData(dbase, filename, callback=None):
+def importData(dbase, filename, user):
     """Function called by Gramps to import data on persons in CSV format."""
-    parser = CSVParser(dbase, callback)
+    parser = CSVParser(dbase, user)
     try:
         with OpenFileOrStdin(filename, 'b') as filehandle:
             parser.parse(filehandle)
     except EnvironmentError, err:
-        ErrorDialog(_("%s could not be opened\n") % filename, str(err))
+        user.notify_error(_("%s could not be opened\n") % filename, str(err))
         return
     return None # This module doesn't provide info about what got imported.
 
@@ -156,9 +155,9 @@ def importData(dbase, filename, callback=None):
 #-------------------------------------------------------------------------
 class CSVParser(object):
     """Class to read data in CSV format from a file object."""
-    def __init__(self, dbase, callback):
+    def __init__(self, dbase, user):
         self.db = dbase
-        self.callback = callback
+        self.user = user
         self.trans = None
         self.lineno = 0
         self.index = 0

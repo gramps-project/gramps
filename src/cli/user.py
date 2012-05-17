@@ -55,9 +55,10 @@ class User(gen.user.User):
     This class provides a means to interact with the user via CLI.
     It implements the interface in gen.user.User()
     """
-    def __init__(self):
+    def __init__(self, callback=None):
         self.steps = 0;
         self.current_step = 0;
+        self.callback_function = callback
     
     def begin_progress(self, title, message, steps):
         """
@@ -92,6 +93,15 @@ class User(gen.user.User):
         else:
             percent = int((float(self.current_step) / self.steps) * 100)
             sys.stdout.write("\r%02d%%" % percent)
+
+    def callback(self, percent):
+        """
+        Display progress meter.
+        """
+        if self.callback_function:
+            self.callback_function(percent)
+        else:
+            sys.stdout.write("\r%02d%%" % percent)
     
     def end_progress(self):
         """
@@ -113,7 +123,7 @@ class User(gen.user.User):
         """
         return False
     
-    def warn(self, title, warning):
+    def warn(self, title, warning=""):
         """
         Warn the user.
         
@@ -125,7 +135,7 @@ class User(gen.user.User):
         """
         print "%s %s" % (title, warning)
     
-    def notify_error(self, title, error):
+    def notify_error(self, title, error=""):
         """
         Notify the user of an error.
         
@@ -135,4 +145,19 @@ class User(gen.user.User):
         @type error: str
         @returns: none
         """
-        print "%s %s" % (title, warning)
+        print "%s %s" % (title, error)
+
+    def notify_db_error(self, error):
+        """
+        Notify the user of a DB error.
+        
+        @param error: the error message
+        @type error: str
+        @returns: none
+        """
+        self.notify_error(
+            _("Low level database corruption detected"),
+            _("Gramps has detected a problem in the underlying "
+              "Berkeley database. This can be repaired from "
+              "the Family Tree Manager. Select the database and "
+              'click on the Repair button') + '\n\n' + error)

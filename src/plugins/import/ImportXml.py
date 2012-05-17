@@ -43,7 +43,6 @@ LOG = logging.getLogger(".ImportXML")
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-from QuestionDialog import ErrorDialog, WarningDialog
 import gen.mime
 import gen.lib
 from gen.db import DbTxn
@@ -95,10 +94,7 @@ INSTANTIATED = 1
 # Must takes care of renaming media files according to their new IDs.
 #
 #-------------------------------------------------------------------------
-def importData(database, filename, callback=None):
-##    return Utils.profile(importDataPro, database, filename, callback, cl)
-##def importDataPro(database, filename, callback=None, cl=0):
-
+def importData(database, filename, user):
     filename = os.path.normpath(filename)
     basefile = os.path.dirname(filename)
     database.smap = {}
@@ -107,7 +103,7 @@ def importData(database, filename, callback=None):
     line_cnt = 0
     person_cnt = 0
     
-    with ImportOpenFileContextManager(filename) as xml_file:
+    with ImportOpenFileContextManager(filename, user) as xml_file:
         if xml_file is None:
             return
     
@@ -115,7 +111,7 @@ def importData(database, filename, callback=None):
             change = time.time()
         else:
             change = os.path.getmtime(filename)
-        parser = GrampsParser(database, callback, change)
+        parser = GrampsParser(database, user, change)
 
         if filename != '-':
             linecounter = LineParser(filename)
@@ -128,15 +124,15 @@ def importData(database, filename, callback=None):
         try:
             info = parser.parse(xml_file, line_cnt, person_cnt)
         except GrampsImportError, err: # version error
-            ErrorDialog(*err.messages())
+            user.notify_error(*err.messages())
             return
         except IOError, msg:
-            ErrorDialog(_("Error reading %s") % filename, str(msg))
+            user.notify_error(_("Error reading %s") % filename, str(msg))
             import traceback
             traceback.print_exc()
             return
         except ExpatError, msg:
-            ErrorDialog(_("Error reading %s") % filename, 
+            user.notify_error(_("Error reading %s") % filename, 
                         _("The file is probably either corrupt or not a "
                           "valid Gramps database."))
             return
@@ -377,9 +373,10 @@ class ImportOpenFileContextManager:
     """
     Context manager to open a file or stdin for reading.
     """
-    def __init__(self, filename):
+    def __init__(self, filename, user):
         self.filename = filename
         self.filehandle = None
+        self.user = user
 
     def __enter__(self):
         if self.filename == '-':
@@ -418,10 +415,10 @@ class ImportOpenFileContextManager:
             else:
                 xml_file = open(filename, "r")
         except IOError, msg:
-            ErrorDialog(_("%s could not be opened") % filename, str(msg))
+            self.user.notify_error(_("%s could not be opened") % filename, str(msg))
             xml_file = None
         except:
-            ErrorDialog(_("%s could not be opened") % filename)
+            self.user.notify_error(_("%s could not be opened") % filename)
             xml_file = None
             
         return xml_file
@@ -433,8 +430,9 @@ class ImportOpenFileContextManager:
 #-------------------------------------------------------------------------
 class GrampsParser(UpdateCallback):
 
-    def __init__(self, database, callback, change):
-        UpdateCallback.__init__(self, callback)
+    def __init__(self, database, user, change):
+        UpdateCallback.__init__(self, user.callback)
+        self.user = user
         self.__gramps_version = 'unknown'
         self.__xml_version = '1.0.0'
         self.stext_list = []
@@ -894,7 +892,7 @@ class GrampsParser(UpdateCallback):
                 if not oldpath:
                     self.db.set_mediapath(self.mediapath)
                 elif not oldpath == self.mediapath:
-                    ErrorDialog(_("Could not change media path"), 
+                    self.user.notify_error(_("Could not change media path"), 
                         _("The opened file has media path %s, which conflicts with"
                           " the media path of the family tree you import into. "
                           "The original media path has been retained. Copy the "
@@ -997,7 +995,7 @@ class GrampsParser(UpdateCallback):
                         'newgramps': const.VERSION,
                         'xmlversion': self.__xml_version,
                         }
-            WarningDialog(_('Old xml file'), msg)
+            self.user.warn(_('Old xml file'), msg)
 
     def start_lds_ord(self, attrs):
         self.ord = gen.lib.LdsOrd()
@@ -1599,7 +1597,7 @@ class GrampsParser(UpdateCallback):
                     msg = _('Your family tree groups name "%(key)s" together'
                             ' with "%(parent)s", did not change this grouping to "%(value)s".') % {
                             'key' : key, 'parent' : present, 'value' : value }
-                    WarningDialog(_("Gramps ignored namemap value"), msg)
+                    self.user.warn(_("Gramps ignored namemap value"), msg)
             else:
                 self.db.set_name_group_mapping(key, value)
 

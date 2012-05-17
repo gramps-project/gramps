@@ -48,7 +48,6 @@ log = logging.getLogger(".ReadPkg")
 #-------------------------------------------------------------------------
 import const
 import ImportXml
-from QuestionDialog import ErrorDialog, WarningDialog
 import Utils
 
 #-------------------------------------------------------------------------
@@ -56,7 +55,7 @@ import Utils
 #
 #
 #-------------------------------------------------------------------------
-def impData(database, name, cb=None):
+def impData(database, name, user):
     # Create tempdir, if it does not exist, then check for writability
     #     THE TEMP DIR is named as the filname.gpkg.media and is created
     #     in the mediapath dir of the family tree we import to
@@ -69,16 +68,16 @@ def impData(database, name, cb=None):
         try:
             os.mkdir(tmpdir_path, 0700)
         except:
-            ErrorDialog( _("Could not create media directory %s") % 
+            user.notify_error( _("Could not create media directory %s") % 
                          tmpdir_path )
             return
     elif not os.access(tmpdir_path, os.W_OK):
-        ErrorDialog(_("Media directory %s is not writable") % tmpdir_path)
+        user.notify_error(_("Media directory %s is not writable") % tmpdir_path)
         return
     else:    
         # mediadir exists and writable -- User could have valuable stuff in
         # it, have him remove it!
-        ErrorDialog(_("Media directory %s exists. Delete it first, then"
+        user.notify_error(_("Media directory %s exists. Delete it first, then"
                       " restart the import process") % tmpdir_path)
         return
     try:
@@ -87,13 +86,13 @@ def impData(database, name, cb=None):
             archive.extract(tarinfo, tmpdir_path)
         archive.close()
     except:
-        ErrorDialog(_("Error extracting into %s") % tmpdir_path)
+        user.notify_error(_("Error extracting into %s") % tmpdir_path)
         return
 
     imp_db_name = os.path.join(tmpdir_path, const.XMLFILE)  
 
     importer = ImportXml.importData
-    info = importer(database, imp_db_name, cb)
+    info = importer(database, imp_db_name, user)
     newmediapath = database.get_mediapath()
     #import of gpkg should not change media path as all media has new paths!
     if not oldmediapath == newmediapath :
@@ -102,7 +101,7 @@ def impData(database, name, cb=None):
     # Set correct media dir if possible, complain if problems
     if oldmediapath is None:
         database.set_mediapath(tmpdir_path)
-        WarningDialog(
+        user.warn(
                 _("Base path for relative media set"),
                 _("The base media path of this family tree has been set to "
                     "%s. Consider taking a simpler path. You can change this "
@@ -112,7 +111,7 @@ def impData(database, name, cb=None):
                     " correct paths in your media objects."
                  ) % tmpdir_path)
     else:
-        WarningDialog(
+        user.warn(
                 _("Cannot set base media path"),
                 _("The family tree you imported into already has a base media "
                     "path: %(orig_path)s. The imported media objects however "
