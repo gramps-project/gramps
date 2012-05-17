@@ -32,40 +32,45 @@
 {% endif %}
 <form method="post">{% csrf_token %}
 <tr>
- <td colspan="4">{{nameform|render_name:user}}</td>
- <td class="ColumnAttribute" align="right">{{nameform.name_type.label}}:</td>
+ <td colspan="4" id="subtitle">{{nameform|render_name:user}}</td>
+ <td class="ColumnAttribute">{{nameform.name_type.label}}:</td>
  <td class="ColumnValue" id="data">{% render nameform.name_type user action %}</td>
 </tr>
+<tr><td id="rowspace"></td></tr>
 <tr>
- <td class="ColumnAttribute" align="right">{{nameform.title.label}}:</td>
+ <td class="ColumnAttribute">{{nameform.title.label}}:</td>
  <td class="ColumnValue" id="data">{% render nameform.title user action False "" "get_focus" %}</td>
- <td class="ColumnAttribute" align="right">{{nameform.nick.label}}:</td>
+ <td class="ColumnAttribute">{{nameform.nick.label}}:</td>
  <td class="ColumnValue" id="data">{% render nameform.nick user action %}</td>
- <td class="ColumnAttribute" align="right">{{nameform.call.label}}:</td>
+ <td class="ColumnAttribute">{{nameform.call.label}}:</td>
  <td class="ColumnValue" id="data">{% render nameform.call user action %}</td>
 </tr>
+<tr><td id="rowspace"></td></tr>
 <tr>
- <td class="ColumnAttribute" align="right">{{nameform.first_name.label}}:</td>
+ <td class="ColumnAttribute">{{nameform.first_name.label}}:</td>
  <td class="ColumnValue" id="data" colspan="4">{% render nameform.first_name user action %}</td>
  <td class="ColumnValue" id="data">{% render nameform.suffix user action %}</td>
 </tr>
+<tr><td id="rowspace"></td></tr>
 <tr>
- <td class="ColumnAttribute" align="right">{{surnameform.surname.label}}:</td>
+ <td class="ColumnAttribute">{{surnameform.surname.label}}:</td>
  <td class="ColumnValue" id="data">{% render surnameform.prefix user action %}</td>
  <td class="ColumnValue" id="data" colspan="2">{% render surnameform.surname user action %}</td>
- <td class="ColumnAttribute" align="right">{{surnameform.name_origin_type.label}}:</td>
+ <td class="ColumnAttribute">{{surnameform.name_origin_type.label}}:</td>
  <td class="ColumnValue" id="data" colspan="2">{% render surnameform.name_origin_type user action %}</td>
 </tr>
+<tr><td id="rowspace"></td></tr>
 <tr>
- <td class="ColumnAttribute" align="right">{{personform.gender_type.label}}:</td>
+ <td class="ColumnAttribute">{{personform.gender_type.label}}:</td>
  <td class="ColumnValue" id="data">{% render personform.gender_type user action %}</td>
- <td class="ColumnAttribute" align="right">{{personform.gramps_id.label}}:</td>
+ <td class="ColumnAttribute">{{personform.gramps_id.label}}:</td>
  <td class="ColumnValue" id="data">{% render personform.gramps_id user action %}</td>
- <td class="ColumnAttribute" align="right">{{personform.tags.label}}:</td>
- <td class="ColumnValue" id="data" rowspan="2">{% render personform.tags user action %}</td>
+ <td class="ColumnAttribute">{{personform.tags.label}}:</td>
+ <td class="ColumnValue" id="data" rowspan="3">{% render personform.tags user action %}</td>
 </tr>
+<tr><td id="rowspace"></td></tr>
 <tr>
- <td class="ColumnAttribute" align="right">{{personform.private.label}}:</td>
+ <td class="ColumnAttribute">{{personform.private.label}}:</td>
  <td class="ColumnValue" id="data">{% render personform.private user action %}</td>
 </tr>
 </tbody>
