@@ -19,8 +19,8 @@
     {% endblock %}
 </head>
 <body onload="if (document.getElementById('get_focus')) {document.getElementById('get_focus').focus();}">
-   <div id="header">
-     <h1 id="SiteTitle">{% block heading %}Gramps-Connect{% endblock %}</h1>
+   <div id="header" style="padding-top: 1em; background-position:0px -32px;">
+     <h1 id="SiteTitle" style="margin-left: 0em;">{% block heading %}Gramps-Connect{% endblock %}</h1>
    </div>
    <div class="wrapper" role="navigation" id="nav">
     {% block navigation %}
@@ -83,7 +83,7 @@
     <p id="createdate">
       Gramps Connect, version {{gramps_version}}.
     </p>
-    <p id="copyright">&copy; 2009-2011 <a href="http://www.gramps-project.org/">www.gramps-project.org</a> 
+    <p id="copyright">&copy; 2009-2012 <a href="http://www.gramps-project.org/">www.gramps-project.org</a> 
     </p>
     {% endblock %}
    </div>
