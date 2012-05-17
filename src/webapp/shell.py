@@ -15,4 +15,4 @@ db = DbDjango()
 def Print(m):
     print m
 
-import_file(db, "/tmp/dblank-im_ged.ged", Print)
+#import_file(db, "/tmp/dblank-im_ged.ged", Print)

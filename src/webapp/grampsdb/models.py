@@ -69,7 +69,8 @@ def get_default_type(the_type):
     return the_type.objects.get(val=val, name=name)
 
 def get_datamap(grampsclass):
-    return [(x[0],x[2]) for x in grampsclass._DATAMAP]
+    return sorted([(x[0],x[2]) for x in grampsclass._DATAMAP], 
+                  key=lambda item: item[1])
 
 #---------------------------------------------------------------------------
 #
