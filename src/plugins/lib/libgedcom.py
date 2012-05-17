@@ -122,7 +122,7 @@ import LdsUtils
 import Utils
 from DateHandler._DateParser import DateParser
 from gen.db.dbconst import EVENT_KEY
-from QuestionDialog import WarningDialog, InfoDialog
+from QuestionDialog import WarningDialog
 from gen.lib.const import IDENTICAL, DIFFERENT
 from gen.lib import (StyledText, StyledTextTag, StyledTextTagType)
 
@@ -1773,7 +1773,7 @@ class GedcomParser(UpdateCallback):
     def __init__(self, dbase, ifile, filename, user, stage_one, 
                  default_source):
         UpdateCallback.__init__(self, user.callback)
-
+        self.user = user
         self.set_total(stage_one.get_line_count())
         self.repo2id = {}
         self.trans = None
@@ -2573,7 +2573,7 @@ class GedcomParser(UpdateCallback):
         else:
             message = _("GEDCOM import report: %s errors detected") % \
                 self.number_of_errors
-        InfoDialog(message, "".join(self.errors), monospaced=True)
+        self.user.info(message, "".join(self.errors), monospaced=True)
         
     def __find_person_handle(self, gramps_id):
         """

@@ -161,3 +161,10 @@ class User(gen.user.User):
               "Berkeley database. This can be repaired from "
               "the Family Tree Manager. Select the database and "
               'click on the Repair button') + '\n\n' + error)
+
+    def info(self, msg1, infotext, parent=None, monospaced=False):
+        """
+        Displays information to the CLI
+        """
+        print msg1
+        print infotext

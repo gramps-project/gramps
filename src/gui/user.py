@@ -38,7 +38,8 @@ import sys
 #-------------------------------------------------------------------------
 import gen.user
 from gui.utils import ProgressMeter
-from QuestionDialog import WarningDialog, ErrorDialog, DBErrorDialog
+from QuestionDialog import (WarningDialog, ErrorDialog, DBErrorDialog, 
+                            InfoDialog)
 
 #-------------------------------------------------------------------------
 #
@@ -145,3 +146,9 @@ class User(gen.user.User):
         @returns: none
         """
         DBErrorDialog(error)
+
+    def info(self, msg1, infotext, parent=None, monospaced=False):
+        """
+        Calls the GUI InfoDialog
+        """
+        InfoDialog(msg1, infotext, parent, monospaced)
