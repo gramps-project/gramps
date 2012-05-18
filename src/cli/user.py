@@ -95,10 +95,6 @@ class User(gen.user.User):
             percent = int((float(self.current_step) / self.steps) * 100)
             sys.stdout.write("\r%02d%%" % percent)
 
-    def callback(self, *args):
-        """
-        Display progress meter.
-        """
     def callback(self, percentage, text=None):
         """
         Display the precentage.
