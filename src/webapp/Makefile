@@ -1,9 +1,5 @@
 # Initialize GRAMPS Django site
 
-empty:
-	rm sqlite.db
-	sqlite3 sqlite.db < empty.sql
-
 update: grampsdb/fixtures/initial_data.json
 	PYTHONPATH=../../src python manage.py syncdb
 
@@ -35,6 +31,10 @@ docs:
 	python manage.py graph_models grampsdb -i Person,Family,Source,Event,Repository,Place,Media,Note,Attribute,Datamap,Name,Lds,Tag,Address,Location,Url -o docs/prim-sec-tables.png
 	python manage.py graph_models grampsdb -i Person,Family,Source,Event,Repository,Place,Media,Note,Attribute,Datamap,Name,Lds,Tag,Address,Location,Url -o docs/prim-sec-tables.png
 	python manage.py graph_models grampsdb -i Person,Family,Source,Event,Repository,Place,Media,Note,Attribute,Datamap,Name,Lds,Tag,Address,Location,Url,NoteRef,SourceRef,EventRef,RepositoryRef,PersonRef,ChildRef,MediaRef -o docs/prim-sec-ref-tables.png
+
+empty:
+	rm sqlite.db
+	sqlite3 sqlite.db < empty.sql
 
 clean:
 	rm -f sqlite.db
