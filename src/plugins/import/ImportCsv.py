@@ -244,7 +244,7 @@ class CSVParser(object):
         try:
             data = [[r.strip() for r in row] for row in reader]
         except csv.Error, err:
-            ErrorDialog(_('format error: line %(line)d: %(zero)s') % {
+            self.user.notify_error(_('format error: line %(line)d: %(zero)s') % {
                         'line' : reader.reader.line_num, 'zero' : err } )
             return None
         return data
