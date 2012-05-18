@@ -55,14 +55,12 @@ from glade import Glade
 import config
 
 class GeneWebWriter(object):
-    def __init__(self, database, filename, msg_callback, option_box=None,
-                 callback=None):
+    def __init__(self, database, filename, user, option_box=None):
         self.db = database
         self.filename = filename
-        self.msg_callback = msg_callback
+        self.user = user
         self.option_box = option_box
-        self.callback = callback
-        if callable(self.callback): # callback is really callable
+        if callable(self.user.callback): # callback is really callable
             self.update = self.update_real
         else:
             self.update = self.update_empty
@@ -82,7 +80,7 @@ class GeneWebWriter(object):
         self.count += 1
         newval = int(100*self.count/self.total)
         if newval != self.oldval:
-            self.callback(newval)
+            self.user.callback(newval)
             self.oldval = newval
 
     def writeln(self, text):
@@ -95,15 +93,15 @@ class GeneWebWriter(object):
             self.g = open(self.filename, "w")
         except IOError,msg:
             msg2 = _("Could not create %s") % self.filename
-            self.msg_callback(msg2, str(msg))
+            self.user.notify_error(msg2, str(msg))
             return False
         except:
-            self.msg_callback(_("Could not create %s") % self.filename)
+            self.user.notify_error(_("Could not create %s") % self.filename)
             return False
 
         self.flist = [x for x in self.db.iter_family_handles()]
         if len(self.flist) < 1:
-            self.msg_callback(_("No families matched by selected filter"))
+            self.notify_error(_("No families matched by selected filter"))
             return False
         
         self.count = 0
@@ -491,6 +489,6 @@ class GeneWebWriter(object):
 #
 #
 #-------------------------------------------------------------------------
-def exportData(database, filename, msg_callback, option_box=None, callback=None):
-    gw = GeneWebWriter(database, filename, msg_callback, option_box, callback)
+def exportData(database, filename, user, option_box=None):
+    gw = GeneWebWriter(database, filename, user, option_box)
     return gw.export_data()

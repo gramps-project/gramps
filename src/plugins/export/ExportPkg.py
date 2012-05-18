@@ -69,7 +69,7 @@ import constfunc
 # writeData
 #
 #-------------------------------------------------------------------------
-def writeData(database, filename, msg_callback, option_box=None, callback=None):
+def writeData(database, filename, user, option_box=None):
 
 # Rename file, if it exists already, with <filename>.bak
 # as it it for normal XML export.
@@ -85,7 +85,7 @@ def writeData(database, filename, msg_callback, option_box=None, callback=None):
         option_box.parse_options()
         database = option_box.get_filtered_database(database)
 
-    writer = PackageWriter(database, filename, msg_callback, callback)
+    writer = PackageWriter(database, filename, user)
     return writer.export()
     
 #-------------------------------------------------------------------------
@@ -95,91 +95,90 @@ def writeData(database, filename, msg_callback, option_box=None, callback=None):
 #-------------------------------------------------------------------------
 class PackageWriter(object):
 
-    def __init__(self, database, filename, msg_callback, callback=None):
+    def __init__(self, database, filename, user):
         self.db = database
-        self.callback = callback
-        self.msg_callback = msg_callback
+        self.user = user
         self.filename = filename
             
     def export(self):
 #        missmedia_action = 0
         #--------------------------------------------------------------
-        def remove_clicked():
-            # File is lost => remove all references and the object itself
-            for p_id in self.db.iter_family_handles():
-                p = self.db.get_family_from_handle(p_id)
-                nl = p.get_media_list()
-                for o in nl:
-                    if o.get_reference_handle() == m_id:
-                        nl.remove(o) 
-                p.set_media_list(nl)
-                self.db.commit_family(p,None)
-            for key in self.db.iter_person_handles():
-                p = self.db.get_person_from_handle(key)
-                nl = p.get_media_list()
-                for o in nl:
-                    if o.get_reference_handle() == m_id:
-                        nl.remove(o) 
-                p.set_media_list(nl)
-                self.db.commit_person(p,None)
-            for key in self.db.get_source_handles():
-                p = self.db.get_source_from_handle(key)
-                nl = p.get_media_list()
-                for o in nl:
-                    if o.get_reference_handle() == m_id:
-                        nl.remove(o) 
-                p.set_media_list(nl)
-                self.db.commit_source(p,None)
-            for key in self.db.get_place_handles():
-                p = self.db.get_place_from_handle(key)
-                nl = p.get_media_list()
-                for o in nl:
-                    if o.get_reference_handle() == m_id:
-                        nl.remove(o) 
-                p.set_media_list(nl)
-                self.db.commit_place(p,None)
-            for key in self.db.get_event_handles():
-                p = self.db.get_event_from_handle(key)
-                nl = p.get_media_list()
-                for o in nl:
-                    if o.get_reference_handle() == m_id:
-                        nl.remove(o) 
-                p.set_media_list(nl)
-                self.db.commit_event(p,None)
-            self.db.remove_object(m_id,None)
+        # def remove_clicked():
+        #     # File is lost => remove all references and the object itself
+        #     for p_id in self.db.iter_family_handles():
+        #         p = self.db.get_family_from_handle(p_id)
+        #         nl = p.get_media_list()
+        #         for o in nl:
+        #             if o.get_reference_handle() == m_id:
+        #                 nl.remove(o) 
+        #         p.set_media_list(nl)
+        #         self.db.commit_family(p,None)
+        #     for key in self.db.iter_person_handles():
+        #         p = self.db.get_person_from_handle(key)
+        #         nl = p.get_media_list()
+        #         for o in nl:
+        #             if o.get_reference_handle() == m_id:
+        #                 nl.remove(o) 
+        #         p.set_media_list(nl)
+        #         self.db.commit_person(p,None)
+        #     for key in self.db.get_source_handles():
+        #         p = self.db.get_source_from_handle(key)
+        #         nl = p.get_media_list()
+        #         for o in nl:
+        #             if o.get_reference_handle() == m_id:
+        #                 nl.remove(o) 
+        #         p.set_media_list(nl)
+        #         self.db.commit_source(p,None)
+        #     for key in self.db.get_place_handles():
+        #         p = self.db.get_place_from_handle(key)
+        #         nl = p.get_media_list()
+        #         for o in nl:
+        #             if o.get_reference_handle() == m_id:
+        #                 nl.remove(o) 
+        #         p.set_media_list(nl)
+        #         self.db.commit_place(p,None)
+        #     for key in self.db.get_event_handles():
+        #         p = self.db.get_event_from_handle(key)
+        #         nl = p.get_media_list()
+        #         for o in nl:
+        #             if o.get_reference_handle() == m_id:
+        #                 nl.remove(o) 
+        #         p.set_media_list(nl)
+        #         self.db.commit_event(p,None)
+        #     self.db.remove_object(m_id,None)
 
-        def leave_clicked():
-            # File is lost => do nothing, leave as is
-            pass
+        # def leave_clicked():
+        #     # File is lost => do nothing, leave as is
+        #     pass
 
-        def select_clicked():
-            # File is lost => select a file to replace the lost one
-            def fs_close_window(obj):
-                pass
+        # def select_clicked():
+        #     # File is lost => select a file to replace the lost one
+        #     def fs_close_window(obj):
+        #         pass
 
-            def fs_ok_clicked(obj):
-                name = Utils.get_unicode_path_from_file_chooser(fs_top.get_filename())
-                if os.path.isfile(name):
-                    archive.add(name)
+        #     def fs_ok_clicked(obj):
+        #         name = Utils.get_unicode_path_from_file_chooser(fs_top.get_filename())
+        #         if os.path.isfile(name):
+        #             archive.add(name)
                     
-            fs_top = gtk.FileChooserDialog("%s - GRAMPS" % _("Select file"),
-                        buttons=(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
-                                 gtk.STOCK_OK, gtk.RESPONSE_OK)
-                        )
-            response = fs_top.run()
-            if response == gtk.RESPONSE_OK:
-                fs_ok_clicked(fs_top)
-            elif response == gtk.RESPONSE_CANCEL:
-                fs_close_window(fs_top)
+        #     fs_top = gtk.FileChooserDialog("%s - GRAMPS" % _("Select file"),
+        #                 buttons=(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
+        #                          gtk.STOCK_OK, gtk.RESPONSE_OK)
+        #                 )
+        #     response = fs_top.run()
+        #     if response == gtk.RESPONSE_OK:
+        #         fs_ok_clicked(fs_top)
+        #     elif response == gtk.RESPONSE_CANCEL:
+        #         fs_close_window(fs_top)
 
-            fs_top.destroy()
+        #     fs_top.destroy()
         #---------------------------------------------------------------
 
         try:
             archive = tarfile.open(self.filename,'w:gz')
         except EnvironmentError, msg:
             log.warn(str(msg))
-            self.msg_callback(_('Failure writing %s') % self.filename, str(msg))
+            self.user.notify_error(_('Failure writing %s') % self.filename, str(msg))
             return 0
         
         # Write media files first, since the database may be modified 
@@ -213,7 +212,7 @@ class PackageWriter(object):
         
         # Write XML now
         g = StringIO()
-        gfile = XmlWriter(self.db, self.msg_callback, self.callback, 2)
+        gfile = XmlWriter(self.db, self.user, 2)
         gfile.write_handle(g)
         tarinfo = tarfile.TarInfo('data.gramps')
         tarinfo.size = len(g.getvalue())

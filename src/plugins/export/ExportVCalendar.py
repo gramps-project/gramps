@@ -55,14 +55,12 @@ import Errors
 from glade import Glade
 
 class CalendarWriter(object):
-    def __init__(self, database, filename, msg_callback, option_box=None,
-                 callback=None):
+    def __init__(self, database, filename, user, option_box=None):
         self.db = database
         self.filename = filename
-        self.msg_callback = msg_callback
+        self.user = user
         self.option_box = option_box
-        self.callback = callback
-        if callable(self.callback): # callback is really callable
+        if callable(self.user.callback): # callback is really callable
             self.update = self.update_real
         else:
             self.update = self.update_empty
@@ -88,7 +86,7 @@ class CalendarWriter(object):
         self.count += 1
         newval = int(100 * self.count / self.total)
         if newval != self.oldval:
-            self.callback(newval)
+            self.user.callback(newval)
             self.oldval = newval
 
     def writeln(self, text):
@@ -102,10 +100,10 @@ class CalendarWriter(object):
             self.g = open(filename,"w")
         except IOError,msg:
             msg2 = _("Could not create %s") % filename
-            self.msg_callback(msg2, str(msg))
+            self.user.notify_error(msg2, str(msg))
             return False
         except:
-            self.msg_callback(_("Could not create %s") % filename)
+            self.user.notify_error(_("Could not create %s") % filename)
             return False
 
         self.writeln("BEGIN:VCALENDAR")
@@ -252,6 +250,6 @@ class CalendarWriter(object):
 #
 #
 #-------------------------------------------------------------------------
-def exportData(database, filename, msg_callback, option_box=None, callback=None):
-    cw = CalendarWriter(database, 0, filename, option_box, callback)
+def exportData(database, filename, user, option_box=None):
+    cw = CalendarWriter(database, filename, user, option_box)
     return cw.export_data(filename)

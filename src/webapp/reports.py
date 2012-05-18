@@ -102,11 +102,11 @@ def download(url, filename=None):
         r.close()
     return success
 
-def export_file(db, filename, callback):
+def export_file(db, filename, user):
     """
     Export the db to a file (such as a GEDCOM file).
 
-    >>> export_file(DbDjango(), "/home/user/Untitled_1.ged", lambda a: a)
+    >>> export_file(DbDjango(), "/home/user/Untitled_1.ged", User())
     """
     dbstate = DbState.DbState()
     climanager = CLIManager(dbstate, False) # do not load db_loader
@@ -125,7 +125,7 @@ def export_file(db, filename, callback):
                     print "ERROR:", name, exception
                 return False
             export_function = getattr(mod, pdata.export_function)
-            export_function(db, filename, callback)
+            export_function(db, filename, user)
             return True
     return False
 

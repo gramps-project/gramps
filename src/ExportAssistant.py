@@ -61,6 +61,7 @@ from gui.pluginmanager import GuiPluginManager
 import Utils
 import ManagedWindow
 from QuestionDialog import ErrorDialog
+from gui.user import User
 
 #-------------------------------------------------------------------------
 #
@@ -631,9 +632,8 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         export_function = self.map_exporters[ix].get_export_function()
         success = export_function(self.dbstate.db,
                                   filename,
-                                  ErrorDialog,
-                                  self.option_box_instance,
-                                  self.callback)
+                                  User(error=ErrorDialog, callback=self.callback),
+                                  self.option_box_instance)
         return success
     
     def pre_save(self,page):

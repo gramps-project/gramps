@@ -55,10 +55,11 @@ class User(gen.user.User):
     This class provides a means to interact with the user via CLI.
     It implements the interface in gen.user.User()
     """
-    def __init__(self, callback=None):
+    def __init__(self, callback=None, error=None):
         self.steps = 0;
         self.current_step = 0;
         self.callback_function = callback
+        self.error_function = error
     
     def begin_progress(self, title, message, steps):
         """
@@ -94,15 +95,25 @@ class User(gen.user.User):
             percent = int((float(self.current_step) / self.steps) * 100)
             sys.stdout.write("\r%02d%%" % percent)
 
-    def callback(self, percent):
+    def callback(self, *args):
         """
         Display progress meter.
         """
+    def callback(self, percentage, text=None):
+        """
+        Display the precentage.
+        """
         if self.callback_function:
-            self.callback_function(percent)
+            if text:
+                self.callback_function(percentage, text)
+            else:
+                self.callback_function(percentage)
         else:
-            sys.stdout.write("\r%02d%%" % percent)
-    
+            if text is None:
+                sys.stdout.write("\r%02d%%" % percentage)
+            else:
+                sys.stdout.write("\r%02d%% %s" % (percentage, text))
+
     def end_progress(self):
         """
         Stop showing the progress indicator to the user.
@@ -145,7 +156,10 @@ class User(gen.user.User):
         @type error: str
         @returns: none
         """
-        print "%s %s" % (title, error)
+        if self.error_function:
+            self.error_function(title, error)
+        else:
+            print "%s %s" % (title, error)
 
     def notify_db_error(self, error):
         """

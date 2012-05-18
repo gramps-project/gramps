@@ -40,13 +40,11 @@ class ExportPlugin(Plugin):
         @type description: string
         @param export_function: A function to call to perform the export.
             The function must take the form:
-                def export_function(database, filename, option_box, callback):
+                def export_function(database, filename, user, option_box):
             where:
                 "db" is a Gramps database to import the data into
                 "filename" is the file that the data will be exported to
-                "callback" is a callable object that takes two parameters.
-                    The first parameter is a progress indicator.
-                    The second parameter is a text string.
+                "user" provides UI output (callback, errors, etc)
         @type export_function: callable
         @param extension: The extension for the output file.
             Example: "ged"

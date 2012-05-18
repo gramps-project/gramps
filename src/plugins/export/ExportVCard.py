@@ -61,17 +61,17 @@ from gen.plug.utils import OpenFileOrStdout
 # Support Functions
 #
 #-------------------------------------------------------------------------
-def exportData(database, filename, msg_callback, option_box=None, callback=None):
+def exportData(database, filename, user, option_box=None):
     """Function called by Gramps to export data on persons in VCard format."""
-    cardw = VCardWriter(database, filename, option_box, callback)
+    cardw = VCardWriter(database, filename, option_box, user)
     try:
         cardw.export_data()
     except EnvironmentError, msg:
-        msg_callback(_("Could not create %s") % filename, str(msg))
+        user.notify_error(_("Could not create %s") % filename, str(msg))
         return False
     except:
         # Export shouldn't bring Gramps down.
-        msg_callback(_("Could not create %s") % filename)
+        user.notify_error(_("Could not create %s") % filename)
         return False
     return True
 
@@ -102,13 +102,13 @@ class VCardWriter(object):
             raise TypeError("VCard escaping is not implemented for "
                               "data type %s." % str(type(data)))
 
-    def __init__(self, database, filename, option_box=None, callback=None):
+    def __init__(self, database, filename, option_box=None, user=None):
         self.db = database
         self.filename = filename
+        self.user = user
         self.filehandle = None
         self.option_box = option_box
-        self.callback = callback
-        if callable(self.callback): # callback is really callable
+        if callable(self.user.callback): # callback is really callable
             self.update = self.update_real
         else:
             self.update = self.update_empty
@@ -134,7 +134,7 @@ class VCardWriter(object):
         self.count += 1
         newval = int(100*self.count/self.total)
         if newval != self.oldval:
-            self.callback(newval)
+            self.user.callback(newval)
             self.oldval = newval
 
     def writeln(self, text):

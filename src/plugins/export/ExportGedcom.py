@@ -213,12 +213,10 @@ class GedcomWriter(UpdateCallback):
     so that it can provide visual feedback via a progress bar if needed.
     """
 
-    def __init__(self, database, cmd_line=0,
-                 option_box=None, callback=None):
-        UpdateCallback.__init__(self, callback)
-
+    def __init__(self, database, user, option_box=None):
+        UpdateCallback.__init__(self, user.callback)
+        self.total = 100
         self.dbase = database
-        self.cmd_line = cmd_line
         self.dirname = None
         self.gedcom_file = None
 
@@ -1435,17 +1433,17 @@ class GedcomWriter(UpdateCallback):
 #
 #
 #-------------------------------------------------------------------------
-def export_data(database, filename, msg_callback, option_box=None, callback=None):
+def export_data(database, filename, user, option_box=None):
     """
     External interface used to register with the plugin system.
     """
     ret = False
     try:
-        ged_write = GedcomWriter(database, 0, option_box, callback)
+        ged_write = GedcomWriter(database, user, option_box)
         ret = ged_write.write_gedcom_file(filename)
     except IOError, msg:
         msg2 = _("Could not create %s") % filename
-        msg_callback(msg2, str(msg))
+        user.notify_error(msg2, str(msg))
     except Errors.DatabaseError, msg:
-        msg_callback(_("Export failed"), str(msg))
+        user.notify_db_error(_("Export failed"), str(msg))
     return ret

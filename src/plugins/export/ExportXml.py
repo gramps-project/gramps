@@ -62,7 +62,6 @@ from gen.updatecallback import UpdateCallback
 from gen.db.exceptions import DbWriteFailure
 import const
 import constfunc
-#from QuestionDialog import ErrorDialog
 from ExportOptions import WriterOptionBox
 import libgrampsxml
 
@@ -99,7 +98,7 @@ class GrampsXmlWriter(UpdateCallback):
     """
 
     def __init__(self, db, strip_photos=0, compress=1, version="unknown",
-                 callback=None):
+                 user=None):
         """
         Initialize, but does not write, an XML file.
 
@@ -110,7 +109,8 @@ class GrampsXmlWriter(UpdateCallback):
         >              2: remove leading slash (quick write)
         compress - attempt to compress the database
         """
-        UpdateCallback.__init__(self, callback)
+        UpdateCallback.__init__(self, user.callback)
+        self.user = user
         self.compress = compress
         if not _gzip_ok:
             self.compress = False
@@ -1247,7 +1247,7 @@ def conf_priv(obj):
 # export_data
 #
 #-------------------------------------------------------------------------
-def export_data(database, filename, msg_callback, option_box=None, callback=None):
+def export_data(database, filename, user, option_box=None):
     """
     Call the XML writer with the syntax expected by the export plugin.
     """
@@ -1264,7 +1264,7 @@ def export_data(database, filename, msg_callback, option_box=None, callback=None
         option_box.parse_options()
         database = option_box.get_filtered_database(database)
 
-    g = XmlWriter(database, msg_callback, callback, 0, compress)
+    g = XmlWriter(database, user, 0, compress)
     return g.write(filename)
 
 #-------------------------------------------------------------------------
@@ -1277,11 +1277,11 @@ class XmlWriter(GrampsXmlWriter):
     Writes a database to the XML file.
     """
 
-    def __init__(self, dbase, msg_callback, callback, strip_photos, compress=1):
+    def __init__(self, dbase, user, strip_photos, compress=1):
         GrampsXmlWriter.__init__(
-            self, dbase, strip_photos, compress, const.VERSION, callback)
-        self.msg_callback = msg_callback
-        
+            self, dbase, strip_photos, compress, const.VERSION, user)
+        self.user = user
+
     def write(self, filename):
         """
         Write the database to the specified file.
@@ -1291,5 +1291,5 @@ class XmlWriter(GrampsXmlWriter):
             ret = GrampsXmlWriter.write(self, filename)
         except DbWriteFailure, msg:
             (m1,m2) = msg.messages()
-            self.msg_callback(m1, m2)
+            self.user.notify_db_error(m1, m2)
         return ret

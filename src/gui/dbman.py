@@ -493,7 +493,7 @@ class DbManager(CLIDbManager):
         else:
             base_path = self.dbstate.db.get_save_path()
             archive = os.path.join(base_path, ARCHIVE) 
-            check_in(self.dbstate.db, archive, None, self.__start_cursor)
+            check_in(self.dbstate.db, archive, User(), self.__start_cursor)
             self.__end_cursor()
 
         self.__populate()
@@ -837,7 +837,7 @@ def check_out(dbase, rev, path, user):
     rdr(dbase, xml_file, user)
     os.unlink(xml_file)
 
-def check_in(dbase, filename, callback, cursor_func = None):
+def check_in(dbase, filename, user, cursor_func = None):
     """
     Checks in the specified file into RCS
     """
@@ -875,7 +875,7 @@ def check_in(dbase, filename, callback, cursor_func = None):
     for plugin in plugin_manager.get_export_plugins():
         if plugin.get_extension() == "gramps":
             export_function = plugin.get_export_function()
-            export_function(dbase, filename, None, callback)
+            export_function(dbase, filename, user)
 
     if cursor_func:
         cursor_func(_("Saving archive..."))

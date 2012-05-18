@@ -51,9 +51,10 @@ class User(gen.user.User):
     This class provides a means to interact with the user via GTK.
     It implements the interface in gen.user.User()
     """
-    def __init__(self, callback=None):
+    def __init__(self, callback=None, error=None):
         self.progress = None
         self.callback_function = callback
+        self.error_function = error
     
     def begin_progress(self, title, message, steps):
         """
@@ -82,14 +83,20 @@ class User(gen.user.User):
         if self.progress:
             self.progress.step()
 
-    def callback(self, percentage):
+    def callback(self, percentage, text=None):
         """
         Display the precentage.
         """
         if self.callback_function:
-            self.callback_function(percentage)
+            if text:
+                self.callback_function(percentage, text)
+            else:
+                self.callback_function(percentage)
         else:
-            sys.stdout.write("\r%02d%%" % percent)
+            if text is None:
+                sys.stdout.write("\r%02d%%" % percentage)
+            else:
+                sys.stdout.write("\r%02d%% %s" % (percentage, text))
 
     def end_progress(self):
         """
@@ -135,7 +142,10 @@ class User(gen.user.User):
         @type error: str
         @returns: none
         """
-        ErrorDialog(title, error)
+        if self.error_function:
+            self.error_function(title, error)
+        else:
+            ErrorDialog(title, error)
 
     def notify_db_error(self, error):
         """

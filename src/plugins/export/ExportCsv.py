@@ -62,8 +62,8 @@ from glade import Glade
 # The function that does the exporting
 #
 #-------------------------------------------------------------------------
-def exportData(database, filename, msg_callback, option_box=None, callback=None):
-    gw = CSVWriter(database, filename, msg_callback, option_box, callback)
+def exportData(database, filename, user, option_box=None):
+    gw = CSVWriter(database, filename, user, option_box)
     return gw.export_data()
 
 #-------------------------------------------------------------------------
@@ -224,13 +224,12 @@ class CSVWriterOptionBox(WriterOptionBox):
 #
 #-------------------------------------------------------------------------
 class CSVWriter(object):
-    def __init__(self, database, filename, msg_callback, option_box=None, callback=None):
+    def __init__(self, database, filename, user, option_box=None):
         self.db = database
         self.option_box = option_box
         self.filename = filename
-        self.callback = callback
-        self.msg_callback = msg_callback
-        if callable(self.callback): # callback is really callable
+        self.user = user
+        if callable(self.user.callback): # callback is really callable
             self.update = self.update_real
         else:
             self.update = self.update_empty
@@ -281,7 +280,7 @@ class CSVWriter(object):
         self.count += 1
         newval = int(100*self.count/self.total)
         if newval != self.oldval:
-            self.callback(newval)
+            self.user.callback(newval)
             self.oldval = newval
 
     def writeln(self):
@@ -298,10 +297,10 @@ class CSVWriter(object):
             self.g = UnicodeWriter(self.fp)
         except IOError,msg:
             msg2 = _("Could not create %s") % self.filename
-            self.msg_callback(msg2,str(msg))
+            self.user.notify_error(msg2,str(msg))
             return False
         except:
-            self.msg_callback(_("Could not create %s") % self.filename)
+            self.user.notify_error(_("Could not create %s") % self.filename)
             return False
         ######################### initialize progress bar
         self.count = 0

@@ -562,7 +562,7 @@ class ArgHandler(object):
         for plugin in pmgr.get_export_plugins():
             if family_tree_format == plugin.get_extension():
                 export_function = plugin.get_export_function()
-                export_function(self.dbstate.db, filename, self.__error)
+                export_function(self.dbstate.db, filename, User(error=self.__error))
 
     #-------------------------------------------------------------------------
     #

@@ -43,6 +43,7 @@ from gen.ggettext import sgettext as _
 from gen.ggettext import ngettext
 from cStringIO import StringIO
 from collections import defaultdict
+from gui.user import User
 import sys
 import posixpath
 
@@ -1575,15 +1576,15 @@ class ViewManager(CLIManager):
             if include.get_active():
                 from ExportPkg import PackageWriter
                 writer = PackageWriter(self.dbstate.db, filename,
-                       msg_callback=lambda m1, m2: ErrorDialog(m1, m2),
-                       callback=self.pulse_progressbar)
+                                       User(error=ErrorDialog,
+                                            callback=self.pulse_progressbar))
                 writer.export()
             else:
                 from ExportXml import XmlWriter
                 writer = XmlWriter(self.dbstate.db,
-                       msg_callback=lambda m1, m2: ErrorDialog(m1, m2),
-                       callback=self.pulse_progressbar,
-                       strip_photos=0, compress=1)
+                                   User(error=ErrorDialog,
+                                        callback=self.pulse_progressbar),
+                                   strip_photos=0, compress=1)
                 writer.write(filename)
             self.uistate.set_busy_cursor(0)
             self.uistate.progress.hide()
