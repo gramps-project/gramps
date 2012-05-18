@@ -36,7 +36,7 @@ empty:
 	rm sqlite.db
 	sqlite3 sqlite.db < empty.sql
 
-empty:
+example:
 	rm sqlite.db
 	sqlite3 sqlite.db < example.sql
 
