@@ -36,6 +36,10 @@ empty:
 	rm sqlite.db
 	sqlite3 sqlite.db < empty.sql
 
+empty:
+	rm sqlite.db
+	sqlite3 sqlite.db < example.sql
+
 clean:
 	rm -f sqlite.db
 	rm -f *~ *.pyc *.pyo
