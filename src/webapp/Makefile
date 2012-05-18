@@ -33,11 +33,11 @@ docs:
 	python manage.py graph_models grampsdb -i Person,Family,Source,Event,Repository,Place,Media,Note,Attribute,Datamap,Name,Lds,Tag,Address,Location,Url,NoteRef,SourceRef,EventRef,RepositoryRef,PersonRef,ChildRef,MediaRef -o docs/prim-sec-ref-tables.png
 
 empty:
-	rm sqlite.db
+	rm -f sqlite.db
 	sqlite3 sqlite.db < empty.sql
 
 example:
-	rm sqlite.db
+	rm -f sqlite.db
 	sqlite3 sqlite.db < example.sql
 
 clean:
