@@ -48,6 +48,7 @@ from webapp.grampsdb.models import *
 from webapp.grampsdb.forms import *
 from webapp.dbdjango import DbDjango
 from webapp.libdjango import DjangoInterface
+import cli.user
 
 dji = DjangoInterface()
 
@@ -339,7 +340,7 @@ def process_action(request, view, handle, action):
                     mimetype = 'application/%s' % args["off"]
                 elif report.report_type == "export":
                     filename = "/tmp/%s-%s.%s" % (str(profile.user.username), str(handle), args["off"])
-                    export_file(db, filename, lambda n: n) # callback
+                    export_file(db, filename, cli.user.User()) # callback
                     mimetype = 'text/plain'
                 elif report.report_type == "import":
                     filename = download(args["i"], "/tmp/%s-%s.%s" % (str(profile.user.username), 
@@ -350,7 +351,7 @@ def process_action(request, view, handle, action):
                             import threading
                             def background():
                                 try:
-                                    import_file(db, filename, lambda n: n) # callback
+                                    import_file(db, filename, gui.user.User()) # callback
                                 except:
                                     message = "import_file failed: " + traceback.format_exc()
                                     request.user.message_set.create(message = message)
@@ -359,7 +360,7 @@ def process_action(request, view, handle, action):
                             request.user.message_set.create(message = message)
                             return redirect("/report/")
                         else:
-                            success = import_file(db, filename, lambda n: n) # callback
+                            success = import_file(db, filename, gui.user.User()) # callback
                             if not success:
                                 message = "Failed to load imported."
                                 request.user.message_set.create(message = message)
