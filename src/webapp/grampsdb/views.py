@@ -95,6 +95,7 @@ def context_processor(request):
     context["menu"] = MENU
     context["True"] = True
     context["False"] = False
+    context["sitename"] = "Example Family Tree"
     context["default"] = ""
     return context
 

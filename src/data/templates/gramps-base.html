@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 <head>
-    <title>{% block title %}Gramps-Connect{% endblock %}</title>
+    <title>{% block title %}{{sitename}}{% endblock %}</title>
     {% block meta %}
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -48,7 +48,7 @@
 </head>
 <body onload="if (document.getElementById('get_focus')) {document.getElementById('get_focus').focus();}">
    <div id="header" style="padding-top: 1em; background-position:0px -32px;">
-     <h1 id="SiteTitle" style="margin-left: 0em;">{% block heading %}Gramps-Connect{% endblock %}</h1>
+     <h1 id="SiteTitle" style="margin-left: 0em;">{% block heading %}{{sitename}}{% endblock %}</h1>
    </div>
 
    <div class="wrapper" role="navigation" id="nav">
