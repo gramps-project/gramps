@@ -7401,7 +7401,7 @@ msgstr "Alternatieve _Plaatsen"
 
 #: ../src/gui/editors/displaytabs/nameembedlist.py:62
 msgid "Create and add a new name"
-msgstr "Een nieuwe naam aanmaken en yoevoegen"
+msgstr "Een nieuwe naam aanmaken en toevoegen"
 
 #: ../src/gui/editors/displaytabs/nameembedlist.py:63
 msgid "Remove the existing name"
@@ -11270,7 +11270,7 @@ msgstr "Gramplet die de media-objecten van een persoon toont"
 #: ../src/plugins/gramplet/bottombar.gpr.py:217
 #: ../src/plugins/gramplet/bottombar.gpr.py:231
 msgid "Gallery"
-msgstr "Ga_lerij"
+msgstr "Galerij"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:167
 msgid "Family Gallery"
