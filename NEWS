@@ -1,3 +1,25 @@
+2012-05-18
+Version 3.3.2 -- "The Knights who say 'Ni'" bug fix release.
+* Expressive error when trying to load familytree with downgraded Berkeley db
+* Fix in the image offset calculation (MediaRef Editor)
+* Improved focus and bug fixes on Editors
+* Enhancements on ODT file format
+* Improved synchronization on gramplets
+* Export, filtering and database log improvements
+* Call of living proxy is more accurate when using NarrativeWeb report
+* Fixes on Check and Repair, Sort Events and Clipboard tools
+* Fix automate version
+* Fixes on PedigreeView (database state and mouse events)
+* Various fixes and improvements on merge code
+* Minor fixes on report interface and output
+* Various fixes on Narrative and Web Calendar reports
+* Minor issues on Gedcom handling
+* Cleanup
+* Add Japanese holidays (reports)
+* Add a Relationship calculator for Catalan
+* More than 50 bug fixes and improvements
+* Translations update: ca, cs, de, es, fr, hr, hu, it, nb, nl, nn, pl, sv, zh
+
 2011-10-01
 Version 3.3.1 -- "The Tenth Anniversary Edition" bug fix release.
 * translation updates:  ca, cs, de, fr, hr, it, nb, nl, pl, pt_br, sk, sl, sv, uk, zh_cn
