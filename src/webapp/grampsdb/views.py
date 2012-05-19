@@ -555,7 +555,6 @@ def view_person_detail(request, view, handle, action="view"):
                 surname.primary = True # FIXME: why is this False?
                 surname.save()
                 # FIXME: last_saved, last_changed, last_changed_by
-                # FIXME: update cache:
                 raw = dji.get_person(person)
                 person.cache = base64.encodestring(cPickle.dumps(raw))
                 person.save()
@@ -872,11 +871,21 @@ def view(request, view):
         context["tviews"] = _("Reports")
         if request.GET.has_key("search"):
             search = request.GET.get("search")
-            object_list = Report.objects \
-                .filter(Q(name__icontains=search)) \
-                .order_by("name")
+            if request.user.is_superuser:
+                object_list = Report.objects \
+                    .filter(Q(name__icontains=search)) \
+                    .order_by("name")
+            else:
+                object_list = Report.objects \
+                    .filter(Q(name__icontains=search) & ~Q(report_type="import")) \
+                    .order_by("name")
         else:
-            object_list = Report.objects.all().order_by("name")
+            if request.user.is_superuser:
+                object_list = Report.objects.all().order_by("name")
+            else:
+                object_list = Report.objects \
+                    .filter(~Q(report_type="import")) \
+                    .order_by("name")
         view_template = 'view_report.html'
         total = Report.objects.all().count()
     else:

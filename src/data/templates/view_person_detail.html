@@ -132,7 +132,7 @@
 </div>
 
 {% make_button "Back to People" "/person" %}
-{% if user.is_authenticated %}
+{% if user.is_superuser %}
   {% ifequal action "edit" %}
     {% make_button "Back to Person" "/person/%s" person.handle %}
     <input type="hidden" name="action" value="save"/>

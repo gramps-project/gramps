@@ -32,10 +32,8 @@
 </tbody>
 </table>
 
-{% if user.is_authenticated %}
-
-{% make_button "Add Person" "/person/add" %}
-
+{% if user.is_superuser %}
+   {% make_button "Add Person" "/person/add" %}
 {% endif %}
 
 {% endblock %}
