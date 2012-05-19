@@ -1,0 +1,41 @@
+include AUTHORS
+include COPYING
+include FAQ
+include INSTALL
+include MANIFEST.in
+include NEWS
+include RELEASE_NOTES
+include TODO
+include setup.cfg
+include TestPlan.txt
+recursive-include data *
+recursive-include debian *
+recursive-include docs *
+recursive-include help *
+recursive-include mac *
+recursive-include po *
+recursive-include src *
+recursive-include test *
+recursive-include windows *
+
+# Remove files created in the build
+exclude data/gramps.desktop
+exclude data/gramps.keys
+exclude data/gramps.xml
+recursive-exclude data/man *.1
+recursive-exclude data/man *.1.gz
+exclude src/const.py
+exclude src/data/tips.xml
+exclude src/plugins/lib/holidays.xml
+exclude po/*.gmo
+exclude po/.intltool-merge-cache
+exclude po/stamp-it
+exclude po/POTFILES
+global-exclude *.pyc
+
+# Remove directories which should not be included in the distribution
+prune src/guiQML
+prune src/webapp
+
+# Remove Makefiles used by autotools
+global-exclude Makefile*
