@@ -3,7 +3,7 @@
 update: grampsdb/fixtures/initial_data.json
 	PYTHONPATH=../../src python manage.py syncdb
 
-grampsdb/fixtures/initial_data.json: 
+grampsdb/fixtures/initial_data.json: init.py
 	PYTHONPATH=../../src python init.py > grampsdb/fixtures/initial_data.json
 
 init_gramps:

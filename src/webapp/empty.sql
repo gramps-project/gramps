@@ -219,7 +219,7 @@ CREATE TABLE "auth_user" (
     "last_login" datetime NOT NULL,
     "date_joined" datetime NOT NULL
 );
-INSERT INTO "auth_user" VALUES(1,'dblank','','','dblank@cs.brynmawr.edu','sha1$932d5$433307572310d70ce2c50b396e4a90b48c980d0d',1,1,1,'2012-05-16 21:16:32.320892','2012-05-16 21:16:32.320892');
+INSERT INTO "auth_user" VALUES(1,'admin','','','doug.blank@gmail.com','sha1$e702c$76d3a7dfc417b4e80faa6a032a54220d270eeda5',1,1,1,'2012-05-19 07:40:35.640321','2012-05-19 07:40:35.640321');
 CREATE TABLE "auth_message" (
     "id" integer NOT NULL PRIMARY KEY,
     "user_id" integer NOT NULL REFERENCES "auth_user" ("id"),
@@ -333,20 +333,20 @@ CREATE TABLE "grampsdb_nameorigintype" (
     "name" varchar(40) NOT NULL,
     "val" integer NOT NULL
 );
-INSERT INTO "grampsdb_nameorigintype" VALUES(1,'Unknown',-1);
+INSERT INTO "grampsdb_nameorigintype" VALUES(1,'',1);
 INSERT INTO "grampsdb_nameorigintype" VALUES(2,'Custom',0);
-INSERT INTO "grampsdb_nameorigintype" VALUES(3,'',1);
-INSERT INTO "grampsdb_nameorigintype" VALUES(4,'Inherited',2);
-INSERT INTO "grampsdb_nameorigintype" VALUES(5,'Given',3);
-INSERT INTO "grampsdb_nameorigintype" VALUES(6,'Taken',4);
-INSERT INTO "grampsdb_nameorigintype" VALUES(7,'Patronymic',5);
+INSERT INTO "grampsdb_nameorigintype" VALUES(3,'Feudal',7);
+INSERT INTO "grampsdb_nameorigintype" VALUES(4,'Given',3);
+INSERT INTO "grampsdb_nameorigintype" VALUES(5,'Inherited',2);
+INSERT INTO "grampsdb_nameorigintype" VALUES(6,'Location',12);
+INSERT INTO "grampsdb_nameorigintype" VALUES(7,'Matrilineal',10);
 INSERT INTO "grampsdb_nameorigintype" VALUES(8,'Matronymic',6);
-INSERT INTO "grampsdb_nameorigintype" VALUES(9,'Feudal',7);
-INSERT INTO "grampsdb_nameorigintype" VALUES(10,'Pseudonym',8);
-INSERT INTO "grampsdb_nameorigintype" VALUES(11,'Patrilineal',9);
-INSERT INTO "grampsdb_nameorigintype" VALUES(12,'Matrilineal',10);
-INSERT INTO "grampsdb_nameorigintype" VALUES(13,'Occupation',11);
-INSERT INTO "grampsdb_nameorigintype" VALUES(14,'Location',12);
+INSERT INTO "grampsdb_nameorigintype" VALUES(9,'Occupation',11);
+INSERT INTO "grampsdb_nameorigintype" VALUES(10,'Patrilineal',9);
+INSERT INTO "grampsdb_nameorigintype" VALUES(11,'Patronymic',5);
+INSERT INTO "grampsdb_nameorigintype" VALUES(12,'Pseudonym',8);
+INSERT INTO "grampsdb_nameorigintype" VALUES(13,'Taken',4);
+INSERT INTO "grampsdb_nameorigintype" VALUES(14,'Unknown',-1);
 CREATE TABLE "grampsdb_attributetype" (
     "id" integer NOT NULL PRIMARY KEY,
     "name" varchar(40) NOT NULL,
@@ -614,8 +614,9 @@ CREATE TABLE "grampsdb_config" (
     "value_type" varchar(25) NOT NULL,
     "value" text NOT NULL
 );
-INSERT INTO "grampsdb_config" VALUES(1,'db_version','database scheme version','str','0.5.1');
-INSERT INTO "grampsdb_config" VALUES(2,'db_created','database creation date/time','str','2012-05-16 21:15');
+INSERT INTO "grampsdb_config" VALUES(1,'sitename','site name of family tree','str','Gramps-Connect');
+INSERT INTO "grampsdb_config" VALUES(2,'db_version','database scheme version','str','0.5.1');
+INSERT INTO "grampsdb_config" VALUES(3,'db_created','database creation date/time','str','2012-05-19 07:39');
 CREATE TABLE "grampsdb_tag" (
     "id" integer NOT NULL PRIMARY KEY,
     "handle" varchar(19) NOT NULL UNIQUE,

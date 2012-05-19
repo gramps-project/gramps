@@ -54,7 +54,11 @@ def get_datamap(x):
 
 print "["
 for table, entries in [("grampsdb.config", 
-                        [(("setting", "\"db_version\""), 
+                        [(("setting", "\"sitename\""), 
+                          ("description", "\"site name of family tree\""),
+                          ("value_type", "\"str\""), 
+                          ("value", "\"Gramps-Connect\"")),
+                         (("setting", "\"db_version\""), 
                           ("description", "\"database scheme version\""),
                           ("value_type", "\"str\""), 
                           ("value", "\"0.5.1\"")),
