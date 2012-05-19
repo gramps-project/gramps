@@ -516,10 +516,10 @@ class WriterOptionBox(object):
         if self.restrict_num > 0 and progress:
             progress.progress_cnt += 1
 
-        if not self.cfilter.is_empty() and progress:
+        if (self.cfilter != None and (not self.cfilter.is_empty())) and progress:
             progress.progress_cnt += 1
 
-        if not self.nfilter.is_empty() and progress:
+        if (self.nfilter != None and (not self.nfilter.is_empty())) and progress:
             progress.progress_cnt += 1
 
         if self.reference_num > 0 and progress:
@@ -580,7 +580,7 @@ class WriterOptionBox(object):
         # If the filter returned by cfilter is not empty, apply the 
         # FilterProxyDb (Person Filter)
         elif proxy_name == "person":
-            if not self.cfilter.is_empty():
+            if self.cfilter != None and not self.cfilter.is_empty():
                 if progress:
                     progress.reset(_("Applying selected person filter"))
                     progress.progress_cnt += 1
@@ -590,7 +590,7 @@ class WriterOptionBox(object):
 
         # Apply the Note Filter
         elif proxy_name == "note":
-            if not self.nfilter.is_empty():
+            if self.nfilter != None and not self.nfilter.is_empty():
                 if progress:
                     progress.reset(_("Applying selected note filter"))
                     progress.progress_cnt += 1
