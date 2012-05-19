@@ -6886,7 +6886,7 @@ msgstr "Kerk"
 
 #: ../src/gui/editors/displaytabs/gallerytab.py:83
 msgid "_Gallery"
-msgstr "Ga_lerij"
+msgstr "Galerij"
 
 #: ../src/gui/editors/displaytabs/gallerytab.py:144
 #: ../src/plugins/view/mediaview.py:223
@@ -6962,7 +6962,7 @@ msgstr "Alternatieve _Plaatsen"
 
 #: ../src/gui/editors/displaytabs/nameembedlist.py:61
 msgid "Create and add a new name"
-msgstr "Een nieuwe naam aanmaken en yoevoegen"
+msgstr "Een nieuwe naam aanmaken en toevoegen"
 
 #: ../src/gui/editors/displaytabs/nameembedlist.py:62
 msgid "Remove the existing name"
@@ -10756,7 +10756,7 @@ msgstr "Gramplet die de media-objecten van een persoon toont"
 #: ../src/plugins/gramplet/bottombar.gpr.py:202
 #: ../src/plugins/gramplet/bottombar.gpr.py:216
 msgid "Gallery"
-msgstr "Ga_lerij"
+msgstr "Galerij"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:166
 msgid "Family Gallery"
