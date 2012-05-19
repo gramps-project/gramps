@@ -9,10 +9,11 @@ except RuntimeError:
 from webapp.grampsdb.models import *
 from webapp.dbdjango import DbDjango
 from webapp.reports import import_file
+from webapp.libdjango import DjangoInterface
 
 db = DbDjango()
+dji = DjangoInterface()
 
-def Print(m):
-    print m
-
+#def Print(m):
+#    print m
 #import_file(db, "/tmp/dblank-im_ged.ged", Print)

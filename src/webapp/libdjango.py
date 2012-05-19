@@ -1466,6 +1466,14 @@ class DjangoInterface(object):
         self.add_attribute_list(event, attribute_list)
         self.add_media_ref_list(event, media_list)
         self.add_citation_list(event, citation_list)
+
+    def rebuild_cache(self, item):
+        if isinstance(item, models.Person):
+            raw = self.get_person(item)
+            item.cache = base64.encodestring(cPickle.dumps(raw))
+            item.save()
+        else:
+            raise Exception("Don't know how to cache '%s'" % type(item))
     
     def rebuild_caches(self, callback=None):
         """
