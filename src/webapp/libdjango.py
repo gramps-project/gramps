@@ -1467,13 +1467,39 @@ class DjangoInterface(object):
         self.add_media_ref_list(event, media_list)
         self.add_citation_list(event, citation_list)
 
-    def rebuild_cache(self, item):
+    def get_raw(item):
+        """
+        Build and return the raw, serialized data of an object.
+        """
         if isinstance(item, models.Person):
             raw = self.get_person(item)
-            item.cache = base64.encodestring(cPickle.dumps(raw))
-            item.save()
+        elif isinstance(item, models.Family):
+            raw = self.get_family(item)
+        elif isinstance(item, models.Place):
+            raw = self.get_place(item)
+        elif isinstance(item, models.Media):
+            raw = self.get_media(item)
+        elif isinstance(item, models.Source):
+            raw = self.get_source(item)
+        elif isinstance(item, models.Citation):
+            raw = self.get_citation(item)
+        elif isinstance(item, models.Repository):
+            raw = self.get_repository(item)
+        elif isinstance(item, models.Note):
+            raw = self.get_note(item)
+        elif isinstance(item, models.Event):
+            raw = self.get_event(item)
         else:
-            raise Exception("Don't know how to cache '%s'" % type(item))
+            raise Exception("Don't know how to get raw '%s'" % type(item))
+        return raw
+
+    def rebuild_cache(self, item):
+        """
+        Reset the cache version of an object.
+        """
+        raw = self.get_raw(ietm)
+        item.cache = base64.encodestring(cPickle.dumps(raw))
+        item.save()
     
     def rebuild_caches(self, callback=None):
         """
