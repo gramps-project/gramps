@@ -36,6 +36,12 @@ import glob
 import codecs
 import commands
 
+# determine if the computer has ability to change file permissions or not?
+if hasattr(os, 'chmod'):
+    _has_chmod = True
+else:
+    _has_chmod = False
+
 VERSION = '3.5.0'
 ALL_LINGUAS = ('bg', 'ca', 'cs', 'da', 'de', 'en_GB', 'es', 'fi', 'fr', 'he',
                'hr', 'hu', 'it', 'ja', 'lt', 'nb', 'nl', 'nn', 'pl', 'pt_BR',
@@ -209,6 +215,12 @@ def write_gramps_script(install_cmd, build_scripts):
     f_out.write('exec %s -O $GRAMPSDIR/gramps.py "$@"\n' % sys.executable)
     f_out.close()
 
+    # set eXecute bit for gramps startup script...
+    # this is required for both Linux and MacOS 
+    if _has_chmod:
+        print('Changing permissions of %s from 644 to 775' % filename)
+        os.chmod(filename, 0775)
+
 def write_const_py(install_cmd):
     '''
     Write the const.py file.
@@ -269,6 +281,11 @@ class install(_install):
                             'type processing was not run.')
         else:
             update_posix()
+
+        # change permissions of build directory after installation
+        # so it can be deleted by normal user...
+        if _has_chmod:
+            os.system('chmod -R 777 build')
 
 DOC_FILES = ['AUTHORS', 'COPYING', 'FAQ', 'INSTALL', 'NEWS', 'README', 'TODO']
 GEDCOM_FILES = glob.glob(os.path.join('example', 'gedcom', '*.*'))
