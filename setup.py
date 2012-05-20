@@ -25,7 +25,7 @@
 '''
 Gramps distutils module.
 '''
-
+from distutils import log
 from distutils.core import setup
 from distutils.util import convert_path, newer
 from distutils.command.build import build as _build
@@ -94,7 +94,7 @@ def build_trans(build_cmd):
         target = 'share/locale/' + lang + '/LC_MESSAGES'
         data_files.append((target, [mo_file]))
 
-        print('Compiling %s >> %s.' % (po_file, target))
+        log.info('Compiling %s >> %s.', po_file, target)
 
 def build_man(build_cmd):
     '''
@@ -137,7 +137,7 @@ def build_man(build_cmd):
             target = 'share/man/' + lang + '/man1'
             data_files.append((target, [src]))
 
-            print('Compiling %s >> %s.' % (src, target))
+            log.info('Compiling %s >> %s.', src, target)
 
 def build_intl(build_cmd):
     '''
@@ -218,7 +218,7 @@ def write_gramps_script(install_cmd, build_scripts):
     # set eXecute bit for gramps startup script...
     # this is required for both Linux and MacOS 
     if _has_chmod:
-        print('Changing permissions of %s from 644 to 775' % filename)
+        log.info('Changing permissions of %s from 644 to 775', filename)
         os.chmod(filename, 0775)
 
 def write_const_py(install_cmd):
@@ -277,7 +277,7 @@ class install(_install):
         install_template(self)
         _install.run(self)
         if self.enable_packager_mode:
-            print ('WARNING: Packager mode enabled.  Post-installation mime '
+            log.warn('WARNING: Packager mode enabled.  Post-installation mime '
                             'type processing was not run.')
         else:
             update_posix()
