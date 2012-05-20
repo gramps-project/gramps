@@ -17,19 +17,15 @@
 <div id="summaryarea">
 <table class="infolist" style="width:90%;"> {% comment %} 5 cols {% endcomment %}
 <tbody>
-{% if user.is_authenticated %}
-  {% ifequal action "edit" %}
     {% for error in personform.errors %}
-       Error in person: {{error}}<br>
+       <p id="error">Error in person: {{error}}</p>
     {% endfor %}
     {% for error in nameform.errors %}
-       Error in name: {{error}}<br>
+       <p id="error">Error in name: {{error}}</p>
     {% endfor %}
     {% for error in surnameform.errors %}
-       Error in surname: {{error}}<br>
+       <p id="error">Error in surname: {{error}}</p>
     {% endfor %}
-  {% endifequal %}
-{% endif %}
 <form method="post">{% csrf_token %}
 <tr>
  <td colspan="4" id="subtitle">{{nameform|render_name:user}}</td>
@@ -131,17 +127,23 @@
   </div>
 </div>
 
-{% make_button "Back to People" "/person" %}
 {% if user.is_superuser %}
-  {% ifequal action "edit" %}
+  {% if action == "edit" %}
     {% make_button "Back to Person" "/person/%s" person.handle %}
     <input type="hidden" name="action" value="save"/>
     <input type="submit" value="Save"/>
   {% else %}
-    {% make_button "Edit Person" "/person/%s/edit" person.handle %}
-    {% make_button "Add Person" "/person/add" %}
-    {% make_button "Delete Person" "/person/%s/delete" person.handle %}
-  {% endifequal %}
+    {% ifequal action "add" %}
+      {% make_button "Cancel" "/person/" %}
+      <input type="hidden" name="action" value="create"/>
+      <input type="submit" value="Add Person"/>
+    {% else %}
+      {% make_button "Back to People" "/person" %}
+      {% make_button "Add Person" "/person/add" %}
+      {% make_button "Edit Person" "/person/%s/edit" person.handle %}
+      {% make_button "Delete Person" "/person/%s/delete" person.handle %}
+    {% endifequal %}
+  {% endif %}
 {% else %}
 {% endif %}
 </form>

@@ -33,7 +33,10 @@
      td.ColumnAttribute {
         text-align: right;
      }
-   {% ifequal action "edit" %}
+     #error {
+        color: red;
+     }
+   {% if action == "edit" or action == "add" %}
    {% else %}
      #rowspace {
         height: 3px;
@@ -42,7 +45,7 @@
         border: 1px solid;
         background-color: white;
      }
-   {% endifequal %}
+   {% endif %}
     </style
 
 </head>

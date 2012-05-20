@@ -1467,7 +1467,7 @@ class DjangoInterface(object):
         self.add_media_ref_list(event, media_list)
         self.add_citation_list(event, citation_list)
 
-    def get_raw(item):
+    def get_raw(self, item):
         """
         Build and return the raw, serialized data of an object.
         """
@@ -1493,11 +1493,18 @@ class DjangoInterface(object):
             raise Exception("Don't know how to get raw '%s'" % type(item))
         return raw
 
+    def reset_cache(self, item):
+        """
+        Resets the cache version of an object, but doesn't save it to the database.
+        """
+        raw = self.get_raw(item)
+        item.cache = base64.encodestring(cPickle.dumps(raw))
+    
     def rebuild_cache(self, item):
         """
-        Reset the cache version of an object.
+        Resets the cache version of an object, and saves it to the database.
         """
-        raw = self.get_raw(ietm)
+        raw = self.get_raw(item)
         item.cache = base64.encodestring(cPickle.dumps(raw))
         item.save()
     

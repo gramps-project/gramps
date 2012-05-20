@@ -38,10 +38,7 @@ from django.conf.urls.defaults import *
 from django.contrib import admin
 admin.autodiscover()
 
-from webapp.grampsdb.views import (main_page, user_page, logout_page, 
-                                   process_action, view, view_detail, 
-                                   view_name_detail, view_surname_detail,
-                                   browse_page)
+from webapp.grampsdb.views import * 
 
 urlpatterns = patterns('',
     # Specific matches first:
@@ -64,23 +61,24 @@ urlpatterns += patterns('',
 # The rest will match views:
 urlpatterns += patterns('',
     (r'^$', main_page),
+    (r'^favicon\.ico$', 'django.views.generic.simple.redirect_to', 
+     {'url': '/styles/images/favicon.ico'}),
     (r'^user/$', user_page),
     (r'^user/(\w+)/$', user_page),
     (r'^browse/$', browse_page),
     (r'^login/$', 'django.contrib.auth.views.login'),
     (r'^logout/$', logout_page),
-    (r'^(?P<view>(\w+))/$', view),
-    url(r'^person/(?P<handle>(\w+))/$', view_detail, 
-        {"view": "person"}, name="view-person-detail"),
-    url(r'^person/(?P<handle>(\w+))/(?P<action>(\w+))$', view_detail, 
-        {"view": "person"}, name="view-person-detail"),
-    (r'^(?P<view>(\w+))/(?P<handle>(\w+))/$', view_detail),
-    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))$', view_name_detail),
-    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/(?P<action>(\w+))$', view_name_detail),
-    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/surname/(?P<sorder>(\w+))$', view_surname_detail),
-    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/surname/(?P<sorder>(\w+))/(?P<action>(\w+))$', view_surname_detail),
-    (r'^(?P<view>(\w+))/(?P<handle>(\w+))/(?P<action>(\w+))$', process_action),
-    (r'^favicon\.ico$', 'django.views.generic.simple.redirect_to', {'url': '/styles/images/favicon.ico'}),
+    (r'^(?P<view>(\w+))/$', view_list),                    # /object/
+    (r'^(?P<view>(\w+))/add$', action,
+     {"handle": None, "action": "add"}),                                   # /object/add
+    (r'^(?P<view>(\w+))/(?P<handle>(\w+))/$', action, 
+     {"action": "view"}),                                  # /object/handle/
+    (r'^(?P<view>(\w+))/(?P<handle>(\w+))/(?P<action>(\w+))$', 
+     action),                                              # /object/handle/action 
+#    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))$', view_name),
+#    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/(?P<action>(\w+))$', view_name),
+#    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/surname/(?P<sorder>(\w+))$', view_surname),
+#    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/surname/(?P<sorder>(\w+))/(?P<action>(\w+))$', view_surname),
 )
 
 # In urls:
