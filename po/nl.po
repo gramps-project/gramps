@@ -6886,7 +6886,7 @@ msgstr "Kerk"
 
 #: ../src/gui/editors/displaytabs/gallerytab.py:83
 msgid "_Gallery"
-msgstr "Galerij"
+msgstr "Ga_lerij"
 
 #: ../src/gui/editors/displaytabs/gallerytab.py:144
 #: ../src/plugins/view/mediaview.py:223
