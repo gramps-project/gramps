@@ -75,7 +75,7 @@ urlpatterns += patterns('',
      {"action": "view"}),                                  # /object/handle/
     (r'^(?P<view>(\w+))/(?P<handle>(\w+))/(?P<action>(\w+))$', 
      action),                                              # /object/handle/action 
-#    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))$', view_name),
+    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))$', view_name),
 #    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/(?P<action>(\w+))$', view_name),
 #    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/surname/(?P<sorder>(\w+))$', view_surname),
 #    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/surname/(?P<sorder>(\w+))/(?P<action>(\w+))$', view_surname),

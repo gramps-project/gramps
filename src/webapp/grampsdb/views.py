@@ -174,8 +174,8 @@ def view_surname(request, handle, order, sorder, action="view"):
     person = Person.objects.get(handle=handle)
     name = person.name_set.filter(order=order)[0]
     surname = name.surname_set.filter()[int(sorder) - 1] # sorder is 1-based
-    form = NameForm(instance=name)
-    form.model = name
+    nameform = NameForm(instance=name)
+    nameform.model = name
 
     if action == "save":
         active = "view"
@@ -187,7 +187,7 @@ def view_surname(request, handle, order, sorder, action="view"):
     context["id"] = id
     context["person"] = person
     context["object"] = person
-    context["form"] = form
+    context["nameform"] = form
     context["order"] = name.order
     context["sorder"] = sorder
     view_template = 'view_surname.html'
@@ -199,19 +199,12 @@ def view_name(request, handle, order, action="view"):
         action = "add"
     if request.POST.has_key("action"):
         action = request.POST.get("action")
+    ### Process action:
     if action == "view":
-        person = Person.objects.get(handle=handle)
-        try:
-            name = person.name_set.filter(order=order)[0]
-        except:
-            return fix_person(request, person)
-        form = NameForm(instance=name)
-        form.model = name
+        pf, nf, sf, person = get_person_forms(handle)
+        name = nf.model
     elif action == "edit":
-        person = Person.objects.get(handle=handle)
-        name = person.name_set.filter(order=order)[0]
-        form = NameForm(instance=name)
-        form.model = name
+        pf, nf, sf, person = get_person_forms(handle)
     elif action == "delete":
         person = Person.objects.get(handle=handle)
         names = person.name_set.all().order_by("order")
@@ -226,17 +219,18 @@ def view_name(request, handle, order, action="view"):
                     was_preferred = False
                 names[count].order = count
                 names[count].save()
-        form = NameForm()
+        nf = NameForm()
         name = Name()
+        nf.model = name
         action = "back"
     elif action == "add": # add name
         person = Person.objects.get(handle=handle)
         name = Name(person=person, 
-                    display_as=NameFormatType.objects.get(val=0), 
-                    sort_as=NameFormatType.objects.get(val=0), 
-                    name_type=NameType.objects.get(val=2))
-        form = NameForm(instance=name)
-        form.model = name
+                    display_as=NameFormatType._DEFAULT[0], 
+                    sort_as=NameFormatType._DEFAULT[0], 
+                    name_type=NameType._DEFAULT[0])
+        nf = NameForm(instance=name)
+        nf.model = name
         action = "edit"
     elif action == "save":
         person = Person.objects.get(handle=handle)
@@ -272,10 +266,11 @@ def view_name(request, handle, order, action="view"):
     context["id"] = id
     context["person"] = person
     context["object"] = person
-    context["form"] = form
+    context["nameform"] = nf
+    context["surnameform"] = sf
     context["order"] = name.order
     context["next"] = "/person/%s/name/%d" % (person.handle, name.order)
-    view_template = "view_name.html"
+    view_template = "view_name_detail.html"
     if action == "save":
         context["action"] = "view"
         return redirect("/person/%s/name/%d" % (person.handle, name.order))
@@ -939,14 +934,15 @@ def get_person_forms(handle, protect=False, empty=False):
         name = person.name_set.get(preferred=True)
     except:
         name = Name(person=person, preferred=True,
-                    display_as=NameFormatType.objects.get(val=0), 
-                    sort_as=NameFormatType.objects.get(val=0), 
-                    name_type=NameType.objects.get(val=2))
+                    display_as=NameFormatType.objects.get(val=NameFormatType._DEFAULT[0]), 
+                    sort_as=NameFormatType.objects.get(val=NameFormatType._DEFAULT[0]), 
+                    name_type=NameType.objects.get(val=NameType._DEFAULT[0]))
     ## get a surname
     try:
         surname = name.surname_set.get(primary=True)
     except:
-        surname = Surname(name=name, primary=True)
+        surname = Surname(name=name, primary=True, name_origin_type=NameOriginType.objects.get(val=NameOriginType._DEFAULT[0]),)
+
     if protect and person.probably_alive:
         name.sanitize()
     pf = PersonForm(instance=person)

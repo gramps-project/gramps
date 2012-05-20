@@ -22,44 +22,41 @@
 <table class="infolist" style="width:90%;"> {% comment %} 4 cols {% endcomment %}
 <tbody>
 
-{% if user.is_authenticated %}
-  {% ifequal action "edit" %}
-    {% for error in form.errors %}
-       {{error}}<br>
-    {% endfor %}
-  {% endifequal %}
-{% endif %}
+{% for error in nameform.errors %}
+    <p id="error">{{error}}</a><br>
+{% endfor %}
+
 <form method="post">{% csrf_token %}
 <tr>
- <td class="ColumnAttribute">{{form.surname.label}}:</td>
- <td class="ColumnValue" id="data">{% render form.surname user action False "" "get_focus" %}</td>
- <td class="ColumnAttribute">{{form.prefix.label}}:</td>
- <td class="ColumnValue" id="data">{% render form.prefix user action %}</td>
+ <td class="ColumnAttribute">{{surnameform.surname.label}}:</td>
+ <td class="ColumnValue" id="data">{% render surnameform.surname user action False "" "get_focus" %}</td>
+ <td class="ColumnAttribute">{{surnameform.prefix.label}}:</td>
+ <td class="ColumnValue" id="data">{% render surnameform.prefix user action %}</td>
 </tr>
 <tr>
- <td class="ColumnAttribute">{{form.first_name.label}}:</td>
- <td class="ColumnValue" id="data">{% render form.first_name user action %}</td>
- <td class="ColumnAttribute">{{form.call.label}}:</td>
- <td class="ColumnValue" id="data">{% render form.call user action %}</td>
+ <td class="ColumnAttribute">{{nameform.first_name.label}}:</td>
+ <td class="ColumnValue" id="data">{% render nameform.first_name user action %}</td>
+ <td class="ColumnAttribute">{{nameform.call.label}}:</td>
+ <td class="ColumnValue" id="data">{% render nameform.call user action %}</td>
 <tr>
 </tr>
- <td class="ColumnAttribute">{{form.title.label}}:</td>
- <td class="ColumnValue" id="data">{% render form.title user action %}</td>
- <td class="ColumnAttribute">{{form.suffix.label}}:</td>
- <td class="ColumnValue" id="data">{% render form.suffix user action %}</td>
+ <td class="ColumnAttribute">{{nameform.title.label}}:</td>
+ <td class="ColumnValue" id="data">{% render nameform.title user action %}</td>
+ <td class="ColumnAttribute">{{nameform.suffix.label}}:</td>
+ <td class="ColumnValue" id="data">{% render nameform.suffix user action %}</td>
 <tr>
- <td class="ColumnAttribute">{{form.name_type.label}}:</td>
- <td class="ColumnValue" id="data">{% render form.name_type user action %}</td>
+ <td class="ColumnAttribute">{{nameform.name_type.label}}:</td>
+ <td class="ColumnValue" id="data">{% render nameform.name_type user action %}</td>
 </tr>
 <tr>
- <td class="ColumnAttribute">{{form.preferred.label}}:</td>
-{% if form.model.preferred %}
+ <td class="ColumnAttribute">{{nameform.preferred.label}}:</td>
+{% if nameform.model.preferred %}
  <td class="ColumnValue" id="data">True</td>
 {% else %}
- <td class="ColumnValue" id="data">{% render form.preferred user action %}</td>
+ <td class="ColumnValue" id="data">{% render nameform.preferred user action %}</td>
 {% endif %}
- <td class="ColumnAttribute">{{form.private.label}}:</td>
- <td class="ColumnValue" id="data">{% render form.private user action %}</td>
+ <td class="ColumnAttribute">{{nameform.private.label}}:</td>
+ <td class="ColumnValue" id="data">{% render nameform.private user action %}</td>
 </tr>
 </tbody>
 </table>
@@ -81,34 +78,34 @@
   id="tab-general"> 
     <div style="overflow: auto; height:150px;">
     <table border="1">
-    <tr><td style="background-color: #FFF2C5;">{{form.group_as.label}}: </td>
-        <td>{% render form.group_as user action %}</td>
+    <tr><td style="background-color: #FFF2C5;">{{nameform.group_as.label}}: </td>
+        <td>{% render nameform.group_as user action %}</td>
     </tr>
-    <tr><td style="background-color: #FFF2C5;">{{form.sort_as.label}}: </td>
-        <td>{% render form.sort_as user action %}</td>
+    <tr><td style="background-color: #FFF2C5;">{{nameform.sort_as.label}}: </td>
+        <td>{% render nameform.sort_as user action %}</td>
     </tr>
-    <tr><td style="background-color: #FFF2C5;">{{form.display_as.label}}: </td>
-         <td>{% render form.display_as user action %}</td>
+    <tr><td style="background-color: #FFF2C5;">{{nameform.display_as.label}}: </td>
+         <td>{% render nameform.display_as user action %}</td>
     </tr>
-    <tr><td style="background-color: #FFF2C5;">{{form.text.label}}: </td>
-         <td>{% render form.text user action %}</td>
+    <tr><td style="background-color: #FFF2C5;">{{nameform.text.label}}: </td>
+         <td>{% render nameform.text user action %}</td>
     </tr>
     </table>
     </div>
     &nbsp;
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-surnames">
-    {% surname_table person user action "/person/%s/name/%s/surname" person.handle form.model.order %}
+    {% surname_table person user action "/person/%s/name/%s/surname" person.handle nameform.model.order %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-names">
     {% name_table person user action "/person/%s/name" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-sources">
-    {% source_table form.model user action "/person/%s/name/%s/source" person.handle form.model.order %}
+    {% source_table nameform.model user action "/person/%s/name/%s/source" person.handle nameform.model.order %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom
 	      ui-tabs-hide" id="tab-notes">
-    {% note_table form.model user action "/person/%s/name/%s/note" person.handle form.model.order %}
+    {% note_table nameform.model user action "/person/%s/name/%s/note" person.handle nameform.model.order %}
   </div>
 </div>
 

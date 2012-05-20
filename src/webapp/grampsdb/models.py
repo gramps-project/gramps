@@ -116,35 +116,35 @@ class NameType(mGrampsType):
     from gen.lib.nametype import NameType
     _DATAMAP = get_datamap(NameType)
     _CUSTOM = NameType._CUSTOM
-    _DEFAULT = [x for x in _DATAMAP if x[0] == NameType._DEFAULT]
+    _DEFAULT = [x for x in _DATAMAP if x[0] == NameType._DEFAULT][0]
     val = models.IntegerField('name type', choices=_DATAMAP, blank=False)
 
 class NameOriginType(mGrampsType):
     from gen.lib.nameorigintype import NameOriginType
     _DATAMAP = get_datamap(NameOriginType)
     _CUSTOM = NameOriginType._CUSTOM
-    _DEFAULT = [x for x in _DATAMAP if x[0] == NameOriginType._DEFAULT]
+    _DEFAULT = [x for x in _DATAMAP if x[0] == NameOriginType._DEFAULT][0]
     val = models.IntegerField('name origin type', choices=_DATAMAP, blank=False)
 
 class AttributeType(mGrampsType):
     from gen.lib.attrtype import AttributeType
     _DATAMAP = get_datamap(AttributeType)
     _CUSTOM = AttributeType._CUSTOM
-    _DEFAULT = [x for x in _DATAMAP if x[0] == AttributeType._DEFAULT]
+    _DEFAULT = [x for x in _DATAMAP if x[0] == AttributeType._DEFAULT][0]
     val = models.IntegerField('attribute type', choices=_DATAMAP, blank=False)
 
 class UrlType(mGrampsType):
     from gen.lib.urltype import UrlType
     _DATAMAP = get_datamap(UrlType)
     _CUSTOM = UrlType._CUSTOM
-    _DEFAULT = [x for x in _DATAMAP if x[0] == UrlType._DEFAULT]
+    _DEFAULT = [x for x in _DATAMAP if x[0] == UrlType._DEFAULT][0]
     val = models.IntegerField('url type', choices=_DATAMAP, blank=False)
 
 class ChildRefType(mGrampsType):
     from gen.lib.childreftype import ChildRefType
     _DATAMAP = get_datamap(ChildRefType)
     _CUSTOM = ChildRefType._CUSTOM
-    _DEFAULT = [x for x in _DATAMAP if x[0] == ChildRefType._DEFAULT]
+    _DEFAULT = [x for x in _DATAMAP if x[0] == ChildRefType._DEFAULT][0]
     val = models.IntegerField('child reference type', choices=_DATAMAP, 
                               blank=False)
 
@@ -152,14 +152,14 @@ class RepositoryType(mGrampsType):
     from gen.lib.repotype import RepositoryType
     _DATAMAP = get_datamap(RepositoryType)
     _CUSTOM = RepositoryType._CUSTOM
-    _DEFAULT = [x for x in _DATAMAP if x[0] == RepositoryType._DEFAULT]
+    _DEFAULT = [x for x in _DATAMAP if x[0] == RepositoryType._DEFAULT][0]
     val = models.IntegerField('repository type', choices=_DATAMAP, blank=False)
 
 class EventType(mGrampsType):
     from gen.lib.eventtype import EventType
     _DATAMAP = get_datamap(EventType)
     _CUSTOM = EventType._CUSTOM
-    _DEFAULT = [x for x in _DATAMAP if x[0] == EventType._DEFAULT]
+    _DEFAULT = [x for x in _DATAMAP if x[0] == EventType._DEFAULT][0]
     BIRTH = 12
     DEATH = 13
     val = models.IntegerField('event type', choices=_DATAMAP, blank=False)
@@ -168,7 +168,7 @@ class FamilyRelType(mGrampsType):
     from gen.lib.familyreltype import FamilyRelType
     _DATAMAP = get_datamap(FamilyRelType)
     _CUSTOM = FamilyRelType._CUSTOM
-    _DEFAULT = [x for x in _DATAMAP if x[0] == FamilyRelType._DEFAULT]
+    _DEFAULT = [x for x in _DATAMAP if x[0] == FamilyRelType._DEFAULT][0]
     val = models.IntegerField('family relation type', choices=_DATAMAP, 
                               blank=False)
 
@@ -176,7 +176,7 @@ class SourceMediaType(mGrampsType):
     from gen.lib.srcmediatype import SourceMediaType
     _DATAMAP = get_datamap(SourceMediaType)
     _CUSTOM = SourceMediaType._CUSTOM
-    _DEFAULT = [x for x in _DATAMAP if x[0] == SourceMediaType._DEFAULT]
+    _DEFAULT = [x for x in _DATAMAP if x[0] == SourceMediaType._DEFAULT][0]
     val = models.IntegerField('source medium type', choices=_DATAMAP, 
                               blank=False)
 
@@ -184,14 +184,14 @@ class EventRoleType(mGrampsType):
     from gen.lib.eventroletype import EventRoleType
     _DATAMAP = get_datamap(EventRoleType)
     _CUSTOM = EventRoleType._CUSTOM
-    _DEFAULT = [x for x in _DATAMAP if x[0] == EventRoleType._DEFAULT]
+    _DEFAULT = [x for x in _DATAMAP if x[0] == EventRoleType._DEFAULT][0]
     val = models.IntegerField('event role type', choices=_DATAMAP, blank=False)
 
 class NoteType(mGrampsType):
     from gen.lib.notetype import NoteType
     _DATAMAP = get_datamap(NoteType)
     _CUSTOM = NoteType._CUSTOM
-    _DEFAULT = [x for x in _DATAMAP if x[0] == NoteType._DEFAULT]
+    _DEFAULT = [x for x in _DATAMAP if x[0] == NoteType._DEFAULT][0]
     val = models.IntegerField('note type', choices=_DATAMAP, blank=False)
 
 class MarkupType(mGrampsType):
@@ -258,7 +258,7 @@ class CalendarType(mGrampsType):
                 (CAL_ISLAMIC, "Islamic"),
                 (CAL_SWEDISH, "Swedish")] 
 
-    _DEFAULT = [x for x in _DATAMAP if x[0] == CAL_GREGORIAN]
+    _DEFAULT = [x for x in _DATAMAP if x[0] == CAL_GREGORIAN][0]
     val = models.IntegerField('Calendar', choices=_DATAMAP, blank=False)
 
 class DateModifierType(mGrampsType):
@@ -278,7 +278,7 @@ class DateModifierType(mGrampsType):
                 (MOD_SPAN, "Span"),
                 (MOD_TEXTONLY, "Text only")]
 
-    _DEFAULT = [x for x in _DATAMAP if x[0] == MOD_NONE]
+    _DEFAULT = [x for x in _DATAMAP if x[0] == MOD_NONE][0]
     val = models.IntegerField('Date modifier', choices=_DATAMAP, blank=False)
 
 class DateNewYearType(mGrampsType):
@@ -292,20 +292,19 @@ class DateNewYearType(mGrampsType):
                 (NEWYEAR_MAR25, "March 25"),
                 (NEWYEAR_SEP1, "September 1")]
 
-    _DEFAULT = [x for x in _DATAMAP if x[0] == NEWYEAR_JAN1]
+    _DEFAULT = [x for x in _DATAMAP if x[0] == NEWYEAR_JAN1][0]
     val = models.IntegerField('New Year start date', choices=_DATAMAP, blank=False)
 
 class ThemeType(mGrampsType):
     _DATAMAP = list(enumerate(["Web_Mainz.css",
-                          "Web_Basic-Ash.css",
-                          "Web_Basic-Cypress.css",
-                          "Web_Nebraska.css",
-                          "Web_Basic-Lilac.css",
-                          "Web_Print-Default.css",
-                          "Web_Basic-Peach.css",
-                          "Web_Visually.css",
-                          "Web_Basic-Spruce.css",]))
-
+                               "Web_Basic-Ash.css",
+                               "Web_Basic-Cypress.css",
+                               "Web_Nebraska.css",
+                               "Web_Basic-Lilac.css",
+                               "Web_Print-Default.css",
+                               "Web_Basic-Peach.css",
+                               "Web_Visually.css",
+                               "Web_Basic-Spruce.css",]))
     _DEFAULT = _DATAMAP[0]
     val = models.IntegerField('Theme', choices=_DATAMAP, blank=False)
 
