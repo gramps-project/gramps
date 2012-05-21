@@ -160,25 +160,30 @@ def set_date(obj):
     obj.day1, obj.month1, obj.year1, obj.slash1 = 0, 0, 0, 0
     obj.day2, obj.month2, obj.year2, obj.slash2 = 0, 0, 0, 0
 
-def view_surname(request, handle, order, sorder, action="view"):
+def process_surname(request, handle, order, sorder, action="view"):
     # /sdjhgsdjhdhgsd/name/1/surname/1  (view)
     # /sdjhgsdjhdhgsd/name/1/surname/add
     # /sdjhgsdjhdhgsd/name/1/surname/2/[edit|view|add|delete]
+
+    #import pdb; pdb.set_trace()
+
     if sorder == "add":
-        sorder = 0
+        sorder = 1
         action = "add"
     if request.POST.has_key("action"):
-        print "override!"
         action = request.POST.get("action")
 
     person = Person.objects.get(handle=handle)
-    name = person.name_set.filter(order=order)[0]
-    surname = name.surname_set.filter()[int(sorder) - 1] # sorder is 1-based
-    nameform = NameForm(instance=name)
-    nameform.model = name
+    name = person.name_set.get(order=order)
+    surname = name.surname_set.get(order=sorder)
+    surname.prefix = make_empty(True, surname.prefix, " prefix ")
+    surnameform = SurnameForm(instance=surname)
+    surnameform.model = surname
 
     if action == "save":
-        active = "view"
+        action = "view"
+
+    # FIXME: working on add/save/create
 
     context = RequestContext(request)
     context["action"] = action
@@ -187,13 +192,13 @@ def view_surname(request, handle, order, sorder, action="view"):
     context["id"] = id
     context["person"] = person
     context["object"] = person
-    context["nameform"] = form
+    context["surnameform"] = surnameform
     context["order"] = name.order
     context["sorder"] = sorder
-    view_template = 'view_surname.html'
+    view_template = 'view_surname_detail.html'
     return render_to_response(view_template, context)
 
-def view_name(request, handle, order, action="view"):
+def process_name(request, handle, order, action="view"):
     if order == "add":
         order = 0
         action = "add"
@@ -205,6 +210,7 @@ def view_name(request, handle, order, action="view"):
         name = nf.model
     elif action == "edit":
         pf, nf, sf, person = get_person_forms(handle)
+        name = nf.model
     elif action == "delete":
         person = Person.objects.get(handle=handle)
         names = person.name_set.all().order_by("order")
@@ -226,37 +232,48 @@ def view_name(request, handle, order, action="view"):
     elif action == "add": # add name
         person = Person.objects.get(handle=handle)
         name = Name(person=person, 
-                    display_as=NameFormatType._DEFAULT[0], 
-                    sort_as=NameFormatType._DEFAULT[0], 
-                    name_type=NameType._DEFAULT[0])
+                    display_as=NameFormatType.objects.get(val=NameFormatType._DEFAULT[0]), 
+                    sort_as=NameFormatType.objects.get(val=NameFormatType._DEFAULT[0]), 
+                    name_type=NameType.objects.get(val=NameType._DEFAULT[0]))
         nf = NameForm(instance=name)
         nf.model = name
+        surname = Surname(name=name, primary=True, order=1)
+        sf = SurnameForm(request.POST, instance=surname)
         action = "edit"
     elif action == "save":
+        # look up old data, if any:
         person = Person.objects.get(handle=handle)
-        try:
-            name = person.name_set.filter(order=order)[0]
-        except:
-            order = person.name_set.count() + 1
-            name = Name(person=person, order=order)
-        form = NameForm(request.POST, instance=name)
-        form.model = name
-        if form.is_valid():
-            # now it is preferred:
-            if name.preferred: # was preferred, still must be
-                form.cleaned_data["preferred"] = True
-            elif form.cleaned_data["preferred"]: # now is
-                # set all of the other names to be 
-                # not preferred:
-                person.name_set.filter(~ Q(id=name.id)) \
-                    .update(preferred=False)
-            # else some other name is preferred
-            set_date(name)
-            n = form.save()
+        oldname = person.name_set.get(preferred=True)
+        surname = oldname.surname_set.get(primary=True)
+        # combine with user data:
+        pf = PersonForm(request.POST, instance=person)
+        pf.model = person
+        nf = NameForm(request.POST, instance=oldname)
+        nf.model = oldname
+        sf = SurnameForm(request.POST, instance=surname)
+        if nf.is_valid() and sf.is_valid():
+            # name.preferred and surname.primary get set False in the above is_valid()
+            # person = pf.save()
+            # Process data:
+            oldname.person = person
+            name = nf.save()
+            # Manually set any data:
+            name.suffix = nf.cleaned_data["suffix"] if nf.cleaned_data["suffix"] != " suffix " else ""
+            name.preferred = True # FIXME: why is this False?
+            name.save()
+            # Process data:
+            surname.name = name
+            surname = sf.save(commit=False)
+            # Manually set any data:
+            surname.prefix = sf.cleaned_data["prefix"] if sf.cleaned_data["prefix"] != " prefix " else ""
+            surname.primary = True # FIXME: why is this False?
+            surname.save()
+            # FIXME: last_saved, last_changed, last_changed_by
+            dji.rebuild_cache(person)
+            # FIXME: update probably_alive
+            return redirect("/person/%s/name/%s" % (person.handle, name.order))
         else:
-            action = "edit"
-        # FIXME: need to update cache
-        # FIXME: need to reset probabily_alive
+            action = "add"
     context = RequestContext(request)
     context["action"] = action
     context["tview"] = _('Name')
@@ -271,13 +288,7 @@ def view_name(request, handle, order, action="view"):
     context["order"] = name.order
     context["next"] = "/person/%s/name/%d" % (person.handle, name.order)
     view_template = "view_name_detail.html"
-    if action == "save":
-        context["action"] = "view"
-        return redirect("/person/%s/name/%d" % (person.handle, name.order))
-    elif action == "back":
-        return redirect("/person/%s/" % (person.handle))
-    else:
-        return render_to_response(view_template, context)
+    return render_to_response(view_template, context)
     
 def send_file(request, filename, mimetype):
     """                                                                         
@@ -865,7 +876,7 @@ def process_person(request, context, handle, action): # view, edit, save
             else: # create new item
                 person = Person(handle=create_id())
                 name = Name(person=person, preferred=True)
-                surname = Surname(name=name, primary=True)
+                surname = Surname(name=name, primary=True, order=1)
             # combine with user data:
             pf = PersonForm(request.POST, instance=person)
             pf.model = person
@@ -941,7 +952,9 @@ def get_person_forms(handle, protect=False, empty=False):
     try:
         surname = name.surname_set.get(primary=True)
     except:
-        surname = Surname(name=name, primary=True, name_origin_type=NameOriginType.objects.get(val=NameOriginType._DEFAULT[0]),)
+        surname = Surname(name=name, primary=True, 
+                          name_origin_type=NameOriginType.objects.get(val=NameOriginType._DEFAULT[0]),
+                          order=1)
 
     if protect and person.probably_alive:
         name.sanitize()

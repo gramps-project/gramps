@@ -598,6 +598,7 @@ class Surname(models.Model):
     primary = models.BooleanField('Primary surname?')
     connector = models.TextField(blank=True)
     name = models.ForeignKey("Name")
+    order = models.PositiveIntegerField()
 
     def __unicode__(self):
         return "%s" % self.surname

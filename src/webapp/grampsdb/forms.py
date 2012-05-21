@@ -59,6 +59,9 @@ class NameForm(forms.ModelForm):
     nick = forms.CharField(label="Nick", 
                            required=False, 
                            widget=TextInput(attrs={'size':'15'}))
+    group_as = forms.CharField(label="Group as", 
+                               required=False, 
+                               widget=TextInput(attrs={'size':'30'}))
     suffix = forms.CharField(required=False, 
                              initial=' suffix ',
                              widget=TextInput(attrs={'size':'15',
@@ -87,14 +90,18 @@ class NameFormFromPerson(NameForm):
                    #"quality_interpreted", 
                    "year1", "day1", "month1",
                    "sortval", "newyear", "person",
-                   "sort_as", "display_as"]
+                   "group_as", "sort_as", "display_as"]
 
 class SurnameForm(forms.ModelForm):
     class Meta:
         model = Surname
-        exclude = ['name']
+        exclude = ['name', 'order']
 
     surname = forms.CharField(label="Surname", 
+                              required=False, 
+                              widget=TextInput(attrs={'size':'30'}))
+
+    connector = forms.CharField(label="Connector", 
                               required=False, 
                               widget=TextInput(attrs={'size':'30'}))
 

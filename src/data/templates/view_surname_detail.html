@@ -31,35 +31,24 @@
 {% endif %}
 <form method="post">{% csrf_token %}
 <tr>
- <td class="ColumnAttribute">{{form.surname.label}}:</td>
- <td class="ColumnValue" id="data">{% render form.surname user action %}</td>
- <td class="ColumnAttribute">{{form.prefix.label}}:</td>
- <td class="ColumnValue" id="data">{% render form.prefix user action %}</td>
+ <td class="ColumnAttribute">{{surnameform.name_origin_type.label}}:</td>
+ <td class="ColumnValue" id="data">{% render surnameform.name_origin_type user action %}</td>
 </tr>
 <tr>
- <td class="ColumnAttribute">{{form.first_name.label}}:</td>
- <td class="ColumnValue" id="data">{% render form.first_name user action %}</td>
- <td class="ColumnAttribute">{{form.call.label}}:</td>
- <td class="ColumnValue" id="data">{% render form.call user action %}</td>
-<tr>
-</tr>
- <td class="ColumnAttribute">{{form.title.label}}:</td>
- <td class="ColumnValue" id="data">{% render form.title user action %}</td>
- <td class="ColumnAttribute">{{form.suffix.label}}:</td>
- <td class="ColumnValue" id="data">{% render form.suffix user action %}</td>
-<tr>
- <td class="ColumnAttribute">{{form.name_type.label}}:</td>
- <td class="ColumnValue" id="data">{% render form.name_type user action %}</td>
+ <td class="ColumnAttribute">{{surnameform.primary.label}}:</td>
+ <td class="ColumnValue" id="data">{% render surnameform.primary user action %}</td>
 </tr>
 <tr>
- <td class="ColumnAttribute">{{form.preferred.label}}:</td>
-{% if form.model.preferred %}
- <td class="ColumnValue" id="data">True</td>
-{% else %}
- <td class="ColumnValue" id="data">{% render form.preferred user action %}</td>
-{% endif %}
- <td class="ColumnAttribute">{{form.private.label}}:</td>
- <td class="ColumnValue" id="data">{% render form.private user action %}</td>
+ <td class="ColumnAttribute">{{surnameform.prefix.label}}:</td>
+ <td class="ColumnValue" id="data">{% render surnameform.prefix user action %}</td>
+</tr>
+<tr>
+ <td class="ColumnAttribute">{{surnameform.surname.label}}:</td>
+ <td class="ColumnValue" id="data">{% render surnameform.surname user action %}</td>
+</tr>
+<tr>
+ <td class="ColumnAttribute">{{surnameform.connector.label}}:</td>
+ <td class="ColumnValue" id="data">{% render surnameform.connector user action %}</td>
 </tr>
 </tbody>
 </table>
@@ -75,33 +64,6 @@
     <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Notes</a></li>
   </ul>
 
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom"
-  id="tab-general"> 
-    <div style="overflow: auto; height:150px;">
-    <table border="1">
-    <tr><td style="background-color: #FFF2C5;">{{form.group_as.label}}: </td>
-        <td>{% render form.group_as user action %}</td>
-    </tr>
-    <tr><td style="background-color: #FFF2C5;">{{form.sort_as.label}}: </td>
-        <td>{% render form.sort_as user action %}</td>
-    </tr>
-    <tr><td style="background-color: #FFF2C5;">{{form.display_as.label}}: </td>
-         <td>{% render form.display_as user action %}</td>
-    </tr>
-    <tr><td style="background-color: #FFF2C5;">{{form.text.label}}: </td>
-         <td>{% render form.text user action %}</td>
-    </tr>
-    </table>
-    </div>
-    &nbsp;
-  </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-sources">
-    {% source_table form.model user action "/person/%s/name/%s/source" person.handle form.model.order %}
-  </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom
-	      ui-tabs-hide" id="tab-notes">
-    {% note_table form.model user action "/person/%s/name/%s/note" person.handle form.model.order %}
-  </div>
 </div>
 
 {% if user.is_authenticated %}

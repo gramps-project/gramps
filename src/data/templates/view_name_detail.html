@@ -28,6 +28,12 @@
 
 <form method="post">{% csrf_token %}
 <tr>
+ <td class="ColumnAttribute">{{surnameform.name_origin_type.label}}:</td>
+ <td class="ColumnValue" id="data">{% render surnameform.name_origin_type user action %}</td>
+ <td class="ColumnAttribute">{{nameform.name_type.label}}:</td>
+ <td class="ColumnValue" id="data">{% render nameform.name_type user action %}</td>
+</tr>
+<tr>
  <td class="ColumnAttribute">{{surnameform.surname.label}}:</td>
  <td class="ColumnValue" id="data">{% render surnameform.surname user action False "" "get_focus" %}</td>
  <td class="ColumnAttribute">{{surnameform.prefix.label}}:</td>
@@ -45,8 +51,6 @@
  <td class="ColumnAttribute">{{nameform.suffix.label}}:</td>
  <td class="ColumnValue" id="data">{% render nameform.suffix user action %}</td>
 <tr>
- <td class="ColumnAttribute">{{nameform.name_type.label}}:</td>
- <td class="ColumnValue" id="data">{% render nameform.name_type user action %}</td>
 </tr>
 <tr>
  <td class="ColumnAttribute">{{nameform.preferred.label}}:</td>
