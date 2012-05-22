@@ -29,6 +29,8 @@
 	      href="http://launchpad.net/"/>
   <repository type="tarball" name="exiv2.org"
 	      href="http://exiv2.org/"/>
+  <repository type="tarball" name="pythonware"
+	      href="http://effbot.org/downloads/"/>
 
 <!--
 Special instructions:
@@ -60,7 +62,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 
 
   <autotools id="gramps" autogen-sh="configure">
-    <branch module="gramps/gramps-3.3.1.tar.gz" version="3.3.1"
+    <branch module="gramps/gramps-3.3.2.tar.gz" version="3.3.2"
 	    repo="sourceforge">
     </branch>
     <dependencies>
@@ -69,10 +71,15 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
       <dep package="librsvg2"/>
       <dep package="pygoocanvas"/>
       <dep package="shared-mime-info"/>
-      <dep package="pyenchant"/>
       <dep package="hunspell"/>
       <dep package="pygtk-extras"/>
+      <dep package="osmgpsmap-py"/>
+      <dep package="graphviz"/>
+      <dep package="pyexiv2"/>
     </dependencies>
+   <after>
+      <dep package="pyexiv2"/>
+   </after>
   </autotools>
 
   <autotools id="gramps-svn" >
@@ -105,7 +112,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     <branch module="pywebkitgtk-1.1.8.tar.bz2" version="1.1.8"
 	    repo="pywebkitgtk"/>
     <dependencies>
-      <dep package="WebKit"/>
+      <dep package="meta-gtk-osx-webkit"/>
       <dep package="sqlite"/>
     </dependencies>
   </autotools>
@@ -139,11 +146,6 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     </dependencies>
   </autotools>
 
-  <distutils id="pyenchant">
-    <branch repo="pymodules" module="p/pyenchant/pyenchant-1.6.1.tar.gz"
-	    version="1.6.1"/>
-  </distutils>
-
   <distutils id="pyxdg">
     <branch repo="pyxdg" module="pyxdg-0.17.tar.gz" version="0.17"
             hash="sha256:fbc87711922b2dd6ceb23ee041f1f96da9b7dbb6971df03a3081b439def069ce"
@@ -154,7 +156,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
    <branch module="xdg-utils-1.0.2.tgz" version="1.0.2" repo="xdg-utils"/>
  </autotools>
 
-  <autotools id="osmgpsmap">
+  <autotools id="osmgpsmap" autogenargs="--enable-introspection=no">
     <branch module="osm-gps-map/osm-gps-map-0.7.3.tar.gz" repo="stowers"
 	    version="0.7.3"/>
     <dependencies>
@@ -201,10 +203,15 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     <dependencies>
       <dep package="exiv2"/>
       <dep package="scons"/>
+      <dep package="pil"/>
     </dependencies>
     <after>
       <dep package="boost"/>
     </after>
   </autotools>
+
+  <distutils id="pil">
+    <branch module="Imaging-1.1.7.tar.gz" version="1.1.7" repo="pythonware"/>
+  </distutils>
 
 </moduleset>
