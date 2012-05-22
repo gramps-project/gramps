@@ -1097,6 +1097,11 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         self.book_list = BookList(self.file, self.db)
         booklistdisplay = BookListDisplay(self.book_list, 0, 1)
         booklistdisplay.top.destroy()
+        book = booklistdisplay.selection
+        if book:
+            self.open_book(book)
+            self.name_entry.set_text(book.get_name())
+            self.book.set_name(book.get_name())
 
 #------------------------------------------------------------------------
 #
