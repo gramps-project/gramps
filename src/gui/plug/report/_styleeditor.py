@@ -120,7 +120,7 @@ class StyleListDisplay(object):
         self.list.add(["default"])
 
         index = 1
-        for style in self.sheetlist.get_style_names():
+        for style in sorted(self.sheetlist.get_style_names()):
             if style == "default":
                 continue
             self.list.add([style])

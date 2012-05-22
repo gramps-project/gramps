@@ -152,9 +152,10 @@ class StyleSheetList(object):
         xml_file.write("<?xml version=\"1.0\"?>\n")
         xml_file.write('<stylelist>\n')
         
-        for name, sheet in self.map.iteritems():
+        for name in sorted(self.map.keys()): # enable diff of archived copies
             if name == "default":
                 continue
+            sheet = self.map[name]
             xml_file.write('<sheet name="%s">\n' % escxml(name))
             for p_name in sheet.get_paragraph_style_names():
                 # Get variables for substitutions
