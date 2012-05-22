@@ -1525,7 +1525,8 @@ links (like ODF) and write PDF from that format.
     
     def start_page(self):
         # if this is not the first page we need to "close" the previous one
-        if self._doc.get_children():
+        children = self._doc.get_children()
+        if children and children[-1].get_type() != 'PAGEBREAK':
             self._doc.add_child(GtkDocPagebreak())
             
         new_frame_style = FrameStyle(width=self.get_usable_width(),
