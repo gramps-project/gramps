@@ -434,7 +434,7 @@ class OptionListCollection(_options.OptionListCollection):
                     f.write('  <metric value="%d"/>\n' %
                                 option_list.get_paper_metric() )
                 if option_list.get_custom_paper_size():
-                    size = self.get_last_custom_paper_size()
+                    size = option_list.get_custom_paper_size()
                     f.write('  <size value="%f %f"/>\n' % (size[0], size[1]) )
                 if option_list.get_margins():
                     margins = option_list.get_margins()
