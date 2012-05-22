@@ -246,7 +246,12 @@ class ConfigManager(object):
             filename = self.filename
         if filename and os.path.exists(filename):
             parser = ConfigParser.RawConfigParser()
-            parser.read(filename)
+            try: # see bugs 5356, 5490, 5591, 5651, 5718, etc.
+                parser.read(filename)
+            except:
+                msg1 = _("WARNING: could not parse file, recreating it:\n%s")
+                print >> sys.stderr, msg1 % filename
+                return
             for sec in parser.sections():
                 name = sec.lower()
                 if name not in self.data:
