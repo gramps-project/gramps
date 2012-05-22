@@ -43,10 +43,10 @@ from gen.ggettext import sgettext as _
 #-------------------------------------------------------------------------
 PROGRAM_NAME   = "Gramps"
 if "@VERSIONSTRING@" == "@" + "VERSIONSTRING" + "@":
-    VERSION        = "3.4.0"
+    VERSION        = "3.4.1"
 else:
     VERSION        = "@VERSIONSTRING@"
-VERSION_TUPLE  = (3, 4, 0)
+VERSION_TUPLE  = (3, 4, 1)
 
 #-------------------------------------------------------------------------
 #
