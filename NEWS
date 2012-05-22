@@ -1,3 +1,13 @@
+2012-05-21
+Version 3.4.0 -- The "always look on the bright side of life" feature release.
+* Lots of changes and bug fixes to every part of Gramps, including XML
+  import/export, image handling, gedom handling, Gramplets, date handling,
+  citations, reports, more!
+* Some platform-specific fixes (Windows, OSX, Linux)
+* What's new (and what to do before you upgrade):  http://goo.gl/K3RDV
+* Roadmap:  http://goo.gl/GJhjH
+* Many translation updates
+
 2012-05-18
 Version 3.3.2 -- "The Knights who say 'Ni'" bug fix release.
 * Expressive error when trying to load familytree with downgraded Berkeley db
