@@ -29,6 +29,8 @@
 	      href="http://launchpad.net/"/>
   <repository type="tarball" name="exiv2.org"
 	      href="http://exiv2.org/"/>
+  <repository type="tarball" name="pythonware"
+	      href="http://effbot.org/downloads/"/>
 
 <!--
 Special instructions:
@@ -60,13 +62,8 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 
 
   <autotools id="gramps" autogen-sh="configure">
-    <branch module="gramps/gramps-3.2.6.tar.gz" version="3.2.6"
+    <branch module="gramps/gramps-3.4.0.tar.gz" version="3.4.0"
 	    repo="sourceforge">
-      <patch file="http://raw.github.com/jralls/gtk-osx-build/master/patches/gramps.patch" strip="1"/>
-      <patch file="http://raw.github.com/jralls/gtk-osx-build/master/patches/gramps-viewmanager.patch" strip="1"/>
-      <patch file="http://raw.github.com/jralls/gtk-osx-build/master/patches/gramps-accelmap.patch" strip="1"/>
-      <patch file="http://raw.github.com/jralls/gtk-osx-build/master/patches/gramps-pedigree.patch" strip="1"/>
-      <patch file="http://raw.github.com/jralls/gtk-osx-build/master/patches/gramps-accel.patch" strip="1"/>
     </branch>
     <dependencies>
       <dep package="meta-gtk-osx-python"/>
@@ -74,31 +71,19 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
       <dep package="librsvg2"/>
       <dep package="pygoocanvas"/>
       <dep package="shared-mime-info"/>
-      <dep package="pyenchant"/>
-      <dep package="hunspell"/>
-      <dep package="pygtk-extras"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="gramps33" >
-    <branch module="gramps" revision="maintenance/gramps33" repo="gramps"/>
-    <dependencies>
-      <dep package="meta-gtk-osx-python"/>
-      <dep package="librsvg2"/>
-      <dep package="pygoocanvas"/>
-      <dep package="shared-mime-info"/>
       <dep package="hunspell"/>
       <dep package="pygtk-extras"/>
       <dep package="osmgpsmap-py"/>
       <dep package="graphviz"/>
-   </dependencies>
+      <dep package="pyexiv2"/>
+    </dependencies>
    <after>
       <dep package="pyexiv2"/>
    </after>
   </autotools>
 
   <autotools id="gramps-svn" >
-    <branch module="gramps" repo="gramps"/>
+    <branch module="gramps" revision="maintenance/gramps34" repo="gramps"/>
     <dependencies>
       <dep package="meta-gtk-osx-python"/>
       <dep package="librsvg2"/>
@@ -115,31 +100,16 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </autotools>
 
   <distutils id="gramps-addons">
-    <branch module="branches/gramps32/contrib"
+    <branch module="branches/gramps34/contrib"
 	    repo="gramps-addons"/>
     <dependencies>
       <dep package="gramps"/>
     </dependencies>
   </distutils>
 
-  <autotools id="gramps33-addons" skip-autogen="true" >
-    <branch module="branches/gramps33/contrib"
-	    repo="gramps-addons"/>
-    <dependencies>
-      <dep package="gramps33"/>
-    </dependencies>
-  </autotools>
-
-  <distutils id="gramps-addons-svn">
-    <branch module="gramps-addons/trunk/contrib"
-	    repo="gramps-addons"/>
-    <dependencies>
-      <dep package="gramps-svn"/>
-    </dependencies>
-  </distutils>
 
   <autotools id="pyWebKitGtk" >
-    <branch module="pywebkitgtk-1.1.7.tar.bz2" version="1.1.7"
+    <branch module="pywebkitgtk-1.1.8.tar.bz2" version="1.1.8"
 	    repo="pywebkitgtk"/>
     <dependencies>
       <dep package="WebKit"/>
@@ -175,11 +145,6 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
       <dep package="pygtk"/>
     </dependencies>
   </autotools>
-
-  <distutils id="pyenchant">
-    <branch repo="pymodules" module="p/pyenchant/pyenchant-1.6.1.tar.gz"
-	    version="1.6.1"/>
-  </distutils>
 
   <distutils id="pyxdg">
     <branch repo="pyxdg" module="pyxdg-0.17.tar.gz" version="0.17"
@@ -238,10 +203,15 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     <dependencies>
       <dep package="exiv2"/>
       <dep package="scons"/>
+      <dep package="pil"/>
     </dependencies>
     <after>
       <dep package="boost"/>
     </after>
   </autotools>
+
+  <distutils id="pil">
+    <branch module="Imaging-1.1.7.tar.gz" version="1.1.7" repo="pythonware"/>
+  </distutils>
 
 </moduleset>
