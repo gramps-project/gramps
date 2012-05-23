@@ -1804,12 +1804,12 @@ class TestcaseGenerator(tool.BatchTool):
         else:
             result = ""
         
-        if type <> self.TAG:
-            if self.options.handler.options_dict['specialchars']:
-                result = result + u"ä<ö&ü%ß'\""
-            if self.options.handler.options_dict['add_serial']:
-                result = result + "#+#%06d#-#" % self.text_serial_number
-                self.text_serial_number = self.text_serial_number + 1
+        if self.options.handler.options_dict['specialchars']:
+            result = result + u"ä<ö&ü%ß'\""
+
+        if self.options.handler.options_dict['add_serial'] and type <> self.TAG:
+            result = result + "#+#%06d#-#" % self.text_serial_number
+            self.text_serial_number = self.text_serial_number + 1
         
         if not type:
             type = self.SHORT
