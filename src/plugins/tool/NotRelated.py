@@ -240,7 +240,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
     def applyTagClicked(self, button) :
         progress    = None
         rows        = self.treeSelection.count_selected_rows()
-        tag_name    = self.tagcombo.get_active_text()
+        tag_name    = unicode(self.tagcombo.get_active_text())
 
         # start the db transaction
         with DbTxn("Tag not related", self.db) as transaction:

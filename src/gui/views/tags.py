@@ -550,7 +550,7 @@ class EditTag(object):
         """
         Save the changes made to the tag.
         """
-        self.tag.set_name(self.entry.get_text())
+        self.tag.set_name(unicode(self.entry.get_text()))
         self.tag.set_color(self.color.get_color().to_string())
 
         if not self.tag.get_name():

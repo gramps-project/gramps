@@ -234,7 +234,7 @@ def convert_marker(self, marker_field):
     """Convert a marker into a tag."""
     marker = MarkerType()
     marker.unserialize(marker_field)
-    tag_name = str(marker)
+    tag_name = unicode(marker)
     
     if tag_name != '':
         if tag_name not in self.tags:
