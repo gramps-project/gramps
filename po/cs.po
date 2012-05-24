@@ -35,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-11 13:24+0200\n"
-"PO-Revision-Date: 2012-05-11 13:32+0100\n"
+"POT-Creation-Date: 2012-05-24 16:27+0200\n"
+"PO-Revision-Date: 2012-05-24 16:35+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -202,19 +202,19 @@ msgstr "Jméno"
 msgid "ID"
 msgstr "ID"
 
-#: ../src/const.py:202
+#: ../src/const.py:203
 msgid "Gramps (Genealogical Research and Analysis Management Programming System) is a personal genealogy program."
 msgstr "Gramps (programový systém pro správu genealogického výzkumu a analýzy) je osobní genealogický program."
 
-#: ../src/const.py:223
+#: ../src/const.py:224
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
 "2004 Radek Malcic <malcic@atlas.cz>\n"
 "2005 Jiří Pejchal <jiri.pejchal@gmail.com>\n"
 "2006 - 2012 Zdeněk Hataš <zdenek.hatas@gmail.com>"
 
-#: ../src/const.py:234
 #: ../src/const.py:235
+#: ../src/const.py:236
 #: ../src/gen/lib/date.py:1665
 #: ../src/gen/lib/date.py:1679
 msgid "none"
@@ -2005,18 +2005,18 @@ msgstr "%s, ..."
 
 #: ../src/Utils.py:1674
 msgid "Unknown, created to replace a missing note object."
-msgstr ""
+msgstr "Neznámý, vytvořeno jako náhrada chybějícího objektu poznámky."
 
 #. primitive static variable
 #: ../src/Utils.py:1684
 #, python-format
 msgid "Unknown, was missing %s (%d)"
-msgstr ""
+msgstr "Neznámé, chybělo %s (%d)"
 
 #: ../src/Utils.py:1703
 #, python-format
 msgid "Objects referenced by this note were missing in a file imported on %s."
-msgstr ""
+msgstr "Objekty odkazované touto poznámkou chyběly v souboru importovaném  %s."
 
 #: ../src/UndoHistory.py:64
 #: ../src/gui/grampsgui.py:161
@@ -6466,6 +6466,13 @@ msgid ""
 "\n"
 "If you do not want Gramps to try and load this plugin again, you can hide it by using the Plugin Manager on the Help menu."
 msgstr ""
+"Zásuvný modul %(name)s reportoval chybu a nebyl nahrán.\n"
+"\n"
+"%(error_msg)s\n"
+"\n"
+"Pokud nejste sami schopni problém opravit, můžete jej nahlásit na http://bugs.gramps-project.org nebo kontaktovat autora modulu (%(firstauthoremail)s).\n"
+"\n"
+"Pokud nechcete, aby se Gramps pokoušel znovu modul nahrát, můžete jej skrýt použitím Správce zásuvných modulů v nabídce Nápověda."
 
 #: ../src/gui/viewmanager.py:1927
 msgid "Failed Loading View"
@@ -6482,6 +6489,13 @@ msgid ""
 "\n"
 "If you do not want Gramps to try and load this view again, you can hide it by using the Plugin Manager on the Help menu."
 msgstr ""
+"Pohled %(name)s reportoval chybu a nebyl nahrán.\n"
+"\n"
+"%(error_msg)s\n"
+"\n"
+"Pokud nejste sami schopni problém opravit, můžete jej nahlásit na http://bugs.gramps-project.org nebo kontaktovat autora modulu (%(firstauthoremail)s).\n"
+"\n"
+"Pokud nechcete, aby se Gramps pokoušel znovu pohled nahrát, můžete jej skrýt použitím Správce zásuvných modulů v nabídce Nápověda."
 
 #: ../src/gui/editors/addmedia.py:95
 msgid "Select a media object"
@@ -14407,9 +14421,8 @@ msgid "Gramps ignored namemap value"
 msgstr "Gramps ignoroval hodnotu jmenné mapy"
 
 #: ../src/plugins/import/ImportXml.py:1661
-#, fuzzy
 msgid "Unknown when imported"
-msgstr "Neznámá matka"
+msgstr "Neznámý při importu"
 
 #: ../src/plugins/import/ImportXml.py:1813
 msgid "Any note reference must have a 'hlink' attribute."
@@ -14462,17 +14475,17 @@ msgstr "Záznamy neimportované do "
 #: ../src/plugins/lib/libgedcom.py:2929
 #, python-format
 msgid "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. Record synthesised"
-msgstr ""
+msgstr "Chyba: %(msg)s  '%(gramps_id)s' (vložené jako @%(xref)s@) není v GEDCOM vstupu. Záznam byl sloučen"
 
 #: ../src/plugins/lib/libgedcom.py:2938
 #, python-format
 msgid "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. Record with typifying attribute 'Unknown' created"
-msgstr ""
+msgstr "Chyba: %(msg)s '%(gramps_id)s' (vloženo jako @%(xref)s@) není v GEDCOM vstupu. Byl vytvořen záznam s typizačním atributem 'Neznámý'."
 
 #: ../src/plugins/lib/libgedcom.py:2977
 #, python-format
 msgid "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s (input as %(orig_person)s) is not a member of the referenced family. Family reference removed from person"
-msgstr ""
+msgstr "Chyba: rodina '%(family)s' (vložena jako @%(orig_family)s@) osoba %(person)s (vložena jako %(orig_person)s) není členem odkazované rodiny. Odkaz na rodinu byl osobě odejmut"
 
 #: ../src/plugins/lib/libgedcom.py:3033
 #, python-format
