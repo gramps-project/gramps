@@ -56,7 +56,7 @@ import config
 from DdTargets import DdTargets
 from QuestionDialog import ErrorDialog
 from gui.editors import EditEvent, DeleteEventQuery
-from Filters.SideBar import EventSidebarFilter
+from gui.filters.sidebar import EventSidebarFilter
 from gen.plug import CATEGORY_QR_EVENT
 
 #-------------------------------------------------------------------------

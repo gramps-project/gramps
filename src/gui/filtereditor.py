@@ -53,8 +53,9 @@ import gobject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters import (GenericFilterFactory, FilterList, reload_custom_filters)
-from Filters.Rules._MatchesFilterBase import MatchesFilterBase
+from gen.filters import (GenericFilterFactory, FilterList, 
+                         reload_custom_filters)
+from gen.filters.rules._MatchesFilterBase import MatchesFilterBase
 import ListModel
 import ManagedWindow
 from QuestionDialog import QuestionDialog
@@ -63,7 +64,7 @@ import GrampsDisplay
 import Errors
 from gen.ggettext import sgettext as _
 import gen.lib
-from Filters import Rules
+from gen.filters import rules
 import AutoComp
 from gui.selectors import SelectorFactory
 from gen.display.name import displayer as _nd
@@ -83,7 +84,7 @@ _TITLES = {
             'Event' : _('Event Filters'),
             'Place' : _('Place Filters'),
             'Source' : _('Source Filters'),
-            'MediaObject' : _('Media Object Filters'),
+            'Media' : _('Media Filters'),
             'Repository' : _('Repository Filters'),
             'Note' : _('Note Filters'),
             'Citation' : _('Citation Filters'),
@@ -292,7 +293,7 @@ class MyID(gtk.HBox):
         'Event'  : _('Event'),
         'Place'  : _('Place'),
         'Source' : _('Source'),
-        'MediaObject'  : _('Media Object'),
+        'Media'  : _('Media'),
         'Repository' : _('Repository'),
         'Note'   : _('Note'),
         'Citation' : _('Citation'),
@@ -351,7 +352,7 @@ class MyID(gtk.HBox):
         elif self.namespace == 'Citation':
             citation = self.db.get_citation_from_gramps_id(gramps_id)
             name = citation.get_page()
-        elif self.namespace == 'MediaObject':
+        elif self.namespace == 'Media':
             obj = self.db.get_object_from_gramps_id(gramps_id)
             name = obj.get_path()
         elif self.namespace == 'Repository':
@@ -460,23 +461,23 @@ class EditRule(ManagedWindow.ManagedWindow):
         the_map = {}
 
         if self.namespace == 'Person':
-            class_list = Rules.Person.editor_rule_list
+            class_list = rules.person.editor_rule_list
         elif self.namespace == 'Family':
-            class_list = Rules.Family.editor_rule_list
+            class_list = rules.family.editor_rule_list
         elif self.namespace == 'Event':
-            class_list = Rules.Event.editor_rule_list
+            class_list = rules.event.editor_rule_list
         elif self.namespace == 'Source':
-            class_list = Rules.Source.editor_rule_list
+            class_list = rules.source.editor_rule_list
         elif self.namespace == 'Citation':
-            class_list = Rules.Citation.editor_rule_list
+            class_list = rules.citation.editor_rule_list
         elif self.namespace == 'Place':
-            class_list = Rules.Place.editor_rule_list
-        elif self.namespace == 'MediaObject':
-            class_list = Rules.MediaObject.editor_rule_list
+            class_list = rules.place.editor_rule_list
+        elif self.namespace == 'Media':
+            class_list = rules.media.editor_rule_list
         elif self.namespace == 'Repository':
-            class_list = Rules.Repository.editor_rule_list
+            class_list = rules.repository.editor_rule_list
         elif self.namespace == 'Note':
-            class_list = Rules.Note.editor_rule_list
+            class_list = rules.note.editor_rule_list
         
         for class_obj in class_list:
             arglist = class_obj.labels
@@ -935,7 +936,7 @@ class ShowResults(ManagedWindow.ManagedWindow):
             place = self.db.get_place_from_handle(handle)
             name = place.get_title()
             gid = place.get_gramps_id()
-        elif self.namespace == 'MediaObject':
+        elif self.namespace == 'Media':
             obj = self.db.get_object_from_handle(handle)
             name = obj.get_description()
             gid = obj.get_gramps_id()
@@ -966,7 +967,7 @@ class ShowResults(ManagedWindow.ManagedWindow):
             sortname = self.db.get_citation_from_handle(handle).get_title()
         elif self.namespace == 'Place':
             sortname = self.db.get_place_from_handle(handle).get_title()
-        elif self.namespace == 'MediaObject':
+        elif self.namespace == 'Media':
             sortname = self.db.get_object_from_handle(handle).get_description()
         elif self.namespace == 'Repository':
             sortname = self.db.get_repository_from_handle(handle).get_name()
@@ -1158,7 +1159,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
             return self.db.get_citation_handles()
         elif self.namespace == 'Place':
             return self.db.iter_place_handles()
-        elif self.namespace == 'MediaObject':
+        elif self.namespace == 'Media':
             return self.db.get_media_object_handles()
         elif self.namespace == 'Repository':
             return self.db.get_repository_handles()

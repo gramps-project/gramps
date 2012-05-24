@@ -48,7 +48,6 @@ log = logging.getLogger(".ExportVCal")
 #
 #-------------------------------------------------------------------------
 from ExportOptions import WriterOptionBox
-from Filters import GenericFilter, Rules, build_filter_model
 import Utils
 from gen.lib import Date, EventType
 import Errors

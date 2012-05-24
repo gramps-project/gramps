@@ -6,6 +6,7 @@
 
 SUBDIRS = \
 	editors \
+	filters \
 	plug \
 	selectors \
 	views \

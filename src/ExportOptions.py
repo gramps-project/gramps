@@ -39,7 +39,7 @@ from gen.ggettext import gettext as _
 from gen.ggettext import ngettext
 import config
 from gen.display.name import displayer as name_displayer
-from Filters import GenericFilter, Rules
+from gen.filters import GenericFilter, Rules
 from gui.utils import ProgressMeter
         
 class Progress(object):
@@ -620,7 +620,7 @@ class WriterOptionBox(object):
         filter if called if none is selected.
         """
         from gui.filtereditor import EditFilter
-        from Filters import FilterList, GenericFilterFactory
+        from gen.filters import FilterList, GenericFilterFactory
         import const
         the_filter = None
         filterdb = FilterList(const.CUSTOM_FILTERS)
@@ -649,8 +649,8 @@ class WriterOptionBox(object):
         """
         If a filter changed, save them all. Reloads, and also calls callback.
         """
-        from Filters import CustomFilters
-        from Filters import reload_custom_filters
+        from gen.filters import CustomFilters
+        from gen.filters import reload_custom_filters
         filterdb.save()
         reload_custom_filters()
         if namespace == "Person":
@@ -668,7 +668,7 @@ class WriterOptionBox(object):
         """
         import gtk
         import gobject
-        from Filters import CustomFilters
+        from gen.filters import CustomFilters
         if namespace == "person":
             # Populate the Person Filter
             entire_db = GenericFilter()

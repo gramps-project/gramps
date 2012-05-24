@@ -27,11 +27,11 @@
 #
 #-------------------------------------------------------------------------
 from gen.plug import Gramplet
-from Filters.SideBar import (PersonSidebarFilter, FamilySidebarFilter,
-                             EventSidebarFilter, SourceSidebarFilter,
-                             CitationSidebarFilter,
-                             PlaceSidebarFilter, MediaSidebarFilter,
-                             RepoSidebarFilter, NoteSidebarFilter)
+from gui.filters.sidebar import (PersonSidebarFilter, FamilySidebarFilter,
+                                 EventSidebarFilter, SourceSidebarFilter,
+                                 CitationSidebarFilter,
+                                 PlaceSidebarFilter, MediaSidebarFilter,
+                                 RepoSidebarFilter, NoteSidebarFilter)
 
 #-------------------------------------------------------------------------
 #

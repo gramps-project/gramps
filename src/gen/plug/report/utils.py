@@ -247,7 +247,7 @@ def get_person_filters(person, include_single=True):
     @param include_single: include a filter to include the single person
     @type person: boolean
     """
-    from Filters import GenericFilter, Rules, CustomFilters
+    from gen.filters import GenericFilter, Rules, CustomFilters
     from gen.display.name import displayer as name_displayer
 
     if person:

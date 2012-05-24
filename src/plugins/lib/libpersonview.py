@@ -58,7 +58,7 @@ import Bookmarks
 import config
 from DdTargets import DdTargets
 from gui.editors import EditPerson
-from Filters.SideBar import PersonSidebarFilter
+from gui.filters.sidebar import PersonSidebarFilter
 from gen.plug import CATEGORY_QR_PERSON
 
 #-------------------------------------------------------------------------

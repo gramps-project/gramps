@@ -58,7 +58,7 @@ from Utils import conv_unicode_tosrtkey_ongtk
 import gui.widgets.progressdialog as progressdlg
 from Lru import LRU
 from bisect import bisect_right
-from Filters import SearchFilter, ExactSearchFilter
+from gen.filters import SearchFilter, ExactSearchFilter
 
 #-------------------------------------------------------------------------
 #

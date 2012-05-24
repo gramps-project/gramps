@@ -64,7 +64,7 @@ from PlaceUtils import conv_lat_lon
 from gui.views.pageview import PageView
 from gui.editors import EditPlace
 from gui.selectors.selectplace import SelectPlace
-from Filters.SideBar import PlaceSidebarFilter
+from gui.filters.sidebar import PlaceSidebarFilter
 from gui.views.navigationview import NavigationView
 import Bookmarks
 from Utils import navigation_label

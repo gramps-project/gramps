@@ -49,7 +49,7 @@ import Errors
 from DdTargets import DdTargets
 from QuestionDialog import ErrorDialog
 from gui.editors import EditSource, DeleteSrcQuery
-from Filters.SideBar import SourceSidebarFilter
+from gui.filters.sidebar import SourceSidebarFilter
 from gen.plug import CATEGORY_QR_SOURCE
 
 #-------------------------------------------------------------------------

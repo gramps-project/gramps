@@ -47,7 +47,6 @@ log = logging.getLogger(".WriteGeneWeb")
 #
 #-------------------------------------------------------------------------
 import gen.lib
-from Filters import GenericFilter, Rules, build_filter_model
 from ExportOptions import WriterOptionBox
 #import const
 import Utils

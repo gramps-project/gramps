@@ -7,6 +7,7 @@
 SUBDIRS = \
 	db \
     display \
+	filters \
 	lib \
 	mime \
 	plug \

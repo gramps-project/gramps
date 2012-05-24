@@ -54,7 +54,7 @@ import config
 from gen.lib import Note
 from DdTargets import DdTargets
 from QuestionDialog import ErrorDialog
-from Filters.SideBar import NoteSidebarFilter
+from gui.filters.sidebar import NoteSidebarFilter
 from gui.editors import EditNote, DeleteNoteQuery
 from gen.plug import CATEGORY_QR_NOTE
 

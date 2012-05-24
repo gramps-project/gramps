@@ -45,7 +45,7 @@ import config
 from gui.editors import EditRepository, DeleteRepositoryQuery
 from DdTargets import DdTargets
 from QuestionDialog import ErrorDialog
-from Filters.SideBar import RepoSidebarFilter
+from gui.filters.sidebar import RepoSidebarFilter
 from gen.plug import CATEGORY_QR_REPOSITORY
 
 #-------------------------------------------------------------------------

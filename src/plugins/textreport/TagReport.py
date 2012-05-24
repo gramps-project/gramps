@@ -45,7 +45,7 @@ from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                         TableStyle, TableCellStyle, FONT_SANS_SERIF, 
                         INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from gen.lib import NoteType
-from Filters import GenericFilterFactory, Rules
+from gen.filters import GenericFilterFactory, rules
 from gen.display.name import displayer as name_displayer
 from Errors import ReportError
 import DateHandler
@@ -97,7 +97,7 @@ class TagReport(Report):
         plist = self.database.iter_person_handles()
         FilterClass = GenericFilterFactory('Person')
         filter = FilterClass()
-        filter.add_rule(Rules.Person.HasTag([self.tag]))
+        filter.add_rule(rules.person.HasTag([self.tag]))
         ind_list = filter.apply(self.database, plist)
         
         if not ind_list:
@@ -184,7 +184,7 @@ class TagReport(Report):
         flist = self.database.iter_family_handles()
         FilterClass = GenericFilterFactory('Family')
         filter = FilterClass()
-        filter.add_rule(Rules.Family.HasTag([self.tag]))
+        filter.add_rule(rules.family.HasTag([self.tag]))
         fam_list = filter.apply(self.database, flist)
         
         if not fam_list:
@@ -274,7 +274,7 @@ class TagReport(Report):
         elist = self.database.get_event_handles()
         FilterClass = GenericFilterFactory('Event')
         filter = FilterClass()
-        filter.add_rule(Rules.Event.HasTag([self.tag]))
+        filter.add_rule(rules.event.HasTag([self.tag]))
         event_list = filter.apply(self.database, elist)
         
         if not event_list:
@@ -360,7 +360,7 @@ class TagReport(Report):
         nlist = self.database.get_note_handles()
         FilterClass = GenericFilterFactory('Note')
         filter = FilterClass()
-        filter.add_rule(Rules.Note.HasTag([self.tag]))
+        filter.add_rule(rules.note.HasTag([self.tag]))
         note_list = filter.apply(self.database, nlist)
         
         if not note_list:
@@ -428,9 +428,9 @@ class TagReport(Report):
 
     def write_media(self):
         mlist = self.database.get_media_object_handles(sort_handles=True)
-        FilterClass = GenericFilterFactory('MediaObject')
+        FilterClass = GenericFilterFactory('Media')
         filter = FilterClass()
-        filter.add_rule(Rules.MediaObject.HasTag([self.tag]))
+        filter.add_rule(rules.media.HasTag([self.tag]))
         media_list = filter.apply(self.database, mlist)
         
         if not media_list:

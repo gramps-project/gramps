@@ -46,7 +46,6 @@ log = logging.getLogger(".WriteFtree")
 #
 #-------------------------------------------------------------------------
 import Utils
-from Filters import GenericFilter, Rules, build_filter_model
 from ExportOptions import WriterOptionBox
 import Errors
 from glade import Glade

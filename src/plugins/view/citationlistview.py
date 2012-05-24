@@ -55,7 +55,7 @@ import Errors
 from DdTargets import DdTargets
 from QuestionDialog import ErrorDialog
 from gui.editors import EditCitation, DeleteCitationQuery
-from Filters.SideBar import CitationSidebarFilter
+from gui.filters.sidebar import CitationSidebarFilter
 
 #-------------------------------------------------------------------------
 #

@@ -44,7 +44,8 @@ import gtk
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from Filters import GenericFilter, build_filter_model, Rules
+from gen.filters import GenericFilter, rules
+from gui.filters import build_filter_model
 import Sort
 import Utils
 from gui.utils import ProgressMeter
@@ -154,7 +155,7 @@ class EventComparison(tool.Tool,ManagedWindow.ManagedWindow):
         if name_space == 'Person':
             all_filter = GenericFilter()
             all_filter.set_name(_("Entire Database"))
-            all_filter.add_rule(Rules.Person.Everyone([]))
+            all_filter.add_rule(rules.person.Everyone([]))
             self.filter_model = build_filter_model('Person', [all_filter])
             self.filters.set_model(self.filter_model)
             self.filters.set_active(0)

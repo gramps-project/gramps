@@ -53,7 +53,7 @@ import Bookmarks
 import Errors
 import config
 from QuestionDialog import ErrorDialog
-from Filters.SideBar import FamilySidebarFilter
+from gui.filters.sidebar import FamilySidebarFilter
 from gen.plug import CATEGORY_QR_FAMILY
 from DdTargets import DdTargets
 

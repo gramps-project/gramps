@@ -58,7 +58,7 @@ import ManagedWindow
 from QuestionDialog import OptionDialog
 from gui.selectors import SelectorFactory
 from gen.display.name import displayer as _nd
-from Filters import GenericFilterFactory, GenericFilter, Rules
+from gen.filters import GenericFilterFactory, GenericFilter, rules
 import gen
 
 #------------------------------------------------------------------------
@@ -636,21 +636,21 @@ class GuiPersonOption(gtk.HBox):
         # Create a filter for the person selector.
         rfilter = GenericFilter()
         rfilter.set_logical_op('or')
-        rfilter.add_rule(Rules.Person.IsBookmarked([]))
-        rfilter.add_rule(Rules.Person.HasIdOf([self.__option.get_value()]))
+        rfilter.add_rule(rules.person.IsBookmarked([]))
+        rfilter.add_rule(rules.person.HasIdOf([self.__option.get_value()]))
         
         # Add the database home person if one exists.
         default_person = self.__db.get_default_person()
         if default_person:
             gid = default_person.get_gramps_id()
-            rfilter.add_rule(Rules.Person.HasIdOf([gid]))
+            rfilter.add_rule(rules.person.HasIdOf([gid]))
         
         # Add the selected person if one exists.
         person_handle = self.__uistate.get_active('Person')
         active_person = self.__dbstate.db.get_person_from_handle(person_handle)
         if active_person:
             gid = active_person.get_gramps_id()
-            rfilter.add_rule(Rules.Person.HasIdOf([gid]))
+            rfilter.add_rule(rules.person.HasIdOf([gid]))
 
         select_class = SelectorFactory('Person')
         sel = select_class(self.__dbstate, self.__uistate, self.__track, 
@@ -787,10 +787,10 @@ class GuiFamilyOption(gtk.HBox):
         rfilter.set_logical_op('or')
         
         # Add the current family
-        rfilter.add_rule(Rules.Family.HasIdOf([self.__option.get_value()]))
+        rfilter.add_rule(rules.family.HasIdOf([self.__option.get_value()]))
         
         # Add all bookmarked families
-        rfilter.add_rule(Rules.Family.IsBookmarked([]))
+        rfilter.add_rule(rules.family.IsBookmarked([]))
 
         # Add the families of the database home person if one exists.
         default_person = self.__db.get_default_person()
@@ -799,7 +799,7 @@ class GuiFamilyOption(gtk.HBox):
             for family_handle in family_list:
                 family = self.__db.get_family_from_handle(family_handle)
                 gid = family.get_gramps_id()
-                rfilter.add_rule(Rules.Family.HasIdOf([gid]))
+                rfilter.add_rule(rules.family.HasIdOf([gid]))
             
         # Add the families of the selected person if one exists.
         # Same code as above one ! See bug #5032 feature request #5038
@@ -810,7 +810,7 @@ class GuiFamilyOption(gtk.HBox):
             #for family_handle in family_list:
                 #family = self.__db.get_family_from_handle(family_handle)
                 #gid = family.get_gramps_id()
-                #rfilter.add_rule(Rules.Family.HasIdOf([gid]))
+                #rfilter.add_rule(rules.family.HasIdOf([gid]))
 
         select_class = SelectorFactory('Family')
         sel = select_class(self.__dbstate, self.__uistate, self.__track, 

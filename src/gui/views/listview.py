@@ -56,7 +56,7 @@ from gui.columnorder import ColumnOrder
 import config
 import TreeTips
 import Errors
-from Filters import SearchBar
+from gui.filters import SearchBar
 from gui.utils import add_menuitem
 import const
 import Utils

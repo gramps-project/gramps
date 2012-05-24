@@ -72,8 +72,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters import SearchFilter
-from Filters import ExactSearchFilter
+from gen.filters import SearchFilter, ExactSearchFilter
 from Utils import conv_unicode_tosrtkey_ongtk
 
 #-------------------------------------------------------------------------

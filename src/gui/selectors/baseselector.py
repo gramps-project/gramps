@@ -35,7 +35,7 @@ import pango
 #
 #-------------------------------------------------------------------------
 import ManagedWindow
-from Filters import SearchBar
+from gui.filters import SearchBar
 from glade import Glade
 
 #-------------------------------------------------------------------------

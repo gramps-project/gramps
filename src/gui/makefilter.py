@@ -18,14 +18,13 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# gui/makefilter.py
 # $Id$
 
 import time
-import Filters 
+import gen.filters 
 from gui.filtereditor import EditFilter
 import const
-from Filters import reload_custom_filters
+from gen.filters import reload_custom_filters
 from gen.ggettext import sgettext as _
 
 def make_filter(dbstate, uistate, objclass, gramps_ids, title=None):
@@ -35,10 +34,8 @@ def make_filter(dbstate, uistate, objclass, gramps_ids, title=None):
 
     >>> make_filter(dbstate, uistate, 'Person', ['I0003', ...])
     """
-    if objclass == "Media":
-        objclass = "MediaObject"
-    FilterClass = Filters.GenericFilterFactory(objclass)
-    rule = getattr(getattr(Filters.Rules, objclass),'RegExpIdOf')
+    FilterClass = gen.filters.GenericFilterFactory(objclass)
+    rule = getattr(getattr(gen.filters.rules, objclass),'RegExpIdOf')
     filter = FilterClass()
     if title is None:
         title = _("Filter %s from Clipboard") % objclass
@@ -52,7 +49,7 @@ def make_filter(dbstate, uistate, objclass, gramps_ids, title=None):
         'day': struct_time.tm_mday})
     re = "|".join(["^%s$" % gid for gid in sorted(gramps_ids)])
     filter.add_rule(rule([re]))
-    filterdb = Filters.FilterList(const.CUSTOM_FILTERS)
+    filterdb = gen.filters.FilterList(const.CUSTOM_FILTERS)
     filterdb.load()
     EditFilter(objclass, dbstate, uistate, [],
                filter, filterdb,

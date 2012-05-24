@@ -26,4 +26,5 @@ The gen module provides packages that are common to all gramps
 interfaces (gui, cli and web).
 """
 
-__all__ = [ "db", "display", "lib", "mime", "plug", "proxy", "utils" ]
+__all__ = [ "db", "display", "filters", "lib", "mime", "plug", "proxy", 
+            "utils" ]

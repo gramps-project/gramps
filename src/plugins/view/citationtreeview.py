@@ -57,7 +57,7 @@ from DdTargets import DdTargets
 from QuestionDialog import ErrorDialog
 from gui.editors import EditCitation, DeleteCitationQuery, EditSource, \
     DeleteSrcQuery
-from Filters.SideBar import SourceSidebarFilter
+from gui.filters.sidebar import SourceSidebarFilter
 
 #-------------------------------------------------------------------------
 #

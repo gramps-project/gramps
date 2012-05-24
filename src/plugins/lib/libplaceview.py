@@ -55,7 +55,7 @@ from QuestionDialog import ErrorDialog
 from gui.pluginmanager import GuiPluginManager
 from DdTargets import DdTargets
 from gui.editors import EditPlace, DeletePlaceQuery
-from Filters.SideBar import PlaceSidebarFilter
+from gui.filters.sidebar import PlaceSidebarFilter
 from gen.plug import CATEGORY_QR_PLACE
 
 #-------------------------------------------------------------------------

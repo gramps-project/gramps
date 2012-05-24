@@ -31,8 +31,8 @@ from Simple import SimpleAccess, SimpleDoc, SimpleTable
 from gen.ggettext import gettext as _
 from gen.ggettext import ngettext
 import gen.lib
-from Filters.Rules import Rule
-from Filters import GenericFilterFactory
+from gen.filters.rules import Rule
+from gen.filters import GenericFilterFactory
 
 class IncompleteSurname(Rule):
     """People with incomplete surnames"""

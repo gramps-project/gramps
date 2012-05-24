@@ -50,7 +50,6 @@ LOG = logging.getLogger(".ExportCSV")
 #
 #-------------------------------------------------------------------------
 import gen.lib
-from Filters import GenericFilter, Rules, build_filter_model
 from gen.lib.eventroletype import EventRoleType
 from ExportOptions import WriterOptionBox
 import Utils

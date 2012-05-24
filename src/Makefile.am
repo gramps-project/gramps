@@ -6,7 +6,6 @@ SUBDIRS = \
 	data \
 	DateHandler \
 	docgen \
-	Filters \
 	gen \
 	glade \
 	GrampsLocale \

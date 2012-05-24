@@ -63,7 +63,7 @@ import gen.lib
 from gen.db import DbTxn
 from gui.editors import EditMedia, DeleteMediaQuery
 import Errors
-from Filters.SideBar import MediaSidebarFilter
+from gui.filters.sidebar import MediaSidebarFilter
 from DdTargets import DdTargets
 from QuestionDialog import ErrorDialog
 from gen.plug import CATEGORY_QR_MEDIA
@@ -111,7 +111,7 @@ class MediaView(ListView):
     EDIT_MSG    = _("Edit the selected media object")
     DEL_MSG     = _("Delete the selected media object")
     MERGE_MSG   = _("Merge the selected media objects")
-    FILTER_TYPE = 'MediaObject'
+    FILTER_TYPE = 'Media'
     QR_CATEGORY = CATEGORY_QR_MEDIA
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):

@@ -44,50 +44,6 @@ src/DateHandler/_Date_sv.py
 src/DateHandler/_Date_zh.py
 src/DateHandler/__init__.py
 
-# Filters package
-src/Filters/_FilterComboBox.py
-src/Filters/_FilterList.py
-src/Filters/_FilterMenu.py
-src/Filters/_GenericFilter.py
-src/Filters/_ParamFilter.py
-src/Filters/_SearchFilter.py
-
-# Filters _init_ package
-src/Filters/__init__.py
-src/Filters/Rules/Person/__init__.py
-src/Filters/Rules/Family/__init__.py
-src/Filters/Rules/Event/__init__.py
-src/Filters/Rules/Place/__init__.py
-src/Filters/Rules/Source/__init__.py
-src/Filters/Rules/MediaObject/__init__.py
-src/Filters/Rules/Repository/__init__.py
-src/Filters/Rules/Note/__init__.py
-
-# Filters.Rules package
-src/Filters/Rules/_ChangedSinceBase.py
-src/Filters/Rules/_HasAttributeBase.py
-src/Filters/Rules/_HasCitationBase.py
-src/Filters/Rules/_HasEventBase.py
-src/Filters/Rules/_HasGalleryBase.py
-src/Filters/Rules/_HasLDSBase.py
-src/Filters/Rules/_HasNoteBase.py
-src/Filters/Rules/_HasNoteRegexBase.py
-src/Filters/Rules/_HasNoteSubstrBase.py
-src/Filters/Rules/_HasReferenceCountBase.py
-src/Filters/Rules/_HasSourceBase.py
-src/Filters/Rules/_HasSourceCountBase.py
-src/Filters/Rules/_HasTagBase.py
-src/Filters/Rules/_HasTextMatchingRegexpOf.py
-src/Filters/Rules/__init__.py
-src/Filters/Rules/_IsPublic.py
-src/Filters/Rules/_MatchesEventFilterBase.py
-src/Filters/Rules/_MatchesFilterBase.py
-src/Filters/Rules/_MatchesSourceConfidenceBase.py
-src/Filters/Rules/_MatchesSourceFilterBase.py
-src/Filters/Rules/_RegExpIdBase.py
-src/Filters/Rules/Person/_HasTextMatchingRegexpOf.py
-src/Filters/Rules/Family/_MemberBase.py
-
 # gen
 src/gen/user.py
 
@@ -103,6 +59,62 @@ src/gen/db/dbconst.py
 src/gen/db/read.py
 src/gen/db/write.py
 src/gen/ggettext.py
+
+# gen.filters package
+src/gen/filters/_FilterList.py
+src/gen/filters/_GenericFilter.py
+src/gen/filters/__init__.py
+src/gen/filters/_ParamFilter.py
+src/gen/filters/_SearchFilter.py
+
+# gen.filters.rules package
+src/gen/filters/rules/_ChangedSinceBase.py
+src/gen/filters/rules/_HasAttributeBase.py
+src/gen/filters/rules/_HasCitationBase.py
+src/gen/filters/rules/_HasEventBase.py
+src/gen/filters/rules/_HasGalleryBase.py
+src/gen/filters/rules/_HasLDSBase.py
+src/gen/filters/rules/_HasNoteBase.py
+src/gen/filters/rules/_HasNoteRegexBase.py
+src/gen/filters/rules/_HasNoteSubstrBase.py
+src/gen/filters/rules/_HasReferenceCountBase.py
+src/gen/filters/rules/_HasSourceBase.py
+src/gen/filters/rules/_HasSourceCountBase.py
+src/gen/filters/rules/_HasTagBase.py
+src/gen/filters/rules/_HasTextMatchingRegexpOf.py
+src/gen/filters/rules/__init__.py
+src/gen/filters/rules/_IsPublic.py
+src/gen/filters/rules/_MatchesEventFilterBase.py
+src/gen/filters/rules/_MatchesFilterBase.py
+src/gen/filters/rules/_MatchesSourceConfidenceBase.py
+src/gen/filters/rules/_MatchesSourceFilterBase.py
+src/gen/filters/rules/_RegExpIdBase.py
+
+# gen.filters.rules.person package
+src/gen/filters/rules/person/__init__.py
+src/gen/filters/rules/person/_HasTextMatchingRegexpOf.py
+
+# gen.filters.rules.family package
+src/gen/filters/rules/family/__init__.py
+src/gen/filters/rules/family/_MemberBase.py
+
+# gen.filters.rules.event package
+src/gen/filters/rules/event/__init__.py
+
+# gen.filters.rules.place package
+src/gen/filters/rules/place/__init__.py
+
+# gen.filters.rules.source package
+src/gen/filters/rules/source/__init__.py
+
+# gen.filters.rules.media package
+src/gen/filters/rules/media/__init__.py
+
+# gen.filters.rules.repository package
+src/gen/filters/rules/repository/__init__.py
+
+# gen.filters.rules.note package
+src/gen/filters/rules/note/__init__.py
 
 # gen lib API
 src/gen/lib/__init__.py
@@ -246,6 +258,11 @@ src/gui/editors/displaytabs/sourcebackreflist.py
 src/gui/editors/displaytabs/sourcerefmodel.py
 src/gui/editors/displaytabs/surnamemodel.py
 src/gui/editors/displaytabs/webmodel.py
+
+# gui.filters package
+src/gui/filters/_FilterComboBox.py
+src/gui/filters/_FilterMenu.py
+src/gui/filters/__init__.py
 
 # gui/selectors - the GUI selectors package
 src/gui/selectors/__init__.py
