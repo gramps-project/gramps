@@ -35,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-11 17:31+0200\n"
-"PO-Revision-Date: 2012-05-11 17:42+0100\n"
+"POT-Creation-Date: 2012-05-24 16:17+0200\n"
+"PO-Revision-Date: 2012-05-24 16:24+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -123,7 +123,7 @@ msgstr "Organizovat záložky"
 #: ../src/gui/configure.py:455
 #: ../src/gui/filtereditor.py:741
 #: ../src/gui/filtereditor.py:894
-#: ../src/gui/viewmanager.py:469
+#: ../src/gui/viewmanager.py:470
 #: ../src/gui/editors/editfamily.py:117
 #: ../src/gui/editors/editname.py:305
 #: ../src/gui/editors/displaytabs/backreflist.py:62
@@ -203,19 +203,19 @@ msgstr "Jméno"
 msgid "ID"
 msgstr "ID"
 
-#: ../src/const.py:202
+#: ../src/const.py:203
 msgid "Gramps (Genealogical Research and Analysis Management Programming System) is a personal genealogy program."
 msgstr "Gramps (programový systém pro správu genealogického výzkumu a analýzy) je osobní genealogický program."
 
-#: ../src/const.py:223
+#: ../src/const.py:224
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
 "2004 Radek Malcic <malcic@atlas.cz>\n"
 "2005 Jiří Pejchal <jiri.pejchal@gmail.com>\n"
 "2006 - 2012 Zdeněk Hataš <zdenek.hatas@gmail.com>"
 
-#: ../src/const.py:234
 #: ../src/const.py:235
+#: ../src/const.py:236
 #: ../src/gen/lib/date.py:1665
 #: ../src/gen/lib/date.py:1679
 msgid "none"
@@ -314,36 +314,36 @@ msgstr "Žádná poznámka není aktivní"
 
 #. # end
 #. set up ManagedWindow
-#: ../src/ExportAssistant.py:125
+#: ../src/ExportAssistant.py:126
 msgid "Export Assistant"
 msgstr "Pomocník exportu"
 
-#: ../src/ExportAssistant.py:212
+#: ../src/ExportAssistant.py:213
 msgid "Saving your data"
 msgstr "Uložení vašich dat"
 
-#: ../src/ExportAssistant.py:261
+#: ../src/ExportAssistant.py:262
 msgid "Choose the output format"
 msgstr "Zvolte výstupní formát"
 
-#: ../src/ExportAssistant.py:345
+#: ../src/ExportAssistant.py:346
 msgid "Select Save File"
 msgstr "Vybrat soubor"
 
-#: ../src/ExportAssistant.py:383
+#: ../src/ExportAssistant.py:384
 #: ../src/plugins/tool/MediaManager.py:274
 msgid "Final confirmation"
 msgstr "Poslední potvrzení před uložením"
 
-#: ../src/ExportAssistant.py:396
+#: ../src/ExportAssistant.py:397
 msgid "Please wait while your data is selected and exported"
 msgstr "Vyčkejte prosím než budou vaše data vybrána a exportována"
 
-#: ../src/ExportAssistant.py:409
+#: ../src/ExportAssistant.py:410
 msgid "Summary"
 msgstr "Souhrn"
 
-#: ../src/ExportAssistant.py:481
+#: ../src/ExportAssistant.py:482
 #, python-format
 msgid ""
 "The data will be exported as follows:\n"
@@ -358,7 +358,7 @@ msgstr ""
 "\n"
 "Stiskněte OK pro pokračování, Zpět pro změnu vašich nastavení, nebo Zrušit pro přerušení"
 
-#: ../src/ExportAssistant.py:494
+#: ../src/ExportAssistant.py:495
 #, python-format
 msgid ""
 "The data will be saved as follows:\n"
@@ -377,7 +377,7 @@ msgstr ""
 "\n"
 "Stiskněte OK pro pokračování, Zrušit pro skončení, nebo Zpět pro změnu vašich nastavení"
 
-#: ../src/ExportAssistant.py:504
+#: ../src/ExportAssistant.py:505
 msgid ""
 "The selected file and folder to save to cannot be created or found.\n"
 "\n"
@@ -387,11 +387,11 @@ msgstr ""
 "\n"
 "Stiskněte Zpět a vyberte validní jméno souboru."
 
-#: ../src/ExportAssistant.py:530
+#: ../src/ExportAssistant.py:531
 msgid "Your data has been saved"
 msgstr "Vaše data byla uložena"
 
-#: ../src/ExportAssistant.py:532
+#: ../src/ExportAssistant.py:533
 msgid ""
 "The copy of your data has been successfully saved. You may press Close button now to continue.\n"
 "\n"
@@ -402,16 +402,16 @@ msgstr ""
 "Upozornění: nyní otevřená databáze v okně Gramps NENÍ souborem, který jste právě uložili. Budoucí úpravy aktuálně otevřené databáze nezmění právě vytvořenou kopii. "
 
 #. add test, what is dir
-#: ../src/ExportAssistant.py:540
+#: ../src/ExportAssistant.py:541
 #, python-format
 msgid "Filename: %s"
 msgstr "Soubor: %s"
 
-#: ../src/ExportAssistant.py:542
+#: ../src/ExportAssistant.py:543
 msgid "Saving failed"
 msgstr "Ukládání selhalo"
 
-#: ../src/ExportAssistant.py:544
+#: ../src/ExportAssistant.py:545
 msgid ""
 "There was an error while saving your data. You may try starting the export again.\n"
 "\n"
@@ -420,7 +420,7 @@ msgstr ""
 "Při ukládání vašich dat došlo k chybě. Prosím vraťte se zpět a zkuste to znovu.\n"
 "Upozornění: nyní otevřená databáze není ovlivněna. Selhalo pouze uložení kopie vašich dat."
 
-#: ../src/ExportAssistant.py:571
+#: ../src/ExportAssistant.py:572
 msgid ""
 "Under normal circumstances, Gramps does not require you to directly save your changes. All changes you make are immediately saved to the database.\n"
 "\n"
@@ -805,12 +805,12 @@ msgid "undefined"
 msgstr "není definováno"
 
 #: ../src/Relationship.py:1673
-#: ../src/plugins/import/ImportCsv.py:227
+#: ../src/plugins/import/ImportCsv.py:226
 msgid "husband"
 msgstr "manžel"
 
 #: ../src/Relationship.py:1675
-#: ../src/plugins/import/ImportCsv.py:223
+#: ../src/plugins/import/ImportCsv.py:222
 msgid "wife"
 msgstr "manželka"
 
@@ -907,7 +907,7 @@ msgstr "partner(ka)"
 #: ../src/gui/selectors/selectfamily.py:62
 #: ../src/Merge/mergeperson.py:216
 #: ../src/plugins/gramplet/PersonDetails.py:170
-#: ../src/plugins/import/ImportCsv.py:225
+#: ../src/plugins/import/ImportCsv.py:224
 #: ../src/plugins/quickview/all_relations.py:301
 #: ../src/plugins/textreport/FamilyGroup.py:208
 #: ../src/plugins/textreport/FamilyGroup.py:219
@@ -929,7 +929,7 @@ msgstr "Otec"
 #: ../src/gui/selectors/selectfamily.py:63
 #: ../src/Merge/mergeperson.py:218
 #: ../src/plugins/gramplet/PersonDetails.py:171
-#: ../src/plugins/import/ImportCsv.py:222
+#: ../src/plugins/import/ImportCsv.py:221
 #: ../src/plugins/quickview/all_relations.py:298
 #: ../src/plugins/textreport/FamilyGroup.py:225
 #: ../src/plugins/textreport/FamilyGroup.py:236
@@ -1028,11 +1028,11 @@ msgstr "Událost"
 #: ../src/gui/plug/_guioptions.py:1290
 #: ../src/gui/selectors/selectevent.py:66
 #: ../src/gui/views/treemodels/placemodel.py:304
-#: ../src/plugins/export/ExportCsv.py:459
+#: ../src/plugins/export/ExportCsv.py:458
 #: ../src/plugins/gramplet/Events.py:53
 #: ../src/plugins/gramplet/PersonResidence.py:50
 #: ../src/plugins/gramplet/QuickViewGramplet.py:111
-#: ../src/plugins/import/ImportCsv.py:230
+#: ../src/plugins/import/ImportCsv.py:229
 #: ../src/plugins/quickview/FilterByName.py:160
 #: ../src/plugins/quickview/FilterByName.py:227
 #: ../src/plugins/quickview/OnThisDay.py:80
@@ -1067,10 +1067,10 @@ msgstr "Místo"
 #: ../src/gui/views/treemodels/mediamodel.py:128
 #: ../src/plugins/drawreport/AncestorTree.py:1014
 #: ../src/plugins/drawreport/DescendTree.py:1610
-#: ../src/plugins/export/ExportCsv.py:342
-#: ../src/plugins/export/ExportCsv.py:459
+#: ../src/plugins/export/ExportCsv.py:341
+#: ../src/plugins/export/ExportCsv.py:458
 #: ../src/plugins/gramplet/QuickViewGramplet.py:110
-#: ../src/plugins/import/ImportCsv.py:183
+#: ../src/plugins/import/ImportCsv.py:182
 #: ../src/plugins/quickview/FilterByName.py:200
 #: ../src/plugins/quickview/FilterByName.py:251
 #: ../src/plugins/quickview/quickview.gpr.py:205
@@ -1150,8 +1150,8 @@ msgstr "Událost odk"
 #: ../src/gui/plug/_guioptions.py:88
 #: ../src/gui/plug/_guioptions.py:1439
 #: ../src/plugins/drawreport/StatisticsChart.py:318
-#: ../src/plugins/export/ExportCsv.py:335
-#: ../src/plugins/import/ImportCsv.py:170
+#: ../src/plugins/export/ExportCsv.py:334
+#: ../src/plugins/import/ImportCsv.py:169
 #: ../src/plugins/quickview/FilterByName.py:329
 #: ../src/plugins/webreport/NarrativeWeb.py:2767
 #: ../src/plugins/webreport/NarrativeWeb.py:2937
@@ -1225,9 +1225,9 @@ msgstr "%(frel)s %(mrel)s"
 #: ../src/gui/filtereditor.py:290
 #: ../src/gui/grampsgui.py:134
 #: ../src/gui/editors/editlink.py:85
-#: ../src/plugins/export/ExportCsv.py:335
+#: ../src/plugins/export/ExportCsv.py:334
 #: ../src/plugins/gramplet/QuickViewGramplet.py:106
-#: ../src/plugins/import/ImportCsv.py:217
+#: ../src/plugins/import/ImportCsv.py:216
 #: ../src/plugins/quickview/AgeOnDate.py:55
 #: ../src/plugins/quickview/AttributeMatch.py:34
 #: ../src/plugins/quickview/FilterByName.py:129
@@ -1266,9 +1266,9 @@ msgstr "Osoba"
 #: ../src/gui/grampsgui.py:113
 #: ../src/gui/editors/editfamily.py:487
 #: ../src/gui/editors/editlink.py:82
-#: ../src/plugins/export/ExportCsv.py:502
+#: ../src/plugins/export/ExportCsv.py:501
 #: ../src/plugins/gramplet/QuickViewGramplet.py:108
-#: ../src/plugins/import/ImportCsv.py:220
+#: ../src/plugins/import/ImportCsv.py:219
 #: ../src/plugins/quickview/all_events.py:80
 #: ../src/plugins/quickview/all_relations.py:271
 #: ../src/plugins/quickview/FilterByName.py:140
@@ -1290,9 +1290,9 @@ msgstr "Rodina"
 #: ../src/gui/editors/editsource.py:77
 #: ../src/gui/editors/displaytabs/nameembedlist.py:77
 #: ../src/gui/views/treemodels/citationtreemodel.py:161
-#: ../src/plugins/export/ExportCsv.py:459
+#: ../src/plugins/export/ExportCsv.py:458
 #: ../src/plugins/gramplet/QuickViewGramplet.py:113
-#: ../src/plugins/import/ImportCsv.py:182
+#: ../src/plugins/import/ImportCsv.py:181
 #: ../src/plugins/quickview/FilterByName.py:170
 #: ../src/plugins/quickview/FilterByName.py:233
 #: ../src/plugins/quickview/quickview.gpr.py:202
@@ -1318,7 +1318,7 @@ msgstr "Archiv"
 #. Create the tree columns
 #. 0 selected?
 #: ../src/ScratchPad.py:907
-#: ../src/gui/viewmanager.py:468
+#: ../src/gui/viewmanager.py:469
 #: ../src/gui/editors/displaytabs/attrembedlist.py:63
 #: ../src/gui/editors/displaytabs/backreflist.py:60
 #: ../src/gui/editors/displaytabs/eventembedlist.py:75
@@ -1449,7 +1449,7 @@ msgstr "Zap"
 #: ../src/TipOfDay.py:68
 #: ../src/TipOfDay.py:69
 #: ../src/TipOfDay.py:120
-#: ../src/gui/viewmanager.py:769
+#: ../src/gui/viewmanager.py:770
 msgid "Tip of the Day"
 msgstr "Tip dne"
 
@@ -1501,10 +1501,10 @@ msgstr "Primární pramen"
 #: ../src/ToolTips.py:245
 #: ../src/gen/lib/ldsord.py:105
 #: ../src/Merge/mergeperson.py:243
-#: ../src/plugins/export/ExportCsv.py:502
+#: ../src/plugins/export/ExportCsv.py:501
 #: ../src/plugins/gramplet/Children.py:84
 #: ../src/plugins/gramplet/Children.py:180
-#: ../src/plugins/import/ImportCsv.py:219
+#: ../src/plugins/import/ImportCsv.py:218
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:117
 #: ../src/glade/editchildref.glade.h:7
 msgid "Child"
@@ -1673,12 +1673,12 @@ msgid "birth-related evidence"
 msgstr "důkaz o narození"
 
 #: ../src/Utils.py:583
-#: ../src/plugins/import/ImportCsv.py:209
+#: ../src/plugins/import/ImportCsv.py:208
 msgid "death date"
 msgstr "datum úmrtí"
 
 #: ../src/Utils.py:588
-#: ../src/plugins/import/ImportCsv.py:187
+#: ../src/plugins/import/ImportCsv.py:186
 msgid "birth date"
 msgstr "datum narození"
 
@@ -1782,8 +1782,8 @@ msgstr "žádný důkaz"
 #. 'n' : nickname   = nick name
 #. 'g' : familynick = family nick name
 #: ../src/Utils.py:1273
-#: ../src/plugins/export/ExportCsv.py:337
-#: ../src/plugins/import/ImportCsv.py:178
+#: ../src/plugins/export/ExportCsv.py:336
+#: ../src/plugins/import/ImportCsv.py:177
 #: ../src/plugins/tool/PatchNames.py:439
 msgid "Person|Title"
 msgstr "Titul"
@@ -1808,8 +1808,8 @@ msgstr "Titul"
 #: ../src/gui/configure.py:560
 #: ../src/gui/configure.py:561
 #: ../src/gui/configure.py:562
-#: ../src/plugins/export/ExportCsv.py:335
-#: ../src/plugins/import/ImportCsv.py:173
+#: ../src/plugins/export/ExportCsv.py:334
+#: ../src/plugins/import/ImportCsv.py:172
 msgid "Given"
 msgstr "Křestní jméno"
 
@@ -1867,8 +1867,8 @@ msgstr "INICIÁLY"
 #: ../src/gui/configure.py:555
 #: ../src/gui/configure.py:560
 #: ../src/gui/configure.py:562
-#: ../src/plugins/export/ExportCsv.py:336
-#: ../src/plugins/import/ImportCsv.py:180
+#: ../src/plugins/export/ExportCsv.py:335
+#: ../src/plugins/import/ImportCsv.py:179
 #: ../src/glade/editperson.glade.h:8
 msgid "Suffix"
 msgstr "Přípona"
@@ -1964,8 +1964,8 @@ msgstr "NE PO OTCI"
 
 #: ../src/Utils.py:1290
 #: ../src/gui/editors/displaytabs/surnametab.py:75
-#: ../src/plugins/export/ExportCsv.py:336
-#: ../src/plugins/import/ImportCsv.py:179
+#: ../src/plugins/export/ExportCsv.py:335
+#: ../src/plugins/import/ImportCsv.py:178
 #: ../src/glade/editperson.glade.h:26
 msgid "Prefix"
 msgstr "Předpona"
@@ -2004,7 +2004,7 @@ msgstr "%s, ..."
 
 #: ../src/Utils.py:1674
 msgid "Unknown, created to replace a missing note object."
-msgstr ""
+msgstr "Neznámý, vytvořeno jako náhrada chybějícího objektu poznámky."
 
 #. primitive static variable
 #: ../src/Utils.py:1684
@@ -2015,7 +2015,7 @@ msgstr "Neznámé, chybělo %(time)s (%(count)d)"
 #: ../src/Utils.py:1703
 #, python-format
 msgid "Objects referenced by this note were missing in a file imported on %s."
-msgstr ""
+msgstr "Objekty odkazované touto poznámkou chyběly v souboru importovaném  %s."
 
 #: ../src/UndoHistory.py:64
 #: ../src/gui/grampsgui.py:161
@@ -2050,7 +2050,7 @@ msgstr "Databáze byla otevřena"
 msgid "History cleared"
 msgstr "Historie byla smazána"
 
-#: ../src/cli/arghandler.py:218
+#: ../src/cli/arghandler.py:219
 #, python-format
 msgid ""
 "Error: Family tree '%s' already exists.\n"
@@ -2059,7 +2059,7 @@ msgstr ""
 "Chyba: Rodokment '%s' již existuje.\n"
 "Volba '-C' nemůže být použita."
 
-#: ../src/cli/arghandler.py:227
+#: ../src/cli/arghandler.py:228
 #, python-format
 msgid ""
 "Error: Input family tree \"%s\" does not exist.\n"
@@ -2068,17 +2068,17 @@ msgstr ""
 "Chyba: Vstupní rodokmen \"%s\" neexistuje.\n"
 "Pro import souborů gedcom, gramps-xml nebo grdb do rodokmenu raději použijte parametr -i."
 
-#: ../src/cli/arghandler.py:243
+#: ../src/cli/arghandler.py:244
 #, python-format
 msgid "Error: Import file %s not found."
 msgstr "Chyba: importní soubor %s nebyl nalezen."
 
-#: ../src/cli/arghandler.py:261
+#: ../src/cli/arghandler.py:262
 #, python-format
 msgid "Error: Unrecognized type: \"%(format)s\" for import file: %(filename)s"
 msgstr "Chyba: Nerozpoznaný typ: \"%(format)s\" pro soubor importu: %(filename)s"
 
-#: ../src/cli/arghandler.py:283
+#: ../src/cli/arghandler.py:284
 #, python-format
 msgid ""
 "WARNING: Output file already exists!\n"
@@ -2089,118 +2089,118 @@ msgstr ""
 "POZOR: Bude přepsán obsah souboru:\n"
 "   %s"
 
-#: ../src/cli/arghandler.py:289
+#: ../src/cli/arghandler.py:290
 msgid "OK to overwrite? (yes/no) "
 msgstr "Opravdu přepsat? (ano/ne) "
 
-#: ../src/cli/arghandler.py:294
+#: ../src/cli/arghandler.py:295
 msgid "YES"
 msgstr "ANO"
 
-#: ../src/cli/arghandler.py:295
+#: ../src/cli/arghandler.py:296
 #, python-format
 msgid "Will overwrite the existing file: %s"
 msgstr "Přepsat existující soubor: %s"
 
-#: ../src/cli/arghandler.py:315
+#: ../src/cli/arghandler.py:317
 #, python-format
 msgid "ERROR: Unrecognized format for export file %s"
 msgstr "CHYBA: Formát souboru %s pro export nebyl rozpoznán"
 
-#: ../src/cli/arghandler.py:402
+#: ../src/cli/arghandler.py:404
 msgid "List of known family trees in your database path\n"
 msgstr "Seznam známých rodokmenů v databázi\n"
 
-#: ../src/cli/arghandler.py:405
+#: ../src/cli/arghandler.py:407
 #, python-format
 msgid "%(full_DB_path)s with name \"%(f_t_name)s\""
 msgstr "%(full_DB_path)s s názvem \"%(f_t_name)s\""
 
-#: ../src/cli/arghandler.py:411
+#: ../src/cli/arghandler.py:413
 msgid "Gramps Family Trees:"
 msgstr "Rodokmeny Gramps:"
 
-#: ../src/cli/arghandler.py:415
+#: ../src/cli/arghandler.py:417
 #, python-format
 msgid "Family Tree \"%s\":"
 msgstr "Rodokmen \"%s\":"
 
-#: ../src/cli/arghandler.py:425
+#: ../src/cli/arghandler.py:427
 #, python-format
 msgid "Performing action: %s."
 msgstr "Prováděná akce: %s."
 
-#: ../src/cli/arghandler.py:427
+#: ../src/cli/arghandler.py:429
 #, python-format
 msgid "Using options string: %s"
 msgstr "Použitý řetězec voleb: %s"
 
-#: ../src/cli/arghandler.py:435
+#: ../src/cli/arghandler.py:437
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
 msgstr "Exportuje se: soubor %(filename)s, formát %(format)s."
 
-#: ../src/cli/arghandler.py:443
+#: ../src/cli/arghandler.py:445
 msgid "Exiting."
 msgstr "Ukončuje se."
 
-#: ../src/cli/arghandler.py:447
+#: ../src/cli/arghandler.py:449
 msgid "Cleaning up."
 msgstr "Probíhá vyčištění."
 
-#: ../src/cli/arghandler.py:477
+#: ../src/cli/arghandler.py:479
 msgid "Created empty family tree successfully"
 msgstr "Prázdný rodokmen byl úspěšně vytvořen"
 
-#: ../src/cli/arghandler.py:480
-#: ../src/cli/arghandler.py:507
+#: ../src/cli/arghandler.py:482
+#: ../src/cli/arghandler.py:509
 msgid "Error opening the file."
 msgstr "Chyba při otevírání souboru."
 
-#: ../src/cli/arghandler.py:481
-#: ../src/cli/arghandler.py:508
+#: ../src/cli/arghandler.py:483
+#: ../src/cli/arghandler.py:510
 msgid "Exiting..."
 msgstr "Ukončuje se..."
 
-#: ../src/cli/arghandler.py:487
+#: ../src/cli/arghandler.py:489
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
 msgstr "Importuje se: soubor %(filename)s, formát %(format)s."
 
-#: ../src/cli/arghandler.py:505
+#: ../src/cli/arghandler.py:507
 msgid "Opened successfully!"
 msgstr "Úspěšně otevřeno!"
 
-#: ../src/cli/arghandler.py:519
+#: ../src/cli/arghandler.py:521
 msgid "Database is locked, cannot open it!"
 msgstr "Databázi nelze otevřít, protože je uzamčená!"
 
-#: ../src/cli/arghandler.py:520
+#: ../src/cli/arghandler.py:522
 #, python-format
 msgid "  Info: %s"
 msgstr "  Info: %s"
 
-#: ../src/cli/arghandler.py:523
+#: ../src/cli/arghandler.py:525
 msgid "Database needs recovery, cannot open it!"
 msgstr "Databázi nelze otevřít, je nutná obnova!"
 
-#: ../src/cli/arghandler.py:580
-#: ../src/cli/arghandler.py:627
+#: ../src/cli/arghandler.py:582
+#: ../src/cli/arghandler.py:629
 msgid "Ignoring invalid options string."
 msgstr "Ignoruji neplatný řetězec voleb."
 
 #. name exists, but is not in the list of valid report names
-#: ../src/cli/arghandler.py:603
+#: ../src/cli/arghandler.py:605
 msgid "Unknown report name."
 msgstr "Neznámý název zprávy."
 
-#: ../src/cli/arghandler.py:605
+#: ../src/cli/arghandler.py:607
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr "Nebyl zadán název zprávy. Použijte prosím jeden z %(donottranslate)s=reportname"
 
-#: ../src/cli/arghandler.py:609
-#: ../src/cli/arghandler.py:650
+#: ../src/cli/arghandler.py:611
+#: ../src/cli/arghandler.py:652
 #, python-format
 msgid ""
 "%s\n"
@@ -2209,16 +2209,16 @@ msgstr ""
 "%s\n"
 " Dostupné hodnoty jsou:"
 
-#: ../src/cli/arghandler.py:644
+#: ../src/cli/arghandler.py:646
 msgid "Unknown tool name."
 msgstr "Neznámé jméno nástroje."
 
-#: ../src/cli/arghandler.py:646
+#: ../src/cli/arghandler.py:648
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr "Nebyl zadán název nástroje. Použijte prosím jeden z %(donottranslate)s=toolname."
 
-#: ../src/cli/arghandler.py:662
+#: ../src/cli/arghandler.py:664
 #, python-format
 msgid "Unknown action: %s."
 msgstr "Neznámá akce: %s."
@@ -2406,7 +2406,7 @@ msgstr "Import byl dokončen..."
 
 #. Create a new database
 #: ../src/cli/clidbman.py:321
-#: ../src/plugins/import/ImportCsv.py:311
+#: ../src/plugins/import/ImportCsv.py:310
 msgid "Importing data..."
 msgstr "Importuji data..."
 
@@ -2441,27 +2441,27 @@ msgid "ERROR: %s"
 msgstr "Chyba: %s"
 
 #: ../src/cli/grampscli.py:139
-#: ../src/gui/dbloader.py:285
+#: ../src/gui/dbloader.py:286
 msgid "Read only database"
 msgstr "Databáze je jen pro čtení"
 
 #: ../src/cli/grampscli.py:140
-#: ../src/gui/dbloader.py:230
-#: ../src/gui/dbloader.py:286
+#: ../src/gui/dbloader.py:231
+#: ../src/gui/dbloader.py:287
 msgid "You do not have write access to the selected file."
 msgstr "Do vybraného souboru nemáte právo zápisu."
 
 #: ../src/cli/grampscli.py:159
 #: ../src/cli/grampscli.py:162
-#: ../src/gui/dbloader.py:314
-#: ../src/gui/dbloader.py:317
-#: ../src/gui/dbloader.py:320
+#: ../src/gui/dbloader.py:315
+#: ../src/gui/dbloader.py:318
+#: ../src/gui/dbloader.py:321
 msgid "Cannot open database"
 msgstr "Databázi nelze otevřít"
 
 #: ../src/cli/grampscli.py:166
-#: ../src/gui/dbloader.py:188
-#: ../src/gui/dbloader.py:324
+#: ../src/gui/dbloader.py:189
+#: ../src/gui/dbloader.py:325
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Nelze otevřít soubor %s"
@@ -2584,7 +2584,6 @@ msgid "Remove mother from family"
 msgstr "Odstranit matku z rodiny"
 
 #: ../src/gen/db/exceptions.py:78
-#: ../src/plugins/import/ImportGrdb.py:60
 msgid ""
 "The database version is not supported by this version of Gramps.\n"
 "Please upgrade to the corresponding version or use XML for porting data between different database versions."
@@ -2705,26 +2704,26 @@ msgstr "Jméno po otci, křestní jméno"
 
 #: ../src/gen/display/name.py:540
 #: ../src/gen/display/name.py:640
-#: ../src/plugins/import/ImportCsv.py:178
+#: ../src/plugins/import/ImportCsv.py:177
 msgid "Person|title"
 msgstr "titul"
 
 #: ../src/gen/display/name.py:542
 #: ../src/gen/display/name.py:642
-#: ../src/plugins/import/ImportCsv.py:174
+#: ../src/plugins/import/ImportCsv.py:173
 msgid "given"
 msgstr "křestní jméno"
 
 #: ../src/gen/display/name.py:544
 #: ../src/gen/display/name.py:644
-#: ../src/plugins/import/ImportCsv.py:171
+#: ../src/plugins/import/ImportCsv.py:170
 msgid "surname"
 msgstr "příjmení"
 
 #: ../src/gen/display/name.py:546
 #: ../src/gen/display/name.py:646
 #: ../src/gui/editors/editperson.py:363
-#: ../src/plugins/import/ImportCsv.py:180
+#: ../src/plugins/import/ImportCsv.py:179
 msgid "suffix"
 msgstr "přípona"
 
@@ -2796,7 +2795,7 @@ msgstr "zbytek"
 #: ../src/gen/display/name.py:583
 #: ../src/gen/display/name.py:675
 #: ../src/gui/editors/editperson.py:384
-#: ../src/plugins/import/ImportCsv.py:179
+#: ../src/plugins/import/ImportCsv.py:178
 msgid "prefix"
 msgstr "předpona"
 
@@ -2837,7 +2836,7 @@ msgstr "Kasta"
 
 #. 2 name (version)
 #: ../src/gen/lib/attrtype.py:66
-#: ../src/gui/viewmanager.py:470
+#: ../src/gui/viewmanager.py:471
 #: ../src/gui/editors/displaytabs/eventembedlist.py:74
 #: ../src/gui/editors/displaytabs/webembedlist.py:67
 #: ../src/gui/plug/_windows.py:119
@@ -3318,8 +3317,8 @@ msgstr "Závěť"
 
 #: ../src/gen/lib/eventtype.py:179
 #: ../src/Merge/mergeperson.py:239
-#: ../src/plugins/export/ExportCsv.py:458
-#: ../src/plugins/import/ImportCsv.py:228
+#: ../src/plugins/export/ExportCsv.py:457
+#: ../src/plugins/import/ImportCsv.py:227
 #: ../src/plugins/textreport/FamilyGroup.py:382
 #: ../src/plugins/webreport/NarrativeWeb.py:3123
 msgid "Marriage"
@@ -4035,13 +4034,13 @@ msgstr "Soubor %s je již otevřený, nejprve jej zavřete."
 #: ../src/plugins/docgen/RTFDoc.py:96
 #: ../src/plugins/docgen/SvgDrawDoc.py:79
 #: ../src/plugins/docgen/SvgDrawDoc.py:81
-#: ../src/plugins/export/ExportCsv.py:300
-#: ../src/plugins/export/ExportCsv.py:304
-#: ../src/plugins/export/ExportGedcom.py:1447
-#: ../src/plugins/export/ExportGeneWeb.py:97
-#: ../src/plugins/export/ExportGeneWeb.py:101
-#: ../src/plugins/export/ExportVCalendar.py:104
-#: ../src/plugins/export/ExportVCalendar.py:108
+#: ../src/plugins/export/ExportCsv.py:299
+#: ../src/plugins/export/ExportCsv.py:303
+#: ../src/plugins/export/ExportGedcom.py:1445
+#: ../src/plugins/export/ExportGeneWeb.py:95
+#: ../src/plugins/export/ExportGeneWeb.py:99
+#: ../src/plugins/export/ExportVCalendar.py:102
+#: ../src/plugins/export/ExportVCalendar.py:106
 #: ../src/plugins/export/ExportVCard.py:70
 #: ../src/plugins/export/ExportVCard.py:74
 #: ../src/plugins/webreport/NarrativeWeb.py:7009
@@ -4714,8 +4713,8 @@ msgid "Common"
 msgstr "Společné"
 
 #: ../src/gui/configure.py:549
-#: ../src/plugins/export/ExportCsv.py:336
-#: ../src/plugins/import/ImportCsv.py:176
+#: ../src/plugins/export/ExportCsv.py:335
+#: ../src/plugins/import/ImportCsv.py:175
 msgid "Call"
 msgstr "Volání"
 
@@ -4961,12 +4960,12 @@ msgstr "Automaticky načíst poslední rodokmen"
 msgid "Select media directory"
 msgstr "Vybrat adresář pro média"
 
-#: ../src/gui/dbloader.py:117
+#: ../src/gui/dbloader.py:118
 #: ../src/gui/plug/tool.py:110
 msgid "Undo history warning"
 msgstr "Vymazat historii změn"
 
-#: ../src/gui/dbloader.py:118
+#: ../src/gui/dbloader.py:119
 msgid ""
 "Proceeding with import will erase the undo history for this session. In particular, you will not be able to revert the import or any changes made prior to it.\n"
 "\n"
@@ -4977,20 +4976,20 @@ msgstr ""
 "\n"
 "Pokud se domníváte, že budete potřebovat import vrátit, přerušte operaci a udělejte zálohu databáze."
 
-#: ../src/gui/dbloader.py:123
+#: ../src/gui/dbloader.py:124
 msgid "_Proceed with import"
 msgstr "_Pokračovat v importu"
 
-#: ../src/gui/dbloader.py:123
+#: ../src/gui/dbloader.py:124
 #: ../src/gui/plug/tool.py:117
 msgid "_Stop"
 msgstr "Za_stavit"
 
-#: ../src/gui/dbloader.py:130
+#: ../src/gui/dbloader.py:131
 msgid "Gramps: Import database"
 msgstr "Gramps: Importovat databázi"
 
-#: ../src/gui/dbloader.py:189
+#: ../src/gui/dbloader.py:190
 #, python-format
 msgid ""
 "File type \"%s\" is unknown to Gramps.\n"
@@ -5001,74 +5000,74 @@ msgstr ""
 "\n"
 "Platné typy jsou: databáze Gramps, Gramps XML, balíček Gramps a GEDCOM a další."
 
-#: ../src/gui/dbloader.py:213
-#: ../src/gui/dbloader.py:219
+#: ../src/gui/dbloader.py:214
+#: ../src/gui/dbloader.py:220
 msgid "Cannot open file"
 msgstr "Soubor nelze otevřít"
 
-#: ../src/gui/dbloader.py:214
+#: ../src/gui/dbloader.py:215
 msgid "The selected file is a directory, not a file.\n"
 msgstr "Vybraný soubor je adresář, ne soubor.\n"
 
-#: ../src/gui/dbloader.py:220
+#: ../src/gui/dbloader.py:221
 msgid "You do not have read access to the selected file."
 msgstr "Nemáte právo zápisu do vybraného souboru."
 
-#: ../src/gui/dbloader.py:229
+#: ../src/gui/dbloader.py:230
 msgid "Cannot create file"
 msgstr "Nelze vytvořit soubor"
 
-#: ../src/gui/dbloader.py:249
+#: ../src/gui/dbloader.py:250
 #, python-format
 msgid "Could not import file: %s"
 msgstr "Nelze importovat soubor: %s"
 
-#: ../src/gui/dbloader.py:250
+#: ../src/gui/dbloader.py:251
 msgid "This file incorrectly identifies its character set, so it cannot be accurately imported. Please fix the encoding, and import again"
 msgstr "Tento soubor nesprávně identifikuje svoji kódovou stránku a proto nemůže být správně importován. Opravte kódování znaků a zkuste operaci opakovat"
 
-#: ../src/gui/dbloader.py:303
+#: ../src/gui/dbloader.py:304
 msgid "Need to upgrade database!"
 msgstr "Nutný upgrade databáze!"
 
-#: ../src/gui/dbloader.py:305
+#: ../src/gui/dbloader.py:306
 msgid "Upgrade now"
 msgstr "Aktutalizovat nyní"
 
-#: ../src/gui/dbloader.py:306
-#: ../src/gui/viewmanager.py:1041
+#: ../src/gui/dbloader.py:307
+#: ../src/gui/viewmanager.py:1042
 #: ../src/plugins/BookReport.py:677
 #: ../src/plugins/BookReport.py:1069
 #: ../src/plugins/view/familyview.py:259
 msgid "Cancel"
 msgstr "Storno"
 
-#: ../src/gui/dbloader.py:365
+#: ../src/gui/dbloader.py:366
 msgid "All files"
 msgstr "Všechny soubory"
 
-#: ../src/gui/dbloader.py:406
+#: ../src/gui/dbloader.py:407
 msgid "Automatically detected"
 msgstr "Automaticky detekován"
 
-#: ../src/gui/dbloader.py:415
+#: ../src/gui/dbloader.py:416
 msgid "Select file _type:"
 msgstr "Vyberte _typ souboru"
 
-#: ../src/gui/dbman.py:105
+#: ../src/gui/dbman.py:106
 msgid "_Extract"
 msgstr "_Rozbalit"
 
-#: ../src/gui/dbman.py:105
+#: ../src/gui/dbman.py:106
 #: ../src/glade/dbman.glade.h:4
 msgid "_Archive"
 msgstr "_Archiv"
 
-#: ../src/gui/dbman.py:271
+#: ../src/gui/dbman.py:272
 msgid "Family tree name"
 msgstr "Název rodokmenu"
 
-#: ../src/gui/dbman.py:281
+#: ../src/gui/dbman.py:282
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:53
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:64
 #: ../src/gui/plug/_windows.py:112
@@ -5078,28 +5077,28 @@ msgstr "Název rodokmenu"
 msgid "Status"
 msgstr "Stav"
 
-#: ../src/gui/dbman.py:287
+#: ../src/gui/dbman.py:288
 msgid "Last accessed"
 msgstr "Poslední přístup"
 
-#: ../src/gui/dbman.py:369
+#: ../src/gui/dbman.py:370
 #, python-format
 msgid "Break the lock on the '%s' database?"
 msgstr "Zlomit zámek na databázi %s?"
 
-#: ../src/gui/dbman.py:370
+#: ../src/gui/dbman.py:371
 msgid "Gramps believes that someone else is actively editing this database. You cannot edit this database while it is locked. If no one is editing the database you may safely break the lock. However, if someone else is editing the database and you break the lock, you may corrupt the database."
 msgstr "Gramps se domnívá, že někdo jiný pracuje s databází. Pokud je uzamčená, nemůžete s touto databází pracovat. Pokud jste si jistí, že s databází nikdo nepracuje, můžete zámek prolomit. V opačném případě může prolomení znamenat porušení databáze."
 
-#: ../src/gui/dbman.py:376
+#: ../src/gui/dbman.py:377
 msgid "Break lock"
 msgstr "Zlomit zámek"
 
-#: ../src/gui/dbman.py:453
+#: ../src/gui/dbman.py:454
 msgid "Rename failed"
 msgstr "Přejmenování selhalo"
 
-#: ../src/gui/dbman.py:454
+#: ../src/gui/dbman.py:455
 #, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
@@ -5110,57 +5109,57 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:468
+#: ../src/gui/dbman.py:469
 msgid "Could not rename the Family Tree."
 msgstr "Nelze přejmenovat rodokmen."
 
-#: ../src/gui/dbman.py:469
+#: ../src/gui/dbman.py:470
 msgid "Family Tree already exists, choose a unique name."
 msgstr "Tento rodokmen už existuje, zvolte prosím jiné unikátní jméno."
 
-#: ../src/gui/dbman.py:507
+#: ../src/gui/dbman.py:508
 msgid "Extracting archive..."
 msgstr "Rozbalit archiv..."
 
-#: ../src/gui/dbman.py:512
+#: ../src/gui/dbman.py:513
 msgid "Importing archive..."
 msgstr "Importuji archiv..."
 
-#: ../src/gui/dbman.py:528
+#: ../src/gui/dbman.py:529
 #, python-format
 msgid "Remove the '%s' family tree?"
 msgstr "Odstranit rodokmen '%s'?"
 
-#: ../src/gui/dbman.py:529
+#: ../src/gui/dbman.py:530
 msgid "Removing this family tree will permanently destroy the data."
 msgstr "Odstraněním rodokmenu dojde k permanentnímu vymazání dat."
 
-#: ../src/gui/dbman.py:530
+#: ../src/gui/dbman.py:531
 msgid "Remove family tree"
 msgstr "Odstranit rodokmen"
 
-#: ../src/gui/dbman.py:536
+#: ../src/gui/dbman.py:537
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Odstranit '%(revision)s' verzi z %(database)s'"
 
-#: ../src/gui/dbman.py:540
+#: ../src/gui/dbman.py:541
 msgid "Removing this version will prevent you from extracting it in the future."
 msgstr "Pokud tuto verzi odstraníte, nebude možné ji v budoucnu rozbalit."
 
-#: ../src/gui/dbman.py:542
+#: ../src/gui/dbman.py:543
 msgid "Remove version"
 msgstr "Odstranit verzi"
 
-#: ../src/gui/dbman.py:571
+#: ../src/gui/dbman.py:572
 msgid "Could not delete family tree"
 msgstr "Nemohu vymazat rodokmen"
 
-#: ../src/gui/dbman.py:596
+#: ../src/gui/dbman.py:597
 msgid "Deletion failed"
 msgstr "Operace mazání selhala"
 
-#: ../src/gui/dbman.py:597
+#: ../src/gui/dbman.py:598
 #, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
@@ -5171,11 +5170,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:625
+#: ../src/gui/dbman.py:626
 msgid "Repair family tree?"
 msgstr "Opravit rodokmen?"
 
-#: ../src/gui/dbman.py:627
+#: ../src/gui/dbman.py:628
 #, python-format
 msgid ""
 "If you click <b>Proceed</b>, Gramps will attempt to recover your family tree from the last good backup. There are several ways this can cause unwanted effects, so <b>backup</b> the family tree first.\n"
@@ -5196,31 +5195,31 @@ msgstr ""
 "http://gramps-project.org/wiki/index.php?title=Recover_corrupted_family_tree\n"
 "Před započetím opravy se pokuste otevřít rodokmen normálně. Mnoho chyb aktivujících tlačítko oprav může být opraveno automaticky. Pokud je to tento případ, můžete tlačítko oprav deaktivovat odstraněním souboru  <i>need_recover</i> ve složce s rodokmenem."
 
-#: ../src/gui/dbman.py:646
+#: ../src/gui/dbman.py:647
 msgid "Proceed, I have taken a backup"
 msgstr "Hotovo, záloha byla získána"
 
-#: ../src/gui/dbman.py:647
+#: ../src/gui/dbman.py:648
 msgid "Stop"
 msgstr "Zastavit"
 
-#: ../src/gui/dbman.py:670
+#: ../src/gui/dbman.py:671
 msgid "Rebuilding database from backup files"
 msgstr "Databáze se obnovuje ze záložních souborů"
 
-#: ../src/gui/dbman.py:675
+#: ../src/gui/dbman.py:676
 msgid "Error restoring backup data"
 msgstr "Chyba při obnově zálohy"
 
-#: ../src/gui/dbman.py:710
+#: ../src/gui/dbman.py:711
 msgid "Could not create family tree"
 msgstr "Nemohu vytvořit rodokmen"
 
-#: ../src/gui/dbman.py:824
+#: ../src/gui/dbman.py:825
 msgid "Retrieve failed"
 msgstr "Získání selhalo"
 
-#: ../src/gui/dbman.py:825
+#: ../src/gui/dbman.py:826
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -5231,12 +5230,12 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:865
-#: ../src/gui/dbman.py:893
+#: ../src/gui/dbman.py:866
+#: ../src/gui/dbman.py:894
 msgid "Archiving failed"
 msgstr "Archivace selhala"
 
-#: ../src/gui/dbman.py:866
+#: ../src/gui/dbman.py:867
 #, python-format
 msgid ""
 "An attempt to create the archive failed with the following message:\n"
@@ -5247,15 +5246,15 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:871
+#: ../src/gui/dbman.py:872
 msgid "Creating data to be archived..."
 msgstr "Vytvářejí se data pro archivaci..."
 
-#: ../src/gui/dbman.py:880
+#: ../src/gui/dbman.py:881
 msgid "Saving archive..."
 msgstr "Ukládá se archiv...."
 
-#: ../src/gui/dbman.py:894
+#: ../src/gui/dbman.py:895
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
@@ -5685,11 +5684,11 @@ msgstr "Nastavit"
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:52
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:63
 #: ../src/gui/selectors/selectevent.py:65
-#: ../src/plugins/export/ExportCsv.py:459
+#: ../src/plugins/export/ExportCsv.py:458
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:73
 #: ../src/plugins/gramplet/Events.py:51
 #: ../src/plugins/gramplet/PersonResidence.py:49
-#: ../src/plugins/import/ImportCsv.py:229
+#: ../src/plugins/import/ImportCsv.py:228
 #: ../src/plugins/quickview/OnThisDay.py:80
 #: ../src/plugins/quickview/OnThisDay.py:81
 #: ../src/plugins/quickview/OnThisDay.py:82
@@ -5777,11 +5776,12 @@ msgstr "Gramplety"
 #: ../src/gui/grampsgui.py:120
 #: ../src/gui/grampsgui.py:121
 #: ../src/plugins/view/geography.gpr.py:62
-#: ../src/plugins/view/geography.gpr.py:78
-#: ../src/plugins/view/geography.gpr.py:95
-#: ../src/plugins/view/geography.gpr.py:112
-#: ../src/plugins/view/geography.gpr.py:130
-#: ../src/plugins/view/geography.gpr.py:148
+#: ../src/plugins/view/geography.gpr.py:79
+#: ../src/plugins/view/geography.gpr.py:98
+#: ../src/plugins/view/geography.gpr.py:116
+#: ../src/plugins/view/geography.gpr.py:134
+#: ../src/plugins/view/geography.gpr.py:150
+#: ../src/plugins/view/geography.gpr.py:167
 msgid "Geography"
 msgstr "Zeměpis"
 
@@ -5952,7 +5952,7 @@ msgstr "Seznam"
 
 #. name, click?, width, toggle
 #: ../src/gui/grampsgui.py:146
-#: ../src/gui/viewmanager.py:463
+#: ../src/gui/viewmanager.py:464
 #: ../src/plugins/tool/ChangeNames.py:194
 #: ../src/plugins/tool/ExtractCity.py:540
 #: ../src/plugins/tool/PatchNames.py:396
@@ -6067,62 +6067,62 @@ msgstr "Chyba při otevírání souboru"
 #. Private Constants
 #.
 #. ------------------------------------------------------------------------
-#: ../src/gui/viewmanager.py:114
+#: ../src/gui/viewmanager.py:115
 #: ../src/gui/plug/_dialogs.py:59
 #: ../src/plugins/BookReport.py:98
 msgid "Unsupported"
 msgstr "Nepodporované"
 
-#: ../src/gui/viewmanager.py:408
+#: ../src/gui/viewmanager.py:409
 msgid "Updated"
 msgstr "Aktualizováno"
 
-#: ../src/gui/viewmanager.py:420
+#: ../src/gui/viewmanager.py:421
 msgid "New"
 msgstr "Nový"
 
 #. List of translated strings used here
 #. Dead code for l10n
-#: ../src/gui/viewmanager.py:433
+#: ../src/gui/viewmanager.py:434
 msgid "new"
 msgstr "new"
 
-#: ../src/gui/viewmanager.py:433
+#: ../src/gui/viewmanager.py:434
 msgid "update"
 msgstr "aktualizovat"
 
-#: ../src/gui/viewmanager.py:438
+#: ../src/gui/viewmanager.py:439
 msgid "There are no available addons of this type"
 msgstr "Žádná rozšíření tohoto typu nejsou k dispozici"
 
-#: ../src/gui/viewmanager.py:439
+#: ../src/gui/viewmanager.py:440
 #, python-format
 msgid "Checked for '%s'"
 msgstr "Kontrolováno '%s'"
 
-#: ../src/gui/viewmanager.py:440
+#: ../src/gui/viewmanager.py:441
 msgid "' and '"
 msgstr "' a '"
 
-#: ../src/gui/viewmanager.py:451
+#: ../src/gui/viewmanager.py:452
 msgid "Available Gramps Updates for Addons"
 msgstr "Dostupné aktualizace rozšíření Gramps"
 
-#: ../src/gui/viewmanager.py:480
+#: ../src/gui/viewmanager.py:481
 #, python-format
 msgid "%(adjective)s: %(addon)s"
 msgstr "%(adjective)s: %(addon)s"
 
-#: ../src/gui/viewmanager.py:537
+#: ../src/gui/viewmanager.py:538
 msgid "Downloading and installing selected addons..."
 msgstr "Stahují a instalují se zvolená rozšíření..."
 
-#: ../src/gui/viewmanager.py:569
-#: ../src/gui/viewmanager.py:576
+#: ../src/gui/viewmanager.py:570
+#: ../src/gui/viewmanager.py:577
 msgid "Done downloading and installing addons"
 msgstr "Stahování a instalace rozšíření byla dokončena"
 
-#: ../src/gui/viewmanager.py:570
+#: ../src/gui/viewmanager.py:571
 #, python-format
 msgid "%d addon was installed."
 msgid_plural "%d addons were installed."
@@ -6130,270 +6130,270 @@ msgstr[0] "%d rozšíření bylo instalováno."
 msgstr[1] "%d rozšíření byla instalována."
 msgstr[2] "%d rozšíření bylo instalováno."
 
-#: ../src/gui/viewmanager.py:573
+#: ../src/gui/viewmanager.py:574
 msgid "You need to restart Gramps to see new views."
 msgstr "Nové pohledy se objeví po restartu Gramps."
 
-#: ../src/gui/viewmanager.py:577
+#: ../src/gui/viewmanager.py:578
 msgid "No addons were installed."
 msgstr "Žádná rozšíření nebyla instalována."
 
-#: ../src/gui/viewmanager.py:723
+#: ../src/gui/viewmanager.py:724
 msgid "Connect to a recent database"
 msgstr "Připojit poslední databázi"
 
-#: ../src/gui/viewmanager.py:741
+#: ../src/gui/viewmanager.py:742
 msgid "_Family Trees"
 msgstr "_Rodokmeny"
 
-#: ../src/gui/viewmanager.py:742
+#: ../src/gui/viewmanager.py:743
 msgid "_Manage Family Trees..."
 msgstr "Spravovat rodok_meny..."
 
-#: ../src/gui/viewmanager.py:743
+#: ../src/gui/viewmanager.py:744
 msgid "Manage databases"
 msgstr "Spravovat databáze"
 
-#: ../src/gui/viewmanager.py:744
+#: ../src/gui/viewmanager.py:745
 msgid "Open _Recent"
 msgstr "Otevřít _nedávné"
 
-#: ../src/gui/viewmanager.py:745
+#: ../src/gui/viewmanager.py:746
 msgid "Open an existing database"
 msgstr "Otevřít existující databázi"
 
-#: ../src/gui/viewmanager.py:746
+#: ../src/gui/viewmanager.py:747
 msgid "_Quit"
 msgstr "U_končit"
 
-#: ../src/gui/viewmanager.py:748
+#: ../src/gui/viewmanager.py:749
 msgid "_View"
 msgstr "_Zobrazit"
 
-#: ../src/gui/viewmanager.py:749
+#: ../src/gui/viewmanager.py:750
 msgid "_Edit"
 msgstr "Úpr_avy"
 
-#: ../src/gui/viewmanager.py:750
+#: ../src/gui/viewmanager.py:751
 msgid "_Preferences..."
 msgstr "_Předvolby..."
 
-#: ../src/gui/viewmanager.py:752
+#: ../src/gui/viewmanager.py:753
 msgid "_Help"
 msgstr "_Nápověda"
 
-#: ../src/gui/viewmanager.py:753
+#: ../src/gui/viewmanager.py:754
 msgid "Gramps _Home Page"
 msgstr "Domovská _stránka Gramps"
 
-#: ../src/gui/viewmanager.py:755
+#: ../src/gui/viewmanager.py:756
 msgid "Gramps _Mailing Lists"
 msgstr "Diskuzní skupiny Gra_mps"
 
-#: ../src/gui/viewmanager.py:757
+#: ../src/gui/viewmanager.py:758
 msgid "_Report a Bug"
 msgstr "_Zaslat hlášení o chybě"
 
-#: ../src/gui/viewmanager.py:759
+#: ../src/gui/viewmanager.py:760
 msgid "_Extra Reports/Tools"
 msgstr "Další zprávy/Nástroj_e"
 
-#: ../src/gui/viewmanager.py:761
+#: ../src/gui/viewmanager.py:762
 msgid "_About"
 msgstr "_O programu"
 
-#: ../src/gui/viewmanager.py:763
+#: ../src/gui/viewmanager.py:764
 msgid "_Plugin Manager"
 msgstr "S_právce zásuvných modulů"
 
-#: ../src/gui/viewmanager.py:765
+#: ../src/gui/viewmanager.py:766
 msgid "_FAQ"
 msgstr "_FAQ"
 
-#: ../src/gui/viewmanager.py:766
+#: ../src/gui/viewmanager.py:767
 msgid "_Key Bindings"
 msgstr "_Klávesové zkratky"
 
-#: ../src/gui/viewmanager.py:767
+#: ../src/gui/viewmanager.py:768
 msgid "_User Manual"
 msgstr "_Uživatelská příručka"
 
-#: ../src/gui/viewmanager.py:774
+#: ../src/gui/viewmanager.py:775
 msgid "_Export..."
 msgstr "_Exportovat..."
 
-#: ../src/gui/viewmanager.py:776
+#: ../src/gui/viewmanager.py:777
 msgid "Make Backup..."
 msgstr "Vytvořit zálohu..."
 
-#: ../src/gui/viewmanager.py:777
+#: ../src/gui/viewmanager.py:778
 msgid "Make a Gramps XML backup of the database"
 msgstr "Vytvořit zálohu databáze Gramps v XML"
 
-#: ../src/gui/viewmanager.py:779
+#: ../src/gui/viewmanager.py:780
 msgid "_Abandon Changes and Quit"
 msgstr "_Zrušit změny a skončit"
 
-#: ../src/gui/viewmanager.py:780
-#: ../src/gui/viewmanager.py:783
+#: ../src/gui/viewmanager.py:781
+#: ../src/gui/viewmanager.py:784
 msgid "_Reports"
 msgstr "Z_právy"
 
-#: ../src/gui/viewmanager.py:781
+#: ../src/gui/viewmanager.py:782
 msgid "Open the reports dialog"
 msgstr "Otevřít dialog zpráv"
 
-#: ../src/gui/viewmanager.py:782
+#: ../src/gui/viewmanager.py:783
 msgid "_Go"
 msgstr "Pře_jít"
 
-#: ../src/gui/viewmanager.py:784
+#: ../src/gui/viewmanager.py:785
 msgid "_Windows"
 msgstr "_Okna"
 
-#: ../src/gui/viewmanager.py:821
+#: ../src/gui/viewmanager.py:822
 msgid "Clip_board"
 msgstr "Schránka"
 
-#: ../src/gui/viewmanager.py:822
+#: ../src/gui/viewmanager.py:823
 msgid "Open the Clipboard dialog"
 msgstr "Dialog pro otevření schránky"
 
-#: ../src/gui/viewmanager.py:823
+#: ../src/gui/viewmanager.py:824
 msgid "_Import..."
 msgstr "_Import..."
 
-#: ../src/gui/viewmanager.py:825
-#: ../src/gui/viewmanager.py:828
+#: ../src/gui/viewmanager.py:826
+#: ../src/gui/viewmanager.py:829
 msgid "_Tools"
 msgstr "_Nástroje"
 
-#: ../src/gui/viewmanager.py:826
+#: ../src/gui/viewmanager.py:827
 msgid "Open the tools dialog"
 msgstr "Otevřít dialog nástrojů"
 
-#: ../src/gui/viewmanager.py:827
+#: ../src/gui/viewmanager.py:828
 msgid "_Bookmarks"
 msgstr "_Záložky"
 
-#: ../src/gui/viewmanager.py:829
+#: ../src/gui/viewmanager.py:830
 msgid "_Configure View..."
 msgstr "_Nastavit pohled..."
 
-#: ../src/gui/viewmanager.py:830
+#: ../src/gui/viewmanager.py:831
 msgid "Configure the active view"
 msgstr "Nastavit aktivní pohled"
 
-#: ../src/gui/viewmanager.py:835
+#: ../src/gui/viewmanager.py:836
 msgid "_Navigator"
 msgstr "_Navigátor"
 
-#: ../src/gui/viewmanager.py:837
+#: ../src/gui/viewmanager.py:838
 msgid "_Toolbar"
 msgstr "_Lišta nástrojů"
 
-#: ../src/gui/viewmanager.py:839
+#: ../src/gui/viewmanager.py:840
 msgid "F_ull Screen"
 msgstr "Celá stránka"
 
-#: ../src/gui/viewmanager.py:844
-#: ../src/gui/viewmanager.py:1426
+#: ../src/gui/viewmanager.py:845
+#: ../src/gui/viewmanager.py:1427
 msgid "_Undo"
 msgstr "_Zpět"
 
-#: ../src/gui/viewmanager.py:849
-#: ../src/gui/viewmanager.py:1443
+#: ../src/gui/viewmanager.py:850
+#: ../src/gui/viewmanager.py:1444
 msgid "_Redo"
 msgstr "Zn_ovu"
 
-#: ../src/gui/viewmanager.py:855
+#: ../src/gui/viewmanager.py:856
 msgid "Undo History..."
 msgstr "Historie změn..."
 
-#: ../src/gui/viewmanager.py:869
+#: ../src/gui/viewmanager.py:870
 #, python-format
 msgid "Key %s is not bound"
 msgstr "Klávesa %s není přiřazena"
 
 #. load plugins
-#: ../src/gui/viewmanager.py:970
+#: ../src/gui/viewmanager.py:971
 msgid "Loading plugins..."
 msgstr "Nahrávám zásuvné moduly..."
 
-#: ../src/gui/viewmanager.py:977
-#: ../src/gui/viewmanager.py:992
+#: ../src/gui/viewmanager.py:978
+#: ../src/gui/viewmanager.py:993
 msgid "Ready"
 msgstr "Připraven"
 
 #. registering plugins
-#: ../src/gui/viewmanager.py:985
+#: ../src/gui/viewmanager.py:986
 msgid "Registering plugins..."
 msgstr "Registrují se zásuvné moduly..."
 
-#: ../src/gui/viewmanager.py:1022
+#: ../src/gui/viewmanager.py:1023
 msgid "Autobackup..."
 msgstr "Automatická záloha..."
 
-#: ../src/gui/viewmanager.py:1026
+#: ../src/gui/viewmanager.py:1027
 msgid "Error saving backup data"
 msgstr "Chyba při ukládání zálohy"
 
-#: ../src/gui/viewmanager.py:1037
+#: ../src/gui/viewmanager.py:1038
 msgid "Abort changes?"
 msgstr "Zahodit změny?"
 
-#: ../src/gui/viewmanager.py:1038
+#: ../src/gui/viewmanager.py:1039
 msgid "Aborting changes will return the database to the state it was before you started this editing session."
 msgstr "Odvolání změn vrátí databázi do stavu v jakém jste začínali její modifikaci."
 
-#: ../src/gui/viewmanager.py:1040
+#: ../src/gui/viewmanager.py:1041
 msgid "Abort changes"
 msgstr "Zahodit změny"
 
-#: ../src/gui/viewmanager.py:1050
+#: ../src/gui/viewmanager.py:1051
 msgid "Cannot abandon session's changes"
 msgstr "Nelze odvolat změny v aktuální relaci"
 
-#: ../src/gui/viewmanager.py:1051
+#: ../src/gui/viewmanager.py:1052
 msgid "Changes cannot be completely abandoned because the number of changes made in the session exceeded the limit."
 msgstr "Změny nemohou být kompletně odvolány, protože jejich počet v této relaci překročil limit."
 
-#: ../src/gui/viewmanager.py:1205
+#: ../src/gui/viewmanager.py:1206
 msgid "View failed to load. Check error output."
 msgstr "Pohled se nepodařilo nahrát. Zkontrolujte chybový výstup."
 
-#: ../src/gui/viewmanager.py:1344
+#: ../src/gui/viewmanager.py:1345
 msgid "Import Statistics"
 msgstr "Statistiky importu"
 
-#: ../src/gui/viewmanager.py:1395
+#: ../src/gui/viewmanager.py:1396
 msgid "Read Only"
 msgstr "Jen pro čtení"
 
-#: ../src/gui/viewmanager.py:1478
+#: ../src/gui/viewmanager.py:1479
 msgid "Gramps XML Backup"
 msgstr "XML záloha Gramps"
 
-#: ../src/gui/viewmanager.py:1488
+#: ../src/gui/viewmanager.py:1489
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
 #: ../src/glade/mergemedia.glade.h:6
 msgid "Path:"
 msgstr "Cesta:"
 
-#: ../src/gui/viewmanager.py:1508
+#: ../src/gui/viewmanager.py:1509
 #: ../src/plugins/tool/phpgedview.glade.h:5
 #: ../src/plugins/import/importgedcom.glade.h:7
 msgid "File:"
 msgstr "Soubor:"
 
-#: ../src/gui/viewmanager.py:1540
+#: ../src/gui/viewmanager.py:1541
 msgid "Media:"
 msgstr "Média:"
 
 #. #################
 #. What to include
 #. #########################
-#: ../src/gui/viewmanager.py:1545
+#: ../src/gui/viewmanager.py:1546
 #: ../src/plugins/drawreport/AncestorTree.py:985
 #: ../src/plugins/drawreport/DescendTree.py:1581
 #: ../src/plugins/textreport/DetAncestralReport.py:801
@@ -6404,55 +6404,55 @@ msgstr "Média:"
 msgid "Include"
 msgstr "Zahrnout"
 
-#: ../src/gui/viewmanager.py:1546
+#: ../src/gui/viewmanager.py:1547
 #: ../src/plugins/gramplet/StatsGramplet.py:194
 msgid "Megabyte|MB"
 msgstr "Megabyte|MB"
 
-#: ../src/gui/viewmanager.py:1547
+#: ../src/gui/viewmanager.py:1548
 #: ../src/plugins/webreport/NarrativeWeb.py:7930
 msgid "Exclude"
 msgstr "Vyjmout"
 
-#: ../src/gui/viewmanager.py:1564
+#: ../src/gui/viewmanager.py:1565
 msgid "Backup file already exists! Overwrite?"
 msgstr "Soubor se zálohou již existuje! Přepsat?"
 
-#: ../src/gui/viewmanager.py:1565
+#: ../src/gui/viewmanager.py:1566
 #, python-format
 msgid "The file '%s' exists."
 msgstr "Soubor '%s' existuje."
 
-#: ../src/gui/viewmanager.py:1566
+#: ../src/gui/viewmanager.py:1567
 msgid "Proceed and overwrite"
 msgstr "Pokračovat a přepsat"
 
-#: ../src/gui/viewmanager.py:1567
+#: ../src/gui/viewmanager.py:1568
 msgid "Cancel the backup"
 msgstr "Přerušit zálohu"
 
-#: ../src/gui/viewmanager.py:1574
+#: ../src/gui/viewmanager.py:1575
 msgid "Making backup..."
 msgstr "Provádí se záloha..."
 
-#: ../src/gui/viewmanager.py:1591
+#: ../src/gui/viewmanager.py:1592
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "Záloha byla uložena do '%s'"
 
-#: ../src/gui/viewmanager.py:1594
+#: ../src/gui/viewmanager.py:1595
 msgid "Backup aborted"
 msgstr "Zálohování bylo přerušeno"
 
-#: ../src/gui/viewmanager.py:1612
+#: ../src/gui/viewmanager.py:1613
 msgid "Select backup directory"
 msgstr "Vybrat adresář záloh"
 
-#: ../src/gui/viewmanager.py:1878
+#: ../src/gui/viewmanager.py:1879
 msgid "Failed Loading Plugin"
 msgstr "Zásuvný moduly se nepodařilo nahrát"
 
-#: ../src/gui/viewmanager.py:1879
+#: ../src/gui/viewmanager.py:1880
 #, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
@@ -6463,12 +6463,19 @@ msgid ""
 "\n"
 "If you do not want Gramps to try and load this plugin again, you can hide it by using the Plugin Manager on the Help menu."
 msgstr ""
+"Zásuvný modul %(name)s reportoval chybu a nebyl nahrán.\n"
+"\n"
+"%(error_msg)s\n"
+"\n"
+"Pokud nejste sami schopni problém opravit, můžete jej nahlásit na http://bugs.gramps-project.org nebo kontaktovat autora modulu (%(firstauthoremail)s).\n"
+"\n"
+"Pokud nechcete, aby se Gramps pokoušel znovu modul nahrát, můžete jej skrýt použitím Správce zásuvných modulů v nabídce Nápověda."
 
-#: ../src/gui/viewmanager.py:1927
+#: ../src/gui/viewmanager.py:1928
 msgid "Failed Loading View"
 msgstr "Nahrání pohledu selhalo"
 
-#: ../src/gui/viewmanager.py:1928
+#: ../src/gui/viewmanager.py:1929
 #, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
@@ -6479,6 +6486,13 @@ msgid ""
 "\n"
 "If you do not want Gramps to try and load this view again, you can hide it by using the Plugin Manager on the Help menu."
 msgstr ""
+"Pohled %(name)s reportoval chybu a nebyl nahrán.\n"
+"\n"
+"%(error_msg)s\n"
+"\n"
+"Pokud nejste sami schopni problém opravit, můžete jej nahlásit na http://bugs.gramps-project.org nebo kontaktovat autora modulu (%(firstauthoremail)s).\n"
+"\n"
+"Pokud nechcete, aby se Gramps pokoušel znovu pohled nahrát, můžete jej skrýt použitím Správce zásuvných modulů v nabídce Nápověda."
 
 #: ../src/gui/editors/addmedia.py:95
 msgid "Select a media object"
@@ -6809,8 +6823,8 @@ msgstr "#"
 #: ../src/gui/selectors/selectperson.py:76
 #: ../src/Merge/mergeperson.py:176
 #: ../src/plugins/drawreport/StatisticsChart.py:322
-#: ../src/plugins/export/ExportCsv.py:337
-#: ../src/plugins/import/ImportCsv.py:181
+#: ../src/plugins/export/ExportCsv.py:336
+#: ../src/plugins/import/ImportCsv.py:180
 #: ../src/plugins/lib/libpersonview.py:94
 #: ../src/plugins/quickview/siblings.py:48
 #: ../src/plugins/textreport/IndivComplete.py:601
@@ -6914,7 +6928,7 @@ msgstr ""
 "Ujistěte se, že informace je stále platná, zobrazená data byla aktualizována. Některé změny, které jste provedli mohly být ztraceny."
 
 #: ../src/gui/editors/editfamily.py:456
-#: ../src/plugins/import/ImportCsv.py:220
+#: ../src/plugins/import/ImportCsv.py:219
 #: ../src/plugins/view/familyview.py:258
 msgid "family"
 msgstr "rodina"
@@ -7328,22 +7342,22 @@ msgid "New Place"
 msgstr "Nové místo"
 
 #: ../src/gui/editors/editplace.py:222
-#: ../src/plugins/gramplet/EditExifMetadata.py:1146
+#: ../src/plugins/gramplet/EditExifMetadata.py:1145
 msgid "Invalid latitude (syntax: 18°9'"
 msgstr "Neplatná zeměpisná šířka (syntax: 18°9'"
 
 #: ../src/gui/editors/editplace.py:223
-#: ../src/plugins/gramplet/EditExifMetadata.py:1147
+#: ../src/plugins/gramplet/EditExifMetadata.py:1146
 msgid "48.21\"S, -18.2412 or -18:9:48.21)"
 msgstr "48.21\"S, -18.2412 nebo -18:9:48.21)"
 
 #: ../src/gui/editors/editplace.py:225
-#: ../src/plugins/gramplet/EditExifMetadata.py:1151
+#: ../src/plugins/gramplet/EditExifMetadata.py:1150
 msgid "Invalid longitude (syntax: 18°9'"
 msgstr "Neplatná zeměpisná výška (syntax: 18°9'"
 
 #: ../src/gui/editors/editplace.py:226
-#: ../src/plugins/gramplet/EditExifMetadata.py:1152
+#: ../src/plugins/gramplet/EditExifMetadata.py:1151
 msgid "48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr "48.21\"E, -18.2412 nebo -18:9:48.21)"
 
@@ -9515,8 +9529,8 @@ msgid "Name of the book. MANDATORY"
 msgstr "Název knihy. POVINNÉ"
 
 #: ../src/plugins/BookReport.py:727
-#: ../src/plugins/BookReport.py:1195
-#: ../src/plugins/BookReport.py:1244
+#: ../src/plugins/BookReport.py:1200
+#: ../src/plugins/BookReport.py:1249
 #: ../src/plugins/bookreport.gpr.py:31
 msgid "Book Report"
 msgstr "Knižní zpráva"
@@ -9599,16 +9613,16 @@ msgstr "Název knihy již existuje"
 msgid "You are about to save away a book with a name which already exists."
 msgstr "Ukládáte knihu s názvem, který již existuje."
 
-#: ../src/plugins/BookReport.py:1247
+#: ../src/plugins/BookReport.py:1252
 msgid "Gramps Book"
 msgstr "Gramps kniha"
 
-#: ../src/plugins/BookReport.py:1302
-#: ../src/plugins/BookReport.py:1313
+#: ../src/plugins/BookReport.py:1307
+#: ../src/plugins/BookReport.py:1318
 msgid "Please specify a book name"
 msgstr "Zadejte prosím název knihy"
 
-#: ../src/plugins/BookReport.py:1309
+#: ../src/plugins/BookReport.py:1314
 #, python-format
 msgid "No such book '%s'"
 msgstr "Kniha '%s' neexistuje"
@@ -9698,9 +9712,8 @@ msgid "The center person for the filter"
 msgstr "Výchozí osoba filtru"
 
 #: ../src/plugins/Records.py:530
-#, fuzzy
 msgid "Number of ranks to display"
-msgstr "Maximální počet položek k zobrazení"
+msgstr "Počet hodnocení k zobrazení"
 
 #: ../src/plugins/Records.py:533
 msgid "Use call name"
@@ -9715,9 +9728,8 @@ msgid "Replace first names with call name"
 msgstr "Nahradit křestní jména běžným jménem"
 
 #: ../src/plugins/Records.py:537
-#, fuzzy
 msgid "Underline call name in first names / add call name to first name"
-msgstr "Podtrhnout přezdívku v křestním jméně / přidat běžné jméno ke jménu"
+msgstr "Podtrhnout běžné jméno v křestním / přidat běžné jméno ke jménu"
 
 #: ../src/plugins/Records.py:540
 msgid "Footer text"
@@ -10968,14 +10980,14 @@ msgid "Death month"
 msgstr "Měsíc úmrtí"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:332
-#: ../src/plugins/export/ExportCsv.py:338
-#: ../src/plugins/import/ImportCsv.py:184
+#: ../src/plugins/export/ExportCsv.py:337
+#: ../src/plugins/import/ImportCsv.py:183
 msgid "Birth place"
 msgstr "Místo narození"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:334
-#: ../src/plugins/export/ExportCsv.py:340
-#: ../src/plugins/import/ImportCsv.py:206
+#: ../src/plugins/export/ExportCsv.py:339
+#: ../src/plugins/import/ImportCsv.py:205
 msgid "Death place"
 msgstr "Místo úmrtí"
 
@@ -11402,106 +11414,101 @@ msgstr "Zahrnout potomky"
 msgid "Translate headers"
 msgstr "Přeložit záhlaví"
 
-#: ../src/plugins/export/ExportCsv.py:338
-#: ../src/plugins/import/ImportCsv.py:186
+#: ../src/plugins/export/ExportCsv.py:337
+#: ../src/plugins/import/ImportCsv.py:185
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:130
 msgid "Birth date"
 msgstr "Datum narození"
 
-#: ../src/plugins/export/ExportCsv.py:338
-#: ../src/plugins/import/ImportCsv.py:188
+#: ../src/plugins/export/ExportCsv.py:337
+#: ../src/plugins/import/ImportCsv.py:187
 msgid "Birth source"
 msgstr "Pramen narození"
 
-#: ../src/plugins/export/ExportCsv.py:339
-#: ../src/plugins/import/ImportCsv.py:194
+#: ../src/plugins/export/ExportCsv.py:338
+#: ../src/plugins/import/ImportCsv.py:193
 msgid "Baptism date"
 msgstr "Datum křtu"
 
-#: ../src/plugins/export/ExportCsv.py:339
-#: ../src/plugins/import/ImportCsv.py:192
+#: ../src/plugins/export/ExportCsv.py:338
+#: ../src/plugins/import/ImportCsv.py:191
 msgid "Baptism place"
 msgstr "Místo křtu"
 
-#: ../src/plugins/export/ExportCsv.py:339
-#: ../src/plugins/import/ImportCsv.py:197
+#: ../src/plugins/export/ExportCsv.py:338
+#: ../src/plugins/import/ImportCsv.py:196
 msgid "Baptism source"
 msgstr "Pramen křtu"
 
-#: ../src/plugins/export/ExportCsv.py:340
-#: ../src/plugins/import/ImportCsv.py:208
+#: ../src/plugins/export/ExportCsv.py:339
+#: ../src/plugins/import/ImportCsv.py:207
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:132
 msgid "Death date"
 msgstr "Datum úmrtí"
 
-#: ../src/plugins/export/ExportCsv.py:340
-#: ../src/plugins/import/ImportCsv.py:210
+#: ../src/plugins/export/ExportCsv.py:339
+#: ../src/plugins/import/ImportCsv.py:209
 msgid "Death source"
 msgstr "Pramen úmrtí"
 
-#: ../src/plugins/export/ExportCsv.py:341
-#: ../src/plugins/import/ImportCsv.py:201
+#: ../src/plugins/export/ExportCsv.py:340
+#: ../src/plugins/import/ImportCsv.py:200
 msgid "Burial date"
 msgstr "Datum pohřbu"
 
-#: ../src/plugins/export/ExportCsv.py:341
-#: ../src/plugins/import/ImportCsv.py:199
+#: ../src/plugins/export/ExportCsv.py:340
+#: ../src/plugins/import/ImportCsv.py:198
 msgid "Burial place"
 msgstr "Místo pohřbu"
 
-#: ../src/plugins/export/ExportCsv.py:341
-#: ../src/plugins/import/ImportCsv.py:204
+#: ../src/plugins/export/ExportCsv.py:340
+#: ../src/plugins/import/ImportCsv.py:203
 msgid "Burial source"
 msgstr "Pramen pohřbu"
 
-#: ../src/plugins/export/ExportCsv.py:458
-#: ../src/plugins/import/ImportCsv.py:225
+#: ../src/plugins/export/ExportCsv.py:457
+#: ../src/plugins/import/ImportCsv.py:224
 #: ../src/plugins/textreport/FamilyGroup.py:565
 #: ../src/plugins/webreport/NarrativeWeb.py:2356
 msgid "Husband"
 msgstr "Manžel"
 
-#: ../src/plugins/export/ExportCsv.py:458
-#: ../src/plugins/import/ImportCsv.py:222
+#: ../src/plugins/export/ExportCsv.py:457
+#: ../src/plugins/import/ImportCsv.py:221
 #: ../src/plugins/textreport/FamilyGroup.py:574
 #: ../src/plugins/webreport/NarrativeWeb.py:2358
 msgid "Wife"
 msgstr "Manželka"
 
-#: ../src/plugins/export/ExportGedcom.py:414
+#: ../src/plugins/export/ExportGedcom.py:412
 msgid "Writing individuals"
 msgstr "Zapisují se jednotlivci"
 
-#: ../src/plugins/export/ExportGedcom.py:773
+#: ../src/plugins/export/ExportGedcom.py:771
 msgid "Writing families"
 msgstr "Zapisují se rodiny"
 
-#: ../src/plugins/export/ExportGedcom.py:932
+#: ../src/plugins/export/ExportGedcom.py:930
 msgid "Writing sources"
 msgstr "Zapisují se  prameny"
 
-#: ../src/plugins/export/ExportGedcom.py:967
+#: ../src/plugins/export/ExportGedcom.py:965
 msgid "Writing notes"
 msgstr "Zapisují se poznámky"
 
-#: ../src/plugins/export/ExportGedcom.py:1005
+#: ../src/plugins/export/ExportGedcom.py:1003
 msgid "Writing repositories"
 msgstr "Zapisují se archivy"
 
-#: ../src/plugins/export/ExportGedcom.py:1450
+#: ../src/plugins/export/ExportGedcom.py:1448
 msgid "Export failed"
 msgstr "Export selhal"
 
-#: ../src/plugins/export/ExportGeneWeb.py:106
+#: ../src/plugins/export/ExportGeneWeb.py:104
 msgid "No families matched by selected filter"
 msgstr "Vybranému filtru nevyhovují žádné rodiny"
 
-#: ../src/plugins/export/ExportPkg.py:165
-#: ../src/plugins/tool/Check.py:645
-msgid "Select file"
-msgstr "Vybrat soubor"
-
-#: ../src/plugins/export/ExportPkg.py:182
+#: ../src/plugins/export/ExportPkg.py:181
 #: ../src/plugins/export/ExportXml.py:136
 #: ../src/plugins/export/ExportXml.py:146
 #: ../src/plugins/export/ExportXml.py:164
@@ -11510,26 +11517,26 @@ msgid "Failure writing %s"
 msgstr "Zápis %s selhal"
 
 #. feature requests 2356, 1657: avoid genitive form
-#: ../src/plugins/export/ExportVCalendar.py:140
+#: ../src/plugins/export/ExportVCalendar.py:138
 #, python-format
 msgid "Marriage of %s"
 msgstr "Svatba: %s"
 
 #. feature requests 2356, 1657: avoid genitive form
-#: ../src/plugins/export/ExportVCalendar.py:160
-#: ../src/plugins/export/ExportVCalendar.py:165
+#: ../src/plugins/export/ExportVCalendar.py:158
+#: ../src/plugins/export/ExportVCalendar.py:163
 #, python-format
 msgid "Birth of %s"
 msgstr "Narození %s"
 
 #. feature requests 2356, 1657: avoid genitive form
-#: ../src/plugins/export/ExportVCalendar.py:178
-#: ../src/plugins/export/ExportVCalendar.py:184
+#: ../src/plugins/export/ExportVCalendar.py:176
+#: ../src/plugins/export/ExportVCalendar.py:182
 #, python-format
 msgid "Death of %s"
 msgstr "Úmrtí: %s"
 
-#: ../src/plugins/export/ExportVCalendar.py:243
+#: ../src/plugins/export/ExportVCalendar.py:241
 #, python-format
 msgid "Anniversary: %s"
 msgstr "Výročí: %s"
@@ -11690,27 +11697,27 @@ msgstr "   sp. "
 #. valid converting types for PIL.Image
 #. there are more image formats that PIL.Image can convert to,
 #. but they are not usable in exiv2/ pyexiv2
-#: ../src/plugins/gramplet/EditExifMetadata.py:147
+#: ../src/plugins/gramplet/EditExifMetadata.py:146
 msgid "<-- Image Types -->"
 msgstr "<-- Typy obrázků -->"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:170
+#: ../src/plugins/gramplet/EditExifMetadata.py:169
 msgid "Warning:  Changing this entry will update the Media object title field in Gramps not Exiv2 metadata."
 msgstr "Pozor: Změna této položky aktualizuje pole titulku v Gramps, ne však v metadatech Exiv2."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:173
+#: ../src/plugins/gramplet/EditExifMetadata.py:172
 msgid "Provide a short description for this image."
 msgstr "Poskytněte krátký popis tohoto obrázku."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:175
+#: ../src/plugins/gramplet/EditExifMetadata.py:174
 msgid "Enter the Artist/ Author of this image.  The person's name or the company who is responsible for the creation of this image."
 msgstr "Vložte autora obrázku. Osoba nebo společnost která je odpovědná za vytvoření obrázku."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:178
+#: ../src/plugins/gramplet/EditExifMetadata.py:177
 msgid "Enter the copyright information for this image. \n"
 msgstr "Vložit informaci o autorských právech k tomuto obrázku.\n"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:180
+#: ../src/plugins/gramplet/EditExifMetadata.py:179
 msgid ""
 "The original date/ time when the image was first created/ taken as in a photograph.\n"
 "Example: 1830-01-1 09:30:59"
@@ -11718,7 +11725,7 @@ msgstr ""
 "Původní datum/čas kdy byl obrázek vytvořen/vyfotografován.\n"
 "Příklad: 1830-01-1 09:30:59"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:183
+#: ../src/plugins/gramplet/EditExifMetadata.py:182
 msgid ""
 "This is the date/ time that the image was last changed/ modified.\n"
 "Example: 2011-05-24 14:30:00"
@@ -11726,7 +11733,7 @@ msgstr ""
 "Toto je datum/čas kdy byl obrázek naposledy změněn.\n"
 "Příklad: 2011-05-24 14:30:00"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:186
+#: ../src/plugins/gramplet/EditExifMetadata.py:185
 msgid ""
 "Enter the Latitude GPS coordinates for this image,\n"
 "Example: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"
@@ -11734,7 +11741,7 @@ msgstr ""
 "Vložte GPS souřadnice zeměpisné šířky tohoto obrázku.\n"
 "Příklad: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:189
+#: ../src/plugins/gramplet/EditExifMetadata.py:188
 msgid ""
 "Enter the Longitude GPS coordinates for this image,\n"
 "Example: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"
@@ -11742,15 +11749,15 @@ msgstr ""
 "Vložte GPS souřadnice zeměpisné délky tohoto obrázku.\n"
 "Příklad:  10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:192
+#: ../src/plugins/gramplet/EditExifMetadata.py:191
 msgid "This is the measurement of Above or Below Sea Level.  It is measured in meters.Example: 200.558, -200.558"
 msgstr "Jedná se o měření nadmořské výšky (nad/pod úrovní hladiny moře). Hodnota je uvedena v metrech. Např.  200.558, -200.558"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:201
+#: ../src/plugins/gramplet/EditExifMetadata.py:200
 msgid "Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' in your web browser."
 msgstr "Zobrazí stránku Wiki nápovědy Gramps  pro 'Upravit Exif Metadata obrázku' ve vašem webovém prohlížeči."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:204
+#: ../src/plugins/gramplet/EditExifMetadata.py:203
 msgid ""
 "This will open up a new window to allow you to edit/ modify this image's Exif metadata.\n"
 "  It will also allow you to be able to Save the modified metadata."
@@ -11758,32 +11765,32 @@ msgstr ""
 "Bude otevřeno nové okno, které vám umožní upravit/měnit Exif metadata tohoto obrázku.\n"
 " Provedené změny samozřejmě umožní také uložit."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:208
+#: ../src/plugins/gramplet/EditExifMetadata.py:207
 msgid "Will produce a Popup window showing a Thumbnail Viewing Area"
 msgstr "Vytvoří vyskakovací okno zobrazující oblast Pohledu náhledů"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:210
+#: ../src/plugins/gramplet/EditExifMetadata.py:209
 msgid "Select from a drop- down box the image file type that you would like to convert your non- Exiv2 compatible media object to."
 msgstr "Z rozbalovacího seznamu zvolte typ souboru do kterého chcete zkonvertovat Exiv2 nekompatibilní objekt média."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:213
+#: ../src/plugins/gramplet/EditExifMetadata.py:212
 msgid "If your image is not of an image type that can have Exif metadata read/ written to/from, convert it to a type that can?"
 msgstr "Pokud váš obrázek není ve formátu který může nést metadata Exif, převedete jej do jiného, který to umožní?"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:216
+#: ../src/plugins/gramplet/EditExifMetadata.py:215
 msgid "WARNING:  This will completely erase all Exif metadata from this image!  Are you sure that you want to do this?"
 msgstr "POZOR: Tato operace úplně vymaže všechna Exif metadata z tohoto obrázku! Opravdu chcete operaci spustit?"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:314
+#: ../src/plugins/gramplet/EditExifMetadata.py:313
 msgid "Thumbnail"
 msgstr "Náhled"
 
 #. set Message Ares to Select
-#: ../src/plugins/gramplet/EditExifMetadata.py:396
+#: ../src/plugins/gramplet/EditExifMetadata.py:395
 msgid "Select an image to begin..."
 msgstr "Vybrat obrázek kterým se začne..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:418
+#: ../src/plugins/gramplet/EditExifMetadata.py:417
 msgid ""
 "Image is NOT readable,\n"
 "Please choose a different image..."
@@ -11791,7 +11798,7 @@ msgstr ""
 "Obrázek není čitelný,\n"
 "Vyberte prosím jiný obrázek..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:434
+#: ../src/plugins/gramplet/EditExifMetadata.py:433
 msgid ""
 "Image is NOT writable,\n"
 "You will NOT be able to save Exif metadata...."
@@ -11800,93 +11807,93 @@ msgstr ""
 "nebude možné uložit Exif metadata...Vyberte prosím jiný obrázek..."
 
 #. Convert message
-#: ../src/plugins/gramplet/EditExifMetadata.py:446
+#: ../src/plugins/gramplet/EditExifMetadata.py:445
 msgid "Please convert this image to an Exiv2- compatible image type..."
 msgstr "Převeďte prosím tento obrázek do Exiv2 kompatibilního typu..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:469
+#: ../src/plugins/gramplet/EditExifMetadata.py:468
 #, python-format
 msgid "Image Size : %04d x %04d pixels"
 msgstr "Velikost obrázku : %04d x %04d pix"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:502
+#: ../src/plugins/gramplet/EditExifMetadata.py:501
 msgid "Displaying Exif metadata..."
 msgstr "Zobrazit  Exif metadata..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:669
+#: ../src/plugins/gramplet/EditExifMetadata.py:668
 msgid "Click Close to close this Thumbnail View Area."
 msgstr "Klikněte na Zavřít pro uzavření oblasti Pohledu náhledů."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:673
+#: ../src/plugins/gramplet/EditExifMetadata.py:672
 msgid "Thumbnail View Area"
 msgstr "Oblast Pohledu náhledů"
 
 #. Convert and delete original file or just convert
-#: ../src/plugins/gramplet/EditExifMetadata.py:752
-#: ../src/plugins/gramplet/EditExifMetadata.py:1158
+#: ../src/plugins/gramplet/EditExifMetadata.py:751
+#: ../src/plugins/gramplet/EditExifMetadata.py:1157
 #: ../src/plugins/gramplet/gramplet.gpr.py:315
 msgid "Edit Image Exif Metadata"
 msgstr "Upravit Exif metadata obrázku"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:752
+#: ../src/plugins/gramplet/EditExifMetadata.py:751
 msgid "WARNING: You are about to convert this image into a .jpeg image.  Are you sure that you want to do this?"
 msgstr "POZOR: chystáte se převést obrázek do .jpeg formátu. Opravdu chcete operaci provést?"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:754
+#: ../src/plugins/gramplet/EditExifMetadata.py:753
 msgid "Convert and Delete"
 msgstr "Konvertovat a smazat"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:754
+#: ../src/plugins/gramplet/EditExifMetadata.py:753
 msgid "Convert"
 msgstr "Převést"
 
 #. notify user about the convert, delete, and new filepath
-#: ../src/plugins/gramplet/EditExifMetadata.py:840
+#: ../src/plugins/gramplet/EditExifMetadata.py:839
 msgid "Your image has been converted and the original file has been deleted, and the full path has been updated!"
 msgstr "Váš obrázek byl zkonvertován a původní soubor byl odstraněn. Celá cesta k obrázku byla aktualizována!"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:844
+#: ../src/plugins/gramplet/EditExifMetadata.py:843
 msgid "There has been an error, Please check your source and destination file paths..."
 msgstr "Došlo k chybě, zkontrolujte prosím zdrojovou a cílovou cestu k souboru..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:847
+#: ../src/plugins/gramplet/EditExifMetadata.py:846
 msgid "There was an error in deleting the original file.  You will need to delete it yourself!"
 msgstr "Při mazání původního souboru došlo k chybě. Musíte jej odstranit ručně sami!"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:864
+#: ../src/plugins/gramplet/EditExifMetadata.py:863
 msgid "There was an error in converting your image file."
 msgstr "Při konverzi vašeho obrázku došlo k chybě."
 
 #. begin database tranaction to save media object new path
-#: ../src/plugins/gramplet/EditExifMetadata.py:875
+#: ../src/plugins/gramplet/EditExifMetadata.py:874
 msgid "Media Path Update"
 msgstr "Aktualizace cest k médiím"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:881
+#: ../src/plugins/gramplet/EditExifMetadata.py:880
 msgid "There has been an error in updating the image file's path!"
 msgstr "Při aktualizaci cesty k souboru obrázku došlo k chybě!"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:915
+#: ../src/plugins/gramplet/EditExifMetadata.py:914
 msgid "Click the close button when you are finished modifying this image's Exif metadata."
 msgstr "Pokud jste skončili s úpravou metadat tohoto obrázku, klikněte na tlačítko Zavřít."
 
 #. Add the Save button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:953
+#: ../src/plugins/gramplet/EditExifMetadata.py:952
 msgid "Saves a copy of the data fields into the image's Exif metadata."
 msgstr "Uloží kopii datových polí do Exif metadat obrázku."
 
 #. Re- display the data fields button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:956
+#: ../src/plugins/gramplet/EditExifMetadata.py:955
 msgid "Re -display the data fields that were cleared from the Edit Area."
 msgstr "Znovu zobrazit datová pole, která byla v oblasti úprav vyčištěna."
 
 #. Add the Clear button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:959
+#: ../src/plugins/gramplet/EditExifMetadata.py:958
 msgid "This button will clear all of the data fields shown here."
 msgstr "Toto tlačíko vymaže všechna datová pole zde zobrazená."
 
 #. Add the Close button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:962
+#: ../src/plugins/gramplet/EditExifMetadata.py:961
 msgid ""
 "Closes this popup Edit window.\n"
 "WARNING: This action will NOT Save any changes/ modification made to this image's Exif metadata."
@@ -11896,88 +11903,88 @@ msgstr ""
 
 #. Media Title Frame...
 #. 574 on a screen width of 1024
-#: ../src/plugins/gramplet/EditExifMetadata.py:989
+#: ../src/plugins/gramplet/EditExifMetadata.py:988
 msgid "Media Object Title"
 msgstr "Titulek objektu médií"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:999
+#: ../src/plugins/gramplet/EditExifMetadata.py:998
 msgid "media Title: "
 msgstr "Titulek média: "
 
 #. create the data fields...
 #. ***Description, Artist, and Copyright
-#: ../src/plugins/gramplet/EditExifMetadata.py:1013
+#: ../src/plugins/gramplet/EditExifMetadata.py:1012
 msgid "General Data"
 msgstr "Obecná data"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1023
+#: ../src/plugins/gramplet/EditExifMetadata.py:1022
 msgid "Description: "
 msgstr "Description: "
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1024
+#: ../src/plugins/gramplet/EditExifMetadata.py:1023
 msgid "Artist: "
 msgstr "Umělec: "
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1025
+#: ../src/plugins/gramplet/EditExifMetadata.py:1024
 msgid "Copyright: "
 msgstr "Copyright: "
 
 #. iso format: Year, Month, Day spinners...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1038
+#: ../src/plugins/gramplet/EditExifMetadata.py:1037
 msgid "Date/ Time"
 msgstr "Datum/čas"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1052
+#: ../src/plugins/gramplet/EditExifMetadata.py:1051
 msgid "Original: "
 msgstr "Původ: "
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1053
+#: ../src/plugins/gramplet/EditExifMetadata.py:1052
 msgid "Modified: "
 msgstr "Poslední změna: "
 
 #. GPS coordinates...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1070
+#: ../src/plugins/gramplet/EditExifMetadata.py:1069
 msgid "Latitude/ Longitude/ Altitude GPS coordinates"
 msgstr " GPS koordináty, zem. šířka/délka/nadm. výška"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1084
+#: ../src/plugins/gramplet/EditExifMetadata.py:1083
 msgid "Latitude :"
 msgstr "Zeměpisná šířka :"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1085
+#: ../src/plugins/gramplet/EditExifMetadata.py:1084
 msgid "Longitude :"
 msgstr "Zeměpisná délka :"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1086
+#: ../src/plugins/gramplet/EditExifMetadata.py:1085
 msgid "Altitude :"
 msgstr "Výška:"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1138
+#: ../src/plugins/gramplet/EditExifMetadata.py:1137
 msgid "Bad Date/Time"
 msgstr "Nesprávné Datum/čas"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1158
+#: ../src/plugins/gramplet/EditExifMetadata.py:1157
 msgid "WARNING!  You are about to completely delete the Exif metadata from this image?"
 msgstr "POZOR! Chystáte se úplně odstranit Exif metadata z tohot obrázku?"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1323
+#: ../src/plugins/gramplet/EditExifMetadata.py:1322
 msgid "Media Title Update"
 msgstr "Aktualizovat titulek média"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1349
+#: ../src/plugins/gramplet/EditExifMetadata.py:1348
 msgid "Media Object Date Created"
 msgstr "Datum objektu média vytvořen"
 
 #. set Edit Message to Saved...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1421
+#: ../src/plugins/gramplet/EditExifMetadata.py:1420
 msgid "Saving Exif metadata to this image..."
 msgstr "Do obrázku jsou ukládána Exif metadata..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1468
+#: ../src/plugins/gramplet/EditExifMetadata.py:1467
 msgid "All Exif metadata has been deleted from this image..."
 msgstr "Z tohoto obrázku byla odstraněna všechna Exif metadata..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1473
+#: ../src/plugins/gramplet/EditExifMetadata.py:1472
 msgid "There was an error in stripping the Exif metadata from this image..."
 msgstr "Při odstraňování Exif metadat z obrázku došlo k chybě..."
 
@@ -13788,94 +13795,94 @@ msgstr "Importovat data z Pro-Gen souborů"
 msgid "Import data from vCard files"
 msgstr "Importovat data z VCard souborů"
 
-#: ../src/plugins/import/ImportCsv.py:148
-#: ../src/plugins/import/ImportGedcom.py:113
-#: ../src/plugins/import/ImportGedcom.py:127
-#: ../src/plugins/import/ImportGeneWeb.py:82
-#: ../src/plugins/import/ImportGeneWeb.py:88
-#: ../src/plugins/import/ImportVCard.py:69
-#: ../src/plugins/import/ImportVCard.py:72
+#: ../src/plugins/import/ImportCsv.py:147
+#: ../src/plugins/import/ImportGedcom.py:112
+#: ../src/plugins/import/ImportGedcom.py:126
+#: ../src/plugins/import/ImportGeneWeb.py:81
+#: ../src/plugins/import/ImportGeneWeb.py:87
+#: ../src/plugins/import/ImportVCard.py:68
+#: ../src/plugins/import/ImportVCard.py:71
 #, python-format
 msgid "%s could not be opened\n"
 msgstr "%s nemůže být otevřen\n"
 
-#: ../src/plugins/import/ImportCsv.py:172
+#: ../src/plugins/import/ImportCsv.py:171
 msgid "Given name"
 msgstr "Křestní jméno"
 
-#: ../src/plugins/import/ImportCsv.py:174
+#: ../src/plugins/import/ImportCsv.py:173
 msgid "given name"
 msgstr "křestní jméno"
 
-#: ../src/plugins/import/ImportCsv.py:175
+#: ../src/plugins/import/ImportCsv.py:174
 msgid "Call name"
 msgstr "Běžné jméno"
 
-#: ../src/plugins/import/ImportCsv.py:177
+#: ../src/plugins/import/ImportCsv.py:176
 msgid "call"
 msgstr "volání"
 
-#: ../src/plugins/import/ImportCsv.py:181
+#: ../src/plugins/import/ImportCsv.py:180
 msgid "gender"
 msgstr "pohlaví"
 
-#: ../src/plugins/import/ImportCsv.py:182
+#: ../src/plugins/import/ImportCsv.py:181
 msgid "source"
 msgstr "pramen"
 
-#: ../src/plugins/import/ImportCsv.py:183
+#: ../src/plugins/import/ImportCsv.py:182
 msgid "note"
 msgstr "poznámka"
 
-#: ../src/plugins/import/ImportCsv.py:185
+#: ../src/plugins/import/ImportCsv.py:184
 msgid "birth place"
 msgstr "místo narození"
 
-#: ../src/plugins/import/ImportCsv.py:190
+#: ../src/plugins/import/ImportCsv.py:189
 msgid "birth source"
 msgstr "pramen narození"
 
-#: ../src/plugins/import/ImportCsv.py:193
+#: ../src/plugins/import/ImportCsv.py:192
 msgid "baptism place"
 msgstr "místo křtu"
 
-#: ../src/plugins/import/ImportCsv.py:195
+#: ../src/plugins/import/ImportCsv.py:194
 msgid "baptism date"
 msgstr "datum křtu"
 
-#: ../src/plugins/import/ImportCsv.py:198
+#: ../src/plugins/import/ImportCsv.py:197
 msgid "baptism source"
 msgstr "Pramen křtu"
 
-#: ../src/plugins/import/ImportCsv.py:200
+#: ../src/plugins/import/ImportCsv.py:199
 msgid "burial place"
 msgstr "místo pohřbu"
 
-#: ../src/plugins/import/ImportCsv.py:202
+#: ../src/plugins/import/ImportCsv.py:201
 msgid "burial date"
 msgstr "datum pohřbu"
 
-#: ../src/plugins/import/ImportCsv.py:205
+#: ../src/plugins/import/ImportCsv.py:204
 msgid "burial source"
 msgstr "pramen pohřbu"
 
-#: ../src/plugins/import/ImportCsv.py:207
+#: ../src/plugins/import/ImportCsv.py:206
 msgid "death place"
 msgstr "místo úmrtí"
 
-#: ../src/plugins/import/ImportCsv.py:212
+#: ../src/plugins/import/ImportCsv.py:211
 msgid "death source"
 msgstr "pramen úmrtí"
 
-#: ../src/plugins/import/ImportCsv.py:213
+#: ../src/plugins/import/ImportCsv.py:212
 msgid "Death cause"
 msgstr "Důvod úmrtí"
 
-#: ../src/plugins/import/ImportCsv.py:214
+#: ../src/plugins/import/ImportCsv.py:213
 msgid "death cause"
 msgstr "důvod úmrtí"
 
-#: ../src/plugins/import/ImportCsv.py:215
+#: ../src/plugins/import/ImportCsv.py:214
 #: ../src/plugins/quickview/FilterByName.py:129
 #: ../src/plugins/quickview/FilterByName.py:140
 #: ../src/plugins/quickview/FilterByName.py:150
@@ -13899,74 +13906,74 @@ msgstr "důvod úmrtí"
 msgid "Gramps ID"
 msgstr "Gramps ID"
 
-#: ../src/plugins/import/ImportCsv.py:216
+#: ../src/plugins/import/ImportCsv.py:215
 msgid "Gramps id"
 msgstr "Gramps id"
 
-#: ../src/plugins/import/ImportCsv.py:217
+#: ../src/plugins/import/ImportCsv.py:216
 msgid "person"
 msgstr "osoba"
 
-#: ../src/plugins/import/ImportCsv.py:219
+#: ../src/plugins/import/ImportCsv.py:218
 msgid "child"
 msgstr "dítě"
 
-#: ../src/plugins/import/ImportCsv.py:223
+#: ../src/plugins/import/ImportCsv.py:222
 msgid "Parent2"
 msgstr "Rodič"
 
-#: ../src/plugins/import/ImportCsv.py:223
+#: ../src/plugins/import/ImportCsv.py:222
 msgid "mother"
 msgstr "matka"
 
-#: ../src/plugins/import/ImportCsv.py:224
+#: ../src/plugins/import/ImportCsv.py:223
 msgid "parent2"
 msgstr "rodič2"
 
-#: ../src/plugins/import/ImportCsv.py:226
+#: ../src/plugins/import/ImportCsv.py:225
 msgid "Parent1"
 msgstr "Rodič"
 
-#: ../src/plugins/import/ImportCsv.py:226
+#: ../src/plugins/import/ImportCsv.py:225
 msgid "father"
 msgstr "otec"
 
-#: ../src/plugins/import/ImportCsv.py:227
+#: ../src/plugins/import/ImportCsv.py:226
 msgid "parent1"
 msgstr "rodič1"
 
-#: ../src/plugins/import/ImportCsv.py:228
+#: ../src/plugins/import/ImportCsv.py:227
 msgid "marriage"
 msgstr "manželství"
 
-#: ../src/plugins/import/ImportCsv.py:229
+#: ../src/plugins/import/ImportCsv.py:228
 msgid "date"
 msgstr "datum"
 
-#: ../src/plugins/import/ImportCsv.py:230
+#: ../src/plugins/import/ImportCsv.py:229
 msgid "place"
 msgstr "místo"
 
-#: ../src/plugins/import/ImportCsv.py:248
+#: ../src/plugins/import/ImportCsv.py:247
 #, python-format
 msgid "format error: line %(line)d: %(zero)s"
 msgstr "chyba formátu: řádek %(line)d: %(zero)s"
 
-#: ../src/plugins/import/ImportCsv.py:309
+#: ../src/plugins/import/ImportCsv.py:308
 msgid "CSV Import"
 msgstr "Importovat CSV"
 
-#: ../src/plugins/import/ImportCsv.py:310
+#: ../src/plugins/import/ImportCsv.py:309
 msgid "Reading data..."
 msgstr "Načítají se data..."
 
-#: ../src/plugins/import/ImportCsv.py:314
+#: ../src/plugins/import/ImportCsv.py:313
 msgid "CSV import"
 msgstr "Importovat CSV"
 
-#: ../src/plugins/import/ImportCsv.py:319
-#: ../src/plugins/import/ImportGeneWeb.py:180
-#: ../src/plugins/import/ImportVCard.py:232
+#: ../src/plugins/import/ImportCsv.py:318
+#: ../src/plugins/import/ImportGeneWeb.py:179
+#: ../src/plugins/import/ImportVCard.py:231
 #, python-format
 msgid "Import Complete: %d second"
 msgid_plural "Import Complete: %d seconds"
@@ -13974,145 +13981,145 @@ msgstr[0] "Import dokončen: %d sekunda"
 msgstr[1] "Import dokončen: %d sekundy"
 msgstr[2] "Import dokončen: %d sekund"
 
-#: ../src/plugins/import/ImportGedcom.py:116
+#: ../src/plugins/import/ImportGedcom.py:115
 msgid "Invalid GEDCOM file"
 msgstr "Neplatný GEDCOM soubor"
 
-#: ../src/plugins/import/ImportGedcom.py:117
+#: ../src/plugins/import/ImportGedcom.py:116
 #, python-format
 msgid "%s could not be imported"
 msgstr "%s nemůže být importován"
 
-#: ../src/plugins/import/ImportGedcom.py:134
+#: ../src/plugins/import/ImportGedcom.py:133
 msgid "Error reading GEDCOM file"
 msgstr "Chyba při čtení GEDCOM souboru"
 
-#: ../src/plugins/import/ImportGeneWeb.py:116
+#: ../src/plugins/import/ImportGeneWeb.py:115
 msgid "GeneWeb import"
 msgstr "importovat GeneWeb"
 
-#: ../src/plugins/import/ImportGrdb.py:66
-#: ../src/plugins/import/ImportProGen.py:71
-#: ../src/plugins/import/ImportProGen.py:80
+#: ../src/plugins/import/ImportGrdb.py:56
+#: ../src/plugins/import/ImportProGen.py:70
+#: ../src/plugins/import/ImportProGen.py:79
+#: ../src/plugins/import/ImportXml.py:418
 #: ../src/plugins/import/ImportXml.py:421
-#: ../src/plugins/import/ImportXml.py:424
 #, python-format
 msgid "%s could not be opened"
 msgstr "%s nemůže být otevřen"
 
-#: ../src/plugins/import/ImportGrdb.py:67
+#: ../src/plugins/import/ImportGrdb.py:57
 msgid "The Database version is not supported by this version of Gramps.You should use an old copy of Gramps at version 3.0.x and import your database into that version. You should then export a copy of your data to Gramps XML (family tree). Then you should upgrade to the latest version of Gramps (for example this version), create a new empty database and import the Gramps XML into that version. Please refer to:http://www.gramps-project.org/wiki/index.php?title=Gramps_3.4_Wiki_Manual_-_Manage_Family_Trees#Moving_a_Gramps_2.2_databases_to_Gramps_3.x"
 msgstr ""
 
-#: ../src/plugins/import/ImportProGen.py:77
+#: ../src/plugins/import/ImportProGen.py:76
 msgid "Pro-Gen data error"
 msgstr "Chyba v Pro-Gen datech"
 
-#: ../src/plugins/import/ImportProGen.py:166
+#: ../src/plugins/import/ImportProGen.py:165
 msgid "Not a Pro-Gen file"
 msgstr "Není Pro-Gen soubor"
 
-#: ../src/plugins/import/ImportProGen.py:381
+#: ../src/plugins/import/ImportProGen.py:380
 #, python-format
 msgid "Field '%(fldname)s' not found"
 msgstr "Pole '%(fldname)s' nebylo nalezeno"
 
-#: ../src/plugins/import/ImportProGen.py:456
+#: ../src/plugins/import/ImportProGen.py:455
 #, python-format
 msgid "Cannot find DEF file: %(deffname)s"
 msgstr "Nelze najít DEF soubor: %(deffname)s"
 
 #. print self.def_.diag()
-#: ../src/plugins/import/ImportProGen.py:500
+#: ../src/plugins/import/ImportProGen.py:499
 msgid "Import from Pro-Gen"
 msgstr "Importovat z Pro-Gen"
 
-#: ../src/plugins/import/ImportProGen.py:506
+#: ../src/plugins/import/ImportProGen.py:505
 msgid "Pro-Gen import"
 msgstr "importovat z Pro-Gen"
 
-#: ../src/plugins/import/ImportProGen.py:698
+#: ../src/plugins/import/ImportProGen.py:697
 #, python-format
 msgid "date did not match: '%(text)s' (%(msg)s)"
 msgstr "datum neodpovídá: '%(text)s' (%(msg)s)"
 
 #. The records are numbered 1..N
-#: ../src/plugins/import/ImportProGen.py:778
+#: ../src/plugins/import/ImportProGen.py:777
 msgid "Importing individuals"
 msgstr "Importují se jednotlivci"
 
 #. log.warning("Patroniem, %s: '%s'" % (diag_msg, patronym))
 #. name.set_patronymic(patronym)
-#: ../src/plugins/import/ImportProGen.py:815
+#: ../src/plugins/import/ImportProGen.py:814
 #, python-format
 msgid "Patronymic name skipped: '%(patronym)s' (%(msg)s)"
 msgstr "Jméno po otci vynecháno: '%(patronym)s' (%(msg)s)"
 
 #. The records are numbered 1..N
-#: ../src/plugins/import/ImportProGen.py:1059
+#: ../src/plugins/import/ImportProGen.py:1058
 msgid "Importing families"
 msgstr "Importují se rodiny"
 
 #. The records are numbered 1..N
-#: ../src/plugins/import/ImportProGen.py:1244
+#: ../src/plugins/import/ImportProGen.py:1243
 msgid "Adding children"
 msgstr "přidávají se děti"
 
-#: ../src/plugins/import/ImportProGen.py:1255
+#: ../src/plugins/import/ImportProGen.py:1254
 #, python-format
 msgid "cannot find father for I%(person)s (father=%(id)d)"
 msgstr "není možné najít otce pro I%(person)s (father=%(id)d)"
 
-#: ../src/plugins/import/ImportProGen.py:1258
+#: ../src/plugins/import/ImportProGen.py:1257
 #, python-format
 msgid "cannot find mother for I%(person)s (mother=%(mother)d)"
 msgstr "nelze najít matku pro  I%(person)s (mother=%(mother)d)"
 
-#: ../src/plugins/import/ImportVCard.py:227
+#: ../src/plugins/import/ImportVCard.py:226
 msgid "vCard import"
 msgstr "importovat vCard"
 
-#: ../src/plugins/import/ImportVCard.py:310
+#: ../src/plugins/import/ImportVCard.py:309
 #, python-format
 msgid "Import of VCards version %s is not supported by Gramps."
 msgstr "Import VCard verze %s není  podporován Gramps."
 
-#: ../src/plugins/import/ImportGpkg.py:72
+#: ../src/plugins/import/ImportGpkg.py:71
 #, python-format
 msgid "Could not create media directory %s"
 msgstr "Nelze vytvořit adresář médií %s"
 
-#: ../src/plugins/import/ImportGpkg.py:76
+#: ../src/plugins/import/ImportGpkg.py:75
 #, python-format
 msgid "Media directory %s is not writable"
 msgstr "Do adresáře médií %s nelze zapsat"
 
 #. mediadir exists and writable -- User could have valuable stuff in
 #. it, have him remove it!
-#: ../src/plugins/import/ImportGpkg.py:81
+#: ../src/plugins/import/ImportGpkg.py:80
 #, python-format
 msgid "Media directory %s exists. Delete it first, then restart the import process"
 msgstr "Adresář %s pro média existuje. Nejprve jej vymažte a poté zkuste import znovu"
 
-#: ../src/plugins/import/ImportGpkg.py:90
+#: ../src/plugins/import/ImportGpkg.py:89
 #, python-format
 msgid "Error extracting into %s"
 msgstr "Chyba při extrahování do %s"
 
-#: ../src/plugins/import/ImportGpkg.py:106
+#: ../src/plugins/import/ImportGpkg.py:105
 msgid "Base path for relative media set"
 msgstr "Základ relativní cesty k sadě médií"
 
-#: ../src/plugins/import/ImportGpkg.py:107
+#: ../src/plugins/import/ImportGpkg.py:106
 #, python-format
 msgid "The base media path of this family tree has been set to %s. Consider taking a simpler path. You can change this in the Preferences, while moving your media files to the new position, and using the media manager tool, option 'Replace substring in the path' to set correct paths in your media objects."
 msgstr "Základ cesty k médiím tohoto rodokmenu byl nastaven na %s. Zvažte použití jednodušší cesty. Změnu můžete provést v menu Předvolby. Ve chvíli, kdy přesouváte své soubory s médii na nové místo použijte nástroje správce médií a volbou 'Nahradit podřetězec v cestě' nastavte správné cesty v objektech médií."
 
-#: ../src/plugins/import/ImportGpkg.py:116
+#: ../src/plugins/import/ImportGpkg.py:115
 msgid "Cannot set base media path"
 msgstr "Nelze nastavit cestu k médiím"
 
-#: ../src/plugins/import/ImportGpkg.py:117
+#: ../src/plugins/import/ImportGpkg.py:116
 #, python-format
 msgid "The family tree you imported into already has a base media path: %(orig_path)s. The imported media objects however are relative from the path %(path)s. You can change the media path in the Preferences or you can convert the imported files to the existing base media path. You can do that by moving your media files to the new position, and using the media manager tool, option 'Replace substring in the path' to set correct paths in your media objects."
 msgstr "Naimportovaný rodokmen měl nastavený tento základ cesty k médiím: %(orig_path)s. Importované objekty médií mají ale cestu relativní nastavenou na %(path)s. Cestu můžete změnit v Předvolbách, nebo můžete převést soubory pod existující cestu. To lze provést přesunutím  souborů s médii na nové místo a následným použitím nástroje správce médií. Volbou 'Nahradit podřetězec v cestě' nastavíte správné cesty v objektech médií."
@@ -14124,129 +14131,129 @@ msgstr "Naimportovaný rodokmen měl nastavený tento základ cesty k médiím: 
 #.
 #. -------------------------------------------------------------------------
 #. feature requests 2356, 1658: avoid genitive form
-#: ../src/plugins/import/ImportXml.py:85
+#: ../src/plugins/import/ImportXml.py:84
 #: ../src/plugins/tool/EventNames.py:127
 #, python-format
 msgid "%(event_name)s of %(family)s"
 msgstr "%(event_name)s rodiny %(family)s"
 
 #. feature requests 2356, 1658: avoid genitive form
-#: ../src/plugins/import/ImportXml.py:87
+#: ../src/plugins/import/ImportXml.py:86
 #: ../src/plugins/tool/EventNames.py:129
 #, python-format
 msgid "%(event_name)s of %(person)s"
 msgstr "%(event_name)s - %(person)s"
 
-#: ../src/plugins/import/ImportXml.py:134
-#: ../src/plugins/import/ImportXml.py:139
+#: ../src/plugins/import/ImportXml.py:130
+#: ../src/plugins/import/ImportXml.py:135
 #, python-format
 msgid "Error reading %s"
 msgstr "Chyba při čtení %s"
 
-#: ../src/plugins/import/ImportXml.py:140
+#: ../src/plugins/import/ImportXml.py:136
 msgid "The file is probably either corrupt or not a valid Gramps database."
 msgstr "Soubor je pravděpodobně poškozen nebo není platnou databází Gramps."
 
-#: ../src/plugins/import/ImportXml.py:247
+#: ../src/plugins/import/ImportXml.py:243
 #, python-format
 msgid "  %(id)s - %(text)s with %(id2)s\n"
 msgstr "  %(id)s - %(text)s s %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:253
+#: ../src/plugins/import/ImportXml.py:249
 #, python-format
 msgid "  Family %(id)s with %(id2)s\n"
 msgstr "  Rodina %(id)s s %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:256
+#: ../src/plugins/import/ImportXml.py:252
 #, python-format
 msgid "  Source %(id)s with %(id2)s\n"
 msgstr "  Pramen %(id)s s %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:259
+#: ../src/plugins/import/ImportXml.py:255
 #, python-format
 msgid "  Event %(id)s with %(id2)s\n"
 msgstr "  Událost %(id)s s %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:262
+#: ../src/plugins/import/ImportXml.py:258
 #, python-format
 msgid "  Media Object %(id)s with %(id2)s\n"
 msgstr "  Objekt medií %(id)s s %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:265
+#: ../src/plugins/import/ImportXml.py:261
 #, python-format
 msgid "  Place %(id)s with %(id2)s\n"
 msgstr "  Místo %(id)s s %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:268
+#: ../src/plugins/import/ImportXml.py:264
 #, python-format
 msgid "  Repository %(id)s with %(id2)s\n"
 msgstr "  Archiv %(id)s s %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:271
+#: ../src/plugins/import/ImportXml.py:267
 #, python-format
 msgid "  Note %(id)s with %(id2)s\n"
 msgstr "  Poznámka %(id)s s %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:276
+#: ../src/plugins/import/ImportXml.py:272
 #, python-format
 msgid "  Citation %(id)s with %(id2)s\n"
 msgstr "  Citace %(id)s s %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:284
+#: ../src/plugins/import/ImportXml.py:280
 #, python-format
 msgid "  People: %d\n"
 msgstr "  Osoby: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:285
+#: ../src/plugins/import/ImportXml.py:281
 #, python-format
 msgid "  Families: %d\n"
 msgstr "  Rodiny: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:286
+#: ../src/plugins/import/ImportXml.py:282
 #, python-format
 msgid "  Sources: %d\n"
 msgstr "  Prameny: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:287
+#: ../src/plugins/import/ImportXml.py:283
 #, python-format
 msgid "  Events: %d\n"
 msgstr "  Události: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:288
+#: ../src/plugins/import/ImportXml.py:284
 #, python-format
 msgid "  Media Objects: %d\n"
 msgstr "  Mediální objekty: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:289
+#: ../src/plugins/import/ImportXml.py:285
 #, python-format
 msgid "  Places: %d\n"
 msgstr "  Místa: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:290
+#: ../src/plugins/import/ImportXml.py:286
 #, python-format
 msgid "  Repositories: %d\n"
 msgstr "  Archivy: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:291
+#: ../src/plugins/import/ImportXml.py:287
 #, python-format
 msgid "  Notes: %d\n"
 msgstr "  Poznámky: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:292
+#: ../src/plugins/import/ImportXml.py:288
 #, python-format
 msgid "  Tags: %d\n"
 msgstr "  Štítky: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:293
+#: ../src/plugins/import/ImportXml.py:289
 #, python-format
 msgid "  Citations: %d\n"
 msgstr "Citací: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:295
+#: ../src/plugins/import/ImportXml.py:291
 msgid "Number of new objects imported:\n"
 msgstr "Počet nově importovaných objektů:\n"
 
-#: ../src/plugins/import/ImportXml.py:304
+#: ../src/plugins/import/ImportXml.py:300
 #, python-format
 msgid ""
 "\n"
@@ -14258,7 +14265,7 @@ msgid ""
 "'Unkown' objects are referenced by note %s.\n"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:312
+#: ../src/plugins/import/ImportXml.py:308
 msgid ""
 "\n"
 "Media objects with relative paths have been\n"
@@ -14272,7 +14279,7 @@ msgstr ""
 "který je možné nastavit v Předvolbách, nebo pokud\n"
 "není nastaven k domovskému adresáři uživatele.\n"
 
-#: ../src/plugins/import/ImportXml.py:323
+#: ../src/plugins/import/ImportXml.py:319
 msgid ""
 "\n"
 "\n"
@@ -14283,31 +14290,31 @@ msgstr ""
 "Objekty, které jsou kandidáty pro sloučení:\n"
 
 #. there is no old style XML
-#: ../src/plugins/import/ImportXml.py:762
-#: ../src/plugins/import/ImportXml.py:1191
-#: ../src/plugins/import/ImportXml.py:1437
-#: ../src/plugins/import/ImportXml.py:1812
+#: ../src/plugins/import/ImportXml.py:760
+#: ../src/plugins/import/ImportXml.py:1189
+#: ../src/plugins/import/ImportXml.py:1435
+#: ../src/plugins/import/ImportXml.py:1810
 msgid "The Gramps Xml you are trying to import is malformed."
 msgstr "Gramps Xml které se snažíte importovat je porušené."
 
-#: ../src/plugins/import/ImportXml.py:763
+#: ../src/plugins/import/ImportXml.py:761
 msgid "Attributes that link the data together are missing."
 msgstr "Atributy, které spojují data dohromady chybí."
 
-#: ../src/plugins/import/ImportXml.py:867
+#: ../src/plugins/import/ImportXml.py:865
 msgid "Gramps XML import"
 msgstr "Import Gramps XML"
 
-#: ../src/plugins/import/ImportXml.py:897
+#: ../src/plugins/import/ImportXml.py:895
 msgid "Could not change media path"
 msgstr "Nemohu změnit cestu k médiím"
 
-#: ../src/plugins/import/ImportXml.py:898
+#: ../src/plugins/import/ImportXml.py:896
 #, python-format
 msgid "The opened file has media path %s, which conflicts with the media path of the family tree you import into. The original media path has been retained. Copy the files to a correct directory or change the media path in the Preferences."
 msgstr "Cesta %s k médiím otevřeného souboru je v konfliktu s cestou k médiím rodokmenu do kterého importujete. Původní cesta k médiím byla zachována. Zkopírujte prosím soubory do správného adresáře, nebo v Předvolbách změňte cestu k médiím."
 
-#: ../src/plugins/import/ImportXml.py:954
+#: ../src/plugins/import/ImportXml.py:952
 msgid ""
 "The .gramps file you are importing does not contain information about the version of Gramps with, which it was produced.\n"
 "\n"
@@ -14317,11 +14324,11 @@ msgstr ""
 "\n"
 "Soubor nebude importován."
 
-#: ../src/plugins/import/ImportXml.py:957
+#: ../src/plugins/import/ImportXml.py:955
 msgid "Import file misses Gramps version"
 msgstr "V souboru importu chybí verze Gramps"
 
-#: ../src/plugins/import/ImportXml.py:959
+#: ../src/plugins/import/ImportXml.py:957
 msgid ""
 "The .gramps file you are importing does not contain a valid xml-namespace number.\n"
 "\n"
@@ -14331,16 +14338,16 @@ msgstr ""
 "\n"
 "Soubor nebude importován."
 
-#: ../src/plugins/import/ImportXml.py:962
+#: ../src/plugins/import/ImportXml.py:960
 msgid "Import file contains unacceptable XML namespace version"
 msgstr "Soubor importu obsahuje nepřijatelnou verzi jmenného prostoru XML"
 
-#: ../src/plugins/import/ImportXml.py:965
+#: ../src/plugins/import/ImportXml.py:963
 #, python-format
 msgid "The .gramps file you are importing was made by version %(newer)s of Gramps, while you are running an older version %(older)s. The file will not be imported. Please upgrade to the latest version of Gramps and try again."
 msgstr "Soubor .gramps, který se pokoušíte importovat byl vytvořen v Gramps verze %(newer)s, zatímco Vy pracujete se starší verzí %(older)s. Soubor proto nemůže být importován. Aktualizujte prosím Gramps na poslední verzi a zkuste operaci znovu."
 
-#: ../src/plugins/import/ImportXml.py:973
+#: ../src/plugins/import/ImportXml.py:971
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of Gramps, while you are running a more recent version %(newgramps)s.\n"
@@ -14357,11 +14364,11 @@ msgstr ""
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 "Gramps wiki."
 
-#: ../src/plugins/import/ImportXml.py:985
+#: ../src/plugins/import/ImportXml.py:983
 msgid "The file will not be imported"
 msgstr "Soubor nemůže být importován"
 
-#: ../src/plugins/import/ImportXml.py:987
+#: ../src/plugins/import/ImportXml.py:985
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of Gramps, while you are running a much more recent version %(newgramps)s.\n"
@@ -14378,43 +14385,42 @@ msgstr ""
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 "."
 
-#: ../src/plugins/import/ImportXml.py:1000
+#: ../src/plugins/import/ImportXml.py:998
 msgid "Old xml file"
 msgstr "Původní xmls soubor"
 
-#: ../src/plugins/import/ImportXml.py:1112
-#: ../src/plugins/import/ImportXml.py:2458
+#: ../src/plugins/import/ImportXml.py:1110
+#: ../src/plugins/import/ImportXml.py:2456
 #, python-format
 msgid "Witness name: %s"
 msgstr "Jméno svědka: %s"
 
-#: ../src/plugins/import/ImportXml.py:1192
+#: ../src/plugins/import/ImportXml.py:1190
 msgid "Any event reference must have a 'hlink' attribute."
 msgstr "Každý odkaz na událost musí mít 'hlink' atribut."
 
-#: ../src/plugins/import/ImportXml.py:1438
+#: ../src/plugins/import/ImportXml.py:1436
 msgid "Any person reference must have a 'hlink' attribute."
 msgstr "Každý odkaz na osobu musí mít 'hlink' atribut."
 
-#: ../src/plugins/import/ImportXml.py:1599
+#: ../src/plugins/import/ImportXml.py:1597
 #, python-format
 msgid "Your family tree groups name \"%(key)s\" together with \"%(parent)s\", did not change this grouping to \"%(value)s\"."
 msgstr "Ve vašem rodokmenu se jméno \"%(key)s\"  seskupuje se jménem \" %(parent)s\" , seskupování na \" %(value)s\"  nebylo změněno."
 
-#: ../src/plugins/import/ImportXml.py:1602
+#: ../src/plugins/import/ImportXml.py:1600
 msgid "Gramps ignored namemap value"
 msgstr "Gramps ignoroval hodnotu jmenné mapy"
 
-#: ../src/plugins/import/ImportXml.py:1661
-#, fuzzy
+#: ../src/plugins/import/ImportXml.py:1659
 msgid "Unknown when imported"
-msgstr "Neznámá matka"
+msgstr "Neznámý při importu"
 
-#: ../src/plugins/import/ImportXml.py:1813
+#: ../src/plugins/import/ImportXml.py:1811
 msgid "Any note reference must have a 'hlink' attribute."
 msgstr "Každý odkaz na poznámku musí mít 'hlink' atribut.."
 
-#: ../src/plugins/import/ImportXml.py:2349
+#: ../src/plugins/import/ImportXml.py:2347
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Poznámka svědka: %s"
@@ -14461,17 +14467,17 @@ msgstr "Záznamy neimportované do "
 #: ../src/plugins/lib/libgedcom.py:2929
 #, python-format
 msgid "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. Record synthesised"
-msgstr ""
+msgstr "Chyba: %(msg)s  '%(gramps_id)s' (vložené jako @%(xref)s@) není v GEDCOM vstupu. Záznam byl sloučen"
 
 #: ../src/plugins/lib/libgedcom.py:2938
 #, python-format
 msgid "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. Record with typifying attribute 'Unknown' created"
-msgstr ""
+msgstr "Chyba: %(msg)s '%(gramps_id)s' (vloženo jako @%(xref)s@) není v GEDCOM vstupu. Byl vytvořen záznam s typizačním atributem 'Neznámý'."
 
 #: ../src/plugins/lib/libgedcom.py:2977
 #, python-format
 msgid "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s (input as %(orig_person)s) is not a member of the referenced family. Family reference removed from person"
-msgstr ""
+msgstr "Chyba: rodina '%(family)s' (vložena jako @%(orig_family)s@) osoba %(person)s (vložena jako %(orig_person)s) není členem odkazované rodiny. Odkaz na rodinu byl osobě odejmut"
 
 #: ../src/plugins/lib/libgedcom.py:3033
 #, python-format
@@ -14593,9 +14599,8 @@ msgid "REPO (repository) Gramps ID %s"
 msgstr "Přeskupit Gramps ID"
 
 #: ../src/plugins/lib/libgedcom.py:6487
-#, fuzzy
 msgid "Head (header)"
-msgstr "Uživatelská HTML hlavička"
+msgstr "Hlavička"
 
 #: ../src/plugins/lib/libgedcom.py:6503
 msgid "Approved system identification"
@@ -14703,7 +14708,7 @@ msgstr ""
 #: ../src/plugins/lib/libgedcom.py:6934
 #, fuzzy
 msgid "Submission: Family file"
-msgstr "Smithův rodokmen"
+msgstr "Aktualizovat soubor/složku"
 
 #: ../src/plugins/lib/libgedcom.py:6936
 msgid "Submission: Temple code"
@@ -18206,12 +18211,12 @@ msgstr "Přiblížení použité pro vystředění"
 msgid "The map"
 msgstr "Mapa"
 
-#: ../src/plugins/lib/maps/osmGps.py:102
+#: ../src/plugins/lib/maps/osmGps.py:104
 #, python-format
 msgid "Can't create tiles cache directory %s"
 msgstr "Nemohu vytvořit adresář keše dlaždic %s"
 
-#: ../src/plugins/lib/maps/osmGps.py:124
+#: ../src/plugins/lib/maps/osmGps.py:126
 #, python-format
 msgid "Can't create tiles cache directory for '%s'."
 msgstr "Nemohu vytvořit adresář keše dlaždic pro '%s'."
@@ -18536,9 +18541,8 @@ msgid "Filtering_on|people with unknown gender"
 msgstr "osoby s neznámým pohlavím"
 
 #: ../src/plugins/quickview/FilterByName.py:63
-#, fuzzy
 msgid "Filtering_on|incomplete names"
-msgstr "osoby s neúplnými jmény"
+msgstr "neúplná jména"
 
 #: ../src/plugins/quickview/FilterByName.py:65
 msgid "Filtering_on|people with missing birth dates"
@@ -20592,6 +20596,10 @@ msgstr "Vyhledávají se přerušení vazby rodin"
 msgid "Looking for unused objects"
 msgstr "Vyhledávají se nepoužité objekty"
 
+#: ../src/plugins/tool/Check.py:645
+msgid "Select file"
+msgstr "Vybrat soubor"
+
 #: ../src/plugins/tool/Check.py:673
 msgid "Media object could not be found"
 msgstr "Mediální objekt nebyl nalezen"
@@ -22186,60 +22194,71 @@ msgid "A view showing the places visited by one person during his life."
 msgstr "Pohled ukazující  místa navštívená osobou během jejího života."
 
 #: ../src/plugins/view/geography.gpr.py:70
-msgid "All known Places"
-msgstr "Všechna známá místa"
-
-#: ../src/plugins/view/geography.gpr.py:71
-msgid "A view showing all places of the database."
-msgstr "Pohled ukazující všechna místa v databázi."
-
-#: ../src/plugins/view/geography.gpr.py:86
-msgid "All places related to Events"
-msgstr "Všechna místa související s událostí"
-
-#: ../src/plugins/view/geography.gpr.py:87
-msgid "A view showing all the event places of the database."
-msgstr "Pohled ukazující všechna místa událostí v databázi."
-
-#: ../src/plugins/view/geography.gpr.py:103
 msgid "All known places for one Family"
 msgstr "Všechna známá místa spojená s konkrétní rodinou"
 
-#: ../src/plugins/view/geography.gpr.py:104
+#: ../src/plugins/view/geography.gpr.py:71
 msgid "A view showing the places visited by one family during all their life."
 msgstr "Pohled ukazující  místa navštívená rodinou během života jejích členů."
 
-#: ../src/plugins/view/geography.gpr.py:120
+#: ../src/plugins/view/geography.gpr.py:87
+msgid "All displacements for one person and their descendants"
+msgstr ""
+
+#: ../src/plugins/view/geography.gpr.py:88
+msgid ""
+"A view showing all the places visited by all persons during their life.\n"
+"This is for one person and their descendant.\n"
+"You can see the dates corresponding to the period."
+msgstr ""
+"Pohled ukazující všechna místa navštívená všemi osobami během jejich života.\n"
+"Je určen pro jednu osobu a jejího potomka.\n"
+"Umožňuje též vidět  všechna data odpovídající danému období."
+
+#: ../src/plugins/view/geography.gpr.py:106
+msgid "Have these two families been able to meet?"
+msgstr "Mohly se tyto rodiny potkat?"
+
+#: ../src/plugins/view/geography.gpr.py:107
+msgid "A view showing the places visited by all family's members during their life: have these two people been able to meet?"
+msgstr "Pohled ukazující  místa navštívená všemi členy rodiny během jejich života: mohly se tyto dvě osoby potkat?"
+
+#: ../src/plugins/view/geography.gpr.py:124
 #: ../src/plugins/view/geoclose.py:128
 msgid "Have they been able to meet?"
 msgstr "Mohli se potkat?"
 
-#: ../src/plugins/view/geography.gpr.py:121
+#: ../src/plugins/view/geography.gpr.py:125
 msgid "A view showing the places visited by two persons during their life: have these two people been able to meet?"
 msgstr "Pohled ukazující  místa navštívená dvěma osobami během jejich života. Mohly se tyto osoby potkat?"
 
-#: ../src/plugins/view/geography.gpr.py:138
-msgid "Have these two families been able to meet?"
-msgstr "Mohly se tyto rodiny potkat?"
+#: ../src/plugins/view/geography.gpr.py:142
+msgid "All known Places"
+msgstr "Všechna známá místa"
 
-#: ../src/plugins/view/geography.gpr.py:139
-#, fuzzy
-msgid "A view showing the places visited by all family's members during their life: have these two people been able to meet?"
-msgstr "Pohled ukazující  místa navštívená dvěma osobami během jejich života. Mohly se tyto osoby potkat?"
+#: ../src/plugins/view/geography.gpr.py:143
+msgid "A view showing all places of the database."
+msgstr "Pohled ukazující všechna místa v databázi."
+
+#: ../src/plugins/view/geography.gpr.py:158
+msgid "All places related to Events"
+msgstr "Všechna místa související s událostí"
+
+#: ../src/plugins/view/geography.gpr.py:159
+msgid "A view showing all the event places of the database."
+msgstr "Pohled ukazující všechna místa událostí v databázi."
 
 #: ../src/plugins/view/geoclose.py:158
-#, fuzzy
 msgid "GeoClose"
-msgstr "Zavřít"
+msgstr "Zavřít Geo"
 
 #: ../src/plugins/view/geoclose.py:226
 msgid "reference _Person"
 msgstr "refe_renční osoba"
 
 #: ../src/plugins/view/geoclose.py:227
-#, fuzzy
 msgid "Select the person which is the reference for life ways"
-msgstr "Odstraněním osoby dojde k vymazání osoby z databáze."
+msgstr "Zvolte osobu, která bude referenční pro "
 
 #: ../src/plugins/view/geoclose.py:240
 msgid "Select the person which will be our reference."
@@ -23495,7 +23514,7 @@ msgstr "Vyberte rozložení pro Navigační nabídky."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7819
 msgid "Normal Outline Style"
-msgstr ""
+msgstr "Styl normální osnovy"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7822
 #, fuzzy
@@ -23615,9 +23634,8 @@ msgid "Create and only use thumbnail- sized images"
 msgstr "Vytvořit a používat obrázky pouze náhledové velikosti"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7892
-#, fuzzy
 msgid "This option allows you the choice to not create any full- sized images as in the Media Page, and only a thumb- sized images.  This will allow you to have a much smaller total upload size to your web hosting site."
-msgstr "Tato volba vám umožní zablokovat vytváření obrázků plné velikosti na stránce médií. Volba zmenší celkový objem dat pro nahrání na váš web."
+msgstr "Tato volba vám umožní zablokovat vytváření obrázků plné velikosti na stránce médií. Budou vytvářeny pouze náhledy. Volba zmenší celkový objem dat pro nahrání na váš web."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7898
 msgid "Max width of initial image"
@@ -28844,1772 +28862,3 @@ msgstr "<b>The Gramps Software Licence</b><br/>Gramps můžete volně používat
 msgid "<b>Gramps for Gnome or KDE?</b><br/>For Linux users Gramps works with whichever desktop environment you prefer. As long as the required GTK libraries are installed it will run fine."
 msgstr "<b>Gramps pro Gnome or KDE?</b><br/>V Linuxu můžete s Gramps pracovat v prostředí jaké vám vyhovuje. Pokud jsou ve vašem prostředí instalovány požadované GTK knihovny, bude Gramps fungovat dobře."
 
-#~ msgid "_RefPerson"
-#~ msgstr "_Referenční osoba"
-
-#~ msgid "Colour"
-#~ msgstr "Barva"
-
-#~ msgid "Coloured outline"
-#~ msgstr "Barevný přehled"
-
-#~ msgid "Colour fill"
-#~ msgstr "Vyplnění barvou"
-
-#~ msgid "Individuals with incomplete names"
-#~ msgstr "Jednotlivci s neúplnými jmény"
-
-#~ msgid "Looking for source and citation reference problems"
-#~ msgstr "Vyhledávají se problémové odkazy na prameny a citace"
-
-#~ msgid "%(quantity)d invalid event reference was removed\n"
-
-#~ msgid_plural "%(quantity)d invalid event references were removed\n"
-#~ msgstr[0] "%(quantity)d neplatný odkaz na událost byl odstraněn\n"
-#~ msgstr[1] "%(quantity)d neplatné odkazy na událost byly odstraněny\n"
-#~ msgstr[2] "%(quantity)d neplatných odkazů na událost bylo odstraněno\n"
-
-#~ msgid "Rebuild reference map"
-#~ msgstr "Obnovit referenční mapu"
-
-#~ msgid "The Database version is not supported by this version of Gramps."
-#~ msgstr "Verze databáze není touto verzí Gramps podporována."
-
-#~ msgid ""
-#~ "Your family tree groups name %(key)s together with %(present)s, did not "
-#~ "change this grouping to %(value)s"
-#~ msgstr ""
-#~ "Ve vašem rodokmenu se jméno %(key)s seskupuje s %(present)s, seskupování "
-#~ "na %(value)s nebylo změněno"
-
-#~ msgid "Import database"
-#~ msgstr "Importovat databázi"
-
-#~ msgid "Vertical (top to bottom)"
-#~ msgstr "Vertikální (shora dolů)"
-
-#~ msgid "Vertical (bottom to top)"
-#~ msgstr "Vertikální (zdola nahoru)"
-
-#~ msgid "Horizontal (right to left)"
-#~ msgstr "Horizontální (zprava doleva)"
-
-#~ msgid "Every object"
-#~ msgstr "Každý objekt"
-
-#~ msgid "Matches every object in the database"
-#~ msgstr "Vyhovuje každý objekt v databázi"
-
-#~ msgid "Object with <Id>"
-#~ msgstr "Objekt s <Id>"
-
-#~ msgid "Matches objects with a specified Gramps ID"
-#~ msgstr "Vyhovují objekty se uvedeným Gramps ID"
-
-#~ msgid "Objects with records containing <substring>"
-#~ msgstr "Objekty se záznamy obsahujícími <substring>"
-
-#~ msgid "Matches objects whose records contain text matching a substring"
-#~ msgstr ""
-#~ "Vyhovují objekty jejichž záznamy obsahují text vyhovující podřetězci"
-
-#~ msgid "Objects marked private"
-#~ msgstr "Objekty označené jako důvěrné"
-
-#~ msgid "Matches objects that are indicated as private"
-#~ msgstr "Vyhovují objekty označené jako důvěrné"
-
-#~ msgid " "
-#~ msgstr " "
-
-#~ msgid "\n"
-#~ msgstr "\n"
-
-#~ msgid "Install Addons"
-#~ msgstr "Instalovat rozšíření"
-
-#~ msgid "Source Reference: %s"
-#~ msgstr "Odkaz na pramen: %s"
-
-#~ msgid "Export:"
-#~ msgstr "Exportovat:"
-
-#~ msgid "Filt_er:"
-#~ msgstr "_Filtr:"
-
-#~ msgid "I_ndividuals"
-#~ msgstr "Jed_notlivci"
-
-#~ msgid "Translate _Headers"
-#~ msgstr "Přeložit zá_hlaví"
-
-#~ msgid "_Marriages"
-#~ msgstr "_Manželství"
-
-#~ msgid "_Restrict data on living people"
-#~ msgstr "_Omezit data na žijící osoby"
-
-#~ msgid "Exclude _notes"
-#~ msgstr "Vynechat poz_námky"
-
-#~ msgid "Reference i_mages from path:  "
-#~ msgstr "Referenční _obrázky z cesty:  "
-
-#~ msgid "Use _Living as first name"
-#~ msgstr "Používat Žijící jako _křestní jméno"
-
-#~ msgid ""
-#~ "The plugin did not load. See Help Menu, Plugin Manager for more info.\n"
-#~ "Use http://bugs.gramps-project.org to submit bugs of official plugins, "
-#~ "contact the plugin author otherwise. "
-#~ msgstr ""
-#~ "Zásuvný modul nebyl nahrán. Pro více informací se podívejte do nabídky "
-#~ "Pomoc, Správce zásuvných modulů.\n"
-#~ "Pro hlášení chyb oficiálních zásuvných modulů použijte http://bugs.gramps-"
-#~ "project.org, v případě ostatních kontaktujte autora. "
-
-#~ msgid ""
-#~ "The view %(name)s did not load. See Help Menu, Plugin Manager for more "
-#~ "info.\n"
-#~ "Use http://bugs.gramps-project.org to submit bugs of official views, "
-#~ "contact the view author (%(firstauthoremail)s) otherwise. "
-#~ msgstr ""
-#~ "Pohled %(name)s nebyl nahrán. Více informací najdete v nabídce Pomoc, "
-#~ "Správce zásuvných modulů.\n"
-#~ "Pro hlášení problémů oficiálních pohledů použijte http://bugs.gramps-"
-#~ "project.org, jinak kontaktujte autora na  (%(firstauthoremail)s). "
-
-#~ msgid "Pkace"
-#~ msgstr "Pkace"
-
-#~ msgid "Media |Gallery"
-#~ msgstr "Galerie"
-
-#~ msgid "Media | Gallery"
-#~ msgstr "Galerie"
-
-#~ msgid " and "
-#~ msgstr " a "
-
-#~ msgid "Number of citations"
-#~ msgstr "Počet citací"
-
-#, fuzzy
-#~ msgid "Populate data"
-#~ msgstr "Vypočítat věk při úmrtí"
-
-#, fuzzy
-#~ msgid "Gramplet to populate database"
-#~ msgstr "Gramps: Importovat databázi"
-
-#~ msgid "Building People View"
-#~ msgstr "Vytváří se pohled na osobu"
-
-#~ msgid "Family Hyperlink"
-#~ msgstr "Link rodiny"
-
-#~ msgid "Horizontal -- No Change"
-#~ msgstr "vodorovný -- bez změn"
-
-#~ msgid "Source ref"
-#~ msgstr "Pramen odk"
-
-#~ msgid "Source Reference Editor"
-#~ msgstr "Editor pramenů"
-
-#~ msgid "Modify Source"
-#~ msgstr "Upravit pramen"
-
-#~ msgid "Remove the existing source"
-#~ msgstr "Odstranit vybraný pramen"
-
-#~ msgid "Move the selected source upwards"
-#~ msgstr "Posunout vybraný pramen výše"
-
-#~ msgid "Move the selected source downwards"
-#~ msgstr "Posunout vybraný pramen výše"
-
-#~ msgid "_Sources"
-#~ msgstr "Pramen_y"
-
-#~ msgid "Produces a graphical ancestral tree (Book report)"
-#~ msgstr "Vytvoří grafický strom předků (Knižní zpráva)"
-
-#~ msgid "Produces a graphical descendant tree (Book report)"
-#~ msgstr "Vytvoří grafický strom potomků (Knižní zpráva)"
-
-#~ msgid "Produces a graphical descendant tree around a family (Book report)"
-#~ msgstr "Vytvoří grafický strom potomků rodiny (Knižní zpráva)"
-
-#~ msgid "Person Sources"
-#~ msgstr "Prameny osoby"
-
-#~ msgid "Gramplet showing the sources for a person"
-#~ msgstr "Gramplet zobrazující prameny osoby"
-
-#~ msgid "Event Sources"
-#~ msgstr "Prameny události"
-
-#~ msgid "Gramplet showing the sources for an event"
-#~ msgstr "Gramplet zobrazující prameny  události"
-
-#~ msgid "Family Sources"
-#~ msgstr "Prameny rodiny"
-
-#~ msgid "Gramplet showing the sources for a family"
-#~ msgstr "Gramplet zobrazující prameny rodiny"
-
-#~ msgid "Place Sources"
-#~ msgstr "Prameny místa"
-
-#~ msgid "Gramplet showing the sources for a place"
-#~ msgstr "Gramplet zobrazující prameny místa"
-
-#~ msgid "Media Sources"
-#~ msgstr "Prameny média"
-
-#~ msgid "Gramplet showing the sources for a media object"
-#~ msgstr "Gramplet zobrazující prameny objektu médií"
-
-#~ msgid "Matches sources with particular parameters"
-#~ msgstr "Vyhovují prameny konkrétních parametrů"
-
-#~ msgid "Limit the number of children"
-#~ msgstr "Maximální počet dětí"
-
-#~ msgid "The maximum number of children to include."
-#~ msgstr "Maximální počet zahrnutých potomků."
-
-#~ msgid ""
-#~ "Whether to create a thumbnail's preview page?  This will be hyper- linked "
-#~ "to the Media List Page only!"
-#~ msgstr ""
-#~ "Zda vytvářet stránku náhledů médií? Bude obsahovat pouze odkazy na "
-#~ "stránku seznamu médií!"
-
-#~ msgid "Processing File"
-#~ msgstr "Soubor se zpracovává"
-
-#~ msgid "The range of dates chosen was not valid"
-#~ msgstr "Zvolené rozmezí dat je neplatné"
-
-#~ msgid "Description :"
-#~ msgstr "Popis :"
-
-#~ msgid "Original Date/ Time :"
-#~ msgstr "Původní datum/čas :"
-
-#~ msgid "Last Changed :"
-#~ msgstr "Poslední změna :"
-
-#~ msgid "Tags:"
-#~ msgstr "Štítky:"
-
-#~ msgid "Bottom:"
-#~ msgstr "Dole:"
-
-#~ msgid "Left:"
-#~ msgstr "Vlevo:"
-
-#~ msgid "Right:"
-#~ msgstr "Vpravo:"
-
-#~ msgid "Top:"
-#~ msgstr "Nahoře:"
-
-#~ msgid "State/County:"
-#~ msgstr "Kraj/Okres:"
-
-#~ msgid "Baptism:"
-#~ msgstr "Baptistické křtiny:"
-
-#~ msgid "Burial:"
-#~ msgstr "Pohřeb:"
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the "
-#~ "age of %(age)d years."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s zemřel %(death_date)s v %(death_place)s ve věku "
-#~ "%(age)d let."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the "
-#~ "age of %(age)d months."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s zemřel %(death_date)s v %(death_place)s ve věku "
-#~ "%(age)d měsíců."
-
-#~ msgid ""
-#~ "%(male_name)s died on %(death_date)s in %(death_place)s at the age of "
-#~ "%(age)d years."
-#~ msgstr ""
-#~ "%(male_name)s zemřel %(death_date)s v %(death_place)s ve věku %(age)d let."
-
-#~ msgid ""
-#~ "%(male_name)s died on %(death_date)s in %(death_place)s at the age of "
-#~ "%(age)d months."
-#~ msgstr ""
-#~ "%(male_name)s zemřel %(death_date)s v %(death_place)s ve věku %(age)d "
-#~ "měsíců."
-
-#~ msgid ""
-#~ "%(female_name)s died on %(death_date)s in %(death_place)s at the age of "
-#~ "%(age)d years."
-#~ msgstr ""
-#~ "%(female_name)s zemřela %(death_date)s v %(death_place)s ve věku %(age)d "
-#~ "let."
-
-#~ msgid ""
-#~ "%(female_name)s died on %(death_date)s in %(death_place)s at the age of "
-#~ "%(age)d months."
-#~ msgstr ""
-#~ "%(female_name)s zemřela %(death_date)s v %(death_place)s ve věku %(age)d "
-#~ "měsíců."
-
-#~ msgid ""
-#~ "This person died on %(death_date)s in %(death_place)s at the age of %(age)"
-#~ "d years."
-#~ msgstr ""
-#~ "Tato osoba zemřela %(death_date)s v %(death_place)s ve věku %(age)d let."
-
-#~ msgid ""
-#~ "This person died on %(death_date)s in %(death_place)s at the age of %(age)"
-#~ "d months."
-#~ msgstr ""
-#~ "Tato osoba zemřela %(death_date)s v %(death_place)s ve věku %(age)d "
-#~ "měsíců."
-
-#~ msgid ""
-#~ "He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-#~ msgstr "Zemřel %(death_date)s v %(death_place)s ve věku %(age)d let."
-
-#~ msgid ""
-#~ "He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
-#~ msgstr "Zemřel %(death_date)s v %(death_place)s ve věku %(age)d měsíců."
-
-#~ msgid ""
-#~ "She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-#~ msgstr "Zemřela %(death_date)s v %(death_place)s ve věku %(age)d let."
-
-#~ msgid ""
-#~ "She died on %(death_date)s in %(death_place)s at the age of %(age)d "
-#~ "months."
-#~ msgstr "Zemřela %(death_date)s v %(death_place)s ve věku %(age)d měsíců."
-
-#~ msgid "Died %(death_date)s in %(death_place)s (age %(age)d years)."
-#~ msgstr "Zemřel(a) %(death_date)s v %(death_place)s ve věku %(age)d let."
-
-#~ msgid "Died %(death_date)s in %(death_place)s (age %(age)d months)."
-#~ msgstr "Zemřel(a)  %(death_date)s v %(death_place)s ve věku %(age)d měsíců."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age "
-#~ "of %(age)d years."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s zemřel %(death_date)s v %(death_place)s ve věku "
-#~ "%(age)d let."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age "
-#~ "of %(age)d months."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s zemřel %(death_date)s v %(death_place)s ve věku "
-#~ "%(age)d měsíců."
-
-#~ msgid ""
-#~ "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)"
-#~ "d years."
-#~ msgstr ""
-#~ "%(male_name)s zemřel %(death_date)s v %(death_place)s ve věku %(age)d let."
-
-#~ msgid ""
-#~ "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)"
-#~ "d months."
-#~ msgstr ""
-#~ "%(male_name)s zemřel %(death_date)s v %(death_place)s ve věku %(age)d "
-#~ "měsíců."
-
-#~ msgid ""
-#~ "%(female_name)s died %(death_date)s in %(death_place)s at the age of "
-#~ "%(age)d years."
-#~ msgstr ""
-#~ "%(female_name)s zemřela %(death_date)s v %(death_place)s ve věku %(age)d "
-#~ "let."
-
-#~ msgid ""
-#~ "%(female_name)s died %(death_date)s in %(death_place)s at the age of "
-#~ "%(age)d months."
-#~ msgstr ""
-#~ "%(female_name)s zemřela %(death_date)s v %(death_place)s ve věku %(age)d "
-#~ "měsíců."
-
-#~ msgid ""
-#~ "This person died %(death_date)s in %(death_place)s at the age of %(age)d "
-#~ "years."
-#~ msgstr ""
-#~ "Tato osoba zemřela %(death_date)s v %(death_place)s ve věku %(age)d let."
-
-#~ msgid ""
-#~ "This person died %(death_date)s in %(death_place)s at the age of %(age)d "
-#~ "months."
-#~ msgstr ""
-#~ "Tato osoba zemřel %(death_date)s v %(death_place)s ve věku %(age)d měsíců."
-
-#~ msgid ""
-#~ "He died %(death_date)s in %(death_place)s at the age of %(age)d years."
-#~ msgstr "Zemřel %(death_date)s v %(death_place)s ve věku %(age)d let."
-
-#~ msgid ""
-#~ "He died %(death_date)s in %(death_place)s at the age of %(age)d months."
-#~ msgstr "Zemřel %(death_date)s v %(death_place)s ve věku %(age)d měsíců."
-
-#~ msgid ""
-#~ "She died %(death_date)s in %(death_place)s at the age of %(age)d years."
-#~ msgstr "Zemřela %(death_date)s v %(death_place)s ve věku %(age)d let."
-
-#~ msgid ""
-#~ "She died %(death_date)s in %(death_place)s at the age of %(age)d months."
-#~ msgstr "Zemřela %(death_date)s v %(death_place)s ve věku %(age)d měsíců."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d "
-#~ "years."
-#~ msgstr "%(unknown_gender_name)s zemřel %(death_date)s ve věku %(age)d let."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d "
-#~ "months."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s zemřel %(death_date)s ve věku %(age)d měsíců."
-
-#~ msgid "%(male_name)s died on %(death_date)s at the age of %(age)d years."
-#~ msgstr "%(male_name)s zemřel %(death_date)s ve věku %(age)d let."
-
-#~ msgid "%(male_name)s died on %(death_date)s at the age of %(age)d months."
-#~ msgstr "%(male_name)s zemřel %(death_date)s ve věku %(age)d months."
-
-#~ msgid "%(female_name)s died on %(death_date)s at the age of %(age)d years."
-#~ msgstr "%(female_name)s zemřela %(death_date)s ve věku %(age)d let."
-
-#~ msgid "%(female_name)s died on %(death_date)s at the age of %(age)d months."
-#~ msgstr "%(female_name)s zemřela %(death_date)s ve věku %(age)d měsíců."
-
-#~ msgid "This person died on %(death_date)s at the age of %(age)d years."
-#~ msgstr "Tato osoba zemřela %(death_date)s ve věku %(age)d let."
-
-#~ msgid "This person died on %(death_date)s at the age of %(age)d months."
-#~ msgstr "Tato osoba zemřela %(death_date)s ve věku %(age)d months."
-
-#~ msgid "He died on %(death_date)s at the age of %(age)d years."
-#~ msgstr "Zemřel %(death_date)s ve věku %(age)d let."
-
-#~ msgid "He died on %(death_date)s at the age of %(age)d months."
-#~ msgstr "Zemřel %(death_date)s ve věku %(age)d months."
-
-#~ msgid "She died on %(death_date)s at the age of %(age)d years."
-#~ msgstr "Zemřela %(death_date)s ve věku %(age)d let."
-
-#~ msgid "She died on %(death_date)s at the age of %(age)d months."
-#~ msgstr "Zemřela %(death_date)s ve věku %(age)d months."
-
-#~ msgid "Died %(death_date)s (age %(age)d years)."
-#~ msgstr "Zemřel(a) %(death_date)s ve věku %(age)d let."
-
-#~ msgid "Died %(death_date)s (age %(age)d months)."
-#~ msgstr "Zemřel(a) %(death_date)s ve věku %(age)d months."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
-#~ msgstr "%(unknown_gender_name)s zemřel %(death_date)s ve věku %(age)d let."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s zemřel %(death_date)s ve věku %(age)d měsíců."
-
-#~ msgid "%(male_name)s died %(death_date)s at the age of %(age)d years."
-#~ msgstr "%(male_name)s zemřel %(death_date)s ve věku %(age)d let."
-
-#~ msgid "%(male_name)s died %(death_date)s at the age of %(age)d months."
-#~ msgstr "%(male_name)s zemřel %(death_date)s ve věku %(age)d months."
-
-#~ msgid "%(female_name)s died %(death_date)s at the age of %(age)d years."
-#~ msgstr "%(female_name)s zemřela %(death_date)s ve věku %(age)d let."
-
-#~ msgid "%(female_name)s died %(death_date)s at the age of %(age)d months."
-#~ msgstr "%(female_name)s zemřela %(death_date)s ve věku %(age)d měsíců."
-
-#~ msgid "This person died %(death_date)s at the age of %(age)d years."
-#~ msgstr "Tato osoba zemřela %(death_date)s ve věku %(age)d let."
-
-#~ msgid "This person died %(death_date)s at the age of %(age)d months."
-#~ msgstr "Tato osoba zemřela %(death_date)s ve věku %(age)d months."
-
-#~ msgid "He died %(death_date)s at the age of %(age)d years."
-#~ msgstr "Zemřel %(death_date)s ve věku %(age)d let."
-
-#~ msgid "He died %(death_date)s at the age of %(age)d months."
-#~ msgstr "Zemřel %(death_date)s ve věku %(age)d months."
-
-#~ msgid "She died %(death_date)s at the age of %(age)d years."
-#~ msgstr "Zemřela %(death_date)s ve věku %(age)d let."
-
-#~ msgid "She died %(death_date)s at the age of %(age)d months."
-#~ msgstr "Zemřela %(death_date)s ve věku %(age)d months."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the "
-#~ "age of %(age)d years."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s zemřel %(month_year)s v %(death_place)s ve věku "
-#~ "%(age)d let."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the "
-#~ "age of %(age)d months."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s zemřel %(month_year)s v %(death_place)s ve věku "
-#~ "%(age)d měsíců."
-
-#~ msgid ""
-#~ "%(male_name)s died in %(month_year)s in %(death_place)s at the age of "
-#~ "%(age)d years."
-#~ msgstr ""
-#~ "%(male_name)s zemřel %(month_year)s v %(death_place)s ve věku %(age)d let."
-
-#~ msgid ""
-#~ "%(male_name)s died in %(month_year)s in %(death_place)s at the age of "
-#~ "%(age)d months."
-#~ msgstr ""
-#~ "%(male_name)s zemřel %(month_year)s v %(death_place)s ve věku %(age)d "
-#~ "měsíců."
-
-#~ msgid ""
-#~ "%(female_name)s died in %(month_year)s in %(death_place)s at the age of "
-#~ "%(age)d years."
-#~ msgstr ""
-#~ "%(female_name)s zemřela %(month_year)s v %(death_place)s ve věku %(age)d "
-#~ "let."
-
-#~ msgid ""
-#~ "%(female_name)s died in %(month_year)s in %(death_place)s at the age of "
-#~ "%(age)d months."
-#~ msgstr ""
-#~ "%(female_name)s zemřela %(month_year)s v %(death_place)s ve věku %(age)d "
-#~ "měsíců."
-
-#~ msgid ""
-#~ "This person died in %(month_year)s in %(death_place)s at the age of %(age)"
-#~ "d years."
-#~ msgstr ""
-#~ "Tato osoba zemřela %(month_year)s v %(death_place)s ve věku %(age)d let."
-
-#~ msgid ""
-#~ "This person died in %(month_year)s in %(death_place)s at the age of %(age)"
-#~ "d months."
-#~ msgstr ""
-#~ "Tato osoba zemřela %(month_year)s v %(death_place)s ve věku %(age)d "
-#~ "měsíců."
-
-#~ msgid ""
-#~ "He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-#~ msgstr "Zemřel %(month_year)s v %(death_place)s ve věku %(age)d let."
-
-#~ msgid ""
-#~ "He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
-#~ msgstr "Zemřel %(month_year)s v %(death_place)s ve věku %(age)d měsíců."
-
-#~ msgid ""
-#~ "She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-#~ msgstr "Zemřela %(month_year)s v %(death_place)s ve věku %(age)d let."
-
-#~ msgid ""
-#~ "She died in %(month_year)s in %(death_place)s at the age of %(age)d "
-#~ "months."
-#~ msgstr "Zemřela %(month_year)s v %(death_place)s ve věku %(age)d měsíců."
-
-#~ msgid "Died %(month_year)s in %(death_place)s (age %(age)d years)."
-#~ msgstr "Zemřel(a) %(month_year)s v %(death_place)s ve věku %(age)d let."
-
-#~ msgid "Died %(month_year)s in %(death_place)s (age %(age)d months)."
-#~ msgstr "Zemřel(a) %(month_year)s v %(death_place)s ve věku %(age)d měsíců."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d "
-#~ "years."
-#~ msgstr "%(unknown_gender_name)s zemřel %(month_year)s ve věku %(age)d let."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d "
-#~ "months."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s zemřel %(month_year)s ve věku %(age)d měsíců."
-
-#~ msgid "%(male_name)s died in %(month_year)s at the age of %(age)d years."
-#~ msgstr "%(male_name)s zemřel %(month_year)s ve věku %(age)d let."
-
-#~ msgid "%(male_name)s died in %(month_year)s at the age of %(age)d months."
-#~ msgstr "%(male_name)s zemřel %(month_year)s ve věku %(age)d měsíců."
-
-#~ msgid "%(female_name)s died in %(month_year)s at the age of %(age)d years."
-#~ msgstr "%(female_name)s zemřela %(month_year)s ve věku %(age)d let."
-
-#~ msgid "%(female_name)s died in %(month_year)s at the age of %(age)d months."
-#~ msgstr "%(female_name)s zemřela %(month_year)s ve věku %(age)d měsíců."
-
-#~ msgid "This person died in %(month_year)s at the age of %(age)d years."
-#~ msgstr "Tato osoba zemřela %(month_year)s ve věku %(age)d let."
-
-#~ msgid "This person died in %(month_year)s at the age of %(age)d months."
-#~ msgstr "Tato osoba zemřela %(month_year)s ve věku %(age)d měsíců."
-
-#~ msgid "He died in %(month_year)s at the age of %(age)d years."
-#~ msgstr "Zemřel %(month_year)s ve věku %(age)d let."
-
-#~ msgid "He died in %(month_year)s at the age of %(age)d months."
-#~ msgstr "Zemřel %(month_year)s ve věku %(age)d měsíců."
-
-#~ msgid "She died in %(month_year)s at the age of %(age)d years."
-#~ msgstr "Zemřela %(month_year)s ve věku %(age)d let."
-
-#~ msgid "She died in %(month_year)s at the age of %(age)d months."
-#~ msgstr "Zemřela %(month_year)s ve věku %(age)d měsíců."
-
-#~ msgid "Died %(month_year)s (age %(age)d years)."
-#~ msgstr "Zemřel(a) %(month_year)s ve věku %(age)d let."
-
-#~ msgid "Died %(month_year)s (age %(age)d months)."
-#~ msgstr "Zemřel(a) %(month_year)s ve věku %(age)d měsíců."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d "
-#~ "years."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s zemřel v %(death_place)s ve věku %(age)d let."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d "
-#~ "months."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s zemřel v %(death_place)s ve věku %(age)d měsíců."
-
-#~ msgid "%(male_name)s died in %(death_place)s at the age of %(age)d years."
-#~ msgstr "%(male_name)s zemřel v %(death_place)s ve věku %(age)d let."
-
-#~ msgid "%(male_name)s died in %(death_place)s at the age of %(age)d months."
-#~ msgstr "%(male_name)s zemřel v %(death_place)s ve věku %(age)d měsíců."
-
-#~ msgid "%(female_name)s died in %(death_place)s at the age of %(age)d years."
-#~ msgstr "%(female_name)s zemřela v %(death_place)s ve věku %(age)d let."
-
-#~ msgid ""
-#~ "%(female_name)s died in %(death_place)s at the age of %(age)d months."
-#~ msgstr "%(female_name)s zemřela v %(death_place)s ve věku %(age)d měsíců."
-
-#~ msgid "This person died in %(death_place)s at the age of %(age)d years."
-#~ msgstr "Tato osoba zemřela v %(death_place)s ve věku %(age)d let."
-
-#~ msgid "This person died in %(death_place)s at the age of %(age)d months."
-#~ msgstr "Tato osoba zemřela v %(death_place)s ve věku %(age)d měsíců."
-
-#~ msgid "He died in %(death_place)s at the age of %(age)d years."
-#~ msgstr "Zemřel v %(death_place)s ve věku %(age)d let."
-
-#~ msgid "He died in %(death_place)s at the age of %(age)d months."
-#~ msgstr "Zemřel v %(death_place)s ve věku %(age)d měsíců."
-
-#~ msgid "She died in %(death_place)s at the age of %(age)d years."
-#~ msgstr "Zemřela v %(death_place)s ve věku %(age)d let."
-
-#~ msgid "She died in %(death_place)s at the age of %(age)d months."
-#~ msgstr "Zemřela v %(death_place)s ve věku %(age)d měsíců."
-
-#~ msgid "Died in %(death_place)s (age %(age)d years)."
-#~ msgstr "Zemřel(a) v %(death_place)s ve věku %(age)d let."
-
-#~ msgid "Died in %(death_place)s (age %(age)d months)."
-#~ msgstr "Zemřel(a) v %(death_place)s (ve věku %(age)d měsíců)."
-
-#~ msgid "%(unknown_gender_name)s died at the age of %(age)d years."
-#~ msgstr "%(unknown_gender_name)s zemřel ve věku %(age)d let."
-
-#~ msgid "%(unknown_gender_name)s died at the age of %(age)d months."
-#~ msgstr "%(unknown_gender_name)s zemřel ve věku %(age)d měsíců."
-
-#~ msgid "%(male_name)s died at the age of %(age)d years."
-#~ msgstr "%(male_name)s zemřel ve věku %(age)d let."
-
-#~ msgid "%(male_name)s died at the age of %(age)d months."
-#~ msgstr "%(male_name)s zemřel ve věku %(age)d měsíců."
-
-#~ msgid "%(female_name)s died at the age of %(age)d years."
-#~ msgstr "%(female_name)s zemřela ve věku %(age)d let."
-
-#~ msgid "%(female_name)s died at the age of %(age)d months."
-#~ msgstr "%(female_name)s zemřela ve věku %(age)d měsíců."
-
-#~ msgid "This person died at the age of %(age)d years."
-#~ msgstr "Tato osoba zemřela ve věku %(age)d let."
-
-#~ msgid "This person died at the age of %(age)d months."
-#~ msgstr "Tato osoba zemřela ve věku %(age)d měsíců."
-
-#~ msgid "He died at the age of %(age)d years."
-#~ msgstr "Zemřel ve věku %(age)d let."
-
-#~ msgid "He died at the age of %(age)d months."
-#~ msgstr "Zemřel ve věku %(age)d měsíců."
-
-#~ msgid "She died at the age of %(age)d years."
-#~ msgstr "Zemřela ve věku %(age)d let."
-
-#~ msgid "She died at the age of %(age)d months."
-#~ msgstr "Zemřela ve věku %(age)d měsíců."
-
-#~ msgid "Died (age %(age)d years)."
-#~ msgstr "Zemřel(a)  (ve věku %(age)d let)."
-
-#~ msgid "Died (age %(age)d months)."
-#~ msgstr "Zemřel(a)  (ve věku %(age)d měsíců)."
-
-#~ msgid "Alphabet Navigation Menu Item "
-#~ msgstr "Abecední položka navigační nabídky "
-
-#, fuzzy
-#~ msgid "Make Active %s"
-#~ msgstr "Nastavit aktivní osobu"
-
-#~ msgid "Afrikaans"
-#~ msgstr "Afrikánština"
-
-#~ msgid "Amharic"
-#~ msgstr "Amharština"
-
-#~ msgid "Arabic"
-#~ msgstr "Arabština"
-
-#~ msgid "Azerbaijani"
-#~ msgstr "Ázerbajdžánština"
-
-#~ msgid "Belarusian"
-#~ msgstr "Běloruština"
-
-#~ msgid "Bengali"
-#~ msgstr "Bengálština"
-
-#~ msgid "Breton"
-#~ msgstr "Bretaňština"
-
-#~ msgid "Kashubian"
-#~ msgstr "Kašubština"
-
-#~ msgid "Welsh"
-#~ msgstr "Velština"
-
-#~ msgid "German - Old Spelling"
-#~ msgstr "Němčina - švabach"
-
-#~ msgid "Greek"
-#~ msgstr "Řečtina"
-
-#~ msgid "Estonian"
-#~ msgstr "Estonština"
-
-#~ msgid "Persian"
-#~ msgstr "Perský"
-
-#~ msgid "Faroese"
-#~ msgstr "Faerština"
-
-#~ msgid "Frisian"
-#~ msgstr "Fríština"
-
-#~ msgid "Irish"
-#~ msgstr "Irština"
-
-#~ msgid "Scottish Gaelic"
-#~ msgstr "Skotská keltština"
-
-#~ msgid "Galician"
-#~ msgstr "Gaelština"
-
-#~ msgid "Gujarati"
-#~ msgstr "Gudžarati"
-
-#~ msgid "Manx Gaelic"
-#~ msgstr "Gaelština; skotská gaelština"
-
-#~ msgid "Hindi"
-#~ msgstr "Hindština"
-
-#~ msgid "Hiligaynon"
-#~ msgstr "Hiligayonština"
-
-#~ msgid "Upper Sorbian"
-#~ msgstr "Hornolužická srbština"
-
-#~ msgid "Armenian"
-#~ msgstr "Arménština"
-
-#~ msgid "Interlingua"
-#~ msgstr "Interlingua"
-
-#~ msgid "Indonesian"
-#~ msgstr "Indonézština"
-
-#~ msgid "Icelandic"
-#~ msgstr "Islandština"
-
-#~ msgid "Kurdi"
-#~ msgstr "Kurdština"
-
-#~ msgid "Latin"
-#~ msgstr "Latina"
-
-#~ msgid "Latvian"
-#~ msgstr "Litevština"
-
-#~ msgid "Malagasy"
-#~ msgstr "Malgaština"
-
-#~ msgid "Maori"
-#~ msgstr "Maorština"
-
-#~ msgid "Mongolian"
-#~ msgstr "Mongolština"
-
-#~ msgid "Marathi"
-#~ msgstr "Maráthština"
-
-#~ msgid "Malay"
-#~ msgstr "Malajština"
-
-#~ msgid "Maltese"
-#~ msgstr "Maltština"
-
-#~ msgid "Low Saxon"
-#~ msgstr "Němčina dolní; Sasština dolní"
-
-#~ msgid "Chichewa"
-#~ msgstr "Čičeva; čeva; ňandžština"
-
-#~ msgid "Oriya"
-#~ msgstr "Uríština"
-
-#~ msgid "Punjabi"
-#~ msgstr "Paňdžábština"
-
-#~ msgid "Brazilian Portuguese"
-#~ msgstr "Brazilská portugalština"
-
-#~ msgid "Quechua"
-#~ msgstr "Kečuánština"
-
-#~ msgid "Kinyarwanda"
-#~ msgstr "jazyk Kinyarwanda"
-
-#~ msgid "Sardinian"
-#~ msgstr "Sardinština"
-
-#~ msgid "Serbian"
-#~ msgstr "Srbština"
-
-#~ msgid "Swahili"
-#~ msgstr "Svahilština"
-
-#~ msgid "Tamil"
-#~ msgstr "Tamilština"
-
-#~ msgid "Telugu"
-#~ msgstr "jazyk Telugu"
-
-#~ msgid "Tetum"
-#~ msgstr "Tetumština"
-
-#~ msgid "Tagalog"
-#~ msgstr "jazyk Tagalog"
-
-#~ msgid "Setswana"
-#~ msgstr "Setswana"
-
-#~ msgid "Uzbek"
-#~ msgstr "Uzbečtina"
-
-#~ msgid "Vietnamese"
-#~ msgstr "Vietnamština"
-
-#~ msgid "Walloon"
-#~ msgstr "Valonština"
-
-#~ msgid "Yiddish"
-#~ msgstr "Jidiš"
-
-#~ msgid "Zulu"
-#~ msgstr "Zuluština"
-
-#~ msgid ""
-#~ "Warning: spelling checker language limited to locale 'en'; install "
-#~ "pyenchant/python-enchant for better options."
-#~ msgstr ""
-#~ "Pozor: kontrola pravopisu je omezena na lokalizaci 'en'; pro větší "
-#~ "možnosti nainstalujte pyenchant/python-enchant."
-
-#~ msgid ""
-#~ "Warning: spelling checker language limited to locale '%s'; install "
-#~ "pyenchant/python-enchant for better options."
-#~ msgstr ""
-#~ "Pozor: kontrola pravopisu je omezena na lokalizaci '%s'; pro větší "
-#~ "možnosti nainstalujte pyenchant/python-enchant."
-
-#~ msgid ""
-#~ "Warning: spelling checker disabled; install pyenchant/python-enchant to "
-#~ "enable."
-#~ msgstr ""
-#~ "Pozor: kontrola pravopisu je vypnutá; pro povolení nainstalujete "
-#~ "pyenchant/python-enchant."
-
-#~ msgid "Note %(ind)d - Type: %(type)s"
-#~ msgstr "Poznámka %(ind)d - Typ: %(type)s"
-
-#~ msgid "Selection Options"
-#~ msgstr "Možnosti výběru"
-
-#~ msgid "Go to the next person in the history"
-#~ msgstr "Přejít na další osobu v historii"
-
-#~ msgid "Go to the previous person in the history"
-#~ msgstr "Jít na předchozí osobu v historii"
-
-#, fuzzy
-#~ msgid "Failed to load 'Edit Image Exif Metadata'..."
-#~ msgstr "Upravit Exif metadata obrázku"
-
-#, fuzzy
-#~ msgid ""
-#~ "The minimum required version for pyexiv2 must be %s \n"
-#~ "or greater.  Or you do not have the python library installed yet.  You "
-#~ "may download it from here: %s\n"
-#~ "\n"
-#~ "  I recommend getting, %s"
-#~ msgstr ""
-#~ "Minimální požadavaná verze pyexiv2 musí být  %s nebo novější.\n"
-#~ " Možná ji nemáte ještě nainstalovanou. \n"
-#~ "Stahnout ji můžete zde: %s\n"
-#~ "\n"
-#~ " Doporučujeme vzít, %s"
-
-#, fuzzy
-#~ msgid "Clears the Exif metadata from the Edit area."
-#~ msgstr "Obrázek neobsahuje žádná Exif metadata."
-
-#~ msgid "Select Date"
-#~ msgstr "Vybrat datum"
-
-#~ msgid "Year :"
-#~ msgstr "Rok:"
-
-#~ msgid "Month :"
-#~ msgstr "Měsíc:"
-
-#~ msgid "Day :"
-#~ msgstr "Den:"
-
-#~ msgid "Hour :"
-#~ msgstr "Hodina:"
-
-#~ msgid "Minutes :"
-#~ msgstr "Minuty:"
-
-#~ msgid "Seconds :"
-#~ msgstr "Sekundy:"
-
-#~ msgid "Entering data..."
-#~ msgstr "Vkládají se data..."
-
-#, fuzzy
-#~ msgid ""
-#~ "Image is either missing or deleted,\n"
-#~ "Please choose a different image..."
-#~ msgstr ""
-#~ "Obrázek není čitelný,\n"
-#~ "Vyberte prosím jiný obrázek..."
-
-#~ msgid "Please choose a different image..."
-#~ msgstr "Vyberte prosím jiný obrázek..."
-
-#, fuzzy
-#~ msgid "Save Exif metadata to this image?"
-#~ msgstr "Do obrázku jsou ukládána Exif metadata..."
-
-#~ msgid "Save"
-#~ msgstr "Uložit"
-
-#, fuzzy
-#~ msgid "Copying Exif metadata to the Edit Area..."
-#~ msgstr "Do obrázku jsou ukládána Exif metadata..."
-
-#, fuzzy
-#~ msgid "Last Changed: %s"
-#~ msgstr "Poslední změna"
-
-#, fuzzy
-#~ msgid "There is NO Exif metadata for this image yet..."
-#~ msgstr "Obrázek neobsahuje žádná Exif metadata."
-
-#, fuzzy
-#~ msgid "Image Exif metadata has been cleared from this image..."
-#~ msgstr "Z tohoto obrázku byla odstraněna všechna Exif metadata..."
-
-#~ msgid "Deleting all Exif metadata..."
-#~ msgstr "Odstraňují se Exif metadata..."
-
-#, fuzzy
-#~ msgid "Double click a day to return the date."
-#~ msgstr "Dvojklikem na den zobrazit podrobnosti"
-
-#, fuzzy
-#~ msgid "This image doesn't contain any ThumbnailViews..."
-#~ msgstr "Chyba: %s neobsahuje náhled v Exif"
-
-#~ msgid ""
-#~ "Welcome to Gramps!\n"
-#~ "\n"
-#~ "Gramps is a software package designed for genealogical research. Although "
-#~ "similar to other genealogical programs, Gramps offers some unique and "
-#~ "powerful features.\n"
-#~ "\n"
-#~ "Gramps is an Open Source Software package, which means you are free to "
-#~ "make copies and distribute it to anyone you like. It's developed and "
-#~ "maintained by a worldwide team of volunteers whose goal is to make Gramps "
-#~ "powerful, yet easy to use.\n"
-#~ "\n"
-#~ "Getting Started\n"
-#~ "\n"
-#~ "The first thing you must do is to create a new Family Tree. To create a "
-#~ "new Family Tree (sometimes called a database) select \"Family Trees\" "
-#~ "from the menu, pick \"Manage Family Trees\", press \"New\" and name your "
-#~ "database. For more details, please read the User Manual, or the on-line "
-#~ "manual at http://gramps-project.org.\n"
-#~ "\n"
-#~ "You are currently reading from the \"Gramplets\" page, where you can add "
-#~ "your own gramplets.\n"
-#~ "\n"
-#~ "You can right-click on the background of this page to add additional "
-#~ "gramplets and change the number of columns. You can also drag the "
-#~ "Properties button to reposition the gramplet on this page, and detach the "
-#~ "gramplet to float above Gramps. If you close Gramps with a gramplet "
-#~ "detached, it will re-open detached the next time you start Gramps."
-#~ msgstr ""
-#~ "Vítejte v Gramps!\n"
-#~ "\n"
-#~ "Gramps je program určený pro genealogický výzkum. Přestože existuje mnoho "
-#~ "podobných, Gramps nabízí některé unikátní užitečné vlastnosti.\n"
-#~ "\n"
-#~ "Gramps je Open Source Software a jako takový Vám nabízí možnost volného "
-#~ "kopírování a poskytnutí komukoli uznáte za vhodné. Je vyvíjen týmem "
-#~ "dobrovolníků z celého světa jejichž cílem je vytvořit mocný a přesto "
-#~ "jednoduše použitelný nástroj.\n"
-#~ "\n"
-#~ "Začínáme\n"
-#~ "\n"
-#~ "První věc, kterou musíte udělat je založení nového rodokmenu. Rodokmen "
-#~ "(někdy nazýván také databáze) založíte tak, že v menu \"Rodokmeny\" "
-#~ "zvolíte položku \"Spravovat rodokmeny\", stiskněte \"Nový\" a pojmenujte "
-#~ "databázi. Podrobnější informace můžete nalézt v uživatelské příručce, "
-#~ "nebo v online příručce na webové stránc  http://gramps-project.org.\n"
-#~ "\n"
-#~ "V tuto chvíli pracujete na stránce s \"Gramplety\". Tato stránka je "
-#~ "snadno přizpůsobitelná. Můžete na ni umístit Gramplety, které "
-#~ "potřebujete.\n"
-#~ "\n"
-#~ "Kliknutím pravým tlačítkem myši na pozadí této stránky můžete přidávat "
-#~ "Gramplety, nebo měnit počet sloupců. Můžete také tažením tlačítka "
-#~ "Vlastnosti změnit pořadí Grampletu na stránce, případně jej oddělit do "
-#~ "samostatného plovoucího bloku. Pokud zavřete Gramps  ve kterém máte "
-#~ "plovoucí Gramplety, zůstanou tyto moduly plovoucími při znovuotevření "
-#~ "programu ."
-
-#~ msgid "Generating Family Lines"
-#~ msgstr "Vytvářejí se rodové linie"
-
-#~ msgid "Finding ancestors and children"
-#~ msgstr "Najít rodiče dítěte"
-
-#~ msgid "Writing family lines"
-#~ msgstr "Zapisují se rodové linie"
-
-#, fuzzy
-#~ msgid "  %(id)s - %(text)s\n"
-#~ msgstr "Poznámka: %(id)s - %(context)s"
-
-#, fuzzy
-#~ msgid "  Family %(id)s\n"
-#~ msgstr "  Rodina %(id)s s %(id2)s\n"
-
-#, fuzzy
-#~ msgid "  Source %(id)s\n"
-#~ msgstr "  Prameny: %d\n"
-
-#, fuzzy
-#~ msgid "  Event %(id)s\n"
-#~ msgstr "  Události: %d\n"
-
-#, fuzzy
-#~ msgid "  Media Object %(id)s\n"
-#~ msgstr "  Mediální objekty: %d\n"
-
-#, fuzzy
-#~ msgid "  Place %(id)s\n"
-#~ msgstr "  Místa: %d\n"
-
-#, fuzzy
-#~ msgid "  Repository %(id)s\n"
-#~ msgstr "  Archivye: %d\n"
-
-#, fuzzy
-#~ msgid "  Note %(id)s\n"
-#~ msgstr "  Poznámky: %d\n"
-
-#~ msgid "  Tag %(name)s\n"
-#~ msgstr "  %(name)s štítku\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "\n"
-#~ "Objects merged-overwritten on import:\n"
-#~ msgstr ""
-#~ "\n"
-#~ "\n"
-#~ "Objekty, které byly sloučeny/přepsány při importu:\n"
-
-#~ msgid "Main Navigation Item %s"
-#~ msgstr "Hlavní navigační položka %s"
-
-#~ msgid "Place Maps"
-#~ msgstr "Mapy míst"
-
-#, fuzzy
-#~ msgid "Matches sources with title contains text matching a substring"
-#~ msgstr ""
-#~ "Vyhovují prameny jejichž poznámky obsahují text odpovídající podřetězci"
-
-#, fuzzy
-#~ msgid "Matches repositories with name contains text matching a substring"
-#~ msgstr ""
-#~ "Vyhovují archivy jejichž záznamy obsahují text vyhovující podřetězci"
-
-#, fuzzy
-#~ msgid "Matches notes who contain text matching a substring"
-#~ msgstr ""
-#~ "Vyhovují události jejichž poznámky obsahují text který odovídá podřetězci"
-
-#, fuzzy
-#~ msgid "Matches notes who contain text matching a regular expression"
-#~ msgstr ""
-#~ "Vyhovují události jejichž poznámky obsahují text který odovídá reg. výrazu"
-
-#~ msgid "Create Date Object"
-#~ msgstr "Vytvořit objekt data"
-
-#~ msgid "All Exif metadata has been cleared..."
-#~ msgstr "Všechna Exif metadata byla vymazána..."
-
-#~ msgid "No Exif metadata for this image..."
-#~ msgstr "K obrázku nejsou žádná Exif metadata..."
-
-#~ msgid "No Exif metadata to display..."
-#~ msgstr "Žádná Exif metadata k zobrazení..."
-
-#, fuzzy
-#~ msgid "Number of Key/ Value pairs : %04d"
-#~ msgstr "Počet rodin: %d"
-
-#~ msgid ""
-#~ "Convert GPS Latitude/ Longitude Coordinates to Decimal representation."
-#~ msgstr "Převést GPS zem. šířku/ délku do dekadického tvaru."
-
-#~ msgid ""
-#~ "Convert GPS Latitude/ Longitude Coordinates to (Degrees, Minutes, "
-#~ "Seconds) Representation."
-#~ msgstr "Převést GPS zem. šířku/ délku do tvaru stupně, minuty, sekundy."
-
-#~ msgid "Convert GPS :"
-#~ msgstr "Převést GPS:"
-
-#~ msgid "Decimal"
-#~ msgstr "Dekadicky"
-
-#~ msgid "Deg., Mins., Secs."
-#~ msgstr "St.,Min.,Sec."
-
-#~ msgid "Above Sea Level"
-#~ msgstr "Nad mořem"
-
-#~ msgid "Gramplet %s is running"
-#~ msgstr "Gramplet %s běží"
-
-#~ msgid "Gramplet %s updated"
-#~ msgstr "Gramps %s byl aktualizován"
-
-#~ msgid "GeoView"
-#~ msgstr "GeoView"
-
-#~ msgid "Add a Family Tree"
-#~ msgstr "Přidat rodokmen"
-
-#~ msgid "Place Details Gramplet"
-#~ msgstr "Gramplet podrobnosti místa"
-
-#~ msgid "Media Preview Gramplet"
-#~ msgstr "Gramplet Náhled médií"
-
-#~ msgid "Exif Viewer Gramplet"
-#~ msgstr "Gramplet Prohlížeč Exif"
-
-#~ msgid "Gramplet showing exif tags for a media object"
-#~ msgstr "Gramplet zobrazující exif objektu médií"
-
-#~ msgid "Exif"
-#~ msgstr "Exif"
-
-#~ msgid "Person Residence Gramplet"
-#~ msgstr "Gramplet Bydliště osoby"
-
-#~ msgid "Person Events Gramplet"
-#~ msgstr "Gramplet Události osoby"
-
-#~ msgid "Family Events Gramplet"
-#~ msgstr "Gramplet Události rodiny"
-
-#~ msgid "Person Attributes Gramplet"
-#~ msgstr "Gramplet Atributy osoby"
-
-#~ msgid "Event Attributes Gramplet"
-#~ msgstr "Gramplet Atributy události"
-
-#~ msgid "Family Attributes Gramplet"
-#~ msgstr "Gramplet Atributy rodiny"
-
-#~ msgid "Media Attributes Gramplet"
-#~ msgstr "Gramplet Atributy média"
-
-#~ msgid "Person Notes Gramplet"
-#~ msgstr "Gramplet Poznámky osoby"
-
-#~ msgid "Event Notes Gramplet"
-#~ msgstr "Gramplet Poznámky události"
-
-#~ msgid "Family Notes Gramplet"
-#~ msgstr "Gramplet Poznámky rodiny"
-
-#~ msgid "Place Notes Gramplet"
-#~ msgstr "Gramplet Poznámky místa"
-
-#~ msgid "Source Notes Gramplet"
-#~ msgstr "Gramplet Poznámky pramenu"
-
-#~ msgid "Repository Notes Gramplet"
-#~ msgstr "Gramplet Poznámky archivu"
-
-#~ msgid "Media Notes Gramplet"
-#~ msgstr "Gramplet Poznámky média"
-
-#~ msgid "Event Sources Gramplet"
-#~ msgstr "Gramplet pramenů události"
-
-#~ msgid "Family Sources Gramplet"
-#~ msgstr "Gramplet pramenů rodiny"
-
-#~ msgid "Media Sources Gramplet"
-#~ msgstr "Gramplet pramenů média"
-
-#~ msgid "Person Filter Gramplet"
-#~ msgstr "Gramplet Filtr osob"
-
-#~ msgid "Family Filter Gramplet"
-#~ msgstr "Gramplet Filtr rodin"
-
-#~ msgid "Event Filter Gramplet"
-#~ msgstr "Gramplet Filtr událostí"
-
-#~ msgid "Source Filter Gramplet"
-#~ msgstr "Gramplet Filtr pramenů"
-
-#~ msgid "Place Filter Gramplet"
-#~ msgstr "Gramplet Filtr míst"
-
-#~ msgid "Media Filter Gramplet"
-#~ msgstr "Gramplet Filtr médií"
-
-#~ msgid "Note Filter Gramplet"
-#~ msgstr "Gramplet Filtr poznámek"
-
-#~ msgid "Age on Date Gramplet"
-#~ msgstr "Gramplet Věk ke dni"
-
-#~ msgid "Age Stats Gramplet"
-#~ msgstr "Gramplet Věkové statistiky"
-
-#~ msgid "Attributes Gramplet"
-#~ msgstr "Gramplet Atributy"
-
-#~ msgid "Calendar Gramplet"
-#~ msgstr "Gramplet Kalendář"
-
-#~ msgid "Descendant Gramplet"
-#~ msgstr "Gramplet Potomci"
-
-#~ msgid "Fan Chart Gramplet"
-#~ msgstr "Gramplet Vějířový graf"
-
-#~ msgid "FAQ Gramplet"
-#~ msgstr "Gramplet Často kladené otázky"
-
-#~ msgid "Given Name Cloud Gramplet"
-#~ msgstr "Gramplet Souhrn křestních jmen"
-
-#~ msgid "Pedigree Gramplet"
-#~ msgstr "Gramplet rodokmen"
-
-#~ msgid "Plugin Manager Gramplet"
-#~ msgstr "Gramplet Správce zásuvných modulů"
-
-#~ msgid "Quick View Gramplet"
-#~ msgstr "Gramplet Rychlý pohled"
-
-#~ msgid "Relatives Gramplet"
-#~ msgstr "Gramplet Vztahy"
-
-#~ msgid "Session Log Gramplet"
-#~ msgstr "Gramplet Záznam relace"
-
-#~ msgid "Statistics Gramplet"
-#~ msgstr "Gramplet Statistika"
-
-#~ msgid "Surname Cloud Gramplet"
-#~ msgstr "Gramplet Souhrn příjmení"
-
-#~ msgid "TODO Gramplet"
-#~ msgstr "Gramplet TODO"
-
-#~ msgid "Top Surnames Gramplet"
-#~ msgstr "Gramplet TOP příjmení"
-
-#~ msgid "What's Next Gramplet"
-#~ msgstr "Gramplet Co dále"
-
-#~ msgid "Clear the entry field in the places selection box."
-#~ msgstr "Vyčistit vstup v poli pro výběr míst."
-
-#~ msgid ""
-#~ "Save the zoom and coordinates between places map, person map, family map "
-#~ "and event map."
-#~ msgstr ""
-#~ "Uložit přiblížení a souřadnice mezi mapami míst, osob, rodin a událostí."
-
-#~ msgid ""
-#~ "Select the maps provider. You can choose between OpenStreetMap and Google "
-#~ "maps."
-#~ msgstr ""
-#~ "Zvolte poskytovatele mapy. Můžete si vybrat mezi OpenStreetMap a mapami "
-#~ "Google."
-
-#~ msgid "Prior page."
-#~ msgstr "Předchozí stránka."
-
-#~ msgid "The current page/the last page."
-#~ msgstr "Aktuální stránka/poslední stránka."
-
-#~ msgid "Next page."
-#~ msgstr "Další stránka."
-
-#~ msgid "The number of places which have no coordinates."
-#~ msgstr "Počet míst bez souřadnic."
-
-#~ msgid "You can adjust the time period with the two following values."
-#~ msgstr "Časové období můžete přizpůsobit těmito dvěma hodnotami."
-
-#~ msgid "The number of years before the first event date"
-#~ msgstr "Počet let před datem datem první události"
-
-#~ msgid "The number of years after the last event date"
-#~ msgstr "Počet let po datu poslední události"
-
-#~ msgid "Time period adjustment"
-#~ msgstr "Přizpůsobení časového rozmezí"
-
-#~ msgid "Crosshair on the map."
-#~ msgstr "Nitkový kříž na mapě."
-
-#~ msgid ""
-#~ "Show the coordinates in the statusbar either in degrees\n"
-#~ "or in internal Gramps format ( D.D8 )"
-#~ msgstr ""
-#~ "Zobrazit souřadnice ve stavové řádce ve stupních\n"
-#~ "nebo ve vnitřním formátu Gramps (D.D8)"
-
-#~ msgid ""
-#~ "The maximum number of markers per page. If the time to load one page is "
-#~ "too long, reduce this value"
-#~ msgstr ""
-#~ "Maximální počet značek na stránku. Pokud je doba načítání stránky příliš "
-#~ "dlouhá, snižte hodnotu"
-
-#~ msgid ""
-#~ "When selected, we use webkit else we use mozilla\n"
-#~ "We need to restart Gramps."
-#~ msgstr ""
-#~ "Pokud je vybráno, bude použit webkit, jinak se použije mozilla\n"
-#~ "Restart Gramps je nutný."
-
-#~ msgid "Test the network "
-#~ msgstr "Prověřit síť "
-
-#~ msgid "Time out for the network connection test"
-#~ msgstr "Časový limit vypršení síťového testu"
-
-#~ msgid ""
-#~ "Time in seconds between two network tests.\n"
-#~ "Must be greater or equal to 10 seconds"
-#~ msgstr ""
-#~ "Doba v sekundách mezi dvěma síťovými testy.\n"
-#~ "Musí být větší nebo rovna 10 sekund"
-
-#~ msgid ""
-#~ "Host to test for http. Please, change this and select one of your choice."
-#~ msgstr ""
-#~ "Server pro http test. Změňte prosím, zadejte stroj dle vašeho výběru."
-
-#~ msgid "The network"
-#~ msgstr "Síť"
-
-#~ msgid "Select the place for which you want to see the info bubble."
-#~ msgstr "Vyberte místo pro které chcete vidět informační bublinu."
-
-#~ msgid "Time period"
-#~ msgstr "Časové rozmezí"
-
-#~ msgid "years"
-#~ msgstr "let"
-
-#~ msgid "All"
-#~ msgstr "Vše"
-
-#~ msgid "Zoom"
-#~ msgstr "Přiblížit"
-
-#~ msgid "_Add Place"
-#~ msgstr "Přid_at místo"
-
-#~ msgid ""
-#~ "Add the location centred on the map as a new place in Gramps. Double "
-#~ "click the location to centre on the map."
-#~ msgstr ""
-#~ "Přidat lokace vystředěnou na mapě jako nové místo do Gramps. Dvojklik na "
-#~ "lokaci ji vystředí na mapě."
-
-#~ msgid "_Link Place"
-#~ msgstr "_Linkovat místo"
-
-#~ msgid ""
-#~ "Link the location centred on the map to a place in Gramps. Double click "
-#~ "the location to centre on the map."
-#~ msgstr ""
-#~ "Propojit lokaci vystředěnou na mapě s místem v Gramps. Dvojklikem se mapa "
-#~ "vystředí na lokaci."
-
-#~ msgid "Attempt to view all places in the family tree."
-#~ msgstr "Zobrazení všech míst v rodokmenu."
-
-#~ msgid "Attempt to view all the places where the selected people lived."
-#~ msgstr "Zobrazení všech míst kde žila vybraná osoba."
-
-#~ msgid "_Family"
-#~ msgstr "_Rodina"
-
-#~ msgid "Attempt to view places of the selected people's family."
-#~ msgstr "Zobrazení míst rodiny vybrané osoby."
-
-#~ msgid "_Event"
-#~ msgstr "Udá_lost"
-
-#~ msgid "Attempt to view places connected to all events."
-#~ msgstr "Zobrazení míst připojených ke všem událostem."
-
-#~ msgid "List of places without coordinates"
-#~ msgstr "Seznam míst bez souřadnic"
-
-#~ msgid ""
-#~ "Here is the list of all places in the family tree for which we have no "
-#~ "coordinates.<br> This means no longitude or latitude.<p>"
-#~ msgstr ""
-#~ "Zde je seznam všech míst v rodokmenu u kterých chybějí souřadnice.<br> To "
-#~ "znamená zeměpisná šířka nebo délka.<p>"
-
-#~ msgid "Back to prior page"
-#~ msgstr "Zpět na předchozí stránku"
-
-#~ msgid "No location."
-#~ msgstr "Žádné místo."
-
-#~ msgid "You have no places in your family tree  with coordinates."
-#~ msgstr "Ve vašem rodokomenu nejsou žádná místa se souřadnicemi."
-
-#~ msgid "You are looking at the default map."
-#~ msgstr "Díváte se na výchozí mapu."
-
-#~ msgid "%s : birth place."
-#~ msgstr "%s : místo narození."
-
-#~ msgid "birth place."
-#~ msgstr "místo narození."
-
-#~ msgid "%s : death place."
-#~ msgstr "%s : místo úmrtí."
-
-#~ msgid "death place."
-#~ msgstr "místo úmrtí."
-
-#~ msgid "Id : %s"
-#~ msgstr "Id : %s"
-
-#~ msgid "All places in the family tree with coordinates."
-#~ msgstr "Všechna místa v rodokmenu se souřadnicemi."
-
-#~ msgid "All events in the family tree with coordinates."
-#~ msgstr "Všechny události v rodokmenu se souřadnicemi."
-
-#~ msgid ""
-#~ "All %(name)s people's family places in the family tree with coordinates."
-#~ msgstr "Všechna místa se souřadnicemi v rodokmenu rodiny %(name)s."
-
-#~ msgid ""
-#~ "Cannot center the map. No location with coordinates.That may happen for "
-#~ "one of the following reasons : <ul><li>The filter you use returned "
-#~ "nothing.</li><li>The active person has no places with coordinates.</"
-#~ "li><li>The active person's family members have no places with coordinates."
-#~ "</li><li>You have no places.</li><li>You have no active person set.</li>"
-#~ msgstr ""
-#~ "Nelze vystředit mapu. Není žádná lokace se souřadnicemi. K tomu může "
-#~ "dojít z následujících důvodů:<ul><li>Filtr který jste použili nevrátil "
-#~ "žádný výsledek.</li><li>Aktivní osoba nemá žádné místo se souřadnicemi..</"
-#~ "li><li>Členové rodiny aktivní osoby nemají žádné místo se souřadnicemi.</"
-#~ "li><li>Nemáte žádná místa.</li><li>Žádná osoba není aktivní.</li>"
-
-#~ msgid "Not yet implemented ..."
-#~ msgstr "Zatím nebylo implementováno ..."
-
-#~ msgid ""
-#~ "Invalid path for const.ROOT_DIR:<br> avoid parenthesis into this parameter"
-#~ msgstr ""
-#~ "Neplatná cesta v const.ROOT_DIR:<br> vyvarujte se použití závorek v tomto "
-#~ "parametru"
-
-#~ msgid ""
-#~ "You don't see a map here for one of the following reasons :"
-#~ "<br><ol><li>Your database is empty or not yet selected.</li><li>You have "
-#~ "not selected a person yet.</li><li>You have no places in your database.</"
-#~ "li><li>The selected places have no coordinates.</li></ol>"
-#~ msgstr ""
-#~ "Mapu zde nevidíte z jednoho z následujících důvodů:<br><ol><li>Vaše "
-#~ "databáze je prázdná, nebo nebyla vybrána.</li><li>Ještě jste nevybrali "
-#~ "žádnou osobu.</li><li>Nemáte žádná místa v databázi.</li><li>Zvolná místa "
-#~ "nemají žádné souřadnice.</li></ol>"
-
-#~ msgid "Start page for the Geography View"
-#~ msgstr "Počáteční strana geografického pohledu"
-
-#~ msgid "Geographic View"
-#~ msgstr "Geografický pohled"
-
-#~ msgid ""
-#~ "The view showing events on an interactive internet map (internet "
-#~ "connection needed)"
-#~ msgstr ""
-#~ "Tento pohled zobrazuje události v interaktivní internetové mapě (je nutné "
-#~ "připojení k Internetu)"
-
-#~ msgid "Fixed Zoom"
-#~ msgstr "Pevné přiblížení"
-
-#~ msgid "Free Zoom"
-#~ msgstr "Volné přiblížení"
-
-#~ msgid "Show Person"
-#~ msgstr "Zobrazit osobu"
-
-#~ msgid "Show Family"
-#~ msgstr "Zobrazit rodinu"
-
-#~ msgid "Sub Navigation Menu Item: Year %04d"
-#~ msgstr "Volba nabídky druhotné navigace: Rok %04d"
-
-#~ msgid "html|Home"
-#~ msgstr "Domů"
-
-#~ msgid "%(mother)s and %(father)s"
-#~ msgstr "%(mother)s a %(father)s"
-
-#~ msgid ""
-#~ "When merging people where one person doesn't exist, that \"person\" must "
-#~ "be the person that will be deleted from the database."
-#~ msgstr ""
-#~ "Při slučování osob v případě kdy jedna z nich neexistuje, tato \"osoba\" "
-#~ "musí být tou, která bude vymazána z databáze."
-
-#~ msgid "Whether to compress the tree."
-#~ msgstr "Zda komprimovat strom."
-
-#~ msgid ""
-#~ "Use Main/Secondary\n"
-#~ "Display Format for"
-#~ msgstr ""
-#~ "Použít hlavní/sekundární\n"
-#~ "formát zobrazení pro"
-
-#~ msgid "Mothers use Main, and Fathers use the Secondary"
-#~ msgstr "Matky používají hlavní, otcové používají sekundární"
-
-#~ msgid "Fathers use Main, and Mothers use the Secondary"
-#~ msgstr "Otcové používají hlavní, matky používají sekundární"
-
-#~ msgid "Include Marriage information"
-#~ msgstr "Zahrnout informace o sňatcích"
-
-#~ msgid "Print"
-#~ msgstr "Tisk"
-
-#~ msgid "Print a border"
-#~ msgstr "Tisknout rámeček"
-
-#~ msgid "Include a personal note"
-#~ msgstr "Zahrnout osobní poznámku"
-
-#~ msgid "Add a personal note"
-#~ msgstr "Přidat novou osobní poznámku"
-
-#~ msgid ""
-#~ "Personal\n"
-#~ "Display Format"
-#~ msgstr ""
-#~ "Osobní\n"
-#~ "Formát zobrazení"
-
-#~ msgid "Whether spouses can have a different format."
-#~ msgstr "Zda může být pro partnery použit rozdílný formát."
-
-#~ msgid "Not Applicable"
-#~ msgstr "Nepoužitelné"
-
-#~ msgid "%(number)s. %(name)s (%(value)s)"
-#~ msgstr "%(number)s. %(name)s (%(value)s)"
-
-#~ msgid "%s - %s."
-#~ msgstr "%s - %s."
-
-#~ msgid "%s."
-#~ msgstr "%s."
-
-#~ msgid ""
-#~ "A parent and child cannot be merged. To merge these people, you must "
-#~ "first break the relationship between them"
-#~ msgstr ""
-#~ "Rodič a potomek nemohou být sloučeni. Chcete-li tyto osoby sloučit, "
-#~ "musíte nejdříve zrušit vztah mezi nimi"
-
-#~ msgid "One page report"
-#~ msgstr "Jednostránková zpráva"
-
-#~ msgid "Whether to scale the size of the page to the size of the report."
-#~ msgstr "Zda přizpůsobit velikost této stránky velikosti zprávy."
-
-#~ msgid ""
-#~ "The python binding library, pyexiv2, to exiv2 is not installed on this "
-#~ "computer.\n"
-#~ " It can be downloaded from here: %s\n"
-#~ "\n"
-#~ "You will need to download at least %s .  I recommend that you download "
-#~ "and install, %s ."
-#~ msgstr ""
-#~ "pyexiv2, python knihovna s rozhraním pro exiv2 není  na tomto počítači "
-#~ "instalována.\n"
-#~ "Stahnot ji můžete zde : %s\n"
-#~ "Potřebujete  nejméně verzi %s . Doporučujeme stahnout a nainstalovat %s ."
-
-#~ msgid "Artist/ Author"
-#~ msgstr "Autor"
-
-#~ msgid "Keywords"
-#~ msgstr "Klíčová slova"
-
-#~ msgid "Part of the Given name that is the normally used name."
-#~ msgstr "Část křestního jména která je normálně používaným jménem."
-
-#~ msgid "Media Metadata Gramplet"
-#~ msgstr "Gramplet Metadata média"
-
-#~ msgid "Active Image"
-#~ msgstr "Aktivní obrázek"
-
-#~ msgid "A note to be used as the publisher contact."
-#~ msgstr "Poznámka použitá jako kontakt na vydavatele."
-
-#~ msgid "An image to be used as the publisher contact."
-#~ msgstr "Obrázek použitý jako kontakt na vydavatele."
-
-#~ msgid "Select Gramplet"
-#~ msgstr "Zvolte Gramplet"
-
-#~ msgid "Merge Media Ojbects"
-#~ msgstr "Sloučit objekty médií"
-
-#~ msgid "Marker type:"
-#~ msgstr "Značka:"
-
-#~ msgid "Cannot remove tab"
-#~ msgstr "Záložku nelze odstranit"
-
-#~ msgid "The filter tab cannot be removed"
-#~ msgstr "Záložka filtru nemůže být odstraněna"
-
-#~ msgid "%(quantity)media object was referenced but not found\n"
-
-#~ msgid_plural "%(quantity)media objects were referenced but not found\n"
-#~ msgstr[0] "%(quantity)d odkazovaný objekt médií nebyl nalezen\n"
-#~ msgstr[1] "%(quantity)d odkazované objekty médií nebyly nalezeny\n"
-#~ msgstr[2] "%(quantity)d odkazovaných objektů médií nebylo nalezeno\n"
-
-#~ msgid "Database path"
-#~ msgstr "Cesta k databázi"
-
-#~ msgid "%d media object was referenced but not found\n"
-
-#~ msgid_plural "%d media objects were referenced but not found\n"
-#~ msgstr[0] "%d odkazovaný objekt médií nebyl nalezen\n"
-#~ msgstr[1] "%d odkazované objekty médií nebyly nalezeny\n"
-#~ msgstr[2] "%d odkazovaných objektů médií nebylo nalezeno\n"
-
-#~ msgid "MB"
-#~ msgstr "MB"
-
-#~ msgid "The number of generations to include "
-#~ msgstr "Počet  zahrnutých generací "
-
-#~ msgid "Whether to scale the size of the page to"
-#~ msgstr "Zda přizpůsobit velikost stránky"
-
-#~ msgid "The basic style used for the"
-#~ msgstr "Základní styl používaný pro"
-
-#~ msgid "Descendant Chart for %(person)s and"
-#~ msgstr "Graf potomků osoby %(person)s a"
-
-#~ msgid "Whether to include marriage information in the"
-#~ msgstr "Zda zahrnout informace o sňatku do"
-
-#~ msgid "The basic style used for the "
-#~ msgstr "Základní styl používaný pro "
-
-#~ msgid "The bold style used for the "
-#~ msgstr "Tučný styl používaný pro "
