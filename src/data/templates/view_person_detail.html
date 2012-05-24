@@ -136,7 +136,7 @@
     {% ifequal action "add" %}
       {% make_button "Cancel" "/person/" %}
       <input type="hidden" name="action" value="create"/>
-      <input type="submit" value="Add Person"/>
+      <input type="submit" value="Create"/>
     {% else %}
       {% make_button "Back to People" "/person" %}
       {% make_button "Add Person" "/person/add" %}

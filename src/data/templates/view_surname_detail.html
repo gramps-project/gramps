@@ -21,14 +21,9 @@
 <div id="summaryarea">
 <table class="infolist" style="width:90%;"> {% comment %} 4 cols {% endcomment %}
 <tbody>
-
-{% if user.is_authenticated %}
-  {% ifequal action "edit" %}
-    {% for error in form.errors %}
-       {{error}}<br>
-    {% endfor %}
-  {% endifequal %}
-{% endif %}
+{% for error in form.errors %}
+    <p id="error">{{error}}</p>
+{% endfor %}
 <form method="post">{% csrf_token %}
 <tr>
  <td class="ColumnAttribute">{{surnameform.name_origin_type.label}}:</td>
@@ -67,23 +62,34 @@
 </div>
 
 {% if user.is_authenticated %}
-  {% ifequal action "edit" %}
-    <input type="hidden" name="action" value="save"/>
-    <input type="submit" value="Save">
+  {% if action == "edit" %}
     <input type="button" 
 	   value="Cancel" 
 	   onclick="document.location.href='/person/{{person.handle}}/name/{{order}}/surname/{{sorder}}'"/>
-  {% else %}
+    <input type="hidden" name="action" value="save"/>
+    <input type="submit" value="Save">
+  {% else %} 
+     {% if action == "add" %}
     <input type="button" 
-	   value="Edit Surname" 
-	   onclick="document.location.href='/person/{{person.handle}}/name/{{order}}/surname/{{sorder}}/edit'"/>
+	   value="Cancel" 
+	   onclick="document.location.href='/person/{{person.handle}}/name/{{order}}/surname/{{sorder}}'"/>
+    <input type="hidden" name="action" value="create"/>
+    <input type="submit" value="Save">
+    {% else %}
     <input type="button"
 	   value="Back to Person" 
 	   onclick="document.location.href='/person/{{person.handle}}'"/>
     <input type="button"
 	   value="Back to Name" 
-	   onclick="document.location.href='/person/{{person.handle}}/name/order'"/>
-  {% endifequal %}
+	   onclick="document.location.href='/person/{{person.handle}}/name/{{order}}'"/>
+    <input type="button" 
+	   value="Edit Surname" 
+	   onclick="document.location.href='/person/{{person.handle}}/name/{{order}}/surname/{{sorder}}/edit'"/>
+    <input type="button" 
+	   value="Delete Surname" 
+	   onclick="document.location.href='/person/{{person.handle}}/name/{{order}}/surname/{{sorder}}/delete'"/>
+    {% endif %}
+  {% endif %}
 {% else %}
     <input type="button"
 	   value="Back to Person" 

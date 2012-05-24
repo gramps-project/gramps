@@ -636,6 +636,7 @@ class DjangoInterface(object):
             self.add_event_ref(obj, event_ref)
     
     def add_surname_list(self, name, surname_list):
+        order = 1
         for data in surname_list:
             (surname_text, prefix, primary, origin_type,
              connector) = data
@@ -647,7 +648,9 @@ class DjangoInterface(object):
                                                        origin_type)
             surname.connector = connector
             surname.name = name
+            surname.order = order
             surname.save() 
+            order += 1
 
     def add_note_list(self, obj, note_list):
         for handle in note_list:

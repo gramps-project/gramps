@@ -19,7 +19,16 @@
 # $Id$
 #
 
-""" Main view handlers """
+"""
+Main view handlers
+Each object can be operated on with the following actions:
+   view: show the data
+   delete: delete the object (FIXME: needs undo)
+   edit: show the data in its editing widget
+     save: action in the form in edit mode; write data to db
+   add: show blank data in their editing widget
+     create: action in the form in edit mode; add new data to db
+"""
 
 import os
 import cPickle
@@ -160,30 +169,96 @@ def set_date(obj):
     obj.day1, obj.month1, obj.year1, obj.slash1 = 0, 0, 0, 0
     obj.day2, obj.month2, obj.year2, obj.slash2 = 0, 0, 0, 0
 
+
+def check_primary(surname, surnames):
+    if surname.primary:
+        # then all reast should not be:
+        for s in surnames:
+            if s.primary:
+                s.primary = False
+                s.save()
+    else:
+        # then one of them should be
+        if not any([s.primary for s in surnames]):
+            surnames[0].primary = True
+            surnames[0].save()
+
 def process_surname(request, handle, order, sorder, action="view"):
     # /sdjhgsdjhdhgsd/name/1/surname/1  (view)
     # /sdjhgsdjhdhgsd/name/1/surname/add
     # /sdjhgsdjhdhgsd/name/1/surname/2/[edit|view|add|delete]
 
-    #import pdb; pdb.set_trace()
-
     if sorder == "add":
-        sorder = 1
         action = "add"
     if request.POST.has_key("action"):
         action = request.POST.get("action")
 
     person = Person.objects.get(handle=handle)
     name = person.name_set.get(order=order)
-    surname = name.surname_set.get(order=sorder)
-    surname.prefix = make_empty(True, surname.prefix, " prefix ")
-    surnameform = SurnameForm(instance=surname)
-    surnameform.model = surname
 
-    if action == "save":
-        action = "view"
+    if action in ["view", "edit"]:
+        surname = name.surname_set.get(order=sorder)
+        if action == "edit":
+            surname.prefix = make_empty(True, surname.prefix, " prefix ")
+    elif action in ["delete"]:
+        surnames = name.surname_set.all().order_by("order")
+        if len(surnames) > 1:
+            neworder = 1
+            for surname in surnames:
+                if surname.order != neworder:
+                    surname.order = neworder
+                    surname.save()
+                    neworder += 1
+                elif surname.order == int(sorder):
+                    surname.delete()
+                else:
+                    neworder += 1
+        else:
+            request.user.message_set.create(message="You can't delete the only surname")
+        return redirect("/person/%s/name/%s" % (person.handle, name.order))
+    elif action in ["add"]:
+        surname = Surname(name=name, primary=False, 
+                          name_origin_type=NameOriginType.objects.get(val=NameOriginType._DEFAULT[0]))
+        surname.prefix = make_empty(True, surname.prefix, " prefix ")
+    elif action == "create":
+        surnames = name.surname_set.all().order_by("order")
+        sorder = 1
+        for surname in surnames:
+            if surname.order != sorder:
+                surname.order = sorder
+                surname.save()
+            sorder += 1
+        surname = Surname(name=name, primary=True, 
+                          name_origin_type=NameOriginType.objects.get(val=NameOriginType._DEFAULT[0]),
+                          order=sorder)
+        sf = SurnameForm(request.POST, instance=surname)
+        sf.model = surname
+        if sf.is_valid():
+            surname.prefix = ssf.cleaned_data["prefix"] if sf.cleaned_data["prefix"] != " prefix " else ""
+            check_primary(surname, surnames)
+            sf.save()
+            return redirect("/person/%s/name/%s/surname/%s" % 
+                            (person.handle, name.order, sorder))
+        action = "edit"
+        surname.prefix = make_empty(True, surname.prefix, " prefix ")
+    elif action == "save":
+        surname = name.surname_set.get(order=sorder)
+        sf = SurnameForm(request.POST, instance=surname)
+        sf.model = surname
+        if sf.is_valid():
+            surname.prefix = ssf.cleaned_data["prefix"] if sf.cleaned_data["prefix"] != " prefix " else ""
+            check_primary(surname, name.surname_set.all().exclude(order=surname.order))
+            sf.save()
+            return redirect("/person/%s/name/%s/surname/%s" % 
+                            (person.handle, name.order, sorder))
+        action = "edit"
+        surname.prefix = make_empty(True, surname.prefix, " prefix ")
+        # else, edit again
+    else:
+        raise
 
-    # FIXME: working on add/save/create
+    sf = SurnameForm(instance=surname)
+    sf.model = surname
 
     context = RequestContext(request)
     context["action"] = action
@@ -192,13 +267,14 @@ def process_surname(request, handle, order, sorder, action="view"):
     context["id"] = id
     context["person"] = person
     context["object"] = person
-    context["surnameform"] = surnameform
+    context["surnameform"] = sf
     context["order"] = name.order
     context["sorder"] = sorder
     view_template = 'view_surname_detail.html'
     return render_to_response(view_template, context)
 
 def process_name(request, handle, order, action="view"):
+    ## FIXME: can't add second name
     if order == "add":
         order = 0
         action = "add"
@@ -237,29 +313,37 @@ def process_name(request, handle, order, action="view"):
                     name_type=NameType.objects.get(val=NameType._DEFAULT[0]))
         nf = NameForm(instance=name)
         nf.model = name
-        surname = Surname(name=name, primary=True, order=1)
+        surname = Surname(name=name, 
+                          primary=True, 
+                          order=1,
+                          name_origin_type=NameOriginType.objects.get(val=NameOriginType._DEFAULT[0]))
         sf = SurnameForm(request.POST, instance=surname)
-        action = "edit"
-    elif action == "save":
-        # look up old data, if any:
+    elif action == "create":
+        # look up old data:
         person = Person.objects.get(handle=handle)
-        oldname = person.name_set.get(preferred=True)
-        surname = oldname.surname_set.get(primary=True)
+        name = Name(preferred=False)
+        name.person = person
+        next_order = max([name.order for name in person.name_set.all()]) + 1
+        surname = Surname(name=name, 
+                          primary=True, 
+                          order=next_order, 
+                          name_origin_type=NameOriginType.objects.get(val=NameOriginType._DEFAULT[0]))
         # combine with user data:
         pf = PersonForm(request.POST, instance=person)
         pf.model = person
-        nf = NameForm(request.POST, instance=oldname)
-        nf.model = oldname
+        nf = NameForm(request.POST, instance=name)
+        nf.model = name
         sf = SurnameForm(request.POST, instance=surname)
         if nf.is_valid() and sf.is_valid():
             # name.preferred and surname.primary get set False in the above is_valid()
             # person = pf.save()
             # Process data:
-            oldname.person = person
+            name.person = person
             name = nf.save()
             # Manually set any data:
             name.suffix = nf.cleaned_data["suffix"] if nf.cleaned_data["suffix"] != " suffix " else ""
-            name.preferred = True # FIXME: why is this False?
+            name.preferred = False # FIXME: why is this False?
+            name.order = next_order
             name.save()
             # Process data:
             surname.name = name
@@ -274,6 +358,40 @@ def process_name(request, handle, order, action="view"):
             return redirect("/person/%s/name/%s" % (person.handle, name.order))
         else:
             action = "add"
+    elif action == "save":
+        # look up old data:
+        person = Person.objects.get(handle=handle)
+        oldname = person.name_set.get(preferred=True)
+        oldsurname = oldname.surname_set.get(primary=True)
+        # combine with user data:
+        pf = PersonForm(request.POST, instance=person)
+        pf.model = person
+        nf = NameForm(request.POST, instance=oldname)
+        nf.model = oldname
+        sf = SurnameForm(request.POST, instance=oldsurname)
+        if nf.is_valid() and sf.is_valid():
+            # name.preferred and surname.primary get set False in the above is_valid()
+            # person = pf.save()
+            # Process data:
+            oldname.person = person
+            name = nf.save()
+            # Manually set any data:
+            name.suffix = nf.cleaned_data["suffix"] if nf.cleaned_data["suffix"] != " suffix " else ""
+            name.preferred = True # FIXME: why is this False?
+            name.save()
+            # Process data:
+            oldsurname.name = name
+            surname = sf.save(commit=False)
+            # Manually set any data:
+            surname.prefix = sf.cleaned_data["prefix"] if sf.cleaned_data["prefix"] != " prefix " else ""
+            surname.primary = True # FIXME: why is this False?
+            surname.save()
+            # FIXME: last_saved, last_changed, last_changed_by
+            dji.rebuild_cache(person)
+            # FIXME: update probably_alive
+            return redirect("/person/%s/name/%s" % (person.handle, name.order))
+        else:
+            action = "edit"
     context = RequestContext(request)
     context["action"] = action
     context["tview"] = _('Name')
@@ -877,6 +995,10 @@ def process_person(request, context, handle, action): # view, edit, save
                 person = Person(handle=create_id())
                 name = Name(person=person, preferred=True)
                 surname = Surname(name=name, primary=True, order=1)
+                surname = Surname(name=name, 
+                                  primary=True, 
+                                  order=1,
+                                  name_origin_type=NameOriginType.objects.get(val=NameOriginType._DEFAULT[0]))
             # combine with user data:
             pf = PersonForm(request.POST, instance=person)
             pf.model = person

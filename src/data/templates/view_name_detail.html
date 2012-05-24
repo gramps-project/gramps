@@ -117,6 +117,10 @@
        value="Back to Person"
        onclick="document.location.href='/person/{{person.handle}}'"/>
 {% if user.is_authenticated %}
+  {% ifequal action "add" %}
+    <input type="hidden" name="action" value="create"/>
+    <input type="submit" value="Create"/>
+  {% else %}
   {% ifequal action "edit" %}
     <input type="hidden" name="action" value="save"/>
     <input type="submit" value="Save"/>
@@ -130,6 +134,7 @@
     <input type="button" 
 	   value="Delete Name"
 	   onclick="document.location.href='/person/{{person.handle}}/name/{{order}}/delete'"/>
+  {% endifequal %}
   {% endifequal %}
 {% else %}
 {% endif %}
