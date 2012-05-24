@@ -66,9 +66,10 @@ class ProxyMap(object):
     A dictionary-like object for accessing "raw" proxied data. Of
     course, proxied data may have been changed by the proxy.
     """
-    def __init__(self, get_raw, get_keys):
+    def __init__(self, db, get_raw, get_keys):
         self.get_raw = get_raw
         self.get_keys = get_keys
+        self.db = db
 
     def __getitem__(self, handle):
         return self.get_raw(handle)
@@ -105,21 +106,21 @@ class ProxyDbBase(DbReadBase):
         self.media_bookmarks = db.media_bookmarks
         self.note_bookmarks = db.note_bookmarks
 
-        self.person_map = ProxyMap(self.get_raw_person_data, 
+        self.person_map = ProxyMap(self, self.get_raw_person_data, 
                                  self.get_person_handles)
-        self.family_map = ProxyMap(self.get_raw_family_data, 
+        self.family_map = ProxyMap(self, self.get_raw_family_data, 
                                  self.get_family_handles)
-        self.event_map = ProxyMap(self.get_raw_event_data, 
+        self.event_map = ProxyMap(self, self.get_raw_event_data, 
                                  self.get_event_handles)
-        self.place_map = ProxyMap(self.get_raw_place_data, 
+        self.place_map = ProxyMap(self, self.get_raw_place_data, 
                                  self.get_place_handles)
-        self.source_map = ProxyMap(self.get_raw_source_data, 
+        self.source_map = ProxyMap(self, self.get_raw_source_data, 
                                  self.get_source_handles)
-        self.repository_map = ProxyMap(self.get_raw_repository_data, 
+        self.repository_map = ProxyMap(self, self.get_raw_repository_data, 
                                  self.get_repository_handles)
-        self.media_map = ProxyMap(self.get_raw_object_data, 
+        self.media_map = ProxyMap(self, self.get_raw_object_data, 
                                  self.get_media_object_handles)
-        self.note_map = ProxyMap(self.get_raw_note_data, 
+        self.note_map = ProxyMap(self, self.get_raw_note_data, 
                                  self.get_note_handles)
 
     def is_open(self):
@@ -951,3 +952,9 @@ class ProxyDbBase(DbReadBase):
             return person
         else:
             return None
+
+    def get_dbid(self):
+        """
+        Return the database ID.
+        """
+        return self.basedb.get_dbid()
