@@ -169,19 +169,78 @@ def set_date(obj):
     obj.day1, obj.month1, obj.year1, obj.slash1 = 0, 0, 0, 0
     obj.day2, obj.month2, obj.year2, obj.slash2 = 0, 0, 0, 0
 
+def check_order(person):
+    """
+    Check for proper ordering 1..., and for a preferred name.
+    """
+    order = 1
+    preferred = False
+    for name in person.name_set.all().order_by("order"):
+        if name.preferred:
+            preferred = True
+        if name.order != order:
+            name.order = order
+            name.save()
+        order += 1
+    if not preferred:
+        name = person.name_set.get(order=1)
+        name.preferred = True
+        name.save()
 
 def check_primary(surname, surnames):
+    """
+    Check for a proper primary surname.
+    """
     if surname.primary:
-        # then all reast should not be:
+        # then all rest should not be:
         for s in surnames:
             if s.primary:
                 s.primary = False
                 s.save()
     else:
         # then one of them should be
-        if not any([s.primary for s in surnames]):
-            surnames[0].primary = True
-            surnames[0].save()
+        ok = False
+        for s in surnames:
+            if s.id != surname.id:
+                if s.primary:
+                    ok = True
+                    break
+                else:
+                    s.primary = False
+                    s.save()
+                    ok = True
+                    break
+        if not ok:
+            name.primary = True
+
+def check_preferred(name, person):
+    """
+    Check for a proper preferred name.
+    """
+    names = []
+    if person:
+        names = person.name_set.all()
+    if name.preferred:
+        # then all reast should not be:
+        for s in names:
+            if s.preferred and s.id != name.id:
+                s.preferred = False
+                s.save()
+    else:
+        # then one of them should be
+        ok = False
+        for s in names:
+            if s.id != name.id:
+                if s.preferred:
+                    ok = True
+                    break
+                else:
+                    s.preferred = False
+                    s.save()
+                    ok = True
+                    break
+        if not ok:
+            name.preferred = True
 
 def process_surname(request, handle, order, sorder, action="view"):
     # /sdjhgsdjhdhgsd/name/1/surname/1  (view)
@@ -235,8 +294,8 @@ def process_surname(request, handle, order, sorder, action="view"):
         sf.model = surname
         if sf.is_valid():
             surname.prefix = ssf.cleaned_data["prefix"] if sf.cleaned_data["prefix"] != " prefix " else ""
+            surname = sf.save(commit=False)
             check_primary(surname, surnames)
-            sf.save()
             return redirect("/person/%s/name/%s/surname/%s" % 
                             (person.handle, name.order, sorder))
         action = "edit"
@@ -247,8 +306,9 @@ def process_surname(request, handle, order, sorder, action="view"):
         sf.model = surname
         if sf.is_valid():
             surname.prefix = ssf.cleaned_data["prefix"] if sf.cleaned_data["prefix"] != " prefix " else ""
+            surname = sf.save(commit=False)
             check_primary(surname, name.surname_set.all().exclude(order=surname.order))
-            sf.save()
+            surname.save()
             return redirect("/person/%s/name/%s/surname/%s" % 
                             (person.handle, name.order, sorder))
         action = "edit"
@@ -274,40 +334,31 @@ def process_surname(request, handle, order, sorder, action="view"):
     return render_to_response(view_template, context)
 
 def process_name(request, handle, order, action="view"):
-    ## FIXME: can't add second name
     if order == "add":
-        order = 0
         action = "add"
     if request.POST.has_key("action"):
         action = request.POST.get("action")
     ### Process action:
     if action == "view":
-        pf, nf, sf, person = get_person_forms(handle)
+        pf, nf, sf, person = get_person_forms(handle, order=order)
         name = nf.model
     elif action == "edit":
-        pf, nf, sf, person = get_person_forms(handle)
+        pf, nf, sf, person = get_person_forms(handle, order=order)
         name = nf.model
     elif action == "delete":
         person = Person.objects.get(handle=handle)
-        names = person.name_set.all().order_by("order")
-        if names.count() > 1:
-            name_to_delete = names[0]
-            was_preferred = name_to_delete.preferred
-            name_to_delete.delete()
-            names = person.name_set.all().order_by("order")
-            for count in range(names[1:].count()):
-                if was_preferred:
-                    names[count].preferred = True
-                    was_preferred = False
-                names[count].order = count
-                names[count].save()
-        nf = NameForm()
-        name = Name()
-        nf.model = name
-        action = "back"
+        name = person.name_set.filter(order=order)
+        names = person.name_set.all()
+        if len(names) > 1:
+            name.delete()
+            check_order(person)
+        else:
+            request.user.message_set.create(message = "Can't delete only name.")
+        return redirect("/person/%s" % person.handle)
     elif action == "add": # add name
         person = Person.objects.get(handle=handle)
         name = Name(person=person, 
+                    preferred=False,
                     display_as=NameFormatType.objects.get(val=NameFormatType._DEFAULT[0]), 
                     sort_as=NameFormatType.objects.get(val=NameFormatType._DEFAULT[0]), 
                     name_type=NameType.objects.get(val=NameType._DEFAULT[0]))
@@ -319,35 +370,35 @@ def process_name(request, handle, order, action="view"):
                           name_origin_type=NameOriginType.objects.get(val=NameOriginType._DEFAULT[0]))
         sf = SurnameForm(request.POST, instance=surname)
     elif action == "create":
-        # look up old data:
+        # make new data
         person = Person.objects.get(handle=handle)
         name = Name(preferred=False)
-        name.person = person
         next_order = max([name.order for name in person.name_set.all()]) + 1
         surname = Surname(name=name, 
                           primary=True, 
                           order=next_order, 
                           name_origin_type=NameOriginType.objects.get(val=NameOriginType._DEFAULT[0]))
         # combine with user data:
-        pf = PersonForm(request.POST, instance=person)
-        pf.model = person
         nf = NameForm(request.POST, instance=name)
+        name.id = None # FIXME: why did this get set to an existing name? Should be new.
+        name.preferred = False
         nf.model = name
         sf = SurnameForm(request.POST, instance=surname)
+        sf.model = surname
         if nf.is_valid() and sf.is_valid():
             # name.preferred and surname.primary get set False in the above is_valid()
             # person = pf.save()
             # Process data:
+            name = nf.save(commit=False)
             name.person = person
-            name = nf.save()
             # Manually set any data:
             name.suffix = nf.cleaned_data["suffix"] if nf.cleaned_data["suffix"] != " suffix " else ""
             name.preferred = False # FIXME: why is this False?
             name.order = next_order
             name.save()
             # Process data:
-            surname.name = name
             surname = sf.save(commit=False)
+            surname.name = name
             # Manually set any data:
             surname.prefix = sf.cleaned_data["prefix"] if sf.cleaned_data["prefix"] != " prefix " else ""
             surname.primary = True # FIXME: why is this False?
@@ -361,7 +412,7 @@ def process_name(request, handle, order, action="view"):
     elif action == "save":
         # look up old data:
         person = Person.objects.get(handle=handle)
-        oldname = person.name_set.get(preferred=True)
+        oldname = person.name_set.get(order=order)
         oldsurname = oldname.surname_set.get(primary=True)
         # combine with user data:
         pf = PersonForm(request.POST, instance=person)
@@ -378,6 +429,7 @@ def process_name(request, handle, order, action="view"):
             # Manually set any data:
             name.suffix = nf.cleaned_data["suffix"] if nf.cleaned_data["suffix"] != " suffix " else ""
             name.preferred = True # FIXME: why is this False?
+            check_preferred(name, person)
             name.save()
             # Process data:
             oldsurname.name = name
@@ -403,7 +455,7 @@ def process_name(request, handle, order, action="view"):
     context["object"] = person
     context["nameform"] = nf
     context["surnameform"] = sf
-    context["order"] = name.order
+    context["order"] = order
     context["next"] = "/person/%s/name/%d" % (person.handle, name.order)
     view_template = "view_name_detail.html"
     return render_to_response(view_template, context)
@@ -1015,6 +1067,7 @@ def process_person(request, context, handle, action): # view, edit, save
                 # Manually set any data:
                 name.suffix = nf.cleaned_data["suffix"] if nf.cleaned_data["suffix"] != " suffix " else ""
                 name.preferred = True # FIXME: why is this False?
+                check_preferred(name, person)
                 name.save()
                 # Process data:
                 surname.name = name
@@ -1056,20 +1109,27 @@ def process_person(request, context, handle, action): # view, edit, save
     context["object"] = person
     context["next"] = "/person/%s" % person.handle
 
-def get_person_forms(handle, protect=False, empty=False):
+def get_person_forms(handle, protect=False, empty=False, order=None):
     if handle:
         person = Person.objects.get(handle=handle)
     else:
         person = Person()
         #person.gramps_id = "I0000" # FIXME: get next ID
     ## get a name
-    try:
-        name = person.name_set.get(preferred=True)
-    except:
-        name = Name(person=person, preferred=True,
-                    display_as=NameFormatType.objects.get(val=NameFormatType._DEFAULT[0]), 
-                    sort_as=NameFormatType.objects.get(val=NameFormatType._DEFAULT[0]), 
-                    name_type=NameType.objects.get(val=NameType._DEFAULT[0]))
+    name = None
+    if order is not None:
+        try:
+            name = person.name_set.get(order=order)
+        except:
+            pass
+    if name is None:
+        try:
+            name = person.name_set.get(preferred=True)
+        except:
+            name = Name(person=person, preferred=True,
+                        display_as=NameFormatType.objects.get(val=NameFormatType._DEFAULT[0]), 
+                        sort_as=NameFormatType.objects.get(val=NameFormatType._DEFAULT[0]), 
+                        name_type=NameType.objects.get(val=NameType._DEFAULT[0]))
     ## get a surname
     try:
         surname = name.surname_set.get(primary=True)

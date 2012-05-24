@@ -625,14 +625,12 @@ class Name(DateObject, SecondaryObject):
     person = models.ForeignKey("Person")
     _sanitized = False
 
-    def get_primary_surname(self):
-        try:
-            return self.surname_set.get(primary=True).surname
-        except:
-            return ""
-
     def __unicode__(self):
-        return "%s, %s" % (self.get_primary_surname(), 
+        try:
+            surname = self.surname_set.get(primary=True)
+        except:
+            surname = "[No primary surname]"
+        return "%s, %s" % (surname,
                            self.first_name)
     @staticmethod
     def get_dummy():

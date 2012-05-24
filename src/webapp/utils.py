@@ -290,19 +290,25 @@ def surname_table(obj, user, action, url=None, *args):
     order = args[1]
     retval = ""
     table = Table()
-    table.columns(_("Surname"),)
+    table.columns(_("Order"), _("Surname"),)
     if user.is_authenticated():
-        links = []
-        count = 1
-        name = obj.name_set.filter(order=order)[0]
-        for surname in name.surname_set.all():
-            table.row(surname.surname)
-            links.append(('URL', 
-                          # url is "/person/%s/name/%s/surname"
-                          (url % args) + ("/%s" % count)))
-            count += 1
-        table.links(links)
-    retval += table.get_html()
+        try:
+            name = obj.name_set.filter(order=order)[0]
+        except:
+            name = None
+        if name:
+            links = []
+            count = 1
+            for surname in name.surname_set.all():
+                table.row(str(count), surname.surname)
+                links.append(('URL', 
+                              # url is "/person/%s/name/%s/surname"
+                              (url % args) + ("/%s" % count)))
+                count += 1
+            table.links(links)
+            retval += table.get_html()
+        else:
+            retval += "<p id='error'>No such name order = %s</p>" % order
     if user.is_superuser and url and action == "view":
         retval += make_button(_("Add surname"), (url + "/add") % args)
     else:
@@ -631,11 +637,19 @@ def render_name(name, user):
     if isinstance(name, models.Name):
         if not user.is_authenticated():
             name.sanitize()
-        return "%s, %s" % (name.get_primary_surname(), name.first_name)
+        try:
+            surname = name.surname_set.get(primary=True)
+        except:
+            surname = "[No primary surname]"
+        return "%s, %s" % (surname, name.first_name)
     elif isinstance(name, forms.NameForm):
         if not user.is_authenticated():
             name.model.sanitize()
-        return "%s, %s" % (name.model.get_primary_surname(), 
+        try:
+            surname = name.model.surname_set.get(primary=True)
+        except:
+            surname = "[No primary surname]"
+        return "%s, %s" % (surname, 
                            name.model.first_name)
     elif isinstance(name, gen.lib.Person): # name is a gen.lib.Person
         person = name
@@ -647,7 +661,11 @@ def render_name(name, user):
             return "[No preferred name]"
         if not user.is_authenticated():
             name.sanitize()
-        return "%s, %s" % (name.get_primary_surname(), name.first_name)
+        try:
+            surname = name.surname_set.get(primary=True)
+        except:
+            surname = "[No primary surname]"
+        return "%s, %s" % (surname, name.first_name)
     elif isinstance(name, models.Person): # django person
         person = name
         try:
