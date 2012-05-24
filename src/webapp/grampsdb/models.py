@@ -384,6 +384,7 @@ class Config(models.Model):
 
 class Tag(models.Model):
     handle = models.CharField(max_length=19, unique=True)
+    gramps_id = models.TextField(blank=True, null=True)
     last_saved = models.DateTimeField('last changed', auto_now=True) 
     last_changed = models.DateTimeField('last changed', null=True,
                                         blank=True) # user edits

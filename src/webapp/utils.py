@@ -298,13 +298,11 @@ def surname_table(obj, user, action, url=None, *args):
             name = None
         if name:
             links = []
-            count = 1
-            for surname in name.surname_set.all():
-                table.row(str(count), surname.surname)
+            for surname in name.surname_set.all().order_by("order"):
+                table.row(str(surname.order), surname.surname)
                 links.append(('URL', 
                               # url is "/person/%s/name/%s/surname"
-                              (url % args) + ("/%s" % count)))
-                count += 1
+                              (url % args) + ("/%s" % surname.order)))
             table.links(links)
             retval += table.get_html()
         else:
@@ -714,6 +712,9 @@ def person_get_event(person, event_type=None):
                    models.EventRef.objects.filter(ref_object__handle=event_handle[3])] 
                   for event_handle in event_ref_list]
         return [j for i in retval for j in i]
+
+def boolean(s):
+    return s.lower() in ["true", "1", "yes", "y", "t"]
 
 register_plugins()
 

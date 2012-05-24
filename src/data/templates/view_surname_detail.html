@@ -72,7 +72,7 @@
      {% if action == "add" %}
     <input type="button" 
 	   value="Cancel" 
-	   onclick="document.location.href='/person/{{person.handle}}/name/{{order}}/surname/{{sorder}}'"/>
+	   onclick="document.location.href='/person/{{person.handle}}/name/{{order}}'"/>
     <input type="hidden" name="action" value="create"/>
     <input type="submit" value="Save">
     {% else %}

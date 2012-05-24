@@ -40,5 +40,8 @@
 </tbody>
 </table>
 
+{% if user.is_superuser %}
+   {% make_button "Add Event" "/event/add" %}
+{% endif %}
 {% endblock %}
 

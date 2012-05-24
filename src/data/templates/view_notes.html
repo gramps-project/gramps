@@ -30,5 +30,8 @@
 </tbody>
 </table>
 
+{% if user.is_superuser %}
+   {% make_button "Add Note" "/note/add" %}
+{% endif %}
 {% endblock %}
 

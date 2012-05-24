@@ -31,5 +31,8 @@
 </tbody>
 </table>
 
+{% if user.is_superuser %}
+   {% make_button "Add Tag" "/tag/add" %}
+{% endif %}
 {% endblock %}
 

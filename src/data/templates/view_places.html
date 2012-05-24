@@ -27,5 +27,8 @@
 </tbody>
 </table>
 
+{% if user.is_superuser %}
+   {% make_button "Add Places" "/place/add" %}
+{% endif %}
 {% endblock %}
 
