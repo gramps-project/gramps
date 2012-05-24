@@ -4,17 +4,17 @@
 pkgpythondir = $(datadir)/@PACKAGE@/gen/filters/rules/repository
 
 pkgpython_PYTHON = \
-	_AllRepos.py\
-	_ChangedSince.py\
-	_HasIdOf.py\
-	_HasNoteMatchingSubstringOf.py\
-	_HasNoteRegexp.py\
-	_HasReferenceCountOf.py\
-	_HasRepo.py\
-	_MatchesFilter.py\
-        _MatchesNameSubstringOf.py\
-	_RegExpIdOf.py\
-	_RepoPrivate.py\
+	_allrepos.py\
+	_changedsince.py\
+	_hasidof.py\
+	_hasnotematchingsubstringof.py\
+	_hasnoteregexp.py\
+	_hasreferencecountof.py\
+	_hasrepo.py\
+	_matchesfilter.py\
+        _matchesnamesubstringof.py\
+	_regexpidof.py\
+	_repoprivate.py\
 	__init__.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen/filters/rules/repository

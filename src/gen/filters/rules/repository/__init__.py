@@ -24,17 +24,17 @@
 Package providing filter rules for GRAMPS.
 """
 
-from _AllRepos import AllRepos
-from _HasIdOf import HasIdOf
-from _RegExpIdOf import RegExpIdOf
-from _HasNoteRegexp import HasNoteRegexp
-from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
-from _HasReferenceCountOf import HasReferenceCountOf
-from _RepoPrivate import RepoPrivate
-from _MatchesFilter import MatchesFilter
-from _HasRepo import HasRepo
-from _ChangedSince import ChangedSince
-from _MatchesNameSubstringOf import MatchesNameSubstringOf
+from _allrepos import AllRepos
+from _hasidof import HasIdOf
+from _regexpidof import RegExpIdOf
+from _hasnoteregexp import HasNoteRegexp
+from _hasnotematchingsubstringof import HasNoteMatchingSubstringOf
+from _hasreferencecountof import HasReferenceCountOf
+from _repoprivate import RepoPrivate
+from _matchesfilter import MatchesFilter
+from _hasrepo import HasRepo
+from _changedsince import ChangedSince
+from _matchesnamesubstringof import MatchesNameSubstringOf
 
 editor_rule_list = [
     AllRepos,

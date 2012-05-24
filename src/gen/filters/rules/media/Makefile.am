@@ -4,18 +4,18 @@
 pkgpythondir = $(datadir)/@PACKAGE@/gen/filters/rules/media
 
 pkgpython_PYTHON = \
-	_AllMedia.py\
-	_ChangedSince.py\
-	_HasIdOf.py\
-	_HasMedia.py\
-	_HasNoteMatchingSubstringOf.py\
-	_HasNoteRegexp.py\
-	_HasReferenceCountOf.py\
-	_HasTag.py\
-	_MatchesFilter.py\
-	_MediaPrivate.py\
-	_HasAttribute.py\
-	_RegExpIdOf.py\
+	_allmedia.py\
+	_changedsince.py\
+	_hasidof.py\
+	_hasmedia.py\
+	_hasnotematchingsubstringof.py\
+	_hasnoteregexp.py\
+	_hasreferencecountof.py\
+	_hastag.py\
+	_matchesfilter.py\
+	_mediaprivate.py\
+	_hasattribute.py\
+	_regexpidof.py\
 	__init__.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen/filters/rules/media

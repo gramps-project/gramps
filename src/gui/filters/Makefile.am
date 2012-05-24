@@ -6,11 +6,11 @@ SUBDIRS = sidebar
 pkgpythondir = $(datadir)/@PACKAGE@/gui/filters
 
 pkgpython_PYTHON = \
-	_FilterComboBox.py \
-	_FilterMenu.py \
-	_FilterStore.py \
+	_filtercombobox.py \
+	_filtermenu.py \
+	_filterstore.py \
 	__init__.py \
-	_SearchBar.py
+	_searchbar.py
 
 pkgpyexecdir = @pkgpyexecdir@/gui/filters
 

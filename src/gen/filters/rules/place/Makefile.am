@@ -4,21 +4,21 @@
 pkgpythondir = $(datadir)/@PACKAGE@/gen/filters/rules/place
 
 pkgpython_PYTHON = \
-	_AllPlaces.py\
-	_ChangedSince.py\
-	_HasIdOf.py\
-	_HasNoLatOrLon.py\
-	_InLatLonNeighborhood.py\
-	_HasGallery.py \
-	_HasNoteMatchingSubstringOf.py\
-	_HasNoteRegexp.py\
-	_HasPlace.py\
-	_HasNote.py \
-	_HasReferenceCountOf.py\
-	_MatchesFilter.py\
-	_MatchesEventFilter.py\
-	_PlacePrivate.py\
-	_RegExpIdOf.py\
+	_allplaces.py\
+	_changedsince.py\
+	_hasidof.py\
+	_hasnolatorlon.py\
+	_inlatlonneighborhood.py\
+	_hasgallery.py \
+	_hasnotematchingsubstringof.py\
+	_hasnoteregexp.py\
+	_hasplace.py\
+	_hasnote.py \
+	_hasreferencecountof.py\
+	_matchesfilter.py\
+	_matcheseventfilter.py\
+	_placeprivate.py\
+	_regexpidof.py\
 	__init__.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen/filters/rules/place

@@ -26,27 +26,27 @@
 Package providing filter rules for GRAMPS.
 """
 
-from gen.filters.rules._HasEventBase import HasEventBase as HasEvent
+from gen.filters.rules._haseventbase import HasEventBase as HasEvent
 
-from _HasType import HasType
-from _AllEvents import AllEvents
-from _HasGallery import HasGallery
-from _HasIdOf import HasIdOf
-from _RegExpIdOf import RegExpIdOf
-from _HasCitation import HasCitation
-from _HasNote import HasNote
-from _HasNoteRegexp import HasNoteRegexp
-from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
-from _HasReferenceCountOf import HasReferenceCountOf
-from _HasSourceCount import HasSourceCount
-from _EventPrivate import EventPrivate
-from _MatchesFilter import MatchesFilter
-from _MatchesPersonFilter import MatchesPersonFilter
-from _MatchesSourceConfidence import MatchesSourceConfidence
-from _MatchesSourceFilter import MatchesSourceFilter
-from _HasAttribute import HasAttribute
-from _HasData import HasData
-from _ChangedSince import ChangedSince
+from _hastype import HasType
+from _allevents import AllEvents
+from _hasgallery import HasGallery
+from _hasidof import HasIdOf
+from _regexpidof import RegExpIdOf
+from _hascitation import HasCitation
+from _hasnote import HasNote
+from _hasnoteregexp import HasNoteRegexp
+from _hasnotematchingsubstringof import HasNoteMatchingSubstringOf
+from _hasreferencecountof import HasReferenceCountOf
+from _hassourcecount import HasSourceCount
+from _eventprivate import EventPrivate
+from _matchesfilter import MatchesFilter
+from _matchespersonfilter import MatchesPersonFilter
+from _matchessourceconfidence import MatchesSourceConfidence
+from _matchessourcefilter import MatchesSourceFilter
+from _hasattribute import HasAttribute
+from _hasdata import HasData
+from _changedsince import ChangedSince
 
 editor_rule_list = [
     AllEvents,

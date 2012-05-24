@@ -4,17 +4,17 @@
 pkgpythondir = $(datadir)/@PACKAGE@/gui/filters/sidebar
 
 pkgpython_PYTHON = \
-	_EventSidebarFilter.py \
-	_FamilySidebarFilter.py \
+	_eventsidebarfilter.py \
+	_familysidebarfilter.py \
 	__init__.py \
-	_SidebarFilter.py \
-	_PersonSidebarFilter.py\
-	_SourceSidebarFilter.py\
-	_CitationSidebarFilter.py\
-	_PlaceSidebarFilter.py\
-	_MediaSidebarFilter.py\
-	_RepoSidebarFilter.py\
-	_NoteSidebarFilter.py
+	_sidebarfilter.py \
+	_personsidebarfilter.py\
+	_sourcesidebarfilter.py\
+	_citationsidebarfilter.py\
+	_placesidebarfilter.py\
+	_mediasidebarfilter.py\
+	_reposidebarfilter.py\
+	_notesidebarfilter.py
 
 pkgpyexecdir = @pkgpyexecdir@/gui/filters/sidebar
 

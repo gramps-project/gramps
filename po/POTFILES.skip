@@ -61,42 +61,42 @@ src/gen/db/write.py
 src/gen/ggettext.py
 
 # gen.filters package
-src/gen/filters/_FilterList.py
-src/gen/filters/_GenericFilter.py
+src/gen/filters/_filterlist.py
+src/gen/filters/_genericfilter.py
 src/gen/filters/__init__.py
-src/gen/filters/_ParamFilter.py
-src/gen/filters/_SearchFilter.py
+src/gen/filters/_paramfilter.py
+src/gen/filters/_searchfilter.py
 
 # gen.filters.rules package
-src/gen/filters/rules/_ChangedSinceBase.py
-src/gen/filters/rules/_HasAttributeBase.py
-src/gen/filters/rules/_HasCitationBase.py
-src/gen/filters/rules/_HasEventBase.py
-src/gen/filters/rules/_HasGalleryBase.py
-src/gen/filters/rules/_HasLDSBase.py
-src/gen/filters/rules/_HasNoteBase.py
-src/gen/filters/rules/_HasNoteRegexBase.py
-src/gen/filters/rules/_HasNoteSubstrBase.py
-src/gen/filters/rules/_HasReferenceCountBase.py
-src/gen/filters/rules/_HasSourceBase.py
-src/gen/filters/rules/_HasSourceCountBase.py
-src/gen/filters/rules/_HasTagBase.py
-src/gen/filters/rules/_HasTextMatchingRegexpOf.py
+src/gen/filters/rules/_changedsincebase.py
+src/gen/filters/rules/_hasattributebase.py
+src/gen/filters/rules/_hascitationbase.py
+src/gen/filters/rules/_haseventbase.py
+src/gen/filters/rules/_hasgallerybase.py
+src/gen/filters/rules/_hasldsbase.py
+src/gen/filters/rules/_hasnotebase.py
+src/gen/filters/rules/_hasnoteregexbase.py
+src/gen/filters/rules/_hasnotesubstrbase.py
+src/gen/filters/rules/_hasreferencecountbase.py
+src/gen/filters/rules/_hassourcebase.py
+src/gen/filters/rules/_hassourcecountbase.py
+src/gen/filters/rules/_hastagbase.py
+src/gen/filters/rules/_hastextmatchingregexpof.py
 src/gen/filters/rules/__init__.py
-src/gen/filters/rules/_IsPublic.py
-src/gen/filters/rules/_MatchesEventFilterBase.py
-src/gen/filters/rules/_MatchesFilterBase.py
-src/gen/filters/rules/_MatchesSourceConfidenceBase.py
-src/gen/filters/rules/_MatchesSourceFilterBase.py
-src/gen/filters/rules/_RegExpIdBase.py
+src/gen/filters/rules/_ispublic.py
+src/gen/filters/rules/_matcheseventfilterbase.py
+src/gen/filters/rules/_matchesfilterbase.py
+src/gen/filters/rules/_matchessourceconfidencebase.py
+src/gen/filters/rules/_matchessourcefilterbase.py
+src/gen/filters/rules/_regexpidbase.py
 
 # gen.filters.rules.person package
 src/gen/filters/rules/person/__init__.py
-src/gen/filters/rules/person/_HasTextMatchingRegexpOf.py
+src/gen/filters/rules/person/_hastextmatchingregexpof.py
 
 # gen.filters.rules.family package
 src/gen/filters/rules/family/__init__.py
-src/gen/filters/rules/family/_MemberBase.py
+src/gen/filters/rules/family/_memberbase.py
 
 # gen.filters.rules.event package
 src/gen/filters/rules/event/__init__.py
@@ -260,8 +260,8 @@ src/gui/editors/displaytabs/surnamemodel.py
 src/gui/editors/displaytabs/webmodel.py
 
 # gui.filters package
-src/gui/filters/_FilterComboBox.py
-src/gui/filters/_FilterMenu.py
+src/gui/filters/_filtercombobox.py
+src/gui/filters/_filtermenu.py
 src/gui/filters/__init__.py
 
 # gui/selectors - the GUI selectors package

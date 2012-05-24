@@ -24,7 +24,7 @@
 Package providing filtering framework for GRAMPS.
 """
 
-from _FilterComboBox import FilterComboBox
-from _FilterMenu import build_filter_model
-from _FilterStore import FilterStore
-from _SearchBar import SearchBar
+from _filtercombobox import FilterComboBox
+from _filtermenu import build_filter_model
+from _filterstore import FilterStore
+from _searchbar import SearchBar

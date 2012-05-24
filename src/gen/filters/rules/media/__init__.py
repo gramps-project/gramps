@@ -24,18 +24,18 @@
 Package providing filter rules for GRAMPS.
 """
 
-from _AllMedia import AllMedia
-from _HasIdOf import HasIdOf
-from _RegExpIdOf import RegExpIdOf
-from _HasNoteRegexp import HasNoteRegexp
-from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
-from _HasReferenceCountOf import HasReferenceCountOf
-from _MediaPrivate import MediaPrivate
-from _MatchesFilter import MatchesFilter
-from _HasMedia import HasMedia
-from _HasAttribute import HasAttribute
-from _ChangedSince import ChangedSince
-from _HasTag import HasTag
+from _allmedia import AllMedia
+from _hasidof import HasIdOf
+from _regexpidof import RegExpIdOf
+from _hasnoteregexp import HasNoteRegexp
+from _hasnotematchingsubstringof import HasNoteMatchingSubstringOf
+from _hasreferencecountof import HasReferenceCountOf
+from _mediaprivate import MediaPrivate
+from _matchesfilter import MatchesFilter
+from _hasmedia import HasMedia
+from _hasattribute import HasAttribute
+from _changedsince import ChangedSince
+from _hastag import HasTag
 
 editor_rule_list = [
     AllMedia,

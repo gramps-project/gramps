@@ -5,21 +5,21 @@ pkgpythondir = $(datadir)/@PACKAGE@/gen/filters/rules/citation
 
 pkgpython_PYTHON = \
 	__init__.py \
-	_AllCitations.py \
-	_ChangedSince.py \
-	_CitationPrivate.py \
-	_HasGallery.py \
-	_HasIdOf.py \
-	_HasNote.py \
-	_HasNoteMatchingSubstringOf.py \
-	_HasNoteRegexp.py \
-	_HasReferenceCountOf.py \
-	_HasSource.py \
-	_MatchesFilter.py \
-	_MatchesPageSubstringOf.py \
-	_MatchesRepositoryFilter.py \
-	_MatchesSourceFilter.py \
-	_RegExpIdOf.py
+	_allcitations.py \
+	_changedsince.py \
+	_citationprivate.py \
+	_hasgallery.py \
+	_hasidof.py \
+	_hasnote.py \
+	_hasnotematchingsubstringof.py \
+	_hasnoteregexp.py \
+	_hasreferencecountof.py \
+	_hassource.py \
+	_matchesfilter.py \
+	_matchespagesubstringof.py \
+	_matchesrepositoryfilter.py \
+	_matchessourcefilter.py \
+	_regexpidof.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen/filters/rules/citation
 

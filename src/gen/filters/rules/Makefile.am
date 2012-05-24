@@ -6,32 +6,32 @@ SUBDIRS = person family event place source media repository note citation
 pkgpythondir = $(datadir)/@PACKAGE@/gen/filters/rules
 
 pkgpython_PYTHON = \
-	_ChangedSinceBase.py\
-	_Everything.py\
-	_HasEventBase.py\
-	_HasAttributeBase.py\
-	_HasGalleryBase.py \
-	_HasGrampsId.py\
-	_HasLDSBase.py \
-	_HasNoteBase.py \
-	_HasNoteRegexBase.py\
-	_HasNoteSubstrBase.py\
-	_HasReferenceCountBase.py \
-	_HasSourceCountBase.py \
-	_HasSourceBase.py \
-	_HasTagBase.py \
-	_HasTextMatchingRegexpOf.py\
-	_HasTextMatchingSubstringOf.py\
+	_changedsincebase.py\
+	_everything.py\
+	_haseventbase.py\
+	_hasattributebase.py\
+	_hasgallerybase.py \
+	_hasgrampsid.py\
+	_hasldsbase.py \
+	_hasnotebase.py \
+	_hasnoteregexbase.py\
+	_hasnotesubstrbase.py\
+	_hasreferencecountbase.py \
+	_hassourcecountbase.py \
+	_hassourcebase.py \
+	_hastagbase.py \
+	_hastextmatchingregexpof.py\
+	_hastextmatchingsubstringof.py\
 	__init__.py\
-	_IsPrivate.py\
-        _IsPublic.py\
-	_RegExpIdBase.py\
-	_Rule.py\
-	_MatchesFilterBase.py\
-    _MatchesEventFilterBase.py \
-    _MatchesSourceConfidenceBase.py \
-    _MatchesSourceFilterBase.py \
-    _HasCitationBase.py
+	_isprivate.py\
+        _ispublic.py\
+	_regexpidbase.py\
+	_rule.py\
+	_matchesfilterbase.py\
+    _matcheseventfilterbase.py \
+    _matchessourceconfidencebase.py \
+    _matchessourcefilterbase.py \
+    _hascitationbase.py
 
 
 pkgpyexecdir = @pkgpyexecdir@/gen/filters/rules

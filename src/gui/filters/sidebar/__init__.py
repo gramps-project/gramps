@@ -25,13 +25,13 @@
 Package providing sidebar filters for GRAMPS.
 """
 
-from _SidebarFilter import SidebarFilter
-from _PersonSidebarFilter import PersonSidebarFilter
-from _FamilySidebarFilter import FamilySidebarFilter
-from _EventSidebarFilter import EventSidebarFilter
-from _SourceSidebarFilter import SourceSidebarFilter
-from _CitationSidebarFilter import CitationSidebarFilter
-from _PlaceSidebarFilter import PlaceSidebarFilter
-from _MediaSidebarFilter import MediaSidebarFilter
-from _RepoSidebarFilter import RepoSidebarFilter
-from _NoteSidebarFilter import NoteSidebarFilter
+from _sidebarfilter import SidebarFilter
+from _personsidebarfilter import PersonSidebarFilter
+from _familysidebarfilter import FamilySidebarFilter
+from _eventsidebarfilter import EventSidebarFilter
+from _sourcesidebarfilter import SourceSidebarFilter
+from _citationsidebarfilter import CitationSidebarFilter
+from _placesidebarfilter import PlaceSidebarFilter
+from _mediasidebarfilter import MediaSidebarFilter
+from _reposidebarfilter import RepoSidebarFilter
+from _notesidebarfilter import NoteSidebarFilter

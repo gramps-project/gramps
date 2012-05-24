@@ -26,23 +26,23 @@
 Package providing filter rules for GRAMPS.
 """
 
-from gen.filters.rules._HasSourceBase import HasSourceBase as HasSource
+from gen.filters.rules._hassourcebase import HasSourceBase as HasSource
 
-from _AllSources import AllSources
-from _HasGallery import HasGallery
-from _HasIdOf import HasIdOf
-from _RegExpIdOf import RegExpIdOf
-from _HasNote import HasNote
-from _HasNoteRegexp import HasNoteRegexp
-from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
-from _HasReferenceCountOf import HasReferenceCountOf
-from _SourcePrivate import SourcePrivate
-from _MatchesFilter import MatchesFilter
-from _ChangedSince import ChangedSince
-from _HasRepository import HasRepository
-from _MatchesTitleSubstringOf import MatchesTitleSubstringOf
-from _HasRepositoryCallNumberRef import HasRepositoryCallNumberRef
-from _MatchesRepositoryFilter import MatchesRepositoryFilter
+from _allsources import AllSources
+from _hasgallery import HasGallery
+from _hasidof import HasIdOf
+from _regexpidof import RegExpIdOf
+from _hasnote import HasNote
+from _hasnoteregexp import HasNoteRegexp
+from _hasnotematchingsubstringof import HasNoteMatchingSubstringOf
+from _hasreferencecountof import HasReferenceCountOf
+from _sourceprivate import SourcePrivate
+from _matchesfilter import MatchesFilter
+from _changedsince import ChangedSince
+from _hasrepository import HasRepository
+from _matchestitlesubstringof import MatchesTitleSubstringOf
+from _hasrepositorycallnumberref import HasRepositoryCallNumberRef
+from _matchesrepositoryfilter import MatchesRepositoryFilter
 
 editor_rule_list = [
     AllSources,

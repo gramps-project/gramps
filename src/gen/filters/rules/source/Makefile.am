@@ -4,22 +4,22 @@
 pkgpythondir = $(datadir)/@PACKAGE@/gen/filters/rules/source
 
 pkgpython_PYTHON = \
-	_ChangedSince.py\
-	_MatchesFilter.py\
-	_SourcePrivate.py\
-	_RegExpIdOf.py\
-	_HasGallery.py \
-	_HasNoteMatchingSubstringOf.py\
-	_HasReferenceCountOf.py\
-	_AllSources.py\
-	_HasIdOf.py\
-	_HasNote.py \
-	_HasNoteRegexp.py\
-	_HasRepository.py\
+	_changedsince.py\
+	_matchesfilter.py\
+	_sourceprivate.py\
+	_regexpidof.py\
+	_hasgallery.py \
+	_hasnotematchingsubstringof.py\
+	_hasreferencecountof.py\
+	_allsources.py\
+	_hasidof.py\
+	_hasnote.py \
+	_hasnoteregexp.py\
+	_hasrepository.py\
 	__init__.py\
-        _MatchesTitleSubstringOf.py\
-        _HasRepositoryCallNumberRef.py\
-        _MatchesRepositoryFilter.py
+        _matchestitlesubstringof.py\
+        _hasrepositorycallnumberref.py\
+        _matchesrepositoryfilter.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen/filters/rules/source
 

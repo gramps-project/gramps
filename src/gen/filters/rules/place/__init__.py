@@ -25,21 +25,21 @@
 Package providing filter rules for GRAMPS.
 """
 
-from _AllPlaces import AllPlaces
-from _HasGallery import HasGallery
-from _HasIdOf import HasIdOf
-from _RegExpIdOf import RegExpIdOf
-from _HasNote import HasNote
-from _HasNoteRegexp import HasNoteRegexp
-from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
-from _HasReferenceCountOf import HasReferenceCountOf
-from _PlacePrivate import PlacePrivate
-from _MatchesFilter import MatchesFilter
-from _HasPlace import HasPlace
-from _HasNoLatOrLon import HasNoLatOrLon
-from _InLatLonNeighborhood import InLatLonNeighborhood
-from _MatchesEventFilter import MatchesEventFilter
-from _ChangedSince import ChangedSince
+from _allplaces import AllPlaces
+from _hasgallery import HasGallery
+from _hasidof import HasIdOf
+from _regexpidof import RegExpIdOf
+from _hasnote import HasNote
+from _hasnoteregexp import HasNoteRegexp
+from _hasnotematchingsubstringof import HasNoteMatchingSubstringOf
+from _hasreferencecountof import HasReferenceCountOf
+from _placeprivate import PlacePrivate
+from _matchesfilter import MatchesFilter
+from _hasplace import HasPlace
+from _hasnolatorlon import HasNoLatOrLon
+from _inlatlonneighborhood import InLatLonNeighborhood
+from _matcheseventfilter import MatchesEventFilter
+from _changedsince import ChangedSince
 
 editor_rule_list = [
     AllPlaces,

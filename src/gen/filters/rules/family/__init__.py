@@ -26,39 +26,39 @@
 Package providing filter rules for GRAMPS.
 """
 
-from _SearchFatherName import SearchFatherName
-from _SearchMotherName import SearchMotherName
-from _SearchChildName import SearchChildName
-from _RegExpFatherName import RegExpFatherName
-from _RegExpMotherName import RegExpMotherName
-from _RegExpChildName import RegExpChildName
+from _searchfathername import SearchFatherName
+from _searchmothername import SearchMotherName
+from _searchchildname import SearchChildName
+from _regexpfathername import RegExpFatherName
+from _regexpmothername import RegExpMotherName
+from _regexpchildname import RegExpChildName
 
-from _HasRelType import HasRelType
-from _AllFamilies import AllFamilies
-from _HasGallery import HasGallery
-from _HasIdOf import HasIdOf
-from _HasLDS import HasLDS
-from _RegExpIdOf import RegExpIdOf
-from _HasNote import HasNote
-from _HasNoteRegexp import HasNoteRegexp
-from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
-from _HasSourceCount import HasSourceCount
-from _HasReferenceCountOf import HasReferenceCountOf
-from _HasCitation import HasCitation
-from _FamilyPrivate import FamilyPrivate
-from _HasAttribute import HasAttribute
-from _HasEvent import HasEvent
-from _IsBookmarked import IsBookmarked
-from _MatchesFilter import MatchesFilter
-from _MatchesSourceConfidence import MatchesSourceConfidence
-from _FatherHasNameOf import FatherHasNameOf
-from _FatherHasIdOf import FatherHasIdOf
-from _MotherHasNameOf import MotherHasNameOf
-from _MotherHasIdOf import MotherHasIdOf
-from _ChildHasNameOf import ChildHasNameOf
-from _ChildHasIdOf import ChildHasIdOf
-from _ChangedSince import ChangedSince
-from _HasTag import HasTag
+from _hasreltype import HasRelType
+from _allfamilies import AllFamilies
+from _hasgallery import HasGallery
+from _hasidof import HasIdOf
+from _haslds import HasLDS
+from _regexpidof import RegExpIdOf
+from _hasnote import HasNote
+from _hasnoteregexp import HasNoteRegexp
+from _hasnotematchingsubstringof import HasNoteMatchingSubstringOf
+from _hassourcecount import HasSourceCount
+from _hasreferencecountof import HasReferenceCountOf
+from _hascitation import HasCitation
+from _familyprivate import FamilyPrivate
+from _hasattribute import HasAttribute
+from _hasevent import HasEvent
+from _isbookmarked import IsBookmarked
+from _matchesfilter import MatchesFilter
+from _matchessourceconfidence import MatchesSourceConfidence
+from _fatherhasnameof import FatherHasNameOf
+from _fatherhasidof import FatherHasIdOf
+from _motherhasnameof import MotherHasNameOf
+from _motherhasidof import MotherHasIdOf
+from _childhasnameof import ChildHasNameOf
+from _childhasidof import ChildHasIdOf
+from _changedsince import ChangedSince
+from _hastag import HasTag
 
 editor_rule_list = [
     AllFamilies,

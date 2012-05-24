@@ -4,25 +4,25 @@
 pkgpythondir = $(datadir)/@PACKAGE@/gen/filters/rules/event
 
 pkgpython_PYTHON = \
-	_ChangedSince.py\
-	_MatchesFilter.py\
-	_EventPrivate.py\
-	_HasNoteRegexp.py\
-	_RegExpIdOf.py\
-	_AllEvents.py\
-	_HasCitation.py \
-	_HasData.py\
-	_HasGallery.py \
-	_HasIdOf.py\
-	_HasNote.py \
-    _HasSourceCount.py \
-	_HasType.py\
-	_HasNoteMatchingSubstringOf.py\
-	_HasReferenceCountOf.py\
-	_MatchesPersonFilter.py\
-        _MatchesSourceConfidence.py\
-	_MatchesSourceFilter.py\
-	_HasAttribute.py\
+	_changedsince.py\
+	_matchesfilter.py\
+	_eventprivate.py\
+	_hasnoteregexp.py\
+	_regexpidof.py\
+	_allevents.py\
+	_hascitation.py \
+	_hasdata.py\
+	_hasgallery.py \
+	_hasidof.py\
+	_hasnote.py \
+    _hassourcecount.py \
+	_hastype.py\
+	_hasnotematchingsubstringof.py\
+	_hasreferencecountof.py\
+	_matchespersonfilter.py\
+        _matchessourceconfidence.py\
+	_matchessourcefilter.py\
+	_hasattribute.py\
 	__init__.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen/filters/rules/event

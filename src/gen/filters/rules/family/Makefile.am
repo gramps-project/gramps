@@ -4,40 +4,40 @@
 pkgpythondir = $(datadir)/@PACKAGE@/gen/filters/rules/family
 
 pkgpython_PYTHON = \
-	_AllFamilies.py\
-	_ChangedSince.py\
-	_FamilyPrivate.py\
-	_HasEvent.py\
-	_HasAttribute.py\
-	_HasCitation.py \
-	_HasGallery.py \
-	_HasIdOf.py\
-	_HasLDS.py \
-	_HasNote.py \
-	_HasNoteMatchingSubstringOf.py\
-	_HasNoteRegexp.py\
-	_HasReferenceCountOf.py\
-	_HasRelType.py\
-	_HasSourceCount.py \
-	_HasTag.py \
+	_allfamilies.py\
+	_changedsince.py\
+	_familyprivate.py\
+	_hasevent.py\
+	_hasattribute.py\
+	_hascitation.py \
+	_hasgallery.py \
+	_hasidof.py\
+	_haslds.py \
+	_hasnote.py \
+	_hasnotematchingsubstringof.py\
+	_hasnoteregexp.py\
+	_hasreferencecountof.py\
+	_hasreltype.py\
+	_hassourcecount.py \
+	_hastag.py \
 	__init__.py\
-	_IsBookmarked.py\
-	_RegExpIdOf.py\
-	_MatchesFilter.py\
-        _MatchesSourceConfidence.py\
-	_FatherHasNameOf.py\
-	_FatherHasIdOf.py\
-	_MotherHasNameOf.py\
-	_MotherHasIdOf.py\
-	_ChildHasNameOf.py\
-	_ChildHasIdOf.py\
-	_SearchFatherName.py\
-	_SearchMotherName.py\
-	_SearchChildName.py\
-	_RegExpFatherName.py\
-	_RegExpMotherName.py\
-	_RegExpChildName.py\
-	_MemberBase.py
+	_isbookmarked.py\
+	_regexpidof.py\
+	_matchesfilter.py\
+        _matchessourceconfidence.py\
+	_fatherhasnameof.py\
+	_fatherhasidof.py\
+	_motherhasnameof.py\
+	_motherhasidof.py\
+	_childhasnameof.py\
+	_childhasidof.py\
+	_searchfathername.py\
+	_searchmothername.py\
+	_searchchildname.py\
+	_regexpfathername.py\
+	_regexpmothername.py\
+	_regexpchildname.py\
+	_memberbase.py
 
 
 pkgpyexecdir = @pkgpyexecdir@/gen/filters/rules/family

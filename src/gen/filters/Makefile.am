@@ -6,12 +6,12 @@ SUBDIRS = rules
 pkgpythondir = $(datadir)/@PACKAGE@/gen/filters
 
 pkgpython_PYTHON = \
-	_FilterList.py \
-	_FilterParser.py \
-	_GenericFilter.py \
-	_ParamFilter.py \
+	_filterlist.py \
+	_filterparser.py \
+	_genericfilter.py \
+	_paramfilter.py \
 	__init__.py \
-	_SearchFilter.py
+	_searchfilter.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen/filters
 

@@ -25,17 +25,17 @@
 Package providing filter rules for GRAMPS.
 """
 
-from _AllNotes import AllNotes
-from _HasIdOf import HasIdOf
-from _RegExpIdOf import RegExpIdOf
-from _MatchesRegexpOf import MatchesRegexpOf
-from _MatchesSubstringOf import MatchesSubstringOf
-from _HasReferenceCountOf import HasReferenceCountOf
-from _NotePrivate import NotePrivate
-from _MatchesFilter import MatchesFilter
-from _HasNote import HasNote
-from _ChangedSince import ChangedSince
-from _HasTag import HasTag
+from _allnotes import AllNotes
+from _hasidof import HasIdOf
+from _regexpidof import RegExpIdOf
+from _matchesregexpof import MatchesRegexpOf
+from _matchessubstringof import MatchesSubstringOf
+from _hasreferencecountof import HasReferenceCountOf
+from _noteprivate import NotePrivate
+from _matchesfilter import MatchesFilter
+from _hasnote import HasNote
+from _changedsince import ChangedSince
+from _hastag import HasTag
 
 editor_rule_list = [
     AllNotes,

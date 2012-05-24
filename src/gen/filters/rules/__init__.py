@@ -69,19 +69,19 @@ _Everything                  Match every object in the database
 
 # Need to expose this to be available for filter plugins:
 # the plugins should say: from gen.filters.rules import Rule
-from gen.filters.rules._Rule import Rule
+from gen.filters.rules._rule import Rule
 
-from gen.filters.rules._Everything import Everything
-from gen.filters.rules._HasGrampsId import HasGrampsId
-from gen.filters.rules._IsPrivate import IsPrivate
-from gen.filters.rules._IsPublic import IsPublic
-from gen.filters.rules._HasTextMatchingSubstringOf import HasTextMatchingSubstringOf
-from gen.filters.rules._HasTextMatchingRegexpOf import HasTextMatchingRegexpOf
-from gen.filters.rules._MatchesFilterBase import MatchesFilterBase
-from gen.filters.rules._MatchesEventFilterBase import MatchesEventFilterBase
-from gen.filters.rules._MatchesSourceConfidenceBase import MatchesSourceConfidenceBase
-from gen.filters.rules._MatchesSourceFilterBase import MatchesSourceFilterBase
-from gen.filters.rules._ChangedSinceBase import ChangedSinceBase
+from gen.filters.rules._everything import Everything
+from gen.filters.rules._hasgrampsid import HasGrampsId
+from gen.filters.rules._isprivate import IsPrivate
+from gen.filters.rules._ispublic import IsPublic
+from gen.filters.rules._hastextmatchingsubstringof import HasTextMatchingSubstringOf
+from gen.filters.rules._hastextmatchingregexpof import HasTextMatchingRegexpOf
+from gen.filters.rules._matchesfilterbase import MatchesFilterBase
+from gen.filters.rules._matcheseventfilterbase import MatchesEventFilterBase
+from gen.filters.rules._matchessourceconfidencebase import MatchesSourceConfidenceBase
+from gen.filters.rules._matchessourcefilterbase import MatchesSourceFilterBase
+from gen.filters.rules._changedsincebase import ChangedSinceBase
 
 from gen.filters.rules import (person, family, event, source, citation, place, 
                            media, repository, note)
