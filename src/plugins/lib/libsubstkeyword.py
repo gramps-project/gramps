@@ -97,7 +97,7 @@ class GenericFormat(object):
             return self._default_format(item)
         self.string_in.step()
         
-        main = VarStringMain(TXT.remove)
+        main = VarString()
         separator = SeparatorParse(self.string_in)
         #code given in args
         #function given in args
@@ -116,19 +116,22 @@ class GenericFormat(object):
                 tmp = function[where]()
                 if to_upper:
                     tmp = tmp.upper()
-                main.add_variable(tmp)
+                if tmp == "" or tmp is None:
+                    main.add_remove()
+                else:
+                    main.add_variable(tmp)
             elif separator.is_a():
-                separator.parse_format(main)
+                main.add_separator(separator.parse_format())
             else:
-                self.string_in.parse_format(main)
+                main.add_text(self.string_in.parse_format())
         
         if self.string_in.this == ")":
             self.string_in.step()
         
-        if main.the_state == TXT.remove:
-            return ""
+        if main.state == TXT.remove:
+            return None
         else:
-            return main.get_string()[1]
+            return main.get_final()[1]
 
 #------------------------------------------------------------------------
 # Name Format strings
@@ -152,7 +155,7 @@ class NameFormat(GenericFormat):
     def parse_format(self, name):
         """ Parse the name """
         if self.is_blank(name):
-            return ""
+            return
         
         def common():
             """ return the common name of the person """
@@ -203,14 +206,14 @@ class DateFormat(GenericFormat):
         """ Parse the name """
     
         if self.is_blank(date):
-            return ""
+            return
         
         def year():
             """  The year part only """
             year = unicode(date.get_year())
             count = self.__count_chars("y", 4)
             if year == "0":
-                return ""
+                return
             
             if count == 1:  #found 'y'
                 if len(year) == 1:
@@ -238,7 +241,7 @@ class DateFormat(GenericFormat):
             month = unicode(date.get_month())
             count = self.__count_chars(char_found, 4)
             if month == "0":
-                return ""
+                return
                 
             if count == 1:
                 return month
@@ -259,7 +262,7 @@ class DateFormat(GenericFormat):
             day = unicode(date.get_day())
             count = self.__count_chars("d", 2)
             if day == "0":  #0 means not defined!
-                return ""
+                return
             
             if count == 1: #found 'd'
                 return day
@@ -305,7 +308,7 @@ class PlaceFormat(GenericFormat):
         """ Parse the place """
 
         if self.is_blank(place):
-            return ""
+            return
         
         code = "elcuspnitxy"
         upper = code.upper()
@@ -340,26 +343,26 @@ class EventFormat(GenericFormat):
         
     def _default_format(self, event):
         if event is None:
-            return ""
+            return
         else:
             return event.get_description()
     
     def __empty_format(self):
         """ clear out a sub format string """
         self.string_in.remove_start_end("(", ")")
-        return ""
+        return
     
     def __empty_attrib(self):
         """ clear out an attribute name """
         self.string_in.remove_start_end("[", "]")
-        return ""
+        return
 
     def parse_format(self, event):
         """ Parse the event format string.
         let the date or place classes handle any sub-format strings """
 
         if self.is_blank(event):
-            return ""
+            return
         
         def format_date():
             """ start formatting a date in this event """
@@ -382,7 +385,7 @@ class EventFormat(GenericFormat):
                 return attrib_parse.get_attribute(event.get_attribute_list(),
                                                   name)
             else:
-                return ""
+                return
             
         code = "ndDia"
         upper = ""
@@ -406,7 +409,7 @@ class EventFormat(GenericFormat):
         
 #------------------------------------------------------------------------
 #
-# ConsumableString - Input string class
+# ConsumableString - The Input string class
 #
 #------------------------------------------------------------------------
 class ConsumableString(object):
@@ -462,7 +465,7 @@ class ConsumableString(object):
         return rtrn 
     
     def text_to_next(self, char):
-        """ remove a format strings from here """
+        """ return/remove a format strings from here """
         new_str = ""
         while self.this is not None and self.this != char:
             new_str += self.__get_a_char_of_text()
@@ -473,309 +476,112 @@ class ConsumableString(object):
     def is_a(self):
         return True
     
-    def parse_format(self, _out):
+    def parse_format(self):
         rtrn = self.__get_a_char_of_text()
 
         if rtrn:
-            _out.add_text(rtrn)
+            return rtrn
+        return ''
             
 
 #------------------------------------------------------------------------
 #
-# Output string classes
+# VarString class  - The Output string class
 #
 #------------------------------------------------------------------------
-#------------------------------------------------------------------------
-# VarStringBase classes
-#------------------------------------------------------------------------
-class VarStringBase(object):
+class VarString(object):
     """
+    The current state of the entire string (integer from TextTypes)
     A list to hold tuple object (integer from TextTypes, string)
     
     This will contain the string that will be displayed.  or string out.
     it is used for groups and format strings.
     """
-    def __init__(self, init_state):
-        self.the_string = []
-        self.the_state = init_state
+    def __init__(self, start_state = TXT.remove):
+        self.state = start_state  #overall state of the string.
+        self._text = []  #list of tuples (TXT.?, string)
+    
+    def __update_state(self, new_status):
+        if new_status > self.state:
+            self.state = new_status
     
     def add_text(self, text):
-        pass
-    
-    def add_display(self, text):
-        pass
-    
-    def add_remove(self):
-        pass
-    
-    def add_separator(self, text):
-        pass
-    
-    def get_string(self):
-        """ Get the final displayed string """
-        if self.the_string == []:
-            return self.the_state, ""
-        return self.the_state, self.the_string[0][1]
-        
-    def _last_type(self):
-        """ get the type of the last item added to the list """
-        if self.the_string != []:
-            return self.the_string[-1][0]
-        else:
-            return None
-
-#------------------------------------------------------------------------
-# VarStringMain classes
-#------------------------------------------------------------------------
-class VarStringMain(VarStringBase):
-    """
-    The main level string out (Not within a group or format string).
-    
-    This group differs from the others as it starts with
-     TXT.text as the state.  (format strings will use TXT.remove)
-     and everything is __combine[d] properly
-    """
-    def __init__(self, start_state = TXT.text):
-        VarStringBase.__init__(self, start_state)
-        self.level = self
-    
-    def merge(self, acquisition):
-        """ Merge the content of acquisition into this place. """
-        if acquisition.the_state != TXT.display:
-            return
-        
-        if acquisition.the_state > self.the_state:
-            self.the_state = acquisition.the_state
-            
-        for (adding, txt_to_add) in acquisition.the_string:
-            if adding == TXT.text:
-                self.add_text(txt_to_add)
-            elif adding == TXT.display:
-                self.add_display(txt_to_add)
-            elif adding == TXT.remove:
-                self.add_remove()
-            elif adding == TXT.separator:
-                self.add_separator(txt_to_add)
-    
-    def __add(self, text):
-        """  Add a new piece of text to the existing (at end). or add new """
-        if self.the_string == []:
-            self.the_string.append((self.the_state, text))
-        else:
-            self.the_string[-1] = \
-                (TXT.text, self.the_string[-1][1] + text)
-        
-    def __combine(self, text):
-        """ combine the last two elements on the list and add text to it """
-        new_str = self.the_string[-1][1]
-        self.the_string.pop()
-        self.__add(new_str + text)
-        
-    def add_text(self, text):
-        """ a new piece of text to be added.
-        remove a (non displaying) variable at the end if there is one.
-        or accept a separator (at the end) if there is one.
-        """
-        to_the_left = self._last_type()
-        if to_the_left == TXT.remove:
-            self.the_string.pop()
-            to_the_left = self._last_type()
-        
-        if to_the_left is None:
-            self.the_string.append((TXT.text, text))
-        elif to_the_left == TXT.text:
-            self.the_string[-1] = \
-                (TXT.text, self.the_string[-1][1] + text)
-        elif to_the_left == TXT.separator:
-            self.__combine(text)
-
-        
-    def add_separator(self, text):
-        """ a new separator to be added.
-        remove a (non displaying) variable to the end it there is one
-        and drop me
-        remove an existing separator at the end (if there)
-        or add me to the end.
-        """
-        to_the_left = self._last_type()
-        if to_the_left == TXT.remove:
-            self.the_string.pop()
-            return
-        
-        if self.the_string == []:
-            return
-        elif to_the_left == TXT.text:
-            self.the_string.append((TXT.separator, text))
-        elif to_the_left == TXT.separator:
-            self.the_string.pop()
-            self.the_string.append((TXT.separator, text))
-        
-    def add_display(self, text):
-        """ add text to the end and update the state """
-        self.the_state = TXT.display
-        self.add_text(text)
-        
-    def add_remove(self):
-        """ work with an empty variable.  either:
-            bump up the state if needed
-            remove an empty variable on the end if one
-            remove a separator at the end if one and myself and stop
-            and add a empty variable to the end.
-        """
-        if self.the_state != TXT.display:
-            self.the_state = TXT.remove
-        
-        to_the_left = self._last_type()
-        if to_the_left == TXT.separator:
-            self.the_string.pop()
-            return
-        elif to_the_left == TXT.remove:
-            self.the_string.pop()
-        
-        self.the_string.append((TXT.remove, ""))
+        self._text.append((TXT.text, text))
     
     def add_variable(self, text):
-        """ A helper function to either call:
-            add_remove if the text string is blank
-            otherwise add_display
+        self.state = TXT.display
+        self._text.append((TXT.text, text))
+    
+    def add_remove(self):
+        self.__update_state(TXT.remove)
+        self._text.append((TXT.remove, ""))
+    
+    def add_separator(self, text):
+        self._text.append((TXT.separator, text))
+    
+    def get_final(self):
+        #if self.state == TXT.remove:
+        #    return (TXT.remove, "")
+        
+        curr_string = ""
+        index = 0
+
+        print "-[ " + str(self.state) + ", " + str(self._text) + " ]"
+
+        while index < len(self._text):
+        
+            if self._text[index][0] == TXT.text:
+                curr_string += self._text[index][1]
+                index = index + 1
+                continue  #while self._text:
+            if index +1 == len(self._text):
+                if self._text[index][0] == TXT.separator and curr_string != '':
+                    curr_string += self._text[index][1]
+                index = index + 1
+                break  #while self._text:
+            
+            type_0_1  = (self._text[index][0], self._text[index+1][0])
+            
+            #if   type_0_1 == (TXT.remove, TXT.remove):
+            #    pass
+            if type_0_1 == (TXT.remove, TXT.separator):
+                index = index + 1
+            #elif type_0_1 == (TXT.remove, TXT.text):
+            #    pass
+            elif type_0_1 == (TXT.separator, TXT.remove):
+                index = index + 1
+            #elif type_0_1 == (TXT.separator, TXT.separator):
+            #    pass
+            elif type_0_1 == (TXT.separator, TXT.text):
+                curr_string += self._text[index][1]
+            #else:
+            #    print "#oops  Should never get here."
+            index = index + 1
+        
+        #return what we have
+        return (self.state, curr_string)
+        print "===" + str(self.state) + " '" + str(curr_string) + "'"
+
+    def extend(self, acquisition):
+        """ 
+            acquisition is a VarString object
+            Merge the content of acquisition into this place. 
         """
-        if text == "":
-            self.add_remove()
-        else:
-            self.add_display(text)
-    
-#------------------------------------------------------------------------
-# VarStringSecond classes
-#------------------------------------------------------------------------
-class VarStringSecond(VarStringBase):
-    """The non-main level string out (within a group or format string).
-    
-    This group differs from main as it starts with
-     TXT.remove as the state
-     and everything is simply added to the end of a list.
-     states are still updated properly
-     it will be _combine(d) in the main level appropriately.
-    """
-    def __init__(self, start_state = TXT.remove):
-        VarStringBase.__init__(self, start_state)
-    
-    def merge(self, acquisition):
-        """ Merge the content of acquisition into this place. """
-        if acquisition.the_state != TXT.display:
+        self.__update_state(acquisition.state)
+        
+        if acquisition.state != TXT.display:
             #The sub {} was TXT.remove.  We don't want to simply ignore it.
             self.add_remove() #add a remove que here to note it.
             return
         
-        if acquisition.the_state > self.the_state:
-            self.the_state = acquisition.the_state
-            
-        self.the_string.extend(acquisition.the_string)
-    
-    def add_text(self, text):
-        to_the_left = self._last_type()
-        if to_the_left is None:
-            self.the_string.append((TXT.text, text))
-        elif to_the_left == TXT.text:
-            self.the_string[-1] = \
-                (TXT.text, self.the_string[-1][1] + text)
-        else:
-            self.the_string.append((TXT.text, text))
-        
-    def add_separator(self, text):
-        self.the_string.append((TXT.separator, text))
-        
-    def add_display(self, text):
-        self.the_state = TXT.display
-        self.add_text(text)
-        
-    def add_remove(self):
-        """ add a 'remove' tag in the list """
-        if self.the_state != TXT.display:
-            self.the_state = TXT.remove
-        self.the_string.append((TXT.remove, ""))
-    
-    def add_variable(self, text):
-        if text == "":
-            self.add_remove()
-        else:
-            self.add_display(text)
-    
+        self._text.extend(acquisition._text)
+
 
 #------------------------------------------------------------------------
 #
 # Parsers
 #
 #------------------------------------------------------------------------
-#------------------------------------------------------------------------
-# level_parse
-#------------------------------------------------------------------------
-class LevelParse(object):
-    """The main string out class.  This class does two things
-    
-    provides text handling of {} and adds/removes/combines levels as needed.
-    provides outside methods add_... to the last (innermost) level.
-    """
-
-    def __init__(self, consumer_in):
-        self._in = consumer_in
-        if consumer_in.this == "{":
-            self.__levels = [VarStringMain(TXT.remove)]
-        else:
-            self.__levels = [VarStringMain(TXT.display)]
-        self.level = self.__levels[-1]
-    
-    def is_a(self):
-        return self._in.this == "{" or self._in.this == "}"
-    
-    def __can_combine(self):
-        return len(self.__levels) > 1
-    
-    def __combine_level(self):
-        """ If the last (inner most) level is not to be removed,
-        combine it to the left"""
-        if not self.__can_combine():
-            return
-        self.__levels[-2].merge(self.__levels[-1])
-        self.__levels.pop()
-        self.level = self.__levels[-1]
-    
-    def combine_all(self):
-        while len(self.__levels) > 1:
-            self.__combine_level()
-            
-    def add_text(self, text):
-        self.level.add_text(text)
-        
-    def add_separator(self, text):
-        self.level.add_separator(text)
-        
-    def add_display(self, text):
-        self.level.add_display(text)
-        
-    def add_remove(self):
-        self.level.add_remove()
-    
-    def add_variable(self, text):
-        self.level.add_variable(text)
-
-    def get_string(self):
-        return self.level.get_string()
-    
-    def parse_format(self, _out):  #_out is not used
-        """ Parse the text to see what to do
-        Only handles {}
-        """
-        if self._in.this == "{":
-            self.__levels.append(VarStringSecond())
-            self.level = self.__levels[-1]
-        
-        elif self._in.this == "}":
-            if self.__can_combine():
-                self.__combine_level()
-            else:
-                self.level.add_text("}")
-        self._in.step()
-        
 #------------------------------------------------------------------------
 # SeparatorParse
 #------------------------------------------------------------------------
@@ -787,11 +593,12 @@ class SeparatorParse(object):
     def is_a(self):
         return self._in.this == "<"
 
-    def parse_format(self, _out):
-        """ get the text and pass it to string_out.separator """
+    def parse_format(self):
+        if not self.is_a():
+            return
+        """ get the text and return it """
         self._in.step()
-        _out.add_separator(
-            self._in.text_to_next(">"))
+        return self._in.text_to_next(">")
         
 #------------------------------------------------------------------------
 # AttributeParse
@@ -805,28 +612,27 @@ class AttributeParse(object):
     def get_name(self):
         """ Gets a name inside a [] block """
         if self._in.this != "[":
-            return ""
+            return
         self._in.step()
         return self._in.text_to_next("]")
         
     def get_attribute(self, attrib_list, attrib_name):
         """ Get an attribute by name """
         if attrib_name == "":
-            return ""
+            return 
         for attr in attrib_list:
             if str(attr.get_type()) == attrib_name:
                 return str(attr.get_value())
-        return ""
+        return
     
     def is_a(self):
         """ check """
         return self._in.this == "a"
     
-    def parse_format(self, _out, attrib_list):
+    def parse_format(self, attrib_list):
         """ Get the attribute and add it to the string out """
         name = self.get_name()
-        _out.add_variable(
-            self.get_attribute(attrib_list, name))
+        return self.get_attribute(attrib_list, name)
         
 #------------------------------------------------------------------------
 # VariableParse
@@ -866,7 +672,7 @@ class VariableParse(object):
                 return event
         return None
     
-    def empty_item(self, item, _out):
+    def empty_item(self, item):
         """ return false if there is a valid item(date or place).
         Otherwise
             add a TXT.remove marker in the output string
@@ -875,11 +681,10 @@ class VariableParse(object):
         if item is not None:
             return False
         
-        _out.add_remove()
         self._in.remove_start_end("(", ")")
         return True
     
-    def empty_attribute(self, person, _out):
+    def empty_attribute(self, person):
         """ return false if there is a valid person.
         Otherwise
             add a TXT.remove marker in the output string
@@ -888,29 +693,28 @@ class VariableParse(object):
         if person:
             return False
         
-        _out.add_remove()
         self._in.remove_start_end("[", "]")
         return True
     
-    def __parse_date(self, event, _out):
+    def __parse_date(self, event):
         """ sub to process a date
         Given an event, get the date object, process the format,
-        pass the result to string_out"""
+        return the result """
         date_f = DateFormat(self._in)
         date = date_f.get_date(event)
-        if self.empty_item(date, _out):
+        if self.empty_item(date):
             return
-        _out.add_variable( date_f.parse_format(date) )
+        return date_f.parse_format(date)
     
-    def __parse_place(self, event, _out):
+    def __parse_place(self, event):
         """ sub to process a date
         Given an event, get the place object, process the format,
-        pass the result to string_out"""
+        return the result """
         place_f = PlaceFormat(self._in)
         place = place_f.get_place(self.database, event)
-        if self.empty_item(place, _out):
+        if self.empty_item(place):
             return
-        _out.add_variable( place_f.parse_format(place) )
+        return place_f.parse_format(place)
     
     def __parse_name(self, person):
         name_format = NameFormat(self._in)
@@ -921,7 +725,7 @@ class VariableParse(object):
         if first_class_object is not None:
             return first_class_object.get_gramps_id()
         else:
-            return ""
+            return
     
     def __parse_event(self, person, attrib_parse):
         event = self.get_event_by_name(person, attrib_parse.get_name())
@@ -930,9 +734,9 @@ class VariableParse(object):
             return event_f.parse_format(event)
         else:
             event_f.parse_empty()
-            return ""
+            return
     
-    def parse_format(self, _out):
+    def parse_format(self):
         """Parse the $ variables. """
         if not self.is_a():
             return
@@ -943,113 +747,99 @@ class VariableParse(object):
         
         if next_char == "n":
             #Person's name
-            _out.add_variable(
-                self.__parse_name(self.friend.person))
+            return self.__parse_name(self.friend.person)
         elif next_char == "s":
             #Souses name
-            _out.add_variable(
-                self.__parse_name(self.friend.spouse))
+            return self.__parse_name(self.friend.spouse)
         
         elif next_char == "i":
             #Person's Id
-            _out.add_variable(
-                self.__parse_id(self.friend.person))
+            return self.__parse_id(self.friend.person)
         elif next_char == "j":
             #Marriage Id
-            _out.add_variable(
-                self.__parse_id(self.friend.family))
+            return self.__parse_id(self.friend.family)
 
         elif next_char == "b":
             #Person's Birth date
-            if self.empty_item(self.friend.person, _out):
+            if self.empty_item(self.friend.person):
                 return
-            self.__parse_date(
-                get_birth_or_fallback(self.friend.database, self.friend.person),
-                _out)
+            return self.__parse_date(
+                get_birth_or_fallback(self.friend.database, self.friend.person))
         elif next_char == "d":
             #Person's Death date
-            if self.empty_item(self.friend.person, _out):
+            if self.empty_item(self.friend.person):
                 return
-            self.__parse_date(
-                get_death_or_fallback(self.friend.database, self.friend.person),
-                _out)
+            return self.__parse_date(
+                get_death_or_fallback(self.friend.database, self.friend.person))
         elif next_char == "m":
             #Marriage date
-            if self.empty_item(self.friend.family, _out):
+            if self.empty_item(self.friend.family):
                 return
-            self.__parse_date(
+            return self.__parse_date(
                 self.get_event_by_type(self.friend.family,
-                                       gen.lib.EventType.MARRIAGE),
-                _out)
+                                       gen.lib.EventType.MARRIAGE))
         elif next_char == "v":
             #Divorce date
-            if self.empty_item(self.friend.family, _out):
+            if self.empty_item(self.friend.family):
                 return
-            self.__parse_date(
+            return self.__parse_date(
                 self.get_event_by_type(self.friend.family,
-                                       gen.lib.EventType.DIVORCE),
-                _out)
+                                       gen.lib.EventType.DIVORCE))
         elif next_char == "T":
             #Todays date
             date_f = DateFormat(self._in)
             from gen.lib.date import Today
             date = Today()
-            if self.empty_item(date, _out):
+            if self.empty_item(date):
                 return
-            _out.add_variable( date_f.parse_format(date) )
+            return date_f.parse_format(date)
 
         elif next_char == "B":
             #Person's birth place
-            if self.empty_item(self.friend.person, _out):
+            if self.empty_item(self.friend.person):
                 return
-            self.__parse_place(
-                get_birth_or_fallback(self.friend.database, self.friend.person),
-                _out)
+            return self.__parse_place(
+                get_birth_or_fallback(self.friend.database, self.friend.person))
         elif next_char == "D":
             #Person's death place
-            if self.empty_item(self.friend.person, _out):
+            if self.empty_item(self.friend.person):
                 return
-            self.__parse_place(
-                get_death_or_fallback(self.friend.database, self.friend.person),
-                _out)
+            return self.__parse_place(
+                get_death_or_fallback(self.friend.database, self.friend.person))
         elif next_char == "M":
             #Marriage place
-            if self.empty_item(self.friend.family, _out):
+            if self.empty_item(self.friend.family):
                 return
-            self.__parse_place(
+            return self.__parse_place(
                 self.get_event_by_type(self.friend.family,
-                                       gen.lib.EventType.MARRIAGE),
-                _out)
+                                       gen.lib.EventType.MARRIAGE))
         elif next_char == "V":
             #Divorce place
-            if self.empty_item(self.friend.family, _out):
+            if self.empty_item(self.friend.family):
                 return
-            self.__parse_place(
+            return self.__parse_place(
                 self.get_event_by_type(self.friend.family,
-                                       gen.lib.EventType.DIVORCE),
-                _out)
+                                       gen.lib.EventType.DIVORCE))
 
         elif next_char == "a":
             #Person's Atribute
-            if self.empty_attribute(self.friend.person, _out):
+            if self.empty_attribute(self.friend.person):
                 return
-            attrib_parse.parse_format(_out,
+            return attrib_parse.parse_format(
                                       self.friend.person.get_attribute_list())
         elif next_char == "u":
             #Marriage Atribute
-            if self.empty_attribute(self.friend.family, _out):
+            if self.empty_attribute(self.friend.family):
                 return
-            attrib_parse.parse_format(_out,
+            return attrib_parse.parse_format(
                                       self.friend.family.get_attribute_list())
         
         elif next_char == "e":
             #person event
-            _out.add_variable(
-                self.__parse_event(self.friend.person, attrib_parse))
+            return self.__parse_event(self.friend.person, attrib_parse)
         elif next_char == "t":
             #person event
-            _out.add_variable(
-                self.__parse_event(self.friend.family, attrib_parse))
+            return self.__parse_event(self.friend.family, attrib_parse)
         
 
 #------------------------------------------------------------------------
@@ -1088,7 +878,7 @@ class SubstKeywords(object):
             if family_handle in fam_hand_list:
                 self.family = database.get_family_from_handle(family_handle)
             else: 
-                #Error.  [0] may give wrong marriage info.
+                #Error.  fam_hand_list[0] below may give wrong marriage info.
                 #only here because of OLD specifications.  Specs read:
                 # * $S/%S 
                 #   Displays the name of the person's preferred ...
@@ -1107,36 +897,98 @@ class SubstKeywords(object):
                 if father_handle:
                     self.spouse = database.get_person_from_handle(father_handle)
     
-    def __main_level(self):
+    def __parse_line(self):
         """parse each line of text and return the new displayable line
         
         There are four things we can find here
             A {} group which will make/end as needed.
             A <> separator
-            A !  variable - Handled separately
+            A $  variable - Handled separately
             or text
         """
-        #This is the upper most level of text
-        #main = var_string_out()
-        main = LevelParse(self.line)
-        check = [main,
-                 SeparatorParse(self.line),
-                 VariableParse(self, self.database, self.line),
-                 self.line]
+        stack_var = []
+        curr_var = VarString(TXT.text)
+        
+        #First we are going take care of all variables/groups
+        #break down all {} (groups) and $ (vars) into either 
+        #(TXT.text, resulting_string) or (TXT.remove, '')
+        variable = VariableParse(self, self.database, self.line)  # $
         
         while self.line.this:
-            for tmp in check:
-                if tmp.is_a():
-                    tmp.parse_format(main)
-                    break
-           
-        main.combine_all()
+            if self.line.this == "{":
+                #Start of a group
+                #push what we have onto the stack
+                stack_var.append(curr_var)
+                #Setup
+                curr_var = VarString()
+                #step
+                self.line.step()
+                
+            elif self.line.this == "}" and len(stack_var) > 0: #End of a group
+                #add curr to what is on the (top) stack and pop into current
+                #or pop the stack into current and add TXT.remove
+                direction = curr_var.state
+                if direction == TXT.display:
+                    #add curr onto the top slot of the stack
+                    stack_var[-1].extend(curr_var)
+                
+                #pop what we have on the stack
+                curr_var = stack_var.pop()
+                
+                if direction == TXT.remove:
+                    #add remove que
+                    curr_var.add_remove()
+                #step
+                self.line.step()
+            
+            elif variable.is_a():  # $  (variables)
+                rtrn = variable.parse_format()
+                if rtrn is None:
+                    curr_var.add_remove()
+                else:
+                    curr_var.add_variable(rtrn)
+            
+            elif self.line.this == "<":  # separator
+                self.line.step()
+                curr_var.add_separator(self.line.text_to_next(">"))
+            
+            else:  #regular text
+                curr_var.add_text(self.line.parse_format())
+            
+        #the stack is for groups/subgroup and may contain items 
+        #if the user does not close his/her {}
+        #squash down the stack
+        while stack_var:
+            direction = curr_var.state
+            if direction == TXT.display:
+                #add curr onto the top slot of the stack
+                stack_var[-1].extend(curr_var)
+            
+            #pop what we have on the stack
+            curr_var = stack_var.pop()
+            
+            if direction == TXT.remove:
+                #add remove que
+                curr_var.add_remove()
+            #step
+            self.line.step()
+        
+        #return what we have
+        return curr_var.get_final()
 
-        state, line = main.get_string()
-        if state is TXT.remove:
+
+    def __main_level(self):
+        #Check only if the user wants to not display the line if TXT.remove
+        remove_line_tag = False
+        if self.line.this == "-":
+            remove_line_tag = True
+            self.line.step()
+        
+        state, line = self.__parse_line()
+
+        if state is TXT.remove and remove_line_tag:
             return None
-        else:
-            return line
+        return line
     
     def replace_and_clean(self, lines):
         """
