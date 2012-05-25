@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-05-05 23:34+0200\n"
-"PO-Revision-Date: 2012-05-06 12:25+0200\n"
+"PO-Revision-Date: 2012-05-25 21:13+0200\n"
 "Last-Translator: Peter Landgren\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -1943,7 +1943,7 @@ msgstr "FEL: Okänt format på exportfilen %s"
 
 #: ../src/cli/arghandler.py:402
 msgid "List of known family trees in your database path\n"
-msgstr "Lita på kända släktträd i din databas sökväg\n"
+msgstr "Lista på kända släktträd i din databas sökväg\n"
 
 #: ../src/cli/arghandler.py:405
 #, python-format
@@ -10533,7 +10533,7 @@ msgstr "Min Kalender"
 #: ../src/plugins/drawreport/Calendar.py:477
 #: ../src/plugins/textreport/BirthdayReport.py:438
 msgid "First line of text at bottom of calendar"
-msgstr "Första textraden nedtill på kalendern"
+msgstr "Första textraden nertill på kalendern"
 
 #: ../src/plugins/drawreport/Calendar.py:480
 #: ../src/plugins/textreport/BirthdayReport.py:441
@@ -10548,7 +10548,7 @@ msgstr "Framställd av Gramps"
 #: ../src/plugins/drawreport/Calendar.py:481
 #: ../src/plugins/textreport/BirthdayReport.py:442
 msgid "Second line of text at bottom of calendar"
-msgstr "Andra textraden nedtill på kalendern"
+msgstr "Andra textraden nertill på kalendern"
 
 #: ../src/plugins/drawreport/Calendar.py:484
 #: ../src/plugins/textreport/BirthdayReport.py:445
@@ -10558,7 +10558,7 @@ msgstr "Textområde 3"
 #: ../src/plugins/drawreport/Calendar.py:485
 #: ../src/plugins/textreport/BirthdayReport.py:446
 msgid "Third line of text at bottom of calendar"
-msgstr "Tredje textraden nedtill på kalendern"
+msgstr "Tredje textraden nertill på kalendern"
 
 #: ../src/plugins/drawreport/Calendar.py:539
 msgid "Title text and background color"
@@ -11572,7 +11572,7 @@ msgid ""
 "will compute the ages for everyone in your Family Tree on that date. You can "
 "then sort by the age column, and double-click the row to view or edit."
 msgstr ""
-"Skriv in ett datum (som ÅÅÅ-MM-DD) i fältet nedan och klicka sedan på Kör. "
+"Skriv in ett datum (som ÅÅÅÅ-MM-DD) i fältet nedan och klicka sedan på Kör. "
 "Detta kommer att beräkna ålder för all i ditt släktträd på detta datum. Du "
 "kan sedan sortera på ålderskolumnen och dubbelklicka på raden för att titta "
 "eller redigera."
@@ -17469,7 +17469,7 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s on %(full_date)s "
 "in %(place)s%(endnotes)s."
 msgstr ""
-"Denna person hade ett ogift förhållande med %(spouse)s på %(full_date)s i %"
+"Denna person hade ett ogift förhållande med %(spouse)s %(full_date)s i %"
 "(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1095
@@ -17496,7 +17496,7 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)"
 "s%(endnotes)s."
 msgstr ""
-"Han hade ett ogift förhållande med %(spouse)s på %(full_date)s i %(place)s%"
+"Han hade ett ogift förhållande med %(spouse)s %(full_date)s i %(place)s%"
 "(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1100
@@ -17523,7 +17523,7 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s on %(full_date)s in %"
 "(place)s%(endnotes)s."
 msgstr ""
-"Hon hade ett ogift förhållande med %(spouse)s på %(full_date)s i %(place)s%"
+"Hon hade ett ogift förhållande med %(spouse)s %(full_date)s i %(place)s%"
 "(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1105
@@ -17574,7 +17574,7 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s on %"
 "(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Denna person hade ett ogift förhållande med %(spouse)s på %(full_date)s i %"
+"Denna person hade ett ogift förhållande med %(spouse)s %(full_date)s i %"
 "(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1118
@@ -17601,7 +17601,7 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s on %(full_date)s in %"
 "(place)s%(endnotes)s."
 msgstr ""
-"Han hade också ett ogift förhållande med %(spouse)s på %(full_date)s i %"
+"Han hade också ett ogift förhållande med %(spouse)s %(full_date)s i %"
 "(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1123
@@ -17628,7 +17628,7 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s on %(full_date)s in %"
 "(place)s%(endnotes)s."
 msgstr ""
-"Hon hade också ett ogift förhållande med %(spouse)s på %(full_date)s i %"
+"Hon hade också ett ogift förhållande med %(spouse)s %(full_date)s i %"
 "(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1128
@@ -17655,7 +17655,7 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s on %(full_date)s%"
 "(endnotes)s."
 msgstr ""
-"Denna person hade ett ogift förhållande med %(spouse)s på %(full_date)s%"
+"Denna person hade ett ogift förhållande med %(spouse)s %(full_date)s%"
 "(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1141
@@ -17681,7 +17681,7 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)"
 "s."
 msgstr ""
-"Han hade ett ogift förhållande med %(spouse)s på %(full_date)s%(endnotes)s."
+"Han hade ett ogift förhållande med %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1146
 #, python-format
@@ -17705,7 +17705,7 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)"
 "s."
 msgstr ""
-"Hon hade ett ogift förhållande med %(spouse)s på %(full_date)s%(endnotes)s."
+"Hon hade ett ogift förhållande med %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1151
 #, python-format
@@ -17745,7 +17745,7 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s on %"
 "(full_date)s%(endnotes)s."
 msgstr ""
-"Denna person hade ett ogift förhållande med %(spouse)s på %(full_date)s%"
+"Denna person hade ett ogift förhållande med %(spouse)s %(full_date)s%"
 "(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1164
@@ -17772,7 +17772,7 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s on %(full_date)s%"
 "(endnotes)s."
 msgstr ""
-"Han hade också ett ogift förhållande med %(spouse)s på %(full_date)s%"
+"Han hade också ett ogift förhållande med %(spouse)s %(full_date)s%"
 "(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1169
@@ -17799,7 +17799,7 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s on %(full_date)s%"
 "(endnotes)s."
 msgstr ""
-"Hon hade också ett ogift förhållande med %(spouse)s på %(full_date)s%"
+"Hon hade också ett ogift förhållande med %(spouse)s %(full_date)s%"
 "(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1174
@@ -17932,7 +17932,7 @@ msgid ""
 "This person had a relationship with %(spouse)s on %(full_date)s in %(place)s%"
 "(endnotes)s."
 msgstr ""
-"Denna person hade ett ogift förhållande med %(spouse)s på %(full_date)s i %"
+"Denna person hade ett ogift förhållande med %(spouse)s %(full_date)s i %"
 "(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1221
@@ -17959,7 +17959,7 @@ msgid ""
 "He had a relationship with %(spouse)s on %(full_date)s in %(place)s%"
 "(endnotes)s."
 msgstr ""
-"Han hade ett förhållande med %(spouse)s på %(full_date)s i %(place)s%"
+"Han hade ett förhållande med %(spouse)s %(full_date)s i %(place)s%"
 "(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1226
@@ -17986,7 +17986,7 @@ msgid ""
 "She had a relationship with %(spouse)s on %(full_date)s in %(place)s%"
 "(endnotes)s."
 msgstr ""
-"Hon hade ett förhållande med %(spouse)s på %(full_date)s i %(place)s%"
+"Hon hade ett förhållande med %(spouse)s %(full_date)s i %(place)s%"
 "(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1231
@@ -18029,7 +18029,7 @@ msgid ""
 "This person also had a relationship with %(spouse)s on %(full_date)s in %"
 "(place)s%(endnotes)s."
 msgstr ""
-"Denna person hade ett förhållande med %(spouse)s på %(full_date)s i %(place)s"
+"Denna person hade ett förhållande med %(spouse)s %(full_date)s i %(place)s"
 "%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1244
@@ -18056,7 +18056,7 @@ msgid ""
 "He also had a relationship with %(spouse)s on %(full_date)s in %(place)s%"
 "(endnotes)s."
 msgstr ""
-"Han hade också ett förhållande med %(spouse)s på %(full_date)s i %(place)s%"
+"Han hade också ett förhållande med %(spouse)s %(full_date)s i %(place)s%"
 "(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1249
@@ -18083,7 +18083,7 @@ msgid ""
 "She also had a relationship with %(spouse)s on %(full_date)s in %(place)s%"
 "(endnotes)s."
 msgstr ""
-"Hon hade också ett förhållande med %(spouse)s på %(full_date)s i %(place)s%"
+"Hon hade också ett förhållande med %(spouse)s %(full_date)s i %(place)s%"
 "(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1254
@@ -18131,7 +18131,7 @@ msgstr ""
 msgid ""
 "This person had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
-"Denna person hade ett förhållande med %(spouse)s på %(full_date)s%(endnotes)"
+"Denna person hade ett förhållande med %(spouse)s %(full_date)s%(endnotes)"
 "s."
 
 #: ../src/plugins/lib/libnarrate.py:1267
@@ -18151,7 +18151,7 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1271
 #, python-format
 msgid "He had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Han hade ett förhållande med %(spouse)s på %(full_date)s%(endnotes)s."
+msgstr "Han hade ett förhållande med %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1272
 #, python-format
@@ -18167,7 +18167,7 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1276
 #, python-format
 msgid "She had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Hon hade ett förhållande med  %(spouse)s på %(full_date)s%(endnotes)s."
+msgstr "Hon hade ett förhållande med  %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1277
 #, python-format
@@ -18204,7 +18204,7 @@ msgid ""
 "This person also had a relationship with %(spouse)s on %(full_date)s%"
 "(endnotes)s."
 msgstr ""
-"Denna person hade också ett förhållande med %(spouse)s på %(full_date)s%"
+"Denna person hade också ett förhållande med %(spouse)s %(full_date)s%"
 "(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1290
@@ -18228,7 +18228,7 @@ msgstr ""
 msgid ""
 "He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
-"Han hade också ett förhållande med %(spouse)s på %(full_date)s%(endnotes)s."
+"Han hade också ett förhållande med %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1295
 #, python-format
@@ -18249,7 +18249,7 @@ msgstr ""
 msgid ""
 "She also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
-"Hon hade också ett förhållande med  %(spouse)s på %(full_date)s%(endnotes)s."
+"Hon hade också ett förhållande med  %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1300
 #, python-format
@@ -19527,7 +19527,7 @@ msgstr "Okänt kön"
 #: ../src/plugins/quickview/OnThisDay.py:77
 #, python-format
 msgid "Events of %(date)s"
-msgstr "Händelser på %(date)s"
+msgstr "Händelser %(date)s"
 
 #: ../src/plugins/quickview/OnThisDay.py:115
 msgid "Events on this exact date"
@@ -20541,7 +20541,7 @@ msgstr "Huruvida ta med referenser till make/maka."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:1019
 msgid "Include sign of succession ('+') in child-list"
-msgstr "tag med tecken på av komma ('+') i barnlista"
+msgstr "tag med tecken på avkomma ('+') i barnlista"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:1021
 msgid ""
@@ -29958,7 +29958,7 @@ msgstr ""
 "<b>Ändra aktiv person</b><br/>Att ändra aktiv person i vyer är enkelt. I "
 "Släktskapsvyn klickar du bara på någon. I Antavelvyn dubbelklicka du på "
 "personen eller högerklickar för att kunna välja någon av personens makar, "
-"syskon, barn eller förläldrar."
+"syskon, barn eller föräldrar."
 
 #: ../src/data/tips.xml.in.h:8
 msgid ""
