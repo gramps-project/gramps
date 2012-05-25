@@ -40,9 +40,16 @@ def process_family(request, context, handle, action): # view, edit, save
     """
     context["tview"] = _("Family")
     context["tviews"] = _("Familes")
-    context["action"] = "view"
-    context["family"] = Family()
+
+    if handle == "add":
+        action = "add"
+    if request.POST.has_key("action"):
+        action = request.POST.get("action")
+
+    context["familyform"] = FamilyForm()
     context["object"] = Family()
+    context["family"] = Family()
+    context["action"] = action
     view_template = "view_family_detail.html"
     
     return render_to_response(view_template, context)

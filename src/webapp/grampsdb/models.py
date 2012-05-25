@@ -462,7 +462,7 @@ class Person(PrimaryObject):
             return ""
 
     def __unicode__(self):
-        return str(self.get_primary_name())
+        return "%s [%s]" % (self.get_primary_name(), self.gramps_id)
 
     def make_tag_list(self):
         return tuple()

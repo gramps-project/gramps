@@ -568,7 +568,10 @@ def children_table(obj, user, action, url=None, *args):
         count += 1
     table.links(links)
     retval += table.get_html()
-    retval += nbsp("") # to keep tabs same height
+    if user.is_superuser and url and action == "view":
+        retval += make_button(_("Add child"), (url + "/child/add") % args)
+    else:
+        retval += nbsp("") # to keep tabs same height
     return retval
 
 ## FIXME: these dji function wrappers just use the functions

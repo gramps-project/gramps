@@ -14,41 +14,51 @@
 
 {% include "detail_breadcrumb.html" %}
 
-<h2>{{family.father|make_name:user}} and {{family.mother|make_name:user}}</h2>
+<h2>{{familyform.father|render_name:user}} and {{familyform.mother|render_name:user}}</h2>
 
 <div id="summaryarea">
 <table class="infolist" style="width:90%;"> {% comment %} 4 cols {% endcomment %}
 <tbody>
+    {% for error in personform.errors %}
+       <p id="error">Error in person: {{error}}</p>
+    {% endfor %}
+    {% for error in nameform.errors %}
+       <p id="error">Error in name: {{error}}</p>
+    {% endfor %}
+    {% for error in surnameform.errors %}
+       <p id="error">Error in surname: {{error}}</p>
+    {% endfor %}
+<form method="post">{% csrf_token %}
 <tr>
 <th colspan="2">Father</th>
 <th colspan="2">Mother</th>
 </tr>
 <tr>
  <td class="ColumnAttribute">Name:</td>
- <td class="ColumnValue" id="data"><a href="/person/{{family.father.handle}}">{{family.father|render_name:user}} [{{family.father.gramps_id}}]</a></td>
+ <td class="ColumnValue" id="data"><a href="/person/{{familyform.father.handle}}">{% render familyform.father user action %}</a></td>
  <td class="ColumnAttribute">Name:</td>
- <td class="ColumnValue" id="data"><a href="/person/{{family.mother.handle}}">{{family.mother|render_name:user}} [{{family.mother.gramps_id}}]</a></td>
+ <td class="ColumnValue" id="data"><a href="/person/{{familyform.mother.handle}}">{% render familyform.mother user action %}</a></td>
 </tr>
-{% if user.is_authenticated or not family.father.probably_alive %}
+{% if user.is_authenticated or not familyform.father.probably_alive %}
 <tr>
  <td class="ColumnAttribute">Birth:</td>
- <td class="ColumnValue" id="data">{{family.father.birth|render_date:user}}</td>
+ <td class="ColumnValue" id="data">{{familyform.father.birth|render_date:user}}</td>
  <td class="ColumnAttribute">Birth:</td>
- <td class="ColumnValue" id="data">{{family.mother.birth|render_date:user}}</td>
+ <td class="ColumnValue" id="data">{{familyform.mother.birth|render_date:user}}</td>
 </tr>
 {% else %}
 <tr>
- <td class="ColumnAttribute">Birth:</td>
- <td class="ColumnValue" id="data">[Private]</td>
+ <td class="ColumnAttribute">{{familyform.father.death.label}}:</td>
+ <td class="ColumnValue" id="data">{% render familyform.father user action %}</td>
  <td class="ColumnAttribute">Birth:</td>
  <td class="ColumnValue" id="data">[Private]</td>
 </tr>
 {% endif %}
 <tr>
  <td class="ColumnAttribute">Death:</td>
- <td class="ColumnValue" id="data">{{family.father.death|render_date:user}}</td>
+ <td class="ColumnValue" id="data">{{familyform.father.death|render_date:user}}</td>
  <td class="ColumnAttribute">Death:</td>
- <td class="ColumnValue" id="data">{{family.mother.death|render_date:user}}</td>
+ <td class="ColumnValue" id="data">{{familyform.mother.death|render_date:user}}</td>
 </tr>
 </tbody>
 </table>
@@ -59,15 +69,15 @@
 </tr>
 <tr>
  <td class="ColumnAttribute">ID:</td>
- <td class="ColumnValue" id="data">{{family.gramps_id}}</td>
+ <td class="ColumnValue" id="data">{{familyform.gramps_id}}</td>
  <td class="ColumnAttribute">Type:</td>
  <td class="ColumnValue" id="data">RELTYPE</td>
 </tr>
 <tr>
  <td class="ColumnAttribute">Marker:</td>
- <td class="ColumnValue" id="data">{{family.marker_type}}</td>
+ <td class="ColumnValue" id="data">{{familyform.marker_type}}</td>
  <td class="ColumnAttribute">Private:</td>
- <td class="ColumnValue" id="data">{{family.private}}</td>
+ <td class="ColumnValue" id="data">{{familyform.private}}</td>
 </tr>
 </tbody>
 </table>
@@ -109,5 +119,26 @@
     {% lds_table family user action "/family/%s/children" family.handle %}
   </div>
 </div>
+
+{% if user.is_superuser %}
+  {% if action == "edit" %}
+    {% make_button "Back to Family" "/family/%s" family.handle %}
+    <input type="hidden" name="action" value="save"/>
+    <input type="submit" value="Save"/>
+  {% else %}
+    {% ifequal action "add" %}
+      {% make_button "Cancel" "/family/" %}
+      <input type="hidden" name="action" value="create"/>
+      <input type="submit" value="Create"/>
+    {% else %}
+      {% make_button "Back to Families" "/family" %}
+      {% make_button "Add Family" "/family/add" %}
+      {% make_button "Edit Family" "/family/%s/edit" family.handle %}
+      {% make_button "Delete Family" "/family/%s/delete" family.handle %}
+    {% endifequal %}
+  {% endif %}
+{% else %}
+{% endif %}
+</form>
 {% endblock %}
 

@@ -219,7 +219,8 @@ CREATE TABLE "auth_user" (
     "last_login" datetime NOT NULL,
     "date_joined" datetime NOT NULL
 );
-INSERT INTO "auth_user" VALUES(1,'admin','','','doug.blank@gmail.com','sha1$e702c$76d3a7dfc417b4e80faa6a032a54220d270eeda5',1,1,1,'2012-05-19 07:40:35.640321','2012-05-19 07:40:35.640321');
+INSERT INTO "auth_user" VALUES(1,'admin','','','bugs@gramps-project.org','sha1$27271$3bf37b85204e28ce39a5ab19505306cf2925e997',1,1,1,'2012-05-24 18:13:26.243285','2012-05-24 18:11:18.576187');
+INSERT INTO "auth_user" VALUES(2,'admin1','','','','sha1$a1880$d61d1cb0467158d6ee8c765af6c5d897b518aeca',0,1,0,'2012-05-24 18:13:52','2012-05-24 18:13:52');
 CREATE TABLE "auth_message" (
     "id" integer NOT NULL PRIMARY KEY,
     "user_id" integer NOT NULL REFERENCES "auth_user" ("id"),
@@ -296,6 +297,10 @@ CREATE TABLE "django_session" (
     "session_data" text NOT NULL,
     "expire_date" datetime NOT NULL
 );
+INSERT INTO "django_session" VALUES('8928553c90d43632f58fcff353176faa','MmU1MjliMDM2NzcyODdjNmJlOTgzMGFiYzc2MjFkMmViYWFiOTIzMjqAAn1xAShVEl9hdXRoX3Vz
+ZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED
+VQ1fYXV0aF91c2VyX2lkcQRLAXUu
+','2012-06-07 18:13:26.602244');
 CREATE TABLE "django_site" (
     "id" integer NOT NULL PRIMARY KEY,
     "domain" varchar(100) NOT NULL,
@@ -312,12 +317,15 @@ CREATE TABLE "django_admin_log" (
     "action_flag" smallint unsigned NOT NULL,
     "change_message" text NOT NULL
 );
+INSERT INTO "django_admin_log" VALUES(1,'2012-05-24 18:13:52.236486',1,3,'2','admin1',1,'');
+INSERT INTO "django_admin_log" VALUES(2,'2012-05-24 18:14:06.532544',1,3,'2','admin1',2,'No fields changed.');
 CREATE TABLE "grampsdb_profile" (
     "id" integer NOT NULL PRIMARY KEY,
     "user_id" integer NOT NULL UNIQUE REFERENCES "auth_user" ("id"),
     "css_theme" varchar(40) NOT NULL
 );
 INSERT INTO "grampsdb_profile" VALUES(1,1,'Web_Mainz.css');
+INSERT INTO "grampsdb_profile" VALUES(2,2,'Web_Mainz.css');
 CREATE TABLE "grampsdb_nametype" (
     "id" integer NOT NULL PRIMARY KEY,
     "name" varchar(40) NOT NULL,
@@ -616,10 +624,11 @@ CREATE TABLE "grampsdb_config" (
 );
 INSERT INTO "grampsdb_config" VALUES(1,'sitename','site name of family tree','str','Gramps-Connect');
 INSERT INTO "grampsdb_config" VALUES(2,'db_version','database scheme version','str','0.5.1');
-INSERT INTO "grampsdb_config" VALUES(3,'db_created','database creation date/time','str','2012-05-19 07:39');
+INSERT INTO "grampsdb_config" VALUES(3,'db_created','database creation date/time','str','2012-05-24 18:10');
 CREATE TABLE "grampsdb_tag" (
     "id" integer NOT NULL PRIMARY KEY,
     "handle" varchar(19) NOT NULL UNIQUE,
+    "gramps_id" text,
     "last_saved" datetime NOT NULL,
     "last_changed" datetime,
     "last_changed_by" text,
@@ -832,7 +841,8 @@ CREATE TABLE "grampsdb_surname" (
     "prefix" text NOT NULL,
     "primary" bool NOT NULL,
     "connector" text NOT NULL,
-    "name_id" integer NOT NULL
+    "name_id" integer NOT NULL,
+    "order" integer unsigned NOT NULL
 );
 CREATE TABLE "grampsdb_name" (
     "id" integer NOT NULL PRIMARY KEY,

@@ -122,3 +122,7 @@ class SurnameForm(forms.ModelForm):
                                                                      this.style.fontStyle = 'italic';
                                                                    }
                                                                 """}))
+class FamilyForm(forms.ModelForm):
+    class Meta:
+        model = Family
+
