@@ -118,6 +118,8 @@ class GenericFormat(object):
                     tmp = tmp.upper()
                 if tmp == "" or tmp is None:
                     main.add_remove()
+                elif isinstance(tmp, VarString):  #events cause this
+                    main.extend(tmp)
                 else:
                     main.add_variable(tmp)
             elif separator.is_a():
@@ -128,10 +130,7 @@ class GenericFormat(object):
         if self.string_in.this == ")":
             self.string_in.step()
         
-        if main.state == TXT.remove:
-            return None
-        else:
-            return main.get_final()[1]
+        return main
 
 #------------------------------------------------------------------------
 # Name Format strings
@@ -943,6 +942,8 @@ class SubstKeywords(object):
                 rtrn = variable.parse_format()
                 if rtrn is None:
                     curr_var.add_remove()
+                elif isinstance(rtrn, VarString):
+                    curr_var.extend(rtrn)
                 else:
                     curr_var.add_variable(rtrn)
             
