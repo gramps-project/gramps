@@ -46,12 +46,44 @@ def process_family(request, context, handle, action): # view, edit, save
         action = "add"
     if request.POST.has_key("action"):
         action = request.POST.get("action")
-    
-    family = Family(father=Person.objects.all()[0], 
-                    family_rel_type=FamilyRelType.objects.get(
-            val=FamilyRelType._DEFAULT[0]))
-    familyform = FamilyForm(instance=family)
-    familyform.model = family
+
+    # Handle: edit, view, add, create, save, delete
+    if action == "add":
+        family = Family(family_rel_type=FamilyRelType.objects.get(
+                val=FamilyRelType._DEFAULT[0]))
+        familyform = FamilyForm(instance=family)
+        familyform.model = family
+    elif action in ["view", "edit"]: 
+        family = Family.objects.get(handle=handle)
+        familyform = FamilyForm(instance=family)
+        familyform.model = family
+    elif action == "save": 
+        family = Family.objects.get(handle=handle)
+        familyform = FamilyForm(request.POST, instance=family)
+        familyform.model = family
+        if familyform.is_valid():
+            familyform.save()
+            action = "view"
+        else:
+            action = "edit"
+    elif action == "create": 
+        family = Family(family_rel_type=FamilyRelType.objects.get(
+                val=FamilyRelType._DEFAULT[0]),
+                        handle=create_id())
+        familyform = FamilyForm(request.POST, instance=family)
+        familyform.model = family
+        familyform.handle = create_id()
+        if familyform.is_valid():
+            familyform.save()
+            action = "view"
+        else:
+            action = "add"
+    elif action == "delete": 
+        family = Family.objects.get(handle=handle)
+        family.delete()
+        return redirect("/family/")
+    else:
+        raise Exception("Unhandled action: '%s'" % action)
 
     context["familyform"] = familyform
     context["object"] = family

@@ -125,4 +125,4 @@ class SurnameForm(forms.ModelForm):
 class FamilyForm(forms.ModelForm):
     class Meta:
         model = Family
-
+        exclude = ["handle"] 

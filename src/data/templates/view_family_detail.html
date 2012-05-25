@@ -19,14 +19,8 @@
 <div id="summaryarea">
 <table class="infolist" style="width:90%;"> {% comment %} 4 cols {% endcomment %}
 <tbody>
-    {% for error in personform.errors %}
-       <p id="error">Error in person: {{error}}</p>
-    {% endfor %}
-    {% for error in nameform.errors %}
-       <p id="error">Error in name: {{error}}</p>
-    {% endfor %}
-    {% for error in surnameform.errors %}
-       <p id="error">Error in surname: {{error}}</p>
+    {% for error in familyform.errors %}
+       <p id="error">Error in family: {{error}}</p>
     {% endfor %}
 <form method="post">{% csrf_token %}
 <tr>
