@@ -51,7 +51,7 @@ from gui.utils import ProgressMeter
 from gui.plug import tool
 from QuestionDialog import OkDialog
 import GrampsDisplay
-import DateHandler
+import gen.datehandler
 import ManagedWindow
 from gen.ggettext import sgettext as _
 from gen.ggettext import ngettext
@@ -197,7 +197,7 @@ class MergeCitations(tool.BatchTool,ManagedWindow.ManagedWindow):
                     citation = db.get_citation_from_handle(citation_handle)
                     key = citation.get_page()
                     if fields <> IGNORE_DATE and fields <> IGNORE_BOTH:
-                        key += "\n" + DateHandler.get_date(citation)
+                        key += "\n" + gen.datehandler.get_date(citation)
                     if fields <> IGNORE_CONFIDENCE and fields <> IGNORE_BOTH:
                         key += "\n" + \
                             confidence[citation.get_confidence_level()]

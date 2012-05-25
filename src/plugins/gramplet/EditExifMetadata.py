@@ -51,8 +51,8 @@ import GrampsDisplay
 
 from gen.ggettext import gettext as _
 
-from DateHandler import displayer as _dd
-from DateHandler import parser as _dp
+from gen.datehandler import displayer as _dd
+from gen.datehandler import parser as _dp
 
 from gen.plug import Gramplet
 

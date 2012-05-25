@@ -31,7 +31,7 @@ from Simple import SimpleAccess, SimpleDoc, SimpleTable
 from Utils import media_path_full
 from QuickReports import run_quick_report_by_name_direct
 from gen.lib import Person
-import DateHandler
+import gen.datehandler
 
 import posixpath
 from collections import defaultdict
@@ -303,7 +303,7 @@ def run(database, document, filter_name, *args, **kwargs):
             birth_ref = person.get_birth_ref()
             if birth_ref:
                 birth = database.get_event_from_handle(birth_ref.ref)
-                if not DateHandler.get_date(birth):
+                if not gen.datehandler.get_date(birth):
                     stab.row(person, _("birth event but no date"))
                     matches += 1
             else:

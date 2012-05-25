@@ -51,7 +51,7 @@ import gen.lib
 import Errors
 from GrampsLocale import codeset
 from Date import Date
-import DateHandler
+import gen.datehandler
 
 from const import TEMP_DIR, USER_HOME, GRAMPS_UUID, IMAGE_DIR
 import constfunc
@@ -1580,7 +1580,7 @@ def format_time(secs):
     """
     t = time.localtime(secs)
     d = Date(t.tm_year, t.tm_mon, t.tm_mday)
-    return DateHandler.displayer.display(d) + time.strftime(' %X', t)
+    return gen.datehandler.displayer.display(d) + time.strftime(' %X', t)
 
 #-------------------------------------------------------------------------
 #

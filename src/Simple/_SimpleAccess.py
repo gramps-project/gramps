@@ -30,7 +30,7 @@ from __future__ import with_statement
 from types import NoneType
 
 import gen.lib
-import DateHandler
+import gen.datehandler
 import Utils
 import gen.utils
 from gen.plug.report.utils import place_name
@@ -260,7 +260,7 @@ class SimpleAccess(object):
                     event = self.dbase.get_event_from_handle(event_handle)
                     date_obj = event.get_date_object()
                     if date_obj:
-                        return DateHandler.displayer.display(date_obj)
+                        return gen.datehandler.displayer.display(date_obj)
         return u''
 
     def __event_date_obj(self, person, func):
@@ -424,7 +424,7 @@ class SimpleAccess(object):
                         if events:
                             date_obj = events[0].get_date_object()
                             if date_obj:
-                                return DateHandler.displayer.display(date_obj)
+                                return gen.datehandler.displayer.display(date_obj)
         return u''
 
     def children(self, obj):
@@ -633,7 +633,7 @@ class SimpleAccess(object):
         @rtype: unicode
         """
         if date_obj:
-            return DateHandler.displayer.display(date_obj)
+            return gen.datehandler.displayer.display(date_obj)
         else:
             return u''
 
@@ -649,7 +649,7 @@ class SimpleAccess(object):
         assert(isinstance(event, (gen.lib.Event, NoneType)))
         date_obj = event.get_date_object()
         if date_obj:
-            return DateHandler.displayer.display(date_obj)
+            return gen.datehandler.displayer.display(date_obj)
         else:
             return u''
 

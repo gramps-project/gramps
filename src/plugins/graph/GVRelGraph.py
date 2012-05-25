@@ -53,7 +53,7 @@ from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
 from gen.display.name import displayer as name_displayer
-import DateHandler
+import gen.datehandler
 import gen.lib
 import Utils
 import ThumbNails
@@ -442,7 +442,7 @@ class RelGraphReport(Report):
                 if self.just_years:
                     return '%i' % event.get_date_object().get_year()
                 else:
-                    return DateHandler.get_date(event)
+                    return gen.datehandler.get_date(event)
             elif self.use_place:
                 place_handle = event.get_place_handle()
                 place = self.database.get_place_from_handle(place_handle)

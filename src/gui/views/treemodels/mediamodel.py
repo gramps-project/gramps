@@ -45,7 +45,7 @@ import gtk
 import const
 import ToolTips
 import Utils
-import DateHandler
+import gen.datehandler
 import gen.lib
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
 
@@ -134,7 +134,7 @@ class MediaModel(FlatBaseModel):
         if data[9]:
             date = gen.lib.Date()
             date.unserialize(data[9])
-            return unicode(DateHandler.displayer.display(date))
+            return unicode(gen.datehandler.displayer.display(date))
         return u''
 
     def sort_date(self,data):

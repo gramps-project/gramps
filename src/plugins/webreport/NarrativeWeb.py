@@ -94,7 +94,7 @@ import ThumbNails
 import ImgManip
 import gen.mime
 from gen.display.name import displayer as _nd
-from DateHandler import displayer as _dd
+from gen.datehandler import displayer as _dd
 from gen.proxy import PrivateProxyDb, LivingProxyDb
 from libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
 

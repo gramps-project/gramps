@@ -34,7 +34,7 @@ from gen.ggettext import gettext as _
 #-------------------------------------------------------------------------
 from Utils import probably_alive
 from gen.filters.rules._rule import Rule
-import DateHandler
+import gen.datehandler
 
 #-------------------------------------------------------------------------
 # "People probably alive"
@@ -49,7 +49,7 @@ class ProbablyAlive(Rule):
 
     def prepare(self,db):
         try:
-            self.current_date = DateHandler.parser.parse(unicode(self.list[0]))
+            self.current_date = gen.datehandler.parser.parse(unicode(self.list[0]))
         except:
             self.current_date = None
 

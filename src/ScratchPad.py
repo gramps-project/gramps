@@ -47,7 +47,7 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK, ACTION_MOVE
 import const
 import config
 import gen.lib
-import DateHandler
+import gen.datehandler
 import GrampsDisplay
 import ManagedWindow
 from gen.ggettext import sgettext as _
@@ -294,7 +294,7 @@ class ScratchAddress(ScratchObjWrapper):
 
     def refresh(self):
         if self._obj:
-            self._title = DateHandler.get_date(self._obj)
+            self._title = gen.datehandler.get_date(self._obj)
             self._value = "%s %s %s %s" % (self._obj.get_street(),
                                            self._obj.get_city(),
                                            self._obj.get_state(),

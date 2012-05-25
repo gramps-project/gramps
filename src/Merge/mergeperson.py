@@ -44,7 +44,7 @@ from gen.plug.report import utils as ReportUtils
 from gen.display.name import displayer as name_displayer
 import const
 import GrampsDisplay
-import DateHandler
+import gen.datehandler
 from QuestionDialog import ErrorDialog
 from Errors import MergeError
 import ManagedWindow
@@ -277,7 +277,7 @@ class MergePeople(ManagedWindow.ManagedWindow):
         place = ""
         if handle:
             event = self.database.get_event_from_handle(handle)
-            date = DateHandler.get_date(event)
+            date = gen.datehandler.get_date(event)
             place = self.place_name(event)
             if date:
                 return ("%s, %s" % (date, place)) if place else date

@@ -33,7 +33,7 @@ import cgi
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import DateHandler
+import gen.datehandler
 from gen.display.name import displayer as name_displayer
 import Utils
 import gen.lib
@@ -74,9 +74,9 @@ class ChildModel(gtk.ListStore):
         birth = get_birth_or_fallback(self.db, data)
         if birth:
             if birth.get_type() == gen.lib.EventType.BIRTH:
-                return DateHandler.get_date(birth)
+                return gen.datehandler.get_date(birth)
             else:
-                return '<i>%s</i>' % cgi.escape(DateHandler.get_date(birth))
+                return '<i>%s</i>' % cgi.escape(gen.datehandler.get_date(birth))
         else:
             return u""
 
@@ -97,9 +97,9 @@ class ChildModel(gtk.ListStore):
         death = get_death_or_fallback(self.db, data)
         if death:
             if death.get_type() == gen.lib.EventType.DEATH:
-                return DateHandler.get_date(death)
+                return gen.datehandler.get_date(death)
             else:
-                return '<i>%s</i>' % cgi.escape(DateHandler.get_date(death))
+                return '<i>%s</i>' % cgi.escape(gen.datehandler.get_date(death))
         else:
             return u""
 

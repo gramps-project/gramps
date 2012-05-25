@@ -65,7 +65,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import DateHandler
+import gen.datehandler
 
 #-------------------------------------------------------------------------
 #
@@ -190,7 +190,7 @@ class PersonTip(object):
         birth_ref = self._obj.get_birth_ref()
         if birth_ref:
             birth = self._db.get_event_from_handle(birth_ref.ref)
-            date_str = DateHandler.get_date(birth)
+            date_str = gen.datehandler.get_date(birth)
             if date_str != "":
                 birth_str = escape(date_str)
                 

@@ -30,7 +30,7 @@ from gen.plug.docgen import FontStyle, ParagraphStyle, FONT_SANS_SERIF
 from gen.lib import NoteType, Citation
 from gen.ggettext import gettext as _
 from Utils import confidence
-from DateHandler import displayer
+from gen.datehandler import displayer
 
 def add_endnote_styles(style_sheet):
     """

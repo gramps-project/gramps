@@ -42,7 +42,7 @@ import cgi
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import DateHandler
+import gen.datehandler
 import config
 
 #-------------------------------------------------------------------------
@@ -122,8 +122,8 @@ class EventRefModel(gtk.TreeStore):
 
     def column_date(self, event_ref):
         event = self.db.get_event_from_handle(event_ref.ref)
-        retval = DateHandler.get_date(event)
-        if not DateHandler.get_date_valid(event):
+        retval = gen.datehandler.get_date(event)
+        if not gen.datehandler.get_date_valid(event):
             return invalid_date_format % cgi.escape(retval)
         else:
             return retval

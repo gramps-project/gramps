@@ -48,7 +48,7 @@ from gen.lib import NoteType
 from gen.filters import GenericFilterFactory, rules
 from gen.display.name import displayer as name_displayer
 from Errors import ReportError
-import DateHandler
+import gen.datehandler
 
 #------------------------------------------------------------------------
 #
@@ -163,7 +163,7 @@ class TagReport(Report):
             birth_ref = person.get_birth_ref()
             if birth_ref:
                 event = self.database.get_event_from_handle(birth_ref.ref)
-                self.doc.write_text(DateHandler.get_date( event ))
+                self.doc.write_text(gen.datehandler.get_date( event ))
             self.doc.end_paragraph()
             self.doc.end_cell()
             
@@ -172,7 +172,7 @@ class TagReport(Report):
             death_ref = person.get_death_ref()
             if death_ref:
                 event = self.database.get_event_from_handle(death_ref.ref)
-                self.doc.write_text(DateHandler.get_date( event ))
+                self.doc.write_text(gen.datehandler.get_date( event ))
             self.doc.end_paragraph()
             self.doc.end_cell()
             
@@ -329,7 +329,7 @@ class TagReport(Report):
             
             self.doc.start_cell('TR-TableCell')
             self.doc.start_paragraph('TR-Normal')
-            date = DateHandler.get_date(event)
+            date = gen.datehandler.get_date(event)
             if date:
                 self.doc.write_text(date)
             self.doc.end_paragraph()
@@ -499,7 +499,7 @@ class TagReport(Report):
             
             self.doc.start_cell('TR-TableCell')
             self.doc.start_paragraph('TR-Normal')
-            date = DateHandler.get_date(media)
+            date = gen.datehandler.get_date(media)
             if date:
                 self.doc.write_text(date)
             self.doc.end_paragraph()

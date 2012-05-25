@@ -21,14 +21,8 @@
 
 # $Id$
 
-# Written by Benny Malengier
-# Last change 2005/12/05:
-# Correspond  naming of dates with actual action, so for abbreviation
-# of month given by mnd. not MAAND
-# Also less possibilities
-
 """
-Dutch-specific classes for parsing and displaying dates.
+German-specific classes for parsing and displaying dates.
 """
 
 #-------------------------------------------------------------------------
@@ -44,125 +38,188 @@ import re
 #
 #-------------------------------------------------------------------------
 from gen.lib import Date
-from _DateParser import DateParser
-from _DateDisplay import DateDisplay
-from _DateHandler import register_datehandler
+from _dateparser import DateParser
+from _datedisplay import DateDisplay
+from _datehandler import register_datehandler
 
 #-------------------------------------------------------------------------
 #
-# Dutch parser
+# German parser
 #
 #-------------------------------------------------------------------------
-class DateParserNL(DateParser):
+class DateParserDE(DateParser):
 
     month_to_int = DateParser.month_to_int
-    # Always add dutch and flemish name variants
-    # no matter what the current locale is
-    month_to_int[u"januari"] = 1
+    # Always add german and austrian name variants no matter what the current 
+    # locale is
+    month_to_int[u"januar"] = 1
     month_to_int[u"jan"]    = 1
-    # Add other common latin, local and historical variants  
+    month_to_int[u"jänner"] = 1
+    month_to_int[u"jän"]    = 1
+
+    # Add other common latin, 
+
     month_to_int[u"januaris"] = 1
+    month_to_int[u"januarii"] = 1
+    month_to_int[u"januarius"] = 1
+    month_to_int[u"februaris"] = 2
+    month_to_int[u"februarii"] = 2
+    month_to_int[u"februarius"] = 2
+    month_to_int[u"martii"] = 3
+    month_to_int[u"martius"] = 3
+    month_to_int[u"aprilis"] = 4
+    month_to_int[u"maius"] = 5
+    month_to_int[u"maii"] = 5
+    month_to_int[u"junius"] = 6
+    month_to_int[u"junii"] = 6
+    month_to_int[u"julius"] = 7
+    month_to_int[u"julii"] = 7
+    month_to_int[u"augustus"] = 8
+    month_to_int[u"augusti"] = 8
+    month_to_int[u"septembris"] = 9
+    month_to_int[u"7bris"] = 9
+    month_to_int[u"september"] = 9
+    month_to_int[u"october"] = 10
+    month_to_int[u"octobris"] = 10
+    month_to_int[u"8bris"] = 10
+    month_to_int[u"novembris"] = 11
+    month_to_int[u"9bris"] = 11
+    month_to_int[u"november"] = 11
+    month_to_int[u"decembris"] = 12
+    month_to_int[u"10bris"] = 12
+    month_to_int[u"xbris"] = 12
+    month_to_int[u"december"] = 12
+
+    # local and historical variants  
+
+    month_to_int[u"jenner"] = 1
     month_to_int[u"feber"]  = 2
-    month_to_int[u"februaris"]  = 2
     month_to_int[u"merz"]  = 3
-    #make sure on all distro mrt and maa are accepted
-    month_to_int[u"maa"]  = 3
-    month_to_int[u"mrt"]  = 3
-    month_to_int[u"aprilis"]  = 4
-    month_to_int[u"maius"]  = 5
-    month_to_int[u"junius"]  = 6
-    month_to_int[u"julius"]  = 7
     month_to_int[u"augst"]  = 8
     month_to_int[u"7ber"]  = 9
-    month_to_int[u"7bris"]  = 9
     month_to_int[u"8ber"]  = 10
-    month_to_int[u"8bris"]  = 10
     month_to_int[u"9ber"]  = 11
-    month_to_int[u"9bris"]  = 11
     month_to_int[u"10ber"]  = 12
-    month_to_int[u"10bris"]  = 12
     month_to_int[u"xber"]  = 12
-    month_to_int[u"xbris"]  = 12
+
+    # old german names
+
+    month_to_int[u"hartung"] = 1
+    month_to_int[u"eismond"] = 1
+    month_to_int[u"hornung"] = 2
+    month_to_int[u"schmelzmond"] = 2
+    month_to_int[u"taumond"] = 2
+    month_to_int[u"narrenmond"] = 2
+    month_to_int[u"rebmond"] = 2
+    month_to_int[u"hintester"] = 2
+    month_to_int[u"lenzing"] = 3
+    month_to_int[u"lenzmond"] = 3
+    month_to_int[u"launing"] = 4
+    month_to_int[u"ostermond"] = 4
+    month_to_int[u"winnemond"] = 5
+    month_to_int[u"weidenmonat"] = 5
+    month_to_int[u"blumenmond"] = 5
+    month_to_int[u"brachet"] = 6
+    month_to_int[u"brachmond"] = 6
+    month_to_int[u"heuert"] = 7
+    month_to_int[u"heumond"] = 7
+    month_to_int[u"ernting"] = 8
+    month_to_int[u"erntemond"] = 8
+    month_to_int[u"bisemond"] = 8
+    month_to_int[u"scheiding"] = 9
+    month_to_int[u"herbstmond"] = 9
+    month_to_int[u"gilbhard"] = 10
+    month_to_int[u"gilbhart"] = 10
+    month_to_int[u"windmond"] = 11
+    month_to_int[u"nebelung"] = 11
+    month_to_int[u"wintermond"] = 11
+    month_to_int[u"julmond"] = 12
+    month_to_int[u"heilmond"] = 12
+    month_to_int[u"christmond"] = 12
+    month_to_int[u"dustermond"] = 12
     
     modifier_to_int = {
-        u'voor'    : Date.MOD_BEFORE, 
-        u'na'      : Date.MOD_AFTER, 
-        u'tegen'   : Date.MOD_ABOUT, 
-        u'om'      : Date.MOD_ABOUT, 
-        u'rond'    : Date.MOD_ABOUT, 
-        u'circa'   : Date.MOD_ABOUT, 
-        u'ca.'     : Date.MOD_ABOUT, 
+        u'vor'    : Date.MOD_BEFORE, 
+        u'nach'   : Date.MOD_AFTER, 
+        u'gegen'  : Date.MOD_ABOUT, 
+        u'um'     : Date.MOD_ABOUT, 
+        u'etwa'   : Date.MOD_ABOUT, 
+        u'circa'  : Date.MOD_ABOUT, 
+        u'ca.'  : Date.MOD_ABOUT, 
         }
 
     calendar_to_int = {
-        u'gregoriaans'    : Date.CAL_GREGORIAN, 
+        u'gregorianisch'  : Date.CAL_GREGORIAN, 
         u'greg.'          : Date.CAL_GREGORIAN, 
-        u'juliaans'       : Date.CAL_JULIAN, 
+        u'julianisch'     : Date.CAL_JULIAN, 
         u'jul.'           : Date.CAL_JULIAN, 
-        u'hebreeuws'      : Date.CAL_HEBREW, 
+        u'hebräisch'      : Date.CAL_HEBREW, 
         u'hebr.'          : Date.CAL_HEBREW, 
-        u'islamitisch'      : Date.CAL_ISLAMIC, 
+        u'islamisch'      : Date.CAL_ISLAMIC, 
         u'isl.'           : Date.CAL_ISLAMIC, 
-        u'franse republiek': Date.CAL_FRENCH, 
-        u'fran.'         : Date.CAL_FRENCH, 
+        u'französisch republikanisch': Date.CAL_FRENCH, 
+        u'franz.'         : Date.CAL_FRENCH, 
         u'persisch'       : Date.CAL_PERSIAN, 
-        u'zweeds'          : Date.CAL_SWEDISH, 
-        u'z'               : Date.CAL_SWEDISH, 
+        u'schwedisch'     : Date.CAL_SWEDISH, 
+        u's'              : Date.CAL_SWEDISH, 
         }
 
     quality_to_int = {
-        u'geschat' : Date.QUAL_ESTIMATED, 
+        u'geschätzt' : Date.QUAL_ESTIMATED, 
         u'gesch.'    : Date.QUAL_ESTIMATED, 
-        u'berekend' : Date.QUAL_CALCULATED, 
+        u'errechnet' : Date.QUAL_CALCULATED, 
+        u'berechnet' : Date.QUAL_CALCULATED, 
         u'ber.'      : Date.QUAL_CALCULATED, 
         }
 
-    bce = ["voor onze tijdrekening", "voor Christus", "v. Chr."] + DateParser.bce
+    bce = ["vor unserer Zeitrechnung", "vor unserer Zeit", 
+           "vor der Zeitrechnung", "vor der Zeit", 
+           "v. u. Z.", "v. d. Z.", "v.u.Z.", "v.d.Z.", 
+           "vor Christi Geburt", "vor Christus", "v. Chr."] + DateParser.bce
     
     def init_strings(self):
         DateParser.init_strings(self)
-        self._span  = re.compile("(van)\s+(?P<start>.+)\s+(tot)\s+(?P<stop>.+)", 
-                                 re.IGNORECASE)
-        self._range  = re.compile("tussen\s+(?P<start>.+)\s+en\s+(?P<stop>.+)", 
+        self._span   = re.compile("(von|vom)\s+(?P<start>.+)\s+(bis)\s+(?P<stop>.+)",
                                   re.IGNORECASE)
-        self._text2  = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?'
-                                  % self._mon_str, 
+        self._range  = re.compile("zwischen\s+(?P<start>.+)\s+und\s+(?P<stop>.+)",
                                   re.IGNORECASE)
-        self._jtext2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?'
-                                  % self._jmon_str, 
+        self._text2  = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._mon_str, 
+                                  re.IGNORECASE)
+        self._jtext2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._jmon_str, 
                                   re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #
-# Dutch display
+# German display
 #
 #-------------------------------------------------------------------------
-class DateDisplayNL(DateDisplay):
+class DateDisplayDE(DateDisplay):
     """
-    Dutch language date display class. 
+    German language date display class. 
     """
-    # TODO: Translate these month strings:
-    long_months = ( u"", u"januari", u"februari", u"maart", u"april", u"mei", 
-                    u"juni", u"juli", u"augustus", u"september", u"oktober", 
-                    u"november", u"december" )
     
-    short_months = ( u"", u"jan", u"feb", u"mrt", u"apr", u"mei", u"jun", 
-                     u"jul", u"aug", u"sep", u"okt", u"nov", u"dec" )
+    long_months = (  u"", u"Januar", u"Februar", u"März", u"April", u"Mai", 
+                    u"Juni", u"Juli", u"August", u"September", u"Oktober", 
+                    u"November", u"Dezember" )
     
+    short_months = ( u"", u"Jan", u"Feb", u"Mär", u"Apr", u"Mai", u"Jun",  
+                     u"Jul", u"Aug", u"Sep", u"Okt", u"Nov", u"Dez" )
+
     calendar = (
-        "", u"juliaans", u"hebreeuws", 
-        u"franse republiek", u"persisch", u"islamitisch",
-        u"zweeds" )
+        "", u"julianisch", u"hebräisch", 
+        u"französisch republikanisch", u"persisch", u"islamisch", 
+        u"schwedisch" 
+        )
 
-    _mod_str = ("", u"voor ", u"na ", u"rond ", "", "", "")
+    _mod_str = ("", u"vor ", u"nach ", u"etwa ", "", "", "")
     
-    _qual_str = ("", u"geschat ", u"berekend ")
+    _qual_str = ("", u"geschätzt ", u"errechnet ")
     
-    _bce_str = "%s v. Chr."
+    _bce_str = "%s v. u. Z."
 
     formats = (
-        "JJJJ-MM-DD (ISO)", "Numerisch DD/MM/JJ", "Maand Dag, Jaar", 
-        "Mnd. Dag Jaar", "Dag Maand Jaar", "Dag Mnd. Jaar"
+        "JJJJ-MM-DD (ISO)", "Numerisch", "Monat Tag Jahr", 
+        "MONAT Tag Jahr", "Tag. Monat Jahr", "Tag. MONAT Jahr"
         )
 
     def _display_gregorian(self, date_val):
@@ -173,14 +230,12 @@ class DateDisplayNL(DateDisplay):
             if date_val[3]:
                 return self.display_iso(date_val)
             else:
-                # Numeric
                 if date_val[0] == date_val[1] == 0:
                     value = str(date_val[2])
                 else:
                     value = self._tformat.replace('%m', str(date_val[1]))
                     value = value.replace('%d', str(date_val[0]))
-                    value = value.replace('%Y', str(abs(date_val[2])))
-                    value = value.replace('-', '/')
+                    value = value.replace('%Y', str(date_val[2]))
         elif self.format == 2:
             # Month Day, Year
             if date_val[0] == 0:
@@ -192,7 +247,7 @@ class DateDisplayNL(DateDisplay):
                 value = "%s %d, %s" % (self.long_months[date_val[1]], 
                                        date_val[0], year)
         elif self.format == 3:
-            # Mnd Day, Year
+            # MON Day, Year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
@@ -209,18 +264,18 @@ class DateDisplayNL(DateDisplay):
                 else:
                     value = "%s %s" % (self.long_months[date_val[1]], year)
             else:
-                value = "%d %s %s" % (date_val[0], 
-                                      self.long_months[date_val[1]], year)
+                value = "%d. %s %s" % (date_val[0], 
+                                       self.long_months[date_val[1]], year)
         else:
-            # Day Mnd Year
+            # Day MON Year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
                 else:
                     value = "%s %s" % (self.short_months[date_val[1]], year)
             else:
-                value = "%d %s %s" % (date_val[0], 
-                                      self.short_months[date_val[1]], year)		
+                value = "%d. %s %s" % (date_val[0], 
+                                       self.short_months[date_val[1]], year)
         if date_val[2] < 0:
             return self._bce_str % value
         else:
@@ -246,24 +301,22 @@ class DateDisplayNL(DateDisplay):
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, u'van', d1, 
-                                        u'tot', d2, scal)
+            return "%s%s %s %s %s%s" % (qual_str, u'von', d1, u'bis', d2, scal)
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%stussen %s en %s%s" % (qual_str, d1, d2, 
-                                            scal)
+            return "%szwischen %s und %s%s" % (qual_str, d1, d2, scal)
         else:
             text = self.display_cal[date.get_calendar()](start)
             scal = self.format_extras(cal, newyear)
-            return "%s%s%s%s" % (qual_str, self._mod_str[mod], text, 
-                                 scal)
+            return "%s%s%s%s" % (qual_str, self._mod_str[mod], text, scal)
 
 #-------------------------------------------------------------------------
 #
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('nl_NL', 'dutch', 'Dutch', 'nl_BE', 'nl'), 
-                     DateParserNL, DateDisplayNL)
+register_datehandler(('de_DE', 'german', 'German', 'de_AT', 'de_CH', 
+                      'de_LI', 'de_LU', 'de_BE', 'de'), 
+                     DateParserDE, DateDisplayDE)

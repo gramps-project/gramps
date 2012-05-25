@@ -35,7 +35,7 @@ from gen.ggettext import sgettext as _
 import const
 import GrampsDisplay
 import ManagedWindow
-import DateHandler
+import gen.datehandler
 from Errors import MergeError
 
 #-------------------------------------------------------------------------
@@ -92,8 +92,8 @@ class MergeMediaObjects(ManagedWindow.ManagedWindow):
 
         entry1 = self.get_widget("date1")
         entry2 = self.get_widget("date2")
-        entry1.set_text(DateHandler.get_date(self.mo1))
-        entry2.set_text(DateHandler.get_date(self.mo2))
+        entry1.set_text(gen.datehandler.get_date(self.mo1))
+        entry2.set_text(gen.datehandler.get_date(self.mo2))
         if entry1.get_text() == entry2.get_text():
             for widget_name in ('date1', 'date2', 'date_btn1', 'date_btn2'):
                 self.get_widget(widget_name).set_sensitive(False)

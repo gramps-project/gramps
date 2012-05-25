@@ -57,7 +57,7 @@ import gobject
 from gen.db import DbTxn
 import Errors
 import ManagedWindow
-from DateHandler import displayer as _dd
+from gen.datehandler import displayer as _dd
 from gen.updatecallback import UpdateCallback
 from gui.plug import tool
 from glade import Glade

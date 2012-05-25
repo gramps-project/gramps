@@ -32,7 +32,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import DateHandler
+import gen.datehandler
 from gen.lib import EventType
 from gen.filters.rules import Rule
 from Utils import get_participant_from_event
@@ -64,7 +64,7 @@ class HasEventBase(Rule):
             self.etype = None
         try:
             if self.list[1]:
-                self.date = DateHandler.parser.parse(self.list[1])
+                self.date = gen.datehandler.parser.parse(self.list[1])
         except:
             pass
 

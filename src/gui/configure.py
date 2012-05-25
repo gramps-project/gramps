@@ -48,7 +48,7 @@ import gobject
 #-------------------------------------------------------------------------
 import config
 import const
-import DateHandler
+import gen.datehandler
 from gen.display.name import displayer as _nd
 from gen.display.name import NameDisplayError
 import Utils
@@ -890,7 +890,7 @@ class GrampsPreferences(ConfigureDialog):
 
         # Date format:
         obox = gtk.combo_box_new_text()
-        formats = DateHandler.get_date_formats()
+        formats = gen.datehandler.get_date_formats()
         map(obox.append_text, formats)
         active = config.get('preferences.date-format')
         if active >= len(formats):

@@ -40,7 +40,7 @@ from gen.ggettext import gettext as _
 from gen.plug import Gramplet
 from gen.plug.report import utils as ReportUtils
 from gen.display.name import displayer as name_displayer
-import DateHandler
+import gen.datehandler
 from gen.utils import get_birth_or_fallback, get_death_or_fallback
 
 class DescendantGramplet(Gramplet):
@@ -79,10 +79,10 @@ class DescendantGramplet(Gramplet):
         death = get_death_or_fallback(self.dbstate.db, person)
 
         if birth:
-            birth_date = DateHandler.get_date(birth)
+            birth_date = gen.datehandler.get_date(birth)
 
         if death:
-            death_date = DateHandler.get_date(death)
+            death_date = gen.datehandler.get_date(death)
 
         if birth or death:
             self.append_text(' (')

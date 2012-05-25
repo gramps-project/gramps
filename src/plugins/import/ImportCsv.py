@@ -52,7 +52,7 @@ from gen.ggettext import ngettext
 import gen.lib
 from gen.db import DbTxn
 from gen.plug.utils import OpenFileOrStdin
-from DateHandler import parser as _dp
+from gen.datehandler import parser as _dp
 from Utils import gender as gender_map
 from Utils import create_id
 from gui.utils import ProgressMeter

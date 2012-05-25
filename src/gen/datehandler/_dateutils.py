@@ -29,7 +29,7 @@ Class handling language-specific selection for date parser and displayer.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from DateHandler import LANG_TO_DISPLAY, LANG, parser, displayer
+from gen.datehandler import LANG_TO_DISPLAY, LANG, parser, displayer
 
 #--------------------------------------------------------------
 #

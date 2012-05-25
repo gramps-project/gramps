@@ -38,7 +38,7 @@ _ = gettext.gettext
 #
 #------------------------------------------------------------------------
 import TransUtils
-import DateHandler
+import gen.datehandler
 import config
 from gen.lib.grampstype import GrampsType
 
@@ -138,7 +138,7 @@ class Translator:
         """
         if lang == Translator.DEFAULT_TRANSLATION_STR:
             self.__trans = None
-            self.__dd = DateHandler.displayer
+            self.__dd = gen.datehandler.displayer
         else:
             # fallback=True will cause the translator to use English if 
             # lang = "en" or if something goes wrong.
@@ -146,10 +146,10 @@ class Translator:
                                                languages=[lang], 
                                                fallback=True)
             val = config.get('preferences.date-format')
-            if lang in DateHandler.LANG_TO_DISPLAY:
-                self.__dd = DateHandler.LANG_TO_DISPLAY[lang](val)
+            if lang in gen.datehandler.LANG_TO_DISPLAY:
+                self.__dd = gen.datehandler.LANG_TO_DISPLAY[lang](val)
             else:
-                self.__dd = DateHandler.displayer
+                self.__dd = gen.datehandler.displayer
             
     def gettext(self, message):
         """

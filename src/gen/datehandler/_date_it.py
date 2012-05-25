@@ -18,14 +18,13 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# DateHandler/_Date_ca.py
 # $Id$
 #
 
-# Catalan Version, 2008 
+# Italian version, 2009 (derived from the catalan version)
 
 """
-Catalan-specific classes for parsing and displaying dates.
+Italian-specific classes for parsing and displaying dates.
 """
 
 #-------------------------------------------------------------------------
@@ -41,68 +40,64 @@ import re
 #
 #-------------------------------------------------------------------------
 from gen.lib import Date
-from _DateParser import DateParser
-from _DateDisplay import DateDisplay
-from _DateHandler import register_datehandler
+from _dateparser import DateParser
+from _datedisplay import DateDisplay
+from _datehandler import register_datehandler
 
 #-------------------------------------------------------------------------
 #
-# Catalan parser
+# Italian parser
 #
 #-------------------------------------------------------------------------
-class DateParserCA(DateParser):
+class DateParserIT(DateParser):
 
     modifier_to_int = {
-        u'abans de'     : Date.MOD_BEFORE, 
-        u'abans'        : Date.MOD_BEFORE, 
-        u'ab.'          : Date.MOD_BEFORE, 
-        u'després de'   : Date.MOD_AFTER, 
-        u'després'      : Date.MOD_AFTER, 
-        u'desp.'        : Date.MOD_AFTER, 
-        u'desp'         : Date.MOD_AFTER, 
-        u'aprox.'       : Date.MOD_ABOUT, 
-        u'aprox'        : Date.MOD_ABOUT, 
-        u'circa'        : Date.MOD_ABOUT, 
-        u'ca.'          : Date.MOD_ABOUT, 
-        u'ca'           : Date.MOD_ABOUT, 
-        u'c.'           : Date.MOD_ABOUT, 
-        u'cap a'        : Date.MOD_ABOUT, 
-        u'al voltant'   : Date.MOD_ABOUT, 
-        u'al voltant de': Date.MOD_ABOUT, 
+        u'prima del'            : Date.MOD_BEFORE, 
+        u'prima'                : Date.MOD_BEFORE, 
+        u'dopo del'             : Date.MOD_AFTER, 
+        u'dopo'                 : Date.MOD_AFTER, 
+        u'approssimativamente'  : Date.MOD_ABOUT, 
+        u'apross.'              : Date.MOD_ABOUT, 
+        u'apross'               : Date.MOD_ABOUT, 
+        u'circa il'             : Date.MOD_ABOUT, 
+        u'circa'                : Date.MOD_ABOUT, 
+        u'ca.'                  : Date.MOD_ABOUT, 
+        u'ca'                   : Date.MOD_ABOUT, 
+        u'c.'                   : Date.MOD_ABOUT, 
         }
 
     calendar_to_int = {
-        u'gregorià'     : Date.CAL_GREGORIAN, 
-        u'g'            : Date.CAL_GREGORIAN, 
-        u'julià'        : Date.CAL_JULIAN, 
-        u'j'            : Date.CAL_JULIAN, 
-        u'hebreu'       : Date.CAL_HEBREW, 
-        u'h'            : Date.CAL_HEBREW, 
-        u'islàmic'      : Date.CAL_ISLAMIC, 
-        u'i'            : Date.CAL_ISLAMIC, 
-        u'revolucionari': Date.CAL_FRENCH, 
-        u'r'            : Date.CAL_FRENCH, 
-        u'persa'        : Date.CAL_PERSIAN, 
-        u'p'            : Date.CAL_PERSIAN, 
-        u'swedish'      : Date.CAL_SWEDISH, 
+        u'gregoriano'    : Date.CAL_GREGORIAN, 
+        u'g'             : Date.CAL_GREGORIAN, 
+        u'giuliano'      : Date.CAL_JULIAN, 
+        u'j'             : Date.CAL_JULIAN, 
+        u'ebraico'       : Date.CAL_HEBREW, 
+        u'e'             : Date.CAL_HEBREW, 
+        u'islamico'      : Date.CAL_ISLAMIC, 
+        u'i'             : Date.CAL_ISLAMIC, 
+        u'rivoluzionario': Date.CAL_FRENCH, 
+        u'r'             : Date.CAL_FRENCH, 
+        u'persiano'      : Date.CAL_PERSIAN, 
+        u'p'             : Date.CAL_PERSIAN, 
+        u'svedese'      : Date.CAL_SWEDISH, 
         u's'            : Date.CAL_SWEDISH, 
         }
 
     quality_to_int = {
-        u'estimat'   : Date.QUAL_ESTIMATED, 
-        u'est.'      : Date.QUAL_ESTIMATED, 
-        u'est'       : Date.QUAL_ESTIMATED, 
-        u'calc.'     : Date.QUAL_CALCULATED, 
+        u'stimata'   : Date.QUAL_ESTIMATED, 
+        u'st.'       : Date.QUAL_ESTIMATED, 
+        u'st'        : Date.QUAL_ESTIMATED, 
+        u'calcolata' : Date.QUAL_CALCULATED, 
+        u'calc.'     : Date.QUAL_CALCULATED,  
         u'calc'      : Date.QUAL_CALCULATED, 
-        u'calculat'  : Date.QUAL_CALCULATED, 
         }
 
     def init_strings(self):
         DateParser.init_strings(self)
-        _span_1 = [u'des de']
-        _span_2 = [u'fins a']
-        _range_1 = [u'entre', u'ent\.', u'ent']
-        _range_2 = [u'i']
+        _span_1 = [u'dal', u'da']
+        _span_2 = [u'al', u'a']
+        _range_1 = [u'tra', u'fra']
+        _range_2 = [u'e']
         self._span  = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" % 
                                  ('|'.join(_span_1), '|'.join(_span_2)), 
                                  re.IGNORECASE)
@@ -112,50 +107,50 @@ class DateParserCA(DateParser):
 
 #-------------------------------------------------------------------------
 #
-# Catalan display
+# Italian display
 #
 #-------------------------------------------------------------------------
-class DateDisplayCA(DateDisplay):
+class DateDisplayIT(DateDisplay):
     """
-    Catalan language date display class. 
+    Italian language date display class. 
     """
-    long_months = ( u"", u"Gener", u"Febrer", u"Març", u"Abril", u"Maig", 
-                    u"Juny", u"Juliol", u"Agost", u"Setembre", u"Octubre", 
-                    u"Novembre", u"Desembre" )
-    
-    short_months = ( u"", u"Gen", u"Feb", u"Mar", u"Abr", u"Mai", u"Jun",  
-                     u"Jul", u"Ago", u"Set", u"Oct", u"Nov", u"Des" )
+    long_months = ( u"", u"gennaio", u"febbraio", u"marzo", u"aprile", 
+                    u"maggio", u"giugno", u"luglio", u"agosto", u"settembre", 
+                    u"ottobre", u"novembre", u"dicembre" )
+
+    short_months = ( u"", u"gen", u"feb", u"mar", u"apr", u"mag", u"giu", 
+                     u"lug", u"ago", u"set", u"ott", u"nov", u"dic" )
 
     calendar = (
-        "", u"Julià", u"Hebreu", 
-        u"Revolucionari", u"Persa", u"Islàmic", 
-        u"Suec" 
+        "", u"Giuliano", u"Ebraico", 
+        u"Rivoluzionario", u"Persiano", u"Islamico", 
+        u"Svedese" 
         )
 
-    _mod_str = ("", u"abans de ", u"després de ", u"cap a ", "", "", "")
+    _mod_str = ("", u"prima del ", u"dopo del ", u"circa il ", "", "", "")
 
-    _qual_str = ("", "estimat ", "calculat ")
+    _qual_str = ("", "stimata ", "calcolata ")
 
     french = (
         u'', 
-        u"Vendemiari", 
-        u'Brumari', 
-        u'Frimari', 
-        u"Nivós", 
-        u"Pluviós", 
-        u"Ventós", 
-        u'Germinal', 
-        u"Floreal", 
-        u'Pradial', 
-        u'Messidor', 
-        u'Termidor', 
-        u'Fructidor', 
-        u'Extra', 
+        u'vendemmiaio', 
+        u'brumaio', 
+        u'frimaio', 
+        u'nevoso', 
+        u'piovoso', 
+        u'ventoso', 
+        u'germile', 
+        u'fiorile', 
+        u'pratile', 
+        u'messidoro', 
+        u'termidoro', 
+        u'fruttidoro', 
+        u'extra', 
         )
     
     formats = (
-        "AAAA-MM-DD (ISO)", "Numèrica", "Mes Dia, Any", 
-        "MES Dia, Any", "Dia Mes, Any", "Dia MES, Any"
+        "AAAA-MM-DD (ISO)", "Numerico", "Mese Giorno Anno", 
+        "MES Giorno, Anno", "Giorno Mese Anno", "Giorno MES Anno"
         )
     
     def display(self, date):
@@ -178,12 +173,12 @@ class DateDisplayCA(DateDisplay):
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, u'des de', d1, u'fins a', d2, scal)
+            return "%s%s %s %s %s%s" % (qual_str, u'dal', d1, u'al', d2, scal)
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, u'entre', d1, u'i', d2, scal)
+            return "%s%s %s %s %s%s" % (qual_str, u'tra', d1, u'e', d2, scal)
         else:
             text = self.display_cal[date.get_calendar()](start)
             scal = self.format_extras(cal, newyear)
@@ -194,4 +189,5 @@ class DateDisplayCA(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('ca_ES', 'ca', 'català', 'Catalan', 'ca_FR', 'ca_AD', 'ca_IT'), DateParserCA, DateDisplayCA)
+register_datehandler(('it_IT', 'it', 'italian', 'Italian', 'it_CH'), 
+    DateParserIT, DateDisplayIT)

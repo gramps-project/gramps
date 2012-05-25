@@ -52,7 +52,7 @@ from gui.utils import ProgressMeter
 from docgen import ODSTab
 import const
 import Errors
-import DateHandler
+import gen.datehandler
 from QuestionDialog import WarningDialog
 from gui.plug import tool
 from gen.plug.report import utils as ReportUtils
@@ -333,7 +333,7 @@ class DisplayChart(ManagedWindow.ManagedWindow):
 
                         if event_handle:
                             event = self.db.get_event_from_handle(event_handle)
-                            date = DateHandler.get_date(event)
+                            date = gen.datehandler.get_date(event)
                             sortdate = "%09d" % (
                                        event.get_date_object().get_sort_value()
                                        )

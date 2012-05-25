@@ -49,7 +49,7 @@ from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
 from Utils import probably_alive
-from DateHandler import displayer as _dd
+from gen.datehandler import displayer as _dd
 import GrampsLocale
 import gen.lib
 

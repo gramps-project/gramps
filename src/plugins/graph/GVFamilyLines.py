@@ -53,7 +53,7 @@ log = logging.getLogger(".FamilyLines")
 import gen.lib
 import Utils
 import ThumbNails
-from DateHandler import displayer as _dd
+from gen.datehandler import displayer as _dd
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions

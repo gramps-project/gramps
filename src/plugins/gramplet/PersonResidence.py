@@ -24,7 +24,7 @@ from gui.editors import EditEvent
 from ListModel import ListModel, NOSORT
 from gen.plug import Gramplet
 from gen.ggettext import gettext as _
-import DateHandler
+import gen.datehandler
 import Errors
 import gtk
 
@@ -101,7 +101,7 @@ class PersonResidence(Gramplet):
         """
         Add a residence event to the model.
         """
-        date = DateHandler.get_date(event)
+        date = gen.datehandler.get_date(event)
         place = ''
         handle = event.get_place_handle()
         if handle:

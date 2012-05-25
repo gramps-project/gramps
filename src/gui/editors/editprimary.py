@@ -41,7 +41,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import ManagedWindow
-import DateHandler
+import gen.datehandler
 from gen.display.name import displayer as name_displayer
 import config
 import GrampsDisplay
@@ -61,8 +61,8 @@ class EditPrimary(ManagedWindow.ManagedWindow, DbGUIElement):
         Associate a person with the window.
         
         """
-        self.dp  = DateHandler.parser
-        self.dd  = DateHandler.displayer
+        self.dp  = gen.datehandler.parser
+        self.dd  = gen.datehandler.displayer
         self.name_displayer  = name_displayer
         self.obj = obj
         self.dbstate = state

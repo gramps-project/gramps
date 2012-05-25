@@ -1705,7 +1705,7 @@ class ValidatableMaskedEntry(MaskedEntry):
 
 
 def main(args):
-    from DateHandler import parser
+    from gen.datehandler import parser
     
     def on_validate(widget, text):
         myDate = parser.parse(text)

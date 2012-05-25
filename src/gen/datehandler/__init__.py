@@ -25,30 +25,30 @@ Class handling language-specific selection for date parser and displayer.
 """
 
 # import prerequisites for localized handlers
-from _DateHandler import (LANG, LANG_SHORT, LANG_TO_PARSER, LANG_TO_DISPLAY, 
+from _datehandler import (LANG, LANG_SHORT, LANG_TO_PARSER, LANG_TO_DISPLAY, 
                           register_datehandler)
 
 # Import all the localized handlers
-import _Date_bg
-import _Date_ca
-import _Date_cs
-import _Date_da
-import _Date_de
-import _Date_es
-import _Date_fi
-import _Date_fr
-import _Date_hr
-import _Date_it
-import _Date_lt
-import _Date_nb
-import _Date_nl
-import _Date_pl
-import _Date_pt
-import _Date_ru
-import _Date_sk
-import _Date_sl
-import _Date_sr
-import _Date_sv
+import _date_bg
+import _date_ca
+import _date_cs
+import _date_da
+import _date_de
+import _date_es
+import _date_fi
+import _date_fr
+import _date_hr
+import _date_it
+import _date_lt
+import _date_nb
+import _date_nl
+import _date_pl
+import _date_pt
+import _date_ru
+import _date_sk
+import _date_sl
+import _date_sr
+import _date_sv
 
 # Initialize global parser
 try:
@@ -78,4 +78,4 @@ except:
 
 
 # Import utility functions
-from _DateUtils import *
+from _dateutils import *

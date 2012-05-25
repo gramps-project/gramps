@@ -18,14 +18,11 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# DateHandler/_Date_it.py
-# $Id$
-#
 
-# Italian version, 2009 (derived from the catalan version)
+# $Id$
 
 """
-Italian-specific classes for parsing and displaying dates.
+Slovak-specific classes for parsing and displaying dates.
 """
 
 #-------------------------------------------------------------------------
@@ -41,64 +38,56 @@ import re
 #
 #-------------------------------------------------------------------------
 from gen.lib import Date
-from _DateParser import DateParser
-from _DateDisplay import DateDisplay
-from _DateHandler import register_datehandler
+from _dateparser import DateParser
+from _datedisplay import DateDisplay
+from _datehandler import register_datehandler
 
 #-------------------------------------------------------------------------
 #
-# Italian parser
+# Slovak parser
 #
 #-------------------------------------------------------------------------
-class DateParserIT(DateParser):
+class DateParserSK(DateParser):
 
     modifier_to_int = {
-        u'prima del'            : Date.MOD_BEFORE, 
-        u'prima'                : Date.MOD_BEFORE, 
-        u'dopo del'             : Date.MOD_AFTER, 
-        u'dopo'                 : Date.MOD_AFTER, 
-        u'approssimativamente'  : Date.MOD_ABOUT, 
-        u'apross.'              : Date.MOD_ABOUT, 
-        u'apross'               : Date.MOD_ABOUT, 
-        u'circa il'             : Date.MOD_ABOUT, 
-        u'circa'                : Date.MOD_ABOUT, 
-        u'ca.'                  : Date.MOD_ABOUT, 
-        u'ca'                   : Date.MOD_ABOUT, 
-        u'c.'                   : Date.MOD_ABOUT, 
+        u'pred'   : Date.MOD_BEFORE, 
+        u'do'     : Date.MOD_BEFORE, 
+        u'po'     : Date.MOD_AFTER, 
+        u'asi'    : Date.MOD_ABOUT, 
+        u'okolo'  : Date.MOD_ABOUT, 
+        u'pribl.' : Date.MOD_ABOUT, 
         }
 
     calendar_to_int = {
-        u'gregoriano'    : Date.CAL_GREGORIAN, 
+        u'gregoriánsky'  : Date.CAL_GREGORIAN, 
         u'g'             : Date.CAL_GREGORIAN, 
-        u'giuliano'      : Date.CAL_JULIAN, 
+        u'juliánský'     : Date.CAL_JULIAN, 
         u'j'             : Date.CAL_JULIAN, 
-        u'ebraico'       : Date.CAL_HEBREW, 
-        u'e'             : Date.CAL_HEBREW, 
-        u'islamico'      : Date.CAL_ISLAMIC, 
+        u'hebrejský'     : Date.CAL_HEBREW, 
+        u'h'             : Date.CAL_HEBREW, 
+        u'islamský'      : Date.CAL_ISLAMIC, 
         u'i'             : Date.CAL_ISLAMIC, 
-        u'rivoluzionario': Date.CAL_FRENCH, 
+        u'republikánsky' : Date.CAL_FRENCH, 
         u'r'             : Date.CAL_FRENCH, 
-        u'persiano'      : Date.CAL_PERSIAN, 
+        u'perzský'       : Date.CAL_PERSIAN, 
         u'p'             : Date.CAL_PERSIAN, 
-        u'svedese'      : Date.CAL_SWEDISH, 
+        u'swedish'      : Date.CAL_SWEDISH, 
         u's'            : Date.CAL_SWEDISH, 
         }
 
     quality_to_int = {
-        u'stimata'   : Date.QUAL_ESTIMATED, 
-        u'st.'       : Date.QUAL_ESTIMATED, 
-        u'st'        : Date.QUAL_ESTIMATED, 
-        u'calcolata' : Date.QUAL_CALCULATED, 
-        u'calc.'     : Date.QUAL_CALCULATED,  
-        u'calc'      : Date.QUAL_CALCULATED, 
+        u'odhadovaný' : Date.QUAL_ESTIMATED, 
+        u'odh.'       : Date.QUAL_ESTIMATED, 
+        u'vypočítaný' : Date.QUAL_CALCULATED, 
+        u'vyp.'       : Date.QUAL_CALCULATED, 
         }
 
     def init_strings(self):
         DateParser.init_strings(self)
-        _span_1 = [u'dal', u'da']
-        _span_2 = [u'al', u'a']
-        _range_1 = [u'tra', u'fra']
-        _range_2 = [u'e']
+        _span_1 = [u'od']
+        _span_2 = [u'do']
+        _range_1 = [u'medzi']
+        _range_2 = [u'a']
         self._span  = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" % 
                                  ('|'.join(_span_1), '|'.join(_span_2)), 
                                  re.IGNORECASE)
@@ -108,52 +97,35 @@ class DateParserIT(DateParser):
 
 #-------------------------------------------------------------------------
 #
-# Italian display
+# Slovak display
 #
 #-------------------------------------------------------------------------
-class DateDisplayIT(DateDisplay):
+class DateDisplaySK(DateDisplay):
     """
-    Italian language date display class. 
+    Slovak language date display class. 
     """
-    long_months = ( u"", u"gennaio", u"febbraio", u"marzo", u"aprile", 
-                    u"maggio", u"giugno", u"luglio", u"agosto", u"settembre", 
-                    u"ottobre", u"novembre", u"dicembre" )
-
-    short_months = ( u"", u"gen", u"feb", u"mar", u"apr", u"mag", u"giu", 
-                     u"lug", u"ago", u"set", u"ott", u"nov", u"dic" )
-
+    long_months = ( u"", u"január", u"február", u"marec", u"apríl", u"máj", 
+                    u"jún", u"júl", u"august", u"september", u"október", 
+                    u"november", u"december" )
+    
+    short_months = ( u"", u"jan", u"feb", u"mar", u"apr", u"máj", u"jún", 
+                     u"júl", u"aug", u"sep", u"okt", u"nov", u"dec" )
+    
     calendar = (
-        "", u"Giuliano", u"Ebraico", 
-        u"Rivoluzionario", u"Persiano", u"Islamico", 
-        u"Svedese" 
+        "", u"juliánský", u"hebrejský", 
+        u"republikánsky", u"perzský", u"islamský", 
+        u"swedish" 
         )
 
-    _mod_str = ("", u"prima del ", u"dopo del ", u"circa il ", "", "", "")
-
-    _qual_str = ("", "stimata ", "calcolata ")
-
-    french = (
-        u'', 
-        u'vendemmiaio', 
-        u'brumaio', 
-        u'frimaio', 
-        u'nevoso', 
-        u'piovoso', 
-        u'ventoso', 
-        u'germile', 
-        u'fiorile', 
-        u'pratile', 
-        u'messidoro', 
-        u'termidoro', 
-        u'fruttidoro', 
-        u'extra', 
-        )
+    _mod_str = ("", u"pred ", u"po ", u"okolo ", "", "", "")
     
+    _qual_str = ("", "odh. ", "vyp. ")
+
     formats = (
-        "AAAA-MM-DD (ISO)", "Numerico", "Mese Giorno Anno", 
-        "MES Giorno, Anno", "Giorno Mese Anno", "Giorno MES Anno"
+        "RRRR-MM-DD (ISO)", "numerický", "Mesiac Deň, Rok", 
+        "MES Deň, Rok", "Deň, Mesiac, Rok", "Deň MES Rok"
         )
-    
+
     def display(self, date):
         """
         Return a text string representing the date.
@@ -174,21 +146,23 @@ class DateDisplayIT(DateDisplay):
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, u'dal', d1, u'al', d2, scal)
+            return "%s%s %s %s %s%s" % (qual_str, u'od', d1, 
+                                        u'do', d2, scal)
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, u'tra', d1, u'e', d2, scal)
+            return "%s%s %s %s %s%s" % (qual_str, u'medzi', 
+                                        d1, u'a', d2, scal)
         else:
             text = self.display_cal[date.get_calendar()](start)
             scal = self.format_extras(cal, newyear)
-            return "%s%s%s%s" % (qual_str, self._mod_str[mod], text, scal)
+            return "%s%s%s%s" % (qual_str, self._mod_str[mod],
+                                 text, scal)
 
 #-------------------------------------------------------------------------
 #
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('it_IT', 'it', 'italian', 'Italian', 'it_CH'), 
-    DateParserIT, DateDisplayIT)
+register_datehandler(('sk_SK', 'sk', 'SK', 'Slovak'), DateParserSK, DateDisplaySK)

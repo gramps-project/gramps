@@ -60,7 +60,7 @@ from gen.plug.menu import BooleanOption, NumberOption, StringOption, \
                           DestinationOption, NoteOption
 import GrampsLocale
 from Utils import probably_alive, xml_lang, get_researcher
-from DateHandler import displayer as _dd
+from gen.datehandler import displayer as _dd
 
 from gen.display.name import displayer as _nd
 

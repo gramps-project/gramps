@@ -36,7 +36,7 @@ on a particular date.
 #------------------------------------------------------------------------
 from gen.plug import Gramplet
 from gen.ggettext import sgettext as _
-import DateHandler
+import gen.datehandler
 from QuickReports import run_quick_report_by_name
 
 #------------------------------------------------------------------------
@@ -94,7 +94,7 @@ class AgeOnDateGramplet(Gramplet):
         and then handed to the quick report.
         """
         text = self.entry.get_text()
-        date = DateHandler.parser.parse(text)
+        date = gen.datehandler.parser.parse(text)
         run_quick_report_by_name(self.gui.dbstate, 
                                  self.gui.uistate, 
                                  'ageondate', 

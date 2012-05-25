@@ -24,7 +24,7 @@ from ListModel import ListModel, NOSORT
 from gen.plug import Gramplet
 from gen.ggettext import gettext as _
 from gen.display.name import displayer as name_displayer
-import DateHandler
+import gen.datehandler
 import Errors
 import gtk
 
@@ -60,7 +60,7 @@ class Events(Gramplet):
         Add an event to the model.
         """
         event = self.dbstate.db.get_event_from_handle(event_ref.ref)
-        event_date = DateHandler.get_date(event)
+        event_date = gen.datehandler.get_date(event)
         event_sort = '%012d' % event.get_date_object().get_sort_value()
         place = ''
         handle = event.get_place_handle()

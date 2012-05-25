@@ -4,7 +4,6 @@
 SUBDIRS = \
 	cli \
 	data \
-	DateHandler \
 	docgen \
 	gen \
 	glade \

@@ -36,7 +36,7 @@ from gen.plug import Gramplet
 from gen.ggettext import sgettext as _
 from gen.ggettext import ngettext
 from gen.display.name import displayer as name_displayer
-import DateHandler
+import gen.datehandler
 import gen
 from gen.utils import get_birth_or_fallback, get_death_or_fallback
 
@@ -196,25 +196,25 @@ class PedigreeGramplet(Gramplet):
     def info_string(self, person):
         birth = get_birth_or_fallback(self.dbstate.db, person)
         if birth and birth.get_type() != gen.lib.EventType.BIRTH:
-            sdate = DateHandler.get_date(birth)
+            sdate = gen.datehandler.get_date(birth)
             if sdate:
                 bdate  = "<i>%s</i>" % cgi.escape(sdate)
             else:
                 bdate = ""
         elif birth:
-            bdate  = cgi.escape(DateHandler.get_date(birth))
+            bdate  = cgi.escape(gen.datehandler.get_date(birth))
         else:
             bdate = ""
 
         death = get_death_or_fallback(self.dbstate.db, person)
         if death and death.get_type() != gen.lib.EventType.DEATH:
-            sdate = DateHandler.get_date(death)
+            sdate = gen.datehandler.get_date(death)
             if sdate:
                 ddate  = "<i>%s</i>" % cgi.escape(sdate)
             else:
                 ddate = ""
         elif death:
-            ddate  = cgi.escape(DateHandler.get_date(death))
+            ddate  = cgi.escape(gen.datehandler.get_date(death))
         else:
             ddate = ""
 

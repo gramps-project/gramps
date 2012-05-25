@@ -41,7 +41,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import DateHandler
+import gen.datehandler
 from Utils import media_path_full
 from gen.plug.docgen import IndexMark, INDEX_TYPE_ALP
    
@@ -190,12 +190,12 @@ def get_person_mark(db, person):
     birth_ref = person.get_birth_ref()
     if birth_ref:
         birthEvt = db.get_event_from_handle(birth_ref.ref)
-        birth = DateHandler.get_date(birthEvt)
+        birth = gen.datehandler.get_date(birthEvt)
 
     death_ref = person.get_death_ref()
     if death_ref:
         deathEvt = db.get_event_from_handle(death_ref.ref)
-        death = DateHandler.get_date(deathEvt)
+        death = gen.datehandler.get_date(deathEvt)
 
     if birth == death == " ":
         key = name

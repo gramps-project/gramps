@@ -30,7 +30,7 @@ Display references for any object
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
 from Utils import probably_alive
 from gen.ggettext import gettext as _
-import DateHandler
+import gen.datehandler
 import gen.lib
 import config
 
@@ -48,10 +48,10 @@ def run(database, document, date):
     # display the title
     if date.get_day_valid():
         sdoc.title(_("People probably alive and their ages the %s") % 
-               DateHandler.displayer.display(date))
+               gen.datehandler.displayer.display(date))
     else:
         sdoc.title(_("People probably alive and their ages on %s") % 
-               DateHandler.displayer.display(date))
+               gen.datehandler.displayer.display(date))
     stab.columns(_("Person"), _("Age")) # Actual Date makes column unicode
     matches = 0
     for person in sdb.all_people():

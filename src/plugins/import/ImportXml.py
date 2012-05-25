@@ -49,7 +49,7 @@ from gen.db import DbTxn
 from gen.db.write import CLASS_TO_KEY_MAP
 from Errors import GrampsImportError
 import Utils
-import DateHandler
+import gen.datehandler
 from gen.display.name import displayer as name_displayer
 from gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, SOURCE_KEY, EVENT_KEY, 
                             MEDIA_KEY, PLACE_KEY, REPOSITORY_KEY, NOTE_KEY,
@@ -450,7 +450,7 @@ class GrampsParser(UpdateCallback):
         self.gid2nid = {}
         self.childref_map = {}
         self.change = change
-        self.dp = DateHandler.parser
+        self.dp = gen.datehandler.parser
         self.info = ImportInfo()
         self.all_abs = True
         self.db = database
@@ -2567,9 +2567,9 @@ class GrampsParser(UpdateCallback):
     def stop_date(self, tag):
         if tag:
             if self.address:
-                DateHandler.set_date(self.address, tag)
+                gen.datehandler.set_date(self.address, tag)
             else:
-                DateHandler.set_date(self.event, tag)
+                gen.datehandler.set_date(self.event, tag)
 
     def stop_first(self, tag):
         self.name.set_first_name(tag)

@@ -54,7 +54,7 @@ from gen.plug.report import endnotes
 from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
                         
-import DateHandler
+import gen.datehandler
 
 from libnarrate import Narrator
 import TransUtils

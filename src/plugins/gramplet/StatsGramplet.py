@@ -33,7 +33,7 @@ import posixpath
 from gen.plug import Gramplet
 from gen.ggettext import sgettext as _
 from Utils import media_path_full
-import DateHandler
+import gen.datehandler
 import gen
 
 #------------------------------------------------------------------------
@@ -121,7 +121,7 @@ class StatsGramplet(Gramplet):
             birth_ref = person.get_birth_ref()
             if birth_ref:
                 birth = database.get_event_from_handle(birth_ref.ref)
-                if not DateHandler.get_date(birth):
+                if not gen.datehandler.get_date(birth):
                     missing_bday += 1
             else:
                 missing_bday += 1

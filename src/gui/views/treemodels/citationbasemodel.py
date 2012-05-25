@@ -41,7 +41,7 @@ LOG = logging.getLogger(".citation")
 #-------------------------------------------------------------------------
 import const
 import ToolTips
-import DateHandler
+import gen.datehandler
 import gen.lib
 from Utils import confidence, format_time
 import config
@@ -85,10 +85,10 @@ class CitationBaseModel(object):
         if data[COLUMN_DATE]:
             citation = gen.lib.Citation()
             citation.unserialize(data)
-            date_str =  DateHandler.get_date(citation)
+            date_str =  gen.datehandler.get_date(citation)
             if date_str != "":
                 retval = cgi.escape(date_str)
-            if not DateHandler.get_date_valid(citation):
+            if not gen.datehandler.get_date_valid(citation):
                 return INVALID_DATE_FORMAT % retval
             else:
                 return retval
@@ -99,7 +99,7 @@ class CitationBaseModel(object):
             citation = gen.lib.Citation()
             citation.unserialize(data)
             retval = "%09d" % citation.get_date_object().get_sort_value()
-            if not DateHandler.get_date_valid(citation):
+            if not gen.datehandler.get_date_valid(citation):
                 return INVALID_DATE_FORMAT % retval
             else:
                 return retval

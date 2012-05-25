@@ -38,9 +38,9 @@ import re
 #
 #-------------------------------------------------------------------------
 from gen.lib import Date
-from _DateParser import DateParser
-from _DateDisplay import DateDisplay
-from _DateHandler import register_datehandler
+from _dateparser import DateParser
+from _datedisplay import DateDisplay
+from _datehandler import register_datehandler
 
 #-------------------------------------------------------------------------
 #

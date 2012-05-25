@@ -25,7 +25,7 @@ from gen.plug import Gramplet
 from gen.ggettext import gettext as _
 from gen.display.name import displayer as name_displayer
 from gen.utils import get_birth_or_fallback, get_death_or_fallback
-import DateHandler
+import gen.datehandler
 import Errors
 import gtk
 
@@ -48,7 +48,7 @@ class Children(Gramplet):
         event_place = ''
         event_sort = '%012d' % 0
         if event:
-            event_date = DateHandler.get_date(event)
+            event_date = gen.datehandler.get_date(event)
             event_sort = '%012d' % event.get_date_object().get_sort_value()
             handle = event.get_place_handle()
             if handle:

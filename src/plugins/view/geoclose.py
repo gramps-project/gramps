@@ -50,7 +50,7 @@ _LOG = logging.getLogger("GeoGraphy.geoclose")
 #-------------------------------------------------------------------------
 import gen.lib
 import config
-import DateHandler
+import gen.datehandler
 from gen.display.name import displayer as _nd
 from PlaceUtils import conv_lat_lon
 from gui.views.navigationview import NavigationView
@@ -434,7 +434,7 @@ class GeoClose(GeoGraphyView):
                         message = ""
                     evt = self.dbstate.db.get_event_from_gramps_id(plce[10])
                     # format the date as described in preferences.
-                    date = DateHandler.displayer.display(evt.get_date_object())
+                    date = gen.datehandler.displayer.display(evt.get_date_object())
                     if date == "":
                         date = _("Unknown")
                     if ( plce[11] == gen.lib.EventRoleType.PRIMARY ):

@@ -36,7 +36,7 @@ import cPickle as pickle
 import gen.lib
 import Errors
 import config
-import DateHandler
+import gen.datehandler
 
 class SimpleTable(object):
     """
@@ -393,7 +393,7 @@ class SimpleTable(object):
                 if (self.__link_col == col or link is None):
                     link = ('Note', item.handle)
             elif isinstance(item, gen.lib.Date):
-                text = DateHandler.displayer.display(item)
+                text = gen.datehandler.displayer.display(item)
                 retval.append(text)
                 if item.get_valid():
                     if item.format:

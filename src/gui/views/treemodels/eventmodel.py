@@ -41,7 +41,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import ToolTips
-import DateHandler
+import gen.datehandler
 import gen.lib
 import Utils
 import config
@@ -135,10 +135,10 @@ class EventModel(FlatBaseModel):
         if data[COLUMN_DATE]:
             event = gen.lib.Event()
             event.unserialize(data)
-            date_str =  DateHandler.get_date(event)
+            date_str =  gen.datehandler.get_date(event)
             if date_str != "":
                 retval = cgi.escape(date_str)
-            if not DateHandler.get_date_valid(event):
+            if not gen.datehandler.get_date_valid(event):
                 return INVALID_DATE_FORMAT % retval
             else:
                 return retval
@@ -149,7 +149,7 @@ class EventModel(FlatBaseModel):
             event = gen.lib.Event()
             event.unserialize(data)
             retval = "%09d" % event.get_date_object().get_sort_value()
-            if not DateHandler.get_date_valid(event):
+            if not gen.datehandler.get_date_valid(event):
                 return INVALID_DATE_FORMAT % retval
             else:
                 return retval

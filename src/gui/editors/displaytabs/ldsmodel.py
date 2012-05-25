@@ -38,7 +38,7 @@ import gtk
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import DateHandler
+import gen.datehandler
 import LdsUtils
 
 #-------------------------------------------------------------------------
@@ -57,7 +57,7 @@ class LdsModel(gtk.ListStore):
         for lds_ord in lds_list:
             self.append(row=[
                 lds_ord.type2str(), 
-                DateHandler.get_date(lds_ord), 
+                gen.datehandler.get_date(lds_ord), 
                 lds_ord.status2str(), 
                 LdsUtils.TEMPLES.name(lds_ord.get_temple()),
                 self.column_place(lds_ord), 

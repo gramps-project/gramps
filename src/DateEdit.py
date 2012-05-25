@@ -63,7 +63,7 @@ import gtk
 #-------------------------------------------------------------------------
 from gen.ggettext import sgettext as _
 from gen.lib.date import Date, NextYear
-import DateHandler
+import gen.datehandler
 import const
 import GrampsDisplay
 import ManagedWindow
@@ -90,13 +90,13 @@ QUAL_TEXT = (
     (Date.QUAL_CALCULATED, _('Calculated')) )
 
 CAL_TO_MONTHS_NAMES = { 
-    Date.CAL_GREGORIAN  : DateHandler.displayer.short_months,
-    Date.CAL_JULIAN     : DateHandler.displayer.short_months,
-    Date.CAL_HEBREW     : DateHandler.displayer.hebrew,
-    Date.CAL_FRENCH     : DateHandler.displayer.french,
-    Date.CAL_PERSIAN    : DateHandler.displayer.persian,
-    Date.CAL_ISLAMIC    : DateHandler.displayer.islamic,
-    Date.CAL_SWEDISH    : DateHandler.displayer.swedish }
+    Date.CAL_GREGORIAN  : gen.datehandler.displayer.short_months,
+    Date.CAL_JULIAN     : gen.datehandler.displayer.short_months,
+    Date.CAL_HEBREW     : gen.datehandler.displayer.hebrew,
+    Date.CAL_FRENCH     : gen.datehandler.displayer.french,
+    Date.CAL_PERSIAN    : gen.datehandler.displayer.persian,
+    Date.CAL_ISLAMIC    : gen.datehandler.displayer.islamic,
+    Date.CAL_SWEDISH    : gen.datehandler.displayer.swedish }
 
 WIKI_HELP_PAGE = '%s_-_Entering_and_Editing_Data:_Detailed_-_part_1' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Editing_Dates')
@@ -133,14 +133,14 @@ class DateEdit(object):
         self.text_obj.connect('content-changed', self.set_date)
         self.button_obj.connect('clicked', self.invoke_date_editor)
         
-        self.text_obj.set_text(DateHandler.displayer.display(self.date_obj))
+        self.text_obj.set_text(gen.datehandler.displayer.display(self.date_obj))
         self.text_obj.validate()
         
     def set_date(self, widget):
         """
         Parse date from text entry to date object
         """
-        date = DateHandler.parser.parse(unicode(self.text_obj.get_text()))
+        date = gen.datehandler.parser.parse(unicode(self.text_obj.get_text()))
         self.date_obj.copy(date)
         
     def validate(self, widget, data):
@@ -171,7 +171,7 @@ class DateEdit(object):
         if date_obj:
             # first we set the text entry, that emits 'content-changed'
             # signal thus the date object gets updated too
-            self.text_obj.set_text(DateHandler.displayer.display(date_obj))
+            self.text_obj.set_text(gen.datehandler.displayer.display(date_obj))
             self.text_obj.validate()
         
 #-------------------------------------------------------------------------

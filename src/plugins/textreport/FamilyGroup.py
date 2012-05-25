@@ -45,7 +45,7 @@ from gen.plug.report import MenuReportOptions
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
                             TableCellStyle, FONT_SANS_SERIF, FONT_SERIF, 
                             INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
-import DateHandler
+import gen.datehandler
 from gen.ggettext import sgettext as _
 from gen.display.name import displayer as global_name_display
 
@@ -111,7 +111,7 @@ class FamilyGroup(Report):
         date = ""
         descr = ""
         if event:
-            date = DateHandler.get_date(event)
+            date = gen.datehandler.get_date(event)
             place_handle = event.get_place_handle()
             place = ReportUtils.place_name(self.database,place_handle)
             descr = event.get_description()
@@ -175,12 +175,12 @@ class FamilyGroup(Report):
                     birth = "  "
                     if birth_ref:
                         event = self.database.get_event_from_handle(birth_ref.ref)
-                        birth = DateHandler.get_date( event )
+                        birth = gen.datehandler.get_date( event )
                     death_ref = father.get_death_ref()
                     death = "  "
                     if death_ref:
                         event = self.database.get_event_from_handle(death_ref.ref)
-                        death = DateHandler.get_date( event )
+                        death = gen.datehandler.get_date( event )
                     if birth_ref or death_ref:
                         father_name = "%s (%s - %s)" % (father_name,birth,death)
             mother_handle = family.get_mother_handle() 
@@ -192,12 +192,12 @@ class FamilyGroup(Report):
                     birth = "  "
                     if birth_ref:
                         event = self.database.get_event_from_handle(birth_ref.ref)
-                        birth = DateHandler.get_date( event )
+                        birth = gen.datehandler.get_date( event )
                     death_ref = mother.get_death_ref()
                     death = "  "
                     if death_ref:
                         event = self.database.get_event_from_handle(death_ref.ref)
-                        death = DateHandler.get_date( event )
+                        death = gen.datehandler.get_date( event )
                     if birth_ref or death_ref:
                         mother_name = "%s (%s - %s)" % (mother_name,birth,death)
         
@@ -316,7 +316,7 @@ class FamilyGroup(Report):
             addrlist = person.get_address_list()[:]
             for addr in addrlist:
                 location = ReportUtils.get_address_str(addr)
-                date = DateHandler.get_date( addr )
+                date = gen.datehandler.get_date( addr )
                 
                 self.doc.start_row()
                 self.doc.start_cell("FGR-TextContents")
@@ -393,7 +393,7 @@ class FamilyGroup(Report):
         date = ""
         place = ""
         if event:
-            date = DateHandler.get_date(event)
+            date = gen.datehandler.get_date(event)
             place_handle = event.get_place_handle()
             if place_handle:
                 place = self.database.get_place_from_handle(place_handle).get_title()
@@ -529,12 +529,12 @@ class FamilyGroup(Report):
                         birth_ref = spouse.get_birth_ref()
                         if birth_ref:
                             event = self.database.get_event_from_handle(birth_ref.ref)
-                            birth = DateHandler.get_date(event)
+                            birth = gen.datehandler.get_date(event)
                         death = "  "
                         death_ref = spouse.get_death_ref()
                         if death_ref:
                             event = self.database.get_event_from_handle(death_ref.ref)
-                            death = DateHandler.get_date(event)
+                            death = gen.datehandler.get_date(event)
                         if birth_ref or death_ref:
                             spouse_name = "%s (%s - %s)" % (spouse_name,birth,death)
                     mark = ReportUtils.get_person_mark(self.database,spouse)

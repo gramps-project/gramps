@@ -38,15 +38,15 @@ import os
 #
 #-------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".DateHandler")
+log = logging.getLogger(".gen.datehandler")
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _DateParser import DateParser
-from _DateDisplay import DateDisplay, DateDisplayEn
+from _dateparser import DateParser
+from _datedisplay import DateDisplay, DateDisplayEn
 import constfunc
 
 #-------------------------------------------------------------------------

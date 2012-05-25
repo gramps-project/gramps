@@ -44,7 +44,7 @@ import gtk
 import const
 import ToolTips
 import Utils
-import DateHandler
+import gen.datehandler
 from gen.display.name import displayer as name_displayer
 import gen.lib
 from gen.lib import EventRoleType
@@ -151,11 +151,11 @@ class FamilyModel(FlatBaseModel):
         event = get_marriage_or_fallback(self.db, family, "<i>%s</i>")
         if event:
             if event.date.format:
-                return event.date.format % DateHandler.displayer.display(event.date)
-            elif not DateHandler.get_date_valid(event):
-                return invalid_date_format % DateHandler.displayer.display(event.date)
+                return event.date.format % gen.datehandler.displayer.display(event.date)
+            elif not gen.datehandler.get_date_valid(event):
+                return invalid_date_format % gen.datehandler.displayer.display(event.date)
             else:
-                return "%s" % DateHandler.displayer.display(event.date)
+                return "%s" % gen.datehandler.displayer.display(event.date)
         else:
             return u''
 

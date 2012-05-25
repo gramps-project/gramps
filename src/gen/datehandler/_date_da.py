@@ -18,11 +18,11 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-
 # $Id$
+#
 
 """
-Norwegian-specific classes for parsing and displaying dates.
+Danish-specific classes for parsing and displaying dates.
 """
 
 #-------------------------------------------------------------------------
@@ -38,29 +38,29 @@ import re
 #
 #-------------------------------------------------------------------------
 from gen.lib import Date
-from _DateParser import DateParser
-from _DateDisplay import DateDisplay
-from _DateHandler import register_datehandler
+from _dateparser import DateParser
+from _datedisplay import DateDisplay
+from _datehandler import register_datehandler
 
 #-------------------------------------------------------------------------
 #
-# Norwegian parser class
+# Danish parser class
 #
 #-------------------------------------------------------------------------
-class DateParserNb(DateParser):
+class DateParserDa(DateParser):
     """
     Convert a text string into a Date object, expecting a date
-    notation in the Norwegian language. If the date cannot be converted, 
+    notation in the Danish language. If the date cannot be converted, 
     the text string is assigned.
     """
 
     # modifiers before the date
     modifier_to_int = {
         u'før'    : Date.MOD_BEFORE, 
-        u'innen'  : Date.MOD_BEFORE, 
-        u'etter'   : Date.MOD_AFTER, 
+        u'inden'  : Date.MOD_BEFORE, 
+        u'efter'   : Date.MOD_AFTER, 
         u'omkring' : Date.MOD_ABOUT, 
-        u'ca'      : Date.MOD_ABOUT
+        u'ca.'     : Date.MOD_ABOUT
         }
 
     bce = ["f Kr"]
@@ -85,7 +85,7 @@ class DateParserNb(DateParser):
         }
     
     quality_to_int = {
-        u'estimert' : Date.QUAL_ESTIMATED, 
+        u'estimeret' : Date.QUAL_ESTIMATED, 
         u'beregnet'   : Date.QUAL_CALCULATED, 
         }
     
@@ -93,33 +93,33 @@ class DateParserNb(DateParser):
         DateParser.init_strings(self)
         self._span     = re.compile(u"(fra)?\s*(?P<start>.+)\s*(til|--|–)\s*(?P<stop>.+)", 
                                     re.IGNORECASE)
-        self._range    = re.compile(u"(mellom)\s+(?P<start>.+)\s+og\s+(?P<stop>.+)", 
+        self._range    = re.compile(u"(mellem)\s+(?P<start>.+)\s+og\s+(?P<stop>.+)", 
                                     re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #
-# Norwegian display class
+# Danish display class
 #
 #-------------------------------------------------------------------------
-class DateDisplayNb(DateDisplay):
+class DateDisplayDa(DateDisplay):
     """
-    Norwegian language date display class. 
+    Danish language date display class. 
     """
 
-    long_months = ( u"", u"januar", u"februar", u"mars", u"april", u"mai", 
+    long_months = ( u"", u"januar", u"februar", u"marts", u"april", u"maj", 
                     u"juni", u"juli", u"august", u"september", u"oktober", 
-                    u"november", u"desember" )
+                    u"november", u"december" )
     
-    short_months = ( u"", u"jan", u"feb", u"mar", u"apr", u"mai", u"jun", 
-                     u"jul", u"aug", u"sep", u"okt", u"nov", u"des" )
+    short_months = ( u"", u"jan", u"feb", u"mar", u"apr", u"maj", u"jun", 
+                     u"jul", u"aug", u"sep", u"okt", u"nov", u"dec" )
 
     formats = (
         u"ÅÅÅÅ-MM-DD (ISO)", 
         u"Numerisk", 
         u"Måned dag, år", 
-        u"Mån Dag År", 
+        u"Md Dag År", 
         u"Dag måned år", 
-        u"Dag Mån År", 
+        u"Dag md År", 
         )
 
     calendar = (
@@ -132,11 +132,11 @@ class DateDisplayNb(DateDisplay):
         "svensk" 
         )
     
-    _mod_str = ("", u"før ", u"etter ", u"ca ", "", "", "")
+    _mod_str = ("", u"før ", u"efter ", u"ca. ", "", "", "")
 
     _qual_str = ("", u"beregnet ", u"beregnet ")
     
-    _bce_str = "%s f Kr"
+    _bce_str = "%s f. Kr."
 
     def display(self, date):
         """
@@ -163,7 +163,7 @@ class DateDisplayNb(DateDisplay):
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return u"%smellom %s og %s%s" % (qual_str, d1, d2, 
+            return u"%smellem %s og %s%s" % (qual_str, d1, d2, 
                                               scal)
         else:
             text = self.display_cal[date.get_calendar()](start)
@@ -176,4 +176,4 @@ class DateDisplayNb(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('nb_NO', 'nb', 'norsk', 'Norwegian'), DateParserNb, DateDisplayNb)
+register_datehandler(('da_DK', 'da', 'dansk', 'Danish'), DateParserDa, DateDisplayDa)

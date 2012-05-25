@@ -32,7 +32,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import DateHandler
+import gen.datehandler
 from gen.filters.rules._rule import Rule
 
 #-------------------------------------------------------------------------
@@ -57,7 +57,7 @@ class HasMedia(Rule):
         self.date = None
         try:
             if self.list[3]:
-                self.date = DateHandler.parser.parse(self.list[3])
+                self.date = gen.datehandler.parser.parse(self.list[3])
         except:
             pass
 

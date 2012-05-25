@@ -32,7 +32,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import DateHandler
+import gen.datehandler
 from gen.lib import EventType,EventRoleType
 from gen.filters.rules._rule import Rule
 
@@ -52,7 +52,7 @@ class HasBirth(Rule):
     def __init__(self,list):
         Rule.__init__(self,list)
         if self.list[0]:
-            self.date = DateHandler.parser.parse(self.list[0])
+            self.date = gen.datehandler.parser.parse(self.list[0])
         else:
             self.date = None
         

@@ -95,6 +95,7 @@ src/Makefile
 src/cli/Makefile
 src/cli/plug/Makefile
 src/gen/Makefile
+src/gen/datehandler/Makefile
 src/gen/db/Makefile
 src/gen/display/Makefile
 src/gen/filters/Makefile
@@ -154,7 +155,6 @@ src/plugins/webstuff/Makefile
 src/plugins/webstuff/css/Makefile
 src/plugins/webstuff/images/Makefile
 src/plugins/webstuff/javascript/Makefile
-src/DateHandler/Makefile
 src/data/Makefile
 src/glade/Makefile
 src/images/Makefile

@@ -38,7 +38,7 @@ from cgi import escape
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import DateHandler
+import gen.datehandler
 from gen.display.name import displayer as name_displayer
 from gen.utils import get_birth_or_fallback, get_death_or_fallback, get_marriage_or_fallback
 
@@ -74,17 +74,17 @@ class FormattingHelper(object):
         marriage = get_marriage_or_fallback(self.dbstate.db, family)
         if marriage and use_markup and marriage.get_type() != gen.lib.EventType.MARRIAGE:
             mdate  = "<i>%s %s</i>" % (marriage.get_type().get_abbreviation(), 
-                                       escape(DateHandler.get_date(marriage)))
+                                       escape(gen.datehandler.get_date(marriage)))
             mplace = "<i>%s</i>" % escape(self.get_place_name(marriage.get_place_handle()))
             name = "<i>%s</i>" % str(marriage.get_type())
         elif marriage and use_markup:
             mdate  = "%s %s" % (marriage.get_type().get_abbreviation(), 
-                                escape(DateHandler.get_date(marriage)))
+                                escape(gen.datehandler.get_date(marriage)))
             mplace = escape(self.get_place_name(marriage.get_place_handle()))
             name = str(marriage.get_type())
         elif marriage:
             mdate  = "%s %s" % (marriage.get_type().get_abbreviation(), 
-                                DateHandler.get_date(marriage))
+                                gen.datehandler.get_date(marriage))
             mplace = self.get_place_name(marriage.get_place_handle())
             name = str(marriage.get_type())
         else:
@@ -150,14 +150,14 @@ class FormattingHelper(object):
             birth = get_birth_or_fallback(self.dbstate.db, person)
             if birth and use_markup and birth.get_type() != \
                                                     gen.lib.EventType.BIRTH:
-                bdate  = "<i>%s</i>" % escape(DateHandler.get_date(birth))
+                bdate  = "<i>%s</i>" % escape(gen.datehandler.get_date(birth))
                 bplace = "<i>%s</i>" % escape(self.get_place_name(
                                                     birth.get_place_handle()))
             elif birth and use_markup:
-                bdate  = escape(DateHandler.get_date(birth))
+                bdate  = escape(gen.datehandler.get_date(birth))
                 bplace = escape(self.get_place_name(birth.get_place_handle()))
             elif birth:
-                bdate  = DateHandler.get_date(birth)
+                bdate  = gen.datehandler.get_date(birth)
                 bplace = self.get_place_name(birth.get_place_handle())
             else:
                 bdate = ""
@@ -165,14 +165,14 @@ class FormattingHelper(object):
             death = get_death_or_fallback(self.dbstate.db, person)
             if death and use_markup and death.get_type() != \
                                                     gen.lib.EventType.DEATH:
-                ddate  = "<i>%s</i>" % escape(DateHandler.get_date(death))
+                ddate  = "<i>%s</i>" % escape(gen.datehandler.get_date(death))
                 dplace = "<i>%s</i>" % escape(self.get_place_name(
                                                     death.get_place_handle()))
             elif death and use_markup:
-                ddate  = escape(DateHandler.get_date(death))
+                ddate  = escape(gen.datehandler.get_date(death))
                 dplace = escape(self.get_place_name(death.get_place_handle()))
             elif death:
-                ddate  = DateHandler.get_date(death)
+                ddate  = gen.datehandler.get_date(death)
                 dplace = self.get_place_name(death.get_place_handle())
             else:
                 ddate = ""

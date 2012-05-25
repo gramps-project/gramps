@@ -56,7 +56,7 @@ from webapp.dbdjango import DbDjango
 from Simple import SimpleTable, SimpleAccess, make_basic_stylesheet
 import Utils
 import DbState
-import DateHandler
+import gen.datehandler
 from gen.lib.date import Date as GDate, Today
 import gen.lib
 from gen.utils import get_birth_or_fallback, get_death_or_fallback
@@ -97,8 +97,8 @@ util_tags = [
 #
 #------------------------------------------------------------------------
 dji = libdjango.DjangoInterface()
-_dd = DateHandler.displayer.display
-_dp = DateHandler.parser.parse
+_dd = gen.datehandler.displayer.display
+_dp = gen.datehandler.parser.parse
 
 def register_plugins():
     dbstate = DbState.DbState()
