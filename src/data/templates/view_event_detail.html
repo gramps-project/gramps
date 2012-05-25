@@ -17,27 +17,30 @@
 <div id="summaryarea">
 <table class="infolist" style="width:90%;"> 
 <trbody>
+  {% if eventform.errors %}
+    <hr>
+    <p id="error">The following fields have errors. Please correct and try again.</p>
+    <div id="error">{{eventform.errors}}</div>
+    <hr>
+  {% endif %}
+<form method="post">{% csrf_token %}
 <tr>
-<td class="ColumnAttribute">Event type:</td>
-<td class="ColumnValue" id="data"> {{event.event_type|escape}}</td>
+<td class="ColumnAttribute">{{eventform.event_type.label}}:</td>
+<td class="ColumnValue" id="data"> {% render eventform.event_type user action %}</td>
 <td class="ColumnAttribute">Date:</td>
-<td class="ColumnValue" id="data">{{event|display_date}}</td>
+<td class="ColumnValue" id="data">{% render eventform.date user action %}</td>
 </tr>
 <tr>
 <td class="ColumnAttribute">Description:</td>
-{% if user.is_authenticated %}
-<td  class="ColumnValue" id="data" colspan="3">{{event.description|escape}}</td>
-{% else %}
-<td  class="ColumnValue" id="data" colspan="3">[Private]</td>
-{% endif %}
+<td  class="ColumnValue" id="data" colspan="3">{% render eventform.description user action %}</td>
 </tr>
 <tr>
 <td class="ColumnAttribute">ID:</td>
-<td  class="ColumnValue" id="data" colspan="3">{{event.gramps_id|escape}}</td>
+<td  class="ColumnValue" id="data" colspan="3">{% render eventform.gramps_id user action %}</td>
 </tr>
 <tr>
 <td class="ColumnAttribute">Place:</td>
-<td  class="ColumnValue" id="data" colspan="3">{{event.place.title|escape}} [{{event.place.gramps_id}}]</td>
+<td  class="ColumnValue" id="data" colspan="3">{% render eventform.place user action %}</td>
 </tr>
 </table>
 </div>
@@ -64,6 +67,25 @@
   </div>
 </div>
 
-
+{% if user.is_superuser %}
+  {% if action == "edit" %}
+    {% make_button "Back to Event" "/event/%s" event.handle %}
+    <input type="hidden" name="action" value="save"/>
+    <input type="submit" value="Save"/>
+  {% else %}
+    {% ifequal action "add" %}
+      {% make_button "Cancel" "/event/" %}
+      <input type="hidden" name="action" value="create"/>
+      <input type="submit" value="Create"/>
+    {% else %}
+      {% make_button "Back to Families" "/event" %}
+      {% make_button "Add Event" "/event/add" %}
+      {% make_button "Edit Event" "/event/%s/edit" event.handle %}
+      {% make_button "Delete Event" "/event/%s/delete" event.handle %}
+    {% endifequal %}
+  {% endif %}
+{% else %}
+{% endif %}
+</form>
 {% endblock %}
 

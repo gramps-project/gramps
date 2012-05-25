@@ -22,10 +22,11 @@
 """ Views for Person, Name, and Surname """
 
 ## Gramps Modules
-from webapp.utils import _, boolean
+from webapp.utils import _, boolean, update_last_changed
 from webapp.grampsdb.models import Event
 from webapp.grampsdb.forms import *
 from webapp.libdjango import DjangoInterface
+import DateHandler
 
 ## Django Modules
 from django.shortcuts import get_object_or_404, render_to_response, redirect
@@ -33,6 +34,8 @@ from django.template import Context, RequestContext
 
 ## Globals
 dji = DjangoInterface()
+dd = DateHandler.displayer.display
+dp = DateHandler.parser.parse
 
 def process_event(request, context, handle, action): # view, edit, save
     """
@@ -41,89 +44,54 @@ def process_event(request, context, handle, action): # view, edit, save
     context["tview"] = _("Event")
     context["tviews"] = _("Events")
     context["action"] = "view"
-    context["event"] = Event()
-    context["object"] = Event()
     view_template = "view_event_detail.html"
+
+    if handle == "add":
+        action = "add"
+    if request.POST.has_key("action"):
+        action = request.POST.get("action")
+
+    # Handle: edit, view, add, create, save, delete
+    if action == "add":
+        event = Event()
+        eventform = EventForm(instance=event)
+        eventform.model = event
+    elif action in ["view", "edit"]: 
+        event = Event.objects.get(handle=handle)
+        eventform = EventForm(instance=event)
+        eventform.model = event
+    elif action == "save": 
+        event = Event.objects.get(handle=handle)
+        eventform = EventForm(request.POST, instance=event)
+        eventform.model = event
+        if eventform.is_valid():
+            update_last_changed(event, request.user.username)
+            event = eventform.save()
+            dji.rebuild_cache(event)
+            action = "view"
+        else:
+            action = "edit"
+    elif action == "create": 
+        event = Event(handle=create_id())
+        eventform = EventForm(request.POST, instance=event)
+        eventform.model = event
+        if eventform.is_valid():
+            update_last_changed(event, request.user.username)
+            event = eventform.save()
+            dji.rebuild_cache(event)
+            action = "view"
+        else:
+            action = "add"
+    elif action == "delete": 
+        event = Event.objects.get(handle=handle)
+        event.delete()
+        return redirect("/event/")
+    else:
+        raise Exception("Unhandled action: '%s'" % action)
+
+    context["eventform"] = eventform
+    context["object"] = event
+    context["event"] = event
+    context["action"] = action
     
     return render_to_response(view_template, context)
-    if request.user.is_authenticated():
-        if action in ["edit", "view"]:
-            pf, nf, sf, person = get_person_forms(handle, empty=False)
-        elif action == "add":
-            pf, nf, sf, person = get_person_forms(handle=None, protect=False, empty=True)
-        elif action == "delete":
-            pf, nf, sf, person = get_person_forms(handle, protect=False, empty=True)
-            person.delete()
-            return redirect("/person/")
-        elif action in ["save", "create"]: # could be create a new person
-            # look up old data, if any:
-            if handle:
-                person = Person.objects.get(handle=handle)
-                name = person.name_set.get(preferred=True)
-                surname = name.surname_set.get(primary=True)
-            else: # create new item
-                person = Person(handle=create_id())
-                name = Name(person=person, preferred=True)
-                surname = Surname(name=name, primary=True, order=1)
-                surname = Surname(name=name, 
-                                  primary=True, 
-                                  order=1,
-                                  name_origin_type=NameOriginType.objects.get(val=NameOriginType._DEFAULT[0]))
-            # combine with user data:
-            pf = PersonForm(request.POST, instance=person)
-            pf.model = person
-            nf = NameFormFromPerson(request.POST, instance=name)
-            nf.model = name
-            sf = SurnameForm(request.POST, instance=surname)
-            # check if valid:
-            if nf.is_valid() and pf.is_valid() and sf.is_valid():
-                # name.preferred and surname.primary get set False in the above is_valid()
-                person = pf.save()
-                # Process data:
-                name.person = person
-                name = nf.save(commit=False)
-                # Manually set any data:
-                name.suffix = nf.cleaned_data["suffix"] if nf.cleaned_data["suffix"] != " suffix " else ""
-                name.preferred = True # FIXME: why is this False?
-                check_preferred(name, person)
-                name.save()
-                # Process data:
-                surname.name = name
-                surname = sf.save(commit=False)
-                # Manually set any data:
-                surname.prefix = sf.cleaned_data["prefix"] if sf.cleaned_data["prefix"] != " prefix " else ""
-                surname.primary = True # FIXME: why is this False?
-                surname.save()
-                # FIXME: last_saved, last_changed, last_changed_by
-                dji.rebuild_cache(person)
-                # FIXME: update probably_alive
-                return redirect("/person/%s" % person.handle)
-            else: 
-                # need to edit again
-                if handle:
-                    action = "edit"
-                else:
-                    action = "add"
-        else: # error?
-            raise Http404(_("Requested %s does not exist.") % "person")
-    else: # not authenticated
-        # BEGIN NON-AUTHENTICATED ACCESS
-        try:
-            person = Person.objects.get(handle=handle)
-        except:
-            raise Http404(_("Requested %s does not exist.") % "person")
-        if person.private:
-            raise Http404(_("Requested %s does not exist.") % "person")
-        pf, nf, sf, person = get_person_forms(handle, protect=True)
-        # END NON-AUTHENTICATED ACCESS
-    context["action"] = action
-    context["view"] = "person"
-    context["tview"] = _("Person")
-    context["tviews"] = _("People")
-    context["personform"] = pf
-    context["nameform"] = nf
-    context["surnameform"] = sf
-    context["person"] = person
-    context["object"] = person
-    context["next"] = "/person/%s" % person.handle
-

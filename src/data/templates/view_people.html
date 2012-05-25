@@ -24,8 +24,8 @@
     </td>
     <td><a href="{{name.person.handle}}/" class="grampsid">[{{name.person.gramps_id}}]</a></td>
     <td><a href="{{name.person.handle}}/" class="noThumb">{{name.person.gender_type}}</a></td>
-    <td><a href="{{name.person.handle}}/" class="noThumb">{{name.person.birth|render_date:user}}</a></td>
-    <td><a href="{{name.person.handle}}/" class="noThumb">{{name.person.death|render_date:user}}</a></td>
+    <td><a href="{{name.person.handle}}/" class="noThumb">{{name.person.birth|date_as_text:user}}</a></td>
+    <td><a href="{{name.person.handle}}/" class="noThumb">{{name.person.death|date_as_text:user}}</a></td>
     {% endif %}
   </tr>
   {% endfor %}

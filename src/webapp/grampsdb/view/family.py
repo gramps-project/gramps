@@ -49,7 +49,8 @@ def process_family(request, context, handle, action): # view, edit, save
 
     # Handle: edit, view, add, create, save, delete
     if action == "add":
-        family = Family(family_rel_type=FamilyRelType.objects.get(
+        family = Family(
+            family_rel_type=FamilyRelType.objects.get(
                 val=FamilyRelType._DEFAULT[0]))
         familyform = FamilyForm(instance=family)
         familyform.model = family

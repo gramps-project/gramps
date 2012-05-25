@@ -517,7 +517,7 @@ class Source(PrimaryObject):
 class Event(DateObject, PrimaryObject):
     event_type = models.ForeignKey('EventType')
     description = models.CharField('description', max_length=50, blank=True)
-    place = models.ForeignKey('Place', null=True)
+    place = models.ForeignKey('Place', null=True, blank=True)
     references = generic.GenericRelation('EventRef', related_name="refs",
                                          content_type_field="object_type",
                                          object_id_field="object_id")

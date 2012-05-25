@@ -17,15 +17,16 @@
 <div id="summaryarea">
 <table class="infolist" style="width:90%;"> {% comment %} 5 cols {% endcomment %}
 <tbody>
-    {% for error in personform.errors %}
-       <p id="error">Error in person: {{error}}</p>
-    {% endfor %}
-    {% for error in nameform.errors %}
-       <p id="error">Error in name: {{error}}</p>
-    {% endfor %}
-    {% for error in surnameform.errors %}
-       <p id="error">Error in surname: {{error}}</p>
-    {% endfor %}
+  {% if personform.errors or nameform.errors or surnameform.errors %}
+    <hr>
+    <p id="error">The following fields have errors. Please correct and try again.</p>
+    <div id="error">
+       {{personform.errors}}
+       {{nameform.errors}}
+       {{surnameform.errors}}
+    </div>
+    <hr>
+  {% endif %}
 <form method="post">{% csrf_token %}
 <tr>
  <td colspan="4" id="subtitle">{{nameform|render_name:user}}</td>

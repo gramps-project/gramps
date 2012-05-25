@@ -19,9 +19,12 @@
 <div id="summaryarea">
 <table class="infolist" style="width:90%;"> {% comment %} 4 cols {% endcomment %}
 <tbody>
-    {% for error in familyform.errors %}
-       <p id="error">Error in family: {{error}}</p>
-    {% endfor %}
+  {% if familyform.errors %}
+    <hr>
+    <p id="error">The following fields have errors. Please correct and try again.</p>
+    <div id="error">{{familyform.errors}}</div>
+    <hr>
+  {% endif %}
 <form method="post">{% csrf_token %}
 <tr>
 <th colspan="2">Father</th>
@@ -36,23 +39,23 @@
 {% if user.is_authenticated or not familyform.father.probably_alive %}
 <tr>
  <td class="ColumnAttribute">Birth:</td>
- <td class="ColumnValue" id="data">{{familyform.father.birth|render_date:user}}</td>
+ <td class="ColumnValue" id="data">{{familyform.father.birth|date_as_text:user}}</td>
  <td class="ColumnAttribute">Birth:</td>
- <td class="ColumnValue" id="data">{{familyform.mother.birth|render_date:user}}</td>
+ <td class="ColumnValue" id="data">{{familyform.mother.birth|date_as_text:user}}</td>
 </tr>
 {% else %}
 <tr>
  <td class="ColumnAttribute">Death:</td>
- <td class="ColumnValue" id="data">{{familyform.father.death|render_date:user}}</td>
+ <td class="ColumnValue" id="data">{{familyform.father.death|date_as_text:user}}</td>
  <td class="ColumnAttribute">Death:</td>
- <td class="ColumnValue" id="data">{{familyform.mother.death|render_date:user}}</td>
+ <td class="ColumnValue" id="data">{{familyform.mother.death|date_as_text:user}}</td>
 </tr>
 {% endif %}
 <tr>
  <td class="ColumnAttribute">Death:</td>
- <td class="ColumnValue" id="data">{{familyform.father.death|render_date:user}}</td>
+ <td class="ColumnValue" id="data">{{familyform.father.death|date_as_text:user}}</td>
  <td class="ColumnAttribute">Death:</td>
- <td class="ColumnValue" id="data">{{familyform.mother.death|render_date:user}}</td>
+ <td class="ColumnValue" id="data">{{familyform.mother.death|date_as_text:user}}</td>
 </tr>
 </tbody>
 </table>

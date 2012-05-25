@@ -67,7 +67,7 @@ _ = lambda msg: msg
 
 util_filters = [
     'nbsp', 
-    'render_date',
+    'date_as_text',
     'render_name',
     ]
 
@@ -97,8 +97,9 @@ util_tags = [
 #
 #------------------------------------------------------------------------
 dji = libdjango.DjangoInterface()
-_dd = gen.datehandler.displayer.display
-_dp = gen.datehandler.parser.parse
+dd = DateHandler.displayer.display
+dp = DateHandler.parser.parse
+db = DbDjango()
 
 def register_plugins():
     dbstate = DbState.DbState()
@@ -122,7 +123,6 @@ def get_person_from_handle(db, handle):
 
 def probably_alive(handle):
     return False
-    db = DbDjango()
     person = db.get_person_from_handle(handle)
     return Utils.probably_alive(person, db)
 
@@ -553,7 +553,7 @@ def children_table(obj, user, action, url=None, *args):
                       child.gender_type,
                       childref.father_rel_type,
                       childref.mother_rel_type,
-                      render_date(child.birth, user),
+                      date_as_text(child.birth, user),
                       )
             links.append(('URL', ("/person/%s" % child.handle)))
         else:
@@ -603,7 +603,7 @@ def display_date(obj):
     if date_tuple:
         gdate = GDate()
         gdate.unserialize(date_tuple)
-        return _dd(gdate)
+        return dd(gdate)
     else:
         return ""
 
@@ -615,13 +615,15 @@ def render(formfield, user, action, test=False, truetext="", id=None):
             fieldname = formfield.name # 'surname'
             try:
                 retval = str(getattr(formfield.form.model, fieldname))
+                if retval == "True":
+                    retval = "Yes"
+                elif retval == "False":
+                    retval = "No"
             except:
                 # name, "prefix"
                 try:
-                    retval = str(formfield.form.data[fieldname]) # formfield._data()
+                    retval = str(formfield.form.data[fieldname]) 
                 except:
-                    #import pdb; pdb.set_trace()
-                    #retval = "[ERROR: %s]" % fieldname
                     retval = "[None]"
         else:
             retval = truetext
@@ -684,7 +686,7 @@ def render_name(name, user):
 def make_name(name, user):
     return render_name(name, user)
 
-def render_date(obj, user):
+def date_as_text(obj, user):
     """
     Given a Django object, render the date as text and return.  This
     function uses authentication settings.
@@ -695,7 +697,7 @@ def render_date(obj, user):
             date_tuple = dji.get_date(obj)
             if date_tuple:
                 gdate = GDate().unserialize(date_tuple)
-                return _dd(gdate)
+                return dd(gdate)
         return ""
     return "[Private]"
 

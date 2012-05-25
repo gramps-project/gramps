@@ -25,7 +25,7 @@
 
     <td><a href="/{{view}}/{{event.handle|escape}}">{{event.event_type|nbsp}}</a>
     <td><a href="/{{view}}/{{event.handle|escape}}">{{event.description|nbsp}}</a>
-    <td><a href="/{{view}}/{{event.handle|escape}}">{{event|render_date:user}}</a>
+    <td><a href="/{{view}}/{{event.handle|escape}}">{{event|date_as_text:user}}</a>
     <td><a href="/{{view}}/{{event.handle|escape}}">{{event.place.title|nbsp}}</a>
 
     {% else %}
