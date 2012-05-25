@@ -34,7 +34,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._HasSourceCountBase import HasSourceCountBase
+from gen.filters.rules._hassourcecountbase import HasSourceCountBase
 
 #-------------------------------------------------------------------------
 # "People having sources"

@@ -33,7 +33,7 @@ from gen.ggettext import sgettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._MatchesSourceConfidenceBase import MatchesSourceConfidenceBase
+from gen.filters.rules._matchessourceconfidencebase import MatchesSourceConfidenceBase
 
 #-------------------------------------------------------------------------
 # "Confidence level"

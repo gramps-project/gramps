@@ -33,7 +33,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._HasReferenceCountBase import HasReferenceCountBase
+from gen.filters.rules._hasreferencecountbase import HasReferenceCountBase
 
 #-------------------------------------------------------------------------
 # "Source objects with a certain reference count"

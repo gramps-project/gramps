@@ -34,7 +34,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._HasTagBase import HasTagBase
+from gen.filters.rules._hastagbase import HasTagBase
 
 #-------------------------------------------------------------------------
 #

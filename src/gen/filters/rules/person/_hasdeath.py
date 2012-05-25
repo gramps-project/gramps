@@ -34,7 +34,7 @@ from gen.ggettext import gettext as _
 #-------------------------------------------------------------------------
 import DateHandler
 from gen.lib import EventType,EventRoleType
-from gen.filters.rules._Rule import Rule
+from gen.filters.rules._rule import Rule
 
 #-------------------------------------------------------------------------
 #

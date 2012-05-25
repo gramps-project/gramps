@@ -32,7 +32,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._Rule import Rule
+from gen.filters.rules._rule import Rule
 
 #-------------------------------------------------------------------------
 # "People without a birth date"

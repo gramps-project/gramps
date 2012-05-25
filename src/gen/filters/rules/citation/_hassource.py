@@ -36,7 +36,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._HasSourceBase import HasSourceBase
+from gen.filters.rules._hassourcebase import HasSourceBase
 
 #-------------------------------------------------------------------------
 #

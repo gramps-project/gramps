@@ -32,7 +32,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._RegExpIdBase import RegExpIdBase
+from gen.filters.rules._regexpidbase import RegExpIdBase
 
 #-------------------------------------------------------------------------
 #

@@ -33,7 +33,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._ChangedSinceBase import ChangedSinceBase
+from gen.filters.rules._changedsincebase import ChangedSinceBase
 
 #-------------------------------------------------------------------------
 #

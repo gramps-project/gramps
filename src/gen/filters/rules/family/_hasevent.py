@@ -35,7 +35,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._HasEventBase import HasEventBase
+from gen.filters.rules._haseventbase import HasEventBase
 
 #-------------------------------------------------------------------------
 #

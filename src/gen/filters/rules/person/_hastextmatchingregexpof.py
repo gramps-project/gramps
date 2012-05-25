@@ -31,7 +31,7 @@
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _HasTextMatchingSubstringOf import HasTextMatchingSubstringOf
+from _hastextmatchingsubstringof import HasTextMatchingSubstringOf
 
 #-------------------------------------------------------------------------
 # "HasTextMatchingRegexOf"

@@ -33,7 +33,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from Utils import probably_alive
-from gen.filters.rules._Rule import Rule
+from gen.filters.rules._rule import Rule
 import DateHandler
 
 #-------------------------------------------------------------------------

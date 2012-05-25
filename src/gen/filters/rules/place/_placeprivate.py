@@ -32,7 +32,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._IsPrivate import IsPrivate
+from gen.filters.rules._isprivate import IsPrivate
 
 #-------------------------------------------------------------------------
 # "Family marked private"

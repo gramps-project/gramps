@@ -33,7 +33,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from gen.filters.rules import Rule
-from _MatchesFilter import MatchesFilter
+from _matchesfilter import MatchesFilter
 
 #-------------------------------------------------------------------------
 #

@@ -36,7 +36,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from gen.lib import EventRoleType
-from gen.filters.rules._HasEventBase import HasEventBase
+from gen.filters.rules._haseventbase import HasEventBase
 
 #-------------------------------------------------------------------------
 #

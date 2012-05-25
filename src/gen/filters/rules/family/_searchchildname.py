@@ -33,7 +33,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from gen.filters.rules.person import SearchName
-from _MemberBase import child_base
+from _memberbase import child_base
 
 #-------------------------------------------------------------------------
 #

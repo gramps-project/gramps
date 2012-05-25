@@ -32,7 +32,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._HasNoteSubstrBase import HasNoteSubstrBase
+from gen.filters.rules._hasnotesubstrbase import HasNoteSubstrBase
 
 #-------------------------------------------------------------------------
 # "Media having notes that contain a substring"

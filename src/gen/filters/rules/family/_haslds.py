@@ -36,7 +36,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 
-from gen.filters.rules._HasLDSBase import HasLDSBase
+from gen.filters.rules._hasldsbase import HasLDSBase
 
 #-------------------------------------------------------------------------
 #

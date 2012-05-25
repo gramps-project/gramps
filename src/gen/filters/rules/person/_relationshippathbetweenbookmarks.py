@@ -35,7 +35,7 @@ except NameError:
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._Rule import Rule
+from gen.filters.rules._rule import Rule
 
 #-------------------------------------------------------------------------
 #

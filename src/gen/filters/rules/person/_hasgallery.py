@@ -32,7 +32,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._HasGalleryBase import HasGalleryBase
+from gen.filters.rules._hasgallerybase import HasGalleryBase
 
 #-------------------------------------------------------------------------
 # "People with media object reference "

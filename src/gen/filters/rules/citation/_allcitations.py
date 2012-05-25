@@ -33,7 +33,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._Everything import Everything
+from gen.filters.rules._everything import Everything
 
 #-------------------------------------------------------------------------
 #

@@ -33,7 +33,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from gen.filters.rules import HasGrampsId
-from _MemberBase import mother_base
+from _memberbase import mother_base
 
 #-------------------------------------------------------------------------
 #

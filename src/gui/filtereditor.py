@@ -55,7 +55,7 @@ import gobject
 #-------------------------------------------------------------------------
 from gen.filters import (GenericFilterFactory, FilterList, 
                          reload_custom_filters)
-from gen.filters.rules._MatchesFilterBase import MatchesFilterBase
+from gen.filters.rules._matchesfilterbase import MatchesFilterBase
 import ListModel
 import ManagedWindow
 from QuestionDialog import QuestionDialog

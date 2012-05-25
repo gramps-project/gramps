@@ -29,7 +29,7 @@ Package providing filtering framework for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters._GenericFilter import GenericFilter
+from gen.filters._genericfilter import GenericFilter
 from Errors import FilterError
 
 #-------------------------------------------------------------------------

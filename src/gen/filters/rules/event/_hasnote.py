@@ -35,7 +35,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._HasNoteBase import HasNoteBase
+from gen.filters.rules._hasnotebase import HasNoteBase
 
 #-------------------------------------------------------------------------
 # "Events having notes"

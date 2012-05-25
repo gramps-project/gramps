@@ -33,8 +33,8 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from Utils import for_each_ancestor
-from _HasCommonAncestorWith import HasCommonAncestorWith
-from _MatchesFilter import MatchesFilter
+from _hascommonancestorwith import HasCommonAncestorWith
+from _matchesfilter import MatchesFilter
 
 #-------------------------------------------------------------------------
 #

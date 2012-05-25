@@ -33,7 +33,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._HasNoteRegexBase import HasNoteRegexBase
+from gen.filters.rules._hasnoteregexbase import HasNoteRegexBase
 
 #-------------------------------------------------------------------------
 # "Sources having notes that contain a substring"

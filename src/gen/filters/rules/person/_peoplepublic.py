@@ -33,7 +33,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._IsPublic import IsPublic
+from gen.filters.rules._ispublic import IsPublic
 
 #-------------------------------------------------------------------------
 # "People marked private"

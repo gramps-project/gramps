@@ -36,7 +36,7 @@ LOG = logging.getLogger(".citationfilter")
 #
 #-------------------------------------------------------------------------
 from Utils import get_source_and_citation_referents
-from gen.filters.rules._Rule import Rule
+from gen.filters.rules._rule import Rule
 
 #-------------------------------------------------------------------------
 # "HasTextMatchingSubstringOf"
