@@ -526,8 +526,6 @@ class VarString(object):
         curr_string = ""
         index = 0
 
-        print "-[ " + str(self.state) + ", " + str(self._text) + " ]"
-
         while index < len(self._text):
         
             if self._text[index][0] == TXT.text:
