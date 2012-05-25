@@ -22,7 +22,7 @@
 """ Views for Person, Name, and Surname """
 
 ## Gramps Modules
-from webapp.utils import _, boolean
+from webapp.utils import _, boolean, update_last_changed
 from webapp.grampsdb.models import Person, Name, Surname
 from webapp.grampsdb.forms import *
 from webapp.libdjango import DjangoInterface
@@ -35,7 +35,7 @@ from django.template import Context, RequestContext
 dji = DjangoInterface()
 
 ## Functions
-def check_order(person):
+def check_order(request, person):
     """
     Check for proper ordering 1..., and for a preferred name.
     """
@@ -46,11 +46,13 @@ def check_order(person):
             preferred = True
         if name.order != order:
             name.order = order
+            update_last_changed(name, request.user.username)
             name.save()
         order += 1
     if not preferred:
         name = person.name_set.get(order=1)
         name.preferred = True
+        update_last_changed(name, request.user.username)
         name.save()
 
 def check_primary(surname, surnames):
@@ -91,6 +93,7 @@ def check_preferred(name, person):
         for s in names:
             if s.preferred and s.id != name.id:
                 s.preferred = False
+                update_last_changed(s, request.user.username)
                 s.save()
     else:
         # then one of them should be
@@ -102,6 +105,7 @@ def check_preferred(name, person):
                     break
                 else:
                     s.preferred = False
+                    update_last_changed(s, request.user.username)
                     s.save()
                     ok = True
                     break
@@ -218,7 +222,7 @@ def process_name(request, handle, order, action="view"):
         names = person.name_set.all()
         if len(names) > 1:
             name.delete()
-            check_order(person)
+            check_order(request, person)
         else:
             request.user.message_set.create(message = "Can't delete only name.")
         return redirect("/person/%s" % person.handle)
@@ -258,6 +262,7 @@ def process_name(request, handle, order, action="view"):
             # Process data:
             name = nf.save(commit=False)
             name.person = person
+            update_last_changed(name, request.user.username)
             # Manually set any data:
             name.suffix = nf.cleaned_data["suffix"] if nf.cleaned_data["suffix"] != " suffix " else ""
             name.preferred = False # FIXME: why is this False?
@@ -296,6 +301,7 @@ def process_name(request, handle, order, action="view"):
             # Manually set any data:
             name.suffix = nf.cleaned_data["suffix"] if nf.cleaned_data["suffix"] != " suffix " else ""
             name.preferred = True # FIXME: why is this False?
+            update_last_changed(name, request.user.username)
             check_preferred(name, person)
             name.save()
             # Process data:
@@ -365,6 +371,7 @@ def process_person(request, context, handle, action): # view, edit, save
             # check if valid:
             if nf.is_valid() and pf.is_valid() and sf.is_valid():
                 # name.preferred and surname.primary get set False in the above is_valid()
+                update_last_changed(person, request.user.username)
                 person = pf.save()
                 # Process data:
                 name.person = person
@@ -373,6 +380,7 @@ def process_person(request, context, handle, action): # view, edit, save
                 name.suffix = nf.cleaned_data["suffix"] if nf.cleaned_data["suffix"] != " suffix " else ""
                 name.preferred = True # FIXME: why is this False?
                 check_preferred(name, person)
+                update_last_changed(name, request.user.username)
                 name.save()
                 # Process data:
                 surname.name = name

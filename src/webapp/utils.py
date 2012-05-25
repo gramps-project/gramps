@@ -28,6 +28,7 @@
 #------------------------------------------------------------------------
 import locale
 import sys
+import datetime
 
 #------------------------------------------------------------------------
 #
@@ -721,6 +722,10 @@ def person_get_event(person, event_type=None):
 
 def boolean(s):
     return s.lower() in ["true", "1", "yes", "y", "t"]
+
+def update_last_changed(obj, user):
+    obj.last_changed = datetime.datetime.now()
+    obj.last_changed_by = user
 
 register_plugins()
 
