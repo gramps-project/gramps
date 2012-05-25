@@ -26,6 +26,7 @@ from webapp.utils import _, boolean
 from webapp.grampsdb.models import Family
 from webapp.grampsdb.forms import *
 from webapp.libdjango import DjangoInterface
+from Utils import create_id
 
 ## Django Modules
 from django.shortcuts import get_object_or_404, render_to_response, redirect
@@ -45,10 +46,16 @@ def process_family(request, context, handle, action): # view, edit, save
         action = "add"
     if request.POST.has_key("action"):
         action = request.POST.get("action")
+    
+    family = Family(father=Person.objects.all()[0], 
+                    family_rel_type=FamilyRelType.objects.get(
+            val=FamilyRelType._DEFAULT[0]))
+    familyform = FamilyForm(instance=family)
+    familyform.model = family
 
-    context["familyform"] = FamilyForm()
-    context["object"] = Family()
-    context["family"] = Family()
+    context["familyform"] = familyform
+    context["object"] = family
+    context["family"] = family
     context["action"] = action
     view_template = "view_family_detail.html"
     

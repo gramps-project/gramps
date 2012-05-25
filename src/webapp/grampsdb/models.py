@@ -394,6 +394,9 @@ class Tag(models.Model):
     color = models.CharField(max_length=13) # "#000000000000" # Black
     priority = models.IntegerField('priority', blank=False)
 
+    def __unicode__(self):
+        return str(self.name)
+
 # Just the following have tag lists:
 # ---------------------------------
 #src/gen/lib/family.py
@@ -877,6 +880,7 @@ TABLES = [
     ("primary", Place),
     ("primary", Media),
     ("primary", Note),
+    ("primary", Tag),
     ("abstract", SecondaryObject),
     ("secondary", Attribute),
     ("secondary", SourceDatamap),

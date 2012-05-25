@@ -14,7 +14,7 @@
 
 {% include "detail_breadcrumb.html" %}
 
-<h2>{{familyform.father|render_name:user}} and {{familyform.mother|render_name:user}}</h2>
+<h2><a href="/person/{{family.father.handle}}">{{family.father|render_name:user}}</a> and <a href="/person/{{family.mother.handle}}">{{family.mother|render_name:user}}</a></h2>
 
 <div id="summaryarea">
 <table class="infolist" style="width:90%;"> {% comment %} 4 cols {% endcomment %}
@@ -35,9 +35,9 @@
 </tr>
 <tr>
  <td class="ColumnAttribute">Name:</td>
- <td class="ColumnValue" id="data"><a href="/person/{{familyform.father.handle}}">{% render familyform.father user action %}</a></td>
+ <td class="ColumnValue" id="data">{% render familyform.father user action %}</td>
  <td class="ColumnAttribute">Name:</td>
- <td class="ColumnValue" id="data"><a href="/person/{{familyform.mother.handle}}">{% render familyform.mother user action %}</a></td>
+ <td class="ColumnValue" id="data">{% render familyform.mother user action %}</td>
 </tr>
 {% if user.is_authenticated or not familyform.father.probably_alive %}
 <tr>
@@ -48,10 +48,10 @@
 </tr>
 {% else %}
 <tr>
- <td class="ColumnAttribute">{{familyform.father.death.label}}:</td>
- <td class="ColumnValue" id="data">{% render familyform.father user action %}</td>
- <td class="ColumnAttribute">Birth:</td>
- <td class="ColumnValue" id="data">[Private]</td>
+ <td class="ColumnAttribute">Death:</td>
+ <td class="ColumnValue" id="data">{{familyform.father.death|render_date:user}}</td>
+ <td class="ColumnAttribute">Death:</td>
+ <td class="ColumnValue" id="data">{{familyform.mother.death|render_date:user}}</td>
 </tr>
 {% endif %}
 <tr>
@@ -68,16 +68,16 @@
   <th colspan="4">Relationship information</th>
 </tr>
 <tr>
- <td class="ColumnAttribute">ID:</td>
- <td class="ColumnValue" id="data">{{familyform.gramps_id}}</td>
- <td class="ColumnAttribute">Type:</td>
- <td class="ColumnValue" id="data">RELTYPE</td>
+ <td class="ColumnAttribute">{{familyform.gramps_id.label}}:</td>
+ <td class="ColumnValue" id="data">{% render familyform.gramps_id user action %}</td>
+ <td class="ColumnAttribute">{{familyform.family_rel_type.label}}:</td>
+ <td class="ColumnValue" id="data">{% render familyform.family_rel_type user action %}</td>
 </tr>
 <tr>
- <td class="ColumnAttribute">Marker:</td>
- <td class="ColumnValue" id="data">{{familyform.marker_type}}</td>
- <td class="ColumnAttribute">Private:</td>
- <td class="ColumnValue" id="data">{{familyform.private}}</td>
+ <td class="ColumnAttribute">{{familyform.tags.label}}:</td>
+ <td class="ColumnValue" id="data">{% render familyform.tags user action %}</td>
+ <td class="ColumnAttribute">{{familyform.private.label}}:</td>
+ <td class="ColumnValue" id="data">{% render familyform.private user action %}</td>
 </tr>
 </tbody>
 </table>

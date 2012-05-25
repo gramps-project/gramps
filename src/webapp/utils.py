@@ -607,10 +607,9 @@ def display_date(obj):
         return ""
 
 def render(formfield, user, action, test=False, truetext="", id=None):
-    #import pdb; pdb.set_trace()
     if not user.is_authenticated():
         action = "view"
-    if action == "view":
+    if action == "view": # show as text
         if (not user.is_authenticated() and not test) or user.is_authenticated():
             fieldname = formfield.name # 'surname'
             try:
@@ -620,10 +619,12 @@ def render(formfield, user, action, test=False, truetext="", id=None):
                 try:
                     retval = str(formfield.form.data[fieldname]) # formfield._data()
                 except:
-                    retval = "[ERROR: %s]" % fieldname
+                    #import pdb; pdb.set_trace()
+                    #retval = "[ERROR: %s]" % fieldname
+                    retval = "[None]"
         else:
             retval = truetext
-    else:
+    else: # show as widget
         if id != None:
             retval = formfield.as_widget(attrs={"id": id})
         else:
@@ -635,7 +636,9 @@ def render_name(name, user):
     Given a Django or Gramps object, render the name and return.  This
     function uses authentication, privacy and probably_alive settings.
     """
-    if isinstance(name, models.Name):
+    if name is None:
+        return "[None]"
+    elif isinstance(name, models.Name):
         if not user.is_authenticated():
             name.sanitize()
         try:

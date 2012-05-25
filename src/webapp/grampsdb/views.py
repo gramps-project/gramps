@@ -59,7 +59,6 @@ from webapp.grampsdb.view import *
 from webapp.dbdjango import DbDjango
 import cli.user
 import gen.proxy
-from Utils import create_id
 import const
 
 # Menu: (<Nice name>, /<path>/, <Model> | None, Need authentication ) 
