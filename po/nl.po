@@ -267,9 +267,8 @@ msgid "No active source"
 msgstr "Geen actieve bron"
 
 #: ../src/DisplayState.py:369
-#, fuzzy
 msgid "No active citation"
-msgstr "Geen actief media-object"
+msgstr "Geen actief citaat"
 
 #: ../src/DisplayState.py:370
 msgid "No active repository"
@@ -299,7 +298,7 @@ msgstr "Kies het opslagformaat"
 
 #: ../src/ExportAssistant.py:345
 msgid "Select Save File"
-msgstr "Opgeslagen bestand _selecteren"
+msgstr "Opgeslagen bestand selecteren"
 
 #: ../src/ExportAssistant.py:383 ../src/plugins/tool/MediaManager.py:274
 msgid "Final confirmation"
@@ -4152,7 +4151,7 @@ msgstr ""
 
 #: ../src/gui/aboutdialog.py:103
 msgid "Gramps Homepage"
-msgstr "Gramps _homepagina"
+msgstr "Gramps homepagina"
 
 #: ../src/gui/columnorder.py:91
 #, python-format
@@ -4823,7 +4822,7 @@ msgstr "U kunt verder gaan, er is een reservekopie genomen"
 
 #: ../src/gui/dbman.py:647
 msgid "Stop"
-msgstr "_Stop"
+msgstr "Stop"
 
 #: ../src/gui/dbman.py:670
 msgid "Rebuilding database from backup files"
@@ -5169,7 +5168,7 @@ msgstr "Tag:"
 #: ../src/Filters/Rules/Event/_HasCitation.py:51
 #: ../src/Filters/Rules/Event/_MatchesSourceConfidence.py:45
 msgid "Confidence level:"
-msgstr "_Zekerheid:"
+msgstr "Zekerheid:"
 
 #: ../src/gui/filtereditor.py:571
 msgid "Rule Name"
@@ -5541,7 +5540,7 @@ msgstr "Hulpmiddelen"
 
 #: ../src/gui/grampsgui.py:144
 msgid "Grouped List"
-msgstr "G_roeperen als lijst"
+msgstr "Groeperen als lijst"
 
 #: ../src/gui/grampsgui.py:145
 msgid "List"
@@ -5585,9 +5584,8 @@ msgstr "Pagina aanpassen"
 #: ../src/plugins/gramplet/bottombar.gpr.py:455
 #: ../src/plugins/gramplet/bottombar.gpr.py:469
 #: ../src/plugins/view/view.gpr.py:226
-#, fuzzy
 msgid "Citations"
-msgstr "Citaat"
+msgstr "Citaten"
 
 #: ../src/gui/grampsgui.py:159
 msgid "Export"
@@ -5725,7 +5723,7 @@ msgstr[1] "%d addons werden geïnstalleerd."
 
 #: ../src/gui/viewmanager.py:572
 msgid "You need to restart Gramps to see new views."
-msgstr "Om de nieuwe schermen te kunnen zien, dient u  Gramps te herstarten. "
+msgstr "Om de nieuwe schermen te kunnen zien, dient u  Gramps te herstarten."
 
 #: ../src/gui/viewmanager.py:576
 msgid "No addons were installed."
@@ -6684,7 +6682,7 @@ msgstr "Naam bewerken"
 
 #: ../src/gui/editors/editname.py:169 ../src/gui/editors/editperson.py:302
 msgid "Call name must be the given name that is normally used."
-msgstr "Roepnaam is dat deel van de voornaam dat gewoonlijk wordt gebruikt. "
+msgstr "Roepnaam is dat deel van de voornaam dat gewoonlijk wordt gebruikt."
 
 #: ../src/gui/editors/editname.py:307
 msgid "New Name"
@@ -6797,7 +6795,7 @@ msgstr "Maak actieve persoon"
 
 #: ../src/gui/editors/editperson.py:662
 msgid "Make Home Person"
-msgstr "Be_ginpersoon instellen"
+msgstr "Beginpersoon instellen"
 
 #: ../src/gui/editors/editperson.py:773
 msgid "Problem changing the gender"
@@ -7422,7 +7420,7 @@ msgstr "De geselecteerde naam naar beneden verschuiven"
 #: ../src/gui/editors/displaytabs/nameembedlist.py:76
 #: ../src/gui/views/treemodels/peoplemodel.py:524
 msgid "Group As"
-msgstr "G_roeperen als"
+msgstr "Groeperen als"
 
 #: ../src/gui/editors/displaytabs/nameembedlist.py:78
 msgid "Note Preview"
@@ -8647,15 +8645,15 @@ msgstr "Koppeling bewerken"
 
 #: ../src/gui/widgets/styledtexteditor.py:450
 msgid "Italic"
-msgstr "_Cursief"
+msgstr "Cursief"
 
 #: ../src/gui/widgets/styledtexteditor.py:452
 msgid "Bold"
-msgstr "_Vet"
+msgstr "Vet"
 
 #: ../src/gui/widgets/styledtexteditor.py:454
 msgid "Underline"
-msgstr "_Onderstreept"
+msgstr "Onderstreept"
 
 #: ../src/gui/widgets/styledtexteditor.py:464
 msgid "Background Color"
@@ -10140,7 +10138,7 @@ msgstr "Afstammelingenverslag voor %(person)s en %(father1)s, %(mother1)s"
 #: ../src/plugins/drawreport/DescendTree.py:166
 #, python-format
 msgid "Descendant Chart for %(person)s, %(father1)s and %(mother1)s"
-msgstr "Afstammelingenverslag voor %(person)s, %(father1)s en %(mother1)s."
+msgstr "Afstammelingenverslag voor %(person)s, %(father1)s en %(mother1)s"
 
 #. Should be 2 items in both names and names2 lists
 #: ../src/plugins/drawreport/DescendTree.py:173
@@ -10157,7 +10155,7 @@ msgstr "Afstammelingenverslag voor %(person)s"
 #: ../src/plugins/drawreport/DescendTree.py:185
 #, python-format
 msgid "Descendant Chart for %(father)s and %(mother)s"
-msgstr "Afstammelingenverslag voor %(father)s en %(mother)s."
+msgstr "Afstammelingenverslag voor %(father)s en %(mother)s"
 
 #: ../src/plugins/drawreport/DescendTree.py:322
 #, python-format
@@ -10167,11 +10165,11 @@ msgstr "Familiekaart voor %(person)s"
 #: ../src/plugins/drawreport/DescendTree.py:324
 #, python-format
 msgid "Family Chart for %(father1)s and %(mother1)s"
-msgstr "Familiekaart voor %(father1)s en %(mother1)s."
+msgstr "Familiekaart voor %(father1)s en %(mother1)s"
 
 #: ../src/plugins/drawreport/DescendTree.py:347
 msgid "Cousin Chart for "
-msgstr "Neven en nichten grafiek voor"
+msgstr "Neven en nichten grafiek voor "
 
 #: ../src/plugins/drawreport/DescendTree.py:735
 #, python-format
@@ -10860,7 +10858,7 @@ msgstr "GeneWeb import"
 
 #: ../src/plugins/export/export.gpr.py:116
 msgid "Gramps XML Package (family tree and media)"
-msgstr "Gramps _XML-pakket (familiestamboom en mediabestanden)"
+msgstr "Gramps XML-pakket (familiestamboom en mediabestanden)"
 
 #: ../src/plugins/export/export.gpr.py:117
 msgid "Gra_mps XML Package (family tree and media)"
@@ -10871,13 +10869,12 @@ msgid "Gramps package is an archived XML family tree together with the media obj
 msgstr "Een Gramps-pakket bestaat uit een gearchiveerde XML familiestamboom samen met de media-objectbestanden."
 
 #: ../src/plugins/export/export.gpr.py:127
-#, fuzzy
 msgid "Gramps package export options"
-msgstr "Gram_ps pakket (omzetbaar XML)"
+msgstr "Gramps pakket export-opties"
 
 #: ../src/plugins/export/export.gpr.py:138
 msgid "Gramps XML (family tree)"
-msgstr "Gramps X_ML (familiestamboom)"
+msgstr "Gramps XML (familiestamboom)"
 
 #: ../src/plugins/export/export.gpr.py:139
 msgid "Gramps _XML (family tree)"
@@ -11108,13 +11105,13 @@ msgstr "Maximum leeftijd"
 #: ../src/plugins/gramplet/AgeStats.py:58
 #: ../src/plugins/gramplet/AgeStats.py:74
 msgid "Max age of Mother at birth"
-msgstr "Ma_ximum leeftijd om vader van een kind te zijn"
+msgstr "Maximum leeftijd om vader van een kind te zijn"
 
 #: ../src/plugins/gramplet/AgeStats.py:51
 #: ../src/plugins/gramplet/AgeStats.py:59
 #: ../src/plugins/gramplet/AgeStats.py:75
 msgid "Max age of Father at birth"
-msgstr "Ma_ximum leeftijd om vader van een kind te zijn"
+msgstr "Maximum leeftijd om vader van een kind te zijn"
 
 #: ../src/plugins/gramplet/AgeStats.py:53
 #: ../src/plugins/gramplet/AgeStats.py:60
@@ -12261,7 +12258,7 @@ msgstr "Gramplet toont de rechtstreekse afstammelingen van de actieve persoon in
 #: ../src/plugins/gramplet/gramplet.gpr.py:123
 #: ../src/plugins/gramplet/gramplet.gpr.py:129
 msgid "FAQ"
-msgstr "_FAQ"
+msgstr "FAQ"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:124
 msgid "Gramplet showing frequently asked questions"
@@ -12367,7 +12364,7 @@ msgstr "Wat volgt er?"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:314
 msgid "Gramplet to view, edit, and save image Exif metadata"
-msgstr "Een gramplet om de Exif-beeldmetagegevens te zien, aan te passen of op te slaan."
+msgstr "Een gramplet om de Exif-beeldmetagegevens te zien, aan te passen of op te slaan"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:318
 msgid "Edit Exif Metadata"
@@ -13376,11 +13373,11 @@ msgstr "Importeer gegevens vanuit GeneWeb-bestanden"
 
 #: ../src/plugins/import/import.gpr.py:88
 msgid "Gramps package (portable XML)"
-msgstr "Gram_ps pakket (omzetbaar XML)"
+msgstr "Gramps pakket (omzetbaar XML)"
 
 #: ../src/plugins/import/import.gpr.py:89
 msgid "Import data from a Gramps package (an archived XML family tree together with the media object files.)"
-msgstr "Importeer gegevens van een Gramps-pakket (dit is een gearchiveerd XML-familiestamboombestand samen met media-objecten)."
+msgstr "Importeer gegevens van een Gramps-pakket (dit is een gearchiveerd XML-familiestamboombestand samen met media-objecten)"
 
 #: ../src/plugins/import/import.gpr.py:107
 msgid "Gramps XML Family Tree"
@@ -17496,7 +17493,7 @@ msgstr ""
 
 #: ../src/plugins/lib/maps/geography.py:197
 msgid "The green values in the row correspond to the current place values."
-msgstr "De groene waarden in de rij komen overeen met de huidige locatiewaarden. "
+msgstr "De groene waarden in de rij komen overeen met de huidige locatiewaarden."
 
 #. here, we could add value from geography names services ...
 #. if we found no place, we must create a default place.
@@ -18276,7 +18273,7 @@ msgstr "Fout: ontbrekend media-object"
 
 #: ../src/plugins/quickview/LinkReferences.py:62
 msgid "Internet"
-msgstr "_Internet"
+msgstr "Internet"
 
 #: ../src/plugins/quickview/LinkReferences.py:71
 msgid "No link references for this note"
@@ -19454,7 +19451,7 @@ msgstr "Gramps id: %s "
 #: ../src/plugins/textreport/PlaceReport.py:150
 #, python-format
 msgid "Street: %s "
-msgstr "S_traat: %s "
+msgstr "Straat: %s "
 
 #: ../src/plugins/textreport/PlaceReport.py:151
 #, python-format
@@ -20602,12 +20599,11 @@ msgstr "Zekerheid"
 
 #: ../src/plugins/tool/MergeCitations.py:77
 msgid "Ignore Date and Confidence"
-msgstr ""
+msgstr "Negeer datum en zekerheid"
 
 #: ../src/plugins/tool/MergeCitations.py:81
-#, fuzzy
 msgid "manual|Merge citations..."
-msgstr "Families_samenvoegen"
+msgstr "Citaten samenvoegen..."
 
 #: ../src/plugins/tool/MergeCitations.py:158
 #, fuzzy
@@ -20718,7 +20714,7 @@ msgstr "Voorvoegsel waarnaar gezocht wordt:"
 
 #: ../src/plugins/tool/PatchNames.py:129
 msgid "Connectors splitting surnames:"
-msgstr "Connecties voor het opsplitsen van de achternamen: "
+msgstr "Connecties voor het opsplitsen van de achternamen:"
 
 #: ../src/plugins/tool/PatchNames.py:136
 msgid "Connectors not splitting surnames:"
@@ -21388,9 +21384,8 @@ msgstr ""
 
 #: ../src/plugins/view/citationlistview.py:95
 #: ../src/Filters/SideBar/_CitationSidebarFilter.py:95
-#, fuzzy
 msgid "Volume/Page"
-msgstr "_Volume/Pagina:"
+msgstr "Volume/Pagina:"
 
 #: ../src/plugins/view/citationlistview.py:100
 #, fuzzy
@@ -22423,7 +22418,7 @@ msgstr "Deze pagina bevat een index van alle gebeurtenissen in het gegevensbesta
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3664
 msgid "Event types beginning with letter "
-msgstr "Gebeurtenistypes die beginnen met een letter"
+msgstr "Gebeurtenistypes die beginnen met een letter "
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3809
 #: ../src/plugins/webreport/NarrativeWeb.py:4534
@@ -22490,7 +22485,7 @@ msgstr "Koppelingverwijzingen"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4661
 msgid " and "
-msgstr " en"
+msgstr " en "
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4843
 msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object&#8217;s page.  If you see media size dimensions above an image, click on the image to see the full sized version.  "
@@ -23127,12 +23122,11 @@ msgstr "Locatiekaart op de locatiepagina's bijvoegen"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7989
 msgid "Whether to include a place map on the Place Pages, where Latitude/ Longitude are available."
-msgstr "Al of niet een locatiekaart op de locatiepagina's toevoegen indien lengte/breedte gekend zijn.  "
+msgstr "Al of niet een locatiekaart op de locatiepagina's toevoegen indien lengte/breedte gekend zijn."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7994
-#, fuzzy
 msgid "Include Family Map Pages with all places shown on the map"
-msgstr "Kaart op de individuele pagina toevoegen waarop alle locaties worden getoond "
+msgstr "Kaart op de individuele pagina toevoegen waarop alle locaties worden getoond"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7996
 msgid "Whether or not to add an individual page map showing all the places on this page. This will allow you to see how your family traveled around the country."
@@ -23801,9 +23795,8 @@ msgstr "Vindt personen met een bepaalde geboortedatum"
 #: ../src/Filters/Rules/Family/_HasCitation.py:49
 #: ../src/Filters/Rules/Event/_HasCitation.py:49
 #: ../src/glade/mergecitation.glade.h:10
-#, fuzzy
 msgid "Volume/Page:"
-msgstr "_Volume/Pagina:"
+msgstr "Volume/Pagina:"
 
 #: ../src/Filters/Rules/Person/_HasCitation.py:51
 #, fuzzy
@@ -23931,7 +23924,7 @@ msgstr "Bijnaam :"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:54
 msgid "Prefix:"
-msgstr "_Voorvoegsel:"
+msgstr "Voorvoegsel:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:55
 msgid "Single Surname:"
@@ -24961,7 +24954,7 @@ msgstr "Vindt locaties waarvan de notities tekst bevatten die met reguliere uitd
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:49
 msgid "Street:"
-msgstr "S_traat:"
+msgstr "Straat:"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:50
 msgid "Locality:"
@@ -25833,7 +25826,7 @@ msgstr "Geslacht:"
 
 #: ../src/glade/editperson.glade.h:17
 msgid "Go to Name Editor to add more information about this name"
-msgstr "Om bijkomende naaminformatie in te geven dient u naar het naamaanpasscherm te gaan "
+msgstr "Om bijkomende naaminformatie in te geven dient u naar het naamaanpasscherm te gaan"
 
 #: ../src/glade/editperson.glade.h:19
 msgid "O_rigin:"
@@ -26311,9 +26304,8 @@ msgid "Style n_ame:"
 msgstr "Stijl_naam:"
 
 #: ../src/glade/styleeditor.glade.h:30
-#, fuzzy
 msgid "Style name"
-msgstr "Stijl_naam:"
+msgstr "Stijlnaam:"
 
 #: ../src/glade/styleeditor.glade.h:31
 msgid "_Bold"
@@ -26434,7 +26426,7 @@ msgstr ""
 
 #: ../src/glade/editcitation.glade.h:23 ../src/glade/editsourceref.glade.h:21
 msgid "The date of the entry in the source you are referencing, e.g. the date a house was visited during a census, or the date an entry was made in a birth log/registry. "
-msgstr "De datum waarop het gegeven in de bron waarnaar u verwijst, werd opgetekend. Dit kan bijvoorbeeld de datum zijn waarop een huis werd bezocht tijdens een volkstelling of de datum dat er iets werd opgetekend in een geboorte register of logboek."
+msgstr "De datum waarop het gegeven in de bron waarnaar u verwijst, werd opgetekend. Dit kan bijvoorbeeld de datum zijn waarop een huis werd bezocht tijdens een volkstelling of de datum dat er iets werd opgetekend in een geboorte register of logboek. "
 
 #: ../src/glade/editcitation.glade.h:26 ../src/glade/editaddress.glade.h:20
 #: ../src/glade/editmedia.glade.h:16 ../src/glade/editmediaref.glade.h:29
@@ -26453,7 +26445,7 @@ msgstr "_Volume/Pagina:"
 
 #: ../src/glade/editurl.glade.h:1
 msgid "A descriptive caption of the Internet location you are storing."
-msgstr "Een beschrijving van de internetlocatie die u opslaat. "
+msgstr "Een beschrijving van de internetlocatie die u opslaat."
 
 # komt overeen met de genoemde filter?
 # Vindt de filter genaamd?
@@ -26517,7 +26509,7 @@ msgstr "Id van de bron in de bibliotheek."
 
 #: ../src/glade/editreporef.glade.h:12
 msgid "On what type of media this source is available in the repository."
-msgstr "Op welk mediatype deze bron in de bibliotheek beschikbaar is. "
+msgstr "Op welk mediatype deze bron in de bibliotheek beschikbaar is."
 
 #: ../src/glade/editreporef.glade.h:17
 msgid "_Media Type:"
@@ -26993,7 +26985,7 @@ msgid ""
 "Use Alternate Locations tab to store the current name."
 msgstr ""
 "Het dorp of de stad waar de locatie is. \n"
-"U kunt de tab 'Alternateve locaties' gebruiken om de huidige naam op te slaan. "
+"U kunt de tab 'Alternateve locaties' gebruiken om de huidige naam op te slaan."
 
 #: ../src/glade/editplace.glade.h:32
 msgid "_Longitude:"
@@ -27063,7 +27055,7 @@ msgid ""
 "You will be asked if you want to group this person only, or all people with this specific primary surname."
 msgstr ""
 " Het personenboomscherm groepeert de personen volgens hun primaire achternaam. Hier kunt u dit veranderen door een groepswaarde\n"
-"op te geven. U dient op te geven of u enkel deze persoon zo wenst te groeperen of alle personen met deze specifieke primaire achternaam. "
+"op te geven. U dient op te geven of u enkel deze persoon zo wenst te groeperen of alle personen met deze specifieke primaire achternaam."
 
 # De weergave van Datums en kalenders, werkbalk en statusbalk.
 #: ../src/glade/editname.glade.h:30
@@ -27114,9 +27106,8 @@ msgstr "<b>Bron 2</b>"
 
 # Vertrouwen
 #: ../src/glade/mergecitation.glade.h:3
-#, fuzzy
 msgid "Confidence:"
-msgstr "_Zekerheid:"
+msgstr "Zekerheid:"
 
 #: ../src/glade/mergecitation.glade.h:5 ../src/glade/mergeevent.glade.h:6
 #: ../src/glade/mergefamily.glade.h:3 ../src/glade/mergemedia.glade.h:5
