@@ -157,3 +157,9 @@ class EventForm(forms.ModelForm):
     text = forms.CharField(label="Date", 
                            required=False, 
                            widget=TextInput(attrs={'size':'45'}))
+
+class NoteForm(forms.ModelForm):
+    class Meta:
+        model = Note
+        exclude = ["handle"]
+

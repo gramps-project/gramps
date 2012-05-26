@@ -111,6 +111,8 @@ register.filter('person_get_events', person_get_event)
 def preview(text, width=40):
     text = text.replace("\n", " ")
     #return escape(text[:width])
+    if len(text) > width:
+        return text[:width] + "..."
     return text
 #preview.is_safe = True
 register.filter('preview', preview)

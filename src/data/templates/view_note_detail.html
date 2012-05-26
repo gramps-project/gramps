@@ -17,18 +17,32 @@
 <div id="summaryarea">
 <table class="infolist" style="width:90%;">
 <tbody>
+  {% if noteform.errors %}
+    <hr>
+    <p id="error">The following fields have errors. Please correct and try again.</p>
+    <div id="error">{{noteform.errors}}</div>
+    <hr>
+  {% endif %}
+<form method="post">{% csrf_token %}
 <tr>
-<td class="ColumnAttribute">ID:</td>
-<td class="ColumnValue" id="data"> {{note.gramps_id|escape}}</td>
-<td class="ColumnAttribute">Marker:</td>
-<td class="ColumnValue" id="data" colspan="4">{{note.note_marker_type|escape}}</td>
+<td class="ColumnAttribute">{{noteform.gramps_id.label}}:</td>
+<td class="ColumnValue" id="data"> {% render noteform.gramps_id user action %}</td>
 </tr>
 <tr>
-<td class="ColumnAttribute">Type:</td>
-<td class="ColumnValue" id="data">{{event.description|escape}}</td>
-<td class="ColumnAttribute"></td>
-<td class="ColumnValue" id="data">Preformatted</td>
-<td class="ColumnValue" id="data">Private</td>
+<td class="ColumnAttribute">{{noteform.note_type.label}}:</td>
+<td class="ColumnValue" id="data">{% render noteform.note_type user action %}</td>
+</tr>
+<tr>
+<td class="ColumnAttribute">{{noteform.text.label}}:</td>
+<td class="ColumnValue" id="data">{% render noteform.text user action %}</td>
+</tr>
+<tr>
+<td class="ColumnAttribute">{{noteform.preformatted.label}}:</td>
+<td class="ColumnValue" id="data">{% render noteform.preformatted user action %}</td>
+</tr>
+<tr>
+<td class="ColumnAttribute">{{noteform.tags.label}}:</td>
+<td class="ColumnValue" id="data" colspan="4">{% render noteform.tags user action %}</td>
 </tr>
 </table>
 
@@ -36,17 +50,34 @@
 
 <div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
   <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-note">Note</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tabs-references">References</a></li>
   </ul>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-note">
-    {{note.text}}
-  </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-references">
     {{note.references.all.to_list}}
   </div>
 </div>
 </div>
 </div>
+
+{% if user.is_superuser %}
+  {% if action == "edit" %}
+    {% make_button "Back to Note" "/note/%s" note.handle %}
+    <input type="hidden" name="action" value="save"/>
+    <input type="submit" value="Save"/>
+  {% else %}
+    {% ifequal action "add" %}
+      {% make_button "Cancel" "/note/" %}
+      <input type="hidden" name="action" value="create"/>
+      <input type="submit" value="Create"/>
+    {% else %}
+      {% make_button "Back to Notes" "/note" %}
+      {% make_button "Add Note" "/note/add" %}
+      {% make_button "Edit Note" "/note/%s/edit" note.handle %}
+      {% make_button "Delete Note" "/note/%s/delete" note.handle %}
+    {% endifequal %}
+  {% endif %}
+{% else %}
+{% endif %}
+</form>
 {% endblock %}
 
