@@ -7667,7 +7667,7 @@ msgstr "Grouper sous"
 # TODO : à ajouter au code pour l'interface
 #: ../src/gui/editors/displaytabs/nameembedlist.py:78
 msgid "Note Preview"
-msgstr "Aperçu des note"
+msgstr "Aperçu des notes"
 
 #: ../src/gui/editors/displaytabs/nameembedlist.py:88
 msgid "_Names"
