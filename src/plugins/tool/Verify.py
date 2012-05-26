@@ -136,6 +136,9 @@ def get_date_from_event_type(db,person,event_type,estimate=False):
     for event_ref in person.get_event_ref_list():
         event = find_event(db,event_ref.ref)
         if event:
+            if event_ref.get_role() != gen.lib.EventRoleType.PRIMARY and \
+                event.get_type() == gen.lib.EventType.BURIAL:
+                continue
             if event.get_type() == event_type:
                 date_obj = event.get_date_object()
                 if not estimate and \
