@@ -93,26 +93,26 @@
   </ul>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-events"> 
     <!-- Events -->
-    {% event_table person user action "/person/%s/event" person.handle %}
+    {% event_table person user action "/event/add/person/%s" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-names">
     {% name_table person user action "/person/%s/name" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-citations">
-    {% citation_table person user action "/person/%s/citation" person.handle %}
+    {% citation_table person user action "/citation/add/person/%s" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-attributes">
     {% attribute_table person user action "/person/%s/attribute" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-addresses">
-    {% address_table person user action "/person/%s/address" person.handle %}
+    {% address_table person user action "/place/add/person/%s" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom
 	      ui-tabs-hide" id="tab-notes">
-    {% note_table person user action "/person/%s/note" person.handle %}
+    {% note_table person user action "/note/add/person/%s" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-gallery">
-    {% gallery_table person user action "/person/%s/gallery" person.handle %}
+    {% gallery_table person user action "/media/add/person/%s" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-internet">
     {% internet_table person user action "/person/%s/internet" person.handle %}
@@ -124,7 +124,7 @@
     {% lds_table person user action "/person/%s/lds" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-references">
-    {% reference_table person user action "/person/%s/reference" person.handle %}
+    {% reference_table person user action "/reference/add/person/%s" person.handle %}
   </div>
 </div>
 

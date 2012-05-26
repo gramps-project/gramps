@@ -391,8 +391,8 @@ class Tag(models.Model):
     last_changed_by = models.TextField(blank=True, null=True)
 
     name = models.TextField('name')
-    color = models.CharField(max_length=13) # "#000000000000" # Black
-    priority = models.IntegerField('priority', blank=False)
+    color = models.CharField(max_length=13, blank=True, null=True) # "#000000000000" # Black
+    priority = models.IntegerField('priority', blank=True, null=True)
 
     def __unicode__(self):
         return str(self.name)
@@ -492,8 +492,8 @@ class Family(PrimaryObject):
         return str("%s and %s" % (father, mother))
 
 class Citation(DateObject, PrimaryObject):
-    confidence = models.IntegerField(blank=True)
-    page = models.CharField(max_length=50, blank=True)
+    confidence = models.IntegerField(blank=True, null=True)
+    page = models.CharField("Volume/Page", max_length=50, blank=True, null=True)
     source = models.ForeignKey('Source', null=True, blank=True)
     references = generic.GenericRelation('CitationRef', related_name="refs",
                                          content_type_field="object_type",
@@ -506,10 +506,10 @@ class Citation(DateObject, PrimaryObject):
     #   .datamap_set
 
 class Source(PrimaryObject):
-    title = models.CharField(max_length=50, blank=True)
-    author = models.CharField(max_length=50, blank=True)
-    pubinfo = models.CharField(max_length=50, blank=True)
-    abbrev = models.CharField(max_length=50, blank=True)
+    title = models.CharField(max_length=50, blank=True, null=True)
+    author = models.CharField(max_length=50, blank=True, null=True)
+    pubinfo = models.CharField("Pub. info.", max_length=50, blank=True, null=True)
+    abbrev = models.CharField("Abbreviation", max_length=50, blank=True, null=True)
 
     # Other keys here:
     #   .datamap_set
@@ -523,7 +523,7 @@ class Event(DateObject, PrimaryObject):
                                          object_id_field="object_id")
 
 class Repository(PrimaryObject):
-    repository_type = models.ForeignKey('RepositoryType')
+    repository_type = models.ForeignKey('RepositoryType', verbose_name="Type")
     name = models.TextField(blank=True)
     #addresses = models.ManyToManyField('Address', null=True, blank=True)
     references = generic.GenericRelation('RepositoryRef', related_name="refs",

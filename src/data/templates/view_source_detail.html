@@ -19,25 +19,28 @@
 <div id="summaryarea">
 <table class="infolist" style="width:90%;"> {% comment %} 2 cols {% endcomment %}
 <tbody>
+  {% if sourceform.errors %}
+    <hr>
+    <p id="error">The following fields have errors. Please correct and try again.</p>
+    <div id="error">{{sourceform.errors}}</div>
+    <hr>
+  {% endif %}
+<form method="post">{% csrf_token %}
 <tr>
-<td class="ColumnAttribute">Title:</td>
-<td class="ColumnValue" id="data">{{source.title|escape}}</td>
+<td class="ColumnAttribute">{{sourceform.title.label}}:</td>
+<td class="ColumnValue" id="data">{% render sourceform.title user action %}</td>
 </tr>
 <tr>
-<td class="ColumnAttribute">Author:</td>
-<td class="ColumnValue" id="data">{{source.author|escape}}</td>
+<td class="ColumnAttribute">{{sourceform.gramps_id.label}}:</td>
+<td class="ColumnValue" id="data">{% render sourceform.gramps_id user action %}</td>
 </tr>
 <tr>
-<td class="ColumnAttribute">ID:</td>
-<td class="ColumnValue" id="data">{{source.gramps_id|escape}}</td>
+<td class="ColumnAttribute">{{sourceform.abbrev.label}}:</td>
+<td class="ColumnValue" id="data">{% render sourceform.abbrev user action %}</td>
 </tr>
 <tr>
-<td class="ColumnAttribute">Abbreviation:</td>
-<td class="ColumnValue" id="data">{{source.abbrev|escape}}</td>
-</tr>
-<tr>
-<td class="ColumnAttribute">Public information:</td>
-<td class="ColumnValue" id="data">{{source.pubinfo|escape}}</td>
+<td class="ColumnAttribute">{{sourceform.pubinfo.label}}:</td>
+<td class="ColumnValue" id="data">{% render sourceform.pubinfo user action %}</td>
 </tr>
 </tbody>
 </table>
@@ -66,4 +69,24 @@
   </div>
 </div>
 
+{% if user.is_superuser %}
+  {% if action == "edit" %}
+    {% make_button "Back to Source" "/source/%s" source.handle %}
+    <input type="hidden" name="action" value="save"/>
+    <input type="submit" value="Save"/>
+  {% else %}
+    {% ifequal action "add" %}
+      {% make_button "Cancel" "/source/" %}
+      <input type="hidden" name="action" value="create"/>
+      <input type="submit" value="Create"/>
+    {% else %}
+      {% make_button "Back to Sources" "/source" %}
+      {% make_button "Add Source" "/source/add" %}
+      {% make_button "Edit Source" "/source/%s/edit" source.handle %}
+      {% make_button "Delete Source" "/source/%s/delete" source.handle %}
+    {% endifequal %}
+  {% endif %}
+{% else %}
+{% endif %}
+</form>
 {% endblock %}

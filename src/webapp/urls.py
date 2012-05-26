@@ -68,13 +68,15 @@ urlpatterns += patterns('',
     (r'^browse/$', browse_page),
     (r'^login/$', 'django.contrib.auth.views.login'),
     (r'^logout/$', logout_page),
-    (r'^(?P<view>(\w+))/$', view_list),                    # /object/
+    (r'^(?P<view>(\w+))/$', view_list),                    # /view/
     (r'^(?P<view>(\w+))/add$', action,
-     {"handle": None, "action": "add"}),                                   # /object/add
+     {"handle": None, "action": "add"}),                   # /view/add
+    (r'^(?P<view>(\w+))/add/(?P<item>(\w+))/(?P<handle>(\w+))$', 
+     add_to),                                              # /view/add/item/handle
     (r'^(?P<view>(\w+))/(?P<handle>(\w+))/$', action, 
-     {"action": "view"}),                                  # /object/handle/
+     {"action": "view"}),                                  # /view/handle/
     (r'^(?P<view>(\w+))/(?P<handle>(\w+))/(?P<action>(\w+))$', 
-     action),                                              # /object/handle/action 
+     action),                                              # /view/handle/action 
     (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))$', process_name),
     (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/(?P<action>(\w+))$', process_name),
     (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/surname/(?P<sorder>(\w+))$', process_surname),

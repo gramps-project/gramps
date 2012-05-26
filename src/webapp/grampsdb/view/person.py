@@ -151,8 +151,6 @@ def process_surname(request, handle, order, sorder, action="view"):
                           name_origin_type=NameOriginType.objects.get(val=NameOriginType._DEFAULT[0]))
         surname.prefix = make_empty(True, surname.prefix, " prefix ")
     elif action == "create":
-        import pdb; pdb.set_trace()
-
         surnames = name.surname_set.all().order_by("order")
         sorder = 1
         for surname in surnames:
@@ -333,7 +331,7 @@ def process_name(request, handle, order, action="view"):
     view_template = "view_name_detail.html"
     return render_to_response(view_template, context)
     
-def process_person(request, context, handle, action): # view, edit, save
+def process_person(request, context, handle, action, add_to=None): # view, edit, save
     """
     Process action on person. Can return a redirect.
     """
@@ -392,6 +390,12 @@ def process_person(request, context, handle, action): # view, edit, save
                 # FIXME: last_saved, last_changed, last_changed_by
                 dji.rebuild_cache(person)
                 # FIXME: update probably_alive
+                if add_to:
+                    item, handle = add_to
+                    model = dji.get_model(item)
+                    obj = model.objects.get(handle=handle)
+                    dji.add_person_ref_default(obj, person)
+                    return redirect("/%s/%s" % (item, handle))
                 return redirect("/person/%s" % person.handle)
             else: 
                 # need to edit again

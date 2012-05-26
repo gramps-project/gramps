@@ -146,10 +146,10 @@ class DjangoInterface(object):
             raise AttributeError("no such model: '%s'" % name)
 
     def get_model(self, name):
-        if hasattr(models, name):
-            return getattr(models, name)
+        if hasattr(models, name.title()):
+            return getattr(models, name.title())
         else:
-            raise AttributeError("no such model: '%s'" % name)
+            raise AttributeError("no such model: '%s'" % name.title())
 
     # -----------------------------------------------
     # Get methods to retrieve list data from the tables
@@ -714,6 +714,15 @@ class DjangoInterface(object):
     
     ## Export reference objects:
     
+    def add_person_ref_default(self, obj, person, private=False, desc=None):
+        count = person.references.count()
+        person_ref = models.PersonRef(referenced_by=obj,
+                                  ref_object=person,
+                                  private=private,
+                                  order=count + 1,
+                                  description=desc)
+        person_ref.save()
+
     def add_person_ref(self, obj, person_ref_data):
         (private, 
          citation_list,
@@ -745,6 +754,20 @@ class DjangoInterface(object):
                               order=count + 1)
         note_ref.save()
     
+    def add_media_ref_default(self, obj, media, private=False, role=None):
+        count = media.references.count()
+        if not role:
+            role = (0,0,0,0)
+        media_ref = models.MediaRef(referenced_by=obj, 
+                                ref_object=media,
+                                x1=role[0],
+                                y1=role[1],
+                                x2=role[2],
+                                y2=role[3],
+                                private=private,
+                                order=count + 1)
+        media_ref.save()
+
     def add_media_ref(self, obj, media_ref_data):
         (private, citation_list, note_list, attribute_list, 
          ref, role) = media_ref_data
@@ -838,6 +861,15 @@ class DjangoInterface(object):
         self.add_citation_list(child_ref, citation_list)
         self.add_note_list(child_ref, note_list)
     
+    def add_event_ref_default(self, obj, event, private=False, role=models.EventRoleType._DEFAULT):
+        count = models.EventRef.objects.filter(object_id=obj.id,object_type=obj).count()
+        event_ref = models.EventRef(private=private,
+                                referenced_by=obj,
+                                ref_object=event,
+                                order=count + 1,
+                                role_type = models.get_type(models.EventRoleType, role))
+        event_ref.save()
+
     def add_event_ref(self, obj, event_data):
         (private, note_list, attribute_list, ref, role) = event_data
         try:

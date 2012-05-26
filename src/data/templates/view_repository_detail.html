@@ -17,17 +17,27 @@
 <div id="summaryarea">
 
 <table class="infolist" style="width:90%;">
+<trbody>
+  {% if repositoryform.errors %}
+    <hr>
+    <p id="error">The following fields have errors. Please correct and try again.</p>
+    <div id="error">{{repositoryform.errors}}</div>
+    <hr>
+  {% endif %}
+<form method="post">{% csrf_token %}
 <tr>
-<td class="ColumnAttribute">Name:</td>
-<td class="ColumnValue" id="data" colspan="5">{{repository.name}} </td>
+<td class="ColumnAttribute">{{repositoryform.name.label}}:</td>
+<td class="ColumnValue" id="data" colspan="5">{% render repositoryform.name user action %} </td>
 </tr>
 <tr>
-<td class="ColumnAttribute">Type:</td>
-<td class="ColumnValue" id="data">{{repository.repository_type}}</td>
-<td class="ColumnAttribute">ID:</td>
-<td class="ColumnValue" id="data">{{repository.gramps_id}}</td>
-<td class="ColumnAttribute" >Private:</td>
-<td class="ColumnValue" id="data">{{repository.private}}</td>
+<td class="ColumnAttribute">{{repositoryform.repository_type.label}}:</td>
+<td class="ColumnValue" id="data" colspan="3">{% render repositoryform.repository_type user action %}</td>
+</tr>
+<tr>
+<td class="ColumnAttribute">{{repositoryform.gramps_id.label}}:</td>
+<td class="ColumnValue" id="data">{% render repositoryform.gramps_id user action %}</td>
+<td class="ColumnAttribute" >{{repositoryform.private.label}}:</td>
+<td class="ColumnValue" id="data">{% render repositoryform.private user action %}</td>
 </tr>
 </table>
 
@@ -50,6 +60,25 @@
   </div>
 </div>
 
-
+{% if user.is_superuser %}
+  {% if action == "edit" %}
+    {% make_button "Back to Repository" "/repository/%s" repository.handle %}
+    <input type="hidden" name="action" value="save"/>
+    <input type="submit" value="Save"/>
+  {% else %}
+    {% ifequal action "add" %}
+      {% make_button "Cancel" "/repository/" %}
+      <input type="hidden" name="action" value="create"/>
+      <input type="submit" value="Create"/>
+    {% else %}
+      {% make_button "Back to Repositories" "/repository" %}
+      {% make_button "Add Repository" "/repository/add" %}
+      {% make_button "Edit Repository" "/repository/%s/edit" repository.handle %}
+      {% make_button "Delete Repository" "/repository/%s/delete" repository.handle %}
+    {% endifequal %}
+  {% endif %}
+{% else %}
+{% endif %}
+</form>
 {% endblock %}
 

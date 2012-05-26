@@ -199,3 +199,73 @@ class MediaForm(forms.ModelForm):
     path = forms.CharField(label="Path", 
                            required=False, 
                            widget=TextInput(attrs={'size':'70'}))
+
+class CitationForm(forms.ModelForm):
+    class Meta:
+        model = Citation
+        exclude = ["handle", "sortval", "month1", "year1", "day1",
+                   "newyear", "calendar", "modifier", "quality"]
+
+    def clean(self):
+        from webapp.utils import dp
+        data = super(CitationForm, self).clean()
+        dobj = dp(data.get('text'))
+        if not dobj.is_valid():
+            msg = u"Invalid date format"
+            self._errors["date"] = self.error_class([msg])
+            del data["text"]
+        return data
+ 
+    def save(self, commit=True):
+        from webapp.utils import dp
+        from webapp.libdjango import DjangoInterface
+        dji = DjangoInterface()
+        model = super(CitationForm, self).save(commit=False)
+        dobj = dp(self.cleaned_data['text'])
+        dji.add_date(model, dobj.serialize())
+        if commit:
+            model.save()
+        return model
+
+    text = forms.CharField(label="Date", 
+                           required=False, 
+                           widget=TextInput(attrs={'size':'70'}))
+
+class SourceForm(forms.ModelForm):
+    class Meta:
+        model = Source
+        exclude = ["handle"]
+
+class PlaceForm(forms.ModelForm):
+    class Meta:
+        model = Place
+        exclude = ["handle"]
+
+    title = forms.CharField(label="Title", 
+                           required=False, 
+                           widget=TextInput(attrs={'size':'70'}))
+    long = forms.CharField(label="Longitude", 
+                           required=False, 
+                           widget=TextInput(attrs={'size':'70'}))
+    lat = forms.CharField(label="Latitude", 
+                           required=False, 
+                           widget=TextInput(attrs={'size':'70'}))
+
+class RepositoryForm(forms.ModelForm):
+    class Meta:
+        model = Repository
+        exclude = ["handle"]
+
+    name = forms.CharField(label="Name", 
+                           required=False, 
+                           widget=TextInput(attrs={'size':'70'}))
+
+class TagForm(forms.ModelForm):
+    class Meta:
+        model = Tag
+        exclude = ["handle"]
+
+    name = forms.CharField(label="Name", 
+                           required=False, 
+                           widget=TextInput(attrs={'size':'70'}))
+

@@ -536,7 +536,14 @@ def check_access(request, context, obj, action):
     else: # outside viewer
         return not obj.private
 
-def action(request, view, handle, action):
+def add_to(request, view, item, handle):
+    """
+    Add a new <view> referenced from <item>.
+    """
+    # /view/add/person/handle
+    return action(request, view, handle, "add", (item, handle))
+
+def action(request, view, handle, action, add_to=None):
     """
     View a particular object given /object/handle (implied view),
     /object/handle/action, or /object/add.
@@ -559,7 +566,7 @@ def action(request, view, handle, action):
         if not check_access(request, context, obj, action):
             raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_event_detail.html'
-        rd = process_event(request, context, handle, action)
+        rd = process_event(request, context, handle, action, add_to)
     elif view == "family":
         if action not in ["add", "create"]:
             try:
@@ -567,7 +574,7 @@ def action(request, view, handle, action):
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_family_detail.html'
-        rd = process_family(request, context, handle, action)
+        rd = process_family(request, context, handle, action, add_to)
     elif view == "media":
         if action not in ["add", "create"]:
             try:
@@ -575,7 +582,7 @@ def action(request, view, handle, action):
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_media_detail.html'
-        rd = process_media(request, context, handle, action)
+        rd = process_media(request, context, handle, action, add_to)
     elif view == "note":
         if action not in ["add", "create"]:
             try:
@@ -583,7 +590,7 @@ def action(request, view, handle, action):
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_note_detail.html'
-        rd = process_note(request, context, handle, action)
+        rd = process_note(request, context, handle, action, add_to)
     elif view == "person":
         if action not in ["add", "create"]:
             try:
@@ -591,7 +598,7 @@ def action(request, view, handle, action):
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_person_detail.html'
-        rd = process_person(request, context, handle, action)
+        rd = process_person(request, context, handle, action, add_to)
     elif view == "place":
         if action not in ["add", "create"]:
             try:
@@ -599,7 +606,7 @@ def action(request, view, handle, action):
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_place_detail.html'
-        rd = process_place(request, context, handle, action)
+        rd = process_place(request, context, handle, action, add_to)
     elif view == "repository":
         if action not in ["add", "create"]:
             try:
@@ -607,7 +614,7 @@ def action(request, view, handle, action):
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_repository_detail.html'
-        rd = process_repository(request, context, handle, action)
+        rd = process_repository(request, context, handle, action, add_to)
     elif view == "citation":
         if action not in ["add", "create"]:
             try:
@@ -615,7 +622,7 @@ def action(request, view, handle, action):
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_citation_detail.html'
-        rd = process_citation(request, context, handle, action)
+        rd = process_citation(request, context, handle, action, add_to)
     elif view == "source":
         if action not in ["add", "create"]:
             try:
@@ -623,7 +630,7 @@ def action(request, view, handle, action):
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_source_detail.html'
-        rd = process_source(request, context, handle, action)
+        rd = process_source(request, context, handle, action, add_to)
     elif view == "tag":
         if action not in ["add", "create"]:
             try:
@@ -631,7 +638,7 @@ def action(request, view, handle, action):
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_tag_detail.html'
-        rd = process_tag(request, context, handle, action)
+        rd = process_tag(request, context, handle, action, add_to)
     elif view == "report":
         if action not in ["add", "create"]:
             try:

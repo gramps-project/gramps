@@ -385,7 +385,7 @@ def note_table(obj, user, action, url=None, *args):
                       note_ref.ref_object.text[:50])
     retval += table.get_html()
     if user.is_superuser and url and action == "view":
-        retval += make_button(_("Add note"), (url + "/add") % args)
+        retval += make_button(_("Add note"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval

@@ -17,19 +17,25 @@
 <div id="summaryarea">
 
 <table class="infolist" style="width:90%;">
+<trbody>
+  {% if tagform.errors %}
+    <hr>
+    <p id="error">The following fields have errors. Please correct and try again.</p>
+    <div id="error">{{tagform.errors}}</div>
+    <hr>
+  {% endif %}
+<form method="post">{% csrf_token %}
 <tr>
-<td class="ColumnAttribute">Name:</td>
-<td class="ColumnValue" id="data" colspan="5">{{tag.name}} </td>
+<td class="ColumnAttribute">{{tagform.name.label}}:</td>
+<td class="ColumnValue" id="data" colspan="5">{% render tagform.name user action %} </td>
 </tr>
 <tr>
-<td class="ColumnAttribute">Type:</td>
-<td class="ColumnValue" id="data">{{tag.repository_type}}</td>
-<td class="ColumnAttribute">Color:</td>
-<td class="ColumnValue" id="data">{{tag.color}}</td>
-<td class="ColumnAttribute" >Private:</td>
-<td class="ColumnValue" id="data">{{tag.private}}</td>
-<td class="ColumnAttribute" >Priority:</td>
-<td class="ColumnValue" id="data">{{tag.priority}}</td>
+<td class="ColumnAttribute">{{tagform.color.label}}:</td>
+<td class="ColumnValue" id="data">{% render tagform.color user action %}</td>
+</tr>
+<tr>
+<td class="ColumnAttribute" >{{tagform.priority.label}}:</td>
+<td class="ColumnValue" id="data">{% render tagform.priority user action %}</td>
 </tr>
 </table>
 
@@ -52,6 +58,25 @@
   </div>
 </div>
 
-
+{% if user.is_superuser %}
+  {% if action == "edit" %}
+    {% make_button "Back to Tag" "/tag/%s" tag.handle %}
+    <input type="hidden" name="action" value="save"/>
+    <input type="submit" value="Save"/>
+  {% else %}
+    {% ifequal action "add" %}
+      {% make_button "Cancel" "/tag/" %}
+      <input type="hidden" name="action" value="create"/>
+      <input type="submit" value="Create"/>
+    {% else %}
+      {% make_button "Back to Tags" "/tag" %}
+      {% make_button "Add Tag" "/tag/add" %}
+      {% make_button "Edit Tag" "/tag/%s/edit" tag.handle %}
+      {% make_button "Delete Tag" "/tag/%s/delete" tag.handle %}
+    {% endifequal %}
+  {% endif %}
+{% else %}
+{% endif %}
+</form>
 {% endblock %}
 

@@ -37,7 +37,7 @@ dji = DjangoInterface()
 dd = displayer.display
 dp = parser.parse
 
-def process_event(request, context, handle, action): # view, edit, save
+def process_event(request, context, handle, action, add_to=None): # view, edit, save
     """
     Process action on person. Can return a redirect.
     """
@@ -79,6 +79,12 @@ def process_event(request, context, handle, action): # view, edit, save
             update_last_changed(event, request.user.username)
             event = eventform.save()
             dji.rebuild_cache(event)
+            if add_to:
+                item, handle = add_to
+                model = dji.get_model(item)
+                obj = model.objects.get(handle=handle)
+                dji.add_event_ref_default(obj, event)
+                return redirect("/%s/%s" % (item, handle))
             action = "view"
         else:
             action = "add"

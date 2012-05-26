@@ -34,7 +34,7 @@ from django.template import Context, RequestContext
 ## Globals
 dji = DjangoInterface()
 
-def process_note(request, context, handle, action): # view, edit, save
+def process_note(request, context, handle, action, add_to=None): # view, edit, save
     """
     Process action on person. Can return a redirect.
     """
@@ -76,6 +76,12 @@ def process_note(request, context, handle, action): # view, edit, save
             update_last_changed(note, request.user.username)
             note = noteform.save()
             dji.rebuild_cache(note)
+            if add_to:
+                item, handle = add_to
+                model = dji.get_model(item)
+                obj = model.objects.get(handle=handle)
+                dji.add_note_ref(obj, note)
+                return redirect("/%s/%s" % (item, handle))
             action = "view"
         else:
             action = "add"
