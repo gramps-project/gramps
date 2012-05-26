@@ -163,3 +163,39 @@ class NoteForm(forms.ModelForm):
         model = Note
         exclude = ["handle"]
 
+class MediaForm(forms.ModelForm):
+    class Meta:
+        model = Media
+        exclude = ["handle", "sortval", "month1", "year1", "day1",
+                   "newyear", "calendar", "modifier", "quality"]
+
+    def clean(self):
+        from webapp.utils import dp
+        data = super(MediaForm, self).clean()
+        dobj = dp(data.get('text'))
+        if not dobj.is_valid():
+            msg = u"Invalid date format"
+            self._errors["date"] = self.error_class([msg])
+            del data["text"]
+        return data
+ 
+    def save(self, commit=True):
+        from webapp.utils import dp
+        from webapp.libdjango import DjangoInterface
+        dji = DjangoInterface()
+        model = super(MediaForm, self).save(commit=False)
+        dobj = dp(self.cleaned_data['text'])
+        dji.add_date(model, dobj.serialize())
+        if commit:
+            model.save()
+        return model
+
+    text = forms.CharField(label="Date", 
+                           required=False, 
+                           widget=TextInput(attrs={'size':'70'}))
+    desc = forms.CharField(label="Title", 
+                           required=False, 
+                           widget=TextInput(attrs={'size':'70'}))
+    path = forms.CharField(label="Path", 
+                           required=False, 
+                           widget=TextInput(attrs={'size':'70'}))

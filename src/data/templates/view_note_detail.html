@@ -25,20 +25,20 @@
   {% endif %}
 <form method="post">{% csrf_token %}
 <tr>
-<td class="ColumnAttribute">{{noteform.gramps_id.label}}:</td>
-<td class="ColumnValue" id="data"> {% render noteform.gramps_id user action %}</td>
-</tr>
-<tr>
-<td class="ColumnAttribute">{{noteform.note_type.label}}:</td>
-<td class="ColumnValue" id="data">{% render noteform.note_type user action %}</td>
-</tr>
-<tr>
 <td class="ColumnAttribute">{{noteform.text.label}}:</td>
-<td class="ColumnValue" id="data">{% render noteform.text user action %}</td>
+<td class="ColumnValue" id="data" colspan="3">{% render noteform.text user action %}</td>
 </tr>
 <tr>
+<td></td>
+<td></td>
 <td class="ColumnAttribute">{{noteform.preformatted.label}}:</td>
 <td class="ColumnValue" id="data">{% render noteform.preformatted user action %}</td>
+</tr>
+<tr>
+<td class="ColumnAttribute">{{noteform.gramps_id.label}}:</td>
+<td class="ColumnValue" id="data"> {% render noteform.gramps_id user action %}</td>
+<td class="ColumnAttribute">{{noteform.note_type.label}}:</td>
+<td class="ColumnValue" id="data">{% render noteform.note_type user action %}</td>
 </tr>
 <tr>
 <td class="ColumnAttribute">{{noteform.tags.label}}:</td>

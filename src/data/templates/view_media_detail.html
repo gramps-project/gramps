@@ -10,20 +10,42 @@
       });
    </script>
 
+<div class="content" id="IndividualDetail">
+
 {% include "detail_breadcrumb.html" %}
 
-<table>
+
+<div id="summaryarea">
+<table class="infolist" style="width:90%;">
+<tbody>
+  {% if mediaform.errors %}
+    <hr>
+    <p id="error">The following fields have errors. Please correct and try again.</p>
+    <div id="error">{{mediaform.errors}}</div>
+    <hr>
+  {% endif %}
+<form method="post">{% csrf_token %}
 <tr>
-<td>Event type:</td><td> {{event.event_type|escape}}</td><td>Date:</td><td></td>
+<td class="ColumnAttribute">{{mediaform.desc.label}}:</td>
+<td class="ColumnValue" id="data" colspan="3">{% render mediaform.desc user action %}</td>
 </tr>
 <tr>
-<td>Description:</td><td spancols="2">{{event.description|escape}}</td>
+<td class="ColumnAttribute">{{mediaform.gramps_id.label}}:</td>
+<td class="ColumnValue" id="data">{% render mediaform.gramps_id user action %}</td>
+<td class="ColumnAttribute">{{mediaform.private.label}}:</td>
+<td class="ColumnValue" id="data">{% render mediaform.private user action %}</td>
 </tr>
 <tr>
-<td>ID:</td><td spancols="2">{{event.gramps_id|escape}}</td>
+<td class="ColumnAttribute">{{mediaform.text.label}}:</td>
+<td class="ColumnValue" id="data" colspan="3">{% render mediaform.text user action %}</td>
 </tr>
 <tr>
-<td>Place:</td><td spancols="2">{{event.place.title|escape}}</td>
+<td class="ColumnAttribute">{{mediaform.path.label}}:</td>
+<td class="ColumnValue" id="data" colspan="3">{% render mediaform.path user action %}</td>
+</tr>
+<tr>
+<td class="ColumnAttribute">{{mediaform.tags.label}}:</td>
+<td class="ColumnValue" id="data" colspan="3">{% render mediaform.tags user action %}</td>
 </tr>
 </table>
 
@@ -37,12 +59,34 @@
     <li class="ui-corner-top ui-state-default"><a href="#tabs-3">Attributes</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tabs-3">References</a></li>
   </ul>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-1">
+  </div>
 
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-2">Phasellus mattis tincidunt nibh. Cras orci urna, blandit id, pretium vel, aliquet ornare, felis. Maecenas scelerisque sem non nisl. Fusce sed lorem in enim dictum bibendum.</div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-3">Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.</div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-2">
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-3">
+  </div>
 </div>
 
-
+{% if user.is_superuser %}
+  {% if action == "edit" %}
+    {% make_button "Back to Media" "/media/%s" media.handle %}
+    <input type="hidden" name="action" value="save"/>
+    <input type="submit" value="Save"/>
+  {% else %}
+    {% ifequal action "add" %}
+      {% make_button "Cancel" "/media/" %}
+      <input type="hidden" name="action" value="create"/>
+      <input type="submit" value="Create"/>
+    {% else %}
+      {% make_button "Back to Media" "/media" %}
+      {% make_button "Add Media" "/media/add" %}
+      {% make_button "Edit Media" "/media/%s/edit" media.handle %}
+      {% make_button "Delete Media" "/media/%s/delete" media.handle %}
+    {% endifequal %}
+  {% endif %}
+{% else %}
+{% endif %}
+</form>
 {% endblock %}
 

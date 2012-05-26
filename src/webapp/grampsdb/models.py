@@ -413,7 +413,7 @@ class PrimaryObject(models.Model):
     ## Fields:
     id = models.AutoField(primary_key=True)
     handle = models.CharField(max_length=19, unique=True)
-    gramps_id =  models.CharField('gramps id', max_length=25, blank=True)
+    gramps_id =  models.CharField('ID', max_length=25, blank=True)
     last_saved = models.DateTimeField('last changed', auto_now=True) 
     last_changed = models.DateTimeField('last changed', null=True,
                                         blank=True) # user edits
@@ -431,7 +431,7 @@ class Person(PrimaryObject):
     """
     The model for the person object
     """
-    gender_type = models.ForeignKey('GenderType')
+    gender_type = models.ForeignKey('GenderType', verbose_name="Gender")
     probably_alive = models.BooleanField("Probably alive")
     families = models.ManyToManyField('Family', blank=True, null=True)
     parent_families = models.ManyToManyField('Family', 
@@ -475,7 +475,7 @@ class Family(PrimaryObject):
                                null=True, blank=True)
     mother = models.ForeignKey('Person', related_name="mother_ref", 
                                null=True, blank=True)
-    family_rel_type = models.ForeignKey('FamilyRelType')
+    family_rel_type = models.ForeignKey('FamilyRelType', verbose_name="Type")
     tags = models.ManyToManyField('Tag', blank=True, null=True)
 
     def make_tag_list(self):
@@ -515,7 +515,7 @@ class Source(PrimaryObject):
     #   .datamap_set
 
 class Event(DateObject, PrimaryObject):
-    event_type = models.ForeignKey('EventType')
+    event_type = models.ForeignKey('EventType', verbose_name="Type")
     description = models.CharField('description', max_length=50, blank=True)
     place = models.ForeignKey('Place', null=True, blank=True)
     references = generic.GenericRelation('EventRef', related_name="refs",
@@ -549,7 +549,7 @@ class Place(PrimaryObject):
 class Media(DateObject, PrimaryObject):
     path = models.TextField(blank=True)
     mime = models.TextField(blank=True, null=True)
-    desc = models.TextField(blank=True)
+    desc = models.TextField("Title", blank=True)
     references = generic.GenericRelation('MediaRef', related_name="refs",
                                          content_type_field="object_type",
                                          object_id_field="object_id")
@@ -559,7 +559,7 @@ class Media(DateObject, PrimaryObject):
         return tuple()
 
 class Note(PrimaryObject):
-    note_type = models.ForeignKey('NoteType')
+    note_type = models.ForeignKey('NoteType', verbose_name="Type")
     text  = models.TextField(blank=True)
     preformatted = models.BooleanField('preformatted')
     references = generic.GenericRelation('NoteRef', related_name="refs",
@@ -595,6 +595,7 @@ class Surname(models.Model):
     Surname table, which links to name.
     """
     name_origin_type = models.ForeignKey('NameOriginType', 
+                                         verbose_name="Origin",
                                          related_name="name_origin_code",
                                          default=2)
     surname = models.TextField(blank=True)
@@ -608,7 +609,7 @@ class Surname(models.Model):
         return "%s" % self.surname
 
 class Name(DateObject, SecondaryObject):
-    name_type = models.ForeignKey('NameType', 
+    name_type = models.ForeignKey('NameType', verbose_name="Type",
                                   related_name="name_code",
                                   default=2)
     preferred = models.BooleanField('Preferred name?')
