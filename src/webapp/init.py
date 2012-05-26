@@ -1,6 +1,6 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2009         Douglas S. Blank <doug.blank@gmail.com>
+# Copyright (C) 2009-2012 Douglas S. Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -128,7 +128,7 @@ for table, entries in [("grampsdb.config",
                           ('gramps_id', '"R0015"'),
                           ("handle", '"summary"'),
                           ("report_type", '"textreport"')),
-                         (("name", '"GEDCOM Export"'),
+                         (("name", '"Export"'),
                           ('gramps_id', '"R0016"'),
                           ("handle", '"gedcom_export"'),
                           ("options", '"off=ged"'),
@@ -138,7 +138,7 @@ for table, entries in [("grampsdb.config",
                           ("handle", '"ex_gpkg"'),
                           ("options", '"off=gramps"'),
                           ("report_type", '"export"')),
-                         (("name", '"GEDCOM Import"'),
+                         (("name", '"Import"'),
                           ('gramps_id', '"R0018"'),
                           ("handle", '"im_ged"'),
                           ("options", '"iff=ged i=http://arborvita.free.fr/Kennedy/Kennedy.ged"'),
