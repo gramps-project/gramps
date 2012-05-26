@@ -133,31 +133,14 @@ class EventForm(forms.ModelForm):
         exclude = ["handle", "sortval", "month1", "year1", "day1",
                    "newyear", "calendar", "modifier", "quality"]
 
-    def __init__(self, *args, **kwargs):
-        from webapp.utils import display_date
-        super(EventForm, self).__init__(*args, **kwargs)
- 
-        # Set the form fields based on the model object
-        if kwargs.has_key('instance'):
-            instance = kwargs['instance']
-            sdate = display_date(instance)
-            if sdate != "0000-00-00":
-                self.initial['date'] = sdate
-                try:
-                    self.data['date'] = self.initial['date']
-                except:
-                    pass
-
     def clean(self):
         from webapp.utils import dp
         data = super(EventForm, self).clean()
-        dobj = dp(data.get('date'))
+        dobj = dp(data.get('text'))
         if not dobj.is_valid():
             msg = u"Invalid date format"
             self._errors["date"] = self.error_class([msg])
-            del data["date"]
-        else:
-            data["date"] = str(dobj)
+            del data["text"]
         return data
  
     def save(self, commit=True):
@@ -165,12 +148,12 @@ class EventForm(forms.ModelForm):
         from webapp.libdjango import DjangoInterface
         dji = DjangoInterface()
         model = super(EventForm, self).save(commit=False)
-        dobj = dp(self.cleaned_data['date'])
+        dobj = dp(self.cleaned_data['text'])
         dji.add_date(model, dobj.serialize())
         if commit:
             model.save()
         return model
 
-    date = forms.CharField(label="Date", 
+    text = forms.CharField(label="Date", 
                            required=False, 
-                           widget=TextInput(attrs={'size':'30'}))
+                           widget=TextInput(attrs={'size':'45'}))

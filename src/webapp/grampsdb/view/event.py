@@ -26,7 +26,7 @@ from webapp.utils import _, boolean, update_last_changed
 from webapp.grampsdb.models import Event
 from webapp.grampsdb.forms import *
 from webapp.libdjango import DjangoInterface
-import DateHandler
+from gen.datehandler import displayer, parser
 
 ## Django Modules
 from django.shortcuts import get_object_or_404, render_to_response, redirect
@@ -34,8 +34,8 @@ from django.template import Context, RequestContext
 
 ## Globals
 dji = DjangoInterface()
-dd = DateHandler.displayer.display
-dp = DateHandler.parser.parse
+dd = displayer.display
+dp = parser.parse
 
 def process_event(request, context, handle, action): # view, edit, save
     """

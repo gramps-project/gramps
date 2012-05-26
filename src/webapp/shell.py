@@ -11,13 +11,12 @@ from webapp.grampsdb.forms import *
 from webapp.dbdjango import DbDjango
 from webapp.reports import import_file
 from webapp.libdjango import DjangoInterface, totime, todate
-
-import DateHandler
+from gen.datehandler import displayer, parser
 
 db = DbDjango()
 dji = DjangoInterface()
-dd = DateHandler.displayer.display
-dp = DateHandler.parser.parse
+dd = displayer.display
+dp = parser.parse
 
 #def Print(m):
 #    print m
