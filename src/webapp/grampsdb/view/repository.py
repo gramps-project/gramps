@@ -50,7 +50,7 @@ def process_repository(request, context, handle, action, add_to=None): # view, e
 
     # Handle: edit, view, add, create, save, delete
     if action == "add":
-        repository = Repository()
+        repository = Repository(gramps_id=dji.get_next_id(Repository, "R"))
         repositoryform = RepositoryForm(instance=repository)
         repositoryform.model = repository
     elif action in ["view", "edit"]: 

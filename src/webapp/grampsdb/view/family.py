@@ -50,6 +50,7 @@ def process_family(request, context, handle, action, add_to=None): # view, edit,
     # Handle: edit, view, add, create, save, delete
     if action == "add":
         family = Family(
+            gramps_id=dji.get_next_id(Family, "F"),
             family_rel_type=FamilyRelType.objects.get(
                 val=FamilyRelType._DEFAULT[0]))
         familyform = FamilyForm(instance=family)

@@ -50,10 +50,10 @@ def process_citation(request, context, handle, action, add_to=None): # view, edi
 
     # Handle: edit, view, add, create, save, delete
     if action == "add":
-        source = Source()
+        source = Source(gramps_id=dji.get_next_id(Source, "S"))
         sourceform = SourceForm(instance=source)
         sourceform.model = source
-        citation = Citation(source=source)
+        citation = Citation(source=source, gramps_id=dji.get_next_id(Citation, "C"))
         citationform = CitationForm(instance=citation)
         citationform.model = citation
     elif action in ["view", "edit"]: 

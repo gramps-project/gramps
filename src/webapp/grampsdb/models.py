@@ -382,6 +382,9 @@ class Config(models.Model):
     value_type = models.CharField('type of value', max_length=25)
     value = models.TextField('value')
 
+    def __unicode__(self):
+        return str(self.setting)
+
 class Tag(models.Model):
     handle = models.CharField(max_length=19, unique=True)
     gramps_id = models.TextField(blank=True, null=True)
@@ -511,6 +514,9 @@ class Source(PrimaryObject):
     pubinfo = models.CharField("Pub. info.", max_length=50, blank=True, null=True)
     abbrev = models.CharField("Abbreviation", max_length=50, blank=True, null=True)
 
+    def __unicode__(self):
+        return str(self.title)
+
     # Other keys here:
     #   .datamap_set
 
@@ -522,6 +528,9 @@ class Event(DateObject, PrimaryObject):
                                          content_type_field="object_type",
                                          object_id_field="object_id")
 
+    def __unicode__(self):
+        return str(self.description)
+
 class Repository(PrimaryObject):
     repository_type = models.ForeignKey('RepositoryType', verbose_name="Type")
     name = models.TextField(blank=True)
@@ -530,6 +539,9 @@ class Repository(PrimaryObject):
                                          content_type_field="object_type",
                                          object_id_field="object_id")
     #url_list = models.ManyToManyField('Url', null=True, blank=True)
+
+    def __unicode__(self):
+        return str(self.name)
 
     # Others keys here:
     #   .address_set
@@ -541,6 +553,9 @@ class Place(PrimaryObject):
     long = models.TextField(blank=True)
     lat = models.TextField(blank=True)
     #url_list = models.ManyToManyField('Url', null=True, blank=True)
+
+    def __unicode__(self):
+        return str(self.title)
 
     # Others keys here:
     #   .url_set
@@ -558,6 +573,9 @@ class Media(DateObject, PrimaryObject):
     def make_tag_list(self):
         return tuple()
 
+    def __unicode__(self):
+        return str(self.desc)
+
 class Note(PrimaryObject):
     note_type = models.ForeignKey('NoteType', verbose_name="Type")
     text  = models.TextField(blank=True)
@@ -569,6 +587,9 @@ class Note(PrimaryObject):
 
     def make_tag_list(self):
         return tuple()
+
+    def __unicode__(self):
+        return str(self.gramps_id)
 
 #---------------------------------------------------------------------------
 #

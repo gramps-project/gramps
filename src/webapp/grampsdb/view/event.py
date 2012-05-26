@@ -53,7 +53,7 @@ def process_event(request, context, handle, action, add_to=None): # view, edit, 
 
     # Handle: edit, view, add, create, save, delete
     if action == "add":
-        event = Event()
+        event = Event(gramps_id=dji.get_next_id(Event, "E"))
         eventform = EventForm(instance=event)
         eventform.model = event
     elif action in ["view", "edit"]: 

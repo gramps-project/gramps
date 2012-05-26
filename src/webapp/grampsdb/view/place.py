@@ -50,7 +50,7 @@ def process_place(request, context, handle, action, add_to=None): # view, edit, 
 
     # Handle: edit, view, add, create, save, delete
     if action == "add":
-        place = Place()
+        place = Place(gramps_id=dji.get_next_id(Place, "P"))
         placeform = PlaceForm(instance=place)
         placeform.model = place
     elif action in ["view", "edit"]: 

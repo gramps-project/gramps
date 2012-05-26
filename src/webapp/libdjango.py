@@ -145,6 +145,21 @@ class DjangoInterface(object):
         else:
             raise AttributeError("no such model: '%s'" % name)
 
+    def get_next_id(self, obj, prefix):
+        """
+        Get next gramps_id
+
+        >>> dji.get_next_id(Person, "P")
+        'P0002'
+        >>> dji.get_next_id(Media, "M")
+        'M2349'
+        """
+        ids = [o["gramps_id"] for o in obj.objects.values("gramps_id")]
+        count = 1
+        while "%s%04d" % (prefix, count) in ids: 
+            count += 1
+        return "%s%04d" % (prefix, count)
+
     def get_model(self, name):
         if hasattr(models, name.title()):
             return getattr(models, name.title())

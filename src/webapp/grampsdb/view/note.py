@@ -50,7 +50,7 @@ def process_note(request, context, handle, action, add_to=None): # view, edit, s
 
     # Handle: edit, view, add, create, save, delete
     if action == "add":
-        note = Note()
+        note = Note(gramps_id=dji.get_next_id(Note, "N"))
         noteform = NoteForm(instance=note)
         noteform.model = note
     elif action in ["view", "edit"]: 

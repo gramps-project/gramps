@@ -50,7 +50,7 @@ def process_source(request, context, handle, action, add_to=None): # view, edit,
 
     # Handle: edit, view, add, create, save, delete
     if action == "add":
-        source = Source()
+        source = Source(gramps_id=dji.get_next_id(Source, "S"))
         sourceform = SourceForm(instance=source)
         sourceform.model = source
     elif action in ["view", "edit"]: 

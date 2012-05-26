@@ -50,7 +50,7 @@ def process_media(request, context, handle, action, add_to=None): # view, edit, 
 
     # Handle: edit, view, add, create, save, delete
     if action == "add":
-        media = Media()
+        media = Media(gramps_id=dji.get_next_id(Media, "M"))
         mediaform = MediaForm(instance=media)
         mediaform.model = media
     elif action in ["view", "edit"]: 

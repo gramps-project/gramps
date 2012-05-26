@@ -28,6 +28,7 @@ from webapp.grampsdb.forms import *
 from webapp.libdjango import DjangoInterface
 
 ## Django Modules
+from django.http import Http404
 from django.shortcuts import get_object_or_404, render_to_response, redirect
 from django.template import Context, RequestContext
 
@@ -273,9 +274,7 @@ def process_name(request, handle, order, action="view"):
             surname.prefix = sf.cleaned_data["prefix"] if sf.cleaned_data["prefix"] != " prefix " else ""
             surname.primary = True # FIXME: why is this False?
             surname.save()
-            # FIXME: last_saved, last_changed, last_changed_by
             dji.rebuild_cache(person)
-            # FIXME: update probably_alive
             return redirect("/person/%s/name/%s" % (person.handle, name.order))
         else:
             action = "add"
@@ -309,9 +308,7 @@ def process_name(request, handle, order, action="view"):
             surname.prefix = sf.cleaned_data["prefix"] if sf.cleaned_data["prefix"] != " prefix " else ""
             surname.primary = True # FIXME: why is this False?
             surname.save()
-            # FIXME: last_saved, last_changed, last_changed_by
             dji.rebuild_cache(person)
-            # FIXME: update probably_alive
             return redirect("/person/%s/name/%s" % (person.handle, name.order))
         else:
             action = "edit"
@@ -387,7 +384,6 @@ def process_person(request, context, handle, action, add_to=None): # view, edit,
                 surname.prefix = sf.cleaned_data["prefix"] if sf.cleaned_data["prefix"] != " prefix " else ""
                 surname.primary = True # FIXME: why is this False?
                 surname.save()
-                # FIXME: last_saved, last_changed, last_changed_by
                 dji.rebuild_cache(person)
                 # FIXME: update probably_alive
                 if add_to:
@@ -430,8 +426,7 @@ def get_person_forms(handle, protect=False, empty=False, order=None):
     if handle:
         person = Person.objects.get(handle=handle)
     else:
-        person = Person()
-        #person.gramps_id = "I0000" # FIXME: get next ID
+        person = Person(gramps_id=dji.get_next_id(Person, "I"))
     ## get a name
     name = None
     if order is not None:

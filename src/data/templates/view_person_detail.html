@@ -102,7 +102,7 @@
     {% citation_table person user action "/citation/add/person/%s" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-attributes">
-    {% attribute_table person user action "/person/%s/attribute" person.handle %}
+    {% attribute_table person user action "/attribute/add/person/%s" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-addresses">
     {% address_table person user action "/place/add/person/%s" person.handle %}
@@ -115,13 +115,13 @@
     {% gallery_table person user action "/media/add/person/%s" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-internet">
-    {% internet_table person user action "/person/%s/internet" person.handle %}
+    {% internet_table person user action "/person/%s/add/internet" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-association">
-    {% association_table person user action "/person/%s/association" person.handle %}
+    {% association_table person user action "/person/%s/add/association" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-lds">
-    {% lds_table person user action "/person/%s/lds" person.handle %}
+    {% lds_table person user action "/person/%s/add/lds" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-references">
     {% reference_table person user action "/reference/add/person/%s" person.handle %}

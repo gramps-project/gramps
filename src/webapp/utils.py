@@ -243,7 +243,7 @@ def event_table(obj, user, action, url=None, *args):
                 str(event_ref.role_type))
     retval += table.get_html()
     if user.is_superuser and url and action == "view":
-        retval += make_button(_("Add event"), (url + "/add") % args)
+        retval += make_button(_("Add event"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
@@ -281,7 +281,7 @@ def name_table(obj, user, action, url=None, *args):
         table.links(links)
     retval += table.get_html()
     if user.is_superuser and url and action == "view":
-        retval += make_button(_("Add name"), (url + "/add") % args)
+        retval += make_button(_("Add name"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
@@ -309,7 +309,7 @@ def surname_table(obj, user, action, url=None, *args):
         else:
             retval += "<p id='error'>No such name order = %s</p>" % order
     if user.is_superuser and url and action == "view":
-        retval += make_button(_("Add surname"), (url + "/add") % args)
+        retval += make_button(_("Add surname"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
@@ -336,7 +336,7 @@ def source_table(obj, user, action, url=None, *args):
                               )
     retval += table.get_html()
     if user.is_superuser and url and action == "view":
-        retval += make_button(_("Add source"), (url + "/add") % args)
+        retval += make_button(_("Add source"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
@@ -361,7 +361,7 @@ def citation_table(obj, user, action, url=None, *args):
                           )
     retval += table.get_html()
     if user.is_superuser and url and action == "view":
-        retval += make_button(_("Add citation"), (url + "/add") % args)
+        retval += make_button(_("Add citation"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
@@ -405,7 +405,7 @@ def attribute_table(obj, user, action, url=None, *args):
                       attribute.value)
     retval += table.get_html()
     if user.is_superuser and url and action == "view":
-        retval += make_button(_("Add attribute"), (url + "/add") % args)
+        retval += make_button(_("Add attribute"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
@@ -429,7 +429,7 @@ def address_table(obj, user, action, url=None, *args):
                           location.country)
     retval += table.get_html()
     if user.is_superuser and url and action == "view":
-        retval += make_button(_("Add address"), (url + "/add") % args)
+        retval += make_button(_("Add address"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
@@ -442,7 +442,7 @@ def gallery_table(obj, user, action, url=None, *args):
                   )
     retval += table.get_html()
     if user.is_superuser and url and action == "view":
-        retval += make_button(_("Add gallery"), (url + "/add") % args)
+        retval += make_button(_("Add gallery"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
@@ -461,7 +461,7 @@ def internet_table(obj, user, action, url=None, *args):
                       url_obj.desc)
     retval += table.get_html()
     if user.is_superuser and url and action == "view":
-        retval += make_button(_("Add internet"), ((str(url) % args) + "/add"))
+        retval += make_button(_("Add internet"), (str(url) % args))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
@@ -480,7 +480,7 @@ def association_table(obj, user, action, url=None, *args):
                 table.row()
     retval += table.get_html()
     if user.is_superuser and url and action == "view":
-        retval += make_button(_("Add association"), (url + "/add") % args)
+        retval += make_button(_("Add association"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
@@ -504,7 +504,7 @@ def lds_table(obj, user, action, url=None, *args):
                       get_title(lds.place))
     retval += table.get_html()
     if user.is_superuser and url and action == "view":
-        retval += make_button(_("Add LDS"), (url + "/add") % args)
+        retval += make_button(_("Add LDS"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
@@ -570,7 +570,7 @@ def children_table(obj, user, action, url=None, *args):
     table.links(links)
     retval += table.get_html()
     if user.is_superuser and url and action == "view":
-        retval += make_button(_("Add child"), (url + "/child/add") % args)
+        retval += make_button(_("Add child"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval

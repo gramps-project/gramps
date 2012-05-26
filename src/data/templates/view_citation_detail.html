@@ -7,6 +7,7 @@
      $(function(){
 
             $('#tabs').tabs();
+            $('#general-tabs').tabs();
       });
    </script>
 
@@ -77,7 +78,7 @@
 <hr>
 
 <h2>Shared source information</h2>
-<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="general-tabs">
   <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
     <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tab-shared-general">General</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-shared-notes">Notes</a></li>
@@ -114,6 +115,7 @@
 
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-shared-notes">
+    {% note_table source user action "/note/add/source/%s" source.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-shared-gallery">
   </div>
