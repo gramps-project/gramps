@@ -1,7 +1,7 @@
 # This is the src/data level Makefile
 # $Id$
 #
-pkgdatadir = $(datadir)/@PACKAGE@/glade
+pkgdatadir = $(datadir)/@PACKAGE@/gui/glade
 
 dist_pkgdata_DATA = \
 	gramps.glade\

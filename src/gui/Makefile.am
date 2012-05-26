@@ -7,6 +7,7 @@
 SUBDIRS = \
 	editors \
 	filters \
+	glade \
 	plug \
 	selectors \
 	views \

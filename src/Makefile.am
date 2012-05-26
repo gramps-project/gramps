@@ -6,7 +6,6 @@ SUBDIRS = \
 	data \
 	docgen \
 	gen \
-	glade \
 	GrampsLocale \
 	GrampsLogger \
 	gui \

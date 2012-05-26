@@ -123,6 +123,7 @@ src/gui/editors/Makefile
 src/gui/editors/displaytabs/Makefile
 src/gui/filters/Makefile
 src/gui/filters/sidebar/Makefile
+src/gui/glade/Makefile
 src/gui/plug/Makefile
 src/gui/plug/report/Makefile
 src/gui/selectors/Makefile
@@ -156,7 +157,6 @@ src/plugins/webstuff/css/Makefile
 src/plugins/webstuff/images/Makefile
 src/plugins/webstuff/javascript/Makefile
 src/data/Makefile
-src/glade/Makefile
 src/images/Makefile
 src/images/16x16/Makefile
 src/images/22x22/Makefile

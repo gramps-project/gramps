@@ -370,7 +370,7 @@ src/webapp/utils.py
 #
 #   Glade files
 #
-src/glade/gramps.glade
+src/gui/glade/gramps.glade
 src/plugins/export/exportcsv.glade
 src/plugins/export/exportftree.glade
 src/plugins/export/exportgeneweb.glade

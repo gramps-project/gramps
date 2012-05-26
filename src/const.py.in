@@ -169,7 +169,7 @@ LICENSE_FILE   = os.path.join(ROOT_DIR, "COPYING")
 # Glade files
 #
 
-GLADE_DIR      = os.path.join(ROOT_DIR, "glade")
+GLADE_DIR      = os.path.join(ROOT_DIR, "gui", "glade")
 GLADE_FILE     = os.path.join(GLADE_DIR, "gramps.glade")
 PERSON_GLADE   = os.path.join(GLADE_DIR, "edit_person.glade")
 PLUGINS_GLADE  = os.path.join(GLADE_DIR, "plugins.glade")
