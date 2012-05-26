@@ -78,6 +78,7 @@ _LANG_MAP = {
     "sv" : _("Swedish"),
     "tr" : _("Turkish"),
     "uk" : _("Ukrainian"),
+    "vi" : _("Vietnamese"),
     "zh" : _("Chinese")
 }
 
