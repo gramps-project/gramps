@@ -1,7 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2009  Benny Malengier
+# Copyright (C) 2004-2006 Donald N. Allingham
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,9 +22,14 @@
 # $Id$
 
 """
-Package init for the gui package.
 """
 
-# DO NOT IMPORT METHODS/CLASSES FROM src/gui HERE ! Only __all__ 
-
-__all__ = [ "editors", "filters", "merge", "selectors", "views", "widgets" ]
+from mergepersonquery import *
+from mergefamilyquery import *
+from mergeeventquery import *
+from mergeplacequery import *
+from mergesourcequery import *
+from mergecitationquery import *
+from mergerepositoryquery import *
+from mergemediaquery import *
+from mergenotequery import *

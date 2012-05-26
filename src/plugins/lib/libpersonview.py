@@ -59,6 +59,7 @@ import config
 from DdTargets import DdTargets
 from gui.editors import EditPerson
 from gui.filters.sidebar import PersonSidebarFilter
+from gui.merge import MergePerson
 from gen.plug import CATEGORY_QR_PERSON
 
 #-------------------------------------------------------------------------
@@ -419,8 +420,7 @@ class BasePersonView(ListView):
           "A second person can be selected by holding down the "
           "control key while clicking on the desired person."))
         else:
-            import Merge
-            Merge.MergePeople(self.dbstate, self.uistate, mlist[0], mlist[1])
+            MergePerson(self.dbstate, self.uistate, mlist[0], mlist[1])
 
     def tag_updated(self, handle_list):
         """

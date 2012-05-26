@@ -4,32 +4,26 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-SUBDIRS = \
-	datehandler \
-	db \
-    display \
-	filters \
-	lib \
-	merge \
-	mime \
-	plug \
-	proxy \
-	utils
-
-pkgpythondir = $(datadir)/@PACKAGE@/gen
+pkgpythondir = $(datadir)/@PACKAGE@/gui/merge
 
 pkgpython_PYTHON = \
 	__init__.py \
-	ggettext.py \
-	updatecallback.py \
-	user.py
+	mergeperson.py \
+	mergefamily.py \
+	mergeevent.py \
+	mergeplace.py \
+	mergesource.py \
+	mergecitation.py \
+	mergerepository.py \
+	mergemedia.py \
+	mergenote.py
 
-pkgpyexecdir = @pkgpyexecdir@/gen
+pkgpyexecdir = @pkgpyexecdir@/gui/merge
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
 
-GRAMPS_PY_MODPATH = "../"
+GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \

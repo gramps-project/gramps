@@ -64,6 +64,7 @@ from gen.db import DbTxn
 from gui.editors import EditMedia, DeleteMediaQuery
 import Errors
 from gui.filters.sidebar import MediaSidebarFilter
+from gui.merge import MergeMedia
 from DdTargets import DdTargets
 from QuestionDialog import ErrorDialog
 from gen.plug import CATEGORY_QR_MEDIA
@@ -386,9 +387,7 @@ class MediaView(ListView):
             "control key while clicking on the desired object.")
             ErrorDialog(msg, msg2)
         else:
-            import Merge
-            Merge.MergeMediaObjects(self.dbstate, self.uistate, mlist[0],
-                                    mlist[1])
+            MergeMedia(self.dbstate, self.uistate, mlist[0], mlist[1])
 
     def get_handle_from_gramps_id(self, gid):
         """

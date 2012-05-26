@@ -58,6 +58,7 @@ from QuestionDialog import ErrorDialog
 from gui.editors import EditCitation, DeleteCitationQuery, EditSource, \
     DeleteSrcQuery
 from gui.filters.sidebar import SourceSidebarFilter
+from gui.merge import MergeCitation, MergeSource
 
 #-------------------------------------------------------------------------
 #
@@ -551,13 +552,10 @@ class CitationTreeView(ListView):
                              "sources first.")
                     ErrorDialog(msg, msg2)
                 else:
-                    import Merge
-                    Merge.MergeCitations(self.dbstate, self.uistate, 
-                                         mlist[0], mlist[1])
+                    MergeCitation(self.dbstate, self.uistate,  mlist[0], 
+                                  mlist[1])
             elif source1 and source2:
-                import Merge
-                Merge.MergeSources(self.dbstate, self.uistate, 
-                                     mlist[0], mlist[1])
+                MergeSource(self.dbstate, self.uistate, mlist[0], mlist[1])
             else:
                 msg = _("Cannot perform merge.")
                 msg2 = _("Both objects must be of the same type, either "

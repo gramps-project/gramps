@@ -294,6 +294,17 @@ src/gen/lib/srcmediatype.py
 src/gen/lib/surnamebase.py
 src/gen/lib/urltype.py
 
+# gen.merge package
+src/gen/merge/mergecitationquery.py
+src/gen/merge/mergeeventquery.py
+src/gen/merge/mergefamilyquery.py
+src/gen/merge/mergemediaquery.py
+src/gen/merge/mergenotequery.py
+src/gen/merge/mergepersonquery.py
+src/gen/merge/mergeplacequery.py
+src/gen/merge/mergerepositoryquery.py
+src/gen/merge/mergesourcequery.py
+
 # gen mime API
 src/gen/mime/_gnomemime.py
 src/gen/mime/_pythonmime.py
@@ -396,6 +407,17 @@ src/gui/filters/sidebar/_mediasidebarfilter.py
 src/gui/filters/sidebar/_reposidebarfilter.py
 src/gui/filters/sidebar/_notesidebarfilter.py
 
+# gui.merge package
+src/gui/merge/mergecitation.py
+src/gui/merge/mergeevent.py
+src/gui/merge/mergefamily.py
+src/gui/merge/mergemedia.py
+src/gui/merge/mergenote.py
+src/gui/merge/mergeperson.py
+src/gui/merge/mergeplace.py
+src/gui/merge/mergerepository.py
+src/gui/merge/mergesource.py
+
 # gui plugin API (was PluginUtils and ReportBase)
 src/gui/plug/_dialogs.py
 src/gui/plug/_guioptions.py
@@ -450,20 +472,6 @@ src/Simple/_SimpleTable.py
 
 # Config package
 src/config.py
-
-# Merge package
-src/Merge/mergecitation.py
-src/Merge/mergeevent.py
-src/Merge/mergefamily.py
-src/Merge/mergemedia.py
-src/Merge/mergenote.py
-src/Merge/mergeperson.py
-src/Merge/mergeplace.py
-src/Merge/mergerepository.py
-src/Merge/mergesource.py
-#src/Merge/_MergePerson.py
-#src/Merge/_MergePlace.py
-#src/Merge/_MergeSource.py
 
 # docgen directory
 src/docgen/ODSTab.py

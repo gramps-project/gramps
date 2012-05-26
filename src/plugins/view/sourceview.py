@@ -50,6 +50,7 @@ from DdTargets import DdTargets
 from QuestionDialog import ErrorDialog
 from gui.editors import EditSource, DeleteSrcQuery
 from gui.filters.sidebar import SourceSidebarFilter
+from gui.merge import MergeSource
 from gen.plug import CATEGORY_QR_SOURCE
 
 #-------------------------------------------------------------------------
@@ -243,8 +244,7 @@ class SourceView(ListView):
                      "control key while clicking on the desired source.")
             ErrorDialog(msg, msg2)
         else:
-            import Merge
-            Merge.MergeSources(self.dbstate, self.uistate, mlist[0], mlist[1])
+            MergeSource(self.dbstate, self.uistate, mlist[0], mlist[1])
 
     def get_handle_from_gramps_id(self, gid):
         obj = self.dbstate.db.get_source_from_gramps_id(gid)

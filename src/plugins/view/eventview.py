@@ -57,6 +57,7 @@ from DdTargets import DdTargets
 from QuestionDialog import ErrorDialog
 from gui.editors import EditEvent, DeleteEventQuery
 from gui.filters.sidebar import EventSidebarFilter
+from gui.merge import MergeEvent
 from gen.plug import CATEGORY_QR_EVENT
 
 #-------------------------------------------------------------------------
@@ -276,8 +277,7 @@ class EventView(ListView):
                      "control key while clicking on the desired event.")
             ErrorDialog(msg, msg2)
         else:
-            import Merge
-            Merge.MergeEvents(self.dbstate, self.uistate, mlist[0], mlist[1])
+            MergeEvent(self.dbstate, self.uistate, mlist[0], mlist[1])
 
     def dummy_report(self, obj):
         """ For the xml UI definition of popup to work, the submenu 

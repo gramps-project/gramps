@@ -46,6 +46,7 @@ from gui.editors import EditRepository, DeleteRepositoryQuery
 from DdTargets import DdTargets
 from QuestionDialog import ErrorDialog
 from gui.filters.sidebar import RepoSidebarFilter
+from gui.merge import MergeRepository
 from gen.plug import CATEGORY_QR_REPOSITORY
 
 #-------------------------------------------------------------------------
@@ -252,9 +253,7 @@ class RepositoryView(ListView):
                      "repository.")
             ErrorDialog(msg, msg2)
         else:
-            import Merge
-            Merge.MergeRepositories(self.dbstate, self.uistate, mlist[0],
-                                    mlist[1])
+            MergeRepository(self.dbstate, self.uistate, mlist[0], mlist[1])
 
     def get_handle_from_gramps_id(self, gid):
         obj = self.dbstate.db.get_repository_from_gramps_id(gid)

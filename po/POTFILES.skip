@@ -162,6 +162,10 @@ src/gen/lib/url.py
 src/gen/lib/urlbase.py
 src/gen/lib/witness.py
 
+# gen.merge package
+src/gen/merge/__init__.py
+src/gen/merge/test/merge_ref_test.py
+
 # gen mime API
 src/gen/mime/__init__.py
 src/gen/mime/_winmime.py
@@ -264,6 +268,9 @@ src/gui/filters/_filtercombobox.py
 src/gui/filters/_filtermenu.py
 src/gui/filters/__init__.py
 
+# gui.merge package
+src/gui/merge/__init__.py
+
 # gui/selectors - the GUI selectors package
 src/gui/selectors/__init__.py
 src/gui/selectors/baseselector.py
@@ -293,10 +300,6 @@ src/guiQML/viewmanager.py
 src/guiQML/views/centralview.py
 src/guiQML/views/personview.py
 src/guiQML/views/dbman.py
-
-# Merge package
-src/Merge/__init__.py
-src/Merge/test/merge_ref_test.py
 
 # plugins gpr directory
 src/plugins/sidebar/sidebar.gpr.py

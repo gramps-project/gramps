@@ -45,7 +45,7 @@ from gen.display.name import displayer as name_displayer
 from QuestionDialog import OkDialog
 import ListModel
 import Errors
-from Merge import MergePeople
+from gui.merge import MergePerson
 import GrampsDisplay
 import ManagedWindow
 from QuestionDialog import RunDatabaseRepair
@@ -600,7 +600,7 @@ class ShowMatches(ManagedWindow.ManagedWindow):
             return
 
         (self.p1,self.p2) = self.list.get_object(iter)
-        MergePeople(self.dbstate, self.uistate, self.p1, self.p2,
+        MergePerson(self.dbstate, self.uistate, self.p1, self.p2,
                     self.on_update, True)
 
     def on_update(self):

@@ -56,6 +56,7 @@ from DdTargets import DdTargets
 from QuestionDialog import ErrorDialog
 from gui.editors import EditCitation, DeleteCitationQuery
 from gui.filters.sidebar import CitationSidebarFilter
+from gui.merge import MergeCitation
 
 #-------------------------------------------------------------------------
 #
@@ -336,9 +337,7 @@ class CitationListView(ListView):
                          "sources first.")
                 ErrorDialog(msg, msg2)
             else:
-                import Merge
-                Merge.MergeCitations(self.dbstate, self.uistate, 
-                                     mlist[0], mlist[1])
+                MergeCitation(self.dbstate, self.uistate, mlist[0], mlist[1])
 
     def get_handle_from_gramps_id(self, gid):
         obj = self.dbstate.db.get_citation_from_gramps_id(gid)

@@ -37,13 +37,11 @@ import gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.lib import Person, Family, Event
-from gen.db import DbTxn
 from gen.ggettext import sgettext as _
 import const
 import GrampsDisplay
 import ManagedWindow
-from Errors import MergeError
+from gen.merge import MergePlaceQuery
 
 #-------------------------------------------------------------------------
 #
@@ -57,10 +55,10 @@ _GLADE_FILE = 'mergeplace.glade'
 
 #-------------------------------------------------------------------------
 #
-# Merge Places
+# MergePlace
 #
 #-------------------------------------------------------------------------
-class MergePlaces(ManagedWindow.ManagedWindow):
+class MergePlace(ManagedWindow.ManagedWindow):
     """
     Displays a dialog box that allows the places to be combined into one.
     """
@@ -195,48 +193,3 @@ class MergePlaces(ManagedWindow.ManagedWindow):
         query.execute()
         self.uistate.set_busy_cursor(False)
         self.close()
-
-class MergePlaceQuery(object):
-    """
-    Create database query to merge two places.
-    """
-    def __init__(self, dbstate, phoenix, titanic):
-        self.database = dbstate.db
-        self.phoenix = phoenix
-        self.titanic = titanic
-
-    def execute(self):
-        """
-        Merges to places into a single place.
-        """
-        new_handle = self.phoenix.get_handle()
-        old_handle = self.titanic.get_handle()
-
-        self.phoenix.merge(self.titanic)
-
-        with DbTxn(_("Merge Places"), self.database) as trans:
-            self.database.commit_place(self.phoenix, trans)
-            for (class_name, handle) in self.database.find_backlink_handles(
-                    old_handle):
-                if class_name == Person.__name__:
-                    person = self.database.get_person_from_handle(handle)
-                    assert(person.has_handle_reference('Place', old_handle))
-                    person.replace_handle_reference('Place', old_handle,
-                                                    new_handle)
-                    self.database.commit_person(person, trans)
-                elif class_name == Family.__name__:
-                    family = self.database.get_family_from_handle(handle)
-                    assert(family.has_handle_reference('Place', old_handle))
-                    family.replace_handle_reference('Place', old_handle,
-                                                    new_handle)
-                    self.database.commit_family(family, trans)
-                elif class_name == Event.__name__:
-                    event = self.database.get_event_from_handle(handle)
-                    assert(event.has_handle_reference('Place', old_handle))
-                    event.replace_handle_reference('Place', old_handle,
-                                                   new_handle)
-                    self.database.commit_event(event, trans)
-                else:
-                    raise MergeError("Encounter an object of type %s that has "
-                            "a place reference." % class_name)
-            self.database.remove_place(old_handle, trans)

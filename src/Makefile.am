@@ -10,7 +10,6 @@ SUBDIRS = \
 	GrampsLogger \
 	gui \
 	images \
-	Merge \
 	plugins \
 	Simple
 

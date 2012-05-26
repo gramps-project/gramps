@@ -56,6 +56,7 @@ from DdTargets import DdTargets
 from QuestionDialog import ErrorDialog
 from gui.filters.sidebar import NoteSidebarFilter
 from gui.editors import EditNote, DeleteNoteQuery
+from gui.merge import MergeNote
 from gen.plug import CATEGORY_QR_NOTE
 
 #-------------------------------------------------------------------------
@@ -272,8 +273,7 @@ class NoteView(ListView):
                     "control key while clicking on the desired note.")
             ErrorDialog(msg, msg2)
         else:
-            import Merge
-            Merge.MergeNotes(self.dbstate, self.uistate, mlist[0], mlist[1])
+            MergeNote(self.dbstate, self.uistate, mlist[0], mlist[1])
 
     def tag_updated(self, handle_list):
         """

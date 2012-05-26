@@ -29,13 +29,11 @@ Provide merge capabilities for repositories.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.lib import Source
-from gen.db import DbTxn
 from gen.ggettext import sgettext as _
 import const
 import GrampsDisplay
-from Errors import MergeError
 import ManagedWindow
+from gen.merge import MergeRepositoryQuery
 
 #-------------------------------------------------------------------------
 #
@@ -49,10 +47,10 @@ _GLADE_FILE = 'mergerepository.glade'
 
 #-------------------------------------------------------------------------
 #
-# Merge Repositories
+# MergeRepository
 #
 #-------------------------------------------------------------------------
-class MergeRepositories(ManagedWindow.ManagedWindow):
+class MergeRepository(ManagedWindow.ManagedWindow):
     """
     Displays a dialog box that allows two repositories to be combined into one.
     """
@@ -151,39 +149,7 @@ class MergeRepositories(ManagedWindow.ManagedWindow):
         if self.get_widget("gramps_btn1").get_active() ^ use_handle1:
             phoenix.set_gramps_id(titanic.get_gramps_id())
 
-        query = MergeRepoQuery(self.dbstate, phoenix, titanic)
+        query = MergeRepositoryQuery(self.dbstate, phoenix, titanic)
         query.execute()
         self.uistate.set_busy_cursor(False)
         self.close()
-
-class MergeRepoQuery(object):
-    """
-    Create database query to merge two repositories.
-    """
-    def __init__(self, dbstate, phoenix, titanic):
-        self.database = dbstate.db
-        self.phoenix = phoenix
-        self.titanic = titanic
-
-    def execute(self):
-        """
-        Merges two repositories into a single repository.
-        """
-        new_handle = self.phoenix.get_handle()
-        old_handle = self.titanic.get_handle()
-
-        self.phoenix.merge(self.titanic)
-
-        with DbTxn(_("Merge Repositories"), self.database) as trans:
-            self.database.commit_repository(self.phoenix, trans)
-            for (class_name, handle) in self.database.find_backlink_handles(
-                    old_handle):
-                if class_name == Source.__name__:
-                    source = self.database.get_source_from_handle(handle)
-                    assert source.has_handle_reference('Repository', old_handle)
-                    source.replace_repo_references(old_handle, new_handle)
-                    self.database.commit_source(source, trans)
-                else:
-                    raise MergeError("Encounter an object of type %s that has "
-                        "a repository reference." % class_name)
-            self.database.remove_repository(old_handle, trans)

@@ -31,14 +31,11 @@ Provide merge capabilities for sources.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.lib import (Person, Family, Event, Place, Source, Repository,
-                     MediaObject, Citation)
-from gen.db import DbTxn
 from gen.ggettext import sgettext as _
 import const
 import GrampsDisplay
 import ManagedWindow
-from Errors import MergeError
+from gen.merge import MergeSourceQuery
 
 #-------------------------------------------------------------------------
 #
@@ -52,10 +49,10 @@ _GLADE_FILE = 'mergesource.glade'
 
 #-------------------------------------------------------------------------
 #
-# Merge Sources
+# MergeSource
 #
 #-------------------------------------------------------------------------
-class MergeSources(ManagedWindow.ManagedWindow):
+class MergeSource(ManagedWindow.ManagedWindow):
     """
     Displays a dialog box that allows the sources to be combined into one.
     """
@@ -183,35 +180,3 @@ class MergeSources(ManagedWindow.ManagedWindow):
         query.execute()
         self.uistate.set_busy_cursor(False)
         self.close()
-
-class MergeSourceQuery(object):
-    """
-    Create database query to merge two sources.
-    """
-    def __init__(self, dbstate, phoenix, titanic):
-        self.database = dbstate.db
-        self.phoenix = phoenix
-        self.titanic = titanic
-
-    def execute(self):
-        """
-        Merges to sources into a single source.
-        """
-        new_handle = self.phoenix.get_handle()
-        old_handle = self.titanic.get_handle()
-
-        self.phoenix.merge(self.titanic)
-
-        with DbTxn(_("Merge Source"), self.database) as trans:
-            self.database.commit_source(self.phoenix, trans)
-            for (class_name, handle) in self.database.find_backlink_handles(
-                    old_handle):
-                if class_name == Citation.__name__:
-                    citation = self.database.get_citation_from_handle(handle)
-                    assert(citation.get_reference_handle() == old_handle)
-                    citation.set_reference_handle(new_handle)
-                    self.database.commit_citation(citation, trans)
-                else:
-                    raise MergeError("Encounter an object of type %s that has "
-                            "a source reference." % class_name)
-            self.database.remove_source(old_handle, trans)

@@ -30,15 +30,13 @@ Provide merge capabilities for citations.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.lib import (Person, Family, Event, Place, MediaObject, Repository)
-from gen.db import DbTxn
 from gen.ggettext import sgettext as _
 import const
 import GrampsDisplay
 import ManagedWindow
 import gen.datehandler
-from Errors import MergeError
 from Utils import confidence
+from gen.merge import MergeCitationQuery
 
 #-------------------------------------------------------------------------
 #
@@ -52,10 +50,10 @@ _GLADE_FILE = 'mergecitation.glade'
 
 #-------------------------------------------------------------------------
 #
-# Merge Citations
+# MergeCitation
 #
 #-------------------------------------------------------------------------
-class MergeCitations(ManagedWindow.ManagedWindow):
+class MergeCitation(ManagedWindow.ManagedWindow):
     """
     Displays a dialog box that allows the citations to be combined into one.
     """
@@ -171,61 +169,3 @@ class MergeCitations(ManagedWindow.ManagedWindow):
         query.execute()
         self.uistate.set_busy_cursor(False)
         self.close()
-
-class MergeCitationQuery(object):
-    """
-    Create database query to merge two citations.
-    """
-    def __init__(self, dbstate, phoenix, titanic):
-        self.database = dbstate.db
-        self.phoenix = phoenix
-        self.titanic = titanic
-
-    def execute(self):
-        """
-        Merges to citations into a single citation.
-        """
-        new_handle = self.phoenix.get_handle()
-        old_handle = self.titanic.get_handle()
-
-        self.phoenix.merge(self.titanic)
-
-        with DbTxn(_("Merge Citation"), self.database) as trans:
-            self.database.commit_citation(self.phoenix, trans)
-            for (class_name, handle) in self.database.find_backlink_handles(
-                    old_handle):
-                if class_name == Person.__name__:
-                    person = self.database.get_person_from_handle(handle)
-                    assert(person.has_citation_reference(old_handle))
-                    person.replace_citation_references(old_handle, new_handle)
-                    self.database.commit_person(person, trans)
-                elif class_name == Family.__name__:
-                    family = self.database.get_family_from_handle(handle)
-                    assert(family.has_citation_reference(old_handle))
-                    family.replace_citation_references(old_handle, new_handle)
-                    self.database.commit_family(family, trans)
-                elif class_name == Event.__name__:
-                    event = self.database.get_event_from_handle(handle)
-                    assert(event.has_citation_reference(old_handle))
-                    event.replace_citation_references(old_handle, new_handle)
-                    self.database.commit_event(event, trans)
-                elif class_name == Place.__name__:
-                    place = self.database.get_place_from_handle(handle)
-                    assert(place.has_citation_reference(old_handle))
-                    place.replace_citation_references(old_handle, new_handle)
-                    self.database.commit_place(place, trans)
-                elif class_name == MediaObject.__name__:
-                    obj = self.database.get_object_from_handle(handle)
-                    assert(obj.has_citation_reference(old_handle))
-                    obj.replace_citation_references(old_handle, new_handle)
-                    self.database.commit_media_object(obj, trans)
-                elif class_name == Repository.__name__:
-                    repository = self.database.get_repository_from_handle(handle)
-                    assert(repository.has_citation_reference(old_handle))
-                    repository.replace_citation_references(old_handle, 
-                                                           new_handle)
-                    self.database.commit_repository(repository, trans)
-                else:
-                    raise MergeError("Encounter an object of type %s that has "
-                            "a citation reference." % class_name)
-            self.database.remove_citation(old_handle, trans)

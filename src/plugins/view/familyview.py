@@ -54,6 +54,7 @@ import Errors
 import config
 from QuestionDialog import ErrorDialog
 from gui.filters.sidebar import FamilySidebarFilter
+from gui.merge import MergeFamily
 from gen.plug import CATEGORY_QR_FAMILY
 from DdTargets import DdTargets
 
@@ -285,8 +286,7 @@ class FamilyView(ListView):
                      "control key while clicking on the desired family.")
             ErrorDialog(msg, msg2)
         else:
-            import Merge
-            Merge.MergeFamilies(self.dbstate, self.uistate, mlist[0], mlist[1])
+            MergeFamily(self.dbstate, self.uistate, mlist[0], mlist[1])
 
     def _make_father_active(self, obj):
         """

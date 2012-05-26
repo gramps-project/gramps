@@ -56,6 +56,7 @@ from gui.pluginmanager import GuiPluginManager
 from DdTargets import DdTargets
 from gui.editors import EditPlace, DeletePlaceQuery
 from gui.filters.sidebar import PlaceSidebarFilter
+from gui.merge import MergePlace
 from gen.plug import CATEGORY_QR_PLACE
 
 #-------------------------------------------------------------------------
@@ -412,8 +413,7 @@ class PlaceBaseView(ListView):
                      "control key while clicking on the desired place.")
             ErrorDialog(msg, msg2)
         else:
-            import Merge
-            Merge.MergePlaces(self.dbstate, self.uistate, mlist[0], mlist[1])
+            MergePlace(self.dbstate, self.uistate, mlist[0], mlist[1])
 
     def get_handle_from_gramps_id(self, gid):
         obj = self.dbstate.db.get_place_from_gramps_id(gid)
