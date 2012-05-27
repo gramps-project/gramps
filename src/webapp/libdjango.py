@@ -1455,6 +1455,9 @@ class DjangoInterface(object):
         for loc_data in alt_location_list:
             self.add_location("place", place, loc_data, count)
             count + 1
+
+    def add_tag(self, data):
+        print "FIXME: libdjango.add_tag()"
     
     def add_media(self, data):
         (handle, gid, path, mime, desc,
