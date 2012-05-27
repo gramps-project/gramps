@@ -32,8 +32,8 @@ The User class provides basic interaction with the user.
 class User():
     """
     This class provides a means to interact with the user in an abstract way.
-    This class should be overridden by each respective user interface to provide
-    the appropriate interaction (eg. dialogs for GTK, promts for CLI).
+    This class should be overridden by each respective user interface to
+    provide the appropriate interaction (eg. dialogs for GTK, prompts for CLI).
     """
     def begin_progress(self, title, message, steps):
         """
@@ -43,9 +43,9 @@ class User():
         @type title: str
         @param message: the message associated with the progress meter
         @type message: str
-        @param steps: the total number of steps for the progress meter. a value 
-            of 0 indicates that the ending is unknown and the meter should just 
-            show activity.
+        @param steps: the total number of steps for the progress meter.
+            a value of 0 indicates that the ending is unknown and the
+            meter should just show activity.
         @type steps: int
         @returns: none
         """
@@ -57,6 +57,12 @@ class User():
         """
         pass
     
+    def callback(self, percentage, text=None):
+        """
+        Display the precentage.
+        """
+        pass
+    
     def end_progress(self):
         """
         Stop showing the progress indicator to the user.
@@ -65,8 +71,8 @@ class User():
     
     def prompt(self, title, question):
         """
-        Ask the user a question. The answer must be "yes" or "no". The user will
-        be forced to answer the question before proceeding.
+        Ask the user a question. The answer must be "yes" or "no".
+        The user will be forced to answer the question before proceeding.
         
         @param title: the title of the question
         @type title: str
@@ -77,7 +83,7 @@ class User():
         """
         return False
     
-    def warn(self, title, warning):
+    def warn(self, title, warning=""):
         """
         Warn the user.
         
@@ -89,7 +95,7 @@ class User():
         """
         pass
     
-    def notify_error(self, title, error):
+    def notify_error(self, title, error=""):
         """
         Notify the user of an error.
         
@@ -98,5 +104,21 @@ class User():
         @param error: the error message
         @type error: str
         @returns: none
+        """
+        pass
+
+    def notify_db_error(self, error):
+        """
+        Notify the user of a DB error.
+        
+        @param error: the error message
+        @type error: str
+        @returns: none
+        """
+        pass
+
+    def info(self, msg1, infotext, parent=None, monospaced=False):
+        """
+        Displays information to the user
         """
         pass
