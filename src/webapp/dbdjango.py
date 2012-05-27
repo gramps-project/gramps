@@ -197,6 +197,10 @@ class DbDjango(DbWriteBase, DbReadBase):
                     self.dji.add_source(obj.serialize())
                 elif isinstance(obj, gen.lib.Note):
                     self.dji.add_note(obj.serialize())
+                elif isinstance(obj, gen.lib.MediaObject):
+                    self.dji.add_media(obj.serialize())
+                elif isinstance(obj, gen.lib.Tag):
+                    self.dji.add_tag(obj.serialize())
             # Next we add the links:
             for key in self.import_cache.keys():
                 obj = self.import_cache[key]
@@ -216,6 +220,8 @@ class DbDjango(DbWriteBase, DbReadBase):
                     self.dji.add_source_detail(obj.serialize())
                 elif isinstance(obj, gen.lib.Note):
                     self.dji.add_note_detail(obj.serialize())
+                elif isinstance(obj, gen.lib.MediaObject):
+                    self.dji.add_media_detail(obj.serialize())
         self.use_import_cache = False
         self.import_cache = {}
 
@@ -962,40 +968,31 @@ class DbDjango(DbWriteBase, DbReadBase):
         return obj.handle
 
     def commit_person(self, person, trans, change_time=None):
-        if person.handle not in self.import_cache:
-            self.import_cache[person.handle] = person
+        self.import_cache[person.handle] = person
 
     def commit_family(self, family, trans, change_time=None):
-        if family.handle not in self.import_cache:
-            self.import_cache[family.handle] = family
+        self.import_cache[family.handle] = family
 
     def commit_citation(self, citation, trans, change_time=None):
-        if citation.handle not in self.import_cache:
-            self.import_cache[citation.handle] = citation
+        self.import_cache[citation.handle] = citation
 
     def commit_source(self, source, trans, change_time=None):
-        if source.handle not in self.import_cache:
-            self.import_cache[source.handle] = source
+        self.import_cache[source.handle] = source
 
     def commit_repository(self, repository, trans, change_time=None):
-        if repository.handle not in self.import_cache:
-            self.import_cache[repository.handle] = repository
+        self.import_cache[repository.handle] = repository
 
     def commit_note(self, note, trans, change_time=None):
-        if note.handle not in self.import_cache:
-            self.import_cache[note.handle] = note
+        self.import_cache[note.handle] = note
 
     def commit_place(self, place, trans, change_time=None):
-        if place.handle not in self.import_cache:
-            self.import_cache[place.handle] = place
+        self.import_cache[place.handle] = place
 
     def commit_event(self, event, trans, change_time=None):
-        if event.handle not in self.import_cache:
-            self.import_cache[event.handle] = event
+        self.import_cache[event.handle] = event
 
     def commit_tag(self, tag, trans, change_time=None):
-        if tag.handle not in self.import_cache:
-            self.import_cache[tag.handle] = tag
+        self.import_cache[tag.handle] = tag
 
     def commit_media_object(self, obj, transaction, change_time=None):
         """
