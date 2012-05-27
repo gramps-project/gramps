@@ -59,6 +59,7 @@ class TagBase(object):
         Convert a serialized tuple of data to an object.
         """
         self.tag_list = data
+        return self
 
     def add_tag(self, tag):
         """

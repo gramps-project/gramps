@@ -63,6 +63,7 @@ class MediaBase(object):
         Convert a serialized tuple of data to an object.
         """
         self.media_list = [MediaRef().unserialize(item) for item in data]
+        return self
 
     def add_media_reference(self, media_ref):
         """

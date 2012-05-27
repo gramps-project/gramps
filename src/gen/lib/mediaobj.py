@@ -133,6 +133,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
         NoteBase.unserialize(self, note_list)
         DateBase.unserialize(self, date)
         TagBase.unserialize(self, tag_list)
+        return self
 
     def get_text_data_list(self):
         """
