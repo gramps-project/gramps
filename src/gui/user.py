@@ -54,9 +54,9 @@ class User(gen.user.User):
         @type title: str
         @param message: the message associated with the progress meter
         @type message: str
-        @param steps: the total number of steps for the progress meter. a value 
-            of 0 indicates that the ending is unknown and the meter should just 
-            show activity.
+        @param steps: the total number of steps for the progress meter.
+            a value of 0 indicates that the ending is unknown and the
+            meter should just show activity.
         @type steps: int
         @returns: none
         """
@@ -83,8 +83,8 @@ class User(gen.user.User):
     
     def prompt(self, title, question):
         """
-        Ask the user a question. The answer must be "yes" or "no". The user will
-        be forced to answer the question before proceeding.
+        Ask the user a question. The answer must be "yes" or "no".
+        The user will be forced to answer the question before proceeding.
         
         @param title: the title of the question
         @type title: str
@@ -95,7 +95,7 @@ class User(gen.user.User):
         """
         return False
     
-    def warn(self, title, warning):
+    def warn(self, title, warning=""):
         """
         Warn the user.
         
@@ -107,7 +107,7 @@ class User(gen.user.User):
         """
         WarningDialog(title, warning)
     
-    def notify_error(self, title, error):
+    def notify_error(self, title, error=""):
         """
         Notify the user of an error.
         
@@ -117,4 +117,4 @@ class User(gen.user.User):
         @type error: str
         @returns: none
         """
-        ErrorDialog(title, warning)
+        ErrorDialog(title, error)
