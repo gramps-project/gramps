@@ -21437,15 +21437,14 @@ msgid "Citation View"
 msgstr "Visning for kildehenvisning"
 
 #: ../src/plugins/view/citationlistview.py:308
-#, fuzzy
 msgid ""
 "This citation cannot be edited at this time. Either the associated citation is already being edited or another object that is associated with the same citation is being edited.\n"
 "\n"
 "To edit this citation, you need to close the object."
 msgstr ""
-"Denne mediareferansen kan ikke endres nå.  Enten blir dette delte mediet allerede endret eller en referanse til det samme mediet blir endret samtidig.\n"
+"Denne siteringen kan ikke endres nå.  Enten blir denne delte siteringen allerede endret eller en referanse til den samme siteringen blir endret samtidig.\n"
 "\n"
-"For å endre denne mediareferansen må du lukke mediaobjektet først."
+"For å endre denne siteringsreferansen må du lukke objektet først."
 
 #: ../src/plugins/view/eventview.py:98
 msgid "Add a new event"
@@ -21538,22 +21537,18 @@ msgid "WARNING: osmgpsmap module not loaded. Geography functionality will not be
 msgstr "ADVARSEL: modulen osmgpsmap er ikke lastet.  Funksjonaliteten Geografi vil ikke være tilgjengelig."
 
 #: ../src/plugins/view/geography.gpr.py:49
-#, fuzzy
 msgid "A view showing the places visited by one person during his life."
 msgstr "En visning som gjør det mulig å se steder som er besøkt av en person i dennes levetid."
 
 #: ../src/plugins/view/geography.gpr.py:66
-#, fuzzy
 msgid "A view showing all places of the database."
 msgstr "En visning som gjør det mulig å se alle steder i databasen."
 
 #: ../src/plugins/view/geography.gpr.py:81
-#, fuzzy
 msgid "A view showing all the event places of the database."
 msgstr "En visning som gjør at du kan se alle steder for hendelser i databasen."
 
 #: ../src/plugins/view/geography.gpr.py:97
-#, fuzzy
 msgid "A view showing the places visited by one family during all their life."
 msgstr "En visning som lar deg se alle steder som er besøkt av en familie i deres levetid."
 
@@ -22471,14 +22466,12 @@ msgid "Mime Type"
 msgstr "Filtype"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4945
-#, fuzzy
 msgid "This page displays a indexed list of all the media objects in this database.  It is sorted by media title.  There is an index of all the media objects in this database.  Clicking on a thumbnail will take you to that image&#8217;s page."
-msgstr " Denne siden inneholder en oversikt over alle stedene i databasen, sortert etter stedsnavn. Ved å klikke på stedsnavnet, vil du komme til en egen side for dette stedet."
+msgstr "Denne siden viser en liste over alle mediaobjektene i databasen, sortert etter mediatittel. Det finnes en liste over alle mediaobjektene i denne databasen. Ved å klikke på et småbilde vil du komme til en egen side for dette bildet."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4961
-#, fuzzy
 msgid "Thumbnail Preview"
-msgstr "Plassering av bilde"
+msgstr "Forhåndsvisning av småbilder"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5120
 msgid "This page is for the user/ creator of this Family Tree/ Narrative website to share a couple of files with you regarding their family.  If there are any files listed below, clicking on them will allow you to download them. The download page and files have the same copyright as the remainder of these web pages."
@@ -23005,14 +22998,12 @@ msgid "Whether to include a parents column"
 msgstr "Ta med en kolonne over foreldre"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7952
-#, fuzzy
 msgid "Include half and/ or step-siblings on the individual pages"
-msgstr "Ta med en kolonne for foreldre på indekssidene"
+msgstr "Ta med halv- og/eller stesøsken på personsidene"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7954
-#, fuzzy
 msgid "Whether to include half and/ or step-siblings with the parents and siblings"
-msgstr "Velge å ta med stedsnavn for personer og familier."
+msgstr "Om halv- og/eller stesøsken skal tas med sammen med foreldre og søsken"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7958
 msgid "Sort all children in birth order"
@@ -23043,9 +23034,8 @@ msgid "Include repository pages"
 msgstr "Ta med sider for oppbevaringssteder"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7971
-#, fuzzy
 msgid "Whether or not to include the Repository Pages."
-msgstr "Om sider for oppbevaringssteder skal tas med eller ikke?"
+msgstr "Om sider for oppbevaringssteder skal tas med eller ikke."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7974
 msgid "Include GENDEX file (/gendex.txt)"
@@ -23060,28 +23050,24 @@ msgid "Include address book pages"
 msgstr "Ta med adresseboksider"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7979
-#, fuzzy
 msgid "Whether or not to add Address Book pages,which can include e-mail and website addresses and personal address/ residence events."
-msgstr "Skal det tas med adresseboksider eller ikke som kan ta med e-post og nettsideadresser og personadresser/ bostedshendelser?"
+msgstr "Om det skal legges til sider for adressebok som kan ta med e-post og nettsideadresser og personadresser/ bostedshendelser."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7989
-#, fuzzy
 msgid "Place Map Options"
-msgstr "Stedskart"
+msgstr "Innstillinger for Stedskart"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7993
-#, fuzzy
 msgid "Google"
-msgstr "GoogleKart"
+msgstr "Google"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7995
-#, fuzzy
 msgid "Map Service"
 msgstr "Karttjeneste"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7998
 msgid "Choose your choice of map service for creating the Place Map Pages."
-msgstr ""
+msgstr "Angi ditt valg for karttjeneste når det skal lages sider for stedskart."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8003
 msgid "Include Place map on Place Pages"
@@ -23092,35 +23078,32 @@ msgid "Whether to include a place map on the Place Pages, where Latitude/ Longit
 msgstr "Om det skal lages et stedskart på Stedssiden der lengde-/breddegrader er angitt."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8009
-#, fuzzy
 msgid "Include Family Map Pages with all places shown on the map"
-msgstr "Ta med individuelle Stedskart der alle steder vises på et kart"
+msgstr "Ta med familiekartsider der alle steder vises på et kart"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8011
 msgid "Whether or not to add an individual page map showing all the places on this page. This will allow you to see how your family traveled around the country."
 msgstr "Om det skal tas med et individuelt stedskart som skal vises på denne siden eller ikke. Dette vil gi deg mulighet til å se hvordan din familie reiste eller flyttet rundt."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8019
-#, fuzzy
 msgid "Family Links"
-msgstr "Familiereferanser"
+msgstr "Familielenker"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8020
 msgid "Drop"
 msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8021
-#, fuzzy
 msgid "Markers"
-msgstr "Markere"
+msgstr "Markeringer"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8022
 msgid "Google/ FamilyMap Option"
-msgstr ""
+msgstr "Google/ Familiekartinnstillinger"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8025
 msgid "Select which option that you would like to have for the Google Maps Family Map pages..."
-msgstr ""
+msgstr "Velgi de innstillingene du vil ha for Google Kart Familiekartsidene..."
 
 #. adding title to hyperlink menu for screen readers and braille writers
 #: ../src/plugins/webreport/NarrativeWeb.py:8338
