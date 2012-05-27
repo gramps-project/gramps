@@ -247,7 +247,7 @@ def get_person_filters(person, include_single=True):
     @param include_single: include a filter to include the single person
     @type person: boolean
     """
-    from gen.filters import GenericFilter, Rules, CustomFilters
+    from gen.filters import GenericFilter, rules, CustomFilters
     from gen.display.name import displayer as name_displayer
 
     if person:
@@ -261,30 +261,30 @@ def get_person_filters(person, include_single=True):
     if include_single:
         filt_id = GenericFilter()
         filt_id.set_name(name)
-        filt_id.add_rule(Rules.Person.HasIdOf([gramps_id]))
+        filt_id.add_rule(rules.person.HasIdOf([gramps_id]))
 
     all = GenericFilter()
     all.set_name(_("Entire Database"))
-    all.add_rule(Rules.Person.Everyone([]))
+    all.add_rule(rules.person.Everyone([]))
 
     des = GenericFilter()
     # feature request 2356: avoid genitive form
     des.set_name(_("Descendants of %s") % name)
-    des.add_rule(Rules.Person.IsDescendantOf([gramps_id, 1]))
+    des.add_rule(rules.person.IsDescendantOf([gramps_id, 1]))
 
     df = GenericFilter()
     # feature request 2356: avoid genitive form
     df.set_name(_("Descendant Families of %s") % name)
-    df.add_rule(Rules.Person.IsDescendantFamilyOf([gramps_id, 1]))
+    df.add_rule(rules.person.IsDescendantFamilyOf([gramps_id, 1]))
 
     ans = GenericFilter()
     # feature request 2356: avoid genitive form
     ans.set_name(_("Ancestors of %s") % name)
-    ans.add_rule(Rules.Person.IsAncestorOf([gramps_id, 1]))
+    ans.add_rule(rules.person.IsAncestorOf([gramps_id, 1]))
 
     com = GenericFilter()
     com.set_name(_("People with common ancestor with %s") % name)
-    com.add_rule(Rules.Person.HasCommonAncestorWith([gramps_id]))
+    com.add_rule(rules.person.HasCommonAncestorWith([gramps_id]))
 
     if include_single:
         the_filters = [filt_id, all, des, df, ans, com]

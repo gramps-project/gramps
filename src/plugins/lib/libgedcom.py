@@ -120,7 +120,7 @@ from gen.updatecallback import UpdateCallback
 import gen.mime
 import LdsUtils
 import Utils
-import gen.datehandler._dateparser as DateParser
+from gen.datehandler._dateparser import DateParser
 from gen.db.dbconst import EVENT_KEY
 from QuestionDialog import WarningDialog
 from gen.lib.const import IDENTICAL, DIFFERENT
