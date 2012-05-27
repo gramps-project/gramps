@@ -366,6 +366,7 @@ def process_person(request, context, handle, action, add_to=None): # view, edit,
             # check if valid:
             if nf.is_valid() and pf.is_valid() and sf.is_valid():
                 # name.preferred and surname.primary get set False in the above is_valid()
+                person.probably_alive = not bool(person.death)
                 update_last_changed(person, request.user.username)
                 person = pf.save()
                 # Process data:
@@ -385,7 +386,6 @@ def process_person(request, context, handle, action, add_to=None): # view, edit,
                 surname.primary = True # FIXME: why is this False?
                 surname.save()
                 dji.rebuild_cache(person)
-                # FIXME: update probably_alive
                 if add_to:
                     item, handle = add_to
                     model = dji.get_model(item)

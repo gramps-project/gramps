@@ -12,6 +12,7 @@ from webapp.dbdjango import DbDjango
 from webapp.reports import import_file
 from webapp.libdjango import DjangoInterface, totime, todate
 from gen.datehandler import displayer, parser
+import gen.lib
 
 db = DbDjango()
 dji = DjangoInterface()

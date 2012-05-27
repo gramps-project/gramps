@@ -622,7 +622,7 @@ class DbDjango(DbWriteBase, DbReadBase):
             data = cPickle.loads(base64.decodestring(media.cache))
         else:
             data = self.dji.get_media(media)
-        return gen.lib.Media.create(data)
+        return gen.lib.MediaObject.create(data)
 
     def get_place_from_handle(self, handle):
         if handle in self.import_cache:
