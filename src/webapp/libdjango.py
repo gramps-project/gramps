@@ -359,12 +359,17 @@ class DjangoInterface(object):
         media_list = self.get_media_list(citation)
         datamap = self.get_citation_datamap(citation)
         date = self.get_date(citation)
+        # I guess citations can have no source
+        if citation.source:
+            handle = citation.source.handle
+        else:
+            handle = None
         return (str(citation.handle),  
                 citation.gramps_id, 
                 date,
                 citation.page, 
                 citation.confidence, 
-                citation.source.handle,
+                handle,
                 note_list, 
                 media_list, 
                 datamap, 
