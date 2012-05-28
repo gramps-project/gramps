@@ -238,7 +238,7 @@ class DocBackend(object):
         elif tagtype.STYLE_TYPE[typeval] == str:
             tag_name = "%d %s" % (typeval, s_tagvalue)
         elif tagtype.STYLE_TYPE[typeval] == int:
-            tag_name = "%d %d" % (typeval, s_tagvalue)
+            tag_name = "%d %d" % (typeval, int(s_tagvalue))
         if not tag_name:
             return None
         
