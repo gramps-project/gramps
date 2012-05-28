@@ -287,6 +287,7 @@ class StyledText(object):
             stt = StyledTextTag()
             stt.unserialize(tag)
             self._tags.append(stt)
+        return self
     
     def get_tags(self):
         """Return the list of formatting tags.
