@@ -295,15 +295,22 @@ class DjangoInterface(object):
                 citation_list, note_list, media_list, attribute_list,
                 change, private)
 
-    def get_note(self, note):
-        styled_text = [note.text, []]
+    def get_note_markup(self, note):
+        retval = []
         markups = models.Markup.objects.filter(note=note).order_by("order")
         for markup in markups:
-            value = markup.string
+            # FIXME: not all of these are strings; bummer
+            if markup.string and markup.string.isdigit():
+                value = int(markup.string)
+            else:
+                value = markup.string 
             start_stop_list  = markup.start_stop_list
             ss_list = eval(start_stop_list)
-            styled_text[1] += [(tuple(markup.markup_type), 
-                                value, ss_list)]
+            retval += [(tuple(markup.markup_type), value, ss_list)]
+        return retval
+
+    def get_note(self, note):
+        styled_text = [note.text, self.get_note_markup(note)]
         changed = totime(note.last_changed)
         return (str(note.handle), 
                 note.gramps_id, 
@@ -1243,6 +1250,20 @@ class DjangoInterface(object):
         Dummy method for consistency with other two-pass adds.
         """
         pass
+
+    def save_note_markup(self, note, markup_list):
+        # delete any prexisting markup:
+        models.Markup.objects.filter(note=note).delete()
+        count = 1
+        for markup in markup_list:
+            markup_code, value, start_stop_list = markup
+            m = models.Markup(note=note, order=count, 
+                   markup_type=models.get_type(models.MarkupType,
+                                               markup_code, 
+                                               get_or_create=True),
+                              string=value,
+                              start_stop_list=str(start_stop_list))
+            m.save()
     
     def add_note(self, data):
         # Unpack from the BSDDB:
@@ -1258,16 +1279,7 @@ class DjangoInterface(object):
                         note_type=models.get_type(models.NoteType, note_type))
         #n.cache = base64.encodestring(cPickle.dumps(data))
         n.save()
-        count = 1
-        for markup in markup_list:
-            markup_code, value, start_stop_list = markup
-            m = models.Markup(note=n, order=count, 
-                   markup_type=models.get_type(models.MarkupType,
-                                               markup_code, 
-                                               get_or_create=True),
-                              string=value,
-                              start_stop_list=str(start_stop_list))
-            m.save()
+        self.save_note_markup(n, markup_list)
     
     def add_family(self, data):
         # Unpack from the BSDDB:

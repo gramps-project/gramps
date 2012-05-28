@@ -733,13 +733,31 @@ register_plugins()
 
 # works after registering plugins:
 import HtmlDoc 
-from libhtmlbackend import HtmlBackend, process_spaces
+from libhtmlbackend import HtmlBackend, DocBackend, process_spaces
 from libhtml import Html
 
+class WebAppBackend(HtmlBackend):
+    SUPPORTED_MARKUP = [
+            DocBackend.BOLD,
+            DocBackend.ITALIC,
+            DocBackend.UNDERLINE,
+            DocBackend.FONTFACE,
+            DocBackend.FONTSIZE,
+            DocBackend.FONTCOLOR,
+            DocBackend.LINK,
+            ]
+
+    STYLETAG_MARKUP = {
+        DocBackend.BOLD        : ("<b>", "</b>"),
+        DocBackend.ITALIC      : ("<i>", "</i>"),
+        DocBackend.UNDERLINE   : ('<u>', '</u>'),
+    }
+
+### Taken from Narrated Web Report
 class StyledNoteFormatter(object):
     def __init__(self, database):
         self.database = database
-        self._backend = HtmlBackend()
+        self._backend = WebAppBackend()
         self._backend.build_link = self.build_link
         #self.report = report
 
@@ -770,7 +788,7 @@ class StyledNoteFormatter(object):
         s_tags = styledtext.get_tags()
         markuptext = self._backend.add_markup_from_styled(text, s_tags,
                                                           split='\n')
-        htmllist = Html("div", class_="grampsstylednote")
+        htmllist = [] # Html("p") #"div", class_="grampsstylednote")
         if contains_html:
             htmllist += text
         else:
@@ -799,7 +817,7 @@ class StyledNoteFormatter(object):
             if sigcount == 0:
                 linelist = ["&nbsp;"]
                 htmllist.extend(Html('p') + linelist)
-        return htmllist
+        return "".join(htmllist)
 
     def build_link(self, prop, handle, obj_class):
         """

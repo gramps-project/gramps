@@ -1,7 +1,7 @@
 #### This sets up Django so you can interact with it via the Python
 #### command line.
 #### Start with something like:
-####    $ PYTHONPATH=.. python -i shell.py 
+####    $ PYTHONPATH=..:../plugins/lib python -i shell.py 
 ####    >>> Person.objects.all()
 
 from django.conf import settings
@@ -30,8 +30,11 @@ dp = parser.parse
 #            "/home/dblank/gramps/trunk/example/gramps/data.gramps", 
 #            cli.user.User())
 
-#from webapp.utils import StyledNoteFormatter
-#snf = StyledNoteFormatter(db)
-#for n in Note.objects.all():
-#    note = db.get_note_from_handle(n.handle)
-#    print snf.get_note_format(note)
+from webapp.utils import StyledNoteFormatter
+snf = StyledNoteFormatter(db)
+for n in Note.objects.all():
+    note = db.get_note_from_handle(n.handle)
+    print snf.get_note_format(note)
+
+#note = Note.objects.get(handle="aef30789d3d2090abe2")
+#st = gen.lib.StyledText(note.text, dji.get_note_markup(note))
