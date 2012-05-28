@@ -29,3 +29,9 @@ dp = parser.parse
 #import_file(db, 
 #            "/home/dblank/gramps/trunk/example/gramps/data.gramps", 
 #            cli.user.User())
+
+#from webapp.utils import StyledNoteFormatter
+#snf = StyledNoteFormatter(db)
+#for n in Note.objects.all():
+#    note = db.get_note_from_handle(n.handle)
+#    print snf.get_note_format(note)

@@ -161,7 +161,10 @@ class EventForm(forms.ModelForm):
 class NoteForm(forms.ModelForm):
     class Meta:
         model = Note
-        exclude = ["handle"]
+        exclude = ["handle", "text"]
+
+    notetext = forms.CharField(label="Text",
+                               widget=forms.widgets.Textarea(attrs={'rows':'10', 'cols': '80', 'class':'wysiwyg'}))
 
 class MediaForm(forms.ModelForm):
     class Meta:

@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script type="text/javascript" src="scripts/jquery-1.3.2.min.js"></script>
+
+    <script type="text/javascript" src="scripts/jHtmlArea-0.7.0.min.js"></script>
+    <link rel="Stylesheet" type="text/css" href="style/jHtmlArea.css" />
+    
+    <script type="text/javascript" src="scripts/jHtmlArea.ColorPickerMenu-0.7.0.js"></script>
+    <link rel="Stylesheet" type="text/css" href="style/jHtmlArea.ColorPickerMenu.css" />
+    
+    <style type="text/css">
+        div.jHtmlArea { border: solid 1px #ccc; }
+    </style>
+</head>
+<body>
+
+    <h3>jHtmlArea Live Demo - jHtmlAreaColorPickerMenu Example</h3>
+    <p>The jHtmlAreaColorPickerMenu plugin/extension allows you to show a simple Color Picker Menu when the user clicks on the "forecolor" Toolbar Button.</p>
+
+<p>
+<a href="http://jhtmlarea.codeplex.com">jHtmlArea Project Homepage</a>
+&nbsp;|&nbsp;
+<a href="http://jhtmlarea.codeplex.com/Release/ProjectReleases.aspx">Downloads</a>
+&nbsp;|&nbsp;
+<a href="http://jhtmlarea.codeplex.com/Thread/List.aspx">Discussions</a>
+&nbsp;|&nbsp;
+<a href="http://jhtmlarea.codeplex.com/WorkItem/List.aspx">Issue Tracker</a>
+</p>
+
+    <script type="text/javascript">
+        //// You can also override the "default" colors option of the jHtmlAreaColorPickerMenu
+        //// to show only the specific colors you want.
+        // jHtmlAreaColorPickerMenu.defaultOptions.colors = ["red", "yellow", "blue", "green", "purple", "white", "black"];
+
+        // The followin creates a jHtmlArea and adds a custom list of toolbar buttons.
+        // Among the buttons is the "forecolor" button that will automatically take
+        // advantage of the jHtmlAreaColorPickerMenu plugin.
+        $(function() {
+            $("#Textarea1").htmlarea({
+                toolbar: ["html", "|",
+                        "forecolor",  // <-- Add the "forecolor" Toolbar Button
+                        "|", "bold", "italic", "underline", "|", "p", "h1", "h2", "h3", "|", "link", "unlink"] // Overrides/Specifies the Toolbar buttons to show
+                });
+        });
+    </script>
+
+    <textarea id="Textarea1" cols="50" rows="15"><p><h3>Another TextArea</h3>This is some sample text to test out the <b>WYSIWYG Control</b>.</p></textarea>
+    
+    
+    
+    <hr />
+    
+    
+    
+    The jHtmlAreaColorPickerMenu object can also be reused for other purposes. For example clicking on the button below will allow you to change the background color of the page.
+    <br />
+    <input id="choosecolor" type="button" value="Choose Color..." />
+    <script type="text/javascript">
+        $(function() {
+            $("#choosecolor").click(function() {
+                jHtmlAreaColorPickerMenu(this, {
+                    colorChosen: function(color) {
+                        $(document.body).css('background-color', color);
+                    }
+                });
+            });
+        });
+    </script>
+    
+    <br /><br /><br /><br /><br />
+    <hr />
+    <div style="position: relative;border: solid 30px #cccccc;">
+    <h3>Editor within a "position: relative" DIV element.</h3>
+    <textarea id="txtInDiv" cols="50" rows="15">Some <b>Test</b> content.</textarea>
+    <script type="text/javascript">
+        $(function() {
+            $("#txtInDiv").htmlarea({
+                toolbar: ["html", "|",
+                            "forecolor",  // <-- Add the "forecolor" Toolbar Button
+                            "|", "bold", "italic", "underline", "|", "p", "h1", "h2", "h3", "|", "link", "unlink"] // Overrides/Specifies the Toolbar buttons to show
+            });
+        });
+    </script>
+    </div>
+</body>
+</html>

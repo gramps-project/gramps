@@ -733,6 +733,88 @@ register_plugins()
 
 # works after registering plugins:
 import HtmlDoc 
-from libhtmlbackend import HtmlBackend
+from libhtmlbackend import HtmlBackend, process_spaces
 from libhtml import Html
 
+class StyledNoteFormatter(object):
+    def __init__(self, database):
+        self.database = database
+        self._backend = HtmlBackend()
+        self._backend.build_link = self.build_link
+        #self.report = report
+
+    def get_note_format(self, note):
+        """
+        will get the note from the database, and will return either the 
+        styled text or plain note 
+        """
+        # retrieve the body of the note
+        note_text = note.get()
+        # styled notes
+        htmlnotetext = self.styled_note(note.get_styledtext(),
+                                        note.get_format(), contains_html = 
+                                        note.get_type() == gen.lib.NoteType.HTML_CODE)
+        text = htmlnotetext or Html("p", note_text)
+        # return text of the note to its callers
+        return text
+
+    def styled_note(self, styledtext, format, contains_html=False):
+        """
+        styledtext : assumed a StyledText object to write
+        format : = 0 : Flowed, = 1 : Preformatted
+        style_name : name of the style to use for default presentation
+        """
+        text = str(styledtext)
+        if not text:
+            return ''
+        s_tags = styledtext.get_tags()
+        markuptext = self._backend.add_markup_from_styled(text, s_tags,
+                                                          split='\n')
+        htmllist = Html("div", class_="grampsstylednote")
+        if contains_html:
+            htmllist += text
+        else:
+            linelist = []
+            linenb = 1
+            for line in markuptext.split('\n'):
+                [line, sigcount] = process_spaces(line, format)
+                if sigcount == 0:
+                    # The rendering of an empty paragraph '<p></p>'
+                    # is undefined so we use a non-breaking space
+                    if linenb == 1:
+                        linelist.append('&nbsp;')
+                    htmllist.extend(Html('p') + linelist)
+                    linelist = []
+                    linenb = 1
+                else:
+                    if linenb > 1:
+                        linelist[-1] += '<br />'
+                    linelist.append(line)
+                    linenb += 1
+            if linenb > 1:
+                htmllist.extend(Html('p') + linelist)
+            # if the last line was blank, then as well as outputting the previous para,
+            # which we have just done,
+            # we also output a new blank para
+            if sigcount == 0:
+                linelist = ["&nbsp;"]
+                htmllist.extend(Html('p') + linelist)
+        return htmllist
+
+    def build_link(self, prop, handle, obj_class):
+        """
+        Build a link to an item.
+        """
+        if prop == "gramps_id":
+            if obj_class in self.database.get_table_names():
+                obj = self.database.get_table_metadata(obj_class)["gramps_id_func"](handle)
+                if obj:
+                    handle = obj.handle
+                else:
+                    raise AttributeError("gramps_id '%s' not found in '%s'" % 
+                                         handle, obj_class)
+            else:
+                raise AttributeError("invalid gramps_id lookup " 
+                                     "in table name '%s'" % obj_class)
+        # handle, ppl
+        return "/%s/%s" % (obj_class.lower(), handle)

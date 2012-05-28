@@ -3,13 +3,23 @@
 
 {% block content %} 
 
-   <script type="text/javascript">
-     $(function(){
-
-            $('#tabs').tabs();
-      });
-   </script>
-
+<script type="text/javascript">
+    $(function(){
+       $('#tabs').tabs();
+       $('.wysiwyg').htmlarea({
+              toolbar: [
+                 "bold", "italic", "underline",
+                 "|",
+                 "link", "unlink"
+              ]
+            });
+       // FIXME: easier way?
+       $('.jHtmlArea').contents().find('iframe').contents().find('body').css({"background-color": "white"});
+    });
+    function setnotetext() {
+        document.getElementById('notetext').value = $('.jHtmlArea').contents().find('iframe').contents().find('body').text();
+    }
+</script>
 <div class="content" id="IndividualDetail">
 
 {% include "detail_breadcrumb.html" %}
@@ -23,10 +33,18 @@
     <div id="error">{{noteform.errors}}</div>
     <hr>
   {% endif %}
-<form method="post">{% csrf_token %}
+<form method="post" onsubmit="setnotetext()">{% csrf_token %}
 <tr>
 <td class="ColumnAttribute">{{noteform.text.label}}:</td>
-<td class="ColumnValue" id="data" colspan="3">{% render noteform.text user action %}</td>
+<td class="ColumnValue" id="data" colspan="3">
+{% if action == "edit" or action == "add" %}
+  <input type="hidden" id="notetext" name="notetext" value="this is hidden"></input>
+  {% render noteform.notetext user action %} 
+{% else %}
+  <p style="overflow-y: scroll; height: 100px;">{{notetext}}</p>
+{% endif %}
+</td>
+</tr>
 </tr>
 <tr>
 <td></td>

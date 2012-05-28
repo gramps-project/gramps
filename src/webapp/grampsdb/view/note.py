@@ -51,16 +51,17 @@ def process_note(request, context, handle, action, add_to=None): # view, edit, s
     # Handle: edit, view, add, create, save, delete
     if action == "add":
         note = Note(gramps_id=dji.get_next_id(Note, "N"))
-        noteform = NoteForm(instance=note)
+        noteform = NoteForm(instance=note, initial={"notetext": note.text})
         noteform.model = note
     elif action in ["view", "edit"]: 
         note = Note.objects.get(handle=handle)
-        noteform = NoteForm(instance=note)
+        noteform = NoteForm(instance=note, initial={"notetext": note.text})
         noteform.model = note
     elif action == "save": 
         note = Note.objects.get(handle=handle)
-        noteform = NoteForm(request.POST, instance=note)
+        noteform = NoteForm(request.POST, instance=note, initial={"notetext": note.text})
         noteform.model = note
+        note.text = noteform.data["notetext"]
         if noteform.is_valid():
             update_last_changed(note, request.user.username)
             note = noteform.save()
@@ -70,8 +71,9 @@ def process_note(request, context, handle, action, add_to=None): # view, edit, s
             action = "edit"
     elif action == "create": 
         note = Note(handle=create_id())
-        noteform = NoteForm(request.POST, instance=note)
+        noteform = NoteForm(request.POST, instance=note, initial={"notetext": note.text})
         noteform.model = note
+        note.text = noteform.data["notetext"]
         if noteform.is_valid():
             update_last_changed(note, request.user.username)
             note = noteform.save()
@@ -94,6 +96,7 @@ def process_note(request, context, handle, action, add_to=None): # view, edit, s
 
     context["noteform"] = noteform
     context["object"] = note
+    context["notetext"] = note.text
     context["note"] = note
     context["action"] = action
     
