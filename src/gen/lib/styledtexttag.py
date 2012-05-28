@@ -84,3 +84,4 @@ class StyledTextTag(object):
         
         self.name = StyledTextTagType()
         self.name.unserialize(the_name)
+        return self
