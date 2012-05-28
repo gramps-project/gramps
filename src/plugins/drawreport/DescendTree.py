@@ -1280,7 +1280,11 @@ class DescendTree(Report):
         style_sheet = self.doc.get_style_sheet()
         font_normal = style_sheet.get_paragraph_style("CG2-Normal").get_font()
         self.doc.report_opts = ReportOptions(self.doc, font_normal, "CG2-line")
-        
+
+        self.doc.report_opts.box_shadow *= self.Connect.get_val('shadowscale')
+        self.doc.report_opts.box_pgap *= self.Connect.get_val('box_Yscale')
+        self.doc.report_opts.box_mgap *= self.Connect.get_val('box_Yscale')
+
         center_id = self.Connect.get_val('pid') 
 
         #make the tree
@@ -1317,7 +1321,7 @@ class DescendTree(Report):
         scale = self.canvas.scale_report(one_page,
                                          scale_report != 0, scale_report == 2)
         
-        if scale != 1:
+        if scale != 1 or self.Connect.get_val('shadowscale') != 1.0:
             self.scale_styles(scale)
 
     def write_report(self):
@@ -1390,13 +1394,13 @@ class DescendTree(Report):
 
         graph_style = style_sheet.get_draw_style("CG2-box")
         graph_style.set_shadow(graph_style.get_shadow(),
-                               self.doc.report_opts.box_shadow)
+                               self.doc.report_opts.box_shadow * amount)
         graph_style.set_line_width(graph_style.get_line_width() * amount)
         style_sheet.add_draw_style("CG2-box", graph_style)
 
         graph_style = style_sheet.get_draw_style("CG2b-box")
         graph_style.set_shadow(graph_style.get_shadow(),
-                               self.doc.report_opts.box_shadow)
+                               self.doc.report_opts.box_shadow * amount)
         graph_style.set_line_width(graph_style.get_line_width() * amount)
         style_sheet.add_draw_style("CG2b-box", graph_style)
 
@@ -1442,6 +1446,8 @@ class DescendTreeOptions(MenuReportOptions):
         self.scale = None
         self.__db = dbase
         self.name = name
+        self.box_Y_sf = None
+        self.box_shadow_sf = None
         MenuReportOptions.__init__(self, name, dbase)
         
     def add_menu_options(self, menu):
@@ -1575,8 +1581,18 @@ class DescendTreeOptions(MenuReportOptions):
             self.__onepage.connect('value-changed', self.__check_blank)
         else:
             self.__onepage = None
-
-
+        
+        self.box_Y_sf = NumberOption(_("inter-box Y scale factor"),
+                                     1.00, 0.10, 2.00, 0.01)
+        self.box_Y_sf.set_help(_("Make the inter-box Y bigger or smaller"))
+        menu.add_option(category_name, "box_Yscale", self.box_Y_sf)
+ 
+        self.box_shadow_sf = NumberOption(_("box shadow scale factor"),
+                                          1.00, 0.00, 2.00, 0.01) # down to 0
+        self.box_shadow_sf.set_help(_("Make the box shadow bigger or smaller"))
+        menu.add_option(category_name, "shadowscale", self.box_shadow_sf)
+         
+        
         ##################
         category_name = _("Include")
 
