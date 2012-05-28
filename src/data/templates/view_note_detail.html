@@ -17,7 +17,7 @@
        $('.jHtmlArea').contents().find('iframe').contents().find('body').css({"background-color": "white"});
     });
     function setnotetext() {
-        document.getElementById('notetext').value = $('.jHtmlArea').contents().find('iframe').contents().find('body').text();
+        document.getElementById('notetext').value = $('.jHtmlArea').contents().find('iframe').contents().find('body').html();
     }
 </script>
 <div class="content" id="IndividualDetail">
