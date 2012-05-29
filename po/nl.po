@@ -41,8 +41,8 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-05-05 23:34+0200\n"
-"PO-Revision-Date: 2012-05-28 10:37+0100\n"
-"Last-Translator: Erik De Richter <frederik.de.richter@googlemail.com>\n"
+"PO-Revision-Date: 2012-05-29 09:02+0100\n"
+"Last-Translator: Erik De Richter <frederik.de.richter@pandora.be>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -5346,9 +5346,8 @@ msgid "Note Filters"
 msgstr "Opmerkingenfilters"
 
 #: ../src/gui/filtereditor.py:89
-#, fuzzy
 msgid "Citation Filters"
-msgstr "Positiefilters"
+msgstr "Citatenfilters"
 
 #: ../src/gui/filtereditor.py:93
 #: ../src/Filters/Rules/Person/_HasEvent.py:49
@@ -6139,9 +6138,8 @@ msgid "Unsupported"
 msgstr "Niet ondersteund"
 
 #: ../src/gui/viewmanager.py:408
-#, fuzzy
 msgid "Updated"
-msgstr "datum"
+msgstr "Hernieuwd"
 
 #: ../src/gui/viewmanager.py:420
 msgid "New"
@@ -6154,9 +6152,8 @@ msgid "new"
 msgstr "nieuw"
 
 #: ../src/gui/viewmanager.py:433
-#, fuzzy
 msgid "update"
-msgstr "datum"
+msgstr "hernieuwen"
 
 #: ../src/gui/viewmanager.py:438
 msgid "There are no available addons of this type"
@@ -6708,9 +6705,8 @@ msgstr "Verwijzing naar kind"
 
 #: ../src/gui/editors/editcitation.py:149
 #: ../src/gui/editors/editcitation.py:155
-#, fuzzy
 msgid "New Citation"
-msgstr "Citaat"
+msgstr "Nieuw citaat"
 
 #: ../src/gui/editors/editcitation.py:386
 msgid "Edit Citation"
@@ -7669,30 +7665,25 @@ msgid "Create and add a new citation and new source"
 msgstr "Een nieuwe bron aanmaken en toevoegen"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:72
-#, fuzzy
 msgid "Remove the existing citation"
-msgstr "Een bestaande associatie verwijderen"
+msgstr "Een bestaand citaat verwijderen"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:73
 #: ../src/plugins/view/citationlistview.py:121
-#, fuzzy
 msgid "Edit the selected citation"
-msgstr "De geselecteerde associatie aanpassen"
+msgstr "Het geselecteerde citaat aanpassen"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:74
-#, fuzzy
 msgid "Add an existing citation or source"
-msgstr "Een bestaande bron toevoegen"
+msgstr "Een bestaande bron of citaat toevoegen"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:75
-#, fuzzy
 msgid "Move the selected citation upwards"
-msgstr "De geselecteerde associatie naar boven verschuiven"
+msgstr "Het geselecteerde citaat naar boven verschuiven"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:76
-#, fuzzy
 msgid "Move the selected citation downwards"
-msgstr "De geselecteerde associatie naar beneden verschuiven"
+msgstr "Het geselecteerde citaat naar beneden verschuiven"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:83
 #: ../src/plugins/gramplet/Citations.py:49
@@ -10896,12 +10887,10 @@ msgid "The bold style used for the text display."
 msgstr "De gebruikte stijl voor de tekstweergave van vetgedrukte tekst."
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:32
-#, fuzzy
 msgid "Ancestor Chart"
 msgstr "Voorouderstamboom"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:33
-#, fuzzy
 msgid "Produces a graphical ancestral chart"
 msgstr "Levert een grafische voorouderstamboom"
 
@@ -10920,12 +10909,10 @@ msgid "Produces a graphical calendar"
 msgstr "Levert een grafische kalender"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:92
-#, fuzzy
 msgid "Descendant Chart"
-msgstr "Afstammelingenverslag"
+msgstr "Afstammelingenstamboom"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:93
-#, fuzzy
 msgid "Produces a graphical descendant chart"
 msgstr "Levert een grafische afstammelingenstamboom"
 
@@ -10938,7 +10925,6 @@ msgid "Produces a graphical descendant tree"
 msgstr "Levert een grafische afstammelingenstamboom"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:130
-#, fuzzy
 msgid "Family Descendant Chart"
 msgstr "Familie-afstammelingenstamboom"
 
@@ -11397,9 +11383,8 @@ msgid "CSV is a common spreadsheet format."
 msgstr "CSV is een veel gebruikt rekenbladformaat."
 
 #: ../src/plugins/export/export.gpr.py:41
-#, fuzzy
 msgid "CSV spreadsheet options"
-msgstr "CSV is een veel gebruikt rekenbladformaat."
+msgstr "CSV-rekenbladopties"
 
 #: ../src/plugins/export/export.gpr.py:52
 msgid "Web Family Tree"
@@ -11435,9 +11420,8 @@ msgid "GEDCOM is used to transfer data between genealogy programs. Most genealog
 msgstr "GEDCOM wordt gebruikt om gegevens tussen genealogische programma's uit te wisselen. Vrijwel alle genealogische softwareprogramma's accepteren GEDCOM-bestanden."
 
 #: ../src/plugins/export/export.gpr.py:84
-#, fuzzy
 msgid "GEDCOM export options"
-msgstr "Verslagopties"
+msgstr "GEDCOM-exportopties"
 
 #: ../src/plugins/export/export.gpr.py:95
 #: ../src/plugins/import/import.gpr.py:70
@@ -11907,9 +11891,8 @@ msgid "Gramplet showing media objects for a source"
 msgstr "Gramplet die de media-objecten van een bron toont"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:223
-#, fuzzy
 msgid "Citation Gallery"
-msgstr "Personengalerij"
+msgstr "Citatengalerij"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:224
 #, fuzzy
@@ -12032,9 +12015,8 @@ msgid "Gramplet showing the notes for a media object"
 msgstr "Gramplet die de opmerkingen van een  media-object toont"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:405
-#, fuzzy
 msgid "Person Citations"
-msgstr "Personendetails"
+msgstr "Persoonscitaten"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:406
 #, fuzzy
@@ -12052,9 +12034,8 @@ msgid "Gramplet showing the citations for an event"
 msgstr "Gramplet die de verwijzingen naar een gebeurtenis toont"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:433
-#, fuzzy
 msgid "Family Citations"
-msgstr "Familieverwijzingen"
+msgstr "Familiecitaten"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:434
 #, fuzzy
@@ -12062,9 +12043,8 @@ msgid "Gramplet showing the citations for a family"
 msgstr "Gramplet die de verwijzingen naar een familie toont"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:447
-#, fuzzy
 msgid "Place Citations"
-msgstr "Locatiekaartopties"
+msgstr "Locatie citaten"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:448
 #, fuzzy
@@ -12072,9 +12052,8 @@ msgid "Gramplet showing the citations for a place"
 msgstr "Gramplet die de verwijzingen naar een locatie toont"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:461
-#, fuzzy
 msgid "Media Citations"
-msgstr "Citaat"
+msgstr "Media-object citaten"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:462
 #, fuzzy
@@ -12297,9 +12276,8 @@ msgid "Publisher"
 msgstr "Uitgever"
 
 #: ../src/plugins/gramplet/Citations.py:121
-#, fuzzy
 msgid "<No Citation>"
-msgstr "Citaat"
+msgstr "<Geen citaat>"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:49
 #: ../src/plugins/gramplet/PedigreeGramplet.py:51
@@ -12451,9 +12429,8 @@ msgid "Image Size : %04d x %04d pixels"
 msgstr "Beeldgrootte : %04d x %04d pixels"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:502
-#, fuzzy
 msgid "Displaying Exif metadata..."
-msgstr "beeld exif-metagegevens weergeven..."
+msgstr "Beeld exif-metagegevens weergeven..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:669
 msgid "Click Close to close this Thumbnail View Area."
@@ -12599,9 +12576,8 @@ msgid "Altitude :"
 msgstr "Hoogte:"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1138
-#, fuzzy
 msgid "Bad Date/Time"
-msgstr "Datum/ tijd"
+msgstr "Foute datum/ tijd"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1158
 msgid "WARNING!  You are about to completely delete the Exif metadata from this image?"
@@ -12613,9 +12589,8 @@ msgid "Media Title Update"
 msgstr "Mediafilter"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1349
-#, fuzzy
 msgid "Media Object Date Created"
-msgstr "Media-objecten met de aanduiding: privé"
+msgstr "Datum van media-objecten aangemaakt"
 
 #. set Edit Message to Saved...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1421
@@ -13664,9 +13639,8 @@ msgid "The colour to use to display families."
 msgstr "De kleur die gebruikt wordt om de families te tonen."
 
 #: ../src/plugins/graph/GVFamilyLines.py:168
-#, fuzzy
 msgid "Limit the number of ancestors"
-msgstr "Het aantal ouders beperken"
+msgstr "Het aantal afstammelingen"
 
 # Duplicaat-voorouders
 #: ../src/plugins/graph/GVFamilyLines.py:170
@@ -14703,9 +14677,8 @@ msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:3104
 #: ../src/plugins/lib/libgedcom.py:6559
-#, fuzzy
 msgid "GEDCOM data"
-msgstr "GEDCOM"
+msgstr "GEDCOM-gegevens"
 
 #: ../src/plugins/lib/libgedcom.py:3150
 #, fuzzy
@@ -14744,9 +14717,9 @@ msgid "Form omitted"
 msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:4521
-#, fuzzy, python-format
+#, python-format
 msgid "FAM (family) Gramps ID %s"
-msgstr "Gramps id: %s "
+msgstr "FAM (familie) Gramps-id %s"
 
 # Let op, ipv waarschuwing
 #. empty: discard, with warning and skip subs
@@ -14771,9 +14744,9 @@ msgid "No title - ID %s"
 msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:5819
-#, fuzzy, python-format
+#, python-format
 msgid "SOUR (source) Gramps ID %s"
-msgstr "Gramps IDs herschikken"
+msgstr "SOUR (bron) Gramps-id %s"
 
 #: ../src/plugins/lib/libgedcom.py:6030
 #, python-format
@@ -14799,9 +14772,9 @@ msgid "Mutimedia RIN ignored"
 msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:6211
-#, fuzzy, python-format
+#, python-format
 msgid "REPO (repository) Gramps ID %s"
-msgstr "Gramps IDs herschikken"
+msgstr "REPO (bibliotheek) Gramps-id %s"
 
 #: ../src/plugins/lib/libgedcom.py:6487
 #, fuzzy
@@ -14869,15 +14842,13 @@ msgstr "Naar naamloze gebeurtenissen zoeken."
 
 # Doping
 #: ../src/plugins/lib/libgedcom.py:6717
-#, fuzzy
 msgid "Character set"
-msgstr "Tekenset codering"
+msgstr "Tekensetcodering"
 
 # Doping
 #: ../src/plugins/lib/libgedcom.py:6719
-#, fuzzy
 msgid "Character set and version"
-msgstr "Tekenset codering"
+msgstr "Tekensetcodering en versie"
 
 #: ../src/plugins/lib/libgedcom.py:6735
 msgid "GEDCOM version not supported"
@@ -14912,9 +14883,9 @@ msgid "Empty note ignored"
 msgstr "Lege opmerking genegeerd"
 
 #: ../src/plugins/lib/libgedcom.py:6882
-#, fuzzy, python-format
+#, python-format
 msgid "NOTE Gramps ID %s"
-msgstr "Gramps id: %s "
+msgstr "NOTE Gramps-id: %s "
 
 #: ../src/plugins/lib/libgedcom.py:6932
 msgid "Submission: Submitter"
@@ -19076,9 +19047,8 @@ msgstr "Toont gebeurtenissen op een bepaalde dag"
 
 #: ../src/plugins/quickview/quickview.gpr.py:208
 #: ../src/plugins/quickview/References.py:91
-#, fuzzy
 msgid "Source or Citation"
-msgstr "Bron-informatie bijvoegen"
+msgstr "Bron of citaat"
 
 # Bronnen, verwijzingen, literatuurverwijzingen
 #: ../src/plugins/quickview/quickview.gpr.py:214
@@ -19992,9 +19962,8 @@ msgid "Whether to include detailed spouse information."
 msgstr "Al of niet detailinformatie over de echtgenoten toevoegen."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:1015
-#, fuzzy
 msgid "Include spouse reference"
-msgstr "Echtgenoten bijvoegen"
+msgstr "Echtgenootreferentie bijvoegen"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:1016
 #, fuzzy
@@ -21580,9 +21549,8 @@ msgid "Notes, media objects and data-items of matching citations will be combine
 msgstr "Opmerkingen, media-objecten, gegevens en bibliotheekverwijzingen van beide bronnen worden gecombineerd."
 
 #: ../src/plugins/tool/MergeCitations.py:159
-#, fuzzy
 msgid "Merge citations tool"
-msgstr "Kandidaten samenvoegen"
+msgstr "Citaten samenvoegen"
 
 #: ../src/plugins/tool/MergeCitations.py:180
 msgid "Checking Sources"
@@ -22218,9 +22186,8 @@ msgid "Old age but no death"
 msgstr "Zeer oud bij overlijden"
 
 #: ../src/plugins/view/citationtreeview.py:90
-#, fuzzy
 msgid "Title or Page"
-msgstr "Titelpagina"
+msgstr "Titel of pagina"
 
 # Vertrouwen
 #: ../src/plugins/view/citationtreeview.py:93
@@ -22360,9 +22327,8 @@ msgid "Volume/Page"
 msgstr "Volume/Pagina:"
 
 #: ../src/plugins/view/citationlistview.py:100
-#, fuzzy
 msgid "Source: Title"
-msgstr "Bronnenfilter"
+msgstr "Bron: Titel"
 
 #: ../src/plugins/view/citationlistview.py:101
 #, fuzzy
@@ -23355,9 +23321,8 @@ msgid "Partner 2"
 msgstr "Partner 2"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3248
-#, fuzzy
 msgid "Family/ Relationship"
-msgstr "<b>Familierelaties</b>"
+msgstr "Famile/ Verwantschap"
 
 #. determine if husband and wife, husband only, or spouse only....
 #: ../src/plugins/webreport/NarrativeWeb.py:3281
@@ -24787,9 +24752,8 @@ msgid "Volume/Page:"
 msgstr "Volume/Pagina:"
 
 #: ../src/Filters/Rules/Person/_HasCitation.py:51
-#, fuzzy
 msgid "People with the <citation>"
-msgstr "Personen met de <tag>"
+msgstr "Personen met het  <citaat>"
 
 # Geboortedatum van een bepaalde waarde (zijn bereiken ook mogelijk?)
 # Bepaalde geboortedatum misschien?
@@ -26674,9 +26638,8 @@ msgid "Custom filter"
 msgstr "Eigengemaakte filters"
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:96
-#, fuzzy
 msgid "Participants"
-msgstr "Belangrijkste deelnemers"
+msgstr "Deelnemers"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:90
 msgid "any"
@@ -26946,9 +26909,8 @@ msgid "Delete"
 msgstr "Verwijderen"
 
 #: ../src/glade/grampletpane.glade.h:6
-#, fuzzy
 msgid "Detach"
-msgstr "Details"
+msgstr "Loskoppelen"
 
 #: ../src/glade/grampletpane.glade.h:7
 msgid "Drag to move; click to detach"
@@ -27297,17 +27259,15 @@ msgid "Delete the selected style"
 msgstr "Geselecteerde opmerking verwijderen"
 
 #: ../src/glade/styleeditor.glade.h:20
-#, fuzzy
 msgid "Edit the selected style"
-msgstr "Een geselecteerde opmerking aanpassen"
+msgstr "Een geselecteerde stijl aanpassen"
 
 #: ../src/glade/styleeditor.glade.h:21
 #: ../src/glade/editfamily.glade.h:12
 #: ../src/glade/editchildref.glade.h:3
 #: ../src/glade/rule.glade.h:20
-#, fuzzy
 msgid "Edition"
-msgstr "Opleiding"
+msgstr "Editie"
 
 #: ../src/glade/styleeditor.glade.h:22
 msgid "First li_ne:"
@@ -27410,9 +27370,8 @@ msgid "_Rename"
 msgstr "Herbenoem"
 
 #: ../src/glade/editcitation.glade.h:1
-#, fuzzy
 msgid "<b>Citation information</b>"
-msgstr "<b>Relatie Informatie</b>"
+msgstr "<b>Citaatinformatie</b>"
 
 #: ../src/glade/editcitation.glade.h:3
 #, fuzzy
