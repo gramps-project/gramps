@@ -169,7 +169,7 @@ a {
 }
 a:hover {
     background-color: #BCEAF6;
-    text-decoration: blink;
+    text-decoration: underline;
 }
 span.preposition {
     padding-left:1em;
