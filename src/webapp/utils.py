@@ -839,7 +839,7 @@ class WebAppParser(HTMLParser):
         tag = tag.lower()
         if tag in ["br"]: return
         (start_pos, start_tag, attrs) = self.pop()
-        attrs = {x[0]: x[1] for x in attrs}
+        attrs = dict(attrs)
         if tag != start_tag: return # skip <i><b></i></b> formats
         arg = None
         tagtype = None
