@@ -772,7 +772,7 @@ class StyledNoteFormatter(object):
         if not text:
             return ''
         s_tags = styledtext.get_tags()
-        markuptext = self._backend.add_markup_from_styled(text, s_tags, split='\n').replace("\n\n", "<p/>").replace("\n", "<br/>")
+        markuptext = self._backend.add_markup_from_styled(text, s_tags, split='\n').replace("\n\n", "<p></p>").replace("\n", "<br/>")
         return markuptext
 
     def build_link(self, prop, handle, obj_class):
@@ -820,10 +820,24 @@ class WebAppParser(HTMLParser):
         return self.__stack.pop()
 
     def handle_starttag(self, tag, attrs):
+        if tag == "br":
+            self.__text += "\n"
+            return
         self.push(len(self.__text), tag.lower(), attrs)
+
+    def handle_startstoptag(self, tag, attrs):
+        if tag == "br":
+            self.__text += "\n"
+            return
+        elif tag == "p":
+            self.__text += "\n\n"
+            return
+        else:
+            print "Unhandled start/stop tag '%s'" % tag
 
     def handle_endtag(self, tag):
         tag = tag.lower()
+        if tag in ["br"]: return
         (start_pos, start_tag, attrs) = self.pop()
         attrs = {x[0]: x[1] for x in attrs}
         if tag != start_tag: return # skip <i><b></i></b> formats
@@ -867,14 +881,11 @@ class WebAppParser(HTMLParser):
             tagtype = self.UNDERLINE
         elif tag == "sup":
             tagtype = self.SUPERSCRIPT
-        elif tag == "br":
-            self.__text += "\n"
-            return
         elif tag == "p":
             self.__text += "\n\n"
             return
         elif tag == "div":
-            self.__text += "\n\n"
+            self.__text += "\n"
             return
         elif tag == "a":
             tagtype = self.LINK
