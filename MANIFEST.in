@@ -6,7 +6,6 @@ include MANIFEST.in
 include NEWS
 include RELEASE_NOTES
 include TODO
-include setup.cfg
 include TestPlan.txt
 recursive-include data *
 recursive-include debian *
