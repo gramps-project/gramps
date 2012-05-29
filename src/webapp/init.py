@@ -42,6 +42,7 @@ from gen.lib.familyreltype import FamilyRelType
 from gen.lib.srcmediatype import SourceMediaType
 from gen.lib.eventroletype import EventRoleType
 from gen.lib.notetype import NoteType
+from gen.lib.styledtexttagtype import StyledTextTagType
 
 from grampsdb.models import (GenderType, LdsType, LdsStatus, 
                              NameFormatType, NameOriginType, ThemeType)
@@ -61,7 +62,7 @@ for table, entries in [("grampsdb.config",
                          (("setting", "\"db_version\""), 
                           ("description", "\"database scheme version\""),
                           ("value_type", "\"str\""), 
-                          ("value", "\"0.5.1\"")),
+                          ("value", "\"0.6.0\"")),
                          (("setting", "\"db_created\""), 
                           ("description", "\"database creation date/time\""),
                           ("value_type", "\"str\""), 
@@ -174,7 +175,7 @@ for table, entries in [("grampsdb.config",
 type_models = [NameType, NameOriginType, AttributeType, UrlType, ChildRefType, 
                RepositoryType, EventType, FamilyRelType, SourceMediaType, 
                EventRoleType, NoteType, GenderType, LdsType, LdsStatus,
-               NameFormatType]
+               NameFormatType, StyledTextTagType]
 for type in type_models:
     count = 1
     # Add each code:

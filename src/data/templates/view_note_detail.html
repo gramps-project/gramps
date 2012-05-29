@@ -9,12 +9,13 @@
        $('.wysiwyg').htmlarea({
               toolbar: [
                  "bold", "italic", "underline", 
-                 "|", "forecolor",
+                 "|", "forecolor", "superscript",
                  "|", "link", "unlink", 
                  "|", "html"
               ]
             });
-       // FIXME: easier way?
+       // FIXME: add font, fontsize, backcolor
+       // FIXME: find easier way:
        $('.jHtmlArea').contents().find('iframe').contents().find('body').css({"background-color": "white"});
     });
     function setnotetext() {

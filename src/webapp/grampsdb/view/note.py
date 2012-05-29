@@ -22,7 +22,7 @@
 """ Views for Person, Name, and Surname """
 
 ## Gramps Modules
-from webapp.utils import _, boolean, update_last_changed, StyledNoteFormatter
+from webapp.utils import _, boolean, update_last_changed, StyledNoteFormatter, parse_styled_text
 from webapp.grampsdb.models import Note
 from webapp.grampsdb.forms import *
 from webapp.libdjango import DjangoInterface
@@ -65,14 +65,15 @@ def process_note(request, context, handle, action, add_to=None): # view, edit, s
         noteform.model = note
     elif action == "save": 
         note = Note.objects.get(handle=handle)
-        genlibnote = db.get_note_from_handle(note.handle)
-        notetext = snf.format(genlibnote) # FIXME
+        notetext = ""
         noteform = NoteForm(request.POST, instance=note, initial={"notetext": notetext})
         noteform.model = note
-        #note.text = noteform.data["notetext"] # FIXME: split text and tags
         if noteform.is_valid():
             update_last_changed(note, request.user.username)
+            notedata = parse_styled_text(noteform.data["notetext"])
+            note.text = notedata[0]
             note = noteform.save()
+            dji.save_note_markup(note, notedata[1])
             dji.rebuild_cache(note)
             notetext = noteform.data["notetext"] 
             action = "view"
@@ -81,13 +82,15 @@ def process_note(request, context, handle, action, add_to=None): # view, edit, s
             action = "edit"
     elif action == "create": 
         note = Note(handle=create_id())
-        notetext = "" # FIXME
+        notetext = ""
         noteform = NoteForm(request.POST, instance=note, initial={"notetext": notetext})
         noteform.model = note
-        #note.text = noteform.data["notetext"] # FIXME: split text and tags
         if noteform.is_valid():
             update_last_changed(note, request.user.username)
+            notedata = parse_styled_text(noteform.data["notetext"])
+            note.text = notedata[0]
             note = noteform.save()
+            dji.save_note_markup(note, notedata[1])
             dji.rebuild_cache(note)
             if add_to:
                 item, handle = add_to

@@ -30,7 +30,7 @@ dp = parser.parse
 #            "/home/dblank/gramps/trunk/example/gramps/data.gramps", 
 #            cli.user.User())
 
-from webapp.utils import StyledNoteFormatter
+from webapp.utils import StyledNoteFormatter, parse_styled_text
 snf = StyledNoteFormatter(db)
 #for n in Note.objects.all():
 #    note = db.get_note_from_handle(n.handle)
@@ -38,5 +38,9 @@ snf = StyledNoteFormatter(db)
 
 note = Note.objects.get(handle="aef30789d3d2090abe2")
 genlibnote = db.get_note_from_handle(note.handle)
-print snf.format(genlibnote)
-#st = gen.lib.StyledText(note.text, dji.get_note_markup(note))
+html_text = snf.format(genlibnote)
+# FIXME: this looks wrong:
+#print html_text
+#print parse_styled_text(html_text)
+
+##st = gen.lib.StyledText(note.text, dji.get_note_markup(note))

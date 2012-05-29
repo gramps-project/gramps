@@ -28,7 +28,9 @@
 #------------------------------------------------------------------------
 import locale
 import sys
+import re
 import datetime
+from HTMLParser import HTMLParser
 
 #------------------------------------------------------------------------
 #
@@ -744,6 +746,7 @@ class WebAppBackend(HtmlBackend):
             DocBackend.FONTFACE,
             DocBackend.FONTSIZE,
             DocBackend.FONTCOLOR,
+            DocBackend.SUPERSCRIPT,
             DocBackend.LINK,
             ]
 
@@ -751,6 +754,7 @@ class WebAppBackend(HtmlBackend):
         DocBackend.BOLD        : ("<b>", "</b>"),
         DocBackend.ITALIC      : ("<i>", "</i>"),
         DocBackend.UNDERLINE   : ('<u>', '</u>'),
+        DocBackend.SUPERSCRIPT : ("<sup>", "</sup>"),
     }
 
 ### Taken from Narrated Web Report
@@ -761,53 +765,15 @@ class StyledNoteFormatter(object):
         self._backend.build_link = self.build_link
 
     def format(self, note):
-        return self.styled_note(
-            note.get_styledtext(),
-            note.get_format(), 
-            contains_html=(note.get_type() == gen.lib.NoteType.HTML_CODE))
+        return self.styled_note(note.get_styledtext())
 
-    def styled_note(self, styledtext, format, contains_html=False):
-        """
-        styledtext : assumed a StyledText object to write
-        format : = 0 : Flowed, = 1 : Preformatted
-        style_name : name of the style to use for default presentation
-        """
+    def styled_note(self, styledtext):
         text = str(styledtext)
         if not text:
             return ''
         s_tags = styledtext.get_tags()
-        markuptext = self._backend.add_markup_from_styled(text, s_tags,
-                                                          split='\n')
-        htmllist = Html("div") #"div", class_="grampsstylednote")
-        if contains_html:
-            htmllist += text
-        else:
-            linelist = []
-            linenb = 1
-            for line in markuptext.split('\n'):
-                [line, sigcount] = process_spaces(line, format)
-                if sigcount == 0:
-                    # The rendering of an empty paragraph '<p></p>'
-                    # is undefined so we use a non-breaking space
-                    if linenb == 1:
-                        linelist.append('&nbsp;')
-                    htmllist.extend(Html('p') + linelist)
-                    linelist = []
-                    linenb = 1
-                else:
-                    if linenb > 1:
-                        linelist[-1] += '<br />'
-                    linelist.append(line)
-                    linenb += 1
-            if linenb > 1:
-                htmllist.extend(Html('p') + linelist)
-            # if the last line was blank, then as well as outputting the previous para,
-            # which we have just done,
-            # we also output a new blank para
-            if sigcount == 0:
-                linelist = ["&nbsp;"]
-                htmllist.extend(Html('p') + linelist)
-        return "".join(htmllist)
+        markuptext = self._backend.add_markup_from_styled(text, s_tags, split='\n').replace("\n", "<br/>")
+        return markuptext
 
     def build_link(self, prop, handle, obj_class):
         """
@@ -826,3 +792,117 @@ class StyledNoteFormatter(object):
                                      "in table name '%s'" % obj_class)
         # handle, ppl
         return "/%s/%s" % (obj_class.lower(), handle)
+
+class WebAppParser(HTMLParser):
+    BOLD = 0
+    ITALIC = 1
+    UNDERLINE = 2
+    FONTFACE = 3
+    FONTSIZE = 4
+    FONTCOLOR = 5
+    HIGHLIGHT = 6
+    SUPERSCRIPT = 7
+    LINK = 8
+
+    def __init__(self):
+        HTMLParser.__init__(self)
+        self.__text = ""
+        self.__tags = {}
+        self.__stack = []
+
+    def handle_data(self, data):
+        self.__text += data
+
+    def push(self, pos, tag, attrs):
+        self.__stack.append([pos, tag, attrs])
+
+    def pop(self):
+        return self.__stack.pop()
+
+    def handle_starttag(self, tag, attrs):
+        self.push(len(self.__text), tag.lower(), attrs)
+
+    def handle_endtag(self, tag):
+        tag = tag.lower()
+        (start_pos, start_tag, attrs) = self.pop()
+        attrs = {x[0]: x[1] for x in attrs}
+        if tag != start_tag: return # skip <i><b></i></b> formats
+        arg = None
+        tagtype = None
+        if tag == "span":
+            # "span": get color, font, size
+            if "style" in attrs:
+                style = attrs["style"]
+                if 'color' in style:
+                    tagtype = self.FONTCOLOR
+                    match = re.match("color:([^;]*);", style)
+                    if match:
+                        arg = match.groups()[0]
+                    else:
+                        print "Unhandled color tag: '%s'" % style
+                elif "font-family" in style:
+                    tagtype = self.FONTFACE
+                    match = re.match("font-family:'([^;]*)';", style)
+                    if match:
+                        arg = match.groups()[0]
+                    else:
+                        print "Unhandled font-family tag: '%s'" % style
+                elif "font-size" in style:
+                    tagtype = self.FONTSIZE
+                    match = re.match("font-size:([^;]*)px;", style)
+                    if match:
+                        arg = int(match.groups()[0])
+                    else:
+                        print "Unhandled font-size tag: '%s'" % style
+                else:
+                    print "Unhandled span arg: '%s'" % attrs
+            else:
+                print "span has no style: '%s'" % attrs
+        # "b", "i", "u", "sup": direct conversion
+        elif tag == "b":
+            tagtype = self.BOLD
+        elif tag == "i":
+            tagtype = self.ITALIC
+        elif tag == "u":
+            tagtype = self.UNDERLINE
+        elif tag == "sup":
+            tagtype = self.SUPERSCRIPT
+        elif tag == "br":
+            self.__text += "\n"
+            return
+        elif tag == "p":
+            self.__text += "\n\n"
+            return
+        elif tag == "a":
+            tagtype = self.LINK
+            # "a": get /object/handle, or url
+            if "href" in attrs:
+                href = attrs["href"]
+                if href.startswith("/"):
+                    parts = href.split("/")
+                    arg = "gramps://%s/handle/%s" % (parts[-2].title(), parts[-1])
+                else:
+                    arg = href
+            else:
+                print "Unhandled a with no href: '%s'" % attrs
+        else:
+            return
+            print "Unhandled tag: '%s'" % tag
+        key = ((tagtype, u''), arg)
+        if key not in self.__tags:
+            self.__tags[key] = []
+        self.__tags[key].append((start_pos, len(self.__text)))
+
+    def tags(self):
+        # [((code, u''), string/num, [(start, stop), ...]), ...]
+        return [(key[0], key[1], self.__tags[key]) for key in self.__tags]
+
+    def text(self):
+        return self.__text
+
+def parse_styled_text(text):
+    parser = WebAppParser()
+    parser.feed(text)
+    parser.close()
+    return (parser.text(), parser.tags())
+

@@ -299,14 +299,13 @@ class DjangoInterface(object):
         retval = []
         markups = models.Markup.objects.filter(note=note).order_by("order")
         for markup in markups:
-            # FIXME: not all of these are strings; bummer
             if markup.string and markup.string.isdigit():
                 value = int(markup.string)
             else:
                 value = markup.string 
             start_stop_list  = markup.start_stop_list
             ss_list = eval(start_stop_list)
-            retval += [(tuple(markup.markup_type), value, ss_list)]
+            retval += [(tuple(markup.styled_text_tag_type), value, ss_list)]
         return retval
 
     def get_note(self, note):
@@ -1257,12 +1256,14 @@ class DjangoInterface(object):
         count = 1
         for markup in markup_list:
             markup_code, value, start_stop_list = markup
-            m = models.Markup(note=note, order=count, 
-                   markup_type=models.get_type(models.MarkupType,
-                                               markup_code, 
-                                               get_or_create=True),
-                              string=value,
-                              start_stop_list=str(start_stop_list))
+            m = models.Markup(
+                note=note, 
+                order=count, 
+                styled_text_tag_type=models.get_type(models.StyledTextTagType,
+                                                     markup_code, 
+                                                     get_or_create=False),
+                string=value,
+                start_stop_list=str(start_stop_list))
             m.save()
     
     def add_note(self, data):
