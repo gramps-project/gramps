@@ -67,9 +67,9 @@ INSERT INTO "auth_permission" VALUES(57,'Can delete event role type',19,'delete_
 INSERT INTO "auth_permission" VALUES(58,'Can add note type',20,'add_notetype');
 INSERT INTO "auth_permission" VALUES(59,'Can change note type',20,'change_notetype');
 INSERT INTO "auth_permission" VALUES(60,'Can delete note type',20,'delete_notetype');
-INSERT INTO "auth_permission" VALUES(61,'Can add markup type',21,'add_markuptype');
-INSERT INTO "auth_permission" VALUES(62,'Can change markup type',21,'change_markuptype');
-INSERT INTO "auth_permission" VALUES(63,'Can delete markup type',21,'delete_markuptype');
+INSERT INTO "auth_permission" VALUES(61,'Can add styled text tag type',21,'add_styledtexttagtype');
+INSERT INTO "auth_permission" VALUES(62,'Can change styled text tag type',21,'change_styledtexttagtype');
+INSERT INTO "auth_permission" VALUES(63,'Can delete styled text tag type',21,'delete_styledtexttagtype');
 INSERT INTO "auth_permission" VALUES(64,'Can add gender type',22,'add_gendertype');
 INSERT INTO "auth_permission" VALUES(65,'Can change gender type',22,'change_gendertype');
 INSERT INTO "auth_permission" VALUES(66,'Can delete gender type',22,'delete_gendertype');
@@ -219,7 +219,7 @@ CREATE TABLE "auth_user" (
     "last_login" datetime NOT NULL,
     "date_joined" datetime NOT NULL
 );
-INSERT INTO "auth_user" VALUES(1,'admin','','','bugs@gramps-project.org','sha1$61e84$9f92d64496a8785f9a398a1e1a2e9bc9bdc6f3b0',1,1,1,'2012-05-26 14:00:59.964988','2012-05-26 14:00:59.964988');
+INSERT INTO "auth_user" VALUES(1,'admin','','','bugs@gramps-project.org','sha1$28213$1af0843de942e46b52d35ccd4d6abba8d3e6ec0f',1,1,1,'2012-05-29 10:36:56.848133','2012-05-29 10:36:56.848133');
 CREATE TABLE "auth_message" (
     "id" integer NOT NULL PRIMARY KEY,
     "user_id" integer NOT NULL REFERENCES "auth_user" ("id"),
@@ -252,7 +252,7 @@ INSERT INTO "django_content_type" VALUES(17,'family rel type','grampsdb','family
 INSERT INTO "django_content_type" VALUES(18,'source media type','grampsdb','sourcemediatype');
 INSERT INTO "django_content_type" VALUES(19,'event role type','grampsdb','eventroletype');
 INSERT INTO "django_content_type" VALUES(20,'note type','grampsdb','notetype');
-INSERT INTO "django_content_type" VALUES(21,'markup type','grampsdb','markuptype');
+INSERT INTO "django_content_type" VALUES(21,'styled text tag type','grampsdb','styledtexttagtype');
 INSERT INTO "django_content_type" VALUES(22,'gender type','grampsdb','gendertype');
 INSERT INTO "django_content_type" VALUES(23,'lds type','grampsdb','ldstype');
 INSERT INTO "django_content_type" VALUES(24,'lds status','grampsdb','ldsstatus');
@@ -296,6 +296,8 @@ CREATE TABLE "django_session" (
     "session_data" text NOT NULL,
     "expire_date" datetime NOT NULL
 );
+INSERT INTO "django_session" VALUES('1827afd63a2479e799c79cf3fab622d6','YTJkY2YzOGM0MzQ0MzY4YjExZDZhODZjOTdhZjAxMDkxNWU5MTM0NjqAAn1xAS4=
+','2012-06-12 10:37:52.618014');
 CREATE TABLE "django_site" (
     "id" integer NOT NULL PRIMARY KEY,
     "domain" varchar(100) NOT NULL,
@@ -536,11 +538,20 @@ INSERT INTO "grampsdb_notetype" VALUES(23,'Repository Reference Note',16);
 INSERT INTO "grampsdb_notetype" VALUES(24,'Media Note',17);
 INSERT INTO "grampsdb_notetype" VALUES(25,'Media Reference Note',18);
 INSERT INTO "grampsdb_notetype" VALUES(26,'Child Reference Note',19);
-CREATE TABLE "grampsdb_markuptype" (
+CREATE TABLE "grampsdb_styledtexttagtype" (
     "id" integer NOT NULL PRIMARY KEY,
     "name" varchar(40) NOT NULL,
     "val" integer NOT NULL
 );
+INSERT INTO "grampsdb_styledtexttagtype" VALUES(1,'bold',0);
+INSERT INTO "grampsdb_styledtexttagtype" VALUES(2,'italic',1);
+INSERT INTO "grampsdb_styledtexttagtype" VALUES(3,'underline',2);
+INSERT INTO "grampsdb_styledtexttagtype" VALUES(4,'fontface',3);
+INSERT INTO "grampsdb_styledtexttagtype" VALUES(5,'fontsize',4);
+INSERT INTO "grampsdb_styledtexttagtype" VALUES(6,'fontcolor',5);
+INSERT INTO "grampsdb_styledtexttagtype" VALUES(7,'highlight',6);
+INSERT INTO "grampsdb_styledtexttagtype" VALUES(8,'superscript',7);
+INSERT INTO "grampsdb_styledtexttagtype" VALUES(9,'link',8);
 CREATE TABLE "grampsdb_gendertype" (
     "id" integer NOT NULL PRIMARY KEY,
     "name" varchar(40) NOT NULL,
@@ -615,8 +626,8 @@ CREATE TABLE "grampsdb_config" (
     "value" text NOT NULL
 );
 INSERT INTO "grampsdb_config" VALUES(1,'sitename','site name of family tree','str','Gramps-Connect');
-INSERT INTO "grampsdb_config" VALUES(2,'db_version','database scheme version','str','0.5.1');
-INSERT INTO "grampsdb_config" VALUES(3,'db_created','database creation date/time','str','2012-05-26 14:00');
+INSERT INTO "grampsdb_config" VALUES(2,'db_version','database scheme version','str','0.6.0');
+INSERT INTO "grampsdb_config" VALUES(3,'db_created','database creation date/time','str','2012-05-29 10:29');
 CREATE TABLE "grampsdb_tag" (
     "id" integer NOT NULL PRIMARY KEY,
     "handle" varchar(19) NOT NULL UNIQUE,
@@ -902,7 +913,7 @@ CREATE TABLE "grampsdb_lds" (
 CREATE TABLE "grampsdb_markup" (
     "id" integer NOT NULL PRIMARY KEY,
     "note_id" integer NOT NULL REFERENCES "grampsdb_note" ("id"),
-    "markup_type_id" integer NOT NULL REFERENCES "grampsdb_markuptype" ("id"),
+    "styled_text_tag_type_id" integer NOT NULL REFERENCES "grampsdb_styledtexttagtype" ("id"),
     "order" integer unsigned NOT NULL,
     "string" text,
     "start_stop_list" text NOT NULL
@@ -1087,9 +1098,9 @@ INSERT INTO "grampsdb_report" VALUES(12,'R0012','number_of_ancestors_report','nu
 INSERT INTO "grampsdb_report" VALUES(13,'R0013','place_report','place_report','textreport',NULL);
 INSERT INTO "grampsdb_report" VALUES(14,'R0014','simple_book_title','simple_book_title','textreport',NULL);
 INSERT INTO "grampsdb_report" VALUES(15,'R0015','summary','summary','textreport',NULL);
-INSERT INTO "grampsdb_report" VALUES(16,'R0016','GEDCOM Export','gedcom_export','export','off=ged');
+INSERT INTO "grampsdb_report" VALUES(16,'R0016','Export','gedcom_export','export','off=ged');
 INSERT INTO "grampsdb_report" VALUES(17,'R0017','Gramps XML Export','ex_gpkg','export','off=gramps');
-INSERT INTO "grampsdb_report" VALUES(18,'R0018','GEDCOM Import','im_ged','import','iff=ged i=http://arborvita.free.fr/Kennedy/Kennedy.ged');
+INSERT INTO "grampsdb_report" VALUES(18,'R0018','Import','im_ged','import','iff=ged i=http://arborvita.free.fr/Kennedy/Kennedy.ged');
 INSERT INTO "grampsdb_report" VALUES(19,'R0019','Gramps package (portable XML) Import','im_gpkg','import','iff=gramps i=http://gramps.svn.sourceforge.net/viewvc/gramps/trunk/example/gramps/example.gramps?revision=18333');
 CREATE TABLE "grampsdb_result" (
     "id" integer NOT NULL PRIMARY KEY,
@@ -1105,82 +1116,82 @@ CREATE INDEX grampsdb_eventref_object_id_object_type_id
        ON grampsdb_eventref (object_id, object_type_id);
 CREATE INDEX grampsdb_childref_object_id_object_type_id 
        ON grampsdb_childref (object_id, object_type_id);
-CREATE INDEX "auth_permission_e4470c6e" ON "auth_permission" ("content_type_id");
-CREATE INDEX "auth_group_permissions_bda51c3c" ON "auth_group_permissions" ("group_id");
+CREATE INDEX "auth_permission_1bb8f392" ON "auth_permission" ("content_type_id");
+CREATE INDEX "auth_group_permissions_425ae3c4" ON "auth_group_permissions" ("group_id");
 CREATE INDEX "auth_group_permissions_1e014c8f" ON "auth_group_permissions" ("permission_id");
-CREATE INDEX "auth_user_user_permissions_fbfc09f1" ON "auth_user_user_permissions" ("user_id");
+CREATE INDEX "auth_user_user_permissions_403f60f" ON "auth_user_user_permissions" ("user_id");
 CREATE INDEX "auth_user_user_permissions_1e014c8f" ON "auth_user_user_permissions" ("permission_id");
-CREATE INDEX "auth_user_groups_fbfc09f1" ON "auth_user_groups" ("user_id");
-CREATE INDEX "auth_user_groups_bda51c3c" ON "auth_user_groups" ("group_id");
-CREATE INDEX "auth_message_fbfc09f1" ON "auth_message" ("user_id");
-CREATE INDEX "django_session_c25c2c28" ON "django_session" ("expire_date");
-CREATE INDEX "django_admin_log_fbfc09f1" ON "django_admin_log" ("user_id");
-CREATE INDEX "django_admin_log_e4470c6e" ON "django_admin_log" ("content_type_id");
+CREATE INDEX "auth_user_groups_403f60f" ON "auth_user_groups" ("user_id");
+CREATE INDEX "auth_user_groups_425ae3c4" ON "auth_user_groups" ("group_id");
+CREATE INDEX "auth_message_403f60f" ON "auth_message" ("user_id");
+CREATE INDEX "django_session_3da3d3d8" ON "django_session" ("expire_date");
+CREATE INDEX "django_admin_log_403f60f" ON "django_admin_log" ("user_id");
+CREATE INDEX "django_admin_log_1bb8f392" ON "django_admin_log" ("content_type_id");
 CREATE INDEX "grampsdb_person_families_21b911c5" ON "grampsdb_person_families" ("person_id");
-CREATE INDEX "grampsdb_person_families_ccf20756" ON "grampsdb_person_families" ("family_id");
+CREATE INDEX "grampsdb_person_families_330df8aa" ON "grampsdb_person_families" ("family_id");
 CREATE INDEX "grampsdb_person_tags_21b911c5" ON "grampsdb_person_tags" ("person_id");
 CREATE INDEX "grampsdb_person_tags_3747b463" ON "grampsdb_person_tags" ("tag_id");
 CREATE INDEX "grampsdb_person_parent_families_21b911c5" ON "grampsdb_person_parent_families" ("person_id");
-CREATE INDEX "grampsdb_person_parent_families_ccf20756" ON "grampsdb_person_parent_families" ("family_id");
+CREATE INDEX "grampsdb_person_parent_families_330df8aa" ON "grampsdb_person_parent_families" ("family_id");
 CREATE INDEX "grampsdb_person_79775e9" ON "grampsdb_person" ("gender_type_id");
 CREATE INDEX "grampsdb_person_3a672176" ON "grampsdb_person" ("birth_id");
-CREATE INDEX "grampsdb_person_f406392b" ON "grampsdb_person" ("death_id");
-CREATE INDEX "grampsdb_family_tags_ccf20756" ON "grampsdb_family_tags" ("family_id");
+CREATE INDEX "grampsdb_person_bf9c6d5" ON "grampsdb_person" ("death_id");
+CREATE INDEX "grampsdb_family_tags_330df8aa" ON "grampsdb_family_tags" ("family_id");
 CREATE INDEX "grampsdb_family_tags_3747b463" ON "grampsdb_family_tags" ("tag_id");
 CREATE INDEX "grampsdb_family_656bfb9c" ON "grampsdb_family" ("father_id");
 CREATE INDEX "grampsdb_family_3800eb51" ON "grampsdb_family" ("mother_id");
-CREATE INDEX "grampsdb_family_8a163760" ON "grampsdb_family" ("family_rel_type_id");
-CREATE INDEX "grampsdb_citation_89f89e85" ON "grampsdb_citation" ("source_id");
-CREATE INDEX "grampsdb_event_cb60d07f" ON "grampsdb_event" ("event_type_id");
-CREATE INDEX "grampsdb_event_c4391d6c" ON "grampsdb_event" ("place_id");
+CREATE INDEX "grampsdb_family_75e9c8a0" ON "grampsdb_family" ("family_rel_type_id");
+CREATE INDEX "grampsdb_citation_7607617b" ON "grampsdb_citation" ("source_id");
+CREATE INDEX "grampsdb_event_349f2f81" ON "grampsdb_event" ("event_type_id");
+CREATE INDEX "grampsdb_event_3bc6e294" ON "grampsdb_event" ("place_id");
 CREATE INDEX "grampsdb_repository_5f9de118" ON "grampsdb_repository" ("repository_type_id");
 CREATE INDEX "grampsdb_media_tags_11f50c51" ON "grampsdb_media_tags" ("media_id");
 CREATE INDEX "grampsdb_media_tags_3747b463" ON "grampsdb_media_tags" ("tag_id");
 CREATE INDEX "grampsdb_note_tags_14a186ec" ON "grampsdb_note_tags" ("note_id");
 CREATE INDEX "grampsdb_note_tags_3747b463" ON "grampsdb_note_tags" ("tag_id");
-CREATE INDEX "grampsdb_note_8e504316" ON "grampsdb_note" ("note_type_id");
+CREATE INDEX "grampsdb_note_71afbcea" ON "grampsdb_note" ("note_type_id");
 CREATE INDEX "grampsdb_surname_5489fd8b" ON "grampsdb_surname" ("name_origin_type_id");
 CREATE INDEX "grampsdb_surname_632e075f" ON "grampsdb_surname" ("name_id");
-CREATE INDEX "grampsdb_name_bbd280b5" ON "grampsdb_name" ("name_type_id");
-CREATE INDEX "grampsdb_name_af013a48" ON "grampsdb_name" ("sort_as_id");
-CREATE INDEX "grampsdb_name_f5d4d029" ON "grampsdb_name" ("display_as_id");
+CREATE INDEX "grampsdb_name_442d7f4b" ON "grampsdb_name" ("name_type_id");
+CREATE INDEX "grampsdb_name_50fec5b8" ON "grampsdb_name" ("sort_as_id");
+CREATE INDEX "grampsdb_name_a2b2fd7" ON "grampsdb_name" ("display_as_id");
 CREATE INDEX "grampsdb_name_21b911c5" ON "grampsdb_name" ("person_id");
-CREATE INDEX "grampsdb_lds_a9c5135e" ON "grampsdb_lds" ("lds_type_id");
-CREATE INDEX "grampsdb_lds_c4391d6c" ON "grampsdb_lds" ("place_id");
+CREATE INDEX "grampsdb_lds_563aeca2" ON "grampsdb_lds" ("lds_type_id");
+CREATE INDEX "grampsdb_lds_3bc6e294" ON "grampsdb_lds" ("place_id");
 CREATE INDEX "grampsdb_lds_5934a803" ON "grampsdb_lds" ("famc_id");
 CREATE INDEX "grampsdb_lds_44224078" ON "grampsdb_lds" ("status_id");
 CREATE INDEX "grampsdb_lds_21b911c5" ON "grampsdb_lds" ("person_id");
-CREATE INDEX "grampsdb_lds_ccf20756" ON "grampsdb_lds" ("family_id");
+CREATE INDEX "grampsdb_lds_330df8aa" ON "grampsdb_lds" ("family_id");
 CREATE INDEX "grampsdb_markup_14a186ec" ON "grampsdb_markup" ("note_id");
-CREATE INDEX "grampsdb_markup_cf03b71c" ON "grampsdb_markup" ("markup_type_id");
-CREATE INDEX "grampsdb_sourcedatamap_89f89e85" ON "grampsdb_sourcedatamap" ("source_id");
-CREATE INDEX "grampsdb_citationdatamap_958eecfd" ON "grampsdb_citationdatamap" ("citation_id");
+CREATE INDEX "grampsdb_markup_46e39021" ON "grampsdb_markup" ("styled_text_tag_type_id");
+CREATE INDEX "grampsdb_sourcedatamap_7607617b" ON "grampsdb_sourcedatamap" ("source_id");
+CREATE INDEX "grampsdb_citationdatamap_6a711303" ON "grampsdb_citationdatamap" ("citation_id");
 CREATE INDEX "grampsdb_address_21b911c5" ON "grampsdb_address" ("person_id");
 CREATE INDEX "grampsdb_address_6a730446" ON "grampsdb_address" ("repository_id");
-CREATE INDEX "grampsdb_location_c4391d6c" ON "grampsdb_location" ("place_id");
-CREATE INDEX "grampsdb_location_b213c1e9" ON "grampsdb_location" ("address_id");
-CREATE INDEX "grampsdb_url_9655b856" ON "grampsdb_url" ("url_type_id");
+CREATE INDEX "grampsdb_location_3bc6e294" ON "grampsdb_location" ("place_id");
+CREATE INDEX "grampsdb_location_4dec3e17" ON "grampsdb_location" ("address_id");
+CREATE INDEX "grampsdb_url_69aa47aa" ON "grampsdb_url" ("url_type_id");
 CREATE INDEX "grampsdb_url_21b911c5" ON "grampsdb_url" ("person_id");
-CREATE INDEX "grampsdb_url_c4391d6c" ON "grampsdb_url" ("place_id");
+CREATE INDEX "grampsdb_url_3bc6e294" ON "grampsdb_url" ("place_id");
 CREATE INDEX "grampsdb_url_6a730446" ON "grampsdb_url" ("repository_id");
-CREATE INDEX "grampsdb_attribute_ec24ebcd" ON "grampsdb_attribute" ("attribute_type_id");
-CREATE INDEX "grampsdb_attribute_ae71a55b" ON "grampsdb_attribute" ("object_type_id");
-CREATE INDEX "grampsdb_noteref_ae71a55b" ON "grampsdb_noteref" ("object_type_id");
-CREATE INDEX "grampsdb_noteref_d8532d97" ON "grampsdb_noteref" ("ref_object_id");
-CREATE INDEX "grampsdb_eventref_ae71a55b" ON "grampsdb_eventref" ("object_type_id");
-CREATE INDEX "grampsdb_eventref_d8532d97" ON "grampsdb_eventref" ("ref_object_id");
+CREATE INDEX "grampsdb_attribute_13db1433" ON "grampsdb_attribute" ("attribute_type_id");
+CREATE INDEX "grampsdb_attribute_518e5aa5" ON "grampsdb_attribute" ("object_type_id");
+CREATE INDEX "grampsdb_noteref_518e5aa5" ON "grampsdb_noteref" ("object_type_id");
+CREATE INDEX "grampsdb_noteref_27acd269" ON "grampsdb_noteref" ("ref_object_id");
+CREATE INDEX "grampsdb_eventref_518e5aa5" ON "grampsdb_eventref" ("object_type_id");
+CREATE INDEX "grampsdb_eventref_27acd269" ON "grampsdb_eventref" ("ref_object_id");
 CREATE INDEX "grampsdb_eventref_6ae08856" ON "grampsdb_eventref" ("role_type_id");
-CREATE INDEX "grampsdb_repositoryref_ae71a55b" ON "grampsdb_repositoryref" ("object_type_id");
-CREATE INDEX "grampsdb_repositoryref_d8532d97" ON "grampsdb_repositoryref" ("ref_object_id");
+CREATE INDEX "grampsdb_repositoryref_518e5aa5" ON "grampsdb_repositoryref" ("object_type_id");
+CREATE INDEX "grampsdb_repositoryref_27acd269" ON "grampsdb_repositoryref" ("ref_object_id");
 CREATE INDEX "grampsdb_repositoryref_4fd76720" ON "grampsdb_repositoryref" ("source_media_type_id");
-CREATE INDEX "grampsdb_personref_ae71a55b" ON "grampsdb_personref" ("object_type_id");
-CREATE INDEX "grampsdb_personref_d8532d97" ON "grampsdb_personref" ("ref_object_id");
-CREATE INDEX "grampsdb_citationref_ae71a55b" ON "grampsdb_citationref" ("object_type_id");
-CREATE INDEX "grampsdb_citationref_958eecfd" ON "grampsdb_citationref" ("citation_id");
-CREATE INDEX "grampsdb_childref_ae71a55b" ON "grampsdb_childref" ("object_type_id");
+CREATE INDEX "grampsdb_personref_518e5aa5" ON "grampsdb_personref" ("object_type_id");
+CREATE INDEX "grampsdb_personref_27acd269" ON "grampsdb_personref" ("ref_object_id");
+CREATE INDEX "grampsdb_citationref_518e5aa5" ON "grampsdb_citationref" ("object_type_id");
+CREATE INDEX "grampsdb_citationref_6a711303" ON "grampsdb_citationref" ("citation_id");
+CREATE INDEX "grampsdb_childref_518e5aa5" ON "grampsdb_childref" ("object_type_id");
 CREATE INDEX "grampsdb_childref_6f3234de" ON "grampsdb_childref" ("father_rel_type_id");
-CREATE INDEX "grampsdb_childref_de957003" ON "grampsdb_childref" ("mother_rel_type_id");
-CREATE INDEX "grampsdb_childref_d8532d97" ON "grampsdb_childref" ("ref_object_id");
-CREATE INDEX "grampsdb_mediaref_ae71a55b" ON "grampsdb_mediaref" ("object_type_id");
-CREATE INDEX "grampsdb_mediaref_d8532d97" ON "grampsdb_mediaref" ("ref_object_id");
+CREATE INDEX "grampsdb_childref_216a8ffd" ON "grampsdb_childref" ("mother_rel_type_id");
+CREATE INDEX "grampsdb_childref_27acd269" ON "grampsdb_childref" ("ref_object_id");
+CREATE INDEX "grampsdb_mediaref_518e5aa5" ON "grampsdb_mediaref" ("object_type_id");
+CREATE INDEX "grampsdb_mediaref_27acd269" ON "grampsdb_mediaref" ("ref_object_id");
 COMMIT;
