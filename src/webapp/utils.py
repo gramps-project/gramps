@@ -772,7 +772,7 @@ class StyledNoteFormatter(object):
         if not text:
             return ''
         s_tags = styledtext.get_tags()
-        markuptext = self._backend.add_markup_from_styled(text, s_tags, split='\n').replace("\n", "<br/>")
+        markuptext = self._backend.add_markup_from_styled(text, s_tags, split='\n').replace("\n\n", "<p/>").replace("\n", "<br/>")
         return markuptext
 
     def build_link(self, prop, handle, obj_class):
@@ -873,6 +873,9 @@ class WebAppParser(HTMLParser):
         elif tag == "p":
             self.__text += "\n\n"
             return
+        elif tag == "div":
+            self.__text += "\n\n"
+            return
         elif tag == "a":
             tagtype = self.LINK
             # "a": get /object/handle, or url
@@ -888,6 +891,8 @@ class WebAppParser(HTMLParser):
         else:
             return
             print "Unhandled tag: '%s'" % tag
+
+        if start_pos == len(self.__text): return # does nothing
         key = ((tagtype, u''), arg)
         if key not in self.__tags:
             self.__tags[key] = []
