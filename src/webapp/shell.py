@@ -32,9 +32,11 @@ dp = parser.parse
 
 from webapp.utils import StyledNoteFormatter
 snf = StyledNoteFormatter(db)
-for n in Note.objects.all():
-    note = db.get_note_from_handle(n.handle)
-    print snf.get_note_format(note)
+#for n in Note.objects.all():
+#    note = db.get_note_from_handle(n.handle)
+#    print snf.format(note)
 
-#note = Note.objects.get(handle="aef30789d3d2090abe2")
+note = Note.objects.get(handle="aef30789d3d2090abe2")
+genlibnote = db.get_note_from_handle(note.handle)
+print snf.format(genlibnote)
 #st = gen.lib.StyledText(note.text, dji.get_note_markup(note))

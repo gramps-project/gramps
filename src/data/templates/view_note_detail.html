@@ -9,8 +9,8 @@
        $('.wysiwyg').htmlarea({
               toolbar: [
                  "bold", "italic", "underline",
-                 "|",
-                 "link", "unlink"
+                 "|", "link", "unlink", 
+                 "|", "html"
               ]
             });
        // FIXME: easier way?
@@ -35,13 +35,13 @@
   {% endif %}
 <form method="post" onsubmit="setnotetext()">{% csrf_token %}
 <tr>
-<td class="ColumnAttribute">{{noteform.text.label}}:</td>
+<td class="ColumnAttribute">{{noteform.notetext.label}}:</td>
 <td class="ColumnValue" id="data" colspan="3">
 {% if action == "edit" or action == "add" %}
-  <input type="hidden" id="notetext" name="notetext" value="this is hidden"></input>
+  <input type="hidden" id="notetext" name="notetext" value=""></input>
   {% render noteform.notetext user action %} 
 {% else %}
-  <p style="overflow-y: scroll; height: 100px;">{{notetext}}</p>
+  <div style="overflow-y: scroll; height: 100px;">{{notetext|safe}}</div>
 {% endif %}
 </td>
 </tr>

@@ -22,10 +22,11 @@
 """ Views for Person, Name, and Surname """
 
 ## Gramps Modules
-from webapp.utils import _, boolean, update_last_changed
+from webapp.utils import _, boolean, update_last_changed, StyledNoteFormatter
 from webapp.grampsdb.models import Note
 from webapp.grampsdb.forms import *
 from webapp.libdjango import DjangoInterface
+from webapp.dbdjango import DbDjango
 
 ## Django Modules
 from django.shortcuts import get_object_or_404, render_to_response, redirect
@@ -33,6 +34,8 @@ from django.template import Context, RequestContext
 
 ## Globals
 dji = DjangoInterface()
+db = DbDjango()
+snf = StyledNoteFormatter(db)
 
 def process_note(request, context, handle, action, add_to=None): # view, edit, save
     """
@@ -51,29 +54,37 @@ def process_note(request, context, handle, action, add_to=None): # view, edit, s
     # Handle: edit, view, add, create, save, delete
     if action == "add":
         note = Note(gramps_id=dji.get_next_id(Note, "N"))
-        noteform = NoteForm(instance=note, initial={"notetext": note.text})
+        notetext = ""
+        noteform = NoteForm(instance=note, initial={"notetext": notetext})
         noteform.model = note
     elif action in ["view", "edit"]: 
         note = Note.objects.get(handle=handle)
-        noteform = NoteForm(instance=note, initial={"notetext": note.text})
+        genlibnote = db.get_note_from_handle(note.handle)
+        notetext = snf.format(genlibnote)
+        noteform = NoteForm(instance=note, initial={"notetext": notetext})
         noteform.model = note
     elif action == "save": 
         note = Note.objects.get(handle=handle)
-        noteform = NoteForm(request.POST, instance=note, initial={"notetext": note.text})
+        genlibnote = db.get_note_from_handle(note.handle)
+        notetext = snf.format(genlibnote) # FIXME
+        noteform = NoteForm(request.POST, instance=note, initial={"notetext": notetext})
         noteform.model = note
-        note.text = noteform.data["notetext"]
+        #note.text = noteform.data["notetext"] # FIXME: split text and tags
         if noteform.is_valid():
             update_last_changed(note, request.user.username)
             note = noteform.save()
             dji.rebuild_cache(note)
+            notetext = noteform.data["notetext"] 
             action = "view"
         else:
+            notetext = noteform.data["notetext"] 
             action = "edit"
     elif action == "create": 
         note = Note(handle=create_id())
-        noteform = NoteForm(request.POST, instance=note, initial={"notetext": note.text})
+        notetext = "" # FIXME
+        noteform = NoteForm(request.POST, instance=note, initial={"notetext": notetext})
         noteform.model = note
-        note.text = noteform.data["notetext"]
+        #note.text = noteform.data["notetext"] # FIXME: split text and tags
         if noteform.is_valid():
             update_last_changed(note, request.user.username)
             note = noteform.save()
@@ -83,11 +94,14 @@ def process_note(request, context, handle, action, add_to=None): # view, edit, s
                 model = dji.get_model(item)
                 obj = model.objects.get(handle=handle)
                 dji.add_note_ref(obj, note)
-                return redirect("/%s/%s" % (item, handle))
+                return redirect("/%s/%s#tab-notes" % (item, handle))
+            notetext = noteform.data["notetext"] 
             action = "view"
         else:
+            notetext = noteform.data["notetext"] 
             action = "add"
     elif action == "delete": 
+        # FIXME: delete markup too for this note
         note = Note.objects.get(handle=handle)
         note.delete()
         return redirect("/note/")
@@ -96,7 +110,7 @@ def process_note(request, context, handle, action, add_to=None): # view, edit, s
 
     context["noteform"] = noteform
     context["object"] = note
-    context["notetext"] = note.text
+    context["notetext"] = notetext
     context["note"] = note
     context["action"] = action
     

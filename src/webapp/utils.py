@@ -759,22 +759,12 @@ class StyledNoteFormatter(object):
         self.database = database
         self._backend = WebAppBackend()
         self._backend.build_link = self.build_link
-        #self.report = report
 
-    def get_note_format(self, note):
-        """
-        will get the note from the database, and will return either the 
-        styled text or plain note 
-        """
-        # retrieve the body of the note
-        note_text = note.get()
-        # styled notes
-        htmlnotetext = self.styled_note(note.get_styledtext(),
-                                        note.get_format(), contains_html = 
-                                        note.get_type() == gen.lib.NoteType.HTML_CODE)
-        text = htmlnotetext or Html("p", note_text)
-        # return text of the note to its callers
-        return text
+    def format(self, note):
+        return self.styled_note(
+            note.get_styledtext(),
+            note.get_format(), 
+            contains_html=(note.get_type() == gen.lib.NoteType.HTML_CODE))
 
     def styled_note(self, styledtext, format, contains_html=False):
         """
@@ -788,7 +778,7 @@ class StyledNoteFormatter(object):
         s_tags = styledtext.get_tags()
         markuptext = self._backend.add_markup_from_styled(text, s_tags,
                                                           split='\n')
-        htmllist = [] # Html("p") #"div", class_="grampsstylednote")
+        htmllist = Html("div") #"div", class_="grampsstylednote")
         if contains_html:
             htmllist += text
         else:
