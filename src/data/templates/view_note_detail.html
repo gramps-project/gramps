@@ -4,8 +4,19 @@
 {% block content %} 
 
 <script type="text/javascript">
-    $(function(){
-       $('#tabs').tabs();
+   $(function(){
+     var selectedTab = 0;
+     $('#tabs li a').each(function(index) {
+	if ($(this).attr('href').replace("#", "#tab-") == document.location.hash) {
+		selectedTab = index;
+	}
+     });
+     $('#tabs').tabs({
+	'select': function(event, ui){
+			document.location.hash = "tab-" + ui.panel.id;
+		},
+	'selected' : selectedTab
+     });
        $('.wysiwyg').htmlarea({
               toolbar: [
                  "bold", "italic", "underline", 
@@ -17,10 +28,10 @@
        // FIXME: add font, fontsize, backcolor
        // FIXME: find easier way:
        $('.jHtmlArea').contents().find('iframe').contents().find('body').css({"background-color": "white"});
-    });
-    function setnotetext() {
+   });
+   function setnotetext() {
         document.getElementById('notetext').value = $('.jHtmlArea').contents().find('iframe').contents().find('body').html();
-    }
+   }
 </script>
 <div class="content" id="IndividualDetail">
 

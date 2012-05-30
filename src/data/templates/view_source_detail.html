@@ -4,12 +4,21 @@
 {% block content %} 
 
    <script type="text/javascript">
-     $(function(){
-
-            $('#tabs').tabs();
-      });
+   $(function(){
+     var selectedTab = 0;
+     $('#tabs li a').each(function(index) {
+	if ($(this).attr('href').replace("#", "#tab-") == document.location.hash) {
+		selectedTab = index;
+	}
+     });
+     $('#tabs').tabs({
+	'select': function(event, ui){
+			document.location.hash = "tab-" + ui.panel.id;
+		},
+	'selected' : selectedTab
+     });
+   });
    </script>
-
 
 <div class="content" id="IndividualDetail">
 
