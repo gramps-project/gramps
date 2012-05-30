@@ -818,6 +818,13 @@ class EventRef(BaseRef):
     def __unicode__(self):
         return "EventRef to " + str(self.ref_object)
 
+    def get_url(self):
+        # /person/3536453463/reference/event/2
+        ref_by = self.object_type.model_class().objects.get(id=self.object_id)
+        ref_to = self.ref_object.__class__.__name__.lower()
+        return "/%s/%s/reference/%s/%s" % (ref_by.__class__.__name__.lower(), 
+                                           ref_by.handle, ref_to, self.order)
+
 class RepositoryRef(BaseRef):
     ref_object = models.ForeignKey('Repository')
     source_media_type = models.ForeignKey('SourceMediaType')

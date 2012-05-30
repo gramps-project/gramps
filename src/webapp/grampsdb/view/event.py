@@ -26,6 +26,7 @@ from webapp.utils import _, boolean, update_last_changed
 from webapp.grampsdb.models import Event
 from webapp.grampsdb.forms import *
 from webapp.libdjango import DjangoInterface
+from webapp.dbdjango import DbDjango
 from gen.datehandler import displayer, parser
 
 ## Django Modules
@@ -34,6 +35,7 @@ from django.template import Context, RequestContext
 
 ## Globals
 dji = DjangoInterface()
+db = DbDjango()
 dd = displayer.display
 dp = parser.parse
 
@@ -58,6 +60,10 @@ def process_event(request, context, handle, action, add_to=None): # view, edit, 
         eventform.model = event
     elif action in ["view", "edit"]: 
         event = Event.objects.get(handle=handle)
+        genlibevent = db.get_event_from_handle(handle)
+        if genlibevent:
+            date = genlibevent.get_date_object()
+            event.text = dd(date)
         eventform = EventForm(instance=event)
         eventform.model = event
     elif action == "save": 

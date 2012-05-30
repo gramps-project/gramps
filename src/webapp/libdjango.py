@@ -161,10 +161,12 @@ class DjangoInterface(object):
         return "%s%04d" % (prefix, count)
 
     def get_model(self, name):
-        if hasattr(models, name.title()):
+        if hasattr(models, name):
+            return getattr(models, name)
+        elif hasattr(models, name.title()):
             return getattr(models, name.title())
         else:
-            raise AttributeError("no such model: '%s'" % name.title())
+            raise AttributeError("no such model: '%s'" % name)
 
     # -----------------------------------------------
     # Get methods to retrieve list data from the tables
@@ -827,7 +829,8 @@ class DjangoInterface(object):
                                   handle)
             return
 
-        count = models.CitationRef.objects.filter(object_id=obj.id,object_type=obj).count()
+        object_type = ContentType.objects.get_for_model(obj)
+        count = models.CitationRef.objects.filter(object_id=obj.id,object_type=object_type).count()
         citation_ref = models.CitationRef(private=False,
                                           referenced_by=obj,
                                           citation=citation,
@@ -876,7 +879,8 @@ class DjangoInterface(object):
             print >> sys.stderr, ("ERROR: Person does not exist: '%s'" % 
                                   ref)
             return
-        count = models.ChildRef.objects.filter(object_id=obj.id,object_type=obj).count()
+        object_type = ContentType.objects.get_for_model(obj)
+        count = models.ChildRef.objects.filter(object_id=obj.id,object_type=object_type).count()
         child_ref = models.ChildRef(private=private,
                                 referenced_by=obj,
                                 ref_object=child,
@@ -888,7 +892,8 @@ class DjangoInterface(object):
         self.add_note_list(child_ref, note_list)
     
     def add_event_ref_default(self, obj, event, private=False, role=models.EventRoleType._DEFAULT):
-        count = models.EventRef.objects.filter(object_id=obj.id,object_type=obj).count()
+        object_type = ContentType.objects.get_for_model(obj)
+        count = models.EventRef.objects.filter(object_id=obj.id,object_type=object_type).count()
         event_ref = models.EventRef(private=private,
                                 referenced_by=obj,
                                 ref_object=event,
@@ -904,7 +909,8 @@ class DjangoInterface(object):
             print >> sys.stderr, ("ERROR: Event does not exist: '%s'" % 
                                   ref)
             return
-        count = models.EventRef.objects.filter(object_id=obj.id,object_type=obj).count()
+        object_type = ContentType.objects.get_for_model(obj)
+        count = models.EventRef.objects.filter(object_id=obj.id,object_type=object_type).count()
         event_ref = models.EventRef(private=private,
                                 referenced_by=obj,
                                 ref_object=event,
@@ -926,7 +932,8 @@ class DjangoInterface(object):
             print >> sys.stderr, ("ERROR: Repository does not exist: '%s'" % 
                                   ref)
             return
-        count = models.RepositoryRef.objects.filter(object_id=obj.id,object_type=obj).count()
+        object_type = ContentType.objects.get_for_model(obj)
+        count = models.RepositoryRef.objects.filter(object_id=obj.id,object_type=object_type).count()
         repos_ref = models.RepositoryRef(private=private,
                                      referenced_by=obj,
                                      call_number=call_number,
@@ -1227,7 +1234,7 @@ class DjangoInterface(object):
         events = models.EventRef.objects.filter(
             object_id=person.id, 
             object_type=obj_type, 
-            ref_object__event_type__val=models.EventType.BIRTH)
+            ref_object__event_type__val=models.EventType.BIRTH).order_by("order")
 
         all_events = self.get_event_ref_list(person)
         if events:
@@ -1237,7 +1244,7 @@ class DjangoInterface(object):
         events = models.EventRef.objects.filter(
             object_id=person.id, 
             object_type=obj_type, 
-            ref_object__event_type__val=models.EventType.DEATH)
+            ref_object__event_type__val=models.EventType.DEATH).order_by("order")
         if events:
             person.death = events[0].ref_object
             person.death_ref_index = lookup_role_index(models.EventType.DEATH, all_events)

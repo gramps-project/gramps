@@ -46,6 +46,7 @@ from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response, redirect
 from django.template import Context, RequestContext
 from django.db.models import Q
+from django.forms.models import modelformset_factory
 
 #------------------------------------------------------------------------
 #
@@ -698,3 +699,25 @@ def build_person_query(search, protect):
     if protect:
         query &= (Q(private=False) & Q(person__private=False))
     return query
+
+
+
+def process_reference(request, ref_by, handle, ref_to, order):
+    context = RequestContext(request)
+    ref_by_class = dji.get_model(ref_by)
+    referenced_by = ref_by_class.objects.get(handle=handle)
+    object_type = ContentType.objects.get_for_model(referenced_by)
+    ref_to_class = dji.get_model("%sRef" % ref_to.title())
+    referenced_to = ref_to_class.objects.filter(object_id=referenced_by.id, 
+                                                object_type=object_type,
+                                                order=order)
+    form = modelformset_factory(ref_to_class, extra=0)(queryset=referenced_to)
+    form.model = referenced_to[0]
+    context["form"] = form
+    context["view"] = 'Reference'
+    context["tview"] = _('Reference')
+    context["tviews"] = _('References')
+    context["object"] = referenced_by
+    context["handle"] = referenced_by.handle
+    context["action"] = "view"
+    return render_to_response("reference.html", context)

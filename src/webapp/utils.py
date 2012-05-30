@@ -213,8 +213,6 @@ class Table(object):
         # We have a couple of HTML bits that we want to unescape:
         return str(self.doc.doc.htmllist[0]).replace("&amp;nbsp;", "&nbsp;")
 
-_ = lambda text: text
-
 def make_button(text, url, *args):
     url = url % args
     #return """[ <a href="%s">%s</a> ] """ % (url, text)
@@ -223,12 +221,14 @@ def make_button(text, url, *args):
 def event_table(obj, user, action, url=None, *args):
     retval = ""
     table = Table()
-    table.columns(_("Description"), 
-                  _("Type"),
-                  _("ID"),
-                  _("Date"),
-                  _("Place"),
-                  _("Role"))
+    table.columns(
+        _("Event Reference"), 
+        _("Description"), 
+        _("Type"),
+        _("ID"),
+        _("Date"),
+        _("Place"),
+        _("Role"))
     if user.is_authenticated():
         obj_type = ContentType.objects.get_for_model(obj)
         event_ref_list = models.EventRef.objects.filter(
@@ -237,6 +237,7 @@ def event_table(obj, user, action, url=None, *args):
         event_list = [(obj.ref_object, obj) for obj in event_ref_list]
         for (djevent, event_ref) in event_list:
             table.row(
+                event_ref,
                 djevent.description or str(djevent),
                 table.db.get_event_from_handle(djevent.handle),
                 djevent.gramps_id, 

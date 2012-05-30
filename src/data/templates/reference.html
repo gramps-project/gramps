@@ -1,0 +1,35 @@
+{% extends "view_page_detail.html" %}
+{% load my_tags %}
+
+{% block content %} 
+
+<div class="content" id="IndividualDetail">
+
+{% include "detail_breadcrumb.html" %}
+<h2>Reference Detail</h2>
+<div id="summaryarea">
+<table class="infolist" style="width:90%;"> 
+<trbody>
+  {% if form.errors %}
+    <hr>
+    <p id="error">The following fields have errors. Please correct and try again.</p>
+    <div id="error">{{form.errors}}</div>
+    <hr>
+  {% endif %}
+<form method="post">{% csrf_token %}
+
+{% for field in form %}
+
+<tr>
+{{field}}
+</tr>
+
+{% endfor %}
+
+</table>
+</div>
+</div>
+
+</form>
+{% endblock %}
+

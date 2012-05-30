@@ -18,6 +18,7 @@ from webapp.dbdjango import DbDjango
 from webapp.reports import import_file
 from webapp.libdjango import DjangoInterface, totime, todate
 from gen.datehandler import displayer, parser
+from webapp.utils import StyledNoteFormatter, parse_styled_text
 import gen.lib
 import cli.user
 
@@ -30,16 +31,15 @@ dp = parser.parse
 #            "/home/dblank/gramps/trunk/example/gramps/data.gramps", 
 #            cli.user.User())
 
-from webapp.utils import StyledNoteFormatter, parse_styled_text
-snf = StyledNoteFormatter(db)
+#snf = StyledNoteFormatter(db)
 #for n in Note.objects.all():
 #    note = db.get_note_from_handle(n.handle)
 #    print snf.format(note)
 
-note = Note.objects.get(handle="aef30789d3d2090abe2")
-genlibnote = db.get_note_from_handle(note.handle)
-html_text = snf.format(genlibnote)
-# FIXME: this looks wrong:
+#note = Note.objects.get(handle="aef30789d3d2090abe2")
+#genlibnote = db.get_note_from_handle(note.handle)
+#html_text = snf.format(genlibnote)
+## FIXME: this looks wrong:
 #print html_text
 #print parse_styled_text(html_text)
 

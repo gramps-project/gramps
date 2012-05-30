@@ -272,3 +272,7 @@ class TagForm(forms.ModelForm):
                            required=False, 
                            widget=TextInput(attrs={'size':'70'}))
 
+class EventRefForm(forms.ModelForm):
+    class Meta:
+        model = EventRef
+

@@ -77,10 +77,16 @@ urlpatterns += patterns('',
      {"action": "view"}),                                  # /view/handle/
     (r'^(?P<view>(\w+))/(?P<handle>(\w+))/(?P<action>(\w+))$', 
      action),                                              # /view/handle/action 
-    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))$', process_name),
-    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/(?P<action>(\w+))$', process_name),
-    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/surname/(?P<sorder>(\w+))$', process_surname),
-    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/surname/(?P<sorder>(\w+))/(?P<action>(\w+))$', process_surname),
+    (r'^(?P<ref_by>(\w+))/(?P<handle>(\w+))/reference/(?P<ref_to>(\w+))/(?P<order>(\w+))$', 
+     process_reference),                                   # /view/handle/reference/item/order
+    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))$', process_name), 
+    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/(?P<action>(\w+))$', 
+     process_name),
+
+    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/surname/(?P<sorder>(\w+))$', 
+     process_surname),
+    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/surname/(?P<sorder>(\w+))/(?P<action>(\w+))$', 
+     process_surname),
 )
 
 # In urls:
