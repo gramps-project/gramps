@@ -105,6 +105,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         self._empty = 1
         self.title = ''
         self.__title_written = -1  # -1 = not written, 0 = writing, 1 = written
+        self.__link_attrs = {}     # additional link attrs, eg {"style": "...", "class": "..."}
 
     def set_css_filename(self, css_filename):
         """
@@ -580,7 +581,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         """
         Starts a section to add a link. Link is a URI.
         """
-        self.htmllist += [Html('a', href=link)]
+        self.htmllist += [Html('a', href=link, **self.__link_attrs)]
 
     def stop_link(self):
         """
@@ -599,3 +600,10 @@ class HtmlDoc(BaseDoc, TextDoc):
         Stop underlining.
         """
         self.__reduce_list()
+
+    def set_link_attrs(self, attrs):
+        """
+        Set some a attributes/values. attrs is a dictionary, eg
+          {"style": "...", "class": "..."}
+        """
+        self.__link_attrs = attrs
