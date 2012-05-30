@@ -94,7 +94,7 @@ def process_citation(request, context, handle, action, add_to=None): # view, edi
                 model = dji.get_model(item)
                 obj = model.objects.get(handle=handle)
                 dji.add_citation_ref(obj, citation.handle)
-                return redirect("/%s/%s" % (item, handle))
+                return redirect("/%s/%s#tab-citations" % (item, handle))
             action = "view"
         else:
             action = "add"

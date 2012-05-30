@@ -61,7 +61,7 @@
 
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-notes">
-    {% note_table citation user action "/note/add/citation/%s" citation.handle %}
+    {% note_table citation user action "/note/$act/citation/%s" citation.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-gallery">
   </div>
@@ -115,7 +115,7 @@
 
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-shared-notes">
-    {% note_table source user action "/note/add/source/%s" source.handle %}
+    {% note_table source user action "/note/$act/source/%s" source.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-shared-gallery">
   </div>

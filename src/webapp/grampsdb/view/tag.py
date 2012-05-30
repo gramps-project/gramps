@@ -79,7 +79,7 @@ def process_tag(request, context, handle, action, add_to=None): # view, edit, sa
                 model = dji.get_model(item)
                 obj = model.objects.get(handle=handle)
                 dji.add_tag_ref_default(obj, tag)
-                return redirect("/%s/%s" % (item, handle))
+                return redirect("/%s/%s#tab-tags" % (item, handle))
             action = "view"
         else:
             action = "add"

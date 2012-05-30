@@ -111,7 +111,7 @@
 
 <input type="button" 
        value="Back to Person"
-       onclick="document.location.href='/person/{{person.handle}}'"/>
+       onclick="document.location.href='/person/{{person.handle}}#tab-names'"/>
 {% if user.is_authenticated %}
   {% ifequal action "add" %}
     <input type="hidden" name="action" value="create"/>

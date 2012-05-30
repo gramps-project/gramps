@@ -90,7 +90,7 @@ def process_event(request, context, handle, action, add_to=None): # view, edit, 
                 model = dji.get_model(item)
                 obj = model.objects.get(handle=handle)
                 dji.add_event_ref_default(obj, event)
-                return redirect("/%s/%s" % (item, handle))
+                return redirect("/%s/%s#tab-events" % (item, handle))
             action = "view"
         else:
             action = "add"

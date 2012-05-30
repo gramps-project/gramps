@@ -218,11 +218,10 @@ def make_button(text, url, *args):
     #return """[ <a href="%s">%s</a> ] """ % (url, text)
     return """<input type="button" value="%s" onclick="document.location.href='%s'"/>""" % (text, url)
 
-def event_table(obj, user, action, url=None, *args):
+def event_table(obj, user, action, url, args):
     retval = ""
     table = Table()
     table.columns(
-        _("Event Reference"), 
         _("Description"), 
         _("Type"),
         _("ID"),
@@ -238,15 +237,15 @@ def event_table(obj, user, action, url=None, *args):
         for (djevent, event_ref) in event_list:
             table.row(
                 event_ref,
-                djevent.description or str(djevent),
                 table.db.get_event_from_handle(djevent.handle),
                 djevent.gramps_id, 
                 display_date(djevent),
                 get_title(djevent.place),
                 str(event_ref.role_type))
     retval += table.get_html()
-    if user.is_superuser and url and action == "view":
-        retval += make_button(_("Add event"), (url % args))
+    if user.is_superuser and action == "view":
+        retval += make_button(_("Add event"), (url % args).replace("$act", "add"))
+        retval += make_button(_("Share event"), (url % args).replace("$act", "share"))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
@@ -339,7 +338,8 @@ def source_table(obj, user, action, url=None, *args):
                               )
     retval += table.get_html()
     if user.is_superuser and url and action == "view":
-        retval += make_button(_("Add source"), (url % args))
+        retval += make_button(_("Add source"), (url % args).replace("$act", "add"))
+        retval += make_button(_("Share source"), (url % args).replace("$act", "share"))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
@@ -364,7 +364,8 @@ def citation_table(obj, user, action, url=None, *args):
                           )
     retval += table.get_html()
     if user.is_superuser and url and action == "view":
-        retval += make_button(_("Add citation"), (url % args))
+        retval += make_button(_("Add citation"), (url % args).replace("$act", "add"))
+        retval += make_button(_("Share citation"), (url % args).replace("$act", "share"))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
@@ -388,7 +389,8 @@ def note_table(obj, user, action, url=None, *args):
                       note_ref.ref_object.text[:50])
     retval += table.get_html()
     if user.is_superuser and url and action == "view":
-        retval += make_button(_("Add note"), (url % args))
+        retval += make_button(_("Add note"), (url % args).replace("$act", "add"))
+        retval += make_button(_("Share note"), (url % args).replace("$act", "share"))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
@@ -440,12 +442,23 @@ def address_table(obj, user, action, url=None, *args):
 def gallery_table(obj, user, action, url=None, *args):
     retval = ""
     table = Table()
-    table.columns(_("Name"), 
+    table.columns(_("Description"), 
                   _("Type"),
                   )
+    if user.is_authenticated():
+        obj_type = ContentType.objects.get_for_model(obj)
+        media_refs = dji.MediaRef.filter(object_type=obj_type,
+                                        object_id=obj.id)
+        for media_ref in media_refs:
+            media = table.db.get_object_from_handle(
+                media_ref.ref_object.handle)
+            table.row(table.db.get_object_from_handle(media.handle),
+                      str(media_ref.ref_object.desc),
+                      media_ref.ref_object.path)
     retval += table.get_html()
     if user.is_superuser and url and action == "view":
-        retval += make_button(_("Add gallery"), (url % args))
+        retval += make_button(_("Add media"), (url % args).replace("$act", "add"))
+        retval += make_button(_("Share media"), (url % args).replace("$act", "share"))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
@@ -617,11 +630,15 @@ def render(formfield, user, action, test=False, truetext="", id=None):
         if (not user.is_authenticated() and not test) or user.is_authenticated():
             fieldname = formfield.name # 'surname'
             try:
-                retval = str(getattr(formfield.form.model, fieldname))
-                if retval == "True":
-                    retval = "Yes"
-                elif retval == "False":
-                    retval = "No"
+                item = getattr(formfield.form.model, fieldname)
+                if (item.__class__.__name__ == 'ManyRelatedManager'):
+                    retval = ", ".join([str(i) for i in item.all()])
+                else:
+                    retval = str(item)
+                    if retval == "True":
+                        retval = "Yes"
+                    elif retval == "False":
+                        retval = "No"
             except:
                 # name, "prefix"
                 try:

@@ -78,10 +78,10 @@
     {% else %}
     <input type="button"
 	   value="Back to Person" 
-	   onclick="document.location.href='/person/{{person.handle}}'"/>
+	   onclick="document.location.href='/person/{{person.handle}}#tab-names'"/>
     <input type="button"
 	   value="Back to Name" 
-	   onclick="document.location.href='/person/{{person.handle}}/name/{{order}}'"/>
+	   onclick="document.location.href='/person/{{person.handle}}/name/{{order}}#tab-surnames'"/>
     <input type="button" 
 	   value="Edit Surname" 
 	   onclick="document.location.href='/person/{{person.handle}}/name/{{order}}/surname/{{sorder}}/edit'"/>
@@ -93,10 +93,10 @@
 {% else %}
     <input type="button"
 	   value="Back to Person" 
-	   onclick="document.location.href='/person/{{person.handle}}'"/>
+	   onclick="document.location.href='/person/{{person.handle}}#tab-names'"/>
     <input type="button"
 	   value="Back to Name" 
-	   onclick="document.location.href='/person/{{person.handle}}/name/order'"/>
+	   onclick="document.location.href='/person/{{person.handle}}/name/order#tab-surnames'"/>
 {% endif %}
 </form>
 {% endblock %}

@@ -81,7 +81,7 @@ def process_place(request, context, handle, action, add_to=None): # view, edit, 
                 model = dji.get_model(item)
                 obj = model.objects.get(handle=handle)
                 dji.add_place_ref(obj, place.handle)
-                return redirect("/%s/%s" % (item, handle))
+                return redirect("/%s/%s#tab-places" % (item, handle))
             action = "view"
         else:
             action = "add"

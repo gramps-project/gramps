@@ -537,6 +537,13 @@ def check_access(request, context, obj, action):
     else: # outside viewer
         return not obj.private
 
+def add_share(request, view, item, handle):
+    """
+    Add a reference to an existing <view> referenced from <item>.
+    """
+    # /view/share/person/handle
+    raise Http404(_('Not implemented yet.'))
+
 def add_to(request, view, item, handle):
     """
     Add a new <view> referenced from <item>.
@@ -703,18 +710,26 @@ def build_person_query(search, protect):
 
 
 def process_reference(request, ref_by, handle, ref_to, order):
+    # FIXME: can I make this work for all?
     context = RequestContext(request)
     ref_by_class = dji.get_model(ref_by)
     referenced_by = ref_by_class.objects.get(handle=handle)
     object_type = ContentType.objects.get_for_model(referenced_by)
     ref_to_class = dji.get_model("%sRef" % ref_to.title())
-    referenced_to = ref_to_class.objects.filter(object_id=referenced_by.id, 
-                                                object_type=object_type,
-                                                order=order)
-    form = modelformset_factory(ref_to_class, extra=0)(queryset=referenced_to)
-    form.model = referenced_to[0]
+    exclude = ["last_changed_by", "last_changed", "object_type", "object_id", "order"]
+    if order == "new":
+        referenced_to = ref_to_class.objects.filter(object_id=referenced_by.id, 
+                                                    object_type=object_type,
+                                                    order=0)
+        form = modelformset_factory(ref_to_class, exclude=exclude, extra=1)(queryset=referenced_to)
+    else:
+        referenced_to = ref_to_class.objects.filter(object_id=referenced_by.id, 
+                                                    object_type=object_type,
+                                                    order=order)
+        form = modelformset_factory(ref_to_class, exclude=exclude, extra=0)(queryset=referenced_to)
+        form.model = referenced_to[0]
     context["form"] = form
-    context["view"] = 'Reference'
+    context["view"] = 'reference'
     context["tview"] = _('Reference')
     context["tviews"] = _('References')
     context["object"] = referenced_by

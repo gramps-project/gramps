@@ -146,7 +146,7 @@ def process_surname(request, handle, order, sorder, action="view"):
                     neworder += 1
         else:
             request.user.message_set.create(message="You can't delete the only surname")
-        return redirect("/person/%s/name/%s" % (person.handle, name.order))
+        return redirect("/person/%s/name/%s#tab-surnames" % (person.handle, name.order))
     elif action in ["add"]:
         surname = Surname(name=name, primary=False, 
                           name_origin_type=NameOriginType.objects.get(val=NameOriginType._DEFAULT[0]))
@@ -166,7 +166,7 @@ def process_surname(request, handle, order, sorder, action="view"):
             surname = sf.save(commit=False)
             check_primary(surname, surnames)
             surname.save()
-            return redirect("/person/%s/name/%s/surname/%s" % 
+            return redirect("/person/%s/name/%s/surname/%s#tab-surnames" % 
                             (person.handle, name.order, sorder))
         action = "add"
         surname.prefix = make_empty(True, surname.prefix, " prefix ")
@@ -179,7 +179,7 @@ def process_surname(request, handle, order, sorder, action="view"):
             surname = sf.save(commit=False)
             check_primary(surname, name.surname_set.all().exclude(order=surname.order))
             surname.save()
-            return redirect("/person/%s/name/%s/surname/%s" % 
+            return redirect("/person/%s/name/%s/surname/%s#tab-surnames" % 
                             (person.handle, name.order, sorder))
         action = "edit"
         surname.prefix = make_empty(True, surname.prefix, " prefix ")
@@ -224,7 +224,7 @@ def process_name(request, handle, order, action="view"):
             check_order(request, person)
         else:
             request.user.message_set.create(message = "Can't delete only name.")
-        return redirect("/person/%s" % person.handle)
+        return redirect("/person/%s#tab-names" % person.handle)
     elif action == "add": # add name
         person = Person.objects.get(handle=handle)
         name = Name(person=person, 
@@ -275,7 +275,7 @@ def process_name(request, handle, order, action="view"):
             surname.primary = True # FIXME: why is this False?
             surname.save()
             dji.rebuild_cache(person)
-            return redirect("/person/%s/name/%s" % (person.handle, name.order))
+            return redirect("/person/%s/name/%s#tab-surnames" % (person.handle, name.order))
         else:
             action = "add"
     elif action == "save":
@@ -309,7 +309,7 @@ def process_name(request, handle, order, action="view"):
             surname.primary = True # FIXME: why is this False?
             surname.save()
             dji.rebuild_cache(person)
-            return redirect("/person/%s/name/%s" % (person.handle, name.order))
+            return redirect("/person/%s/name/%s#tab-surnames" % (person.handle, name.order))
         else:
             action = "edit"
     context = RequestContext(request)

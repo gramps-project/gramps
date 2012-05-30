@@ -73,6 +73,8 @@ urlpatterns += patterns('',
      {"handle": None, "action": "add"}),                   # /view/add
     (r'^(?P<view>(\w+))/add/(?P<item>(\w+))/(?P<handle>(\w+))$', 
      add_to),                                              # /view/add/item/handle
+    (r'^(?P<view>(\w+))/share/(?P<item>(\w+))/(?P<handle>(\w+))$', 
+     add_share),                                           # /view/share/item/handle
     (r'^(?P<view>(\w+))/(?P<handle>(\w+))/$', action, 
      {"action": "view"}),                                  # /view/handle/
     (r'^(?P<view>(\w+))/(?P<handle>(\w+))/(?P<action>(\w+))$', 

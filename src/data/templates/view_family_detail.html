@@ -98,19 +98,19 @@
     {% children_table family user action "/family/%s/add/child" family.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-events">
-    {% event_table family user action "/event/add/family/%s" family.handle %}
+    {% event_table family user action "/event/$act/family/%s" family.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-sources">
-    {% source_table family user action "/source/add/family/%s" family.handle %}
+    {% source_table family user action "/source/$act/family/%s" family.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-attributes">
     {% attribute_table family user action "/attribute/add/family/%s" family.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-notes">
-    {% note_table family user action "/note/add/family/%s" family.handle %}
+    {% note_table family user action "/note/$act/family/%s" family.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-gallery">
-    {% gallery_table family user action "/media/add/family/%s" family.handle %}
+    {% gallery_table family user action "/media/$act/family/%s" family.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-lds">
     {% lds_table family user action "/lds/add/family/%s" family.handle %}

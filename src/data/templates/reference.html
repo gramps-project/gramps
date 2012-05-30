@@ -6,7 +6,7 @@
 <div class="content" id="IndividualDetail">
 
 {% include "detail_breadcrumb.html" %}
-<h2>Reference Detail</h2>
+<h2>Temporary Reference Detail</h2>
 <div id="summaryarea">
 <table class="infolist" style="width:90%;"> 
 <trbody>
@@ -19,11 +19,9 @@
 <form method="post">{% csrf_token %}
 
 {% for field in form %}
-
 <tr>
 {{field}}
 </tr>
-
 {% endfor %}
 
 </table>

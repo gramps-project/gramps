@@ -816,14 +816,16 @@ class EventRef(BaseRef):
     role_type = models.ForeignKey('EventRoleType')
 
     def __unicode__(self):
-        return "EventRef to " + str(self.ref_object)
+        return str(self.ref_object)
 
     def get_url(self):
         # /person/3536453463/reference/event/2
         ref_by = self.object_type.model_class().objects.get(id=self.object_id)
-        ref_to = self.ref_object.__class__.__name__.lower()
+        ref_to = self.ref_object
         return "/%s/%s/reference/%s/%s" % (ref_by.__class__.__name__.lower(), 
-                                           ref_by.handle, ref_to, self.order)
+                                           ref_by.handle, 
+                                           ref_to.__class__.__name__.lower(), 
+                                           self.order)
 
 class RepositoryRef(BaseRef):
     ref_object = models.ForeignKey('Repository')
