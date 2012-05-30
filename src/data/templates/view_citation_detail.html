@@ -5,28 +5,10 @@
 
    <script type="text/javascript">
    $(function(){
-     var selectedTab = 0;
-     $('#tabs li a').each(function(index) {
-	if ($(this).attr('href').replace("#", "#tab-") == document.location.hash) {
-		selectedTab = index;
-	}
-     });
      $('#tabs').tabs({
 	'select': function(event, ui){
-			document.location.hash = "tab-" + ui.panel.id;
-		},
-	'selected' : selectedTab
-     });
-     $('#general-tabs li a').each(function(index) {
-	if ($(this).attr('href').replace("#", "#tab-") == document.location.hash) {
-		selectedTab = index;
-	}
-     });
-     $('#general-tabs').tabs({
-	'select': function(event, ui){
-			document.location.hash = "tab-" + ui.panel.id;
-		},
-	'selected' : selectedTab
+			document.location.hash = ui.panel.id;
+		}
      });
    });
    </script>
