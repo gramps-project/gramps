@@ -17,7 +17,7 @@
   {% for report in page.object_list %}
   <tr class="{% cycle odd,even %}">
     <td>{{ forloop.counter|row_count:page }}</td>
-    <td><a href="/{{view}}/{{report.handle|escape}}" class="noThumb">
+    <td><a href="/{{view}}/{{report.handle|escape}}" class="noThumb browsecell">
            <span class="grampsid">{{report.name}}</span></a>
     {% if user.is_authenticated %}
       <td></td>

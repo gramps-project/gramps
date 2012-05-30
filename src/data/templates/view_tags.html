@@ -9,19 +9,19 @@
   <tr>
     <th>#</th>
     <th>Text</th>
-    <th></th>
-    <th></th>
+    <th>Color</th>
+    <th>Priority</th>
   </tr>
 </thead>
 <tbody>
   {% for tag in page.object_list %}
   <tr class="{% cycle odd,even %}">
     <td>{{ forloop.counter|row_count:page }}</td>
-    <td><a href="/{{view}}/{{tag.handle|escape}}" class="noThumb">
+    <td><a href="/{{view}}/{{tag.handle|escape}}" class="noThumb browsecell">
            <span class="grampsid">[{{tag.name}}]</span></a>
     {% if user.is_authenticated %}
-      <td></td>
-      <td></td>
+      <td><a href="/{{view}}/{{tag.handle}}" class="browsecell">{{tag.color}}</a></td>
+      <td><a href="/{{view}}/{{tag.handle}}" class="browsecell">{{tag.priority}}</a></td>
     {% else %}
       <td></td>
       <td></td>

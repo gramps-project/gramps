@@ -17,12 +17,12 @@
   {% for media in page.object_list %}
   <tr class="{% cycle odd,even %}">
     <td>{{ forloop.counter|row_count:page }}</td>
-    <td><a href="/{{view}}/{{media.handle|escape}}" class="noThumb">
+    <td><a href="/{{view}}/{{media.handle|escape}}" class="noThumb browsecell">
            <span class="grampsid">[{{media.gramps_id}}]</span></a>
     {% if user.is_authenticated %}
-    <td><a href="/{{view}}/{{media.handle|escape}}">{{media.mime|escape}}</a>
-    <td><a href="/{{view}}/{{media.handle|escape}}">{{media|display_date|nbsp}}</a>
-    <td><a href="/{{view}}/{{media.handle|escape}}">{{media.path|escape}}</a>
+    <td><a href="/{{view}}/{{media.handle|escape}}" class="browsecell">{{media.mime|escape}}</a>
+    <td><a href="/{{view}}/{{media.handle|escape}}" class="browsecell">{{media|display_date|nbsp}}</a>
+    <td><a href="/{{view}}/{{media.handle|escape}}" class="browsecell">{{media.path|escape}}</a>
     {% else %}
       <td></td>
       <td></td>

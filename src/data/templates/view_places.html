@@ -15,10 +15,10 @@
   {% for place in page.object_list %}
   <tr class="{% cycle odd,even %}">
     <td>{{ forloop.counter|row_count:page }}</td>
-    <td><a href="/{{view}}/{{place.handle|escape}}" class="noThumb">
+    <td><a href="/{{view}}/{{place.handle|escape}}" class="noThumb browsecell">
            <span class="grampsid">[{{place.gramps_id}}]</span></a>
     {% if user.is_authenticated %}
-    <td><a href="/{{view}}/{{place.handle|escape}}">{{place.title|escape}}</a>
+    <td><a href="/{{view}}/{{place.handle|escape}}" class="browsecell">{{place.title|escape}}</a>
     {% else %}
       <td></td>
     {% endif %}

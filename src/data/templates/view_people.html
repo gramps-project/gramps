@@ -18,14 +18,14 @@
   {% for name in page.object_list %}
   <tr class="{% cycle odd,even %}">
     {% if name.person %}
-    <td><a href="{{name.person.handle}}/" class="noThumb">{{ forloop.counter|row_count:page }}</a>
+    <td><a href="{{name.person.handle}}/" class="noThumb browsecell">{{ forloop.counter|row_count:page }}</a>
     </td>
-    <td><a href="{{name.person.handle}}/" class="noThumb">{{name|make_name:user}}</a>
+    <td><a href="{{name.person.handle}}/" class="noThumb browsecell">{{name|make_name:user}} &nbsp;</a>
     </td>
-    <td><a href="{{name.person.handle}}/" class="grampsid">[{{name.person.gramps_id}}]</a></td>
-    <td><a href="{{name.person.handle}}/" class="noThumb">{{name.person.gender_type}}</a></td>
-    <td><a href="{{name.person.handle}}/" class="noThumb">{{name.person.birth|date_as_text:user}}</a></td>
-    <td><a href="{{name.person.handle}}/" class="noThumb">{{name.person.death|date_as_text:user}}</a></td>
+    <td><a href="{{name.person.handle}}/" class="grampsid browsecell">[{{name.person.gramps_id}}]</a></td>
+    <td><a href="{{name.person.handle}}/" class="noThumb browsecell">{{name.person.gender_type}} &nbsp;</a></td>
+    <td><a href="{{name.person.handle}}/" class="noThumb browsecell">{{name.person.birth|date_as_text:user}} &nbsp;</a></td>
+    <td><a href="{{name.person.handle}}/" class="noThumb browsecell">{{name.person.death|date_as_text:user}} &nbsp;</a></td>
     {% endif %}
   </tr>
   {% endfor %}

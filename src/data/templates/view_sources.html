@@ -17,12 +17,12 @@
   {% for source in page.object_list %}
   <tr class="{% cycle odd,even %}">
     <td>{{ forloop.counter|row_count:page }}</td>
-    <td><a href="/{{view}}/{{source.handle|escape}}" class="noThumb">
+    <td><a href="/{{view}}/{{source.handle|escape}}" class="noThumb browsecell">
            <span class="grampsid">[{{source.gramps_id}}]</span></a>
     {% if user.is_authenticated %}
-    <td><a href="/{{view}}/{{source.handle|escape}}">{{source.title|escape}}</a>
-    <td><a href="/{{view}}/{{source.handle|escape}}">{{source.pubinfo|nbsp}}</a>
-    <td><a href="/{{view}}/{{source.handle|escape}}">{{source.author|nbsp}}</a>
+    <td><a href="/{{view}}/{{source.handle|escape}}" class="browsecell">{{source.title|escape}}</a>
+    <td><a href="/{{view}}/{{source.handle|escape}}" class="browsecell">{{source.pubinfo|nbsp}}</a>
+    <td><a href="/{{view}}/{{source.handle|escape}}" class="browsecell">{{source.author|nbsp}}</a>
     {% else %}
       <td></td>
       <td></td>

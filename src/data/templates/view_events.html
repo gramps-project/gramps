@@ -18,15 +18,15 @@
   {% for event in page.object_list %}
   <tr class="{% cycle odd,even %}">
     <td>{{ forloop.counter|row_count:page }}</td>
-    <td><a href="/{{view}}/{{event.handle|escape}}" class="noThumb">
+    <td><a href="/{{view}}/{{event.handle|escape}}" class="noThumb browsecell">
            <span class="grampsid">[{{event.gramps_id}}]</span></a>
 
     {% if user.is_authenticated %}
 
-    <td><a href="/{{view}}/{{event.handle|escape}}">{{event.event_type|nbsp}}</a>
-    <td><a href="/{{view}}/{{event.handle|escape}}">{{event.description|nbsp}}</a>
-    <td><a href="/{{view}}/{{event.handle|escape}}">{{event|date_as_text:user}}</a>
-    <td><a href="/{{view}}/{{event.handle|escape}}">{{event.place.title|nbsp}}</a>
+    <td><a href="/{{view}}/{{event.handle|escape}}" class="browsecell">{{event.event_type|nbsp}}</a>
+    <td><a href="/{{view}}/{{event.handle|escape}}" class="browsecell">{{event.description|nbsp}}</a>
+    <td><a href="/{{view}}/{{event.handle|escape}}" class="browsecell">{{event|date_as_text:user}}</a>
+    <td><a href="/{{view}}/{{event.handle|escape}}" class="browsecell">{{event.place.title|nbsp}}</a>
 
     {% else %}
       <td>[Private]</td>
