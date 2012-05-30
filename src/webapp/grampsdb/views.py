@@ -716,7 +716,7 @@ def process_reference(request, ref_by, handle, ref_to, order):
     referenced_by = ref_by_class.objects.get(handle=handle)
     object_type = ContentType.objects.get_for_model(referenced_by)
     ref_to_class = dji.get_model("%sRef" % ref_to.title())
-    exclude = ["last_changed_by", "last_changed", "object_type", "object_id", "order"]
+    exclude = ["last_changed_by", "last_changed", "object_type", "object_id", "order", "ref_object"]
     if order == "new":
         referenced_to = ref_to_class.objects.filter(object_id=referenced_by.id, 
                                                     object_type=object_type,
@@ -734,5 +734,7 @@ def process_reference(request, ref_by, handle, ref_to, order):
     context["tviews"] = _('References')
     context["object"] = referenced_by
     context["handle"] = referenced_by.handle
+    context["url"] = "/%s/%s" % (referenced_to[0].ref_object.__class__.__name__.lower(), 
+                                 referenced_to[0].ref_object.handle)
     context["action"] = "view"
     return render_to_response("reference.html", context)

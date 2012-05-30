@@ -27,7 +27,9 @@
 </table>
 </div>
 </div>
-
 </form>
+{% if user.is_superuser %}
+   {% make_button "Go to reference" url %}
+{% endif %}
 {% endblock %}
 

@@ -39,22 +39,12 @@
 </tr>
 </table>
 
-<!-- Tabs -->
-
 <div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
   <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-addresses">Addresses</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tabs-internet">Internet</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tabs-notes">Notes</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tabs-references">References</a></li>
+    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tab-references" style=":hover {color: black;}">References</a></li>
   </ul>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-addresses">
-  </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-internet">
-  </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-notes">
-  </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-references">
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-references">
+    {% tag_reference_table tag user action %}
   </div>
 </div>
 

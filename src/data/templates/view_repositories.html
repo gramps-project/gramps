@@ -20,8 +20,8 @@
     <td><a href="/{{view}}/{{repository.handle|escape}}" class="noThumb browsecell">
            <span class="grampsid">[{{repository.gramps_id}}]</span></a>
     {% if user.is_authenticated %}
-    <td><a href="/{{view}}/{{repository.handle|escape}}" class="browsecell">{{repository.repository_type|escape}}</a>
-    <td><a href="/{{view}}/{{repository.handle|escape}}" class="browsecell">{{repository.name|escape}}</a>
+    <td><a href="/{{view}}/{{repository.handle|escape}}" class="browsecell">{{repository.repository_type|escape|nbsp}}</a>
+    <td><a href="/{{view}}/{{repository.handle|escape}}" class="browsecell">{{repository.name|escape|nbsp}}</a>
     {% else %}
       <td></td>
       <td></td>

@@ -124,7 +124,7 @@
     {% lds_table person user action "/person/%s/$act/lds" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-references">
-    {% reference_table person user action "/reference/$act/person/%s" person.handle %}
+    {% person_reference_table person user action %}
   </div>
 </div>
 

@@ -20,8 +20,8 @@
     <td><a href="/{{view}}/{{tag.handle|escape}}" class="noThumb browsecell">
            <span class="grampsid">[{{tag.name}}]</span></a>
     {% if user.is_authenticated %}
-      <td><a href="/{{view}}/{{tag.handle}}" class="browsecell">{{tag.color}}</a></td>
-      <td><a href="/{{view}}/{{tag.handle}}" class="browsecell">{{tag.priority}}</a></td>
+      <td><a href="/{{view}}/{{tag.handle}}" class="browsecell">{{tag.color|nbsp}}</a></td>
+      <td><a href="/{{view}}/{{tag.handle}}" class="browsecell">{{tag.priority|nbsp}}</a></td>
     {% else %}
       <td></td>
       <td></td>

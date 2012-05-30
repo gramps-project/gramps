@@ -20,7 +20,7 @@
     <td><a href="/{{view}}/{{source.handle|escape}}" class="noThumb browsecell">
            <span class="grampsid">[{{source.gramps_id}}]</span></a>
     {% if user.is_authenticated %}
-    <td><a href="/{{view}}/{{source.handle|escape}}" class="browsecell">{{source.title|escape}}</a>
+    <td><a href="/{{view}}/{{source.handle|escape}}" class="browsecell">{{source.title|escape|nbsp}}</a>
     <td><a href="/{{view}}/{{source.handle|escape}}" class="browsecell">{{source.pubinfo|nbsp}}</a>
     <td><a href="/{{view}}/{{source.handle|escape}}" class="browsecell">{{source.author|nbsp}}</a>
     {% else %}

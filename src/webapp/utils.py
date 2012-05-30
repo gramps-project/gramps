@@ -39,6 +39,7 @@ from HTMLParser import HTMLParser
 #------------------------------------------------------------------------
 from django.utils.safestring import mark_safe
 from django.contrib.contenttypes.models import ContentType
+from django.db.models import Q
 
 #------------------------------------------------------------------------
 #
@@ -89,6 +90,13 @@ util_tags = [
     "association_table",
     "lds_table",
     "reference_table",
+    "person_reference_table",
+    "note_reference_table",
+    "event_reference_table",
+    "repository_reference_table",
+    "citation_reference_table",
+    "media_reference_table",
+    "tag_reference_table",
     "children_table",
     "make_button",
     ]
@@ -530,15 +538,148 @@ def lds_table(obj, user, action, url=None, *args):
 def reference_table(obj, user, action, url=None, *args):
     retval = ""
     table = Table()
-    table.columns(_("Type"), 
-                  _("ID"),
-                  _("Name"))
+    table.columns(
+        _("Type"),
+        _("Reference"), 
+        _("ID"))
     if user.is_authenticated():
-        references = dji.PersonRef.filter(ref_object=obj)
-        for reference in references:
-            table.row(str(reference.ref_object),
-                      reference.ref_object.gramps_id,
-                      make_name(reference.ref_object.name_set, user))
+        pass
+    retval += table.get_html()
+    retval += nbsp("") # to keep tabs same height
+    return retval 
+
+def person_reference_table(obj, user, action):
+    retval = ""
+    table = Table()
+    table.columns(
+        _("Type"),
+        _("Reference"), 
+        _("ID"))
+    if user.is_authenticated():
+        for reference in obj.families.all():
+            table.row(
+                _("Family (spouse in)"),
+                reference,
+                reference.gramps_id)
+        for reference in obj.parent_families.all():
+            table.row(
+                _("Family (child in)"),
+                reference,
+                reference.gramps_id)
+    retval += table.get_html()
+    retval += nbsp("") # to keep tabs same height
+    return retval 
+
+def note_reference_table(obj, user, action):
+    retval = ""
+    table = Table()
+    table.columns(
+        _("Type"),
+        _("Reference"), 
+        _("ID"))
+    if user.is_authenticated():
+        for reference in models.NoteRef.objects.filter(ref_object=obj):
+            ref_from_class = reference.object_type.model_class()
+            item = ref_from_class.objects.get(id=reference.object_id)
+            table.row(
+                item.__class__.__name__,
+                item,
+                item.gramps_id)
+    retval += table.get_html()
+    retval += nbsp("") # to keep tabs same height
+    return retval 
+
+def event_reference_table(obj, user, action):
+    retval = ""
+    table = Table()
+    table.columns(
+        _("Type"),
+        _("Reference"), 
+        _("ID"))
+    if user.is_authenticated():
+        for reference in models.EventRef.objects.filter(ref_object=obj):
+            ref_from_class = reference.object_type.model_class()
+            item = ref_from_class.objects.get(id=reference.object_id)
+            table.row(
+                item.__class__.__name__,
+                item,
+                item.gramps_id)
+    retval += table.get_html()
+    retval += nbsp("") # to keep tabs same height
+    return retval 
+
+def repository_reference_table(obj, user, action):
+    retval = ""
+    table = Table()
+    table.columns(
+        _("Type"),
+        _("Reference"), 
+        _("ID"))
+    if user.is_authenticated():
+        for reference in models.RepositoryRef.objects.filter(ref_object=obj):
+            ref_from_class = reference.object_type.model_class()
+            item = ref_from_class.objects.get(id=reference.object_id)
+            table.row(
+                item.__class__.__name__,
+                item,
+                item.gramps_id)
+    retval += table.get_html()
+    retval += nbsp("") # to keep tabs same height
+    return retval 
+
+def citation_reference_table(obj, user, action):
+    retval = ""
+    table = Table()
+    table.columns(
+        _("Type"),
+        _("Reference"), 
+        _("ID"))
+    if user.is_authenticated():
+        for reference in models.CitationRef.objects.filter(citation=obj):
+            ref_from_class = reference.object_type.model_class()
+            item = ref_from_class.objects.get(id=reference.object_id)
+            table.row(
+                item.__class__.__name__,
+                item,
+                item.gramps_id)
+    retval += table.get_html()
+    retval += nbsp("") # to keep tabs same height
+    return retval 
+
+def media_reference_table(obj, user, action):
+    retval = ""
+    table = Table()
+    table.columns(
+        _("Type"),
+        _("Reference"), 
+        _("ID"))
+    if user.is_authenticated():
+        for reference in models.MediaRef.objects.filter(ref_object=obj):
+            ref_from_class = reference.object_type.model_class()
+            item = ref_from_class.objects.get(id=reference.object_id)
+            table.row(
+                item.__class__.__name__,
+                item,
+                item.gramps_id)
+    retval += table.get_html()
+    retval += nbsp("") # to keep tabs same height
+    return retval 
+
+def tag_reference_table(obj, user, action):
+    retval = ""
+    table = Table()
+    table.columns(
+        _("Type"),
+        _("Reference"), 
+        _("ID"))
+    if user.is_authenticated():
+        querysets = [obj.person_set, obj.family_set, obj.note_set, obj.media_set]
+        for queryset in querysets:
+            for item in queryset.all():
+                table.row(
+                    item.__class__.__name__,
+                    item,
+                    item.gramps_id)
     retval += table.get_html()
     retval += nbsp("") # to keep tabs same height
     return retval 

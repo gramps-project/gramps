@@ -19,8 +19,8 @@
     <td><a href="/{{view}}/{{note.handle|escape}}" class="noThumb browsecell">
            <span class="grampsid">[{{note.gramps_id}}]</span></a>
     {% if user.is_authenticated %}
-    <td><a href="/{{view}}/{{note.handle|escape}}" class="browsecell">{{note.note_type|escape}}</a>
-    <td><a href="/{{view}}/{{note.handle|escape}}" class="browsecell">{{note.text|preview:70}}</a>
+    <td><a href="/{{view}}/{{note.handle|escape}}" class="browsecell">{{note.note_type|escape|nbsp}}</a>
+    <td><a href="/{{view}}/{{note.handle|escape}}" class="browsecell">{{note.text|preview:70|nbsp}}</a>
     {% else %}
       <td></td>
       <td></td>

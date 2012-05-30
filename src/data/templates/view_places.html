@@ -18,7 +18,7 @@
     <td><a href="/{{view}}/{{place.handle|escape}}" class="noThumb browsecell">
            <span class="grampsid">[{{place.gramps_id}}]</span></a>
     {% if user.is_authenticated %}
-    <td><a href="/{{view}}/{{place.handle|escape}}" class="browsecell">{{place.title|escape}}</a>
+    <td><a href="/{{view}}/{{place.handle|escape}}" class="browsecell">{{place.title|escape|nbsp}}</a>
     {% else %}
       <td></td>
     {% endif %}

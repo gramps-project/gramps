@@ -436,6 +436,10 @@ class PrimaryObject(models.Model):
         return "%s: %s" % (self.__class__.__name__,
                            self.gramps_id)
 
+    def get_url(self):
+        return "/%s/%s" % (self.__class__.__name__.lower(),
+                           self.handle)
+
 class Person(PrimaryObject):
     """
     The model for the person object
@@ -535,7 +539,7 @@ class Event(DateObject, PrimaryObject):
                                          object_id_field="object_id")
 
     def __unicode__(self):
-        return str(self.description)
+        return str(self.description) or str(self.event_type)
 
 class Repository(PrimaryObject):
     repository_type = models.ForeignKey('RepositoryType', verbose_name="Type")

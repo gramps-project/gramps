@@ -73,7 +73,7 @@
     <li class="ui-corner-top ui-state-default"><a href="#tabs-references">References</a></li>
   </ul>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-references">
-    {{note.references.all.to_list}}
+    {% note_reference_table note user action %}
   </div>
 </div>
 </div>
