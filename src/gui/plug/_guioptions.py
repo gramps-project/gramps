@@ -619,6 +619,9 @@ class GuiPersonOption(gtk.HBox):
         if not person:
             person = self.__db.get_default_person()
 
+        if not person:
+            person = self.__db.find_initial_person()
+
         self.__update_person(person)
         
         self.valuekey = self.__option.connect('value-changed', self.__value_changed)
