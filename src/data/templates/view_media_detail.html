@@ -53,21 +53,19 @@
 
 <div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
   <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tab-sources" style=":hover {color: black;}">Sources</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Notes</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-gallery">Gallery</a></li>
+    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tab-sources" style=":hover {color: black;}">Source Citations</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-attributes">Attributes</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Notes</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-references">References</a></li>
   </ul>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-sources">
+    {% citation_table media user action "/citation/$act/media/%s" media.handle %}
   </div>
-
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-notes">
-  </div>
-
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-gallery">
+    {% note_table media user action "/note/$act/media/%s" media.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-attributes">
+    {% attribute_table media user action "/attribute/add/media/%s" media.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-references">
     {% media_reference_table media user action %}

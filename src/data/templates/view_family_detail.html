@@ -90,12 +90,12 @@
     <li class="ui-corner-top ui-state-default"><a href="#tab-sources">Sources</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-attributes">Attributes</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Notes</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-gallery">Gallery</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-media">Media</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-lds">LDS</a></li>
   </ul>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-children"> 
     <!-- Events -->
-    {% children_table family user action "/family/%s/add/child" family.handle %}
+    {% children_table family user action "/family/%s/children/$act" family.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-events">
     {% event_table family user action "/event/$act/family/%s" family.handle %}
@@ -109,8 +109,8 @@
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-notes">
     {% note_table family user action "/note/$act/family/%s" family.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-gallery">
-    {% gallery_table family user action "/media/$act/family/%s" family.handle %}
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-media">
+    {% media_table family user action "/media/$act/family/%s" family.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-lds">
     {% lds_table family user action "/lds/add/family/%s" family.handle %}

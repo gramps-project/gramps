@@ -43,20 +43,23 @@
 
 <!-- Tabs -->
 
-<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
-  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-addresses">Addresses</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tabs-internet">Internet</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tabs-notes">Notes</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tabs-references">References</a></li>
+<div class="ui-tab ui-widget ui-widget-content ui-corner-all" id="tabs">
+  <ul class="ui-tab-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+    <li class="ui-state-default ui-corner-top ui-tab-selected ui-state-active"><a href="#tab-addresses">Addresses</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-internet">Internet</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Notes</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-references">References</a></li>
   </ul>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-addresses">
+  <div class="ui-tab-panel ui-widget-content ui-corner-bottom" id="tab-addresses">
+    {% address_table repository user action "/address/add/repository/%s" repository.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-internet">
+  <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-internet">
+    {% internet_table repository user action "/internet/add/repository/%s" repository.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-notes">
+  <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-notes">
+    {% note_table repository user action "/note/$act/repository/%s" repository.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-references">
+  <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-references">
     {% repository_reference_table repository user action %}
   </div>
 </div>

@@ -32,7 +32,7 @@
   <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
     <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tab-general">General</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Notes</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-gallery">Gallery</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-media">Media</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-data">Data</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-references">References</a></li>
   </ul>
@@ -63,9 +63,11 @@
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-notes">
     {% note_table citation user action "/note/$act/citation/%s" citation.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-gallery">
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-media">
+    {% media_table citation user action "/media/$act/citation/%s" citation.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-data">
+    {% data_table citation user action "/data/$act/citation/%s" citation.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-references">
     {% citation_reference_table citation user action %}
@@ -83,7 +85,7 @@
   <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
     <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tab-shared-general">General</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-shared-notes">Notes</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-shared-gallery">Gallery</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-shared-media">Media</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-shared-repositories">Repositories</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-shared-references">References</a></li>
   </ul>
@@ -118,13 +120,14 @@
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-shared-notes">
     {% note_table source user action "/note/$act/source/%s" source.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-shared-gallery">
-  </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-shared-data">
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-shared-media">
+    {% media_table source user action "/media/$act/source/%s" source.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-shared-repositories">
+    {% repository_table source user action "/repository/$act/source/%s" source.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-shared-references">
+    {% citation_reference_table source user action %}
   </div>
 </div>
 

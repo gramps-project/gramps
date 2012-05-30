@@ -84,19 +84,24 @@ util_tags = [
     "source_table",
     "note_table",
     "attribute_table",
+    "data_table",
     "address_table",
-    "gallery_table",
+    "location_table",
+    "media_table",
     "internet_table",
     "association_table",
     "lds_table",
     "reference_table",
+    "repository_table",
     "person_reference_table",
     "note_reference_table",
     "event_reference_table",
     "repository_reference_table",
     "citation_reference_table",
+    "source_reference_table",
     "media_reference_table",
     "tag_reference_table",
+    "place_reference_table",
     "children_table",
     "make_button",
     ]
@@ -379,6 +384,23 @@ def citation_table(obj, user, action, url=None, *args):
         retval += nbsp("") # to keep tabs same height
     return retval
 
+def repository_table(obj, user, action, url=None, *args):
+    retval = ""
+    table = Table()
+    table.columns(
+        _("ID"),
+        _("Type"),
+        _("Note"))
+    if user.is_authenticated():
+        pass
+    retval += table.get_html()
+    if user.is_superuser and url and action == "view":
+        retval += make_button(_("Add Repository"), (url % args).replace("$act", "add"))
+        retval += make_button(_("Share Repository"), (url % args).replace("$act", "share"))
+    else:
+        retval += nbsp("") # to keep tabs same height
+    return retval
+
 def note_table(obj, user, action, url=None, *args):
     retval = ""
     table = Table()
@@ -400,6 +422,21 @@ def note_table(obj, user, action, url=None, *args):
     if user.is_superuser and url and action == "view":
         retval += make_button(_("Add Note"), (url % args).replace("$act", "add"))
         retval += make_button(_("Share Note"), (url % args).replace("$act", "share"))
+    else:
+        retval += nbsp("") # to keep tabs same height
+    return retval
+
+def data_table(obj, user, action, url=None, *args):
+    retval = ""
+    table = Table()
+    table.columns(_("Type"), 
+                  _("Value"),
+                  )
+    if user.is_authenticated():
+        pass
+    retval += table.get_html()
+    if user.is_superuser and url and action == "view":
+        retval += make_button(_("Add Data"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
@@ -448,7 +485,24 @@ def address_table(obj, user, action, url=None, *args):
         retval += nbsp("") # to keep tabs same height
     return retval
 
-def gallery_table(obj, user, action, url=None, *args):
+def location_table(obj, user, action, url=None, *args):
+    retval = ""
+    table = Table()
+    table.columns(_("Date"), 
+                  _("Address"),
+                  _("City"),
+                  _("State"),
+                  _("Country"))
+    if user.is_authenticated():
+        pass # FIXME
+    retval += table.get_html()
+    if user.is_superuser and url and action == "view":
+        retval += make_button(_("Add Address"), (url % args))
+    else:
+        retval += nbsp("") # to keep tabs same height
+    return retval
+
+def media_table(obj, user, action, url=None, *args):
     retval = ""
     table = Table()
     table.columns(_("Description"), 
@@ -645,6 +699,20 @@ def citation_reference_table(obj, user, action):
     retval += nbsp("") # to keep tabs same height
     return retval 
 
+def source_reference_table(obj, user, action):
+    retval = ""
+    table = Table()
+    table.columns(
+        _("Type"),
+        _("Reference"), 
+        _("ID"))
+    if user.is_authenticated() and action != "add":
+        pass
+    # FIXME: where is source ref?
+    retval += table.get_html()
+    retval += nbsp("") # to keep tabs same height
+    return retval 
+
 def media_reference_table(obj, user, action):
     retval = ""
     table = Table()
@@ -660,6 +728,19 @@ def media_reference_table(obj, user, action):
                 item.__class__.__name__,
                 item,
                 item.gramps_id)
+    retval += table.get_html()
+    retval += nbsp("") # to keep tabs same height
+    return retval 
+
+def place_reference_table(obj, user, action):
+    retval = ""
+    table = Table()
+    table.columns(
+        _("Type"),
+        _("Reference"), 
+        _("ID"))
+    if user.is_authenticated() and action != "add":
+        pass # FIXME
     retval += table.get_html()
     retval += nbsp("") # to keep tabs same height
     return retval 

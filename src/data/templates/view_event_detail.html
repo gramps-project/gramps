@@ -48,22 +48,26 @@
 <!-- Tabs -->
 
 <div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
-  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-sources">Sources</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tabs-notes">Notes</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tabs-gallery">Gallery</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tabs-attributes">Attributes</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tabs-references">References</a></li>
+  <ul class="ui-tab-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+    <li class="ui-state-default ui-corner-top ui-tab-selected ui-state-active"><a href="#tab-sources">Source Citations</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Notes</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-media">Media</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-attributes">Attributes</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-references">References</a></li>
   </ul>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-sources">
+  <div class="ui-tab-panel ui-widget-content ui-corner-bottom" id="tab-sources">
+    {% citation_table event user action "/citation/$act/event/%s" event.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-notes">
+  <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-notes">
+    {% note_table event user action "/note/$act/event/%s" event.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-gallery">
+  <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-media">
+    {% media_table event user action "/media/$act/event/%s" event.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-attributes">
+  <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-attributes">
+    {% attribute_table event user action "/attribute/$act/event/%s" event.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-references">
+  <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-references">
     {% event_reference_table event user action %}
   </div>
 </div>

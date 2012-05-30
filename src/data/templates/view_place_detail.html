@@ -47,27 +47,34 @@
 
 <div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
   <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-location">Location</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tabs-alternatelocations">Alternate Locations</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tabs-sources">Sources</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tabs-notes">Notes</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tabs-gallery">Gallery</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tabs-internet">Internet</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tabs-references">References</a></li>
+    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tab-locations">Location</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-alternatelocations">Alternate Locations</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-sources">Sources</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Notes</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-media">Media</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-internet">Internet</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-references">References</a></li>
   </ul>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-locations">
+  <div class="ui-tab-panel ui-widget-content ui-corner-bottom" id="tab-locations">
+    <!-- place.location_set  -->
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-alternatelocations">
+  <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-alternatelocations">
+    {% location_table place user action "/location/$act/place/%s" place.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-sources">
+  <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-sources">
+    {% source_table place user action "/source/$act/place/%s" place.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-notes">
+  <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-notes">
+    {% note_table place user action "/note/$act/place/%s" place.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-gallery">
+  <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-media">
+    {% media_table place user action "/media/$act/place/%s" place.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-internet">
+  <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-internet">
+    {% internet_table place user action "/internet/$act/place/%s" place.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-references">
+  <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-references">
+    {% place_reference_table place user action %}
   </div>
 </div>
 </div>

@@ -85,7 +85,7 @@
     <li class="ui-corner-top ui-state-default"><a href="#tab-attributes">Attributes</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-addresses">Addresses</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Notes</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-gallery">Gallery</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-media">Media</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-internet">Internet</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-association">Associations</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-lds">LDS</a></li>
@@ -111,8 +111,8 @@
 	      ui-tabs-hide" id="tab-notes">
     {% note_table person user action "/note/$act/person/%s" person.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-gallery">
-    {% gallery_table person user action "/media/$act/person/%s" person.handle %}
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-media">
+    {% media_table person user action "/media/$act/person/%s" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-internet">
     {% internet_table person user action "/person/%s/$act/internet" person.handle %}
