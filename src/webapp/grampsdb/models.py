@@ -406,6 +406,12 @@ class Tag(models.Model):
     def __unicode__(self):
         return str(self.name)
 
+    def get_url(self):
+        return "/tag/%s" % self.handle
+
+    def get_link(self):
+        return "<a href='%s'>%s</a>" % (self.get_url(), self.name)
+
 # Just the following have tag lists:
 # ---------------------------------
 #src/gen/lib/family.py

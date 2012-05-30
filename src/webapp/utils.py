@@ -555,7 +555,7 @@ def person_reference_table(obj, user, action):
         _("Type"),
         _("Reference"), 
         _("ID"))
-    if user.is_authenticated():
+    if user.is_authenticated() and action != "add":
         for reference in obj.families.all():
             table.row(
                 _("Family (spouse in)"),
@@ -577,7 +577,7 @@ def note_reference_table(obj, user, action):
         _("Type"),
         _("Reference"), 
         _("ID"))
-    if user.is_authenticated():
+    if user.is_authenticated() and action != "add":
         for reference in models.NoteRef.objects.filter(ref_object=obj):
             ref_from_class = reference.object_type.model_class()
             item = ref_from_class.objects.get(id=reference.object_id)
@@ -596,7 +596,7 @@ def event_reference_table(obj, user, action):
         _("Type"),
         _("Reference"), 
         _("ID"))
-    if user.is_authenticated():
+    if user.is_authenticated() and action != "add":
         for reference in models.EventRef.objects.filter(ref_object=obj):
             ref_from_class = reference.object_type.model_class()
             item = ref_from_class.objects.get(id=reference.object_id)
@@ -615,7 +615,7 @@ def repository_reference_table(obj, user, action):
         _("Type"),
         _("Reference"), 
         _("ID"))
-    if user.is_authenticated():
+    if user.is_authenticated() and action != "add":
         for reference in models.RepositoryRef.objects.filter(ref_object=obj):
             ref_from_class = reference.object_type.model_class()
             item = ref_from_class.objects.get(id=reference.object_id)
@@ -634,7 +634,7 @@ def citation_reference_table(obj, user, action):
         _("Type"),
         _("Reference"), 
         _("ID"))
-    if user.is_authenticated():
+    if user.is_authenticated() and action != "add":
         for reference in models.CitationRef.objects.filter(citation=obj):
             ref_from_class = reference.object_type.model_class()
             item = ref_from_class.objects.get(id=reference.object_id)
@@ -653,7 +653,7 @@ def media_reference_table(obj, user, action):
         _("Type"),
         _("Reference"), 
         _("ID"))
-    if user.is_authenticated():
+    if user.is_authenticated() and action != "add":
         for reference in models.MediaRef.objects.filter(ref_object=obj):
             ref_from_class = reference.object_type.model_class()
             item = ref_from_class.objects.get(id=reference.object_id)
@@ -672,7 +672,7 @@ def tag_reference_table(obj, user, action):
         _("Type"),
         _("Reference"), 
         _("ID"))
-    if user.is_authenticated():
+    if user.is_authenticated() and action != "add":
         querysets = [obj.person_set, obj.family_set, obj.note_set, obj.media_set]
         for queryset in querysets:
             for item in queryset.all():
@@ -775,7 +775,7 @@ def render(formfield, user, action, test=False, truetext="", id=None):
             try:
                 item = getattr(formfield.form.model, fieldname)
                 if (item.__class__.__name__ == 'ManyRelatedManager'):
-                    retval = ", ".join([str(i) for i in item.all()])
+                    retval = ", ".join([i.get_link() for i in item.all()])
                 else:
                     retval = str(item)
                     if retval == "True":
