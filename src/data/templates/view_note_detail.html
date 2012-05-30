@@ -81,7 +81,7 @@
 
 {% if user.is_superuser %}
   {% if action == "edit" %}
-    {% make_button "Back to Note" "/note/%s" note.handle %}
+    {% make_button "Cancel" "/note/%s" note.handle %}
     <input type="hidden" name="action" value="save"/>
     <input type="submit" value="Save"/>
   {% else %}
@@ -90,7 +90,6 @@
       <input type="hidden" name="action" value="create"/>
       <input type="submit" value="Create"/>
     {% else %}
-      {% make_button "Back to Notes" "/note" %}
       {% make_button "Add Note" "/note/add" %}
       {% make_button "Edit Note" "/note/%s/edit" note.handle %}
       {% make_button "Delete Note" "/note/%s/delete" note.handle %}

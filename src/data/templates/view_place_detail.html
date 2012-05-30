@@ -75,7 +75,7 @@
 
 {% if user.is_superuser %}
   {% if action == "edit" %}
-    {% make_button "Back to Place" "/place/%s" place.handle %}
+    {% make_button "Cancel" "/place/%s" place.handle %}
     <input type="hidden" name="action" value="save"/>
     <input type="submit" value="Save"/>
   {% else %}
@@ -84,7 +84,6 @@
       <input type="hidden" name="action" value="create"/>
       <input type="submit" value="Create"/>
     {% else %}
-      {% make_button "Back to Places" "/place" %}
       {% make_button "Add Place" "/place/add" %}
       {% make_button "Edit Place" "/place/%s/edit" place.handle %}
       {% make_button "Delete Place" "/place/%s/delete" place.handle %}

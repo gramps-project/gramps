@@ -136,7 +136,7 @@
 
 {% if user.is_superuser %}
   {% if action == "edit" %}
-    {% make_button "Back to Citation" "/citation/%s" citation.handle %}
+    {% make_button "Cancel" "/citation/%s" citation.handle %}
     <input type="hidden" name="action" value="save"/>
     <input type="submit" value="Save"/>
   {% else %}
@@ -145,7 +145,6 @@
       <input type="hidden" name="action" value="create"/>
       <input type="submit" value="Create"/>
     {% else %}
-      {% make_button "Back to Citations" "/citation" %}
       {% make_button "Add Citation" "/citation/add" %}
       {% make_button "Edit Citation" "/citation/%s/edit" citation.handle %}
       {% make_button "Delete Citation" "/citation/%s/delete" citation.handle %}

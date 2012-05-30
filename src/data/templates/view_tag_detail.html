@@ -50,7 +50,7 @@
 
 {% if user.is_superuser %}
   {% if action == "edit" %}
-    {% make_button "Back to Tag" "/tag/%s" tag.handle %}
+    {% make_button "Cancel" "/tag/%s" tag.handle %}
     <input type="hidden" name="action" value="save"/>
     <input type="submit" value="Save"/>
   {% else %}
@@ -59,7 +59,6 @@
       <input type="hidden" name="action" value="create"/>
       <input type="submit" value="Create"/>
     {% else %}
-      {% make_button "Back to Tags" "/tag" %}
       {% make_button "Add Tag" "/tag/add" %}
       {% make_button "Edit Tag" "/tag/%s/edit" tag.handle %}
       {% make_button "Delete Tag" "/tag/%s/delete" tag.handle %}

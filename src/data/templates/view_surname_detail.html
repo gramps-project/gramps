@@ -76,12 +76,9 @@
     <input type="hidden" name="action" value="create"/>
     <input type="submit" value="Save">
     {% else %}
-    <input type="button"
-	   value="Back to Person" 
-	   onclick="document.location.href='/person/{{person.handle}}#tab-names'"/>
-    <input type="button"
-	   value="Back to Name" 
-	   onclick="document.location.href='/person/{{person.handle}}/name/{{order}}#tab-surnames'"/>
+    <input type="button" 
+	   value="Add Surname" 
+	   onclick="document.location.href='/person/{{person.handle}}/name/{{order}}/surname/add'"/>
     <input type="button" 
 	   value="Edit Surname" 
 	   onclick="document.location.href='/person/{{person.handle}}/name/{{order}}/surname/{{sorder}}/edit'"/>
@@ -90,13 +87,6 @@
 	   onclick="document.location.href='/person/{{person.handle}}/name/{{order}}/surname/{{sorder}}/delete'"/>
     {% endif %}
   {% endif %}
-{% else %}
-    <input type="button"
-	   value="Back to Person" 
-	   onclick="document.location.href='/person/{{person.handle}}#tab-names'"/>
-    <input type="button"
-	   value="Back to Name" 
-	   onclick="document.location.href='/person/{{person.handle}}/name/order#tab-surnames'"/>
 {% endif %}
 </form>
 {% endblock %}

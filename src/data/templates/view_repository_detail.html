@@ -63,7 +63,7 @@
 
 {% if user.is_superuser %}
   {% if action == "edit" %}
-    {% make_button "Back to Repository" "/repository/%s" repository.handle %}
+    {% make_button "Cancel" "/repository/%s" repository.handle %}
     <input type="hidden" name="action" value="save"/>
     <input type="submit" value="Save"/>
   {% else %}
@@ -72,7 +72,6 @@
       <input type="hidden" name="action" value="create"/>
       <input type="submit" value="Create"/>
     {% else %}
-      {% make_button "Back to Repositories" "/repository" %}
       {% make_button "Add Repository" "/repository/add" %}
       {% make_button "Edit Repository" "/repository/%s/edit" repository.handle %}
       {% make_button "Delete Repository" "/repository/%s/delete" repository.handle %}

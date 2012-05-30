@@ -130,7 +130,7 @@
 
 {% if user.is_superuser %}
   {% if action == "edit" %}
-    {% make_button "Back to Person" "/person/%s" person.handle %}
+    {% make_button "Cancel" "/person/%s" person.handle %}
     <input type="hidden" name="action" value="save"/>
     <input type="submit" value="Save"/>
   {% else %}
@@ -139,7 +139,6 @@
       <input type="hidden" name="action" value="create"/>
       <input type="submit" value="Create"/>
     {% else %}
-      {% make_button "Back to People" "/person" %}
       {% make_button "Add Person" "/person/add" %}
       {% make_button "Edit Person" "/person/%s/edit" person.handle %}
       {% make_button "Delete Person" "/person/%s/delete" person.handle %}

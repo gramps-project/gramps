@@ -119,7 +119,7 @@
 
 {% if user.is_superuser %}
   {% if action == "edit" %}
-    {% make_button "Back to Family" "/family/%s" family.handle %}
+    {% make_button "Cancel" "/family/%s" family.handle %}
     <input type="hidden" name="action" value="save"/>
     <input type="submit" value="Save"/>
   {% else %}
@@ -128,7 +128,6 @@
       <input type="hidden" name="action" value="create"/>
       <input type="submit" value="Create"/>
     {% else %}
-      {% make_button "Back to Families" "/family" %}
       {% make_button "Add Family" "/family/add" %}
       {% make_button "Edit Family" "/family/%s/edit" family.handle %}
       {% make_button "Delete Family" "/family/%s/delete" family.handle %}

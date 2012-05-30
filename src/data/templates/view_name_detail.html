@@ -95,7 +95,7 @@
     &nbsp;
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-surnames">
-    {% surname_table person user action "/person/%s/name/%s/surname" person.handle nameform.model.order %}
+    {% surname_table person user action "/person/%s/name/%s/surname/add" person.handle nameform.model.order %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-names">
     {% name_table person user action "/person/%s/name" person.handle %}
@@ -109,24 +109,27 @@
   </div>
 </div>
 
-<input type="button" 
-       value="Back to Person"
-       onclick="document.location.href='/person/{{person.handle}}#tab-names'"/>
 {% if user.is_authenticated %}
   {% ifequal action "add" %}
+    <input type="button" 
+       value="Cancel"
+       onclick="document.location.href='/person/{{person.handle}}#tab-names'"/>
     <input type="hidden" name="action" value="create"/>
     <input type="submit" value="Create"/>
   {% else %}
   {% ifequal action "edit" %}
+    <input type="button" 
+       value="Cancel"
+       onclick="document.location.href='/person/'"/>
     <input type="hidden" name="action" value="save"/>
     <input type="submit" value="Save"/>
   {% else %}
     <input type="button" 
-	   value="Edit Name"
-	   onclick="document.location.href='/person/{{person.handle}}/name/{{order}}/edit'"/>
-    <input type="button" 
 	   value="Add Name"
 	   onclick="document.location.href='/person/{{person.handle}}/name/add'"/>
+    <input type="button" 
+	   value="Edit Name"
+	   onclick="document.location.href='/person/{{person.handle}}/name/{{order}}/edit'"/>
     <input type="button" 
 	   value="Delete Name"
 	   onclick="document.location.href='/person/{{person.handle}}/name/{{order}}/delete'"/>

@@ -71,7 +71,7 @@
 
 {% if user.is_superuser %}
   {% if action == "edit" %}
-    {% make_button "Back to Source" "/source/%s" source.handle %}
+    {% make_button "Cancel" "/source/%s" source.handle %}
     <input type="hidden" name="action" value="save"/>
     <input type="submit" value="Save"/>
   {% else %}
@@ -80,7 +80,6 @@
       <input type="hidden" name="action" value="create"/>
       <input type="submit" value="Create"/>
     {% else %}
-      {% make_button "Back to Sources" "/source" %}
       {% make_button "Add Source" "/source/add" %}
       {% make_button "Edit Source" "/source/%s/edit" source.handle %}
       {% make_button "Delete Source" "/source/%s/delete" source.handle %}
