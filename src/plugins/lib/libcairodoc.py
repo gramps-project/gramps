@@ -1073,8 +1073,8 @@ class GtkDocFrame(GtkDocBaseElement):
     def draw(self, cr, layout, width, dpi_x, dpi_y):
         frame_width = self._style.width * dpi_x / 2.54
         frame_height = self._style.height * dpi_y / 2.54
-        l_margin = self._style.spacing[0] * dpi_y / 2.54
-        r_margin = self._style.spacing[1] * dpi_y / 2.54
+        l_margin = self._style.spacing[0] * dpi_x / 2.54
+        r_margin = self._style.spacing[1] * dpi_x / 2.54
         t_margin = self._style.spacing[2] * dpi_y / 2.54
         b_margin = self._style.spacing[3] * dpi_y / 2.54
  
