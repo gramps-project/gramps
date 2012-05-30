@@ -186,9 +186,11 @@ class Table(object):
         class Doc(object):
             def __init__(self, doc):
                 self.doc = doc
+                self.doc.set_link_attrs({"class": "browsecell"})
         # None is paperstyle, which is ignored:
         self.doc =  Doc(HtmlDoc.HtmlDoc(make_basic_stylesheet(Table={"set_width":95}), None))
         self.doc.doc._backend = HtmlBackend()
+        self.doc.doc._backend.ADDITIONAL_LINK_TAGS = "class='browsecell'"
         # You can set elements id, class, etc:
         self.doc.doc.htmllist += [Html('div', class_="content", id="Gallery", style="overflow: auto; height:150px; background-color: #261803;")]
 
