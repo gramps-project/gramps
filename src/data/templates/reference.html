@@ -18,9 +18,9 @@
   {% endif %}
 <form method="post">{% csrf_token %}
 
-{% for field in form %}
+{% for f in form.forms %}
 <tr>
-{{field}}
+{{f}}
 </tr>
 {% endfor %}
 
