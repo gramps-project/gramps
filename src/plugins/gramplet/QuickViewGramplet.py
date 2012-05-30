@@ -88,7 +88,8 @@ class QuickViewGramplet(Gramplet):
                                               quick_view,
                                               active_handle,
                                               container=self.gui.textview)
-            self.set_has_data(docman.document.has_data)
+            if docman:
+                self.set_has_data(docman.document.has_data)
         else:
             self.clear_text()
             self.set_has_data(False)
