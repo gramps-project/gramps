@@ -418,6 +418,9 @@ class SimpleTable(object):
                 link = (item[1], item[2:])
             else:
                 retval.append(str(item))
+                if (self.__link_col == col or link is None):
+                    if hasattr(item, "get_url"):
+                        link = ("url", item.get_url())
         self.__link.append(link)
         self.__rows.append(retval)
 
@@ -478,6 +481,7 @@ class SimpleTable(object):
                         obj_type, handle = self.__link_col[index]
                     elif self.__link[index]:
                         obj_type, handle = self.__link[index]
+                    ######
                     if obj_type:
                         if obj_type.lower() == "url":
                             doc.start_link(handle)
