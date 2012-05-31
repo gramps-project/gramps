@@ -7556,7 +7556,8 @@ class NavWebReport(Report):
             # FIXME: no family page in NarWeb
             return None
         else:
-            raise AttributeError("unknown object type '%s'" % obj_class)
+            print ("NarrativeWeb ignoring link type '%s'" % obj_class)
+            return None
         return self.build_url_fname(handle, subdir, up) + self.ext
 
     def build_url_fname(self, fname, subdir = None, up = False):
