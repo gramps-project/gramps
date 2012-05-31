@@ -162,6 +162,10 @@ src/gen/lib/url.py
 src/gen/lib/urlbase.py
 src/gen/lib/witness.py
 
+# gen.locale package
+src/gen/locale/__init__.py
+src/gen/locale/_grampslocale.py
+
 # gen.merge package
 src/gen/merge/__init__.py
 src/gen/merge/test/merge_ref_test.py
@@ -221,14 +225,6 @@ src/gen/utils/__init__.py
 src/gen/utils/callback.py
 src/gen/utils/callman.py
 
-# GrampsLocale package
-src/GrampsLocale/_GrampsLocale.py
-
-# GrampsLogger package
-src/GrampsLogger/__init__.py
-src/GrampsLogger/_GtkHandler.py
-src/GrampsLogger/_RotateHandler.py
-
 # gui - GUI code
 src/gui/__init__.py
 src/gui/dbguielement.py
@@ -267,6 +263,11 @@ src/gui/editors/displaytabs/webmodel.py
 src/gui/filters/_filtercombobox.py
 src/gui/filters/_filtermenu.py
 src/gui/filters/__init__.py
+
+# gui.logger package
+src/gui/logger/__init__.py
+src/gui/logger/_gtkhandler.py
+src/gui/logger/_rotatehandler.py
 
 # gui.merge package
 src/gui/merge/__init__.py

@@ -10,6 +10,7 @@ SUBDIRS = \
     display \
 	filters \
 	lib \
+	locale \
 	merge \
 	mime \
 	plug \

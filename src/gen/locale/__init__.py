@@ -20,4 +20,4 @@
 
 # $Id$
 
-from _GrampsLocale import *
+from _grampslocale import *

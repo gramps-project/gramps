@@ -39,7 +39,7 @@ log = logging.getLogger(".DateDisplay")
 #
 #-------------------------------------------------------------------------
 from gen.lib import Date
-import GrampsLocale
+import gen.locale
 
 #-------------------------------------------------------------------------
 #
@@ -57,7 +57,7 @@ class DateDisplay(object):
     short_months = ( u"", u"Jan", u"Feb", u"Mar", u"Apr", u"May", u"Jun",
                      u"Jul", u"Aug", u"Sep", u"Oct", u"Nov", u"Dec" )
 
-    _tformat = GrampsLocale.tformat
+    _tformat = gen.locale.tformat
 
     hebrew = (
         "", "Tishri", "Heshvan", "Kislev", "Tevet", "Shevat", 

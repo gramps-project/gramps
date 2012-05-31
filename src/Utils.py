@@ -49,7 +49,7 @@ LOG = logging.getLogger(".")
 from gen.display.name import displayer as name_displayer
 import gen.lib
 import Errors
-from GrampsLocale import codeset
+from gen.locale import codeset
 from Date import Date
 import gen.datehandler
 

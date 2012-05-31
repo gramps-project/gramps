@@ -49,7 +49,7 @@ log = logging.getLogger(".DateParser")
 #
 #-------------------------------------------------------------------------
 from gen.lib import Date, DateError
-import GrampsLocale
+import gen.locale
 
 #-------------------------------------------------------------------------
 #
@@ -140,7 +140,7 @@ class DateParser(object):
         'Sep' : 9,  'Oct' : 10, 'Nov' : 11, 'Dec' : 12,
         }
 
-    month_to_int = GrampsLocale.month_to_int
+    month_to_int = gen.locale.month_to_int
 
     # modifiers before the date
     modifier_to_int = {
@@ -272,7 +272,7 @@ class DateParser(object):
             Date.CAL_SWEDISH   : self._parse_swedish,
             }
 
-        fmt = GrampsLocale.tformat
+        fmt = gen.locale.tformat
         match = self._fmt_parse.match(fmt.lower())
         if match:
             self.dmy = (match.groups() == ('d', 'm', 'y') or \

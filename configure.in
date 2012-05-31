@@ -110,6 +110,7 @@ src/gen/filters/rules/repository/Makefile
 src/gen/filters/rules/note/Makefile
 src/gen/filters/rules/citation/Makefile
 src/gen/lib/Makefile
+src/gen/locale/Makefile
 src/gen/merge/Makefile
 src/gen/mime/Makefile
 src/gen/plug/Makefile
@@ -135,7 +136,6 @@ src/gui/views/treemodels/Makefile
 src/gui/widgets/Makefile
 src/docgen/Makefile
 src/Simple/Makefile
-src/GrampsLocale/Makefile
 src/plugins/Makefile
 src/plugins/docgen/Makefile
 src/plugins/drawreport/Makefile

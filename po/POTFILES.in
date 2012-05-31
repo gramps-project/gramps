@@ -407,6 +407,10 @@ src/gui/filters/sidebar/_mediasidebarfilter.py
 src/gui/filters/sidebar/_reposidebarfilter.py
 src/gui/filters/sidebar/_notesidebarfilter.py
 
+# gui.logger package
+src/gui/logger/_errorreportassistant.py
+src/gui/logger/_errorview.py
+
 # gui.merge package
 src/gui/merge/mergecitation.py
 src/gui/merge/mergeevent.py
@@ -476,10 +480,6 @@ src/config.py
 # docgen directory
 src/docgen/ODSTab.py
 src/docgen/TextBufDoc.py
-
-# GrampsLogger package
-src/GrampsLogger/_ErrorReportAssistant.py
-src/GrampsLogger/_ErrorView.py
 
 # plugins directory
 src/plugins/BookReport.py

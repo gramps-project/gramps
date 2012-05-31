@@ -6,7 +6,6 @@ SUBDIRS = \
 	data \
 	docgen \
 	gen \
-	GrampsLocale \
 	gui \
 	images \
 	plugins \
