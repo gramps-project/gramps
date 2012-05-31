@@ -18,13 +18,12 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# GrampsLogger/_GtkHandler.py
 # $Id$
 
 
 import logging
 
-from _ErrorView import ErrorView
+from _errorview import ErrorView
 
 
 class GtkHandler(logging.Handler):

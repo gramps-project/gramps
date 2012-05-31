@@ -305,7 +305,7 @@ def by_time(first, second):
     return cmp(second.get_time(), first.get_time())
 
 
-from GrampsLogger import RotateHandler
+from gui.logger import RotateHandler
 
 class WarnHandler(RotateHandler):
 

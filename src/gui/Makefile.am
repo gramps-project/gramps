@@ -8,6 +8,7 @@ SUBDIRS = \
 	editors \
 	filters \
 	glade \
+	logger \
 	merge \
 	plug \
 	selectors \

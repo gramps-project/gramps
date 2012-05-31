@@ -5,19 +5,19 @@
 # If not using GNU make, then list all .py files individually
 
 pkgpython_PYTHON = \
-	_ErrorReportAssistant.py\
-	_ErrorView.py\
-	_GtkHandler.py\
+	_errorreportassistant.py\
+	_errorview.py\
+	_gtkhandler.py\
 	__init__.py\
-	_RotateHandler.py
+	_rotatehandler.py
 
-pkgpyexecdir = @pkgpyexecdir@/GrampsLogger
-pkgpythondir = $(datadir)/@PACKAGE@/GrampsLogger
+pkgpyexecdir = @pkgpyexecdir@/gui/logger
+pkgpythondir = $(datadir)/@PACKAGE@/gui/logger
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
 
-GRAMPS_PY_MODPATH = "../"
+GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \

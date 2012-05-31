@@ -269,7 +269,7 @@ def __startgramps(errors, argparser):
         sys.exit(1)
 
     # add gui logger
-    from GrampsLogger import RotateHandler, GtkHandler
+    from gui.logger import RotateHandler, GtkHandler
     form = logging.Formatter(fmt="%(relativeCreated)d: %(levelname)s: "
                                 "%(filename)s: line %(lineno)d: %(message)s")
     # Create the log handlers

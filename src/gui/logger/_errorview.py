@@ -18,7 +18,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# GrampsLogger/_ErrorView.py
 # $Id$
 
 #-------------------------------------------------------------------------
@@ -35,7 +34,7 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 from gen.ggettext import sgettext as _
-from _ErrorReportAssistant import ErrorReportAssistant
+from _errorreportassistant import ErrorReportAssistant
 import GrampsDisplay
 
 #-------------------------------------------------------------------------

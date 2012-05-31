@@ -7,7 +7,6 @@ SUBDIRS = \
 	docgen \
 	gen \
 	GrampsLocale \
-	GrampsLogger \
 	gui \
 	images \
 	plugins \

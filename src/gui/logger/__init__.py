@@ -18,7 +18,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# GrampsLogger/__init__.py
 # $Id$
 
 """
@@ -41,7 +40,7 @@ Usage:
 
    Simple example:
 
-        from GrampsLogger import GtkHandler, RotateHandler
+        from gui.logger import GtkHandler, RotateHandler
 
         rh = RotateHandler(capacity=20)
         rh.setLevel(logging.DEBUG)
@@ -65,5 +64,5 @@ Usage:
 
 """
 
-from _GtkHandler import GtkHandler
-from _RotateHandler import RotateHandler
+from _gtkhandler import GtkHandler
+from _rotatehandler import RotateHandler

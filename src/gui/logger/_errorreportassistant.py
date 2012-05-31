@@ -18,7 +18,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# GrampsLogger/_ErrorReportAssistant.py
 # $Id$
 
 from gen.ggettext import gettext as _
