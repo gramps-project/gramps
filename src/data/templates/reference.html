@@ -30,6 +30,7 @@
 </form>
 {% if user.is_superuser %}
    {% make_button "Go to reference" url %}
+   {% make_button "Go back" referenced_by %}
 {% endif %}
 {% endblock %}
 
