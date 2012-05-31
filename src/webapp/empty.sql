@@ -219,7 +219,8 @@ CREATE TABLE "auth_user" (
     "last_login" datetime NOT NULL,
     "date_joined" datetime NOT NULL
 );
-INSERT INTO "auth_user" VALUES(1,'admin','','','bugs@gramps-project.org','sha1$28213$1af0843de942e46b52d35ccd4d6abba8d3e6ec0f',1,1,1,'2012-05-29 10:36:56.848133','2012-05-29 10:36:56.848133');
+INSERT INTO "auth_user" VALUES(1,'admin','','','bugs@gramps-project.org','sha1$28213$1af0843de942e46b52d35ccd4d6abba8d3e6ec0f',1,1,1,'2012-05-31 08:05:50.372937','2012-05-29 10:36:56.848133');
+INSERT INTO "auth_user" VALUES(2,'admin1','','','','sha1$67286$0e489ec012a71a29b21304a9e6747075a598148f',0,1,0,'2012-05-31 08:06:17.531712','2012-05-31 08:06:17.531731');
 CREATE TABLE "auth_message" (
     "id" integer NOT NULL PRIMARY KEY,
     "user_id" integer NOT NULL REFERENCES "auth_user" ("id"),
@@ -298,6 +299,10 @@ CREATE TABLE "django_session" (
 );
 INSERT INTO "django_session" VALUES('1827afd63a2479e799c79cf3fab622d6','YTJkY2YzOGM0MzQ0MzY4YjExZDZhODZjOTdhZjAxMDkxNWU5MTM0NjqAAn1xAS4=
 ','2012-06-12 10:37:52.618014');
+INSERT INTO "django_session" VALUES('966ad422ab619d0f8661f755efc0176d','MmU1MjliMDM2NzcyODdjNmJlOTgzMGFiYzc2MjFkMmViYWFiOTIzMjqAAn1xAShVEl9hdXRoX3Vz
+ZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED
+VQ1fYXV0aF91c2VyX2lkcQRLAXUu
+','2012-06-14 08:05:50.626692');
 CREATE TABLE "django_site" (
     "id" integer NOT NULL PRIMARY KEY,
     "domain" varchar(100) NOT NULL,
@@ -314,12 +319,14 @@ CREATE TABLE "django_admin_log" (
     "action_flag" smallint unsigned NOT NULL,
     "change_message" text NOT NULL
 );
+INSERT INTO "django_admin_log" VALUES(1,'2012-05-31 08:06:17.538803',1,3,'2','admin1',1,'');
 CREATE TABLE "grampsdb_profile" (
     "id" integer NOT NULL PRIMARY KEY,
     "user_id" integer NOT NULL UNIQUE REFERENCES "auth_user" ("id"),
     "css_theme" varchar(40) NOT NULL
 );
 INSERT INTO "grampsdb_profile" VALUES(1,1,'Web_Mainz.css');
+INSERT INTO "grampsdb_profile" VALUES(2,2,'Web_Mainz.css');
 CREATE TABLE "grampsdb_nametype" (
     "id" integer NOT NULL PRIMARY KEY,
     "name" varchar(40) NOT NULL,
