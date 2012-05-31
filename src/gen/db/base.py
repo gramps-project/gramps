@@ -58,6 +58,20 @@ class DbReadBase(object):
         derived from this class should be created.
         """
         self.basedb = self
+        self.__feature = {} # {"feature": VALUE, ...}
+
+    def get_feature(self, feature):
+        """
+        Databases can implement certain features or not. The default is
+        None, unless otherwise explicitly stated.
+        """
+        return self.__feature.get(feature, None) # can also be explitily None
+
+    def set_feature(self, feature, value):
+        """
+        Databases can implement certain features. 
+        """
+        self.__feature[feature] = value
 
     def all_handles(self, table):
         """
