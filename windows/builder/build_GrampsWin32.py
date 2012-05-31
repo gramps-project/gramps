@@ -102,13 +102,8 @@ class buildbase(gobject.GObject):
         log.debug( "Running: %s" % cmd )
         
         proc = subprocess.Popen( cmd, shell = True, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
-        status = proc.wait()
-        output = string.strip(proc.stdout.read())
-        err = proc.stderr.read()
-        proc.stderr.close()
-        proc.stdout.close()
-        del proc
-        
+        (out, err) = proc.communicate()
+        output = string.strip(out)
         log.debug( output )
         if err:
             for line in err.split('\n'):
@@ -130,13 +125,8 @@ class buildbase(gobject.GObject):
         log.info( "Running: %s" % cmd)
         
         proc = subprocess.Popen( cmd, shell = True, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
-        status = proc.wait()
-        output = string.strip(proc.stdout.read())
-        err = proc.stderr.read()
-        proc.stderr.close()
-        proc.stdout.close()
-        del proc
-        
+        (out, err) = proc.communicate()
+        output = string.strip(out)
         log.info( output )
         if err:
             log.error(err)
@@ -186,13 +176,8 @@ class buildbase(gobject.GObject):
         os.environ['GRAMPS_OUT_DIR'] = os.path.abspath(self.out_dir)
         
         proc = subprocess.Popen( cmd, shell = True, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
-        status = proc.wait()
-        output = string.strip(proc.stdout.read())
-        err = proc.stderr.read()
-        proc.stderr.close()
-        proc.stdout.close()
-        del proc
-        
+        (out, err) = proc.communicate()
+        output = string.strip(out)
         log.info( output )
         if err:
             log.error(err)
@@ -273,13 +258,9 @@ class buildbase(gobject.GObject):
             #log.debug( cmd )
             
             proc = subprocess.Popen( cmd, shell = True, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
-            status = proc.wait()
-            output = string.strip(proc.stdout.read())
-            err = proc.stderr.read()
-            proc.stderr.close()
-            proc.stdout.close()
-            del proc
-            
+            (out, err) = proc.communicate()
+            output = string.strip(out)
+            log.info( output )
             # log.debug( output ) Nothing coming out here, statistics come out stderr ??
             if err:
                 log.info(err) # statistics comming out stderr
@@ -340,13 +321,9 @@ class buildbase(gobject.GObject):
         log.debug(cmd)
         
         proc = subprocess.Popen( cmd, shell = True, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
-        status = proc.wait()
-        output = string.strip(proc.stdout.read())
-        err = proc.stderr.read()
-        proc.stderr.close()
-        proc.stdout.close()
-        del proc
-        
+        (out, err) = proc.communicate()
+        output = string.strip(out)
+        log.info( output )
         if err:
             log.error(err)
             if sys.platform == 'win32': #'not recognized' in err:
@@ -384,13 +361,9 @@ class buildbase(gobject.GObject):
                 
                 cmd = '%s /VERSION' % MAKENSIS_exe
                 proc = subprocess.Popen( cmd, shell = True, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
-                status = proc.wait()
-                output = string.strip(proc.stdout.read())
-                err = proc.stderr.read()
-                proc.stderr.close()
-                proc.stdout.close()
-                del proc
-                
+                (out, err) = proc.communicate()
+                output = string.strip(out)
+                log.info( output )
                 if err:
                     log.error(err)
                     log.error('....makensis.exe not found on path')
@@ -402,13 +375,9 @@ class buildbase(gobject.GObject):
             cmd = os.path.join(msg_dir, 'msgfmt.exe')
             
             proc = subprocess.Popen( cmd, shell = True, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
-            status = proc.wait()
-            output = string.strip(proc.stdout.read())
-            err = proc.stderr.read()
-            proc.stderr.close()
-            proc.stdout.close()
-            del proc
-            
+            (out, err) = proc.communicate()
+            output = string.strip(out)
+            log.info( output )
             if not err.startswith(cmd):
                 #log.error(err)
                 log.error('msgfmt.exe not found on path')
