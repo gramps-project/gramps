@@ -81,6 +81,7 @@ class buildbase(gobject.GObject):
         self.out_dir = '.'     # the directory to output final installer to, and the expand source to
         self.repository_path = '.' #where the source comes from, either SVN root or a tarball
         self.bBuildInstaller = True
+        self.tarbase3 = '.'
         
     def getbuild_src(self):
         return os.path.join(self.build_root, 'src')
@@ -452,12 +453,12 @@ class buildbase(gobject.GObject):
             tar = tarfile.open(self.repository_path)
             tar.extractall(self.out_dir)
             tar.close()
-            base = os.path.basename(self.repository_path)
-            extractDir =  os.path.join(self.out_dir, base.replace('.tar.gz', '')  )
+            #base = os.path.basename(self.repository_path)
+            extractDir =  os.path.join(self.out_dir, self.tarbase3  )
             try:
                 os.rename( extractDir, self.build_root)
             except WindowsError, e:
-                log.error("FAILED: extractDir=%s, build_root=%s" % (extractDir, self.build_root))
+                log.error("FAILED: \n\t extractDir=%s \n\t build_root=%s" % (extractDir, self.build_root))
                 raise WindowsError, e
         else:
             log.error( "Sorry %s is not a tar file" % self.repository_path )
@@ -474,6 +475,9 @@ class buildbase(gobject.GObject):
                     file = tar.extractfile(member)
                     lines = file.readlines()
                     vers = self.getVersionFromLines(lines)
+                if 'TODO' in member: #need to get path this will extract too, grab it of one of the files
+                    self.tarbase3, rest = member.split('/', 1)
+                    print '==ExtractPath', self.tarbase3
             tar.close()
         log.debug( 'Version (%s)' % (vers) )
         return vers

@@ -17,7 +17,7 @@ The following procedure is capable of creating a Windows installer from either W
 or Linux OS's as long as the correct tools are installed.
 
 The following programs are required to be installed and on the path
-    - python
+    - python (currently only tested on python 2.6 - not ready for python 3.x yet)
     - nsis  at least V2.42  (http://nsis.sourceforge.net  or  apt-get install nsis)
     - msgfmt                (for windows http://gnuwin32.sourceforge.net/packages/gettext.htm)
     
