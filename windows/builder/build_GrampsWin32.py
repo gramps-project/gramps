@@ -121,7 +121,9 @@ class buildbase(gobject.GObject):
         destdir cannot exist, script will clean up dir first
         '''
         log.debug('========== exportSVN(%s, %s)' % (svn_dir, destdir) )
-        cmd = '"%s" export %s %s' % (SVN_exe ,svn_dir, destdir)
+#        cmd = '"%s" export %s %s' % (SVN_exe ,svn_dir, destdir)
+        cmd = [SVN_exe, 'export' ,svn_dir, destdir] #'"%s" export %s %s' % (SVN_exe ,svn_dir, destdir)
+        
         log.info( "Running: %s" % cmd)
         
         proc = subprocess.Popen( cmd, shell = True, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
@@ -164,7 +166,8 @@ class buildbase(gobject.GObject):
 
         #should tests be more along lines of os.name which returns 'posix', 'nt', 'mac', 'os2', 'ce', 'java', 'riscos'
         if sys.platform == 'win32':
-            cmd = '"%s" /V3 %s' % (MAKENSIS_exe, pth2nsis_script)
+#            cmd = '"%s" /V3 %s' % (MAKENSIS_exe, pth2nsis_script)
+            cmd = [MAKENSIS_exe, '/V3',pth2nsis_script]
         elif sys.platform == 'linux2':
             #assumption makensis is installed and on the path
             cmd = '%s -V3 %s' % (MAKENSIS_exe, pth2nsis_script)
@@ -254,10 +257,10 @@ class buildbase(gobject.GObject):
             mo_file = os.path.join(lan_path,"gramps.mo")
             log.info( mo_file )
 
-            cmd = "%s --statistics -o %s %s" % (msgfmtCmd, mo_file, po_file)
-            #log.debug( cmd )
-            
-            proc = subprocess.Popen( cmd, shell = True, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
+            cmd = [msgfmtCmd, '--statistics','-o', mo_file, po_file]
+            log.debug( cmd )
+
+            proc = subprocess.Popen( cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
             (out, err) = proc.communicate()
             output = string.strip(out)
             log.info( output )

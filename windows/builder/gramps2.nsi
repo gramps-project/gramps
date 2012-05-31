@@ -29,8 +29,8 @@
 # o WARNING: Except the uninstaller. That re-paths for some reason.
 #
 !define GRAMPS_VERSION      $%GRAMPS_VER%
-!define GRAMPS_BUILD_PATH   $%GRAMPS_BUILD_DIR%
-!define GRAMPS_OUT_PATH     $%GRAMPS_OUT_DIR%
+!define GRAMPS_BUILD_PATH   "$%GRAMPS_BUILD_DIR%"
+!define GRAMPS_OUT_PATH     "$%GRAMPS_OUT_DIR%"
 
 !define MIN_PYTHON_VERSION      "2.6.0"
 !define MIN_GTK_VERSION         "2.12.9"
@@ -50,7 +50,7 @@
 
 # output file
 Name ${PRODUCT_NAME}
-OutFile ${GRAMPS_OUT_PATH}\gramps-${PRODUCT_VERSION}.exe
+OutFile "${GRAMPS_OUT_PATH}\gramps-${PRODUCT_VERSION}.exe"
 
 # self ensure we don't have a corrupted file
 CRCCheck on
@@ -107,7 +107,7 @@ PageExEnd
  ;Custom page - for dependancy checking
 Page custom DependenciesPageFunction DependenciesPageLeave
 ; License page
-!insertmacro MUI_PAGE_LICENSE ${GRAMPS_BUILD_PATH}\COPYING
+!insertmacro MUI_PAGE_LICENSE "${GRAMPS_BUILD_PATH}\COPYING"
 ; Component Page
 ;!insertmacro MUI_PAGE_COMPONENTS
 ; Directory page
@@ -573,7 +573,7 @@ Section "MainSection" SEC01
 #  File "${GRAMPS_BUILD_PATH}\gramps.py"
     SetOverwrite try
     #File /r ${GRAMPS_BUILD_PATH}\src\*.*
-    File /r ${GRAMPS_BUILD_PATH}\*.*
+    File /r "${GRAMPS_BUILD_PATH}\*.*"
     WriteRegStr HKLM "SOFTWARE\${PRODUCT_NAME}" "" "$INSTDIR"
     WriteRegStr HKLM "SOFTWARE\${PRODUCT_NAME}" "version" ${PRODUCT_VERSION}
     Call WriteGrampsLauncher
