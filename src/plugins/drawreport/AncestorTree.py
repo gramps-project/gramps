@@ -665,7 +665,6 @@ class AncestorTree(Report):
         #The canvas that we will put our report on and print off of
         self.canvas = Canvas(self.doc)
 
-    def begin_report(self):
         """
         This report needs the following parameters (class variables)
         that come in the options class.
