@@ -2565,7 +2565,8 @@ class GedcomParser(UpdateCallback):
                 src.set_title(title)
                 self.dbase.add_source(src, self.trans)
             
-        self.__check_xref()
+        if not self.dbase.get_feature("skip-check-xref"):
+            self.__check_xref()
         self.dbase.enable_signals()
         self.dbase.request_rebuild()
         if self.number_of_errors == 0:
@@ -3033,7 +3034,7 @@ class GedcomParser(UpdateCallback):
             txt = _("\nThe imported file was not self-contained.\n"
                      "To correct for that, %d objects were created and\n"
                      "their typifying attribute was set to 'Unknown'.\n"
-                     "Where possible these 'Unkown' objects are \n"
+                     "Where possible these 'Unknown' objects are \n"
                      "referenced by note %s.\n"
                      ) % (self.missing_references, self.explanation.gramps_id)
             self.__add_msg(txt)
