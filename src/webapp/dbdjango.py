@@ -99,6 +99,8 @@ class DbDjango(DbWriteBase, DbReadBase):
     def __init__(self):
         DbReadBase.__init__(self)
         DbWriteBase.__init__(self)
+        # skip GEDCOM cross-ref check for now:
+        self.set_feature("skip-check-xref", True)
         self.dji = DjangoInterface()
         self.readonly = False
         self.db_is_open = True
@@ -768,33 +770,53 @@ class DbDjango(DbWriteBase, DbReadBase):
         return self.dji.Person.filter(gramps_id=gramps_id).count() > 0
 
     def has_person_handle(self, handle):
+        if handle in self.import_cache:
+            return True
         return self.dji.Person.filter(handle=handle).count() == 1
 
     def has_family_handle(self, handle):
+        if handle in self.import_cache:
+            return True
         return self.dji.Family.filter(handle=handle).count() == 1
 
     def has_citation_handle(self, handle):
+        if handle in self.import_cache:
+            return True
         return self.dji.Citation.filter(handle=handle).count() == 1
 
     def has_source_handle(self, handle):
+        if handle in self.import_cache:
+            return True
         return self.dji.Source.filter(handle=handle).count() == 1
 
     def has_repository_handle(self, handle):
+        if handle in self.import_cache:
+            return True
         return self.dji.Repository.filter(handle=handle).count() == 1
 
     def has_note_handle(self, handle):
+        if handle in self.import_cache:
+            return True
         return self.dji.Note.filter(handle=handle).count() == 1
 
     def has_place_handle(self, handle):
+        if handle in self.import_cache:
+            return True
         return self.dji.Place.filter(handle=handle).count() == 1
 
     def has_event_handle(self, handle):
+        if handle in self.import_cache:
+            return True
         return self.dji.Event.filter(handle=handle).count() == 1
 
     def has_tag_handle(self, handle):
+        if handle in self.import_cache:
+            return True
         return self.dji.Tag.filter(handle=handle).count() == 1
 
     def has_object_handle(self, handle):
+        if handle in self.import_cache:
+            return True
         return self.dji.Media.filter(handle=handle).count() == 1
 
     def has_name_group_key(self, key):
