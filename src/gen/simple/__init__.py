@@ -1,7 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2001  David R. Hampton
+# Copyright (C) 2001-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,14 +18,12 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# gen/__init__.py
+
 # $Id$
-#
 
-"""
-The gen module provides packages that are common to all gramps 
-interfaces (gui, cli and web).
-"""
+"Simple access routines"
 
-__all__ = [ "datehandler", "db", "display", "filters", "lib", "locale", "merge",
-            "mime", "plug", "proxy", "simple", "utils" ]
+from _simpleaccess import *
+from _simpledoc import *
+from _simpletable import *
+

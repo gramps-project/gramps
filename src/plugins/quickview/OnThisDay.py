@@ -26,7 +26,8 @@
 Display all events on a particular day.
 """
 
-from Simple import SimpleAccess, SimpleDoc, SimpleTable
+from gen.simple import SimpleAccess, SimpleDoc, SimpleTable
+from gui.plug.quick import QuickTable
 from gen.ggettext import gettext as _
 import gen.lib
 
@@ -66,11 +67,11 @@ def run(database, document, main_event):
     # setup the simple access functions
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
-    stab = SimpleTable(sdb)
+    stab = QuickTable(sdb)
     stab.set_link_col(3)
-    yeartab = SimpleTable(sdb)
+    yeartab = QuickTable(sdb)
     yeartab.set_link_col(3)
-    histab = SimpleTable(sdb)
+    histab = QuickTable(sdb)
     histab.set_link_col(3)
 
     # display the title

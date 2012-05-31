@@ -310,7 +310,7 @@ class StyledTextEditor(gtk.TextView):
         """
         Return a string useful for a tooltip given a LinkTag object.
         """
-        from Simple import SimpleAccess
+        from gen.simple import SimpleAccess
         win_obj = find_parent_with_attr(self, attr="dbstate")
         display = link_tag.data
         if win_obj:

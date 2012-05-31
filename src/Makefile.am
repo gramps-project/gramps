@@ -8,8 +8,7 @@ SUBDIRS = \
 	gen \
 	gui \
 	images \
-	plugins \
-	Simple
+	plugins
 
 gdirdir=$(prefix)/share/gramps
 
@@ -38,7 +37,6 @@ gdir_PYTHON = \
 	MacTransUtils.py\
 	ManagedWindow.py\
 	QuestionDialog.py\
-	QuickReports.py\
 	RecentFiles.py\
 	Relationship.py\
 	Reorder.py\

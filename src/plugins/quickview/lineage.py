@@ -33,7 +33,8 @@ Display a person's father or mother lineage
 #-------------------------------------------------------------------------
 
 import gen.lib
-from Simple import SimpleAccess, SimpleDoc, SimpleTable
+from gen.simple import SimpleAccess, SimpleDoc
+from gui.plug.quick import QuickTable
 from gen.ggettext import gettext as _
 
 __FMT     = "%-30s\t%-12s\t%-12s"
@@ -57,7 +58,7 @@ def run_father(database, document, person):
         " People in this lineage all share the same Y-chromosome."
         ))
     sd.paragraph("")
-    stab = SimpleTable(sa)
+    stab = QuickTable(sa)
     stab.columns(_("Name Father"), _("Birth Date"), _("Death Date"), _("Remark"))
     make_details(gen.lib.Person.MALE, person, sa, sd, database, stab)
     stab.write(sd)
@@ -89,7 +90,7 @@ def run_mother(database, document, person):
         ))
     sd.paragraph("")
     
-    stab = SimpleTable(sa)
+    stab = QuickTable(sa)
     stab.columns(_("Name Mother"), _("Birth"), _("Death Date"), _("Remark"))
     make_details(gen.lib.Person.FEMALE, person, sa, sd, database, stab)
     stab.write(sd)

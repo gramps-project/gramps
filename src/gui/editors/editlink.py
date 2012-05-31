@@ -37,7 +37,7 @@ from gen.ggettext import gettext as _
 import ManagedWindow
 import GrampsDisplay
 from glade import Glade
-from Simple import SimpleAccess
+from gen.simple import SimpleAccess
 
 WEB, EVENT, FAMILY, MEDIA, NOTE, PERSON, PLACE, REPOSITORY, SOURCE = range(9)
 OBJECT_MAP = {

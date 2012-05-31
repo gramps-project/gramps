@@ -302,7 +302,7 @@ class EditPrimary(ManagedWindow.ManagedWindow, DbGUIElement):
         """
         Create actions and ui of context menu
         """
-        from QuickReports import create_quickreport_menu
+        from gui.plug.quick import create_quickreport_menu        
         
         self.popupmanager = gtk.UIManager()
         #add custom actions

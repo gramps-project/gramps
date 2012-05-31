@@ -47,7 +47,7 @@ from gui.editors import EditPerson, EditFamily
 import ManagedWindow
 import ConfigParser
 from gui.utils import add_menuitem
-from QuickReports import run_quick_report_by_name
+from gui.plug.quick import run_quick_report_by_name
 import GrampsDisplay
 from glade import Glade
 from gui.pluginmanager import GuiPluginManager

@@ -722,7 +722,7 @@ class ScratchFamilyLink(ScratchHandleWrapper):
         self.refresh()
 
     def refresh(self):
-        from Simple import SimpleAccess
+        from gen.simple import SimpleAccess
         if self._handle:
             family = self._db.get_family_from_handle(self._handle)
             if family:

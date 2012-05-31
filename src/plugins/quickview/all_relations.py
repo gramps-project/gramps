@@ -31,7 +31,7 @@ Display a person's relations to the home person
 #
 #-------------------------------------------------------------------------
 
-from Simple import SimpleAccess, SimpleDoc
+from gen.simple import SimpleAccess, SimpleDoc
 from gen.ggettext import gettext as _
 import Relationship
 

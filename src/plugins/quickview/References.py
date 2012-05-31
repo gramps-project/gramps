@@ -27,7 +27,8 @@
 Display references for any object
 """
 
-from Simple import SimpleAccess, SimpleDoc, SimpleTable
+from gen.simple import SimpleAccess, SimpleDoc
+from gui.plug.quick import QuickTable
 from gen.ggettext import gettext as _
 
 def get_ref(db, objclass, handle):
@@ -62,7 +63,7 @@ def run(database, document, object, item, trans):
     # setup the simple access functions
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
-    stab = SimpleTable(sdb)
+    stab = QuickTable(sdb)
 
     # display the title
     sdoc.title(_("References for this %s") % trans)

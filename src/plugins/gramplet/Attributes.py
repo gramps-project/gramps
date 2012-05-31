@@ -20,7 +20,7 @@
 #
 
 from ListModel import ListModel, NOSORT
-from QuickReports import run_quick_report_by_name
+from gui.plug.quick import run_quick_report_by_name
 from gen.plug import Gramplet
 from gen.ggettext import gettext as _
 import gtk

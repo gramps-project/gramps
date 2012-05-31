@@ -26,7 +26,8 @@
 Display a person's events, both personal and family
 """
 
-from Simple import SimpleAccess, by_date, SimpleDoc, SimpleTable
+from gen.simple import SimpleAccess, by_date, SimpleDoc
+from gui.plug.quick import QuickTable
 from gen.ggettext import gettext as _
 
 def run(database, document, person):
@@ -38,7 +39,7 @@ def run(database, document, person):
     
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
-    stab = SimpleTable(sdb)
+    stab = QuickTable(sdb)
 
     # get the personal events
     event_list = sdb.events(person)
@@ -74,7 +75,7 @@ def run_fam(database, document, family):
     
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
-    stab = SimpleTable(sdb)
+    stab = QuickTable(sdb)
     
     # get the family events
     event_list = [(_('Family'), x) for x in sdb.events(family)]
@@ -112,7 +113,7 @@ def run_fam(database, document, family):
         document.has_data = True
     stab.write(sdoc)
 
-    stab = SimpleTable(sdb)
+    stab = QuickTable(sdb)
     sdoc.header1(_("Personal events of the children"))
     stab.columns(_("Family Member"), _("Event Type"), 
                  _("Event Date"), _("Event Place"))

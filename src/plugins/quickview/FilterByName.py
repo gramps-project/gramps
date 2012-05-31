@@ -27,9 +27,10 @@
 Display filtered data
 """
 
-from Simple import SimpleAccess, SimpleDoc, SimpleTable
+from gen.simple import SimpleAccess, SimpleDoc
+from gui.plug.quick import QuickTable
 from Utils import media_path_full
-from QuickReports import run_quick_report_by_name_direct
+from gui.plug.quick import run_quick_report_by_name_direct
 from gen.lib import Person
 import gen.datehandler
 
@@ -81,7 +82,7 @@ def run(database, document, filter_name, *args, **kwargs):
     # setup the simple access functions
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
-    stab = SimpleTable(sdb)
+    stab = QuickTable(sdb)
     if (filter_name == 'all'):
         sdoc.title(_("Summary counts of current selection"))
         sdoc.paragraph("")

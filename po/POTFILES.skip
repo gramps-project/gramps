@@ -220,6 +220,10 @@ src/gen/proxy/filter.py
 src/gen/proxy/living.py
 src/gen/proxy/proxybase.py
 
+# gen.simple
+src/gen/simple/__init__.py
+src/gen/simple/_simpledoc.py
+
 # gen utils API
 src/gen/utils/__init__.py
 src/gen/utils/callback.py
@@ -361,9 +365,6 @@ src/plugins/rel/rel_pt.py
 src/plugins/rel/rel_ru.py
 src/plugins/rel/rel_sk.py
 src/plugins/rel/rel_sv.py
-
-# Simple API
-src/Simple/_SimpleDoc.py
 
 #
 #   web

@@ -64,6 +64,7 @@ from QuestionDialog import QuestionDialog, QuestionDialog2
 from gui.filtereditor import FilterEditor
 from gen.ggettext import sgettext as _
 from DdTargets import DdTargets
+from gui.plug.quick import create_quickreport_menu, create_web_connect_menu
 
 #----------------------------------------------------------------
 #
@@ -740,8 +741,6 @@ class ListView(NavigationView):
         """
         if not self.dbstate.open:
             return False
-        from QuickReports import (create_quickreport_menu, 
-                                  create_web_connect_menu)
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             if self.type_list() == LISTFLAT:
                 self.edit(obj)

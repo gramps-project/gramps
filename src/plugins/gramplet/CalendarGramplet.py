@@ -25,7 +25,7 @@
 #------------------------------------------------------------------------
 from gen.plug import Gramplet
 from gen.ggettext import sgettext as _
-from QuickReports import run_quick_report_by_name
+from gui.plug.quick import run_quick_report_by_name
 import gen.lib
 
 #------------------------------------------------------------------------

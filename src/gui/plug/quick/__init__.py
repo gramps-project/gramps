@@ -1,8 +1,10 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2001  David R. Hampton
-# Copyright (C) 2001-2006  Donald N. Allingham
+# Copyright (C) 2001      David R. Hampton
+# Copyright (C) 2001-2006 Donald N. Allingham
+# Copyright (C) 2007      Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,12 +20,16 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-
+#
 # $Id$
 
-"Simple access routines"
+"Quick Report Framework"
 
-from _SimpleAccess import *
-from _SimpleDoc import *
-from _SimpleTable import *
-
+from _quickreports import (create_web_connect_menu, 
+                           create_quickreport_menu, 
+                           get_quick_report_list, 
+                           run_quick_report_by_name, 
+                           run_quick_report_by_name_direct, 
+                           run_report)
+from _quicktable import QuickTable
+from _textbufdoc import TextBufDoc

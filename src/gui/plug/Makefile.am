@@ -4,7 +4,9 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-SUBDIRS = report
+SUBDIRS = \
+	quick \
+	report
 
 pkgpythondir = $(datadir)/@PACKAGE@/gui/plug
 

@@ -52,7 +52,8 @@ from gen.plug import PluginRegister, PTYPE_STR, load_addon_file
 from gen.ggettext import gettext as _
 from gui.utils import open_file_with_default_application
 from gui.pluginmanager import GuiPluginManager
-from gui.plug import tool, add_gui_options
+import tool
+from _guioptions import add_gui_options
 from QuestionDialog import InfoDialog
 from gui.editors import EditPerson
 import Utils

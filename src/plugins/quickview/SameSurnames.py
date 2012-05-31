@@ -27,7 +27,8 @@
 Display a people who have a person's same surname or given name.
 """
 
-from Simple import SimpleAccess, SimpleDoc, SimpleTable
+from gen.simple import SimpleAccess, SimpleDoc
+from gui.plug.quick import QuickTable
 from gen.ggettext import gettext as _
 from gen.ggettext import ngettext
 import gen.lib
@@ -95,7 +96,7 @@ def run(database, document, person):
     # setup the simple access functions
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
-    stab = SimpleTable(sdb)
+    stab = QuickTable(sdb)
     if isinstance(person, gen.lib.Person):
         surname = sdb.surname(person)
         rsurname = person.get_primary_name().get_group_name()
@@ -137,7 +138,7 @@ def run_given(database, document, person):
     # setup the simple access functions
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
-    stab = SimpleTable(sdb)
+    stab = QuickTable(sdb)
     if isinstance(person, gen.lib.Person):
         rgivenname = person.get_primary_name().get_first_name()
     else:

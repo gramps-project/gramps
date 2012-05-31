@@ -40,7 +40,7 @@ from cStringIO import StringIO
 #
 #------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".QuickReports")
+log = logging.getLogger(".quickreports")
 
 #-------------------------------------------------------------------------
 #
@@ -60,6 +60,8 @@ from gen.plug import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY, CATEGORY_QR_MEDIA,
                       CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY, 
                       CATEGORY_QR_NOTE,  CATEGORY_QR_CITATION, 
                       CATEGORY_QR_SOURCE_OR_CITATION)
+from _textbufdoc import TextBufDoc
+from gen.simple import make_basic_stylesheet
 
 def flatten(L):
     """
@@ -202,8 +204,6 @@ def run_quick_report_by_name_direct(report_name, database, document, handle):
     """
     Useful for running one quick report from another
     """
-    from docgen import TextBufDoc
-    from Simple import make_basic_stylesheet
     report = None
     pmgr = GuiPluginManager.get_instance()
     for pdata in pmgr.get_reg_quick_reports():
@@ -237,8 +237,6 @@ def run_report(dbstate, uistate, category, handle, pdata, container=None,
         **kwargs are only used for special quick views that allow additional
         arguments, and that are run by run_quick_report_by_name().
         """
-        from docgen import TextBufDoc
-        from Simple import make_basic_stylesheet
         pmgr = GuiPluginManager.get_instance()
         mod = pmgr.load_plugin(pdata)
         if not mod:

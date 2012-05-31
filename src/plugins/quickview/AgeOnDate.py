@@ -27,7 +27,8 @@
 Display references for any object
 """
 
-from Simple import SimpleAccess, SimpleDoc, SimpleTable
+from gen.simple import SimpleAccess, SimpleDoc
+from gui.plug.quick import QuickTable
 from Utils import probably_alive
 from gen.ggettext import gettext as _
 import gen.datehandler
@@ -41,7 +42,7 @@ def run(database, document, date):
     # setup the simple access functions
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
-    stab = SimpleTable(sdb)
+    stab = QuickTable(sdb)
     if not date.get_valid():
         sdoc.paragraph("Date is not a valid date.")
         return

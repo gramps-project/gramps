@@ -119,6 +119,7 @@ src/gen/plug/docgen/Makefile
 src/gen/plug/menu/Makefile
 src/gen/plug/report/Makefile
 src/gen/proxy/Makefile
+src/gen/simple/Makefile
 src/gen/utils/Makefile
 src/gui/Makefile
 src/gui/editors/Makefile
@@ -129,13 +130,13 @@ src/gui/glade/Makefile
 src/gui/logger/Makefile
 src/gui/merge/Makefile
 src/gui/plug/Makefile
+src/gui/plug/quick/Makefile
 src/gui/plug/report/Makefile
 src/gui/selectors/Makefile
 src/gui/views/Makefile
 src/gui/views/treemodels/Makefile
 src/gui/widgets/Makefile
 src/docgen/Makefile
-src/Simple/Makefile
 src/plugins/Makefile
 src/plugins/docgen/Makefile
 src/plugins/drawreport/Makefile

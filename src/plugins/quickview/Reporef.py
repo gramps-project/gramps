@@ -34,7 +34,8 @@
 Display RepoRef for sources related to active repository
 """
 
-from Simple import SimpleAccess, SimpleDoc, SimpleTable
+from gen.simple import SimpleAccess, SimpleDoc
+from gui.plug.quick import QuickTable
 from gen.ggettext import gettext as _
 
 def run(database, document, repo):
@@ -46,7 +47,7 @@ def run(database, document, repo):
 
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
-    stab = SimpleTable(sdb)
+    stab = QuickTable(sdb)
 
     # First we find repository and add its text
 

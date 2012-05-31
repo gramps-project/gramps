@@ -22,13 +22,14 @@
 #
 #
 
-from Simple import SimpleAccess, SimpleDoc, SimpleTable
+from gen.simple import SimpleAccess, SimpleDoc
+from gui.plug.quick import QuickTable
 from gen.ggettext import gettext as _
 
 def run(database, document, attribute, value=None):
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
-    stab = SimpleTable(sdb)
+    stab = QuickTable(sdb)
     sdoc.title(_("People who have the '%s' Attribute") % attribute)
     sdoc.paragraph("")
     stab.columns(_("Person"), str(attribute))

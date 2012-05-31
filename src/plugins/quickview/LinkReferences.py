@@ -25,7 +25,8 @@
 Display link references for a note
 """
 
-from Simple import SimpleAccess, SimpleDoc, SimpleTable
+from gen.simple import SimpleAccess, SimpleDoc
+from gui.plug.quick import QuickTable
 from gen.lib import StyledTextTagType
 from gen.ggettext import gettext as _
 
@@ -37,7 +38,7 @@ def run(database, document, obj):
     # setup the simple access functions
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
-    stab = SimpleTable(sdb)
+    stab = QuickTable(sdb)
 
     # display the title
     sdoc.title(_("Link References for this note"))

@@ -22,5 +22,4 @@
 
 from TabbedDoc import TabbedDoc
 from ODSTab import ODSTab
-from TextBufDoc import TextBufDoc
 from CSVTab import CSVTab

@@ -328,6 +328,10 @@ src/gen/plug/report/utils.py
 # gen proxy API
 src/gen/proxy/private.py
 
+# gen.simple
+src/gen/simple/_simpleaccess.py
+src/gen/simple/_simpletable.py
+
 # gui - GUI code
 src/gui/aboutdialog.py
 src/gui/columnorder.py
@@ -426,6 +430,9 @@ src/gui/merge/mergesource.py
 src/gui/plug/_dialogs.py
 src/gui/plug/_guioptions.py
 src/gui/plug/_windows.py
+src/gui/plug/quick/_quickreports.py
+src/gui/plug/quick/_quicktable.py
+src/gui/plug/quick/_textbufdoc.py
 src/gui/plug/report/_docreportdialog.py
 src/gui/plug/report/_graphvizreportdialog.py
 src/gui/plug/report/_papermenu.py
@@ -470,9 +477,6 @@ src/gui/widgets/styledtexteditor.py
 src/gui/widgets/tageditor.py
 src/gui/widgets/undoableentry.py
 src/gui/widgets/validatedmaskedentry.py
-
-# Simple API
-src/Simple/_SimpleTable.py
 
 # Config package
 src/config.py

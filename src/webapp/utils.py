@@ -56,7 +56,7 @@ from webapp.dbdjango import DbDjango
 # Gramps Modules
 #
 #------------------------------------------------------------------------
-from Simple import SimpleTable, SimpleAccess, make_basic_stylesheet
+from gen.simple import SimpleTable, SimpleAccess, make_basic_stylesheet
 import Utils
 import DbState
 from gen.datehandler import displayer, parser

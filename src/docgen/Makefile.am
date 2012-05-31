@@ -9,8 +9,7 @@ docgen_PYTHON = \
 	__init__.py \
 	CSVTab.py \
 	ODSTab.py \
-	TabbedDoc.py \
-	TextBufDoc.py
+	TabbedDoc.py
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo

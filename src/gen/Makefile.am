@@ -15,6 +15,7 @@ SUBDIRS = \
 	mime \
 	plug \
 	proxy \
+	simple \
 	utils
 
 pkgpythondir = $(datadir)/@PACKAGE@/gen

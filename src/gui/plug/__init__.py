@@ -27,7 +27,7 @@
 __author__="jfriant"
 __date__ ="$Apr 20, 2010 3:13:24 PM$"
 
-from gui.plug import tool
+import tool
 
 from _guioptions import make_gui_option, add_gui_options
 from gen.plug import MenuOptions
