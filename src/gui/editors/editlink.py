@@ -90,12 +90,14 @@ class EditLink(ManagedWindow.ManagedWindow):
             self.uri_list.append_text(text)
         self.table.attach(self.uri_list, 1, 2, 0, 1)
         self.pick_item = self.top.get_object('button1')
-        #self.edit_item = self.top.get_object('button2')
+        self.new_button = self.top.get_object('new')
+        self.edit_button = self.top.get_object('edit')
         self.selected = self.top.get_object('label1')
         self.url_link = self.top.get_object('entry1')
         self.uri_list.connect("changed", self._on_type_changed)
         self.pick_item.connect("clicked", self._on_pick_one)
-        #self.edit_item.connect("clicked", self._on_edit_one)
+        self.new_button.connect("clicked", self._on_new)
+        self.edit_button.connect("clicked", self._on_edit_one)
         if self.url.startswith("gramps://"):
             object_class, prop, value = self.url[9:].split("/", 2)
             if object_class == "Event":
@@ -136,8 +138,23 @@ class EditLink(ManagedWindow.ManagedWindow):
     def display_link(self, obj_class, prop, value):
         return self.simple_access.display(obj_class, prop, value)
 
+    def _on_new_callback(self, obj): 
+        object_class = obj.__class__.__name__
+        self.selected.set_text(self.display_link(
+                object_class, "handle", obj.handle))
+        self.url_link.set_text("gramps://%s/%s/%s" % 
+                               (object_class, "handle", obj.handle))
+
+    def _on_new(self, widget):
+        from gui.editors import EditObject
+        object_class = OBJECT_MAP[self.uri_list.get_active()]
+        EditObject(self.dbstate, 
+                   self.uistate, 
+                   self.track, 
+                   object_class,
+                   callback=self._on_new_callback)
+        
     def _on_edit_one(self, widget):
-        # Not used due to modal dialog in StyledTextEditor
         from gui.editors import EditObject
         uri = self.url_link.get_text()
         if uri.startswith("gramps://"):
@@ -180,9 +197,13 @@ class EditLink(ManagedWindow.ManagedWindow):
         if self.uri_list.get_active() == WEB:
             self.url_link.set_sensitive(True)
             self.pick_item.set_sensitive(False)
+            self.new_button.set_sensitive(False)
+            self.edit_button.set_sensitive(False)
         else:
             self.url_link.set_sensitive(False)
             self.pick_item.set_sensitive(True)
+            self.new_button.set_sensitive(True)
+            self.edit_button.set_sensitive(True)
 
     def get_uri(self):
         if self.uri_list.get_active() == WEB:
