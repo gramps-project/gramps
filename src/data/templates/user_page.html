@@ -1,4 +1,5 @@
 {% extends "gramps-base.html" %}
+{% load my_tags %}
 
 {% block title %}{{sitename}} - user page {% endblock %}
 {% block heading %}{{sitename}} - user page {% endblock %}
@@ -31,6 +32,14 @@
    <td>Last login: </td><td><em>{{user.last_login}}</em></td>
 </tr>
 </table>
+
+{% if user.is_superuser %}
+  {% make_button "Edit Profile" "/admin/grampsdb/profile/%s" user.id %}
+  {% make_button "Edit User" "/admin/auth/user/%s" user.id %}
+{% else %}
+  <em>User</em>
+{% endif %}
+
 
 </p>
 

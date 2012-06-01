@@ -310,6 +310,14 @@ class DjangoInterface(object):
             retval += [(tuple(markup.styled_text_tag_type), value, ss_list)]
         return retval
 
+    def get_tag(self, tag):
+        changed = totime(tag.last_changed)
+        return (str(tag.handle),
+                tag.name,
+                tag.color,
+                tag.priority,
+                changed)
+
     def get_note(self, note):
         styled_text = [note.text, self.get_note_markup(note)]
         changed = totime(note.last_changed)

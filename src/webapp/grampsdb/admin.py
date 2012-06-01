@@ -24,7 +24,17 @@
 from webapp.grampsdb.models import *
 from django.contrib import admin
 
-for type_name in get_tables("all"):
-    admin.site.register(type_name[1])
+print dir(admin.ModelAdmin)
 
-admin.site.register(Profile)
+class MyAdmin(admin.ModelAdmin): 
+    def change_view(self, request, object_id, extra_context=None): 
+        print "object_id:", object_id
+        result = super(MyAdmin, self).change_view(request, object_id, extra_context) 
+        if not request.POST.has_key('_addanother') and not request.POST.has_key('_continue'): 
+            result['Location'] = "/"
+        return result
+
+for type_name in get_tables("all"):
+    admin.site.register(type_name[1], MyAdmin)
+admin.site.register(Profile, MyAdmin)
+

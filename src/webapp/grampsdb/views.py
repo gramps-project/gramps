@@ -188,7 +188,8 @@ def process_report_run(request, handle):
                     if "=" in pair:
                         key, value = pair.split("=", 1)
                         args[key] = value
-        if report.report_type == "textreport":
+        #############################################################################
+        if report.report_type == "report":
             filename = "/tmp/%s-%s.%s" % (str(profile.user.username), str(handle), args["off"])
             run_report(db, handle, of=filename, **args)
             mimetype = 'application/%s' % args["off"]

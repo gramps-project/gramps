@@ -618,6 +618,10 @@ class DbDjango(DbWriteBase, DbReadBase):
             data = self.dji.get_note(note)
         return gen.lib.Note.create(data)
 
+    def make_tag(self, tag):
+        data = self.dji.get_tag(tag)
+        return gen.lib.Tag.create(data)
+
     def make_place(self, place):
         if self.use_db_cache and place.cache:
             data = cPickle.loads(base64.decodestring(place.cache))
@@ -706,6 +710,13 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def iter_family_handles(self):
         return (family.handle for family in self.dji.Family.all())
+
+    def get_tag_from_name(self, name):
+        try:
+            tag = self.dji.Tag.filter(name=name)
+            return self.make_tag(tag[0])
+        except:
+            return None
 
     def get_person_from_gramps_id(self, gramps_id):
         if self.import_cache:
