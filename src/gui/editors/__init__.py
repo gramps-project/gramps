@@ -57,21 +57,27 @@ EDITORS = {
     'Note': EditNote,
     }
 
-def EditObject(dbstate, uistate, track, obj_class, prop, value):
+def EditObject(dbstate, uistate, track, obj_class, prop=None, value=None, callback=None):
     """
     Generic Object Editor. 
     obj_class is Person, Source, Repository, etc.
-    prop is 'handle' or 'gramps_id'
-    value is string handle or string gramps_id
+    prop is 'handle', 'gramps_id', or None (for new object)
+    value is string handle, string gramps_id, or None (for new object)
     """
     import logging
     LOG = logging.getLogger(".Edit")
     if obj_class in dbstate.db.get_table_names():
-        if prop in ("gramps_id", "handle"):
+        if value is None:
+            obj = dbstate.db.get_table_metadata(obj_class)["class_func"]()
+            try:
+                EDITORS[obj_class](dbstate, uistate, track, obj, callback=callback)
+            except Exception as msg:
+                LOG.warn(str(msg)) 
+        elif prop in ("gramps_id", "handle"):
             obj = dbstate.db.get_table_metadata(obj_class)[prop + "_func"](value)
             if obj:
                 try:
-                    EDITORS[obj_class](dbstate, uistate, track, obj)
+                    EDITORS[obj_class](dbstate, uistate, track, obj, callback=callback)
                 except Exception as msg:
                     LOG.warn(str(msg)) 
             else:
