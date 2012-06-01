@@ -595,6 +595,13 @@ class StyledTextEditor(gtk.TextView):
         # Send in a default link. Could be based on active person.
         selection_bounds = self.textbuffer.get_selection_bounds()
         if selection_bounds:
+            # Paste text to clipboards
+            text = str(self.textbuffer.get_text(selection_bounds[0], 
+                                                selection_bounds[1]))
+            clipboard = gtk.Clipboard(selection="CLIPBOARD")
+            clipboard.set_text(text)
+            clipboard = gtk.Clipboard(selection="PRIMARY")
+            clipboard.set_text(text)
             uri_dialog(self, None, self.setlink_callback)
 
     def setlink_callback(self, uri, tag=None):
@@ -728,6 +735,7 @@ class StyledTextEditor(gtk.TextView):
                 # if in a window:
                 win_obj = find_parent_with_attr(self, attr="dbstate")
                 if win_obj:
+                    # Edit the object:
                     obj_class, prop, value = url[9:].split("/")
                     from gui.editors import EditObject
                     EditObject(win_obj.dbstate, 
@@ -754,6 +762,14 @@ class StyledTextEditor(gtk.TextView):
         """
         Edit the URI of the link.
         """
+        # Paste text to clipboards
+        bounds = self.textbuffer.get_selection_bounds()
+        if bounds:
+            text = str(self.textbuffer.get_text(bounds[0], bounds[1]))
+            clipboard = gtk.Clipboard(selection="CLIPBOARD")
+            clipboard.set_text(text)
+            clipboard = gtk.Clipboard(selection="PRIMARY")
+            clipboard.set_text(text)
         uri_dialog(self, link_tag.data, 
                    lambda uri: self.setlink_callback(uri, link_tag))
     
