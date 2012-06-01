@@ -25,7 +25,7 @@ from gen.plug import Gramplet
 from gen.ggettext import gettext as _
 from gen.display.name import displayer as name_displayer
 import gen.datehandler
-from gen.utils import get_birth_or_fallback
+from gen.utils import get_birth_or_fallback, get_marriage_or_fallback
 import Errors
 import gtk
 import config
@@ -112,16 +112,6 @@ class Events(Gramplet):
         else:
             return ""
 
-    def get_start_date(self):
-        """
-        Get the start date for a person, usually a birth date, or
-        something close to birth.
-        """
-        active_handle = self.get_active('Person')
-        active = self.dbstate.db.get_person_from_handle(active_handle)
-        event = get_birth_or_fallback(self.dbstate.db, active)
-        return event.get_date_object() if event else None
-
     def edit_event(self, treeview):
         """
         Edit the selected event.
@@ -191,6 +181,16 @@ class PersonEvents(Events):
                 self.add_event_ref(event_ref, spouse)
         self.set_has_data(self.model.count > 0)
 
+    def get_start_date(self):
+        """
+        Get the start date for a person, usually a birth date, or
+        something close to birth.
+        """
+        active_handle = self.get_active('Person')
+        active = self.dbstate.db.get_person_from_handle(active_handle)
+        event = get_birth_or_fallback(self.dbstate.db, active)
+        return event.get_date_object() if event else None
+
 class FamilyEvents(Events):
     """
     Displays the events for a family.
@@ -230,4 +230,14 @@ class FamilyEvents(Events):
         for event_ref in active_family.get_event_ref_list():
             self.add_event_ref(event_ref)
         self.set_has_data(self.model.count > 0)
+
+    def get_start_date(self):
+        """
+        Get the start date for a family, usually a marriage date, or
+        something close to marriage.
+        """
+        active_handle = self.get_active('Family')
+        active = self.dbstate.db.get_family_from_handle(active_handle)
+        event = get_marriage_or_fallback(self.dbstate.db, active)
+        return event.get_date_object() if event else None
 
