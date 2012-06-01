@@ -99,6 +99,7 @@ class Tag(TableObject):
          self.__color,
          self.__priority,
          self.change) = data
+        return self
 
     def get_text_data_list(self):
         """
