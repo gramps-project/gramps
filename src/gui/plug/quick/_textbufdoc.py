@@ -103,7 +103,6 @@ class TextBufDoc(BaseDoc, TextDoc):
     #
     #--------------------------------------------------------------------
     def open(self, filename, container=None):
-        self.type = "gtk"
         self.has_data = True
         self.tag_table = gtk.TextTagTable()
 

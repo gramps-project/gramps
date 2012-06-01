@@ -76,7 +76,6 @@ class BaseDoc(object):
         self._style_sheet = styles
         self._creator = ""
         self.init_called = False
-        self.type = "standard"
 
     def init(self):
         self.init_called = True
