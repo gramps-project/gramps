@@ -63,6 +63,7 @@ import gobject
 import Utils
 import config
 from gen.display.name import displayer as name_displayer
+from gen.utils import get_marriage_or_fallback
 import gen.lib
 from gen.db import DbTxn
 import Errors
@@ -605,6 +606,14 @@ class EditFamily(EditPrimary):
         
         self.phandles = filter(None, self.phandles)
 
+    def get_start_date(self):
+        """
+        Get the start date for a family, usually a marriage date, or
+        something close to marriage.
+        """
+        event = get_marriage_or_fallback(self.dbstate.db, self.obj)
+        return event.get_date_object() if event else None
+
     def _create_tabbed_pages(self):
 
         notebook = gtk.Notebook()
@@ -620,7 +629,9 @@ class EditFamily(EditPrimary):
         self.event_list = EventEmbedList(self.dbstate,
                                          self.uistate, 
                                          self.track,
-                                         self.obj)
+                                         self.obj,
+                                         start_date=self.get_start_date())
+
         self._add_tab(notebook, self.event_list)
         self.track_ref_for_deletion("event_list")
             

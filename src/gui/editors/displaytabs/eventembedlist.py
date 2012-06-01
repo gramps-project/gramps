@@ -74,25 +74,26 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         (_('Description'), -1, 240, 0, EventRefModel.COL_FONTWEIGHT[0]),
         (_('Type'), EventRefModel.COL_TYPE[0], 100, 0, 
                                             EventRefModel.COL_FONTWEIGHT[0]),
-        (_('ID'), EventRefModel.COL_GID[0], 60, 0, 
+        (_('ID'), EventRefModel.COL_GID[0], 50, 0, 
                                             EventRefModel.COL_FONTWEIGHT[0]),
-        (_('Date'), EventRefModel.COL_SORTDATE[0], 150, 1, -1),
-        (_('Place'), EventRefModel.COL_PLACE[0], 140, 0, -1),
-        (_('Role'), EventRefModel.COL_ROLE[0], 80, 0, -1),
+        (_('Date'), EventRefModel.COL_SORTDATE[0], 80, 1, -1),
+        (_('Place'), EventRefModel.COL_PLACE[0], 150, 0, -1),
+        (_('Role'), EventRefModel.COL_ROLE[0], 60, 0, -1),
         None,
         None,
+        None,
+        (_('Age'), EventRefModel.COL_SORTAGE[0], 60, 0, -1),
         None
         ]
 
-    def __init__(self, dbstate, uistate, track, obj, 
-                 build_model=EventRefModel):
+    def __init__(self, dbstate, uistate, track, obj, build_model=EventRefModel, **kwargs):
         self.obj = obj
         self._groups = []
         self._data = []
         DbGUIElement.__init__(self, dbstate.db)
         GroupEmbeddedList.__init__(self, dbstate, uistate, track, _('_Events'), 
                               build_model, share_button=True, 
-                              move_buttons=True)
+                              move_buttons=True, **kwargs)
     
     def _connect_db_signals(self):
         """
@@ -186,7 +187,14 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         The columns to show as a tuple containing 
         tuples (show/noshow, model column)
         """
-        return ((1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5))
+        return ((1, 0),  # desc
+                (1, 1),  # type
+                (1, 2),  # gid
+                (1, 3),  # date
+                (1, 9),  # age
+                (1, 4),  # place
+                (1, 5),  # role
+                )
 
     def default_types(self):
         return [

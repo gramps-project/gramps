@@ -25,8 +25,12 @@ from gen.plug import Gramplet
 from gen.ggettext import gettext as _
 from gen.display.name import displayer as name_displayer
 import gen.datehandler
+from gen.utils import get_birth_or_fallback
 import Errors
 import gtk
+import config
+
+age_precision = config.get('preferences.age-display-precision')
 
 class Events(Gramplet):
     """
@@ -48,8 +52,10 @@ class Events(Gramplet):
         titles = [('', NOSORT, 50,),
                   (_('Type'), 1, 100),
                   (_('Details'), 2, 200),
-                  (_('Date'), 4, 100),
-                  ('', 4, 100),
+                  (_('Date'), 3, 100),
+                  ('', NOSORT, 50),
+                  (_('Age'), 4, 100),
+                  ('', NOSORT, 50),
                   (_('Place'), 5, 400),
                   (_('Role'), 6, 100)]
         self.model = ListModel(top, titles, event_func=self.edit_event)
@@ -62,6 +68,8 @@ class Events(Gramplet):
         event = self.dbstate.db.get_event_from_handle(event_ref.ref)
         event_date = gen.datehandler.get_date(event)
         event_sort = '%012d' % event.get_date_object().get_sort_value()
+        person_age      = self.column_age(event)
+        person_age_sort = self.column_sort_age(event)
         place = ''
         handle = event.get_place_handle()
         if handle:
@@ -75,8 +83,44 @@ class Events(Gramplet):
                         details,
                         event_date,
                         event_sort,
+                        person_age,
+                        person_age_sort,
                         place,
                         str(event_ref.get_role())))
+
+    def column_age(self, event):
+        """
+        Returns a string representation of age in years.  Change
+        precision=2 for "year, month", or precision=3 for "year,
+        month, days"
+        """
+        date = event.get_date_object()
+        start_date = self.get_start_date()
+        if date and start_date:
+            return (date - start_date).format(precision=age_precision)
+        else:
+            return ""
+
+    def column_sort_age(self, event):
+        """
+        Returns a string version of number of days of age.
+        """
+        date = event.get_date_object()
+        start_date = self.get_start_date()
+        if date and start_date:
+            return "%09d" % int(date - start_date)
+        else:
+            return ""
+
+    def get_start_date(self):
+        """
+        Get the start date for a person, usually a birth date, or
+        something close to birth.
+        """
+        active_handle = self.get_active('Person')
+        active = self.dbstate.db.get_person_from_handle(active_handle)
+        event = get_birth_or_fallback(self.dbstate.db, active)
+        return event.get_date_object() if event else None
 
     def edit_event(self, treeview):
         """

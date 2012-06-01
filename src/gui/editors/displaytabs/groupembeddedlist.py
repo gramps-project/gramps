@@ -60,10 +60,11 @@ class GroupEmbeddedList(EmbeddedList):
     _WORKGROUP = 0
     
     def __init__(self, dbstate, uistate, track, name, build_model,
-                 share_button=False, move_buttons=False, jump_button=False):
+                 share_button=False, move_buttons=False, jump_button=False, **kwargs):
         """
         Create a new list, using the passed build_model to populate the list.
         """
+        self.kwargs = kwargs
         EmbeddedList.__init__(self,  dbstate, uistate, track, name, build_model,
                             share_button, move_buttons, jump_button)
         #connect click on the first column
@@ -79,7 +80,7 @@ class GroupEmbeddedList(EmbeddedList):
         groups
         """
         return self.build_model(self.get_data(), self.dbstate.db, 
-                                self.groups())
+                                self.groups(), **self.kwargs)
 
     def groups(self):
         """

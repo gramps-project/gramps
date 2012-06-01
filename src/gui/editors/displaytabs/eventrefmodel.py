@@ -51,6 +51,7 @@ import config
 #
 #-------------------------------------------------------------------------
 invalid_date_format = config.get('preferences.invalid-date-format')
+age_precision       = config.get('preferences.age-display-precision')
 
 #-------------------------------------------------------------------------
 #
@@ -71,11 +72,13 @@ class EventRefModel(gtk.TreeStore):
     COL_SORTDATE = (6, str)
     COL_EVENTREF = (7, object)
     COL_FONTWEIGHT = (8, int)
+    COL_AGE = (9, str)
+    COL_SORTAGE = (10, str)
     
     COLS = (COL_DESCR, COL_TYPE, COL_GID, COL_DATE, COL_PLACE, COL_ROLE, 
-            COL_SORTDATE, COL_EVENTREF, COL_FONTWEIGHT)
+            COL_SORTDATE, COL_EVENTREF, COL_FONTWEIGHT, COL_AGE, COL_SORTAGE)
 
-    def __init__(self, event_list, db, groups):
+    def __init__(self, event_list, db, groups, **kwargs):
         """
         @param event_list: A list of lists, every entry is a group, the entries
             in a group are the data that needs to be shown subordinate to the 
@@ -83,7 +86,9 @@ class EventRefModel(gtk.TreeStore):
         @param db: a database objects that can be used to obtain info
         @param groups: a list of (key, name) tuples. key is a key for the group
             that might be used. name is the name for the group.
+        @param kwargs: A dictionary of additional settings/values.
         """
+        self.start_date = kwargs.get("start_date", None)
         typeobjs = (x[1] for x in self.COLS)
         gtk.TreeStore.__init__(self, *typeobjs)
         self.db = db
@@ -96,7 +101,7 @@ class EventRefModel(gtk.TreeStore):
 
     def row_group(self, index, group):
         name = self.namegroup(index, len(group))
-        return [name, '', '', '', '', '', '', (index, None), WEIGHT_BOLD]
+        return [name, '', '', '', '', '', '', (index, None), WEIGHT_BOLD, '', '']
 
     def namegroup(self, groupindex, length):
         return self._GROUPSTRING % {'groupname': self.groups[groupindex][1],
@@ -112,6 +117,8 @@ class EventRefModel(gtk.TreeStore):
                 self.column_sort_date(eventref),
                 (index, eventref),
                 self.colweight(index),
+                self.column_age(event),
+                self.column_sort_age(event),
                ]
     
     def colweight(self, index):
@@ -144,3 +151,25 @@ class EventRefModel(gtk.TreeStore):
                 if place_handle:
                     return self.db.get_place_from_handle(place_handle).get_title()
         return u""
+
+    def column_age(self, event):
+        """
+        Returns a string representation of age in years.  Change
+        precision=2 for "year, month", or precision=3 for "year,
+        month, days"
+        """
+        date = event.get_date_object()
+        if date and self.start_date:
+            return (date - self.start_date).format(precision=age_precision)
+        else:
+            return ""
+
+    def column_sort_age(self, event):
+        """
+        Returns a string version of number of days of age.
+        """
+        date = event.get_date_object()
+        if date and self.start_date:
+            return "%09d" % int(date - self.start_date)
+        else:
+            return ""

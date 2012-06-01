@@ -60,9 +60,10 @@ class PersonEventEmbedList(EventEmbedList):
         'down'  : _('Move the selected event downwards or change family order'),
         }
 
-    def __init__(self, dbstate, uistate, track, obj):
+    def __init__(self, dbstate, uistate, track, obj, **kwargs):
+        self.dbstate = dbstate
         EventEmbedList.__init__(self, dbstate, uistate, track, obj,
-                                build_model=EventRefModel )
+                                build_model=EventRefModel, **kwargs)
 
     def get_data(self):
         if not self._data or self.changed:

@@ -304,6 +304,7 @@ register('preferences.last-view', '')
 register('preferences.last-views', [])
 register('preferences.use-bsddb3', False)
 register('preferences.family-relation-type', 3) # UNKNOWN
+register('preferences.age-display-precision', 1)
 
 register('researcher.researcher-addr', '')
 register('researcher.researcher-locality', '')

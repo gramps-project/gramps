@@ -52,6 +52,7 @@ import pango
 import Utils
 import ThumbNails
 from gui.utils import add_menuitem, open_file_with_default_application
+from gen.utils import get_birth_or_fallback
 import gen.lib
 from gen.db import DbTxn
 from gui import widgets
@@ -420,6 +421,13 @@ class EditPerson(EditPrimary):
         self.preview_name = self.top.get_object("full_name")
         self.preview_name.modify_font(pango.FontDescription('sans bold 12'))
 
+    def get_start_date(self):
+        """
+        Get the start date for a person, usually a birth date, or
+        something close to birth.
+        """
+        event = get_birth_or_fallback(self.dbstate.db, self.obj)
+        return event.get_date_object() if event else None
 
     def _create_tabbed_pages(self):
         """
@@ -428,10 +436,13 @@ class EditPerson(EditPrimary):
         notebook = gtk.Notebook()
         notebook.set_scrollable(True)
 
-        self.event_list = PersonEventEmbedList(self.dbstate,
-                                               self.uistate,
-                                               self.track,
-                                               self.obj)
+        self.event_list = PersonEventEmbedList(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj,
+            start_date=self.get_start_date())
+
         self._add_tab(notebook, self.event_list)
         self.track_ref_for_deletion("event_list")
 

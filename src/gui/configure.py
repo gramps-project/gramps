@@ -902,6 +902,28 @@ class GrampsPreferences(ConfigureDialog):
         table.attach(obox, 1, 3, row, row+1, yoptions=0)
         row += 1
         
+        # Age precision:
+        # precision=1 for "year", 2: "year, month" or 3: "year, month, days"
+        obox = gtk.combo_box_new_text()
+        age_precision = [_("Years"),
+                         _("Years, Months"),
+                         _("Years, Months, Days")]
+        map(obox.append_text, age_precision)
+        # Combo_box active index is from 0 to 2, we need values from 1 to 3
+        active = config.get('preferences.age-display-precision') - 1
+        if active >= 0 and active <= 2:
+            obox.set_active(active)
+        else:
+            obox.set_active(0)
+        obox.connect('changed', 
+                     lambda obj: config.set('preferences.age-display-precision',
+                                            obj.get_active() + 1))
+        lwidget = BasicLabel("%s: "
+                             % _('Age display precision (requires restart)'))
+        table.attach(lwidget, 0, 1, row, row+1, yoptions=0)
+        table.attach(obox,    1, 3, row, row+1, yoptions=0)
+        row += 1
+        
         # Calendar format on report:
         obox = gtk.combo_box_new_text()
         map(obox.append_text, gen.lib.Date.ui_calendar_names)

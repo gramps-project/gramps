@@ -237,10 +237,13 @@ class ListView(NavigationView):
                 column.add_attribute(self.renderer, 'text', pair[1])
 
             column.connect('clicked', self.column_clicked, index)
+
             column.set_resizable(True)
+            column.set_clickable(True)
+            column.set_expand(True)
             column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
             column.set_fixed_width(pair[2])
-            column.set_clickable(True)
+            
             self.columns.append(column)
             self.list.append_column(column)
             index += 1
@@ -486,7 +489,7 @@ class ListView(NavigationView):
         return colord
 
     def get_column_widths(self):
-             return [column.get_width() for column in self.columns]
+        return [column.get_width() for column in self.columns]
 
     def remove_selected_objects(self):
         """

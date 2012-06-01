@@ -448,7 +448,10 @@ class EmbeddedList(ButtonTab):
             column.set_resizable(True)
             column.set_clickable(True)
             column.set_expand(True)
-            column.set_min_width(self._column_names[pair[1]][2])
+            column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+            #column.set_min_width(self._column_names[pair[1]][2])
+            column.set_fixed_width(self._column_names[pair[1]][2])
+
             column.set_sort_column_id(self._column_names[pair[1]][1])
             self.columns.append(column)
             self.tree.append_column(column)
