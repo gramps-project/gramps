@@ -549,12 +549,7 @@ class EditPerson(EditPrimary):
             self.pname.get_primary_surname().set_origintype,
             self.pname.get_primary_surname().get_origintype)
 
-        #remove present surname tab, and put new one based on current prim name
-        msurhbox = self.top.get_object("hboxmultsurnames")
-        msurhbox.remove(self.surntab)
-        self.surntab = SurnameTab(self.dbstate, self.uistate, self.track,
-                       self.obj.get_primary_name())
-        msurhbox.pack_start(self.surntab)
+        self.__renewmultsurnames()
 
         if len(self.pname.get_surname_list()) == 1:
             self.singlesurn_active = True
@@ -901,6 +896,8 @@ class EditPerson(EditPrimary):
         msurhbox.remove(self.surntab)
         self.surntab = SurnameTab(self.dbstate, self.uistate, self.track,
                        self.obj.get_primary_name())
+        self.multsurnfr.set_size_request(-1,
+                                int(config.get('interface.surname-box-height')))
         msurhbox.pack_start(self.surntab)
 
     def load_person_image(self):

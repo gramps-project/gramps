@@ -76,11 +76,13 @@ class MergeNotes(ManagedWindow.ManagedWindow):
         tb1 = StyledTextBuffer()
         tv1.set_buffer(tb1)
         tb1.set_text(text1)
+        tv1.set_size_request(-1, 60)
         text2 = self.no2.get_styledtext()
         tv2 = self.get_widget("text2")
         tb2 = StyledTextBuffer()
         tv2.set_buffer(tb2)
         tb2.set_text(text2)
+        tv2.set_size_request(-1, 60)
         if text1 == text2:
             for widget_name in ('text1', 'text2', 'text_btn1', 'text_btn2'):
                 self.get_widget(widget_name).set_sensitive(False)
