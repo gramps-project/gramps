@@ -23,7 +23,6 @@
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import locale
 import time
 
 from gen.lib import Person, Family
@@ -39,8 +38,6 @@ from Utils import family_name
 #
 #------------------------------------------------------------------------
 class LogGramplet(Gramplet):
-    _t_fmt = locale.nl_langinfo(locale.T_FMT)
-    
     def init(self):
         self.set_tooltip(_("Click name to change active\nDouble-click name to edit"))
         self.set_text(_("Log for this Session") + "\n")
@@ -48,7 +45,7 @@ class LogGramplet(Gramplet):
         self.last_log = None
         
     def timestamp(self):
-        self.append_text(time.strftime(LogGramplet._t_fmt) + " ")
+        self.append_text(time.strftime("%Y-%m-%d %H:%M:%S ")
 
     def db_changed(self):
         self.timestamp()
