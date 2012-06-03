@@ -119,6 +119,7 @@ class ErrorView(object):
         
         scroll = gtk.ScrolledWindow()
         scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        scroll.set_size_request(-1, 60)
         
         tb_frame.add(scroll)
         scroll.add_with_viewport(tb_label)
