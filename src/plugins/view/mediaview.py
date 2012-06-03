@@ -426,7 +426,7 @@ class MediaView(ListView):
         """
         return (("Media Filter",),
                 ("Media Preview",
-                 "Media Citations"
+                 "Media Citations",
                  "Media Notes",
                  "Media Attributes",
                  "Metadata Viewer",
