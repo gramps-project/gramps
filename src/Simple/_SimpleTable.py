@@ -32,6 +32,7 @@ import copy
 from gen.ggettext import sgettext as _
 from TransUtils import trans_objclass
 import cPickle as pickle
+import gui.utils
 
 import gen.lib
 import Errors
@@ -109,7 +110,7 @@ class SimpleTable(object):
                 #rectangle = treeview.get_cell_area("0:0", 
                 #x, y = rectangle.x, rectangle.y
                 #func = lambda menu: (x, y, True)
-        elif event.button == 3:
+        elif gui.utils.is_right_click(event):
             button_code = 3
             event_time = event.time
             x = int(event.x)

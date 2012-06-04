@@ -57,6 +57,7 @@ from gen.ggettext import sgettext as _
 from gen.ggettext import ngettext
 from config import config
 from QuestionDialog import ErrorDialog
+import gui.utils
 
 #-------------------------------------------------------------------------
 #
@@ -294,7 +295,7 @@ class osmGpsMap():
         elif event.button == 2 and event.type == gtk.gdk.BUTTON_RELEASE:
                 self.end_selection = current
                 self.zone_selection = False
-        elif event.button == 3:
+        elif gui.utils.is_right_click(event):
             self.build_nav_menu(osm, event, lat, lon )
         else:
             self.save_center(lat,lon)

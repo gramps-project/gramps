@@ -77,7 +77,7 @@ from QuestionDialog import WarningDialog, ErrorDialog
 from gen.plug.menu import PersonOption, FilterOption, FamilyOption
 import ManagedWindow
 from glade import Glade
-from gui.utils import open_file_with_default_application
+import gui.utils
 import gui.user
 
 # Import from specific modules in ReportBase
@@ -970,7 +970,7 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         """
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.on_setup_clicked(obj)
-        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+        elif gui.utils.is_right_click(event):
             self.build_book_context_menu(event)
 
     def avail_button_press(self, obj, event):
@@ -980,7 +980,7 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         """
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.on_add_clicked(obj)
-        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+        elif gui.utils.is_right_click(event):
             self.build_avail_context_menu(event)
 
     def build_book_context_menu(self, event):
@@ -1282,7 +1282,7 @@ class BookReportDialog(DocReportDialog):
         self.doc.close()
         
         if self.open_with_app.get_active():
-            open_file_with_default_application(self.target_path)
+            gui.utils.open_file_with_default_application(self.target_path)
 
 #------------------------------------------------------------------------
 #

@@ -57,7 +57,7 @@ from gui.widgets.grampletpane import (AVAILABLE_GRAMPLETS,
                                       make_requested_gramplet,
                                       GuiGramplet)
 from gui.widgets.undoablebuffer import UndoableBuffer
-from gui.utils import add_menuitem
+import gui.utils
 from QuestionDialog import QuestionDialog
 
 #-------------------------------------------------------------------------
@@ -415,7 +415,7 @@ class GrampsBar(gtk.Notebook):
         """
         Called when a button is pressed in the tabs section of the GrampsBar.
         """
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+        if gui.utils.is_right_click(event):
             menu = gtk.Menu()
 
             ag_menu = gtk.MenuItem(_('Add a gramplet'))

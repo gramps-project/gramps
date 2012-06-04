@@ -64,6 +64,7 @@ from QuestionDialog import QuestionDialog, QuestionDialog2
 from gui.filtereditor import FilterEditor
 from gen.ggettext import sgettext as _
 from DdTargets import DdTargets
+import gui.utils
 
 #----------------------------------------------------------------
 #
@@ -757,7 +758,7 @@ class ListView(NavigationView):
                     else:
                         self.edit(obj)
                         return True
-        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+        elif gui.utils.is_right_click(event):
             menu = self.uistate.uimanager.get_widget('/Popup')
             #construct quick reports if needed
             if menu and self.QR_CATEGORY > -1 :

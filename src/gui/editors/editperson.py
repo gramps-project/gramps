@@ -51,7 +51,7 @@ import pango
 #-------------------------------------------------------------------------
 import Utils
 import ThumbNails
-from gui.utils import add_menuitem, open_file_with_default_application
+import gui.utils
 import gen.lib
 from gen.db import DbTxn
 from gui import widgets
@@ -592,7 +592,7 @@ class EditPerson(EditPrimary):
                 except Errors.WindowActiveError:
                     pass
 
-        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+        elif gui.utils.is_right_click(event):
             media_list = self.obj.get_media_list()
             if media_list:
                 photo = media_list[0]
@@ -610,9 +610,10 @@ class EditPerson(EditPrimary):
         menu.set_title(_("Media Object"))
         obj = self.db.get_object_from_handle(photo.get_reference_handle())
         if obj:
-            add_menuitem(menu, _("View"), photo, self._popup_view_photo)
-        add_menuitem(menu, _("Edit Object Properties"), photo,
-                           self._popup_change_description)
+            gui.utilsadd_menuitem(menu, _("View"), photo,
+                                  self._popup_view_photo)
+        gui.utils.add_menuitem(menu, _("Edit Object Properties"), photo,
+                               self._popup_change_description)
         menu.popup(None, None, None, event.button, event.time)
 
     def _popup_view_photo(self, obj):
@@ -625,7 +626,7 @@ class EditPerson(EditPrimary):
             object_handle = photo.get_reference_handle()
             ref_obj = self.db.get_object_from_handle(object_handle)
             photo_path = Utils.media_path_full(self.db, ref_obj.get_path())
-            open_file_with_default_application(photo_path)
+            gui.utils.open_file_with_default_application(photo_path)
 
     def _popup_change_description(self, obj):
         """

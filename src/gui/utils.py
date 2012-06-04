@@ -32,7 +32,7 @@ Utility functions that depend on GUI components or for GUI components
 import os
 import sys
 from gen.ggettext import gettext as _
-from constfunc import has_display
+import constfunc
 # gtk is not included here, because this file is currently imported
 # by code that needs to run without the DISPLAY variable (eg, in
 # the cli only).
@@ -144,7 +144,7 @@ class ProgressMeter(object):
         else:
             self.__cancel_callback = self.handle_cancel
 
-        if has_display():
+        if constfunc.has_display():
             self.__dialog = gtk.Dialog()
         else:
             self.__dialog = CLIDialog()
@@ -363,3 +363,23 @@ def process_pending_events(max_count=10):
         count += 1
         if count >= max_count:
             break
+
+# Then there's the infamous Mac one-button mouse (or more likely these
+# days, one-button trackpad). The canonical mac way to generate what
+# Gdk calls a button-3 is <ctrl> button-1, but that's not baked into
+# Gdk. We'll emulate the behavior here.
+
+def is_right_click(event):
+    """
+    Returns True if the event is a button-3 or equivalent
+    """
+    import gtk
+
+    if event.type == gtk.gdk.BUTTON_PRESS:
+        if constfunc.is_quartz():
+            if (event.button == 3
+                or (event.button == 1 and event.state & gtk.gdk.CONTROL_MASK)):
+                return True
+
+        if event.button == 3:
+            return True

@@ -46,6 +46,7 @@ import ManagedWindow
 from gui.plug import tool
 from gen.ggettext import sgettext as _
 from glade import Glade
+import gui.utils
 
 #-------------------------------------------------------------------------
 #
@@ -154,7 +155,7 @@ class OwnerEditor(tool.Tool, ManagedWindow.ManagedWindow):
 
     def on_button_press_event(self, obj, event):
         """Shows popup-menu for db <-> preferences copying"""
-        if event.button == 3 and event.type == gtk.gdk.BUTTON_PRESS:
+        if gui.utils.is_right_click(event):
             self.menu.popup(None,None,None,0,0)
 
     def build_menu_names(self, obj):
