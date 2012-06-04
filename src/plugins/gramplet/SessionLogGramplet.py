@@ -45,7 +45,7 @@ class LogGramplet(Gramplet):
         self.last_log = None
         
     def timestamp(self):
-        self.append_text(time.strftime("%Y-%m-%d %H:%M:%S ")
+        self.append_text(time.strftime("%Y-%m-%d %H:%M:%S "))
 
     def db_changed(self):
         self.timestamp()
