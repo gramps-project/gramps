@@ -448,7 +448,6 @@ class EmbeddedList(ButtonTab):
             # insert the colum into the tree
             column.set_resizable(True)
             column.set_clickable(True)
-            column.set_expand(True)
             column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
             #column.set_min_width(self._column_names[pair[1]][2])
             column.set_fixed_width(self._column_names[pair[1]][2])

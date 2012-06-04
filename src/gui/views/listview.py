@@ -241,7 +241,6 @@ class ListView(NavigationView):
 
             column.set_resizable(True)
             column.set_clickable(True)
-            column.set_expand(True)
             column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
             column.set_fixed_width(pair[2])
             
