@@ -22,7 +22,7 @@
 """ Views for Person, Name, and Surname """
 
 ## Gramps Modules
-from webapp.utils import _, boolean, update_last_changed
+from webapp.utils import _, boolean, update_last_changed, build_search
 from webapp.grampsdb.models import Person, Name, Surname
 from webapp.grampsdb.forms import *
 from webapp.libdjango import DjangoInterface
@@ -146,7 +146,8 @@ def process_surname(request, handle, order, sorder, action="view"):
                     neworder += 1
         else:
             request.user.message_set.create(message="You can't delete the only surname")
-        return redirect("/person/%s/name/%s#tab-surnames" % (person.handle, name.order))
+        return redirect("/person/%s/name/%s%s#tab-surnames" % (person.handle, name.order, 
+                                                               build_search(request)))
     elif action in ["add"]:
         surname = Surname(name=name, primary=False, 
                           name_origin_type=NameOriginType.objects.get(val=NameOriginType._DEFAULT[0]))
@@ -166,8 +167,9 @@ def process_surname(request, handle, order, sorder, action="view"):
             surname = sf.save(commit=False)
             check_primary(surname, surnames)
             surname.save()
-            return redirect("/person/%s/name/%s/surname/%s#tab-surnames" % 
-                            (person.handle, name.order, sorder))
+            return redirect("/person/%s/name/%s/surname/%s%s#tab-surnames" % 
+                            (person.handle, name.order, sorder, 
+                             build_search(request)))
         action = "add"
         surname.prefix = make_empty(True, surname.prefix, " prefix ")
     elif action == "save":
@@ -179,13 +181,14 @@ def process_surname(request, handle, order, sorder, action="view"):
             surname = sf.save(commit=False)
             check_primary(surname, name.surname_set.all().exclude(order=surname.order))
             surname.save()
-            return redirect("/person/%s/name/%s/surname/%s#tab-surnames" % 
-                            (person.handle, name.order, sorder))
+            return redirect("/person/%s/name/%s/surname/%s%s#tab-surnames" % 
+                            (person.handle, name.order, sorder,
+                             build_search(request)))
         action = "edit"
         surname.prefix = make_empty(True, surname.prefix, " prefix ")
         # else, edit again
     else:
-        raise
+        raise Exception("unknown action: '%s'" % action)
 
     sf = SurnameForm(instance=surname)
     sf.model = surname
@@ -209,7 +212,7 @@ def process_name(request, handle, order, action="view"):
     if request.POST.has_key("action"):
         action = request.POST.get("action")
     ### Process action:
-    if action == "view":
+    if action in "view":
         pf, nf, sf, person = get_person_forms(handle, order=order)
         name = nf.model
     elif action == "edit":
@@ -224,7 +227,8 @@ def process_name(request, handle, order, action="view"):
             check_order(request, person)
         else:
             request.user.message_set.create(message = "Can't delete only name.")
-        return redirect("/person/%s#tab-names" % person.handle)
+        return redirect("/person/%s%s#tab-names" % (person.handle,
+                                                    build_search(request)))
     elif action == "add": # add name
         person = Person.objects.get(handle=handle)
         name = Name(person=person, 
@@ -275,7 +279,8 @@ def process_name(request, handle, order, action="view"):
             surname.primary = True # FIXME: why is this False?
             surname.save()
             dji.rebuild_cache(person)
-            return redirect("/person/%s/name/%s#tab-surnames" % (person.handle, name.order))
+            return redirect("/person/%s/name/%s%s#tab-surnames" % (person.handle, name.order,             
+                                                                   build_search(request)))
         else:
             action = "add"
     elif action == "save":
@@ -309,7 +314,8 @@ def process_name(request, handle, order, action="view"):
             surname.primary = True # FIXME: why is this False?
             surname.save()
             dji.rebuild_cache(person)
-            return redirect("/person/%s/name/%s#tab-surnames" % (person.handle, name.order))
+            return redirect("/person/%s/name/%s%s#tab-surnames" % (person.handle, name.order,
+                                                                   build_search(request)))
         else:
             action = "edit"
     context = RequestContext(request)
@@ -342,7 +348,7 @@ def process_person(request, context, handle, action, add_to=None): # view, edit,
         elif action == "delete":
             pf, nf, sf, person = get_person_forms(handle, protect=False, empty=True)
             person.delete()
-            return redirect("/person/")
+            return redirect("/person/%s" % build_search(request))
         elif action in ["save", "create"]: # could be create a new person
             # look up old data, if any:
             if handle:
@@ -391,8 +397,8 @@ def process_person(request, context, handle, action, add_to=None): # view, edit,
                     model = dji.get_model(item)
                     obj = model.objects.get(handle=handle)
                     dji.add_person_ref_default(obj, person)
-                    return redirect("/%s/%s" % (item, handle))
-                return redirect("/person/%s" % person.handle)
+                    return redirect("/%s/%s%s" % (item, handle, build_search(request)))
+                return redirect("/person/%s%s" % (person.handle, build_search(request)))
             else: 
                 # need to edit again
                 if handle:

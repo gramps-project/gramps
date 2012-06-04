@@ -10,7 +10,8 @@
 <form name="SearchForm">
 {% if tview != "Report" %}
    {% filter breadcrumb %}
-      {% format "/browse|Browse,/%s|%s" view tviews %}
+      {% format "/browse|Browse" %} ||
+      {% format "/%s|%s" view tviews %}
    {% endfilter %}
 {% endif %}
 <input type="submit" value="Search:"></input>

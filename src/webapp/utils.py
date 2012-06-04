@@ -227,10 +227,36 @@ class Table(object):
         # We have a couple of HTML bits that we want to unescape:
         return str(self.doc.doc.htmllist[0]).replace("&amp;nbsp;", "&nbsp;")
 
+def build_args(**kwargs):
+    retval = ""
+    first = True
+    for key in kwargs:
+        if kwargs[key] is not None:
+            if first:
+                retval+= "?"
+                first = False
+            else:
+                retval += "&"
+            retval += "%s=%s" % (key, kwargs[key])
+    return retval
+
+def build_search(request):
+    search = request.GET.get("search", None) or request.POST.get("search", None)
+    page = request.GET.get("page", None) or request.POST.get("page", None)
+    return build_args(search=search, page=page)
+
 def make_button(text, url, *args):
-    url = url % args
-    #return """[ <a href="%s">%s</a> ] """ % (url, text)
-    return """<input type="button" value="%s" onclick="document.location.href='%s'"/>""" % (text, url)
+    newargs = []
+    kwargs = ""
+    for arg in args:
+        if arg.startswith("?"):
+            kwargs = arg
+        elif arg == "":
+            pass
+        else:
+            newargs.append(arg)
+    url = url % tuple(newargs)
+    return mark_safe("""<input type="button" value="%s" onclick="document.location.href='%s%s'"/>""" % (text, url, kwargs))
 
 def event_table(obj, user, action, url, args):
     retval = ""
@@ -314,13 +340,8 @@ def surname_table(obj, user, action, url=None, *args):
         except:
             name = None
         if name:
-            links = []
             for surname in name.surname_set.all().order_by("order"):
-                table.row(str(surname.order), surname.surname)
-                links.append(('URL', 
-                              # url is "/person/%s/name/%s/surname"
-                              (url % args) + ("/%s" % surname.order)))
-            table.links(links)
+                table.row(str(surname.order), surname)
             retval += table.get_html()
         else:
             retval += "<p id='error'>No such name order = %s</p>" % order

@@ -149,11 +149,11 @@ def breadcrumb(path, arg=None):
     if arg:
         path = path.replace("{0}", arg)
     retval = ""
-    for item in path.split(","):
-        p, name = item.split("|")
+    for item in path.split("||"):
+        p, name = item.split("|", 1)
         if retval != "":
             retval += " > "
-        retval += '<a href="%s"><b>%s</b></a>' % (p, name)
+        retval += '<a href="%s"><b>%s</b></a>' % (p.strip(), name.strip())
     return "<p>%s</p>" % retval
 breadcrumb.is_safe = True
 register.filter('breadcrumb', breadcrumb)
@@ -180,6 +180,11 @@ def format(string, arg0=None, arg1=None, arg2=None, arg3=None, arg4=None, arg5=N
         return string
 format.is_safe = True
 register.simple_tag(format)
+
+def make_args(search, page):
+    return webapp.utils.build_args(search=search, page=page)
+make_args.is_safe = True
+register.simple_tag(make_args)
 
 def currentSection(view1, view2): # tview, menu
     if view1.strip().lower() in [view[1] for view in VIEWS] and view2 == "browse":

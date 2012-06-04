@@ -24,8 +24,6 @@
 from webapp.grampsdb.models import *
 from django.contrib import admin
 
-print dir(admin.ModelAdmin)
-
 class MyAdmin(admin.ModelAdmin): 
     def change_view(self, request, object_id, extra_context=None): 
         print "object_id:", object_id

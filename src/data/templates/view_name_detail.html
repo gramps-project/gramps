@@ -16,9 +16,11 @@
 <div class="content" id="IndividualDetail">
 
    {% filter breadcrumb %}
-      {% format "/browse|Browse,/person|People,/person/%s|Person [%s],/person/%s/name/%s|Name #%s" object.handle object.gramps_id object.handle order order %}
+      {% format "/browse|Browse" %} ||
+      {% format "/person|People" %} ||
+      {% format "/person/%s|Person [%s]" object.handle object.gramps_id %} ||
+      {% format "/person/%s/name/%s|Name #%s"  object.handle order order %}
    {% endfilter %}
-
 
 <h3>{{nameform.model|make_name:user}} [{{person.gramps_id}}]</h3>
 <div id="summaryarea">

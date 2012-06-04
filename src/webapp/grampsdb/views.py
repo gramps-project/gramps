@@ -54,7 +54,7 @@ from django.forms.models import modelformset_factory
 #
 #------------------------------------------------------------------------
 import webapp
-from webapp.utils import _
+from webapp.utils import _, build_args
 from webapp.grampsdb.models import *
 from webapp.grampsdb.view import *
 from webapp.dbdjango import DbDjango
@@ -102,6 +102,12 @@ def context_processor(request):
     context["False"] = False
     context["sitename"] = Config.objects.get(setting="sitename").value
     context["default"] = ""
+
+    search = request.GET.get("search", None) or request.POST.get("search", None)
+    page = request.GET.get("page", None) or request.POST.get("page", None)
+    context["page"] = page
+    context["search"] = search
+    context["args"] = build_args(search=search, page=page)
     return context
 
 def main_page(request):

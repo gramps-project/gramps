@@ -645,6 +645,12 @@ class Surname(models.Model):
     def __unicode__(self):
         return "%s" % self.surname
 
+    def get_url(self):
+        # /person/handle/name/1/surname/2
+        return "/person/%s/name/%s/surname/%s" % (self.name.person.handle, 
+                                                  self.name.order, 
+                                                  self.order)
+
 class Name(DateObject, SecondaryObject):
     name_type = models.ForeignKey('NameType', verbose_name="Type",
                                   related_name="name_code",
@@ -692,6 +698,10 @@ class Name(DateObject, SecondaryObject):
         return [(x.surname, x.prefix, x.primary, 
                  tuple(x.name_origin_type), x.connector) for x in
                 self.surname_set.all()]
+
+    def get_url(self):
+        # /person/handle/name/1
+        return "/person/%s/name/%s" % (self.person.handle, self.order)
 
 class Lds(DateObject, SecondaryObject):
     """
