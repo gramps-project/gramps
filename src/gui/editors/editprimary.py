@@ -44,6 +44,7 @@ import ManagedWindow
 import gen.datehandler
 from gen.display.name import displayer as name_displayer
 import config
+import gui.utils
 import GrampsDisplay
 from QuestionDialog import SaveDialog
 import gen.lib
@@ -283,7 +284,7 @@ class EditPrimary(ManagedWindow.ManagedWindow, DbGUIElement):
         pressed while on contexteventbox
         It opens a context menu with possible actions
         """
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3 :
+        if gui.utils.is_right_click(event):
             if self.obj.get_handle() == 0 :
                 return False
             

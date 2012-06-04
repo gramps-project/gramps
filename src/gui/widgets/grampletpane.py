@@ -46,7 +46,7 @@ import const
 from gui.editors import EditPerson, EditFamily
 import ManagedWindow
 import ConfigParser
-from gui.utils import add_menuitem
+import gui.utils
 from gui.plug.quick import run_quick_report_by_name
 import GrampsDisplay
 from glade import Glade
@@ -603,7 +603,7 @@ class GuiGramplet(object):
                             elif event.type == gtk.gdk.BUTTON_PRESS: # single
                                 self.uistate.set_active(handle, 'Person')
                                 return True # handled event
-                        elif event.button == 3: # right mouse
+                        elif gui.utils.is_right_click(event):
                             #FIXME: add a popup menu with options
                             try:
                                 EditPerson(self.dbstate, 
@@ -664,7 +664,7 @@ class GuiGramplet(object):
                             elif event.type == gtk.gdk.BUTTON_PRESS: # single
                                 self.uistate.set_active(handle, 'Family')
                                 return True # handle event
-                        elif event.button == 3: # right mouse
+                        elif gui.utils.is_right_click(event):
                             #FIXME: add a popup menu with options
                             try:
                                 EditFamily(self.dbstate, 
@@ -1373,7 +1373,7 @@ class GrampletPane(gtk.ScrolledWindow):
             print "Can't make gramplet of type '%s'." % name
 
     def _button_press(self, obj, event):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+        if gui.utils.is_right_click(event):
             self._popup_xy = (event.x, event.y)
             uiman = self.uistate.uimanager
             ag_menu = uiman.get_widget('/GrampletPopup/AddGramplet')
@@ -1384,7 +1384,8 @@ class GrampletPane(gtk.ScrolledWindow):
                          if gplug.navtypes == []]
                 names.sort()
                 for name in names:
-                    add_menuitem(qr_menu, name, None, self.add_gramplet)
+                    gui.utils.add_menuitem(qr_menu, name, None,
+                                           self.add_gramplet)
                 ag_menu.set_submenu(qr_menu)
             rg_menu = uiman.get_widget('/GrampletPopup/RestoreGramplet')
             if rg_menu:
@@ -1397,7 +1398,8 @@ class GrampletPane(gtk.ScrolledWindow):
                 if len(names) > 0:
                     qr_menu = gtk.Menu()
                     for name in names:
-                        add_menuitem(qr_menu, name, None, self.restore_gramplet)
+                        gui.utils.add_menuitem(qr_menu, name, None,
+                                               self.restore_gramplet)
                     rg_menu.set_submenu(qr_menu)
             menu = uiman.get_widget('/GrampletPopup')
             if menu:

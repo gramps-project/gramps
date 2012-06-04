@@ -47,7 +47,7 @@ import gobject
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from gui.utils import open_file_with_default_application
+import gui.utils
 from gui.dbguielement import DbGUIElement
 from gui.selectors import SelectorFactory
 import gen.lib
@@ -66,7 +66,7 @@ import const
 #
 #-------------------------------------------------------------------------
 def make_launcher(path):
-    return lambda x: open_file_with_default_application(path)
+    return lambda x: gui.utils.open_file_with_default_application(path)
 
 #-------------------------------------------------------------------------
 #
@@ -112,7 +112,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.edit_button_clicked(obj)
             return True
-        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+        elif gui.utils.is_right_click(event):
             reflist = self.iconlist.get_selected_items()
             if len(reflist) == 1:
                 ref = self.media_list[reflist[0][0]]

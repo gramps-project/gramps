@@ -60,6 +60,7 @@ from libformatting import FormattingHelper
 import gen.lib
 import Errors
 from gui.editors import EditPerson
+import gui.utils
 
 #-------------------------------------------------------------------------
 #
@@ -523,7 +524,8 @@ class FanChartWidget(gtk.Widget):
         if selected is None: # clicked in open area, or center
             if radius < self.center:
                 # right mouse
-                if event.button == 3 and self.context_popup_callback: 
+                if (gui.utils.is_right_click(event)
+                    and self.context_popup_callback): 
                     if self.data[0][0][1]:
                         self.context_popup_callback(widget, event, 
                                                     self.data[0][0][1].handle)
@@ -538,7 +540,7 @@ class FanChartWidget(gtk.Widget):
         # Do things based on state, event.state, or button, event.button
         if event.button == 1: # left mouse
             self.change_slice(generation, selected)
-        elif event.button == 3: # right mouse
+        elif gui.utils.is_right_click(event): # right mouse
             text, person, parents, child = self.data[generation][selected]
             if person and self.context_popup_callback:
                 self.context_popup_callback(widget, event, person.handle)

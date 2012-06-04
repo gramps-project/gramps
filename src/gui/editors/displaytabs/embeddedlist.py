@@ -43,6 +43,7 @@ import pango
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
+import gui.utils
 from buttontab import ButtonTab
 
 #-------------------------------------------------------------------------
@@ -97,7 +98,7 @@ class EmbeddedList(ButtonTab):
         """
         Handle button press, not double-click, that is done in init_interface
         """
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+        if gui.utils.is_right_click(event):
             ref = self.get_selected()
             if ref:
                 self.right_click(obj, event)

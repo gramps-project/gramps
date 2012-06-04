@@ -64,6 +64,7 @@ import Bookmarks
 import const
 import constfunc
 from QuestionDialog import RunDatabaseRepair, ErrorDialog
+import gui.utils
 
 #-------------------------------------------------------------------------
 #
@@ -1511,7 +1512,7 @@ class PedigreeView(NavigationView):
             self._last_y = event.y
             self._in_move = True
             return True
-        elif event.button == 3 and event.type == gtk.gdk.BUTTON_PRESS:
+        elif gui.utils.is_right_click(event):
             self.cb_on_show_option_menu(widget, event)
             return True
         return False
@@ -1565,7 +1566,7 @@ class PedigreeView(NavigationView):
         or submenu for person for mouse right click.
         And setup plug for button press on person widget.
         """
-        if event.button == 3 and event.type == gtk.gdk.BUTTON_PRESS:
+        if gui.utils.is_right_click(event):
             self.cb_build_full_nav_menu(obj, event,
                                         person_handle, family_handle)
             return True
@@ -1580,7 +1581,7 @@ class PedigreeView(NavigationView):
         on family line or call full submenu for mouse right click.
         And setup plug for button press on family line.
         """
-        if event.button == 3 and event.type == gtk.gdk.BUTTON_PRESS:
+        if gui.utils.is_right_click(event):
             self.cb_build_relation_nav_menu(obj, event, family_handle)
             return True
         elif event.button == 1 and event.type == gtk.gdk._2BUTTON_PRESS:
@@ -1597,7 +1598,7 @@ class PedigreeView(NavigationView):
         if event.button == 1 and event.type == gtk.gdk._2BUTTON_PRESS:
             self.cb_add_parents(obj, person_handle, family_handle)
             return True
-        elif event.button == 3 and event.type == gtk.gdk.BUTTON_PRESS:
+        elif gui.utils.is_right_click(event):
             self.cb_build_missing_parent_nav_menu(obj, event, person_handle,
                                                   family_handle)
             return True

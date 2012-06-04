@@ -56,6 +56,7 @@ from constfunc import mac
 from glade import Glade
 from DdTargets import DdTargets
 from gui.makefilter import make_filter
+import gui.utils
 
 #-------------------------------------------------------------------------
 #
@@ -1420,7 +1421,7 @@ class MultiTreeView(gtk.TreeView):
         # Here we intercept mouse clicks on selected items so that we can
         # drag multiple items without the click selecting only one
         target = self.get_path_at_pos(int(event.x), int(event.y))
-        if event.button == 3: # right mouse
+        if gui.utils.is_right_click(event):
             selection = widget.get_selection()
             store, paths = selection.get_selected_rows()
             tpath = paths[0] if len(paths) > 0 else None

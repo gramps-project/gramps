@@ -56,6 +56,7 @@ from gui.plug import tool
 import ManagedWindow
 from QuestionDialog import InfoDialog
 from glade import Glade
+import gui.utils
 
 #-------------------------------------------------------------------------
 #
@@ -116,7 +117,7 @@ class Leak(tool.Tool, ManagedWindow.ManagedWindow):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.referenced_in()
             return True
-        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+        elif gui.utils.is_right_click(event):
             self.refers_to()
             return True
 

@@ -36,12 +36,12 @@ import cPickle as pickle
 import gtk
 import pango
 import gobject
-
 #-------------------------------------------------------------------------
 #
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
+import gui.utils
 from embeddedlist import EmbeddedList
 
 #-------------------------------------------------------------------------
@@ -103,7 +103,7 @@ class GroupEmbeddedList(EmbeddedList):
         """
         Handle button press, not double-click, that is done in init_interface
         """
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+        if gui.utils.is_right_click(event):
             obj = self.get_selected()
             if obj and obj[1]:
                 self._tmpgroup = obj[0]
