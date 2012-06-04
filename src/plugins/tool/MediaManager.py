@@ -5,6 +5,7 @@
 # Copyright (C) 2008       B. Malengier
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2012       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -50,8 +51,6 @@ import gobject
 #------------------------------------------------------------------------
 import const
 import GrampsDisplay
-import Assistant
-import Errors
 from gen.lib import MediaObject
 from gen.db import DbTxn
 from gen.updatecallback import UpdateCallback
@@ -67,6 +66,8 @@ import gen.mime
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Media_Manager...')
+GRAMPS_PNG = os.path.join(const.IMAGE_DIR, "gramps.png")
+SPLASH_JPG = os.path.join(const.IMAGE_DIR, "splash.jpg")
 
 #-------------------------------------------------------------------------
 #
@@ -81,40 +82,145 @@ class MediaMan(tool.Tool):
         self.uistate = uistate
         self.callback = uistate.pulse_progressbar
 
+        self.batch_ops = []
         self.build_batch_ops()
-        self.batch_settings = None
-        self.settings_page = None
 
-        try:
-            self.w = Assistant.Assistant(uistate,self.__class__,self.complete,
-                                         _("Media Manager"))
-        except Errors.WindowActiveError:
-            return
+        self.assistant = gtk.Assistant()
+        self.logo = gtk.gdk.pixbuf_new_from_file(GRAMPS_PNG)
+        self.splash = gtk.gdk.pixbuf_new_from_file(SPLASH_JPG)
 
-        self.welcome_page = self.w.add_text_page(_('Gramps Media Manager'),
-                                                 self.get_info_text())
-        self.selection_page = self.w.add_page(_('Selecting operation'),
-                                              self.build_selection_page())
-        self.confirm_page = self.w.add_text_page('','')
-        self.conclusion_page = self.w.add_text_page('','')
+        self.assistant.set_title(_('Gramps Media Manager'))
+        self.assistant.connect('close', self.close)
+        self.assistant.connect('cancel', self.close)
+        self.assistant.connect('apply', self.run)
+        self.assistant.connect('prepare', self.prepare)
+        self.assistant.set_forward_page_func(self.forward_page)
 
-        self.w.connect('before-page-next',self.on_before_page_next)
+        intro = IntroductionPage()
+        self.add_page(intro, gtk.ASSISTANT_PAGE_INTRO, _('Introduction'))
+        self.selection = SelectionPage(self.batch_ops)
+        self.add_page(self.selection, gtk.ASSISTANT_PAGE_CONTENT, 
+                      _('Selection'))
+        self.settings = SettingsPage(self.batch_ops, self.assistant)
+        self.add_page(self.settings, gtk.ASSISTANT_PAGE_CONTENT)
+        self.confirmation = ConfirmationPage(self.batch_ops)
+        self.add_page(self.confirmation, gtk.ASSISTANT_PAGE_CONFIRM, 
+                      _('Final confirmation'))
+        self.conclusion = ConclusionPage(self.assistant)
+        self.add_page(self.conclusion, gtk.ASSISTANT_PAGE_SUMMARY)
+        
+        self.assistant.show()
 
-        self.w.show()
+    def close(self, assistant):
+        """
+        Close the assistant.
+        """
+        self.assistant.hide()
 
-    def complete(self):
-        pass
+    def forward_page(self, page):
+        """
+        Specify the next page to be displayed.
+        """
+        if page == 1: # selection page
+            index = self.selection.get_index()
+            if self.settings.prepare(index):
+                return page + 1
+            else:
+                return page + 2
+        else:
+            return page + 1
 
-    def on_before_page_next(self, obj,page,data=None):
-        if page == self.selection_page:
-            self.build_settings_page()
-        elif page == self.settings_page:
-            self.build_confirmation()
-        elif page == self.confirm_page:
-            success = self.run()
-            self.build_conclusion(success)
+    def prepare(self, assistant, page):
+        """
+        Run page preparation code.
+        """
+        if self.assistant.get_current_page() == 3:
+            index = self.selection.get_index()
+            self.confirmation.prepare(index)
+        self.assistant.set_page_complete(page, True)
 
-    def get_info_text(self):
+    def add_page(self, page, page_type, title=''):
+        """
+        Add a page to the assistant.
+        """
+        page.show_all()
+        self.assistant.append_page(page)
+        self.assistant.set_page_header_image(page, self.logo)
+        self.assistant.set_page_title(page, title)
+        self.assistant.set_page_type(page, page_type)
+
+    def on_help_clicked(self, obj):
+        """
+        Display the relevant portion of Gramps manual.
+        """
+        GrampsDisplay.help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
+
+    def build_batch_ops(self):
+        """
+        Define the batch operations available.
+        """
+        batches_to_use = [
+            PathChange,
+            Convert2Abs,
+            Convert2Rel,
+            ImagesNotIncluded,
+            ]
+
+        for batch_class in batches_to_use:
+            self.batch_ops.append(batch_class(self.db, self.callback))
+
+    def run(self, assistant):
+        """
+        Run selected batch op with selected settings.
+        """
+        index = self.selection.get_index()
+        self.pre_run()
+        success = self.batch_ops[index].run_tool()
+        self.conclusion.set_result(success)
+        self.post_run()
+        
+    def pre_run(self):
+        """
+        Code to run prior to the batch op.
+        """
+        self.uistate.set_busy_cursor(1)
+        self.uistate.progress.show()
+
+    def post_run(self):
+        """
+        Code to run after to the batch op.
+        """
+        self.uistate.set_busy_cursor(0)
+        self.uistate.progress.hide()
+
+#------------------------------------------------------------------------
+#
+# Assistant pages
+#
+#------------------------------------------------------------------------
+class IntroductionPage(gtk.HBox):
+    """
+    A page containing introductory text.
+    """
+    def __init__(self):
+        gtk.HBox.__init__(self)
+
+        # Using set_page_side_image causes window sizing problems, so put the 
+        # image in the main page instead.
+        image = gtk.Image()
+        image.set_from_file(SPLASH_JPG)
+
+        label = gtk.Label(self.__get_intro_text())
+        label.set_line_wrap(True)
+        label.set_use_markup(True)
+
+        self.pack_start(image, False, False, 0)
+        self.pack_start(label, True, True, 0)
+
+    def __get_intro_text(self):
+        """
+        Return the introductory text.
+        """
         return _("This tool allows batch operations on media objects "
                  "stored in Gramps. "
                  "An important distinction must be made between a Gramps "
@@ -134,181 +240,154 @@ class MediaMan(tool.Tool):
                  "Gramps. Then you can adjust the paths using this tool so "
                  "that the media objects store the correct file locations.")
 
-    def build_selection_page(self):
-        """
-        Build a page with the radio buttons for every available batch op.
-        """
+class SelectionPage(gtk.VBox):
+    """
+    A page with the radio buttons for every available batch op.
+    """
+    def __init__(self, batch_ops):
+        gtk.VBox.__init__(self)
+        
         self.batch_op_buttons = []
 
-        box = gtk.VBox()
-        box.set_spacing(12)
+        self.set_spacing(12)
 
-        table = gtk.Table(2*len(self.batch_ops),2)
+        table = gtk.Table(2 * len(batch_ops), 2)
         table.set_row_spacings(6)
         table.set_col_spacings(6)
         
         group = None
-        for ix in range(len(self.batch_ops)):
-            title = self.batch_ops[ix].title
-            description= self.batch_ops[ix].description
+        for index in range(len(batch_ops)):
+            title = batch_ops[index].title
+            description = batch_ops[index].description
 
-            button = gtk.RadioButton(group,title)
+            button = gtk.RadioButton(group, title)
             button.set_tooltip_text(description)
             if not group:
                 group = button
             self.batch_op_buttons.append(button)
-            table.attach(button,0,2,2*ix,2*ix+1,yoptions=0)
+            table.attach(button, 0, 2, 2 * index, 2 * index + 1, yoptions=0)
         
-        box.add(table)
-        return box
+        self.add(table)
 
-    def on_help_clicked(self, obj):
-        """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
-
-    def build_batch_ops(self):
-        self.batch_ops = []
-        batches_to_use = [
-            PathChange,
-            Convert2Abs,
-            Convert2Rel,
-            ImagesNotIncluded,
-            ]
-
-        for batch_class in batches_to_use:
-            self.batch_ops.append(batch_class(self.db,self.callback))
-
-    def get_selected_op_index(self):
+    def get_index(self):
         """
         Query the selection radiobuttons and return the index number 
         of the selected batch op. 
         """
-        for ix in range(len(self.batch_op_buttons)):
-            button = self.batch_op_buttons[ix]
+        for index in range(len(self.batch_op_buttons)):
+            button = self.batch_op_buttons[index]
             if button.get_active():
-                return ix
+                return index
         else:
             return 0
-    
-    def build_settings_page(self):
-        """
-        Build an extra page with the settings specific for the chosen batch-op.
-        If there's already an entry for this batch-op then do nothing,
-        otherwise add a page.
 
-        If the chosen batch-op does not have settings then remove the
-        settings page that is already there (from previous user passes 
-        through the assistant).
+class SettingsPage(gtk.VBox):
+    """
+    An extra page with the settings specific for the chosen batch-op.
+    """
+    def __init__(self, batch_ops, assistant):
+        gtk.VBox.__init__(self)
+        self.assistant = assistant
+        self.batch_ops = batch_ops
+
+    def prepare(self, index):
         """
-        ix = self.get_selected_op_index()
-        config = self.batch_ops[ix].build_config()
+        Build the settings for the batch op.
+        """
+        config = self.batch_ops[index].build_config()
         if config:
-            if ix == self.batch_settings:
-                return
-            elif self.batch_settings:
-                self.w.remove_page(self.settings_page)
-                self.settings_page = None
-                self.confirm_page -= 1
-                self.conclusion_page -= 1
-                self.batch_settings = None
-                self.build_confirmation()
-            title,box = config
-            self.settings_page = self.w.insert_page(title,box,
-                                                    self.selection_page+1)
-            self.confirm_page += 1
-            self.conclusion_page += 1
-            self.batch_settings = ix
-            box.show_all()
+            title, contents = config
+            self.assistant.set_page_title(self, title)
+            map(self.remove, self.get_children())
+            self.pack_start(contents)
+            self.show_all()
+            return True
         else:
-            if self.batch_settings is not None:
-                self.w.remove_page(self.settings_page)
-                self.settings_page = None
-                self.confirm_page -= 1
-                self.conclusion_page -= 1
-                self.batch_settings = None
-            self.build_confirmation()
+            return False
 
-    def build_confirmation(self):
-        """
-        Build the confirmation page.
+class ConfirmationPage(gtk.VBox):
+    """
+    A page to display the summary of the proposed action, as well as the 
+    list of affected paths.
+    """
+    def __init__(self, batch_ops):
+        gtk.VBox.__init__(self)
 
-        This should query the selected settings and present the summary
-        of the proposed action, as well as the list of affected paths.
-        """
+        self.batch_ops = batch_ops
 
-        ix = self.get_selected_op_index()
-        confirm_text = self.batch_ops[ix].build_confirm_text()
-        path_list = self.batch_ops[ix].build_path_list()
+        self.set_spacing(12)
+        self.set_border_width(12)
 
-        box = gtk.VBox()
-        box.set_spacing(12)
-        box.set_border_width(12)
-
-        label1 = gtk.Label(confirm_text)
-        label1.set_line_wrap(True)
-        label1.set_use_markup(True)
-        label1.set_alignment(0,0.5)
-        box.pack_start(label1,expand=False)
+        self.confirm = gtk.Label()
+        self.confirm.set_line_wrap(True)
+        self.confirm.set_use_markup(True)
+        self.confirm.set_alignment(0, 0.5)
+        self.pack_start(self.confirm, expand=False)
 
         scrolled_window = gtk.ScrolledWindow()
-        scrolled_window.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
+        scrolled_window.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         scrolled_window.set_shadow_type(gtk.SHADOW_IN)
         tree = gtk.TreeView()
-        model = gtk.ListStore(gobject.TYPE_STRING)
-        tree.set_model(model)
+        self.path_model = gtk.ListStore(gobject.TYPE_STRING)
+        tree.set_model(self.path_model)
         tree_view_column = gtk.TreeViewColumn(_('Affected path'),
-                                              gtk.CellRendererText(),text=0)
+                                              gtk.CellRendererText(), text=0)
         tree_view_column.set_sort_column_id(0)
         tree.append_column(tree_view_column)
-        for path in path_list:
-            model.append(row=[path])
         scrolled_window.add(tree)
-        box.pack_start(scrolled_window,expand=True,fill=True)
+        self.pack_start(scrolled_window, expand=True, fill=True)
 
-        label3 = gtk.Label(_('Press OK to proceed, Cancel to abort, '
+        label3 = gtk.Label(_('Press Apply to proceed, Cancel to abort, '
                              'or Back to revisit your options.'))
-        box.pack_start(label3,expand=False)
-        box.show_all()
+        self.pack_start(label3, expand=False)
 
-        self.w.remove_page(self.confirm_page)
-        self.confirm_page = self.w.insert_page(_('Final confirmation'),
-                                               box,self.confirm_page)
+    def prepare(self, index):
+        """
+        Display a list of changes to be made.
+        """
+        confirm_text = self.batch_ops[index].build_confirm_text()
+        path_list = self.batch_ops[index].build_path_list()
 
-    def run(self):
-        """
-        Run selected batch op with selected settings.
-        """
-        ix = self.get_selected_op_index()
-        self.pre_run()
-        success = self.batch_ops[ix].run_tool()
-        self.post_run()
-        return success
+        self.confirm.set_text(confirm_text)
+
+        self.path_model.clear()
+        for path in path_list:
+            self.path_model.append(row=[path])
+
+class ConclusionPage(gtk.HBox):
+    """
+    A page to display the summary of the proposed action, as well as the 
+    list of affected paths.
+    """
+    def __init__(self, assistant):
+        gtk.HBox.__init__(self)
+
+        self.assistant = assistant
+
+        # Using set_page_side_image causes window sizing problems, so put the 
+        # image in the main page instead.
+        image = gtk.Image()
+        image.set_from_file(SPLASH_JPG)
+
+        self.label = gtk.Label()
+        self.label.set_line_wrap(True)
+
+        self.pack_start(image, False, False, 0)
+        self.pack_start(self.label, True, True, 0)
         
-    def pre_run(self):
-        self.uistate.set_busy_cursor(1)
-        self.w.set_busy_cursor(1)
-        self.uistate.progress.show()
-
-    def post_run(self):
-        self.uistate.set_busy_cursor(0)
-        self.w.set_busy_cursor(0)
-        self.uistate.progress.hide()
-
-    def build_conclusion(self,success):
+    def set_result(self, success):
         if success:
-            conclusion_title =  _('Operation successfully finished.')
+            conclusion_title =  _('Operation successfully finished')
             conclusion_text = _(
                 'The operation you requested has finished successfully. '
-                'You may press OK button now to continue.')
+                'You may press Close now to continue.')
         else:
-            conclusion_title =  _('Operation failed'),
+            conclusion_title =  _('Operation failed')
             conclusion_text = _(
                 'There was an error while performing the requested '
                 'operation. You may try starting the tool again.')
-        self.w.remove_page(self.conclusion_page)
-        self.conclusion_page = self.w.insert_text_page(conclusion_title,
-                                                       conclusion_text,
-                                                       self.conclusion_page)
+        self.label.set_text(conclusion_text)
+        self.assistant.set_page_title(self, conclusion_title)
 
 #------------------------------------------------------------------------
 #
@@ -322,8 +401,8 @@ class BatchOp(UpdateCallback):
     title       = 'Untitled operation'
     description = 'This operation needs to be described'
 
-    def __init__(self,db,callback):
-        UpdateCallback.__init__(self,callback)
+    def __init__(self, db, callback):
+        UpdateCallback.__init__(self, callback)
         self.db = db
         self.prepared = False
 
@@ -392,7 +471,6 @@ class BatchOp(UpdateCallback):
     def _prepare(self):
         print "This method needs to be written."
         print "Preparing BatchOp tool... done."
-        pass
 
 #------------------------------------------------------------------------
 # Simple op to replace substrings in the paths
@@ -410,39 +488,43 @@ class PathChange(BatchOp):
         box = gtk.VBox()
         box.set_spacing(12)
 
-        table = gtk.Table(2,2)
+        table = gtk.Table(2, 2)
         table.set_row_spacings(6)
         table.set_col_spacings(6)
 
         self.from_entry = gtk.Entry()
-        table.attach(self.from_entry,1,2,0,1,yoptions=0)
+        table.attach(self.from_entry, 1, 2, 0, 1, yoptions=0)
         
         from_label = gtk.Label(_('_Replace:'))
         from_label.set_use_underline(True)
-        from_label.set_alignment(0,0.5)
+        from_label.set_alignment(0, 0.5)
         from_label.set_mnemonic_widget(self.from_entry)
-        table.attach(from_label,0,1,0,1,xoptions=0,yoptions=0)
+        table.attach(from_label, 0, 1, 0, 1, xoptions=0, yoptions=0)
 
         self.to_entry = gtk.Entry()
-        table.attach(self.to_entry,1,2,1,2,yoptions=0)
+        table.attach(self.to_entry, 1, 2, 1, 2, yoptions=0)
 
         to_label = gtk.Label(_('_With:'))
         to_label.set_use_underline(True)
-        to_label.set_alignment(0,0.5)
+        to_label.set_alignment(0, 0.5)
         to_label.set_mnemonic_widget(self.to_entry)
-        table.attach(to_label,0,1,1,2,xoptions=0,yoptions=0)
+        table.attach(to_label, 0, 1, 1, 2, xoptions=0, yoptions=0)
 
         box.add(table)
 
-        return (title,box)
+        return (title, box)
 
     def build_confirm_text(self):
         from_text = unicode(self.from_entry.get_text())
         to_text = unicode(self.to_entry.get_text())
         text = _(
             'The following action is to be performed:\n\n'
-            'Operation:\t%(title)s\nReplace:\t\t%(src_fname)s\nWith:\t\t%(dest_fname)s') % {
-             'title' : self.title.replace('_',''), 'src_fname' : from_text, 'dest_fname' : to_text }
+            'Operation:\t%(title)s\n'
+            'Replace:\t\t%(src_fname)s\n'
+            'With:\t\t%(dest_fname)s') % {
+            'title' : self.title.replace('_',''), 
+            'src_fname' : from_text, 
+            'dest_fname' : to_text }
         return text
         
     def _prepare(self):
@@ -467,9 +549,9 @@ class PathChange(BatchOp):
         to_text = unicode(self.to_entry.get_text())
         for handle in self.handle_list:
             obj = self.db.get_object_from_handle(handle)
-            new_path = obj.get_path().replace(from_text,to_text)
+            new_path = obj.get_path().replace(from_text, to_text)
             obj.set_path(new_path)
-            self.db.commit_media_object(obj,self.trans)
+            self.db.commit_media_object(obj, self.trans)
             self.update()
         return True
 
@@ -503,7 +585,7 @@ class Convert2Abs(BatchOp):
             obj = self.db.get_object_from_handle(handle)
             new_path = media_path_full(self.db, obj.path)
             obj.set_path(new_path)
-            self.db.commit_media_object(obj,self.trans)
+            self.db.commit_media_object(obj, self.trans)
             self.update()
         return True
 
@@ -540,7 +622,7 @@ class Convert2Rel(BatchOp):
             obj = self.db.get_object_from_handle(handle)
             new_path = relative_path(obj.path, base_dir)
             obj.set_path(new_path)
-            self.db.commit_media_object(obj,self.trans)
+            self.db.commit_media_object(obj, self.trans)
             self.update()
         return True
 
@@ -620,5 +702,5 @@ class MediaManOptions(tool.ToolOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self, name,person_id=None):
-        tool.ToolOptions.__init__(self, name,person_id)
+    def __init__(self, name, person_id=None):
+        tool.ToolOptions.__init__(self, name, person_id)
