@@ -50,7 +50,6 @@ from gen.display.name import displayer as name_displayer
 import gen.lib
 import Errors
 from gen.locale import codeset
-from Date import Date
 import gen.datehandler
 
 from const import TEMP_DIR, USER_HOME, GRAMPS_UUID, IMAGE_DIR
@@ -1579,7 +1578,7 @@ def format_time(secs):
     24 hour time as hh:mm:ss.
     """
     t = time.localtime(secs)
-    d = Date(t.tm_year, t.tm_mon, t.tm_mday)
+    d = gen.lib.Date(t.tm_year, t.tm_mon, t.tm_mday)
     return gen.datehandler.displayer.display(d) + time.strftime(' %X', t)
 
 #-------------------------------------------------------------------------
