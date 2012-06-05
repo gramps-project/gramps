@@ -85,7 +85,7 @@ import Errors
 from QuestionDialog import (ErrorDialog, WarningDialog, QuestionDialog2,
                             InfoDialog)
 from gui import widgets
-import UndoHistory
+from gui.undohistory import UndoHistory
 import Utils
 from gui.dbloader import DbLoader
 import GrampsDisplay
@@ -1699,8 +1699,7 @@ class ViewManager(CLIManager):
         Displays the Undo history window
         """
         try:
-            self.undo_history_window = UndoHistory.UndoHistory(self.dbstate,
-                                                               self.uistate)
+            self.undo_history_window = UndoHistory(self.dbstate, self.uistate)
         except Errors.WindowActiveError:
             return
 

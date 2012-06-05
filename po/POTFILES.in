@@ -20,7 +20,6 @@ src/Spell.py
 src/ToolTips.py
 src/TransUtils.py
 src/Utils.py
-src/UndoHistory.py
 
 # cli
 src/cli/arghandler.py
@@ -342,6 +341,7 @@ src/gui/grampsbar.py
 src/gui/grampsgui.py
 src/gui/makefilter.py
 src/gui/tipofday.py
+src/gui/undohistory.py
 src/gui/utils.py
 src/gui/viewmanager.py
 

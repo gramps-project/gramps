@@ -36,6 +36,7 @@ pkgpython_PYTHON = \
 	navigator.py \
 	pluginmanager.py \
 	tipofday.py \
+	undohistory.py \
 	user.py \
 	utils.py \
 	viewmanager.py

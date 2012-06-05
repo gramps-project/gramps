@@ -44,7 +44,6 @@ gdir_PYTHON = \
 	TransUtils.py\
 	TreeTips.py\
 	Utils.py\
-	UndoHistory.py\
 	PlaceUtils.py
 
 # Clean up all the byte-compiled files
