@@ -42,7 +42,7 @@ from gen.ggettext import sgettext as _
 from gen.plug.report import utils as ReportUtils
 from gen.display.name import displayer as name_displayer
 import const
-import GrampsDisplay
+from gui.display import display_help
 import gen.datehandler
 from Errors import MergeError
 from QuestionDialog import ErrorDialog
@@ -302,7 +302,7 @@ class MergePerson(ManagedWindow):
 
     def cb_help(self, obj):
         """Display the relevant portion of Gramps manual"""
-        GrampsDisplay.help(webpage = WIKI_HELP_PAGE, section = WIKI_HELP_SEC)
+        display_help(webpage = WIKI_HELP_PAGE, section = WIKI_HELP_SEC)
 
     def cb_merge(self, obj):
         """

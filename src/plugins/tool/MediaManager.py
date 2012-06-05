@@ -50,7 +50,7 @@ import gobject
 #
 #------------------------------------------------------------------------
 import const
-import GrampsDisplay
+from gui.display import display_help
 from gen.lib import MediaObject
 from gen.db import DbTxn
 from gen.updatecallback import UpdateCallback
@@ -153,7 +153,7 @@ class MediaMan(tool.Tool):
         """
         Display the relevant portion of Gramps manual.
         """
-        GrampsDisplay.help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
+        display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def build_batch_ops(self):
         """

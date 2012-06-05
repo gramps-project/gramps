@@ -48,7 +48,7 @@ import gtk
 import ConfigParser
 import const
 from gui.managedwindow import ManagedWindow
-import GrampsDisplay
+from gui.display import display_help, display_url
 from gui.widgets.grampletpane import (AVAILABLE_GRAMPLETS,
                                       GET_AVAILABLE_GRAMPLETS,
                                       GET_GRAMPLET_LIST,
@@ -593,11 +593,11 @@ class DetachedWindow(ManagedWindow):
             # translated name:
             if self.gramplet.help_url:
                 if self.gramplet.help_url.startswith("http://"):
-                    GrampsDisplay.url(self.gramplet.help_url)
+                    display_url(self.gramplet.help_url)
                 else:
-                    GrampsDisplay.help(self.gramplet.help_url)
+                    display_help(self.gramplet.help_url)
             else:
-                GrampsDisplay.help(WIKI_HELP_PAGE, 
+                display_help(WIKI_HELP_PAGE, 
                                    self.gramplet.tname.replace(" ", "_"))
 
     def get_notebook(self):

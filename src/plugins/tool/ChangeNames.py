@@ -40,7 +40,7 @@ import gtk
 from gen.db import find_surname_name, DbTxn
 import const
 from gui.utils import ProgressMeter
-import GrampsDisplay
+from gui.display import display_help
 from gui.managedwindow import ManagedWindow
 
 from QuestionDialog import OkDialog
@@ -228,7 +228,7 @@ class ChangeNames(tool.BatchTool, ManagedWindow):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
+        display_help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
 
     def on_ok_clicked(self, obj):
         with DbTxn(_("Capitalization changes"), self.db, batch=True

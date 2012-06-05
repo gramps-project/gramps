@@ -88,7 +88,7 @@ from gui import widgets
 from gui.undohistory import UndoHistory
 import Utils
 from gui.dbloader import DbLoader
-import GrampsDisplay
+from gui.display import display_help, display_url
 from gui.widgets.progressdialog import ProgressMonitor, GtkProgressDialog
 from gui.configure import GrampsPreferences
 from gen.db.backup import backup
@@ -1820,43 +1820,43 @@ def key_bindings(obj):
     """
     Display key bindings
     """
-    GrampsDisplay.help(webpage=WIKI_HELP_PAGE_KEY)
+    display_help(webpage=WIKI_HELP_PAGE_KEY)
 
 def manual_activate(obj):
     """
     Display the GRAMPS manual
     """
-    GrampsDisplay.help(webpage=WIKI_HELP_PAGE_MAN)
+    display_help(webpage=WIKI_HELP_PAGE_MAN)
 
 def report_bug_activate(obj):
     """
     Display the bug tracker web site
     """
-    GrampsDisplay.url(const.URL_BUGTRACKER)
+    display_url(const.URL_BUGTRACKER)
 
 def home_page_activate(obj):
     """
     Display the GRAMPS home page
     """
-    GrampsDisplay.url(const.URL_HOMEPAGE)
+    display_url(const.URL_HOMEPAGE)
 
 def mailing_lists_activate(obj):
     """
     Display the mailing list web page
     """
-    GrampsDisplay.url(const.URL_MAILINGLIST)
+    display_url(const.URL_MAILINGLIST)
 
 def extra_plugins_activate(obj):
     """
     Display the wiki page with extra plugins
     """
-    GrampsDisplay.url(const.URL_WIKISTRING+const.WIKI_EXTRAPLUGINS)
+    display_url(const.URL_WIKISTRING+const.WIKI_EXTRAPLUGINS)
 
 def faq_activate(obj):
     """
     Display FAQ
     """
-    GrampsDisplay.help(webpage=WIKI_HELP_PAGE_FAQ)
+    display_help(webpage=WIKI_HELP_PAGE_FAQ)
 
 def by_menu_name(first, second):
     """

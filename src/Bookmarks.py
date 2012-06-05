@@ -51,7 +51,7 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import GrampsDisplay
+from gui.display import display_help
 import ListModel
 import Utils
 import const
@@ -300,7 +300,7 @@ class Bookmarks :
 
     def help_clicked(self):
         """Display the relevant portion of GRAMPS manual."""
-        GrampsDisplay.help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
+        display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
 class ListBookmarks(Bookmarks):
 

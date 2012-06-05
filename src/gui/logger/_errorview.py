@@ -35,7 +35,7 @@ import gtk
 import const
 from gen.ggettext import sgettext as _
 from _errorreportassistant import ErrorReportAssistant
-import GrampsDisplay
+from gui.display import display_help
 
 #-------------------------------------------------------------------------
 #
@@ -78,7 +78,7 @@ class ErrorView(object):
     def help_clicked(self):
         """Display the relevant portion of GRAMPS manual"""
         
-        GrampsDisplay.help(WIKI_HELP_PAGE, WIKI_HELP_SEC)
+        display_help(WIKI_HELP_PAGE, WIKI_HELP_SEC)
 
     def draw_window(self):
         title = "%s - Gramps" % _("Error Report")

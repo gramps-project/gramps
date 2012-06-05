@@ -198,8 +198,8 @@ class EditReference(ManagedWindow, DbGUIElement):
             self.close()
 
     def define_help_button(self, button, webpage='', section=''):
-        import GrampsDisplay
-        button.connect('clicked', lambda x: GrampsDisplay.help(webpage,
+        from gui.display import display_help
+        button.connect('clicked', lambda x: display_help(webpage,
                                                                section))
         button.set_sensitive(True)
 

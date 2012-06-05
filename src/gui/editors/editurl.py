@@ -68,8 +68,8 @@ class EditUrl(EditSecondary):
         
     def jump_to(self, obj):
         if self.obj.get_path():
-            import GrampsDisplay
-            GrampsDisplay.url(self.obj.get_path())
+            from gui.display import display_url
+            display_url(self.obj.get_path())
 
     def _setup_fields(self):
         self.des  = MonitoredEntry(self.top.get_object("url_des"),

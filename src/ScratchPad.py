@@ -48,7 +48,7 @@ import const
 import config
 import gen.lib
 import gen.datehandler
-import GrampsDisplay
+from gui.display import display_help
 from gui.managedwindow import ManagedWindow
 from gen.ggettext import sgettext as _
 from TransUtils import trans_objclass
@@ -1371,7 +1371,7 @@ class ScratchPadWindow(ManagedWindow):
         
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
+        display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def on_clear_clicked(self, obj):
         """Deletes the selected object from the object list"""

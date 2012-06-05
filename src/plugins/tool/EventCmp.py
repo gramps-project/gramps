@@ -56,7 +56,7 @@ import gen.datehandler
 from QuestionDialog import WarningDialog
 from gui.plug import tool
 from gen.plug.report import utils as ReportUtils
-import GrampsDisplay
+from gui.display import display_help
 from gui.managedwindow import ManagedWindow
 from gen.ggettext import sgettext as _
 from gui.glade import Glade
@@ -162,7 +162,7 @@ class EventComparison(tool.Tool,ManagedWindow):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
+        display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def build_menu_names(self, obj):
         return (_("Filter selection"),_("Event Comparison tool"))
@@ -270,7 +270,7 @@ class DisplayChart(ManagedWindow):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
+        display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def build_menu_names(self, obj):
         return (_("Event Comparison Results"),None)

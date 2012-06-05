@@ -32,7 +32,7 @@ Provide merge capabilities for families.
 from gen.ggettext import sgettext as _
 from gen.display.name import displayer as name_displayer
 import const
-import GrampsDisplay
+from gui.display import display_help
 from Errors import MergeError
 from QuestionDialog import ErrorDialog
 from gui.managedwindow import ManagedWindow
@@ -185,7 +185,7 @@ class MergeFamily(ManagedWindow):
 
     def cb_help(self, obj):
         """Display the relevant portion of the Gramps manual"""
-        GrampsDisplay.help(webpage = WIKI_HELP_PAGE, section = WIKI_HELP_SEC)
+        display_help(webpage = WIKI_HELP_PAGE, section = WIKI_HELP_SEC)
 
     def cb_merge(self, obj):
         """

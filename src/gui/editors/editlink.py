@@ -35,7 +35,7 @@ import re
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
 from gui.managedwindow import ManagedWindow
-import GrampsDisplay
+from gui.display import display_help
 from gui.glade import Glade
 from gen.simple import SimpleAccess
 
@@ -233,5 +233,5 @@ class EditLink(ManagedWindow):
         button.connect('clicked',self.close)
 
     def define_help_button(self, button, webpage='', section=''):
-        button.connect('clicked', lambda x: GrampsDisplay.help(webpage,
+        button.connect('clicked', lambda x: display_help(webpage,
                                                                section))

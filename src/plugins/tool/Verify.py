@@ -58,7 +58,7 @@ import const
 import gen.lib
 from gui.editors import EditPerson, EditFamily
 import Utils
-import GrampsDisplay
+from gui.display import display_help
 from ManagedWindow from gui.managedwindow import ManagedWindow
 from gen.updatecallback import UpdateCallback
 from gui.plug import tool
@@ -298,7 +298,7 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
+        display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def on_apply_clicked(self, obj):
         run_button = self.top.get_object('button4')

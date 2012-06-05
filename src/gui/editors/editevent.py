@@ -44,7 +44,7 @@ import gtk
 import const
 import gen.lib
 from gen.db import DbTxn
-import GrampsDisplay
+from gui.display import display_help
 from editprimary import EditPrimary
 from objectentries import PlaceEntry
 from gui.glade import Glade
@@ -223,7 +223,7 @@ class EditEvent(EditPrimary):
 
     def help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
+        display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
     def save(self, *obj):
         self.ok_button.set_sensitive(False)
         if self.object_is_empty():

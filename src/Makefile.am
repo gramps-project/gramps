@@ -24,7 +24,6 @@ gdir_PYTHON = \
 	Errors.py\
 	ExportAssistant.py\
 	ExportOptions.py\
-	GrampsDisplay.py\
 	gramps.py\
 	ImgManip.py\
 	LdsUtils.py \

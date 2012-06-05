@@ -47,7 +47,7 @@ from gen.db import DbTxn
 from gui.dbguielement import DbGUIElement
 from ListModel import ListModel, NOSORT, COLOR, INTEGER
 import const
-import GrampsDisplay
+from gui.display import display_help
 from QuestionDialog import ErrorDialog, QuestionDialog2
 import gui.widgets.progressdialog as progressdlg
 
@@ -316,7 +316,7 @@ class OrganizeTagsDialog(object):
         while True:
             response = self.top.run()
             if response == gtk.RESPONSE_HELP:
-                GrampsDisplay.help(webpage=WIKI_HELP_PAGE,
+                display_help(webpage=WIKI_HELP_PAGE,
                                    section=WIKI_HELP_SEC)
             else:
                 break

@@ -52,7 +52,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-from GrampsDisplay import url as display_url
+from gui.display import display_url
 import config
 
 if config.get('preferences.use-bsddb3'):

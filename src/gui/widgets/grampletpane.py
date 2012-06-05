@@ -48,7 +48,7 @@ from gui.managedwindow import ManagedWindow
 import ConfigParser
 import gui.utils
 from gui.plug.quick import run_quick_report_by_name
-import GrampsDisplay
+from gui.display import display_help, display_url
 from gui.glade import Glade
 from gui.pluginmanager import GuiPluginManager
 from gui.widgets.undoablebuffer import UndoableBuffer
@@ -244,11 +244,11 @@ class GrampletWindow(ManagedWindow):
             # translated name:
             if self.gramplet.help_url:
                 if self.gramplet.help_url.startswith("http://"):
-                    GrampsDisplay.url(self.gramplet.help_url)
+                    display_url(self.gramplet.help_url)
                 else:
-                    GrampsDisplay.help(self.gramplet.help_url)
+                    display_help(self.gramplet.help_url)
             else:
-                GrampsDisplay.help(WIKI_HELP_PAGE, 
+                display_help(WIKI_HELP_PAGE, 
                                    self.gramplet.tname.replace(" ", "_"))
         
     def build_menu_names(self, obj):
@@ -638,16 +638,16 @@ class GuiGramplet(object):
                     return True
                 elif link_type == 'URL':
                     if event.button == 1: # left mouse
-                        GrampsDisplay.url(handle)
+                        display_url(handle)
                     return True
                 elif link_type == 'WIKI':
                     if event.button == 1: # left mouse
                         handle = handle.replace(" ", "_")
                         if "#" in handle:
                             page, section = handle.split("#", 1)
-                            GrampsDisplay.help(page, section)
+                            display_help(page, section)
                         else:
-                            GrampsDisplay.help(handle)
+                            display_help(handle)
                     return True
                 elif link_type == 'Family':
                     family = self.dbstate.db.get_family_from_handle(handle)

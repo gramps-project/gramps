@@ -22,7 +22,7 @@
 # $Id$
 
 from gui.managedwindow import ManagedWindow
-import GrampsDisplay
+from gui.display import display_help
 import config
 from gui.dbguielement import DbGUIElement
 
@@ -130,7 +130,7 @@ class EditSecondary(ManagedWindow, DbGUIElement):
         button.connect('clicked', self.canceledits)
 
     def define_help_button(self, button, webpage='', section=''):
-        button.connect('clicked', lambda x: GrampsDisplay.help(webpage,
+        button.connect('clicked', lambda x: display_help(webpage,
                                                                section))
 
     def canceledits(self, *obj):

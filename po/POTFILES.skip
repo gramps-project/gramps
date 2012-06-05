@@ -7,7 +7,6 @@
 src/AutoComp.py
 src/DdTargets.py
 src/Errors.py
-src/GrampsDisplay.py
 src/ImgManip.py
 src/ListModel.py
 src/RecentFiles.py
@@ -229,6 +228,7 @@ src/gen/utils/callman.py
 # gui - GUI code
 src/gui/__init__.py
 src/gui/dbguielement.py
+src/gui/display.py
 src/gui/glade.py
 src/gui/managedwindow.py
 src/gui/navigator.py

@@ -63,7 +63,7 @@ try:
 except KeyError:
     pass
 
-def help(webpage='', section=''):
+def display_help(webpage='', section=''):
     """
     Display the specified webpage and section from the Gramps 3.0 wiki.
     """
@@ -75,7 +75,7 @@ def help(webpage='', section=''):
             link = link + '#' + section
     url(link)
         
-def url(link, uistate=None):
+def display_url(link, uistate=None):
     """
     Open the specified URL in a browser. 
     """

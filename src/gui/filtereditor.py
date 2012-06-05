@@ -60,7 +60,7 @@ import ListModel
 from gui.managedwindow import ManagedWindow
 from QuestionDialog import QuestionDialog
 import const
-import GrampsDisplay
+from gui.display import display_help
 import Errors
 from gen.ggettext import sgettext as _
 import gen.lib
@@ -666,7 +666,7 @@ class EditRule(ManagedWindow):
         """
         Display the relevant portion of GRAMPS manual.
         """
-        GrampsDisplay.help()
+        display_help()
 
     def close_window(self, obj):
         self.close()
@@ -777,7 +777,7 @@ class EditFilter(ManagedWindow):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help(webpage=WIKI_HELP_PAGE)
+        display_help(webpage=WIKI_HELP_PAGE)
 
     def close_window(self, obj):
         self.close()
@@ -1034,7 +1034,7 @@ class FilterEditor(ManagedWindow):
         
     def help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help()
+        display_help()
 
     def filter_select_row(self, obj):
         store, node = self.clist.get_selected()

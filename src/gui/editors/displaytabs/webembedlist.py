@@ -118,8 +118,8 @@ class WebEmbedList(EmbeddedList):
             ]
 
     def jump_button_clicked(self, obj):
-        import GrampsDisplay
+        from gui.display import display_url
 
         url = self.get_selected()
         if url.get_path():
-            GrampsDisplay.url(url.get_path())
+            display_url(url.get_path())

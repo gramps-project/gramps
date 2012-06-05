@@ -32,7 +32,7 @@ Provide merge capabilities for citations.
 #-------------------------------------------------------------------------
 from gen.ggettext import sgettext as _
 import const
-import GrampsDisplay
+from gui.display import display_help
 from gui.managedwindow import ManagedWindow
 import gen.datehandler
 from Utils import confidence
@@ -137,7 +137,7 @@ class MergeCitation(ManagedWindow):
 
     def cb_help(self, obj):
         """Display the relevant portion of Gramps manual"""
-        GrampsDisplay.help(webpage = WIKI_HELP_PAGE, section = WIKI_HELP_SEC)
+        display_help(webpage = WIKI_HELP_PAGE, section = WIKI_HELP_SEC)
 
     def cb_merge(self, obj):
         """

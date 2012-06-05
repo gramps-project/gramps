@@ -580,8 +580,8 @@ class ReportDialog(ManagedWindow):
         pass
 
     def on_help_clicked(self, *obj):
-        import GrampsDisplay
-        GrampsDisplay.help(URL_REPORT_PAGE, self.report_name.replace(" ", "_"))
+        from gui.display import display_help
+        display_help(URL_REPORT_PAGE, self.report_name.replace(" ", "_"))
         
     def on_style_edit_clicked(self, *obj):
         """The user has clicked on the 'Edit Styles' button.  Create a

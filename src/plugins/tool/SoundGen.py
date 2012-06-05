@@ -31,7 +31,7 @@
 #------------------------------------------------------------------------
 import const
 import soundex
-import GrampsDisplay
+from gui.display import display_help
 from gui.managedwindow import ManagedWindow
 import AutoComp
 from gen.ggettext import sgettext as _
@@ -101,7 +101,7 @@ class SoundGen(tool.Tool, ManagedWindow):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
+        display_help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
 
     def build_menu_names(self, obj):
         return (self.label,None)

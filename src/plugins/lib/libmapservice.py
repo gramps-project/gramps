@@ -36,7 +36,7 @@ Base class for map services. Example: open place in openstreetmap.org
 #
 #-------------------------------------------------------------------------
 from PlaceUtils import conv_lat_lon
-import GrampsDisplay
+from gui.display import display_url
 
 class MapService():
     """Generic base class for map services
@@ -93,7 +93,7 @@ class MapService():
     def __display(self):
         """Show the url in an external browser"""
         if self.url:
-            GrampsDisplay.url(self.url)
+            display_url(self.url)
     
     def _free(self):
         """Allow garbage collection to do it's work"""

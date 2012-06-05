@@ -52,7 +52,7 @@ from gen.plug.report import utils as ReportUtils
 from gui.editors import EditPerson, EditFamily
 from gui.managedwindow import ManagedWindow
 from gui.utils import ProgressMeter
-import GrampsDisplay
+from gui.display import display_help
 from gen.ggettext import sgettext as _
 from gui.glade import Glade
 from gen.lib import Tag
@@ -235,7 +235,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help(WIKI_HELP_PAGE , WIKI_HELP_SEC)    
+        display_help(WIKI_HELP_PAGE , WIKI_HELP_SEC)    
 
 
     def applyTagClicked(self, button) :

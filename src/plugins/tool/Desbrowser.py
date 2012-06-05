@@ -39,7 +39,7 @@ import gtk
 import const
 from gen.display.name import displayer as name_displayer
 from gui.plug import tool
-import GrampsDisplay
+from gui.display import display_help
 from gui.managedwindow import ManagedWindow
 from gen.ggettext import sgettext as _
 from gui.glade import Glade
@@ -104,7 +104,7 @@ class DesBrowse(tool.ActivePersonTool, ManagedWindow):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
+        display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def add_to_tree(self, parent_id, sib_id, person_handle):
         item_id = self.model.insert_after(parent_id, sib_id)

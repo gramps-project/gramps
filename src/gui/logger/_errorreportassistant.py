@@ -44,7 +44,7 @@ else:
 #
 #-------------------------------------------------------------------------
 import const
-import GrampsDisplay
+from gui.display import display_help, display_url
 
 #-------------------------------------------------------------------------
 #
@@ -132,7 +132,7 @@ class ErrorReportAssistant(gtk.Assistant):
         """
         Start an email client to send the report.
         """
-        GrampsDisplay.url('mailto:gramps-bugs@lists.sourceforge.net?subject='
+        display_url('mailto:gramps-bugs@lists.sourceforge.net?subject='
                           '"bug report"&body="%s"' \
                           % self._final_report_text_buffer.get_text(
                                self._final_report_text_buffer.get_start_iter(),
@@ -142,7 +142,7 @@ class ErrorReportAssistant(gtk.Assistant):
         """
         Start a web browser to report the bug.
         """
-        GrampsDisplay.url('http://bugs.gramps-project.org/bug_report_page.php')
+        display_url('http://bugs.gramps-project.org/bug_report_page.php')
 
     def _get_sys_information(self):
         """

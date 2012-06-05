@@ -49,7 +49,7 @@ from gui.utils import ProgressMeter
 from gui.plug import tool
 from QuestionDialog import OkDialog
 from gui.managedwindow import ManagedWindow
-import GrampsDisplay
+from gui.display import display_help
 import gen.lib
 from gen.db import DbTxn
 from gen.ggettext import sgettext as _
@@ -479,7 +479,7 @@ class PatchNames(tool.BatchTool, ManagedWindow):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
+        display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def on_ok_clicked(self, obj):
         with DbTxn(_("Extract information from names"), self.db, batch=True

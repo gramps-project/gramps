@@ -48,7 +48,7 @@ import gobject
 #-------------------------------------------------------------------------
 from gen.db import DbTxn
 from gui.managedwindow import ManagedWindow
-import GrampsDisplay
+from gui.display import display_help
 
 from gui.plug import tool
 from gui.utils import ProgressMeter
@@ -589,7 +589,7 @@ class ExtractCity(tool.BatchTool, ManagedWindow):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help()
+        display_help()
 
     def on_ok_clicked(self, obj):
         with DbTxn(_("Extract Place data"), self.db, batch=True) as self.trans:

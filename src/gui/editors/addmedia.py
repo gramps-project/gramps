@@ -55,7 +55,7 @@ import config
 import Utils
 import gen.mime
 import ThumbNails
-import GrampsDisplay
+from gui.display import display_help
 from gui.managedwindow import ManagedWindow
 from QuestionDialog import ErrorDialog, WarningDialog
 from gui.glade import Glade
@@ -125,7 +125,7 @@ class AddMediaObject(ManagedWindow):
         self.cancel_button = self.glade.get_object('button81')
         self.ok_button.connect('clicked', self.save)
         self.ok_button.set_sensitive(not self.dbase.readonly)
-        self.help_button.connect('clicked', lambda x: GrampsDisplay.help())
+        self.help_button.connect('clicked', lambda x: display_help())
         self.cancel_button.connect('clicked', self.close)
         self.show()
         self.modal_call()

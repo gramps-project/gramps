@@ -50,7 +50,7 @@ import const
 from gui.utils import ProgressMeter
 from gui.plug import tool
 from QuestionDialog import OkDialog
-import GrampsDisplay
+from gui.display import display_help
 import gen.datehandler
 from gui.managedwindow import ManagedWindow
 from gen.ggettext import sgettext as _
@@ -161,7 +161,7 @@ class MergeCitations(tool.BatchTool,ManagedWindow):
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
         
-        GrampsDisplay.help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
+        display_help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
 
     def on_merge_ok_clicked(self, obj):
         """

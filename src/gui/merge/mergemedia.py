@@ -31,7 +31,7 @@ Provide merge capabilities for media objects.
 #-------------------------------------------------------------------------
 from gen.ggettext import sgettext as _
 import const
-import GrampsDisplay
+from gui.display import display_help
 from gui.managedwindow import ManagedWindow
 import gen.datehandler
 from gen.merge import MergeMediaQuery
@@ -135,7 +135,7 @@ class MergeMedia(ManagedWindow):
 
     def cb_help(self, obj):
         """Display the relevant portion of the Gramps manual"""
-        GrampsDisplay.help(webpage = WIKI_HELP_PAGE, section = WIKI_HELP_SEC)
+        display_help(webpage = WIKI_HELP_PAGE, section = WIKI_HELP_SEC)
 
     def cb_merge(self, obj):
         """

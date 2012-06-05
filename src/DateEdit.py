@@ -65,7 +65,7 @@ from gen.ggettext import sgettext as _
 from gen.lib.date import Date, NextYear
 import gen.datehandler
 import const
-import GrampsDisplay
+from gui.display import display_help
 from gui.managedwindow import ManagedWindow
 from Errors import ValidationError
 from gui.glade import Glade
@@ -280,7 +280,7 @@ class DateEditorDialog(ManagedWindow):
         while True:
             response = self.window.run()
             if response == gtk.RESPONSE_HELP:
-                GrampsDisplay.help(webpage=WIKI_HELP_PAGE,
+                display_help(webpage=WIKI_HELP_PAGE,
                                    section=WIKI_HELP_SEC)
             elif response == gtk.RESPONSE_DELETE_EVENT:
                 break

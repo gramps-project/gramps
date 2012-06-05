@@ -58,7 +58,7 @@ from gui.widgets.valueaction import ValueAction
 from gui.widgets.toolcomboentry import ToolComboEntry
 from gui.widgets.springseparator import SpringSeparatorAction
 from Spell import Spell
-from GrampsDisplay import url as display_url
+from gui.display import display_url
 import config
 from constfunc import has_display
 

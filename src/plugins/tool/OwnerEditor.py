@@ -40,7 +40,7 @@ import gtk
 import const
 import config
 from Utils import get_researcher
-import GrampsDisplay
+from gui.display import display_help
 from gui.widgets import MonitoredEntry
 from gui.managedwindow import ManagedWindow
 from gui.plug import tool
@@ -151,7 +151,7 @@ class OwnerEditor(tool.Tool, ManagedWindow):
 
     def on_help_button_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
+        display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def on_button_press_event(self, obj, event):
         """Shows popup-menu for db <-> preferences copying"""

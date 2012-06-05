@@ -46,7 +46,7 @@ from QuestionDialog import OkDialog
 import ListModel
 import Errors
 from gui.merge import MergePerson
-import GrampsDisplay
+from gui.display import display_help
 from gui.managedwindow import ManagedWindow
 from QuestionDialog import RunDatabaseRepair
 from gen.ggettext import sgettext as _
@@ -142,7 +142,7 @@ class Merge(tool.Tool,ManagedWindow):
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
         
-        GrampsDisplay.help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
+        display_help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
 
     def ancestors_of(self, p1_id, id_list):
         if (not p1_id) or (p1_id in id_list):
@@ -571,7 +571,7 @@ class ShowMatches(ManagedWindow):
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
         
-        GrampsDisplay.help(WIKI_HELP_PAGE , WIKI_HELP_SEC)    
+        display_help(WIKI_HELP_PAGE , WIKI_HELP_SEC)    
     def redraw(self):
         list = []
         for p1key, p1data in self.map.iteritems():

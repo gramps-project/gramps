@@ -45,7 +45,7 @@ import gen.datehandler
 from gen.display.name import displayer as name_displayer
 import config
 import gui.utils
-import GrampsDisplay
+from gui.display import display_help
 from QuestionDialog import SaveDialog
 import gen.lib
 from gui.dbguielement import DbGUIElement
@@ -173,7 +173,7 @@ class EditPrimary(ManagedWindow, DbGUIElement):
         button.connect('clicked', self.close)
 
     def define_help_button(self, button, webpage='', section=''):
-        button.connect('clicked', lambda x: GrampsDisplay.help(webpage,
+        button.connect('clicked', lambda x: display_help(webpage,
                                                                section))
 
     def _do_close(self, *obj):

@@ -47,7 +47,7 @@ import gtk
 # -----------------------------------------------------------------------------
 # GRAMPS modules
 # -----------------------------------------------------------------------------
-import GrampsDisplay
+from gui.display import display_help
 
 from gen.ggettext import gettext as _
 
@@ -885,7 +885,7 @@ class EditExifMetadata(Gramplet):
         will bring up a Wiki help page.
         """
         addonwiki = 'Edit Image Exif Metadata' 
-        GrampsDisplay.help(webpage = addonwiki)
+        display_help(webpage = addonwiki)
 
     def activate_buttons(self, buttonlist):
         """
