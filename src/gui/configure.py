@@ -57,7 +57,7 @@ from gen.lib import Name, Surname, NameOriginType
 from gui.managedwindow import ManagedWindow
 from gui.widgets import MarkupLabel, BasicLabel
 from QuestionDialog import ErrorDialog, QuestionDialog2, OkDialog
-from glade import Glade
+from gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

@@ -45,7 +45,7 @@ from gui.widgets import MonitoredEntry
 from gui.managedwindow import ManagedWindow
 from gui.plug import tool
 from gen.ggettext import sgettext as _
-from glade import Glade
+from gui.glade import Glade
 import gui.utils
 
 #-------------------------------------------------------------------------

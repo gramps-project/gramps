@@ -28,7 +28,7 @@
 #
 #-------------------------------------------------------------------------
 from editsecondary import EditSecondary
-from glade import Glade
+from gui.glade import Glade
 from gui.widgets import MonitoredEntry
 from gen.ggettext import gettext as _
 

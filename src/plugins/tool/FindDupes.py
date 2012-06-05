@@ -50,7 +50,7 @@ import GrampsDisplay
 from gui.managedwindow import ManagedWindow
 from QuestionDialog import RunDatabaseRepair
 from gen.ggettext import sgettext as _
-from glade import Glade
+from gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

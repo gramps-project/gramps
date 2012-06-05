@@ -52,7 +52,7 @@ from gen.lib import NoteType
 from displaytabs import GrampsTab, CitationEmbedList, NoteTab, SurnameTab
 from gui.widgets import (MonitoredEntry, MonitoredMenu, MonitoredDate, 
                      MonitoredDataType, PrivacyButton)
-from glade import Glade                     
+from gui.glade import Glade                     
 from Errors import ValidationError
 
 #-------------------------------------------------------------------------

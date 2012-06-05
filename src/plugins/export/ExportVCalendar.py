@@ -51,7 +51,7 @@ from ExportOptions import WriterOptionBox
 import Utils
 from gen.lib import Date, EventType
 import Errors
-from glade import Glade
+from gui.glade import Glade
 
 class CalendarWriter(object):
     def __init__(self, database, filename, user, option_box=None):

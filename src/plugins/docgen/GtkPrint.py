@@ -204,7 +204,7 @@ class PrintPreview(object):
     def __build_window(self):
         """Build the window from Glade.
         """
-        from glade import Glade
+        from gui.glade import Glade
         glade_xml = Glade()
         self._window = glade_xml.toplevel
         #self._window.set_transient_for(parent)

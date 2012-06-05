@@ -76,7 +76,7 @@ from gui.pluginmanager import GuiPluginManager
 from cli.clidbman import CLIDbManager, NAME_FILE, time_val
 from DdTargets import DdTargets
 import RecentFiles
-from glade import Glade
+from gui.glade import Glade
 from gen.db.backup import restore
 from gen.db.exceptions import DbException
 from Utils import get_unicode_path_from_env_var

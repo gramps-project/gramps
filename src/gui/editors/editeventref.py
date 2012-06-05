@@ -37,7 +37,7 @@ from gen.ggettext import gettext as _
 #-------------------------------------------------------------------------
 import gen.lib
 from gen.db import DbTxn
-from glade import Glade
+from gui.glade import Glade
 from displaytabs import (CitationEmbedList, NoteTab, GalleryTab, 
                          EventBackRefList, AttrEmbedList)
 from gui.widgets import (PrivacyButton, MonitoredEntry,

@@ -55,7 +55,7 @@ import gc
 from gui.plug import tool
 from gui.managedwindow import ManagedWindow
 from QuestionDialog import InfoDialog
-from glade import Glade
+from gui.glade import Glade
 import gui.utils
 
 #-------------------------------------------------------------------------

@@ -68,7 +68,7 @@ import const
 import GrampsDisplay
 from gui.managedwindow import ManagedWindow
 from Errors import ValidationError
-from glade import Glade
+from gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

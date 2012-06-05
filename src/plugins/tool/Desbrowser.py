@@ -42,7 +42,7 @@ from gui.plug import tool
 import GrampsDisplay
 from gui.managedwindow import ManagedWindow
 from gen.ggettext import sgettext as _
-from glade import Glade
+from gui.glade import Glade
 from gui.editors import EditPerson
 
 #------------------------------------------------------------------------

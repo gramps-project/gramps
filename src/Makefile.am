@@ -13,7 +13,6 @@ SUBDIRS = \
 gdirdir=$(prefix)/share/gramps
 
 gdir_PYTHON = \
-	Assistant.py\
 	AutoComp.py\
 	Bookmarks.py\
 	config.py\
@@ -26,7 +25,6 @@ gdir_PYTHON = \
 	Errors.py\
 	ExportAssistant.py\
 	ExportOptions.py\
-	glade.py\
 	GrampsDisplay.py\
 	gramps.py\
 	ImgManip.py\

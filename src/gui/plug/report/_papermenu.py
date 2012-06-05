@@ -43,7 +43,7 @@ import gobject
 #-------------------------------------------------------------------------
 from gen.plug.docgen import PaperStyle, PAPER_PORTRAIT, PAPER_LANDSCAPE
 from gen.plug.report._paper import paper_sizes
-from glade import Glade
+from gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

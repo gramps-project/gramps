@@ -44,7 +44,7 @@ LOG = logging.getLogger(".GedcomImport")
 #
 #------------------------------------------------------------------------
 import Errors
-from glade import Glade
+from gui.glade import Glade
 from libmixin import DbMixin
 import libgedcom
 module = __import__("libgedcom")

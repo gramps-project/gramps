@@ -29,7 +29,7 @@ import gtk
 import os
 from tempfile import mkstemp
 from gen.ggettext import gettext as _
-from glade import Glade
+from gui.glade import Glade
 import libgedcom
 
 #

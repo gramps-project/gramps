@@ -49,7 +49,7 @@ import gtk
 import const
 import Errors
 import config
-from glade import Glade
+from gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

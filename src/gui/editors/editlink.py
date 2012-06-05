@@ -36,7 +36,7 @@ import re
 from gen.ggettext import gettext as _
 from gui.managedwindow import ManagedWindow
 import GrampsDisplay
-from glade import Glade
+from gui.glade import Glade
 from gen.simple import SimpleAccess
 
 WEB, EVENT, FAMILY, MEDIA, NOTE, PERSON, PLACE, REPOSITORY, SOURCE = range(9)

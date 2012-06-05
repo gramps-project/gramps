@@ -52,7 +52,7 @@ import Relationship
 
 from QuestionDialog import ErrorDialog
 from gui.plug import tool
-from glade import Glade
+from gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

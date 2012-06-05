@@ -36,7 +36,7 @@ from gui.managedwindow import ManagedWindow
 import AutoComp
 from gen.ggettext import sgettext as _
 from gui.plug import tool
-from glade import Glade
+from gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

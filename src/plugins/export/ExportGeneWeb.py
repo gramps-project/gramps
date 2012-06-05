@@ -50,7 +50,7 @@ import gen.lib
 from ExportOptions import WriterOptionBox
 #import const
 import Utils
-from glade import Glade
+from gui.glade import Glade
 import config
 
 class GeneWebWriter(object):

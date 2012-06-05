@@ -48,7 +48,7 @@ log = logging.getLogger(".WriteFtree")
 import Utils
 from ExportOptions import WriterOptionBox
 import Errors
-from glade import Glade
+from gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

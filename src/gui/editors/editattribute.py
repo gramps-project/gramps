@@ -48,7 +48,7 @@ import gtk
 #-------------------------------------------------------------------------
 from editsecondary import EditSecondary
 from gen.lib import NoteType
-from glade import Glade
+from gui.glade import Glade
 from displaytabs import CitationEmbedList, NoteTab
 from gui.widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
 

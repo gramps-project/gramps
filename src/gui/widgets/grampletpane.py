@@ -49,7 +49,7 @@ import ConfigParser
 import gui.utils
 from gui.plug.quick import run_quick_report_by_name
 import GrampsDisplay
-from glade import Glade
+from gui.glade import Glade
 from gui.pluginmanager import GuiPluginManager
 from gui.widgets.undoablebuffer import UndoableBuffer
 

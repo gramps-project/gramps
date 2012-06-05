@@ -54,7 +54,7 @@ from gui.managedwindow import ManagedWindow
 from gui.utils import ProgressMeter
 import GrampsDisplay
 from gen.ggettext import sgettext as _
-from glade import Glade
+from gui.glade import Glade
 from gen.lib import Tag
 from gen.db import DbTxn
 

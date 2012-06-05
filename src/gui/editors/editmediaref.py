@@ -50,7 +50,7 @@ import ThumbNails
 import Utils
 from gen.lib import NoteType
 from gen.db import DbTxn
-from glade import Glade
+from gui.glade import Glade
 from displaytabs import (CitationEmbedList, AttrEmbedList, MediaBackRefList, 
                          NoteTab)
 from gui.widgets import (MonitoredSpinButton, MonitoredEntry, PrivacyButton,

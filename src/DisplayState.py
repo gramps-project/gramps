@@ -60,7 +60,7 @@ import config
 from gen.display.name import displayer as name_displayer
 from gui.managedwindow import GrampsWindowManager
 import Relationship
-from glade import Glade
+from gui.glade import Glade
 from Utils import navigation_label
 
 DISABLED = -1

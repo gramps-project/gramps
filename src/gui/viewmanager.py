@@ -442,7 +442,7 @@ class ViewManager(CLIManager):
                          self.window)
 
     def update_addons(self, addon_update_list):
-        from glade import Glade
+        from gui.glade import Glade
         from gui.managedwindow import ManagedWindow
         from ListModel import ListModel, NOSORT, TOGGLE
         glade = Glade("updateaddons.glade")

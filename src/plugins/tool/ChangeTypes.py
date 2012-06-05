@@ -45,7 +45,7 @@ from gen.lib import EventType
 from gen.db import DbTxn
 from QuestionDialog import OkDialog
 from gui.plug import tool
-from glade import Glade
+from gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

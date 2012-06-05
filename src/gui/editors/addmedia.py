@@ -58,7 +58,7 @@ import ThumbNails
 import GrampsDisplay
 from gui.managedwindow import ManagedWindow
 from QuestionDialog import ErrorDialog, WarningDialog
-from glade import Glade
+from gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

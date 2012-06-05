@@ -60,7 +60,7 @@ from gui.managedwindow import ManagedWindow
 from gen.datehandler import displayer as _dd
 from gen.updatecallback import UpdateCallback
 from gui.plug import tool
-from glade import Glade
+from gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

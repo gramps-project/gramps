@@ -49,7 +49,7 @@ import const
 import config
 from gui.managedwindow import ManagedWindow
 from QuestionDialog import ErrorDialog
-from glade import Glade
+from gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

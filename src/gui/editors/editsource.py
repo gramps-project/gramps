@@ -52,7 +52,7 @@ from displaytabs import (NoteTab, GalleryTab, DataEmbedList,
                          CitationBackRefList, RepoEmbedList)
 from gui.widgets import MonitoredEntry, PrivacyButton
 from QuestionDialog import ErrorDialog
-from glade import Glade
+from gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

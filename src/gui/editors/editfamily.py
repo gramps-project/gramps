@@ -68,7 +68,7 @@ import gen.lib
 from gen.db import DbTxn
 import Errors
 import gen.datehandler
-from glade import Glade
+from gui.glade import Glade
 
 from editprimary import EditPrimary
 from editchildref import EditChildRef

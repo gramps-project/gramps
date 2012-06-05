@@ -42,7 +42,7 @@ import traceback
 #------------------------------------------------------------------------
 from gui.plug import tool
 from gui.managedwindow import ManagedWindow
-from glade import Glade
+from gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

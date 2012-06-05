@@ -52,7 +52,7 @@ from gen.lib import NoteType
 from gui.widgets import MonitoredEntry, PrivacyButton
 from gui.selectors import SelectorFactory
 from displaytabs import CitationEmbedList, NoteTab
-from glade import Glade
+from gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

@@ -47,7 +47,7 @@ from gui.widgets import MonitoredEntry, MonitoredDataType, PrivacyButton
 from displaytabs import AddrEmbedList, WebEmbedList, NoteTab, SourceBackRefList
 from editprimary import EditPrimary
 from QuestionDialog import ErrorDialog
-from glade import Glade
+from gui.glade import Glade
 
 class EditRepository(EditPrimary):
 

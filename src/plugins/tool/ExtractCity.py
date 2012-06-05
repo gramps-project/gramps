@@ -52,7 +52,7 @@ import GrampsDisplay
 
 from gui.plug import tool
 from gui.utils import ProgressMeter
-from glade import Glade
+from gui.glade import Glade
 
 CITY_STATE_ZIP = re.compile("((\w|\s)+)\s*,\s*((\w|\s)+)\s*(,\s*((\d|-)+))", re.UNICODE)
 CITY_STATE = re.compile("((?:\w|\s)+(?:-(?:\w|\s)+)*),((?:\w|\s)+)", re.UNICODE)

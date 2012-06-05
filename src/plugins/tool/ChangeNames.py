@@ -46,7 +46,7 @@ from gui.managedwindow import ManagedWindow
 from QuestionDialog import OkDialog
 from gui.plug import tool
 from gen.ggettext import sgettext as _
-from glade import Glade
+from gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

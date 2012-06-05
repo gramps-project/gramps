@@ -53,7 +53,7 @@ import GrampsDisplay
 import gen.lib
 from gen.db import DbTxn
 from gen.ggettext import sgettext as _
-from glade import Glade
+from gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

@@ -35,7 +35,7 @@ from gen.ggettext import gettext as _
 #-------------------------------------------------------------------------
 from editsecondary import EditSecondary
 from gui.widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
-from glade import Glade
+from gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

@@ -35,7 +35,7 @@ from gen.db import DbTxn
 from gen.display.name import displayer as name_displayer
 import ListModel
 from gui.managedwindow import ManagedWindow
-from glade import Glade
+from gui.glade import Glade
 
 PARENT_TITLES = [(_('Father'), -1, 200), (_('Mother'), -1, 200), ('', -1, 0)]
 FAMILY_TITLES = [(_('Spouse'), -1, 200), (_('Relationship'), -1, 200), ('', -1, 0)]

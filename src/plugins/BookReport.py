@@ -76,7 +76,7 @@ from gen.plug.docgen import StyleSheet, StyleSheetList, PaperStyle
 from QuestionDialog import WarningDialog, ErrorDialog
 from gen.plug.menu import PersonOption, FilterOption, FamilyOption
 from gui.managedwindow import ManagedWindow
-from glade import Glade
+from gui.glade import Glade
 import gui.utils
 import gui.user
 

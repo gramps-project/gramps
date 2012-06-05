@@ -53,7 +53,7 @@ from gui.widgets import MonitoredEntry, PrivacyButton
 from Errors import ValidationError
 from PlaceUtils import conv_lat_lon
 from QuestionDialog import ErrorDialog
-from glade import Glade
+from gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

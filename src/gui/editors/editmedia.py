@@ -55,7 +55,7 @@ from displaytabs import (CitationEmbedList, AttrEmbedList, NoteTab,
                          MediaBackRefList)
 from addmedia import AddMediaObject
 from QuestionDialog import ErrorDialog
-from glade import Glade
+from gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

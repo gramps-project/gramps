@@ -49,7 +49,7 @@ import gtk
 from editsecondary import EditSecondary
 from gen.lib import NoteType
 import Errors
-from glade import Glade
+from gui.glade import Glade
 from displaytabs import CitationEmbedList, NoteTab
 from gui.widgets import MonitoredDataType, PrivacyButton
 from gen.display.name import displayer as name_displayer

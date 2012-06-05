@@ -47,7 +47,7 @@ from gen.db import DbTxn
 import GrampsDisplay
 from editprimary import EditPrimary
 from objectentries import PlaceEntry
-from glade import Glade
+from gui.glade import Glade
 from QuestionDialog import ErrorDialog
 from displaytabs import (CitationEmbedList, NoteTab, GalleryTab, 
                          EventBackRefList, AttrEmbedList)

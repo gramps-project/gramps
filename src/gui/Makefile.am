@@ -27,6 +27,7 @@ pkgpython_PYTHON = \
 	dbloader.py \
 	dbman.py \
 	filtereditor.py \
+	glade.py \
 	grampsbar.py \
 	grampsgui.py \
 	makefilter.py \

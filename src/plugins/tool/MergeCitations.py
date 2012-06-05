@@ -55,7 +55,7 @@ import gen.datehandler
 from gui.managedwindow import ManagedWindow
 from gen.ggettext import sgettext as _
 from gen.ggettext import ngettext
-from glade import Glade
+from gui.glade import Glade
 from gen.db import DbTxn
 from gen.lib import (Person, Family, Event, Place, MediaObject, Citation, 
                      Repository)

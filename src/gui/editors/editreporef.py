@@ -39,7 +39,7 @@ from gen.db import DbTxn
 from displaytabs import NoteTab,AddrEmbedList,WebEmbedList,SourceBackRefList
 from gui.widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
 from editreference import RefTab, EditReference
-from glade import Glade
+from gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

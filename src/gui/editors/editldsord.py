@@ -48,7 +48,7 @@ import gtk
 import gen.lib
 from gen.display.name import displayer as name_displayer
 import LdsUtils
-from glade import Glade
+from gui.glade import Glade
 from editsecondary import EditSecondary
 from objectentries import PlaceEntry
 from displaytabs import CitationEmbedList,NoteTab

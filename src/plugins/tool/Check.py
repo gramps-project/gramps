@@ -72,7 +72,7 @@ from gui.managedwindow import ManagedWindow
 from gui.plug import tool
 from QuestionDialog import OkDialog, MissingMediaDialog
 from gen.display.name import displayer as _nd
-from glade import Glade
+from gui.glade import Glade
 
 # table for handling control chars in notes.
 # All except 09, 0A, 0D are replaced with space.

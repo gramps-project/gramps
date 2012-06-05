@@ -54,7 +54,7 @@ from gen.lib.eventroletype import EventRoleType
 from ExportOptions import WriterOptionBox
 import Utils
 import gen.datehandler
-from glade import Glade
+from gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

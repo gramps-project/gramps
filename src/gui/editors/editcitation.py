@@ -50,7 +50,7 @@ from gui.widgets import (MonitoredEntry, PrivacyButton, MonitoredMenu,
                         MonitoredDate)
 from QuestionDialog import ErrorDialog
 from editreference import RefTab
-from glade import Glade
+from gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

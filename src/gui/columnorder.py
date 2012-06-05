@@ -50,7 +50,7 @@ import gobject
 #-------------------------------------------------------------------------
 import const
 from gui.managedwindow import ManagedWindow
-from glade import Glade
+from gui.glade import Glade
 
 
 #-------------------------------------------------------------------------

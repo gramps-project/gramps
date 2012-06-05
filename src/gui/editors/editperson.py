@@ -58,7 +58,7 @@ from gen.db import DbTxn
 from gui import widgets
 from gen.display.name import displayer as name_displayer
 import Errors
-from glade import Glade
+from gui.glade import Glade
 
 from editprimary import EditPrimary
 from editmediaref import EditMediaRef

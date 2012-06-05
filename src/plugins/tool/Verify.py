@@ -63,7 +63,7 @@ from ManagedWindow from gui.managedwindow import ManagedWindow
 from gen.updatecallback import UpdateCallback
 from gui.plug import tool
 from gen.ggettext import sgettext as _
-from glade import Glade
+from gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #
