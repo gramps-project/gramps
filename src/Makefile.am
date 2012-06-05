@@ -21,7 +21,6 @@ gdir_PYTHON = \
 	DateEdit.py\
 	DbState.py\
 	DdTargets.py\
-	DisplayState.py\
 	Errors.py\
 	ExportAssistant.py\
 	ExportOptions.py\

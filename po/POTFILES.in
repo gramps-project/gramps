@@ -6,7 +6,6 @@ src/Assistant.py
 src/Bookmarks.py
 src/const.py
 src/DateEdit.py
-src/DisplayState.py
 src/ExportAssistant.py
 src/ExportOptions.py
 src/gramps.py
@@ -338,6 +337,7 @@ src/gui/columnorder.py
 src/gui/configure.py
 src/gui/dbloader.py
 src/gui/dbman.py
+src/gui/displaystate.py
 src/gui/filtereditor.py
 src/gui/grampsbar.py
 src/gui/grampsgui.py

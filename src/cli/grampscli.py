@@ -213,7 +213,7 @@ class CLIManager(object):
         """
         # A recent database should already have a directory If not, do nothing,
         #  just return. This can be handled better if family tree delete/rename
-        #  also updated the recent file menu info in DisplayState.py
+        #  also updated the recent file menu info in displaystate.py
         if not  os.path.isdir(filename):
             self._errordialog(
                     _("Could not load a recent Family Tree."), 

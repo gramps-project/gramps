@@ -77,7 +77,7 @@ from gui.plug.report import report
 from gen.plug.utils import version_str_to_tup, load_addon_file
 from gui.pluginmanager import GuiPluginManager
 import Relationship
-import DisplayState
+from gui.displaystate import DisplayState, RecentDocsMenu
 import const
 import constfunc
 import config
@@ -627,7 +627,7 @@ class ViewManager(CLIManager):
         self.progress_monitor = ProgressMonitor(
             GtkProgressDialog, ("", self.window))
 
-        self.uistate = DisplayState.DisplayState(
+        self.uistate = DisplayState(
             self.window, self.statusbar, self.progress, self.warnbtn,
             self.uimanager, self.progress_monitor, self)
 
@@ -645,7 +645,7 @@ class ViewManager(CLIManager):
         self.uistate.set_open_widget(openbtn)
         self.toolbar.insert(openbtn, 0)
 
-        self.recent_manager = DisplayState.RecentDocsMenu(
+        self.recent_manager = RecentDocsMenu(
             self.uistate, self.dbstate, self._read_recent_file)
         self.recent_manager.build()
 
