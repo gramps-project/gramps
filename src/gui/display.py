@@ -73,7 +73,7 @@ def display_help(webpage='', section=''):
         link = const.URL_WIKISTRING + webpage + EXTENSION
         if section:
             link = link + '#' + section
-    url(link)
+    display_url(link)
         
 def display_url(link, uistate=None):
     """
