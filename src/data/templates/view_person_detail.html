@@ -140,7 +140,7 @@
     <input type="submit" value="Save"/>
   {% else %}
     {% ifequal action "add" %}
-      {% make_button "Cancel" "/person/" %}
+      {% make_button "Cancel" "/person/" args %}
       <input type="hidden" name="action" value="create"/>
       <input type="hidden" name="search" value="{{search}}"/>
       <input type="hidden" name="page" value="{{page}}"/>

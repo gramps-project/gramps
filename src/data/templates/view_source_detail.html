@@ -78,18 +78,22 @@
 
 {% if user.is_superuser %}
   {% if action == "edit" %}
-    {% make_button "Cancel" "/source/%s" source.handle %}
+    {% make_button "Cancel" "/source/%s" source.handle args %}
     <input type="hidden" name="action" value="save"/>
+    <input type="hidden" name="search" value="{{search}}"/>
+    <input type="hidden" name="page" value="{{page}}"/>
     <input type="submit" value="Save"/>
   {% else %}
     {% ifequal action "add" %}
-      {% make_button "Cancel" "/source/" %}
+      {% make_button "Cancel" "/source/" args %}
       <input type="hidden" name="action" value="create"/>
+      <input type="hidden" name="search" value="{{search}}"/>
+      <input type="hidden" name="page" value="{{page}}"/>
       <input type="submit" value="Create"/>
     {% else %}
-      {% make_button "Add Source" "/source/add" %}
-      {% make_button "Edit Source" "/source/%s/edit" source.handle %}
-      {% make_button "Delete Source" "/source/%s/delete" source.handle %}
+      {% make_button "Add Source" "/source/add" args %}
+      {% make_button "Edit Source" "/source/%s/edit" source.handle args %}
+      {% make_button "Delete Source" "/source/%s/delete" source.handle args %}
     {% endifequal %}
   {% endif %}
 {% else %}

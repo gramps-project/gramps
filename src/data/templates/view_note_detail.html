@@ -85,18 +85,22 @@
 
 {% if user.is_superuser %}
   {% if action == "edit" %}
-    {% make_button "Cancel" "/note/%s" note.handle %}
+    {% make_button "Cancel" "/note/%s" note.handle args %}
     <input type="hidden" name="action" value="save"/>
+    <input type="hidden" name="search" value="{{search}}"/>
+    <input type="hidden" name="page" value="{{page}}"/>
     <input type="submit" value="Save"/>
   {% else %}
     {% ifequal action "add" %}
-      {% make_button "Cancel" "/note/" %}
+      {% make_button "Cancel" "/note/" args %}
       <input type="hidden" name="action" value="create"/>
+      <input type="hidden" name="search" value="{{search}}"/>
+      <input type="hidden" name="page" value="{{page}}"/>
       <input type="submit" value="Create"/>
     {% else %}
-      {% make_button "Add Note" "/note/add" %}
-      {% make_button "Edit Note" "/note/%s/edit" note.handle %}
-      {% make_button "Delete Note" "/note/%s/delete" note.handle %}
+      {% make_button "Add Note" "/note/add" args %}
+      {% make_button "Edit Note" "/note/%s/edit" note.handle args %}
+      {% make_button "Delete Note" "/note/%s/delete" note.handle args %}
     {% endifequal %}
   {% endif %}
 {% else %}

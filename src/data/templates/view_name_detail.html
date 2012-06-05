@@ -116,30 +116,24 @@
 
 {% if user.is_authenticated %}
   {% ifequal action "add" %}
-    <input type="button" 
-       value="Cancel"
-       onclick="document.location.href='/person/{{person.handle}}#tab-names'"/>
+    {% make_button "Cancel" "/person/%s" person.handle args "#tab-names" %}
     <input type="hidden" name="action" value="create"/>
+    <input type="hidden" name="search" value="{{search}}"/>
+    <input type="hidden" name="page" value="{{page}}"/>
     <input type="submit" value="Create"/>
   {% else %}
   {% ifequal action "edit" %}
-    <input type="button" 
-       value="Cancel"
-       onclick="document.location.href='/person/'"/>
+    {% make_button "Cancel" "/person/" args "#tab-names" %}
     <input type="hidden" name="action" value="save"/>
+    <input type="hidden" name="search" value="{{search}}"/>
+    <input type="hidden" name="page" value="{{page}}"/>
     <input type="submit" value="Save"/>
   {% else %}
-    <input type="button" 
-	   value="Add Name"
-	   onclick="document.location.href='/person/{{person.handle}}/name/add'"/>
-    <input type="button" 
-	   value="Edit Name"
-	   onclick="document.location.href='/person/{{person.handle}}/name/{{order}}/edit'"/>
-    <input type="button" 
-	   value="Delete Name"
-	   onclick="document.location.href='/person/{{person.handle}}/name/{{order}}/delete'"/>
+    {% make_button "Add Name" "/person/%s/name/add" person.handle args %}
+    {% make_button "Edit Name" "/person/%s/name/%s/edit" person.handle order args %}
+    {% make_button "Delete Name" "/person/%s/name/%s/delete" person.handle order args %}
   {% endifequal %}
-  {% endifequal %}
+ {% endifequal %}
 {% else %}
 {% endif %}
 </form>

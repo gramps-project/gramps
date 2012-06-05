@@ -85,18 +85,22 @@
 
 {% if user.is_superuser %}
   {% if action == "edit" %}
-    {% make_button "Cancel" "/place/%s" place.handle %}
+    {% make_button "Cancel" "/place/%s" place.handle args %}
     <input type="hidden" name="action" value="save"/>
+    <input type="hidden" name="search" value="{{search}}"/>
+    <input type="hidden" name="page" value="{{page}}"/>
     <input type="submit" value="Save"/>
   {% else %}
     {% ifequal action "add" %}
-      {% make_button "Cancel" "/place/" %}
+      {% make_button "Cancel" "/place/" args %}
       <input type="hidden" name="action" value="create"/>
+      <input type="hidden" name="search" value="{{search}}"/>
+      <input type="hidden" name="page" value="{{page}}"/>
       <input type="submit" value="Create"/>
     {% else %}
-      {% make_button "Add Place" "/place/add" %}
-      {% make_button "Edit Place" "/place/%s/edit" place.handle %}
-      {% make_button "Delete Place" "/place/%s/delete" place.handle %}
+      {% make_button "Add Place" "/place/add" args %}
+      {% make_button "Edit Place" "/place/%s/edit" place.handle args %}
+      {% make_button "Delete Place" "/place/%s/delete" place.handle args %}
     {% endifequal %}
   {% endif %}
 {% else %}

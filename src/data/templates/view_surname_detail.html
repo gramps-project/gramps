@@ -68,28 +68,22 @@
 
 {% if user.is_authenticated %}
   {% if action == "edit" %}
-    <input type="button" 
-	   value="Cancel" 
-	   onclick="document.location.href='/person/{{person.handle}}/name/{{order}}/surname/{{sorder}}'"/>
+    {% make_button "Cancel" "/person/%s/name/%s/surname/%s" person.handle order sorder args %}
     <input type="hidden" name="action" value="save"/>
+    <input type="hidden" name="search" value="{{search}}"/>
+    <input type="hidden" name="page" value="{{page}}"/>
     <input type="submit" value="Save">
   {% else %} 
-     {% if action == "add" %}
-    <input type="button" 
-	   value="Cancel" 
-	   onclick="document.location.href='/person/{{person.handle}}/name/{{order}}'"/>
-    <input type="hidden" name="action" value="create"/>
-    <input type="submit" value="Save">
+    {% if action == "add" %}
+      {% make_button "Cancel" "/person/%s/name/%s" person.handle order args %}
+      <input type="hidden" name="action" value="create"/>
+      <input type="hidden" name="search" value="{{search}}"/>
+      <input type="hidden" name="page" value="{{page}}"/>
+      <input type="submit" value="Save">
     {% else %}
-    <input type="button" 
-	   value="Add Surname" 
-	   onclick="document.location.href='/person/{{person.handle}}/name/{{order}}/surname/add'"/>
-    <input type="button" 
-	   value="Edit Surname" 
-	   onclick="document.location.href='/person/{{person.handle}}/name/{{order}}/surname/{{sorder}}/edit'"/>
-    <input type="button" 
-	   value="Delete Surname" 
-	   onclick="document.location.href='/person/{{person.handle}}/name/{{order}}/surname/{{sorder}}/delete'"/>
+      {% make_button "Add Surname" "/person/%s/name/%s/surname/add" person.handle order args %}
+      {% make_button "Edit Surname" "/person/%s/name/%s/surname/%s/edit" person.handle order sorder args %}
+      {% make_button "Add Surname" "/person/%s/name/%s/surname/%s/delete" person.handle order sorder args %}
     {% endif %}
   {% endif %}
 {% endif %}

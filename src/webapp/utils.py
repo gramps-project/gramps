@@ -248,15 +248,20 @@ def build_search(request):
 def make_button(text, url, *args):
     newargs = []
     kwargs = ""
+    last = ""
     for arg in args:
-        if arg.startswith("?"):
+        if isinstance(arg, (str, unicode)) and arg.startswith("?"):
             kwargs = arg
+        elif isinstance(arg, (str, unicode)) and arg.startswith("#"):
+            last = arg
         elif arg == "":
             pass
         else:
             newargs.append(arg)
-    url = url % tuple(newargs)
-    return mark_safe("""<input type="button" value="%s" onclick="document.location.href='%s%s'"/>""" % (text, url, kwargs))
+    if newargs:
+        url = url % tuple(newargs)
+    return mark_safe("""<input type="button" value="%s" onclick="document.location.href='%s%s%s'"/>""" % 
+                     (text, url, kwargs, last))
 
 def event_table(obj, user, action, url, args):
     retval = ""

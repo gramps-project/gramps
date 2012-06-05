@@ -16,11 +16,11 @@
   {% for note in page.object_list %}
   <tr class="{% cycle odd,even %}">
     <td>{{ forloop.counter|row_count:page }}</td>
-    <td><a href="/{{view}}/{{note.handle|escape}}" class="noThumb browsecell">
+    <td><a href="/{{view}}/{{note.handle|escape}}{{args}}" class="noThumb browsecell">
            <span class="grampsid">[{{note.gramps_id}}]</span></a>
     {% if user.is_authenticated %}
-    <td><a href="/{{view}}/{{note.handle|escape}}" class="browsecell">{{note.note_type|escape|nbsp}}</a>
-    <td><a href="/{{view}}/{{note.handle|escape}}" class="browsecell">{{note.text|preview:70|nbsp}}</a>
+    <td><a href="/{{view}}/{{note.handle|escape}}{{args}}" class="browsecell">{{note.note_type|escape|nbsp}}</a>
+    <td><a href="/{{view}}/{{note.handle|escape}}{{args}}" class="browsecell">{{note.text|preview:70|nbsp}}</a>
     {% else %}
       <td></td>
       <td></td>
@@ -31,7 +31,7 @@
 </table>
 
 {% if user.is_superuser %}
-   {% make_button "Add Note" "/note/add" %}
+   {% make_button "Add Note" "/note/add" args %}
 {% endif %}
 {% endblock %}
 

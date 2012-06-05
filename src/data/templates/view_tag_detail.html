@@ -53,18 +53,22 @@
 
 {% if user.is_superuser %}
   {% if action == "edit" %}
-    {% make_button "Cancel" "/tag/%s" tag.handle %}
+    {% make_button "Cancel" "/tag/%s" tag.handle args %}
     <input type="hidden" name="action" value="save"/>
+    <input type="hidden" name="search" value="{{search}}"/>
+    <input type="hidden" name="page" value="{{page}}"/>
     <input type="submit" value="Save"/>
   {% else %}
     {% ifequal action "add" %}
-      {% make_button "Cancel" "/tag/" %}
+      {% make_button "Cancel" "/tag/" args %}
       <input type="hidden" name="action" value="create"/>
+      <input type="hidden" name="search" value="{{search}}"/>
+      <input type="hidden" name="page" value="{{page}}"/>
       <input type="submit" value="Create"/>
     {% else %}
-      {% make_button "Add Tag" "/tag/add" %}
-      {% make_button "Edit Tag" "/tag/%s/edit" tag.handle %}
-      {% make_button "Delete Tag" "/tag/%s/delete" tag.handle %}
+      {% make_button "Add Tag" "/tag/add" args %}
+      {% make_button "Edit Tag" "/tag/%s/edit" tag.handle args %}
+      {% make_button "Delete Tag" "/tag/%s/delete" tag.handle args %}
     {% endifequal %}
   {% endif %}
 {% else %}

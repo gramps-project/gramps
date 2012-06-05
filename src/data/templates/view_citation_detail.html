@@ -140,18 +140,22 @@
 
 {% if user.is_superuser %}
   {% if action == "edit" %}
-    {% make_button "Cancel" "/citation/%s" citation.handle %}
+    {% make_button "Cancel" "/citation/%s" citation.handle args %}
     <input type="hidden" name="action" value="save"/>
+    <input type="hidden" name="search" value="{{search}}"/>
+    <input type="hidden" name="page" value="{{page}}"/>
     <input type="submit" value="Save"/>
   {% else %}
     {% ifequal action "add" %}
-      {% make_button "Cancel" "/citation/" %}
+      {% make_button "Cancel" "/citation/" args %}
       <input type="hidden" name="action" value="create"/>
+      <input type="hidden" name="search" value="{{search}}"/>
+      <input type="hidden" name="page" value="{{page}}"/>
       <input type="submit" value="Create"/>
     {% else %}
-      {% make_button "Add Citation" "/citation/add" %}
-      {% make_button "Edit Citation" "/citation/%s/edit" citation.handle %}
-      {% make_button "Delete Citation" "/citation/%s/delete" citation.handle %}
+      {% make_button "Add Citation" "/citation/add" args %}
+      {% make_button "Edit Citation" "/citation/%s/edit" citation.handle args %}
+      {% make_button "Delete Citation" "/citation/%s/delete" citation.handle args %}
     {% endifequal %}
   {% endif %}
 {% else %}
