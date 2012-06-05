@@ -43,7 +43,7 @@ from gui.managedwindow import ManagedWindow
 import AutoComp
 from gen.lib import EventType
 from gen.db import DbTxn
-from QuestionDialog import OkDialog
+from gui.dialog import OkDialog
 from gui.plug import tool
 from gui.glade import Glade
 

@@ -54,7 +54,7 @@ import Errors
 from gui.utils import open_file_with_default_application
 from gui.plug import add_gui_options
 from gui.user import User
-from QuestionDialog import ErrorDialog, OptionDialog
+from gui.dialog import ErrorDialog, OptionDialog
 from gen.plug.report import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
                              CATEGORY_CODE, CATEGORY_WEB, CATEGORY_GRAPHVIZ,
                              standalone_categories)

@@ -59,7 +59,7 @@ from lifewaylayer import LifeWayLayer
 from datelayer import DateLayer
 from gen.ggettext import sgettext as _
 from config import config
-from QuestionDialog import ErrorDialog
+from gui.dialog import ErrorDialog
 
 #-------------------------------------------------------------------------
 #

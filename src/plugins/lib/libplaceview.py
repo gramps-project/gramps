@@ -51,7 +51,7 @@ from gui.utils import add_menuitem
 import Errors
 import Bookmarks
 import config
-from QuestionDialog import ErrorDialog
+from gui.dialog import ErrorDialog
 from gui.pluginmanager import GuiPluginManager
 from DdTargets import DdTargets
 from gui.editors import EditPlace, DeletePlaceQuery

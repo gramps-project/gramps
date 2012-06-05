@@ -64,7 +64,7 @@ from editprimary import EditPrimary
 from editmediaref import EditMediaRef
 from editname import EditName
 import config
-from QuestionDialog import ErrorDialog, ICON
+from gui.dialog import ErrorDialog, ICON
 from Errors import ValidationError
 
 from displaytabs import (PersonEventEmbedList, NameEmbedList, CitationEmbedList,
@@ -926,7 +926,7 @@ class EditPerson(EditPrimary):
             obj = self.dbstate.db.get_object_from_handle(handle)
             if obj is None :
                 #notify user of error
-                from QuestionDialog import RunDatabaseRepair
+                from gui.dialog import RunDatabaseRepair
                 RunDatabaseRepair(
                             _('Non existing media found in the Gallery'))
             else :

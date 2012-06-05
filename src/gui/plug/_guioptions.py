@@ -55,7 +55,7 @@ from gui.utils import ProgressMeter
 from gui.pluginmanager import GuiPluginManager
 from gui import widgets
 from gui.managedwindow import ManagedWindow
-from QuestionDialog import OptionDialog
+from gui.dialog import OptionDialog
 from gui.selectors import SelectorFactory
 from gen.display.name import displayer as _nd
 from gen.filters import GenericFilterFactory, GenericFilter, rules

@@ -79,7 +79,7 @@ from displaytabs import (EmbeddedList, EventEmbedList, CitationEmbedList,
 from gui.widgets import (PrivacyButton, MonitoredEntry, MonitoredDataType,
                          MonitoredTagList)
 from gen.plug import CATEGORY_QR_FAMILY
-from QuestionDialog import (ErrorDialog, RunDatabaseRepair, WarningDialog,
+from gui.dialog import (ErrorDialog, RunDatabaseRepair, WarningDialog,
                             MessageHideDialog)
 from gen.utils import get_birth_or_fallback, get_death_or_fallback
 from gui.selectors import SelectorFactory

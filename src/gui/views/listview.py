@@ -60,7 +60,7 @@ from gui.filters import SearchBar
 from gui.utils import add_menuitem
 import const
 import Utils
-from QuestionDialog import QuestionDialog, QuestionDialog2
+from gui.dialog import QuestionDialog, QuestionDialog2
 from gui.filtereditor import FilterEditor
 from gen.ggettext import sgettext as _
 from DdTargets import DdTargets
@@ -410,7 +410,7 @@ class ListView(NavigationView):
         if mlist:
             self.bookmarks.add(mlist[0])
         else:
-            from QuestionDialog import WarningDialog
+            from gui.dialog import WarningDialog
             WarningDialog(
                 _("Could Not Set a Bookmark"), 
                 _("A bookmark could not be set because "

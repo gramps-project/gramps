@@ -46,7 +46,7 @@ from gen.db import DbTxn
 from gui.widgets import MonitoredEntry, MonitoredDataType, PrivacyButton
 from displaytabs import AddrEmbedList, WebEmbedList, NoteTab, SourceBackRefList
 from editprimary import EditPrimary
-from QuestionDialog import ErrorDialog
+from gui.dialog import ErrorDialog
 from gui.glade import Glade
 
 class EditRepository(EditPrimary):

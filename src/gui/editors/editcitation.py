@@ -48,7 +48,7 @@ from displaytabs import (NoteTab, GalleryTab, DataEmbedList,
                          SourceBackRefList, RepoEmbedList, CitationBackRefList)
 from gui.widgets import (MonitoredEntry, PrivacyButton, MonitoredMenu,
                         MonitoredDate)
-from QuestionDialog import ErrorDialog
+from gui.dialog import ErrorDialog
 from editreference import RefTab
 from gui.glade import Glade
 

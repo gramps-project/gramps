@@ -246,7 +246,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
             obj = self.dbstate.db.get_object_from_handle(handle)
             if obj is None :
                 #notify user of error
-                from QuestionDialog import RunDatabaseRepair
+                from gui.dialog import RunDatabaseRepair
                 RunDatabaseRepair(
                             _('Non existing media found in the Gallery'))
             else :
@@ -320,7 +320,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                 EditMediaRef(self.dbstate, self.uistate, self.track, 
                              src, sref, self.add_callback)
             except Errors.WindowActiveError:
-                from QuestionDialog import WarningDialog
+                from gui.dialog import WarningDialog
                 WarningDialog(_("Cannot share this reference"),
                               self.__blocked_text())
 
@@ -340,7 +340,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                 EditMediaRef(self.dbstate, self.uistate, self.track, 
                              obj, ref, self.edit_callback)
             except Errors.WindowActiveError:
-                from QuestionDialog import WarningDialog
+                from gui.dialog import WarningDialog
                 WarningDialog(_("Cannot edit this reference"),
                               self.__blocked_text())
 

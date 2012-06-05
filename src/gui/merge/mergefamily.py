@@ -34,7 +34,7 @@ from gen.display.name import displayer as name_displayer
 import const
 from gui.display import display_help
 from Errors import MergeError
-from QuestionDialog import ErrorDialog
+from gui.dialog import ErrorDialog
 from gui.managedwindow import ManagedWindow
 from gen.merge import MergePersonQuery, MergeFamilyQuery
 

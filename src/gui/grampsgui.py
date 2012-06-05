@@ -169,7 +169,7 @@ def _display_welcome_message():
     Display a welcome message to the user.
     """
     if not config.get('behavior.betawarn'):
-        from QuestionDialog import WarningDialog
+        from gui.dialog import WarningDialog
         WarningDialog(
             _('Danger: This is unstable code!'),
             _("This Gramps 3.x-trunk is a development release. "
@@ -241,7 +241,7 @@ class Gramps(object):
             TipOfDay(self.vm.uistate)
 
     def argerrorfunc(self, string):
-        from QuestionDialog import ErrorDialog
+        from gui.dialog import ErrorDialog
         """ Show basic errors in argument handling in GUI fashion"""
         ErrorDialog(_("Error parsing arguments"), string)
 
@@ -256,7 +256,7 @@ def __startgramps(errors, argparser):
     Main startup function started via gobject.timeout_add
     First action inside the gtk loop
     """
-    from QuestionDialog import ErrorDialog
+    from gui.dialog import ErrorDialog
     #handle first existing errors in GUI fashion
     if errors:
         ErrorDialog(errors[0], errors[1])

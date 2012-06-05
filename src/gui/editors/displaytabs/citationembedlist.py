@@ -168,7 +168,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                                  callback=self.add_callback, 
                                  callertitle=self.callertitle)
                 except Errors.WindowActiveError:
-                    from QuestionDialog import WarningDialog
+                    from gui.dialog import WarningDialog
                     WarningDialog(_("Cannot share this reference"),
                                   self.__blocked_text())
             elif isinstance(object, Citation):
@@ -178,7 +178,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                                  object, callback=self.add_callback, 
                                  callertitle=self.callertitle)
                 except Errors.WindowActiveError:
-                    from QuestionDialog import WarningDialog
+                    from gui.dialog import WarningDialog
                     WarningDialog(_("Cannot share this reference"),
                                   self.__blocked_text())
             else:
@@ -251,7 +251,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                                  object, callback=self.add_callback, 
                                  callertitle=self.callertitle)
                 except Errors.WindowActiveError:
-                    from QuestionDialog import WarningDialog
+                    from gui.dialog import WarningDialog
                     WarningDialog(_("Cannot share this reference"),
                                   self.__blocked_text())
             else:
@@ -271,7 +271,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                                  callback=self.add_callback, 
                                  callertitle=self.callertitle)
                 except Errors.WindowActiveError:
-                    from QuestionDialog import WarningDialog
+                    from gui.dialog import WarningDialog
                     WarningDialog(_("Cannot share this reference"),
                                   self.__blocked_text())
             else:

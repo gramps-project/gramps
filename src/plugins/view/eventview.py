@@ -54,7 +54,7 @@ import Errors
 import Bookmarks
 import config
 from DdTargets import DdTargets
-from QuestionDialog import ErrorDialog
+from gui.dialog import ErrorDialog
 from gui.editors import EditEvent, DeleteEventQuery
 from gui.filters.sidebar import EventSidebarFilter
 from gui.merge import MergeEvent

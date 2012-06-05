@@ -30,7 +30,6 @@ gdir_PYTHON = \
 	ListModel.py\
 	Lru.py\
 	MacTransUtils.py\
-	QuestionDialog.py\
 	RecentFiles.py\
 	Relationship.py\
 	Reorder.py\

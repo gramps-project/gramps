@@ -59,7 +59,7 @@ import config
 import gen.db
 import Utils
 from gui.pluginmanager import GuiPluginManager
-from QuestionDialog import (DBErrorDialog, ErrorDialog, QuestionDialog2, 
+from gui.dialog import (DBErrorDialog, ErrorDialog, QuestionDialog2, 
                             WarningDialog)
 from gui.user import User
 import Errors

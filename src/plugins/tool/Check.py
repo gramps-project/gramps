@@ -70,7 +70,7 @@ from gui.utils import ProgressMeter
 from gui.managedwindow import ManagedWindow
 
 from gui.plug import tool
-from QuestionDialog import OkDialog, MissingMediaDialog
+from gui.dialog import OkDialog, MissingMediaDialog
 from gen.display.name import displayer as _nd
 from gui.glade import Glade
 

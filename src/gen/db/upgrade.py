@@ -44,7 +44,7 @@ from gen.lib.nameorigintype import NameOriginType
 from gen.db.write import _mkname, SURNAMES
 from gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, EVENT_KEY, 
                             MEDIA_KEY, PLACE_KEY, REPOSITORY_KEY)
-from QuestionDialog import (InfoDialog)
+from gui.dialog import (InfoDialog)
 
 def gramps_upgrade_16(self):
     """Upgrade database from version 15 to 16. This upgrade converts all

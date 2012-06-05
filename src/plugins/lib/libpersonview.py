@@ -52,7 +52,7 @@ from gen.db import DbTxn
 from gui.views.listview import ListView
 import Utils
 from gen.display.name import displayer as name_displayer
-from QuestionDialog import ErrorDialog, QuestionDialog
+from gui.dialog import ErrorDialog, QuestionDialog
 import Errors
 import Bookmarks
 import config

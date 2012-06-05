@@ -48,7 +48,7 @@ from gui.display import display_help
 from editprimary import EditPrimary
 from objectentries import PlaceEntry
 from gui.glade import Glade
-from QuestionDialog import ErrorDialog
+from gui.dialog import ErrorDialog
 from displaytabs import (CitationEmbedList, NoteTab, GalleryTab, 
                          EventBackRefList, AttrEmbedList)
 from gui.widgets import (MonitoredEntry, PrivacyButton, 

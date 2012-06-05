@@ -163,7 +163,7 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
                     self.dbstate, self.uistate, self.track, repo, 
                     ref, self.edit_callback)
             except Errors.WindowActiveError:
-                from QuestionDialog import WarningDialog
+                from gui.dialog import WarningDialog
                 WarningDialog(
                     _("Cannot edit this reference"),
                     _("This repository reference cannot be edited at this "

@@ -58,7 +58,7 @@ from gen.filters import (GenericFilterFactory, FilterList,
 from gen.filters.rules._matchesfilterbase import MatchesFilterBase
 import ListModel
 from gui.managedwindow import ManagedWindow
-from QuestionDialog import QuestionDialog
+from gui.dialog import QuestionDialog
 import const
 from gui.display import display_help
 import Errors

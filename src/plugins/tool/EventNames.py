@@ -50,7 +50,7 @@ import Utils
 
 from gui.plug import tool
 from gen.display.name import displayer as name_displayer
-from QuestionDialog import OkDialog
+from gui.dialog import OkDialog
 
 #-------------------------------------------------------------------------
 #

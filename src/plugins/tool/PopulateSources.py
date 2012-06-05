@@ -44,7 +44,7 @@ import gtk
 #-------------------------------------------------------------------------
 from gui.utils import ProgressMeter
 from gui.plug import tool
-from QuestionDialog import OkDialog
+from gui.dialog import OkDialog
 from gui.managedwindow import ManagedWindow
 import gen.lib
 from gen.db import DbTxn

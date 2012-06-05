@@ -48,7 +48,7 @@ from gui.dbguielement import DbGUIElement
 from ListModel import ListModel, NOSORT, COLOR, INTEGER
 import const
 from gui.display import display_help
-from QuestionDialog import ErrorDialog, QuestionDialog2
+from gui.dialog import ErrorDialog, QuestionDialog2
 import gui.widgets.progressdialog as progressdlg
 
 #-------------------------------------------------------------------------

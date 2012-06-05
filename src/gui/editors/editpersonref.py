@@ -173,7 +173,7 @@ class EditPersonRef(EditSecondary):
             self.callback = None
             self.close()
         else:
-            from QuestionDialog import ErrorDialog
+            from gui.dialog import ErrorDialog
 
             ErrorDialog(
                 _('No person selected'),

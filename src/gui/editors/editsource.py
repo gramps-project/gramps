@@ -51,7 +51,7 @@ from editprimary import EditPrimary
 from displaytabs import (NoteTab, GalleryTab, DataEmbedList,
                          CitationBackRefList, RepoEmbedList)
 from gui.widgets import MonitoredEntry, PrivacyButton
-from QuestionDialog import ErrorDialog
+from gui.dialog import ErrorDialog
 from gui.glade import Glade
 
 #-------------------------------------------------------------------------

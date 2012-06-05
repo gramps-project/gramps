@@ -47,7 +47,7 @@ import gen.lib
 from gen.db import DbTxn
 from gui.plug import tool
 from gui.utils import ProgressMeter
-from QuestionDialog import QuestionDialog
+from gui.dialog import QuestionDialog
 from gen.datehandler import parser as _dp
 from gen.datehandler import displayer as _dd
 

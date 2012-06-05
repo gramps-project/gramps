@@ -73,7 +73,7 @@ import ListModel
 import Errors
 from gui.pluginmanager import GuiPluginManager
 from gen.plug.docgen import StyleSheet, StyleSheetList, PaperStyle
-from QuestionDialog import WarningDialog, ErrorDialog
+from gui.dialog import WarningDialog, ErrorDialog
 from gen.plug.menu import PersonOption, FilterOption, FamilyOption
 from gui.managedwindow import ManagedWindow
 from gui.glade import Glade
@@ -669,7 +669,7 @@ class BookListDisplay(object):
 
     def on_booklist_cancel_clicked(self, obj):
         if self.unsaved_changes:
-            from QuestionDialog import QuestionDialog2
+            from gui.dialog import QuestionDialog2
             q = QuestionDialog2(
                 _('Discard Unsaved Changes'),
                 _('You have made changes which have not been saved.'),
@@ -1059,7 +1059,7 @@ class BookReportSelector(ManagedWindow):
                 )
             return
         if name in self.book_list.get_book_names():
-            from QuestionDialog import QuestionDialog2
+            from gui.dialog import QuestionDialog2
             q = QuestionDialog2(
                 _('Book name already exists'),
                 _('You are about to save away a '

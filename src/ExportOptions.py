@@ -641,7 +641,7 @@ class WriterOptionBox(object):
                        the_filter, filterdb,
                        lambda : self.edit_filter_save(filterdb, namespace))
         else: # can't edit this filter
-            from QuestionDialog import ErrorDialog
+            from gui.dialog import ErrorDialog
             ErrorDialog(_("Cannot edit a system filter"), 
                         _("Please select a different filter to edit"))
 

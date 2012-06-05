@@ -60,7 +60,7 @@ import config
 from gui.pluginmanager import GuiPluginManager
 import Utils
 from gui.managedwindow import ManagedWindow
-from QuestionDialog import ErrorDialog
+from gui.dialog import ErrorDialog
 from gui.user import User
 
 #-------------------------------------------------------------------------

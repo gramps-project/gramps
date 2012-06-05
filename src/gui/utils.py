@@ -299,7 +299,7 @@ class ProgressMeter(object):
         """
         Don't let the user close the progress dialog.
         """
-        from QuestionDialog import WarningDialog
+        from gui.dialog import WarningDialog
         WarningDialog(
             _("Attempt to force closing the dialog"),
             _("Please do not force closing this important dialog."),
@@ -328,7 +328,7 @@ def open_file_with_default_application( file_path ):
     @type file_path: string
     @return: nothing
     """
-    from QuestionDialog import ErrorDialog
+    from gui.dialog import ErrorDialog
     norm_path = os.path.normpath( file_path )
 
     if not os.path.exists(norm_path):

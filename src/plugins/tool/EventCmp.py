@@ -53,7 +53,7 @@ from docgen import ODSTab
 import const
 import Errors
 import gen.datehandler
-from QuestionDialog import WarningDialog
+from gui.dialog import WarningDialog
 from gui.plug import tool
 from gen.plug.report import utils as ReportUtils
 from gui.display import display_help

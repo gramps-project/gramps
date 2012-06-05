@@ -52,7 +52,7 @@ from displaytabs import (GrampsTab, LocationEmbedList, CitationEmbedList,
 from gui.widgets import MonitoredEntry, PrivacyButton
 from Errors import ValidationError
 from PlaceUtils import conv_lat_lon
-from QuestionDialog import ErrorDialog
+from gui.dialog import ErrorDialog
 from gui.glade import Glade
 
 #-------------------------------------------------------------------------

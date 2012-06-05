@@ -122,7 +122,7 @@ import LdsUtils
 import Utils
 from gen.datehandler._dateparser import DateParser
 from gen.db.dbconst import EVENT_KEY
-from QuestionDialog import WarningDialog
+from gui.dialog import WarningDialog
 from gen.lib.const import IDENTICAL, DIFFERENT
 from gen.lib import (StyledText, StyledTextTag, StyledTextTagType)
 

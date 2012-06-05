@@ -38,7 +38,7 @@ import sys
 #-------------------------------------------------------------------------
 import gen.user
 from gui.utils import ProgressMeter
-from QuestionDialog import (WarningDialog, ErrorDialog, DBErrorDialog, 
+from gui.dialog import (WarningDialog, ErrorDialog, DBErrorDialog, 
                             InfoDialog)
 
 #-------------------------------------------------------------------------

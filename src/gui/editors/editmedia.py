@@ -54,7 +54,7 @@ from gui.widgets import (MonitoredDate, MonitoredEntry, PrivacyButton,
 from displaytabs import (CitationEmbedList, AttrEmbedList, NoteTab, 
                          MediaBackRefList)
 from addmedia import AddMediaObject
-from QuestionDialog import ErrorDialog
+from gui.dialog import ErrorDialog
 from gui.glade import Glade
 
 #-------------------------------------------------------------------------

@@ -43,7 +43,7 @@ from gui.utils import ProgressMeter
 from gui.display import display_help
 from gui.managedwindow import ManagedWindow
 
-from QuestionDialog import OkDialog
+from gui.dialog import OkDialog
 from gui.plug import tool
 from gen.ggettext import sgettext as _
 from gui.glade import Glade

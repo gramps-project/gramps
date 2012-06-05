@@ -66,7 +66,7 @@ import Errors
 from gui.filters.sidebar import MediaSidebarFilter
 from gui.merge import MergeMedia
 from DdTargets import DdTargets
-from QuestionDialog import ErrorDialog
+from gui.dialog import ErrorDialog
 from gen.plug import CATEGORY_QR_MEDIA
 
 #-------------------------------------------------------------------------

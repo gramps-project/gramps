@@ -267,7 +267,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         if from_fname != dest:
             shutil.copyfile(from_fname, dest)
         elif self.warn_dir:
-            from QuestionDialog import WarningDialog
+            from gui.dialog import WarningDialog
             WarningDialog(
                 _("Possible destination error") + "\n" +
                 _("You appear to have set your target directory "

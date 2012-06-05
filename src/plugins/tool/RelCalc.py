@@ -50,7 +50,7 @@ from gui.views.treemodels import PeopleBaseModel, PersonTreeModel
 from libpersonview import BasePersonView
 import Relationship
 
-from QuestionDialog import ErrorDialog
+from gui.dialog import ErrorDialog
 from gui.plug import tool
 from gui.glade import Glade
 

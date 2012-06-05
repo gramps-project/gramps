@@ -42,13 +42,13 @@ from gui.utils import ProgressMeter
 from gui.plug import tool
 import soundex
 from gen.display.name import displayer as name_displayer
-from QuestionDialog import OkDialog
+from gui.dialog import OkDialog
 import ListModel
 import Errors
 from gui.merge import MergePerson
 from gui.display import display_help
 from gui.managedwindow import ManagedWindow
-from QuestionDialog import RunDatabaseRepair
+from gui.dialog import RunDatabaseRepair
 from gen.ggettext import sgettext as _
 from gui.glade import Glade
 

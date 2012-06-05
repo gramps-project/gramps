@@ -53,7 +53,7 @@ import Utils
 import Bookmarks
 import Errors
 from DdTargets import DdTargets
-from QuestionDialog import ErrorDialog
+from gui.dialog import ErrorDialog
 from gui.editors import EditCitation, DeleteCitationQuery
 from gui.filters.sidebar import CitationSidebarFilter
 from gui.merge import MergeCitation

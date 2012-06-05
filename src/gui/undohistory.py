@@ -44,7 +44,7 @@ import gobject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from QuestionDialog import QuestionDialog
+from gui.dialog import QuestionDialog
 from gui.managedwindow import ManagedWindow
 
 #-------------------------------------------------------------------------

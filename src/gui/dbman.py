@@ -70,7 +70,7 @@ import pango
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from QuestionDialog import ErrorDialog, QuestionDialog, QuestionDialog2
+from gui.dialog import ErrorDialog, QuestionDialog, QuestionDialog2
 from gen.db import DbBsddb
 from gui.pluginmanager import GuiPluginManager
 from cli.clidbman import CLIDbManager, NAME_FILE, time_val

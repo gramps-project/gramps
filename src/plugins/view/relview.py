@@ -461,7 +461,7 @@ class RelationshipView(NavigationView):
         try:
             return self._change_person(obj)
         except AttributeError, msg:
-            from QuestionDialog import RunDatabaseRepair
+            from gui.dialog import RunDatabaseRepair
             RunDatabaseRepair(str(msg))
             self.redrawing = False
             return True
@@ -1299,7 +1299,7 @@ class RelationshipView(NavigationView):
     def write_family(self, family_handle, person = None):
         family = self.dbstate.db.get_family_from_handle(family_handle)
         if family is None:
-            from QuestionDialog import WarningDialog
+            from gui.dialog import WarningDialog
             WarningDialog(
                 _('Broken family detected'),
                 _('Please run the Check and Repair Database tool'))

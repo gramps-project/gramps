@@ -48,7 +48,7 @@ import os
 import const
 import config
 from gui.managedwindow import ManagedWindow
-from QuestionDialog import ErrorDialog
+from gui.dialog import ErrorDialog
 from gui.glade import Glade
 
 #-------------------------------------------------------------------------

@@ -47,7 +47,7 @@ import Utils
 import Bookmarks
 import Errors
 from DdTargets import DdTargets
-from QuestionDialog import ErrorDialog
+from gui.dialog import ErrorDialog
 from gui.editors import EditSource, DeleteSrcQuery
 from gui.filters.sidebar import SourceSidebarFilter
 from gui.merge import MergeSource

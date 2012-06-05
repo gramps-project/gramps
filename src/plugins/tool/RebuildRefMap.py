@@ -53,7 +53,7 @@ log = logging.getLogger(".RebuildRefMap")
 #
 #-------------------------------------------------------------------------
 from gui.plug import tool
-from QuestionDialog import OkDialog
+from gui.dialog import OkDialog
 from gen.updatecallback import UpdateCallback
 
 #-------------------------------------------------------------------------

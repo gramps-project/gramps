@@ -54,7 +54,7 @@ import Utils
 import Bookmarks
 import Errors
 from DdTargets import DdTargets
-from QuestionDialog import ErrorDialog
+from gui.dialog import ErrorDialog
 from gui.editors import EditCitation, DeleteCitationQuery, EditSource, \
     DeleteSrcQuery
 from gui.filters.sidebar import SourceSidebarFilter
@@ -439,7 +439,7 @@ class CitationTreeView(ListView):
                     EditCitation(self.dbstate, self.uistate, [], 
                                  gen.lib.Citation(), source)
                 except Errors.WindowActiveError:
-                    from QuestionDialog import WarningDialog
+                    from gui.dialog import WarningDialog
                     WarningDialog(_("Cannot share this reference"),
                                   self.__blocked_text())
             else:
@@ -494,7 +494,7 @@ class CitationTreeView(ListView):
                 try:
                     EditSource(self.dbstate, self.uistate, [], source)
                 except Errors.WindowActiveError:
-                    from QuestionDialog import WarningDialog
+                    from gui.dialog import WarningDialog
                     WarningDialog(_("Cannot share this reference"),
                                   self.__blocked_text2())
 

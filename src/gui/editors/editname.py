@@ -369,7 +369,7 @@ class EditName(EditSecondary):
             #user wants to group with surname
             if self.global_group_set and not self.original_group_set :
                 #warn that group will revert to surname
-                from QuestionDialog import QuestionDialog2
+                from gui.dialog import QuestionDialog2
                 q = QuestionDialog2(
                     _("Break global name grouping?"),
                     _("All people with the name of %(surname)s will no longer "
@@ -399,7 +399,7 @@ class EditName(EditSecondary):
                 #if changed, ask if this has to happen for the entire group,
                 #this might be creation of group link, or change of group link
                 if self.global_group_as != group_as:
-                    from QuestionDialog import QuestionDialog2
+                    from gui.dialog import QuestionDialog2
                         
                     q = QuestionDialog2(
                     _("Group all people with the same name?"),

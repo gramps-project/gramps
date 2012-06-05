@@ -54,7 +54,7 @@ from gui.utils import open_file_with_default_application
 from gui.pluginmanager import GuiPluginManager
 import tool
 from _guioptions import add_gui_options
-from QuestionDialog import InfoDialog
+from gui.dialog import InfoDialog
 from gui.editors import EditPerson
 import Utils
 import const

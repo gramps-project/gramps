@@ -58,7 +58,7 @@ from gui.widgets.grampletpane import (AVAILABLE_GRAMPLETS,
                                       GuiGramplet)
 from gui.widgets.undoablebuffer import UndoableBuffer
 import gui.utils
-from QuestionDialog import QuestionDialog
+from gui.dialog import QuestionDialog
 
 #-------------------------------------------------------------------------
 #

@@ -26,6 +26,7 @@ pkgpython_PYTHON = \
 	dbguielement.py \
 	dbloader.py \
 	dbman.py \
+	dialog.py \
 	display.py \
 	displaystate.py \
 	filtereditor.py \

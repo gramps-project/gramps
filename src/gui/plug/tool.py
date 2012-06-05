@@ -105,7 +105,7 @@ class BatchTool(Tool):
 
     def __init__(self, dbstate, options_class, name):
         # TODO: should we replace this with a callback?
-        from QuestionDialog import QuestionDialog2
+        from gui.dialog import QuestionDialog2
         warn_dialog = QuestionDialog2(
             _('Undo history warning'),
             _('Proceeding with this tool will erase the undo history '
@@ -134,7 +134,7 @@ class ActivePersonTool(Tool):
         
         if not uistate.get_active('Person'):
             # TODO: should we replace this with a callback?
-            from QuestionDialog import ErrorDialog
+            from gui.dialog import ErrorDialog
             
             ErrorDialog(_('Active person has not been set'),
                         _('You must select an active person for this '

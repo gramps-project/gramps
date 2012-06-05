@@ -39,7 +39,7 @@ from gen.ggettext import gettext as _
 #
 #------------------------------------------------------------------------
 from libmapservice import MapService
-from QuestionDialog import WarningDialog
+from gui.dialog import WarningDialog
 
 # Make upper case of translaed country so string search works later
 MAP_NAMES_SWEDEN = [_("Sweden").upper(), 

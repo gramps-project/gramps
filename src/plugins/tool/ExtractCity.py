@@ -506,7 +506,7 @@ class ExtractCity(tool.BatchTool, ManagedWindow):
             self.display()
         else:
             self.close()
-            from QuestionDialog import OkDialog
+            from gui.dialog import OkDialog
             OkDialog(_('No modifications made'), 
                      _("No place information could be extracted."))
 

@@ -63,7 +63,7 @@ import config
 import Bookmarks
 import const
 import constfunc
-from QuestionDialog import RunDatabaseRepair, ErrorDialog
+from gui.dialog import RunDatabaseRepair, ErrorDialog
 import gui.utils
 
 #-------------------------------------------------------------------------

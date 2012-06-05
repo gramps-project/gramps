@@ -143,7 +143,7 @@ class EditAttribute(EditSecondary):
         t = self.obj.get_type()
         
         if t.is_custom() and str(t) == '':
-            from QuestionDialog import ErrorDialog
+            from gui.dialog import ErrorDialog
             ErrorDialog(
                 _("Cannot save attribute"),
                 _("The attribute type cannot be empty"))

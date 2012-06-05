@@ -82,7 +82,7 @@ import const
 import constfunc
 import config
 import Errors
-from QuestionDialog import (ErrorDialog, WarningDialog, QuestionDialog2,
+from gui.dialog import (ErrorDialog, WarningDialog, QuestionDialog2,
                             InfoDialog)
 from gui import widgets
 from gui.undohistory import UndoHistory
@@ -435,7 +435,7 @@ class ViewManager(CLIManager):
             if addon_update_list:
                 self.update_addons(addon_update_list)
             elif force:
-                from QuestionDialog import OkDialog
+                from gui.dialog import OkDialog
                 OkDialog(_("There are no available addons of this type"),
                          _("Checked for '%s'") %
                          _("' and '").join([_(t) for t in config.get('behavior.check-for-update-types')]),
@@ -522,7 +522,7 @@ class ViewManager(CLIManager):
         """
         Process all of the selected addons.
         """
-        from QuestionDialog import OkDialog
+        from gui.dialog import OkDialog
         from gui.widgets.progressdialog import LongOpStatus
         self.update_dialog.hide()
         model = self.list.model
@@ -1475,7 +1475,7 @@ class ViewManager(CLIManager):
         """
         Make a quick XML back with or without media.
         """
-        from QuestionDialog import QuestionDialog2
+        from gui.dialog import QuestionDialog2
         window = gtk.Dialog(_("Gramps XML Backup"),
                             self.uistate.window,
                             gtk.DIALOG_DESTROY_WITH_PARENT, None)

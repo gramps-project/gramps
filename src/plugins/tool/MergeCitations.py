@@ -49,7 +49,7 @@ from Utils import confidence
 import const
 from gui.utils import ProgressMeter
 from gui.plug import tool
-from QuestionDialog import OkDialog
+from gui.dialog import OkDialog
 from gui.display import display_help
 import gen.datehandler
 from gui.managedwindow import ManagedWindow

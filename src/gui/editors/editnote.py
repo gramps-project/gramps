@@ -55,7 +55,7 @@ from gui.widgets import (MonitoredDataType, MonitoredCheckbox,
                          MonitoredEntry, PrivacyButton, MonitoredTagList)
 from gen.lib import Note
 from gen.db import DbTxn
-from QuestionDialog import ErrorDialog
+from gui.dialog import ErrorDialog
 from gui.glade import Glade
 
 #-------------------------------------------------------------------------

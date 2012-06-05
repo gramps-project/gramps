@@ -57,7 +57,7 @@ import gen.mime
 import ThumbNails
 from gui.display import display_help
 from gui.managedwindow import ManagedWindow
-from QuestionDialog import ErrorDialog, WarningDialog
+from gui.dialog import ErrorDialog, WarningDialog
 from gui.glade import Glade
 
 #-------------------------------------------------------------------------

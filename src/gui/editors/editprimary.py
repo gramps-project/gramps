@@ -46,7 +46,7 @@ from gen.display.name import displayer as name_displayer
 import config
 import gui.utils
 from gui.display import display_help
-from QuestionDialog import SaveDialog
+from gui.dialog import SaveDialog
 import gen.lib
 from gui.dbguielement import DbGUIElement
 

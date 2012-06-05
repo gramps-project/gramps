@@ -52,7 +52,7 @@ from gui.editors import EditFamily
 import Bookmarks
 import Errors
 import config
-from QuestionDialog import ErrorDialog
+from gui.dialog import ErrorDialog
 from gui.filters.sidebar import FamilySidebarFilter
 from gui.merge import MergeFamily
 from gen.plug import CATEGORY_QR_FAMILY
@@ -238,7 +238,7 @@ class FamilyView(ListView):
         if mlist:
             self.bookmarks.add(mlist[0])
         else:
-            from QuestionDialog import WarningDialog
+            from gui.dialog import WarningDialog
             WarningDialog(
                 _("Could Not Set a Bookmark"), 
                 _("A bookmark could not be set because "
@@ -252,7 +252,7 @@ class FamilyView(ListView):
             pass
 
     def remove(self, obj):
-        from QuestionDialog import QuestionDialog2
+        from gui.dialog import QuestionDialog2
         from Utils import data_recover_msg
         msg = _('Deleting item will remove it from the database.')
         msg = msg + '\n' + data_recover_msg

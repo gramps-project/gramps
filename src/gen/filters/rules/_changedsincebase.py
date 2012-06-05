@@ -77,7 +77,7 @@ class ChangedSinceBase(Rule):
             time_tup = time.strptime(iso_date_time, "%Y-%m-%d %H:%M:%S")
             time_sec = time.mktime(time_tup)
         except ValueError:
-            from QuestionDialog import WarningDialog
+            from gui.dialog import WarningDialog
             WarningDialog(_("Wrong format of date-time"),
                 _("Only date-times in the iso format of yyyy-mm-dd "
                   "hh:mm:ss, where the time part is optional, are "

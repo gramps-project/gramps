@@ -47,7 +47,7 @@ import gobject
 import const
 from gui.utils import ProgressMeter
 from gui.plug import tool
-from QuestionDialog import OkDialog
+from gui.dialog import OkDialog
 from gui.managedwindow import ManagedWindow
 from gui.display import display_help
 import gen.lib
