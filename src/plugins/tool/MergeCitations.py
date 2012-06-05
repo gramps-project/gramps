@@ -215,7 +215,7 @@ class MergeCitations(tool.BatchTool,ManagedWindow.ManagedWindow):
                             "citation backlink handles", \
                             list(db.find_backlink_handles(citation.get_handle()))
                         num_merges += 1
-                    else:
+                    elif (not dont_merge_notes or len(citation.note_list) == 0):
                         dict[key] = citation_handle
                     self.progress.step()
         db.enable_signals()
