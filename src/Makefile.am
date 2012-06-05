@@ -20,7 +20,6 @@ gdir_PYTHON = \
 	const.py\
         constfunc.py\
 	DateEdit.py\
-	Date.py\
 	DbState.py\
 	DdTargets.py\
 	DisplayState.py\
@@ -35,7 +34,6 @@ gdir_PYTHON = \
 	ListModel.py\
 	Lru.py\
 	MacTransUtils.py\
-	ManagedWindow.py\
 	QuestionDialog.py\
 	RecentFiles.py\
 	Relationship.py\

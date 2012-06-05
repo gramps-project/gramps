@@ -39,7 +39,7 @@ from gen.ggettext import ngettext
 #------------------------------------------------------------------------
 from gui.utils import ProgressMeter
 import locale
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 import AutoComp
 from gen.lib import EventType
 from gen.db import DbTxn
@@ -52,7 +52,7 @@ from glade import Glade
 # ChangeTypes class
 #
 #-------------------------------------------------------------------------
-class ChangeTypes(tool.BatchTool, ManagedWindow.ManagedWindow):
+class ChangeTypes(tool.BatchTool, ManagedWindow):
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
 
@@ -62,7 +62,7 @@ class ChangeTypes(tool.BatchTool, ManagedWindow.ManagedWindow):
 
         if uistate:
             self.title = _('Change Event Types')
-            ManagedWindow.ManagedWindow.__init__(self,uistate,[],
+            ManagedWindow.__init__(self,uistate,[],
                                                  self.__class__)
             self.init_gui()
         else:

@@ -46,7 +46,7 @@ import GrampsDisplay
 import gen.datehandler
 from Errors import MergeError
 from QuestionDialog import ErrorDialog
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from gen.merge import MergePersonQuery
 
 #-------------------------------------------------------------------------
@@ -72,13 +72,13 @@ def name_of(person):
 # MergePerson
 #
 #-------------------------------------------------------------------------
-class MergePerson(ManagedWindow.ManagedWindow):
+class MergePerson(ManagedWindow):
     """
     Displays a dialog box that allows the persons to be combined into one.
     """
     def __init__(self, dbstate, uistate, handle1, handle2, cb_update=None,
             expand_context_info=False):
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
+        ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.database = dbstate.db
         self.pr1 = self.database.get_person_from_handle(handle1)
         self.pr2 = self.database.get_person_from_handle(handle2)

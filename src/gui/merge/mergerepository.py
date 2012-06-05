@@ -32,7 +32,7 @@ Provide merge capabilities for repositories.
 from gen.ggettext import sgettext as _
 import const
 import GrampsDisplay
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from gen.merge import MergeRepositoryQuery
 
 #-------------------------------------------------------------------------
@@ -50,12 +50,12 @@ _GLADE_FILE = 'mergerepository.glade'
 # MergeRepository
 #
 #-------------------------------------------------------------------------
-class MergeRepository(ManagedWindow.ManagedWindow):
+class MergeRepository(ManagedWindow):
     """
     Displays a dialog box that allows two repositories to be combined into one.
     """
     def __init__(self, dbstate, uistate, handle1, handle2):
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
+        ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.dbstate = dbstate
         database = dbstate.db
         self.rp1 = database.get_repository_from_handle(handle1)

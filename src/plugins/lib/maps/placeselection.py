@@ -53,7 +53,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import Errors
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from osmGps import OsmGps
 
 #-------------------------------------------------------------------------
@@ -86,7 +86,7 @@ def match(self, lat, lon, radius):
 # PlaceSelection
 #
 #-------------------------------------------------------------------------
-class PlaceSelection(ManagedWindow.ManagedWindow, OsmGps):
+class PlaceSelection(ManagedWindow, OsmGps):
     """
     We show a selection box for possible places in a region of the map.
     We can select the diameter of the region which is a circle.
@@ -99,7 +99,7 @@ class PlaceSelection(ManagedWindow.ManagedWindow, OsmGps):
         Place Selection initialization
         """
         try:
-            ManagedWindow.ManagedWindow.__init__(self, uistate, [],
+            ManagedWindow.__init__(self, uistate, [],
                                                  PlaceSelection)
         except Errors.WindowActiveError:
             return
@@ -176,7 +176,7 @@ class PlaceSelection(ManagedWindow.ManagedWindow, OsmGps):
         Close the selection place editor
         """
         self.hide_the_region()
-        ManagedWindow.ManagedWindow.close(self, *obj)
+        ManagedWindow.close(self, *obj)
 
     def slider_change(self, obj, lat, lon):
         """

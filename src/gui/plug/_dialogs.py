@@ -47,7 +47,7 @@ from gui.plug import tool
 from gen.plug import REPORT
 from gui.plug.report import report
 from gui.pluginmanager import GuiPluginManager
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 
 #-------------------------------------------------------------------------
 #
@@ -63,7 +63,7 @@ _UNSUPPORTED = _("Unsupported")
 # PluginDialog interface class
 #
 #-------------------------------------------------------------------------
-class PluginDialog(ManagedWindow.ManagedWindow):
+class PluginDialog(ManagedWindow):
     """
     Displays the dialog box that allows the user to select the
     plugin that is desired.
@@ -82,7 +82,7 @@ class PluginDialog(ManagedWindow.ManagedWindow):
         self.content = content
         self._pmgr = GuiPluginManager.get_instance()
 
-        ManagedWindow.ManagedWindow.__init__(self, uistate, track, 
+        ManagedWindow.__init__(self, uistate, track, 
                                              self.__class__)
 
         self.state = state

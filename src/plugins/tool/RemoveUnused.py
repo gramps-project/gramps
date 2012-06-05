@@ -56,7 +56,7 @@ import gobject
 #-------------------------------------------------------------------------
 from gen.db import DbTxn
 import Errors
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from gen.datehandler import displayer as _dd
 from gen.updatecallback import UpdateCallback
 from gui.plug import tool
@@ -67,7 +67,7 @@ from glade import Glade
 # runTool
 #
 #-------------------------------------------------------------------------
-class RemoveUnused(tool.Tool, ManagedWindow.ManagedWindow, UpdateCallback):
+class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
     MARK_COL       = 0
     OBJ_ID_COL     = 1
     OBJ_NAME_COL   = 2
@@ -82,7 +82,7 @@ class RemoveUnused(tool.Tool, ManagedWindow.ManagedWindow, UpdateCallback):
         if self.db.readonly:
             return
 
-        ManagedWindow.ManagedWindow.__init__(self, uistate,[], self.__class__)
+        ManagedWindow.__init__(self, uistate,[], self.__class__)
         UpdateCallback.__init__(self, self.uistate.pulse_progressbar)
 
         self.dbstate = dbstate

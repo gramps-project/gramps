@@ -47,7 +47,7 @@ import os
 #-------------------------------------------------------------------------
 import const
 import config
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from QuestionDialog import ErrorDialog
 from glade import Glade
 
@@ -56,10 +56,10 @@ from glade import Glade
 # Tip Display class
 #
 #-------------------------------------------------------------------------
-class TipOfDay(ManagedWindow.ManagedWindow):
+class TipOfDay(ManagedWindow):
     def __init__(self, uistate):
 
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
+        ManagedWindow.__init__(self, uistate, [], self)
         
         xml = Glade()
         window = xml.toplevel

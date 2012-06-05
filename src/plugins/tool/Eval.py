@@ -41,7 +41,7 @@ import traceback
 #
 #------------------------------------------------------------------------
 from gui.plug import tool
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from glade import Glade
 
 #-------------------------------------------------------------------------
@@ -49,12 +49,12 @@ from glade import Glade
 # Actual tool
 #
 #-------------------------------------------------------------------------
-class Eval(tool.Tool,ManagedWindow.ManagedWindow):
+class Eval(tool.Tool,ManagedWindow):
     def __init__(self,dbstate, uistate, options_class, name, callback=None):
         self.title =  _("Python evaluation window")
 
         tool.Tool.__init__(self,dbstate, options_class, name)
-        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
+        ManagedWindow.__init__(self,uistate,[],self.__class__)
 
         self.glade = Glade()
 

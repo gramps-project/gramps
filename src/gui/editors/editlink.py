@@ -34,7 +34,7 @@ import re
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 import GrampsDisplay
 from glade import Glade
 from gen.simple import SimpleAccess
@@ -56,7 +56,7 @@ OBJECT_MAP = {
 # EditLink class
 #
 #-------------------------------------------------------------------------
-class EditLink(ManagedWindow.ManagedWindow):
+class EditLink(ManagedWindow):
 
     def __init__(self, dbstate, uistate, track, url, callback):
         self.url = url
@@ -64,7 +64,7 @@ class EditLink(ManagedWindow.ManagedWindow):
         self.simple_access = SimpleAccess(self.dbstate.db)
         self.callback = callback
 
-        ManagedWindow.ManagedWindow.__init__(self, uistate, track, url)
+        ManagedWindow.__init__(self, uistate, track, url)
 
         self._local_init()
         self._connect_signals()

@@ -54,7 +54,7 @@ import Utils
 from gui.utils import ProgressMeter
 from gui.pluginmanager import GuiPluginManager
 from gui import widgets
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from QuestionDialog import OptionDialog
 from gui.selectors import SelectorFactory
 from gen.display.name import displayer as _nd
@@ -66,13 +66,13 @@ import gen
 # Dialog window used to select a surname
 #
 #------------------------------------------------------------------------
-class LastNameDialog(ManagedWindow.ManagedWindow):
+class LastNameDialog(ManagedWindow):
     """
     A dialog that allows the selection of a surname from the database.
     """
     def __init__(self, database, uistate, track, surnames, skip_list=set()):
 
-        ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
+        ManagedWindow.__init__(self, uistate, track, self)
         flags = gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT | \
                 gtk.DIALOG_NO_SEPARATOR
         buttons = (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT, gtk.STOCK_OK, 

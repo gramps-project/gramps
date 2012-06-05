@@ -59,7 +59,7 @@ from gen.plug.report import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
                              CATEGORY_CODE, CATEGORY_WEB, CATEGORY_GRAPHVIZ,
                              standalone_categories)
 from gen.plug.docgen import StyleSheet, StyleSheetList
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from _stylecombobox import StyleComboBox
 from _styleeditor import StyleListDisplay
 from _fileentry import FileEntry
@@ -77,7 +77,7 @@ URL_REPORT_PAGE = URL_MANUAL_PAGE + "_-_Reports"
 # ReportDialog class
 #
 #-------------------------------------------------------------------------
-class ReportDialog(ManagedWindow.ManagedWindow):
+class ReportDialog(ManagedWindow):
     """
     The ReportDialog base class.  This is a base class for generating
     customized dialogs to solicit options for a report.  It cannot be
@@ -99,7 +99,7 @@ class ReportDialog(ManagedWindow.ManagedWindow):
         self.db = dbstate.db
         self.report_name = trans_name
         
-        ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
+        ManagedWindow.__init__(self, uistate, track, self)
 
         self.init_options(option_class)
         self.init_interface()
@@ -125,7 +125,7 @@ class ReportDialog(ManagedWindow.ManagedWindow):
                 del fram[ind]
         self.frames.clear()
         self.frames = None
-        ManagedWindow.ManagedWindow.close(self, *obj)
+        ManagedWindow.close(self, *obj)
 
     def init_options(self, option_class):
         try:

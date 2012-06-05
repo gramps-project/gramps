@@ -38,7 +38,7 @@ import pango
 from gen.plug.docgen import (BaseDoc, TextDoc, FONT_SERIF, PARA_ALIGN_RIGHT,
                         FONT_SANS_SERIF, FONT_MONOSPACE, PARA_ALIGN_CENTER, 
                         PARA_ALIGN_LEFT)
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 
 try:
     import pangocairo
@@ -58,10 +58,10 @@ def pixels(cm):
 LEFT,RIGHT,CENTER = 'LEFT','RIGHT','CENTER'
 _WIDTH_IN_CHARS = 72
 
-class DisplayBuf(ManagedWindow.ManagedWindow):
+class DisplayBuf(ManagedWindow):
     def __init__(self, title, document):
         self.title = title
-        ManagedWindow.ManagedWindow.__init__(self, document.uistate, [], 
+        ManagedWindow.__init__(self, document.uistate, [], 
                                              document)
         self.set_window(gtk.Dialog("",document.uistate.window,
                                    gtk.DIALOG_DESTROY_WITH_PARENT,

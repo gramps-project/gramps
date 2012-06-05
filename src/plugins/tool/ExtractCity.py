@@ -47,7 +47,7 @@ import gobject
 #
 #-------------------------------------------------------------------------
 from gen.db import DbTxn
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 import GrampsDisplay
 
 from gui.plug import tool
@@ -394,7 +394,7 @@ COLS = [
 # ExtractCity
 #
 #-------------------------------------------------------------------------
-class ExtractCity(tool.BatchTool, ManagedWindow.ManagedWindow):
+class ExtractCity(tool.BatchTool, ManagedWindow):
     """
     Extracts city, state, and zip code information from an place description
     if the title is empty and the description falls into the category of:
@@ -414,7 +414,7 @@ class ExtractCity(tool.BatchTool, ManagedWindow.ManagedWindow):
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.label = _('Extract Place data')
         
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
+        ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.set_window(gtk.Window(), gtk.Label(), '')
 
         tool.BatchTool.__init__(self, dbstate, options_class, name)

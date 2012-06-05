@@ -29,7 +29,7 @@
 from gen.ggettext import gettext as _
 import gtk
 import ListModel
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 
 from gui.plug import tool
 
@@ -40,13 +40,13 @@ _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 #
 #
 #-------------------------------------------------------------------------
-class DumpGenderStats(tool.Tool, ManagedWindow.ManagedWindow):
+class DumpGenderStats(tool.Tool, ManagedWindow):
     
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.label = _("Gender Statistics tool")
         tool.Tool.__init__(self, dbstate, options_class, name)
         if uistate:
-            ManagedWindow.ManagedWindow.__init__(self,uistate,[],
+            ManagedWindow.__init__(self,uistate,[],
                                                  self.__class__)
 
         stats_list = []

@@ -32,7 +32,7 @@ Provide merge capabilities for events.
 from gen.ggettext import sgettext as _
 import const
 import GrampsDisplay
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 import gen.datehandler
 import Utils
 from gen.merge import MergeEventQuery
@@ -52,12 +52,12 @@ _GLADE_FILE = 'mergeevent.glade'
 # MergeEvent
 #
 #-------------------------------------------------------------------------
-class MergeEvent(ManagedWindow.ManagedWindow):
+class MergeEvent(ManagedWindow):
     """
     Displays a dialog box that allows the events to be combined into one.
     """
     def __init__(self, dbstate, uistate, handle1, handle2):
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
+        ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.dbstate = dbstate
         database = dbstate.db
         self.ev1 = database.get_event_from_handle(handle1)

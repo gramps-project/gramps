@@ -66,7 +66,7 @@ from gen.lib.date import Date, NextYear
 import gen.datehandler
 import const
 import GrampsDisplay
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from Errors import ValidationError
 from glade import Glade
 
@@ -179,7 +179,7 @@ class DateEdit(object):
 # DateEditorDialog
 #
 #-------------------------------------------------------------------------
-class DateEditorDialog(ManagedWindow.ManagedWindow):
+class DateEditorDialog(ManagedWindow):
     """
     Dialog allowing to build the date precisely, to correct possible 
     limitations of parsing and/or underlying structure of Date.
@@ -189,7 +189,7 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
         """
         Initiate and display the dialog.
         """
-        ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
+        ManagedWindow.__init__(self, uistate, track, self)
         
         # Create self.date as a copy of the given Date object.
         self.date = Date(date)

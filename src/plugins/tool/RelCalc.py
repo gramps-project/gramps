@@ -45,7 +45,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from gen.display.name import displayer as name_displayer
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from gui.views.treemodels import PeopleBaseModel, PersonTreeModel
 from libpersonview import BasePersonView
 import Relationship
@@ -67,7 +67,7 @@ column_names = BasePersonView.COLUMN_NAMES
 #
 #
 #-------------------------------------------------------------------------
-class RelCalc(tool.Tool, ManagedWindow.ManagedWindow):
+class RelCalc(tool.Tool, ManagedWindow):
     
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         """
@@ -75,7 +75,7 @@ class RelCalc(tool.Tool, ManagedWindow.ManagedWindow):
         """
         
         tool.Tool.__init__(self, dbstate, options_class, name)
-        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
+        ManagedWindow.__init__(self,uistate,[],self.__class__)
 
         #set the columns to see
         for data in BasePersonView.CONFIGSETTINGS:
@@ -159,7 +159,7 @@ class RelCalc(tool.Tool, ManagedWindow.ManagedWindow):
         """
         self.relationship.disconnect_db_signals(self.dbstate)
         self.sel.disconnect(self.changedkey)
-        ManagedWindow.ManagedWindow.close(self, *obj)
+        ManagedWindow.close(self, *obj)
 
     def build_menu_names(self, obj):
         return (_("Relationship Calculator tool"),None)

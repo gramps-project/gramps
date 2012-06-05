@@ -21,12 +21,12 @@
 
 # $Id$
 
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 import GrampsDisplay
 import config
 from gui.dbguielement import DbGUIElement
 
-class EditSecondary(ManagedWindow.ManagedWindow, DbGUIElement):
+class EditSecondary(ManagedWindow, DbGUIElement):
 
     def __init__(self, state, uistate, track, obj, callback=None):
         """Create an edit window.  Associates a person with the window."""
@@ -39,7 +39,7 @@ class EditSecondary(ManagedWindow.ManagedWindow, DbGUIElement):
         self.callback = callback
         self.__tabs = []
 
-        ManagedWindow.ManagedWindow.__init__(self, uistate, track, obj)
+        ManagedWindow.__init__(self, uistate, track, obj)
         DbGUIElement.__init__(self, self.db)
 
         self._local_init()
@@ -143,7 +143,7 @@ class EditSecondary(ManagedWindow.ManagedWindow, DbGUIElement):
     def close(self, *obj):
         self._cleanup_db_connects()
         self._cleanup_connects()
-        ManagedWindow.ManagedWindow.close(self)
+        ManagedWindow.close(self)
         self._cleanup_on_exit()
 
     def _cleanup_db_connects(self):

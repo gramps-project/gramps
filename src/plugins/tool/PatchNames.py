@@ -48,7 +48,7 @@ import const
 from gui.utils import ProgressMeter
 from gui.plug import tool
 from QuestionDialog import OkDialog
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 import GrampsDisplay
 import gen.lib
 from gen.db import DbTxn
@@ -96,7 +96,7 @@ _nick_re = re.compile(r"(.+) \s* [(\"] (.+) [)\"]", re.VERBOSE)
 #-------------------------------------------------------------------------
 
 
-class PatchNames(tool.BatchTool, ManagedWindow.ManagedWindow):
+class PatchNames(tool.BatchTool, ManagedWindow):
     titleid = 1
     nickid  = 2
     pref1id = 3
@@ -104,7 +104,7 @@ class PatchNames(tool.BatchTool, ManagedWindow.ManagedWindow):
     
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.label = _('Name and title extraction tool')
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
+        ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.set_window(gtk.Window(), gtk.Label(), '')
 
         tool.BatchTool.__init__(self, dbstate, options_class, name)

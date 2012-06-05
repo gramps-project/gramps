@@ -52,7 +52,7 @@ from gui.plug import tool
 from QuestionDialog import OkDialog
 import GrampsDisplay
 import gen.datehandler
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from gen.ggettext import sgettext as _
 from gen.ggettext import ngettext
 from glade import Glade
@@ -86,11 +86,11 @@ WIKI_HELP_SEC = _('manual|Merge citations...')
 # The Actual tool.
 #
 #-------------------------------------------------------------------------
-class MergeCitations(tool.BatchTool,ManagedWindow.ManagedWindow):
+class MergeCitations(tool.BatchTool,ManagedWindow):
     
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
+        ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.dbstate = dbstate
         self.set_window(gtk.Window(), gtk.Label(), '')
 

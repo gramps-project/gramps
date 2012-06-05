@@ -54,7 +54,7 @@ import Errors
 import Bookmarks
 import const
 import constfunc
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from config import config
 from gui.editors import EditPlace, EditEvent, EditFamily, EditPerson
 from gui.selectors.selectplace import SelectPlace

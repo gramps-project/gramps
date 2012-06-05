@@ -34,7 +34,7 @@ Provide merge capabilities for sources.
 from gen.ggettext import sgettext as _
 import const
 import GrampsDisplay
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from gen.merge import MergeSourceQuery
 
 #-------------------------------------------------------------------------
@@ -52,12 +52,12 @@ _GLADE_FILE = 'mergesource.glade'
 # MergeSource
 #
 #-------------------------------------------------------------------------
-class MergeSource(ManagedWindow.ManagedWindow):
+class MergeSource(ManagedWindow):
     """
     Displays a dialog box that allows the sources to be combined into one.
     """
     def __init__(self, dbstate, uistate, handle1, handle2):
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
+        ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.dbstate = dbstate
         database = dbstate.db
         self.src1 = database.get_source_from_handle(handle1)

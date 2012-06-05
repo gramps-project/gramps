@@ -40,7 +40,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 import gen.datehandler
 from gen.display.name import displayer as name_displayer
 import config
@@ -50,7 +50,7 @@ from QuestionDialog import SaveDialog
 import gen.lib
 from gui.dbguielement import DbGUIElement
 
-class EditPrimary(ManagedWindow.ManagedWindow, DbGUIElement):
+class EditPrimary(ManagedWindow, DbGUIElement):
 
     QR_CATEGORY = -1
     
@@ -76,7 +76,7 @@ class EditPrimary(ManagedWindow.ManagedWindow, DbGUIElement):
         self.contexteventbox = None
         self.__tabs = []
 
-        ManagedWindow.ManagedWindow.__init__(self, uistate, track, obj)
+        ManagedWindow.__init__(self, uistate, track, obj)
         DbGUIElement.__init__(self, self.db)
 
         self._local_init()
@@ -183,7 +183,7 @@ class EditPrimary(ManagedWindow.ManagedWindow, DbGUIElement):
         self._cleanup_on_exit()
         self.get_from_handle = None
         self.get_from_gramps_id = None
-        ManagedWindow.ManagedWindow.close(self)
+        ManagedWindow.close(self)
         self.dbstate = None
         self.uistate = None
         self.db = None

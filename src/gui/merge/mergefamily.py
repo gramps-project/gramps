@@ -35,7 +35,7 @@ import const
 import GrampsDisplay
 from Errors import MergeError
 from QuestionDialog import ErrorDialog
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from gen.merge import MergePersonQuery, MergeFamilyQuery
 
 #-------------------------------------------------------------------------
@@ -53,13 +53,13 @@ _GLADE_FILE = 'mergefamily.glade'
 # MergeFamily
 #
 #-------------------------------------------------------------------------
-class MergeFamily(ManagedWindow.ManagedWindow):
+class MergeFamily(ManagedWindow):
     """
     Merges two families into a single family. Displays a dialog box that allows
     the families to be combined into one.
     """
     def __init__(self, dbstate, uistate, handle1, handle2):
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
+        ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.database = dbstate.db
         self.fy1 = self.database.get_family_from_handle(handle1)
         self.fy2 = self.database.get_family_from_handle(handle2)

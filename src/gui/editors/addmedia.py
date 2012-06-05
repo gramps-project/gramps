@@ -56,7 +56,7 @@ import Utils
 import gen.mime
 import ThumbNails
 import GrampsDisplay
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from QuestionDialog import ErrorDialog, WarningDialog
 from glade import Glade
 
@@ -65,7 +65,7 @@ from glade import Glade
 # AddMediaObject
 #
 #-------------------------------------------------------------------------
-class AddMediaObject(ManagedWindow.ManagedWindow):
+class AddMediaObject(ManagedWindow):
     """
     Displays the Add Media Dialog window, allowing the user to select
     a file from the file system, while providing a description.
@@ -79,7 +79,7 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         The mediaobject is updated with the information, and on save, the 
         callback function is called
         """
-        ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
+        ManagedWindow.__init__(self, uistate, track, self)
 
         self.dbase = dbstate.db
         self.obj = mediaobj

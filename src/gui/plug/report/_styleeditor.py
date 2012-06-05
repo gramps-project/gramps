@@ -55,7 +55,7 @@ from gen.plug.docgen import (StyleSheet, FONT_SERIF, FONT_SANS_SERIF,
             PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT,  
             PARA_ALIGN_JUSTIFY) 
 import ListModel
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from glade import Glade
 
 #------------------------------------------------------------------------

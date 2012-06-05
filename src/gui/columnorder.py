@@ -49,7 +49,7 @@ import gobject
 #
 #-------------------------------------------------------------------------
 import const
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from glade import Glade
 
 

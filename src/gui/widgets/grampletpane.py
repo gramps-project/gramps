@@ -44,7 +44,7 @@ from gen.ggettext import gettext as _
 import Errors
 import const
 from gui.editors import EditPerson, EditFamily
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 import ConfigParser
 import gui.utils
 from gui.plug.quick import run_quick_report_by_name
@@ -194,7 +194,7 @@ class LinkTag(gtk.TextTag):
         except ValueError: # tag is already in tag table
             pass
 
-class GrampletWindow(ManagedWindow.ManagedWindow):
+class GrampletWindow(ManagedWindow):
     """
     Class for showing a detached gramplet.
     """
@@ -209,7 +209,7 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
         self.docked_state = gramplet.gstate
         # Now detach it
         self.gramplet.set_state("detached") 
-        ManagedWindow.ManagedWindow.__init__(self, gramplet.uistate, [],
+        ManagedWindow.__init__(self, gramplet.uistate, [],
                                              self.title)
         self.set_window(gtk.Dialog("", gramplet.uistate.window,
                                    gtk.DIALOG_DESTROY_WITH_PARENT,
@@ -300,7 +300,7 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
         self.gramplet.gvclose.show()
         self.gramplet.gvstate.show()
         self.gramplet.gvproperties.show()
-        ManagedWindow.ManagedWindow.close(self, *args)
+        ManagedWindow.close(self, *args)
 
 #------------------------------------------------------------------------
 

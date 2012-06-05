@@ -32,7 +32,7 @@
 import const
 import soundex
 import GrampsDisplay
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 import AutoComp
 from gen.ggettext import sgettext as _
 from gui.plug import tool
@@ -52,12 +52,12 @@ WIKI_HELP_SEC = _('manual|Generate_SoundEx_codes')
 #
 #-------------------------------------------------------------------------
 
-class SoundGen(tool.Tool, ManagedWindow.ManagedWindow):
+class SoundGen(tool.Tool, ManagedWindow):
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.label = _('SoundEx code generator')
         tool.Tool.__init__(self, dbstate, options_class, name)
-        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
+        ManagedWindow.__init__(self,uistate,[],self.__class__)
 
         self.glade = Glade()
         self.glade.connect_signals({

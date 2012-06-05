@@ -45,14 +45,14 @@ import gobject
 #
 #-------------------------------------------------------------------------
 from QuestionDialog import QuestionDialog
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 
 #-------------------------------------------------------------------------
 #
 # UndoHistory class
 #
 #-------------------------------------------------------------------------
-class UndoHistory(ManagedWindow.ManagedWindow):
+class UndoHistory(ManagedWindow):
     """
     The UndoHistory provides a list view with all the editing
     steps available for undo/redo. Selecting a line in the list
@@ -62,7 +62,7 @@ class UndoHistory(ManagedWindow.ManagedWindow):
     def __init__(self, dbstate, uistate):
 
         self.title = _("Undo History")
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
+        ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.db = dbstate.db
         self.undodb = self.db.undodb
         self.dbstate = dbstate

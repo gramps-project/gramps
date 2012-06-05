@@ -32,7 +32,7 @@ Provide merge capabilities for media objects.
 from gen.ggettext import sgettext as _
 import const
 import GrampsDisplay
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 import gen.datehandler
 from gen.merge import MergeMediaQuery
 
@@ -51,12 +51,12 @@ _GLADE_FILE = 'mergemedia.glade'
 # MergeMedia
 #
 #-------------------------------------------------------------------------
-class MergeMedia(ManagedWindow.ManagedWindow):
+class MergeMedia(ManagedWindow):
     """
     Displays a dialog box that allows the media objects to be combined into one.
     """
     def __init__(self, dbstate, uistate, handle1, handle2):
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
+        ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.dbstate = dbstate
         database = dbstate.db
         self.mo1 = database.get_object_from_handle(handle1)

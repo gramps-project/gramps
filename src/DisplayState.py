@@ -58,7 +58,7 @@ from gui.utils import process_pending_events
 from gui.views.navigationview import NavigationView
 import config
 from gen.display.name import displayer as name_displayer
-import ManagedWindow
+from gui.managedwindow import GrampsWindowManager
 import Relationship
 from glade import Glade
 from Utils import navigation_label
@@ -385,7 +385,7 @@ class DisplayState(gen.utils.Callback):
         self.status_id = status.get_context_id('GRAMPS')
         self.progress = progress
         self.history_lookup = {}
-        self.gwm = ManagedWindow.GrampsWindowManager(uimanager)
+        self.gwm = GrampsWindowManager(uimanager)
         self.widget = None
         self.disprel_old = ''
         self.disprel_defpers = None

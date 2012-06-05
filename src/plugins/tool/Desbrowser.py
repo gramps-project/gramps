@@ -40,7 +40,7 @@ import const
 from gen.display.name import displayer as name_displayer
 from gui.plug import tool
 import GrampsDisplay
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from gen.ggettext import sgettext as _
 from glade import Glade
 from gui.editors import EditPerson
@@ -53,7 +53,7 @@ from gui.editors import EditPerson
 WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Interactive_Descendant_Browser...')
 
-class DesBrowse(tool.ActivePersonTool, ManagedWindow.ManagedWindow):
+class DesBrowse(tool.ActivePersonTool, ManagedWindow):
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
 
@@ -70,7 +70,7 @@ class DesBrowse(tool.ActivePersonTool, ManagedWindow.ManagedWindow):
                                 name_displayer.display(self.active)
                                 )
 
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
+        ManagedWindow.__init__(self, uistate, [], self)
 
         self.glade = Glade()
         self.glade.connect_signals({

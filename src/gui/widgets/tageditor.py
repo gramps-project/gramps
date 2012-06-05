@@ -34,7 +34,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import sgettext as _
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 import const
 import GrampsDisplay
 from ListModel import ListModel, TOGGLE
@@ -53,7 +53,7 @@ WIKI_HELP_SEC = _('manual|Tags')
 # TagEditor
 #
 #-------------------------------------------------------------------------
-class TagEditor(ManagedWindow.ManagedWindow):
+class TagEditor(ManagedWindow):
     """
     Dialog to allow the user to edit a list of tags.
     """
@@ -62,7 +62,7 @@ class TagEditor(ManagedWindow.ManagedWindow):
         """
         Initiate and display the dialog.
         """
-        ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
+        ManagedWindow.__init__(self, uistate, track, self)
 
         self.namemodel = None
         top = self._create_dialog()

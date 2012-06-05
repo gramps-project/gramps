@@ -29,8 +29,9 @@ pkgpython_PYTHON = \
 	filtereditor.py \
 	grampsbar.py \
 	grampsgui.py \
-	navigator.py \
 	makefilter.py \
+	managedwindow.py \
+	navigator.py \
 	pluginmanager.py \
 	user.py \
 	utils.py \

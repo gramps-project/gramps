@@ -43,7 +43,7 @@ from gen.ggettext import ngettext
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 import gen.lib
 from gen.db import DbTxn
 import Utils
@@ -57,7 +57,7 @@ from QuestionDialog import OkDialog
 # EventNames
 #
 #-------------------------------------------------------------------------
-class EventNames(tool.BatchTool, ManagedWindow.ManagedWindow):
+class EventNames(tool.BatchTool, ManagedWindow):
     """
     Look for events that do not have a description, and build the description 
     from the item that contains it. 

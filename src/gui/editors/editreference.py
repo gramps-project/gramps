@@ -33,7 +33,7 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from displaytabs import GrampsTab
 import config
 from gui.dbguielement import DbGUIElement
@@ -86,7 +86,7 @@ class RefTab(GrampsTab):
 # EditReference class
 #
 #-------------------------------------------------------------------------
-class EditReference(ManagedWindow.ManagedWindow, DbGUIElement):
+class EditReference(ManagedWindow, DbGUIElement):
 
     def __init__(self, state, uistate, track, source, source_ref, update):
         self.db = state.db
@@ -99,7 +99,7 @@ class EditReference(ManagedWindow.ManagedWindow, DbGUIElement):
         self.warn_box = None
         self.__tabs = []
 
-        ManagedWindow.ManagedWindow.__init__(self, uistate, track, source_ref)
+        ManagedWindow.__init__(self, uistate, track, source_ref)
         DbGUIElement.__init__(self, self.db)
 
         self._local_init()
@@ -224,7 +224,7 @@ class EditReference(ManagedWindow.ManagedWindow, DbGUIElement):
     def close(self,*obj):
         self._cleanup_db_connects()
         self._cleanup_connects()
-        ManagedWindow.ManagedWindow.close(self)
+        ManagedWindow.close(self)
         self._cleanup_on_exit()
 
     def _cleanup_db_connects(self):

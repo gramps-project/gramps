@@ -45,18 +45,18 @@ import gtk
 from gui.utils import ProgressMeter
 from gui.plug import tool
 from QuestionDialog import OkDialog
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 import gen.lib
 from gen.db import DbTxn
 
-class PopulateSources(tool.Tool, ManagedWindow.ManagedWindow):
+class PopulateSources(tool.Tool, ManagedWindow):
     """
     Gramplet that populates the database with sources and citations.
     """
     
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.label = 'Populate sources and citations tool'
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
+        ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.set_window(gtk.Window(), gtk.Label(), '')
         tool.Tool.__init__(self, dbstate, options_class, name)
         

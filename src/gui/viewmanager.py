@@ -443,7 +443,7 @@ class ViewManager(CLIManager):
 
     def update_addons(self, addon_update_list):
         from glade import Glade
-        import ManagedWindow
+        from gui.managedwindow import ManagedWindow
         from ListModel import ListModel, NOSORT, TOGGLE
         glade = Glade("updateaddons.glade")
         self.update_dialog = glade.toplevel

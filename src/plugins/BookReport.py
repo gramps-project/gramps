@@ -75,7 +75,7 @@ from gui.pluginmanager import GuiPluginManager
 from gen.plug.docgen import StyleSheet, StyleSheetList, PaperStyle
 from QuestionDialog import WarningDialog, ErrorDialog
 from gen.plug.menu import PersonOption, FilterOption, FamilyOption
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from glade import Glade
 import gui.utils
 import gui.user
@@ -712,7 +712,7 @@ class BookOptions(ReportOptions):
 # Book creation dialog 
 #
 #-------------------------------------------------------------------------
-class BookReportSelector(ManagedWindow.ManagedWindow):
+class BookReportSelector(ManagedWindow):
     """
     Interface into a dialog setting up the book. 
 
@@ -727,7 +727,7 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         self.title = _('Book Report')
         self.file = "books.xml"
 
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
+        ManagedWindow.__init__(self, uistate, [], self.__class__)
 
         self.xml = Glade(toplevel="top")
         window = self.xml.toplevel

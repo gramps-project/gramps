@@ -47,7 +47,7 @@ import ListModel
 import Errors
 from gui.merge import MergePerson
 import GrampsDisplay
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from QuestionDialog import RunDatabaseRepair
 from gen.ggettext import sgettext as _
 from glade import Glade
@@ -85,12 +85,12 @@ def is_initial(name):
 # The Actual tool.
 #
 #-------------------------------------------------------------------------
-class Merge(tool.Tool,ManagedWindow.ManagedWindow):
+class Merge(tool.Tool,ManagedWindow):
     
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         
         tool.Tool.__init__(self, dbstate, options_class, name)
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [],
+        ManagedWindow.__init__(self, uistate, [],
                                              self.__class__)
         self.dbstate = dbstate
         self.uistate = uistate
@@ -525,10 +525,10 @@ class Merge(tool.Tool,ManagedWindow.ManagedWindow):
         return min(value,1) if value else -1
         
 
-class ShowMatches(ManagedWindow.ManagedWindow):
+class ShowMatches(ManagedWindow):
 
     def __init__(self, dbstate, uistate, track, the_list, the_map, callback):
-        ManagedWindow.ManagedWindow.__init__(self,uistate,track,self.__class__)
+        ManagedWindow.__init__(self,uistate,track,self.__class__)
 
         self.dellist = {}
         self.list = the_list

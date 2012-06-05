@@ -321,18 +321,18 @@ class ManagedWindow(object):
         The usage from derived classes is envisioned as follows:
         
         
-        import ManagedWindow
-        class SomeWindowClass(ManagedWindow.ManagedWindow):
+        from gui.managedwindow import ManagedWindow
+        class SomeWindowClass(ManagedWindow):
             def __init__(self,uistate,dbstate,track):
                 window_id = self        # Or e.g. window_id = person.handle
                 submenu_label = None    # This window cannot have children
                 menu_label = 'Menu label for this window'
-                ManagedWindow.ManagedWindow.__init__(self,
-                                                    uistate,
-                                                    track,
-                                                    window_id,
-                                                    submenu_label,
-                                                    menu_label)
+                ManagedWindow.__init__(self,
+                                       uistate,
+                                       track,
+                                       window_id,
+                                       submenu_label,
+                                       menu_label)
                 # Proceed with the class.
                 ...
                 
@@ -401,7 +401,7 @@ class ManagedWindow(object):
         :param msg:      if not None, use msg as title of window instead of text
         :param isWindow: {if isWindow than self is the window 
                             (so self inherits from gtk.Window and 
-                            from ManagedWindow.ManagedWindow)
+                            from ManagedWindow)
                          if not isWindow, than window is the Window to manage, 
                             and after this method self.window stores it.
                         }

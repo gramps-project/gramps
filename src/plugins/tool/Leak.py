@@ -53,7 +53,7 @@ import gc
 #
 #------------------------------------------------------------------------
 from gui.plug import tool
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from QuestionDialog import InfoDialog
 from glade import Glade
 import gui.utils
@@ -63,12 +63,12 @@ import gui.utils
 # Actual tool
 #
 #-------------------------------------------------------------------------
-class Leak(tool.Tool, ManagedWindow.ManagedWindow):
+class Leak(tool.Tool, ManagedWindow):
     def __init__(self,dbstate, uistate, options_class, name, callback=None):
         self.title = _('Uncollected Objects Tool')
 
         tool.Tool.__init__(self,dbstate, options_class, name)
-        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
+        ManagedWindow.__init__(self,uistate,[],self.__class__)
 
         self.glade = Glade()
 

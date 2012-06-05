@@ -67,7 +67,7 @@ from gen.db import DbTxn
 import config
 import Utils
 from gui.utils import ProgressMeter
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 
 from gui.plug import tool
 from QuestionDialog import OkDialog, MissingMediaDialog
@@ -2129,7 +2129,7 @@ class CheckIntegrity(object):
 # Display the results
 #
 #-------------------------------------------------------------------------
-class Report(ManagedWindow.ManagedWindow):
+class Report(ManagedWindow):
     
     def __init__(self, uistate, text, cl=0):
         if cl:
@@ -2137,7 +2137,7 @@ class Report(ManagedWindow.ManagedWindow):
             print (text.encode(sys.getfilesystemencoding()))
             return
 
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
+        ManagedWindow.__init__(self, uistate, [], self)
         
         topDialog = Glade()
         topDialog.get_object("close").connect('clicked', self.close)

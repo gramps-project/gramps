@@ -57,7 +57,7 @@ from QuestionDialog import WarningDialog
 from gui.plug import tool
 from gen.plug.report import utils as ReportUtils
 import GrampsDisplay
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from gen.ggettext import sgettext as _
 from glade import Glade
 from gui.filtereditor import FilterEditor
@@ -115,13 +115,13 @@ class TableReport(object):
 #
 #
 #------------------------------------------------------------------------
-class EventComparison(tool.Tool,ManagedWindow.ManagedWindow):
+class EventComparison(tool.Tool,ManagedWindow):
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.dbstate = dbstate
         self.uistate = uistate
 
         tool.Tool.__init__(self,dbstate, options_class, name)
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
+        ManagedWindow.__init__(self, uistate, [], self)
         self.qual = 0
 
         self.filterDialog = Glade(toplevel="filters")
@@ -216,12 +216,12 @@ def fix(line):
 #
 #
 #-------------------------------------------------------------------------
-class DisplayChart(ManagedWindow.ManagedWindow):
+class DisplayChart(ManagedWindow):
     def __init__(self,dbstate,uistate,people_list,track):
         self.dbstate = dbstate
         self.uistate = uistate
 
-        ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
+        ManagedWindow.__init__(self, uistate, track, self)
 
         self.db = dbstate.db
         self.my_list = people_list

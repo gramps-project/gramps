@@ -41,7 +41,7 @@ from gen.db import find_surname_name, DbTxn
 import const
 from gui.utils import ProgressMeter
 import GrampsDisplay
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 
 from QuestionDialog import OkDialog
 from gui.plug import tool
@@ -69,13 +69,13 @@ WIKI_HELP_SEC = _('manual|Fix_Capitalization_of_Family_Names...')
 # ChangeNames
 #
 #-------------------------------------------------------------------------
-class ChangeNames(tool.BatchTool, ManagedWindow.ManagedWindow):
+class ChangeNames(tool.BatchTool, ManagedWindow):
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.label = _('Capitalization changes')
         self.cb = callback
         
-        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
+        ManagedWindow.__init__(self,uistate,[],self.__class__)
         self.set_window(gtk.Window(),gtk.Label(),'')
 
         tool.BatchTool.__init__(self, dbstate, options_class, name)

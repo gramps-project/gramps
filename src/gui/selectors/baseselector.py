@@ -34,7 +34,7 @@ import pango
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from gui.filters import SearchBar
 from glade import Glade
 
@@ -43,7 +43,7 @@ from glade import Glade
 # SelectEvent
 #
 #-------------------------------------------------------------------------
-class BaseSelector(ManagedWindow.ManagedWindow):
+class BaseSelector(ManagedWindow):
     """Base class for the selectors, showing a dialog from which to select
         one of the primary objects
     """
@@ -66,7 +66,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         if not hasattr(self, 'title'):
             self.title = self.get_window_title()
 
-        ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
+        ManagedWindow.__init__(self, uistate, track, self)
 
         self.renderer = gtk.CellRendererText()
         self.track_ref_for_deletion("renderer")
@@ -369,5 +369,5 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         self.search_bar.destroy()
 
     def close(self, *obj):
-        ManagedWindow.ManagedWindow.close(self)
+        ManagedWindow.close(self)
         self._cleanup_on_exit()

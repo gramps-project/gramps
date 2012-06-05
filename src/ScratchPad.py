@@ -49,7 +49,7 @@ import config
 import gen.lib
 import gen.datehandler
 import GrampsDisplay
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from gen.ggettext import sgettext as _
 from TransUtils import trans_objclass
 from constfunc import mac
@@ -1267,7 +1267,7 @@ class ScratchPadListView(object):
 # ScratchPadWindow class
 #
 #-------------------------------------------------------------------------
-class ScratchPadWindow(ManagedWindow.ManagedWindow):
+class ScratchPadWindow(ManagedWindow):
     """
         The Clipboard (was ScratchPad) provides a temporary area to hold objects
         that can
@@ -1296,7 +1296,7 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
     def __init__(self, dbstate, uistate):
         """Initialize the ScratchPad class, and displays the window"""
 
-        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
+        ManagedWindow.__init__(self,uistate,[],self.__class__)
         self.dbstate = dbstate
 
         self.database_changed(self.dbstate.db)

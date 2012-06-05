@@ -46,7 +46,7 @@ import gobject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 import Errors
 from gen.plug import PluginRegister, PTYPE_STR, load_addon_file
 from gen.ggettext import gettext as _
@@ -71,7 +71,7 @@ def display_message(message):
 # PluginStatus: overview of all plugins
 #
 #-------------------------------------------------------------------------
-class PluginStatus(ManagedWindow.ManagedWindow):
+class PluginStatus(ManagedWindow):
     """Displays a dialog showing the status of loaded plugins"""
     HIDDEN = '<span color="red">%s</span>' % _('Hidden')
     AVAILABLE = '<span weight="bold" color="blue">%s</span>'\
@@ -81,7 +81,7 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         self.dbstate = dbstate
         self.__uistate = uistate
         self.title = _("Plugin Manager")
-        ManagedWindow.ManagedWindow.__init__(self, uistate, track,
+        ManagedWindow.__init__(self, uistate, track,
                                              self.__class__)
 
         self.__pmgr = GuiPluginManager.get_instance()
@@ -652,13 +652,13 @@ class PluginStatus(ManagedWindow.ManagedWindow):
 # Details for an individual plugin that failed
 #
 #-------------------------------------------------------------------------
-class PluginTrace(ManagedWindow.ManagedWindow):
+class PluginTrace(ManagedWindow):
     """Displays a dialog showing the status of loaded plugins"""
     
     def __init__(self, uistate, track, data, name):
         self.name = name
         title = "%s: %s" % (_("Plugin Error"), name)
-        ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
+        ManagedWindow.__init__(self, uistate, track, self)
 
         self.set_window(gtk.Dialog("", uistate.window,
                                    gtk.DIALOG_DESTROY_WITH_PARENT,
@@ -697,7 +697,7 @@ class LinkTag(gtk.TextTag):
         except ValueError:
             pass # already in table
 
-class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
+class ToolManagedWindowBase(ManagedWindow):
     """
     Copied from src/ReportBase/_BareReportDialog.py BareReportDialog
     """
@@ -705,7 +705,7 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
     HELP_TOPIC = None
     def __init__(self, dbstate, uistate, option_class, name, callback=None):
         self.name = name
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
+        ManagedWindow.__init__(self, uistate, [], self)
 
         self.extra_menu = None
         self.widgets = []

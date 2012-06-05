@@ -54,7 +54,7 @@ from gen.display.name import NameDisplayError
 import Utils
 import gen.lib
 from gen.lib import Name, Surname, NameOriginType
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from gui.widgets import MarkupLabel, BasicLabel
 from QuestionDialog import ErrorDialog, QuestionDialog2, OkDialog
 from glade import Glade
@@ -83,11 +83,11 @@ COL_EXPL = 3
 #
 #
 #-------------------------------------------------------------------------
-class DisplayNameEditor(ManagedWindow.ManagedWindow):
+class DisplayNameEditor(ManagedWindow):
     def __init__(self, uistate, dbstate, track, dialog):
         # Assumes that there are two methods: dialog.name_changed_check(), 
         # and dialog._build_custom_name_ui() 
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], DisplayNameEditor)
+        ManagedWindow.__init__(self, uistate, [], DisplayNameEditor)
         self.dialog = dialog
         self.dbstate = dbstate
         self.set_window(
@@ -124,7 +124,7 @@ UPPERCASE keyword forces uppercase. Extra parentheses, commas are removed. Other
         self.show()
     def close(self, *obj):
         self.dialog.name_changed_check()
-        ManagedWindow.ManagedWindow.close(self, *obj)
+        ManagedWindow.close(self, *obj)
         
     def build_menu_names(self, obj):
         return (_(" Name Editor"), _("Preferences"))
@@ -136,7 +136,7 @@ UPPERCASE keyword forces uppercase. Extra parentheses, commas are removed. Other
 #
 #-------------------------------------------------------------------------
 
-class ConfigureDialog(ManagedWindow.ManagedWindow):
+class ConfigureDialog(ManagedWindow):
     """
     Base class for configuration dialogs. They provide a Notebook, to which 
     pages are added with configuration options, and a Cancel and Save button.
@@ -166,7 +166,7 @@ class ConfigureDialog(ManagedWindow.ManagedWindow):
         """
         self.dbstate = dbstate
         self.__config = configmanager
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], configobj)
+        ManagedWindow.__init__(self, uistate, [], configobj)
         self.set_window(
             gtk.Dialog(dialogtitle, flags=gtk.DIALOG_NO_SEPARATOR, 
                        buttons=(gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)), 

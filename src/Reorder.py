@@ -34,20 +34,20 @@ from gen.ggettext import gettext as _
 from gen.db import DbTxn
 from gen.display.name import displayer as name_displayer
 import ListModel
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from glade import Glade
 
 PARENT_TITLES = [(_('Father'), -1, 200), (_('Mother'), -1, 200), ('', -1, 0)]
 FAMILY_TITLES = [(_('Spouse'), -1, 200), (_('Relationship'), -1, 200), ('', -1, 0)]
 
-class Reorder(ManagedWindow.ManagedWindow):
+class Reorder(ManagedWindow):
     
     def __init__(self, state, uistate, track, handle):
         xml = Glade()
         top = xml.toplevel
 
         self.dbstate = state
-        ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
+        ManagedWindow.__init__(self, uistate, track, self)
 
         self.person = self.dbstate.db.get_person_from_handle(handle)
         self.parent_list = self.person.get_parent_family_handle_list()

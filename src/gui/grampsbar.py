@@ -47,7 +47,7 @@ import gtk
 #-------------------------------------------------------------------------
 import ConfigParser
 import const
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 import GrampsDisplay
 from gui.widgets.grampletpane import (AVAILABLE_GRAMPLETS,
                                       GET_AVAILABLE_GRAMPLETS,
@@ -551,7 +551,7 @@ class TabGramplet(gtk.ScrolledWindow, GuiGramplet):
 # DetachedWindow class
 #
 #-------------------------------------------------------------------------
-class DetachedWindow(ManagedWindow.ManagedWindow):
+class DetachedWindow(ManagedWindow):
     """
     Class for showing a detached gramplet.
     """
@@ -563,7 +563,7 @@ class DetachedWindow(ManagedWindow.ManagedWindow):
         self.grampsbar = grampsbar
         self.gramplet = gramplet
 
-        ManagedWindow.ManagedWindow.__init__(self, gramplet.uistate, [],
+        ManagedWindow.__init__(self, gramplet.uistate, [],
                                              self.title)
         self.set_window(gtk.Dialog("", gramplet.uistate.window,
                                    gtk.DIALOG_DESTROY_WITH_PARENT,
@@ -627,4 +627,4 @@ class DetachedWindow(ManagedWindow.ManagedWindow):
         self.gramplet.detached_height = size[1]
         self.gramplet.detached_window = None
         self.gramplet.reparent(self.grampsbar)
-        ManagedWindow.ManagedWindow.close(self, *args)
+        ManagedWindow.close(self, *args)

@@ -59,7 +59,7 @@ import const
 import config
 from gui.pluginmanager import GuiPluginManager
 import Utils
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from QuestionDialog import ErrorDialog
 from gui.user import User
 
@@ -86,7 +86,7 @@ _ExportAssistant_pages = {
             'summary'                : 5,
             }
 
-class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
+class ExportAssistant(gtk.Assistant, ManagedWindow) :
     """
     This class creates a GTK assistant to guide the user through the various
     Save as/Export options. 
@@ -124,10 +124,10 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         
         #set up ManagedWindow
         self.top_title = _("Export Assistant")
-        ManagedWindow.ManagedWindow.__init__(self,uistate,[],
+        ManagedWindow.__init__(self,uistate,[],
                                                  self.__class__)
         #set_window is present in both parent classes
-        ManagedWindow.ManagedWindow.set_window(self, self, None,
+        ManagedWindow.set_window(self, self, None,
             self.top_title, isWindow=True)        
 
         #set up callback method for the export plugins
@@ -168,7 +168,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         self.set_forward_page_func(self.forward_func, None)
         
         #ManagedWindow show method
-        ManagedWindow.ManagedWindow.show(self)
+        ManagedWindow.show(self)
 
     def get_forward_button(self, arg):
         if isinstance(arg, gtk.HBox):
@@ -566,7 +566,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
     def close(self, *obj) :
         #clean up ManagedWindow menu, then destroy window, bring forward parent
         gtk.Assistant.destroy(self)
-        ManagedWindow.ManagedWindow.close(self,*obj)
+        ManagedWindow.close(self,*obj)
 
     def get_intro_text(self):
         return _('Under normal circumstances, Gramps does not require you '

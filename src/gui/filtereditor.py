@@ -57,7 +57,7 @@ from gen.filters import (GenericFilterFactory, FilterList,
                          reload_custom_filters)
 from gen.filters.rules._matchesfilterbase import MatchesFilterBase
 import ListModel
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from QuestionDialog import QuestionDialog
 import const
 import GrampsDisplay
@@ -427,10 +427,10 @@ class MyEntry(gtk.Entry):
 # EditRule
 #
 #-------------------------------------------------------------------------
-class EditRule(ManagedWindow.ManagedWindow):
+class EditRule(ManagedWindow):
     def __init__(self, namespace, dbstate, uistate, track, filterdb, val,
                  label, update, filter_name):
-        ManagedWindow.ManagedWindow.__init__(self, uistate, track, EditRule)
+        ManagedWindow.__init__(self, uistate, track, EditRule)
         self.width_key = "interface.edit-rule-width"
         self.height_key = "interface.edit-rule-height"
         self.namespace = namespace
@@ -714,12 +714,12 @@ class EditRule(ManagedWindow.ManagedWindow):
 # EditFilter
 #
 #-------------------------------------------------------------------------
-class EditFilter(ManagedWindow.ManagedWindow):
+class EditFilter(ManagedWindow):
     
     def __init__(self, namespace, dbstate, uistate, track, gfilter,
                  filterdb, update=None, selection_callback=None):
 
-        ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
+        ManagedWindow.__init__(self, uistate, track, self)
         self.width_key = "interface.edit-filter-width"
         self.height_key = "interface.edit-filter-height"
         self.namespace = namespace
@@ -872,10 +872,10 @@ class EditFilter(ManagedWindow.ManagedWindow):
 # ShowResults
 #
 #-------------------------------------------------------------------------
-class ShowResults(ManagedWindow.ManagedWindow):
+class ShowResults(ManagedWindow):
     def __init__(self, db, uistate, track, handle_list, filtname, namespace):
 
-        ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
+        ManagedWindow.__init__(self, uistate, track, self)
 
         self.db = db
         self.filtname = filtname
@@ -981,10 +981,10 @@ class ShowResults(ManagedWindow.ManagedWindow):
 # FilterEditor
 #
 #-------------------------------------------------------------------------
-class FilterEditor(ManagedWindow.ManagedWindow):
+class FilterEditor(ManagedWindow):
     def __init__(self, namespace, filterdb, dbstate, uistate):
 
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], FilterEditor)
+        ManagedWindow.__init__(self, uistate, [], FilterEditor)
         self.dbstate = dbstate
         self.db = dbstate.db
         self.filterdb = FilterList(filterdb)
@@ -1054,7 +1054,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         reload_custom_filters()
         #reload_system_filters()
         self.uistate.emit('filters-changed', (self.namespace,))
-        ManagedWindow.ManagedWindow.close(self, *obj)
+        ManagedWindow.close(self, *obj)
         
     def draw_filters(self):
         self.clist.clear()

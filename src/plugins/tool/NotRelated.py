@@ -50,7 +50,7 @@ from gen.ggettext import ngettext
 from gui.plug import tool
 from gen.plug.report import utils as ReportUtils
 from gui.editors import EditPerson, EditFamily
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from gui.utils import ProgressMeter
 import GrampsDisplay
 from gen.ggettext import sgettext as _
@@ -71,7 +71,7 @@ WIKI_HELP_SEC = _('manual|Not_Related...')
 # NotRelated class
 #
 #------------------------------------------------------------------------
-class NotRelated(tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
+class NotRelated(tool.ActivePersonTool, ManagedWindow) :
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         tool.ActivePersonTool.__init__(self, dbstate, uistate, options_class,
@@ -84,7 +84,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
         person = dbstate.db.get_person_from_handle(person_handle)
         self.name = person.get_primary_name().get_regular_name()
         self.title = _('Not related to "%s"') % self.name
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
+        ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.dbstate = dbstate
         self.uistate = uistate
         self.db = dbstate.db

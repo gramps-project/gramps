@@ -42,7 +42,7 @@ import config
 from Utils import get_researcher
 import GrampsDisplay
 from gui.widgets import MonitoredEntry
-import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from gui.plug import tool
 from gen.ggettext import sgettext as _
 from glade import Glade
@@ -78,7 +78,7 @@ config_keys = (
 # OwnerEditor
 #
 #-------------------------------------------------------------------------
-class OwnerEditor(tool.Tool, ManagedWindow.ManagedWindow):
+class OwnerEditor(tool.Tool, ManagedWindow):
     """
     Allow editing database owner information.
 
@@ -86,7 +86,7 @@ class OwnerEditor(tool.Tool, ManagedWindow.ManagedWindow):
     current database. It also allows copying data from/to the preferences.
     """
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
+        ManagedWindow.__init__(self, uistate, [], self.__class__)
         tool.Tool.__init__(self, dbstate, options_class, name)
        
         self.display()
