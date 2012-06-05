@@ -17,7 +17,6 @@ src/Relationship.py
 src/Reorder.py
 src/ScratchPad.py
 src/Spell.py
-src/TipOfDay.py
 src/ToolTips.py
 src/TransUtils.py
 src/Utils.py
@@ -342,6 +341,7 @@ src/gui/filtereditor.py
 src/gui/grampsbar.py
 src/gui/grampsgui.py
 src/gui/makefilter.py
+src/gui/tipofday.py
 src/gui/utils.py
 src/gui/viewmanager.py
 

@@ -208,7 +208,7 @@ class Gramps(object):
         import DbState
         from viewmanager import ViewManager
         from cli.arghandler import ArgHandler
-        import TipOfDay
+        from gui.tipofday import TipOfDay
 
         register_stock_icons()
 
@@ -238,7 +238,7 @@ class Gramps(object):
             self.vm.post_init_interface()
 
         if config.get('behavior.use-tips'):
-            TipOfDay.TipOfDay(self.vm.uistate)
+            TipOfDay(self.vm.uistate)
 
     def argerrorfunc(self, string):
         from QuestionDialog import ErrorDialog

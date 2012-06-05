@@ -1113,8 +1113,8 @@ class ViewManager(CLIManager):
         """
         Display Tip of the day
         """
-        import TipOfDay
-        TipOfDay.TipOfDay(self.uistate)
+        from gui.tipofday import TipOfDay
+        TipOfDay(self.uistate)
 
     def __plugin_status(self, obj=None):
         """

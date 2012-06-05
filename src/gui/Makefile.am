@@ -35,6 +35,7 @@ pkgpython_PYTHON = \
 	managedwindow.py \
 	navigator.py \
 	pluginmanager.py \
+	tipofday.py \
 	user.py \
 	utils.py \
 	viewmanager.py
