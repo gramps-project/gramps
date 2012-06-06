@@ -22,7 +22,7 @@
 # $Id$
 #
 
-from ListModel import ListModel
+from gui.listmodel import ListModel
 from gen.ggettext import gettext as _
 from PlaceUtils import conv_lat_lon
 from fractions import Fraction

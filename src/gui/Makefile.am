@@ -35,6 +35,7 @@ pkgpython_PYTHON = \
 	glade.py \
 	grampsbar.py \
 	grampsgui.py \
+	listmodel.py \
 	makefilter.py \
 	managedwindow.py \
 	navigator.py \

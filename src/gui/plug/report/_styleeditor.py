@@ -54,7 +54,7 @@ import const
 from gen.plug.docgen import (StyleSheet, FONT_SERIF, FONT_SANS_SERIF,
             PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT,  
             PARA_ALIGN_JUSTIFY) 
-import ListModel
+from gui.listmodel import ListModel
 from gui.managedwindow import ManagedWindow
 from gui.glade import Glade
 
@@ -102,7 +102,7 @@ class StyleListDisplay(object):
         title_label.set_text(Utils.title(_('Style Editor')))
         title_label.set_use_markup(True)
         
-        self.list = ListModel.ListModel(self.top.get_object("list"), 
+        self.list = ListModel(self.top.get_object("list"), 
                                         [(_('Style'), -1, 10)], )
         self.redraw()
         if parent_window:
@@ -217,7 +217,7 @@ class StyleEditor(object):
         self.top.get_object("label6").set_text(_("point size|pt"))
         
         titles = [(_('Paragraph'), 0, 130)]
-        self.plist = ListModel.ListModel(self.top.get_object("ptree"), titles, 
+        self.plist = ListModel(self.top.get_object("ptree"), titles, 
                                          self.change_display)
 
         self.top.get_object('color').connect('color-set', self.fg_color_set)

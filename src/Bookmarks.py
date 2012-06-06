@@ -52,7 +52,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from gui.display import display_help
-import ListModel
+from gui.listmodel import ListModel
 import Utils
 import const
 from gen.ggettext import sgettext as _
@@ -212,7 +212,7 @@ class Bookmarks :
         
         name_titles = [(_('Name'), -1, 200), (_('ID'), -1, 50), ('', -1, 0)]
         self.namelist = gtk.TreeView()
-        self.namemodel = ListModel.ListModel(self.namelist, name_titles)
+        self.namemodel = ListModel(self.namelist, name_titles)
         self.namemodel_cols = len(name_titles)
 
         slist = gtk.ScrolledWindow()

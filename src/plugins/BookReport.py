@@ -69,7 +69,7 @@ import gobject
 #-------------------------------------------------------------------------
 import const
 import Utils
-import ListModel
+from gui.listmodel import ListModel
 import Errors
 from gui.pluginmanager import GuiPluginManager
 from gen.plug.docgen import StyleSheet, StyleSheetList, PaperStyle
@@ -625,8 +625,8 @@ class BookListDisplay(object):
         title_label.set_text(Utils.title(_('Book List')))
         title_label.set_use_markup(True)
         
-        self.blist = ListModel.ListModel(self.xml.get_object("list"),
-                                        [('Name',-1,10)],)
+        self.blist = ListModel(self.xml.get_object("list"), [('Name',-1,10)],)
+
         self.redraw()
         self.selection = None
         self.top.run()
@@ -785,8 +785,8 @@ class BookReportSelector(ManagedWindow):
         self.avail_nr_cols = len(avail_titles)
         self.book_nr_cols = len(book_titles)
 
-        self.avail_model = ListModel.ListModel(self.avail_tree, avail_titles)
-        self.book_model = ListModel.ListModel(self.book_tree, book_titles)
+        self.avail_model = ListModel(self.avail_tree, avail_titles)
+        self.book_model = ListModel(self.book_tree, book_titles)
         self.draw_avail_list()
 
         self.book = Book()

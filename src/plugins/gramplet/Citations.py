@@ -21,7 +21,7 @@
 #
 
 from gui.editors import EditSource, EditCitation
-from ListModel import ListModel, NOSORT
+from gui.listmodel import ListModel, NOSORT
 from gen.plug import Gramplet
 from gen.ggettext import gettext as _
 import Errors

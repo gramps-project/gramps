@@ -26,7 +26,6 @@ gdir_PYTHON = \
 	gramps.py\
 	ImgManip.py\
 	LdsUtils.py \
-	ListModel.py\
 	Lru.py\
 	MacTransUtils.py\
 	RecentFiles.py\

@@ -45,7 +45,7 @@ from gen.ggettext import sgettext as _
 from gen.lib import Tag
 from gen.db import DbTxn
 from gui.dbguielement import DbGUIElement
-from ListModel import ListModel, NOSORT, COLOR, INTEGER
+from gui.listmodel import ListModel, NOSORT, COLOR, INTEGER
 import const
 from gui.display import display_help
 from gui.dialog import ErrorDialog, QuestionDialog2

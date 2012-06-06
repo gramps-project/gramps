@@ -56,7 +56,7 @@ import gobject
 from gen.filters import (GenericFilterFactory, FilterList, 
                          reload_custom_filters)
 from gen.filters.rules._matchesfilterbase import MatchesFilterBase
-import ListModel
+from gui.listmodel import ListModel
 from gui.managedwindow import ManagedWindow
 from gui.dialog import QuestionDialog
 import const
@@ -737,7 +737,7 @@ class EditFilter(ManagedWindow):
             self.get_widget('definition_title'),
             _('Define filter'))
         
-        self.rlist = ListModel.ListModel(
+        self.rlist = ListModel(
             self.get_widget('rule_list'),
             [(_('Name'),-1,150),(_('Values'),-1,150)],
             self.select_row,
@@ -1020,7 +1020,7 @@ class FilterEditor(ManagedWindow):
         
         self.uistate.connect('filter-name-changed', self.clean_after_rename)
 
-        self.clist = ListModel.ListModel(
+        self.clist = ListModel(
                             self.filter_list,
                             [(_('Filter'), 0, 150), (_('Comment'), 1, 150)],
                             self.filter_select_row,

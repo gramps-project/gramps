@@ -20,7 +20,7 @@
 #
 
 from gui.editors import EditPerson
-from ListModel import ListModel, NOSORT
+from gui.listmodel import ListModel, NOSORT
 from gen.plug import Gramplet
 from gen.ggettext import gettext as _
 from gen.display.name import displayer as name_displayer

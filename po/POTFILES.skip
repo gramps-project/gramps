@@ -7,7 +7,6 @@
 src/AutoComp.py
 src/Errors.py
 src/ImgManip.py
-src/ListModel.py
 src/RecentFiles.py
 src/Sort.py
 src/soundex.py
@@ -230,6 +229,7 @@ src/gui/dbguielement.py
 src/gui/ddtargets.py
 src/gui/display.py
 src/gui/glade.py
+src/gui/listmodel.py
 src/gui/managedwindow.py
 src/gui/navigator.py
 src/gui/pluginmanager.py

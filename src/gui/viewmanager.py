@@ -444,7 +444,7 @@ class ViewManager(CLIManager):
     def update_addons(self, addon_update_list):
         from gui.glade import Glade
         from gui.managedwindow import ManagedWindow
-        from ListModel import ListModel, NOSORT, TOGGLE
+        from gui.listmodel import ListModel, NOSORT, TOGGLE
         glade = Glade("updateaddons.glade")
         self.update_dialog = glade.toplevel
         ManagedWindow.set_titles(self.update_dialog,

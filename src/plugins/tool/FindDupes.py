@@ -43,7 +43,7 @@ from gui.plug import tool
 import soundex
 from gen.display.name import displayer as name_displayer
 from gui.dialog import OkDialog
-import ListModel
+from gui.listmodel import ListModel
 import Errors
 from gui.merge import MergePerson
 from gui.display import display_help
@@ -559,8 +559,8 @@ class ShowMatches(ManagedWindow):
                 (_('Second Person'),2,200),
                 ('',-1,0)
                 ]
-        self.list = ListModel.ListModel(self.mlist,mtitles,
-                                        event_func=self.on_do_merge_clicked)
+        self.list = ListModel(self.mlist,mtitles,
+                              event_func=self.on_do_merge_clicked)
         
         self.redraw()
         self.show()

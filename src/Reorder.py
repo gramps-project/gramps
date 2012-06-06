@@ -33,7 +33,7 @@ from gen.ggettext import gettext as _
 #-------------------------------------------------------------------------
 from gen.db import DbTxn
 from gen.display.name import displayer as name_displayer
-import ListModel
+from gui.listmodel import ListModel
 from gui.managedwindow import ManagedWindow
 from gui.glade import Glade
 
@@ -59,10 +59,10 @@ class Reorder(ManagedWindow):
         self.set_window(top, None, _("Reorder Relationships"))
 
         self.ptree = xml.get_object('ptree')
-        self.pmodel = ListModel.ListModel(self.ptree, PARENT_TITLES)
+        self.pmodel = ListModel(self.ptree, PARENT_TITLES)
 
         self.ftree = xml.get_object('ftree')
-        self.fmodel = ListModel.ListModel(self.ftree, FAMILY_TITLES)
+        self.fmodel = ListModel(self.ftree, FAMILY_TITLES)
 
         xml.get_object('ok').connect('clicked', self.ok_clicked)
         xml.get_object('cancel').connect('clicked', self.cancel_clicked)

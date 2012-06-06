@@ -28,7 +28,7 @@
 """
 from gen.ggettext import gettext as _
 import gtk
-import ListModel
+from gui.listmodel import ListModel, INTEGER
 from gui.managedwindow import ManagedWindow
 
 from gui.plug import tool
@@ -60,14 +60,14 @@ class DumpGenderStats(tool.Tool, ManagedWindow):
         if uistate:
             titles = [
                 (_('Name'),0,100),
-                (_('Male'),1,70,ListModel.INTEGER),
-                (_('Female'),2,70,ListModel.INTEGER),
-                (_('Unknown'),3,70,ListModel.INTEGER),
+                (_('Male'),1,70,INTEGER),
+                (_('Female'),2,70,INTEGER),
+                (_('Unknown'),3,70,INTEGER),
                 (_('Guess'),4,70)
                 ]
         
             treeview = gtk.TreeView()
-            model = ListModel.ListModel(treeview,titles)
+            model = ListModel(treeview,titles)
             for entry in stats_list:
                 model.add(entry,entry[0])
                 

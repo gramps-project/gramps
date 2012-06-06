@@ -37,7 +37,7 @@ from gen.ggettext import sgettext as _
 from gui.managedwindow import ManagedWindow
 import const
 from gui.display import display_help
-from ListModel import ListModel, TOGGLE
+from gui.listmodel import ListModel, TOGGLE
 
 #-------------------------------------------------------------------------
 #

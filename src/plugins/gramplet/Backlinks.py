@@ -20,7 +20,7 @@
 # $Id$
 #
 
-from ListModel import ListModel, NOSORT
+from gui.listmodel import ListModel, NOSORT
 from Utils import navigation_label
 from gen.plug import Gramplet
 from gen.ggettext import gettext as _
