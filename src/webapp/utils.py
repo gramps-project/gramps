@@ -712,15 +712,15 @@ def citation_reference_table(obj, user, action):
     table.columns(
         _("Type"),
         _("Reference"), 
-        _("ID"))
+#        _("ID")
+        )
     if user.is_authenticated() and action != "add":
         for reference in models.CitationRef.objects.filter(citation=obj):
             ref_from_class = reference.object_type.model_class()
             item = ref_from_class.objects.get(id=reference.object_id)
             table.row(
                 item.__class__.__name__,
-                item,
-                item.gramps_id)
+                item)
     retval += table.get_html()
     retval += nbsp("") # to keep tabs same height
     return retval 

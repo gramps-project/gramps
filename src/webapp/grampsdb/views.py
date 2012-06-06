@@ -368,7 +368,7 @@ def view_list(request, view):
         if request.user.is_authenticated():
             if request.GET.has_key("search"):
                 search = request.GET.get("search")
-                query = build_person_query(search, protect=False)
+                query = build_person_query(request, search, protect=False)
                 object_list = Name.objects \
                     .filter(query) \
                     .order_by("surname__surname", "first_name")
@@ -378,7 +378,7 @@ def view_list(request, view):
             # BEGIN NON-AUTHENTICATED users
             if request.GET.has_key("search"):
                 search = request.GET.get("search")
-                query = build_person_query(search, protect=True)
+                query = build_person_query(request, search, protect=True)
                 object_list = Name.objects \
                     .filter(query) \
                     .order_by("surname__surname", "first_name")
@@ -681,7 +681,7 @@ def process_report(request, context, handle, action):
     context["tview"] = _("Report")
     context["tviews"] = _("Reports")
 
-def build_person_query(search, protect):
+def build_person_query(request, search, protect):
     if "," in search or "=" in search:
         query = Q()
         terms = ["surname", "given"]
@@ -700,21 +700,34 @@ def build_person_query(search, protect):
             elif field == "private":
                 query &= Q(person__private=boolean(value))
             elif field == "birth":
-                query &= Q(person__birth__year1=value)
+                query &= Q(person__birth__year1=safe_int(value))
             elif field == "death":
-                query &= Q(person__death__year1=value)
+                query &= Q(person__death__year1=safe_int(value))
+            elif field == "id":
+                query &= Q(person__gramps_id__icontains=value)
+            elif field == "gender":
+                query &= Q(person__gender_type__name=value.title())
+            else:
+                request.user.message_set.create(message="Invalid query field '%s'" % field)                
     else:
         query = (Q(surname__surname__icontains=search) | 
                  Q(first_name__icontains=search) |
                  Q(suffix__icontains=search) |
                  Q(surname__prefix__icontains=search) |
+                 Q(person__gender_type__name=search.title()) |
+                 Q(person__birth__year1=safe_int(search)) |
+                 Q(person__death__year1=safe_int(search)) |
                  Q(title__icontains=search) |
                  Q(person__gramps_id__icontains=search))
     if protect:
         query &= (Q(private=False) & Q(person__private=False))
     return query
 
-
+def safe_int(num):
+    try:
+        return int(num)
+    except:
+        return -1
 
 def process_reference(request, ref_by, handle, ref_to, order):
     # FIXME: can I make this work for all?
