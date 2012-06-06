@@ -54,7 +54,7 @@ from gen.ggettext import sgettext as _
 from TransUtils import trans_objclass
 from constfunc import mac
 from gui.glade import Glade
-from DdTargets import DdTargets
+from gui.ddtargets import DdTargets
 from gui.makefilter import make_filter
 import gui.utils
 

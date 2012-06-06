@@ -39,7 +39,7 @@
 
    The module defines a singleton instance of _DdTargets called DdTargets.
 
-   from DdTargets import DdTargets
+   from gui.ddtargets import DdTargets
 
    drag_dest_set(gtk.DEST_DEFAULT_ALL,
                  DdTargets.all_targets(),

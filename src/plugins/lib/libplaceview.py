@@ -53,7 +53,7 @@ import Bookmarks
 import config
 from gui.dialog import ErrorDialog
 from gui.pluginmanager import GuiPluginManager
-from DdTargets import DdTargets
+from gui.ddtargets import DdTargets
 from gui.editors import EditPlace, DeletePlaceQuery
 from gui.filters.sidebar import PlaceSidebarFilter
 from gui.merge import MergePlace

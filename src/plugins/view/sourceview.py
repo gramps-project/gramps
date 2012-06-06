@@ -46,7 +46,7 @@ from gui.views.treemodels import SourceModel
 import Utils
 import Bookmarks
 import Errors
-from DdTargets import DdTargets
+from gui.ddtargets import DdTargets
 from gui.dialog import ErrorDialog
 from gui.editors import EditSource, DeleteSrcQuery
 from gui.filters.sidebar import SourceSidebarFilter

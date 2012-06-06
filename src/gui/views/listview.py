@@ -63,7 +63,7 @@ import Utils
 from gui.dialog import QuestionDialog, QuestionDialog2
 from gui.filtereditor import FilterEditor
 from gen.ggettext import sgettext as _
-from DdTargets import DdTargets
+from gui.ddtargets import DdTargets
 from gui.plug.quick import create_quickreport_menu, create_web_connect_menu
 import gui.utils
 

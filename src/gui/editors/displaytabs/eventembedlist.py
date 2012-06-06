@@ -37,7 +37,7 @@ import gobject
 #-------------------------------------------------------------------------
 import gen.lib
 import Errors
-from DdTargets import DdTargets
+from gui.ddtargets import DdTargets
 from groupembeddedlist import GroupEmbeddedList
 from eventrefmodel import EventRefModel
 from gui.dbguielement import DbGUIElement

@@ -45,7 +45,7 @@ from gui.dbguielement import DbGUIElement
 from gui.selectors import SelectorFactory
 from notemodel import NoteModel
 from embeddedlist import EmbeddedList
-from DdTargets import DdTargets
+from gui.ddtargets import DdTargets
 
 #-------------------------------------------------------------------------
 #

@@ -56,7 +56,7 @@ import Utils
 import ThumbNails
 import Errors
 import gen.mime
-from DdTargets import DdTargets
+from gui.ddtargets import DdTargets
 from buttontab import ButtonTab
 import constfunc
 import const

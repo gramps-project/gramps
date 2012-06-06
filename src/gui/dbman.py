@@ -74,7 +74,7 @@ from gui.dialog import ErrorDialog, QuestionDialog, QuestionDialog2
 from gen.db import DbBsddb
 from gui.pluginmanager import GuiPluginManager
 from cli.clidbman import CLIDbManager, NAME_FILE, time_val
-from DdTargets import DdTargets
+from gui.ddtargets import DdTargets
 import RecentFiles
 from gui.glade import Glade
 from gen.db.backup import restore

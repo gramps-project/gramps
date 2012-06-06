@@ -57,7 +57,7 @@ from libformatting import FormattingHelper
 import ThumbNails
 import Errors
 from gui.editors import EditPerson, EditFamily
-from DdTargets import DdTargets
+from gui.ddtargets import DdTargets
 import cPickle as pickle
 import config
 import Bookmarks

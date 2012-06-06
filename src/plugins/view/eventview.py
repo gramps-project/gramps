@@ -53,7 +53,7 @@ import Utils
 import Errors
 import Bookmarks
 import config
-from DdTargets import DdTargets
+from gui.ddtargets import DdTargets
 from gui.dialog import ErrorDialog
 from gui.editors import EditEvent, DeleteEventQuery
 from gui.filters.sidebar import EventSidebarFilter

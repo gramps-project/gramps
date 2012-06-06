@@ -49,7 +49,7 @@ from editplace import EditPlace
 from editmedia import EditMedia
 from editnote import EditNote
 from gui.selectors import SelectorFactory
-from DdTargets import DdTargets
+from gui.ddtargets import DdTargets
 from Errors import WindowActiveError
 
 #-------------------------------------------------------------------------

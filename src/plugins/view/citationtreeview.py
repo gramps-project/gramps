@@ -53,7 +53,7 @@ from gui.views.listview import ListView
 import Utils
 import Bookmarks
 import Errors
-from DdTargets import DdTargets
+from gui.ddtargets import DdTargets
 from gui.dialog import ErrorDialog
 from gui.editors import EditCitation, DeleteCitationQuery, EditSource, \
     DeleteSrcQuery

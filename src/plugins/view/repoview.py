@@ -43,7 +43,7 @@ import Bookmarks
 import Errors
 import config
 from gui.editors import EditRepository, DeleteRepositoryQuery
-from DdTargets import DdTargets
+from gui.ddtargets import DdTargets
 from gui.dialog import ErrorDialog
 from gui.filters.sidebar import RepoSidebarFilter
 from gui.merge import MergeRepository

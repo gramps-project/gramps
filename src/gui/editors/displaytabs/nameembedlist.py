@@ -43,7 +43,7 @@ from gen.ggettext import gettext as _
 #-------------------------------------------------------------------------
 import gen.lib
 import Errors
-from DdTargets import DdTargets
+from gui.ddtargets import DdTargets
 from namemodel import NameModel
 from groupembeddedlist import GroupEmbeddedList
 

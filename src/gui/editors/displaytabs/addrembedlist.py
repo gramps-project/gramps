@@ -39,7 +39,7 @@ import gobject
 #-------------------------------------------------------------------------
 import gen.lib
 import Errors
-from DdTargets import DdTargets
+from gui.ddtargets import DdTargets
 from addressmodel import AddressModel
 from embeddedlist import EmbeddedList
 

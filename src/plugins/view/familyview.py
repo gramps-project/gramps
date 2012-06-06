@@ -56,7 +56,7 @@ from gui.dialog import ErrorDialog
 from gui.filters.sidebar import FamilySidebarFilter
 from gui.merge import MergeFamily
 from gen.plug import CATEGORY_QR_FAMILY
-from DdTargets import DdTargets
+from gui.ddtargets import DdTargets
 
 #-------------------------------------------------------------------------
 #

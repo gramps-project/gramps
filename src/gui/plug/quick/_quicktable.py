@@ -51,7 +51,7 @@ from gen.simple import SimpleTable
 from TransUtils import trans_objclass
 import Errors
 from gui.widgets.multitreeview import MultiTreeView
-from DdTargets import DdTargets
+from gui.ddtargets import DdTargets
 from gui.plug.quick import run_quick_report_by_name
 from gui.editors import (EditPerson, EditEvent, EditFamily, EditCitation, 
                          EditSource, EditPlace, EditRepository, EditNote, 

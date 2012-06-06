@@ -65,7 +65,7 @@ from gui.editors import EditMedia, DeleteMediaQuery
 import Errors
 from gui.filters.sidebar import MediaSidebarFilter
 from gui.merge import MergeMedia
-from DdTargets import DdTargets
+from gui.ddtargets import DdTargets
 from gui.dialog import ErrorDialog
 from gen.plug import CATEGORY_QR_MEDIA
 

@@ -52,7 +52,7 @@ import Errors
 import Bookmarks
 import config
 from gen.lib import Note
-from DdTargets import DdTargets
+from gui.ddtargets import DdTargets
 from gui.dialog import ErrorDialog
 from gui.filters.sidebar import NoteSidebarFilter
 from gui.editors import EditNote, DeleteNoteQuery

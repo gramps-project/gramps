@@ -35,7 +35,7 @@ import gobject
 #-------------------------------------------------------------------------
 import gen.lib
 import Errors
-from DdTargets import DdTargets
+from gui.ddtargets import DdTargets
 from attrmodel import AttrModel
 from embeddedlist import EmbeddedList
 

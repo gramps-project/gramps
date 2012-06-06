@@ -49,7 +49,7 @@ log = logging.getLogger(".")
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
-from DdTargets import DdTargets
+from gui.ddtargets import DdTargets
 import gtk
 from gtk import gdk
 import pango

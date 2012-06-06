@@ -56,7 +56,7 @@ from gui.dialog import ErrorDialog, QuestionDialog
 import Errors
 import Bookmarks
 import config
-from DdTargets import DdTargets
+from gui.ddtargets import DdTargets
 from gui.editors import EditPerson
 from gui.filters.sidebar import PersonSidebarFilter
 from gui.merge import MergePerson

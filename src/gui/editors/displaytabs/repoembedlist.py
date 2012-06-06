@@ -37,7 +37,7 @@ import gen.lib
 from gui.dbguielement import DbGUIElement
 from gui.selectors import SelectorFactory
 import Errors
-from DdTargets import DdTargets
+from gui.ddtargets import DdTargets
 from reporefmodel import RepoRefModel
 from embeddedlist import EmbeddedList
 
