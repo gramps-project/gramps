@@ -49,7 +49,7 @@ import gen.lib
 from gui.views.listview import ListView
 from gui.utils import add_menuitem
 import Errors
-import Bookmarks
+from gui.views.bookmarks import PlaceBookmarks
 import config
 from gui.dialog import ErrorDialog
 from gui.pluginmanager import GuiPluginManager
@@ -141,7 +141,7 @@ class PlaceBaseView(ListView):
             self.COLUMN_NAMES, 14, 
             model, signal_map,
             dbstate.db.get_place_bookmarks(),
-            Bookmarks.PlaceBookmarks, nav_group,
+            PlaceBookmarks, nav_group,
             multiple=True,
             filter_class=PlaceSidebarFilter, markup=markup)
 

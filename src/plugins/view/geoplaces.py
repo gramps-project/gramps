@@ -66,7 +66,7 @@ from gui.editors import EditPlace
 from gui.selectors.selectplace import SelectPlace
 from gui.filters.sidebar import PlaceSidebarFilter
 from gui.views.navigationview import NavigationView
-import Bookmarks
+from gui.views.bookmarks import PlaceBookmarks
 from Utils import navigation_label
 from maps.geography import GeoGraphyView
 
@@ -116,7 +116,7 @@ class GeoPlaces(GeoGraphyView):
         GeoGraphyView.__init__(self, _('Places places map'),
                                       pdata, dbstate, uistate, 
                                       dbstate.db.get_place_bookmarks(), 
-                                      Bookmarks.PlaceBookmarks,
+                                      PlaceBookmarks,
                                       nav_group)
         self.dbstate = dbstate
         self.uistate = uistate

@@ -11,6 +11,7 @@ pkgpythondir = $(datadir)/@PACKAGE@/gui/views
 
 pkgpython_PYTHON = \
 	__init__.py \
+	bookmarks.py \
 	listview.py \
 	navigationview.py \
 	pageview.py \

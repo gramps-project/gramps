@@ -49,7 +49,7 @@ import gen.lib
 from gui.views.listview import ListView
 from gui.views.treemodels import FamilyModel
 from gui.editors import EditFamily
-import Bookmarks
+from gui.views.bookmarks import FamilyBookmarks
 import Errors
 import config
 from gui.dialog import ErrorDialog
@@ -116,7 +116,7 @@ class FamilyView(ListView):
             FamilyView.COLUMN_NAMES, len(FamilyView.COLUMN_NAMES), 
             FamilyModel,
             signal_map, dbstate.db.get_family_bookmarks(),
-            Bookmarks.FamilyBookmarks, nav_group,
+            FamilyBookmarks, nav_group,
             multiple=True,
             filter_class=FamilySidebarFilter,
             markup=FamilyView.MARKUP_COLS)

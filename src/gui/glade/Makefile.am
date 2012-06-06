@@ -9,7 +9,7 @@ dist_pkgdata_DATA = \
 	mergedata.glade\
 	plugins.glade\
 	rule.glade\
-	scratchpad.glade\
+	clipboard.glade\
 	papermenu.glade \
 	grampletpane.glade \
 	baseselector.glade \
@@ -17,7 +17,7 @@ dist_pkgdata_DATA = \
 	tipofday.glade \
 	displaystate.glade \
 	addmedia.glade \
-	questiondialog.glade \
+	dialog.glade \
 	configure.glade \
 	dateedit.glade \
 	editsource.glade \

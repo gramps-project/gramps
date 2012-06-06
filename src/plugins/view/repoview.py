@@ -39,7 +39,7 @@ import gtk
 import gen.lib
 from gui.views.listview import ListView
 from gui.views.treemodels import RepositoryModel
-import Bookmarks
+from gui.views.bookmarks import RepoBookmarks
 import Errors
 import config
 from gui.editors import EditRepository, DeleteRepositoryQuery
@@ -125,7 +125,7 @@ class RepositoryView(ListView):
             RepositoryView.COLUMN_NAMES, len(RepositoryView.COLUMN_NAMES),
             RepositoryModel, signal_map,
             dbstate.db.get_repo_bookmarks(),
-            Bookmarks.RepoBookmarks, nav_group,
+            RepoBookmarks, nav_group,
             multiple=True,
             filter_class=RepoSidebarFilter)
 

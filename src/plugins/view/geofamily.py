@@ -66,7 +66,7 @@ from gui.editors import EditPlace
 from gui.selectors.selectplace import SelectPlace
 from gui.filters.sidebar import FamilySidebarFilter
 from gui.views.navigationview import NavigationView
-import Bookmarks
+from gui.views.bookmarks import FamilyBookmarks
 from Utils import navigation_label
 from maps.geography import GeoGraphyView
 
@@ -116,7 +116,7 @@ class GeoFamily(GeoGraphyView):
         GeoGraphyView.__init__(self, _('Family places map'),
                                       pdata, dbstate, uistate, 
                                       dbstate.db.get_family_bookmarks(), 
-                                      Bookmarks.FamilyBookmarks,
+                                      FamilyBookmarks,
                                       nav_group)
         self.dbstate = dbstate
         self.uistate = uistate

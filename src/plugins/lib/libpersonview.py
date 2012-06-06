@@ -54,7 +54,7 @@ import Utils
 from gen.display.name import displayer as name_displayer
 from gui.dialog import ErrorDialog, QuestionDialog
 import Errors
-import Bookmarks
+from gui.views.bookmarks import PersonBookmarks
 import config
 from gui.ddtargets import DdTargets
 from gui.editors import EditPerson
@@ -135,7 +135,7 @@ class BasePersonView(ListView):
             self, title, pdata, dbstate, uistate,
             BasePersonView.COLUMN_NAMES, len(BasePersonView.COLUMN_NAMES), 
             model, signal_map, dbstate.db.get_bookmarks(),
-            Bookmarks.PersonBookmarks, nav_group,
+            PersonBookmarks, nav_group,
             multiple=True,
             filter_class=PersonSidebarFilter,
             markup=BasePersonView.MARKUP_COLS)

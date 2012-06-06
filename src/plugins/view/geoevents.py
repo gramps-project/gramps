@@ -66,7 +66,7 @@ from gui.editors import EditPlace
 from gui.selectors.selectplace import SelectPlace
 from gui.filters.sidebar import EventSidebarFilter
 from gui.views.navigationview import NavigationView
-import Bookmarks
+from gui.views.bookmarks import EventBookmarks
 from Utils import navigation_label
 from maps.geography import GeoGraphyView
 
@@ -116,7 +116,7 @@ class GeoEvents(GeoGraphyView):
         GeoGraphyView.__init__(self, _('Events places map'),
                                       pdata, dbstate, uistate, 
                                       dbstate.db.get_event_bookmarks(), 
-                                      Bookmarks.EventBookmarks,
+                                      EventBookmarks,
                                       nav_group)
         self.dbstate = dbstate
         self.uistate = uistate

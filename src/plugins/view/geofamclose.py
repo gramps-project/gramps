@@ -54,7 +54,7 @@ import gen.datehandler
 from gen.display.name import displayer as _nd
 from PlaceUtils import conv_lat_lon
 from gui.views.navigationview import NavigationView
-import Bookmarks
+from gui.views.bookmarks import FamilyBookmarks
 from maps import constants
 from maps.geography import GeoGraphyView
 from gui.selectors import SelectorFactory
@@ -128,7 +128,7 @@ class GeoFamClose(GeoGraphyView):
         GeoGraphyView.__init__(self, _("Have these two families been able to meet?"),
                                       pdata, dbstate, uistate, 
                                       dbstate.db.get_bookmarks(), 
-                                      Bookmarks.FamilyBookmarks,
+                                      FamilyBookmarks,
                                       nav_group)
         self.dbstate = dbstate
         self.uistate = uistate

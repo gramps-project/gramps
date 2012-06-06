@@ -50,7 +50,7 @@ from gen.plug import CATEGORY_QR_CITATION
 import gen.lib
 from gui.views.listview import ListView
 import Utils
-import Bookmarks
+from gui.views.bookmarks import CitationBookmarks
 import Errors
 from gui.ddtargets import DdTargets
 from gui.dialog import ErrorDialog
@@ -139,7 +139,7 @@ class CitationListView(ListView):
             self.COLUMN_NAMES, len(self.COLUMN_NAMES), 
             CitationListModel, signal_map,
             dbstate.db.get_citation_bookmarks(),
-            Bookmarks.CitationBookmarks, nav_group,
+            CitationBookmarks, nav_group,
             multiple=True,
             filter_class=CitationSidebarFilter,
             markup = CitationListView.MARKUP_COLS)

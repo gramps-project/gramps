@@ -49,7 +49,7 @@ from gui.views.listview import ListView
 from gui.views.treemodels import NoteModel
 import Utils
 import Errors
-import Bookmarks
+from gui.views.bookmarks import NoteBookmarks
 import config
 from gen.lib import Note
 from gui.ddtargets import DdTargets
@@ -108,7 +108,7 @@ class NoteView(ListView):
             self, _('Notes'), pdata, dbstate, uistate, NoteView.COLUMN_NAMES,
             len(NoteView.COLUMN_NAMES), NoteModel, signal_map,
             dbstate.db.get_note_bookmarks(),
-            Bookmarks.NoteBookmarks, nav_group,
+            NoteBookmarks, nav_group,
             filter_class=NoteSidebarFilter,
             multiple=True)
 

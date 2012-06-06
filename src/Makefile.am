@@ -14,7 +14,6 @@ gdirdir=$(prefix)/share/gramps
 
 gdir_PYTHON = \
 	AutoComp.py\
-	Bookmarks.py\
 	config.py\
 	const.py\
         constfunc.py\

@@ -56,7 +56,7 @@ import const
 import constfunc
 import config
 import Utils
-import Bookmarks
+from gui.views.bookmarks import MediaBookmarks
 import gen.mime
 import gen.lib
 from gen.db import DbTxn
@@ -129,7 +129,7 @@ class MediaView(ListView):
             MediaView.COLUMN_NAMES, len(MediaView.COLUMN_NAMES), 
             MediaModel, 
             signal_map, dbstate.db.get_media_bookmarks(), 
-            Bookmarks.MediaBookmarks, nav_group,
+            MediaBookmarks, nav_group,
             filter_class=MediaSidebarFilter,
             multiple=True)
 

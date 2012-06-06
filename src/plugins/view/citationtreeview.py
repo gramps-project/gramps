@@ -51,7 +51,7 @@ from gen.plug import CATEGORY_QR_SOURCE_OR_CITATION
 import gen.lib
 from gui.views.listview import ListView
 import Utils
-import Bookmarks
+from gui.views.bookmarks import CitationBookmarks
 import Errors
 from gui.ddtargets import DdTargets
 from gui.dialog import ErrorDialog
@@ -143,7 +143,7 @@ class CitationTreeView(ListView):
             self.COLUMN_NAMES, len(self.COLUMN_NAMES), 
             CitationTreeModel, signal_map,
             dbstate.db.get_citation_bookmarks(),
-            Bookmarks.CitationBookmarks, nav_group,
+            CitationBookmarks, nav_group,
             multiple=True,
             filter_class=SourceSidebarFilter,
             markup = CitationTreeView.MARKUP_COLS)

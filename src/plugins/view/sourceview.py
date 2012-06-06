@@ -44,7 +44,7 @@ import config
 from gui.views.listview import ListView
 from gui.views.treemodels import SourceModel
 import Utils
-import Bookmarks
+from gui.views.bookmarks import SourceBookmarks
 import Errors
 from gui.ddtargets import DdTargets
 from gui.dialog import ErrorDialog
@@ -112,7 +112,7 @@ class SourceView(ListView):
             SourceView.COLUMN_NAMES, len(SourceView.COLUMN_NAMES), 
             SourceModel, signal_map,
             dbstate.db.get_source_bookmarks(),
-            Bookmarks.SourceBookmarks, nav_group,
+            SourceBookmarks, nav_group,
             multiple=True,
             filter_class=SourceSidebarFilter)
 

@@ -58,7 +58,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from gui.views.navigationview import NavigationView
-import Bookmarks
+from gui.views.bookmarks import PersonBookmarks
 import Utils
 import constfunc
 import config
@@ -445,7 +445,7 @@ class HtmlView(NavigationView):
     def __init__(self, pdata, dbstate, uistate, title=_('HtmlView')):
         NavigationView.__init__(self, title, pdata, dbstate, uistate,
                                 dbstate.db.get_bookmarks(), 
-                                Bookmarks.PersonBookmarks,
+                                PersonBookmarks,
                                 nav_group=0
                                )
         self.dbstate = dbstate

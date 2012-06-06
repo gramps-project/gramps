@@ -51,7 +51,6 @@ from gen.display.name import displayer as _nd
 from gui.views.navigationview import NavigationView
 from libformatting import FormattingHelper
 import Errors
-import Bookmarks
 import const
 import constfunc
 from gui.managedwindow import ManagedWindow

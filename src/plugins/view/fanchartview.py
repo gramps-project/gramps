@@ -59,7 +59,7 @@ from libformatting import FormattingHelper
 import gen.lib
 from gui.views.navigationview import NavigationView
 import Errors
-import Bookmarks
+from gui.views.bookmarks import PersonBookmarks
 from gui.editors import EditPerson
 import gui.utils
 
@@ -571,7 +571,7 @@ class FanChartView(NavigationView):
         NavigationView.__init__(self, _('Fan Chart'),
                                       pdata, dbstate, uistate, 
                                       dbstate.db.get_bookmarks(), 
-                                      Bookmarks.PersonBookmarks,
+                                      PersonBookmarks,
                                       nav_group)        
 
         dbstate.connect('active-changed', self.active_changed)

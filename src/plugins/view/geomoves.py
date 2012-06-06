@@ -57,7 +57,7 @@ import gen.datehandler
 from gen.display.name import displayer as _nd
 from PlaceUtils import conv_lat_lon
 from gui.views.navigationview import NavigationView
-import Bookmarks
+from gui.views.bookmarks import PersonBookmarks
 from maps import constants
 from maps.geography import GeoGraphyView
 from gui.selectors import SelectorFactory
@@ -130,7 +130,7 @@ class GeoMoves(GeoGraphyView):
         GeoGraphyView.__init__(self, _("Descendance of the active person."),
                                       pdata, dbstate, uistate, 
                                       dbstate.db.get_bookmarks(), 
-                                      Bookmarks.PersonBookmarks,
+                                      PersonBookmarks,
                                       nav_group)
         self.dbstate = dbstate
         self.uistate = uistate

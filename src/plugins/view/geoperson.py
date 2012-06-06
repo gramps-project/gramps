@@ -67,7 +67,7 @@ from gui.editors import EditPlace
 from gui.selectors.selectplace import SelectPlace
 from gui.filters.sidebar import PersonSidebarFilter
 from gui.views.navigationview import NavigationView
-import Bookmarks
+from gui.views.bookmarks import PersonBookmarks
 import constants
 from Utils import navigation_label
 from maps.geography import GeoGraphyView
@@ -144,7 +144,7 @@ class GeoPerson(GeoGraphyView):
         GeoGraphyView.__init__(self, _("Person places map"),
                                       pdata, dbstate, uistate, 
                                       dbstate.db.get_bookmarks(), 
-                                      Bookmarks.PersonBookmarks,
+                                      PersonBookmarks,
                                       nav_group)
         self.dbstate = dbstate
         self.uistate = uistate

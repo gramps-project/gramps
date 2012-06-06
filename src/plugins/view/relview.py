@@ -60,7 +60,7 @@ import config
 from gui import widgets
 from gui.selectors import SelectorFactory
 import Errors
-import Bookmarks
+from gui.views.bookmarks import PersonBookmarks
 import const
 from Utils import preset_name
 from gen.utils import get_birth_or_fallback, get_death_or_fallback
@@ -135,7 +135,7 @@ class RelationshipView(NavigationView):
         NavigationView.__init__(self, _('Relationships'),
                                       pdata, dbstate, uistate, 
                                       dbstate.db.get_bookmarks(), 
-                                      Bookmarks.PersonBookmarks,
+                                      PersonBookmarks,
                                       nav_group)        
 
         self.func_list.update({

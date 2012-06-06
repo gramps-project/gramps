@@ -51,7 +51,7 @@ from gui.views.listview import ListView
 from gui.views.treemodels import EventModel
 import Utils
 import Errors
-import Bookmarks
+from gui.views.bookmarks import EventBookmarks
 import config
 from gui.ddtargets import DdTargets
 from gui.dialog import ErrorDialog
@@ -119,7 +119,7 @@ class EventView(ListView):
             EventView.COLUMN_NAMES, len(EventView.COLUMN_NAMES), 
             EventModel,
             signal_map, dbstate.db.get_event_bookmarks(),
-            Bookmarks.EventBookmarks, nav_group,
+            EventBookmarks, nav_group,
             multiple=True,
             filter_class=EventSidebarFilter,
             markup = EventView.MARKUP_COLS)

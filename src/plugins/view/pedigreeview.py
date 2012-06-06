@@ -60,7 +60,7 @@ from gui.editors import EditPerson, EditFamily
 from gui.ddtargets import DdTargets
 import cPickle as pickle
 import config
-import Bookmarks
+from gui.views.bookmarks import PersonBookmarks
 import const
 import constfunc
 from gui.dialog import RunDatabaseRepair, ErrorDialog
@@ -689,7 +689,7 @@ class PedigreeView(NavigationView):
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         NavigationView.__init__(self, _('Pedigree'), pdata, dbstate, uistate, 
                                       dbstate.db.get_bookmarks(), 
-                                      Bookmarks.PersonBookmarks,
+                                      PersonBookmarks,
                                       nav_group)
 
         self.func_list.update({
