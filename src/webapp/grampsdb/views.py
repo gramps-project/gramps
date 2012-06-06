@@ -281,9 +281,7 @@ def view_list(request, view):
                                       search.split(",", 1)]
                     object_list = Family.objects \
                         .filter((Q(father__name__surname__surname__istartswith=surname) &
-                                 Q(father__name__first_name__istartswith=first)) |
-                                (Q(mother__name__surname__surname__istartswith=surname) &
-                                 Q(mother__name__first_name__istartswith=first)) 
+                                 Q(mother__name__surname__surname__istartswith=surname))
                                 ) \
                         .order_by("gramps_id")
                 else: # no comma
@@ -291,9 +289,7 @@ def view_list(request, view):
                         .filter(Q(gramps_id__icontains=search) |
                                 Q(family_rel_type__name__icontains=search) |
                                 Q(father__name__surname__surname__istartswith=search) |
-                                Q(father__name__first_name__istartswith=search) |
-                                Q(mother__name__surname__surname__istartswith=search) |
-                                Q(mother__name__first_name__istartswith=search)
+                                Q(mother__name__surname__surname__istartswith=search) 
                                 ) \
                         .order_by("gramps_id")
             else: # no search
@@ -381,13 +377,13 @@ def view_list(request, view):
                 query = build_person_query(request, search, protect=True)
                 object_list = Name.objects \
                     .filter(query) \
-                    .order_by("surname__surname", "first_name")
+                    .order_by("surname__surname", "private", "person__probably_alive", "first_name")
             else:
                 object_list = Name.objects \
                                 .select_related() \
                                 .filter(Q(private=False) &
                                         Q(person__private=False)) \
-                                .order_by("surname__surname", "first_name")
+                                .order_by("surname__surname", "private", "person__probably_alive", "first_name")
             # END NON-AUTHENTICATED users
         view_template = 'view_people.html'
         total = Name.objects.all().count()
@@ -684,24 +680,30 @@ def process_report(request, context, handle, action):
 def build_person_query(request, search, protect):
     if "," in search or "=" in search:
         query = Q()
-        terms = ["surname", "given"]
+        if protect:
+            query &= (Q(private=False) & Q(person__private=False))
+            terms = ["surname", "given"]
+        else:
+            terms = ["surname"]
         for term in [term.strip() for term in search.split(",")]:
             if "=" in term:
                 field, value = [s.strip() for s in term.split("=")]
             else:
                 field = terms.pop(0)
                 value = term
-            if "." in field:
+            if "." in field and not protect:
                 query &= Q(**{field.replace(".", "__"): value})
             elif field == "surname":
                 query &= Q(surname__surname__istartswith=value)
             elif field == "given":
-                query &= Q(first_name__istartswith=value)
+                if not protect:
+                    query &= Q(first_name__istartswith=value)
             elif field == "private":
-                query &= Q(person__private=boolean(value))
-            elif field == "birth":
+                if not protect:
+                    query &= Q(person__private=boolean(value))
+            elif field == "birth" and not protect:
                 query &= Q(person__birth__year1=safe_int(value))
-            elif field == "death":
+            elif field == "death" and not protect:
                 query &= Q(person__death__year1=safe_int(value))
             elif field == "id":
                 query &= Q(person__gramps_id__icontains=value)
@@ -710,17 +712,17 @@ def build_person_query(request, search, protect):
             else:
                 request.user.message_set.create(message="Invalid query field '%s'" % field)                
     else:
-        query = (Q(surname__surname__icontains=search) | 
-                 Q(first_name__icontains=search) |
-                 Q(suffix__icontains=search) |
-                 Q(surname__prefix__icontains=search) |
-                 Q(person__gender_type__name=search.title()) |
-                 Q(person__birth__year1=safe_int(search)) |
-                 Q(person__death__year1=safe_int(search)) |
-                 Q(title__icontains=search) |
-                 Q(person__gramps_id__icontains=search))
-    if protect:
-        query &= (Q(private=False) & Q(person__private=False))
+        if protect:
+            query = (Q(surname__surname__icontains=search) | 
+                     Q(surname__prefix__icontains=search) |
+                     Q(person__gramps_id__icontains=search))
+        else:
+            query = (Q(surname__surname__icontains=search) | 
+                     Q(first_name__icontains=search) |
+                     Q(suffix__icontains=search) |
+                     Q(surname__prefix__icontains=search) |
+                     Q(title__icontains=search) |
+                     Q(person__gramps_id__icontains=search))
     return query
 
 def safe_int(num):
