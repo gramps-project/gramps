@@ -56,7 +56,7 @@ from gen.display.name import displayer as name_displayer
 import gen.datehandler
 import gen.lib
 import Utils
-import ThumbNails
+from gui.thumbnails import get_thumbnail_path
 from gen.utils import get_birth_or_fallback, get_death_or_fallback
 
 #------------------------------------------------------------------------
@@ -354,7 +354,7 @@ class RelGraphReport(Report):
                 media = self.database.get_object_from_handle(mediaHandle)
                 mediaMimeType = media.get_mime_type()
                 if mediaMimeType[0:5] == "image":
-                    imagePath = ThumbNails.get_thumbnail_path(
+                    imagePath = get_thumbnail_path(
                                     Utils.media_path_full(self.database, 
                                                           media.get_path()),
                                         rectangle=mediaList[0].get_rectangle())

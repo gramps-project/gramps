@@ -50,7 +50,7 @@ import pango
 #
 #-------------------------------------------------------------------------
 import Utils
-import ThumbNails
+from gui.thumbnails import get_thumbnail_image
 import gui.utils
 from gen.utils import get_birth_or_fallback
 import gen.lib
@@ -939,7 +939,7 @@ class EditPerson(EditPrimary):
         """
         Load the person's main photo using the Thumbnailer.
         """
-        pixbuf = ThumbNails.get_thumbnail_image(
+        pixbuf = get_thumbnail_image(
                         Utils.media_path_full(self.dbstate.db, 
                                               obj.get_path()), 
                         obj.get_mime_type(),

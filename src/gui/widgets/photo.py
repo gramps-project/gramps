@@ -31,7 +31,7 @@ import gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import ThumbNails
+from gui.thumbnails import get_thumbnail_image, SIZE_NORMAL, SIZE_LARGE
 from gui.utils import open_file_with_default_application
 from gen.ggettext import gettext as _
 
@@ -53,9 +53,9 @@ class Photo(gtk.EventBox):
         tip = _('Double-click on the picture to view it in the default image '
                 'viewer application.')
         self.set_tooltip_text(tip)
-        self.__size = ThumbNails.SIZE_LARGE
+        self.__size = SIZE_LARGE
         if use_small_size:
-            self.__size = ThumbNails.SIZE_NORMAL
+            self.__size = SIZE_NORMAL
 
     def set_image(self, full_path, mime_type=None, rectangle=None):
         """
@@ -63,10 +63,8 @@ class Photo(gtk.EventBox):
         """
         self.full_path = full_path
         if full_path:
-            pixbuf = ThumbNails.get_thumbnail_image(full_path,
-                                                    mime_type,
-                                                    rectangle,
-                                                    self.__size)
+            pixbuf = get_thumbnail_image(full_path, mime_type, rectangle,
+                                         self.__size)
             self.photo.set_from_pixbuf(pixbuf)
             self.photo.show()
         else:

@@ -40,6 +40,7 @@ pkgpython_PYTHON = \
 	managedwindow.py \
 	navigator.py \
 	pluginmanager.py \
+	thumbnails.py \
 	tipofday.py \
 	undohistory.py \
 	user.py \

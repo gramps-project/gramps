@@ -46,7 +46,7 @@ from gui.utils import open_file_with_default_application
 import gen.lib
 from gen.db import DbTxn
 import gen.mime
-import ThumbNails
+from gui.thumbnails import get_thumbnail_image, find_mime_type_pixbuf
 import Utils
 from editprimary import EditPrimary
 from gui.widgets import (MonitoredDate, MonitoredEntry, PrivacyButton,
@@ -173,12 +173,12 @@ class EditMedia(EditPrimary):
     def draw_preview(self):
         mtype = self.obj.get_mime_type()
         if mtype:
-            pb = ThumbNails.get_thumbnail_image(
+            pb = get_thumbnail_image(
                         Utils.media_path_full(self.db, self.obj.get_path()), 
                         mtype)
             self.pixmap.set_from_pixbuf(pb)
         else:
-            pb = ThumbNails.find_mime_type_pixbuf('text/plain')
+            pb = find_mime_type_pixbuf('text/plain')
             self.pixmap.set_from_pixbuf(pb)
 
     def setup_filepath(self):

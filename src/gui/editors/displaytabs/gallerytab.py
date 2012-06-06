@@ -53,7 +53,7 @@ from gui.selectors import SelectorFactory
 import gen.lib
 from gen.db import DbTxn
 import Utils
-import ThumbNails
+from gui.thumbnails import get_thumbnail_image
 import Errors
 import gen.mime
 from gui.ddtargets import DdTargets
@@ -250,7 +250,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                 RunDatabaseRepair(
                             _('Non existing media found in the Gallery'))
             else :
-                pixbuf = ThumbNails.get_thumbnail_image(
+                pixbuf = get_thumbnail_image(
                                 Utils.media_path_full(self.dbstate.db, 
                                                       obj.get_path()), 
                                 obj.get_mime_type(),

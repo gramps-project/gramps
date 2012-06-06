@@ -90,7 +90,7 @@ from gen.plug.report import MenuReportOptions
                         
 import Utils
 import constfunc
-import ThumbNails
+from gui.thumbnails import get_thumbnail_path, run_thumbnailer
 import ImgManip
 import gen.mime
 from gen.display.name import displayer as _nd
@@ -496,7 +496,7 @@ def copy_thumbnail(report, handle, photo, region=None):
         )
     
     if photo.get_mime_type():
-        from_path = ThumbNails.get_thumbnail_path(Utils.media_path_full(
+        from_path = get_thumbnail_path(Utils.media_path_full(
                                                   report.database,
                                                   photo.get_path()),
                                                   photo.get_mime_type(),
@@ -4005,9 +4005,9 @@ class MediaPage(BasePage):
                     else:
                         dirname = tempfile.mkdtemp()
                         thmb_path = os.path.join(dirname, "document.png")
-                        if ThumbNails.run_thumbnailer(mime_type,
-                                                      Utils.media_path_full(self.dbase_, media.get_path()),
-                                                      thmb_path, 320):
+                        if run_thumbnailer(mime_type,
+                                           Utils.media_path_full(self.dbase_, media.get_path()),
+                                           thmb_path, 320):
                             try:
                                 path = self.report.build_path("preview", media.get_handle())
                                 npath = os.path.join(path, media.get_handle()) + ".png"

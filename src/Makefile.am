@@ -34,7 +34,6 @@ gdir_PYTHON = \
 	Sort.py\
 	soundex.py\
 	Spell.py\
-	ThumbNails.py\
 	ToolTips.py\
 	TransUtils.py\
 	TreeTips.py\

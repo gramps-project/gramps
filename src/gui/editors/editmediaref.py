@@ -46,7 +46,7 @@ import gtk
 from gui.utils import open_file_with_default_application
 import const
 import gen.mime
-import ThumbNails
+from gui.thumbnails import get_thumbnail_image, find_mime_type_pixbuf
 import Utils
 from gen.lib import NoteType
 from gen.db import DbTxn
@@ -140,13 +140,13 @@ class EditMediaRef(EditReference):
         mtype = self.source.get_mime_type()
         if mtype:
             fullpath = Utils.media_path_full(self.db, self.source.get_path())
-            pb = ThumbNails.get_thumbnail_image(fullpath, mtype)
+            pb = get_thumbnail_image(fullpath, mtype)
             self.pixmap.set_from_pixbuf(pb)
-            subpix = ThumbNails.get_thumbnail_image(fullpath, mtype,
+            subpix = get_thumbnail_image(fullpath, mtype,
                                                     self.rectangle)
             self.subpixmap.set_from_pixbuf(subpix)
         else:
-            pb = ThumbNails.find_mime_type_pixbuf('text/plain')
+            pb = find_mime_type_pixbuf('text/plain')
             self.pixmap.set_from_pixbuf(pb)
             self.subpixmap.set_from_pixbuf(pb)
 

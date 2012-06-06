@@ -10,7 +10,6 @@ src/ImgManip.py
 src/RecentFiles.py
 src/Sort.py
 src/soundex.py
-src/ThumbNails.py
 src/TreeTips.py
 
 # cli
@@ -233,6 +232,7 @@ src/gui/listmodel.py
 src/gui/managedwindow.py
 src/gui/navigator.py
 src/gui/pluginmanager.py
+src/gui/thumbnails.py
 src/gui/user.py
 
 # gui/editors - the GUI editors package

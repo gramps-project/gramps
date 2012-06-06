@@ -55,7 +55,7 @@ from gen.display.name import displayer as name_displayer
 from Utils import media_path_full, probably_alive
 from gui.utils import open_file_with_default_application
 import gen.datehandler
-import ThumbNails
+from gui.thumbnails import get_thumbnail_image
 import config
 from gui import widgets
 from gui.selectors import SelectorFactory
@@ -668,7 +668,7 @@ class RelationshipView(NavigationView):
         if image_list:
             mobj = self.dbstate.db.get_object_from_handle(image_list[0].ref)
             if mobj and mobj.get_mime_type()[0:5] == "image":
-                pixbuf = ThumbNails.get_thumbnail_image(
+                pixbuf = get_thumbnail_image(
                                 media_path_full(self.dbstate.db, 
                                                 mobj.get_path()),
                                 rectangle=image_list[0].get_rectangle())

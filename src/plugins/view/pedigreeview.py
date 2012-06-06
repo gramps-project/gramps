@@ -54,7 +54,7 @@ from gen.display.name import displayer as name_displayer
 from Utils import (media_path_full, probably_alive, find_children, 
                    find_parents, find_witnessed_people)
 from libformatting import FormattingHelper
-import ThumbNails
+from gui.thumbnails import get_thumbnail_path
 import Errors
 from gui.editors import EditPerson, EditFamily
 from gui.ddtargets import DdTargets
@@ -152,7 +152,7 @@ class _PersonWidgetBase(gtk.DrawingArea):
             if obj:
                 mtype = obj.get_mime_type()
                 if mtype and mtype[0:5] == "image":
-                    image_path = ThumbNails.get_thumbnail_path(
+                    image_path = get_thumbnail_path(
                                 media_path_full(
                                             dbstate.db,
                                             obj.get_path()),

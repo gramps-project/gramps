@@ -54,7 +54,7 @@ import const
 import config
 import Utils
 import gen.mime
-import ThumbNails
+from gui.thumbnails import find_mime_type_pixbuf
 from gui.display import display_help
 from gui.managedwindow import ManagedWindow
 from gui.dialog import ErrorDialog, WarningDialog
@@ -201,7 +201,7 @@ class AddMediaObject(ManagedWindow):
             if mtype and mtype.startswith("image"):
                 image = scale_image(filename, const.THUMBSCALE)
             else:
-                image = ThumbNails.find_mime_type_pixbuf(mtype)
+                image = find_mime_type_pixbuf(mtype)
             self.image.set_from_pixbuf(image)
 
     def _cleanup_on_exit(self):

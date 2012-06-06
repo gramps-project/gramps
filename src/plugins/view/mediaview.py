@@ -52,7 +52,6 @@ import gtk
 from gui.utils import open_file_with_default_application
 from gui.views.listview import ListView
 from gui.views.treemodels import MediaModel
-import ThumbNails
 import const
 import constfunc
 import config
