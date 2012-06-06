@@ -138,7 +138,7 @@ UIDEFAULT = '''<ui>
     <separator/>
     <placeholder name="TagMenu"/>
     <separator/>
-    <menuitem action="ScratchPad"/>
+    <menuitem action="Clipboard"/>
     <separator/>
     <menuitem action="Preferences"/>
   </menu>
@@ -186,7 +186,7 @@ UIDEFAULT = '''<ui>
 <toolbar name="ToolBar">
   <placeholder name="CommonNavigation"/>
   <separator/>
-  <toolitem action="ScratchPad"/>
+  <toolitem action="Clipboard"/>
   <toolitem action="Reports"/>
   <toolitem action="Tools"/>
   <separator/>
@@ -819,8 +819,8 @@ class ViewManager(CLIManager):
             ]
 
         self._action_action_list = [
-            ('ScratchPad', gtk.STOCK_PASTE, _('Clip_board'), "<control>b",
-             _("Open the Clipboard dialog"), self.scratchpad),
+            ('Clipboard', gtk.STOCK_PASTE, _('Clip_board'), "<control>b",
+             _("Open the Clipboard dialog"), self.clipboard),
             ('Import', 'gramps-import', _('_Import...'), "<control>i", None,
              self.import_data),
             ('Tools', 'gramps-tools', _('_Tools'), None,
@@ -1662,13 +1662,13 @@ class ViewManager(CLIManager):
         except Errors.WindowActiveError:
             return
 
-    def scratchpad(self, obj):
+    def clipboard(self, obj):
         """
-        Displays the Clipboard (was scratchpad)
+        Displays the Clipboard
         """
-        import ScratchPad
+        from gui.clipboard import ClipboardWindow
         try:
-            ScratchPad.ScratchPadWindow(self.dbstate, self.uistate)
+            ClipboardWindow(self.dbstate, self.uistate)
         except Errors.WindowActiveError:
             return
 

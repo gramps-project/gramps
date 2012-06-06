@@ -2,7 +2,6 @@
 #
 #   Python files
 #
-src/Assistant.py
 src/Bookmarks.py
 src/const.py
 src/DateEdit.py
@@ -11,10 +10,8 @@ src/ExportOptions.py
 src/gramps.py
 src/LdsUtils.py
 src/PlaceUtils.py
-src/QuickReports.py
 src/Relationship.py
 src/Reorder.py
-src/ScratchPad.py
 src/Spell.py
 src/ToolTips.py
 src/TransUtils.py
@@ -330,6 +327,7 @@ src/gen/simple/_simpletable.py
 
 # gui - GUI code
 src/gui/aboutdialog.py
+src/gui/clipboard.py
 src/gui/columnorder.py
 src/gui/configure.py
 src/gui/dbloader.py

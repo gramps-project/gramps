@@ -102,32 +102,32 @@ for (name, file) in (
 #
 #-------------------------------------------------------------------------
 def map2class(target):
-    d = {"person-link": ScratchPersonLink,
-         "family-link": ScratchFamilyLink,
-         'personref': ScratchPersonRef,
-         'childref': ScratchChildRef,
-         'source-link': ScratchSourceLink,
-         'citation-link': ScratchCitation,
-         'repo-link': ScratchRepositoryLink,
-         'pevent': ScratchEvent,
-         'eventref': ScratchEventRef,
-         'mediaobj': ScratchMediaObj,
-         'mediaref': ScratchMediaRef,
-         'place-link': ScratchPlace,
-         'note-link': ScratchNote,
+    d = {"person-link": ClipPersonLink,
+         "family-link": ClipFamilyLink,
+         'personref': ClipPersonRef,
+         'childref': ClipChildRef,
+         'source-link': ClipSourceLink,
+         'citation-link': ClipCitation,
+         'repo-link': ClipRepositoryLink,
+         'pevent': ClipEvent,
+         'eventref': ClipEventRef,
+         'mediaobj': ClipMediaObj,
+         'mediaref': ClipMediaRef,
+         'place-link': ClipPlace,
+         'note-link': ClipNote,
          }
     return d[target] if target in d else None
 
 def obj2class(target):
-    d= {"Person": ScratchPersonLink,
-        "Family": ScratchFamilyLink,
-        'Source': ScratchSourceLink,
-        'Citation': ScratchCitation,
-        'Repository': ScratchRepositoryLink,
-        'Event': ScratchEvent,
-        'Media': ScratchMediaObj,
-        'Place': ScratchPlace,
-        'Note': ScratchNote,
+    d= {"Person": ClipPersonLink,
+        "Family": ClipFamilyLink,
+        'Source': ClipSourceLink,
+        'Citation': ClipCitation,
+        'Repository': ClipRepositoryLink,
+        'Event': ClipEvent,
+        'Media': ClipMediaObj,
+        'Place': ClipPlace,
+        'Note': ClipNote,
         }
     return d[target] if target in d else None
 
@@ -149,7 +149,7 @@ def model_contains(model, data):
     Returns True if data is a row in model.
     """
     # check type and value
-    # data[0] is type of drop item, data[1] is Scratch object
+    # data[0] is type of drop item, data[1] is Clip object
     for row in model:
         if data[0] == 'TEXT':
             same = ((row[0] == data[0]) and
@@ -170,7 +170,7 @@ def model_contains(model, data):
 # wrapper classes to provide object specific listing in the ListView
 #
 #-------------------------------------------------------------------------
-class ScratchWrapper(object):
+class ClipWrapper(object):
     UNAVAILABLE_ICON = gtk.STOCK_DIALOG_ERROR
 
     def __init__(self, dbstate, obj):
@@ -223,10 +223,10 @@ class ScratchWrapper(object):
         return True
 
 
-class ScratchHandleWrapper(ScratchWrapper):
+class ClipHandleWrapper(ClipWrapper):
         
     def __init__(self,dbstate, obj):
-        super(ScratchHandleWrapper, self).__init__(dbstate, obj)
+        super(ClipHandleWrapper, self).__init__(dbstate, obj)
         #unpack object
         (drag_type, idval, data, val) = pickle.loads(obj)
         if isinstance(data, dict):
@@ -238,10 +238,10 @@ class ScratchHandleWrapper(ScratchWrapper):
         for item in data:
             setattr(self, item, data[item])
 
-class ScratchObjWrapper(ScratchWrapper):
+class ClipObjWrapper(ClipWrapper):
         
     def __init__(self,dbstate, obj):
-        super(ScratchObjWrapper, self).__init__(dbstate, obj)
+        super(ClipObjWrapper, self).__init__(dbstate, obj)
         #unpack object
         (drag_type, idval, self._obj, val) = pickle.loads(obj)
         self._pickle = obj
@@ -282,14 +282,14 @@ class ScratchObjWrapper(ScratchWrapper):
         return True
 
 
-class ScratchAddress(ScratchObjWrapper):
+class ClipAddress(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.ADDRESS]
     DRAG_TARGET  = DdTargets.ADDRESS
     ICON         = ICONS['address']
     
     def __init__(self, dbstate, obj):
-        super(ScratchAddress, self).__init__(dbstate, obj)
+        super(ClipAddress, self).__init__(dbstate, obj)
         self._type  = _("Address")
         self.refresh()
 
@@ -302,14 +302,14 @@ class ScratchAddress(ScratchObjWrapper):
                                            self._obj.get_country(),
                                           )
 
-class ScratchLocation(ScratchObjWrapper):
+class ClipLocation(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.LOCATION]
     DRAG_TARGET  = DdTargets.LOCATION
     ICON         = ICONS['location']
     
     def __init__(self, dbstate, obj):
-        super(ScratchLocation, self).__init__(dbstate, obj)
+        super(ClipLocation, self).__init__(dbstate, obj)
         self._type  = _("Location")
         self.refresh()
 
@@ -319,14 +319,14 @@ class ScratchLocation(ScratchObjWrapper):
                                     self._obj.get_country(),
                                    )
 
-class ScratchEvent(ScratchHandleWrapper):
+class ClipEvent(ClipHandleWrapper):
 
     DROP_TARGETS = [DdTargets.EVENT]
     DRAG_TARGET  = DdTargets.EVENT
     ICON         = ICONS["event"]
 
     def __init__(self, dbstate, obj):
-        super(ScratchEvent, self).__init__(dbstate, obj)
+        super(ClipEvent, self).__init__(dbstate, obj)
         self._type  = _("Event")
         self._objclass = 'Event'
         self.refresh()
@@ -346,14 +346,14 @@ class ScratchEvent(ScratchHandleWrapper):
             return True
         return False
 
-class ScratchPlace(ScratchHandleWrapper):
+class ClipPlace(ClipHandleWrapper):
 
     DROP_TARGETS = [DdTargets.PLACE_LINK]
     DRAG_TARGET  = DdTargets.PLACE_LINK
     ICON         = ICONS["place"]
 
     def __init__(self, dbstate, obj):
-        super(ScratchPlace, self).__init__(dbstate, obj)
+        super(ClipPlace, self).__init__(dbstate, obj)
         self._type  = _("Place")
         self._objclass = 'Place'
         self.refresh()
@@ -373,14 +373,14 @@ class ScratchPlace(ScratchHandleWrapper):
             return True
         return False
 
-class ScratchNote(ScratchHandleWrapper):
+class ClipNote(ClipHandleWrapper):
 
     DROP_TARGETS = [DdTargets.NOTE_LINK]
     DRAG_TARGET  = DdTargets.NOTE_LINK
     ICON         = ICONS["note"]
 
     def __init__(self, dbstate, obj):
-        super(ScratchNote, self).__init__(dbstate, obj)
+        super(ClipNote, self).__init__(dbstate, obj)
         self._type  = _("Note")
         self._objclass = 'Note'
         self.refresh()
@@ -406,14 +406,14 @@ class ScratchNote(ScratchHandleWrapper):
             return True
         return False
 
-class ScratchFamilyEvent(ScratchObjWrapper):
+class ClipFamilyEvent(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.FAMILY_EVENT]
     DRAG_TARGET  = DdTargets.FAMILY_EVENT
     ICON         = ICONS['family']
     
     def __init__(self, dbstate, obj):
-        super(ScratchFamilyEvent, self).__init__(dbstate, obj)
+        super(ClipFamilyEvent, self).__init__(dbstate, obj)
         self._type  = _("Family Event")
         self.refresh()
 
@@ -422,14 +422,14 @@ class ScratchFamilyEvent(ScratchObjWrapper):
             self._title = str(self._obj.get_type())
             self._value = self._obj.get_description()
 
-class ScratchUrl(ScratchObjWrapper):
+class ClipUrl(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.URL]
     DRAG_TARGET  = DdTargets.URL
     ICON         = ICONS['url']
 
     def __init__(self, dbstate, obj):
-        super(ScratchUrl, self).__init__(dbstate, obj)
+        super(ClipUrl, self).__init__(dbstate, obj)
         self._type  = _("Url")
         self.refresh()
 
@@ -438,14 +438,14 @@ class ScratchUrl(ScratchObjWrapper):
             self._title = self._obj.get_path()
             self._value = self._obj.get_description()
 
-class ScratchAttribute(ScratchObjWrapper):
+class ClipAttribute(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.ATTRIBUTE]
     DRAG_TARGET  = DdTargets.ATTRIBUTE
     ICON         = ICONS['attribute']
 
     def __init__(self, dbstate, obj):
-        super(ScratchAttribute, self).__init__(dbstate, obj)
+        super(ClipAttribute, self).__init__(dbstate, obj)
         self._type  = _("Attribute")
         self.refresh()
 
@@ -453,14 +453,14 @@ class ScratchAttribute(ScratchObjWrapper):
         self._title = str(self._obj.get_type())
         self._value = self._obj.get_value()
 
-class ScratchFamilyAttribute(ScratchObjWrapper):
+class ClipFamilyAttribute(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.FAMILY_ATTRIBUTE]
     DRAG_TARGET  = DdTargets.FAMILY_ATTRIBUTE
     ICON         = ICONS['attribute']
 
     def __init__(self, dbstate, obj):
-        super(ScratchFamilyAttribute, self).__init__(dbstate, obj)
+        super(ClipFamilyAttribute, self).__init__(dbstate, obj)
         self._type  = _("Family Attribute")
         self.refresh()
 
@@ -469,14 +469,14 @@ class ScratchFamilyAttribute(ScratchObjWrapper):
             self._title = str(self._obj.get_type())
             self._value = self._obj.get_value()
 
-class ScratchCitation(ScratchHandleWrapper):
+class ClipCitation(ClipHandleWrapper):
 
     DROP_TARGETS = [DdTargets.CITATION_LINK]
     DRAG_TARGET  = DdTargets.CITATION_LINK
     ICON         = ICONS["citation"]
 
     def __init__(self, dbstate, obj):
-        super(ScratchCitation, self).__init__(dbstate, obj)
+        super(ClipCitation, self).__init__(dbstate, obj)
         self._type  = _("Citation")
         self._objclass = 'Citation'
         self.refresh()
@@ -514,14 +514,14 @@ class ScratchCitation(ScratchHandleWrapper):
             return True
         return False
 
-class ScratchRepoRef(ScratchObjWrapper):
+class ClipRepoRef(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.REPOREF]
     DRAG_TARGET  = DdTargets.REPOREF
     ICON         = LINK_PIC
 
     def __init__(self, dbstate, obj):
-        super(ScratchRepoRef, self).__init__(dbstate, obj)
+        super(ClipRepoRef, self).__init__(dbstate, obj)
         self._type  = _("Repository ref")
         self.refresh()
 
@@ -532,14 +532,14 @@ class ScratchRepoRef(ScratchObjWrapper):
                 self._title = str(base.get_type())
                 self._value = base.get_name()
 
-class ScratchEventRef(ScratchObjWrapper):
+class ClipEventRef(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.EVENTREF]
     DRAG_TARGET  = DdTargets.EVENTREF
     ICON         = LINK_PIC
 
     def __init__(self, dbstate, obj):
-        super(ScratchEventRef, self).__init__(dbstate, obj)
+        super(ClipEventRef, self).__init__(dbstate, obj)
         self._type  = _("Event ref")
         self.refresh()
 
@@ -550,14 +550,14 @@ class ScratchEventRef(ScratchObjWrapper):
                 self._title = base.gramps_id
                 self._value = str(base.get_type())
 
-class ScratchName(ScratchObjWrapper):
+class ClipName(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.NAME]
     DRAG_TARGET  = DdTargets.NAME
     ICON         = ICONS['name']
 
     def __init__(self, dbstate, obj):
-        super(ScratchName, self).__init__(dbstate, obj)
+        super(ClipName, self).__init__(dbstate, obj)
         self._type  = _("Name")
         self.refresh()
 
@@ -566,14 +566,14 @@ class ScratchName(ScratchObjWrapper):
             self._title = str(self._obj.get_type())
             self._value = self._obj.get_name()
 
-class ScratchSurname(ScratchObjWrapper):
+class ClipSurname(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.SURNAME]
     DRAG_TARGET  = DdTargets.SURNAME
     ICON         = ICONS['name']
 
     def __init__(self, dbstate, obj):
-        super(ScratchSurname, self).__init__(dbstate, obj)
+        super(ClipSurname, self).__init__(dbstate, obj)
         self._type  = _("Surname")
         self.refresh()
 
@@ -582,14 +582,14 @@ class ScratchSurname(ScratchObjWrapper):
             self._title = self._obj.get_surname()
             self._value = self._obj.get_surname()
             
-class ScratchText(ScratchWrapper):
+class ClipText(ClipWrapper):
 
     DROP_TARGETS = DdTargets.all_text()
     DRAG_TARGET  = DdTargets.TEXT
     ICON         = ICONS['text']
 
     def __init__(self, dbstate, obj):
-        super(ScratchText, self).__init__(dbstate, obj)
+        super(ClipText, self).__init__(dbstate, obj)
         self._type  = _("Text")
         self._pickle = self._obj
         self.refresh()
@@ -598,14 +598,14 @@ class ScratchText(ScratchWrapper):
         self._title = _("Text")
         self._value = self._obj
 
-class ScratchMediaObj(ScratchHandleWrapper):
+class ClipMediaObj(ClipHandleWrapper):
 
     DROP_TARGETS = [DdTargets.MEDIAOBJ]
     DRAG_TARGET  = DdTargets.MEDIAOBJ
     ICON         = ICONS["media"]
 
     def __init__(self, dbstate, obj):
-        super(ScratchMediaObj, self).__init__(dbstate, obj)
+        super(ClipMediaObj, self).__init__(dbstate, obj)
         self._type  = _("Media")
         self._objclass = 'Media'
         self.refresh()
@@ -625,14 +625,14 @@ class ScratchMediaObj(ScratchHandleWrapper):
             return True
         return False
 
-class ScratchMediaRef(ScratchObjWrapper):
+class ClipMediaRef(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.MEDIAREF]
     DRAG_TARGET  = DdTargets.MEDIAREF
     ICON         = LINK_PIC
 
     def __init__(self, dbstate, obj):
-        super(ScratchMediaRef, self).__init__(dbstate, obj)
+        super(ClipMediaRef, self).__init__(dbstate, obj)
         self._type  = _("Media ref")
         self.refresh()
 
@@ -643,14 +643,14 @@ class ScratchMediaRef(ScratchObjWrapper):
                 self._title = base.get_description()
                 self._value = base.get_path()
 
-class ScratchPersonRef(ScratchObjWrapper):
+class ClipPersonRef(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.PERSONREF]
     DRAG_TARGET  = DdTargets.PERSONREF
     ICON         = LINK_PIC
 
     def __init__(self, dbstate, obj):
-        super(ScratchPersonRef, self).__init__(dbstate, obj)
+        super(ClipPersonRef, self).__init__(dbstate, obj)
         self._type  = _("Person ref")
         self.refresh()
 
@@ -661,14 +661,14 @@ class ScratchPersonRef(ScratchObjWrapper):
                 self._title = self._obj.get_relation()
                 self._value = person.get_primary_name().get_name()
 
-class ScratchChildRef(ScratchObjWrapper):
+class ClipChildRef(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.CHILDREF]
     DRAG_TARGET  = DdTargets.CHILDREF
     ICON         = LINK_PIC
 
     def __init__(self, dbstate, obj):
-        super(ScratchChildRef, self).__init__(dbstate, obj)
+        super(ClipChildRef, self).__init__(dbstate, obj)
         self._type  = _("Child ref")
         self.refresh()
 
@@ -682,14 +682,14 @@ class ScratchChildRef(ScratchObjWrapper):
                                                         'mrel': mrel}
                 self._value = person.get_primary_name().get_name()
 
-class ScratchPersonLink(ScratchHandleWrapper):
+class ClipPersonLink(ClipHandleWrapper):
 
     DROP_TARGETS = [DdTargets.PERSON_LINK]
     DRAG_TARGET  = DdTargets.PERSON_LINK
     ICON         = ICONS["person"]
 
     def __init__(self, dbstate, obj):
-        super(ScratchPersonLink, self).__init__(dbstate, obj)
+        super(ClipPersonLink, self).__init__(dbstate, obj)
         self._type  = _("Person")
         self._objclass = 'Person'
         self.refresh()
@@ -710,14 +710,14 @@ class ScratchPersonLink(ScratchHandleWrapper):
         return False
         
 
-class ScratchFamilyLink(ScratchHandleWrapper):
+class ClipFamilyLink(ClipHandleWrapper):
 
     DROP_TARGETS = [DdTargets.FAMILY_LINK]
     DRAG_TARGET  = DdTargets.FAMILY_LINK
     ICON         = ICONS["family"]
 
     def __init__(self, dbstate, obj):
-        super(ScratchFamilyLink, self).__init__(dbstate, obj)
+        super(ClipFamilyLink, self).__init__(dbstate, obj)
         self._type  = _("Family")
         self._objclass = 'Family'
         self.refresh()
@@ -739,14 +739,14 @@ class ScratchFamilyLink(ScratchHandleWrapper):
             return True
         return False
 
-class ScratchSourceLink(ScratchHandleWrapper):
+class ClipSourceLink(ClipHandleWrapper):
 
     DROP_TARGETS = [DdTargets.SOURCE_LINK]
     DRAG_TARGET  = DdTargets.SOURCE_LINK
     ICON         = ICONS["source"]
 
     def __init__(self, dbstate, obj):
-        super(ScratchSourceLink, self).__init__(dbstate, obj)
+        super(ClipSourceLink, self).__init__(dbstate, obj)
         self._type  = _("Source")
         self._objclass = 'Source'
         self.refresh()
@@ -766,14 +766,14 @@ class ScratchSourceLink(ScratchHandleWrapper):
             return True
         return False
 
-class ScratchRepositoryLink(ScratchHandleWrapper):
+class ClipRepositoryLink(ClipHandleWrapper):
 
     DROP_TARGETS = [DdTargets.REPO_LINK]
     DRAG_TARGET  = DdTargets.REPO_LINK
     ICON         = ICONS["repository"]
 
     def __init__(self, dbstate, obj):
-        super(ScratchRepositoryLink, self).__init__(dbstate, obj)
+        super(ClipRepositoryLink, self).__init__(dbstate, obj)
         self._type  = _("Repository")
         self._objclass = 'Repository'
         self.refresh()
@@ -799,7 +799,7 @@ class ScratchRepositoryLink(ScratchHandleWrapper):
 #
 #-------------------------------------------------------------------------
 
-class ScratchDropList(object):
+class ClipDropList(object):
     DROP_TARGETS = [DdTargets.LINK_LIST]
     DRAG_TARGET  = None
 
@@ -818,13 +818,13 @@ class ScratchDropList(object):
             retval.append(obj)
         return retval
 
-class ScratchDropRawList(ScratchDropList):
+class ClipDropRawList(ClipDropList):
     DROP_TARGETS = [DdTargets.RAW_LIST]
     DRAG_TARGET  = None
 
     def __init__(self, dbstate, obj_list):
         self._dbstate = dbstate
-        # ('raw-list', id, (ScratchObject, ScratchObject, ...), 0)
+        # ('raw-list', id, (ClipObject, ClipObject, ...), 0)
         self._obj_list = pickle.loads(obj_list)
 
     def get_objects(self):
@@ -840,7 +840,7 @@ class ScratchDropRawList(ScratchDropList):
                     retval.append(obj)
         return retval
 
-class ScratchDropHandleList(ScratchDropList):
+class ClipDropHandleList(ClipDropList):
     DROP_TARGETS = [DdTargets.HANDLE_LIST]
     DRAG_TARGET  = None
 
@@ -867,10 +867,10 @@ class ScratchDropHandleList(ScratchDropList):
 
 #-------------------------------------------------------------------------
 #
-# ScratchPadListModel class
-# Now shown as 'Clipboard'
+# ClipboardListModel class
+#
 #-------------------------------------------------------------------------
-class ScratchPadListModel(gtk.ListStore):
+class ClipboardListModel(gtk.ListStore):
 
     def __init__(self):
         gtk.ListStore.__init__(self,
@@ -886,10 +886,10 @@ class ScratchPadListModel(gtk.ListStore):
 
 #-------------------------------------------------------------------------
 #
-# ScratchPadListView class
-# Now shown as 'Clipboard'
+# ClipboardListView class
+#
 #-------------------------------------------------------------------------
-class ScratchPadListView(object):
+class ClipboardListView(object):
 
     LOCAL_DRAG_TARGET = ('MY_TREE_MODEL_ROW', gtk.TARGET_SAME_WIDGET, 0)
     LOCAL_DRAG_TYPE   = 'MY_TREE_MODEL_ROW'
@@ -950,7 +950,7 @@ class ScratchPadListView(object):
         #self._widget.set_search_column(3)
 
         self._widget.drag_dest_set(gtk.DEST_DEFAULT_ALL,
-                                   (ScratchPadListView.LOCAL_DRAG_TARGET,) + \
+                                   (ClipboardListView.LOCAL_DRAG_TARGET,) + \
                                        DdTargets.all_targets(),
                                    ACTION_COPY)
 
@@ -1049,31 +1049,31 @@ class ScratchPadListView(object):
     # Method to manage the wrapper classes.
     
     def register_wrapper_classes(self):
-        self.register_wrapper_class(ScratchAddress)
-        self.register_wrapper_class(ScratchLocation)
-        self.register_wrapper_class(ScratchEvent)
-        self.register_wrapper_class(ScratchPlace)
-        self.register_wrapper_class(ScratchEventRef)
-        self.register_wrapper_class(ScratchRepoRef)
-        self.register_wrapper_class(ScratchFamilyEvent)
-        self.register_wrapper_class(ScratchUrl)
-        self.register_wrapper_class(ScratchAttribute)
-        self.register_wrapper_class(ScratchFamilyAttribute)
-        self.register_wrapper_class(ScratchName)
-        self.register_wrapper_class(ScratchRepositoryLink)
-        self.register_wrapper_class(ScratchMediaObj)
-        self.register_wrapper_class(ScratchMediaRef)
-        self.register_wrapper_class(ScratchSourceLink)
-        self.register_wrapper_class(ScratchCitation)
-        self.register_wrapper_class(ScratchPersonLink)
-        self.register_wrapper_class(ScratchFamilyLink)
-        self.register_wrapper_class(ScratchDropList)
-        self.register_wrapper_class(ScratchDropRawList)
-        self.register_wrapper_class(ScratchDropHandleList)
-        self.register_wrapper_class(ScratchPersonRef)
-        self.register_wrapper_class(ScratchChildRef)
-        self.register_wrapper_class(ScratchText)
-        self.register_wrapper_class(ScratchNote)
+        self.register_wrapper_class(ClipAddress)
+        self.register_wrapper_class(ClipLocation)
+        self.register_wrapper_class(ClipEvent)
+        self.register_wrapper_class(ClipPlace)
+        self.register_wrapper_class(ClipEventRef)
+        self.register_wrapper_class(ClipRepoRef)
+        self.register_wrapper_class(ClipFamilyEvent)
+        self.register_wrapper_class(ClipUrl)
+        self.register_wrapper_class(ClipAttribute)
+        self.register_wrapper_class(ClipFamilyAttribute)
+        self.register_wrapper_class(ClipName)
+        self.register_wrapper_class(ClipRepositoryLink)
+        self.register_wrapper_class(ClipMediaObj)
+        self.register_wrapper_class(ClipMediaRef)
+        self.register_wrapper_class(ClipSourceLink)
+        self.register_wrapper_class(ClipCitation)
+        self.register_wrapper_class(ClipPersonLink)
+        self.register_wrapper_class(ClipFamilyLink)
+        self.register_wrapper_class(ClipDropList)
+        self.register_wrapper_class(ClipDropRawList)
+        self.register_wrapper_class(ClipDropHandleList)
+        self.register_wrapper_class(ClipPersonRef)
+        self.register_wrapper_class(ClipChildRef)
+        self.register_wrapper_class(ClipText)
+        self.register_wrapper_class(ClipNote)
         
     def register_wrapper_class(self,wrapper_class):
         for drop_target in wrapper_class.DROP_TARGETS:            
@@ -1117,9 +1117,9 @@ class ScratchPadListView(object):
         model, paths = tree_selection.get_selected_rows()
         if len(paths) > 1:
             targets = [(DdTargets.RAW_LIST.drag_type, gtk.TARGET_SAME_WIDGET, 0), 
-                       ScratchPadListView.LOCAL_DRAG_TARGET] 
+                       ClipboardListView.LOCAL_DRAG_TARGET] 
         else:
-            targets = [ScratchPadListView.LOCAL_DRAG_TARGET] 
+            targets = [ClipboardListView.LOCAL_DRAG_TARGET] 
         for path in paths:
             node = model.get_iter(path)
             if node is not None:
@@ -1209,10 +1209,10 @@ class ScratchPadListView(object):
         if dbname:
             o._dbname = dbname
 
-        # If the wrapper object is a subclass of ScratchDropList then
+        # If the wrapper object is a subclass of ClipDropList then
         # the drag data was a list of objects and we need to decode
         # all of them.
-        if isinstance(o,ScratchDropList):
+        if isinstance(o,ClipDropList):
             o_list = o.get_objects()
         else:
             o_list = [o]
@@ -1264,13 +1264,12 @@ class ScratchPadListView(object):
 
 #-------------------------------------------------------------------------
 #
-# ScratchPadWindow class
+# ClipboardWindow class
 #
 #-------------------------------------------------------------------------
-class ScratchPadWindow(ManagedWindow):
+class ClipboardWindow(ManagedWindow):
     """
-        The Clipboard (was ScratchPad) provides a temporary area to hold objects
-        that can
+        The Clipboard provides a temporary area to hold objects that can
         be reused accross multiple Person records. The pad provides a window
         onto which objects can be dropped and then dragged into new Person
         dialogs. The objects are stored as the pickles that are built by the
@@ -1286,15 +1285,15 @@ class ScratchPadWindow(ManagedWindow):
         references of objects before attempting to use them.
         """
     
-    # Class attribute used to hold the content of the
-    # Clipboard (was ScratchPad). A class attribute is used so that the content
+    # Class attribute used to hold the content of the Clipboard. 
+    # A class attribute is used so that the content
     # it preserved even when the Clipboard window is closed.
     # As there is only ever one Clipboard we do not need to
     # maintain a list of these.
     otree = None
     
     def __init__(self, dbstate, uistate):
-        """Initialize the ScratchPad class, and displays the window"""
+        """Initialize the ClipboardWindow class, and display the window"""
 
         ManagedWindow.__init__(self,uistate,[],self.__class__)
         self.dbstate = dbstate
@@ -1316,37 +1315,37 @@ class ScratchPadWindow(ManagedWindow):
         scrolledwindow = self.top.get_object('scrolledwindow86')
         scrolledwindow.remove(objectlist)
         scrolledwindow.add_with_viewport(mtv)
-        self.object_list = ScratchPadListView(self.dbstate, mtv)
+        self.object_list = ClipboardListView(self.dbstate, mtv)
         self.object_list.get_selection().connect('changed',
                                                  self.set_clear_btn_sensitivity)
         self.object_list.get_selection().set_mode(gtk.SELECTION_MULTIPLE)
         self.set_clear_btn_sensitivity(sel=self.object_list.get_selection())
         
-        if not ScratchPadWindow.otree:
-            ScratchPadWindow.otree = ScratchPadListModel()
+        if not ClipboardWindow.otree:
+            ClipboardWindow.otree = ClipboardListModel()
 
-        self.set_clear_all_btn_sensitivity(treemodel=ScratchPadWindow.otree)
-        ScratchPadWindow.otree.connect('row-deleted',
+        self.set_clear_all_btn_sensitivity(treemodel=ClipboardWindow.otree)
+        ClipboardWindow.otree.connect('row-deleted',
                                        self.set_clear_all_btn_sensitivity)
-        ScratchPadWindow.otree.connect('row-inserted',
+        ClipboardWindow.otree.connect('row-inserted',
                                        self.set_clear_all_btn_sensitivity)
         
         
-        self.object_list.set_model(ScratchPadWindow.otree)
+        self.object_list.set_model(ClipboardWindow.otree)
         
         #Database might have changed, objects might have been removed,
         #we need to reevaluate if all data is valid
         self.object_list.refresh_objects()
         
         self.top.connect_signals({
-            "on_close_scratchpad" : self.close,
+            "on_close_clipboard" : self.close,
             "on_clear_clicked": self.on_clear_clicked,
             "on_help_clicked": self.on_help_clicked,
             })
 
         self.clear_all_btn.connect_object('clicked', gtk.ListStore.clear,
-                                          ScratchPadWindow.otree)
-        self.db.connect('database-changed', lambda x: ScratchPadWindow.otree.clear())
+                                          ClipboardWindow.otree)
+        self.db.connect('database-changed', lambda x: ClipboardWindow.otree.clear())
         
         self.show()
 
@@ -1588,5 +1587,5 @@ def gen_del_obj(func, t):
 #
 #
 #-------------------------------------------------------------------------
-def ScratchPad(database,person,callback,parent=None):
-    ScratchPadWindow(database,parent)
+def Clipboard(database,person,callback,parent=None):
+    ClipboardWindow(database,parent)

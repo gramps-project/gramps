@@ -33,7 +33,6 @@ gdir_PYTHON = \
 	RecentFiles.py\
 	Relationship.py\
 	Reorder.py\
-	ScratchPad.py\
 	Sort.py\
 	soundex.py\
 	Spell.py\

@@ -231,17 +231,17 @@ class PageView(DbGUIElement):
         system.
         """
         import cPickle as pickle
-        from ScratchPad import ScratchPadWindow, obj2target
+        from gui.clipboard import ClipboardWindow, obj2target
         handled = False
         for handle in handles:
             if handle is None:
                 continue
             clipboard = None
             for widget in self.uistate.gwm.window_tree:
-                if isinstance(widget, ScratchPadWindow):
+                if isinstance(widget, ClipboardWindow):
                     clipboard = widget
             if clipboard is None:
-                clipboard = ScratchPadWindow(self.dbstate, self.uistate)
+                clipboard = ClipboardWindow(self.dbstate, self.uistate)
             # Construct a drop:
             drag_type = obj2target(objclass)
             if drag_type:
@@ -270,13 +270,13 @@ class PageView(DbGUIElement):
 
         The code creates the Clipboard if it does not already exist.
         """
-        from ScratchPad import ScratchPadWindow, obj2target
+        from gui.clipboard import ClipboardWindow, obj2target
         clipboard = None
         for widget in self.uistate.gwm.window_tree:
-            if isinstance(widget, ScratchPadWindow):
+            if isinstance(widget, ClipboardWindow):
                 clipboard = widget
         if clipboard is None:
-            clipboard = ScratchPadWindow(self.dbstate, self.uistate)
+            clipboard = ClipboardWindow(self.dbstate, self.uistate)
             return True
         return False
 

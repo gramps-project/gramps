@@ -39,6 +39,7 @@ import cPickle as pickle
 #
 #-------------------------------------------------------------------------
 import gtk
+from gtk.gdk import ACTION_COPY
 
 #-------------------------------------------------------------------------
 #
@@ -50,7 +51,6 @@ from gen.simple import SimpleTable
 from TransUtils import trans_objclass
 import Errors
 from gui.widgets.multitreeview import MultiTreeView
-from ScratchPad import ScratchPadListView, ACTION_COPY
 from DdTargets import DdTargets
 from gui.plug.quick import run_quick_report_by_name
 from gui.editors import (EditPerson, EditEvent, EditFamily, EditCitation, 

@@ -21,6 +21,7 @@ pkgpython_PYTHON = \
 	__init__.py \
 	aboutdialog.py \
 	basesidebar.py \
+	clipboard.py \
 	columnorder.py \
 	configure.py \
 	dbguielement.py \

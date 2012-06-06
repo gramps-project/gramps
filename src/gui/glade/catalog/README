@@ -3,7 +3,7 @@ in glade.
 
 Assuming you are in the root svn directory do:
 
-GLADE_CATALOG_PATH=src/glade/catalog glade
+GLADE_CATALOG_PATH=src/gui/glade/catalog glade
 
 As project settings:
 

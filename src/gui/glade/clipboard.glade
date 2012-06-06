@@ -2,7 +2,7 @@
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-naming-policy toplevel-contextual -->
-  <object class="GtkDialog" id="scratchpad">
+  <object class="GtkDialog" id="clipboard">
     <property name="visible">True</property>
     <property name="title" translatable="yes">Clipboard</property>
     <property name="default_width">500</property>
@@ -89,7 +89,7 @@
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
-                <signal name="clicked" handler="on_close_scratchpad"/>
+                <signal name="clicked" handler="on_close_clipboard"/>
               </object>
               <packing>
                 <property name="expand">False</property>
