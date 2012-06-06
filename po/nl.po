@@ -41,7 +41,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-05-05 23:34+0200\n"
-"PO-Revision-Date: 2012-06-01 22:27+0100\n"
+"PO-Revision-Date: 2012-06-05 21:18+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@pandora.be>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
@@ -613,11 +613,11 @@ msgstr "Gegevens die geen verband houden met de persoon niet bijvoegen"
 #. FIXME: This should use LOG.warn, but logging has not been initialised yet
 #: ../src/gramps.py:68
 msgid "WARNING: Setting locale failed. Please fix the LC_* and/or the LANG environment variables to prevent this error"
-msgstr ""
+msgstr "WAARSCHUWING: locale taalinsstelling mislukte. De LC_* en/of de LANG omgevingsvariabelen juist instellen om deze fout te vermijden"
 
 #: ../src/gramps.py:78
 msgid "ERROR: Setting the 'C' locale didn't work either"
-msgstr ""
+msgstr "FOUT: 'C' lokaal werkte ook niet"
 
 #: ../src/gramps.py:115
 #, python-format
@@ -1443,7 +1443,7 @@ msgstr "Zie %s details"
 #: ../src/Simple/_SimpleTable.py:147
 #, python-format
 msgid "the object|Make %s active"
-msgstr ""
+msgstr "%s actief maken"
 
 #: ../src/ScratchPad.py:1461
 #, python-format
@@ -2026,18 +2026,18 @@ msgstr "%s, ..."
 
 #: ../src/Utils.py:1674
 msgid "Unknown, created to replace a missing note object."
-msgstr ""
+msgstr "Onbekend, aangemmakt om een ontbrekend opmerkingsobject te vervangen "
 
 #. primitive static variable
 #: ../src/Utils.py:1684
 #, python-format
 msgid "Unknown, was missing %s (%d)"
-msgstr ""
+msgstr "Onbekend, %s (%d) ontbreekt"
 
 #: ../src/Utils.py:1703
 #, python-format
 msgid "Objects referenced by this note were missing in a file imported on %s."
-msgstr ""
+msgstr "Objecten waarnaar deze opmerking verwees, ontbraken in een bestand geïmporteerd op %s."
 
 #: ../src/UndoHistory.py:64
 #: ../src/gui/grampsgui.py:161
@@ -2080,6 +2080,8 @@ msgid ""
 "Error: Family tree '%s' already exists.\n"
 "The '-C' option cannot be used."
 msgstr ""
+"Fout: Familiestamboom '%s' bestaat al.\n"
+"De '-C' optie kan niet worden gebruikt."
 
 #: ../src/cli/arghandler.py:227
 #, python-format
@@ -2131,12 +2133,12 @@ msgstr "FOUT: bestandsformaat niet herkend voor bestand %s"
 
 #: ../src/cli/arghandler.py:402
 msgid "List of known family trees in your database path\n"
-msgstr ""
+msgstr "Liijst van de bekende familiestambomen in uw gegevensbestandspad\n"
 
 #: ../src/cli/arghandler.py:405
 #, python-format
 msgid "%(full_DB_path)s with name \"%(f_t_name)s\""
-msgstr ""
+msgstr "%(full_DB_path)s met naam \"%(f_t_name)s\""
 
 #: ../src/cli/arghandler.py:411
 msgid "Gramps Family Trees:"
@@ -2155,24 +2157,24 @@ msgstr "Actie %s uitvoeren."
 #: ../src/cli/arghandler.py:427
 #, python-format
 msgid "Using options string: %s"
-msgstr ""
+msgstr "Optietekst die gebruikt wordt: %s"
 
 #: ../src/cli/arghandler.py:435
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
-msgstr ""
+msgstr "Exporteren van bestand %(filename)s, formaat %(format)s."
 
 #: ../src/cli/arghandler.py:443
 msgid "Exiting."
-msgstr ""
+msgstr "Verlaten."
 
 #: ../src/cli/arghandler.py:447
 msgid "Cleaning up."
-msgstr ""
+msgstr "Opkuisen."
 
 #: ../src/cli/arghandler.py:477
 msgid "Created empty family tree successfully"
-msgstr ""
+msgstr "Lege familiestamboom succesvol aangemaakt"
 
 #: ../src/cli/arghandler.py:480
 #: ../src/cli/arghandler.py:507
@@ -2187,7 +2189,7 @@ msgstr "Afsluiten..."
 #: ../src/cli/arghandler.py:487
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
-msgstr ""
+msgstr "Importeren van bestand file %(filename)s, formaat %(format)s."
 
 #: ../src/cli/arghandler.py:505
 msgid "Opened successfully!"
@@ -2209,7 +2211,7 @@ msgstr "Gegevensbestand moet hersteld worden. Kan het bestand niet openen!"
 #: ../src/cli/arghandler.py:580
 #: ../src/cli/arghandler.py:627
 msgid "Ignoring invalid options string."
-msgstr ""
+msgstr "Ongeldige optietekst wordt genegeerd."
 
 #. name exists, but is not in the list of valid report names
 #: ../src/cli/arghandler.py:603
@@ -2219,7 +2221,7 @@ msgstr "Onbekend verslagnaam."
 #: ../src/cli/arghandler.py:605
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
-msgstr ""
+msgstr "Geen verslagsnaam opgegeven. Een van volgende %(donottranslate)s=verslagsnaam gebruiken"
 
 #: ../src/cli/arghandler.py:609
 #: ../src/cli/arghandler.py:650
@@ -2238,7 +2240,7 @@ msgstr "Onbekend gereedschapsnaam."
 #: ../src/cli/arghandler.py:646
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
-msgstr ""
+msgstr "Geen gereedschapsnaam opgegeven. Een van volgende %(donottranslate)s=gereedschapsnaam gebruiken."
 
 #: ../src/cli/arghandler.py:662
 #, python-format
@@ -2499,7 +2501,7 @@ msgstr "Onbekende optie: %s"
 #: ../src/cli/plug/__init__.py:404
 #: ../src/cli/plug/__init__.py:434
 msgid "   Valid options are:"
-msgstr ""
+msgstr "   Geldige opties zijn:"
 
 #: ../src/cli/plug/__init__.py:406
 #: ../src/cli/plug/__init__.py:436
@@ -2511,7 +2513,7 @@ msgstr ""
 #: ../src/cli/plug/__init__.py:433
 #, python-format
 msgid "Ignoring unknown option: %s"
-msgstr ""
+msgstr "Ongeldige optie wordt genegeerd: %s"
 
 #: ../src/cli/plug/__init__.py:481
 #, python-format
@@ -2521,7 +2523,7 @@ msgstr ""
 #: ../src/cli/plug/__init__.py:486
 #, python-format
 msgid "Use '%(notranslate)s' to see valid values."
-msgstr ""
+msgstr "Om de geldige waarden te zien gebruik '%(notranslate)s'."
 
 #: ../src/cli/plug/__init__.py:520
 msgid "   Available options:"
@@ -2535,7 +2537,7 @@ msgstr "  Beschikbare waarden zijn:"
 #: ../src/cli/plug/__init__.py:550
 #, python-format
 msgid "option '%(optionname)s' not valid. Use '%(donottranslate)s' to see all valid options."
-msgstr ""
+msgstr "optie '%(optionname)s' niet geldig. Om de geldige opties te zien gebruik '%(donottranslate)s'."
 
 #: ../src/cli/plug/__init__.py:562
 msgid "Failed to write report. "
@@ -5700,7 +5702,7 @@ msgstr "Naar standaardwaarden herstellen?"
 
 #: ../src/gui/grampsbar.py:482
 msgid "The Grampsbar will be restored to contain its default gramplets.  This action cannot be undone."
-msgstr ""
+msgstr "De Grampsbalk wordt hersteld om de standaard Gramplets te tonen. Dit kan niet meer ongedaan worden gemaakt."
 
 #: ../src/gui/grampsbar.py:484
 #: ../src/gui/plug/_windows.py:491
@@ -12112,9 +12114,8 @@ msgid "Gramplet showing the backlinks for a source"
 msgstr "Gramplet die de verwijzingen naar een bron toont"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:573
-#, fuzzy
 msgid "Citation Backlinks"
-msgstr "Media-objectverwijzingen"
+msgstr "Citaatverwijzingen"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:574
 msgid "Gramplet showing the backlinks for a citation"
@@ -12226,9 +12227,8 @@ msgid "Double-click on a row to edit the selected child."
 msgstr "Dubbelklikken op de rij om het geselecteerde kind aan te passen."
 
 #: ../src/plugins/gramplet/Citations.py:44
-#, fuzzy
 msgid "Double-click on a row to edit the selected source/citation."
-msgstr "Dubbelklikken op een rij om de geselecteerde bron te bewerken."
+msgstr "Dubbelklikken op een rij om de geselecteerde bron/citaat te bewerken."
 
 #: ../src/plugins/gramplet/Citations.py:48
 msgid "Source/Citation"
@@ -12440,9 +12440,8 @@ msgid "Media Path Update"
 msgstr "Aanpassing mediapad"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:881
-#, fuzzy
 msgid "There has been an error in updating the image file's path!"
-msgstr "Er onstond een fout bij het wissen van de exif-metagegevens van dit beeld..."
+msgstr "Er onstond een fout bij het aanpassen van het beeldbestandspad!"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:915
 msgid "Click the close button when you are finished modifying this image's Exif metadata."
@@ -12461,7 +12460,7 @@ msgstr ""
 #. Add the Clear button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:959
 msgid "This button will clear all of the data fields shown here."
-msgstr ""
+msgstr "Deze knop zal alle hier getoonde gegevensvelden wissen."
 
 #. Add the Close button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:962
@@ -12514,7 +12513,7 @@ msgstr "Veranderd: "
 #. GPS coordinates...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1070
 msgid "Latitude/ Longitude/ Altitude GPS coordinates"
-msgstr ""
+msgstr "Breedte/ Lengte/ Hoogte GPS coördinaten"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1084
 msgid "Latitude :"
@@ -14169,7 +14168,7 @@ msgstr "Individuen importeren"
 #: ../src/plugins/import/ImportProGen.py:815
 #, python-format
 msgid "Patronymic name skipped: '%(patronym)s' (%(msg)s)"
-msgstr ""
+msgstr "Patroniem overgeslagen: '%(patronym)s' (%(msg)s)"
 
 #. The records are numbered 1..N
 #: ../src/plugins/import/ImportProGen.py:1059
@@ -14723,9 +14722,8 @@ msgid "REPO (repository) Gramps ID %s"
 msgstr "REPO (bibliotheek) Gramps-id %s"
 
 #: ../src/plugins/lib/libgedcom.py:6487
-#, fuzzy
 msgid "Head (header)"
-msgstr "Zelf aangemaakte HTML-hoofding"
+msgstr "Hoofding"
 
 #: ../src/plugins/lib/libgedcom.py:6503
 msgid "Approved system identification"
@@ -19330,9 +19328,8 @@ msgid "Category"
 msgstr "Categorie"
 
 #: ../src/plugins/textreport/AlphabeticalIndex.py:107
-#, fuzzy
 msgid "The style used for index entries."
-msgstr "De gebruikte stijl voor de titel."
+msgstr "De gebruikte stijl voor de indexelementen."
 
 #. feature request 2356: avoid genitive form
 #: ../src/plugins/textreport/AncestorReport.py:191
@@ -21452,9 +21449,8 @@ msgid "Match on Page/Volume, Date and Confidence"
 msgstr ""
 
 #: ../src/plugins/tool/MergeCitations.py:76
-#, fuzzy
 msgid "Ignore Date"
-msgstr "Leeftijd op datum"
+msgstr "Datum negeren"
 
 # Vertrouwen
 #: ../src/plugins/tool/MergeCitations.py:77
@@ -21471,9 +21467,8 @@ msgid "manual|Merge citations..."
 msgstr "Citaten samenvoegen..."
 
 #: ../src/plugins/tool/MergeCitations.py:129
-#, fuzzy
 msgid "Notes, media objects and data-items of matching citations will be combined."
-msgstr "Opmerkingen, media-objecten, gegevens en bibliotheekverwijzingen van beide bronnen worden gecombineerd."
+msgstr "Opmerkingen, media-objecten en gegevens van beide citaten worden gecombineerd."
 
 #: ../src/plugins/tool/MergeCitations.py:159
 msgid "Merge citations tool"
@@ -23337,9 +23332,8 @@ msgid "Mime Type"
 msgstr "Mime-type"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4945
-#, fuzzy
 msgid "This page displays a indexed list of all the media objects in this database.  It is sorted by media title.  There is an index of all the media objects in this database.  Clicking on a thumbnail will take you to that image&#8217;s page."
-msgstr "Deze pagina bevat een index van alle locaties in het gegevensbestand, gesorteerd op titel. Door een titel te kiezen gaat u naar de pagina van deze locatie."
+msgstr "Deze pagina bevat een index van alle media-objecten in het gegevensbestand, gesorteerd op titel. Er bestaat een index van alle media-objecten in dit gegevensbestand. Door op een miniatuur te klikken gaat u naar de pagina van dit beeld."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4961
 msgid "Thumbnail Preview"
@@ -24042,9 +24036,8 @@ msgstr "Vooruitblik jaar"
 
 # webstek
 #: ../src/plugins/webreport/WebCal.py:555
-#, fuzzy
 msgid "NarrativeWeb Home"
-msgstr "Website"
+msgstr "NarrativeWeb Home"
 
 #: ../src/plugins/webreport/WebCal.py:557
 msgid "Full year at a Glance"
@@ -27399,9 +27392,8 @@ msgstr "Selecteer een persoon die een associatie heeft met de persoon die aangep
 #: ../src/glade/editfamily.glade.h:19
 #: ../src/glade/editldsord.glade.h:9
 #: ../src/glade/editevent.glade.h:12
-#, fuzzy
 msgid "Selector"
-msgstr "Selecteren"
+msgstr "Selectie"
 
 #: ../src/glade/editpersonref.glade.h:10
 msgid "Use the select button to choose a person that has an association to the edited person."
