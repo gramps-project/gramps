@@ -6,7 +6,6 @@
 #src
 src/AutoComp.py
 src/ImgManip.py
-src/RecentFiles.py
 src/Sort.py
 src/soundex.py
 src/TreeTips.py
@@ -17,11 +16,10 @@ src/cli/user.py
 
 # gen
 src/gen/errors.py
-src/gen/user.py
-
-# gen API
 src/gen/__init__.py
+src/gen/recentfiles.py
 src/gen/updatecallback.py
+src/gen/user.py
 
 # gen.datehandler package
 src/gen/datehandler/_date_bg.py

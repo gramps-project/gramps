@@ -45,7 +45,7 @@ from gen.ggettext import gettext as _
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import RecentFiles
+from gen.recentfiles import recent_files
 import Utils
 import gen
 from clidbman import CLIDbManager, NAME_FILE, find_locker_name
@@ -378,7 +378,7 @@ class ArgHandler(object):
                     ifile.close()
                 except:
                     title = db_path
-                RecentFiles.recent_files(db_path, title)
+                recent_files(db_path, title)
                 self.open = db_path
                 self.__open_action()
             else:

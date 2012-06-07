@@ -25,7 +25,6 @@ gdir_PYTHON = \
 	LdsUtils.py \
 	Lru.py\
 	MacTransUtils.py\
-	RecentFiles.py\
 	Relationship.py\
 	Reorder.py\
 	Sort.py\

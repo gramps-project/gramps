@@ -54,7 +54,7 @@ from gen.db import DbBsddb
 import gen.db.exceptions
 from gen.plug import BasePluginManager
 from Utils import get_researcher
-import RecentFiles
+from gen.recentfiles import recent_files
 
 #-------------------------------------------------------------------------
 #
@@ -273,7 +273,7 @@ class CLIManager(object):
 
         config.set('paths.recent-file', filename)
 
-        RecentFiles.recent_files(filename, name)
+        recent_files(filename, name)
         self.file_loaded = True
     
     def do_reg_plugins(self, dbstate, uistate):

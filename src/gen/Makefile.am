@@ -25,6 +25,7 @@ pkgpython_PYTHON = \
 	dbstate.py \
 	errors.py \
 	ggettext.py \
+	recentfiles.py \
 	updatecallback.py \
 	user.py
 

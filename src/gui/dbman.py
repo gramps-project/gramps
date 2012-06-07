@@ -75,7 +75,7 @@ from gen.db import DbBsddb
 from gui.pluginmanager import GuiPluginManager
 from cli.clidbman import CLIDbManager, NAME_FILE, time_val
 from gui.ddtargets import DdTargets
-import RecentFiles
+from gen.recentfiles import rename_filename, remove_filename
 from gui.glade import Glade
 from gen.db.backup import restore
 from gen.db.exceptions import DbException
@@ -471,7 +471,7 @@ class DbManager(CLIDbManager):
             return
         old_text, new_text = self.rename_database(filename, new_text)
         if not (old_text is None):
-            RecentFiles.rename_filename(old_text, new_text)
+            rename_filename(old_text, new_text)
             self.model.set_value(node, NAME_COL, new_text)
 
     def __rcs(self, obj):
@@ -563,7 +563,7 @@ class DbManager(CLIDbManager):
             name_file = open(filename, "r")
             file_name_to_delete=name_file.read()
             name_file.close()
-            RecentFiles.remove_filename(file_name_to_delete)
+            remove_filename(file_name_to_delete)
             for (top, dirs, files) in os.walk(self.data_to_delete[1]):
                 for filename in files:
                     os.unlink(os.path.join(top, filename))

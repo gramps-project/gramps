@@ -236,7 +236,7 @@ class History(gen.utils.Callback):
 _RCT_TOP = '<ui><menubar name="MenuBar"><menu action="FileMenu"><menu action="OpenRecent">'
 _RCT_BTM = '</menu></menu></menubar></ui>'
 
-import RecentFiles
+from gen.recentfiles import RecentFiles
 import os
 
 class RecentDocsMenu(object):
@@ -255,7 +255,7 @@ class RecentDocsMenu(object):
     def build(self):
         buf = StringIO()
         buf.write(_RCT_TOP)
-        gramps_rf = RecentFiles.RecentFiles()
+        gramps_rf = RecentFiles()
 
         count = 0
         
