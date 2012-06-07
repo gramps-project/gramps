@@ -24,7 +24,7 @@ from gui.editors import EditSource, EditCitation
 from gui.listmodel import ListModel, NOSORT
 from gen.plug import Gramplet
 from gen.ggettext import gettext as _
-import Errors
+from gen.errors import WindowActiveError
 import gtk
 
 class Citations(Gramplet):
@@ -236,7 +236,7 @@ class Citations(Gramplet):
         try:
             source = self.dbstate.db.get_source_from_handle(handle)
             EditSource(self.dbstate, self.uistate, [], source)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def edit_citation(self, handle):
@@ -248,7 +248,7 @@ class Citations(Gramplet):
             source_handle = citation.get_reference_handle()
             source = self.dbstate.db.get_source_from_handle(source_handle)
             EditCitation(self.dbstate, self.uistate, [], citation, source)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
 class PersonCitations(Citations):

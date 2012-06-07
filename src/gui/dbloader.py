@@ -62,7 +62,7 @@ from gui.pluginmanager import GuiPluginManager
 from gui.dialog import (DBErrorDialog, ErrorDialog, QuestionDialog2, 
                             WarningDialog)
 from gui.user import User
-import Errors
+from gen.errors import DbError
 
 #-------------------------------------------------------------------------
 #
@@ -323,7 +323,7 @@ class DbLoader(CLIDbLoader):
             self.dbstate.no_database()
             self._errordialog(
                 _("Could not open file: %s") % filename, str(msg))
-        except Errors.DbError, msg:
+        except DbError, msg:
             self.dbstate.no_database()
             self._dberrordialog(msg)
         except Exception as newerror:

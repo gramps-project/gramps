@@ -48,7 +48,7 @@ LOG = logging.getLogger(".")
 #-------------------------------------------------------------------------
 from gen.display.name import displayer as name_displayer
 import gen.lib
-import Errors
+from gen.errors import DatabaseError
 from gen.locale import codeset
 import gen.datehandler
 
@@ -759,7 +759,7 @@ class ProbablyAlive(object):
         try:
             date1, date2, explain, other = descendants_too_old(person, self.AVG_GENERATION_GAP)
         except RuntimeError:
-            raise Errors.DatabaseError(
+            raise DatabaseError(
                 _("Database error: %s is defined as his or her own ancestor") %
                 name_displayer.display(person))
 

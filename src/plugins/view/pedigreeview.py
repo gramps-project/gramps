@@ -55,7 +55,7 @@ from Utils import (media_path_full, probably_alive, find_children,
                    find_parents, find_witnessed_people)
 from libformatting import FormattingHelper
 from gui.thumbnails import get_thumbnail_path
-import Errors
+from gen.errors import WindowActiveError
 from gui.editors import EditPerson, EditFamily
 from gui.ddtargets import DdTargets
 import cPickle as pickle
@@ -843,7 +843,7 @@ class PedigreeView(NavigationView):
         try:
             FilterEditor('Person', const.CUSTOM_FILTERS, 
                          self.dbstate, self.uistate)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             return
 
     def build_tree(self):
@@ -1436,7 +1436,7 @@ class PedigreeView(NavigationView):
         if person:
             try:
                 EditPerson(self.dbstate, self.uistate, [], person)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 return True
             return True
         return False
@@ -1450,7 +1450,7 @@ class PedigreeView(NavigationView):
         if family:
             try:
                 EditFamily(self.dbstate, self.uistate, [], family)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 return True
             return True
         return False
@@ -1466,7 +1466,7 @@ class PedigreeView(NavigationView):
             family.add_child_ref(childref)
         try:
             EditFamily(self.dbstate, self.uistate, [], family)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             return
 
     def cb_copy_person_to_clipboard(self, obj, person_handle):

@@ -1507,7 +1507,7 @@ class MultiTreeView(gtk.TreeView):
                 try:
                     EditPerson(self.dbstate, 
                                self.uistate, [], person)
-                except Errors.WindowActiveError:
+                except WindowActiveError:
                     pass
         elif objclass == 'Event':
             event = self.dbstate.db.get_event_from_handle(handle)
@@ -1515,7 +1515,7 @@ class MultiTreeView(gtk.TreeView):
                 try:
                     EditEvent(self.dbstate, 
                               self.uistate, [], event)
-                except Errors.WindowActiveError:
+                except WindowActiveError:
                     pass
         elif objclass == 'Family':
             ref = self.dbstate.db.get_family_from_handle(handle)
@@ -1523,7 +1523,7 @@ class MultiTreeView(gtk.TreeView):
                 try:
                     EditFamily(self.dbstate, 
                                self.uistate, [], ref)
-                except Errors.WindowActiveError:
+                except WindowActiveError:
                     pass
         elif objclass == 'Source':
             ref = self.dbstate.db.get_source_from_handle(handle)
@@ -1531,7 +1531,7 @@ class MultiTreeView(gtk.TreeView):
                 try:
                     EditSource(self.dbstate, 
                                self.uistate, [], ref)
-                except Errors.WindowActiveError:
+                except WindowActiveError:
                     pass
         elif objclass == 'Place':
             ref = self.dbstate.db.get_place_from_handle(handle)
@@ -1539,7 +1539,7 @@ class MultiTreeView(gtk.TreeView):
                 try:
                     EditPlace(self.dbstate, 
                                self.uistate, [], ref)
-                except Errors.WindowActiveError:
+                except WindowActiveError:
                     pass
         elif objclass == 'Repository':
             ref = self.dbstate.db.get_repository_from_handle(handle)
@@ -1547,7 +1547,7 @@ class MultiTreeView(gtk.TreeView):
                 try:
                     EditRepository(self.dbstate, 
                                self.uistate, [], ref)
-                except Errors.WindowActiveError:
+                except WindowActiveError:
                     pass
         elif objclass == 'Note':
             ref = self.dbstate.db.get_note_from_handle(handle)
@@ -1555,7 +1555,7 @@ class MultiTreeView(gtk.TreeView):
                 try:
                     EditNote(self.dbstate, 
                              self.uistate, [], ref)
-                except Errors.WindowActiveError:
+                except WindowActiveError:
                     pass
         elif objclass in ['Media', 'MediaObject']:
             ref = self.dbstate.db.get_object_from_handle(handle)
@@ -1563,7 +1563,7 @@ class MultiTreeView(gtk.TreeView):
                 try:
                     EditMedia(self.dbstate, 
                               self.uistate, [], ref)
-                except Errors.WindowActiveError:
+                except WindowActiveError:
                     pass
 
 def short(val,size=60):

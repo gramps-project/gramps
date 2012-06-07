@@ -54,7 +54,7 @@ import gen.lib
 from gen.db import DbTxn
 import Utils
 from gui.thumbnails import get_thumbnail_image
-import Errors
+from gen.errors import WindowActiveError
 import gen.mime
 from gui.ddtargets import DdTargets
 from buttontab import ButtonTab
@@ -274,7 +274,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
             EditMediaRef(self.dbstate, self.uistate, self.track, 
                          gen.lib.MediaObject(), gen.lib.MediaRef(),
                          self.add_callback)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def add_callback(self, media_ref, media):
@@ -319,7 +319,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                 from gui.editors import EditMediaRef
                 EditMediaRef(self.dbstate, self.uistate, self.track, 
                              src, sref, self.add_callback)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 from gui.dialog import WarningDialog
                 WarningDialog(_("Cannot share this reference"),
                               self.__blocked_text())
@@ -339,7 +339,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                 from gui.editors import EditMediaRef
                 EditMediaRef(self.dbstate, self.uistate, self.track, 
                              obj, ref, self.edit_callback)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 from gui.dialog import WarningDialog
                 WarningDialog(_("Cannot edit this reference"),
                               self.__blocked_text())

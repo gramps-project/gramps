@@ -46,7 +46,7 @@ LOG = logging.getLogger(".ImportGeneWeb")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import Errors
+from gen.errors import GedcomError
 import gen.lib
 from gen.db import DbTxn
 from htmlentitydefs import name2codepoint
@@ -172,7 +172,7 @@ class GeneWebParser(object):
                     else:
                         LOG.warn("parse_geneweb_file(): Token >%s< unknown. line %d skipped: %s" % 
                                  (fields[0],self.lineno,line))
-            except Errors.GedcomError, err:
+            except GedcomError, err:
                 self.errmsg(str(err))
                 
             t = time.time() - t

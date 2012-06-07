@@ -25,7 +25,7 @@ from gui.listmodel import ListModel, NOSORT
 from gen.plug import Gramplet
 from gen.ggettext import gettext as _
 import gen.datehandler
-import Errors
+from gen.errors import WindowActiveError
 import gtk
 
 class PersonResidence(Gramplet):
@@ -118,5 +118,5 @@ class PersonResidence(Gramplet):
             try:
                 event = self.dbstate.db.get_event_from_handle(handle)
                 EditEvent(self.dbstate, self.uistate, [], event)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass

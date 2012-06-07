@@ -46,7 +46,7 @@ from gen.ggettext import gettext as _
 # GRAMPS 
 #
 #----------------------------------------------------------------
-import Errors
+from gen.errors import WindowActiveError
 from gui.dbguielement import DbGUIElement
 from gui.widgets.menutoolbuttonaction import MenuToolButtonAction
 from gui.grampsbar import GrampsBar
@@ -606,7 +606,7 @@ class PageView(DbGUIElement):
                             ident=_("%(cat)s - %(view)s") % 
                                     {'cat': self.get_translated_category(),
                                      'view': self.get_title()})
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             return
 
 class ViewConfigureDialog(ConfigureDialog):

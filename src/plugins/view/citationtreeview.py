@@ -52,7 +52,7 @@ import gen.lib
 from gui.views.listview import ListView
 import Utils
 from gui.views.bookmarks import CitationBookmarks
-import Errors
+from gen.errors import WindowActiveError
 from gui.ddtargets import DdTargets
 from gui.dialog import ErrorDialog
 from gui.editors import EditCitation, DeleteCitationQuery, EditSource, \
@@ -388,7 +388,7 @@ class CitationTreeView(ListView):
         new source. 
         
         Called when the Add_source button is clicked. 
-        If the window already exists (Errors.WindowActiveError), we ignore it. 
+        If the window already exists (WindowActiveError), we ignore it. 
         This prevents the dialog from coming up twice on the same object.
         
         However, since the window is identified by the Source object, and
@@ -397,7 +397,7 @@ class CitationTreeView(ListView):
         """
         try:
             EditSource(self.dbstate, self.uistate, [], gen.lib.Source())
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def add(self, obj):
@@ -410,7 +410,7 @@ class CitationTreeView(ListView):
         EditSource editor with the new source. 
         
         Called when the Add button is clicked. 
-        If the window already exists (Errors.WindowActiveError), we ignore it. 
+        If the window already exists (WindowActiveError), we ignore it. 
         This prevents the dialog from coming up twice on the same object.
         
         However, since the window is identified by the Source object, and
@@ -420,7 +420,7 @@ class CitationTreeView(ListView):
         try:
             EditCitation(self.dbstate, self.uistate, [], gen.lib.Citation(),
                          gen.lib.Source())
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def share(self, obj):
@@ -438,7 +438,7 @@ class CitationTreeView(ListView):
                 try:
                     EditCitation(self.dbstate, self.uistate, [], 
                                  gen.lib.Citation(), source)
-                except Errors.WindowActiveError:
+                except WindowActiveError:
                     from gui.dialog import WarningDialog
                     WarningDialog(_("Cannot share this reference"),
                                   self.__blocked_text())
@@ -488,12 +488,12 @@ class CitationTreeView(ListView):
             if citation:
                 try:
                     EditCitation(self.dbstate, self.uistate, [], citation)
-                except Errors.WindowActiveError:
+                except WindowActiveError:
                     pass
             else: # FIXME need try block here
                 try:
                     EditSource(self.dbstate, self.uistate, [], source)
-                except Errors.WindowActiveError:
+                except WindowActiveError:
                     from gui.dialog import WarningDialog
                     WarningDialog(_("Cannot share this reference"),
                                   self.__blocked_text2())

@@ -33,7 +33,7 @@ from gen.ggettext import sgettext as _
 from gen.display.name import displayer as name_displayer
 import const
 from gui.display import display_help
-from Errors import MergeError
+from gen.errors import MergeError
 from gui.dialog import ErrorDialog
 from gui.managedwindow import ManagedWindow
 from gen.merge import MergePersonQuery, MergeFamilyQuery

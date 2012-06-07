@@ -57,7 +57,7 @@ import gen.lib
 from gen.db import DbTxn
 from gui import widgets
 from gen.display.name import displayer as name_displayer
-import Errors
+from gen.errors import WindowActiveError
 from gui.glade import Glade
 
 from editprimary import EditPrimary
@@ -65,7 +65,7 @@ from editmediaref import EditMediaRef
 from editname import EditName
 import config
 from gui.dialog import ErrorDialog, ICON
-from Errors import ValidationError
+from gen.errors import ValidationError
 
 from displaytabs import (PersonEventEmbedList, NameEmbedList, CitationEmbedList,
                          AttrEmbedList, AddrEmbedList, NoteTab, GalleryTab,
@@ -600,7 +600,7 @@ class EditPerson(EditPrimary):
                 try:
                     EditMediaRef(self.dbstate, self.uistate, self.track,
                                  media_obj, media_ref, self.load_photo)
-                except Errors.WindowActiveError:
+                except WindowActiveError:
                     pass
 
         elif gui.utils.is_right_click(event):
@@ -857,7 +857,7 @@ class EditPerson(EditPrimary):
         try:
             EditName(self.dbstate, self.uistate, self.track,
                  self.pname, self._update_name)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def _mult_surn_clicked(self, obj):

@@ -47,7 +47,7 @@ from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
 from gen.plug.menu import (NumberOption, PersonOption, BooleanOption,
                            EnumeratedListOption)
 from gen.display.name import displayer as global_name_display
-from Errors import ReportError
+from gen.errors import ReportError
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions

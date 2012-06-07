@@ -46,7 +46,7 @@ from gen.ggettext import sgettext as _
 #
 #------------------------------------------------------------------------
 
-#from Errors import ReportError
+#from gen.errors import ReportError
 
 from gen.plug.menu import BooleanOption
 from gen.plug.menu import NumberOption

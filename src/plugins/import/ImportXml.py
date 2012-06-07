@@ -47,7 +47,7 @@ import gen.mime
 import gen.lib
 from gen.db import DbTxn
 from gen.db.write import CLASS_TO_KEY_MAP
-from Errors import GrampsImportError
+from gen.errors import GrampsImportError
 import Utils
 import gen.datehandler
 from gen.display.name import displayer as name_displayer

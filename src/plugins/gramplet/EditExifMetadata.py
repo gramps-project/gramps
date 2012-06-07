@@ -58,7 +58,7 @@ from gen.plug import Gramplet
 
 from libmetadata import MetadataView, format_datetime
 from gui.widgets import ValidatableMaskedEntry
-from Errors import ValidationError
+from gen.errors import ValidationError
 from gui.dialog import QuestionDialog, OptionDialog
 
 from gen.lib import Date

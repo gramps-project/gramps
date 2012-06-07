@@ -32,7 +32,7 @@ Provide merge capabilities for media objects.
 from gen.lib import Person, Family, Event, Source, Citation, Place
 from gen.db import DbTxn
 from gen.ggettext import sgettext as _
-from Errors import MergeError
+from gen.errors import MergeError
 
 #-------------------------------------------------------------------------
 #

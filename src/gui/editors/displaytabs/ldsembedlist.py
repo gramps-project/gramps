@@ -34,7 +34,7 @@ import gobject
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import Errors
+from gen.errors import WindowActiveError
 from ldsmodel import LdsModel
 from embeddedlist import EmbeddedList
 
@@ -88,7 +88,7 @@ class LdsEmbedList(EmbeddedList):
         try:
             self.get_editor()(self.dbstate, self.uistate, self.track, 
                               self.new_data(), self.add_callback)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def add_callback(self, name):
@@ -103,7 +103,7 @@ class LdsEmbedList(EmbeddedList):
             try:
                 self.get_editor()(self.dbstate, self.uistate, self.track, 
                                   lds, self.edit_callback)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
 
     def edit_callback(self, name):

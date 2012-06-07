@@ -35,7 +35,7 @@ Reports/Graphical Reports/Personal Tree
 #------------------------------------------------------------------------ 
 from gen.ggettext import sgettext as _
 
-from Errors import ReportError
+from gen.errors import ReportError
 
 from gen.plug.menu import TextOption
 from gen.plug.menu import NumberOption

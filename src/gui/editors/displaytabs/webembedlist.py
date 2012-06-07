@@ -35,7 +35,7 @@ import gobject
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import Errors
+from gen.errors import WindowActiveError
 from gui.ddtargets import DdTargets
 from webmodel import WebModel
 from embeddedlist import EmbeddedList
@@ -87,7 +87,7 @@ class WebEmbedList(EmbeddedList):
         try:
             EditUrl(self.dbstate, self.uistate, self.track, 
                     '', url, self.add_callback)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def add_callback(self, url):
@@ -103,7 +103,7 @@ class WebEmbedList(EmbeddedList):
             try:
                 EditUrl(self.dbstate, self.uistate, self.track, 
                         '', url, self.edit_callback)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
 
     def edit_callback(self, url):

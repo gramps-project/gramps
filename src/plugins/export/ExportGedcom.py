@@ -44,7 +44,7 @@ import time
 import gen.lib
 import const
 import libgedcom
-import Errors
+from gen.errors import DatabaseError
 from ExportOptions import WriterOptionBox
 from gen.updatecallback import UpdateCallback
 from Utils import media_path_full
@@ -1444,6 +1444,6 @@ def export_data(database, filename, user, option_box=None):
     except IOError, msg:
         msg2 = _("Could not create %s") % filename
         user.notify_error(msg2, str(msg))
-    except Errors.DatabaseError, msg:
+    except DatabaseError, msg:
         user.notify_db_error(_("Export failed"), str(msg))
     return ret

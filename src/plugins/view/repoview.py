@@ -40,7 +40,7 @@ import gen.lib
 from gui.views.listview import ListView
 from gui.views.treemodels import RepositoryModel
 from gui.views.bookmarks import RepoBookmarks
-import Errors
+from gen.errors import WindowActiveError
 import config
 from gui.editors import EditRepository, DeleteRepositoryQuery
 from gui.ddtargets import DdTargets
@@ -236,7 +236,7 @@ class RepositoryView(ListView):
             repos = self.dbstate.db.get_repository_from_handle(handle)
             try:
                 EditRepository(self.dbstate, self.uistate, [], repos)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
 
     def merge(self, obj):

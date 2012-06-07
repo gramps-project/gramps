@@ -47,7 +47,7 @@ import gobject
 #
 #-------------------------------------------------------------------------
 from gui.managedwindow import ManagedWindow
-import Errors
+from gen.errors import UnavailableError, WindowActiveError
 from gen.plug import PluginRegister, PTYPE_STR, load_addon_file
 from gen.ggettext import gettext as _
 from gui.utils import open_file_with_default_application
@@ -469,7 +469,7 @@ class PluginStatus(ManagedWindow):
                 hiddenstr = self.HIDDEN
             else:
                 hiddenstr = self.AVAILABLE
-            if err == Errors.UnavailableError:
+            if err == UnavailableError:
                 self.model.append(row=[
                     '<span color="blue">%s</span>' % _('Unavailable'),
                     i[0], str(i[1][1]), None, pdata.id, hiddenstr])
@@ -810,7 +810,7 @@ class ToolManagedWindowBase(ManagedWindow):
                     if event.type == gtk.gdk._2BUTTON_PRESS:
                         try:
                             EditPerson(self.dbstate, self.uistate, [], person)
-                        except Errors.WindowActiveError:
+                        except WindowActiveError:
                             pass
                     else:
                         self.uistate.set_active(person_handle, 'Person')

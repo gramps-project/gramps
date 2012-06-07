@@ -41,7 +41,7 @@ import gtk
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import Errors
+from gen.errors import WindowActiveError
 from gui.widgets import SimpleButton
 from embeddedlist import EmbeddedList
 
@@ -144,47 +144,47 @@ class BackRefList(EmbeddedList):
             try:
                 person = self.dbstate.db.get_person_from_handle(ref)
                 EditPerson(self.dbstate, self.uistate, [], person)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
         elif reftype == 'Family':
             try:
                 family = self.dbstate.db.get_family_from_handle(ref)
                 EditFamily(self.dbstate, self.uistate, [], family)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
         elif reftype == 'Source':
             try:
                 source = self.dbstate.db.get_source_from_handle(ref)
                 EditSource(self.dbstate, self.uistate, [], source)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
         elif reftype == 'Citation':
             try:
                 citation = self.dbstate.db.get_citation_from_handle(ref)
                 EditCitation(self.dbstate, self.uistate, [], citation)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
         elif reftype == 'Place':
             try:
                 place = self.dbstate.db.get_place_from_handle(ref)
                 EditPlace(self.dbstate, self.uistate, [], place)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
         elif reftype == 'MediaObject':
             try:
                 obj = self.dbstate.db.get_object_from_handle(ref)
                 EditMedia(self.dbstate, self.uistate, [], obj)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
         elif reftype == 'Event':
             try:
                 event = self.dbstate.db.get_event_from_handle(ref)
                 EditEvent(self.dbstate, self.uistate, [], event)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
         elif reftype == 'Repository':
             try:
                 repo = self.dbstate.db.get_repository_from_handle(ref)
                 EditRepository(self.dbstate, self.uistate, [], repo)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass

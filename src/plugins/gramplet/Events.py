@@ -26,7 +26,7 @@ from gen.ggettext import gettext as _
 from gen.display.name import displayer as name_displayer
 import gen.datehandler
 from gen.utils import get_birth_or_fallback, get_marriage_or_fallback
-import Errors
+from gen.errors import WindowActiveError
 import gtk
 import config
 
@@ -122,7 +122,7 @@ class Events(Gramplet):
             try:
                 event = self.dbstate.db.get_event_from_handle(handle)
                 EditEvent(self.dbstate, self.uistate, [], event)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
 
 class PersonEvents(Events):

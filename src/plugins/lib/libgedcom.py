@@ -112,7 +112,7 @@ LOG = logging.getLogger(".libgedcom")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import Errors
+from gen.errors import GedcomError
 import const
 import gen.lib
 from gen.db import DbTxn
@@ -2801,7 +2801,7 @@ class GedcomParser(UpdateCallback):
                 # future to do something else
                 self.__add_msg(self.__TRUNC_MSG)
                 self.groups = None
-                raise Errors.GedcomError(self.__TRUNC_MSG)
+                raise GedcomError(self.__TRUNC_MSG)
 
         self.backoff = False
         return self.groups
@@ -6903,7 +6903,7 @@ class GedcomParser(UpdateCallback):
         """
         line = self.__get_next_line()
         if line.token != TOKEN_HEAD:
-            raise Errors.GedcomError("%s is not a GEDCOM file" % self.filename)
+            raise GedcomError("%s is not a GEDCOM file" % self.filename)
     
     def __parse_submission(self, line, state):
         """
@@ -7271,9 +7271,9 @@ class GedcomStageOne(object):
             input_file.seek(0)
             return codecs.EncodedFile(input_file, 'utf8', 'utf16')
         elif not line :
-            raise Errors.GedcomError(self.__EMPTY_GED)
+            raise GedcomError(self.__EMPTY_GED)
         elif line[0] == "\x00" or line[1] == "\x00":
-            raise Errors.GedcomError(self.__BAD_UTF16)
+            raise GedcomError(self.__BAD_UTF16)
         else:
             input_file.seek(0)
             return input_file

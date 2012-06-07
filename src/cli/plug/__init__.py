@@ -55,7 +55,7 @@ from gen.plug.menu import (FamilyOption, PersonOption, NoteOption,
                            BooleanOption, DestinationOption, StringOption, 
                            TextOption, EnumeratedListOption, Option)
 from gen.display.name import displayer as name_displayer
-from Errors import ReportError
+from gen.errors import ReportError
 from gen.plug.report import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
                              CATEGORY_GRAPHVIZ, CATEGORY_CODE)
 from gen.plug.report._paper import paper_sizes

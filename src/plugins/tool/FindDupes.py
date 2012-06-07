@@ -44,7 +44,7 @@ import soundex
 from gen.display.name import displayer as name_displayer
 from gui.dialog import OkDialog
 from gui.listmodel import ListModel
-import Errors
+from gen.errors import WindowActiveError
 from gui.merge import MergePerson
 from gui.display import display_help
 from gui.managedwindow import ManagedWindow
@@ -178,7 +178,7 @@ class Merge(tool.Tool,ManagedWindow):
             try:
                 ShowMatches(self.dbstate,self.uistate,self.track,
                             self.list,self.map,self.update)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
     
     def find_potentials(self, thresh):

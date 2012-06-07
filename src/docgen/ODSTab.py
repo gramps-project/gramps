@@ -39,7 +39,7 @@ from TabbedDoc import *
 
 import const
 
-import Errors
+from gen.errors import ReportError
 
 #-------------------------------------------------------------------------
 #
@@ -340,9 +340,9 @@ class ODSTab(TabbedDoc):
             self.content_xml = tempfile.mktemp()
             self.f = open(self.content_xml,"wb")
         except IOError,msg:
-            raise Errors.ReportError(_("Could not create %s") % self.content_xml, msg)
+            raise ReportError(_("Could not create %s") % self.content_xml, msg)
         except:
-            raise Errors.ReportError(_("Could not create %s") % self.content_xml)
+            raise ReportError(_("Could not create %s") % self.content_xml)
 
         self.f = open(self.content_xml,"w")
         self.f.write(
@@ -403,9 +403,9 @@ class ODSTab(TabbedDoc):
             file = zipfile.ZipFile(self.filename,"w",zipfile.ZIP_DEFLATED)    
         except IOError,msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
-            raise Errors.ReportError(errmsg)
+            raise ReportError(errmsg)
         except:
-            raise Errors.ReportError(_("Could not create %s") % self.filename)
+            raise ReportError(_("Could not create %s") % self.filename)
 
         file.write(self.manifest_xml,str("META-INF/manifest.xml"))
         file.write(self.content_xml,str("content.xml"))
@@ -426,10 +426,10 @@ class ODSTab(TabbedDoc):
             self.f = open(self.styles_xml,"wb")
         except IOError,msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.styles_xml, msg)
-            raise Errors.ReportError(errmsg)
+            raise ReportError(errmsg)
         except:
             pass
-            raise Errors.ReportError(_("Could not create %s") % self.styles_xml)
+            raise ReportError(_("Could not create %s") % self.styles_xml)
 
         self.f = open(self.styles_xml,"w")
         self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
@@ -461,10 +461,10 @@ class ODSTab(TabbedDoc):
             self.f = open(self.manifest_xml,"wb")
         except IOError,msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.manifest_xml, msg)
-            raise Errors.ReportError(errmsg)
+            raise ReportError(errmsg)
         except:
             pass
-            raise Errors.ReportError(_("Could not create %s") % self.manifest_xml)
+            raise ReportError(_("Could not create %s") % self.manifest_xml)
 
         self.f = open(self.manifest_xml,"w")
         self.f.write(_MANIFEST)
@@ -477,10 +477,10 @@ class ODSTab(TabbedDoc):
             self.f = open(self.meta_xml,"wb")
         except IOError,msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.meta_xml, msg)
-            raise Errors.ReportError(errmsg)
+            raise ReportError(errmsg)
         except:
             pass
-            raise Errors.ReportError(_("Could not create %s") % self.meta_xml)
+            raise ReportError(_("Could not create %s") % self.meta_xml)
 
         self.f = open(self.meta_xml,"w")
         
@@ -500,10 +500,10 @@ class ODSTab(TabbedDoc):
             self.f = open(self.mimetype,"wb")
         except IOError,msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.mimetype, msg)
-            raise Errors.ReportError(errmsg)
+            raise ReportError(errmsg)
         except:
             pass
-            raise Errors.ReportError(_("Could not create %s") % self.mimetype)
+            raise ReportError(_("Could not create %s") % self.mimetype)
 
         self.f = open(self.mimetype,"w")
         self.f.write('application/vnd.oasis.opendocument.spreadsheet')

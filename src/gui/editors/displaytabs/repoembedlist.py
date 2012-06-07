@@ -36,7 +36,7 @@ import gobject
 import gen.lib
 from gui.dbguielement import DbGUIElement
 from gui.selectors import SelectorFactory
-import Errors
+from gen.errors import WindowActiveError
 from gui.ddtargets import DdTargets
 from reporefmodel import RepoRefModel
 from embeddedlist import EmbeddedList
@@ -107,7 +107,7 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
             EditRepoRef(
                 self.dbstate, self.uistate, self.track, 
                 repo, ref, self.add_callback)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def add_button_clicked(self, obj):
@@ -118,7 +118,7 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
             EditRepoRef(
                 self.dbstate, self.uistate, self.track, 
                 repo, ref, self.add_callback)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def share_button_clicked(self, obj):
@@ -141,7 +141,7 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
                               ref,
                               self.add_callback)
                 
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
 
     def add_callback(self, value):
@@ -162,7 +162,7 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
                 EditRepoRef(
                     self.dbstate, self.uistate, self.track, repo, 
                     ref, self.edit_callback)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 from gui.dialog import WarningDialog
                 WarningDialog(
                     _("Cannot edit this reference"),

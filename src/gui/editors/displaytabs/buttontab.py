@@ -42,7 +42,7 @@ import gtk
 #-------------------------------------------------------------------------
 from gui.widgets import SimpleButton
 from grampstab import GrampsTab
-import Errors
+from gen.errors import WindowActiveError
 
 _KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
 _RETURN = gtk.gdk.keyval_from_name("Return")
@@ -196,7 +196,7 @@ class ButtonTab(GrampsTab):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             try:
                 self.edit_button_clicked(obj)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
 
     def key_pressed(self, obj, event):
@@ -209,7 +209,7 @@ class ButtonTab(GrampsTab):
             if  event.keyval in (_RETURN, _KP_ENTER):
                 try:
                     self.edit_button_clicked(obj)
-                except Errors.WindowActiveError:
+                except WindowActiveError:
                     pass
             elif event.keyval in (_DEL,) and self.del_btn:
                 if self.dirty_selection or self.dbstate.db.readonly:

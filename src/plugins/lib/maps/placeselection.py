@@ -52,7 +52,7 @@ import gtk
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-import Errors
+from gen.errors import WindowActiveError
 from gui.managedwindow import ManagedWindow
 from osmGps import OsmGps
 
@@ -101,7 +101,7 @@ class PlaceSelection(ManagedWindow, OsmGps):
         try:
             ManagedWindow.__init__(self, uistate, [],
                                                  PlaceSelection)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             return
         self.uistate = uistate
         self.dbstate = dbstate

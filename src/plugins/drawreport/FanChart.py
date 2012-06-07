@@ -41,7 +41,7 @@ def log2(val):
 # gramps modules
 #
 #------------------------------------------------------------------------
-from Errors import ReportError
+from gen.errors import ReportError
 from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                              FONT_SANS_SERIF, PARA_ALIGN_CENTER)
 from gen.plug.menu import EnumeratedListOption, NumberOption, PersonOption

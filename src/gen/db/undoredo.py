@@ -50,7 +50,7 @@ from gen.ggettext import gettext as _
 #-------------------------------------------------------------------------
 from gen.db.dbconst import *
 from gen.db import BSDDBTxn
-import Errors
+from gen.errors import DbError
 
 #-------------------------------------------------------------------------
 #
@@ -209,7 +209,7 @@ class DbUndo(object):
 
             except DBERRS, msg:
                 self.db._log_error()
-                raise Errors.DbError(msg)
+                raise DbError(msg)
 
         return try_        
 
@@ -302,7 +302,7 @@ class DbUndo(object):
 
         except DBERRS, msg:
             self.db._log_error()
-            raise Errors.DbError(msg)
+            raise DbError(msg)
 
     def undo_data(self, data, handle, db_map, emit, signal_root):
         """
@@ -323,7 +323,7 @@ class DbUndo(object):
 
         except DBERRS, msg:
             self.db._log_error()
-            raise Errors.DbError(msg)
+            raise DbError(msg)
 
     undo_count = property(lambda self:len(self.undoq))
     redo_count = property(lambda self:len(self.redoq))

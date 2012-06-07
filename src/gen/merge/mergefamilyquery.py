@@ -31,7 +31,7 @@ Provide merge capabilities for families.
 #-------------------------------------------------------------------------
 from gen.db import DbTxn
 from gen.ggettext import sgettext as _
-from Errors import MergeError
+from gen.errors import MergeError
 from gen.merge import MergePersonQuery
 
 #-------------------------------------------------------------------------

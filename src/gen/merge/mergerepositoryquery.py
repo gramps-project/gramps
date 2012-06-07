@@ -32,7 +32,7 @@ Provide merge capabilities for repositories.
 from gen.lib import Source
 from gen.db import DbTxn
 from gen.ggettext import sgettext as _
-from Errors import MergeError
+from gen.errors import MergeError
 
 #-------------------------------------------------------------------------
 #

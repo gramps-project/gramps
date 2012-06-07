@@ -39,7 +39,7 @@ import gobject
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import Errors
+from gen.errors import WindowActiveError
 import gen.lib
 from gui.dbguielement import DbGUIElement
 from gui.selectors import SelectorFactory
@@ -124,7 +124,7 @@ class NoteTab(EmbeddedList, DbGUIElement):
         note. 
         
         Called when the Add button is clicked. 
-        If the window already exists (Errors.WindowActiveError), we ignore it. 
+        If the window already exists (WindowActiveError), we ignore it. 
         This prevents the dialog from coming up twice on the same object.
         """
         note = gen.lib.Note()
@@ -135,7 +135,7 @@ class NoteTab(EmbeddedList, DbGUIElement):
             EditNote(self.dbstate, self.uistate, self.track, 
                             note, self.add_callback,
                             self.callertitle, extratype = [self.notetype])
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def add_callback(self, name):
@@ -155,7 +155,7 @@ class NoteTab(EmbeddedList, DbGUIElement):
         note. 
         
         Called when the Edit button is clicked. 
-        If the window already exists (Errors.WindowActiveError), we ignore it. 
+        If the window already exists (WindowActiveError), we ignore it. 
         This prevents the dialog from coming up twice on the same object.
         """
         handle = self.get_selected()
@@ -166,7 +166,7 @@ class NoteTab(EmbeddedList, DbGUIElement):
                 EditNote(self.dbstate, self.uistate, self.track, note,
                         callertitle = self.callertitle,
                         extratype = [self.notetype] )
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
     
     def share_button_clicked(self, obj):

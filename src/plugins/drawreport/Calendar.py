@@ -37,7 +37,7 @@ import time
 #
 #------------------------------------------------------------------------
 from gen.display.name import displayer as _nd 
-from Errors import ReportError
+from gen.errors import ReportError
 import Relationship
 from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                              FONT_SERIF, PARA_ALIGN_CENTER,

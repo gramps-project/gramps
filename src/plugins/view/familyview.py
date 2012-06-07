@@ -50,7 +50,7 @@ from gui.views.listview import ListView
 from gui.views.treemodels import FamilyModel
 from gui.editors import EditFamily
 from gui.views.bookmarks import FamilyBookmarks
-import Errors
+from gen.errors import WindowActiveError
 import config
 from gui.dialog import ErrorDialog
 from gui.filters.sidebar import FamilySidebarFilter
@@ -248,7 +248,7 @@ class FamilyView(ListView):
         family = gen.lib.Family()
         try:
             EditFamily(self.dbstate, self.uistate, [], family)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def remove(self, obj):
@@ -270,7 +270,7 @@ class FamilyView(ListView):
             family = self.dbstate.db.get_family_from_handle(handle)
             try:
                 EditFamily(self.dbstate, self.uistate, [], family)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
                 
     def merge(self, obj):

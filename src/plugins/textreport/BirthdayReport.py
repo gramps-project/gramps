@@ -38,7 +38,7 @@ import datetime, time
 #
 #------------------------------------------------------------------------
 from gen.display.name import displayer as global_name_display
-from Errors import ReportError
+from gen.errors import ReportError
 from gen.lib import NameType, EventType, Name, Date, Person
 import Relationship
 from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,

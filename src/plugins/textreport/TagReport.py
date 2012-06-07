@@ -47,7 +47,7 @@ from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
 from gen.lib import NoteType
 from gen.filters import GenericFilterFactory, rules
 from gen.display.name import displayer as name_displayer
-from Errors import ReportError
+from gen.errors import ReportError
 import gen.datehandler
 
 #------------------------------------------------------------------------

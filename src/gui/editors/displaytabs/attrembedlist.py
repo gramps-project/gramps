@@ -34,7 +34,7 @@ import gobject
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import Errors
+from gen.errors import WindowActiveError
 from gui.ddtargets import DdTargets
 from attrmodel import AttrModel
 from embeddedlist import EmbeddedList
@@ -92,7 +92,7 @@ class AttrEmbedList(EmbeddedList):
             self.get_editor()(
                 self.dbstate, self.uistate, self.track, attr, 
                 pname, self.get_user_values(), self.add_callback)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def add_callback(self, name):
@@ -110,7 +110,7 @@ class AttrEmbedList(EmbeddedList):
                 self.get_editor()(
                     self.dbstate, self.uistate, self.track, attr, 
                     pname, self.get_user_values(), self.edit_callback)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
 
     def edit_callback(self, name):

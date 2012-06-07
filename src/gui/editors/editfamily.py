@@ -66,7 +66,7 @@ from gen.display.name import displayer as name_displayer
 from gen.utils import get_marriage_or_fallback
 import gen.lib
 from gen.db import DbTxn
-import Errors
+from gen.errors import WindowActiveError
 import gen.datehandler
 from gui.glade import Glade
 
@@ -242,7 +242,7 @@ class ChildEmbedList(EmbeddedList):
         try:
             EditChildRef(n, self.dbstate, self.uistate, self.track,
                          ref, self.child_ref_edited)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def edit_child_button_clicked(self, obj=None):
@@ -252,7 +252,7 @@ class ChildEmbedList(EmbeddedList):
             try:
                 EditPerson(self.dbstate, self.uistate, self.track,
                        p, self.child_ref_edited)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
     
     def north_american(self):
@@ -841,7 +841,7 @@ class EditFamily(EditPrimary):
                 person = self.db.get_person_from_handle(handle)
                 EditPerson(self.dbstate, self.uistate,
                            self.track, person)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
 
     def load_parent(self, handle, name_obj, birth_obj, birth_label, death_obj,

@@ -59,7 +59,7 @@ from gui.thumbnails import get_thumbnail_image
 import config
 from gui import widgets
 from gui.selectors import SelectorFactory
-import Errors
+from gen.errors import WindowActiveError
 from gui.views.bookmarks import PersonBookmarks
 import const
 from Utils import preset_name
@@ -422,7 +422,7 @@ class RelationshipView(NavigationView):
         try:
             FilterEditor('Person', const.CUSTOM_FILTERS, 
                          self.dbstate, self.uistate)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             return
 
     def change_db(self, db):
@@ -1236,7 +1236,7 @@ class RelationshipView(NavigationView):
         person = self.dbstate.db.get_person_from_handle(handle)
         try:
             EditPerson(self.dbstate, self.uistate, [], person)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def write_relationship(self, box, family):
@@ -1424,7 +1424,7 @@ class RelationshipView(NavigationView):
         person = self.dbstate.db.get_person_from_handle(handle)
         try:
             EditPerson(self.dbstate, self.uistate, [], person)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def edit_family(self, obj, event, handle):
@@ -1432,7 +1432,7 @@ class RelationshipView(NavigationView):
             family = self.dbstate.db.get_family_from_handle(handle)
             try:
                 EditFamily(self.dbstate, self.uistate, [], family)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
 
     def add_family(self, obj, event, handle):
@@ -1449,7 +1449,7 @@ class RelationshipView(NavigationView):
                 
             try:
                 EditFamily(self.dbstate, self.uistate, [], family)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
 
     def add_spouse(self, obj):
@@ -1466,7 +1466,7 @@ class RelationshipView(NavigationView):
                 
         try:
             EditFamily(self.dbstate, self.uistate, [], family)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def edit_active(self, obj):
@@ -1490,7 +1490,7 @@ class RelationshipView(NavigationView):
             try:
                 EditPerson(self.dbstate, self.uistate, [], person, 
                            callback=callback)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
 
     def callback_add_child(self, person, family_handle):
@@ -1568,7 +1568,7 @@ class RelationshipView(NavigationView):
         
         try:
             EditFamily(self.dbstate, self.uistate, [], family)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
             
     def add_parent_family(self, obj, event, handle):
@@ -1582,7 +1582,7 @@ class RelationshipView(NavigationView):
                 
             try:
                 EditFamily(self.dbstate, self.uistate, [], family)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
 
     def delete_family(self, obj, event, handle):
@@ -1606,7 +1606,7 @@ class RelationshipView(NavigationView):
                 import Reorder
                 Reorder.Reorder(self.dbstate, self.uistate, [],
                                 self.get_active())
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
 
     def config_connect(self):

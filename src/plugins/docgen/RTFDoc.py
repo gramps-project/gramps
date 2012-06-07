@@ -42,7 +42,7 @@ from gen.plug.docgen import (BaseDoc, TextDoc, FONT_SERIF, PARA_ALIGN_RIGHT,
                              PARA_ALIGN_CENTER, PARA_ALIGN_JUSTIFY,
                              URL_PATTERN)
 import ImgManip
-import Errors
+from gen.errors import ReportError
 import Utils
 
 #------------------------------------------------------------------------
@@ -91,9 +91,9 @@ class RTFDoc(BaseDoc,TextDoc):
             self.f = open(self.filename,"w")
         except IOError,msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
-            raise Errors.ReportError(errmsg)
+            raise ReportError(errmsg)
         except:
-            raise Errors.ReportError(_("Could not create %s") % self.filename)
+            raise ReportError(_("Could not create %s") % self.filename)
         
         style_sheet = self.get_style_sheet()
 

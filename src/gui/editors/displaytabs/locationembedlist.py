@@ -34,7 +34,7 @@ import gobject
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import Errors
+from gen.errors import WindowActiveError
 from gui.ddtargets import DdTargets
 from locationmodel import LocationModel
 from embeddedlist import EmbeddedList
@@ -78,7 +78,7 @@ class LocationEmbedList(EmbeddedList):
             from gui.editors import EditLocation
             EditLocation(self.dbstate, self.uistate, self.track, 
                          loc, self.add_callback)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def add_callback(self, name):
@@ -94,7 +94,7 @@ class LocationEmbedList(EmbeddedList):
                 from gui.editors import EditLocation
                 EditLocation(self.dbstate, self.uistate, self.track, 
                              loc, self.edit_callback)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
 
     def edit_callback(self, name):

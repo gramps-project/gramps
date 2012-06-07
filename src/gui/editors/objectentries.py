@@ -50,7 +50,7 @@ from editmedia import EditMedia
 from editnote import EditNote
 from gui.selectors import SelectorFactory
 from gui.ddtargets import DdTargets
-from Errors import WindowActiveError
+from gen.errors import WindowActiveError
 
 #-------------------------------------------------------------------------
 #

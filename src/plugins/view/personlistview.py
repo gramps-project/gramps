@@ -35,7 +35,6 @@ from gui.views.listview import LISTTREE
 from libpersonview import BasePersonView
 from gui.views.treemodels.peoplemodel import PersonListModel
 import gen.lib
-import Errors
 
 #-------------------------------------------------------------------------
 #

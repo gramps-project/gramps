@@ -50,7 +50,6 @@ log = logging.getLogger(".ExportVCal")
 from ExportOptions import WriterOptionBox
 import Utils
 from gen.lib import Date, EventType
-import Errors
 from gui.glade import Glade
 
 class CalendarWriter(object):

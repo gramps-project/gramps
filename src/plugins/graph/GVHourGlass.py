@@ -39,7 +39,7 @@ from gen.ggettext import gettext as _
 #
 #------------------------------------------------------------------------
 from gen.display.name import displayer as name_displayer
-from Errors import ReportError
+from gen.errors import ReportError
 from gen.plug.menu import (PersonOption, BooleanOption, NumberOption, 
                           EnumeratedListOption)
 from gen.plug.report import Report

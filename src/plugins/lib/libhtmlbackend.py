@@ -45,7 +45,7 @@ import os.path
 from gen.plug.docbackend import DocBackend
 from libhtml import Html
 from Utils import xml_lang
-import Errors
+from gen.errors import ReportError
 
 
 #------------------------------------------------------------------------
@@ -248,9 +248,9 @@ class HtmlBackend(DocBackend):
         except IOError,msg:
             errmsg = "%s\n%s" % (_("Could not create %s") %
                                  self._filename, msg)
-            raise Errors.ReportError(errmsg)
+            raise ReportError(errmsg)
         except:
-            raise Errors.ReportError(_("Could not create %s") %
+            raise ReportError(_("Could not create %s") %
                                      self._filename)
         if not os.path.isdir(self.datadirfull()): 
             try:
@@ -258,9 +258,9 @@ class HtmlBackend(DocBackend):
             except IOError,msg:
                 errmsg = "%s\n%s" % (_("Could not create %s") %
                                      self.datadirfull(), msg)
-                raise Errors.ReportError(errmsg)
+                raise ReportError(errmsg)
             except:
-                raise Errors.ReportError(_("Could not create %s") %
+                raise ReportError(_("Could not create %s") %
                                          self.datadirfull())
         self.html_page, self.html_header, self.html_body = Html.page(
                         lang=xml_lang(), title=self.title)

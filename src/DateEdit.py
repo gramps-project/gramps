@@ -67,7 +67,7 @@ import gen.datehandler
 import const
 from gui.display import display_help
 from gui.managedwindow import ManagedWindow
-from Errors import ValidationError
+from gen.errors import ValidationError
 from gui.glade import Glade
 
 #-------------------------------------------------------------------------

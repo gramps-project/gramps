@@ -26,7 +26,7 @@ from gen.ggettext import gettext as _
 from gen.display.name import displayer as name_displayer
 from gen.utils import get_birth_or_fallback, get_death_or_fallback
 import gen.datehandler
-import Errors
+from gen.errors import WindowActiveError
 import gtk
 
 class Children(Gramplet):
@@ -66,7 +66,7 @@ class Children(Gramplet):
             try:
                 person = self.dbstate.db.get_person_from_handle(handle)
                 EditPerson(self.dbstate, self.uistate, [], person)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
 
 class PersonChildren(Children):

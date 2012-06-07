@@ -48,7 +48,7 @@ LOG = logging.getLogger(".grampscli")
 from gen.display.name import displayer as name_displayer
 import config
 import const
-import Errors
+from gen.errors import DbError
 from gen.dbstate import DbState
 from gen.db import DbBsddb
 import gen.db.exceptions
@@ -164,7 +164,7 @@ class CLIDbLoader(object):
             self.dbstate.no_database()
             self._errordialog(
                 _("Could not open file: %s") % filename, str(msg))
-        except Errors.DbError, msg:
+        except DbError, msg:
             self.dbstate.no_database()
             self._dberrordialog(msg)
         except Exception:

@@ -33,7 +33,7 @@ Provide merge capabilities for places.
 from gen.lib import Person, Family, Event
 from gen.db import DbTxn
 from gen.ggettext import sgettext as _
-from Errors import MergeError
+from gen.errors import MergeError
 
 #-------------------------------------------------------------------------
 #

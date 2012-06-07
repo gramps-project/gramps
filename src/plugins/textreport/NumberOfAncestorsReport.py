@@ -43,7 +43,7 @@ import math
 #
 #------------------------------------------------------------------------
 from gen.display.name import displayer as global_name_display
-from Errors import ReportError
+from gen.errors import ReportError
 from gen.plug.menu import PersonOption, EnumeratedListOption
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                             FONT_SANS_SERIF, PARA_ALIGN_CENTER,

@@ -61,7 +61,7 @@ from gui.managedwindow import ManagedWindow
 from gui.dialog import QuestionDialog
 import const
 from gui.display import display_help
-import Errors
+from gen.errors import WindowActiveError
 from gen.ggettext import sgettext as _
 import gen.lib
 from gen.filters import rules
@@ -839,7 +839,7 @@ class EditFilter(ManagedWindow):
             EditRule(self.namespace, self.dbstate, self.uistate, self.track,
                      self.filterdb, None, _('Add Rule'), self.update_rule,
                      self.filter.get_name())
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def on_edit_clicked(self, obj):
@@ -851,7 +851,7 @@ class EditFilter(ManagedWindow):
                 EditRule(self.namespace, self.dbstate, self.uistate, self.track,
                          self.filterdb, d, _('Edit Rule'), self.update_rule,
                          self.filter.get_name())
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
 
     def update_rule(self, old_rule, new_rule):

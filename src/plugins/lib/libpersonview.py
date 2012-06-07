@@ -53,7 +53,7 @@ from gui.views.listview import ListView
 import Utils
 from gen.display.name import displayer as name_displayer
 from gui.dialog import ErrorDialog, QuestionDialog
-import Errors
+from gen.errors import WindowActiveError
 from gui.views.bookmarks import PersonBookmarks
 import config
 from gui.ddtargets import DdTargets
@@ -270,7 +270,7 @@ class BasePersonView(ListView):
         
         try:
             EditPerson(self.dbstate, self.uistate, [], person)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
  
     def edit(self, obj):
@@ -281,7 +281,7 @@ class BasePersonView(ListView):
             person = self.dbstate.db.get_person_from_handle(handle)
             try:
                 EditPerson(self.dbstate, self.uistate, [], person)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
 
     def remove(self, obj):

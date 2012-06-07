@@ -38,7 +38,7 @@ import gobject
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import Errors
+from gen.errors import WindowActiveError
 from gui.ddtargets import DdTargets
 from addressmodel import AddressModel
 from embeddedlist import EmbeddedList
@@ -104,7 +104,7 @@ class AddrEmbedList(EmbeddedList):
         """
         Called when the Add button is clicked. Creates a new Address instance
         and calls the EditAddress editor with the new address. If the window
-        already exists (Errors.WindowActiveError), we ignore it. This prevents 
+        already exists (WindowActiveError), we ignore it. This prevents 
         the dialog from coming up twice on the same object.
         """
         addr = gen.lib.Address()
@@ -112,7 +112,7 @@ class AddrEmbedList(EmbeddedList):
             from gui.editors import EditAddress
             EditAddress(self.dbstate, self.uistate, self.track, 
                         addr, self.add_callback)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             return
 
     def add_callback(self, name):
@@ -128,7 +128,7 @@ class AddrEmbedList(EmbeddedList):
         """
         Called with the Edit button is clicked. Gets the selected Address instance
         and calls the EditAddress editor with the address. If the window
-        already exists (Errors.WindowActiveError), we ignore it. This prevents 
+        already exists (WindowActiveError), we ignore it. This prevents 
         the dialog from coming up twice on the same object.
         """
         addr = self.get_selected()
@@ -137,7 +137,7 @@ class AddrEmbedList(EmbeddedList):
                 from gui.editors import EditAddress
                 EditAddress(self.dbstate, self.uistate, self.track, 
                             addr, self.edit_callback)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 return
 
     def edit_callback(self, name):

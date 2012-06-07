@@ -48,7 +48,7 @@ import gtk
 #-------------------------------------------------------------------------
 from editsecondary import EditSecondary
 from gen.lib import NoteType
-import Errors
+from gen.errors import WindowActiveError
 from gui.glade import Glade
 from displaytabs import CitationEmbedList, NoteTab
 from gui.widgets import MonitoredDataType, PrivacyButton
@@ -176,7 +176,7 @@ class EditChildRef(EditSecondary):
                 person = self.db.get_person_from_handle(handle)
                 EditPerson(self.dbstate, self.uistate,
                            self.track, person)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
 
     def person_change(self, handles):

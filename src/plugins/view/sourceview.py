@@ -45,7 +45,7 @@ from gui.views.listview import ListView
 from gui.views.treemodels import SourceModel
 import Utils
 from gui.views.bookmarks import SourceBookmarks
-import Errors
+from gen.errors import WindowActiveError
 from gui.ddtargets import DdTargets
 from gui.dialog import ErrorDialog
 from gui.editors import EditSource, DeleteSrcQuery
@@ -228,7 +228,7 @@ class SourceView(ListView):
             source = self.dbstate.db.get_source_from_handle(handle)
             try:
                 EditSource(self.dbstate, self.uistate, [], source)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
 
     def merge(self, obj):

@@ -34,7 +34,7 @@ import gobject
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import Errors
+from gen.errors import WindowActiveError
 from gui.ddtargets import DdTargets
 from personrefmodel import PersonRefModel
 from embeddedlist import EmbeddedList
@@ -89,7 +89,7 @@ class PersonRefEmbedList(EmbeddedList):
             EditPersonRef(
                 self.dbstate, self.uistate, self.track,
                 ref, self.add_callback)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def add_callback(self, obj):
@@ -106,7 +106,7 @@ class PersonRefEmbedList(EmbeddedList):
                 EditPersonRef(
                     self.dbstate, self.uistate, self.track,
                     ref, self.edit_callback)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
 
     def edit_callback(self, obj):
@@ -124,5 +124,5 @@ class PersonRefEmbedList(EmbeddedList):
             EditPersonRef(
                 self.dbstate, self.uistate, self.track,
                 ref, self.add_callback)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass

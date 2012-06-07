@@ -81,7 +81,7 @@ from gui.displaystate import DisplayState, RecentDocsMenu
 import const
 import constfunc
 import config
-import Errors
+from gen.errors import WindowActiveError
 from gui.dialog import (ErrorDialog, WarningDialog, QuestionDialog2,
                             InfoDialog)
 from gui import widgets
@@ -1105,7 +1105,7 @@ class ViewManager(CLIManager):
         """
         try:
             GrampsPreferences(self.uistate, self.dbstate)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             return
 
     def tip_of_day_activate(self, obj):
@@ -1121,7 +1121,7 @@ class ViewManager(CLIManager):
         """
         try:
             PluginWindows.PluginStatus(self.dbstate, self.uistate, [])
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def navigator_toggle(self, obj):
@@ -1649,7 +1649,7 @@ class ViewManager(CLIManager):
         """
         try:
             ReportPluginDialog(self.dbstate, self.uistate, [])
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             return
 
     def tools_clicked(self, obj):
@@ -1658,7 +1658,7 @@ class ViewManager(CLIManager):
         """
         try:
             ToolPluginDialog(self.dbstate, self.uistate, [])
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             return
 
     def clipboard(self, obj):
@@ -1668,7 +1668,7 @@ class ViewManager(CLIManager):
         from gui.clipboard import ClipboardWindow
         try:
             ClipboardWindow(self.dbstate, self.uistate)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             return
 
     def config_view(self, obj):
@@ -1699,7 +1699,7 @@ class ViewManager(CLIManager):
         """
         try:
             self.undo_history_window = UndoHistory(self.dbstate, self.uistate)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             return
 
     def export_data(self, obj):
@@ -1710,7 +1710,7 @@ class ViewManager(CLIManager):
             import ExportAssistant
             try:
                 ExportAssistant.ExportAssistant(self.dbstate, self.uistate)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 return
 
     def __rebuild_report_and_tool_menus(self):

@@ -40,7 +40,7 @@ log = logging.getLogger(".")
 #-------------------------------------------------------------------------
 import const
 from gen.display.name import displayer as name_displayer
-import Errors
+from gen.errors import WindowActiveError
 from gen.plug._options import (Options, OptionHandler, OptionList,
                          OptionListCollection)
 from gen.plug import (TOOL_DEBUG, TOOL_ANAL, TOOL_DBPROC, TOOL_DBFIX, 
@@ -251,7 +251,7 @@ def gui_tool(dbstate, uistate, tool_class, options_class, translated_name,
 
     try:
         tool_class(dbstate, uistate, options_class, name, callback)
-    except Errors.WindowActiveError:
+    except WindowActiveError:
         pass
     except:
         log.error("Failed to start tool.", exc_info=True)

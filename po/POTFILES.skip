@@ -5,7 +5,6 @@
 
 #src
 src/AutoComp.py
-src/Errors.py
 src/ImgManip.py
 src/RecentFiles.py
 src/Sort.py
@@ -17,6 +16,7 @@ src/cli/__init__.py
 src/cli/user.py
 
 # gen
+src/gen/errors.py
 src/gen/user.py
 
 # gen API

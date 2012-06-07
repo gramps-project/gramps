@@ -59,7 +59,7 @@ from gui.glade import Glade
 from gen.db import DbTxn
 from gen.lib import (Person, Family, Event, Place, MediaObject, Citation, 
                      Repository)
-from Errors import MergeError
+from gen.errors import MergeError
 
 #-------------------------------------------------------------------------
 #

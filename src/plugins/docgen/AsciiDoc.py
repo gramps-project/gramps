@@ -38,7 +38,7 @@ from gen.ggettext import gettext as _
 #------------------------------------------------------------------------
 from gen.plug.docgen import (BaseDoc, TextDoc,
                             PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER)
-import Errors
+from gen.errors import ReportError
 
 #------------------------------------------------------------------------
 #
@@ -149,9 +149,9 @@ class AsciiDoc(BaseDoc,TextDoc):
             self.f = open(self.filename,"w")
         except IOError,msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
-            raise Errors.ReportError(errmsg)
+            raise ReportError(errmsg)
         except:
-            raise Errors.ReportError(_("Could not create %s") % self.filename)
+            raise ReportError(_("Could not create %s") % self.filename)
 
         self.in_cell = 0
         self.text = ""

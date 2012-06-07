@@ -37,7 +37,7 @@ from gen.ggettext import gettext as _
 #
 #------------------------------------------------------------------------
 from gen.display.name import displayer as global_name_display
-from Errors import ReportError
+from gen.errors import ReportError
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
                             TableCellStyle, FONT_SANS_SERIF, INDEX_TYPE_TOC,
                             PARA_ALIGN_CENTER)

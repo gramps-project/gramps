@@ -50,7 +50,7 @@ import gtk
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
 import config
-import Errors
+from gen.errors import DatabaseError, FilterError, ReportError, WindowActiveError
 from gui.utils import open_file_with_default_application
 from gui.plug import add_gui_options
 from gui.user import User
@@ -626,7 +626,7 @@ def report(dbstate, uistate, person, report_class, options_class,
     elif category in (CATEGORY_BOOK, CATEGORY_CODE):
         try:
             report_class(dbstate, uistate)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
         return        
     else:
@@ -654,15 +654,15 @@ def report(dbstate, uistate, person, report_class, options_class,
                     out_file = dialog.options.get_output()
                     open_file_with_default_application(out_file)
                 
-            except Errors.FilterError, msg:
+            except FilterError, msg:
                 (m1, m2) = msg.messages()
                 ErrorDialog(m1, m2)
             except IOError, msg:
                 ErrorDialog(_("Report could not be created"), str(msg))
-            except Errors.ReportError, msg:
+            except ReportError, msg:
                 (m1, m2) = msg.messages()
                 ErrorDialog(m1, m2)
-            except Errors.DatabaseError,msg:                
+            except DatabaseError,msg:                
                 ErrorDialog(_("Report could not be created"), str(msg))
 #           The following except statement will catch all "NoneType" exceptions.
 #           This is useful for released code where the exception is most likely

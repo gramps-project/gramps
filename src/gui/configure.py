@@ -156,7 +156,7 @@ class ConfigureDialog(ManagedWindow):
             configuration page
         :param configobj: the unique object that is configured, it must be 
             identifiable (id(configobj)). If the configure dialog of the 
-            configobj is already open, a Errors.WindowActiveError will be
+            configobj is already open, a WindowActiveError will be
             raised. Grab this exception in the calling method
         :param configmanager: a configmanager object. Several convenience
             methods are present in ConfigureDialog to set up widgets that 

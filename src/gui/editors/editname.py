@@ -53,7 +53,7 @@ from displaytabs import GrampsTab, CitationEmbedList, NoteTab, SurnameTab
 from gui.widgets import (MonitoredEntry, MonitoredMenu, MonitoredDate, 
                      MonitoredDataType, PrivacyButton)
 from gui.glade import Glade                     
-from Errors import ValidationError
+from gen.errors import ValidationError
 
 #-------------------------------------------------------------------------
 #

@@ -50,7 +50,7 @@ import gen.lib
 from gui.views.listview import ListView
 from gui.views.treemodels import EventModel
 import Utils
-import Errors
+from gen.errors import WindowActiveError
 from gui.views.bookmarks import EventBookmarks
 import config
 from gui.ddtargets import DdTargets
@@ -234,7 +234,7 @@ class EventView(ListView):
     def add(self, obj):
         try:
             EditEvent(self.dbstate, self.uistate, [], gen.lib.Event())
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def remove(self, obj):
@@ -261,7 +261,7 @@ class EventView(ListView):
             event = self.dbstate.db.get_event_from_handle(handle)
             try:
                 EditEvent(self.dbstate, self.uistate, [], event)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
 
     def merge(self, obj):

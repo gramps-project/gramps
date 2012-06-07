@@ -48,7 +48,7 @@ import gtk
 from gui.views.listview import ListView
 from gui.views.treemodels import NoteModel
 import Utils
-import Errors
+from gen.errors import WindowActiveError
 from gui.views.bookmarks import NoteBookmarks
 import config
 from gen.lib import Note
@@ -239,7 +239,7 @@ class NoteView(ListView):
     def add(self, obj):
         try:
             EditNote(self.dbstate, self.uistate, [], Note())
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def remove(self, obj):
@@ -257,7 +257,7 @@ class NoteView(ListView):
             note = self.dbstate.db.get_note_from_handle(handle)
             try:
                 EditNote(self.dbstate, self.uistate, [], note)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
 
     def merge(self, obj):

@@ -46,7 +46,7 @@ from functools import partial
 #
 #------------------------------------------------------------------------
 from gen.display.name import displayer as global_name_display
-from Errors import ReportError
+from gen.errors import ReportError
 from gen.lib import FamilyRelType, Person, NoteType
 from gen.plug.menu import (BooleanOption, NumberOption, PersonOption, 
                            EnumeratedListOption)

@@ -49,7 +49,7 @@ from gtk.gdk import ACTION_COPY
 from gen.ggettext import sgettext as _
 from gen.simple import SimpleTable
 from TransUtils import trans_objclass
-import Errors
+from gen.errors import WindowActiveError
 from gui.widgets.multitreeview import MultiTreeView
 from gui.ddtargets import DdTargets
 from gui.plug.quick import run_quick_report_by_name
@@ -185,7 +185,7 @@ class QuickTable(SimpleTable):
                         EditPerson(self.simpledoc.doc.dbstate, 
                                    self.simpledoc.doc.uistate, [], person)
                         return True # handled event
-                    except Errors.WindowActiveError:
+                    except WindowActiveError:
                         pass
             elif objclass == 'Event':
                 event = self.access.dbase.get_event_from_handle(handle)
@@ -194,7 +194,7 @@ class QuickTable(SimpleTable):
                         EditEvent(self.simpledoc.doc.dbstate, 
                                   self.simpledoc.doc.uistate, [], event)
                         return True # handled event
-                    except Errors.WindowActiveError:
+                    except WindowActiveError:
                         pass
             elif objclass == 'Family':
                 ref = self.access.dbase.get_family_from_handle(handle)
@@ -203,7 +203,7 @@ class QuickTable(SimpleTable):
                         EditFamily(self.simpledoc.doc.dbstate, 
                                    self.simpledoc.doc.uistate, [], ref)
                         return True # handled event
-                    except Errors.WindowActiveError:
+                    except WindowActiveError:
                         pass
             elif objclass == 'Citation':
                 ref = self.access.dbase.get_citation_from_handle(handle)
@@ -212,7 +212,7 @@ class QuickTable(SimpleTable):
                         EditCitation(self.simpledoc.doc.dbstate, 
                                      self.simpledoc.doc.uistate, [], ref)
                         return True # handled event
-                    except Errors.WindowActiveError:
+                    except WindowActiveError:
                         pass
             elif objclass == 'Source':
                 ref = self.access.dbase.get_source_from_handle(handle)
@@ -221,7 +221,7 @@ class QuickTable(SimpleTable):
                         EditSource(self.simpledoc.doc.dbstate, 
                                    self.simpledoc.doc.uistate, [], ref)
                         return True # handled event
-                    except Errors.WindowActiveError:
+                    except WindowActiveError:
                         pass
             elif objclass == 'Place':
                 ref = self.access.dbase.get_place_from_handle(handle)
@@ -230,7 +230,7 @@ class QuickTable(SimpleTable):
                         EditPlace(self.simpledoc.doc.dbstate, 
                                    self.simpledoc.doc.uistate, [], ref)
                         return True # handled event
-                    except Errors.WindowActiveError:
+                    except WindowActiveError:
                         pass
             elif objclass == 'Repository':
                 ref = self.access.dbase.get_repository_from_handle(handle)
@@ -239,7 +239,7 @@ class QuickTable(SimpleTable):
                         EditRepository(self.simpledoc.doc.dbstate, 
                                    self.simpledoc.doc.uistate, [], ref)
                         return True # handled event
-                    except Errors.WindowActiveError:
+                    except WindowActiveError:
                         pass
             elif objclass == 'Note':
                 ref = self.access.dbase.get_note_from_handle(handle)
@@ -248,7 +248,7 @@ class QuickTable(SimpleTable):
                         EditNote(self.simpledoc.doc.dbstate, 
                                  self.simpledoc.doc.uistate, [], ref)
                         return True # handled event
-                    except Errors.WindowActiveError:
+                    except WindowActiveError:
                         pass
             elif objclass in ['Media', 'MediaObject']:
                 ref = self.access.dbase.get_object_from_handle(handle)
@@ -257,7 +257,7 @@ class QuickTable(SimpleTable):
                         EditMedia(self.simpledoc.doc.dbstate, 
                                   self.simpledoc.doc.uistate, [], ref)
                         return True # handled event
-                    except Errors.WindowActiveError:
+                    except WindowActiveError:
                         pass
             elif objclass == 'PersonList':
                 run_quick_report_by_name(self.simpledoc.doc.dbstate,

@@ -55,7 +55,7 @@ import gobject
 #
 #-------------------------------------------------------------------------
 from gen.db import DbTxn
-import Errors
+from gen.errors import WindowActiveError
 from gui.managedwindow import ManagedWindow
 from gen.datehandler import displayer as _dd
 from gen.updatecallback import UpdateCallback
@@ -344,7 +344,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                             )
             exec(editor_str)            
             editor(self.dbstate, self.uistate, [], obj)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def get_image(self, column, cell, model, iter, user_data=None):

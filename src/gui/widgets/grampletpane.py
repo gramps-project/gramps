@@ -41,7 +41,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import Errors
+from gen.errors import WindowActiveError
 import const
 from gui.editors import EditPerson, EditFamily
 from gui.managedwindow import ManagedWindow
@@ -598,7 +598,7 @@ class GuiGramplet(object):
                                                self.uistate, 
                                                [], person)
                                     return True # handled event
-                                except Errors.WindowActiveError:
+                                except WindowActiveError:
                                     pass
                             elif event.type == gtk.gdk.BUTTON_PRESS: # single
                                 self.uistate.set_active(handle, 'Person')
@@ -610,7 +610,7 @@ class GuiGramplet(object):
                                            self.uistate, 
                                            [], person)
                                 return True # handled event
-                            except Errors.WindowActiveError:
+                            except WindowActiveError:
                                 pass
                 elif link_type == 'Surname':
                     if event.button == 1: # left mouse
@@ -659,7 +659,7 @@ class GuiGramplet(object):
                                                self.uistate, 
                                                [], family)
                                     return True # handled event
-                                except Errors.WindowActiveError:
+                                except WindowActiveError:
                                     pass
                             elif event.type == gtk.gdk.BUTTON_PRESS: # single
                                 self.uistate.set_active(handle, 'Family')
@@ -671,7 +671,7 @@ class GuiGramplet(object):
                                            self.uistate, 
                                            [], family)
                                 return True # handled event
-                            except Errors.WindowActiveError:
+                            except WindowActiveError:
                                 pass
                 elif link_type == 'PersonList':
                     if event.button == 1: # left mouse

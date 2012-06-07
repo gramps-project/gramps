@@ -44,7 +44,7 @@ from math import radians
 #------------------------------------------------------------------------
 from gen.plug.docgen import PAPER_PORTRAIT
 import libcairodoc
-import Errors
+from gen.errors import UnavailableError
 #import constfunc
 
 #------------------------------------------------------------------------
@@ -64,7 +64,7 @@ import cairo
 try: # the Gramps-Connect server has no DISPLAY
     import gtk
     if gtk.pygtk_version < (2, 10, 0):
-        raise Errors.UnavailableError(_("PyGtk 2.10 or later is required"))
+        raise UnavailableError(_("PyGtk 2.10 or later is required"))
 except:
     pass
 

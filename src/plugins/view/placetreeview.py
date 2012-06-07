@@ -32,7 +32,7 @@ from gui.views.listview import LISTTREE
 from libplaceview import PlaceBaseView
 from gui.views.treemodels.placemodel import PlaceTreeModel, COUNTRYLEVELS
 import gen.lib
-import Errors
+from gen.errors import WindowActiveError
 from gui.editors import EditPlace
 
 #-------------------------------------------------------------------------
@@ -235,5 +235,5 @@ class PlaceTreeView(PlaceBaseView):
         place.get_main_location().set_county(level[2])
         try:
             EditPlace(self.dbstate, self.uistate, [], place)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass

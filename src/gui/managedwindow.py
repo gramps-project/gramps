@@ -47,7 +47,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-import Errors
+from gen.errors import WindowActiveError
 import config
 from gui.glade import Glade
 
@@ -357,7 +357,7 @@ class ManagedWindow(object):
             
         if uistate and uistate.gwm.get_item_from_id(window_key):
             uistate.gwm.get_item_from_id(window_key).present()
-            raise Errors.WindowActiveError('This window is already active')
+            raise WindowActiveError('This window is already active')
         else:
             self.window_id = window_key
             self.submenu_label = submenu_label

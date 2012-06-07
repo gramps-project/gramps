@@ -48,7 +48,7 @@ import gtk
 import gen.lib
 from gui.views.listview import ListView
 from gui.utils import add_menuitem
-import Errors
+from gen.errors import WindowActiveError
 from gui.views.bookmarks import PlaceBookmarks
 import config
 from gui.dialog import ErrorDialog
@@ -366,7 +366,7 @@ class PlaceBaseView(ListView):
     def add(self, obj):
         try:
             EditPlace(self.dbstate, self.uistate, [], gen.lib.Place())
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def remove(self, obj):
@@ -397,7 +397,7 @@ class PlaceBaseView(ListView):
             place = self.dbstate.db.get_place_from_handle(handle)
             try:
                 EditPlace(self.dbstate, self.uistate, [], place)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
 
     def merge(self, obj):

@@ -60,7 +60,7 @@ from gen.db.dbconst import *
 from gen.utils.callback import Callback
 from gen.db import (BsddbBaseCursor, DbReadBase)
 from Utils import create_id
-import Errors
+from gen.errors import DbError
 
 LOG = logging.getLogger(DBLOGNAME)
 LOG = logging.getLogger(".citation")
@@ -418,7 +418,7 @@ class DbBsddbRead(DbReadBase, Callback):
             return DbReadCursor(table, self.txn)
         except DBERRS, msg:
             self.__log_error()
-            raise Errors.DbError(msg)
+            raise DbError(msg)
 
     def get_person_cursor(self, *args, **kwargs):
         return self.get_cursor(self.person_map, *args, **kwargs)
@@ -727,7 +727,7 @@ class DbBsddbRead(DbReadBase, Callback):
                 return None
         except DBERRS, msg:
             self.__log_error()
-            raise Errors.DbError(msg)
+            raise DbError(msg)
 
     def get_person_from_gramps_id(self, val):
         """
@@ -1472,7 +1472,7 @@ class DbBsddbRead(DbReadBase, Callback):
             return table.get(str(handle), txn=self.txn)
         except DBERRS, msg:
             self.__log_error()
-            raise Errors.DbError(msg)
+            raise DbError(msg)
     
     def get_raw_person_data(self, handle):
         return self.__get_raw_data(self.person_map, handle)
@@ -1512,7 +1512,7 @@ class DbBsddbRead(DbReadBase, Callback):
             return table.get(str(handle), txn=self.txn) is not None
         except DBERRS, msg:
             self.__log_error()
-            raise Errors.DbError(msg)
+            raise DbError(msg)
         
     def has_person_handle(self, handle):
         """

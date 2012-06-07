@@ -35,7 +35,7 @@ from gui.views.listview import LISTTREE
 from libpersonview import BasePersonView
 from gui.views.treemodels.peoplemodel import PersonTreeModel
 import gen.lib
-import Errors
+from gen.errors import WindowActiveError
 from gui.editors import EditPerson
 from Utils import preset_name
 
@@ -179,5 +179,5 @@ class PersonTreeView(BasePersonView):
         person.set_primary_name(name)
         try:
             EditPerson(self.dbstate, self.uistate, [], person)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass

@@ -47,7 +47,7 @@ import pango
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from Errors import MaskError, ValidationError, WindowActiveError
+from gen.errors import MaskError, ValidationError, WindowActiveError
 from gui.widgets.undoableentry import UndoableEntry
 
 #-------------------------------------------------------------------------

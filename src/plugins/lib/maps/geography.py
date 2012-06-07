@@ -50,7 +50,7 @@ import Utils
 from gen.display.name import displayer as _nd
 from gui.views.navigationview import NavigationView
 from libformatting import FormattingHelper
-import Errors
+from gen.errors import WindowActiveError
 import const
 import constfunc
 from gui.managedwindow import ManagedWindow
@@ -732,7 +732,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         person = self.dbstate.db.get_person_from_gramps_id(mark[8])
         try:
             EditPerson(self.dbstate, self.uistate, [], person)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def edit_family(self, menu, event, lat, lon, mark):
@@ -744,7 +744,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         family = self.dbstate.db.get_family_from_gramps_id(mark[11])
         try:
             EditFamily(self.dbstate, self.uistate, [], family)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def edit_event(self, menu, event, lat, lon, mark):
@@ -756,7 +756,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         event = self.dbstate.db.get_event_from_gramps_id(mark[10])
         try:
             EditEvent(self.dbstate, self.uistate, [], event)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def add_place(self, menu, event, lat, lon):
@@ -812,7 +812,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         try:
             EditPlace(self.dbstate, self.uistate, [], new_place)
             self.add_marker(None, None, plat, plon, None, True)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def __edit_place(self, pcountry, pcounty, pstate, plat, plon):
@@ -831,7 +831,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         place.set_main_location(loc)
         try:
             EditPlace(self.dbstate, self.uistate, [], place)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def __link_place(self, pcountry, pcounty, pstate, plat, plon):
@@ -853,7 +853,7 @@ class GeoGraphyView(OsmGps, NavigationView):
             try:
                 EditPlace(self.dbstate, self.uistate, [], place)
                 self.add_marker(None, None, plat, plon, None, True)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
 
     #-------------------------------------------------------------------------

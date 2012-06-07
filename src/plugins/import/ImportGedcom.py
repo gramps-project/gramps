@@ -43,7 +43,7 @@ LOG = logging.getLogger(".GedcomImport")
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import Errors
+from gen.errors import DbError, GedcomError
 from gui.glade import Glade
 from libmixin import DbMixin
 import libgedcom
@@ -111,7 +111,7 @@ def importData(database, filename, user):
     except IOError, msg:
         user.notify_error(_("%s could not be opened\n") % filename, str(msg))
         return
-    except Errors.GedcomError, msg:
+    except GedcomError, msg:
         user.notify_error(_("Invalid GEDCOM file"), 
                           _("%s could not be imported") % filename + "\n" + str(msg))
         return
@@ -126,9 +126,9 @@ def importData(database, filename, user):
         msg = _("%s could not be opened\n") % filename
         user.notify_error(msg, str(msg))
         return
-    except Errors.DbError, msg:
+    except DbError, msg:
         user.notify_db_error(str(msg.value))
         return
-    except Errors.GedcomError, msg:
+    except GedcomError, msg:
         user.notify_error(_('Error reading GEDCOM file'), str(msg))
         return

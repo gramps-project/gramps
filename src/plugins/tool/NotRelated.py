@@ -221,7 +221,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
             if family:
                 try:
                     EditFamily(self.dbstate, self.uistate, [], family)
-                except Errors.WindowActiveError:
+                except WindowActiveError:
                     pass
 
         elif personGid != '': # do we have a person?
@@ -230,7 +230,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
             if person:
                 try:
                     EditPerson(self.dbstate, self.uistate, [], person)
-                except Errors.WindowActiveError:
+                except WindowActiveError:
                     pass
 
     def on_help_clicked(self, obj):

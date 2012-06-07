@@ -58,7 +58,7 @@ from Utils import (find_children, find_parents, find_witnessed_people)
 from libformatting import FormattingHelper
 import gen.lib
 from gui.views.navigationview import NavigationView
-import Errors
+from gen.errors import WindowActiveError
 from gui.views.bookmarks import PersonBookmarks
 from gui.editors import EditPerson
 import gui.utils
@@ -740,7 +740,7 @@ class FanChartView(NavigationView):
         if person:
             try:
                 EditPerson(self.dbstate, self.uistate, [], person)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
             return True
         return False

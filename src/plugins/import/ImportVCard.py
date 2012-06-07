@@ -48,7 +48,7 @@ LOG = logging.getLogger(".ImportVCard")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import Errors
+from gen.errors import GrampsImportError
 import gen.lib
 from gen.db import DbTxn
 from gen.plug.utils import OpenFileOrStdin
@@ -67,7 +67,7 @@ def importData(database, filename, user):
     except EnvironmentError, msg:
         user.notify_error(_("%s could not be opened\n") % filename, str(msg))
         return
-    except Errors.GrampsImportError, msg:
+    except GrampsImportError, msg:
         user.notify_error(_("%s could not be opened\n") % filename, str(msg))
         return
     return None # This module doesn't provide info about what got imported.
@@ -306,7 +306,7 @@ class VCardParser(object):
         """Check the version of the VCard, only version 3.0 is supported."""
         self.version = data
         if self.version != "3.0":
-            raise Errors.GrampsImportError(_("Import of VCards version %s is "
+            raise GrampsImportError(_("Import of VCards version %s is "
                     "not supported by Gramps.") % self.version)
 
     def add_formatted_name(self, fields, data):

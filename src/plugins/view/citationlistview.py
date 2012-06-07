@@ -51,7 +51,7 @@ import gen.lib
 from gui.views.listview import ListView
 import Utils
 from gui.views.bookmarks import CitationBookmarks
-import Errors
+from gen.errors import WindowActiveError
 from gui.ddtargets import DdTargets
 from gui.dialog import ErrorDialog
 from gui.editors import EditCitation, DeleteCitationQuery
@@ -267,7 +267,7 @@ class CitationListView(ListView):
         EditCitation editor with the new source and new citation. 
         
         Called when the Add button is clicked. 
-        If the window already exists (Errors.WindowActiveError), we ignore it. 
+        If the window already exists (WindowActiveError), we ignore it. 
         This prevents the dialog from coming up twice on the same object.
         
         However, since the window is identified by the Source object, and
@@ -277,7 +277,7 @@ class CitationListView(ListView):
         try:
             EditCitation(self.dbstate, self.uistate, [], gen.lib.Citation(),
                          gen.lib.Source())
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def remove(self, obj):
@@ -299,7 +299,7 @@ class CitationListView(ListView):
             citation = self.dbstate.db.get_citation_from_handle(handle)
             try:
                 EditCitation(self.dbstate, self.uistate, [], citation)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
 
     def __blocked_text(self):

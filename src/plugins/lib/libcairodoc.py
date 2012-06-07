@@ -46,7 +46,7 @@ from gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc, ParagraphStyle,
                         TableCellStyle, SOLID, FONT_SANS_SERIF, FONT_SERIF,
                         FONT_MONOSPACE, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT)
 from gen.plug.report import utils as ReportUtils
-from Errors import PluginError
+from gen.errors import PluginError
 from gen.plug.docbackend import CairoBackend
 import ImgManip
 

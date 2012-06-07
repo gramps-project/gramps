@@ -51,7 +51,7 @@ import Utils
 from gui.utils import ProgressMeter
 from docgen import ODSTab
 import const
-import Errors
+from gen.errors import WindowActiveError
 import gen.datehandler
 from gui.dialog import WarningDialog
 from gui.plug import tool
@@ -171,7 +171,7 @@ class EventComparison(tool.Tool,ManagedWindow):
         try:
             FilterEditor('Person',const.CUSTOM_FILTERS,
                                       self.dbstate,self.uistate)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def on_apply_clicked(self, obj):

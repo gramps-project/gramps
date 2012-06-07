@@ -117,7 +117,7 @@ class DateParserDisplayTest(tool.Tool):
         #        d.set(gen.lib.Date.QUAL_NONE,gen.lib.Date.MOD_NONE,
         #              gen.lib.Date.CAL_GREGORIAN,dateval[:l],"Text comment")
         #        dates.append( d)
-        #    except Errors.DateError, e:
+        #    except DateError, e:
         #        d.set_as_text("Date identified value correctly as invalid.\n%s" % e)
         #        dates.append( d)
         #    except:
@@ -129,7 +129,7 @@ class DateParserDisplayTest(tool.Tool):
         #    try:
         #        d.set(gen.lib.Date.QUAL_NONE,gen.lib.Date.MOD_SPAN,gen.lib.Date.CAL_GREGORIAN,dateval[:l],"Text comment")
         #        dates.append( d)
-        #    except Errors.DateError, e:
+        #    except DateError, e:
         #        d.set_as_text("Date identified value correctly as invalid.\n%s" % e)
         #        dates.append( d)
         #    except:

@@ -70,7 +70,7 @@ import gobject
 import const
 import Utils
 from gui.listmodel import ListModel
-import Errors
+from gen.errors import FilterError, ReportError
 from gui.pluginmanager import GuiPluginManager
 from gen.plug.docgen import StyleSheet, StyleSheetList, PaperStyle
 from gui.dialog import WarningDialog, ErrorDialog
@@ -1395,10 +1395,10 @@ def write_book_item(database, report_class, options, user):
     All user dialog has already been handled and the output file opened."""
     try:
         return report_class(database, options, user)
-    except Errors.ReportError, msg:
+    except ReportError, msg:
         (m1, m2) = msg.messages()
         ErrorDialog(m1, m2)
-    except Errors.FilterError, msg:
+    except FilterError, msg:
         (m1, m2) = msg.messages()
         ErrorDialog(m1, m2)
     except:

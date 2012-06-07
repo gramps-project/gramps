@@ -38,7 +38,7 @@ import gen.lib
 from gen.display.name import displayer as name_displayer
 from eventembedlist import EventEmbedList
 from eventrefmodel import EventRefModel
-import Errors
+from gen.errors import WindowActiveError
 
 #-------------------------------------------------------------------------
 #
@@ -117,7 +117,7 @@ class PersonEventEmbedList(EventEmbedList):
         try:
             from gui.editors import EditFamily
             EditFamily(self.dbstate, self.uistate, [], family)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def _non_native_change(self):

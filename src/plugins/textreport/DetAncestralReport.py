@@ -43,7 +43,7 @@ from gen.ggettext import gettext as _
 #
 #------------------------------------------------------------------------
 from gen.display.name import displayer as global_name_display
-from Errors import ReportError
+from gen.errors import ReportError
 from gen.lib import EventType, FamilyRelType, Person, NoteType
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                             FONT_SANS_SERIF, FONT_SERIF, 

@@ -89,7 +89,7 @@ from libodfbackend import OdfBackend
 import const
 from gen.plug.report import utils as ReportUtils
 import ImgManip
-import Errors
+from gen.errors import ReportError
 
 #-------------------------------------------------------------------------
 #
@@ -1189,9 +1189,9 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             zfile = zipfile.ZipFile(self.filename, "w", zipfile.ZIP_DEFLATED)
         except IOError, msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
-            raise Errors.ReportError(errmsg)
+            raise ReportError(errmsg)
         except:
-            raise Errors.ReportError(_("Could not create %s") % self.filename)
+            raise ReportError(_("Could not create %s") % self.filename)
             
         t = time.localtime(time.time())[:6]
 
@@ -1217,7 +1217,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             except:
                 errmsg = "%s\n%s" % (_("Could not open %s") % image[0],
                                      msg)
-                raise Errors.ReportError(errmsg)
+                raise ReportError(errmsg)
         zfile.close()
 
     def _write_styles_file(self):

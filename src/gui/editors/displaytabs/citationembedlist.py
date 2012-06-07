@@ -42,7 +42,7 @@ import gobject
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import Errors
+from gen.errors import WindowActiveError
 import gen.lib
 from gen.lib import Source, Citation
 from gui.dbguielement import DbGUIElement
@@ -130,7 +130,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         the new citation. 
         
         Called when the Add button is clicked. 
-        If the window already exists (Errors.WindowActiveError), we ignore it. 
+        If the window already exists (WindowActiveError), we ignore it. 
         This prevents the dialog from coming up twice on the same object.
         """
         try:
@@ -138,7 +138,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
             EditCitation(self.dbstate, self.uistate, self.track,
                          gen.lib.Citation(), gen.lib.Source(),
                          self.add_callback, self.callertitle)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def add_callback(self, value):
@@ -167,7 +167,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                                  gen.lib.Citation(), object, 
                                  callback=self.add_callback, 
                                  callertitle=self.callertitle)
-                except Errors.WindowActiveError:
+                except WindowActiveError:
                     from gui.dialog import WarningDialog
                     WarningDialog(_("Cannot share this reference"),
                                   self.__blocked_text())
@@ -177,7 +177,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                     EditCitation(self.dbstate, self.uistate, self.track, 
                                  object, callback=self.add_callback, 
                                  callertitle=self.callertitle)
-                except Errors.WindowActiveError:
+                except WindowActiveError:
                     from gui.dialog import WarningDialog
                     WarningDialog(_("Cannot share this reference"),
                                   self.__blocked_text())
@@ -200,7 +200,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         with the citation. 
         
         Called when the Edit button is clicked. 
-        If the window already exists (Errors.WindowActiveError), we ignore it. 
+        If the window already exists (WindowActiveError), we ignore it. 
         This prevents the dialog from coming up twice on the same object.
         """
         handle = self.get_selected()
@@ -210,7 +210,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                 from gui.editors import EditCitation
                 EditCitation(self.dbstate, self.uistate, self.track, citation,
                              callertitle = self.callertitle)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
     
     def citation_delete(self, del_citation_handle_list):
@@ -250,7 +250,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                     EditCitation(self.dbstate, self.uistate, self.track, 
                                  object, callback=self.add_callback, 
                                  callertitle=self.callertitle)
-                except Errors.WindowActiveError:
+                except WindowActiveError:
                     from gui.dialog import WarningDialog
                     WarningDialog(_("Cannot share this reference"),
                                   self.__blocked_text())
@@ -270,7 +270,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                                  gen.lib.Citation(), object, 
                                  callback=self.add_callback, 
                                  callertitle=self.callertitle)
-                except Errors.WindowActiveError:
+                except WindowActiveError:
                     from gui.dialog import WarningDialog
                     WarningDialog(_("Cannot share this reference"),
                                   self.__blocked_text())

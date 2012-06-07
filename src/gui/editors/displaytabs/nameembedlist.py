@@ -42,7 +42,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import Errors
+from gen.errors import WindowActiveError
 from gui.ddtargets import DdTargets
 from namemodel import NameModel
 from groupembeddedlist import GroupEmbeddedList
@@ -160,7 +160,7 @@ class NameEmbedList(GroupEmbeddedList):
             from gui.editors import EditName
             EditName(self.dbstate, self.uistate, self.track, 
                      name, self.add_callback)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def add_callback(self, name):
@@ -181,7 +181,7 @@ class NameEmbedList(GroupEmbeddedList):
                 elif name[0] == NameModel.DEFINDEX:
                     EditName(self.dbstate, self.uistate, self.track, 
                              name[1], self.editdef_callback)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
 
     def edit_callback(self, name):

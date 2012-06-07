@@ -40,7 +40,7 @@ from gen.ggettext import gettext as _
 from gen.plug.report import utils as ReportUtils
 from gen.plug.docgen import BaseDoc, DrawDoc, FONT_SERIF, PAPER_PORTRAIT, SOLID
 from gen.plug.utils import gformat
-import Errors
+from gen.errors import ReportError
 
 def lrgb(grp):
     grp = ReportUtils.rgb_color(grp)
@@ -105,9 +105,9 @@ class PSDrawDoc(BaseDoc, DrawDoc):
             self.file = open(self.filename,"w")
         except IOError,msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
-            raise Errors.ReportError(errmsg)
+            raise ReportError(errmsg)
         except:
-            raise Errors.ReportError(_("Could not create %s") % self.filename)
+            raise ReportError(_("Could not create %s") % self.filename)
         
         self.file.write(
             '%!PS-Adobe-3.0\n'

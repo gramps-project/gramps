@@ -39,7 +39,7 @@ try:
     from hashlib import md5
 except ImportError:
     from md5 import md5
-import Errors
+from gen.errors import WindowActiveError
 
 #------------------------------------------------------------------------
 #
@@ -317,7 +317,7 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
             self.vr = VerifyResults(self.dbstate, self.uistate, self.track)
             self.add_results = self.vr.add_results
             self.vr.load_ignored(self.db.full_name)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
         self.uistate.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
@@ -646,13 +646,13 @@ class VerifyResults(ManagedWindow):
                 try:
                     person = self.dbstate.db.get_person_from_handle(handle)
                     EditPerson(self.dbstate, self.uistate, [], person)
-                except Errors.WindowActiveError:
+                except WindowActiveError:
                     pass
             elif the_type == 'Family':
                 try:
                     family = self.dbstate.db.get_family_from_handle(handle)
                     EditFamily(self.dbstate, self.uistate, [], family)
-                except Errors.WindowActiveError:
+                except WindowActiveError:
                     pass
 
     def get_image(self, column, cell, model, iter, user_data=None):

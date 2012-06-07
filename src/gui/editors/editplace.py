@@ -50,7 +50,7 @@ from editprimary import EditPrimary
 from displaytabs import (GrampsTab, LocationEmbedList, CitationEmbedList, 
                          GalleryTab, NoteTab, WebEmbedList, PlaceBackRefList)
 from gui.widgets import MonitoredEntry, PrivacyButton
-from Errors import ValidationError
+from gen.errors import ValidationError
 from PlaceUtils import conv_lat_lon
 from gui.dialog import ErrorDialog
 from gui.glade import Glade

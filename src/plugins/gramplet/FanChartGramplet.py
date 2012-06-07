@@ -58,7 +58,7 @@ from gen.plug import Gramplet
 from Utils import (find_children, find_parents, find_witnessed_people)
 from libformatting import FormattingHelper
 import gen.lib
-import Errors
+from gen.errors import WindowActiveError
 from gui.editors import EditPerson
 import gui.utils
 
@@ -672,7 +672,7 @@ class FanChartGramplet(Gramplet):
         if person:
             try:
                 EditPerson(self.dbstate, self.uistate, [], person)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
             return True
         return False

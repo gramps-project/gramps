@@ -61,7 +61,7 @@ import gen.mime
 import gen.lib
 from gen.db import DbTxn
 from gui.editors import EditMedia, DeleteMediaQuery
-import Errors
+from gen.errors import WindowActiveError
 from gui.filters.sidebar import MediaSidebarFilter
 from gui.merge import MergeMedia
 from gui.ddtargets import DdTargets
@@ -345,7 +345,7 @@ class MediaView(ListView):
         """Add a new media object to the media list"""
         try:
             EditMedia(self.dbstate, self.uistate, [], gen.lib.MediaObject())
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def remove(self, obj):
@@ -370,7 +370,7 @@ class MediaView(ListView):
             object = self.dbstate.db.get_object_from_handle(handle)
             try:
                 EditMedia(self.dbstate, self.uistate, [], object)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 pass
 
     def merge(self, obj):

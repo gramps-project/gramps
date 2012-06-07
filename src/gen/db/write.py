@@ -63,7 +63,7 @@ from gen.db import (DbBsddbRead, DbWriteBase, BSDDBTxn,
 from gen.db.dbconst import *
 from gen.utils.callback import Callback
 from gen.updatecallback import UpdateCallback
-import Errors
+from gen.errors import DbError
 import constfunc
 
 _LOG = logging.getLogger(DBLOGNAME)
@@ -245,7 +245,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 return func(self, *args, **kwargs)
             except DBERRS, msg:
                 self.__log_error()
-                raise Errors.DbError(msg)
+                raise DbError(msg)
         return try_
 
     def __open_db(self, file_name, table_name, dbtype=db.DB_HASH, flags=0):
@@ -1737,7 +1737,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         if self.txn is not None:
             msg = self.transaction.get_description()
             self.transaction_abort(self.transaction)
-            raise Errors.DbError(_('A second transaction is started while there'
+            raise DbError(_('A second transaction is started while there'
                 ' is still a transaction, "%s", active in the database.') % msg)
 
         if not isinstance(transaction, DbTxn) or len(transaction) != 0:

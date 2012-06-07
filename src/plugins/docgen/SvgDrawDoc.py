@@ -40,7 +40,7 @@ import StringIO
 #
 #-------------------------------------------------------------------------
 from gen.plug.docgen import BaseDoc, DrawDoc, SOLID, FONT_SANS_SERIF
-import Errors
+from gen.errors import ReportError
 
 #-------------------------------------------------------------------------
 #
@@ -76,9 +76,9 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
         try:
             self.f = open(name,"w")
         except IOError,msg:
-            raise Errors.ReportError(_("Could not create %s") % name, msg)
+            raise ReportError(_("Could not create %s") % name, msg)
         except:
-            raise Errors.ReportError(_("Could not create %s") % name)
+            raise ReportError(_("Could not create %s") % name)
         
         self.t = StringIO.StringIO()
             

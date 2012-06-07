@@ -55,7 +55,7 @@ from gui.views.navigationview import NavigationView
 from gui.columnorder import ColumnOrder
 import config
 import TreeTips
-import Errors
+from gen.errors import WindowActiveError
 from gui.filters import SearchBar
 from gui.utils import add_menuitem
 import const
@@ -333,7 +333,7 @@ class ListView(NavigationView):
         try:
             FilterEditor(self.FILTER_TYPE , const.CUSTOM_FILTERS, 
                          self.dbstate, self.uistate)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             return
 
     def setup_filter(self):

@@ -36,7 +36,7 @@ import gobject
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import Errors
+from gen.errors import WindowActiveError
 from gui.ddtargets import DdTargets
 from groupembeddedlist import GroupEmbeddedList
 from eventrefmodel import EventRefModel
@@ -230,7 +230,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
             self.get_ref_editor()(
                 self.dbstate, self.uistate, self.track,
                 event, ref, self.object_added)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def __blocked_text(self):
@@ -255,7 +255,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                 self.get_ref_editor()(
                     self.dbstate, self.uistate, self.track,
                     event, ref, self.object_added)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 from gui.dialog import WarningDialog
                 WarningDialog(_("Cannot share this reference"),
                               self.__blocked_text())
@@ -268,7 +268,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                 self.get_ref_editor()(
                     self.dbstate, self.uistate, self.track,
                     event, ref[1], self.object_edited)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 from gui.dialog import WarningDialog
                 WarningDialog(_("Cannot edit this reference"),
                               self.__blocked_text())
@@ -332,7 +332,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
             try:
                 self.get_ref_editor()(self.dbstate, self.uistate, self.track,
                                       event, obj, self.object_edited)
-            except Errors.WindowActiveError:
+            except WindowActiveError:
                 from gui.dialog import WarningDialog
                 WarningDialog(
                     _("Cannot edit this reference"),
@@ -353,7 +353,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
             self.get_ref_editor()(
                 self.dbstate, self.uistate, self.track,
                 event, ref, self.object_added)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def editnotworkgroup(self, key):
@@ -364,7 +364,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         try:
             from gui.editors import EditPerson
             EditPerson(self.dbstate, self.uistate, [], person)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
     def dropnotworkgroup(self, row, obj):

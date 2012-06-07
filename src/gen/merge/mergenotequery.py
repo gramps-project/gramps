@@ -33,7 +33,7 @@ from gen.lib import (Person, Family, Event, Place, Source, Citation, Repository,
                      MediaObject)
 from gen.db import DbTxn
 from gen.ggettext import sgettext as _
-from Errors import MergeError
+from gen.errors import MergeError
 
 #-------------------------------------------------------------------------
 #
