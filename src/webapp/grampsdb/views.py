@@ -112,6 +112,7 @@ def context_processor(request):
 
 def main_page(request):
     """
+    Show the main page.
     """
     context = RequestContext(request)
     context["view"] = 'home'
@@ -120,18 +121,17 @@ def main_page(request):
                               
 def logout_page(request):
     """
+    Logout a user.
     """
     context = RequestContext(request)
     context["view"] = 'home'
     context["tview"] = _('Home')
     logout(request)
-    # TODO: allow this once we have an error page
-    #if request.GET.has_key("next"):
-    #    return redirect(request.GET.get("next"))
     return HttpResponseRedirect('/')
 
 def browse_page(request):
     """
+    Show the main list under 'Browse' on the main menu.
     """
     context = RequestContext(request)
     context["view"] = 'browse'
@@ -140,6 +140,7 @@ def browse_page(request):
 
 def user_page(request, username=None):
     """
+    Show the user page.
     """
     if request.user.is_authenticated():
         if username is None:
@@ -172,6 +173,9 @@ def send_file(request, filename, mimetype):
     return response
 
 def process_report_run(request, handle):
+    """
+    Run a report or export.
+    """
     from webapp.reports import import_file, export_file, download
     from cli.plug import run_report
     import traceback
@@ -248,6 +252,7 @@ def process_report_run(request, handle):
 
 def view_list(request, view):
     """
+    Borwse each of the primary tables.
     """
     context = RequestContext(request)
     search = ""
@@ -272,60 +277,6 @@ def view_list(request, view):
             object_list = Event.objects.filter(private).order_by("gramps_id")
         view_template = 'view_events.html'
         total = Event.objects.all().count()
-    elif view == "family":
-        context["tviews"] = _("Families")
-        if request.user.is_authenticated():
-            if request.GET.has_key("search"):
-                search = request.GET.get("search")
-                if "," in search:
-                    surname, first = [term.strip() for term in 
-                                      search.split(",", 1)]
-                    object_list = Family.objects \
-                        .filter((Q(father__name__surname__surname__istartswith=surname) &
-                                 Q(mother__name__surname__surname__istartswith=surname))
-                                ) \
-                        .distinct() \
-                        .order_by("gramps_id")
-                else: # no comma
-                    object_list = Family.objects \
-                        .filter(Q(gramps_id__icontains=search) |
-                                Q(family_rel_type__name__icontains=search) |
-                                Q(father__name__surname__surname__istartswith=search) |
-                                Q(mother__name__surname__surname__istartswith=search) 
-                                ) \
-                        .distinct() \
-                        .order_by("gramps_id")
-            else: # no search
-                object_list = Family.objects.all().order_by("gramps_id")
-        else:
-            # NON-AUTHENTICATED users
-            if request.GET.has_key("search"):
-                search = request.GET.get("search")
-                if "," in search:
-                    search_text, trash = [term.strip() for term in search.split(",", 1)]
-                else:
-                    search_text = search
-                object_list = Family.objects \
-                    .filter((Q(gramps_id__icontains=search_text) |
-                             Q(family_rel_type__name__icontains=search_text) |
-                             Q(father__name__surname__surname__istartswith=search_text) |
-                             Q(mother__name__surname__surname__istartswith=search_text)) &
-                            Q(private=False) &
-                            Q(mother__private=False) &
-                            Q(father__private=False)
-                            ) \
-                    .distinct() \
-                    .order_by("gramps_id")
-            else:
-                object_list = Family.objects \
-                    .filter(Q(private=False) & 
-                            Q(mother__private=False) &
-                            Q(father__private=False)
-                            ) \
-                    .distinct() \
-                    .order_by("gramps_id")
-        view_template = 'view_families.html'
-        total = Family.objects.all().count()
     elif view == "media":
         context["tviews"] = _("Media")
         if request.user.is_authenticated():
@@ -368,35 +319,24 @@ def view_list(request, view):
         total = Note.objects.all().count()
     elif view == "person":
         context["tviews"] = _("People")
-        if request.user.is_authenticated():
-            if request.GET.has_key("search"):
-                search = request.GET.get("search")
-                query = build_person_query(request, search, protect=False)
-                object_list = Name.objects \
-                    .filter(query) \
-                    .distinct() \
-                    .order_by("surname__surname", "first_name")
-            else:
-                object_list = Name.objects.all().order_by("surname__surname", "first_name")
-        else:
-            # BEGIN NON-AUTHENTICATED users
-            if request.GET.has_key("search"):
-                search = request.GET.get("search")
-                query = build_person_query(request, search, protect=True)
-                object_list = Name.objects \
-                    .filter(query) \
-                    .distinct() \
-                    .order_by("surname__surname", "private", "person__probably_alive", "first_name")
-            else:
-                object_list = Name.objects \
-                                .select_related() \
-                                .filter(Q(private=False) &
-                                        Q(person__private=False)) \
-                                .distinct() \
-                                .order_by("surname__surname", "private", "person__probably_alive", "first_name")
-            # END NON-AUTHENTICATED users
+        search = request.GET.get("search") if request.GET.has_key("search") else ""
+        query, order = build_person_query(request, search)
+        object_list = Name.objects \
+            .filter(query) \
+            .distinct() \
+            .order_by(*order)
         view_template = 'view_people.html'
         total = Name.objects.all().count()
+    elif view == "family":
+        context["tviews"] = _("Families")
+        search = request.GET.get("search") if request.GET.has_key("search") else ""
+        query, order = build_family_query(request, search)
+        object_list = Family.objects \
+            .filter(query) \
+            .distinct() \
+            .order_by(*order)
+        view_template = 'view_families.html'
+        total = Family.objects.all().count()
     elif view == "place":
         context["tviews"] = _("Places")
         if request.user.is_authenticated():
@@ -694,58 +634,134 @@ def process_report(request, context, handle, action):
     context["tview"] = _("Report")
     context["tviews"] = _("Reports")
 
-def build_person_query(request, search, protect):
-    if "," in search or "=" in search:
-        query = Q()
-        if protect:
-            query &= (Q(private=False) & Q(person__private=False))
-            terms = ["surname"]
-        else:
-            terms = ["surname", "given"]
-        for term in [term.strip() for term in search.split(",")]:
-            if "=" in term:
-                field, value = [s.strip() for s in term.split("=")]
-            else:
-                if terms:
-                    field = terms.pop(0)
-                    value = term
-                else:
-                    continue
-            if "." in field and not protect:
-                query &= Q(**{field.replace(".", "__"): value})
-            elif field == "surname":
-                query &= Q(surname__surname__istartswith=value)
-            elif field == "given":
-                if not protect:
-                    query &= Q(first_name__istartswith=value)
-            elif field == "private":
-                if not protect:
-                    query &= Q(person__private=boolean(value))
-            elif field == "birth" and not protect:
-                query &= Q(person__birth__year1=safe_int(value))
-            elif field == "death" and not protect:
-                query &= Q(person__death__year1=safe_int(value))
-            elif field == "id":
-                query &= Q(person__gramps_id__icontains=value)
-            elif field == "gender":
-                query &= Q(person__gender_type__name=value.title())
-            else:
-                request.user.message_set.create(message="Invalid query field '%s'" % field)                
+def build_person_query(request, search):
+    """
+    Build and return a Django QuerySet and sort order for the Person
+    table.
+    """
+    protect = not request.user.is_authenticated()
+    ### Build the order:
+    if protect:
+        # Do this to get the names sorted by private/alive 
+        query = (Q(private=False) & Q(person__private=False))
+        order = ("surname__surname", "private", "person__probably_alive", 
+                 "first_name")
     else:
-        if protect:
-            query = (Q(surname__surname__icontains=search) | 
-                     Q(surname__prefix__icontains=search) |
-                     Q(person__gramps_id__icontains=search))
-        else:
-            query = (Q(surname__surname__icontains=search) | 
-                     Q(first_name__icontains=search) |
-                     Q(suffix__icontains=search) |
-                     Q(surname__prefix__icontains=search) |
-                     Q(title__icontains=search) |
-                     Q(person__gramps_id__icontains=search))
-    return query
+        query = Q()
+        order = ("surname__surname", "first_name")
+    ### Build the query:
+    if search:
+        if "," in search or "=" in search:
+            terms = ["surname", "given"]
+            for term in [term.strip() for term in search.split(",")]:
+                if "=" in term:
+                    field, value = [s.strip() for s in term.split("=")]
+                else:
+                    if terms:
+                        field = terms.pop(0)
+                        value = term
+                    else:
+                        continue
+                if "." in field and not protect:
+                    query &= Q(**{field.replace(".", "__"): value})
+                elif field == "surname":
+                    query &= Q(surname__surname__istartswith=value)
+                elif field == "given":
+                    if not protect:
+                        query &= Q(first_name__istartswith=value)
+                elif field == "private":
+                    if not protect:
+                        query &= Q(person__private=boolean(value))
+                elif field == "birth" and not protect:
+                    query &= Q(person__birth__year1=safe_int(value))
+                elif field == "death" and not protect:
+                    query &= Q(person__death__year1=safe_int(value))
+                elif field == "id":
+                    query &= Q(person__gramps_id__icontains=value)
+                elif field == "gender":
+                    query &= Q(person__gender_type__name=value.title())
+                else:
+                    request.user.message_set.create(message="Invalid query field '%s'" % field)                
+        else: # no search fields, just raw search
+            if protect:
+                query &= (Q(surname__surname__icontains=search) | 
+                          Q(surname__prefix__icontains=search) |
+                          Q(person__gramps_id__icontains=search))
+            else:
+                query &= (Q(surname__surname__icontains=search) | 
+                          Q(first_name__icontains=search) |
+                          Q(suffix__icontains=search) |
+                          Q(surname__prefix__icontains=search) |
+                          Q(title__icontains=search) |
+                          Q(person__gramps_id__icontains=search))
+    else: # no search
+        pass # nothing else to do
+    return query, order
+
+def build_family_query(request, search):
+    """
+    Build and return a Django QuerySet and sort order for the Family
+    table.
+    """
+    protect = not request.user.is_authenticated()
+    terms = ["father", "mother"]
+    if protect:
+        query = (Q(private=False) & Q(father__private=False) & 
+                 Q(mother__private=False))
+        order = ("father__name__surname__surname", 
+                 "father__private", "father__probably_alive", 
+                 "father__name__first_name",
+                 "mother__name__surname__surname", 
+                 "mother__private", "mother__probably_alive", 
+                 "mother__name__first_name")
+    else:
+        query = Q()
+        order = ("father__name__surname__surname", 
+                 "father__name__first_name",
+                 "mother__name__surname__surname", 
+                 "mother__name__first_name")
+    if search:
+        if "," in search or "=" in search:
+            if protect:
+                query &= (Q(father__private=False) & Q(mother__private=False) &
+                            Q(private=False))
+            for term in [term.strip() for term in search.split(",")]:
+                if "=" in term:
+                    field, value = [s.strip() for s in term.split("=")]
+                else:
+                    if terms:
+                        field = terms.pop(0)
+                        value = term
+                    else:
+                        continue
+                if "." in field and not protect:
+                    query &= Q(**{field.replace(".", "__"): value})
+                elif field == "father":
+                    query &= Q(father__name__surname__surname__istartswith=value)
+                elif field == "mother":
+                    query &= Q(mother__name__surname__surname__istartswith=value)
+                else:
+                    request.user.message_set.create(message="Invalid query field '%s'" % field)                
+        else: # no search fields, just raw search
+            if protect:
+                query &= (Q(gramps_id__icontains=search) |
+                          Q(family_rel_type__name__icontains=search) |
+                          Q(father__name__surname__surname__icontains=search) |
+                          Q(mother__name__surname__surname__icontains=search))
+            else:
+                query &= (Q(gramps_id__icontains=search) |
+                          Q(family_rel_type__name__icontains=search) |
+                          Q(father__name__surname__surname__icontains=search) |
+                          Q(mother__name__surname__surname__icontains=search))
+    else: # no search
+        pass # nothing left to do
+    return query, order
 
 def safe_int(num):
+    """
+    Safely try to convert num to an integer. Return -1 (which should
+    not match).
+    """
     try:
         return int(num)
     except:
