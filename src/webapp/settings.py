@@ -84,6 +84,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
     "webapp.grampsdb.views.context_processor",
+    "webapp.context.messages",
 )
 
 INSTALLED_APPS = (

@@ -112,6 +112,11 @@
      {% for message in messages %}
         <font color="red">{{message}}</font>
      {% endfor %}
+     {% if message %}
+        <div id="system_message" class="{{ message_type }}">
+           <font color="red">{{message}}</font>
+        </div>
+    {% endif %}
     {% block content %}
     {% endblock %}
    <div class="content">

@@ -129,6 +129,12 @@ def logout_page(request):
     logout(request)
     return HttpResponseRedirect('/')
 
+def make_message(request, message):
+    if request.user.is_authenticated():
+        request.user.message_set.create(message = message)
+    else:
+        request.session['message'] = message
+
 def browse_page(request):
     """
     Show the main list under 'Browse' on the main menu.
@@ -218,32 +224,26 @@ def process_report_run(request, handle):
                         try:
                             import_file(db, filename, cli.user.User()) # callback
                         except:
-                            message = "import_file failed: " + traceback.format_exc()
-                            request.user.message_set.create(message = message)
+                            make_message(request, "import_file failed: " + traceback.format_exc())
                     threading.Thread(target=background).start()
-                    message = "Your data is now being imported..."
-                    request.user.message_set.create(message = message)
+                    make_message(request, "Your data is now being imported...")
                     return redirect("/report/")
                 else:
                     success = import_file(db, filename, cli.user.User()) # callback
                     if not success:
-                        message = "Failed to load imported."
-                        request.user.message_set.create(message = message)
+                        make_message(request, "Failed to load imported.")
                     return redirect("/report/")
             else:
-                message = "No filename was provided or found."
-                request.user.message_set.create(message = message)
+                make_message(request, "No filename was provided or found.")
                 return redirect("/report/")
         else:
-            message = "Invalid report type '%s'" % report.report_type
-            request.user.message_set.create(message = message)
+            make_message(request, "Invalid report type '%s'" % report.report_type)
             return redirect("/report/")
         if os.path.exists(filename):
             return send_file(request, filename, mimetype)
         else:
             context = RequestContext(request)
-            message = "Failed: '%s' is not found" % filename
-            request.user.message_set.create(message=message)
+            make_message(request, "Failed: '%s' is not found" % filename)
             return redirect("/report/")
     # If failure, just fail for now:
     context = RequestContext(request)
@@ -667,21 +667,29 @@ def build_person_query(request, search):
                 elif field == "surname":
                     query &= Q(surname__surname__istartswith=value)
                 elif field == "given":
-                    if not protect:
+                    if protect:
+                        query &= Q(first_name__istartswith=value) & Q(person__probably_alive=False)
+                    else:
                         query &= Q(first_name__istartswith=value)
                 elif field == "private":
                     if not protect:
                         query &= Q(person__private=boolean(value))
-                elif field == "birth" and not protect:
-                    query &= Q(person__birth__year1=safe_int(value))
-                elif field == "death" and not protect:
-                    query &= Q(person__death__year1=safe_int(value))
+                elif field == "birth":
+                    if protect:
+                        query &= Q(person__birth__year1=safe_int(value)) & Q(person__probably_alive=False)
+                    else:
+                        query &= Q(person__birth__year1=safe_int(value))
+                elif field == "death":
+                    if protect:
+                        query &= Q(person__death__year1=safe_int(value)) & Q(person__probably_alive=False)
+                    else:
+                        query &= Q(person__death__year1=safe_int(value))
                 elif field == "id":
                     query &= Q(person__gramps_id__icontains=value)
                 elif field == "gender":
                     query &= Q(person__gender_type__name=value.title())
                 else:
-                    request.user.message_set.create(message="Invalid query field '%s'" % field)                
+                    make_message(request, "Invalid query field '%s'" % field)
         else: # no search fields, just raw search
             if protect:
                 query &= (Q(surname__surname__icontains=search) | 
@@ -704,7 +712,6 @@ def build_family_query(request, search):
     table.
     """
     protect = not request.user.is_authenticated()
-    terms = ["father", "mother"]
     if protect:
         query = (Q(private=False) & Q(father__private=False) & 
                  Q(mother__private=False))
@@ -722,9 +729,10 @@ def build_family_query(request, search):
                  "mother__name__first_name")
     if search:
         if "," in search or "=" in search:
-            if protect:
-                query &= (Q(father__private=False) & Q(mother__private=False) &
-                            Q(private=False))
+            if "," not in search:
+                terms = ["surnames"]
+            else:
+                terms = ["father", "mother"]
             for term in [term.strip() for term in search.split(",")]:
                 if "=" in term:
                     field, value = [s.strip() for s in term.split("=")]
@@ -733,15 +741,19 @@ def build_family_query(request, search):
                         field = terms.pop(0)
                         value = term
                     else:
+                        make_message("Ignoring value without specified field")
                         continue
                 if "." in field and not protect:
                     query &= Q(**{field.replace(".", "__"): value})
+                elif field == "surnames":
+                    query &= (Q(father__name__surname__surname__istartswith=value) |
+                              Q(mother__name__surname__surname__istartswith=value))
                 elif field == "father":
                     query &= Q(father__name__surname__surname__istartswith=value)
                 elif field == "mother":
                     query &= Q(mother__name__surname__surname__istartswith=value)
                 else:
-                    request.user.message_set.create(message="Invalid query field '%s'" % field)                
+                    make_message(request, message="Invalid query field '%s'" % field)
         else: # no search fields, just raw search
             if protect:
                 query &= (Q(gramps_id__icontains=search) |
@@ -755,6 +767,7 @@ def build_family_query(request, search):
                           Q(mother__name__surname__surname__icontains=search))
     else: # no search
         pass # nothing left to do
+    #make_message(request, query)
     return query, order
 
 def safe_int(num):
