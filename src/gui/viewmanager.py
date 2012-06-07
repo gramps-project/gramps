@@ -443,13 +443,12 @@ class ViewManager(CLIManager):
 
     def update_addons(self, addon_update_list):
         from gui.glade import Glade
-        from gui.managedwindow import ManagedWindow
+        from gui.managedwindow import set_titles
         from gui.listmodel import ListModel, NOSORT, TOGGLE
         glade = Glade("updateaddons.glade")
         self.update_dialog = glade.toplevel
-        ManagedWindow.set_titles(self.update_dialog,
-                                 glade.get_object('title'),
-                                 _('Available Gramps Updates for Addons'))
+        set_titles(self.update_dialog, glade.get_object('title'),
+                   _('Available Gramps Updates for Addons'))
         apply_button = glade.get_object('apply')
         cancel_button = glade.get_object('cancel')
         select_all = glade.get_object('select_all')

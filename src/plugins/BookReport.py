@@ -75,7 +75,7 @@ from gui.pluginmanager import GuiPluginManager
 from gen.plug.docgen import StyleSheet, StyleSheetList, PaperStyle
 from gui.dialog import WarningDialog, ErrorDialog
 from gen.plug.menu import PersonOption, FilterOption, FamilyOption
-from gui.managedwindow import ManagedWindow
+from gui.managedwindow import ManagedWindow, set_titles
 from gui.glade import Glade
 import gui.utils
 import gui.user
@@ -598,8 +598,7 @@ class BookListDisplay(object):
         self.top = self.xml.toplevel
         self.unsaved_changes = False
 
-        ManagedWindow.set_titles(self.top,
-            self.xml.get_object('title'),_('Available Books'))
+        set_titles(self.top, self.xml.get_object('title'), _('Available Books'))
 
         if nodelete:
             delete_button = self.xml.get_object("delete_button")

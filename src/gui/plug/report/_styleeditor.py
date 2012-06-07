@@ -55,7 +55,7 @@ from gen.plug.docgen import (StyleSheet, FONT_SERIF, FONT_SANS_SERIF,
             PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT,  
             PARA_ALIGN_JUSTIFY) 
 from gui.listmodel import ListModel
-from gui.managedwindow import ManagedWindow
+from gui.managedwindow import set_titles
 from gui.glade import Glade
 
 #------------------------------------------------------------------------
@@ -84,9 +84,8 @@ class StyleListDisplay(object):
         self.top = Glade(toplevel='styles')
         self.window = self.top.toplevel
 
-        ManagedWindow.set_titles( self.window, 
-                                  self.top.get_object('title'), 
-                                  _('Document Styles')         )
+        set_titles(self.window, self.top.get_object('title'), 
+                   _('Document Styles'))
                                              
         self.top.connect_signals({
             "destroy_passed_object" : self.__close,
@@ -211,9 +210,8 @@ class StyleEditor(object):
         self.pname = self.top.get_object('pname')
         self.pdescription = self.top.get_object('pdescription')
 
-        ManagedWindow.set_titles( self.window, 
-                                  self.top.get_object('title'), 
-                                  _('Style editor'))
+        set_titles(self.window, self.top.get_object('title'), 
+                   _('Style editor'))
         self.top.get_object("label6").set_text(_("point size|pt"))
         
         titles = [(_('Paragraph'), 0, 130)]
