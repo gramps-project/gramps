@@ -33,7 +33,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._rule import Rule
+from gen.filters.rules import Rule
 
 #-------------------------------------------------------------------------
 # "People with less than 2 parents"

@@ -37,7 +37,7 @@ except:
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._rule import Rule
+from gen.filters.rules import Rule
 
 #-------------------------------------------------------------------------
 #

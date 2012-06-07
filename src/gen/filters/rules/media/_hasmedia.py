@@ -33,7 +33,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gen.datehandler
-from gen.filters.rules._rule import Rule
+from gen.filters.rules import Rule
 
 #-------------------------------------------------------------------------
 #

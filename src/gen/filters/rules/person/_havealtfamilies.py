@@ -32,7 +32,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._rule import Rule
+from gen.filters.rules import Rule
 from gen.lib import ChildRefType
 
 #-------------------------------------------------------------------------
