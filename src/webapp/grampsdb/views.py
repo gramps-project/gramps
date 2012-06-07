@@ -266,6 +266,7 @@ def view_list(request, view):
                          Q(place__title__icontains=search)) &
                         private
                         ) \
+                .distinct() \
                 .order_by("gramps_id")
         else:
             object_list = Event.objects.filter(private).order_by("gramps_id")
@@ -283,6 +284,7 @@ def view_list(request, view):
                         .filter((Q(father__name__surname__surname__istartswith=surname) &
                                  Q(mother__name__surname__surname__istartswith=surname))
                                 ) \
+                        .distinct() \
                         .order_by("gramps_id")
                 else: # no comma
                     object_list = Family.objects \
@@ -291,6 +293,7 @@ def view_list(request, view):
                                 Q(father__name__surname__surname__istartswith=search) |
                                 Q(mother__name__surname__surname__istartswith=search) 
                                 ) \
+                        .distinct() \
                         .order_by("gramps_id")
             else: # no search
                 object_list = Family.objects.all().order_by("gramps_id")
@@ -311,6 +314,7 @@ def view_list(request, view):
                             Q(mother__private=False) &
                             Q(father__private=False)
                             ) \
+                    .distinct() \
                     .order_by("gramps_id")
             else:
                 object_list = Family.objects \
@@ -318,6 +322,7 @@ def view_list(request, view):
                             Q(mother__private=False) &
                             Q(father__private=False)
                             ) \
+                    .distinct() \
                     .order_by("gramps_id")
         view_template = 'view_families.html'
         total = Family.objects.all().count()
@@ -334,6 +339,7 @@ def view_list(request, view):
                 .filter(Q(gramps_id__icontains=search) &
                         private
                         ) \
+                .distinct() \
                 .order_by("gramps_id")
         else:
             object_list = Media.objects.filter(private).order_by("gramps_id")
@@ -354,6 +360,7 @@ def view_list(request, view):
                          Q(text__icontains=search)) &
                         private
                         ) \
+                .distinct() \
                 .order_by("gramps_id")
         else:
             object_list = Note.objects.filter(private).order_by("gramps_id")
@@ -367,6 +374,7 @@ def view_list(request, view):
                 query = build_person_query(request, search, protect=False)
                 object_list = Name.objects \
                     .filter(query) \
+                    .distinct() \
                     .order_by("surname__surname", "first_name")
             else:
                 object_list = Name.objects.all().order_by("surname__surname", "first_name")
@@ -377,12 +385,14 @@ def view_list(request, view):
                 query = build_person_query(request, search, protect=True)
                 object_list = Name.objects \
                     .filter(query) \
+                    .distinct() \
                     .order_by("surname__surname", "private", "person__probably_alive", "first_name")
             else:
                 object_list = Name.objects \
                                 .select_related() \
                                 .filter(Q(private=False) &
                                         Q(person__private=False)) \
+                                .distinct() \
                                 .order_by("surname__surname", "private", "person__probably_alive", "first_name")
             # END NON-AUTHENTICATED users
         view_template = 'view_people.html'
@@ -402,6 +412,7 @@ def view_list(request, view):
                          ) &
                         private
                         ) \
+                .distinct() \
                 .order_by("gramps_id")
         else:
             object_list = Place.objects.filter(private).order_by("gramps_id")
@@ -423,6 +434,7 @@ def view_list(request, view):
                          ) &
                         private
                         ) \
+                .distinct() \
                 .order_by("gramps_id")
         else:
             object_list = Repository.objects.filter(private).order_by("gramps_id")
@@ -441,6 +453,7 @@ def view_list(request, view):
                 .filter(Q(gramps_id__icontains=search) &
                         private
                         ) \
+                .distinct() \
                 .order_by("gramps_id")
         else:
             object_list = Citation.objects.filter(private).order_by("gramps_id")
@@ -459,6 +472,7 @@ def view_list(request, view):
                 .filter(Q(gramps_id__icontains=search) &
                         private
                         ) \
+                .distinct() \
                 .order_by("gramps_id")
         else:
             object_list = Source.objects.filter(private).order_by("gramps_id")
@@ -470,6 +484,7 @@ def view_list(request, view):
             search = request.GET.get("search")
             object_list = Tag.objects \
                 .filter(Q(name__icontains=search)) \
+                .distinct() \
                 .order_by("name")
         else:
             object_list = Tag.objects.order_by("name")
@@ -482,10 +497,12 @@ def view_list(request, view):
             if request.user.is_superuser:
                 object_list = Report.objects \
                     .filter(Q(name__icontains=search)) \
+                    .distinct() \
                     .order_by("name")
             else:
                 object_list = Report.objects \
                     .filter(Q(name__icontains=search) & ~Q(report_type="import")) \
+                    .distinct() \
                     .order_by("name")
         else:
             if request.user.is_superuser:
@@ -682,15 +699,18 @@ def build_person_query(request, search, protect):
         query = Q()
         if protect:
             query &= (Q(private=False) & Q(person__private=False))
-            terms = ["surname", "given"]
-        else:
             terms = ["surname"]
+        else:
+            terms = ["surname", "given"]
         for term in [term.strip() for term in search.split(",")]:
             if "=" in term:
                 field, value = [s.strip() for s in term.split("=")]
             else:
-                field = terms.pop(0)
-                value = term
+                if terms:
+                    field = terms.pop(0)
+                    value = term
+                else:
+                    continue
             if "." in field and not protect:
                 query &= Q(**{field.replace(".", "__"): value})
             elif field == "surname":

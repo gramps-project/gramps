@@ -76,6 +76,7 @@ util_filters = [
 
 util_tags = [
     'render',
+    'render_name',
     "get_person_from_handle", 
     "event_table",
     "name_table",
@@ -821,17 +822,21 @@ def children_table(obj, user, action, url=None, *args):
                       date_as_text(child.birth, user),
                       )
             links.append(('URL', ("/person/%s" % child.handle)))
+            count += 1
         else:
             table.row(str(count), 
                       "[%s]" % child.gramps_id,
-                      render_name(child, user),
-                      child.gender_type,
+                      render_name(child, user) if not child.private else "[Private]",
+                      child.gender_type if not child.private else "[Private]",
                       "[Private]",
                       "[Private]",
                       "[Private]",
                       )
-            links.append(('URL', ("/person/%s" % child.handle)))
-        count += 1
+            if not child.private:
+                links.append(('URL', ("/person/%s" % child.handle)))
+            else:
+                links.append((None, None))
+            count += 1
     table.links(links)
     retval += table.get_html()
     if user.is_superuser and url and action == "view":
@@ -872,30 +877,28 @@ def display_date(obj):
     else:
         return ""
 
-def render(formfield, user, action, test=False, truetext="", id=None):
+def render(formfield, user, action, id=None):
     if not user.is_authenticated():
         action = "view"
     if action == "view": # show as text
-        if (not user.is_authenticated() and not test) or user.is_authenticated():
-            fieldname = formfield.name # 'surname'
+        fieldname = formfield.name # 'surname'
+        try:
+            item = getattr(formfield.form.model, fieldname)
+            if (item.__class__.__name__ == 'ManyRelatedManager'):
+                retval = ", ".join([i.get_link() for i in item.all()])
+            else:
+                retval = str(item)
+                #### Some cleanup:
+                if retval == "True":
+                    retval = "Yes"
+                elif retval == "False":
+                    retval = "No"
+        except:
+            # name, "prefix"
             try:
-                item = getattr(formfield.form.model, fieldname)
-                if (item.__class__.__name__ == 'ManyRelatedManager'):
-                    retval = ", ".join([i.get_link() for i in item.all()])
-                else:
-                    retval = str(item)
-                    if retval == "True":
-                        retval = "Yes"
-                    elif retval == "False":
-                        retval = "No"
+                retval = str(formfield.form.data[fieldname]) 
             except:
-                # name, "prefix"
-                try:
-                    retval = str(formfield.form.data[fieldname]) 
-                except:
-                    retval = "[None]"
-        else:
-            retval = truetext
+                retval = "[None]"
     else: # show as widget
         if id != None:
             retval = formfield.as_widget(attrs={"id": id})
@@ -903,7 +906,7 @@ def render(formfield, user, action, test=False, truetext="", id=None):
             retval = formfield.as_widget()
     return retval
 
-def render_name(name, user):
+def render_name(name, user, action=None):
     """
     Given a Django or Gramps object, render the name and return.  This
     function uses authentication, privacy and probably_alive settings.

@@ -27,8 +27,6 @@ is loaded by the fixtures/initial_data.json, which is
 created by init.py.
 """
 
-_DEBUG = True
-
 from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
@@ -55,8 +53,6 @@ def get_type(the_type, data, get_or_create=False):
     elif data[0] == the_type._CUSTOM or get_or_create:
         (obj, new) = the_type.objects.get_or_create(val=data[0],
                                                     name=data[1])
-        if new and _DEBUG:
-            print "DEBUG: Made new type:", the_type, data
         return obj
     else:
         return the_type.objects.get(val=data[0])
@@ -690,6 +686,7 @@ class Name(DateObject, SecondaryObject):
             self._sanitized = True
             if self.person.probably_alive:
                 self.first_name = "[Living]"
+                self.nick = ""
                 self.call = ""
                 self.group_as = ""
                 self.title = ""

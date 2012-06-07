@@ -35,9 +35,17 @@
 </tr>
 <tr>
  <td class="ColumnAttribute">Name:</td>
+{% if user.is_authenticated or father.probably_alive %}
  <td class="ColumnValue" id="data">{% render familyform.father user action %}</td>
+{% else %}
+ <td class="ColumnValue" id="data">{{family.father|render_name:user}}</td>
+{% endif %}
  <td class="ColumnAttribute">Name:</td>
+{% if user.is_authenticated or mother.probably_alive %}
  <td class="ColumnValue" id="data">{% render familyform.mother user action %}</td>
+{% else %}
+ <td class="ColumnValue" id="data">{{family.mother|render_name:user}}</td>
+{% endif %}
 </tr>
 {% if user.is_authenticated or not familyform.father.probably_alive %}
 <tr>
