@@ -48,7 +48,7 @@ from gen.display.name import displayer as name_displayer
 from gui.managedwindow import ManagedWindow
 from gui.views.treemodels import PeopleBaseModel, PersonTreeModel
 from libpersonview import BasePersonView
-import Relationship
+from gen.relationship import get_relationship_calculator
 
 from gui.dialog import ErrorDialog
 from gui.plug import tool
@@ -93,7 +93,7 @@ class RelCalc(tool.Tool, ManagedWindow):
                 self.colord.append((0, col, size))
 
         self.dbstate = dbstate
-        self.relationship = Relationship.get_relationship_calculator()
+        self.relationship = get_relationship_calculator()
         self.relationship.connect_db_signals(dbstate)
 
         self.glade = Glade()

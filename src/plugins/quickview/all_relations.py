@@ -33,7 +33,7 @@ Display a person's relations to the home person
 
 from gen.simple import SimpleAccess, SimpleDoc
 from gen.ggettext import gettext as _
-import Relationship
+from gen.relationship import get_relationship_calculator
 
 # define the formatting string once as a constant. Since this is reused
 
@@ -60,7 +60,7 @@ class AllRelReport():
         self.person   = person
         self.sdb = SimpleAccess(database)
         self.sdoc = SimpleDoc(document)
-        self.rel_class = Relationship.get_relationship_calculator()
+        self.rel_class = get_relationship_calculator()
 
         self.msg_list = []
 

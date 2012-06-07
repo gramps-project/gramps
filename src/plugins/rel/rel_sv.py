@@ -23,7 +23,7 @@
 
 # $Id$
 
-# Written by Alex Roitman, largely based on Relationship.py by Don Allingham
+# Written by Alex Roitman, largely based on relationship.py by Don Allingham
 # and on valuable input from Jens Arvidsson
 # Updated to 3.0 by Peter Landgren 2007-12-30.
 #
@@ -37,7 +37,7 @@ Swedish-specific definitions of relationships
 #-------------------------------------------------------------------------
 
 import gen.lib
-import Relationship
+import gen.relationship
 
 #-------------------------------------------------------------------------
 
@@ -67,7 +67,7 @@ u"artonde", u"nittonde", u"tjugonde" ]
 #
 #
 #-------------------------------------------------------------------------
-class RelationshipCalculator(Relationship.RelationshipCalculator):
+class RelationshipCalculator(gen.relationship.RelationshipCalculator):
     """
     RelationshipCalculator Class
     """
@@ -80,7 +80,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         
 
     def __init__(self):
-        Relationship.RelationshipCalculator.__init__(self)
+        gen.relationship.RelationshipCalculator.__init__(self)
 
     def _get_cousin(self, level, step, inlaw):
         if level > len(_cousin_level)-1:
@@ -540,6 +540,6 @@ if __name__ == "__main__":
         rel_xx.py module, and test your work with:
         python src/plugins/rel/rel_xx.py
     """
-    from Relationship import test
+    from gen.relationship import test
     RC = RelationshipCalculator()
     test(RC, True)

@@ -25,8 +25,8 @@
 # Rewritten in 2008 for 3.x version by Łukasz Rymarczyk
 # Written in 2007 by Piotr Czubaszek, largely based on rel_de.py by Alex Roitman.
 
-# PL: Po objaśnienia oznaczania relacji zobacz Relationship.py
-# EN: For more information see Relationship.py
+# PL: Po objaśnienia oznaczania relacji zobacz relationship.py
+# EN: For more information see relationship.py
 #
 """
 Polish-specific definitions of relationships.
@@ -38,7 +38,7 @@ Polish-specific definitions of relationships.
 #-------------------------------------------------------------------------
 
 import gen.lib
-import Relationship
+import gen.relationship
 
 #-------------------------------------------------------------------------
 
@@ -251,13 +251,13 @@ _niece_level_of_sisters_daughter = [ "", "siostrzenica",
 #
 #-------------------------------------------------------------------------
 
-class RelationshipCalculator(Relationship.RelationshipCalculator):
+class RelationshipCalculator(gen.relationship.RelationshipCalculator):
     """
     RelationshipCalculator Class
     """
    
     def __init__(self):
-        Relationship.RelationshipCalculator.__init__(self)    
+        gen.relationship.RelationshipCalculator.__init__(self)    
         
     def get_son(self, level, inlaw=''):
         """
@@ -923,6 +923,6 @@ if __name__ == "__main__":
         rel_xx.py module, and test your work with:
         python src/plugins/rel/rel_xx.py
     """
-    from Relationship import test
+    from gen.relationship import test
     RC = RelationshipCalculator()
     test(RC, True)

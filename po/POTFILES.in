@@ -9,7 +9,6 @@ src/ExportOptions.py
 src/gramps.py
 src/LdsUtils.py
 src/PlaceUtils.py
-src/Relationship.py
 src/Reorder.py
 src/Spell.py
 src/ToolTips.py
@@ -22,6 +21,9 @@ src/cli/argparser.py
 src/cli/clidbman.py
 src/cli/grampscli.py
 src/cli/plug/__init__.py
+
+# gen
+src/gen/relationship.py
 
 # gen db API
 src/gen/db/base.py

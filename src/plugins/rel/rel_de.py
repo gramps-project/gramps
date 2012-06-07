@@ -23,7 +23,7 @@
 
 # $Id$
 
-# Original version written by Alex Roitman, largely based on Relationship.py
+# Original version written by Alex Roitman, largely based on relationship.py
 # by Don Allingham and on valuable input from Dr. Martin Senftleben
 # Modified by Joachim Breitner to not use „Großcousine“, in accordance with
 # http://de.wikipedia.org/wiki/Verwandtschaftsbeziehung
@@ -47,7 +47,7 @@ import re
 #-------------------------------------------------------------------------
 
 import gen.lib
-import Relationship
+import gen.relationship
 
 #-------------------------------------------------------------------------
 #
@@ -127,12 +127,12 @@ _schwippschwager = {
 #
 #-------------------------------------------------------------------------
 
-class RelationshipCalculator(Relationship.RelationshipCalculator):
+class RelationshipCalculator(gen.relationship.RelationshipCalculator):
     """
     RelationshipCalculator Class
     """
     def __init__(self):
-        Relationship.RelationshipCalculator.__init__(self)
+        gen.relationship.RelationshipCalculator.__init__(self)
 
     def _make_roman(self, num):
         roman = ''
@@ -300,6 +300,6 @@ if __name__ == "__main__":
         rel_xx.py module, and test your work with:
         python src/plugins/rel/rel_xx.py
     """
-    from Relationship import test
+    from gen.relationship import test
     rc = RelationshipCalculator()
     test(rc, True)

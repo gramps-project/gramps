@@ -40,7 +40,7 @@ import datetime, time
 from gen.display.name import displayer as global_name_display
 from gen.errors import ReportError
 from gen.lib import NameType, EventType, Name, Date, Person
-import Relationship
+from gen.relationship import get_relationship_calculator
 from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                              FONT_SERIF, PARA_ALIGN_RIGHT,
                              PARA_ALIGN_LEFT, PARA_ALIGN_CENTER)
@@ -218,7 +218,7 @@ class CalendarReport(Report):
                                    self._user.step_progress)
         self._user.end_progress()
         
-        rel_calc = Relationship.get_relationship_calculator()
+        rel_calc = get_relationship_calculator()
 
         self._user.begin_progress(_('Birthday and Anniversary Report'), 
                                   _('Reading database...'), len(people))

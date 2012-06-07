@@ -23,7 +23,7 @@
 
 # $Id$
 
-# Written by Alex Roitman, largely based on Relationship.py by Don Allingham.
+# Written by Alex Roitman, largely based on relationship.py by Don Allingham.
 """
 Russian-specific definitions of relationships
 """
@@ -34,7 +34,7 @@ Russian-specific definitions of relationships
 #-------------------------------------------------------------------------
 
 import gen.lib
-import Relationship
+import gen.relationship
 
 #-------------------------------------------------------------------------
 
@@ -299,13 +299,13 @@ _nephews_nieces_level = [
 #
 #
 #-------------------------------------------------------------------------
-class RelationshipCalculator(Relationship.RelationshipCalculator):
+class RelationshipCalculator(gen.relationship.RelationshipCalculator):
     """
     RelationshipCalculator Class
     """
 
     def __init__(self):
-        Relationship.RelationshipCalculator.__init__(self)
+        gen.relationship.RelationshipCalculator.__init__(self)
 
     def get_parents(self, level):
         if level > len(_parents_level)-1:
@@ -502,6 +502,6 @@ if __name__ == "__main__":
         rel_xx.py module, and test your work with:
         python src/plugins/rel/rel_xx.py
     """
-    from Relationship import test
+    from gen.relationship import test
     RC = RelationshipCalculator()
     test(RC, True)

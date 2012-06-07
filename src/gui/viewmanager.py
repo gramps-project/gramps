@@ -76,7 +76,7 @@ from gui.plug import (PluginWindows, ReportPluginDialog, ToolPluginDialog)
 from gui.plug.report import report
 from gen.plug.utils import version_str_to_tup, load_addon_file
 from gui.pluginmanager import GuiPluginManager
-import Relationship
+from gen.relationship import get_relationship_calculator
 from gui.displaystate import DisplayState, RecentDocsMenu
 import const
 import constfunc
@@ -332,7 +332,7 @@ class ViewManager(CLIManager):
 
         self.do_reg_plugins(self.dbstate, self.uistate)
         #plugins loaded now set relationship class
-        self.rel_class = Relationship.get_relationship_calculator()
+        self.rel_class = get_relationship_calculator()
         self.uistate.set_relationship_class()
         # Need to call after plugins have been registered
         self.check_for_updates()

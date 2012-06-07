@@ -59,7 +59,7 @@ from gui.views.navigationview import NavigationView
 import config
 from gen.display.name import displayer as name_displayer
 from gui.managedwindow import GrampsWindowManager
-import Relationship
+from gen.relationship import get_relationship_calculator
 from gui.glade import Glade
 from Utils import navigation_label
 
@@ -466,7 +466,7 @@ class DisplayState(gen.utils.Callback):
         """method that rebinds the relationship to the current rel calc
            Should be called after load or reload of plugins
         """
-        self.relationship = Relationship.get_relationship_calculator(reinit=True)
+        self.relationship = get_relationship_calculator(reinit=True)
 
     def set_gendepth(self, value):
         """ Set the generations we search back for showing relationships

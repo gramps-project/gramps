@@ -39,7 +39,7 @@ not explicitly in the dictionary, but "netastre" is.
 #-------------------------------------------------------------------------
 
 import gen.lib
-import Relationship
+import gen.relationship
 
 #-------------------------------------------------------------------------
 
@@ -807,7 +807,7 @@ def _get_neboda_valenciana(levela, levelb, inlaw="", step=""):
         stramplada = _LEVEL_NAME_F[amplada]
     return retorn+u" valenciana "+ stramplada+inlaw
 
-class RelationshipCalculator(Relationship.RelationshipCalculator):
+class RelationshipCalculator(gen.relationship.RelationshipCalculator):
     """
     RelationshipCalculator Class
     """
@@ -815,7 +815,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
     INLAW = u' polític'
 
     def __init__(self):
-        Relationship.RelationshipCalculator.__init__(self)
+        gen.relationship.RelationshipCalculator.__init__(self)
 
 # kinship report
 
@@ -824,7 +824,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                                        only_birth=True,
                                        in_law_a=False, in_law_b=False):
         """
-        see Relationship.py
+        see relationship.py
         """
 
         rel_str = u"parents llunyans"
@@ -906,7 +906,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         in_law_b=False,
         ):
         """
-       see Relationship.py
+       see relationship.py
         """
 
         if only_birth:
@@ -1042,7 +1042,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
     def get_sibling_relationship_string(self, sib_type, gender_a,
             gender_b, in_law_a=False, in_law_b=False):
         """
-        voir Relationship.py
+        voir relationship.py
         """
 
         if in_law_a or in_law_b:
@@ -1114,6 +1114,6 @@ if __name__ == "__main__":
     #   rel_xx.py module, and test your work with:
     #   python src/plugins/rel/rel_xx.py
     #""
-    from Relationship import test
+    from gen.relationship import test
     RC = RelationshipCalculator()
     test(RC, True)

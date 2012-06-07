@@ -31,7 +31,7 @@ Slovak-specific classes for relationships.
 #-------------------------------------------------------------------------
 
 import gen.lib
-import Relationship
+import gen.relationship
 
 #-------------------------------------------------------------------------
 #
@@ -107,7 +107,7 @@ _nephews_nieces_level = [ "", "synovci a netere",
 #
 #-------------------------------------------------------------------------
 
-class RelationshipCalculator(Relationship.RelationshipCalculator):
+class RelationshipCalculator(gen.relationship.RelationshipCalculator):
     """
     RelationshipCalculator Class
     """
@@ -116,7 +116,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 
 
     def __init__(self):
-        Relationship.RelationshipCalculator.__init__(self)
+        gen.relationship.RelationshipCalculator.__init__(self)
 
 
 # od aktívnej osoby vzhľadom k spoločnému predkovi Ga=[level] 
@@ -232,7 +232,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                                        only_birth=True,
                                        in_law_a=False, in_law_b=False):
         """
-        see Relationship.py
+        see relationship.py
         """
         rel_str = "vzdialení príbuzní"
         gen = " z %s-ej generácie"
@@ -324,7 +324,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                                        only_birth=True, 
                                        in_law_a=False, in_law_b=False):
         """
-        see Relationship.py
+        see relationship.py
         """
         if only_birth:
             step = ''
@@ -591,6 +591,6 @@ if __name__ == "__main__":
         rel_xx.py module, and test your work with:
         python src/plugins/rel/rel_xx.py
     """
-    from Relationship import test
+    from gen.relationship import test
     RC = RelationshipCalculator()
     test(RC, True)

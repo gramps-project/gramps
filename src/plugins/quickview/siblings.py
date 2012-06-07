@@ -28,7 +28,7 @@ Display a person's siblings in a report window
 
 from gen.simple import SimpleAccess, SimpleDoc
 from gui.plug.quick import QuickTable
-import Relationship
+from gen.relationship import get_relationship_calculator
 from gen.ggettext import gettext as _
 
 def run(database, document, person):
@@ -40,7 +40,7 @@ def run(database, document, person):
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
     stab = QuickTable(sdb)
-    rel_class = Relationship.get_relationship_calculator()
+    rel_class = get_relationship_calculator()
 
     # display the title
     # feature request 2356: avoid genitive form

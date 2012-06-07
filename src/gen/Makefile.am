@@ -26,6 +26,7 @@ pkgpython_PYTHON = \
 	errors.py \
 	ggettext.py \
 	recentfiles.py \
+	relationship.py \
 	updatecallback.py \
 	user.py
 

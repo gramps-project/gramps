@@ -40,7 +40,7 @@ from gen.ggettext import gettext as _
 #------------------------------------------------------------------------
 from gen.display.name import displayer as global_name_display
 from gen.errors import ReportError
-import Relationship
+from gen.relationship import get_relationship_calculator
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                     FONT_SANS_SERIF, INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from gen.plug.menu import (NumberOption, BooleanOption, PersonOption,
@@ -100,7 +100,7 @@ class KinshipReport(Report):
             self._name_display.set_default_format(name_format)
 
         self.__db = database
-        self.rel_calc = Relationship.get_relationship_calculator()
+        self.rel_calc = get_relationship_calculator()
 
         self.kinship_map = {}
         self.spouse_map = {}

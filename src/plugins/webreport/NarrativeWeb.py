@@ -108,7 +108,7 @@ from libgedcom import make_gedcom_date
 from PlaceUtils import conv_lat_lon
 from gui.pluginmanager import GuiPluginManager
 
-import Relationship
+from gen.relationship import get_relationship_calculator
 #------------------------------------------------
 # constants
 #------------------------------------------------
@@ -7025,7 +7025,7 @@ class NavWebReport(Report):
         self.base_pages()
 
         # for use with discovering biological, half, and step siblings for use in display_ind_parents()...
-        rel_class = Relationship.get_relationship_calculator()
+        rel_class = get_relationship_calculator()
 
         # build classes IndividualListPage and IndividualPage
         self.person_pages(ind_list, place_list, source_list, place_lat_long, rel_class)

@@ -38,7 +38,7 @@ import time
 #------------------------------------------------------------------------
 from gen.display.name import displayer as _nd 
 from gen.errors import ReportError
-import Relationship
+from gen.relationship import get_relationship_calculator
 from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                              FONT_SERIF, PARA_ALIGN_CENTER,
                              PARA_ALIGN_LEFT, PARA_ALIGN_RIGHT)
@@ -266,7 +266,7 @@ class Calendar(Report):
                                   db.get_number_of_people())
         people = self.filter.apply(self.database, people, 
                                    self._user.step_progress)
-        rel_calc = Relationship.get_relationship_calculator()
+        rel_calc = get_relationship_calculator()
         self._user.end_progress()
 
         self._user.begin_progress(_('Calendar Report'), 

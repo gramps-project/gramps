@@ -33,7 +33,7 @@ Spanish-specific classes for relationships.
 #-------------------------------------------------------------------------
 
 import gen.lib
-import Relationship
+import gen.relationship
 
 #-------------------------------------------------------------------------
 #
@@ -118,13 +118,13 @@ _niece_level = [ "", "sobrina", "sobrina nieta", "sobrina bisnieta", ]
 #
 #
 #-------------------------------------------------------------------------
-class RelationshipCalculator(Relationship.RelationshipCalculator):
+class RelationshipCalculator(gen.relationship.RelationshipCalculator):
     """
     RelationshipCalculator Class
     """
 
     def __init__(self):
-        Relationship.RelationshipCalculator.__init__(self)
+        gen.relationship.RelationshipCalculator.__init__(self)
 
     def get_male_cousin(self, level):
         if level < len(_level_name_male):
@@ -330,6 +330,6 @@ if __name__ == "__main__":
         rel_xx.py module, and test your work with:
         python src/plugins/rel/rel_xx.py
     """
-    from Relationship import test
+    from gen.relationship import test
     RC = RelationshipCalculator()
     test(RC, True)
