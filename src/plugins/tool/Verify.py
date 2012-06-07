@@ -59,7 +59,7 @@ import gen.lib
 from gui.editors import EditPerson, EditFamily
 import Utils
 from gui.display import display_help
-from ManagedWindow from gui.managedwindow import ManagedWindow
+from gui.managedwindow import ManagedWindow
 from gen.updatecallback import UpdateCallback
 from gui.plug import tool
 from gen.ggettext import sgettext as _
