@@ -23,7 +23,7 @@
 
 # imports for import/export:
 
-import DbState
+from gen.dbstate import DbState
 from cli.grampscli import CLIManager
 from gen.plug import BasePluginManager
 import os
@@ -48,7 +48,7 @@ def import_file(db, filename, user):
     >>> import_file(DbDjango(), "/home/user/Untitled_1.ged", User())
     """
     from grampsdb.models import Person
-    dbstate = DbState.DbState()
+    dbstate = DbState()
     climanager = CLIManager(dbstate, False) # do not load db_loader
     climanager.do_reg_plugins(dbstate, None)
     pmgr = BasePluginManager.get_instance()
@@ -108,7 +108,7 @@ def export_file(db, filename, user):
 
     >>> export_file(DbDjango(), "/home/user/Untitled_1.ged", User())
     """
-    dbstate = DbState.DbState()
+    dbstate = DbState()
     climanager = CLIManager(dbstate, False) # do not load db_loader
     climanager.do_reg_plugins(dbstate, None)
     pmgr = BasePluginManager.get_instance()

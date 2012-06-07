@@ -58,7 +58,7 @@ from webapp.dbdjango import DbDjango
 #------------------------------------------------------------------------
 from gen.simple import SimpleTable, SimpleAccess, make_basic_stylesheet
 import Utils
-import DbState
+from gen.dbstate import DbState
 from gen.datehandler import displayer, parser
 from gen.lib.date import Date as GDate, Today
 import gen.lib
@@ -118,7 +118,7 @@ dp = parser.parse
 db = DbDjango()
 
 def register_plugins():
-    dbstate = DbState.DbState()
+    dbstate = DbState()
     climanager = CLIManager(dbstate, False) # don't load db
     climanager.do_reg_plugins(dbstate, None)
     pmgr = BasePluginManager.get_instance()

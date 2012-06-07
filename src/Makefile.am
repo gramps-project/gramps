@@ -18,7 +18,6 @@ gdir_PYTHON = \
 	const.py\
         constfunc.py\
 	DateEdit.py\
-	DbState.py\
 	Errors.py\
 	ExportAssistant.py\
 	ExportOptions.py\

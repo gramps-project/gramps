@@ -216,7 +216,7 @@ class WriterOptionBox(object):
         return widget
 
     def show_preview_data(self, widget):
-        from DbState import DbState
+        from gen.dbstate import DbState
         from gui.plug.quick import run_quick_report_by_name
         if widget.proxy_name == "unfiltered":
             dbstate = self.dbstate

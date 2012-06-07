@@ -205,14 +205,14 @@ class Gramps(object):
     """
 
     def __init__(self, argparser):
-        import DbState
+        from gen.dbstate import DbState
         from viewmanager import ViewManager
         from cli.arghandler import ArgHandler
         from gui.tipofday import TipOfDay
 
         register_stock_icons()
 
-        dbstate = DbState.DbState()
+        dbstate = DbState()
         self.vm = ViewManager(dbstate, config.get("interface.view-categories"))
         self.vm.init_interface()
 

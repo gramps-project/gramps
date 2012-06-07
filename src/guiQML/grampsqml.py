@@ -60,13 +60,13 @@ class GrampsQML(object):
     """
 
     def __init__(self, argparser):
-        import DbState
+        from gen.dbstate import DbState
         from guiQML.viewmanager import ViewManager
         from cli.arghandler import ArgHandler
 
         from PySide import QtGui
         self.app = QtGui.QApplication(sys.argv)
-        dbstate = DbState.DbState()
+        dbstate = DbState()
         self.vm = ViewManager(dbstate)
 
         #act based on the given arguments

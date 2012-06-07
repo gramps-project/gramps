@@ -22,6 +22,7 @@ pkgpythondir = $(datadir)/@PACKAGE@/gen
 
 pkgpython_PYTHON = \
 	__init__.py \
+	dbstate.py \
 	ggettext.py \
 	updatecallback.py \
 	user.py

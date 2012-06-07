@@ -49,7 +49,7 @@ from gen.display.name import displayer as name_displayer
 import config
 import const
 import Errors
-import DbState
+from gen.dbstate import DbState
 from gen.db import DbBsddb
 import gen.db.exceptions
 from gen.plug import BasePluginManager
@@ -313,7 +313,7 @@ def startcli(errors, argparser):
         sys.exit(1)
     
     #we need to keep track of the db state
-    dbstate = DbState.DbState()
+    dbstate = DbState()
     #we need a manager for the CLI session
     climanager = CLIManager(dbstate, True)
     #load the plugins

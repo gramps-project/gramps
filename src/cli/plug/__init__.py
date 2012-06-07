@@ -60,7 +60,7 @@ from gen.plug.report import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
                              CATEGORY_GRAPHVIZ, CATEGORY_CODE)
 from gen.plug.report._paper import paper_sizes
 import const
-import DbState
+from gen.dbstate import DbState
 from cli.grampscli import CLIManager
 import cli.user
 
@@ -627,7 +627,7 @@ def run_report(db, name, **options_str_dict):
        options and values used in  clr.option_class.options_dict
        filename in clr.option_class.get_output()
     """
-    dbstate = DbState.DbState()
+    dbstate = DbState()
     climanager = CLIManager(dbstate, False) # don't load db
     climanager.do_reg_plugins(dbstate, None)
     pmgr = BasePluginManager.get_instance()
