@@ -16,6 +16,7 @@ pkgpython_PYTHON = \
 	editattribute.py \
 	editchildref.py \
 	editcitation.py \
+	editdate.py \
 	editevent.py \
 	editeventref.py \
 	editfamily.py \

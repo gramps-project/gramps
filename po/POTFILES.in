@@ -3,7 +3,6 @@
 #   Python files
 #
 src/const.py
-src/DateEdit.py
 src/ExportAssistant.py
 src/ExportOptions.py
 src/gramps.py
@@ -350,6 +349,7 @@ src/gui/editors/editaddress.py
 src/gui/editors/editattribute.py
 src/gui/editors/editchildref.py
 src/gui/editors/editcitation.py
+src/gui/editors/editdate.py
 src/gui/editors/editevent.py
 src/gui/editors/editeventref.py
 src/gui/editors/editfamily.py

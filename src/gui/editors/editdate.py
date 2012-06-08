@@ -24,13 +24,13 @@
 """
 Date editing module for GRAMPS. 
 
-The DateEdit.DateEdit provides visual feedback to the user via a pixamp
+The EditDate provides visual feedback to the user via a pixamp
 to indicate if the associated GtkEntry box contains a valid date. Green
 means complete and regular date. Yellow means a valid, but not a regular date.
 Red means that the date is not valid, and will be viewed as a text string
 instead of a date.
 
-The DateEdit.DateEditor provides a dialog in which the date can be 
+The DateEditor provides a dialog in which the date can be 
 unambiguously built using UI controls such as menus and spin buttons.
 """
 
@@ -47,7 +47,7 @@ unambiguously built using UI controls such as menus and spin buttons.
 #
 #-------------------------------------------------------------------------
 import logging
-__LOG = logging.getLogger(".DateEdit")
+__LOG = logging.getLogger(".EditDate")
 
 #-------------------------------------------------------------------------
 #
@@ -62,12 +62,11 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import sgettext as _
-from gen.lib.date import Date, NextYear
+from gen.lib.date import Date
 import gen.datehandler
 import const
 from gui.display import display_help
 from gui.managedwindow import ManagedWindow
-from gen.errors import ValidationError
 from gui.glade import Glade
 
 #-------------------------------------------------------------------------
@@ -103,83 +102,10 @@ WIKI_HELP_SEC = _('manual|Editing_Dates')
 
 #-------------------------------------------------------------------------
 #
-# DateEdit
+# EditDate
 #
 #-------------------------------------------------------------------------
-class DateEdit(object):
-    """Class that associates a pixmap with a text widget, providing visual
-    feedback that indicates if the text widget contains a valid date"""
-
-    def __init__(self, date_obj, text_obj, button_obj, uistate, track):
-        """
-        Create a connection between the date_obj, text_obj and the pixmap_obj.
-        Assigns callbacks to parse and change date when the text
-        in text_obj is changed, and to invoke Date Editor when the LED
-        button_obj is pressed. 
-        """
-        self.uistate = uistate
-        self.track = track
-        self.date_obj = date_obj
-        self.text_obj = text_obj
-        self.button_obj = button_obj
-
-        image = gtk.Image()
-        image.set_from_stock('gramps-date-edit', gtk.ICON_SIZE_BUTTON)
-        self.button_obj.set_image(image)
-        self.button_obj.set_relief(gtk.RELIEF_NORMAL)
-        self.pixmap_obj = button_obj.get_child()
-        
-        self.text_obj.connect('validate', self.validate)
-        self.text_obj.connect('content-changed', self.set_date)
-        self.button_obj.connect('clicked', self.invoke_date_editor)
-        
-        self.text_obj.set_text(gen.datehandler.displayer.display(self.date_obj))
-        self.text_obj.validate()
-        
-    def set_date(self, widget):
-        """
-        Parse date from text entry to date object
-        """
-        date = gen.datehandler.parser.parse(unicode(self.text_obj.get_text()))
-        self.date_obj.copy(date)
-        
-    def validate(self, widget, data):
-        """
-        Validate current date in text entry
-        """
-        # if text could not be parsed it is assumed invalid
-        if self.date_obj.get_modifier() == Date.MOD_TEXTONLY:
-            return ValidationError(_('Bad Date'))
-        elif (self.date_obj.to_calendar(calendar_name=Date.CAL_GREGORIAN) >>
-              NextYear()):
-            return ValidationError(_('Date more than one year in the future'))
-
-    def invoke_date_editor(self, obj):
-        """
-        Invokes Date Editor dialog when the user clicks the Calendar button.
-        If date was in fact built, sets the date_obj to the newly built
-        date.
-        """
-        date_dialog = DateEditorDialog(self.date_obj, self.uistate, self.track)
-        the_date = date_dialog.return_date
-        self.update_after_editor(the_date)
-
-    def update_after_editor(self, date_obj):
-        """
-        Update text entry and validate it
-        """
-        if date_obj:
-            # first we set the text entry, that emits 'content-changed'
-            # signal thus the date object gets updated too
-            self.text_obj.set_text(gen.datehandler.displayer.display(date_obj))
-            self.text_obj.validate()
-        
-#-------------------------------------------------------------------------
-#
-# DateEditorDialog
-#
-#-------------------------------------------------------------------------
-class DateEditorDialog(ManagedWindow):
+class EditDate(ManagedWindow):
     """
     Dialog allowing to build the date precisely, to correct possible 
     limitations of parsing and/or underlying structure of Date.
@@ -286,8 +212,8 @@ class DateEditorDialog(ManagedWindow):
                 break
             else:
                 if response == gtk.RESPONSE_OK:
-                    (the_quality, the_modifier, the_calendar,
-                     the_value, the_text, the_newyear) = self.build_date_from_ui()
+                    (the_quality, the_modifier, the_calendar, the_value, 
+                     the_text, the_newyear) = self.build_date_from_ui()
                     self.return_date = Date(self.date)
                     self.return_date.set(
                         quality=the_quality,

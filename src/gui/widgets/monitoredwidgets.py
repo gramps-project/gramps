@@ -52,8 +52,10 @@ import pango
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
 import AutoComp
-import DateEdit
 from gui.widgets.tageditor import TagEditor
+import gen.datehandler
+from gen.lib.date import Date, NextYear
+from gen.errors import ValidationError
 
 #-------------------------------------------------------------------------
 #
@@ -592,13 +594,77 @@ class MonitoredStrMenu(object):
 #
 #-------------------------------------------------------------------------
 class MonitoredDate(object):
-
+    """
+    Class that associates a pixmap with a text widget, providing visual
+    feedback that indicates if the text widget contains a valid date.
+    """
     def __init__(self, field, button, value, uistate, track, readonly=False):
-        self.date = value
-        self.date_check = DateEdit.DateEdit(
-            self.date, field, button, uistate, track)
-        field.set_editable(not readonly)
-        button.set_sensitive(not readonly)
+        """
+        Create a connection between the date_obj, text_obj and the pixmap_obj.
+        Assigns callbacks to parse and change date when the text
+        in text_obj is changed, and to invoke Date Editor when the LED
+        button_obj is pressed. 
+        """
+        self.uistate = uistate
+        self.track = track
+        self.date_obj = value
+        self.text_obj = field
+        self.button_obj = button
+
+        image = gtk.Image()
+        image.set_from_stock('gramps-date-edit', gtk.ICON_SIZE_BUTTON)
+        self.button_obj.set_image(image)
+        self.button_obj.set_relief(gtk.RELIEF_NORMAL)
+        self.pixmap_obj = self.button_obj.get_child()
+        
+        self.text_obj.connect('validate', self.validate)
+        self.text_obj.connect('content-changed', self.set_date)
+        self.button_obj.connect('clicked', self.invoke_date_editor)
+        
+        self.text_obj.set_text(gen.datehandler.displayer.display(self.date_obj))
+        self.text_obj.validate()
+
+        self.text_obj.set_editable(not readonly)
+        self.button_obj.set_sensitive(not readonly)
+        
+    def set_date(self, widget):
+        """
+        Parse date from text entry to date object
+        """
+        date = gen.datehandler.parser.parse(unicode(self.text_obj.get_text()))
+        self.date_obj.copy(date)
+        
+    def validate(self, widget, data):
+        """
+        Validate current date in text entry
+        """
+        # if text could not be parsed it is assumed invalid
+        if self.date_obj.get_modifier() == Date.MOD_TEXTONLY:
+            return ValidationError(_('Bad Date'))
+        elif (self.date_obj.to_calendar(calendar_name=Date.CAL_GREGORIAN) >>
+              NextYear()):
+            return ValidationError(_('Date more than one year in the future'))
+
+    def invoke_date_editor(self, obj):
+        """
+        Invokes Date Editor dialog when the user clicks the Calendar button.
+        If date was in fact built, sets the date_obj to the newly built
+        date.
+        """
+        from gui.editors import EditDate
+        date_dialog = EditDate(self.date_obj, self.uistate, self.track)
+        the_date = date_dialog.return_date
+        self.update_after_editor(the_date)
+
+    def update_after_editor(self, date_obj):
+        """
+        Update text entry and validate it
+        """
+        if date_obj:
+            # first we set the text entry, that emits 'content-changed'
+            # signal thus the date object gets updated too
+            self.text_obj.set_text(gen.datehandler.displayer.display(date_obj))
+            self.text_obj.validate()
 
 #-------------------------------------------------------------------------
 #

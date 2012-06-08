@@ -26,6 +26,7 @@ from editaddress import EditAddress
 from editattribute import EditAttribute, EditFamilyAttribute
 from editchildref import EditChildRef
 from editcitation import EditCitation, DeleteCitationQuery
+from editdate import EditDate
 from editevent import EditEvent, DeleteEventQuery
 from editeventref import EditEventRef, EditFamilyEventRef
 from editfamily import EditFamily
