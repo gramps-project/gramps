@@ -7,7 +7,6 @@
 src/AutoComp.py
 src/ImgManip.py
 src/Sort.py
-src/soundex.py
 src/TreeTips.py
 
 # cli
@@ -18,6 +17,7 @@ src/cli/user.py
 src/gen/errors.py
 src/gen/__init__.py
 src/gen/recentfiles.py
+src/gen/soundex.py
 src/gen/updatecallback.py
 src/gen/user.py
 

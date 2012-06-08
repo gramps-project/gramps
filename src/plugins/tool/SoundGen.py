@@ -30,7 +30,7 @@
 #
 #------------------------------------------------------------------------
 import const
-import soundex
+from gen.soundex import soundex
 from gui.display import display_help
 from gui.managedwindow import ManagedWindow
 import AutoComp
@@ -90,9 +90,9 @@ class SoundGen(tool.Tool, ManagedWindow):
             n = person.get_primary_name().get_surname()
             self.name.set_text(n)
             try:
-                se_text = soundex.soundex(n)
+                se_text = soundex(n)
             except UnicodeEncodeError:
-                se_text = soundex.soundex('')
+                se_text = soundex('')
             self.value.set_text(se_text)
         else:
             self.name.set_text("")
@@ -108,9 +108,9 @@ class SoundGen(tool.Tool, ManagedWindow):
 
     def on_apply_clicked(self, obj):
         try:
-            se_text = soundex.soundex(unicode(obj.get_text()))
+            se_text = soundex(unicode(obj.get_text()))
         except UnicodeEncodeError:
-            se_text = soundex.soundex('')
+            se_text = soundex('')
         self.value.set_text(se_text)
 
 #------------------------------------------------------------------------

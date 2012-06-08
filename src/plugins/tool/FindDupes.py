@@ -40,7 +40,7 @@ import const
 import gen.lib
 from gui.utils import ProgressMeter
 from gui.plug import tool
-import soundex
+from gen.soundex import soundex, compare
 from gen.display.name import displayer as name_displayer
 from gui.dialog import OkDialog
 from gui.listmodel import ListModel
@@ -250,7 +250,7 @@ class Merge(tool.Tool,ManagedWindow):
     def gen_key(self, val):
         if self.use_soundex:
             try:
-                return soundex.soundex(val)
+                return soundex(val)
             except UnicodeEncodeError:
                 return val
         else:
@@ -401,7 +401,7 @@ class Merge(tool.Tool,ManagedWindow):
     def name_compare(self, s1, s2):
         if self.use_soundex:
             try:
-                return soundex.compare(s1,s2)
+                return compare(s1,s2)
             except UnicodeEncodeError:
                 return s1 == s2
         else:

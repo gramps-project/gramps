@@ -19,7 +19,7 @@ dist_pkgdata_DATA = \
 	addmedia.glade \
 	dialog.glade \
 	configure.glade \
-	dateedit.glade \
+	editdate.glade \
 	editsource.glade \
 	editcitation.glade \
 	styleeditor.glade \

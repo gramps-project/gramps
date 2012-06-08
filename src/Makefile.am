@@ -22,7 +22,6 @@ gdir_PYTHON = \
 	LdsUtils.py \
 	MacTransUtils.py\
 	Sort.py\
-	soundex.py\
 	Spell.py\
 	ToolTips.py\
 	TransUtils.py\
