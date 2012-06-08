@@ -40,7 +40,7 @@ from gen.ggettext import ngettext
 from gui.utils import ProgressMeter
 import locale
 from gui.managedwindow import ManagedWindow
-import AutoComp
+from gui.autocomp import fill_combo
 from gen.lib import EventType
 from gen.db import DbTxn
 from gui.dialog import OkDialog
@@ -80,8 +80,8 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
         etype = EventType()
         event_names = sorted(etype.get_standard_names(), key=locale.strxfrm)
         
-        AutoComp.fill_combo(self.auto1,event_names)
-        AutoComp.fill_combo(self.auto2,event_names)
+        fill_combo(self.auto1,event_names)
+        fill_combo(self.auto2,event_names)
 
         etype.set_from_xml_str(self.options.handler.options_dict['fromtype'])
         self.auto1.child.set_text(str(etype))

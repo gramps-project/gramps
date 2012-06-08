@@ -4,7 +4,6 @@
 #
 
 #src
-src/AutoComp.py
 src/ImgManip.py
 
 # cli
@@ -221,6 +220,7 @@ src/gen/utils/callman.py
 
 # gui - GUI code
 src/gui/__init__.py
+src/gui/autocomp.py
 src/gui/dbguielement.py
 src/gui/ddtargets.py
 src/gui/display.py

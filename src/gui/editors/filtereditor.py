@@ -65,7 +65,7 @@ from gen.errors import WindowActiveError
 from gen.ggettext import sgettext as _
 import gen.lib
 from gen.filters import rules
-import AutoComp
+from gui.autocomp import StandardCustomSelector, fill_entry
 from gui.selectors import SelectorFactory
 from gen.display.name import displayer as _nd
 import Utils
@@ -275,7 +275,7 @@ class MyPlaces(gtk.Entry):
     def __init__(self, places):
         gtk.Entry.__init__(self)
         
-        AutoComp.fill_entry(self, places)
+        fill_entry(self, places)
         self.show()
         
 #-------------------------------------------------------------------------
@@ -398,9 +398,9 @@ class MySelect(gtk.ComboBoxEntry):
     def __init__(self, type_class):
         gtk.ComboBoxEntry.__init__(self)
         self.type_class = type_class
-        self.sel = AutoComp.StandardCustomSelector(type_class._I2SMAP, self,
-                                                   type_class._CUSTOM,
-                                                   type_class._DEFAULT)
+        self.sel = StandardCustomSelector(type_class._I2SMAP, self,
+                                          type_class._CUSTOM,
+                                          type_class._DEFAULT)
         self.show()
         
     def get_text(self):

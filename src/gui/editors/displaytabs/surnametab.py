@@ -48,7 +48,6 @@ _ENTER = gtk.gdk.keyval_from_name("Enter")
 from surnamemodel import SurnameModel
 from embeddedlist import EmbeddedList
 from gui.ddtargets import DdTargets
-import AutoComp
 from gen.lib import Surname, NameOriginType
 
 #-------------------------------------------------------------------------

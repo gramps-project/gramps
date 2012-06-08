@@ -33,7 +33,7 @@ import const
 from gen.soundex import soundex
 from gui.display import display_help
 from gui.managedwindow import ManagedWindow
-import AutoComp
+from gui.autocomp import fill_combo
 from gen.ggettext import sgettext as _
 from gui.plug import tool
 from gui.glade import Glade
@@ -84,7 +84,7 @@ class SoundGen(tool.Tool, ManagedWindow):
 
         names.sort()
 
-        AutoComp.fill_combo(self.autocomp, names)
+        fill_combo(self.autocomp, names)
 
         if person:
             n = person.get_primary_name().get_surname()

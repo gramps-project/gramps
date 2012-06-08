@@ -20,6 +20,7 @@ pkgpythondir = $(datadir)/@PACKAGE@/gui
 pkgpython_PYTHON = \
 	__init__.py \
 	aboutdialog.py \
+	autocomp.py \
 	basesidebar.py \
 	clipboard.py \
 	columnorder.py \

@@ -51,7 +51,7 @@ import pango
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
-import AutoComp
+from gui.autocomp import StandardCustomSelector, fill_entry
 import gen.datehandler
 from gen.lib.date import Date, NextYear
 from gen.errors import ValidationError
@@ -116,7 +116,7 @@ class MonitoredEntry(object):
         self.obj.set_editable(not read_only)
 
         if autolist:
-            AutoComp.fill_entry(obj, autolist)
+            fill_entry(obj, autolist)
 
 ##    def destroy(self):
 ##        """
@@ -234,7 +234,7 @@ class MonitoredSpinButton(object):
         self.obj.set_editable(not read_only)
 
         if autolist:
-            AutoComp.fill_entry(obj,autolist)
+            fill_entry(obj,autolist)
 
 ##    def destroy(self):
 ##        """
@@ -380,7 +380,7 @@ class MonitoredType(object):
         else:
             default = None
 
-        self.sel = AutoComp.StandardCustomSelector(
+        self.sel = StandardCustomSelector(
             mapping, obj, custom, default, additional=custom_values)
 
         self.set_val(self.sel.get_values())
@@ -452,7 +452,7 @@ class MonitoredDataType(object):
                 if key in ignore_values and key not in (None, default):
                     del map[key]
 
-        self.sel = AutoComp.StandardCustomSelector(
+        self.sel = StandardCustomSelector(
             map, 
             obj, 
             get_val().get_custom(), 
