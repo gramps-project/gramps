@@ -50,10 +50,10 @@ WIKI_HELP_SEC = _('manual|Tags')
 
 #-------------------------------------------------------------------------
 #
-# TagEditor
+# EditTagList
 #
 #-------------------------------------------------------------------------
-class TagEditor(ManagedWindow):
+class EditTagList(ManagedWindow):
     """
     Dialog to allow the user to edit a list of tags.
     """

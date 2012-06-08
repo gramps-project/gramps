@@ -36,6 +36,7 @@ pkgpython_PYTHON = \
 	editreporef.py \
 	editsecondary.py \
 	editsource.py \
+	edittaglist.py \
 	editurl.py \
 	objectentries.py
 

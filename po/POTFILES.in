@@ -367,6 +367,7 @@ src/gui/editors/editprimary.py
 src/gui/editors/editreporef.py
 src/gui/editors/editrepository.py
 src/gui/editors/editsource.py
+src/gui/editors/edittaglist.py
 src/gui/editors/editurl.py
 
 # gui/editors/displaytabs - the GUI display tabs package
@@ -473,7 +474,6 @@ src/gui/widgets/monitoredwidgets.py
 src/gui/widgets/photo.py
 src/gui/widgets/progressdialog.py
 src/gui/widgets/styledtexteditor.py
-src/gui/widgets/tageditor.py
 src/gui/widgets/undoableentry.py
 src/gui/widgets/validatedmaskedentry.py
 

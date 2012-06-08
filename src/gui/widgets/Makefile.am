@@ -24,7 +24,6 @@ pkgpython_PYTHON = \
 	statusbar.py \
 	styledtextbuffer.py \
 	styledtexteditor.py \
-	tageditor.py \
 	toolcomboentry.py \
 	undoablebuffer.py \
 	undoableentry.py \
