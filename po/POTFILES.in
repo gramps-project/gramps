@@ -3,8 +3,6 @@
 #   Python files
 #
 src/const.py
-src/ExportAssistant.py
-src/ExportOptions.py
 src/gramps.py
 src/LdsUtils.py
 src/PlaceUtils.py
@@ -310,6 +308,10 @@ src/gen/plug/utils.py
 
 # gen docgen API
 src/gen/plug/docgen/graphdoc.py
+
+# gen.plug.export package
+src/gen/plug/export/_exportassistant.py
+src/gen/plug/export/_exportoptions.py
 
 # plugin report base API (was ReportBase)
 src/gen/plug/report/_constants.py

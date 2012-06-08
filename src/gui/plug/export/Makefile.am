@@ -1,15 +1,14 @@
-# This is the src/gui/plug/quick level Makefile for Gramps
+# This is the src/gui/plug/export level Makefile for Gramps
 # $Id$
 
-pkgpythondir = $(datadir)/@PACKAGE@/gui/plug/quick
+pkgpythondir = $(datadir)/@PACKAGE@/gui/plug/export
 
 pkgpython_PYTHON = \
 	__init__.py\
-	_quickreports.py\
-	_quicktable.py\
-	_textbufdoc.py
+	_exportassistant.py\
+	_exportoptions.py
 
-pkgpyexecdir = @pkgpyexecdir@/gui/plug/quick
+pkgpyexecdir = @pkgpyexecdir@/gui/plug/export
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo

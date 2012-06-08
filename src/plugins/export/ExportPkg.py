@@ -59,7 +59,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from ExportOptions import WriterOptionBox
+from gui.plug.export import WriterOptionBox
 from ExportXml import XmlWriter
 import Utils
 import constfunc

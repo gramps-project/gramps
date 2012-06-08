@@ -51,7 +51,7 @@ LOG = logging.getLogger(".ExportCSV")
 #-------------------------------------------------------------------------
 import gen.lib
 from gen.lib.eventroletype import EventRoleType
-from ExportOptions import WriterOptionBox
+from gui.plug.export import WriterOptionBox
 import Utils
 import gen.datehandler
 from gui.glade import Glade

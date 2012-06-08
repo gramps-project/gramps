@@ -47,7 +47,7 @@ log = logging.getLogger(".WriteGeneWeb")
 #
 #-------------------------------------------------------------------------
 import gen.lib
-from ExportOptions import WriterOptionBox
+from gui.plug.export import WriterOptionBox
 #import const
 import Utils
 from gui.glade import Glade

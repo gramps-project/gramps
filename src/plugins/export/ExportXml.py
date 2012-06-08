@@ -62,7 +62,7 @@ from gen.updatecallback import UpdateCallback
 from gen.db.exceptions import DbWriteFailure
 import const
 import constfunc
-from ExportOptions import WriterOptionBox
+from gui.plug.export import WriterOptionBox
 import libgrampsxml
 
 #-------------------------------------------------------------------------

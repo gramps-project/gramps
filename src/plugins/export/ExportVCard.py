@@ -47,7 +47,7 @@ log = logging.getLogger(".ExportVCard")
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
-from ExportOptions import WriterOptionBox
+from gui.plug.export import WriterOptionBox
 import const
 from gen.lib import Date
 from gen.lib.urltype import UrlType

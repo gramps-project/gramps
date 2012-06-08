@@ -45,7 +45,7 @@ import gen.lib
 import const
 import libgedcom
 from gen.errors import DatabaseError
-from ExportOptions import WriterOptionBox
+from gui.plug.export import WriterOptionBox
 from gen.updatecallback import UpdateCallback
 from Utils import media_path_full
 from PlaceUtils import conv_lat_lon

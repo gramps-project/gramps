@@ -1707,9 +1707,9 @@ class ViewManager(CLIManager):
         Calls the ExportAssistant to export data
         """
         if self.dbstate.db.db_is_open:
-            import ExportAssistant
+            from gui.plug.export import ExportAssistant
             try:
-                ExportAssistant.ExportAssistant(self.dbstate, self.uistate)
+                ExportAssistant(self.dbstate, self.uistate)
             except WindowActiveError:
                 return
 

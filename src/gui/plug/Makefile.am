@@ -5,6 +5,7 @@
 # If not using GNU make, then list all .py files individually
 
 SUBDIRS = \
+	export \
 	quick \
 	report
 

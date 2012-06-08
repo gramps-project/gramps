@@ -130,6 +130,7 @@ src/gui/glade/Makefile
 src/gui/logger/Makefile
 src/gui/merge/Makefile
 src/gui/plug/Makefile
+src/gui/plug/export/Makefile
 src/gui/plug/quick/Makefile
 src/gui/plug/report/Makefile
 src/gui/selectors/Makefile

@@ -17,8 +17,6 @@ gdir_PYTHON = \
 	config.py\
 	const.py\
         constfunc.py\
-	ExportAssistant.py\
-	ExportOptions.py\
 	gramps.py\
 	ImgManip.py\
 	LdsUtils.py \

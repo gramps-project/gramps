@@ -46,7 +46,7 @@ log = logging.getLogger(".WriteFtree")
 #
 #-------------------------------------------------------------------------
 import Utils
-from ExportOptions import WriterOptionBox
+from gui.plug.export import WriterOptionBox
 from gui.glade import Glade
 
 #-------------------------------------------------------------------------

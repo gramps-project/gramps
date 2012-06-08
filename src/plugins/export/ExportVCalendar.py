@@ -47,7 +47,7 @@ log = logging.getLogger(".ExportVCal")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from ExportOptions import WriterOptionBox
+from gui.plug.export import WriterOptionBox
 import Utils
 from gen.lib import Date, EventType
 from gui.glade import Glade
