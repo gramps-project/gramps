@@ -9,7 +9,6 @@ src/ExportOptions.py
 src/gramps.py
 src/LdsUtils.py
 src/PlaceUtils.py
-src/Reorder.py
 src/Spell.py
 src/ToolTips.py
 src/TransUtils.py
