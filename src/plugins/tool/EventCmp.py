@@ -60,7 +60,7 @@ from gui.display import display_help
 from gui.managedwindow import ManagedWindow
 from gen.ggettext import sgettext as _
 from gui.glade import Glade
-from gui.filtereditor import FilterEditor
+from gui.editors import FilterEditor
 
 #-------------------------------------------------------------------------
 #

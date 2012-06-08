@@ -45,6 +45,7 @@ from editsource import EditSource, DeleteSrcQuery
 from edittaglist import EditTagList
 from editurl import EditUrl
 from editlink import EditLink
+from filtereditor import FilterEditor, EditFilter
 
 # Map from gen.lib name to Editor:
 EDITORS = {

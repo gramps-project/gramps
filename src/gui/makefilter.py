@@ -22,7 +22,7 @@
 
 import time
 import gen.filters 
-from gui.filtereditor import EditFilter
+from gui.editors import EditFilter
 import const
 from gen.filters import reload_custom_filters
 from gen.ggettext import sgettext as _

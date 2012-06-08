@@ -31,7 +31,6 @@ pkgpython_PYTHON = \
 	dialog.py \
 	display.py \
 	displaystate.py \
-	filtereditor.py \
 	glade.py \
 	grampsbar.py \
 	grampsgui.py \

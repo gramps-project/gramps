@@ -333,7 +333,6 @@ src/gui/dbloader.py
 src/gui/dbman.py
 src/gui/dialog.py
 src/gui/displaystate.py
-src/gui/filtereditor.py
 src/gui/grampsbar.py
 src/gui/grampsgui.py
 src/gui/makefilter.py
@@ -369,6 +368,7 @@ src/gui/editors/editrepository.py
 src/gui/editors/editsource.py
 src/gui/editors/edittaglist.py
 src/gui/editors/editurl.py
+src/gui/editors/filtereditor.py
 
 # gui/editors/displaytabs - the GUI display tabs package
 src/gui/editors/displaytabs/addrembedlist.py

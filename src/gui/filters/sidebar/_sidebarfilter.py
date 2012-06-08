@@ -226,7 +226,7 @@ class SidebarFilter(DbGUIElement):
         Callback which invokes the EditFilter dialog. Will create new
         filter if called if none is selected.
         """
-        from gui.filtereditor import EditFilter
+        from gui.editors import EditFilter
         from gen.filters import FilterList, GenericFilterFactory
         import const
         the_filter = None

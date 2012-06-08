@@ -38,6 +38,7 @@ pkgpython_PYTHON = \
 	editsource.py \
 	edittaglist.py \
 	editurl.py \
+	filtereditor.py \
 	objectentries.py
 
 pkgpyexecdir = @pkgpyexecdir@/gui/editors
