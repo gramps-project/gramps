@@ -23,7 +23,6 @@ gdir_PYTHON = \
 	gramps.py\
 	ImgManip.py\
 	LdsUtils.py \
-	Lru.py\
 	MacTransUtils.py\
 	Reorder.py\
 	Sort.py\

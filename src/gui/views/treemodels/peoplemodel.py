@@ -62,7 +62,7 @@ from gen.display.name import displayer as name_displayer
 import gen.datehandler
 import ToolTips
 import Utils
-from Lru import LRU
+from lru import LRU
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
 from gui.views.treemodels.treebasemodel import TreeBaseModel
 import config

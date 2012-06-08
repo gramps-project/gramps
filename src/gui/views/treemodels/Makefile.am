@@ -11,6 +11,7 @@ pkgpython_PYTHON = \
 	eventmodel.py \
 	familymodel.py \
 	flatbasemodel.py \
+	lru.py \
 	mediamodel.py \
 	notemodel.py \
 	peoplemodel.py \
