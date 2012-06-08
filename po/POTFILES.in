@@ -6,7 +6,6 @@ src/const.py
 src/gramps.py
 src/LdsUtils.py
 src/PlaceUtils.py
-src/Spell.py
 src/ToolTips.py
 src/TransUtils.py
 src/Utils.py
@@ -338,6 +337,7 @@ src/gui/displaystate.py
 src/gui/grampsbar.py
 src/gui/grampsgui.py
 src/gui/makefilter.py
+src/gui/spell.py
 src/gui/tipofday.py
 src/gui/undohistory.py
 src/gui/utils.py

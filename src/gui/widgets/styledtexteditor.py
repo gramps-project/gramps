@@ -57,7 +57,7 @@ from gui.widgets.undoablestyledbuffer import UndoableStyledBuffer
 from gui.widgets.valueaction import ValueAction
 from gui.widgets.toolcomboentry import ToolComboEntry
 from gui.widgets.springseparator import SpringSeparatorAction
-from Spell import Spell
+from gui.spell import Spell
 from gui.display import display_url
 import config
 from constfunc import has_display
