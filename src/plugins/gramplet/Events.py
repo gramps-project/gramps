@@ -167,18 +167,19 @@ class PersonEvents(Events):
         Display the events for the active person.
         """
         active_person = self.dbstate.db.get_person_from_handle(active_handle)
-        for event_ref in active_person.get_event_ref_list():
-            self.add_event_ref(event_ref)
-        for family_handle in active_person.get_family_handle_list():
-            family = self.dbstate.db.get_family_from_handle(family_handle)
-            father_handle = family.get_father_handle()
-            mother_handle = family.get_mother_handle()
-            if father_handle == active_handle:
-                spouse = self.dbstate.db.get_person_from_handle(mother_handle)
-            else:
-                spouse = self.dbstate.db.get_person_from_handle(father_handle)
-            for event_ref in family.get_event_ref_list():
-                self.add_event_ref(event_ref, spouse)
+        if active_person:
+            for event_ref in active_person.get_event_ref_list():
+                self.add_event_ref(event_ref)
+            for family_handle in active_person.get_family_handle_list():
+                family = self.dbstate.db.get_family_from_handle(family_handle)
+                father_handle = family.get_father_handle()
+                mother_handle = family.get_mother_handle()
+                if father_handle == active_handle:
+                    spouse = self.dbstate.db.get_person_from_handle(mother_handle)
+                else:
+                    spouse = self.dbstate.db.get_person_from_handle(father_handle)
+                for event_ref in family.get_event_ref_list():
+                    self.add_event_ref(event_ref, spouse)
         self.set_has_data(self.model.count > 0)
 
     def get_start_date(self):
