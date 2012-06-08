@@ -46,8 +46,6 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import const
-import ToolTips
 import Utils
 from PlaceUtils import conv_lat_lon
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
@@ -227,16 +225,7 @@ class PlaceBaseModel(object):
         return Utils.format_time(data[11])
 
     def column_tooltip(self, data):
-        if const.USE_TIPS:
-            try:
-                t = ToolTips.TipFromFunction(
-                    self.db, lambda:
-                    self.db.get_place_from_handle(data[0]))
-            except:
-                log.error("Failed to create tooltip.", exc_info=True)
-            return t
-        else:
-            return u''
+        return u'Place tooltip'
 
 #-------------------------------------------------------------------------
 #

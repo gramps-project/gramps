@@ -41,8 +41,6 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import const
-import ToolTips
 import Utils
 import gen.datehandler
 from gen.display.name import displayer as name_displayer
@@ -178,16 +176,7 @@ class FamilyModel(FlatBaseModel):
         return Utils.format_time(data[12])
 
     def column_tooltip(self, data):
-        if const.USE_TIPS:
-            try:
-                t = ToolTips.TipFromFunction(
-                    self.db, lambda:
-                        self.db.get_family_from_handle(data[0]))
-            except:
-                log.error("Failed to create tooltip.", exc_info=True)
-            return t
-        else:
-            return u''
+        return u'Family tooltip'
 
     def get_tag_name(self, tag_handle):
         """

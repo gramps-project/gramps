@@ -40,8 +40,6 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import const
-import ToolTips
 import Utils
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
 
@@ -227,15 +225,7 @@ class RepositoryModel(FlatBaseModel):
         return u""
 
     def column_tooltip(self,data):
-        if const.USE_TIPS:
-            try:
-                t = ToolTips.TipFromFunction(self.db, lambda:
-                                    self.db.get_repository_from_handle(data[0]))
-            except:
-                log.error("Failed to create tooltip.",exc_info=True)
-            return t
-        else:
-            return u''
+        return u'Repository tooltip'
 
     def sort_change(self,data):
         return "%012x" % data[7]

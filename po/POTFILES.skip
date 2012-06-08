@@ -6,7 +6,6 @@
 #src
 src/AutoComp.py
 src/ImgManip.py
-src/TreeTips.py
 
 # cli
 src/cli/__init__.py

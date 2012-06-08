@@ -39,8 +39,6 @@ LOG = logging.getLogger(".citation")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import const
-import ToolTips
 import gen.datehandler
 import gen.lib
 from Utils import confidence, format_time
@@ -175,15 +173,7 @@ class CitationBaseModel(object):
             return u''
 
     def citation_tooltip(self, data):
-        if const.USE_TIPS:
-            try:
-                t = ToolTips.TipFromFunction(self.db, lambda:
-                                    self.db.get_citation_from_handle(data[0]))
-            except:
-                log.error("Failed to create tooltip.", exc_info=True)
-            return t
-        else:
-            return u''
+        return u'Citation tooltip'
 
 # Fields access when 'data' is a Source
 
@@ -212,15 +202,7 @@ class CitationBaseModel(object):
         return "%012x" % data[COLUMN2_CHANGE]
 
     def source_tooltip(self, data):
-        if const.USE_TIPS:
-            try:
-                t = ToolTips.TipFromFunction(self.db, lambda:
-                                    self.db.get_source_from_handle(data[0]))
-            except:
-                log.error("Failed to create tooltip.", exc_info=True)
-            return t
-        else:
-            return u''
+        return u'Source tooltip'
 
     def dummy_sort_key(self, data):
         # dummy sort key for columns that don't have data

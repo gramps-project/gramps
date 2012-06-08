@@ -54,7 +54,6 @@ from gui.views.pageview import PageView
 from gui.views.navigationview import NavigationView
 from gui.columnorder import ColumnOrder
 import config
-import TreeTips
 from gen.errors import WindowActiveError
 from gui.filters import SearchBar
 from gui.utils import add_menuitem
@@ -297,8 +296,8 @@ class ListView(NavigationView):
             self.goto_active(None)
 
             if const.USE_TIPS and self.model.tooltip_column() is not None:
-                self.tooltips = TreeTips.TreeTips(
-                    self.list, self.model.tooltip_column(), True)
+                self.list.set_tooltip_column(self.model.tooltip_column())
+
             self.dirty = False
             cput4 = time.clock()
             self.uistate.show_filter_results(self.dbstate, 

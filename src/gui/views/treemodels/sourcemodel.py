@@ -39,8 +39,6 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import const
-import ToolTips
 import Utils
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
 
@@ -115,12 +113,4 @@ class SourceModel(FlatBaseModel):
         return "%012x" % data[8]
 
     def column_tooltip(self,data):
-        if const.USE_TIPS:
-            try:
-                t = ToolTips.TipFromFunction(self.db, lambda:
-                                             self.db.get_source_from_handle(data[0]))
-            except:
-                log.error("Failed to create tooltip.",exc_info=True)
-            return t
-        else:
-            return u''
+        return u'Source tooltip'

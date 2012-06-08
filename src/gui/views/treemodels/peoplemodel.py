@@ -56,11 +56,9 @@ _LOG = logging.getLogger(".")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import const
 from gen.lib import Name, EventRef, EventType, EventRoleType
 from gen.display.name import displayer as name_displayer
 import gen.datehandler
-import ToolTips
 import Utils
 from lru import LRU
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
@@ -426,13 +424,7 @@ class PeopleBaseModel(object):
         return u""
 
     def column_tooltip(self, data):
-        if const.USE_TIPS:
-            return ToolTips.TipFromFunction(
-                self.db,
-                lambda: self.db.get_person_from_handle(data[0])
-                )
-        else:
-            return u''
+        return u'Person tooltip'
         
     def column_int_id(self, data):
         return data[0]
@@ -472,7 +464,7 @@ class PersonListModel(PeopleBaseModel, FlatBaseModel):
                  skip=set(), sort_map=None):
         PeopleBaseModel.__init__(self, db)
         FlatBaseModel.__init__(self, db, search=search, skip=skip,
-                                tooltip_column=13,
+                                tooltip_column=12,
                                 scol=scol, order=order, sort_map=sort_map)
 
     def clear_cache(self, handle=None):
@@ -494,7 +486,7 @@ class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
                  skip=set(), sort_map=None):
 
         PeopleBaseModel.__init__(self, db)
-        TreeBaseModel.__init__(self, db, 13, search=search, skip=skip,
+        TreeBaseModel.__init__(self, db, 12, search=search, skip=skip,
                                 scol=scol, order=order, sort_map=sort_map)
 
     def destroy(self):

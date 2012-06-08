@@ -40,7 +40,6 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import ToolTips
 import gen.datehandler
 import gen.lib
 import Utils
@@ -166,10 +165,4 @@ class EventModel(FlatBaseModel):
         return Utils.format_time(data[COLUMN_CHANGE])
 
     def column_tooltip(self,data):
-        try:
-            t = ToolTips.TipFromFunction(
-                self.db,
-                lambda: self.db.get_event_from_handle(data[COLUMN_HANDLE]))
-        except:
-            log.error("Failed to create tooltip.", exc_info=True)
-        return t
+        return u'Event tooltip'

@@ -21,9 +21,7 @@ gdir_PYTHON = \
 	ImgManip.py\
 	LdsUtils.py \
 	MacTransUtils.py\
-	ToolTips.py\
 	TransUtils.py\
-	TreeTips.py\
 	Utils.py\
 	PlaceUtils.py
 

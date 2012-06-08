@@ -6,7 +6,6 @@ src/const.py
 src/gramps.py
 src/LdsUtils.py
 src/PlaceUtils.py
-src/ToolTips.py
 src/TransUtils.py
 src/Utils.py
 

@@ -42,8 +42,6 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import const
-import ToolTips
 import Utils
 import gen.datehandler
 import gen.lib
@@ -156,15 +154,7 @@ class MediaModel(FlatBaseModel):
         return Utils.format_time(data[8])
 
     def column_tooltip(self,data):
-        if const.USE_TIPS:
-            try:
-                t = ToolTips.TipFromFunction(self.db, lambda:
-                                             self.db.get_object_from_handle(data[0]))
-            except:
-                log.error("Failed to create tooltip.", exc_info=True)
-            return t
-        else:
-            return u''
+        return u'Media tooltip'
 
     def get_tag_name(self, tag_handle):
         """
