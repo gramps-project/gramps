@@ -27,6 +27,7 @@ pkgpython_PYTHON = \
 	ggettext.py \
 	recentfiles.py \
 	relationship.py \
+	sort.py \
 	soundex.py \
 	updatecallback.py \
 	user.py

@@ -46,7 +46,7 @@ import gtk
 #------------------------------------------------------------------------
 from gen.filters import GenericFilter, rules
 from gui.filters import build_filter_model
-import Sort
+from gen.sort import Sort
 import Utils
 from gui.utils import ProgressMeter
 from docgen import ODSTab
@@ -243,7 +243,7 @@ class DisplayChart(ManagedWindow):
                         _('Event Comparison Results'))
 
         self.eventlist = self.topDialog.get_object('treeview')
-        self.sort = Sort.Sort(self.db)
+        self.sort = Sort(self.db)
         self.my_list.sort(self.sort.by_last_name)
 
         self.event_titles = self.make_event_titles()

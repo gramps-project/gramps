@@ -45,7 +45,7 @@ from gen.plug.report import MenuReportOptions
 pt2cm = ReportUtils.pt2cm
 from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                     FONT_SANS_SERIF, DASHED, PARA_ALIGN_CENTER)
-import Sort
+from gen.sort import Sort
 from gen.display.name import displayer as name_displayer
 import config
 from gen.utils import get_birth_or_fallback, get_death_or_fallback
@@ -99,7 +99,7 @@ class TimeLine(Report):
         self.filter = menu.get_option_by_name('filter').get_filter()
 
         sort_func_num = menu.get_option_by_name('sortby').get_value()
-        sort_functions = _get_sort_functions(Sort.Sort(database))
+        sort_functions = _get_sort_functions(Sort(database))
         self.sort_name = sort_functions[sort_func_num][0]
         self.sort_func = sort_functions[sort_func_num][1]
         self.calendar = config.get('preferences.calendar-format-report')
@@ -381,7 +381,7 @@ class TimeLineOptions(MenuReportOptions):
         
         sortby = EnumeratedListOption(_('Sort by'), 0 )
         idx = 0
-        for item in _get_sort_functions(Sort.Sort(self.__db)):
+        for item in _get_sort_functions(Sort(self.__db)):
             sortby.add_item(idx,item[0])
             idx += 1
         sortby.set_help( _("Sorting method to use"))

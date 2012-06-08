@@ -80,7 +80,7 @@ from gen.ggettext import sgettext as _
 import gen.lib
 from gen.lib import UrlType, date, NoteType, EventRoleType
 import const
-import Sort
+from gen.sort import Sort
 from gen.plug.menu import PersonOption, NumberOption, StringOption, \
                           BooleanOption, EnumeratedListOption, FilterOption, \
                           NoteOption, MediaOption, DestinationOption
@@ -3374,7 +3374,7 @@ class PlaceListPage(BasePage):
                         [_("Longitude"),         "ColumnLongitude"] ]
                 )
 
-                sort = Sort.Sort(self.dbase_)
+                sort = Sort(self.dbase_)
                 handle_list = sorted(place_handles, key = sort.by_place_title_key)
                 last_letter = ''
 
@@ -4701,7 +4701,7 @@ class SourcePage(BasePage):
                                 # Citation Referents has Media Objects...
                                 if (self.create_media and media_list):
 
-                                    sort = Sort.Sort(self.dbase_)
+                                    sort = Sort(self.dbase_)
                                     media_list = sorted(media_list, key = sort.by_media_title_key)
 
                                     list2 = Html("li")
@@ -4894,7 +4894,7 @@ class MediaListPage(BasePage):
                 table += tbody
 
                 index = 1
-                sort = Sort.Sort(self.dbase_)
+                sort = Sort(self.dbase_)
                 mlist = sorted(self.report.photo_list, key = sort.by_media_title_key)
         
                 for media_handle in mlist:
@@ -4946,7 +4946,7 @@ class ThumbnailPreviewPage(BasePage):
         BasePage.__init__(self, report, title)
         self.create_thumbs_only = report.options['create_thumbs_only']
 
-        sort = Sort.Sort(self.dbase_)
+        sort = Sort(self.dbase_)
         self.photo_keys = sorted(self.report.photo_list, key =sort.by_media_title_key)
         if not self.photo_keys:
             return
@@ -7330,7 +7330,7 @@ class NavWebReport(Report):
 
         prev = None
         total = len(self.photo_list)
-        sort = Sort.Sort(self.database)
+        sort = Sort(self.database)
         photo_keys = sorted(self.photo_list, key =sort.by_media_title_key)
 
         index = 1
@@ -8218,7 +8218,7 @@ class NavWebOptions(MenuReportOptions):
         else:
             self.__googleopts.set_available(False)
 
-# FIXME. Why do we need our own sorting? Why not use Sort.Sort?
+# FIXME. Why do we need our own sorting? Why not use Sort?
 def sort_people(dbase, handle_list):
     """
     will sort the database people by surname

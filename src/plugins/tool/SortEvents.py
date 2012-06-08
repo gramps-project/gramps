@@ -35,8 +35,7 @@ from gen.ggettext import gettext as _
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import Sort
-
+from gen.sort import Sort
 from gen.db import DbTxn
 from gui.plug import MenuToolOptions, PluginWindows
 from gen.plug.report import utils as ReportUtils
@@ -92,10 +91,10 @@ class SortEvents(PluginWindows.ToolManagedWindowBatch):
         sort_func_num = menu.get_option_by_name('sort_by').get_value()
         self.sort_desc = menu.get_option_by_name('sort_desc').get_value()
         self.fam_events = menu.get_option_by_name('family_events').get_value()
-        sort_functions = _get_sort_functions(Sort.Sort(self.db))
+        sort_functions = _get_sort_functions(Sort(self.db))
         self.sort_name = sort_functions[sort_func_num][0]
         self.sort_func = sort_functions[sort_func_num][1]
-        self.sort = Sort.Sort(self.db)
+        self.sort = Sort(self.db)
         with DbTxn(_("Sort event changes"), self.db, batch=True) as trans:
             self.db.disable_signals()
             family_handles = self.sort_person_events(trans)
@@ -179,7 +178,7 @@ class SortEventOptions(MenuToolOptions):
         
         sort_by = EnumeratedListOption(_('Sort by'), 0 )
         idx = 0
-        for item in _get_sort_functions(Sort.Sort(self.__db)):
+        for item in _get_sort_functions(Sort(self.__db)):
             sort_by.add_item(idx, item[0])
             idx += 1
         sort_by.set_help( _("Sorting method to use"))

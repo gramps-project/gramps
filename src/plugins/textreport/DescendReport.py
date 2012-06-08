@@ -52,7 +52,7 @@ from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
 import gen.datehandler
-import Sort
+from gen.sort import Sort
 from gen.utils import (get_birth_or_fallback, get_death_or_fallback,
                        get_marriage_or_fallback, get_divorce_or_fallback)
 
@@ -333,7 +333,7 @@ class DescendantReport(Report):
         if (self.center_person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
         
-        sort = Sort.Sort(self.database)
+        sort = Sort(self.database)
         self.by_birthdate = sort.by_birthdate
     
         #Initialize the Printinfo class    

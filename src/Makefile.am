@@ -21,7 +21,6 @@ gdir_PYTHON = \
 	ImgManip.py\
 	LdsUtils.py \
 	MacTransUtils.py\
-	Sort.py\
 	Spell.py\
 	ToolTips.py\
 	TransUtils.py\
