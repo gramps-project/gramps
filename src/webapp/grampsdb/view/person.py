@@ -82,7 +82,7 @@ def check_primary(surname, surnames):
         if not ok:
             surname.primary = True
 
-def check_preferred(name, person):
+def check_preferred(request, name, person):
     """
     Check for a proper preferred name.
     """
@@ -304,7 +304,7 @@ def process_name(request, handle, order, action="view"):
             name.suffix = nf.cleaned_data["suffix"] if nf.cleaned_data["suffix"] != " suffix " else ""
             name.preferred = True # FIXME: why is this False?
             update_last_changed(name, request.user.username)
-            check_preferred(name, person)
+            check_preferred(request, name, person)
             name.save()
             # Process data:
             oldsurname.name = name
@@ -381,7 +381,7 @@ def process_person(request, context, handle, action, add_to=None): # view, edit,
                 # Manually set any data:
                 name.suffix = nf.cleaned_data["suffix"] if nf.cleaned_data["suffix"] != " suffix " else ""
                 name.preferred = True # FIXME: why is this False?
-                check_preferred(name, person)
+                check_preferred(request, name, person)
                 update_last_changed(name, request.user.username)
                 name.save()
                 # Process data:
