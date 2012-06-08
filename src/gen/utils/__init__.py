@@ -25,6 +25,7 @@
 Generic utilities useful for users of the gen package
 """
 
-from fallback import *
-from configmanager import ConfigManager
 from callback import Callback
+from configmanager import ConfigManager
+from fallback import *
+from place import conv_lat_lon

@@ -59,7 +59,7 @@ import Utils
 import config
 import gen.datehandler
 from gen.display.name import displayer as _nd
-from PlaceUtils import conv_lat_lon
+from gen.utils import conv_lat_lon
 from gui.views.pageview import PageView
 from gui.editors import EditPlace
 from gui.selectors.selectplace import SelectPlace

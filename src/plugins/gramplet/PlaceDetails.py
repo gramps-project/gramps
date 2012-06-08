@@ -22,7 +22,7 @@
 from gen.plug import Gramplet
 from gui.widgets import Photo
 from gen.ggettext import gettext as _
-from PlaceUtils import conv_lat_lon
+from gen.utils import conv_lat_lon
 import Utils
 import gtk
 import pango

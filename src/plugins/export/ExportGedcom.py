@@ -48,7 +48,7 @@ from gen.errors import DatabaseError
 from gui.plug.export import WriterOptionBox
 from gen.updatecallback import UpdateCallback
 from Utils import media_path_full
-from PlaceUtils import conv_lat_lon
+from gen.utils import conv_lat_lon
 
 #-------------------------------------------------------------------------
 #

@@ -21,8 +21,7 @@ gdir_PYTHON = \
 	LdsUtils.py \
 	MacTransUtils.py\
 	TransUtils.py\
-	Utils.py\
-	PlaceUtils.py
+	Utils.py
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo

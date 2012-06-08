@@ -35,7 +35,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from gen.filters.rules import Rule
-import PlaceUtils
+from gen.utils import conv_lat_lon
 
 #-------------------------------------------------------------------------
 #
@@ -82,7 +82,7 @@ class InLatLonNeighborhood(Rule):
             self.list[1] = '0.0'
             
         #we allow a band instead of a triangle
-        self.lat, self.lon = PlaceUtils.conv_lat_lon(self.list[0],self.list[1],"D.D8")
+        self.lat, self.lon = conv_lat_lon(self.list[0],self.list[1],"D.D8")
         if self.lat is not None and self.lon is not None :
             self.lat = float(self.lat)
             self.lon = float(self.lon)
@@ -138,8 +138,8 @@ class InLatLonNeighborhood(Rule):
         if not ( place.get_latitude().strip and place.get_longitude().strip() ):
             return False
         
-        latpl, lonpl = PlaceUtils.conv_lat_lon(place.get_latitude(),
-                                                place.get_longitude(),"D.D8")
+        latpl, lonpl = conv_lat_lon(place.get_latitude(),
+                                    place.get_longitude(), "D.D8")
         if latpl and lonpl :
             latpl = float(latpl)
             lonpl = float(lonpl)

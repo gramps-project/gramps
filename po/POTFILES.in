@@ -5,7 +5,6 @@
 src/const.py
 src/gramps.py
 src/LdsUtils.py
-src/PlaceUtils.py
 src/TransUtils.py
 src/Utils.py
 
@@ -323,6 +322,9 @@ src/gen/proxy/private.py
 # gen.simple
 src/gen/simple/_simpleaccess.py
 src/gen/simple/_simpletable.py
+
+# gen.utils
+src/gen/utils/place.py
 
 # gui - GUI code
 src/gui/aboutdialog.py
