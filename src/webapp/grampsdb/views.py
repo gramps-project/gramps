@@ -258,69 +258,38 @@ def view_list(request, view):
     search = ""
     if view == "event":
         context["tviews"] = _("Events")
-        if request.user.is_authenticated():
-            private = Q()
-        else:
-            # NON-AUTHENTICATED users
-            private = Q(private=False)
-        if request.GET.has_key("search"):
-            search = request.GET.get("search")
-            object_list = Event.objects \
-                .filter((Q(gramps_id__icontains=search) |
-                         Q(event_type__name__icontains=search) |
-                         Q(place__title__icontains=search)) &
-                        private
-                        ) \
-                .distinct() \
-                .order_by("gramps_id")
-        else:
-            object_list = Event.objects.filter(private).order_by("gramps_id")
+        search = request.GET.get("search") if request.GET.has_key("search") else ""
+        query, order, terms = build_event_query(request, search)
+        object_list = Event.objects \
+            .filter(query) \
+            .distinct() \
+            .order_by(*order)
         view_template = 'view_events.html'
         total = Event.objects.all().count()
     elif view == "media":
         context["tviews"] = _("Media")
-        if request.user.is_authenticated():
-            private = Q()
-        else:
-            # NON-AUTHENTICATED users
-            private = Q(private=False)
-        if request.GET.has_key("search"):
-            search = request.GET.get("search")
-            object_list = Media.objects \
-                .filter(Q(gramps_id__icontains=search) &
-                        private
-                        ) \
-                .distinct() \
-                .order_by("gramps_id")
-        else:
-            object_list = Media.objects.filter(private).order_by("gramps_id")
+        search = request.GET.get("search") if request.GET.has_key("search") else ""
+        query, order, terms = build_media_query(request, search)
+        object_list = Media.objects \
+            .filter(query) \
+            .distinct() \
+            .order_by(*order)
         view_template = 'view_media.html'
         total = Media.objects.all().count()
     elif view == "note":
         context["tviews"] = _("Notes")
-        if request.user.is_authenticated():
-            private = Q()
-        else:
-            # NON-AUTHENTICATED users
-            private = Q(private=False)
-        if request.GET.has_key("search"):
-            search = request.GET.get("search")
-            object_list = Note.objects \
-                .filter((Q(gramps_id__icontains=search) |
-                         Q(note_type__name__icontains=search) |
-                         Q(text__icontains=search)) &
-                        private
-                        ) \
-                .distinct() \
-                .order_by("gramps_id")
-        else:
-            object_list = Note.objects.filter(private).order_by("gramps_id")
+        search = request.GET.get("search") if request.GET.has_key("search") else ""
+        query, order, terms = build_note_query(request, search)
+        object_list = Note.objects \
+            .filter(query) \
+            .distinct() \
+            .order_by(*order)
         view_template = 'view_notes.html'
         total = Note.objects.all().count()
     elif view == "person":
         context["tviews"] = _("People")
         search = request.GET.get("search") if request.GET.has_key("search") else ""
-        query, order = build_person_query(request, search)
+        query, order, terms = build_person_query(request, search)
         object_list = Name.objects \
             .filter(query) \
             .distinct() \
@@ -330,7 +299,7 @@ def view_list(request, view):
     elif view == "family":
         context["tviews"] = _("Families")
         search = request.GET.get("search") if request.GET.has_key("search") else ""
-        query, order = build_family_query(request, search)
+        query, order, terms = build_family_query(request, search)
         object_list = Family.objects \
             .filter(query) \
             .distinct() \
@@ -339,118 +308,62 @@ def view_list(request, view):
         total = Family.objects.all().count()
     elif view == "place":
         context["tviews"] = _("Places")
-        if request.user.is_authenticated():
-            private = Q()
-        else:                 
-            # NON-AUTHENTICATED users
-            private = Q(private=False)
-        if request.GET.has_key("search"):
-            search = request.GET.get("search")
-            object_list = Place.objects \
-                .filter((Q(gramps_id__icontains=search) |
-                         Q(title__icontains=search) 
-                         ) &
-                        private
-                        ) \
-                .distinct() \
-                .order_by("gramps_id")
-        else:
-            object_list = Place.objects.filter(private).order_by("gramps_id")
+        search = request.GET.get("search") if request.GET.has_key("search") else ""
+        query, order, terms = build_place_query(request, search)
+        object_list = Place.objects \
+            .filter(query) \
+            .distinct() \
+            .order_by(*order)
         view_template = 'view_places.html'
         total = Place.objects.all().count()
     elif view == "repository":
         context["tviews"] = _("Repositories")
-        if request.user.is_authenticated():
-            private = Q()
-        else:
-            # NON-AUTHENTICATED users
-            private = Q(private=False)
-        if request.GET.has_key("search"):
-            search = request.GET.get("search")
-            object_list = Repository.objects \
-                .filter((Q(gramps_id__icontains=search) |
-                         Q(name__icontains=search) |
-                         Q(repository_type__name__icontains=search)
-                         ) &
-                        private
-                        ) \
-                .distinct() \
-                .order_by("gramps_id")
-        else:
-            object_list = Repository.objects.filter(private).order_by("gramps_id")
+        search = request.GET.get("search") if request.GET.has_key("search") else ""
+        query, order, terms = build_repository_query(request, search)
+        object_list = Repository.objects \
+            .filter(query) \
+            .distinct() \
+            .order_by(*order)
         view_template = 'view_repositories.html'
         total = Repository.objects.all().count()
     elif view == "citation":
         context["tviews"] = _("Citations")
-        if request.user.is_authenticated():
-            private = Q()
-        else:
-            # NON-AUTHENTICATED users
-            private = Q(private=False)
-        if request.GET.has_key("search"):
-            search = request.GET.get("search")
-            object_list = Citation.objects \
-                .filter(Q(gramps_id__icontains=search) &
-                        private
-                        ) \
-                .distinct() \
-                .order_by("gramps_id")
-        else:
-            object_list = Citation.objects.filter(private).order_by("gramps_id")
+        search = request.GET.get("search") if request.GET.has_key("search") else ""
+        query, order, terms = build_citation_query(request, search)
+        object_list = Citation.objects \
+            .filter(query) \
+            .distinct() \
+            .order_by(*order)
         view_template = 'view_citations.html'
         total = Citation.objects.all().count()
     elif view == "source":
         context["tviews"] = _("Sources")
-        if request.user.is_authenticated():
-            private = Q()
-        else:
-            # NON-AUTHENTICATED users
-            private = Q(private=False)
-        if request.GET.has_key("search"):
-            search = request.GET.get("search")
-            object_list = Source.objects \
-                .filter(Q(gramps_id__icontains=search) &
-                        private
-                        ) \
-                .distinct() \
-                .order_by("gramps_id")
-        else:
-            object_list = Source.objects.filter(private).order_by("gramps_id")
+        search = request.GET.get("search") if request.GET.has_key("search") else ""
+        query, order, terms = build_source_query(request, search)
+        object_list = Source.objects \
+            .filter(query) \
+            .distinct() \
+            .order_by(*order)
         view_template = 'view_sources.html'
         total = Source.objects.all().count()
     elif view == "tag":
         context["tviews"] = _("Tags")
-        if request.GET.has_key("search"):
-            search = request.GET.get("search")
-            object_list = Tag.objects \
-                .filter(Q(name__icontains=search)) \
-                .distinct() \
-                .order_by("name")
-        else:
-            object_list = Tag.objects.order_by("name")
+        search = request.GET.get("search") if request.GET.has_key("search") else ""
+        query, order, terms = build_tag_query(request, search)
+        object_list = Tag.objects \
+            .filter(query) \
+            .distinct() \
+            .order_by(*order)
         view_template = 'view_tags.html'
         total = Tag.objects.all().count()
     elif view == "report":
         context["tviews"] = _("Reports")
-        if request.GET.has_key("search"):
-            search = request.GET.get("search")
-            if request.user.is_superuser:
-                object_list = Report.objects \
-                    .filter(Q(name__icontains=search)) \
-                    .distinct() \
-                    .order_by("name")
-            else:
-                object_list = Report.objects \
-                    .filter(Q(name__icontains=search) & ~Q(report_type="import")) \
-                    .distinct() \
-                    .order_by("name")
-        else:
-            if request.user.is_superuser:
-                object_list = Report.objects.all().order_by("name")
-            else:
-                object_list = Report.objects \
-                    .filter(~Q(report_type="import")) \
-                    .order_by("name")
+        search = request.GET.get("search") if request.GET.has_key("search") else ""
+        query, order, terms = build_report_query(request, search)
+        object_list = Report.objects \
+            .filter(query) \
+            .distinct() \
+            .order_by(*order)
         view_template = 'view_report.html'
         total = Report.objects.all().count()
     else:
@@ -471,6 +384,7 @@ def view_list(request, view):
     except (EmptyPage, InvalidPage):
         page = paginator.page(paginator.num_pages)
 
+    context["search_terms"] = ", ".join(terms)
     context["page"] = page
     context["view"] = view
     context["tview"] = _(view.title())
@@ -641,18 +555,18 @@ def build_person_query(request, search):
     """
     protect = not request.user.is_authenticated()
     ### Build the order:
+    terms = ["surname", "given"]
     if protect:
         # Do this to get the names sorted by private/alive 
-        query = (Q(private=False) & Q(person__private=False))
-        order = ("surname__surname", "private", "person__probably_alive", 
-                 "first_name")
+        query = Q(private=False) & Q(person__private=False)
+        order = ["surname__surname", "private", "person__probably_alive", 
+                 "first_name"]
     else:
         query = Q()
-        order = ("surname__surname", "first_name")
+        order = ["surname__surname", "first_name"]
     ### Build the query:
     if search:
         if "," in search or "=" in search:
-            terms = ["surname", "given"]
             for term in [term.strip() for term in search.split(",")]:
                 if "=" in term:
                     field, value = [s.strip() for s in term.split("=")]
@@ -693,46 +607,44 @@ def build_person_query(request, search):
         else: # no search fields, just raw search
             if protect:
                 query &= (Q(surname__surname__icontains=search) | 
-                          Q(surname__prefix__icontains=search) |
-                          Q(person__gramps_id__icontains=search))
+                              Q(surname__prefix__icontains=search) |
+                              Q(person__gramps_id__icontains=search))
             else:
                 query &= (Q(surname__surname__icontains=search) | 
-                          Q(first_name__icontains=search) |
-                          Q(suffix__icontains=search) |
-                          Q(surname__prefix__icontains=search) |
-                          Q(title__icontains=search) |
-                          Q(person__gramps_id__icontains=search))
+                              Q(first_name__icontains=search) |
+                              Q(suffix__icontains=search) |
+                              Q(surname__prefix__icontains=search) |
+                              Q(title__icontains=search) |
+                              Q(person__gramps_id__icontains=search))
     else: # no search
         pass # nothing else to do
-    return query, order
+    #make_message(request, query)
+    return query, order, terms
 
 def build_family_query(request, search):
     """
     Build and return a Django QuerySet and sort order for the Family
     table.
     """
+    terms = ["father", "mother", "id", "type"]
     protect = not request.user.is_authenticated()
     if protect:
         query = (Q(private=False) & Q(father__private=False) & 
                  Q(mother__private=False))
-        order = ("father__name__surname__surname", 
+        order = ["father__name__surname__surname", 
                  "father__private", "father__probably_alive", 
                  "father__name__first_name",
                  "mother__name__surname__surname", 
                  "mother__private", "mother__probably_alive", 
-                 "mother__name__first_name")
+                 "mother__name__first_name"]
     else:
         query = Q()
-        order = ("father__name__surname__surname", 
+        order = ["father__name__surname__surname", 
                  "father__name__first_name",
                  "mother__name__surname__surname", 
-                 "mother__name__first_name")
+                 "mother__name__first_name"]
     if search:
         if "," in search or "=" in search:
-            if "," not in search:
-                terms = ["surnames"]
-            else:
-                terms = ["father", "mother"]
             for term in [term.strip() for term in search.split(",")]:
                 if "=" in term:
                     field, value = [s.strip() for s in term.split("=")]
@@ -752,6 +664,10 @@ def build_family_query(request, search):
                     query &= Q(father__name__surname__surname__istartswith=value)
                 elif field == "mother":
                     query &= Q(mother__name__surname__surname__istartswith=value)
+                elif field == "type":
+                    query &= Q(family_rel_type__name__icontains=value)
+                elif field == "id":
+                    query &= Q(gramps_id__icontains=value)
                 else:
                     make_message(request, message="Invalid query field '%s'" % field)
         else: # no search fields, just raw search
@@ -768,7 +684,353 @@ def build_family_query(request, search):
     else: # no search
         pass # nothing left to do
     #make_message(request, query)
-    return query, order
+    return query, order, terms
+
+def build_media_query(request, search):
+    terms = ["id"]
+    protect = not request.user.is_authenticated()
+    if protect:
+        query = Q(private=False) # general privacy
+        order = ["gramps_id"]
+    else:
+        query = Q()
+        order = ["gramps_id"]
+    if search:
+        if "," in search or "=" in search:
+            for term in [term.strip() for term in search.split(",")]:
+                if "=" in term:
+                    field, value = [s.strip() for s in term.split("=")]
+                else:
+                    if terms:
+                        field = terms.pop(0)
+                        value = term
+                    else:
+                        continue
+                if "." in field and not protect:
+                    query &= Q(**{field.replace(".", "__"): value})
+                elif field == "id":
+                    query &= Q(gramps_id__icontains=value)
+                else:
+                    request.user.message_set.create(message="Invalid query field '%s'" % field)                
+        else: # no search fields, just raw search
+            if protect:
+                query &= Q(gramps_id__icontains=search)
+            else:
+                query &= Q(gramps_id__icontains=search)
+    else: # no search
+        pass # nothing left to do
+    return query, order, terms
+
+def build_note_query(request, search):
+    terms = ["id", "type", "text"]
+    protect = not request.user.is_authenticated()
+    if protect:
+        query = Q(private=False) # general privacy
+        order = ["gramps_id"]
+    else:
+        query = Q()
+        order = ["gramps_id"]
+    if search:
+        if "," in search or "=" in search:
+            for term in [term.strip() for term in search.split(",")]:
+                if "=" in term:
+                    field, value = [s.strip() for s in term.split("=")]
+                else:
+                    if terms:
+                        field = terms.pop(0)
+                        value = term
+                    else:
+                        continue
+                if "." in field and not protect:
+                    query &= Q(**{field.replace(".", "__"): value})
+                elif field == "id":
+                    query &= Q(gramps_id__icontains=value)
+                elif field == "type":
+                    query &= Q(note_type__name__icontains=value)
+                elif field == "text":
+                    query &= Q(text__icontains=value)
+                else:
+                    request.user.message_set.create(message="Invalid query field '%s'" % field)                
+        else: # no search fields, just raw search
+            if protect:
+                query &= (Q(gramps_id__icontains=search) |
+                          Q(note_type__name__icontains=search) |
+                          Q(text__icontains=search))
+            else:
+                query &= (Q(gramps_id__icontains=search) |
+                          Q(note_type__name__icontains=search) |
+                          Q(text__icontains=search))
+    else: # no search
+        pass # nothing left to do
+    return query, order, terms
+
+def build_place_query(request, search):
+    terms = ["id", "title"]
+    protect = not request.user.is_authenticated()
+    if protect:
+        query = Q(private=False) # general privacy
+        order = ["gramps_id"]
+    else:
+        query = Q()
+        order = ["gramps_id"]
+    if search:
+        if "," in search or "=" in search:
+            for term in [term.strip() for term in search.split(",")]:
+                if "=" in term:
+                    field, value = [s.strip() for s in term.split("=")]
+                else:
+                    if terms:
+                        field = terms.pop(0)
+                        value = term
+                    else:
+                        continue
+                if "." in field and not protect:
+                    query &= Q(**{field.replace(".", "__"): value})
+                elif field == "id":
+                    query &= Q(gramps_id__icontains=value)
+                elif field == "title":
+                    query &= Q(title__icontains=value)
+                else:
+                    request.user.message_set.create(message="Invalid query field '%s'" % field)                
+        else: # no search fields, just raw search
+            if protect:
+                query &= (Q(gramps_id__icontains=search) |
+                          Q(title__icontains=search))
+            else:
+                query &= (Q(gramps_id__icontains=search) |
+                          Q(title__icontains=search))
+    else: # no search
+        pass # nothing left to do
+    return query, order, terms
+
+def build_repository_query(request, search):
+    terms = ["id", "name", "type"]
+    protect = not request.user.is_authenticated()
+    if protect:
+        query = Q(private=False) # general privacy
+        order = ["gramps_id"]
+    else:
+        query = Q()
+        order = ["gramps_id"]
+    if search:
+        if "," in search or "=" in search:
+            for term in [term.strip() for term in search.split(",")]:
+                if "=" in term:
+                    field, value = [s.strip() for s in term.split("=")]
+                else:
+                    if terms:
+                        field = terms.pop(0)
+                        value = term
+                    else:
+                        continue
+                if "." in field and not protect:
+                    query &= Q(**{field.replace(".", "__"): value})
+                elif field == "id":
+                    query &= Q(gramps_id__icontains=value)
+                elif field == "name":
+                    query &= Q(name__icontains=value)
+                elif field == "type":
+                    query &= Q(repository_type__name__icontains=value)
+                else:
+                    request.user.message_set.create(message="Invalid query field '%s'" % field)                
+        else: # no search fields, just raw search
+            if protect:
+                query &= (Q(gramps_id__icontains=search) |
+                          Q(name__icontains=search) |
+                          Q(repository_type__name__icontains=search)
+                          )
+            else:
+                query &= (Q(gramps_id__icontains=search) |
+                          Q(name__icontains=search) |
+                          Q(repository_type__name__icontains=search)
+                          )
+    else: # no search
+        pass # nothing left to do
+    return query, order, terms
+
+def build_citation_query(request, search):
+    terms = ["id"]
+    protect = not request.user.is_authenticated()
+    if protect:
+        query = Q(private=False) # general privacy
+        order = ["gramps_id"]
+    else:
+        query = Q()
+        order = ["gramps_id"]
+    if search:
+        if "," in search or "=" in search:
+            for term in [term.strip() for term in search.split(",")]:
+                if "=" in term:
+                    field, value = [s.strip() for s in term.split("=")]
+                else:
+                    if terms:
+                        field = terms.pop(0)
+                        value = term
+                    else:
+                        continue
+                if "." in field and not protect:
+                    query &= Q(**{field.replace(".", "__"): value})
+                elif field == "id":
+                    query &= Q(gramps_id__icontains=value)
+                else:
+                    request.user.message_set.create(message="Invalid query field '%s'" % field)                
+        else: # no search fields, just raw search
+            if protect:
+                query &= (Q(gramps_id__icontains=search))
+            else:
+                query &= (Q(gramps_id__icontains=search))
+    else: # no search
+        pass # nothing left to do
+    return query, order, terms
+
+def build_source_query(request, search):
+    terms = ["id"]
+    protect = not request.user.is_authenticated()
+    if protect:
+        query = Q(private=False) # general privacy
+        order = ["gramps_id"]
+    else:
+        query = Q()
+        order = ["gramps_id"]
+    if search:
+        if "," in search or "=" in search:
+            for term in [term.strip() for term in search.split(",")]:
+                if "=" in term:
+                    field, value = [s.strip() for s in term.split("=")]
+                else:
+                    if terms:
+                        field = terms.pop(0)
+                        value = term
+                    else:
+                        continue
+                if "." in field and not protect:
+                    query &= Q(**{field.replace(".", "__"): value})
+                elif field == "id":
+                    query &= Q(gramps_id__icontains=value)
+                else:
+                    request.user.message_set.create(message="Invalid query field '%s'" % field)                
+        else: # no search fields, just raw search
+            if protect:
+                query &= Q(gramps_id__icontains=search)
+            else:
+                query &= Q(gramps_id__icontains=search)
+    else: # no search
+        pass # nothing left to do
+    return query, order, terms
+
+def build_tag_query(request, search):
+    terms = ["name"]
+    protect = not request.user.is_authenticated()
+    if protect:
+        query = Q() # general privacy
+        order = ["name"]
+    else:
+        query = Q()
+        order = ["name"]
+    if search:
+        if "," in search or "=" in search:
+            for term in [term.strip() for term in search.split(",")]:
+                if "=" in term:
+                    field, value = [s.strip() for s in term.split("=")]
+                else:
+                    if terms:
+                        field = terms.pop(0)
+                        value = term
+                    else:
+                        continue
+                if "." in field and not protect:
+                    query &= Q(**{field.replace(".", "__"): value})
+                elif field == "name":
+                    query &= Q(name__icontains=value)
+                else:
+                    request.user.message_set.create(message="Invalid query field '%s'" % field)                
+        else: # no search fields, just raw search
+            if protect:
+                query &= Q(name__icontains=search)
+            else:
+                query &= Q(name__icontains=search)
+    else: # no search
+        pass # nothing left to do
+    return query, order, terms
+
+def build_report_query(request, search):
+    terms = ["name"]
+    # NOTE: protection is based on super_user status
+    protect = not request.user.is_superuser
+    if protect:
+        query = ~Q(report_type="import") # general privacy
+        order = ["name"]
+    else:
+        query = Q()
+        order = ["name"]
+    if search:
+        if "," in search or "=" in search:
+            for term in [term.strip() for term in search.split(",")]:
+                if "=" in term:
+                    field, value = [s.strip() for s in term.split("=")]
+                else:
+                    if terms:
+                        field = terms.pop(0)
+                        value = term
+                    else:
+                        continue
+                if "." in field and not protect:
+                    query &= Q(**{field.replace(".", "__"): value})
+                elif field == "name":
+                    query &= Q(name__icontains=value)
+                else:
+                    request.user.message_set.create(message="Invalid query field '%s'" % field)                
+        else: # no search fields, just raw search
+            if protect:
+                query &= Q(name__icontains=search)
+            else:
+                query &= Q(name__icontains=search)
+    else: # no search
+        pass # nothing left to do
+    return query, order, terms
+
+def build_event_query(request, search):
+    terms = ["id", "type", "place"]
+    protect = not request.user.is_authenticated()
+    if protect:
+        query = Q(private=False) # general privacy
+        order = ["gramps_id"]
+    else:
+        query = Q()
+        order = ["gramps_id"]
+    if search:
+        if "," in search or "=" in search:
+            for term in [term.strip() for term in search.split(",")]:
+                if "=" in term:
+                    field, value = [s.strip() for s in term.split("=")]
+                else:
+                    if terms:
+                        field = terms.pop(0)
+                        value = term
+                    else:
+                        continue
+                if "." in field and not protect:
+                    query &= Q(**{field.replace(".", "__"): value})
+                elif field == "id":
+                    query &= Q(gramps_id__icontains=value)
+                elif field == "type":
+                    query &= Q(event_type__name__icontains=value)
+                elif field == "place":
+                    query &= Q(place__title__icontains=value)
+                else:
+                    request.user.message_set.create(message="Invalid query field '%s'" % field)                
+        else: # no search fields, just raw search
+            if protect:
+                query &= (Q(gramps_id__icontains=search) |
+                          Q(event_type__name__icontains=search) |
+                          Q(place__title__icontains=search))
+            else:
+                query &= (Q(gramps_id__icontains=search) |
+                          Q(event_type__name__icontains=search) |
+                          Q(place__title__icontains=search))
+    else: # no search
+        pass # nothing left to do
+    return query, order, terms
 
 def safe_int(num):
     """
@@ -811,3 +1073,4 @@ def process_reference(request, ref_by, handle, ref_to, order):
                                            referenced_by.handle)
     context["action"] = "view"
     return render_to_response("reference.html", context)
+
