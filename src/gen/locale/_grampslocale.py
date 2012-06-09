@@ -21,7 +21,7 @@
 # $Id$
 
 import locale
-import constfunc
+from gen.constfunc import mac, win
 
 """
 Some OS environments do not support the locale.nl_langinfo() method
@@ -132,7 +132,7 @@ try:
 except:
     import time
 
-    if constfunc.win() or constfunc.mac():
+    if win() or mac():
         codeset = locale.getlocale()[1]
     else:
         codeset = locale.getpreferredencoding()

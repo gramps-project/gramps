@@ -60,7 +60,7 @@ from gui.widgets.springseparator import SpringSeparatorAction
 from gui.spell import Spell
 from gui.display import display_url
 from gen.config import config
-from constfunc import has_display
+from gen.constfunc import has_display
 
 #-------------------------------------------------------------------------
 #

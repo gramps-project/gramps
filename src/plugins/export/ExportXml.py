@@ -61,7 +61,7 @@ import gen.lib
 from gen.updatecallback import UpdateCallback
 from gen.db.exceptions import DbWriteFailure
 import const
-import constfunc
+from gen.constfunc import win
 from gui.plug.export import WriterOptionBox
 import libgrampsxml
 
@@ -1198,7 +1198,7 @@ class GrampsXmlWriter(UpdateCallback):
         elif self.strip_photos == 2 and (len(path)>0 and os.path.isabs(path)):
             drive, path = os.path.splitdrive(path)
             path = path[1:]
-        if constfunc.win():
+        if win():
             # Always export path with \ replaced with /. Otherwise import
             # from Windows to Linux of gpkg's path to images does not work. 
             path = path.replace('\\','/')

@@ -47,14 +47,14 @@ log = logging.getLogger(".gen.datehandler")
 #-------------------------------------------------------------------------
 from _dateparser import DateParser
 from _datedisplay import DateDisplay, DateDisplayEn
-import constfunc
+from gen.constfunc import win
 
 #-------------------------------------------------------------------------
 #
 # Constants 
 #
 #-------------------------------------------------------------------------
-if not constfunc.win():
+if not win():
     LANG = locale.getlocale(locale.LC_TIME)[0]
 else:
     LANG = locale.getdefaultlocale(locale.LC_TIME)[0]

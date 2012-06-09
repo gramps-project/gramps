@@ -64,7 +64,7 @@ from gen.db.dbconst import *
 from gen.utils.callback import Callback
 from gen.updatecallback import UpdateCallback
 from gen.errors import DbError
-import constfunc
+from gen.constfunc import win
 
 _LOG = logging.getLogger(DBLOGNAME)
 LOG = logging.getLogger(".citation")
@@ -2004,7 +2004,7 @@ def write_lock_file(name):
     if not os.path.isdir(name):
         os.mkdir(name)
     f = open(os.path.join(name, DBLOCKFN), "w")
-    if constfunc.win():
+    if win():
         user = os.environ['USERNAME']
         try:
             host = os.environ['USERDOMAIN']

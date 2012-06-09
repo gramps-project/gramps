@@ -53,7 +53,7 @@ from gen.locale import codeset
 import gen.datehandler
 
 from const import TEMP_DIR, USER_HOME, GRAMPS_UUID, IMAGE_DIR
-import constfunc
+from gen.constfunc import mac, win
 from gen.ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
@@ -134,7 +134,7 @@ def fix_encoding(value, errors='strict'):
             return unicode(value)
         except:
             try:
-                if constfunc.mac():
+                if mac():
                     codeset = locale.getlocale()[1]
                 else:
                     codeset = locale.getpreferredencoding()
@@ -279,7 +279,7 @@ def encodingdefs():
     """
     pass
 
-if constfunc.win():
+if win():
     # python encoding is ascii, but C functions need to receive the 
     # windows codeset, so convert over to it
     conv_utf8_tosrtkey = lambda x: locale.strxfrm(x.decode("utf-8").encode(
@@ -379,7 +379,7 @@ def get_unicode_path_from_file_chooser(path):
     if not (isinstance(path,  str)):
         return path
 
-    if constfunc.win():
+    if win():
         # in windows filechooser returns officially utf-8, not filesystemencoding
         try:
             return unicode(path)
@@ -406,7 +406,7 @@ def get_unicode_path_from_env_var(path):
     if not (isinstance(path,  str)):
         return path
 
-    if constfunc.win():
+    if win():
         # In Windows path/filename returned from a environment variable is in filesystemencoding
         try:
             new_path = unicode(path, sys.getfilesystemencoding())
@@ -475,7 +475,7 @@ def search_for(name):
         name = name.split('"')[1]
     else:
         name = name.split()[0]
-    if constfunc.win():
+    if win():
         for i in os.environ['PATH'].split(';'):
             fname = os.path.join(i, name)
             if os.access(fname, os.X_OK) and not os.path.isdir(fname):

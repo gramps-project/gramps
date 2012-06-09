@@ -38,14 +38,14 @@ _LOG = logging.getLogger(".widgets.expandcollapsearrow")
 #
 #-------------------------------------------------------------------------
 import gtk
-import constfunc
+from gen.constfunc import has_display
 
 #-------------------------------------------------------------------------
 #
 # Constants
 #
 #-------------------------------------------------------------------------
-if constfunc.has_display():
+if has_display():
     HAND_CURSOR = gtk.gdk.Cursor(gtk.gdk.HAND2)
 
 #-------------------------------------------------------------------------

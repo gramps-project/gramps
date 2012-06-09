@@ -89,7 +89,7 @@ from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
                         
 import Utils
-import constfunc
+from gen.constfunc import win
 from gui.thumbnails import get_thumbnail_path, run_thumbnailer
 import ImgManip
 import gen.mime
@@ -5767,7 +5767,7 @@ class IndividualPage(BasePage):
                             newpath = copy_thumbnail(self.report, photo_handle, photo, region)
                             # TODO. Check if build_url_fname can be used.
                             newpath = "/".join(['..']*3 + [newpath])
-                            if constfunc.win():
+                            if win():
                                 newpath = newpath.replace('\\',"/")
                             thumbnailUrl = newpath
                             #snapshot += self.media_link(photo_handle, newpath, '', uplink = True)
@@ -5775,7 +5775,7 @@ class IndividualPage(BasePage):
                         else:
                             (photoUrl, thumbnailUrl) = self.report.prepare_copy_media(photo)
                             thumbnailUrl = "/".join(['..']*3 + [thumbnailUrl])
-                            if constfunc.win():
+                            if win():
                                 thumbnailUrl = thumbnailUrl.replace('\\',"/")
             url = self.report.build_url_fname_html(person.handle, "ppl", True)
             boxbg += self.person_link(url, person, name_style = True, thumbnailUrl = thumbnailUrl)
@@ -7509,7 +7509,7 @@ class NavWebReport(Report):
         if up:
             subdirs = ['..']*3 + subdirs
         nname = "/".join(subdirs + [fname])
-        if constfunc.win():
+        if win():
             nname = nname.replace('\\',"/")
         return nname
 
@@ -7577,7 +7577,7 @@ class NavWebReport(Report):
         if not fname:
             return ""
 
-        if constfunc.win():
+        if win():
             fname = fname.replace('\\',"/")
         subdirs = self.build_subdirs(subdir, fname, up)
         return "/".join(subdirs + [fname])
@@ -7622,7 +7622,7 @@ class NavWebReport(Report):
             tarinfo = tarfile.TarInfo(self.cur_fname)
             tarinfo.size = len(string_io.getvalue())
             tarinfo.mtime = time.time()
-            if not constfunc.win():
+            if not win():
                 tarinfo.uid = os.getuid()
                 tarinfo.gid = os.getgid()
             string_io.seek(0)

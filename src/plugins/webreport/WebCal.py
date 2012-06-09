@@ -51,7 +51,7 @@ log = logging.getLogger(".WebPage")
 #------------------------------------------------------------------------
 import gen.lib
 import const
-import constfunc
+from gen.constfunc import win
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
@@ -1006,7 +1006,7 @@ class WebCalReport(Report):
         Imagine we run gramps on Windows (heaven forbits), we don't want to
         see backslashes in the URL.
         """
-        if (constfunc.win()):
+        if win():
             fname = fname.replace('\\',"/")
         subdirs = self.build_subdirs(subdir, fname)
         return (prefix or '') + "/".join(subdirs + [fname])

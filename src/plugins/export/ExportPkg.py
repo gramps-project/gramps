@@ -62,7 +62,7 @@ import gtk
 from gui.plug.export import WriterOptionBox
 from ExportXml import XmlWriter
 import Utils
-import constfunc
+from gen.constfunc import win
 
 #-------------------------------------------------------------------------
 #
@@ -217,7 +217,7 @@ class PackageWriter(object):
         tarinfo = tarfile.TarInfo('data.gramps')
         tarinfo.size = len(g.getvalue())
         tarinfo.mtime = time.time()
-        if not constfunc.win():
+        if not win():
             tarinfo.uid = os.getuid()
             tarinfo.gid = os.getgid()
         g.seek(0)

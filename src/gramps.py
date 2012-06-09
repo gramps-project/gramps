@@ -49,7 +49,7 @@ from subprocess import Popen, PIPE
 #-------------------------------------------------------------------------
 from gen.mime import mime_type_is_defined
 import TransUtils
-import constfunc
+from gen.constfunc import win
 #-------------------------------------------------------------------------
 #
 # Load internationalization setup
@@ -88,7 +88,7 @@ if hasattr(os, "uname"):
 else:
     operating_system = sys.platform
 
-if constfunc.win(): # Windows
+if win(): # Windows
     TransUtils.setup_windows_gettext()
 elif operating_system == 'FreeBSD':
     try:
@@ -289,7 +289,7 @@ def show_settings():
         dotversion_str = 'Graphviz not in system PATH'
 
     try:
-        if constfunc.win():
+        if win():
             gsversion_str = Popen(['gswin32c', '--version'], stdout=PIPE).communicate(input=None)[0]
         else:
             gsversion_str = Popen(['gs', '--version'], stdout=PIPE).communicate(input=None)[0]

@@ -62,7 +62,7 @@ import cPickle as pickle
 from gen.config import config
 from gui.views.bookmarks import PersonBookmarks
 import const
-import constfunc
+from gen.constfunc import is_quartz, win
 from gui.dialog import RunDatabaseRepair, ErrorDialog
 import gui.utils
 
@@ -71,7 +71,7 @@ import gui.utils
 # Constants
 #
 #-------------------------------------------------------------------------
-if constfunc.is_quartz():
+if is_quartz():
     CAIRO_AVAILABLE = False
 else:
     try:
@@ -176,7 +176,7 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         self.maxlines = maxlines
         self.hightlight = False
         self.connect("expose_event", self.expose)
-        if not constfunc.win():
+        if not win():
             self.connect("realize", self.realize)
         self.text = ""
         if self.person:
@@ -257,7 +257,7 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         witout text.
         """
         # pylint: disable-msg=E1101
-        if constfunc.win():
+        if win():
             self.context = self.window.cairo_create()
             self.textlayout = self.context.create_layout()
             self.textlayout.set_font_description(self.get_style().font_desc)

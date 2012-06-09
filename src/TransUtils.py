@@ -41,7 +41,7 @@ import locale
 #
 #-------------------------------------------------------------------------
 import const
-from constfunc import mac
+from gen.constfunc import mac
 #-------------------------------------------------------------------------
 #
 # Public Constants

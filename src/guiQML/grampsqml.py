@@ -43,7 +43,7 @@ LOG = logging.getLogger(".grampsqml")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import constfunc
+from gen.constfunc import has_display
 from gen.config import config
 
 #-------------------------------------------------------------------------
@@ -136,7 +136,7 @@ def startqml(errors, argparser):
         quit_now = False
         openGL = True
         exit_code = 0
-        if constfunc.has_display():
+        if has_display():
             GrampsQML(argparser)
         else:
             print("Gramps terminated because of no DISPLAY")

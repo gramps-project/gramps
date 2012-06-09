@@ -47,7 +47,7 @@ import Utils
 from gen.plug.docgen import BaseDoc
 from gen.plug.menu import NumberOption, TextOption, EnumeratedListOption, \
                           BooleanOption
-import constfunc
+from gen.constfunc import win
 
 #-------------------------------------------------------------------------
 #
@@ -87,7 +87,7 @@ _RATIO = [ { 'name' : _("Minimal size"),                'value': "compress" },
 _NOTELOC = [ { 'name' : _("Top"),    'value' : "t" },
              { 'name' : _("Bottom"), 'value' : "b" }]
 
-if constfunc.win():
+if win():
     _DOT_FOUND = Utils.search_for("dot.exe")
     
     if Utils.search_for("gswin32c.exe") == 1:

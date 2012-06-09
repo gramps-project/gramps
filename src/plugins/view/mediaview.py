@@ -53,7 +53,7 @@ from gui.utils import open_file_with_default_application
 from gui.views.listview import ListView
 from gui.views.treemodels import MediaModel
 import const
-import constfunc
+from gen.constfunc import win
 from gen.config import config
 import Utils
 from gui.views.bookmarks import MediaBookmarks
@@ -174,7 +174,7 @@ class MediaView(ListView):
         if not sel_data:
             return
         #modern file managers provide URI_LIST. For Windows split sel_data.data
-        if constfunc.win():
+        if win():
             files = sel_data.data.split('\n')
         else:
             files =  sel_data.get_uris()

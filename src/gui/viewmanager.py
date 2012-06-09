@@ -79,7 +79,7 @@ from gui.pluginmanager import GuiPluginManager
 from gen.relationship import get_relationship_calculator
 from gui.displaystate import DisplayState, RecentDocsMenu
 import const
-import constfunc
+from gen.constfunc import is_quartz
 from gen.config import config
 from gen.errors import WindowActiveError
 from gui.dialog import (ErrorDialog, WarningDialog, QuestionDialog2,
@@ -103,7 +103,7 @@ from gen.utils.configmanager import safe_eval
 # Constants
 #
 #-------------------------------------------------------------------------
-if constfunc.is_quartz():
+if is_quartz():
     try:
         import gtk_osxapplication as QuartzApp
         _GTKOSXAPPLICATION = True

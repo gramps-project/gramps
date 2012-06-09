@@ -52,7 +52,7 @@ from gui.display import display_help
 from gui.managedwindow import ManagedWindow
 from gen.ggettext import sgettext as _
 from TransUtils import trans_objclass
-from constfunc import mac
+from gen.constfunc import mac
 from gui.glade import Glade
 from gui.ddtargets import DdTargets
 from gui.makefilter import make_filter

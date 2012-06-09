@@ -52,7 +52,6 @@ from gui.views.navigationview import NavigationView
 from libformatting import FormattingHelper
 from gen.errors import WindowActiveError
 import const
-import constfunc
 from gui.managedwindow import ManagedWindow
 from gen.config import config
 from gui.editors import EditPlace, EditEvent, EditFamily, EditPerson

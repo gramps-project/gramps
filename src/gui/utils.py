@@ -32,7 +32,6 @@ Utility functions that depend on GUI components or for GUI components
 import os
 import sys
 from gen.ggettext import gettext as _
-import constfunc
 # gtk is not included here, because this file is currently imported
 # by code that needs to run without the DISPLAY variable (eg, in
 # the cli only).
@@ -49,7 +48,7 @@ import constfunc
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import constfunc
+from gen.constfunc import has_display, is_quartz, mac, win
 
 #-------------------------------------------------------------------------
 #
@@ -143,7 +142,7 @@ class ProgressMeter(object):
         else:
             self.__cancel_callback = self.handle_cancel
 
-        if constfunc.has_display():
+        if has_display():
             self.__dialog = gtk.Dialog()
         else:
             self.__dialog = CLIDialog()
@@ -334,13 +333,13 @@ def open_file_with_default_application( file_path ):
         ErrorDialog(_("Error Opening File"), _("File does not exist"))
         return
 
-    if constfunc.win():
+    if win():
         try:
             os.startfile(norm_path)
         except WindowsError, msg:
             ErrorDialog(_("Error Opening File"), str(msg))
     else:
-        if constfunc.mac():
+        if mac():
             utility = '/usr/bin/open'
         else:
             utility = 'xdg-open'
@@ -375,7 +374,7 @@ def is_right_click(event):
     import gtk
 
     if event.type == gtk.gdk.BUTTON_PRESS:
-        if constfunc.is_quartz():
+        if is_quartz():
             if (event.button == 3
                 or (event.button == 1 and event.state & gtk.gdk.CONTROL_MASK)):
                 return True

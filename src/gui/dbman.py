@@ -47,8 +47,8 @@ from gui.user import User
 import logging
 LOG = logging.getLogger(".DbManager")
 
-import constfunc
-if constfunc.win():
+from gen.constfunc import win
+if win():
     _RCS_FOUND = os.system("rcs -V >nul 2>nul") == 0
     if _RCS_FOUND and "TZ" not in os.environ:
         # RCS requires the "TZ" variable be set.

@@ -47,14 +47,14 @@ import pango
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import constfunc
+from gen.constfunc import has_display, win
 
 #-------------------------------------------------------------------------
 #
 # Constants
 #
 #-------------------------------------------------------------------------
-if constfunc.has_display():
+if has_display():
     HAND_CURSOR = gtk.gdk.Cursor(gtk.gdk.HAND2)
 
 #-------------------------------------------------------------------------
@@ -208,7 +208,7 @@ class GenderLabel(gtk.Label):
     def __init__(self, text):
         gtk.Label.__init__(self, text)
         self.set_alignment(0, 0.5)
-        if constfunc.win():
+        if win():
             pangoFont = pango.FontDescription('Arial')
             self.modify_font(pangoFont)
         self.show()

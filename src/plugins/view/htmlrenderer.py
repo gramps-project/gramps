@@ -60,7 +60,7 @@ import gtk
 from gui.views.navigationview import NavigationView
 from gui.views.bookmarks import PersonBookmarks
 import Utils
-import constfunc
+from gen.constfunc import lin, mac, win
 from gen.config import config
 from const import TEMP_DIR
 
@@ -71,11 +71,11 @@ from const import TEMP_DIR
 #-------------------------------------------------------------------------
 
 def get_identity():
-    if constfunc.lin():
+    if lin():
         platform = "X11"
-    elif constfunc.win():
+    elif win():
         platform = "Windows"
-    elif constfunc.mac():
+    elif mac():
         platform = "Macintosh"
     else:
         platform = "Unknown"

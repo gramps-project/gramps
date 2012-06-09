@@ -58,7 +58,7 @@ import gobject
 #-------------------------------------------------------------------------
 from gen.config import config
 import const
-import constfunc
+from gen.constfunc import has_display, win
 import Utils
 
 #-------------------------------------------------------------------------
@@ -75,7 +75,7 @@ def register_stock_icons ():
     from gui.pluginmanager import base_reg_stock_icons
 
     #iconpath to the base image. The front of the list has highest priority
-    if constfunc.win():
+    if win():
         iconpaths = [
                     (os.path.join(const.IMAGE_DIR, '48x48'), '.png'),
                     (const.IMAGE_DIR, '.png'),
@@ -288,7 +288,7 @@ def __startgramps(errors, argparser):
     try:
         quit_now = False
         exit_code = 0
-        if constfunc.has_display():
+        if has_display():
             Gramps(argparser)
         else:
             print("Gramps terminated because of no DISPLAY")

@@ -58,7 +58,7 @@ from gen.errors import WindowActiveError
 import gen.mime
 from gui.ddtargets import DdTargets
 from buttontab import ButtonTab
-import constfunc
+from gen.constfunc import win
 import const
 #-------------------------------------------------------------------------
 #
@@ -487,7 +487,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                     self.handle_extra_type(mytype, obj)
             except pickle.UnpicklingError:
         #modern file managers provide URI_LIST. For Windows split sel_data.data
-                if constfunc.win():
+                if win():
                     files = sel_data.data.split('\n')
                 else:
                     files =  sel_data.get_uris()

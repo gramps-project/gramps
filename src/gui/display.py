@@ -21,7 +21,7 @@
 # $Id$
 
 import const
-import constfunc
+from gen.constfunc import is_quartz
 from gen.config import config
 import locale
 import os
@@ -93,7 +93,7 @@ def run_file(file):
     Open a file or url with the default application. This should work
     on GNOME, KDE, XFCE, ... as we use a freedesktop application
     """
-    if constfunc.is_quartz():
+    if is_quartz():
         prog = find_binary('open')
     else:
         prog = find_binary('xdg-open')

@@ -44,7 +44,7 @@ import gtk
 #-------------------------------------------------------------------------
 import gen.utils
 from gen.plug import BasePluginManager, PluginRegister
-from constfunc import win
+from gen.constfunc import win
 from gen.config import config
 import const
 
