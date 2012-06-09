@@ -2,6 +2,7 @@ include AUTHORS
 include COPYING
 include FAQ
 include INSTALL
+include LICENSE
 include MANIFEST.in
 include NEWS
 include RELEASE_NOTES

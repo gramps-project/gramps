@@ -277,7 +277,8 @@ class install(_install):
         else:
             update_posix()
 
-DOC_FILES = ['AUTHORS', 'COPYING', 'FAQ', 'INSTALL', 'NEWS', 'README', 'TODO']
+DOC_FILES = ['AUTHORS', 'COPYING', 'FAQ', 'INSTALL', 'LICENSE', 'NEWS',
+             'README', 'TODO']
 GEDCOM_FILES = glob.glob(os.path.join('example', 'gedcom', '*.*'))
 GRAMPS_FILES = glob.glob(os.path.join('example', 'gramps', '*.*'))
 PNG_FILES = glob.glob(os.path.join('data', '*.png'))
