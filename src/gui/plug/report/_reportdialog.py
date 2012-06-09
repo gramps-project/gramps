@@ -49,7 +49,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
-import config
+from gen.config import config
 from gen.errors import DatabaseError, FilterError, ReportError, WindowActiveError
 from gui.utils import open_file_with_default_application
 from gui.plug import add_gui_options

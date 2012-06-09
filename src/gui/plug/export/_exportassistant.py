@@ -56,7 +56,7 @@ import gtk
 #-------------------------------------------------------------------------
 
 import const
-import config
+from gen.config import config
 from gui.pluginmanager import GuiPluginManager
 import Utils
 from gui.managedwindow import ManagedWindow

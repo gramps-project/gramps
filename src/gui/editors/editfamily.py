@@ -28,7 +28,7 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-import config
+from gen.config import config
 if config.get('preferences.use-bsddb3'):
     from bsddb3 import db as bsddb_db
 else:
@@ -61,7 +61,7 @@ import gobject
 #
 #-------------------------------------------------------------------------
 import Utils
-import config
+from gen.config import config
 from gen.display.name import displayer as name_displayer
 from gen.utils import get_marriage_or_fallback
 import gen.lib

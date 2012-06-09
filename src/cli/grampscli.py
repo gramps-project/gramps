@@ -46,7 +46,7 @@ LOG = logging.getLogger(".grampscli")
 #
 #-------------------------------------------------------------------------
 from gen.display.name import displayer as name_displayer
-import config
+from gen.config import config
 import const
 from gen.errors import DbError
 from gen.dbstate import DbState

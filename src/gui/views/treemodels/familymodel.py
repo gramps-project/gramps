@@ -47,7 +47,7 @@ from gen.display.name import displayer as name_displayer
 import gen.lib
 from gen.lib import EventRoleType
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
-import config
+from gen.config import config
 
 invalid_date_format = config.get('preferences.invalid-date-format')
 

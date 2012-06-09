@@ -48,7 +48,7 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 from gen.errors import WindowActiveError
-import config
+from gen.config import config
 from gui.glade import Glade
 
 #-------------------------------------------------------------------------

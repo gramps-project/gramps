@@ -47,7 +47,7 @@ import logging
 #
 #-------------------------------------------------------------------------
 import const
-import config
+from gen.config import config
 from gen.utils.configmanager import safe_eval
 import Utils
 

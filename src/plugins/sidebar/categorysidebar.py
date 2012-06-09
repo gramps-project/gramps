@@ -35,7 +35,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import config
+from gen.config import config
 from gui.basesidebar import BaseSidebar
 from gui.viewmanager import get_available_views, views_to_show
 

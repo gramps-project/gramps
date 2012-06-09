@@ -53,7 +53,7 @@ import pango
 from gui.views.pageview import PageView
 from gui.views.navigationview import NavigationView
 from gui.columnorder import ColumnOrder
-import config
+from gen.config import config
 from gen.errors import WindowActiveError
 from gui.filters import SearchBar
 from gui.utils import add_menuitem

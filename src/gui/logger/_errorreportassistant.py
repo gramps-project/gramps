@@ -32,7 +32,7 @@ import gobject
 import cairo
 import sys, os
 
-import config
+from gen.config import config
 if config.get('preferences.use-bsddb3'):
     import bsddb3 as bsddb
 else:

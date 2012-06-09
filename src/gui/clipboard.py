@@ -45,7 +45,7 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK, ACTION_MOVE
 #
 #-------------------------------------------------------------------------
 import const
-import config
+from gen.config import config
 import gen.lib
 import gen.datehandler
 from gui.display import display_help

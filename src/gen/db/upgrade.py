@@ -34,7 +34,7 @@ from gen.ggettext import gettext as _
 """
 methods to upgrade a database from version 13 to current version
 """
-import config
+from gen.config import config
 if config.get('preferences.use-bsddb3'):
     from bsddb3 import db
 else:

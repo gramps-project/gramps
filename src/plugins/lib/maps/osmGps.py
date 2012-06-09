@@ -58,7 +58,7 @@ from selectionlayer import SelectionLayer
 from lifewaylayer import LifeWayLayer
 from datelayer import DateLayer
 from gen.ggettext import sgettext as _
-from config import config
+from gen.config import config
 from gui.dialog import ErrorDialog
 
 #-------------------------------------------------------------------------

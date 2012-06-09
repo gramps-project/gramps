@@ -37,7 +37,7 @@
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
 from gen.ggettext import ngettext
-import config
+from gen.config import config
 from gen.display.name import displayer as name_displayer
 from gen.filters import GenericFilter, rules
 from gui.utils import ProgressMeter

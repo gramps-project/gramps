@@ -50,7 +50,7 @@ from gui.views.treemodels import NoteModel
 import Utils
 from gen.errors import WindowActiveError
 from gui.views.bookmarks import NoteBookmarks
-import config
+from gen.config import config
 from gen.lib import Note
 from gui.ddtargets import DdTargets
 from gui.dialog import ErrorDialog

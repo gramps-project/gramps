@@ -36,7 +36,7 @@ from gen.plug.report.utils import place_name
 
 from gen.display.name import displayer as name_displayer
 from gen.lib import EventType
-import config
+from gen.config import config
 from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------

@@ -63,7 +63,7 @@ import Utils
 from lru import LRU
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
 from gui.views.treemodels.treebasemodel import TreeBaseModel
-import config
+from gen.config import config
 
 #-------------------------------------------------------------------------
 #

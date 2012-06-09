@@ -55,7 +55,7 @@ import gobject
 #
 #-------------------------------------------------------------------------
 from cli.grampscli import CLIDbLoader
-import config
+from gen.config import config
 import gen.db
 import Utils
 from gui.pluginmanager import GuiPluginManager

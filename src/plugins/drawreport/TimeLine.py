@@ -47,7 +47,7 @@ from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                     FONT_SANS_SERIF, DASHED, PARA_ALIGN_CENTER)
 from gen.sort import Sort
 from gen.display.name import displayer as name_displayer
-import config
+from gen.config import config
 from gen.utils import get_birth_or_fallback, get_death_or_fallback
 
 #------------------------------------------------------------------------

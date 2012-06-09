@@ -54,7 +54,7 @@ from gen.errors import WindowActiveError
 import const
 import constfunc
 from gui.managedwindow import ManagedWindow
-from config import config
+from gen.config import config
 from gui.editors import EditPlace, EditEvent, EditFamily, EditPerson
 from gui.selectors.selectplace import SelectPlace
 

@@ -64,7 +64,7 @@ import gtk
 #-------------------------------------------------------------------------
 import gen.lib
 from gen.db import DbTxn
-import config
+from gen.config import config
 import Utils
 from gui.utils import ProgressMeter
 from gui.managedwindow import ManagedWindow

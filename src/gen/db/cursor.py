@@ -28,7 +28,7 @@
 #-------------------------------------------------------------------------
 from cPickle import dumps, loads
 
-import config
+from gen.config import config
 if config.get('preferences.use-bsddb3'):
     from bsddb3 import db
 else:

@@ -38,7 +38,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-import config
+from gen.config import config
 from Utils import get_researcher
 from gui.display import display_help
 from gui.widgets import MonitoredEntry

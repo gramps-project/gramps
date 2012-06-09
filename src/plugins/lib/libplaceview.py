@@ -50,7 +50,7 @@ from gui.views.listview import ListView
 from gui.utils import add_menuitem
 from gen.errors import WindowActiveError
 from gui.views.bookmarks import PlaceBookmarks
-import config
+from gen.config import config
 from gui.dialog import ErrorDialog
 from gui.pluginmanager import GuiPluginManager
 from gui.ddtargets import DdTargets

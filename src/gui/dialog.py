@@ -41,7 +41,7 @@ from gtk.gdk import pixbuf_new_from_file
 #
 #-------------------------------------------------------------------------
 import const
-import config
+from gen.config import config
 from gui.glade import Glade
 from gen.ggettext import gettext as _
 

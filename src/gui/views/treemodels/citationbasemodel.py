@@ -42,7 +42,7 @@ LOG = logging.getLogger(".citation")
 import gen.datehandler
 import gen.lib
 from Utils import confidence, format_time
-import config
+from gen.config import config
 
 #-------------------------------------------------------------------------
 #

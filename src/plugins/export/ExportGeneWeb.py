@@ -51,7 +51,7 @@ from gui.plug.export import WriterOptionBox
 #import const
 import Utils
 from gui.glade import Glade
-import config
+from gen.config import config
 
 class GeneWebWriter(object):
     def __init__(self, database, filename, user, option_box=None):

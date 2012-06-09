@@ -13,7 +13,6 @@ SUBDIRS = \
 gdirdir=$(prefix)/share/gramps
 
 gdir_PYTHON = \
-	config.py\
 	const.py\
         constfunc.py\
 	gramps.py\

@@ -48,7 +48,7 @@ from gen.plug.menu import EnumeratedListOption, NumberOption, PersonOption
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
-import config
+from gen.config import config
 
 #------------------------------------------------------------------------
 #

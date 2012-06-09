@@ -27,7 +27,7 @@ from collections import defaultdict
 #------------------------------------------------------------------------
 from gen.plug import Gramplet
 from gen.ggettext import sgettext as _
-import config
+from gen.config import config
 
 #------------------------------------------------------------------------
 #

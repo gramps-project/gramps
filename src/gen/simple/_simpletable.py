@@ -29,7 +29,7 @@ Provide a simplified table creation interface
 import cgi
 from gen.ggettext import sgettext as _
 import gen.lib
-import config
+from gen.config import config
 import gen.datehandler
 
 class SimpleTable(object):

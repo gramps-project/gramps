@@ -64,7 +64,7 @@ import re
 from gen.lib import Name, NameOriginType
 
 try:
-    import config
+    from gen.config import config
     WITH_GRAMPS_CONFIG=True
 except ImportError:
     WITH_GRAMPS_CONFIG=False

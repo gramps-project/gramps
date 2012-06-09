@@ -53,7 +53,7 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 from gui.display import display_url
-import config
+from gen.config import config
 
 if config.get('preferences.use-bsddb3'):
     import bsddb3 as bsddb

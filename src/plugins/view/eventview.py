@@ -52,7 +52,7 @@ from gui.views.treemodels import EventModel
 import Utils
 from gen.errors import WindowActiveError
 from gui.views.bookmarks import EventBookmarks
-import config
+from gen.config import config
 from gui.ddtargets import DdTargets
 from gui.dialog import ErrorDialog
 from gui.editors import EditEvent, DeleteEventQuery

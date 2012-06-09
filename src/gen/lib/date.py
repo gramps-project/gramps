@@ -57,7 +57,7 @@ from gen.lib.calendar import (gregorian_sdn, julian_sdn, hebrew_sdn,
                               gregorian_ymd, julian_ymd, hebrew_ymd, 
                               french_ymd, persian_ymd, islamic_ymd,
                               swedish_ymd)
-import config
+from gen.config import config
 
 #-------------------------------------------------------------------------
 #

@@ -251,7 +251,7 @@ def show_settings():
     except ImportError:
         pyexiv2_str = 'not found'
 
-    import config
+    from gen.config import config
     usebsddb3 = config.get('preferences.use-bsddb3')
     try:
         if usebsddb3:

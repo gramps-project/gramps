@@ -45,7 +45,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import config
+from gen.config import config
 import gen.utils
 from gen.plug import PluginRegister
 

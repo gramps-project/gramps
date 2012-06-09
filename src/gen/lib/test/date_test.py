@@ -45,7 +45,7 @@ except ValueError:
 from test import test_util
 test_util.path_append_parent() 
 
-import config
+from gen.config import config
 import gen.datehandler
 from gen.datehandler import parser as _dp
 from gen.datehandler import displayer as _dd

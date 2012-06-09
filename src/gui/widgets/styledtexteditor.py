@@ -59,7 +59,7 @@ from gui.widgets.toolcomboentry import ToolComboEntry
 from gui.widgets.springseparator import SpringSeparatorAction
 from gui.spell import Spell
 from gui.display import display_url
-import config
+from gen.config import config
 from constfunc import has_display
 
 #-------------------------------------------------------------------------

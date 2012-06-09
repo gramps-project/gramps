@@ -80,7 +80,7 @@ from gen.relationship import get_relationship_calculator
 from gui.displaystate import DisplayState, RecentDocsMenu
 import const
 import constfunc
-import config
+from gen.config import config
 from gen.errors import WindowActiveError
 from gui.dialog import (ErrorDialog, WarningDialog, QuestionDialog2,
                             InfoDialog)

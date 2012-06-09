@@ -45,7 +45,7 @@ import gobject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------------
-import config
+from gen.config import config
 from gen.plug.report import CATEGORY_GRAPHVIZ
 from _reportdialog import ReportDialog
 from _papermenu import PaperFrame

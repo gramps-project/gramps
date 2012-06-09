@@ -45,7 +45,7 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import config
+from gen.config import config
 from gen.display.name import displayer as name_displayer
 from editsecondary import EditSecondary
 from gen.lib import NoteType

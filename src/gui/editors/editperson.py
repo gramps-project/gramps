@@ -63,7 +63,7 @@ from gui.glade import Glade
 from editprimary import EditPrimary
 from editmediaref import EditMediaRef
 from editname import EditName
-import config
+from gen.config import config
 from gui.dialog import ErrorDialog, ICON
 from gen.errors import ValidationError
 

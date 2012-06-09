@@ -63,7 +63,7 @@ from gen.ggettext import sgettext as _
 #-------------------------------------------------------------------------
 # cache values; use refresh_constants() if they change
 try:
-    import config
+    from gen.config import config
     _MAX_AGE_PROB_ALIVE   = config.get('behavior.max-age-prob-alive')
     _MAX_SIB_AGE_DIFF     = config.get('behavior.max-sib-age-diff')
     _AVG_GENERATION_GAP   = config.get('behavior.avg-generation-gap')
@@ -1357,7 +1357,7 @@ def update_constants():
     """
     Used to update the constants that are cached in this module.
     """
-    import config
+    from gen.config import config
     global _MAX_AGE_PROB_ALIVE, _MAX_SIB_AGE_DIFF, _AVG_GENERATION_GAP
     _MAX_AGE_PROB_ALIVE   = config.get('behavior.max-age-prob-alive')
     _MAX_SIB_AGE_DIFF     = config.get('behavior.max-sib-age-diff')

@@ -22,7 +22,7 @@
 
 import const
 import constfunc
-import config
+from gen.config import config
 import locale
 import os
 

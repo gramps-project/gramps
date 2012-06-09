@@ -43,7 +43,7 @@ import logging
 from sys import maxint
 
 from gen.ggettext import gettext as _
-import config
+from gen.config import config
 if config.get('preferences.use-bsddb3'):
     from bsddb3 import dbshelve, db
 else:

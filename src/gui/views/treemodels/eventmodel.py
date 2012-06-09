@@ -43,7 +43,7 @@ import gtk
 import gen.datehandler
 import gen.lib
 import Utils
-import config
+from gen.config import config
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
 
 #-------------------------------------------------------------------------

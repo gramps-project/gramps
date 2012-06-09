@@ -51,7 +51,7 @@ from gui.dbguielement import DbGUIElement
 from gui.widgets.menutoolbuttonaction import MenuToolButtonAction
 from gui.grampsbar import GrampsBar
 from gui.configure import ConfigureDialog
-from config import config
+from gen.config import config
 
 #------------------------------------------------------------------------------
 #

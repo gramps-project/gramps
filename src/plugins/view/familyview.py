@@ -51,7 +51,7 @@ from gui.views.treemodels import FamilyModel
 from gui.editors import EditFamily
 from gui.views.bookmarks import FamilyBookmarks
 from gen.errors import WindowActiveError
-import config
+from gen.config import config
 from gui.dialog import ErrorDialog
 from gui.filters.sidebar import FamilySidebarFilter
 from gui.merge import MergeFamily

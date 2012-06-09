@@ -56,7 +56,7 @@ import gobject
 import gen.utils
 from gui.utils import process_pending_events
 from gui.views.navigationview import NavigationView
-import config
+from gen.config import config
 from gen.display.name import displayer as name_displayer
 from gui.managedwindow import GrampsWindowManager
 from gen.relationship import get_relationship_calculator

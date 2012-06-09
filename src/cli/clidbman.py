@@ -54,7 +54,7 @@ LOG = logging.getLogger(".clidbman")
 #-------------------------------------------------------------------------
 import gen.db
 from gen.plug import BasePluginManager
-import config
+from gen.config import config
 import constfunc
 #-------------------------------------------------------------------------
 #

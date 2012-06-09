@@ -59,7 +59,7 @@ from gen.errors import WindowActiveError
 from gui.editors import EditPerson, EditFamily
 from gui.ddtargets import DdTargets
 import cPickle as pickle
-import config
+from gen.config import config
 from gui.views.bookmarks import PersonBookmarks
 import const
 import constfunc

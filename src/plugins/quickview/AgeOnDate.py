@@ -33,7 +33,7 @@ from Utils import probably_alive
 from gen.ggettext import gettext as _
 import gen.datehandler
 import gen.lib
-import config
+from gen.config import config
 
 def run(database, document, date):
     """

@@ -57,7 +57,7 @@ _LOG = logging.getLogger("GeoGraphy.geoplaces")
 #-------------------------------------------------------------------------
 import gen.lib
 import Utils
-import config
+from gen.config import config
 from gen.display.name import displayer as _nd
 from gen.utils import conv_lat_lon
 from gui.views.pageview import PageView

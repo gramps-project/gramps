@@ -52,7 +52,7 @@ _LOG = logging.getLogger("GeoGraphy.geomoves")
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import config
+from gen.config import config
 import gen.datehandler
 from gen.display.name import displayer as _nd
 from gen.utils import conv_lat_lon

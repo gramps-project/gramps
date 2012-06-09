@@ -61,7 +61,7 @@ from gui.views.navigationview import NavigationView
 from gui.views.bookmarks import PersonBookmarks
 import Utils
 import constfunc
-import config
+from gen.config import config
 from const import TEMP_DIR
 
 #-------------------------------------------------------------------------

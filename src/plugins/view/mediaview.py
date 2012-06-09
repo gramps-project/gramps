@@ -54,7 +54,7 @@ from gui.views.listview import ListView
 from gui.views.treemodels import MediaModel
 import const
 import constfunc
-import config
+from gen.config import config
 import Utils
 from gui.views.bookmarks import MediaBookmarks
 import gen.mime

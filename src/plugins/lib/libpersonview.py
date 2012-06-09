@@ -55,7 +55,7 @@ from gen.display.name import displayer as name_displayer
 from gui.dialog import ErrorDialog, QuestionDialog
 from gen.errors import WindowActiveError
 from gui.views.bookmarks import PersonBookmarks
-import config
+from gen.config import config
 from gui.ddtargets import DdTargets
 from gui.editors import EditPerson
 from gui.filters.sidebar import PersonSidebarFilter

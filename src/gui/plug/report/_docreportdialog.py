@@ -42,7 +42,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-import config
+from gen.config import config
 from _reportdialog import ReportDialog
 from _papermenu import PaperFrame
 from gui.pluginmanager import GuiPluginManager

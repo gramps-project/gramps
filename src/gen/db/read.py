@@ -38,7 +38,7 @@ import locale
 import os
 from sys import maxint
 
-import config
+from gen.config import config
 if config.get('preferences.use-bsddb3'):
     from bsddb3 import db
 else:

@@ -46,7 +46,7 @@ import gobject
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import config
+from gen.config import config
 import const
 import gen.datehandler
 from gen.display.name import displayer as _nd

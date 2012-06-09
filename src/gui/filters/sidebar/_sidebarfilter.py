@@ -28,7 +28,7 @@ import pango
 
 from gui import widgets
 from gui.dbguielement import DbGUIElement
-import config
+from gen.config import config
 
 _RETURN = gtk.gdk.keyval_from_name("Return")
 _KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")

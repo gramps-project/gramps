@@ -58,7 +58,7 @@ from gui.dialog import InfoDialog
 from gui.editors import EditPerson
 import Utils
 import const
-import config
+from gen.config import config
 
 def display_message(message):
     """

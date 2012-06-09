@@ -23,7 +23,7 @@
 
 from gui.managedwindow import ManagedWindow
 from gui.display import display_help
-import config
+from gen.config import config
 from gui.dbguielement import DbGUIElement
 
 class EditSecondary(ManagedWindow, DbGUIElement):

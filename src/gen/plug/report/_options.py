@@ -58,7 +58,7 @@ except:
 #
 #-------------------------------------------------------------------------
 import const
-import config
+from gen.config import config
 from gen.plug.docgen import PAPER_PORTRAIT
 from gen.plug import _options
 from gen.plug import MenuOptions

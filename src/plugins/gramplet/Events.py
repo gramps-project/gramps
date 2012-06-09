@@ -28,7 +28,7 @@ import gen.datehandler
 from gen.utils import get_birth_or_fallback, get_marriage_or_fallback
 from gen.errors import WindowActiveError
 import gtk
-import config
+from gen.config import config
 
 age_precision = config.get('preferences.age-display-precision')
 

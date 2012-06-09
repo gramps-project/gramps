@@ -46,7 +46,7 @@ import os
 #
 #-------------------------------------------------------------------------
 import const
-import config
+from gen.config import config
 from gui.managedwindow import ManagedWindow
 from gui.dialog import ErrorDialog
 from gui.glade import Glade

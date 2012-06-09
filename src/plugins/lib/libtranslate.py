@@ -39,7 +39,7 @@ _ = gettext.gettext
 #------------------------------------------------------------------------
 import TransUtils
 import gen.datehandler
-import config
+from gen.config import config
 from gen.lib.grampstype import GrampsType
 
 #------------------------------------------------------------------------

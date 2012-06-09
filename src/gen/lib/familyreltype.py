@@ -35,7 +35,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from gen.lib.grampstype import GrampsType
-import config
+from gen.config import config
 
 class FamilyRelType(GrampsType):
 

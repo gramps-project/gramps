@@ -44,7 +44,7 @@ LOG = logging.getLogger(".grampsqml")
 #
 #-------------------------------------------------------------------------
 import constfunc
-import config
+from gen.config import config
 
 #-------------------------------------------------------------------------
 #

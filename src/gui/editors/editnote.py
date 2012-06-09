@@ -47,7 +47,7 @@ import pango
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import config
+from gen.config import config
 import const
 from editprimary import EditPrimary
 from displaytabs import GrampsTab, NoteBackRefList

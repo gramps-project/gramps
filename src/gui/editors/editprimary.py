@@ -43,7 +43,7 @@ import gtk
 from gui.managedwindow import ManagedWindow
 import gen.datehandler
 from gen.display.name import displayer as name_displayer
-import config
+from gen.config import config
 import gui.utils
 from gui.display import display_help
 from gui.dialog import SaveDialog

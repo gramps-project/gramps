@@ -50,7 +50,7 @@ import libgedcom
 module = __import__("libgedcom")
 reload (module)
 
-import config
+from gen.config import config
     
 #-------------------------------------------------------------------------
 #

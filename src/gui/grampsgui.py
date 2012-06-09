@@ -56,7 +56,7 @@ import gobject
 # GRAMPS Modules
 #
 #-------------------------------------------------------------------------
-import config
+from gen.config import config
 import const
 import constfunc
 import Utils

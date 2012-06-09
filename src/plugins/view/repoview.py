@@ -41,7 +41,7 @@ from gui.views.listview import ListView
 from gui.views.treemodels import RepositoryModel
 from gui.views.bookmarks import RepoBookmarks
 from gen.errors import WindowActiveError
-import config
+from gen.config import config
 from gui.editors import EditRepository, DeleteRepositoryQuery
 from gui.ddtargets import DdTargets
 from gui.dialog import ErrorDialog

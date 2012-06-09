@@ -56,7 +56,7 @@ from Utils import media_path_full, probably_alive
 from gui.utils import open_file_with_default_application
 import gen.datehandler
 from gui.thumbnails import get_thumbnail_image
-import config
+from gen.config import config
 from gui import widgets
 from gui.selectors import SelectorFactory
 from gen.errors import WindowActiveError

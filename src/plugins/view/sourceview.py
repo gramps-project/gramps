@@ -40,7 +40,7 @@ LOG = logging.getLogger(".citation")
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import config
+from gen.config import config
 from gui.views.listview import ListView
 from gui.views.treemodels import SourceModel
 import Utils

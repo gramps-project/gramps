@@ -51,7 +51,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-import config
+from gen.config import config
 import Utils
 import gen.mime
 from gui.thumbnails import find_mime_type_pixbuf

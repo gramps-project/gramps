@@ -24,7 +24,7 @@ from collections import defaultdict
 from gen.ggettext import gettext as _
 
 from gen.plug import Gramplet
-import config
+from gen.config import config
 
 _YIELD_INTERVAL = 350
 

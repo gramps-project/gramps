@@ -36,7 +36,7 @@ import time, os
 import cPickle as pickle
 from collections import deque
 
-import config
+from gen.config import config
 if config.get('preferences.use-bsddb3'):
     from bsddb3 import db
 else:
