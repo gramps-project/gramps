@@ -51,7 +51,7 @@ import gen.lib
 from gen.errors import DatabaseError
 from gen.locale import codeset
 import gen.datehandler
-
+from gen.config import config
 from const import TEMP_DIR, USER_HOME, GRAMPS_UUID, IMAGE_DIR
 from gen.constfunc import mac, win
 from gen.ggettext import sgettext as _
