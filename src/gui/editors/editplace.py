@@ -51,7 +51,7 @@ from displaytabs import (GrampsTab, LocationEmbedList, CitationEmbedList,
                          GalleryTab, NoteTab, WebEmbedList, PlaceBackRefList)
 from gui.widgets import MonitoredEntry, PrivacyButton
 from gen.errors import ValidationError
-from gen.utils import conv_lat_lon
+from gen.utils.place import conv_lat_lon
 from gui.dialog import ErrorDialog
 from gui.glade import Glade
 

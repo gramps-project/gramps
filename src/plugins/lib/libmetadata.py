@@ -24,7 +24,7 @@
 
 from gui.listmodel import ListModel
 from gen.ggettext import gettext as _
-from gen.utils import conv_lat_lon
+from gen.utils.place import conv_lat_lon
 from fractions import Fraction
 import gen.lib
 import gen.datehandler

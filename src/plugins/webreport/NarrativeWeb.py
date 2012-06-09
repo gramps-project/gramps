@@ -105,7 +105,7 @@ from libhtml import Html
 from libhtmlbackend import HtmlBackend, process_spaces
 
 from libgedcom import make_gedcom_date
-from gen.utils import conv_lat_lon
+from gen.utils.place import conv_lat_lon
 from gui.pluginmanager import GuiPluginManager
 
 from gen.relationship import get_relationship_calculator

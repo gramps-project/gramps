@@ -35,7 +35,7 @@ Base class for map services. Example: open place in openstreetmap.org
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.utils import conv_lat_lon
+from gen.utils.place import conv_lat_lon
 from gui.display import display_url
 
 class MapService():

@@ -47,7 +47,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import Utils
-from gen.utils import conv_lat_lon
+from gen.utils.place import conv_lat_lon
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
 from gui.views.treemodels.treebasemodel import TreeBaseModel
 

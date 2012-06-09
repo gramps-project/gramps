@@ -52,7 +52,7 @@ import gen.lib
 from gen.config import config
 import gen.datehandler
 from gen.display.name import displayer as _nd
-from gen.utils import conv_lat_lon
+from gen.utils.place import conv_lat_lon
 from gui.views.navigationview import NavigationView
 from gui.views.bookmarks import FamilyBookmarks
 from maps import constants

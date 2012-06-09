@@ -35,7 +35,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from gen.filters.rules import Rule
-from gen.utils import conv_lat_lon
+from gen.utils.place import conv_lat_lon
 
 #-------------------------------------------------------------------------
 #

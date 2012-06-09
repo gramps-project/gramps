@@ -65,7 +65,7 @@ from gen.lib import Date
 
 import gen.mime
 import Utils
-from gen.utils import conv_lat_lon
+from gen.utils.place import conv_lat_lon
 
 from gen.db import DbTxn
 
