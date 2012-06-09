@@ -38,7 +38,7 @@ from itertools import ifilter
 #-------------------------------------------------------------------------
 from proxybase import ProxyDbBase
 from gen.lib import Date, Person, Name, Surname
-from Utils import probably_alive
+from gen.utils.alive import probably_alive
 from gen.config import config
 
 #-------------------------------------------------------------------------

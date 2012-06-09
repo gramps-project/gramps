@@ -57,7 +57,7 @@ from webapp.dbdjango import DbDjango
 #
 #------------------------------------------------------------------------
 from gen.simple import SimpleTable, SimpleAccess, make_basic_stylesheet
-import Utils
+from gen.utils.alive import probably_alive as alive
 from gen.dbstate import DbState
 from gen.datehandler import displayer, parser
 from gen.lib.date import Date as GDate, Today
@@ -140,7 +140,7 @@ def get_person_from_handle(db, handle):
 def probably_alive(handle):
     return False
     person = db.get_person_from_handle(handle)
-    return Utils.probably_alive(person, db)
+    return alive(person, db)
 
 def format_number(number, with_grouping=True):
     # FIXME: should be user's setting

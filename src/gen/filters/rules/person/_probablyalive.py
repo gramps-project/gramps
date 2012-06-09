@@ -32,7 +32,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Utils import probably_alive
+from gen.utils.alive import probably_alive
 from gen.filters.rules import Rule
 import gen.datehandler
 

@@ -105,6 +105,7 @@ from libhtml import Html
 from libhtmlbackend import HtmlBackend, process_spaces
 
 from libgedcom import make_gedcom_date
+from gen.utils.alive import probably_alive
 from gen.utils.place import conv_lat_lon
 from gui.pluginmanager import GuiPluginManager
 
@@ -6119,7 +6120,7 @@ class IndividualPage(BasePage):
                         birth_date = birth.get_date_object()
 
                 if birth_date and birth_date is not gen.lib.Date.EMPTY:
-                    alive = Utils.probably_alive(self.person, self.dbase_, date.Today() )
+                    alive = probably_alive(self.person, self.dbase_, date.Today() )
 
                     death_date = _find_death_date(self.dbase_, self.person)
                     if not alive and death_date is not None:

@@ -29,7 +29,7 @@ Display references for any object
 
 from gen.simple import SimpleAccess, SimpleDoc
 from gui.plug.quick import QuickTable
-from Utils import probably_alive
+from gen.utils.alive import probably_alive
 from gen.ggettext import gettext as _
 import gen.datehandler
 import gen.lib

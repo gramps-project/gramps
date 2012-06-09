@@ -40,7 +40,7 @@ from gen.lib.eventroletype import EventRoleType
 from gen.lib.eventtype import EventType
 from gen.lib.familyreltype import FamilyRelType
 from gen.display.name import displayer as _nd
-import Utils
+from gen.utils.alive import probably_alive
 from gen.plug.report import utils as ReportUtils
 from libtranslate import Translator
 
@@ -2186,7 +2186,7 @@ class Narrator(object):
             'unknown_gender_name' : self.__first_name, 
             }
         
-        dead = not Utils.probably_alive(self.__person, self.__db)
+        dead = not probably_alive(self.__person, self.__db)
     
         if not self.__first_name_used:
             index = _NAME_INDEX_INCLUDE_NAME

@@ -49,7 +49,7 @@ log = logging.getLogger(".WriteGeneWeb")
 import gen.lib
 from gui.plug.export import WriterOptionBox
 #import const
-import Utils
+from gen.utils.alive import probably_alive
 from gui.glade import Glade
 from gen.config import config
 
@@ -276,7 +276,7 @@ class GeneWebWriter(object):
                     place = self.db.get_place_from_handle(place_handle)
                     b_place = place.get_title()
         
-        if Utils.probably_alive(person,self.db):
+        if probably_alive(person,self.db):
             d_date = ""
         else:
             d_date = "0"
@@ -334,7 +334,7 @@ class GeneWebWriter(object):
         #missing_surname = config.get("preferences.no-surname-text")
         surname = self.rem_spaces( person.get_primary_name().get_surname())
         #firstname = config.get('preferences.private-given-text') 
-        #if not (Utils.probably_alive(person,self.db) and \
+        #if not (probably_alive(person,self.db) and \
         #  self.restrict and self.living):
         firstname = self.rem_spaces( person.get_primary_name().get_first_name())
         if person.get_handle() not in self.person_ids:
@@ -346,7 +346,7 @@ class GeneWebWriter(object):
         #missing_first_name = config.get("preferences.no-given-text")
         surname = self.rem_spaces( person.get_primary_name().get_surname())
         #firstname = config.get('preferences.private-given-text')
-        #if not (Utils.probably_alive(person,self.db) and \
+        #if not (probably_alive(person,self.db) and \
         #  self.restrict and self.living):
         firstname = self.rem_spaces( person.get_primary_name().get_first_name())
         if person.get_handle() not in self.person_ids:

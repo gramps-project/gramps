@@ -48,7 +48,7 @@ from gen.plug.menu import (BooleanOption, StringOption, NumberOption,
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
-from Utils import probably_alive
+from gen.utils.alive import probably_alive
 from gen.datehandler import displayer as _dd
 import gen.locale
 import gen.lib

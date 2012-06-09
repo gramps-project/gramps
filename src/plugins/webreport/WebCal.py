@@ -59,7 +59,8 @@ from gen.plug.menu import BooleanOption, NumberOption, StringOption, \
                           EnumeratedListOption, FilterOption, PersonOption, \
                           DestinationOption, NoteOption
 import gen.locale
-from Utils import probably_alive, xml_lang, get_researcher
+from Utils import xml_lang, get_researcher
+from gen.utils.alive import probably_alive
 from gen.datehandler import displayer as _dd
 
 from gen.display.name import displayer as _nd

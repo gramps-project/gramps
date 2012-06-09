@@ -45,7 +45,7 @@ log = logging.getLogger(".WriteFtree")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import Utils
+from gen.utils.alive import probably_alive
 from gui.plug.export import WriterOptionBox
 from gui.glade import Glade
 
@@ -156,7 +156,7 @@ class FtreeWriter(object):
                 death = None
 
             #if self.restrict:
-            #    alive = Utils.probably_alive(p, self.db)
+            #    alive = probably_alive(p, self.db)
             #else:
             #    alive = 0
                 

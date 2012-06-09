@@ -51,8 +51,9 @@ import gen.lib
 from gui.views.navigationview import NavigationView
 from gui.editors import FilterEditor
 from gen.display.name import displayer as name_displayer
-from Utils import (media_path_full, probably_alive, find_children, 
-                   find_parents, find_witnessed_people)
+from gen.utils.alive import probably_alive
+from Utils import (media_path_full, find_children, find_parents, 
+                   find_witnessed_people)
 from libformatting import FormattingHelper
 from gui.thumbnails import get_thumbnail_path
 from gen.errors import WindowActiveError

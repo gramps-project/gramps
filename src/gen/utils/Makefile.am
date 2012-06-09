@@ -8,6 +8,7 @@ pkgpythondir = $(datadir)/@PACKAGE@/gen/utils
 
 pkgpython_PYTHON = \
 	__init__.py \
+	alive.py \
 	callback.py \
 	callman.py \
 	configmanager.py \

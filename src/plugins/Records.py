@@ -46,7 +46,7 @@ from gen.plug.menu import (BooleanOption, EnumeratedListOption,
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
-from Utils import probably_alive
+from gen.utils.alive import probably_alive
 
 #------------------------------------------------------------------------
 #
