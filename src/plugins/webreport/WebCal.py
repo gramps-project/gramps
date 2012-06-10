@@ -58,10 +58,9 @@ from gen.plug.report import MenuReportOptions
 from gen.plug.menu import BooleanOption, NumberOption, StringOption, \
                           EnumeratedListOption, FilterOption, PersonOption, \
                           DestinationOption, NoteOption
-import gen.locale
 from Utils import xml_lang, get_researcher
 from gen.utils.alive import probably_alive
-from gen.datehandler import displayer as _dd
+from gen.datehandler import displayer as _dd, long_days
 
 from gen.display.name import displayer as _nd
 
@@ -606,9 +605,9 @@ class WebCalReport(Report):
             day = col2day[col]
             return day_names[day]
 
-        # Note. gen.locale has sunday => 1, monday => 2, etc
+        # Note. gen.datehandler has sunday => 1, monday => 2, etc
         # We slice out the first empty element.
-        day_names = gen.locale.long_days
+        day_names = long_days
 
         def __get_previous_month_day(year, month, day_col):
 
@@ -1418,7 +1417,7 @@ class WebCalOptions(MenuReportOptions):
         # Default selection ????
         start_dow = EnumeratedListOption(_("First day of week"), 1)
         for count in range(1, 8):
-            start_dow.add_item(count, gen.locale.long_days[count].capitalize()) 
+            start_dow.add_item(count, long_days[count].capitalize()) 
         start_dow.set_help(_("Select the first day of the week for the calendar"))
         menu.add_option(category_name, "start_dow", start_dow)
 

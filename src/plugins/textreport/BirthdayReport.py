@@ -50,8 +50,7 @@ from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
 from gen.utils.alive import probably_alive
-import gen.locale
-from gen.datehandler import displayer as _dd
+from gen.datehandler import displayer as _dd, long_days
 
 import libholiday
 
@@ -399,7 +398,7 @@ class CalendarOptions(MenuReportOptions):
         start_dow = EnumeratedListOption(_("First day of week"), 1)
         for count in range(1, 8):
             # conversion between gramps numbering (sun=1) and iso numbering (mon=1) of weekdays below
-            start_dow.add_item((count+5) % 7 + 1, gen.locale.long_days[count].capitalize()) 
+            start_dow.add_item((count+5) % 7 + 1, long_days[count].capitalize()) 
         start_dow.set_help(_("Select the first day of the week for the calendar"))
         menu.add_option(category_name, "start_dow", start_dow) 
 

@@ -38,6 +38,7 @@ src/gen/datehandler/_date_ru.py
 src/gen/datehandler/_date_sk.py
 src/gen/datehandler/_date_sv.py
 src/gen/datehandler/_date_zh.py
+src/gen/datehandler/_grampslocale.py
 src/gen/datehandler/__init__.py
 
 # gen db API
@@ -150,10 +151,6 @@ src/gen/lib/test/date_test.py
 src/gen/lib/url.py
 src/gen/lib/urlbase.py
 src/gen/lib/witness.py
-
-# gen.locale package
-src/gen/locale/__init__.py
-src/gen/locale/_grampslocale.py
 
 # gen.merge package
 src/gen/merge/__init__.py

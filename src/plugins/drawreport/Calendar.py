@@ -49,8 +49,7 @@ from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
 from gen.utils.alive import probably_alive
-from gen.datehandler import displayer as _dd
-import gen.locale
+from gen.datehandler import displayer as _dd, long_days
 import gen.lib
 
 import libholiday
@@ -206,8 +205,7 @@ class Calendar(Report):
         for day_col in range(7):
             font_height = pt2cm(pdaynames.get_font().get_size())
             self.doc.center_text("CAL-Daynames", 
-                                 gen.locale.long_days[(day_col+
-                                                         g2iso(self.start_dow + 1))
+                                 long_days[(day_col+ g2iso(self.start_dow + 1))
                                                         % 7 + 1].capitalize(), 
                                  day_col * cell_width + cell_width/2, 
                                  header - font_height * 1.5)
@@ -447,7 +445,7 @@ class CalendarOptions(MenuReportOptions):
         start_dow = EnumeratedListOption(_("First day of week"), 1)
         for count in range(1, 8):
             # conversion between gramps numbering (sun=1) and iso numbering (mon=1) of weekdays below
-            start_dow.add_item((count+5) % 7 + 1, gen.locale.long_days[count].capitalize()) 
+            start_dow.add_item((count+5) % 7 + 1, long_days[count].capitalize()) 
         start_dow.set_help(_("Select the first day of the week for the calendar"))
         add_option("start_dow", start_dow) 
 

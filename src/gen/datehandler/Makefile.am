@@ -29,6 +29,7 @@ pkgpython_PYTHON = \
 	_dateparser.py\
 	_datehandler.py\
 	_dateutils.py\
+	_grampslocale.py\
 	__init__.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen/datehandler

@@ -45,6 +45,7 @@ from gen.lib import Date
 from _dateparser import DateParser
 from _datedisplay import DateDisplay
 from _datehandler import register_datehandler
+import _grampslocale
 
 #-------------------------------------------------------------------------
 #
@@ -270,8 +271,7 @@ class DateDisplayFR(DateDisplay):
 
     # Replace the previous "Numérique" by a string which
     # do have an explicit meaning: "System default (format)"
-    import gen.locale
-    _locale_tformat = gen.locale.tformat
+    _locale_tformat = _grampslocale.tformat
     _locale_tformat = _locale_tformat.replace('%d', "J")
     _locale_tformat = _locale_tformat.replace('%m', "M")
     _locale_tformat = _locale_tformat.replace('%Y', "A")

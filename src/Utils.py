@@ -49,8 +49,7 @@ LOG = logging.getLogger(".")
 from gen.display.name import displayer as name_displayer
 import gen.lib
 from gen.errors import DatabaseError
-from gen.locale import codeset
-import gen.datehandler
+from gen.datehandler import displayer as date_displayer, codeset
 from gen.config import config
 from const import TEMP_DIR, USER_HOME, GRAMPS_UUID, IMAGE_DIR
 from gen.constfunc import mac, win
@@ -987,7 +986,7 @@ def format_time(secs):
     """
     t = time.localtime(secs)
     d = gen.lib.Date(t.tm_year, t.tm_mon, t.tm_mday)
-    return gen.datehandler.displayer.display(d) + time.strftime(' %X', t)
+    return date_displayer.display(d) + time.strftime(' %X', t)
 
 #-------------------------------------------------------------------------
 #
