@@ -52,6 +52,7 @@ import gen.datehandler
 from gen.display.name import displayer as _nd
 from gen.display.name import NameDisplayError
 import Utils
+from gen.utils.alive import update_constants
 import gen.lib
 from gen.lib import Name, Surname, NameOriginType
 from gui.managedwindow import ManagedWindow
@@ -445,7 +446,7 @@ class GrampsPreferences(ConfigureDialog):
             )
         ConfigureDialog.__init__(self, uistate, dbstate, page_funcs, 
                                  GrampsPreferences, config,
-                                 on_close=Utils.update_constants)
+                                 on_close=update_constants)
 
     def add_researcher_panel(self, configdialog):
         table = gtk.Table(3, 8)
