@@ -103,10 +103,10 @@ def context_processor(request):
     context["sitename"] = Config.objects.get(setting="sitename").value
     context["default"] = ""
 
-    search = request.GET.get("search", None) or request.POST.get("search", None)
-    page = request.GET.get("page", None) or request.POST.get("page", None)
-    context["page"] = page
-    context["search"] = search
+    search = request.GET.get("search", "") or request.POST.get("search", "")
+    page = request.GET.get("page", "") or request.POST.get("page", "")
+    context["page"] = page 
+    context["search"] = search 
     context["args"] = build_args(search=search, page=page)
     return context
 

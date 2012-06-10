@@ -232,7 +232,7 @@ def build_args(**kwargs):
     retval = ""
     first = True
     for key in kwargs:
-        if kwargs[key] is not None:
+        if kwargs[key] is not "":
             if first:
                 retval+= "?"
                 first = False
@@ -242,8 +242,8 @@ def build_args(**kwargs):
     return retval
 
 def build_search(request):
-    search = request.GET.get("search", None) or request.POST.get("search", None)
-    page = request.GET.get("page", None) or request.POST.get("page", None)
+    search = request.GET.get("search", "") or request.POST.get("search", "")
+    page = request.GET.get("page", "") or request.POST.get("page", "")
     return build_args(search=search, page=page)
 
 def make_button(text, url, *args):
