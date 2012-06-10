@@ -13,7 +13,8 @@ pkgpython_PYTHON = \
 	callman.py \
 	configmanager.py \
 	fallback.py \
-	place.py
+	place.py \
+	referent.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen/utils
 

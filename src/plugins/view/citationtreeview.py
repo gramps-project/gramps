@@ -50,7 +50,8 @@ from gui.views.treemodels.citationtreemodel import CitationTreeModel
 from gen.plug import CATEGORY_QR_SOURCE_OR_CITATION
 import gen.lib
 from gui.views.listview import ListView
-import Utils
+from gen.utils.referent import (get_source_and_citation_referents, 
+                                get_citation_referents)
 from gui.views.bookmarks import CitationBookmarks
 from gen.errors import WindowActiveError
 from gui.ddtargets import DdTargets
@@ -458,14 +459,14 @@ class CitationTreeView(ListView):
         if (not source and not citation) or (source and citation):
             raise ValueError("selection must be either source or citation")
         if citation:
-            the_lists = Utils.get_citation_referents(handle, self.dbstate.db)
+            the_lists = get_citation_referents(handle, self.dbstate.db)
             object = self.dbstate.db.get_citation_from_handle(handle)
             query = DeleteCitationQuery(self.dbstate, self.uistate, object, 
                                         the_lists)
             is_used = any(the_lists)
             return (query, is_used, object)
         else:
-            the_lists = Utils.get_source_and_citation_referents(handle, 
+            the_lists = get_source_and_citation_referents(handle, 
                                                                 self.dbstate.db)
             LOG.debug('the_lists %s' % [the_lists])    
     

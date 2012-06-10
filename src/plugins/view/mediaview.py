@@ -56,6 +56,7 @@ import const
 from gen.constfunc import win
 from gen.config import config
 import Utils
+from gen.utils.referent import get_media_referents
 from gui.views.bookmarks import MediaBookmarks
 import gen.mime
 import gen.lib
@@ -356,7 +357,7 @@ class MediaView(ListView):
         Remove the selected objects from the database after getting
         user verification.
         """
-        the_lists = Utils.get_media_referents(handle, self.dbstate.db)
+        the_lists = get_media_referents(handle, self.dbstate.db)
         object = self.dbstate.db.get_object_from_handle(handle)
         query = DeleteMediaQuery(self.dbstate, self.uistate, handle, the_lists)
         is_used = any(the_lists)

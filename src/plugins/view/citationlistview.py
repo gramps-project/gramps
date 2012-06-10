@@ -49,7 +49,7 @@ from gui.views.treemodels.citationlistmodel import CitationListModel
 from gen.plug import CATEGORY_QR_CITATION
 import gen.lib
 from gui.views.listview import ListView
-import Utils
+from gen.utils.referent import get_citation_referents
 from gui.views.bookmarks import CitationBookmarks
 from gen.errors import WindowActiveError
 from gui.ddtargets import DdTargets
@@ -284,7 +284,7 @@ class CitationListView(ListView):
         self.remove_selected_objects()
 
     def remove_object_from_handle(self, handle):
-        the_lists = Utils.get_citation_referents(handle, self.dbstate.db)
+        the_lists = get_citation_referents(handle, self.dbstate.db)
         object = self.dbstate.db.get_citation_from_handle(handle)
         query = DeleteCitationQuery(self.dbstate, self.uistate, object, 
                                     the_lists)

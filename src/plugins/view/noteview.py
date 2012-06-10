@@ -47,7 +47,7 @@ import gtk
 #-------------------------------------------------------------------------
 from gui.views.listview import ListView
 from gui.views.treemodels import NoteModel
-import Utils
+from gen.utils.referent import get_note_referents
 from gen.errors import WindowActiveError
 from gui.views.bookmarks import NoteBookmarks
 from gen.config import config
@@ -246,7 +246,7 @@ class NoteView(ListView):
         self.remove_selected_objects()
 
     def remove_object_from_handle(self, handle):
-        the_lists = Utils.get_note_referents(handle, self.dbstate.db)
+        the_lists = get_note_referents(handle, self.dbstate.db)
         object = self.dbstate.db.get_note_from_handle(handle)
         query = DeleteNoteQuery(self.dbstate, self.uistate, object, the_lists)
         is_used = any(the_lists)

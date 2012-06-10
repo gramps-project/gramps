@@ -89,6 +89,7 @@ from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
                         
 import Utils
+from gen.utils.referent import get_source_and_citation_referents
 from gen.constfunc import win
 from gui.thumbnails import get_thumbnail_path, run_thumbnailer
 import ImgManip
@@ -4514,7 +4515,7 @@ class SourcePage(BasePage):
                     sourcedetail += repo_list
 
             # get the Source and its Citation Referents...
-            the_lists = Utils.get_source_and_citation_referents(src_handle, self.dbase_)
+            the_lists = get_source_and_citation_referents(src_handle, self.dbase_)
             if the_lists:
                 (citation_list, citation_referents_list) = the_lists
                 if citation_referents_list:

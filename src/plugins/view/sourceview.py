@@ -43,7 +43,7 @@ import gen.lib
 from gen.config import config
 from gui.views.listview import ListView
 from gui.views.treemodels import SourceModel
-import Utils
+from gen.utils.referent import get_source_and_citation_referents
 from gui.views.bookmarks import SourceBookmarks
 from gen.errors import WindowActiveError
 from gui.ddtargets import DdTargets
@@ -214,8 +214,7 @@ class SourceView(ListView):
         self.remove_selected_objects()
 
     def remove_object_from_handle(self, handle):
-        the_lists = Utils.get_source_and_citation_referents(handle, 
-                                                            self.dbstate.db)
+        the_lists = get_source_and_citation_referents(handle, self.dbstate.db)
         LOG.debug('the_lists %s' % [the_lists])    
 
         object = self.dbstate.db.get_source_from_handle(handle)
