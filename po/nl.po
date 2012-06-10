@@ -41,7 +41,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-05-05 23:34+0200\n"
-"PO-Revision-Date: 2012-06-05 21:18+0100\n"
+"PO-Revision-Date: 2012-06-07 22:44+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@pandora.be>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
@@ -1865,7 +1865,6 @@ msgstr "Gewone"
 msgid "Name|COMMON"
 msgstr "GEWONE"
 
-# Individuen
 #: ../src/Utils.py:1278
 msgid "Initials"
 msgstr "Initialen"
@@ -2720,7 +2719,6 @@ msgstr "roep"
 msgid "Name|common"
 msgstr "gewoon"
 
-# Individuen
 #: ../src/gen/display/name.py:555
 #: ../src/gen/display/name.py:653
 msgid "initials"
@@ -3048,7 +3046,6 @@ msgid_plural "%d years"
 msgstr[0] "%d jaar"
 msgstr[1] "%d jaren"
 
-# tablabel voor de beginletters van de namen (de overige dan)
 #: ../src/gen/lib/date.py:506
 #, python-format
 msgid "%d month"
@@ -3079,7 +3076,6 @@ msgstr "Juliaans"
 msgid "calendar|Hebrew"
 msgstr "Hebreeuws"
 
-# naamgevingsmethode
 #: ../src/gen/lib/date.py:668
 msgid "calendar|French Republican"
 msgstr "Franse Republiek"
@@ -3213,7 +3209,6 @@ msgstr "Doodsoorzaak"
 msgid "Census"
 msgstr "Volkstelling"
 
-# Doping
 #: ../src/gen/lib/eventtype.py:156
 msgid "Christening"
 msgstr "Doop"
@@ -3286,7 +3281,7 @@ msgstr "Beroep"
 # Classificatie, ordening, (wijding is de religieuze betekenis)
 #: ../src/gen/lib/eventtype.py:172
 msgid "Ordination"
-msgstr "Wijding"
+msgstr "Ordening"
 
 # Dict:
 # Geverifieerd afschrift van een testament
@@ -3675,7 +3670,6 @@ msgstr "Gegeven"
 msgid "Surname|Taken"
 msgstr "Overgenomen"
 
-# patronymisch/patroniemen
 #: ../src/gen/lib/nameorigintype.py:87
 msgid "Matronymic"
 msgstr "Metroniem"
@@ -3891,7 +3885,6 @@ msgstr "Foto"
 msgid "Tombstone"
 msgstr "Graftombe"
 
-# het gaat om het weergeven van de voorouders of een samenvatting van de db.
 #: ../src/gen/lib/srcmediatype.py:76
 msgid "Video"
 msgstr "Video"
@@ -3934,12 +3927,10 @@ msgstr "Gramplet %s gaf een fout"
 msgid "No description was provided"
 msgstr "Geen beschrijving gegeven"
 
-# Provincie
 #: ../src/gen/plug/_pluginreg.py:58
 msgid "Stable"
 msgstr "Stabiel"
 
-# Provincie
 #: ../src/gen/plug/_pluginreg.py:58
 msgid "Unstable"
 msgstr "Onstabiel"
@@ -3966,7 +3957,7 @@ msgstr "Documenten aanmaken"
 
 #: ../src/gen/plug/_pluginreg.py:82
 msgid "Plugin lib"
-msgstr "Plugin-bib"
+msgstr "Uitbreidingenbib"
 
 #: ../src/gen/plug/_pluginreg.py:83
 msgid "Map service"
@@ -4007,12 +3998,12 @@ msgstr "Verscheidene"
 #: ../src/gen/plug/_pluginreg.py:1101
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
-msgstr "FOUT: Registratie van de plugin %(filename)s mislukte"
+msgstr "FOUT: Registratie van de uitbreiding %(filename)s mislukte"
 
 #: ../src/gen/plug/_pluginreg.py:1115
 #, python-format
 msgid "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s\" which is invalid for Gramps \"%(gramps_version)s\"."
-msgstr "FOUT: Plugin bestand %(filename)s heeft als versie \"%(gramps_target_version)s\" wat niet geldig is voor Gramps \"%(gramps_version)s\"."
+msgstr "FOUT: uitbredingsbestand %(filename)s heeft als versie \"%(gramps_target_version)s\" wat niet geldig is voor Gramps \"%(gramps_version)s\"."
 
 #: ../src/gen/plug/_pluginreg.py:1136
 #, python-format
@@ -4458,7 +4449,6 @@ msgstr "De gebruikte basisstijl voor de tekstweergave van eindopmerkingen."
 msgid "Endnotes"
 msgstr "Eindopmerkingen"
 
-# individu
 #: ../src/gen/plug/report/utils.py:142
 #: ../src/plugins/textreport/IndivComplete.py:630
 #: ../src/plugins/textreport/SimpleBookTitle.py:105
@@ -4467,7 +4457,7 @@ msgstr "Eindopmerkingen"
 #: ../src/plugins/webreport/NarrativeWeb.py:2102
 #: ../src/plugins/webreport/NarrativeWeb.py:2118
 msgid "Could not add photo to page"
-msgstr "Kon foto niet toevoegen aan de pagina"
+msgstr "Foto kon niet aan de pagina toegevoegd worden"
 
 #: ../src/gen/plug/report/utils.py:143
 #: ../src/gui/utils.py:335
@@ -4964,15 +4954,15 @@ msgstr "Naar aanpassingen zoeken"
 
 #: ../src/gui/configure.py:1084
 msgid "Updated addons only"
-msgstr "Enkel aangepaste <i>addons</i>"
+msgstr "Enkel aangepaste uitbreidingen"
 
 #: ../src/gui/configure.py:1085
 msgid "New addons only"
-msgstr "Alleen nieuwe addons"
+msgstr "Alleen nieuwe uitbreidingen"
 
 #: ../src/gui/configure.py:1086
 msgid "New and updated addons"
-msgstr "Nieuwe en aangepaste addons"
+msgstr "Nieuwe en aangepaste uitbreidingen"
 
 #: ../src/gui/configure.py:1096
 msgid "What to check"
@@ -4980,7 +4970,7 @@ msgstr "Wat controleren"
 
 #: ../src/gui/configure.py:1101
 msgid "Do not ask about previously notified addons"
-msgstr "Niet naar vroegere aangekondigde addons vragen"
+msgstr "Niet naar vroegere aangekondigde uitbreidingen vragen"
 
 #: ../src/gui/configure.py:1106
 msgid "Check now"
@@ -5592,7 +5582,7 @@ msgstr "Tag:"
 #: ../src/Filters/Rules/Event/_HasCitation.py:51
 #: ../src/Filters/Rules/Event/_MatchesSourceConfidence.py:45
 msgid "Confidence level:"
-msgstr "Zekerheid:"
+msgstr "Zekerheidsniveau:"
 
 #: ../src/gui/filtereditor.py:571
 msgid "Rule Name"
@@ -5719,8 +5709,6 @@ msgstr "Familiestambomen"
 msgid "_Add bookmark"
 msgstr "Bladwijzer toevoegen"
 
-# het heilig vormsel toedienen, Vormen
-# Bevestiging
 #: ../src/gui/grampsgui.py:109
 msgid "Configure"
 msgstr "Instellingen"
@@ -6146,7 +6134,7 @@ msgstr "hernieuwen"
 
 #: ../src/gui/viewmanager.py:438
 msgid "There are no available addons of this type"
-msgstr "Er zijn geen beschikbare addons van dit type"
+msgstr "Er zijn geen beschikbare uitbreidingen van dit type"
 
 #: ../src/gui/viewmanager.py:439
 #, python-format
@@ -6159,7 +6147,7 @@ msgstr "' en '"
 
 #: ../src/gui/viewmanager.py:451
 msgid "Available Gramps Updates for Addons"
-msgstr "Beschikbare aanpassingen voor Gramps-addons"
+msgstr "Beschikbare aanpassingen voor Gramps-uitbreidingen"
 
 #: ../src/gui/viewmanager.py:480
 #, python-format
@@ -6168,19 +6156,19 @@ msgstr "%(adjective)s: %(addon)s"
 
 #: ../src/gui/viewmanager.py:537
 msgid "Downloading and installing selected addons..."
-msgstr "Geselecteerde addons ophalen en installeren..."
+msgstr "Geselecteerde uitbreidingen ophalen en installeren..."
 
 #: ../src/gui/viewmanager.py:569
 #: ../src/gui/viewmanager.py:576
 msgid "Done downloading and installing addons"
-msgstr "Addons zijn opgehaald en geïnstalleerd"
+msgstr "Uitbreidingen zijn opgehaald en geïnstalleerd"
 
 #: ../src/gui/viewmanager.py:570
 #, python-format
 msgid "%d addon was installed."
 msgid_plural "%d addons were installed."
-msgstr[0] "%d addon werd geïnstalleerd."
-msgstr[1] "%d addons werden geïnstalleerd."
+msgstr[0] "%d uitbreiding werd geïnstalleerd."
+msgstr[1] "%d uitbreidingen werden geïnstalleerd."
 
 #: ../src/gui/viewmanager.py:573
 msgid "You need to restart Gramps to see new views."
@@ -6188,7 +6176,7 @@ msgstr "Om de nieuwe schermen te kunnen zien, dient u  Gramps te herstarten."
 
 #: ../src/gui/viewmanager.py:577
 msgid "No addons were installed."
-msgstr "Er werden geen addons geïnstalleerd."
+msgstr "Er werden geen uitbreidingen geïnstalleerd."
 
 #: ../src/gui/viewmanager.py:723
 msgid "Connect to a recent database"
@@ -6226,7 +6214,6 @@ msgstr "Scherm"
 msgid "_Edit"
 msgstr "Be_werken"
 
-# Bronnen, verwijzingen, literatuurverwijzingen
 #: ../src/gui/viewmanager.py:750
 msgid "_Preferences..."
 msgstr "_Voorkeuren..."
@@ -6257,7 +6244,7 @@ msgstr "_Info"
 
 #: ../src/gui/viewmanager.py:763
 msgid "_Plugin Manager"
-msgstr "Plugin-beheerder"
+msgstr "Uitbreidingenbeheerder"
 
 #: ../src/gui/viewmanager.py:765
 msgid "_FAQ"
@@ -6298,7 +6285,6 @@ msgstr "Verslagen"
 msgid "Open the reports dialog"
 msgstr "Het dialoogvenster voor verslagen openen"
 
-# ga naar
 #: ../src/gui/viewmanager.py:782
 msgid "_Go"
 msgstr "_Ga naar"
@@ -6307,8 +6293,6 @@ msgstr "_Ga naar"
 msgid "_Windows"
 msgstr "Vensters"
 
-# zie ook uncleared.
-# is dit goed?
 #: ../src/gui/viewmanager.py:821
 msgid "Clip_board"
 msgstr "Klembord"
@@ -6639,7 +6623,6 @@ msgstr "Om een opmerking te selecteren gebruik 'drag' en 'drop' of gebruik de kn
 msgid "No note given, click button to select one"
 msgstr "Geen opmerking gekozen, klik op knop om er één te selecteren"
 
-# Bronnen vermelden/citeren
 #: ../src/gui/editors/objectentries.py:354
 #: ../src/gui/editors/editnote.py:285
 #: ../src/gui/editors/editnote.py:330
@@ -6726,7 +6709,6 @@ msgstr "U probeerde een bestaande Gramps ID met waarde %(gramps_id)s te gebruike
 msgid "Cannot save source. ID already exists."
 msgstr "Kan bron niet opslaan. ID bestaat reeds."
 
-# Bronnen vermelden/citeren
 #: ../src/gui/editors/editcitation.py:430
 #: ../src/gui/editors/editsource.py:204
 #, python-format
@@ -7278,11 +7260,10 @@ msgstr "Opmerking toevoegen"
 msgid "Delete Note (%s)"
 msgstr "Opmerking (%s) verwijderen"
 
-# naam filteren of filternaam
 #: ../src/gui/editors/editperson.py:149
 #, python-format
 msgid "Person: %(name)s"
-msgstr "Persoon:%(name)s"
+msgstr "Persoon: %(name)s"
 
 #: ../src/gui/editors/editperson.py:153
 #, python-format
@@ -7524,7 +7505,6 @@ msgstr "Bibliotheek (%s) verwijderen"
 msgid "New Source"
 msgstr "Nieuwe bron"
 
-# Bronnen vermelden/citeren
 #: ../src/gui/editors/editsource.py:176
 msgid "Edit Source"
 msgstr "Bron bewerken"
@@ -7689,7 +7669,7 @@ msgstr "Pagina"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:92
 msgid "_Source Citations"
-msgstr "Broncitaten"
+msgstr "_Broncitaten"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:172
 #: ../src/gui/editors/displaytabs/citationembedlist.py:182
@@ -7831,7 +7811,7 @@ msgstr "%(groupname)s - %(groupnumber)d"
 #: ../src/plugins/webreport/NarrativeWeb.py:344
 #: ../src/plugins/webreport/NarrativeWeb.py:1149
 msgid "Temple"
-msgstr "Kerk"
+msgstr "Tempel"
 
 #: ../src/gui/editors/displaytabs/gallerytab.py:83
 msgid "_Gallery"
@@ -8275,7 +8255,7 @@ msgstr "Kies een person voor het verslag"
 # dit is een soort titel in een file-selector
 #: ../src/gui/plug/_guioptions.py:738
 msgid "Select a different family"
-msgstr "Kies een andere familie"
+msgstr "Een andere familie kiezen"
 
 #: ../src/gui/plug/_guioptions.py:836
 #: ../src/plugins/BookReport.py:186
@@ -8330,9 +8310,8 @@ msgstr "Zichtbaar"
 #: ../src/plugins/gramplet/gramplet.gpr.py:167
 #: ../src/plugins/gramplet/gramplet.gpr.py:174
 msgid "Plugin Manager"
-msgstr "Plugin-beheerder"
+msgstr "Uitbreidingen beheren"
 
-# Klein kind
 #: ../src/gui/plug/_windows.py:129
 #: ../src/gui/plug/_windows.py:184
 msgid "Info"
@@ -8352,7 +8331,7 @@ msgstr "Laden"
 
 #: ../src/gui/plug/_windows.py:146
 msgid "Registered Plugins"
-msgstr "Geregistreerde plugins"
+msgstr "Geregistreerde uitbreidingen"
 
 #: ../src/gui/plug/_windows.py:160
 msgid "Loaded"
@@ -8368,28 +8347,28 @@ msgstr "Boodschap"
 
 #: ../src/gui/plug/_windows.py:202
 msgid "Loaded Plugins"
-msgstr "Geladen \"plugins\""
+msgstr "Geladen uitbreidingen"
 
 #. self.addon_list.connect('button-press-event', self.button_press)
 #: ../src/gui/plug/_windows.py:222
 msgid "Addon Name"
-msgstr "Naam van de \"Addon\""
+msgstr "Uitbreidingsnaam"
 
 #: ../src/gui/plug/_windows.py:237
 msgid "Path to Addon:"
-msgstr "Pad naar \"Addon\":"
+msgstr "Pad naar uitbreidingen:"
 
 #: ../src/gui/plug/_windows.py:257
 msgid "Install Addon"
-msgstr "Installeer \"Addon\""
+msgstr "Uitbreiding installeren"
 
 #: ../src/gui/plug/_windows.py:260
 msgid "Install All Addons"
-msgstr "Installeer alle \"Addons\""
+msgstr "Alle uitbreidingen installeren"
 
 #: ../src/gui/plug/_windows.py:263
 msgid "Refresh Addon List"
-msgstr "Laat de lijst van de \"Addon\" opnieuw zien"
+msgstr "De uitbreidingenlijst opnieuw tonen"
 
 #. Only show the "Reload" button when in debug mode
 #. (without -O on the command line)
@@ -8399,7 +8378,7 @@ msgstr "Herladen"
 
 #: ../src/gui/plug/_windows.py:299
 msgid "Refreshing Addon List"
-msgstr "Laat de addon-lijst opnieuw zien"
+msgstr "Uitbreidingenlijst wordt hernieuwd"
 
 #: ../src/gui/plug/_windows.py:300
 #: ../src/gui/plug/_windows.py:305
@@ -8409,7 +8388,7 @@ msgstr "Gramps-project.org wordt ingelezen..."
 
 #: ../src/gui/plug/_windows.py:323
 msgid "Checking addon..."
-msgstr "Addon wordt gecontroleerd..."
+msgstr "Uitbreiding wordt gecontroleerd..."
 
 #: ../src/gui/plug/_windows.py:331
 msgid "Unknown Help URL"
@@ -8421,7 +8400,7 @@ msgstr "Onbekende URL"
 
 #: ../src/gui/plug/_windows.py:378
 msgid "Install all Addons"
-msgstr "Installeer alle addons"
+msgstr "Alle uitbreidingen installeren"
 
 #: ../src/gui/plug/_windows.py:378
 msgid "Installing..."
@@ -8429,11 +8408,11 @@ msgstr "Installeren..."
 
 #: ../src/gui/plug/_windows.py:395
 msgid "Installing Addon"
-msgstr "Installeer addon"
+msgstr "Uitbreiding installeren"
 
 #: ../src/gui/plug/_windows.py:416
 msgid "Load Addon"
-msgstr "Laad \"Addon\""
+msgstr "Uitbreiding laden"
 
 #: ../src/gui/plug/_windows.py:477
 msgid "Fail"
@@ -8441,7 +8420,7 @@ msgstr "Fout"
 
 #: ../src/gui/plug/_windows.py:594
 msgid "Plugin name"
-msgstr "Plugin-naam"
+msgstr "Uitbreidingsnaam"
 
 #: ../src/gui/plug/_windows.py:596
 msgid "Version"
@@ -8463,7 +8442,7 @@ msgstr "Gedetailleerde informatie"
 
 #: ../src/gui/plug/_windows.py:659
 msgid "Plugin Error"
-msgstr "Plugin-fout"
+msgstr "Uitbreidingsfout"
 
 #: ../src/gui/plug/_windows.py:1023
 #: ../src/plugins/tool/OwnerEditor.py:161
@@ -8484,8 +8463,6 @@ msgstr "HTML-opties"
 msgid "Output Format"
 msgstr "Uitvoerformaat"
 
-# komt overeen met de genoemde filter?
-# Vindt de filter genaamd?
 #: ../src/gui/plug/report/_docreportdialog.py:165
 #: ../src/gui/plug/report/_graphvizreportdialog.py:156
 msgid "Open with default viewer"
@@ -8513,8 +8490,6 @@ msgstr "cm"
 msgid "inch|in."
 msgstr "in."
 
-# het heilig vormsel toedienen, Vormen
-# Bevestiging
 #: ../src/gui/plug/report/_reportdialog.py:144
 msgid "Configuration"
 msgstr "Instellingen"
@@ -8562,7 +8537,7 @@ msgstr "Documentopties"
 #: ../src/gui/plug/report/_reportdialog.py:511
 #: ../src/gui/plug/report/_reportdialog.py:536
 msgid "Permission problem"
-msgstr "Machtiginsprobleem"
+msgstr "Machtigingsprobleem"
 
 #: ../src/gui/plug/report/_reportdialog.py:512
 #, python-format
@@ -8741,10 +8716,6 @@ msgstr "Laatste wijziging"
 msgid "Select Place"
 msgstr "Locatie selecteren"
 
-# Periode/Reikweidte/Bereik
-# wordt gebruikt in:
-# Maximum span in years for all childer.
-# Dus: de periode waarin men kinderen kan krijgen.
 #: ../src/gui/selectors/selectplace.py:70
 msgid "Parish"
 msgstr "Parochie"
@@ -8898,8 +8869,6 @@ msgstr "Naar het vorige object in de geschiedenis gaan"
 msgid "_Home"
 msgstr "Begin"
 
-# komt overeen met de genoemde filter?
-# Vindt de filter genaamd?
 #: ../src/gui/views/navigationview.py:306
 msgid "Go to the default person"
 msgstr "Vindt de standaardpersoon"
@@ -9048,10 +9017,9 @@ msgstr "<Deelstaten>"
 msgid "<Counties>"
 msgstr "<Provincie>"
 
-# Plaatsen
 #: ../src/gui/views/treemodels/placemodel.py:70
 msgid "<Places>"
-msgstr "<Stad, Dorp>"
+msgstr "<Plaatsen>"
 
 #: ../src/gui/views/treemodels/placemodel.py:145
 #: ../src/gui/views/treemodels/placemodel.py:153
@@ -11123,7 +11091,6 @@ msgstr "(Voorkeurs) achternaam ontbreekt"
 msgid "Gender unknown"
 msgstr "Geslacht onbekend"
 
-# ontbreken/ontbreekt
 #. inadequate information
 #: ../src/plugins/drawreport/StatisticsChart.py:403
 #: ../src/plugins/drawreport/StatisticsChart.py:412
@@ -11227,17 +11194,13 @@ msgstr "Personen geboren voor"
 msgid "Birth year until which to include people"
 msgstr "Personen meenemen tot geboortejaar"
 
-# zonder geboortejaar bijvoegen
-# met onbekend geboortejaar
 #: ../src/plugins/drawreport/StatisticsChart.py:947
 msgid "Include people without known birth years"
-msgstr "Personen met onbekend geboortejaar bijvoegen"
+msgstr "Personen met zonder geboortejaar bijvoegen"
 
-# zonder geboortejaar bijvoegen
-# met onbekend geboortejaar
 #: ../src/plugins/drawreport/StatisticsChart.py:949
 msgid "Whether to include people without known birth years."
-msgstr "Al of niet personen met onbekend geboortejaar toevoegen."
+msgstr "Al of niet personen zonder geboortejaar toevoegen."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:953
 msgid "Genders included"
@@ -12445,12 +12408,12 @@ msgstr "Er onstond een fout bij het aanpassen van het beeldbestandspad!"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:915
 msgid "Click the close button when you are finished modifying this image's Exif metadata."
-msgstr ""
+msgstr "Wanneer u Exif-beeldmetadata hebt aangepast drukt u op de sluitknop."
 
 #. Add the Save button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:953
 msgid "Saves a copy of the data fields into the image's Exif metadata."
-msgstr ""
+msgstr "Een kopie van de gegevensvelden worden in de Exif-beeldmetadata opgeslagen."
 
 #. Re- display the data fields button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:956
@@ -12571,13 +12534,12 @@ msgstr ""
 "Voor verdere opties rechtsklikken\n"
 "Klik en sleep naar open plaats om te draaien"
 
-# Mensen
 #: ../src/plugins/gramplet/FanChartGramplet.py:694
 #: ../src/plugins/view/fanchartview.py:763
 #: ../src/plugins/view/pedigreeview.py:1780
 #: ../src/plugins/view/pedigreeview.py:1806
 msgid "People Menu"
-msgstr "Personen menu"
+msgstr "Personenmenu"
 
 #. Go over siblings and build their menu
 #: ../src/plugins/gramplet/FanChartGramplet.py:756
@@ -12605,7 +12567,6 @@ msgstr ""
 "<b><a wiki='%s_-_FAQ'>Frequently Asked Questions</a></b>\n"
 "(hiervoor is een internetverbinding nodig)\n"
 
-# Bronnen vermelden/citeren
 #: ../src/plugins/gramplet/FaqGramplet.py:41
 msgid "Editing Spouses"
 msgstr "Echtgenoten bewerken"
@@ -12783,7 +12744,7 @@ msgstr "Gramplet toont de afstammelingen van de actieve persoon"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:168
 msgid "Gramplet showing available third-party plugins (addons)"
-msgstr "Gramplet toont de beschikbare plugins door derden gemaakt (addons)"
+msgstr "Gramplet toont de beschikbare uitbreidingen door derden gemaakt"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:182
 msgid "Gramplet showing an active item Quick View"
@@ -12798,11 +12759,10 @@ msgstr "Verwanten"
 msgid "Gramplet showing active person's relatives"
 msgstr "Gramplet toont de verwanten van de actieve persoon"
 
-# Huwelijkszegen?
 #: ../src/plugins/gramplet/gramplet.gpr.py:213
 #: ../src/plugins/gramplet/gramplet.gpr.py:220
 msgid "Session Log"
-msgstr "Log sessie"
+msgstr "Sessielog"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:214
 msgid "Gramplet showing all activity for this session"
@@ -12891,7 +12851,6 @@ msgstr "Max aantal generaties"
 msgid "Show dates"
 msgstr "Toon datums"
 
-# Filteren? ik vermoed dat het hier om het znw gaat
 #: ../src/plugins/gramplet/PedigreeGramplet.py:62
 #: ../src/plugins/gramplet/PedigreeGramplet.py:70
 #: ../src/plugins/gramplet/PedigreeGramplet.py:81
@@ -13106,7 +13065,6 @@ msgstr "Dubbelklikken element om overkomsten te zien"
 msgid "less than 1"
 msgstr "minder dan 1"
 
-# Individuen
 #. -------------------------
 #: ../src/plugins/gramplet/StatsGramplet.py:135
 #: ../src/plugins/graph/GVFamilyLines.py:148
@@ -13116,7 +13074,7 @@ msgstr "minder dan 1"
 #: ../src/plugins/webreport/NarrativeWeb.py:1751
 #: ../src/plugins/webreport/NarrativeWeb.py:2735
 msgid "Individuals"
-msgstr "Personen"
+msgstr "Individuen"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:137
 msgid "Number of individuals"
@@ -13413,7 +13371,6 @@ msgstr "huwelijksgebeurtenis ontbreekt"
 msgid "relation type unknown"
 msgstr "relatietype onbekend"
 
-# Compleet
 #: ../src/plugins/gramplet/WhatsNext.py:473
 msgid "family not complete"
 msgstr "familie is niet volledig"
@@ -13422,7 +13379,6 @@ msgstr "familie is niet volledig"
 msgid "date unknown"
 msgstr "datum onbekend"
 
-# Compleet
 #: ../src/plugins/gramplet/WhatsNext.py:490
 msgid "date incomplete"
 msgstr "onvolledige datum"
@@ -13440,7 +13396,6 @@ msgstr "%(type)s: %(list)s"
 msgid "spouse missing"
 msgstr "echtgeno(o)t(e) ontbreekt"
 
-# ontbreken/ontbreekt
 #: ../src/plugins/gramplet/WhatsNext.py:509
 msgid "father missing"
 msgstr "vader ontbreekt"
@@ -13592,7 +13547,6 @@ msgstr "De kleur die gebruikt wordt om de families te tonen."
 msgid "Limit the number of ancestors"
 msgstr "Het aantal afstammelingen"
 
-# Duplicaat-voorouders
 #: ../src/plugins/graph/GVFamilyLines.py:170
 msgid "Whether to limit the number of ancestors."
 msgstr "Al of niet het aantal voorouders beperken."
@@ -13941,7 +13895,6 @@ msgstr "geslacht"
 msgid "source"
 msgstr "bron"
 
-# niet/geen
 #: ../src/plugins/import/ImportCsv.py:183
 msgid "note"
 msgstr "opmerking"
@@ -14156,8 +14109,6 @@ msgstr "Pro-Gen import"
 msgid "date did not match: '%(text)s' (%(msg)s)"
 msgstr "datum komt niet overeen: '%(text)s' (%(msg)s)"
 
-# afzonderlijke/individuele
-# seperate/individual
 #. The records are numbered 1..N
 #: ../src/plugins/import/ImportProGen.py:778
 msgid "Importing individuals"
@@ -14782,7 +14733,6 @@ msgstr "Import van 'GEDCOM-bestand %s met BESTEM=%s, kan aanleiding geven tot fo
 msgid "Look for nameless events."
 msgstr "Naar naamloze gebeurtenissen zoeken."
 
-# Doping
 #: ../src/plugins/lib/libgedcom.py:6717
 msgid "Character set"
 msgstr "Tekensetcodering"
@@ -14816,7 +14766,6 @@ msgstr "Aanmaakdatum van GEDCOM"
 msgid "Creation date and time of GEDCOM"
 msgstr ""
 
-# Let op, ipv waarschuwing
 #: ../src/plugins/lib/libgedcom.py:6830
 #: ../src/plugins/lib/libgedcom.py:6867
 msgid "Empty note ignored"
@@ -17680,8 +17629,6 @@ msgstr "Ook een relatie met %(spouse)s in %(place)s%(endnotes)s."
 msgid "This person had a relationship with %(spouse)s%(endnotes)s."
 msgstr "Deze persoon had een relatie met %(spouse)s%(endnotes)s."
 
-# hij onderhield een relatie met
-# hij had een relatie met
 #: ../src/plugins/lib/libnarrate.py:1325
 #, python-format
 msgid "He had a relationship with %(spouse)s%(endnotes)s."
@@ -17692,8 +17639,6 @@ msgstr "Hij had een relatie met %(spouse)s%(endnotes)s."
 msgid "She had a relationship with %(spouse)s%(endnotes)s."
 msgstr "Zij had een relatie met %(spouse)s%(endnotes)s."
 
-# hij onderhield een relatie met
-# hij had een relatie met
 #: ../src/plugins/lib/libnarrate.py:1327
 #, python-format
 msgid "Relationship with %(spouse)s%(endnotes)s."
@@ -17945,10 +17890,6 @@ msgstr "Engels"
 msgid "Esperanto"
 msgstr "Esperanto"
 
-# Periode/Reikweidte/Bereik
-# wordt gebruikt in:
-# Maximum span in years for all childer.
-# Dus: de periode waarin men kinderen kan krijgen.
 #: ../src/plugins/lib/libtranslate.py:58
 msgid "Spanish"
 msgstr "Spaans"
@@ -17993,7 +17934,6 @@ msgstr "Macedonian"
 msgid "Norwegian Bokmal"
 msgstr "Noors Bokmal"
 
-# Gebeurtenistype: overlijden/sterven/sterfgeval/doodgaan
 #: ../src/plugins/lib/libtranslate.py:69
 msgid "Dutch"
 msgstr "Nederlands"
@@ -18192,10 +18132,9 @@ msgstr "Chili"
 msgid "Croatia"
 msgstr "Kroatië"
 
-# naamgevingsmethode
 #: ../src/plugins/lib/holidays.xml.in.h:25
 msgid "Czech Republic"
-msgstr "Tschechische Franse Republiek"
+msgstr "Tschechische Republiek"
 
 #: ../src/plugins/lib/holidays.xml.in.h:26
 msgid "England"
@@ -18290,7 +18229,6 @@ msgstr "De groene waarden in de rij komen overeen met de huidige locatiewaarden.
 msgid "New place with empty fields"
 msgstr "Nieuwe locatie met lege ingavevelden"
 
-# Mensen
 #: ../src/plugins/lib/maps/geography.py:427
 msgid "Map Menu"
 msgstr "Kaartmenu"
@@ -18367,7 +18305,6 @@ msgstr ""
 msgid "Zoom used when centering"
 msgstr "Zoomniveau dat gebruikt wordt bij centreren"
 
-# tempel
 #. there is no button. I need to found a solution for this.
 #. it can be very dangerous ! if someone put / in geography.path ...
 #. perhaps we need some contrôl on this path :
@@ -18397,10 +18334,6 @@ msgstr "Zweden"
 msgid "Denmark"
 msgstr "Denemarken"
 
-# Periode/Reikweidte/Bereik
-# wordt gebruikt in:
-# Maximum span in years for all childer.
-# Dus: de periode waarin men kinderen kan krijgen.
 #: ../src/plugins/mapservices/eniroswedenmap.py:77
 msgid " parish"
 msgstr "parochie"
@@ -19818,7 +19751,6 @@ msgstr "Ontbrekende locaties vervangen door ______"
 msgid "Whether to replace missing Places with blanks."
 msgstr "Al of niet ontbrekende locaties vervangen spaties."
 
-# data/datums
 #: ../src/plugins/textreport/DetAncestralReport.py:844
 #: ../src/plugins/textreport/DetDescendantReport.py:1039
 msgid "Replace missing dates with ______"
@@ -20237,7 +20169,6 @@ msgstr[1] "Generatie %(generation)d bevat %(count)d personen. (%(percent)s"
 msgid "Total ancestors in generations %(second_generation)d to %(last_generation)d is %(count)d. %(percent)s"
 msgstr "Totaal aantal voorouders in de generaties %(second_generation)d tot   %(last_generation)d is %(count)d. %(percent)s"
 
-# Plaatsnaam
 #. Write the title line. Set in INDEX marker so that this section will be
 #. identified as a major category if this is included in a Book report.
 #: ../src/plugins/textreport/PlaceReport.py:111
@@ -21121,8 +21052,6 @@ msgstr "Filterselectie"
 msgid "Event Comparison tool"
 msgstr "Gebeurtenissen vergelijken"
 
-# afzonderlijke/individuele
-# seperate/individual
 #: ../src/plugins/tool/EventCmp.py:179
 msgid "Comparing events"
 msgstr "Gebeurtenissen vergelijken"
@@ -21151,8 +21080,6 @@ msgstr "%(event_name)s datum"
 msgid "%(event_name)s Place"
 msgstr "%(event_name)s locatie"
 
-# afzonderlijke/individuele
-# seperate/individual
 #: ../src/plugins/tool/EventCmp.py:308
 msgid "Comparing Events"
 msgstr "Gebeurtenissen vergelijken"
@@ -21454,9 +21381,8 @@ msgstr "Datum negeren"
 
 # Vertrouwen
 #: ../src/plugins/tool/MergeCitations.py:77
-#, fuzzy
 msgid "Ignore Confidence"
-msgstr "Zekerheid"
+msgstr "Zekerheid negeren"
 
 #: ../src/plugins/tool/MergeCitations.py:78
 msgid "Ignore Date and Confidence"
@@ -21506,7 +21432,6 @@ msgstr "Geen relatie met \"%s\""
 msgid "NotRelated"
 msgstr "Heeft geen relatie"
 
-# Classificatie, taxering
 #. start the progress indicator
 #: ../src/plugins/tool/NotRelated.py:117
 #: ../src/plugins/tool/NotRelated.py:261
@@ -21767,7 +21692,6 @@ msgstr "Sorteervolgorde aanpassen"
 msgid "Include family events"
 msgstr "Familiegebeurtenissen bijvoegen"
 
-# afstammelingen
 #: ../src/plugins/tool/SortEvents.py:193
 msgid "Sort family events of the person"
 msgstr "Familiegebeurtenissen van de persoon sorteren"
@@ -21899,7 +21823,6 @@ msgstr "Berekent de relatie tussen twee personen"
 msgid "Remove Unused Objects"
 msgstr "Ongebruikte objecten verwijderen"
 
-# referentie of verwijzing?
 #: ../src/plugins/tool/tools.gpr.py:419
 msgid "Removes unused objects from the database"
 msgstr "Verwijdert ongebruikte objecten uit het gegevensbestand"
@@ -22023,7 +21946,6 @@ msgstr "Man en vrouw met dezelfde achternaam"
 msgid "Large age difference between spouses"
 msgstr "Grote leeftijdsverschillen tussen partners"
 
-# Dict.: a prenuptial agreement or contract
 #: ../src/plugins/tool/Verify.py:1133
 msgid "Marriage before birth"
 msgstr "Trouw voor geboorte"
@@ -22489,7 +22411,6 @@ msgstr "Naar de vorige pagina in de geschiedenis gaan"
 msgid "Go to the next page in the history"
 msgstr "Naar de volgende pagina in de geschiedenis gaan"
 
-# Bronnen, verwijzingen, literatuurverwijzingen
 #. add the Refresh action to handle the Refresh button
 #: ../src/plugins/view/htmlrenderer.py:658
 msgid "_Refresh"
@@ -22513,7 +22434,6 @@ msgstr ""
 "<br>\n"
 "Voorbeeld: <b>http://gramps-project.org</p>"
 
-# het gaat om het weergeven van de voorouders of een samenvatting van de db.
 #: ../src/plugins/view/htmlrenderer.gpr.py:50
 msgid "Html View"
 msgstr "Html-scherm"
@@ -22769,7 +22689,6 @@ msgstr "In leven"
 msgid "%(date)s in %(place)s"
 msgstr "%(date)s in %(place)s"
 
-# Gebeuren (korter)
 #: ../src/plugins/view/relview.py:797
 msgid "Edit parents"
 msgstr "Ouders bewerken"
@@ -23278,7 +23197,6 @@ msgstr "Volgende"
 msgid "The file has been moved or deleted."
 msgstr "Het bestand is verplaatst of verwijderd."
 
-# Filteren? ik vermoed dat het hier om het znw gaat
 #: ../src/plugins/webreport/NarrativeWeb.py:4063
 msgid "File Type"
 msgstr "Bestandstype"
@@ -23403,10 +23321,9 @@ msgstr "Deze pagina bevat een index van alle bibliotheken van het gegevensbestan
 msgid "Repository |Name"
 msgstr "Naam"
 
-# Bronnen, verwijzingen, literatuurverwijzingen
 #: ../src/plugins/webreport/NarrativeWeb.py:6638
 msgid "Referenced Sources"
-msgstr "Bronnenreferenties"
+msgstr "Bronnenverwijzingen"
 
 #. Address Book Page message
 #: ../src/plugins/webreport/NarrativeWeb.py:6682
@@ -23544,7 +23461,6 @@ msgstr "De titel voor de webstek"
 msgid "Select filter to restrict people that appear on web site"
 msgstr "Kies een filter om het aantal personen te beperken dat getoond wordt op de webstek"
 
-# Bestandsuitgang/extensie
 #: ../src/plugins/webreport/NarrativeWeb.py:7728
 #: ../src/plugins/webreport/WebCal.py:1341
 msgid "File extension"
@@ -23832,11 +23748,10 @@ msgstr "Familiestamboom van Johnson"
 msgid "Advanced Options"
 msgstr "Gevorderde opties"
 
-# Doping
 #: ../src/plugins/webreport/NarrativeWeb.py:7924
 #: ../src/plugins/webreport/WebCal.py:1501
 msgid "Character set encoding"
-msgstr "Tekenset codering"
+msgstr "Tekensetcodering"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7927
 #: ../src/plugins/webreport/WebCal.py:1504
@@ -24250,10 +24165,9 @@ msgstr "Voor de Jaar-vooruitblik-kalender worden daggebeurtenissenpagina's aange
 msgid "Whether to create one day pages or not"
 msgstr "Al of niet daggebeurtenissenpagina's toevoegen"
 
-# webstek
 #: ../src/plugins/webreport/WebCal.py:1517
 msgid "Link to Narrated Web Report"
-msgstr "Verbinding naar het webstekverslag"
+msgstr "Verbinding naar het Narrated-webstekverslag"
 
 #: ../src/plugins/webreport/WebCal.py:1518
 msgid "Whether to link data to web report or not"
@@ -24291,7 +24205,7 @@ msgstr[1] "%(couple)s, <em>%(years)d</em> jaren jubileum"
 # webstek
 #: ../src/plugins/webreport/webplugins.gpr.py:31
 msgid "Narrated Web Site"
-msgstr "Website"
+msgstr "Narrated-webstek"
 
 #: ../src/plugins/webreport/webplugins.gpr.py:32
 msgid "Produces web (HTML) pages for individuals, or a set of individuals"
@@ -24403,7 +24317,6 @@ msgstr "FOUT: de filter %s kan niet worden geladen. Pas eerst de filter aan!"
 msgid "%s is"
 msgstr "%s is"
 
-# voortgezet
 #: ../src/Filters/_SearchBar.py:108
 #, python-format
 msgid "%s contains"
@@ -24431,10 +24344,9 @@ msgstr "Vindt alle objecten in het gegevensbestand"
 msgid "Object with <Id>"
 msgstr "Object met <Id>"
 
-# opgegeven ipv gespecificeerde?/specifieke
 #: ../src/Filters/Rules/_HasGrampsId.py:48
 msgid "Matches objects with a specified Gramps ID"
-msgstr "Vindt objecten met de gespecificeerde Gramps-ID"
+msgstr "Vindt objecten met de opgegeven Gramps-ID"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:46
 msgid "Objects with records containing <substring>"
@@ -24675,7 +24587,7 @@ msgstr "Personen met dezelfde voorouder als <persoon>"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWith.py:49
 msgid "Matches people that have a common ancestor with a specified person"
-msgstr "Vindt personen die een gemeenschappelijke voorouder hebben met een gespecificeerd persoon"
+msgstr "Vindt personen die een gemeenschappelijke voorouder hebben met de opgegeven persoon"
 
 #: ../src/Filters/Rules/Person/_HasDeath.py:48
 msgid "People with the <death data>"
@@ -24723,7 +24635,6 @@ msgstr "Vindt personen met een bepaald aantal items in de galerij"
 msgid "Person with <Id>"
 msgstr "Personen met <Id>"
 
-# opgegeven ipv gespecificeerde?/specifieke
 #: ../src/Filters/Rules/Person/_HasIdOf.py:46
 #: ../src/Filters/Rules/Person/_MatchIdOf.py:47
 msgid "Matches person with a specified Gramps ID"
@@ -24769,7 +24680,6 @@ msgstr "Voorvoegsel:"
 msgid "Single Surname:"
 msgstr "Enkelvoudige achternaam:"
 
-# patronymisch/patroniemen
 #: ../src/Filters/Rules/Person/_HasNameOf.py:57
 msgid "Patronymic:"
 msgstr "Patroniemen:"
@@ -24906,11 +24816,9 @@ msgstr "Vindt personen van wie de archief-kaart tekst bevat die met deeltekenree
 msgid "People with unknown gender"
 msgstr "Personen met onbekend geslacht"
 
-# waarvan het geslacht niet bekend is/onbekend is
-# personen zonder geslacht
 #: ../src/Filters/Rules/Person/_HasUnknownGender.py:48
 msgid "Matches all people with unknown gender"
-msgstr "Vindt alle personen waarvan het geslacht niet bekend is"
+msgstr "Vindt alle personen waarvan het geslacht onbekend is"
 
 #: ../src/Filters/Rules/Person/_HaveAltFamilies.py:44
 msgid "Adopted people"
@@ -24927,7 +24835,7 @@ msgstr "Personen met kinderen"
 # personen met kinderen/die kinderen hebben
 #: ../src/Filters/Rules/Person/_HaveChildren.py:44
 msgid "Matches people who have children"
-msgstr "Vindt personen die kinderen hebben"
+msgstr "Vindt personen met kinderen"
 
 #: ../src/Filters/Rules/Person/_IncompleteNames.py:45
 msgid "People with incomplete names"
@@ -24951,7 +24859,7 @@ msgstr "Voorouders van <persoon>"
 
 #: ../src/Filters/Rules/Person/_IsAncestorOf.py:48
 msgid "Matches people that are ancestors of a specified person"
-msgstr "Vindt personen die voorouder zijn van een gespecificeerd persoon"
+msgstr "Vindt personen die voorouder zijn van de opgegeven persoon"
 
 #: ../src/Filters/Rules/Person/_IsBookmarked.py:46
 msgid "Bookmarked people"
@@ -24995,7 +24903,7 @@ msgstr "Afstammelingenfilters"
 
 #: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:53
 msgid "Matches people that are descendants or the spouse of a descendant of a specified person"
-msgstr "Vindt personen die afstammeling zijn, of de echtgenoot van een afstammeling van een gespecificeerd persoon"
+msgstr "Vindt personen die afstammeling zijn, of de echtgenoot van een afstammeling van de opgegeven persoon"
 
 #: ../src/Filters/Rules/Person/_IsDescendantOfFilterMatch.py:48
 msgid "Descendants of <filter> match"
@@ -25011,7 +24919,7 @@ msgstr "Afstammelingen van <persoon>"
 
 #: ../src/Filters/Rules/Person/_IsDescendantOf.py:49
 msgid "Matches all descendants for the specified person"
-msgstr "Vindt alle afstammelingen van de gespecificeerde persoon"
+msgstr "Vindt alle afstammelingen van de opgegeven persoon"
 
 #: ../src/Filters/Rules/Person/_IsDuplicatedAncestorOf.py:48
 msgid "Duplicated ancestors of <person>"
@@ -25019,7 +24927,7 @@ msgstr "Dubbele voorouders van <persoon>"
 
 #: ../src/Filters/Rules/Person/_IsDuplicatedAncestorOf.py:50
 msgid "Matches people that are ancestors twice or more of a specified person"
-msgstr "Personen die één of meerdere keren voorouder zijn van een gespecificeerd persoon"
+msgstr "Personen die één of meerdere keren voorouder zijn van de opgegeven persoon"
 
 #: ../src/Filters/Rules/Person/_IsFemale.py:48
 msgid "Matches all females"
@@ -25031,7 +24939,7 @@ msgstr "Voorouders van personen met bladwijzer, niet meer dan N generaties verwi
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfBookmarked.py:56
 msgid "Matches ancestors of the people on the bookmark list not more than N generations away"
-msgstr "Vindt personen die voorouder zijn van een gespecificeerd persoon, niet meer dan N generaties verwijderd"
+msgstr "Vindt personen die voorouder zijn van de opgegeven persoon, niet meer dan N generaties verwijderd"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:48
 msgid "Ancestors of the default person not more than <N> generations away"
@@ -25039,7 +24947,7 @@ msgstr "Is een voorouder van een persoon, niet meer dan N generaties verwijderd"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:51
 msgid "Matches ancestors of the default person not more than N generations away"
-msgstr "Vindt personen die voorouder zijn van een gespecificeerd persoon, niet meer dan N generaties verwijderd"
+msgstr "Vindt personen die voorouder zijn van de opgegeven persoon, niet meer dan N generaties verwijderd"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOf.py:47
 msgid "Ancestors of <person> not more than <N> generations away"
@@ -25047,7 +24955,7 @@ msgstr "Is een voorouder van een persoon, niet meer dan N generaties verwijderd"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOf.py:49
 msgid "Matches people that are ancestors of a specified person not more than N generations away"
-msgstr "Vindt personen die voorouder zijn van een gespecificeerd persoon, niet meer dan N generaties verwijderd"
+msgstr "Vindt personen die voorouder zijn van de opgegeven persoon, niet meer dan N generaties verwijderd"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:47
 msgid "Descendants of <person> not more than <N> generations away"
@@ -25055,7 +24963,7 @@ msgstr "Is een afstammeling van een persoon, niet meer dan N generaties verwijde
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:50
 msgid "Matches people that are descendants of a specified person not more than N generations away"
-msgstr "Vindt personen die afstammeling zijn van een gespecificeerd persoon, niet meer dan N generaties verwijderd"
+msgstr "Vindt personen die afstammeling zijn van de opgegeven persoon, niet meer dan N generaties verwijderd"
 
 #: ../src/Filters/Rules/Person/_IsMale.py:48
 msgid "Matches all males"
@@ -25067,7 +24975,7 @@ msgstr "Is een voorouder van een persoon, tenminste N generaties verwijderd"
 
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationAncestorOf.py:49
 msgid "Matches people that are ancestors of a specified person at least N generations away"
-msgstr "Vindt personen die die voorouder zijn van een gespecificeerd persoon, tenminste N generaties verwijderd"
+msgstr "Vindt personen die die voorouder zijn van de opgegeven persoon, tenminste N generaties verwijderd"
 
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:47
 msgid "Descendants of <person> at least <N> generations away"
@@ -25075,7 +24983,7 @@ msgstr "Is een afstammeling van een persoon, tenminste N generaties verwijderd"
 
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:49
 msgid "Matches people that are descendants of a specified person at least N generations away"
-msgstr "Vindt personen die die afstammeling zijn van een gespecificeerd persoon, tenminste N generaties verwijderd"
+msgstr "Vindt personen die die afstammeling zijn van de opgegeven persoon, tenminste N generaties verwijderd"
 
 #: ../src/Filters/Rules/Person/_IsParentOfFilterMatch.py:48
 msgid "Parents of <filter> match"
@@ -25099,7 +25007,7 @@ msgstr "Personen met een relatie met <Persoon>"
 
 #: ../src/Filters/Rules/Person/_IsRelatedWith.py:48
 msgid "Matches people related to a specified person"
-msgstr "Vindt personen die een relatie hebben met een gespecificeerd persoon"
+msgstr "Vindt personen die een relatie hebben met de opgegeven persoon"
 
 #: ../src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py:47
 msgid "Siblings of <filter> match"
@@ -25129,7 +25037,6 @@ msgstr "Vindt personen die getuigen zijn bij een gebeurtenis"
 msgid "Persons with events matching the <event filter>"
 msgstr "Personen waarvan de gebeurtenissen overeen komen met <gebeurtenissenfilter>"
 
-# opgegeven ipv gespecificeerde?
 #: ../src/Filters/Rules/Person/_MatchesEventFilter.py:54
 msgid "Matches persons who have events that match a certain event filter"
 msgstr "Vindt personen die gebeurtenissen hebben die overeenkomen met een bepaalde gebeurtenissenfilter"
@@ -25138,7 +25045,6 @@ msgstr "Vindt personen die gebeurtenissen hebben die overeenkomen met een bepaal
 msgid "People matching the <filter>"
 msgstr "Personen die uit het <filter> komen"
 
-# opgegeven ipv gespecificeerde?
 #: ../src/Filters/Rules/Person/_MatchesFilter.py:46
 msgid "Matches people matched by the specified filter name"
 msgstr "Vindt personen met een bepaalde filter komen"
@@ -25245,7 +25151,6 @@ msgstr "Personen die overeenkomen met de <naam>"
 msgid "Matches people's names with a specified regular expression"
 msgstr "Vindt personen met naam gelijk aan een opgegeven reguliere uitdrukking"
 
-# Berekent de relatie tussen twee personen<
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:47
 msgid "Relationship path between <persons>"
 msgstr "Relatiepad tussen twee <personen>"
@@ -25254,7 +25159,6 @@ msgstr "Relatiepad tussen twee <personen>"
 msgid "Matches the ancestors of two persons back to a common ancestor, producing the relationship path between two persons."
 msgstr "Vindt van twee personen, de gemeenschappelijke voorouder, zodat de familierelatie kan worden bepaald."
 
-# Berekent de relatie tussen twee personen<
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
 msgid "Relationship path between bookmarked persons"
 msgstr "Relatiepad tussen twee personen met bladwijzer"
@@ -25329,7 +25233,7 @@ msgstr "Families met vader met <Id>"
 # opgegeven ipv gespecificeerde?/specifieke
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:48
 msgid "Matches families whose father has a specified Gramps ID"
-msgstr "Vindt families waarvan vader een gespecificeerde Gramps ID heeft"
+msgstr "Vindt families waarvan de vader de opgegeven Gramps ID heeft"
 
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:50
 #: ../src/Filters/Rules/Family/_FatherHasNameOf.py:49
@@ -25385,7 +25289,6 @@ msgstr "Vindt families met een bepaald aantal items in de galerij"
 msgid "Family with <Id>"
 msgstr "Familie met <Id>"
 
-# opgegeven ipv gespecificeerde?/specifieke
 #: ../src/Filters/Rules/Family/_HasIdOf.py:46
 msgid "Matches a family with a specified Gramps ID"
 msgstr "Vindt de familie met de opgegeven Gramps ID"
@@ -25483,10 +25386,9 @@ msgstr "Families met tenminste één rechtstreekse bron met zekerheidsniveau zoe
 msgid "Families with mother with the <Id>"
 msgstr "Families met moeder met <Id>"
 
-# opgegeven ipv gespecificeerde?/specifieke
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:48
 msgid "Matches families whose mother has a specified Gramps ID"
-msgstr "Vindt families waarvan moeder een gespecificeerde Gramps ID heeft"
+msgstr "Vindt families waarvan de moeder de opgegeven Gramps ID heeft"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:50
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:49
@@ -25513,7 +25415,6 @@ msgstr "Families waarvan vader met de <naam>"
 msgid "Families with any child matching the <name>"
 msgstr "Families met kind met de <naam>"
 
-# opgegeven ipv gespecificeerde?
 #: ../src/Filters/Rules/Family/_SearchChildName.py:47
 msgid "Matches families where any child has a specified (partial) name"
 msgstr "Vindt families met kinderen met een bepaalde (deel van) naam"
@@ -25606,7 +25507,6 @@ msgstr "Vindt gebeurtenissen met gegevens die een bepaald waarde hebben"
 msgid "Events with <count> media"
 msgstr "Gebeurtenissen met <aantal> media"
 
-# galerie/galerij
 #: ../src/Filters/Rules/Event/_HasGallery.py:47
 msgid "Matches events with a certain number of items in the gallery"
 msgstr "Vindt gebeurtenissen met een bepaald aantal items in de galerij"
@@ -25615,10 +25515,9 @@ msgstr "Vindt gebeurtenissen met een bepaald aantal items in de galerij"
 msgid "Event with <Id>"
 msgstr "Gebeurtenis met <Id>"
 
-# opgegeven ipv gespecificeerde?/specifieke
 #: ../src/Filters/Rules/Event/_HasIdOf.py:46
 msgid "Matches an event with a specified Gramps ID"
-msgstr "Vindt een gebeurtenis met de gespecificeerde Gramps-ID"
+msgstr "Vindt een gebeurtenis met de opgegeven Gramps-ID"
 
 #: ../src/Filters/Rules/Event/_HasNote.py:46
 msgid "Events having <count> notes"
@@ -25672,7 +25571,6 @@ msgstr "Vindt gebeurtenis van een bepaald type "
 msgid "Events matching the <filter>"
 msgstr "Gebeurtenissen uit <filter>"
 
-# opgegeven ipv gespecificeerde?
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:46
 msgid "Matches events matched by the specified filter name"
 msgstr "Vindt gebeurtenissen met een opgegeven filter"
@@ -25690,7 +25588,6 @@ msgstr "Vindt persoonsgebeurtenissen met een opgegeven personennaamfilter"
 msgid "Events with source matching the <source filter>"
 msgstr "Gebeurtenissen met bronnen die overeenkomen met de <bronnenfilter>"
 
-# opgegeven ipv gespecificeerde?
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:51
 msgid "Matches events with sources that match the specified source filter name"
 msgstr "Vindt gebeurtenissen met bronnen die overeenkomen met een opgegeven bronnenfilternaam"
@@ -25740,10 +25637,9 @@ msgstr "Vindt locaties met een bepaald aantal items in de galerij"
 msgid "Place with <Id>"
 msgstr "Locatie met <Id>"
 
-# opgegeven ipv gespecificeerde?/specifieke
 #: ../src/Filters/Rules/Place/_HasIdOf.py:46
 msgid "Matches a place with a specified Gramps ID"
-msgstr "Vindt een locatie met gespecificeerde Gramps-ID"
+msgstr "Vindt een locatie met de opgegeven Gramps-ID"
 
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:49
 msgid "Places with no latitude or longitude given"
@@ -25861,7 +25757,6 @@ msgstr "Vindt locaties met een opgegeven filter"
 msgid "Places of events matching the <event filter>"
 msgstr "Gebeurtenissenlocaties die uit het <gebeurtenissenfilter> komen"
 
-# opgegeven ipv gespecificeerde?
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:52
 msgid "Matches places where events happened that match the specified event filter name"
 msgstr "Vindt locaties waar bepaalde gebeurtenissen plaatsvonden, die overeenkomen met de opgegeven filternaam"
@@ -25902,7 +25797,6 @@ msgstr "Vindt bronnen die veranderd zijn sinds een bepaalde datum/tijdstip (jjjj
 msgid "Sources with <count> media"
 msgstr "Bronnen met <aantal> media"
 
-# galerie/galerij
 #: ../src/Filters/Rules/Source/_HasGallery.py:47
 msgid "Matches sources with a certain number of items in the gallery"
 msgstr "Vindt bronnen met een bepaald aantal items in de galerij"
@@ -25911,10 +25805,9 @@ msgstr "Vindt bronnen met een bepaald aantal items in de galerij"
 msgid "Source with <Id>"
 msgstr "Bron met <Id>"
 
-# opgegeven ipv gespecificeerde?/specifieke
 #: ../src/Filters/Rules/Source/_HasIdOf.py:46
 msgid "Matches a source with a specified Gramps ID"
-msgstr "Vindt bronnen met de gespecificeerde Gramps-ID"
+msgstr "Vindt bronnen met de opgegeven Gramps-ID"
 
 #: ../src/Filters/Rules/Source/_HasNote.py:46
 msgid "Sources having <count> notes"
@@ -26195,7 +26088,7 @@ msgstr "Media-Object met <Id>"
 # opgegeven ipv gespecificeerde?/specifieke
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:46
 msgid "Matches a media object with a specified Gramps ID"
-msgstr "Vindt media-objecten met de gespecificeerde Gramps ID"
+msgstr "Vindt media-objecten met de opgegeven Gramps ID"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
 #: ../src/Filters/Rules/Repository/_HasRepo.py:48
@@ -26293,7 +26186,7 @@ msgstr "Bibliotheken met <Id>"
 # opgegeven ipv gespecificeerde?/specifieke
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:46
 msgid "Matches a repository with a specified Gramps ID"
-msgstr "Vindt bibliotheken met een gespecificeerde Gramps ID"
+msgstr "Vindt bibliotheken met een opgegeven Gramps ID"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:43
 msgid "Repositories having notes containing <substring>"
@@ -26746,8 +26639,6 @@ msgstr "Klik om uit te klappen/ineen te vouwen"
 msgid "Close"
 msgstr "Sluiten"
 
-# het heilig vormsel toedienen, Vormen
-# Bevestiging
 #: ../src/glade/grampletpane.glade.h:4
 msgid "Config"
 msgstr "Instellingen"
@@ -27297,8 +27188,6 @@ msgstr "_Volume/Pagina:"
 msgid "A descriptive caption of the Internet location you are storing."
 msgstr "Een beschrijving van de internetlocatie die u opslaat."
 
-# komt overeen met de genoemde filter?
-# Vindt de filter genaamd?
 #: ../src/glade/editurl.glade.h:3
 msgid "Open the web address in the default browser."
 msgstr "Het webadres met een standaard browser openen."
@@ -27500,7 +27389,6 @@ msgstr "Internetadres:"
 
 # Filteren? ik vermoed dat het hier om het znw gaat
 #: ../src/glade/editlink.glade.h:6
-#, fuzzy
 msgid "_Link Type:"
 msgstr "Koppelingstype:"
 
@@ -28376,15 +28264,15 @@ msgstr "_Breedte:"
 
 #: ../src/glade/updateaddons.glade.h:1
 msgid "<b>Available Gramps Updates for Addons</b>"
-msgstr "<b>Beschikbare Gramps aanpassingen voor addons</b>"
+msgstr "<b>Beschikbare Gramps aanpassingen voor uitbreidingen</b>"
 
 #: ../src/glade/updateaddons.glade.h:2
 msgid "Gramps comes with a core set of plugins which provide all of the necessary features. However, you can extend this functionality with additional Addons. These addons provide reports, listings, views, gramplets, and more. Here you can select among the available extra addons, they will be retrieved from the internet off of the Gramps website, and installed locally on your computer. If you close this dialog now, you can install addons later from the menu under Edit -> Preferences."
-msgstr "Gramps beschikt over een kernset van 'plugins' die alle nodige mogelijkheden bieden. U kunt echter deze functionaliteit met bijkomende 'addons' uitbreiden. Deze 'addons' leveren bijkomende verslagen, lijsten, schermen en gramplets. Hier kunt u een keuze uit de beschikbare bijkomende 'addons' maken. Deze 'addons' worden via de Gramps-webstek opgehaald via het nternet en worden lokaal op uw computer geïnstalleerd. Indien u nu deze dialoog sluit, kunt u altijd op een later tijsdtip via het menu Bewerken -> Voorkeuren deze 'addons' installeren."
+msgstr "Gramps beschikt over een kernset van die alle nodige mogelijkheden bieden. U kunt echter deze functionaliteit met bijkomende uitbreidingen vergroten. Deze uitbreidingen leveren bijkomende verslagen, lijsten, schermen en gramplets. Hier kunt u een keuze uit de beschikbare bijkomende uitbreidingen maken. Deze uitbreidingen worden via de Gramps-webstek opgehaald via het internet en worden lokaal op uw computer geïnstalleerd. Indien u nu deze dialoog sluit, kunt u altijd op een later tijsdtip via het menu Bewerken -> Voorkeuren deze uitbreidingen installeren."
 
 #: ../src/glade/updateaddons.glade.h:3
 msgid "Install Selected _Addons"
-msgstr "De geselecteerde \"Addons\" installeren"
+msgstr "De geselecteerde uitbreidingen installeren"
 
 #: ../src/glade/updateaddons.glade.h:4
 msgid "Select _None"
@@ -28713,10 +28601,9 @@ msgstr "Mi_nimum leeftijd voor baren van een kind"
 msgid "Mi_nimum age to father a child"
 msgstr "Mi_nimum leeftijd om vader van een kind te zijn"
 
-# huwelijk
 #: ../src/plugins/tool/verify.glade.h:20
 msgid "Mi_nimum age to marry"
-msgstr "Mi_numum leeftijd voor trouwen"
+msgstr "Mi_numum leeftijd voor huwelijk"
 
 #: ../src/plugins/tool/verify.glade.h:21
 msgid "_Estimate missing or inexact dates"
@@ -28868,7 +28755,7 @@ msgstr "<b>De relatie kind-ouder bewerken</b><br/> U kunt de relatie van een kin
 
 #: ../src/data/tips.xml.in.h:13
 msgid "<b>Extra Reports and Tools</b><br/>Extra tools and reports can be added to Gramps with the &quot;Addon&quot; system. See them under &quot;Help &gt; Extra Reports/Tools&quot;. This is the best way for advanced users to experiment and create new functionality."
-msgstr "<b>Extra verslagen en hulpmiddelen</b><br/>Extra hulpmiddelen en verslagen kunnen toegevoegd worden aan Gramps met het &quot;Addon&quot; systeem. Om deze te zien ga naar &quot;Hulp &gt; Bijkomende Verslagen/Hulpmiddelen&quot;. Dit is de aangewezen manier voor gevorderde gebruikers om te experimenteren en nieuwe functionaliteiten aan te maken."
+msgstr "<b>Bijkomende Verslagen/Hulpmiddelen</b><br/>Extra hulpmiddelen en verslagen kunnen toegevoegd worden aan Gramps met het &quot;uitbreidings&quot; systeem. Om deze te zien ga naar &quot;Hulp &gt; Bijkomende Verslagen/Hulpmiddelen&quot;. Dit is de aangewezen manier voor gevorderde gebruikers om te experimenteren en nieuwe functionaliteiten aan te maken."
 
 #: ../src/data/tips.xml.in.h:14
 msgid "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals based on many criteria. To define a new filter go to &quot;Edit &gt; Person Filter Editor&quot;. There you can name your filter and add and combine rules using the many preset rules. For example, you can define a filter to find all adopted people in the family tree. People without a birth date mentioned can also be filtered. To get the results save your filter and select it at the bottom of the Filter Sidebar, then click Apply. If the Filter Sidebar is not visible, select View &gt; Filter."
