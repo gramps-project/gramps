@@ -1,7 +1,9 @@
 # Initialize GRAMPS Django site
 
 update: grampsdb/fixtures/initial_data.json
-	PYTHONPATH=../../src python manage.py syncdb
+	PYTHONPATH=../../src python manage.py syncdb --noinput
+	PYTHONPATH=../../src python manage.py createsuperuser --username=admin --email=bugs@gramps-project.org
+	PYTHONPATH=../../src python manage.py createsuperuser --username=admin1 --email=bugs@gramps-project.org
 
 grampsdb/fixtures/initial_data.json: init.py
 	PYTHONPATH=../../src python init.py > grampsdb/fixtures/initial_data.json
@@ -13,7 +15,26 @@ run:
 	PYTHONPATH=../../src python manage.py runserver
 
 sql:
-	PYTHONPATH=../../src python manage.py sqlall > gramps_sql.txt
+	PYTHONPATH=../../src python manage.py sqlall > gramps-sql.sql
+
+dump:
+	echo ".dump" | sqlite3 sqlite.db > gramps-data.sql
+
+load:
+	sqlite3 sqlite.db < gramps-data.sql
+
+superusers:
+	PYTHONPATH=../../src python manage.py createsuperuser --username=admin --email=bugs@gramps-project.org
+	PYTHONPATH=../../src python manage.py createsuperuser --username=admin1 --email=bugs@gramps-project.org
+
+backup:
+	PYTHONPATH=../../src python manage.py dumpdata > backup.json
+
+restore: empty
+	PYTHONPATH=../../src python manage.py loaddata backup.json
+
+initial_data: 
+	PYTHONPATH=../../src python manage.py loaddata grampsdb/fixtures/initial_data.json
 
 docs:
 	mkdir -p docs
@@ -31,6 +52,9 @@ docs:
 	python manage.py graph_models grampsdb -i Person,Family,Source,Event,Repository,Place,Media,Note,Attribute,Datamap,Name,Lds,Tag,Address,Location,Url -o docs/prim-sec-tables.png
 	python manage.py graph_models grampsdb -i Person,Family,Source,Event,Repository,Place,Media,Note,Attribute,Datamap,Name,Lds,Tag,Address,Location,Url -o docs/prim-sec-tables.png
 	python manage.py graph_models grampsdb -i Person,Family,Source,Event,Repository,Place,Media,Note,Attribute,Datamap,Name,Lds,Tag,Address,Location,Url,NoteRef,SourceRef,EventRef,RepositoryRef,PersonRef,ChildRef,MediaRef -o docs/prim-sec-ref-tables.png
+
+make-empty:
+	echo ".dump" | sqlite3 sqlite.db > empty.sql
 
 empty:
 	rm -f sqlite.db

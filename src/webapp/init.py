@@ -62,7 +62,7 @@ for table, entries in [("grampsdb.config",
                          (("setting", "\"db_version\""), 
                           ("description", "\"database scheme version\""),
                           ("value_type", "\"str\""), 
-                          ("value", "\"0.6.0\"")),
+                          ("value", "\"0.6.1\"")),
                          (("setting", "\"db_created\""), 
                           ("description", "\"database creation date/time\""),
                           ("value_type", "\"str\""), 
@@ -175,7 +175,7 @@ for table, entries in [("grampsdb.config",
 type_models = [NameType, NameOriginType, AttributeType, UrlType, ChildRefType, 
                RepositoryType, EventType, FamilyRelType, SourceMediaType, 
                EventRoleType, NoteType, GenderType, LdsType, LdsStatus,
-               NameFormatType, StyledTextTagType]
+               NameFormatType, StyledTextTagType, ThemeType]
 for type in type_models:
     count = 1
     # Add each code:

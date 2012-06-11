@@ -29,8 +29,7 @@ class Profile(models.Model):
     themes, bookmarks, etc.
     """
     user = models.ForeignKey(User, unique=True)
-    css_theme = models.CharField(max_length=40, 
-                                 default="Web_Mainz.css")
+    theme_type = models.ForeignKey("ThemeType", default=1) # The default is a pk?
 
     def __unicode__(self):
         return unicode(self.user)

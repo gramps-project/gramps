@@ -91,7 +91,7 @@ def context_processor(request):
     context = {}
     if request.user.is_authenticated():
         profile = request.user.get_profile()
-        context["css_theme"] = profile.css_theme
+        context["css_theme"] = profile.theme_type.name
     else:
         context["css_theme"] = "Web_Mainz.css"
     # Other things for all environments:
