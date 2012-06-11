@@ -216,7 +216,7 @@ class HtmlBackend(DocBackend):
             value = str(value)
         elif tagtype == DocBackend.FONTFACE:
             #fonts can have strange symbols in them, ' needs to be escaped
-            value = value.replace("'", "\\'")
+            value = value.replace("'", "\\'") if value else ""
         return ('<span style="%s">' % (self.STYLETAG_TO_PROPERTY[tagtype] %
                                        (value)), 
                 '</span>')
