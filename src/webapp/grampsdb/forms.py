@@ -34,7 +34,7 @@ class PersonForm(forms.ModelForm):
     class Meta:
         model = Person
         exclude = ["death", "birth", "handle", "birth_ref_index", 
-                   "death_ref_index"]
+                   "death_ref_index", "families", "parent_families"]
 
 class NameForm(forms.ModelForm):
     class Meta:

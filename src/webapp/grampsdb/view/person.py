@@ -254,7 +254,7 @@ def process_name(request, handle, order, action="view"):
                           name_origin_type=NameOriginType.objects.get(val=NameOriginType._DEFAULT[0]))
         # combine with user data:
         nf = NameForm(request.POST, instance=name)
-        name.id = None # FIXME: why did this get set to an existing name? Should be new.
+        name.id = None # FIXME: why did this get set to an existing name? Should be new. Remove from form?
         name.preferred = False
         nf.model = name
         sf = SurnameForm(request.POST, instance=surname)
@@ -268,7 +268,7 @@ def process_name(request, handle, order, action="view"):
             update_last_changed(name, request.user.username)
             # Manually set any data:
             name.suffix = nf.cleaned_data["suffix"] if nf.cleaned_data["suffix"] != " suffix " else ""
-            name.preferred = False # FIXME: why is this False?
+            name.preferred = False # FIXME: why is this False? Remove from form?
             name.order = next_order
             name.save()
             # Process data:
@@ -276,7 +276,7 @@ def process_name(request, handle, order, action="view"):
             surname.name = name
             # Manually set any data:
             surname.prefix = sf.cleaned_data["prefix"] if sf.cleaned_data["prefix"] != " prefix " else ""
-            surname.primary = True # FIXME: why is this False?
+            surname.primary = True # FIXME: why is this False? Remove from form?
             surname.save()
             dji.rebuild_cache(person)
             return redirect("/person/%s/name/%s%s#tab-surnames" % (person.handle, name.order,             
@@ -302,7 +302,7 @@ def process_name(request, handle, order, action="view"):
             name = nf.save()
             # Manually set any data:
             name.suffix = nf.cleaned_data["suffix"] if nf.cleaned_data["suffix"] != " suffix " else ""
-            name.preferred = True # FIXME: why is this False?
+            name.preferred = True # FIXME: why is this False? Remove from form?
             update_last_changed(name, request.user.username)
             check_preferred(request, name, person)
             name.save()
@@ -311,7 +311,7 @@ def process_name(request, handle, order, action="view"):
             surname = sf.save(commit=False)
             # Manually set any data:
             surname.prefix = sf.cleaned_data["prefix"] if sf.cleaned_data["prefix"] != " prefix " else ""
-            surname.primary = True # FIXME: why is this False?
+            surname.primary = True # FIXME: why is this False? Remove from form?
             surname.save()
             dji.rebuild_cache(person)
             return redirect("/person/%s/name/%s%s#tab-surnames" % (person.handle, name.order,
@@ -380,7 +380,7 @@ def process_person(request, context, handle, action, add_to=None): # view, edit,
                 name = nf.save(commit=False)
                 # Manually set any data:
                 name.suffix = nf.cleaned_data["suffix"] if nf.cleaned_data["suffix"] != " suffix " else ""
-                name.preferred = True # FIXME: why is this False?
+                name.preferred = True # FIXME: why is this False? Remove from form?
                 check_preferred(request, name, person)
                 update_last_changed(name, request.user.username)
                 name.save()
@@ -389,7 +389,7 @@ def process_person(request, context, handle, action, add_to=None): # view, edit,
                 surname = sf.save(commit=False)
                 # Manually set any data:
                 surname.prefix = sf.cleaned_data["prefix"] if sf.cleaned_data["prefix"] != " prefix " else ""
-                surname.primary = True # FIXME: why is this False?
+                surname.primary = True # FIXME: why is this False? Remove from form?
                 surname.save()
                 dji.rebuild_cache(person)
                 if add_to:

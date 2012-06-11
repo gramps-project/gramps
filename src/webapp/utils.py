@@ -1196,6 +1196,7 @@ class WebAppParser(HTMLParser):
 
 def parse_styled_text(text):
     parser = WebAppParser()
+    text = text.replace("&nbsp;", " ") # otherwise removes them?
     parser.feed(text)
     parser.close()
     return (parser.text(), parser.tags())
