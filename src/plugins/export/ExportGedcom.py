@@ -8,6 +8,7 @@
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2010       Nick Hall
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2012       Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1437,31 +1438,6 @@ class GedcomWriter(UpdateCallback):
                 self._writeln(level, 'PHON', location.get_phone())
 
         self._note_references(place.get_note_list(), level+1)
-
-    #-------------------------------------------------------------------------
-    #
-    #  Methods for overloading
-    #
-    #-------------------------------------------------------------------------
-
-    def _family_event_hook(self, event, event_ref, level):
-        """
-        Method for handling Family events. Can be overloaded.
-        """
-        pass
-
-    def _person_remaining_event_hook(self, event, event_ref, level):
-        """
-        Method for handling remaining Person events. Can be
-        overloaded.
-        """
-        pass
-
-    def _person_event_hook(self, event, event_ref, level):
-        """
-        Method for handling Person events. Can be overloaded.
-        """
-        pass
 
 #-------------------------------------------------------------------------
 #
