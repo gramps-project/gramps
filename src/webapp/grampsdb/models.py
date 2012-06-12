@@ -854,7 +854,7 @@ class RepositoryRef(BaseRef):
 
 class PersonRef(BaseRef):
     ref_object = models.ForeignKey('Person')
-    description = models.CharField(max_length=50)
+    description = models.CharField(max_length=50, blank=True, null=True)
 
     def __unicode__(self):
         return "PersonRef to " + str(self.ref_object)

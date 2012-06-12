@@ -840,7 +840,8 @@ def children_table(obj, user, action, url=None, *args):
     table.links(links)
     retval += table.get_html()
     if user.is_superuser and url and action == "view":
-        retval += make_button(_("Add Child"), (url % args))
+        retval += make_button(_("Add Child"), (url.replace("$act", "add") % args))
+        retval += make_button(_("Share Child"), (url.replace("$act", "share") % args))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval

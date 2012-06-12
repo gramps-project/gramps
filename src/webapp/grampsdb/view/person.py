@@ -351,7 +351,7 @@ def process_person(request, context, handle, action, add_to=None): # view, edit,
             return redirect("/person/%s" % build_search(request))
         elif action in ["save", "create"]: # could be create a new person
             # look up old data, if any:
-            if handle:
+            if handle: 
                 person = Person.objects.get(handle=handle)
                 name = person.name_set.get(preferred=True)
                 surname = name.surname_set.get(primary=True)
@@ -391,13 +391,16 @@ def process_person(request, context, handle, action, add_to=None): # view, edit,
                 surname.prefix = sf.cleaned_data["prefix"] if sf.cleaned_data["prefix"] != " prefix " else ""
                 surname.primary = True # FIXME: why is this False? Remove from form?
                 surname.save()
-                dji.rebuild_cache(person)
-                if add_to:
-                    item, handle = add_to
-                    model = dji.get_model(item)
-                    obj = model.objects.get(handle=handle)
-                    dji.add_person_ref_default(obj, person)
+                if add_to: # Adding a child to the family
+                    item, handle = add_to # ("Family", handle)
+                    model = dji.get_model(item) # what model?
+                    obj = model.objects.get(handle=handle) # get family
+                    dji.add_child_ref_default(obj, person) # add person to family
+                    person.parent_familes.add(obj) # add family to child
+                    dji.rebuild_cache(person) # rebuild child
+                    dji.rebuild_cache(obj) # rebuild family
                     return redirect("/%s/%s%s" % (item, handle, build_search(request)))
+                dji.rebuild_cache(person)
                 return redirect("/person/%s%s" % (person.handle, build_search(request)))
             else: 
                 # need to edit again

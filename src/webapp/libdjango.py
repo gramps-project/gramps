@@ -879,6 +879,17 @@ class DjangoInterface(object):
         self.add_media_ref_list(citation, media_list) 
         self.add_citation_datamap_dict(citation, datamap)
 
+    def add_child_ref_default(self, obj, child, frel=1, mrel=1, private=False):
+        object_type = ContentType.objects.get_for_model(obj) # obj is family
+        count = models.ChildRef.objects.filter(object_id=obj.id,object_type=object_type).count()
+        child_ref = models.ChildRef(private=private,
+                                referenced_by=obj,
+                                ref_object=child,
+                                order=count + 1,
+                                father_rel_type=models.get_type(models.ChildRefType, frel),  # birth
+                                mother_rel_type=models.get_type(models.ChildRefType, mrel))
+        child_ref.save()
+
     def add_child_ref(self, obj, data):
         (private, citation_list, note_list, ref, frel, mrel) = data
         try:

@@ -106,7 +106,7 @@
   </ul>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-children"> 
     <!-- Events -->
-    {% children_table family user action "/family/%s/children/$act" family.handle %}
+    {% children_table family user action "/person/$act/family/%s" family.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-events">
     {% event_table family user action "/event/$act/family/%s" family.handle %}
