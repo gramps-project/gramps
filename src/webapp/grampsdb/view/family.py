@@ -66,6 +66,14 @@ def process_family(request, context, handle, action, add_to=None): # view, edit,
         if familyform.is_valid():
             update_last_changed(family, request.user.username)
             family = familyform.save()
+            # FIXME: multiple families with same parents?
+            # FIXME: remove family from previous mother/father?
+            if family.mother:
+                if family not in family.mother.families.all():
+                    family.mother.families.add(family)
+            if family.father:
+                if family not in family.father.families.all():
+                    family.father.families.add(family)
             dji.rebuild_cache(family)
             action = "view"
         else:
@@ -79,12 +87,21 @@ def process_family(request, context, handle, action, add_to=None): # view, edit,
         if familyform.is_valid():
             update_last_changed(family, request.user.username)
             family = familyform.save()
+            # FIXME: multiple families with same parents?
+            # FIXME: remove family from previous mother/father?
+            if family.mother:
+                if family not in family.mother.families.all():
+                    family.mother.families.add(family)
+            if family.father:
+                if family not in family.father.families.all():
+                    family.father.families.add(family)
             dji.rebuild_cache(family)
-            if add_to:
+            if add_to: # FIXME: add family to... what??
                 item, handle = add_to
                 model = dji.get_model(item)
                 obj = model.objects.get(handle=handle)
                 dji.add_family_ref(obj, family.handle)
+                # FIXME: cache; move to save methods? what about forms?
                 return redirect("/%s/%s" % (item, handle))
             action = "view"
         else:
