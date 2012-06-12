@@ -287,9 +287,9 @@ class GeoClose(GeoGraphyView):
                 if (hypot(float(act[3])-float(ref[3]),
                           float(act[4])-float(ref[4])) <= radius) == True:
                     # we are in the meeting zone
-                    self.add_marker(None, None, act[3], act[4], act[7], True)
+                    self.add_marker(None, None, act[3], act[4], act[7], True, 1)
                     self.all_place_list.append(act)
-                    self.add_marker(None, None, ref[3], ref[4], ref[7], True)
+                    self.add_marker(None, None, ref[3], ref[4], ref[7], True, 1)
                     self.all_place_list.append(ref)
 
     def _createmap(self, person, color, place_list, reference):
