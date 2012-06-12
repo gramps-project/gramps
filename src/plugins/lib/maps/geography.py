@@ -144,13 +144,13 @@ class GeoGraphyView(OsmGps, NavigationView):
         self.places_found = []
         self.select_fct = None
         self.geo_mainmap = gtk.gdk.pixbuf_new_from_file_at_size(
-            os.path.join(const.ROOT_DIR, "images", "22x22",
+            os.path.join(const.ROOT_DIR, "images", "48x48",
                          ('gramps-geo-mainmap' + '.png' )),
-                                 22, 22)
+                                 48, 48)
         self.geo_altmap = gtk.gdk.pixbuf_new_from_file_at_size(
-            os.path.join(const.ROOT_DIR, "images", "22x22",
+            os.path.join(const.ROOT_DIR, "images", "48x48",
                          ('gramps-geo-altmap' + '.png' )),
-                                 22, 22)
+                                 48, 48)
         if ( config.get('geography.map_service') in
             ( constants.OPENSTREETMAP, constants.OPENSTREETMAP_RENDERER )):
             default_image = self.geo_mainmap
@@ -161,9 +161,9 @@ class GeoGraphyView(OsmGps, NavigationView):
                     gen.lib.EventType.DEATH,
                     gen.lib.EventType.MARRIAGE ):
             self.geo_othermap[ident] = gtk.gdk.pixbuf_new_from_file_at_size(
-                os.path.join(const.ROOT_DIR, "images", "22x22",
+                os.path.join(const.ROOT_DIR, "images", "48x48",
                     (constants.ICONS.get(int(ident), default_image) + '.png' )),
-                    22, 22)
+                    48, 48)
 
     def change_page(self):
         """
@@ -385,7 +385,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         self.osm.remove_layer(layer)
 
-    def add_marker(self, menu, event, lat, lon, event_type, differtype):
+    def add_marker(self, menu, event, lat, lon, event_type, differtype, count):
         """
         Add a new marker
         """
@@ -400,8 +400,7 @@ class GeoGraphyView(OsmGps, NavigationView):
             value = self.geo_othermap.get(int(event_type), default_image)
         if differtype:                   # in case multiple evts
             value = default_image # we use default icon.
-        marker = self.osm.image_add_with_alignment(float(lat),
-                                                   float(lon), value, 0.2, 1.0)
+        self.marker_layer.add_marker((float(lat), float(lon)), value, count)
 
     def remove_all_gps(self):
         """
@@ -489,6 +488,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         lat = 0.0
         lon = 0.0
         icon = None
+        count = 0
         self.uistate.set_busy_cursor(True)
         _LOG.debug("%s" % time.strftime("start create_marker : "
                    "%a %d %b %Y %H:%M:%S", time.gmtime()))
@@ -500,19 +500,22 @@ class GeoGraphyView(OsmGps, NavigationView):
                 lon = mark[4]
                 icon = mark[7]
                 differtype = False
+                count = 1
                 continue
             if last != current:
-                self.add_marker(None, None, lat, lon, icon, differtype)
+                self.add_marker(None, None, lat, lon, icon, differtype, count)
                 differtype = False
+                count = 1
                 last = current
                 lat = mark[3]
                 lon = mark[4]
                 icon = mark[7]
             else: # This marker already exists. add info.
+                count += 1
                 if icon != mark[7]:
                     differtype = True
         if ( lat != 0.0 and lon != 0.0 ):
-            self.add_marker(None, None, lat, lon, icon, differtype)
+            self.add_marker(None, None, lat, lon, icon, differtype, count)
             self._set_center_and_zoom()
         _LOG.debug("%s" % time.strftime(" stop create_marker : "
                    "%a %d %b %Y %H:%M:%S", time.gmtime()))
@@ -810,7 +813,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         new_place.set_main_location(loc)
         try:
             EditPlace(self.dbstate, self.uistate, [], new_place)
-            self.add_marker(None, None, plat, plon, None, True)
+            self.add_marker(None, None, plat, plon, None, True, 0)
         except WindowActiveError:
             pass
 
@@ -851,7 +854,7 @@ class GeoGraphyView(OsmGps, NavigationView):
             place.set_main_location(loc)
             try:
                 EditPlace(self.dbstate, self.uistate, [], place)
-                self.add_marker(None, None, plat, plon, None, True)
+                self.add_marker(None, None, plat, plon, None, True, 0)
             except WindowActiveError:
                 pass
 
