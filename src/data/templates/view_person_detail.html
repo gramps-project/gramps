@@ -48,21 +48,21 @@
 <tr><td id="rowspace"></td></tr>
 <tr>
  <td class="ColumnAttribute">{{nameform.first_name.label}}:</td>
- <td class="ColumnValue" id="data" colspan="4">{% render nameform.first_name user action %}</td>
+ <td class="ColumnValue" id="data" colspan="4">{% render nameform.first_name user action None "/person/?search=given%%3D%s" nameform.model.first_name %}</td>
  <td class="ColumnValue" id="data">{% render nameform.suffix user action %}</td>
 </tr>
 <tr><td id="rowspace"></td></tr>
 <tr>
  <td class="ColumnAttribute">{{surnameform.surname.label}}:</td>
- <td class="ColumnValue" id="data">{% render surnameform.prefix user action %}</td>
- <td class="ColumnValue" id="data" colspan="2">{% render surnameform.surname user action %}</td>
+ <td class="ColumnValue" id="data">{% render surnameform.prefix user action %}
+ <td class="ColumnValue" id="data" colspan="2">{% render surnameform.surname user action None "/person/?search=surname%%3D%s" surnameform.model.surname %}</td>
  <td class="ColumnAttribute">{{surnameform.name_origin_type.label}}:</td>
  <td class="ColumnValue" id="data" colspan="2">{% render surnameform.name_origin_type user action %}</td>
 </tr>
 <tr><td id="rowspace"></td></tr>
 <tr>
  <td class="ColumnAttribute">{{personform.gender_type.label}}:</td>
- <td class="ColumnValue" id="data">{% render personform.gender_type user action %}</td>
+ <td class="ColumnValue" id="data">{% render personform.gender_type user action None "/person/?search=gender%%3D%s" personform.model.gender_type %}</td>
  <td class="ColumnAttribute">{{personform.gramps_id.label}}:</td>
  <td class="ColumnValue" id="data">{% render personform.gramps_id user action %}</td>
  <td class="ColumnAttribute">{{personform.tags.label}}:</td>

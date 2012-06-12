@@ -878,7 +878,7 @@ def display_date(obj):
     else:
         return ""
 
-def render(formfield, user, action, id=None):
+def render(formfield, user, action, id=None, url=None, *args):
     if not user.is_authenticated():
         action = "view"
     if action == "view": # show as text
@@ -888,7 +888,12 @@ def render(formfield, user, action, id=None):
             if (item.__class__.__name__ == 'ManyRelatedManager'):
                 retval = ", ".join([i.get_link() for i in item.all()])
             else:
-                retval = str(item)
+                if url:
+                    retval = """<a href="%s">%s</a>""" % (url % args, item)
+                elif hasattr(item, "get_link"):
+                    retval = item.get_link()
+                else:
+                    retval = str(item)
                 #### Some cleanup:
                 if retval == "True":
                     retval = "Yes"

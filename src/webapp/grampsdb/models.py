@@ -166,6 +166,13 @@ class EventType(mGrampsType):
     DEATH = 13
     val = models.IntegerField('event type', choices=_DATAMAP, blank=False)
 
+    def get_url(self):
+        return "/event/?search=type%%3D%s" % self.name
+
+    def get_link(self):
+        return "<a href='%s'>%s</a>" % (self.get_url(), self.name)
+
+
 class FamilyRelType(mGrampsType):
     from gen.lib.familyreltype import FamilyRelType
     _DATAMAP = get_datamap(FamilyRelType)

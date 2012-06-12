@@ -98,6 +98,7 @@ def context_processor(request):
     context["gramps_version"] = const.VERSION
     context["views"] = VIEWS
     context["menu"] = MENU
+    context["None"] = None
     context["True"] = True
     context["False"] = False
     context["sitename"] = Config.objects.get(setting="sitename").value
