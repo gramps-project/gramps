@@ -174,56 +174,56 @@ class DbDjango(DbWriteBase, DbReadBase):
         self.use_import_cache = True
         self.import_cache = {}
 
+    @transaction.commit_on_success
     def commit_import(self):
         """
         Commits the items that were queued up during the last gedcom
         import for two step adding.
         """
         # First we add the primary objects:
-        with transaction.commit_on_success():
-            for key in self.import_cache.keys():
-                obj = self.import_cache[key]
-                if isinstance(obj, gen.lib.Person):
-                    self.dji.add_person(obj.serialize())
-                elif isinstance(obj, gen.lib.Family):
-                    self.dji.add_family(obj.serialize())
-                elif isinstance(obj, gen.lib.Event):
-                    self.dji.add_event(obj.serialize())
-                elif isinstance(obj, gen.lib.Place):
-                    self.dji.add_place(obj.serialize())
-                elif isinstance(obj, gen.lib.Repository):
-                    self.dji.add_repository(obj.serialize())
-                elif isinstance(obj, gen.lib.Citation):
-                    self.dji.add_citation(obj.serialize())
-                elif isinstance(obj, gen.lib.Source):
-                    self.dji.add_source(obj.serialize())
-                elif isinstance(obj, gen.lib.Note):
-                    self.dji.add_note(obj.serialize())
-                elif isinstance(obj, gen.lib.MediaObject):
-                    self.dji.add_media(obj.serialize())
-                elif isinstance(obj, gen.lib.Tag):
-                    self.dji.add_tag(obj.serialize())
-            # Next we add the links:
-            for key in self.import_cache.keys():
-                obj = self.import_cache[key]
-                if isinstance(obj, gen.lib.Person):
-                    self.dji.add_person_detail(obj.serialize())
-                elif isinstance(obj, gen.lib.Family):
-                    self.dji.add_family_detail(obj.serialize())
-                elif isinstance(obj, gen.lib.Event):
-                    self.dji.add_event_detail(obj.serialize())
-                elif isinstance(obj, gen.lib.Place):
-                    self.dji.add_place_detail(obj.serialize())
-                elif isinstance(obj, gen.lib.Repository):
-                    self.dji.add_repository_detail(obj.serialize())
-                elif isinstance(obj, gen.lib.Citation):
-                    self.dji.add_citation_detail(obj.serialize())
-                elif isinstance(obj, gen.lib.Source):
-                    self.dji.add_source_detail(obj.serialize())
-                elif isinstance(obj, gen.lib.Note):
-                    self.dji.add_note_detail(obj.serialize())
-                elif isinstance(obj, gen.lib.MediaObject):
-                    self.dji.add_media_detail(obj.serialize())
+        for key in self.import_cache.keys():
+            obj = self.import_cache[key]
+            if isinstance(obj, gen.lib.Person):
+                self.dji.add_person(obj.serialize())
+            elif isinstance(obj, gen.lib.Family):
+                self.dji.add_family(obj.serialize())
+            elif isinstance(obj, gen.lib.Event):
+                self.dji.add_event(obj.serialize())
+            elif isinstance(obj, gen.lib.Place):
+                self.dji.add_place(obj.serialize())
+            elif isinstance(obj, gen.lib.Repository):
+                self.dji.add_repository(obj.serialize())
+            elif isinstance(obj, gen.lib.Citation):
+                self.dji.add_citation(obj.serialize())
+            elif isinstance(obj, gen.lib.Source):
+                self.dji.add_source(obj.serialize())
+            elif isinstance(obj, gen.lib.Note):
+                self.dji.add_note(obj.serialize())
+            elif isinstance(obj, gen.lib.MediaObject):
+                self.dji.add_media(obj.serialize())
+            elif isinstance(obj, gen.lib.Tag):
+                self.dji.add_tag(obj.serialize())
+        # Next we add the links:
+        for key in self.import_cache.keys():
+            obj = self.import_cache[key]
+            if isinstance(obj, gen.lib.Person):
+                self.dji.add_person_detail(obj.serialize())
+            elif isinstance(obj, gen.lib.Family):
+                self.dji.add_family_detail(obj.serialize())
+            elif isinstance(obj, gen.lib.Event):
+                self.dji.add_event_detail(obj.serialize())
+            elif isinstance(obj, gen.lib.Place):
+                self.dji.add_place_detail(obj.serialize())
+            elif isinstance(obj, gen.lib.Repository):
+                self.dji.add_repository_detail(obj.serialize())
+            elif isinstance(obj, gen.lib.Citation):
+                self.dji.add_citation_detail(obj.serialize())
+            elif isinstance(obj, gen.lib.Source):
+                self.dji.add_source_detail(obj.serialize())
+            elif isinstance(obj, gen.lib.Note):
+                self.dji.add_note_detail(obj.serialize())
+            elif isinstance(obj, gen.lib.MediaObject):
+                self.dji.add_media_detail(obj.serialize())
         self.use_import_cache = False
         self.import_cache = {}
 
