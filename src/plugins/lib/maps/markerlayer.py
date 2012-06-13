@@ -94,7 +94,10 @@ class MarkerLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
 
     def add_marker(self, points, image, count):
         """
-        Add a track or life marker.
+        Add a marker.
+        Set minimum value, maximum value for the markers
+        Set the average value too.
+        We calculate that here, to minimize the overhead at markers drawing
         """
         self.markers.append((points, image, count))
         self.max_references += count
@@ -107,12 +110,16 @@ class MarkerLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
 
     def do_draw(self, gpsmap, drawable):
         """
-        Draw all tracks or life markers.
+        Draw all markers here. Calculate where to draw the marker.
+        Depending of the average, minimum and maximum value, resize the marker.
+        We use cairo to resize the marker.
         """
         ctx = drawable.cairo_create()
         max_interval = self.max_value - self.nb_ref_by_places
         min_interval = self.nb_ref_by_places - self.min_value  
-        if min_interval == 0:
+        if max_interval == 0: # This to avoid divide by zero
+            max_interval = 0.01
+        if min_interval == 0: # This to avoid divide by zero
             min_interval = 0.01
         for marker in self.markers:
             ctx.save()
@@ -120,22 +127,25 @@ class MarkerLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
             size = 0.6
             if float(marker[2]) > self.nb_ref_by_places:
                 # at maximum, we'll have an icon size = (0.6 + 0.3) * 48 = 43.2
-                size += ( 0.3 * ( ( float(marker[2]) - self.nb_ref_by_places )/ max_interval) )
+                size += (0.3 * ((float(marker[2]) - self.nb_ref_by_places)
+                                 / max_interval) )
             else:
                 # at minimum, we'll have an icon size = (0.6 - 0.3) * 48 = 14.4
-                size -= ( 0.3 * ( ( self.nb_ref_by_places - float(marker[2]) )/ min_interval) )
+                size -= (0.3 * ((self.nb_ref_by_places - float(marker[2]))
+                                 / min_interval) )
 
             conv_pt = osmgpsmap.point_new_degrees(float(marker[0][0]),
                                                   float(marker[0][1]))
             coord_x, coord_y = gpsmap.convert_geographic_to_screen(conv_pt)
             ctx.translate(coord_x, coord_y)
+            size = float(int(size * 10)/10.0)
             ctx.scale( size, size)
-            # below, we must found one solution to place exactly the marker
-            # depending on its size. Normaly, the left top of the image is set to the coordinates
-            # The tip of the pin which should be at the marker position is at 3/18 of the width.
-            # rounding problem ?
-            posY = - (( 48 * size + 5 ) / ( 16.0 / 18.0 )) - 2
-            posX = - (( 48 * size + 5 ) / 6 ) - 2 # 6 <= 3/18 = 1/6
+            # below, we try to place exactly the marker depending on its size.
+            # Normaly, the left top corner of the image is set to the coordinates.
+            # The tip of the pin which should be at the marker position is at
+            # 3/18 of the width. So we shift the image position.
+            posY = - int( 48 * size + 0.5 ) - 10
+            posX = - int(( 48 * size ) / 6 + 0.5 ) - 8 
             ctx.set_source_pixbuf(marker[1], posX, posY)
             ctx.paint()
             ctx.restore()
