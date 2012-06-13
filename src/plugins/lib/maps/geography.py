@@ -418,7 +418,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         Remove all markers on the map
         """
-        self.osm.image_remove_all()
+        self.marker_layer.clear_markers()
 
     def _present_in_places_list(self, index, string):
         """
