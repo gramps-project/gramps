@@ -749,7 +749,7 @@ class DjangoInterface(object):
             self.add_family_ref(person, family_handle) 
     
     ## Export reference objects:
-    
+
     def add_person_ref_default(self, obj, person, private=False, desc=None):
         count = person.references.count()
         person_ref = models.PersonRef(referenced_by=obj,

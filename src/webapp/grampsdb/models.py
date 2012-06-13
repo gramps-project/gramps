@@ -839,6 +839,17 @@ class BaseRef(models.Model):
     #attributes = models.ManyToManyField("Attribute", null=True)
     private = models.BooleanField()
 
+class Log(BaseRef):
+    log_type = models.CharField(max_length=10) # edit, delete, add
+    reason = models.TextField() # must be filled in
+    cache = models.TextField(blank=True, null=True)
+
+    def __unicode__(self):
+        "%s: %s on %s by %s" % (self.log_type, 
+                                self.referenced_by, 
+                                self.last_changed,
+                                self.last_changed_by)
+
 class NoteRef(BaseRef):
     ref_object = models.ForeignKey('Note') 
 

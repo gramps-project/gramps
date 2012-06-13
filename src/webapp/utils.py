@@ -1207,3 +1207,18 @@ def parse_styled_text(text):
     parser.close()
     return (parser.text(), parser.tags())
 
+def make_log(obj, log_type, last_changed_by, reason, cache):
+    """
+    Makes a record of the changes performed.
+    """
+    # Can also add private
+    last_changed = datetime.datetime.now()
+    log = models.Log(referenced_by=obj,
+                     log_type=log_type,
+                     order=0,
+                     reason=reason,
+                     last_changed=last_changed,
+                     last_changed_by=last_changed_by,
+                     cache=cache)
+    log.save()
+    
