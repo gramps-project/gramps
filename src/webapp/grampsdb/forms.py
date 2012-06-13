@@ -127,6 +127,15 @@ class FamilyForm(forms.ModelForm):
         model = Family
         exclude = ["handle"] 
 
+    def __init__(self, *args, **kwargs):
+        super(FamilyForm, self).__init__(*args, **kwargs)
+        self.fields['father'].queryset = Person.objects.filter(
+            gender_type=get_type_from_name(GenderType, "Male")) \
+            .order_by("name__surname__surname", "name__first_name")
+        self.fields['mother'].queryset = Person.objects.filter(
+            gender_type=get_type_from_name(GenderType, "Female")) \
+            .order_by("name__surname__surname", "name__first_name")
+
 class EventForm(forms.ModelForm):
     class Meta:
         model = Event

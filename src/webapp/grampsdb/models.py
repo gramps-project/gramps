@@ -42,6 +42,16 @@ from webapp.grampsdb.profile import Profile
 #
 #---------------------------------------------------------------------------
 
+def get_type_from_name(the_type, name):
+    """
+    Gets the type for a given name.
+    >>> get_type_from_name(GenderType, "Female")
+    <GenderType: Female>
+    >>> get_type_from_name(GenderType, "Male")
+    <GenderType: Male>
+    """
+    return the_type.objects.get(name=name)
+
 def get_type(the_type, data, get_or_create=False):
     """
     Gets the default row for a given Type and data. Data is
