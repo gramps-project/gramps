@@ -13,7 +13,6 @@
     {% block css %}
     <link media="screen" href="/styles/css/{{css_theme}}" type="text/css" rel="stylesheet" />
     <link media="print" href="/styles/css/Web_Print-Default.css" type="text/css" rel="stylesheet" />
-    <link type="text/css" href="/styles/css/swanky-purse/jquery-ui-1.7.2.custom.css" rel="stylesheet" />	
     <script type="text/javascript" src="/styles/javascript/jquery-1.3.2.min.js"></script>
     <script type="text/javascript" src="/styles/javascript/jquery-ui-1.7.2.custom.min.js"></script>
 
@@ -24,6 +23,9 @@
    <style type="text/css">
      table td {
         vertical-align: middle;
+     }
+     div.content {
+         background: none;
      }
      .content {
         padding: 0px 0px 10px;
@@ -53,7 +55,157 @@
         color: brown;
      }
    {% endif %}
-    </style
+   
+   /* Component containers */
+     .ui-widget {
+         font-family: Georgia,serif;
+         font-size: small; 
+         }
+     .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
+          font-family: Georgia,serif;
+          font-size: small; 
+         }
+     .ui-widget-content { 
+         border: 1px solid #7D5925; 
+         color: #7D5925; 
+         float: left;
+         width: 100%;
+         }
+     .ui-widget-content a {
+          color: #7D5925; 
+          }
+     .ui-widget-header { 
+         color: #ffffff; 
+         }
+     .ui-widget-header a {
+          color: #7D5925;
+          }
+
+     /* Overlays */
+     .ui-widget-overlay {
+         background: #aaaaaa;
+         opacity: .30;
+         }
+         
+     .ui-widget-shadow { 
+         margin: -8px 0 0 -8px;
+         padding: 8px;
+         opacity: .30;
+         -webkit-border-radius: 8px; 
+         }
+
+     /* Interaction states */
+     .ui-state-default { 
+         border: 1px solid #7D5925; 
+         background: #FFF2C6; 
+         font-weight: normal; 
+         color: #7D5925; 
+         outline: none; 
+         }
+     .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { 
+         color: #7D5925;
+         text-decoration: none;
+         outline: none; 
+         }
+     .ui-state-hover, .ui-state-focus { 
+         border: 1px solid #f5ad66;
+         background: #f5f0e5;
+         font-weight: normal;
+         color: #a46313;
+         outline: none; 
+         }
+     .ui-state-hover a, .ui-state-hover a:hover { 
+         color: #a46313;
+         text-decoration: none;
+         outline: none; 
+         }
+     .ui-state-active { 
+         border: 1px solid #7D5925;
+         background: #f4f0ec;
+         font-weight: normal;
+         color: #b85700;
+         outline: none; 
+         }
+     .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { 
+         color: #b85700;
+         outline: none;
+         text-decoration: none; 
+         }
+
+     /* Interaction Cues */
+     .ui-state-highlight {
+         border: 1px solid #d9bb73;
+         background: #f5f5b5;
+         color: #060200; 
+         }
+     .ui-state-highlight a { 
+         color: #060200; 
+         }
+     .ui-state-error {
+         border: 1px solid #f8893f;
+         background: #fee4bd;
+         color: #dd4e2c; 
+         }
+     .ui-state-error a { 
+         color: #dd4e2c; 
+         }
+     .ui-state-error-text {
+          color: #dd4e2c; 
+          }
+     .ui-state-disabled {
+         opacity: .35;
+         background-image: none;
+         }
+     .ui-priority-primary {
+         font-weight: bold; 
+         }
+     .ui-priority-secondary {
+         opacity: .7;
+         font-weight: normal; 
+         }
+
+     /* Tabs */
+     .ui-tabs {
+         padding: .2em;
+         }
+     .ui-tabs .ui-tabs-nav {
+         list-style: none;
+         position: relative;
+         padding: .2em .2em 0; 
+         }
+     .ui-tabs .ui-tabs-nav li {
+         position: relative;
+         float: left;
+         margin: .2em .2em -1px 0;
+         padding: 0; 
+         }
+     .ui-tabs .ui-tabs-nav li a {
+         float: left;
+         text-decoration: none;
+         padding: .5em 1em; 
+         }
+     .ui-tabs .ui-tabs-nav li.ui-tabs-selected {
+         padding-bottom: 1px;
+         border-bottom-width: 0;
+         }
+     .ui-tabs .ui-tabs-nav li.ui-tabs-selected a, .ui-tabs .ui-tabs-nav li.ui-state-disabled a, .ui-tabs .ui-tabs-nav li.ui-state-processing a {
+         cursor: text; 
+         }
+     .ui-tabs .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a {
+         cursor: pointer; 
+         } /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
+     .ui-tabs .ui-tabs-panel {
+         padding: 1em 1.4em;
+         display: block;
+         border-width: 0;
+         background: none; 
+         }
+     .ui-tabs .ui-tabs-hide {
+         display: none !important; 
+         }
+
+   
+    </style>
 
 </head>
 <body onload="if (document.getElementById('get_focus')) {document.getElementById('get_focus').focus();}">

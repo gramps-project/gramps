@@ -205,7 +205,7 @@ class Table(object):
         self.doc =  Doc(HtmlDoc.HtmlDoc(make_basic_stylesheet(Table={"set_width":95}), None))
         self.doc.doc._backend = HtmlBackend()
         # You can set elements id, class, etc:
-        self.doc.doc.htmllist += [Html('div', class_="content", id="Gallery", style="overflow: auto; height:150px; background-color: #261803;")]
+        self.doc.doc.htmllist += [Html('div', class_="content", id="Gallery", style="overflow: auto; height:150px; background-color: #f4f0ec;")]
 
     def columns(self, *args):
         self.table.columns(*args)
