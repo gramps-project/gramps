@@ -243,6 +243,7 @@ def process_name(request, handle, order, action="view"):
                           order=1,
                           name_origin_type=NameOriginType.objects.get(val=NameOriginType._DEFAULT[0]))
         sf = SurnameForm(request.POST, instance=surname)
+        sf.model = surname
     elif action == "create":
         # make new data
         person = Person.objects.get(handle=handle)
@@ -294,6 +295,7 @@ def process_name(request, handle, order, action="view"):
         nf = NameForm(request.POST, instance=oldname)
         nf.model = oldname
         sf = SurnameForm(request.POST, instance=oldsurname)
+        sf.model = oldsurname
         if nf.is_valid() and sf.is_valid():
             # name.preferred and surname.primary get set False in the above is_valid()
             # person = pf.save()
@@ -369,6 +371,7 @@ def process_person(request, context, handle, action, add_to=None): # view, edit,
             nf = NameFormFromPerson(request.POST, instance=name)
             nf.model = name
             sf = SurnameForm(request.POST, instance=surname)
+            sf.model = surname
             # check if valid:
             if nf.is_valid() and pf.is_valid() and sf.is_valid():
                 # name.preferred and surname.primary get set False in the above is_valid()
