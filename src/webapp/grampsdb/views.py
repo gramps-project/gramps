@@ -578,7 +578,7 @@ def build_person_query(request, search):
                     else:
                         continue
                 if "." in field and not protect:
-                    query &= Q(**{field.replace(".", "__"): value})
+                    query &= Q(**{str(field.replace(".", "__")): value})
                 elif field == "surname":
                     query &= Q(surname__surname__istartswith=value)
                 elif field == "given":
@@ -657,7 +657,7 @@ def build_family_query(request, search):
                         make_message("Ignoring value without specified field")
                         continue
                 if "." in field and not protect:
-                    query &= Q(**{field.replace(".", "__"): value})
+                    query &= Q(**{str(field.replace(".", "__")): value})
                 elif field == "surnames":
                     query &= (Q(father__name__surname__surname__istartswith=value) |
                               Q(mother__name__surname__surname__istartswith=value))
@@ -708,7 +708,7 @@ def build_media_query(request, search):
                     else:
                         continue
                 if "." in field and not protect:
-                    query &= Q(**{field.replace(".", "__"): value})
+                    query &= Q(**{str(field.replace(".", "__")): value})
                 elif field == "id":
                     query &= Q(gramps_id__icontains=value)
                 else:
@@ -743,7 +743,7 @@ def build_note_query(request, search):
                     else:
                         continue
                 if "." in field and not protect:
-                    query &= Q(**{field.replace(".", "__"): value})
+                    query &= Q(**{str(field.replace(".", "__")): value})
                 elif field == "id":
                     query &= Q(gramps_id__icontains=value)
                 elif field == "type":
@@ -786,7 +786,7 @@ def build_place_query(request, search):
                     else:
                         continue
                 if "." in field and not protect:
-                    query &= Q(**{field.replace(".", "__"): value})
+                    query &= Q(**{str(field.replace(".", "__")): value})
                 elif field == "id":
                     query &= Q(gramps_id__icontains=value)
                 elif field == "title":
@@ -825,7 +825,7 @@ def build_repository_query(request, search):
                     else:
                         continue
                 if "." in field and not protect:
-                    query &= Q(**{field.replace(".", "__"): value})
+                    query &= Q(**{str(field.replace(".", "__")): value})
                 elif field == "id":
                     query &= Q(gramps_id__icontains=value)
                 elif field == "name":
@@ -870,7 +870,7 @@ def build_citation_query(request, search):
                     else:
                         continue
                 if "." in field and not protect:
-                    query &= Q(**{field.replace(".", "__"): value})
+                    query &= Q(**{str(field.replace(".", "__")): value})
                 elif field == "id":
                     query &= Q(gramps_id__icontains=value)
                 else:
@@ -905,7 +905,7 @@ def build_source_query(request, search):
                     else:
                         continue
                 if "." in field and not protect:
-                    query &= Q(**{field.replace(".", "__"): value})
+                    query &= Q(**{str(field.replace(".", "__")): value})
                 elif field == "id":
                     query &= Q(gramps_id__icontains=value)
                 else:
@@ -940,7 +940,7 @@ def build_tag_query(request, search):
                     else:
                         continue
                 if "." in field and not protect:
-                    query &= Q(**{field.replace(".", "__"): value})
+                    query &= Q(**{str(field.replace(".", "__")): value})
                 elif field == "name":
                     query &= Q(name__icontains=value)
                 else:
@@ -976,7 +976,7 @@ def build_report_query(request, search):
                     else:
                         continue
                 if "." in field and not protect:
-                    query &= Q(**{field.replace(".", "__"): value})
+                    query &= Q(**{str(field.replace(".", "__")): value})
                 elif field == "name":
                     query &= Q(name__icontains=value)
                 else:
@@ -1011,7 +1011,7 @@ def build_event_query(request, search):
                     else:
                         continue
                 if "." in field and not protect:
-                    query &= Q(**{field.replace(".", "__"): value})
+                    query &= Q(**{str(field.replace(".", "__")): value})
                 elif field == "id":
                     query &= Q(gramps_id__icontains=value)
                 elif field == "type":
