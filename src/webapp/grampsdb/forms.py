@@ -34,7 +34,8 @@ class PersonForm(forms.ModelForm):
     class Meta:
         model = Person
         exclude = ["death", "birth", "handle", "birth_ref_index", 
-                   "death_ref_index", "families", "parent_families"]
+                   "death_ref_index", "families", "parent_families", 
+                   "cache"]
 
 class NameForm(forms.ModelForm):
     class Meta:
@@ -125,7 +126,7 @@ class SurnameForm(forms.ModelForm):
 class FamilyForm(forms.ModelForm):
     class Meta:
         model = Family
-        exclude = ["handle"] 
+        exclude = ["handle", "cache"] 
 
     def __init__(self, *args, **kwargs):
         super(FamilyForm, self).__init__(*args, **kwargs)
@@ -140,7 +141,7 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = Event
         exclude = ["handle", "sortval", "month1", "year1", "day1",
-                   "newyear", "calendar", "modifier", "quality"]
+                   "newyear", "calendar", "modifier", "quality", "cache"]
 
     def clean(self):
         from webapp.utils import dp
@@ -179,7 +180,7 @@ class MediaForm(forms.ModelForm):
     class Meta:
         model = Media
         exclude = ["handle", "sortval", "month1", "year1", "day1",
-                   "newyear", "calendar", "modifier", "quality"]
+                   "newyear", "calendar", "modifier", "quality", "cache"]
 
     def clean(self):
         from webapp.utils import dp
@@ -216,7 +217,7 @@ class CitationForm(forms.ModelForm):
     class Meta:
         model = Citation
         exclude = ["handle", "sortval", "month1", "year1", "day1",
-                   "newyear", "calendar", "modifier", "quality"]
+                   "newyear", "calendar", "modifier", "quality", "cache"]
 
     def clean(self):
         from webapp.utils import dp
@@ -246,12 +247,12 @@ class CitationForm(forms.ModelForm):
 class SourceForm(forms.ModelForm):
     class Meta:
         model = Source
-        exclude = ["handle"]
+        exclude = ["handle", "cache"]
 
 class PlaceForm(forms.ModelForm):
     class Meta:
         model = Place
-        exclude = ["handle"]
+        exclude = ["handle", "cache"]
 
     title = forms.CharField(label="Title", 
                            required=False, 
@@ -266,7 +267,7 @@ class PlaceForm(forms.ModelForm):
 class RepositoryForm(forms.ModelForm):
     class Meta:
         model = Repository
-        exclude = ["handle"]
+        exclude = ["handle", "cache"]
 
     name = forms.CharField(label="Name", 
                            required=False, 
@@ -285,3 +286,13 @@ class EventRefForm(forms.ModelForm):
     class Meta:
         model = EventRef
 
+class LogForm(forms.ModelForm):
+    error_css_class = 'error'
+
+    class Meta:
+        model = Log
+        fields = ["reason"]
+
+    reason = forms.CharField(label="Reason for change",
+                             widget=forms.widgets.Textarea(attrs={'rows':'2', 
+                                                                  'cols': '65'}))

@@ -22,7 +22,7 @@
 """ Views for Person, Name, and Surname """
 
 ## Gramps Modules
-from webapp.utils import _, boolean, update_last_changed, build_search
+from webapp.utils import _, boolean, update_last_changed, build_search, make_log
 from webapp.grampsdb.models import Person, Name, Surname
 from webapp.grampsdb.forms import *
 from webapp.libdjango import DjangoInterface
@@ -342,17 +342,22 @@ def process_person(request, context, handle, action, add_to=None): # view, edit,
     """
     context["tview"] = _("Person")
     context["tviews"] = _("People")
+    logform = None
     if request.user.is_authenticated():
         if action in ["edit", "view"]:
             pf, nf, sf, person = get_person_forms(handle, empty=False)
+            if action == "edit":
+                logform = LogForm()
         elif action == "add":
             pf, nf, sf, person = get_person_forms(handle=None, protect=False, empty=True)
+            logform = LogForm()
         elif action == "delete":
             pf, nf, sf, person = get_person_forms(handle, protect=False, empty=True)
             person.delete()
             return redirect("/person/%s" % build_search(request))
         elif action in ["save", "create"]: # could be create a new person
             # look up old data, if any:
+            logform = LogForm(request.POST)
             if handle: 
                 person = Person.objects.get(handle=handle)
                 name = person.name_set.get(preferred=True)
@@ -373,7 +378,7 @@ def process_person(request, context, handle, action, add_to=None): # view, edit,
             sf = SurnameForm(request.POST, instance=surname)
             sf.model = surname
             # check if valid:
-            if nf.is_valid() and pf.is_valid() and sf.is_valid():
+            if nf.is_valid() and pf.is_valid() and sf.is_valid() and logform.is_valid():
                 # name.preferred and surname.primary get set False in the above is_valid()
                 person.probably_alive = not bool(person.death)
                 update_last_changed(person, request.user.username)
@@ -394,6 +399,8 @@ def process_person(request, context, handle, action, add_to=None): # view, edit,
                 surname.prefix = sf.cleaned_data["prefix"] if sf.cleaned_data["prefix"] != " prefix " else ""
                 surname.primary = True # FIXME: why is this False? Remove from form?
                 surname.save()
+                # FIXME: put this in correct place to get correct cache, before changes:
+                make_log(person, action, request.user.username, logform.cleaned_data["reason"], person.cache)
                 if add_to: # Adding a child to the family
                     item, handle = add_to # ("Family", handle)
                     model = dji.get_model(item) # what model?
@@ -430,6 +437,7 @@ def process_person(request, context, handle, action, add_to=None): # view, edit,
     context["personform"] = pf
     context["nameform"] = nf
     context["surnameform"] = sf
+    context["logform"] = logform
     context["person"] = person
     context["object"] = person
     context["next"] = "/person/%s" % person.handle

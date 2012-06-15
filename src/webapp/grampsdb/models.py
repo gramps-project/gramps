@@ -845,10 +845,10 @@ class Log(BaseRef):
     cache = models.TextField(blank=True, null=True)
 
     def __unicode__(self):
-        "%s: %s on %s by %s" % (self.log_type, 
-                                self.referenced_by, 
-                                self.last_changed,
-                                self.last_changed_by)
+        return "%s: %s on %s by %s" % (self.log_type, 
+                                       self.referenced_by, 
+                                       self.last_changed,
+                                       self.last_changed_by)
 
 class NoteRef(BaseRef):
     ref_object = models.ForeignKey('Note') 

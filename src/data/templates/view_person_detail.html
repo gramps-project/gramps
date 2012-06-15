@@ -20,13 +20,14 @@
 <div id="summaryarea">
 <table class="infolist" style="width:90%;"> {% comment %} 5 cols {% endcomment %}
 <tbody>
-  {% if personform.errors or nameform.errors or surnameform.errors %}
+  {% if personform.errors or nameform.errors or surnameform.errors or logform.errors %}
     <hr>
     <p id="error">The following fields have errors. Please correct and try again.</p>
     <div id="error">
        {{personform.errors}}
        {{nameform.errors}}
        {{surnameform.errors}}
+       {{logform.errors}}
     </div>
     <hr>
   {% endif %}
@@ -130,6 +131,12 @@
     {% person_reference_table person user action %}
   </div>
 </div>
+
+{% if logform %}
+  <table>
+    {{logform.as_table}}
+  </table>
+{% endif %}
 
 {% if user.is_superuser %}
   {% if action == "edit" %}
