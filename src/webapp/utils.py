@@ -144,7 +144,10 @@ def probably_alive(handle):
 
 def format_number(number, with_grouping=True):
     # FIXME: should be user's setting
-    locale.setlocale(locale.LC_ALL, "en_US.utf8")
+    try:
+        locale.setlocale(locale.LC_ALL, "en_US.utf8")
+    except:
+        pass
     if number != "":
         return locale.format("%d", number, with_grouping)
     else:
@@ -152,7 +155,10 @@ def format_number(number, with_grouping=True):
 
 def table_count(table, with_grouping=True):
     # FIXME: should be user's setting
-    locale.setlocale(locale.LC_ALL, "en_US.utf8")
+    try:
+        locale.setlocale(locale.LC_ALL, "en_US.utf8")
+    except:
+        pass
     if table == "person":
         number = models.Person.objects.count()
     elif table == "family":

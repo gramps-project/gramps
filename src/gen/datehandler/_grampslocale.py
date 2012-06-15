@@ -3,6 +3,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2004-2005  Donald N. Allingham
+# Copyright (C) 2012       Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -131,10 +132,10 @@ try:
 
 except:
     import time
-
+    codeset = None
     if win() or mac():
         codeset = locale.getlocale()[1]
-    else:
+    if codeset is None:
         codeset = locale.getpreferredencoding()
 
     month_to_int = {
