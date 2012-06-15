@@ -66,7 +66,7 @@
 
 </div>
 
-{% if user.is_authenticated %}
+{% if user.is_superuser %}
   {% if action == "edit" %}
     {% make_button "Cancel" "/person/%s/name/%s/surname/%s" person.handle order sorder args %}
     <input type="hidden" name="action" value="save"/>

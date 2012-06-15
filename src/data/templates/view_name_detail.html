@@ -114,7 +114,7 @@
   </div>
 </div>
 
-{% if user.is_authenticated %}
+{% if user.is_superuser %}
   {% ifequal action "add" %}
     {% make_button "Cancel" "/person/%s" person.handle args "#tab-names" %}
     <input type="hidden" name="action" value="create"/>
