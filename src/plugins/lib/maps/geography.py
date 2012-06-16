@@ -117,6 +117,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         ('geography.center-lon', 0.0),
 
         ('geography.map_service', constants.OPENSTREETMAP),
+        ('geography.max_places', 5000),
         )
 
     def __init__(self, title, pdata, dbstate, uistate,
@@ -435,7 +436,10 @@ class GeoGraphyView(OsmGps, NavigationView):
         Create a list of places with coordinates.
         """
         found = any(p[0] == place for p in self.places_found)
-        if not found:
+        if not found and self.nbplaces < self._config.get("geography.max_places"):
+            # We only show the first "geography.max_places".
+            # over 3000 or 4000 places, the geography become unusable.
+            # In this case, filter the places ...
             self.nbplaces += 1
             self.places_found.append([place, lat, longit])
         self.place_list.append([place, name, evttype, lat,
@@ -912,6 +916,8 @@ class GeoGraphyView(OsmGps, NavigationView):
         self._config.set('geography.path', config.get('geography.path'))
         self._config.set('geography.zoom_when_center',
                          config.get('geography.zoom_when_center'))
+        self._config.set('geography.max_places',
+                         self._config.get('geography.max_places'))
         table = gtk.Table(1, 1)
         table.set_border_width(12)
         table.set_col_spacings(6)
@@ -930,6 +936,10 @@ class GeoGraphyView(OsmGps, NavigationView):
                 _('Zoom used when centering'),
                 4, 'geography.zoom_when_center',
                 (2, 16))
+        configdialog.add_slider(table,
+                _('The maximum number of places to show'),
+                5, 'geography.max_places',
+                (1000, 10000))
         # there is no button. I need to found a solution for this.
         # it can be very dangerous ! if someone put / in geography.path ...
         # perhaps we need some contrôl on this path :

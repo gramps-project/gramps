@@ -128,7 +128,7 @@ class MessageLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
         ctx.set_source_rgba(float(color.red / 65535.0),
                             float(color.green / 65535.0),
                             float(color.blue / 65535.0),
-                            0.6) # transparency
+                            0.9) # transparency
         coord_x = 100
         coord_y = int(self.size) # Show the first line under the zoom button
         (d_width, d_height) = drawable.get_size()

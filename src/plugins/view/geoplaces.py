@@ -201,6 +201,8 @@ class GeoPlaces(GeoGraphyView):
         """
         if place is None:
             return
+        if self.nbplaces >= self._config.get("geography.max_places"):
+            return
         descr = place.get_title()
         longitude = place.get_longitude()
         latitude = place.get_latitude()
@@ -240,7 +242,9 @@ class GeoPlaces(GeoGraphyView):
         latitude = ""
         longitude = ""
         self.nbmarkers = 0
+        self.nbplaces = 0
         self.message_layer.clear_messages()
+        self.message_layer.clear_font_attributes()
         self.no_show_places_in_status_bar = False
         # base "villes de france" : 38101 places :
         # createmap : 8'50"; create_markers : 1'23"
@@ -281,8 +285,22 @@ class GeoPlaces(GeoGraphyView):
         _LOG.debug("%s" % time.strftime("  end sort : "
                    "%a %d %b %Y %H:%M:%S", time.gmtime()))
         if self.nbmarkers > 500 : # performance issue. Is it the good value ?
-            self.message_layer.add_message(_("The place name in the status bar is disabled."))
+            self.message_layer.add_message(
+                 _("The place name in the status bar is disabled."))
             self.no_show_places_in_status_bar = True
+        if self.nbplaces >= self._config.get("geography.max_places") :
+            self.message_layer.set_font_attributes(None,None,"red")
+            self.message_layer.add_message(
+                 _("The maximum number of places is reached (%d)." %
+                   self._config.get("geography.max_places")))
+            self.message_layer.add_message(
+                 _("Some information are missing."))
+            self.message_layer.add_message(
+                 _("Please, use filtering to reduce this number."))
+            self.message_layer.add_message(
+                 _("You can modify this value in the geography option."))
+            self.message_layer.add_message(
+                 _("In this case, it may take time to show all markers."))
 
         self._create_markers()
 
@@ -354,7 +372,8 @@ class GeoPlaces(GeoGraphyView):
                 oldplace = mark[0]
                 modify = gtk.MenuItem(mark[0])
                 modify.show()
-                modify.connect("activate", self.goto_place, float(mark[3]), float(mark[4]))
+                modify.connect("activate", self.goto_place,
+                               float(mark[3]), float(mark[4]))
                 itemoption.append(modify)
 
     def goto_place(self, obj, lat, lon):

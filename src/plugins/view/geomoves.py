@@ -117,6 +117,7 @@ class GeoMoves(GeoGraphyView):
         ('geography.center-lon', 0.0),
 
         ('geography.map_service', constants.OPENSTREETMAP),
+        ('geography.max_places', 5000),
 
         # specific to geoclose :
 

@@ -201,6 +201,8 @@ class GeoEvents(GeoGraphyView):
         a lat/lon.
         """
         dbstate = self.dbstate
+        if self.nbplaces >= self._config.get("geography.max_places"):
+            return
         descr = descr2 = ""
         place_handle = event.get_place_handle()
         eventyear = event.get_date_object().to_calendar(self.cal).get_year()

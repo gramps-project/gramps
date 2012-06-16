@@ -131,6 +131,7 @@ class GeoPerson(GeoGraphyView):
         #('geography.gps_increment', GPS_INCREMENT),
 
         ('geography.map_service', constants.OPENSTREETMAP),
+        ('geography.max_places', 5000),
 
         # specific to geoperson :
 
