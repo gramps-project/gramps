@@ -152,6 +152,7 @@ class GeoMoves(GeoGraphyView):
         self.cal = config.get('preferences.calendar-format-report')
         self.markers_by_level = dict()
         self.count = dict()
+        self.no_show_places_in_status_bar = False
 
     def get_title(self):
         """

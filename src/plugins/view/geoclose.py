@@ -150,6 +150,7 @@ class GeoClose(GeoGraphyView):
         self.place_list_active = []
         self.place_list_ref = []
         self.cal = config.get('preferences.calendar-format-report')
+        self.no_show_places_in_status_bar = False
 
     def get_title(self):
         """

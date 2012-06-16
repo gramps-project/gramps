@@ -129,6 +129,7 @@ class GeoPlaces(GeoGraphyView):
         self.sort = []
         self.generic_filter = None
         self.additional_uis.append(self.additional_ui())
+        self.no_show_places_in_status_bar = False
 
     def get_title(self):
         """
@@ -238,10 +239,18 @@ class GeoPlaces(GeoGraphyView):
         self.without = 0
         latitude = ""
         longitude = ""
+        self.no_show_places_in_status_bar = False
         # base "villes de france" : 38101 places :
         # createmap : 8'50"; create_markers : 1'23"
         # base "villes de france" : 38101 places :
         # createmap : 8'50"; create_markers : 0'07" with pixbuf optimization
+        # base "villes de france" : 38101 places :
+        # gramps 3.4 python 2.7 ( draw_markers are estimated when we move the map)
+        # 38101 places : createmap : 04'32"; create_markers : 0'04"; draw markers : N/A :: 0'03"
+        # 65598 places : createmap : 10'03"; create_markers : 0'07"; draw markers : N/A :: 0'05"
+        # gramps 3.5 python 2.7 new marker layer
+        # 38101 places : createmap : 03'09"; create_markers : 0'01"; draw markers : 0'04"
+        # 65598 places : createmap : 08'48"; create_markers : 0'01"; draw markers : 0'07"
         _LOG.debug("%s" % time.strftime("start createmap : "
                    "%a %d %b %Y %H:%M:%S", time.gmtime()))
         if self.generic_filter:
@@ -261,13 +270,17 @@ class GeoPlaces(GeoGraphyView):
             else:
                 place = dbstate.db.get_place_from_handle(place_x)
                 self._create_one_place(place)
-        _LOG.debug("%s" % time.strftime(" stop createmap and\nbegin sort : "
+        _LOG.debug(" stop createmap.")
+        _LOG.debug("%s" % time.strftime("begin sort : "
                    "%a %d %b %Y %H:%M:%S", time.gmtime()))
         self.sort = sorted(self.place_list,
                            key=operator.itemgetter(0)
                           )
         _LOG.debug("%s" % time.strftime("  end sort : "
                    "%a %d %b %Y %H:%M:%S", time.gmtime()))
+        if self.nbmarkers > 500 : # performance issue. Is it the good value ?
+            self.no_show_places_in_status_bar = True
+
         self._create_markers()
 
     def bubble_message(self, event, lat, lon, marks):

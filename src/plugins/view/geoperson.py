@@ -156,6 +156,7 @@ class GeoPerson(GeoGraphyView):
         self.nbmarkers = 0
         self.sort = []
         self.additional_uis.append(self.additional_ui())
+        self.no_show_places_in_status_bar = False
 
     def get_title(self):
         """
