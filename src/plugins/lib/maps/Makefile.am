@@ -10,6 +10,7 @@ pkgpython_PYTHON = \
 	__init__.py\
 	lifewaylayer.py\
 	markerlayer.py\
+	messagelayer.py\
 	osmGps.py\
 	placeselection.py\
 	selectionlayer.py

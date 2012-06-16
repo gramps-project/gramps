@@ -20,7 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id:$
+# $Id$
 
 """
 Geography for one person and all his descendant
@@ -235,6 +235,7 @@ class GeoMoves(GeoGraphyView):
         self.remove_all_markers()
         self.lifeway_layer.clear_ways()
         self.date_layer.clear_dates()
+        self.message_layer.clear_messages()
 
     def draw(self, menu, marks, color):
         """
@@ -459,12 +460,14 @@ class GeoMoves(GeoGraphyView):
         self.minlat = self.maxlat = self.minlon = self.maxlon = 0.0
         latitude = ""
         longitude = ""
+        self.message_layer.clear_messages()
         self.place_without_coordinates = []
         self.minlat = self.maxlat = self.minlon = self.maxlon = 0.0
         if person is None:
             person = self.dbstate.db.get_person_from_handle(self.uistate.get_active('Person'))
             if not person:
                 return
+        self.message_layer.add_message(_("All descendance for %s" % _nd.display(person)))
         color = gtk.gdk.color_parse(self._config.get('geography.color_base'))
         gobject.timeout_add(int(self._config.get("geography.generation_interval")),
                          self.animate_moves, 0, person, color)

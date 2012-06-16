@@ -20,7 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: grampsmaps.py 18399 2011-11-02 17:15:20Z noirauds $
+# $Id$
 
 #-------------------------------------------------------------------------
 #
@@ -77,7 +77,6 @@ class LifeWayLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
         gobject.GObject.__init__(self)
         self.lifeways_ref = []
         self.lifeways = []
-        self.lifeways_comment = []
         self.comments = []
 
     def clear_ways(self):
@@ -86,7 +85,6 @@ class LifeWayLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
         """
         self.lifeways_ref = []
         self.lifeways = []
-        self.lifeways_comment = []
         self.comments = []
 
     def add_way_ref(self, points, color, radius):
@@ -102,12 +100,6 @@ class LifeWayLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
         Add a track or life way.
         """
         self.lifeways.append((points, color))
-
-    def add_text(self, points, text):
-        """
-        Add a text to the track or life way.
-        """
-        self.lifeways_comment.append((points, text))
 
     def do_draw(self, gpsmap, drawable):
         """
@@ -180,23 +172,6 @@ class LifeWayLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
                 ctx.move_to(crdx, crdy)
                 ctx.line_to(crdx + 1, crdy + 1)
                 ctx.stroke()
-
-        for comment in self.lifeways_comment:
-            ctx = drawable.cairo_create()
-            # Does the following font is available for all language ? Is it the good one ?
-            ctx.select_font_face("Purisa",
-                                 cairo.FONT_SLANT_NORMAL,
-                                 cairo.FONT_WEIGHT_NORMAL)
-            ctx.set_font_size(13)
-            points = comment[0]
-            conv_pt = osmgpsmap.point_new_degrees(points[0][0], points[0][1])
-            if len(points) > 1 :
-                crd_x = -(points[0][0] - points[len(points)-1][0] )/2
-                crd_y = -(points[0][1] - points[len(points)-1][1] )/2
-                conv_pt = osmgpsmap.point_new_degrees(points[0][0]+crd_x, points[0][1]+crd_y)
-            coord_x, coord_y = gpsmap.convert_geographic_to_screen(conv_pt)
-            ctx.move_to(coord_x, coord_y)
-            ctx.show_text(comment[1])
 
     def do_render(self, gpsmap):
         """

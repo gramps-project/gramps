@@ -20,7 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: geoperson.py 18338 2011-10-16 20:21:22Z paul-franklin $
+# $Id$
 
 """
 Geography for two persons
@@ -204,15 +204,23 @@ class GeoClose(GeoGraphyView):
         self.remove_all_gps()
         self.remove_all_markers()
         self.lifeway_layer.clear_ways()
-        if self.refperson:
-            color = self._config.get('geography.color1')
-            self._createmap(self.refperson, color, self.place_list_ref, True)
+        self.message_layer.clear_messages()
         active = self.get_active()
         if active:
             p1 = self.dbstate.db.get_person_from_handle(active)
             self.change_active(active)
             color = self._config.get('geography.color2')
             self._createmap(p1, color, self.place_list_active, False)
+        if self.refperson:
+            color = self._config.get('geography.color1')
+            self.message_layer.add_message(_("Reference : %s" % _nd.display(self.refperson)))
+            self.message_layer.add_message(_("The other : %s" % _nd.display(p1)))
+            self._createmap(self.refperson, color, self.place_list_ref, True)
+        else:
+            self.message_layer.add_message(_("You must choose one reference person."))
+            self.message_layer.add_message(_("Go to the person view and select "
+                                             "the people you want to compare. "
+                                             "Return to this view and use the history."))
         self.possible_meeting(self.place_list_ref, self.place_list_active)
         self.uistate.modify_statusbar(self.dbstate)
 
@@ -273,8 +281,6 @@ class GeoClose(GeoGraphyView):
         if reference:
             self.lifeway_layer.add_way_ref(points, color,
                      float(self._config.get("geography.maximum_meeting_zone")) / 10)
-        if mark:
-            self.lifeway_layer.add_text(points, mark[1])
         return False
 
     def possible_meeting(self, place_list_ref, place_list_active):

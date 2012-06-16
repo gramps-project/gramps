@@ -20,7 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: grampsmaps.py 18399 2011-11-02 17:15:20Z noirauds $
+# $Id$
 
 #-------------------------------------------------------------------------
 #
@@ -59,6 +59,7 @@ from selectionlayer import SelectionLayer
 from lifewaylayer import LifeWayLayer
 from markerlayer import MarkerLayer
 from datelayer import DateLayer
+from messagelayer import MessageLayer
 from gen.ggettext import sgettext as _
 from gen.config import config
 from gui.dialog import ErrorDialog
@@ -88,6 +89,7 @@ class OsmGps():
         self.lifeway_layer = None
         self.marker_layer = None
         self.date_layer = None
+        self.message_layer = None
         self.context_id = 0
         self.begin_selection = None
         self.end_selection = None
@@ -143,6 +145,7 @@ class OsmGps():
         self.lifeway_layer = self.add_lifeway_layer()
         self.marker_layer = self.add_marker_layer()
         self.date_layer = self.add_date_layer()
+        self.message_layer = self.add_message_layer()
         self.cross_map = osmgpsmap.GpsMapOsd( show_crosshair=False)
         self.set_crosshair(config.get("geography.show_cross"))
         self.osm.set_center_and_zoom(config.get("geography.center-lat"),
@@ -171,9 +174,23 @@ class OsmGps():
         """
         return self.selection_layer
 
+    def add_message_layer(self):
+        """
+        add the message layer to the map
+        """
+        message_layer = MessageLayer()
+        self.osm.layer_add(message_layer)
+        return message_layer
+
+    def get_message_layer(self):
+        """
+        get the message layer
+        """
+        return self.message_layer
+
     def add_date_layer(self):
         """
-        add the track or life ways layer
+        add the date layer to the map
         """
         date_layer = DateLayer()
         self.osm.layer_add(date_layer)
@@ -181,7 +198,7 @@ class OsmGps():
 
     def get_date_layer(self):
         """
-        get the track or life ways layer
+        get the date layer
         """
         return self.date_layer
 

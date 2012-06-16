@@ -20,7 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id:$
+# $Id$
 
 """
 Geography for two families
@@ -191,6 +191,36 @@ class GeoFamClose(GeoGraphyView):
         """
         return self.dbstate.db.get_bookmarks()
 
+    def family_label(self,family):
+        if family is None:
+            return "Unknown"
+        f = self.dbstate.db.get_person_from_handle(
+            family.get_father_handle())
+        m = self.dbstate.db.get_person_from_handle(
+            family.get_mother_handle())
+        if f and m:
+            label = _("%(gramps_id)s : %(father)s and %(mother)s") % {
+                'father' : _nd.display(f),
+                'mother' : _nd.display(m),
+                'gramps_id' : family.gramps_id,
+                }
+        elif f:
+            label = "%(gramps_id)s : %(father)s" % {
+                'father' : _nd.display(f),
+                'gramps_id' : family.gramps_id,
+                }
+        elif m:
+            label = "%(gramps_id)s : %(mother)s" % {
+                'mother' : _nd.display(m),
+                'gramps_id' : family.gramps_id,
+                }
+        else:
+            # No translation for bare gramps_id
+            label = "%(gramps_id)s :" % {
+                'gramps_id' : family.gramps_id,
+                }
+        return label
+ 
     def goto_handle(self, handle=None):
         """
         Rebuild the tree with the given family handle as reference.
@@ -204,9 +234,7 @@ class GeoFamClose(GeoGraphyView):
         self.remove_all_gps()
         self.remove_all_markers()
         self.lifeway_layer.clear_ways()
-        if self.reffamily:
-            color = self._config.get('geography.color1')
-            self._createmap(self.reffamily, color, self.place_list_ref, True)
+        self.message_layer.clear_messages()
         active = self.get_active()
         f1 = None
         if active:
@@ -214,6 +242,16 @@ class GeoFamClose(GeoGraphyView):
             self.change_active(active)
             color = self._config.get('geography.color2')
             self._createmap(f1, color, self.place_list_active, False)
+        if self.reffamily:
+            color = self._config.get('geography.color1')
+            self._createmap(self.reffamily, color, self.place_list_ref, True)
+            self.message_layer.add_message(_("Family reference : %s" % self.family_label(self.reffamily)))
+            self.message_layer.add_message(_("The other family : %s" % self.family_label(f1)))
+        else:
+            self.message_layer.add_message(_("You must choose one reference family."))
+            self.message_layer.add_message(_("Go to the family view and select "
+                                             "the families you want to compare. "
+                                             "Return to this view and use the history."))
         if f1 is not None:
             self._possible_family_meeting(self.reffamily, f1)
         self.uistate.modify_statusbar(self.dbstate)
@@ -251,7 +289,6 @@ class GeoFamClose(GeoGraphyView):
         """
         active = self.get_active()
         family = self.dbstate.db.get_family_from_handle(active)
-        self.lifeway_layer.clear_ways()
         self.goto_handle(handle=family)
 
     def draw(self, menu, marks, color, reference):
@@ -273,8 +310,6 @@ class GeoFamClose(GeoGraphyView):
         if reference:
             self.lifeway_layer.add_way_ref(points, color,
                      float(self._config.get("geography.maximum_meeting_zone")) / 10)
-        if mark:
-            self.lifeway_layer.add_text(points, mark[1])
         return False
 
     def _place_list_for_person(self, person):

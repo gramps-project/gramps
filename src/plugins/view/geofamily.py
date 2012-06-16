@@ -272,11 +272,42 @@ class GeoFamily(GeoGraphyView):
                                         else:
                                             self._append_to_places_without_coord( place.gramps_id, descr)
 
+    def family_label(self,family):
+        if family is None:
+            return "Unknown"
+        f = self.dbstate.db.get_person_from_handle(
+            family.get_father_handle())
+        m = self.dbstate.db.get_person_from_handle(
+            family.get_mother_handle())
+        if f and m:
+            label = _("%(gramps_id)s : %(father)s and %(mother)s") % {
+                'father' : _nd.display(f),
+                'mother' : _nd.display(m),
+                'gramps_id' : family.gramps_id,
+                }
+        elif f:
+            label = "%(gramps_id)s : %(father)s" % {
+                'father' : _nd.display(f),
+                'gramps_id' : family.gramps_id,
+                }
+        elif m:
+            label = "%(gramps_id)s : %(mother)s" % {
+                'mother' : _nd.display(m),
+                'gramps_id' : family.gramps_id,
+                }
+        else:
+            # No translation for bare gramps_id
+            label = "%(gramps_id)s :" % {
+                'gramps_id' : family.gramps_id,
+                }
+        return label
+ 
     def _createmap_for_one_family(self, family):
         """
         Create all markers for one family : all event's places with a lat/lon.
         """
         dbstate = self.dbstate
+        self.message_layer.add_message(_("Family places for %s" % self.family_label(family)))
         try:
             person = dbstate.db.get_person_from_handle(family.get_father_handle())
         except:
@@ -337,6 +368,7 @@ class GeoFamily(GeoGraphyView):
         self.minlat = self.maxlat = self.minlon = self.maxlon = 0.0
         self.minyear = 9999
         self.maxyear = 0
+        self.message_layer.clear_messages()
         family = self.dbstate.db.get_family_from_handle(family_x)
         if family is None:
             person = self.dbstate.db.get_person_from_handle(self.uistate.get_active('Person'))

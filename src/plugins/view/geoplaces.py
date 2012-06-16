@@ -239,6 +239,8 @@ class GeoPlaces(GeoGraphyView):
         self.without = 0
         latitude = ""
         longitude = ""
+        self.nbmarkers = 0
+        self.message_layer.clear_messages()
         self.no_show_places_in_status_bar = False
         # base "villes de france" : 38101 places :
         # createmap : 8'50"; create_markers : 1'23"
@@ -279,6 +281,7 @@ class GeoPlaces(GeoGraphyView):
         _LOG.debug("%s" % time.strftime("  end sort : "
                    "%a %d %b %Y %H:%M:%S", time.gmtime()))
         if self.nbmarkers > 500 : # performance issue. Is it the good value ?
+            self.message_layer.add_message(_("The place name in the status bar is disabled."))
             self.no_show_places_in_status_bar = True
 
         self._create_markers()

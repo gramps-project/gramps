@@ -38,7 +38,7 @@ from math import *
 #
 #------------------------------------------------------------------------
 import logging
-_LOG = logging.getLogger("maps.datelayer")
+_LOG = logging.getLogger("maps.messagelayer")
 
 #-------------------------------------------------------------------------
 #
@@ -54,6 +54,8 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 import cairo
+import pango
+import pangocairo
 
 #-------------------------------------------------------------------------
 #
@@ -66,49 +68,52 @@ try:
 except:
     raise
 
-class DateLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
+class MessageLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
     """
-    This is the layer used to display the two extreme dates on the top left of the view
+    This is the layer used to display messages over the map
     """
     def __init__(self):
         """
         Initialize the layer
         """
         gobject.GObject.__init__(self)
-        self.first = "    "
-        self.last = "    "
+        self.message = []
         self.color = "black"
         self.font = "Arial"
-        self.size = 36
+        self.size = 18
+        #font_map = pangocairo.cairo_font_map_get_default()
+        #families = font_map.list_families()
 
-    def clear_dates(self):
+    def clear_messages(self):
         """
         reset the layer attributes.
         """
-        self.first = "    "
-        self.last = "    "
+        self.message = []
+
+    def clear_font_attributes(self):
+        """
+        reset the font attributes.
+        """
         self.color = "black"
         self.font = "Arial"
-        self.size = 36
+        self.size = 18
 
     def set_font_attributes(self, font, size, color):
         """
         Set the font color, size and name
         """
-        self.color = color
-        self.font = font
-        self.size = size
+        if color is not None:
+            self.color = color
+        if font is not None:
+            self.font = font
+        if size is not None:
+            self.size = size
 
-    def add_date(self, date):
+    def add_message(self, message):
         """
-        Add a date
+        Add a message
         """
-        if date == "    " or date == "0000" or date == "9999":
-            return
-        if date < self.first or self.first == "    ":
-            self.first = date
-        if date > self.last or self.last == "    ":
-            self.last = date
+        self.message.append(message)
 
     def do_draw(self, gpsmap, drawable):
         """
@@ -124,13 +129,25 @@ class DateLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
                             float(color.green / 65535.0),
                             float(color.blue / 65535.0),
                             0.6) # transparency
-        coord_x = 10
-        coord_y = 15 + 2*int(self.size) # Display the oldest date
-        ctx.move_to(coord_x, coord_y)
-        ctx.show_text(self.first)
-        coord_y = 15 + 3*int(self.size) # Display the newest date
-        ctx.move_to(coord_x, coord_y)
-        ctx.show_text(self.last)
+        coord_x = 100
+        coord_y = int(self.size) # Show the first line under the zoom button
+        (d_width, d_height) = drawable.get_size()
+        d_width -= 100
+        for line in self.message:
+            line_to_print = line
+            (x_bearing, y_bearing, width, height, x_advance, y_advance) = ctx.text_extents(line_to_print)
+            while ( width > d_width):
+                line_length = len(line_to_print)
+                character_length = int(width/line_length) + 1
+                max_length = int(d_width / character_length) - 5
+                ctx.move_to(coord_x, coord_y)
+                ctx.show_text(line_to_print[:max_length])
+                line_to_print = line_to_print[max_length:]
+                (x_bearing, y_bearing, width, height, x_advance, y_advance) = ctx.text_extents(line_to_print)
+                coord_y += int(self.size) # calculate the next line position
+            ctx.move_to(coord_x, coord_y)
+            ctx.show_text(line_to_print)
+            coord_y += int(self.size) # calculate the next line position
 
     def do_render(self, gpsmap):
         """
@@ -150,5 +167,5 @@ class DateLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
         """
         return False
 
-gobject.type_register(DateLayer)
+gobject.type_register(MessageLayer)
 
