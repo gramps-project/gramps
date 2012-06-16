@@ -35,6 +35,7 @@ import gobject
 # Set up logging
 #
 #------------------------------------------------------------------------
+import time
 import logging
 _LOG = logging.getLogger("maps.osmgps")
 
@@ -311,9 +312,14 @@ class OsmGps():
     def is_there_a_place_here(self, lat, lon):
         """
         Is there a place at this position ?
+        If too many places, this function is very time consuming
         """
         mark_selected = []
+        if self.no_show_places_in_status_bar:
+            return mark_selected
         oldplace = ""
+        _LOG.debug("%s" % time.strftime("start is_there_a_place_here : "
+                   "%a %d %b %Y %H:%M:%S", time.gmtime()))
         for mark in self.places_found:
             # as we are not precise with our hand, reduce the precision
             # depending on the zoom.
@@ -348,6 +354,8 @@ class OsmGps():
                     lonok = True
                 if latok and lonok:
                     mark_selected.append(mark)
+        _LOG.debug("%s" % time.strftime("  end is_there_a_place_here : "
+                   "%a %d %b %Y %H:%M:%S", time.gmtime()))
         return mark_selected
 
     def build_nav_menu(self, osm, event, lat, lon):

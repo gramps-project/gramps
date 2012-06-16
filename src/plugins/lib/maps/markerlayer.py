@@ -53,6 +53,14 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 import cairo
+#-------------------------------------------------------------------------
+#
+# set up logging
+#
+#-------------------------------------------------------------------------
+import time
+import logging
+_LOG = logging.getLogger("GeoGraphy.markerlayer")
 
 #-------------------------------------------------------------------------
 #
@@ -121,34 +129,39 @@ class MarkerLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
             max_interval = 0.01
         if min_interval == 0: # This to avoid divide by zero
             min_interval = 0.01
+        _LOG.debug("%s" % time.strftime("start drawing   : "
+                   "%a %d %b %Y %H:%M:%S", time.gmtime()))
         for marker in self.markers:
             ctx.save()
             # the icon size in 48, so the standard icon size is 0.6 * 48 = 28.8
             size = 0.6
-            if float(marker[2]) > self.nb_ref_by_places:
+            mark = float(marker[2])
+            if mark > self.nb_ref_by_places:
                 # at maximum, we'll have an icon size = (0.6 + 0.3) * 48 = 43.2
-                size += (0.3 * ((float(marker[2]) - self.nb_ref_by_places)
+                size += (0.3 * ((mark - self.nb_ref_by_places)
                                  / max_interval) )
             else:
                 # at minimum, we'll have an icon size = (0.6 - 0.3) * 48 = 14.4
-                size -= (0.3 * ((self.nb_ref_by_places - float(marker[2]))
+                size -= (0.3 * ((self.nb_ref_by_places - mark)
                                  / min_interval) )
 
             conv_pt = osmgpsmap.point_new_degrees(float(marker[0][0]),
                                                   float(marker[0][1]))
             coord_x, coord_y = gpsmap.convert_geographic_to_screen(conv_pt)
             ctx.translate(coord_x, coord_y)
-            size = float(int(size * 10)/10.0)
             ctx.scale( size, size)
             # below, we try to place exactly the marker depending on its size.
             # Normaly, the left top corner of the image is set to the coordinates.
             # The tip of the pin which should be at the marker position is at
-            # 3/18 of the width. So we shift the image position.
+            # 3/18 of the width and to the height of the image.
+            # So we shift the image position.
             posY = - int( 48 * size + 0.5 ) - 10
-            posX = - int(( 48 * size ) / 6 + 0.5 ) - 8 
+            posX = - int(( 48 * size ) / 6 + 0.5 ) - 10
             ctx.set_source_pixbuf(marker[1], posX, posY)
             ctx.paint()
             ctx.restore()
+        _LOG.debug("%s" % time.strftime("end drawing     : "
+                   "%a %d %b %Y %H:%M:%S", time.gmtime()))
 
     def do_render(self, gpsmap):
         """
