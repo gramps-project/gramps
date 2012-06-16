@@ -130,6 +130,7 @@ class GeoEvents(GeoGraphyView):
         self.sort = []
         self.generic_filter = None
         self.additional_uis.append(self.additional_ui())
+        self.no_show_places_in_status_bar = False
 
     def get_title(self):
         """
@@ -281,6 +282,7 @@ class GeoEvents(GeoGraphyView):
         longitude = ""
         self.without = 0
         self.cal = config.get('preferences.calendar-format-report')
+        self.no_show_places_in_status_bar = False
 
         if self.generic_filter:
             events_list = self.generic_filter.apply(dbstate.db)
@@ -299,6 +301,8 @@ class GeoEvents(GeoGraphyView):
         self.sort = sorted(self.place_list,
                            key=operator.itemgetter(3, 4, 6)
                           )
+        if self.nbmarkers > 500 : # performance issue. Is it the good value ?
+            self.no_show_places_in_status_bar = True
         self._create_markers()
 
     def bubble_message(self, event, lat, lon, marks):

@@ -130,6 +130,7 @@ class GeoPlaces(GeoGraphyView):
         self.sort = []
         self.generic_filter = None
         self.additional_uis.append(self.additional_ui())
+        self.no_show_places_in_status_bar = False
 
     def get_title(self):
         """
@@ -239,6 +240,7 @@ class GeoPlaces(GeoGraphyView):
         self.minyear = 9999
         self.maxyear = 0
         self.without = 0
+        self.no_show_places_in_status_bar = False
         latitude = ""
         longitude = ""
         # base "villes de france" : 38101 places :
@@ -268,7 +270,11 @@ class GeoPlaces(GeoGraphyView):
                           )
         _LOG.debug("%s" % time.strftime("  end sort : "
                    "%a %d %b %Y %H:%M:%S", time.gmtime()))
+        if self.nbmarkers > 500 : # performance issue. Is it the good value ?
+            self.no_show_places_in_status_bar = True
         self._create_markers()
+        _LOG.debug("%s" % time.strftime("  end create_markers : "
+                   "%a %d %b %Y %H:%M:%S", time.gmtime()))
 
     def bubble_message(self, event, lat, lon, marks):
         menu = gtk.Menu()

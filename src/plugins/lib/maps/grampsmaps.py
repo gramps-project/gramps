@@ -304,8 +304,10 @@ class osmGpsMap():
         """
         Is there a place at this position ?
         """
-        found = False
         mark_selected = []
+        if self.no_show_places_in_status_bar:                                                                        
+            return mark_selected
+        found = False
         oldplace = ""
         for mark in self.places_found:
             # as we are not precise with our hand, reduce the precision
