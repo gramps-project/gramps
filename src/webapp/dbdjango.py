@@ -639,18 +639,11 @@ class DbDjango(DbWriteBase, DbReadBase):
     def get_place_from_handle(self, handle):
         if handle in self.import_cache:
             return self.import_cache[handle]
-        # FIXME: use object cache
         try:
-            dji_obj = self.dji.Place.get(handle=handle)
+            place = self.dji.Place.get(handle=handle)
         except:
-            dji_obj = None
-        if dji_obj:
-            tuple_obj = self.dji.get_place(dji_obj)
-            if tuple_obj:
-                obj = gen.lib.Place()
-                obj.unserialize(tuple_obj)
-                return obj
-        return None
+            return None
+        return self.make_place(place)
 
     def get_citation_from_handle(self, handle):
         if handle in self.import_cache:
