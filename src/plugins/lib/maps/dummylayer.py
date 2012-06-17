@@ -28,7 +28,7 @@
 #
 #-------------------------------------------------------------------------
 import os
-import gobject
+from gi.repository import GObject
 
 #------------------------------------------------------------------------
 #
@@ -56,12 +56,12 @@ try:
 except:
     raise
 
-class DummyLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
+class DummyLayer(GObject.GObject, osmgpsmap.GpsMapLayer):
     def __init__(self):
         """
         Initialize the dummy layer
         """
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
     def do_draw(self, gpsmap, gdkdrawable):
         """
@@ -87,5 +87,5 @@ class DummyLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
         """
         return False
 
-gobject.type_register(DummyLayer)
+GObject.type_register(DummyLayer)
 

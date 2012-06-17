@@ -54,8 +54,6 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 import cairo
-import pango
-import pangocairo
 
 #-------------------------------------------------------------------------
 #
@@ -81,7 +79,6 @@ class MessageLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
         self.color = "black"
         self.font = "Arial"
         self.size = 18
-        #font_map = pangocairo.cairo_font_map_get_default()
         #families = font_map.list_families()
 
     def clear_messages(self):

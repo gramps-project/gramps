@@ -34,11 +34,12 @@ import locale
 # GTK classes
 #
 #-------------------------------------------------------------------------
-import gtk
-import gobject
-import pango
-_TAB = gtk.gdk.keyval_from_name("Tab")
-_ENTER = gtk.gdk.keyval_from_name("Enter")
+from gi.repository import Gtk
+from gi.repository import Gdk
+from gi.repository import GObject
+from gi.repository import Pango
+_TAB = Gdk.keyval_from_name("Tab")
+_ENTER = Gdk.keyval_from_name("Enter")
 
 #-------------------------------------------------------------------------
 #
@@ -106,11 +107,11 @@ class SurnameTab(EmbeddedList):
         # combobox for type
         colno = len(self.columns)
         name = self._column_combo[0]
-        renderer = gtk.CellRendererCombo()
-        renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
+        renderer = Gtk.CellRendererCombo()
+        renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
         # set up the comboentry editable
         no = NameOriginType()
-        self.cmborig = gtk.ListStore(gobject.TYPE_INT, gobject.TYPE_STRING)
+        self.cmborig = Gtk.ListStore(GObject.TYPE_INT, GObject.TYPE_STRING)
         self.cmborigmap = no.get_map().copy()
         keys = sorted(self.cmborigmap, self.by_value)
         for key in keys:
@@ -128,7 +129,7 @@ class SurnameTab(EmbeddedList):
         renderer.connect('editing_started', self.on_edit_start_cmb, colno)
         renderer.connect('edited', self.on_orig_edited, self._column_combo[3])
         # add to treeview
-        column = gtk.TreeViewColumn(name, renderer, text=self._column_combo[3])
+        column = Gtk.TreeViewColumn(name, renderer, text=self._column_combo[3])
         column.set_resizable(True)
         column.set_sort_column_id(self._column_combo[1])
         column.set_min_width(self._column_combo[2])
@@ -138,14 +139,14 @@ class SurnameTab(EmbeddedList):
         # toggle box for primary
         colno += 1
         name = self._column_toggle[0]
-        renderer = gtk.CellRendererToggle()
+        renderer = Gtk.CellRendererToggle()
         renderer.set_property('activatable', True)
         renderer.set_property('radio', True)
         renderer.connect( 'toggled', self.on_prim_toggled, self._column_toggle[3])
         # add to treeview
-        column = gtk.TreeViewColumn(name, renderer, active=self._column_toggle[3])
+        column = Gtk.TreeViewColumn(name, renderer, active=self._column_toggle[3])
         column.set_resizable(False)
-        column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+        column.set_sizing(Gtk.TreeViewColumnSizing.FIXED)
         column.set_alignment(0.5)
         column.set_sort_column_id(self._column_toggle[1])
         column.set_min_width(self._column_toggle[2])
@@ -238,11 +239,11 @@ class SurnameTab(EmbeddedList):
         """
         self.on_edit_start(cellr, celle, path, colnr)
         #set up autocomplete
-        completion = gtk.EntryCompletion()
+        completion = Gtk.EntryCompletion()
         completion.set_model(self.cmborig)
         completion.set_minimum_key_length(1)
         completion.set_text_column(1)
-        celle.child.set_completion(completion)
+        celle.get_child().set_completion(completion)
         #
         celle.connect('changed', self.on_origcmb_change, path, colnr)
 
@@ -321,12 +322,12 @@ class SurnameTab(EmbeddedList):
         Here we make sure tab moves to next or previous value in row on TAB
         """
         if not EmbeddedList.key_pressed(self, obj, event):
-            if event.type == gtk.gdk.KEY_PRESS and event.keyval in (_TAB,):
-                if not (event.state & (gtk.gdk.SHIFT_MASK |
-                                       gtk.gdk.CONTROL_MASK)):
+            if event.type == Gdk.KEY_PRESS and event.keyval in (_TAB,):
+                if not (event.get_state() & (Gdk.ModifierType.SHIFT_MASK |
+                                       Gdk.ModifierType.CONTROL_MASK)):
                     return self.next_cell()
-                elif (event.state & (gtk.gdk.SHIFT_MASK |
-                                     gtk.gdk.CONTROL_MASK)):
+                elif (event.get_state() & (Gdk.ModifierType.SHIFT_MASK |
+                                     Gdk.ModifierType.CONTROL_MASK)):
                     return self.prev_cell()
                 else:
                     return

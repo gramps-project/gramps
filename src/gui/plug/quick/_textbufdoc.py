@@ -27,8 +27,8 @@
 #
 #------------------------------------------------------------------------
 from gen.ggettext import gettext as _
-import gtk
-import pango
+from gi.repository import Gtk
+from gi.repository import Pango, PangoCairo
 
 #------------------------------------------------------------------------
 #
@@ -40,12 +40,7 @@ from gen.plug.docgen import (BaseDoc, TextDoc, FONT_SERIF, PARA_ALIGN_RIGHT,
                         PARA_ALIGN_LEFT)
 from gui.managedwindow import ManagedWindow
 
-try:
-    import pangocairo
-
-    RESOLUTION = pangocairo.cairo_font_map_get_default().get_resolution()
-except:
-    RESOLUTION = 96
+RESOLUTION = PangoCairo.font_map_get_default().get_resolution()
 
 def pixels(cm):
     return int (RESOLUTION/2.54 * cm) 
@@ -63,14 +58,14 @@ class DisplayBuf(ManagedWindow):
         self.title = title
         ManagedWindow.__init__(self, document.uistate, [], 
                                              document)
-        self.set_window(gtk.Dialog("",document.uistate.window,
-                                   gtk.DIALOG_DESTROY_WITH_PARENT,
-                                   (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)),
+        self.set_window(Gtk.Dialog("",document.uistate.window,
+                                   Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                   (Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE)),
                         None, title)
         self.window.set_size_request(600,400)
-        scrolled_window = gtk.ScrolledWindow()
-        scrolled_window.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
-        document.text_view = gtk.TextView()
+        scrolled_window = Gtk.ScrolledWindow()
+        scrolled_window.set_policy(Gtk.PolicyType.AUTOMATIC,Gtk.PolicyType.AUTOMATIC)
+        document.text_view = Gtk.TextView()
         document.text_view.set_buffer(document.buffer)
         self.window.connect('response', self.close)
         scrolled_window.add(document.text_view)
@@ -104,12 +99,12 @@ class TextBufDoc(BaseDoc, TextDoc):
     #--------------------------------------------------------------------
     def open(self, filename, container=None):
         self.has_data = True
-        self.tag_table = gtk.TextTagTable()
+        self.tag_table = Gtk.TextTagTable()
 
         sheet = self.get_style_sheet()
 
         for name in sheet.get_paragraph_style_names():
-            tag = gtk.TextTag(name)
+            tag = Gtk.TextTag(name)
 
             style = sheet.get_paragraph_style(name)
             font = style.get_font()
@@ -122,18 +117,18 @@ class TextBufDoc(BaseDoc, TextDoc):
 
             tag.set_property("size-points", float(font.get_size()))
             if font.get_bold():
-                tag.set_property("weight", pango.WEIGHT_BOLD)
+                tag.set_property("weight", Pango.Weight.BOLD)
             if style.get_alignment() == PARA_ALIGN_RIGHT:
-                tag.set_property("justification", gtk.JUSTIFY_RIGHT)
+                tag.set_property("justification", Gtk.Justification.RIGHT)
             elif style.get_alignment() == PARA_ALIGN_LEFT:
-                tag.set_property("justification", gtk.JUSTIFY_LEFT)
+                tag.set_property("justification", Gtk.Justification.LEFT)
             elif style.get_alignment() == PARA_ALIGN_CENTER:
-                tag.set_property("justification", gtk.JUSTIFY_CENTER)
+                tag.set_property("justification", Gtk.Justification.CENTER)
             else:
-                tag.set_property("justification", gtk.JUSTIFY_FILL)
+                tag.set_property("justification", Gtk.Justification.FILL)
 
             if font.get_italic():
-                tag.set_property("style", pango.STYLE_ITALIC)
+                tag.set_property("style", Pango.Style.ITALIC)
 
             if style.get_first_indent():
                 tag.set_property("indent", pixels(style.get_first_indent()))
@@ -143,19 +138,19 @@ class TextBufDoc(BaseDoc, TextDoc):
             tag.set_property("right-margin", pixels(style.get_right_margin()))
             tag.set_property("pixels-above-lines", pixels(style.get_top_margin()))
             tag.set_property("pixels-below-lines", pixels(style.get_bottom_margin()))
-            tag.set_property("wrap-mode", gtk.WRAP_WORD)
+            tag.set_property("wrap-mode", Gtk.WrapMode.WORD)
 
             new_tabs = style.get_tabs()
 
-            tab_array = pango.TabArray(len(new_tabs)+1,True)
+            tab_array = Pango.TabArray(len(new_tabs)+1,True)
             index = 0
             for tab in map(pixels, new_tabs):
-                tab_array.set_tab(index, pango.TAB_LEFT, tab)
+                tab_array.set_tab(index, Pango.TabAlign.LEFT, tab)
                 index += 1
             tag.set_property("tabs", tab_array)
 
             self.tag_table.add(tag)
-        self.buffer = gtk.TextBuffer(self.tag_table)
+        self.buffer = Gtk.TextBuffer(self.tag_table)
         if container:
             return DocumentManager(_('Quick View'), self, container)
         else:

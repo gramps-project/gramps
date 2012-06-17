@@ -84,10 +84,10 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
         fill_combo(self.auto2,event_names)
 
         etype.set_from_xml_str(self.options.handler.options_dict['fromtype'])
-        self.auto1.child.set_text(str(etype))
+        self.auto1.get_child().set_text(str(etype))
 
         etype.set_from_xml_str(self.options.handler.options_dict['totype'])
-        self.auto2.child.set_text(str(etype))
+        self.auto2.get_child().set_text(str(etype))
 
         window = self.glade.toplevel
         self.set_window(window,self.glade.get_object('title'),self.title)
@@ -144,10 +144,10 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
         # Need to store English names for later comparison
         the_type = EventType()
 
-        the_type.set(self.auto1.child.get_text())
+        the_type.set(self.auto1.get_child().get_text())
         self.options.handler.options_dict['fromtype'] = the_type.xml_str()
 
-        the_type.set(self.auto2.child.get_text())
+        the_type.set(self.auto2.get_child().get_text())
         self.options.handler.options_dict['totype'] = the_type.xml_str()
         
         modified,msg = self.run_tool(cli=False)

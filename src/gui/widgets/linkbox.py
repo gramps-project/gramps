@@ -35,19 +35,20 @@ _LOG = logging.getLogger(".widgets.linkbox")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import GObject
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
 # LinkBox class
 #
 #-------------------------------------------------------------------------
-class LinkBox(gtk.HBox):
+class LinkBox(Gtk.HBox):
 
     def __init__(self, link, button):
-        gtk.HBox.__init__(self)
+        GObject.GObject.__init__(self)
         self.set_spacing(6)
-        self.pack_start(link, False)
+        self.pack_start(link, False, True, 0)
         if button:
-            self.pack_start(button, False)
+            self.pack_start(button, False, True, 0)
         self.show()

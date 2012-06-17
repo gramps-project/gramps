@@ -165,58 +165,58 @@ class TestcaseGenerator(tool.BatchTool):
 
     def init_gui(self,uistate):
         title = "%s - Gramps" % _("Generate testcases")
-        self.top = gtk.Dialog(title)
+        self.top = Gtk.Dialog(title)
         self.top.set_default_size(400,150)
         self.top.set_has_separator(False)
         self.top.vbox.set_spacing(5)
-        label = gtk.Label('<span size="larger" weight="bold">%s</span>' % _("Generate testcases"))
+        label = Gtk.Label(label='<span size="larger" weight="bold">%s</span>' % _("Generate testcases"))
         label.set_use_markup(True)
         self.top.vbox.pack_start(label,0,0,5)
 
-        self.check_lowlevel = gtk.CheckButton( _("Generate low level database "
+        self.check_lowlevel = Gtk.CheckButton( _("Generate low level database "
                                 "errors\nCorrection needs database reload"))
         self.check_lowlevel.set_active( self.options.handler.options_dict['lowlevel'])
         self.top.vbox.pack_start(self.check_lowlevel,0,0,5)
 
-        self.check_bugs = gtk.CheckButton( _("Generate database errors"))
+        self.check_bugs = Gtk.CheckButton( _("Generate database errors"))
         self.check_bugs.set_active( self.options.handler.options_dict['bugs'])
         self.top.vbox.pack_start(self.check_bugs,0,0,5)
 
-        self.check_persons = gtk.CheckButton( _("Generate dummy data"))
+        self.check_persons = Gtk.CheckButton( _("Generate dummy data"))
         self.check_persons.set_active( self.options.handler.options_dict['persons'])
         self.check_persons.connect('clicked', self.on_dummy_data_clicked)
         self.top.vbox.pack_start(self.check_persons,0,0,5)
 
-        self.check_longnames = gtk.CheckButton( _("Generate long names"))
+        self.check_longnames = Gtk.CheckButton( _("Generate long names"))
         self.check_longnames.set_active( self.options.handler.options_dict['long_names'])
         self.top.vbox.pack_start(self.check_longnames,0,0,5)
 
-        self.check_specialchars = gtk.CheckButton( _("Add special characters"))
+        self.check_specialchars = Gtk.CheckButton( _("Add special characters"))
         self.check_specialchars.set_active( self.options.handler.options_dict['specialchars'])
         self.top.vbox.pack_start(self.check_specialchars,0,0,5)
 
-        self.check_serial = gtk.CheckButton( _("Add serial number"))
+        self.check_serial = Gtk.CheckButton( _("Add serial number"))
         self.check_serial.set_active( self.options.handler.options_dict['add_serial'])
         self.top.vbox.pack_start(self.check_serial,0,0,5)
 
-        self.check_linebreak = gtk.CheckButton( _("Add line break"))
+        self.check_linebreak = Gtk.CheckButton( _("Add line break"))
         self.check_linebreak.set_active( self.options.handler.options_dict['add_linebreak'])
         self.top.vbox.pack_start(self.check_linebreak,0,0,5)
 
-        self.label = gtk.Label(_("Number of people to generate\n"
+        self.label = Gtk.Label(label=_("Number of people to generate\n"
                                  "(Number is approximate because families "
                                  "are generated)"))
         self.label.set_alignment(0.0, 0.5)
         self.top.vbox.pack_start(self.label,0,0,5)
 
-        self.entry_count = gtk.Entry()
+        self.entry_count = Gtk.Entry()
         self.entry_count.set_text( unicode( self.options.handler.options_dict['person_count']))
         self.on_dummy_data_clicked(self.check_persons)
         self.top.vbox.pack_start(self.entry_count,0,0,5)
 
-        self.top.add_button(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL)
-        self.top.add_button(gtk.STOCK_OK,gtk.RESPONSE_OK)
-        self.top.add_button(gtk.STOCK_HELP,gtk.RESPONSE_HELP)
+        self.top.add_button(Gtk.STOCK_CANCEL,Gtk.ResponseType.CANCEL)
+        self.top.add_button(Gtk.STOCK_OK,Gtk.ResponseType.OK)
+        self.top.add_button(Gtk.STOCK_HELP,Gtk.ResponseType.HELP)
         self.top.show_all()
 
         response = self.top.run()
@@ -238,7 +238,7 @@ class TestcaseGenerator(tool.BatchTool):
             self.entry_count.get_text())
         self.top.destroy()
 
-        if response == gtk.RESPONSE_OK:
+        if response == Gtk.ResponseType.OK:
             self.run_tool( cli=False)
             # Save options
             self.options.handler.save_options()
@@ -250,8 +250,8 @@ class TestcaseGenerator(tool.BatchTool):
     def run_tool(self, cli=False):
         self.cli = cli
         if( not cli):
-            while gtk.events_pending():
-                gtk.main_iteration()
+            while Gtk.events_pending():
+                Gtk.main_iteration()
         
         self.progress = ProgressMeter(_('Generating testcases'),'')
         self.transaction_count = 0;
@@ -1105,8 +1105,8 @@ class TestcaseGenerator(tool.BatchTool):
     def generate_person(self,gender=None,lastname=None, note=None, alive_in_year=None):
         if not self.cli:
             if self.person_count % 10 == 0:
-                while gtk.events_pending():
-                    gtk.main_iteration()
+                while Gtk.events_pending():
+                    Gtk.main_iteration()
 
         np = gen.lib.Person()
         self.fill_object(np)

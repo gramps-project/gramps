@@ -34,7 +34,7 @@ from gen.ggettext import gettext as _
 # GTK+ modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -120,12 +120,12 @@ class DocReportDialog(ReportDialog):
         if self.firstpage_added:
             self.notebook.remove_page(0)
         if docgen_plugin.get_paper_used():
-            self.paper_label = gtk.Label('<b>%s</b>'%_("Paper Options"))
+            self.paper_label = Gtk.Label(label='<b>%s</b>'%_("Paper Options"))
             self.paper_label.set_use_markup(True)
             self.notebook.insert_page(self.paper_frame, self.paper_label, 0)
             self.paper_frame.show_all()
         else:
-            self.html_label = gtk.Label('<b>%s</b>' % _("HTML Options"))
+            self.html_label = Gtk.Label(label='<b>%s</b>' % _("HTML Options"))
             self.html_label.set_use_markup(True)
             self.notebook.insert_page(self.html_table, self.html_label, 0)
             self.html_table.show_all()
@@ -155,18 +155,18 @@ class DocReportDialog(ReportDialog):
 
         self.make_doc_menu(self.options.handler.get_format_name())
         self.format_menu.connect('changed', self.doc_type_changed)
-        label = gtk.Label("%s:" % _("Output Format"))
+        label = Gtk.Label(label="%s:" % _("Output Format"))
         label.set_alignment(0.0, 0.5)
-        self.tbl.attach(label, 1, 2, self.row, self.row+1, gtk.SHRINK|gtk.FILL)
+        self.tbl.attach(label, 1, 2, self.row, self.row+1, Gtk.AttachOptions.SHRINK|Gtk.AttachOptions.FILL)
         self.tbl.attach(self.format_menu, 2, 4, self.row, self.row+1,
-                        yoptions=gtk.SHRINK)
+                        yoptions=Gtk.AttachOptions.SHRINK)
         self.row += 1
 
-        self.open_with_app = gtk.CheckButton(_("Open with default viewer"))
+        self.open_with_app = Gtk.CheckButton(_("Open with default viewer"))
         self.open_with_app.set_active(
             config.get('interface.open-with-default-viewer'))
         self.tbl.attach(self.open_with_app, 2, 4, self.row, self.row+1,
-                        yoptions=gtk.SHRINK)
+                        yoptions=Gtk.AttachOptions.SHRINK)
         self.row += 1
 
         ext = self.format_menu.get_active_plugin().get_extension()
@@ -193,17 +193,17 @@ class DocReportDialog(ReportDialog):
         this function is to grab a pointer for later use in the parse
         html frame function."""
 
-        self.html_table = gtk.Table(3,3)
+        self.html_table = Gtk.Table(3,3)
         self.html_table.set_col_spacings(12)
         self.html_table.set_row_spacings(6)
         self.html_table.set_border_width(0)
 
-        label = gtk.Label("%s:" % _("CSS file"))
+        label = Gtk.Label(label="%s:" % _("CSS file"))
         label.set_alignment(0.0,0.5)
-        self.html_table.attach(label, 1, 2, 1, 2, gtk.SHRINK|gtk.FILL,
-                               yoptions=gtk.SHRINK)
+        self.html_table.attach(label, 1, 2, 1, 2, Gtk.AttachOptions.SHRINK|Gtk.AttachOptions.FILL,
+                               yoptions=Gtk.AttachOptions.SHRINK)
 
-        self.css_combo = gtk.combo_box_new_text()
+        self.css_combo = Gtk.ComboBoxText()
 
         css_filename = self.options.handler.get_css_filename()
         active_index = 0
@@ -218,7 +218,7 @@ class DocReportDialog(ReportDialog):
                     active_index = index
                 index += 1
 
-        self.html_table.attach(self.css_combo,2,3,1,2, yoptions=gtk.SHRINK)
+        self.html_table.attach(self.css_combo,2,3,1,2, yoptions=Gtk.AttachOptions.SHRINK)
         self.css_combo.set_active(active_index)
 
     def parse_format_frame(self):

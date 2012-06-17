@@ -26,7 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
-import gobject
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -85,7 +85,7 @@ class LocationEmbedList(EmbeddedList):
         data = self.get_data()
         data.append(name)
         self.rebuild()
-        gobject.idle_add(self.tree.scroll_to_cell, len(data) - 1)
+        GObject.idle_add(self.tree.scroll_to_cell, len(data) - 1)
 
     def edit_button_clicked(self, obj):
         loc = self.get_selected()

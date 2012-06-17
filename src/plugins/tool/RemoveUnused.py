@@ -46,8 +46,8 @@ log = logging.getLogger(".RemoveUnused")
 # gtk modules
 #
 #-------------------------------------------------------------------------
-import gtk
-import gobject
+from gi.repository import Gtk
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -166,38 +166,38 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         self.invert_button = self.top.get_object('invert_button')
         self.invert_button.connect('clicked', self.invert_clicked)
 
-        self.real_model = gtk.ListStore(gobject.TYPE_BOOLEAN, 
-                                        gobject.TYPE_STRING, 
-                                        gobject.TYPE_STRING, 
-                                        gobject.TYPE_STRING, 
-                                        gobject.TYPE_STRING)
-        self.sort_model = gtk.TreeModelSort(self.real_model)
+        self.real_model = Gtk.ListStore(GObject.TYPE_BOOLEAN, 
+                                        GObject.TYPE_STRING, 
+                                        GObject.TYPE_STRING, 
+                                        GObject.TYPE_STRING, 
+                                        GObject.TYPE_STRING)
+        self.sort_model = Gtk.TreeModelSort(self.real_model)
         self.warn_tree.set_model(self.sort_model)
 
-        self.renderer = gtk.CellRendererText()
-        self.img_renderer = gtk.CellRendererPixbuf()
-        self.bool_renderer = gtk.CellRendererToggle()
+        self.renderer = Gtk.CellRendererText()
+        self.img_renderer = Gtk.CellRendererPixbuf()
+        self.bool_renderer = Gtk.CellRendererToggle()
         self.bool_renderer.connect('toggled', self.selection_toggled)
 
         # Add mark column
-        mark_column = gtk.TreeViewColumn(_('Mark'), self.bool_renderer,
+        mark_column = Gtk.TreeViewColumn(_('Mark'), self.bool_renderer,
                                            active=RemoveUnused.MARK_COL)
         mark_column.set_sort_column_id(RemoveUnused.MARK_COL)
         self.warn_tree.append_column(mark_column)
         
         # Add image column
-        img_column = gtk.TreeViewColumn(None, self.img_renderer )
+        img_column = Gtk.TreeViewColumn(None, self.img_renderer )
         img_column.set_cell_data_func(self.img_renderer, self.get_image)
         self.warn_tree.append_column(img_column)        
 
         # Add column with object gramps_id
-        id_column = gtk.TreeViewColumn(_('ID'), self.renderer,
+        id_column = Gtk.TreeViewColumn(_('ID'), self.renderer,
                                        text=RemoveUnused.OBJ_ID_COL)
         id_column.set_sort_column_id(RemoveUnused.OBJ_ID_COL)
         self.warn_tree.append_column(id_column)
 
         # Add column with object name
-        name_column = gtk.TreeViewColumn(_('Name'), self.renderer,
+        name_column = Gtk.TreeViewColumn(_('Name'), self.renderer,
                                          text=RemoveUnused.OBJ_NAME_COL)
         name_column.set_sort_column_id(RemoveUnused.OBJ_NAME_COL)
         self.warn_tree.append_column(name_column)
@@ -236,9 +236,9 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         for item in self.sensitive_list:
             item.set_sensitive(True)
 
-        self.uistate.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        self.uistate.window.window.set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
         self.uistate.progress.show()
-        self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        self.window.window.set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
 
         self.real_model.clear()
         self.collect_unused()
@@ -325,7 +325,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
             row[RemoveUnused.MARK_COL] = not row[RemoveUnused.MARK_COL]
 
     def double_click(self, obj, event):
-        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             (model, node) = self.selection.get_selected()
             if not node:
                 return

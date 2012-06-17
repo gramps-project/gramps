@@ -26,7 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
-import gobject
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -100,7 +100,7 @@ class AttrEmbedList(EmbeddedList):
         data.append(name)
         self.changed = True
         self.rebuild()
-        gobject.idle_add(self.tree.scroll_to_cell, len(data)-1)
+        GObject.idle_add(self.tree.scroll_to_cell, len(data)-1)
 
     def edit_button_clicked(self, obj):
         attr = self.get_selected()

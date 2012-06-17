@@ -25,7 +25,7 @@
 # GTK libraries
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -39,10 +39,10 @@ from gen.display.name import displayer as name_displayer
 # PersonRefModel
 #
 #-------------------------------------------------------------------------
-class PersonRefModel(gtk.ListStore):
+class PersonRefModel(Gtk.ListStore):
 
     def __init__(self, obj_list, db):
-        gtk.ListStore.__init__(self, str, str, str, object)
+        GObject.GObject.__init__(self, str, str, str, object)
         self.db = db
         for obj in obj_list:
             p = self.db.get_person_from_handle(obj.ref)

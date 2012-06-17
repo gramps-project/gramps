@@ -42,8 +42,8 @@ import sys
 # gtk modules
 #
 #-------------------------------------------------------------------------
-import gtk
-import gobject
+from gi.repository import Gtk
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -73,32 +73,31 @@ class LastNameDialog(ManagedWindow):
     def __init__(self, database, uistate, track, surnames, skip_list=set()):
 
         ManagedWindow.__init__(self, uistate, track, self)
-        flags = gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT | \
-                gtk.DIALOG_NO_SEPARATOR
-        buttons = (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT, gtk.STOCK_OK, 
-                   gtk.RESPONSE_ACCEPT)
-        self.__dlg = gtk.Dialog(None, uistate.window, flags, buttons)
-        self.__dlg.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
+        flags = Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT
+        buttons = (Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT, Gtk.STOCK_OK, 
+                   Gtk.ResponseType.ACCEPT)
+        self.__dlg = Gtk.Dialog(None, uistate.window, flags, buttons)
+        self.__dlg.set_position(Gtk.WindowPosition.CENTER_ON_PARENT)
         self.set_window(self.__dlg, None, _('Select surname'))
         self.window.set_default_size(400, 400)
 
         # build up a container to display all of the people of interest
-        self.__model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_INT)
-        self.__tree_view = gtk.TreeView(self.__model)
-        col1 = gtk.TreeViewColumn(_('Surname'), gtk.CellRendererText(), text=0)
-        col2 = gtk.TreeViewColumn(_('Count'), gtk.CellRendererText(), text=1)
+        self.__model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_INT)
+        self.__tree_view = Gtk.TreeView(self.__model)
+        col1 = Gtk.TreeViewColumn(_('Surname'), Gtk.CellRendererText(), text=0)
+        col2 = Gtk.TreeViewColumn(_('Count'), Gtk.CellRendererText(), text=1)
         col1.set_resizable(True)
         col2.set_resizable(True)
-        col1.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
-        col2.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
+        col1.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
+        col2.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
         col1.set_sort_column_id(0)
         col2.set_sort_column_id(1)
         self.__tree_view.append_column(col1)
         self.__tree_view.append_column(col2)
-        scrolled_window = gtk.ScrolledWindow()
+        scrolled_window = Gtk.ScrolledWindow()
         scrolled_window.add(self.__tree_view)
-        scrolled_window.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        scrolled_window.set_shadow_type(gtk.SHADOW_OUT)
+        scrolled_window.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+        scrolled_window.set_shadow_type(Gtk.ShadowType.OUT)
         self.__dlg.vbox.pack_start(scrolled_window, expand=True, fill=True)
         scrolled_window.show_all()
 
@@ -131,12 +130,12 @@ class LastNameDialog(ManagedWindow):
                 self.__model.append([key, surnames[key]])
 
         # keep the list sorted starting with the most popular last name
-        self.__model.set_sort_column_id(1, gtk.SORT_DESCENDING)
+        self.__model.set_sort_column_id(1, Gtk.SortType.DESCENDING)
 
         # the "OK" button should be enabled/disabled based on the selection of 
         # a row
         self.__tree_selection = self.__tree_view.get_selection()
-        self.__tree_selection.set_mode(gtk.SELECTION_MULTIPLE)
+        self.__tree_selection.set_mode(Gtk.SelectionMode.MULTIPLE)
         self.__tree_selection.select_path(0)
 
     def run(self):
@@ -145,7 +144,7 @@ class LastNameDialog(ManagedWindow):
         """
         response = self.__dlg.run()
         surname_set = set()
-        if response == gtk.RESPONSE_ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT:
             (mode, paths) = self.__tree_selection.get_selected_rows()
             for path in paths:
                 i = self.__model.get_iter(path)
@@ -159,7 +158,7 @@ class LastNameDialog(ManagedWindow):
 # GuiStringOption class
 #
 #-------------------------------------------------------------------------
-class GuiStringOption(gtk.Entry):
+class GuiStringOption(Gtk.Entry):
     """
     This class displays an option that is a simple one-line string.
     """
@@ -169,7 +168,7 @@ class GuiStringOption(gtk.Entry):
         @type option: gen.plug.menu.StringOption
         @return: nothing
         """
-        gtk.Entry.__init__(self)
+        GObject.GObject.__init__(self)
         self.__option = option
         self.set_text( self.__option.get_value() )
 
@@ -221,14 +220,14 @@ class GuiStringOption(gtk.Entry):
 # GuiColorOption class
 #
 #-------------------------------------------------------------------------
-class GuiColorOption(gtk.ColorButton):
+class GuiColorOption(Gtk.ColorButton):
     """
     This class displays an option that allows the selection of a colour.
     """
     def __init__(self, option, dbstate, uistate, track):
         self.__option = option
         value = self.__option.get_value()
-        gtk.ColorButton.__init__( self, gtk.gdk.color_parse(value) )
+        GObject.GObject.__init__( self, Gdk.color_parse(value) )
 
         # Set up signal handlers when the widget value is changed
         # from user interaction or programmatically.  When handling
@@ -258,7 +257,7 @@ class GuiColorOption(gtk.ColorButton):
         Handle the change made programmatically
         """
         self.handler_block(self.changekey)
-        self.set_color(gtk.gdk.color_parse(self.__option.get_value()))
+        self.set_color(Gdk.color_parse(self.__option.get_value()))
         self.handler_unblock(self.changekey)
 
     def clean_up(self):
@@ -273,7 +272,7 @@ class GuiColorOption(gtk.ColorButton):
 # GuiNumberOption class
 #
 #-------------------------------------------------------------------------
-class GuiNumberOption(gtk.SpinButton):
+class GuiNumberOption(Gtk.SpinButton):
     """
     This class displays an option that is a simple number with defined maximum 
     and minimum values.
@@ -283,7 +282,7 @@ class GuiNumberOption(gtk.SpinButton):
 
         decimals = 0
         step = self.__option.get_step()
-        adj = gtk.Adjustment(1, 
+        adj = Gtk.Adjustment(1, 
                              self.__option.get_min(), 
                              self.__option.get_max(), 
                              step)
@@ -293,8 +292,8 @@ class GuiNumberOption(gtk.SpinButton):
             import math
             decimals = int(math.log10(step) * -1)
             
-        gtk.SpinButton.__init__(self, adj, digits=decimals)
-        gtk.SpinButton.set_numeric(self, True)
+        GObject.GObject.__init__(self, adj, digits=decimals)
+        Gtk.SpinButton.set_numeric(self, True)
 
         self.set_value(self.__option.get_value())
 
@@ -346,19 +345,19 @@ class GuiNumberOption(gtk.SpinButton):
 # GuiTextOption class
 #
 #-------------------------------------------------------------------------
-class GuiTextOption(gtk.ScrolledWindow):
+class GuiTextOption(Gtk.ScrolledWindow):
     """
     This class displays an option that is a multi-line string.
     """
     def __init__(self, option, dbstate, uistate, track):
         self.__option = option
-        gtk.ScrolledWindow.__init__(self)
-        self.set_shadow_type(gtk.SHADOW_IN)
-        self.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        GObject.GObject.__init__(self)
+        self.set_shadow_type(Gtk.ShadowType.IN)
+        self.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
 
         # Add a TextView
         value = self.__option.get_value()
-        gtext = gtk.TextView()
+        gtext = Gtk.TextView()
         gtext.set_size_request(-1, 70)
         gtext.get_buffer().set_text("\n".join(value))
         gtext.set_editable(1)
@@ -373,8 +372,8 @@ class GuiTextOption(gtk.ScrolledWindow):
         self.valuekey = self.__option.connect('value-changed', self.__value_changed)
 
         # Required for tooltip
-        gtext.add_events(gtk.gdk.ENTER_NOTIFY_MASK)
-        gtext.add_events(gtk.gdk.LEAVE_NOTIFY_MASK)
+        gtext.add_events(Gdk.EventMask.ENTER_NOTIFY_MASK)
+        gtext.add_events(Gdk.EventMask.LEAVE_NOTIFY_MASK)
         gtext.set_tooltip_text(self.__option.get_help())
 
     def __text_changed(self, obj): # IGNORE:W0613 - obj is unused
@@ -429,13 +428,13 @@ class GuiTextOption(gtk.ScrolledWindow):
 # GuiBooleanOption class
 #
 #-------------------------------------------------------------------------
-class GuiBooleanOption(gtk.CheckButton):
+class GuiBooleanOption(Gtk.CheckButton):
     """
     This class displays an option that is a boolean (True or False).
     """
     def __init__(self, option, dbstate, uistate, track):
         self.__option = option
-        gtk.CheckButton.__init__(self, self.__option.get_label())
+        GObject.GObject.__init__(self, self.__option.get_label())
         self.set_active(self.__option.get_value())
 
         # Set up signal handlers when the widget value is changed
@@ -484,18 +483,18 @@ class GuiBooleanOption(gtk.CheckButton):
 # GuiEnumeratedListOption class
 #
 #-------------------------------------------------------------------------
-class GuiEnumeratedListOption(gtk.HBox):
+class GuiEnumeratedListOption(Gtk.HBox):
     """
     This class displays an option that provides a finite number of values.
     Each possible value is assigned a value and a description.
     """
     def __init__(self, option, dbstate, uistate, track):
-        gtk.HBox.__init__(self)
-        evtBox = gtk.EventBox()
+        GObject.GObject.__init__(self)
+        evtBox = Gtk.EventBox()
         self.__option = option
-        self.__combo = gtk.combo_box_new_text()
+        self.__combo = Gtk.ComboBoxText()
         evtBox.add(self.__combo)
-        self.pack_start(evtBox, True, True)
+        self.pack_start(evtBox, True, True, 0)
         
         self.__update_options()
         
@@ -577,7 +576,7 @@ class GuiEnumeratedListOption(gtk.HBox):
 # GuiPersonOption class
 #
 #-------------------------------------------------------------------------
-class GuiPersonOption(gtk.HBox):
+class GuiPersonOption(Gtk.HBox):
     """
     This class displays an option that allows a person from the 
     database to be selected.
@@ -588,23 +587,23 @@ class GuiPersonOption(gtk.HBox):
         @type option: gen.plug.menu.PersonOption
         @return: nothing
         """
-        gtk.HBox.__init__(self)
+        GObject.GObject.__init__(self)
         self.__option = option
         self.__dbstate = dbstate
         self.__db = dbstate.get_database()
         self.__uistate = uistate
         self.__track = track
-        self.__person_label = gtk.Label()
+        self.__person_label = Gtk.Label()
         self.__person_label.set_alignment(0.0, 0.5)
         
-        pevt = gtk.EventBox()
+        pevt = Gtk.EventBox()
         pevt.add(self.__person_label)
-        person_button = widgets.SimpleButton(gtk.STOCK_INDEX, 
+        person_button = widgets.SimpleButton(Gtk.STOCK_INDEX, 
                                              self.__get_person_clicked)
-        person_button.set_relief(gtk.RELIEF_NORMAL)
+        person_button.set_relief(Gtk.ReliefStyle.NORMAL)
 
-        self.pack_start(pevt, False)
-        self.pack_end(person_button, False)
+        self.pack_start(pevt, False, True, 0)
+        self.pack_end(person_button, False, True, 0)
 
         gid = self.__option.get_value()
 
@@ -701,7 +700,7 @@ class GuiPersonOption(gtk.HBox):
 # GuiFamilyOption class
 #
 #-------------------------------------------------------------------------
-class GuiFamilyOption(gtk.HBox):
+class GuiFamilyOption(Gtk.HBox):
     """
     This class displays an option that allows a family from the 
     database to be selected.
@@ -712,23 +711,23 @@ class GuiFamilyOption(gtk.HBox):
         @type option: gen.plug.menu.FamilyOption
         @return: nothing
         """
-        gtk.HBox.__init__(self)
+        GObject.GObject.__init__(self)
         self.__option = option
         self.__dbstate = dbstate
         self.__db = dbstate.get_database()
         self.__uistate = uistate
         self.__track = track
-        self.__family_label = gtk.Label()
+        self.__family_label = Gtk.Label()
         self.__family_label.set_alignment(0.0, 0.5)
         
-        pevt = gtk.EventBox()
+        pevt = Gtk.EventBox()
         pevt.add(self.__family_label)
-        family_button = widgets.SimpleButton(gtk.STOCK_INDEX, 
+        family_button = widgets.SimpleButton(Gtk.STOCK_INDEX, 
                                              self.__get_family_clicked)
-        family_button.set_relief(gtk.RELIEF_NORMAL)
+        family_button.set_relief(Gtk.ReliefStyle.NORMAL)
 
-        self.pack_start(pevt, False)
-        self.pack_end(family_button, False)
+        self.pack_start(pevt, False, True, 0)
+        self.pack_end(family_button, False, True, 0)
         
         self.__initialize_family()
 
@@ -887,7 +886,7 @@ class GuiFamilyOption(gtk.HBox):
 # GuiNoteOption class
 #
 #-------------------------------------------------------------------------
-class GuiNoteOption(gtk.HBox):
+class GuiNoteOption(Gtk.HBox):
     """
     This class displays an option that allows a note from the 
     database to be selected.
@@ -898,23 +897,23 @@ class GuiNoteOption(gtk.HBox):
         @type option: gen.plug.menu.NoteOption
         @return: nothing
         """
-        gtk.HBox.__init__(self)
+        GObject.GObject.__init__(self)
         self.__option = option
         self.__dbstate = dbstate
         self.__db = dbstate.get_database()
         self.__uistate = uistate
         self.__track = track
-        self.__note_label = gtk.Label()
+        self.__note_label = Gtk.Label()
         self.__note_label.set_alignment(0.0, 0.5)
         
-        pevt = gtk.EventBox()
+        pevt = Gtk.EventBox()
         pevt.add(self.__note_label)
-        note_button = widgets.SimpleButton(gtk.STOCK_INDEX, 
+        note_button = widgets.SimpleButton(Gtk.STOCK_INDEX, 
                                            self.__get_note_clicked)
-        note_button.set_relief(gtk.RELIEF_NORMAL)
+        note_button.set_relief(Gtk.ReliefStyle.NORMAL)
 
-        self.pack_start(pevt, False)
-        self.pack_end(note_button, False)
+        self.pack_start(pevt, False, True, 0)
+        self.pack_end(note_button, False, True, 0)
         
         # Initialize to the current value
         nid = self.__option.get_value()
@@ -991,7 +990,7 @@ class GuiNoteOption(gtk.HBox):
 # GuiMediaOption class
 #
 #-------------------------------------------------------------------------
-class GuiMediaOption(gtk.HBox):
+class GuiMediaOption(Gtk.HBox):
     """
     This class displays an option that allows a media object from the 
     database to be selected.
@@ -1002,23 +1001,23 @@ class GuiMediaOption(gtk.HBox):
         @type option: gen.plug.menu.MediaOption
         @return: nothing
         """
-        gtk.HBox.__init__(self)
+        GObject.GObject.__init__(self)
         self.__option = option
         self.__dbstate = dbstate
         self.__db = dbstate.get_database()
         self.__uistate = uistate
         self.__track = track
-        self.__media_label = gtk.Label()
+        self.__media_label = Gtk.Label()
         self.__media_label.set_alignment(0.0, 0.5)
         
-        pevt = gtk.EventBox()
+        pevt = Gtk.EventBox()
         pevt.add(self.__media_label)
-        media_button = widgets.SimpleButton(gtk.STOCK_INDEX, 
+        media_button = widgets.SimpleButton(Gtk.STOCK_INDEX, 
                                             self.__get_media_clicked)
-        media_button.set_relief(gtk.RELIEF_NORMAL)
+        media_button.set_relief(Gtk.ReliefStyle.NORMAL)
 
-        self.pack_start(pevt, False)
-        self.pack_end(media_button, False)
+        self.pack_start(pevt, False, True, 0)
+        self.pack_end(media_button, False, True, 0)
         
         # Initialize to the current value
         mid = self.__option.get_value()
@@ -1092,7 +1091,7 @@ class GuiMediaOption(gtk.HBox):
 # GuiPersonListOption class
 #
 #-------------------------------------------------------------------------
-class GuiPersonListOption(gtk.HBox):
+class GuiPersonListOption(Gtk.HBox):
     """
     This class displays a widget that allows multiple people from the 
     database to be selected.
@@ -1103,31 +1102,31 @@ class GuiPersonListOption(gtk.HBox):
         @type option: gen.plug.menu.PersonListOption
         @return: nothing
         """
-        gtk.HBox.__init__(self)
+        GObject.GObject.__init__(self)
         self.__option = option
         self.__dbstate = dbstate
         self.__db = dbstate.get_database()
         self.__uistate = uistate
         self.__track = track
 
-        self.__model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
-        self.__tree_view = gtk.TreeView(self.__model)
+        self.__model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING)
+        self.__tree_view = Gtk.TreeView(self.__model)
         self.__tree_view.set_size_request(150, 150)
-        col1 = gtk.TreeViewColumn(_('Name'  ), gtk.CellRendererText(), text=0)
-        col2 = gtk.TreeViewColumn(_('ID'    ), gtk.CellRendererText(), text=1)
+        col1 = Gtk.TreeViewColumn(_('Name'  ), Gtk.CellRendererText(), text=0)
+        col2 = Gtk.TreeViewColumn(_('ID'    ), Gtk.CellRendererText(), text=1)
         col1.set_resizable(True)
         col2.set_resizable(True)
-        col1.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
-        col2.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
+        col1.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
+        col2.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
         col1.set_sort_column_id(0)
         col2.set_sort_column_id(1)
         self.__tree_view.append_column(col1)
         self.__tree_view.append_column(col2)
-        self.__scrolled_window = gtk.ScrolledWindow()
+        self.__scrolled_window = Gtk.ScrolledWindow()
         self.__scrolled_window.add(self.__tree_view)
-        self.__scrolled_window.set_policy(gtk.POLICY_AUTOMATIC, 
-                                          gtk.POLICY_AUTOMATIC)
-        self.__scrolled_window.set_shadow_type(gtk.SHADOW_OUT)
+        self.__scrolled_window.set_policy(Gtk.PolicyType.AUTOMATIC, 
+                                          Gtk.PolicyType.AUTOMATIC)
+        self.__scrolled_window.set_shadow_type(Gtk.ShadowType.OUT)
 
         self.pack_start(self.__scrolled_window, expand=True, fill=True)
 
@@ -1135,14 +1134,14 @@ class GuiPersonListOption(gtk.HBox):
 
         # now setup the '+' and '-' pushbutton for adding/removing people from 
         # the container
-        self.__add_person = widgets.SimpleButton(gtk.STOCK_ADD, 
+        self.__add_person = widgets.SimpleButton(Gtk.STOCK_ADD, 
                                                  self.__add_person_clicked)
-        self.__del_person = widgets.SimpleButton(gtk.STOCK_REMOVE, 
+        self.__del_person = widgets.SimpleButton(Gtk.STOCK_REMOVE, 
                                                  self.__del_person_clicked)
-        self.__vbbox = gtk.VButtonBox()
+        self.__vbbox = Gtk.VButtonBox()
         self.__vbbox.add(self.__add_person)
         self.__vbbox.add(self.__del_person)
-        self.__vbbox.set_layout(gtk.BUTTONBOX_SPREAD)
+        self.__vbbox.set_layout(Gtk.ButtonBoxStyle.SPREAD)
         self.pack_end(self.__vbbox, expand=False)
 
         self.valuekey = self.__option.connect('value-changed', self.__value_changed)
@@ -1196,7 +1195,7 @@ class GuiPersonListOption(gtk.HBox):
                                           text,
                                           _('No'), None,
                                           _('Yes'), None)
-                    if prompt.get_response() == gtk.RESPONSE_YES:
+                    if prompt.get_response() == Gtk.ResponseType.YES:
                         gid = spouse.get_gramps_id()
                         self.__model.append([spouse_name, gid])
                         
@@ -1269,7 +1268,7 @@ class GuiPersonListOption(gtk.HBox):
 # GuiPlaceListOption class
 #
 #-------------------------------------------------------------------------
-class GuiPlaceListOption(gtk.HBox):
+class GuiPlaceListOption(Gtk.HBox):
     """
     This class displays a widget that allows multiple places from the 
     database to be selected.
@@ -1280,31 +1279,31 @@ class GuiPlaceListOption(gtk.HBox):
         @type option: gen.plug.menu.PlaceListOption
         @return: nothing
         """
-        gtk.HBox.__init__(self)
+        GObject.GObject.__init__(self)
         self.__option = option
         self.__dbstate = dbstate
         self.__db = dbstate.get_database()
         self.__uistate = uistate
         self.__track = track
 
-        self.__model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
-        self.__tree_view = gtk.TreeView(self.__model)
+        self.__model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING)
+        self.__tree_view = Gtk.TreeView(self.__model)
         self.__tree_view.set_size_request(150, 150)
-        col1 = gtk.TreeViewColumn(_('Place'  ), gtk.CellRendererText(), text=0)
-        col2 = gtk.TreeViewColumn(_('ID'    ), gtk.CellRendererText(), text=1)
+        col1 = Gtk.TreeViewColumn(_('Place'  ), Gtk.CellRendererText(), text=0)
+        col2 = Gtk.TreeViewColumn(_('ID'    ), Gtk.CellRendererText(), text=1)
         col1.set_resizable(True)
         col2.set_resizable(True)
-        col1.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
-        col2.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
+        col1.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
+        col2.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
         col1.set_sort_column_id(0)
         col2.set_sort_column_id(1)
         self.__tree_view.append_column(col1)
         self.__tree_view.append_column(col2)
-        self.__scrolled_window = gtk.ScrolledWindow()
+        self.__scrolled_window = Gtk.ScrolledWindow()
         self.__scrolled_window.add(self.__tree_view)
-        self.__scrolled_window.set_policy(gtk.POLICY_AUTOMATIC, 
-                                          gtk.POLICY_AUTOMATIC)
-        self.__scrolled_window.set_shadow_type(gtk.SHADOW_OUT)
+        self.__scrolled_window.set_policy(Gtk.PolicyType.AUTOMATIC, 
+                                          Gtk.PolicyType.AUTOMATIC)
+        self.__scrolled_window.set_shadow_type(Gtk.ShadowType.OUT)
 
         self.pack_start(self.__scrolled_window, expand=True, fill=True)
 
@@ -1312,14 +1311,14 @@ class GuiPlaceListOption(gtk.HBox):
 
         # now setup the '+' and '-' pushbutton for adding/removing places from 
         # the container
-        self.__add_place = widgets.SimpleButton(gtk.STOCK_ADD, 
+        self.__add_place = widgets.SimpleButton(Gtk.STOCK_ADD, 
                                                 self.__add_place_clicked)
-        self.__del_place = widgets.SimpleButton(gtk.STOCK_REMOVE, 
+        self.__del_place = widgets.SimpleButton(Gtk.STOCK_REMOVE, 
                                                 self.__del_place_clicked)
-        self.__vbbox = gtk.VButtonBox()
+        self.__vbbox = Gtk.VButtonBox()
         self.__vbbox.add(self.__add_place)
         self.__vbbox.add(self.__del_place)
-        self.__vbbox.set_layout(gtk.BUTTONBOX_SPREAD)
+        self.__vbbox.set_layout(Gtk.ButtonBoxStyle.SPREAD)
         self.pack_end(self.__vbbox, expand=False)
 
         self.valuekey = self.__option.connect('value-changed', self.__value_changed)
@@ -1412,7 +1411,7 @@ class GuiPlaceListOption(gtk.HBox):
 # GuiSurnameColorOption class
 #
 #-------------------------------------------------------------------------
-class GuiSurnameColorOption(gtk.HBox):
+class GuiSurnameColorOption(Gtk.HBox):
     """
     This class displays a widget that allows multiple surnames to be
     selected from the database, and to assign a colour (not necessarily
@@ -1424,7 +1423,7 @@ class GuiSurnameColorOption(gtk.HBox):
         @type option: gen.plug.menu.SurnameColorOption
         @return: nothing
         """
-        gtk.HBox.__init__(self)
+        GObject.GObject.__init__(self)
         self.__option = option
         self.__dbstate = dbstate
         self.__db = dbstate.get_database()
@@ -1435,34 +1434,34 @@ class GuiSurnameColorOption(gtk.HBox):
         # and used each time after.
         self.__surnames = {}  # list of surnames and count
         
-        self.__model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
-        self.__tree_view = gtk.TreeView(self.__model)
+        self.__model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING)
+        self.__tree_view = Gtk.TreeView(self.__model)
         self.__tree_view.set_size_request(150, 150)
         self.__tree_view.connect('row-activated', self.__row_clicked)
-        col1 = gtk.TreeViewColumn(_('Surname'), gtk.CellRendererText(), text=0)
-        col2 = gtk.TreeViewColumn(_('Color'), gtk.CellRendererText(), text=1)
+        col1 = Gtk.TreeViewColumn(_('Surname'), Gtk.CellRendererText(), text=0)
+        col2 = Gtk.TreeViewColumn(_('Color'), Gtk.CellRendererText(), text=1)
         col1.set_resizable(True)
         col2.set_resizable(True)
         col1.set_sort_column_id(0)
-        col1.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
-        col2.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
+        col1.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
+        col2.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
         self.__tree_view.append_column(col1)
         self.__tree_view.append_column(col2)
-        self.scrolled_window = gtk.ScrolledWindow()
+        self.scrolled_window = Gtk.ScrolledWindow()
         self.scrolled_window.add(self.__tree_view)
-        self.scrolled_window.set_policy(gtk.POLICY_AUTOMATIC, 
-                                        gtk.POLICY_AUTOMATIC)
-        self.scrolled_window.set_shadow_type(gtk.SHADOW_OUT)
+        self.scrolled_window.set_policy(Gtk.PolicyType.AUTOMATIC, 
+                                        Gtk.PolicyType.AUTOMATIC)
+        self.scrolled_window.set_shadow_type(Gtk.ShadowType.OUT)
         self.pack_start(self.scrolled_window, expand=True, fill=True)
 
-        self.add_surname = widgets.SimpleButton(gtk.STOCK_ADD, 
+        self.add_surname = widgets.SimpleButton(Gtk.STOCK_ADD, 
                                                 self.__add_clicked)
-        self.del_surname = widgets.SimpleButton(gtk.STOCK_REMOVE, 
+        self.del_surname = widgets.SimpleButton(Gtk.STOCK_REMOVE, 
                                                 self.__del_clicked)
-        self.vbbox = gtk.VButtonBox()
+        self.vbbox = Gtk.VButtonBox()
         self.vbbox.add(self.add_surname)
         self.vbbox.add(self.del_surname)
-        self.vbbox.set_layout(gtk.BUTTONBOX_SPREAD)
+        self.vbbox.set_layout(Gtk.ButtonBoxStyle.SPREAD)
         self.pack_end(self.vbbox, expand=False)
 
         self.__value_changed()
@@ -1506,15 +1505,15 @@ class GuiSurnameColorOption(gtk.HBox):
         # get the surname and colour value for this family
         i = self.__model.get_iter(path)
         surname = self.__model.get_value(i, 0)
-        colour = gtk.gdk.color_parse(self.__model.get_value(i, 1))
+        colour = Gdk.color_parse(self.__model.get_value(i, 1))
 
         title = _('Select color for %s') % surname
-        colour_dialog = gtk.ColorSelectionDialog(title)
+        colour_dialog = Gtk.ColorSelectionDialog(title)
         colorsel = colour_dialog.colorsel
         colorsel.set_current_color(colour)
         response = colour_dialog.run()
 
-        if response == gtk.RESPONSE_OK:
+        if response == Gtk.ResponseType.OK:
             colour = colorsel.get_current_color()
             colour_name = '#%02x%02x%02x' % (
                 int(colour.red  *256/65536),
@@ -1604,7 +1603,7 @@ class GuiSurnameColorOption(gtk.HBox):
 # GuiDestinationOption class
 #
 #-------------------------------------------------------------------------
-class GuiDestinationOption(gtk.HBox):
+class GuiDestinationOption(Gtk.HBox):
     """
     This class displays an option that allows the user to select a 
     DestinationOption.
@@ -1615,18 +1614,18 @@ class GuiDestinationOption(gtk.HBox):
         @type option: gen.plug.menu.DestinationOption
         @return: nothing
         """
-        gtk.HBox.__init__(self)
+        GObject.GObject.__init__(self)
         self.__option = option
-        self.__entry = gtk.Entry()
+        self.__entry = Gtk.Entry()
         self.__entry.set_text( self.__option.get_value() )
         
-        self.__button = gtk.Button()
-        img = gtk.Image()
-        img.set_from_stock(gtk.STOCK_OPEN, gtk.ICON_SIZE_BUTTON)
+        self.__button = Gtk.Button()
+        img = Gtk.Image()
+        img.set_from_stock(Gtk.STOCK_OPEN, Gtk.IconSize.BUTTON)
         self.__button.add(img)
         self.__button.connect('clicked', self.__select_file)
         
-        self.pack_start(self.__entry, True, True)
+        self.pack_start(self.__entry, True, True, 0)
         self.pack_end(self.__button, False, False)
 
         # Set up signal handlers when the widget value is changed
@@ -1664,15 +1663,15 @@ class GuiDestinationOption(gtk.HBox):
         Handle the user's request to select a file (or directory).
         """
         if self.__option.get_directory_entry():
-            my_action = gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER
+            my_action = Gtk.FileChooserAction.SELECT_FOLDER
         else:
-            my_action = gtk.FILE_CHOOSER_ACTION_SAVE
+            my_action = Gtk.FileChooserAction.SAVE
         
-        fcd = gtk.FileChooserDialog(_("Save As"), action=my_action,
-                                    buttons=(gtk.STOCK_CANCEL,
-                                             gtk.RESPONSE_CANCEL,
-                                             gtk.STOCK_OPEN,
-                                             gtk.RESPONSE_OK))
+        fcd = Gtk.FileChooserDialog(_("Save As"), action=my_action,
+                                    buttons=(Gtk.STOCK_CANCEL,
+                                             Gtk.ResponseType.CANCEL,
+                                             Gtk.STOCK_OPEN,
+                                             Gtk.ResponseType.OK))
 
         name = os.path.abspath(self.__option.get_value())
         if self.__option.get_directory_entry():
@@ -1687,7 +1686,7 @@ class GuiDestinationOption(gtk.HBox):
             fcd.set_current_name(name)
 
         status = fcd.run()
-        if status == gtk.RESPONSE_OK:
+        if status == Gtk.ResponseType.OK:
             path = Utils.get_unicode_path_from_file_chooser(fcd.get_filename())
             if path:
                 if not self.__option.get_directory_entry() and \
@@ -1748,7 +1747,7 @@ class GuiStyleOption(GuiEnumeratedListOption):
                                          uistate, track)
         self.__option = option
         
-        self.__button = gtk.Button("%s..." % _("Style Editor"))
+        self.__button = Gtk.Button("%s..." % _("Style Editor"))
         self.__button.connect('clicked', self.__on_style_edit_clicked)
         
         self.pack_end(self.__button, False, False)
@@ -1773,34 +1772,34 @@ class GuiStyleOption(GuiEnumeratedListOption):
 # GuiBooleanListOption class
 #
 #-------------------------------------------------------------------------
-class GuiBooleanListOption(gtk.HBox):
+class GuiBooleanListOption(Gtk.HBox):
     """
     This class displays an option that provides a list of check boxes.
     Each possible value is assigned a value and a description.
     """
     def __init__(self, option, dbstate, uistate, track):
-        gtk.HBox.__init__(self)
+        GObject.GObject.__init__(self)
         self.__option = option
         self.__cbutton = []
 
         COLUMNS = 2 # Number of checkbox columns
         column = []
         for i in range(COLUMNS):
-            vbox = gtk.VBox()
-            self.pack_start(vbox, True, True)
+            vbox = Gtk.VBox()
+            self.pack_start(vbox, True, True, 0)
             column.append(vbox)
             vbox.show()
 
         counter = 0
         default = option.get_value().split(',')
         for description in option.get_descriptions():
-            button = gtk.CheckButton(description)
+            button = Gtk.CheckButton(description)
             self.__cbutton.append(button)
             if counter < len(default):
                 if default[counter] == 'True':
                     button.set_active(True)
             button.connect("toggled", self.__list_changed)
-            column[counter % COLUMNS].pack_start(button, True, True)
+            column[counter % COLUMNS].pack_start(button, True, True, 0)
             button.show()
             counter += 1
         

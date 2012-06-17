@@ -170,8 +170,8 @@ def CheckWithDependencyWalker():
     exe = os.path.join(scriptpath, 'depends.exe')
     fout = os.path.join(scriptpath, 'depres.txt')
     f2check = [ 
-                os.path.join(sys.prefix, 'Lib/site-packages/gtk-2.0/gtk/_gtk.pyd' ),
-                os.path.join(sys.prefix, 'Lib/site-packages/gtk-2.0/gobject/_gobject.pyd' ),
+                os.path.join(sys.prefix, 'Lib/site-packages/gtk-2.0/gtk/_Gtk.pyd' ),
+                os.path.join(sys.prefix, 'Lib/site-packages/gtk-2.0/gobject/_GObject.pyd' ),
                 os.path.join(sys.prefix, 'Lib/site-packages/gtk-2.0/pangocairo.pyd' ),
                 ]
     if os.path.isfile( exe ):
@@ -268,10 +268,10 @@ def Import_pyGtkIntoPython():
     try:
         import gtk
         
-        PrintVersionResult('  GTK+   ', MIN_GTK_VER, gtk.gtk_version, UNTESTED_GTK_VER )
+        PrintVersionResult('  GTK+   ', MIN_GTK_VER, Gtk.gtk_version, UNTESTED_GTK_VER )
         
         #test the pyGTK version (which is in the gtk namespace)
-        PrintVersionResult('  pyGTK  ', MIN_PYGTK_VER, gtk.pygtk_version, UNTESTED_PYGTK_VER )
+        PrintVersionResult('  pyGTK  ', MIN_PYGTK_VER, Gtk.pygtk_version, UNTESTED_PYGTK_VER )
         
     except ImportError:
         PrintFailedImport('  GTK+   ', MIN_GTK_VER, NOT_FOUND_STR)
@@ -281,7 +281,7 @@ def Import_pyGtkIntoPython():
     #test the gobject version
     try:
         import gobject
-        PrintVersionResult('  gobject', MIN_GOBJECT_VER, gobject.pygobject_version, UNTESTED_GOBJECT_VER) 
+        PrintVersionResult('  gobject', MIN_GOBJECT_VER, GObject.pygobject_version, UNTESTED_GOBJECT_VER) 
         
     except ImportError:
         PrintFailedImport('  gobject', MIN_GOBJECT_VER, NOT_FOUND_STR)
@@ -299,7 +299,7 @@ def Import_pyGtkIntoPython():
     log.info( '\n==== See if libglade installed ====')
 
     try:
-        import gtk.glade
+        import Gtk.glade
         log.info( '  Glade   tesing import of libglade .......\tOK\n' )
     except ImportError, e:
         log.info( '  Glade   importError: %s\n' % e )

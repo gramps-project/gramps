@@ -38,7 +38,7 @@ _LOG = logging.getLogger('.pageview')
 # gtk
 #
 #----------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 from gen.ggettext import gettext as _
 
 #----------------------------------------------------------------
@@ -153,8 +153,8 @@ class PageView(DbGUIElement):
         self.bottombar = GrampsBar(self.dbstate, self.uistate, self,
                                    self.ident + "_bottombar",
                                    defaults[1])
-        hpane = gtk.HPaned()
-        vpane = gtk.VPaned()
+        hpane = Gtk.HPaned()
+        vpane = Gtk.VPaned()
         hpane.pack1(vpane, resize=True, shrink=False)
         hpane.pack2(self.sidebar, resize=False, shrink=True)
         hpane.show()
@@ -214,9 +214,9 @@ class PageView(DbGUIElement):
         (paste).
         """
         if self.active:
-            if event.type == gtk.gdk.KEY_PRESS:
-                if (event.keyval == gtk.keysyms.v and 
-                    (event.state & gtk.gdk.CONTROL_MASK)):
+            if event.type == Gdk.KEY_PRESS:
+                if (event.keyval == Gdk.KEY_v and 
+                    (event.get_state() & Gdk.ModifierType.CONTROL_MASK)):
                     self.call_paste()
                     return True
         return False
@@ -352,14 +352,14 @@ class PageView(DbGUIElement):
         Return image associated with the view category, which is used for the 
         icon for the button.
         """
-        return gtk.STOCK_MISSING_IMAGE
+        return Gtk.STOCK_MISSING_IMAGE
 
     def get_viewtype_stock(self):
         """
         Return immage associated with the viewtype inside a view category, it
         will be used for the icon on the button to select view in the category
         """
-        return gtk.STOCK_MISSING_IMAGE
+        return Gtk.STOCK_MISSING_IMAGE
 
     def get_title(self):
         """
@@ -416,7 +416,7 @@ class PageView(DbGUIElement):
         and self.action_toggle_list. The user should define these in 
         self.define_actions
         """
-        self.action_group = gtk.ActionGroup(self.title)
+        self.action_group = Gtk.ActionGroup(self.title)
         if len(self.action_list) > 0:
             self.action_group.add_actions(self.action_list)
         if len(self.action_toggle_list) > 0:
@@ -513,7 +513,7 @@ class PageView(DbGUIElement):
         Define the action for a key press event
         """
         # TODO: This is never used? (replaced in ListView)
-        if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
+        if event.keyval in (Gdk.KEY_Return, Gdk.KEY_KP_Enter):
             self.edit(obj)
             return True
         return False
@@ -634,12 +634,12 @@ class DummyPage(PageView):
         PageView.__init__(self, title, pdata, dbstate, uistate)
     
     def build_widget(self):
-        box = gtk.VBox(False, 1)
+        box = Gtk.VBox(False, 1)
         #top widget at the top
-        box.pack_start(gtk.Label(_('View %(name)s: %(msg)s') % {
+        box.pack_start(Gtk.Label(label=_('View %(name)s: %(msg)s') % {
                 'name': self.title,
-                'msg': self.msg}), False, False, 0 )
-        tv = gtk.TextView()
+                'msg': self.msg}), False, False, 0)
+        tv = Gtk.TextView()
         tb = tv.get_buffer()
         tb.insert_at_cursor(self.msg2)
         box.pack_start(tv, False, False, 0)

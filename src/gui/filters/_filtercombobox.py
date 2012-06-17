@@ -29,8 +29,8 @@ Package providing filtering framework for GRAMPS.
 # GTK
 #
 #-------------------------------------------------------------------------
-import gtk
-import gobject
+from gi.repository import Gtk
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -44,12 +44,12 @@ from gen.filters import CustomFilters
 # FilterComboBox
 #
 #-------------------------------------------------------------------------
-class FilterComboBox(gtk.ComboBox):
+class FilterComboBox(Gtk.ComboBox):
 
     def set(self,local_filters,default=""):
-        self.store = gtk.ListStore(gobject.TYPE_STRING)
+        self.store = Gtk.ListStore(GObject.TYPE_STRING)
         self.set_model(self.store)
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         self.pack_start(cell,True)
         self.add_attribute(cell,'text',0)
 

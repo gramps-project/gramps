@@ -26,8 +26,8 @@
 # Python classes
 #
 #-------------------------------------------------------------------------
-import gtk
-import gobject
+from gi.repository import Gtk
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -117,15 +117,15 @@ class NameEmbedList(GroupEmbeddedList):
     def get_popup_menu_items(self):
         if self._tmpgroup == self._WORKGROUP:
             return [
-                (True, True, gtk.STOCK_ADD, self.add_button_clicked),
-                (False,True, gtk.STOCK_EDIT, self.edit_button_clicked),
-                (True, True, gtk.STOCK_REMOVE, self.del_button_clicked),
+                (True, True, Gtk.STOCK_ADD, self.add_button_clicked),
+                (False,True, Gtk.STOCK_EDIT, self.edit_button_clicked),
+                (True, True, Gtk.STOCK_REMOVE, self.del_button_clicked),
                 (True, False, _('Set as default name'), self.name_button_clicked),
                 ]
         else:
             return [
-                (True, True, gtk.STOCK_ADD, self.add_button_clicked),
-                (False,True, gtk.STOCK_EDIT, self.edit_button_clicked),
+                (True, True, Gtk.STOCK_ADD, self.add_button_clicked),
+                (False,True, Gtk.STOCK_EDIT, self.edit_button_clicked),
                 ]
 
     def name_button_clicked(self, obj):
@@ -167,7 +167,7 @@ class NameEmbedList(GroupEmbeddedList):
         data = self.get_data()[self._WORKGROUP]
         data.append(name)
         self.rebuild()
-        gobject.idle_add(self.tree.scroll_to_cell,
+        GObject.idle_add(self.tree.scroll_to_cell,
                          (self._WORKGROUP, len(data) - 1))
 
     def edit_button_clicked(self, obj):

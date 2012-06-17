@@ -32,8 +32,9 @@ import sys
 # GNOME/GTK+ modules
 #
 #-------------------------------------------------------------------------
-import gtk
-from gtk.gdk import pixbuf_new_from_file
+from gi.repository import GObject
+from gi.repository import Gtk
+from gi.repository import GdkPixbuf
 
 #-------------------------------------------------------------------------
 #
@@ -46,7 +47,7 @@ from gui.glade import Glade
 from gen.ggettext import gettext as _
 
 try:
-    ICON = pixbuf_new_from_file(const.ICON)
+    ICON = GdkPixbuf.Pixbuf.new_from_file(const.ICON)
 except:
     ICON = None
 
@@ -73,9 +74,9 @@ class SaveDialog(object):
             self.top.set_transient_for(parent)
         self.top.show()
         response = self.top.run()
-        if response == gtk.RESPONSE_NO:
+        if response == Gtk.ResponseType.NO:
             self.task1()
-        elif response == gtk.RESPONSE_YES:
+        elif response == Gtk.ResponseType.YES:
             self.task2()
 
         config.set('interface.dont-ask', self.dontask.get_active())
@@ -104,7 +105,7 @@ class QuestionDialog(object):
         self.top.show()
         response = self.top.run()
         self.top.destroy()
-        if response == gtk.RESPONSE_ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT:
             task()
 
 class QuestionDialog2(object):
@@ -135,7 +136,7 @@ class QuestionDialog2(object):
     def run(self):
         response = self.top.run()
         self.top.destroy()
-        return (response == gtk.RESPONSE_ACCEPT)
+        return (response == Gtk.ResponseType.ACCEPT)
 
 class OptionDialog(object):
     def __init__(self, msg1, msg2, btnmsg1, task1, btnmsg2, task2, parent=None):
@@ -159,7 +160,7 @@ class OptionDialog(object):
             self.top.set_transient_for(parent)
         self.top.show()
         self.response = self.top.run()
-        if self.response == gtk.RESPONSE_NO:
+        if self.response == Gtk.ResponseType.NO:
             if task1:
                 task1()
         else:
@@ -170,13 +171,13 @@ class OptionDialog(object):
     def get_response(self):
         return self.response
 
-class ErrorDialog(gtk.MessageDialog):
+class ErrorDialog(Gtk.MessageDialog):
     def __init__(self, msg1, msg2="", parent=None):
         
-        gtk.MessageDialog.__init__(self, parent,
-                                   flags=gtk.DIALOG_MODAL,
-                                   type=gtk.MESSAGE_ERROR,
-                                   buttons=gtk.BUTTONS_CLOSE)
+        Gtk.MessageDialog.__init__(self, parent,
+                                   flags=Gtk.DialogFlags.MODAL,
+                                   type=Gtk.MessageType.ERROR,
+                                   buttons=Gtk.ButtonsType.CLOSE)
         self.set_markup('<span weight="bold" size="larger">%s</span>' % msg1)
         self.format_secondary_text(msg2)
         self.set_icon(ICON)
@@ -208,13 +209,13 @@ class DBErrorDialog(ErrorDialog):
               "the Family Tree Manager. Select the database and "
               'click on the Repair button') + '\n\n' + msg, parent)
 
-class WarningDialog(gtk.MessageDialog):
+class WarningDialog(Gtk.MessageDialog):
     def __init__(self, msg1, msg2="", parent=None):
 
-        gtk.MessageDialog.__init__(self, parent,
-                                   flags=gtk.DIALOG_MODAL,
-                                   type=gtk.MESSAGE_WARNING,
-                                   buttons=gtk.BUTTONS_CLOSE)
+        Gtk.MessageDialog.__init__(self, parent,
+                                   flags=Gtk.DialogFlags.MODAL,
+                                   type=Gtk.MessageType.WARNING,
+                                   buttons=Gtk.ButtonsType.CLOSE)
         self.set_markup('<span weight="bold" size="larger">%s</span>' % msg1)
         self.format_secondary_markup(msg2)
         self.set_icon(ICON)
@@ -223,13 +224,13 @@ class WarningDialog(gtk.MessageDialog):
         self.run()
         self.destroy()
 
-class OkDialog(gtk.MessageDialog):
+class OkDialog(Gtk.MessageDialog):
     def __init__(self, msg1, msg2="", parent=None):
 
-        gtk.MessageDialog.__init__(self, parent,
-                                   flags=gtk.DIALOG_MODAL,
-                                   type=gtk.MESSAGE_INFO,
-                                   buttons=gtk.BUTTONS_CLOSE)
+        Gtk.MessageDialog.__init__(self, parent,
+                                   flags=Gtk.DialogFlags.MODAL,
+                                   type=Gtk.MessageType.INFO,
+                                   buttons=Gtk.ButtonsType.CLOSE)
         self.set_markup('<span weight="bold" size="larger">%s</span>' % msg1)
         self.format_secondary_text(msg2)
         self.set_icon(ICON)
@@ -254,7 +255,7 @@ class InfoDialog(object):
         label.set_use_markup(True)
         
         infoview = self.xml.get_object('infoview')
-        infobuffer = gtk.TextBuffer()
+        infobuffer = Gtk.TextBuffer()
         infobuffer.set_text(infotext)
         if monospaced:
             startiter, enditer = infobuffer.get_bounds()
@@ -297,12 +298,12 @@ class MissingMediaDialog(object):
             self.top.set_transient_for(parent)
         self.top.show()
         self.top.connect('delete_event', self.warn)
-        response = gtk.RESPONSE_DELETE_EVENT
+        response = Gtk.ResponseType.DELETE_EVENT
 
         # Need some magic here, because an attempt to close the dialog
         # with the X button not only emits the 'delete_event' signal
         # but also exits with the RESPONSE_DELETE_EVENT
-        while response == gtk.RESPONSE_DELETE_EVENT:
+        while response == Gtk.ResponseType.DELETE_EVENT:
             response = self.top.run()
 
         if response == 1:

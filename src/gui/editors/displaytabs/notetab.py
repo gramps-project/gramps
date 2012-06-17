@@ -32,7 +32,7 @@ from gen.ggettext import gettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gobject
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -147,7 +147,7 @@ class NoteTab(EmbeddedList, DbGUIElement):
         self.callman.register_handles({'note': [name]})
         self.changed = True
         self.rebuild()
-        gobject.idle_add(self.tree.scroll_to_cell, len(data) - 1)
+        GObject.idle_add(self.tree.scroll_to_cell, len(data) - 1)
 
     def edit_button_clicked(self, obj):
         """

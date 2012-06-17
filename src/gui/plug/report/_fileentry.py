@@ -23,44 +23,44 @@
 # $Id$
 
 import os
-import gtk
+from gi.repository import Gtk
 import Utils
 
-class FileEntry(gtk.HBox):
+class FileEntry(Gtk.HBox):
     """ A widget that allows the user to select a file from the file system """
     def __init__(self, defname, title):
-        gtk.HBox.__init__(self)
+        GObject.GObject.__init__(self)
 
         self.title = title
         self.dir = False
         self.__base_path = ""
         self.__file_name = ""
-        self.entry = gtk.Entry()
+        self.entry = Gtk.Entry()
         self.entry.set_text(defname)
         self.set_filename(defname)
         self.set_spacing(6)
         self.set_homogeneous(False)
-        self.button = gtk.Button()
-        image = gtk.Image()
-        image.set_from_stock(gtk.STOCK_OPEN, gtk.ICON_SIZE_BUTTON)
+        self.button = Gtk.Button()
+        image = Gtk.Image()
+        image.set_from_stock(Gtk.STOCK_OPEN, Gtk.IconSize.BUTTON)
         self.button.add(image)
         self.button.connect('clicked', self.__select_file)
-        self.pack_start(self.entry, True, True)
+        self.pack_start(self.entry, True, True, 0)
         self.pack_end(self.button, False, False)
 
     def __select_file(self, obj):
         """ Call back function to handle the open button press """
         if self.dir:
-            my_action = gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER
+            my_action = Gtk.FileChooserAction.SELECT_FOLDER
         else:
-            my_action = gtk.FILE_CHOOSER_ACTION_SAVE
+            my_action = Gtk.FileChooserAction.SAVE
         
-        dialog = gtk.FileChooserDialog(self.title,
+        dialog = Gtk.FileChooserDialog(self.title,
                                        action=my_action,
-                                       buttons=(gtk.STOCK_CANCEL,
-                                                gtk.RESPONSE_CANCEL,
-                                                gtk.STOCK_OPEN,
-                                                gtk.RESPONSE_OK))
+                                       buttons=(Gtk.STOCK_CANCEL,
+                                                Gtk.ResponseType.CANCEL,
+                                                Gtk.STOCK_OPEN,
+                                                Gtk.ResponseType.OK))
 
         name = os.path.basename(self.entry.get_text())
         if self.dir:
@@ -73,7 +73,7 @@ class FileEntry(gtk.HBox):
         dialog.set_current_folder(self.__base_path)
         dialog.present()
         status = dialog.run()
-        if status == gtk.RESPONSE_OK:
+        if status == Gtk.ResponseType.OK:
             self.set_filename(Utils.get_unicode_path_from_file_chooser(dialog.get_filename()))
         dialog.destroy()
 

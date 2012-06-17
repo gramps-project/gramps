@@ -63,7 +63,7 @@ log = logging.getLogger(".libcairodoc")
 # GTK modules
 #
 #-------------------------------------------------------------------------
-import pango
+from gi.repository import Pango, PangoCairo
 
 #------------------------------------------------------------------------
 #
@@ -102,14 +102,12 @@ font_families = _GNOME_FONT
 
 # FIXME debug logging does not work here.
 def set_font_families():
-    import pangocairo
-##def set_font_families(pango_context):
     """Set the used font families depending on availability.
     """
     global font_families
     
     ##families = pango_context.list_families()
-    families = pangocairo.cairo_font_map_get_default().list_families()
+    families = PangoCairo.font_map_get_default().list_families()
     family_names = [family.get_name() for family in families]
     
     fam = [f for f in _TTF_FREEFONT.itervalues() if f in family_names]
@@ -141,37 +139,37 @@ set_font_families()
 #------------------------------------------------------------------------
 
 def fontstyle_to_fontdescription(font_style):
-    """Convert a FontStyle instance to a pango.FontDescription one.
+    """Convert a FontStyle instance to a Pango.FontDescription one.
     
-    Font color and underline are not implemented in pango.FontDescription,
-    and have to be set with pango.Layout.set_attributes(attrlist) method.
+    Font color and underline are not implemented in Pango.FontDescription,
+    and have to be set with Pango.Layout.set_attributes(attrlist) method.
     
     """
     if font_style.get_bold():
-        f_weight = pango.WEIGHT_BOLD
+        f_weight = Pango.Weight.BOLD
     else:
-        f_weight = pango.WEIGHT_NORMAL
+        f_weight = Pango.Weight.NORMAL
         
     if font_style.get_italic():
-        f_style = pango.STYLE_ITALIC
+        f_style = Pango.Style.ITALIC
     else:
-        f_style = pango.STYLE_NORMAL
+        f_style = Pango.Style.NORMAL
         
-    font_description = pango.FontDescription(font_families[font_style.face])
-    font_description.set_size(int(round(font_style.get_size() * pango.SCALE)))
+    font_description = Pango.FontDescription(font_families[font_style.face])
+    font_description.set_size(int(round(font_style.get_size() * Pango.SCALE)))
     font_description.set_weight(f_weight)
     font_description.set_style(f_style)
     
     return font_description
 
 def tabstops_to_tabarray(tab_stops, dpi):
-    """Convert a list of tabs given in cm to a pango.TabArray.
+    """Convert a list of tabs given in cm to a Pango.TabArray.
     """
-    tab_array = pango.TabArray(len(tab_stops), False)
+    tab_array = Pango.TabArray(len(tab_stops), False)
     
     for index in range(len(tab_stops)):
-        location = tab_stops[index] * dpi * pango.SCALE / 2.54
-        tab_array.set_tab(index, pango.TAB_LEFT, int(location))
+        location = tab_stops[index] * dpi * Pango.SCALE / 2.54
+        tab_array.set_tab(index, Pango.TabAlign.LEFT, int(location))
         
     return tab_array
 
@@ -346,7 +344,7 @@ class GtkDocBaseElement(object):
         """Divide the element into two depending on available space.
         
         @param layout: pango layout to write on
-        @param type: pango.Layout
+        @param type: Pango.Layout
         @param width: width of available space for this element
         @param type: device points
         @param height: height of available space for this element
@@ -368,7 +366,7 @@ class GtkDocBaseElement(object):
         @param cairo_context: context to draw on
         @param type: cairo.Context class
         @param pango_layout: pango layout to write on
-        @param type: pango.Layout class
+        @param type: Pango.Layout class
         @param width: width of available space for this element
         @param type: device points
         @param dpi_x: the horizontal resolution
@@ -513,7 +511,7 @@ class GtkDocParagraph(GtkDocBaseElement):
         """
         if self._plaintext is None:
             self._attrlist, self._plaintext, dummy = \
-                                pango.parse_markup(self._text)
+                                Pango.parse_markup(self._text)
         
     def divide(self, layout, width, height, dpi_x, dpi_y):
         self.__parse_text()
@@ -530,20 +528,20 @@ class GtkDocParagraph(GtkDocBaseElement):
         text_width = width - l_margin - 2 * h_padding - r_margin
         if f_indent < 0:
             text_width -= f_indent
-        layout.set_width(int(text_width * pango.SCALE))
+        layout.set_width(int(text_width * Pango.SCALE))
         
         # set paragraph properties
-        layout.set_wrap(pango.WRAP_WORD_CHAR)        
-        layout.set_indent(int(f_indent * pango.SCALE))
+        layout.set_wrap(Pango.WrapMode.WORD_CHAR)        
+        layout.set_indent(int(f_indent * Pango.SCALE))
         layout.set_tabs(tabstops_to_tabarray(self._style.get_tabs(), dpi_x))
         #
         align = self._style.get_alignment_text()
         if align == 'left':
-            layout.set_alignment(pango.ALIGN_LEFT)
+            layout.set_alignment(Pango.Alignment.LEFT)
         elif align == 'right':
-            layout.set_alignment(pango.ALIGN_RIGHT)
+            layout.set_alignment(Pango.Alignment.RIGHT)
         elif align == 'center':
-            layout.set_alignment(pango.ALIGN_CENTER)
+            layout.set_alignment(Pango.Alignment.CENTER)
         elif align == 'justify':
             layout.set_justify(True)
         else:
@@ -553,7 +551,7 @@ class GtkDocParagraph(GtkDocBaseElement):
         layout.set_font_description(fontstyle_to_fontdescription(font_style))
         #set line spacing based on font:
         spacing = font_style.get_size() * self.spacingfractionfont
-        layout.set_spacing(int(round(spacing * pango.SCALE)))
+        layout.set_spacing(int(round(spacing * Pango.SCALE)))
         
         text_height = height - t_margin - 2 * v_padding
         
@@ -562,7 +560,7 @@ class GtkDocParagraph(GtkDocBaseElement):
         layout.set_attributes(self._attrlist)
         layout_width, layout_height = layout.get_pixel_size()
         line_count = layout.get_line_count()
-        spacing = layout.get_spacing() / pango.SCALE
+        spacing = layout.get_spacing() / Pango.SCALE
         
         # if all paragraph fits we don't need to cut
         if layout_height - spacing <= text_height:
@@ -585,7 +583,7 @@ class GtkDocParagraph(GtkDocBaseElement):
         # 2. if nothing fits, move to next page without split
         #  there is a spacing above and under the text
         if linerange[1] - linerange[0] + 2.*spacing \
-                    > text_height * pango.SCALE:
+                    > text_height * Pango.SCALE:
             return (None, self), 0
         
         # 3. split the paragraph
@@ -602,7 +600,7 @@ class GtkDocParagraph(GtkDocBaseElement):
             linenr += 1
             linerange = lineiter.get_line_yrange()
             if linerange[1] - startheight  + 2.*spacing \
-                        > text_height * pango.SCALE:
+                        > text_height * Pango.SCALE:
                 splitline = linenr
                 break
             endheight = linerange[1]
@@ -678,20 +676,20 @@ class GtkDocParagraph(GtkDocBaseElement):
         text_width = width - l_margin - 2 * h_padding - r_margin
         if f_indent < 0:
             text_width -= f_indent
-        layout.set_width(int(text_width * pango.SCALE))
+        layout.set_width(int(text_width * Pango.SCALE))
         
         # set paragraph properties
-        layout.set_wrap(pango.WRAP_WORD_CHAR)
-        layout.set_indent(int(f_indent * pango.SCALE))
+        layout.set_wrap(Pango.WrapMode.WORD_CHAR)
+        layout.set_indent(int(f_indent * Pango.SCALE))
         layout.set_tabs(tabstops_to_tabarray(self._style.get_tabs(), dpi_x))
         #
         align = self._style.get_alignment_text()
         if align == 'left':
-            layout.set_alignment(pango.ALIGN_LEFT)
+            layout.set_alignment(Pango.Alignment.LEFT)
         elif align == 'right':
-            layout.set_alignment(pango.ALIGN_RIGHT)
+            layout.set_alignment(Pango.Alignment.RIGHT)
         elif align == 'center':
-            layout.set_alignment(pango.ALIGN_CENTER)
+            layout.set_alignment(Pango.Alignment.CENTER)
         elif align == 'justify':
             layout.set_justify(True)
         #
@@ -699,7 +697,7 @@ class GtkDocParagraph(GtkDocBaseElement):
         layout.set_font_description(fontstyle_to_fontdescription(font_style))
         #set line spacing based on font:
         spacing = font_style.get_size() * self.spacingfractionfont
-        layout.set_spacing(int(round(spacing * pango.SCALE)))
+        layout.set_spacing(int(round(spacing * Pango.SCALE)))
 
         # layout the text
         layout.set_text(self._plaintext)
@@ -1003,7 +1001,7 @@ class GtkDocPicture(GtkDocBaseElement):
             return (None, self), 0
 
     def draw(self, cr, layout, width, dpi_x, dpi_y):
-        import gtk
+        from gi.repository import Gtk
         img_width = self._width * dpi_x / 2.54
         img_height = self._height * dpi_y / 2.54
         
@@ -1028,7 +1026,7 @@ class GtkDocPicture(GtkDocBaseElement):
         cr.save()
         cr.translate(l_margin, 0)
         cr.scale(scale, scale)
-        gcr = gtk.gdk.CairoContext(cr)
+        gcr = Gdk.CairoContext(cr)
         gcr.set_source_pixbuf(pixbuf,
                               (img_width / scale - pixbuf_width) / 2,
                               (img_height / scale - pixbuf_height) / 2)
@@ -1246,11 +1244,11 @@ class GtkDocText(GtkDocBaseElement):
         # set paragraph properties
         align = self._style.get_alignment_text()
         if align == 'left':
-            layout.set_alignment(pango.ALIGN_LEFT)
+            layout.set_alignment(Pango.Alignment.LEFT)
         elif align == 'right':
-            layout.set_alignment(pango.ALIGN_RIGHT)
+            layout.set_alignment(Pango.Alignment.RIGHT)
         elif align == 'center':
-            layout.set_alignment(pango.ALIGN_CENTER)
+            layout.set_alignment(Pango.Alignment.CENTER)
         elif align == 'justify':
             layout.set_justify(True)
         else:
@@ -1260,7 +1258,7 @@ class GtkDocText(GtkDocBaseElement):
         layout.set_font_description(fontstyle_to_fontdescription(font_style))
         #set line spacing based on font:
         spacing = font_style.get_size() * self.spacingfractionfont
-        layout.set_spacing(int(round(spacing * pango.SCALE)))
+        layout.set_spacing(int(round(spacing * Pango.SCALE)))
 
         # layout the text
         layout.set_markup(self._text)
@@ -1458,7 +1456,7 @@ links (like ODF) and write PDF from that format.
                 self._links_error = True
 
         if not markup:            
-            # We need to escape the text here for later pango.Layout.set_markup
+            # We need to escape the text here for later Pango.Layout.set_markup
             # calls. This way we save the markup created by the report
             # The markup in the note editor is not in the text so is not 
             # considered. It must be added by pango too

@@ -33,8 +33,11 @@ from gen.ggettext import gettext as _
 # GTK libraries
 #
 #-------------------------------------------------------------------------
-import gtk
-from pango import WEIGHT_NORMAL, WEIGHT_BOLD
+from gi.repository import Gtk
+from gi.repository import Pango
+WEIGHT_NORMAL = Pango.Weight.NORMAL
+WEIGHT_BOLD = Pango.Weight.BOLD
+
 import cgi
 
 #-------------------------------------------------------------------------
@@ -42,6 +45,7 @@ import cgi
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
+from gui.widgets.undoablebuffer import UndoableBuffer
 import gen.datehandler
 from gen.config import config
 
@@ -58,7 +62,7 @@ age_precision       = config.get('preferences.age-display-precision')
 # EventRefModel
 #
 #-------------------------------------------------------------------------
-class EventRefModel(gtk.TreeStore):
+class EventRefModel(Gtk.TreeStore):
     #index of the working group
     _ROOTINDEX = 0 
     _GROUPSTRING = _('%(groupname)s - %(groupnumber)d')
@@ -90,7 +94,7 @@ class EventRefModel(gtk.TreeStore):
         """
         self.start_date = kwargs.get("start_date", None)
         typeobjs = (x[1] for x in self.COLS)
-        gtk.TreeStore.__init__(self, *typeobjs)
+        GObject.GObject.__init__(self, *typeobjs)
         self.db = db
         self.groups = groups
         for index, group in enumerate(event_list):

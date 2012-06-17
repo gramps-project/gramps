@@ -39,7 +39,7 @@ _LOG = logging.getLogger(".plugins.eventview")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #

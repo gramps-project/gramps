@@ -36,14 +36,14 @@ import locale
 # GNOME modules
 #
 #-------------------------------------------------------------------------
-import gtk
-import gobject
+from gi.repository import Gtk
+from gi.repository import GObject
 
 def fill_combo(combo, data_list):
     """
     Fill a combo box with completion data
     """
-    store = gtk.ListStore(gobject.TYPE_STRING)
+    store = Gtk.ListStore(GObject.TYPE_STRING)
 
     for data in data_list:
         if data:
@@ -51,24 +51,24 @@ def fill_combo(combo, data_list):
     
     combo.set_model(store)
     combo.set_text_column(0)
-    completion = gtk.EntryCompletion()
+    completion = Gtk.EntryCompletion()
     completion.set_model(store)
     completion.set_minimum_key_length(1)
     completion.set_text_column(0)
-    combo.child.set_completion(completion)
+    combo.get_child().set_completion(completion)
 
 def fill_entry(entry, data_list):
     """
     Fill a entry with completion data
     """
 
-    store = gtk.ListStore(gobject.TYPE_STRING)
+    store = Gtk.ListStore(GObject.TYPE_STRING)
 
     for data in data_list:
         if data:
             store.append(row=[data])
 
-    completion = gtk.EntryCompletion()
+    completion = Gtk.EntryCompletion()
     completion.set_model(store)
     completion.set_minimum_key_length(1)
     completion.set_text_column(0)
@@ -115,7 +115,7 @@ class StandardCustomSelector(object):
         Constructor for the StandardCustomSelector class.
 
         :param cbe: Existing ComboBoxEntry widget to use.
-        :type cbe: gtk.ComboBoxEntry
+        :type cbe: Gtk.ComboBoxEntry
         :param mapping: The mapping between integer and string constants.
         :type mapping:  dict
         :param custom_key: The key corresponding to the custom string entry
@@ -132,7 +132,7 @@ class StandardCustomSelector(object):
         self.additional = additional
         
         # make model
-        self.store = gtk.ListStore(gobject.TYPE_INT, gobject.TYPE_STRING)
+        self.store = Gtk.ListStore(GObject.TYPE_INT, GObject.TYPE_STRING)
 
         # fill it up using mapping
         self.fill()
@@ -141,18 +141,24 @@ class StandardCustomSelector(object):
         if cbe:
             self.selector = cbe
             self.selector.set_model(self.store)
-            self.selector.set_text_column(1)
+            renderer = Gtk.CellRendererText()
+            self.selector.pack_start(renderer, True)
+            self.selector.add_attribute(renderer, 'text', 1)
         else:
-            self.selector = gtk.ComboBoxEntry(self.store, 1)
+            self.selector = Gtk.ComboBox(has_entry=True)
+            self.selector.set_model(self.store)
+            renderer = Gtk.CellRendererText()
+            self.selector.pack_start(renderer, True)
+            self.selector.add_attribute(renderer, 'text', 1)
         if self.active_key is not None:
             self.selector.set_active(self.active_index)
 
         # make autocompletion work
-        completion = gtk.EntryCompletion()
+        completion = Gtk.EntryCompletion()
         completion.set_model(self.store)
         completion.set_minimum_key_length(1)
         completion.set_text_column(1)
-        self.selector.child.set_completion(completion)
+        self.selector.get_child().set_completion(completion)
 
     def fill(self):
         """
@@ -201,10 +207,10 @@ class StandardCustomSelector(object):
             int_val = self.store.get_value(active_iter, 0)
             str_val = self.store.get_value(active_iter, 1)
             if str_val != self.mapping[int_val]:
-                str_val = self.selector.child.get_text().strip()
+                str_val = self.selector.get_child().get_text().strip()
         else:
             int_val = self.custom_key
-            str_val = self.selector.child.get_text().strip()
+            str_val = self.selector.get_child().get_text().strip()
         if str_val in self.mapping.itervalues():
             for key in self.mapping:
                 if str_val == self.mapping[key]:
@@ -225,7 +231,7 @@ class StandardCustomSelector(object):
         if key in self.mapping and key != self.custom_key:
             self.store.foreach(self.set_int_value, key)
         elif self.custom_key is not None:
-            self.selector.child.set_text(text)
+            self.selector.get_child().set_text(text)
         else:
             print "StandardCustomSelector.set(): Option not available:", val
 

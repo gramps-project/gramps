@@ -67,14 +67,14 @@ log = logging.getLogger('BuildApp')
 log.addHandler(console)
 
 
-class buildbase(gobject.GObject):
+class buildbase(GObject.GObject):
     __gsignals__={
-        "build_progresstext"        :  (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, [gobject.TYPE_STRING]),
-        "build_progressfraction"    :  (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, [gobject.TYPE_FLOAT]),
+        "build_progresstext"        :  (GObject.SignalFlags.RUN_LAST, None, [GObject.TYPE_STRING]),
+        "build_progressfraction"    :  (GObject.SignalFlags.RUN_LAST, None, [GObject.TYPE_FLOAT]),
     }
 
     def __init(self):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
         self.gramps_version = 'VERSION-UNKNOWN'
         self.bTarball = bTarball
         self.build_root = '.'  # the directory were the build source is located
@@ -636,4 +636,4 @@ Options:
     #==========================
     sys.exit(buildGRAMPS(repository_path,out_dir, bTarball))
 
-gobject.type_register(buildbase)
+GObject.type_register(buildbase)

@@ -26,10 +26,12 @@
 # GTK libraries
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import GObject
+from gi.repository import Gdk
+from gi.repository import Gtk
 
-_LEFT = gtk.gdk.keyval_from_name("Left")
-_RIGHT = gtk.gdk.keyval_from_name("Right")
+_LEFT = Gdk.keyval_from_name("Left")
+_RIGHT = Gdk.keyval_from_name("Right")
 
 #-------------------------------------------------------------------------
 #
@@ -37,13 +39,13 @@ _RIGHT = gtk.gdk.keyval_from_name("Right")
 #
 #-------------------------------------------------------------------------
 
-class GrampsTab(gtk.VBox):
+class GrampsTab(Gtk.VBox):
     """
     This class provides the base level class for 'tabs', which are used to
     fill in notebook tabs for GRAMPS edit dialogs. 
     
     Each tab returns a gtk container widget which can be inserted into a 
-    gtk.Notebook by the instantiating object.
+    Gtk.Notebook by the instantiating object.
 
     All tab classes should inherit from GrampsTab
     """
@@ -64,7 +66,7 @@ class GrampsTab(gtk.VBox):
         @param name: Notebook label name
         @type name: str/unicode
         """
-        gtk.VBox.__init__(self)
+        GObject.GObject.__init__(self)
 
         # store information to pass to child windows
         self.dbstate = dbstate
@@ -102,26 +104,26 @@ class GrampsTab(gtk.VBox):
         by the derived class. Creates an container that has the label and
         the icon in it.
         @returns: widget to be used for the notebook label.
-        @rtype: gtk.HBox
+        @rtype: Gtk.HBox
         """
-        hbox = gtk.HBox()
+        hbox = Gtk.HBox()
         icon = self.get_icon_name()
 
         if isinstance(icon, tuple):
             if icon[0] == 0:
-                func = gtk.image_new_from_icon_name
+                func = Gtk.Image.new_from_icon_name
             else:
-                func = gtk.image_new_from_stock
+                func = Gtk.Image.new_from_stock
             name = icon[1]
         else:
-            func = gtk.image_new_from_stock
+            func = Gtk.Image.new_from_stock
             name = icon
         
-        self.tab_image = func(name, gtk.ICON_SIZE_MENU)
+        self.tab_image = func(name, Gtk.IconSize.MENU)
         self.track_ref_for_deletion("tab_image")
-        self.label = gtk.Label(self.tab_name)
+        self.label = Gtk.Label(label=self.tab_name)
         self.track_ref_for_deletion("label")
-        hbox.pack_start(self.tab_image)
+        hbox.pack_start(self.tab_image, True, True, 0)
         hbox.set_spacing(6)
         hbox.add(self.label)
         hbox.show_all()
@@ -135,7 +137,7 @@ class GrampsTab(gtk.VBox):
         @returns: stock icon name
         @rtype: str
         """
-        return gtk.STOCK_NEW
+        return Gtk.STOCK_NEW
 
     def get_tab_widget(self):
         """
@@ -143,7 +145,7 @@ class GrampsTab(gtk.VBox):
         container class is provided, and the object may manipulate the
         child widgets contained in the container.
         @returns: gtk widget
-        @rtype: gtk.HBox
+        @rtype: Gtk.HBox
         """
         return self.label_container
 
@@ -153,12 +155,12 @@ class GrampsTab(gtk.VBox):
         The inheriting object must contain a widget that connects at mimimum
         to this method, eg an eventbox, tree, ...
         """
-        if event.type == gtk.gdk.KEY_PRESS:
+        if event.type == Gdk.KEY_PRESS:
             if event.keyval in (_LEFT,) and \
-                    (event.state & gtk.gdk.MOD1_MASK):
+                    (event.get_state() & Gdk.ModifierType.MOD1_MASK):
                 self.prev_page()
             elif event.keyval in (_RIGHT,) and \
-                    (event.state & gtk.gdk.MOD1_MASK):
+                    (event.get_state() & Gdk.ModifierType.MOD1_MASK):
                 self.next_page()
             else:
                 return
@@ -187,7 +189,7 @@ class GrampsTab(gtk.VBox):
         """
         Builds the interface for the derived class. This function should be
         overridden in the derived class. Since the classes are derived from
-        gtk.HBox, the self.pack_start, self.pack_end, and self.add functions
+        Gtk.HBox, the self.pack_start, self.pack_end, and self.add functions
         can be used to add widgets to the interface.
         """
         pass

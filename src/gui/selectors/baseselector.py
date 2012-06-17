@@ -26,8 +26,8 @@
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
-import pango
+from gi.repository import Gtk
+from gi.repository import Pango
 
 #-------------------------------------------------------------------------
 #
@@ -68,9 +68,9 @@ class BaseSelector(ManagedWindow):
 
         ManagedWindow.__init__(self, uistate, track, self)
 
-        self.renderer = gtk.CellRendererText()
+        self.renderer = Gtk.CellRendererText()
         self.track_ref_for_deletion("renderer")
-        self.renderer.set_property('ellipsize',pango.ELLIPSIZE_END)
+        self.renderer.set_property('ellipsize',Pango.EllipsizeMode.END)
 
         self.db = dbstate.db
         self.tree = None
@@ -92,7 +92,7 @@ class BaseSelector(ManagedWindow):
         self.search_bar = SearchBar(dbstate, uistate, self.build_tree)
         filter_box = self.search_bar.build()
         self.setup_filter()
-        vbox.pack_start(filter_box, False, False)
+        vbox.pack_start(filter_box, False, False, 0)
         vbox.reorder_child(filter_box, 1)
 
         self.set_window(window,title_label,self.title)
@@ -101,7 +101,7 @@ class BaseSelector(ManagedWindow):
         self.sort_col = 0
         self.setupcols = True
         self.columns = []
-        self.sortorder = gtk.SORT_ASCENDING
+        self.sortorder = Gtk.SortType.ASCENDING
 
         self.skip_list=skip
         self.build_tree()
@@ -161,10 +161,10 @@ class BaseSelector(ManagedWindow):
             if item[2] == BaseSelector.NONE:
                 continue
             elif item[2] == BaseSelector.TEXT:
-                column = gtk.TreeViewColumn(item[0],self.renderer,text=item[3])
+                column = Gtk.TreeViewColumn(item[0],self.renderer,text=item[3])
             elif item[2] == BaseSelector.MARKUP:
-                column = gtk.TreeViewColumn(item[0],self.renderer,markup=item[3])
-            column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+                column = Gtk.TreeViewColumn(item[0],self.renderer,markup=item[3])
+            column.set_sizing(Gtk.TreeViewColumnSizing.FIXED)
             column.set_fixed_width(item[1])
             column.set_resizable(True)
             #connect click
@@ -189,19 +189,19 @@ class BaseSelector(ManagedWindow):
     def run(self):
         val = self.window.run()
         result = None
-        if val == gtk.RESPONSE_OK:
+        if val == Gtk.ResponseType.OK:
             id_list = self.get_selected_ids()
             if id_list and id_list[0]:
                 result = self.get_from_handle_func()(id_list[0])
                 if result is None and self.get_from_handle_func2:
                     result = self.get_from_handle_func2()(id_list[0])
             self.close()
-        elif val != gtk.RESPONSE_DELETE_EVENT:
+        elif val != Gtk.ResponseType.DELETE_EVENT:
             self.close()
         return result
 
     def _on_row_activated(self, treeview, path, view_col):
-        self.window.response(gtk.RESPONSE_OK)
+        self.window.response(Gtk.ResponseType.OK)
 
     def _local_init(self):
         # define selector-specific init routine
@@ -321,14 +321,14 @@ class BaseSelector(ManagedWindow):
         
     def column_clicked(self, obj, data):
         if self.sort_col != data:
-            self.sortorder = gtk.SORT_ASCENDING
+            self.sortorder = Gtk.SortType.ASCENDING
             self.sort_col = data
         else:
-            if (self.columns[data].get_sort_order() == gtk.SORT_DESCENDING
+            if (self.columns[data].get_sort_order() == Gtk.SortType.DESCENDING
                 or not self.columns[data].get_sort_indicator()):
-                self.sortorder = gtk.SORT_ASCENDING
+                self.sortorder = Gtk.SortType.ASCENDING
             else:
-                self.sortorder = gtk.SORT_DESCENDING
+                self.sortorder = Gtk.SortType.DESCENDING
             self.model.reverse_order()
         self.build_tree()
 

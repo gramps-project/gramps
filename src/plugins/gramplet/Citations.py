@@ -25,7 +25,7 @@ from gui.listmodel import ListModel, NOSORT
 from gen.plug import Gramplet
 from gen.ggettext import gettext as _
 from gen.errors import WindowActiveError
-import gtk
+from gi.repository import Gtk
 
 class Citations(Gramplet):
     """
@@ -43,7 +43,7 @@ class Citations(Gramplet):
         """
         tip = _('Double-click on a row to edit the selected source/citation.')
         self.set_tooltip(tip)
-        top = gtk.TreeView()
+        top = Gtk.TreeView()
         titles = [('', NOSORT, 50,),
                   (_('Source/Citation'), 1, 350),
                   (_('Author'), 2, 200),

@@ -36,8 +36,9 @@ from time import strftime as strftime
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
-from gtk.gdk import ACTION_COPY, BUTTON1_MASK, ACTION_MOVE
+from gi.repository import Gtk
+from gi.repository import Gdk
+from gi.repository import GdkPixbuf
 
 #-------------------------------------------------------------------------
 #
@@ -73,7 +74,7 @@ WIKI_HELP_SEC = _('manual|Using_the_Clipboard')
 #-------------------------------------------------------------------------
 
 _stock_image = os.path.join(const.IMAGE_DIR,'stock_link.png')
-LINK_PIC = gtk.gdk.pixbuf_new_from_file(_stock_image)
+LINK_PIC = GdkPixbuf.Pixbuf.new_from_file(_stock_image)
 ICONS = {}
 for (name, file) in (
     ("media", "gramps-media.png"),
@@ -94,7 +95,7 @@ for (name, file) in (
     ('url', 'gramps-geo.png'),
     ):
     _image = os.path.join(const.IMAGE_DIR, '16x16', file)
-    ICONS[name] = gtk.gdk.pixbuf_new_from_file(_image) 
+    ICONS[name] = GdkPixbuf.Pixbuf.new_from_file(_image) 
 
 #-------------------------------------------------------------------------
 #
@@ -171,7 +172,7 @@ def model_contains(model, data):
 #
 #-------------------------------------------------------------------------
 class ClipWrapper(object):
-    UNAVAILABLE_ICON = gtk.STOCK_DIALOG_ERROR
+    UNAVAILABLE_ICON = Gtk.STOCK_DIALOG_ERROR
 
     def __init__(self, dbstate, obj):
         dbstate.connect('database-changed', self.database_changed)
@@ -870,10 +871,10 @@ class ClipDropHandleList(ClipDropList):
 # ClipboardListModel class
 #
 #-------------------------------------------------------------------------
-class ClipboardListModel(gtk.ListStore):
+class ClipboardListModel(Gtk.ListStore):
 
     def __init__(self):
-        gtk.ListStore.__init__(self,
+        GObject.GObject.__init__(self,
                                str,    # 0: object type
                                object, # 1: object
                                object, # 2: tooltip callback
@@ -891,7 +892,7 @@ class ClipboardListModel(gtk.ListStore):
 #-------------------------------------------------------------------------
 class ClipboardListView(object):
 
-    LOCAL_DRAG_TARGET = ('MY_TREE_MODEL_ROW', gtk.TARGET_SAME_WIDGET, 0)
+    LOCAL_DRAG_TARGET = ('MY_TREE_MODEL_ROW', Gtk.TargetFlags.SAME_WIDGET, 0)
     LOCAL_DRAG_TYPE   = 'MY_TREE_MODEL_ROW'
     
     def __init__(self, dbstate, widget):
@@ -905,16 +906,16 @@ class ClipboardListView(object):
         self._previous_drop_time = 0
 
         # Create the tree columns
-        self._col1 = gtk.TreeViewColumn(_("Type"))
+        self._col1 = Gtk.TreeViewColumn(_("Type"))
         self._col1.set_property("resizable", True)
         self._col1.set_sort_column_id(0)
-        self._col2 = gtk.TreeViewColumn(_("Title"))
+        self._col2 = Gtk.TreeViewColumn(_("Title"))
         self._col2.set_property("resizable", True)
         self._col2.set_sort_column_id(3)
-        self._col3 = gtk.TreeViewColumn(_("Value"))
+        self._col3 = Gtk.TreeViewColumn(_("Value"))
         self._col3.set_property("resizable", True)
         self._col3.set_sort_column_id(4)
-        self._col4 = gtk.TreeViewColumn(_("Family Tree"))
+        self._col4 = Gtk.TreeViewColumn(_("Family Tree"))
         self._col4.set_property("resizable", True)
         self._col4.set_sort_column_id(6)
 
@@ -925,14 +926,14 @@ class ClipboardListView(object):
         self._widget.append_column(self._col4)
 
         # Create cell renders
-        self._col1_cellpb = gtk.CellRendererPixbuf()
-        self._col1_cell = gtk.CellRendererText()
-        self._col2_cell = gtk.CellRendererText()
-        self._col3_cell = gtk.CellRendererText()
-        self._col4_cell = gtk.CellRendererText()
+        self._col1_cellpb = Gtk.CellRendererPixbuf()
+        self._col1_cell = Gtk.CellRendererText()
+        self._col2_cell = Gtk.CellRendererText()
+        self._col3_cell = Gtk.CellRendererText()
+        self._col4_cell = Gtk.CellRendererText()
 
         # Add cells to view
-        self._col1.pack_start(self._col1_cellpb, False)
+        self._col1.pack_start(self._col1_cellpb, False, True, 0)
         self._col1.pack_start(self._col1_cell, True)
         self._col2.pack_start(self._col2_cell, True)
         self._col3.pack_start(self._col3_cell, True)
@@ -949,10 +950,10 @@ class ClipboardListView(object):
         self._widget.set_enable_search(True)
         #self._widget.set_search_column(3)
 
-        self._widget.drag_dest_set(gtk.DEST_DEFAULT_ALL,
+        self._widget.drag_dest_set(Gtk.DestDefaults.ALL,
                                    (ClipboardListView.LOCAL_DRAG_TARGET,) + \
                                        DdTargets.all_targets(),
-                                   ACTION_COPY)
+                                    Gdk.DragAction.COPY)
 
         self._widget.connect('drag_data_get', self.object_drag_data_get)
         self._widget.connect('drag_begin', self.object_drag_begin)
@@ -1116,7 +1117,7 @@ class ClipboardListView(object):
         tree_selection = self._widget.get_selection()
         model, paths = tree_selection.get_selected_rows()
         if len(paths) > 1:
-            targets = [(DdTargets.RAW_LIST.drag_type, gtk.TARGET_SAME_WIDGET, 0), 
+            targets = [(DdTargets.RAW_LIST.drag_type, Gtk.TargetFlags.SAME_WIDGET, 0), 
                        ClipboardListView.LOCAL_DRAG_TARGET] 
         else:
             targets = [ClipboardListView.LOCAL_DRAG_TARGET] 
@@ -1126,8 +1127,8 @@ class ClipboardListView(object):
                 o = model.get_value(node,1)
                 targets += [target.target() for target in o.__class__.DROP_TARGETS]
 
-        self._widget.enable_model_drag_source(BUTTON1_MASK, targets, 
-                                              ACTION_COPY | ACTION_MOVE)
+        self._widget.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK, targets, 
+                                    Gdk.DragAction.COPY | Gdk.DragAction.MOVE)
 
     def object_drag_begin(self, context, a):
         """ Handle the beginning of a drag operation. """
@@ -1222,14 +1223,14 @@ class ClipboardListView(object):
             data = [o.__class__.DRAG_TARGET.drag_type, o, None, 
                     o._type, o._value, o._dbid, o._dbname]
             contains = model_contains(model, data)
-            if context.action != ACTION_MOVE and contains:
+            if context.action != Gdk.DragAction.MOVE and contains:
                 continue
             drop_info = widget.get_dest_row_at_pos(x, y)
             if drop_info:
                 path, position = drop_info
                 node = model.get_iter(path)
-                if (position == gtk.TREE_VIEW_DROP_BEFORE
-                    or position == gtk.TREE_VIEW_DROP_INTO_OR_BEFORE):
+                if (position == Gtk.TreeViewDropPosition.BEFORE
+                    or position == Gtk.TreeViewDropPosition.INTO_OR_BEFORE):
                     model.insert_before(node, data)
                 else:
                     model.insert_after(node, data)
@@ -1239,7 +1240,7 @@ class ClipboardListView(object):
         # FIXME: there is one bug here: if you multi-select and drop
         # on self, then it moves the first, and copies the rest.
 
-        if context.action == ACTION_MOVE:
+        if context.action == Gdk.DragAction.MOVE:
             context.finish(True, True, time)
 
         # remember time for double drop workaround.
@@ -1251,7 +1252,7 @@ class ClipboardListView(object):
     def set_model(self,model=None):
         self._widget.set_model(model)
         self._widget.get_selection().connect('changed',self.on_object_select_row)
-        self._widget.get_selection().set_mode(gtk.SELECTION_MULTIPLE)
+        self._widget.get_selection().set_mode(Gtk.SelectionMode.MULTIPLE)
 
     def get_model(self):
         return self._widget.get_model()
@@ -1318,7 +1319,7 @@ class ClipboardWindow(ManagedWindow):
         self.object_list = ClipboardListView(self.dbstate, mtv)
         self.object_list.get_selection().connect('changed',
                                                  self.set_clear_btn_sensitivity)
-        self.object_list.get_selection().set_mode(gtk.SELECTION_MULTIPLE)
+        self.object_list.get_selection().set_mode(Gtk.SelectionMode.MULTIPLE)
         self.set_clear_btn_sensitivity(sel=self.object_list.get_selection())
         
         if not ClipboardWindow.otree:
@@ -1343,7 +1344,7 @@ class ClipboardWindow(ManagedWindow):
             "on_help_clicked": self.on_help_clicked,
             })
 
-        self.clear_all_btn.connect_object('clicked', gtk.ListStore.clear,
+        self.clear_all_btn.connect_object('clicked', Gtk.ListStore.clear,
                                           ClipboardWindow.otree)
         self.db.connect('database-changed', lambda x: ClipboardWindow.otree.clear())
         
@@ -1387,7 +1388,7 @@ class ClipboardWindow(ManagedWindow):
 # MultiTreeView class
 #
 #-------------------------------------------------------------------------
-class MultiTreeView(gtk.TreeView):
+class MultiTreeView(Gtk.TreeView):
     '''
     TreeView that captures mouse events to make drag and drop work properly
     '''
@@ -1402,8 +1403,8 @@ class MultiTreeView(gtk.TreeView):
         self.defer_select = False
 
     def key_press_event(self, widget, event):
-        if event.type == gtk.gdk.KEY_PRESS:
-            if event.keyval == gtk.keysyms.Delete:
+        if event.type == Gdk.KEY_PRESS:
+            if event.keyval == Gdk.KEY_Delete:
                 model, paths = self.get_selection().get_selected_rows()
                 # reverse, to delete from the end
                 paths.sort(key=lambda x:-x[0])
@@ -1428,7 +1429,7 @@ class MultiTreeView(gtk.TreeView):
             o = None
             if node:
                 o = store.get_value(node, 1)
-            popup = gtk.Menu()
+            popup = Gtk.Menu()
             # ---------------------------
             if o:
                 objclass, handle = o._objclass, o._handle
@@ -1436,13 +1437,13 @@ class MultiTreeView(gtk.TreeView):
                 objclass, handle = None, None
             if objclass in ['Person', 'Event', 'Media', 'Source',
                             'Repository', 'Family', 'Note', 'Place']:
-                menu_item = gtk.MenuItem(_("the object|See %s details") % trans_objclass(objclass))
+                menu_item = Gtk.MenuItem(_("the object|See %s details") % trans_objclass(objclass))
                 menu_item.connect("activate", 
                    lambda widget: self.edit_obj(objclass, handle))
                 popup.append(menu_item)
                 menu_item.show()
                 # ---------------------------
-                menu_item = gtk.MenuItem(_("the object|Make %s active") % trans_objclass(objclass))
+                menu_item = Gtk.MenuItem(_("the object|Make %s active") % trans_objclass(objclass))
                 menu_item.connect("activate", 
                       lambda widget: self.uistate.set_active(handle, objclass))
                 popup.append(menu_item)
@@ -1458,7 +1459,7 @@ class MultiTreeView(gtk.TreeView):
                             obj = self.dbstate.db.get_table_metadata(objclass)["handle_func"](my_handle)
                             if obj:
                                 gids.add(obj.gramps_id)
-                menu_item = gtk.MenuItem(_("the object|Create Filter from %s selected...") % trans_objclass(objclass))
+                menu_item = Gtk.MenuItem(_("the object|Create Filter from %s selected...") % trans_objclass(objclass))
                 menu_item.connect("activate", 
                       lambda widget: make_filter(self.dbstate, self.uistate, 
                                       objclass, gids, title=self.title))
@@ -1467,7 +1468,7 @@ class MultiTreeView(gtk.TreeView):
             # Show the popup menu:
             popup.popup(None, None, None, 3, event.time)
             return True        
-        elif event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+        elif event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             model, paths = self.get_selection().get_selected_rows()
             for path in paths:
                 node = model.get_iter(path)
@@ -1479,8 +1480,8 @@ class MultiTreeView(gtk.TreeView):
             return True
         # otherwise:
         if (target 
-            and event.type == gtk.gdk.BUTTON_PRESS
-            and not (event.state & (gtk.gdk.CONTROL_MASK|gtk.gdk.SHIFT_MASK))
+            and event.type == Gdk.EventType.BUTTON_PRESS
+            and not (event.get_state() & (Gdk.ModifierType.CONTROL_MASK|Gdk.ModifierType.SHIFT_MASK))
             and self.get_selection().path_is_selected(target[0])):
             # disable selection
             self.get_selection().set_select_function(lambda *ignore: False)

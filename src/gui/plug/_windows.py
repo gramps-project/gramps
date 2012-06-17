@@ -37,9 +37,9 @@ import sys
 # GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk
-import pango
-import gobject
+from gi.repository import Gtk
+from gi.repository import Pango
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -86,195 +86,195 @@ class PluginStatus(ManagedWindow):
 
         self.__pmgr = GuiPluginManager.get_instance()
         self.__preg = PluginRegister.get_instance()
-        self.set_window(gtk.Dialog("", uistate.window,
-                                   gtk.DIALOG_DESTROY_WITH_PARENT,
-                                   (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)),
+        self.set_window(Gtk.Dialog("", uistate.window,
+                                   Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                   (Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE)),
                         None, self.title)
         self.window.set_size_request(750, 400)
         self.window.connect('response', self.close)
         
-        notebook = gtk.Notebook()
+        notebook = Gtk.Notebook()
         
         #first page with all registered plugins
-        vbox_reg = gtk.VBox()
-        scrolled_window_reg =  gtk.ScrolledWindow()
-        self.list_reg =  gtk.TreeView()
+        vbox_reg = Gtk.VBox()
+        scrolled_window_reg =  Gtk.ScrolledWindow()
+        self.list_reg =  Gtk.TreeView()
         #  model: plugintype, hidden, pluginname, plugindescr, pluginid
-        self.model_reg = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING, 
-                gobject.TYPE_STRING, gobject.TYPE_STRING, gobject.TYPE_STRING)
+        self.model_reg = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING, 
+                GObject.TYPE_STRING, GObject.TYPE_STRING, GObject.TYPE_STRING)
         self.selection_reg = self.list_reg.get_selection()
         self.list_reg.set_model(self.model_reg)
         self.list_reg.set_rules_hint(True)
         self.list_reg.connect('button-press-event', self.button_press_reg)
-        col0_reg = gtk.TreeViewColumn(_('Type'), gtk.CellRendererText(), text=0)
+        col0_reg = Gtk.TreeViewColumn(_('Type'), Gtk.CellRendererText(), text=0)
         col0_reg.set_sort_column_id(0)
         col0_reg.set_resizable(True)
         self.list_reg.append_column(col0_reg)
-        col = gtk.TreeViewColumn(_('Status'), gtk.CellRendererText(), markup=1)
+        col = Gtk.TreeViewColumn(_('Status'), Gtk.CellRendererText(), markup=1)
         col.set_sort_column_id(1)
         self.list_reg.append_column(col)
-        col2_reg = gtk.TreeViewColumn(_('Name'), gtk.CellRendererText(), text=2)
+        col2_reg = Gtk.TreeViewColumn(_('Name'), Gtk.CellRendererText(), text=2)
         col2_reg.set_sort_column_id(2)
         col2_reg.set_resizable(True)
         self.list_reg.append_column(col2_reg)
-        col = gtk.TreeViewColumn(_('Description'), gtk.CellRendererText(), text=3)
+        col = Gtk.TreeViewColumn(_('Description'), Gtk.CellRendererText(), text=3)
         col.set_sort_column_id(3)
         col.set_resizable(True)
         self.list_reg.append_column(col)
         self.list_reg.set_search_column(2)
 
         scrolled_window_reg.add(self.list_reg)
-        vbox_reg.pack_start(scrolled_window_reg)
-        hbutbox = gtk.HButtonBox()
-        hbutbox.set_layout(gtk.BUTTONBOX_SPREAD)
-        self.__info_btn = gtk.Button(_("Info"))
+        vbox_reg.pack_start(scrolled_window_reg, True, True, 0)
+        hbutbox = Gtk.HButtonBox()
+        hbutbox.set_layout(Gtk.ButtonBoxStyle.SPREAD)
+        self.__info_btn = Gtk.Button(_("Info"))
         hbutbox.add(self.__info_btn)
         self.__info_btn.connect('clicked', self.__info, self.list_reg, 4) # id_col
-        self.__hide_btn = gtk.Button(_("Hide/Unhide"))
+        self.__hide_btn = Gtk.Button(_("Hide/Unhide"))
         hbutbox.add(self.__hide_btn)
         self.__hide_btn.connect('clicked', self.__hide, 
                                 self.list_reg, 4, 1) # list, id_col, hide_col
         if __debug__:
-            self.__edit_btn = gtk.Button(_("Edit"))
+            self.__edit_btn = Gtk.Button(_("Edit"))
             hbutbox.add(self.__edit_btn)
             self.__edit_btn.connect('clicked', self.__edit, self.list_reg, 4) # id_col
-            self.__load_btn = gtk.Button(_("Load"))
+            self.__load_btn = Gtk.Button(_("Load"))
             hbutbox.add(self.__load_btn)
             self.__load_btn.connect('clicked', self.__load, self.list_reg, 4) # id_col
         vbox_reg.pack_start(hbutbox, expand=False, padding=5)
         
         notebook.append_page(vbox_reg, 
-                             tab_label=gtk.Label(_('Registered Plugins')))
+                             tab_label=Gtk.Label(label=_('Registered Plugins')))
         
         #second page with loaded plugins
-        vbox_loaded = gtk.VBox()
-        scrolled_window = gtk.ScrolledWindow()
-        self.list = gtk.TreeView()
-        self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING, 
-                                   gobject.TYPE_STRING, object, 
-                                   gobject.TYPE_STRING, gobject.TYPE_STRING)
+        vbox_loaded = Gtk.VBox()
+        scrolled_window = Gtk.ScrolledWindow()
+        self.list = Gtk.TreeView()
+        self.model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING, 
+                                   GObject.TYPE_STRING, object, 
+                                   GObject.TYPE_STRING, GObject.TYPE_STRING)
         self.selection = self.list.get_selection()
         self.list.set_model(self.model)
         self.list.set_rules_hint(True)
         self.list.connect('button-press-event', self.button_press)
         self.list.connect('cursor-changed', self.cursor_changed)
-        col = gtk.TreeViewColumn(_('Loaded'), gtk.CellRendererText(),
+        col = Gtk.TreeViewColumn(_('Loaded'), Gtk.CellRendererText(),
                                  markup=0)
         col.set_sort_column_id(0)
         col.set_resizable(True)
         self.list.append_column(col)
-        col1 = gtk.TreeViewColumn(_('File'), gtk.CellRendererText(), 
+        col1 = Gtk.TreeViewColumn(_('File'), Gtk.CellRendererText(), 
                                   text=1)
         col1.set_sort_column_id(1)
         col1.set_resizable(True)
         self.list.append_column(col1)
-        col = gtk.TreeViewColumn(_('Status'), gtk.CellRendererText(), 
+        col = Gtk.TreeViewColumn(_('Status'), Gtk.CellRendererText(), 
                                  markup=5)
         col.set_sort_column_id(5)
         self.list.append_column(col)
-        col2 = gtk.TreeViewColumn(_('Message'), gtk.CellRendererText(), text=2)
+        col2 = Gtk.TreeViewColumn(_('Message'), Gtk.CellRendererText(), text=2)
         col2.set_sort_column_id(2)
         col2.set_resizable(True)
         self.list.append_column(col2)
         self.list.set_search_column(1)
 
         scrolled_window.add(self.list)
-        vbox_loaded.pack_start(scrolled_window)
-        hbutbox = gtk.HButtonBox()
-        hbutbox.set_layout(gtk.BUTTONBOX_SPREAD)
-        self.__info_btn = gtk.Button(_("Info"))
+        vbox_loaded.pack_start(scrolled_window, True, True, 0)
+        hbutbox = Gtk.HButtonBox()
+        hbutbox.set_layout(Gtk.ButtonBoxStyle.SPREAD)
+        self.__info_btn = Gtk.Button(_("Info"))
         hbutbox.add(self.__info_btn)
         self.__info_btn.connect('clicked', self.__info, self.list, 4) # id_col
-        self.__hide_btn = gtk.Button(_("Hide/Unhide"))
+        self.__hide_btn = Gtk.Button(_("Hide/Unhide"))
         hbutbox.add(self.__hide_btn)
         self.__hide_btn.connect('clicked', self.__hide,
                                 self.list, 4, 5) # list, id_col, hide_col
 
         if __debug__:
-            self.__edit_btn = gtk.Button(_("Edit"))
+            self.__edit_btn = Gtk.Button(_("Edit"))
             hbutbox.add(self.__edit_btn)
             self.__edit_btn.connect('clicked', self.__edit, self.list, 4) # id_col
-            self.__load_btn = gtk.Button(_("Load"))
+            self.__load_btn = Gtk.Button(_("Load"))
             self.__load_btn.set_sensitive(False)
             hbutbox.add(self.__load_btn)
             self.__load_btn.connect('clicked', self.__load, self.list, 4) # id_col
         vbox_loaded.pack_start(hbutbox, expand=False, padding=5)
         notebook.append_page(vbox_loaded, 
-                             tab_label=gtk.Label(_('Loaded Plugins')))
+                             tab_label=Gtk.Label(label=_('Loaded Plugins')))
 
         #third page with method to install plugin
-        install_page = gtk.VBox()
-        scrolled_window = gtk.ScrolledWindow()
-        self.addon_list = gtk.TreeView()
+        install_page = Gtk.VBox()
+        scrolled_window = Gtk.ScrolledWindow()
+        self.addon_list = Gtk.TreeView()
         # model: help_name, name, ptype, image, desc, use, rating, contact, download, url
-        self.addon_model = gtk.ListStore(gobject.TYPE_STRING, 
-                                         gobject.TYPE_STRING, 
-                                         gobject.TYPE_STRING, 
-                                         gobject.TYPE_STRING, 
-                                         gobject.TYPE_STRING, 
-                                         gobject.TYPE_STRING, 
-                                         gobject.TYPE_STRING, 
-                                         gobject.TYPE_STRING, 
-                                         gobject.TYPE_STRING, 
-                                         gobject.TYPE_STRING)
+        self.addon_model = Gtk.ListStore(GObject.TYPE_STRING, 
+                                         GObject.TYPE_STRING, 
+                                         GObject.TYPE_STRING, 
+                                         GObject.TYPE_STRING, 
+                                         GObject.TYPE_STRING, 
+                                         GObject.TYPE_STRING, 
+                                         GObject.TYPE_STRING, 
+                                         GObject.TYPE_STRING, 
+                                         GObject.TYPE_STRING, 
+                                         GObject.TYPE_STRING)
         self.addon_list.set_model(self.addon_model)
         self.addon_list.set_rules_hint(True)
         #self.addon_list.connect('button-press-event', self.button_press)
-        col = gtk.TreeViewColumn(_('Addon Name'), gtk.CellRendererText(),
+        col = Gtk.TreeViewColumn(_('Addon Name'), Gtk.CellRendererText(),
                                  text=1)
         col.set_sort_column_id(1)
         self.addon_list.append_column(col)
-        col = gtk.TreeViewColumn(_('Type'), gtk.CellRendererText(),
+        col = Gtk.TreeViewColumn(_('Type'), Gtk.CellRendererText(),
                                  text=2)
         col.set_sort_column_id(2)
         self.addon_list.append_column(col)
-        col = gtk.TreeViewColumn(_('Description'), gtk.CellRendererText(),
+        col = Gtk.TreeViewColumn(_('Description'), Gtk.CellRendererText(),
                                  text=4)
         col.set_sort_column_id(4)
         self.addon_list.append_column(col)
         self.addon_list.connect('cursor-changed', self.button_press_addon)
 
-        install_row = gtk.HBox()
-        install_row.pack_start(gtk.Label(_("Path to Addon:")), expand=False)
-        self.install_addon_path = gtk.Entry()
+        install_row = Gtk.HBox()
+        install_row.pack_start(Gtk.Label(_("Path to Addon:", True, True, 0)), expand=False)
+        self.install_addon_path = Gtk.Entry()
 
-        button = gtk.Button()
-        img = gtk.Image()
-        img.set_from_stock(gtk.STOCK_OPEN, gtk.ICON_SIZE_BUTTON)
+        button = Gtk.Button()
+        img = Gtk.Image()
+        img.set_from_stock(Gtk.STOCK_OPEN, Gtk.IconSize.BUTTON)
         button.add(img)
         button.connect('clicked', self.__select_file)
-        install_row.pack_start(self.install_addon_path, expand=True)
+        install_row.pack_start(self.install_addon_path, True, True, 0)
         install_row.pack_start(button, expand=False, fill=False)
 
         scrolled_window.add(self.addon_list)
-        install_page.pack_start(scrolled_window)
+        install_page.pack_start(scrolled_window, True, True, 0)
         #add some spce under the scrollbar
-        install_page.pack_start(gtk.Label(''), expand=False, fill=False)
+        install_page.pack_start(Gtk.Label('', True, True, 0), expand=False, fill=False)
         #path to addon path line
         install_page.pack_start(install_row, expand=False, fill=False)
 
-        hbutbox = gtk.HButtonBox()
-        hbutbox.set_layout(gtk.BUTTONBOX_SPREAD)
-        self.__add_btn = gtk.Button(_("Install Addon"))
+        hbutbox = Gtk.HButtonBox()
+        hbutbox.set_layout(Gtk.ButtonBoxStyle.SPREAD)
+        self.__add_btn = Gtk.Button(_("Install Addon"))
         hbutbox.add(self.__add_btn)
         self.__add_btn.connect('clicked', self.__get_addon_top)
-        self.__add_all_btn = gtk.Button(_("Install All Addons"))
+        self.__add_all_btn = Gtk.Button(_("Install All Addons"))
         hbutbox.add(self.__add_all_btn)
         self.__add_all_btn.connect('clicked', self.__get_all_addons) 
-        self.__refresh_btn = gtk.Button(_("Refresh Addon List"))
+        self.__refresh_btn = Gtk.Button(_("Refresh Addon List"))
         hbutbox.add(self.__refresh_btn)
         self.__refresh_btn.connect('clicked', self.__refresh_addon_list) 
         install_page.pack_start(hbutbox, expand=False, padding=5)
         # notebook.append_page(install_page, 
-        #                      tab_label=gtk.Label(_('Install Addons')))
+        #                      tab_label=Gtk.Label(label=_('Install Addons')))
 
         #add the notebook to the window
-        self.window.vbox.add(notebook)
+        self.window.get_content_area().add(notebook)
         
         if __debug__:
             # Only show the "Reload" button when in debug mode 
             # (without -O on the command line)
-            self.__reload_btn = gtk.Button(_("Reload"))
+            self.__reload_btn = Gtk.Button(_("Reload"))
             self.window.action_area.add(self.__reload_btn)
             self.__reload_btn.connect('clicked', self.__reload)
         
@@ -414,11 +414,11 @@ class PluginStatus(ManagedWindow):
         """
         Select a file from the file system.
         """
-        fcd = gtk.FileChooserDialog(_("Load Addon"), 
-                                    buttons=(gtk.STOCK_CANCEL,
-                                             gtk.RESPONSE_CANCEL,
-                                             gtk.STOCK_OPEN,
-                                             gtk.RESPONSE_OK))
+        fcd = Gtk.FileChooserDialog(_("Load Addon"), 
+                                    buttons=(Gtk.STOCK_CANCEL,
+                                             Gtk.ResponseType.CANCEL,
+                                             Gtk.STOCK_OPEN,
+                                             Gtk.ResponseType.OK))
         name = self.install_addon_path.get_text()
         dir = os.path.dirname(name)
         if not os.path.isdir(dir):
@@ -431,7 +431,7 @@ class PluginStatus(ManagedWindow):
             fcd.set_filename(name)
 
         status = fcd.run()
-        if status == gtk.RESPONSE_OK:
+        if status == Gtk.ResponseType.OK:
             path = Utils.get_unicode_path_from_file_chooser(fcd.get_filename())
             if path:
                 self.install_addon_path.set_text(path)
@@ -526,7 +526,7 @@ class PluginStatus(ManagedWindow):
 
     def button_press(self, obj, event):
         """ Callback function from the user clicking on a line """
-        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             model, node = self.selection.get_selected()
             data = model.get_value(node, 3)
             name = model.get_value(node, 1)
@@ -536,7 +536,7 @@ class PluginStatus(ManagedWindow):
     def button_press_reg(self, obj, event):
         """ Callback function from the user clicking on a line in reg plugin
         """
-        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             self.__info(obj, self.list_reg, 4)
     
     def button_press_addon(self, obj):
@@ -660,21 +660,21 @@ class PluginTrace(ManagedWindow):
         title = "%s: %s" % (_("Plugin Error"), name)
         ManagedWindow.__init__(self, uistate, track, self)
 
-        self.set_window(gtk.Dialog("", uistate.window,
-                                   gtk.DIALOG_DESTROY_WITH_PARENT,
-                                   (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)),
+        self.set_window(Gtk.Dialog("", uistate.window,
+                                   Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                   (Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE)),
                         None, title)
         self.window.set_size_request(600, 400)
         self.window.connect('response', self.close)
         
-        scrolled_window = gtk.ScrolledWindow()
-        scrolled_window.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        self.text = gtk.TextView()
+        scrolled_window = Gtk.ScrolledWindow()
+        scrolled_window.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+        self.text = Gtk.TextView()
         scrolled_window.add(self.text)
         self.text.get_buffer().set_text(
             "".join(traceback.format_exception(data[0],data[1],data[2])))
 
-        self.window.vbox.add(scrolled_window)
+        self.window.get_content_area().add(scrolled_window)
         self.window.show_all()
 
     def build_menu_names(self, obj):
@@ -686,12 +686,12 @@ class PluginTrace(ManagedWindow):
 # Classes for tools
 #
 #-------------------------------------------------------------------------
-class LinkTag(gtk.TextTag):
+class LinkTag(Gtk.TextTag):
     def __init__(self, link, buffer):
-        gtk.TextTag.__init__(self, link)
+        GObject.GObject.__init__(self, link)
         tag_table = buffer.get_tag_table()
         self.set_property('foreground', "#0000ff")
-        self.set_property('underline', pango.UNDERLINE_SINGLE)
+        self.set_property('underline', Pango.Underline.SINGLE)
         try:
             tag_table.add(self)
         except ValueError:
@@ -714,16 +714,16 @@ class ToolManagedWindowBase(ManagedWindow):
         self.format_menu = None
         self.style_button = None
 
-        window = gtk.Dialog('Tool')
+        window = Gtk.Dialog('Tool')
         self.set_window(window, None, self.get_title())
         #self.window.set_has_separator(False)
 
         #self.window.connect('response', self.close)
-        self.cancel = self.window.add_button(gtk.STOCK_CLOSE,
-                                             gtk.RESPONSE_CANCEL)
+        self.cancel = self.window.add_button(Gtk.STOCK_CLOSE,
+                                             Gtk.ResponseType.CANCEL)
         self.cancel.connect('clicked', self.close)
 
-        self.ok = self.window.add_button(gtk.STOCK_EXECUTE, gtk.RESPONSE_OK)
+        self.ok = self.window.add_button(Gtk.STOCK_EXECUTE, Gtk.ResponseType.OK)
         self.ok.connect('clicked', self.on_ok_clicked)
 
         self.window.set_default_size(600, -1)
@@ -734,7 +734,7 @@ class ToolManagedWindowBase(ManagedWindow):
 
         self.setup_title()
         self.setup_header()
-        #self.tbl = gtk.Table(4, 4, False)
+        #self.tbl = Gtk.Table(4, 4, False)
         #self.tbl.set_col_spacings(12)
         #self.tbl.set_row_spacings(6)
         #self.tbl.set_border_width(6)
@@ -745,18 +745,18 @@ class ToolManagedWindowBase(ManagedWindow):
         # frame and to create other frames
         self.add_user_options()
         
-        self.notebook = gtk.Notebook()
+        self.notebook = Gtk.Notebook()
         self.notebook.set_border_width(6)
-        self.window.vbox.add(self.notebook)
+        self.window.get_content_area().add(self.notebook)
 
-        self.results_text = gtk.TextView() 
+        self.results_text = Gtk.TextView() 
         self.results_text.connect('button-press-event', 
                                   self.on_button_press) 
         self.results_text.connect('motion-notify-event', 
                                   self.on_motion)
         self.tags = []
-        self.link_cursor = gtk.gdk.Cursor(gtk.gdk.LEFT_PTR)
-        self.standard_cursor = gtk.gdk.Cursor(gtk.gdk.XTERM)
+        self.link_cursor = Gdk.Cursor.new(Gdk.CursorType.LEFT_PTR)
+        self.standard_cursor = Gdk.Cursor.new(Gdk.CursorType.XTERM)
 
         self.setup_other_frames()
         self.set_current_frame(self.initial_frame())
@@ -786,20 +786,20 @@ class ToolManagedWindowBase(ManagedWindow):
         return None
 
     def on_motion(self, view, event):
-        buffer_location = view.window_to_buffer_coords(gtk.TEXT_WINDOW_TEXT, 
+        buffer_location = view.window_to_buffer_coords(Gtk.TextWindowType.TEXT, 
                                                        int(event.x), 
                                                        int(event.y))
         iter = view.get_iter_at_location(*buffer_location)
         for (tag, person_handle) in self.tags:
             if iter.has_tag(tag):
-                _window = view.get_window(gtk.TEXT_WINDOW_TEXT)
+                _window = view.get_window(Gtk.TextWindowType.TEXT)
                 _window.set_cursor(self.link_cursor)
                 return False # handle event further, if necessary
-        view.get_window(gtk.TEXT_WINDOW_TEXT).set_cursor(self.standard_cursor)
+        view.get_window(Gtk.TextWindowType.TEXT).set_cursor(self.standard_cursor)
         return False # handle event further, if necessary
 
     def on_button_press(self, view, event):
-        buffer_location = view.window_to_buffer_coords(gtk.TEXT_WINDOW_TEXT, 
+        buffer_location = view.window_to_buffer_coords(Gtk.TextWindowType.TEXT, 
                                                        int(event.x), 
                                                        int(event.y))
         iter = view.get_iter_at_location(*buffer_location)
@@ -807,7 +807,7 @@ class ToolManagedWindowBase(ManagedWindow):
             if iter.has_tag(tag):
                 person = self.db.get_person_from_handle(person_handle)
                 if event.button == 1:
-                    if event.type == gtk.gdk._2BUTTON_PRESS:
+                    if event.type == Gdk.EventType._2BUTTON_PRESS:
                         try:
                             EditPerson(self.dbstate, self.uistate, [], person)
                         except WindowActiveError:
@@ -907,9 +907,10 @@ class ToolManagedWindowBase(ManagedWindow):
         of the currently selected person."""
 
         title = self.get_header(self.get_title())
-        label = gtk.Label('<span size="larger" weight="bold">%s</span>' % title)
+        label = Gtk.Label(label='<span size="larger" weight="bold">%s</span>' % title)
         label.set_use_markup(True)
-        self.window.vbox.pack_start(label, False, False, self.border_pad)
+        self.window.get_content_area().pack_start(label, False, False, 
+                                                  self.border_pad)
 
     def add_frame_option(self, frame_name, label_text, widget):
         """Similar to add_option this method takes a frame_name, a
@@ -941,13 +942,13 @@ class ToolManagedWindowBase(ManagedWindow):
 
     def add_results_frame(self, frame_name="Results"):
         if frame_name not in self.frames:
-            window = gtk.ScrolledWindow()
-            window.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+            window = Gtk.ScrolledWindow()
+            window.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
             window.add(self.results_text)
-            window.set_shadow_type(gtk.SHADOW_IN)
+            window.set_shadow_type(Gtk.ShadowType.IN)
             self.frames[frame_name] = [[frame_name, window]] 
             self.frame_names.append(frame_name)
-            l = gtk.Label("<b>%s</b>" % _(frame_name))
+            l = Gtk.Label(label="<b>%s</b>" % _(frame_name))
             l.set_use_markup(True)
             self.notebook.append_page(window, l)
             self.notebook.show_all()
@@ -957,15 +958,15 @@ class ToolManagedWindowBase(ManagedWindow):
 
     def add_page(self, frame_name="Help"):
         if frame_name not in self.frames:
-            text = gtk.TextView() 
-            text.set_wrap_mode(gtk.WRAP_WORD)
-            window = gtk.ScrolledWindow()
-            window.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+            text = Gtk.TextView() 
+            text.set_wrap_mode(Gtk.WrapMode.WORD)
+            window = Gtk.ScrolledWindow()
+            window.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
             window.add(text)
-            window.set_shadow_type(gtk.SHADOW_IN)
+            window.set_shadow_type(Gtk.ShadowType.IN)
             self.frames[frame_name] = [[frame_name, window]] 
             self.frame_names.append(frame_name)
-            l = gtk.Label("<b>%s</b>" % _(frame_name))
+            l = Gtk.Label(label="<b>%s</b>" % _(frame_name))
             l.set_use_markup(True)
             self.notebook.append_page(window, l)
             self.notebook.show_all()
@@ -986,25 +987,25 @@ class ToolManagedWindowBase(ManagedWindow):
         the add_user_options task."""
         for key in self.frame_names:
             flist = self.frames[key]
-            table = gtk.Table(3, len(flist))
+            table = Gtk.Table(3, len(flist))
             table.set_col_spacings(12)
             table.set_row_spacings(6)
             table.set_border_width(6)
-            l = gtk.Label("<b>%s</b>" % key)
+            l = Gtk.Label(label="<b>%s</b>" % key)
             l.set_use_markup(True)
             self.notebook.append_page(table, l)
             row = 0
             for (text, widget) in flist:
                 if text:
-                    text_widget = gtk.Label('%s:' % text)
+                    text_widget = Gtk.Label(label='%s:' % text)
                     text_widget.set_alignment(0.0, 0.5)
                     table.attach(text_widget, 1, 2, row, row+1,
-                                 gtk.SHRINK|gtk.FILL, gtk.SHRINK)
+                                 Gtk.AttachOptions.SHRINK|Gtk.AttachOptions.FILL, Gtk.AttachOptions.SHRINK)
                     table.attach(widget, 2, 3, row, row+1,
-                                 yoptions=gtk.SHRINK)
+                                 yoptions=Gtk.AttachOptions.SHRINK)
                 else:
                     table.attach(widget, 2, 3, row, row+1,
-                                 yoptions=gtk.SHRINK)
+                                 yoptions=Gtk.AttachOptions.SHRINK)
                 row += 1
         self.notebook.show_all()
 

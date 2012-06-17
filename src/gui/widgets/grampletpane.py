@@ -30,8 +30,10 @@ GrampletView interface.
 # Python modules
 #
 #-------------------------------------------------------------------------
-import gtk
-import pango
+from gi.repository import GObject
+from gi.repository import Gdk
+from gi.repository import Gtk
+from gi.repository import Pango
 import time
 import os
 from gen.ggettext import gettext as _
@@ -178,17 +180,17 @@ def logical_true(value):
     """
     return value in ["True", True, 1, "1"]
 
-class LinkTag(gtk.TextTag):
+class LinkTag(Gtk.TextTag):
     """
     Class for keeping track of link data.
     """
     lid = 0
     def __init__(self, buffer):
         LinkTag.lid += 1
-        gtk.TextTag.__init__(self, str(LinkTag.lid))
+        GObject.GObject.__init__(self, str(LinkTag.lid))
         tag_table = buffer.get_tag_table()
         self.set_property('foreground', "blue")
-        #self.set_property('underline', pango.UNDERLINE_SINGLE)
+        #self.set_property('underline', Pango.Underline.SINGLE)
         try:
             tag_table.add(self)
         except ValueError: # tag is already in tag table
@@ -211,13 +213,13 @@ class GrampletWindow(ManagedWindow):
         self.gramplet.set_state("detached") 
         ManagedWindow.__init__(self, gramplet.uistate, [],
                                              self.title)
-        self.set_window(gtk.Dialog("", gramplet.uistate.window,
-                                   gtk.DIALOG_DESTROY_WITH_PARENT,
-                                   (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)),
+        self.set_window(Gtk.Dialog("", gramplet.uistate.window,
+                                   Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                   (Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE)),
                         None, self.title)
         self.window.set_size_request(gramplet.detached_width,
                                      gramplet.detached_height)
-        self.window.add_button(gtk.STOCK_HELP, gtk.RESPONSE_HELP)
+        self.window.add_button(Gtk.STOCK_HELP, Gtk.ResponseType.HELP)
         # add gramplet:
         if self.gramplet.pui:
             self.gramplet.pui.active = True
@@ -238,9 +240,9 @@ class GrampletWindow(ManagedWindow):
         """
         Callback for taking care of button clicks.
         """
-        if response in [gtk.RESPONSE_CLOSE, gtk.STOCK_CLOSE]:
+        if response in [Gtk.ResponseType.CLOSE, Gtk.STOCK_CLOSE]:
             self.close()
-        elif response == gtk.RESPONSE_HELP:
+        elif response == Gtk.ResponseType.HELP:
             # translated name:
             if self.gramplet.help_url:
                 if self.gramplet.help_url.startswith("http://"):
@@ -290,7 +292,7 @@ class GrampletWindow(ManagedWindow):
         for gframe in stack:
             gramplet = pane.frame_map[str(gframe)]
             expand = gramplet.gstate == "maximized" and gramplet.expand
-            pane.columns[col].pack_start(gframe, expand=expand)
+            pane.columns[col].pack_start(gframe, expand, True, 0)
         # Now make sure they all have the correct expand:
         for gframe in pane.columns[col]:
             gramplet = pane.frame_map[str(gframe)]
@@ -343,8 +345,8 @@ class GuiGramplet(object):
         self.pui = None # user code
         self.tooltips_text = None
 
-        self.link_cursor = gtk.gdk.Cursor(gtk.gdk.LEFT_PTR)
-        self.standard_cursor = gtk.gdk.Cursor(gtk.gdk.XTERM)
+        self.link_cursor = Gdk.Cursor.new(Gdk.CursorType.LEFT_PTR)
+        self.standard_cursor = Gdk.Cursor.new(Gdk.CursorType.XTERM)
 
         self.scrolledwindow = None
         self.textview = None
@@ -368,13 +370,13 @@ class GuiGramplet(object):
         Handle formatting shortcuts.
         
         """
-        if ((gtk.gdk.keyval_name(event.keyval) == 'Z') and
-            (event.state & gtk.gdk.CONTROL_MASK) and 
-            (event.state & gtk.gdk.SHIFT_MASK)):
+        if ((Gdk.keyval_name(event.keyval) == 'Z') and
+            (event.get_state() & Gdk.ModifierType.CONTROL_MASK) and 
+            (event.get_state() & Gdk.ModifierType.SHIFT_MASK)):
             self.redo()
             return True
-        elif ((gtk.gdk.keyval_name(event.keyval) == 'z') and
-              (event.state & gtk.gdk.CONTROL_MASK)):
+        elif ((Gdk.keyval_name(event.keyval) == 'z') and
+              (event.get_state() & Gdk.ModifierType.CONTROL_MASK)):
             self.undo()
             return True
 
@@ -497,10 +499,10 @@ class GuiGramplet(object):
         if self.use_markup == value: return
         self.use_markup = value
         if value:
-            self.buffer.create_tag("bold", weight=pango.WEIGHT_HEAVY)
-            self.buffer.create_tag("italic", style=pango.STYLE_ITALIC)
+            self.buffer.create_tag("bold", weight=Pango.Weight.HEAVY)
+            self.buffer.create_tag("italic", style=Pango.Style.ITALIC)
             self.buffer.create_tag("underline",
-                                            underline=pango.UNDERLINE_SINGLE)
+                                            underline=Pango.Underline.SINGLE)
             self.buffer.create_tag("fixed", font="monospace")
         else:
             tag_table = self.buffer.get_tag_table()
@@ -526,20 +528,20 @@ class GuiGramplet(object):
         self.pui.build_options()
         # END WORKAROUND
         if len(self.pui.option_order) == 0: return
-        frame = gtk.Frame()
-        topbox = gtk.VBox(False)
-        hbox = gtk.HBox(False, 5)
-        labels = gtk.VBox(True)
-        options = gtk.VBox(True)
-        hbox.pack_start(labels, False)
+        frame = Gtk.Frame()
+        topbox = Gtk.VBox(False)
+        hbox = Gtk.HBox(False, 5)
+        labels = Gtk.VBox(True)
+        options = Gtk.VBox(True)
+        hbox.pack_start(labels, False, True, 0)
         hbox.pack_start(options, True)
-        topbox.pack_start(hbox, False, False)
+        topbox.pack_start(hbox, False, False, 0)
         for item in self.pui.option_order:
-            label = gtk.Label(item + ":")
+            label = Gtk.Label(label=item + ":")
             label.set_alignment(1.0, 0.5)
-            labels.pack_start(label)
-            options.pack_start(self.pui.option_dict[item][0]) # widget
-        save_button = gtk.Button(stock=gtk.STOCK_SAVE)
+            labels.pack_start(label, True, True, 0)
+            options.pack_start(self.pui.option_dict[item][0], True, True, 0) # widget
+        save_button = Gtk.Button(stock=Gtk.STOCK_SAVE)
         topbox.pack_end(save_button, False, False)
         save_button.connect('clicked', self.pui.save_update_options)
         frame.add(topbox)
@@ -560,7 +562,7 @@ class GuiGramplet(object):
         buffer.apply_tag(link_data[0], start, end)
 
     def on_motion(self, view, event):
-        buffer_location = view.window_to_buffer_coords(gtk.TEXT_WINDOW_TEXT, 
+        buffer_location = view.window_to_buffer_coords(Gtk.TextWindowType.TEXT, 
                                                        int(event.x), 
                                                        int(event.y))
         iter = view.get_iter_at_location(*buffer_location)
@@ -568,12 +570,12 @@ class GuiGramplet(object):
         ttip = None
         for (tag, link_type, handle, tooltip) in self._tags:
             if iter.has_tag(tag):
-                tag.set_property('underline', pango.UNDERLINE_SINGLE)
+                tag.set_property('underline', Pango.Underline.SINGLE)
                 cursor = self.link_cursor
                 ttip = tooltip
             else:
-                tag.set_property('underline', pango.UNDERLINE_NONE)
-        view.get_window(gtk.TEXT_WINDOW_TEXT).set_cursor(cursor)
+                tag.set_property('underline', Pango.Underline.NONE)
+        view.get_window(Gtk.TextWindowType.TEXT).set_cursor(cursor)
         if ttip:
             self.scrolledwindow.set_tooltip_text(ttip)
         elif self.tooltips_text:
@@ -582,7 +584,7 @@ class GuiGramplet(object):
 
     def on_button_press(self, view, event):
         # pylint: disable-msg=W0212
-        buffer_location = view.window_to_buffer_coords(gtk.TEXT_WINDOW_TEXT, 
+        buffer_location = view.window_to_buffer_coords(Gtk.TextWindowType.TEXT, 
                                                        int(event.x), 
                                                        int(event.y))
         iter = view.get_iter_at_location(*buffer_location)
@@ -592,7 +594,7 @@ class GuiGramplet(object):
                     person = self.dbstate.db.get_person_from_handle(handle)
                     if person is not None:
                         if event.button == 1: # left mouse
-                            if event.type == gtk.gdk._2BUTTON_PRESS: # double
+                            if event.type == Gdk.EventType._2BUTTON_PRESS: # double
                                 try:
                                     EditPerson(self.dbstate, 
                                                self.uistate, 
@@ -600,7 +602,7 @@ class GuiGramplet(object):
                                     return True # handled event
                                 except WindowActiveError:
                                     pass
-                            elif event.type == gtk.gdk.BUTTON_PRESS: # single
+                            elif event.type == Gdk.EventType.BUTTON_PRESS: # single
                                 self.uistate.set_active(handle, 'Person')
                                 return True # handled event
                         elif gui.utils.is_right_click(event):
@@ -614,7 +616,7 @@ class GuiGramplet(object):
                                 pass
                 elif link_type == 'Surname':
                     if event.button == 1: # left mouse
-                        if event.type == gtk.gdk._2BUTTON_PRESS: # double
+                        if event.type == Gdk.EventType._2BUTTON_PRESS: # double
                             run_quick_report_by_name(self.dbstate, 
                                                      self.uistate, 
                                                      'samesurnames', 
@@ -622,7 +624,7 @@ class GuiGramplet(object):
                     return True
                 elif link_type == 'Given':
                     if event.button == 1: # left mouse
-                        if event.type == gtk.gdk._2BUTTON_PRESS: # double
+                        if event.type == Gdk.EventType._2BUTTON_PRESS: # double
                             run_quick_report_by_name(self.dbstate, 
                                                      self.uistate, 
                                                      'samegivens_misc', 
@@ -630,7 +632,7 @@ class GuiGramplet(object):
                     return True
                 elif link_type == 'Filter':
                     if event.button == 1: # left mouse
-                        if event.type == gtk.gdk._2BUTTON_PRESS: # double
+                        if event.type == Gdk.EventType._2BUTTON_PRESS: # double
                             run_quick_report_by_name(self.dbstate, 
                                                      self.uistate, 
                                                      'filterbyname', 
@@ -653,7 +655,7 @@ class GuiGramplet(object):
                     family = self.dbstate.db.get_family_from_handle(handle)
                     if family is not None:
                         if event.button == 1: # left mouse
-                            if event.type == gtk.gdk._2BUTTON_PRESS: # double
+                            if event.type == Gdk.EventType._2BUTTON_PRESS: # double
                                 try:
                                     EditFamily(self.dbstate, 
                                                self.uistate, 
@@ -661,7 +663,7 @@ class GuiGramplet(object):
                                     return True # handled event
                                 except WindowActiveError:
                                     pass
-                            elif event.type == gtk.gdk.BUTTON_PRESS: # single
+                            elif event.type == Gdk.EventType.BUTTON_PRESS: # single
                                 self.uistate.set_active(handle, 'Family')
                                 return True # handle event
                         elif gui.utils.is_right_click(event):
@@ -675,7 +677,7 @@ class GuiGramplet(object):
                                 pass
                 elif link_type == 'PersonList':
                     if event.button == 1: # left mouse
-                        if event.type == gtk.gdk._2BUTTON_PRESS: # double
+                        if event.type == Gdk.EventType._2BUTTON_PRESS: # double
                             run_quick_report_by_name(self.dbstate, 
                                                      self.uistate, 
                                                      'filterbyname', 
@@ -684,7 +686,7 @@ class GuiGramplet(object):
                     return True
                 elif link_type == 'Attribute':
                     if event.button == 1: # left mouse
-                        if event.type == gtk.gdk._2BUTTON_PRESS: # double
+                        if event.type == Gdk.EventType._2BUTTON_PRESS: # double
                             run_quick_report_by_name(self.dbstate, 
                                                      self.uistate, 
                                                      'attribute_match', 
@@ -695,7 +697,7 @@ class GuiGramplet(object):
         return False # did not handle event
 
     def set_has_data(self, value):
-        if isinstance(self.pane, gtk.Notebook):
+        if isinstance(self.pane, Gtk.Notebook):
             if self.pane.get_tab_label(self):
                 label = self.pane.get_tab_label(self)
                 if value:
@@ -710,7 +712,7 @@ class GridGramplet(GuiGramplet):
     """
     TARGET_TYPE_FRAME = 80
     LOCAL_DRAG_TYPE   = 'GRAMPLET'
-    LOCAL_DRAG_TARGET = (LOCAL_DRAG_TYPE, 0, TARGET_TYPE_FRAME)
+    LOCAL_DRAG_TARGET = Gtk.TargetEntry.new(LOCAL_DRAG_TYPE, 0, TARGET_TYPE_FRAME)
     def __init__(self, pane, dbstate, uistate, title, **kwargs):
         """
         Internal constructor for GUI portion of a gramplet.
@@ -730,8 +732,8 @@ class GridGramplet(GuiGramplet):
         self.textview.connect("key-press-event", self.on_key_press_event)
         #self.buffer = self.textview.get_buffer()
         self.scrolledwindow = self.xml.get_object('gvscrolledwindow')
-        self.scrolledwindow.set_policy(gtk.POLICY_AUTOMATIC,
-                                       gtk.POLICY_AUTOMATIC)
+        self.scrolledwindow.set_policy(Gtk.PolicyType.AUTOMATIC,
+                                       Gtk.PolicyType.AUTOMATIC)
         self.vboxtop = self.xml.get_object('vboxtop')
         self.titlelabel = self.xml.get_object('gvtitle')
         self.titlelabel.get_children()[0].set_text("<b><i>%s</i></b>" %
@@ -745,18 +747,18 @@ class GridGramplet(GuiGramplet):
         self.gvstate.connect('clicked', self.change_state)
         self.gvproperties = self.xml.get_object('gvproperties')
         self.gvproperties.connect('clicked', self.set_properties)
-        self.xml.get_object('gvcloseimage').set_from_stock(gtk.STOCK_CLOSE,
-                                                           gtk.ICON_SIZE_MENU)
-        self.xml.get_object('gvstateimage').set_from_stock(gtk.STOCK_REMOVE,
-                                                           gtk.ICON_SIZE_MENU)
-        self.xml.get_object('gvpropertiesimage').set_from_stock(gtk.STOCK_PROPERTIES,
-                                                                gtk.ICON_SIZE_MENU)
+        self.xml.get_object('gvcloseimage').set_from_stock(Gtk.STOCK_CLOSE,
+                                                           Gtk.IconSize.MENU)
+        self.xml.get_object('gvstateimage').set_from_stock(Gtk.STOCK_REMOVE,
+                                                           Gtk.IconSize.MENU)
+        self.xml.get_object('gvpropertiesimage').set_from_stock(Gtk.STOCK_PROPERTIES,
+                                                                Gtk.IconSize.MENU)
 
         # source:
         drag = self.gvproperties
-        drag.drag_source_set(gtk.gdk.BUTTON1_MASK,
+        drag.drag_source_set(Gdk.ModifierType.BUTTON1_MASK,
                              [GridGramplet.LOCAL_DRAG_TARGET],
-                             gtk.gdk.ACTION_COPY)
+                             Gdk.DragAction.COPY)
 
         # default tooltip
         msg = _("Drag Properties Button to move and click it for setup")
@@ -770,7 +772,7 @@ class GridGramplet(GuiGramplet):
         parent = widget.get_parent()
         widget.hide()
         if self.titlelabel_entry is None:
-            self.titlelabel_entry = gtk.Entry()
+            self.titlelabel_entry = Gtk.Entry()
             parent = widget.get_parent()
             parent.pack_end(self.titlelabel_entry)
             self.titlelabel_entry.connect("focus-out-event",
@@ -787,8 +789,8 @@ class GridGramplet(GuiGramplet):
         """
         Edit the title, handle escape.
         """
-        if event.type == gtk.gdk.KEY_PRESS:
-            if event.keyval == gtk.keysyms.Escape:
+        if event.type == Gdk.KEY_PRESS:
+            if event.keyval == Gdk.KEY_Escape:
                 self.titlelabel.show()
                 widget.hide()
 
@@ -830,15 +832,15 @@ class GridGramplet(GuiGramplet):
         self.gstate = state
         if state == "minimized":
             self.scrolledwindow.hide()
-            self.xml.get_object('gvstateimage').set_from_stock(gtk.STOCK_ADD,
-                                                            gtk.ICON_SIZE_MENU)
+            self.xml.get_object('gvstateimage').set_from_stock(Gtk.STOCK_ADD,
+                                                            Gtk.IconSize.MENU)
             column = self.mainframe.get_parent() # column
             expand, fill, padding, pack = column.query_child_packing(self.mainframe)
             column.set_child_packing(self.mainframe, False, fill, padding, pack)
         else:
             self.scrolledwindow.show()
-            self.xml.get_object('gvstateimage').set_from_stock(gtk.STOCK_REMOVE,
-                                                            gtk.ICON_SIZE_MENU)
+            self.xml.get_object('gvstateimage').set_from_stock(Gtk.STOCK_REMOVE,
+                                                            Gtk.IconSize.MENU)
             column = self.mainframe.get_parent() # column
             expand, fill, padding, pack = column.query_child_packing(self.mainframe)
             column.set_child_packing(self.mainframe,
@@ -934,11 +936,11 @@ class GridGramplet(GuiGramplet):
         self.titlelabel.get_children()[0].set_use_markup(True)
         return True
         
-class GrampletPane(gtk.ScrolledWindow):
+class GrampletPane(Gtk.ScrolledWindow):
     def __init__(self, configfile, pageview, dbstate, uistate, **kwargs):
         self._config = Configuration(self)
         self.track = []
-        gtk.ScrolledWindow.__init__(self)
+        GObject.GObject.__init__(self)
         self.configfile = os.path.join(const.VERSION_DIR, "%s.ini" % configfile)
         # default for new user; may be overridden in config:
         self.column_count = kwargs.get("column_count", 2) 
@@ -957,14 +959,14 @@ class GrampletPane(gtk.ScrolledWindow):
         # build the GUI:
         msg = _("Right click to add gramplets")
         self.set_tooltip_text(msg)
-        self.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        self.hbox = gtk.HBox(homogeneous=True)
+        self.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+        self.hbox = Gtk.HBox(homogeneous=True)
         # Set up drag and drop
-        self.drag_dest_set(gtk.DEST_DEFAULT_MOTION |
-                            gtk.DEST_DEFAULT_HIGHLIGHT |
-                            gtk.DEST_DEFAULT_DROP,
-                            [('GRAMPLET', 0, 80)],
-                            gtk.gdk.ACTION_COPY)
+        self.drag_dest_set(Gtk.DestDefaults.MOTION |
+                            Gtk.DestDefaults.HIGHLIGHT |
+                            Gtk.DestDefaults.DROP,
+                            [Gtk.TargetEntry.new('GRAMPLET', 0, 80)],
+                            Gdk.DragAction.COPY)
         self.connect('drag_drop', self.drop_widget)
         self.connect('button-press-event', self._button_press)
 
@@ -972,8 +974,8 @@ class GrampletPane(gtk.ScrolledWindow):
         # Create the columns:
         self.columns = []
         for i in range(self.column_count):
-            self.columns.append(gtk.VBox())
-            self.hbox.pack_start(self.columns[-1], expand=True)
+            self.columns.append(Gtk.VBox())
+            self.hbox.pack_start(self.columns[-1], True, True, 0)
         # Load the gramplets
         self.gramplet_map = {} # title->gramplet
         self.frame_map = {} # frame->gramplet
@@ -1079,10 +1081,10 @@ class GrampletPane(gtk.ScrolledWindow):
                              gramplet.gstate == "closed"):
                 continue
             if gramplet.gstate == "minimized":
-                self.columns[pos].pack_start(gramplet.mainframe, expand=False)
+                self.columns[pos].pack_start(gramplet.mainframe, False, True, 0)
             else:
                 self.columns[pos].pack_start(gramplet.mainframe,
-                                             expand=gramplet.expand)
+                                             gramplet.expand, True, 0)
             # set height on gramplet.scrolledwindow here:
             gramplet.scrolledwindow.set_size_request(-1, gramplet.height)
             # Can't minimize here, because GRAMPS calls show_all later:
@@ -1256,13 +1258,13 @@ class GrampletPane(gtk.ScrolledWindow):
         maingramplet.row = current_row
         current_row += 1
         expand = maingramplet.gstate == "maximized" and maingramplet.expand
-        self.columns[col].pack_start(mainframe, expand=expand)
+        self.columns[col].pack_start(mainframe, expand, True, 0)
         for gframe in stack:
             gramplet = self.frame_map[str(gframe)]
             gramplet.row = current_row
             current_row += 1
             expand = gramplet.gstate == "maximized" and gramplet.expand
-            self.columns[col].pack_start(gframe, expand=expand)
+            self.columns[col].pack_start(gframe, expand, True, 0)
         return True
 
     def set_columns(self, num):
@@ -1279,9 +1281,9 @@ class GrampletPane(gtk.ScrolledWindow):
         self.column_count = num
         self.columns = []
         for i in range(self.column_count):
-            self.columns.append(gtk.VBox())
+            self.columns.append(Gtk.VBox())
             self.columns[-1].show()
-            self.hbox.pack_start(self.columns[-1], expand=True)
+            self.hbox.pack_start(self.columns[-1], True, True, 0)
         # place the gramplets back in the new columns
         self.place_gramplets(recolumn=True)
         self.show()
@@ -1379,7 +1381,7 @@ class GrampletPane(gtk.ScrolledWindow):
             ag_menu = uiman.get_widget('/GrampletPopup/AddGramplet')
             if ag_menu:
                 qr_menu = ag_menu.get_submenu()
-                qr_menu = gtk.Menu()
+                qr_menu = Gtk.Menu()
                 names = [gplug.name for gplug in PLUGMAN.get_reg_gramplets()
                          if gplug.navtypes == []]
                 names.sort()
@@ -1396,7 +1398,7 @@ class GrampletPane(gtk.ScrolledWindow):
                 names.extend(opts["title"] for opts in self.closed_opts)
                 names.sort()
                 if len(names) > 0:
-                    qr_menu = gtk.Menu()
+                    qr_menu = Gtk.Menu()
                     for name in names:
                         gui.utils.add_menuitem(qr_menu, name, None,
                                                self.restore_gramplet)
@@ -1458,7 +1460,7 @@ class GrampletPane(gtk.ScrolledWindow):
         """
         Function that builds the widget in the configuration dialog
         """
-        table = gtk.Table(3, 2)
+        table = Gtk.Table(3, 2)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -1491,7 +1493,7 @@ class GrampletPane(gtk.ScrolledWindow):
                               bool, gramplet.get_expand, gramplet.set_expand)
         def gramplet_panel(configdialog):
             configdialog.window.set_size_request(600, -1)
-            table = gtk.Table(3, 2)
+            table = Gtk.Table(3, 2)
             table.set_border_width(12)
             table.set_col_spacings(6)
             table.set_row_spacings(6)

@@ -27,7 +27,7 @@ from gen.display.name import displayer as name_displayer
 import gen.datehandler
 from gen.utils import get_birth_or_fallback, get_marriage_or_fallback
 from gen.errors import WindowActiveError
-import gtk
+from gi.repository import Gtk
 from gen.config import config
 
 age_precision = config.get('preferences.age-display-precision')
@@ -48,7 +48,7 @@ class Events(Gramplet):
         """
         tip = _('Double-click on a row to edit the selected event.')
         self.set_tooltip(tip)
-        top = gtk.TreeView()
+        top = Gtk.TreeView()
         titles = [('', NOSORT, 50,),
                   (_('Type'), 1, 100),
                   (_('Details'), 2, 200),

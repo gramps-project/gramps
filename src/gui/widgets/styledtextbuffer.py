@@ -20,7 +20,7 @@
 
 # $Id$
 
-"""Text buffer subclassed from gtk.TextBuffer handling L{StyledText}."""
+"""Text buffer subclassed from Gtk.TextBuffer handling L{StyledText}."""
 
 __all__ = ["ALLOWED_STYLES", "MATCH_START", "MATCH_END", "MATCH_FLAVOR",
            "MATCH_STRING", "StyledTextBuffer"]
@@ -41,10 +41,13 @@ _LOG = logging.getLogger(".widgets.styledtextbuffer")
 # GTK modules
 #
 #-------------------------------------------------------------------------
-import gobject
-import gtk
+from gi.repository import GObject
+from gi.repository import Gtk
+from gi.repository import Pango
 from gui.widgets.undoablebuffer import UndoableBuffer
-from pango import WEIGHT_BOLD, STYLE_ITALIC, UNDERLINE_SINGLE
+WEIGHT_BOLD = Pango.Weight.BOLD
+STYLE_ITALIC = Pango.Style.ITALIC
+UNDERLINE_SINGLE = Pango.Underline.SINGLE
 
 #-------------------------------------------------------------------------
 #
@@ -90,7 +93,7 @@ STYLE_TO_PROPERTY = {
 # LinkTag class
 #
 #-------------------------------------------------------------------------
-class LinkTag(gtk.TextTag):
+class LinkTag(Gtk.TextTag):
     """
     Class for keeping track of link data.
     """
@@ -98,7 +101,7 @@ class LinkTag(gtk.TextTag):
     def __init__(self, buffer, data, **properties):
         LinkTag.lid += 1
         self.data = data
-        gtk.TextTag.__init__(self, "link-%d" % LinkTag.lid)
+        GObject.GObject.__init__(self, name="link-%d" % LinkTag.lid)
         tag_table = buffer.get_tag_table()
         for property in properties:
             self.set_property(property, properties[property])
@@ -112,8 +115,8 @@ class LinkTag(gtk.TextTag):
 class GtkSpellState(object):
     """A simple state machine kinda thingy.
     
-    Trying to track gtk.Spell activities on a buffer and re-apply formatting
-    after gtk.Spell replaces a misspelled word.
+    Trying to track Gtk.Spell activities on a buffer and re-apply formatting
+    after Gtk.Spell replaces a misspelled word.
         
     """
     (STATE_NONE,
@@ -122,8 +125,8 @@ class GtkSpellState(object):
      STATE_INSERTING) = range(4)
 
     def __init__(self, textbuffer):
-        if not isinstance(textbuffer, gtk.TextBuffer):
-            raise TypeError("Init parameter must be instance of gtk.TextBuffer")
+        if not isinstance(textbuffer, Gtk.TextBuffer):
+            raise TypeError("Init parameter must be instance of Gtk.TextBuffer")
             
         textbuffer.connect('mark-set', self.on_buffer_mark_set)
         textbuffer.connect('delete-range', self.on_buffer_delete_range)
@@ -169,10 +172,10 @@ class GtkSpellState(object):
         self.reset_state()
 
     def get_word_extents_from_mark(self, textbuffer, mark):
-        """Get the word extents as gtk.Spell does.
+        """Get the word extents as Gtk.Spell does.
         
         Used to get the beginning of the word, in which user right clicked.
-        Formatting found at that position used after gtk.Spell replaces
+        Formatting found at that position used after Gtk.Spell replaces
         misspelled words.
         
         """
@@ -187,7 +190,7 @@ class GtkSpellState(object):
         return start.get_offset(), end.get_offset()
     
     def forward_word_end(self, iter):
-        """gtk.Spell style gtk.TextIter.forward_word_end.
+        """Gtk.Spell style Gtk.TextIter.forward_word_end.
         
         The parameter 'iter' is changing as side effect.
         
@@ -206,7 +209,7 @@ class GtkSpellState(object):
         return True
     
     def backward_word_start(self, iter):
-        """gtk.Spell style gtk.TextIter.backward_word_start.
+        """Gtk.Spell style Gtk.TextIter.backward_word_start.
 
         The parameter 'iter' is changing as side effect.
         
@@ -232,7 +235,7 @@ class StyledTextBuffer(UndoableBuffer):
     """An extended TextBuffer for handling StyledText strings.
     
     StyledTextBuffer is an interface between GRAMPS' L{StyledText} format
-    and gtk.TextBuffer. To set and get the text use the L{set_text} and 
+    and Gtk.TextBuffer. To set and get the text use the L{set_text} and 
     L{get_text} methods.
     
     To set a style to (a portion of) the text (e.g. from GUI) use the
@@ -253,9 +256,9 @@ class StyledTextBuffer(UndoableBuffer):
     __gtype_name__ = 'StyledTextBuffer'
     
     __gsignals__ = {
-        'style-changed': (gobject.SIGNAL_RUN_FIRST, 
-                          gobject.TYPE_NONE, #return value
-                          (gobject.TYPE_PYOBJECT,)), # arguments
+        'style-changed': (GObject.SignalFlags.RUN_FIRST, 
+                          None, #return value
+                          (GObject.TYPE_PYOBJECT,)), # arguments
     }    
 
     def __init__(self):
@@ -327,12 +330,12 @@ class StyledTextBuffer(UndoableBuffer):
         # move 'insert' marker to have the format attributes updated
         self.move_mark(self._insert, start)
         
-    def do_changed(self):
+    def do_changed(self, data=None):
         """Parse for patterns in the text."""
         self.matches = []
         text = unicode(super(StyledTextBuffer, self).get_text(
                                                self.get_start_iter(),
-                                               self.get_end_iter()))
+                                               self.get_end_iter(), True))
         for regex, flavor in self.patterns:
             iter = regex.finditer(text)
             while True:
@@ -479,7 +482,7 @@ class StyledTextBuffer(UndoableBuffer):
         return removed_something
                     
     def _get_tag_from_range(self, start=None, end=None):
-        """Extract gtk.TextTags from buffer.
+        """Extract Gtk.TextTags from buffer.
         
         Return only the name of the TextTag from the specified range.
         If range is not given, tags extracted from the whole buffer.
@@ -547,7 +550,7 @@ class StyledTextBuffer(UndoableBuffer):
     def set_text(self, s_text):
         """Set the content of the buffer with markup tags.
         
-        @note: 's_' prefix means StyledText*, while 'g_' prefix means gtk.*.
+        @note: 's_' prefix means StyledText*, while 'g_' prefix means Gtk.*.
         
         """
         super(StyledTextBuffer, self).set_text(str(s_text))
@@ -570,7 +573,7 @@ class StyledTextBuffer(UndoableBuffer):
     def get_text(self, start=None, end=None, include_hidden_chars=True):
         """Return the buffer text.
         
-        @note: 's_' prefix means StyledText*, while 'g_' prefix means gtk.*.
+        @note: 's_' prefix means StyledText*, while 'g_' prefix means Gtk.*.
         
         """
         if start is None:
@@ -578,7 +581,8 @@ class StyledTextBuffer(UndoableBuffer):
         if end is None:
             end = self.get_end_iter()
 
-        txt = super(StyledTextBuffer, self).get_text(start, end, include_hidden_chars)
+        txt = super(StyledTextBuffer, self).get_text(start, end, 
+                                                        include_hidden_chars)
         txt = unicode(txt)
         
         # extract tags out of the buffer
@@ -609,7 +613,7 @@ class StyledTextBuffer(UndoableBuffer):
 
                         s_tags.append(s_tag)
                 except ValueError:
-                    _LOG.debug("silently skipping gtk.TextTag '%s'" % g_tagname)
+                    _LOG.debug("silently skipping Gtk.TextTag '%s'" % g_tagname)
 
         return StyledText(txt, s_tags)
     

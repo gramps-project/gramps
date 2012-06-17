@@ -39,7 +39,7 @@ from gen.ggettext import gettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -140,7 +140,7 @@ class EditPersonRef(EditSecondary):
         window.
         """
         
-        notebook = gtk.Notebook()
+        notebook = Gtk.Notebook()
         
         self.srcref_list = CitationEmbedList(self.dbstate, self.uistate,
                                              self.track, 

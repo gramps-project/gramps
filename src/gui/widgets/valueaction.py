@@ -37,8 +37,8 @@ _LOG = logging.getLogger(".widgets.valueaction")
 # GTK modules
 #
 #-------------------------------------------------------------------------
-import gobject
-import gtk
+from gi.repository import GObject
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -52,7 +52,7 @@ from gui.widgets.valuetoolitem import ValueToolItem
 # ValueAction class
 #
 #-------------------------------------------------------------------------
-class ValueAction(gtk.Action):
+class ValueAction(Gtk.Action):
     """Value action class.
     
     (A ValueAction with menu item doesn't make any sense.)
@@ -61,8 +61,8 @@ class ValueAction(gtk.Action):
     __gtype_name__ = "ValueAction"
     
     __gsignals__ = {
-        'changed': (gobject.SIGNAL_RUN_FIRST, 
-                    gobject.TYPE_NONE, #return value
+        'changed': (GObject.SignalFlags.RUN_FIRST, 
+                    None, #return value
                     ()), # arguments
     }    
 
@@ -83,7 +83,8 @@ class ValueAction(gtk.Action):
         @type args: list
         
         """
-        gtk.Action.__init__(self, name, '', tooltip, None)
+        GObject.GObject.__init__(self, name=name, label='', tooltip=tooltip,
+                                 stock_id=None)
         
         self._value = default
         self._data_type = type(default)
@@ -91,7 +92,9 @@ class ValueAction(gtk.Action):
         # have to be remembered, because we can't access
         # GtkAction->toolbar_item_type later.
         self._default_toolitem_type = itemtype
-        self.set_tool_item_type(itemtype)
+##TODO GTK3: following is deprecated, must be replaced by 
+##        itemtype.set_related_action(ValueAction) in calling class?
+##        self.set_tool_item_type(itemtype)
         self._args_for_toolitem = args
         
         self._handlers = {}
@@ -113,14 +116,14 @@ class ValueAction(gtk.Action):
         Override the default method, to be able to pass the required
         parameters to the proxy's constructor.
         
-        This method is called from gtk.UIManager.ensure_update(), when a
+        This method is called from Gtk.UIManager.ensure_update(), when a
         'toolitem' is found in the UI definition with a name refering to a
         ValueAction. Thus, to use the action via the UIManager a 'default'
-        toolitem type has to be set with the gtk.Action.set_tool_item_type()
-        method, before invoking the gtk.UIManager.ensure_update() method.
+        toolitem type has to be set with the Gtk.Action.set_tool_item_type()
+        method, before invoking the Gtk.UIManager.ensure_update() method.
         
         Widgets other than the default type has to be created and added
-        manually with the gtk.Action.connect_proxy() method.        
+        manually with the Gtk.Action.connect_proxy() method.        
         
         @returns: a toolbar item connected to the action.
         @returntype: L{ValueToolItem} subclass
@@ -152,7 +155,7 @@ class ValueAction(gtk.Action):
         self._handlers[proxy] = proxy.connect('changed', self._on_proxy_changed)
 
         # if this is called the proxy will appear on the proxy list twice. why?
-        #gtk.Action.connect_proxy(self, proxy)
+        #Gtk.Action.connect_proxy(self, proxy)
 
     def set_value(self, value):
         """Set value to action."""

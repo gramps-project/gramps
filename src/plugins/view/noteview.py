@@ -38,7 +38,7 @@ _LOG = logging.getLogger(".plugins.noteview")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #

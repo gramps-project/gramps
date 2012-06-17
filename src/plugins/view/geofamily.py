@@ -37,9 +37,9 @@ import urlparse
 import const
 import operator
 import locale
-from gtk.keysyms import Tab as KEY_TAB
+from Gdk.KEY_import Tab as KEY_TAB
 import socket
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -387,35 +387,35 @@ class GeoFamily(GeoGraphyView):
         self._create_markers()
 
     def add_event_bubble_message(self, event, lat, lon, mark, menu):
-        itemoption = gtk.Menu()
+        itemoption = Gtk.Menu()
         itemoption.show()
         menu.set_submenu(itemoption)
-        modify = gtk.MenuItem(_("Edit Family"))
+        modify = Gtk.MenuItem(_("Edit Family"))
         modify.show()
         modify.connect("activate", self.edit_family, event, lat, lon, mark)
         itemoption.append(modify)
-        modify = gtk.MenuItem(_("Edit Person"))
+        modify = Gtk.MenuItem(_("Edit Person"))
         modify.show()
         modify.connect("activate", self.edit_person, event, lat, lon, mark)
         itemoption.append(modify)
-        modify = gtk.MenuItem(_("Edit Event"))
+        modify = Gtk.MenuItem(_("Edit Event"))
         modify.show()
         modify.connect("activate", self.edit_event, event, lat, lon, mark)
         itemoption.append(modify)
-        center = gtk.MenuItem(_("Center on this place"))
+        center = Gtk.MenuItem(_("Center on this place"))
         center.show()
         center.connect("activate", self.center_here, event, lat, lon, mark)
         itemoption.append(center)
 
     def bubble_message(self, event, lat, lon, marks):
-        menu = gtk.Menu()
+        menu = Gtk.Menu()
         menu.set_title("family")
         message = ""
         oldplace = ""
         prevmark = None
         for mark in marks:
             if message != "":
-                add_item = gtk.MenuItem(message)
+                add_item = Gtk.MenuItem(message)
                 add_item.show()
                 menu.append(add_item)
                 self.add_event_bubble_message(event, lat, lon,
@@ -443,7 +443,7 @@ class GeoFamily(GeoGraphyView):
                     descr = _('No description')
                 message = "(%s) %s => %s" % ( date, mark[5], descr)
             prevmark = mark
-        add_item = gtk.MenuItem(message)
+        add_item = Gtk.MenuItem(message)
         add_item.show()
         menu.append(add_item)
         self.add_event_bubble_message(event, lat, lon, prevmark, add_item)

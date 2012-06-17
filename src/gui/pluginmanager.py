@@ -35,7 +35,8 @@ importers, exporters, quick reports, and document generators.
 #
 #-------------------------------------------------------------------------
 import os
-import gtk
+from gi.repository import Gtk
+from gi.repository import GdkPixbuf
 
 #-------------------------------------------------------------------------
 #
@@ -62,17 +63,20 @@ def base_reg_stock_icons(iconpaths, extraiconsize, items):
       [(os.path.join(const.IMAGE_DIR, 'scalable'), '.svg')]
     ..attribute extraiconsize: list of dir with extra prepared icon sizes and
       the gtk size to use them for, eg:
-      [(os.path.join(const.IMAGE_DIR, '22x22'), gtk.ICON_SIZE_LARGE_TOOLBAR)]
+      [(os.path.join(const.IMAGE_DIR, '22x22'), Gtk.IconSize.LARGE_TOOLBAR)]
     ..attribute items: list of icons to register, eg:
-      [('gramps-db', _('Family Trees'), gtk.gdk.CONTROL_MASK, 0, '')]
+      [('gramps-db', _('Family Trees'), Gdk.ModifierType.CONTROL_MASK, 0, '')]
     """
     
     # Register our stock items
-    gtk.stock_add (items)
+##TODO GTK3: stock_add does not work on items, it must be Gtk.StockItem, but
+##  in python one cannot create them, bug http://www.gramps-project.org/bugs/view.php?id=5009
+##  However, it seems we do not need this line as stock icons are found via Iconset
+##    Gtk.stock_add (items)
     
     # Add our custom icon factory to the list of defaults
-    factory = gtk.IconFactory ()
-    factory.add_default ()
+    factory = Gtk.IconFactory()
+    factory.add_default()
     
     for data in items:
         pixbuf = 0
@@ -80,19 +84,17 @@ def base_reg_stock_icons(iconpaths, extraiconsize, items):
             icon_file = os.path.expanduser(os.path.join(dirname, data[0]+ext))
             if os.path.isfile(icon_file):
                 try:
-                    pixbuf = gtk.gdk.pixbuf_new_from_file (icon_file)
+                    pixbuf = GdkPixbuf.Pixbuf.new_from_file (icon_file)
                     break
                 except:
                     pass
                   
         if not pixbuf :
             icon_file = os.path.join(const.IMAGE_DIR, 'gramps.png')
-            pixbuf = gtk.gdk.pixbuf_new_from_file (icon_file)
-            
-        ## FIXME from gtk 2.17.3/2.15.2 change this to 
-        ## FIXME  pixbuf = pixbuf.add_alpha(True, 255, 255, 255)
-        pixbuf = pixbuf.add_alpha(True, chr(0xff), chr(0xff), chr(0xff))
-        icon_set = gtk.IconSet (pixbuf)
+            pixbuf = GdkPixbuf.Pixbuf.new_from_file (icon_file)
+
+        pixbuf = pixbuf.add_alpha(True, 255, 255, 255)
+        icon_set = Gtk.IconSet.new_from_pixbuf (pixbuf)
         #add different sized icons, always png type!
         for size in extraiconsize :
             pixbuf = 0
@@ -100,12 +102,12 @@ def base_reg_stock_icons(iconpaths, extraiconsize, items):
                     os.path.join(size[0], data[0]+'.png'))
             if os.path.isfile(icon_file):
                 try:
-                    pixbuf = gtk.gdk.pixbuf_new_from_file (icon_file)
+                    pixbuf = GdkPixbuf.Pixbuf.new_from_file (icon_file)
                 except:
                     pass
                     
             if pixbuf :
-                source = gtk.IconSource()
+                source = Gtk.IconSource()
                 source.set_size_wildcarded(False)
                 source.set_size(size[1])
                 source.set_pixbuf(pixbuf)
@@ -197,14 +199,14 @@ class GuiPluginManager(gen.utils.Callback):
         #       button=20, dnd=32, dialog=48
         #add to the back of this list to overrule images set at beginning of list
         extraiconsize = [
-                        (os.path.join(dir, '22x22'), gtk.ICON_SIZE_LARGE_TOOLBAR), 
-                        (os.path.join(dir, '16x16'), gtk.ICON_SIZE_MENU), 
-                        (os.path.join(dir, '22x22'), gtk.ICON_SIZE_BUTTON), 
+                        (os.path.join(dir, '22x22'), Gtk.IconSize.LARGE_TOOLBAR), 
+                        (os.path.join(dir, '16x16'), Gtk.IconSize.MENU), 
+                        (os.path.join(dir, '22x22'), Gtk.IconSize.BUTTON), 
                         ]
 
         items = []
         for stock_id, label in icons:
-            items.append((stock_id, label, gtk.gdk.CONTROL_MASK, 0, ''))
+            items.append((stock_id, label, Gdk.ModifierType.CONTROL_MASK, 0, ''))
         
         base_reg_stock_icons(iconpaths, extraiconsize, items)
 

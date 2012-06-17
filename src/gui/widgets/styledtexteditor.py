@@ -20,7 +20,7 @@
 
 # $Id$
 
-"Text editor subclassed from gtk.TextView handling L{StyledText}."
+"Text editor subclassed from Gtk.TextView handling L{StyledText}."
 
 __all__ = ["StyledTextEditor"]
 
@@ -39,9 +39,10 @@ _LOG = logging.getLogger(".widgets.styledtexteditor")
 # GTK libraries
 #
 #-------------------------------------------------------------------------
-import gobject
-import gtk
-from pango import UNDERLINE_SINGLE
+from gi.repository import GObject
+from gi.repository import Gdk
+from gi.repository import Gtk
+from gi.repository import Pango
 
 #-------------------------------------------------------------------------
 #
@@ -68,8 +69,8 @@ from gen.constfunc import has_display
 #
 #-------------------------------------------------------------------------
 if has_display():
-    HAND_CURSOR = gtk.gdk.Cursor(gtk.gdk.HAND2)
-    REGULAR_CURSOR = gtk.gdk.Cursor(gtk.gdk.XTERM)
+    HAND_CURSOR = Gdk.Cursor.new(Gdk.CursorType.HAND2)
+    REGULAR_CURSOR = Gdk.Cursor.new(Gdk.CursorType.XTERM)
 
 FORMAT_TOOLBAR = '''
 <ui>
@@ -128,8 +129,8 @@ def find_parent_with_attr(self, attr="dbstate"):
 # StyledTextEditor
 #
 #-------------------------------------------------------------------------
-class StyledTextEditor(gtk.TextView):
-    """StyledTextEditor is an enhanced gtk.TextView to edit L{StyledText}.
+class StyledTextEditor(Gtk.TextView):
+    """StyledTextEditor is an enhanced Gtk.TextView to edit L{StyledText}.
     
     StyledTextEditor is a gui object for L{StyledTextBuffer}. It offers
     L{set_text} and L{get_text} convenience methods to set and get the 
@@ -152,7 +153,7 @@ class StyledTextEditor(gtk.TextView):
     @ivar match: currently matched string, used for generating the
     'match-changed' signal.
     @type match: tuple or None
-    @ivar show_unicode: stores the user's gtk.settings['gtk-show-unicode-menu']
+    @ivar show_unicode: stores the user's Gtk.settings['gtk-show-unicode-menu']
     value.
     @type show_unicode: bool
     @ivar spellcheck: spell checker object created for the editor instance.
@@ -160,7 +161,7 @@ class StyledTextEditor(gtk.TextView):
     @ivar textbuffer: text buffer assigned to the edit instance.
     @type textbuffer: L{StyledTextBuffer}
     @ivar toolbar: toolbar to be used for text formatting.
-    @type toolbar: gtk.Toolbar
+    @type toolbar: Gtk.Toolbar
     @ivar url_match: stores the matched URL and other mathing parameters.
     @type url_match: tuple or None
     
@@ -168,9 +169,9 @@ class StyledTextEditor(gtk.TextView):
     __gtype_name__ = 'StyledTextEditor'
     
     __gsignals__ = {
-        'match-changed': (gobject.SIGNAL_RUN_FIRST, 
-                          gobject.TYPE_NONE, #return value
-                          (gobject.TYPE_PYOBJECT,)), # arguments
+        'match-changed': (GObject.SignalFlags.RUN_FIRST, 
+                          None, #return value
+                          (GObject.TYPE_PYOBJECT,)), # arguments
     }    
 
     def __init__(self):
@@ -178,7 +179,7 @@ class StyledTextEditor(gtk.TextView):
         self.textbuffer = UndoableStyledBuffer()
         self.textbuffer.connect('style-changed', self._on_buffer_style_changed)
         self.textbuffer.connect('changed', self._on_buffer_changed)
-        gtk.TextView.__init__(self, self.textbuffer)
+        GObject.GObject.__init__(self, buffer=self.textbuffer)
 
         self.match = None
         self.last_match = None
@@ -192,7 +193,7 @@ class StyledTextEditor(gtk.TextView):
         self._connect_signals()
 
         # we want to disable the unicode menu in the popup
-        settings = gtk.settings_get_default()
+        settings = Gtk.Settings.get_default()
         self.show_unicode = settings.get_property('gtk-show-unicode-menu')
         settings.set_property('gtk-show-unicode-menu', False)
         
@@ -212,7 +213,7 @@ class StyledTextEditor(gtk.TextView):
         @attention: Do not override the handler, but connect to the signal.
         
         """
-        window = self.get_window(gtk.TEXT_WINDOW_TEXT)
+        window = self.get_window(Gtk.TextWindowType.TEXT)
         start, end = self.textbuffer.get_bounds()
         self.textbuffer.remove_tag_by_name('hyperlink', start, end)
         if match and (match[MATCH_FLAVOR] in (GENURL, HTTP, MAIL)):
@@ -238,7 +239,7 @@ class StyledTextEditor(gtk.TextView):
         Set the default Gtk settings back before leaving.
         
         """
-        settings = gtk.settings_get_default()
+        settings = Gtk.Settings.get_default()
         settings.set_property('gtk-show-unicode-menu', self.show_unicode)
         
     def on_key_press_event(self, widget, event):
@@ -247,19 +248,19 @@ class StyledTextEditor(gtk.TextView):
         Handle formatting shortcuts.
         
         """
-        if ((gtk.gdk.keyval_name(event.keyval) == 'Z') and
-            (event.state & gtk.gdk.CONTROL_MASK) and 
-            (event.state & gtk.gdk.SHIFT_MASK)):
+        if ((Gdk.keyval_name(event.keyval) == 'Z') and
+            (event.get_state() & Gdk.ModifierType.CONTROL_MASK) and 
+            (event.get_state() & Gdk.ModifierType.SHIFT_MASK)):
             self.redo()
             return True
-        elif ((gtk.gdk.keyval_name(event.keyval) == 'z') and
-              (event.state & gtk.gdk.CONTROL_MASK)):
+        elif ((Gdk.keyval_name(event.keyval) == 'z') and
+              (event.get_state() & Gdk.ModifierType.CONTROL_MASK)):
             self.undo()
             return True
         else:
             for accel, accel_name in self.action_accels.iteritems():
-                key, mod = gtk.accelerator_parse(accel)
-                if ((event.keyval == key) and (event.state & mod)):
+                key, mod = Gtk.accelerator_parse(accel)
+                if ((event.keyval == key) and (event.get_state() & mod)):
                     action_name = accel_name
                     action = self.action_group.get_action(action_name)
                     action.activate()
@@ -286,7 +287,7 @@ class StyledTextEditor(gtk.TextView):
         'match-changed' signal is raised.
         
         """
-        x, y = self.window_to_buffer_coords(gtk.TEXT_WINDOW_WIDGET,
+        x, y = self.window_to_buffer_coords(Gtk.TextWindowType.WIDGET,
                                             int(event.x), int(event.y))
         iter_at_location = self.get_iter_at_location(x, y)
         self.match = self.textbuffer.match_check(iter_at_location.get_offset())
@@ -302,7 +303,7 @@ class StyledTextEditor(gtk.TextView):
             self.emit('match-changed', self.match)
 
         self.last_match = self.match
-        self.window.get_pointer()
+        self.get_root_window().get_pointer()
         self.set_tooltip_text(tooltip)
         return False
 
@@ -325,11 +326,11 @@ class StyledTextEditor(gtk.TextView):
         """
         Copy selection to clipboard for left click if selection given
         """
-        if (event.type == gtk.gdk.BUTTON_RELEASE and self.selclick and
+        if (event.type == Gdk.EventType.BUTTON_RELEASE and self.selclick and
                 event.button == 1):
             bounds = self.textbuffer.get_selection_bounds()
             if bounds:
-                clip = gtk.Clipboard(selection="PRIMARY")
+                clip = Gtk.Clipboard(selection="PRIMARY")
                 clip.set_text(str(self.textbuffer.get_text(bounds[0], 
                                                            bounds[1])))
         return False
@@ -341,15 +342,15 @@ class StyledTextEditor(gtk.TextView):
         
         """
         self.selclick=False
-        if ((event.type == gtk.gdk.BUTTON_PRESS) and
+        if ((event.type == Gdk.EventType.BUTTON_PRESS) and
             (event.button == 1) and
-            (event.state and gtk.gdk.CONTROL_MASK) and
+            (event.get_state() and Gdk.ModifierType.CONTROL_MASK) and
             (self.url_match)):
             
             flavor = self.url_match[MATCH_FLAVOR]
             url = self.url_match[MATCH_STRING]
             self._open_url_cb(None, url, flavor)
-        elif (event.type == gtk.gdk.BUTTON_PRESS and event.button == 1) :
+        elif (event.type == Gdk.EventType.BUTTON_PRESS and event.button == 1) :
             #on release we will copy selected data to clipboard
             self.selclick = True
         #propagate click
@@ -364,12 +365,12 @@ class StyledTextEditor(gtk.TextView):
         
         """
         # spell checker submenu
-        spell_menu = gtk.MenuItem(_('Spellcheck'))
+        spell_menu = Gtk.MenuItem(_('Spellcheck'))
         spell_menu.set_submenu(self._create_spell_menu())
         spell_menu.show_all()
         menu.prepend(spell_menu)
         
-        search_menu = gtk.MenuItem(_("Search selection on web"))
+        search_menu = Gtk.MenuItem(_("Search selection on web"))
         search_menu.connect('activate', self.search_web)
         search_menu.show_all()
         menu.append(search_menu)
@@ -380,14 +381,14 @@ class StyledTextEditor(gtk.TextView):
             url = self.url_match[MATCH_STRING]
             
             if flavor == MAIL:
-                open_menu = gtk.MenuItem(_('_Send Mail To...'))
-                copy_menu = gtk.MenuItem(_('Copy _E-mail Address'))
+                open_menu = Gtk.MenuItem(_('_Send Mail To...'))
+                copy_menu = Gtk.MenuItem(_('Copy _E-mail Address'))
             else:
-                open_menu = gtk.MenuItem(_('_Open Link'))
-                copy_menu = gtk.MenuItem(_('Copy _Link Address'))
+                open_menu = Gtk.MenuItem(_('_Open Link'))
+                copy_menu = Gtk.MenuItem(_('Copy _Link Address'))
 
             if flavor == LINK:
-                edit_menu = gtk.MenuItem(_('_Edit Link'))
+                edit_menu = Gtk.MenuItem(_('_Edit Link'))
                 edit_menu.connect('activate', self._edit_url_cb, 
                                   self.url_match[-1], # tag
                                   )
@@ -425,7 +426,7 @@ class StyledTextEditor(gtk.TextView):
     # private methods
     
     def _connect_signals(self):
-        """Connect to several signals of the super class gtk.TextView."""
+        """Connect to several signals of the super class Gtk.TextView."""
         self.connect('key-press-event', self.on_key_press_event)
         self.connect('insert-at-cursor', self.on_insert_at_cursor)
         self.connect('delete-from-cursor', self.on_delete_from_cursor)
@@ -440,17 +441,17 @@ class StyledTextEditor(gtk.TextView):
         """Create a formatting toolbar.
         
         @returns: toolbar containing text formatting toolitems.
-        @returntype: gtk.Toolbar
+        @returntype: Gtk.Toolbar
         
         """
         # define the actions...
         # ...first the toggle actions, which have a ToggleToolButton as proxy
         format_toggle_actions = [
-            (str(StyledTextTagType.ITALIC), gtk.STOCK_ITALIC, None, None,
+            (str(StyledTextTagType.ITALIC), Gtk.STOCK_ITALIC, None, None,
              _('Italic'), self._on_toggle_action_activate),
-            (str(StyledTextTagType.BOLD), gtk.STOCK_BOLD, None, None,
+            (str(StyledTextTagType.BOLD), Gtk.STOCK_BOLD, None, None,
              _('Bold'), self._on_toggle_action_activate),
-            (str(StyledTextTagType.UNDERLINE), gtk.STOCK_UNDERLINE, None, None,
+            (str(StyledTextTagType.UNDERLINE), Gtk.STOCK_UNDERLINE, None, None,
              _('Underline'), self._on_toggle_action_activate),
         ]
         
@@ -462,9 +463,9 @@ class StyledTextEditor(gtk.TextView):
              _('Font Color'), self._on_action_activate),
             (str(StyledTextTagType.HIGHLIGHT), 'gramps-font-bgcolor', None, None,
              _('Background Color'), self._on_action_activate),
-            (str(StyledTextTagType.LINK), gtk.STOCK_JUMP_TO, None, None,
+            (str(StyledTextTagType.LINK), Gtk.STOCK_JUMP_TO, None, None,
              _('Link'), self._on_link_activate),
-            ('clear', gtk.STOCK_CLEAR, None, None,
+            ('clear', Gtk.STOCK_CLEAR, None, None,
              _('Clear Markup'), self._format_clear_cb),
         ]
         
@@ -504,13 +505,13 @@ class StyledTextEditor(gtk.TextView):
         }
 
         # create the action group and insert all the actions
-        self.action_group = gtk.ActionGroup('Format')
+        self.action_group = Gtk.ActionGroup('Format')
         self.action_group.add_toggle_actions(format_toggle_actions)
-        self.undo_action = gtk.Action("Undo", _('Undo'), _('Undo'), 
-                                        gtk.STOCK_UNDO)
+        self.undo_action = Gtk.Action("Undo", _('Undo'), _('Undo'), 
+                                        Gtk.STOCK_UNDO)
         self.undo_action.connect('activate', self.undo)
-        self.redo_action = gtk.Action("Redo", _('Redo'), _('Redo'),
-                                        gtk.STOCK_REDO)
+        self.redo_action = Gtk.Action("Redo", _('Redo'), _('Redo'),
+                                        Gtk.STOCK_REDO)
         self.redo_action.connect('activate', self.redo)
         self.action_group.add_action(self.undo_action)
         self.action_group.add_action(self.redo_action)
@@ -520,14 +521,14 @@ class StyledTextEditor(gtk.TextView):
         self.action_group.add_action(spring)
         
         # define the toolbar and create the proxies via ensure_update()
-        uimanager = gtk.UIManager()
+        uimanager = Gtk.UIManager()
         uimanager.insert_action_group(self.action_group, 0)
         uimanager.add_ui_from_string(FORMAT_TOOLBAR)
         uimanager.ensure_update()
         
         # get the toolbar and set it's style
         toolbar = uimanager.get_widget('/ToolBar')      
-        toolbar.set_style(gtk.TOOLBAR_ICONS)
+        toolbar.set_style(Gtk.ToolbarStyle.ICONS)
         self.undo_action.set_sensitive(False)
         self.redo_action.set_sensitive(False)
 
@@ -536,7 +537,7 @@ class StyledTextEditor(gtk.TextView):
     def _init_url_match(self):
         """Setup regexp matching for URL match."""
         self.textbuffer.create_tag('hyperlink',
-                                   underline=UNDERLINE_SINGLE,
+                                   underline=Pango.Underline.SINGLE,
                                    foreground='blue')
         self.textbuffer.match_add(SCHEME + "//(" + USER + "@)?[" +
                                   HOSTCHARS + ".]+" + "(:[0-9]+)?(" +
@@ -554,15 +555,15 @@ class StyledTextEditor(gtk.TextView):
         forms a radio menu item, and the selected spellcheck is set as active.
         
         @returns: menu containing all the installed spellchecks.
-        @returntype: gtk.Menu
+        @returntype: Gtk.Menu
         
         """
         active_spellcheck = self.spellcheck.get_active_spellcheck()
 
-        menu = gtk.Menu()
+        menu = Gtk.Menu()
         group = None
         for lang in self.spellcheck.get_all_spellchecks():
-            menuitem = gtk.RadioMenuItem(group, lang)
+            menuitem = Gtk.RadioMenuItem(group, lang)
             menuitem.set_active(lang == active_spellcheck)
             menuitem.connect('activate', self._spell_change_cb, lang)
             menu.append(menuitem)
@@ -598,9 +599,9 @@ class StyledTextEditor(gtk.TextView):
             # Paste text to clipboards
             text = str(self.textbuffer.get_text(selection_bounds[0], 
                                                 selection_bounds[1]))
-            clipboard = gtk.Clipboard(selection="CLIPBOARD")
+            clipboard = Gtk.Clipboard(selection="CLIPBOARD")
             clipboard.set_text(text)
-            clipboard = gtk.Clipboard(selection="PRIMARY")
+            clipboard = Gtk.Clipboard(selection="PRIMARY")
             clipboard.set_text(text)
             uri_dialog(self, None, self.setlink_callback)
 
@@ -613,7 +614,7 @@ class StyledTextEditor(gtk.TextView):
             if not tag:
                 tag = LinkTag(self.textbuffer, 
                               data=uri,
-                              underline=UNDERLINE_SINGLE, 
+                              underline=Pango.Underline.SINGLE, 
                               foreground="blue")
                 selection_bounds = self.textbuffer.get_selection_bounds()
                 self.textbuffer.apply_tag(tag,
@@ -624,14 +625,14 @@ class StyledTextEditor(gtk.TextView):
 
 
     def _on_action_activate(self, action):
-        """Apply a format set from a gtk.Action type of action."""
+        """Apply a format set from a Gtk.Action type of action."""
         style = int(action.get_name())
         current_value = self.textbuffer.get_style_at_cursor(style)
 
         if style == StyledTextTagType.FONTCOLOR:
-            color_selection = gtk.ColorSelectionDialog(_("Select font color"))
+            color_selection = Gtk.ColorSelectionDialog(_("Select font color"))
         elif style == StyledTextTagType.HIGHLIGHT:
-            color_selection = gtk.ColorSelectionDialog(_("Select "
+            color_selection = Gtk.ColorSelectionDialog(_("Select "
                                                          "background color"))
         else:
             _LOG.debug("unknown style: '%d'" % style)
@@ -646,7 +647,7 @@ class StyledTextEditor(gtk.TextView):
         value = color_to_hex(color)
         color_selection.destroy()
         
-        if response == gtk.RESPONSE_OK:
+        if response == Gtk.ResponseType.OK:
             _LOG.debug("applying style '%d' with value '%s'" %
                        (style, str(value)))
             self.textbuffer.apply_style(style, value)
@@ -672,7 +673,7 @@ class StyledTextEditor(gtk.TextView):
         """
         Remove all formats from the selection or from all.
         
-        Remove only our own tags without touching other ones (e.g. gtk.Spell),
+        Remove only our own tags without touching other ones (e.g. Gtk.Spell),
         thus remove_all_tags() can not be used.
         
         """
@@ -751,10 +752,10 @@ class StyledTextEditor(gtk.TextView):
     
     def _copy_url_cb(self, menuitem, url, flavor):
         """Copy url to both useful selections."""
-        clipboard = gtk.Clipboard(selection="CLIPBOARD")
+        clipboard = Gtk.Clipboard(selection="CLIPBOARD")
         clipboard.set_text(url)
         
-        clipboard = gtk.Clipboard(selection="PRIMARY")
+        clipboard = Gtk.Clipboard(selection="PRIMARY")
         clipboard.set_text(url)
 
 
@@ -766,9 +767,9 @@ class StyledTextEditor(gtk.TextView):
         bounds = self.textbuffer.get_selection_bounds()
         if bounds:
             text = str(self.textbuffer.get_text(bounds[0], bounds[1]))
-            clipboard = gtk.Clipboard(selection="CLIPBOARD")
+            clipboard = Gtk.Clipboard(selection="CLIPBOARD")
             clipboard.set_text(text)
-            clipboard = gtk.Clipboard(selection="PRIMARY")
+            clipboard = Gtk.Clipboard(selection="PRIMARY")
             clipboard.set_text(text)
         uri_dialog(self, link_tag.data, 
                    lambda uri: self.setlink_callback(uri, link_tag))
@@ -798,7 +799,7 @@ class StyledTextEditor(gtk.TextView):
         """Get the formatting toolbar of the editor.
         
         @returns: toolbar widget to use as formatting GUI.
-        @returntype: gtk.Toolbar
+        @returntype: Gtk.Toolbar
         
         """
         return self.toolbar
@@ -833,7 +834,7 @@ def uri_dialog(self, uri, callback):
 #
 #-------------------------------------------------------------------------
 def color_to_hex(color):
-    """Convert gtk.gdk.Color to hex string."""
+    """Convert Gdk.Color to hex string."""
     hexstring = ""
     for col in 'red', 'green', 'blue':
         hexfrag = hex(getattr(color, col) / (16 * 16)).split("x")[1]
@@ -843,8 +844,8 @@ def color_to_hex(color):
     return '#' + hexstring
     
 def hex_to_color(hex):
-    """Convert hex string to gtk.gdk.Color."""
-    color = gtk.gdk.color_parse(hex)
+    """Convert hex string to Gdk.Color."""
+    color = Gdk.color_parse(hex)
     return color
 
 def is_valid_fontsize(size):

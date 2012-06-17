@@ -24,7 +24,7 @@
 """
 This module provides the flat treemodel that is used for all flat treeviews.
 
-For performance, GRAMPS does not use gtk.TreeStore, as that would mean keeping
+For performance, GRAMPS does not use Gtk.TreeStore, as that would mean keeping
 the entire database table of an object in memory. 
 Instead, it suffices to keep in memory the sortkey and the matching handle, 
 as well as a map of sortkey,handle to treeview path, and vice versa. 
@@ -65,7 +65,8 @@ _LOG = logging.getLogger(".gui.basetreemodel")
 # GNOME/GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import GObject
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -91,7 +92,7 @@ class FlatNodeMap(object):
         * srtkey : key on which to sort
         * hndl   : handle of the object, makes it possible to retrieve the 
                    object from the database. As handle is unique, it is used
-                   as the iter for the TreeView
+                   in the iter for the TreeView
         * index  : the index in the internal lists. When a view is in reverse, 
                     this is not kept physically, but instead via an offset
         * path   : integer path in the TreeView. This will be index if view is
@@ -120,6 +121,13 @@ class FlatNodeMap(object):
         self._hndl2index = {}
         self._reverse = False
         self.__corr = (0, 1)
+        #We create a stamp to recognize invalid iterators. From the docs:
+        #Set the stamp to be equal to your model's stamp, to mark the 
+        #iterator as valid. When your model's structure changes, you should 
+        #increment your model's stamp to mark all older iterators as invalid. 
+        #They will be recognised as invalid because they will then have an 
+        #incorrect stamp. 
+        self.stamp = 0
 
     def destroy(self):
         """
@@ -143,18 +151,20 @@ class FlatNodeMap(object):
         Reverse sets up how the path is determined from the index. If True the
         first index is the last path
         
-        :param index2hndllist: the ascending sorted (sortkey, handle) values 
+        :param index2hndllist: the ascending sorted (sortkey, handle, iter) values 
                     as they will appear in the flat treeview. This often is 
-                    a subset of all possible data
+                    a subset of all possible data.
+                    Set iter=None, it will be set internally
         :type index2hndllist: a list of (sortkey, handle) tuples
         :param fullhndllist: the list of all possilbe ascending sorted 
-                    (sortkey, handle) values as they will appear in the flat 
+                    [sortkey, handle, iter] values as they will appear in the flat 
                      treeview if all data is shown.
-        :type fullhndllist: a list of (sortkey, handle) tuples
+        :type fullhndllist: a list of (sortkey, handle, iter) tuples
         :param identical: identify if index2hndllist and fullhndllist are the
                         same list, so only one is kept in memory.
         :type identical: bool
         """
+        self.stamp += 1
         self._index2hndl = index2hndllist
         self._hndl2index = {}
         self._identical = identical
@@ -215,9 +225,21 @@ class FlatNodeMap(object):
         self._fullhndl = self._index2hndl
         self._identical = True
 
-    def get_path(self, handle):
+    def get_path(self, iter):
         """
-        Return the path from the passed handle.
+        Return the path from the passed iter.
+        
+        :param handle: the key of the object for which the path in the treeview
+                        is needed
+        :param type: an object handle
+        :Returns: the path, or None if handle does not link to a path
+        """
+        handle = iter.user_data
+        return self.get_path_from_handle(handle)
+
+    def get_path_from_handle(self, handle):
+        """
+        Return the path from the passed handle
         
         :param handle: the key of the object for which the path in the treeview
                         is needed
@@ -225,7 +247,10 @@ class FlatNodeMap(object):
         :Returns: the path, or None if handle does not link to a path
         """
         index = self._hndl2index.get(handle)
-        return None if index is None else self.real_path(index)
+        if index is None:
+            return None
+
+        return Gtk.TreePath((self.real_path(index),))
 
     def get_sortkey(self, handle):
         """
@@ -239,6 +264,30 @@ class FlatNodeMap(object):
         index = self._hndl2index.get(handle)
         return None if index is None else self._index2hndl[index][0]
 
+    def new_iter(self, handle):
+        """
+        Return a new iter containing the handle
+        """
+        iter = Gtk.TreeIter()
+        iter.stamp = self.stamp
+        iter.user_data = handle
+        return iter
+
+    def get_iter(self, path):
+        """
+        Return an iter from the path. The path is assumed to be an integer.
+        This is accomplished by indexing into the index2hndl
+        iters are always created afresh
+        
+        Will raise IndexError if the maps are not filled yet, or if it is empty.
+        Caller should take care of this if it allows calling with invalid path
+        
+        :param path: path as it appears in the treeview
+        :type path: integer
+        """
+        iter = self.new_iter(self._index2hndl[self.real_index(path)][1])
+        return iter
+
     def get_handle(self, path):
         """
         Return the handle from the path. The path is assumed to be an integer.
@@ -251,40 +300,47 @@ class FlatNodeMap(object):
         :type path: integer
         """
         return self._index2hndl[self.real_index(path)][1]
-
-    def find_next_handle(self, handle):
+    
+    def find_next_handle(self, iter):
         """
         Finds the next handle based off the passed handle. This is accomplished
-        by finding the index associated with the handle, adding or substracting
+        by finding the index associated with the iter, adding or substracting
         one to find the next index, then finding the handle associated with 
         that.
+        False is returned if no next handle
+        True, handle tuple otherwise
         
         :param handle: the key of the object for which the next handle shown
                         in the treeview is needed
         :param type: an object handle
         """
+        handle = iter.user_data
+        if handle is None:
+            #Nothing on this level
+            return False
+            
         index = self._hndl2index.get(handle)
         if self._reverse : 
             index -= 1
             if index < 0:
                 # -1 does not raise IndexError, as -1 is last element. Catch.
-                return None
+                return False
         else:
             index += 1
 
         try:
-            return self._index2hndl[index][1]
+            return True, self._index2hndl[index][1]
         except IndexError:
-            return None
+            return False
     
-    def get_first_handle(self):
+    def get_first_iter(self):
         """
         Return the first handle that must be shown (corresponding to path 0)
         
         Will raise IndexError if the maps are not filled yet, or if it is empty.
         Caller should take care of this if it allows calling with invalid path
         """
-        return self._index2hndl[self.real_index(0)][1]
+        return self.get_iter(0)
 
     def __len__(self):
         """
@@ -376,20 +432,21 @@ class FlatNodeMap(object):
 # FlatBaseModel
 #
 #-------------------------------------------------------------------------
-class FlatBaseModel(gtk.GenericTreeModel):
+class FlatBaseModel(GObject.Object, Gtk.TreeModel):
     """
     The base class for all flat treeview models. 
     It keeps a FlatNodeMap, and obtains data from database as needed
     """
 
-    def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING,
+    def __init__(self, db, scol=0, order=Gtk.SortType.ASCENDING,
                  tooltip_column=None, search=None, skip=set(),
                  sort_map=None):
         cput = time.clock()
-        gtk.GenericTreeModel.__init__(self)
+        GObject.GObject.__init__(self)
+        #inheriting classes must set self.map to obtain the data
         self.prev_handle = None
         self.prev_data = None
-        self.set_property("leak_references", False)
+        #self.set_property("leak_references", False)
         self.db = db
         #normally sort on first column, so scol=0
         if sort_map:
@@ -408,7 +465,7 @@ class FlatBaseModel(gtk.GenericTreeModel):
         self.node_map = FlatNodeMap()
         self.set_search(search)
             
-        self._reverse = (order == gtk.SORT_DESCENDING)
+        self._reverse = (order == Gtk.SortType.DESCENDING)
         self._tooltip_column = tooltip_column
 
         self.rebuild_data()
@@ -510,7 +567,8 @@ class FlatBaseModel(gtk.GenericTreeModel):
         """
         # use cursor as a context manager
         with self.gen_cursor() as cursor:   
-            #loop over database and store the sort field, and the handle
+            #loop over database and store the sort field, and the handle, and
+            #allow for a third iter
             return sorted((map(conv_unicode_tosrtkey_ongtk,
                            self.sort_func(data)), key) for key, data in cursor)
 
@@ -578,7 +636,7 @@ class FlatBaseModel(gtk.GenericTreeModel):
         Add a row. This is called after object with handle is created.
         Row is only added if search/filter data is such that it must be shown
         """
-        if self.node_map.get_path(handle) is not None:
+        if self.node_map.get_path_from_handle(handle) is not None:
             return # row is already displayed
         data = self.map(handle)
         insert_val = (map(conv_unicode_tosrtkey_ongtk, self.sort_func(data)),
@@ -598,7 +656,7 @@ class FlatBaseModel(gtk.GenericTreeModel):
         """
         Delete a row, called after the object with handle is deleted
         """
-        if self.node_map.get_path(handle) is None:
+        if self.node_map.get_path_from_handle(handle) is None:
             return # row is not currently displayed
         self.clear_cache(handle)
         delete_val = (self.node_map.get_sortkey(handle), handle)
@@ -611,7 +669,7 @@ class FlatBaseModel(gtk.GenericTreeModel):
         """
         Update a row, called after the object with handle is changed
         """
-        if self.node_map.get_path(handle) is None:
+        if self.node_map.get_path_from_handle(handle) is None:
             return # row is not currently displayed
         self.clear_cache(handle)
         oldsortkey = self.node_map.get_sortkey(handle)
@@ -624,7 +682,7 @@ class FlatBaseModel(gtk.GenericTreeModel):
             self.add_row_by_handle(handle)
         else:
             #the row is visible in the view, is changed, but the order is fixed
-            path = self.node_map.get_path(handle)
+            path = self.node_map.get_path_from_handle(handle)
             node = self.get_iter(path)
             self.row_changed(path, node)
 
@@ -633,104 +691,139 @@ class FlatBaseModel(gtk.GenericTreeModel):
         Obtain from a handle, a path.
         Part of common api with flat/treebasemodel
         """
-        return self.on_get_path(handle)
+        return self.on_get_path_from_handle(handle)
 
-    def on_get_flags(self):
+    def do_get_flags(self):
         """
         Returns the GtkTreeModelFlags for this particular type of model
-        See gtk.TreeModel
+        See Gtk.TreeModel
         """
-        return gtk.TREE_MODEL_LIST_ONLY | gtk.TREE_MODEL_ITERS_PERSIST
+        #print 'do_get_flags'
+        return Gtk.TreeModelFlags.LIST_ONLY #| Gtk.TreeModelFlags.ITERS_PERSIST
 
-    def on_get_n_columns(self):
+    def do_get_n_columns(self):
         """
         Return the number of columns. Must be implemented in the child objects
-        See gtk.TreeModel
+        See Gtk.TreeModel
         """
+        #print 'do_get_n_col'
         raise NotImplementedError
 
-    def on_get_path(self, handle):
+    def do_get_path(self, iter):
         """
         Return the tree path (a tuple of indices at the various
         levels) for a particular iter. We use handles for unique key iters
-        See gtk.TreeModel
+        See Gtk.TreeModel
         """
-        return self.node_map.get_path(handle)
+        #print 'do_get_path', iter
+        return self.node_map.get_path(iter)
 
-    def on_get_column_type(self, index):
+    def do_get_column_type(self, index):
         """
-        See gtk.TreeModel
+        See Gtk.TreeModel
         """
+        #print 'do_get_col_type'
         if index == self._tooltip_column:
             return object
         return str
 
-    def on_get_iter(self, path):
-        """
-        See gtk.TreeModel
-        """
-        try:
-            return self.node_map.get_handle(path[0])
-        except IndexError:
-            return None
+    def do_get_iter_first(self):
+        #print 'get iter first'
+        raise NotImplementedError
 
-    def on_get_value(self, handle, col):
+    def do_get_iter(self, path):
         """
-        See gtk.TreeModel. 
+        See Gtk.TreeModel
+        """
+        #print 'do_get_iter', path
+        for p in path:
+            break
+        try:
+            return True, self.node_map.get_iter(p)
+        except IndexError:
+            return False, Gtk.TreeIter()
+
+    def do_get_value(self, iter, col):
+        """
+        See Gtk.TreeModel. 
         col is the model column that is needed, not the visible column!
         """
-        try:
-            if handle != self.prev_handle:
-                self.prev_data = self.map(str(handle))
-                self.prev_handle = handle
-            return self.fmap[col](self.prev_data)
-        except:
-            return None
+        #print 'do_get_val', iter, iter.user_data, col,
+        handle = iter.user_data
+        if handle != self.prev_handle:
+            self.prev_data = self.map(str(handle))
+            self.prev_handle = handle
+        val = self.fmap[col](self.prev_data)
+        #print 'val is', val, type(val)
+        if col == self._tooltip_column:
+            return val
+        else:
+            return str(val)
 
-    def on_iter_next(self, handle):
-        """
-        Returns the next node at this level of the tree
-        See gtk.TreeModel
-        """
-        return self.node_map.find_next_handle(handle)
+    def do_iter_previous(self, iter):
+        #print 'do_iter_previous'
+        raise NotImplementedError
 
-    def on_iter_children(self, handle):
+    def do_iter_next(self, iter):
+        """
+        Sets iter to the next node at this level of the tree
+        See Gtk.TreeModel
+        """
+        #print 'do_iter_next', iter, iter.user_data
+        handle = self.node_map.find_next_handle(iter)
+        if handle:
+            iter.user_data = handle[1]
+            return True
+        else:
+            return False
+
+    def do_iter_children(self, iter):
         """
         Return the first child of the node
-        See gtk.TreeModel
+        See Gtk.TreeModel
         """
+        #print 'do_iter_children'
+        print 'ERROR: iter children, should not be called in flat base!!'
         if handle is None and len(self.node_map):
             return self.node_map.get_first_handle()
         return None
 
-    def on_iter_has_child(self, handle):
+    def do_iter_has_child(self, iter):
         """
         Returns true if this node has children
-        See gtk.TreeModel
+        See Gtk.TreeModel
         """
+        #print 'do_iter_has_child'
+        print 'ERROR: iter has_child', iter, 'should not be called in flat base'
+        return False
         if handle is None:
             return len(self.node_map) > 0
         return False
 
-    def on_iter_n_children(self, handle):
+    def do_iter_n_children(self, iter):
         """
-        See gtk.TreeModel
+        See Gtk.TreeModel
         """
+        #print 'do_iter_n_children'
+        print 'ERROR: iter_n_children', iter, 'should not be called in flat base'
+        return 0
         if handle is None:
             return len(self.node_map)
         return 0
 
-    def on_iter_nth_child(self, handle, nth):
+    def do_iter_nth_child(self, iter, nth):
         """
-        See gtk.TreeModel
+        See Gtk.TreeModel
         """
-        if handle is None:
-            return self.node_map.get_handle(nth)
-        return None
+        #print 'do_iter_nth_child', iter, nth
+        if iter == None:
+            return True, self.node_map.get_iter(nth)
+        return False
 
-    def on_iter_parent(self, handle):
+    def do_iter_parent(self, iter):
         """
         Returns the parent of this node
-        See gtk.TreeModel
+        See Gtk.TreeModel
         """
-        return None
+        #print 'do_iter_parent'
+        return False

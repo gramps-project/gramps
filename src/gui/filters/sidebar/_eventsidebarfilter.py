@@ -32,7 +32,7 @@ from gen.ggettext import gettext as _
 # gtk
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -62,7 +62,7 @@ class EventSidebarFilter(SidebarFilter):
         self.filter_desc = widgets.BasicEntry()
         self.filter_event = gen.lib.Event()
         self.filter_event.set_type((gen.lib.EventType.CUSTOM, u''))
-        self.etype = gtk.ComboBoxEntry()
+        self.etype = Gtk.ComboBox(has_entry=True)
        
         self.event_menu = widgets.MonitoredDataType(
             self.etype,
@@ -74,21 +74,21 @@ class EventSidebarFilter(SidebarFilter):
         self.filter_place = widgets.BasicEntry()
         self.filter_note = widgets.BasicEntry()
         
-        self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
+        self.filter_regex = Gtk.CheckButton(_('Use regular expressions'))
 
-        self.generic = gtk.ComboBox()
+        self.generic = Gtk.ComboBox()
 
         SidebarFilter.__init__(self, dbstate, uistate, "Event")
 
     def create_widget(self):
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         cell.set_property('width', self._FILTER_WIDTH)
         cell.set_property('ellipsize', self._FILTER_ELLIPSIZE)
         self.generic.pack_start(cell, True)
         self.generic.add_attribute(cell, 'text', 0)
         self.on_filters_changed('Event')
 
-        self.etype.child.set_width_chars(5)
+        self.etype.get_child().set_width_chars(5)
 
         self.add_text_entry(_('ID'), self.filter_id)
         self.add_text_entry(_('Description'), self.filter_desc)
@@ -107,7 +107,7 @@ class EventSidebarFilter(SidebarFilter):
         self.filter_date.set_text(u'')
         self.filter_place.set_text(u'')
         self.filter_note.set_text(u'')
-        self.etype.child.set_text(u'')
+        self.etype.get_child().set_text(u'')
         self.generic.set_active(0)
 
     def get_filter(self):

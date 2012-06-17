@@ -30,7 +30,7 @@ Source View
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 import logging
 LOG = logging.getLogger(".citation")
 

@@ -25,8 +25,8 @@
 # GTK
 #
 #-------------------------------------------------------------------------
-import gtk
-import gobject
+from gi.repository import Gtk
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -36,7 +36,7 @@ import gobject
 def build_filter_model(space, local = []):
     from gen.filters import CustomFilters
 
-    model = gtk.ListStore(gobject.TYPE_STRING, object)
+    model = Gtk.ListStore(GObject.TYPE_STRING, object)
 
     if isinstance(space, basestring):
         flist = local + CustomFilters.get_filters(space)

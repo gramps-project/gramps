@@ -29,7 +29,7 @@
 # GNOME libraries
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -109,7 +109,7 @@ class Merge(tool.Tool,ManagedWindow):
         threshold = self.options.handler.options_dict['threshold']
         use_soundex = self.options.handler.options_dict['soundex']
 
-        my_menu = gtk.ListStore(str, object)
+        my_menu = Gtk.ListStore(str, object)
         for val in sorted(_val2label):
             my_menu.append([_val2label[val], val])
 

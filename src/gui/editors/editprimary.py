@@ -33,7 +33,7 @@ from gen.ggettext import gettext as _
 # GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk 
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -305,7 +305,7 @@ class EditPrimary(ManagedWindow, DbGUIElement):
         """
         from gui.plug.quick import create_quickreport_menu        
         
-        self.popupmanager = gtk.UIManager()
+        self.popupmanager = Gtk.UIManager()
         #add custom actions
         (ui_top, action_groups) = self._top_contextmenu()
         for action in action_groups :
@@ -316,7 +316,7 @@ class EditPrimary(ManagedWindow, DbGUIElement):
             (ui_qr, reportactions) = create_quickreport_menu(self.QR_CATEGORY,
                                     self.dbstate, self.uistate, 
                                     self.obj.get_handle())
-            self.report_action = gtk.ActionGroup("/PersonReport")
+            self.report_action = Gtk.ActionGroup("/PersonReport")
             self.report_action.add_actions(reportactions)
             self.report_action.set_visible(True)
             self.popupmanager.insert_action_group(self.report_action, -1)

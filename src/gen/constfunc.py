@@ -24,7 +24,7 @@
 """
 Some independent constants/functions that can be safely imported
 without any translation happening yet.  Do _not_ add imports that will
-perform a translation on import, eg gtk.
+perform a translation on import, eg Gtk.
 """
 
 #------------------------------------------------------------------------
@@ -90,27 +90,31 @@ def is_quartz():
     """
     if mac():
         try:
-            import gtk
+            from gi.repository import Gtk
+            from gi.repository import Gdk
         except:
             return False
-        return gtk.gdk.WINDOWING == "quartz"
+        return Gdk.WINDOWING == "quartz"
     return False
 
 def has_display():
     """
     Tests to see if Python is currently running with gtk 
     """
-    # FIXME: currently, gtk.init_check() requires all strings
+    # FIXME: currently, Gtk.init_check() requires all strings
     # in argv, and we might have unicode.
     temp, sys.argv = sys.argv, sys.argv[:1]
     try:
-        import gtk
+        from gi.repository import Gtk
     except:
         return False
     try:
-        gtk.init_check()
+        test = Gtk.init_check(temp)
         sys.argv = temp
-        return True
+        if test:
+            return True
+        else:
+            return False
     except:
         sys.argv = temp
         return False

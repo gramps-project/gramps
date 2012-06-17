@@ -47,7 +47,7 @@ log = logging.getLogger(".quickreports")
 # GNOME modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -92,7 +92,7 @@ def create_web_connect_menu(dbstate, uistate, nav_group, handle):
     ofile = StringIO()
     ofile.write('<menu action="WebConnect">')
     actions.append(('WebConnect', None, _("Web Connect"), None, None, None))
-    menu = gtk.Menu()
+    menu = Gtk.Menu()
     menu.show()
     #select the web connects to show
     showlst = []
@@ -138,7 +138,7 @@ def create_quickreport_menu(category,dbstate,uistate, handle) :
     
     actions.append(('QuickReport', None, _("Quick View"), None, None, None))
         
-    menu = gtk.Menu()
+    menu = Gtk.Menu()
     menu.show()
     
     #select the reports to show

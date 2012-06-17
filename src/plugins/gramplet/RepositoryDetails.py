@@ -22,8 +22,8 @@
 from gen.lib import UrlType
 from gen.plug import Gramplet
 from gen.ggettext import gettext as _
-import gtk
-import pango
+from gi.repository import Gtk
+from gi.repository import Pango
 
 class RepositoryDetails(Gramplet):
     """
@@ -38,13 +38,13 @@ class RepositoryDetails(Gramplet):
         """
         Build the GUI interface.
         """
-        self.top = gtk.HBox()
-        vbox = gtk.VBox()
-        self.name = gtk.Label()
+        self.top = Gtk.HBox()
+        vbox = Gtk.VBox()
+        self.name = Gtk.Label()
         self.name.set_alignment(0, 0)
-        self.name.modify_font(pango.FontDescription('sans bold 12'))
+        self.name.modify_font(Pango.FontDescription('sans bold 12'))
         vbox.pack_start(self.name, fill=True, expand=False, padding=7)
-        self.table = gtk.Table(1, 2)
+        self.table = Gtk.Table(1, 2)
         vbox.pack_start(self.table, fill=True, expand=False)
         self.top.pack_start(vbox, fill=True, expand=False, padding=10)
         self.top.show_all()
@@ -54,16 +54,16 @@ class RepositoryDetails(Gramplet):
         """
         Add a row to the table.
         """
-        label = gtk.Label(title + ':')
+        label = Gtk.Label(label=title + ':')
         label.set_alignment(1, 0)
         label.show()
-        value = gtk.Label(value)
+        value = Gtk.Label(label=value)
         value.set_alignment(0, 0)
         value.show()
         rows = self.table.get_property('n-rows')
         rows += 1
         self.table.resize(rows, 2)
-        self.table.attach(label, 0, 1, rows, rows + 1, xoptions=gtk.FILL,
+        self.table.attach(label, 0, 1, rows, rows + 1, xoptions=Gtk.AttachOptions.FILL,
                                                        xpadding=10)
         self.table.attach(value, 1, 2, rows, rows + 1)
         
@@ -141,10 +141,10 @@ class RepositoryDetails(Gramplet):
         """
         Display an empty row to separate groupd of entries.
         """
-        label = gtk.Label('')
-        label.modify_font(pango.FontDescription('sans 4'))
+        label = Gtk.Label(label='')
+        label.modify_font(Pango.FontDescription('sans 4'))
         label.show()
         rows = self.table.get_property('n-rows')
         rows += 1
         self.table.resize(rows, 2)
-        self.table.attach(label, 0, 1, rows, rows + 1, xoptions=gtk.FILL)
+        self.table.attach(label, 0, 1, rows, rows + 1, xoptions=Gtk.AttachOptions.FILL)

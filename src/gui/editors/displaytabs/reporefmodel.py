@@ -25,7 +25,7 @@
 # GTK libraries
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -39,10 +39,10 @@ import gtk
 # RepoRefModel
 #
 #-------------------------------------------------------------------------
-class RepoRefModel(gtk.ListStore):
+class RepoRefModel(Gtk.ListStore):
 
     def __init__(self, ref_list, db):
-        gtk.ListStore.__init__(self, str, str, str, str, object)
+        GObject.GObject.__init__(self, str, str, str, str, object)
         self.db = db
         for ref in ref_list:
             repo = self.db.get_repository_from_handle(ref.ref)

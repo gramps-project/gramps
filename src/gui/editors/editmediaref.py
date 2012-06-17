@@ -36,7 +36,7 @@ from gen.ggettext import sgettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import GdkPixbuf
 
 #-------------------------------------------------------------------------
 #
@@ -162,8 +162,8 @@ class EditMediaRef(EditReference):
             ebox_ref.connect('button-release-event', 
                                                  self.button_release_event_ref)
             ebox_ref.connect('motion-notify-event', self.motion_notify_event_ref)
-            ebox_ref.add_events(gtk.gdk.BUTTON_PRESS_MASK)
-            ebox_ref.add_events(gtk.gdk.BUTTON_RELEASE_MASK)
+            ebox_ref.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
+            ebox_ref.add_events(Gdk.EventMask.BUTTON_RELEASE_MASK)
 
         self.pixmap = self.top.get_object("pixmap")
         self.mimetext = self.top.get_object("type")
@@ -395,7 +395,7 @@ class EditMediaRef(EditReference):
         else:
             try:
                 fullpath = Utils.media_path_full(self.db, path)
-                pixbuf = gtk.gdk.pixbuf_new_from_file(fullpath)
+                pixbuf = GdkPixbuf.Pixbuf.new_from_file(fullpath)
                 width = pixbuf.get_width()
                 height = pixbuf.get_height()
                 upper_x = min(self.rectangle[0], self.rectangle[2])/100.
@@ -414,7 +414,7 @@ class EditMediaRef(EditReference):
                 scale = const.THUMBSCALE / ratio
                 x = int(scale * width)
                 y = int(scale * height)
-                pixbuf = pixbuf.scale_simple(x, y, gtk.gdk.INTERP_BILINEAR)
+                pixbuf = pixbuf.scale_simple(x, y, GdkPixbuf.InterpType.BILINEAR)
                 self.subpixmap.set_from_pixbuf(pixbuf)
                 self.subpixmap.show()
             except:
@@ -432,7 +432,7 @@ class EditMediaRef(EditReference):
         return (_('Media Reference Editor'),submenu_label)
     
     def button_press_event(self, obj, event):
-        if event.button==1 and event.type == gtk.gdk._2BUTTON_PRESS:
+        if event.button==1 and event.type == Gdk.EventType._2BUTTON_PRESS:
             photo_path = Utils.media_path_full(self.db, self.source.get_path())
             open_file_with_default_application(photo_path)
 
@@ -447,10 +447,10 @@ class EditMediaRef(EditReference):
         # prepare drawing of a feedback rectangle
         self.rect_pixbuf = self.subpixmap.get_pixbuf()
         w,h = self.rect_pixbuf.get_width(), self.rect_pixbuf.get_height()
-        self.rect_pixbuf_render = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, w, h)
-        cm = gtk.gdk.colormap_get_system()
-        color = cm.alloc_color(gtk.gdk.Color("blue"))
-        self.rect_pixmap = gtk.gdk.Pixmap(None, w, h, cm.get_visual().depth)
+        self.rect_pixbuf_render = GdkPixbuf.Pixbuf(GdkPixbuf.Colorspace.RGB, False, 8, w, h)
+        cm = Gdk.colormap_get_system()
+        color = cm.alloc_color(Gdk.Color("blue"))
+        self.rect_pixmap = Gdk.Pixmap(None, w, h, cm.get_visual().depth)
         self.rect_pixmap.set_colormap(cm)
         self.rect_gc = self.rect_pixmap.new_gc()
         self.rect_gc.set_foreground(color)
@@ -479,7 +479,7 @@ class EditMediaRef(EditReference):
                     x1, y1, width, height)
                     
         self.rect_pixbuf_render.get_from_drawable(self.rect_pixmap,
-                                gtk.gdk.colormap_get_system(),
+                                Gdk.colormap_get_system(),
                                 0,0,0,0, w, h)
         self.subpixmap.set_from_pixbuf(self.rect_pixbuf_render)
 
@@ -490,8 +490,8 @@ class EditMediaRef(EditReference):
         """
 
         # reset the crop on double-click or click+CTRL
-        if (event.button==1 and event.type == gtk.gdk._2BUTTON_PRESS) or \
-            (event.button==1 and (event.state & gtk.gdk.CONTROL_MASK) ):
+        if (event.button==1 and event.type == Gdk.EventType._2BUTTON_PRESS) or \
+            (event.button==1 and (event.get_state() & Gdk.ModifierType.CONTROL_MASK) ):
             self.corner1_x_spinbutton.set_value(0)
             self.corner1_y_spinbutton.set_value(0)
             self.corner2_x_spinbutton.set_value(100)

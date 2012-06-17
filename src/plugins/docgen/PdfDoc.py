@@ -54,9 +54,8 @@ LOG = logging.getLogger(".PdfDoc")
 # GTK modules
 #
 #-------------------------------------------------------------------------
-import pango
+from gi.repository import Pango, PangoCairo
 import cairo
-import pangocairo
 
 #------------------------------------------------------------------------
 #
@@ -96,17 +95,17 @@ class PdfDoc(libcairodoc.CairoDoc):
         except:
             raise ReportError(_("Could not create %s") % filename)
         surface.set_fallback_resolution(300, 300)
-        cr = pangocairo.CairoContext(cairo.Context(surface))
+        cr = PangoCairo.create_context(cairo.Context(surface))
 
-        fontmap = pangocairo.cairo_font_map_get_default()
+        fontmap = PangoCairo.font_map_get_default()
         saved_resolution = fontmap.get_resolution()
         fontmap.set_resolution(DPI)
         
         pango_context = fontmap.create_context()
         options = cairo.FontOptions()
         options.set_hint_metrics(cairo.HINT_METRICS_OFF)
-        pangocairo.context_set_font_options(pango_context, options)
-        layout = pango.Layout(pango_context)
+        PangoCairo.context_set_font_options(pango_context, options)
+        layout = Pango.Layout(pango_context)
         cr.update_context(pango_context)
         
         # paginate the document

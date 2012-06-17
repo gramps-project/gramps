@@ -33,7 +33,7 @@ from gen.ggettext import gettext as _
 # gtk
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -65,22 +65,22 @@ class MediaSidebarFilter(SidebarFilter):
         self.filter_date = widgets.BasicEntry()
         self.filter_note = widgets.BasicEntry()
 
-        self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
+        self.filter_regex = Gtk.CheckButton(_('Use regular expressions'))
 
-        self.tag = gtk.ComboBox()
-        self.generic = gtk.ComboBox()
+        self.tag = Gtk.ComboBox()
+        self.generic = Gtk.ComboBox()
 
         SidebarFilter.__init__(self, dbstate, uistate, "Media")
 
     def create_widget(self):
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         cell.set_property('width', self._FILTER_WIDTH)
         cell.set_property('ellipsize', self._FILTER_ELLIPSIZE)
         self.generic.pack_start(cell, True)
         self.generic.add_attribute(cell, 'text', 0)
         self.on_filters_changed('Media')
 
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         cell.set_property('width', self._FILTER_WIDTH)
         cell.set_property('ellipsize', self._FILTER_ELLIPSIZE)
         self.tag.pack_start(cell, True)
@@ -169,7 +169,7 @@ class MediaSidebarFilter(SidebarFilter):
         """
         Update the list of tags in the tag filter.
         """
-        model = gtk.ListStore(str)
+        model = Gtk.ListStore(str)
         model.append(('',))
         for tag_name in tag_list:
             model.append((tag_name,))

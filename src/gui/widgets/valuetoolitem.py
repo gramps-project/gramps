@@ -37,8 +37,8 @@ _LOG = logging.getLogger(".widgets.valuetoolitem")
 # GTK modules
 #
 #-------------------------------------------------------------------------
-import gobject
-import gtk
+from gi.repository import GObject
+from gi.repository import Gtk
 
 
 #-------------------------------------------------------------------------
@@ -46,7 +46,7 @@ import gtk
 # ValueToolItem class
 #
 #-------------------------------------------------------------------------
-class ValueToolItem(gtk.ToolItem):
+class ValueToolItem(Gtk.ToolItem):
     """ValueToolItem is an abstract toolbar proxy for ValueAction.
     
     For each kind of widget a separete tool item proxy has to be
@@ -56,13 +56,13 @@ class ValueToolItem(gtk.ToolItem):
     __gtype_name__ = "ValueToolItem"
     
     __gsignals__ = {
-        'changed': (gobject.SIGNAL_RUN_FIRST, 
-                    gobject.TYPE_NONE, #return value
+        'changed': (GObject.SignalFlags.RUN_FIRST, 
+                    None, #return value
                     ()), # arguments
     }    
 
     def __init__(self, data_type, args):
-        gtk.ToolItem.__init__(self)
+        GObject.GObject.__init__(self)
         
         self._data_type = data_type
         

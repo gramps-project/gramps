@@ -48,31 +48,31 @@ class Progress(object):
     selection, but this is for the preview selection.
     """
     def __init__(self):
-        import gtk
+        from gi.repository import Gtk
         self.pm = ProgressMeter(_("Selecting Preview Data"), _('Selecting...'))
         self.progress_cnt = 0
         self.title = _("Selecting...")
-        while gtk.events_pending():
-            gtk.main_iteration()
+        while Gtk.events_pending():
+            Gtk.main_iteration()
 
     def reset(self, title):
-        import gtk
+        from gi.repository import Gtk
         self.pm.set_header(title)
         self.title = title
-        while gtk.events_pending():
-            gtk.main_iteration()
+        while Gtk.events_pending():
+            Gtk.main_iteration()
 
     def set_total(self, count):
-        import gtk
+        from gi.repository import Gtk
         self.pm.set_pass(self.title, total=count+1)
-        while gtk.events_pending():
-            gtk.main_iteration()
+        while Gtk.events_pending():
+            Gtk.main_iteration()
 
     def update(self, count):
-        import gtk
+        from gi.repository import Gtk
         self.pm.step()
-        while gtk.events_pending():
-            gtk.main_iteration()
+        while Gtk.events_pending():
+            Gtk.main_iteration()
 
     def close(self):
         self.pm.step()
@@ -134,28 +134,28 @@ class WriterOptionBox(object):
         self.parse_options()
 
     def get_option_box(self):
-        """Build up a gtk.Table that contains the standard options."""
-        import gtk
-        import pango
-        widget = gtk.VBox()
+        """Build up a Gtk.Table that contains the standard options."""
+        from gi.repository import Gtk
+        from gi.repository import Pango
+        widget = Gtk.VBox()
         
-        full_database_row = gtk.HBox()
-        full_database_row.pack_start(gtk.Label(_("Unfiltered Family Tree:")), False)
+        full_database_row = Gtk.HBox()
+        full_database_row.pack_start(Gtk.Label(_("Unfiltered Family Tree:", True, True, 0)), False)
         people_count = len(self.dbstate.db.get_person_handles())
-        button = gtk.Button(ngettext("%d Person", "%d People", people_count) % 
+        button = Gtk.Button(ngettext("%d Person", "%d People", people_count) % 
                             people_count)
         button.set_tooltip_text(_("Click to see preview of unfiltered data"))
         button.set_size_request(107, -1)
         button.connect("clicked", self.show_preview_data)
         button.proxy_name = "unfiltered"
         self.preview_proxy_button["unfiltered"] = button
-        self.spacer = gtk.HBox()
-        full_database_row.pack_end(self.spacer, False)
-        full_database_row.pack_end(button, False)
+        self.spacer = Gtk.HBox()
+        full_database_row.pack_end(self.spacer, False, True, 0)
+        full_database_row.pack_end(button, False, True, 0)
 
-        widget.pack_start(full_database_row, False)
+        widget.pack_start(full_database_row, False, True, 0)
         
-        self.private_check = gtk.CheckButton(
+        self.private_check = Gtk.CheckButton(
             _('_Do not include records marked private'))
         self.private_check.connect("clicked", self.mark_dirty)
         self.private_check.set_active(self.get_proxy_value("privacy"))
@@ -167,43 +167,43 @@ class WriterOptionBox(object):
         row = 0
         for proxy_name in self.get_proxy_names():
             frame = self.build_frame(proxy_name, row)
-            widget.pack_start(frame, False)
+            widget.pack_start(frame, False, True, 0)
             row += 1
 
-        hbox = gtk.HBox()
-        self.advanced_button = gtk.Button(_("Change order"))
+        hbox = Gtk.HBox()
+        self.advanced_button = Gtk.Button(_("Change order"))
         self.advanced_button.set_size_request(150, -1)
         self.proxy_options_showing = False
         self.advanced_button.connect("clicked", self.show_options)
-        hbox.pack_end(self.advanced_button, False)
-        self.preview_button = gtk.Button(_("Calculate Previews"))
+        hbox.pack_end(self.advanced_button, False, True, 0)
+        self.preview_button = Gtk.Button(_("Calculate Previews"))
         self.preview_button.connect("clicked", self.preview)
-        hbox.pack_end(self.preview_button, False)
-        widget.pack_start(hbox, False)
+        hbox.pack_end(self.preview_button, False, True, 0)
+        widget.pack_start(hbox, False, True, 0)
 
-        cell = gtk.CellRendererText()
-        cell.set_property('ellipsize', pango.ELLIPSIZE_END)
+        cell = Gtk.CellRendererText()
+        cell.set_property('ellipsize', Pango.EllipsizeMode.END)
         self.filter_obj.pack_start(cell, True)
         self.filter_obj.add_attribute(cell, 'text', 0)
         self.filter_obj.set_model(self.build_model("person"))
         self.filter_obj.set_active(self.get_proxy_value("person"))
 
-        cell = gtk.CellRendererText()
-        cell.set_property('ellipsize', pango.ELLIPSIZE_END)
+        cell = Gtk.CellRendererText()
+        cell.set_property('ellipsize', Pango.EllipsizeMode.END)
         self.restrict_option.pack_start(cell, True)
         self.restrict_option.add_attribute(cell, 'text', 0)
         self.restrict_option.set_model(self.build_model("living"))
         self.restrict_option.set_active(self.get_proxy_value("living"))
 
-        cell = gtk.CellRendererText()
-        cell.set_property('ellipsize', pango.ELLIPSIZE_END)
+        cell = Gtk.CellRendererText()
+        cell.set_property('ellipsize', Pango.EllipsizeMode.END)
         self.reference_filter.pack_start(cell, True)
         self.reference_filter.add_attribute(cell, 'text', 0)
         self.reference_filter.set_model(self.build_model("reference"))
         self.reference_filter.set_active(self.get_proxy_value("reference"))
 
-        notes_cell = gtk.CellRendererText()
-        notes_cell.set_property('ellipsize', pango.ELLIPSIZE_END)
+        notes_cell = Gtk.CellRendererText()
+        notes_cell.set_property('ellipsize', Pango.EllipsizeMode.END)
         self.filter_note.pack_start(notes_cell, True)
         self.filter_note.add_attribute(notes_cell, 'text', 0)
         self.filter_note.set_model(self.build_model("note"))
@@ -244,97 +244,97 @@ class WriterOptionBox(object):
         Build a frame for a proxy option. proxy_name is a string.
         """
         # Make a box and put the option in it:
-        import gtk
+        from gi.repository import Gtk
         import gui.widgets
-        button = gtk.Button(ngettext("%d Person", "%d People", 0) % 0)
+        button = Gtk.Button(ngettext("%d Person", "%d People", 0) % 0)
         button.set_size_request(107, -1)
         button.connect("clicked", self.show_preview_data)
         button.proxy_name = proxy_name
         if proxy_name == "person":
             # Frame Person:
-            self.filter_obj = gtk.ComboBox()
-            label = gtk.Label(_('_Person Filter') + ": ")
+            self.filter_obj = Gtk.ComboBox()
+            label = Gtk.Label(label=_('_Person Filter') + ": ")
             label.set_alignment(0, 0.5)
             label.set_size_request(150, -1)
             label.set_use_underline(True)
             label.set_mnemonic_widget(self.filter_obj)
-            box = gtk.HBox()
-            box.pack_start(label, False)
-            box.pack_start(self.filter_obj)
+            box = Gtk.HBox()
+            box.pack_start(label, False, True, 0)
+            box.pack_start(self.filter_obj, True, True, 0)
             box.pack_start(
-                gui.widgets.SimpleButton(gtk.STOCK_EDIT, 
+                gui.widgets.SimpleButton(Gtk.STOCK_EDIT, 
                    lambda obj: self.edit_filter('Person', self.filter_obj)),
                 False)
             button.set_tooltip_text(_("Click to see preview after person filter"))
         elif proxy_name == "note":
             # Frame Note:
             # Objects for choosing a Note filter:
-            self.filter_note = gtk.ComboBox()
-            label_note = gtk.Label(_('_Note Filter') + ": ")
+            self.filter_note = Gtk.ComboBox()
+            label_note = Gtk.Label(label=_('_Note Filter') + ": ")
             label_note.set_alignment(0, 0.5)
             label_note.set_size_request(150, -1)
             label_note.set_use_underline(True)
             label_note.set_mnemonic_widget(self.filter_note)
-            box = gtk.HBox()
-            box.pack_start(label_note, False)
-            box.pack_start(self.filter_note)
+            box = Gtk.HBox()
+            box.pack_start(label_note, False, True, 0)
+            box.pack_start(self.filter_note, True, True, 0)
             box.pack_start(
-                gui.widgets.SimpleButton(gtk.STOCK_EDIT, 
+                gui.widgets.SimpleButton(Gtk.STOCK_EDIT, 
                    lambda obj: self.edit_filter('Note', self.filter_note)),
                 False)
             button.set_tooltip_text(_("Click to see preview after note filter"))
         elif proxy_name == "privacy":
             # Frame 3:
-            label = gtk.Label(_("Privacy Filter") + ":")
+            label = Gtk.Label(label=_("Privacy Filter") + ":")
             label.set_alignment(0, 0.5)
             label.set_size_request(150, -1)
-            box = gtk.HBox()
-            box.pack_start(label, False)
+            box = Gtk.HBox()
+            box.pack_start(label, False, True, 0)
             box.add(self.private_check)
             button.set_tooltip_text(_("Click to see preview after privacy filter"))
         elif proxy_name == "living":
             # Frame 4:
-            label = gtk.Label(_("Living Filter") + ":")
+            label = Gtk.Label(label=_("Living Filter") + ":")
             label.set_alignment(0, 0.5)
             label.set_size_request(150, -1)
-            box = gtk.HBox()
-            box.pack_start(label, False)
-            self.restrict_option = gtk.ComboBox()
+            box = Gtk.HBox()
+            box.pack_start(label, False, True, 0)
+            self.restrict_option = Gtk.ComboBox()
             box.add(self.restrict_option)
             button.set_tooltip_text(_("Click to see preview after living filter"))
         elif proxy_name == "reference":
             # Frame 5:
-            self.reference_filter = gtk.ComboBox()
-            label = gtk.Label(_('Reference Filter') + ": ")
+            self.reference_filter = Gtk.ComboBox()
+            label = Gtk.Label(label=_('Reference Filter') + ": ")
             label.set_alignment(0, 0.5)
             label.set_size_request(150, -1)
-            box = gtk.HBox()
-            box.pack_start(label, False)
-            box.pack_start(self.reference_filter)
+            box = Gtk.HBox()
+            box.pack_start(label, False, True, 0)
+            box.pack_start(self.reference_filter, True, True, 0)
             button.set_tooltip_text(_("Click to see preview after reference filter"))
         else:
             raise AttributeError("Unknown proxy '%s'" % proxy_name)
 
-        frame = gtk.Frame()
-        hbox = gtk.HBox()
+        frame = Gtk.Frame()
+        hbox = Gtk.HBox()
         frame.add(hbox)
-        vbox = gtk.HBox()
+        vbox = Gtk.HBox()
         self.vbox_n.append(vbox)
-        up = gtk.Button()
+        up = Gtk.Button()
         up.connect("clicked", self.swap)
         if row == 0:
             up.set_sensitive(0) # can't go up
-        image = gtk.Image()
-        image.set_from_stock(gtk.STOCK_GO_UP,
-                             gtk.ICON_SIZE_MENU)
+        image = Gtk.Image()
+        image.set_from_stock(Gtk.STOCK_GO_UP,
+                             Gtk.IconSize.MENU)
         up.set_image(image)
         up.row = row - 1
         self.up_n.append(up)
-        down = gtk.Button()
+        down = Gtk.Button()
         down.connect("clicked", self.swap)
-        image = gtk.Image()
-        image.set_from_stock(gtk.STOCK_GO_DOWN,
-                             gtk.ICON_SIZE_MENU)
+        image = Gtk.Image()
+        image.set_from_stock(Gtk.STOCK_GO_DOWN,
+                             Gtk.IconSize.MENU)
         down.set_image(image)
         down.row = row
         if row == 4:
@@ -342,9 +342,9 @@ class WriterOptionBox(object):
         self.down_n.append(down)
         self.preview_proxy_button[proxy_name] = button
         self.preview_proxy_button[proxy_name].set_sensitive(0)
-        box.pack_end(button, False)
-        hbox.pack_start(box)
-        hbox.pack_end(vbox, False)
+        box.pack_end(button, False, True, 0)
+        hbox.pack_start(box, True, True, 0)
+        hbox.pack_end(vbox, False, True, 0)
         self.proxy_widget[proxy_name] = box
         return frame
 
@@ -354,7 +354,7 @@ class WriterOptionBox(object):
         time due to the fact that Gramps tends to use show_all rather
         than show.
         """
-        import gtk
+        from gi.repository import Gtk
         if self.proxy_options_showing:
             self.advanced_button.set_label(_("Change order"))
             self.spacer_up.hide()
@@ -369,23 +369,23 @@ class WriterOptionBox(object):
                 # This is necessary because someone used show_all up top
                 # Now, we can't add something that we want hidden
                 for n in range(5):
-                    self.vbox_n[n].pack_start(self.up_n[n])
+                    self.vbox_n[n].pack_start(self.up_n[n], True, True, 0)
                     self.vbox_n[n].pack_end(self.down_n[n])
                 # some spacer buttons:
-                up = gtk.Button()
+                up = Gtk.Button()
                 up.set_sensitive(0) 
-                image = gtk.Image()
-                image.set_from_stock(gtk.STOCK_GO_UP,
-                                     gtk.ICON_SIZE_MENU)
+                image = Gtk.Image()
+                image.set_from_stock(Gtk.STOCK_GO_UP,
+                                     Gtk.IconSize.MENU)
                 up.set_image(image)
-                self.spacer.pack_start(up, False)
-                down = gtk.Button()
+                self.spacer.pack_start(up, False, True, 0)
+                down = Gtk.Button()
                 down.set_sensitive(0) 
-                image = gtk.Image()
-                image.set_from_stock(gtk.STOCK_GO_DOWN,
-                                     gtk.ICON_SIZE_MENU)
+                image = Gtk.Image()
+                image.set_from_stock(Gtk.STOCK_GO_DOWN,
+                                     Gtk.IconSize.MENU)
                 down.set_image(image)
-                self.spacer.pack_end(down, False)
+                self.spacer.pack_end(down, False, True, 0)
                 self.spacer_up = up
                 self.spacer_down = down
             self.spacer_up.show()
@@ -666,8 +666,8 @@ class WriterOptionBox(object):
         """
         Build a model for the combo box selector.
         """
-        import gtk
-        import gobject
+        from gi.repository import Gtk
+        from gi.repository import GObject
         from gen.filters import CustomFilters
         if namespace == "person":
             # Populate the Person Filter
@@ -680,7 +680,7 @@ class WriterOptionBox(object):
 
             the_filters.extend(CustomFilters.get_filters('Person'))
 
-            model = gtk.ListStore(gobject.TYPE_STRING, object)
+            model = Gtk.ListStore(GObject.TYPE_STRING, object)
             for item in the_filters:
                 model.append(row=[item.get_name(), item])
         elif namespace == "note":
@@ -689,12 +689,12 @@ class WriterOptionBox(object):
             entire_db.set_name(_("Include all selected notes"))
             notes_filters = [entire_db]
             notes_filters.extend(CustomFilters.get_filters('Note'))
-            model = gtk.ListStore(gobject.TYPE_STRING, object)
+            model = Gtk.ListStore(GObject.TYPE_STRING, object)
             for item in notes_filters:
                 model.append(row=[item.get_name(), item])
 
         elif namespace == "living":
-            model = gtk.ListStore(gobject.TYPE_STRING, int)
+            model = Gtk.ListStore(GObject.TYPE_STRING, int)
             row = 0
             for item in [
                 _('Include all selected people'),
@@ -704,7 +704,7 @@ class WriterOptionBox(object):
                 row += 1
 
         elif namespace == "reference":
-            model = gtk.ListStore(gobject.TYPE_STRING, int)
+            model = Gtk.ListStore(GObject.TYPE_STRING, int)
             row = 0
             for item in [
                 _('Include all selected records'),

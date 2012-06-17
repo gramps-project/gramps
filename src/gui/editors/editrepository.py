@@ -33,7 +33,7 @@ from gen.ggettext import gettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -105,7 +105,7 @@ class EditRepository(EditPrimary):
 
     def _create_tabbed_pages(self):
         
-        notebook = gtk.Notebook()
+        notebook = Gtk.Notebook()
 
         self.addr_tab = AddrEmbedList(self.dbstate,
                                       self.uistate,
@@ -140,7 +140,7 @@ class EditRepository(EditPrimary):
 
         self._setup_notebook_tabs(notebook)
         notebook.show_all()
-        self.glade.get_object("vbox").pack_start(notebook, True, True)
+        self.glade.get_object("vbox").pack_start(notebook, True, True, 0)
 
     def _connect_signals(self):
         self.define_help_button(self.glade.get_object('help'))

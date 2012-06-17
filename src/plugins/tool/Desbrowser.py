@@ -29,7 +29,7 @@
 # GTK/GNOME modules
 #
 #------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #------------------------------------------------------------------------
 #
@@ -84,7 +84,7 @@ class DesBrowse(tool.ActivePersonTool, ManagedWindow):
                         self.active_name)
         
         self.tree = self.glade.get_object("tree1")
-        col = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
+        col = Gtk.TreeViewColumn('',Gtk.CellRendererText(),text=0)
         self.tree.append_column(col)
         self.tree.set_rules_hint(True)
         self.tree.set_headers_visible(False)
@@ -97,7 +97,7 @@ class DesBrowse(tool.ActivePersonTool, ManagedWindow):
         return (self.active_name,_("Descendant Browser tool"))
 
     def make_new_model(self):
-        self.model = gtk.TreeStore(str, object)
+        self.model = Gtk.TreeStore(str, object)
         self.tree.set_model(self.model)
         self.add_to_tree(None, None, self.active.get_handle())
         self.tree.expand_all()
@@ -120,7 +120,7 @@ class DesBrowse(tool.ActivePersonTool, ManagedWindow):
         return item_id
     
     def button_press_event(self, obj,event):
-        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             store, node = self.tree.get_selection().get_selected()
             if node:
                 person_handle = store.get_value(node, 1)

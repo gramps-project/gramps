@@ -32,7 +32,7 @@ from gen.ggettext import gettext as _
 # gtk
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -65,7 +65,7 @@ class RepoSidebarFilter(SidebarFilter):
 
         self.repo = Repository()
         self.repo.set_type((RepositoryType.CUSTOM,''))
-        self.rtype = gtk.ComboBoxEntry()
+        self.rtype = Gtk.ComboBox(has_entry=True)
         self.event_menu = widgets.MonitoredDataType(
             self.rtype,
             self.repo.set_type,
@@ -73,21 +73,21 @@ class RepoSidebarFilter(SidebarFilter):
 
         self.filter_note = widgets.BasicEntry()
 
-        self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
+        self.filter_regex = Gtk.CheckButton(_('Use regular expressions'))
 
-        self.generic = gtk.ComboBox()
+        self.generic = Gtk.ComboBox()
 
         SidebarFilter.__init__(self, dbstate, uistate, "Repository")
 
     def create_widget(self):
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         cell.set_property('width', self._FILTER_WIDTH)
         cell.set_property('ellipsize', self._FILTER_ELLIPSIZE)
         self.generic.pack_start(cell, True)
         self.generic.add_attribute(cell, 'text', 0)
         self.on_filters_changed('Repository')
 
-        self.rtype.child.set_width_chars(5)
+        self.rtype.get_child().set_width_chars(5)
 
         self.add_text_entry(_('ID'), self.filter_id)
         self.add_text_entry(_('Name'), self.filter_title)
@@ -103,7 +103,7 @@ class RepoSidebarFilter(SidebarFilter):
         self.filter_title.set_text('')
         self.filter_address.set_text('')
         self.filter_url.set_text('')
-        self.rtype.child.set_text('')
+        self.rtype.get_child().set_text('')
         self.filter_note.set_text('')
         self.generic.set_active(0)
 

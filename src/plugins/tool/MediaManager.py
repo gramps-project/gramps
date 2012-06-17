@@ -41,8 +41,9 @@ import os
 # GNOME/GTK modules
 #
 #------------------------------------------------------------------------
-import gtk
-import gobject
+from gi.repository import Gtk
+from gi.repository import GdkPixbuf
+from gi.repository import GObject
 
 #------------------------------------------------------------------------
 #
@@ -85,9 +86,9 @@ class MediaMan(tool.Tool):
         self.batch_ops = []
         self.build_batch_ops()
 
-        self.assistant = gtk.Assistant()
-        self.logo = gtk.gdk.pixbuf_new_from_file(GRAMPS_PNG)
-        self.splash = gtk.gdk.pixbuf_new_from_file(SPLASH_JPG)
+        self.assistant = Gtk.Assistant()
+        self.logo = GdkPixbuf.Pixbuf.new_from_file(GRAMPS_PNG)
+        self.splash = GdkPixbuf.Pixbuf.new_from_file(SPLASH_JPG)
 
         self.assistant.set_title(_('Gramps Media Manager'))
         self.assistant.connect('close', self.close)
@@ -97,17 +98,17 @@ class MediaMan(tool.Tool):
         self.assistant.set_forward_page_func(self.forward_page)
 
         intro = IntroductionPage()
-        self.add_page(intro, gtk.ASSISTANT_PAGE_INTRO, _('Introduction'))
+        self.add_page(intro, Gtk.AssistantPageType.INTRO, _('Introduction'))
         self.selection = SelectionPage(self.batch_ops)
-        self.add_page(self.selection, gtk.ASSISTANT_PAGE_CONTENT, 
+        self.add_page(self.selection, Gtk.AssistantPageType.CONTENT, 
                       _('Selection'))
         self.settings = SettingsPage(self.batch_ops, self.assistant)
-        self.add_page(self.settings, gtk.ASSISTANT_PAGE_CONTENT)
+        self.add_page(self.settings, Gtk.AssistantPageType.CONTENT)
         self.confirmation = ConfirmationPage(self.batch_ops)
-        self.add_page(self.confirmation, gtk.ASSISTANT_PAGE_CONFIRM, 
+        self.add_page(self.confirmation, Gtk.AssistantPageType.CONFIRM, 
                       _('Final confirmation'))
         self.conclusion = ConclusionPage(self.assistant)
-        self.add_page(self.conclusion, gtk.ASSISTANT_PAGE_SUMMARY)
+        self.add_page(self.conclusion, Gtk.AssistantPageType.SUMMARY)
         
         self.assistant.show()
 
@@ -198,19 +199,19 @@ class MediaMan(tool.Tool):
 # Assistant pages
 #
 #------------------------------------------------------------------------
-class IntroductionPage(gtk.HBox):
+class IntroductionPage(Gtk.HBox):
     """
     A page containing introductory text.
     """
     def __init__(self):
-        gtk.HBox.__init__(self)
+        GObject.GObject.__init__(self)
 
         # Using set_page_side_image causes window sizing problems, so put the 
         # image in the main page instead.
-        image = gtk.Image()
+        image = Gtk.Image()
         image.set_from_file(SPLASH_JPG)
 
-        label = gtk.Label(self.__get_intro_text())
+        label = Gtk.Label(label=self.__get_intro_text())
         label.set_line_wrap(True)
         label.set_use_markup(True)
 
@@ -240,18 +241,18 @@ class IntroductionPage(gtk.HBox):
                  "Gramps. Then you can adjust the paths using this tool so "
                  "that the media objects store the correct file locations.")
 
-class SelectionPage(gtk.VBox):
+class SelectionPage(Gtk.VBox):
     """
     A page with the radio buttons for every available batch op.
     """
     def __init__(self, batch_ops):
-        gtk.VBox.__init__(self)
+        GObject.GObject.__init__(self)
         
         self.batch_op_buttons = []
 
         self.set_spacing(12)
 
-        table = gtk.Table(2 * len(batch_ops), 2)
+        table = Gtk.Table(2 * len(batch_ops), 2)
         table.set_row_spacings(6)
         table.set_col_spacings(6)
         
@@ -260,7 +261,7 @@ class SelectionPage(gtk.VBox):
             title = batch_ops[index].title
             description = batch_ops[index].description
 
-            button = gtk.RadioButton(group, title)
+            button = Gtk.RadioButton(group, title)
             button.set_tooltip_text(description)
             if not group:
                 group = button
@@ -281,12 +282,12 @@ class SelectionPage(gtk.VBox):
         else:
             return 0
 
-class SettingsPage(gtk.VBox):
+class SettingsPage(Gtk.VBox):
     """
     An extra page with the settings specific for the chosen batch-op.
     """
     def __init__(self, batch_ops, assistant):
-        gtk.VBox.__init__(self)
+        GObject.GObject.__init__(self)
         self.assistant = assistant
         self.batch_ops = batch_ops
 
@@ -299,47 +300,47 @@ class SettingsPage(gtk.VBox):
             title, contents = config
             self.assistant.set_page_title(self, title)
             map(self.remove, self.get_children())
-            self.pack_start(contents)
+            self.pack_start(contents, True, True, 0)
             self.show_all()
             return True
         else:
             return False
 
-class ConfirmationPage(gtk.VBox):
+class ConfirmationPage(Gtk.VBox):
     """
     A page to display the summary of the proposed action, as well as the 
     list of affected paths.
     """
     def __init__(self, batch_ops):
-        gtk.VBox.__init__(self)
+        GObject.GObject.__init__(self)
 
         self.batch_ops = batch_ops
 
         self.set_spacing(12)
         self.set_border_width(12)
 
-        self.confirm = gtk.Label()
+        self.confirm = Gtk.Label()
         self.confirm.set_line_wrap(True)
         self.confirm.set_use_markup(True)
         self.confirm.set_alignment(0, 0.5)
-        self.pack_start(self.confirm, expand=False)
+        self.pack_start(self.confirm, False, True, 0)
 
-        scrolled_window = gtk.ScrolledWindow()
-        scrolled_window.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        scrolled_window.set_shadow_type(gtk.SHADOW_IN)
-        tree = gtk.TreeView()
-        self.path_model = gtk.ListStore(gobject.TYPE_STRING)
+        scrolled_window = Gtk.ScrolledWindow()
+        scrolled_window.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+        scrolled_window.set_shadow_type(Gtk.ShadowType.IN)
+        tree = Gtk.TreeView()
+        self.path_model = Gtk.ListStore(GObject.TYPE_STRING)
         tree.set_model(self.path_model)
-        tree_view_column = gtk.TreeViewColumn(_('Affected path'),
-                                              gtk.CellRendererText(), text=0)
+        tree_view_column = Gtk.TreeViewColumn(_('Affected path'),
+                                              Gtk.CellRendererText(), text=0)
         tree_view_column.set_sort_column_id(0)
         tree.append_column(tree_view_column)
         scrolled_window.add(tree)
         self.pack_start(scrolled_window, expand=True, fill=True)
 
-        label3 = gtk.Label(_('Press Apply to proceed, Cancel to abort, '
+        label3 = Gtk.Label(_('Press Apply to proceed, Cancel to abort, '
                              'or Back to revisit your options.'))
-        self.pack_start(label3, expand=False)
+        self.pack_start(label3, False, True, 0)
 
     def prepare(self, index):
         """
@@ -354,22 +355,22 @@ class ConfirmationPage(gtk.VBox):
         for path in path_list:
             self.path_model.append(row=[path])
 
-class ConclusionPage(gtk.HBox):
+class ConclusionPage(Gtk.HBox):
     """
     A page to display the summary of the proposed action, as well as the 
     list of affected paths.
     """
     def __init__(self, assistant):
-        gtk.HBox.__init__(self)
+        GObject.GObject.__init__(self)
 
         self.assistant = assistant
 
         # Using set_page_side_image causes window sizing problems, so put the 
         # image in the main page instead.
-        image = gtk.Image()
+        image = Gtk.Image()
         image.set_from_file(SPLASH_JPG)
 
-        self.label = gtk.Label()
+        self.label = Gtk.Label()
         self.label.set_line_wrap(True)
 
         self.pack_start(image, False, False, 0)
@@ -485,26 +486,26 @@ class PathChange(BatchOp):
     def build_config(self):
         title = _("Replace substring settings")
 
-        box = gtk.VBox()
+        box = Gtk.VBox()
         box.set_spacing(12)
 
-        table = gtk.Table(2, 2)
+        table = Gtk.Table(2, 2)
         table.set_row_spacings(6)
         table.set_col_spacings(6)
 
-        self.from_entry = gtk.Entry()
+        self.from_entry = Gtk.Entry()
         table.attach(self.from_entry, 1, 2, 0, 1, yoptions=0)
         
-        from_label = gtk.Label(_('_Replace:'))
+        from_label = Gtk.Label(label=_('_Replace:'))
         from_label.set_use_underline(True)
         from_label.set_alignment(0, 0.5)
         from_label.set_mnemonic_widget(self.from_entry)
         table.attach(from_label, 0, 1, 0, 1, xoptions=0, yoptions=0)
 
-        self.to_entry = gtk.Entry()
+        self.to_entry = Gtk.Entry()
         table.attach(self.to_entry, 1, 2, 1, 2, yoptions=0)
 
-        to_label = gtk.Label(_('_With:'))
+        to_label = Gtk.Label(label=_('_With:'))
         to_label.set_use_underline(True)
         to_label.set_alignment(0, 0.5)
         to_label.set_mnemonic_widget(self.to_entry)

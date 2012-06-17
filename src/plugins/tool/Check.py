@@ -55,7 +55,7 @@ LOG_OBJ = logging.getLogger(".CheckRepair")
 # gtk modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -642,15 +642,15 @@ class CheckIntegrity(object):
                     self.bad_photo.append(ObjectId)
                     LOG('    FAIL: references to missing file kept')
 
-            fs_top = gtk.FileChooserDialog("%s - Gramps" % _("Select file"),
-                        buttons=(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
-                                 gtk.STOCK_OK, gtk.RESPONSE_OK)
+            fs_top = Gtk.FileChooserDialog("%s - Gramps" % _("Select file"),
+                        buttons=(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+                                 Gtk.STOCK_OK, Gtk.ResponseType.OK)
                         )
             fs_top.set_current_folder(self.last_img_dir)
             response = fs_top.run()
-            if response == gtk.RESPONSE_OK:
+            if response == Gtk.ResponseType.OK:
                 fs_ok_clicked(fs_top)
-            elif response == gtk.RESPONSE_CANCEL:
+            elif response == Gtk.ResponseType.CANCEL:
                 fs_close_window(fs_top)
             fs_top.destroy()
 

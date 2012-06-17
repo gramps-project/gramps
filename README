@@ -5,8 +5,9 @@ If building from source, also read the INSTALL file (at least through the
 Requirements
 --------------------------------
 The following packages *MUST* be installed in order for Gramps to work:
-   Python 2.6 or greater
-   PyGTK2 2.16 or greater
+   Python 2.7 or greater
+   GTK 3.0 or greater
+   pygobject 3.3.2 or greater
    librsvg2 (svg icon view)
    xdg-utils
 

@@ -37,8 +37,8 @@ from gen.ggettext import gettext as _
 # GTK+ modules
 #
 #-------------------------------------------------------------------------------
-import gtk
-import gobject
+from gi.repository import Gtk
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------------
 #
@@ -57,14 +57,14 @@ import gen.plug
 # GraphvizFormatComboBox
 #
 #-------------------------------------------------------------------------------
-class GraphvizFormatComboBox(gtk.ComboBox):
+class GraphvizFormatComboBox(Gtk.ComboBox):
     """
     Format combo box class for Graphviz report.
     """
     def set(self, active=None):
-        self.store = gtk.ListStore(gobject.TYPE_STRING)
+        self.store = Gtk.ListStore(GObject.TYPE_STRING)
         self.set_model(self.store)
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         self.pack_start(cell, True)
         self.add_attribute(cell, 'text', 0)
 
@@ -146,18 +146,18 @@ class GraphvizReportDialog(ReportDialog):
         self.format_menu = GraphvizFormatComboBox()
         self.format_menu.set(self.options.handler.get_format_name())
         self.format_menu.connect('changed', self.doc_type_changed)
-        label = gtk.Label("%s:" % _("Output Format"))
+        label = Gtk.Label(label="%s:" % _("Output Format"))
         label.set_alignment(0.0, 0.5)
-        self.tbl.attach(label, 1, 2, self.row, self.row+1, gtk.SHRINK|gtk.FILL)
+        self.tbl.attach(label, 1, 2, self.row, self.row+1, Gtk.AttachOptions.SHRINK|Gtk.AttachOptions.FILL)
         self.tbl.attach(self.format_menu, 2, 4, self.row, self.row+1,
-                        yoptions=gtk.SHRINK)
+                        yoptions=Gtk.AttachOptions.SHRINK)
         self.row += 1
 
-        self.open_with_app = gtk.CheckButton(_("Open with default viewer"))
+        self.open_with_app = Gtk.CheckButton(_("Open with default viewer"))
         self.open_with_app.set_active(
             config.get('interface.open-with-default-viewer'))
         self.tbl.attach(self.open_with_app, 2, 4, self.row, self.row+1,
-                        yoptions=gtk.SHRINK)
+                        yoptions=Gtk.AttachOptions.SHRINK)
         self.row += 1
 
         ext = self.format_menu.get_ext()
@@ -170,7 +170,7 @@ class GraphvizReportDialog(ReportDialog):
             self.target_fileentry.set_filename(spath)
                 
     def setup_report_options_frame(self):
-        self.paper_label = gtk.Label('<b>%s</b>'%_("Paper Options"))
+        self.paper_label = Gtk.Label(label='<b>%s</b>'%_("Paper Options"))
         self.paper_label.set_use_markup(True)
         handler = self.options.handler
         self.paper_frame = PaperFrame(

@@ -45,7 +45,7 @@ from gen.ggettext import gettext as _
 # GNOME/GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -65,7 +65,7 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
     """
     Hierarchical citation model.
     """
-    def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None,
+    def __init__(self, db, scol=0, order=Gtk.SortType.ASCENDING, search=None,
                  skip=set(), sort_map=None):
         self.db = db
         self.number_items = self.db.get_number_of_sources
@@ -181,7 +181,7 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
         if self.get_node(data[5]):
             self.add_node(data[5], handle, sort_key, handle, secondary=True)
 
-    def on_get_n_columns(self):
+    def do_get_n_columns(self):
         return len(self.fmap)+1
 
     def column_header(self, node):

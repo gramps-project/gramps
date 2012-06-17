@@ -37,7 +37,7 @@ from collections import defaultdict
 # GNOME/GTK modules
 #
 #------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #------------------------------------------------------------------------
 #
@@ -280,7 +280,7 @@ class DisplayChart(ManagedWindow):
         model_index = 0
         tree_index = 0
         mylist = []
-        renderer = gtk.CellRendererText()
+        renderer = Gtk.CellRendererText()
         for title in self.table_titles:
             mylist.append(str)
             if title == 'sort':
@@ -288,7 +288,7 @@ class DisplayChart(ManagedWindow):
                 self.eventlist.get_column(
                     tree_index-1).set_sort_column_id(model_index)
             else:
-                column = gtk.TreeViewColumn(title,renderer,text=model_index)
+                column = Gtk.TreeViewColumn(title,renderer,text=model_index)
                 column.set_sort_column_id(model_index)
                 self.eventlist.append_column(column)
                 # This one numbers the tree columns: increment on new column
@@ -296,7 +296,7 @@ class DisplayChart(ManagedWindow):
             # This one numbers the model columns: always increment
             model_index += 1
 
-        model = gtk.ListStore(*mylist)
+        model = Gtk.ListStore(*mylist)
         self.eventlist.set_model(model)
 
         self.progress_bar.set_pass(_('Building display'),len(self.row_data))
@@ -388,18 +388,18 @@ class DisplayChart(ManagedWindow):
         return sort_list
 
     def on_write_table(self, obj):
-        f = gtk.FileChooserDialog(_("Select filename"),
-                                  action=gtk.FILE_CHOOSER_ACTION_SAVE,
-                                  buttons=(gtk.STOCK_CANCEL,
-                                           gtk.RESPONSE_CANCEL,
-                                           gtk.STOCK_SAVE,
-                                           gtk.RESPONSE_OK))
+        f = Gtk.FileChooserDialog(_("Select filename"),
+                                  action=Gtk.FileChooserAction.SAVE,
+                                  buttons=(Gtk.STOCK_CANCEL,
+                                           Gtk.ResponseType.CANCEL,
+                                           Gtk.STOCK_SAVE,
+                                           Gtk.ResponseType.OK))
 
         f.set_current_folder(os.getcwd())
         status = f.run()
         f.hide()
 
-        if status == gtk.RESPONSE_OK:
+        if status == Gtk.ResponseType.OK:
             name = Utils.get_unicode_path_from_file_chooser(f.get_filename())
             doc = ODSTab(len(self.row_data))
             doc.creator(self.db.get_researcher().get_name())

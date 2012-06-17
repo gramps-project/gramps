@@ -60,7 +60,7 @@ LOG = logging.getLogger(".")
 # GNOME modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -269,7 +269,7 @@ class ViewManager(CLIManager):
 
     The ViewManager is the session manager of the program.
     Specifically, it manages the main window of the program. It is closely tied
-    into the gtk.UIManager to control all menus and actions.
+    into the Gtk.UIManager to control all menus and actions.
 
     The ViewManager controls the various Views within the GRAMPS programs.
     Views are organised in categories. The categories can be accessed via
@@ -538,7 +538,7 @@ class ViewManager(CLIManager):
             length, 1, # total, increment-by
             can_cancel=True)
         pm = ProgressMonitor(GtkProgressDialog,
-                             ("Title", self.window, gtk.DIALOG_MODAL))
+                             ("Title", self.window, Gtk.DialogFlags.MODAL))
         pm.add_op(longop)
         count = 0
         if not config.get('behavior.do-not-show-previously-seen-updates'):
@@ -593,21 +593,21 @@ class ViewManager(CLIManager):
         width = config.get('interface.width')
         height = config.get('interface.height')
 
-        self.window = gtk.Window()
+        self.window = Gtk.Window()
         self.window.set_icon_from_file(const.ICON)
         self.window.set_default_size(width, height)
 
-        vbox = gtk.VBox()
+        vbox = Gtk.VBox()
         self.window.add(vbox)
-        hpane = gtk.HPaned()
-        self.ebox = gtk.EventBox()
+        hpane = Gtk.HPaned()
+        self.ebox = Gtk.EventBox()
 
         self.navigator = Navigator(self)
         self.ebox.add(self.navigator.get_top())
         hpane.add1(self.ebox)
         hpane.show()
 
-        self.notebook = gtk.Notebook()
+        self.notebook = Gtk.Notebook()
         self.notebook.set_scrollable(True)
         self.notebook.set_show_tabs(False)
         self.notebook.show()
@@ -617,10 +617,10 @@ class ViewManager(CLIManager):
         hpane.add2(self.notebook)
         self.menubar = self.uimanager.get_widget('/MenuBar')
         self.toolbar = self.uimanager.get_widget('/ToolBar')
-        vbox.pack_start(self.menubar, False)
-        vbox.pack_start(self.toolbar, False)
+        vbox.pack_start(self.menubar, False, True, 0)
+        vbox.pack_start(self.toolbar, False, True, 0)
         vbox.add(hpane)
-        vbox.pack_end(self.__setup_statusbar(), False)
+        vbox.pack_end(self.__setup_statusbar(), False, True, 0)
         vbox.show()
 
         self.progress_monitor = ProgressMonitor(
@@ -662,7 +662,7 @@ class ViewManager(CLIManager):
 
         # Showing the main window is deferred so that
         # ArgHandler can work without it always shown
-        # But we need to realize it here to have gtk.gdk.window handy
+        # But we need to realize it here to have Gdk.window handy
         self.window.realize()
 
     def __load_sidebar_plugins(self):
@@ -684,7 +684,7 @@ class ViewManager(CLIManager):
         """
         Create the statusbar that sits at the bottom of the window
         """
-        self.progress = gtk.ProgressBar()
+        self.progress = Gtk.ProgressBar()
         self.progress.set_size_request(100, -1)
         self.progress.hide()
 
@@ -693,12 +693,12 @@ class ViewManager(CLIManager):
 
         self.warnbtn = widgets.WarnButton()
 
-        hbox2 = gtk.HBox()
+        hbox2 = Gtk.HBox()
         hbox2.set_spacing(4)
         hbox2.set_border_width(2)
-        hbox2.pack_start(self.progress, False)
-        hbox2.pack_start(self.warnbtn, False)
-        hbox2.pack_end(self.statusbar, True)
+        hbox2.pack_start(self.progress, False, True, 0)
+        hbox2.pack_start(self.warnbtn, False, True, 0)
+        hbox2.pack_end(self.statusbar, True, True, 0)
         hbox2.show()
         return hbox2
 
@@ -717,7 +717,7 @@ class ViewManager(CLIManager):
         Build the OPEN button. Since GTK's UIManager does not have support for
         the Open Recent button, we must build in on our own.
         """
-        openbtn = gtk.MenuToolButton('gramps-db')
+        openbtn = Gtk.MenuToolButton.new_from_stock('gramps-db')
         openbtn.connect('clicked', self.__open_activate)
         openbtn.set_sensitive(False)
         openbtn.set_tooltip_text(_("Connect to a recent database"))
@@ -743,11 +743,11 @@ class ViewManager(CLIManager):
              _("Manage databases"), self.__open_activate),
             ('OpenRecent', None, _('Open _Recent'), None,
              _("Open an existing database")),
-            ('Quit', gtk.STOCK_QUIT, _('_Quit'), "<control>q", None,
+            ('Quit', Gtk.STOCK_QUIT, _('_Quit'), "<control>q", None,
              self.quit),
             ('ViewMenu', None, _('_View')),
             ('EditMenu', None, _('_Edit')),
-            ('Preferences', gtk.STOCK_PREFERENCES, _('_Preferences...'), None,
+            ('Preferences', Gtk.STOCK_PREFERENCES, _('_Preferences...'), None,
              None, self.preferences_activate),
             ('HelpMenu', None, _('_Help')),
             ('HomePage', None, _('Gramps _Home Page'), None, None,
@@ -758,13 +758,13 @@ class ViewManager(CLIManager):
              report_bug_activate),
             ('ExtraPlugins', None, _('_Extra Reports/Tools'), None, None,
              extra_plugins_activate),
-            ('About', gtk.STOCK_ABOUT, _('_About'), None, None,
+            ('About', Gtk.STOCK_ABOUT, _('_About'), None, None,
              self.display_about_box),
             ('PluginStatus', None, _('_Plugin Manager'), None, None,
              self.__plugin_status),
             ('FAQ', None, _('_FAQ'), None, None, faq_activate),
             ('KeyBindings', None, _('_Key Bindings'), None, None, key_bindings),
-            ('UserManual', gtk.STOCK_HELP, _('_User Manual'), 'F1', None,
+            ('UserManual', Gtk.STOCK_HELP, _('_User Manual'), 'F1', None,
              manual_activate),
             ('TipOfDay', None, _('Tip of the Day'), None, None,
              self.tip_of_day_activate),
@@ -775,7 +775,7 @@ class ViewManager(CLIManager):
              self.export_data),
             ('Backup', None, _("Make Backup..."), None,
              _("Make a Gramps XML backup of the database"), self.quick_backup),
-            ('Abandon', gtk.STOCK_REVERT_TO_SAVED,
+            ('Abandon', Gtk.STOCK_REVERT_TO_SAVED,
              _('_Abandon Changes and Quit'), None, None, self.abort),
             ('Reports', 'gramps-reports', _('_Reports'), None,
              _("Open the reports dialog"), self.reports_clicked),
@@ -818,7 +818,7 @@ class ViewManager(CLIManager):
             ]
 
         self._action_action_list = [
-            ('Clipboard', gtk.STOCK_PASTE, _('Clip_board'), "<control>b",
+            ('Clipboard', Gtk.STOCK_PASTE, _('Clip_board'), "<control>b",
              _("Open the Clipboard dialog"), self.clipboard),
             ('Import', 'gramps-import', _('_Import...'), "<control>i", None,
              self.import_data),
@@ -841,12 +841,12 @@ class ViewManager(CLIManager):
             ]
 
         self._undo_action_list = [
-            ('Undo', gtk.STOCK_UNDO, _('_Undo'), '<control>z', None,
+            ('Undo', Gtk.STOCK_UNDO, _('_Undo'), '<control>z', None,
              self.undo),
             ]
 
         self._redo_action_list = [
-            ('Redo', gtk.STOCK_REDO, _('_Redo'), '<shift><control>z', None,
+            ('Redo', Gtk.STOCK_REDO, _('_Redo'), '<shift><control>z', None,
              self.redo),
             ]
 
@@ -1010,7 +1010,7 @@ class ViewManager(CLIManager):
         config.set('interface.width', width)
         config.set('interface.height', height)
         config.save()
-        gtk.main_quit()
+        Gtk.main_quit()
 
     def __backup(self):
         """
@@ -1056,7 +1056,7 @@ class ViewManager(CLIManager):
         """
         Initialize an action group for the UIManager
         """
-        new_group = gtk.ActionGroup(name)
+        new_group = Gtk.ActionGroup(name)
         new_group.add_actions(actions)
         if toggles:
             new_group.add_toggle_actions(toggles)
@@ -1068,7 +1068,7 @@ class ViewManager(CLIManager):
         """
         Builds the UIManager, and the associated action groups
         """
-        self.uimanager = gtk.UIManager()
+        self.uimanager = Gtk.UIManager()
 
         accelgroup = self.uimanager.get_accel_group()
 
@@ -1115,7 +1115,7 @@ class ViewManager(CLIManager):
         from gui.tipofday import TipOfDay
         TipOfDay(self.uistate)
 
-    def __plugin_status(self, obj=None):
+    def __plugin_status(self, obj=None, data=None):
         """
         Display plugin status dialog
         """
@@ -1124,7 +1124,7 @@ class ViewManager(CLIManager):
         except WindowActiveError:
             pass
 
-    def navigator_toggle(self, obj):
+    def navigator_toggle(self, obj, data=None):
         """
         Set the sidebar based on the value of the toggle button. Save the
         results in the configuration settings
@@ -1139,7 +1139,7 @@ class ViewManager(CLIManager):
             self.show_navigator = False
         config.save()
 
-    def toolbar_toggle(self, obj):
+    def toolbar_toggle(self, obj, data=None):
         """
         Set the toolbar based on the value of the toggle button. Save the
         results in the configuration settings
@@ -1152,7 +1152,7 @@ class ViewManager(CLIManager):
             config.set('interface.toolbar-on', False)
         config.save()
 
-    def fullscreen_toggle(self, obj):
+    def fullscreen_toggle(self, obj, data=None):
         """
         Set the main Granps window fullscreen based on the value of the
         toggle button. Save the setting in the config file.
@@ -1231,11 +1231,11 @@ class ViewManager(CLIManager):
         self.pages.append(page)
 
         # create icon/label for notebook tab (useful for debugging)
-        hbox = gtk.HBox()
-        image = gtk.Image()
-        image.set_from_stock(page.get_stock(), gtk.ICON_SIZE_MENU)
-        hbox.pack_start(image, False)
-        hbox.add(gtk.Label(pdata.name))
+        hbox = Gtk.HBox()
+        image = Gtk.Image()
+        image.set_from_stock(page.get_stock(), Gtk.IconSize.MENU)
+        hbox.pack_start(image, False, True, 0)
+        hbox.add(Gtk.Label(label=pdata.name))
         hbox.show_all()
         page_num = self.notebook.append_page(page.get_display(), hbox)
         return page
@@ -1286,8 +1286,8 @@ class ViewManager(CLIManager):
         if _GTKOSXAPPLICATION:
             self.macapp.sync_menubar()
 
-        while gtk.events_pending():
-            gtk.main_iteration()
+        while Gtk.events_pending():
+            Gtk.main_iteration()
 
         self.active_page.change_page()
 
@@ -1369,7 +1369,7 @@ class ViewManager(CLIManager):
         self.dbstate.db.undo_history_callback = self.undo_history_update
         self.undo_history_close()
 
-        self.uistate.window.window.set_cursor(None)
+        self.uistate.window.get_root_window().set_cursor(None)
 
     def _post_load_newdb(self, filename, filetype, title=None):
         """
@@ -1417,13 +1417,13 @@ class ViewManager(CLIManager):
         Change the UNDO label
         """
         self.uimanager.remove_action_group(self.undoactions)
-        self.undoactions = gtk.ActionGroup('Undo')
+        self.undoactions = Gtk.ActionGroup('Undo')
         if label:
             self.undoactions.add_actions([
-                ('Undo', gtk.STOCK_UNDO, label, '<control>z', None, self.undo)])
+                ('Undo', Gtk.STOCK_UNDO, label, '<control>z', None, self.undo)])
         else:
             self.undoactions.add_actions([
-                ('Undo', gtk.STOCK_UNDO, _('_Undo'),
+                ('Undo', Gtk.STOCK_UNDO, _('_Undo'),
                  '<control>z', None, self.undo)])
             self.undoactions.set_sensitive(False)
         self.uimanager.insert_action_group(self.undoactions, 1)
@@ -1433,14 +1433,14 @@ class ViewManager(CLIManager):
         Change the REDO label
         """
         self.uimanager.remove_action_group(self.redoactions)
-        self.redoactions = gtk.ActionGroup('Redo')
+        self.redoactions = Gtk.ActionGroup('Redo')
         if label:
             self.redoactions.add_actions([
-                ('Redo', gtk.STOCK_REDO, label, '<shift><control>z',
+                ('Redo', Gtk.STOCK_REDO, label, '<shift><control>z',
                  None, self.redo)])
         else:
             self.redoactions.add_actions([
-                ('Redo', gtk.STOCK_UNDO, _('_Redo'),
+                ('Redo', Gtk.STOCK_UNDO, _('_Redo'),
                  '<shift><control>z', None, self.redo)])
             self.redoactions.set_sensitive(False)
         self.uimanager.insert_action_group(self.redoactions, 1)
@@ -1475,41 +1475,41 @@ class ViewManager(CLIManager):
         Make a quick XML back with or without media.
         """
         from gui.dialog import QuestionDialog2
-        window = gtk.Dialog(_("Gramps XML Backup"),
+        window = Gtk.Dialog(_("Gramps XML Backup"),
                             self.uistate.window,
-                            gtk.DIALOG_DESTROY_WITH_PARENT, None)
+                            Gtk.DialogFlags.DESTROY_WITH_PARENT, None)
         window.set_size_request(400, -1)
-        ok_button = window.add_button(gtk.STOCK_OK,
-                                      gtk.RESPONSE_APPLY)
-        close_button = window.add_button(gtk.STOCK_CLOSE,
-                                         gtk.RESPONSE_CLOSE)
+        ok_button = window.add_button(Gtk.STOCK_OK,
+                                      Gtk.ResponseType.APPLY)
+        close_button = window.add_button(Gtk.STOCK_CLOSE,
+                                         Gtk.ResponseType.CLOSE)
         vbox = window.get_content_area()
-        hbox = gtk.HBox()
-        label = gtk.Label(_("Path:"))
-        label.set_justify(gtk.JUSTIFY_LEFT)
+        hbox = Gtk.HBox()
+        label = Gtk.Label(label=_("Path:"))
+        label.set_justify(Gtk.Justification.LEFT)
         label.set_size_request(90, -1)
         label.set_alignment(0, .5)
-        hbox.pack_start(label, False)
-        path_entry = gtk.Entry()
+        hbox.pack_start(label, False, True, 0)
+        path_entry = Gtk.Entry()
         text = config.get('paths.quick-backup-directory')
         path_entry.set_text(text)
         hbox.pack_start(path_entry, True)
-        file_entry = gtk.Entry()
-        button = gtk.Button()
+        file_entry = Gtk.Entry()
+        button = Gtk.Button()
         button.connect("clicked",
                        lambda widget: self.select_backup_path(widget, path_entry))
-        image = gtk.Image()
-        image.set_from_stock(gtk.STOCK_OPEN, gtk.ICON_SIZE_BUTTON)
+        image = Gtk.Image()
+        image.set_from_stock(Gtk.STOCK_OPEN, Gtk.IconSize.BUTTON)
         image.show()
         button.add(image)
-        hbox.pack_end(button, False)
-        vbox.pack_start(hbox, False)
-        hbox = gtk.HBox()
-        label = gtk.Label(_("File:"))
-        label.set_justify(gtk.JUSTIFY_LEFT)
+        hbox.pack_end(button, False, True, 0)
+        vbox.pack_start(hbox, False, True, 0)
+        hbox = Gtk.HBox()
+        label = Gtk.Label(label=_("File:"))
+        label.set_justify(Gtk.Justification.LEFT)
         label.set_size_request(90, -1)
         label.set_alignment(0, .5)
-        hbox.pack_start(label, False)
+        hbox.pack_start(label, False, True, 0)
         struct_time = time.localtime()
         file_entry.set_text(config.get('paths.quick-backup-filename') %
                             {"filename": self.dbstate.db.get_dbname(),
@@ -1522,8 +1522,8 @@ class ViewManager(CLIManager):
                              "extension": "gpkg",
                              })
         hbox.pack_end(file_entry, True)
-        vbox.pack_start(hbox, False)
-        hbox = gtk.HBox()
+        vbox.pack_start(hbox, False, True, 0)
+        hbox = Gtk.HBox()
         bytes = 0
         mbytes = "0"
         for media in self.dbstate.db.iter_media_objects():
@@ -1537,22 +1537,22 @@ class ViewManager(CLIManager):
                     mbytes = str(bytes)[:(length-6)]
             except OSError:
                 pass
-        label = gtk.Label(_("Media:"))
-        label.set_justify(gtk.JUSTIFY_LEFT)
+        label = Gtk.Label(label=_("Media:"))
+        label.set_justify(Gtk.Justification.LEFT)
         label.set_size_request(90, -1)
         label.set_alignment(0, .5)
-        hbox.pack_start(label, False)
-        include = gtk.RadioButton(None, "%s (%s %s)" % (_("Include"),
+        hbox.pack_start(label, False, True, 0)
+        include = Gtk.RadioButton(None, "%s (%s %s)" % (_("Include"),
                                                         mbytes, _("Megabyte|MB")))
-        exclude = gtk.RadioButton(include, _("Exclude"))
+        exclude = Gtk.RadioButton(include, _("Exclude"))
         include.connect("toggled", lambda widget: self.media_toggle(widget, file_entry))
         hbox.pack_start(include, True)
         hbox.pack_end(exclude, True)
-        vbox.pack_start(hbox, False)
+        vbox.pack_start(hbox, False, True, 0)
         window.show_all()
         d = window.run()
         window.hide()
-        if d == gtk.RESPONSE_APPLY:
+        if d == Gtk.ResponseType.APPLY:
             # if file exists, ask if overwrite; else abort
             basefile = file_entry.get_text()
             basefile = basefile.replace("/", r"-")
@@ -1600,28 +1600,28 @@ class ViewManager(CLIManager):
             self.progress.set_text("%s: %d%%" % (text, value))
         else:
             self.progress.set_text("%d%%" % value)
-        while gtk.events_pending():
-            gtk.main_iteration()
+        while Gtk.events_pending():
+            Gtk.main_iteration()
 
     def select_backup_path(self, widget, path_entry):
         """
         Choose a backup folder. Make sure there is one highlighted in
         right pane, otherwise FileChooserDialog will hang.
         """
-        f = gtk.FileChooserDialog(
+        f = Gtk.FileChooserDialog(
             _("Select backup directory"),
-            action=gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
-            buttons=(gtk.STOCK_CANCEL,
-                     gtk.RESPONSE_CANCEL,
-                     gtk.STOCK_APPLY,
-                     gtk.RESPONSE_OK))
+            action=Gtk.FileChooserAction.SELECT_FOLDER,
+            buttons=(Gtk.STOCK_CANCEL,
+                     Gtk.ResponseType.CANCEL,
+                     Gtk.STOCK_APPLY,
+                     Gtk.ResponseType.OK))
         mpath = path_entry.get_text()
         if not mpath:
             mpath = const.HOME_DIR
         f.set_current_folder(os.path.dirname(mpath))
         f.set_filename(os.path.join(mpath, "."))
         status = f.run()
-        if status == gtk.RESPONSE_OK:
+        if status == Gtk.ResponseType.OK:
             filename = f.get_filename()
             if filename:
                 val = Utils.get_unicode_path_from_file_chooser(filename)
@@ -1728,7 +1728,7 @@ class ViewManager(CLIManager):
         if self.toolactions:
             self.uistate.uimanager.remove_action_group(self.toolactions)
             self.uistate.uimanager.remove_ui(self.tool_menu_ui_id)
-        self.toolactions = gtk.ActionGroup('ToolWindow')
+        self.toolactions = Gtk.ActionGroup('ToolWindow')
         (uidef, actions) = self.build_plugin_menu(
             'ToolsMenu', tool_menu_list, tool.tool_categories,
             make_plugin_callback)
@@ -1744,7 +1744,7 @@ class ViewManager(CLIManager):
         if self.reportactions:
             self.uistate.uimanager.remove_action_group(self.reportactions)
             self.uistate.uimanager.remove_ui(self.report_menu_ui_id)
-        self.reportactions = gtk.ActionGroup('ReportWindow')
+        self.reportactions = Gtk.ActionGroup('ReportWindow')
         (uidef, actions) = self.build_plugin_menu(
             'ReportsMenu', report_menu_list, standalone_categories,
             make_plugin_callback)
@@ -1761,7 +1761,7 @@ class ViewManager(CLIManager):
         ofile = StringIO()
         ofile.write('<ui><menubar name="MenuBar"><menu action="%s">' % text)
 
-        menu = gtk.Menu()
+        menu = Gtk.Menu()
         menu.show()
 
         hash_data = defaultdict(list)

@@ -41,8 +41,8 @@ from gen.ggettext import sgettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
-import pango
+from gi.repository import Gtk
+from gi.repository import Pango
 
 #-------------------------------------------------------------------------
 #
@@ -206,7 +206,7 @@ class EditPerson(EditPrimary):
         self.load_person_image()
         self.given.grab_focus()
         self._changed_name(None)
-        self.top.get_object("hboxmultsurnames").pack_start(self.surntab)
+        self.top.get_object("hboxmultsurnames").pack_start(self.surntab, True, True, 0)
 
         if len(self.obj.get_primary_name().get_surname_list()) > 1:
             self.multsurnfr.set_size_request(-1,
@@ -419,7 +419,7 @@ class EditPerson(EditPrimary):
             obj.connect('changed', self._changed_name)
 
         self.preview_name = self.top.get_object("full_name")
-        self.preview_name.modify_font(pango.FontDescription('sans bold 12'))
+        self.preview_name.modify_font(Pango.FontDescription('sans bold 12'))
 
     def get_start_date(self):
         """
@@ -433,7 +433,7 @@ class EditPerson(EditPrimary):
         """
         Create the notebook tabs and insert them into the main window.
         """
-        notebook = gtk.Notebook()
+        notebook = Gtk.Notebook()
         notebook.set_scrollable(True)
 
         self.event_list = PersonEventEmbedList(
@@ -589,7 +589,7 @@ class EditPerson(EditPrimary):
         main form.
 
         """
-        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
 
             media_list = self.obj.get_media_list()
             if media_list:
@@ -617,7 +617,7 @@ class EditPerson(EditPrimary):
         available actions.
         """
 
-        menu = gtk.Menu()
+        menu = Gtk.Menu()
         menu.set_title(_("Media Object"))
         obj = self.db.get_object_from_handle(photo.get_reference_handle())
         if obj:
@@ -656,17 +656,17 @@ class EditPerson(EditPrimary):
         Override from base class, the menuitems and actiongroups for the top
         of context menu.
         """
-        self.all_action    = gtk.ActionGroup("/PersonAll")
-        self.home_action   = gtk.ActionGroup("/PersonHome")
+        self.all_action    = Gtk.ActionGroup("/PersonAll")
+        self.home_action   = Gtk.ActionGroup("/PersonHome")
         self.track_ref_for_deletion("all_action")
         self.track_ref_for_deletion("home_action")
 
         self.all_action.add_actions([
-                ('ActivePerson', gtk.STOCK_APPLY, _("Make Active Person"),
+                ('ActivePerson', Gtk.STOCK_APPLY, _("Make Active Person"),
                     None, None, self._make_active),
                 ])
         self.home_action.add_actions([
-                ('HomePerson', gtk.STOCK_HOME, _("Make Home Person"),
+                ('HomePerson', Gtk.STOCK_HOME, _("Make Home Person"),
                     None, None, self._make_home_person),
                 ])
 
@@ -910,7 +910,7 @@ class EditPerson(EditPrimary):
                        self.obj.get_primary_name())
         self.multsurnfr.set_size_request(-1,
                                 int(config.get('interface.surname-box-height')))
-        msurhbox.pack_start(self.surntab)
+        msurhbox.pack_start(self.surntab, True, True, 0)
 
     def load_person_image(self):
         """
@@ -1053,12 +1053,12 @@ class EditPerson(EditPrimary):
         #config.save()
 
 
-class GenderDialog(gtk.MessageDialog):
+class GenderDialog(Gtk.MessageDialog):
     def __init__(self, parent=None):
-        gtk.MessageDialog.__init__(self,
+        GObject.GObject.__init__(self,
                                 parent,
-                                flags=gtk.DIALOG_MODAL,
-                                type=gtk.MESSAGE_QUESTION,
+                                flags=Gtk.DialogFlags.MODAL,
+                                type=Gtk.MessageType.QUESTION,
                                    )
         self.set_icon(ICON)
         self.set_title('')

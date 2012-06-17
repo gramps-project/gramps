@@ -32,7 +32,7 @@ log = logging.getLogger(".")
 # GNOME/GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -50,7 +50,7 @@ from gui.views.treemodels.flatbasemodel import FlatBaseModel
 #-------------------------------------------------------------------------
 class RepositoryModel(FlatBaseModel):
 
-    def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None,
+    def __init__(self, db, scol=0, order=Gtk.SortType.ASCENDING, search=None,
                  skip=set(), sort_map=None):
         self.gen_cursor = db.get_repository_cursor
         self.get_handles = db.get_repository_handles
@@ -105,7 +105,7 @@ class RepositoryModel(FlatBaseModel):
         self.smap = None
         FlatBaseModel.destroy(self)
 
-    def on_get_n_columns(self):
+    def do_get_n_columns(self):
         return len(self.fmap)+1
 
     def column_handle(self,data):

@@ -188,23 +188,23 @@ class CSVWriterOptionBox(WriterOptionBox):
         self.translate_headers_check = None
 
     def get_option_box(self):
-        import gtk
+        from gi.repository import Gtk
         option_box = WriterOptionBox.get_option_box(self)
 
-        self.include_individuals_check = gtk.CheckButton(_("Include people"))
-        self.include_marriages_check = gtk.CheckButton(_("Include marriages"))
-        self.include_children_check = gtk.CheckButton(_("Include children"))
-        self.translate_headers_check = gtk.CheckButton(_("Translate headers"))
+        self.include_individuals_check = Gtk.CheckButton(_("Include people"))
+        self.include_marriages_check = Gtk.CheckButton(_("Include marriages"))
+        self.include_children_check = Gtk.CheckButton(_("Include children"))
+        self.translate_headers_check = Gtk.CheckButton(_("Translate headers"))
 
         self.include_individuals_check.set_active(1) 
         self.include_marriages_check.set_active(1) 
         self.include_children_check.set_active(1) 
         self.translate_headers_check.set_active(1) 
 
-        option_box.pack_start(self.include_individuals_check, False)
-        option_box.pack_start(self.include_marriages_check, False)
-        option_box.pack_start(self.include_children_check, False)
-        option_box.pack_start(self.translate_headers_check, False)
+        option_box.pack_start(self.include_individuals_check, False, True, 0)
+        option_box.pack_start(self.include_marriages_check, False, True, 0)
+        option_box.pack_start(self.include_children_check, False, True, 0)
+        option_box.pack_start(self.translate_headers_check, False, True, 0)
 
         return option_box
 

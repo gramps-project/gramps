@@ -54,14 +54,14 @@ class AgeOnDateGramplet(Gramplet):
         Constructs the GUI, consisting of a message, an entry, and 
         a Run button.
         """
-        import gtk
+        from gi.repository import Gtk
         # GUI setup:
         self.set_tooltip(_("Enter a date, click Run"))
-        vbox = gtk.VBox()
-        hbox = gtk.HBox()
+        vbox = Gtk.VBox()
+        hbox = Gtk.HBox()
         # label, entry
-        description = gtk.TextView()
-        description.set_wrap_mode(gtk.WRAP_WORD)
+        description = Gtk.TextView()
+        description.set_wrap_mode(Gtk.WrapMode.WORD)
         description.set_editable(False)
         buffer = description.get_buffer()
         buffer.set_text(_("Enter a valid date (like YYYY-MM-DD) in the"
@@ -69,17 +69,17 @@ class AgeOnDateGramplet(Gramplet):
                           " the ages for everyone in your Family Tree on"
                           " that date. You can then sort by the age column,"
                           " and double-click the row to view or edit."))
-        label = gtk.Label()
+        label = Gtk.Label()
         label.set_text(_("Date") + ":")
-        self.entry = gtk.Entry()
-        button = gtk.Button(_("Run"))
+        self.entry = Gtk.Entry()
+        button = Gtk.Button(_("Run"))
         button.connect("clicked", self.run)
         ##self.filter = 
-        hbox.pack_start(label, False)
+        hbox.pack_start(label, False, True, 0)
         hbox.pack_start(self.entry, True)
         vbox.pack_start(description, True)
-        vbox.pack_start(hbox, False)
-        vbox.pack_start(button, False)
+        vbox.pack_start(hbox, False, True, 0)
+        vbox.pack_start(button, False, True, 0)
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add_with_viewport(vbox)
         vbox.show_all()

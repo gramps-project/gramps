@@ -38,8 +38,9 @@ import cgi
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
-import pango
+from gi.repository import Gdk
+from gi.repository import Gtk
+from gi.repository import Pango
 
 #-------------------------------------------------------------------------
 #
@@ -100,9 +101,9 @@ _ADATA_START  = _ALABEL_STOP
 _ADATA_STOP   = _ADATA_START+3
 _SDATA_START  = 2
 _SDATA_STOP   = 4
-_RETURN = gtk.gdk.keyval_from_name("Return")
-_KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
-_SPACE = gtk.gdk.keyval_from_name("space")
+_RETURN = Gdk.keyval_from_name("Return")
+_KP_ENTER = Gdk.keyval_from_name("KP_Enter")
+_SPACE = Gdk.keyval_from_name("space")
 _LEFT_BUTTON = 1
 _RIGHT_BUTTON = 3
 
@@ -113,8 +114,8 @@ class AttachList(object):
         self.max_x = 0
         self.max_y = 0
 
-    def attach(self, widget, x0, x1, y0, y1, xoptions=gtk.EXPAND|gtk.FILL, 
-               yoptions=gtk.EXPAND|gtk.FILL):
+    def attach(self, widget, x0, x1, y0, y1, xoptions=Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL, 
+               yoptions=Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL):
         assert(widget)
         assert(x1>x0)
         self.list.append((widget, x0, x1, y0, y1, xoptions, yoptions))
@@ -150,7 +151,7 @@ class RelationshipView(NavigationView):
         uistate.connect('nameformat-changed', self.build_tree)
         self.redrawing = False
 
-        self.color = self.uistate.window.style.light[gtk.STATE_NORMAL]
+        self.color = self.uistate.window.get_style().light[Gtk.StateType.NORMAL]
         self.child = None
         self.old_handle = None
 
@@ -299,31 +300,31 @@ class RelationshipView(NavigationView):
         Build the widget that contains the view, see 
         :class:`~gui.views.pageview.PageView 
         """
-        container = gtk.VBox()
+        container = Gtk.VBox()
         container.set_border_width(12)
 
-        self.vbox = gtk.VBox()
+        self.vbox = Gtk.VBox()
         self.vbox.show()
 
-        self.header = gtk.VBox()
+        self.header = Gtk.VBox()
         self.header.show()
 
         self.child = None
 
-        self.scroll = gtk.ScrolledWindow()
-        self.scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.scroll = Gtk.ScrolledWindow()
+        self.scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.scroll.show()
         
-        vp = gtk.Viewport()
-        vp.set_shadow_type(gtk.SHADOW_NONE)
+        vp = Gtk.Viewport()
+        vp.set_shadow_type(Gtk.ShadowType.NONE)
         vp.add(self.vbox)
 
         self.scroll.add(vp)
         self.scroll.show_all()
 
         container.set_spacing(6)
-        container.pack_start(self.header, False, False)
-        container.pack_start(gtk.HSeparator(), False, False)
+        container.pack_start(self.header, False, False, 0)
+        container.pack_start(Gtk.HSeparator(), False, False, 0)
         container.add(self.scroll)
         container.show_all()
         return container
@@ -386,15 +387,15 @@ class RelationshipView(NavigationView):
     def define_actions(self):
         NavigationView.define_actions(self)
 
-        self.order_action = gtk.ActionGroup(self.title + '/ChangeOrder')
+        self.order_action = Gtk.ActionGroup(self.title + '/ChangeOrder')
         self.order_action.add_actions([
-            ('ChangeOrder', gtk.STOCK_SORT_ASCENDING, _('_Reorder'), None ,
+            ('ChangeOrder', Gtk.STOCK_SORT_ASCENDING, _('_Reorder'), None ,
             _("Change order of parents and families"), self.reorder),
             ])
 
-        self.family_action = gtk.ActionGroup(self.title + '/Family')
+        self.family_action = Gtk.ActionGroup(self.title + '/Family')
         self.family_action.add_actions([
-            ('Edit', gtk.STOCK_EDIT, _('Edit...'), "<control>Return",
+            ('Edit', Gtk.STOCK_EDIT, _('Edit...'), "<control>Return",
                 _("Edit the active person"), self.edit_active),
             ('AddSpouse', 'gramps-spouse', _('Partner'), None ,
                 _("Add a new family with person as parent"), self.add_spouse),
@@ -477,10 +478,10 @@ class RelationshipView(NavigationView):
             self.old_handle = obj
         else:
             #different object, scroll to top
-            old_vadjust = self.scroll.get_vadjustment().lower
+            old_vadjust = self.scroll.get_vadjustment().get_lower()
             self.old_handle = obj
         self.scroll.get_vadjustment().value = \
-                            self.scroll.get_vadjustment().lower
+                            self.scroll.get_vadjustment().get_lower()
         if self.redrawing:
             return False
         self.redrawing = True
@@ -543,7 +544,7 @@ class RelationshipView(NavigationView):
         else:
             cols = self.attach.max_x-1
 
-        self.child = gtk.Table(self.attach.max_y, cols)
+        self.child = Gtk.Table(self.attach.max_y, cols)
         self.child.set_border_width(12)
         self.child.set_col_spacings(12)
         self.child.set_row_spacings(0)
@@ -560,7 +561,7 @@ class RelationshipView(NavigationView):
 
         self.child.show_all()
 
-        self.vbox.pack_start(self.child, False)
+        self.vbox.pack_start(self.child, False, True, 0)
         #reset scroll position as it was before
         self.scroll.get_vadjustment().value = old_vadjust
         self.redrawing = False
@@ -574,7 +575,7 @@ class RelationshipView(NavigationView):
     def write_title(self, person):
 
         map(self.header.remove, self.header.get_children())
-        table = gtk.Table(2, 3)
+        table = Gtk.Table(2, 3)
         table.set_col_spacings(12)
         table.set_row_spacings(0)
 
@@ -594,11 +595,11 @@ class RelationshipView(NavigationView):
 
         table.attach(hbox, 0, 2, 0, 1)
 
-        eventbox = gtk.EventBox()
+        eventbox = Gtk.EventBox()
         if self.use_shade:
-            eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
+            eventbox.modify_bg(Gtk.StateType.NORMAL, self.color)
         table.attach(eventbox, 1, 2, 1, 2)
-        subtbl = gtk.Table(3, 3)
+        subtbl = Gtk.Table(3, 3)
         subtbl.set_col_spacings(12)
         subtbl.set_row_spacings(0)
         eventbox.add(subtbl)
@@ -606,7 +607,7 @@ class RelationshipView(NavigationView):
         # GRAMPS ID
 
         subtbl.attach(widgets.BasicLabel("%s:" % _('ID')),
-                      1, 2, 0, 1, xoptions=gtk.FILL, yoptions=0)
+                      1, 2, 0, 1, xoptions=Gtk.AttachOptions.FILL, yoptions=0)
         subtbl.attach(widgets.BasicLabel(person.gramps_id),
                       2, 3, 0, 1, yoptions=0)
 
@@ -618,7 +619,7 @@ class RelationshipView(NavigationView):
             birth_title = _("Birth")
 
         subtbl.attach(widgets.BasicLabel("%s:" % birth_title),
-                      1, 2, 1, 2, xoptions=gtk.FILL, yoptions=0)
+                      1, 2, 1, 2, xoptions=Gtk.AttachOptions.FILL, yoptions=0)
         subtbl.attach(widgets.BasicLabel(self.format_event(birth)),
                       2, 3, 1, 2, yoptions=0)
 
@@ -637,34 +638,34 @@ class RelationshipView(NavigationView):
                     if (death_date and death_date.get_valid()):
                         age = death_date - birth_date
                         subtbl.attach(widgets.BasicLabel("%s:" % death_title),
-                                      1, 2, 2, 3, xoptions=gtk.FILL, yoptions=0)
+                                      1, 2, 2, 3, xoptions=Gtk.AttachOptions.FILL, yoptions=0)
                         subtbl.attach(widgets.BasicLabel("%s (%s)" % 
                                                          (self.format_event(death), age),
-                                                         pango.ELLIPSIZE_END),
+                                                         Pango.EllipsizeMode.END),
                                       2, 3, 2, 3, yoptions=0)
                         showed_death = True
                 if not showed_death:
                     age = gen.lib.date.Today() - birth_date
                     if probably_alive(person, self.dbstate.db):
                         subtbl.attach(widgets.BasicLabel("%s:" % _("Alive")),
-                                      1, 2, 2, 3, xoptions=gtk.FILL, yoptions=0)
-                        subtbl.attach(widgets.BasicLabel("(%s)" % age, pango.ELLIPSIZE_END),
+                                      1, 2, 2, 3, xoptions=Gtk.AttachOptions.FILL, yoptions=0)
+                        subtbl.attach(widgets.BasicLabel("(%s)" % age, Pango.EllipsizeMode.END),
                                       2, 3, 2, 3, yoptions=0)
                     else:
                         subtbl.attach(widgets.BasicLabel("%s:" % _("Death")),
-                                      1, 2, 2, 3, xoptions=gtk.FILL, yoptions=0)
+                                      1, 2, 2, 3, xoptions=Gtk.AttachOptions.FILL, yoptions=0)
                         subtbl.attach(widgets.BasicLabel("%s (%s)" % (_("unknown"), age), 
-                                                         pango.ELLIPSIZE_END),
+                                                         Pango.EllipsizeMode.END),
                                       2, 3, 2, 3, yoptions=0)
                     showed_death = True
 
         if not showed_death:
             subtbl.attach(widgets.BasicLabel("%s:" % death_title),
-                          1, 2, 2, 3, xoptions=gtk.FILL, yoptions=0)
+                          1, 2, 2, 3, xoptions=Gtk.AttachOptions.FILL, yoptions=0)
             subtbl.attach(widgets.BasicLabel(self.format_event(death)),
                           2, 3, 2, 3, yoptions=0)
 
-        mbox = gtk.HBox()
+        mbox = Gtk.HBox()
         mbox.add(table)
 
         # image
@@ -676,15 +677,15 @@ class RelationshipView(NavigationView):
                                 media_path_full(self.dbstate.db, 
                                                 mobj.get_path()),
                                 rectangle=image_list[0].get_rectangle())
-                image = gtk.Image()
+                image = Gtk.Image()
                 image.set_from_pixbuf(pixbuf)
-                button = gtk.Button()
+                button = Gtk.Button()
                 button.add(image)
                 button.connect("clicked", lambda obj: self.view_photo(mobj))
-                mbox.pack_end(button, False)
+                mbox.pack_end(button, False, True, 0)
 
         mbox.show_all()
-        self.header.pack_start(mbox, False)
+        self.header.pack_start(mbox, False, True, 0)
 
     def view_photo(self, photo):
         """
@@ -751,7 +752,7 @@ class RelationshipView(NavigationView):
     def write_person_data(self, title, data):
         self.attach.attach(widgets.BasicLabel(title), _ALABEL_START, 
                            _ALABEL_STOP, self.row, self.row+1, 
-                           xoptions=gtk.FILL|gtk.SHRINK)
+                           xoptions=Gtk.AttachOptions.FILL|Gtk.AttachOptions.SHRINK)
         self.attach.attach(widgets.BasicLabel(data), 
                            _ADATA_START, _ADATA_STOP, 
                            self.row, self.row+1)
@@ -759,7 +760,7 @@ class RelationshipView(NavigationView):
 
     def write_label(self, title, family, is_parent, person = None):
         msg = '<span style="italic" weight="heavy">%s</span>' % cgi.escape(title)
-        hbox = gtk.HBox()
+        hbox = Gtk.HBox()
         label = widgets.MarkupLabel(msg, x_align=1)
         # Draw the collapse/expand button:
         if family is not None:
@@ -772,12 +773,12 @@ class RelationshipView(NavigationView):
                                                     self.expand_collapse_press,
                                                     (person, family.handle))
         else :
-            arrow = gtk.Arrow(gtk.ARROW_RIGHT, gtk.SHADOW_OUT)
-        hbox.pack_start(arrow, False)
-        hbox.pack_start(label, True)
+            arrow = Gtk.Arrow(Gtk.ArrowType.RIGHT, Gtk.ShadowType.OUT)
+        hbox.pack_start(arrow, False, True, 0)
+        hbox.pack_start(label, True, True, 0)
         self.attach.attach(hbox,
                            _LABEL_START, _LABEL_STOP, 
-                           self.row, self.row+1, gtk.SHRINK|gtk.FILL)
+                           self.row, self.row+1, Gtk.AttachOptions.SHRINK|Gtk.AttachOptions.FILL)
 
         if family:
             value = family.gramps_id
@@ -785,13 +786,13 @@ class RelationshipView(NavigationView):
             value = ""
         self.attach.attach(widgets.BasicLabel(value), 
                            _DATA_START, _DATA_STOP, 
-                           self.row, self.row+1, gtk.SHRINK|gtk.FILL)
+                           self.row, self.row+1, Gtk.AttachOptions.SHRINK|Gtk.AttachOptions.FILL)
 
         if family and self.check_collapsed(person.handle, family.handle):
             # show family names later
             pass
         else:
-            hbox = gtk.HBox()
+            hbox = Gtk.HBox()
             hbox.set_spacing(12)
             if is_parent:
                 call_fcn = self.add_parent_family
@@ -814,30 +815,30 @@ class RelationshipView(NavigationView):
                 # Show edit-Buttons if toolbar is not visible
                 if self.reorder_sensitive:
                     add = widgets.IconButton(self.reorder_button_press, None, 
-                                             gtk.STOCK_SORT_ASCENDING)
+                                             Gtk.STOCK_SORT_ASCENDING)
                     add.set_tooltip_text(ord_msg)
-                    hbox.pack_start(add, False)
+                    hbox.pack_start(add, False, True, 0)
 
-                add = widgets.IconButton(call_fcn, None, gtk.STOCK_ADD)
+                add = widgets.IconButton(call_fcn, None, Gtk.STOCK_ADD)
                 add.set_tooltip_text(add_msg)
-                hbox.pack_start(add, False)
+                hbox.pack_start(add, False, True, 0)
 
                 if is_parent:
                     add = widgets.IconButton(self.select_family, None,
-                                             gtk.STOCK_INDEX)
+                                             Gtk.STOCK_INDEX)
                     add.set_tooltip_text(sel_msg)
-                    hbox.pack_start(add, False)
+                    hbox.pack_start(add, False, True, 0)
 
             if family:
                 edit = widgets.IconButton(self.edit_family, family.handle, 
-                                          gtk.STOCK_EDIT)
+                                          Gtk.STOCK_EDIT)
                 edit.set_tooltip_text(edit_msg)
-                hbox.pack_start(edit, False)
+                hbox.pack_start(edit, False, True, 0)
                 if not self.dbstate.db.readonly:
                     delete = widgets.IconButton(del_fcn, family.handle, 
-                                                gtk.STOCK_REMOVE)
+                                                Gtk.STOCK_REMOVE)
                     delete.set_tooltip_text(del_msg)
-                    hbox.pack_start(delete, False)
+                    hbox.pack_start(delete, False, True, 0)
             self.attach.attach(hbox, _BTN_START, _BTN_STOP, self.row, self.row+1)
         self.row += 1
         
@@ -874,9 +875,9 @@ class RelationshipView(NavigationView):
             box = self.get_people_box(family.get_father_handle(),
                                       family.get_mother_handle(),
                                       post_msg=childmsg)
-            eventbox = gtk.EventBox()
+            eventbox = Gtk.EventBox()
             if self.use_shade:
-                eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
+                eventbox.modify_bg(Gtk.StateType.NORMAL, self.color)
             eventbox.add(box)
             self.attach.attach(
                 eventbox, _PDATA_START, _PDATA_STOP,
@@ -889,7 +890,7 @@ class RelationshipView(NavigationView):
 
             if self.show_siblings:
                 active = self.get_active()
-                hbox = gtk.HBox()
+                hbox = Gtk.HBox()
                 if self.check_collapsed(person.handle, "SIBLINGS"):
                     arrow = widgets.ExpandCollapseArrow(True,
                                                         self.expand_collapse_press,
@@ -898,16 +899,16 @@ class RelationshipView(NavigationView):
                     arrow = widgets.ExpandCollapseArrow(False,
                                                         self.expand_collapse_press,
                                                         (person, "SIBLINGS"))
-                hbox.pack_start(arrow, False)
+                hbox.pack_start(arrow, False, True, 0)
                 label_cell = self.build_label_cell(_('Siblings'))
-                hbox.pack_start(label_cell, True)
+                hbox.pack_start(label_cell, True, True, 0)
                 self.attach.attach(
                     hbox, _CLABEL_START-1, _CLABEL_STOP-1, self.row, 
-                    self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
-                    yoptions=gtk.FILL)
+                    self.row+1, xoptions=Gtk.AttachOptions.FILL|Gtk.AttachOptions.SHRINK,
+                    yoptions=Gtk.AttachOptions.FILL)
 
                 if self.check_collapsed(person.handle, "SIBLINGS"):
-                    hbox = gtk.HBox()
+                    hbox = Gtk.HBox()
                     child_list = [ref.ref for ref in family.get_child_ref_list()
                                   if ref.ref != active]
                     if child_list:
@@ -928,43 +929,43 @@ class RelationshipView(NavigationView):
                     else :
                         childmsg = _(" (only child)")
                     box = self.get_people_box(post_msg=childmsg)
-                    eventbox = gtk.EventBox()
+                    eventbox = Gtk.EventBox()
                     if self.use_shade:
-                        eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
+                        eventbox.modify_bg(Gtk.StateType.NORMAL, self.color)
                     eventbox.add(box)
                     self.attach.attach(
                         eventbox, _PDATA_START, _PDATA_STOP,
                         self.row, self.row+1)
                     self.row += 1 # now advance it
                 else:
-                    hbox = gtk.HBox()
+                    hbox = Gtk.HBox()
                     addchild = widgets.IconButton(self.add_child_to_fam, 
                                                   family.handle, 
-                                                  gtk.STOCK_ADD)
+                                                  Gtk.STOCK_ADD)
                     addchild.set_tooltip_text(_('Add new child to family'))
                     selchild = widgets.IconButton(self.sel_child_to_fam, 
                                                   family.handle, 
-                                                  gtk.STOCK_INDEX)
+                                                  Gtk.STOCK_INDEX)
                     selchild.set_tooltip_text(_('Add existing child to family'))
-                    hbox.pack_start(addchild, False)
-                    hbox.pack_start(selchild, False)
+                    hbox.pack_start(addchild, False, True, 0)
+                    hbox.pack_start(selchild, False, True, 0)
 
                     self.attach.attach(
                         hbox, _CLABEL_START, _CLABEL_STOP, self.row, 
-                        self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
-                        yoptions=gtk.FILL)
+                        self.row+1, xoptions=Gtk.AttachOptions.FILL|Gtk.AttachOptions.SHRINK,
+                        yoptions=Gtk.AttachOptions.FILL)
 
                     self.row += 1
-                    vbox = gtk.VBox()
+                    vbox = Gtk.VBox()
                     i = 1
                     child_list = [ref.ref for ref in family.get_child_ref_list()]
                     for child_handle in child_list:
                         child_should_be_linked = (child_handle != active)
                         self.write_child(vbox, child_handle, i, child_should_be_linked)
                         i += 1
-                    eventbox = gtk.EventBox()
+                    eventbox = Gtk.EventBox()
                     if self.use_shade:
-                        eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
+                        eventbox.modify_bg(Gtk.StateType.NORMAL, self.color)
                     eventbox.add(vbox)
                     self.attach.attach(
                         eventbox, _CDATA_START-1, _CDATA_STOP, self.row,
@@ -973,20 +974,20 @@ class RelationshipView(NavigationView):
             self.row += 1
 
     def get_people_box(self, *handles, **kwargs):
-        vbox = gtk.HBox()
+        vbox = Gtk.HBox()
         initial_name = True
         for handle in handles:
             if not initial_name:
-                link_label = gtk.Label(" %s " % _('and'))
+                link_label = Gtk.Label(label=" %s " % _('and'))
                 link_label.show()
-                vbox.pack_start(link_label, expand=False)
+                vbox.pack_start(link_label, False, True, 0)
             initial_name = False
             if handle:
                 name = self.get_name(handle, True)
                 link_label = widgets.LinkLabel(name, self._button_press, 
                                                handle, theme=self.theme)
                 if self.use_shade:
-                    link_label.modify_bg(gtk.STATE_NORMAL, self.color)
+                    link_label.modify_bg(Gtk.StateType.NORMAL, self.color)
                 if self._config.get('preferences.releditbtn'):
                     button = widgets.IconButton(self.edit_button_press, 
                                                 handle)
@@ -994,15 +995,15 @@ class RelationshipView(NavigationView):
                 else:
                     button = None
                 vbox.pack_start(widgets.LinkBox(link_label, button),
-                                expand=False)
+                                False, True, 0)
             else:
-                link_label = gtk.Label(_('Unknown'))
+                link_label = Gtk.Label(label=_('Unknown'))
                 link_label.show()
-                vbox.pack_start(link_label, expand=False)
+                vbox.pack_start(link_label, False, True, 0)
         if "post_msg" in kwargs and kwargs["post_msg"]:
-            link_label = gtk.Label(kwargs["post_msg"])
+            link_label = Gtk.Label(label=kwargs["post_msg"])
             link_label.show()
-            vbox.pack_start(link_label, expand=False)
+            vbox.pack_start(link_label, False, True, 0)
         return vbox
 
     def write_person(self, title, handle):
@@ -1016,10 +1017,10 @@ class RelationshipView(NavigationView):
         if self._config.get('preferences.releditbtn'):
             label.set_padding(0, 5)
         self.attach.attach(label, _PLABEL_START, _PLABEL_STOP, self.row, 
-                           self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
-                           yoptions=gtk.FILL|gtk.SHRINK)
+                           self.row+1, xoptions=Gtk.AttachOptions.FILL|Gtk.AttachOptions.SHRINK,
+                           yoptions=Gtk.AttachOptions.FILL|Gtk.AttachOptions.SHRINK)
 
-        vbox = gtk.VBox()
+        vbox = Gtk.VBox()
         
         if handle:
             name = self.get_name(handle, True)
@@ -1035,27 +1036,27 @@ class RelationshipView(NavigationView):
             link_label = widgets.LinkLabel(name, self._button_press, 
                                            handle, emph, theme=self.theme)
             if self.use_shade:
-                link_label.modify_bg(gtk.STATE_NORMAL, self.color)
+                link_label.modify_bg(Gtk.StateType.NORMAL, self.color)
             if self._config.get('preferences.releditbtn'):
                 button = widgets.IconButton(self.edit_button_press, handle)
                 button.set_tooltip_text(_('Edit %s') % name[0])
             else:
                 button = None
-            vbox.pack_start(widgets.LinkBox(link_label, button))
+            vbox.pack_start(widgets.LinkBox(link_label, button), True, True, 0)
         else:
-            link_label = gtk.Label(_('Unknown'))
+            link_label = Gtk.Label(label=_('Unknown'))
             link_label.set_alignment(0, 1)
             link_label.show()
-            vbox.pack_start(link_label)
+            vbox.pack_start(link_label, True, True, 0)
             
         if self.show_details:
             value = self.info_string(handle)
             if value:
-                vbox.pack_start(widgets.MarkupLabel(value))
+                vbox.pack_start(widgets.MarkupLabel(value, True, True, 0))
 
-        eventbox = gtk.EventBox()
+        eventbox = Gtk.EventBox()
         if self.use_shade:
-            eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
+            eventbox.modify_bg(Gtk.StateType.NORMAL, self.color)
         eventbox.add(vbox)
         
         self.attach.attach(eventbox, _PDATA_START, _PDATA_STOP,
@@ -1078,12 +1079,12 @@ class RelationshipView(NavigationView):
     def write_child(self, vbox, handle, index, child_should_be_linked):
         if not child_should_be_linked:
             original_vbox = vbox
-            vbox = gtk.VBox()
-            frame = gtk.Frame()
-            frame.set_shadow_type(gtk.SHADOW_ETCHED_IN)
+            vbox = Gtk.VBox()
+            frame = Gtk.Frame()
+            frame.set_shadow_type(Gtk.ShadowType.ETCHED_IN)
             if self.use_shade:
-                ev = gtk.EventBox()
-                ev.modify_bg(gtk.STATE_NORMAL, self.color)
+                ev = Gtk.EventBox()
+                ev.modify_bg(Gtk.StateType.NORMAL, self.color)
                 ev.add(vbox)
                 frame.add(ev)
             else:
@@ -1114,7 +1115,7 @@ class RelationshipView(NavigationView):
                                        theme=self.theme)
 
         if self.use_shade:
-            link_label.modify_bg(gtk.STATE_NORMAL, self.color)
+            link_label.modify_bg(Gtk.StateType.NORMAL, self.color)
         link_label.set_padding(3, 0)
         if child_should_be_linked and self._config.get(
             'preferences.releditbtn'):
@@ -1123,7 +1124,7 @@ class RelationshipView(NavigationView):
         else:
             button = None
 
-        hbox = gtk.HBox()
+        hbox = Gtk.HBox()
         l = widgets.BasicLabel("%d." % index)
         l.set_width_chars(3)
         l.set_alignment(1.0, 0.5)
@@ -1131,7 +1132,7 @@ class RelationshipView(NavigationView):
         hbox.pack_start(widgets.LinkBox(link_label, button),
                         False, False, 4)
         hbox.show()
-        vbox.pack_start(hbox)
+        vbox.pack_start(hbox, True, True, 0)
 
         if self.show_details:
             value = self.info_string(handle)
@@ -1214,7 +1215,7 @@ class RelationshipView(NavigationView):
         if button_activated(event, _LEFT_BUTTON):
             self.change_active(handle)
         elif button_activated(event, _RIGHT_BUTTON):
-            myMenu = gtk.Menu()
+            myMenu = Gtk.Menu()
             myMenu.append(self.build_menu_item(handle))
             myMenu.popup(None, None, None, event.button, event.time)
 
@@ -1222,10 +1223,10 @@ class RelationshipView(NavigationView):
         person = self.dbstate.db.get_person_from_handle(handle)
         name = name_displayer.display(person)
 
-        item = gtk.ImageMenuItem(None)
-        image = gtk.image_new_from_stock(gtk.STOCK_EDIT, gtk.ICON_SIZE_MENU)
+        item = Gtk.ImageMenuItem(None)
+        image = Gtk.Image.new_from_stock(Gtk.STOCK_EDIT, Gtk.IconSize.MENU)
         image.show()
-        label = gtk.Label(_("Edit %s") % name)
+        label = Gtk.Label(label=_("Edit %s") % name)
         label.show()
         label.set_alignment(0, 0)
 
@@ -1331,9 +1332,9 @@ class RelationshipView(NavigationView):
             else :
                 childmsg = _(" (no children)")
             box = self.get_people_box(handle, post_msg=childmsg)
-            eventbox = gtk.EventBox()
+            eventbox = Gtk.EventBox()
             if self.use_shade:
-                eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
+                eventbox.modify_bg(Gtk.StateType.NORMAL, self.color)
             eventbox.add(box)
             self.attach.attach(
                 eventbox, _PDATA_START, _PDATA_STOP,
@@ -1349,7 +1350,7 @@ class RelationshipView(NavigationView):
                 if not self.write_relationship_events(box, family):
                     self.write_relationship(box, family)
 
-            hbox = gtk.HBox()
+            hbox = Gtk.HBox()
             if self.check_collapsed(family.handle, "CHILDREN"):
                 arrow = widgets.ExpandCollapseArrow(True,
                                                     self.expand_collapse_press,
@@ -1358,16 +1359,16 @@ class RelationshipView(NavigationView):
                 arrow = widgets.ExpandCollapseArrow(False,
                                                     self.expand_collapse_press,
                                                     (family, "CHILDREN"))
-            hbox.pack_start(arrow, False)
+            hbox.pack_start(arrow, False, True, 0)
             label_cell = self.build_label_cell(_('Children'))
-            hbox.pack_start(label_cell, True)
+            hbox.pack_start(label_cell, True, True, 0)
             self.attach.attach(
                 hbox, _CLABEL_START-1, _CLABEL_STOP-1, self.row, 
-                self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
-                yoptions=gtk.FILL)
+                self.row+1, xoptions=Gtk.AttachOptions.FILL|Gtk.AttachOptions.SHRINK,
+                yoptions=Gtk.AttachOptions.FILL)
 
             if self.check_collapsed(family.handle, "CHILDREN"):
-                hbox = gtk.HBox()
+                hbox = Gtk.HBox()
                 child_list = family.get_child_ref_list()
                 if child_list:
                     count = len(child_list)
@@ -1378,32 +1379,32 @@ class RelationshipView(NavigationView):
                 else :
                     childmsg = _(" (no children)")
                 box = self.get_people_box(post_msg=childmsg)
-                eventbox = gtk.EventBox()
+                eventbox = Gtk.EventBox()
                 if self.use_shade:
-                    eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
+                    eventbox.modify_bg(Gtk.StateType.NORMAL, self.color)
                 eventbox.add(box)
                 self.attach.attach(
                     eventbox, _PDATA_START, _PDATA_STOP,
                     self.row, self.row+1)
                 self.row += 1 # now advance it
             else:
-                hbox = gtk.HBox()
+                hbox = Gtk.HBox()
                 addchild = widgets.IconButton(self.add_child_to_fam, 
                                               family.handle, 
-                                              gtk.STOCK_ADD)
+                                              Gtk.STOCK_ADD)
                 addchild.set_tooltip_text(_('Add new child to family'))
                 selchild = widgets.IconButton(self.sel_child_to_fam, 
                                               family.handle, 
-                                              gtk.STOCK_INDEX)
+                                              Gtk.STOCK_INDEX)
                 selchild.set_tooltip_text(_('Add existing child to family'))                                  
-                hbox.pack_start(addchild, False)
-                hbox.pack_start(selchild, False)
+                hbox.pack_start(addchild, False, True, 0)
+                hbox.pack_start(selchild, False, True, 0)
                 self.attach.attach(
                     hbox, _CLABEL_START, _CLABEL_STOP, self.row, 
-                    self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
-                    yoptions=gtk.FILL)
+                    self.row+1, xoptions=Gtk.AttachOptions.FILL|Gtk.AttachOptions.SHRINK,
+                    yoptions=Gtk.AttachOptions.FILL)
 
-                vbox = gtk.VBox()
+                vbox = Gtk.VBox()
                 i = 1
                 child_list = family.get_child_ref_list()
                 for child_ref in child_list:
@@ -1411,9 +1412,9 @@ class RelationshipView(NavigationView):
                     i += 1
 
                 self.row += 1
-                eventbox = gtk.EventBox()
+                eventbox = Gtk.EventBox()
                 if self.use_shade:
-                    eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
+                    eventbox.modify_bg(Gtk.StateType.NORMAL, self.color)
                 eventbox.add(vbox)
                 self.attach.attach(
                     eventbox, _CDATA_START-1, _CDATA_STOP, self.row,
@@ -1634,7 +1635,7 @@ class RelationshipView(NavigationView):
         """
         Function that builds the widget in the configuration dialog
         """
-        table = gtk.Table(3, 2)
+        table = Gtk.Table(3, 2)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -1645,7 +1646,7 @@ class RelationshipView(NavigationView):
         configdialog.add_checkbox(table, 
                 _('Display edit buttons'), 
                 1, 'preferences.releditbtn')
-        checkbox = gtk.CheckButton(_('View links as website links'))
+        checkbox = Gtk.CheckButton(_('View links as website links'))
         theme = self._config.get('preferences.relation-display-theme')
         checkbox.set_active(theme == 'WEBPAGE')
         checkbox.connect('toggled', self._config_update_theme)
@@ -1657,7 +1658,7 @@ class RelationshipView(NavigationView):
         """
         Function that builds the widget in the configuration dialog
         """
-        table = gtk.Table(2, 2)
+        table = Gtk.Table(2, 2)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -1870,9 +1871,9 @@ def has_children(db,p):
     return False
 
 def button_activated(event, mouse_button):
-    if (event.type == gtk.gdk.BUTTON_PRESS and
+    if (event.type == Gdk.EventType.BUTTON_PRESS and
         event.button == mouse_button) or \
-       (event.type == gtk.gdk.KEY_PRESS and
+       (event.type == Gdk.KEY_PRESS and
         event.keyval in (_RETURN, _KP_ENTER, _SPACE)):
         return True
     else:

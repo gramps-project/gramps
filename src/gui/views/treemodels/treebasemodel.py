@@ -47,7 +47,8 @@ _LOG = logging.getLogger(".gui.treebasemodel")
 # GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import GObject
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -230,7 +231,7 @@ class NodeMap(object):
 # TreeBaseModel
 #
 #-------------------------------------------------------------------------
-class TreeBaseModel(gtk.GenericTreeModel):
+class TreeBaseModel(GObject.Object, Gtk.TreeModel):
     """
     The base class for all hierarchical treeview models.  The model defines the
     mapping between a unique node and a path. Paths are defined by a tuple.
@@ -279,17 +280,19 @@ class TreeBaseModel(gtk.GenericTreeModel):
    
     def __init__(self, db, tooltip_column,
                     search=None, skip=set(),
-                    scol=0, order=gtk.SORT_ASCENDING, sort_map=None,
+                    scol=0, order=Gtk.SortType.ASCENDING, sort_map=None,
                     nrgroups = 1,
                     group_can_have_handle = False,
                     has_secondary=False):
+        #TODO GTK3, first get flatbasemodel working !
+        raise NotImplementedError
         cput = time.clock()
-        gtk.GenericTreeModel.__init__(self)
+        GObject.GObject.__init__(self)
         #two unused attributes pesent to correspond to flatbasemodel
         self.prev_handle = None
         self.prev_data = None
         
-        self.__reverse = (order == gtk.SORT_DESCENDING)
+        self.__reverse = (order == Gtk.SortType.DESCENDING)
         self.scol = scol
         self.nrgroups = nrgroups
         self.group_can_have_handle = group_can_have_handle
@@ -801,24 +804,24 @@ class TreeBaseModel(gtk.GenericTreeModel):
         """
         return self.on_get_path(self.get_node(handle))
 
-    # The following implement the public interface of gtk.GenericTreeModel
+    # The following implement the public interface of Gtk.GenericTreeModel
 
     def on_get_flags(self):
         """
-        See gtk.GenericTreeModel
+        See Gtk.GenericTreeModel
         """
-        return gtk.TREE_MODEL_ITERS_PERSIST
+        return Gtk.TreeModelFlags.ITERS_PERSIST
 
     def on_get_n_columns(self):
         """
         Return the number of columns. Must be implemented in the child objects
-        See gtk.GenericTreeModel
+        See Gtk.GenericTreeModel
         """
         raise NotImplementedError
 
     def on_get_column_type(self, index):
         """
-        See gtk.GenericTreeModel
+        See Gtk.GenericTreeModel
         """
         if index == self._tooltip_column:
             return object
@@ -826,7 +829,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
 
     def on_get_value(self, nodeid, col):
         """
-        See gtk.GenericTreeModel
+        See Gtk.GenericTreeModel
         """
         #print 'get_value', nodeid, col
         nodeid = id(nodeid)

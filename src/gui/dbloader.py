@@ -46,8 +46,8 @@ _LOG = logging.getLogger(".")
 # GTK+ modules
 #
 #-------------------------------------------------------------------------
-import gtk
-import gobject
+from gi.repository import Gtk
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -128,11 +128,11 @@ class DbLoader(CLIDbLoader):
             
         pmgr = GuiPluginManager.get_instance()
         
-        import_dialog = gtk.FileChooserDialog(_('Gramps: Import database'), 
+        import_dialog = Gtk.FileChooserDialog(_('Gramps: Import database'), 
                                        self.uistate.window, 
-                                       gtk.FILE_CHOOSER_ACTION_OPEN, 
-                                       (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, 
-                                        'gramps-import', gtk.RESPONSE_OK))
+                                       Gtk.FileChooserAction.OPEN, 
+                                       (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, 
+                                        'gramps-import', Gtk.ResponseType.OK))
         import_dialog.set_local_only(False)
 
         # Always add automatic (match all files) filter
@@ -140,7 +140,7 @@ class DbLoader(CLIDbLoader):
 
         # Add more file type selections for available importers
         for plugin in pmgr.get_import_plugins():
-            file_filter = gtk.FileFilter()
+            file_filter = Gtk.FileFilter()
             name = "%s (.%s)" % (plugin.get_name(), plugin.get_extension())
             file_filter.set_name(name)
             file_filter.add_pattern("*.%s" % plugin.get_extension())
@@ -159,9 +159,9 @@ class DbLoader(CLIDbLoader):
         import_dialog.set_current_folder(default_dir)
         while True:
             response = import_dialog.run()
-            if response == gtk.RESPONSE_CANCEL:
+            if response == Gtk.ResponseType.CANCEL:
                 break
-            elif response == gtk.RESPONSE_OK:
+            elif response == Gtk.ResponseType.OK:
                 filename = Utils.get_unicode_path_from_file_chooser(import_dialog.get_filename())
                 if self.check_errors(filename):
                     # displays errors if any
@@ -362,7 +362,7 @@ def add_all_files_filter(chooser):
     """
     Add an all-permitting filter to the file chooser dialog.
     """
-    mime_filter = gtk.FileFilter()
+    mime_filter = Gtk.FileFilter()
     mime_filter.set_name(_('All files'))
     mime_filter.add_pattern('*')
     chooser.add_filter(mime_filter)
@@ -372,15 +372,15 @@ def add_all_files_filter(chooser):
 # Format selectors: explictly set the format of the file
 #
 #-------------------------------------------------------------------------
-class GrampsFormatWidget(gtk.ComboBox):
+class GrampsFormatWidget(Gtk.ComboBox):
 
     def __init__(self):
-        gtk.ComboBox.__init__(self, model=None)
+        GObject.GObject.__init__(self, model=None)
 
     def set(self, format_list):
-        self.store = gtk.ListStore(gobject.TYPE_STRING)
+        self.store = Gtk.ListStore(GObject.TYPE_STRING)
         self.set_model(self.store)
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         self.pack_start(cell, True)
         self.add_attribute(cell, 'text', 0)
         self.format_list = format_list
@@ -412,8 +412,8 @@ def format_maker():
     type_selector = GrampsFormatWidget()
     type_selector.set(format_list)
 
-    box = gtk.HBox()
-    label = gtk.Label(_('Select file _type:'))
+    box = Gtk.HBox()
+    label = Gtk.Label(label=_('Select file _type:'))
     label.set_use_underline(True)
     label.set_mnemonic_widget(type_selector)
     box.pack_start(label, expand=False, fill=False, padding=6)

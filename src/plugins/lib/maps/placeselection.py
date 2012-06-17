@@ -29,7 +29,7 @@
 #-------------------------------------------------------------------------
 from gen.ggettext import sgettext as _
 import re
-import gobject
+from gi.repository import GObject
 import math
 
 #------------------------------------------------------------------------
@@ -45,7 +45,7 @@ _LOG = logging.getLogger("maps.placeselection")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -118,51 +118,50 @@ class PlaceSelection(ManagedWindow, OsmGps):
         self.function = function
         self.selection_layer = layer
         self.layer = layer
-        alignment = gtk.Alignment(0, 1, 0, 0)
+        alignment = Gtk.Alignment.new(0, 1, 0, 0)
         self.set_window(
-            gtk.Dialog(_('Place Selection in a region'),
-                       flags=gtk.DIALOG_NO_SEPARATOR,
-                       buttons=(gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)),
+            Gtk.Dialog(_('Place Selection in a region'),
+                       buttons=(Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE)),
             None, _('Place Selection in a region'), None)
-        label = gtk.Label(_('Choose the radius of the selection.\n'
+        label = Gtk.Label(label=_('Choose the radius of the selection.\n'
                             'On the map you should see a circle or an'
                             ' oval depending on the latitude.'))
         alignment.add(label)
-        self.window.vbox.pack_start(alignment, expand=False)
-        adj = gtk.Adjustment(1.0, 0.1, 3.0, 0.1, 0, 0)
+        self.window.vbox.pack_start(alignment, False, True, 0)
+        adj = Gtk.Adjustment(1.0, 0.1, 3.0, 0.1, 0, 0)
         # default value is 1.0, minimum is 0.1 and max is 3.0
-        slider = gtk.HScale(adj)
-        slider.set_update_policy(gtk.UPDATE_DISCONTINUOUS)
+        slider = Gtk.HScale(adj)
+        slider.set_update_policy(Gtk.UPDATE_DISCONTINUOUS)
         slider.set_digits(1)
-        slider.set_value_pos(gtk.POS_BOTTOM)
+        slider.set_value_pos(Gtk.PositionType.BOTTOM)
         slider.connect('value-changed', self.slider_change, self.lat, self.lon)
-        self.window.vbox.pack_start(slider, expand=False)
-        self.vadjust = gtk.Adjustment(page_size=15)
-        self.scroll = gtk.ScrolledWindow(self.vadjust)
-        self.scroll.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
-        self.scroll.set_shadow_type(gtk.SHADOW_IN)
-        self.plist = gtk.ListStore(str, str, str)
-        self.choices = gtk.TreeView(self.plist)
+        self.window.vbox.pack_start(slider, False, True, 0)
+        self.vadjust = Gtk.Adjustment(page_size=15)
+        self.scroll = Gtk.ScrolledWindow(self.vadjust)
+        self.scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+        self.scroll.set_shadow_type(Gtk.ShadowType.IN)
+        self.plist = Gtk.ListStore(str, str, str)
+        self.choices = Gtk.TreeView(self.plist)
         self.scroll.add(self.choices)
-        self.renderer = gtk.CellRendererText()
-        self.tvcol1 = gtk.TreeViewColumn(_('Country'), self.renderer, markup=0)
-        self.tvcol2 = gtk.TreeViewColumn(_('State'), self.renderer, markup=1)
-        self.tvcol3 = gtk.TreeViewColumn(_('County'), self.renderer, markup=2)
+        self.renderer = Gtk.CellRendererText()
+        self.tvcol1 = Gtk.TreeViewColumn(_('Country'), self.renderer, markup=0)
+        self.tvcol2 = Gtk.TreeViewColumn(_('State'), self.renderer, markup=1)
+        self.tvcol3 = Gtk.TreeViewColumn(_('County'), self.renderer, markup=2)
         self.tvcol1.set_sort_column_id(0)
         self.tvcol2.set_sort_column_id(1)
         self.tvcol3.set_sort_column_id(2)
         self.choices.append_column(self.tvcol1)
         self.choices.append_column(self.tvcol2)
         self.choices.append_column(self.tvcol3)
-        self.window.vbox.pack_start(self.scroll, expand=True)
-        self.label2 = gtk.Label()
+        self.window.vbox.pack_start(self.scroll, True, True, 0)
+        self.label2 = Gtk.Label()
         self.label2.set_markup('<span background="green" foreground="black"'
                                '>%s</span>' % 
              _('The green values in the row correspond '
                'to the current place values.'))
-        alignment = gtk.Alignment(0, 1, 0, 0)
+        alignment = Gtk.Alignment.new(0, 1, 0, 0)
         alignment.add(self.label2)
-        self.window.vbox.pack_start(alignment, expand=False)
+        self.window.vbox.pack_start(alignment, False, True, 0)
         self.window.set_default_size(400, 300)
         self.choices.connect('row-activated', self.selection, function)
         self.window.connect('response', self.close)

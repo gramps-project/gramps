@@ -41,7 +41,7 @@ import locale
 # GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -187,7 +187,7 @@ class PeopleBaseModel(object):
             self.lru_bdate.clear()
             self.lru_ddate.clear()
 
-    def on_get_n_columns(self):
+    def do_get_n_columns(self):
         """ Return the number of columns in the model """
         return len(self.fmap)+1
 
@@ -439,7 +439,7 @@ class PeopleBaseModel(object):
         """
         Return the tag color.
         """
-        tag_color = None
+        tag_color = "#000000000000"
         tag_priority = None
         for handle in data[COLUMN_TAGS]:
             tag = self.db.get_tag_from_handle(handle)
@@ -460,7 +460,7 @@ class PersonListModel(PeopleBaseModel, FlatBaseModel):
     """
     Listed people model.
     """
-    def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None,
+    def __init__(self, db, scol=0, order=Gtk.SortType.ASCENDING, search=None,
                  skip=set(), sort_map=None):
         PeopleBaseModel.__init__(self, db)
         FlatBaseModel.__init__(self, db, search=search, skip=skip,
@@ -482,7 +482,7 @@ class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
     """
     Hierarchical people model.
     """
-    def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None,
+    def __init__(self, db, scol=0, order=Gtk.SortType.ASCENDING, search=None,
                  skip=set(), sort_map=None):
 
         PeopleBaseModel.__init__(self, db)

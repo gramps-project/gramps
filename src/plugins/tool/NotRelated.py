@@ -37,8 +37,8 @@ import locale
 # GNOME/GTK modules
 #
 #------------------------------------------------------------------------
-import gtk
-import gobject
+from gi.repository import Gtk
+from gi.repository import GObject
 
 #------------------------------------------------------------------------
 #
@@ -102,7 +102,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
         self.set_window(window, title, self.title)
 
         self.tagcombo = topDialog.get_object("tagcombo")
-        tagmodel = gtk.ListStore(str)
+        tagmodel = Gtk.ListStore(str)
         self.tagcombo.set_model(tagmodel)
         self.tagcombo.set_text_column(0)
         tagmodel.append((_('ToDo'),))
@@ -117,28 +117,28 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
         self.progress = ProgressMeter(self.title,_('Starting'))
 
         # setup the columns
-        self.model = gtk.TreeStore(
-            gobject.TYPE_STRING,    # 0==name
-            gobject.TYPE_STRING,    # 1==person gid
-            gobject.TYPE_STRING,    # 2==parents
-            gobject.TYPE_STRING,    # 3==tags
-            gobject.TYPE_STRING)    # 4==family gid (not shown to user)
+        self.model = Gtk.TreeStore(
+            GObject.TYPE_STRING,    # 0==name
+            GObject.TYPE_STRING,    # 1==person gid
+            GObject.TYPE_STRING,    # 2==parents
+            GObject.TYPE_STRING,    # 3==tags
+            GObject.TYPE_STRING)    # 4==family gid (not shown to user)
 
         # note -- don't assign the model to the tree until it has been populated,
         # otherwise the screen updates are terribly slow while names are appended
         self.treeView = topDialog.get_object("treeview")
-        col1 = gtk.TreeViewColumn(_('Name'),    gtk.CellRendererText(), text=0)
-        col2 = gtk.TreeViewColumn(_('ID'),      gtk.CellRendererText(), text=1)
-        col3 = gtk.TreeViewColumn(_('Parents'), gtk.CellRendererText(), text=2)
-        col4 = gtk.TreeViewColumn(_('Tags'),    gtk.CellRendererText(), text=3)
+        col1 = Gtk.TreeViewColumn(_('Name'),    Gtk.CellRendererText(), text=0)
+        col2 = Gtk.TreeViewColumn(_('ID'),      Gtk.CellRendererText(), text=1)
+        col3 = Gtk.TreeViewColumn(_('Parents'), Gtk.CellRendererText(), text=2)
+        col4 = Gtk.TreeViewColumn(_('Tags'),    Gtk.CellRendererText(), text=3)
         col1.set_resizable(True)
         col2.set_resizable(True)
         col3.set_resizable(True)
         col4.set_resizable(True)
-        col1.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
-        col2.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
-        col3.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
-        col4.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
+        col1.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
+        col2.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
+        col3.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
+        col4.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
         col1.set_sort_column_id(0)
 #        col2.set_sort_column_id(1)
 #        col3.set_sort_column_id(2)
@@ -148,7 +148,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
         self.treeView.append_column(col3)
         self.treeView.append_column(col4)
         self.treeSelection = self.treeView.get_selection()
-        self.treeSelection.set_mode(gtk.SELECTION_MULTIPLE)
+        self.treeSelection.set_mode(Gtk.SelectionMode.MULTIPLE)
         self.treeSelection.set_select_function(self.selectIsAllowed, full=True)
         self.treeSelection.connect('changed', self.rowSelectionChanged)
         self.treeView.connect('row-activated', self.rowActivated)
@@ -177,9 +177,9 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
             title.set_text(_('Everyone in the database is related to %s') % self.name)
         else:
             self.populateModel()
-            self.model.set_sort_column_id(0, gtk.SORT_ASCENDING)
+            self.model.set_sort_column_id(0, Gtk.SortType.ASCENDING)
             self.treeView.set_model(self.model)
-#            self.treeView.set_row_separator_func(self.iterIsSeparator)
+#            self.treeView.set_row_separator_func(self.iterIsSeparator, None)
             self.treeView.expand_all()
 
         # done searching through the database, so close the progress bar

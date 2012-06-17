@@ -43,8 +43,8 @@ else:
 # GNOME/GTK modules
 #
 #------------------------------------------------------------------------
-import gtk
-import pango
+from gi.repository import Gtk
+from gi.repository import Pango
 import gc
 
 #------------------------------------------------------------------------
@@ -75,25 +75,25 @@ class Leak(tool.Tool, ManagedWindow):
         self.window = self.glade.toplevel
         self.scroll = self.glade.get_object("scrolledwindow1")
         #add a listview to the scrollable
-        self.list = gtk.TreeView()
+        self.list = Gtk.TreeView()
         self.list.set_headers_visible(True)
         self.list.connect('button-press-event', self._button_press)
         self.scroll.add(self.list)
         #make a model
         self.modeldata = []
-        self.model = gtk.ListStore(int, str)
+        self.model = Gtk.ListStore(int, str)
         self.list.set_model(self.model)
         
         #set the colums
-        self.renderer = gtk.CellRendererText()
-        column = gtk.TreeViewColumn(_('Number'), self.renderer, text=0)
+        self.renderer = Gtk.CellRendererText()
+        column = Gtk.TreeViewColumn(_('Number'), self.renderer, text=0)
         column.set_resizable(True)
-        column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+        column.set_sizing(Gtk.TreeViewColumnSizing.FIXED)
         self.list.append_column(column)
-        column = gtk.TreeViewColumn(_('Uncollected object'), self.renderer,
+        column = Gtk.TreeViewColumn(_('Uncollected object'), self.renderer,
                                     text=1)
         column.set_resizable(True)
-        column.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
+        column.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
         self.list.append_column(column)
         self.selection = self.list.get_selection()
         
@@ -114,7 +114,7 @@ class Leak(tool.Tool, ManagedWindow):
         return (self.title,None)
 
     def _button_press(self, obj, event):
-        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             self.referenced_in()
             return True
         elif gui.utils.is_right_click(event):

@@ -28,7 +28,7 @@
 #
 #-------------------------------------------------------------------------
 import os
-import gobject
+from gi.repository import GObject
 from math import *
 
 #------------------------------------------------------------------------
@@ -44,7 +44,7 @@ _LOG = logging.getLogger("maps.marker")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -73,7 +73,7 @@ try:
 except:
     raise
 
-class MarkerLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
+class MarkerLayer(GObject.GObject, osmgpsmap.GpsMapLayer):
     """
     This is the layer used to display the markers.
     """
@@ -81,7 +81,7 @@ class MarkerLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
         """
         Initialize the layer
         """
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
         self.markers = []
         self.max_references = 0
         self.max_places = 0
@@ -181,5 +181,5 @@ class MarkerLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
         """
         return False
 
-gobject.type_register(MarkerLayer)
+GObject.type_register(MarkerLayer)
 

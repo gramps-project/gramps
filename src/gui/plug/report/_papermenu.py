@@ -33,8 +33,8 @@ from gen.ggettext import sgettext as _
 # GNOME modules
 #
 #-------------------------------------------------------------------------
-import gtk
-import gobject
+from gi.repository import Gtk
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -50,14 +50,14 @@ from gui.glade import Glade
 # PaperComboBox
 #
 #-------------------------------------------------------------------------
-class PaperComboBox(gtk.ComboBox):
+class PaperComboBox(Gtk.ComboBox):
 
     def __init__(self,default_name):
-        gtk.ComboBox.__init__(self)
+        GObject.GObject.__init__(self)
         
-        self.store = gtk.ListStore(gobject.TYPE_STRING)
+        self.store = Gtk.ListStore(GObject.TYPE_STRING)
         self.set_model(self.store)
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         self.pack_start(cell,True)
         self.add_attribute(cell,'text',0)
         self.mapping = {}
@@ -85,14 +85,14 @@ class PaperComboBox(gtk.ComboBox):
 # OrientationComboBox
 #
 #-------------------------------------------------------------------------
-class OrientationComboBox(gtk.ComboBox):
+class OrientationComboBox(Gtk.ComboBox):
 
     def __init__(self,default=PAPER_PORTRAIT):
-        gtk.ComboBox.__init__(self)
+        GObject.GObject.__init__(self)
         
-        self.store = gtk.ListStore(gobject.TYPE_STRING)
+        self.store = Gtk.ListStore(GObject.TYPE_STRING)
         self.set_model(self.store)
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         self.pack_start(cell,True)
         self.add_attribute(cell,'text',0)
         self.mapping = {}
@@ -124,11 +124,11 @@ class OrientationComboBox(gtk.ComboBox):
 # PaperFrame
 #
 #-------------------------------------------------------------------------  
-class PaperFrame(gtk.HBox):
+class PaperFrame(Gtk.HBox):
     """PaperFrame provides all the entry necessary to specify a paper style. """
     def __init__(self,default_metric,default_name,default_orientation,
                  margins=[2.54,2.54,2.54,2.54], custom=[29.7,21.0]):
-        gtk.HBox.__init__(self)
+        GObject.GObject.__init__(self)
         glade_xml = Glade()
 
         self.paper_table = glade_xml.get_object('paper_table')
@@ -150,9 +150,9 @@ class PaperFrame(gtk.HBox):
         # connect all widgets
         format_table = glade_xml.get_object('format_table')
         format_table.attach(self.papersize_menu, 1, 3, 0, 1,
-                            yoptions=gtk.SHRINK)
+                            yoptions=Gtk.AttachOptions.SHRINK)
         format_table.attach(self.orientation_menu, 1, 3, 3, 4,
-                            yoptions=gtk.SHRINK)
+                            yoptions=Gtk.AttachOptions.SHRINK)
 
         # connect signals
         self.papersize_menu.connect('changed',self.size_changed)

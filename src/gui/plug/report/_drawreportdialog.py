@@ -26,8 +26,8 @@
 # GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk
-import gobject
+from gi.repository import Gtk
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -43,14 +43,14 @@ from gui.pluginmanager import GuiPluginManager
 # _DrawFormatComboBox
 #
 #-------------------------------------------------------------------------
-class _DrawFormatComboBox(gtk.ComboBox):
+class _DrawFormatComboBox(Gtk.ComboBox):
     """
     This class is a combo box that allows the selection of a docgen plugin
     from all drawdoc plugins.
     """
     def __init__(self, active):
 
-        gtk.ComboBox.__init__(self)
+        GObject.GObject.__init__(self)
         
         pmgr = GuiPluginManager.get_instance()
         self.__drawdoc_plugins = []
@@ -58,9 +58,9 @@ class _DrawFormatComboBox(gtk.ComboBox):
             if plugin.get_draw_support():
                 self.__drawdoc_plugins.append(plugin)
         
-        self.store = gtk.ListStore(gobject.TYPE_STRING)
+        self.store = Gtk.ListStore(GObject.TYPE_STRING)
         self.set_model(self.store)
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         self.pack_start(cell, True)
         self.add_attribute(cell, 'text', 0)
 

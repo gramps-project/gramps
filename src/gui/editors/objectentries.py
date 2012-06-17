@@ -36,8 +36,8 @@ _LOG = logging.getLogger(".objectentries")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
-from pango import ELLIPSIZE_END
+from gi.repository import Gtk
+from gi.repository import Pango
 
 #-------------------------------------------------------------------------
 #
@@ -73,13 +73,13 @@ class ObjEntry(object):
     def __init__(self, dbstate, uistate, track, label, set_val, 
                  get_val, add_edt, share):
         """Pass the dbstate and uistate and present track.
-            label is a gtk.Label that shows the persent value
+            label is a Gtk.Label that shows the persent value
             set_val is function that is called when handle changes, use it
                 to update the calling module
             get_val is function that is called to obtain handle from calling
                 module
-            share is the gtk.Button to call the object selector or del connect
-            add_edt is the gtk.Button with add or edit value. Pass None if 
+            share is the Gtk.Button to call the object selector or del connect
+            add_edt is the Gtk.Button with add or edit value. Pass None if 
                 this button should not be present.
         """
         self.label = label
@@ -133,7 +133,7 @@ class ObjEntry(object):
             self.label.set_use_markup(True)
         else:
             self.label.set_text(name)
-        self.label.set_ellipsize(ELLIPSIZE_END)
+        self.label.set_ellipsize(Pango.ELLIPSIZE_END)
 
     def _init_dnd(self):
         """inheriting objects must set this
@@ -217,26 +217,26 @@ class ObjEntry(object):
             self.share.remove(i)
 
         if use_add:
-            image = gtk.Image()
-            image.set_from_stock(gtk.STOCK_REMOVE, gtk.ICON_SIZE_BUTTON)
+            image = Gtk.Image()
+            image.set_from_stock(Gtk.STOCK_REMOVE, Gtk.IconSize.BUTTON)
             image.show()
             self.share.add(image)
             self.share.set_tooltip_text(self.DEL_STR)
             if self.add_edt is not None:
-                image = gtk.Image()
-                image.set_from_stock(gtk.STOCK_EDIT, gtk.ICON_SIZE_BUTTON)
+                image = Gtk.Image()
+                image.set_from_stock(Gtk.STOCK_EDIT, Gtk.IconSize.BUTTON)
                 image.show()
                 self.add_edt.add(image)
                 self.add_edt.set_tooltip_text(self.EDIT_STR)
         else:
-            image = gtk.Image()
-            image.set_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON)
+            image = Gtk.Image()
+            image.set_from_stock(Gtk.STOCK_INDEX, Gtk.IconSize.BUTTON)
             image.show()
             self.share.add(image)
             self.share.set_tooltip_text(self.SHARE_STR)
             if self.add_edt is not None:
-                image = gtk.Image()
-                image.set_from_stock(gtk.STOCK_ADD, gtk.ICON_SIZE_BUTTON)
+                image = Gtk.Image()
+                image.set_from_stock(Gtk.STOCK_ADD, Gtk.IconSize.BUTTON)
                 image.show()
                 self.add_edt.add(image)
                 self.add_edt.set_tooltip_text(self.ADD_STR)
@@ -262,8 +262,8 @@ class PlaceEntry(ObjEntry):
     def _init_dnd(self):
         """connect drag and drop of places
         """
-        self.label.drag_dest_set(gtk.DEST_DEFAULT_ALL, [DdTargets.PLACE_LINK.target()], 
-                               gtk.gdk.ACTION_COPY)
+        self.label.drag_dest_set(Gtk.DestDefaults.ALL, [DdTargets.PLACE_LINK.target()], 
+                               Gdk.DragAction.COPY)
         self.label.connect('drag_data_received', self.drag_data_received)
 
     def get_from_handle(self, handle):
@@ -313,8 +313,8 @@ class MediaEntry(ObjEntry):
     def _init_dnd(self):
         """connect drag and drop of places
         """
-        self.label.drag_dest_set(gtk.DEST_DEFAULT_ALL, [DdTargets.MEDIAOBJ.target()], 
-                               gtk.gdk.ACTION_COPY)
+        self.label.drag_dest_set(Gtk.DestDefaults.ALL, [DdTargets.MEDIAOBJ.target()], 
+                               Gdk.DragAction.COPY)
         self.label.connect('drag_data_received', self.drag_data_received)
 
     def get_from_handle(self, handle):
@@ -375,8 +375,8 @@ class NoteEntry(ObjEntry):
     def _init_dnd(self):
         """connect drag and drop of places
         """
-        self.label.drag_dest_set(gtk.DEST_DEFAULT_ALL, [DdTargets.NOTE_LINK.target()], 
-                               gtk.gdk.ACTION_COPY)
+        self.label.drag_dest_set(Gtk.DestDefaults.ALL, [DdTargets.NOTE_LINK.target()], 
+                               Gdk.DragAction.COPY)
         self.label.connect('drag_data_received', self.drag_data_received)
 
     def get_from_handle(self, handle):

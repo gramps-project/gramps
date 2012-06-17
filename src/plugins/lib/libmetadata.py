@@ -29,7 +29,7 @@ from fractions import Fraction
 import gen.lib
 import gen.datehandler
 import datetime
-import gtk
+from gi.repository import Gtk
 import pyexiv2
 
 # v0.1 has a different API to v0.2 and above
@@ -152,10 +152,10 @@ TAGS = [(DESCRIPTION, 'Exif.Image.ImageDescription', None, None),
         (ADVANCED, 'Exif.Image.GPSTag', None, None),
         (ADVANCED, 'Exif.Image.BatteryLevel', None, None)]
 
-class MetadataView(gtk.TreeView):
+class MetadataView(Gtk.TreeView):
 
     def __init__(self):
-        gtk.TreeView.__init__(self)
+        GObject.GObject.__init__(self)
         self.sections = {}
         titles = [(_('Key'), 1, 235), 
           (_('Value'), 2, 325)]

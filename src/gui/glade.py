@@ -40,7 +40,8 @@ This module exports the Glade class.
 #------------------------------------------------------------------------
 import sys
 import os
-import gtk
+from gi.repository import GObject
+from gi.repository import Gtk
 
 #------------------------------------------------------------------------
 #
@@ -52,13 +53,13 @@ import TransUtils
 
 #------------------------------------------------------------------------
 #
-# Glade class. Derived from gtk.Builder
+# Glade class. Derived from Gtk.Builder
 #
 #------------------------------------------------------------------------
 
-class Glade(gtk.Builder):
+class Glade(Gtk.Builder):
     """
-    Glade class: Manage glade files as gtk.Builder objects
+    Glade class: Manage glade files as Gtk.Builder objects
     """
     __slots__ = ['__toplevel', '__filename', '__dirname']
     
@@ -79,7 +80,7 @@ class Glade(gtk.Builder):
         :rtype:   object reference
         :returns:  reference to the newly-created Glade instance
         """
-        gtk.Builder.__init__(self)
+        GObject.GObject.__init__(self)
         self.set_translation_domain(TransUtils.LOCALEDOMAIN)
 
         filename_given = filename is not None
@@ -212,7 +213,7 @@ class Glade(gtk.Builder):
         queue = [toplevel]
         while queue:
             obj = queue.pop(0)
-            obj_id = gtk.Buildable.get_name(obj)
+            obj_id = Gtk.Buildable.get_name(obj)
             if obj_id == value:
                 return obj
             if hasattr(obj, 'get_children'):

@@ -29,7 +29,7 @@ The TreeModel for the Address list in the Address Tab.
 # GTK libraries
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -43,7 +43,7 @@ import gen.datehandler
 # AddressModel
 #
 #-------------------------------------------------------------------------
-class AddressModel(gtk.ListStore):
+class AddressModel(Gtk.ListStore):
     """
     AddressModel derives from the ListStore, defining te items in the list
     """
@@ -52,7 +52,7 @@ class AddressModel(gtk.ListStore):
         """
         AddressModel derives from the ListStore, defining te items in the list
         """
-        gtk.ListStore.__init__(self, str, str, str, str, str, str, object)
+        GObject.GObject.__init__(self, str, str, str, str, str, str, object)
         self.db = dbase
         for obj in obj_list:
             self.append(row=[

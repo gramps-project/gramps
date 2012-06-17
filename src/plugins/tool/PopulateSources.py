@@ -35,7 +35,7 @@ LOG = logging.getLogger(".citation")
 # gnome/gtk
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -57,14 +57,14 @@ class PopulateSources(tool.Tool, ManagedWindow):
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.label = 'Populate sources and citations tool'
         ManagedWindow.__init__(self, uistate, [], self.__class__)
-        self.set_window(gtk.Window(), gtk.Label(), '')
+        self.set_window(Gtk.Window(), Gtk.Label(), '')
         tool.Tool.__init__(self, dbstate, options_class, name)
         
         dialog = self.display()
         response = dialog.run()
         dialog.destroy()
         
-        if response == gtk.RESPONSE_ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT:
             self.on_ok_clicked()
             OkDialog('Data generated',
                      "The requested sources and citations were generated")
@@ -82,38 +82,38 @@ class PopulateSources(tool.Tool, ManagedWindow):
         num_citations = self.options.handler.options_dict['citations']
 
         # GUI setup:
-        dialog = gtk.Dialog("Populate sources and citations tool",
+        dialog = Gtk.Dialog("Populate sources and citations tool",
                                 self.uistate.window,
-                                gtk.DIALOG_MODAL|gtk.DIALOG_DESTROY_WITH_PARENT,
-                                (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
-                                 gtk.STOCK_OK, gtk.RESPONSE_ACCEPT))
-        label = gtk.Label("Enter a valid number of sources and citations."
+                                Gtk.DialogFlags.MODAL|Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                (Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT,
+                                 Gtk.STOCK_OK, Gtk.ResponseType.ACCEPT))
+        label = Gtk.Label("Enter a valid number of sources and citations."
                           " This will create the requested number of sources,"
                           " and for each source, will create the requested"
                           " number of citations.")
         label.set_line_wrap(True)
 
-        hbox1 = gtk.HBox()
-        label_sources = gtk.Label("Number of sources" + ":")
-        self.sources_entry = gtk.Entry()
+        hbox1 = Gtk.HBox()
+        label_sources = Gtk.Label(label="Number of sources" + ":")
+        self.sources_entry = Gtk.Entry()
         self.sources_entry.set_text("%d" % num_sources)
-        hbox1.pack_start(label_sources, False)
+        hbox1.pack_start(label_sources, False, True, 0)
         hbox1.pack_start(self.sources_entry, True)
 
-        hbox2 = gtk.HBox()
-        label_citations = gtk.Label("Number of citations" + ":")
-        self.citations_entry = gtk.Entry()
+        hbox2 = Gtk.HBox()
+        label_citations = Gtk.Label(label="Number of citations" + ":")
+        self.citations_entry = Gtk.Entry()
         self.citations_entry.set_text("%d" % num_citations)
-        hbox2.pack_start(label_citations, False)
+        hbox2.pack_start(label_citations, False, True, 0)
         hbox2.pack_start(self.citations_entry, True)
         
-        vbox = gtk.VBox()
+        vbox = Gtk.VBox()
         vbox.pack_start(label, True)
-        vbox.pack_start(hbox1, False)
-        vbox.pack_start(hbox2, False)
+        vbox.pack_start(hbox1, False, True, 0)
+        vbox.pack_start(hbox2, False, True, 0)
 
         dialog.vbox.set_spacing(10)
-        dialog.vbox.pack_start(vbox)
+        dialog.vbox.pack_start(vbox, True, True, 0)
         dialog.show_all()
         return dialog
     

@@ -94,7 +94,7 @@ elif operating_system == 'FreeBSD':
     try:
         gettext.bindtextdomain(TransUtils.LOCALEDOMAIN, TransUtils.LOCALEDIR)
     except locale.Error:
-        print 'No translation in some gtk.Builder strings, '
+        print 'No translation in some Gtk.Builder strings, '
 elif operating_system == 'OpenBSD':
     pass
 else: # normal case
@@ -102,7 +102,7 @@ else: # normal case
         locale.bindtextdomain(TransUtils.LOCALEDOMAIN, TransUtils.LOCALEDIR)
         #locale.textdomain(TransUtils.LOCALEDOMAIN)
     except locale.Error:
-        print 'No translation in some gtk.Builder strings, '
+        print 'No translation in some Gtk.Builder strings, '
 
 #-------------------------------------------------------------------------
 #
@@ -110,7 +110,7 @@ else: # normal case
 #
 #-------------------------------------------------------------------------
 
-MIN_PYTHON_VERSION = (2, 6, 0, '', 0)
+MIN_PYTHON_VERSION = (2, 7, 0, '', 0)
 if not sys.version_info >= MIN_PYTHON_VERSION :
     print (_("Your Python version does not meet the "
              "requirements. At least python %(v1)d.%(v2)d.%(v3)d is needed to"
@@ -193,28 +193,23 @@ def show_settings():
     """
     py_str = '%d.%d.%d' % sys.version_info[:3]
     try:
-        import gtk
+        from gi.repository import Gtk
         try:
-            gtkver_str = '%d.%d.%d' % gtk.gtk_version 
+            gtkver_str = '%d.%d.%d' % (Gtk.get_major_version(), 
+                        Gtk.get_minor_version(), Gtk.get_micro_version())
         except : # any failure to 'get' the version
             gtkver_str = 'unknown version'
-        try:
-            pygtkver_str = '%d.%d.%d' % gtk.pygtk_version
-        except :# any failure to 'get' the version
-            pygtkver_str = 'unknown version'
     except ImportError:
         gtkver_str = 'not found'
-        pygtkver_str = 'not found'
     # no DISPLAY is a RuntimeError in an older pygtk (e.g. 2.17 in Fedora 14)
     except RuntimeError:
         gtkver_str = 'DISPLAY not set'
-        pygtkver_str = 'DISPLAY not set'
     #exept TypeError: To handle back formatting on version split
 
     try:
-        import gobject
+        from gi.repository import GObject
         try:
-            gobjectver_str = '%d.%d.%d' % gobject.pygobject_version
+            gobjectver_str = '%d.%d.%d' % GObject.pygobject_version
         except :# any failure to 'get' the version
             gobjectver_str = 'unknown version'
 
@@ -306,7 +301,6 @@ def show_settings():
     print ' python    : %s' % py_str
     print ' gramps    : %s' % gramps_str
     print ' gtk++     : %s' % gtkver_str
-    print ' pygtk     : %s' % pygtkver_str
     print ' gobject   : %s' % gobjectver_str
     if usebsddb3:
         print ' Using bsddb3'

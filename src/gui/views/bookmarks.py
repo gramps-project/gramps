@@ -44,7 +44,7 @@ log = logging.getLogger(".Bookmarks")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -91,7 +91,7 @@ class Bookmarks :
         self.uistate = uistate
         self.bookmarks = bookmarks
         self.active = DISABLED
-        self.action_group = gtk.ActionGroup('Bookmarks')
+        self.action_group = Gtk.ActionGroup('Bookmarks')
         self.connect_signals()
         self.dbstate.connect('database-changed', self.db_changed)
 
@@ -126,7 +126,7 @@ class Bookmarks :
         if self.active != DISABLED:
             self.uistate.uimanager.remove_ui(self.active)
             self.uistate.uimanager.remove_action_group(self.action_group)
-            self.action_group = gtk.ActionGroup('Bookmarks')
+            self.action_group = Gtk.ActionGroup('Bookmarks')
             self.uistate.uimanager.ensure_update()
             self.active = DISABLED
 
@@ -197,39 +197,39 @@ class Bookmarks :
     def draw_window(self):
         """Draw the bookmark dialog box."""
         title = _("%(title)s - Gramps") % {'title': _("Organize Bookmarks")}
-        self.top = gtk.Dialog(title)
+        self.top = Gtk.Dialog(title)
         self.top.set_default_size(400, 350)
         self.top.set_modal(True)
         self.top.set_transient_for(self.uistate.window)
         self.top.set_has_separator(False)
         self.top.vbox.set_spacing(5)
-        label = gtk.Label('<span size="larger" weight="bold">%s</span>'
+        label = Gtk.Label(label='<span size="larger" weight="bold">%s</span>'
                           % _("Organize Bookmarks"))
         label.set_use_markup(True)
         self.top.vbox.pack_start(label, 0, 0, 5)
-        box = gtk.HBox()
+        box = Gtk.HBox()
         self.top.vbox.pack_start(box, 1, 1, 5)
         
         name_titles = [(_('Name'), -1, 200), (_('ID'), -1, 50), ('', -1, 0)]
-        self.namelist = gtk.TreeView()
+        self.namelist = Gtk.TreeView()
         self.namemodel = ListModel(self.namelist, name_titles)
         self.namemodel_cols = len(name_titles)
 
-        slist = gtk.ScrolledWindow()
+        slist = Gtk.ScrolledWindow()
         slist.add_with_viewport(self.namelist)
-        slist.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        slist.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         box.pack_start(slist, 1, 1, 5)
-        bbox = gtk.VButtonBox()
-        bbox.set_layout(gtk.BUTTONBOX_START)
+        bbox = Gtk.VButtonBox()
+        bbox.set_layout(Gtk.ButtonBoxStyle.START)
         bbox.set_spacing(6)
-        up = gtk.Button(stock=gtk.STOCK_GO_UP)
-        down = gtk.Button(stock=gtk.STOCK_GO_DOWN)
-        delete = gtk.Button(stock=gtk.STOCK_REMOVE)
+        up = Gtk.Button(stock=Gtk.STOCK_GO_UP)
+        down = Gtk.Button(stock=Gtk.STOCK_GO_DOWN)
+        delete = Gtk.Button(stock=Gtk.STOCK_REMOVE)
         up.connect('clicked', self.up_clicked)
         down.connect('clicked', self.down_clicked)
         delete.connect('clicked', self.delete_clicked)
-        self.top.add_button(gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)
-        self.top.add_button(gtk.STOCK_HELP, gtk.RESPONSE_HELP)
+        self.top.add_button(Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE)
+        self.top.add_button(Gtk.STOCK_HELP, Gtk.ResponseType.HELP)
         self.top.connect('delete-event', self.close)
         bbox.add(up)
         bbox.add(down)
@@ -239,7 +239,7 @@ class Bookmarks :
     
     def close(self, widget, event):
         """Stop the bookmark organizer"""
-        self.top.response(gtk.RESPONSE_CLOSE)
+        self.top.response(Gtk.ResponseType.CLOSE)
 
     def edit(self):
         """
@@ -261,9 +261,9 @@ class Bookmarks :
         self.modified = False
         while True:
             self.response = self.top.run()
-            if self.response == gtk.RESPONSE_HELP:
+            if self.response == Gtk.ResponseType.HELP:
                 self.help_clicked()
-            elif self.response == gtk.RESPONSE_CLOSE:
+            elif self.response == Gtk.ResponseType.CLOSE:
                 if self.modified:
                     self.redraw_and_report_change()
                 self.top.destroy()

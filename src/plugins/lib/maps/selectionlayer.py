@@ -28,7 +28,7 @@
 #
 #-------------------------------------------------------------------------
 import os
-import gobject
+from gi.repository import GObject
 
 #------------------------------------------------------------------------
 #
@@ -56,12 +56,12 @@ try:
 except:
     raise
 
-class SelectionLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
+class SelectionLayer(GObject.GObject, osmgpsmap.GpsMapLayer):
     def __init__(self):
         """
         Initialize thz selection layer
         """
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
         self.circles = []
         self.rectangles = []
 
@@ -129,5 +129,5 @@ class SelectionLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
         """
         return False
 
-gobject.type_register(SelectionLayer)
+GObject.type_register(SelectionLayer)
 

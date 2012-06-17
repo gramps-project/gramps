@@ -35,16 +35,17 @@ _LOG = logging.getLogger(".widgets.basicentry")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import GObject
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
 # BasicEntry class
 #
 #-------------------------------------------------------------------------
-class BasicEntry(gtk.Entry):
+class BasicEntry(Gtk.Entry):
 
     def __init__(self):
-        gtk.Entry.__init__(self)
+        GObject.GObject.__init__(self)
         self.set_width_chars(5)
         self.show()

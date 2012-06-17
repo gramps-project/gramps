@@ -26,7 +26,7 @@ from gen.plug import Gramplet
 from gen.ggettext import gettext as _
 import gen.datehandler
 from gen.errors import WindowActiveError
-import gtk
+from gi.repository import Gtk
 
 class PersonResidence(Gramplet):
     """
@@ -44,7 +44,7 @@ class PersonResidence(Gramplet):
         """
         tip = _('Double-click on a row to edit the selected event.')
         self.set_tooltip(tip)
-        top = gtk.TreeView()
+        top = Gtk.TreeView()
         titles = [('', NOSORT, 50,),
                   (_('Date'), 1, 200),
                   (_('Place'), 2, 200)]

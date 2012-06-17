@@ -32,21 +32,19 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-import pygtk
-pygtk.require('2.0')
-import pango
-import gtk
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Pango
+from gi.repository import GObject
+from gi.repository import Gdk
+from gi.repository import Gtk
 import math
-from gtk import gdk
 from cgi import escape
 try:
     import cairo
 except ImportError:
     pass
 from gen.ggettext import gettext as _
-
-if gtk.pygtk_version < (2,3,93):
-    raise Exception("PyGtk 2.3.93 or later required")
 
 #-------------------------------------------------------------------------
 #
@@ -83,8 +81,8 @@ class AttachList(object):
         self.max_x = 0
         self.max_y = 0
 
-    def attach(self, widget, x0, x1, y0, y1, xoptions=gtk.EXPAND|gtk.FILL, 
-               yoptions=gtk.EXPAND|gtk.FILL):
+    def attach(self, widget, x0, x1, y0, y1, xoptions=Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL, 
+               yoptions=Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL):
         assert(widget)
         assert(x1>x0)
         self.list.append((widget, x0, x1, y0, y1, xoptions, yoptions))
@@ -96,16 +94,18 @@ class AttachList(object):
 # FanChartWidget
 #
 #-------------------------------------------------------------------------
-class FanChartWidget(gtk.Widget):
+class FanChartWidget(Gtk.Widget):
     """
     Interactive Fan Chart Widget. 
     """
     BORDER_WIDTH = 10
     __gsignals__ = { 'realize':          'override',
-                     'expose-event' :    'override',
+##TODO GTK3: no longer expose-event in GTK3, check if this still works
+##                     'expose-event' :    'override',
                      'size-allocate':    'override',
-                     'size-request':     'override',
-                     }
+##TODO GTK3: no longer size-request in GTK3, check if this still works
+##                     'size-request':     'override',
+                    }
     GENCOLOR = ((229,191,252),
                 (191,191,252),
                 (191,222,252),
@@ -121,16 +121,16 @@ class FanChartWidget(gtk.Widget):
         Fan Chart Widget. Handles visualization of data in self.data.
         See main() of FanChartGramplet for example of model format.
         """
-        gtk.Widget.__init__(self)
+        GObject.GObject.__init__(self)
         self.translating = False
         self.last_x, self.last_y = None, None
         self.connect("button_release_event", self.on_mouse_up)
         self.connect("motion_notify_event", self.on_mouse_move)
         self.connect("button-press-event", self.on_mouse_down)
         self.context_popup_callback = context_popup_callback
-        self.add_events(gdk.BUTTON_PRESS_MASK |
-                        gdk.BUTTON_RELEASE_MASK |
-                        gdk.POINTER_MOTION_MASK)
+        self.add_events(Gdk.EventMask.BUTTON_PRESS_MASK |
+                        Gdk.EventMask.BUTTON_RELEASE_MASK |
+                        Gdk.EventMask.POINTER_MOTION_MASK)
         self.pixels_per_generation = 50 # size of radius for generation
         ## gotten from experiments with "sans serif 8":
         self.degrees_per_radius = .80
@@ -142,7 +142,7 @@ class FanChartWidget(gtk.Widget):
         self.set_generations(self.generations)
         self.center = 50 # pixel radius of center
         self.layout = self.create_pango_layout('cairo')
-        self.layout.set_font_description(pango.FontDescription("sans 8"))
+        self.layout.set_font_description(Pango.FontDescription("sans 8"))
 
     def reset_generations(self):
         """
@@ -174,22 +174,22 @@ class FanChartWidget(gtk.Widget):
         """
         Overriden method to handle the realize event.
         """
-        self.set_flags(self.flags() | gtk.REALIZED)
-        self.window = gdk.Window(self.get_parent_window(),
+        self.set_flags(self.flags() | Gtk.REALIZED)
+        self.window = Gdk.Window(self.get_parent_window(),
                                  width=self.allocation.width,
                                  height=self.allocation.height,
-                                 window_type=gdk.WINDOW_CHILD,
-                                 wclass=gdk.INPUT_OUTPUT,
-                                 event_mask=self.get_events() | gdk.EXPOSURE_MASK)
+                                 window_type=Gdk.WINDOW_CHILD,
+                                 wclass=Gdk.INPUT_OUTPUT,
+                                 event_mask=self.get_events() | Gdk.EventMask.EXPOSURE_MASK)
         if not hasattr(self.window, "cairo_create"):
-            self.draw_gc = gdk.GC(self.window,
+            self.draw_gc = Gdk.GC(self.window,
                                   line_width=5,
-                                  line_style=gdk.SOLID,
-                                  join_style=gdk.JOIN_ROUND)
+                                  line_style=Gdk.SOLID,
+                                  join_style=Gdk.JOIN_ROUND)
 
         self.window.set_user_data(self)
         self.style.attach(self.window)
-        self.style.set_background(self.window, gtk.STATE_NORMAL)
+        self.style.set_background(self.window, Gtk.StateType.NORMAL)
         self.window.move_resize(*self.allocation)
 
     def do_size_request(self, requisition):
@@ -197,15 +197,15 @@ class FanChartWidget(gtk.Widget):
         Overridden method to handle size request events.
         """
         width, height = self.layout.get_size()
-        requisition.width = (width // pango.SCALE + self.BORDER_WIDTH*4)* 1.45
-        requisition.height = (3 * height // pango.SCALE + self.BORDER_WIDTH*4) * 1.2
+        requisition.width = (width // Pango.SCALE + self.BORDER_WIDTH*4)* 1.45
+        requisition.height = (3 * height // Pango.SCALE + self.BORDER_WIDTH*4) * 1.2
 
     def do_size_allocate(self, allocation):
         """
         Overridden method to handle size allocation events.
         """
         self.allocation = allocation
-        if self.flags() & gtk.REALIZED:
+        if self.get_realized():
             self.window.move_resize(*allocation)
 
     def _expose_gdk(self, event):
@@ -350,14 +350,14 @@ class FanChartWidget(gtk.Widget):
         for i in range(len(text)):
             cr.save()
             layout = self.create_pango_layout(text[i])
-            layout.set_font_description(pango.FontDescription("sans 8"))
+            layout.set_font_description(Pango.FontDescription("sans 8"))
             angle = 360.0 * i / (radius * self.degrees_per_radius) + pos
             cr.set_source_rgb(0, 0, 0) # black 
             cr.rotate(angle * (math.pi / 180));
             # Inform Pango to re-layout the text with the new transformation
             cr.update_layout(layout)
             width, height = layout.get_size()
-            cr.move_to(- (width / pango.SCALE) / 2.0, - radius)
+            cr.move_to(- (width / Pango.SCALE) / 2.0, - radius)
             cr.show_layout(layout)
             cr.restore()
         cr.restore()
@@ -467,6 +467,7 @@ class FanChartWidget(gtk.Widget):
                                                       self.NORMAL]
                 self.show_parents(generation+1, selected-1, start, slice/2.0)
 
+# TODO GTK3: these should be do_ methods now?
     def on_mouse_up(self, widget, event):
         # Done with mouse movement
         if self.last_x is None or self.last_y is None: return True
@@ -552,7 +553,7 @@ class FanChartWidget(gtk.Widget):
                 # save the mouse location for movements
                 self.last_x, self.last_y = event.x, event.y
                 return True
-        # Do things based on state, event.state, or button, event.button
+        # Do things based on state, event.get_state(), or button, event.button
         if event.button == 1: # left mouse
             self.change_slice(generation, selected)
         elif gui.utils.is_right_click(event):
@@ -749,7 +750,7 @@ class FanChartView(NavigationView):
         """Renders the person data into some lines of text and puts that into the clipboard"""
         person = self.dbstate.db.get_person_from_handle(person_handle)
         if person:
-            cb = gtk.clipboard_get(gtk.gdk.SELECTION_CLIPBOARD)
+            cb = Gtk.clipboard_get(Gdk.SELECTION_CLIPBOARD)
             cb.set_text( self.format_helper.format_person(person,11))
             return True
         return False
@@ -760,27 +761,27 @@ class FanChartView(NavigationView):
         and Parents) with navigation. Copied from PedigreeView.
         """
         
-        menu = gtk.Menu()
+        menu = Gtk.Menu()
         menu.set_title(_('People Menu'))
 
         person = self.dbstate.db.get_person_from_handle(person_handle)
         if not person:
             return 0
 
-        go_image = gtk.image_new_from_stock(gtk.STOCK_JUMP_TO,gtk.ICON_SIZE_MENU)
+        go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO,Gtk.IconSize.MENU)
         go_image.show()
-        go_item = gtk.ImageMenuItem(name_displayer.display(person))
+        go_item = Gtk.ImageMenuItem(name_displayer.display(person))
         go_item.set_image(go_image)
         go_item.connect("activate",self.on_childmenu_changed,person_handle)
         go_item.show()
         menu.append(go_item)
 
-        edit_item = gtk.ImageMenuItem(gtk.STOCK_EDIT)
+        edit_item = Gtk.ImageMenuItem(Gtk.STOCK_EDIT)
         edit_item.connect("activate",self.edit_person_cb,person_handle)
         edit_item.show()
         menu.append(edit_item)
 
-        clipboard_item = gtk.ImageMenuItem(gtk.STOCK_COPY)
+        clipboard_item = Gtk.ImageMenuItem(Gtk.STOCK_COPY)
         clipboard_item.connect("activate",self.copy_person_to_clipboard_cb,person_handle)
         clipboard_item.show()
         menu.append(clipboard_item)
@@ -789,7 +790,7 @@ class FanChartView(NavigationView):
         linked_persons = []
         
         # Go over spouses and build their menu
-        item = gtk.MenuItem(_("Spouses"))
+        item = Gtk.MenuItem(_("Spouses"))
         fam_list = person.get_family_handle_list()
         no_spouses = 1
         for fam_id in fam_list:
@@ -804,12 +805,12 @@ class FanChartView(NavigationView):
 
             if no_spouses:
                 no_spouses = 0
-                item.set_submenu(gtk.Menu())
+                item.set_submenu(Gtk.Menu())
                 sp_menu = item.get_submenu()
 
-            go_image = gtk.image_new_from_stock(gtk.STOCK_JUMP_TO,gtk.ICON_SIZE_MENU)
+            go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO,Gtk.IconSize.MENU)
             go_image.show()
-            sp_item = gtk.ImageMenuItem(name_displayer.display(spouse))
+            sp_item = Gtk.ImageMenuItem(name_displayer.display(spouse))
             sp_item.set_image(go_image)
             linked_persons.append(sp_id)
             sp_item.connect("activate",self.on_childmenu_changed,sp_id)
@@ -823,7 +824,7 @@ class FanChartView(NavigationView):
         menu.append(item)
         
         # Go over siblings and build their menu
-        item = gtk.MenuItem(_("Siblings"))
+        item = Gtk.MenuItem(_("Siblings"))
         pfam_list = person.get_parent_family_handle_list()
         no_siblings = 1
         for f in pfam_list:
@@ -839,17 +840,17 @@ class FanChartView(NavigationView):
 
                 if no_siblings:
                     no_siblings = 0
-                    item.set_submenu(gtk.Menu())
+                    item.set_submenu(Gtk.Menu())
                     sib_menu = item.get_submenu()
 
                 if find_children(self.dbstate.db,sib):
-                    label = gtk.Label('<b><i>%s</i></b>' % escape(name_displayer.display(sib)))
+                    label = Gtk.Label(label='<b><i>%s</i></b>' % escape(name_displayer.display(sib)))
                 else:
-                    label = gtk.Label(escape(name_displayer.display(sib)))
+                    label = Gtk.Label(label=escape(name_displayer.display(sib)))
 
-                go_image = gtk.image_new_from_stock(gtk.STOCK_JUMP_TO,gtk.ICON_SIZE_MENU)
+                go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO,Gtk.IconSize.MENU)
                 go_image.show()
-                sib_item = gtk.ImageMenuItem(None)
+                sib_item = Gtk.ImageMenuItem(None)
                 sib_item.set_image(go_image)
                 label.set_use_markup(True)
                 label.show()
@@ -866,7 +867,7 @@ class FanChartView(NavigationView):
         menu.append(item)
         
         # Go over children and build their menu
-        item = gtk.MenuItem(_("Children"))
+        item = Gtk.MenuItem(_("Children"))
         no_children = 1
         childlist = find_children(self.dbstate.db,person)
         for child_handle in childlist:
@@ -876,17 +877,17 @@ class FanChartView(NavigationView):
         
             if no_children:
                 no_children = 0
-                item.set_submenu(gtk.Menu())
+                item.set_submenu(Gtk.Menu())
                 child_menu = item.get_submenu()
 
             if find_children(self.dbstate.db,child):
-                label = gtk.Label('<b><i>%s</i></b>' % escape(name_displayer.display(child)))
+                label = Gtk.Label(label='<b><i>%s</i></b>' % escape(name_displayer.display(child)))
             else:
-                label = gtk.Label(escape(name_displayer.display(child)))
+                label = Gtk.Label(label=escape(name_displayer.display(child)))
 
-            go_image = gtk.image_new_from_stock(gtk.STOCK_JUMP_TO,gtk.ICON_SIZE_MENU)
+            go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO,Gtk.IconSize.MENU)
             go_image.show()
-            child_item = gtk.ImageMenuItem(None)
+            child_item = Gtk.ImageMenuItem(None)
             child_item.set_image(go_image)
             label.set_use_markup(True)
             label.show()
@@ -903,7 +904,7 @@ class FanChartView(NavigationView):
         menu.append(item)
 
         # Go over parents and build their menu
-        item = gtk.MenuItem(_("Parents"))
+        item = Gtk.MenuItem(_("Parents"))
         no_parents = 1
         par_list = find_parents(self.dbstate.db,person)
         for par_id in par_list:
@@ -913,17 +914,17 @@ class FanChartView(NavigationView):
 
             if no_parents:
                 no_parents = 0
-                item.set_submenu(gtk.Menu())
+                item.set_submenu(Gtk.Menu())
                 par_menu = item.get_submenu()
 
             if find_parents(self.dbstate.db,par):
-                label = gtk.Label('<b><i>%s</i></b>' % escape(name_displayer.display(par)))
+                label = Gtk.Label(label='<b><i>%s</i></b>' % escape(name_displayer.display(par)))
             else:
-                label = gtk.Label(escape(name_displayer.display(par)))
+                label = Gtk.Label(label=escape(name_displayer.display(par)))
 
-            go_image = gtk.image_new_from_stock(gtk.STOCK_JUMP_TO,gtk.ICON_SIZE_MENU)
+            go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO,Gtk.IconSize.MENU)
             go_image.show()
-            par_item = gtk.ImageMenuItem(None)
+            par_item = Gtk.ImageMenuItem(None)
             par_item.set_image(go_image)
             label.set_use_markup(True)
             label.show()
@@ -940,7 +941,7 @@ class FanChartView(NavigationView):
         menu.append(item)
     
         # Go over parents and build their menu
-        item = gtk.MenuItem(_("Related"))
+        item = Gtk.MenuItem(_("Related"))
         no_related = 1
         for p_id in find_witnessed_people(self.dbstate.db,person):
             #if p_id in linked_persons:
@@ -952,14 +953,14 @@ class FanChartView(NavigationView):
 
             if no_related:
                 no_related = 0
-                item.set_submenu(gtk.Menu())
+                item.set_submenu(Gtk.Menu())
                 per_menu = item.get_submenu()
 
-            label = gtk.Label(escape(name_displayer.display(per)))
+            label = Gtk.Label(label=escape(name_displayer.display(per)))
 
-            go_image = gtk.image_new_from_stock(gtk.STOCK_JUMP_TO,gtk.ICON_SIZE_MENU)
+            go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO,Gtk.IconSize.MENU)
             go_image.show()
-            per_item = gtk.ImageMenuItem(None)
+            per_item = Gtk.ImageMenuItem(None)
             per_item.set_image(go_image)
             label.set_use_markup(True)
             label.show()

@@ -37,8 +37,8 @@ _LOG = logging.getLogger(".widgets.toolcomboentry")
 # GTK modules
 #
 #-------------------------------------------------------------------------
-#import gobject
-import gtk
+#from gi.repository import GObject
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -71,7 +71,7 @@ class ToolComboEntry(ValueToolItem):
         combo.connect('changed', self._on_widget_changed)
 
     def set_value(self, value):
-        self.child.set_active_data(value)
+        self.get_child().set_active_data(value)
     
     def get_value(self):
-        return self.child.get_active_data()
+        return self.get_child().get_active_data()

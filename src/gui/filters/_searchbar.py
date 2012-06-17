@@ -17,7 +17,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-import gobject
+from gi.repository import GObject
 
 # $Id$
 
@@ -30,11 +30,12 @@ Package providing filtering framework for GRAMPS.
 # GTK
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gdk
+from gi.repository import Gtk
 from gen.ggettext import gettext as _
 
-_RETURN = gtk.gdk.keyval_from_name("Return")
-_KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
+_RETURN = Gdk.keyval_from_name("Return")
+_KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 
 #-------------------------------------------------------------------------
 #
@@ -50,14 +51,14 @@ class SearchBar(object):
         self.apply_text = ''
         self.visible = False
 
-        self.filterbar = gtk.HBox()
-        self.filter_text = gtk.Entry()
-        self.filter_button = gtk.Button(stock=gtk.STOCK_FIND)
-        self.clear_button = gtk.Button(stock=gtk.STOCK_CLEAR)
-        self.filter_list = gtk.ComboBox()
-        self.filter_model = gtk.ListStore(gobject.TYPE_STRING, 
-                                          gobject.TYPE_INT, 
-                                          gobject.TYPE_BOOLEAN)
+        self.filterbar = Gtk.HBox()
+        self.filter_text = Gtk.Entry()
+        self.filter_button = Gtk.Button(stock=Gtk.STOCK_FIND)
+        self.clear_button = Gtk.Button(stock=Gtk.STOCK_CLEAR)
+        self.filter_list = Gtk.ComboBox()
+        self.filter_model = Gtk.ListStore(GObject.TYPE_STRING, 
+                                          GObject.TYPE_INT, 
+                                          GObject.TYPE_BOOLEAN)
 
     def destroy(self):
         """Unset all things that can block garbage collection.
@@ -80,10 +81,10 @@ class SearchBar(object):
         self.clear_button.connect( 'clicked', self.apply_clear)
         self.clear_button.set_sensitive(False)
 
-        self.filterbar.pack_start(self.filter_list, False)
-        self.filterbar.pack_start(self.filter_text, True)
-        self.filterbar.pack_end(self.clear_button, False)
-        self.filterbar.pack_end(self.filter_button, False)
+        self.filterbar.pack_start(self.filter_list, False, True, 0)
+        self.filterbar.pack_start(self.filter_text, True, True, 0)
+        self.filterbar.pack_end(self.clear_button, False, True, 0)
+        self.filterbar.pack_end(self.filter_button, False, True, 0)
 
         return self.filterbar
         
@@ -95,7 +96,7 @@ class SearchBar(object):
         self.filter_model.clear()
         old_value = self.filter_list.get_active()
         
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         self.filter_list.clear()
         self.filter_list.pack_start(cell, True)
         self.filter_list.add_attribute(cell, 'text', 0)
@@ -138,7 +139,7 @@ class SearchBar(object):
             self.clear_button.set_sensitive(True)
 
     def key_press(self, obj, event):
-        if not (event.state & gtk.gdk.CONTROL_MASK):
+        if not (event.get_state() & Gdk.ModifierType.CONTROL_MASK):
             if event.keyval in (_RETURN, _KP_ENTER):
                 self.filter_button.set_sensitive(False)
                 self.clear_button.set_sensitive(True)

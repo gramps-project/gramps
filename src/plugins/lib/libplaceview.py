@@ -38,7 +38,7 @@ Base view for Place Views
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -165,7 +165,7 @@ class PlaceBaseView(ListView):
                                 "Service (OpenstreetMap, Google Maps, ...)"),
                         self.gotomap,
                         _('Select a Map Service'))
-        self._add_action('GotoMap', gtk.STOCK_JUMP_TO, 
+        self._add_action('GotoMap', Gtk.STOCK_JUMP_TO, 
                         _('_Look up with Map Service'),
                         callback=self.gotomap,
                         tip=_("Attempt to see this location with a Map "
@@ -202,26 +202,25 @@ class PlaceBaseView(ListView):
 
         #store all gtk labels to be able to update label on selection change
         for widget in widgets :
-            if isinstance(widget, gtk.MenuToolButton):
+            if isinstance(widget, Gtk.MenuToolButton):
                 widget.set_menu(mmenu)
-                if gtk.pygtk_version >= (2, 12, 0):
-                    widget.set_arrow_tooltip_text(actionservices.arrowtooltip)
-                lbl = gtk.Label(self.mapservice_label())
+                widget.set_arrow_tooltip_text(actionservices.arrowtooltip)
+                lbl = Gtk.Label(label=self.mapservice_label())
                 lbl.show()
                 self.mapslistlabel.append(lbl)
                 widget.set_label_widget(self.mapslistlabel[-1])
-                widget.set_stock_id(gtk.STOCK_JUMP_TO)
+                widget.set_stock_id(Gtk.STOCK_JUMP_TO)
         if self.drag_info():
-            self.list.enable_model_drag_source(gtk.gdk.BUTTON1_MASK,
+            self.list.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK,
               [('text/plain', 0, 0), self.drag_info().target()],
-              gtk.gdk.ACTION_COPY)
+              Gdk.DragAction.COPY)
 
     def __create_maps_menu_actions(self):
         """
         Function creating a menu and actions that are used as dropdown menu
         from the menutoolbutton
         """
-        menu = gtk.Menu()
+        menu = Gtk.Menu()
         
         #select the map services to show
         self.mapservicedata = {}

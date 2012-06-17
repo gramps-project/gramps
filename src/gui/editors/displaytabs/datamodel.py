@@ -25,7 +25,7 @@
 # GTK libraries
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -39,10 +39,10 @@ import gtk
 # DataModel
 #
 #-------------------------------------------------------------------------
-class DataModel(gtk.ListStore):
+class DataModel(Gtk.ListStore):
 
     def __init__(self, attr_list, db):
-        gtk.ListStore.__init__(self, str, str)
+        GObject.GObject.__init__(self, str, str)
         self.db = db
 
         for key,value in attr_list.items():

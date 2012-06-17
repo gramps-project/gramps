@@ -43,7 +43,7 @@ from gen.ggettext import gettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import GdkPixbuf
 
 #-------------------------------------------------------------------------
 #
@@ -224,14 +224,14 @@ def scale_image(path, size):
                     'This may be caused by a corrupt file.')
     
     try:
-        image1 = gtk.gdk.pixbuf_new_from_file(path)
+        image1 = GdkPixbuf.Pixbuf.new_from_file(path)
         width  = image1.get_width()
         height = image1.get_height()
         
         scale = size / float(max(width, height))
         return image1.scale_simple(int(scale*width), int(scale*height),
-                                   gtk.gdk.INTERP_BILINEAR)
+                                   GdkPixbuf.InterpType.BILINEAR)
     except:
         WarningDialog(title_msg, detail_msg)
-        return gtk.gdk.pixbuf_new_from_file(const.ICON)
+        return GdkPixbuf.Pixbuf.new_from_file(const.ICON)
     

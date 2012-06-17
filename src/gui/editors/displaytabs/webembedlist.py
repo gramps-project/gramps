@@ -26,8 +26,8 @@
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
-import gtk
-import gobject
+from gi.repository import Gtk
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -94,7 +94,7 @@ class WebEmbedList(EmbeddedList):
         data = self.get_data()
         data.append(url)
         self.rebuild()
-        gobject.idle_add(self.tree.scroll_to_cell, len(data) - 1)
+        GObject.idle_add(self.tree.scroll_to_cell, len(data) - 1)
 
     def edit_button_clicked(self, obj):
         from gui.editors import EditUrl
@@ -111,10 +111,10 @@ class WebEmbedList(EmbeddedList):
 
     def get_popup_menu_items(self):
         return [ 
-            (True,  True,  gtk.STOCK_ADD,     self.add_button_clicked),
-            (False, True,  gtk.STOCK_EDIT,    self.edit_button_clicked),
-            (True,  True,  gtk.STOCK_REMOVE,  self.del_button_clicked),
-            (True,  True,  gtk.STOCK_JUMP_TO, self.jump_button_clicked),
+            (True,  True,  Gtk.STOCK_ADD,     self.add_button_clicked),
+            (False, True,  Gtk.STOCK_EDIT,    self.edit_button_clicked),
+            (True,  True,  Gtk.STOCK_REMOVE,  self.del_button_clicked),
+            (True,  True,  Gtk.STOCK_JUMP_TO, self.jump_button_clicked),
             ]
 
     def jump_button_clicked(self, obj):

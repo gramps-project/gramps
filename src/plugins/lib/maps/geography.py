@@ -30,7 +30,7 @@
 from gen.ggettext import sgettext as _
 import os
 import re
-import gobject
+from gi.repository import GObject
 import time
 
 #-------------------------------------------------------------------------
@@ -38,7 +38,8 @@ import time
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
+from gi.repository import GdkPixbuf
 
 #-------------------------------------------------------------------------
 #
@@ -144,11 +145,11 @@ class GeoGraphyView(OsmGps, NavigationView):
         self.place_list = []
         self.places_found = []
         self.select_fct = None
-        self.geo_mainmap = gtk.gdk.pixbuf_new_from_file_at_size(
+        self.geo_mainmap = GdkPixbuf.Pixbuf.new_from_file_at_size(
             os.path.join(const.ROOT_DIR, "images", "48x48",
                          ('gramps-geo-mainmap' + '.png' )),
                                  48, 48)
-        self.geo_altmap = gtk.gdk.pixbuf_new_from_file_at_size(
+        self.geo_altmap = GdkPixbuf.Pixbuf.new_from_file_at_size(
             os.path.join(const.ROOT_DIR, "images", "48x48",
                          ('gramps-geo-altmap' + '.png' )),
                                  48, 48)
@@ -161,7 +162,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         for ident in ( gen.lib.EventType.BIRTH,
                     gen.lib.EventType.DEATH,
                     gen.lib.EventType.MARRIAGE ):
-            self.geo_othermap[ident] = gtk.gdk.pixbuf_new_from_file_at_size(
+            self.geo_othermap[ident] = GdkPixbuf.Pixbuf.new_from_file_at_size(
                 os.path.join(const.ROOT_DIR, "images", "48x48",
                     (constants.ICONS.get(int(ident), default_image) + '.png' )),
                     48, 48)
@@ -232,14 +233,14 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         Builds the menu for actions on the map.
         """
-        menu = gtk.Menu()
+        menu = Gtk.Menu()
         menu.set_title(_('Map Menu'))
 
         if config.get("geography.show_cross"):
             title = _('Remove cross hair')
         else:
             title = _('Add cross hair')
-        add_item = gtk.MenuItem(title)
+        add_item = Gtk.MenuItem(title)
         add_item.connect("activate", self.config_crosshair, event, lat , lon)
         add_item.show()
         menu.append(add_item)
@@ -248,23 +249,23 @@ class GeoGraphyView(OsmGps, NavigationView):
             title = _('Unlock zoom and position')
         else:
             title = _('Lock zoom and position')
-        add_item = gtk.MenuItem(title)
+        add_item = Gtk.MenuItem(title)
         add_item.connect("activate", self.config_zoom_and_position,
                          event, lat , lon)
         add_item.show()
         menu.append(add_item)
 
-        add_item = gtk.MenuItem(_("Add place"))
+        add_item = Gtk.MenuItem(_("Add place"))
         add_item.connect("activate", self.add_place, event, lat , lon)
         add_item.show()
         menu.append(add_item)
 
-        add_item = gtk.MenuItem(_("Link place"))
+        add_item = Gtk.MenuItem(_("Link place"))
         add_item.connect("activate", self.link_place, event, lat , lon)
         add_item.show()
         menu.append(add_item)
 
-        add_item = gtk.MenuItem(_("Center here"))
+        add_item = Gtk.MenuItem(_("Center here"))
         add_item.connect("activate", self.set_center, event, lat , lon)
         add_item.show()
         menu.append(add_item)
@@ -272,7 +273,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         # Add specific module menu
         self.add_specific_menu(menu, event, lat, lon)
         # Add a separator line
-        add_item = gtk.MenuItem(None)
+        add_item = Gtk.MenuItem(None)
         add_item.show()
         menu.append(add_item)
 
@@ -280,17 +281,17 @@ class GeoGraphyView(OsmGps, NavigationView):
         title = _("Replace '%(map)s' by =>") % {
                    'map' : map_name
                   }
-        add_item = gtk.MenuItem(title)
+        add_item = Gtk.MenuItem(title)
         add_item.show()
         menu.append(add_item)
 
-        changemap = gtk.Menu()
+        changemap = Gtk.Menu()
         changemap.set_title(title)
         changemap.show()
         add_item.set_submenu(changemap)
         # show in the map menu all available providers
         for map in constants.map_type:
-            changemapitem = gtk.MenuItem(constants.map_title[map])
+            changemapitem = Gtk.MenuItem(constants.map_title[map])
             changemapitem.show()
             changemapitem.connect("activate", self.change_map, map)
             changemap.append(changemapitem)
@@ -549,10 +550,10 @@ class GeoGraphyView(OsmGps, NavigationView):
                 and lvl < 18 ):
             lvl += 1
             self.osm.set_zoom(lvl)
-            gobject.timeout_add(50, self._autozoom_in, lvl,
+            GObject.timeout_add(50, self._autozoom_in, lvl,
                                 p1lat, p1lon, p2lat, p2lon)
         else:
-            gobject.timeout_add(50, self._autozoom_out, lvl,
+            GObject.timeout_add(50, self._autozoom_out, lvl,
                                 p1lat, p1lon, p2lat, p2lon)
 
     def _autozoom_out(self, lvl, p1lat, p1lon, p2lat, p2lon):
@@ -564,7 +565,7 @@ class GeoGraphyView(OsmGps, NavigationView):
                 and lvl > 1 ):
             lvl -= 1
             self.osm.set_zoom(lvl)
-            gobject.timeout_add(50, self._autozoom_out, lvl,
+            GObject.timeout_add(50, self._autozoom_out, lvl,
                                 p1lat, p1lon, p2lat, p2lon)
         else:
             layer = self.get_selection_layer()
@@ -591,7 +592,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         p2lat = self.end_selection.rlat
         p2lon = self.end_selection.rlon
         # We zoom in until at least one marker missing.
-        gobject.timeout_add(50, self._autozoom_in, level_start,
+        GObject.timeout_add(50, self._autozoom_in, level_start,
                             p1lat, p1lon, p2lat, p2lon)
 
     def _set_center_and_zoom(self):
@@ -694,25 +695,25 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         Create the place menu of a marker
         """
-        add_item = gtk.MenuItem()
+        add_item = Gtk.MenuItem()
         add_item.show()
         menu.append(add_item)
-        add_item = gtk.MenuItem(message)
+        add_item = Gtk.MenuItem(message)
         add_item.show()
         menu.append(add_item)
-        itemoption = gtk.Menu()
+        itemoption = Gtk.Menu()
         itemoption.set_title(message)
         itemoption.show()
         add_item.set_submenu(itemoption)
-        modify = gtk.MenuItem(_("Edit Place"))
+        modify = Gtk.MenuItem(_("Edit Place"))
         modify.show()
         modify.connect("activate", self.edit_place, event, lat, lon, mark)
         itemoption.append(modify)
-        center = gtk.MenuItem(_("Center on this place"))
+        center = Gtk.MenuItem(_("Center on this place"))
         center.show()
         center.connect("activate", self.center_here, event, lat, lon, mark)
         itemoption.append(center)
-        add_item = gtk.MenuItem()
+        add_item = Gtk.MenuItem()
         add_item.show()
         menu.append(add_item)
 
@@ -901,7 +902,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         Add specific entry to the preference menu.
         Must be done in the associated view.
         """
-        table = gtk.Table(2, 2)
+        table = Gtk.Table(2, 2)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -918,7 +919,7 @@ class GeoGraphyView(OsmGps, NavigationView):
                          config.get('geography.zoom_when_center'))
         self._config.set('geography.max_places',
                          self._config.get('geography.max_places'))
-        table = gtk.Table(1, 1)
+        table = Gtk.Table(1, 1)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)

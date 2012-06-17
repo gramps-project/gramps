@@ -23,15 +23,15 @@
 
 from gen.ggettext import gettext as _
 
-import gtk
-import gobject
+from gi.repository import Gtk
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
 # StyleComboBox
 #
 #-------------------------------------------------------------------------
-class StyleComboBox(gtk.ComboBox):
+class StyleComboBox(Gtk.ComboBox):
     """
     Derived from the ComboBox, this widget provides handling of Report
     Styles.
@@ -41,8 +41,8 @@ class StyleComboBox(gtk.ComboBox):
         """
         Initialize the combobox, building the display column.
         """
-        gtk.ComboBox.__init__(self,model)
-        cell = gtk.CellRendererText()
+        GObject.GObject.__init__(self,model)
+        cell = Gtk.CellRendererText()
         self.pack_start(cell,True)
         self.add_attribute(cell,'text',0)
         
@@ -57,7 +57,7 @@ class StyleComboBox(gtk.ComboBox):
         @param default: Default selection in the ComboBox
         @type default: str
         """
-        self.store = gtk.ListStore(gobject.TYPE_STRING)
+        self.store = Gtk.ListStore(GObject.TYPE_STRING)
         self.set_model(self.store)
         self.style_map = style_map
         start_index = 0

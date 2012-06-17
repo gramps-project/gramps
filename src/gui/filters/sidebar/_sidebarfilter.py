@@ -23,19 +23,20 @@
 
 from gen.ggettext import gettext as _
 from bisect import insort_left
-import gtk
-import pango
+from gi.repository import Gdk
+from gi.repository import Gtk
+from gi.repository import Pango
 
 from gui import widgets
 from gui.dbguielement import DbGUIElement
 from gen.config import config
 
-_RETURN = gtk.gdk.keyval_from_name("Return")
-_KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
+_RETURN = Gdk.keyval_from_name("Return")
+_KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 
 class SidebarFilter(DbGUIElement):
     _FILTER_WIDTH = 20
-    _FILTER_ELLIPSIZE = pango.ELLIPSIZE_END
+    _FILTER_ELLIPSIZE = Pango.EllipsizeMode.END
 
     def __init__(self, dbstate, uistate, namespace):
         self.signal_map = {
@@ -47,15 +48,15 @@ class SidebarFilter(DbGUIElement):
         DbGUIElement.__init__(self, dbstate.db)
 
         self.position = 1
-        self.vbox = gtk.VBox()
-        self.table = gtk.Table(4, 11)
-        self.vbox.pack_start(self.table, False, False)
+        self.vbox = Gtk.VBox()
+        self.table = Gtk.Table(4, 11)
+        self.vbox.pack_start(self.table, False, False, 0)
         self.table.set_border_width(6)
         self.table.set_row_spacings(6)
         self.table.set_col_spacing(0, 6)
         self.table.set_col_spacing(1, 6)
-        self.apply_btn = gtk.Button(stock=gtk.STOCK_FIND)
-        self.clear_btn = gtk.Button()
+        self.apply_btn = Gtk.Button(stock=Gtk.STOCK_FIND)
+        self.clear_btn = Gtk.Button()
         
         self._init_interface()
         uistate.connect('filters-changed', self.on_filters_changed)
@@ -71,28 +72,28 @@ class SidebarFilter(DbGUIElement):
 
         self.apply_btn.connect('clicked', self.clicked)
 
-        hbox = gtk.HBox()
+        hbox = Gtk.HBox()
         hbox.show()
-        image = gtk.Image()
-        image.set_from_stock(gtk.STOCK_UNDO, gtk.ICON_SIZE_BUTTON)
+        image = Gtk.Image()
+        image.set_from_stock(Gtk.STOCK_UNDO, Gtk.IconSize.BUTTON)
         image.show()
-        label = gtk.Label(_('Reset'))
+        label = Gtk.Label(label=_('Reset'))
         label.show()
-        hbox.pack_start(image, False, False)
+        hbox.pack_start(image, False, False, 0)
         hbox.pack_start(label, False, True)
         hbox.set_spacing(4)
         
         self.clear_btn.add(hbox)
         self.clear_btn.connect('clicked', self.clear)
 
-        hbox = gtk.HButtonBox()
-        hbox.set_layout(gtk.BUTTONBOX_START)
+        hbox = Gtk.HButtonBox()
+        hbox.set_layout(Gtk.ButtonBoxStyle.START)
         hbox.set_spacing(6)
         hbox.set_border_width(12)
         hbox.add(self.apply_btn)
         hbox.add(self.clear_btn)
         hbox.show()
-        self.vbox.pack_start(hbox, False, False)
+        self.vbox.pack_start(hbox, False, False, 0)
         self.vbox.show()
 
     def get_widget(self):
@@ -116,9 +117,9 @@ class SidebarFilter(DbGUIElement):
         pass
 
     def add_regex_entry(self, widget):
-        hbox = gtk.HBox()
+        hbox = Gtk.HBox()
         hbox.pack_start(widget, False, False, 12)
-        self.vbox.pack_start(hbox, False, False)
+        self.vbox.pack_start(hbox, False, False, 0)
 
     def add_text_entry(self, name, widget, tooltip=None):
         self.add_entry(name, widget)
@@ -127,7 +128,7 @@ class SidebarFilter(DbGUIElement):
             widget.set_tooltip_text(tooltip)
 
     def key_press(self, obj, event):
-        if not (event.state & gtk.gdk.CONTROL_MASK):
+        if not (event.get_state() & Gdk.ModifierType.CONTROL_MASK):
             if event.keyval in (_RETURN, _KP_ENTER):
                 self.clicked(obj)
         return False
@@ -136,9 +137,9 @@ class SidebarFilter(DbGUIElement):
         if name:
             self.table.attach(widgets.BasicLabel(name),
                               1, 2, self.position, self.position+1,
-                              xoptions=gtk.FILL, yoptions=0)
+                              xoptions=Gtk.AttachOptions.FILL, yoptions=0)
         self.table.attach(widget, 2, 4, self.position, self.position+1,
-                          xoptions=gtk.FILL|gtk.EXPAND, yoptions=0)
+                          xoptions=Gtk.AttachOptions.FILL|Gtk.AttachOptions.EXPAND, yoptions=0)
         self.position += 1
 
     def on_filters_changed(self, namespace):
@@ -216,9 +217,9 @@ class SidebarFilter(DbGUIElement):
         """
         Adds the text and widget to GUI, with an Edit button.
         """
-        hbox = gtk.HBox()
-        hbox.pack_start(widget, True, True)
-        hbox.pack_start(widgets.SimpleButton(gtk.STOCK_EDIT, self.edit_filter), False, False)
+        hbox = Gtk.HBox()
+        hbox.pack_start(widget, True, True, 0)
+        hbox.pack_start(widgets.SimpleButton(Gtk.STOCK_EDIT, self.edit_filter), False, False)
         self.add_entry(text, hbox)
 
     def edit_filter(self, obj):

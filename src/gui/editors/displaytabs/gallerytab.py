@@ -35,12 +35,12 @@ import urlparse
 # GTK libraries
 #
 #-------------------------------------------------------------------------
-import gtk
-import pango
+from gi.repository import Gtk
+from gi.repository import Pango
 import os
 import sys
 import urllib
-import gobject
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -79,7 +79,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
     _DND_EXTRA  = DdTargets.URI_LIST
 
     def __init__(self, dbstate, uistate, track,  media_list, update=None):
-        self.iconlist = gtk.IconView()
+        self.iconlist = Gtk.IconView()
         ButtonTab.__init__(self, dbstate, uistate, track, _('_Gallery'), True)
         DbGUIElement.__init__(self, dbstate.db)
         self.track_ref_for_deletion("iconlist")
@@ -109,7 +109,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         Handle the button press event: double click or right click on iconlist. 
         If the double click occurs, the Edit button handler is called.
         """
-        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             self.edit_button_clicked(obj)
             return True
         elif gui.utils.is_right_click(event):
@@ -122,38 +122,38 @@ class GalleryTab(ButtonTab, DbGUIElement):
 
     def right_click(self, obj, event):
         itemlist = [
-            (True, True, gtk.STOCK_ADD, self.add_button_clicked), 
+            (True, True, Gtk.STOCK_ADD, self.add_button_clicked), 
             (True, False, _('Share'), self.share_button_clicked), 
-            (False,True, gtk.STOCK_EDIT, self.edit_button_clicked), 
-            (True, True, gtk.STOCK_REMOVE, self.del_button_clicked), 
+            (False,True, Gtk.STOCK_EDIT, self.edit_button_clicked), 
+            (True, True, Gtk.STOCK_REMOVE, self.del_button_clicked), 
             ]
 
-        menu = gtk.Menu()
+        menu = Gtk.Menu()
 
         ref_obj = self.dbstate.db.get_object_from_handle(obj.ref)
         media_path = Utils.media_path_full(self.dbstate.db, ref_obj.get_path())
         if media_path:
-            item = gtk.ImageMenuItem(_('View'))
-            img = gtk.Image()
-            img.set_from_stock("gramps-viewmedia", gtk.ICON_SIZE_MENU)
+            item = Gtk.ImageMenuItem(_('View'))
+            img = Gtk.Image()
+            img.set_from_stock("gramps-viewmedia", Gtk.IconSize.MENU)
             item.set_image(img)
             item.connect('activate', make_launcher(media_path))
             item.show()
             menu.append(item)
             mfolder, mfile = os.path.split(media_path)
-            item = gtk.MenuItem(_('Open Containing _Folder'))
+            item = Gtk.MenuItem(_('Open Containing _Folder'))
             item.connect('activate', make_launcher(mfolder))
             item.show()
             menu.append(item)
-            item = gtk.SeparatorMenuItem()
+            item = Gtk.SeparatorMenuItem()
             item.show()
             menu.append(item)
         
         for (needs_write_access, image, title, func) in itemlist:
             if image:
-                item = gtk.ImageMenuItem(stock_id=title)
+                item = Gtk.ImageMenuItem(stock_id=title)
             else:
-                item = gtk.MenuItem(title)
+                item = Gtk.MenuItem(title)
             item.connect('activate', func)
             if needs_write_access and self.dbstate.db.readonly:
                 item.set_sensitive(False)
@@ -168,7 +168,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         return len(self.media_list)==0
 
     def _build_icon_model(self):
-        self.iconmodel = gtk.ListStore(gtk.gdk.Pixbuf, gobject.TYPE_STRING, 
+        self.iconmodel = Gtk.ListStore(GdkPixbuf.Pixbuf, GObject.TYPE_STRING, 
                                       object)
         self.track_ref_for_deletion("iconmodel")
 
@@ -193,10 +193,10 @@ class GalleryTab(ButtonTab, DbGUIElement):
         self.iconlist.set_pixbuf_column(0)
         self.iconlist.set_item_width(int(const.THUMBSCALE) + padding * 2)
         # set custom text cell renderer for better control
-        text_renderer = gtk.CellRendererText()
-        text_renderer.set_property('wrap-mode', pango.WRAP_WORD_CHAR)
+        text_renderer = Gtk.CellRendererText()
+        text_renderer.set_property('wrap-mode', Pango.WrapMode.WORD_CHAR)
         text_renderer.set_property('wrap-width', const.THUMBSCALE)
-        text_renderer.set_property('alignment', pango.ALIGN_CENTER)
+        text_renderer.set_property('alignment', Pango.Alignment.CENTER)
         self.iconlist.pack_end(text_renderer)
         self.iconlist.set_attributes(text_renderer, text=1)
         
@@ -204,7 +204,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         self.iconlist.set_margin(padding)
         self.iconlist.set_column_spacing(padding)
         self.iconlist.set_reorderable(True)
-        self.iconlist.set_selection_mode(gtk.SELECTION_SINGLE)
+        self.iconlist.set_selection_mode(Gtk.SelectionMode.SINGLE)
         
         # connect the signals
         self.iconlist.connect('selection-changed', self._selection_changed)
@@ -213,8 +213,8 @@ class GalleryTab(ButtonTab, DbGUIElement):
         self._connect_icon_model()
         
         # create the scrolled window
-        scroll = gtk.ScrolledWindow()
-        scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        scroll = Gtk.ScrolledWindow()
+        scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         
         # put everything together
         scroll.add(self.iconlist)
@@ -289,7 +289,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
             itr_last = model.iter_nth_child(None, len(data) - 1)
             if itr_last:
                 path = model.get_path(itr_last)
-                gobject.idle_add(self.iconlist.scroll_to_path, path, False,
+                GObject.idle_add(self.iconlist.scroll_to_path, path, False,
                                                                      0.0, 0.0)
 
     def __blocked_text(self):
@@ -398,10 +398,10 @@ class GalleryTab(ButtonTab, DbGUIElement):
                       DdTargets.MEDIAOBJ.target()]
 
         self.iconlist.enable_model_drag_dest(dnd_types,
-                                    gtk.gdk.ACTION_MOVE|gtk.gdk.ACTION_COPY)
-        self.iconlist.enable_model_drag_source(gtk.gdk.BUTTON1_MASK,
+                                    Gdk.DragAction.MOVE|Gdk.DragAction.COPY)
+        self.iconlist.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK,
                                   [self._DND_TYPE.target()],
-                                  gtk.gdk.ACTION_COPY)
+                                  Gdk.DragAction.COPY)
         self.iconlist.connect('drag_data_get', self.drag_data_get)
         if not self.dbstate.db.readonly:
             self.iconlist.connect('drag_data_received', self.drag_data_received)
@@ -460,11 +460,11 @@ class GalleryTab(ButtonTab, DbGUIElement):
                         (path, pos) = data
                         row = path[0]
 
-                        if pos ==  gtk.ICON_VIEW_DROP_LEFT:
+                        if pos ==  Gtk.ICON_VIEW_DROP_LEFT:
                             row = max(row, 0)
-                        elif pos == gtk.ICON_VIEW_DROP_RIGHT:
+                        elif pos == Gtk.ICON_VIEW_DROP_RIGHT:
                             row = min(row, len(self.get_data()))
-                        elif pos == gtk.ICON_VIEW_DROP_INTO:
+                        elif pos == Gtk.ICON_VIEW_DROP_INTO:
                             row = min(row+1, len(self.get_data()))
                     else:
                         row = len(self.get_data())

@@ -25,7 +25,7 @@ from gui.widgets.styledtexteditor import StyledTextEditor
 from gui.widgets import SimpleButton
 from gen.lib import StyledText
 from gen.ggettext import gettext as _
-import gtk
+from gi.repository import Gtk
 
 class Notes(Gramplet):
     """
@@ -41,27 +41,27 @@ class Notes(Gramplet):
         """
         Build the GUI interface.
         """
-        top = gtk.VBox(False)
+        top = Gtk.VBox(False)
         
-        hbox = gtk.HBox()
-        self.left = SimpleButton(gtk.STOCK_GO_BACK, self.left_clicked)
+        hbox = Gtk.HBox()
+        self.left = SimpleButton(Gtk.STOCK_GO_BACK, self.left_clicked)
         self.left.set_sensitive(False)
-        hbox.pack_start(self.left, False, False)
-        self.right = SimpleButton(gtk.STOCK_GO_FORWARD, self.right_clicked)
+        hbox.pack_start(self.left, False, False, 0)
+        self.right = SimpleButton(Gtk.STOCK_GO_FORWARD, self.right_clicked)
         self.right.set_sensitive(False)
-        hbox.pack_start(self.right, False, False)
-        self.page = gtk.Label()
+        hbox.pack_start(self.right, False, False, 0)
+        self.page = Gtk.Label()
         hbox.pack_end(self.page, False, False, 10)
         
-        scrolledwindow = gtk.ScrolledWindow()
-        scrolledwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        scrolledwindow = Gtk.ScrolledWindow()
+        scrolledwindow.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.texteditor = StyledTextEditor()
         self.texteditor.set_editable(False)
-        self.texteditor.set_wrap_mode(gtk.WRAP_WORD)
+        self.texteditor.set_wrap_mode(Gtk.WrapMode.WORD)
         scrolledwindow.add(self.texteditor)
 
-        top.pack_start(hbox, False, False)
-        top.pack_start(scrolledwindow, True, True)
+        top.pack_start(hbox, False, False, 0)
+        top.pack_start(scrolledwindow, True, True, 0)
         top.show_all()
         return top
         

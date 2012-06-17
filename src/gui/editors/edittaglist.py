@@ -26,7 +26,7 @@ Tag editing module for Gramps.
 # GNOME modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -79,13 +79,13 @@ class EditTagList(ManagedWindow):
 
         while True:
             response = self.window.run()
-            if response == gtk.RESPONSE_HELP:
+            if response == Gtk.ResponseType.HELP:
                 display_help(webpage=WIKI_HELP_PAGE,
                                    section=WIKI_HELP_SEC)
-            elif response == gtk.RESPONSE_DELETE_EVENT:
+            elif response == Gtk.ResponseType.DELETE_EVENT:
                 break
             else:
-                if response == gtk.RESPONSE_OK:
+                if response == Gtk.ResponseType.OK:
                     self.return_list = [(row[0], row[2])
                                         for row in self.namemodel.model
                                         if row[1]]
@@ -98,7 +98,7 @@ class EditTagList(ManagedWindow):
         """
         # pylint: disable-msg=E1101
         title = _("%(title)s - Gramps") % {'title': _("Edit Tags")}
-        top = gtk.Dialog(title)
+        top = Gtk.Dialog(title)
         top.set_default_size(360, 400)
         top.set_modal(True)
         top.set_has_separator(False)
@@ -107,17 +107,17 @@ class EditTagList(ManagedWindow):
         columns = [('', -1, 300),
                    (' ', -1, 25, TOGGLE, True, None),
                    (_('Tag'), -1, 300)]
-        view = gtk.TreeView()
+        view = Gtk.TreeView()
         self.namemodel = ListModel(view, columns)
 
-        slist = gtk.ScrolledWindow()
+        slist = Gtk.ScrolledWindow()
         slist.add_with_viewport(view)
-        slist.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        slist.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         top.vbox.pack_start(slist, 1, 1, 5)
         
-        top.add_button(gtk.STOCK_HELP, gtk.RESPONSE_HELP)
-        top.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
-        top.add_button(gtk.STOCK_OK, gtk.RESPONSE_OK)
+        top.add_button(Gtk.STOCK_HELP, Gtk.ResponseType.HELP)
+        top.add_button(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL)
+        top.add_button(Gtk.STOCK_OK, Gtk.ResponseType.OK)
         top.show_all()
         return top
 

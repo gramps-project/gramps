@@ -38,9 +38,9 @@ _LOG = logging.getLogger(".gui.editors.EditNote")
 # GTK libraries
 #
 #-------------------------------------------------------------------------
-import gtk
-import gobject
-import pango
+from gi.repository import Gtk
+from gi.repository import GObject
+from gi.repository import Pango
 
 #-------------------------------------------------------------------------
 #
@@ -88,9 +88,9 @@ class NoteTab(GrampsTab):
         @type widget: gtk widget
         """
         GrampsTab.__init__(self, dbstate, uistate, track, name)
-        eventbox = gtk.EventBox()
+        eventbox = Gtk.EventBox()
         eventbox.add(widget)
-        self.pack_start(eventbox)
+        self.pack_start(eventbox, True, True, 0)
         self._set_label(show_image=False)
         eventbox.connect('key_press_event', self.key_pressed)
         self.show_all()
@@ -259,12 +259,12 @@ class EditNote(EditPrimary):
     def build_interface(self):
         self.texteditor = self.top.get_object('texteditor')
         self.texteditor.set_editable(not self.dbstate.db.readonly)
-        self.texteditor.set_wrap_mode(gtk.WRAP_WORD)
+        self.texteditor.set_wrap_mode(Gtk.WrapMode.WORD)
 
         # create a formatting toolbar
         if not self.dbstate.db.readonly:
             vbox = self.top.get_object('container')
-            vbox.pack_start(self.texteditor.get_toolbar(),
+            vbox.pack_start(label=self.texteditor.get_toolbar(),
                             expand=False, fill=False)
                 
         # setup initial values for textview and textbuffer

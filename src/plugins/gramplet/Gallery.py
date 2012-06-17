@@ -23,7 +23,7 @@
 from gen.plug import Gramplet
 from gui.widgets import Photo
 import Utils
-import gtk
+from gi.repository import Gtk
 
 class Gallery(Gramplet):
     """
@@ -39,7 +39,7 @@ class Gallery(Gramplet):
         Build the GUI interface.
         """
         self.image_list = []
-        self.top = gtk.HBox(False, 3)
+        self.top = Gtk.HBox(False, 3)
         return self.top
         
     def clear_images(self):
