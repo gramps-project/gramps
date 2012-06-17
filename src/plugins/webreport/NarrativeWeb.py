@@ -880,7 +880,7 @@ class BasePage(object):
         trow.extend(
             Html("th", trans, class_ =colclass, inline =True)
             for trans, colclass in  [
-                (("Event"),        "ColumnEvent"),
+                (_("Event"),       "ColumnEvent"),
                 (_("Date"),        "ColumnDate"),
                 (_("Place"),       "ColumnPlace"),
                 (_("Notes"),       "ColumnNotes"),
