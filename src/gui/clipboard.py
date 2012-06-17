@@ -1437,13 +1437,13 @@ class MultiTreeView(Gtk.TreeView):
                 objclass, handle = None, None
             if objclass in ['Person', 'Event', 'Media', 'Source',
                             'Repository', 'Family', 'Note', 'Place']:
-                menu_item = Gtk.MenuItem(_("the object|See %s details") % trans_objclass(objclass))
+                menu_item = Gtk.MenuItem(label=_("the object|See %s details") % trans_objclass(objclass))
                 menu_item.connect("activate", 
                    lambda widget: self.edit_obj(objclass, handle))
                 popup.append(menu_item)
                 menu_item.show()
                 # ---------------------------
-                menu_item = Gtk.MenuItem(_("the object|Make %s active") % trans_objclass(objclass))
+                menu_item = Gtk.MenuItem(label=_("the object|Make %s active") % trans_objclass(objclass))
                 menu_item.connect("activate", 
                       lambda widget: self.uistate.set_active(handle, objclass))
                 popup.append(menu_item)
@@ -1459,7 +1459,7 @@ class MultiTreeView(Gtk.TreeView):
                             obj = self.dbstate.db.get_table_metadata(objclass)["handle_func"](my_handle)
                             if obj:
                                 gids.add(obj.gramps_id)
-                menu_item = Gtk.MenuItem(_("the object|Create Filter from %s selected...") % trans_objclass(objclass))
+                menu_item = Gtk.MenuItem(label=_("the object|Create Filter from %s selected...") % trans_objclass(objclass))
                 menu_item.connect("activate", 
                       lambda widget: make_filter(self.dbstate, self.uistate, 
                                       objclass, gids, title=self.title))

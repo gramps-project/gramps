@@ -35,6 +35,7 @@ import cPickle as pickle
 #
 #-------------------------------------------------------------------------
 from gi.repository import GObject
+from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import Pango
 
@@ -153,7 +154,7 @@ class EmbeddedList(ButtonTab):
                 else:
                     item = Gtk.ImageMenuItem(stock_id=title)
             else:
-                item = Gtk.MenuItem(title)
+                item = Gtk.MenuItem(label=title)
             item.connect('activate', func)
             if needs_write_access and self.dbstate.db.readonly:
                 item.set_sensitive(False)
@@ -368,7 +369,7 @@ class EmbeddedList(ButtonTab):
         scroll.set_shadow_type(Gtk.ShadowType.IN)
         scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         scroll.add(self.tree)
-        self.pack_end(scroll, True)
+        self.pack_end(scroll, True, True,0)
 
     def get_selected(self):
         """

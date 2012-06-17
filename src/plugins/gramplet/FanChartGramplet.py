@@ -678,7 +678,8 @@ class FanChartGramplet(Gramplet):
         """Renders the person data into some lines of text and puts that into the clipboard"""
         person = self.dbstate.db.get_person_from_handle(person_handle)
         if person:
-            cb = Gtk.clipboard_get(Gdk.SELECTION_CLIPBOARD)
+            cb = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(), 
+                        Gdk.SELECTION_CLIPBOARD)
             cb.set_text( self.format_helper.format_person(person,11))
             return True
         return False
@@ -718,7 +719,7 @@ class FanChartGramplet(Gramplet):
         linked_persons = []
         
         # Go over spouses and build their menu
-        item = Gtk.MenuItem(_("Spouses"))
+        item = Gtk.MenuItem(label=_("Spouses"))
         fam_list = person.get_family_handle_list()
         no_spouses = 1
         for fam_id in fam_list:
@@ -752,7 +753,7 @@ class FanChartGramplet(Gramplet):
         menu.append(item)
         
         # Go over siblings and build their menu
-        item = Gtk.MenuItem(_("Siblings"))
+        item = Gtk.MenuItem(label=_("Siblings"))
         pfam_list = person.get_parent_family_handle_list()
         no_siblings = 1
         for f in pfam_list:
@@ -795,7 +796,7 @@ class FanChartGramplet(Gramplet):
         menu.append(item)
         
         # Go over children and build their menu
-        item = Gtk.MenuItem(_("Children"))
+        item = Gtk.MenuItem(label=_("Children"))
         no_children = 1
         childlist = find_children(self.dbstate.db,person)
         for child_handle in childlist:
@@ -832,7 +833,7 @@ class FanChartGramplet(Gramplet):
         menu.append(item)
 
         # Go over parents and build their menu
-        item = Gtk.MenuItem(_("Parents"))
+        item = Gtk.MenuItem(label=_("Parents"))
         no_parents = 1
         par_list = find_parents(self.dbstate.db,person)
         for par_id in par_list:
@@ -869,7 +870,7 @@ class FanChartGramplet(Gramplet):
         menu.append(item)
     
         # Go over parents and build their menu
-        item = Gtk.MenuItem(_("Related"))
+        item = Gtk.MenuItem(label=_("Related"))
         no_related = 1
         for p_id in find_witnessed_people(self.dbstate.db,person):
             #if p_id in linked_persons:

@@ -165,7 +165,8 @@ def fontstyle_to_fontdescription(font_style):
 def tabstops_to_tabarray(tab_stops, dpi):
     """Convert a list of tabs given in cm to a Pango.TabArray.
     """
-    tab_array = Pango.TabArray(len(tab_stops), False)
+    tab_array = Pango.TabArray.new(initial_size=len(tab_stops),
+                                            positions_in_pixels=False)
     
     for index in range(len(tab_stops)):
         location = tab_stops[index] * dpi * Pango.SCALE / 2.54

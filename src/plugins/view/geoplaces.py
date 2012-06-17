@@ -311,37 +311,37 @@ class GeoPlaces(GeoGraphyView):
         prevmark = None
         for mark in marks:
             if message != "":
-                add_item = Gtk.MenuItem(message)
+                add_item = Gtk.MenuItem(label=message)
                 add_item.show()
                 menu.append(add_item)
                 itemoption = Gtk.Menu()
                 itemoption.set_title(message)
                 itemoption.show()
                 add_item.set_submenu(itemoption)
-                modify = Gtk.MenuItem(_("Edit Place"))
+                modify = Gtk.MenuItem(label=_("Edit Place"))
                 modify.show()
                 modify.connect("activate", self.edit_place,
                                event, lat, lon, prevmark)
                 itemoption.append(modify)
-                center = Gtk.MenuItem(_("Center on this place"))
+                center = Gtk.MenuItem(label=_("Center on this place"))
                 center.show()
                 center.connect("activate", self.center_here,
                                event, lat, lon, prevmark)
                 itemoption.append(center)
             message = "%s" % mark[0]
             prevmark = mark
-        add_item = Gtk.MenuItem(message)
+        add_item = Gtk.MenuItem(label=message)
         add_item.show()
         menu.append(add_item)
         itemoption = Gtk.Menu()
         itemoption.set_title(message)
         itemoption.show()
         add_item.set_submenu(itemoption)
-        modify = Gtk.MenuItem(_("Edit Place"))
+        modify = Gtk.MenuItem(label=_("Edit Place"))
         modify.show()
         modify.connect("activate", self.edit_place, event, lat, lon, prevmark)
         itemoption.append(modify)
-        center = Gtk.MenuItem(_("Center on this place"))
+        center = Gtk.MenuItem(label=_("Center on this place"))
         center.show()
         center.connect("activate", self.center_here, event, lat, lon, prevmark)
         itemoption.append(center)
@@ -355,11 +355,11 @@ class GeoPlaces(GeoGraphyView):
         add_item = Gtk.MenuItem()
         add_item.show()
         menu.append(add_item)
-        add_item = Gtk.MenuItem(_("Show all places"))
+        add_item = Gtk.MenuItem(label=_("Show all places"))
         add_item.connect("activate", self.show_all_places, event, lat , lon)
         add_item.show()
         menu.append(add_item)
-        add_item = Gtk.MenuItem(_("Centering on Place"))
+        add_item = Gtk.MenuItem(label=_("Centering on Place"))
         add_item.show()
         menu.append(add_item)
         itemoption = Gtk.Menu()
@@ -370,7 +370,7 @@ class GeoPlaces(GeoGraphyView):
         for mark in self.sort:
             if mark[0] != oldplace:
                 oldplace = mark[0]
-                modify = Gtk.MenuItem(mark[0])
+                modify = Gtk.MenuItem(label=mark[0])
                 modify.show()
                 modify.connect("activate", self.goto_place,
                                float(mark[3]), float(mark[4]))

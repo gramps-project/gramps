@@ -187,7 +187,7 @@ class LinkTag(Gtk.TextTag):
     lid = 0
     def __init__(self, buffer):
         LinkTag.lid += 1
-        GObject.GObject.__init__(self, str(LinkTag.lid))
+        GObject.GObject.__init__(self, name=str(LinkTag.lid))
         tag_table = buffer.get_tag_table()
         self.set_property('foreground', "blue")
         #self.set_property('underline', Pango.Underline.SINGLE)

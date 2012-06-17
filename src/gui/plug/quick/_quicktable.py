@@ -121,7 +121,7 @@ class QuickTable(SimpleTable):
             if (index is not None and self._link[index]):
             # See details (edit, etc):
                 objclass, handle = self._link[index]
-                menu_item = Gtk.MenuItem(_("the object|See %s details") % trans_objclass(objclass))
+                menu_item = Gtk.MenuItem(label=_("the object|See %s details") % trans_objclass(objclass))
                 menu_item.connect("activate", 
                   lambda widget: self.on_table_doubleclick(treeview))
                 popup.append(menu_item)
@@ -131,7 +131,7 @@ class QuickTable(SimpleTable):
                 (index is not None and self._link[index])):
                 objclass, handle = self._link[index]
                 if objclass == 'Person':
-                    menu_item = Gtk.MenuItem(_("the object|Make %s active") % trans_objclass('Person'))
+                    menu_item = Gtk.MenuItem(label=_("the object|Make %s active") % trans_objclass('Person'))
                     menu_item.connect("activate", 
                       lambda widget: self.on_table_click(treeview))
                     popup.append(menu_item)
@@ -144,7 +144,7 @@ class QuickTable(SimpleTable):
                     handle[0] in ['Person', 'Family', 'Place', 'Event',
                                   'Repository', 'Note', 'MediaObject',
                                   'Citation', 'Source']):
-                    menu_item = Gtk.MenuItem(_("See data not in Filter"))
+                    menu_item = Gtk.MenuItem(label=_("See data not in Filter"))
                     menu_item.connect("activate", 
                       lambda widget: self.show_not_in_filter(handle[0]))
                     popup.append(menu_item)

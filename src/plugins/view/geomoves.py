@@ -589,19 +589,19 @@ class GeoMoves(GeoGraphyView):
                     descr = _('No description')
                 message = "(%s) %s => %s" % ( date, mark[11], descr)
             prevmark = mark
-            add_item = Gtk.MenuItem(message)
+            add_item = Gtk.MenuItem(label=message)
             add_item.show()
             menu.append(add_item)
             itemoption = Gtk.Menu()
             itemoption.set_title(message)
             itemoption.show()
             add_item.set_submenu(itemoption)
-            modify = Gtk.MenuItem(_("Edit Event"))
+            modify = Gtk.MenuItem(label=_("Edit Event"))
             modify.show()
             modify.connect("activate", self.edit_event,
                            event, lat, lon, prevmark)
             itemoption.append(modify)
-            center = Gtk.MenuItem(_("Center on this place"))
+            center = Gtk.MenuItem(label=_("Center on this place"))
             center.show()
             center.connect("activate", self.center_here,
                            event, lat, lon, prevmark)

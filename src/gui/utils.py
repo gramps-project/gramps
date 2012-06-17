@@ -61,7 +61,7 @@ def add_menuitem(menu, msg, obj, func):
     obj
     """
     from gi.repository import Gtk
-    item = Gtk.MenuItem(msg)
+    item = Gtk.MenuItem(label=msg)
     item.set_data('o', obj)
     item.connect("activate", func)
     item.show()

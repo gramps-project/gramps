@@ -304,7 +304,8 @@ class StyledTextEditor(Gtk.TextView):
 
         self.last_match = self.match
         self.get_root_window().get_pointer()
-        self.set_tooltip_text(tooltip)
+        if tooltip:
+            self.set_tooltip_text(tooltip)
         return False
 
     def make_tooltip_from_link(self, link_tag):
@@ -330,9 +331,10 @@ class StyledTextEditor(Gtk.TextView):
                 event.button == 1):
             bounds = self.textbuffer.get_selection_bounds()
             if bounds:
-                clip = Gtk.Clipboard(selection="PRIMARY")
+                clip = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(), 
+                        Gdk.SELECTION_PRIMARY)
                 clip.set_text(str(self.textbuffer.get_text(bounds[0], 
-                                                           bounds[1])))
+                                                        bounds[1], True)), -1)
         return False
             
     def on_button_press_event(self, widget, event):
@@ -365,12 +367,12 @@ class StyledTextEditor(Gtk.TextView):
         
         """
         # spell checker submenu
-        spell_menu = Gtk.MenuItem(_('Spellcheck'))
+        spell_menu = Gtk.MenuItem(label=_('Spellcheck'))
         spell_menu.set_submenu(self._create_spell_menu())
         spell_menu.show_all()
         menu.prepend(spell_menu)
         
-        search_menu = Gtk.MenuItem(_("Search selection on web"))
+        search_menu = Gtk.MenuItem(label=_("Search selection on web"))
         search_menu.connect('activate', self.search_web)
         search_menu.show_all()
         menu.append(search_menu)
@@ -381,14 +383,14 @@ class StyledTextEditor(Gtk.TextView):
             url = self.url_match[MATCH_STRING]
             
             if flavor == MAIL:
-                open_menu = Gtk.MenuItem(_('_Send Mail To...'))
-                copy_menu = Gtk.MenuItem(_('Copy _E-mail Address'))
+                open_menu = Gtk.MenuItem(label=_('_Send Mail To...'))
+                copy_menu = Gtk.MenuItem(label=_('Copy _E-mail Address'))
             else:
-                open_menu = Gtk.MenuItem(_('_Open Link'))
-                copy_menu = Gtk.MenuItem(_('Copy _Link Address'))
+                open_menu = Gtk.MenuItem(label=_('_Open Link'))
+                copy_menu = Gtk.MenuItem(label=_('Copy _Link Address'))
 
             if flavor == LINK:
-                edit_menu = Gtk.MenuItem(_('_Edit Link'))
+                edit_menu = Gtk.MenuItem(label=_('_Edit Link'))
                 edit_menu.connect('activate', self._edit_url_cb, 
                                   self.url_match[-1], # tag
                                   )
@@ -413,7 +415,7 @@ class StyledTextEditor(Gtk.TextView):
             display_url(config.get("behavior.web-search-url") % 
                         {'text': 
                          self.textbuffer.get_text(selection[0], 
-                                                  selection[1])})
+                                                  selection[1], True)})
 
     def reset(self):
         """
@@ -563,7 +565,7 @@ class StyledTextEditor(Gtk.TextView):
         menu = Gtk.Menu()
         group = None
         for lang in self.spellcheck.get_all_spellchecks():
-            menuitem = Gtk.RadioMenuItem(group, lang)
+            menuitem = Gtk.RadioMenuItem(label=lang)
             menuitem.set_active(lang == active_spellcheck)
             menuitem.connect('activate', self._spell_change_cb, lang)
             menu.append(menuitem)
@@ -598,11 +600,14 @@ class StyledTextEditor(Gtk.TextView):
         if selection_bounds:
             # Paste text to clipboards
             text = str(self.textbuffer.get_text(selection_bounds[0], 
-                                                selection_bounds[1]))
-            clipboard = Gtk.Clipboard(selection="CLIPBOARD")
-            clipboard.set_text(text)
-            clipboard = Gtk.Clipboard(selection="PRIMARY")
-            clipboard.set_text(text)
+                                                selection_bounds[1], True))
+            clipboard = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(), 
+                        Gdk.SELECTION_CLIPBOARD)
+
+            clipboard.set_text(text, -1)
+            clipboard = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(), 
+                        Gdk.SELECTION_PRIMARY)
+            clipboard.set_text(text, -1)
             uri_dialog(self, None, self.setlink_callback)
 
     def setlink_callback(self, uri, tag=None):
@@ -752,11 +757,13 @@ class StyledTextEditor(Gtk.TextView):
     
     def _copy_url_cb(self, menuitem, url, flavor):
         """Copy url to both useful selections."""
-        clipboard = Gtk.Clipboard(selection="CLIPBOARD")
-        clipboard.set_text(url)
+        clipboard = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(), 
+                        Gdk.SELECTION_CLIPBOARD)
+        clipboard.set_text(url, -1)
         
-        clipboard = Gtk.Clipboard(selection="PRIMARY")
-        clipboard.set_text(url)
+        clipboard = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(), 
+                        Gdk.SELECTION_PRIMARY)
+        clipboard.set_text(url, -1)
 
 
     def _edit_url_cb(self, menuitem, link_tag):
@@ -766,11 +773,13 @@ class StyledTextEditor(Gtk.TextView):
         # Paste text to clipboards
         bounds = self.textbuffer.get_selection_bounds()
         if bounds:
-            text = str(self.textbuffer.get_text(bounds[0], bounds[1]))
-            clipboard = Gtk.Clipboard(selection="CLIPBOARD")
-            clipboard.set_text(text)
-            clipboard = Gtk.Clipboard(selection="PRIMARY")
-            clipboard.set_text(text)
+            text = str(self.textbuffer.get_text(bounds[0], bounds[1], True))
+            clipboard = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(), 
+                        Gdk.SELECTION_CLIPBOARD)
+            clipboard.set_text(text, -1)
+            clipboard = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(), 
+                        Gdk.SELECTION_PRIMARY)
+            clipboard.set_text(text, -1)
         uri_dialog(self, link_tag.data, 
                    lambda uri: self.setlink_callback(uri, link_tag))
     
@@ -793,7 +802,8 @@ class StyledTextEditor(Gtk.TextView):
         @returntype: L{StyledText}
         
         """
-        return self.textbuffer.get_text()
+        start, end = self.textbuffer.get_bounds()
+        return self.textbuffer.get_text(start, end, True)
     
     def get_toolbar(self):
         """Get the formatting toolbar of the editor.

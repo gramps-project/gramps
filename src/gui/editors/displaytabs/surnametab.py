@@ -98,7 +98,7 @@ class SurnameTab(EmbeddedList):
         # Need to add attributes to renderers
         # and connect renderers to the 'edited' signal
         for colno in range(len(self.columns)):
-            for renderer in self.columns[colno].get_cell_renderers():
+            for renderer in self.columns[colno].get_cells():
                 renderer.set_property('editable', not self.dbstate.db.readonly)
                 renderer.connect('editing_started', self.on_edit_start, colno)
                 renderer.connect('edited', self.on_edit_inline, self.column_order()[colno][1])

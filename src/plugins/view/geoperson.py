@@ -407,7 +407,7 @@ class GeoPerson(GeoGraphyView):
         prevmark = None
         for mark in marks:
             if oldplace != "":
-                add_item = Gtk.MenuItem(message)
+                add_item = Gtk.MenuItem(label=message)
                 add_item.show()
                 menu.append(add_item)
                 itemoption = Gtk.Menu()
@@ -415,12 +415,12 @@ class GeoPerson(GeoGraphyView):
                 itemoption.show()
                 message = ""
                 add_item.set_submenu(itemoption)
-                modify = Gtk.MenuItem(_("Edit Event"))
+                modify = Gtk.MenuItem(label=_("Edit Event"))
                 modify.show()
                 modify.connect("activate", self.edit_event,
                                event, lat, lon, prevmark)
                 itemoption.append(modify)
-                center = Gtk.MenuItem(_("Center on this place"))
+                center = Gtk.MenuItem(label=_("Center on this place"))
                 center.show()
                 center.connect("activate", self.center_here,
                                event, lat, lon, prevmark)
@@ -435,12 +435,12 @@ class GeoPerson(GeoGraphyView):
                     itemoption.show()
                     message = ""
                     add_item.set_submenu(itemoption)
-                    modify = Gtk.MenuItem(_("Edit Event"))
+                    modify = Gtk.MenuItem(label=_("Edit Event"))
                     modify.show()
                     modify.connect("activate", self.edit_event,
                                    event, lat, lon, mark)
                     itemoption.append(modify)
-                    center = Gtk.MenuItem(_("Center on this place"))
+                    center = Gtk.MenuItem(label=_("Center on this place"))
                     center.show()
                     center.connect("activate", self.center_here,
                                    event, lat, lon, mark)
@@ -466,18 +466,18 @@ class GeoPerson(GeoGraphyView):
                     descr = _('No description')
                 message = "(%s) %s => %s" % ( date, mark[11], descr)
             prevmark = mark
-        add_item = Gtk.MenuItem(message)
+        add_item = Gtk.MenuItem(label=message)
         add_item.show()
         menu.append(add_item)
         itemoption = Gtk.Menu()
         itemoption.set_title(message)
         itemoption.show()
         add_item.set_submenu(itemoption)
-        modify = Gtk.MenuItem(_("Edit Event"))
+        modify = Gtk.MenuItem(label=_("Edit Event"))
         modify.show()
         modify.connect("activate", self.edit_event, event, lat, lon, prevmark)
         itemoption.append(modify)
-        center = Gtk.MenuItem(_("Center on this place"))
+        center = Gtk.MenuItem(label=_("Center on this place"))
         center.show()
         center.connect("activate", self.center_here, event, lat, lon, prevmark)
         itemoption.append(center)
@@ -492,7 +492,7 @@ class GeoPerson(GeoGraphyView):
         add_item = Gtk.MenuItem()
         add_item.show()
         menu.append(add_item)
-        add_item = Gtk.MenuItem(_("Animate"))
+        add_item = Gtk.MenuItem(label=_("Animate"))
         add_item.connect("activate", self.animate, self.sort, 0, 0)
         add_item.show()
         menu.append(add_item)

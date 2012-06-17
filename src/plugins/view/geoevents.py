@@ -312,19 +312,19 @@ class GeoEvents(GeoGraphyView):
         prevmark = None
         for mark in marks:
             if message != "":
-                add_item = Gtk.MenuItem(message)
+                add_item = Gtk.MenuItem(label=message)
                 add_item.show()
                 menu.append(add_item)
                 itemoption = Gtk.Menu()
                 itemoption.set_title(message)
                 itemoption.show()
                 add_item.set_submenu(itemoption)
-                modify = Gtk.MenuItem(_("Edit Event"))
+                modify = Gtk.MenuItem(label=_("Edit Event"))
                 modify.show()
                 modify.connect("activate", self.edit_event,
                                event, lat, lon, prevmark)
                 itemoption.append(modify)
-                center = Gtk.MenuItem(_("Center on this place"))
+                center = Gtk.MenuItem(label=_("Center on this place"))
                 center.show()
                 center.connect("activate", self.center_here,
                                event, lat, lon, prevmark)
@@ -339,18 +339,18 @@ class GeoEvents(GeoGraphyView):
             date = gen.datehandler.displayer.display(evt.get_date_object())
             message = "(%s) %s : %s" % (date, gen.lib.EventType( mark[7] ), mark[5] )
             prevmark = mark
-        add_item = Gtk.MenuItem(message)
+        add_item = Gtk.MenuItem(label=message)
         add_item.show()
         menu.append(add_item)
         itemoption = Gtk.Menu()
         itemoption.set_title(message)
         itemoption.show()
         add_item.set_submenu(itemoption)
-        modify = Gtk.MenuItem(_("Edit Event"))
+        modify = Gtk.MenuItem(label=_("Edit Event"))
         modify.show()
         modify.connect("activate", self.edit_event, event, lat, lon, prevmark)
         itemoption.append(modify)
-        center = Gtk.MenuItem(_("Center on this place"))
+        center = Gtk.MenuItem(label=_("Center on this place"))
         center.show()
         center.connect("activate", self.center_here, event, lat, lon, prevmark)
         itemoption.append(center)
@@ -364,11 +364,11 @@ class GeoEvents(GeoGraphyView):
         add_item = Gtk.MenuItem()
         add_item.show()
         menu.append(add_item)
-        add_item = Gtk.MenuItem(_("Show all events"))
+        add_item = Gtk.MenuItem(label=_("Show all events"))
         add_item.connect("activate", self.show_all_events, event, lat , lon)
         add_item.show()
         menu.append(add_item)
-        add_item = Gtk.MenuItem(_("Centering on Place"))
+        add_item = Gtk.MenuItem(label=_("Centering on Place"))
         add_item.show()
         menu.append(add_item)
         itemoption = Gtk.Menu()
@@ -379,7 +379,7 @@ class GeoEvents(GeoGraphyView):
         for mark in self.sort:
             if mark[0] != oldplace:
                 oldplace = mark[0]
-                modify = Gtk.MenuItem(mark[0])
+                modify = Gtk.MenuItem(label=mark[0])
                 modify.show()
                 modify.connect("activate", self.goto_place, float(mark[3]), float(mark[4]))
                 itemoption.append(modify)

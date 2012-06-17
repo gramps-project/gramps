@@ -419,7 +419,7 @@ class GrampsBar(Gtk.Notebook):
         if gui.utils.is_right_click(event):
             menu = Gtk.Menu()
 
-            ag_menu = Gtk.MenuItem(_('Add a gramplet'))
+            ag_menu = Gtk.MenuItem(label=_('Add a gramplet'))
             nav_type = self.pageview.navigation_type()
             skip = self.all_gramplets()
             gramplet_list = GET_GRAMPLET_LIST(nav_type, skip)
@@ -429,7 +429,7 @@ class GrampsBar(Gtk.Notebook):
             menu.append(ag_menu)
 
             if not self.empty:
-                rg_menu = Gtk.MenuItem(_('Remove a gramplet'))
+                rg_menu = Gtk.MenuItem(label=_('Remove a gramplet'))
                 gramplet_list = [(gramplet.title, gramplet.gname)
                                  for gramplet in self.get_children() +
                                                  self.detached_gramplets]
@@ -439,7 +439,7 @@ class GrampsBar(Gtk.Notebook):
                 rg_menu.show()
                 menu.append(rg_menu)
 
-            rd_menu = Gtk.MenuItem(_('Restore default gramplets'))
+            rd_menu = Gtk.MenuItem(label=_('Restore default gramplets'))
             rd_menu.connect("activate", self.__restore_clicked)
             rd_menu.show()
             menu.append(rd_menu)
@@ -457,7 +457,7 @@ class GrampsBar(Gtk.Notebook):
             submenu = main_menu.get_submenu()
             submenu = Gtk.Menu()
             for entry in gramplet_list:
-                item = Gtk.MenuItem(entry[0])
+                item = Gtk.MenuItem(label=entry[0])
                 item.connect("activate", callback_func, entry[1])
                 item.show()
                 submenu.append(item)

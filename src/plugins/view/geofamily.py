@@ -390,19 +390,19 @@ class GeoFamily(GeoGraphyView):
         itemoption = Gtk.Menu()
         itemoption.show()
         menu.set_submenu(itemoption)
-        modify = Gtk.MenuItem(_("Edit Family"))
+        modify = Gtk.MenuItem(label=_("Edit Family"))
         modify.show()
         modify.connect("activate", self.edit_family, event, lat, lon, mark)
         itemoption.append(modify)
-        modify = Gtk.MenuItem(_("Edit Person"))
+        modify = Gtk.MenuItem(label=_("Edit Person"))
         modify.show()
         modify.connect("activate", self.edit_person, event, lat, lon, mark)
         itemoption.append(modify)
-        modify = Gtk.MenuItem(_("Edit Event"))
+        modify = Gtk.MenuItem(label=_("Edit Event"))
         modify.show()
         modify.connect("activate", self.edit_event, event, lat, lon, mark)
         itemoption.append(modify)
-        center = Gtk.MenuItem(_("Center on this place"))
+        center = Gtk.MenuItem(label=_("Center on this place"))
         center.show()
         center.connect("activate", self.center_here, event, lat, lon, mark)
         itemoption.append(center)
@@ -415,7 +415,7 @@ class GeoFamily(GeoGraphyView):
         prevmark = None
         for mark in marks:
             if message != "":
-                add_item = Gtk.MenuItem(message)
+                add_item = Gtk.MenuItem(label=message)
                 add_item.show()
                 menu.append(add_item)
                 self.add_event_bubble_message(event, lat, lon,
@@ -443,7 +443,7 @@ class GeoFamily(GeoGraphyView):
                     descr = _('No description')
                 message = "(%s) %s => %s" % ( date, mark[5], descr)
             prevmark = mark
-        add_item = Gtk.MenuItem(message)
+        add_item = Gtk.MenuItem(label=message)
         add_item.show()
         menu.append(add_item)
         self.add_event_bubble_message(event, lat, lon, prevmark, add_item)

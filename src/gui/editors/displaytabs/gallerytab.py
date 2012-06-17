@@ -141,7 +141,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
             item.show()
             menu.append(item)
             mfolder, mfile = os.path.split(media_path)
-            item = Gtk.MenuItem(_('Open Containing _Folder'))
+            item = Gtk.MenuItem(label=_('Open Containing _Folder'))
             item.connect('activate', make_launcher(mfolder))
             item.show()
             menu.append(item)
@@ -153,7 +153,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
             if image:
                 item = Gtk.ImageMenuItem(stock_id=title)
             else:
-                item = Gtk.MenuItem(title)
+                item = Gtk.MenuItem(label=title)
             item.connect('activate', func)
             if needs_write_access and self.dbstate.db.readonly:
                 item.set_sensitive(False)

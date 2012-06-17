@@ -105,7 +105,7 @@ class Navigator(object):
         self.pages.append((title, sidebar))
         index = self.notebook.append_page(sidebar.get_top(), Gtk.Label(label=title))
 
-        menu_item = Gtk.MenuItem(title)
+        menu_item = Gtk.MenuItem(label=title)
         if order == START:
             self.menu.prepend(menu_item)
             self.notebook.set_current_page(index)

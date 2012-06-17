@@ -240,7 +240,7 @@ class GeoGraphyView(OsmGps, NavigationView):
             title = _('Remove cross hair')
         else:
             title = _('Add cross hair')
-        add_item = Gtk.MenuItem(title)
+        add_item = Gtk.MenuItem(label=title)
         add_item.connect("activate", self.config_crosshair, event, lat , lon)
         add_item.show()
         menu.append(add_item)
@@ -249,23 +249,23 @@ class GeoGraphyView(OsmGps, NavigationView):
             title = _('Unlock zoom and position')
         else:
             title = _('Lock zoom and position')
-        add_item = Gtk.MenuItem(title)
+        add_item = Gtk.MenuItem(label=title)
         add_item.connect("activate", self.config_zoom_and_position,
                          event, lat , lon)
         add_item.show()
         menu.append(add_item)
 
-        add_item = Gtk.MenuItem(_("Add place"))
+        add_item = Gtk.MenuItem(label=_("Add place"))
         add_item.connect("activate", self.add_place, event, lat , lon)
         add_item.show()
         menu.append(add_item)
 
-        add_item = Gtk.MenuItem(_("Link place"))
+        add_item = Gtk.MenuItem(label=_("Link place"))
         add_item.connect("activate", self.link_place, event, lat , lon)
         add_item.show()
         menu.append(add_item)
 
-        add_item = Gtk.MenuItem(_("Center here"))
+        add_item = Gtk.MenuItem(label=_("Center here"))
         add_item.connect("activate", self.set_center, event, lat , lon)
         add_item.show()
         menu.append(add_item)
@@ -273,7 +273,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         # Add specific module menu
         self.add_specific_menu(menu, event, lat, lon)
         # Add a separator line
-        add_item = Gtk.MenuItem(None)
+        add_item = Gtk.MenuItem(label=None)
         add_item.show()
         menu.append(add_item)
 
@@ -281,7 +281,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         title = _("Replace '%(map)s' by =>") % {
                    'map' : map_name
                   }
-        add_item = Gtk.MenuItem(title)
+        add_item = Gtk.MenuItem(label=title)
         add_item.show()
         menu.append(add_item)
 
@@ -291,7 +291,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         add_item.set_submenu(changemap)
         # show in the map menu all available providers
         for map in constants.map_type:
-            changemapitem = Gtk.MenuItem(constants.map_title[map])
+            changemapitem = Gtk.MenuItem(label=constants.map_title[map])
             changemapitem.show()
             changemapitem.connect("activate", self.change_map, map)
             changemap.append(changemapitem)
@@ -698,18 +698,18 @@ class GeoGraphyView(OsmGps, NavigationView):
         add_item = Gtk.MenuItem()
         add_item.show()
         menu.append(add_item)
-        add_item = Gtk.MenuItem(message)
+        add_item = Gtk.MenuItem(label=message)
         add_item.show()
         menu.append(add_item)
         itemoption = Gtk.Menu()
         itemoption.set_title(message)
         itemoption.show()
         add_item.set_submenu(itemoption)
-        modify = Gtk.MenuItem(_("Edit Place"))
+        modify = Gtk.MenuItem(label=_("Edit Place"))
         modify.show()
         modify.connect("activate", self.edit_place, event, lat, lon, mark)
         itemoption.append(modify)
-        center = Gtk.MenuItem(_("Center on this place"))
+        center = Gtk.MenuItem(label=_("Center on this place"))
         center.show()
         center.connect("activate", self.center_here, event, lat, lon, mark)
         itemoption.append(center)

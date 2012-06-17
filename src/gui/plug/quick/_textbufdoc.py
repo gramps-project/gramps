@@ -104,7 +104,7 @@ class TextBufDoc(BaseDoc, TextDoc):
         sheet = self.get_style_sheet()
 
         for name in sheet.get_paragraph_style_names():
-            tag = Gtk.TextTag(name)
+            tag = Gtk.TextTag(name=name)
 
             style = sheet.get_paragraph_style(name)
             font = style.get_font()
@@ -142,7 +142,8 @@ class TextBufDoc(BaseDoc, TextDoc):
 
             new_tabs = style.get_tabs()
 
-            tab_array = Pango.TabArray(len(new_tabs)+1,True)
+            tab_array = Pango.TabArray.new(initial_size=len(new_tabs)+1,
+                                            positions_in_pixels=True)
             index = 0
             for tab in map(pixels, new_tabs):
                 tab_array.set_tab(index, Pango.TabAlign.LEFT, tab)
@@ -150,7 +151,7 @@ class TextBufDoc(BaseDoc, TextDoc):
             tag.set_property("tabs", tab_array)
 
             self.tag_table.add(tag)
-        self.buffer = Gtk.TextBuffer(self.tag_table)
+        self.buffer = Gtk.TextBuffer.new(self.tag_table)
         if container:
             return DocumentManager(_('Quick View'), self, container)
         else:
