@@ -1573,9 +1573,10 @@ links (like ODF) and write PDF from that format.
             
             # horizontal position of the text is not included in the style,
             # we assume that it is the size of the shadow, or 0.2mm
-            x_offset = style.get_shadow_space()
-            if x_offset == 0:
-                x_offset = 0.2
+             if style.get_shadow():
+                 x_offset = style.get_shadow_space()
+             else:
+                 x_offset = 0.2
                 
             new_text = GtkDocText(paragraph_style, 'center', 
                                   self.__markup(text),
