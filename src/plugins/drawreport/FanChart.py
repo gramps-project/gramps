@@ -339,7 +339,8 @@ class FanChart(Report):
             if self.map[index]:
                 if (generation == 0) and self.circle == FULL_CIRCLE:
                     yc = y
-                self.doc.rotate_text(text_style, self.text[index],
+                txt = '\n'.join(self.text[index])
+                self.doc.rotate_text(text_style, txt,
                                      xc, yc, text_angle)
             text_angle += delta
 
@@ -368,11 +369,12 @@ class FanChart(Report):
                                  start_angle, end_angle, rad1)
             text_angle += delta
             if self.map[index]:
+                txt = '\n'.join(self.text[index])
                 if self.radial == RADIAL_UPRIGHT and (start_angle >= 90) and (start_angle < 270):
-                    self.doc.rotate_text(text_style, self.text[index],
+                    self.doc.rotate_text(text_style, txt,
                                          xc, yc, text_angle + 180)
                 else:
-                    self.doc.rotate_text(text_style, self.text[index],
+                    self.doc.rotate_text(text_style, txt,
                                          xc, yc, text_angle)
 
 #------------------------------------------------------------------------
