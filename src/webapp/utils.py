@@ -76,6 +76,7 @@ util_filters = [
 
 util_tags = [
     'render',
+    'media_link',
     'render_name',
     "get_person_from_handle", 
     "event_table",
@@ -883,6 +884,12 @@ def display_date(obj):
         return dd(gdate)
     else:
         return ""
+
+def media_link(handle, user, action):
+    retval = """<a href="%s"><img src="%s" /></a>""" % (
+        "/media/%s/full" % handle, 
+        "/media/%s/thumbnail" % handle)
+    return retval
 
 def render(formfield, user, action, id=None, url=None, *args):
     if not user.is_authenticated():

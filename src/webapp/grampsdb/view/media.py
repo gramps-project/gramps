@@ -26,10 +26,16 @@ from webapp.utils import _, boolean, update_last_changed
 from webapp.grampsdb.models import Media
 from webapp.grampsdb.forms import *
 from webapp.libdjango import DjangoInterface
+from gen.config import config 
 
 ## Django Modules
 from django.shortcuts import get_object_or_404, render_to_response, redirect
 from django.template import Context, RequestContext
+from django.http import HttpResponse
+
+## Other Python Modules
+from PIL import Image
+import os
 
 ## Globals
 dji = DjangoInterface()
@@ -49,7 +55,30 @@ def process_media(request, context, handle, action, add_to=None): # view, edit, 
         action = request.POST.get("action")
 
     # Handle: edit, view, add, create, save, delete
-    if action == "add":
+    if action == "full":
+        # FIXME: path should come from config
+        media = Media.objects.get(handle=handle)
+        media_type, media_ext = media.mime.split("/", 1)
+        folder = config.get('behavior.addmedia-image-dir')
+        image = Image.open("%s/%s" % (folder, media.path))
+        response = HttpResponse(mimetype=media.mime)
+        image.save(response, media_ext.upper())
+        return response
+    elif action == "thumbnail":
+        media = Media.objects.get(handle=handle)
+        media_type, media_ext = media.mime.split("/", 1)
+        folder = config.get('behavior.addmedia-image-dir')
+        if os.path.exists("%s/thumbnail/%s" % (folder, media.path)):
+            image = Image.open("%s/thumbnail/%s" % (folder, media.path))
+        else:
+            image = Image.open("%s/%s" % (folder, media.path))
+            image.thumbnail((300,300), Image.ANTIALIAS)
+            os.makedirs("%s/thumbnail" % folder)
+            image.save("%s/thumbnail/%s" % (folder, media.path))
+        response = HttpResponse(mimetype=media.mime)
+        image.save(response, media_ext.upper())
+        return response
+    elif action == "add":
         media = Media(gramps_id=dji.get_next_id(Media, "M"))
         mediaform = MediaForm(instance=media)
         mediaform.model = media
