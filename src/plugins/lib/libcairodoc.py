@@ -1576,6 +1576,7 @@ links (like ODF) and write PDF from that format.
             if style.get_shadow():
                 x_offset = style.get_shadow_space()
             else:
+                x_offset = 0.2
                 
             new_text = GtkDocText(paragraph_style, 'center', 
                                   self.__markup(text),
@@ -1612,7 +1613,7 @@ links (like ODF) and write PDF from that format.
         paragraph_style.set_alignment(PARA_ALIGN_CENTER)
         
         new_text = GtkDocText(paragraph_style, 'center', 
-                              self.__markup([text]), x, y, angle)
+                              self.__markup(text), x, y, angle)
         self._active_element.add_child(new_text)
     
     # paginating and drawing interface
