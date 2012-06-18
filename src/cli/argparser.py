@@ -291,12 +291,12 @@ class ArgParser(object):
                 self.list_more = True
             elif option in ('-s','--show'):
                 print "Gramps config settings from %s:" % \
-                       config.config.filename.encode(sys.getfilesystemencoding())
-                for section in config.config.data:
-                    for setting in config.config.data[section]:
+                       config.filename.encode(sys.getfilesystemencoding())
+                for section in config.data:
+                    for setting in config.data[section]:
                         print "%s.%s=%s" % (
                             section, setting, 
-                            repr(config.config.data[section][setting]))
+                            repr(config.data[section][setting]))
                     print
                 sys.exit(0)
             elif option in ('-c', '--config'):
