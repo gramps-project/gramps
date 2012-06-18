@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-17 19:04+0200\n"
-"PO-Revision-Date: 2012-05-25 21:13+0200\n"
+"POT-Creation-Date: 2012-06-18 19:46+0200\n"
+"PO-Revision-Date: 2012-06-18 19:47+0200\n"
 "Last-Translator: Peter Landgren\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -24152,6 +24152,12 @@ msgstr "Filnamn"
 #: ../src/plugins/webreport/NarrativeWeb.py:5143
 msgid "Last Modified"
 msgstr "Senast ändrat"
+
+#. add page title
+#: ../src/plugins/webreport/NarrativeWeb.py:5577
+#, python-format
+msgid "Tracking %s"
+msgstr "Spår av %s"
 
 #. page description
 #: ../src/plugins/webreport/NarrativeWeb.py:5581

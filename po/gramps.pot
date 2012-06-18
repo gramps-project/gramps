@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-17 19:04+0200\n"
+"POT-Creation-Date: 2012-06-18 19:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22913,6 +22913,12 @@ msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5143
 msgid "Last Modified"
+msgstr ""
+
+#. add page title
+#: ../src/plugins/webreport/NarrativeWeb.py:5577
+#, python-format
+msgid "Tracking %s"
 msgstr ""
 
 #. page description
