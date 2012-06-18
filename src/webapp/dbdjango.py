@@ -681,12 +681,6 @@ class DbDjango(DbWriteBase, DbReadBase):
             return None
         return self.make_media(media)
 
-    def get_media_object_handles(self):
-        return [media.handle for media in self.dji.Media.all()]
-
-    def get_person_handles(self, sort_handles=False):
-        return [person.handle for person in self.dji.Person.all()]
-
     def get_default_person(self):
         return None
 
@@ -770,8 +764,20 @@ class DbDjango(DbWriteBase, DbReadBase):
     def get_source_cursor(self):
         return Cursor(self.dji.Source, self.get_raw_source_data).iter()
 
-    def has_gramps_id(self, key, gramps_id):
-        return self.dji.Person.filter(gramps_id=gramps_id).count() > 0
+    def has_gramps_id(self, obj_key, gramps_id):
+        key2table = {
+            PERSON_KEY:     self.Person, 
+            FAMILY_KEY:     self.Family, 
+            SOURCE_KEY:     self.Source, 
+            CITATION_KEY:   self.Citation, 
+            EVENT_KEY:      self.Event, 
+            MEDIA_KEY:      self.Media, 
+            PLACE_KEY:      self.Place, 
+            REPOSITORY_KEY: self.Repository, 
+            NOTE_KEY:       self.Note, 
+            }
+        table = key2table[obj_key]
+        return table.objects.filter(gramps_id=gramps_id).count() > 0
 
     def has_person_handle(self, handle):
         if handle in self.import_cache:
