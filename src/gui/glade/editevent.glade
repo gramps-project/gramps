@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-requires grampswidgets 0.0 -->
   <!-- interface-naming-policy project-wide -->
   <object class="GtkDialog" id="editevent">
@@ -247,9 +246,15 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkComboBoxEntry" id="personal_events">
+                  <object class="GtkComboBox" id="personal_events">
                     <property name="visible">True</property>
                     <property name="tooltip_text" translatable="yes">What type of event this is. Eg 'Burial', 'Graduation', ... .</property>
+                        <property name="has_entry">True</property>
+                        <child internal-child="entry">
+                          <object class="GtkEntry" id="personal_events-entry">
+                            <property name="can_focus">False</property>
+                          </object>
+                        </child>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>

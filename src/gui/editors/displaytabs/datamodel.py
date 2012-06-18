@@ -42,7 +42,7 @@ from gi.repository import Gtk
 class DataModel(Gtk.ListStore):
 
     def __init__(self, attr_list, db):
-        GObject.GObject.__init__(self, str, str)
+        Gtk.ListStore.__init__(self, str, str)
         self.db = db
 
         for key,value in attr_list.items():

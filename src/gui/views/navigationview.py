@@ -39,6 +39,7 @@ _LOG = logging.getLogger('.navigationview')
 # gtk
 #
 #----------------------------------------------------------------
+from gi.repository import Gdk
 from gi.repository import Gtk
 
 #----------------------------------------------------------------

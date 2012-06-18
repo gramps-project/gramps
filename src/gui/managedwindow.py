@@ -460,7 +460,7 @@ class ManagedWindow(object):
             
         else :
             assert self.window, "ManagedWindow: self.window does not exist!"
-            self.set_transient_for(self.parent_window)
+            self.window.set_transient_for(self.parent_window)
             self.opened = True
             self.window.show_all()
 

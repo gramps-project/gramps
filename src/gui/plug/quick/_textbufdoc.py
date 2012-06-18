@@ -69,7 +69,7 @@ class DisplayBuf(ManagedWindow):
         document.text_view.set_buffer(document.buffer)
         self.window.connect('response', self.close)
         scrolled_window.add(document.text_view)
-        self.window.vbox.add(scrolled_window)
+        self.window.vbox.pack_start(scrolled_window, True, True, 0)
         self.window.show_all()
         
     def build_menu_names(self, obj):

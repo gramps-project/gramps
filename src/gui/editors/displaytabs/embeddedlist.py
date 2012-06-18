@@ -176,14 +176,15 @@ class EmbeddedList(ButtonTab):
         """
 
         if self._DND_EXTRA:
-            dnd_types = [ self._DND_TYPE.target(), self._DND_EXTRA.target() ]
+            dnd_types = [self._DND_TYPE.target_data(), 
+                         self._DND_EXTRA.target_data()]
         else:
-            dnd_types = [ self._DND_TYPE.target() ]
+            dnd_types = [self._DND_TYPE.target_data()]
         
         self.tree.enable_model_drag_dest(dnd_types,
                                          Gdk.DragAction.COPY)
         self.tree.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK,
-                                  [self._DND_TYPE.target()],
+                                  [self._DND_TYPE.target_data()],
                                   Gdk.DragAction.COPY)
         self.tree.connect('drag_data_get', self.drag_data_get)
         if not self.dbstate.db.readonly:

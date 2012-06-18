@@ -49,7 +49,7 @@ class BackRefModel(Gtk.ListStore):
     dispstr = _('%(part1)s - %(part2)s')
 
     def __init__(self, sref_list, db):
-        GObject.GObject.__init__(self, str, str, str, str, str)
+        Gtk.ListStore.__init__(self, str, str, str, str, str)
         self.db = db
         self.sref_list = sref_list
         self.count = 0

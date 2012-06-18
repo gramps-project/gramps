@@ -42,7 +42,7 @@ from gi.repository import Gtk
 class LocationModel(Gtk.ListStore):
 
     def __init__(self, obj_list, db):
-        GObject.GObject.__init__(self, str, str, str, str, str, str, object)
+        Gtk.ListStore.__init__(self, str, str, str, str, str, str, object)
         self.db = db
         for obj in obj_list:
             self.append(row=[obj.street, obj.locality, obj.city, obj.county, 

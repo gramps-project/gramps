@@ -35,6 +35,8 @@ import urlparse
 # GTK libraries
 #
 #-------------------------------------------------------------------------
+from gi.repository import Gdk
+from gi.repository import GdkPixbuf
 from gi.repository import Gtk
 from gi.repository import Pango
 import os
@@ -197,8 +199,8 @@ class GalleryTab(ButtonTab, DbGUIElement):
         text_renderer.set_property('wrap-mode', Pango.WrapMode.WORD_CHAR)
         text_renderer.set_property('wrap-width', const.THUMBSCALE)
         text_renderer.set_property('alignment', Pango.Alignment.CENTER)
-        self.iconlist.pack_end(text_renderer)
-        self.iconlist.set_attributes(text_renderer, text=1)
+        self.iconlist.pack_end(text_renderer, True)
+        self.iconlist.add_attribute(text_renderer, "text", 1)
         
         # set basic properties of the icon view
         self.iconlist.set_margin(padding)
@@ -218,7 +220,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         
         # put everything together
         scroll.add(self.iconlist)
-        self.pack_end(scroll, True)
+        self.pack_end(scroll, True, True, 0)
 
     def _update_internal_list(self, *obj):
         newlist = []

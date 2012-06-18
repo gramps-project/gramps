@@ -42,7 +42,7 @@ from gi.repository import Gtk
 class AttrModel(Gtk.ListStore):
 
     def __init__(self, attr_list, db):
-        GObject.GObject.__init__(self, str, str, object)
+        Gtk.ListStore.__init__(self, str, str, object)
         self.db = db
         for attr in attr_list:
             self.append(row=[

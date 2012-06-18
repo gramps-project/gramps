@@ -52,7 +52,7 @@ class AddressModel(Gtk.ListStore):
         """
         AddressModel derives from the ListStore, defining te items in the list
         """
-        GObject.GObject.__init__(self, str, str, str, str, str, str, object)
+        Gtk.ListStore.__init__(self, str, str, str, str, str, str, object)
         self.db = dbase
         for obj in obj_list:
             self.append(row=[

@@ -36,7 +36,7 @@ from gi.repository import Gtk
 class CitationRefModel(Gtk.ListStore):
 
     def __init__(self, citation_list, db):
-        GObject.GObject.__init__(self, str, str, str, str, object)
+        Gtk.ListStore.__init__(self, str, str, str, str, object)
         self.db = db
         for handle in citation_list:
             citation = self.db.get_citation_from_handle(handle) 

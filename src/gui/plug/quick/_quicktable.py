@@ -339,7 +339,7 @@ class QuickTable(SimpleTable):
         #treeview.enable_model_drag_dest(DdTargets.all_targets(),
         #                                Gdk.DragAction.DEFAULT)            
         treeview.connect('drag_data_get', self.object_drag_data_get)
-        treeview.set_grid_lines(Gtk.TREE_VIEW_GRID_LINES_BOTH)
+        treeview.set_grid_lines(Gtk.TreeViewGridLines.BOTH)
         #treeview.connect('row-activated', on_table_doubleclick, self)
         #treeview.connect('cursor-changed', on_table_click, self)
         treeview.connect('button-press-event', self.button_press_event)

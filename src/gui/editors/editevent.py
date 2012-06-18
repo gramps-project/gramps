@@ -210,7 +210,7 @@ class EditEvent(EditPrimary):
         self._setup_notebook_tabs(notebook)
         
         notebook.show_all()
-        self.top.get_object('vbox').pack_start(notebook, True)
+        self.top.get_object('vbox').pack_start(notebook, True, True, 0)
 
         self.track_ref_for_deletion("citation_list")
         self.track_ref_for_deletion("note_list")

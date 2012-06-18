@@ -51,7 +51,7 @@ class LdsModel(Gtk.ListStore):
     _HANDLE_COL = 5
 
     def __init__(self, lds_list, db):
-        GObject.GObject.__init__(self, str, str, str, str, str, object)
+        Gtk.ListStore.__init__(self, str, str, str, str, str, object)
 
         self.db = db
         for lds_ord in lds_list:

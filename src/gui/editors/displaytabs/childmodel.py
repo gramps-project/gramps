@@ -47,7 +47,7 @@ from gen.utils import get_birth_or_fallback, get_death_or_fallback
 class ChildModel(Gtk.ListStore):
 
     def __init__(self, child_ref_list, db):
-        GObject.GObject.__init__(self, int, str, str, str, str, str, 
+        Gtk.ListStore.__init__(self, int, str, str, str, str, str, 
                                str, str, str, str, str, str, str, object)
         self.db = db
         for index, child_ref in enumerate(child_ref_list):

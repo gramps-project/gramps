@@ -42,7 +42,7 @@ class WebModel(Gtk.ListStore):
     """
     def __init__(self, obj_list, dbase):
 
-        GObject.GObject.__init__(self, str, str, str, object)
+        Gtk.ListStore.__init__(self, str, str, str, object)
         self.db = dbase
         for obj in obj_list:
             self.append(row=[str(obj.type), obj.path, obj.desc, obj])

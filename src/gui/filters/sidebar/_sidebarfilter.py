@@ -219,7 +219,8 @@ class SidebarFilter(DbGUIElement):
         """
         hbox = Gtk.HBox()
         hbox.pack_start(widget, True, True, 0)
-        hbox.pack_start(widgets.SimpleButton(Gtk.STOCK_EDIT, self.edit_filter), False, False)
+        hbox.pack_start(widgets.SimpleButton(Gtk.STOCK_EDIT, self.edit_filter),
+                        False, False, 0)
         self.add_entry(text, hbox)
 
     def edit_filter(self, obj):

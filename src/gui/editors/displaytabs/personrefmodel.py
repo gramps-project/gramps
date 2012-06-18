@@ -42,7 +42,7 @@ from gen.display.name import displayer as name_displayer
 class PersonRefModel(Gtk.ListStore):
 
     def __init__(self, obj_list, db):
-        GObject.GObject.__init__(self, str, str, str, object)
+        Gtk.ListStore.__init__(self, str, str, str, object)
         self.db = db
         for obj in obj_list:
             p = self.db.get_person_from_handle(obj.ref)

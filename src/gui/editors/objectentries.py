@@ -36,6 +36,7 @@ _LOG = logging.getLogger(".objectentries")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
+from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import Pango
 
@@ -133,7 +134,7 @@ class ObjEntry(object):
             self.label.set_use_markup(True)
         else:
             self.label.set_text(name)
-        self.label.set_ellipsize(Pango.ELLIPSIZE_END)
+        self.label.set_ellipsize(Pango.EllipsizeMode.END)
 
     def _init_dnd(self):
         """inheriting objects must set this

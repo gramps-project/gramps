@@ -168,7 +168,7 @@ class ConfigureDialog(ManagedWindow):
         self.__config = configmanager
         ManagedWindow.__init__(self, uistate, [], configobj)
         self.set_window(
-            Gtk.Dialog(dialogtitle, flags=Gtk.DialogFlags.NO_SEPARATOR, 
+            Gtk.Dialog(dialogtitle, 
                        buttons=(Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE)), 
                        None, dialogtitle, None)
         self.panel = Gtk.Notebook()
@@ -307,8 +307,8 @@ class ConfigureDialog(ManagedWindow):
         image.set_from_stock(Gtk.STOCK_OPEN, Gtk.IconSize.BUTTON)
         image.show()
         btn.add(image)
-        hbox.pack_start(entry, expand=True, fill=True)
-        hbox.pack_start(btn, expand=False, fill=False)
+        hbox.pack_start(entry, True, True, 0)
+        hbox.pack_start(btn, False, False, 0)
         table.attach(lwidget, 1, 2, index, index+1, yoptions=0, 
                      xoptions=Gtk.AttachOptions.FILL)
         table.attach(hbox, 2, 3, index, index+1, yoptions=0)
@@ -418,7 +418,7 @@ class ConfigureDialog(ManagedWindow):
             callback = self.update_spinner
         lwidget = BasicLabel("%s: " % label)
         adj = Gtk.Adjustment(config.get(constant), range[0], range[1], 1, 0, 0)
-        spinner = Gtk.SpinButton(adj)
+        spinner = Gtk.SpinButton(adjustment=adj, climb_rate=0.0, digits=0)
         spinner.connect('value-changed', callback, constant)
         table.attach(lwidget, 1, 2, index, index+1, yoptions=0, 
                      xoptions=Gtk.AttachOptions.FILL)
@@ -875,8 +875,8 @@ class GrampsPreferences(ConfigureDialog):
         hbox = Gtk.HBox()
         btn = Gtk.Button("%s..." % _('Edit') )
         btn.connect('clicked', self.cb_name_dialog)
-        hbox.pack_start(self.fmt_obox, expand=True, fill=True)
-        hbox.pack_start(btn, expand=False, fill=False)
+        hbox.pack_start(self.fmt_obox, True, True, 0)
+        hbox.pack_start(btn, False, False, 0)
         table.attach(lwidget, 0, 1, row, row+1, yoptions=0)
         table.attach(hbox,    1, 3, row, row+1, yoptions=0)
         row += 1
