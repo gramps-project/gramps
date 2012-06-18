@@ -5574,7 +5574,7 @@ class IndividualPage(BasePage):
             body += mapdetail
 
             # add page title
-            mapdetail += Html("h3", html_escape("Tracking %s" %
+            mapdetail += Html("h3", html_escape(_("Tracking %s") %
                                   self.get_name(person)), inline=True)
 
             # page description
