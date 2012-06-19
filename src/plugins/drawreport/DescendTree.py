@@ -1305,7 +1305,7 @@ class DescendTree(Report):
         
         #note?
         if self.Connect.get_val("inc_note"):
-            note_box = NoteBox(self.doc, "CG2-fam-box", 
+            note_box = NoteBox(self.doc, "CG2-note-box",
                                self.Connect.get_val("note_place"))
             subst = SubstKeywords(self.database, None, None)
             note_box.text = subst.replace_and_clean(
@@ -1403,6 +1403,11 @@ class DescendTree(Report):
         graph_style.set_line_width(graph_style.get_line_width() * amount)
         style_sheet.add_draw_style("CG2b-box", graph_style)
 
+        graph_style = style_sheet.get_draw_style("CG2-note-box")
+        graph_style.set_shadow(graph_style.get_shadow(), 0)
+        graph_style.set_line_width(graph_style.get_line_width() * amount)
+        style_sheet.add_draw_style("CG2-note-box", graph_style)
+
         para_style = style_sheet.get_paragraph_style("CG2-Title")
         font = para_style.get_font()
         font.set_size(font.get_size() * amount)
@@ -1421,6 +1426,12 @@ class DescendTree(Report):
         font.set_size(font.get_size() * amount)
         para_style.set_font(font)
         style_sheet.add_paragraph_style("CG2-Bold", para_style)
+
+        para_style = style_sheet.get_paragraph_style("CG2-Note")
+        font = para_style.get_font()
+        font.set_size(font.get_size() * amount)
+        para_style.set_font(font)
+        style_sheet.add_paragraph_style("CG2-Note", para_style)
 
         self.doc.set_style_sheet(style_sheet)
 
@@ -1698,6 +1709,16 @@ class DescendTreeOptions(MenuReportOptions):
             )
         default_style.add_paragraph_style("CG2-Bold", para_style)
 
+        font = FontStyle()
+        font.set_size(9)
+        font.set_type_face(FONT_SANS_SERIF)
+        para_style = ParagraphStyle()
+        para_style.set_font(font)
+        para_style.set_description(
+            _('The basic style used for the note display.')
+            )
+        default_style.add_paragraph_style("CG2-Note", para_style)
+
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("CG2-Title")
         graph_style.set_color((0, 0, 0))
@@ -1722,6 +1743,11 @@ class DescendTreeOptions(MenuReportOptions):
         graph_style.set_shadow(1, box_shadow)
         graph_style.set_fill_color((255, 255, 255))
         default_style.add_draw_style("CG2b-box", graph_style)
+
+        graph_style = GraphicsStyle()
+        graph_style.set_paragraph_style("CG2-Note")
+        graph_style.set_fill_color((255, 255, 255))
+        default_style.add_draw_style("CG2-note-box", graph_style)
 
         graph_style = GraphicsStyle()
         default_style.add_draw_style("CG2-line", graph_style)

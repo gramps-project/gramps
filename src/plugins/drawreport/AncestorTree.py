@@ -731,7 +731,7 @@ class AncestorTree(Report):
 
         #Note?
         if self.connect.get_val("inc_note"):
-            note_box = NoteBox(self.doc, "AC2-fam-box", 
+            note_box = NoteBox(self.doc, "AC2-note-box", 
                                self.connect.get_val("note_place"))
             subst = SubstKeywords(self.database, None, None)
             note_box.text = subst.replace_and_clean(
@@ -828,11 +828,23 @@ class AncestorTree(Report):
         graph_style.set_line_width(graph_style.get_line_width() * scale)
         style_sheet.add_draw_style("AC2-fam-box", graph_style)
 
+        graph_style = style_sheet.get_draw_style("AC2-note-box")
+        #graph_style.set_shadow(graph_style.get_shadow(),
+        #                       self.doc.report_opts.box_shadow * scale)
+        graph_style.set_line_width(graph_style.get_line_width() * scale)
+        style_sheet.add_draw_style("AC2-note-box", graph_style)
+
         para_style = style_sheet.get_paragraph_style("AC2-Normal")
         font = para_style.get_font()
         font.set_size(font.get_size() * scale)
         para_style.set_font(font)
         style_sheet.add_paragraph_style("AC2-Normal", para_style)
+            
+        para_style = style_sheet.get_paragraph_style("AC2-Note")
+        font = para_style.get_font()
+        font.set_size(font.get_size() * scale)
+        para_style.set_font(font)
+        style_sheet.add_paragraph_style("AC2-Note", para_style)
             
         para_style = style_sheet.get_paragraph_style("AC2-Title")
         font = para_style.get_font()
@@ -1086,6 +1098,15 @@ class AncestorTreeOptions(MenuReportOptions):
         box_shadow = PT2CM(font.get_size()) * .6
 
         font = FontStyle()
+        font.set_size(9)
+        font.set_type_face(FONT_SANS_SERIF)
+        para_style = ParagraphStyle()
+        para_style.set_font(font)
+        para_style.set_description(_('The basic style used for the '
+                                     'note display.'))
+        default_style.add_paragraph_style("AC2-Note", para_style)
+
+        font = FontStyle()
         font.set_size(16)
         font.set_type_face(FONT_SANS_SERIF)
         para_style = ParagraphStyle()
@@ -1107,6 +1128,11 @@ class AncestorTreeOptions(MenuReportOptions):
         #graph_style.set_shadow(0, PT2CM(9))  #shadow set by text size
         graph_style.set_fill_color((255, 255, 255))
         default_style.add_draw_style("AC2-fam-box", graph_style)
+
+        graph_style = GraphicsStyle()
+        graph_style.set_paragraph_style("AC2-Note")
+        graph_style.set_fill_color((255, 255, 255))
+        default_style.add_draw_style("AC2-note-box", graph_style)
 
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("AC2-Title")
