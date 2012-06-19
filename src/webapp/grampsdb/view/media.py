@@ -35,11 +35,18 @@ from django.http import HttpResponse
 
 ## Other Python Modules
 from PIL import Image
+NEW_PIL = [int(i) for i in Image.VERSION.split(".")] >= [1, 1, 7]
+if not NEW_PIL:
+    import png
 import os
 
 ## Globals
 dji = DjangoInterface()
 
+def pb2image(pb):
+    width, height = pb.get_width(), pb.get_height()
+    return Image.fromstring("RGB", (width,height), pb.get_pixels())
+ 
 def process_media(request, context, handle, action, add_to=None): # view, edit, save
     """
     Process action on person. Can return a redirect.
@@ -61,9 +68,16 @@ def process_media(request, context, handle, action, add_to=None): # view, edit, 
         # FIXME: This should be absolute:
         folder = Config.objects.get(setting="behavior.addmedia-image-dir").value
         # FIXME: media.path should not have any .. for security
-        image = Image.open("%s/%s" % (folder, media.path))
         response = HttpResponse(mimetype=media.mime)
-        image.save(response, media_ext.upper())
+        if NEW_PIL or media_ext != "png":
+            image = Image.open("%s/%s" % (folder, media.path))
+            image.save(response, media_ext)
+        else:
+            # FIXME: older PIL 1.1.6 cannot read interlaced PNG files
+            reader = png.Reader(filename="%s/%s" % (folder, media.path))
+            x, y, pixels, meta = reader.asDirect()
+            image = png.Image(pixels, meta)
+            image.save(response)
         return response
     elif action == "thumbnail":
         media = Media.objects.get(handle=handle)
@@ -71,18 +85,39 @@ def process_media(request, context, handle, action, add_to=None): # view, edit, 
         # FIXME: This should be absolute:
         folder = Config.objects.get(setting="behavior.addmedia-image-dir").value
         # FIXME: media.path should not have any .. for security
+        response = HttpResponse(mimetype=media.mime)
         if os.path.exists("%s/thumbnail/%s" % (folder, media.path)):
-            image = Image.open("%s/thumbnail/%s" % (folder, media.path))
+            if NEW_PIL or media_ext != "png":
+                image = Image.open("%s/thumbnail/%s" % (folder, media.path))
+                image.save(response, media_ext)
+            else:
+                # FIXME: older PIL 1.1.6 cannot read interlaced PNG files
+                reader = png.Reader(filename="%s/thumbnail/%s" % (folder, media.path))
+                x, y, pixels, meta = reader.asDirect()
+                image = png.Image(pixels, meta)
+                image.save(response)
         else:
-            image = Image.open("%s/%s" % (folder, media.path))
-            image.thumbnail((300,300), Image.ANTIALIAS)
             try:
                 os.makedirs("%s/thumbnail" % folder)
             except:
                 pass
-            image.save("%s/thumbnail/%s" % (folder, media.path))
-        response = HttpResponse(mimetype=media.mime)
-        image.save(response, media_ext.upper())
+            if NEW_PIL or media_ext != "png":
+                image = Image.open("%s/%s" % (folder, media.path))
+                image.thumbnail((300,300), Image.ANTIALIAS)
+                image.save("%s/thumbnail/%s" % (folder, media.path), media_ext)
+                image.save(response, media_ext)
+            else:
+                # FIXME: older PIL 1.1.6 cannot read interlaced PNG files
+                reader = png.Reader(filename="%s/%s" % (folder, media.path))
+                x, y, pixels, meta = reader.asDirect()
+                meta["interlace"] = False
+                image = png.Image(pixels, meta)
+                image.save("/tmp/%s" % media.path)
+                # Now open in PIL to rescale
+                image = Image.open("/tmp/%s" % media.path)
+                image.thumbnail((300,300), Image.ANTIALIAS)
+                image.save("%s/thumbnail/%s" % (folder, media.path), media_ext)
+                image.save(response, media_ext.upper())
         return response
     elif action == "add":
         media = Media(gramps_id=dji.get_next_id(Media, "M"))
