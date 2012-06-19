@@ -56,10 +56,11 @@ def process_media(request, context, handle, action, add_to=None): # view, edit, 
 
     # Handle: edit, view, add, create, save, delete
     if action == "full":
-        # FIXME: path should come from config
         media = Media.objects.get(handle=handle)
         media_type, media_ext = media.mime.split("/", 1)
-        folder = config.get('behavior.addmedia-image-dir')
+        # FIXME: This should be absolute:
+        folder = Config.objects.get(setting="behavior.addmedia-image-dir").value
+        # FIXME: media.path should not have any .. for security
         image = Image.open("%s/%s" % (folder, media.path))
         response = HttpResponse(mimetype=media.mime)
         image.save(response, media_ext.upper())
@@ -67,13 +68,18 @@ def process_media(request, context, handle, action, add_to=None): # view, edit, 
     elif action == "thumbnail":
         media = Media.objects.get(handle=handle)
         media_type, media_ext = media.mime.split("/", 1)
-        folder = config.get('behavior.addmedia-image-dir')
+        # FIXME: This should be absolute:
+        folder = Config.objects.get(setting="behavior.addmedia-image-dir").value
+        # FIXME: media.path should not have any .. for security
         if os.path.exists("%s/thumbnail/%s" % (folder, media.path)):
             image = Image.open("%s/thumbnail/%s" % (folder, media.path))
         else:
             image = Image.open("%s/%s" % (folder, media.path))
             image.thumbnail((300,300), Image.ANTIALIAS)
-            os.makedirs("%s/thumbnail" % folder)
+            try:
+                os.makedirs("%s/thumbnail" % folder)
+            except:
+                pass
             image.save("%s/thumbnail/%s" % (folder, media.path))
         response = HttpResponse(mimetype=media.mime)
         image.save(response, media_ext.upper())

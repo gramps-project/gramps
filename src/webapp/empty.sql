@@ -157,33 +157,36 @@ INSERT INTO "auth_permission" VALUES(147,'Can delete url',49,'delete_url');
 INSERT INTO "auth_permission" VALUES(148,'Can add attribute',50,'add_attribute');
 INSERT INTO "auth_permission" VALUES(149,'Can change attribute',50,'change_attribute');
 INSERT INTO "auth_permission" VALUES(150,'Can delete attribute',50,'delete_attribute');
-INSERT INTO "auth_permission" VALUES(151,'Can add note ref',51,'add_noteref');
-INSERT INTO "auth_permission" VALUES(152,'Can change note ref',51,'change_noteref');
-INSERT INTO "auth_permission" VALUES(153,'Can delete note ref',51,'delete_noteref');
-INSERT INTO "auth_permission" VALUES(154,'Can add event ref',52,'add_eventref');
-INSERT INTO "auth_permission" VALUES(155,'Can change event ref',52,'change_eventref');
-INSERT INTO "auth_permission" VALUES(156,'Can delete event ref',52,'delete_eventref');
-INSERT INTO "auth_permission" VALUES(157,'Can add repository ref',53,'add_repositoryref');
-INSERT INTO "auth_permission" VALUES(158,'Can change repository ref',53,'change_repositoryref');
-INSERT INTO "auth_permission" VALUES(159,'Can delete repository ref',53,'delete_repositoryref');
-INSERT INTO "auth_permission" VALUES(160,'Can add person ref',54,'add_personref');
-INSERT INTO "auth_permission" VALUES(161,'Can change person ref',54,'change_personref');
-INSERT INTO "auth_permission" VALUES(162,'Can delete person ref',54,'delete_personref');
-INSERT INTO "auth_permission" VALUES(163,'Can add citation ref',55,'add_citationref');
-INSERT INTO "auth_permission" VALUES(164,'Can change citation ref',55,'change_citationref');
-INSERT INTO "auth_permission" VALUES(165,'Can delete citation ref',55,'delete_citationref');
-INSERT INTO "auth_permission" VALUES(166,'Can add child ref',56,'add_childref');
-INSERT INTO "auth_permission" VALUES(167,'Can change child ref',56,'change_childref');
-INSERT INTO "auth_permission" VALUES(168,'Can delete child ref',56,'delete_childref');
-INSERT INTO "auth_permission" VALUES(169,'Can add media ref',57,'add_mediaref');
-INSERT INTO "auth_permission" VALUES(170,'Can change media ref',57,'change_mediaref');
-INSERT INTO "auth_permission" VALUES(171,'Can delete media ref',57,'delete_mediaref');
-INSERT INTO "auth_permission" VALUES(172,'Can add report',58,'add_report');
-INSERT INTO "auth_permission" VALUES(173,'Can change report',58,'change_report');
-INSERT INTO "auth_permission" VALUES(174,'Can delete report',58,'delete_report');
-INSERT INTO "auth_permission" VALUES(175,'Can add result',59,'add_result');
-INSERT INTO "auth_permission" VALUES(176,'Can change result',59,'change_result');
-INSERT INTO "auth_permission" VALUES(177,'Can delete result',59,'delete_result');
+INSERT INTO "auth_permission" VALUES(151,'Can add log',51,'add_log');
+INSERT INTO "auth_permission" VALUES(152,'Can change log',51,'change_log');
+INSERT INTO "auth_permission" VALUES(153,'Can delete log',51,'delete_log');
+INSERT INTO "auth_permission" VALUES(154,'Can add note ref',52,'add_noteref');
+INSERT INTO "auth_permission" VALUES(155,'Can change note ref',52,'change_noteref');
+INSERT INTO "auth_permission" VALUES(156,'Can delete note ref',52,'delete_noteref');
+INSERT INTO "auth_permission" VALUES(157,'Can add event ref',53,'add_eventref');
+INSERT INTO "auth_permission" VALUES(158,'Can change event ref',53,'change_eventref');
+INSERT INTO "auth_permission" VALUES(159,'Can delete event ref',53,'delete_eventref');
+INSERT INTO "auth_permission" VALUES(160,'Can add repository ref',54,'add_repositoryref');
+INSERT INTO "auth_permission" VALUES(161,'Can change repository ref',54,'change_repositoryref');
+INSERT INTO "auth_permission" VALUES(162,'Can delete repository ref',54,'delete_repositoryref');
+INSERT INTO "auth_permission" VALUES(163,'Can add person ref',55,'add_personref');
+INSERT INTO "auth_permission" VALUES(164,'Can change person ref',55,'change_personref');
+INSERT INTO "auth_permission" VALUES(165,'Can delete person ref',55,'delete_personref');
+INSERT INTO "auth_permission" VALUES(166,'Can add citation ref',56,'add_citationref');
+INSERT INTO "auth_permission" VALUES(167,'Can change citation ref',56,'change_citationref');
+INSERT INTO "auth_permission" VALUES(168,'Can delete citation ref',56,'delete_citationref');
+INSERT INTO "auth_permission" VALUES(169,'Can add child ref',57,'add_childref');
+INSERT INTO "auth_permission" VALUES(170,'Can change child ref',57,'change_childref');
+INSERT INTO "auth_permission" VALUES(171,'Can delete child ref',57,'delete_childref');
+INSERT INTO "auth_permission" VALUES(172,'Can add media ref',58,'add_mediaref');
+INSERT INTO "auth_permission" VALUES(173,'Can change media ref',58,'change_mediaref');
+INSERT INTO "auth_permission" VALUES(174,'Can delete media ref',58,'delete_mediaref');
+INSERT INTO "auth_permission" VALUES(175,'Can add report',59,'add_report');
+INSERT INTO "auth_permission" VALUES(176,'Can change report',59,'change_report');
+INSERT INTO "auth_permission" VALUES(177,'Can delete report',59,'delete_report');
+INSERT INTO "auth_permission" VALUES(178,'Can add result',60,'add_result');
+INSERT INTO "auth_permission" VALUES(179,'Can change result',60,'change_result');
+INSERT INTO "auth_permission" VALUES(180,'Can delete result',60,'delete_result');
 CREATE TABLE "auth_group_permissions" (
     "id" integer NOT NULL PRIMARY KEY,
     "group_id" integer NOT NULL,
@@ -219,8 +222,8 @@ CREATE TABLE "auth_user" (
     "last_login" datetime NOT NULL,
     "date_joined" datetime NOT NULL
 );
-INSERT INTO "auth_user" VALUES(1,'admin','','','bugs@gramps-project.org','sha1$f79e3$2485263f7c464c61901f7efe56f9cfa3d02893fe',1,1,1,'2012-06-11 17:00:52.089846','2012-06-11 17:00:52.089846');
-INSERT INTO "auth_user" VALUES(2,'admin1','','','bugs@gramps-project.org','sha1$03b37$160aa6551fee676cd79c56eead3a3f5db2bef631',1,1,1,'2012-06-11 17:00:56.693844','2012-06-11 17:00:56.693844');
+INSERT INTO "auth_user" VALUES(1,'admin','','','bugs@gramps-project.org','sha1$7f568$508734ae545aeeb0897ee9eb842353f473efd9af',1,1,1,'2012-06-18 21:25:23.952110','2012-06-18 21:25:23.952110');
+INSERT INTO "auth_user" VALUES(2,'admin1','','','bugs@gramps-project.org','sha1$d0f39$4a5d0323022eaf3cf511fd3ada65444328a37452',1,1,1,'2012-06-18 21:25:29.831944','2012-06-18 21:25:29.831944');
 CREATE TABLE "auth_message" (
     "id" integer NOT NULL PRIMARY KEY,
     "user_id" integer NOT NULL REFERENCES "auth_user" ("id"),
@@ -283,15 +286,16 @@ INSERT INTO "django_content_type" VALUES(47,'address','grampsdb','address');
 INSERT INTO "django_content_type" VALUES(48,'location','grampsdb','location');
 INSERT INTO "django_content_type" VALUES(49,'url','grampsdb','url');
 INSERT INTO "django_content_type" VALUES(50,'attribute','grampsdb','attribute');
-INSERT INTO "django_content_type" VALUES(51,'note ref','grampsdb','noteref');
-INSERT INTO "django_content_type" VALUES(52,'event ref','grampsdb','eventref');
-INSERT INTO "django_content_type" VALUES(53,'repository ref','grampsdb','repositoryref');
-INSERT INTO "django_content_type" VALUES(54,'person ref','grampsdb','personref');
-INSERT INTO "django_content_type" VALUES(55,'citation ref','grampsdb','citationref');
-INSERT INTO "django_content_type" VALUES(56,'child ref','grampsdb','childref');
-INSERT INTO "django_content_type" VALUES(57,'media ref','grampsdb','mediaref');
-INSERT INTO "django_content_type" VALUES(58,'report','grampsdb','report');
-INSERT INTO "django_content_type" VALUES(59,'result','grampsdb','result');
+INSERT INTO "django_content_type" VALUES(51,'log','grampsdb','log');
+INSERT INTO "django_content_type" VALUES(52,'note ref','grampsdb','noteref');
+INSERT INTO "django_content_type" VALUES(53,'event ref','grampsdb','eventref');
+INSERT INTO "django_content_type" VALUES(54,'repository ref','grampsdb','repositoryref');
+INSERT INTO "django_content_type" VALUES(55,'person ref','grampsdb','personref');
+INSERT INTO "django_content_type" VALUES(56,'citation ref','grampsdb','citationref');
+INSERT INTO "django_content_type" VALUES(57,'child ref','grampsdb','childref');
+INSERT INTO "django_content_type" VALUES(58,'media ref','grampsdb','mediaref');
+INSERT INTO "django_content_type" VALUES(59,'report','grampsdb','report');
+INSERT INTO "django_content_type" VALUES(60,'result','grampsdb','result');
 CREATE TABLE "django_session" (
     "session_key" varchar(40) NOT NULL PRIMARY KEY,
     "session_data" text NOT NULL,
@@ -636,7 +640,8 @@ CREATE TABLE "grampsdb_config" (
 );
 INSERT INTO "grampsdb_config" VALUES(1,'sitename','site name of family tree','str','Gramps-Connect');
 INSERT INTO "grampsdb_config" VALUES(2,'db_version','database scheme version','str','0.6.1');
-INSERT INTO "grampsdb_config" VALUES(3,'db_created','database creation date/time','str','2012-06-11 17:00');
+INSERT INTO "grampsdb_config" VALUES(3,'db_created','database creation date/time','str','2012-06-18 21:24');
+INSERT INTO "grampsdb_config" VALUES(4,'geography.center-lat','','<type ''float''>','40.3621673584');
 CREATE TABLE "grampsdb_tag" (
     "id" integer NOT NULL PRIMARY KEY,
     "handle" varchar(19) NOT NULL UNIQUE,
@@ -997,6 +1002,19 @@ CREATE TABLE "grampsdb_attribute" (
     "object_type_id" integer NOT NULL REFERENCES "django_content_type" ("id"),
     "object_id" integer unsigned NOT NULL
 );
+CREATE TABLE "grampsdb_log" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "object_type_id" integer NOT NULL REFERENCES "django_content_type" ("id"),
+    "object_id" integer unsigned NOT NULL,
+    "order" integer unsigned NOT NULL,
+    "last_saved" datetime NOT NULL,
+    "last_changed" datetime,
+    "last_changed_by" text,
+    "private" bool NOT NULL,
+    "log_type" varchar(10) NOT NULL,
+    "reason" text NOT NULL,
+    "cache" text
+);
 CREATE TABLE "grampsdb_noteref" (
     "id" integer NOT NULL PRIMARY KEY,
     "object_type_id" integer NOT NULL REFERENCES "django_content_type" ("id"),
@@ -1043,7 +1061,7 @@ CREATE TABLE "grampsdb_personref" (
     "last_changed_by" text,
     "private" bool NOT NULL,
     "ref_object_id" integer NOT NULL REFERENCES "grampsdb_person" ("id"),
-    "description" varchar(50) NOT NULL
+    "description" varchar(50)
 );
 CREATE TABLE "grampsdb_citationref" (
     "id" integer NOT NULL PRIMARY KEY,
@@ -1133,6 +1151,7 @@ CREATE INDEX "auth_user_user_permissions_1e014c8f" ON "auth_user_user_permission
 CREATE INDEX "auth_user_groups_403f60f" ON "auth_user_groups" ("user_id");
 CREATE INDEX "auth_user_groups_425ae3c4" ON "auth_user_groups" ("group_id");
 CREATE INDEX "auth_message_403f60f" ON "auth_message" ("user_id");
+CREATE INDEX "django_session_3da3d3d8" ON "django_session" ("expire_date");
 CREATE INDEX "django_admin_log_403f60f" ON "django_admin_log" ("user_id");
 CREATE INDEX "django_admin_log_1bb8f392" ON "django_admin_log" ("content_type_id");
 CREATE INDEX "grampsdb_profile_71d2bf68" ON "grampsdb_profile" ("theme_type_id");
@@ -1185,6 +1204,7 @@ CREATE INDEX "grampsdb_url_3bc6e294" ON "grampsdb_url" ("place_id");
 CREATE INDEX "grampsdb_url_6a730446" ON "grampsdb_url" ("repository_id");
 CREATE INDEX "grampsdb_attribute_13db1433" ON "grampsdb_attribute" ("attribute_type_id");
 CREATE INDEX "grampsdb_attribute_518e5aa5" ON "grampsdb_attribute" ("object_type_id");
+CREATE INDEX "grampsdb_log_518e5aa5" ON "grampsdb_log" ("object_type_id");
 CREATE INDEX "grampsdb_noteref_518e5aa5" ON "grampsdb_noteref" ("object_type_id");
 CREATE INDEX "grampsdb_noteref_27acd269" ON "grampsdb_noteref" ("ref_object_id");
 CREATE INDEX "grampsdb_eventref_518e5aa5" ON "grampsdb_eventref" ("object_type_id");

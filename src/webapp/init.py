@@ -31,6 +31,7 @@ import os
 os.environ["DJANGO_SETTINGS_MODULE"] = "settings"
 import settings
 
+from gen.config import config
 from gen.lib.nametype import NameType
 from gen.lib.nameorigintype import NameOriginType
 from gen.lib.attrtype import AttributeType
@@ -170,6 +171,23 @@ for table, entries in [("grampsdb.config",
         print "   },"
         entry_count += 1
 
+pk = 4
+for section in config.get_sections():
+    for setting in config.get_section_settings(section):
+        key = "%s.%s" % (section, setting)
+        value = config.get_default(key)
+        print "   {"
+        print "      \"model\": \"grampsdb.config\"," 
+        print "      \"pk\": %d," % pk
+        print "      \"fields\":"
+        print "         {"
+        print "            \"setting\"   : \"%s\"," % key
+        print "            \"value_type\"   : \"%s\"," % type(value).__name__
+        print "            \"value\": \"%s\"" % value
+        print "         }"
+        print "   },",
+        pk += 1
+        
 ## Add the data for the type models:
 
 type_models = [NameType, NameOriginType, AttributeType, UrlType, ChildRefType, 
