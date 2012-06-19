@@ -8,10 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-18 19:46+0200\n"
+"POT-Creation-Date: 2012-06-19 17:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2198,8 +2199,8 @@ msgstr ""
 #: ../src/cli/plug/__init__.py:481
 #, python-format
 msgid ""
-"Ignoring '%(notranslate1)s=%(notranslate2)s' and using '%(notranslate1)s=%"
-"(notranslate3)s'."
+"Ignoring '%(notranslate1)s=%(notranslate2)s' and using '%(notranslate1)s="
+"%(notranslate3)s'."
 msgstr ""
 
 #: ../src/cli/plug/__init__.py:486
@@ -5622,12 +5623,6 @@ msgstr ""
 msgid "%(adjective)s: %(addon)s"
 msgstr ""
 
-#. checkbox visible?
-#. initially selected?
-#: ../src/gui/viewmanager.py:482 ../src/gui/viewmanager.py:493
-msgid "t"
-msgstr ""
-
 #: ../src/gui/viewmanager.py:537
 msgid "Downloading and installing selected addons..."
 msgstr ""
@@ -5970,8 +5965,8 @@ msgid ""
 "%(error_msg)s\n"
 "\n"
 "If you are unable to fix the fault yourself then you can submit a bug at "
-"http://bugs.gramps-project.org or contact the plugin author (%"
-"(firstauthoremail)s).\n"
+"http://bugs.gramps-project.org or contact the plugin author "
+"(%(firstauthoremail)s).\n"
 "\n"
 "If you do not want Gramps to try and load this plugin again, you can hide it "
 "by using the Plugin Manager on the Help menu."
@@ -5989,8 +5984,8 @@ msgid ""
 "%(error_msg)s\n"
 "\n"
 "If you are unable to fix the fault yourself then you can submit a bug at "
-"http://bugs.gramps-project.org or contact the view author (%"
-"(firstauthoremail)s).\n"
+"http://bugs.gramps-project.org or contact the view author "
+"(%(firstauthoremail)s).\n"
 "\n"
 "If you do not want Gramps to try and load this view again, you can hide it "
 "by using the Plugin Manager on the Help menu."
@@ -7916,7 +7911,7 @@ msgstr ""
 #. ###############################
 #: ../src/gui/plug/report/_reportdialog.py:356 ../src/plugins/Records.py:514
 #: ../src/plugins/drawreport/Calendar.py:406
-#: ../src/plugins/drawreport/FanChart.py:394
+#: ../src/plugins/drawreport/FanChart.py:396
 #: ../src/plugins/drawreport/StatisticsChart.py:908
 #: ../src/plugins/drawreport/TimeLine.py:367
 #: ../src/plugins/graph/GVRelGraph.py:473
@@ -9208,7 +9203,7 @@ msgstr ""
 #: ../src/plugins/Records.py:611
 #: ../src/plugins/drawreport/AncestorTree.py:1066
 #: ../src/plugins/drawreport/DescendTree.py:1670
-#: ../src/plugins/drawreport/FanChart.py:456
+#: ../src/plugins/drawreport/FanChart.py:458
 #: ../src/plugins/textreport/AncestorReport.py:367
 #: ../src/plugins/textreport/DetAncestralReport.py:904
 #: ../src/plugins/textreport/DetDescendantReport.py:1099
@@ -9458,7 +9453,7 @@ msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:866
 #: ../src/plugins/drawreport/Calendar.py:417
-#: ../src/plugins/drawreport/FanChart.py:396
+#: ../src/plugins/drawreport/FanChart.py:398
 #: ../src/plugins/graph/GVHourGlass.py:261
 #: ../src/plugins/textreport/AncestorReport.py:268
 #: ../src/plugins/textreport/BirthdayReport.py:370
@@ -9477,7 +9472,7 @@ msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:870
 #: ../src/plugins/drawreport/DescendTree.py:1472
-#: ../src/plugins/drawreport/FanChart.py:400
+#: ../src/plugins/drawreport/FanChart.py:402
 #: ../src/plugins/textreport/AncestorReport.py:282
 #: ../src/plugins/textreport/DescendReport.py:415
 #: ../src/plugins/textreport/DetAncestralReport.py:742
@@ -9830,7 +9825,7 @@ msgid "Select filter to restrict people that appear on calendar"
 msgstr ""
 
 #: ../src/plugins/drawreport/Calendar.py:418
-#: ../src/plugins/drawreport/FanChart.py:397
+#: ../src/plugins/drawreport/FanChart.py:399
 #: ../src/plugins/textreport/AncestorReport.py:269
 #: ../src/plugins/textreport/BirthdayReport.py:371
 #: ../src/plugins/textreport/DescendReport.py:394
@@ -10279,7 +10274,7 @@ msgstr ""
 msgid "%(generations)d Generation Fan Chart for %(person)s"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:401
+#: ../src/plugins/drawreport/FanChart.py:403
 #: ../src/plugins/textreport/AncestorReport.py:283
 #: ../src/plugins/textreport/DescendReport.py:416
 #: ../src/plugins/textreport/DetAncestralReport.py:743
@@ -10287,59 +10282,59 @@ msgstr ""
 msgid "The number of generations to include in the report"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:404
+#: ../src/plugins/drawreport/FanChart.py:406
 msgid "Type of graph"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:405
+#: ../src/plugins/drawreport/FanChart.py:407
 msgid "full circle"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:406
+#: ../src/plugins/drawreport/FanChart.py:408
 msgid "half circle"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:407
+#: ../src/plugins/drawreport/FanChart.py:409
 msgid "quarter circle"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:408
+#: ../src/plugins/drawreport/FanChart.py:410
 msgid "The form of the graph: full circle, half circle, or quarter circle."
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:412
+#: ../src/plugins/drawreport/FanChart.py:414
 msgid "Background color"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:413
+#: ../src/plugins/drawreport/FanChart.py:415
 msgid "white"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:414
+#: ../src/plugins/drawreport/FanChart.py:416
 msgid "generation dependent"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:415
+#: ../src/plugins/drawreport/FanChart.py:417
 msgid "Background color is either white or generation dependent"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:419
+#: ../src/plugins/drawreport/FanChart.py:421
 msgid "Orientation of radial texts"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:421
+#: ../src/plugins/drawreport/FanChart.py:423
 msgid "upright"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:422
+#: ../src/plugins/drawreport/FanChart.py:424
 msgid "roundabout"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:423
+#: ../src/plugins/drawreport/FanChart.py:425
 msgid "Print radial texts upright or roundabout"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:447
+#: ../src/plugins/drawreport/FanChart.py:449
 #: ../src/plugins/textreport/AlphabeticalIndex.py:90
 #: ../src/plugins/textreport/TableOfContents.py:90
 msgid "The style used for the title."
@@ -12077,7 +12072,7 @@ msgid "Total given names showing"
 msgstr ""
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:136
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:169
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:168
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:109
 msgid "Total people"
 msgstr ""
@@ -12560,29 +12555,29 @@ msgid "Double-click surname for details"
 msgstr ""
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:82
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:173
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:181
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:172
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:180
 msgid "Number of surnames"
 msgstr ""
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:83
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:175
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:182
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:174
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:181
 msgid "Min font size"
 msgstr ""
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:84
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:177
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:183
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:176
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:182
 msgid "Max font size"
 msgstr ""
 
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:166
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:165
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:107
 msgid "Total unique surnames"
 msgstr ""
 
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:168
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:167
 msgid "Total surnames showing"
 msgstr ""
 
@@ -13637,13 +13632,13 @@ msgstr ""
 #: ../src/plugins/import/ImportGpkg.py:117
 #, python-format
 msgid ""
-"The family tree you imported into already has a base media path: %(orig_path)"
-"s. The imported media objects however are relative from the path %(path)s. "
-"You can change the media path in the Preferences or you can convert the "
-"imported files to the existing base media path. You can do that by moving "
-"your media files to the new position, and using the media manager tool, "
-"option 'Replace substring in the path' to set correct paths in your media "
-"objects."
+"The family tree you imported into already has a base media path: "
+"%(orig_path)s. The imported media objects however are relative from the path "
+"%(path)s. You can change the media path in the Preferences or you can "
+"convert the imported files to the existing base media path. You can do that "
+"by moving your media files to the new position, and using the media manager "
+"tool, option 'Replace substring in the path' to set correct paths in your "
+"media objects."
 msgstr ""
 
 #. feature requests 2356, 1658: avoid genitive form
@@ -14588,8 +14583,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:191
 #, python-format
 msgid ""
-"%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)"
-"s."
+"%(male_name)s died on %(death_date)s in %(death_place)s at the age of "
+"%(age)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:194
@@ -14600,8 +14595,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:195
 #, python-format
 msgid ""
-"%(female_name)s died on %(death_date)s in %(death_place)s at the age of %"
-"(age)s."
+"%(female_name)s died on %(death_date)s in %(death_place)s at the age of "
+"%(age)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:199
@@ -14860,8 +14855,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:323
 #, python-format
 msgid ""
-"%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)"
-"s."
+"%(male_name)s died in %(month_year)s in %(death_place)s at the age of "
+"%(age)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:326
@@ -14872,8 +14867,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:327
 #, python-format
 msgid ""
-"%(female_name)s died in %(month_year)s in %(death_place)s at the age of %"
-"(age)s."
+"%(female_name)s died in %(month_year)s in %(death_place)s at the age of "
+"%(age)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:331
@@ -15106,8 +15101,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:460
 #, python-format
 msgid ""
-"%(female_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)"
-"s."
+"%(female_name)s was buried on %(burial_date)s in %(burial_place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:461
@@ -15118,8 +15113,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:464
 #, python-format
 msgid ""
-"%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s%"
-"(endnotes)s."
+"%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:465
@@ -15193,8 +15188,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:496
 #, python-format
 msgid ""
-"%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s%"
-"(endnotes)s."
+"%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:497
@@ -15268,8 +15263,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:528
 #, python-format
 msgid ""
-"%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s%"
-"(endnotes)s."
+"%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:529
@@ -15391,8 +15386,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:589
 #, python-format
 msgid ""
-"%(male_name)s was baptised on %(baptism_date)s in %(baptism_place)s%"
-"(endnotes)s."
+"%(male_name)s was baptised on %(baptism_date)s in %(baptism_place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:590
@@ -15403,8 +15398,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:593
 #, python-format
 msgid ""
-"%(female_name)s was baptised on %(baptism_date)s in %(baptism_place)s%"
-"(endnotes)s."
+"%(female_name)s was baptised on %(baptism_date)s in %(baptism_place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:594
@@ -15422,8 +15417,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:598
 #, python-format
 msgid ""
-"This person was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)"
-"s."
+"This person was baptised on %(baptism_date)s in %(baptism_place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:600
@@ -15469,8 +15464,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:621
 #, python-format
 msgid ""
-"%(male_name)s was baptised in %(month_year)s in %(baptism_place)s%(endnotes)"
-"s."
+"%(male_name)s was baptised in %(month_year)s in %(baptism_place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:622
@@ -15481,8 +15476,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:625
 #, python-format
 msgid ""
-"%(female_name)s was baptised in %(month_year)s in %(baptism_place)s%"
-"(endnotes)s."
+"%(female_name)s was baptised in %(month_year)s in %(baptism_place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:626
@@ -15493,8 +15488,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:629
 #, python-format
 msgid ""
-"%(unknown_gender_name)s was baptised in %(month_year)s in %(baptism_place)s%"
-"(endnotes)s."
+"%(unknown_gender_name)s was baptised in %(month_year)s in %(baptism_place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:630
@@ -15546,8 +15541,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:653
 #, python-format
 msgid ""
-"%(male_name)s was baptised %(modified_date)s in %(baptism_place)s%(endnotes)"
-"s."
+"%(male_name)s was baptised %(modified_date)s in %(baptism_place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:654
@@ -15558,8 +15553,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:657
 #, python-format
 msgid ""
-"%(female_name)s was baptised %(modified_date)s in %(baptism_place)s%"
-"(endnotes)s."
+"%(female_name)s was baptised %(modified_date)s in %(baptism_place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:658
@@ -15570,8 +15565,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:661
 #, python-format
 msgid ""
-"%(unknown_gender_name)s was baptised %(modified_date)s in %(baptism_place)s%"
-"(endnotes)s."
+"%(unknown_gender_name)s was baptised %(modified_date)s in %(baptism_place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:662
@@ -15700,36 +15695,36 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:723
 #, python-format
 msgid ""
-"He was christened on %(christening_date)s in %(christening_place)s%(endnotes)"
-"s."
+"He was christened on %(christening_date)s in %(christening_place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:726
 #, python-format
 msgid ""
-"%(female_name)s was christened on %(christening_date)s in %"
-"(christening_place)s%(endnotes)s."
+"%(female_name)s was christened on %(christening_date)s in "
+"%(christening_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:727
 #, python-format
 msgid ""
-"She was christened on %(christening_date)s in %(christening_place)s%"
-"(endnotes)s."
+"She was christened on %(christening_date)s in %(christening_place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:730
 #, python-format
 msgid ""
-"%(unknown_gender_name)s was christened on %(christening_date)s in %"
-"(christening_place)s%(endnotes)s."
+"%(unknown_gender_name)s was christened on %(christening_date)s in "
+"%(christening_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:731
 #, python-format
 msgid ""
-"This person was christened on %(christening_date)s in %(christening_place)s%"
-"(endnotes)s."
+"This person was christened on %(christening_date)s in %(christening_place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:733
@@ -15776,8 +15771,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:754
 #, python-format
 msgid ""
-"%(male_name)s was christened in %(month_year)s in %(christening_place)s%"
-"(endnotes)s."
+"%(male_name)s was christened in %(month_year)s in %(christening_place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:755
@@ -15789,8 +15784,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:758
 #, python-format
 msgid ""
-"%(female_name)s was christened in %(month_year)s in %(christening_place)s%"
-"(endnotes)s."
+"%(female_name)s was christened in %(month_year)s in %(christening_place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:759
@@ -15802,15 +15797,15 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:762
 #, python-format
 msgid ""
-"%(unknown_gender_name)s was christened in %(month_year)s in %"
-"(christening_place)s%(endnotes)s."
+"%(unknown_gender_name)s was christened in %(month_year)s in "
+"%(christening_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:763
 #, python-format
 msgid ""
-"This person was christened in %(month_year)s in %(christening_place)s%"
-"(endnotes)s."
+"This person was christened in %(month_year)s in %(christening_place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:765
@@ -15856,8 +15851,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:786
 #, python-format
 msgid ""
-"%(male_name)s was christened %(modified_date)s in %(christening_place)s%"
-"(endnotes)s."
+"%(male_name)s was christened %(modified_date)s in %(christening_place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:787
@@ -15869,8 +15864,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:790
 #, python-format
 msgid ""
-"%(female_name)s was christened %(modified_date)s in %(christening_place)s%"
-"(endnotes)s."
+"%(female_name)s was christened %(modified_date)s in %(christening_place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:791
@@ -15882,15 +15877,15 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:794
 #, python-format
 msgid ""
-"%(unknown_gender_name)s was christened %(modified_date)s in %"
-"(christening_place)s%(endnotes)s."
+"%(unknown_gender_name)s was christened %(modified_date)s in "
+"%(christening_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:795
 #, python-format
 msgid ""
-"This person was christened %(modified_date)s in %(christening_place)s%"
-"(endnotes)s."
+"This person was christened %(modified_date)s in %(christening_place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:797
@@ -16295,22 +16290,22 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:991
 #, python-format
 msgid ""
-"This person also married %(spouse)s in %(partial_date)s in %(place)s%"
-"(endnotes)s."
+"This person also married %(spouse)s in %(partial_date)s in %(place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:992
 #, python-format
 msgid ""
-"This person also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)"
-"s."
+"This person also married %(spouse)s on %(full_date)s in %(place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:993
 #, python-format
 msgid ""
-"This person also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)"
-"s."
+"This person also married %(spouse)s %(modified_date)s in %(place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:996
@@ -16563,8 +16558,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1093
 #, python-format
 msgid ""
-"This person had an unmarried relationship with %(spouse)s in %(partial_date)"
-"s in %(place)s%(endnotes)s."
+"This person had an unmarried relationship with %(spouse)s in "
+"%(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1094
@@ -16584,85 +16579,85 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1098
 #, python-format
 msgid ""
-"He had an unmarried relationship with %(spouse)s in %(partial_date)s in %"
-"(place)s%(endnotes)s."
+"He had an unmarried relationship with %(spouse)s in %(partial_date)s in "
+"%(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1099
 #, python-format
 msgid ""
-"He had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)"
-"s%(endnotes)s."
+"He had an unmarried relationship with %(spouse)s on %(full_date)s in "
+"%(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1100
 #, python-format
 msgid ""
-"He had an unmarried relationship with %(spouse)s %(modified_date)s in %"
-"(place)s%(endnotes)s."
+"He had an unmarried relationship with %(spouse)s %(modified_date)s in "
+"%(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1103
 #, python-format
 msgid ""
-"She had an unmarried relationship with %(spouse)s in %(partial_date)s in %"
-"(place)s%(endnotes)s."
+"She had an unmarried relationship with %(spouse)s in %(partial_date)s in "
+"%(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1104
 #, python-format
 msgid ""
-"She had an unmarried relationship with %(spouse)s on %(full_date)s in %"
-"(place)s%(endnotes)s."
+"She had an unmarried relationship with %(spouse)s on %(full_date)s in "
+"%(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1105
 #, python-format
 msgid ""
-"She had an unmarried relationship with %(spouse)s %(modified_date)s in %"
-"(place)s%(endnotes)s."
+"She had an unmarried relationship with %(spouse)s %(modified_date)s in "
+"%(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1108 ../src/plugins/lib/libnarrate.py:1131
 #, python-format
 msgid ""
-"Unmarried relationship with %(spouse)s %(partial_date)s in %(place)s%"
-"(endnotes)s."
+"Unmarried relationship with %(spouse)s %(partial_date)s in %(place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1109 ../src/plugins/lib/libnarrate.py:1132
 #, python-format
 msgid ""
-"Unmarried relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)"
-"s."
+"Unmarried relationship with %(spouse)s %(full_date)s in %(place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1110 ../src/plugins/lib/libnarrate.py:1133
 #, python-format
 msgid ""
-"Unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%"
-"(endnotes)s."
+"Unmarried relationship with %(spouse)s %(modified_date)s in %(place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1116
 #, python-format
 msgid ""
-"This person also had an unmarried relationship with %(spouse)s in %"
-"(partial_date)s in %(place)s%(endnotes)s."
+"This person also had an unmarried relationship with %(spouse)s in "
+"%(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1117
 #, python-format
 msgid ""
-"This person also had an unmarried relationship with %(spouse)s on %"
-"(full_date)s in %(place)s%(endnotes)s."
+"This person also had an unmarried relationship with %(spouse)s on "
+"%(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1118
 #, python-format
 msgid ""
-"This person also had an unmarried relationship with %(spouse)s %"
-"(modified_date)s in %(place)s%(endnotes)s."
+"This person also had an unmarried relationship with %(spouse)s "
+"%(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1121
@@ -16675,15 +16670,15 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1122
 #, python-format
 msgid ""
-"He also had an unmarried relationship with %(spouse)s on %(full_date)s in %"
-"(place)s%(endnotes)s."
+"He also had an unmarried relationship with %(spouse)s on %(full_date)s in "
+"%(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1123
 #, python-format
 msgid ""
-"He also had an unmarried relationship with %(spouse)s %(modified_date)s in %"
-"(place)s%(endnotes)s."
+"He also had an unmarried relationship with %(spouse)s %(modified_date)s in "
+"%(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1126
@@ -16696,15 +16691,15 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1127
 #, python-format
 msgid ""
-"She also had an unmarried relationship with %(spouse)s on %(full_date)s in %"
-"(place)s%(endnotes)s."
+"She also had an unmarried relationship with %(spouse)s on %(full_date)s in "
+"%(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1128
 #, python-format
 msgid ""
-"She also had an unmarried relationship with %(spouse)s %(modified_date)s in %"
-"(place)s%(endnotes)s."
+"She also had an unmarried relationship with %(spouse)s %(modified_date)s in "
+"%(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1139
@@ -16717,57 +16712,57 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1140
 #, python-format
 msgid ""
-"This person had an unmarried relationship with %(spouse)s on %(full_date)s%"
-"(endnotes)s."
+"This person had an unmarried relationship with %(spouse)s on %(full_date)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1141
 #, python-format
 msgid ""
-"This person had an unmarried relationship with %(spouse)s %(modified_date)s%"
-"(endnotes)s."
+"This person had an unmarried relationship with %(spouse)s %(modified_date)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1144
 #, python-format
 msgid ""
-"He had an unmarried relationship with %(spouse)s in %(partial_date)s%"
-"(endnotes)s."
+"He had an unmarried relationship with %(spouse)s in %(partial_date)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1145
 #, python-format
 msgid ""
-"He had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)"
-"s."
+"He had an unmarried relationship with %(spouse)s on %(full_date)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1146
 #, python-format
 msgid ""
-"He had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)"
-"s."
+"He had an unmarried relationship with %(spouse)s %(modified_date)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1149
 #, python-format
 msgid ""
-"She had an unmarried relationship with %(spouse)s in %(partial_date)s%"
-"(endnotes)s."
+"She had an unmarried relationship with %(spouse)s in %(partial_date)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1150
 #, python-format
 msgid ""
-"She had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)"
-"s."
+"She had an unmarried relationship with %(spouse)s on %(full_date)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1151
 #, python-format
 msgid ""
-"She had an unmarried relationship with %(spouse)s %(modified_date)s%"
-"(endnotes)s."
+"She had an unmarried relationship with %(spouse)s %(modified_date)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1154
@@ -16788,64 +16783,64 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1162
 #, python-format
 msgid ""
-"This person also had an unmarried relationship with %(spouse)s in %"
-"(partial_date)s%(endnotes)s."
+"This person also had an unmarried relationship with %(spouse)s in "
+"%(partial_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1163
 #, python-format
 msgid ""
-"This person also had an unmarried relationship with %(spouse)s on %"
-"(full_date)s%(endnotes)s."
+"This person also had an unmarried relationship with %(spouse)s on "
+"%(full_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1164
 #, python-format
 msgid ""
-"This person also had an unmarried relationship with %(spouse)s %"
-"(modified_date)s%(endnotes)s."
+"This person also had an unmarried relationship with %(spouse)s "
+"%(modified_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1167
 #, python-format
 msgid ""
-"He also had an unmarried relationship with %(spouse)s in %(partial_date)s%"
-"(endnotes)s."
+"He also had an unmarried relationship with %(spouse)s in %(partial_date)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1168
 #, python-format
 msgid ""
-"He also had an unmarried relationship with %(spouse)s on %(full_date)s%"
-"(endnotes)s."
+"He also had an unmarried relationship with %(spouse)s on %(full_date)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1169
 #, python-format
 msgid ""
-"He also had an unmarried relationship with %(spouse)s %(modified_date)s%"
-"(endnotes)s."
+"He also had an unmarried relationship with %(spouse)s %(modified_date)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1172
 #, python-format
 msgid ""
-"She also had an unmarried relationship with %(spouse)s in %(partial_date)s%"
-"(endnotes)s."
+"She also had an unmarried relationship with %(spouse)s in %(partial_date)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1173
 #, python-format
 msgid ""
-"She also had an unmarried relationship with %(spouse)s on %(full_date)s%"
-"(endnotes)s."
+"She also had an unmarried relationship with %(spouse)s on %(full_date)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1174
 #, python-format
 msgid ""
-"She also had an unmarried relationship with %(spouse)s %(modified_date)s%"
-"(endnotes)s."
+"She also had an unmarried relationship with %(spouse)s %(modified_date)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1177
@@ -16868,8 +16863,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1184
 #, python-format
 msgid ""
-"This person had an unmarried relationship with %(spouse)s in %(place)s%"
-"(endnotes)s."
+"This person had an unmarried relationship with %(spouse)s in %(place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1185
@@ -16892,22 +16887,22 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1191
 #, python-format
 msgid ""
-"This person also had an unmarried relationship with %(spouse)s in %(place)s%"
-"(endnotes)s."
+"This person also had an unmarried relationship with %(spouse)s in %(place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1192
 #, python-format
 msgid ""
-"He also had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)"
-"s."
+"He also had an unmarried relationship with %(spouse)s in %(place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1193
 #, python-format
 msgid ""
-"She also had an unmarried relationship with %(spouse)s in %(place)s%"
-"(endnotes)s."
+"She also had an unmarried relationship with %(spouse)s in %(place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1198
@@ -16949,15 +16944,15 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1219
 #, python-format
 msgid ""
-"This person had a relationship with %(spouse)s in %(partial_date)s in %"
-"(place)s%(endnotes)s."
+"This person had a relationship with %(spouse)s in %(partial_date)s in "
+"%(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1220
 #, python-format
 msgid ""
-"This person had a relationship with %(spouse)s on %(full_date)s in %(place)s%"
-"(endnotes)s."
+"This person had a relationship with %(spouse)s on %(full_date)s in %(place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1221
@@ -16970,43 +16965,43 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1224
 #, python-format
 msgid ""
-"He had a relationship with %(spouse)s in %(partial_date)s in %(place)s%"
-"(endnotes)s."
+"He had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1225
 #, python-format
 msgid ""
-"He had a relationship with %(spouse)s on %(full_date)s in %(place)s%"
-"(endnotes)s."
+"He had a relationship with %(spouse)s on %(full_date)s in %(place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1226
 #, python-format
 msgid ""
-"He had a relationship with %(spouse)s %(modified_date)s in %(place)s%"
-"(endnotes)s."
+"He had a relationship with %(spouse)s %(modified_date)s in %(place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1229
 #, python-format
 msgid ""
-"She had a relationship with %(spouse)s in %(partial_date)s in %(place)s%"
-"(endnotes)s."
+"She had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1230
 #, python-format
 msgid ""
-"She had a relationship with %(spouse)s on %(full_date)s in %(place)s%"
-"(endnotes)s."
+"She had a relationship with %(spouse)s on %(full_date)s in %(place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1231
 #, python-format
 msgid ""
-"She had a relationship with %(spouse)s %(modified_date)s in %(place)s%"
-"(endnotes)s."
+"She had a relationship with %(spouse)s %(modified_date)s in %(place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1234
@@ -17028,64 +17023,64 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1242
 #, python-format
 msgid ""
-"This person also had a relationship with %(spouse)s in %(partial_date)s in %"
-"(place)s%(endnotes)s."
+"This person also had a relationship with %(spouse)s in %(partial_date)s in "
+"%(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1243
 #, python-format
 msgid ""
-"This person also had a relationship with %(spouse)s on %(full_date)s in %"
-"(place)s%(endnotes)s."
+"This person also had a relationship with %(spouse)s on %(full_date)s in "
+"%(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1244
 #, python-format
 msgid ""
-"This person also had a relationship with %(spouse)s %(modified_date)s in %"
-"(place)s%(endnotes)s."
+"This person also had a relationship with %(spouse)s %(modified_date)s in "
+"%(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1247
 #, python-format
 msgid ""
-"He also had a relationship with %(spouse)s in %(partial_date)s in %(place)s%"
-"(endnotes)s."
+"He also had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1248
 #, python-format
 msgid ""
-"He also had a relationship with %(spouse)s on %(full_date)s in %(place)s%"
-"(endnotes)s."
+"He also had a relationship with %(spouse)s on %(full_date)s in %(place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1249
 #, python-format
 msgid ""
-"He also had a relationship with %(spouse)s %(modified_date)s in %(place)s%"
-"(endnotes)s."
+"He also had a relationship with %(spouse)s %(modified_date)s in %(place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1252
 #, python-format
 msgid ""
-"She also had a relationship with %(spouse)s in %(partial_date)s in %(place)s%"
-"(endnotes)s."
+"She also had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1253
 #, python-format
 msgid ""
-"She also had a relationship with %(spouse)s on %(full_date)s in %(place)s%"
-"(endnotes)s."
+"She also had a relationship with %(spouse)s on %(full_date)s in %(place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1254
 #, python-format
 msgid ""
-"She also had a relationship with %(spouse)s %(modified_date)s in %(place)s%"
-"(endnotes)s."
+"She also had a relationship with %(spouse)s %(modified_date)s in %(place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1257
@@ -17109,8 +17104,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1265
 #, python-format
 msgid ""
-"This person had a relationship with %(spouse)s in %(partial_date)s%(endnotes)"
-"s."
+"This person had a relationship with %(spouse)s in %(partial_date)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1266
@@ -17173,22 +17168,22 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1288
 #, python-format
 msgid ""
-"This person also had a relationship with %(spouse)s in %(partial_date)s%"
-"(endnotes)s."
+"This person also had a relationship with %(spouse)s in %(partial_date)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1289
 #, python-format
 msgid ""
-"This person also had a relationship with %(spouse)s on %(full_date)s%"
-"(endnotes)s."
+"This person also had a relationship with %(spouse)s on %(full_date)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1290
 #, python-format
 msgid ""
-"This person also had a relationship with %(spouse)s %(modified_date)s%"
-"(endnotes)s."
+"This person also had a relationship with %(spouse)s %(modified_date)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1293
