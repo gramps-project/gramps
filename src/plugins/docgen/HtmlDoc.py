@@ -106,6 +106,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         self.title = ''
         self.__title_written = -1  # -1 = not written, 0 = writing, 1 = written
         self.__link_attrs = {}     # additional link attrs, eg {"style": "...", "class": "..."}
+        self.use_table_headers = False # th, td
 
     def set_css_filename(self, css_filename):
         """
@@ -159,7 +160,7 @@ class HtmlDoc(BaseDoc, TextDoc):
                 )
         self._backend.html_header += (meta, links)
 
-    def build_style_declaration(self):
+    def build_style_declaration(self, id="grampstextdoc"):
         """
         Convert the styles of the report into inline css for the html doc
         """
@@ -179,11 +180,12 @@ class HtmlDoc(BaseDoc, TextDoc):
                 left = 'thin solid #000000'
             if style.get_right_border():
                 right = 'thin solid #000000'
-            text.append('#grampstextdoc .%s {\n'
+            text.append('#%s .%s {\n'
                         '\tpadding: %s %s %s %s;\n'
                         '\tborder-top:%s; border-bottom:%s;\n' 
                         '\tborder-left:%s; border-right:%s;\n}' 
-                    % (sname, pad, pad, pad, pad, top, bottom, left, right))
+                    % (id, sname, pad, pad, pad, pad, top, bottom, 
+                       left, right))
 
 
         for style_name in styles.get_paragraph_style_names():
@@ -220,7 +222,7 @@ class HtmlDoc(BaseDoc, TextDoc):
             # do not allow color, set in base css ! 
             #    so no : 'color: %s' % font_color 
             #    so no : 'font-family:%s;' % family
-            text.append('#grampstextdoc .%s {\n'
+            text.append('#%s .%s {\n'
                         '\tfont-size: %dpt;\n' 
                         '\ttext-align: %s; text-indent: %scm;\n' 
                         '\tmargin-right: %scm; margin-left: %scm;\n' 
@@ -228,7 +230,7 @@ class HtmlDoc(BaseDoc, TextDoc):
                         '\tborder-top:%s; border-bottom:%s;\n' 
                         '\tborder-left:%s; border-right:%s;\n' 
                         '\t%s%s\n}' 
-                        % (style_name, font_size, 
+                        % (id, style_name, font_size, 
                            align, text_indent,
                            right_margin, left_margin,
                            top_margin, bottom_margin,
@@ -348,6 +350,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         """
         Overwrite base method
         """
+        self.first_row = True
         styles = self.get_style_sheet()
         self._tbl = styles.get_table_style(style)
         self.htmllist += [Html('table', width=str(self._tbl.get_width())+'%',
@@ -370,19 +373,24 @@ class HtmlDoc(BaseDoc, TextDoc):
         """
         Overwrite base method
         """
+        self.first_row = False
         self.__reduce_list()
 
     def start_cell(self, style_name, span=1):
         """
         Overwrite base method
         """
+        if self.use_table_headers and self.first_row:
+            tag = "th"
+        else:
+            tag = "td"
         self._empty = 1
         if span > 1:
-            self.htmllist += (Html('td', colspan=str(span), 
+            self.htmllist += (Html(tag, colspan=str(span), 
                                     class_=style_name),)
             self._col += span
         else:
-            self.htmllist += (Html('td', colspan=str(span), 
+            self.htmllist += (Html(tag, colspan=str(span), 
                                 width=str(self._tbl.get_column_width(
                                             self._col))+ '%',
                                 class_=style_name),)
