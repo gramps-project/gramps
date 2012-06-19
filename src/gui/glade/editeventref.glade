@@ -86,8 +86,14 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkComboBoxEntry" id="eer_role_combo">
+                  <object class="GtkComboBox" id="eer_role_combo">
                     <property name="visible">True</property>
+                        <property name="has_entry">True</property>
+                        <child internal-child="entry">
+                          <object class="GtkEntry" id="eer_role_combo-entry">
+                            <property name="can_focus">False</property>
+                          </object>
+                        </child>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -343,8 +349,14 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkComboBoxEntry" id="eer_type_combo">
+                      <object class="GtkComboBox" id="eer_type_combo">
                         <property name="visible">True</property>
+                        <property name="has_entry">True</property>
+                        <child internal-child="entry">
+                          <object class="GtkEntry" id="eer_type_combo-entry">
+                            <property name="can_focus">False</property>
+                          </object>
+                        </child>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>

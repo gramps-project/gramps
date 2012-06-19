@@ -630,9 +630,15 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkComboBoxEntry" id="marriage_type">
+                      <object class="GtkComboBox" id="marriage_type">
                         <property name="visible">True</property>
                         <property name="tooltip_text" translatable="yes">The relationship type, eg 'Married' or 'Unmarried'. Use Events for more details.</property>
+                        <property name="has_entry">True</property>
+                        <child internal-child="entry">
+                          <object class="GtkEntry" id="marriage_type-entry">
+                            <property name="can_focus">False</property>
+                          </object>
+                        </child>
                       </object>
                       <packing>
                         <property name="left_attach">3</property>

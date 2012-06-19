@@ -10,7 +10,6 @@
     <property name="default_height">500</property>
     <property name="destroy_with_parent">True</property>
     <property name="type_hint">normal</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox1">
         <property name="visible">True</property>

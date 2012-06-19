@@ -116,7 +116,6 @@ class PatchNames(tool.BatchTool, ManagedWindow):
                                 Gtk.DialogFlags.MODAL|Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                 (Gtk.STOCK_OK, Gtk.ResponseType.ACCEPT))
         
-        winprefix.set_has_separator(False)
         winprefix.vbox.set_spacing(5)
         hboxpref = Gtk.HBox()
         hboxpref.pack_start(Gtk.Label(_('Prefixes to search for:', True, True, 0)), 

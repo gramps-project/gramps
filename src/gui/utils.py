@@ -86,8 +86,6 @@ class CLIDialog:
     """
     def connect(self, signal, callback):
         pass
-    def set_has_separator(self, flag):
-        pass
     def set_title(self, title):
         pass
     def set_border_width(self, width):
@@ -150,7 +148,6 @@ class ProgressMeter(object):
             self.__dialog.connect('delete_event', self.__cancel_callback)
         else:
             self.__dialog.connect('delete_event', self.__warn)
-        self.__dialog.set_has_separator(False)
         self.__dialog.set_title(title)
         self.__dialog.set_border_width(12)
         self.__dialog.vbox.set_spacing(10)

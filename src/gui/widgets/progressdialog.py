@@ -484,7 +484,6 @@ class GtkProgressDialog(Gtk.Dialog):
         """
         GObject.GObject.__init__(self, *window_params)
         self.connect('delete_event', self._warn)
-        self.set_has_separator(False)
         self.set_title(title)
         #self.set_resize_mode(Gtk.RESIZE_IMMEDIATE)
         #self.show()

@@ -167,7 +167,6 @@ class TestcaseGenerator(tool.BatchTool):
         title = "%s - Gramps" % _("Generate testcases")
         self.top = Gtk.Dialog(title)
         self.top.set_default_size(400,150)
-        self.top.set_has_separator(False)
         self.top.vbox.set_spacing(5)
         label = Gtk.Label(label='<span size="larger" weight="bold">%s</span>' % _("Generate testcases"))
         label.set_use_markup(True)

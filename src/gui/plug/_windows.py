@@ -716,7 +716,6 @@ class ToolManagedWindowBase(ManagedWindow):
 
         window = Gtk.Dialog('Tool')
         self.set_window(window, None, self.get_title())
-        #self.window.set_has_separator(False)
 
         #self.window.connect('response', self.close)
         self.cancel = self.window.add_button(Gtk.STOCK_CLOSE,

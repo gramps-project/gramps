@@ -36,9 +36,15 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkComboBoxEntry" id="ntype">
+                      <object class="GtkComboBox" id="ntype">
                         <property name="visible">True</property>
                         <property name="tooltip_text" translatable="yes">An identification of what type of Name this is, eg. Birth Name, Married Name.</property>
+                        <property name="has_entry">True</property>
+                        <child internal-child="entry">
+                          <object class="GtkEntry" id="ntype-entry">
+                            <property name="can_focus">False</property>
+                          </object>
+                        </child>
                       </object>
                       <packing>
                         <property name="expand">False</property>

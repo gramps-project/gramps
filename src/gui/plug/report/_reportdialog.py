@@ -154,7 +154,6 @@ class ReportDialog(ManagedWindow):
 
         window = Gtk.Dialog('Gramps')
         self.set_window(window, None, self.get_title())
-        self.window.set_has_separator(False)
         self.window.set_modal(True)
 
         self.help = self.window.add_button(Gtk.STOCK_HELP, Gtk.ResponseType.HELP)

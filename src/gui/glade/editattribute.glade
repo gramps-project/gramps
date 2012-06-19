@@ -97,12 +97,18 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkComboBoxEntry" id="attr_menu">
+                  <object class="GtkComboBox" id="attr_menu">
                     <property name="visible">True</property>
                     <property name="tooltip_text" translatable="yes">The name of an attribute you want to use. For example: Height (for a person), Weather on this Day (for an event), ... 
 Use this to store snippets of information you collect and want to correctly link to sources. Attributes can be used for people, families, events and media.
  
 Note: several predefined attributes refer to values present in the GEDCOM standard.</property>
+                        <property name="has_entry">True</property>
+                        <child internal-child="entry">
+                          <object class="GtkEntry" id="attr_menu-entry">
+                            <property name="can_focus">False</property>
+                          </object>
+                        </child>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>

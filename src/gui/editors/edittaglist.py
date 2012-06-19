@@ -101,7 +101,6 @@ class EditTagList(ManagedWindow):
         top = Gtk.Dialog(title)
         top.set_default_size(360, 400)
         top.set_modal(True)
-        top.set_has_separator(False)
         top.vbox.set_spacing(5)
 
         columns = [('', -1, 300),

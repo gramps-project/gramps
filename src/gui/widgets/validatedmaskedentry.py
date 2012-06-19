@@ -41,6 +41,7 @@ _LOG = logging.getLogger(".widgets.validatedmaskedentry")
 from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gtk
+from gi.repository import GdkPixbuf
 from gi.repository import Pango
 
 #-------------------------------------------------------------------------
@@ -232,7 +233,7 @@ class Tooltip(Gtk.Window):
     # from gtktooltips.c:gtk_tooltips_paint_window
     def _on__draw_event(self, window, cairo_context):
         w, h = window.size_request()
-        window.style.paint_flat_box(window.window, 
+        window.get_style().paint_flat_box(window.window, 
                                     Gtk.StateType.NORMAL, Gtk.ShadowType.OUT, 
                                     None, window, "tooltip", 
                                     0, 0, w, h)
@@ -411,25 +412,54 @@ class IconEntry(object):
             entry.realize()
 
         # Hack: Save a reference to the text area, now when its created
-        self._text_area = entry.window.get_children()[0]
+        self._text_area = entry.get_root_window().get_children()[0]
         self._text_area_pos = self._text_area.get_position()
 
         # PyGTK should allow default values for most of the values here.
-        win = Gdk.Window(entry.window, 
-                             self._pixw, self._pixh, 
-                             Gdk.WINDOW_CHILD, 
-                             (Gdk.EventMask.ENTER_NOTIFY_MASK |
-                              Gdk.EventMask.LEAVE_NOTIFY_MASK), 
-                             Gdk.INPUT_OUTPUT, 
-                             'icon window', 
-                             0, 0, 
-                             entry.get_visual(), 
-                             entry.get_colormap(), 
-                             Gdk.Cursor.new(entry.get_display(), Gdk.CursorType.LEFT_PTR), 
-                             '', '', True)
+        attr = Gdk.WindowAttr()
+        attr.width = self._pixw
+        attr.height = self._pixh
+        attr.x = 0
+        attr.y = 0
+        attr.cursor = Gdk.Cursor.new_for_display(
+                                entry.get_display(), Gdk.CursorType.LEFT_PTR)
+        #attr.wmclass_name=''
+        #attr.wmclass_class=''
+        attr.override_redirect=True
+        attr.event_mask = (Gdk.EventMask.ENTER_NOTIFY_MASK |
+                              Gdk.EventMask.LEAVE_NOTIFY_MASK)
+        # TODO GTK3 Why can we not set title?
+        #attr.title = 'icon window'
+        attr.wclass = Gdk.WindowWindowClass.INPUT_OUTPUT
+        attr.window_type = Gdk.WindowType.CHILD
+        attr.visual = entry.get_visual()
+        attrmask = (
+                #Gdk.WindowAttributesType.TITLE |
+                Gdk.WindowAttributesType.X |
+                Gdk.WindowAttributesType.Y |
+                Gdk.WindowAttributesType.CURSOR |
+                Gdk.WindowAttributesType.VISUAL |
+                Gdk.WindowAttributesType.NOREDIR
+                )
+        win = Gdk.Window(entry.get_root_window(),
+                         attr,
+                         attrmask)
+##                             Gdk.WindowType.CHILD, 
+##                             (Gdk.EventMask.ENTER_NOTIFY_MASK |
+##                              Gdk.EventMask.LEAVE_NOTIFY_MASK), 
+##                             Gdk.WindowWindowClass.INPUT_OUTPUT, 
+##                             title='icon window', 
+##                             x=0, y=0, 
+##                             visual=entry.get_visual(),
+##                             #TODO GTK3: is there alternative for:
+##                             #colormap=entry.get_colormap(), 
+##                             cursor=Gdk.Cursor.new_for_display(
+##                                entry.get_display(), Gdk.CursorType.LEFT_PTR), 
+##                             wmclass_name='',
+##                             wmclass_class='', override_redirect=True)
         self._icon_win = win
         win.set_user_data(entry)
-        win.set_background(entry.style.base[entry.state])
+        win.set_background(entry.get_style().base[entry.get_state()])
         self._constructed = True
 
     def deconstruct(self):
@@ -453,7 +483,7 @@ class IconEntry(object):
         self.draw_pixbuf()
 
     def get_background(self):
-        return self._entry.style.base[Gtk.StateType.NORMAL]
+        return self._entry.get_style().base[Gtk.StateType.NORMAL]
 
     def resize_windows(self):
         if not self._pixbuf:
@@ -462,8 +492,10 @@ class IconEntry(object):
         icony = iconx = 4
 
         # Make space for the icon, both windows
-        winw = self._entry.window.get_size()[0]
-        textw, texth = self._text_area.get_size()
+        winw = self._entry.get_root_window().get_width()
+        textw = self._text_area.get_width()
+        texth = self._text_area.get_height()
+        #textw, texth = self._text_area.get_size()
         textw = winw - self._pixw - (iconx + icony)
 
         if self._pos == Gtk.PositionType.LEFT:
@@ -486,7 +518,7 @@ class IconEntry(object):
 
         # If the size of the window is large enough, resize and move it
         # Otherwise just move it to the right side of the entry
-        if icon_win.get_size() != (self._pixw, self._pixh):
+        if (icon_win.get_width(), icon_win.get_height()) != (self._pixw, self._pixh):
             icon_win.move_resize(iconx, icony, self._pixw, self._pixh)
         else:
             icon_win.move(iconx, icony)
@@ -501,7 +533,7 @@ class IconEntry(object):
             return
 
         # Draw background first
-        color = self._entry.style.base_gc[self._entry.state]
+        color = self._entry.get_style().base_gc[self._entry.get_state()]
         win.draw_rectangle(color, True, 
                            0, 0, self._pixw, self._pixh)
 
@@ -625,10 +657,10 @@ class MaskedEntry(UndoableEntry):
         if self.get_realized():
             self._icon.resize_windows()
 
-    def do_expose_event(self, event):
-        Gtk.Entry.do_expose_event(self, event)
+    def do_draw(self, cairo_t):
+        Gtk.Entry.do_draw(self, cairo_t)
 
-        if event.window == self.window:
+        if Gtk.cairo_should_draw_window(cairo_t, self.get_root_window()):
             self._icon.draw_pixbuf()
 
     def do_realize(self):

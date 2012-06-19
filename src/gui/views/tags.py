@@ -373,7 +373,6 @@ class OrganizeTagsDialog(object):
         top.set_default_size(400, 350)
         top.set_modal(True)
         top.set_transient_for(self.parent_window)
-        top.set_has_separator(False)
         top.vbox.set_spacing(5)
         label = Gtk.Label(label='<span size="larger" weight="bold">%s</span>'
                           % _("Organize Tags"))
@@ -583,7 +582,6 @@ class EditTag(object):
         top.set_default_size(300, 100)
         top.set_modal(True)
         top.set_transient_for(self.parent_window)
-        top.set_has_separator(False)
         top.vbox.set_spacing(5)
 
         hbox = Gtk.HBox()

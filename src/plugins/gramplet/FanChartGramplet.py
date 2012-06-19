@@ -160,8 +160,8 @@ class FanChartWidget(Gtk.Widget):
         self.window = Gdk.Window(self.get_parent_window(),
                                  width=self.allocation.width,
                                  height=self.allocation.height,
-                                 window_type=Gdk.WINDOW_CHILD,
-                                 wclass=Gdk.INPUT_OUTPUT,
+                                 window_type=Gdk.WindowType.CHILD,
+                                 wclass=Gdk.WindowWindowClass.INPUT_OUTPUT,
                                  event_mask=self.get_events() | Gdk.EventMask.EXPOSURE_MASK)
         if not hasattr(self.window, "cairo_create"):
             self.draw_gc = Gdk.GC(self.window,

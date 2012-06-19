@@ -159,7 +159,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkComboBox" id="quality_box">
+                      <object class="GtkComboBoxText" id="quality_box">
                         <property name="visible">True</property>
                         <property name="model">quality_model</property>
                         <child>
@@ -198,7 +198,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkComboBox" id="type_box">
+                      <object class="GtkComboBoxText" id="type_box">
                         <property name="visible">True</property>
                         <property name="model">type_model</property>
                         <child>
@@ -301,7 +301,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkComboBox" id="start_month_box">
+                      <object class="GtkComboBoxText" id="start_month_box">
                         <property name="visible">True</property>
                         <property name="model">month_model1</property>
                         <child>
@@ -420,7 +420,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkComboBox" id="stop_month_box">
+                      <object class="GtkComboBoxText" id="stop_month_box">
                         <property name="visible">True</property>
                         <property name="model">month_model2</property>
                         <child>
