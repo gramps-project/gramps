@@ -163,6 +163,17 @@ class TableCellStyle(object):
         "Return the cell padding in centimeters"
         self.padding = val
 
+    def set_borders(self, val):
+        """
+        Defines if a border is used
+
+        @param val: if True, a border is used, if False, it is not
+        """
+        self.rborder = val
+        self.lborder = val
+        self.tborder = val
+        self.bborder = val
+
     def set_right_border(self, val):
         """
         Defines if a right border in used
