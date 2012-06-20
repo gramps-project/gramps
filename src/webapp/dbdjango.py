@@ -492,35 +492,59 @@ class DbDjango(DbWriteBase, DbReadBase):
         obj = gen.lib.Researcher()
         return obj
 
-    def get_person_handles(self):
-        return [item.handle for item in self.dji.Person.all()]
+    def get_person_handles(self, sort_handles=False):
+        if sort_handles:
+            return [item.handle for item in self.dji.Person.all().order_by("handle")]
+        else:
+            return [item.handle for item in self.dji.Person.all()]
 
-    def get_family_handles(self):
-        return [item.handle for item in self.dji.Family.all()]
+    def get_family_handles(self, sort_handles=False):
+        if sort_handles:
+            return [item.handle for item in self.dji.Family.all().order_by("handle")]
+        else:
+            return [item.handle for item in self.dji.Family.all()]
 
-    def get_event_handles(self):
-        return [item.handle for item in self.dji.Event.all()]
+    def get_event_handles(self, sort_handles=False):
+        if sort_handles:
+            return [item.handle for item in self.dji.Event.all().order_by("handle")]
+        else:
+            return [item.handle for item in self.dji.Event.all()]
 
-    def get_citation_handles(self):
-        return [item.handle for item in self.dji.Citation.all()]
+    def get_citation_handles(self, sort_handles=False):
+        if sort_handles:
+            return [item.handle for item in self.dji.Citation.all().order_by("handle")]
+        else:
+            return [item.handle for item in self.dji.Citation.all()]
 
-    def get_source_handles(self):
-        return [item.handle for item in self.dji.Source.all()]
+    def get_source_handles(self, sort_handles=False):
+        if sort_handles:
+            return [item.handle for item in self.dji.Source.all().order_by("handle")]
+        else:
+            return [item.handle for item in self.dji.Source.all()]
 
-    def get_place_handles(self):
-        return [item.handle for item in self.dji.Place.all()]
+    def get_place_handles(self, sort_handles=False):
+        if sort_handles:
+            return [item.handle for item in self.dji.Place.all().order_by("handle")]
+        else:
+            return [item.handle for item in self.dji.Place.all()]
 
-    def get_repository_handles(self):
-        return [item.handle for item in self.dji.Repository.all()]
+    def get_repository_handles(self, sort_handles=False):
+        if sort_handles:
+            return [item.handle for item in self.dji.Repository.all().order_by("handle")]
+        else:
+            return [item.handle for item in self.dji.Repository.all()]
 
-    def get_media_object_handles(self):
-        return [item.handle for item in self.dji.Media.all()]
+    def get_media_object_handles(self, sort_handles=False):
+        if sort_handles:
+            return [item.handle for item in self.dji.Media.all().order_by("handle")]
+        else:
+            return [item.handle for item in self.dji.Media.all()]
 
-    def get_note_handles(self):
-        return [item.handle for item in self.dji.Note.all()]
-
-    def get_tag_handles(self, sort_handles=False):
-        return []
+    def get_note_handles(self, sort_handles=False):
+        if sort_handles:
+            return [item.handle for item in self.dji.Note.all().order_by("handle")]
+        else:
+            return [item.handle for item in self.dji.Note.all()]
 
     def get_event_from_handle(self, handle):
         if handle in self.import_cache:
