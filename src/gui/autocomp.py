@@ -139,17 +139,15 @@ class StandardCustomSelector(object):
 
         # create combo box entry
         if cbe:
+            assert cbe.get_has_entry()
             self.selector = cbe
-            self.selector.set_model(self.store)
-            renderer = Gtk.CellRendererText()
-            self.selector.pack_start(renderer, True)
-            self.selector.add_attribute(renderer, 'text', 1)
         else:
             self.selector = Gtk.ComboBox(has_entry=True)
-            self.selector.set_model(self.store)
-            renderer = Gtk.CellRendererText()
-            self.selector.pack_start(renderer, True)
-            self.selector.add_attribute(renderer, 'text', 1)
+        self.selector.set_model(self.store)
+        self.selector.set_entry_text_column(1)
+        #renderer = Gtk.CellRendererText()
+        #self.selector.pack_start(renderer, True)
+        #self.selector.add_attribute(renderer, 'text', 1)
         if self.active_key is not None:
             self.selector.set_active(self.active_index)
 

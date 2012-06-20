@@ -364,7 +364,7 @@ class FlatNodeMap(object):
         :param srtkey_hndl: the (sortkey, handle) tuple that must be inserted
         
         :Returns: path of the row inserted in the treeview
-        :Returns type: integer or None
+        :Returns type: Gtk.TreePath or None
         """
         if srtkey_hndl[1] in self._hndl2index:
             print ('WARNING: Attempt to add row twice to the model (%s)' %
@@ -385,7 +385,7 @@ class FlatNodeMap(object):
         #update self.__corr so it remains correct
         if self._reverse:
             self.__corr = (len(self._index2hndl) - 1, -1)
-        return self.real_path(insert_pos)
+        return Gtk.TreePath((self.real_path(insert_pos),))
     
     def delete(self, srtkey_hndl):
         """
@@ -398,7 +398,7 @@ class FlatNodeMap(object):
         :param srtkey_hndl: the (sortkey, handle) tuple that must be inserted
         
         :Returns: path of the row deleted from the treeview
-        :Returns type: integer or None
+        :Returns type: Gtk.TreePath or None
         """
         #remove it from the full list first
         if not self._identical:
@@ -425,7 +425,7 @@ class FlatNodeMap(object):
         for key, val in self._hndl2index.iteritems():
             if val > index:
                 self._hndl2index[key] -= 1
-        return delpath
+        return Gtk.TreePath((delpath,))
 
 #-------------------------------------------------------------------------
 #
@@ -647,7 +647,7 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
             insert_path = self.node_map.insert(insert_val)
 
             if insert_path is not None:
-                node = self.get_iter(insert_path)
+                node = self.do_get_iter(insert_path)
                 self.row_inserted(insert_path, node)
         else:
             self.node_map.insert(insert_val, allkeyonly=True)
@@ -683,7 +683,7 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         else:
             #the row is visible in the view, is changed, but the order is fixed
             path = self.node_map.get_path_from_handle(handle)
-            node = self.get_iter(path)
+            node = self.do_get_iter(path)[1]
             self.row_changed(path, node)
 
     def handle2path(self, handle):

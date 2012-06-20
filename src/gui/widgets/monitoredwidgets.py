@@ -421,8 +421,8 @@ class MonitoredDataType(object):
         """
         Constructor for the MonitoredDataType class.
 
-        @param obj: Existing ComboBoxEntry widget to use.
-        @type obj: Gtk.ComboBoxEntry
+        @param obj: Existing ComboBox widget to use with has_entry=True.
+        @type obj: Gtk.ComboBox
         @param set_val: The function that sets value of the type in the object
         @type set_val:  method
         @param get_val: The function that gets value of the type in the object.

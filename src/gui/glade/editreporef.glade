@@ -79,7 +79,8 @@
                         <property name="has_entry">True</property>
                         <child internal-child="entry">
                           <object class="GtkEntry" id="media_type-entry">
-                            <property name="can_focus">False</property>
+                        <property name="can_focus">True</property>
+                        <property name="overwrite_mode">True</property>
                           </object>
                         </child>
                       </object>
@@ -333,7 +334,8 @@
                         <property name="has_entry">True</property>
                         <child internal-child="entry">
                           <object class="GtkEntry" id="repo_type-entry">
-                            <property name="can_focus">False</property>
+                        <property name="can_focus">True</property>
+                        <property name="overwrite_mode">True</property>
                           </object>
                         </child>
                           </object>

@@ -345,7 +345,8 @@
                         <property name="has_entry">True</property>
                         <child internal-child="entry">
                           <object class="GtkEntry" id="ntype-entry">
-                            <property name="can_focus">False</property>
+                        <property name="can_focus">True</property>
+                        <property name="overwrite_mode">True</property>
                           </object>
                         </child>
                       </object>
@@ -644,7 +645,8 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="has_entry">True</property>
                             <child internal-child="entry">
                               <object class="GtkEntry" id="cmborigin-entry">
-                                <property name="can_focus">False</property>
+                        <property name="can_focus">True</property>
+                        <property name="overwrite_mode">True</property>
                               </object>
                             </child>
                           </object>

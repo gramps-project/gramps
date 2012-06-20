@@ -198,15 +198,20 @@ class Tooltip(Gtk.Window):
     def _calculate_pos(self, widget):
         screen = widget.get_screen()
 
-        w, h = self.size_request()
+        greq = Gtk.Requisition()
+        greq = self.size_request()
+        w = greq.width
+        h = greq.height
 
-        x, y = widget.window.get_origin()
+        _, x, y = widget.get_window().get_origin()
 
-        if widget.flags() & Gtk.NO_WINDOW:
-            x += widget.allocation.x
-            y += widget.allocation.y
+        # TODO GTK3 No longer WidgetFlags!
+        #if widget.get_state_flags() & Gtk.WidgetFlags.NO_WINDOW:
+        x += widget.get_allocation().width
+        y += widget.get_allocation().height
 
-        x = screen.get_root_window().get_pointer()[0]
+        x = screen.get_root_window().get_pointer()[1]
+        #TODO GTK3, how: x = screen.get_window().get_device_position()[0]
         x -= (w / 2 + Tooltip.BORDER_WIDTH)
 
         pointer_screen, px, py, _ = screen.get_display().get_pointer()
@@ -222,21 +227,26 @@ class Tooltip(Gtk.Window):
         elif x < monitor.x:
             x = monitor.x
 
-        if ((y + h + widget.allocation.height + Tooltip.BORDER_WIDTH) >
+        if ((y + h + widget.get_allocation().height + Tooltip.BORDER_WIDTH) >
             monitor.y + monitor.height):
             y -= h + Tooltip.BORDER_WIDTH
         else:
-            y += widget.allocation.height + Tooltip.BORDER_WIDTH
+            y += widget.get_allocation().height + Tooltip.BORDER_WIDTH
 
         return x, y
 
     # from gtktooltips.c:gtk_tooltips_paint_window
     def _on__draw_event(self, window, cairo_context):
-        w, h = window.size_request()
-        window.get_style().paint_flat_box(window.window, 
-                                    Gtk.StateType.NORMAL, Gtk.ShadowType.OUT, 
-                                    None, window, "tooltip", 
-                                    0, 0, w, h)
+        #GTK3 TODO, paint_flat_box deprecated !!
+        greq = self.size_request()
+        w = greq.width
+        h = greq.height
+        Gtk.render_frame(window.get_style_context(), cairo_context,
+            0,0,w,h)
+        #window.get_style().paint_flat_box(window.window, 
+        #                            Gtk.StateType.NORMAL, Gtk.ShadowType.OUT, 
+        #                            None, window, "tooltip", 
+        #                            0, 0, w, h)
         return False
 
     def _real_display(self, widget):
@@ -374,8 +384,8 @@ class IconEntry(object):
             if not isinstance(pixbuf, GdkPixbuf.Pixbuf):
                 raise TypeError("pixbuf must be a GdkPixbuf")
         else:
-            # Turning of the icon should also restore the background
-            entry.modify_base(Gtk.StateType.NORMAL, None)
+            # Turning off the icon should also restore the background
+            entry.override_background_color(Gtk.StateType.NORMAL, None)
             if not self._pixbuf:
                 return
         self._pixbuf = pixbuf
@@ -412,7 +422,7 @@ class IconEntry(object):
             entry.realize()
 
         # Hack: Save a reference to the text area, now when its created
-        self._text_area = entry.get_root_window().get_children()[0]
+        self._text_area = entry.get_window().get_children()[0]
         self._text_area_pos = self._text_area.get_position()
 
         # PyGTK should allow default values for most of the values here.
@@ -441,7 +451,8 @@ class IconEntry(object):
                 Gdk.WindowAttributesType.VISUAL |
                 Gdk.WindowAttributesType.NOREDIR
                 )
-        win = Gdk.Window(entry.get_root_window(),
+        #the window containing the icon image
+        win = Gdk.Window(entry.get_window(),
                          attr,
                          attrmask)
 ##                             Gdk.WindowType.CHILD, 
@@ -459,17 +470,15 @@ class IconEntry(object):
 ##                             wmclass_class='', override_redirect=True)
         self._icon_win = win
         win.set_user_data(entry)
-        win.set_background(entry.get_style().base[entry.get_state()])
+        #win.set_background(entry.get_style().base[entry.get_state()])
         self._constructed = True
 
     def deconstruct(self):
         if self._icon_win:
-            # This is broken on PyGTK 2.6.x
-            try:
-                self._icon_win.set_user_data(None)
-            except:
-                pass
+            self._icon_win.set_user_data(None)
             # Destroy not needed, called by the GC.
+            # TODO GTK3: we see error:  Gdk-WARNING **: losing last reference to undestroyed window
+            # TODO Investigate
             self._icon_win = None
 
     def update_background(self, color):
@@ -478,12 +487,27 @@ class IconEntry(object):
         if not self._icon_win:
             return
 
-        self._entry.modify_base(Gtk.StateType.NORMAL, color)
+        maxvalcol = 65535.
+        if color:
+            red = int(color.red/ maxvalcol*255)
+            green = int(color.green/ maxvalcol*255)
+            blue = int(color.blue/ maxvalcol*255)
+            rgba = Gdk.RGBA()
+            Gdk.RGBA.parse(rgba, 'rgb(%f,%f,%f)'%(red, green, blue))
+            self._entry.override_background_color(Gtk.StateType.NORMAL, rgba)
+        else:
+            self._entry.override_background_color(Gtk.StateType.NORMAL, None)
 
         self.draw_pixbuf()
 
     def get_background(self):
-        return self._entry.get_style().base[Gtk.StateType.NORMAL]
+        """ Return default background color as a Gdk.Color """
+        backcol = self._entry.get_style_context().get_background_color(Gtk.StateType.NORMAL)
+        bcol= Gdk.Color.parse('#fff')[1]
+        bcol.red = int(backcol.red * 65535)
+        bcol.green = int(backcol.green * 65535)
+        bcol.blue = int(backcol.blue * 65535)
+        return bcol
 
     def resize_windows(self):
         if not self._pixbuf:
@@ -492,11 +516,15 @@ class IconEntry(object):
         icony = iconx = 4
 
         # Make space for the icon, both windows
-        winw = self._entry.get_root_window().get_width()
-        textw = self._text_area.get_width()
-        texth = self._text_area.get_height()
-        #textw, texth = self._text_area.get_size()
-        textw = winw - self._pixw - (iconx + icony)
+        # GTK 3 gives for entry the sizes for the entire editor
+        geom =self._text_area.get_geometry()
+        origx = geom[0]
+        origy = geom[1]
+        origw = geom[2]
+        origh = geom[3]
+        textw = origw
+        texth = origh
+        textw = textw - self._pixw - (iconx + icony)
 
         if self._pos == Gtk.PositionType.LEFT:
             textx, texty = self._text_area_pos
@@ -519,9 +547,10 @@ class IconEntry(object):
         # If the size of the window is large enough, resize and move it
         # Otherwise just move it to the right side of the entry
         if (icon_win.get_width(), icon_win.get_height()) != (self._pixw, self._pixh):
-            icon_win.move_resize(iconx, icony, self._pixw, self._pixh)
+            icon_win.move_resize(origx + origw - self._pixw, icony + origy, 100, 100)
+            icon_win.move_resize(origx + origw - self._pixw, icony + origy, self._pixw, self._pixh)
         else:
-            icon_win.move(iconx, icony)
+            icon_win.move(origx + origw - self._pixw, icony + origy)
 
     def draw_pixbuf(self):
         if not self._pixbuf:
@@ -533,15 +562,21 @@ class IconEntry(object):
             return
 
         # Draw background first
-        color = self._entry.get_style().base_gc[self._entry.get_state()]
-        win.draw_rectangle(color, True, 
-                           0, 0, self._pixw, self._pixh)
+        color = self._entry.get_style_context().get_background_color(
+                                            self._entry.get_state())
+        ## TODO GTK3 no more draw_rectangle
+        cairo_t = Gdk.cairo_create(win)
+        Gdk.cairo_set_source_rgba(cairo_t, color)
+        #win.draw_rectangle(color, True, 
+        #                   0, 0, self._pixw, self._pixh)
 
         # If sensitive draw the icon, regardless of the window emitting the
         # event since makes it a bit smoother on resize
-        if self._entry.flags() & Gtk.SENSITIVE:
-            win.draw_pixbuf(None, self._pixbuf, 0, 0, 0, 0, 
-                            self._pixw, self._pixh)
+        if self._entry.get_sensitive():
+            Gdk.cairo_set_source_pixbuf(cairo_t, self._pixbuf, 0, 0)
+            #TODO GTK3: win not visible under red/white part of gtkEntry, no icon also!
+            #TODO GTK3: deprecate the icon? Use button indication on edit date button?
+            win.show()
 
     def _update_position(self):
         if self._entry.get_property('xalign') > 0.5:
@@ -649,6 +684,7 @@ class MaskedEntry(UndoableEntry):
 
         self._block_insert = False
         self._block_delete = False
+        self.in_do_draw = False
 
     # Virtual methods, note do_size_alloc needs gtk 2.9 +
     def do_size_allocate(self, allocation):
@@ -658,9 +694,10 @@ class MaskedEntry(UndoableEntry):
             self._icon.resize_windows()
 
     def do_draw(self, cairo_t):
+        #TODO GTK3: It seems this is called in a loop, test, add print here
         Gtk.Entry.do_draw(self, cairo_t)
 
-        if Gtk.cairo_should_draw_window(cairo_t, self.get_root_window()):
+        if Gtk.cairo_should_draw_window(cairo_t, self.get_window()):
             self._icon.draw_pixbuf()
 
     def do_realize(self):
@@ -939,7 +976,7 @@ class MaskedEntry(UndoableEntry):
         else:
             match_func = self._completion_normal_match_func
         completion = self._get_completion()
-        completion.set_match_func(match_func)
+        completion.set_match_func(match_func, None)
 
     def is_empty(self):
         text = self.get_text()
@@ -1035,7 +1072,7 @@ class MaskedEntry(UndoableEntry):
         content = model[iter][COL_TEXT]
         return content.startswith(self.get_text())
 
-    def _completion_normal_match_func(self, completion, key, iter):
+    def _completion_normal_match_func(self, completion, key, iter, data=None):
         model = completion.get_model()
         if not len(model):
             return
@@ -1043,7 +1080,7 @@ class MaskedEntry(UndoableEntry):
         content = model[iter][COL_TEXT].lower()
         return key.lower() in content
 
-    def _on_completion__match_selected(self, completion, model, iter):
+    def _on_completion__match_selected(self, completion, model, iter, data=None):
         if not len(model):
             return
 
