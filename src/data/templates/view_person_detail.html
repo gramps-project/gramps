@@ -94,6 +94,7 @@
     <li class="ui-corner-top ui-state-default"><a href="#tab-association">Associations</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-lds">LDS</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-references">References</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-history">History</a></li>
   </ul>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-events"> 
     <!-- Events -->
@@ -129,6 +130,9 @@
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-references">
     {% person_reference_table person user action %}
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-history">
+    {% history_table person user action %}
   </div>
 </div>
 

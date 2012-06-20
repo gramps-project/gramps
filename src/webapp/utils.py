@@ -80,6 +80,7 @@ util_tags = [
     'render_name',
     "get_person_from_handle", 
     "event_table",
+    "history_table",
     "name_table",
     "surname_table",
     "citation_table",
@@ -323,6 +324,31 @@ def event_table(obj, user, action, url, args):
         retval += make_button(_("Share Event"), (url % args).replace("$act", "share"))
     else:
         retval += nbsp("") # to keep tabs same height
+    return retval
+
+def history_table(obj, user, action):
+    retval = ""
+    table = Table("history_table")
+    table.columns(
+        _("Action"), 
+        _("Comment"),
+        )
+    if user.is_authenticated():
+        obj_type = ContentType.objects.get_for_model(obj)
+        for entry in models.Log.objects.filter(
+            object_id=obj.id, 
+            object_type=obj_type):
+            table.row(
+                "%s on %s by %s" % (entry.log_type, 
+                                    entry.last_changed,
+                                    entry.last_changed_by),
+                entry.reason)
+        table.row(
+            "Latest on %s by %s" % (obj.last_changed,
+                                     obj.last_changed_by),
+            "Current status")
+    retval += table.get_html()
+    retval += nbsp("") # to keep tabs same height
     return retval
 
 def name_table(obj, user, action, url=None, *args):

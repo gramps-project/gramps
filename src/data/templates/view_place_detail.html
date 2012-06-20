@@ -57,6 +57,7 @@
     <li class="ui-corner-top ui-state-default"><a href="#tab-media">Media</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-internet">Internet</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-references">References</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-history">History</a></li>
   </ul>
   <div class="ui-tab-panel ui-widget-content ui-corner-bottom" id="tab-locations">
     <!-- place.location_set  -->
@@ -78,6 +79,9 @@
   </div>
   <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-references">
     {% place_reference_table place user action %}
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-history">
+    {% history_table place user action %}
   </div>
 </div>
 </div>

@@ -52,6 +52,7 @@
     <li class="ui-corner-top ui-state-default"><a href="#tab-internet">Internet</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Notes</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-references">References</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-history">History</a></li>
   </ul>
   <div class="ui-tab-panel ui-widget-content ui-corner-bottom" id="tab-addresses">
     {% address_table repository user action "/address/add/repository/%s" repository.handle %}
@@ -64,6 +65,9 @@
   </div>
   <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-references">
     {% repository_reference_table repository user action %}
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-history">
+    {% history_table repository user action %}
   </div>
 </div>
 
