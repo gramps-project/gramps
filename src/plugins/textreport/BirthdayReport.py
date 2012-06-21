@@ -39,7 +39,7 @@ import datetime, time
 #------------------------------------------------------------------------
 from gen.display.name import displayer as global_name_display
 from gen.errors import ReportError
-from gen.lib import NameType, EventType, Name, Date, Person
+from gen.lib import NameType, EventType, Name, Date, Person, Surname
 from gen.relationship import get_relationship_calculator
 from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                              FONT_SERIF, PARA_ALIGN_RIGHT,
@@ -257,7 +257,7 @@ class CalendarReport(Report):
                                     if father is not None:
                                         primary_name = father.get_primary_name()
                                         if primary_name:
-                                            father_lastname = primary_name.get_primary_surname()
+                                            father_lastname = Surname.get_surname(primary_name.get_primary_surname())
 
                 short_name = self.get_name(person, father_lastname)
 
