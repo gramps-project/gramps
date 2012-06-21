@@ -1229,17 +1229,13 @@ class GtkDocText(GtkDocBaseElement):
     # line spacing is not defined in ParagraphStyle
     spacingfractionfont = 0.2
     
-    def __init__(self, style, vertical_alignment, text, x, y,
-                 angle=0, mark=None):
+    def __init__(self, style, vertical_alignment, text, x, y, angle=0):
         GtkDocBaseElement.__init__(self, style)
         self._align_y = vertical_alignment
         self._text = text
         self._x = x
         self._y = y
         self._angle = angle
-        self._marklist = []
-        if mark:
-            self._marklist = [mark]
         
     def draw(self, cr, layout, width, dpi_x, dpi_y):
         text_x = self._x * dpi_x / 2.54
@@ -1300,12 +1296,6 @@ class GtkDocText(GtkDocBaseElement):
         cr.restore()
 
         return layout_height
-
-    def get_marks(self):
-        """
-        Return the index mark for this text
-        """
-        return self._marklist
 
 #------------------------------------------------------------------------
 #
@@ -1567,7 +1557,7 @@ links (like ODF) and write PDF from that format.
         new_polygon = GtkDocPolygon(style, path)
         self._active_element.add_child(new_polygon)
         
-    def draw_box(self, style_name, text, x, y, w, h, mark=None):
+    def draw_box(self, style_name, text, x, y, w, h):
         # we handle the box and...
         style_sheet = self.get_style_sheet()
         style = style_sheet.get_draw_style(style_name)
@@ -1590,10 +1580,10 @@ links (like ODF) and write PDF from that format.
                 
             new_text = GtkDocText(paragraph_style, 'center', 
                                   self.__markup(text),
-                                  x + x_offset , y + h / 2, angle=0, mark=mark)
+                                  x + x_offset , y + h / 2, angle=0)
             self._active_element.add_child(new_text)
     
-    def draw_text(self, style_name, text, x, y, mark=None):
+    def draw_text(self, style_name, text, x, y):
         style_sheet = self.get_style_sheet()
         style = style_sheet.get_draw_style(style_name)
         paragraph_style_name = style.get_paragraph_style()
@@ -1601,10 +1591,10 @@ links (like ODF) and write PDF from that format.
         paragraph_style.set_alignment(PARA_ALIGN_LEFT)
         
         new_text = GtkDocText(paragraph_style, 'top', 
-                              self.__markup(text), x, y, angle=0, mark=mark)
+                              self.__markup(text), x, y, angle=0)
         self._active_element.add_child(new_text)
         
-    def center_text(self, style_name, text, x, y, mark=None):
+    def center_text(self, style_name, text, x, y):
         style_sheet = self.get_style_sheet()
         style = style_sheet.get_draw_style(style_name)
         paragraph_style_name = style.get_paragraph_style()
@@ -1612,10 +1602,10 @@ links (like ODF) and write PDF from that format.
         paragraph_style.set_alignment(PARA_ALIGN_CENTER)
         
         new_text = GtkDocText(paragraph_style, 'top', 
-                              self.__markup(text), x, y, angle=0, mark=mark)
+                              self.__markup(text), x, y, angle=0)
         self._active_element.add_child(new_text)
     
-    def rotate_text(self, style_name, text, x, y, angle, mark=None):
+    def rotate_text(self, style_name, text, x, y, angle):
         style_sheet = self.get_style_sheet()
         style = style_sheet.get_draw_style(style_name)
         paragraph_style_name = style.get_paragraph_style()
@@ -1623,7 +1613,7 @@ links (like ODF) and write PDF from that format.
         paragraph_style.set_alignment(PARA_ALIGN_CENTER)
         
         new_text = GtkDocText(paragraph_style, 'center', 
-                              self.__markup(text), x, y, angle, mark=mark)
+                              self.__markup([text]), x, y, angle)
         self._active_element.add_child(new_text)
     
     # paginating and drawing interface
@@ -1695,4 +1685,5 @@ links (like ODF) and write PDF from that format.
             cr.stroke()
 
         self._pages[page_nr].draw(cr, layout, width, dpi_x, dpi_y)
+
 
