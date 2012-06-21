@@ -38,7 +38,7 @@ import datetime, time
 #------------------------------------------------------------------------
 from gen.display.name import displayer as _nd
 from Errors import ReportError
-from gen.lib import NameType, EventType, Name, Date, Person
+from gen.lib import NameType, EventType, Name, Date, Person, Surname
 import Relationship
 from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                              FONT_SERIF, PARA_ALIGN_RIGHT,
@@ -242,7 +242,9 @@ class CalendarReport(Report):
                                 if father_handle:
                                     father = self.database.get_person_from_handle(father_handle)
                                     if father is not None:
-                                        father_lastname = father.get_primary_name().surname
+                                        primary_name = father.get_primary_name()
+                                        if primary_name:
+                                            father_lastname = Surname.get_surname(primary_name.get_primary_surname())
                 short_name = self.get_name(person, father_lastname)
 
                 alive = probably_alive(person, self.database, prob_alive_date)
