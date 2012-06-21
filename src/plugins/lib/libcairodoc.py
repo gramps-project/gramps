@@ -1439,7 +1439,8 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
             # calls. This way we save the markup created by the report
             # The markup in the note editor is not in the text so is not 
             # considered. It must be added by pango too
-            return self._backend.ESCAPE_FUNC()(text)
+            text = self._backend.ESCAPE_FUNC()(text)
+        return text
 
     def __write_text(self, text, mark=None, markup=False, links=False):
         """
