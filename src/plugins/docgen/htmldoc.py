@@ -46,7 +46,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules 
 #
 #------------------------------------------------------------------------
-import ImgManip
+from gen.utils.image import resize_to_jpeg
 import const
 from gen.plug.docgen import BaseDoc, TextDoc, FONT_SANS_SERIF, URL_PATTERN
 from libhtmlbackend import HtmlBackend, process_spaces
@@ -549,7 +549,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         imdir = self._backend.datadirfull()
 
         try:
-            ImgManip.resize_to_jpeg(name, imdir + os.sep + refname, size, size, crop=crop)
+            resize_to_jpeg(name, imdir + os.sep + refname, size, size, crop=crop)
         except:
             LOG.warn(_("Could not create jpeg version of image %(name)s") % 
                         {'name' : name})

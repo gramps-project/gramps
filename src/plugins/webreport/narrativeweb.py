@@ -92,7 +92,7 @@ import Utils
 from gen.utils.referent import get_source_and_citation_referents
 from gen.constfunc import win
 from gui.thumbnails import get_thumbnail_path, run_thumbnailer
-import ImgManip
+from gen.utils.image import image_size, resize_to_jpeg_buffer
 import gen.mime
 from gen.display.name import displayer as _nd
 from gen.datehandler import displayer as _dd
@@ -3942,7 +3942,7 @@ class MediaPage(BasePage):
                             # have to await a large download unnecessarily. Either way, set
                             # the display image size as requested.
                             orig_image_path = Utils.media_path_full(self.dbase_, media.get_path())
-                            (width, height) = ImgManip.image_size(orig_image_path)
+                            (width, height) = image_size(orig_image_path)
                             max_width = self.report.options['maxinitialimagewidth']
                             max_height = self.report.options['maxinitialimageheight']
                             if width != 0 and height != 0:
@@ -3960,7 +3960,7 @@ class MediaPage(BasePage):
                                 # scale factor is significant enough to warrant making a smaller image
                                 initial_image_path = '%s_init.jpg' % os.path.splitext(newpath)[0]
                                 size = [new_width, new_height]
-                                initial_image_data = ImgManip.resize_to_jpeg_buffer(orig_image_path, size)
+                                initial_image_data = resize_to_jpeg_buffer(orig_image_path, size)
                                 new_width = size[0] # In case it changed because of keeping the ratio
                                 new_height = size[1]
                                 if self.report.archive:

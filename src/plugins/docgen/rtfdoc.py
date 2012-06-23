@@ -41,7 +41,7 @@ LOG = logging.getLogger(".rtfdoc")
 from gen.plug.docgen import (BaseDoc, TextDoc, FONT_SERIF, PARA_ALIGN_RIGHT,
                              PARA_ALIGN_CENTER, PARA_ALIGN_JUSTIFY,
                              URL_PATTERN)
-import ImgManip
+from gen.utils.image import image_size, image_actual_size, resize_to_jpeg_buffer
 from gen.errors import ReportError
 import Utils
 
@@ -395,18 +395,18 @@ class RTFDoc(BaseDoc,TextDoc):
     #--------------------------------------------------------------------
     def add_media_object(self, name, pos, x_cm, y_cm, alt='', style_name=None, crop=None):
 
-        nx, ny = ImgManip.image_size(name)
+        nx, ny = image_size(name)
 
         if (nx, ny) == (0,0):
             return
 
-        (act_width, act_height) = ImgManip.image_actual_size(x_cm, y_cm, nx, ny)
+        (act_width, act_height) = image_actual_size(x_cm, y_cm, nx, ny)
 
         act_width = twips(act_width)
         act_height = twips(act_height)
 
         size = [act_width, act_height]
-        buf = ImgManip.resize_to_jpeg_buffer(name, size, crop=crop)
+        buf = resize_to_jpeg_buffer(name, size, crop=crop)
         act_width = size[0] # In case it changed because of cropping or keeping the ratio
         act_height = size[1]
 

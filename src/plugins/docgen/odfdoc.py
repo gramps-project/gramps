@@ -88,7 +88,7 @@ from gen.plug.docgen.fontscale import string_width
 from libodfbackend import OdfBackend
 import const
 from gen.plug.report import utils as ReportUtils
-import ImgManip
+from gen.utils.image import image_size, image_dpi, image_actual_size
 from gen.errors import ReportError
 
 #-------------------------------------------------------------------------
@@ -1007,7 +1007,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
 
         # try to open the image. If the open fails, it probably wasn't
         # a valid image (could be a PDF, or a non-image)
-        (x, y) = ImgManip.image_size(file_name)
+        (x, y) = image_size(file_name)
         if (x, y) == (0, 0):
             return
         
@@ -1027,10 +1027,10 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         pos = pos.title() if pos in ['left', 'right', 'single'] else 'Row'
 
         if crop:
-            dpi = ImgManip.image_dpi(file_name)
+            dpi = image_dpi(file_name)
 
             if dpi:
-                (act_width, act_height) = ImgManip.image_actual_size(
+                (act_width, act_height) = image_actual_size(
                     x_cm, y_cm, crop[2] - crop[0], crop[3] - crop[1]
                 )
 
@@ -1047,9 +1047,9 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
 
                 pos += "_" + str(crop)
             else:
-                (act_width, act_height) = ImgManip.image_actual_size(x_cm, y_cm, x, y)
+                (act_width, act_height) = image_actual_size(x_cm, y_cm, x, y)
         else:
-            (act_width, act_height) = ImgManip.image_actual_size(x_cm, y_cm, x, y)
+            (act_width, act_height) = image_actual_size(x_cm, y_cm, x, y)
 
         if len(alt):
             self.cntnt.write(

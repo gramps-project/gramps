@@ -15,7 +15,6 @@ gdirdir=$(prefix)/share/gramps
 gdir_PYTHON = \
 	const.py\
 	gramps.py\
-	ImgManip.py\
 	LdsUtils.py \
 	MacTransUtils.py\
 	TransUtils.py\

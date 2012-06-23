@@ -13,6 +13,7 @@ pkgpython_PYTHON = \
 	callman.py \
 	configmanager.py \
 	fallback.py \
+	image.py \
 	place.py \
 	referent.py
 

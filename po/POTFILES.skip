@@ -3,9 +3,6 @@
 #   Python files
 #
 
-#src
-src/ImgManip.py
-
 # cli
 src/cli/__init__.py
 src/cli/user.py
@@ -214,6 +211,7 @@ src/gen/simple/_simpledoc.py
 src/gen/utils/__init__.py
 src/gen/utils/callback.py
 src/gen/utils/callman.py
+src/gen/utils/image.py
 src/gen/utils/referent.py
 
 # gui - GUI code

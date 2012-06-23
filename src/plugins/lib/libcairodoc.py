@@ -49,7 +49,7 @@ from gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc, ParagraphStyle,
 from gen.plug.report import utils as ReportUtils
 from gen.errors import PluginError
 from gen.plug.docbackend import CairoBackend
-import ImgManip
+from gen.utils.image import resize_to_buffer
 
 #------------------------------------------------------------------------
 #
@@ -1016,9 +1016,8 @@ class GtkDocPicture(GtkDocBaseElement):
             l_margin = 0
         
         # load the image and get its extents
-        pixbuf = ImgManip.resize_to_buffer(self._filename,
-                                           [img_width, img_height],
-                                           self._crop)
+        pixbuf = resize_to_buffer(self._filename, [img_width, img_height], 
+                                  self._crop)
         pixbuf_width = pixbuf.get_width()
         pixbuf_height = pixbuf.get_height()
         
