@@ -14,6 +14,7 @@ pkgpython_PYTHON = \
 	configmanager.py \
 	fallback.py \
 	image.py \
+	lds.py \
 	place.py \
 	referent.py
 

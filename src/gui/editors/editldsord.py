@@ -47,7 +47,7 @@ import gtk
 #-------------------------------------------------------------------------
 import gen.lib
 from gen.display.name import displayer as name_displayer
-import LdsUtils
+from gen.utils.lds import TEMPLES
 from gui.glade import Glade
 from editsecondary import EditSecondary
 from objectentries import PlaceEntry
@@ -205,7 +205,7 @@ class EditLdsOrd(EditSecondary):
             self.top.get_object('temple'),
             self.obj.set_temple,
             self.obj.get_temple,
-            LdsUtils.TEMPLES.name_code_data(),
+            TEMPLES.name_code_data(),
             self.db.readonly)
         self.track_ref_for_deletion('temple_menu')
 
@@ -391,7 +391,7 @@ class EditFamilyLdsOrd(EditSecondary):
             self.top.get_object('temple'),
             self.obj.set_temple,
             self.obj.get_temple,
-            LdsUtils.TEMPLES.name_code_data(),
+            TEMPLES.name_code_data(),
             self.db.readonly)
         self.track_ref_for_deletion('temple_menu')
 

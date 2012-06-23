@@ -54,7 +54,7 @@ import gen.mime
 from gui.plug import tool
 import Utils
 from gui.utils import ProgressMeter
-import LdsUtils
+from gen.utils.lds import TEMPLES
 from gen.db.dbconst import *
 import const
 
@@ -1535,7 +1535,7 @@ class TestcaseGenerator(tool.BatchTool):
 
         if isinstance(o,gen.lib.LdsOrd):
             if randint(0,1) == 1:
-                o.set_temple( choice( LdsUtils.TEMPLES.name_code_data())[1])
+                o.set_temple( choice(TEMPLES.name_code_data())[1])
 
         if issubclass(o.__class__,gen.lib.ldsordbase.LdsOrdBase):
             while randint(0,1) == 1:

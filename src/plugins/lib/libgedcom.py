@@ -118,7 +118,7 @@ import gen.lib
 from gen.db import DbTxn
 from gen.updatecallback import UpdateCallback
 import gen.mime
-import LdsUtils
+from gen.utils.lds import TEMPLES
 import Utils
 from gen.datehandler._dateparser import DateParser
 from gen.db.dbconst import EVENT_KEY
@@ -7136,10 +7136,10 @@ class GedcomParser(UpdateCallback):
 
     def __extract_temple(self, line):
         def get_code(code):
-            if LdsUtils.TEMPLES.is_valid_code(code):
+            if TEMPLES.is_valid_code(code):
                 return code
-            elif LdsUtils.TEMPLES.is_valid_name(code):
-                return LdsUtils.TEMPLES.code(code)
+            elif TEMPLES.is_valid_name(code):
+                return TEMPLES.code(code)
         
         code = get_code(line.data)
         if code: 
