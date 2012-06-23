@@ -55,7 +55,7 @@ if gtk.pygtk_version < (2,3,93):
 from gen.display.name import displayer as name_displayer
 from gen.ggettext import gettext as _
 from gen.plug import Gramplet
-from Utils import (find_children, find_parents, find_witnessed_people)
+from gen.utils.tree import (find_children, find_parents, find_witnessed_people)
 from libformatting import FormattingHelper
 import gen.lib
 from gen.errors import WindowActiveError

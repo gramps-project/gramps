@@ -21,6 +21,7 @@ pkgpython_PYTHON = \
 	place.py \
 	referent.py \
 	trans.py \
+	tree.py \
 	unknown.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen/utils
