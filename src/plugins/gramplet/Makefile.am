@@ -7,41 +7,41 @@
 pkgpythondir = $(datadir)/@PACKAGE@/plugins/gramplet
 
 pkgpython_PYTHON = \
-	AgeOnDateGramplet.py \
-	AgeStats.py \
-	Attributes.py \
-	AttributesGramplet.py \
-	Backlinks.py \
-	CalendarGramplet.py \
-	Children.py \
-	Citations.py \
-	DescendGramplet.py \
-        EditExifMetadata.py \
-	Events.py \
-	FanChartGramplet.py \
-	FaqGramplet.py \
-	Filter.py \
-	Gallery.py \
-	GivenNameGramplet.py \
+	ageondategramplet.py \
+	agestats.py \
+	attributes.py \
+	attributesgramplet.py \
+	backlinks.py \
+	calendargramplet.py \
+	children.py \
+	citations.py \
+	descendgramplet.py \
+        editexifmetadata.py \
+	events.py \
+	fanchartgramplet.py \
+	faqgramplet.py \
+	filter.py \
+	gallery.py \
+	givennamegramplet.py \
 	gramplet.gpr.py \
-	MediaPreview.py \
-	MetadataViewer.py \
-	Notes.py \
-	PedigreeGramplet.py \
-	PersonDetails.py \
-	PersonResidence.py \
-	PlaceDetails.py \
-	PluginManagerGramplet.py\
-	QuickViewGramplet.py \
-	RelativeGramplet.py \
-	RepositoryDetails.py \
-	SessionLogGramplet.py \
-	StatsGramplet.py \
-	SurnameCloudGramplet.py \
-	ToDoGramplet.py \
-	TopSurnamesGramplet.py \
-	WelcomeGramplet.py \
-	WhatsNext.py
+	mediapreview.py \
+	metadataviewer.py \
+	notes.py \
+	pedigreegramplet.py \
+	persondetails.py \
+	personresidence.py \
+	placedetails.py \
+	pluginmanagergramplet.py\
+	quickviewgramplet.py \
+	relativegramplet.py \
+	repositorydetails.py \
+	sessionloggramplet.py \
+	statsgramplet.py \
+	surnamecloudgramplet.py \
+	todogramplet.py \
+	topsurnamesgramplet.py \
+	welcomegramplet.py \
+	whatsnext.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/gramplet
 

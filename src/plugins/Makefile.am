@@ -26,9 +26,9 @@ pkgdatadir = $(datadir)/@PACKAGE@/plugins
 
 pkgpython_PYTHON = \
     bookreport.gpr.py\
-	BookReport.py\
+	bookreport.py\
 	records.gpr.py\
-	Records.py
+	records.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins
 pkgpythondir = $(datadir)/@PACKAGE@/plugins

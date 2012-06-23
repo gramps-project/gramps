@@ -8,14 +8,14 @@ pkgdatadir = $(datadir)/@PACKAGE@/plugins/import
 
 pkgpython_PYTHON = \
 	import.gpr.py \
-	ImportCsv.py \
-	ImportGedcom.py \
-	ImportGeneWeb.py \
-	ImportGpkg.py \
-	ImportGrdb.py \
-	ImportProGen.py \
-	ImportVCard.py \
-	ImportXml.py
+	importcsv.py \
+	importgedcom.py \
+	importgeneweb.py \
+	importgpkg.py \
+	importgrdb.py \
+	importprogen.py \
+	importvcard.py \
+	importxml.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/import
 pkgpythondir = $(datadir)/@PACKAGE@/plugins/import

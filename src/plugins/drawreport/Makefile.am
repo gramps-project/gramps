@@ -7,13 +7,13 @@
 pkgpythondir = $(datadir)/@PACKAGE@/plugins/drawreport
 
 pkgpython_PYTHON = \
-	AncestorTree.py \
-	Calendar.py\
-	DescendTree.py \
+	ancestortree.py \
+	calendar.py\
+	descendtree.py \
 	drawplugins.gpr.py\
-	FanChart.py \
-	StatisticsChart.py \
-	TimeLine.py
+	fanchart.py \
+	statisticschart.py \
+	timeline.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/drawreport
 

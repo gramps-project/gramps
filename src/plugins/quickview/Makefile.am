@@ -7,18 +7,18 @@
 pkgdatadir = $(datadir)/@PACKAGE@/plugins/quickview
 
 pkgpython_PYTHON = \
-	AgeOnDate.py \
+	ageondate.py \
 	all_events.py \
 	all_relations.py \
-	AttributeMatch.py \
-	FilterByName.py \
+	attributematch.py \
+	filterbyname.py \
 	lineage.py \
-	OnThisDay.py \
+	onthisday.py \
 	quickview.gpr.py \
-	References.py \
-	LinkReferences.py \
-	Reporef.py \
-	SameSurnames.py\
+	references.py \
+	linkreferences.py \
+	reporef.py \
+	samesurnames.py\
 	siblings.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/quickview
