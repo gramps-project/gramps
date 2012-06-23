@@ -14,6 +14,7 @@ pkgpython_PYTHON = \
 	configmanager.py \
 	fallback.py \
 	image.py \
+	keyword.py \
 	lds.py \
 	mactrans.py \
 	place.py \

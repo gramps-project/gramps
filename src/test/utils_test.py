@@ -25,7 +25,8 @@
 import unittest
 from test import test_util
 test_util.path_append_parent() 
-import Utils
+from gen.utils.keyword import (KEYWORDS, get_translation_from_keyword, 
+                               get_keyword_from_translation)
 
 class TestCase(unittest.TestCase):
     count = 1
@@ -38,11 +39,11 @@ class TestCase(unittest.TestCase):
     def helper(self, *args):
         method_name, test_type, item1, item2 = args
         if test_type == "keyword":
-            result = Utils.get_translation_from_keyword(item1)
+            result = get_translation_from_keyword(item1)
             self.assertTrue(result == item2,
                             "get_translation_from_keyword('%s') returned '%s' rather than '%s'" % (item1, result, item2))
         elif test_type == "translation":
-            result = Utils.get_keyword_from_translation(item1)
+            result = get_keyword_from_translation(item1)
             self.assertTrue(result == item2,
                             "get_keyword_from_translation('%s') returned '%s' rather than '%s'" % (item1, result, item2))
         else:
@@ -52,7 +53,7 @@ def suite1():
     """
     """
     suite = unittest.TestSuite()
-    for line in Utils.KEYWORDS:
+    for line in KEYWORDS:
         keyword, code, standard, upper = line
         suite.addTest(TestCase('keyword-%04d', 'keyword', keyword, standard))
         suite.addTest(TestCase('translation-%04d', 'translation', standard, keyword))

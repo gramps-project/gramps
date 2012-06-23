@@ -51,8 +51,10 @@ import const
 import gen.datehandler
 from gen.display.name import displayer as _nd
 from gen.display.name import NameDisplayError
-import Utils
+from Utils import get_unicode_path_from_file_chooser
 from gen.utils.alive import update_constants
+from gen.utils.keyword import (get_keywords, get_translation_from_keyword, 
+                               get_translations, get_keyword_from_translation)
 import gen.lib
 from gen.lib import Name, Surname, NameOriginType
 from gui.managedwindow import ManagedWindow
@@ -528,9 +530,9 @@ class GrampsPreferences(ConfigureDialog):
         the_index = 0
         for num, name, fmt_str, act in _nd.get_name_format():
             translation = fmt_str
-            for key in Utils.get_keywords():
+            for key in get_keywords():
                 if key in translation:
-                    translation = translation.replace(key, Utils.get_translation_from_keyword(key))
+                    translation = translation.replace(key, get_translation_from_keyword(key))
             self.examplename.set_display_as(num)
             name_format_model.append(
                 row=[num, translation, fmt_str, _nd.display_name(self.examplename)])
@@ -662,9 +664,9 @@ class GrampsPreferences(ConfigureDialog):
                 new_text[-1] == '"'):
                 pass
             else:
-                for key in Utils.get_translations():
+                for key in get_translations():
                     if key in pattern:
-                        pattern = pattern.replace(key, Utils.get_keyword_from_translation(key))
+                        pattern = pattern.replace(key, get_keyword_from_translation(key))
             # now build up a proper translation:
             translation = pattern
             if (len(new_text) > 2 and 
@@ -672,9 +674,9 @@ class GrampsPreferences(ConfigureDialog):
                 new_text[-1] == '"'):
                 pass
             else:
-                for key in Utils.get_keywords():
+                for key in get_keywords():
                     if key in translation:
-                        translation = translation.replace(key, Utils.get_translation_from_keyword(key))
+                        translation = translation.replace(key, get_translation_from_keyword(key))
             num, name, fmt = self.selected_fmt[COL_NUM:COL_EXPL]
             node = self.fmt_model.get_iter(path)
             oldname = self.fmt_model.get_value(node, COL_NAME)
@@ -1195,7 +1197,7 @@ class GrampsPreferences(ConfigureDialog):
 
         status = f.run()
         if status == gtk.RESPONSE_OK:
-            val = Utils.get_unicode_path_from_file_chooser(f.get_filename())
+            val = get_unicode_path_from_file_chooser(f.get_filename())
             if val:
                 self.path_entry.set_text(val)
         f.destroy()

@@ -323,6 +323,7 @@ src/gen/simple/_simpletable.py
 
 # gen.utils
 src/gen/utils/alive.py
+src/gen/utils/keyword.py
 src/gen/utils/lds.py
 src/gen/utils/place.py
 src/gen/utils/trans.py
