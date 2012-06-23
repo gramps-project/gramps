@@ -15,8 +15,10 @@ pkgpython_PYTHON = \
 	fallback.py \
 	image.py \
 	lds.py \
+	mactrans.py \
 	place.py \
-	referent.py
+	referent.py \
+	trans.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen/utils
 

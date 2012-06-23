@@ -15,8 +15,6 @@ gdirdir=$(prefix)/share/gramps
 gdir_PYTHON = \
 	const.py\
 	gramps.py\
-	MacTransUtils.py\
-	TransUtils.py\
 	Utils.py
 
 # Clean up all the byte-compiled files

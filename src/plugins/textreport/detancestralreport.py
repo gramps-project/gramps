@@ -57,7 +57,7 @@ from gen.plug.report import MenuReportOptions
 import gen.datehandler
 
 from libnarrate import Narrator
-import TransUtils
+from gen.utils.trans import get_available_translations
 from libtranslate import Translator, get_language_string
 
 #------------------------------------------------------------------------
@@ -756,7 +756,7 @@ class DetAncestorOptions(MenuReportOptions):
         trans = EnumeratedListOption(_("Translation"),
                                       Translator.DEFAULT_TRANSLATION_STR)
         trans.add_item(Translator.DEFAULT_TRANSLATION_STR, _("Default"))
-        for language in TransUtils.get_available_translations():
+        for language in get_available_translations():
             trans.add_item(language, get_language_string(language))
         trans.set_help(_("The translation to be used for the report."))
         addopt("trans", trans)

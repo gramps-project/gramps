@@ -48,7 +48,7 @@ import gtk
 #
 #------------------------------------------------------------------------
 import const
-import TransUtils
+from gen.utils.trans import LOCALEDOMAIN
 
 #------------------------------------------------------------------------
 #
@@ -80,7 +80,7 @@ class Glade(gtk.Builder):
         :returns:  reference to the newly-created Glade instance
         """
         gtk.Builder.__init__(self)
-        self.set_translation_domain(TransUtils.LOCALEDOMAIN)
+        self.set_translation_domain(LOCALEDOMAIN)
 
         filename_given = filename is not None
         dirname_given = dirname is not None

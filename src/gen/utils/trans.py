@@ -65,8 +65,8 @@ else:
 LOCALEDOMAIN = 'gramps'
 
 if mac():
-    import MacTransUtils
-    MacTransUtils.mac_setup_localization(LOCALEDIR, LOCALEDOMAIN)
+    import mactrans
+    mactrans.mac_setup_localization(LOCALEDIR, LOCALEDOMAIN)
 else:
     lang = ' '
     try:
@@ -102,7 +102,7 @@ def setup_gettext():
     except ValueError:
         print 'Failed to bind text domain, gtk.Builder() has no translation'
     
-    #following installs _ as a python function, we avoid this as TransUtils is
+    #following installs _ as a python function, we avoid this as this module is
     #used sometimes:
     #gettext.install(LOCALEDOMAIN, LOCALEDIR, unicode=1)
     

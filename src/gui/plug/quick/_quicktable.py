@@ -48,7 +48,7 @@ from gtk.gdk import ACTION_COPY
 #-------------------------------------------------------------------------
 from gen.ggettext import sgettext as _
 from gen.simple import SimpleTable
-from TransUtils import trans_objclass
+from gen.utils.trans import trans_objclass
 from gen.errors import WindowActiveError
 from gui.widgets.multitreeview import MultiTreeView
 from gui.ddtargets import DdTargets

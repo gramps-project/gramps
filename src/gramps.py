@@ -48,7 +48,7 @@ from subprocess import Popen, PIPE
 #
 #-------------------------------------------------------------------------
 from gen.mime import mime_type_is_defined
-import TransUtils
+from gen.utils.trans import LOCALEDOMAIN, LOCALEDIR, setup_windows_gettext
 from gen.constfunc import win
 #-------------------------------------------------------------------------
 #
@@ -59,8 +59,8 @@ from gen.constfunc import win
 #the order in which bindtextdomain on gettext and on locale is called
 #appears important, so we refrain from doing first all gettext.
 #
-#TransUtils.setup_gettext()
-gettext.bindtextdomain(TransUtils.LOCALEDOMAIN, TransUtils.LOCALEDIR)
+#setup_gettext()
+gettext.bindtextdomain(LOCALEDOMAIN, LOCALEDIR)
 try:
     locale.setlocale(locale.LC_ALL,'')
 except:
@@ -80,8 +80,8 @@ except:
         # if that doesn't break Gramps under Windows
         # raise
 
-gettext.textdomain(TransUtils.LOCALEDOMAIN)
-gettext.install(TransUtils.LOCALEDOMAIN, localedir=None, unicode=1) #None is sys default locale
+gettext.textdomain(LOCALEDOMAIN)
+gettext.install(LOCALEDOMAIN, localedir=None, unicode=1) #None is sys default locale
 
 if hasattr(os, "uname"):
     operating_system = os.uname()[0]
@@ -89,18 +89,18 @@ else:
     operating_system = sys.platform
 
 if win(): # Windows
-    TransUtils.setup_windows_gettext()
+    setup_windows_gettext()
 elif operating_system == 'FreeBSD':
     try:
-        gettext.bindtextdomain(TransUtils.LOCALEDOMAIN, TransUtils.LOCALEDIR)
+        gettext.bindtextdomain(LOCALEDOMAIN, LOCALEDIR)
     except locale.Error:
         print 'No translation in some gtk.Builder strings, '
 elif operating_system == 'OpenBSD':
     pass
 else: # normal case
     try:
-        locale.bindtextdomain(TransUtils.LOCALEDOMAIN, TransUtils.LOCALEDIR)
-        #locale.textdomain(TransUtils.LOCALEDOMAIN)
+        locale.bindtextdomain(LOCALEDOMAIN, LOCALEDIR)
+        #locale.textdomain(LOCALEDOMAIN)
     except locale.Error:
         print 'No translation in some gtk.Builder strings, '
 
