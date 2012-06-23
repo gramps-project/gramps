@@ -45,7 +45,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-from Utils import media_path_full
+from gen.utils.file import media_path_full
 from gui.thumbnails import get_thumbnail_image
 from gui.views.treemodels import MediaModel
 from baseselector import BaseSelector

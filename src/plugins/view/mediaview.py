@@ -56,6 +56,7 @@ import const
 from gen.constfunc import win
 from gen.config import config
 import Utils
+from gen.utils.file import media_path, relative_path, media_path_full
 from gen.utils.referent import get_media_referents
 from gui.views.bookmarks import MediaBookmarks
 import gen.mime
@@ -190,9 +191,9 @@ class MediaView(ListView):
                 if not gen.mime.is_valid_type(mime):
                     return
                 photo = gen.lib.MediaObject()
-                base_dir = unicode(Utils.media_path(self.dbstate.db))
+                base_dir = unicode(media_path(self.dbstate.db))
                 if os.path.exists(base_dir):
-                    name = Utils.relative_path(name, base_dir)
+                    name = relative_path(name, base_dir)
                 photo.set_path(name)
                 photo.set_mime_type(mime)
                 basename = os.path.basename(name)
@@ -249,7 +250,7 @@ class MediaView(ListView):
         """
         for handle in self.selected_handles():
             ref_obj = self.dbstate.db.get_object_from_handle(handle)
-            mpath = Utils.media_path_full(self.dbstate.db, ref_obj.get_path())
+            mpath = media_path_full(self.dbstate.db, ref_obj.get_path())
             open_file_with_default_application(mpath)
 
     def open_containing_folder(self, obj):
@@ -258,7 +259,7 @@ class MediaView(ListView):
         """
         for handle in self.selected_handles():
             ref_obj = self.dbstate.db.get_object_from_handle(handle)
-            mpath = Utils.media_path_full(self.dbstate.db, ref_obj.get_path())
+            mpath = media_path_full(self.dbstate.db, ref_obj.get_path())
             if mpath:
                 mfolder, mfile = os.path.split(mpath)
                 open_file_with_default_application(mfolder)

@@ -13,6 +13,7 @@ pkgpython_PYTHON = \
 	callman.py \
 	configmanager.py \
 	fallback.py \
+	file.py \
 	image.py \
 	keyword.py \
 	lds.py \

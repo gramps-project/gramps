@@ -57,7 +57,7 @@ import gobject
 from cli.grampscli import CLIDbLoader
 from gen.config import config
 import gen.db
-import Utils
+from gen.utils.file import get_unicode_path_from_file_chooser
 from gui.pluginmanager import GuiPluginManager
 from gui.dialog import (DBErrorDialog, ErrorDialog, QuestionDialog2, 
                             WarningDialog)
@@ -162,7 +162,7 @@ class DbLoader(CLIDbLoader):
             if response == gtk.RESPONSE_CANCEL:
                 break
             elif response == gtk.RESPONSE_OK:
-                filename = Utils.get_unicode_path_from_file_chooser(import_dialog.get_filename())
+                filename = get_unicode_path_from_file_chooser(import_dialog.get_filename())
                 if self.check_errors(filename):
                     # displays errors if any
                     continue

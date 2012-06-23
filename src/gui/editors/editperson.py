@@ -49,7 +49,7 @@ import pango
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import Utils
+from gen.utils.file import media_path_full
 from gui.thumbnails import get_thumbnail_image
 import gui.utils
 from gen.utils import get_birth_or_fallback
@@ -636,7 +636,7 @@ class EditPerson(EditPrimary):
             photo = media_list[0]
             object_handle = photo.get_reference_handle()
             ref_obj = self.db.get_object_from_handle(object_handle)
-            photo_path = Utils.media_path_full(self.db, ref_obj.get_path())
+            photo_path = media_path_full(self.db, ref_obj.get_path())
             gui.utils.open_file_with_default_application(photo_path)
 
     def _popup_change_description(self, obj):
@@ -940,7 +940,7 @@ class EditPerson(EditPrimary):
         Load the person's main photo using the Thumbnailer.
         """
         pixbuf = get_thumbnail_image(
-                        Utils.media_path_full(self.dbstate.db, 
+                        media_path_full(self.dbstate.db, 
                                               obj.get_path()), 
                         obj.get_mime_type(),
                         ref.get_rectangle())

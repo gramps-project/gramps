@@ -66,6 +66,9 @@ import gen.lib
 from gen.db import DbTxn
 from gen.config import config
 import Utils
+from gen.utils.file import (get_unicode_path_from_file_chooser, 
+                            media_path_full, 
+                            find_file)
 from gui.utils import ProgressMeter
 from gui.managedwindow import ManagedWindow
 
@@ -630,7 +633,7 @@ class CheckIntegrity(object):
                 LOG('        FAIL: references to missing file kept')
 
             def fs_ok_clicked(obj):
-                name = Utils.get_unicode_path_from_file_chooser(fs_top.get_filename())
+                name = get_unicode_path_from_file_chooser(fs_top.get_filename())
                 if os.path.isfile(name):
                     obj = self.db.get_object_from_handle(ObjectId)
                     obj.set_path(name)
@@ -658,9 +661,9 @@ class CheckIntegrity(object):
         
         for ObjectId in self.db.get_media_object_handles():
             obj = self.db.get_object_from_handle(ObjectId)
-            photo_name = Utils.media_path_full(self.db, obj.get_path())
+            photo_name = media_path_full(self.db, obj.get_path())
             photo_desc = obj.get_description()
-            if photo_name is not None and photo_name != "" and not Utils.find_file(photo_name):
+            if photo_name is not None and photo_name != "" and not find_file(photo_name):
                 if cl:
                     # Convert to file system encoding before prining
                     fn = os.path.basename(photo_name).encode(sys.getfilesystemencoding())

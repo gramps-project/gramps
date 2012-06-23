@@ -56,7 +56,7 @@ import tool
 from _guioptions import add_gui_options
 from gui.dialog import InfoDialog
 from gui.editors import EditPerson
-import Utils
+from gen.utils.file import get_unicode_path_from_file_chooser
 import const
 from gen.config import config
 
@@ -432,7 +432,7 @@ class PluginStatus(ManagedWindow):
 
         status = fcd.run()
         if status == gtk.RESPONSE_OK:
-            path = Utils.get_unicode_path_from_file_chooser(fcd.get_filename())
+            path = get_unicode_path_from_file_chooser(fcd.get_filename())
             if path:
                 self.install_addon_path.set_text(path)
         fcd.destroy()

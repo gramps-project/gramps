@@ -79,7 +79,7 @@ from gen.recentfiles import rename_filename, remove_filename
 from gui.glade import Glade
 from gen.db.backup import restore
 from gen.db.exceptions import DbException
-from Utils import get_unicode_path_from_env_var
+from gen.utils.file import get_unicode_path_from_env_var
 
 
 _RETURN = gtk.gdk.keyval_from_name("Return")

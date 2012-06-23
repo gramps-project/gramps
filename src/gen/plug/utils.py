@@ -40,7 +40,7 @@ import os
 #-------------------------------------------------------------------------
 from gen.plug._pluginreg import make_environment
 import const
-import Utils
+from gen.utils.file import get_unicode_path_from_file_chooser
 from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -287,7 +287,7 @@ def load_addon_file(path, callback=None):
         gpr_files = set([os.path.split(os.path.join(const.USER_PLUGINS, name))[0]
                          for name in good_gpr])
         for gpr_file in gpr_files:
-            u_gpr_file = Utils.get_unicode_path_from_file_chooser(gpr_file)
+            u_gpr_file = get_unicode_path_from_file_chooser(gpr_file)
             if callback:
                 callback("   " + (_("Registered '%s'") % u_gpr_file) + "\n")
     file_obj.close()

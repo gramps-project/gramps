@@ -55,7 +55,7 @@ from gen.plug.report import MenuReportOptions
 from gen.display.name import displayer as name_displayer
 import gen.datehandler
 import gen.lib
-import Utils
+from gen.utils.file import media_path_full, find_file
 from gui.thumbnails import get_thumbnail_path
 from gen.utils import get_birth_or_fallback, get_death_or_fallback
 
@@ -355,12 +355,12 @@ class RelGraphReport(Report):
                 mediaMimeType = media.get_mime_type()
                 if mediaMimeType[0:5] == "image":
                     imagePath = get_thumbnail_path(
-                                    Utils.media_path_full(self.database, 
+                                    media_path_full(self.database, 
                                                           media.get_path()),
                                         rectangle=mediaList[0].get_rectangle())
                     # test if thumbnail actually exists in thumbs
                     # (import of data means media files might not be present
-                    imagePath = Utils.find_file(imagePath)
+                    imagePath = find_file(imagePath)
 
         label = u""
         lineDelimiter = '\\n'

@@ -24,7 +24,7 @@
 
 import os
 import gtk
-import Utils
+from gen.utils.file import get_unicode_path_from_file_chooser
 
 class FileEntry(gtk.HBox):
     """ A widget that allows the user to select a file from the file system """
@@ -74,7 +74,7 @@ class FileEntry(gtk.HBox):
         dialog.present()
         status = dialog.run()
         if status == gtk.RESPONSE_OK:
-            self.set_filename(Utils.get_unicode_path_from_file_chooser(dialog.get_filename()))
+            self.set_filename(get_unicode_path_from_file_chooser(dialog.get_filename()))
         dialog.destroy()
 
     def set_filename(self, path):

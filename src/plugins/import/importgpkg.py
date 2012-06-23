@@ -48,7 +48,7 @@ log = logging.getLogger(".ReadPkg")
 #-------------------------------------------------------------------------
 import const
 import ImportXml
-import Utils
+from gen.utils.file import media_path
 
 #-------------------------------------------------------------------------
 #
@@ -61,7 +61,7 @@ def impData(database, name, user):
     #     in the mediapath dir of the family tree we import to
     oldmediapath = database.get_mediapath()
     #use home dir if no media path
-    media_path = Utils.media_path(database)
+    media_path = media_path(database)
     media_dir = "%s.media" % os.path.basename(name)
     tmpdir_path = os.path.join(media_path, media_dir)
     if not os.path.isdir(tmpdir_path):

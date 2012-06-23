@@ -64,7 +64,7 @@ from gui.dialog import QuestionDialog, OptionDialog
 from gen.lib import Date
 
 import gen.mime
-import Utils
+from gen.utils.file import search_for, media_path_full
 from gen.utils.place import conv_lat_lon
 
 from gen.db import DbTxn
@@ -82,9 +82,9 @@ else:
 # validate the exiv2 is installed and its executable
 system_platform = os.sys.platform
 if system_platform == "win32":
-    EXIV2_FOUND = "exiv2.exe" if Utils.search_for("exiv2.exe") else False
+    EXIV2_FOUND = "exiv2.exe" if search_for("exiv2.exe") else False
 else:
-    EXIV2_FOUND = "exiv2" if Utils.search_for("exiv2") else False
+    EXIV2_FOUND = "exiv2" if search_for("exiv2") else False
 if not EXIV2_FOUND:
     msg = 'You must have exiv2 and its development file installed.'
     raise SystemExit(msg)
@@ -406,7 +406,7 @@ class EditExifMetadata(Gramplet):
             return
 
         # get file path and attempt to find it?
-        self.image_path =Utils.media_path_full(db, self.orig_image.get_path() )
+        self.image_path = media_path_full(db, self.orig_image.get_path() )
         if not os.path.isfile(self.image_path):
             self.set_has_data(False)
             return
@@ -583,7 +583,7 @@ class EditExifMetadata(Gramplet):
         if media is None:
             return False
 
-        full_path = Utils.media_path_full(self.dbstate.db, media.get_path())
+        full_path = media_path_full(self.dbstate.db, media.get_path())
         return self.view.get_has_data(full_path)
 
     def __create_button(self, pos, text, callback =[], icon =False, sensitive =False):

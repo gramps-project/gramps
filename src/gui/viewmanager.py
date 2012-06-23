@@ -86,7 +86,8 @@ from gui.dialog import (ErrorDialog, WarningDialog, QuestionDialog2,
                             InfoDialog)
 from gui import widgets
 from gui.undohistory import UndoHistory
-import Utils
+from gen.utils.file import (media_path_full, get_unicode_path_from_env_var, 
+                            get_unicode_path_from_file_chooser)
 from gui.dbloader import DbLoader
 from gui.display import display_help, display_url
 from gui.widgets.progressdialog import ProgressMonitor, GtkProgressDialog
@@ -1527,7 +1528,7 @@ class ViewManager(CLIManager):
         bytes = 0
         mbytes = "0"
         for media in self.dbstate.db.iter_media_objects():
-            fullname = Utils.media_path_full(self.dbstate.db, media.get_path())
+            fullname = media_path_full(self.dbstate.db, media.get_path())
             try:
                 bytes += posixpath.getsize(fullname)
                 length = len(str(bytes))
@@ -1559,7 +1560,7 @@ class ViewManager(CLIManager):
             filename = os.path.join(path_entry.get_text(), basefile)
             filename = filename.encode(sys.getfilesystemencoding())
             if os.path.exists(filename):
-                sfilename = Utils.get_unicode_path_from_env_var(filename)
+                sfilename = get_unicode_path_from_env_var(filename)
                 question = QuestionDialog2(
                     _("Backup file already exists! Overwrite?"),
                     _("The file '%s' exists.") % sfilename,
@@ -1587,7 +1588,7 @@ class ViewManager(CLIManager):
                 writer.write(filename)
             self.uistate.set_busy_cursor(0)
             self.uistate.progress.hide()
-            filename = Utils.get_unicode_path_from_env_var(filename)
+            filename = get_unicode_path_from_env_var(filename)
             self.uistate.push_message(self.dbstate, _("Backup saved to '%s'") % filename)
             config.set('paths.quick-backup-directory', path_entry.get_text())
         else:
@@ -1624,7 +1625,7 @@ class ViewManager(CLIManager):
         if status == gtk.RESPONSE_OK:
             filename = f.get_filename()
             if filename:
-                val = Utils.get_unicode_path_from_file_chooser(filename)
+                val = get_unicode_path_from_file_chooser(filename)
                 if val:
                     path_entry.set_text(val)
         f.destroy()

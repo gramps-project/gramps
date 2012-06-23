@@ -29,7 +29,7 @@ Display filtered data
 
 from gen.simple import SimpleAccess, SimpleDoc
 from gui.plug.quick import QuickTable
-from Utils import media_path_full
+from gen.utils.file import media_path_full
 from gui.plug.quick import run_quick_report_by_name_direct
 from gen.lib import Person
 import gen.datehandler

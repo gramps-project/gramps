@@ -44,7 +44,7 @@ import tempfile
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import Utils
+from gen.utils.file import get_unicode_path_from_env_var
 
 #-------------------------------------------------------------------------
 #
@@ -257,7 +257,7 @@ def resize_to_jpeg_buffer(source, size, crop=None):
 
     scaled = img.scale_simple(int(size[0]), int(size[1]), gtk.gdk.INTERP_BILINEAR)
     os.close(filed)
-    dest = Utils.get_unicode_path_from_env_var(dest)
+    dest = get_unicode_path_from_env_var(dest)
     scaled.save(dest, 'jpeg')
     ofile = open(dest, mode='rb')
     data = ofile.read()

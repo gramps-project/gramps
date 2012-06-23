@@ -59,7 +59,7 @@ import gtk
 #-------------------------------------------------------------------------
 from gui.views.navigationview import NavigationView
 from gui.views.bookmarks import PersonBookmarks
-import Utils
+from gen.utils.file import get_empty_tempdir
 from gen.constfunc import lin, mac, win
 from gen.config import config
 from const import TEMP_DIR
@@ -92,8 +92,8 @@ def get_identity():
 # I think we should set the two following variable in const.py
 # They are used only with gtkmozembed.
 MOZEMBED_PATH = TEMP_DIR
-MOZEMBED_SUBPATH = Utils.get_empty_tempdir('mozembed_gramps')
-GEOVIEW_SUBPATH = Utils.get_empty_tempdir('geoview')
+MOZEMBED_SUBPATH = get_empty_tempdir('mozembed_gramps')
+GEOVIEW_SUBPATH = get_empty_tempdir('geoview')
 NOWEB   = 0
 WEBKIT  = 1
 MOZILLA = 2

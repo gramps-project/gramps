@@ -24,7 +24,7 @@
 
 from libmetadata import MetadataView
 from gen.plug import Gramplet
-import Utils
+from gen.utils.file import media_path_full
 
 class MetadataViewer(Gramplet):
     """
@@ -49,7 +49,7 @@ class MetadataViewer(Gramplet):
         media = self.dbstate.db.get_object_from_handle(active_handle)
 
         if media:
-            full_path = Utils.media_path_full(self.dbstate.db, media.get_path())
+            full_path = media_path_full(self.dbstate.db, media.get_path())
             has_data = self.view.display_exif_tags(full_path)
             self.set_has_data(has_data)
         else:
@@ -67,5 +67,5 @@ class MetadataViewer(Gramplet):
         if media is None:
             return False
 
-        full_path = Utils.media_path_full(self.dbstate.db, media.get_path())
+        full_path = media_path_full(self.dbstate.db, media.get_path())
         return self.view.get_has_data(full_path)

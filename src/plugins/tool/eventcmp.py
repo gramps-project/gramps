@@ -47,7 +47,7 @@ import gtk
 from gen.filters import GenericFilter, rules
 from gui.filters import build_filter_model
 from gen.sort import Sort
-import Utils
+from gen.utils.file import get_unicode_path_from_file_chooser
 from gui.utils import ProgressMeter
 from docgen import ODSTab
 import const
@@ -400,7 +400,7 @@ class DisplayChart(ManagedWindow):
         f.hide()
 
         if status == gtk.RESPONSE_OK:
-            name = Utils.get_unicode_path_from_file_chooser(f.get_filename())
+            name = get_unicode_path_from_file_chooser(f.get_filename())
             doc = ODSTab(len(self.row_data))
             doc.creator(self.db.get_researcher().get_name())
 

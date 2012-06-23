@@ -55,7 +55,7 @@ from gen.lib import MediaObject
 from gen.db import DbTxn
 from gen.updatecallback import UpdateCallback
 from gui.plug import tool
-from Utils import media_path_full, relative_path, media_path
+from gen.utils.file import media_path_full, relative_path, media_path
 from gen.ggettext import sgettext as _
 import gen.mime
 

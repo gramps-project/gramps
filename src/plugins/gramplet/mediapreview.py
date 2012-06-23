@@ -21,7 +21,7 @@
 
 from gen.plug import Gramplet
 from gui.widgets import Photo
-import Utils
+from gen.utils.file import media_path_full
 import gtk
 
 class MediaPreview(Gramplet):
@@ -68,7 +68,7 @@ class MediaPreview(Gramplet):
         """
         Load the primary image if it exists.
         """
-        self.full_path = Utils.media_path_full(self.dbstate.db,
+        self.full_path = media_path_full(self.dbstate.db,
                                                media.get_path())
         mime_type = media.get_mime_type()
         self.photo.set_image(self.full_path, mime_type)

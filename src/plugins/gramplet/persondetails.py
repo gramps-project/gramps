@@ -25,7 +25,7 @@ from gui.widgets import Photo
 from gen.display.name import displayer as name_displayer
 from gen.ggettext import gettext as _
 import gen.datehandler
-import Utils
+from gen.utils.file import media_path_full
 import gtk
 import pango
 
@@ -223,7 +223,7 @@ class PersonDetails(Gramplet):
             media_ref = media_list[0]
             object_handle = media_ref.get_reference_handle()
             obj = self.dbstate.db.get_object_from_handle(object_handle)
-            full_path = Utils.media_path_full(self.dbstate.db, obj.get_path())
+            full_path = media_path_full(self.dbstate.db, obj.get_path())
             mime_type = obj.get_mime_type()
             if mime_type and mime_type.startswith("image"):
                 self.photo.set_image(full_path, mime_type,

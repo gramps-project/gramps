@@ -22,7 +22,7 @@
 
 from gen.plug import Gramplet
 from gui.widgets import Photo
-import Utils
+from gen.utils.file import media_path_full
 import gtk
 
 class Gallery(Gramplet):
@@ -59,7 +59,7 @@ class Gallery(Gramplet):
         for media_ref in media_list:
             media_handle = media_ref.get_reference_handle()
             media = self.dbstate.db.get_object_from_handle(media_handle)
-            full_path = Utils.media_path_full(self.dbstate.db, media.get_path())
+            full_path = media_path_full(self.dbstate.db, media.get_path())
             mime_type = media.get_mime_type()
             if mime_type and mime_type.startswith("image"):
                 photo = Photo(self.uistate.screen_height() < 1000)

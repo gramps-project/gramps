@@ -61,7 +61,7 @@ import gtk
 #-------------------------------------------------------------------------
 from gui.plug.export import WriterOptionBox
 from ExportXml import XmlWriter
-import Utils
+from gen.utils.file import media_path_full, get_unicode_path_from_file_chooser
 from gen.constfunc import win
 
 #-------------------------------------------------------------------------
@@ -157,7 +157,7 @@ class PackageWriter(object):
         #         pass
 
         #     def fs_ok_clicked(obj):
-        #         name = Utils.get_unicode_path_from_file_chooser(fs_top.get_filename())
+        #         name = get_unicode_path_from_file_chooser(fs_top.get_filename())
         #         if os.path.isfile(name):
         #             archive.add(name)
                     
@@ -185,7 +185,7 @@ class PackageWriter(object):
         # during the process (i.e. when removing object)
         for m_id in self.db.get_media_object_handles(sort_handles=True):
             mobject = self.db.get_object_from_handle(m_id)
-            filename = Utils.media_path_full(self.db, mobject.get_path())
+            filename = media_path_full(self.db, mobject.get_path())
             archname = str(mobject.get_path())
             if os.path.isfile(filename) and os.access(filename, os.R_OK):
                 archive.add(filename, archname)

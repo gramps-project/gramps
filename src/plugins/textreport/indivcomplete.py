@@ -53,7 +53,7 @@ from gen.plug.report import MenuReportOptions
 from gen.plug.report import Bibliography
 from gen.plug.report import endnotes as Endnotes
 from gen.display.name import displayer as global_name_display
-from Utils import media_path_full
+from gen.utils.file import media_path_full
 
 #------------------------------------------------------------------------
 #

@@ -46,7 +46,8 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from gen.recentfiles import recent_files
-import Utils
+from gen.utils.file import (rm_tempdir, get_empty_tempdir, 
+                            get_unicode_path_from_env_var)
 import gen
 from clidbman import CLIDbManager, NAME_FILE, find_locker_name
 
@@ -207,7 +208,7 @@ class ArgHandler(object):
         """
         if value is None:
             return None
-        value = Utils.get_unicode_path_from_env_var(value)
+        value = get_unicode_path_from_env_var(value)
         db_path = self.__deduce_db_path(value)
 
         if db_path:
@@ -237,7 +238,7 @@ class ArgHandler(object):
         """
         # Need to convert path/filename to unicode before opening
         # For non latin characters in Windows path/file/user names
-        value = Utils.get_unicode_path_from_env_var(value)
+        value = get_unicode_path_from_env_var(value)
         fname = value
         fullpath = os.path.abspath(os.path.expanduser(fname))
         if fname != '-' and not os.path.exists(fullpath):
@@ -274,7 +275,7 @@ class ArgHandler(object):
             return
         # Need to convert path/filename to unicode before opening
         # For non latin characters in Windows path/file/user names
-        value = Utils.get_unicode_path_from_env_var(value)
+        value = get_unicode_path_from_env_var(value)
         fname = value
         if fname == '-':
             fullpath = '-'
@@ -450,7 +451,7 @@ class ArgHandler(object):
         # remove files in import db subdir after use
         self.dbstate.db.close()
         if self.imp_db_path:
-            Utils.rm_tempdir(self.imp_db_path)
+            rm_tempdir(self.imp_db_path)
 
     def __import_action(self):
         """
@@ -469,7 +470,7 @@ class ArgHandler(object):
                 if self.gui:
                     self.imp_db_path, title = self.dbman.create_new_db_cli()
                 else:
-                    self.imp_db_path = Utils.get_empty_tempdir("import_dbdir") \
+                    self.imp_db_path = get_empty_tempdir("import_dbdir") \
 					                      .encode(sys.getfilesystemencoding())
                     newdb = gen.db.DbBsddb()
                     newdb.write_version(self.imp_db_path)

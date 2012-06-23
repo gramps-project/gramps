@@ -45,7 +45,7 @@ from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                     FONT_SANS_SERIF, INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
-from Utils import media_path_full
+from gen.utils.file import media_path_full
 import gen.datehandler
 
 

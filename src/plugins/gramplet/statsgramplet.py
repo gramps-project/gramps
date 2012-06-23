@@ -32,7 +32,7 @@ import posixpath
 #------------------------------------------------------------------------
 from gen.plug import Gramplet
 from gen.ggettext import sgettext as _
-from Utils import media_path_full
+from gen.utils.file import media_path_full
 import gen.datehandler
 import gen
 

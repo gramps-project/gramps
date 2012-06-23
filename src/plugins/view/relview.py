@@ -52,7 +52,7 @@ from gui.views.navigationview import NavigationView
 from gui.editors import EditPerson, EditFamily
 from gui.editors import FilterEditor
 from gen.display.name import displayer as name_displayer
-from Utils import media_path_full
+from gen.utils.file import media_path_full
 from gen.utils.alive import probably_alive
 from gui.utils import open_file_with_default_application
 import gen.datehandler

@@ -51,7 +51,7 @@ log = logging.getLogger(".FamilyLines")
 #
 #------------------------------------------------------------------------
 import gen.lib
-import Utils
+from gen.utils.file import media_path_full
 from gui.thumbnails import get_thumbnail_path
 from gen.datehandler import displayer as _dd
 from gen.plug.report import Report
@@ -797,7 +797,7 @@ class FamilyLinesReport(Report):
                     mediaMimeType = media.get_mime_type()
                     if mediaMimeType[0:5] == "image":
                         imagePath = get_thumbnail_path(
-                                        Utils.media_path_full(self._db, 
+                                        media_path_full(self._db, 
                                                               media.get_path()),
                                         rectangle=mediaList[0].get_rectangle())
 

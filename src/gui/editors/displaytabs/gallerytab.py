@@ -53,6 +53,7 @@ from gui.selectors import SelectorFactory
 import gen.lib
 from gen.db import DbTxn
 import Utils
+from gen.utils.file import media_path_full, media_path, relative_path
 from gui.thumbnails import get_thumbnail_image
 from gen.errors import WindowActiveError
 import gen.mime
@@ -131,7 +132,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         menu = gtk.Menu()
 
         ref_obj = self.dbstate.db.get_object_from_handle(obj.ref)
-        media_path = Utils.media_path_full(self.dbstate.db, ref_obj.get_path())
+        media_path = media_path_full(self.dbstate.db, ref_obj.get_path())
         if media_path:
             item = gtk.ImageMenuItem(_('View'))
             img = gtk.Image()
@@ -251,7 +252,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                             _('Non existing media found in the Gallery'))
             else :
                 pixbuf = get_thumbnail_image(
-                                Utils.media_path_full(self.dbstate.db, 
+                                media_path_full(self.dbstate.db, 
                                                       obj.get_path()), 
                                 obj.get_mime_type(),
                                 ref.get_rectangle())
@@ -502,9 +503,9 @@ class GalleryTab(ButtonTab, DbGUIElement):
                         if not gen.mime.is_valid_type(mime):
                             return
                         photo = gen.lib.MediaObject()
-                        base_dir = unicode(Utils.media_path(self.dbstate.db))
+                        base_dir = unicode(media_path(self.dbstate.db))
                         if os.path.exists(base_dir):
-                            name = Utils.relative_path(name, base_dir)
+                            name = relative_path(name, base_dir)
                         photo.set_path(name)
                         photo.set_mime_type(mime)
                         basename = os.path.basename(name)

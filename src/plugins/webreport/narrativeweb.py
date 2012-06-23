@@ -89,6 +89,7 @@ from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
                         
 import Utils
+from gen.utils.file import media_path_full
 from gen.utils.referent import get_source_and_citation_referents
 from gen.constfunc import win
 from gui.thumbnails import get_thumbnail_path, run_thumbnailer
@@ -498,7 +499,7 @@ def copy_thumbnail(report, handle, photo, region=None):
         )
     
     if photo.get_mime_type():
-        from_path = get_thumbnail_path(Utils.media_path_full(
+        from_path = get_thumbnail_path(media_path_full(
                                                   report.database,
                                                   photo.get_path()),
                                                   photo.get_mime_type(),
@@ -1837,7 +1838,7 @@ class BasePage(object):
                 try:
 
                     newpath, thumb_path = self.report.prepare_copy_media(obj)
-                    self.report.copy_file(Utils.media_path_full(
+                    self.report.copy_file(media_path_full(
                         self.report.database, obj.get_path()), newpath)
 
                     # begin image
@@ -3941,7 +3942,7 @@ class MediaPage(BasePage):
                             # improve the site's responsiveness. We don't want the user to
                             # have to await a large download unnecessarily. Either way, set
                             # the display image size as requested.
-                            orig_image_path = Utils.media_path_full(self.dbase_, media.get_path())
+                            orig_image_path = media_path_full(self.dbase_, media.get_path())
                             (width, height) = image_size(orig_image_path)
                             max_width = self.report.options['maxinitialimagewidth']
                             max_height = self.report.options['maxinitialimageheight']
@@ -4008,7 +4009,7 @@ class MediaPage(BasePage):
                         dirname = tempfile.mkdtemp()
                         thmb_path = os.path.join(dirname, "document.png")
                         if run_thumbnailer(mime_type,
-                                           Utils.media_path_full(self.dbase_, media.get_path()),
+                                           media_path_full(self.dbase_, media.get_path()),
                                            thmb_path, 320):
                             try:
                                 path = self.report.build_path("preview", media.get_handle())
@@ -4130,7 +4131,7 @@ class MediaPage(BasePage):
         to_dir = self.report.build_path('images', handle)
         newpath = os.path.join(to_dir, handle) + ext
 
-        fullpath = Utils.media_path_full(self.dbase_, photo.get_path())
+        fullpath = media_path_full(self.dbase_, photo.get_path())
         if not os.path.isfile(fullpath):
             _WRONGMEDIAPATH.append([ photo.get_gramps_id(), fullpath])
             return None

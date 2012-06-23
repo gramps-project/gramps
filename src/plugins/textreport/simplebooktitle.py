@@ -37,7 +37,7 @@ import os
 #
 #------------------------------------------------------------------------
 from gen.plug.menu import StringOption, MediaOption, NumberOption
-from Utils import media_path_full
+from gen.utils.file import media_path_full
 from gen.plug.report import Report
 from gen.plug.report import MenuReportOptions
 from gen.plug.docgen import (FontStyle, ParagraphStyle,

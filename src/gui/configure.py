@@ -51,7 +51,7 @@ import const
 import gen.datehandler
 from gen.display.name import displayer as _nd
 from gen.display.name import NameDisplayError
-from Utils import get_unicode_path_from_file_chooser
+from gen.utils.file import get_unicode_path_from_file_chooser
 from gen.utils.alive import update_constants
 from gen.utils.keyword import (get_keywords, get_translation_from_keyword, 
                                get_translations, get_keyword_from_translation)

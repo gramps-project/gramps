@@ -59,6 +59,7 @@ from gui.filters import SearchBar
 from gui.utils import add_menuitem
 import const
 import Utils
+from gen.utils.file import get_unicode_path_from_file_chooser
 from gui.dialog import QuestionDialog, QuestionDialog2
 from gui.editors import FilterEditor
 from gen.ggettext import sgettext as _
@@ -941,7 +942,7 @@ class ListView(NavigationView):
         while True:
             value = chooser.run()
             fn = chooser.get_filename()
-            fn = Utils.get_unicode_path_from_file_chooser(fn)
+            fn = get_unicode_path_from_file_chooser(fn)
             fl = combobox.get_active()
             if value == gtk.RESPONSE_OK:
                 if fn:
