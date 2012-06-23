@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-19 18:21+0200\n"
-"PO-Revision-Date: 2012-06-19 18:46+0200\n"
+"POT-Creation-Date: 2012-06-23 00:45+0200\n"
+"PO-Revision-Date: 2012-06-23 14:39+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -1034,7 +1034,7 @@ msgstr "Familiäres Attribut"
 #: ../src/plugins/quickview/quickview.gpr.py:206
 #: ../src/plugins/quickview/References.py:89
 msgid "Citation"
-msgstr "Zitat"
+msgstr "Fundstelle"
 
 #: ../src/ScratchPad.py:495
 msgid "not available|NA"
@@ -3944,7 +3944,7 @@ msgstr "Registriert '%s'"
 #: ../src/gen/plug/docgen/graphdoc.py:63
 #: ../src/plugins/textreport/AncestorReport.py:276
 #: ../src/plugins/textreport/AncestorReport.py:297
-#: ../src/plugins/textreport/BirthdayReport.py:379
+#: ../src/plugins/textreport/BirthdayReport.py:381
 #: ../src/plugins/textreport/DescendReport.py:401
 #: ../src/plugins/textreport/DetAncestralReport.py:736
 #: ../src/plugins/textreport/DetAncestralReport.py:758
@@ -4622,7 +4622,7 @@ msgstr "Beispiel"
 #. label for the combo
 #: ../src/gui/configure.py:846 ../src/plugins/drawreport/Calendar.py:427
 #: ../src/plugins/textreport/AncestorReport.py:275
-#: ../src/plugins/textreport/BirthdayReport.py:378
+#: ../src/plugins/textreport/BirthdayReport.py:380
 #: ../src/plugins/textreport/DescendReport.py:400
 #: ../src/plugins/textreport/DetAncestralReport.py:735
 #: ../src/plugins/textreport/DetDescendantReport.py:899
@@ -5516,7 +5516,7 @@ msgstr "Filtertest"
 #: ../src/plugins/gramplet/bottombar.gpr.py:749
 #: ../src/plugins/graph/GVRelGraph.py:476
 #: ../src/plugins/quickview/quickview.gpr.py:127
-#: ../src/plugins/textreport/BirthdayReport.py:365
+#: ../src/plugins/textreport/BirthdayReport.py:367
 #: ../src/plugins/textreport/IndivComplete.py:672
 #: ../src/plugins/tool/SortEvents.py:168
 #: ../src/plugins/webreport/NarrativeWeb.py:7699
@@ -8413,7 +8413,7 @@ msgstr "Stil"
 #: ../src/plugins/drawreport/TimeLine.py:367
 #: ../src/plugins/graph/GVRelGraph.py:473
 #: ../src/plugins/textreport/AncestorReport.py:266
-#: ../src/plugins/textreport/BirthdayReport.py:358
+#: ../src/plugins/textreport/BirthdayReport.py:360
 #: ../src/plugins/textreport/DescendReport.py:391
 #: ../src/plugins/textreport/DetAncestralReport.py:726
 #: ../src/plugins/textreport/DetDescendantReport.py:890
@@ -10051,7 +10051,7 @@ msgstr "Baumoptionen"
 #: ../src/plugins/drawreport/FanChart.py:398
 #: ../src/plugins/graph/GVHourGlass.py:261
 #: ../src/plugins/textreport/AncestorReport.py:268
-#: ../src/plugins/textreport/BirthdayReport.py:370
+#: ../src/plugins/textreport/BirthdayReport.py:372
 #: ../src/plugins/textreport/DescendReport.py:393
 #: ../src/plugins/textreport/DetAncestralReport.py:728
 #: ../src/plugins/textreport/DetDescendantReport.py:892
@@ -10404,13 +10404,13 @@ msgid "Reading database..."
 msgstr "Lese Datenbank..."
 
 #: ../src/plugins/drawreport/Calendar.py:314
-#: ../src/plugins/textreport/BirthdayReport.py:274
+#: ../src/plugins/textreport/BirthdayReport.py:276
 #, python-format
 msgid "%(person)s, birth%(relation)s"
 msgstr "%(person)s, Geburt%(relation)s"
 
 #: ../src/plugins/drawreport/Calendar.py:318
-#: ../src/plugins/textreport/BirthdayReport.py:278
+#: ../src/plugins/textreport/BirthdayReport.py:280
 #, python-format
 msgid "%(person)s, %(age)d%(relation)s"
 msgid_plural "%(person)s, %(age)d%(relation)s"
@@ -10418,7 +10418,7 @@ msgstr[0] "%(person)s, %(age)d%(relation)s"
 msgstr[1] "%(person)s, %(age)d%(relation)s"
 
 #: ../src/plugins/drawreport/Calendar.py:372
-#: ../src/plugins/textreport/BirthdayReport.py:324
+#: ../src/plugins/textreport/BirthdayReport.py:326
 #, python-format
 msgid ""
 "%(spouse)s and\n"
@@ -10428,7 +10428,7 @@ msgstr ""
 " %(person)s, Heirat"
 
 #: ../src/plugins/drawreport/Calendar.py:377
-#: ../src/plugins/textreport/BirthdayReport.py:328
+#: ../src/plugins/textreport/BirthdayReport.py:330
 #, python-format
 msgid ""
 "%(spouse)s and\n"
@@ -10445,13 +10445,13 @@ msgstr[1] ""
 
 #: ../src/plugins/drawreport/Calendar.py:407
 #: ../src/plugins/drawreport/Calendar.py:409
-#: ../src/plugins/textreport/BirthdayReport.py:360
 #: ../src/plugins/textreport/BirthdayReport.py:362
+#: ../src/plugins/textreport/BirthdayReport.py:364
 msgid "Year of calendar"
 msgstr "Kalenderjahr"
 
 #: ../src/plugins/drawreport/Calendar.py:414
-#: ../src/plugins/textreport/BirthdayReport.py:367
+#: ../src/plugins/textreport/BirthdayReport.py:369
 #: ../src/plugins/webreport/WebCal.py:1314
 msgid "Select filter to restrict people that appear on calendar"
 msgstr "Filter wählen um Personen, die im Kalender erscheinen zu begrenzen"
@@ -10459,7 +10459,7 @@ msgstr "Filter wählen um Personen, die im Kalender erscheinen zu begrenzen"
 #: ../src/plugins/drawreport/Calendar.py:418
 #: ../src/plugins/drawreport/FanChart.py:399
 #: ../src/plugins/textreport/AncestorReport.py:269
-#: ../src/plugins/textreport/BirthdayReport.py:371
+#: ../src/plugins/textreport/BirthdayReport.py:373
 #: ../src/plugins/textreport/DescendReport.py:394
 #: ../src/plugins/textreport/DetAncestralReport.py:729
 #: ../src/plugins/textreport/DetDescendantReport.py:893
@@ -10471,7 +10471,7 @@ msgstr "Die Hauptperson für den Bericht"
 
 #: ../src/plugins/drawreport/Calendar.py:430
 #: ../src/plugins/textreport/AncestorReport.py:279
-#: ../src/plugins/textreport/BirthdayReport.py:382
+#: ../src/plugins/textreport/BirthdayReport.py:384
 #: ../src/plugins/textreport/DescendReport.py:404
 #: ../src/plugins/textreport/DetAncestralReport.py:739
 #: ../src/plugins/textreport/DetDescendantReport.py:903
@@ -10486,37 +10486,37 @@ msgid "Select the format to display names"
 msgstr "Format zum anzeigen von Namen wählen"
 
 #: ../src/plugins/drawreport/Calendar.py:433
-#: ../src/plugins/textreport/BirthdayReport.py:385
+#: ../src/plugins/textreport/BirthdayReport.py:387
 #: ../src/plugins/webreport/WebCal.py:1390
 msgid "Country for holidays"
 msgstr "Land für Feiertage"
 
 #: ../src/plugins/drawreport/Calendar.py:444
-#: ../src/plugins/textreport/BirthdayReport.py:396
+#: ../src/plugins/textreport/BirthdayReport.py:398
 msgid "Select the country to see associated holidays"
 msgstr "Land wählen um die zugehörigen Feiertage zu sehen"
 
 #. Default selection ????
 #: ../src/plugins/drawreport/Calendar.py:447
-#: ../src/plugins/textreport/BirthdayReport.py:399
+#: ../src/plugins/textreport/BirthdayReport.py:401
 #: ../src/plugins/webreport/WebCal.py:1415
 msgid "First day of week"
 msgstr "Erster Tag der Woche"
 
 #: ../src/plugins/drawreport/Calendar.py:451
-#: ../src/plugins/textreport/BirthdayReport.py:403
+#: ../src/plugins/textreport/BirthdayReport.py:405
 #: ../src/plugins/webreport/WebCal.py:1418
 msgid "Select the first day of the week for the calendar"
 msgstr "Ersten Tag der Woche für den Kalender wählen"
 
 #: ../src/plugins/drawreport/Calendar.py:454
-#: ../src/plugins/textreport/BirthdayReport.py:406
+#: ../src/plugins/textreport/BirthdayReport.py:408
 #: ../src/plugins/webreport/WebCal.py:1405
 msgid "Birthday surname"
 msgstr "Familienname bei Geburtstagen"
 
 #: ../src/plugins/drawreport/Calendar.py:455
-#: ../src/plugins/textreport/BirthdayReport.py:407
+#: ../src/plugins/textreport/BirthdayReport.py:409
 #: ../src/plugins/webreport/WebCal.py:1406
 msgid "Wives use husband's surname (from first family listed)"
 msgstr ""
@@ -10524,7 +10524,7 @@ msgstr ""
 "Familie)"
 
 #: ../src/plugins/drawreport/Calendar.py:456
-#: ../src/plugins/textreport/BirthdayReport.py:408
+#: ../src/plugins/textreport/BirthdayReport.py:410
 #: ../src/plugins/webreport/WebCal.py:1408
 msgid "Wives use husband's surname (from last family listed)"
 msgstr ""
@@ -10532,96 +10532,96 @@ msgstr ""
 "Familie)"
 
 #: ../src/plugins/drawreport/Calendar.py:457
-#: ../src/plugins/textreport/BirthdayReport.py:409
+#: ../src/plugins/textreport/BirthdayReport.py:411
 #: ../src/plugins/webreport/WebCal.py:1410
 msgid "Wives use their own surname"
 msgstr "Frauen benutzen ihren Mädchennamen"
 
 #: ../src/plugins/drawreport/Calendar.py:458
-#: ../src/plugins/textreport/BirthdayReport.py:410
+#: ../src/plugins/textreport/BirthdayReport.py:412
 #: ../src/plugins/webreport/WebCal.py:1411
 msgid "Select married women's displayed surname"
 msgstr "Angezeigten Familienname für verheiratete Frauen wählen"
 
 #: ../src/plugins/drawreport/Calendar.py:461
-#: ../src/plugins/textreport/BirthdayReport.py:413
+#: ../src/plugins/textreport/BirthdayReport.py:415
 #: ../src/plugins/webreport/WebCal.py:1426
 msgid "Include only living people"
 msgstr "Nur lebende Personen einbeziehen"
 
 #: ../src/plugins/drawreport/Calendar.py:462
-#: ../src/plugins/textreport/BirthdayReport.py:414
+#: ../src/plugins/textreport/BirthdayReport.py:416
 #: ../src/plugins/webreport/WebCal.py:1427
 msgid "Include only living people in the calendar"
 msgstr "Kalender nur mit lebenden Personen"
 
 #: ../src/plugins/drawreport/Calendar.py:465
-#: ../src/plugins/textreport/BirthdayReport.py:417
+#: ../src/plugins/textreport/BirthdayReport.py:419
 #: ../src/plugins/webreport/WebCal.py:1430
 msgid "Include birthdays"
 msgstr "Geburtstage mit einbeziehen"
 
 #: ../src/plugins/drawreport/Calendar.py:466
-#: ../src/plugins/textreport/BirthdayReport.py:418
+#: ../src/plugins/textreport/BirthdayReport.py:420
 #: ../src/plugins/webreport/WebCal.py:1431
 msgid "Include birthdays in the calendar"
 msgstr "Kalender mit Geburtstagen"
 
 #: ../src/plugins/drawreport/Calendar.py:469
-#: ../src/plugins/textreport/BirthdayReport.py:421
+#: ../src/plugins/textreport/BirthdayReport.py:423
 #: ../src/plugins/webreport/WebCal.py:1434
 msgid "Include anniversaries"
 msgstr "Jubiläen mit einbeziehen"
 
 #: ../src/plugins/drawreport/Calendar.py:470
-#: ../src/plugins/textreport/BirthdayReport.py:422
+#: ../src/plugins/textreport/BirthdayReport.py:424
 #: ../src/plugins/webreport/WebCal.py:1435
 msgid "Include anniversaries in the calendar"
 msgstr "Kalender mit Jubiläen"
 
 #: ../src/plugins/drawreport/Calendar.py:473
 #: ../src/plugins/drawreport/Calendar.py:474
-#: ../src/plugins/textreport/BirthdayReport.py:430
+#: ../src/plugins/textreport/BirthdayReport.py:432
 msgid "Text Options"
 msgstr "Textoptionen"
 
 #: ../src/plugins/drawreport/Calendar.py:476
-#: ../src/plugins/textreport/BirthdayReport.py:437
+#: ../src/plugins/textreport/BirthdayReport.py:439
 msgid "Text Area 1"
 msgstr "Textbereich1"
 
 #: ../src/plugins/drawreport/Calendar.py:476
-#: ../src/plugins/textreport/BirthdayReport.py:437
+#: ../src/plugins/textreport/BirthdayReport.py:439
 msgid "My Calendar"
 msgstr "Mein Kalender"
 
 #: ../src/plugins/drawreport/Calendar.py:477
-#: ../src/plugins/textreport/BirthdayReport.py:438
+#: ../src/plugins/textreport/BirthdayReport.py:440
 msgid "First line of text at bottom of calendar"
 msgstr "Erste Zeile des Text am Fuß des Kalenders"
 
 #: ../src/plugins/drawreport/Calendar.py:480
-#: ../src/plugins/textreport/BirthdayReport.py:441
+#: ../src/plugins/textreport/BirthdayReport.py:443
 msgid "Text Area 2"
 msgstr "Textbereich 2"
 
 #: ../src/plugins/drawreport/Calendar.py:480
-#: ../src/plugins/textreport/BirthdayReport.py:441
+#: ../src/plugins/textreport/BirthdayReport.py:443
 msgid "Produced with Gramps"
 msgstr "Erstellt mit Gramps"
 
 #: ../src/plugins/drawreport/Calendar.py:481
-#: ../src/plugins/textreport/BirthdayReport.py:442
+#: ../src/plugins/textreport/BirthdayReport.py:444
 msgid "Second line of text at bottom of calendar"
 msgstr "Zweite Zeile des Text am Fuß des Kalenders"
 
 #: ../src/plugins/drawreport/Calendar.py:484
-#: ../src/plugins/textreport/BirthdayReport.py:445
+#: ../src/plugins/textreport/BirthdayReport.py:447
 msgid "Text Area 3"
 msgstr "Textbereich 3"
 
 #: ../src/plugins/drawreport/Calendar.py:485
-#: ../src/plugins/textreport/BirthdayReport.py:446
+#: ../src/plugins/textreport/BirthdayReport.py:448
 msgid "Third line of text at bottom of calendar"
 msgstr "Dritte Zeile des Text am Fuß des Kalenders"
 
@@ -10646,17 +10646,17 @@ msgid "Days of the week text"
 msgstr "Text der Wochentage"
 
 #: ../src/plugins/drawreport/Calendar.py:555
-#: ../src/plugins/textreport/BirthdayReport.py:510
+#: ../src/plugins/textreport/BirthdayReport.py:512
 msgid "Text at bottom, line 1"
 msgstr "Text unten, Zeile 1"
 
 #: ../src/plugins/drawreport/Calendar.py:557
-#: ../src/plugins/textreport/BirthdayReport.py:512
+#: ../src/plugins/textreport/BirthdayReport.py:514
 msgid "Text at bottom, line 2"
 msgstr "Text unten, Zeile 2"
 
 #: ../src/plugins/drawreport/Calendar.py:559
-#: ../src/plugins/textreport/BirthdayReport.py:514
+#: ../src/plugins/textreport/BirthdayReport.py:516
 msgid "Text at bottom, line 3"
 msgstr "Text unten, Zeile 3"
 
@@ -20190,40 +20190,40 @@ msgstr "Beziehungen gezeigt zu %s"
 #: ../src/plugins/textreport/BirthdayReport.py:176
 #: ../src/plugins/textreport/BirthdayReport.py:214
 #: ../src/plugins/textreport/BirthdayReport.py:223
-#: ../src/plugins/textreport/BirthdayReport.py:433
+#: ../src/plugins/textreport/BirthdayReport.py:435
 #: ../src/plugins/textreport/textplugins.gpr.py:53
 msgid "Birthday and Anniversary Report"
 msgstr "Geburtstags- und Jahrestage-Bericht"
 
-#: ../src/plugins/textreport/BirthdayReport.py:425
+#: ../src/plugins/textreport/BirthdayReport.py:427
 msgid "Include relationships to center person"
 msgstr "Mit Beziehungen zur Hauptperson"
 
-#: ../src/plugins/textreport/BirthdayReport.py:427
+#: ../src/plugins/textreport/BirthdayReport.py:429
 msgid "Include relationships to center person (slower)"
 msgstr "Mit Beziehungen zur Hauptperson (langsamer)"
 
-#: ../src/plugins/textreport/BirthdayReport.py:432
+#: ../src/plugins/textreport/BirthdayReport.py:434
 msgid "Title text"
 msgstr "Titeltext"
 
-#: ../src/plugins/textreport/BirthdayReport.py:434
+#: ../src/plugins/textreport/BirthdayReport.py:436
 msgid "Title of calendar"
 msgstr "Titel des Kalenders"
 
-#: ../src/plugins/textreport/BirthdayReport.py:500
+#: ../src/plugins/textreport/BirthdayReport.py:502
 msgid "Title text style"
 msgstr "Titeltext Stil"
 
-#: ../src/plugins/textreport/BirthdayReport.py:503
+#: ../src/plugins/textreport/BirthdayReport.py:505
 msgid "Data text display"
 msgstr "Daten Textanzeige"
 
-#: ../src/plugins/textreport/BirthdayReport.py:505
+#: ../src/plugins/textreport/BirthdayReport.py:507
 msgid "Day text style"
 msgstr "Tagestext Stil"
 
-#: ../src/plugins/textreport/BirthdayReport.py:508
+#: ../src/plugins/textreport/BirthdayReport.py:510
 msgid "Month text style"
 msgstr "Monatstext Stil"
 
