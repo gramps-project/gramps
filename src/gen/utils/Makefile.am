@@ -20,7 +20,8 @@ pkgpython_PYTHON = \
 	mactrans.py \
 	place.py \
 	referent.py \
-	trans.py
+	trans.py \
+	unknown.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen/utils
 

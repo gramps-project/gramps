@@ -327,6 +327,7 @@ src/gen/utils/keyword.py
 src/gen/utils/lds.py
 src/gen/utils/place.py
 src/gen/utils/trans.py
+src/gen/utils/unknown.py
 
 # gui - GUI code
 src/gui/aboutdialog.py

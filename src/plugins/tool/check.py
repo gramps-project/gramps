@@ -66,6 +66,7 @@ import gen.lib
 from gen.db import DbTxn
 from gen.config import config
 import Utils
+from gen.utils.unknown import make_unknown
 from gen.utils.file import (get_unicode_path_from_file_chooser, 
                             media_path_full, 
                             find_file)
@@ -945,7 +946,7 @@ class CheckIntegrity(object):
                     # The birth event referenced by the birth handle
                     # does not exist in the database
                     # This is tested by TestcaseGenerator person "Broken11"
-                    Utils.make_unknown(birth_handle, self.explanation.handle,
+                    make_unknown(birth_handle, self.explanation.handle,
                             self.class_event, self.commit_event, self.trans,
                             type=gen.lib.EventType.BIRTH)
                     LOG('    FAIL: the person "%s" refers to a birth event'
@@ -982,7 +983,7 @@ class CheckIntegrity(object):
                     LOG('    FAIL: the person "%s" refers to a death event'
                         ' "%s" which does not exist in the database' % 
                               (person.gramps_id, death_handle))
-                    Utils.make_unknown(death_handle, self.explanation.handle,
+                    make_unknown(death_handle, self.explanation.handle,
                             self.class_event, self.commit_event, self.trans,
                             type=gen.lib.EventType.DEATH)
                     self.invalid_events.add(key)
@@ -1020,7 +1021,7 @@ class CheckIntegrity(object):
                         LOG('    FAIL: the person "%s" refers to an event'
                             ' "%s" which does not exist in the database' % 
                                   (person.gramps_id, event_handle))
-                        Utils.make_unknown(event_handle,
+                        make_unknown(event_handle,
                                 self.explanation.handle, self.class_event,
                                 self.commit_event, self.trans)
                         self.invalid_events.add(key)
@@ -1054,7 +1055,7 @@ class CheckIntegrity(object):
                         LOG('    FAIL: the family "%s" refers to an event'
                             ' "%s" which does not exist in the database' % 
                                   (family.gramps_id, event_handle))
-                        Utils.make_unknown(event_handle, self.explanation,
+                        make_unknown(event_handle, self.explanation,
                                 self.class_event, self.commit_event, self.trans)
                         self.invalid_events.add(key)
                 if none_handle:
@@ -1092,7 +1093,7 @@ class CheckIntegrity(object):
                 p = self.db.get_person_from_handle( pref.ref)
                 if not p:
                     # The referenced person does not exist in the database
-                    Utils.make_unknown(pref.ref, self.explanation.handle,
+                    make_unknown(pref.ref, self.explanation.handle,
                             self.class_person, self.commit_person, self.trans)
                     self.invalid_person_references.add(key)
             if none_handle:
@@ -1118,7 +1119,7 @@ class CheckIntegrity(object):
                     family = self.db.get_family_from_handle(family_handle)
                     if not family:
                         # The referenced family does not exist in the database
-                        Utils.make_unknown(family_handle,
+                        make_unknown(family_handle,
                                 self.explanation.handle, self.class_family,
                                 self.commit_family, self.trans, db=self.db)
                         self.invalid_family_references.add(key)
@@ -1146,7 +1147,7 @@ class CheckIntegrity(object):
                 r = self.db.get_repository_from_handle(reporef.ref)
                 if not r:
                     # The referenced repository does not exist in the database
-                    Utils.make_unknown(reporef.ref, self.explanation.handle,
+                    make_unknown(reporef.ref, self.explanation.handle,
                             self.class_repo, self.commit_repo, self.trans)
                     self.invalid_repo_references.add(key)
             if none_handle:
@@ -1176,7 +1177,7 @@ class CheckIntegrity(object):
                         # The referenced place does not exist in the database
                         # This is tested by TestcaseGenerator person "Broken17"
                         # This is tested by TestcaseGenerator person "Broken18"
-                        Utils.make_unknown(place_handle,
+                        make_unknown(place_handle,
                                 self.explanation.handle, self.class_place,
                                 self.commit_place, self.trans)
                         LOG('    FAIL: the person "%s" refers to an LdsOrd'
@@ -1193,7 +1194,7 @@ class CheckIntegrity(object):
                     place = self.db.get_place_from_handle(place_handle)
                     if not place:
                         # The referenced place does not exist in the database
-                        Utils.make_unknown(place_handle,
+                        make_unknown(place_handle,
                                 self.explanation.handle, self.class_place,
                                 self.commit_place, self.trans)
                         LOG('    FAIL: the family "%s" refers to an LdsOrd'
@@ -1209,7 +1210,7 @@ class CheckIntegrity(object):
                 place = self.db.get_place_from_handle(place_handle)
                 if not place:
                     # The referenced place does not exist in the database
-                    Utils.make_unknown(place_handle,
+                    make_unknown(place_handle,
                             self.explanation.handle, self.class_place,
                             self.commit_place, self.trans)
                     LOG('    FAIL: the event "%s" refers to an LdsOrd place'
@@ -1351,7 +1352,7 @@ class CheckIntegrity(object):
                         self.invalid_citation_references.add(item[1])
 
         for bad_handle in self.invalid_citation_references:
-            created = Utils.make_unknown(bad_handle, self.explanation.handle,
+            created = make_unknown(bad_handle, self.explanation.handle,
                         self.class_citation, self.commit_citation, self.trans,
                         source_class_func=self.class_source,
                         source_commit_func=self.commit_source,
@@ -1379,7 +1380,7 @@ class CheckIntegrity(object):
                 source = self.db.get_source_from_handle(source_handle)
                 if not source:
                     # The referenced source does not exist in the database
-                    Utils.make_unknown(source_handle, self.explanation.handle,
+                    make_unknown(source_handle, self.explanation.handle,
                             self.class_source, self.commit_source, self.trans)
                     LOG('    FAIL: the citation "%s" refers to source '
                             ' "%s" which does not exist in the database' %
@@ -1501,7 +1502,7 @@ class CheckIntegrity(object):
                         self.invalid_media_references.add(item[1])
 
         for bad_handle in self.invalid_media_references:
-            Utils.make_unknown(bad_handle, self.explanation.handle,
+            make_unknown(bad_handle, self.explanation.handle,
                                self.class_object, self.commit_object, self.trans)
 
         if len (self.invalid_media_references) == 0:
@@ -1669,7 +1670,7 @@ class CheckIntegrity(object):
                         self.invalid_note_references.add(item[1])
 
         for bad_handle in self.invalid_note_references:
-            Utils.make_unknown(bad_handle, self.explanation.handle,
+            make_unknown(bad_handle, self.explanation.handle,
                                self.class_note, self.commit_note, self.trans)
 
         if len (self.invalid_note_references) == 0:
@@ -1757,7 +1758,7 @@ class CheckIntegrity(object):
                         self.invalid_tag_references.add(item[1])
 
         for bad_handle in self.invalid_tag_references:
-            Utils.make_unknown(bad_handle, None, self.class_tag,
+            make_unknown(bad_handle, None, self.class_tag,
                                self.commit_tag, self.trans)
 
         if len(self.invalid_tag_references) == 0:

@@ -49,6 +49,7 @@ from gen.db import DbTxn
 from gen.db.write import CLASS_TO_KEY_MAP
 from gen.errors import GrampsImportError
 import Utils
+from gen.utils.unknown import make_unknown, create_explanation_note
 import gen.datehandler
 from gen.display.name import displayer as name_displayer
 from gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, SOURCE_KEY, EVENT_KEY, 
@@ -2921,24 +2922,24 @@ class GrampsParser(UpdateCallback):
                 [target for target in self.import_handles[orig_handle].keys() if
                     not self.import_handles[orig_handle][target][INSTANTIATED]]]
         if uninstantiated:
-            expl_note = Utils.create_explanation_note(self.db)
+            expl_note = create_explanation_note(self.db)
             self.db.commit_note(expl_note, self.trans, time.time())
             self.info.expl_note = expl_note.get_gramps_id()
             for orig_handle, target in uninstantiated:
                 class_arg = {'handle': orig_handle, 'id': None, 'priv': False}
                 if target == 'family':
-                    objs = Utils.make_unknown(class_arg, expl_note.handle,
+                    objs = make_unknown(class_arg, expl_note.handle,
                             self.func_map[target][0], self.func_map[target][1],
                             self.trans, db=self.db)
                 elif target == 'citation':
-                    objs = Utils.make_unknown(class_arg, expl_note.handle,
+                    objs = make_unknown(class_arg, expl_note.handle,
                             self.func_map[target][0], self.func_map[target][1],
                             self.trans,
                             source_class_func=self.func_map['source'][0],
                             source_commit_func=self.func_map['source'][1],
                             source_class_arg={'handle':Utils.create_id(), 'id':None, 'priv':False})
                 elif target == 'note':
-                    objs = Utils.make_unknown(class_arg, expl_note.handle,
+                    objs = make_unknown(class_arg, expl_note.handle,
                             self.func_map[target][0], self.stop_note_asothers,
                             self.trans)
                 else:
@@ -2946,7 +2947,7 @@ class GrampsParser(UpdateCallback):
                         target = 'placeobj'
                     elif target == 'media':
                         target = 'object'
-                    objs = Utils.make_unknown(class_arg, expl_note.handle,
+                    objs = make_unknown(class_arg, expl_note.handle,
                             self.func_map[target][0], self.func_map[target][1],
                             self.trans)
                 for obj in objs:

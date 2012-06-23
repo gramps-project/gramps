@@ -119,6 +119,7 @@ from gen.db import DbTxn
 from gen.updatecallback import UpdateCallback
 import gen.mime
 from gen.utils.lds import TEMPLES
+from gen.utils.unknown import make_unknown, create_explanation_note
 import Utils
 from gen.datehandler._dateparser import DateParser
 from gen.db.dbconst import EVENT_KEY
@@ -2924,7 +2925,7 @@ class GedcomParser(UpdateCallback):
                     handle = self.__find_from_handle(gramps_id, 
                                                      gramps_id2handle)
                     if msg == "FAM":
-                        Utils.make_unknown(gramps_id, self.explanation.handle, 
+                        make_unknown(gramps_id, self.explanation.handle, 
                                            class_func, commit_func, self.trans,
                                            db=self.dbase)
                         self.__add_msg(_("Error: %(msg)s  '%(gramps_id)s'"
@@ -2933,7 +2934,7 @@ class GedcomParser(UpdateCallback):
                                          {'msg' : msg, 'gramps_id' : gramps_id,
                                           'xref' : input_id})
                     else:
-                        Utils.make_unknown(gramps_id, self.explanation.handle, 
+                        make_unknown(gramps_id, self.explanation.handle, 
                                            class_func, commit_func, self.trans)
                         self.missing_references +=1
                         self.__add_msg(_("Error: %(msg)s '%(gramps_id)s'"
@@ -2943,7 +2944,7 @@ class GedcomParser(UpdateCallback):
                                          {'msg' : msg, 'gramps_id' : gramps_id,
                                           'xref' : input_id})
     
-        self.explanation = Utils.create_explanation_note(self.dbase)
+        self.explanation = create_explanation_note(self.dbase)
 
         self.missing_references = 0
         previous_errors = self.number_of_errors
