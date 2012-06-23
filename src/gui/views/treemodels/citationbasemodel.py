@@ -41,7 +41,7 @@ LOG = logging.getLogger(".citation")
 #-------------------------------------------------------------------------
 import gen.datehandler
 import gen.lib
-from Utils import confidence, format_time
+from Utils import confidence
 from gen.config import config
 
 #-------------------------------------------------------------------------
@@ -116,7 +116,7 @@ class CitationBaseModel(object):
         return unicode(data[COLUMN_HANDLE])
 
     def citation_change(self, data):
-        return format_time(data[COLUMN_CHANGE])
+        return gen.datehandler.format_time(data[COLUMN_CHANGE])
     
     def citation_sort_change(self, data):
         return "%012x" % data[COLUMN_CHANGE]
@@ -168,7 +168,7 @@ class CitationBaseModel(object):
         source_handle = data[COLUMN_SOURCE]
         try:
             source = self.db.get_source_from_handle(source_handle)
-            return format_time(source.change)
+            return gen.datehandler.format_time(source.change)
         except:
             return u''
 
@@ -196,7 +196,7 @@ class CitationBaseModel(object):
         return unicode(data[COLUMN2_PUBINFO])
 
     def source_src_chan(self, data):
-        return format_time(data[COLUMN2_CHANGE])
+        return gen.datehandler.format_time(data[COLUMN2_CHANGE])
 
     def source_sort2_change(self, data):
         return "%012x" % data[COLUMN2_CHANGE]

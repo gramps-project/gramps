@@ -976,20 +976,6 @@ def navigation_label(db, nav_type, handle):
 
 #-------------------------------------------------------------------------
 #
-# Format the date and time displayed in the Last Changed column in views.
-#
-#-------------------------------------------------------------------------
-def format_time(secs):
-    """
-    Format a time in seconds as a date in the preferred date format and a
-    24 hour time as hh:mm:ss.
-    """
-    t = time.localtime(secs)
-    d = gen.lib.Date(t.tm_year, t.tm_mon, t.tm_mday)
-    return date_displayer.display(d) + time.strftime(' %X', t)
-
-#-------------------------------------------------------------------------
-#
 # make_unknown
 #
 #-------------------------------------------------------------------------

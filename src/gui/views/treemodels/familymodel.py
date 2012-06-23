@@ -173,7 +173,7 @@ class FamilyModel(FlatBaseModel):
         return "%012x" % data[12]
     
     def column_change(self, data):
-        return Utils.format_time(data[12])
+        return gen.datehandler.format_time(data[12])
 
     def column_tooltip(self, data):
         return u'Family tooltip'

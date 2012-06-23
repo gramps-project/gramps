@@ -26,6 +26,14 @@ Class handling language-specific selection for date parser and displayer.
 
 #-------------------------------------------------------------------------
 #
+# Python modules
+#
+#-------------------------------------------------------------------------
+import time
+from gen.lib import Date
+
+#-------------------------------------------------------------------------
+#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -80,3 +88,12 @@ def get_date(date_base) :
 def get_date_valid(date_base):
     date_obj = date_base.get_date_object()
     return date_obj.get_valid()
+
+def format_time(secs):
+    """
+    Format a time in seconds as a date in the preferred date format and a
+    24 hour time as hh:mm:ss.
+    """
+    t = time.localtime(secs)
+    d = Date(t.tm_year, t.tm_mon, t.tm_mday)
+    return displayer.display(d) + time.strftime(' %X', t)

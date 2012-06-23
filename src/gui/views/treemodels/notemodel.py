@@ -41,7 +41,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import Utils
+import gen.datehandler
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
 from gen.lib import (Note, NoteType, StyledText)
 
@@ -129,7 +129,7 @@ class NoteModel(FlatBaseModel):
         return "%012x" % data[Note.POS_CHANGE]
     
     def column_change(self,data):
-        return Utils.format_time(data[Note.POS_CHANGE])
+        return gen.datehandler.format_time(data[Note.POS_CHANGE])
 
     def get_tag_name(self, tag_handle):
         """

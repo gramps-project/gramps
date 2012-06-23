@@ -162,7 +162,7 @@ class EventModel(FlatBaseModel):
         return "%012x" % data[COLUMN_CHANGE]
 
     def column_change(self,data):
-        return Utils.format_time(data[COLUMN_CHANGE])
+        return gen.datehandler.format_time(data[COLUMN_CHANGE])
 
     def column_tooltip(self,data):
         return u'Event tooltip'
