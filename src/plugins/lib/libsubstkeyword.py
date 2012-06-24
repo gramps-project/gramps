@@ -378,7 +378,7 @@ class EventFormat(GenericFormat):
             """ Get the name and then get the attributes value """
             #Event's Atribute
             attrib_parse = AttributeParse(self.string_in)
-            self.string_in.step()
+            #self.string_in.step()
             name = attrib_parse.get_name()
             if name:
                 return attrib_parse.get_attribute(event.get_attribute_list(),
@@ -403,6 +403,77 @@ class EventFormat(GenericFormat):
         code = "dDa"
         function = [self.__empty_format, self.__empty_format,
                     self.__empty_attrib]
+        
+        return self.generic_format(None, code, "", function)
+        
+#------------------------------------------------------------------------
+# Gallery Format strings
+#------------------------------------------------------------------------
+class GalleryFormat(GenericFormat):
+    """ The gallery format class.
+    If no format string, the photo description is displayed
+    otherwise, parse through the format string and put in the parts
+        dates (no places) can have their own format strings
+    """
+
+    def __init__(self, database, _in):
+        self.database = database
+        GenericFormat.__init__(self, _in)
+        
+    def _default_format(self, photo):
+        if photo is None:
+            return
+        else:
+            return photo.get_description()
+    
+    def __empty_format(self):
+        """ clear out a sub format string """
+        self.string_in.remove_start_end("(", ")")
+        return
+    
+    def __empty_attrib(self):
+        """ clear out an attribute name """
+        self.string_in.remove_start_end("[", "]")
+        return
+
+    def parse_format(self, photo):
+        """ Parse the photo format string.
+        let the date or place classes handle any sub-format strings """
+
+        if self.is_blank(photo):
+            return
+        
+        def format_date():
+            """ start formatting a date in this photo """
+            date_format = DateFormat(self.string_in)
+            return date_format.parse_format(date_format.get_date(photo))
+            
+        def format_attrib():
+            """ Get the name and then get the attributes value """
+            #photo's Atribute
+            attrib_parse = AttributeParse(self.string_in)
+            name = attrib_parse.get_name()
+            if name:
+                return attrib_parse.get_attribute(photo.get_attribute_list(),
+                                                  name)
+            else:
+                return
+            
+        code = "ndia"
+        upper = ""
+        function = [photo.get_description,
+                    format_date,
+                    photo.get_gramps_id,
+                    format_attrib
+                    ]
+        
+        return self.generic_format(photo, code, upper, function)
+
+    def parse_empty(self):
+        """ remove the format string """
+        
+        code = "da"
+        function = [self.__empty_format, self.__empty_attrib]
         
         return self.generic_format(None, code, "", function)
         
@@ -645,7 +716,7 @@ class VariableParse(object):
     def is_a(self):
         """ check """
         return self._in.this == "$" and self._in.next is not None and \
-                              "nsijbBdDmMvVauetT".find(self._in.next) != -1
+                              "nsijbBdDmMvVauetTpP".find(self._in.next) != -1
 
     def get_event_by_type(self, marriage, e_type):
         """ get an event from a type """
@@ -668,7 +739,7 @@ class VariableParse(object):
             if event.get_type().is_type(event_name):
                 return event
         return None
-    
+        
     def empty_item(self, item):
         """ return false if there is a valid item(date or place).
         Otherwise
@@ -731,6 +802,28 @@ class VariableParse(object):
             return event_f.parse_format(event)
         else:
             event_f.parse_empty()
+            return
+            
+    def __get_photo(self, person_or_marriage):
+        """ returns the first photo in the media list or None """
+        media_list = person_or_marriage.get_media_list()
+        for media_ref in media_list:
+            media_handle = media_ref.get_reference_handle()
+            media = self.database.get_object_from_handle(media_handle)
+            mime_type = media.get_mime_type()
+            if mime_type and mime_type.startswith("image"):
+                return media
+        return None
+    
+    def __parse_photo(self, person_or_marriage):
+        if person_or_marriage is None:
+            return
+        photo = self.__get_photo(person_or_marriage)
+        photo_f = GalleryFormat(self.database, self._in)
+        if photo:
+            return photo_f.parse_format(photo)
+        else:
+            photo_f.parse_empty()
             return
     
     def parse_format(self):
@@ -837,6 +930,13 @@ class VariableParse(object):
         elif next_char == "t":
             #person event
             return self.__parse_event(self.friend.family, attrib_parse)
+        
+        elif next_char == 'p':
+            #photo for the person
+            return self.__parse_photo(self.friend.person)
+        elif next_char == 'P':
+            #photo for the marriage
+            return self.__parse_photo(self.friend.family)
         
 
 #------------------------------------------------------------------------
