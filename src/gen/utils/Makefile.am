@@ -11,6 +11,7 @@ pkgpython_PYTHON = \
 	alive.py \
 	callback.py \
 	callman.py \
+	cast.py \
 	configmanager.py \
 	fallback.py \
 	file.py \

@@ -69,6 +69,7 @@ import gobject
 #-------------------------------------------------------------------------
 import const
 import Utils
+from gen.utils.cast import get_type_converter_by_name, type_name
 from gui.listmodel import ListModel
 from gen.errors import FilterError, ReportError
 from gui.pluginmanager import GuiPluginManager
@@ -461,9 +462,7 @@ class BookList(object):
                                     escape(option_name),
                                     len(options[option_name]) ) )
                         for list_index in range(len(option_value)):
-                            option_type = Utils.type_name(
-                                option_value[list_index]
-                            )
+                            option_type = type_name(option_value[list_index])
                             value = escape(unicode(option_value[list_index]))
                             value = value.replace('"', '&quot;')
                             f.write('    <listitem number="%d" type="%s" '
@@ -473,7 +472,7 @@ class BookList(object):
                                     value ) )
                         f.write('  </option>\n')
                     else:
-                        option_type = Utils.type_name(option_value)
+                        option_type = type_name(option_value)
                         value = escape(unicode(option_value))
                         value = value.replace('"', '&quot;')
                         f.write('  <option name="%s" type="%s" '
@@ -550,10 +549,10 @@ class BookParser(handler.ContentHandler):
             if attrs.has_key('length'):
                 self.an_o_value = []
             else:
-                converter = Utils.get_type_converter_by_name(attrs['type'])
+                converter = get_type_converter_by_name(attrs['type'])
                 self.an_o_value = converter(attrs['value'])
         elif tag == "listitem":
-            converter = Utils.get_type_converter_by_name(attrs['type'])
+            converter = get_type_converter_by_name(attrs['type'])
             self.an_o_value.append(converter(attrs['value']))
         elif tag == "style":
             self.s = attrs['name']

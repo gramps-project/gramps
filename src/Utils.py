@@ -242,62 +242,6 @@ def create_uid(self, handle=None):
 # 
 #
 #-------------------------------------------------------------------------
-def cast_to_bool(val):
-    if val == str(True):
-        return True
-    return False
-
-def get_type_converter(val):
-    """
-    Return function that converts strings into the type of val.
-    """
-    val_type = type(val)
-    if val_type in (str, unicode):
-        return unicode
-    elif val_type == int:
-        return int
-    elif val_type == float:
-        return float
-    elif val_type == bool:
-        return cast_to_bool
-    elif val_type in (list, tuple):
-        return list
-
-def type_name(val):
-    """
-    Return the name the type of val.
-    
-    Only numbers and strings are supported.
-    The rest becomes strings (unicode).
-    """
-    val_type = type(val)
-    if val_type == int:
-        return 'int'
-    elif val_type == float:
-        return 'float'
-    elif val_type == bool:
-        return 'bool'
-    elif val_type in (str, unicode):
-        return 'unicode'
-    return 'unicode'
-
-def get_type_converter_by_name(val_str):
-    """
-    Return function that converts strings into the type given by val_str.
-    
-    Only numbers and strings are supported.
-    The rest becomes strings (unicode).
-    """
-    if val_str == 'int':
-        return int
-    elif val_str == 'float':
-        return float
-    elif val_str == 'bool':
-        return cast_to_bool
-    elif val_str in ('str', 'unicode'):
-        return unicode
-    return unicode
-
 def profile(func, *args):
     import hotshot.stats
 
