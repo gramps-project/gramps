@@ -253,7 +253,7 @@ class FamilyView(ListView):
 
     def remove(self, obj):
         from gui.dialog import QuestionDialog2
-        from Utils import data_recover_msg
+        from gen.utils.string import data_recover_msg
         msg = _('Deleting item will remove it from the database.')
         msg = msg + '\n' + data_recover_msg
         q = QuestionDialog2(_('Delete %s?') % _('family'), msg,

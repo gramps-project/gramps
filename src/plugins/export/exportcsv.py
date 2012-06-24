@@ -52,7 +52,7 @@ LOG = logging.getLogger(".ExportCSV")
 import gen.lib
 from gen.lib.eventroletype import EventRoleType
 from gui.plug.export import WriterOptionBox
-import Utils
+from gen.utils.string import gender as gender_map
 import gen.datehandler
 from gui.glade import Glade
 
@@ -366,11 +366,11 @@ class CSVWriter(object):
                     callname = primary_name.get_call_name()
                     gender = person.get_gender()
                     if gender == gen.lib.Person.MALE:
-                        gender = Utils.gender[gen.lib.Person.MALE]
+                        gender = gender_map[gen.lib.Person.MALE]
                     elif gender == gen.lib.Person.FEMALE:
-                        gender = Utils.gender[gen.lib.Person.FEMALE]
+                        gender = gender_map[gen.lib.Person.FEMALE]
                     else:
-                        gender = Utils.gender[gen.lib.Person.UNKNOWN]
+                        gender = gender_map[gen.lib.Person.UNKNOWN]
                     # Birth:
                     birthdate = ""
                     birthplace = ""

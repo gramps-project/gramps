@@ -69,7 +69,7 @@ from gui.autocomp import StandardCustomSelector, fill_entry
 from gui.selectors import SelectorFactory
 from gen.display.name import displayer as _nd
 from gen.utils.name import family_name
-import Utils
+from gen.utils.string import confidence
 
 #-------------------------------------------------------------------------
 #
@@ -552,7 +552,7 @@ class EditRule(ManagedWindow):
                     t = MyList(taglist, taglist)
                 elif v == _('Confidence level:'):
                     t = MyList(map(str, range(5)), 
-                               [Utils.confidence[i] for i in range(5)])
+                               [confidence[i] for i in range(5)])
                 else:                    
                     t = MyEntry()
                 tlist.append(t)

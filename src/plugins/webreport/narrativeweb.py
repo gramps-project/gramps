@@ -89,6 +89,7 @@ from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
                         
 import Utils
+from gen.utils.string import confidence
 from gen.utils.file import media_path_full
 from gen.utils.referent import get_source_and_citation_referents
 from gen.constfunc import win
@@ -2290,13 +2291,13 @@ class BasePage(object):
                 for key, sref in citation_ref_list:
                     cit_ref_li = Html("li", id="sref%d%s" % (cindex, key))
                     tmp = Html("ul")
-                    confidence = Utils.confidence.get(sref.confidence, _('Unknown'))
-                    if confidence == _('Normal'):
-                        confidence = None
+                    conf = confidence.get(sref.confidence, _('Unknown'))
+                    if conf == _('Normal'):
+                        conf = None
                     for (label, data) in [
                                           [_("Date"),       _dd.display(sref.date)],
                                           [_("Page"),       sref.page],
-                                          [_("Confidence"), confidence] ]:
+                                          [_("Confidence"), conf] ]:
                         if data:
                             tmp += Html("li", "%s: %s" % (label, data))
                     for handle in sref.get_note_list():

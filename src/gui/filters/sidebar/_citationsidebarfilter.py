@@ -48,7 +48,7 @@ from gen.filters import GenericFilterFactory, rules
 from gen.filters.rules.citation import (RegExpIdOf, HasIdOf, HasCitation, 
                                         HasNoteMatchingSubstringOf, 
                                         HasNoteRegexp, MatchesFilter)
-from Utils import confidence
+from gen.utils.string import confidence
 GenericCitationFilter = GenericFilterFactory('Citation')
 #-------------------------------------------------------------------------
 #

@@ -45,7 +45,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Utils import confidence
+from gen.utils.string import confidence
 import const
 from gui.utils import ProgressMeter
 from gui.plug import tool

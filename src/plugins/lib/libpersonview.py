@@ -50,7 +50,7 @@ _LOG = logging.getLogger(".gui.personview")
 import gen.lib
 from gen.db import DbTxn
 from gui.views.listview import ListView
-import Utils
+from gen.utils.string import data_recover_msg
 from gen.display.name import displayer as name_displayer
 from gui.dialog import ErrorDialog, QuestionDialog
 from gen.errors import WindowActiveError
@@ -295,7 +295,7 @@ class BasePersonView(ListView):
 
             msg = _('Deleting the person will remove the person '
                              'from the database.')
-            msg = "%s %s" % (msg, Utils.data_recover_msg)
+            msg = "%s %s" % (msg, data_recover_msg)
             QuestionDialog(_('Delete %s?') % name, 
                                           msg, 
                                           _('_Delete Person'), 

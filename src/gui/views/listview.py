@@ -59,6 +59,7 @@ from gui.filters import SearchBar
 from gui.utils import add_menuitem
 import const
 import Utils
+from gen.utils.string import data_recover_msg
 from gen.utils.file import get_unicode_path_from_file_chooser
 from gui.dialog import QuestionDialog, QuestionDialog2
 from gui.editors import FilterEditor
@@ -518,7 +519,7 @@ class ListView(NavigationView):
                 else:
                     msg = _('Deleting item will remove it from the database.')
                 
-                msg += ' ' + Utils.data_recover_msg
+                msg += ' ' + data_recover_msg
                 #descr = object.get_description()
                 #if descr == "":
                 descr = object.get_gramps_id()

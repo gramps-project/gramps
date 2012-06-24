@@ -30,7 +30,7 @@ from types import NoneType
 
 import gen.lib
 import gen.datehandler
-import Utils
+from gen.utils.string import gender as gender_map
 import gen.utils
 from gen.plug.report.utils import place_name
 
@@ -195,7 +195,7 @@ class SimpleAccess(object):
             person = self.dbase.get_person_from_handle(person)
         assert(isinstance(person, (gen.lib.Person, NoneType)))
         if person:
-            return Utils.gender[person.get_gender()]
+            return gender_map[person.get_gender()]
         return u''
 
     def __parent(self, person, func):

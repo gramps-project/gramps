@@ -35,7 +35,7 @@ import const
 from gui.display import display_help
 from gui.managedwindow import ManagedWindow
 import gen.datehandler
-from Utils import confidence
+from gen.utils.string import confidence
 from gen.merge import MergeCitationQuery
 
 #-------------------------------------------------------------------------

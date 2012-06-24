@@ -52,7 +52,7 @@ from gen.lib import StyledText, StyledTextTag, StyledTextTagType
 from gen.db import DbTxn
 import gen.mime
 from gui.plug import tool
-import Utils
+from gen.utils.string import confidence
 from gui.utils import ProgressMeter
 from gen.utils.lds import TEMPLES
 from gen.db.dbconst import *
@@ -1718,7 +1718,7 @@ class TestcaseGenerator(tool.BatchTool):
             #if randint(0,1) == 1:
             #    (year, d) = self.rand_date( )
             #    o.set_date_object( d)
-            o.set_confidence_level(choice(Utils.confidence.keys()))
+            o.set_confidence_level(choice(confidence.keys()))
 
         if issubclass(o.__class__,gen.lib.tagbase.TagBase):
             if randint(0,1) == 1:

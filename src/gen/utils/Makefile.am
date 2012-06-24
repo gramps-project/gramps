@@ -23,6 +23,7 @@ pkgpython_PYTHON = \
 	mactrans.py \
 	place.py \
 	referent.py \
+	string.py \
 	trans.py \
 	tree.py \
 	unknown.py

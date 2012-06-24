@@ -31,12 +31,7 @@ Non GUI/GTK related utility functions
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import os
-import sys
 import locale
-import random
-import time
-import uuid
 import logging
 LOG = logging.getLogger(".")
 
@@ -45,50 +40,13 @@ LOG = logging.getLogger(".")
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.display.name import displayer as name_displayer
 import gen.lib
+from gen.display.name import displayer as name_displayer
 from gen.datehandler import codeset
 from gen.config import config
-from const import GRAMPS_UUID
 from gen.constfunc import mac, win
 from gen.ggettext import sgettext as _
 from gen.utils.name import family_name
-
-#-------------------------------------------------------------------------
-#
-# Integer to String  mappings for constants
-#
-#-------------------------------------------------------------------------
-gender = {
-    gen.lib.Person.MALE    : _("male"), 
-    gen.lib.Person.FEMALE  : _("female"), 
-    gen.lib.Person.UNKNOWN : _("gender|unknown"), 
-    }
-
-def format_gender( type):
-    return gender.get(type[0], _("Invalid"))
-
-confidence = {
-    gen.lib.Citation.CONF_VERY_HIGH : _("Very High"), 
-    gen.lib.Citation.CONF_HIGH      : _("High"), 
-    gen.lib.Citation.CONF_NORMAL    : _("Normal"), 
-    gen.lib.Citation.CONF_LOW       : _("Low"), 
-    gen.lib.Citation.CONF_VERY_LOW  : _("Very Low"), 
-   }
-
-family_rel_descriptions = {
-    gen.lib.FamilyRelType.MARRIED     : _("A legal or common-law relationship "
-                                         "between a husband and wife"), 
-    gen.lib.FamilyRelType.UNMARRIED   : _("No legal or common-law relationship "
-                                         "between man and woman"), 
-    gen.lib.FamilyRelType.CIVIL_UNION : _("An established relationship between "
-                                         "members of the same sex"), 
-    gen.lib.FamilyRelType.UNKNOWN     : _("Unknown relationship between a man "
-                                         "and woman"), 
-    gen.lib.FamilyRelType.CUSTOM      : _("An unspecified relationship between "
-                                         "a man and woman"), 
-    }
-
 
 #-------------------------------------------------------------------------
 #
@@ -100,9 +58,6 @@ _history_brokenFlag = 0
 def history_broken():
     global _history_brokenFlag
     _history_brokenFlag = 1
-
-data_recover_msg = _('The data can only be recovered by Undo operation '
-            'or by quitting with abandoning changes.')
 
 def fix_encoding(value, errors='strict'):
     # The errors argument specifies the response when the input string can't be
