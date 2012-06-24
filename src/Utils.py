@@ -47,10 +47,9 @@ LOG = logging.getLogger(".")
 #-------------------------------------------------------------------------
 from gen.display.name import displayer as name_displayer
 import gen.lib
-from gen.errors import DatabaseError
-from gen.datehandler import displayer as date_displayer, codeset
+from gen.datehandler import codeset
 from gen.config import config
-from const import GRAMPS_UUID, IMAGE_DIR
+from const import GRAMPS_UUID
 from gen.constfunc import mac, win
 from gen.ggettext import sgettext as _
 from gen.utils.name import family_name
