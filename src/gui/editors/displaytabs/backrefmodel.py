@@ -37,6 +37,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from gen.display.name import displayer as name_displayer
+from gen.utils.name import family_name
 import Utils
 
 #-------------------------------------------------------------------------
@@ -84,7 +85,7 @@ class BackRefModel(gtk.ListStore):
                     continue
                 gid = p.gramps_id
                 handle = p.handle
-                name = Utils.family_name(p, self.db)
+                name = family_name(p, self.db)
             elif dtype == 'Source':
                 p = self.db.get_source_from_handle(ref[1])
                 if not p:

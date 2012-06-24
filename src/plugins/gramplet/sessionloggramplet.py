@@ -30,7 +30,7 @@ from gen.db import PERSON_KEY, FAMILY_KEY, TXNDEL
 from gen.plug import Gramplet
 from gen.ggettext import sgettext as _
 from gen.display.name import displayer as name_displayer
-from Utils import family_name
+from gen.utils.name import family_name
 
 #------------------------------------------------------------------------
 #

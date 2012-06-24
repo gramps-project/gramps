@@ -68,6 +68,7 @@ from gen.filters import rules
 from gui.autocomp import StandardCustomSelector, fill_entry
 from gui.selectors import SelectorFactory
 from gen.display.name import displayer as _nd
+from gen.utils.name import family_name
 import Utils
 
 #-------------------------------------------------------------------------
@@ -339,7 +340,7 @@ class MyID(gtk.HBox):
             name = _nd.display_name(person.get_primary_name())
         elif self.namespace == 'Family':
             family = self.db.get_family_from_gramps_id(gramps_id)
-            name = Utils.family_name(family, self.db)
+            name = family_name(family, self.db)
         elif self.namespace == 'Event':
             event = self.db.get_event_from_gramps_id(gramps_id)
             name = str(event.get_type)
@@ -918,7 +919,7 @@ class ShowResults(ManagedWindow):
             gid = person.get_gramps_id()
         elif self.namespace == 'Family':
             family = self.db.get_family_from_handle(handle)
-            name = Utils.family_name(family, self.db)
+            name = family_name(family, self.db)
             gid = family.get_gramps_id()
         elif self.namespace == 'Event':
             event = self.db.get_event_from_handle(handle)
@@ -957,7 +958,7 @@ class ShowResults(ManagedWindow):
             name = self.db.get_person_from_handle(handle).get_primary_name()
             sortname = _nd.sort_string(name)
         elif self.namespace == 'Family':
-            sortname = Utils.family_name(
+            sortname = family_name(
                 self.db.get_family_from_handle(handle),self.db)
         elif self.namespace == 'Event':
             sortname = self.db.get_event_from_handle(handle).get_description()

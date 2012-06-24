@@ -46,7 +46,7 @@ from gen.ggettext import ngettext
 from gui.managedwindow import ManagedWindow
 import gen.lib
 from gen.db import DbTxn
-import Utils
+from gen.utils.name import family_name
 
 from gui.plug import tool
 from gen.display.name import displayer as name_displayer
@@ -146,7 +146,7 @@ def family_event_name(event, family, dbase):
     if not event.get_description():
         text = EVENT_FAMILY_STR % {
             'event_name' : str(event.get_type()), 
-            'family' : Utils.family_name(family, dbase), 
+            'family' : family_name(family, dbase), 
             }
         event.set_description(text)
             

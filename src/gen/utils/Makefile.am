@@ -17,6 +17,7 @@ pkgpython_PYTHON = \
 	image.py \
 	keyword.py \
 	lds.py \
+	name.py \
 	mactrans.py \
 	place.py \
 	referent.py \

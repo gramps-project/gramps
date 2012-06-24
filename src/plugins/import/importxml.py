@@ -49,6 +49,7 @@ from gen.db import DbTxn
 from gen.db.write import CLASS_TO_KEY_MAP
 from gen.errors import GrampsImportError
 import Utils
+from gen.utils.name import family_name
 from gen.utils.unknown import make_unknown, create_explanation_note
 import gen.datehandler
 from gen.display.name import displayer as name_displayer
@@ -2434,7 +2435,7 @@ class GrampsParser(UpdateCallback):
             if self.family:
                 text = EVENT_FAMILY_STR % {
                     'event_name' : str(self.event.get_type()), 
-                    'family' : Utils.family_name(self.family, self.db), 
+                    'family' : family_name(self.family, self.db), 
                     }
             elif self.person:
                 text = EVENT_PERSON_STR % {

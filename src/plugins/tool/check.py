@@ -66,6 +66,7 @@ import gen.lib
 from gen.db import DbTxn
 from gen.config import config
 import Utils
+from gen.utils.name import family_name
 from gen.utils.unknown import make_unknown
 from gen.utils.file import (get_unicode_path_from_file_chooser, 
                             media_path_full, 
@@ -1904,7 +1905,7 @@ class CheckIntegrity(object):
                     cn = _("Non existing child")
                 try:
                     family = self.db.get_family_from_handle(family_handle)
-                    pn = Utils.family_name(family, self.db)
+                    pn = family_name(family, self.db)
                 except:
                     pn = _("Unknown")
                 self.text.write('\t')
@@ -1927,7 +1928,7 @@ class CheckIntegrity(object):
                     cn = _("Non existing person")
                 family = self.db.get_family_from_handle(family_handle)
                 if family:
-                    pn = Utils.family_name(family, self.db)
+                    pn = family_name(family, self.db)
                 else:
                     pn = family_handle
                 self.text.write('\t')
@@ -1950,7 +1951,7 @@ class CheckIntegrity(object):
                     cn = _("Non existing person")
                 family = self.db.get_family_from_handle(family_handle)
                 if family:
-                    pn = Utils.family_name(family, self.db)
+                    pn = family_name(family, self.db)
                 else:
                     pn = _("None")
                 self.text.write('\t')

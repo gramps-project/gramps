@@ -83,7 +83,7 @@ from gui.dialog import (ErrorDialog, RunDatabaseRepair, WarningDialog,
                             MessageHideDialog)
 from gen.utils import get_birth_or_fallback, get_death_or_fallback
 from gui.selectors import SelectorFactory
-from Utils import preset_name
+from gen.utils.name import preset_name, family_name
 
 SelectPerson = SelectorFactory('Person')
 
@@ -484,7 +484,7 @@ class EditFamily(EditPrimary):
 
     def get_menu_title(self):
         if self.obj and self.obj.get_handle():
-            dialog_title = Utils.family_name(self.obj, self.db, _("New Family"))
+            dialog_title = family_name(self.obj, self.db, _("New Family"))
             dialog_title = _("Family") + ': ' + dialog_title
         else:
             dialog_title = _("New Family")

@@ -37,7 +37,7 @@ from gui.views.treemodels.peoplemodel import PersonTreeModel
 import gen.lib
 from gen.errors import WindowActiveError
 from gui.editors import EditPerson
-from Utils import preset_name
+from gen.utils.name import preset_name
 
 #-------------------------------------------------------------------------
 #

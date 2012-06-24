@@ -63,7 +63,7 @@ from gui.selectors import SelectorFactory
 from gen.errors import WindowActiveError
 from gui.views.bookmarks import PersonBookmarks
 import const
-from Utils import preset_name
+from gen.utils.name import preset_name
 from gen.utils import get_birth_or_fallback, get_death_or_fallback
 from gui.listmodel import ListModel
 from gui.managedwindow import ManagedWindow

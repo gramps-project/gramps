@@ -48,7 +48,7 @@ log = logging.getLogger(".ExportVCal")
 #
 #-------------------------------------------------------------------------
 from gui.plug.export import WriterOptionBox
-import Utils
+from gen.utils.name import family_name
 from gen.lib import Date, EventType
 from gui.glade import Glade
 
@@ -133,8 +133,7 @@ class CalendarWriter(object):
                     m_date = event.get_date_object()
                     place_handle = event.get_place_handle()
                     # feature requests 2356, 1657: avoid genitive form
-                    text = _("Marriage of %s") % Utils.family_name(family, 
-                                                                   self.db)
+                    text = _("Marriage of %s") % family_name(family, self.db)
                     if place_handle:
                         place = self.db.get_place_from_handle(place_handle)
                         self.write_vevent( text, m_date, place.get_title())
