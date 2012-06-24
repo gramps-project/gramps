@@ -49,7 +49,6 @@ import re, os, sys
 from gen.plug.docgen import BaseDoc, TextDoc, PAPER_LANDSCAPE, FONT_SANS_SERIF, URL_PATTERN
 from gen.plug.docbackend import DocBackend
 import Image
-import Utils
 
 _CLICKABLE = r'''\url{\1}'''
 

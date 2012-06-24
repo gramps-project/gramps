@@ -43,7 +43,6 @@ from gen.plug.docgen import (BaseDoc, TextDoc, FONT_SERIF, PARA_ALIGN_RIGHT,
                              URL_PATTERN)
 from gen.utils.image import image_size, image_actual_size, resize_to_jpeg_buffer
 from gen.errors import ReportError
-import Utils
 
 #------------------------------------------------------------------------
 #

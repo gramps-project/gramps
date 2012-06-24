@@ -46,7 +46,6 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import Utils
 from gen.display.name import displayer as _nd
 from gui.views.navigationview import NavigationView
 from libformatting import FormattingHelper

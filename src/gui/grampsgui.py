@@ -59,7 +59,6 @@ import gobject
 from gen.config import config
 import const
 from gen.constfunc import has_display, win
-import Utils
 
 #-------------------------------------------------------------------------
 #

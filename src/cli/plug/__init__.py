@@ -46,7 +46,6 @@ log = logging.getLogger(".")
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import Utils
 from gen.plug import BasePluginManager
 from gen.plug.docgen import (StyleSheet, StyleSheetList, PaperStyle,
                              PAPER_PORTRAIT, PAPER_LANDSCAPE, graphdoc)

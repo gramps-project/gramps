@@ -55,7 +55,6 @@ _LOG = logging.getLogger("GeoGraphy.geoevents")
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import Utils
 from gen.config import config
 import gen.datehandler
 from gen.display.name import displayer as _nd

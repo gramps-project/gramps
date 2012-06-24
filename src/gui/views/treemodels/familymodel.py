@@ -41,7 +41,6 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import Utils
 import gen.datehandler
 from gen.display.name import displayer as name_displayer
 import gen.lib
