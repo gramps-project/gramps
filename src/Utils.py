@@ -219,25 +219,6 @@ def set_titles(window, title, t, msg=None):
 
 #-------------------------------------------------------------------------
 #
-# create_id
-#
-#-------------------------------------------------------------------------
-rand = random.Random(time.time())
-
-def create_id():
-    return "%08x%08x" % ( int(time.time()*10000), 
-                          rand.randint(0, sys.maxint))
-
-def create_uid(self, handle=None):
-    if handle:
-        uid = uuid.uuid5(GRAMPS_UUID, handle)
-    else:
-        uid = uuid.uuid4()
-    return uid.hex.upper()
-
-
-#-------------------------------------------------------------------------
-#
 # 
 #
 #-------------------------------------------------------------------------

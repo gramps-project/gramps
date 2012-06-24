@@ -118,9 +118,9 @@ import gen.lib
 from gen.db import DbTxn
 from gen.updatecallback import UpdateCallback
 import gen.mime
+from gen.utils.id import create_id
 from gen.utils.lds import TEMPLES
 from gen.utils.unknown import make_unknown, create_explanation_note
-import Utils
 from gen.datehandler._dateparser import DateParser
 from gen.db.dbconst import EVENT_KEY
 from gui.dialog import WarningDialog
@@ -1736,7 +1736,7 @@ class GedcomParser(UpdateCallback):
         """
         intid = table.get(gramps_id)
         if not intid:
-            intid = Utils.create_id()
+            intid = create_id()
             table[gramps_id] = intid
         return intid
     
@@ -2743,7 +2743,7 @@ class GedcomParser(UpdateCallback):
         if self.dbase.has_place_handle(intid):
             place.unserialize(self.dbase.get_raw_place_data(intid))
         else:
-            intid = Utils.create_id()
+            intid = create_id()
             place.set_handle(intid)
             place.set_title(title)
             place.set_gramps_id(new_id)
@@ -2900,7 +2900,7 @@ class GedcomParser(UpdateCallback):
                             [(0, len(message))])
         text = StyledText(message, [tag])
         new_note.set_styledtext(text)
-        new_note.set_handle(Utils.create_id())
+        new_note.set_handle(create_id())
         note_type = gen.lib.NoteType()
         note_type.set((gen.lib.NoteType.CUSTOM, _("GEDCOM import")))
         new_note.set_type(note_type)
@@ -3082,7 +3082,7 @@ class GedcomParser(UpdateCallback):
         submitter_name = _("SUBM (Submitter): @%s@") % line.token_text
         if self.use_def_src:
             repo.set_name(submitter_name)
-            repo.set_handle(Utils.create_id())
+            repo.set_handle(create_id())
             repo.set_gramps_id(self.dbase.find_next_repository_gramps_id())
             
             addr = gen.lib.Address()
@@ -5237,7 +5237,7 @@ class GedcomParser(UpdateCallback):
                 self.__skip_subordinate_levels(state.level+2, state)
             else:
                 new_note = gen.lib.Note(line.data)
-                new_note.set_handle(Utils.create_id())
+                new_note.set_handle(create_id())
                 self.dbase.add_note(new_note, self.trans)
                 self.__skip_subordinate_levels(state.level+2, state)
                 state.event.add_note(new_note.get_handle())
@@ -6834,7 +6834,7 @@ class GedcomParser(UpdateCallback):
             else:
                 new_note = gen.lib.Note(line.data)
                 new_note.set_gramps_id(self.nid_map[""])
-                new_note.set_handle(Utils.create_id())
+                new_note.set_handle(create_id())
 
                 sub_state = CurrentState(level=state.level+1)
                 sub_state.note = new_note
@@ -6957,7 +6957,7 @@ class GedcomParser(UpdateCallback):
         citation = gen.lib.Citation()
         if line.data and line.data[0] != "@":
             title = line.data
-            handle = self.inline_srcs.get(title, Utils.create_id())
+            handle = self.inline_srcs.get(title, create_id())
             src = gen.lib.Source()
             src.handle = handle
             src.gramps_id = self.dbase.find_next_source_gramps_id()

@@ -47,7 +47,7 @@ log = logging.getLogger('.ImportProGen')
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import Utils
+from gen.utils.id import create_id
 from gui.utils import ProgressMeter
 import gen.lib
 from gen.db import DbTxn
@@ -90,7 +90,7 @@ def _find_from_handle(gramps_id, table):
     """
     intid = table.get(gramps_id)
     if not intid:
-        intid = Utils.create_id()
+        intid = create_id()
         table[gramps_id] = intid
     return intid
 

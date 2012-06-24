@@ -66,6 +66,7 @@ import gen.lib
 from gen.db import DbTxn
 from gen.config import config
 import Utils
+from gen.utils.id import create_id
 from gen.utils.name import family_name
 from gen.utils.unknown import make_unknown
 from gen.utils.file import (get_unicode_path_from_file_chooser, 
@@ -236,7 +237,7 @@ class CheckIntegrity(object):
             'were referenced but missing so that is why they have been created '
             'when you ran Check and Repair on %s.') %
             time.strftime('%x %X', time.localtime()))
-        self.explanation.set_handle(Utils.create_id())
+        self.explanation.set_handle(create_id())
 
     def family_errors(self):
         return (len(self.broken_parent_links) +
@@ -940,7 +941,7 @@ class CheckIntegrity(object):
                 newref = birth_ref
                 if birth_ref.ref is None:
                     none_handle = True
-                    birth_ref.ref = Utils.create_id()
+                    birth_ref.ref = create_id()
                 birth_handle = birth_ref.ref
                 birth = self.db.get_event_from_handle(birth_handle)
                 if not birth:
@@ -974,7 +975,7 @@ class CheckIntegrity(object):
                 newref = death_ref
                 if death_ref.ref is None:
                     none_handle = True
-                    death_ref.ref = Utils.create_id()
+                    death_ref.ref = create_id()
                 death_handle = death_ref.ref
                 death = self.db.get_event_from_handle(death_handle)
                 if not death:
@@ -1009,7 +1010,7 @@ class CheckIntegrity(object):
                     newlist.append(event_ref)
                     if event_ref.ref is None:
                         none_handle = True
-                        event_ref.ref = Utils.create_id()
+                        event_ref.ref = create_id()
                     event_handle = event_ref.ref
                     event = self.db.get_event_from_handle(event_handle)
                     if not event:
@@ -1047,7 +1048,7 @@ class CheckIntegrity(object):
                     newlist.append(event_ref)
                     if event_ref.ref is None:
                         none_handle = True
-                        event_ref.ref = Utils.create_id()
+                        event_ref.ref = create_id()
                     event_handle = event_ref.ref
                     event = self.db.get_event_from_handle(event_handle)
                     if not event:
@@ -1090,7 +1091,7 @@ class CheckIntegrity(object):
                 newlist.append(pref)
                 if pref.ref is None:
                     none_handle = True
-                    pref.ref = Utils.create_id()
+                    pref.ref = create_id()
                 p = self.db.get_person_from_handle( pref.ref)
                 if not p:
                     # The referenced person does not exist in the database
@@ -1144,7 +1145,7 @@ class CheckIntegrity(object):
                 newlist.append(reporef)
                 if reporef.ref is None:
                     none_handle = True
-                    reporef.ref = Utils.create_id()
+                    reporef.ref = create_id()
                 r = self.db.get_repository_from_handle(reporef.ref)
                 if not r:
                     # The referenced repository does not exist in the database
@@ -1249,7 +1250,7 @@ class CheckIntegrity(object):
             for item in handle_list:
                 if item[0] == 'Citation':
                     if item[1] is None:
-                        new_handle = Utils.create_id()
+                        new_handle = create_id()
                         person.replace_citation_references(None, new_handle)
                         self.db.commit_person(person, self.trans)
                         self.invalid_citation_references.add(new_handle)
@@ -1265,7 +1266,7 @@ class CheckIntegrity(object):
             for item in handle_list:
                 if item[0] == 'Citation':
                     if item[1] is None:
-                        new_handle = Utils.create_id()
+                        new_handle = create_id()
                         family.replace_citation_references(None, new_handle)
                         self.db.commit_family(family, self.trans)
                         self.invalid_citation_references.add(new_handle)
@@ -1281,7 +1282,7 @@ class CheckIntegrity(object):
             for item in handle_list:
                 if item[0] == 'Citation':
                     if item[1] is None:
-                        new_handle = Utils.create_id()
+                        new_handle = create_id()
                         place.replace_citation_references(None, new_handle)
                         self.db.commit_place(place, self.trans)
                         self.invalid_citation_references.add(new_handle)
@@ -1297,7 +1298,7 @@ class CheckIntegrity(object):
             for item in handle_list:
                 if item[0] == 'Citation':
                     if item[1] is None:
-                        new_handle = Utils.create_id()
+                        new_handle = create_id()
                         citation.replace_citation_references(None, new_handle)
                         self.db.commit_citation(citation, self.trans)
                         self.invalid_citation_references.add(new_handle)
@@ -1313,7 +1314,7 @@ class CheckIntegrity(object):
             for item in handle_list:
                 if item[0] == 'Citation':
                     if item[1] is None:
-                        new_handle = Utils.create_id()
+                        new_handle = create_id()
                         repository.replace_citation_references(None, new_handle)
                         self.db.commit_repository(repository, self.trans)
                         self.invalid_citation_references.add(new_handle)
@@ -1329,7 +1330,7 @@ class CheckIntegrity(object):
             for item in handle_list:
                 if item[0] == 'Citation':
                     if item[1] is None:
-                        new_handle = Utils.create_id()
+                        new_handle = create_id()
                         obj.replace_citation_references(None, new_handle)
                         self.db.commit_media_object(obj, self.trans)
                         self.invalid_citation_references.add(new_handle)
@@ -1345,7 +1346,7 @@ class CheckIntegrity(object):
             for item in handle_list:
                 if item[0] == 'Citation':
                     if item[1] is None:
-                        new_handle = Utils.create_id()
+                        new_handle = create_id()
                         event.replace_citation_references(None, new_handle)
                         self.db.commit_event(event, self.trans)
                         self.invalid_citation_references.add(new_handle)
@@ -1357,7 +1358,7 @@ class CheckIntegrity(object):
                         self.class_citation, self.commit_citation, self.trans,
                         source_class_func=self.class_source,
                         source_commit_func=self.commit_source,
-                        source_class_arg=Utils.create_id())
+                        source_class_arg=create_id())
             self.invalid_source_references.add(created[0].handle)
 
         if len(self.invalid_citation_references) == 0:
@@ -1374,7 +1375,7 @@ class CheckIntegrity(object):
             citation = self.db.get_citation_from_handle(key)
             source_handle = citation.get_reference_handle()
             if source_handle is None:
-                source_handle = Utils.create_id()
+                source_handle = create_id()
                 citation.set_reference_handle(source_handle)
                 self.db.commit_citation(citation, self.trans)
             if source_handle:
@@ -1415,7 +1416,7 @@ class CheckIntegrity(object):
             for item in handle_list:
                 if item[0] == 'MediaObject':
                     if item[1] is None:
-                        new_handle = Utils.create_id()
+                        new_handle = create_id()
                         person.replace_media_references(None, new_handle)
                         self.db.commit_person(person, self.trans)
                         self.invalid_media_references.add(new_handle)
@@ -1431,7 +1432,7 @@ class CheckIntegrity(object):
             for item in handle_list:
                 if item[0] == 'MediaObject':
                     if item[1] is None:
-                        new_handle = Utils.create_id()
+                        new_handle = create_id()
                         family.replace_media_references(None, new_handle)
                         self.db.commit_family(family, self.trans)
                         self.invalid_media_references.add(new_handle)
@@ -1447,7 +1448,7 @@ class CheckIntegrity(object):
             for item in handle_list:
                 if item[0] == 'MediaObject':
                     if item[1] is None:
-                        new_handle = Utils.create_id()
+                        new_handle = create_id()
                         place.replace_media_references(None, new_handle)
                         self.db.commit_place(place, self.trans)
                         self.invalid_media_references.add(new_handle)
@@ -1463,7 +1464,7 @@ class CheckIntegrity(object):
             for item in handle_list:
                 if item[0] == 'MediaObject':
                     if item[1] is None:
-                        new_handle = Utils.create_id()
+                        new_handle = create_id()
                         event.replace_media_references(None, new_handle)
                         self.db.commit_event(event, self.trans)
                         self.invalid_media_references.add(new_handle)
@@ -1479,7 +1480,7 @@ class CheckIntegrity(object):
             for item in handle_list:
                 if item[0] == 'MediaObject':
                     if item[1] is None:
-                        new_handle = Utils.create_id()
+                        new_handle = create_id()
                         citation.replace_media_references(None, new_handle)
                         self.db.commit_citation(citation, self.trans)
                         self.invalid_media_references.add(new_handle)
@@ -1495,7 +1496,7 @@ class CheckIntegrity(object):
             for item in handle_list:
                 if item[0] == 'MediaObject':
                     if item[1] is None:
-                        new_handle = Utils.create_id()
+                        new_handle = create_id()
                         source.replace_media_references(None, new_handle)
                         self.db.commit_source(source, self.trans)
                         self.invalid_media_references.add(new_handle)
@@ -1551,7 +1552,7 @@ class CheckIntegrity(object):
             for item in handle_list:
                 if item[0] == 'Note':
                     if item[1] is None:
-                        new_handle = Utils.create_id()
+                        new_handle = create_id()
                         person.replace_note_references(None, new_handle)
                         self.db.commit_person(person, self.trans)
                         self.invalid_note_references.add(new_handle)
@@ -1567,7 +1568,7 @@ class CheckIntegrity(object):
             for item in handle_list:
                 if item[0] == 'Note':
                     if item[1] is None:
-                        new_handle = Utils.create_id()
+                        new_handle = create_id()
                         family.replace_note_references(None, new_handle)
                         self.db.commit_family(family, self.trans)
                         self.invalid_note_references.add(new_handle)
@@ -1583,7 +1584,7 @@ class CheckIntegrity(object):
             for item in handle_list:
                 if item[0] == 'Note':
                     if item[1] is None:
-                        new_handle = Utils.create_id()
+                        new_handle = create_id()
                         place.replace_note_references(None, new_handle)
                         self.db.commit_place(place, self.trans)
                         self.invalid_note_references.add(new_handle)
@@ -1599,7 +1600,7 @@ class CheckIntegrity(object):
             for item in handle_list:
                 if item[0] == 'Note':
                     if item[1] is None:
-                        new_handle = Utils.create_id()
+                        new_handle = create_id()
                         citation.replace_note_references(None, new_handle)
                         self.db.commit_citation(citation, self.trans)
                         self.invalid_note_references.add(new_handle)
@@ -1615,7 +1616,7 @@ class CheckIntegrity(object):
             for item in handle_list:
                 if item[0] == 'Note':
                     if item[1] is None:
-                        new_handle = Utils.create_id()
+                        new_handle = create_id()
                         source.replace_note_references(None, new_handle)
                         self.db.commit_source(source, self.trans)
                         self.invalid_note_references.add(new_handle)
@@ -1631,7 +1632,7 @@ class CheckIntegrity(object):
             for item in handle_list:
                 if item[0] == 'Note':
                     if item[1] is None:
-                        new_handle = Utils.create_id()
+                        new_handle = create_id()
                         obj.replace_note_references(None, new_handle)
                         self.db.commit_media_object(obj, self.trans)
                         self.invalid_note_references.add(new_handle)
@@ -1647,7 +1648,7 @@ class CheckIntegrity(object):
             for item in handle_list:
                 if item[0] == 'Note':
                     if item[1] is None:
-                        new_handle = Utils.create_id()
+                        new_handle = create_id()
                         event.replace_note_references(None, new_handle)
                         self.db.commit_event(event, self.trans)
                         self.invalid_note_references.add(new_handle)
@@ -1663,7 +1664,7 @@ class CheckIntegrity(object):
             for item in handle_list:
                 if item[0] == 'Note':
                     if item[1] is None:
-                        new_handle = Utils.create_id()
+                        new_handle = create_id()
                         repo.replace_note_references(None, new_handle)
                         self.db.commit_repository(repo, self.trans)
                         self.invalid_note_references.add(new_handle)
@@ -1703,7 +1704,7 @@ class CheckIntegrity(object):
             for item in handle_list:
                 if item[0] == 'Tag':
                     if item[1] is None:
-                        new_handle = Utils.create_id()
+                        new_handle = create_id()
                         person.replace_tag_references(None, new_handle)
                         self.db.commit_person(person, self.trans)
                         self.invalid_tag_references.add(new_handle)
@@ -1719,7 +1720,7 @@ class CheckIntegrity(object):
             for item in handle_list:
                 if item[0] == 'Tag':
                     if item[1] is None:
-                        new_handle = Utils.create_id()
+                        new_handle = create_id()
                         family.replace_tag_references(None, new_handle)
                         self.db.commit_family(family, self.trans)
                         self.invalid_tag_references.add(new_handle)
@@ -1735,7 +1736,7 @@ class CheckIntegrity(object):
             for item in handle_list:
                 if item[0] == 'Tag':
                     if item[1] is None:
-                        new_handle = Utils.create_id()
+                        new_handle = create_id()
                         obj.replace_tag_references(None, new_handle)
                         self.db.commit_media_object(obj, self.trans)
                         self.invalid_tag_references.add(new_handle)
@@ -1751,7 +1752,7 @@ class CheckIntegrity(object):
             for item in handle_list:
                 if item[0] == 'Tag':
                     if item[1] is None:
-                        new_handle = Utils.create_id()
+                        new_handle = create_id()
                         note.replace_tag_references(None, new_handle)
                         self.db.commit_note(note, self.trans)
                         self.invalid_tag_references.add(new_handle)

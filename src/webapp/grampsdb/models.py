@@ -32,7 +32,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 
 from gen.lib.date import Date as GDate, Today
-from Utils import create_id, create_uid
+from gen.utils.id import create_id, create_uid
 
 from webapp.grampsdb.profile import Profile
 

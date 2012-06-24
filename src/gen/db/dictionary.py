@@ -41,7 +41,7 @@ from gen.db import (PERSON_KEY,
                     PLACE_KEY,
                     REPOSITORY_KEY,
                     NOTE_KEY)
-import Utils
+from gen.utils.id import create_id
 
 class Cursor(object):
     """
@@ -666,7 +666,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
 
     def add_person(self, person, trans, set_gid=True):
         if not person.handle:
-            person.handle = Utils.create_id()
+            person.handle = create_id()
         if not person.gramps_id or set_gid:
             person.gramps_id = self.find_next_person_gramps_id()
         self.commit_person(person, trans)
@@ -674,7 +674,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
 
     def add_family(self, family, trans, set_gid=True):
         if not family.handle:
-            family.handle = Utils.create_id()
+            family.handle = create_id()
         if not family.gramps_id or set_gid:
             family.gramps_id = self.find_next_family_gramps_id()
         self.commit_family(family, trans)
@@ -682,7 +682,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
 
     def add_citation(self, citation, trans, set_gid=True):
         if not citation.handle:
-            citation.handle = Utils.create_id()
+            citation.handle = create_id()
         if not citation.gramps_id or set_gid:
             citation.gramps_id = self.find_next_citation_gramps_id()
         self.commit_citation(citation, trans)
@@ -690,7 +690,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
 
     def add_source(self, source, trans, set_gid=True):
         if not source.handle:
-            source.handle = Utils.create_id()
+            source.handle = create_id()
         if not source.gramps_id or set_gid:
             source.gramps_id = self.find_next_source_gramps_id()
         self.commit_source(source, trans)
@@ -698,7 +698,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
 
     def add_repository(self, repository, trans, set_gid=True):
         if not repository.handle:
-            repository.handle = Utils.create_id()
+            repository.handle = create_id()
         if not repository.gramps_id or set_gid:
             repository.gramps_id = self.find_next_repository_gramps_id()
         self.commit_repository(repository, trans)
@@ -706,7 +706,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
 
     def add_note(self, note, trans, set_gid=True):
         if not note.handle:
-            note.handle = Utils.create_id()
+            note.handle = create_id()
         if not note.gramps_id or set_gid:
             note.gramps_id = self.find_next_note_gramps_id()
         self.commit_note(note, trans)
@@ -714,7 +714,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
 
     def add_place(self, place, trans, set_gid=True):
         if not place.handle:
-            place.handle = Utils.create_id()
+            place.handle = create_id()
         if not place.gramps_id or set_gid:
             place.gramps_id = self.find_next_place_gramps_id()
         self.commit_place(place, trans)
@@ -722,7 +722,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
 
     def add_event(self, event, trans, set_gid=True):
         if not event.handle:
-            event.handle = Utils.create_id()
+            event.handle = create_id()
         if not event.gramps_id or set_gid:
             event.gramps_id = self.find_next_event_gramps_id()
         self.commit_event(event, trans)
@@ -730,7 +730,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
 
     def add_tag(self, tag, trans):
         if not tag.handle:
-            tag.handle = Utils.create_id()
+            tag.handle = create_id()
         self.commit_event(tag, trans)
         return tag.handle
 
@@ -742,7 +742,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
         If not set_gid, then gramps_id is not set.
         """
         if not obj.handle:
-            obj.handle = Utils.create_id()
+            obj.handle = create_id()
         if not obj.gramps_id or set_gid:
             obj.gramps_id = self.find_next_object_gramps_id()
         self.commit_media_object(obj, transaction)

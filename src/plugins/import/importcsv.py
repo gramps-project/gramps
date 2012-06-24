@@ -54,7 +54,7 @@ from gen.db import DbTxn
 from gen.plug.utils import OpenFileOrStdin
 from gen.datehandler import parser as _dp
 from Utils import gender as gender_map
-from Utils import create_id
+from gen.utils.id import create_id
 from gui.utils import ProgressMeter
 from gen.lib.eventroletype import EventRoleType
 

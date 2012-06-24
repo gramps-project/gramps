@@ -60,7 +60,6 @@ import gobject
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import Utils
 from gen.config import config
 from gen.display.name import displayer as name_displayer
 from gen.utils import get_marriage_or_fallback
@@ -83,6 +82,7 @@ from gui.dialog import (ErrorDialog, RunDatabaseRepair, WarningDialog,
                             MessageHideDialog)
 from gen.utils import get_birth_or_fallback, get_death_or_fallback
 from gui.selectors import SelectorFactory
+from gen.utils.id import create_id
 from gen.utils.name import preset_name, family_name
 
 SelectPerson = SelectorFactory('Person')
@@ -381,7 +381,7 @@ class EditFamily(EditPrimary):
         
         self.added = self.obj.handle is None
         if self.added:
-            self.obj.handle = Utils.create_id()
+            self.obj.handle = create_id()
             
         self.load_data()
     

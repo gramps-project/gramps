@@ -48,7 +48,7 @@ import gen.lib
 from gen.db import DbTxn
 from gen.db.write import CLASS_TO_KEY_MAP
 from gen.errors import GrampsImportError
-import Utils
+from gen.utils.id import create_id
 from gen.utils.name import family_name
 from gen.utils.unknown import make_unknown, create_explanation_note
 import gen.datehandler
@@ -710,16 +710,16 @@ class GrampsParser(UpdateCallback):
         elif handle in self.import_handles:
             LOG.warn("The file you import contains duplicate handles "
                     "which is illegal and being fixed now.")
-            handle = Utils.create_id()
+            handle = create_id()
             while handle in self.import_handles:
-                handle = Utils.create_id()
+                handle = create_id()
             self.import_handles[orig_handle][target] = [handle, False]
         else:
             orig_handle = handle
             if self.replace_import_handle:
-                handle = Utils.create_id()
+                handle = create_id()
                 while handle in self.import_handles:
-                    handle = Utils.create_id()
+                    handle = create_id()
             else:
                 has_handle_func = {"person": self.db.has_person_handle,
                                    "family": self.db.has_family_handle,
@@ -732,7 +732,7 @@ class GrampsParser(UpdateCallback):
                                    "note": self.db.has_note_handle,
                                    "tag": self.db.has_tag_handle}[target]
                 while has_handle_func(handle):
-                    handle = Utils.create_id()
+                    handle = create_id()
             self.import_handles[orig_handle] = {target: [handle, False]}
         if callable(prim_obj): # method is called by a reference
             prim_obj = prim_obj()
@@ -816,9 +816,9 @@ class GrampsParser(UpdateCallback):
             raw = get_raw_obj_data(handle)
             prim_obj.unserialize(raw)
         else:
-            handle = Utils.create_id()
+            handle = create_id()
             while has_handle_func(handle):
-                handle = Utils.create_id()
+                handle = create_id()
             if callable(prim_obj):
                 prim_obj = prim_obj()
             prim_obj.set_handle(handle)
@@ -1108,7 +1108,7 @@ class GrampsParser(UpdateCallback):
         self.witness_comment = ""
         if 'name' in attrs:
             note = gen.lib.Note()
-            note.handle = Utils.create_id()
+            note.handle = create_id()
             note.set(_("Witness name: %s") % attrs['name'])
             note.type.set(gen.lib.NoteType.EVENT)
             note.private = self.event.private
@@ -1149,7 +1149,7 @@ class GrampsParser(UpdateCallback):
             # GRAMPS LEGACY: old events that were written inside
             # person or family objects.
             self.event = gen.lib.Event()
-            self.event.handle = Utils.create_id()
+            self.event.handle = create_id()
             self.event.type = gen.lib.EventType()
             self.event.type.set_from_xml_str(attrs['type'])
             self.db.add_event(self.event, self.trans)
@@ -1737,7 +1737,7 @@ class GrampsParser(UpdateCallback):
             #   the caller object, and inherits privacy from caller object
             # On stop_note the reference to this note will be added
             self.note = gen.lib.Note()
-            self.note.handle = Utils.create_id()
+            self.note.handle = create_id()
             self.note.format = int(attrs.get('format', gen.lib.Note.FLOWED))
             # The order in this long if-then statement should reflect the
             # DTD: most deeply nested elements come first.
@@ -2345,7 +2345,7 @@ class GrampsParser(UpdateCallback):
 
         if text is not None:
             note = gen.lib.Note()
-            note.handle = Utils.create_id()
+            note.handle = create_id()
             note.set(_("Witness comment: %s") % text)
             note.type.set(gen.lib.NoteType.EVENT)
             note.private = self.event.private
@@ -2454,7 +2454,7 @@ class GrampsParser(UpdateCallback):
         if self.in_witness:
             # Parse witnesses created by older gramps
             note = gen.lib.Note()
-            note.handle = Utils.create_id()
+            note.handle = create_id()
             note.set(_("Witness name: %s") % tag)
             note.type.set(gen.lib.NoteType.EVENT)
             note.private = self.event.private
@@ -2684,7 +2684,7 @@ class GrampsParser(UpdateCallback):
         # This is old XML. We no longer have "text" attribute in soure_ref.
         # So we create a new note, commit, and add the handle to note list.
         note = gen.lib.Note()
-        note.handle = Utils.create_id()
+        note.handle = create_id()
         note.private = self.citation.private
         note.set(text)
         note.type.set(gen.lib.NoteType.SOURCE_TEXT)
@@ -2701,7 +2701,7 @@ class GrampsParser(UpdateCallback):
         else:
             text = tag
         note = gen.lib.Note()
-        note.handle = Utils.create_id()
+        note.handle = create_id()
         note.private = self.citation.private
         note.set(text)
         note.type.set(gen.lib.NoteType.CITATION)
@@ -2938,7 +2938,7 @@ class GrampsParser(UpdateCallback):
                             self.trans,
                             source_class_func=self.func_map['source'][0],
                             source_commit_func=self.func_map['source'][1],
-                            source_class_arg={'handle':Utils.create_id(), 'id':None, 'priv':False})
+                            source_class_arg={'handle':create_id(), 'id':None, 'priv':False})
                 elif target == 'note':
                     objs = make_unknown(class_arg, expl_note.handle,
                             self.func_map[target][0], self.stop_note_asothers,
