@@ -49,7 +49,6 @@ from gtk.gdk import Color
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import Utils
 import const
 from gen.plug.docgen import (StyleSheet, FONT_SERIF, FONT_SANS_SERIF,
             PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT,  
@@ -97,10 +96,6 @@ class StyleListDisplay(object):
             "on_save_style_clicked" : dummy_callback,
             })
 
-        title_label = self.top.get_object('title')
-        title_label.set_text(Utils.title(_('Style Editor')))
-        title_label.set_use_markup(True)
-        
         self.list = ListModel(self.top.get_object("list"), 
                                         [(_('Style'), -1, 10)], )
         self.redraw()

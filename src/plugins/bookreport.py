@@ -68,7 +68,6 @@ import gobject
 #
 #-------------------------------------------------------------------------
 import const
-import Utils
 from gen.utils.cast import get_type_converter_by_name, type_name
 from gui.listmodel import ListModel
 from gen.errors import FilterError, ReportError
@@ -599,7 +598,8 @@ class BookListDisplay(object):
         self.top = self.xml.toplevel
         self.unsaved_changes = False
 
-        set_titles(self.top, self.xml.get_object('title'), _('Available Books'))
+        set_titles(self.top, self.xml.get_object('title2'), 
+                   _('Available Books'))
 
         if nodelete:
             delete_button = self.xml.get_object("delete_button")
@@ -621,10 +621,6 @@ class BookListDisplay(object):
             "on_clear_clicked"           : self.do_nothing
             })
 
-        title_label = self.xml.get_object('title')
-        title_label.set_text(Utils.title(_('Book List')))
-        title_label.set_use_markup(True)
-        
         self.blist = ListModel(self.xml.get_object("list"), [('Name',-1,10)],)
 
         self.redraw()
