@@ -60,7 +60,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from gui.plug.export import WriterOptionBox
-from ExportXml import XmlWriter
+from exportxml import XmlWriter
 from gen.utils.file import media_path_full, get_unicode_path_from_file_chooser
 from gen.constfunc import win
 

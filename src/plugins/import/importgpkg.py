@@ -47,7 +47,7 @@ log = logging.getLogger(".ReadPkg")
 #
 #-------------------------------------------------------------------------
 import const
-import ImportXml
+import importxml
 from gen.utils.file import media_path
 
 #-------------------------------------------------------------------------
