@@ -7,7 +7,7 @@
 # Copyright (C) 2009       Nick Hall
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2011       Adam Stein <adam@csh.rit.edu>
-# Copyright (C) 2011       Paul Franklin
+# Copyright (C) 2011-2012  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -162,7 +162,7 @@ class GuiStringOption(Gtk.Entry):
     """
     This class displays an option that is a simple one-line string.
     """
-    def __init__(self, option, dbstate, uistate, track):
+    def __init__(self, option, dbstate, uistate, track, override):
         """
         @param option: The option to display.
         @type option: gen.plug.menu.StringOption
@@ -224,7 +224,7 @@ class GuiColorOption(Gtk.ColorButton):
     """
     This class displays an option that allows the selection of a colour.
     """
-    def __init__(self, option, dbstate, uistate, track):
+    def __init__(self, option, dbstate, uistate, track, override):
         self.__option = option
         value = self.__option.get_value()
         GObject.GObject.__init__( self, Gdk.color_parse(value) )
@@ -277,7 +277,7 @@ class GuiNumberOption(Gtk.SpinButton):
     This class displays an option that is a simple number with defined maximum 
     and minimum values.
     """
-    def __init__(self, option, dbstate, uistate, track):
+    def __init__(self, option, dbstate, uistate, track, override):
         self.__option = option
 
         decimals = 0
@@ -349,7 +349,7 @@ class GuiTextOption(Gtk.ScrolledWindow):
     """
     This class displays an option that is a multi-line string.
     """
-    def __init__(self, option, dbstate, uistate, track):
+    def __init__(self, option, dbstate, uistate, track, override):
         self.__option = option
         GObject.GObject.__init__(self)
         self.set_shadow_type(Gtk.ShadowType.IN)
@@ -432,7 +432,7 @@ class GuiBooleanOption(Gtk.CheckButton):
     """
     This class displays an option that is a boolean (True or False).
     """
-    def __init__(self, option, dbstate, uistate, track):
+    def __init__(self, option, dbstate, uistate, track, override):
         self.__option = option
         GObject.GObject.__init__(self, self.__option.get_label())
         self.set_active(self.__option.get_value())
@@ -488,7 +488,7 @@ class GuiEnumeratedListOption(Gtk.HBox):
     This class displays an option that provides a finite number of values.
     Each possible value is assigned a value and a description.
     """
-    def __init__(self, option, dbstate, uistate, track):
+    def __init__(self, option, dbstate, uistate, track, override):
         GObject.GObject.__init__(self)
         evtBox = Gtk.EventBox()
         self.__option = option
@@ -581,7 +581,7 @@ class GuiPersonOption(Gtk.HBox):
     This class displays an option that allows a person from the 
     database to be selected.
     """
-    def __init__(self, option, dbstate, uistate, track):
+    def __init__(self, option, dbstate, uistate, track, override):
         """
         @param option: The option to display.
         @type option: gen.plug.menu.PersonOption
@@ -611,11 +611,12 @@ class GuiPersonOption(Gtk.HBox):
         person_handle = self.__uistate.get_active('Person')
         person = self.__dbstate.db.get_person_from_handle(person_handle)
         
-        if not person:
+        if override or not person:
             # Pick up the stored option value if there is one
             person = self.__db.get_person_from_gramps_id(gid)
 
         if not person:
+            # If all else fails, get the default person to avoid bad values
             person = self.__db.get_default_person()
 
         if not person:
@@ -705,7 +706,7 @@ class GuiFamilyOption(Gtk.HBox):
     This class displays an option that allows a family from the 
     database to be selected.
     """
-    def __init__(self, option, dbstate, uistate, track):
+    def __init__(self, option, dbstate, uistate, track, override):
         """
         @param option: The option to display.
         @type option: gen.plug.menu.FamilyOption
@@ -729,7 +730,7 @@ class GuiFamilyOption(Gtk.HBox):
         self.pack_start(pevt, False, True, 0)
         self.pack_end(family_button, False, True, 0)
         
-        self.__initialize_family()
+        self.__initialize_family(override)
 
         self.valuekey = self.__option.connect('value-changed', self.__value_changed)
         
@@ -739,10 +740,10 @@ class GuiFamilyOption(Gtk.HBox):
         pevt.set_tooltip_text(self.__option.get_help())
         family_button.set_tooltip_text(_('Select a different family'))
         
-    def __initialize_family(self):
+    def __initialize_family(self, override):
         """
         Find a family to initialize the option with. If there is no saved
-        family option, use the active family.  If there ris no active
+        family option, use the active family.  If there is no active
         family, try to find a family that the user is likely interested in.
         """
         family_list = []
@@ -751,7 +752,7 @@ class GuiFamilyOption(Gtk.HBox):
 
         # Use the active family if one is selected
         family = self.__uistate.get_active('Family')
-        if family:
+        if family and not override:
             family_list = [family]
         else:
             # Use the stored option value
@@ -891,7 +892,7 @@ class GuiNoteOption(Gtk.HBox):
     This class displays an option that allows a note from the 
     database to be selected.
     """
-    def __init__(self, option, dbstate, uistate, track):
+    def __init__(self, option, dbstate, uistate, track, override):
         """
         @param option: The option to display.
         @type option: gen.plug.menu.NoteOption
@@ -995,7 +996,7 @@ class GuiMediaOption(Gtk.HBox):
     This class displays an option that allows a media object from the 
     database to be selected.
     """
-    def __init__(self, option, dbstate, uistate, track):
+    def __init__(self, option, dbstate, uistate, track, override):
         """
         @param option: The option to display.
         @type option: gen.plug.menu.MediaOption
@@ -1096,7 +1097,7 @@ class GuiPersonListOption(Gtk.HBox):
     This class displays a widget that allows multiple people from the 
     database to be selected.
     """
-    def __init__(self, option, dbstate, uistate, track):
+    def __init__(self, option, dbstate, uistate, track, override):
         """
         @param option: The option to display.
         @type option: gen.plug.menu.PersonListOption
@@ -1273,7 +1274,7 @@ class GuiPlaceListOption(Gtk.HBox):
     This class displays a widget that allows multiple places from the 
     database to be selected.
     """
-    def __init__(self, option, dbstate, uistate, track):
+    def __init__(self, option, dbstate, uistate, track, override):
         """
         @param option: The option to display.
         @type option: gen.plug.menu.PlaceListOption
@@ -1417,7 +1418,7 @@ class GuiSurnameColorOption(Gtk.HBox):
     selected from the database, and to assign a colour (not necessarily
     unique) to each one.
     """
-    def __init__(self, option, dbstate, uistate, track):
+    def __init__(self, option, dbstate, uistate, track, override):
         """
         @param option: The option to display.
         @type option: gen.plug.menu.SurnameColorOption
@@ -1608,7 +1609,7 @@ class GuiDestinationOption(Gtk.HBox):
     This class displays an option that allows the user to select a 
     DestinationOption.
     """
-    def __init__(self, option, dbstate, uistate, track):
+    def __init__(self, option, dbstate, uistate, track, override):
         """
         @param option: The option to display.
         @type option: gen.plug.menu.DestinationOption
@@ -1737,7 +1738,7 @@ class GuiStyleOption(GuiEnumeratedListOption):
     """
     This class displays a StyleOption.
     """
-    def __init__(self, option, dbstate, uistate, track):
+    def __init__(self, option, dbstate, uistate, track, override):
         """
         @param option: The option to display.
         @type option: gen.plug.menu.StyleOption
@@ -1777,7 +1778,7 @@ class GuiBooleanListOption(Gtk.HBox):
     This class displays an option that provides a list of check boxes.
     Each possible value is assigned a value and a description.
     """
-    def __init__(self, option, dbstate, uistate, track):
+    def __init__(self, option, dbstate, uistate, track, override):
         GObject.GObject.__init__(self)
         self.__option = option
         self.__cbutton = []
@@ -1889,10 +1890,14 @@ _OPTIONS = (
     )
 del menu
 
-def make_gui_option(option, dbstate, uistate, track):
+def make_gui_option(option, dbstate, uistate, track, override=False):
     """
     Stand-alone function so that Options can be used in other
     ways, too. Takes an Option and returns a GuiOption.
+    
+    override: if True will override the GuiOption's normal behavior
+        (in a GuiOption-dependant fashion, for instance in a GuiPersonOption
+        it will force the use of the options's value to set the GuiOption)
     """
 
     label, widget = True, None
@@ -1909,7 +1914,7 @@ def make_gui_option(option, dbstate, uistate, track):
                 "can't make GuiOption: unknown option type: '%s'" % option)
 
     if widget:
-        widget = widget(option, dbstate, uistate, track)
+        widget = widget(option, dbstate, uistate, track, override)
 
     return widget, label
 
