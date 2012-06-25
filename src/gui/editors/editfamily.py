@@ -62,7 +62,7 @@ import gobject
 #-------------------------------------------------------------------------
 from gen.config import config
 from gen.display.name import displayer as name_displayer
-from gen.utils import get_marriage_or_fallback
+from gen.utils.db import get_marriage_or_fallback
 import gen.lib
 from gen.db import DbTxn
 from gen.errors import WindowActiveError
@@ -80,7 +80,7 @@ from gui.widgets import (PrivacyButton, MonitoredEntry, MonitoredDataType,
 from gen.plug import CATEGORY_QR_FAMILY
 from gui.dialog import (ErrorDialog, RunDatabaseRepair, WarningDialog,
                             MessageHideDialog)
-from gen.utils import get_birth_or_fallback, get_death_or_fallback
+from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gui.selectors import SelectorFactory
 from gen.utils.id import create_id
 from gen.utils.name import preset_name, family_name

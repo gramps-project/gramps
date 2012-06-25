@@ -31,7 +31,7 @@ from types import NoneType
 import gen.lib
 import gen.datehandler
 from gen.utils.string import gender as gender_map
-import gen.utils
+from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gen.plug.report.utils import place_name
 
 from gen.display.name import displayer as name_displayer
@@ -524,8 +524,7 @@ class SimpleAccess(object):
         """
         if type(person) in [str, unicode]: 
             person = self.dbase.get_person_from_handle(person)
-        event = gen.utils.get_birth_or_fallback(self.dbase, 
-                                                person, "<i>%s</i>")
+        event = get_birth_or_fallback(self.dbase, person, "<i>%s</i>")
         if get_event:
             return event
         elif event:
@@ -583,8 +582,7 @@ class SimpleAccess(object):
         """
         if type(person) in [str, unicode]: 
             person = self.dbase.get_person_from_handle(person)
-        event = gen.utils.get_death_or_fallback(self.dbase, 
-                                                person, "<i>%s</i>")
+        event = get_death_or_fallback(self.dbase, person, "<i>%s</i>")
         if get_event:
             return event
         elif event:

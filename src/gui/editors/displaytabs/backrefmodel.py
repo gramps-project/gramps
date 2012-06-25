@@ -38,7 +38,7 @@ from gen.ggettext import gettext as _
 #-------------------------------------------------------------------------
 from gen.display.name import displayer as name_displayer
 from gen.utils.name import family_name
-import Utils
+from gen.utils.db import get_participant_from_event
 
 #-------------------------------------------------------------------------
 #
@@ -112,7 +112,7 @@ class BackRefModel(gtk.ListStore):
                                 'part2': name}
                 else:
                     name = str(p.get_type())
-                part = Utils.get_participant_from_event(self.db, ref[1])
+                part = get_participant_from_event(self.db, ref[1])
                 if part :
                     name = self.dispstr % {'part1': name,
                                 'part2': part}

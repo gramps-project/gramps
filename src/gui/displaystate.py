@@ -53,7 +53,7 @@ import gobject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import gen.utils
+from gen.utils.callback import Callback
 from gui.utils import process_pending_events
 from gui.views.navigationview import NavigationView
 from gen.config import config
@@ -61,7 +61,7 @@ from gen.display.name import displayer as name_displayer
 from gui.managedwindow import GrampsWindowManager
 from gen.relationship import get_relationship_calculator
 from gui.glade import Glade
-from Utils import navigation_label
+from gen.utils.db import navigation_label
 
 DISABLED = -1
 
@@ -70,7 +70,7 @@ DISABLED = -1
 # History manager
 #
 #-------------------------------------------------------------------------
-class History(gen.utils.Callback):
+class History(Callback):
     """ History manages the objects of a certain type that have been viewed, 
         with ability to go back, or forward. 
         When accessing an object, it should be pushed on the History.
@@ -82,7 +82,7 @@ class History(gen.utils.Callback):
         }
 
     def __init__(self, dbstate, nav_type):
-        gen.utils.Callback.__init__(self)
+        Callback.__init__(self)
         self.dbstate = dbstate
         self.nav_type = nav_type
         self.clear()
@@ -351,7 +351,7 @@ class WarnHandler(RotateHandler):
         top.run()
         top.destroy()
 
-class DisplayState(gen.utils.Callback):
+class DisplayState(Callback):
 
     __signals__ = {
         'filters-changed' : (str, ), 
@@ -380,7 +380,7 @@ class DisplayState(gen.utils.Callback):
         self.uimanager = uimanager
         self.progress_monitor = progress_monitor
         self.window = window
-        gen.utils.Callback.__init__(self)
+        Callback.__init__(self)
         self.status = status
         self.status_id = status.get_context_id('GRAMPS')
         self.progress = progress

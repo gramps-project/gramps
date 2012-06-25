@@ -29,14 +29,14 @@ The base option class for all other option classes.
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import gen.utils
+from gen.utils.callback import Callback
 
 #-------------------------------------------------------------------------
 #
 # Option class
 #
 #-------------------------------------------------------------------------
-class Option(gen.utils.Callback):
+class Option(Callback):
     """
     This class serves as a base class for all options. All Options must 
     minimally provide the services provided by this class. Options are allowed 
@@ -56,7 +56,7 @@ class Option(gen.utils.Callback):
         @type value: The type will depend on the type of option.
         @return: nothing
         """
-        gen.utils.Callback.__init__(self)
+        Callback.__init__(self)
         self.__value = value
         self.__label = label
         self.__help_str = ""

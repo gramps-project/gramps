@@ -42,7 +42,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import gen.utils
+from gen.utils.callback import Callback
 from gen.plug import BasePluginManager, PluginRegister
 from gen.constfunc import win
 from gen.config import config
@@ -118,7 +118,7 @@ def base_reg_stock_icons(iconpaths, extraiconsize, items):
 # GuiPluginManager
 #
 #-------------------------------------------------------------------------
-class GuiPluginManager(gen.utils.Callback):
+class GuiPluginManager(Callback):
     """ PluginManager is a Singleton which manages plugins. 
     It is the gui implementation using a unique BasePluginmanager. 
     This class adds the possibility to hide plugins in the GUI via a config 
@@ -141,7 +141,7 @@ class GuiPluginManager(gen.utils.Callback):
             raise Exception("This class is a singleton. "
                             "Use the get_instance() method")
         
-        gen.utils.Callback.__init__(self)
+        Callback.__init__(self)
         self.basemgr = BasePluginManager.get_instance()
         self.__hidden_plugins = set(config.get('plugin.hiddenplugins'))
         self.__hidden_changed()

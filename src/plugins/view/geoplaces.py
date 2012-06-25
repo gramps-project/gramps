@@ -65,7 +65,6 @@ from gui.selectors.selectplace import SelectPlace
 from gui.filters.sidebar import PlaceSidebarFilter
 from gui.views.navigationview import NavigationView
 from gui.views.bookmarks import PlaceBookmarks
-from Utils import navigation_label
 from maps.geography import GeoGraphyView
 
 #-------------------------------------------------------------------------

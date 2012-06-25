@@ -57,7 +57,7 @@ import gen.datehandler
 import gen.lib
 from gen.utils.file import media_path_full, find_file
 from gui.thumbnails import get_thumbnail_path
-from gen.utils import get_birth_or_fallback, get_death_or_fallback
+from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 
 #------------------------------------------------------------------------
 #

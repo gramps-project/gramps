@@ -41,7 +41,7 @@ from gen.plug import Gramplet
 from gen.plug.report import utils as ReportUtils
 from gen.display.name import displayer as name_displayer
 import gen.datehandler
-from gen.utils import get_birth_or_fallback, get_death_or_fallback
+from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 
 class DescendantGramplet(Gramplet):
     def init(self):

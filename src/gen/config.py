@@ -42,7 +42,7 @@ from gen.ggettext import gettext as _
 #
 #---------------------------------------------------------------
 import const
-from gen.utils import ConfigManager
+from gen.utils.configmanager import ConfigManager
 
 #---------------------------------------------------------------
 #

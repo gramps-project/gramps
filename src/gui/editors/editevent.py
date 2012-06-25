@@ -53,7 +53,7 @@ from displaytabs import (CitationEmbedList, NoteTab, GalleryTab,
                          EventBackRefList, AttrEmbedList)
 from gui.widgets import (MonitoredEntry, PrivacyButton, 
                      MonitoredDataType, MonitoredDate)
-from Utils import get_participant_from_event
+from gen.utils.db import get_participant_from_event
 
 #-------------------------------------------------------------------------
 #

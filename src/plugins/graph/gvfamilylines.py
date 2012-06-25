@@ -60,7 +60,7 @@ from gen.plug.report import MenuReportOptions
 from gen.plug.menu import (NumberOption, ColorOption, BooleanOption,
                           EnumeratedListOption, PersonListOption,
                           SurnameColorOption)
-from gen.utils import get_birth_or_fallback, get_death_or_fallback
+from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gen.display.name import displayer as name_displayer
 
 #------------------------------------------------------------------------

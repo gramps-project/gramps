@@ -67,7 +67,6 @@ from gui.filters.sidebar import PersonSidebarFilter
 from gui.views.navigationview import NavigationView
 from gui.views.bookmarks import PersonBookmarks
 import constants
-from Utils import navigation_label
 from maps.geography import GeoGraphyView
 
 #-------------------------------------------------------------------------

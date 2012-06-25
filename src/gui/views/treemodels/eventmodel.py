@@ -42,7 +42,7 @@ import gtk
 #-------------------------------------------------------------------------
 import gen.datehandler
 import gen.lib
-import Utils
+from gen.utils.db import get_participant_from_event
 from gen.config import config
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
 
@@ -116,7 +116,7 @@ class EventModel(FlatBaseModel):
         return data[COLUMN_DESCRIPTION]
 
     def column_participant(self,data):
-        return Utils.get_participant_from_event(self.db, data[COLUMN_HANDLE])
+        return get_participant_from_event(self.db, data[COLUMN_HANDLE])
         
     def column_place(self,data):
         if data[COLUMN_PLACE]:

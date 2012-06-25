@@ -143,7 +143,7 @@ class FamilyModel(FlatBaseModel):
         return unicode(gen.lib.FamilyRelType(data[5]))
 
     def column_marriage(self, data):
-        from gen.utils import get_marriage_or_fallback
+        from gen.utils.db import get_marriage_or_fallback
         family = self.db.get_family_from_handle(data[0])
         event = get_marriage_or_fallback(self.db, family, "<i>%s</i>")
         if event:
@@ -157,7 +157,7 @@ class FamilyModel(FlatBaseModel):
             return u''
 
     def sort_marriage(self, data):
-        from gen.utils import get_marriage_or_fallback
+        from gen.utils.db import get_marriage_or_fallback
         family = self.db.get_family_from_handle(data[0])
         event = get_marriage_or_fallback(self.db, family)
         if event:

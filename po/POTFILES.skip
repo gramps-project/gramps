@@ -212,6 +212,7 @@ src/gen/utils/__init__.py
 src/gen/utils/callback.py
 src/gen/utils/callman.py
 src/gen/utils/cast.py
+src/gen/utils/db.py
 src/gen/utils/file.py
 src/gen/utils/id.py
 src/gen/utils/image.py

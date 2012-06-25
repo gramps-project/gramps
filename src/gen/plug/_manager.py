@@ -46,7 +46,6 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from gen.config import config
-import gen.utils
 from gen.plug import PluginRegister
 
 #-------------------------------------------------------------------------

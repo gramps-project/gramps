@@ -25,7 +25,7 @@ from gen.plug import Gramplet
 from gen.ggettext import gettext as _
 from gen.display.name import displayer as name_displayer
 import gen.datehandler
-from gen.utils import get_birth_or_fallback, get_marriage_or_fallback
+from gen.utils.db import get_birth_or_fallback, get_marriage_or_fallback
 from gen.errors import WindowActiveError
 import gtk
 from gen.config import config

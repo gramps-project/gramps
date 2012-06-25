@@ -62,7 +62,7 @@ from gen.dbstate import DbState
 from gen.datehandler import displayer, parser
 from gen.lib.date import Date as GDate, Today
 import gen.lib
-from gen.utils import get_birth_or_fallback, get_death_or_fallback
+from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gen.plug import BasePluginManager
 from cli.grampscli import CLIManager
 

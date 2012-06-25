@@ -48,7 +48,7 @@ from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
 from gen.sort import Sort
 from gen.display.name import displayer as name_displayer
 from gen.config import config
-from gen.utils import get_birth_or_fallback, get_death_or_fallback
+from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 
 #------------------------------------------------------------------------
 #

@@ -52,7 +52,7 @@ import pango
 from gen.utils.file import media_path_full
 from gui.thumbnails import get_thumbnail_image
 import gui.utils
-from gen.utils import get_birth_or_fallback
+from gen.utils.db import get_birth_or_fallback
 import gen.lib
 from gen.db import DbTxn
 from gui import widgets

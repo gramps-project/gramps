@@ -53,7 +53,7 @@ from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
 import gen.datehandler
 from gen.sort import Sort
-from gen.utils import (get_birth_or_fallback, get_death_or_fallback,
+from gen.utils.db import (get_birth_or_fallback, get_death_or_fallback,
                        get_marriage_or_fallback, get_divorce_or_fallback)
 
 

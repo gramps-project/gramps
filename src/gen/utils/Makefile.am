@@ -15,7 +15,7 @@ pkgpython_PYTHON = \
 	callman.py \
 	cast.py \
 	configmanager.py \
-	fallback.py \
+	db.py \
 	file.py \
 	id.py \
 	image.py \
