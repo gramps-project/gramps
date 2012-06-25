@@ -34,6 +34,7 @@ from __future__ import print_function
 # Python modules
 #------------------------------------------------------------------------
 import re
+import locale
 
 """
 HTML operations.
@@ -570,6 +571,18 @@ class Html(list):
 #
     def __exit__(self, exc_type, exc_val, exc_tb):
         return exc_type is None
+
+#------------------------------------------------------------------------
+#
+# Functions
+#
+#------------------------------------------------------------------------
+def xml_lang():
+    loc = locale.getlocale()
+    if loc[0] is None:
+        return ""
+    else:
+        return loc[0].replace('_', '-')
 
 #-------------------------------------------
 #

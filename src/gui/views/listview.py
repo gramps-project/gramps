@@ -58,7 +58,7 @@ from gen.errors import WindowActiveError
 from gui.filters import SearchBar
 from gui.utils import add_menuitem
 import const
-import Utils
+from gen.utils.debug import profile
 from gen.utils.string import data_recover_msg
 from gen.utils.file import get_unicode_path_from_file_chooser
 from gui.dialog import QuestionDialog, QuestionDialog2
@@ -264,7 +264,7 @@ class ListView(NavigationView):
                                          self.model.total())
 
     def __build_tree(self):
-        Utils.profile(self._build_tree)
+        profile(self._build_tree)
 
     def build_tree(self, force_sidebar=False):
         if self.active:

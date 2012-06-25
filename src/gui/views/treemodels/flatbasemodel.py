@@ -73,7 +73,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from gen.filters import SearchFilter, ExactSearchFilter
-from Utils import conv_unicode_tosrtkey_ongtk
+from bugfix import conv_unicode_tosrtkey_ongtk
 
 #-------------------------------------------------------------------------
 #
@@ -506,7 +506,7 @@ class FlatBaseModel(gtk.GenericTreeModel):
         This list is sorted ascending, via localized string sort. 
         conv_unicode_tosrtkey_ongtk which uses strxfrm, which is apparently 
         broken in Win ?? --> they should fix base lib, we need strxfrm, fix it 
-        in the Utils module.
+        in the bugfix module.
         """
         # use cursor as a context manager
         with self.gen_cursor() as cursor:   

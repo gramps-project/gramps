@@ -13,8 +13,7 @@ gdirdir=$(prefix)/share/gramps
 
 gdir_PYTHON = \
 	const.py\
-	gramps.py\
-	Utils.py
+	gramps.py
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo

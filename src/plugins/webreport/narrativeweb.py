@@ -88,7 +88,7 @@ from gen.plug.report import ( Report, Bibliography)
 from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
                         
-import Utils
+from gen.utils.config import get_researcher
 from gen.utils.string import confidence
 from gen.utils.file import media_path_full
 from gen.utils.referent import get_source_and_citation_referents
@@ -102,7 +102,7 @@ from gen.proxy import PrivateProxyDb, LivingProxyDb
 from libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
 
 # import HTML Class from src/plugins/lib/libhtml.py
-from libhtml import Html
+from libhtml import Html, xml_lang
 
 # import styled notes from src/plugins/lib/libhtmlbackend.py
 from libhtmlbackend import HtmlBackend, process_spaces
@@ -530,7 +530,7 @@ class BasePage(object):
 
         self.page_title = ""
 
-        self.author = Utils.get_researcher().get_name()
+        self.author = get_researcher().get_name()
         if self.author:
             self.author = self.author.replace(',,,', '')
 
@@ -1544,7 +1544,7 @@ class BasePage(object):
         """
 
         # begin each html page...
-        xmllang = Utils.xml_lang()
+        xmllang = xml_lang()
         page, head, body = Html.page('%s - %s' % 
                                     (html_escape(self.title_str.strip()), 
                                      html_escape(title)),
@@ -3552,7 +3552,7 @@ class PlacePage(BasePage):
                             with Html("script", type = "text/javascript") as jsc:
                                 canvas += jsc
 
-                                jsc += openstreetmap_jsc % (Utils.xml_lang()[3:5].lower(), longitude, latitude)
+                                jsc += openstreetmap_jsc % (xml_lang()[3:5].lower(), longitude, latitude)
 
             # add javascript function call to body element
             body.attr +=' onload = "initialize();" '
@@ -5260,7 +5260,7 @@ class ContactPage(BasePage):
                     summaryarea += contactimg
 
                 # get researcher information
-                r = Utils.get_researcher()
+                r = get_researcher()
 
                 with Html("div", id = 'researcher') as researcher:
                     summaryarea += researcher
@@ -5638,7 +5638,7 @@ class IndividualPage(BasePage):
 
                         # we are using OpenStreetMap?
                         else:
-                            jsc += openstreetmap_jsc % (Utils.xml_lang()[3:5].lower(), longitude, latitude)
+                            jsc += openstreetmap_jsc % (xml_lang()[3:5].lower(), longitude, latitude)
 
                     # there is more than one marker...
                     else:
@@ -5660,7 +5660,7 @@ class IndividualPage(BasePage):
 
                         # we are using OpenStreetMap...
                         else:
-                            jsc += osm_markers % (Utils.xml_lang()[3:5].lower(), tracelife, midY_, midX_, zoomlevel)
+                            jsc += osm_markers % (xml_lang()[3:5].lower(), tracelife, midY_, midX_, zoomlevel)
 
             # if Google and Drop Markers are selected, then add "Drop Markers" button?
             if (self.mapservice == "Google" and self.googleopts == "Drop"):

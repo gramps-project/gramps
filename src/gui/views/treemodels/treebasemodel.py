@@ -54,7 +54,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Utils import conv_unicode_tosrtkey_ongtk
+from bugfix import conv_unicode_tosrtkey_ongtk
 import gui.widgets.progressdialog as progressdlg
 from lru import LRU
 from bisect import bisect_right

@@ -53,7 +53,7 @@ from gen.dbstate import DbState
 from gen.db import DbBsddb
 import gen.db.exceptions
 from gen.plug import BasePluginManager
-from Utils import get_researcher
+from gen.utils.config import get_researcher
 from gen.recentfiles import recent_files
 
 #-------------------------------------------------------------------------

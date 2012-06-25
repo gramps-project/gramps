@@ -55,7 +55,7 @@ from PySide import QtOpenGL
 #
 #-------------------------------------------------------------------------
 import const
-from Utils import conv_unicode_tosrtkey_ongtk
+from gui.views.treemodels import conv_unicode_tosrtkey_ongtk
 from gen.ggettext import gettext as _
 from gen.display.name import displayer as name_displayer
 from gen.lib import Name

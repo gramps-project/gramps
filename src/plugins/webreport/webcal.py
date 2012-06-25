@@ -58,14 +58,14 @@ from gen.plug.report import MenuReportOptions
 from gen.plug.menu import BooleanOption, NumberOption, StringOption, \
                           EnumeratedListOption, FilterOption, PersonOption, \
                           DestinationOption, NoteOption
-from Utils import xml_lang, get_researcher
+from gen.utils.config import get_researcher
 from gen.utils.alive import probably_alive
 from gen.datehandler import displayer as _dd, long_days
 
 from gen.display.name import displayer as _nd
 
 import libholiday
-from libhtml import Html
+from libhtml import Html, xml_lang
 from libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
 from gui.pluginmanager import GuiPluginManager
 
