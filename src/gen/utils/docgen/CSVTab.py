@@ -32,7 +32,7 @@ import csv
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from docgen import TabbedDoc
+from TabbedDoc import *
 
 class CSVTab(TabbedDoc):
 

@@ -4,6 +4,8 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
+SUBDIRS = docgen
+
 pkgpythondir = $(datadir)/@PACKAGE@/gen/utils
 
 pkgpython_PYTHON = \

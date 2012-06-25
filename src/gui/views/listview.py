@@ -960,7 +960,7 @@ class ListView(NavigationView):
         
         The output file type is determined by the type variable.
         """
-        from docgen import CSVTab, ODSTab
+        from gen.utils.docgen import CSVTab, ODSTab
         ofile = None
         data_cols = [pair[1] for pair in self.column_order() if pair[0]]
 

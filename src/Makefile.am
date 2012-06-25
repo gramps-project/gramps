@@ -4,7 +4,6 @@
 SUBDIRS = \
 	cli \
 	data \
-	docgen \
 	gen \
 	gui \
 	images \

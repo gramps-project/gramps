@@ -49,7 +49,7 @@ from gui.filters import build_filter_model
 from gen.sort import Sort
 from gen.utils.file import get_unicode_path_from_file_chooser
 from gui.utils import ProgressMeter
-from docgen import ODSTab
+from gen.utils.docgen import ODSTab
 import const
 from gen.errors import WindowActiveError
 import gen.datehandler

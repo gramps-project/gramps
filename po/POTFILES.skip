@@ -218,6 +218,12 @@ src/gen/utils/image.py
 src/gen/utils/referent.py
 src/gen/utils/tree.py
 
+# gen.utils.docgen
+src/gen/utils/docgen/__init__.py
+src/gen/utils/docgen/CSVTab.py
+src/gen/utils/docgen/ODSTab.py
+src/gen/utils/docgen/TabbedDoc.py
+
 # gui - GUI code
 src/gui/__init__.py
 src/gui/autocomp.py
