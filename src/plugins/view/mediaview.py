@@ -55,8 +55,8 @@ from gui.views.treemodels import MediaModel
 import const
 from gen.constfunc import win
 from gen.config import config
-import Utils
-from gen.utils.file import media_path, relative_path, media_path_full
+from gen.utils.file import (media_path, relative_path, media_path_full, 
+                            fix_encoding)
 from gen.utils.referent import get_media_referents
 from gui.views.bookmarks import MediaBookmarks
 import gen.mime
@@ -181,7 +181,7 @@ class MediaView(ListView):
         else:
             files =  sel_data.get_uris()
         for file in files:
-            clean_string = Utils.fix_encoding(
+            clean_string = fix_encoding(
                             file.replace('\0',' ').replace("\r", " ").strip())
             protocol, site, mfile, j, k, l = urlparse.urlparse(clean_string)
             if protocol == "file":

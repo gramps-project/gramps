@@ -43,7 +43,7 @@ LOG = logging.getLogger(".gen.utils.file")
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.constfunc import win
+from gen.constfunc import win, mac
 from const import TEMP_DIR, USER_HOME
 
 #-------------------------------------------------------------------------
@@ -279,3 +279,24 @@ def search_for(name):
             if os.access(fname, os.X_OK) and not os.path.isdir(fname):
                 return 1
     return 0
+
+def fix_encoding(value, errors='strict'):
+    # The errors argument specifies the response when the input string can't be
+    # converted according to the encoding's rules. Legal values for this
+    # argument are 'strict' (raise a UnicodeDecodeError exception), 'replace'
+    # (add U+FFFD, 'REPLACEMENT CHARACTER'), or 'ignore' (just leave the
+    # character out of the Unicode result).
+    if not isinstance(value, unicode):
+        try:
+            return unicode(value)
+        except:
+            try:
+                if mac():
+                    codeset = locale.getlocale()[1]
+                else:
+                    codeset = locale.getpreferredencoding()
+            except:
+                codeset = "UTF-8"
+            return unicode(value, codeset, errors)
+    else:
+        return value

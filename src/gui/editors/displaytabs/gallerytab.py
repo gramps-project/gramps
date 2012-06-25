@@ -52,8 +52,8 @@ from gui.dbguielement import DbGUIElement
 from gui.selectors import SelectorFactory
 import gen.lib
 from gen.db import DbTxn
-import Utils
-from gen.utils.file import media_path_full, media_path, relative_path
+from gen.utils.file import (media_path_full, media_path, relative_path,
+                            fix_encoding)
 from gui.thumbnails import get_thumbnail_image
 from gen.errors import WindowActiveError
 import gen.mime
@@ -493,10 +493,10 @@ class GalleryTab(ButtonTab, DbGUIElement):
                 else:
                     files =  sel_data.get_uris()
                 for file in files:
-                    d = Utils.fix_encoding(file.replace('\0',' ').strip())
+                    d = fix_encoding(file.replace('\0',' ').strip())
                     protocol, site, mfile, j, k, l = urlparse.urlparse(d)
                     if protocol == "file":
-                        name = Utils.fix_encoding(mfile)
+                        name = fix_encoding(mfile)
                         name = unicode(urllib.url2pathname(
                                     name.encode(sys.getfilesystemencoding())))
                         mime = gen.mime.get_type(name)

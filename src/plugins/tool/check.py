@@ -65,13 +65,11 @@ import gtk
 import gen.lib
 from gen.db import DbTxn
 from gen.config import config
-import Utils
 from gen.utils.id import create_id
 from gen.utils.name import family_name
 from gen.utils.unknown import make_unknown
-from gen.utils.file import (get_unicode_path_from_file_chooser, 
-                            media_path_full, 
-                            find_file)
+from gen.utils.file import (media_path_full, find_file, fix_encoding, 
+                            get_unicode_path_from_file_chooser)
 from gui.utils import ProgressMeter
 from gui.managedwindow import ManagedWindow
 
@@ -338,8 +336,8 @@ class CheckIntegrity(object):
             data = self.db.media_map[handle]
             if not isinstance(data[2], unicode) or not isinstance(data[4], unicode):
                 obj = self.db.get_object_from_handle(handle)
-                obj.path = Utils.fix_encoding( obj.path, errors='ignore')
-                obj.desc = Utils.fix_encoding( obj.desc, errors='ignore')
+                obj.path = fix_encoding( obj.path, errors='ignore')
+                obj.desc = fix_encoding( obj.desc, errors='ignore')
                 self.db.commit_media_object(obj, self.trans)
                 if not isinstance(data[2], unicode):
                     LOG('    FAIL: encoding error on media object "%s"'
