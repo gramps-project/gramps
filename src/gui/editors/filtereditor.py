@@ -68,7 +68,7 @@ from gen.filters import rules
 from gui.autocomp import StandardCustomSelector, fill_entry
 from gui.selectors import SelectorFactory
 from gen.display.name import displayer as _nd
-from gen.utils.name import family_name
+from gen.utils.db import family_name
 from gen.utils.string import confidence
 
 #-------------------------------------------------------------------------

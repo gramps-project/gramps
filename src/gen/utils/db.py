@@ -25,11 +25,19 @@ Utilities for getting information from the database.
 """
 #-------------------------------------------------------------------------
 #
+# Standard python modules
+#
+#-------------------------------------------------------------------------
+import logging
+LOG = logging.getLogger(".gui.utils.db")
+
+#-------------------------------------------------------------------------
+#
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+import gen.lib
 from gen.display.name import displayer as name_displayer
-from gen.utils.name import family_name
 from gen.ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
@@ -291,3 +299,282 @@ def navigation_label(db, nav_type, handle):
         label = '[%s] %s' % (obj.get_gramps_id(), label)
 
     return (label, obj)
+
+#-------------------------------------------------------------------------
+#
+# Function to return children's list of a person
+#
+#-------------------------------------------------------------------------
+def find_children(db,p):
+    """
+    Return the list of all children's IDs for a person.
+    """
+    childlist = []
+    for family_handle in p.get_family_handle_list():
+        family = db.get_family_from_handle(family_handle)
+        for child_ref in family.get_child_ref_list():
+            childlist.append(child_ref.ref)
+    return childlist
+
+#-------------------------------------------------------------------------
+#
+# Function to return parent's list of a person
+#
+#-------------------------------------------------------------------------
+def find_parents(db,p):
+    """
+    Return the unique list of all parents' IDs for a person.
+    """
+    parentlist = []
+    for f in p.get_parent_family_handle_list():
+        family = db.get_family_from_handle(f)
+        father_handle = family.get_father_handle()
+        mother_handle = family.get_mother_handle()
+        if father_handle not in parentlist:
+            parentlist.append(father_handle)
+        if mother_handle not in parentlist:
+            parentlist.append(mother_handle)
+    return parentlist
+
+#-------------------------------------------------------------------------
+#
+# Function to return persons, that share the same event.
+# This for example links witnesses to the tree
+#
+#-------------------------------------------------------------------------
+def find_witnessed_people(db,p):
+    people = []
+    for event_ref in p.get_event_ref_list():
+        for l in db.find_backlink_handles( event_ref.ref):
+            if l[0] == 'Person' and l[1] != p.get_handle() and l[1] not in people:
+                people.append(l[1])
+            if l[0] == 'Family':
+                fam = db.get_family_from_handle(l[1])
+                if fam:
+                    father_handle = fam.get_father_handle()
+                    if father_handle and father_handle != p.get_handle() and father_handle not in people:
+                        people.append(father_handle)
+                    mother_handle = fam.get_mother_handle()
+                    if mother_handle and mother_handle != p.get_handle() and mother_handle not in people:
+                        people.append(mother_handle)
+    for f in p.get_family_handle_list():
+        family = db.get_family_from_handle(f)
+        for event_ref in family.get_event_ref_list():
+            for l in db.find_backlink_handles( event_ref.ref):
+                if l[0] == 'Person' and l[1] != p.get_handle() and l[1] not in people:
+                    people.append(l[1])
+    for pref in p.get_person_ref_list():
+        if pref.ref != p.get_handle and pref.ref not in people:
+            people.append(pref.ref)
+    return people
+
+#-------------------------------------------------------------------------
+#
+#  Iterate over ancestors.
+#
+#-------------------------------------------------------------------------
+def for_each_ancestor(db, start, func, data):
+    """
+    Recursively iterate (breadth-first) over ancestors of
+    people listed in start.
+    Call func(data, pid) for the Id of each person encountered.
+    Exit and return 1, as soon as func returns true.
+    Return 0 otherwise.
+    """
+    todo = start
+    done_ids = set()
+    while len(todo):
+        p_handle = todo.pop()
+        p = db.get_person_from_handle(p_handle)
+        # Don't process the same handle twice.  This can happen
+        # if there is a cycle in the database, or if the
+        # initial list contains X and some of X's ancestors.
+        if p_handle in done_ids:
+            continue
+        done_ids.add(p_handle)
+        if func(data, p_handle):
+            return 1
+        for fam_handle in p.get_parent_family_handle_list():
+            fam = db.get_family_from_handle(fam_handle)
+            if fam:
+                f_handle = fam.get_father_handle()
+                m_handle = fam.get_mother_handle()
+                if f_handle: todo.append(f_handle)
+                if m_handle: todo.append(m_handle)
+    return 0
+
+#-------------------------------------------------------------------------
+#
+# Preset a name with a name of family member
+#
+#-------------------------------------------------------------------------
+def preset_name(basepers, name, sibling=False):
+    """Fill up name with all family common names of basepers. 
+    If sibling=True, pa/matronymics are retained.
+    """
+    surnlist = []
+    primname = basepers.get_primary_name()
+    prim = False
+    for surn in primname.get_surname_list():
+        if (not sibling) and (surn.get_origintype().value in 
+                        [gen.lib.NameOriginType.PATRONYMIC, 
+                         gen.lib.NameOriginType.MATRONYMIC]):
+            continue
+        surnlist.append(gen.lib.Surname(source=surn))
+        if surn.primary:
+            prim=True
+    if not surnlist:
+        surnlist = [gen.lib.Surname()]
+    name.set_surname_list(surnlist)
+    if not prim:
+        name.set_primary_surname(0)
+    name.set_family_nick_name(primname.get_family_nick_name())
+    name.set_group_as(primname.get_group_as())
+    name.set_sort_as(primname.get_sort_as())
+
+#-------------------------------------------------------------------------
+#
+# Short hand function to return either the person's name, or an empty
+# string if the person is None
+#
+#-------------------------------------------------------------------------
+def family_name(family, db, noname=_("unknown")):
+    """Builds a name for the family from the parents names"""
+
+    father_handle = family.get_father_handle()
+    mother_handle = family.get_mother_handle()
+    father = db.get_person_from_handle(father_handle)
+    mother = db.get_person_from_handle(mother_handle)
+    if father and mother:
+        fname = name_displayer.display(father)
+        mname = name_displayer.display(mother)
+        name = _("%(father)s and %(mother)s") % {
+                    "father" : fname, 
+                    "mother" : mname}
+    elif father:
+        name = name_displayer.display(father)
+    elif mother:
+        name = name_displayer.display(mother)
+    else:
+        name = noname
+    return name
+
+#-------------------------------------------------------------------------
+#
+# Referents functions
+#
+#-------------------------------------------------------------------------
+def get_referents(handle, db, primary_objects):
+    """ Find objects that refer to an object.
+    
+    This function is the base for other get_<object>_referents functions.
+    
+    """
+    # Use one pass through the reference map to grab all the references
+    object_list = list(db.find_backlink_handles(handle))
+    
+    # Then form the object-specific lists
+    the_lists = ()
+
+    for primary in primary_objects:
+        primary_list = [item[1] for item in object_list if item[0] == primary]
+        the_lists = the_lists + (primary_list, )
+
+    return the_lists
+
+def get_source_referents(source_handle, db):
+    """ Find objects that refer the source.
+
+    This function finds all primary objects that refer (directly or through
+    secondary child-objects) to a given source handle in a given database.
+    
+    Only Citations can refer to sources, so that is all we need to check
+    """
+    _primaries = ('Citation',)
+    
+    return (get_referents(source_handle, db, _primaries))
+
+def get_citation_referents(citation_handle, db):
+    """ Find objects that refer the citation.
+
+    This function finds all primary objects that refer (directly or through
+    secondary child-objects) to a given citation handle in a given database.
+    
+    """
+    _primaries = ('Person', 'Family', 'Event', 'Place', 
+                  'Source', 'MediaObject', 'Repository')
+    
+    return (get_referents(citation_handle, db, _primaries))
+
+def get_source_and_citation_referents(source_handle, db):
+    """ 
+    Find all citations that refer to the sources, and recursively, all objects
+    that refer to the sources.
+
+    This function finds all primary objects that refer (directly or through
+    secondary child-objects) to a given source handle in a given database.
+    
+    Objects -> Citations -> Source
+    e.g.
+    Media object M1  -> Citation C1 -> Source S1
+    Media object M2  -> Citation C1 -> Source S1
+    Person object P1 -> Citation C2 -> Source S1
+    
+    The returned structure is rather ugly, but provides all the information in
+    a way that is consistent with the other Util functions.
+    (
+    tuple of objects that refer to the source - only first element is present
+        ([C1, C2],),
+    list of citations with objects that refer to them
+        [
+            (C1, 
+                tuple of reference lists
+                  P,  F,  E,  Pl, S,  M,        R
+                ([], [], [], [], [], [M1, M2]. [])
+            )
+            (C2, 
+                tuple of reference lists
+                  P,    F,  E,  Pl, S,  M,  R
+                ([P1], [], [], [], [], []. [])
+            )
+        ]
+    )    
+    """
+    the_lists = get_source_referents(source_handle, db)
+    LOG.debug('source referents %s' % [the_lists])
+    # now, for each citation, get the objects that refer to that citation
+    citation_referents_list = []
+    for citation in the_lists[0]:
+        LOG.debug('citation %s' % citation)
+        refs = get_citation_referents(citation, db)
+        citation_referents_list += [(citation, refs)]
+    LOG.debug('citation_referents_list %s' % [citation_referents_list])    
+        
+    (citation_list) = the_lists
+    the_lists = (citation_list, citation_referents_list)
+
+    LOG.debug('the_lists %s' % [the_lists])
+    return the_lists 
+
+def get_media_referents(media_handle, db):
+    """ Find objects that refer the media object.
+
+    This function finds all primary objects that refer
+    to a given media handle in a given database.
+    
+    """
+    _primaries = ('Person', 'Family', 'Event', 'Place', 'Source', 'Citation')
+    
+    return (get_referents(media_handle, db, _primaries))
+
+def get_note_referents(note_handle, db):
+    """ Find objects that refer a note object.
+    
+    This function finds all primary objects that refer
+    to a given note handle in a given database.
+    
+    """
+    _primaries = ('Person', 'Family', 'Event', 'Place', 
+                  'Source', 'Citation', 'MediaObject', 'Repository')
+    
+    return (get_referents(note_handle, db, _primaries))

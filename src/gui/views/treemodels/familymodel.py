@@ -43,9 +43,9 @@ import gtk
 #-------------------------------------------------------------------------
 import gen.datehandler
 from gen.display.name import displayer as name_displayer
-import gen.lib
-from gen.lib import EventRoleType
+from gen.lib import EventRoleType, FamilyRelType
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
+from gen.utils.db import get_marriage_or_fallback
 from gen.config import config
 
 invalid_date_format = config.get('preferences.invalid-date-format')
@@ -140,10 +140,9 @@ class FamilyModel(FlatBaseModel):
             return u""
 
     def column_type(self, data):
-        return unicode(gen.lib.FamilyRelType(data[5]))
+        return unicode(FamilyRelType(data[5]))
 
     def column_marriage(self, data):
-        from gen.utils.db import get_marriage_or_fallback
         family = self.db.get_family_from_handle(data[0])
         event = get_marriage_or_fallback(self.db, family, "<i>%s</i>")
         if event:
@@ -157,7 +156,6 @@ class FamilyModel(FlatBaseModel):
             return u''
 
     def sort_marriage(self, data):
-        from gen.utils.db import get_marriage_or_fallback
         family = self.db.get_family_from_handle(data[0])
         event = get_marriage_or_fallback(self.db, family)
         if event:

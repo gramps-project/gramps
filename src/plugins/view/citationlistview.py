@@ -49,7 +49,7 @@ from gui.views.treemodels.citationlistmodel import CitationListModel
 from gen.plug import CATEGORY_QR_CITATION
 import gen.lib
 from gui.views.listview import ListView
-from gen.utils.referent import get_citation_referents
+from gen.utils.db import get_citation_referents
 from gui.views.bookmarks import CitationBookmarks
 from gen.errors import WindowActiveError
 from gui.ddtargets import DdTargets

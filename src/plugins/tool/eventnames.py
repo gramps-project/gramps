@@ -46,7 +46,7 @@ from gen.ggettext import ngettext
 from gui.managedwindow import ManagedWindow
 import gen.lib
 from gen.db import DbTxn
-from gen.utils.name import family_name
+from gen.utils.db import family_name
 
 from gui.plug import tool
 from gen.display.name import displayer as name_displayer

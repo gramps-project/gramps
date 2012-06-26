@@ -43,7 +43,7 @@ import gen.lib
 from gen.config import config
 from gui.views.listview import ListView
 from gui.views.treemodels import SourceModel
-from gen.utils.referent import get_source_and_citation_referents
+from gen.utils.db import get_source_and_citation_referents
 from gui.views.bookmarks import SourceBookmarks
 from gen.errors import WindowActiveError
 from gui.ddtargets import DdTargets

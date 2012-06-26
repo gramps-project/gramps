@@ -48,7 +48,7 @@ log = logging.getLogger(".ExportVCal")
 #
 #-------------------------------------------------------------------------
 from gui.plug.export import WriterOptionBox
-from gen.utils.name import family_name
+from gen.utils.db import family_name
 from gen.lib import Date, EventType
 from gui.glade import Glade
 

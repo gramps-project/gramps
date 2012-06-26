@@ -91,7 +91,7 @@ from gen.plug.report import MenuReportOptions
 from gen.utils.config import get_researcher
 from gen.utils.string import confidence
 from gen.utils.file import media_path_full
-from gen.utils.referent import get_source_and_citation_referents
+from gen.utils.db import get_source_and_citation_referents
 from gen.constfunc import win
 from gui.thumbnails import get_thumbnail_path, run_thumbnailer
 from gen.utils.image import image_size, resize_to_jpeg_buffer

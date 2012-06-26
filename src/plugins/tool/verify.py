@@ -57,7 +57,7 @@ import gobject
 import const
 import gen.lib
 from gui.editors import EditPerson, EditFamily
-from gen.utils.name import family_name
+from gen.utils.db import family_name
 from gui.display import display_help
 from gui.managedwindow import ManagedWindow
 from gen.updatecallback import UpdateCallback

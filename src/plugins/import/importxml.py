@@ -49,7 +49,7 @@ from gen.db import DbTxn
 from gen.db.write import CLASS_TO_KEY_MAP
 from gen.errors import GrampsImportError
 from gen.utils.id import create_id
-from gen.utils.name import family_name
+from gen.utils.db import family_name
 from gen.utils.unknown import make_unknown, create_explanation_note
 import gen.datehandler
 from gen.display.name import displayer as name_displayer

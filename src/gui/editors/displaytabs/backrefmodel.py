@@ -37,8 +37,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from gen.display.name import displayer as name_displayer
-from gen.utils.name import family_name
-from gen.utils.db import get_participant_from_event
+from gen.utils.db import family_name, get_participant_from_event
 
 #-------------------------------------------------------------------------
 #

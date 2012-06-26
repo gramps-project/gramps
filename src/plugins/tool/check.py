@@ -66,7 +66,7 @@ import gen.lib
 from gen.db import DbTxn
 from gen.config import config
 from gen.utils.id import create_id
-from gen.utils.name import family_name
+from gen.utils.db import family_name
 from gen.utils.unknown import make_unknown
 from gen.utils.file import (media_path_full, find_file, fix_encoding, 
                             get_unicode_path_from_file_chooser)

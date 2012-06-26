@@ -57,7 +57,7 @@ from gen.constfunc import win
 from gen.config import config
 from gen.utils.file import (media_path, relative_path, media_path_full, 
                             fix_encoding)
-from gen.utils.referent import get_media_referents
+from gen.utils.db import get_media_referents
 from gui.views.bookmarks import MediaBookmarks
 import gen.mime
 import gen.lib

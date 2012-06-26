@@ -23,13 +23,10 @@ pkgpython_PYTHON = \
 	image.py \
 	keyword.py \
 	lds.py \
-	name.py \
 	mactrans.py \
 	place.py \
-	referent.py \
 	string.py \
 	trans.py \
-	tree.py \
 	unknown.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen/utils
