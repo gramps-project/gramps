@@ -45,7 +45,7 @@ _LOG = logging.getLogger("maps.messagelayer")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import Gtk
+from gi.repository import Gdk
 from gi.repository import Cairo
 
 #-------------------------------------------------------------------------
@@ -121,7 +121,7 @@ class MessageLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
                              cairo.FONT_SLANT_NORMAL,
                              cairo.FONT_WEIGHT_NORMAL)
         ctx.set_font_size(int(self.size))
-        color = gtk.gdk.color_parse(self.color)
+        color = Gdk.color_parse(self.color)
         ctx.set_source_rgba(float(color.red / 65535.0),
                             float(color.green / 65535.0),
                             float(color.blue / 65535.0),
