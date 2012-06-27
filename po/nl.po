@@ -41,8 +41,8 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-06-19 17:16+0200\n"
-"PO-Revision-Date: 2012-06-22 20:02+0100\n"
-"Last-Translator: Erik De Richter <frederik.de.richter@pandora.be>\n"
+"PO-Revision-Date: 2012-06-26 13:32+0100\n"
+"Last-Translator: Enno Borgsteede <ennoborg@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -2026,7 +2026,7 @@ msgstr "%s, ..."
 
 #: ../src/Utils.py:1674
 msgid "Unknown, created to replace a missing note object."
-msgstr "Onbekend, aangemmakt om een ontbrekend opmerkingsobject te vervangen "
+msgstr "Onbekend, aangemaakt om een ontbrekend opmerkingsobject te vervangen "
 
 #. primitive static variable
 #: ../src/Utils.py:1684
@@ -2508,7 +2508,7 @@ msgstr "   Geldige opties zijn:"
 #: ../src/cli/plug/__init__.py:531
 #, python-format
 msgid "   Use '%(donottranslate)s' to see description and acceptable values"
-msgstr "   om beschrijving en geldige waarden te zien '%(donottranslate)s' gebruiken"
+msgstr "   Om beschrijving en geldige waarden te zien '%(donottranslate)s' gebruiken"
 
 #: ../src/cli/plug/__init__.py:433
 #, python-format
@@ -3288,7 +3288,7 @@ msgstr "Beroep"
 # Classificatie, ordening, (wijding is de religieuze betekenis)
 #: ../src/gen/lib/eventtype.py:172
 msgid "Ordination"
-msgstr "Ordening"
+msgstr "Wijding"
 
 # Dict:
 # Geverifieerd afschrift van een testament
@@ -3679,7 +3679,7 @@ msgstr "Overgenomen"
 
 #: ../src/gen/lib/nameorigintype.py:87
 msgid "Matronymic"
-msgstr "Metroniem"
+msgstr "Matroniem"
 
 #: ../src/gen/lib/nameorigintype.py:88
 msgid "Surname|Feudal"
@@ -13252,7 +13252,7 @@ msgid ""
 "Gramps is created by genealogists for genealogists, organized in the Gramps Project. Gramps is an Open Source Software package, which means you are free to make copies and distribute it to anyone you like. It's developed and maintained by a worldwide team of volunteers whose goal is to make Gramps powerful, yet easy to use.\n"
 "\n"
 msgstr ""
-"Gramps is ontwikkeld door genealogen voor genealogen die georganiseerd zijn in het Gramps project. Gramps is een Open Bron Programma. U kunt dus vrijelijk  kopies maken en deze verdelen naar wie u wilt. Gramps is ontwikkled en wordt onderhouden door eenwereldwijde groep van vrijwilligers die zich tot doel stellen Gramps zo krachtig mogelijk te maken maar toch makkelijk in gebruik.\n"
+"Gramps is ontwikkeld door genealogen voor genealogen die georganiseerd zijn in het Gramps project. Gramps is een Open Bron Programma. U kunt dus vrijelijk  kopies maken en deze verdelen naar wie u wilt. Gramps is ontwikkeld en wordt onderhouden door eenwereldwijde groep van vrijwilligers die zich tot doel stellen Gramps zo krachtig mogelijk te maken maar toch makkelijk in gebruik.\n"
 "\n"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:125
@@ -13549,7 +13549,7 @@ msgstr "De kleur die gebruikt wordt om de families te tonen."
 
 #: ../src/plugins/graph/GVFamilyLines.py:168
 msgid "Limit the number of ancestors"
-msgstr "Het aantal afstammelingen"
+msgstr "Het aantal voorouders beperken"
 
 #: ../src/plugins/graph/GVFamilyLines.py:170
 msgid "Whether to limit the number of ancestors."
@@ -21947,12 +21947,12 @@ msgstr "Grote leeftijdsverschillen tussen partners"
 
 #: ../src/plugins/tool/Verify.py:1142
 msgid "Marriage before birth"
-msgstr "Trouw voor geboorte"
+msgstr "Huwelijk voor geboorte"
 
 # Dict.: a prenuptial agreement or contract
 #: ../src/plugins/tool/Verify.py:1173
 msgid "Marriage after death"
-msgstr "Trouw na overlijden"
+msgstr "Huwelijk na overlijden"
 
 #: ../src/plugins/tool/Verify.py:1207
 msgid "Early marriage"
@@ -22118,13 +22118,12 @@ msgid "In order to add a citation to an existing source,  you must select a sour
 msgstr "Om een citaat aan een bestaande bron toe te voegen dient u eerst een bron te selecteren."
 
 #: ../src/plugins/view/citationtreeview.py:514
-#, fuzzy
 msgid ""
 "This source cannot be edited at this time. Either the associated Source object is already being edited, or another citation associated with the same source is being edited.\n"
 "\n"
 "To edit this source, you need to close the object."
 msgstr ""
-"Deze bronverwijzing kan momenteel niet aangepast worden. Ofwel is de verbonden bron reeds aangepast of een bronverwijzing die ook naar deze bron verwijst wordt aangepast.\n"
+"Deze bronverwijzing kan momenteel niet aangepast worden. Ofwel wordt de verbonden bron reeds aangepast of een bronverwijzing die ook naar deze bron verwijst wordt aangepast.\n"
 "\n"
 "Om deze bron toch aan te passen moet u de bron sluiten."
 
@@ -22184,15 +22183,14 @@ msgid "Citation View"
 msgstr "Citatenscherm"
 
 #: ../src/plugins/view/citationlistview.py:308
-#, fuzzy
 msgid ""
 "This citation cannot be edited at this time. Either the associated citation is already being edited or another object that is associated with the same citation is being edited.\n"
 "\n"
 "To edit this citation, you need to close the object."
 msgstr ""
-"Deze mediaverwijzing kan momenteel niet aangepast worden. Het is mogelijk dat het verbonden media-object al aangepast was of dat een andere verwijzing van een media-object waarnaar verwezen wordt momenteel aangepast wordt.\n"
+"Dit citaat kan momenteel niet aangepast worden. Het is mogelijk dat het verbonden citaat al aangepast wordt of dat een ander object dat met hetzelfde citaat verbonden is momenteel aangepast wordt.\n"
 "\n"
-"Om dit media-object toch aan te passen moet u eerst dit media-object sluiten."
+"Om dit citaat toch aan te passen moet u eerst het object sluiten."
 
 #: ../src/plugins/view/eventview.py:98
 msgid "Add a new event"
@@ -22200,7 +22198,7 @@ msgstr "Een nieuwe gebeurtenis toevoegen"
 
 #: ../src/plugins/view/eventview.py:99
 msgid "Edit the selected event"
-msgstr "De geselecteerde gebeurtenis aanmaken"
+msgstr "De geselecteerde gebeurtenis aanpassen"
 
 #: ../src/plugins/view/eventview.py:100
 msgid "Delete the selected event"
@@ -23118,9 +23116,8 @@ msgstr "Deze pagina bevat een index van alle personen in het gegevensbestand met
 
 #. Families list page message
 #: ../src/plugins/webreport/NarrativeWeb.py:3090
-#, fuzzy
 msgid "This page contains an index of all the families/ relationships in the database, sorted by their family name/ surname. Clicking on a person&#8217;s name will take you to their family/ relationship&#8217;s page."
-msgstr "Deze pagina bevat een index van alle locaties in het gegevensbestand, gesorteerd op titel. Door een titel te kiezen gaat u naar de pagina van deze locatie."
+msgstr "Deze pagina bevat een index van alle families/relaties in het gegevensbestand, gesorteerd op familienaam/voornaam. Door een naam te kiezen gaat u naar de pagina van deze familie/relatie."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3116
 #: ../src/plugins/webreport/NarrativeWeb.py:3365
@@ -23310,11 +23307,11 @@ msgstr "Leeftijd bij overlijden"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6386
 msgid "Half Siblings"
-msgstr "Halfbroers- en zussen"
+msgstr "Halfbroers en -zussen"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6408
 msgid "Step Siblings"
-msgstr "Stiefbroers- en zussenvertalen"
+msgstr "Stiefbroers en -zussen"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6503
 msgid "This page contains an index of all the repositories in the database, sorted by their title. Clicking on a repositories&#8217;s title will take you to that repositories&#8217;s page."
@@ -23801,9 +23798,8 @@ msgid "Whether to include a parents column"
 msgstr "Al of niet een ouderkolom toevoegen"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7952
-#, fuzzy
 msgid "Include half and/ or step-siblings on the individual pages"
-msgstr "Een kolom voorzien in de indexpagina's voor de ouders"
+msgstr "Al of niet half- en stief- broers en zussen op de individuele pagina's insluiten."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7954
 #, fuzzy
@@ -23855,9 +23851,8 @@ msgid "Include address book pages"
 msgstr "Adressenpagina's bijvoegen"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7979
-#, fuzzy
 msgid "Whether or not to add Address Book pages,which can include e-mail and website addresses and personal address/ residence events."
-msgstr "Al dan niet adressenboekpagina's toevoegen. Let op deze kunnen e-mail en website-adressen bevatten en ook persoonlijke adressen of residentiegebeurtenissen?"
+msgstr "Al dan niet adressenboekpagina's toevoegen. Let op: Deze kunnen e-mail en website-adressen bevatten en ook persoonlijke adressen of residentiegebeurtenissen."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7989
 msgid "Place Map Options"
@@ -28266,7 +28261,7 @@ msgstr "<b>Beschikbare Gramps aanpassingen voor uitbreidingen</b>"
 
 #: ../src/glade/updateaddons.glade.h:2
 msgid "Gramps comes with a core set of plugins which provide all of the necessary features. However, you can extend this functionality with additional Addons. These addons provide reports, listings, views, gramplets, and more. Here you can select among the available extra addons, they will be retrieved from the internet off of the Gramps website, and installed locally on your computer. If you close this dialog now, you can install addons later from the menu under Edit -> Preferences."
-msgstr "Gramps beschikt over een kernset van die alle nodige mogelijkheden bieden. U kunt echter deze functionaliteit met bijkomende uitbreidingen vergroten. Deze uitbreidingen leveren bijkomende verslagen, lijsten, schermen en gramplets. Hier kunt u een keuze uit de beschikbare bijkomende uitbreidingen maken. Deze uitbreidingen worden via de Gramps-webstek opgehaald via het internet en worden lokaal op uw computer geïnstalleerd. Indien u nu deze dialoog sluit, kunt u altijd op een later tijsdtip via het menu Bewerken -> Voorkeuren deze uitbreidingen installeren."
+msgstr "Gramps beschikt over een kernset van hulpmiddelen die alle nodige mogelijkheden bieden. U kunt echter deze functionaliteit met bijkomende uitbreidingen vergroten. Deze uitbreidingen leveren bijkomende verslagen, lijsten, schermen en gramplets. Hier kunt u een keuze uit de beschikbare bijkomende uitbreidingen maken. Deze uitbreidingen worden via de Gramps-webstek opgehaald via het internet en worden lokaal op uw computer geïnstalleerd. Indien u nu deze dialoog sluit, kunt u altijd op een later tijsdtip via het menu Bewerken -> Voorkeuren deze uitbreidingen installeren."
 
 #: ../src/glade/updateaddons.glade.h:3
 msgid "Install Selected _Addons"
