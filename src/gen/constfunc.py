@@ -40,7 +40,7 @@ import sys
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from const import WINDOWS, MACOS, LINUX
+from gen.const import WINDOWS, MACOS, LINUX
 
 #-------------------------------------------------------------------------
 #

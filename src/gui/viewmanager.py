@@ -78,7 +78,9 @@ from gen.plug.utils import version_str_to_tup, load_addon_file
 from gui.pluginmanager import GuiPluginManager
 from gen.relationship import get_relationship_calculator
 from gui.displaystate import DisplayState, RecentDocsMenu
-import const
+from gen.const import (HOME_DIR, ICON, URL_BUGTRACKER, URL_HOMEPAGE, 
+                       URL_MAILINGLIST, URL_MANUAL_PAGE, URL_WIKISTRING, 
+                       WIKI_EXTRAPLUGINS)
 from gen.constfunc import is_quartz
 from gen.config import config
 from gen.errors import WindowActiveError
@@ -226,9 +228,9 @@ UIDEFAULT = '''<ui>
 </ui>
 '''
 
-WIKI_HELP_PAGE_FAQ = '%s_-_FAQ' % const.URL_MANUAL_PAGE
-WIKI_HELP_PAGE_KEY = '%s_-_Keybindings' % const.URL_MANUAL_PAGE
-WIKI_HELP_PAGE_MAN = '%s' % const.URL_MANUAL_PAGE
+WIKI_HELP_PAGE_FAQ = '%s_-_FAQ' % URL_MANUAL_PAGE
+WIKI_HELP_PAGE_KEY = '%s_-_Keybindings' % URL_MANUAL_PAGE
+WIKI_HELP_PAGE_MAN = '%s' % URL_MANUAL_PAGE
 ADDONS_URL = "http://gramps-addons.svn.sourceforge.net/viewvc/gramps-addons/trunk"
 
 #-------------------------------------------------------------------------
@@ -595,7 +597,7 @@ class ViewManager(CLIManager):
         height = config.get('interface.height')
 
         self.window = gtk.Window()
-        self.window.set_icon_from_file(const.ICON)
+        self.window.set_icon_from_file(ICON)
         self.window.set_default_size(width, height)
 
         vbox = gtk.VBox()
@@ -1618,7 +1620,7 @@ class ViewManager(CLIManager):
                      gtk.RESPONSE_OK))
         mpath = path_entry.get_text()
         if not mpath:
-            mpath = const.HOME_DIR
+            mpath = HOME_DIR
         f.set_current_folder(os.path.dirname(mpath))
         f.set_filename(os.path.join(mpath, "."))
         status = f.run()
@@ -1832,25 +1834,25 @@ def report_bug_activate(obj):
     """
     Display the bug tracker web site
     """
-    display_url(const.URL_BUGTRACKER)
+    display_url(URL_BUGTRACKER)
 
 def home_page_activate(obj):
     """
     Display the GRAMPS home page
     """
-    display_url(const.URL_HOMEPAGE)
+    display_url(URL_HOMEPAGE)
 
 def mailing_lists_activate(obj):
     """
     Display the mailing list web page
     """
-    display_url(const.URL_MAILINGLIST)
+    display_url(URL_MAILINGLIST)
 
 def extra_plugins_activate(obj):
     """
     Display the wiki page with extra plugins
     """
-    display_url(const.URL_WIKISTRING+const.WIKI_EXTRAPLUGINS)
+    display_url(URL_WIKISTRING+WIKI_EXTRAPLUGINS)
 
 def faq_activate(obj):
     """

@@ -57,7 +57,7 @@ from gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, SOURCE_KEY, EVENT_KEY,
                             MEDIA_KEY, PLACE_KEY, REPOSITORY_KEY, NOTE_KEY,
                             TAG_KEY, CITATION_KEY)
 from gen.updatecallback import UpdateCallback
-import const
+from gen.const import VERSION
 import libgrampsxml
 
 #-------------------------------------------------------------------------
@@ -967,7 +967,7 @@ class GrampsParser(UpdateCallback):
                     "Gramps, while you are running an older version %(older)s. "
                     "The file will not be imported. Please upgrade to the "
                     "latest version of Gramps and try again." ) % {
-                    'newer' : self.__gramps_version, 'older' : const.VERSION }
+                    'newer' : self.__gramps_version, 'older' : VERSION }
             raise GrampsImportError('', msg)
         if self.__xml_version < '1.0.0':
             msg = _("The .gramps file you are importing was made by version "
@@ -979,7 +979,7 @@ class GrampsParser(UpdateCallback):
                     "http://gramps-project.org/wiki/index.php?title=GRAMPS_XML"
                     "\n for more info."
                     ) % {'oldgramps': self.__gramps_version, 
-                        'newgramps': const.VERSION,
+                        'newgramps': VERSION,
                         'xmlversion': self.__xml_version,
                         }
             raise GrampsImportError(_('The file will not be imported'), msg)
@@ -994,7 +994,7 @@ class GrampsParser(UpdateCallback):
                     "http://gramps-project.org/wiki/index.php?title=GRAMPS_XML"
                     "\nfor more info."
                     ) % {'oldgramps': self.__gramps_version, 
-                        'newgramps': const.VERSION,
+                        'newgramps': VERSION,
                         'xmlversion': self.__xml_version,
                         }
             self.user.warn(_('Old xml file'), msg)

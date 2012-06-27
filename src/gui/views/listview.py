@@ -57,7 +57,7 @@ from gen.config import config
 from gen.errors import WindowActiveError
 from gui.filters import SearchBar
 from gui.utils import add_menuitem
-import const
+from gen.const import CUSTOM_FILTERS, USE_TIPS
 from gen.utils.debug import profile
 from gen.utils.string import data_recover_msg
 from gen.utils.file import get_unicode_path_from_file_chooser
@@ -297,7 +297,7 @@ class ListView(NavigationView):
             self.__display_column_sort()
             self.goto_active(None)
 
-            if const.USE_TIPS and self.model.tooltip_column() is not None:
+            if USE_TIPS and self.model.tooltip_column() is not None:
                 self.list.set_tooltip_column(self.model.tooltip_column())
 
             self.dirty = False
@@ -332,7 +332,7 @@ class ListView(NavigationView):
 
     def filter_editor(self, obj):
         try:
-            FilterEditor(self.FILTER_TYPE , const.CUSTOM_FILTERS, 
+            FilterEditor(self.FILTER_TYPE , CUSTOM_FILTERS, 
                          self.dbstate, self.uistate)
         except WindowActiveError:
             return

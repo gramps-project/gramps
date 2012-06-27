@@ -47,7 +47,7 @@ LOG = logging.getLogger(".grampscli")
 #-------------------------------------------------------------------------
 from gen.display.name import displayer as name_displayer
 from gen.config import config
-import const
+from gen.const import PLUGINS_DIR, USER_PLUGINS
 from gen.errors import DbError
 from gen.dbstate import DbState
 from gen.db import DbBsddb
@@ -280,8 +280,8 @@ class CLIManager(object):
         """
         Register the plugins at initialization time.
         """
-        self._pmgr.reg_plugins(const.PLUGINS_DIR, dbstate, uistate)
-        self._pmgr.reg_plugins(const.USER_PLUGINS, dbstate, uistate,
+        self._pmgr.reg_plugins(PLUGINS_DIR, dbstate, uistate)
+        self._pmgr.reg_plugins(USER_PLUGINS, dbstate, uistate,
                                append=False, load_on_reg=True)
 
 def startcli(errors, argparser):

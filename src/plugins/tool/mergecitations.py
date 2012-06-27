@@ -46,7 +46,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from gen.utils.string import confidence
-import const
+from gen.const import URL_MANUAL_PAGE
 from gui.utils import ProgressMeter
 from gui.plug import tool
 from gui.dialog import OkDialog
@@ -78,7 +78,7 @@ _val2label = {
     IGNORE_BOTH       : _("Ignore Date and Confidence")
     }
 
-WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
+WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Merge citations...')
 
 #-------------------------------------------------------------------------

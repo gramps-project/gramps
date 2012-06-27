@@ -44,7 +44,7 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK, ACTION_MOVE
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import IMAGE_DIR, URL_MANUAL_PAGE
 from gen.config import config
 import gen.lib
 import gen.datehandler
@@ -63,7 +63,7 @@ import gui.utils
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_Navigation' % const.URL_MANUAL_PAGE
+WIKI_HELP_PAGE = '%s_-_Navigation' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Using_the_Clipboard')
 
 #-------------------------------------------------------------------------
@@ -72,7 +72,7 @@ WIKI_HELP_SEC = _('manual|Using_the_Clipboard')
 #
 #-------------------------------------------------------------------------
 
-_stock_image = os.path.join(const.IMAGE_DIR,'stock_link.png')
+_stock_image = os.path.join(IMAGE_DIR,'stock_link.png')
 LINK_PIC = gtk.gdk.pixbuf_new_from_file(_stock_image)
 ICONS = {}
 for (name, file) in (
@@ -93,7 +93,7 @@ for (name, file) in (
     ('text', 'gramps-font.png'),
     ('url', 'gramps-geo.png'),
     ):
-    _image = os.path.join(const.IMAGE_DIR, '16x16', file)
+    _image = os.path.join(IMAGE_DIR, '16x16', file)
     ICONS[name] = gtk.gdk.pixbuf_new_from_file(_image) 
 
 #-------------------------------------------------------------------------

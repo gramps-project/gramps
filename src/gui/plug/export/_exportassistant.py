@@ -55,7 +55,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 
-import const
+from gen.const import IMAGE_DIR, USER_HOME
 from gen.config import config
 from gui.pluginmanager import GuiPluginManager
 from gen.utils.file import (find_folder, get_new_filename, 
@@ -69,8 +69,8 @@ from gui.user import User
 # Constants
 #
 #-------------------------------------------------------------------------
-_gramps_png = os.path.join(const.IMAGE_DIR,"gramps.png")
-_splash_jpg = os.path.join(const.IMAGE_DIR,"splash.jpg")
+_gramps_png = os.path.join(IMAGE_DIR,"gramps.png")
+_splash_jpg = os.path.join(IMAGE_DIR,"splash.jpg")
 
 #-------------------------------------------------------------------------
 #
@@ -605,7 +605,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow) :
         if len(default_dir)<=1:
             default_dir = config.get('paths.recent-import-dir')
         if len(default_dir)<=1:
-            default_dir = const.USER_HOME
+            default_dir = USER_HOME
 
         if ext == 'gramps':
             new_filename = os.path.join(default_dir,'data.gramps')

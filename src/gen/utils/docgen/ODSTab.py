@@ -37,7 +37,7 @@ from gen.ggettext import gettext as _
 #-------------------------------------------------------------------------
 from TabbedDoc import *
 
-import const
+from gen.const import PROGRAM_NAME, VERSION
 
 from gen.errors import ReportError
 
@@ -485,8 +485,8 @@ class ODSTab(TabbedDoc):
         self.f = open(self.meta_xml,"w")
         
         self.f.write(_META %
-                {'program': const.PROGRAM_NAME,
-                 'version': const.VERSION,
+                {'program': PROGRAM_NAME,
+                 'version': VERSION,
                  'name'   : self.name,
                  'time'   : self.time,
                  }

@@ -60,7 +60,7 @@ LOG = logging.getLogger(".WriteXML")
 import gen.lib 
 from gen.updatecallback import UpdateCallback
 from gen.db.exceptions import DbWriteFailure
-import const
+from gen.const import VERSION
 from gen.constfunc import win
 from gui.plug.export import WriterOptionBox
 import libgrampsxml
@@ -1279,7 +1279,7 @@ class XmlWriter(GrampsXmlWriter):
 
     def __init__(self, dbase, user, strip_photos, compress=1):
         GrampsXmlWriter.__init__(
-            self, dbase, strip_photos, compress, const.VERSION, user)
+            self, dbase, strip_photos, compress, VERSION, user)
         self.user = user
 
     def write(self, filename):

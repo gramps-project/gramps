@@ -51,7 +51,9 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import (AUTHORS, AUTHORS_FILE, COMMENTS, COPYRIGHT_MSG, 
+                       DOCUMENTERS, LICENSE_FILE, PROGRAM_NAME, SPLASH, 
+                       TRANSLATORS, URL_HOMEPAGE, VERSION)
 from gui.display import display_url
 from gen.config import config
 
@@ -81,9 +83,9 @@ class GrampsAboutDialog(gtk.AboutDialog):
         self.set_transient_for(parent)
         self.set_modal(True)
         
-        self.set_name(const.PROGRAM_NAME)
-        self.set_version(const.VERSION)
-        self.set_copyright(const.COPYRIGHT_MSG)
+        self.set_name(PROGRAM_NAME)
+        self.set_version(VERSION)
+        self.set_copyright(COPYRIGHT_MSG)
         self.set_artists([
             _("Much of Gramps' artwork is either from\n"
               "the Tango Project or derived from the Tango\n"
@@ -93,25 +95,25 @@ class GrampsAboutDialog(gtk.AboutDialog):
           ])
         
         try:
-            ifile = open(const.LICENSE_FILE, "r")
+            ifile = open(LICENSE_FILE, "r")
             self.set_license(ifile.read().replace('\x0c', ''))
             ifile.close()
         except IOError:
             self.set_license("License file is missing")
 
-        self.set_comments(_(const.COMMENTS) + self.get_versions())
+        self.set_comments(_(COMMENTS) + self.get_versions())
         self.set_website_label(_('Gramps Homepage'))
-        self.set_website(const.URL_HOMEPAGE)
+        self.set_website(URL_HOMEPAGE)
         
         self.set_authors(_get_authors())
         
         # Only set translation credits if they are translated
-        trans_credits = _(const.TRANSLATORS)
-        if trans_credits != const.TRANSLATORS:
+        trans_credits = _(TRANSLATORS)
+        if trans_credits != TRANSLATORS:
             self.set_translator_credits(trans_credits)
             
-        self.set_documenters(const.DOCUMENTERS)
-        self.set_logo(gtk.gdk.pixbuf_new_from_file(const.SPLASH))
+        self.set_documenters(DOCUMENTERS)
+        self.set_logo(gtk.gdk.pixbuf_new_from_file(SPLASH))
 
     def get_versions(self):
         """
@@ -131,7 +133,7 @@ class GrampsAboutDialog(gtk.AboutDialog):
                  "LANG: %s\n" +
                  "OS: %s\n" +
                  "Distribution: %s")
-                % (ellipses(str(const.VERSION)),
+                % (ellipses(str(VERSION)),
                    ellipses(str(sys.version).replace('\n','')),
                    ellipses(str(bsddb.__version__) + " " + str(bsddb.db.version())),
                    ellipses(os.environ.get('LANG','')),
@@ -220,7 +222,7 @@ def _get_authors():
         parser = make_parser()
         parser.setContentHandler(AuthorParser(authors, contributors))
         
-        authors_file = open(const.AUTHORS_FILE)
+        authors_file = open(AUTHORS_FILE)
         parser.parse(authors_file)
         authors_file.close()
         
@@ -228,7 +230,7 @@ def _get_authors():
                         [CONTRIB_HEADER] + contributors)
         
     except (IOError, OSError, SAXParseException):
-        authors_text = const.AUTHORS
+        authors_text = AUTHORS
 
     return authors_text
 

@@ -47,7 +47,7 @@ import gobject
 #
 #-------------------------------------------------------------------------
 from gen.config import config
-import const
+from gen.const import HOME_DIR
 import gen.datehandler
 from gen.display.name import displayer as _nd
 from gen.display.name import NameDisplayError
@@ -1192,7 +1192,7 @@ class GrampsPreferences(ConfigureDialog):
                      gtk.RESPONSE_OK))
         mpath = self.dbstate.db.get_mediapath()
         if not mpath:
-            mpath = const.HOME_DIR
+            mpath = HOME_DIR
         f.set_current_folder(os.path.dirname(mpath))
 
         status = f.run()

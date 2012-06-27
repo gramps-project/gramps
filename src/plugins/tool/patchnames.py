@@ -44,7 +44,7 @@ import gobject
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import URL_MANUAL_PAGE
 from gui.utils import ProgressMeter
 from gui.plug import tool
 from gui.dialog import OkDialog
@@ -60,7 +60,7 @@ from gui.glade import Glade
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
+WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Extract_Information_from_Names')
 
 #-------------------------------------------------------------------------

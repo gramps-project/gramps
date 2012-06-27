@@ -29,7 +29,7 @@
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import const
+from gen.const import URL_MANUAL_PAGE
 from gen.soundex import soundex
 from gui.display import display_help
 from gui.managedwindow import ManagedWindow
@@ -43,7 +43,7 @@ from gui.glade import Glade
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
+WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Generate_SoundEx_codes')
 
 #-------------------------------------------------------------------------

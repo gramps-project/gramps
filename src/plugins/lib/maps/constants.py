@@ -29,7 +29,7 @@
 #-------------------------------------------------------------------------
 import gen.lib
 import os
-import const
+from gen.const import HOME_DIR
 import osmgpsmap
 
 #-------------------------------------------------------------------------
@@ -37,7 +37,7 @@ import osmgpsmap
 # Constants
 #
 #-------------------------------------------------------------------------
-GEOGRAPHY_PATH = os.path.join(const.HOME_DIR, "maps")
+GEOGRAPHY_PATH = os.path.join(HOME_DIR, "maps")
 
 ICONS = {
     gen.lib.EventType.BIRTH                : 'gramps-geo-birth',

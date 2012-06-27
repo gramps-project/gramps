@@ -35,7 +35,6 @@ import os
 import sys
 import time
 import urlparse
-import const
 import operator
 import locale
 from gtk.keysyms import Tab as KEY_TAB

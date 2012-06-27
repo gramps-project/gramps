@@ -40,7 +40,7 @@ import locale
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import PREFIXDIR, ROOT_DIR
 from gen.constfunc import mac
 #-------------------------------------------------------------------------
 #
@@ -49,16 +49,16 @@ from gen.constfunc import mac
 #-------------------------------------------------------------------------
 if "GRAMPSI18N" in os.environ:
     LOCALEDIR = os.environ["GRAMPSI18N"]
-elif os.path.exists( os.path.join(const.ROOT_DIR, "lang") ):
-    LOCALEDIR = os.path.join(const.ROOT_DIR, "lang")
-elif os.path.exists(os.path.join(const.PREFIXDIR, "share/locale")):
-    LOCALEDIR = os.path.join(const.PREFIXDIR, "share/locale")
+elif os.path.exists( os.path.join(ROOT_DIR, "lang") ):
+    LOCALEDIR = os.path.join(ROOT_DIR, "lang")
+elif os.path.exists(os.path.join(PREFIXDIR, "share/locale")):
+    LOCALEDIR = os.path.join(PREFIXDIR, "share/locale")
 else: 
     lang = os.environ.get('LANG', 'en')
     if lang and lang[:2] == 'en':
         pass # No need to display warning, we're in English
     else:
-        print 'Locale dir does not exist at ' + os.path.join(const.PREFIXDIR, "share/locale")
+        print 'Locale dir does not exist at ' + os.path.join(PREFIXDIR, "share/locale")
         print 'Running ./configure --prefix=YourPrefixDir might fix the problem'  
     LOCALEDIR = None
 

@@ -61,7 +61,7 @@ from PySide import QtOpenGL
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import ROOT_DIR
 from cli.grampscli import CLIManager, CLIDbLoader
 from gen.ggettext import gettext as _
 from guiQML.views.dbman import DbManager
@@ -100,7 +100,7 @@ class ViewManager(CLIManager):
         self.mainview.setResizeMode(QtDeclarative.QDeclarativeView.SizeRootObjectToView)
         self.engine = self.mainview.engine()
         self.engine.rootContext().setBaseUrl(QtCore.QUrl.fromLocalFile(
-                            os.path.join(const.ROOT_DIR, "guiQML")))
+                            os.path.join(ROOT_DIR, "guiQML")))
 
         #set up the family tree list to select from
         self.dbman = DbManager(self.dbstate, self.engine, self.load_db)

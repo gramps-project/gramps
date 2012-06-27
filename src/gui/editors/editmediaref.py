@@ -44,7 +44,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from gui.utils import open_file_with_default_application
-import const
+from gen.const import THUMBSCALE
 import gen.mime
 from gui.thumbnails import get_thumbnail_image, find_mime_type_pixbuf
 from gen.utils.file import (media_path_full, find_file, 
@@ -412,7 +412,7 @@ class EditMediaRef(EditReference):
                     width = sub_width
                     height = sub_height
                 ratio = float(max(height, width))
-                scale = const.THUMBSCALE / ratio
+                scale = THUMBSCALE / ratio
                 x = int(scale * width)
                 y = int(scale * height)
                 pixbuf = pixbuf.scale_simple(x, y, gtk.gdk.INTERP_BILINEAR)
@@ -458,9 +458,9 @@ class EditMediaRef(EditReference):
  
     def motion_notify_event_ref(self, widget, event):
         # get the image size and calculate the X and Y offsets
-        # (image is centered *horizontally* when smaller than const.THUMBSCALE)
+        # (image is centered *horizontally* when smaller than THUMBSCALE)
         w, h = self.rect_pixbuf.get_width(), self.rect_pixbuf.get_height()
-        offset_x = (const.THUMBSCALE - w) / 2
+        offset_x = (THUMBSCALE - w) / 2
         offset_y = 0
 
         self.rect_pixmap.draw_pixbuf(self.rect_gc, self.rect_pixbuf, 0, 0, 0, 0)
@@ -512,10 +512,10 @@ class EditMediaRef(EditReference):
             if new_x2 - new_x1 >= 5 and new_y2 - new_y1 >= 5:
 
                 # get the image size and calculate the X and Y offsets
-                # (image is centered *horizontally* when smaller than const.THUMBSCALE)
+                # (image is centered *horizontally* when smaller than THUMBSCALE)
                 w = self.rect_pixbuf.get_width()
                 h = self.rect_pixbuf.get_height()
-                x = (const.THUMBSCALE - w) / 2
+                x = (THUMBSCALE - w) / 2
                 y = 0
 
                 # if the click was outside of the image,

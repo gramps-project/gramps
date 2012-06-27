@@ -48,7 +48,6 @@ log = logging.getLogger(".WriteGeneWeb")
 #-------------------------------------------------------------------------
 import gen.lib
 from gui.plug.export import WriterOptionBox
-#import const
 from gen.utils.alive import probably_alive
 from gui.glade import Glade
 from gen.config import config

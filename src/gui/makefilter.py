@@ -23,7 +23,7 @@
 import time
 import gen.filters 
 from gui.editors import EditFilter
-import const
+from gen.const import CUSTOM_FILTERS
 from gen.filters import reload_custom_filters
 from gen.ggettext import sgettext as _
 
@@ -49,7 +49,7 @@ def make_filter(dbstate, uistate, objclass, gramps_ids, title=None):
         'day': struct_time.tm_mday})
     re = "|".join(["^%s$" % gid for gid in sorted(gramps_ids)])
     filter.add_rule(rule([re]))
-    filterdb = gen.filters.FilterList(const.CUSTOM_FILTERS)
+    filterdb = gen.filters.FilterList(CUSTOM_FILTERS)
     filterdb.load()
     EditFilter(objclass, dbstate, uistate, [],
                filter, filterdb,

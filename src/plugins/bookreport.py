@@ -67,7 +67,7 @@ import gobject
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import HOME_DIR
 from gen.utils.cast import get_type_converter_by_name, type_name
 from gui.listmodel import ListModel
 from gen.errors import FilterError, ReportError
@@ -402,7 +402,7 @@ class BookList(object):
         """
         self.dbase = dbase
         self.bookmap = {}
-        self.file = os.path.join(const.HOME_DIR, filename)
+        self.file = os.path.join(HOME_DIR, filename)
         self.parse()
     
     def delete_book(self, name):

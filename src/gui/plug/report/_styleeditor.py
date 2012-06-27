@@ -49,7 +49,6 @@ from gtk.gdk import Color
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import const
 from gen.plug.docgen import (StyleSheet, FONT_SERIF, FONT_SANS_SERIF,
             PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT,  
             PARA_ALIGN_JUSTIFY) 

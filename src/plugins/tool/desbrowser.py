@@ -36,7 +36,7 @@ import gtk
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import const
+from gen.const import URL_MANUAL_PAGE
 from gen.display.name import displayer as name_displayer
 from gui.plug import tool
 from gui.display import display_help
@@ -50,7 +50,7 @@ from gui.editors import EditPerson
 # Constants
 #
 #------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
+WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Interactive_Descendant_Browser...')
 
 class DesBrowse(tool.ActivePersonTool, ManagedWindow):

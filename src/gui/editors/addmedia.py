@@ -50,7 +50,7 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import ICON, THUMBSCALE, USER_HOME
 from gen.config import config
 from gen.utils.file import (media_path_full, media_path, relative_path, 
                             find_file, get_unicode_path_from_file_chooser)
@@ -99,7 +99,7 @@ class AddMediaObject(ManagedWindow):
         self.image = self.glade.get_object("image")
         self.file_text = self.glade.get_object("fname")
         if not(self.last_directory and os.path.isdir(self.last_directory)):
-            self.last_directory = const.USER_HOME
+            self.last_directory = USER_HOME
         #if existing path, use dir of path
         if not self.obj.get_path() == "":
             fullname = media_path_full(self.dbase, self.obj.get_path())
@@ -200,7 +200,7 @@ class AddMediaObject(ManagedWindow):
         if filename:
             mtype = gen.mime.get_type(filename)
             if mtype and mtype.startswith("image"):
-                image = scale_image(filename, const.THUMBSCALE)
+                image = scale_image(filename, THUMBSCALE)
             else:
                 image = find_mime_type_pixbuf(mtype)
             self.image.set_from_pixbuf(image)
@@ -234,5 +234,5 @@ def scale_image(path, size):
                                    gtk.gdk.INTERP_BILINEAR)
     except:
         WarningDialog(title_msg, detail_msg)
-        return gtk.gdk.pixbuf_new_from_file(const.ICON)
+        return gtk.gdk.pixbuf_new_from_file(ICON)
     

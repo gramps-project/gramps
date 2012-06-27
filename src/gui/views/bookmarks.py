@@ -54,7 +54,7 @@ import gtk
 from gui.display import display_help
 from gui.listmodel import ListModel
 from gen.utils.db import navigation_label
-import const
+from gen.const import URL_MANUAL_PAGE
 from gen.ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
@@ -62,7 +62,7 @@ from gen.ggettext import sgettext as _
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_Navigation' % const.URL_MANUAL_PAGE
+WIKI_HELP_PAGE = '%s_-_Navigation' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Bookmarks')
 
 #-------------------------------------------------------------------------

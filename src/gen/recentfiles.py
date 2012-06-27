@@ -37,14 +37,14 @@ try:
 except:
     use_lock = False
 
-import const
+from gen.const import HOME_DIR
 
 #-------------------------------------------------------------------------
 #
 # Constants
 #
 #-------------------------------------------------------------------------
-GRAMPS_FILENAME = os.path.join(const.HOME_DIR,"recent-files-gramps.xml")
+GRAMPS_FILENAME = os.path.join(HOME_DIR,"recent-files-gramps.xml")
 MAX_GRAMPS_ITEMS = 10
 
 #-------------------------------------------------------------------------

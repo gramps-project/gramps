@@ -50,7 +50,7 @@ log = logging.getLogger(".WebPage")
 # GRAMPS module
 #------------------------------------------------------------------------
 import gen.lib
-import const
+from gen.const import PROGRAM_NAME, URL_HOMEPAGE, USER_HOME, VERSION
 from gen.constfunc import win
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
@@ -390,7 +390,7 @@ class WebCalReport(Report):
         _META1 = 'name ="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1"'
         _META2 = 'name ="apple-mobile-web-app-capable" content="yes"'
         _META3 = 'name="generator" content="%s %s %s"' % (
-                    const.PROGRAM_NAME, const.VERSION, const.URL_HOMEPAGE)
+                    PROGRAM_NAME, VERSION, URL_HOMEPAGE)
         _META4 = 'name="author" content="%s"' % self.author
 
         # create additional meta tags
@@ -1303,7 +1303,7 @@ class WebCalOptions(MenuReportOptions):
         category_name = _("Report Options")
 
         target = DestinationOption( _("Destination"),
-                                    os.path.join(const.USER_HOME, "WEBCAL"))
+                                    os.path.join(USER_HOME, "WEBCAL"))
         target.set_help( _("The destination directory for the web files"))
         target.set_directory_entry(True)
         menu.add_option(category_name, "target", target)

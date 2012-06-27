@@ -31,7 +31,7 @@
 #-------------------------------------------------------------------------
 import sys
 import os
-import const
+from gen.const import APP_GRAMPS, USER_DIRLIST
 import signal
 import gettext
 _ = gettext.gettext
@@ -181,7 +181,7 @@ def setup_logging():
     
 def build_user_paths():
     """ check/make user-dirs on each Gramps session"""
-    for path in const.USER_DIRLIST:
+    for path in USER_DIRLIST:
         if os.path.islink(path):
             pass # ok
         elif not os.path.isdir(path):
@@ -265,8 +265,8 @@ def show_settings():
         bsddb_db_str = 'not found'
 
     try: 
-        import const
-        gramps_str = const.VERSION
+        from gen.const import VERSION
+        gramps_str = VERSION
     except:
         gramps_str = 'not found'
 
@@ -357,13 +357,13 @@ def run():
         LOG.error("Error reading configuration.", exc_info=True)
         return [(_("Error reading configuration"), str(msg))]
         
-    if not mime_type_is_defined(const.APP_GRAMPS):
+    if not mime_type_is_defined(APP_GRAMPS):
         error += [(_("Configuration error:"), 
                     _("A definition for the MIME-type %s could not "
                       "be found \n\n Possibly the installation of Gramps "
                       "was incomplete. Make sure the MIME-types "
                       "of Gramps are properly installed.")
-                    % const.APP_GRAMPS)]
+                    % APP_GRAMPS)]
     
     #we start with parsing the arguments to determine if we have a cli or a
     # gui session

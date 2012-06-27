@@ -113,7 +113,7 @@ LOG = logging.getLogger(".libgedcom")
 #
 #-------------------------------------------------------------------------
 from gen.errors import GedcomError
-import const
+from gen.const import DATA_DIR
 import gen.lib
 from gen.db import DbTxn
 from gen.updatecallback import UpdateCallback
@@ -1080,7 +1080,7 @@ class GedcomInfoDB(object):
         self.standard.set_dest("GEDCOM 5.5")
 
         try:
-            filepath = os.path.join(const.DATA_DIR,"gedcom.xml")
+            filepath = os.path.join(DATA_DIR,"gedcom.xml")
             ged_file = open(filepath.encode('iso8859-1'),"r")
         except:
             return

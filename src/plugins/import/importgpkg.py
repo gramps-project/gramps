@@ -46,7 +46,7 @@ log = logging.getLogger(".ReadPkg")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import XMLFILE
 import importxml
 from gen.utils.file import media_path
 
@@ -89,7 +89,7 @@ def impData(database, name, user):
         user.notify_error(_("Error extracting into %s") % tmpdir_path)
         return
 
-    imp_db_name = os.path.join(tmpdir_path, const.XMLFILE)  
+    imp_db_name = os.path.join(tmpdir_path, XMLFILE)  
 
     importer = ImportXml.importData
     info = importer(database, imp_db_name, user)

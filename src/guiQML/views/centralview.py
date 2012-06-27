@@ -61,7 +61,7 @@ from PySide import QtOpenGL
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import ROOT_DIR
 from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -149,7 +149,7 @@ class CentralView(QtCore.QObject):
         #create a Component to show
         self.centralview = QtDeclarative.QDeclarativeComponent(engine)
         self.centralview.loadUrl(QtCore.QUrl.fromLocalFile(
-                os.path.join(const.ROOT_DIR, "guiQML", 'views', 'centralview.qml')))
+                os.path.join(ROOT_DIR, "guiQML", 'views', 'centralview.qml')))
         #and obtain the QObject of it
         self.Qcentralview = self.centralview.create(self.centralviewcontext)
 

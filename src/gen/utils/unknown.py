@@ -40,7 +40,7 @@ import time
 #-------------------------------------------------------------------------
 import gen.lib
 from gen.utils.id import create_id
-from const import IMAGE_DIR
+from gen.const import IMAGE_DIR
 from gen.ggettext import sgettext as _
 
 #-------------------------------------------------------------------------

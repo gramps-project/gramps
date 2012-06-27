@@ -48,7 +48,6 @@ import gobject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import const
 from gui.managedwindow import ManagedWindow
 from gui.glade import Glade
 

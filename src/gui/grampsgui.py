@@ -57,7 +57,7 @@ import gobject
 #
 #-------------------------------------------------------------------------
 from gen.config import config
-import const
+from gen.const import DATA_DIR, IMAGE_DIR
 from gen.constfunc import has_display, win
 
 #-------------------------------------------------------------------------
@@ -76,24 +76,24 @@ def register_stock_icons ():
     #iconpath to the base image. The front of the list has highest priority
     if win():
         iconpaths = [
-                    (os.path.join(const.IMAGE_DIR, '48x48'), '.png'),
-                    (const.IMAGE_DIR, '.png'),
+                    (os.path.join(IMAGE_DIR, '48x48'), '.png'),
+                    (IMAGE_DIR, '.png'),
                     ]
     else :
         iconpaths = [
-                    (os.path.join(const.IMAGE_DIR, 'scalable'), '.svg'),
-                    (const.IMAGE_DIR, '.svg'), (const.IMAGE_DIR, '.png'),
+                    (os.path.join(IMAGE_DIR, 'scalable'), '.svg'),
+                    (IMAGE_DIR, '.svg'), (IMAGE_DIR, '.png'),
                     ]
 
     #sizes: menu=16, small_toolbar=18, large_toolbar=24,
     #       button=20, dnd=32, dialog=48
     #add to the back of this list to overrule images set at beginning of list
     extraiconsize = [
-                    (os.path.join(const.IMAGE_DIR, '22x22'),
+                    (os.path.join(IMAGE_DIR, '22x22'),
                             gtk.ICON_SIZE_LARGE_TOOLBAR),
-                    (os.path.join(const.IMAGE_DIR, '16x16'),
+                    (os.path.join(IMAGE_DIR, '16x16'),
                             gtk.ICON_SIZE_MENU),
-                    (os.path.join(const.IMAGE_DIR, '22x22'),
+                    (os.path.join(IMAGE_DIR, '22x22'),
                             gtk.ICON_SIZE_BUTTON),
                     ]
 
@@ -328,6 +328,6 @@ def startgtkloop(errors, argparser):
     gobject.threads_init()
 
     gobject.timeout_add(100, __startgramps, errors, argparser, priority=100)
-    if os.path.exists(os.path.join(const.DATA_DIR, "gramps.accel")):
-        gtk.accel_map_load(os.path.join(const.DATA_DIR, "gramps.accel"))
+    if os.path.exists(os.path.join(DATA_DIR, "gramps.accel")):
+        gtk.accel_map_load(os.path.join(DATA_DIR, "gramps.accel"))
     gtk.main()

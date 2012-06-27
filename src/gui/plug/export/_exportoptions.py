@@ -621,9 +621,9 @@ class WriterOptionBox(object):
         """
         from gui.editors import EditFilter
         from gen.filters import FilterList, GenericFilterFactory
-        import const
+        from gen.const import CUSTOM_FILTERS
         the_filter = None
-        filterdb = FilterList(const.CUSTOM_FILTERS)
+        filterdb = FilterList(CUSTOM_FILTERS)
         filterdb.load()
         if filter_obj.get_active() != 0:
             model = filter_obj.get_model()

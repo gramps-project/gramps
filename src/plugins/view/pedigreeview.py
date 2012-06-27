@@ -62,7 +62,7 @@ from gui.ddtargets import DdTargets
 import cPickle as pickle
 from gen.config import config
 from gui.views.bookmarks import PersonBookmarks
-import const
+from gen.const import CUSTOM_FILTERS
 from gen.constfunc import is_quartz, win
 from gui.dialog import RunDatabaseRepair, ErrorDialog
 import gui.utils
@@ -842,7 +842,7 @@ class PedigreeView(NavigationView):
         Display the person filter editor.
         """
         try:
-            FilterEditor('Person', const.CUSTOM_FILTERS, 
+            FilterEditor('Person', CUSTOM_FILTERS, 
                          self.dbstate, self.uistate)
         except WindowActiveError:
             return

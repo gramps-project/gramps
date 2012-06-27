@@ -44,7 +44,7 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import THUMBSCALE
 from gen.utils.file import media_path_full
 from gui.thumbnails import get_thumbnail_image
 from gui.views.treemodels import MediaModel
@@ -83,8 +83,8 @@ class SelectObject(BaseSelector):
         self.width_key = 'interface.media-sel-width'
         self.height_key = 'interface.media-sel-height'
         self.preview = gtk.Image()
-        self.preview.set_size_request(int(const.THUMBSCALE),
-                                    int(const.THUMBSCALE))
+        self.preview.set_size_request(int(THUMBSCALE),
+                                    int(THUMBSCALE))
         vbox = self.glade.get_object('select_person_vbox')
         vbox.pack_start(self.preview,False)
         vbox.reorder_child(self.preview,1)

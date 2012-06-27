@@ -41,7 +41,7 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import URL_MANUAL_PAGE
 import gen.lib
 from gen.db import DbTxn
 from gui.display import display_help
@@ -60,7 +60,7 @@ from gen.utils.db import get_participant_from_event
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_Entering_and_Editing_Data:_Detailed_-_part_2' % const.URL_MANUAL_PAGE
+WIKI_HELP_PAGE = '%s_-_Entering_and_Editing_Data:_Detailed_-_part_2' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Editing_Information_About_Events')
 
 #-------------------------------------------------------------------------

@@ -36,7 +36,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import URL_MANUAL_PAGE
 import gen.lib
 from gui.utils import ProgressMeter
 from gui.plug import tool
@@ -63,7 +63,7 @@ _val2label = {
     2.0  : _("High"),
     }
 
-WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
+WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Find_Possible_Duplicate_People...')
 
 #-------------------------------------------------------------------------

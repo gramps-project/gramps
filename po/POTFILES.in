@@ -2,7 +2,6 @@
 #
 #   Python files
 #
-src/const.py
 src/gramps.py
 
 # cli
@@ -13,6 +12,7 @@ src/cli/grampscli.py
 src/cli/plug/__init__.py
 
 # gen
+src/gen/const.py
 src/gen/relationship.py
 
 # gen db API

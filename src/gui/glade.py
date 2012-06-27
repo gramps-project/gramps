@@ -47,7 +47,7 @@ import gtk
 # gramps modules
 #
 #------------------------------------------------------------------------
-import const
+from gen.const import GLADE_DIR
 from gen.utils.trans import LOCALEDOMAIN
 
 #------------------------------------------------------------------------
@@ -105,7 +105,7 @@ class Glade(gtk.Builder):
             path = os.path.join(dirname, filename)
             
         elif filename_given:                    # try default directory first
-            path = os.path.join(const.GLADE_DIR, filename)
+            path = os.path.join(GLADE_DIR, filename)
             if not os.path.exists(path):        # then module directory 
                 path = os.path.join(dirname, filename)
                 
@@ -117,7 +117,7 @@ class Glade(gtk.Builder):
         # 2. derived filename in module directory
 
         else:
-            path = os.path.join(const.GLADE_DIR, filename)
+            path = os.path.join(GLADE_DIR, filename)
             if not os.path.exists(path):
                 path = os.path.join(dirname, filename)
         

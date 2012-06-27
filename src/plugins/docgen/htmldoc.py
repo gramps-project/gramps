@@ -47,7 +47,7 @@ from gen.ggettext import gettext as _
 #
 #------------------------------------------------------------------------
 from gen.utils.image import resize_to_jpeg
-import const
+from gen.const import DATA_DIR, IMAGE_DIR, PROGRAM_NAME, URL_HOMEPAGE, VERSION
 from gen.plug.docgen import BaseDoc, TextDoc, FONT_SANS_SERIF, URL_PATTERN
 from libhtmlbackend import HtmlBackend, process_spaces
 from libhtml import Html
@@ -136,8 +136,8 @@ class HtmlDoc(BaseDoc, TextDoc):
         """
         # add additional meta tags and stylesheet links to head section
         # create additional meta tags
-        _meta1 = 'name="generator" content="%s %s %s"' % (const.PROGRAM_NAME,
-                    const.VERSION, const.URL_HOMEPAGE)
+        _meta1 = 'name="generator" content="%s %s %s"' % (PROGRAM_NAME,
+                    VERSION, URL_HOMEPAGE)
         meta = Html('meta', attr = _meta1) 
         
         #set styles of the report as inline css
@@ -292,11 +292,11 @@ class HtmlDoc(BaseDoc, TextDoc):
         #css file
         if self.css_filename:
             #we do an extra check in case file does not exist, eg cli call
-            fullpath = os.path.join(const.DATA_DIR, self.css_filename)
+            fullpath = os.path.join(DATA_DIR, self.css_filename)
             if os.path.exists(fullpath):
                 self.copy_file(fullpath, _HTMLSCREEN)
         #favicon
-        self.copy_file(os.path.join(const.IMAGE_DIR, 'favicon.ico'), 
+        self.copy_file(os.path.join(IMAGE_DIR, 'favicon.ico'), 
                         'favicon.ico')
 
     def __reduce_list(self):

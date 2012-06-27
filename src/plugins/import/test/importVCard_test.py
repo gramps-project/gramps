@@ -41,7 +41,7 @@ import libxslt
 
 from libgrampsxml import GRAMPS_XML_VERSION
 
-from const import ROOT_DIR, VERSION
+from gen.const import ROOT_DIR, VERSION
 import importvcard
 from importvcard import VCardParser
 

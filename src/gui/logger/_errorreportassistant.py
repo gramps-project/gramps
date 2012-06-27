@@ -43,7 +43,7 @@ else:
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import IMAGE_DIR, VERSION
 from gui.display import display_help, display_url
 
 #-------------------------------------------------------------------------
@@ -51,8 +51,8 @@ from gui.display import display_help, display_url
 # Constants
 #
 #-------------------------------------------------------------------------
-GRAMPS_PNG = os.path.join(const.IMAGE_DIR, "gramps.png")
-SPLASH_JPG = os.path.join(const.IMAGE_DIR, "splash.jpg")
+GRAMPS_PNG = os.path.join(IMAGE_DIR, "gramps.png")
+SPLASH_JPG = os.path.join(IMAGE_DIR, "splash.jpg")
 
 #-------------------------------------------------------------------------
 #
@@ -167,7 +167,7 @@ class ErrorReportAssistant(gtk.Assistant):
                "cairo version  : %s"\
                % (str(sys.version).replace('\n',''),
                   str(bsddb.__version__) + " " + str(bsddb.db.version()),
-                  str(const.VERSION),
+                  str(VERSION),
                   os.environ.get('LANG',''),
                   operatingsystem,
                   distribution,

@@ -62,7 +62,7 @@ from gui import widgets
 from gui.selectors import SelectorFactory
 from gen.errors import WindowActiveError
 from gui.views.bookmarks import PersonBookmarks
-import const
+from gen.const import CUSTOM_FILTERS
 from gen.utils.db import (get_birth_or_fallback, get_death_or_fallback, 
                           preset_name)
 from gui.listmodel import ListModel
@@ -424,7 +424,7 @@ class RelationshipView(NavigationView):
 
     def filter_editor(self, obj):
         try:
-            FilterEditor('Person', const.CUSTOM_FILTERS, 
+            FilterEditor('Person', CUSTOM_FILTERS, 
                          self.dbstate, self.uistate)
         except WindowActiveError:
             return

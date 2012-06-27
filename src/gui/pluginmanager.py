@@ -46,7 +46,7 @@ from gen.utils.callback import Callback
 from gen.plug import BasePluginManager, PluginRegister
 from gen.constfunc import win
 from gen.config import config
-import const
+from gen.const import IMAGE_DIR
 
 #-------------------------------------------------------------------------
 #
@@ -59,10 +59,10 @@ def base_reg_stock_icons(iconpaths, extraiconsize, items):
     Reusable base to register stock icons in Gramps
     ..attribute iconpaths: list of main directory of the base icon, and
       extension, eg:
-      [(os.path.join(const.IMAGE_DIR, 'scalable'), '.svg')]
+      [(os.path.join(IMAGE_DIR, 'scalable'), '.svg')]
     ..attribute extraiconsize: list of dir with extra prepared icon sizes and
       the gtk size to use them for, eg:
-      [(os.path.join(const.IMAGE_DIR, '22x22'), gtk.ICON_SIZE_LARGE_TOOLBAR)]
+      [(os.path.join(IMAGE_DIR, '22x22'), gtk.ICON_SIZE_LARGE_TOOLBAR)]
     ..attribute items: list of icons to register, eg:
       [('gramps-db', _('Family Trees'), gtk.gdk.CONTROL_MASK, 0, '')]
     """
@@ -86,7 +86,7 @@ def base_reg_stock_icons(iconpaths, extraiconsize, items):
                     pass
                   
         if not pixbuf :
-            icon_file = os.path.join(const.IMAGE_DIR, 'gramps.png')
+            icon_file = os.path.join(IMAGE_DIR, 'gramps.png')
             pixbuf = gtk.gdk.pixbuf_new_from_file (icon_file)
             
         ## FIXME from gtk 2.17.3/2.15.2 change this to 

@@ -22,6 +22,7 @@ pkgpythondir = $(datadir)/@PACKAGE@/gen
 pkgpython_PYTHON = \
 	__init__.py \
 	config.py \
+	const.py \
 	constfunc.py \
 	dbstate.py \
 	errors.py \

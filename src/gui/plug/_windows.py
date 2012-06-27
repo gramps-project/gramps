@@ -57,7 +57,7 @@ from _guioptions import add_gui_options
 from gui.dialog import InfoDialog
 from gui.editors import EditPerson
 from gen.utils.file import get_unicode_path_from_file_chooser
-import const
+from gen.const import URL_WIKISTRING, USER_HOME, WIKI_EXTRAPLUGINS_RAWDATA
 from gen.config import config
 
 def display_message(message):
@@ -291,7 +291,7 @@ class PluginStatus(ManagedWindow):
         """
         import urllib
         from gui.utils import ProgressMeter
-        URL = "%s%s" % (const.URL_WIKISTRING, const.WIKI_EXTRAPLUGINS_RAWDATA)
+        URL = "%s%s" % (URL_WIKISTRING, WIKI_EXTRAPLUGINS_RAWDATA)
         try:
             fp = urllib.urlopen(URL)
         except:
@@ -347,7 +347,7 @@ class PluginStatus(ManagedWindow):
                 if "|" in url:
                     url, text = url.split("|", 1)
                 # need to get a page that says where it is:
-                fp = urllib.urlopen("%s%s%s" % (const.URL_WIKISTRING, url, 
+                fp = urllib.urlopen("%s%s%s" % (URL_WIKISTRING, url, 
                                                 "&action=edit&externaledit=true&mode=file"))
                 for line in fp:
                     if line.startswith("URL="):
@@ -422,7 +422,7 @@ class PluginStatus(ManagedWindow):
         name = self.install_addon_path.get_text()
         dir = os.path.dirname(name)
         if not os.path.isdir(dir):
-            dir = const.USER_HOME
+            dir = USER_HOME
             name = ''
         elif not os.path.isfile(name):
             name = ''

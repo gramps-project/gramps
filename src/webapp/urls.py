@@ -33,7 +33,7 @@ import os
 # Django and Gramps Modules
 #
 #------------------------------------------------------------------------
-import const
+from gen.const import IMAGE_DIR, ROOT_DIR
 from django.conf.urls.defaults import *
 from django.contrib import admin
 admin.autodiscover()
@@ -49,11 +49,11 @@ urlpatterns += patterns('',
     # Static serves! DANGEROUS in production:
      (r'^styles/(?P<path>.*)$', 'django.views.static.serve',
       {'document_root': 
-       os.path.join(const.ROOT_DIR, "plugins", "webstuff"),
+       os.path.join(ROOT_DIR, "plugins", "webstuff"),
        'show_indexes':  True},
       ),
      (r'^images/(?P<path>.*)$', 'django.views.static.serve',
-      {'document_root': const.IMAGE_DIR,
+      {'document_root': IMAGE_DIR,
        'show_indexes':  True},
       ),
 )

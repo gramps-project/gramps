@@ -50,7 +50,7 @@ from gen.display.name import displayer as _nd
 from gui.views.navigationview import NavigationView
 from libformatting import FormattingHelper
 from gen.errors import WindowActiveError
-import const
+from gen.const import HOME_DIR, ROOT_DIR
 from gui.managedwindow import ManagedWindow
 from gen.config import config
 from gui.editors import EditPlace, EditEvent, EditFamily, EditPerson
@@ -75,7 +75,7 @@ _LOG = logging.getLogger("maps.geography")
 # Constants
 #
 #-------------------------------------------------------------------------
-GEOGRAPHY_PATH = os.path.join(const.HOME_DIR, "maps")
+GEOGRAPHY_PATH = os.path.join(HOME_DIR, "maps")
 
 #-------------------------------------------------------------------------
 #
@@ -144,11 +144,11 @@ class GeoGraphyView(OsmGps, NavigationView):
         self.places_found = []
         self.select_fct = None
         self.geo_mainmap = gtk.gdk.pixbuf_new_from_file_at_size(
-            os.path.join(const.ROOT_DIR, "images", "48x48",
+            os.path.join(ROOT_DIR, "images", "48x48",
                          ('gramps-geo-mainmap' + '.png' )),
                                  48, 48)
         self.geo_altmap = gtk.gdk.pixbuf_new_from_file_at_size(
-            os.path.join(const.ROOT_DIR, "images", "48x48",
+            os.path.join(ROOT_DIR, "images", "48x48",
                          ('gramps-geo-altmap' + '.png' )),
                                  48, 48)
         if ( config.get('geography.map_service') in
@@ -161,7 +161,7 @@ class GeoGraphyView(OsmGps, NavigationView):
                     gen.lib.EventType.DEATH,
                     gen.lib.EventType.MARRIAGE ):
             self.geo_othermap[ident] = gtk.gdk.pixbuf_new_from_file_at_size(
-                os.path.join(const.ROOT_DIR, "images", "48x48",
+                os.path.join(ROOT_DIR, "images", "48x48",
                     (constants.ICONS.get(int(ident), default_image) + '.png' )),
                     48, 48)
 

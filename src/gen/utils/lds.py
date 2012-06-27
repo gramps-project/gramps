@@ -24,7 +24,7 @@
 Parses the lds.xml file to build the temple/code maps
 """
 
-import const
+from gen.const import DATA_DIR
 import os
 import logging
 
@@ -48,7 +48,7 @@ class LdsTemples(object):
         self.__current_temple = ""
         self.__tlist = []
 
-        lds_filename = os.path.join(const.DATA_DIR, "lds.xml")
+        lds_filename = os.path.join(DATA_DIR, "lds.xml")
 
         try:
             xml_file = open(os.path.expanduser(lds_filename))

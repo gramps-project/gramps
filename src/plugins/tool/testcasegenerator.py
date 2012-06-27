@@ -56,7 +56,7 @@ from gen.utils.string import confidence
 from gui.utils import ProgressMeter
 from gen.utils.lds import TEMPLES
 from gen.db.dbconst import *
-import const
+from gen.const import ICON, LOGO, SPLASH
 
 #-------------------------------------------------------------------------
 #
@@ -898,7 +898,7 @@ class TestcaseGenerator(tool.BatchTool):
         #         Address
         m = gen.lib.MediaObject()
         m.set_description(message)
-        m.set_path(unicode(const.ICON))
+        m.set_path(unicode(ICON))
         m.set_mime_type(gen.mime.get_type(m.get_path()))
         m.add_citation(choice(c_h_list))
         # MediaObject : Attribute
@@ -1579,13 +1579,13 @@ class TestcaseGenerator(tool.BatchTool):
         if isinstance(o,gen.lib.MediaObject):
             if randint(0,3) == 1:
                 o.set_description(unicode(self.rand_text(self.LONG)))
-                path = choice((const.ICON, const.LOGO, const.SPLASH))
+                path = choice((ICON, LOGO, SPLASH))
                 o.set_path(unicode(path))
                 mime = gen.mime.get_type(path)
                 o.set_mime_type(mime)
             else:
                 o.set_description(unicode(self.rand_text(self.SHORT)))
-                o.set_path(unicode(const.ICON))
+                o.set_path(unicode(ICON))
                 o.set_mime_type("image/png")
 
         if isinstance(o,gen.lib.MediaRef):

@@ -62,7 +62,7 @@ from gui.views.bookmarks import PersonBookmarks
 from gen.utils.file import get_empty_tempdir
 from gen.constfunc import lin, mac, win
 from gen.config import config
-from const import TEMP_DIR
+from gen.const import TEMP_DIR
 
 #-------------------------------------------------------------------------
 #

@@ -46,7 +46,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import ConfigParser
-import const
+from gen.const import URL_MANUAL_PAGE, VERSION_DIR
 from gui.managedwindow import ManagedWindow
 from gui.display import display_help, display_url
 from gui.widgets.grampletpane import (AVAILABLE_GRAMPLETS,
@@ -65,7 +65,7 @@ from gui.dialog import QuestionDialog
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = const.URL_MANUAL_PAGE + '_-_Gramplets'
+WIKI_HELP_PAGE = URL_MANUAL_PAGE + '_-_Gramplets'
 NL = "\n"
 
 #-------------------------------------------------------------------------
@@ -83,7 +83,7 @@ class GrampsBar(gtk.Notebook):
         self.dbstate = dbstate
         self.uistate = uistate
         self.pageview = pageview
-        self.configfile = os.path.join(const.VERSION_DIR, "%s.ini" % configfile)
+        self.configfile = os.path.join(VERSION_DIR, "%s.ini" % configfile)
         self.defaults = defaults
         self.detached_gramplets = []
         self.empty = False

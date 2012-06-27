@@ -46,7 +46,7 @@ import logging
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import LONGOPTS, SHORTOPTS
 from gen.config import config
 from gen.utils.configmanager import safe_eval
 from gen.utils.file import get_unicode_path_from_env_var
@@ -218,7 +218,7 @@ class ArgParser(object):
             for arg in range(len(self.args) - 1):
                 self.args[arg+1] = get_unicode_path_from_env_var(self.args[arg + 1])
             options, leftargs = getopt.getopt(self.args[1:],
-                                             const.SHORTOPTS, const.LONGOPTS)
+                                             SHORTOPTS, LONGOPTS)
         except getopt.GetoptError, msg:
             # Extract the arguments in the list.
             # The % operator replaces the list elements with repr() of the list elemements

@@ -60,7 +60,7 @@ import gen.mime
 from gui.ddtargets import DdTargets
 from buttontab import ButtonTab
 from gen.constfunc import win
-import const
+from gen.const import THUMBSCALE
 #-------------------------------------------------------------------------
 #
 # 
@@ -192,11 +192,11 @@ class GalleryTab(ButtonTab, DbGUIElement):
         
         # build the icon view
         self.iconlist.set_pixbuf_column(0)
-        self.iconlist.set_item_width(int(const.THUMBSCALE) + padding * 2)
+        self.iconlist.set_item_width(int(THUMBSCALE) + padding * 2)
         # set custom text cell renderer for better control
         text_renderer = gtk.CellRendererText()
         text_renderer.set_property('wrap-mode', pango.WRAP_WORD_CHAR)
-        text_renderer.set_property('wrap-width', const.THUMBSCALE)
+        text_renderer.set_property('wrap-width', THUMBSCALE)
         text_renderer.set_property('alignment', pango.ALIGN_CENTER)
         self.iconlist.pack_end(text_renderer)
         self.iconlist.set_attributes(text_renderer, text=1)

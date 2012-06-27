@@ -63,7 +63,7 @@ from gui.managedwindow import ManagedWindow
 from _stylecombobox import StyleComboBox
 from _styleeditor import StyleListDisplay
 from _fileentry import FileEntry
-from const import URL_MANUAL_PAGE
+from gen.const import URL_MANUAL_PAGE
 from gen.utils.file import get_unicode_path_from_file_chooser
 #-------------------------------------------------------------------------
 #

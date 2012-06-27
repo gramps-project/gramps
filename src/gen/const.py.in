@@ -86,7 +86,7 @@ if sys.platform == "win32":
         PREFIXDIR = sys.prefix
         SYSCONFDIR = os.path.join(sys.prefix, "etc")
     else:
-        PREFIXDIR = os.path.dirname(__file__)
+        PREFIXDIR = os.path.join(os.path.dirname(__file__), os.pardir)
         SYSCONFDIR = os.path.join(PREFIXDIR, "etc")
 elif  sys.platform == "darwin" and sys.prefix != sys.exec_prefix:
     PREFIXDIR = sys.prefix
@@ -142,8 +142,8 @@ if hasattr(sys, "frozen"):
     ROOT_DIR = os.path.abspath(os.path.dirname(
         unicode(sys.executable, sys.getfilesystemencoding())))
 else:
-    ROOT_DIR = os.path.abspath(os.path.dirname(
-        unicode(__file__, sys.getfilesystemencoding())))
+    ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(
+        unicode(__file__, sys.getfilesystemencoding())), os.pardir))
 
 IMAGE_DIR      = os.path.join(ROOT_DIR, "images")
 VERSION_DIR    = os.path.join(

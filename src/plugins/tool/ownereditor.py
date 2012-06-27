@@ -37,7 +37,7 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import URL_MANUAL_PAGE
 from gen.config import config
 from gen.utils.config import get_researcher
 from gui.display import display_help
@@ -53,7 +53,7 @@ import gui.utils
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
+WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Edit_Database_Owner_Information...')
 
 #-------------------------------------------------------------------------

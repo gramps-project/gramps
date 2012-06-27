@@ -78,8 +78,8 @@ class Test(unittest.TestCase):
     # get cleaned before (and after) running a CLI
     # (eg cleanout stale files from prior crash-runs)
     def test3_files_in_import_dir(self):
-        import const
-        ddir = os.path.join(const.TEMP_DIR,"import_dbdir")
+        from gen.const import TEMP_DIR
+        ddir = os.path.join(TEMP_DIR,"import_dbdir")
         os.makedirs(ddir)
         bogofiles = [os.path.join(ddir,fn) 
             for fn in ("family.db", "lock")]

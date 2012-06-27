@@ -31,7 +31,7 @@ Provide the basic functionality for a list view
 #-------------------------------------------------------------------------
 import gtk
 import pango
-import const
+from gen.const import THUMBSCALE
 
 #-------------------------------------------------------------------------
 #
@@ -135,7 +135,7 @@ class ListModel(object):
         renderer = gtk.CellRendererPixbuf()
         column = gtk.TreeViewColumn(name[0], renderer)
         column.add_attribute(renderer, 'pixbuf', cnum)
-        renderer.set_property('height', const.THUMBSCALE / 2)
+        renderer.set_property('height', THUMBSCALE / 2)
         return renderer, column
 
     def __build_columns(self, dlist):

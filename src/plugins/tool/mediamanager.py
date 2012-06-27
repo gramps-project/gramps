@@ -49,7 +49,7 @@ import gobject
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import const
+from gen.const import IMAGE_DIR, URL_MANUAL_PAGE
 from gui.display import display_help
 from gen.lib import MediaObject
 from gen.db import DbTxn
@@ -64,10 +64,10 @@ import gen.mime
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
+WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Media_Manager...')
-GRAMPS_PNG = os.path.join(const.IMAGE_DIR, "gramps.png")
-SPLASH_JPG = os.path.join(const.IMAGE_DIR, "splash.jpg")
+GRAMPS_PNG = os.path.join(IMAGE_DIR, "gramps.png")
+SPLASH_JPG = os.path.join(IMAGE_DIR, "splash.jpg")
 
 #-------------------------------------------------------------------------
 #

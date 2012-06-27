@@ -86,7 +86,7 @@ from gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc, graphicstyle,
                     LOCAL_HYPERLINK, LOCAL_TARGET)
 from gen.plug.docgen.fontscale import string_width
 from libodfbackend import OdfBackend
-import const
+from gen.const import PROGRAM_NAME, VERSION
 from gen.plug.report import utils as ReportUtils
 from gen.utils.image import image_size, image_dpi, image_actual_size
 from gen.errors import ReportError
@@ -1754,7 +1754,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         create the meta.xml file
         """
         self.meta = StringIO()
-        generator = const.PROGRAM_NAME + ' ' + const.VERSION
+        generator = PROGRAM_NAME + ' ' + VERSION
         creator = self.get_creator()
         date = self.time
         lang = self.lang

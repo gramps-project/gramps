@@ -36,7 +36,7 @@ import libxml2
 import libxslt
 
 from libgrampsxml import GRAMPS_XML_VERSION
-from const import ROOT_DIR, VERSION, USER_PLUGINS
+from gen.const import ROOT_DIR, VERSION, USER_PLUGINS
 import gen.lib
 from gen.ggettext import sgettext as _
 

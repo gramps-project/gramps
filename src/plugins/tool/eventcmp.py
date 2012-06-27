@@ -50,7 +50,7 @@ from gen.sort import Sort
 from gen.utils.file import get_unicode_path_from_file_chooser
 from gui.utils import ProgressMeter
 from gen.utils.docgen import ODSTab
-import const
+from gen.const import CUSTOM_FILTERS, URL_MANUAL_PAGE
 from gen.errors import WindowActiveError
 import gen.datehandler
 from gui.dialog import WarningDialog
@@ -67,7 +67,7 @@ from gui.editors import FilterEditor
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
+WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Compare_Individual_Events...')
 
 #------------------------------------------------------------------------
@@ -169,7 +169,7 @@ class EventComparison(tool.Tool,ManagedWindow):
 
     def filter_editor_clicked(self, obj):
         try:
-            FilterEditor('Person',const.CUSTOM_FILTERS,
+            FilterEditor('Person',CUSTOM_FILTERS,
                                       self.dbstate,self.uistate)
         except WindowActiveError:
             pass

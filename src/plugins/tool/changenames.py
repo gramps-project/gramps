@@ -38,7 +38,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from gen.db import find_surname_name, DbTxn
-import const
+from gen.const import URL_MANUAL_PAGE
 from gui.utils import ProgressMeter
 from gui.display import display_help
 from gui.managedwindow import ManagedWindow
@@ -61,7 +61,7 @@ prefix_list = [
     "um", "una", "uno",
     ]
 
-WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
+WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Fix_Capitalization_of_Family_Names...')
 
 #-------------------------------------------------------------------------

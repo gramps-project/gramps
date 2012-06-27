@@ -48,7 +48,7 @@ log = logging.getLogger(".ExportVCard")
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
 from gui.plug.export import WriterOptionBox
-import const
+from gen.const import PROGRAM_NAME, VERSION
 from gen.lib import Date
 from gen.lib.urltype import UrlType
 from gen.lib.eventtype import EventType
@@ -180,7 +180,7 @@ class VCardWriter(object):
         self.writeln("BEGIN:VCARD")
         self.writeln("VERSION:3.0")
         self.writeln("PRODID:-//Gramps//NONSGML %s %s//EN" % 
-                     (const.PROGRAM_NAME, const.VERSION))
+                     (PROGRAM_NAME, VERSION))
 
     def write_footer(self):
         """Write the closing lines of a VCard."""

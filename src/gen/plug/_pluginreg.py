@@ -40,8 +40,8 @@ import traceback
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from const import VERSION as GRAMPSVERSION, VERSION_TUPLE
-from const import IMAGE_DIR
+from gen.const import VERSION as GRAMPSVERSION, VERSION_TUPLE
+from gen.const import IMAGE_DIR
 from gen.utils.trans import get_addon_translator
 from gen.ggettext import gettext as _
 

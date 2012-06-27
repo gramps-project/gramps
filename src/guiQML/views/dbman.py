@@ -61,7 +61,7 @@ from PySide import QtOpenGL
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import IMAGE_DIR, ROOT_DIR
 from cli.clidbman import CLIDbManager, NAME_FILE, time_val
 from gen.ggettext import gettext as _
 
@@ -72,7 +72,7 @@ from gen.ggettext import gettext as _
 #-------------------------------------------------------------------------
 
 #open_icon = QtGui.QIcon.fromTheme('open')
-FAMTREE_ICONPATH = os.path.join(const.IMAGE_DIR, '22x22', 'gramps.png')
+FAMTREE_ICONPATH = os.path.join(IMAGE_DIR, '22x22', 'gramps.png')
 
 class FamTreeWrapper(QtCore.QObject):
     """
@@ -182,7 +182,7 @@ class DbManager(CLIDbManager, QtCore.QObject):
         #create a Component to show
         self.famtreeview = QtDeclarative.QDeclarativeComponent(engine)
         self.famtreeview.loadUrl(QtCore.QUrl.fromLocalFile(
-                os.path.join(const.ROOT_DIR, "guiQML", 'views', 'dbman.qml')))
+                os.path.join(ROOT_DIR, "guiQML", 'views', 'dbman.qml')))
         #and obtain the QObject of it
         self.Qfamtreeview = self.famtreeview.create(self.famtreecontext)
 

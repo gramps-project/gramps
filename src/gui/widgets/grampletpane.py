@@ -42,7 +42,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from gen.errors import WindowActiveError
-import const
+from gen.const import URL_MANUAL_PAGE, VERSION_DIR
 from gui.editors import EditPerson, EditFamily
 from gui.managedwindow import ManagedWindow
 import ConfigParser
@@ -58,7 +58,7 @@ from gui.widgets.undoablebuffer import UndoableBuffer
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = const.URL_MANUAL_PAGE + '_-_Gramplets'
+WIKI_HELP_PAGE = URL_MANUAL_PAGE + '_-_Gramplets'
 
 #-------------------------------------------------------------------------
 #
@@ -939,7 +939,7 @@ class GrampletPane(gtk.ScrolledWindow):
         self._config = Configuration(self)
         self.track = []
         gtk.ScrolledWindow.__init__(self)
-        self.configfile = os.path.join(const.VERSION_DIR, "%s.ini" % configfile)
+        self.configfile = os.path.join(VERSION_DIR, "%s.ini" % configfile)
         # default for new user; may be overridden in config:
         self.column_count = kwargs.get("column_count", 2) 
         # width of window, if sidebar; may be overridden in config:

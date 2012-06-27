@@ -45,7 +45,7 @@ import gobject
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import const
+from gen.const import URL_MANUAL_PAGE
 from gen.ggettext import ngettext
 from gui.plug import tool
 from gen.plug.report import utils as ReportUtils
@@ -63,7 +63,7 @@ from gen.db import DbTxn
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
+WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Not_Related...')
 
 #------------------------------------------------------------------------

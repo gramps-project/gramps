@@ -40,13 +40,13 @@ from gtk.gdk import pixbuf_new_from_file
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import ICON
 from gen.config import config
 from gui.glade import Glade
 from gen.ggettext import gettext as _
 
 try:
-    ICON = pixbuf_new_from_file(const.ICON)
+    ICON = pixbuf_new_from_file(ICON)
 except:
     ICON = None
 

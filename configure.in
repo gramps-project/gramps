@@ -90,11 +90,11 @@ po/Makefile.in
 m4/Makefile
 Makefile
 gramps.sh
-src/const.py
 src/Makefile
 src/cli/Makefile
 src/cli/plug/Makefile
 src/gen/Makefile
+src/gen/const.py
 src/gen/datehandler/Makefile
 src/gen/db/Makefile
 src/gen/display/Makefile

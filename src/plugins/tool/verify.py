@@ -54,7 +54,7 @@ import gobject
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import const
+from gen.const import URL_MANUAL_PAGE, VERSION_DIR
 import gen.lib
 from gui.editors import EditPerson, EditFamily
 from gen.utils.db import family_name
@@ -70,7 +70,7 @@ from gui.glade import Glade
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
+WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Verify_the_Data...')
 
 #-------------------------------------------------------------------------
@@ -532,7 +532,7 @@ class VerifyResults(ManagedWindow):
     def load_ignored(self,db_filename):
         md5sum = md5(db_filename)
         self.ignores_filename = os.path.join(
-            const.VERSION_DIR,md5sum.hexdigest() + os.path.extsep + 'vfm')
+            VERSION_DIR,md5sum.hexdigest() + os.path.extsep + 'vfm')
         if not self._load_ignored(self.ignores_filename):
             self.ignores = {}
 

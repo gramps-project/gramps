@@ -34,7 +34,6 @@ from gen.ggettext import gettext as _
 import os
 import sys
 import urlparse
-import const
 import operator
 import locale
 from gtk.keysyms import Tab as KEY_TAB

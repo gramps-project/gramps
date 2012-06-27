@@ -45,7 +45,7 @@ import os
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import IMAGE_DIR, TIP_DATA
 from gen.config import config
 from gui.managedwindow import ManagedWindow
 from gui.dialog import ErrorDialog
@@ -72,7 +72,7 @@ class TipOfDay(ManagedWindow):
         self.use = xml.get_object('usetips')
         self.use.set_active(config.get('behavior.use-tips'))
         image = xml.get_object('image')
-        image.set_from_file(os.path.join(const.IMAGE_DIR, 'splash.jpg'))
+        image.set_from_file(os.path.join(IMAGE_DIR, 'splash.jpg'))
 
         next = xml.get_object('next')
         next.connect("clicked", self.next_tip_cb)
@@ -139,7 +139,7 @@ class TipParser(object):
 
         self.mylist = []
         self.skip = False
-        xml_file = open(const.TIP_DATA)
+        xml_file = open(TIP_DATA)
         self.tlist = []
         parser = ParserCreate()
         parser.StartElementHandler = self.startElement

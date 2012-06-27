@@ -25,7 +25,7 @@
 #------------------------------------------------------------------------
 from gen.plug import Gramplet
 from gen.ggettext import sgettext as _
-import const
+from gen.const import URL_MANUAL_PAGE
 
 #------------------------------------------------------------------------
 #
@@ -36,7 +36,7 @@ class FAQGramplet(Gramplet):
     def init(self):
         self.set_use_markup(True)
         self.clear_text()
-        WIKI = const.URL_MANUAL_PAGE
+        WIKI = URL_MANUAL_PAGE
         self.render_text(_("<b><a wiki='%s_-_FAQ'>Frequently Asked Questions</a></b>\n(needs a connection to the internet)\n") % WIKI)
         self.render_text("\n<b>%s</b>\n\n" % _("Editing Spouses"))
 

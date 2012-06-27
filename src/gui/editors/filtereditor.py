@@ -59,7 +59,7 @@ from gen.filters.rules._matchesfilterbase import MatchesFilterBase
 from gui.listmodel import ListModel
 from gui.managedwindow import ManagedWindow
 from gui.dialog import QuestionDialog
-import const
+from gen.const import RULE_GLADE, URL_MANUAL_PAGE
 from gui.display import display_help
 from gen.errors import WindowActiveError
 from gen.ggettext import sgettext as _
@@ -76,7 +76,7 @@ from gen.utils.string import confidence
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = WIKI_HELP_PAGE = '%s_-_Filters' % const.URL_MANUAL_PAGE
+WIKI_HELP_PAGE = WIKI_HELP_PAGE = '%s_-_Filters' % URL_MANUAL_PAGE
 
 # dictionary mapping FILTER_TYPE of views to Filter window name
 _TITLES = {
@@ -442,7 +442,7 @@ class EditRule(ManagedWindow):
         self.filter_name = filter_name
 
         self.active_rule = val
-        self.define_glade('rule_editor', const.RULE_GLADE)
+        self.define_glade('rule_editor', RULE_GLADE)
         
         self.set_window(self.get_widget('rule_editor'),
                         self.get_widget('rule_editor_title'),label)
@@ -731,7 +731,7 @@ class EditFilter(ManagedWindow):
         self.filterdb = filterdb
         self.selection_callback = selection_callback
         
-        self.define_glade('define_filter', const.RULE_GLADE)
+        self.define_glade('define_filter', RULE_GLADE)
         
         self.set_window(
             self.get_widget('define_filter'),
@@ -881,7 +881,7 @@ class ShowResults(ManagedWindow):
         self.db = db
         self.filtname = filtname
         self.namespace = namespace
-        self.define_glade('test', const.RULE_GLADE,)
+        self.define_glade('test', RULE_GLADE,)
         self.set_window(
             self.get_widget('test'),
             self.get_widget('test_title'),
@@ -994,7 +994,7 @@ class FilterEditor(ManagedWindow):
         self.height_key = "interface.filter-editor-height"
         self.namespace = namespace
 
-        self.define_glade('filter_list', const.RULE_GLADE)
+        self.define_glade('filter_list', RULE_GLADE)
         self.filter_list = self.get_widget('filters')
         self.edit = self.get_widget('filter_list_edit')
         self.clone = self.get_widget('filter_list_clone')

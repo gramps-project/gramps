@@ -43,7 +43,7 @@ import time
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import const
+from gen.const import VERSION
 import libgedcom
 from gen.errors import DatabaseError
 from gui.plug.export import WriterOptionBox
@@ -329,7 +329,7 @@ class GedcomWriter(UpdateCallback):
 
         self._writeln(0, "HEAD")
         self._writeln(1, "SOUR", "Gramps")
-        self._writeln(2, "VERS",  const.VERSION)
+        self._writeln(2, "VERS",  VERSION)
         self._writeln(2, "NAME", "Gramps")
         self._writeln(1, "DATE", date_str)
         self._writeln(2, "TIME", time_str)

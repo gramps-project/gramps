@@ -52,7 +52,6 @@ import gtk
 from gui.utils import open_file_with_default_application
 from gui.views.listview import ListView
 from gui.views.treemodels import MediaModel
-import const
 from gen.constfunc import win
 from gen.config import config
 from gen.utils.file import (media_path, relative_path, media_path_full, 
