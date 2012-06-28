@@ -49,7 +49,7 @@ import gobject
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.const import IMAGE_DIR, URL_MANUAL_PAGE
+from gen.const import URL_MANUAL_PAGE, ICON, SPLASH
 from gui.display import display_help
 from gen.lib import MediaObject
 from gen.db import DbTxn
@@ -66,8 +66,6 @@ import gen.mime
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Media_Manager...')
-GRAMPS_PNG = os.path.join(IMAGE_DIR, "gramps.png")
-SPLASH_JPG = os.path.join(IMAGE_DIR, "splash.jpg")
 
 #-------------------------------------------------------------------------
 #
@@ -86,8 +84,8 @@ class MediaMan(tool.Tool):
         self.build_batch_ops()
 
         self.assistant = gtk.Assistant()
-        self.logo = gtk.gdk.pixbuf_new_from_file(GRAMPS_PNG)
-        self.splash = gtk.gdk.pixbuf_new_from_file(SPLASH_JPG)
+        self.logo = gtk.gdk.pixbuf_new_from_file(ICON)
+        self.splash = gtk.gdk.pixbuf_new_from_file(SPLASH)
 
         self.assistant.set_title(_('Gramps Media Manager'))
         self.assistant.connect('close', self.close)
@@ -208,7 +206,7 @@ class IntroductionPage(gtk.HBox):
         # Using set_page_side_image causes window sizing problems, so put the 
         # image in the main page instead.
         image = gtk.Image()
-        image.set_from_file(SPLASH_JPG)
+        image.set_from_file(SPLASH)
 
         label = gtk.Label(self.__get_intro_text())
         label.set_line_wrap(True)
@@ -367,7 +365,7 @@ class ConclusionPage(gtk.HBox):
         # Using set_page_side_image causes window sizing problems, so put the 
         # image in the main page instead.
         image = gtk.Image()
-        image.set_from_file(SPLASH_JPG)
+        image.set_from_file(SPLASH)
 
         self.label = gtk.Label()
         self.label.set_line_wrap(True)

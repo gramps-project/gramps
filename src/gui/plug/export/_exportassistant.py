@@ -55,7 +55,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 
-from gen.const import IMAGE_DIR, USER_HOME
+from gen.const import USER_HOME, ICON, SPLASH
 from gen.config import config
 from gui.pluginmanager import GuiPluginManager
 from gen.utils.file import (find_folder, get_new_filename, 
@@ -63,14 +63,6 @@ from gen.utils.file import (find_folder, get_new_filename,
 from gui.managedwindow import ManagedWindow
 from gui.dialog import ErrorDialog
 from gui.user import User
-
-#-------------------------------------------------------------------------
-#
-# Constants
-#
-#-------------------------------------------------------------------------
-_gramps_png = os.path.join(IMAGE_DIR,"gramps.png")
-_splash_jpg = os.path.join(IMAGE_DIR,"splash.jpg")
 
 #-------------------------------------------------------------------------
 #
@@ -140,11 +132,11 @@ class ExportAssistant(gtk.Assistant, ManagedWindow) :
             self.person = self.dbstate.db.find_initial_person()
             
         try:
-            self.logo      = gtk.gdk.pixbuf_new_from_file(_gramps_png)
+            self.logo      = gtk.gdk.pixbuf_new_from_file(ICON)
         except:
             self.logo = None
         try:
-            self.splash    = gtk.gdk.pixbuf_new_from_file(_splash_jpg)
+            self.splash    = gtk.gdk.pixbuf_new_from_file(SPLASH)
         except:
             self.splash = None
 

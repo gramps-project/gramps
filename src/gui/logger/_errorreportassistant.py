@@ -43,16 +43,8 @@ else:
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.const import IMAGE_DIR, VERSION
+from gen.const import VERSION, ICON, SPLASH
 from gui.display import display_help, display_url
-
-#-------------------------------------------------------------------------
-#
-# Constants
-#
-#-------------------------------------------------------------------------
-GRAMPS_PNG = os.path.join(IMAGE_DIR, "gramps.png")
-SPLASH_JPG = os.path.join(IMAGE_DIR, "splash.jpg")
 
 #-------------------------------------------------------------------------
 #
@@ -75,8 +67,8 @@ class ErrorReportAssistant(gtk.Assistant):
         self._error_details_text_buffer = None
         self._final_report_text_buffer = None
 
-        self.logo = gtk.gdk.pixbuf_new_from_file(GRAMPS_PNG)
-        self.splash = gtk.gdk.pixbuf_new_from_file(SPLASH_JPG)
+        self.logo = gtk.gdk.pixbuf_new_from_file(ICON)
+        self.splash = gtk.gdk.pixbuf_new_from_file(SPLASH)
 
         self.set_title(_("Error Report Assistant"))
         self.connect('close', self.close)
@@ -226,7 +218,7 @@ class ErrorReportAssistant(gtk.Assistant):
         # Using set_page_side_image causes window sizing problems, so put the 
         # image in the main page instead.
         image = gtk.Image()
-        image.set_from_file(SPLASH_JPG)
+        image.set_from_file(SPLASH)
 
         hbox = gtk.HBox()
         hbox.pack_start(image, False, False, 0)
@@ -650,7 +642,7 @@ class ErrorReportAssistant(gtk.Assistant):
         # Using set_page_side_image causes window sizing problems, so put the 
         # image in the main page instead.
         image = gtk.Image()
-        image.set_from_file(SPLASH_JPG)
+        image.set_from_file(SPLASH)
 
         hbox = gtk.HBox()
         hbox.pack_start(image, False, False, 0)

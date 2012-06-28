@@ -46,7 +46,7 @@ from gen.utils.callback import Callback
 from gen.plug import BasePluginManager, PluginRegister
 from gen.constfunc import win
 from gen.config import config
-from gen.const import IMAGE_DIR
+from gen.const import ICON
 
 #-------------------------------------------------------------------------
 #
@@ -86,8 +86,7 @@ def base_reg_stock_icons(iconpaths, extraiconsize, items):
                     pass
                   
         if not pixbuf :
-            icon_file = os.path.join(IMAGE_DIR, 'gramps.png')
-            pixbuf = gtk.gdk.pixbuf_new_from_file (icon_file)
+            pixbuf = gtk.gdk.pixbuf_new_from_file(ICON)
             
         ## FIXME from gtk 2.17.3/2.15.2 change this to 
         ## FIXME  pixbuf = pixbuf.add_alpha(True, 255, 255, 255)
