@@ -408,12 +408,12 @@ class RecurseDown:
             box.y_cm = last_box.y_cm
             box.y_cm += last_box.height
             if last_box.boxstr in ["CG2-box", "CG2b-box"]:
-                box.y_cm += self.canvas.doc.report_opts.box_shadow
+                box.y_cm += self.canvas.report_opts.box_shadow
             
             if box.boxstr in ["CG2-box", "CG2b-box"]:
-                box.y_cm += self.canvas.doc.report_opts.box_pgap
+                box.y_cm += self.canvas.report_opts.box_pgap
             else:
-                box.y_cm += self.canvas.doc.report_opts.box_mgap
+                box.y_cm += self.canvas.report_opts.box_mgap
             
             if box.level[1] == 0 and self.__last_direct[level]:
                 #ok, a new direct descendant.
@@ -421,13 +421,13 @@ class RecurseDown:
                 # self.__last_direct[level].text[0]
                 if box.father != self.__last_direct[level].father and \
                    box.father != self.__last_direct[level]:
-                    box.y_cm += self.canvas.doc.report_opts.box_pgap
+                    box.y_cm += self.canvas.report_opts.box_pgap
         
         self.cols[level] = box
         if box.level[1] == 0:
             self.__last_direct[level] = box
             
-        box.x_cm = self.canvas.doc.report_opts.spouse_offset * box.level[1]
+        box.x_cm = self.canvas.report_opts.spouse_offset * box.level[1]
         
         self.canvas.set_box_height_width(box)
         
@@ -950,11 +950,11 @@ class MakeReport(object):
     def calc_box(self, box):
         """ calculate the max_box_width and max_box_height for the report """
         width = box.x_cm + box.width
-        if width > self.canvas.doc.report_opts.max_box_width:
-            self.canvas.doc.report_opts.max_box_width = width
+        if width > self.canvas.report_opts.max_box_width:
+            self.canvas.report_opts.max_box_width = width
 
-        if box.height > self.canvas.doc.report_opts.max_box_height:
-            self.canvas.doc.report_opts.max_box_height = box.height
+        if box.height > self.canvas.report_opts.max_box_height:
+            self.canvas.report_opts.max_box_height = box.height
 
         while len(self.cols) <= box.level[0]:
             self.cols.append([])
@@ -1154,15 +1154,15 @@ class MakeReport(object):
                 box.level = (box.level[0] - 1, box.level[1])
         
         #go ahead and set it now.
-        width = self.canvas.doc.report_opts.max_box_width
+        width = self.canvas.report_opts.max_box_width
         for box in self.canvas.boxes:
             box.width = width - box.x_cm
-            box.x_cm += self.canvas.doc.report_opts.littleoffset
+            box.x_cm += self.canvas.report_opts.littleoffset
             box.x_cm += (box.level[0] *
-                    (self.canvas.doc.report_opts.col_width +
-                     self.canvas.doc.report_opts.max_box_width))
+                    (self.canvas.report_opts.col_width +
+                     self.canvas.report_opts.max_box_width))
             
-            box.y_cm += self.canvas.doc.report_opts.littleoffset
+            box.y_cm += self.canvas.report_opts.littleoffset
             box.y_cm += self.canvas.title.height
 
         self.Make_report()
@@ -1264,9 +1264,6 @@ class DescendTree(Report):
         self.options = options
         self.database = database
         
-        #The canvas that we will put our report on and print off of
-        self.canvas = Canvas(self.doc)
-        
         """ make the report in its full size and pages to print on
         scale one or both as needed/desired.
         """
@@ -1278,11 +1275,15 @@ class DescendTree(Report):
         
         style_sheet = self.doc.get_style_sheet()
         font_normal = style_sheet.get_paragraph_style("CG2-Normal").get_font()
-        self.doc.report_opts = ReportOptions(self.doc, font_normal, "CG2-line")
 
-        self.doc.report_opts.box_shadow *= self.Connect.get_val('shadowscale')
-        self.doc.report_opts.box_pgap *= self.Connect.get_val('box_Yscale')
-        self.doc.report_opts.box_mgap *= self.Connect.get_val('box_Yscale')
+        #The canvas that we will put our report on and print off of
+        self.canvas = Canvas(self.doc, 
+                        ReportOptions(self.doc, font_normal, "CG2-line"))
+
+        self.canvas.report_opts.box_shadow *= \
+                        self.Connect.get_val('shadowscale')
+        self.canvas.report_opts.box_pgap *= self.Connect.get_val('box_Yscale')
+        self.canvas.report_opts.box_mgap *= self.Connect.get_val('box_Yscale')
 
         center_id = self.Connect.get_val('pid') 
 
@@ -1341,9 +1342,9 @@ class DescendTree(Report):
         #Setup page information
 
         colsperpage = self.doc.get_usable_width()
-        colsperpage += self.doc.report_opts.col_width
-        tmp = self.doc.report_opts.max_box_width
-        tmp += self.doc.report_opts.col_width
+        colsperpage += self.canvas.report_opts.col_width
+        tmp = self.canvas.report_opts.max_box_width
+        tmp += self.canvas.report_opts.col_width
         colsperpage = int(colsperpage / tmp)
         colsperpage = colsperpage or 1
         
@@ -1393,13 +1394,13 @@ class DescendTree(Report):
 
         graph_style = style_sheet.get_draw_style("CG2-box")
         graph_style.set_shadow(graph_style.get_shadow(),
-                               self.doc.report_opts.box_shadow * amount)
+                               self.canvas.report_opts.box_shadow * amount)
         graph_style.set_line_width(graph_style.get_line_width() * amount)
         style_sheet.add_draw_style("CG2-box", graph_style)
 
         graph_style = style_sheet.get_draw_style("CG2b-box")
         graph_style.set_shadow(graph_style.get_shadow(),
-                               self.doc.report_opts.box_shadow * amount)
+                               self.canvas.report_opts.box_shadow * amount)
         graph_style.set_line_width(graph_style.get_line_width() * amount)
         style_sheet.add_draw_style("CG2b-box", graph_style)
 
