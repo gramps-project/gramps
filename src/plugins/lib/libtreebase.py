@@ -148,10 +148,10 @@ class Canvas(Page):
       a group of pages.  each page is set is size and shows only a
        part of what is on the entire canvas
     """
-    def __init__(self, doc):
+    def __init__(self, doc, report_opts):
         Page.__init__(self, self)
         self.doc = doc
-        self.report_opts = None
+        self.report_opts = report_opts
         
         #How many pages are there in the report.  one more than real.
         self.x_pages = 1
@@ -181,6 +181,7 @@ class Canvas(Page):
     def add_title(self, title):
         """ The title must derive from class TitleBox(BoxBase): """
         self.title = title
+        self.title.cm_y = self.report_opts.littleoffset
     
     def add_note(self, note):
         """ The note must derive from class NoteBox(BoxBase, NoteType) """
@@ -211,15 +212,15 @@ class Canvas(Page):
             tmp = box.y_cm + box.height
             if tmp > max_height:
                 max_height = tmp
-        max_width += self.doc.report_opts.box_shadow
-        max_width += self.doc.report_opts.littleoffset
-        max_height += self.doc.report_opts.box_shadow
-        max_height += self.doc.report_opts.littleoffset
+        max_width += self.report_opts.box_shadow
+        max_width += self.report_opts.littleoffset
+        max_height += self.report_opts.box_shadow
+        max_height += self.report_opts.littleoffset
         return (max_width, max_height)
     
     def __scale_canvas(self, scale_amount):
         """ scales everything up/down depending upon scale_amount """
-        self.doc.report_opts.scale_everything(scale_amount)
+        self.report_opts.scale_everything(scale_amount)
         self.title.scale(scale_amount)
         if self.note is not None:
             self.note.scale(scale_amount)
@@ -294,8 +295,8 @@ class Canvas(Page):
         
         if scale_to_width or scale_to_height:
             max_width, max_height = self.canvas.get_report_height_width()
-            #max_width  += self.doc.report_opts.littleoffset
-            #max_height += self.doc.report_opts.littleoffset
+            #max_width  += self.report_opts.littleoffset
+            #max_height += self.report_opts.littleoffset
         
         """
         calc - Calculate the scale amount (if any).  
@@ -311,7 +312,7 @@ class Canvas(Page):
         if scale_to_width:
             #Check the width of the title
             title_width = self.title.width
-            title_width += self.doc.report_opts.littleoffset * 2
+            title_width += self.report_opts.littleoffset * 2
             
             max_width = max(title_width, max_width)
             
@@ -346,7 +347,7 @@ class Canvas(Page):
             
             if scaled_report_to != "width":
                 #calculate the width of the report
-                #max_width  += self.doc.report_opts.littleoffset
+                #max_width  += self.report_opts.littleoffset
                 max_width += self.doc.paper.get_left_margin() 
                 max_width += self.doc.paper.get_right_margin() 
                 
@@ -354,7 +355,7 @@ class Canvas(Page):
                 title_width = self.canvas.title.width
                 title_width += self.doc.paper.get_left_margin()
                 title_width += self.doc.paper.get_right_margin() 
-                title_width += self.doc.report_opts.littleoffset
+                title_width += self.report_opts.littleoffset
                 max_width = max(title_width, max_width)
                 
                 size.set_width(max_width)
@@ -363,7 +364,7 @@ class Canvas(Page):
                 #calculate the height of the report
                 max_height += self.doc.paper.get_top_margin()
                 max_height += self.doc.paper.get_bottom_margin()
-                #max_height += self.doc.report_opts.littleoffset
+                #max_height += self.report_opts.littleoffset
                 size.set_height(max_height)
             
         return scale
@@ -372,7 +373,7 @@ class Canvas(Page):
     def __paginate_x_offsets(self, colsperpage):
         """ Go through the boxes and get the x page offsets """
         #fix soon.  should not use .level
-        liloffset = self.doc.report_opts.littleoffset
+        liloffset = self.report_opts.littleoffset
         x_page_offsets = {0:0}  #change me to [] ???
         for box in self.boxes:
             x_index = box.level[0]
@@ -388,7 +389,7 @@ class Canvas(Page):
         note that the self.boxes needs to be sorted by .y_cm """
         page_y_top = [0]
         page_y_height = [self.doc.get_usable_height()]
-        liloffset = self.doc.report_opts.littleoffset
+        liloffset = self.report_opts.littleoffset
         
         for box in self.boxes:
             #check to see if this box cross over to the next (y) page
@@ -524,7 +525,7 @@ class Canvas(Page):
     def __paginate(self, colsperpage):
         """ take the boxes on the canvas and put them into separate pages.
         The boxes need to be sorted by y_cm """
-        liloffset = self.doc.report_opts.littleoffset
+        liloffset = self.report_opts.littleoffset
         self.__pages = {}
         x_page_offsets = self.__paginate_x_offsets(colsperpage)
         page_y_top = self.__paginate_y_pages(colsperpage, x_page_offsets)
@@ -593,6 +594,7 @@ class BoxBase(object):
             return
 
         doc = self.page.canvas.doc
+        report_opts = self.page.canvas.report_opts
         text = '\n'.join(self.text)
         xbegin = self.x_cm - self.page.page_x_offset
         ybegin = self.y_cm - self.page.page_y_offset
@@ -607,10 +609,10 @@ class BoxBase(object):
             #draw my line out here.
             self.line_to.display(self.page)
         if self.page.x_page_num > 0 and self.level[1] == 0 and \
-           xbegin < doc.report_opts.littleoffset*2:
+           xbegin < report_opts.littleoffset*2:
             #I am a child on the first column
             yme = ybegin + self.height/2
-            doc.draw_line(doc.report_opts.line_str, 0, yme, xbegin, yme)
+            doc.draw_line(report_opts.line_str, 0, yme, xbegin, yme)
 
 
 
@@ -625,7 +627,6 @@ class TitleBox(BoxBase):
         self.boxstr = boxstr
         if boxstr == "None":
             return
-        self.cm_y = self.doc.report_opts.littleoffset
         
         style_sheet = self.doc.get_style_sheet()
         style_name = style_sheet.get_draw_style(self.boxstr)
@@ -747,7 +748,7 @@ class NoteBox(BoxBase, NoteType):
         """ set the x_cm and y_cm given
         self.doc, leloffset, and title_height """
         
-        liloffset = self.doc.report_opts.littleoffset
+        liloffset = canvas.report_opts.littleoffset
         #left or right side
         if self.value == NoteType.BOTTOMLEFT or \
                            self.value == NoteType.TOPLEFT:
@@ -815,12 +816,13 @@ class LineBase(object):
         #    self.start = [self.start]
         start = self.start[0]
         doc = start.page.canvas.doc
-        linestr = doc.report_opts.line_str
+        report_opts = start.page.canvas.report_opts
+        linestr = report_opts.line_str
 
         xbegin = start.x_cm + start.width - page.page_x_offset
         # out 3/4 of the way and x_cm end point(s)
-        x34    = xbegin + (doc.report_opts.col_width * 3/4) 
-        xend = xbegin + doc.report_opts.col_width
+        x34    = xbegin + (report_opts.col_width * 3/4) 
+        xend = xbegin + report_opts.col_width
         
         if x34 > 0:  # > 0 tell us we are printing on this page.
             usable_height = doc.get_usable_height()

@@ -489,9 +489,9 @@ class RLTransform():
     """
     setup all of the boxes on the canvas in for a left/right report 
     """
-    def __init__(self, canvas, opts, max_generations, compress_tree):
+    def __init__(self, canvas, max_generations, compress_tree):
         self.canvas = canvas
-        self.rept_opts = opts
+        self.rept_opts = canvas.report_opts
         self.max_generations = max_generations
         self.compress_tree = compress_tree
         self.y_offset = self.rept_opts.littleoffset*2 + self.canvas.title.height
@@ -564,8 +564,8 @@ class MakeReport():
 
         self.canvas.set_box_height_width(box)
         
-        if box.width > self.doc.report_opts.max_box_width:
-            self.doc.report_opts.max_box_width = box.width #+ box.shadow
+        if box.width > self.canvas.report_opts.max_box_width:
+            self.canvas.report_opts.max_box_width = box.width #+ box.shadow
 
         if box.level[2] > 0:
             if box.level[2] % 2 == 0 and box.height > self.father_ht:
@@ -589,10 +589,10 @@ class MakeReport():
             self.get_height_width(box)
             
         if self.compress_tree and not self.inlc_marr:
-            self.doc.report_opts.max_box_height = \
+            self.canvas.report_opts.max_box_height = \
                         min(self.father_ht, self.mother_ht)
         else:
-            self.doc.report_opts.max_box_height = \
+            self.canvas.report_opts.max_box_height = \
                         max(self.father_ht, self.mother_ht)
             
         #At this point we know everything we need to make the report.
@@ -601,11 +601,11 @@ class MakeReport():
         #size of each row - self.rept_opt.box_height
         #go ahead and set it now.
         for box in self.canvas.boxes:
-            box.width = self.doc.report_opts.max_box_width
+            box.width = self.canvas.report_opts.max_box_width
         
         # 2.
         #setup the transform class to move around the boxes on the canvas
-        transform = RLTransform(self.canvas, self.doc.report_opts,
+        transform = RLTransform(self.canvas, 
                                  self.max_generations, self.compress_tree)
         transform.place()
 
@@ -662,9 +662,6 @@ class AncestorTree(Report):
         self.database = database
         self._user = user
 
-        #The canvas that we will put our report on and print off of
-        self.canvas = Canvas(self.doc)
-
     def begin_report(self):
         """
         This report needs the following parameters (class variables)
@@ -692,7 +689,11 @@ class AncestorTree(Report):
         #Set up the canvas that we will print on.
         style_sheet = self.doc.get_style_sheet()
         font_normal = style_sheet.get_paragraph_style("AC2-Normal").get_font()
-        self.doc.report_opts = ReportOptions(self.doc, font_normal, 'AC2-line')
+
+        #The canvas that we will put our report on and print off of
+        self.canvas = Canvas(self.doc, ReportOptions(self.doc, 
+                                       font_normal, 'AC2-line'))
+
         
         self._user.begin_progress(_('Ancestor Tree'), 
                                   _('Making the Tree...'), 4)
@@ -759,9 +760,9 @@ class AncestorTree(Report):
         #Setup page information
 
         colsperpage = self.doc.get_usable_width() 
-        colsperpage += self.doc.report_opts.col_width
-        colsperpage = int(colsperpage / (self.doc.report_opts.max_box_width +
-                                       self.doc.report_opts.col_width))
+        colsperpage += self.canvas.report_opts.col_width
+        colsperpage = int(colsperpage / (self.canvas.report_opts.max_box_width +
+                                       self.canvas.report_opts.col_width))
         colsperpage = colsperpage or 1
 
         #####################
