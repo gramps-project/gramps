@@ -1012,7 +1012,10 @@ class GrampsParser(UpdateCallback):
         self.ord.set_temple(attrs['val'])
 
     def start_data_item(self, attrs):
-        self.source.set_data_item(attrs['key'], attrs['value'])
+        if self.source:
+            self.source.set_data_item(attrs['key'], attrs['value'])
+        else:
+            self.citation.set_data_item(attrs['key'], attrs['value'])
 
     def start_status(self, attrs):
         try:
