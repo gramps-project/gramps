@@ -46,7 +46,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from gen.config import config
-from gen.plug import PluginRegister
+import gen.plug
 
 #-------------------------------------------------------------------------
 #
@@ -91,7 +91,7 @@ class BasePluginManager(object):
         self.__mod2text          = {}
         self.__modules           = {}
         
-        self.__pgr = PluginRegister.get_instance()
+        self.__pgr = gen.plug.PluginRegister.get_instance()
         self.__registereddir_set = set()
         self.__loaded_plugins = {}
 
