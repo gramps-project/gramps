@@ -32,6 +32,7 @@ Module that implements the sidebar and bottombar fuctionality.
 from gen.ggettext import gettext as _
 import time
 import os
+import ConfigParser
 
 #-------------------------------------------------------------------------
 #
@@ -45,7 +46,6 @@ import gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import ConfigParser
 from gen.const import URL_MANUAL_PAGE, VERSION_DIR
 from gui.managedwindow import ManagedWindow
 from gui.display import display_help, display_url

@@ -35,6 +35,7 @@ import pango
 import time
 import os
 from gen.ggettext import gettext as _
+import ConfigParser
 
 #-------------------------------------------------------------------------
 #
@@ -45,7 +46,6 @@ from gen.errors import WindowActiveError
 from gen.const import URL_MANUAL_PAGE, VERSION_DIR
 from gui.editors import EditPerson, EditFamily
 from gui.managedwindow import ManagedWindow
-import ConfigParser
 import gui.utils
 from gui.plug.quick import run_quick_report_by_name
 from gui.display import display_help, display_url
