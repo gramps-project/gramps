@@ -790,18 +790,18 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def has_gramps_id(self, obj_key, gramps_id):
         key2table = {
-            PERSON_KEY:     self.Person, 
-            FAMILY_KEY:     self.Family, 
-            SOURCE_KEY:     self.Source, 
-            CITATION_KEY:   self.Citation, 
-            EVENT_KEY:      self.Event, 
-            MEDIA_KEY:      self.Media, 
-            PLACE_KEY:      self.Place, 
-            REPOSITORY_KEY: self.Repository, 
-            NOTE_KEY:       self.Note, 
+            PERSON_KEY:     self.dji.Person, 
+            FAMILY_KEY:     self.dji.Family, 
+            SOURCE_KEY:     self.dji.Source, 
+            CITATION_KEY:   self.dji.Citation, 
+            EVENT_KEY:      self.dji.Event, 
+            MEDIA_KEY:      self.dji.Media, 
+            PLACE_KEY:      self.dji.Place, 
+            REPOSITORY_KEY: self.dji.Repository, 
+            NOTE_KEY:       self.dji.Note, 
             }
         table = key2table[obj_key]
-        return table.objects.filter(gramps_id=gramps_id).count() > 0
+        return table.filter(gramps_id=gramps_id).count() > 0
 
     def has_person_handle(self, handle):
         if handle in self.import_cache:
