@@ -92,7 +92,6 @@ class Span(object):
         self.date2 = date2
         self.sort = (-9999, -9999)
         self.minmax = (9999, -9999)
-        self.repr = None 
         self.precision = 2
         self.negative = False
         if self.valid:
@@ -109,22 +108,18 @@ class Span(object):
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, 0)
                     self.minmax = (v, v)
-                    #self.repr = self._format(self._diff(self.date1, self.date2))
                 elif self.date2.get_modifier() == Date.MOD_BEFORE:
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, -Span.BEFORE)
                     self.minmax = (v - Span.BEFORE, v)
-                    #self.repr = "more than " + self._format(self._diff(self.date1, self.date2))
                 elif self.date2.get_modifier() == Date.MOD_AFTER:
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, Span.AFTER)
                     self.minmax = (v, v + Span.AFTER)
-                    #self.repr = "less than " + self._format(self._diff(self.date1, self.date2))
                 elif self.date2.get_modifier() == Date.MOD_ABOUT:
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, -Span.ABOUT)
                     self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                    #self.repr = "about " + self._format(self._diff(self.date1, self.date2))
                 elif (self.date2.get_modifier() == Date.MOD_RANGE or 
                       self.date2.get_modifier() == Date.MOD_SPAN):
                     start, stop = self.date2.get_start_stop_range()
@@ -134,89 +129,72 @@ class Span(object):
                     v2 = self.date1.sortval - start.sortval # max
                     self.sort = (v1, v2 - v1)
                     self.minmax = (v1, v2)
-                    #self.repr = ("between " + self._format(self._diff(self.date1, stop)) + 
-                    #             " and " + self._format(self._diff(self.date1, start)))
             elif self.date1.get_modifier() == Date.MOD_BEFORE: # BEFORE----------------------------
                 if   self.date2.get_modifier() == Date.MOD_NONE:
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, 0)
                     self.minmax = (0, v)
-                    #self.repr = "less than " + self._format(self._diff(self.date1, self.date2))
                 elif self.date2.get_modifier() == Date.MOD_BEFORE:
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, -Span.BEFORE)
                     self.minmax = (v, v + Span.BEFORE)
-                    #self.repr = "more than " + self._format(self._diff(self.date1, self.date2))
                 elif self.date2.get_modifier() == Date.MOD_AFTER:
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, -Span.AFTER)
                     self.minmax = (0, v)
-                    #self.repr = "less than " + self._format(self._diff(self.date1, self.date2))
                 elif self.date2.get_modifier() == Date.MOD_ABOUT:
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, -Span.ABOUT)
                     self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                    #self.repr = "about " + self._format(self._diff(self.date1, self.date2))
                 elif (self.date2.get_modifier() == Date.MOD_RANGE or 
                       self.date2.get_modifier() == Date.MOD_SPAN):
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, -Span.ABOUT)
                     self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                    #self.repr = "more than " + self._format(self._diff(self.date1, self.date2))
             elif self.date1.get_modifier() == Date.MOD_AFTER:    # AFTER----------------------------
                 if   self.date2.get_modifier() == Date.MOD_NONE:
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, Span.AFTER)
                     self.minmax = (v, v + Span.AFTER)
-                    #self.repr = "more than " + self._format(self._diff(self.date1, self.date2))
                 elif self.date2.get_modifier() == Date.MOD_BEFORE:
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, Span.AFTER)
                     self.minmax = (v - Span.BEFORE, v + Span.AFTER)
-                    #self.repr = "more than " + self._format(self._diff(self.date1, self.date2))
                 elif self.date2.get_modifier() == Date.MOD_AFTER:
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, Span.AFTER)
                     self.minmax = (v, v + Span.AFTER)
-                    #self.repr = "more than " + self._format(self._diff(self.date1, self.date2))
                 elif self.date2.get_modifier() == Date.MOD_ABOUT:
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, -Span.ABOUT)
                     self.minmax = (v - Span.ABOUT, v + Span.AFTER)
-                    #self.repr = "more than about " + self._format(self._diff(self.date1, self.date2))
                 elif (self.date2.get_modifier() == Date.MOD_RANGE or 
                       self.date2.get_modifier() == Date.MOD_SPAN):
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, -Span.ABOUT)
                     self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                    #self.repr = "more than " + self._format(self._diff(self.date1, self.date2))
             elif self.date1.get_modifier() == Date.MOD_ABOUT: # ABOUT----------------------------
                 if   self.date2.get_modifier() == Date.MOD_NONE:
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, -Span.ABOUT)
                     self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                    #self.repr = "about " + self._format(self._diff(self.date1, self.date2))
                 elif self.date2.get_modifier() == Date.MOD_BEFORE:
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, -Span.BEFORE)
                     self.minmax = (v - Span.BEFORE, v + Span.ABOUT)
-                    #self.repr = "more than " + self._format(self._diff(self.date1, self.date2))
                 elif self.date2.get_modifier() == Date.MOD_AFTER:
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, Span.AFTER)
                     self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                    #self.repr = "less than about " + self._format(self._diff(self.date1, self.date2))
                 elif self.date2.get_modifier() == Date.MOD_ABOUT:
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, -Span.ABOUT)
                     self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                    #self.repr = "about " + self._format(self._diff(self.date1, self.date2))
                 elif (self.date2.get_modifier() == Date.MOD_RANGE or 
                       self.date2.get_modifier() == Date.MOD_SPAN):
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, -Span.ABOUT)
                     self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                    #self.repr = "about " + self._format(self._diff(self.date1, self.date2))
             elif (self.date1.get_modifier() == Date.MOD_RANGE or 
                   self.date1.get_modifier() == Date.MOD_SPAN): # SPAN----------------------------
                 if   self.date2.get_modifier() == Date.MOD_NONE:
@@ -227,23 +205,18 @@ class Span(object):
                     v2 = self.date2.sortval - stop.sortval # max
                     self.sort = (v1, v2 - v1)
                     self.minmax = (v1, v2)
-                    #self.repr = ("between " + self._format(self._diff(start, self.date2)) + 
-                    #             " and " + self._format(self._diff(stop, self.date2)))
                 elif self.date2.get_modifier() == Date.MOD_BEFORE:
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, Span.BEFORE)
                     self.minmax = (v - Span.BEFORE, v + Span.BEFORE)
-                    #self.repr = "more than " + self._format(self._diff(self.date1, self.date2))
                 elif self.date2.get_modifier() == Date.MOD_AFTER:
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, -Span.AFTER)
                     self.minmax = (v - Span.AFTER, v + Span.AFTER)
-                    #self.repr = "less than " + self._format(self._diff(self.date1, self.date2))
                 elif self.date2.get_modifier() == Date.MOD_ABOUT:
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, -Span.ABOUT)
                     self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                    #self.repr = "about " + self._format(self._diff(self.date1, self.date2))
                 elif (self.date2.get_modifier() == Date.MOD_RANGE or 
                       self.date2.get_modifier() == Date.MOD_SPAN):
                     start1, stop1 = self.date1.get_start_stop_range()
@@ -256,8 +229,6 @@ class Span(object):
                     v2 = stop1.sortval - start2.sortval # max
                     self.sort = (v1, v2 - v1)
                     self.minmax = (v1, v2)
-                    #self.repr = ("between " + self._format(self._diff(start1, stop2)) + 
-                    #             " and " + self._format(self._diff(stop1, start2)))
 
     def is_valid(self):
         return self.valid
@@ -290,154 +261,99 @@ class Span(object):
         else:
             return cmp(int(self), int(other))
 
+    def as_age(self):
+        """
+        Get Span as an age (will not return more than Span.ALIVE).
+        """
+        return self.get_repr(as_age=True)
+
+    def as_time(self):
+        """
+        Get Span as a time (can be greater than Span.ALIVE).
+        """
+        return self.get_repr(as_age=False)
+
     def __repr__(self):
-        if self.repr is not None:
-            return self.repr
-        elif self.valid:
-            # TO_REWRITE: bug #5293 !
-            if self._diff(self.date1, self.date2)[0] > Span.ALIVE:
-                return _("less than %s years") % Span.ALIVE
-            if self.date1.get_modifier() == Date.MOD_NONE:
+        """
+        Get the Span as an age. Use Span.as_time() to get as a textual
+        description of time greater than Span.ALIVE.
+        """
+        return self.get_repr(as_age=True)
+
+    def get_repr(self, as_age=False):
+        """
+        Get the representation as a time or age.
+        """
+        _repr = _("unknown")
+        if self.valid:
+            if as_age and self._diff(self.date1, self.date2)[0] > Span.ALIVE:
+                _repr = _("less than %s years") % Span.ALIVE
+            elif self.date1.get_modifier() == Date.MOD_NONE:
                 if self.date2.get_modifier() == Date.MOD_NONE:
-                    #v = self.date1.sortval - self.date2.sortval
-                    #self.sort = (v, 0)
-                    #self.minmax = (v, v)
-                    self.repr = self._format(self._diff(self.date1, self.date2))
+                    _repr = self._format(self._diff(self.date1, self.date2))
                 elif self.date2.get_modifier() == Date.MOD_BEFORE:
-                    #v = self.date1.sortval - self.date2.sortval
-                    #self.sort = (v, -Span.BEFORE)
-                    #self.minmax = (v - Span.BEFORE, v)
-                    self.repr = _("more than") + " " + self._format(self._diff(self.date1, self.date2))
+                    _repr = _("more than") + " " + self._format(self._diff(self.date1, self.date2))
                 elif self.date2.get_modifier() == Date.MOD_AFTER:
-                    #v = self.date1.sortval - self.date2.sortval
-                    #self.sort = (v, Span.AFTER)
-                    #self.minmax = (v, v + Span.AFTER)
-                    self.repr = _("less than") + " " + self._format(self._diff(self.date1, self.date2))
+                    _repr = _("less than") + " " + self._format(self._diff(self.date1, self.date2))
                 elif self.date2.get_modifier() == Date.MOD_ABOUT:
-                    #v = self.date1.sortval - self.date2.sortval
-                    #self.sort = (v, -Span.ABOUT)
-                    #self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                    # TO_FIX: bug #5293 !
-                    self.repr = _("age|about") + " " + self._format(self._diff(self.date1, self.date2)).format(precision=1)
+                    _repr = _("age|about") + " " + self._format(self._diff(self.date1, self.date2)).format(precision=1)
                 elif (self.date2.get_modifier() == Date.MOD_RANGE or 
                       self.date2.get_modifier() == Date.MOD_SPAN):
                     start, stop = self.date2.get_start_stop_range()
                     start = Date(*start)
                     stop = Date(*stop)
-                    #v1 = self.date1.sortval - stop.sortval  # min
-                    #v2 = self.date1.sortval - start.sortval # max
-                    #self.sort = (v1, v2 - v1)
-                    #self.minmax = (v1, v2)
-                    self.repr = (_("between") + " " + self._format(self._diff(self.date1, stop)) + 
+                    _repr = (_("between") + " " + self._format(self._diff(self.date1, stop)) + 
                                  " " + _("and") + " " + self._format(self._diff(self.date1, start)))
             elif self.date1.get_modifier() == Date.MOD_BEFORE: # BEFORE----------------------------
                 if   self.date2.get_modifier() == Date.MOD_NONE:
-                    #v = self.date1.sortval - self.date2.sortval
-                    #self.sort = (v, 0)
-                    #self.minmax = (0, v)
-                    self.repr = _("less than") + " " + self._format(self._diff(self.date1, self.date2))
+                    _repr = _("less than") + " " + self._format(self._diff(self.date1, self.date2))
                 elif self.date2.get_modifier() == Date.MOD_BEFORE:
-                    #v = self.date1.sortval - self.date2.sortval
-                    #self.sort = (v, -Span.BEFORE)
-                    #self.minmax = (v, v + Span.BEFORE)
-                    self.repr = self._format((-1, -1 , -1))
+                    _repr = self._format((-1, -1 , -1))
                 elif self.date2.get_modifier() == Date.MOD_AFTER:
-                    #v = self.date1.sortval - self.date2.sortval
-                    #self.sort = (v, -Span.AFTER)
-                    #self.minmax = (0, v)
-                    self.repr = _("less than") + " " + self._format(self._diff(self.date1, self.date2))
+                    _repr = _("less than") + " " + self._format(self._diff(self.date1, self.date2))
                 elif self.date2.get_modifier() == Date.MOD_ABOUT:
-                    #v = self.date1.sortval - self.date2.sortval
-                    #self.sort = (v, -Span.ABOUT)
-                    #self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                    self.repr = _("less than about") + " " + self._format(self._diff(self.date1, self.date2))
+                    _repr = _("less than about") + " " + self._format(self._diff(self.date1, self.date2))
                 elif (self.date2.get_modifier() == Date.MOD_RANGE or 
                       self.date2.get_modifier() == Date.MOD_SPAN):
-                    #v = self.date1.sortval - self.date2.sortval
-                    #self.sort = (v, -Span.ABOUT)
-                    #self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                    self.repr = _("less than") + " " + self._format(self._diff(self.date1, self.date2))
+                    _repr = _("less than") + " " + self._format(self._diff(self.date1, self.date2))
             elif self.date1.get_modifier() == Date.MOD_AFTER:    # AFTER----------------------------
                 if   self.date2.get_modifier() == Date.MOD_NONE:
-                    #v = self.date1.sortval - self.date2.sortval
-                    #self.sort = (v, Span.AFTER)
-                    #self.minmax = (v, v + Span.AFTER)
-                    self.repr = _("more than") + " " + self._format(self._diff(self.date1, self.date2))
+                    _repr = _("more than") + " " + self._format(self._diff(self.date1, self.date2))
                 elif self.date2.get_modifier() == Date.MOD_BEFORE:
-                    #v = self.date1.sortval - self.date2.sortval
-                    #self.sort = (v, Span.AFTER)
-                    #self.minmax = (v - Span.BEFORE, v + Span.AFTER)
-                    self.repr = _("more than") + " " + self._format(self._diff(self.date1, self.date2))
+                    _repr = _("more than") + " " + self._format(self._diff(self.date1, self.date2))
                 elif self.date2.get_modifier() == Date.MOD_AFTER:
-                    #v = self.date1.sortval - self.date2.sortval
-                    #self.sort = (v, Span.AFTER)
-                    #self.minmax = (v, v + Span.AFTER)
-                    self.repr = self._format((-1, -1 , -1))
+                    _repr = self._format((-1, -1 , -1))
                 elif self.date2.get_modifier() == Date.MOD_ABOUT:
-                    #v = self.date1.sortval - self.date2.sortval
-                    #self.sort = (v, -Span.ABOUT)
-                    #self.minmax = (v - Span.ABOUT, v + Span.AFTER)
-                    self.repr = _("more than about") + " " +  self._format(self._diff(self.date1, self.date2)).format(precision=1)
+                    _repr = _("more than about") + " " +  self._format(self._diff(self.date1, self.date2)).format(precision=1)
                 elif (self.date2.get_modifier() == Date.MOD_RANGE or 
                       self.date2.get_modifier() == Date.MOD_SPAN):
-                    #v = self.date1.sortval - self.date2.sortval
-                    #self.sort = (v, -Span.ABOUT)
-                    #self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                    self.repr = _("more than") + " " + self._format(self._diff(self.date1, self.date2))
+                    _repr = _("more than") + " " + self._format(self._diff(self.date1, self.date2))
             elif self.date1.get_modifier() == Date.MOD_ABOUT: # ABOUT----------------------------
                 if   self.date2.get_modifier() == Date.MOD_NONE:
-                    #v = self.date1.sortval - self.date2.sortval
-                    #self.sort = (v, -Span.ABOUT)
-                    #self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                    self.repr = _("age|about") + " " + self._format(self._diff(self.date1, self.date2)).format(precision=1)
+                    _repr = _("age|about") + " " + self._format(self._diff(self.date1, self.date2)).format(precision=1)
                 elif self.date2.get_modifier() == Date.MOD_BEFORE:
-                    #v = self.date1.sortval - self.date2.sortval
-                    #self.sort = (v, -Span.BEFORE)
-                    #self.minmax = (v - Span.BEFORE, v + Span.ABOUT)
-                    self.repr =  _("more than about") + " " + self._format(self._diff(self.date1, self.date2)).format(precision=1)
+                    _repr =  _("more than about") + " " + self._format(self._diff(self.date1, self.date2)).format(precision=1)
                 elif self.date2.get_modifier() == Date.MOD_AFTER:
-                    #v = self.date1.sortval - self.date2.sortval
-                    #self.sort = (v, Span.AFTER)
-                    #self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                    self.repr =  _("less than about") + " " + self._format(self._diff(self.date1, self.date2)).format(precision=1)
+                    _repr =  _("less than about") + " " + self._format(self._diff(self.date1, self.date2)).format(precision=1)
                 elif self.date2.get_modifier() == Date.MOD_ABOUT:
-                    #v = self.date1.sortval - self.date2.sortval
-                    #self.sort = (v, -Span.ABOUT)
-                    #self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                    self.repr =  _("age|about") + " " + self._format(self._diff(self.date1, self.date2)).format(precision=1)
+                    _repr =  _("age|about") + " " + self._format(self._diff(self.date1, self.date2)).format(precision=1)
                 elif (self.date2.get_modifier() == Date.MOD_RANGE or 
                       self.date2.get_modifier() == Date.MOD_SPAN):
-                    #v = self.date1.sortval - self.date2.sortval
-                    #self.sort = (v, -Span.ABOUT)
-                    #self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                    self.repr =  _("age|about") + " " + self._format(self._diff(self.date1, self.date2)).format(precision=1)
+                    _repr =  _("age|about") + " " + self._format(self._diff(self.date1, self.date2)).format(precision=1)
             elif (self.date1.get_modifier() == Date.MOD_RANGE or 
                   self.date1.get_modifier() == Date.MOD_SPAN): # SPAN----------------------------
                 if   self.date2.get_modifier() == Date.MOD_NONE:
                     start, stop = self.date1.get_start_stop_range()
                     start = Date(*start)
                     stop = Date(*stop)
-                    #v1 = self.date2.sortval - start.sortval  # min
-                    #v2 = self.date2.sortval - stop.sortval # max
-                    #self.sort = (v1, v2 - v1)
-                    #self.minmax = (v1, v2)
-                    self.repr = (_("between") + " " + self._format(self._diff(start, self.date2)) + 
+                    _repr = (_("between") + " " + self._format(self._diff(start, self.date2)) + 
                                  " " + _("and") + " " + self._format(self._diff(stop, self.date2)))
                 elif self.date2.get_modifier() == Date.MOD_BEFORE:
-                    #v = self.date1.sortval - self.date2.sortval
-                    #self.sort = (v, Span.BEFORE)
-                    #self.minmax = (v - Span.BEFORE, v + Span.BEFORE)
-                    self.repr = _("more than") + " " + self._format(self._diff(self.date1, self.date2))
+                    _repr = _("more than") + " " + self._format(self._diff(self.date1, self.date2))
                 elif self.date2.get_modifier() == Date.MOD_AFTER:
-                    #v = self.date1.sortval - self.date2.sortval
-                    #self.sort = (v, -Span.AFTER)
-                    #self.minmax = (v - Span.AFTER, v + Span.AFTER)
-                    self.repr = _("less than") + " " + self._format(self._diff(self.date1, self.date2))
+                    _repr = _("less than") + " " + self._format(self._diff(self.date1, self.date2))
                 elif self.date2.get_modifier() == Date.MOD_ABOUT:
-                    #v = self.date1.sortval - self.date2.sortval
-                    #self.sort = (v, -Span.ABOUT)
-                    #self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                    self.repr =  _("age|about") + " " + self._format(self._diff(self.date1, self.date2)).format(precision=1)
+                    _repr =  _("age|about") + " " + self._format(self._diff(self.date1, self.date2)).format(precision=1)
                 elif (self.date2.get_modifier() == Date.MOD_RANGE or 
                       self.date2.get_modifier() == Date.MOD_SPAN):
                     start1, stop1 = self.date1.get_start_stop_range()
@@ -446,15 +362,9 @@ class Span(object):
                     start2 = Date(*start2)
                     stop1 = Date(*stop1)
                     stop2 = Date(*stop2)
-                    #v1 = start1.sortval - stop2.sortval  # min
-                    #v2 = stop1.sortval - start2.sortval # max
-                    #self.sort = (v1, v2 - v1)
-                    #self.minmax = (v1, v2)
-                    self.repr = (_("between") + " " + self._format(self._diff(start1, stop2)) + 
+                    _repr = (_("between") + " " + self._format(self._diff(start1, stop2)) + 
                                  " " + _("and") + " " + self._format(self._diff(stop1, start2)))
-            return self.repr
-        else:
-            return _("unknown")
+        return _repr
 
     def __eq__(self, other):
         """
@@ -480,16 +390,15 @@ class Span(object):
             return True
         return int(self) > int(other)
 
-    def format(self, precision=2):
+    def format(self, precision=2, as_age=True):
         """
         Force a string representation at a level of precision. 
         1 = only most significant level (year, month, day)
         2 = only most two significant levels (year, month, day)
         3 = at most three items of signifance (year, month, day)
         """
-        self.repr = None
         self.precision = precision
-        return repr(self)
+        return self.__repr__(self, as_age)
 
     def _format(self, diff_tuple):
         if diff_tuple == (-1, -1, -1): return _("unknown")
