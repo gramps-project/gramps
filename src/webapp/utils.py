@@ -211,7 +211,7 @@ class Table(object):
                 self.doc = doc
                 self.doc.set_link_attrs({"class": "browsecell"})
         # None is paperstyle, which is ignored:
-        self.doc =  Doc(HtmlDoc.HtmlDoc(
+        self.doc =  Doc(HtmlDoc(
                 make_basic_stylesheet(
                     Table={"set_width":95}, 
                     TableHeaderCell={"set_bottom_border": True,
