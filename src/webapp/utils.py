@@ -1071,7 +1071,7 @@ def update_last_changed(obj, user):
 register_plugins()
 
 # works after registering plugins:
-import HtmlDoc 
+from htmldoc import HtmlDoc 
 from libhtmlbackend import HtmlBackend, DocBackend, process_spaces
 from libhtml import Html
 
