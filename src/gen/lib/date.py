@@ -398,7 +398,7 @@ class Span(object):
         3 = at most three items of signifance (year, month, day)
         """
         self.precision = precision
-        return self.__repr__(self, as_age)
+        return self.get_repr(as_age)
 
     def _format(self, diff_tuple):
         if diff_tuple == (-1, -1, -1): return _("unknown")
