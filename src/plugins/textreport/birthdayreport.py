@@ -2,8 +2,9 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008-2009  Brian G. Matherly
-# Copyright (C) 2009           Rob G. Healey <robhealey1@gmail.com>
+# Copyright (C) 2009       Rob G. Healey <robhealey1@gmail.com>
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2012       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -56,12 +57,12 @@ import libholiday
 
 #------------------------------------------------------------------------
 #
-# Calendar
+# BirthdayReport
 #
 #------------------------------------------------------------------------
-class CalendarReport(Report):
+class BirthdayReport(Report):
     """
-    Create the Calendar object that produces the report.
+    Create the BirthdayReport object that produces the report.
     """
     def __init__(self, database, options, user):
         Report.__init__(self, database, options, user)
@@ -344,10 +345,10 @@ class CalendarReport(Report):
 
 #------------------------------------------------------------------------
 #
-# CalendarOptions
+# BirthdayOptions
 #
 #------------------------------------------------------------------------
-class CalendarOptions(MenuReportOptions):
+class BirthdayOptions(MenuReportOptions):
     """ Options for the Birthday/Anniversary Report """
     def __init__(self, name, dbase):
         self.__db = dbase
@@ -356,17 +357,17 @@ class CalendarOptions(MenuReportOptions):
         MenuReportOptions.__init__(self, name, dbase)
     
     def add_menu_options(self, menu):
-        """ Add the options for the graphical calendar """
+        """ Add the options for the text birthday report """
         category_name = _("Report Options")
 
-        year = NumberOption(_("Year of calendar"), time.localtime()[0], 
+        year = NumberOption(_("Year of report"), time.localtime()[0], 
                             1000, 3000)
-        year.set_help(_("Year of calendar"))
+        year.set_help(_("Year of report"))
         menu.add_option(category_name, "year", year)
 
         self.__filter = FilterOption(_("Filter"), 0)
         self.__filter.set_help(
-               _("Select filter to restrict people that appear on calendar"))
+               _("Select filter to restrict people that appear on report"))
         menu.add_option(category_name, "filter", self.__filter)
         
         self.__pid = PersonOption(_("Center Person"))
@@ -402,7 +403,7 @@ class CalendarOptions(MenuReportOptions):
         for count in range(1, 8):
             # conversion between gramps numbering (sun=1) and iso numbering (mon=1) of weekdays below
             start_dow.add_item((count+5) % 7 + 1, long_days[count].capitalize()) 
-        start_dow.set_help(_("Select the first day of the week for the calendar"))
+        start_dow.set_help(_("Select the first day of the week for the report"))
         menu.add_option(category_name, "start_dow", start_dow) 
 
         maiden_name = EnumeratedListOption(_("Birthday surname"), "own")
@@ -413,15 +414,15 @@ class CalendarOptions(MenuReportOptions):
         menu.add_option(category_name, "maiden_name", maiden_name)
 
         alive = BooleanOption(_("Include only living people"), True)
-        alive.set_help(_("Include only living people in the calendar"))
+        alive.set_help(_("Include only living people in the report"))
         menu.add_option(category_name, "alive", alive)
 
         birthdays = BooleanOption(_("Include birthdays"), True)
-        birthdays.set_help(_("Include birthdays in the calendar"))
+        birthdays.set_help(_("Include birthdays in the report"))
         menu.add_option(category_name, "birthdays", birthdays)
 
         anniversaries = BooleanOption(_("Include anniversaries"), True)
-        anniversaries.set_help(_("Include anniversaries in the calendar"))
+        anniversaries.set_help(_("Include anniversaries in the report"))
         menu.add_option(category_name, "anniversaries", anniversaries)
         
         option = BooleanOption(_("Include relationships to center person"), 
@@ -433,19 +434,19 @@ class CalendarOptions(MenuReportOptions):
         
         titletext = StringOption(_("Title text"), 
                                  _("Birthday and Anniversary Report"))
-        titletext.set_help(_("Title of calendar"))
+        titletext.set_help(_("Title of report"))
         menu.add_option(category_name, "titletext", titletext)
 
-        text1 = StringOption(_("Text Area 1"), _("My Calendar")) 
-        text1.set_help(_("First line of text at bottom of calendar"))
+        text1 = StringOption(_("Text Area 1"), _("My Birthday Report")) 
+        text1.set_help(_("First line of text at bottom of report"))
         menu.add_option(category_name, "text1", text1)
 
         text2 = StringOption(_("Text Area 2"), _("Produced with Gramps"))
-        text2.set_help(_("Second line of text at bottom of calendar"))
+        text2.set_help(_("Second line of text at bottom of report"))
         menu.add_option(category_name, "text2", text2)
 
         text3 = StringOption(_("Text Area 3"), "http://gramps-project.org/",)
-        text3.set_help(_("Third line of text at bottom of calendar"))
+        text3.set_help(_("Third line of text at bottom of report"))
         menu.add_option(category_name, "text3", text3)
         
     def __update_filters(self):

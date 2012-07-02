@@ -60,8 +60,8 @@ plg.ptype = REPORT
 plg.authors = ["Douglas S. Blank"]
 plg.authors_email = ["dblank@cs.brynmawr.edu"]
 plg.category = CATEGORY_TEXT
-plg.reportclass = 'CalendarReport'
-plg.optionclass = 'CalendarOptions'
+plg.reportclass = 'BirthdayReport'
+plg.optionclass = 'BirthdayOptions'
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
 
 #------------------------------------------------------------------------
