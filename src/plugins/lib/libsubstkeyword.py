@@ -816,15 +816,14 @@ class VariableParse(object):
         return None
     
     def __parse_photo(self, person_or_marriage):
-        if person_or_marriage is None:
-            return
-        photo = self.__get_photo(person_or_marriage)
         photo_f = GalleryFormat(self.database, self._in)
+        if person_or_marriage is None:
+            return photo_f.parse_empty()
+        photo = self.__get_photo(person_or_marriage)
         if photo:
             return photo_f.parse_format(photo)
         else:
-            photo_f.parse_empty()
-            return
+            return photo_f.parse_empty()
     
     def parse_format(self):
         """Parse the $ variables. """
