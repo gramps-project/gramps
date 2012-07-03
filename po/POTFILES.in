@@ -509,7 +509,7 @@ src/plugins/docgen/svgdrawdoc.py
 
 # plugins/drawreport directory
 src/plugins/drawreport/ancestortree.py
-src/plugins/drawreport/calendar.py
+src/plugins/drawreport/calendarreport.py
 src/plugins/drawreport/descendtree.py
 src/plugins/drawreport/drawplugins.gpr.py
 src/plugins/drawreport/fanchart.py
