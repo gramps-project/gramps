@@ -657,7 +657,9 @@ class OptionHandler(_options.OptionHandler):
 
     def get_stylesheet_savefile(self):
         """Where to save user defined styles for this report."""
-        filename = "%s.xml" % self.module_name
+        # Get the first part of name, if it contains a comma:
+        # (will just be module_name, if no comma)
+        filename = "%s.xml" % self.module_name.split(",")[0]
         return os.path.join(HOME_DIR, filename) 
 
     def get_default_stylesheet_name(self):
