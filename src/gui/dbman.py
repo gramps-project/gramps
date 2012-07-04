@@ -377,7 +377,7 @@ class DbManager(CLIDbManager):
               "the database and you break the lock, you may corrupt the "
               "database."),
             _("Break lock"),
-            self.__really_break_lock)
+            self.__really_break_lock, self.top)
 
     def __really_break_lock(self):
         """
@@ -613,8 +613,7 @@ class DbManager(CLIDbManager):
         store, node = self.selection.get_selected()
         path = self.model.get_path(node)
         self.name_renderer.set_property('editable', True)
-        self.dblist.set_cursor(path, focus_column=self.column, 
-                               start_editing=True)
+        self.dblist.set_cursor(path, self.column, True)
 
     def __repair_db(self, obj):
         """
@@ -727,8 +726,7 @@ class DbManager(CLIDbManager):
         self.selection.select_iter(node)
         path = self.model.get_path(node)
         self.name_renderer.set_property('editable', True)
-        self.dblist.set_cursor(path, focus_column=self.column, 
-                               start_editing=True)
+        self.dblist.set_cursor(path, self.column, True)
         return new_path, title
 
     def __drag_data_received(self, widget, context, xpos, ypos, selection, 

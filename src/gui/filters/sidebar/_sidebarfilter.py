@@ -80,7 +80,7 @@ class SidebarFilter(DbGUIElement):
         label = Gtk.Label(label=_('Reset'))
         label.show()
         hbox.pack_start(image, False, False, 0)
-        hbox.pack_start(label, False, True)
+        hbox.pack_start(label, False, True, 0)
         hbox.set_spacing(4)
         
         self.clear_btn.add(hbox)
