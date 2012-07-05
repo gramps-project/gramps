@@ -58,8 +58,10 @@ from gen.config import config
 from gen.errors import WindowActiveError
 from gui.filters import SearchBar
 from gui.utils import add_menuitem
-import const
-import Utils
+from gen.const import CUSTOM_FILTERS, USE_TIPS
+from gen.utils.debug import profile
+from gen.utils.string import data_recover_msg
+from gen.utils.file import get_unicode_path_from_file_chooser
 from gui.dialog import QuestionDialog, QuestionDialog2
 from gui.editors import FilterEditor
 from gen.ggettext import sgettext as _
@@ -263,7 +265,7 @@ class ListView(NavigationView):
                                          self.model.total())
 
     def __build_tree(self):
-        Utils.profile(self._build_tree)
+        profile(self._build_tree)
 
     def build_tree(self, force_sidebar=False):
         if self.active:
@@ -296,7 +298,7 @@ class ListView(NavigationView):
             self.__display_column_sort()
             self.goto_active(None)
 
-            if const.USE_TIPS and self.model.tooltip_column() is not None:
+            if USE_TIPS and self.model.tooltip_column() is not None:
                 self.list.set_tooltip_column(self.model.tooltip_column())
 
             self.dirty = False
@@ -331,7 +333,7 @@ class ListView(NavigationView):
 
     def filter_editor(self, obj):
         try:
-            FilterEditor(self.FILTER_TYPE , const.CUSTOM_FILTERS, 
+            FilterEditor(self.FILTER_TYPE , CUSTOM_FILTERS, 
                          self.dbstate, self.uistate)
         except WindowActiveError:
             return
@@ -519,7 +521,7 @@ class ListView(NavigationView):
                 else:
                     msg = _('Deleting item will remove it from the database.')
                 
-                msg += ' ' + Utils.data_recover_msg
+                msg += ' ' + data_recover_msg
                 #descr = object.get_description()
                 #if descr == "":
                 descr = object.get_gramps_id()
@@ -943,7 +945,7 @@ class ListView(NavigationView):
         while True:
             value = chooser.run()
             fn = chooser.get_filename()
-            fn = Utils.get_unicode_path_from_file_chooser(fn)
+            fn = get_unicode_path_from_file_chooser(fn)
             fl = combobox.get_active()
             if value == Gtk.ResponseType.OK:
                 if fn:
@@ -960,7 +962,7 @@ class ListView(NavigationView):
         
         The output file type is determined by the type variable.
         """
-        from docgen import CSVTab, ODSTab
+        from gen.utils.docgen import CSVTab, ODSTab
         ofile = None
         data_cols = [pair[1] for pair in self.column_order() if pair[0]]
 

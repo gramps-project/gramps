@@ -47,7 +47,8 @@ import gen.lib
 from gen.db import DbTxn
 import gen.mime
 from gui.thumbnails import get_thumbnail_image, find_mime_type_pixbuf
-import Utils
+from gen.utils.file import (media_path_full, find_file, 
+                            get_unicode_path_from_file_chooser)
 from editprimary import EditPrimary
 from gui.widgets import (MonitoredDate, MonitoredEntry, PrivacyButton,
                          MonitoredTagList)
@@ -156,10 +157,10 @@ class EditMedia(EditPrimary):
             self.mimetext.set_text(descr)
 
         path = self.file_path.get_text()
-        path_full = Utils.media_path_full(self.db, path)
+        path_full = media_path_full(self.db, path)
         if path != self.obj.get_path() and path_full != self.obj.get_path():
             #redetermine mime
-            mime = gen.mime.get_type(Utils.find_file(path_full))
+            mime = gen.mime.get_type(find_file(path_full))
             self.obj.set_mime_type(mime)
             descr = gen.mime.get_description(mime)
             if descr:
@@ -174,7 +175,7 @@ class EditMedia(EditPrimary):
         mtype = self.obj.get_mime_type()
         if mtype:
             pb = get_thumbnail_image(
-                        Utils.media_path_full(self.db, self.obj.get_path()), 
+                        media_path_full(self.db, self.obj.get_path()), 
                         mtype)
             self.pixmap.set_from_pixbuf(pb)
         else:
@@ -238,14 +239,14 @@ class EditMedia(EditPrimary):
         ref_obj = self.dbstate.db.get_object_from_handle(self.obj.handle)
 
         if ref_obj:
-            media_path = Utils.media_path_full(self.dbstate.db,
+            media_path = media_path_full(self.dbstate.db,
                                                ref_obj.get_path())
             open_file_with_default_application(media_path)
 
     def select_file(self, val):
         self.determine_mime()
         path = self.file_path.get_text()
-        self.obj.set_path(Utils.get_unicode_path_from_file_chooser(path))
+        self.obj.set_path(get_unicode_path_from_file_chooser(path))
         AddMediaObject(self.dbstate, self.uistate, self.track, self.obj, 
                        self._update_addmedia)
 
@@ -289,7 +290,7 @@ class EditMedia(EditPrimary):
         path = self.file_path.get_text()
         self.determine_mime()
 
-        self.obj.set_path(Utils.get_unicode_path_from_file_chooser(path))
+        self.obj.set_path(get_unicode_path_from_file_chooser(path))
 
         with DbTxn('', self.db) as trans:
             if not self.obj.get_handle():

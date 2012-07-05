@@ -35,7 +35,6 @@ import os
 import sys
 import time
 import urlparse
-import const
 import operator
 import locale
 from Gdk.KEY_import Tab as KEY_TAB
@@ -56,7 +55,6 @@ _LOG = logging.getLogger("GeoGraphy.geoplaces")
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import Utils
 from gen.config import config
 from gen.display.name import displayer as _nd
 from gen.utils.place import conv_lat_lon
@@ -66,7 +64,6 @@ from gui.selectors.selectplace import SelectPlace
 from gui.filters.sidebar import PlaceSidebarFilter
 from gui.views.navigationview import NavigationView
 from gui.views.bookmarks import PlaceBookmarks
-from Utils import navigation_label
 from maps.geography import GeoGraphyView
 
 #-------------------------------------------------------------------------

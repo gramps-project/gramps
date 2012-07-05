@@ -74,9 +74,8 @@ if not GObject.pygobject_version >= MIN_PYGOBJECT_VERSION :
 #
 #-------------------------------------------------------------------------
 from gen.config import config
-import const
+from gen.const import DATA_DIR, IMAGE_DIR
 from gen.constfunc import has_display, win
-import Utils
 
 #-------------------------------------------------------------------------
 #
@@ -94,24 +93,24 @@ def register_stock_icons ():
     #iconpath to the base image. The front of the list has highest priority
     if win():
         iconpaths = [
-                    (os.path.join(const.IMAGE_DIR, '48x48'), '.png'),
-                    (const.IMAGE_DIR, '.png'),
+                    (os.path.join(IMAGE_DIR, '48x48'), '.png'),
+                    (IMAGE_DIR, '.png'),
                     ]
     else :
         iconpaths = [
-                    (os.path.join(const.IMAGE_DIR, 'scalable'), '.svg'),
-                    (const.IMAGE_DIR, '.svg'), (const.IMAGE_DIR, '.png'),
+                    (os.path.join(IMAGE_DIR, 'scalable'), '.svg'),
+                    (IMAGE_DIR, '.svg'), (IMAGE_DIR, '.png'),
                     ]
 
     #sizes: menu=16, small_toolbar=18, large_toolbar=24,
     #       button=20, dnd=32, dialog=48
     #add to the back of this list to overrule images set at beginning of list
     extraiconsize = [
-                    (os.path.join(const.IMAGE_DIR, '22x22'),
+                    (os.path.join(IMAGE_DIR, '22x22'),
                             Gtk.IconSize.LARGE_TOOLBAR),
-                    (os.path.join(const.IMAGE_DIR, '16x16'),
+                    (os.path.join(IMAGE_DIR, '16x16'),
                             Gtk.IconSize.MENU),
-                    (os.path.join(const.IMAGE_DIR, '22x22'),
+                    (os.path.join(IMAGE_DIR, '22x22'),
                             Gtk.IconSize.BUTTON),
                     ]
 
@@ -346,6 +345,6 @@ def startgtkloop(errors, argparser):
     GObject.threads_init()
 
     GObject.timeout_add(100, __startgramps, errors, argparser, priority=100)
-    if os.path.exists(os.path.join(const.DATA_DIR, "gramps.accel")):
-        Gtk.AccelMap.load(os.path.join(const.DATA_DIR, "gramps.accel"))
+    if os.path.exists(os.path.join(DATA_DIR, "gramps.accel")):
+        Gtk.AccelMap.load(os.path.join(DATA_DIR, "gramps.accel"))
     Gtk.main()

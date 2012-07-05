@@ -41,7 +41,7 @@ from collections import defaultdict
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import PLUGINS_GLADE
 from gen.plug.report._constants import standalone_categories
 from gui.plug import tool
 from gen.plug import REPORT
@@ -89,7 +89,7 @@ class PluginDialog(ManagedWindow):
         self.uistate = uistate
         
         self.dialog = Gtk.Builder()
-        self.dialog.add_from_file(const.PLUGINS_GLADE)
+        self.dialog.add_from_file(PLUGINS_GLADE)
         self.dialog.connect_signals({
             "on_report_apply_clicked" : self.on_apply_clicked,
             "destroy_passed_object"   : self.close,

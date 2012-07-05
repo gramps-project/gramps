@@ -42,7 +42,7 @@ from gen.ggettext import gettext as _
 #
 #------------------------------------------------------------------------
 import gen.datehandler
-from Utils import media_path_full
+from gen.utils.file import media_path_full
 from gen.plug.docgen import IndexMark, INDEX_TYPE_ALP
    
 #-------------------------------------------------------------------------

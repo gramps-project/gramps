@@ -49,7 +49,6 @@ from gi.repository import Gtk
 import gen.lib
 from gui.views.listview import ListView
 from gui.views.treemodels import EventModel
-import Utils
 from gen.errors import WindowActiveError
 from gui.views.bookmarks import EventBookmarks
 from gen.config import config

@@ -46,7 +46,7 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import Utils
+import gen.datehandler
 from gen.utils.place import conv_lat_lon
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
 from gui.views.treemodels.treebasemodel import TreeBaseModel
@@ -222,7 +222,7 @@ class PlaceBaseModel(object):
         return "%012x" % data[11]
     
     def column_change(self, data):
-        return Utils.format_time(data[11])
+        return gen.datehandler.format_time(data[11])
 
     def column_tooltip(self, data):
         return u'Place tooltip'

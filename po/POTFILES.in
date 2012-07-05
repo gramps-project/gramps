@@ -2,11 +2,7 @@
 #
 #   Python files
 #
-src/const.py
 src/gramps.py
-src/LdsUtils.py
-src/TransUtils.py
-src/Utils.py
 
 # cli
 src/cli/arghandler.py
@@ -16,6 +12,7 @@ src/cli/grampscli.py
 src/cli/plug/__init__.py
 
 # gen
+src/gen/const.py
 src/gen/relationship.py
 
 # gen db API
@@ -325,7 +322,12 @@ src/gen/simple/_simpletable.py
 
 # gen.utils
 src/gen/utils/alive.py
+src/gen/utils/keyword.py
+src/gen/utils/lds.py
 src/gen/utils/place.py
+src/gen/utils/string.py
+src/gen/utils/trans.py
+src/gen/utils/unknown.py
 
 # gui - GUI code
 src/gui/aboutdialog.py
@@ -489,92 +491,92 @@ src/docgen/ODSTab.py
 src/docgen/TextBufDoc.py
 
 # plugins directory
-src/plugins/BookReport.py
+src/plugins/bookreport.py
 src/plugins/bookreport.gpr.py
 src/plugins/records.gpr.py
-src/plugins/Records.py
+src/plugins/records.py
 
 # plugins/docgen directory
-src/plugins/docgen/AsciiDoc.py
+src/plugins/docgen/asciidoc.py
 src/plugins/docgen/docgen.gpr.py
-src/plugins/docgen/GtkPrint.py
-src/plugins/docgen/HtmlDoc.py
-src/plugins/docgen/LaTeXDoc.py
-src/plugins/docgen/ODFDoc.py
-src/plugins/docgen/PSDrawDoc.py
-src/plugins/docgen/RTFDoc.py
-src/plugins/docgen/SvgDrawDoc.py
+src/plugins/docgen/gtkprint.py
+src/plugins/docgen/htmldoc.py
+src/plugins/docgen/latexdoc.py
+src/plugins/docgen/odfdoc.py
+src/plugins/docgen/psdrawdoc.py
+src/plugins/docgen/rtfdoc.py
+src/plugins/docgen/svgdrawdoc.py
 
 # plugins/drawreport directory
-src/plugins/drawreport/AncestorTree.py
-src/plugins/drawreport/Calendar.py
-src/plugins/drawreport/DescendTree.py
+src/plugins/drawreport/ancestortree.py
+src/plugins/drawreport/calendarreport.py
+src/plugins/drawreport/descendtree.py
 src/plugins/drawreport/drawplugins.gpr.py
-src/plugins/drawreport/FanChart.py
-src/plugins/drawreport/StatisticsChart.py
-src/plugins/drawreport/TimeLine.py
+src/plugins/drawreport/fanchart.py
+src/plugins/drawreport/statisticschart.py
+src/plugins/drawreport/timeline.py
 
 # plugins/export directory
 src/plugins/export/export.gpr.py
-src/plugins/export/ExportCsv.py
-src/plugins/export/ExportFtree.py
-src/plugins/export/ExportGedcom.py
-src/plugins/export/ExportGeneWeb.py
-src/plugins/export/ExportPkg.py
-#src/plugins/export/ExportSql.py
-src/plugins/export/ExportVCalendar.py
-src/plugins/export/ExportVCard.py
-src/plugins/export/ExportXml.py
+src/plugins/export/exportcsv.py
+src/plugins/export/exportftree.py
+src/plugins/export/exportgedcom.py
+src/plugins/export/exportgeneweb.py
+src/plugins/export/exportpkg.py
+#src/plugins/export/exportsql.py
+src/plugins/export/exportvcalendar.py
+src/plugins/export/exportvcard.py
+src/plugins/export/exportxml.py
 
 # plugins/gramplet directory
-src/plugins/gramplet/AgeOnDateGramplet.py
-src/plugins/gramplet/AgeStats.py
-src/plugins/gramplet/Attributes.py
-src/plugins/gramplet/AttributesGramplet.py
-src/plugins/gramplet/Backlinks.py
-src/plugins/gramplet/CalendarGramplet.py
-src/plugins/gramplet/Children.py
-src/plugins/gramplet/Citations.py
-src/plugins/gramplet/DescendGramplet.py
-src/plugins/gramplet/EditExifMetadata.py
-src/plugins/gramplet/Events.py
-src/plugins/gramplet/FanChartGramplet.py
-src/plugins/gramplet/FaqGramplet.py
-src/plugins/gramplet/GivenNameGramplet.py
+src/plugins/gramplet/ageondategramplet.py
+src/plugins/gramplet/agestats.py
+src/plugins/gramplet/attributes.py
+src/plugins/gramplet/attributesgramplet.py
+src/plugins/gramplet/backlinks.py
+src/plugins/gramplet/calendargramplet.py
+src/plugins/gramplet/children.py
+src/plugins/gramplet/citations.py
+src/plugins/gramplet/descendgramplet.py
+src/plugins/gramplet/editexifmetadata.py
+src/plugins/gramplet/events.py
+src/plugins/gramplet/fanchartgramplet.py
+src/plugins/gramplet/faqgramplet.py
+src/plugins/gramplet/givennamegramplet.py
 src/plugins/gramplet/gramplet.gpr.py
-#src/plugins/gramplet/MetadataViewer.py
-src/plugins/gramplet/Notes.py
-src/plugins/gramplet/PedigreeGramplet.py
-src/plugins/gramplet/PersonDetails.py
-src/plugins/gramplet/PersonResidence.py
-src/plugins/gramplet/PlaceDetails.py
-src/plugins/gramplet/QuickViewGramplet.py
-src/plugins/gramplet/RelativeGramplet.py
-src/plugins/gramplet/RepositoryDetails.py
-src/plugins/gramplet/SessionLogGramplet.py
-src/plugins/gramplet/StatsGramplet.py
-src/plugins/gramplet/SurnameCloudGramplet.py
-src/plugins/gramplet/ToDoGramplet.py
-src/plugins/gramplet/TopSurnamesGramplet.py
-src/plugins/gramplet/WelcomeGramplet.py
-src/plugins/gramplet/WhatsNext.py
+#src/plugins/gramplet/metadataviewer.py
+src/plugins/gramplet/notes.py
+src/plugins/gramplet/pedigreegramplet.py
+src/plugins/gramplet/persondetails.py
+src/plugins/gramplet/personresidence.py
+src/plugins/gramplet/placedetails.py
+src/plugins/gramplet/quickviewgramplet.py
+src/plugins/gramplet/relativegramplet.py
+src/plugins/gramplet/repositorydetails.py
+src/plugins/gramplet/sessionloggramplet.py
+src/plugins/gramplet/statsgramplet.py
+src/plugins/gramplet/surnamecloudgramplet.py
+src/plugins/gramplet/todogramplet.py
+src/plugins/gramplet/topsurnamesgramplet.py
+src/plugins/gramplet/welcomegramplet.py
+src/plugins/gramplet/whatsnext.py
 
 # plugins/graph directory
 src/plugins/graph/graphplugins.gpr.py
-src/plugins/graph/GVFamilyLines.py
-src/plugins/graph/GVHourGlass.py
-src/plugins/graph/GVRelGraph.py
+src/plugins/graph/gvfamilylines.py
+src/plugins/graph/gvhourglass.py
+src/plugins/graph/gvrelgraph.py
 
 # plugins/import directory
 src/plugins/import/import.gpr.py
-src/plugins/import/ImportCsv.py
-src/plugins/import/ImportGedcom.py
-src/plugins/import/ImportGeneWeb.py
-src/plugins/import/ImportGrdb.py
-src/plugins/import/ImportProGen.py
-src/plugins/import/ImportVCard.py
-src/plugins/import/ImportGpkg.py
-src/plugins/import/ImportXml.py
+src/plugins/import/importcsv.py
+src/plugins/import/importgedcom.py
+src/plugins/import/importgeneweb.py
+src/plugins/import/importgrdb.py
+src/plugins/import/importprogen.py
+src/plugins/import/importvcard.py
+src/plugins/import/importgpkg.py
+src/plugins/import/importxml.py
 
 # plugins/lib directory
 src/plugins/lib/libcairodoc.py
@@ -591,7 +593,7 @@ src/plugins/lib/libtranslate.py
 src/plugins/lib/libtreebase.py
 src/plugins/lib/holidays.xml.in
 src/plugins/lib/maps/geography.py
-src/plugins/lib/maps/osmGps.py
+src/plugins/lib/maps/osmgps.py
 src/plugins/lib/maps/placeselection.py
 
 # plugins/mapservices  directory
@@ -601,19 +603,19 @@ src/plugins/mapservices/mapservice.gpr.py
 src/plugins/mapservices/openstreetmap.py
 
 # plugins/quickview directory
-src/plugins/quickview/AgeOnDate.py
+src/plugins/quickview/ageondate.py
 src/plugins/quickview/all_events.py
 src/plugins/quickview/all_relations.py
-src/plugins/quickview/AttributeMatch.py
-src/plugins/quickview/FilterByName.py
+src/plugins/quickview/attributematch.py
+src/plugins/quickview/filterbyname.py
 src/plugins/quickview/lineage.py
-src/plugins/quickview/OnThisDay.py
-#src/plugins/quickview/Query.py
+src/plugins/quickview/onthisday.py
+#src/plugins/quickview/query.py
 src/plugins/quickview/quickview.gpr.py
-src/plugins/quickview/References.py
-src/plugins/quickview/LinkReferences.py
-src/plugins/quickview/Reporef.py
-src/plugins/quickview/SameSurnames.py
+src/plugins/quickview/references.py
+src/plugins/quickview/linkreferences.py
+src/plugins/quickview/reporef.py
+src/plugins/quickview/samesurnames.py
 src/plugins/quickview/siblings.py
 
 # plugins/rel directory
@@ -623,50 +625,50 @@ src/plugins/rel/relplugins.gpr.py
 src/plugins/sidebar/sidebar.gpr.py
 
 # plugins/textreport directory
-src/plugins/textreport/AlphabeticalIndex.py
-src/plugins/textreport/AncestorReport.py
-src/plugins/textreport/BirthdayReport.py
-src/plugins/textreport/CustomBookText.py
-src/plugins/textreport/DescendReport.py
-src/plugins/textreport/DetAncestralReport.py
-src/plugins/textreport/DetDescendantReport.py
-src/plugins/textreport/EndOfLineReport.py
-src/plugins/textreport/FamilyGroup.py
-src/plugins/textreport/IndivComplete.py
-src/plugins/textreport/KinshipReport.py
-src/plugins/textreport/NumberOfAncestorsReport.py
-src/plugins/textreport/PlaceReport.py
-src/plugins/textreport/SimpleBookTitle.py
-src/plugins/textreport/Summary.py
-src/plugins/textreport/TableOfContents.py
-src/plugins/textreport/TagReport.py
+src/plugins/textreport/alphabeticalindex.py
+src/plugins/textreport/ancestorreport.py
+src/plugins/textreport/birthdayreport.py
+src/plugins/textreport/custombooktext.py
+src/plugins/textreport/descendreport.py
+src/plugins/textreport/detancestralreport.py
+src/plugins/textreport/detdescendantreport.py
+src/plugins/textreport/endoflinereport.py
+src/plugins/textreport/familygroup.py
+src/plugins/textreport/indivcomplete.py
+src/plugins/textreport/kinshipreport.py
+src/plugins/textreport/numberofancestorsreport.py
+src/plugins/textreport/placereport.py
+src/plugins/textreport/simplebooktitle.py
+src/plugins/textreport/summary.py
+src/plugins/textreport/tableofcontents.py
+src/plugins/textreport/tagreport.py
 src/plugins/textreport/textplugins.gpr.py
 
 # plugins/tool directory
-src/plugins/tool/ChangeNames.py
-src/plugins/tool/ChangeTypes.py
-src/plugins/tool/Check.py
-src/plugins/tool/Desbrowser.py
-src/plugins/tool/Eval.py
-src/plugins/tool/EventCmp.py
-src/plugins/tool/EventNames.py
-src/plugins/tool/ExtractCity.py
-src/plugins/tool/FindDupes.py
-src/plugins/tool/Leak.py
-src/plugins/tool/MediaManager.py
-src/plugins/tool/MergeCitations.py
-src/plugins/tool/NotRelated.py
-src/plugins/tool/OwnerEditor.py
-src/plugins/tool/PatchNames.py
-src/plugins/tool/Rebuild.py
-src/plugins/tool/RebuildRefMap.py
-src/plugins/tool/RelCalc.py
-src/plugins/tool/RemoveUnused.py
-src/plugins/tool/ReorderIds.py
-src/plugins/tool/SortEvents.py
-src/plugins/tool/SoundGen.py
+src/plugins/tool/changenames.py
+src/plugins/tool/changetypes.py
+src/plugins/tool/check.py
+src/plugins/tool/desbrowser.py
+src/plugins/tool/eval.py
+src/plugins/tool/eventcmp.py
+src/plugins/tool/eventnames.py
+src/plugins/tool/extractcity.py
+src/plugins/tool/finddupes.py
+src/plugins/tool/leak.py
+src/plugins/tool/mediamanager.py
+src/plugins/tool/mergecitations.py
+src/plugins/tool/notrelated.py
+src/plugins/tool/ownereditor.py
+src/plugins/tool/patchnames.py
+src/plugins/tool/rebuild.py
+src/plugins/tool/rebuildrefmap.py
+src/plugins/tool/relcalc.py
+src/plugins/tool/removeunused.py
+src/plugins/tool/reorderids.py
+src/plugins/tool/sortevents.py
+src/plugins/tool/soundgen.py
 src/plugins/tool/tools.gpr.py
-src/plugins/tool/Verify.py
+src/plugins/tool/verify.py
 
 #plugins/view directory
 src/plugins/view/citationtreeview.py
@@ -696,16 +698,13 @@ src/plugins/view/sourceview.py
 src/plugins/view/view.gpr.py
 
 # plugins/webreport directory
-src/plugins/webreport/NarrativeWeb.py
-src/plugins/webreport/WebCal.py
+src/plugins/webreport/narrativeweb.py
+src/plugins/webreport/webcal.py
 src/plugins/webreport/webplugins.gpr.py
 
 # plugins/webstuff directory
 src/plugins/webstuff/webstuff.gpr.py
 src/plugins/webstuff/webstuff.py
-
-# Simple API
-src/Simple/_SimpleAccess.py
 
 #
 #   Glade files

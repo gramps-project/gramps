@@ -49,7 +49,7 @@ from gi.repository import Gtk
 #----------------------------------------------------------------
 from gui.views.pageview import PageView
 from gen.ggettext import sgettext as _
-from Utils import navigation_label
+from gen.utils.db import navigation_label
 from gen.constfunc import mod_key
 
 DISABLED = -1

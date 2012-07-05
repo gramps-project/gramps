@@ -23,7 +23,7 @@
 
 # Need to be able to import Gramps files from here.
 
-import const
+from gen.const import DATA_DIR, WEB_DIR
 import os
 
 DEBUG = True
@@ -40,11 +40,11 @@ DATABASE_ROUTERS = []
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(const.WEB_DIR, 'sqlite.db'),
+        'NAME': os.path.join(WEB_DIR, 'sqlite.db'),
     }
 }
 DATABASE_ENGINE = 'sqlite3'           
-DATABASE_NAME = os.path.join(const.WEB_DIR, 'sqlite.db')
+DATABASE_NAME = os.path.join(WEB_DIR, 'sqlite.db')
 DATABASE_USER = ''             
 DATABASE_PASSWORD = ''         
 DATABASE_HOST = ''             
@@ -75,7 +75,7 @@ ROOT_URLCONF = 'webapp.urls'
 
 TEMPLATE_DIRS = (
     # Use absolute paths, not relative paths.
-    os.path.join(const.DATA_DIR, "templates"),
+    os.path.join(DATA_DIR, "templates"),
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (

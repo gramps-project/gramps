@@ -51,7 +51,6 @@ from gi.repository import Gtk
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-import const
 import constants
 from dummylayer import DummyLayer
 from dummynogps import DummyMapNoGpsPoint

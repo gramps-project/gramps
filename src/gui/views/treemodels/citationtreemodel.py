@@ -52,7 +52,7 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.utils.referent import get_source_referents
+from gen.utils.db import get_source_referents
 from gui.views.treemodels.treebasemodel import TreeBaseModel
 from gui.views.treemodels.citationbasemodel import CitationBaseModel
 

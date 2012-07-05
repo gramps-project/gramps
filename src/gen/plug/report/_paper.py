@@ -35,7 +35,7 @@ from gen.ggettext import sgettext as _
 #-------------------------------------------------------------------------
 from gen.plug.utils import gfloat
 from gen.plug.docgen import PaperSize
-import const
+from gen.const import PAPERSIZE
 
 #-------------------------------------------------------------------------
 #
@@ -85,7 +85,7 @@ class PageSizeParser(handler.ContentHandler):
 try:
     parser = make_parser()
     parser.setContentHandler(PageSizeParser(paper_sizes))
-    the_file = open(const.PAPERSIZE)
+    the_file = open(PAPERSIZE)
     parser.parse(the_file)
     the_file.close()
     paper_sizes.append(PaperSize(_("Custom Size"), -1, -1))

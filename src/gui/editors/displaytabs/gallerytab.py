@@ -54,14 +54,15 @@ from gui.dbguielement import DbGUIElement
 from gui.selectors import SelectorFactory
 import gen.lib
 from gen.db import DbTxn
-import Utils
+from gen.utils.file import (media_path_full, media_path, relative_path,
+                            fix_encoding)
 from gui.thumbnails import get_thumbnail_image
 from gen.errors import WindowActiveError
 import gen.mime
 from gui.ddtargets import DdTargets
 from buttontab import ButtonTab
 from gen.constfunc import win
-import const
+from gen.const import THUMBSCALE
 #-------------------------------------------------------------------------
 #
 # 
@@ -133,7 +134,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         menu = Gtk.Menu()
 
         ref_obj = self.dbstate.db.get_object_from_handle(obj.ref)
-        media_path = Utils.media_path_full(self.dbstate.db, ref_obj.get_path())
+        media_path = media_path_full(self.dbstate.db, ref_obj.get_path())
         if media_path:
             item = Gtk.ImageMenuItem(_('View'))
             img = Gtk.Image()
@@ -193,11 +194,11 @@ class GalleryTab(ButtonTab, DbGUIElement):
         
         # build the icon view
         self.iconlist.set_pixbuf_column(0)
-        self.iconlist.set_item_width(int(const.THUMBSCALE) + padding * 2)
+        self.iconlist.set_item_width(int(THUMBSCALE) + padding * 2)
         # set custom text cell renderer for better control
         text_renderer = Gtk.CellRendererText()
         text_renderer.set_property('wrap-mode', Pango.WrapMode.WORD_CHAR)
-        text_renderer.set_property('wrap-width', const.THUMBSCALE)
+        text_renderer.set_property('wrap-width', THUMBSCALE)
         text_renderer.set_property('alignment', Pango.Alignment.CENTER)
         self.iconlist.pack_end(text_renderer, True)
         self.iconlist.add_attribute(text_renderer, "text", 1)
@@ -253,7 +254,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                             _('Non existing media found in the Gallery'))
             else :
                 pixbuf = get_thumbnail_image(
-                                Utils.media_path_full(self.dbstate.db, 
+                                media_path_full(self.dbstate.db, 
                                                       obj.get_path()), 
                                 obj.get_mime_type(),
                                 ref.get_rectangle())
@@ -494,19 +495,19 @@ class GalleryTab(ButtonTab, DbGUIElement):
                 else:
                     files =  sel_data.get_uris()
                 for file in files:
-                    d = Utils.fix_encoding(file.replace('\0',' ').strip())
+                    d = fix_encoding(file.replace('\0',' ').strip())
                     protocol, site, mfile, j, k, l = urlparse.urlparse(d)
                     if protocol == "file":
-                        name = Utils.fix_encoding(mfile)
+                        name = fix_encoding(mfile)
                         name = unicode(urllib.url2pathname(
                                     name.encode(sys.getfilesystemencoding())))
                         mime = gen.mime.get_type(name)
                         if not gen.mime.is_valid_type(mime):
                             return
                         photo = gen.lib.MediaObject()
-                        base_dir = unicode(Utils.media_path(self.dbstate.db))
+                        base_dir = unicode(media_path(self.dbstate.db))
                         if os.path.exists(base_dir):
-                            name = Utils.relative_path(name, base_dir)
+                            name = relative_path(name, base_dir)
                         photo.set_path(name)
                         photo.set_mime_type(mime)
                         basename = os.path.basename(name)

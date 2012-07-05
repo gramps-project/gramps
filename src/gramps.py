@@ -31,7 +31,7 @@
 #-------------------------------------------------------------------------
 import sys
 import os
-import const
+from gen.const import APP_GRAMPS, USER_DIRLIST
 import signal
 import gettext
 _ = gettext.gettext
@@ -48,7 +48,7 @@ from subprocess import Popen, PIPE
 #
 #-------------------------------------------------------------------------
 from gen.mime import mime_type_is_defined
-import TransUtils
+from gen.utils.trans import LOCALEDOMAIN, LOCALEDIR, setup_windows_gettext
 from gen.constfunc import win
 #-------------------------------------------------------------------------
 #
@@ -59,8 +59,8 @@ from gen.constfunc import win
 #the order in which bindtextdomain on gettext and on locale is called
 #appears important, so we refrain from doing first all gettext.
 #
-#TransUtils.setup_gettext()
-gettext.bindtextdomain(TransUtils.LOCALEDOMAIN, TransUtils.LOCALEDIR)
+#setup_gettext()
+gettext.bindtextdomain(LOCALEDOMAIN, LOCALEDIR)
 try:
     locale.setlocale(locale.LC_ALL,'')
 except:
@@ -80,8 +80,8 @@ except:
         # if that doesn't break Gramps under Windows
         # raise
 
-gettext.textdomain(TransUtils.LOCALEDOMAIN)
-gettext.install(TransUtils.LOCALEDOMAIN, localedir=None, unicode=1) #None is sys default locale
+gettext.textdomain(LOCALEDOMAIN)
+gettext.install(LOCALEDOMAIN, localedir=None, unicode=1) #None is sys default locale
 
 if hasattr(os, "uname"):
     operating_system = os.uname()[0]
@@ -89,18 +89,18 @@ else:
     operating_system = sys.platform
 
 if win(): # Windows
-    TransUtils.setup_windows_gettext()
+    setup_windows_gettext()
 elif operating_system == 'FreeBSD':
     try:
-        gettext.bindtextdomain(TransUtils.LOCALEDOMAIN, TransUtils.LOCALEDIR)
+        gettext.bindtextdomain(LOCALEDOMAIN, LOCALEDIR)
     except locale.Error:
         print 'No translation in some Gtk.Builder strings, '
 elif operating_system == 'OpenBSD':
     pass
 else: # normal case
     try:
-        locale.bindtextdomain(TransUtils.LOCALEDOMAIN, TransUtils.LOCALEDIR)
-        #locale.textdomain(TransUtils.LOCALEDOMAIN)
+        locale.bindtextdomain(LOCALEDOMAIN, LOCALEDIR)
+        #locale.textdomain(LOCALEDOMAIN)
     except locale.Error:
         print 'No translation in some Gtk.Builder strings, '
 
@@ -166,7 +166,7 @@ def setup_logging():
     
 def build_user_paths():
     """ check/make user-dirs on each Gramps session"""
-    for path in const.USER_DIRLIST:
+    for path in USER_DIRLIST:
         if os.path.islink(path):
             pass # ok
         elif not os.path.isdir(path):
@@ -245,8 +245,8 @@ def show_settings():
         bsddb_db_str = 'not found'
 
     try: 
-        import const
-        gramps_str = const.VERSION
+        from gen.const import VERSION
+        gramps_str = VERSION
     except:
         gramps_str = 'not found'
 
@@ -336,13 +336,13 @@ def run():
         LOG.error("Error reading configuration.", exc_info=True)
         return [(_("Error reading configuration"), str(msg))]
         
-    if not mime_type_is_defined(const.APP_GRAMPS):
+    if not mime_type_is_defined(APP_GRAMPS):
         error += [(_("Configuration error:"), 
                     _("A definition for the MIME-type %s could not "
                       "be found \n\n Possibly the installation of Gramps "
                       "was incomplete. Make sure the MIME-types "
                       "of Gramps are properly installed.")
-                    % const.APP_GRAMPS)]
+                    % APP_GRAMPS)]
     
     #we start with parsing the arguments to determine if we have a cli or a
     # gui session

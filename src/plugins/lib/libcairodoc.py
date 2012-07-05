@@ -7,6 +7,7 @@
 # Copyright (C) 2010  Peter Landgren
 # Copyright (C) 2010  Jakim Friant
 # Copyright (C) 2011  Paul Franklin
+# Copyright (C) 2012  Craig Anderson
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -48,7 +49,7 @@ from gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc, ParagraphStyle,
 from gen.plug.report import utils as ReportUtils
 from gen.errors import PluginError
 from gen.plug.docbackend import CairoBackend
-import ImgManip
+from gen.utils.image import resize_to_buffer
 
 #------------------------------------------------------------------------
 #
@@ -1014,9 +1015,8 @@ class GtkDocPicture(GtkDocBaseElement):
             l_margin = 0
         
         # load the image and get its extents
-        pixbuf = ImgManip.resize_to_buffer(self._filename,
-                                           [img_width, img_height],
-                                           self._crop)
+        pixbuf = resize_to_buffer(self._filename, [img_width, img_height], 
+                                  self._crop)
         pixbuf_width = pixbuf.get_width()
         pixbuf_height = pixbuf.get_height()
         
@@ -1430,6 +1430,15 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
                     newlines.append(' '.join(singleline.split()))
                 self.__write_text('\n'.join(newlines), markup=True, links=links)
                 self.end_paragraph()
+    
+    def __markup(self, text, markup=None):
+        if not markup:            
+            # We need to escape the text here for later Pango.Layout.set_markup
+            # calls. This way we save the markup created by the report
+            # The markup in the note editor is not in the text so is not 
+            # considered. It must be added by pango too
+            text = self._backend.ESCAPE_FUNC()(text)
+        return text
 
     def __write_text(self, text, mark=None, markup=False, links=False):
         """
@@ -1456,12 +1465,7 @@ links (like ODF) and write PDF from that format.
                 """ % cairo.version
                 self._links_error = True
 
-        if not markup:            
-            # We need to escape the text here for later Pango.Layout.set_markup
-            # calls. This way we save the markup created by the report
-            # The markup in the note editor is not in the text so is not 
-            # considered. It must be added by pango too
-            text = self._backend.ESCAPE_FUNC()(text)
+        text = self.__markup(text, markup)
 
         if mark:
             self._active_element.add_mark(mark)
@@ -1573,7 +1577,8 @@ links (like ODF) and write PDF from that format.
             else:
                 x_offset = 0.2
                 
-            new_text = GtkDocText(paragraph_style, 'center', text,
+            new_text = GtkDocText(paragraph_style, 'center', 
+                                  self.__markup(text),
                                   x + x_offset , y + h / 2, angle=0)
             self._active_element.add_child(new_text)
     
@@ -1584,7 +1589,8 @@ links (like ODF) and write PDF from that format.
         paragraph_style = style_sheet.get_paragraph_style(paragraph_style_name)
         paragraph_style.set_alignment(PARA_ALIGN_LEFT)
         
-        new_text = GtkDocText(paragraph_style, 'top', text, x, y, angle=0)
+        new_text = GtkDocText(paragraph_style, 'top', 
+                              self.__markup(text), x, y, angle=0)
         self._active_element.add_child(new_text)
         
     def center_text(self, style_name, text, x, y):
@@ -1594,7 +1600,8 @@ links (like ODF) and write PDF from that format.
         paragraph_style = style_sheet.get_paragraph_style(paragraph_style_name)
         paragraph_style.set_alignment(PARA_ALIGN_CENTER)
         
-        new_text = GtkDocText(paragraph_style, 'top', text, x, y, angle=0)
+        new_text = GtkDocText(paragraph_style, 'top', 
+                              self.__markup(text), x, y, angle=0)
         self._active_element.add_child(new_text)
     
     def rotate_text(self, style_name, text, x, y, angle):
@@ -1604,8 +1611,8 @@ links (like ODF) and write PDF from that format.
         paragraph_style = style_sheet.get_paragraph_style(paragraph_style_name)
         paragraph_style.set_alignment(PARA_ALIGN_CENTER)
         
-        new_text = GtkDocText(paragraph_style, 'center', '\n'.join(text),
-                              x, y, angle)
+        new_text = GtkDocText(paragraph_style, 'center', 
+                              self.__markup(text), x, y, angle)
         self._active_element.add_child(new_text)
     
     # paginating and drawing interface
@@ -1677,3 +1684,5 @@ links (like ODF) and write PDF from that format.
             cr.stroke()
 
         self._pages[page_nr].draw(cr, layout, width, dpi_x, dpi_y)
+
+

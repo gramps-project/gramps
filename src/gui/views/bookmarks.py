@@ -53,8 +53,8 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gui.display import display_help
 from gui.listmodel import ListModel
-import Utils
-import const
+from gen.utils.db import navigation_label
+from gen.const import URL_MANUAL_PAGE
 from gen.ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
@@ -62,7 +62,7 @@ from gen.ggettext import sgettext as _
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_Navigation' % const.URL_MANUAL_PAGE
+WIKI_HELP_PAGE = '%s_-_Navigation' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Bookmarks')
 
 #-------------------------------------------------------------------------
@@ -321,7 +321,7 @@ class PersonBookmarks(ListBookmarks) :
                                goto_handle)
         
     def make_label(self, handle):
-        return Utils.navigation_label(self.dbstate.db, 'Person', handle)
+        return navigation_label(self.dbstate.db, 'Person', handle)
 
     def connect_signals(self):
         self.dbstate.db.connect('person-delete', self.remove_handles)
@@ -334,7 +334,7 @@ class FamilyBookmarks(ListBookmarks) :
                                goto_handle)
         
     def make_label(self, handle):
-        return Utils.navigation_label(self.dbstate.db, 'Family', handle)
+        return navigation_label(self.dbstate.db, 'Family', handle)
 
     def connect_signals(self):
         self.dbstate.db.connect('family-delete', self.remove_handles)
@@ -347,7 +347,7 @@ class EventBookmarks(ListBookmarks) :
                                goto_handle)
         
     def make_label(self, handle):
-        return Utils.navigation_label(self.dbstate.db, 'Event', handle)
+        return navigation_label(self.dbstate.db, 'Event', handle)
 
     def connect_signals(self):
         self.dbstate.db.connect('event-delete', self.remove_handles)
@@ -359,7 +359,7 @@ class SourceBookmarks(ListBookmarks) :
                                goto_handle)
         
     def make_label(self, handle):
-        return Utils.navigation_label(self.dbstate.db, 'Source', handle)
+        return navigation_label(self.dbstate.db, 'Source', handle)
 
     def connect_signals(self):
         self.dbstate.db.connect('source-delete', self.remove_handles)
@@ -371,7 +371,7 @@ class CitationBookmarks(ListBookmarks) :
                                goto_handle)
         
     def make_label(self, handle):
-        return Utils.navigation_label(self.dbstate.db, 'Citation', handle)
+        return navigation_label(self.dbstate.db, 'Citation', handle)
 
     def connect_signals(self):
         self.dbstate.db.connect('citation-delete', self.remove_handles)
@@ -384,7 +384,7 @@ class MediaBookmarks(ListBookmarks) :
                                goto_handle)
         
     def make_label(self, handle):
-        return Utils.navigation_label(self.dbstate.db, 'Media', handle)
+        return navigation_label(self.dbstate.db, 'Media', handle)
 
     def connect_signals(self):
         self.dbstate.db.connect('media-delete', self.remove_handles)
@@ -397,7 +397,7 @@ class RepoBookmarks(ListBookmarks) :
                                goto_handle)
         
     def make_label(self, handle):
-        return Utils.navigation_label(self.dbstate.db, 'Repository', handle)
+        return navigation_label(self.dbstate.db, 'Repository', handle)
 
     def connect_signals(self):
         self.dbstate.db.connect('repository-delete', self.remove_handles)
@@ -410,7 +410,7 @@ class PlaceBookmarks(ListBookmarks) :
                                goto_handle)
         
     def make_label(self, handle):
-        return Utils.navigation_label(self.dbstate.db, 'Place', handle)
+        return navigation_label(self.dbstate.db, 'Place', handle)
 
     def connect_signals(self):
         self.dbstate.db.connect('place-delete', self.remove_handles)
@@ -423,7 +423,7 @@ class NoteBookmarks(ListBookmarks) :
                                goto_handle)
         
     def make_label(self, handle):
-        return Utils.navigation_label(self.dbstate.db, 'Note', handle)
+        return navigation_label(self.dbstate.db, 'Note', handle)
 
     def connect_signals(self):
         self.dbstate.db.connect('note-delete', self.remove_handles)

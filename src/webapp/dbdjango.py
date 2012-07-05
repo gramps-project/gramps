@@ -41,7 +41,7 @@ from gen.db import (PERSON_KEY,
                     PLACE_KEY,
                     REPOSITORY_KEY,
                     NOTE_KEY)
-import Utils
+from gen.utils.id import create_id
 from webapp.libdjango import DjangoInterface
 from django.db import transaction
 
@@ -492,35 +492,59 @@ class DbDjango(DbWriteBase, DbReadBase):
         obj = gen.lib.Researcher()
         return obj
 
-    def get_person_handles(self):
-        return [item.handle for item in self.dji.Person.all()]
+    def get_person_handles(self, sort_handles=False):
+        if sort_handles:
+            return [item.handle for item in self.dji.Person.all().order_by("handle")]
+        else:
+            return [item.handle for item in self.dji.Person.all()]
 
-    def get_family_handles(self):
-        return [item.handle for item in self.dji.Family.all()]
+    def get_family_handles(self, sort_handles=False):
+        if sort_handles:
+            return [item.handle for item in self.dji.Family.all().order_by("handle")]
+        else:
+            return [item.handle for item in self.dji.Family.all()]
 
-    def get_event_handles(self):
-        return [item.handle for item in self.dji.Event.all()]
+    def get_event_handles(self, sort_handles=False):
+        if sort_handles:
+            return [item.handle for item in self.dji.Event.all().order_by("handle")]
+        else:
+            return [item.handle for item in self.dji.Event.all()]
 
-    def get_citation_handles(self):
-        return [item.handle for item in self.dji.Citation.all()]
+    def get_citation_handles(self, sort_handles=False):
+        if sort_handles:
+            return [item.handle for item in self.dji.Citation.all().order_by("handle")]
+        else:
+            return [item.handle for item in self.dji.Citation.all()]
 
-    def get_source_handles(self):
-        return [item.handle for item in self.dji.Source.all()]
+    def get_source_handles(self, sort_handles=False):
+        if sort_handles:
+            return [item.handle for item in self.dji.Source.all().order_by("handle")]
+        else:
+            return [item.handle for item in self.dji.Source.all()]
 
-    def get_place_handles(self):
-        return [item.handle for item in self.dji.Place.all()]
+    def get_place_handles(self, sort_handles=False):
+        if sort_handles:
+            return [item.handle for item in self.dji.Place.all().order_by("handle")]
+        else:
+            return [item.handle for item in self.dji.Place.all()]
 
-    def get_repository_handles(self):
-        return [item.handle for item in self.dji.Repository.all()]
+    def get_repository_handles(self, sort_handles=False):
+        if sort_handles:
+            return [item.handle for item in self.dji.Repository.all().order_by("handle")]
+        else:
+            return [item.handle for item in self.dji.Repository.all()]
 
-    def get_media_object_handles(self):
-        return [item.handle for item in self.dji.Media.all()]
+    def get_media_object_handles(self, sort_handles=False):
+        if sort_handles:
+            return [item.handle for item in self.dji.Media.all().order_by("handle")]
+        else:
+            return [item.handle for item in self.dji.Media.all()]
 
-    def get_note_handles(self):
-        return [item.handle for item in self.dji.Note.all()]
-
-    def get_tag_handles(self, sort_handles=False):
-        return []
+    def get_note_handles(self, sort_handles=False):
+        if sort_handles:
+            return [item.handle for item in self.dji.Note.all().order_by("handle")]
+        else:
+            return [item.handle for item in self.dji.Note.all()]
 
     def get_event_from_handle(self, handle):
         if handle in self.import_cache:
@@ -639,18 +663,11 @@ class DbDjango(DbWriteBase, DbReadBase):
     def get_place_from_handle(self, handle):
         if handle in self.import_cache:
             return self.import_cache[handle]
-        # FIXME: use object cache
         try:
-            dji_obj = self.dji.Place.get(handle=handle)
+            place = self.dji.Place.get(handle=handle)
         except:
-            dji_obj = None
-        if dji_obj:
-            tuple_obj = self.dji.get_place(dji_obj)
-            if tuple_obj:
-                obj = gen.lib.Place()
-                obj.unserialize(tuple_obj)
-                return obj
-        return None
+            return None
+        return self.make_place(place)
 
     def get_citation_from_handle(self, handle):
         if handle in self.import_cache:
@@ -687,12 +704,6 @@ class DbDjango(DbWriteBase, DbReadBase):
         except:
             return None
         return self.make_media(media)
-
-    def get_media_object_handles(self):
-        return [media.handle for media in self.dji.Media.all()]
-
-    def get_person_handles(self, sort_handles=False):
-        return [person.handle for person in self.dji.Person.all()]
 
     def get_default_person(self):
         return None
@@ -777,8 +788,20 @@ class DbDjango(DbWriteBase, DbReadBase):
     def get_source_cursor(self):
         return Cursor(self.dji.Source, self.get_raw_source_data).iter()
 
-    def has_gramps_id(self, key, gramps_id):
-        return self.dji.Person.filter(gramps_id=gramps_id).count() > 0
+    def has_gramps_id(self, obj_key, gramps_id):
+        key2table = {
+            PERSON_KEY:     self.dji.Person, 
+            FAMILY_KEY:     self.dji.Family, 
+            SOURCE_KEY:     self.dji.Source, 
+            CITATION_KEY:   self.dji.Citation, 
+            EVENT_KEY:      self.dji.Event, 
+            MEDIA_KEY:      self.dji.Media, 
+            PLACE_KEY:      self.dji.Place, 
+            REPOSITORY_KEY: self.dji.Repository, 
+            NOTE_KEY:       self.dji.Note, 
+            }
+        table = key2table[obj_key]
+        return table.filter(gramps_id=gramps_id).count() > 0
 
     def has_person_handle(self, handle):
         if handle in self.import_cache:
@@ -918,7 +941,7 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def add_person(self, person, trans, set_gid=True):
         if not person.handle:
-            person.handle = Utils.create_id()
+            person.handle = create_id()
         if not person.gramps_id or set_gid:
             person.gramps_id = self.find_next_person_gramps_id()
         self.commit_person(person, trans)
@@ -926,7 +949,7 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def add_family(self, family, trans, set_gid=True):
         if not family.handle:
-            family.handle = Utils.create_id()
+            family.handle = create_id()
         if not family.gramps_id or set_gid:
             family.gramps_id = self.find_next_family_gramps_id()
         self.commit_family(family, trans)
@@ -934,7 +957,7 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def add_citation(self, citation, trans, set_gid=True):
         if not citation.handle:
-            citation.handle = Utils.create_id()
+            citation.handle = create_id()
         if not citation.gramps_id or set_gid:
             citation.gramps_id = self.find_next_citation_gramps_id()
         self.commit_citation(citation, trans)
@@ -942,7 +965,7 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def add_source(self, source, trans, set_gid=True):
         if not source.handle:
-            source.handle = Utils.create_id()
+            source.handle = create_id()
         if not source.gramps_id or set_gid:
             source.gramps_id = self.find_next_source_gramps_id()
         self.commit_source(source, trans)
@@ -950,7 +973,7 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def add_repository(self, repository, trans, set_gid=True):
         if not repository.handle:
-            repository.handle = Utils.create_id()
+            repository.handle = create_id()
         if not repository.gramps_id or set_gid:
             repository.gramps_id = self.find_next_repository_gramps_id()
         self.commit_repository(repository, trans)
@@ -958,7 +981,7 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def add_note(self, note, trans, set_gid=True):
         if not note.handle:
-            note.handle = Utils.create_id()
+            note.handle = create_id()
         if not note.gramps_id or set_gid:
             note.gramps_id = self.find_next_note_gramps_id()
         self.commit_note(note, trans)
@@ -966,7 +989,7 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def add_place(self, place, trans, set_gid=True):
         if not place.handle:
-            place.handle = Utils.create_id()
+            place.handle = create_id()
         if not place.gramps_id or set_gid:
             place.gramps_id = self.find_next_place_gramps_id()
         self.commit_place(place, trans)
@@ -974,7 +997,7 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def add_event(self, event, trans, set_gid=True):
         if not event.handle:
-            event.handle = Utils.create_id()
+            event.handle = create_id()
         if not event.gramps_id or set_gid:
             event.gramps_id = self.find_next_event_gramps_id()
         self.commit_event(event, trans)
@@ -982,7 +1005,7 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def add_tag(self, tag, trans):
         if not tag.handle:
-            tag.handle = Utils.create_id()
+            tag.handle = create_id()
         self.commit_event(tag, trans)
         return tag.handle
 
@@ -994,7 +1017,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         If not set_gid, then gramps_id is not set.
         """
         if not obj.handle:
-            obj.handle = Utils.create_id()
+            obj.handle = create_id()
         if not obj.gramps_id or set_gid:
             obj.gramps_id = self.find_next_object_gramps_id()
         self.commit_media_object(obj, transaction)

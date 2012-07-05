@@ -37,7 +37,6 @@ import os
 # Constants
 #
 #-------------------------------------------------------------------------
-import const
 
 # Report categories
 from gen.plug import CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_CODE, CATEGORY_WEB,\

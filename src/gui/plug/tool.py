@@ -38,7 +38,7 @@ log = logging.getLogger(".")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import TOOL_OPTIONS
 from gen.display.name import displayer as name_displayer
 from gen.errors import WindowActiveError
 from gen.plug._options import (Options, OptionHandler, OptionList,
@@ -288,7 +288,7 @@ class ToolOptionHandler(OptionHandler):
     def init_subclass(self):
         self.collection_class = OptionListCollection
         self.list_class = OptionList
-        self.filename = const.TOOL_OPTIONS
+        self.filename = TOOL_OPTIONS
 
 #------------------------------------------------------------------------
 #

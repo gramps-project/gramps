@@ -30,11 +30,11 @@ Provide merge capabilities for events.
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import sgettext as _
-import const
+from gen.const import URL_MANUAL_PAGE
 from gui.display import display_help
 from gui.managedwindow import ManagedWindow
 import gen.datehandler
-import Utils
+from gen.utils.db import get_participant_from_event
 from gen.merge import MergeEventQuery
 
 #-------------------------------------------------------------------------
@@ -43,7 +43,7 @@ from gen.merge import MergeEventQuery
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Entering_and_Editing_Data:_Detailed_-_part_3' % \
-    const.URL_MANUAL_PAGE
+    URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Merge_Events')
 _GLADE_FILE = 'mergeevent.glade'
 
@@ -121,8 +121,8 @@ class MergeEvent(ManagedWindow):
                 self.get_widget(widget_name).set_sensitive(False)
 
         # Main window widgets that determine which handle survives
-        ppant1 = Utils.get_participant_from_event(database, handle1)
-        ppant2 = Utils.get_participant_from_event(database, handle2)
+        ppant1 = get_participant_from_event(database, handle1)
+        ppant2 = get_participant_from_event(database, handle2)
         rbutton1 = self.get_widget("handle_btn1")
         rbutton_label1 = self.get_widget("label_handle_btn1")
         rbutton_label2 = self.get_widget("label_handle_btn2")

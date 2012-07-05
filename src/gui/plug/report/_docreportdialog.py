@@ -41,7 +41,6 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import const
 from gen.config import config
 from _reportdialog import ReportDialog
 from _papermenu import PaperFrame

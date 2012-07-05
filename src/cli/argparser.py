@@ -46,10 +46,10 @@ import logging
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import LONGOPTS, SHORTOPTS
 from gen.config import config
 from gen.utils.configmanager import safe_eval
-import Utils
+from gen.utils.file import get_unicode_path_from_env_var
 
 # Note: Make sure to edit const.py.in POPT_TABLE too!
 _HELP = _("""
@@ -216,9 +216,9 @@ class ArgParser(object):
             # -Ärik is '-\xc3\x84rik' and getopt will respond :
             # option -\xc3 not recognized
             for arg in range(len(self.args) - 1):
-                self.args[arg+1] = Utils.get_unicode_path_from_env_var(self.args[arg + 1])
+                self.args[arg+1] = get_unicode_path_from_env_var(self.args[arg + 1])
             options, leftargs = getopt.getopt(self.args[1:],
-                                             const.SHORTOPTS, const.LONGOPTS)
+                                             SHORTOPTS, LONGOPTS)
         except getopt.GetoptError, msg:
             # Extract the arguments in the list.
             # The % operator replaces the list elements with repr() of the list elemements
@@ -291,12 +291,12 @@ class ArgParser(object):
                 self.list_more = True
             elif option in ('-s','--show'):
                 print "Gramps config settings from %s:" % \
-                       config.config.filename.encode(sys.getfilesystemencoding())
-                for section in config.config.data:
-                    for setting in config.config.data[section]:
+                       config.filename.encode(sys.getfilesystemencoding())
+                for section in config.data:
+                    for setting in config.data[section]:
                         print "%s.%s=%s" % (
                             section, setting, 
-                            repr(config.config.data[section][setting]))
+                            repr(config.data[section][setting]))
                     print
                 sys.exit(0)
             elif option in ('-c', '--config'):
@@ -350,7 +350,7 @@ class ArgParser(object):
             # but not for non-latin characters in list elements
             cliargs = "[ "
             for arg in range(len(self.args) - 1):
-                cliargs += Utils.get_unicode_path_from_env_var(self.args[arg + 1]) + " "
+                cliargs += get_unicode_path_from_env_var(self.args[arg + 1]) + " "
             cliargs += "]"
             self.errors += [(_('Error parsing the arguments'),
                              _("Error parsing the arguments: %s \n"

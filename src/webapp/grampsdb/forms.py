@@ -23,11 +23,17 @@
 
 # forms.py forms for Django web project 
 
+# Django Modules:
 from django import forms
-from webapp.grampsdb.models import *
 from django.forms.models import inlineformset_factory
 from django.forms.models import BaseModelFormSet
 from django.forms.widgets import TextInput
+
+# Gramps Modules:
+from webapp.grampsdb.models import *
+import gen.mime
+
+# Python Modules:
 import datetime
 
 class PersonForm(forms.ModelForm):
@@ -197,6 +203,7 @@ class MediaForm(forms.ModelForm):
         from webapp.libdjango import DjangoInterface
         dji = DjangoInterface()
         model = super(MediaForm, self).save(commit=False)
+        model.mime = gen.mime.get_type(model.path)
         dobj = dp(self.cleaned_data['text'])
         dji.add_date(model, dobj.serialize())
         if commit:

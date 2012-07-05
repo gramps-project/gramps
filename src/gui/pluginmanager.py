@@ -43,11 +43,11 @@ from gi.repository import GdkPixbuf
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import gen.utils
+from gen.utils.callback import Callback
 from gen.plug import BasePluginManager, PluginRegister
 from gen.constfunc import win
 from gen.config import config
-import const
+from gen.const import ICON
 
 #-------------------------------------------------------------------------
 #
@@ -60,10 +60,10 @@ def base_reg_stock_icons(iconpaths, extraiconsize, items):
     Reusable base to register stock icons in Gramps
     ..attribute iconpaths: list of main directory of the base icon, and
       extension, eg:
-      [(os.path.join(const.IMAGE_DIR, 'scalable'), '.svg')]
+      [(os.path.join(IMAGE_DIR, 'scalable'), '.svg')]
     ..attribute extraiconsize: list of dir with extra prepared icon sizes and
       the gtk size to use them for, eg:
-      [(os.path.join(const.IMAGE_DIR, '22x22'), Gtk.IconSize.LARGE_TOOLBAR)]
+      [(os.path.join(IMAGE_DIR, '22x22'), Gtk.IconSize.LARGE_TOOLBAR)]
     ..attribute items: list of icons to register, eg:
       [('gramps-db', _('Family Trees'), Gdk.ModifierType.CONTROL_MASK, 0, '')]
     """
@@ -90,8 +90,7 @@ def base_reg_stock_icons(iconpaths, extraiconsize, items):
                     pass
                   
         if not pixbuf :
-            icon_file = os.path.join(const.IMAGE_DIR, 'gramps.png')
-            pixbuf = GdkPixbuf.Pixbuf.new_from_file (icon_file)
+            pixbuf = GdkPixbuf.Pixbuf.new_from_file (ICON)
 
         pixbuf = pixbuf.add_alpha(True, 255, 255, 255)
         icon_set = Gtk.IconSet.new_from_pixbuf (pixbuf)
@@ -120,7 +119,7 @@ def base_reg_stock_icons(iconpaths, extraiconsize, items):
 # GuiPluginManager
 #
 #-------------------------------------------------------------------------
-class GuiPluginManager(gen.utils.Callback):
+class GuiPluginManager(Callback):
     """ PluginManager is a Singleton which manages plugins. 
     It is the gui implementation using a unique BasePluginmanager. 
     This class adds the possibility to hide plugins in the GUI via a config 
@@ -143,7 +142,7 @@ class GuiPluginManager(gen.utils.Callback):
             raise Exception("This class is a singleton. "
                             "Use the get_instance() method")
         
-        gen.utils.Callback.__init__(self)
+        Callback.__init__(self)
         self.basemgr = BasePluginManager.get_instance()
         self.__hidden_plugins = set(config.get('plugin.hiddenplugins'))
         self.__hidden_changed()

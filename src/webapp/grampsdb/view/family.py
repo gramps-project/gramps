@@ -26,7 +26,7 @@ from webapp.utils import _, boolean, update_last_changed
 from webapp.grampsdb.models import Family
 from webapp.grampsdb.forms import *
 from webapp.libdjango import DjangoInterface
-from Utils import create_id
+from gen.utils.id import create_id
 
 ## Django Modules
 from django.shortcuts import get_object_or_404, render_to_response, redirect

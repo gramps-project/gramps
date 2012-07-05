@@ -41,13 +41,13 @@ from gi.repository import GdkPixbuf
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import ICON
 from gen.config import config
 from gui.glade import Glade
 from gen.ggettext import gettext as _
 
 try:
-    ICON = GdkPixbuf.Pixbuf.new_from_file(const.ICON)
+    ICON = GdkPixbuf.Pixbuf.new_from_file(ICON)
 except:
     ICON = None
 

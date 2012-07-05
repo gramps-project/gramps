@@ -50,9 +50,10 @@ from gi.repository import GdkPixbuf
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import ICON, THUMBSCALE, USER_HOME
 from gen.config import config
-import Utils
+from gen.utils.file import (media_path_full, media_path, relative_path, 
+                            find_file, get_unicode_path_from_file_chooser)
 import gen.mime
 from gui.thumbnails import find_mime_type_pixbuf
 from gui.display import display_help
@@ -98,10 +99,10 @@ class AddMediaObject(ManagedWindow):
         self.image = self.glade.get_object("image")
         self.file_text = self.glade.get_object("fname")
         if not(self.last_directory and os.path.isdir(self.last_directory)):
-            self.last_directory = const.USER_HOME
+            self.last_directory = USER_HOME
         #if existing path, use dir of path
         if not self.obj.get_path() == "":
-            fullname = Utils.media_path_full(self.dbase, self.obj.get_path())
+            fullname = media_path_full(self.dbase, self.obj.get_path())
             dir = os.path.dirname(fullname)
             if os.path.isdir(dir):
                 self.last_directory = dir
@@ -149,17 +150,17 @@ class AddMediaObject(ManagedWindow):
             ErrorDialog(msgstr, msgstr2)
             return
 
-        filename = Utils.get_unicode_path_from_file_chooser(self.file_text.get_filename())
+        filename = get_unicode_path_from_file_chooser(self.file_text.get_filename())
         full_file = filename
 
         if self.relpath.get_active():
-            pname = unicode(Utils.media_path(self.dbase))
+            pname = unicode(media_path(self.dbase))
             if not os.path.exists(pname):
                 msgstr = _("Cannot import %s")
                 msgstr2 = _("Directory specified in preferences: Base path for relative media paths: %s does not exist. Change preferences or do not use relative path when importing")
                 ErrorDialog(msgstr % filename, msgstr2 % pname)
                 return
-            filename = Utils.relative_path(filename, pname)
+            filename = relative_path(filename, pname)
 
 
         mtype = gen.mime.get_type(full_file)
@@ -186,7 +187,7 @@ class AddMediaObject(ManagedWindow):
         fname = self.file_text.get_filename()
         if not fname:
             return
-        filename = Utils.get_unicode_path_from_file_chooser(fname)
+        filename = get_unicode_path_from_file_chooser(fname)
         basename = os.path.basename(filename)
         (root, ext) = os.path.splitext(basename)
         old_title  = unicode(self.description.get_text())
@@ -195,11 +196,11 @@ class AddMediaObject(ManagedWindow):
             self.description.set_text(root)
         self.temp_name = root
         
-        filename = Utils.find_file( filename)
+        filename = find_file( filename)
         if filename:
             mtype = gen.mime.get_type(filename)
             if mtype and mtype.startswith("image"):
-                image = scale_image(filename, const.THUMBSCALE)
+                image = scale_image(filename, THUMBSCALE)
             else:
                 image = find_mime_type_pixbuf(mtype)
             self.image.set_from_pixbuf(image)
@@ -233,5 +234,4 @@ def scale_image(path, size):
                                    GdkPixbuf.InterpType.BILINEAR)
     except:
         WarningDialog(title_msg, detail_msg)
-        return GdkPixbuf.Pixbuf.new_from_file(const.ICON)
-    
+        return GdkPixbuf.Pixbuf.new_from_file(ICON)

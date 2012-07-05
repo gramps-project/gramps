@@ -7,16 +7,16 @@
 pkgdatadir = $(datadir)/@PACKAGE@/plugins/docgen
 
 pkgpython_PYTHON = \
-	AsciiDoc.py \
+	asciidoc.py \
 	docgen.gpr.py\
-	GtkPrint.py \
-	HtmlDoc.py \
-	LaTeXDoc.py \
-	ODFDoc.py \
-	PdfDoc.py \
-	PSDrawDoc.py \
-	RTFDoc.py \
-	SvgDrawDoc.py
+	gtkprint.py \
+	htmldoc.py \
+	latexdoc.py \
+	odfdoc.py \
+	pdfdoc.py \
+	psdrawdoc.py \
+	rtfdoc.py \
+	svgdrawdoc.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/docgen
 pkgpythondir = $(datadir)/@PACKAGE@/plugins/docgen

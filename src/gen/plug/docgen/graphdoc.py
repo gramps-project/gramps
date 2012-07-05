@@ -43,7 +43,7 @@ import sys
 #
 #-------------------------------------------------------------------------------
 from gen.ggettext import gettext as _
-import Utils
+from gen.utils.file import search_for
 from gen.plug.docgen import BaseDoc
 from gen.plug.menu import NumberOption, TextOption, EnumeratedListOption, \
                           BooleanOption
@@ -88,18 +88,18 @@ _NOTELOC = [ { 'name' : _("Top"),    'value' : "t" },
              { 'name' : _("Bottom"), 'value' : "b" }]
 
 if win():
-    _DOT_FOUND = Utils.search_for("dot.exe")
+    _DOT_FOUND = search_for("dot.exe")
     
-    if Utils.search_for("gswin32c.exe") == 1:
+    if search_for("gswin32c.exe") == 1:
         _GS_CMD = "gswin32c.exe"
-    elif Utils.search_for("gswin32.exe") == 1:
+    elif search_for("gswin32.exe") == 1:
         _GS_CMD = "gswin32.exe"
     else:
         _GS_CMD = ""
 else:
-    _DOT_FOUND = Utils.search_for("dot")
+    _DOT_FOUND = search_for("dot")
     
-    if Utils.search_for("gs") == 1:
+    if search_for("gs") == 1:
         _GS_CMD = "gs"
     else:
         _GS_CMD = ""

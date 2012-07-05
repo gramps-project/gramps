@@ -41,7 +41,7 @@ from gi.repository import Pango
 from gen.ggettext import sgettext as _
 from gen.plug.report import utils as ReportUtils
 from gen.display.name import displayer as name_displayer
-import const
+from gen.const import URL_MANUAL_PAGE
 from gui.display import display_help
 import gen.datehandler
 from gen.errors import MergeError
@@ -55,7 +55,7 @@ from gen.merge import MergePersonQuery
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = "%s_-_Entering_and_Editing_Data:_Detailed_-_part_3" % \
-        const.URL_MANUAL_PAGE
+        URL_MANUAL_PAGE
 WIKI_HELP_SEC = _("manual|Merge_People")
 _GLADE_FILE = "mergeperson.glade"
 

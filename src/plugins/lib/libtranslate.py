@@ -37,7 +37,7 @@ _ = gettext.gettext
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import TransUtils
+from gen.utils.trans import get_localedomain
 import gen.datehandler
 from gen.config import config
 from gen.lib.grampstype import GrampsType
@@ -143,7 +143,7 @@ class Translator:
         else:
             # fallback=True will cause the translator to use English if 
             # lang = "en" or if something goes wrong.
-            self.__trans = gettext.translation(TransUtils.get_localedomain(), 
+            self.__trans = gettext.translation(get_localedomain(), 
                                                languages=[lang], 
                                                fallback=True)
             val = config.get('preferences.date-format')

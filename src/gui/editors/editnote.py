@@ -48,7 +48,6 @@ from gi.repository import Pango
 #
 #-------------------------------------------------------------------------
 from gen.config import config
-import const
 from editprimary import EditPrimary
 from displaytabs import GrampsTab, NoteBackRefList
 from gui.widgets import (MonitoredDataType, MonitoredCheckbox, 

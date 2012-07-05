@@ -46,7 +46,7 @@ from gen.lib import Tag
 from gen.db import DbTxn
 from gui.dbguielement import DbGUIElement
 from gui.listmodel import ListModel, NOSORT, COLOR, INTEGER
-import const
+from gen.const import URL_MANUAL_PAGE
 from gui.display import display_help
 from gui.dialog import ErrorDialog, QuestionDialog2
 import gui.widgets.progressdialog as progressdlg
@@ -81,7 +81,7 @@ TAG_3 = '''
 </ui>'''
 
 WIKI_HELP_PAGE = '%s_-_Entering_and_Editing_Data:_Detailed_-_part_3' % \
-                                                        const.URL_MANUAL_PAGE
+                                                        URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Tags')
 
 #-------------------------------------------------------------------------

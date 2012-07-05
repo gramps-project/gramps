@@ -39,7 +39,7 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import Utils
+import gen.datehandler
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
 
 #-------------------------------------------------------------------------
@@ -107,7 +107,7 @@ class SourceModel(FlatBaseModel):
         return unicode(data[4])
 
     def column_change(self,data):
-        return Utils.format_time(data[8])
+        return gen.datehandler.format_time(data[8])
     
     def sort_change(self,data):
         return "%012x" % data[8]

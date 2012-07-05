@@ -7,33 +7,33 @@
 pkgdatadir = $(datadir)/@PACKAGE@/plugins/tool
 
 pkgpython_PYTHON = \
-	ChangeNames.py \
-	ChangeTypes.py \
-	Check.py \
-	Desbrowser.py \
-	Eval.py \
-	EventCmp.py \
-	EventNames.py \
-	ExtractCity.py \
-	FindDupes.py \
-	Leak.py \
-	MediaManager.py \
-	NotRelated.py \
-	OwnerEditor.py \
-	PatchNames.py \
-	Rebuild.py \
-	RebuildRefMap.py \
-	RelCalc.py \
-	RemoveUnused.py \
-	ReorderIds.py \
-	SortEvents.py \
-	SoundGen.py \
+	changenames.py \
+	changetypes.py \
+	check.py \
+	desbrowser.py \
+	eval.py \
+	eventcmp.py \
+	eventnames.py \
+	extractcity.py \
+	finddupes.py \
+	leak.py \
+	mediamanager.py \
+	notrelated.py \
+	ownereditor.py \
+	patchnames.py \
+	rebuild.py \
+	rebuildrefmap.py \
+	relcalc.py \
+	removeunused.py \
+	reorderids.py \
+	sortevents.py \
+	soundgen.py \
 	tools.gpr.py \
-	Verify.py \
-	MergeCitations.py
-#	DumpGenderStats.py \
-#	PHPGedViewConnector.py \
-#	TestcaseGenerator.py
+	verify.py \
+	mergecitations.py
+#	dumpgenderstats.py \
+#	phpgedviewconnector.py \
+#	testcasegenerator.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/tool
 pkgpythondir = $(datadir)/@PACKAGE@/plugins/tool

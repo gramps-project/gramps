@@ -52,7 +52,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from gen.display.name import displayer as name_displayer
-from Utils import (find_children, find_parents, find_witnessed_people)
+from gen.utils.db import (find_children, find_parents, find_witnessed_people)
 from libformatting import FormattingHelper
 import gen.lib
 from gui.views.navigationview import NavigationView

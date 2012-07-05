@@ -46,7 +46,7 @@ from gi.repository import Gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import GLADE_FILE, ICON
 from gen.errors import WindowActiveError
 from gen.config import config
 from gui.glade import Glade
@@ -433,7 +433,7 @@ class ManagedWindow(object):
     def define_glade(self, top_module, glade_file=None):
         if glade_file is None:
             raise TypeError, "ManagedWindow.define_glade: no glade file"
-            glade_file = const.GLADE_FILE
+            glade_file = GLADE_FILE
         self._gladeobj = Glade(glade_file, None, top_module)
         return self._gladeobj
 
@@ -570,4 +570,4 @@ def set_titles(window, title, text, msg=None):
         window.set_title('%s - Gramps' % msg)
     else:
         window.set_title('%s - Gramps' % text)
-    window.set_icon_from_file(const.ICON)
+    window.set_icon_from_file(ICON)

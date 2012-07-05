@@ -45,16 +45,8 @@ else:
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import VERSION, ICON, SPLASH
 from gui.display import display_help, display_url
-
-#-------------------------------------------------------------------------
-#
-# Constants
-#
-#-------------------------------------------------------------------------
-GRAMPS_PNG = os.path.join(const.IMAGE_DIR, "gramps.png")
-SPLASH_JPG = os.path.join(const.IMAGE_DIR, "splash.jpg")
 
 #-------------------------------------------------------------------------
 #
@@ -77,8 +69,8 @@ class ErrorReportAssistant(Gtk.Assistant):
         self._error_details_text_buffer = None
         self._final_report_text_buffer = None
 
-        self.logo = GdkPixbuf.Pixbuf.new_from_file(GRAMPS_PNG)
-        self.splash = GdkPixbuf.Pixbuf.new_from_file(SPLASH_JPG)
+        self.logo = GdkPixbuf.Pixbuf.new_from_file(ICON)
+        self.splash = GdkPixbuf.Pixbuf.new_from_file(SPLASH)
 
         self.set_title(_("Error Report Assistant"))
         self.connect('close', self.close)
@@ -170,7 +162,7 @@ class ErrorReportAssistant(Gtk.Assistant):
                "cairo version  : %s"\
                % (str(sys.version).replace('\n',''),
                   str(bsddb.__version__) + " " + str(bsddb.db.version()),
-                  str(const.VERSION),
+                  str(VERSION),
                   os.environ.get('LANG',''),
                   operatingsystem,
                   distribution,
@@ -229,7 +221,7 @@ class ErrorReportAssistant(Gtk.Assistant):
         # Using set_page_side_image causes window sizing problems, so put the 
         # image in the main page instead.
         image = Gtk.Image()
-        image.set_from_file(SPLASH_JPG)
+        image.set_from_file(SPLASH)
 
         hbox = Gtk.HBox()
         hbox.pack_start(image, False, False, 0)
@@ -653,7 +645,7 @@ class ErrorReportAssistant(Gtk.Assistant):
         # Using set_page_side_image causes window sizing problems, so put the 
         # image in the main page instead.
         image = Gtk.Image()
-        image.set_from_file(SPLASH_JPG)
+        image.set_from_file(SPLASH)
 
         hbox = Gtk.HBox()
         hbox.pack_start(image, False, False, 0)

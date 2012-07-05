@@ -59,7 +59,7 @@ from gen.filters.rules._matchesfilterbase import MatchesFilterBase
 from gui.listmodel import ListModel
 from gui.managedwindow import ManagedWindow
 from gui.dialog import QuestionDialog
-import const
+from gen.const import RULE_GLADE, URL_MANUAL_PAGE
 from gui.display import display_help
 from gen.errors import WindowActiveError
 from gen.ggettext import sgettext as _
@@ -68,14 +68,15 @@ from gen.filters import rules
 from gui.autocomp import StandardCustomSelector, fill_entry
 from gui.selectors import SelectorFactory
 from gen.display.name import displayer as _nd
-import Utils
+from gen.utils.db import family_name
+from gen.utils.string import confidence
 
 #-------------------------------------------------------------------------
 #
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = WIKI_HELP_PAGE = '%s_-_Filters' % const.URL_MANUAL_PAGE
+WIKI_HELP_PAGE = WIKI_HELP_PAGE = '%s_-_Filters' % URL_MANUAL_PAGE
 
 # dictionary mapping FILTER_TYPE of views to Filter window name
 _TITLES = {
@@ -339,7 +340,7 @@ class MyID(Gtk.HBox):
             name = _nd.display_name(person.get_primary_name())
         elif self.namespace == 'Family':
             family = self.db.get_family_from_gramps_id(gramps_id)
-            name = Utils.family_name(family, self.db)
+            name = family_name(family, self.db)
         elif self.namespace == 'Event':
             event = self.db.get_event_from_gramps_id(gramps_id)
             name = str(event.get_type)
@@ -442,7 +443,7 @@ class EditRule(ManagedWindow):
         self.filter_name = filter_name
 
         self.active_rule = val
-        self.define_glade('rule_editor', const.RULE_GLADE)
+        self.define_glade('rule_editor', RULE_GLADE)
         
         self.set_window(self.get_widget('rule_editor'),
                         self.get_widget('rule_editor_title'),label)
@@ -552,7 +553,7 @@ class EditRule(ManagedWindow):
                     t = MyList(taglist, taglist)
                 elif v == _('Confidence level:'):
                     t = MyList(map(str, range(5)), 
-                               [Utils.confidence[i] for i in range(5)])
+                               [confidence[i] for i in range(5)])
                 else:                    
                     t = MyEntry()
                 tlist.append(t)
@@ -731,7 +732,7 @@ class EditFilter(ManagedWindow):
         self.filterdb = filterdb
         self.selection_callback = selection_callback
         
-        self.define_glade('define_filter', const.RULE_GLADE)
+        self.define_glade('define_filter', RULE_GLADE)
         
         self.set_window(
             self.get_widget('define_filter'),
@@ -881,7 +882,7 @@ class ShowResults(ManagedWindow):
         self.db = db
         self.filtname = filtname
         self.namespace = namespace
-        self.define_glade('test', const.RULE_GLADE,)
+        self.define_glade('test', RULE_GLADE,)
         self.set_window(
             self.get_widget('test'),
             self.get_widget('test_title'),
@@ -919,7 +920,7 @@ class ShowResults(ManagedWindow):
             gid = person.get_gramps_id()
         elif self.namespace == 'Family':
             family = self.db.get_family_from_handle(handle)
-            name = Utils.family_name(family, self.db)
+            name = family_name(family, self.db)
             gid = family.get_gramps_id()
         elif self.namespace == 'Event':
             event = self.db.get_event_from_handle(handle)
@@ -958,7 +959,7 @@ class ShowResults(ManagedWindow):
             name = self.db.get_person_from_handle(handle).get_primary_name()
             sortname = _nd.sort_string(name)
         elif self.namespace == 'Family':
-            sortname = Utils.family_name(
+            sortname = family_name(
                 self.db.get_family_from_handle(handle),self.db)
         elif self.namespace == 'Event':
             sortname = self.db.get_event_from_handle(handle).get_description()
@@ -994,7 +995,7 @@ class FilterEditor(ManagedWindow):
         self.height_key = "interface.filter-editor-height"
         self.namespace = namespace
 
-        self.define_glade('filter_list', const.RULE_GLADE)
+        self.define_glade('filter_list', RULE_GLADE)
         self.filter_list = self.get_widget('filters')
         self.edit = self.get_widget('filter_list_edit')
         self.clone = self.get_widget('filter_list_clone')

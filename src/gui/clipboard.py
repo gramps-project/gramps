@@ -45,14 +45,14 @@ from gi.repository import GdkPixbuf
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import IMAGE_DIR, URL_MANUAL_PAGE
 from gen.config import config
 import gen.lib
 import gen.datehandler
 from gui.display import display_help
 from gui.managedwindow import ManagedWindow
 from gen.ggettext import sgettext as _
-from TransUtils import trans_objclass
+from gen.utils.trans import trans_objclass
 from gen.constfunc import mac
 from gui.glade import Glade
 from gui.ddtargets import DdTargets
@@ -64,7 +64,7 @@ import gui.utils
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_Navigation' % const.URL_MANUAL_PAGE
+WIKI_HELP_PAGE = '%s_-_Navigation' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Using_the_Clipboard')
 
 #-------------------------------------------------------------------------
@@ -73,7 +73,7 @@ WIKI_HELP_SEC = _('manual|Using_the_Clipboard')
 #
 #-------------------------------------------------------------------------
 
-_stock_image = os.path.join(const.IMAGE_DIR,'stock_link.png')
+_stock_image = os.path.join(IMAGE_DIR,'stock_link.png')
 LINK_PIC = GdkPixbuf.Pixbuf.new_from_file(_stock_image)
 ICONS = {}
 for (name, file) in (
@@ -94,7 +94,7 @@ for (name, file) in (
     ('text', 'gramps-font.png'),
     ('url', 'gramps-geo.png'),
     ):
-    _image = os.path.join(const.IMAGE_DIR, '16x16', file)
+    _image = os.path.join(IMAGE_DIR, '16x16', file)
     ICONS[name] = GdkPixbuf.Pixbuf.new_from_file(_image) 
 
 #-------------------------------------------------------------------------

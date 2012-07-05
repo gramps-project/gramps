@@ -31,6 +31,7 @@
 <tr>
 <td class="ColumnAttribute">{{mediaform.desc.label}}:</td>
 <td class="ColumnValue" id="data" colspan="3">{% render mediaform.desc user action %}</td>
+<td rowspan="5">{% media_link media.handle user action %}</td>
 </tr>
 <tr>
 <td class="ColumnAttribute">{{mediaform.gramps_id.label}}:</td>
@@ -60,6 +61,7 @@
     <li class="ui-corner-top ui-state-default"><a href="#tab-attributes">Attributes</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Notes</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-references">References</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-history">History</a></li>
   </ul>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-sources">
     {% citation_table media user action "/citation/$act/media/%s" media.handle %}
@@ -72,6 +74,9 @@
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-references">
     {% media_reference_table media user action %}
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-history">
+    {% history_table media user action %}
   </div>
 </div>
 

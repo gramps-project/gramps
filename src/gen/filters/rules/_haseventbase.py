@@ -35,7 +35,7 @@ from gen.ggettext import gettext as _
 import gen.datehandler
 from gen.lib import EventType
 from gen.filters.rules import Rule
-from Utils import get_participant_from_event
+from gen.utils.db import get_participant_from_event
 
 #-------------------------------------------------------------------------
 #

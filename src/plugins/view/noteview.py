@@ -47,7 +47,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gui.views.listview import ListView
 from gui.views.treemodels import NoteModel
-from gen.utils.referent import get_note_referents
+from gen.utils.db import get_note_referents
 from gen.errors import WindowActiveError
 from gui.views.bookmarks import NoteBookmarks
 from gen.config import config

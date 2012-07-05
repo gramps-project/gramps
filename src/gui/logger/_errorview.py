@@ -32,7 +32,7 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import URL_MANUAL_PAGE
 from gen.ggettext import sgettext as _
 from _errorreportassistant import ErrorReportAssistant
 from gui.display import display_help
@@ -42,7 +42,7 @@ from gui.display import display_help
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_FAQ' % const.URL_MANUAL_PAGE
+WIKI_HELP_PAGE = '%s_-_FAQ' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|General')
 
 class ErrorView(object):

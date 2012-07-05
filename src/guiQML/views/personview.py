@@ -54,8 +54,8 @@ from PySide import QtOpenGL
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import const
-from Utils import conv_unicode_tosrtkey_ongtk
+from gen.const import ROOT_DIR
+from gui.views.treemodels import conv_unicode_tosrtkey_ongtk
 from gen.ggettext import gettext as _
 from gen.display.name import displayer as name_displayer
 from gen.lib import Name
@@ -192,7 +192,7 @@ class QMLPersonList(QtCore.QObject):
         #create a Component to show
         self.qmlpersonlist = QtDeclarative.QDeclarativeComponent(engine)
         self.qmlpersonlist.loadUrl(QtCore.QUrl.fromLocalFile(
-                os.path.join(const.ROOT_DIR, "guiQML", 'views', 'peopleview.qml')))
+                os.path.join(ROOT_DIR, "guiQML", 'views', 'peopleview.qml')))
         #and obtain the QObject of it
         self.Qpersonlist = self.qmlpersonlist.create(self.qmlpersonlistcontext)
 

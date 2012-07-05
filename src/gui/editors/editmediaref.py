@@ -44,10 +44,11 @@ from gi.repository import GdkPixbuf
 #
 #-------------------------------------------------------------------------
 from gui.utils import open_file_with_default_application
-import const
+from gen.const import THUMBSCALE
 import gen.mime
 from gui.thumbnails import get_thumbnail_image, find_mime_type_pixbuf
-import Utils
+from gen.utils.file import (media_path_full, find_file, 
+                            get_unicode_path_from_file_chooser)
 from gen.lib import NoteType
 from gen.db import DbTxn
 from gui.glade import Glade
@@ -118,10 +119,10 @@ class EditMediaRef(EditReference):
             self.mimetext.set_text(descr)
 
         path = self.file_path.get_text()
-        path_full = Utils.media_path_full(self.db, path)
+        path_full = media_path_full(self.db, path)
         if path != self.source.get_path() and path_full != self.source.get_path():
             #redetermine mime
-            mime = gen.mime.get_type(Utils.find_file(path_full))
+            mime = gen.mime.get_type(find_file(path_full))
             self.source.set_mime_type(mime)
             descr = gen.mime.get_description(mime)
             if descr:
@@ -139,7 +140,7 @@ class EditMediaRef(EditReference):
         """
         mtype = self.source.get_mime_type()
         if mtype:
-            fullpath = Utils.media_path_full(self.db, self.source.get_path())
+            fullpath = media_path_full(self.db, self.source.get_path())
             pb = get_thumbnail_image(fullpath, mtype)
             self.pixmap.set_from_pixbuf(pb)
             subpix = get_thumbnail_image(fullpath, mtype,
@@ -394,7 +395,7 @@ class EditMediaRef(EditReference):
             self.subpixmap.hide()
         else:
             try:
-                fullpath = Utils.media_path_full(self.db, path)
+                fullpath = media_path_full(self.db, path)
                 pixbuf = GdkPixbuf.Pixbuf.new_from_file(fullpath)
                 width = pixbuf.get_width()
                 height = pixbuf.get_height()
@@ -411,7 +412,7 @@ class EditMediaRef(EditReference):
                     width = sub_width
                     height = sub_height
                 ratio = float(max(height, width))
-                scale = const.THUMBSCALE / ratio
+                scale = THUMBSCALE / ratio
                 x = int(scale * width)
                 y = int(scale * height)
                 pixbuf = pixbuf.scale_simple(x, y, GdkPixbuf.InterpType.BILINEAR)
@@ -433,7 +434,7 @@ class EditMediaRef(EditReference):
     
     def button_press_event(self, obj, event):
         if event.button==1 and event.type == Gdk.EventType._2BUTTON_PRESS:
-            photo_path = Utils.media_path_full(self.db, self.source.get_path())
+            photo_path = media_path_full(self.db, self.source.get_path())
             open_file_with_default_application(photo_path)
 
     def button_press_event_ref(self, widget, event):
@@ -457,9 +458,9 @@ class EditMediaRef(EditReference):
  
     def motion_notify_event_ref(self, widget, event):
         # get the image size and calculate the X and Y offsets
-        # (image is centered *horizontally* when smaller than const.THUMBSCALE)
+        # (image is centered *horizontally* when smaller than THUMBSCALE)
         w, h = self.rect_pixbuf.get_width(), self.rect_pixbuf.get_height()
-        offset_x = (const.THUMBSCALE - w) / 2
+        offset_x = (THUMBSCALE - w) / 2
         offset_y = 0
 
         self.rect_pixmap.draw_pixbuf(self.rect_gc, self.rect_pixbuf, 0, 0, 0, 0)
@@ -511,10 +512,10 @@ class EditMediaRef(EditReference):
             if new_x2 - new_x1 >= 5 and new_y2 - new_y1 >= 5:
 
                 # get the image size and calculate the X and Y offsets
-                # (image is centered *horizontally* when smaller than const.THUMBSCALE)
+                # (image is centered *horizontally* when smaller than THUMBSCALE)
                 w = self.rect_pixbuf.get_width()
                 h = self.rect_pixbuf.get_height()
-                x = (const.THUMBSCALE - w) / 2
+                x = (THUMBSCALE - w) / 2
                 y = 0
 
                 # if the click was outside of the image,
@@ -581,7 +582,7 @@ class EditMediaRef(EditReference):
     def select_file(self, val):
         self.determine_mime()
         path = self.file_path.get_text()
-        self.source.set_path(Utils.get_unicode_path_from_file_chooser(path))
+        self.source.set_path(get_unicode_path_from_file_chooser(path))
         AddMediaObject(self.dbstate, self.uistate, self.track, self.source, 
                        self._update_addmedia)
 

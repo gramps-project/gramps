@@ -64,7 +64,7 @@ from gi.repository import Gtk
 from gen.ggettext import sgettext as _
 from gen.lib.date import Date
 import gen.datehandler
-import const
+from gen.const import URL_MANUAL_PAGE
 from gui.display import display_help
 from gui.managedwindow import ManagedWindow
 from gui.glade import Glade
@@ -97,7 +97,7 @@ CAL_TO_MONTHS_NAMES = {
     Date.CAL_ISLAMIC    : gen.datehandler.displayer.islamic,
     Date.CAL_SWEDISH    : gen.datehandler.displayer.swedish }
 
-WIKI_HELP_PAGE = '%s_-_Entering_and_Editing_Data:_Detailed_-_part_1' % const.URL_MANUAL_PAGE
+WIKI_HELP_PAGE = '%s_-_Entering_and_Editing_Data:_Detailed_-_part_1' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Editing_Dates')
 
 #-------------------------------------------------------------------------

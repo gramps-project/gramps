@@ -50,7 +50,8 @@ from gi.repository import GdkPixbuf
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import (ICON, IMAGE_DIR, THUMB_LARGE, THUMB_NORMAL, THUMBSCALE, 
+                       THUMBSCALE_LARGE, USE_THUMBNAILER)
 
 #-------------------------------------------------------------------------
 #
@@ -145,9 +146,9 @@ def __build_thumb_path(path, rectangle=None, size=SIZE_NORMAL):
         extra = "?" + str(rectangle)
     md5_hash = md5(path+extra)
     if size == SIZE_LARGE:
-        base_dir = const.THUMB_LARGE
+        base_dir = THUMB_LARGE
     else:
-        base_dir = const.THUMB_NORMAL
+        base_dir = THUMB_NORMAL
     return os.path.join(base_dir, md5_hash.hexdigest()+'.png')
 
 #-------------------------------------------------------------------------
@@ -200,9 +201,9 @@ def __create_thumbnail_image(src_file, mtype=None, rectangle=None,
                     height = sub_height
                     
             if size == SIZE_LARGE:
-                thumbscale = const.THUMBSCALE_LARGE
+                thumbscale = THUMBSCALE_LARGE
             else:
-                thumbscale = const.THUMBSCALE
+                thumbscale = THUMBSCALE
             scale = thumbscale / (float(max(width, height)))
             
             scaled_width = int(width * scale)
@@ -235,10 +236,9 @@ def find_mime_type_pixbuf(mime_type):
                 newicon = "gnome-mime-%s" % icontmp
                 return _icon_theme.load_icon(newicon,48,0)
             except:
-                return GdkPixbuf.Pixbuf.new_from_file(const.ICON)
+                return GdkPixbuf.Pixbuf.new_from_file(ICON)
     except:
-        return GdkPixbuf.Pixbuf.new_from_file(const.ICON)
-
+        return GdkPixbuf.Pixbuf.new_from_file(ICON)
 #-------------------------------------------------------------------------
 #
 # run_thumbnailer
@@ -265,7 +265,7 @@ def run_thumbnailer(mime_type, src_file, dest_file, size=SIZE_NORMAL):
     """
     # only try this if GCONF is present, the thumbnailer has not been 
     # disabled, and if the src_file actually exists
-    if GCONF and const.USE_THUMBNAILER and os.path.isfile(src_file):
+    if GCONF and USE_THUMBNAILER and os.path.isfile(src_file):
         
         # find the command and enable for the associated mime types by 
         # querying the gconf database
@@ -277,9 +277,9 @@ def run_thumbnailer(mime_type, src_file, dest_file, size=SIZE_NORMAL):
         # of the command to build the thumbnail
         if cmd and enable:
             if size == SIZE_LARGE:
-                thumbscale = const.THUMBSCALE_LARGE
+                thumbscale = THUMBSCALE_LARGE
             else:
-                thumbscale = const.THUMBSCALE
+                thumbscale = THUMBSCALE
             sublist = {
                 '%s' : "%d" % int(thumbscale),
                 '%u' : src_file, 
@@ -320,7 +320,7 @@ def get_thumbnail_image(src_file, mtype=None, rectangle=None, size=SIZE_NORMAL):
         if mtype:
             return find_mime_type_pixbuf(mtype)
         else:
-            default = os.path.join(const.IMAGE_DIR, "document.png")
+            default = os.path.join(IMAGE_DIR, "document.png")
             return GdkPixbuf.Pixbuf.new_from_file(default)
 
 #-------------------------------------------------------------------------
@@ -345,10 +345,10 @@ def get_thumbnail_path(src_file, mtype=None, rectangle=None, size=SIZE_NORMAL):
     """
     filename = __build_thumb_path(src_file, rectangle, size)
     if not os.path.isfile(src_file):
-        return os.path.join(const.IMAGE_DIR, "image-missing.png")
+        return os.path.join(IMAGE_DIR, "image-missing.png")
     else:
         if (not os.path.isfile(filename)) or (
                 os.path.getmtime(src_file) > os.path.getmtime(filename)):
             if not __create_thumbnail_image(src_file, mtype, rectangle, size):
-                return os.path.join(const.IMAGE_DIR, "document.png")
+                return os.path.join(IMAGE_DIR, "document.png")
         return os.path.abspath(filename)

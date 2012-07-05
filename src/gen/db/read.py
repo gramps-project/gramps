@@ -59,7 +59,7 @@ from gen.lib import (MediaObject, Person, Family, Source, Citation, Event,
 from gen.db.dbconst import *
 from gen.utils.callback import Callback
 from gen.db import (BsddbBaseCursor, DbReadBase)
-from Utils import create_id
+from gen.utils.id import create_id
 from gen.errors import DbError
 
 LOG = logging.getLogger(DBLOGNAME)

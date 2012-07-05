@@ -90,11 +90,11 @@ po/Makefile.in
 m4/Makefile
 Makefile
 gramps.sh
-src/const.py
 src/Makefile
 src/cli/Makefile
 src/cli/plug/Makefile
 src/gen/Makefile
+src/gen/const.py
 src/gen/datehandler/Makefile
 src/gen/db/Makefile
 src/gen/display/Makefile
@@ -120,6 +120,7 @@ src/gen/plug/report/Makefile
 src/gen/proxy/Makefile
 src/gen/simple/Makefile
 src/gen/utils/Makefile
+src/gen/utils/docgen/Makefile
 src/gui/Makefile
 src/gui/editors/Makefile
 src/gui/editors/displaytabs/Makefile
@@ -136,7 +137,6 @@ src/gui/selectors/Makefile
 src/gui/views/Makefile
 src/gui/views/treemodels/Makefile
 src/gui/widgets/Makefile
-src/docgen/Makefile
 src/plugins/Makefile
 src/plugins/docgen/Makefile
 src/plugins/drawreport/Makefile

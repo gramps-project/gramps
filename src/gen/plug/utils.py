@@ -39,8 +39,8 @@ import os
 #
 #-------------------------------------------------------------------------
 from gen.plug._pluginreg import make_environment
-import const
-import Utils
+from gen.const import USER_PLUGINS, VERSION_TUPLE
+from gen.utils.file import get_unicode_path_from_file_chooser
 from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -259,7 +259,7 @@ def load_addon_file(path, callback=None):
             if gramps_target_version:
                 vtup = version_str_to_tup(gramps_target_version, 2)
                 # Is it for the right version of gramps?
-                if vtup == const.VERSION_TUPLE[0:2]:
+                if vtup == VERSION_TUPLE[0:2]:
                     # If this version is not installed, or > installed, install it
                     good_gpr.add(gpr_file)
                     if callback:
@@ -281,13 +281,13 @@ def load_addon_file(path, callback=None):
                     callback("   " + (_("Error: missing gramps_target_version in '%s'...") % gpr_file)  + "\n")
     if len(good_gpr) > 0:
         # Now, install the ok ones
-        file_obj.extractall(const.USER_PLUGINS)
+        file_obj.extractall(USER_PLUGINS)
         if callback:
             callback((_("Installing '%s'...") % path) + "\n")
-        gpr_files = set([os.path.split(os.path.join(const.USER_PLUGINS, name))[0]
+        gpr_files = set([os.path.split(os.path.join(USER_PLUGINS, name))[0]
                          for name in good_gpr])
         for gpr_file in gpr_files:
-            u_gpr_file = Utils.get_unicode_path_from_file_chooser(gpr_file)
+            u_gpr_file = get_unicode_path_from_file_chooser(gpr_file)
             if callback:
                 callback("   " + (_("Registered '%s'") % u_gpr_file) + "\n")
     file_obj.close()

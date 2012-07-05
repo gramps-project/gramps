@@ -37,7 +37,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from gen.display.name import displayer as name_displayer
-import Utils
+from gen.utils.db import family_name, get_participant_from_event
 
 #-------------------------------------------------------------------------
 #
@@ -84,7 +84,7 @@ class BackRefModel(Gtk.ListStore):
                     continue
                 gid = p.gramps_id
                 handle = p.handle
-                name = Utils.family_name(p, self.db)
+                name = family_name(p, self.db)
             elif dtype == 'Source':
                 p = self.db.get_source_from_handle(ref[1])
                 if not p:
@@ -111,7 +111,7 @@ class BackRefModel(Gtk.ListStore):
                                 'part2': name}
                 else:
                     name = str(p.get_type())
-                part = Utils.get_participant_from_event(self.db, ref[1])
+                part = get_participant_from_event(self.db, ref[1])
                 if part :
                     name = self.dispstr % {'part1': name,
                                 'part2': part}

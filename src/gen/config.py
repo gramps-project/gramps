@@ -41,15 +41,15 @@ from gen.ggettext import gettext as _
 # Gramps imports
 #
 #---------------------------------------------------------------
-import const
-from gen.utils import ConfigManager
+from gen.const import HOME_DIR, USER_HOME, VERSION_DIR
+from gen.utils.configmanager import ConfigManager
 
 #---------------------------------------------------------------
 #
 # Constants
 #
 #---------------------------------------------------------------
-INIFILE = os.path.join(const.VERSION_DIR, "gramps.ini")
+INIFILE = os.path.join(VERSION_DIR, "gramps.ini")
 
 #---------------------------------------------------------------
 #
@@ -133,7 +133,7 @@ register('behavior.check-for-update-types', ["new"])
 register('behavior.last-check-for-updates', "1970/01/01")
 register('behavior.previously-seen-updates', [])
 register('behavior.do-not-show-previously-seen-updates', True)
-register('behavior.database-path', os.path.join( const.HOME_DIR, 'grampsdb'))
+register('behavior.database-path', os.path.join( HOME_DIR, 'grampsdb'))
 register('behavior.date-about-range', 50)
 register('behavior.date-after-range', 50)
 register('behavior.date-before-range', 50)
@@ -267,9 +267,9 @@ register('interface.surname-box-height', 150)
 register('paths.recent-export-dir', '')
 register('paths.recent-file', '')
 register('paths.recent-import-dir', '')
-register('paths.report-directory', const.USER_HOME)
-register('paths.website-directory', const.USER_HOME)
-register('paths.quick-backup-directory', const.USER_HOME)
+register('paths.report-directory', USER_HOME)
+register('paths.website-directory', USER_HOME)
+register('paths.quick-backup-directory', USER_HOME)
 register('paths.quick-backup-filename', 
          "%(filename)s_%(year)d-%(month)02d-%(day)02d.%(extension)s")
 
@@ -329,10 +329,10 @@ register('plugin.addonplugins', [])
 # we can tell by seeing if there is a key file for this version:
 if not os.path.exists(CONFIGMAN.filename):
     # If not, let's read old if there:
-    if os.path.exists(os.path.join(const.HOME_DIR, "keys.ini")):
+    if os.path.exists(os.path.join(HOME_DIR, "keys.ini")):
         # read it in old style:
         print >> sys.stderr, "Importing old key file 'keys.ini'..."
-        CONFIGMAN.load(os.path.join(const.HOME_DIR, "keys.ini"),
+        CONFIGMAN.load(os.path.join(HOME_DIR, "keys.ini"),
                             oldstyle=True)
         print >> sys.stderr, "Done importing old key file 'keys.ini'"
     # other version upgrades here...

@@ -30,7 +30,7 @@ Provide merge capabilities for media objects.
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import sgettext as _
-import const
+from gen.const import URL_MANUAL_PAGE
 from gui.display import display_help
 from gui.managedwindow import ManagedWindow
 import gen.datehandler
@@ -42,7 +42,7 @@ from gen.merge import MergeMediaQuery
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Entering_and_Editing_Data:_Detailed_-_part_3' % \
-        const.URL_MANUAL_PAGE
+        URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Merge_Media_Objects')
 _GLADE_FILE = 'mergemedia.glade'
 

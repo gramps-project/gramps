@@ -59,7 +59,6 @@ _LOG = logging.getLogger(".")
 from gen.lib import Name, EventRef, EventType, EventRoleType
 from gen.display.name import displayer as name_displayer
 import gen.datehandler
-import Utils
 from lru import LRU
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
 from gui.views.treemodels.treebasemodel import TreeBaseModel
@@ -237,7 +236,7 @@ class PeopleBaseModel(object):
         return "%012x" % data[COLUMN_CHANGE]
 
     def column_change(self, data):
-        return Utils.format_time(data[COLUMN_CHANGE])
+        return gen.datehandler.format_time(data[COLUMN_CHANGE])
 
     def column_gender(self, data):
         return PeopleBaseModel._GENDER[data[COLUMN_GENDER]]

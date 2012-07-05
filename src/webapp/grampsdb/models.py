@@ -32,7 +32,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 
 from gen.lib.date import Date as GDate, Today
-from Utils import create_id, create_uid
+from gen.utils.id import create_id, create_uid
 
 from webapp.grampsdb.profile import Profile
 
@@ -396,9 +396,9 @@ class Config(models.Model):
     """
     All of the meta config items for the entire system.
     """
-    setting = models.CharField('config setting', max_length=25)
-    description = models.TextField('description')
-    value_type = models.CharField('type of value', max_length=25)
+    setting = models.CharField('config setting', max_length=50)
+    description = models.TextField('description', null=True, blank=True)
+    value_type = models.CharField('type of value', max_length=80)
     value = models.TextField('value')
 
     def __unicode__(self):

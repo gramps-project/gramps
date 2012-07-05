@@ -4,6 +4,8 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
+SUBDIRS = docgen
+
 pkgpythondir = $(datadir)/@PACKAGE@/gen/utils
 
 pkgpython_PYTHON = \
@@ -11,10 +13,21 @@ pkgpython_PYTHON = \
 	alive.py \
 	callback.py \
 	callman.py \
+	cast.py \
+	config.py \
 	configmanager.py \
-	fallback.py \
+	debug.py \
+	db.py \
+	file.py \
+	id.py \
+	image.py \
+	keyword.py \
+	lds.py \
+	mactrans.py \
 	place.py \
-	referent.py
+	string.py \
+	trans.py \
+	unknown.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen/utils
 

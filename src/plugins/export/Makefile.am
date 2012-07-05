@@ -6,14 +6,14 @@
 
 pkgpython_PYTHON = \
 	export.gpr.py \
-	ExportCsv.py \
-	ExportFtree.py \
-	ExportGedcom.py \
-	ExportGeneWeb.py \
-	ExportPkg.py \
-	ExportVCalendar.py \
-	ExportVCard.py \
-	ExportXml.py
+	exportcsv.py \
+	exportftree.py \
+	exportgedcom.py \
+	exportgeneweb.py \
+	exportpkg.py \
+	exportvcalendar.py \
+	exportvcard.py \
+	exportxml.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/export
 pkgpythondir = $(datadir)/@PACKAGE@/plugins/export

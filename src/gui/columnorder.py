@@ -48,7 +48,6 @@ from gi.repository import GObject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import const
 from gui.managedwindow import ManagedWindow
 from gui.glade import Glade
 

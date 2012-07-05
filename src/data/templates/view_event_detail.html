@@ -57,6 +57,7 @@
     <li class="ui-corner-top ui-state-default"><a href="#tab-media">Media</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-attributes">Attributes</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-references">References</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-history">History</a></li>
   </ul>
   <div class="ui-tab-panel ui-widget-content ui-corner-bottom" id="tab-sources">
     {% citation_table event user action "/citation/$act/event/%s" event.handle %}
@@ -72,6 +73,9 @@
   </div>
   <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-references">
     {% event_reference_table event user action %}
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-history">
+    {% history_table event user action %}
   </div>
 </div>
 

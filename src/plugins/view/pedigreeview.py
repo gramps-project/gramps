@@ -57,8 +57,8 @@ from gui.views.navigationview import NavigationView
 from gui.editors import FilterEditor
 from gen.display.name import displayer as name_displayer
 from gen.utils.alive import probably_alive
-from Utils import (media_path_full, find_children, find_parents, 
-                   find_witnessed_people)
+from gen.utils.file import media_path_full
+from gen.utils.db import find_children, find_parents, find_witnessed_people
 from libformatting import FormattingHelper
 from gui.thumbnails import get_thumbnail_path
 from gen.errors import WindowActiveError
@@ -67,7 +67,7 @@ from gui.ddtargets import DdTargets
 import cPickle as pickle
 from gen.config import config
 from gui.views.bookmarks import PersonBookmarks
-import const
+from gen.const import CUSTOM_FILTERS
 from gen.constfunc import is_quartz, win
 from gui.dialog import RunDatabaseRepair, ErrorDialog
 import gui.utils
@@ -858,7 +858,7 @@ class PedigreeView(NavigationView):
         Display the person filter editor.
         """
         try:
-            FilterEditor('Person', const.CUSTOM_FILTERS, 
+            FilterEditor('Person', CUSTOM_FILTERS, 
                          self.dbstate, self.uistate)
         except WindowActiveError:
             return

@@ -25,7 +25,7 @@
 #    python modules
 #------------------------------------------------
 import os
-import const
+from gen.const import VERSION_DIR
 from gen.ggettext import sgettext as _
 
 def make_css_dict(tup):
@@ -193,7 +193,7 @@ def process_list(data):
             # is there a override file in the VERSION_DIR/webstuff?
             # eg, ~/.gramps/gramps34/webstuff/Web_Nebraska.css
             # if so, replace this one:
-            override = os.path.join(const.VERSION_DIR, "webstuff", filename)
+            override = os.path.join(VERSION_DIR, "webstuff", filename)
             if os.path.exists(override):
                 row[3] = override
         retval.append(row)

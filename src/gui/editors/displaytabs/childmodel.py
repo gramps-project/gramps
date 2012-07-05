@@ -35,9 +35,9 @@ import cgi
 #-------------------------------------------------------------------------
 import gen.datehandler
 from gen.display.name import displayer as name_displayer
-import Utils
+from gen.utils.string import gender as gender_map
 import gen.lib
-from gen.utils import get_birth_or_fallback, get_death_or_fallback
+from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 
 #-------------------------------------------------------------------------
 #
@@ -57,7 +57,7 @@ class ChildModel(Gtk.ListStore):
                     index + 1, 
                     child.get_gramps_id(), 
                     name_displayer.display(child), 
-                    Utils.gender[child.get_gender()], 
+                    gender_map[child.get_gender()], 
                     str(child_ref.get_father_relation()), 
                     str(child_ref.get_mother_relation()),
                     self.column_birth_day(child), 

@@ -51,7 +51,7 @@ except:
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import Utils
+from gen.utils.cast import get_type_converter
 import gen
 
 #-------------------------------------------------------------------------
@@ -346,7 +346,7 @@ class OptionHandler(object):
                 bad_opts.append(option_name)
                 continue
             try:
-                converter = Utils.get_type_converter(self.options_dict[option_name])
+                converter = get_type_converter(self.options_dict[option_name])
                 self.options_dict[option_name] = converter(option_data)
             except ValueError:
                 pass

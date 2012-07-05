@@ -57,21 +57,14 @@ from gi.repository import GdkPixbuf
 #
 #-------------------------------------------------------------------------
 
-import const
+from gen.const import USER_HOME, ICON, SPLASH
 from gen.config import config
 from gui.pluginmanager import GuiPluginManager
-import Utils
+from gen.utils.file import (find_folder, get_new_filename, 
+                            get_unicode_path_from_file_chooser)
 from gui.managedwindow import ManagedWindow
 from gui.dialog import ErrorDialog
 from gui.user import User
-
-#-------------------------------------------------------------------------
-#
-# Constants
-#
-#-------------------------------------------------------------------------
-_gramps_png = os.path.join(const.IMAGE_DIR,"gramps.png")
-_splash_jpg = os.path.join(const.IMAGE_DIR,"splash.jpg")
 
 #-------------------------------------------------------------------------
 #
@@ -141,15 +134,14 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
             self.person = self.dbstate.db.find_initial_person()
             
         try:
-            self.logo      = GdkPixbuf.Pixbuf.new_from_file(_gramps_png)
+            self.logo      = GdkPixbuf.Pixbuf.new_from_file(ICON)
         except:
             self.logo = None
         try:
-            self.splash    = GdkPixbuf.Pixbuf.new_from_file(_splash_jpg)
+            self.splash    = GdkPixbuf.Pixbuf.new_from_file(SPLASH)
         except:
             self.splash = None
 
-            
         pmgr = GuiPluginManager.get_instance()
         self.__exporters = pmgr.get_export_plugins()
         self.map_exporters = {}
@@ -360,8 +352,8 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         filename = filechooser.get_filename()
         folder = filechooser.get_current_folder()
         #the file must be valid, not a folder, and folder must be valid
-        if filename and filename.strip and Utils.find_folder(filename) == '' \
-                    and folder and Utils.find_folder(folder): 
+        if filename and filename.strip and find_folder(filename) == '' \
+                    and folder and find_folder(folder): 
             #this page of the assistant is complete
             self.set_page_complete(filechooser, True)
             ##workaround around bug http://bugzilla.gnome.org/show_bug.cgi?id=56070
@@ -490,7 +482,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
                 #Allow for exotic error: file is still not correct
                 self.check_fileselect(self.chooser, show=False)
                 if self.get_page_complete(self.chooser) :
-                    filename = Utils.get_unicode_path_from_file_chooser(self.chooser.get_filename())
+                    filename = get_unicode_path_from_file_chooser(self.chooser.get_filename())
                     name = os.path.split(filename)[1]
                     folder = os.path.split(filename)[0]
                     confirm_text = _(
@@ -606,14 +598,14 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         if len(default_dir)<=1:
             default_dir = config.get('paths.recent-import-dir')
         if len(default_dir)<=1:
-            default_dir = const.USER_HOME
+            default_dir = USER_HOME
 
         if ext == 'gramps':
             new_filename = os.path.join(default_dir,'data.gramps')
         elif ext == 'burn':
             new_filename = os.path.basename(self.dbstate.db.get_save_path())
         else:
-            new_filename = Utils.get_new_filename(ext,default_dir)
+            new_filename = get_new_filename(ext,default_dir)
         return (default_dir, os.path.split(new_filename)[1])
     
     def save(self):
@@ -627,7 +619,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
             hasattr(self.option_box_instance, "no_fileselect")):
             filename = ""
         else:
-            filename = Utils.get_unicode_path_from_file_chooser(self.chooser.get_filename())
+            filename = get_unicode_path_from_file_chooser(self.chooser.get_filename())
             config.set('paths.recent-export-dir', os.path.split(filename)[0])
         ix = self.get_selected_format_index()
         config.set('behavior.recent-export-type', ix)

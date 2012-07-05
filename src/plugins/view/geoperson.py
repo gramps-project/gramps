@@ -34,7 +34,6 @@ from gen.ggettext import gettext as _
 import os
 import sys
 import urlparse
-import const
 import operator
 import locale
 from Gdk.KEY_import Tab as KEY_TAB
@@ -56,7 +55,6 @@ _LOG = logging.getLogger("GeoGraphy.geoperson")
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import Utils
 from gen.config import config
 import gen.datehandler
 from gen.display.name import displayer as _nd
@@ -68,7 +66,6 @@ from gui.filters.sidebar import PersonSidebarFilter
 from gui.views.navigationview import NavigationView
 from gui.views.bookmarks import PersonBookmarks
 import constants
-from Utils import navigation_label
 from maps.geography import GeoGraphyView
 
 #-------------------------------------------------------------------------

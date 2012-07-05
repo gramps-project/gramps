@@ -53,7 +53,7 @@ from gui.views.navigationview import NavigationView
 from gui.editors import EditPerson, EditFamily
 from gui.editors import FilterEditor
 from gen.display.name import displayer as name_displayer
-from Utils import media_path_full
+from gen.utils.file import media_path_full
 from gen.utils.alive import probably_alive
 from gui.utils import open_file_with_default_application
 import gen.datehandler
@@ -63,9 +63,9 @@ from gui import widgets
 from gui.selectors import SelectorFactory
 from gen.errors import WindowActiveError
 from gui.views.bookmarks import PersonBookmarks
-import const
-from Utils import preset_name
-from gen.utils import get_birth_or_fallback, get_death_or_fallback
+from gen.const import CUSTOM_FILTERS
+from gen.utils.db import (get_birth_or_fallback, get_death_or_fallback, 
+                          preset_name)
 from gui.listmodel import ListModel
 from gui.managedwindow import ManagedWindow
 from gui.glade import Glade
@@ -425,7 +425,7 @@ class RelationshipView(NavigationView):
 
     def filter_editor(self, obj):
         try:
-            FilterEditor('Person', const.CUSTOM_FILTERS, 
+            FilterEditor('Person', CUSTOM_FILTERS, 
                          self.dbstate, self.uistate)
         except WindowActiveError:
             return

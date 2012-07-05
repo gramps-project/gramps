@@ -7,8 +7,8 @@
 pkgpythondir = $(datadir)/@PACKAGE@/plugins/webreport
 
 pkgpython_PYTHON = \
-	NarrativeWeb.py\
-	WebCal.py\
+	narrativeweb.py\
+	webcal.py\
 	webplugins.gpr.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/webreport

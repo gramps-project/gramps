@@ -42,7 +42,6 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import Utils
 import gen.datehandler
 import gen.lib
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
@@ -151,7 +150,7 @@ class MediaModel(FlatBaseModel):
         return "%012x" % data[8]
 
     def column_change(self,data):
-        return Utils.format_time(data[8])
+        return gen.datehandler.format_time(data[8])
 
     def column_tooltip(self,data):
         return u'Media tooltip'

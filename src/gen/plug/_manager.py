@@ -46,8 +46,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from gen.config import config
-import gen.utils
-from gen.plug import PluginRegister
+from gen.plug import PluginRegister, ImportPlugin, ExportPlugin, DocGenPlugin
 
 #-------------------------------------------------------------------------
 #
@@ -476,7 +475,7 @@ class BasePluginManager(object):
                     continue
                 mod = self.load_plugin(pdata)
                 if mod:
-                    imp = gen.plug.ImportPlugin(name=pdata.name, 
+                    imp = ImportPlugin(name=pdata.name, 
                         description     = pdata.description,
                         import_function = getattr(mod, pdata.import_function),
                         extension       = pdata.extension)
@@ -503,7 +502,7 @@ class BasePluginManager(object):
                     if (pdata.export_options and 
                         hasattr(mod, pdata.export_options)):
                         options = getattr(mod, pdata.export_options)
-                    exp = gen.plug.ExportPlugin(name=pdata.name_accell, 
+                    exp = ExportPlugin(name=pdata.name_accell, 
                         description     = pdata.description,
                         export_function = getattr(mod, pdata.export_function),
                         extension       = pdata.extension,
@@ -528,7 +527,7 @@ class BasePluginManager(object):
                     continue
                 mod = self.load_plugin(pdata)
                 if mod:
-                    dgp = gen.plug.DocGenPlugin(name=pdata.name, 
+                    dgp = DocGenPlugin(name=pdata.name, 
                             description = pdata.description,
                             basedoc     = getattr(mod, pdata.basedocclass),
                             paper       = pdata.paper,

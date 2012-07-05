@@ -50,7 +50,7 @@ from gi.repository import GObject
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import Utils
+from gen.utils.file import get_unicode_path_from_file_chooser
 from gui.utils import ProgressMeter
 from gui.pluginmanager import GuiPluginManager
 from gui import widgets
@@ -1688,7 +1688,7 @@ class GuiDestinationOption(Gtk.HBox):
 
         status = fcd.run()
         if status == Gtk.ResponseType.OK:
-            path = Utils.get_unicode_path_from_file_chooser(fcd.get_filename())
+            path = get_unicode_path_from_file_chooser(fcd.get_filename())
             if path:
                 if not self.__option.get_directory_entry() and \
                    not path.endswith(self.__option.get_extension()):

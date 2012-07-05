@@ -4,7 +4,6 @@
 SUBDIRS = \
 	cli \
 	data \
-	docgen \
 	gen \
 	gui \
 	images \
@@ -12,14 +11,7 @@ SUBDIRS = \
 
 gdirdir=$(prefix)/share/gramps
 
-gdir_PYTHON = \
-	const.py\
-	gramps.py\
-	ImgManip.py\
-	LdsUtils.py \
-	MacTransUtils.py\
-	TransUtils.py\
-	Utils.py
+gdir_PYTHON = gramps.py
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo

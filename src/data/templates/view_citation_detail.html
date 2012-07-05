@@ -10,6 +10,11 @@
 			document.location.hash = ui.panel.id;
 		}
      });
+     $('#shared-tabs').tabs({
+	'select': function(event, ui){
+			document.location.hash = ui.panel.id;
+		}
+     });
    });
    </script>
 
@@ -36,6 +41,7 @@
     <li class="ui-corner-top ui-state-default"><a href="#tab-media">Media</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-data">Data</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-references">References</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-history">History</a></li>
   </ul>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-general"> 
 
@@ -73,6 +79,9 @@
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-references">
     {% citation_reference_table citation user action %}
   </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-history">
+    {% history_table citation user action %}
+  </div>
 </div>
 
   <p>Note: Any changes in the shared citation information will be reflected
@@ -82,13 +91,14 @@
 <hr>
 
 <h2>Shared source information</h2>
-<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="general-tabs">
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="shared-tabs">
   <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
     <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tab-shared-general">General</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-shared-notes">Notes</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-shared-media">Media</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-shared-repositories">Repositories</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-shared-references">References</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-shared-history">History</a></li>
   </ul>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-shared-general"> 
 
@@ -129,6 +139,9 @@
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-shared-references">
     {% citation_reference_table source user action %}
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-shared-history">
+    {% history_table source user action %}
   </div>
 </div>
 

@@ -60,10 +60,8 @@ from gi.repository import GObject
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import Utils
 from gen.config import config
 from gen.display.name import displayer as name_displayer
-from gen.utils import get_marriage_or_fallback
 import gen.lib
 from gen.db import DbTxn
 from gen.errors import WindowActiveError
@@ -81,9 +79,10 @@ from gui.widgets import (PrivacyButton, MonitoredEntry, MonitoredDataType,
 from gen.plug import CATEGORY_QR_FAMILY
 from gui.dialog import (ErrorDialog, RunDatabaseRepair, WarningDialog,
                             MessageHideDialog)
-from gen.utils import get_birth_or_fallback, get_death_or_fallback
+from gen.utils.db import (get_birth_or_fallback, get_death_or_fallback,
+                          get_marriage_or_fallback, preset_name, family_name)
 from gui.selectors import SelectorFactory
-from Utils import preset_name
+from gen.utils.id import create_id
 
 SelectPerson = SelectorFactory('Person')
 
@@ -381,7 +380,7 @@ class EditFamily(EditPrimary):
         
         self.added = self.obj.handle is None
         if self.added:
-            self.obj.handle = Utils.create_id()
+            self.obj.handle = create_id()
             
         self.load_data()
     
@@ -484,7 +483,7 @@ class EditFamily(EditPrimary):
 
     def get_menu_title(self):
         if self.obj and self.obj.get_handle():
-            dialog_title = Utils.family_name(self.obj, self.db, _("New Family"))
+            dialog_title = family_name(self.obj, self.db, _("New Family"))
             dialog_title = _("Family") + ': ' + dialog_title
         else:
             dialog_title = _("New Family")

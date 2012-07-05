@@ -62,7 +62,7 @@ from gen.dbstate import DbState
 from gen.datehandler import displayer, parser
 from gen.lib.date import Date as GDate, Today
 import gen.lib
-from gen.utils import get_birth_or_fallback, get_death_or_fallback
+from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gen.plug import BasePluginManager
 from cli.grampscli import CLIManager
 
@@ -76,9 +76,11 @@ util_filters = [
 
 util_tags = [
     'render',
+    'media_link',
     'render_name',
     "get_person_from_handle", 
     "event_table",
+    "history_table",
     "name_table",
     "surname_table",
     "citation_table",
@@ -193,13 +195,14 @@ def nbsp(string):
 
 class Table(object):
     """
-    >>> table = Table()
+    >>> table = Table("css_id")
     >>> table.columns("Col1", "Col2", "Col3")
     >>> table.row("1", "2", "3")
     >>> table.row("4", "5", "6")
     >>> table.get_html()
     """
-    def __init__(self):
+    def __init__(self, id):
+        self.id = id # css id
         self.db = DbDjango()
         self.access = SimpleAccess(self.db)
         self.table = SimpleTable(self.access)
@@ -208,10 +211,27 @@ class Table(object):
                 self.doc = doc
                 self.doc.set_link_attrs({"class": "browsecell"})
         # None is paperstyle, which is ignored:
-        self.doc =  Doc(HtmlDoc.HtmlDoc(make_basic_stylesheet(Table={"set_width":95}), None))
+        self.doc =  Doc(HtmlDoc(
+                make_basic_stylesheet(
+                    Table={"set_width":95}, 
+                    TableHeaderCell={"set_bottom_border": True,
+                                     "set_right_border": True,
+                                     "set_padding": .1,
+                                     },
+                    TableDataCell={"set_bottom_border": True, 
+                                   "set_right_border": True,
+                                   "set_padding": .1,
+                                   },
+                    ), 
+                None))
         self.doc.doc._backend = HtmlBackend()
+        self.doc.doc.use_table_headers = True
         # You can set elements id, class, etc:
-        self.doc.doc.htmllist += [Html('div', class_="content", id="Gallery", style="overflow: auto; height:150px; background-color: #f4f0ec;")]
+        self.doc.doc.htmllist += [
+            Html('div', 
+                 class_="content", 
+                 id=self.id, 
+                 style="overflow: auto; height:150px; background-color: #f4f0ec;")]
 
     def columns(self, *args):
         self.table.columns(*args)
@@ -231,8 +251,12 @@ class Table(object):
     def get_html(self):
         # The HTML writer escapes data:
         self.table.write(self.doc) # forces to htmllist
+        # FIXME: do once, or once per table?
+        self.doc.doc.build_style_declaration(self.id) # can pass id, for whole
+        # FIXME: don't want to repeat this, unless diff for each table:
+        retval = "<style>%s</style>" % self.doc.doc.style_declaration
         # We have a couple of HTML bits that we want to unescape:
-        return str(self.doc.doc.htmllist[0]).replace("&amp;nbsp;", "&nbsp;")
+        return retval + str(self.doc.doc.htmllist[0]).replace("&amp;nbsp;", "&nbsp;")
 
 def build_args(**kwargs):
     retval = ""
@@ -272,7 +296,7 @@ def make_button(text, url, *args):
 
 def event_table(obj, user, action, url, args):
     retval = ""
-    table = Table()
+    table = Table("event_table")
     table.columns(
         _("Description"), 
         _("Type"),
@@ -302,9 +326,34 @@ def event_table(obj, user, action, url, args):
         retval += nbsp("") # to keep tabs same height
     return retval
 
+def history_table(obj, user, action):
+    retval = ""
+    table = Table("history_table")
+    table.columns(
+        _("Action"), 
+        _("Comment"),
+        )
+    if user.is_authenticated():
+        obj_type = ContentType.objects.get_for_model(obj)
+        for entry in models.Log.objects.filter(
+            object_id=obj.id, 
+            object_type=obj_type):
+            table.row(
+                "%s on %s by %s" % (entry.log_type, 
+                                    entry.last_changed,
+                                    entry.last_changed_by),
+                entry.reason)
+        table.row(
+            "Latest on %s by %s" % (obj.last_changed,
+                                     obj.last_changed_by),
+            "Current status")
+    retval += table.get_html()
+    retval += nbsp("") # to keep tabs same height
+    return retval
+
 def name_table(obj, user, action, url=None, *args):
     retval = ""
-    table = Table()
+    table = Table("name_table")
     table.columns(_("Name"), 
                   _("Type"),
                   _("Group As"),
@@ -344,7 +393,7 @@ def surname_table(obj, user, action, url=None, *args):
     person_handle = args[0]
     order = args[1]
     retval = ""
-    table = Table()
+    table = Table("surname_table")
     table.columns(_("Order"), _("Surname"),)
     if user.is_authenticated():
         try:
@@ -365,7 +414,7 @@ def surname_table(obj, user, action, url=None, *args):
 
 def source_table(obj, user, action, url=None, *args):
     retval = ""
-    table = Table()
+    table = Table("source_table")
     table.columns(_("ID"), 
                   _("Title"),
                   _("Author"),
@@ -393,7 +442,7 @@ def source_table(obj, user, action, url=None, *args):
 
 def citation_table(obj, user, action, url=None, *args):
     retval = ""
-    table = Table()
+    table = Table("citation_table")
     table.columns(_("ID"), 
                   _("Confidence"),
                   _("Page"))
@@ -419,7 +468,7 @@ def citation_table(obj, user, action, url=None, *args):
 
 def repository_table(obj, user, action, url=None, *args):
     retval = ""
-    table = Table()
+    table = Table("repository_table")
     table.columns(
         _("ID"),
         _("Type"),
@@ -436,7 +485,7 @@ def repository_table(obj, user, action, url=None, *args):
 
 def note_table(obj, user, action, url=None, *args):
     retval = ""
-    table = Table()
+    table = Table("note_table")
     table.columns(
         _("ID"),
         _("Type"),
@@ -461,7 +510,7 @@ def note_table(obj, user, action, url=None, *args):
 
 def data_table(obj, user, action, url=None, *args):
     retval = ""
-    table = Table()
+    table = Table("data_table")
     table.columns(_("Type"), 
                   _("Value"),
                   )
@@ -476,7 +525,7 @@ def data_table(obj, user, action, url=None, *args):
 
 def attribute_table(obj, user, action, url=None, *args):
     retval = ""
-    table = Table()
+    table = Table("attribute_table")
     table.columns(_("Type"), 
                   _("Value"),
                   )
@@ -496,7 +545,7 @@ def attribute_table(obj, user, action, url=None, *args):
 
 def address_table(obj, user, action, url=None, *args):
     retval = ""
-    table = Table()
+    table = Table("address_table")
     table.columns(_("Date"), 
                   _("Address"),
                   _("City"),
@@ -520,7 +569,7 @@ def address_table(obj, user, action, url=None, *args):
 
 def location_table(obj, user, action, url=None, *args):
     retval = ""
-    table = Table()
+    table = Table("location_table")
     table.columns(_("Date"), 
                   _("Address"),
                   _("City"),
@@ -537,7 +586,7 @@ def location_table(obj, user, action, url=None, *args):
 
 def media_table(obj, user, action, url=None, *args):
     retval = ""
-    table = Table()
+    table = Table("media_table")
     table.columns(_("Description"), 
                   _("Type"),
                   )
@@ -561,7 +610,7 @@ def media_table(obj, user, action, url=None, *args):
 
 def internet_table(obj, user, action, url=None, *args):
     retval = ""
-    table = Table()
+    table = Table("internet_table")
     table.columns(_("Type"),
                   _("Path"),
                   _("Description"))
@@ -580,7 +629,7 @@ def internet_table(obj, user, action, url=None, *args):
 
 def association_table(obj, user, action, url=None, *args):
     retval = ""
-    table = Table()
+    table = Table("association_table")
     table.columns(_("Name"), 
                   _("ID"),
                   _("Association"))
@@ -599,7 +648,7 @@ def association_table(obj, user, action, url=None, *args):
 
 def lds_table(obj, user, action, url=None, *args):
     retval = ""
-    table = Table()
+    table = Table("lds_table")
     table.columns(_("Type"), 
                   _("Date"),
                   _("Status"),
@@ -623,7 +672,7 @@ def lds_table(obj, user, action, url=None, *args):
 
 def reference_table(obj, user, action, url=None, *args):
     retval = ""
-    table = Table()
+    table = Table("reference_table")
     table.columns(
         _("Type"),
         _("Reference"), 
@@ -636,7 +685,7 @@ def reference_table(obj, user, action, url=None, *args):
 
 def person_reference_table(obj, user, action):
     retval = ""
-    table = Table()
+    table = Table("person_reference_table")
     table.columns(
         _("Type"),
         _("Reference"), 
@@ -658,7 +707,7 @@ def person_reference_table(obj, user, action):
 
 def note_reference_table(obj, user, action):
     retval = ""
-    table = Table()
+    table = Table("note_reference_table")
     table.columns(
         _("Type"),
         _("Reference"), 
@@ -677,7 +726,7 @@ def note_reference_table(obj, user, action):
 
 def event_reference_table(obj, user, action):
     retval = ""
-    table = Table()
+    table = Table("event_reference_table")
     table.columns(
         _("Type"),
         _("Reference"), 
@@ -696,7 +745,7 @@ def event_reference_table(obj, user, action):
 
 def repository_reference_table(obj, user, action):
     retval = ""
-    table = Table()
+    table = Table("repository_reference_table")
     table.columns(
         _("Type"),
         _("Reference"), 
@@ -715,7 +764,7 @@ def repository_reference_table(obj, user, action):
 
 def citation_reference_table(obj, user, action):
     retval = ""
-    table = Table()
+    table = Table("citation_reference_table")
     table.columns(
         _("Type"),
         _("Reference"), 
@@ -734,7 +783,7 @@ def citation_reference_table(obj, user, action):
 
 def source_reference_table(obj, user, action):
     retval = ""
-    table = Table()
+    table = Table("source_reference_table")
     table.columns(
         _("Type"),
         _("Reference"), 
@@ -748,7 +797,7 @@ def source_reference_table(obj, user, action):
 
 def media_reference_table(obj, user, action):
     retval = ""
-    table = Table()
+    table = Table("media_reference_table")
     table.columns(
         _("Type"),
         _("Reference"), 
@@ -767,7 +816,7 @@ def media_reference_table(obj, user, action):
 
 def place_reference_table(obj, user, action):
     retval = ""
-    table = Table()
+    table = Table("place_reference_table")
     table.columns(
         _("Type"),
         _("Reference"), 
@@ -780,7 +829,7 @@ def place_reference_table(obj, user, action):
 
 def tag_reference_table(obj, user, action):
     retval = ""
-    table = Table()
+    table = Table("tag_reference_table")
     table.columns(
         _("Type"),
         _("Reference"), 
@@ -799,7 +848,7 @@ def tag_reference_table(obj, user, action):
 
 def children_table(obj, user, action, url=None, *args):
     retval = ""
-    table = Table()
+    table = Table("children_table")
     table.columns(
         _("#"),
         _("ID"),
@@ -883,6 +932,12 @@ def display_date(obj):
         return dd(gdate)
     else:
         return ""
+
+def media_link(handle, user, action):
+    retval = """<a href="%s"><img src="%s" /></a>""" % (
+        "/media/%s/full" % handle, 
+        "/media/%s/thumbnail" % handle)
+    return retval
 
 def render(formfield, user, action, id=None, url=None, *args):
     if not user.is_authenticated():
@@ -1016,7 +1071,7 @@ def update_last_changed(obj, user):
 register_plugins()
 
 # works after registering plugins:
-import HtmlDoc 
+from htmldoc import HtmlDoc 
 from libhtmlbackend import HtmlBackend, DocBackend, process_spaces
 from libhtml import Html
 

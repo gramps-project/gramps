@@ -3,9 +3,6 @@
 #   Python files
 #
 
-#src
-src/ImgManip.py
-
 # cli
 src/cli/__init__.py
 src/cli/user.py
@@ -214,7 +211,19 @@ src/gen/simple/_simpledoc.py
 src/gen/utils/__init__.py
 src/gen/utils/callback.py
 src/gen/utils/callman.py
-src/gen/utils/referent.py
+src/gen/utils/cast.py
+src/gen/utils/config.py
+src/gen/utils/db.py
+src/gen/utils/debug.py
+src/gen/utils/file.py
+src/gen/utils/id.py
+src/gen/utils/image.py
+
+# gen.utils.docgen
+src/gen/utils/docgen/__init__.py
+src/gen/utils/docgen/CSVTab.py
+src/gen/utils/docgen/ODSTab.py
+src/gen/utils/docgen/TabbedDoc.py
 
 # gui - GUI code
 src/gui/__init__.py
@@ -304,7 +313,7 @@ src/guiQML/views/dbman.py
 src/plugins/sidebar/sidebar.gpr.py
 
 # plugins/docgen directory
-src/plugins/docgen/PdfDoc.py
+src/plugins/docgen/pdfdoc.py
 
 # plugins/lib directory
 src/plugins/lib/libformatting.py
@@ -316,32 +325,32 @@ src/plugins/lib/libodfbackend.py
 src/plugins/lib/libsubstkeyword.py
 
 # plugins/import directory
-src/plugins/import/ImportSql.py
+src/plugins/import/importsql.py
 
 # plugins/tool directory
-src/plugins/tool/CalculateEstimatedDates.py
-src/plugins/tool/DateParserDisplayTest.py
-src/plugins/tool/DumpGenderStats.py
-src/plugins/tool/PHPGedViewConnector.py
-src/plugins/tool/TestcaseGenerator.py
+src/plugins/tool/calculateestimateddates.py
+src/plugins/tool/dateparserdisplaytest.py
+src/plugins/tool/dumpgenderstats.py
+src/plugins/tool/phpgedviewconnector.py
+src/plugins/tool/testcasegenerator.py
 src/plugins/tool/phpgedview.glade
 src/plugins/tool/toolsdebug.gpr.py
 
 # plugins/gramplet directory
-src/plugins/gramplet/DeepConnections.py
-src/plugins/gramplet/Gallery.py
-src/plugins/gramplet/HeadlineNewsGramplet.py
-src/plugins/gramplet/MediaPreview.py
-src/plugins/gramplet/MetadataViewer.py
-src/plugins/gramplet/NoteGramplet.py
-src/plugins/gramplet/PluginManagerGramplet.py
-src/plugins/gramplet/PopulateGramplet.py
-src/plugins/gramplet/PopulateGramplet.gpr.py
-src/plugins/gramplet/PythonGramplet.py
+src/plugins/gramplet/deepconnections.py
+src/plugins/gramplet/gallery.py
+src/plugins/gramplet/headlinenewsgramplet.py
+src/plugins/gramplet/mediapreview.py
+src/plugins/gramplet/metadataviewer.py
+src/plugins/gramplet/notegramplet.py
+src/plugins/gramplet/pluginmanagergramplet.py
+src/plugins/gramplet/populategramplet.py
+src/plugins/gramplet/populategramplet.gpr.py
+src/plugins/gramplet/pythongramplet.py
 
 # plugins/quickview directory
-src/plugins/quickview/AllNames.py
-src/plugins/quickview/Query.py
+src/plugins/quickview/allnames.py
+src/plugins/quickview/query.py
 
 # plugins/rel directory
 src/plugins/rel/rel_cs.py

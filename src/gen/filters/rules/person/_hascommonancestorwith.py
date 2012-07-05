@@ -32,7 +32,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Utils import for_each_ancestor
+from gen.utils.db import for_each_ancestor
 from gen.filters.rules import Rule
 
 #-------------------------------------------------------------------------

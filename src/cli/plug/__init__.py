@@ -46,7 +46,6 @@ log = logging.getLogger(".")
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import Utils
 from gen.plug import BasePluginManager
 from gen.plug.docgen import (StyleSheet, StyleSheetList, PaperStyle,
                              PAPER_PORTRAIT, PAPER_LANDSCAPE, graphdoc)
@@ -59,7 +58,7 @@ from gen.errors import ReportError
 from gen.plug.report import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
                              CATEGORY_GRAPHVIZ, CATEGORY_CODE)
 from gen.plug.report._paper import paper_sizes
-import const
+from gen.const import USER_HOME
 from gen.dbstate import DbState
 from cli.grampscli import CLIManager
 import cli.user
@@ -275,7 +274,7 @@ class CommandLineReport(object):
         if noopt:
             return
 
-        self.options_help['of'][2] = os.path.join(const.USER_HOME, 
+        self.options_help['of'][2] = os.path.join(USER_HOME, 
                                                   "whatever_name")
 
         if self.category == CATEGORY_TEXT:
@@ -305,7 +304,7 @@ class CommandLineReport(object):
             "%d\tPortrait" % PAPER_PORTRAIT,
             "%d\tLandscape" % PAPER_LANDSCAPE ]
 
-        self.options_help['css'][2] = os.path.join(const.USER_HOME,
+        self.options_help['css'][2] = os.path.join(USER_HOME,
                                                    "whatever_name.css")
 
         if self.category in (CATEGORY_TEXT, CATEGORY_DRAW):

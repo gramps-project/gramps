@@ -58,6 +58,7 @@
     <li class="ui-corner-top ui-state-default"><a href="#tab-data">Data</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-repositories">Repositories</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-references">References</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-history">History</a></li>
   </ul>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-notes"> 
     {% note_table source user action "/note/$act/source/%s" source.handle %}
@@ -73,6 +74,9 @@
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-references">
     {% source_reference_table source user action %}
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-history">
+    {% history_table source user action %}
   </div>
 </div>
 

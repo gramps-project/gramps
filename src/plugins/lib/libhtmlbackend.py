@@ -43,8 +43,7 @@ import os.path
 #
 #------------------------------------------------------------------------
 from gen.plug.docbackend import DocBackend
-from libhtml import Html
-from Utils import xml_lang
+from libhtml import Html, xml_lang
 from gen.errors import ReportError
 
 

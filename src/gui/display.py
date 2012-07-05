@@ -20,7 +20,7 @@
 
 # $Id$
 
-import const
+from gen.const import URL_MANUAL_PAGE, URL_WIKISTRING
 from gen.constfunc import is_quartz
 from gen.config import config
 import locale
@@ -68,9 +68,9 @@ def display_help(webpage='', section=''):
     Display the specified webpage and section from the Gramps 3.0 wiki.
     """
     if not webpage:
-        link = const.URL_WIKISTRING + const.URL_MANUAL_PAGE + EXTENSION
+        link = URL_WIKISTRING + URL_MANUAL_PAGE + EXTENSION
     else:
-        link = const.URL_WIKISTRING + webpage + EXTENSION
+        link = URL_WIKISTRING + webpage + EXTENSION
         if section:
             link = link + '#' + section
     display_url(link)

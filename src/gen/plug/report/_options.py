@@ -57,7 +57,7 @@ except:
 # (do not import anything from 'gui' as this is in 'gen')
 #
 #-------------------------------------------------------------------------
-import const
+from gen.const import HOME_DIR, REPORT_OPTIONS
 from gen.config import config
 from gen.plug.docgen import PAPER_PORTRAIT
 from gen.plug import _options
@@ -577,7 +577,7 @@ class OptionHandler(_options.OptionHandler):
     def init_subclass(self):
         self.collection_class = OptionListCollection
         self.list_class = OptionList
-        self.filename = const.REPORT_OPTIONS
+        self.filename = REPORT_OPTIONS
 
     def init_common(self):
         """
@@ -658,7 +658,7 @@ class OptionHandler(_options.OptionHandler):
     def get_stylesheet_savefile(self):
         """Where to save user defined styles for this report."""
         filename = "%s.xml" % self.module_name
-        return os.path.join(const.HOME_DIR, filename) 
+        return os.path.join(HOME_DIR, filename) 
 
     def get_default_stylesheet_name(self):
         return self.style_name

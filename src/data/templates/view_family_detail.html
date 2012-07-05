@@ -103,6 +103,7 @@
     <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Notes</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-media">Media</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-lds">LDS</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-history">History</a></li>
   </ul>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-children"> 
     <!-- Events -->
@@ -125,6 +126,9 @@
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-lds">
     {% lds_table family user action "/lds/add/family/%s" family.handle %}
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-history">
+    {% history_table family user action %}
   </div>
 </div>
 

@@ -157,103 +157,46 @@ INSERT INTO "auth_permission" VALUES(147,'Can delete url',49,'delete_url');
 INSERT INTO "auth_permission" VALUES(148,'Can add attribute',50,'add_attribute');
 INSERT INTO "auth_permission" VALUES(149,'Can change attribute',50,'change_attribute');
 INSERT INTO "auth_permission" VALUES(150,'Can delete attribute',50,'delete_attribute');
-INSERT INTO "auth_permission" VALUES(151,'Can add note ref',51,'add_noteref');
-INSERT INTO "auth_permission" VALUES(152,'Can change note ref',51,'change_noteref');
-INSERT INTO "auth_permission" VALUES(153,'Can delete note ref',51,'delete_noteref');
-INSERT INTO "auth_permission" VALUES(154,'Can add event ref',52,'add_eventref');
-INSERT INTO "auth_permission" VALUES(155,'Can change event ref',52,'change_eventref');
-INSERT INTO "auth_permission" VALUES(156,'Can delete event ref',52,'delete_eventref');
-INSERT INTO "auth_permission" VALUES(157,'Can add repository ref',53,'add_repositoryref');
-INSERT INTO "auth_permission" VALUES(158,'Can change repository ref',53,'change_repositoryref');
-INSERT INTO "auth_permission" VALUES(159,'Can delete repository ref',53,'delete_repositoryref');
-INSERT INTO "auth_permission" VALUES(160,'Can add person ref',54,'add_personref');
-INSERT INTO "auth_permission" VALUES(161,'Can change person ref',54,'change_personref');
-INSERT INTO "auth_permission" VALUES(162,'Can delete person ref',54,'delete_personref');
-INSERT INTO "auth_permission" VALUES(163,'Can add citation ref',55,'add_citationref');
-INSERT INTO "auth_permission" VALUES(164,'Can change citation ref',55,'change_citationref');
-INSERT INTO "auth_permission" VALUES(165,'Can delete citation ref',55,'delete_citationref');
-INSERT INTO "auth_permission" VALUES(166,'Can add child ref',56,'add_childref');
-INSERT INTO "auth_permission" VALUES(167,'Can change child ref',56,'change_childref');
-INSERT INTO "auth_permission" VALUES(168,'Can delete child ref',56,'delete_childref');
-INSERT INTO "auth_permission" VALUES(169,'Can add media ref',57,'add_mediaref');
-INSERT INTO "auth_permission" VALUES(170,'Can change media ref',57,'change_mediaref');
-INSERT INTO "auth_permission" VALUES(171,'Can delete media ref',57,'delete_mediaref');
-INSERT INTO "auth_permission" VALUES(172,'Can add report',58,'add_report');
-INSERT INTO "auth_permission" VALUES(173,'Can change report',58,'change_report');
-INSERT INTO "auth_permission" VALUES(174,'Can delete report',58,'delete_report');
-INSERT INTO "auth_permission" VALUES(175,'Can add result',59,'add_result');
-INSERT INTO "auth_permission" VALUES(176,'Can change result',59,'change_result');
-INSERT INTO "auth_permission" VALUES(177,'Can delete result',59,'delete_result');
+INSERT INTO "auth_permission" VALUES(151,'Can add log',51,'add_log');
+INSERT INTO "auth_permission" VALUES(152,'Can change log',51,'change_log');
+INSERT INTO "auth_permission" VALUES(153,'Can delete log',51,'delete_log');
+INSERT INTO "auth_permission" VALUES(154,'Can add note ref',52,'add_noteref');
+INSERT INTO "auth_permission" VALUES(155,'Can change note ref',52,'change_noteref');
+INSERT INTO "auth_permission" VALUES(156,'Can delete note ref',52,'delete_noteref');
+INSERT INTO "auth_permission" VALUES(157,'Can add event ref',53,'add_eventref');
+INSERT INTO "auth_permission" VALUES(158,'Can change event ref',53,'change_eventref');
+INSERT INTO "auth_permission" VALUES(159,'Can delete event ref',53,'delete_eventref');
+INSERT INTO "auth_permission" VALUES(160,'Can add repository ref',54,'add_repositoryref');
+INSERT INTO "auth_permission" VALUES(161,'Can change repository ref',54,'change_repositoryref');
+INSERT INTO "auth_permission" VALUES(162,'Can delete repository ref',54,'delete_repositoryref');
+INSERT INTO "auth_permission" VALUES(163,'Can add person ref',55,'add_personref');
+INSERT INTO "auth_permission" VALUES(164,'Can change person ref',55,'change_personref');
+INSERT INTO "auth_permission" VALUES(165,'Can delete person ref',55,'delete_personref');
+INSERT INTO "auth_permission" VALUES(166,'Can add citation ref',56,'add_citationref');
+INSERT INTO "auth_permission" VALUES(167,'Can change citation ref',56,'change_citationref');
+INSERT INTO "auth_permission" VALUES(168,'Can delete citation ref',56,'delete_citationref');
+INSERT INTO "auth_permission" VALUES(169,'Can add child ref',57,'add_childref');
+INSERT INTO "auth_permission" VALUES(170,'Can change child ref',57,'change_childref');
+INSERT INTO "auth_permission" VALUES(171,'Can delete child ref',57,'delete_childref');
+INSERT INTO "auth_permission" VALUES(172,'Can add media ref',58,'add_mediaref');
+INSERT INTO "auth_permission" VALUES(173,'Can change media ref',58,'change_mediaref');
+INSERT INTO "auth_permission" VALUES(174,'Can delete media ref',58,'delete_mediaref');
+INSERT INTO "auth_permission" VALUES(175,'Can add report',59,'add_report');
+INSERT INTO "auth_permission" VALUES(176,'Can change report',59,'change_report');
+INSERT INTO "auth_permission" VALUES(177,'Can delete report',59,'delete_report');
+INSERT INTO "auth_permission" VALUES(178,'Can add result',60,'add_result');
+INSERT INTO "auth_permission" VALUES(179,'Can change result',60,'change_result');
+INSERT INTO "auth_permission" VALUES(180,'Can delete result',60,'delete_result');
 CREATE TABLE "auth_group_permissions" (
     "id" integer NOT NULL PRIMARY KEY,
     "group_id" integer NOT NULL,
     "permission_id" integer NOT NULL REFERENCES "auth_permission" ("id"),
     UNIQUE ("group_id", "permission_id")
 );
-INSERT INTO "auth_group_permissions" VALUES(1,1,128);
-INSERT INTO "auth_group_permissions" VALUES(2,1,2);
-INSERT INTO "auth_group_permissions" VALUES(3,1,131);
-INSERT INTO "auth_group_permissions" VALUES(4,1,5);
-INSERT INTO "auth_group_permissions" VALUES(5,1,134);
-INSERT INTO "auth_group_permissions" VALUES(6,1,8);
-INSERT INTO "auth_group_permissions" VALUES(7,1,137);
-INSERT INTO "auth_group_permissions" VALUES(8,1,11);
-INSERT INTO "auth_group_permissions" VALUES(9,1,140);
-INSERT INTO "auth_group_permissions" VALUES(10,1,14);
-INSERT INTO "auth_group_permissions" VALUES(11,1,143);
-INSERT INTO "auth_group_permissions" VALUES(12,1,17);
-INSERT INTO "auth_group_permissions" VALUES(13,1,146);
-INSERT INTO "auth_group_permissions" VALUES(14,1,20);
-INSERT INTO "auth_group_permissions" VALUES(15,1,149);
-INSERT INTO "auth_group_permissions" VALUES(16,1,23);
-INSERT INTO "auth_group_permissions" VALUES(17,1,152);
-INSERT INTO "auth_group_permissions" VALUES(18,1,26);
-INSERT INTO "auth_group_permissions" VALUES(19,1,155);
-INSERT INTO "auth_group_permissions" VALUES(20,1,29);
-INSERT INTO "auth_group_permissions" VALUES(21,1,158);
-INSERT INTO "auth_group_permissions" VALUES(22,1,32);
-INSERT INTO "auth_group_permissions" VALUES(23,1,161);
-INSERT INTO "auth_group_permissions" VALUES(24,1,35);
-INSERT INTO "auth_group_permissions" VALUES(25,1,164);
-INSERT INTO "auth_group_permissions" VALUES(26,1,38);
-INSERT INTO "auth_group_permissions" VALUES(27,1,167);
-INSERT INTO "auth_group_permissions" VALUES(28,1,41);
-INSERT INTO "auth_group_permissions" VALUES(29,1,170);
-INSERT INTO "auth_group_permissions" VALUES(30,1,44);
-INSERT INTO "auth_group_permissions" VALUES(31,1,173);
-INSERT INTO "auth_group_permissions" VALUES(32,1,47);
-INSERT INTO "auth_group_permissions" VALUES(33,1,176);
-INSERT INTO "auth_group_permissions" VALUES(34,1,50);
-INSERT INTO "auth_group_permissions" VALUES(35,1,53);
-INSERT INTO "auth_group_permissions" VALUES(36,1,56);
-INSERT INTO "auth_group_permissions" VALUES(37,1,59);
-INSERT INTO "auth_group_permissions" VALUES(38,1,62);
-INSERT INTO "auth_group_permissions" VALUES(39,1,65);
-INSERT INTO "auth_group_permissions" VALUES(40,1,68);
-INSERT INTO "auth_group_permissions" VALUES(41,1,71);
-INSERT INTO "auth_group_permissions" VALUES(42,1,74);
-INSERT INTO "auth_group_permissions" VALUES(43,1,77);
-INSERT INTO "auth_group_permissions" VALUES(44,1,80);
-INSERT INTO "auth_group_permissions" VALUES(45,1,83);
-INSERT INTO "auth_group_permissions" VALUES(46,1,86);
-INSERT INTO "auth_group_permissions" VALUES(47,1,89);
-INSERT INTO "auth_group_permissions" VALUES(48,1,92);
-INSERT INTO "auth_group_permissions" VALUES(49,1,95);
-INSERT INTO "auth_group_permissions" VALUES(50,1,98);
-INSERT INTO "auth_group_permissions" VALUES(51,1,101);
-INSERT INTO "auth_group_permissions" VALUES(52,1,104);
-INSERT INTO "auth_group_permissions" VALUES(53,1,107);
-INSERT INTO "auth_group_permissions" VALUES(54,1,110);
-INSERT INTO "auth_group_permissions" VALUES(55,1,113);
-INSERT INTO "auth_group_permissions" VALUES(56,1,116);
-INSERT INTO "auth_group_permissions" VALUES(57,1,119);
-INSERT INTO "auth_group_permissions" VALUES(58,1,122);
-INSERT INTO "auth_group_permissions" VALUES(59,1,125);
 CREATE TABLE "auth_group" (
     "id" integer NOT NULL PRIMARY KEY,
     "name" varchar(80) NOT NULL UNIQUE
 );
-INSERT INTO "auth_group" VALUES(1,'Editor');
 CREATE TABLE "auth_user_user_permissions" (
     "id" integer NOT NULL PRIMARY KEY,
     "user_id" integer NOT NULL,
@@ -266,7 +209,6 @@ CREATE TABLE "auth_user_groups" (
     "group_id" integer NOT NULL REFERENCES "auth_group" ("id"),
     UNIQUE ("user_id", "group_id")
 );
-INSERT INTO "auth_user_groups" VALUES(1,1,1);
 CREATE TABLE "auth_user" (
     "id" integer NOT NULL PRIMARY KEY,
     "username" varchar(30) NOT NULL UNIQUE,
@@ -280,8 +222,8 @@ CREATE TABLE "auth_user" (
     "last_login" datetime NOT NULL,
     "date_joined" datetime NOT NULL
 );
-INSERT INTO "auth_user" VALUES(1,'admin','','','bugs@gramps-project.org','sha1$a4c03$de6d2ce8c551e0b682f11ab92170f6afb4bede0b',1,1,1,'2012-06-10 22:23:53','2012-06-10 22:23:34');
-INSERT INTO "auth_user" VALUES(2,'admin1','','','bugs@gramps-project.org','sha1$b3283$5306be6909a7ff60692513e406b40de8c84007ee',1,1,1,'2012-06-10 22:23:40.249002','2012-06-10 22:23:40.249002');
+INSERT INTO "auth_user" VALUES(1,'admin','','','bugs@gramps-project.org','sha1$c0530$7b8073dafe9c593d9fc0eeb4f66fd29ecaa34fc9',1,1,1,'2012-06-18 21:41:58.429589','2012-06-18 21:41:28.784226');
+INSERT INTO "auth_user" VALUES(2,'admin1','','','bugs@gramps-project.org','sha1$10aef$4b8e70520ce6df429f449c36e0f732a5110b8a8d',0,1,0,'2012-06-18 21:45:47.430118','2012-06-18 21:41:33');
 CREATE TABLE "auth_message" (
     "id" integer NOT NULL PRIMARY KEY,
     "user_id" integer NOT NULL REFERENCES "auth_user" ("id"),
@@ -344,24 +286,23 @@ INSERT INTO "django_content_type" VALUES(47,'address','grampsdb','address');
 INSERT INTO "django_content_type" VALUES(48,'location','grampsdb','location');
 INSERT INTO "django_content_type" VALUES(49,'url','grampsdb','url');
 INSERT INTO "django_content_type" VALUES(50,'attribute','grampsdb','attribute');
-INSERT INTO "django_content_type" VALUES(51,'note ref','grampsdb','noteref');
-INSERT INTO "django_content_type" VALUES(52,'event ref','grampsdb','eventref');
-INSERT INTO "django_content_type" VALUES(53,'repository ref','grampsdb','repositoryref');
-INSERT INTO "django_content_type" VALUES(54,'person ref','grampsdb','personref');
-INSERT INTO "django_content_type" VALUES(55,'citation ref','grampsdb','citationref');
-INSERT INTO "django_content_type" VALUES(56,'child ref','grampsdb','childref');
-INSERT INTO "django_content_type" VALUES(57,'media ref','grampsdb','mediaref');
-INSERT INTO "django_content_type" VALUES(58,'report','grampsdb','report');
-INSERT INTO "django_content_type" VALUES(59,'result','grampsdb','result');
+INSERT INTO "django_content_type" VALUES(51,'log','grampsdb','log');
+INSERT INTO "django_content_type" VALUES(52,'note ref','grampsdb','noteref');
+INSERT INTO "django_content_type" VALUES(53,'event ref','grampsdb','eventref');
+INSERT INTO "django_content_type" VALUES(54,'repository ref','grampsdb','repositoryref');
+INSERT INTO "django_content_type" VALUES(55,'person ref','grampsdb','personref');
+INSERT INTO "django_content_type" VALUES(56,'citation ref','grampsdb','citationref');
+INSERT INTO "django_content_type" VALUES(57,'child ref','grampsdb','childref');
+INSERT INTO "django_content_type" VALUES(58,'media ref','grampsdb','mediaref');
+INSERT INTO "django_content_type" VALUES(59,'report','grampsdb','report');
+INSERT INTO "django_content_type" VALUES(60,'result','grampsdb','result');
 CREATE TABLE "django_session" (
     "session_key" varchar(40) NOT NULL PRIMARY KEY,
     "session_data" text NOT NULL,
     "expire_date" datetime NOT NULL
 );
-INSERT INTO "django_session" VALUES('3c99ce6c280d2f7957446d227beb3365','MmU1MjliMDM2NzcyODdjNmJlOTgzMGFiYzc2MjFkMmViYWFiOTIzMjqAAn1xAShVEl9hdXRoX3Vz
-ZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED
-VQ1fYXV0aF91c2VyX2lkcQRLAXUu
-','2012-06-24 22:23:53.981505');
+INSERT INTO "django_session" VALUES('37aec6a13380b1a305f86c1265f832cf','YTJkY2YzOGM0MzQ0MzY4YjExZDZhODZjOTdhZjAxMDkxNWU5MTM0NjqAAn1xAS4=
+','2012-07-02 21:46:10.607056');
 CREATE TABLE "django_site" (
     "id" integer NOT NULL PRIMARY KEY,
     "domain" varchar(100) NOT NULL,
@@ -378,12 +319,7 @@ CREATE TABLE "django_admin_log" (
     "action_flag" smallint unsigned NOT NULL,
     "change_message" text NOT NULL
 );
-INSERT INTO "django_admin_log" VALUES(1,'2012-06-10 22:24:32.318268',1,9,'1','admin',2,'Changed theme_type.');
-INSERT INTO "django_admin_log" VALUES(2,'2012-06-10 22:24:45.300529',1,9,'1','admin',2,'Changed theme_type.');
-INSERT INTO "django_admin_log" VALUES(3,'2012-06-11 06:55:51.555028',1,9,'1','admin',2,'Changed theme_type.');
-INSERT INTO "django_admin_log" VALUES(4,'2012-06-11 07:01:37.331748',1,2,'1','Editor',1,'');
-INSERT INTO "django_admin_log" VALUES(5,'2012-06-11 07:01:50.823018',1,3,'1','admin',2,'Changed groups.');
-INSERT INTO "django_admin_log" VALUES(6,'2012-06-11 21:25:15.748466',1,9,'1','admin',2,'No fields changed.');
+INSERT INTO "django_admin_log" VALUES(1,'2012-06-18 21:43:45.466702',1,3,'2','admin1',2,'Changed is_staff and is_superuser.');
 CREATE TABLE "grampsdb_profile" (
     "id" integer NOT NULL PRIMARY KEY,
     "user_id" integer NOT NULL UNIQUE REFERENCES "auth_user" ("id"),
@@ -709,7 +645,184 @@ CREATE TABLE "grampsdb_config" (
 );
 INSERT INTO "grampsdb_config" VALUES(1,'sitename','site name of family tree','str','Gramps-Connect');
 INSERT INTO "grampsdb_config" VALUES(2,'db_version','database scheme version','str','0.6.1');
-INSERT INTO "grampsdb_config" VALUES(3,'db_created','database creation date/time','str','2012-06-10 22:21');
+INSERT INTO "grampsdb_config" VALUES(3,'db_created','database creation date/time','str','2012-06-18 21:40');
+INSERT INTO "grampsdb_config" VALUES(4,'htmlview.url-handler','','bool','False');
+INSERT INTO "grampsdb_config" VALUES(5,'htmlview.start-url','','str','http://gramps-project.org');
+INSERT INTO "grampsdb_config" VALUES(6,'paths.recent-export-dir','','str','');
+INSERT INTO "grampsdb_config" VALUES(7,'paths.report-directory','','unicode','/home/dblank');
+INSERT INTO "grampsdb_config" VALUES(8,'paths.quick-backup-filename','','str','%(filename)s_%(year)d-%(month)02d-%(day)02d.%(extension)s');
+INSERT INTO "grampsdb_config" VALUES(9,'paths.recent-import-dir','','str','');
+INSERT INTO "grampsdb_config" VALUES(10,'paths.quick-backup-directory','','unicode','/home/dblank');
+INSERT INTO "grampsdb_config" VALUES(11,'paths.recent-file','','str','');
+INSERT INTO "grampsdb_config" VALUES(12,'paths.website-directory','','unicode','/home/dblank');
+INSERT INTO "grampsdb_config" VALUES(13,'preferences.family-warn','','bool','True');
+INSERT INTO "grampsdb_config" VALUES(14,'preferences.no-surname-text','','unicode','[Missing Surname]');
+INSERT INTO "grampsdb_config" VALUES(15,'preferences.family-relation-type','','int','3');
+INSERT INTO "grampsdb_config" VALUES(16,'preferences.private-surname-text','','unicode','[Living]');
+INSERT INTO "grampsdb_config" VALUES(17,'preferences.fprefix','','str','F%04d');
+INSERT INTO "grampsdb_config" VALUES(18,'preferences.default-source','','bool','False');
+INSERT INTO "grampsdb_config" VALUES(19,'preferences.calendar-format-report','','int','0');
+INSERT INTO "grampsdb_config" VALUES(20,'preferences.oprefix','','str','O%04d');
+INSERT INTO "grampsdb_config" VALUES(21,'preferences.nprefix','','str','N%04d');
+INSERT INTO "grampsdb_config" VALUES(22,'preferences.use-last-view','','bool','True');
+INSERT INTO "grampsdb_config" VALUES(23,'preferences.paper-preference','','str','Letter');
+INSERT INTO "grampsdb_config" VALUES(24,'preferences.use-bsddb3','','bool','False');
+INSERT INTO "grampsdb_config" VALUES(25,'preferences.hide-ep-msg','','bool','False');
+INSERT INTO "grampsdb_config" VALUES(26,'preferences.iprefix','','str','I%04d');
+INSERT INTO "grampsdb_config" VALUES(27,'preferences.rprefix','','str','R%04d');
+INSERT INTO "grampsdb_config" VALUES(28,'preferences.sprefix','','str','S%04d');
+INSERT INTO "grampsdb_config" VALUES(29,'preferences.no-given-text','','unicode','[Missing Given Name]');
+INSERT INTO "grampsdb_config" VALUES(30,'preferences.paper-metric','','int','0');
+INSERT INTO "grampsdb_config" VALUES(31,'preferences.age-display-precision','','int','1');
+INSERT INTO "grampsdb_config" VALUES(32,'preferences.cprefix','','str','C%04d');
+INSERT INTO "grampsdb_config" VALUES(33,'preferences.invalid-date-format','','str','<b>%s</b>');
+INSERT INTO "grampsdb_config" VALUES(34,'preferences.last-views','','list','[]');
+INSERT INTO "grampsdb_config" VALUES(35,'preferences.pprefix','','str','P%04d');
+INSERT INTO "grampsdb_config" VALUES(36,'preferences.eprefix','','str','E%04d');
+INSERT INTO "grampsdb_config" VALUES(37,'preferences.name-format','','int','1');
+INSERT INTO "grampsdb_config" VALUES(38,'preferences.private-record-text','','unicode','[Private Record]');
+INSERT INTO "grampsdb_config" VALUES(39,'preferences.online-maps','','bool','False');
+INSERT INTO "grampsdb_config" VALUES(40,'preferences.no-record-text','','unicode','[Missing Record]');
+INSERT INTO "grampsdb_config" VALUES(41,'preferences.date-format','','int','0');
+INSERT INTO "grampsdb_config" VALUES(42,'preferences.last-view','','str','');
+INSERT INTO "grampsdb_config" VALUES(43,'preferences.patronimic-surname','','bool','False');
+INSERT INTO "grampsdb_config" VALUES(44,'preferences.private-given-text','','unicode','[Living]');
+INSERT INTO "grampsdb_config" VALUES(45,'plugin.hiddenplugins','','list','[''htmlview'']');
+INSERT INTO "grampsdb_config" VALUES(46,'plugin.addonplugins','','list','[]');
+INSERT INTO "grampsdb_config" VALUES(47,'researcher.researcher-locality','','str','');
+INSERT INTO "grampsdb_config" VALUES(48,'researcher.researcher-country','','str','');
+INSERT INTO "grampsdb_config" VALUES(49,'researcher.researcher-name','','str','');
+INSERT INTO "grampsdb_config" VALUES(50,'researcher.researcher-phone','','str','');
+INSERT INTO "grampsdb_config" VALUES(51,'researcher.researcher-email','','str','');
+INSERT INTO "grampsdb_config" VALUES(52,'researcher.researcher-state','','str','');
+INSERT INTO "grampsdb_config" VALUES(53,'researcher.researcher-postal','','str','');
+INSERT INTO "grampsdb_config" VALUES(54,'researcher.researcher-city','','str','');
+INSERT INTO "grampsdb_config" VALUES(55,'researcher.researcher-addr','','str','');
+INSERT INTO "grampsdb_config" VALUES(56,'export.proxy-order','','list','[[''privacy'', 0], [''living'', 0], [''person'', 0], [''note'', 0], [''reference'', 0]]');
+INSERT INTO "grampsdb_config" VALUES(57,'behavior.use-tips','','bool','False');
+INSERT INTO "grampsdb_config" VALUES(58,'behavior.generation-depth','','int','15');
+INSERT INTO "grampsdb_config" VALUES(59,'behavior.last-check-for-updates','','str','1970/01/01');
+INSERT INTO "grampsdb_config" VALUES(60,'behavior.startup','','int','0');
+INSERT INTO "grampsdb_config" VALUES(61,'behavior.autoload','','bool','False');
+INSERT INTO "grampsdb_config" VALUES(62,'behavior.pop-plugin-status','','bool','False');
+INSERT INTO "grampsdb_config" VALUES(63,'behavior.do-not-show-previously-seen-updates','','bool','True');
+INSERT INTO "grampsdb_config" VALUES(64,'behavior.check-for-updates','','int','0');
+INSERT INTO "grampsdb_config" VALUES(65,'behavior.recent-export-type','','int','1');
+INSERT INTO "grampsdb_config" VALUES(66,'behavior.addmedia-image-dir','','str','');
+INSERT INTO "grampsdb_config" VALUES(67,'behavior.date-about-range','','int','50');
+INSERT INTO "grampsdb_config" VALUES(68,'behavior.date-after-range','','int','50');
+INSERT INTO "grampsdb_config" VALUES(69,'behavior.owner-warn','','bool','False');
+INSERT INTO "grampsdb_config" VALUES(70,'behavior.date-before-range','','int','50');
+INSERT INTO "grampsdb_config" VALUES(71,'behavior.min-generation-years','','int','13');
+INSERT INTO "grampsdb_config" VALUES(72,'behavior.welcome','','int','100');
+INSERT INTO "grampsdb_config" VALUES(73,'behavior.max-sib-age-diff','','int','20');
+INSERT INTO "grampsdb_config" VALUES(74,'behavior.previously-seen-updates','','list','[]');
+INSERT INTO "grampsdb_config" VALUES(75,'behavior.addmedia-relative-path','','bool','False');
+INSERT INTO "grampsdb_config" VALUES(76,'behavior.spellcheck','','bool','False');
+INSERT INTO "grampsdb_config" VALUES(77,'behavior.surname-guessing','','int','0');
+INSERT INTO "grampsdb_config" VALUES(78,'behavior.check-for-update-types','','list','[''new'']');
+INSERT INTO "grampsdb_config" VALUES(79,'behavior.avg-generation-gap','','int','20');
+INSERT INTO "grampsdb_config" VALUES(80,'behavior.database-path','','unicode','/home/dblank/.gramps/grampsdb');
+INSERT INTO "grampsdb_config" VALUES(81,'behavior.betawarn','','bool','False');
+INSERT INTO "grampsdb_config" VALUES(82,'behavior.max-age-prob-alive','','int','110');
+INSERT INTO "grampsdb_config" VALUES(83,'behavior.web-search-url','','str','http://google.com/#&q=%(text)s');
+INSERT INTO "grampsdb_config" VALUES(84,'interface.family-height','','int','500');
+INSERT INTO "grampsdb_config" VALUES(85,'interface.sidebar-text','','bool','True');
+INSERT INTO "grampsdb_config" VALUES(86,'interface.source-ref-height','','int','450');
+INSERT INTO "grampsdb_config" VALUES(87,'interface.address-height','','int','450');
+INSERT INTO "grampsdb_config" VALUES(88,'interface.mapservice','','str','OpenStreetMap');
+INSERT INTO "grampsdb_config" VALUES(89,'interface.pedview-layout','','int','0');
+INSERT INTO "grampsdb_config" VALUES(90,'interface.family-width','','int','700');
+INSERT INTO "grampsdb_config" VALUES(91,'interface.toolbar-on','','bool','True');
+INSERT INTO "grampsdb_config" VALUES(92,'interface.citation-sel-height','','int','450');
+INSERT INTO "grampsdb_config" VALUES(93,'interface.location-height','','int','250');
+INSERT INTO "grampsdb_config" VALUES(94,'interface.person-ref-width','','int','600');
+INSERT INTO "grampsdb_config" VALUES(95,'interface.address-width','','int','650');
+INSERT INTO "grampsdb_config" VALUES(96,'interface.edit-rule-width','','int','600');
+INSERT INTO "grampsdb_config" VALUES(97,'interface.filter-editor-width','','int','400');
+INSERT INTO "grampsdb_config" VALUES(98,'interface.child-ref-width','','int','600');
+INSERT INTO "grampsdb_config" VALUES(99,'interface.person-sel-height','','int','450');
+INSERT INTO "grampsdb_config" VALUES(100,'interface.repo-width','','int','650');
+INSERT INTO "grampsdb_config" VALUES(101,'interface.pedview-tree-size','','int','5');
+INSERT INTO "grampsdb_config" VALUES(102,'interface.citation-height','','int','450');
+INSERT INTO "grampsdb_config" VALUES(103,'interface.edit-rule-height','','int','450');
+INSERT INTO "grampsdb_config" VALUES(104,'interface.place-width','','int','650');
+INSERT INTO "grampsdb_config" VALUES(105,'interface.place-height','','int','450');
+INSERT INTO "grampsdb_config" VALUES(106,'interface.source-ref-width','','int','600');
+INSERT INTO "grampsdb_config" VALUES(107,'interface.repo-height','','int','450');
+INSERT INTO "grampsdb_config" VALUES(108,'interface.source-sel-height','','int','450');
+INSERT INTO "grampsdb_config" VALUES(109,'interface.clipboard-height','','int','300');
+INSERT INTO "grampsdb_config" VALUES(110,'interface.fullscreen','','bool','False');
+INSERT INTO "grampsdb_config" VALUES(111,'interface.attribute-width','','int','600');
+INSERT INTO "grampsdb_config" VALUES(112,'interface.lds-height','','int','450');
+INSERT INTO "grampsdb_config" VALUES(113,'interface.edit-filter-width','','int','500');
+INSERT INTO "grampsdb_config" VALUES(114,'interface.clipboard-width','','int','300');
+INSERT INTO "grampsdb_config" VALUES(115,'interface.media-sel-width','','int','600');
+INSERT INTO "grampsdb_config" VALUES(116,'interface.person-ref-height','','int','350');
+INSERT INTO "grampsdb_config" VALUES(117,'interface.citation-width','','int','600');
+INSERT INTO "grampsdb_config" VALUES(118,'interface.person-width','','int','750');
+INSERT INTO "grampsdb_config" VALUES(119,'interface.lds-width','','int','600');
+INSERT INTO "grampsdb_config" VALUES(120,'interface.name-width','','int','600');
+INSERT INTO "grampsdb_config" VALUES(121,'interface.event-sel-height','','int','450');
+INSERT INTO "grampsdb_config" VALUES(122,'interface.child-ref-height','','int','450');
+INSERT INTO "grampsdb_config" VALUES(123,'interface.filter','','bool','False');
+INSERT INTO "grampsdb_config" VALUES(124,'interface.view','','bool','True');
+INSERT INTO "grampsdb_config" VALUES(125,'interface.media-ref-height','','int','450');
+INSERT INTO "grampsdb_config" VALUES(126,'interface.family-sel-height','','int','450');
+INSERT INTO "grampsdb_config" VALUES(127,'interface.pedview-show-marriage','','bool','False');
+INSERT INTO "grampsdb_config" VALUES(128,'interface.height','','int','500');
+INSERT INTO "grampsdb_config" VALUES(129,'interface.media-width','','int','650');
+INSERT INTO "grampsdb_config" VALUES(130,'interface.event-ref-height','','int','450');
+INSERT INTO "grampsdb_config" VALUES(131,'interface.repo-sel-height','','int','450');
+INSERT INTO "grampsdb_config" VALUES(132,'interface.media-height','','int','450');
+INSERT INTO "grampsdb_config" VALUES(133,'interface.width','','int','775');
+INSERT INTO "grampsdb_config" VALUES(134,'interface.size-checked','','bool','False');
+INSERT INTO "grampsdb_config" VALUES(135,'interface.media-sel-height','','int','450');
+INSERT INTO "grampsdb_config" VALUES(136,'interface.source-height','','int','450');
+INSERT INTO "grampsdb_config" VALUES(137,'interface.surname-box-height','','int','150');
+INSERT INTO "grampsdb_config" VALUES(138,'interface.repo-ref-width','','int','600');
+INSERT INTO "grampsdb_config" VALUES(139,'interface.name-height','','int','350');
+INSERT INTO "grampsdb_config" VALUES(140,'interface.event-sel-width','','int','600');
+INSERT INTO "grampsdb_config" VALUES(141,'interface.note-width','','int','700');
+INSERT INTO "grampsdb_config" VALUES(142,'interface.statusbar','','int','1');
+INSERT INTO "grampsdb_config" VALUES(143,'interface.person-sel-width','','int','600');
+INSERT INTO "grampsdb_config" VALUES(144,'interface.note-sel-width','','int','600');
+INSERT INTO "grampsdb_config" VALUES(145,'interface.view-categories','','list','[''Gramplets'', ''People'', ''Relationships'', ''Families'', ''Ancestry'', ''Events'', ''Places'', ''Geography'', ''Sources'', ''Citations'', ''Repositories'', ''Media'', ''Notes'']');
+INSERT INTO "grampsdb_config" VALUES(146,'interface.repo-ref-height','','int','450');
+INSERT INTO "grampsdb_config" VALUES(147,'interface.event-width','','int','600');
+INSERT INTO "grampsdb_config" VALUES(148,'interface.note-sel-height','','int','450');
+INSERT INTO "grampsdb_config" VALUES(149,'interface.person-height','','int','550');
+INSERT INTO "grampsdb_config" VALUES(150,'interface.repo-sel-width','','int','600');
+INSERT INTO "grampsdb_config" VALUES(151,'interface.attribute-height','','int','350');
+INSERT INTO "grampsdb_config" VALUES(152,'interface.event-ref-width','','int','600');
+INSERT INTO "grampsdb_config" VALUES(153,'interface.source-width','','int','600');
+INSERT INTO "grampsdb_config" VALUES(154,'interface.edit-filter-height','','int','420');
+INSERT INTO "grampsdb_config" VALUES(155,'interface.pedview-tree-direction','','int','2');
+INSERT INTO "grampsdb_config" VALUES(156,'interface.family-sel-width','','int','600');
+INSERT INTO "grampsdb_config" VALUES(157,'interface.source-sel-width','','int','600');
+INSERT INTO "grampsdb_config" VALUES(158,'interface.url-height','','int','150');
+INSERT INTO "grampsdb_config" VALUES(159,'interface.filter-editor-height','','int','350');
+INSERT INTO "grampsdb_config" VALUES(160,'interface.media-ref-width','','int','600');
+INSERT INTO "grampsdb_config" VALUES(161,'interface.pedview-show-unknown-people','','bool','False');
+INSERT INTO "grampsdb_config" VALUES(162,'interface.location-width','','int','600');
+INSERT INTO "grampsdb_config" VALUES(163,'interface.place-sel-width','','int','600');
+INSERT INTO "grampsdb_config" VALUES(164,'interface.citation-sel-width','','int','600');
+INSERT INTO "grampsdb_config" VALUES(165,'interface.pedview-show-images','','bool','True');
+INSERT INTO "grampsdb_config" VALUES(166,'interface.url-width','','int','600');
+INSERT INTO "grampsdb_config" VALUES(167,'interface.event-height','','int','450');
+INSERT INTO "grampsdb_config" VALUES(168,'interface.note-height','','int','500');
+INSERT INTO "grampsdb_config" VALUES(169,'interface.open-with-default-viewer','','bool','False');
+INSERT INTO "grampsdb_config" VALUES(170,'interface.place-sel-height','','int','450');
+INSERT INTO "grampsdb_config" VALUES(171,'interface.dont-ask','','bool','False');
+INSERT INTO "grampsdb_config" VALUES(172,'geography.map','','str','person');
+INSERT INTO "grampsdb_config" VALUES(173,'geography.zoom_when_center','','int','12');
+INSERT INTO "grampsdb_config" VALUES(174,'geography.center-lon','','float','0.0');
+INSERT INTO "grampsdb_config" VALUES(175,'geography.show_cross','','bool','False');
+INSERT INTO "grampsdb_config" VALUES(176,'geography.zoom','','int','0');
+INSERT INTO "grampsdb_config" VALUES(177,'geography.map_service','','int','1');
+INSERT INTO "grampsdb_config" VALUES(178,'geography.lock','','bool','False');
+INSERT INTO "grampsdb_config" VALUES(179,'geography.path','','str','');
+INSERT INTO "grampsdb_config" VALUES(180,'geography.center-lat','','float','0.0');
 CREATE TABLE "grampsdb_tag" (
     "id" integer NOT NULL PRIMARY KEY,
     "handle" varchar(19) NOT NULL UNIQUE,
@@ -727,42 +840,44 @@ CREATE TABLE "grampsdb_person_families" (
     "family_id" integer NOT NULL,
     UNIQUE ("person_id", "family_id")
 );
-INSERT INTO "grampsdb_person_families" VALUES(1,1,18);
-INSERT INTO "grampsdb_person_families" VALUES(2,3,12);
-INSERT INTO "grampsdb_person_families" VALUES(3,4,14);
-INSERT INTO "grampsdb_person_families" VALUES(4,6,12);
-INSERT INTO "grampsdb_person_families" VALUES(5,7,8);
-INSERT INTO "grampsdb_person_families" VALUES(6,11,19);
-INSERT INTO "grampsdb_person_families" VALUES(7,12,13);
-INSERT INTO "grampsdb_person_families" VALUES(8,14,15);
-INSERT INTO "grampsdb_person_families" VALUES(9,16,16);
-INSERT INTO "grampsdb_person_families" VALUES(10,18,6);
-INSERT INTO "grampsdb_person_families" VALUES(11,19,3);
-INSERT INTO "grampsdb_person_families" VALUES(12,20,6);
-INSERT INTO "grampsdb_person_families" VALUES(13,21,16);
-INSERT INTO "grampsdb_person_families" VALUES(14,23,10);
-INSERT INTO "grampsdb_person_families" VALUES(15,25,18);
-INSERT INTO "grampsdb_person_families" VALUES(16,25,5);
-INSERT INTO "grampsdb_person_families" VALUES(17,27,14);
-INSERT INTO "grampsdb_person_families" VALUES(18,28,2);
-INSERT INTO "grampsdb_person_families" VALUES(19,29,5);
-INSERT INTO "grampsdb_person_families" VALUES(20,31,3);
-INSERT INTO "grampsdb_person_families" VALUES(21,33,10);
-INSERT INTO "grampsdb_person_families" VALUES(22,34,8);
-INSERT INTO "grampsdb_person_families" VALUES(23,40,9);
-INSERT INTO "grampsdb_person_families" VALUES(24,42,4);
-INSERT INTO "grampsdb_person_families" VALUES(25,43,1);
-INSERT INTO "grampsdb_person_families" VALUES(26,46,4);
-INSERT INTO "grampsdb_person_families" VALUES(27,48,1);
-INSERT INTO "grampsdb_person_families" VALUES(28,49,2);
-INSERT INTO "grampsdb_person_families" VALUES(29,50,9);
-INSERT INTO "grampsdb_person_families" VALUES(30,51,17);
-INSERT INTO "grampsdb_person_families" VALUES(31,56,13);
-INSERT INTO "grampsdb_person_families" VALUES(32,57,11);
-INSERT INTO "grampsdb_person_families" VALUES(33,58,19);
-INSERT INTO "grampsdb_person_families" VALUES(34,63,7);
-INSERT INTO "grampsdb_person_families" VALUES(35,64,11);
-INSERT INTO "grampsdb_person_families" VALUES(36,67,15);
+INSERT INTO "grampsdb_person_families" VALUES(1,1,14);
+INSERT INTO "grampsdb_person_families" VALUES(2,2,15);
+INSERT INTO "grampsdb_person_families" VALUES(3,3,13);
+INSERT INTO "grampsdb_person_families" VALUES(4,4,10);
+INSERT INTO "grampsdb_person_families" VALUES(5,5,2);
+INSERT INTO "grampsdb_person_families" VALUES(6,8,18);
+INSERT INTO "grampsdb_person_families" VALUES(7,15,17);
+INSERT INTO "grampsdb_person_families" VALUES(8,20,11);
+INSERT INTO "grampsdb_person_families" VALUES(9,21,19);
+INSERT INTO "grampsdb_person_families" VALUES(10,24,17);
+INSERT INTO "grampsdb_person_families" VALUES(11,25,6);
+INSERT INTO "grampsdb_person_families" VALUES(12,27,7);
+INSERT INTO "grampsdb_person_families" VALUES(13,29,1);
+INSERT INTO "grampsdb_person_families" VALUES(14,30,7);
+INSERT INTO "grampsdb_person_families" VALUES(15,31,16);
+INSERT INTO "grampsdb_person_families" VALUES(16,32,8);
+INSERT INTO "grampsdb_person_families" VALUES(17,37,14);
+INSERT INTO "grampsdb_person_families" VALUES(18,38,4);
+INSERT INTO "grampsdb_person_families" VALUES(19,39,3);
+INSERT INTO "grampsdb_person_families" VALUES(20,40,8);
+INSERT INTO "grampsdb_person_families" VALUES(21,42,10);
+INSERT INTO "grampsdb_person_families" VALUES(22,46,5);
+INSERT INTO "grampsdb_person_families" VALUES(23,47,19);
+INSERT INTO "grampsdb_person_families" VALUES(24,48,11);
+INSERT INTO "grampsdb_person_families" VALUES(25,50,5);
+INSERT INTO "grampsdb_person_families" VALUES(26,52,16);
+INSERT INTO "grampsdb_person_families" VALUES(27,53,18);
+INSERT INTO "grampsdb_person_families" VALUES(28,53,13);
+INSERT INTO "grampsdb_person_families" VALUES(29,54,15);
+INSERT INTO "grampsdb_person_families" VALUES(30,57,9);
+INSERT INTO "grampsdb_person_families" VALUES(31,58,4);
+INSERT INTO "grampsdb_person_families" VALUES(32,59,2);
+INSERT INTO "grampsdb_person_families" VALUES(33,60,9);
+INSERT INTO "grampsdb_person_families" VALUES(34,60,6);
+INSERT INTO "grampsdb_person_families" VALUES(35,63,3);
+INSERT INTO "grampsdb_person_families" VALUES(36,65,12);
+INSERT INTO "grampsdb_person_families" VALUES(37,68,1);
+INSERT INTO "grampsdb_person_families" VALUES(38,69,12);
 CREATE TABLE "grampsdb_person_tags" (
     "id" integer NOT NULL PRIMARY KEY,
     "person_id" integer NOT NULL,
@@ -775,54 +890,55 @@ CREATE TABLE "grampsdb_person_parent_families" (
     "family_id" integer NOT NULL,
     UNIQUE ("person_id", "family_id")
 );
-INSERT INTO "grampsdb_person_parent_families" VALUES(1,2,16);
-INSERT INTO "grampsdb_person_parent_families" VALUES(2,5,18);
-INSERT INTO "grampsdb_person_parent_families" VALUES(3,6,8);
-INSERT INTO "grampsdb_person_parent_families" VALUES(4,8,13);
-INSERT INTO "grampsdb_person_parent_families" VALUES(5,9,16);
-INSERT INTO "grampsdb_person_parent_families" VALUES(6,10,4);
-INSERT INTO "grampsdb_person_parent_families" VALUES(7,13,16);
-INSERT INTO "grampsdb_person_parent_families" VALUES(8,15,11);
-INSERT INTO "grampsdb_person_parent_families" VALUES(9,17,4);
-INSERT INTO "grampsdb_person_parent_families" VALUES(10,18,8);
-INSERT INTO "grampsdb_person_parent_families" VALUES(11,19,8);
-INSERT INTO "grampsdb_person_parent_families" VALUES(12,21,10);
-INSERT INTO "grampsdb_person_parent_families" VALUES(13,22,16);
-INSERT INTO "grampsdb_person_parent_families" VALUES(14,23,1);
-INSERT INTO "grampsdb_person_parent_families" VALUES(15,24,16);
-INSERT INTO "grampsdb_person_parent_families" VALUES(16,26,16);
-INSERT INTO "grampsdb_person_parent_families" VALUES(17,27,10);
-INSERT INTO "grampsdb_person_parent_families" VALUES(18,30,16);
-INSERT INTO "grampsdb_person_parent_families" VALUES(19,32,14);
-INSERT INTO "grampsdb_person_parent_families" VALUES(20,33,2);
-INSERT INTO "grampsdb_person_parent_families" VALUES(21,35,10);
-INSERT INTO "grampsdb_person_parent_families" VALUES(22,36,11);
-INSERT INTO "grampsdb_person_parent_families" VALUES(23,37,16);
-INSERT INTO "grampsdb_person_parent_families" VALUES(24,38,13);
-INSERT INTO "grampsdb_person_parent_families" VALUES(25,39,16);
-INSERT INTO "grampsdb_person_parent_families" VALUES(26,41,4);
-INSERT INTO "grampsdb_person_parent_families" VALUES(27,42,10);
-INSERT INTO "grampsdb_person_parent_families" VALUES(28,44,11);
-INSERT INTO "grampsdb_person_parent_families" VALUES(29,45,14);
-INSERT INTO "grampsdb_person_parent_families" VALUES(30,47,16);
-INSERT INTO "grampsdb_person_parent_families" VALUES(31,48,8);
-INSERT INTO "grampsdb_person_parent_families" VALUES(32,50,1);
-INSERT INTO "grampsdb_person_parent_families" VALUES(33,51,10);
-INSERT INTO "grampsdb_person_parent_families" VALUES(34,52,1);
-INSERT INTO "grampsdb_person_parent_families" VALUES(35,53,13);
-INSERT INTO "grampsdb_person_parent_families" VALUES(36,54,16);
-INSERT INTO "grampsdb_person_parent_families" VALUES(37,55,14);
-INSERT INTO "grampsdb_person_parent_families" VALUES(38,56,10);
-INSERT INTO "grampsdb_person_parent_families" VALUES(39,58,13);
-INSERT INTO "grampsdb_person_parent_families" VALUES(40,59,17);
-INSERT INTO "grampsdb_person_parent_families" VALUES(41,60,8);
-INSERT INTO "grampsdb_person_parent_families" VALUES(42,61,17);
-INSERT INTO "grampsdb_person_parent_families" VALUES(43,62,17);
-INSERT INTO "grampsdb_person_parent_families" VALUES(44,64,10);
-INSERT INTO "grampsdb_person_parent_families" VALUES(45,65,13);
-INSERT INTO "grampsdb_person_parent_families" VALUES(46,66,11);
-INSERT INTO "grampsdb_person_parent_families" VALUES(47,67,10);
-INSERT INTO "grampsdb_person_parent_families" VALUES(48,68,10);
+INSERT INTO "grampsdb_person_parent_families" VALUES(1,2,7);
+INSERT INTO "grampsdb_person_parent_families" VALUES(2,3,7);
+INSERT INTO "grampsdb_person_parent_families" VALUES(3,4,8);
+INSERT INTO "grampsdb_person_parent_families" VALUES(4,6,12);
+INSERT INTO "grampsdb_person_parent_families" VALUES(5,7,7);
+INSERT INTO "grampsdb_person_parent_families" VALUES(6,9,17);
+INSERT INTO "grampsdb_person_parent_families" VALUES(7,10,19);
+INSERT INTO "grampsdb_person_parent_families" VALUES(8,11,15);
+INSERT INTO "grampsdb_person_parent_families" VALUES(9,12,8);
+INSERT INTO "grampsdb_person_parent_families" VALUES(10,13,15);
+INSERT INTO "grampsdb_person_parent_families" VALUES(11,14,19);
+INSERT INTO "grampsdb_person_parent_families" VALUES(12,16,9);
+INSERT INTO "grampsdb_person_parent_families" VALUES(13,17,7);
+INSERT INTO "grampsdb_person_parent_families" VALUES(14,18,17);
+INSERT INTO "grampsdb_person_parent_families" VALUES(15,19,13);
+INSERT INTO "grampsdb_person_parent_families" VALUES(16,21,7);
+INSERT INTO "grampsdb_person_parent_families" VALUES(17,22,5);
+INSERT INTO "grampsdb_person_parent_families" VALUES(18,23,15);
+INSERT INTO "grampsdb_person_parent_families" VALUES(19,24,7);
+INSERT INTO "grampsdb_person_parent_families" VALUES(20,26,19);
+INSERT INTO "grampsdb_person_parent_families" VALUES(21,27,14);
+INSERT INTO "grampsdb_person_parent_families" VALUES(22,28,19);
+INSERT INTO "grampsdb_person_parent_families" VALUES(23,30,3);
+INSERT INTO "grampsdb_person_parent_families" VALUES(24,31,7);
+INSERT INTO "grampsdb_person_parent_families" VALUES(25,33,13);
+INSERT INTO "grampsdb_person_parent_families" VALUES(26,34,19);
+INSERT INTO "grampsdb_person_parent_families" VALUES(27,35,12);
+INSERT INTO "grampsdb_person_parent_families" VALUES(28,36,12);
+INSERT INTO "grampsdb_person_parent_families" VALUES(29,38,12);
+INSERT INTO "grampsdb_person_parent_families" VALUES(30,39,8);
+INSERT INTO "grampsdb_person_parent_families" VALUES(31,41,5);
+INSERT INTO "grampsdb_person_parent_families" VALUES(32,43,19);
+INSERT INTO "grampsdb_person_parent_families" VALUES(33,44,3);
+INSERT INTO "grampsdb_person_parent_families" VALUES(34,45,19);
+INSERT INTO "grampsdb_person_parent_families" VALUES(35,48,8);
+INSERT INTO "grampsdb_person_parent_families" VALUES(36,49,19);
+INSERT INTO "grampsdb_person_parent_families" VALUES(37,50,7);
+INSERT INTO "grampsdb_person_parent_families" VALUES(38,51,19);
+INSERT INTO "grampsdb_person_parent_families" VALUES(39,53,9);
+INSERT INTO "grampsdb_person_parent_families" VALUES(40,55,19);
+INSERT INTO "grampsdb_person_parent_families" VALUES(41,56,12);
+INSERT INTO "grampsdb_person_parent_families" VALUES(42,59,3);
+INSERT INTO "grampsdb_person_parent_families" VALUES(43,61,19);
+INSERT INTO "grampsdb_person_parent_families" VALUES(44,62,17);
+INSERT INTO "grampsdb_person_parent_families" VALUES(45,64,5);
+INSERT INTO "grampsdb_person_parent_families" VALUES(46,66,13);
+INSERT INTO "grampsdb_person_parent_families" VALUES(47,67,15);
+INSERT INTO "grampsdb_person_parent_families" VALUES(48,68,8);
+INSERT INTO "grampsdb_person_parent_families" VALUES(49,69,7);
 CREATE TABLE "grampsdb_person" (
     "id" integer NOT NULL PRIMARY KEY,
     "handle" varchar(19) NOT NULL UNIQUE,
@@ -839,98 +955,75 @@ CREATE TABLE "grampsdb_person" (
     "birth_ref_index" integer NOT NULL,
     "death_ref_index" integer NOT NULL
 );
-INSERT INTO "grampsdb_person" VALUES(1,'c2e7d98180317b0250c3e61c833','I0048','2012-06-10 22:25:19.088130','1994-06-30 00:00:00',NULL,0,NULL,2,0,NULL,48,-1,1);
-INSERT INTO "grampsdb_person" VALUES(2,'c2e7d98160c371b9f5dc06bb5ac','I0032','2012-06-10 22:25:19.347376','1969-12-31 19:00:00',NULL,0,NULL,2,1,15,NULL,0,-1);
-INSERT INTO "grampsdb_person" VALUES(3,'c2e7d981a291a4ef72ad67ebc95','I0065','2012-06-10 22:25:19.599091','1994-05-27 00:00:00',NULL,0,NULL,2,1,NULL,NULL,-1,-1);
-INSERT INTO "grampsdb_person" VALUES(4,'c2e7d9816f0250098c8802aa12','I0040','2012-06-10 22:25:19.859161','1994-05-29 00:00:00',NULL,0,NULL,3,1,NULL,NULL,-1,-1);
-INSERT INTO "grampsdb_person" VALUES(5,'c2e7d981a6b3c11a2714001973d','I0068','2012-06-10 22:25:20.102957','1994-05-27 00:00:00',NULL,0,NULL,3,1,NULL,NULL,-1,-1);
-INSERT INTO "grampsdb_person" VALUES(6,'c2e7d9819f9615264e6af2f3847','I0063','2012-06-10 22:25:20.347375','1994-05-27 00:00:00',NULL,0,NULL,3,1,133,NULL,0,-1);
-INSERT INTO "grampsdb_person" VALUES(7,'c2e7d9817aa3b4eb6d9dcf39715','I0046','2012-06-10 22:25:20.594972','1994-10-16 00:00:00',NULL,0,NULL,2,0,91,23,0,1);
-INSERT INTO "grampsdb_person" VALUES(8,'c2e7d9814435c2765fa451583b7','I0014','2012-06-10 22:25:20.869616','1969-12-31 19:00:00',NULL,0,NULL,2,1,78,NULL,0,-1);
-INSERT INTO "grampsdb_person" VALUES(9,'c2e7d9815a2123b668d30ce53b4','I0028','2012-06-10 22:25:21.270993','1969-12-31 19:00:00',NULL,0,NULL,2,1,37,NULL,0,-1);
-INSERT INTO "grampsdb_person" VALUES(10,'c2e7d98168076135eccccb2259e','I0036','2012-06-10 22:25:21.653877','1969-12-31 19:00:00',NULL,0,NULL,2,1,NULL,NULL,-1,-1);
-INSERT INTO "grampsdb_person" VALUES(11,'c2e7d9813e88a9520c9f3a51b2','I0010','2012-06-10 22:25:21.914043','1994-10-16 00:00:00',NULL,0,NULL,2,1,NULL,NULL,-1,-1);
-INSERT INTO "grampsdb_person" VALUES(12,'c2e7d98131a63ca16d54254bab4','I0007','2012-06-10 22:25:22.171445','1994-05-27 00:00:00',NULL,0,NULL,2,1,60,NULL,1,-1);
-INSERT INTO "grampsdb_person" VALUES(13,'c2e7d9815ce36a8dddad364b594','I0030','2012-06-10 22:25:22.436897','1969-12-31 19:00:00',NULL,0,NULL,2,1,144,NULL,0,-1);
-INSERT INTO "grampsdb_person" VALUES(14,'c2e7d9812811cfb50d360f25799','I0005','2012-06-11 16:36:17.800423','2012-06-11 16:36:16.709320','admin',0,'KFMnYzJlN2Q5ODEyODExY2ZiNTBkMzYwZjI1Nzk5JwpWSTAwMDUKcDEKSTEKKEkwMAoobChsKEkw
-CkkwCkkwCihJMApJMApJMApJMDAKTk5OTnRWCkkwCkkwCnRWV2lsbGlhbSBKb2huIFJvYmVydApw
-MgoobHAzCihWQ0FWRU5ESVNIClYKSTAxCihJMQpWCnRWCnRwNAphVgpWCihJMgpWQmlydGggTmFt
-ZQpwNQp0VgpJMApJMApWClYKVgp0KGxJMQpJMAoobHA2CihJMDAKKGwobFZjMmU3ZDk4MTI4NzQ0
-YjIzN2JiMDAxMWFlZTIKKEkxClZQcmltYXJ5CnR0cDcKYShJMDAKKGwobFZjMmU3ZDk4MTI4YTEx
-NjRiMzk1NzY3N2UwMzkKKEkxClZQcmltYXJ5CnR0cDgKYShscDkKVmMyZTdkOTgxMjljNTdhNzg2
-OTFiN2ZlM2Y1MgpwMTAKYShsKGwobChsKGwobChsKGxJMTMzOTQ0Njk3NgoodEkwMAoobHRwMTEK
-Lg==
-',2,0,137,66,0,1);
-INSERT INTO "grampsdb_person" VALUES(15,'c2e7d98148f3cc9f5495499075f','I0017','2012-06-10 22:25:22.965484','1969-12-31 19:00:00',NULL,0,NULL,2,1,NULL,NULL,-1,-1);
-INSERT INTO "grampsdb_person" VALUES(16,'c2e7d9815204a968fbbd966d878','I0022','2012-06-10 22:25:23.220475','1969-12-31 19:00:00',NULL,0,NULL,3,1,104,NULL,0,-1);
-INSERT INTO "grampsdb_person" VALUES(17,'c2e7d9816931a1a78dc081ca7d3','I0037','2012-06-10 22:25:23.459173','1969-12-31 19:00:00',NULL,0,NULL,2,1,20,NULL,0,-1);
-INSERT INTO "grampsdb_person" VALUES(18,'c2e7d9819bd10fda2e87a1eeb82','I0061','2012-06-10 22:25:23.703662','1994-05-27 00:00:00',NULL,0,NULL,3,1,100,NULL,0,-1);
-INSERT INTO "grampsdb_person" VALUES(19,'c2e7d98199a346e54bb715456e1','I0060','2012-06-10 22:25:23.948082','1994-05-27 00:00:00',NULL,0,NULL,3,1,19,NULL,0,-1);
-INSERT INTO "grampsdb_person" VALUES(20,'c2e7d981a1b4fd787a11d506143','I0064','2012-06-10 22:25:24.191812','1994-05-27 00:00:00',NULL,0,NULL,2,1,NULL,NULL,-1,-1);
-INSERT INTO "grampsdb_person" VALUES(21,'c2e7d9814dd2cb9db418b837d0b','I0021','2012-06-10 22:25:24.460785','1994-05-29 00:00:00',NULL,0,NULL,2,0,58,132,0,1);
-INSERT INTO "grampsdb_person" VALUES(22,'c2e7d98155758bf50da8af7beb8','I0025','2012-06-10 22:25:24.716021','1969-12-31 19:00:00',NULL,0,NULL,2,1,129,NULL,1,-1);
-INSERT INTO "grampsdb_person" VALUES(23,'c2e7d98022f25f84cb69b6d417d','I0001','2012-06-10 22:25:25.206198','1995-01-26 00:00:00',NULL,0,NULL,2,0,108,30,0,1);
-INSERT INTO "grampsdb_person" VALUES(24,'c2e7d98156f44a942c2f37585b8','I0026','2012-06-10 22:25:25.587151','1969-12-31 19:00:00',NULL,0,NULL,2,1,80,NULL,0,-1);
-INSERT INTO "grampsdb_person" VALUES(25,'c2e7d98182f16ac9317fa4b42a4','I0049','2012-06-10 22:25:25.847953','1994-05-27 00:00:00',NULL,0,NULL,3,1,NULL,NULL,-1,-1);
-INSERT INTO "grampsdb_person" VALUES(26,'c2e7d98152d38ca4245cae17c1b','I0023','2012-06-10 22:25:26.094513','1969-12-31 19:00:00',NULL,0,NULL,3,1,70,NULL,0,-1);
-INSERT INTO "grampsdb_person" VALUES(27,'c2e7d9816c563e0ba1a332b0114','I0039','2012-06-10 22:25:26.481398','1994-05-29 00:00:00',NULL,0,NULL,2,1,92,NULL,0,-1);
-INSERT INTO "grampsdb_person" VALUES(28,'c2e7d98183e381a938aa86c59de','I0050','2012-06-10 22:25:26.736870','1994-11-03 00:00:00',NULL,0,NULL,2,1,NULL,NULL,-1,-1);
-INSERT INTO "grampsdb_person" VALUES(29,'c2e7d981a814d1879ec29f6f976','I0069','2012-06-10 22:25:27.002862','1994-05-27 00:00:00',NULL,0,NULL,2,1,NULL,NULL,-1,-1);
-INSERT INTO "grampsdb_person" VALUES(30,'c2e7d9815b8276f274e3eb48c57','I0029','2012-06-10 22:25:27.347269','1969-12-31 19:00:00',NULL,0,NULL,3,1,69,NULL,0,-1);
-INSERT INTO "grampsdb_person" VALUES(31,'c2e7d981a364e8edd733f02f711','I0066','2012-06-10 22:25:27.692434','1994-05-27 00:00:00',NULL,0,NULL,2,1,NULL,NULL,-1,-1);
-INSERT INTO "grampsdb_person" VALUES(32,'c2e7d98172a102e57e7d5159dda','I0043','2012-06-10 22:25:28.069623','1969-12-31 19:00:00',NULL,0,NULL,2,1,9,NULL,0,-1);
-INSERT INTO "grampsdb_person" VALUES(33,'c2e7d981154140d4c615c7b9c98','I0002','2012-06-10 22:25:28.338493','1995-01-26 00:00:00',NULL,0,NULL,3,0,63,26,0,1);
-INSERT INTO "grampsdb_person" VALUES(34,'c2e7d9817db41b1782aa044dcb1','I0047','2012-06-10 22:25:28.617216','1994-10-16 00:00:00',NULL,0,NULL,3,0,50,77,0,1);
-INSERT INTO "grampsdb_person" VALUES(35,'c2e7d9812295a70338a45cd5060','I0004','2012-06-10 22:25:28.876963','1996-01-23 00:00:00',NULL,0,NULL,3,1,6,NULL,0,-1);
-INSERT INTO "grampsdb_person" VALUES(36,'c2e7d9814c93ceffc927c2b3c2d','I0020','2012-06-10 22:25:29.225217','1969-12-31 19:00:00',NULL,0,NULL,3,1,NULL,NULL,-1,-1);
-INSERT INTO "grampsdb_person" VALUES(37,'c2e7d981542146add10822a195c','I0024','2012-06-10 22:25:29.515121','1969-12-31 19:00:00',NULL,0,NULL,2,1,122,NULL,0,-1);
-INSERT INTO "grampsdb_person" VALUES(38,'c2e7d981425170dc6f7377c7537','I0013','2012-06-10 22:25:29.758385','1969-12-31 19:00:00',NULL,0,NULL,2,1,124,NULL,0,-1);
-INSERT INTO "grampsdb_person" VALUES(39,'c2e7d9815ef67df7d7786764a4b','I0031','2012-06-10 22:25:30.014780','1969-12-31 19:00:00',NULL,0,NULL,2,1,7,NULL,0,-1);
-INSERT INTO "grampsdb_person" VALUES(40,'c2e7d98198178226ed00178db13','I0058','2012-06-10 22:25:30.270412','1994-05-27 00:00:00',NULL,0,NULL,2,1,NULL,NULL,-1,-1);
-INSERT INTO "grampsdb_person" VALUES(41,'c2e7d9816b111bf3082b0a5df1','I0038','2012-06-10 22:25:30.521706','1969-12-31 19:00:00',NULL,0,NULL,3,1,NULL,NULL,-1,-1);
-INSERT INTO "grampsdb_person" VALUES(42,'c2e7d98165b64ab43c434930cf8','I0035','2012-06-10 22:25:30.780611','1994-05-29 00:00:00',NULL,0,NULL,3,1,117,NULL,0,-1);
-INSERT INTO "grampsdb_person" VALUES(43,'c2e7d9817995a79fbbe291b5ec7','I0045','2012-06-10 22:25:31.038554','1994-05-29 00:00:00',NULL,0,NULL,3,0,NULL,64,-1,0);
-INSERT INTO "grampsdb_person" VALUES(44,'c2e7d9814a2641bd3a551b14705','I0018','2012-06-10 22:25:31.336812','1969-12-31 19:00:00',NULL,0,NULL,3,1,NULL,NULL,-1,-1);
-INSERT INTO "grampsdb_person" VALUES(45,'c2e7d981713143381e3cfc8fc19','I0042','2012-06-10 22:25:31.591717','1969-12-31 19:00:00',NULL,0,NULL,2,1,83,NULL,1,-1);
-INSERT INTO "grampsdb_person" VALUES(46,'c2e7d9816503462e1fbeb0e3b74','I0034','2012-06-10 22:25:31.847928','1969-12-31 19:00:00',NULL,0,NULL,2,1,NULL,NULL,-1,-1);
-INSERT INTO "grampsdb_person" VALUES(47,'c2e7d98162e48c13e8fdc9e25a2','I0033','2012-06-10 22:25:32.102831','1969-12-31 19:00:00',NULL,0,NULL,3,1,68,NULL,0,-1);
-INSERT INTO "grampsdb_person" VALUES(48,'c2e7d9817405bf8f1ef84cd3cf4','I0044','2012-06-10 22:25:32.361431','1994-05-29 00:00:00',NULL,0,NULL,2,0,32,17,0,1);
-INSERT INTO "grampsdb_person" VALUES(49,'c2e7d98184dad8966949a485df','I0051','2012-06-10 22:25:32.625765','1994-11-03 00:00:00',NULL,0,NULL,3,1,NULL,NULL,-1,-1);
-INSERT INTO "grampsdb_person" VALUES(50,'c2e7d9819693b1c54e2031118b9','I0057','2012-06-10 22:25:32.888126','1994-05-27 00:00:00',NULL,0,NULL,3,1,119,NULL,0,-1);
-INSERT INTO "grampsdb_person" VALUES(51,'c2e7d9818599fc62ec468702a8','I0052','2012-06-10 22:25:33.205296','1995-04-29 00:00:00',NULL,0,NULL,2,0,95,115,0,1);
-INSERT INTO "grampsdb_person" VALUES(52,'c2e7d981a442eaedd90f4e58dda','I0067','2012-06-10 22:25:33.632710','1994-05-27 00:00:00',NULL,0,NULL,3,1,143,NULL,0,-1);
-INSERT INTO "grampsdb_person" VALUES(53,'c2e7d9813d125c1e6199744bde','I0009','2012-06-10 22:25:33.980609','1969-12-31 19:00:00',NULL,0,NULL,2,1,98,NULL,1,-1);
-INSERT INTO "grampsdb_person" VALUES(54,'c2e7d98158c3d15b37a444f99f','I0027','2012-06-10 22:25:34.359596','1969-12-31 19:00:00',NULL,0,NULL,3,1,127,NULL,0,-1);
-INSERT INTO "grampsdb_person" VALUES(55,'c2e7d9816fe126a1a7eba6d4202','I0041','2012-06-10 22:25:34.758411','1969-12-31 19:00:00',NULL,0,NULL,3,1,4,NULL,0,-1);
-INSERT INTO "grampsdb_person" VALUES(56,'c2e7d98137021aff46e5c5342c2','I0008','2012-06-10 22:25:35.088777','1969-12-31 19:00:00',NULL,0,NULL,3,1,101,NULL,0,-1);
-INSERT INTO "grampsdb_person" VALUES(57,'c2e7d9814625f49502b651ad6f3','I0015','2012-06-10 22:25:35.436775','1969-12-31 19:00:00',NULL,0,NULL,2,1,52,NULL,0,-1);
-INSERT INTO "grampsdb_person" VALUES(58,'c2e7d9813f753bab218cbfd05b6','I0011','2012-06-10 22:25:35.702911','1994-06-30 00:00:00',NULL,0,NULL,3,1,NULL,NULL,-1,-1);
-INSERT INTO "grampsdb_person" VALUES(59,'c2e7d98191e2d4f6392700d1cad','I0055','2012-06-10 22:25:35.954732','1995-04-29 00:00:00',NULL,0,NULL,2,1,85,NULL,1,-1);
-INSERT INTO "grampsdb_person" VALUES(60,'c2e7d9819d75845aa4770e1f524','I0062','2012-06-10 22:25:36.201638','1994-05-27 00:00:00',NULL,0,NULL,2,0,29,2,0,1);
-INSERT INTO "grampsdb_person" VALUES(61,'c2e7d9818f26014a57c7e22944e','I0054','2012-06-10 22:25:36.454092','1994-05-29 00:00:00',NULL,0,NULL,3,1,5,NULL,0,-1);
-INSERT INTO "grampsdb_person" VALUES(62,'c2e7d9819414413814b85203f82','I0056','2012-06-10 22:25:36.702088','1969-12-31 19:00:00',NULL,0,NULL,2,0,59,125,0,1);
-INSERT INTO "grampsdb_person" VALUES(63,'c2e7d98198ef1fcc9df292b14e','I0059','2012-06-10 22:25:37.013869','1994-05-29 00:00:00',NULL,0,NULL,2,1,NULL,NULL,-1,-1);
-INSERT INTO "grampsdb_person" VALUES(64,'c2e7d98146f42fc43a22aa1088b','I0016','2012-06-10 22:25:37.358201','1969-12-31 19:00:00',NULL,0,NULL,3,1,82,NULL,0,-1);
-INSERT INTO "grampsdb_person" VALUES(65,'c2e7d98140f20eaac50b036e055','I0012','2012-06-10 22:25:37.668915','1969-12-31 19:00:00',NULL,0,NULL,2,1,NULL,NULL,-1,-1);
-INSERT INTO "grampsdb_person" VALUES(66,'c2e7d9814b655fa6bddb726fdc3','I0019','2012-06-10 22:25:37.925792','1969-12-31 19:00:00',NULL,0,NULL,3,1,NULL,NULL,-1,-1);
-INSERT INTO "grampsdb_person" VALUES(67,'c2e7d9812b1385fdc2212104437','I0006','2012-06-10 22:25:38.184101','1994-05-27 00:00:00',NULL,0,NULL,3,0,39,74,0,1);
-INSERT INTO "grampsdb_person" VALUES(68,'c2e7d9811de3b4a1e51cfc4e442','I0003','2012-06-10 22:25:38.460689','1994-05-29 00:00:00',NULL,0,NULL,2,0,79,105,1,2);
-INSERT INTO "grampsdb_person" VALUES(69,'c2e7d9818a84a3f6dcddec6788f','I0053','2012-06-11 16:33:07.943070','2012-06-11 16:32:48.282165','admin',0,'KFMnYzJlN2Q5ODE4YTg0YTNmNmRjZGRlYzY3ODhmJwpWSTAwNTMKcDEKSTAKKEkwMAoobChsKEkw
-CkkwCkkwCihJMApJMApJMApJMDAKTk5OTnRWCkkwCkkwCnRWSmFjcXVlbGluZQpwMgoobHAzCihW
-Qk9VVklFUgpWCkkwMQooSTEKVgp0Vgp0cDQKYVYKVgooSTIKVkJpcnRoIE5hbWUKcDUKdFYKSTAK
-STAKVgpWClYKdChsSTEKSTAKKGxwNgooSTAwCihsKGxWYzJlN2Q5ODE4YWI2MTI5M2Q5NjE3MzAz
-NzY2CihJMQpWUHJpbWFyeQp0dHA3CmEoSTAwCihsKGxWYzJlN2Q5ODE4YjUxNWIzMjgyOTg5NmJj
-OTI3CihJMQpWUHJpbWFyeQp0dHA4CmEoSTAwCihsKGxWYzJlN2Q5ODE4YmYxYWMxZjVlNDIxOGNj
-NjIwCihJMQpWUHJpbWFyeQp0dHA5CmEoSTAwCihsKGxWYzJlN2Q5ODE4Y2I2N2VjYWI1ZDk5ZTU3
-YjZhCihJMQpWUHJpbWFyeQp0dHAxMAphKEkwMAoobChsVmMyZTdkOTgxOGQ1N2JlMDI1YTUxYmFk
-ZmVmMQooSTEKVlByaW1hcnkKdHRwMTEKYShJMDAKKGwobFZjMmU3ZDk4MThkNjdmZjliMjFjNzZl
-YmU3YTcKKEkxClZQcmltYXJ5CnR0cDEyCmEoSTAwCihsKGxWYzJlN2Q5ODE4ZDc1MmJiMzJiNTU4
-ODQwMDFkCihJMQpWUHJpbWFyeQp0dHAxMwphKGwobChsKGwobChsKGwobChscDE0ClZjMmU3ZDk4
-MThjYzQ5OGRiOGVlM2RlYTQxMzgKcDE1CmFWYzJlN2Q5ODE4Y2U2N2I5ZDE2OTkzZjUwMmQKcDE2
-CmFWYzJlN2Q5ODE4ZDE0N2MzZmJlMzllZjU3OGMyCnAxNwphVmMyZTdkOTgxOGQ0OTBjYzA5ZWE3
-Zjc4Njg0CnAxOAphVmMyZTdkOTgxOGU5Njg3YTY2OTBkMTJkNTEwMgpwMTkKYUkxMzM5NDQ2NzY4
-Cih0STAwCihsdHAyMAou
-',3,0,14,130,0,1);
+INSERT INTO "grampsdb_person" VALUES(1,'c30181e535d5ebdb004','I0050','2012-06-18 21:44:27.007428','1994-11-03 00:00:00',NULL,0,NULL,2,1,NULL,NULL,-1,-1);
+INSERT INTO "grampsdb_person" VALUES(2,'c30181e4ce741e3fa73','I0016','2012-06-18 21:44:27.144104','1969-12-31 19:00:00',NULL,0,NULL,3,1,119,NULL,0,-1);
+INSERT INTO "grampsdb_person" VALUES(3,'c30181e538e3a266f35','I0052','2012-06-18 21:44:27.287829','1995-04-29 00:00:00',NULL,0,NULL,2,0,118,19,0,1);
+INSERT INTO "grampsdb_person" VALUES(4,'c30181e560b10fa403b','I0061','2012-06-18 21:44:27.419876','1994-05-27 00:00:00',NULL,0,NULL,3,1,68,NULL,0,-1);
+INSERT INTO "grampsdb_person" VALUES(5,'c30181e55a51f84bcdd','I0058','2012-06-18 21:44:27.545303','1994-05-27 00:00:00',NULL,0,NULL,2,1,NULL,NULL,-1,-1);
+INSERT INTO "grampsdb_person" VALUES(6,'c30181e4c66344d6b59','I0013','2012-06-18 21:44:27.679179','1969-12-31 19:00:00',NULL,0,NULL,2,1,67,NULL,0,-1);
+INSERT INTO "grampsdb_person" VALUES(7,'c30181e4a2c5bde9756','I0003','2012-06-18 21:44:27.956302','1994-05-29 00:00:00',NULL,0,NULL,2,0,123,63,1,2);
+INSERT INTO "grampsdb_person" VALUES(8,'c30181e55bb4f5e7604','I0059','2012-06-18 21:44:28.088196','1994-05-29 00:00:00',NULL,0,NULL,2,1,NULL,NULL,-1,-1);
+INSERT INTO "grampsdb_person" VALUES(9,'c30181e51582203951a','I0041','2012-06-18 21:44:28.221928','1969-12-31 19:00:00',NULL,0,NULL,3,1,24,NULL,0,-1);
+INSERT INTO "grampsdb_person" VALUES(10,'c30181e4f48333a0c57','I0030','2012-06-18 21:44:28.364165','1969-12-31 19:00:00',NULL,0,NULL,2,1,121,NULL,0,-1);
+INSERT INTO "grampsdb_person" VALUES(11,'c30181e4d8741e88bbb','I0020','2012-06-18 21:44:28.506923','1969-12-31 19:00:00',NULL,0,NULL,3,1,NULL,NULL,-1,-1);
+INSERT INTO "grampsdb_person" VALUES(12,'c30181e563833367261','I0062','2012-06-18 21:44:28.642500','1994-05-27 00:00:00',NULL,0,NULL,2,0,21,64,0,1);
+INSERT INTO "grampsdb_person" VALUES(13,'c30181e4d202bb7606a','I0017','2012-06-18 21:44:28.766293','1969-12-31 19:00:00',NULL,0,NULL,2,1,NULL,NULL,-1,-1);
+INSERT INTO "grampsdb_person" VALUES(14,'c30181e4e7d52d85569','I0025','2012-06-18 21:44:28.900054','1969-12-31 19:00:00',NULL,0,NULL,2,1,73,NULL,1,-1);
+INSERT INTO "grampsdb_person" VALUES(15,'c30181e513f2620d344','I0040','2012-06-18 21:44:29.033576','1994-05-29 00:00:00',NULL,0,NULL,3,1,NULL,NULL,-1,-1);
+INSERT INTO "grampsdb_person" VALUES(16,'c30181e57345dfeb38d','I0068','2012-06-18 21:44:29.167327','1994-05-27 00:00:00',NULL,0,NULL,3,1,NULL,NULL,-1,-1);
+INSERT INTO "grampsdb_person" VALUES(17,'c30181e4a9200f276fc','I0004','2012-06-18 21:44:29.301255','1996-01-23 00:00:00',NULL,0,NULL,3,1,41,NULL,0,-1);
+INSERT INTO "grampsdb_person" VALUES(18,'c30181e517e1b2362a7','I0042','2012-06-18 21:44:29.434837','1969-12-31 19:00:00',NULL,0,NULL,2,1,113,NULL,1,-1);
+INSERT INTO "grampsdb_person" VALUES(19,'c30181e54a50cd16251','I0054','2012-06-18 21:44:29.576814','1994-05-29 00:00:00',NULL,0,NULL,3,1,95,NULL,0,-1);
+INSERT INTO "grampsdb_person" VALUES(20,'c30181e56ca410c2657','I0065','2012-06-18 21:44:29.711463','1994-05-27 00:00:00',NULL,0,NULL,2,1,NULL,NULL,-1,-1);
+INSERT INTO "grampsdb_person" VALUES(21,'c30181e4da97c2c0892','I0021','2012-06-18 21:44:29.847144','1994-05-29 00:00:00',NULL,0,NULL,2,0,124,125,0,1);
+INSERT INTO "grampsdb_person" VALUES(22,'c30181e50d12404b391','I0038','2012-06-18 21:44:29.970892','1969-12-31 19:00:00',NULL,0,NULL,3,1,NULL,NULL,-1,-1);
+INSERT INTO "grampsdb_person" VALUES(23,'c30181e4d6503fbab95','I0019','2012-06-18 21:44:30.112742','1969-12-31 19:00:00',NULL,0,NULL,3,1,NULL,NULL,-1,-1);
+INSERT INTO "grampsdb_person" VALUES(24,'c30181e50f35512fd74','I0039','2012-06-18 21:44:30.246424','1994-05-29 00:00:00',NULL,0,NULL,2,1,70,NULL,0,-1);
+INSERT INTO "grampsdb_person" VALUES(25,'c30181e575d2a16862f','I0069','2012-06-18 21:44:30.380129','1994-05-27 00:00:00',NULL,0,NULL,2,1,NULL,NULL,-1,-1);
+INSERT INTO "grampsdb_person" VALUES(26,'c30181e4fb65b64e169','I0032','2012-06-18 21:44:30.513934','1969-12-31 19:00:00',NULL,0,NULL,2,1,128,NULL,0,-1);
+INSERT INTO "grampsdb_person" VALUES(27,'c30181e49a8263cfd55','I0002','2012-06-18 21:44:30.649349','1995-01-26 00:00:00',NULL,0,NULL,3,0,139,78,0,1);
+INSERT INTO "grampsdb_person" VALUES(28,'c30181e4fee6bca5abf','I0033','2012-06-18 21:44:30.781420','1969-12-31 19:00:00',NULL,0,NULL,3,1,112,NULL,0,-1);
+INSERT INTO "grampsdb_person" VALUES(29,'c30181e56e25e112620','I0066','2012-06-18 21:44:30.907888','1994-05-27 00:00:00',NULL,0,NULL,2,1,NULL,NULL,-1,-1);
+INSERT INTO "grampsdb_person" VALUES(30,'c30181e48f33c0c82ae','I0001','2012-06-18 21:44:31.035144','1995-01-26 00:00:00',NULL,0,NULL,2,0,48,4,0,1);
+INSERT INTO "grampsdb_person" VALUES(31,'c30181e4b04289ee499','I0006','2012-06-18 21:44:31.168652','1994-05-27 00:00:00',NULL,0,NULL,3,0,36,32,0,1);
+INSERT INTO "grampsdb_person" VALUES(32,'c30181e524f2f0d0185','I0046','2012-06-18 21:44:31.302418','1994-10-16 00:00:00',NULL,0,NULL,2,0,140,44,0,1);
+INSERT INTO "grampsdb_person" VALUES(33,'c30181e5535600afb6d','I0056','2012-06-18 21:44:31.436364','1969-12-31 19:00:00',NULL,0,NULL,2,0,27,138,0,1);
+INSERT INTO "grampsdb_person" VALUES(34,'c30181e4f801f1cd999','I0031','2012-06-18 21:44:31.568239','1969-12-31 19:00:00',NULL,0,NULL,2,1,133,NULL,0,-1);
+INSERT INTO "grampsdb_person" VALUES(35,'c30181e4bda64b67fc2','I0009','2012-06-18 21:44:31.702026','1969-12-31 19:00:00',NULL,0,NULL,2,1,144,NULL,1,-1);
+INSERT INTO "grampsdb_person" VALUES(36,'c30181e4c434cf2456c','I0012','2012-06-18 21:44:31.844201','1969-12-31 19:00:00',NULL,0,NULL,2,1,NULL,NULL,-1,-1);
+INSERT INTO "grampsdb_person" VALUES(37,'c30181e5378053b965e','I0051','2012-06-18 21:44:31.977889','1994-11-03 00:00:00',NULL,0,NULL,3,1,NULL,NULL,-1,-1);
+INSERT INTO "grampsdb_person" VALUES(38,'c30181e4c1b677ed2b1','I0011','2012-06-18 21:44:32.111460','1994-06-30 00:00:00',NULL,0,NULL,3,1,NULL,NULL,-1,-1);
+INSERT INTO "grampsdb_person" VALUES(39,'c30181e51d020c99a60','I0044','2012-06-18 21:44:32.248085','1994-05-29 00:00:00',NULL,0,NULL,2,0,103,94,0,1);
+INSERT INTO "grampsdb_person" VALUES(40,'c30181e52a83c428ed5','I0047','2012-06-18 21:44:32.381797','1994-10-16 00:00:00',NULL,0,NULL,3,0,57,77,0,1);
+INSERT INTO "grampsdb_person" VALUES(41,'c30181e507b0fa099ba','I0036','2012-06-18 21:44:32.513836','1969-12-31 19:00:00',NULL,0,NULL,2,1,NULL,NULL,-1,-1);
+INSERT INTO "grampsdb_person" VALUES(42,'c30181e56b1191a3720','I0064','2012-06-18 21:44:32.647382','1994-05-27 00:00:00',NULL,0,NULL,2,1,NULL,NULL,-1,-1);
+INSERT INTO "grampsdb_person" VALUES(43,'c30181e4f1c1e2b4737','I0029','2012-06-18 21:44:32.781001','1969-12-31 19:00:00',NULL,0,NULL,3,1,81,NULL,0,-1);
+INSERT INTO "grampsdb_person" VALUES(44,'c30181e56fb11fbeea6','I0067','2012-06-18 21:44:32.914975','1994-05-27 00:00:00',NULL,0,NULL,3,1,91,NULL,0,-1);
+INSERT INTO "grampsdb_person" VALUES(45,'c30181e4e577ded1337','I0024','2012-06-18 21:44:33.048746','1969-12-31 19:00:00',NULL,0,NULL,2,1,135,NULL,0,-1);
+INSERT INTO "grampsdb_person" VALUES(46,'c30181e5028607ecc73','I0034','2012-06-18 21:44:33.174205','1969-12-31 19:00:00',NULL,0,NULL,2,1,NULL,NULL,-1,-1);
+INSERT INTO "grampsdb_person" VALUES(47,'c30181e4e1b6981809d','I0022','2012-06-18 21:44:33.299587','1969-12-31 19:00:00',NULL,0,NULL,3,1,83,NULL,0,-1);
+INSERT INTO "grampsdb_person" VALUES(48,'c30181e56750f5540a3','I0063','2012-06-18 21:44:33.434032','1994-05-27 00:00:00',NULL,0,NULL,3,1,10,NULL,0,-1);
+INSERT INTO "grampsdb_person" VALUES(49,'c30181e4e3238a80483','I0023','2012-06-18 21:44:33.568012','1969-12-31 19:00:00',NULL,0,NULL,3,1,60,NULL,0,-1);
+INSERT INTO "grampsdb_person" VALUES(50,'c30181e503c2ca35ed9','I0035','2012-06-18 21:44:33.710869','1994-05-29 00:00:00',NULL,0,NULL,3,1,86,NULL,0,-1);
+INSERT INTO "grampsdb_person" VALUES(51,'c30181e4ecc53881846','I0027','2012-06-18 21:44:33.844085','1969-12-31 19:00:00',NULL,0,NULL,3,1,43,NULL,0,-1);
+INSERT INTO "grampsdb_person" VALUES(52,'c30181e4adc5c16c637','I0005','2012-06-18 21:44:34.005846','1969-12-31 19:00:00',NULL,0,NULL,2,0,23,29,0,1);
+INSERT INTO "grampsdb_person" VALUES(53,'c30181e541b2e7cbb85','I0053','2012-06-18 21:44:34.172122','1994-05-29 00:00:00',NULL,0,NULL,3,0,37,42,0,1);
+INSERT INTO "grampsdb_person" VALUES(54,'c30181e4cd050176a7c','I0015','2012-06-18 21:44:34.304042','1969-12-31 19:00:00',NULL,0,NULL,2,1,7,NULL,0,-1);
+INSERT INTO "grampsdb_person" VALUES(55,'c30181e4ea50fae3132','I0026','2012-06-18 21:44:34.437812','1969-12-31 19:00:00',NULL,0,NULL,2,1,96,NULL,0,-1);
+INSERT INTO "grampsdb_person" VALUES(56,'c30181e4c9a4de4acbb','I0014','2012-06-18 21:44:34.563242','1969-12-31 19:00:00',NULL,0,NULL,2,1,2,NULL,0,-1);
+INSERT INTO "grampsdb_person" VALUES(57,'c30181e52ee3b3e79a3','I0048','2012-06-18 21:44:34.699687','1994-06-30 00:00:00',NULL,0,NULL,2,0,NULL,101,-1,1);
+INSERT INTO "grampsdb_person" VALUES(58,'c30181e4c0109979a61','I0010','2012-06-18 21:44:34.832135','1994-10-16 00:00:00',NULL,0,NULL,2,1,NULL,NULL,-1,-1);
+INSERT INTO "grampsdb_person" VALUES(59,'c30181e557a52efa5da','I0057','2012-06-18 21:44:34.974194','1994-05-27 00:00:00',NULL,0,NULL,3,1,102,NULL,0,-1);
+INSERT INTO "grampsdb_person" VALUES(60,'c30181e534251f77dd2','I0049','2012-06-18 21:44:35.107405','1994-05-27 00:00:00',NULL,0,NULL,3,1,NULL,NULL,-1,-1);
+INSERT INTO "grampsdb_person" VALUES(61,'c30181e4ef475b4a36d','I0028','2012-06-18 21:44:35.241237','1969-12-31 19:00:00',NULL,0,NULL,2,1,54,NULL,0,-1);
+INSERT INTO "grampsdb_person" VALUES(62,'c30181e51aa7c8661a3','I0043','2012-06-18 21:44:35.374936','1969-12-31 19:00:00',NULL,0,NULL,2,1,109,NULL,0,-1);
+INSERT INTO "grampsdb_person" VALUES(63,'c30181e523374ece98b','I0045','2012-06-18 21:44:35.751494','1994-05-29 00:00:00',NULL,0,NULL,3,0,NULL,99,-1,0);
+INSERT INTO "grampsdb_person" VALUES(64,'c30181e509c100ee2b1','I0037','2012-06-18 21:44:35.883376','1969-12-31 19:00:00',NULL,0,NULL,2,1,1,NULL,0,-1);
+INSERT INTO "grampsdb_person" VALUES(65,'c30181e4b611ebce47a','I0007','2012-06-18 21:44:36.033738','1994-05-27 00:00:00',NULL,0,NULL,2,1,40,NULL,1,-1);
+INSERT INTO "grampsdb_person" VALUES(66,'c30181e54f47d176b2a','I0055','2012-06-18 21:44:36.168422','1995-04-29 00:00:00',NULL,0,NULL,2,1,38,NULL,1,-1);
+INSERT INTO "grampsdb_person" VALUES(67,'c30181e4d437b7664ed','I0018','2012-06-18 21:44:36.302050','1969-12-31 19:00:00',NULL,0,NULL,3,1,NULL,NULL,-1,-1);
+INSERT INTO "grampsdb_person" VALUES(68,'c30181e55d23cb0928f','I0060','2012-06-18 21:44:36.435813','1994-05-27 00:00:00',NULL,0,NULL,3,1,17,NULL,0,-1);
+INSERT INTO "grampsdb_person" VALUES(69,'c30181e4b8e670156ec','I0008','2012-06-18 21:44:36.569528','1969-12-31 19:00:00',NULL,0,NULL,3,1,20,NULL,0,-1);
 CREATE TABLE "grampsdb_family_tags" (
     "id" integer NOT NULL PRIMARY KEY,
     "family_id" integer NOT NULL,
@@ -950,25 +1043,25 @@ CREATE TABLE "grampsdb_family" (
     "mother_id" integer REFERENCES "grampsdb_person" ("id"),
     "family_rel_type_id" integer NOT NULL REFERENCES "grampsdb_familyreltype" ("id")
 );
-INSERT INTO "grampsdb_family" VALUES(1,'c2e7d9803943fb9762fa08aed46','F0009','2012-06-10 22:25:15.833810','1969-12-31 19:00:00',NULL,0,NULL,48,43,5);
-INSERT INTO "grampsdb_family" VALUES(2,'c2e7d9811be42ee8096a2072b04','F0012','2012-06-10 22:25:16.082209','1969-12-31 19:00:00',NULL,0,NULL,28,49,1);
-INSERT INTO "grampsdb_family" VALUES(3,'c2e7d9819a945a96ff1513a0081','F0016','2012-06-10 22:25:16.401086','1969-12-31 19:00:00',NULL,0,NULL,31,19,5);
-INSERT INTO "grampsdb_family" VALUES(4,'c2e7d98165233b3d1514fa732','F0007','2012-06-10 22:25:16.621307','1969-12-31 19:00:00',NULL,0,NULL,46,42,5);
-INSERT INTO "grampsdb_family" VALUES(5,'c2e7d9818334185f428ecb1719d','F0019','2012-06-10 22:25:16.644076','1969-12-31 19:00:00',NULL,0,NULL,29,25,5);
-INSERT INTO "grampsdb_family" VALUES(6,'c2e7d9819c2551eb6aa8c0c333c','F0017','2012-06-10 22:25:16.743425','1969-12-31 19:00:00',NULL,0,NULL,20,18,5);
-INSERT INTO "grampsdb_family" VALUES(7,'c2e7d9818d9d0592e7e396f61d','F0015','2012-06-10 22:25:16.801625','1969-12-31 19:00:00',NULL,0,NULL,63,69,1);
-INSERT INTO "grampsdb_family" VALUES(8,'c2e7d9817621bdae63027934dde','F0010','2012-06-10 22:25:16.921089','1969-12-31 19:00:00',NULL,0,NULL,7,34,5);
-INSERT INTO "grampsdb_family" VALUES(9,'c2e7d98196d592bec68644108d8','F0014','2012-06-10 22:25:16.973993','1969-12-31 19:00:00',NULL,0,NULL,40,50,1);
-INSERT INTO "grampsdb_family" VALUES(10,'c2e7d9803923bfdb91518ebca47','F0001','2012-06-10 22:25:17.125106','1969-12-31 19:00:00',NULL,0,NULL,23,33,5);
-INSERT INTO "grampsdb_family" VALUES(11,'c2e7d981466658770dc43b7586e','F0005','2012-06-10 22:25:17.165687','1969-12-31 19:00:00',NULL,0,NULL,57,64,1);
-INSERT INTO "grampsdb_family" VALUES(12,'c2e7d981a0633a6e8883fb7ac71','F0018','2012-06-10 22:25:17.194612','1969-12-31 19:00:00',NULL,0,NULL,3,6,5);
-INSERT INTO "grampsdb_family" VALUES(13,'c2e7d981335351ada2dae0b88d5','F0003','2012-06-10 22:25:17.371427','1969-12-31 19:00:00',NULL,0,NULL,12,56,5);
-INSERT INTO "grampsdb_family" VALUES(14,'c2e7d9816d752e58ba42e9fcb6e','F0008','2012-06-10 22:25:17.655605','1969-12-31 19:00:00',NULL,0,NULL,27,4,5);
-INSERT INTO "grampsdb_family" VALUES(15,'c2e7d98129c57a78691b7fe3f52','F0002','2012-06-10 22:25:17.935227','1969-12-31 19:00:00',NULL,0,NULL,14,67,5);
-INSERT INTO "grampsdb_family" VALUES(16,'c2e7d98150873e2dbb44ecbcf65','F0006','2012-06-10 22:25:18.146829','1969-12-31 19:00:00',NULL,0,NULL,21,16,5);
-INSERT INTO "grampsdb_family" VALUES(17,'c2e7d98188b3af23c99c4f4ef8d','F0013','2012-06-10 22:25:18.372841','1969-12-31 19:00:00',NULL,0,NULL,51,69,5);
-INSERT INTO "grampsdb_family" VALUES(18,'c2e7d98182140ba9f409ba160e7','F0011','2012-06-10 22:25:18.404341','1969-12-31 19:00:00',NULL,0,NULL,1,25,1);
-INSERT INTO "grampsdb_family" VALUES(19,'c2e7d9813ec1c8a83cb49be562a','F0004','2012-06-10 22:25:18.447402','1969-12-31 19:00:00',NULL,0,NULL,11,58,1);
+INSERT INTO "grampsdb_family" VALUES(1,'c30181e55e70c81bfe8','F0016','2012-06-18 21:44:21.776185','1969-12-31 19:00:00',NULL,0,NULL,29,68,5);
+INSERT INTO "grampsdb_family" VALUES(2,'c30181e5582444c0bf3','F0014','2012-06-18 21:44:22.713264','1969-12-31 19:00:00',NULL,0,NULL,5,59,5);
+INSERT INTO "grampsdb_family" VALUES(3,'c30181e49645bf7aa16','F0009','2012-06-18 21:44:22.964227','1969-12-31 19:00:00',NULL,0,NULL,39,63,5);
+INSERT INTO "grampsdb_family" VALUES(4,'c30181e4c0709538bc4','F0004','2012-06-18 21:44:22.996128','1969-12-31 19:00:00',NULL,0,NULL,58,38,5);
+INSERT INTO "grampsdb_family" VALUES(5,'c30181e502c5805c157','F0007','2012-06-18 21:44:23.223371','1969-12-31 19:00:00',NULL,0,NULL,46,50,5);
+INSERT INTO "grampsdb_family" VALUES(6,'c30181e534921cadd07','F0019','2012-06-18 21:44:23.398452','1969-12-31 19:00:00',NULL,0,NULL,25,60,5);
+INSERT INTO "grampsdb_family" VALUES(7,'c30181e496232b6add1','F0001','2012-06-18 21:44:23.417689','1969-12-31 19:00:00',NULL,0,NULL,30,27,5);
+INSERT INTO "grampsdb_family" VALUES(8,'c30181e520a53997002','F0010','2012-06-18 21:44:23.563672','1969-12-31 19:00:00',NULL,0,NULL,32,40,5);
+INSERT INTO "grampsdb_family" VALUES(9,'c30181e532552ac8f35','F0011','2012-06-18 21:44:23.897917','1969-12-31 19:00:00',NULL,0,NULL,57,60,5);
+INSERT INTO "grampsdb_family" VALUES(10,'c30181e5614684141e2','F0017','2012-06-18 21:44:24.211262','1969-12-31 19:00:00',NULL,0,NULL,42,4,5);
+INSERT INTO "grampsdb_family" VALUES(11,'c30181e568c79dfa768','F0018','2012-06-18 21:44:24.558084','1969-12-31 19:00:00',NULL,0,NULL,20,48,5);
+INSERT INTO "grampsdb_family" VALUES(12,'c30181e4b7a0eb54cf3','F0003','2012-06-18 21:44:24.921302','1969-12-31 19:00:00',NULL,0,NULL,65,69,5);
+INSERT INTO "grampsdb_family" VALUES(13,'c30181e53ec11f3aad3','F0013','2012-06-18 21:44:25.126956','1969-12-31 19:00:00',NULL,0,NULL,3,53,5);
+INSERT INTO "grampsdb_family" VALUES(14,'c30181e4a0244bca5df','F0012','2012-06-18 21:44:25.269064','1969-12-31 19:00:00',NULL,0,NULL,1,37,5);
+INSERT INTO "grampsdb_family" VALUES(15,'c30181e4cd86d1206ce','F0005','2012-06-18 21:44:25.503346','1969-12-31 19:00:00',NULL,0,NULL,54,2,5);
+INSERT INTO "grampsdb_family" VALUES(16,'c30181e4af518af27e4','F0002','2012-06-18 21:44:25.980532','1969-12-31 19:00:00',NULL,0,NULL,52,31,5);
+INSERT INTO "grampsdb_family" VALUES(17,'c30181e5112348535d9','F0008','2012-06-18 21:44:26.006860','1969-12-31 19:00:00',NULL,0,NULL,24,15,5);
+INSERT INTO "grampsdb_family" VALUES(18,'c30181e54772c5ecfaf','F0015','2012-06-18 21:44:26.617589','1969-12-31 19:00:00',NULL,0,NULL,8,53,5);
+INSERT INTO "grampsdb_family" VALUES(19,'c30181e4def38b64a89','F0006','2012-06-18 21:44:26.755563','1969-12-31 19:00:00',NULL,0,NULL,21,47,5);
 CREATE TABLE "grampsdb_citation" (
     "calendar" integer NOT NULL,
     "modifier" integer NOT NULL,
@@ -1010,17 +1103,17 @@ CREATE TABLE "grampsdb_source" (
     "pubinfo" varchar(50),
     "abbrev" varchar(50)
 );
-INSERT INTO "grampsdb_source" VALUES(1,'c2e7d981acd5fe9a782e4371147','S0005','2012-06-10 22:25:15.061383','1969-12-31 19:00:00',NULL,0,NULL,'No title - ID S0005','','','');
-INSERT INTO "grampsdb_source" VALUES(2,'c2e7d981b0f594cdb18c1652cd0','S0008','2012-06-10 22:25:15.091490','1969-12-31 19:00:00',NULL,0,NULL,'No title - ID S0008','','','');
-INSERT INTO "grampsdb_source" VALUES(3,'c2e7d981ae557e383f5325d7d6b','S0006','2012-06-10 22:25:15.181379','1969-12-31 19:00:00',NULL,0,NULL,'No title - ID S0006','','','');
-INSERT INTO "grampsdb_source" VALUES(4,'c2e7d981afa70e7f3805ff9cf97','S0007','2012-06-10 22:25:15.220948','1969-12-31 19:00:00',NULL,0,NULL,'No title - ID S0007','','','');
-INSERT INTO "grampsdb_source" VALUES(5,'c2e7d981b3299e0188b1ec76fe','S0010','2012-06-10 22:25:15.260624','1969-12-31 19:00:00',NULL,0,NULL,'No title - ID S0010','','','');
-INSERT INTO "grampsdb_source" VALUES(6,'c2e7d981aa05d3f3af9fd1aa55','S0002','2012-06-10 22:25:15.301377','1969-12-31 19:00:00',NULL,0,NULL,'No title - ID S0002','','','');
-INSERT INTO "grampsdb_source" VALUES(7,'c2e7d981a905f36ea6f8651e849','S0001','2012-06-10 22:25:15.391493','1969-12-31 19:00:00',NULL,0,NULL,'No title - ID S0001','','','');
-INSERT INTO "grampsdb_source" VALUES(8,'c2e7d981aaf4f0a6b6b287487ff','S0003','2012-06-10 22:25:15.500731','1969-12-31 19:00:00',NULL,0,NULL,'No title - ID S0003','','','');
-INSERT INTO "grampsdb_source" VALUES(9,'c2e7d981abe6309eb27d4b07c38','S0004','2012-06-10 22:25:15.520413','1969-12-31 19:00:00',NULL,0,NULL,'No title - ID S0004','','','');
-INSERT INTO "grampsdb_source" VALUES(10,'c2e7d981b415a3eb43cd1b9aec4','S0011','2012-06-10 22:25:15.597182','1969-12-31 19:00:00',NULL,0,NULL,'No title - ID S0011','','','');
-INSERT INTO "grampsdb_source" VALUES(11,'c2e7d981b236742e45ef146d831','S0009','2012-06-10 22:25:15.692047','1969-12-31 19:00:00',NULL,0,NULL,'No title - ID S0009','','','');
+INSERT INTO "grampsdb_source" VALUES(1,'c30181e586e58b05f95','S0010','2012-06-18 21:44:20.772518','1969-12-31 19:00:00',NULL,0,NULL,'No title - ID S0010','','','');
+INSERT INTO "grampsdb_source" VALUES(2,'c30181e579127c5333c','S0002','2012-06-18 21:44:20.906119','1969-12-31 19:00:00',NULL,0,NULL,'No title - ID S0002','','','');
+INSERT INTO "grampsdb_source" VALUES(3,'c30181e57c834b373fe','S0004','2012-06-18 21:44:21.081664','1969-12-31 19:00:00',NULL,0,NULL,'No title - ID S0004','','','');
+INSERT INTO "grampsdb_source" VALUES(4,'c30181e58526c2ca5a7','S0009','2012-06-18 21:44:21.187178','1969-12-31 19:00:00',NULL,0,NULL,'No title - ID S0009','','','');
+INSERT INTO "grampsdb_source" VALUES(5,'c30181e581a1a23df61','S0007','2012-06-18 21:44:21.210953','1969-12-31 19:00:00',NULL,0,NULL,'No title - ID S0007','','','');
+INSERT INTO "grampsdb_source" VALUES(6,'c30181e58006dae8fbf','S0006','2012-06-18 21:44:21.425740','1969-12-31 19:00:00',NULL,0,NULL,'No title - ID S0006','','','');
+INSERT INTO "grampsdb_source" VALUES(7,'c30181e58376f39240f','S0008','2012-06-18 21:44:21.451903','1969-12-31 19:00:00',NULL,0,NULL,'No title - ID S0008','','','');
+INSERT INTO "grampsdb_source" VALUES(8,'c30181e577553160493','S0001','2012-06-18 21:44:21.491063','1969-12-31 19:00:00',NULL,0,NULL,'No title - ID S0001','','','');
+INSERT INTO "grampsdb_source" VALUES(9,'c30181e57e33594def8','S0005','2012-06-18 21:44:21.578494','1969-12-31 19:00:00',NULL,0,NULL,'No title - ID S0005','','','');
+INSERT INTO "grampsdb_source" VALUES(10,'c30181e57ac72627de2','S0003','2012-06-18 21:44:21.584269','1969-12-31 19:00:00',NULL,0,NULL,'No title - ID S0003','','','');
+INSERT INTO "grampsdb_source" VALUES(11,'c30181e588935d3ec0c','S0011','2012-06-18 21:44:21.749153','1969-12-31 19:00:00',NULL,0,NULL,'No title - ID S0011','','','');
 CREATE TABLE "grampsdb_event" (
     "calendar" integer NOT NULL,
     "modifier" integer NOT NULL,
@@ -1048,150 +1141,150 @@ CREATE TABLE "grampsdb_event" (
     "description" varchar(50) NOT NULL,
     "place_id" integer
 );
-INSERT INTO "grampsdb_event" VALUES(0,0,0,25,11,1963,0,0,0,0,0,'25 NOV 1963',2438359,0,1,'c2e7d9818705d2a9d0a54ceefb','E0098','2012-06-10 22:25:15.699897','1969-12-31 19:00:00',NULL,0,NULL,11,'',3);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,24,9,1855,0,0,0,0,0,'24 SEP 1855',2398851,0,2,'c2e7d9819e44dd8badd21fd8b51','E0123','2012-06-10 22:25:15.042811','1969-12-31 19:00:00',NULL,0,NULL,5,'',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,6,1942,0,0,0,0,0,'JUN 1942',2430512,0,3,'c2e7d981ea15d2ccb5bf1dadc4b','E0143','2012-06-10 22:25:15.046067','1969-12-31 19:00:00',NULL,0,NULL,37,'',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,3,1960,0,0,0,0,0,'MAR 1960',2436995,0,4,'c2e7d9817004199dbf5ca26f835','E0065','2012-06-10 22:25:15.066666','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,27,11,1957,0,0,0,0,0,'27 NOV 1957',2436170,0,5,'c2e7d9818f4674427bce0e28718','E0110','2012-06-10 22:25:15.968256','1969-12-31 19:00:00',NULL,0,NULL,4,'',23);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,9,1918,0,0,0,0,0,'SEP 1918',2421838,0,6,'c2e7d98122d4bd9271626b89b89','E0023','2012-06-10 22:25:15.995166','1969-12-31 19:00:00',NULL,0,NULL,4,'',21);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,9,1,1965,0,0,0,0,0,'9 JAN 1965',2438770,0,7,'c2e7d9815f1681bc649fdece90b','E0056','2012-06-10 22:25:15.998660','1969-12-31 19:00:00',NULL,0,NULL,4,'',23);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,8,'c2e7d98155a401feaa0998798b5','E0049','2012-06-10 22:25:15.082914','1969-12-31 19:00:00',NULL,0,NULL,27,'Jr.',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,8,1963,0,0,0,0,0,'AUG 1963',2438243,0,9,'c2e7d98172d174277e6e0abdfe1','E0068','2012-06-10 22:25:15.084355','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,10,'c2e7d9813fa109ddf53df7f5a2b','E0036','2012-06-10 22:25:15.085780','1969-12-31 19:00:00',NULL,0,NULL,18,'Georgetown University',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,11,'c2e7d9817c2777d87ddc0a3dc58','E0079','2012-06-10 22:25:15.092834','1969-12-31 19:00:00',NULL,0,NULL,29,'Cooper, Ward Boss',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,12,'c2e7d9811e173cfa644747596f5','E0017','2012-06-10 22:25:15.095616','1969-12-31 19:00:00',NULL,0,NULL,27,'Jr.',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,13,'c2e7d98037f718f0a794e2d3f81','E0006','2012-06-10 22:25:15.097655','1969-12-31 19:00:00',NULL,0,NULL,47,'Bronxville, MA',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,28,7,1929,0,0,0,0,0,'28 JUL 1929',2425821,0,14,'c2e7d9818ab61293d9617303766','E0103','2012-06-10 22:25:16.034200','1969-12-31 19:00:00',NULL,0,NULL,4,'',14);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,24,3,1967,0,0,0,0,0,'24 MAR 1967',2439574,0,15,'c2e7d98160f5242991055c5f9f7','E0057','2012-06-10 22:25:16.037709','1969-12-31 19:00:00',NULL,0,NULL,4,'',7);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,23,5,1953,0,0,0,0,0,'23 MAY 1953',2434521,0,16,'c2e7d981c496ff536cd3d1fa3eb','E0131','2012-06-10 22:25:15.103209','1969-12-31 19:00:00',NULL,0,NULL,37,'',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,5,1929,0,0,0,0,0,'MAY 1929',2425733,0,17,'c2e7d98174e7dffa88367ceb7e','E0070','2012-06-10 22:25:15.106367','1969-12-31 19:00:00',NULL,0,NULL,5,'',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,18,'c2e7d980278619a308590dc04ce','E0002','2012-06-10 22:25:16.122546','1969-12-31 19:00:00',NULL,0,NULL,11,'',13);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,9,8,1851,0,0,0,0,0,'9 AUG 1851',2397344,0,19,'c2e7d98199d1a7377260caa9956','E0120','2012-06-10 22:25:16.126052','1969-12-31 19:00:00',NULL,0,NULL,4,'',21);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,9,1960,0,0,0,0,0,'SEP 1960',2437179,0,20,'c2e7d98169540efbd6293605cc5','E0061','2012-06-10 22:25:16.129524','1969-12-31 19:00:00',NULL,0,NULL,4,'',21);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,21,'c2e7d9818311149395470de3fd1','E0094','2012-06-10 22:25:15.128242','1969-12-31 19:00:00',NULL,0,NULL,47,'Newport, RI',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,13,12,1957,0,0,0,0,0,'13 DEC 1957',2436186,0,22,'c2e7d9818ff4701d1867e58899f','E0111','2012-06-10 22:25:16.204265','1969-12-31 19:00:00',NULL,0,NULL,14,'',9);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,22,11,1858,0,0,0,0,0,'22 NOV 1858',2400006,0,23,'c2e7d9817b679fae1ce4aaf400a','E0078','2012-06-10 22:25:16.208524','1969-12-31 19:00:00',NULL,0,NULL,5,'',21);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,24,'c2e7d98184048836fa7a48b58d0','E0095','2012-06-10 22:25:15.133154','1969-12-31 19:00:00',NULL,0,NULL,29,'Mayor',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,25,'c2e7d981a1d608dac5dbac83934','E0125','2012-06-10 22:25:15.140333','1969-12-31 19:00:00',NULL,0,NULL,29,'Janitor',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,22,1,1995,0,0,0,0,0,'22 JAN 1995',2449740,0,26,'c2e7d981176281ac3fbce52dea4','E0012','2012-06-10 22:25:16.314997','1969-12-31 19:00:00',NULL,0,NULL,5,'',16);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,27,'c2e7d98166957975cf5d3cea108','E0060','2012-06-10 22:25:15.152753','1969-12-31 19:00:00',NULL,0,NULL,33,'Roman Catholic',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,7,1940,0,0,0,0,0,'JUL 1940',2429812,0,28,'c2e7d981dfa26a5eb250321b5c1','E0138','2012-06-10 22:25:15.162943','1969-12-31 19:00:00',NULL,0,NULL,43,'',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,4,1,1854,0,0,0,0,0,'4 JAN 1854',2398223,0,29,'c2e7d9819d9626a30dec45fc464','E0122','2012-06-10 22:25:16.438776','1969-12-31 19:00:00',NULL,0,NULL,4,'',21);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,18,11,1969,0,0,0,0,0,'18 NOV 1969',2440544,0,30,'c2e7d9802605aa5ee22f4c7cb73','E0001','2012-06-10 22:25:16.442304','1969-12-31 19:00:00',NULL,0,NULL,5,'',10);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,8,6,1968,0,0,0,0,0,'8 JUN 1968',2440016,0,31,'c2e7d9814f46ed91954c713b2a8','E0043','2012-06-10 22:25:16.571776','1969-12-31 19:00:00',NULL,0,NULL,11,'',3);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,14,1,1858,0,0,0,0,0,'14 JAN 1858',2399694,0,32,'c2e7d981742633f389097e0c3d6','E0069','2012-06-10 22:25:16.615069','1969-12-31 19:00:00',NULL,0,NULL,4,'',21);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,33,'c2e7d9816f325d38ff5c94e5b51','E0064','2012-06-10 22:25:15.202976','1969-12-31 19:00:00',NULL,0,NULL,33,'Roman Catholic',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1956,0,0,0,0,0,'1956',2435474,0,34,'c2e7d981d3a158ebcb5bb955305','E0134','2012-06-10 22:25:15.205849','1969-12-31 19:00:00',NULL,0,NULL,37,'',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,35,'c2e7d98190a447c044ac2328646','E0113','2012-06-10 22:25:15.217493','1969-12-31 19:00:00',NULL,0,NULL,33,'Roman Catholic',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,36,'c2e7d980296774a35c789f442a5','E0004','2012-06-10 22:25:15.220006','1969-12-31 19:00:00',NULL,0,NULL,18,'Harvard Graduate',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1957,0,0,0,0,0,'1957',2435840,0,37,'c2e7d9815a44f203265dfa5b264','E0053','2012-06-10 22:25:15.225572','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,38,'c2e7d9817ca34182beec6b4d1c5','E0082','2012-06-10 22:25:15.228418','1969-12-31 19:00:00',NULL,0,NULL,47,'Liverpool St., East Boston, MA',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1920,0,0,0,0,0,'1920',2422325,0,39,'c2e7d9812b512a0820f7dea3000','E0027','2012-06-10 22:25:16.738158','1969-12-31 19:00:00',NULL,0,NULL,4,'',21);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,40,'c2e7d9818d752bb32b55884001d','E0109','2012-06-10 22:25:15.232860','1969-12-31 19:00:00',NULL,0,NULL,33,'Roman Catholic',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,41,'c2e7d98175f277e780cb869f496','E0073','2012-06-10 22:25:15.237562','1969-12-31 19:00:00',NULL,0,NULL,47,'Webster St., Boston, MA',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,42,'c2e7d98187b2947786b7ccb8bb4','E0099','2012-06-10 22:25:15.243770','1969-12-31 19:00:00',NULL,0,NULL,29,'Senator',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,25,1,1995,0,0,0,0,0,'25 JAN 1995',2449743,0,43,'c2e7d98118910cf534391ddf973','E0013','2012-06-10 22:25:16.805821','1969-12-31 19:00:00',NULL,0,NULL,11,'',13);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,44,'c2e7d98120b5a7cb2467f7a0b23','E0022','2012-06-10 22:25:15.251741','1969-12-31 19:00:00',NULL,0,NULL,33,'Roman Catholic',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,45,'c2e7d9815043a7f6ef556134f73','E0044','2012-06-10 22:25:15.255866','1969-12-31 19:00:00',NULL,0,NULL,47,'Hickory Hill',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,46,'c2e7d9817ccd47f96fb1d0f2e0','E0083','2012-06-10 22:25:15.257916','1969-12-31 19:00:00',NULL,0,NULL,33,'Roman Catholic',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,47,'c2e7d98038e7757d98ef03c8c11','E0010','2012-06-10 22:25:15.259968','1969-12-31 19:00:00',NULL,0,NULL,33,'Roman Catholic',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,8,1957,0,0,0,0,0,'AUG 1957',2436052,0,48,'c2e7d98180752fe1e5496b64586','E0090','2012-06-10 22:25:16.852724','1969-12-31 19:00:00',NULL,0,NULL,5,'',17);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,49,'c2e7d9811a4aff7cb9890c91fe','E0015','2012-06-10 22:25:15.274021','1969-12-31 19:00:00',NULL,0,NULL,47,'Died of complications due to pneumonia. ',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1821,0,0,0,0,0,'1821',2386167,0,50,'c2e7d9817de4e50451349e3f818','E0084','2012-06-10 22:25:15.297379','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,51,'c2e7d981a391c45fbebdff8aee0','E0127','2012-06-10 22:25:15.299014','1969-12-31 19:00:00',NULL,0,NULL,29,'Teamster',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,7,9,1923,0,0,0,0,0,'7 SEP 1923',2423670,0,52,'c2e7d9814642b4a30a7abc27ced','E0039','2012-06-10 22:25:15.300551','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,53,'c2e7d98192d187fef93b2763ed3','E0116','2012-06-10 22:25:15.307560','1969-12-31 19:00:00',NULL,0,NULL,18,'Brown Univ',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,54,'c2e7d98175d18d1df57b85880c4','E0072','2012-06-10 22:25:15.309849','1969-12-31 19:00:00',NULL,0,NULL,47,'Meridian St., East Boston, MA',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,55,'c2e7d9818116231e029ac97fc6c','E0091','2012-06-10 22:25:16.908226','1969-12-31 19:00:00',NULL,0,NULL,11,'',26);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,56,'c2e7d98029940bad318b6258380','E0005','2012-06-10 22:25:15.314258','1969-12-31 19:00:00',NULL,0,NULL,47,'Joe Kennedy was a very hard worker, which often deteriorated',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,57,'c2e7d9819092271e43f7bf9012f','E0112','2012-06-10 22:25:15.316301','1969-12-31 19:00:00',NULL,0,NULL,18,'Brearly School',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,20,11,1925,0,0,0,0,0,'20 NOV 1925',2424475,0,58,'c2e7d9814df10a016dc3d0e5462','E0041','2012-06-10 22:25:16.913419','1969-12-31 19:00:00',NULL,0,NULL,4,'',21);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,7,8,1963,0,0,0,0,0,'7 AUG 1963',2438249,0,59,'c2e7d981944134e9155f1b7cfb8','E0117','2012-06-10 22:25:16.916890','1969-12-31 19:00:00',NULL,0,NULL,4,'',24);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,9,11,1915,0,0,0,0,0,'9 NOV 1915',2420811,0,60,'c2e7d981321708e6de44e1e0f96','E0030','2012-06-10 22:25:16.969782','1969-12-31 19:00:00',NULL,0,NULL,4,'',5);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,61,'c2e7d9813b435b4a9ec53e2a5c','E0032','2012-06-10 22:25:15.347911','1969-12-31 19:00:00',NULL,0,NULL,47,'Timberlawn, MD',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,62,'c2e7d9817506191fc07a6afa454','E0071','2012-06-10 22:25:15.350935','1969-12-31 19:00:00',NULL,0,NULL,29,'Dockhand, Saloonkeeper, Senator, Bank President',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,22,7,1890,0,0,0,0,0,'22 JUL 1890',2411571,0,63,'c2e7d98115e17cf95dcc84e1dbb','E0011','2012-06-10 22:25:16.980764','1969-12-31 19:00:00',NULL,0,NULL,4,'',6);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1923,0,0,0,0,0,'1923',2423421,0,64,'c2e7d98179c623d0415bf903305','E0075','2012-06-10 22:25:15.356329','1969-12-31 19:00:00',NULL,0,NULL,5,'',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1882,0,0,0,0,0,'1882',2408447,0,65,'c2e7d981e8d3e28ecd8cb514b2b','E0142','2012-06-10 22:25:16.985190','1969-12-31 19:00:00',NULL,0,NULL,37,'',21);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,10,9,1944,0,0,0,0,0,'10 SEP 1944',2431344,0,66,'c2e7d98128a1164b3957677e039','E0026','2012-06-10 22:25:16.988801','1969-12-31 19:00:00',NULL,0,NULL,5,'',27);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1883,0,0,0,0,0,'1883',2408812,0,67,'c2e7d981e623fb7c8ea8b0a5b03','E0140','2012-06-10 22:25:16.993094','1969-12-31 19:00:00',NULL,0,NULL,37,'',21);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,12,12,1968,0,0,0,0,0,'12 DEC 1968',2440203,0,68,'c2e7d9816302b35cb69c5ff5cf','E0058','2012-06-10 22:25:16.996568','1969-12-31 19:00:00',NULL,0,NULL,4,'',7);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1958,0,0,0,0,0,'1958',2436205,0,69,'c2e7d9815ba64ca1a0870e97e64','E0054','2012-06-10 22:25:15.384793','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,4,7,1951,0,0,0,0,0,'4 JUL 1951',2433832,0,70,'c2e7d98152f6d62763056d39b98','E0047','2012-06-10 22:25:15.387815','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,71,'c2e7d98150617043edb79cdfdc5','E0045','2012-06-10 22:25:15.393804','1969-12-31 19:00:00',NULL,0,NULL,33,'Roman Catholic',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,72,'c2e7d9818d67ff9b21c76ebe7a7','E0108','2012-06-10 22:25:15.397485','1969-12-31 19:00:00',NULL,0,NULL,47,'Martha''s Vineyard ',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,73,'c2e7d9813eb3da305a5107fc3b3','E0035','2012-06-10 22:25:15.399611','1969-12-31 19:00:00',NULL,0,NULL,29,'Actor',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,13,5,1948,0,0,0,0,0,'13 MAY 1948',2432685,0,74,'c2e7d9812ca56268037cd0295e','E0028','2012-06-10 22:25:17.200805','1969-12-31 19:00:00',NULL,0,NULL,5,'',25);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,75,'c2e7d9817c310c915a0cb7070f6','E0080','2012-06-10 22:25:15.432087','1969-12-31 19:00:00',NULL,0,NULL,47,'He died of an outbreak of Cholera.',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,76,'c2e7d9817f4746171245236274c','E0087','2012-06-10 22:25:15.440429','1969-12-31 19:00:00',NULL,0,NULL,47,'Her death was caused by a cerebral hemorrhage.',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,20,12,1888,0,0,0,0,0,'20 DEC 1888',2410992,0,77,'c2e7d9817e1690352c6bf2da24','E0085','2012-06-10 22:25:17.344805','1969-12-31 19:00:00',NULL,0,NULL,5,'',21);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,20,7,1965,0,0,0,0,0,'20 JUL 1965',2438962,0,78,'c2e7d98144637538c4bc54b5853','E0038','2012-06-10 22:25:17.349244','1969-12-31 19:00:00',NULL,0,NULL,4,'',21);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,7,1915,0,0,0,0,0,'JUL 1915',2420680,0,79,'c2e7d9811e3a2a2c4e47e5c1a7','E0018','2012-06-10 22:25:17.367202','1969-12-31 19:00:00',NULL,0,NULL,4,'',21);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1954,0,0,0,0,0,'1954',2434744,0,80,'c2e7d98157245ed5085594588c9','E0051','2012-06-10 22:25:15.455248','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,81,'c2e7d9803823a3b1415bfb65293','E0007','2012-06-10 22:25:15.473450','1969-12-31 19:00:00',NULL,0,NULL,47,'Hyannis, MA',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,6,5,1924,0,0,0,0,0,'6 MAY 1924',2423912,0,82,'c2e7d98147223b844cac979c110','E0040','2012-06-10 22:25:17.503107','1969-12-31 19:00:00',NULL,0,NULL,4,'',21);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,26,9,1961,0,0,0,0,0,'26 SEP 1961',2437569,0,83,'c2e7d9817176ac23cc6bbd8dde8','E0067','2012-06-10 22:25:15.487686','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,84,'c2e7d9817c96bd4f7fed7582b73','E0081','2012-06-10 22:25:15.490701','1969-12-31 19:00:00',NULL,0,NULL,47,'Duganstown, Ireland',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,25,11,1960,0,0,0,0,0,'25 NOV 1960',2437264,0,85,'c2e7d9819222c125c85eccd24cd','E0115','2012-06-10 22:25:17.522650','1969-12-31 19:00:00',NULL,0,NULL,4,'',7);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,86,'c2e7d9813d47532ba58297c4cb5','E0033','2012-06-10 22:25:15.499524','1969-12-31 19:00:00',NULL,0,NULL,27,'III',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,22,9,1872,0,0,0,0,0,'22 SEP 1872',2405059,0,87,'c2e7d981e7871b0349b4d8fd87a','E0141','2012-06-10 22:25:17.530109','1969-12-31 19:00:00',NULL,0,NULL,37,'',21);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,88,'c2e7d98180662a977b687755898','E0089','2012-06-10 22:25:15.513017','1969-12-31 19:00:00',NULL,0,NULL,27,'III',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,89,'c2e7d9817f744fd720533203ceb','E0088','2012-06-10 22:25:15.515900','1969-12-31 19:00:00',NULL,0,NULL,33,'Roman Catholic',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,90,'c2e7d9818cb67ecab5d99e57b6a','E0106','2012-06-10 22:25:15.519250','1969-12-31 19:00:00',NULL,0,NULL,47,'In 1955 Jackie suffered a miscarriage',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1823,0,0,0,0,0,'1823',2386897,0,91,'c2e7d9817ac52515d08d04c374f','E0077','2012-06-10 22:25:17.562671','1969-12-31 19:00:00',NULL,0,NULL,4,'',4);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,22,2,1932,0,0,0,0,0,'22 FEB 1932',2426760,0,92,'c2e7d9816c73db8348b0c6b01fb','E0062','2012-06-10 22:25:17.566198','1969-12-31 19:00:00',NULL,0,NULL,4,'',12);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,28,9,1849,0,0,0,0,0,'28 SEP 1849',2396664,0,93,'c2e7d981dd14afab07b5fd2a825','E0137','2012-06-10 22:25:17.641756','1969-12-31 19:00:00',NULL,0,NULL,37,'',2);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,94,'c2e7d9811a1f15c8ca34e502e0','E0014','2012-06-10 22:25:15.540790','1969-12-31 19:00:00',NULL,0,NULL,18,'Dorchester High School, Sacred Heart Convent',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,29,5,1917,0,0,0,0,0,'29 MAY 1917',2421378,0,95,'c2e7d98185c6a8d02b66ba6720e','E0096','2012-06-10 22:25:17.646135','1969-12-31 19:00:00',NULL,0,NULL,4,'',12);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,96,'c2e7d98038670eda1681bfcb8ad','E0008','2012-06-10 22:25:15.543844','1969-12-31 19:00:00',NULL,0,NULL,47,'Palm Beach, FL',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,97,'c2e7d9817eb6481cbdcc5dd24f8','E0086','2012-06-10 22:25:17.650548','1969-12-31 19:00:00',NULL,0,NULL,11,'',18);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1954,0,0,0,0,0,'1954',2434744,0,98,'c2e7d9813d52bee4e492ba2245d','E0034','2012-06-10 22:25:15.548693','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,99,'c2e7d98124158abcb87753d2fe7','E0024','2012-06-10 22:25:15.551506','1969-12-31 19:00:00',NULL,0,NULL,47,'In 1941 she had a frontal lobotomy.',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,4,12,1852,0,0,0,0,0,'4 DEC 1852',2397827,0,100,'c2e7d9819c06483737f3aa7ec2b','E0121','2012-06-10 22:25:15.560545','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,7,1921,0,0,0,0,0,'JUL 1921',2422872,0,101,'c2e7d9813796e3316d81dfcdd9e','E0031','2012-06-10 22:25:17.715124','1969-12-31 19:00:00',NULL,0,NULL,4,'',21);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,102,'c2e7d9818207e3cb8b4d457442f','E0093','2012-06-10 22:25:15.563568','1969-12-31 19:00:00',NULL,0,NULL,47,'East Hampton, NY',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,23,5,1994,0,0,0,0,0,'23 MAY 1994',2449496,0,103,'c2e7d9818bf1ac1f5e4218cc620','E0105','2012-06-10 22:25:17.719491','1969-12-31 19:00:00',NULL,0,NULL,11,'',3);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1928,0,0,0,0,0,'1928',2425247,0,104,'c2e7d9815222289d4718eaba123','E0046','2012-06-10 22:25:15.570853','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,2,8,1944,0,0,0,0,0,'2 AUG 1944',2431305,0,105,'c2e7d9811f13b0c22ee70ef397c','E0019','2012-06-10 22:25:17.858562','1969-12-31 19:00:00',NULL,0,NULL,5,'',28);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,6,5,1944,0,0,0,0,0,'6 MAY 1944',2431217,0,106,'c2e7d981c041fbc32870fde9054','E0130','2012-06-10 22:25:17.862619','1969-12-31 19:00:00',NULL,0,NULL,37,'',15);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,7,10,1914,0,0,0,0,0,'7 OCT 1914',2420413,0,107,'c2e7d981bed7518f36fe418885','E0129','2012-06-10 22:25:17.866555','1969-12-31 19:00:00',NULL,0,NULL,37,'',21);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,6,9,1888,0,0,0,0,0,'6 SEP 1888',2410887,0,108,'c2e7d98023657b23677fbf8708b','E0000','2012-06-10 22:25:17.871831','1969-12-31 19:00:00',NULL,0,NULL,4,'',21);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,109,'c2e7d98171643772096e4ec7e6b','E0066','2012-06-10 22:25:15.589619','1969-12-31 19:00:00',NULL,0,NULL,27,'Jr.',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,110,'c2e7d98181a1af703aae68bfc02','E0092','2012-06-10 22:25:15.591208','1969-12-31 19:00:00',NULL,0,NULL,47,'Died of cancer.',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,111,'c2e7d9819212028f5946ff0297a','E0114','2012-06-10 22:25:15.595116','1969-12-31 19:00:00',NULL,0,NULL,27,'Jr.',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1887,0,0,0,0,0,'1887',2410273,0,112,'c2e7d981d927e174bbf58be9ef9','E0136','2012-06-10 22:25:15.596560','1969-12-31 19:00:00',NULL,0,NULL,37,'',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,113,'c2e7d9818d57be025a51badfef1','E0107','2012-06-10 22:25:15.598681','1969-12-31 19:00:00',NULL,0,NULL,47,'5th Avenue, NYC, NY',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,114,'c2e7d98038b786aea1f239427ad','E0009','2012-06-10 22:25:15.603978','1969-12-31 19:00:00',NULL,0,NULL,47,'Brookline, MA',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,22,11,1963,0,0,0,0,0,'22 NOV 1963',2438356,0,115,'c2e7d981866566a4046a200fbd6','E0097','2012-06-10 22:25:18.010725','1969-12-31 19:00:00',NULL,0,NULL,5,'',20);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,116,'c2e7d98188a772317c9793d7e06','E0102','2012-06-10 22:25:15.606867','1969-12-31 19:00:00',NULL,0,NULL,33,'Roman Catholic',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,2,1928,0,0,0,0,0,'FEB 1928',2425278,0,117,'c2e7d98165d4b33177f0bd1d90a','E0059','2012-06-10 22:25:18.076256','1969-12-31 19:00:00',NULL,0,NULL,4,'',21);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,118,'c2e7d98029370e7f1d074cba5d8','E0003','2012-06-10 22:25:15.614676','1969-12-31 19:00:00',NULL,0,NULL,29,'Bank President, Ambassador',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1898,0,0,0,0,0,'1898',2414291,0,119,'c2e7d98196b2fcfe46d41cf065d','E0119','2012-06-10 22:25:15.618069','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,120,'c2e7d9812013868484116e993c3','E0021','2012-06-10 22:25:15.627524','1969-12-31 19:00:00',NULL,0,NULL,47,'He suffered 2 cases of Jaundice during his beginning years a',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,121,'c2e7d981a2b4b631e24f5b4dbd2','E0126','2012-06-10 22:25:15.633346','1969-12-31 19:00:00',NULL,0,NULL,29,'Clerk',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1952,0,0,0,0,0,'1952',2434013,0,122,'c2e7d98154417d3a553ba91a60d','E0048','2012-06-10 22:25:15.636053','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,123,'c2e7d9817602255a08a6ea423b0','E0074','2012-06-10 22:25:15.637655','1969-12-31 19:00:00',NULL,0,NULL,33,'Roman Catholic',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,2,1964,0,0,0,0,0,'FEB 1964',2438427,0,124,'c2e7d9814273d42ca42f86ef577','E0037','2012-06-10 22:25:18.229677','1969-12-31 19:00:00',NULL,0,NULL,4,'',7);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,9,8,1963,0,0,0,0,0,'9 AUG 1963',2438251,0,125,'c2e7d98194d1eccf69327f26868','E0118','2012-06-10 22:25:18.233207','1969-12-31 19:00:00',NULL,0,NULL,5,'',19);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,17,6,1950,0,0,0,0,0,'17 JUN 1950',2433450,0,126,'c2e7d981d054ac642daaf37186b','E0133','2012-06-10 22:25:18.236703','1969-12-31 19:00:00',NULL,0,NULL,37,'',1);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1955,0,0,0,0,0,'1955',2435109,0,127,'c2e7d98158e6819eaaca236503f','E0052','2012-06-10 22:25:15.643984','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,128,'c2e7d98187e764e03d39c6d1b8a','E0101','2012-06-10 22:25:15.645584','1969-12-31 19:00:00',NULL,0,NULL,47,'Later on in life he faced serious back surgery two times, on',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1953,0,0,0,0,0,'1953',2434379,0,129,'c2e7d98155a3067712c37754513','E0050','2012-06-10 22:25:15.647038','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,19,5,1994,0,0,0,0,0,'19 MAY 1994',2449492,0,130,'c2e7d9818b515b32829896bc927','E0104','2012-06-10 22:25:18.317389','1969-12-31 19:00:00',NULL,0,NULL,5,'',22);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,131,'c2e7d98179e21030dafd57451c8','E0076','2012-06-10 22:25:15.652485','1969-12-31 19:00:00',NULL,0,NULL,33,'Roman Catholic',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,6,6,1968,0,0,0,0,0,'6 JUN 1968',2440014,0,132,'c2e7d9814ea2a4dee17e4251acb','E0042','2012-06-10 22:25:18.321810','1969-12-31 19:00:00',NULL,0,NULL,5,'',8);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,18,7,1855,0,0,0,0,0,'18 JUL 1855',2398783,0,133,'c2e7d9819fc89cf81d325feca7','E0124','2012-06-10 22:25:18.325510','1969-12-31 19:00:00',NULL,0,NULL,4,'',21);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,134,'c2e7d9816d64bd454c10afc290d','E0063','2012-06-10 22:25:15.661956','1969-12-31 19:00:00',NULL,0,NULL,33,'Roman Catholic',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,29,11,1958,0,0,0,0,0,'29 NOV 1958',2436537,0,135,'c2e7d981d6574ccc32392b62310','E0135','2012-06-10 22:25:15.663393','1969-12-31 19:00:00',NULL,0,NULL,37,'',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,136,'c2e7d98187c5f05a35bf4ae88bd','E0100','2012-06-10 22:25:15.664816','1969-12-31 19:00:00',NULL,0,NULL,18,'Choate, London Sch. Of Econ., Princeton, Harvard',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,10,12,1917,0,0,0,0,0,'10 DEC 1917',2421573,0,137,'c2e7d98128744b237bb0011aee2','E0025','2012-06-10 22:25:15.666260','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,12,9,1953,0,0,0,0,0,'12 SEP 1953',2434633,0,138,'c2e7d981e3b34419998c9467446','E0139','2012-06-10 22:25:18.366007','1969-12-31 19:00:00',NULL,0,NULL,37,'',11);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,139,'c2e7d98131f2561c50729351265','E0029','2012-06-10 22:25:15.674010','1969-12-31 19:00:00',NULL,0,NULL,27,'Jr.',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,140,'c2e7d9811ba63df6d641e1d6a43','E0016','2012-06-10 22:25:15.675445','1969-12-31 19:00:00',NULL,0,NULL,33,'Roman Catholic',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1965,0,0,0,0,0,'1965',2438762,0,141,'c2e7d981c864a7296a834610378','E0132','2012-06-10 22:25:15.685488','1969-12-31 19:00:00',NULL,0,NULL,43,'',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,142,'c2e7d9811ff7b8590e73e209d67','E0020','2012-06-10 22:25:15.690178','1969-12-31 19:00:00',NULL,0,NULL,18,'Harvard University, Harvard Law School',NULL);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1892,0,0,0,0,0,'1892',2412099,0,143,'c2e7d981a475bfe1cf7484fe831','E0128','2012-06-10 22:25:18.596689','1969-12-31 19:00:00',NULL,0,NULL,4,'',21);
-INSERT INTO "grampsdb_event" VALUES(0,0,0,4,6,1963,0,0,0,0,0,'4 JUN 1963',2438185,0,144,'c2e7d9815d1591c860096c3a0ff','E0055','2012-06-10 22:25:18.600956','1969-12-31 19:00:00',NULL,0,NULL,4,'',21);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,9,1960,0,0,0,0,0,'SEP 1960',2437179,0,1,'c30181e50a064dd1f9f','E0061','2012-06-18 21:44:21.757653','1969-12-31 19:00:00',NULL,0,NULL,4,'',19);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,20,7,1965,0,0,0,0,0,'20 JUL 1965',2438962,0,2,'c30181e4c9e3e855a25','E0038','2012-06-18 21:44:21.764377','1969-12-31 19:00:00',NULL,0,NULL,4,'',19);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1882,0,0,0,0,0,'1882',2408447,0,3,'c30181e5e323afd0bfd','E0142','2012-06-18 21:44:21.789782','1969-12-31 19:00:00',NULL,0,NULL,37,'',19);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,18,11,1969,0,0,0,0,0,'18 NOV 1969',2440544,0,4,'c30181e490e63a65a2b','E0001','2012-06-18 21:44:21.796095','1969-12-31 19:00:00',NULL,0,NULL,5,'',24);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,5,'c30181e52d46c97b1a7','E0087','2012-06-18 21:44:20.762290','1969-12-31 19:00:00',NULL,0,NULL,47,'Her death was caused by a cerebral hemorrhage.',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,6,'c30181e5201238e0923','E0072','2012-06-18 21:44:20.765538','1969-12-31 19:00:00',NULL,0,NULL,47,'Meridian St., East Boston, MA',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,7,9,1923,0,0,0,0,0,'7 SEP 1923',2423670,0,7,'c30181e4cd312bf0464','E0039','2012-06-18 21:44:20.775163','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,8,'c30181e53ca0183ef52','E0099','2012-06-18 21:44:20.786009','1969-12-31 19:00:00',NULL,0,NULL,29,'Senator',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,23,5,1953,0,0,0,0,0,'23 MAY 1953',2434521,0,9,'c30181e5a5642135eb7','E0131','2012-06-18 21:44:20.793225','1969-12-31 19:00:00',NULL,0,NULL,37,'',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,18,7,1855,0,0,0,0,0,'18 JUL 1855',2398783,0,10,'c30181e56793471789e','E0124','2012-06-18 21:44:22.296367','1969-12-31 19:00:00',NULL,0,NULL,4,'',19);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,11,'c30181e4a5907033f73','E0021','2012-06-18 21:44:20.814667','1969-12-31 19:00:00',NULL,0,NULL,47,'He suffered 2 cases of Jaundice during his beginning years a',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,12,'c30181e49e96cfc38b4','E0015','2012-06-18 21:44:20.820795','1969-12-31 19:00:00',NULL,0,NULL,47,'Died of complications due to pneumonia. ',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,13,'c30181e4a572e8cf3d4','E0020','2012-06-18 21:44:20.823482','1969-12-31 19:00:00',NULL,0,NULL,18,'Harvard University, Harvard Law School',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,14,'c30181e54f90315f1d4','E0114','2012-06-18 21:44:20.826966','1969-12-31 19:00:00',NULL,0,NULL,27,'Jr.',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,15,'c30181e495838a24851','E0008','2012-06-18 21:44:20.836996','1969-12-31 19:00:00',NULL,0,NULL,47,'Palm Beach, FL',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,16,'c30181e49357f186999','E0005','2012-06-18 21:44:20.851765','1969-12-31 19:00:00',NULL,0,NULL,47,'Joe Kennedy was a very hard worker, which often deteriorated',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,9,8,1851,0,0,0,0,0,'9 AUG 1851',2397344,0,17,'c30181e55d635228327','E0120','2012-06-18 21:44:22.473826','1969-12-31 19:00:00',NULL,0,NULL,4,'',19);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,18,'c30181e49532f09b472','E0006','2012-06-18 21:44:20.872067','1969-12-31 19:00:00',NULL,0,NULL,47,'Bronxville, MA',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,22,11,1963,0,0,0,0,0,'22 NOV 1963',2438356,0,19,'c30181e53a658b4c1bf','E0097','2012-06-18 21:44:22.592511','1969-12-31 19:00:00',NULL,0,NULL,5,'',22);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,7,1921,0,0,0,0,0,'JUL 1921',2422872,0,20,'c30181e4b920f747399','E0031','2012-06-18 21:44:22.598861','1969-12-31 19:00:00',NULL,0,NULL,4,'',19);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,4,1,1854,0,0,0,0,0,'4 JAN 1854',2398223,0,21,'c30181e563c0d2c5580','E0122','2012-06-18 21:44:22.606809','1969-12-31 19:00:00',NULL,0,NULL,4,'',19);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,22,'c30181e527b60dc98cb','E0079','2012-06-18 21:44:20.894569','1969-12-31 19:00:00',NULL,0,NULL,29,'Cooper, Ward Boss',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,10,12,1917,0,0,0,0,0,'10 DEC 1917',2421573,0,23,'c30181e4ae116d472bf','E0025','2012-06-18 21:44:20.899406','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,3,1960,0,0,0,0,0,'MAR 1960',2436995,0,24,'c30181e515c701f2a9a','E0065','2012-06-18 21:44:20.917350','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,23,5,1994,0,0,0,0,0,'23 MAY 1994',2449496,0,25,'c30181e544122208a82','E0105','2012-06-18 21:44:22.720724','1969-12-31 19:00:00',NULL,0,NULL,11,'',28);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,26,'c30181e54ce07185a6d','E0112','2012-06-18 21:44:20.927982','1969-12-31 19:00:00',NULL,0,NULL,18,'Brearly School',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,7,8,1963,0,0,0,0,0,'7 AUG 1963',2438249,0,27,'c30181e553a4c54640e','E0117','2012-06-18 21:44:22.818986','1969-12-31 19:00:00',NULL,0,NULL,4,'',1);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,28,'c30181e5144566a50dd','E0064','2012-06-18 21:44:20.943161','1969-12-31 19:00:00',NULL,0,NULL,33,'Roman Catholic',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,10,9,1944,0,0,0,0,0,'10 SEP 1944',2431344,0,29,'c30181e4ae46030da52','E0026','2012-06-18 21:44:22.881614','1969-12-31 19:00:00',NULL,0,NULL,5,'',17);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,30,'c30181e4c1f29b24811','E0036','2012-06-18 21:44:20.950628','1969-12-31 19:00:00',NULL,0,NULL,18,'Georgetown University',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,31,'c30181e4deb39027837','E0045','2012-06-18 21:44:20.953237','1969-12-31 19:00:00',NULL,0,NULL,33,'Roman Catholic',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,13,5,1948,0,0,0,0,0,'13 MAY 1948',2432685,0,32,'c30181e4b1c29fafe65','E0028','2012-06-18 21:44:23.038433','1969-12-31 19:00:00',NULL,0,NULL,5,'',9);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,12,9,1953,0,0,0,0,0,'12 SEP 1953',2434633,0,33,'c30181e5da829af2ca6','E0139','2012-06-18 21:44:23.153200','1969-12-31 19:00:00',NULL,0,NULL,37,'',26);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,34,'c30181e50523c42e733','E0060','2012-06-18 21:44:20.975209','1969-12-31 19:00:00',NULL,0,NULL,33,'Roman Catholic',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,35,'c30181e53e92c5dabfc','E0102','2012-06-18 21:44:20.977828','1969-12-31 19:00:00',NULL,0,NULL,33,'Roman Catholic',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1920,0,0,0,0,0,'1920',2422325,0,36,'c30181e4b09236f6b4f','E0027','2012-06-18 21:44:23.189914','1969-12-31 19:00:00',NULL,0,NULL,4,'',19);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,28,7,1929,0,0,0,0,0,'28 JUL 1929',2425821,0,37,'c30181e54202bb27193','E0103','2012-06-18 21:44:23.252738','1969-12-31 19:00:00',NULL,0,NULL,4,'',2);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,25,11,1960,0,0,0,0,0,'25 NOV 1960',2437264,0,38,'c30181e54fa50dab2cb','E0115','2012-06-18 21:44:23.260499','1969-12-31 19:00:00',NULL,0,NULL,4,'',8);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,39,'c30181e4a684a1c97e6','E0022','2012-06-18 21:44:20.999798','1969-12-31 19:00:00',NULL,0,NULL,33,'Roman Catholic',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,9,11,1915,0,0,0,0,0,'9 NOV 1915',2420811,0,40,'c30181e4b677626cfaf','E0030','2012-06-18 21:44:23.268274','1969-12-31 19:00:00',NULL,0,NULL,4,'',12);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,9,1918,0,0,0,0,0,'SEP 1918',2421838,0,41,'c30181e4a981cd9203d','E0023','2012-06-18 21:44:23.276049','1969-12-31 19:00:00',NULL,0,NULL,4,'',19);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,19,5,1994,0,0,0,0,0,'19 MAY 1994',2449492,0,42,'c30181e54312e09f62c','E0104','2012-06-18 21:44:23.282467','1969-12-31 19:00:00',NULL,0,NULL,5,'',15);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1955,0,0,0,0,0,'1955',2435109,0,43,'c30181e4ed0653b7724','E0052','2012-06-18 21:44:21.016759','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,22,11,1858,0,0,0,0,0,'22 NOV 1858',2400006,0,44,'c30181e52652698fe9a','E0078','2012-06-18 21:44:23.290437','1969-12-31 19:00:00',NULL,0,NULL,5,'',19);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,45,'c30181e52d8430abe8c','E0088','2012-06-18 21:44:21.028203','1969-12-31 19:00:00',NULL,0,NULL,33,'Roman Catholic',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1956,0,0,0,0,0,'1956',2435474,0,46,'c30181e5be86d525dd1','E0134','2012-06-18 21:44:21.039482','1969-12-31 19:00:00',NULL,0,NULL,37,'',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,47,'c30181e4e8253e73044','E0049','2012-06-18 21:44:21.050752','1969-12-31 19:00:00',NULL,0,NULL,27,'Jr.',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,6,9,1888,0,0,0,0,0,'6 SEP 1888',2410887,0,48,'c30181e48fa5fe28ce0','E0000','2012-06-18 21:44:23.302739','1969-12-31 19:00:00',NULL,0,NULL,4,'',19);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,49,'c30181e4b66345094be','E0029','2012-06-18 21:44:21.056014','1969-12-31 19:00:00',NULL,0,NULL,27,'Jr.',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1883,0,0,0,0,0,'1883',2408812,0,50,'c30181e5deb6f4dfa25','E0140','2012-06-18 21:44:23.310694','1969-12-31 19:00:00',NULL,0,NULL,37,'',19);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,51,'c30181e4a302228cf9f','E0017','2012-06-18 21:44:21.061223','1969-12-31 19:00:00',NULL,0,NULL,27,'Jr.',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,52,'c30181e53d124aa18ae','E0101','2012-06-18 21:44:21.064964','1969-12-31 19:00:00',NULL,0,NULL,47,'Later on in life he faced serious back surgery two times, on',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,53,'c30181e4920149cccea','E0002','2012-06-18 21:44:23.321373','1969-12-31 19:00:00',NULL,0,NULL,11,'',25);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1957,0,0,0,0,0,'1957',2435840,0,54,'c30181e4ef818f24294','E0053','2012-06-18 21:44:21.084181','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,55,'c30181e493079f99e2a','E0003','2012-06-18 21:44:21.095122','1969-12-31 19:00:00',NULL,0,NULL,29,'Bank President, Ambassador',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,56,'c30181e54d0497d16d4','E0113','2012-06-18 21:44:21.097888','1969-12-31 19:00:00',NULL,0,NULL,33,'Roman Catholic',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1821,0,0,0,0,0,'1821',2386167,0,57,'c30181e52ad6d99c52f','E0084','2012-06-18 21:44:21.108980','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,58,'c30181e53cc57040c7d','E0100','2012-06-18 21:44:21.114981','1969-12-31 19:00:00',NULL,0,NULL,18,'Choate, London Sch. Of Econ., Princeton, Harvard',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,59,'c30181e545566960e64','E0106','2012-06-18 21:44:21.118432','1969-12-31 19:00:00',NULL,0,NULL,47,'In 1955 Jackie suffered a miscarriage',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,4,7,1951,0,0,0,0,0,'4 JUL 1951',2433832,0,60,'c30181e4e363414c7c1','E0047','2012-06-18 21:44:21.125498','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,61,'c30181e4bde1ec9d6c8','E0033','2012-06-18 21:44:21.128784','1969-12-31 19:00:00',NULL,0,NULL,27,'III',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,62,'c30181e4de954e9bdfa','E0044','2012-06-18 21:44:21.139054','1969-12-31 19:00:00',NULL,0,NULL,47,'Hickory Hill',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,2,8,1944,0,0,0,0,0,'2 AUG 1944',2431305,0,63,'c30181e4a443edd4b23','E0019','2012-06-18 21:44:23.623938','1969-12-31 19:00:00',NULL,0,NULL,5,'',18);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,24,9,1855,0,0,0,0,0,'24 SEP 1855',2398851,0,64,'c30181e564f18b5ef65','E0123','2012-06-18 21:44:21.147210','1969-12-31 19:00:00',NULL,0,NULL,5,'',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,65,'c30181e523b38d05f0d','E0076','2012-06-18 21:44:21.150402','1969-12-31 19:00:00',NULL,0,NULL,33,'Roman Catholic',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,66,'c30181e4955398370e1','E0007','2012-06-18 21:44:21.153770','1969-12-31 19:00:00',NULL,0,NULL,47,'Hyannis, MA',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,2,1964,0,0,0,0,0,'FEB 1964',2438427,0,67,'c30181e4c6a044bb732','E0037','2012-06-18 21:44:23.639251','1969-12-31 19:00:00',NULL,0,NULL,4,'',8);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,4,12,1852,0,0,0,0,0,'4 DEC 1852',2397827,0,68,'c30181e561012d82b9a','E0121','2012-06-18 21:44:21.160301','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,69,'c30181e56cd4bc40ebb','E0126','2012-06-18 21:44:21.163623','1969-12-31 19:00:00',NULL,0,NULL,29,'Clerk',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,22,2,1932,0,0,0,0,0,'22 FEB 1932',2426760,0,70,'c30181e50f876ba04d0','E0062','2012-06-18 21:44:23.829599','1969-12-31 19:00:00',NULL,0,NULL,4,'',4);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,6,5,1944,0,0,0,0,0,'6 MAY 1944',2431217,0,71,'c30181e59de39a7ebd9','E0130','2012-06-18 21:44:23.835931','1969-12-31 19:00:00',NULL,0,NULL,37,'',6);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,72,'c30181e52877569cf7d','E0081','2012-06-18 21:44:21.209633','1969-12-31 19:00:00',NULL,0,NULL,47,'Duganstown, Ireland',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1953,0,0,0,0,0,'1953',2434379,0,73,'c30181e4e830d05a844','E0050','2012-06-18 21:44:21.213950','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,74,'c30181e4c063f49fa0e','E0035','2012-06-18 21:44:21.217284','1969-12-31 19:00:00',NULL,0,NULL,29,'Actor',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,75,'c30181e56e74431e058','E0127','2012-06-18 21:44:21.224773','1969-12-31 19:00:00',NULL,0,NULL,29,'Teamster',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,7,10,1914,0,0,0,0,0,'7 OCT 1914',2420413,0,76,'c30181e59b8619ed053','E0129','2012-06-18 21:44:24.104399','1969-12-31 19:00:00',NULL,0,NULL,37,'',19);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,20,12,1888,0,0,0,0,0,'20 DEC 1888',2410992,0,77,'c30181e52b13a1f45ce','E0085','2012-06-18 21:44:24.110880','1969-12-31 19:00:00',NULL,0,NULL,5,'',19);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,22,1,1995,0,0,0,0,0,'22 JAN 1995',2449740,0,78,'c30181e49c02e640850','E0012','2012-06-18 21:44:24.117308','1969-12-31 19:00:00',NULL,0,NULL,5,'',3);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,79,'c30181e51eb44bbfa38','E0071','2012-06-18 21:44:21.254804','1969-12-31 19:00:00',NULL,0,NULL,29,'Dockhand, Saloonkeeper, Senator, Bank President',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,80,'c30181e52f363dad054','E0089','2012-06-18 21:44:21.258026','1969-12-31 19:00:00',NULL,0,NULL,27,'III',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1958,0,0,0,0,0,'1958',2436205,0,81,'c30181e4f2130ab6455','E0054','2012-06-18 21:44:21.264382','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,82,'c30181e53607e649aa7','E0095','2012-06-18 21:44:21.267919','1969-12-31 19:00:00',NULL,0,NULL,29,'Mayor',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1928,0,0,0,0,0,'1928',2425247,0,83,'c30181e4e1e16f54c21','E0046','2012-06-18 21:44:21.271256','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1887,0,0,0,0,0,'1887',2410273,0,84,'c30181e5c8132d134d5','E0136','2012-06-18 21:44:21.274410','1969-12-31 19:00:00',NULL,0,NULL,37,'',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,85,'c30181e4bb174a634aa','E0032','2012-06-18 21:44:21.297787','1969-12-31 19:00:00',NULL,0,NULL,47,'Timberlawn, MD',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,2,1928,0,0,0,0,0,'FEB 1928',2425278,0,86,'c30181e50405aafa5a6','E0059','2012-06-18 21:44:24.224140','1969-12-31 19:00:00',NULL,0,NULL,4,'',19);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,87,'c30181e518340c98032','E0066','2012-06-18 21:44:21.309222','1969-12-31 19:00:00',NULL,0,NULL,27,'Jr.',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,6,1942,0,0,0,0,0,'JUN 1942',2430512,0,88,'c30181e5e5600db124c','E0143','2012-06-18 21:44:21.312678','1969-12-31 19:00:00',NULL,0,NULL,37,'',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,89,'c30181e5322450c2a87','E0093','2012-06-18 21:44:21.335956','1969-12-31 19:00:00',NULL,0,NULL,47,'East Hampton, NY',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,90,'c30181e4aa919d6530f','E0024','2012-06-18 21:44:21.363895','1969-12-31 19:00:00',NULL,0,NULL,47,'In 1941 she had a frontal lobotomy.',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1892,0,0,0,0,0,'1892',2412099,0,91,'c30181e570004477f62','E0128','2012-06-18 21:44:24.513752','1969-12-31 19:00:00',NULL,0,NULL,4,'',19);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,92,'c30181e5318307e4770','E0092','2012-06-18 21:44:21.382197','1969-12-31 19:00:00',NULL,0,NULL,47,'Died of cancer.',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,93,'c30181e56b537b4e14e','E0125','2012-06-18 21:44:21.395710','1969-12-31 19:00:00',NULL,0,NULL,29,'Janitor',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,5,1929,0,0,0,0,0,'MAY 1929',2425733,0,94,'c30181e51e8398aa506','E0070','2012-06-18 21:44:21.398389','1969-12-31 19:00:00',NULL,0,NULL,5,'',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,27,11,1957,0,0,0,0,0,'27 NOV 1957',2436170,0,95,'c30181e54aa5b523b42','E0110','2012-06-18 21:44:24.524709','1969-12-31 19:00:00',NULL,0,NULL,4,'',11);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1954,0,0,0,0,0,'1954',2434744,0,96,'c30181e4eaa2aab1ef6','E0051','2012-06-18 21:44:21.416723','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,22,9,1872,0,0,0,0,0,'22 SEP 1872',2405059,0,97,'c30181e5e0f09d98977','E0141','2012-06-18 21:44:24.645252','1969-12-31 19:00:00',NULL,0,NULL,37,'',19);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,98,'c30181e547331deddc7','E0109','2012-06-18 21:44:21.433421','1969-12-31 19:00:00',NULL,0,NULL,33,'Roman Catholic',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1923,0,0,0,0,0,'1923',2423421,0,99,'c30181e52374c774380','E0075','2012-06-18 21:44:21.436065','1969-12-31 19:00:00',NULL,0,NULL,5,'',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,100,'c30181e53082307d401','E0091','2012-06-18 21:44:24.907242','1969-12-31 19:00:00',NULL,0,NULL,11,'',27);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,8,1957,0,0,0,0,0,'AUG 1957',2436052,0,101,'c30181e52f4350e465c','E0090','2012-06-18 21:44:24.913590','1969-12-31 19:00:00',NULL,0,NULL,5,'',20);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1898,0,0,0,0,0,'1898',2414291,0,102,'c30181e557e06f2f3e5','E0119','2012-06-18 21:44:21.450826','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,14,1,1858,0,0,0,0,0,'14 JAN 1858',2399694,0,103,'c30181e51d50d162470','E0069','2012-06-18 21:44:25.031564','1969-12-31 19:00:00',NULL,0,NULL,4,'',19);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,104,'c30181e511012f2d9e2','E0063','2012-06-18 21:44:21.464764','1969-12-31 19:00:00',NULL,0,NULL,33,'Roman Catholic',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,105,'c30181e495f0e2da01f','E0010','2012-06-18 21:44:21.471653','1969-12-31 19:00:00',NULL,0,NULL,33,'Roman Catholic',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,13,12,1957,0,0,0,0,0,'13 DEC 1957',2436186,0,106,'c30181e54bc0339f003','E0111','2012-06-18 21:44:25.197402','1969-12-31 19:00:00',NULL,0,NULL,14,'',21);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,25,1,1995,0,0,0,0,0,'25 JAN 1995',2449743,0,107,'c30181e49d04103d518','E0013','2012-06-18 21:44:25.210703','1969-12-31 19:00:00',NULL,0,NULL,11,'',25);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1965,0,0,0,0,0,'1965',2438762,0,108,'c30181e5ac154320785','E0132','2012-06-18 21:44:21.496979','1969-12-31 19:00:00',NULL,0,NULL,43,'',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,8,1963,0,0,0,0,0,'AUG 1963',2438243,0,109,'c30181e51ae4c78f74e','E0068','2012-06-18 21:44:21.499596','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,110,'c30181e52073247f681','E0074','2012-06-18 21:44:21.505616','1969-12-31 19:00:00',NULL,0,NULL,33,'Roman Catholic',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,17,6,1950,0,0,0,0,0,'17 JUN 1950',2433450,0,111,'c30181e5b9225ec68fa','E0133','2012-06-18 21:44:25.223047','1969-12-31 19:00:00',NULL,0,NULL,37,'',16);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,12,12,1968,0,0,0,0,0,'12 DEC 1968',2440203,0,112,'c30181e4ff33f7570e6','E0058','2012-06-18 21:44:25.229407','1969-12-31 19:00:00',NULL,0,NULL,4,'',8);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,26,9,1961,0,0,0,0,0,'26 SEP 1961',2437569,0,113,'c30181e518446c9b16a','E0067','2012-06-18 21:44:21.520042','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,7,1940,0,0,0,0,0,'JUL 1940',2429812,0,114,'c30181e5d36233e4ced','E0138','2012-06-18 21:44:21.522690','1969-12-31 19:00:00',NULL,0,NULL,43,'',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,115,'c30181e528c44d39cf0','E0083','2012-06-18 21:44:21.525307','1969-12-31 19:00:00',NULL,0,NULL,33,'Roman Catholic',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,8,6,1968,0,0,0,0,0,'8 JUN 1968',2440016,0,116,'c30181e4dd20775aaf3','E0043','2012-06-18 21:44:25.326339','1969-12-31 19:00:00',NULL,0,NULL,11,'',28);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,117,'c30181e52897f795d4b','E0082','2012-06-18 21:44:21.548615','1969-12-31 19:00:00',NULL,0,NULL,47,'Liverpool St., East Boston, MA',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,29,5,1917,0,0,0,0,0,'29 MAY 1917',2421378,0,118,'c30181e53932ce5971d','E0096','2012-06-18 21:44:25.423310','1969-12-31 19:00:00',NULL,0,NULL,4,'',4);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,6,5,1924,0,0,0,0,0,'6 MAY 1924',2423912,0,119,'c30181e4cec197fdb51','E0040','2012-06-18 21:44:25.429673','1969-12-31 19:00:00',NULL,0,NULL,4,'',19);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,120,'c30181e49e63995ac52','E0014','2012-06-18 21:44:21.558823','1969-12-31 19:00:00',NULL,0,NULL,18,'Dorchester High School, Sacred Heart Convent',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,4,6,1963,0,0,0,0,0,'4 JUN 1963',2438185,0,121,'c30181e4f4d5da3f0ad','E0055','2012-06-18 21:44:25.437702','1969-12-31 19:00:00',NULL,0,NULL,4,'',19);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,122,'c30181e546d20ca6b5c','E0107','2012-06-18 21:44:21.569064','1969-12-31 19:00:00',NULL,0,NULL,47,'5th Avenue, NYC, NY',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,7,1915,0,0,0,0,0,'JUL 1915',2420680,0,123,'c30181e4a327ea5b833','E0018','2012-06-18 21:44:25.580032','1969-12-31 19:00:00',NULL,0,NULL,4,'',19);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,20,11,1925,0,0,0,0,0,'20 NOV 1925',2424475,0,124,'c30181e4dad7ad287cd','E0041','2012-06-18 21:44:25.650012','1969-12-31 19:00:00',NULL,0,NULL,4,'',19);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,6,6,1968,0,0,0,0,0,'6 JUN 1968',2440014,0,125,'c30181e4dc041fa6f0d','E0042','2012-06-18 21:44:25.835347','1969-12-31 19:00:00',NULL,0,NULL,5,'',7);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,28,9,1849,0,0,0,0,0,'28 SEP 1849',2396664,0,126,'c30181e5ced2f26274b','E0137','2012-06-18 21:44:25.931151','1969-12-31 19:00:00',NULL,0,NULL,37,'',5);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,127,'c30181e55116d5da680','E0116','2012-06-18 21:44:21.598530','1969-12-31 19:00:00',NULL,0,NULL,18,'Brown Univ',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,24,3,1967,0,0,0,0,0,'24 MAR 1967',2439574,0,128,'c30181e4fba77152b03','E0057','2012-06-18 21:44:25.991495','1969-12-31 19:00:00',NULL,0,NULL,4,'',8);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,129,'c30181e52c37633e7f0','E0086','2012-06-18 21:44:25.997833','1969-12-31 19:00:00',NULL,0,NULL,11,'',13);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,130,'c30181e520403f6ea34','E0073','2012-06-18 21:44:21.637652','1969-12-31 19:00:00',NULL,0,NULL,47,'Webster St., Boston, MA',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,131,'c30181e495c6ea02d2c','E0009','2012-06-18 21:44:21.645016','1969-12-31 19:00:00',NULL,0,NULL,47,'Brookline, MA',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,132,'c30181e49fe1b46b996','E0016','2012-06-18 21:44:21.655291','1969-12-31 19:00:00',NULL,0,NULL,33,'Roman Catholic',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,9,1,1965,0,0,0,0,0,'9 JAN 1965',2438770,0,133,'c30181e4f83206b566d','E0056','2012-06-18 21:44:26.217127','1969-12-31 19:00:00',NULL,0,NULL,4,'',11);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,25,11,1963,0,0,0,0,0,'25 NOV 1963',2438359,0,134,'c30181e53b77b934368','E0098','2012-06-18 21:44:26.346839','1969-12-31 19:00:00',NULL,0,NULL,11,'',28);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1952,0,0,0,0,0,'1952',2434013,0,135,'c30181e4e5b140b3d57','E0048','2012-06-18 21:44:21.693025','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,136,'c30181e49331ac90378','E0004','2012-06-18 21:44:21.697075','1969-12-31 19:00:00',NULL,0,NULL,18,'Harvard Graduate',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,137,'c30181e546f01cfb4bc','E0108','2012-06-18 21:44:21.702368','1969-12-31 19:00:00',NULL,0,NULL,47,'Martha''s Vineyard ',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,9,8,1963,0,0,0,0,0,'9 AUG 1963',2438251,0,138,'c30181e554b7c4caa19','E0118','2012-06-18 21:44:26.570236','1969-12-31 19:00:00',NULL,0,NULL,5,'',10);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,22,7,1890,0,0,0,0,0,'22 JUL 1890',2411571,0,139,'c30181e49ad4f8c4c64','E0011','2012-06-18 21:44:26.576568','1969-12-31 19:00:00',NULL,0,NULL,4,'',14);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1823,0,0,0,0,0,'1823',2386897,0,140,'c30181e52544e118135','E0077','2012-06-18 21:44:26.608489','1969-12-31 19:00:00',NULL,0,NULL,4,'',23);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,141,'c30181e53451c401c12','E0094','2012-06-18 21:44:21.729485','1969-12-31 19:00:00',NULL,0,NULL,47,'Newport, RI',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,29,11,1958,0,0,0,0,0,'29 NOV 1958',2436537,0,142,'c30181e5c331bb7e885','E0135','2012-06-18 21:44:21.736598','1969-12-31 19:00:00',NULL,0,NULL,37,'',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,0,0,0,0,0,0,'',0,0,143,'c30181e527d3745b60c','E0080','2012-06-18 21:44:21.745225','1969-12-31 19:00:00',NULL,0,NULL,47,'He died of an outbreak of Cholera.',NULL);
+INSERT INTO "grampsdb_event" VALUES(0,0,0,0,0,1954,0,0,0,0,0,'1954',2434744,0,144,'c30181e4be1721dc6e8','E0034','2012-06-18 21:44:21.748072','1969-12-31 19:00:00',NULL,0,NULL,4,'',NULL);
 CREATE TABLE "grampsdb_repository" (
     "id" integer NOT NULL PRIMARY KEY,
     "handle" varchar(19) NOT NULL UNIQUE,
@@ -1217,34 +1310,34 @@ CREATE TABLE "grampsdb_place" (
     "long" text NOT NULL,
     "lat" text NOT NULL
 );
-INSERT INTO "grampsdb_place" VALUES(1,'c2e7d981d0e488927236c973387','P0051','2012-06-10 22:25:15.056948','1969-12-31 19:00:00',NULL,0,NULL,'Greenwich, Connecticut','','');
-INSERT INTO "grampsdb_place" VALUES(2,'c2e7d981dd9253baf6f159c49f2','P0053','2012-06-10 22:25:15.067267','1969-12-31 19:00:00',NULL,0,NULL,'Holy Cross Cathedral, Boston, MA','','');
-INSERT INTO "grampsdb_place" VALUES(3,'c2e7d9814fe390d1a70b2005d49','P0023','2012-06-10 22:25:15.078304','1969-12-31 19:00:00',NULL,0,NULL,'Arlington National, VA','','');
-INSERT INTO "grampsdb_place" VALUES(4,'c2e7d9817b56533ae4b9d6d11eb','P0029','2012-06-10 22:25:15.105033','1969-12-31 19:00:00',NULL,0,NULL,'Dunganstown, Ireland','','');
-INSERT INTO "grampsdb_place" VALUES(5,'c2e7d9813316b941b6b0610ad09','P0017','2012-06-10 22:25:15.111985','1969-12-31 19:00:00',NULL,0,NULL,'Westminster, MD','','');
-INSERT INTO "grampsdb_place" VALUES(6,'c2e7d9811713280dcadd2246581','P0007','2012-06-10 22:25:15.130305','1969-12-31 19:00:00',NULL,0,NULL,'North End, Boston, MA','','');
-INSERT INTO "grampsdb_place" VALUES(7,'c2e7d98142f1ddd5ced580b8239','P0019','2012-06-10 22:25:15.238392','1969-12-31 19:00:00',NULL,0,NULL,'Washington, DC','','');
-INSERT INTO "grampsdb_place" VALUES(8,'c2e7d9814f277250b3d906813e7','P0021','2012-06-10 22:25:15.278217','1969-12-31 19:00:00',NULL,0,NULL,'Los Angeles, CA','','');
-INSERT INTO "grampsdb_place" VALUES(9,'c2e7d98190713f6bfce46bf4ec0','P0043','2012-06-10 22:25:15.328884','1969-12-31 19:00:00',NULL,0,NULL,'St. Patricks Cathedral','','');
-INSERT INTO "grampsdb_place" VALUES(10,'c2e7d98027539da81413f86db4b','P0003','2012-06-10 22:25:15.329601','1969-12-31 19:00:00',NULL,0,NULL,'Hyannis Port, MA','','');
-INSERT INTO "grampsdb_place" VALUES(11,'c2e7d981e443fc750f3a5523ae9','P0055','2012-06-10 22:25:15.330239','1969-12-31 19:00:00',NULL,0,NULL,'Newport, RI','','');
-INSERT INTO "grampsdb_place" VALUES(12,'c2e7d9816d024c64a018da9c8cb','P0027','2012-06-10 22:25:15.352136','1969-12-31 19:00:00',NULL,0,NULL,'Brookline, MA','','');
-INSERT INTO "grampsdb_place" VALUES(13,'c2e7d980290dfba8c6111d8681','P0005','2012-06-10 22:25:15.365059','1969-12-31 19:00:00',NULL,0,NULL,'Holyhood Cemetery, Brookline, MA ','','');
-INSERT INTO "grampsdb_place" VALUES(14,'c2e7d9818b348154106ceeca5d1','P0039','2012-06-10 22:25:15.382084','1969-12-31 19:00:00',NULL,0,NULL,'Southampton, Long Island, NY','','');
-INSERT INTO "grampsdb_place" VALUES(15,'c2e7d981c0c5c3a9a99860f9a42','P0049','2012-06-10 22:25:15.394642','1969-12-31 19:00:00',NULL,0,NULL,'London','','');
-INSERT INTO "grampsdb_place" VALUES(16,'c2e7d9811862333e940d3d36f6f','P0009','2012-06-10 22:25:15.395316','1969-12-31 19:00:00',NULL,0,NULL,'Hyannis Port, MA ','','');
-INSERT INTO "grampsdb_place" VALUES(17,'c2e7d98180f64cd92fbc10fe3ce','P0033','2012-06-10 22:25:15.421588','1969-12-31 19:00:00',NULL,0,NULL,'Lennox Hill Hosp., NY','','');
-INSERT INTO "grampsdb_place" VALUES(18,'c2e7d9817f378c2dec0ce4c8285','P0031','2012-06-10 22:25:15.422088','1969-12-31 19:00:00',NULL,0,NULL,'Cathedral Of The Holy Cross, MA','','');
-INSERT INTO "grampsdb_place" VALUES(19,'c2e7d9819556ab75cb9f638bd53','P0047','2012-06-10 22:25:15.434601','1969-12-31 19:00:00',NULL,0,NULL,'Boston, Mass','','');
-INSERT INTO "grampsdb_place" VALUES(20,'c2e7d98186e4f9c701b41a36a5f','P0037','2012-06-10 22:25:15.435265','1969-12-31 19:00:00',NULL,0,NULL,'Dallas, TX','','');
-INSERT INTO "grampsdb_place" VALUES(21,'c2e7d98025b73928981abcd464','P0001','2012-06-10 22:25:15.445343','1969-12-31 19:00:00',NULL,0,NULL,'Boston, MA','','');
-INSERT INTO "grampsdb_place" VALUES(22,'c2e7d9818be1696aedef5079ccc','P0041','2012-06-10 22:25:15.528339','1969-12-31 19:00:00',NULL,0,NULL,'NYC, NY','','');
-INSERT INTO "grampsdb_place" VALUES(23,'c2e7d9815f97082df4d525d64d5','P0025','2012-06-10 22:25:15.591831','1969-12-31 19:00:00',NULL,0,NULL,'New York','','');
-INSERT INTO "grampsdb_place" VALUES(24,'c2e7d98194b2b5bf5c886dd0f90','P0045','2012-06-10 22:25:15.607471','1969-12-31 19:00:00',NULL,0,NULL,'Otis Air Force B, Mass','','');
-INSERT INTO "grampsdb_place" VALUES(25,'c2e7d9812db79e50b2f4ba193b2','P0015','2012-06-10 22:25:15.609286','1969-12-31 19:00:00',NULL,0,NULL,'France','','');
-INSERT INTO "grampsdb_place" VALUES(26,'c2e7d981818e31aa2beb6bd794','P0035','2012-06-10 22:25:15.642658','1969-12-31 19:00:00',NULL,0,NULL,'St. Philomena''s Cemetery, NY','','');
-INSERT INTO "grampsdb_place" VALUES(27,'c2e7d9812997b0ded88d5487e0d','P0013','2012-06-10 22:25:15.672673','1969-12-31 19:00:00',NULL,0,NULL,'Belgium','','');
-INSERT INTO "grampsdb_place" VALUES(28,'c2e7d9811fd1330bccebd96b28e','P0011','2012-06-10 22:25:15.694017','1969-12-31 19:00:00',NULL,0,NULL,'Suffolk, England','','');
+INSERT INTO "grampsdb_place" VALUES(1,'c30181e5547507f1b95','P0045','2012-06-18 21:44:20.728523','1969-12-31 19:00:00',NULL,0,NULL,'Otis Air Force B, Mass','','');
+INSERT INTO "grampsdb_place" VALUES(2,'c30181e542e38adc7bc','P0039','2012-06-18 21:44:20.733113','1969-12-31 19:00:00',NULL,0,NULL,'Southampton, Long Island, NY','','');
+INSERT INTO "grampsdb_place" VALUES(3,'c30181e49ce5f2a3fda','P0009','2012-06-18 21:44:20.743906','1969-12-31 19:00:00',NULL,0,NULL,'Hyannis Port, MA ','','');
+INSERT INTO "grampsdb_place" VALUES(4,'c30181e51060e653e6b','P0027','2012-06-18 21:44:20.756204','1969-12-31 19:00:00',NULL,0,NULL,'Brookline, MA','','');
+INSERT INTO "grampsdb_place" VALUES(5,'c30181e5cfd64f937bc','P0053','2012-06-18 21:44:20.815759','1969-12-31 19:00:00',NULL,0,NULL,'Holy Cross Cathedral, Boston, MA','','');
+INSERT INTO "grampsdb_place" VALUES(6,'c30181e59ec2b05a236','P0049','2012-06-18 21:44:20.824536','1969-12-31 19:00:00',NULL,0,NULL,'London','','');
+INSERT INTO "grampsdb_place" VALUES(7,'c30181e4dcd1190d651','P0021','2012-06-18 21:44:20.889526','1969-12-31 19:00:00',NULL,0,NULL,'Los Angeles, CA','','');
+INSERT INTO "grampsdb_place" VALUES(8,'c30181e4c78043db2d4','P0019','2012-06-18 21:44:20.978891','1969-12-31 19:00:00',NULL,0,NULL,'Washington, DC','','');
+INSERT INTO "grampsdb_place" VALUES(9,'c30181e4b2d0157da9f','P0015','2012-06-18 21:44:20.994745','1969-12-31 19:00:00',NULL,0,NULL,'France','','');
+INSERT INTO "grampsdb_place" VALUES(10,'c30181e5558424036a8','P0047','2012-06-18 21:44:21.003619','1969-12-31 19:00:00',NULL,0,NULL,'Boston, Mass','','');
+INSERT INTO "grampsdb_place" VALUES(11,'c30181e4f9276a83b2a','P0025','2012-06-18 21:44:21.025802','1969-12-31 19:00:00',NULL,0,NULL,'New York','','');
+INSERT INTO "grampsdb_place" VALUES(12,'c30181e4b767a1ebf72','P0017','2012-06-18 21:44:21.062260','1969-12-31 19:00:00',NULL,0,NULL,'Westminster, MD','','');
+INSERT INTO "grampsdb_place" VALUES(13,'c30181e52d11a6229e5','P0031','2012-06-18 21:44:21.119693','1969-12-31 19:00:00',NULL,0,NULL,'Cathedral Of The Holy Cross, MA','','');
+INSERT INTO "grampsdb_place" VALUES(14,'c30181e49bc50d87f78','P0007','2012-06-18 21:44:21.144111','1969-12-31 19:00:00',NULL,0,NULL,'North End, Boston, MA','','');
+INSERT INTO "grampsdb_place" VALUES(15,'c30181e543f715bab9c','P0041','2012-06-18 21:44:21.176614','1969-12-31 19:00:00',NULL,0,NULL,'NYC, NY','','');
+INSERT INTO "grampsdb_place" VALUES(16,'c30181e5ba0351f4872','P0051','2012-06-18 21:44:21.198929','1969-12-31 19:00:00',NULL,0,NULL,'Greenwich, Connecticut','','');
+INSERT INTO "grampsdb_place" VALUES(17,'c30181e4af372d9e672','P0013','2012-06-18 21:44:21.241797','1969-12-31 19:00:00',NULL,0,NULL,'Belgium','','');
+INSERT INTO "grampsdb_place" VALUES(18,'c30181e4a5438ffb3b6','P0011','2012-06-18 21:44:21.306063','1969-12-31 19:00:00',NULL,0,NULL,'Suffolk, England','','');
+INSERT INTO "grampsdb_place" VALUES(19,'c30181e490b3eb730d1','P0001','2012-06-18 21:44:21.465837','1969-12-31 19:00:00',NULL,0,NULL,'Boston, MA','','');
+INSERT INTO "grampsdb_place" VALUES(20,'c30181e53050d991edb','P0033','2012-06-18 21:44:21.469184','1969-12-31 19:00:00',NULL,0,NULL,'Lennox Hill Hosp., NY','','');
+INSERT INTO "grampsdb_place" VALUES(21,'c30181e54cb0f1aa53b','P0043','2012-06-18 21:44:21.491905','1969-12-31 19:00:00',NULL,0,NULL,'St. Patricks Cathedral','','');
+INSERT INTO "grampsdb_place" VALUES(22,'c30181e53b478406597','P0037','2012-06-18 21:44:21.506713','1969-12-31 19:00:00',NULL,0,NULL,'Dallas, TX','','');
+INSERT INTO "grampsdb_place" VALUES(23,'c30181e52621c9d8854','P0029','2012-06-18 21:44:21.530190','1969-12-31 19:00:00',NULL,0,NULL,'Dunganstown, Ireland','','');
+INSERT INTO "grampsdb_place" VALUES(24,'c30181e491c448a8afd','P0003','2012-06-18 21:44:21.533308','1969-12-31 19:00:00',NULL,0,NULL,'Hyannis Port, MA','','');
+INSERT INTO "grampsdb_place" VALUES(25,'c30181e492e571baf78','P0005','2012-06-18 21:44:21.534167','1969-12-31 19:00:00',NULL,0,NULL,'Holyhood Cemetery, Brookline, MA ','','');
+INSERT INTO "grampsdb_place" VALUES(26,'c30181e5db73e334da0','P0055','2012-06-18 21:44:21.535053','1969-12-31 19:00:00',NULL,0,NULL,'Newport, RI','','');
+INSERT INTO "grampsdb_place" VALUES(27,'c30181e53140c06f148','P0035','2012-06-18 21:44:21.677969','1969-12-31 19:00:00',NULL,0,NULL,'St. Philomena''s Cemetery, NY','','');
+INSERT INTO "grampsdb_place" VALUES(28,'c30181e4ddf39eda033','P0023','2012-06-18 21:44:21.750000','1969-12-31 19:00:00',NULL,0,NULL,'Arlington National, VA','','');
 CREATE TABLE "grampsdb_media_tags" (
     "id" integer NOT NULL PRIMARY KEY,
     "media_id" integer NOT NULL,
@@ -1297,245 +1390,195 @@ CREATE TABLE "grampsdb_note" (
     "text" text NOT NULL,
     "preformatted" bool NOT NULL
 );
-INSERT INTO "grampsdb_note" VALUES(1,'c2e7d9817c55526722b5897e12a','N0038','2012-06-10 22:25:15.035821','1969-12-31 19:00:00',NULL,0,NULL,3,'The potato famine of 1845-48, plagued the country of Ireland and pushed many Irishmen to flee to the land of promise, the USA. Patrick Kennedy was among those to leave his home in Wexford County, Ireland, in 1848, in hopes of finding a better
+INSERT INTO "grampsdb_note" VALUES(1,'c30181e53d42b157837','N0047','2012-06-18 21:44:20.725124','1969-12-31 19:00:00',NULL,0,NULL,3,'In 1960 he became President of the United States.',0);
+INSERT INTO "grampsdb_note" VALUES(2,'c30181e527f79384805','N0038','2012-06-18 21:44:20.730854','1969-12-31 19:00:00',NULL,0,NULL,3,'The potato famine of 1845-48, plagued the country of Ireland and pushed many Irishmen to flee to the land of promise, the USA. Patrick Kennedy was among those to leave his home in Wexford County, Ireland, in 1848, in hopes of finding a better
 life in the US. Once he arrived in the US, he settled in East Boston, where he remained for the rest of his life.',0);
-INSERT INTO "grampsdb_note" VALUES(2,'c2e7d981ac571aa49322c4b6412','N0060','2012-06-10 22:25:15.038979','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into SOUR (source) Gramps ID S0004:
+INSERT INTO "grampsdb_note" VALUES(3,'c30181e58a5668763f5','N0068','2012-06-18 21:44:20.736023','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into Top Level:
 
-Line ignored as not understood     Line   701: 1 NAME New York Times, March 6, 1946.
+Line ignored as not understood     Line   716: 0 C1 CSTA
+Skipped subordinate line           Line   717: 1 NAME Twin
 ',0);
-INSERT INTO "grampsdb_note" VALUES(3,'c2e7d981ab63c4bfc6b1ad335b2','N0059','2012-06-10 22:25:15.047504','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into SOUR (source) Gramps ID S0003:
+INSERT INTO "grampsdb_note" VALUES(4,'c30181e536300087061','N0045','2012-06-18 21:44:20.741655','1969-12-31 19:00:00',NULL,0,NULL,3,'He was known as "Honey Fitz".',0);
+INSERT INTO "grampsdb_note" VALUES(5,'c30181e545b25b031d6','N0053','2012-06-18 21:44:20.745928','1969-12-31 19:00:00',NULL,0,NULL,3,'Before marrying JFK, Jackie worked as a photo journalist in Washington DC.',0);
+INSERT INTO "grampsdb_note" VALUES(6,'c30181e4baa1f6209f3','N0023','2012-06-18 21:44:20.770272','1969-12-31 19:00:00',NULL,0,NULL,3,'She ran a summer home for retarded children.',0);
+INSERT INTO "grampsdb_note" VALUES(7,'c30181e57ba3fde82f0','N0059','2012-06-18 21:44:20.777752','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into SOUR (source) Gramps ID S0003:
 
 Line ignored as not understood     Line   699: 1 NAME New York Times, March 4, 1946, pp. 1,3.
 ',0);
-INSERT INTO "grampsdb_note" VALUES(4,'c2e7d98175285db77279797c28','N0033','2012-06-10 22:25:15.055643','1969-12-31 19:00:00',NULL,0,NULL,3,'As a young man, Patrick dropped out of school to work on the docks of Boston.',0);
-INSERT INTO "grampsdb_note" VALUES(5,'c2e7d9818802e5e500e76024dbf','N0046','2012-06-10 22:25:15.062605','1969-12-31 19:00:00',NULL,0,NULL,3,'<img src="http://www.jacqueslowe.com/html/photographs/jfk/images/jfkp52bw.jpg" border=1>',0);
-INSERT INTO "grampsdb_note" VALUES(6,'c2e7d9812465f7984cb185da276','N0015','2012-06-10 22:25:15.064514','1969-12-31 19:00:00',NULL,0,NULL,3,'She was born severely mentally retarded. For years her parents were ashamed of her and never told anyone about her problems.',0);
-INSERT INTO "grampsdb_note" VALUES(7,'c2e7d981b7f533a7d7145101942','N0074','2012-06-10 22:25:15.070007','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into Top Level:
+INSERT INTO "grampsdb_note" VALUES(8,'c30181e57f108e3c511','N0061','2012-06-18 21:44:20.803024','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into SOUR (source) Gramps ID S0005:
+
+Line ignored as not understood     Line   703: 1 NAME New York World Telegram and Sun, Oct 11, 1957, pg. 1.
+',0);
+INSERT INTO "grampsdb_note" VALUES(9,'c30181e52d678793d34','N0041','2012-06-18 21:44:20.808195','1969-12-31 19:00:00',NULL,0,NULL,3,'After her husband died, she opened up a "Notions Shop" to provide for her family.',0);
+INSERT INTO "grampsdb_note" VALUES(10,'c30181e51fb7989d62e','N0035','2012-06-18 21:44:20.832841','1969-12-31 19:00:00',NULL,0,NULL,3,'Patrick later became a very successful businessman getting into wholesale liquor sales, owning a coal company and becoming the president of a bank.',0);
+INSERT INTO "grampsdb_note" VALUES(11,'c30181e590474b2c67e','N0074','2012-06-18 21:44:20.839621','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into Top Level:
 
 Line ignored as not understood     Line   728: 0 C7 CSTA
 Skipped subordinate line           Line   729: 1 NAME Adopted Twin
 ',0);
-INSERT INTO "grampsdb_note" VALUES(8,'c2e7d98188924cabda321db84ba','N0050','2012-06-10 22:25:15.075601','1969-12-31 19:00:00',NULL,0,NULL,3,'He was assassinated in Dallas, TX.',0);
-INSERT INTO "grampsdb_note" VALUES(9,'c2e7d981a9742ee5f69a83ea6d6','N0057','2012-06-10 22:25:15.079606','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into SOUR (source) Gramps ID S0001:
+INSERT INTO "grampsdb_note" VALUES(12,'c30181e4b3565158156','N0019','2012-06-18 21:44:20.854076','1969-12-31 19:00:00',NULL,0,NULL,3,'Served with the Red Cross in England during the war.',0);
+INSERT INTO "grampsdb_note" VALUES(13,'c30181e57824861d37c','N0057','2012-06-18 21:44:20.866193','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into SOUR (source) Gramps ID S0001:
 
 Line ignored as not understood     Line   695: 1 NAME Joseph P. Kennedy, A Life and Times, by David E. Koskoff.
 ',0);
-INSERT INTO "grampsdb_note" VALUES(10,'c2e7d9816d43190e4a6c955092a','N0031','2012-06-10 22:25:15.087070','1969-12-31 19:00:00',NULL,0,NULL,3,'Was known as "Teddy".',0);
-INSERT INTO "grampsdb_note" VALUES(11,'c2e7d981b2a15db832f02051586','N0065','2012-06-10 22:25:15.089231','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into SOUR (source) Gramps ID S0009:
-
-Line ignored as not understood     Line   711: 1 NAME Harrisburg Patriot News, 23 May 1994.
-',0);
-INSERT INTO "grampsdb_note" VALUES(12,'c2e7d9815004746bfffc2650c9e','N0027','2012-06-10 22:25:15.109386','1969-12-31 19:00:00',NULL,0,NULL,3,'Robert Francis was assassinated in California during his 1968 presidential campaign.',0);
-INSERT INTO "grampsdb_note" VALUES(13,'c2e7d98037c6f173e34ba8aa0a9','N0004','2012-06-10 22:25:15.113129','1969-12-31 19:00:00',NULL,0,NULL,3,'He was fiercely proud of his family. He was quoted as having said his family was the finest thing in his life. ',0);
-INSERT INTO "grampsdb_note" VALUES(14,'c2e7d98120a158f5708f62efcdb','N0013','2012-06-10 22:25:15.117175','1969-12-31 19:00:00',NULL,0,NULL,3,'He was known as Jack.',0);
-INSERT INTO "grampsdb_note" VALUES(15,'c2e7d9817f64aed876e0b99404c','N0041','2012-06-10 22:25:15.122154','1969-12-31 19:00:00',NULL,0,NULL,3,'After her husband died, she opened up a "Notions Shop" to provide for her family.',0);
-INSERT INTO "grampsdb_note" VALUES(16,'c2e7d981271720f4434c6db3d26','N0017','2012-06-10 22:25:15.135835','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into INDI (individual) Gramps ID I0004:
-
-Empty note ignored                 Line    98: 1 NOTE 
-',0);
-INSERT INTO "grampsdb_note" VALUES(17,'c2e7d9815033c3f2d05c7f1a982','N0028','2012-06-10 22:25:15.141609','1969-12-31 19:00:00',NULL,0,NULL,3,'He was very dedicated to his children and every evening had prayers with them, each of them saying the Rosary.',0);
-INSERT INTO "grampsdb_note" VALUES(18,'c2e7d981b6f63b0a54f02886c0f','N0072','2012-06-10 22:25:15.146264','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into Top Level:
-
-Line ignored as not understood     Line   724: 0 C5 CSTA
-Skipped subordinate line           Line   725: 1 NAME Stillborn
-',0);
-INSERT INTO "grampsdb_note" VALUES(19,'c2e7d9811ad13d32faabb0ab30f','N0007','2012-06-10 22:25:15.149201','1969-12-31 19:00:00',NULL,0,NULL,3,'She graduated from high school, one of the three highest in a class of 285. She was then sent to finish school in Europe for two years.',0);
-INSERT INTO "grampsdb_note" VALUES(20,'c2e7d9813349b015f3db31de2b','N0021','2012-06-10 22:25:15.156518','1969-12-31 19:00:00',NULL,0,NULL,3,'1972 was the vice presidential candidate.',0);
-INSERT INTO "grampsdb_note" VALUES(21,'c2e7d9811d2773e6ea5cccef41d','N0010','2012-06-10 22:25:15.159813','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into INDI (individual) Gramps ID I0002:
+INSERT INTO "grampsdb_note" VALUES(14,'c30181e4cfe5d5e04bd','N0026','2012-06-18 21:44:20.876582','1969-12-31 19:00:00',NULL,0,NULL,3,'Was a help to her brother John F. during his political campaigns.',0);
+INSERT INTO "grampsdb_note" VALUES(15,'c30181e4a1c203223e4','N0010','2012-06-18 21:44:20.880266','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into INDI (individual) Gramps ID I0002:
 
 Empty note ignored                 Line    58: 1 NOTE 
 Empty note ignored                 Line    60: 1 NOTE 
 Empty note ignored                 Line    62: 1 NOTE 
 ',0);
-INSERT INTO "grampsdb_note" VALUES(22,'c2e7d9817c87e57a02eb5330d17','N0039','2012-06-10 22:25:15.164200','1969-12-31 19:00:00',NULL,0,NULL,3,'Upon Patrick''s arrival in Boston, he immediately became involved in politics. He was known as a Ward Boss in Boston, looking out for the other Irish immigrants and trying to improve the conditions in the community.',0);
-INSERT INTO "grampsdb_note" VALUES(23,'c2e7d98147c625cf389af2f2e41','N0026','2012-06-10 22:25:15.166122','1969-12-31 19:00:00',NULL,0,NULL,3,'Was a help to her brother John F. during his political campaigns.',0);
-INSERT INTO "grampsdb_note" VALUES(24,'c2e7d9817556015ad3b0c4eb845','N0034','2012-06-10 22:25:15.170746','1969-12-31 19:00:00',NULL,0,NULL,3,'Patrick was able to work his way from being a SaloonKeeper to becoming a Ward Boss, helping out other Irish immigrants. His popularity  rose and at the age of thirty he had become a power in Boston politics. In 1892 and 1893 he was elected to
-the Massachusetts Senate.',0);
-INSERT INTO "grampsdb_note" VALUES(25,'c2e7d9802d7350857b331d1200f','N0001','2012-06-10 22:25:15.172668','1969-12-31 19:00:00',NULL,0,NULL,3,'He had an interesting hobby of tinkering with clocks.',0);
-INSERT INTO "grampsdb_note" VALUES(26,'c2e7d9812e5666554debe8b2223','N0019','2012-06-10 22:25:15.195832','1969-12-31 19:00:00',NULL,0,NULL,3,'Served with the Red Cross in England during the war.',0);
-INSERT INTO "grampsdb_note" VALUES(27,'c2e7d981b5878726b21eaed3d03','N0069','2012-06-10 22:25:15.211213','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into Top Level:
-
-Line ignored as not understood     Line   718: 0 C2 CSTA
-Skipped subordinate line           Line   719: 1 NAME Adopted
-',0);
-INSERT INTO "grampsdb_note" VALUES(28,'c2e7d9817d215fd0cc5541d6f7f','N0040','2012-06-10 22:25:15.269708','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into INDI (individual) Gramps ID I0046:
-
-Empty note ignored                 Line   438: 1 NOTE 
-',0);
-INSERT INTO "grampsdb_note" VALUES(29,'c2e7d981826c13718a9723ff14','N0044','2012-06-10 22:25:15.275731','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into INDI (individual) Gramps ID I0048:
-
-Empty note ignored                 Line   473: 1 NOTE 
-',0);
-INSERT INTO "grampsdb_note" VALUES(30,'c2e7d981b78d0d8b89584c4aff','N0073','2012-06-10 22:25:15.279720','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into Top Level:
+INSERT INTO "grampsdb_note" VALUES(16,'c30181e493f3a822d42','N0001','2012-06-18 21:44:20.901622','1969-12-31 19:00:00',NULL,0,NULL,3,'He had an interesting hobby of tinkering with clocks.',0);
+INSERT INTO "grampsdb_note" VALUES(17,'c30181e494a061baf89','N0003','2012-06-18 21:44:20.908149','1969-12-31 19:00:00',NULL,0,NULL,3,'Was one of the youngest Bank Presidents in US history. ',0);
+INSERT INTO "grampsdb_note" VALUES(18,'c30181e4946576246e7','N0002','2012-06-18 21:44:20.913549','1969-12-31 19:00:00',NULL,0,NULL,3,'Joe was a poor student, but good at athletics and had an attractive personality. He was able to overcome many ethnic barriers during his school years at Boston Latin, a protestant and primarily Yankee school.',0);
+INSERT INTO "grampsdb_note" VALUES(19,'c30181e58f44efe4539','N0073','2012-06-18 21:44:20.922513','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into Top Level:
 
 Line ignored as not understood     Line   726: 0 C6 CSTA
 Skipped subordinate line           Line   727: 1 NAME Foster
 ',0);
-INSERT INTO "grampsdb_note" VALUES(31,'c2e7d981aec7b102455b8bf26fc','N0062','2012-06-10 22:25:15.283857','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into SOUR (source) Gramps ID S0006:
+INSERT INTO "grampsdb_note" VALUES(20,'c30181e53d36cc370d9','N0046','2012-06-18 21:44:20.939422','1969-12-31 19:00:00',NULL,0,NULL,3,'<img src="http://www.jacqueslowe.com/html/photographs/jfk/images/jfkp52bw.jpg" border=1>',0);
+INSERT INTO "grampsdb_note" VALUES(21,'c30181e4b307c2eb2a0','N0018','2012-06-18 21:44:20.961754','1969-12-31 19:00:00',NULL,0,NULL,3,'Died in an airplane crash with her lover in France three years after her older brother Joseph''s death.',0);
+INSERT INTO "grampsdb_note" VALUES(22,'c30181e4bcb3b5e1633','N0025','2012-06-18 21:44:20.981199','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into INDI (individual) Gramps ID I0008:
 
-Line ignored as not understood     Line   705: 1 NAME The Kennedys Dynasty and Disaster 1848-1983, by John H. Davis.
+Empty note ignored                 Line   146: 1 NOTE 
+Empty note ignored                 Line   148: 1 NOTE 
 ',0);
-INSERT INTO "grampsdb_note" VALUES(32,'c2e7d98188672ce8dcff5bc755b','N0049','2012-06-10 22:25:15.287990','1969-12-31 19:00:00',NULL,0,NULL,3,'He had personal finances that were estimated to be around $10 million while in the Presidency.',0);
-INSERT INTO "grampsdb_note" VALUES(33,'c2e7d981517482dd27c7dcf26e4','N0029','2012-06-10 22:25:15.290292','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into INDI (individual) Gramps ID I0021:
-
-Empty note ignored                 Line   237: 1 NOTE 
-',0);
-INSERT INTO "grampsdb_note" VALUES(34,'c2e7d9812e060ddd2f5cfa8aa21','N0018','2012-06-10 22:25:15.293558','1969-12-31 19:00:00',NULL,0,NULL,3,'Died in an airplane crash with her lover in France three years after her older brother Joseph''s death.',0);
-INSERT INTO "grampsdb_note" VALUES(35,'c2e7d98178f6b15a96bfcb1a419','N0037','2012-06-10 22:25:15.303231','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into INDI (individual) Gramps ID I0044:
-
-Empty note ignored                 Line   402: 1 NOTE 
-Empty note ignored                 Line   405: 1 NOTE 
-Empty note ignored                 Line   407: 1 NOTE 
-',0);
-INSERT INTO "grampsdb_note" VALUES(36,'c2e7d981884475a9a5f06186e07','N0048','2012-06-10 22:25:15.320181','1969-12-31 19:00:00',NULL,0,NULL,3,'He wrote 2 books, including "Profiles in Courage", which won him a Pulitzer Prize.',0);
-INSERT INTO "grampsdb_note" VALUES(37,'c2e7d9811b37a0458124a2bffe6','N0008','2012-06-10 22:25:15.323051','1969-12-31 19:00:00',NULL,0,NULL,3,'She was courted by some of the finest young men, not only Boston''s Irish, but members of the English nobility as well.',0);
-INSERT INTO "grampsdb_note" VALUES(38,'c2e7d98120319928652348bfd55','N0011','2012-06-10 22:25:15.332216','1969-12-31 19:00:00',NULL,0,NULL,3,'Joseph Patrick was well liked, quick to smile, and had a tremendous dose of Irish charm.',0);
-INSERT INTO "grampsdb_note" VALUES(39,'c2e7d9818e9687a6690d12d5102','N0056','2012-06-10 22:25:15.339378','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into INDI (individual) Gramps ID I0053:
-
-Empty note ignored                 Line   544: 1 NOTE 
-Empty note ignored                 Line   546: 1 NOTE 
-',0);
-INSERT INTO "grampsdb_note" VALUES(40,'c2e7d981b487143f65969df856f','N0067','2012-06-10 22:25:15.362607','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into SOUR (source) Gramps ID S0011:
-
-Line ignored as not understood     Line   715: 1 NAME Harrisburg Patriot News, January 25, 1995.
-',0);
-INSERT INTO "grampsdb_note" VALUES(41,'c2e7d98121e651fcc66a36c7eac','N0014','2012-06-10 22:25:15.371233','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into INDI (individual) Gramps ID I0003:
-
-Empty note ignored                 Line    82: 1 NOTE 
-Empty note ignored                 Line    84: 1 NOTE 
-',0);
-INSERT INTO "grampsdb_note" VALUES(42,'c2e7d9818415869921ce53964d8','N0045','2012-06-10 22:25:15.409050','1969-12-31 19:00:00',NULL,0,NULL,3,'He was known as "Honey Fitz".',0);
-INSERT INTO "grampsdb_note" VALUES(43,'c2e7d98181b5e340b797bb66b10','N0042','2012-06-10 22:25:15.412003','1969-12-31 19:00:00',NULL,0,NULL,3,'He was known as "Black Jack."',0);
-INSERT INTO "grampsdb_note" VALUES(44,'c2e7d9816e81f3c1665f8818109','N0032','2012-06-10 22:25:15.418374','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into INDI (individual) Gramps ID I0039:
-
-Empty note ignored                 Line   359: 1 NOTE 
-',0);
-INSERT INTO "grampsdb_note" VALUES(45,'c2e7d98181e1f6c8392b19b48f9','N0043','2012-06-10 22:25:15.424726','1969-12-31 19:00:00',NULL,0,NULL,3,'He was known to drink alcohol excessively.',0);
-INSERT INTO "grampsdb_note" VALUES(46,'c2e7d981aa614c3705f03cf00e','N0058','2012-06-10 22:25:15.428464','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into SOUR (source) Gramps ID S0002:
-
-Line ignored as not understood     Line   697: 1 NAME Rose, by Gail Cameron.
-',0);
-INSERT INTO "grampsdb_note" VALUES(47,'c2e7d98029e5777d56d7f5eac0c','N0000','2012-06-10 22:25:15.437050','1969-12-31 19:00:00',NULL,0,NULL,3,'From the time he was a school boy he was interested in making money.',0);
-INSERT INTO "grampsdb_note" VALUES(48,'c2e7d9818d490cc09ea7f78684','N0055','2012-06-10 22:25:15.464516','1969-12-31 19:00:00',NULL,0,NULL,3,'She was said to be the only First Lady to resemble royalty. She shunned the media and never publicly discussed the assassination of JFK, how she felt about it, or the alleged affairs of her first husband.',0);
-INSERT INTO "grampsdb_note" VALUES(49,'c2e7d9802fc6e2af2921c578d49','N0002','2012-06-10 22:25:15.467360','1969-12-31 19:00:00',NULL,0,NULL,3,'Joe was a poor student, but good at athletics and had an attractive personality. He was able to overcome many ethnic barriers during his school years at Boston Latin, a protestant and primarily Yankee school.',0);
-INSERT INTO "grampsdb_note" VALUES(50,'c2e7d9813af6156bde2a80a5c56','N0023','2012-06-10 22:25:15.470149','1969-12-31 19:00:00',NULL,0,NULL,3,'She ran a summer home for retarded children.',0);
-INSERT INTO "grampsdb_note" VALUES(51,'c2e7d9818805687906797423a9f','N0047','2012-06-10 22:25:15.475601','1969-12-31 19:00:00',NULL,0,NULL,3,'In 1960 he became President of the United States.',0);
-INSERT INTO "grampsdb_note" VALUES(52,'c2e7d981ad51ba7e8c4708c3f7e','N0061','2012-06-10 22:25:15.479874','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into SOUR (source) Gramps ID S0005:
-
-Line ignored as not understood     Line   703: 1 NAME New York World Telegram and Sun, Oct 11, 1957, pg. 1.
-',0);
-INSERT INTO "grampsdb_note" VALUES(53,'c2e7d9818d147c3fbe39ef578c2','N0054','2012-06-10 22:25:15.508526','1969-12-31 19:00:00',NULL,0,NULL,3,'While dating JFK, Jackie did not want him to know that she was not rich and think that she was only marrying him for his money. So, she went to great lengths to appear rich.',0);
-INSERT INTO "grampsdb_note" VALUES(54,'c2e7d981b4f62f77d122612b547','N0068','2012-06-10 22:25:15.524550','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into Top Level:
-
-Line ignored as not understood     Line   716: 0 C1 CSTA
-Skipped subordinate line           Line   717: 1 NAME Twin
-',0);
-INSERT INTO "grampsdb_note" VALUES(55,'c2e7d981b5f7199bcd53f2ab08f','N0070','2012-06-10 22:25:15.530971','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into Top Level:
-
-Line ignored as not understood     Line   720: 0 C3 CSTA
-Skipped subordinate line           Line   721: 1 NAME Illegitimate
-',0);
-INSERT INTO "grampsdb_note" VALUES(56,'c2e7d981b387f5f1bbff1ad45ab','N0066','2012-06-10 22:25:15.534055','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into SOUR (source) Gramps ID S0010:
-
-Line ignored as not understood     Line   713: 1 NAME CBS This Morning show.
-',0);
-INSERT INTO "grampsdb_note" VALUES(57,'c2e7d98124c346fe9febd7a80f1','N0016','2012-06-10 22:25:15.536959','1969-12-31 19:00:00',NULL,0,NULL,3,'In 1946 her father gave $600,000 for the construction of the Joseph P. Kennedy Jr. Convalescent Home for disadvantaged children, because of Rosemary''s condition.',0);
-INSERT INTO "grampsdb_note" VALUES(58,'c2e7d9811b85bc82b85514f7706','N0009','2012-06-10 22:25:15.545099','1969-12-31 19:00:00',NULL,0,NULL,3,'She was very dedicated to her family, which was evident by the strong support she gave her sons in their political campaigns.',0);
-INSERT INTO "grampsdb_note" VALUES(59,'c2e7d9818ce67b9d16993f502d','N0053','2012-06-10 22:25:15.552791','1969-12-31 19:00:00',NULL,0,NULL,3,'Before marrying JFK, Jackie worked as a photo journalist in Washington DC.',0);
-INSERT INTO "grampsdb_note" VALUES(60,'c2e7d98189f70f172e912ff3957','N0051','2012-06-10 22:25:15.557431','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into INDI (individual) Gramps ID I0052:
-
-Empty note ignored                 Line   518: 1 NOTE 
-Empty note ignored                 Line   520: 1 NOTE 
-Empty note ignored                 Line   522: 1 NOTE 
-',0);
-INSERT INTO "grampsdb_note" VALUES(61,'c2e7d981b68425932471c84c258','N0071','2012-06-10 22:25:15.567707','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into Top Level:
+INSERT INTO "grampsdb_note" VALUES(23,'c30181e58d50a3973cd','N0071','2012-06-18 21:44:21.011320','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into Top Level:
 
 Line ignored as not understood     Line   722: 0 C4 CSTA
 Skipped subordinate line           Line   723: 1 NAME Duplicate
 ',0);
-INSERT INTO "grampsdb_note" VALUES(62,'c2e7d9818cc498db8ee3dea4138','N0052','2012-06-10 22:25:15.573371','1969-12-31 19:00:00',NULL,0,NULL,3,'<img src="http://www.jacqueslowe.com/html/photographs/jackie/images/Jacky01bw.jpg" border=1>',0);
-INSERT INTO "grampsdb_note" VALUES(63,'c2e7d980468170d31685e92235c','N0005','2012-06-10 22:25:15.575432','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into INDI (individual) Gramps ID I0001:
+INSERT INTO "grampsdb_note" VALUES(24,'c30181e4acd32bde247','N0017','2012-06-18 21:44:21.019312','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into INDI (individual) Gramps ID I0004:
+
+Empty note ignored                 Line    98: 1 NOTE 
+',0);
+INSERT INTO "grampsdb_note" VALUES(25,'c30181e53db0178264b','N0048','2012-06-18 21:44:21.030426','1969-12-31 19:00:00',NULL,0,NULL,3,'He wrote 2 books, including "Profiles in Courage", which won him a Pulitzer Prize.',0);
+INSERT INTO "grampsdb_note" VALUES(26,'c30181e4b517a24c01b','N0020','2012-06-18 21:44:21.034039','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into INDI (individual) Gramps ID I0006:
+
+Empty note ignored                 Line   122: 1 NOTE 
+',0);
+INSERT INTO "grampsdb_note" VALUES(27,'c30181e531b1962e79f','N0042','2012-06-18 21:44:21.041697','1969-12-31 19:00:00',NULL,0,NULL,3,'He was known as "Black Jack."',0);
+INSERT INTO "grampsdb_note" VALUES(28,'c30181e54955cda4320','N0056','2012-06-18 21:44:21.045319','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into INDI (individual) Gramps ID I0053:
+
+Empty note ignored                 Line   544: 1 NOTE 
+Empty note ignored                 Line   546: 1 NOTE 
+',0);
+INSERT INTO "grampsdb_note" VALUES(29,'c30181e499704167c0b','N0005','2012-06-18 21:44:21.074428','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into INDI (individual) Gramps ID I0001:
 
 Empty note ignored                 Line    26: 1 NOTE 
 Empty note ignored                 Line    28: 1 NOTE 
 Empty note ignored                 Line    30: 1 NOTE 
 Empty note ignored                 Line    32: 1 NOTE 
 ',0);
-INSERT INTO "grampsdb_note" VALUES(64,'c2e7d9817594a0d00a51f363437','N0035','2012-06-10 22:25:15.579794','1969-12-31 19:00:00',NULL,0,NULL,3,'Patrick later became a very successful businessman getting into wholesale liquor sales, owning a coal company and becoming the president of a bank.',0);
-INSERT INTO "grampsdb_note" VALUES(65,'c2e7d98120727d077fef968bbd9','N0012','2012-06-10 22:25:15.583359','1969-12-31 19:00:00',NULL,0,NULL,3,'He enlisted in the Navy during World War II, and died during a naval flight.',0);
-INSERT INTO "grampsdb_note" VALUES(66,'c2e7d98036c6ae8226513082ccf','N0003','2012-06-10 22:25:15.592987','1969-12-31 19:00:00',NULL,0,NULL,3,'Was one of the youngest Bank Presidents in US history. ',0);
-INSERT INTO "grampsdb_note" VALUES(67,'c2e7d98175c2d61569f78381d82','N0036','2012-06-10 22:25:15.611030','1969-12-31 19:00:00',NULL,0,NULL,3,'His personality was mild-mannered, quiet and reserved, and he was viewed as a man of moderate habits.',0);
-INSERT INTO "grampsdb_note" VALUES(68,'c2e7d9813937f3aa990fe421c3b','N0022','2012-06-10 22:25:15.615958','1969-12-31 19:00:00',NULL,0,NULL,3,'She helped in the many political campaigns of her brother, John Fitzgerald.',0);
-INSERT INTO "grampsdb_note" VALUES(69,'c2e7d9813c8242eeee978eadc2c','N0025','2012-06-10 22:25:15.620937','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into INDI (individual) Gramps ID I0008:
+INSERT INTO "grampsdb_note" VALUES(30,'c30181e4b792156d1dc','N0021','2012-06-18 21:44:21.079465','1969-12-31 19:00:00',NULL,0,NULL,3,'1972 was the vice presidential candidate.',0);
+INSERT INTO "grampsdb_note" VALUES(31,'c30181e4de83804cdb2','N0028','2012-06-18 21:44:21.100167','1969-12-31 19:00:00',NULL,0,NULL,3,'He was very dedicated to his children and every evening had prayers with them, each of them saying the Rosary.',0);
+INSERT INTO "grampsdb_note" VALUES(32,'c30181e4de1058fc8ef','N0027','2012-06-18 21:44:21.134078','1969-12-31 19:00:00',NULL,0,NULL,3,'Robert Francis was assassinated in California during his 1968 presidential campaign.',0);
+INSERT INTO "grampsdb_note" VALUES(33,'c30181e51f513521e0b','N0034','2012-06-18 21:44:21.166711','1969-12-31 19:00:00',NULL,0,NULL,3,'Patrick was able to work his way from being a SaloonKeeper to becoming a Ward Boss, helping out other Irish immigrants. His popularity  rose and at the age of thirty he had become a power in Boston politics. In 1892 and 1893 he was elected to
+the Massachusetts Senate.',0);
+INSERT INTO "grampsdb_note" VALUES(34,'c30181e51f056e1b07f','N0033','2012-06-18 21:44:21.173860','1969-12-31 19:00:00',NULL,0,NULL,3,'As a young man, Patrick dropped out of school to work on the docks of Boston.',0);
+INSERT INTO "grampsdb_note" VALUES(35,'c30181e49fc547b92a6','N0009','2012-06-18 21:44:21.189726','1969-12-31 19:00:00',NULL,0,NULL,3,'She was very dedicated to her family, which was evident by the strong support she gave her sons in their political campaigns.',0);
+INSERT INTO "grampsdb_note" VALUES(36,'c30181e58c50c783cc5','N0070','2012-06-18 21:44:21.194085','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into Top Level:
 
-Empty note ignored                 Line   146: 1 NOTE 
-Empty note ignored                 Line   148: 1 NOTE 
+Line ignored as not understood     Line   720: 0 C3 CSTA
+Skipped subordinate line           Line   721: 1 NAME Illegitimate
 ',0);
-INSERT INTO "grampsdb_note" VALUES(70,'c2e7d9816d241b53f482b98497b','N0030','2012-06-10 22:25:15.623957','1969-12-31 19:00:00',NULL,0,NULL,3,'Enlisted in the Navy during World War II.',0);
-INSERT INTO "grampsdb_note" VALUES(71,'c2e7d981b191a44abef9463baad','N0064','2012-06-10 22:25:15.630233','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into SOUR (source) Gramps ID S0008:
+INSERT INTO "grampsdb_note" VALUES(37,'c30181e540a2e19ad0a','N0051','2012-06-18 21:44:21.202036','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into INDI (individual) Gramps ID I0052:
 
-Line ignored as not understood     Line   709: 1 NAME New York Times, Nov. 22, 1963.
+Empty note ignored                 Line   518: 1 NOTE 
+Empty note ignored                 Line   520: 1 NOTE 
+Empty note ignored                 Line   522: 1 NOTE 
 ',0);
-INSERT INTO "grampsdb_note" VALUES(72,'c2e7d9813b22ce4d81879099d8e','N0024','2012-06-10 22:25:15.655227','1969-12-31 19:00:00',NULL,0,NULL,3,'After her mother, Eunice was considered the family''s model woman.',0);
-INSERT INTO "grampsdb_note" VALUES(73,'c2e7d9813067e03c20efb9e575c','N0020','2012-06-10 22:25:15.658798','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into INDI (individual) Gramps ID I0006:
+INSERT INTO "grampsdb_note" VALUES(38,'c30181e49f256308ece','N0007','2012-06-18 21:44:21.220096','1969-12-31 19:00:00',NULL,0,NULL,3,'She graduated from high school, one of the three highest in a class of 285. She was then sent to finish school in Europe for two years.',0);
+INSERT INTO "grampsdb_note" VALUES(39,'c30181e580c172b9b4d','N0062','2012-06-18 21:44:21.233291','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into SOUR (source) Gramps ID S0006:
 
-Empty note ignored                 Line   122: 1 NOTE 
+Line ignored as not understood     Line   705: 1 NAME The Kennedys Dynasty and Disaster 1848-1983, by John H. Davis.
 ',0);
-INSERT INTO "grampsdb_note" VALUES(74,'c2e7d981b0262dd756d26ae93c4','N0063','2012-06-10 22:25:15.668950','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into SOUR (source) Gramps ID S0007:
+INSERT INTO "grampsdb_note" VALUES(40,'c30181e4aad15ee2787','N0015','2012-06-18 21:44:21.277133','1969-12-31 19:00:00',NULL,0,NULL,3,'She was born severely mentally retarded. For years her parents were ashamed of her and never told anyone about her problems.',0);
+INSERT INTO "grampsdb_note" VALUES(41,'c30181e58e428977473','N0072','2012-06-18 21:44:21.284088','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into Top Level:
+
+Line ignored as not understood     Line   724: 0 C5 CSTA
+Skipped subordinate line           Line   725: 1 NAME Stillborn
+',0);
+INSERT INTO "grampsdb_note" VALUES(42,'c30181e58286298635f','N0063','2012-06-18 21:44:21.290838','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into SOUR (source) Gramps ID S0007:
 
 Line ignored as not understood     Line   707: 1 NAME Growing Up Kennedy, Harrison Raine and John Quinn.
 ',0);
-INSERT INTO "grampsdb_note" VALUES(75,'c2e7d9811a83528a052fc9ccffb','N0006','2012-06-10 22:25:15.686765','1969-12-31 19:00:00',NULL,0,NULL,3,'She was considered the flower of Boston Irish society.',0);
-INSERT INTO "grampsdb_note" VALUES(76,'c2ea2e7680b58d99355e521b943','N0075','2012-06-11 16:08:37.769654','2012-06-11 16:08:36.006871','admin',0,'KFMnYzJlYTJlNzY4MGI1OGQ5OTM1NWU1MjFiOTQzJwpWTjAwNzUKcDEKKGxwMgpWIkJyaWRnZXBv
-cnQgTG9kZ2UsIE5vLiAxNjIsIEYuIGFuZCBBLiBNLiwgd2FzIGNoYXJ0ZXJlZCBNYXkgMjQsIDE4
-NTQsIEpvc2VwaCBILiBCYWxsYXJkLCBXLiBNLjsgTm9haCBSZWFnYW4sIFMuIFcuOyBTYW11ZWwg
-Ry4gT3dlbiwgSi4gVy4gVGhlIHByZXNlbnQgb2ZmaWNlcnMgb2YgdGhlIGxvZGdlIGFyZSBIdW1w
-aHJleSBGb3JzaGEsIFcuIE0uOyBQZXRlciBQLiBCbGFuaywgUy4gVy47IFdvb2Rmb3JkIFRob21w
-c29uLCBKLiBXLjsgRGFuaWVsIEJyb2Fkd2F5LCBUcmVhcy47IFIuIFcuIFRob21wc29uLCBTZWMu
-IFRoZSBsb2RnZSBoYXMgbm93IHRoaXJ0eS1maXZlIG1lbWJlcnMuIlx1MDAwYVx1MDAwYUZyb206
-XHUwMDBhXHUwMDBhaHR0cHM6Ly9zaXRlcy5nb29nbGUuY29tL3NpdGUvbWFyaW9uY291bnR5aW5n
-ZW53ZWIvaG9tZS90b3duc2hpcC1oaXN0b3JpZXMvd2F5bmUtdG93bnNoaXBcdTAwMGFcdTAwMGFc
-dTAwMGFcdTAwMGFTLlcuIHdhcyBwcm9iYWJseSAiU2VuaW9yIFdhcmRlbiIuXHUwMDBhXHUwMDBh
-IlRoZSBTZW5pb3IgV2FyZGVuIChzb21ldGltZXMga25vd24gYXMgRmlyc3QgV2FyZGVuKSBpcyB0
-aGUgc2Vjb25kIG9mIHRoZSB0aHJlZSBwcmluY2lwYWwgb2ZmaWNlcnMgb2YgYSBsb2RnZSwgYW5k
-IGlzIHRoZSBNYXN0ZXIncyBwcmluY2lwYWwgZGVwdXR5LiBVbmRlciBzb21lIGNvbnN0aXR1dGlv
-bnMsIGlmIHRoZSBXb3JzaGlwZnVsIE1hc3RlciBpcyBhYnNlbnQgdGhlbiB0aGUgU2VuaW9yIFdh
-cmRlbiBwcmVzaWRlcyBhdCBtZWV0aW5ncyBhcyAiYWN0aW5nIE1hc3RlciIsIGFuZCBtYXkgYWN0
-IGZvciB0aGUgTWFzdGVyIGluIGFsbCBtYXR0ZXJzIG9mIGxvZGdlIGJ1c2luZXNzLiBVbmRlciBv
-dGhlciBjb25zdGl0dXRpb25zLCBpbmNsdWRpbmcgR3JhbmQgTG9kZ2Ugb2YgRW5nbGFuZCBhbmQg
-R3JhbmQgTG9kZ2Ugb2YgSXJlbGFuZCwgb25seSBzaXR0aW5nIE1hc3RlcnMgb3IgUGFzdCBNYXN0
-ZXJzIG1heSBwcmVzaWRlIGFzICJhY3RpbmcgTWFzdGVyIiwgYW5kIHNvIHRoZSBTZW5pb3IgV2Fy
-ZGVuIGNhbm5vdCBmdWxmaWxsIHRoaXMgcm9sZSB1bmxlc3MgaGUgaXMgYWxzbyBhIFBhc3QgTWFz
-dGVyLiBJbiBtYW55IGxvZGdlcyBpdCBpcyBwcmVzdW1lZCB0aGF0IHRoZSBTZW5pb3IgV2FyZGVu
-IHdpbGwgYmVjb21lIHRoZSBuZXh0IFdvcnNoaXBmdWwgTWFzdGVyLiJcdTAwMGFcdTAwMGFodHRw
-Oi8vZW4ud2lraXBlZGlhLm9yZy93aWtpL01hc29uaWNfTG9kZ2VfT2ZmaWNlcnNcdTAwMGFcdTAw
-MGFGLiBhbmQgQS5NLiBiZWluZyBGcmVlIGFuZCBBY2NlcHRlZCBNYXNvbnNcdTAwMGFcdTAwMGFc
-dTAwMGFcdTAwMGEKcDMKYShscDQKKChJMwpWZm9udGZhY2UKdFYKKGxwNQooSTQ3MgpJMTE0MAp0
-cDYKYXRwNwphKChJMQpWaXRhbGljCnROKGxwOAooSTEyMTMKSTEyMzcKdHA5CmF0cDEwCmEoKEk4
-ClZsaW5rCnRWaHR0cDovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9NYXNvbmljX0xvZGdlX09mZmlj
-ZXJzCihscDExCihJMTE0MgpJMTE5Mwp0cDEyCmF0cDEzCmEoKEk4ClZsaW5rCnRWaHR0cHM6Ly9z
-aXRlcy5nb29nbGUuY29tL3NpdGUvbWFyaW9uY291bnR5aW5nZW53ZWIvaG9tZS90b3duc2hpcC1o
-aXN0b3JpZXMvd2F5bmUtdG93bnNoaXAKKGxwMTQKKEkzNDMKSTQzMgp0cDE1CmF0cDE2CmFhSTAw
-CihJMQpWR2VuZXJhbApwMTcKdEkxMzM5NDQ1MzE2Cih0STAwCnRwMTgKLg==
-',3,'"Bridgeport Lodge, No. 162, F. and A. M., was chartered May 24, 1854, Joseph H. Ballard, W. M.; Noah Reagan, S. W.; Samuel G. Owen, J. W. The present officers of the lodge are Humphrey Forsha, W. M.; Peter P. Blank, S. W.; Woodford Thompson, J. W.; Daniel Broadway, Treas.; R. W. Thompson, Sec. The lodge has now thirty-five members."
+INSERT INTO "grampsdb_note" VALUES(43,'c30181e510d4acb1be4','N0031','2012-06-18 21:44:21.300683','1969-12-31 19:00:00',NULL,0,NULL,3,'Was known as "Teddy".',0);
+INSERT INTO "grampsdb_note" VALUES(44,'c30181e58433ff4662b','N0064','2012-06-18 21:44:21.315767','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into SOUR (source) Gramps ID S0008:
 
-From:
-
-https://sites.google.com/site/marioncountyingenweb/home/township-histories/wayne-township
-
-
-
-S.W. was probably "Senior Warden".
-
-"The Senior Warden (sometimes known as First Warden) is the second of the three principal officers of a lodge, and is the Master''s principal deputy. Under some constitutions, if the Worshipful Master is absent then the Senior Warden presides at meetings as "acting Master", and may act for the Master in all matters of lodge business. Under other constitutions, including Grand Lodge of England and Grand Lodge of Ireland, only sitting Masters or Past Masters may preside as "acting Master", and so the Senior Warden cannot fulfill this role unless he is also a Past Master. In many lodges it is presumed that the Senior Warden will become the next Worshipful Master."
-
-http://en.wikipedia.org/wiki/Masonic_Lodge_Officers
-
-F. and A.M. being Free and Accepted Masons
-
-
-
+Line ignored as not understood     Line   709: 1 NAME New York Times, Nov. 22, 1963.
 ',0);
+INSERT INTO "grampsdb_note" VALUES(45,'c30181e4ba561d35a3e','N0022','2012-06-18 21:44:21.322180','1969-12-31 19:00:00',NULL,0,NULL,3,'She helped in the many political campaigns of her brother, John Fitzgerald.',0);
+INSERT INTO "grampsdb_note" VALUES(46,'c30181e52855e218b93','N0039','2012-06-18 21:44:21.338775','1969-12-31 19:00:00',NULL,0,NULL,3,'Upon Patrick''s arrival in Boston, he immediately became involved in politics. He was known as a Ward Boss in Boston, looking out for the other Irish immigrants and trying to improve the conditions in the community.',0);
+INSERT INTO "grampsdb_note" VALUES(47,'c30181e4a5c1f1539ba','N0011','2012-06-18 21:44:21.343892','1969-12-31 19:00:00',NULL,0,NULL,3,'Joseph Patrick was well liked, quick to smile, and had a tremendous dose of Irish charm.',0);
+INSERT INTO "grampsdb_note" VALUES(48,'c30181e4e0b597fafcc','N0029','2012-06-18 21:44:21.351143','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into INDI (individual) Gramps ID I0021:
+
+Empty note ignored                 Line   237: 1 NOTE 
+',0);
+INSERT INTO "grampsdb_note" VALUES(49,'c30181e587a25840546','N0066','2012-06-18 21:44:21.366664','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into SOUR (source) Gramps ID S0010:
+
+Line ignored as not understood     Line   713: 1 NAME CBS This Morning show.
+',0);
+INSERT INTO "grampsdb_note" VALUES(50,'c30181e58b55bdb0093','N0069','2012-06-18 21:44:21.384800','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into Top Level:
+
+Line ignored as not understood     Line   718: 0 C2 CSTA
+Skipped subordinate line           Line   719: 1 NAME Adopted
+',0);
+INSERT INTO "grampsdb_note" VALUES(51,'c30181e5298757a23fe','N0040','2012-06-18 21:44:21.390216','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into INDI (individual) Gramps ID I0046:
+
+Empty note ignored                 Line   438: 1 NOTE 
+',0);
+INSERT INTO "grampsdb_note" VALUES(52,'c30181e57d46954be30','N0060','2012-06-18 21:44:21.403552','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into SOUR (source) Gramps ID S0004:
+
+Line ignored as not understood     Line   701: 1 NAME New York Times, March 6, 1946.
+',0);
+INSERT INTO "grampsdb_note" VALUES(53,'c30181e49f80ef08a92','N0008','2012-06-18 21:44:21.412937','1969-12-31 19:00:00',NULL,0,NULL,3,'She was courted by some of the finest young men, not only Boston''s Irish, but members of the English nobility as well.',0);
+INSERT INTO "grampsdb_note" VALUES(54,'c30181e4a836d692953','N0014','2012-06-18 21:44:21.419299','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into INDI (individual) Gramps ID I0003:
+
+Empty note ignored                 Line    82: 1 NOTE 
+Empty note ignored                 Line    84: 1 NOTE 
+',0);
+INSERT INTO "grampsdb_note" VALUES(55,'c30181e49ed00f988ea','N0006','2012-06-18 21:44:21.458329','1969-12-31 19:00:00',NULL,0,NULL,3,'She was considered the flower of Boston Irish society.',0);
+INSERT INTO "grampsdb_note" VALUES(56,'c30181e52001a69e6d0','N0036','2012-06-18 21:44:21.476123','1969-12-31 19:00:00',NULL,0,NULL,3,'His personality was mild-mannered, quiet and reserved, and he was viewed as a man of moderate habits.',0);
+INSERT INTO "grampsdb_note" VALUES(57,'c30181e589627577ffa','N0067','2012-06-18 21:44:21.479833','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into SOUR (source) Gramps ID S0011:
+
+Line ignored as not understood     Line   715: 1 NAME Harrisburg Patriot News, January 25, 1995.
+',0);
+INSERT INTO "grampsdb_note" VALUES(58,'c30181e49514eaec76c','N0004','2012-06-18 21:44:21.501828','1969-12-31 19:00:00',NULL,0,NULL,3,'He was fiercely proud of his family. He was quoted as having said his family was the finest thing in his life. ',0);
+INSERT INTO "grampsdb_note" VALUES(59,'c30181e54652307dedf','N0054','2012-06-18 21:44:21.514027','1969-12-31 19:00:00',NULL,0,NULL,3,'While dating JFK, Jackie did not want him to know that she was not rich and think that she was only marrying him for his money. So, she went to great lengths to appear rich.',0);
+INSERT INTO "grampsdb_note" VALUES(60,'c30181e4bb07a225ea5','N0024','2012-06-18 21:44:21.527816','1969-12-31 19:00:00',NULL,0,NULL,3,'After her mother, Eunice was considered the family''s model woman.',0);
+INSERT INTO "grampsdb_note" VALUES(61,'c30181e510919967bbc','N0030','2012-06-18 21:44:21.539317','1969-12-31 19:00:00',NULL,0,NULL,3,'Enlisted in the Navy during World War II.',0);
+INSERT INTO "grampsdb_note" VALUES(62,'c30181e53e80a60db4d','N0050','2012-06-18 21:44:21.576251','1969-12-31 19:00:00',NULL,0,NULL,3,'He was assassinated in Dallas, TX.',0);
+INSERT INTO "grampsdb_note" VALUES(63,'c30181e545744f38427','N0052','2012-06-18 21:44:21.605113','1969-12-31 19:00:00',NULL,0,NULL,3,'<img src="http://www.jacqueslowe.com/html/photographs/jackie/images/Jacky01bw.jpg" border=1>',0);
+INSERT INTO "grampsdb_note" VALUES(64,'c30181e546b4cf41c3c','N0055','2012-06-18 21:44:21.608600','1969-12-31 19:00:00',NULL,0,NULL,3,'She was said to be the only First Lady to resemble royalty. She shunned the media and never publicly discussed the assassination of JFK, how she felt about it, or the alleged affairs of her first husband.',0);
+INSERT INTO "grampsdb_note" VALUES(65,'c30181e579d41d2d22b','N0058','2012-06-18 21:44:21.612327','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into SOUR (source) Gramps ID S0002:
+
+Line ignored as not understood     Line   697: 1 NAME Rose, by Gail Cameron.
+',0);
+INSERT INTO "grampsdb_note" VALUES(66,'c30181e4ab2407624c2','N0016','2012-06-18 21:44:21.619488','1969-12-31 19:00:00',NULL,0,NULL,3,'In 1946 her father gave $600,000 for the construction of the Joseph P. Kennedy Jr. Convalescent Home for disadvantaged children, because of Rosemary''s condition.',0);
+INSERT INTO "grampsdb_note" VALUES(67,'c30181e52234f9a30bc','N0037','2012-06-18 21:44:21.625869','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into INDI (individual) Gramps ID I0044:
+
+Empty note ignored                 Line   402: 1 NOTE 
+Empty note ignored                 Line   405: 1 NOTE 
+Empty note ignored                 Line   407: 1 NOTE 
+',0);
+INSERT INTO "grampsdb_note" VALUES(68,'c30181e493a64d2db2e','N0000','2012-06-18 21:44:21.633597','1969-12-31 19:00:00',NULL,0,NULL,3,'From the time he was a school boy he was interested in making money.',0);
+INSERT INTO "grampsdb_note" VALUES(69,'c30181e585f010c35cd','N0065','2012-06-18 21:44:21.647605','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into SOUR (source) Gramps ID S0009:
+
+Line ignored as not understood     Line   711: 1 NAME Harrisburg Patriot News, 23 May 1994.
+',0);
+INSERT INTO "grampsdb_note" VALUES(70,'c30181e4a610a2e3911','N0012','2012-06-18 21:44:21.667154','1969-12-31 19:00:00',NULL,0,NULL,3,'He enlisted in the Navy during World War II, and died during a naval flight.',0);
+INSERT INTO "grampsdb_note" VALUES(71,'c30181e4a671cdf9e0b','N0013','2012-06-18 21:44:21.673098','1969-12-31 19:00:00',NULL,0,NULL,3,'He was known as Jack.',0);
+INSERT INTO "grampsdb_note" VALUES(72,'c30181e532f12af9357','N0044','2012-06-18 21:44:21.684874','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into INDI (individual) Gramps ID I0048:
+
+Empty note ignored                 Line   473: 1 NOTE 
+',0);
+INSERT INTO "grampsdb_note" VALUES(73,'c30181e53205b8153b0','N0043','2012-06-18 21:44:21.709355','1969-12-31 19:00:00',NULL,0,NULL,3,'He was known to drink alcohol excessively.',0);
+INSERT INTO "grampsdb_note" VALUES(74,'c30181e512f6668bc46','N0032','2012-06-18 21:44:21.715917','1969-12-31 19:00:00',NULL,0,NULL,27,'Records not imported into INDI (individual) Gramps ID I0039:
+
+Empty note ignored                 Line   359: 1 NOTE 
+',0);
+INSERT INTO "grampsdb_note" VALUES(75,'c30181e53df1a89fbf1','N0049','2012-06-18 21:44:21.738887','1969-12-31 19:00:00',NULL,0,NULL,3,'He had personal finances that were estimated to be around $10 million while in the Presidency.',0);
 CREATE TABLE "grampsdb_surname" (
     "id" integer NOT NULL PRIMARY KEY,
     "name_origin_type_id" integer NOT NULL REFERENCES "grampsdb_nameorigintype" ("id"),
@@ -1546,75 +1589,75 @@ CREATE TABLE "grampsdb_surname" (
     "name_id" integer NOT NULL,
     "order" integer unsigned NOT NULL
 );
-INSERT INTO "grampsdb_surname" VALUES(1,1,'BOUVIER','',1,'',1,1);
+INSERT INTO "grampsdb_surname" VALUES(1,1,'FITZGERALD','',1,'',1,1);
 INSERT INTO "grampsdb_surname" VALUES(2,1,'KENNEDY','',1,'',2,1);
-INSERT INTO "grampsdb_surname" VALUES(3,1,'CAULFIELD','',1,'',3,1);
-INSERT INTO "grampsdb_surname" VALUES(4,1,'BENNETT','',1,'',4,1);
-INSERT INTO "grampsdb_surname" VALUES(5,1,'BOUVIER','',1,'',5,1);
-INSERT INTO "grampsdb_surname" VALUES(6,1,'KENNEDY','',1,'',6,1);
+INSERT INTO "grampsdb_surname" VALUES(3,1,'KENNEDY','',1,'',3,1);
+INSERT INTO "grampsdb_surname" VALUES(4,1,'KENNEDY','',1,'',4,1);
+INSERT INTO "grampsdb_surname" VALUES(5,1,'BURKE','',1,'',5,1);
+INSERT INTO "grampsdb_surname" VALUES(6,1,'SHRIVER','',1,'',6,1);
 INSERT INTO "grampsdb_surname" VALUES(7,1,'KENNEDY','',1,'',7,1);
-INSERT INTO "grampsdb_surname" VALUES(8,1,'SHRIVER','',1,'',8,1);
+INSERT INTO "grampsdb_surname" VALUES(8,1,'ONASSIS','',1,'',8,1);
 INSERT INTO "grampsdb_surname" VALUES(9,1,'KENNEDY','',1,'',9,1);
-INSERT INTO "grampsdb_surname" VALUES(10,1,'SMITH','',1,'',10,1);
-INSERT INTO "grampsdb_surname" VALUES(11,1,'SCHWARZENEGGER','',1,'',11,1);
-INSERT INTO "grampsdb_surname" VALUES(12,1,'SHRIVER','',1,'',12,1);
-INSERT INTO "grampsdb_surname" VALUES(13,1,'KENNEDY','',1,'',13,1);
-INSERT INTO "grampsdb_surname" VALUES(14,1,'CAVENDISH','',1,'',14,1);
-INSERT INTO "grampsdb_surname" VALUES(15,1,'LAWFORD','',1,'',15,1);
-INSERT INTO "grampsdb_surname" VALUES(16,1,'SKAKEL','',1,'',16,1);
-INSERT INTO "grampsdb_surname" VALUES(17,1,'SMITH','',1,'',17,1);
+INSERT INTO "grampsdb_surname" VALUES(10,1,'KENNEDY','',1,'',10,1);
+INSERT INTO "grampsdb_surname" VALUES(11,1,'LAWFORD','',1,'',11,1);
+INSERT INTO "grampsdb_surname" VALUES(12,1,'KENNEDY','',1,'',12,1);
+INSERT INTO "grampsdb_surname" VALUES(13,1,'LAWFORD','',1,'',13,1);
+INSERT INTO "grampsdb_surname" VALUES(14,1,'KENNEDY','',1,'',14,1);
+INSERT INTO "grampsdb_surname" VALUES(15,1,'BENNETT','',1,'',15,1);
+INSERT INTO "grampsdb_surname" VALUES(16,1,'BOUVIER','',1,'',16,1);
+INSERT INTO "grampsdb_surname" VALUES(17,1,'KENNEDY','',1,'',17,1);
 INSERT INTO "grampsdb_surname" VALUES(18,1,'KENNEDY','',1,'',18,1);
 INSERT INTO "grampsdb_surname" VALUES(19,1,'KENNEDY','',1,'',19,1);
-INSERT INTO "grampsdb_surname" VALUES(20,1,'MAHONEY','',1,'',20,1);
+INSERT INTO "grampsdb_surname" VALUES(20,1,'CAULFIELD','',1,'',20,1);
 INSERT INTO "grampsdb_surname" VALUES(21,1,'KENNEDY','',1,'',21,1);
-INSERT INTO "grampsdb_surname" VALUES(22,1,'KENNEDY','',1,'',22,1);
-INSERT INTO "grampsdb_surname" VALUES(23,1,'KENNEDY','',1,'',23,1);
+INSERT INTO "grampsdb_surname" VALUES(22,1,'SMITH','',1,'',22,1);
+INSERT INTO "grampsdb_surname" VALUES(23,1,'LAWFORD','',1,'',23,1);
 INSERT INTO "grampsdb_surname" VALUES(24,1,'KENNEDY','',1,'',24,1);
-INSERT INTO "grampsdb_surname" VALUES(25,1,'LEE','',1,'',25,1);
+INSERT INTO "grampsdb_surname" VALUES(25,1,'ACHINCLOSS','',1,'',25,1);
 INSERT INTO "grampsdb_surname" VALUES(26,1,'KENNEDY','',1,'',26,1);
-INSERT INTO "grampsdb_surname" VALUES(27,1,'KENNEDY','',1,'',27,1);
-INSERT INTO "grampsdb_surname" VALUES(28,1,'FITZGERALD','',1,'',28,1);
-INSERT INTO "grampsdb_surname" VALUES(29,1,'ACHINCLOSS','',1,'',29,1);
+INSERT INTO "grampsdb_surname" VALUES(27,1,'FITZGERALD','',1,'',27,1);
+INSERT INTO "grampsdb_surname" VALUES(28,1,'KENNEDY','',1,'',28,1);
+INSERT INTO "grampsdb_surname" VALUES(29,1,'KANE','',1,'',29,1);
 INSERT INTO "grampsdb_surname" VALUES(30,1,'KENNEDY','',1,'',30,1);
-INSERT INTO "grampsdb_surname" VALUES(31,1,'KANE','',1,'',31,1);
+INSERT INTO "grampsdb_surname" VALUES(31,1,'KENNEDY','',1,'',31,1);
 INSERT INTO "grampsdb_surname" VALUES(32,1,'KENNEDY','',1,'',32,1);
-INSERT INTO "grampsdb_surname" VALUES(33,1,'FITZGERALD','',1,'',33,1);
-INSERT INTO "grampsdb_surname" VALUES(34,1,'MURPHY','',1,'',34,1);
-INSERT INTO "grampsdb_surname" VALUES(35,1,'KENNEDY','',1,'',35,1);
-INSERT INTO "grampsdb_surname" VALUES(36,1,'LAWFORD','',1,'',36,1);
-INSERT INTO "grampsdb_surname" VALUES(37,1,'KENNEDY','',1,'',37,1);
+INSERT INTO "grampsdb_surname" VALUES(33,1,'KENNEDY','',1,'',33,1);
+INSERT INTO "grampsdb_surname" VALUES(34,1,'KENNEDY','',1,'',34,1);
+INSERT INTO "grampsdb_surname" VALUES(35,1,'SHRIVER','',1,'',35,1);
+INSERT INTO "grampsdb_surname" VALUES(36,1,'SHRIVER','',1,'',36,1);
+INSERT INTO "grampsdb_surname" VALUES(37,1,'HANNON','',1,'',37,1);
 INSERT INTO "grampsdb_surname" VALUES(38,1,'SHRIVER','',1,'',38,1);
 INSERT INTO "grampsdb_surname" VALUES(39,1,'KENNEDY','',1,'',39,1);
-INSERT INTO "grampsdb_surname" VALUES(40,1,'BURKE','',1,'',40,1);
+INSERT INTO "grampsdb_surname" VALUES(40,1,'MURPHY','',1,'',40,1);
 INSERT INTO "grampsdb_surname" VALUES(41,1,'SMITH','',1,'',41,1);
-INSERT INTO "grampsdb_surname" VALUES(42,1,'KENNEDY','',1,'',42,1);
-INSERT INTO "grampsdb_surname" VALUES(43,1,'HICKEY','',1,'',43,1);
-INSERT INTO "grampsdb_surname" VALUES(44,1,'LAWFORD','',1,'',44,1);
+INSERT INTO "grampsdb_surname" VALUES(42,1,'MAHONEY','',1,'',42,1);
+INSERT INTO "grampsdb_surname" VALUES(43,1,'KENNEDY','',1,'',43,1);
+INSERT INTO "grampsdb_surname" VALUES(44,1,'KENNEDY','',1,'',44,1);
 INSERT INTO "grampsdb_surname" VALUES(45,1,'KENNEDY','',1,'',45,1);
 INSERT INTO "grampsdb_surname" VALUES(46,1,'SMITH','',1,'',46,1);
-INSERT INTO "grampsdb_surname" VALUES(47,1,'KENNEDY','',1,'',47,1);
+INSERT INTO "grampsdb_surname" VALUES(47,1,'SKAKEL','',1,'',47,1);
 INSERT INTO "grampsdb_surname" VALUES(48,1,'KENNEDY','',1,'',48,1);
-INSERT INTO "grampsdb_surname" VALUES(49,1,'HANNON','',1,'',49,1);
+INSERT INTO "grampsdb_surname" VALUES(49,1,'KENNEDY','',1,'',49,1);
 INSERT INTO "grampsdb_surname" VALUES(50,1,'KENNEDY','',1,'',50,1);
 INSERT INTO "grampsdb_surname" VALUES(51,1,'KENNEDY','',1,'',51,1);
-INSERT INTO "grampsdb_surname" VALUES(52,1,'KENNEDY','',1,'',52,1);
-INSERT INTO "grampsdb_surname" VALUES(53,1,'SHRIVER','',1,'',53,1);
-INSERT INTO "grampsdb_surname" VALUES(54,1,'KENNEDY','',1,'',54,1);
+INSERT INTO "grampsdb_surname" VALUES(52,1,'CAVENDISH','',1,'',52,1);
+INSERT INTO "grampsdb_surname" VALUES(53,1,'BOUVIER','',1,'',53,1);
+INSERT INTO "grampsdb_surname" VALUES(54,1,'LAWFORD','',1,'',54,1);
 INSERT INTO "grampsdb_surname" VALUES(55,1,'KENNEDY','',1,'',55,1);
-INSERT INTO "grampsdb_surname" VALUES(56,1,'KENNEDY','',1,'',56,1);
-INSERT INTO "grampsdb_surname" VALUES(57,1,'LAWFORD','',1,'',57,1);
-INSERT INTO "grampsdb_surname" VALUES(58,1,'SHRIVER','',1,'',58,1);
+INSERT INTO "grampsdb_surname" VALUES(56,1,'SHRIVER','',1,'',56,1);
+INSERT INTO "grampsdb_surname" VALUES(57,1,'BOUVIER','',1,'',57,1);
+INSERT INTO "grampsdb_surname" VALUES(58,1,'SCHWARZENEGGER','',1,'',58,1);
 INSERT INTO "grampsdb_surname" VALUES(59,1,'KENNEDY','',1,'',59,1);
-INSERT INTO "grampsdb_surname" VALUES(60,1,'KENNEDY','',1,'',60,1);
+INSERT INTO "grampsdb_surname" VALUES(60,1,'LEE','',1,'',60,1);
 INSERT INTO "grampsdb_surname" VALUES(61,1,'KENNEDY','',1,'',61,1);
 INSERT INTO "grampsdb_surname" VALUES(62,1,'KENNEDY','',1,'',62,1);
-INSERT INTO "grampsdb_surname" VALUES(63,1,'ONASSIS','',1,'',63,1);
-INSERT INTO "grampsdb_surname" VALUES(64,1,'KENNEDY','',1,'',64,1);
+INSERT INTO "grampsdb_surname" VALUES(63,1,'HICKEY','',1,'',63,1);
+INSERT INTO "grampsdb_surname" VALUES(64,1,'SMITH','',1,'',64,1);
 INSERT INTO "grampsdb_surname" VALUES(65,1,'SHRIVER','',1,'',65,1);
-INSERT INTO "grampsdb_surname" VALUES(66,1,'LAWFORD','',1,'',66,1);
-INSERT INTO "grampsdb_surname" VALUES(67,1,'KENNEDY','',1,'',67,1);
+INSERT INTO "grampsdb_surname" VALUES(66,1,'KENNEDY','',1,'',66,1);
+INSERT INTO "grampsdb_surname" VALUES(67,1,'LAWFORD','',1,'',67,1);
 INSERT INTO "grampsdb_surname" VALUES(68,1,'KENNEDY','',1,'',68,1);
-INSERT INTO "grampsdb_surname" VALUES(69,1,'BOUVIER','',1,'',69,1);
+INSERT INTO "grampsdb_surname" VALUES(69,1,'KENNEDY','',1,'',69,1);
 CREATE TABLE "grampsdb_name" (
     "id" integer NOT NULL PRIMARY KEY,
     "calendar" integer NOT NULL,
@@ -1649,75 +1692,75 @@ CREATE TABLE "grampsdb_name" (
     "display_as_id" integer NOT NULL REFERENCES "grampsdb_nameformattype" ("id"),
     "person_id" integer NOT NULL REFERENCES "grampsdb_person" ("id")
 );
-INSERT INTO "grampsdb_name" VALUES(1,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:15.706415',NULL,NULL,1,4,1,'John Vernou','','','','','','',1,1,1);
-INSERT INTO "grampsdb_name" VALUES(2,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:15.768043',NULL,NULL,1,4,1,'Douglas Harriman','','','','','','',1,1,2);
-INSERT INTO "grampsdb_name" VALUES(3,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:15.791663',NULL,NULL,1,4,1,'John T.','','','','','','',1,1,3);
-INSERT INTO "grampsdb_name" VALUES(4,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:15.814243',NULL,NULL,1,4,1,'Virginia Joan','','','','','','',1,1,4);
-INSERT INTO "grampsdb_name" VALUES(5,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:15.854161',NULL,NULL,1,4,1,'Lee','','','','','','',1,1,5);
-INSERT INTO "grampsdb_name" VALUES(6,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:15.868407',NULL,NULL,1,4,1,'Margaret','','','','','','',1,1,6);
-INSERT INTO "grampsdb_name" VALUES(7,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:15.894945',NULL,NULL,1,4,1,'Patrick','','','','','','',1,1,7);
-INSERT INTO "grampsdb_name" VALUES(8,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:15.973452',NULL,NULL,1,4,1,'Anthony Paul','','','','','','',1,1,8);
-INSERT INTO "grampsdb_name" VALUES(9,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:16.010894',NULL,NULL,1,4,1,'Michael L.','','','','','','',1,1,9);
-INSERT INTO "grampsdb_name" VALUES(10,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:16.042774',NULL,NULL,1,4,1,'Stephen','','','','','','',1,1,10);
-INSERT INTO "grampsdb_name" VALUES(11,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:16.059691',NULL,NULL,1,4,1,'Arnold','','','','','','',1,1,11);
-INSERT INTO "grampsdb_name" VALUES(12,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:16.090555',NULL,NULL,1,4,1,'Robert Sargent','','','','','','',1,1,12);
-INSERT INTO "grampsdb_name" VALUES(13,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:16.134784',NULL,NULL,1,4,1,'Christopher George','','','','','','',1,1,13);
-INSERT INTO "grampsdb_name" VALUES(14,0,0,0,0,0,0,0,NULL,NULL,NULL,NULL,'',0,0,0,'2012-06-11 16:36:17.222852','2012-06-11 16:36:17.220356','admin',1,4,1,'William John Robert','','','','','','',1,1,14);
-INSERT INTO "grampsdb_name" VALUES(15,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:16.190702',NULL,NULL,1,4,1,'Christopher','','','','','','',1,1,15);
-INSERT INTO "grampsdb_name" VALUES(16,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:16.214403',NULL,NULL,1,4,1,'Ethel','','','','','','',1,1,16);
-INSERT INTO "grampsdb_name" VALUES(17,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:16.237610',NULL,NULL,1,4,1,'William Kennedy','','','','','','',1,1,17);
-INSERT INTO "grampsdb_name" VALUES(18,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:16.263117',NULL,NULL,1,4,1,'Johanna','','','','','','',1,1,18);
-INSERT INTO "grampsdb_name" VALUES(19,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:16.289812',NULL,NULL,1,4,1,'Mary','','','','','','',1,1,19);
-INSERT INTO "grampsdb_name" VALUES(20,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:16.320848',NULL,NULL,1,4,1,'Humphrey','','','','','','',1,1,20);
-INSERT INTO "grampsdb_name" VALUES(21,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:16.341306',NULL,NULL,1,4,1,'Robert Francis','','','','','','',1,1,21);
-INSERT INTO "grampsdb_name" VALUES(22,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:16.409696',NULL,NULL,1,4,1,'Robert Francis','','','','','','',1,1,22);
-INSERT INTO "grampsdb_name" VALUES(23,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:16.447369',NULL,NULL,1,4,1,'Joseph Patrick','','','','','','',1,1,23);
-INSERT INTO "grampsdb_name" VALUES(24,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:16.580991',NULL,NULL,1,4,1,'David Anthony','','','','','','',1,1,24);
-INSERT INTO "grampsdb_name" VALUES(25,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:16.658227',NULL,NULL,1,4,1,'Janet','','','','','','',1,1,25);
-INSERT INTO "grampsdb_name" VALUES(26,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:16.703581',NULL,NULL,1,4,1,'Kathleen Hartington','','','','','','',1,1,26);
-INSERT INTO "grampsdb_name" VALUES(27,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:16.754974',NULL,NULL,1,4,1,'Edward Moore','','','','','','',1,1,27);
-INSERT INTO "grampsdb_name" VALUES(28,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:16.810884',NULL,NULL,1,4,1,'John F.','','','','','','',1,1,28);
-INSERT INTO "grampsdb_name" VALUES(29,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:16.834303',NULL,NULL,1,4,1,'Hugh','','','','','','',1,1,29);
-INSERT INTO "grampsdb_name" VALUES(30,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:16.857778',NULL,NULL,1,4,1,'Mary Kerry','','','','','','',1,1,30);
-INSERT INTO "grampsdb_name" VALUES(31,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:16.882283',NULL,NULL,1,4,1,'Laurence','','','','','','',1,1,31);
-INSERT INTO "grampsdb_name" VALUES(32,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:16.948261',NULL,NULL,1,4,1,'Patrick Joseph','','','','','','',1,1,32);
-INSERT INTO "grampsdb_name" VALUES(33,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:17.001740',NULL,NULL,1,4,1,'Rose','','','','','','',1,1,33);
-INSERT INTO "grampsdb_name" VALUES(34,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:17.073183',NULL,NULL,1,4,1,'Bridget','','','','','','',1,1,34);
-INSERT INTO "grampsdb_name" VALUES(35,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:17.205911',NULL,NULL,1,4,1,'Rosemary','','','','','','',1,1,35);
-INSERT INTO "grampsdb_name" VALUES(36,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:17.242658',NULL,NULL,1,4,1,'Robin','','','','','','',1,1,36);
-INSERT INTO "grampsdb_name" VALUES(37,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:17.259040',NULL,NULL,1,4,1,'Joseph Patrick','','','','','','',1,1,37);
-INSERT INTO "grampsdb_name" VALUES(38,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:17.282391',NULL,NULL,1,4,1,'Mark Kennedy','','','','','','',1,1,38);
-INSERT INTO "grampsdb_name" VALUES(39,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:17.306163',NULL,NULL,1,4,1,'Matthew Maxwell Taylor','','','','','','',1,1,39);
-INSERT INTO "grampsdb_name" VALUES(40,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:17.331975',NULL,NULL,1,4,1,'Charles','','','','','','',1,1,40);
-INSERT INTO "grampsdb_name" VALUES(41,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:17.354257',NULL,NULL,1,4,1,'Amanda','','','','','','',1,1,41);
-INSERT INTO "grampsdb_name" VALUES(42,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:17.397072',NULL,NULL,1,4,1,'Jean Ann','','','','','','',1,1,42);
-INSERT INTO "grampsdb_name" VALUES(43,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:17.429764',NULL,NULL,1,4,1,'Mary Augusta','','','','','','',1,1,43);
-INSERT INTO "grampsdb_name" VALUES(44,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:17.459013',NULL,NULL,1,4,1,'Victoria','','','','','','',1,1,44);
-INSERT INTO "grampsdb_name" VALUES(45,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:17.473221',NULL,NULL,1,4,1,'Edward More','','','','','','',1,1,45);
-INSERT INTO "grampsdb_name" VALUES(46,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:17.509848',NULL,NULL,1,4,1,'Stephen Edward','','','','','','',1,1,46);
-INSERT INTO "grampsdb_name" VALUES(47,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:17.535139',NULL,NULL,1,4,1,'Rory Elizabeth','','','','','','',1,1,47);
-INSERT INTO "grampsdb_name" VALUES(48,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:17.571996',NULL,NULL,1,4,1,'Patrick Joseph','','','','','','',1,1,48);
-INSERT INTO "grampsdb_name" VALUES(49,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:17.674620',NULL,NULL,1,4,1,'Josephine Mary','','','','','','',1,1,49);
-INSERT INTO "grampsdb_name" VALUES(50,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:17.688988',NULL,NULL,1,4,1,'Margaret','','','','','','',1,1,50);
-INSERT INTO "grampsdb_name" VALUES(51,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:17.724747',NULL,NULL,1,4,1,'John Fitzgerald','','','','','','',1,1,51);
-INSERT INTO "grampsdb_name" VALUES(52,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:17.825063',NULL,NULL,1,4,1,'Loretta','','','','','','',1,1,52);
-INSERT INTO "grampsdb_name" VALUES(53,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:17.879357',NULL,NULL,1,4,1,'Robert Sargent','','','','','','',1,1,53);
-INSERT INTO "grampsdb_name" VALUES(54,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:17.946749',NULL,NULL,1,4,1,'Mary Courtney','','','','','','',1,1,54);
-INSERT INTO "grampsdb_name" VALUES(55,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:17.978712',NULL,NULL,1,4,1,'Kara Ann','','','','','','',1,1,55);
-INSERT INTO "grampsdb_name" VALUES(56,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:18.021259',NULL,NULL,1,4,1,'Eunice Mary','','','','','','',1,1,56);
-INSERT INTO "grampsdb_name" VALUES(57,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:18.086384',NULL,NULL,1,4,1,'Peter','','','','','','',1,1,57);
-INSERT INTO "grampsdb_name" VALUES(58,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:18.119533',NULL,NULL,1,4,1,'Maria','','','','','','',1,1,58);
-INSERT INTO "grampsdb_name" VALUES(59,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:18.193174',NULL,NULL,1,4,1,'John Fitzgerald','','','','','','',1,1,59);
-INSERT INTO "grampsdb_name" VALUES(60,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:18.245209',NULL,NULL,1,4,1,'John','','','','','','',1,1,60);
-INSERT INTO "grampsdb_name" VALUES(61,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:18.278605',NULL,NULL,1,4,1,'Caroline Bouvier','','','','','','',1,1,61);
-INSERT INTO "grampsdb_name" VALUES(62,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:18.334116',NULL,NULL,1,4,1,'Patrick Bouvier','','','','','','',1,1,62);
-INSERT INTO "grampsdb_name" VALUES(63,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:18.390866',NULL,NULL,1,4,1,'Aristotle','','','','','','',1,1,63);
-INSERT INTO "grampsdb_name" VALUES(64,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:18.418868',NULL,NULL,1,4,1,'Patricia','','','','','','',1,1,64);
-INSERT INTO "grampsdb_name" VALUES(65,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:18.452264',NULL,NULL,1,4,1,'Timothy','','','','','','',1,1,65);
-INSERT INTO "grampsdb_name" VALUES(66,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:18.466609',NULL,NULL,1,4,1,'Sydney','','','','','','',1,1,66);
-INSERT INTO "grampsdb_name" VALUES(67,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:18.482156',NULL,NULL,1,4,1,'Kathleen','','','','','','',1,1,67);
-INSERT INTO "grampsdb_name" VALUES(68,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-10 22:25:18.526609',NULL,NULL,1,4,1,'Joseph Patrick','','','','','','',1,1,68);
-INSERT INTO "grampsdb_name" VALUES(69,0,0,0,0,0,0,0,NULL,NULL,NULL,NULL,'',0,0,0,'2012-06-11 16:33:07.312620','2012-06-11 16:33:07.310642','admin',1,4,1,'Jacqueline','','','','','','',1,1,69);
+INSERT INTO "grampsdb_name" VALUES(1,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:21.807222',NULL,NULL,1,4,1,'John F.','','','','','','',1,1,1);
+INSERT INTO "grampsdb_name" VALUES(2,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:21.859574',NULL,NULL,1,4,1,'Patricia','','','','','','',1,1,2);
+INSERT INTO "grampsdb_name" VALUES(3,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:21.921215',NULL,NULL,1,4,1,'John Fitzgerald','','','','','','',1,1,3);
+INSERT INTO "grampsdb_name" VALUES(4,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:22.062340',NULL,NULL,1,4,1,'Johanna','','','','','','',1,1,4);
+INSERT INTO "grampsdb_name" VALUES(5,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:22.110030',NULL,NULL,1,4,1,'Charles','','','','','','',1,1,5);
+INSERT INTO "grampsdb_name" VALUES(6,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:22.137585',NULL,NULL,1,4,1,'Mark Kennedy','','','','','','',1,1,6);
+INSERT INTO "grampsdb_name" VALUES(7,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:22.178340',NULL,NULL,1,4,1,'Joseph Patrick','','','','','','',1,1,7);
+INSERT INTO "grampsdb_name" VALUES(8,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:22.305663',NULL,NULL,1,4,1,'Aristotle','','','','','','',1,1,8);
+INSERT INTO "grampsdb_name" VALUES(9,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:22.334069',NULL,NULL,1,4,1,'Kara Ann','','','','','','',1,1,9);
+INSERT INTO "grampsdb_name" VALUES(10,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:22.384535',NULL,NULL,1,4,1,'Christopher George','','','','','','',1,1,10);
+INSERT INTO "grampsdb_name" VALUES(11,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:22.443888',NULL,NULL,1,4,1,'Robin','','','','','','',1,1,11);
+INSERT INTO "grampsdb_name" VALUES(12,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:22.488577',NULL,NULL,1,4,1,'John','','','','','','',1,1,12);
+INSERT INTO "grampsdb_name" VALUES(13,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:22.569315',NULL,NULL,1,4,1,'Christopher','','','','','','',1,1,13);
+INSERT INTO "grampsdb_name" VALUES(14,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:22.617424',NULL,NULL,1,4,1,'Robert Francis','','','','','','',1,1,14);
+INSERT INTO "grampsdb_name" VALUES(15,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:22.673135',NULL,NULL,1,4,1,'Virginia Joan','','','','','','',1,1,15);
+INSERT INTO "grampsdb_name" VALUES(16,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:22.731517',NULL,NULL,1,4,1,'Lee','','','','','','',1,1,16);
+INSERT INTO "grampsdb_name" VALUES(17,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:22.757190',NULL,NULL,1,4,1,'Rosemary','','','','','','',1,1,17);
+INSERT INTO "grampsdb_name" VALUES(18,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:22.828143',NULL,NULL,1,4,1,'Edward More','','','','','','',1,1,18);
+INSERT INTO "grampsdb_name" VALUES(19,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:22.890920',NULL,NULL,1,4,1,'Caroline Bouvier','','','','','','',1,1,19);
+INSERT INTO "grampsdb_name" VALUES(20,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:23.004684',NULL,NULL,1,4,1,'John T.','','','','','','',1,1,20);
+INSERT INTO "grampsdb_name" VALUES(21,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:23.047577',NULL,NULL,1,4,1,'Robert Francis','','','','','','',1,1,21);
+INSERT INTO "grampsdb_name" VALUES(22,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:23.162394',NULL,NULL,1,4,1,'Amanda','','','','','','',1,1,22);
+INSERT INTO "grampsdb_name" VALUES(23,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:23.199056',NULL,NULL,1,4,1,'Sydney','','','','','','',1,1,23);
+INSERT INTO "grampsdb_name" VALUES(24,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:23.330323',NULL,NULL,1,4,1,'Edward Moore','','','','','','',1,1,24);
+INSERT INTO "grampsdb_name" VALUES(25,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:23.490745',NULL,NULL,1,4,1,'Hugh','','','','','','',1,1,25);
+INSERT INTO "grampsdb_name" VALUES(26,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:23.520967',NULL,NULL,1,4,1,'Douglas Harriman','','','','','','',1,1,26);
+INSERT INTO "grampsdb_name" VALUES(27,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:23.652820',NULL,NULL,1,4,1,'Rose','','','','','','',1,1,27);
+INSERT INTO "grampsdb_name" VALUES(28,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:23.788267',NULL,NULL,1,4,1,'Rory Elizabeth','','','','','','',1,1,28);
+INSERT INTO "grampsdb_name" VALUES(29,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:23.863307',NULL,NULL,1,4,1,'Laurence','','','','','','',1,1,29);
+INSERT INTO "grampsdb_name" VALUES(30,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:23.924212',NULL,NULL,1,4,1,'Joseph Patrick','','','','','','',1,1,30);
+INSERT INTO "grampsdb_name" VALUES(31,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:24.129382',NULL,NULL,1,4,1,'Kathleen','','','','','','',1,1,31);
+INSERT INTO "grampsdb_name" VALUES(32,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:24.237750',NULL,NULL,1,4,1,'Patrick','','','','','','',1,1,32);
+INSERT INTO "grampsdb_name" VALUES(33,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:24.359687',NULL,NULL,1,4,1,'Patrick Bouvier','','','','','','',1,1,33);
+INSERT INTO "grampsdb_name" VALUES(34,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:24.418340',NULL,NULL,1,4,1,'Matthew Maxwell Taylor','','','','','','',1,1,34);
+INSERT INTO "grampsdb_name" VALUES(35,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:24.460757',NULL,NULL,1,4,1,'Robert Sargent','','','','','','',1,1,35);
+INSERT INTO "grampsdb_name" VALUES(36,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:24.533834',NULL,NULL,1,4,1,'Timothy','','','','','','',1,1,36);
+INSERT INTO "grampsdb_name" VALUES(37,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:24.573559',NULL,NULL,1,4,1,'Josephine Mary','','','','','','',1,1,37);
+INSERT INTO "grampsdb_name" VALUES(38,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:24.604641',NULL,NULL,1,4,1,'Maria','','','','','','',1,1,38);
+INSERT INTO "grampsdb_name" VALUES(39,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:24.657421',NULL,NULL,1,4,1,'Patrick Joseph','','','','','','',1,1,39);
+INSERT INTO "grampsdb_name" VALUES(40,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:24.811402',NULL,NULL,1,4,1,'Bridget','','','','','','',1,1,40);
+INSERT INTO "grampsdb_name" VALUES(41,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:24.972323',NULL,NULL,1,4,1,'Stephen','','','','','','',1,1,41);
+INSERT INTO "grampsdb_name" VALUES(42,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:24.997985',NULL,NULL,1,4,1,'Humphrey','','','','','','',1,1,42);
+INSERT INTO "grampsdb_name" VALUES(43,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:25.043601',NULL,NULL,1,4,1,'Mary Kerry','','','','','','',1,1,43);
+INSERT INTO "grampsdb_name" VALUES(44,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:25.087298',NULL,NULL,1,4,1,'Loretta','','','','','','',1,1,44);
+INSERT INTO "grampsdb_name" VALUES(45,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:25.159288',NULL,NULL,1,4,1,'Joseph Patrick','','','','','','',1,1,45);
+INSERT INTO "grampsdb_name" VALUES(46,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:25.238561',NULL,NULL,1,4,1,'Stephen Edward','','','','','','',1,1,46);
+INSERT INTO "grampsdb_name" VALUES(47,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:25.287980',NULL,NULL,1,4,1,'Ethel','','','','','','',1,1,47);
+INSERT INTO "grampsdb_name" VALUES(48,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:25.335504',NULL,NULL,1,4,1,'Margaret','','','','','','',1,1,48);
+INSERT INTO "grampsdb_name" VALUES(49,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:25.385018',NULL,NULL,1,4,1,'Kathleen Hartington','','','','','','',1,1,49);
+INSERT INTO "grampsdb_name" VALUES(50,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:25.446880',NULL,NULL,1,4,1,'Jean Ann','','','','','','',1,1,50);
+INSERT INTO "grampsdb_name" VALUES(51,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:25.542495',NULL,NULL,1,4,1,'Mary Courtney','','','','','','',1,1,51);
+INSERT INTO "grampsdb_name" VALUES(52,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:25.594221',NULL,NULL,1,4,1,'William John Robert','','','','','','',1,1,52);
+INSERT INTO "grampsdb_name" VALUES(53,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:25.664199',NULL,NULL,1,4,1,'Jacqueline','','','','','','',1,1,53);
+INSERT INTO "grampsdb_name" VALUES(54,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:25.852773',NULL,NULL,1,4,1,'Peter','','','','','','',1,1,54);
+INSERT INTO "grampsdb_name" VALUES(55,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:25.893336',NULL,NULL,1,4,1,'David Anthony','','','','','','',1,1,55);
+INSERT INTO "grampsdb_name" VALUES(56,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:25.941667',NULL,NULL,1,4,1,'Anthony Paul','','','','','','',1,1,56);
+INSERT INTO "grampsdb_name" VALUES(57,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:26.038707',NULL,NULL,1,4,1,'John Vernou','','','','','','',1,1,57);
+INSERT INTO "grampsdb_name" VALUES(58,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:26.135464',NULL,NULL,1,4,1,'Arnold','','','','','','',1,1,58);
+INSERT INTO "grampsdb_name" VALUES(59,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:26.172605',NULL,NULL,1,4,1,'Margaret','','','','','','',1,1,59);
+INSERT INTO "grampsdb_name" VALUES(60,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:26.226073',NULL,NULL,1,4,1,'Janet','','','','','','',1,1,60);
+INSERT INTO "grampsdb_name" VALUES(61,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:26.268668',NULL,NULL,1,4,1,'Michael L.','','','','','','',1,1,61);
+INSERT INTO "grampsdb_name" VALUES(62,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:26.309198',NULL,NULL,1,4,1,'Patrick Joseph','','','','','','',1,1,62);
+INSERT INTO "grampsdb_name" VALUES(63,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:26.357190',NULL,NULL,1,4,1,'Mary Augusta','','','','','','',1,1,63);
+INSERT INTO "grampsdb_name" VALUES(64,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:26.410570',NULL,NULL,1,4,1,'William Kennedy','','','','','','',1,1,64);
+INSERT INTO "grampsdb_name" VALUES(65,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:26.452235',NULL,NULL,1,4,1,'Robert Sargent','','','','','','',1,1,65);
+INSERT INTO "grampsdb_name" VALUES(66,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:26.509354',NULL,NULL,1,4,1,'John Fitzgerald','','','','','','',1,1,66);
+INSERT INTO "grampsdb_name" VALUES(67,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:26.585526',NULL,NULL,1,4,1,'Victoria','','','','','','',1,1,67);
+INSERT INTO "grampsdb_name" VALUES(68,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:26.626109',NULL,NULL,1,4,1,'Mary','','','','','','',1,1,68);
+INSERT INTO "grampsdb_name" VALUES(69,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,'2012-06-18 21:44:26.674859',NULL,NULL,1,4,1,'Eunice Mary','','','','','','',1,1,69);
 CREATE TABLE "grampsdb_lds" (
     "id" integer NOT NULL PRIMARY KEY,
     "calendar" integer NOT NULL,
@@ -1755,41 +1798,37 @@ CREATE TABLE "grampsdb_markup" (
     "string" text,
     "start_stop_list" text NOT NULL
 );
-INSERT INTO "grampsdb_markup" VALUES(1,2,4,1,'Monospace','[(0, 143)]');
-INSERT INTO "grampsdb_markup" VALUES(2,3,4,1,'Monospace','[(0, 152)]');
-INSERT INTO "grampsdb_markup" VALUES(3,7,4,1,'Monospace','[(0, 162)]');
-INSERT INTO "grampsdb_markup" VALUES(4,9,4,1,'Monospace','[(0, 170)]');
-INSERT INTO "grampsdb_markup" VALUES(5,11,4,1,'Monospace','[(0, 150)]');
-INSERT INTO "grampsdb_markup" VALUES(6,16,4,1,'Monospace','[(0, 117)]');
-INSERT INTO "grampsdb_markup" VALUES(7,18,4,1,'Monospace','[(0, 159)]');
-INSERT INTO "grampsdb_markup" VALUES(8,21,4,1,'Monospace','[(0, 227)]');
-INSERT INTO "grampsdb_markup" VALUES(9,27,4,1,'Monospace','[(0, 157)]');
-INSERT INTO "grampsdb_markup" VALUES(10,28,4,1,'Monospace','[(0, 117)]');
-INSERT INTO "grampsdb_markup" VALUES(11,29,4,1,'Monospace','[(0, 117)]');
-INSERT INTO "grampsdb_markup" VALUES(12,30,4,1,'Monospace','[(0, 156)]');
-INSERT INTO "grampsdb_markup" VALUES(13,31,4,1,'Monospace','[(0, 175)]');
-INSERT INTO "grampsdb_markup" VALUES(14,33,4,1,'Monospace','[(0, 117)]');
-INSERT INTO "grampsdb_markup" VALUES(15,35,4,1,'Monospace','[(0, 227)]');
-INSERT INTO "grampsdb_markup" VALUES(16,39,4,1,'Monospace','[(0, 172)]');
-INSERT INTO "grampsdb_markup" VALUES(17,40,4,1,'Monospace','[(0, 155)]');
-INSERT INTO "grampsdb_markup" VALUES(18,41,4,1,'Monospace','[(0, 172)]');
-INSERT INTO "grampsdb_markup" VALUES(19,44,4,1,'Monospace','[(0, 117)]');
-INSERT INTO "grampsdb_markup" VALUES(20,46,4,1,'Monospace','[(0, 135)]');
-INSERT INTO "grampsdb_markup" VALUES(21,52,4,1,'Monospace','[(0, 166)]');
-INSERT INTO "grampsdb_markup" VALUES(22,54,4,1,'Monospace','[(0, 154)]');
-INSERT INTO "grampsdb_markup" VALUES(23,55,4,1,'Monospace','[(0, 162)]');
-INSERT INTO "grampsdb_markup" VALUES(24,56,4,1,'Monospace','[(0, 135)]');
-INSERT INTO "grampsdb_markup" VALUES(25,60,4,1,'Monospace','[(0, 227)]');
-INSERT INTO "grampsdb_markup" VALUES(26,61,4,1,'Monospace','[(0, 159)]');
-INSERT INTO "grampsdb_markup" VALUES(27,63,4,1,'Monospace','[(0, 282)]');
-INSERT INTO "grampsdb_markup" VALUES(28,69,4,1,'Monospace','[(0, 172)]');
-INSERT INTO "grampsdb_markup" VALUES(29,71,4,1,'Monospace','[(0, 143)]');
-INSERT INTO "grampsdb_markup" VALUES(30,73,4,1,'Monospace','[(0, 117)]');
-INSERT INTO "grampsdb_markup" VALUES(31,74,4,1,'Monospace','[(0, 163)]');
-INSERT INTO "grampsdb_markup" VALUES(32,76,4,1,'','[(472, 1140)]');
-INSERT INTO "grampsdb_markup" VALUES(33,76,2,1,NULL,'[(1213, 1237)]');
-INSERT INTO "grampsdb_markup" VALUES(34,76,9,1,'http://en.wikipedia.org/wiki/Masonic_Lodge_Officers','[(1142, 1193)]');
-INSERT INTO "grampsdb_markup" VALUES(35,76,9,1,'https://sites.google.com/site/marioncountyingenweb/home/township-histories/wayne-township','[(343, 432)]');
+INSERT INTO "grampsdb_markup" VALUES(1,3,4,1,'Monospace','[(0, 154)]');
+INSERT INTO "grampsdb_markup" VALUES(2,7,4,1,'Monospace','[(0, 152)]');
+INSERT INTO "grampsdb_markup" VALUES(3,8,4,1,'Monospace','[(0, 166)]');
+INSERT INTO "grampsdb_markup" VALUES(4,11,4,1,'Monospace','[(0, 162)]');
+INSERT INTO "grampsdb_markup" VALUES(5,13,4,1,'Monospace','[(0, 170)]');
+INSERT INTO "grampsdb_markup" VALUES(6,15,4,1,'Monospace','[(0, 227)]');
+INSERT INTO "grampsdb_markup" VALUES(7,19,4,1,'Monospace','[(0, 156)]');
+INSERT INTO "grampsdb_markup" VALUES(8,22,4,1,'Monospace','[(0, 172)]');
+INSERT INTO "grampsdb_markup" VALUES(9,23,4,1,'Monospace','[(0, 159)]');
+INSERT INTO "grampsdb_markup" VALUES(10,24,4,1,'Monospace','[(0, 117)]');
+INSERT INTO "grampsdb_markup" VALUES(11,26,4,1,'Monospace','[(0, 117)]');
+INSERT INTO "grampsdb_markup" VALUES(12,28,4,1,'Monospace','[(0, 172)]');
+INSERT INTO "grampsdb_markup" VALUES(13,29,4,1,'Monospace','[(0, 282)]');
+INSERT INTO "grampsdb_markup" VALUES(14,36,4,1,'Monospace','[(0, 162)]');
+INSERT INTO "grampsdb_markup" VALUES(15,37,4,1,'Monospace','[(0, 227)]');
+INSERT INTO "grampsdb_markup" VALUES(16,39,4,1,'Monospace','[(0, 175)]');
+INSERT INTO "grampsdb_markup" VALUES(17,41,4,1,'Monospace','[(0, 159)]');
+INSERT INTO "grampsdb_markup" VALUES(18,42,4,1,'Monospace','[(0, 163)]');
+INSERT INTO "grampsdb_markup" VALUES(19,44,4,1,'Monospace','[(0, 143)]');
+INSERT INTO "grampsdb_markup" VALUES(20,48,4,1,'Monospace','[(0, 117)]');
+INSERT INTO "grampsdb_markup" VALUES(21,49,4,1,'Monospace','[(0, 135)]');
+INSERT INTO "grampsdb_markup" VALUES(22,50,4,1,'Monospace','[(0, 157)]');
+INSERT INTO "grampsdb_markup" VALUES(23,51,4,1,'Monospace','[(0, 117)]');
+INSERT INTO "grampsdb_markup" VALUES(24,52,4,1,'Monospace','[(0, 143)]');
+INSERT INTO "grampsdb_markup" VALUES(25,54,4,1,'Monospace','[(0, 172)]');
+INSERT INTO "grampsdb_markup" VALUES(26,57,4,1,'Monospace','[(0, 155)]');
+INSERT INTO "grampsdb_markup" VALUES(27,65,4,1,'Monospace','[(0, 135)]');
+INSERT INTO "grampsdb_markup" VALUES(28,67,4,1,'Monospace','[(0, 227)]');
+INSERT INTO "grampsdb_markup" VALUES(29,69,4,1,'Monospace','[(0, 150)]');
+INSERT INTO "grampsdb_markup" VALUES(30,72,4,1,'Monospace','[(0, 117)]');
+INSERT INTO "grampsdb_markup" VALUES(31,74,4,1,'Monospace','[(0, 117)]');
 CREATE TABLE "grampsdb_sourcedatamap" (
     "id" integer NOT NULL PRIMARY KEY,
     "key" varchar(80) NOT NULL,
@@ -1860,6 +1899,19 @@ CREATE TABLE "grampsdb_attribute" (
     "object_type_id" integer NOT NULL REFERENCES "django_content_type" ("id"),
     "object_id" integer unsigned NOT NULL
 );
+CREATE TABLE "grampsdb_log" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "object_type_id" integer NOT NULL REFERENCES "django_content_type" ("id"),
+    "object_id" integer unsigned NOT NULL,
+    "order" integer unsigned NOT NULL,
+    "last_saved" datetime NOT NULL,
+    "last_changed" datetime,
+    "last_changed_by" text,
+    "private" bool NOT NULL,
+    "log_type" varchar(10) NOT NULL,
+    "reason" text NOT NULL,
+    "cache" text
+);
 CREATE TABLE "grampsdb_noteref" (
     "id" integer NOT NULL PRIMARY KEY,
     "object_type_id" integer NOT NULL REFERENCES "django_content_type" ("id"),
@@ -1871,74 +1923,74 @@ CREATE TABLE "grampsdb_noteref" (
     "private" bool NOT NULL,
     "ref_object_id" integer NOT NULL REFERENCES "grampsdb_note" ("id")
 );
-INSERT INTO "grampsdb_noteref" VALUES(1,32,1,1,'2012-06-10 22:25:15.731661',NULL,NULL,0,43);
-INSERT INTO "grampsdb_noteref" VALUES(2,32,1,1,'2012-06-10 22:25:15.733930',NULL,NULL,0,45);
-INSERT INTO "grampsdb_noteref" VALUES(3,32,1,1,'2012-06-10 22:25:15.736070',NULL,NULL,0,29);
-INSERT INTO "grampsdb_noteref" VALUES(4,32,7,1,'2012-06-10 22:25:15.921748',NULL,NULL,0,1);
-INSERT INTO "grampsdb_noteref" VALUES(5,32,7,1,'2012-06-10 22:25:15.923953',NULL,NULL,0,22);
-INSERT INTO "grampsdb_noteref" VALUES(6,32,7,1,'2012-06-10 22:25:15.926082',NULL,NULL,0,28);
-INSERT INTO "grampsdb_noteref" VALUES(7,35,1,1,'2012-06-10 22:25:15.963920',NULL,NULL,0,52);
-INSERT INTO "grampsdb_noteref" VALUES(8,35,2,1,'2012-06-10 22:25:16.005826',NULL,NULL,0,71);
-INSERT INTO "grampsdb_noteref" VALUES(9,32,12,1,'2012-06-10 22:25:16.103603',NULL,NULL,0,20);
-INSERT INTO "grampsdb_noteref" VALUES(10,32,21,1,'2012-06-10 22:25:16.366491',NULL,NULL,0,12);
-INSERT INTO "grampsdb_noteref" VALUES(11,32,21,1,'2012-06-10 22:25:16.368605',NULL,NULL,0,17);
-INSERT INTO "grampsdb_noteref" VALUES(12,32,21,1,'2012-06-10 22:25:16.370717',NULL,NULL,0,33);
-INSERT INTO "grampsdb_noteref" VALUES(13,32,23,1,'2012-06-10 22:25:16.489313',NULL,NULL,0,47);
-INSERT INTO "grampsdb_noteref" VALUES(14,32,23,1,'2012-06-10 22:25:16.491450',NULL,NULL,0,25);
-INSERT INTO "grampsdb_noteref" VALUES(15,32,23,1,'2012-06-10 22:25:16.493602',NULL,NULL,0,49);
-INSERT INTO "grampsdb_noteref" VALUES(16,32,23,1,'2012-06-10 22:25:16.495713',NULL,NULL,0,66);
-INSERT INTO "grampsdb_noteref" VALUES(17,32,23,1,'2012-06-10 22:25:16.497822',NULL,NULL,0,13);
-INSERT INTO "grampsdb_noteref" VALUES(18,32,23,1,'2012-06-10 22:25:16.499952',NULL,NULL,0,63);
-INSERT INTO "grampsdb_noteref" VALUES(19,35,3,1,'2012-06-10 22:25:16.566132',NULL,NULL,0,31);
-INSERT INTO "grampsdb_noteref" VALUES(20,35,4,1,'2012-06-10 22:25:16.695037',NULL,NULL,0,74);
-INSERT INTO "grampsdb_noteref" VALUES(21,32,27,1,'2012-06-10 22:25:16.779231',NULL,NULL,0,70);
-INSERT INTO "grampsdb_noteref" VALUES(22,32,27,1,'2012-06-10 22:25:16.782477',NULL,NULL,0,10);
-INSERT INTO "grampsdb_noteref" VALUES(23,32,27,1,'2012-06-10 22:25:16.784618',NULL,NULL,0,44);
-INSERT INTO "grampsdb_noteref" VALUES(24,32,28,1,'2012-06-10 22:25:16.821076',NULL,NULL,0,42);
-INSERT INTO "grampsdb_noteref" VALUES(25,35,5,1,'2012-06-10 22:25:16.850061',NULL,NULL,0,56);
-INSERT INTO "grampsdb_noteref" VALUES(26,35,6,1,'2012-06-10 22:25:16.903843',NULL,NULL,0,46);
-INSERT INTO "grampsdb_noteref" VALUES(27,32,33,1,'2012-06-10 22:25:17.030148',NULL,NULL,0,75);
-INSERT INTO "grampsdb_noteref" VALUES(28,32,33,1,'2012-06-10 22:25:17.032269',NULL,NULL,0,19);
-INSERT INTO "grampsdb_noteref" VALUES(29,32,33,1,'2012-06-10 22:25:17.034424',NULL,NULL,0,37);
-INSERT INTO "grampsdb_noteref" VALUES(30,32,33,1,'2012-06-10 22:25:17.036551',NULL,NULL,0,58);
-INSERT INTO "grampsdb_noteref" VALUES(31,32,33,1,'2012-06-10 22:25:17.038700',NULL,NULL,0,21);
-INSERT INTO "grampsdb_noteref" VALUES(32,32,34,1,'2012-06-10 22:25:17.094787',NULL,NULL,0,15);
-INSERT INTO "grampsdb_noteref" VALUES(33,35,7,1,'2012-06-10 22:25:17.186475',NULL,NULL,0,9);
-INSERT INTO "grampsdb_noteref" VALUES(34,32,35,1,'2012-06-10 22:25:17.218894',NULL,NULL,0,6);
-INSERT INTO "grampsdb_noteref" VALUES(35,32,35,1,'2012-06-10 22:25:17.221015',NULL,NULL,0,57);
-INSERT INTO "grampsdb_noteref" VALUES(36,32,35,1,'2012-06-10 22:25:17.223219',NULL,NULL,0,16);
-INSERT INTO "grampsdb_noteref" VALUES(37,35,8,1,'2012-06-10 22:25:17.527438',NULL,NULL,0,3);
-INSERT INTO "grampsdb_noteref" VALUES(38,35,9,1,'2012-06-10 22:25:17.559959',NULL,NULL,0,2);
-INSERT INTO "grampsdb_noteref" VALUES(39,32,48,1,'2012-06-10 22:25:17.600199',NULL,NULL,0,4);
-INSERT INTO "grampsdb_noteref" VALUES(40,32,48,1,'2012-06-10 22:25:17.602353',NULL,NULL,0,24);
-INSERT INTO "grampsdb_noteref" VALUES(41,32,48,1,'2012-06-10 22:25:17.604472',NULL,NULL,0,64);
-INSERT INTO "grampsdb_noteref" VALUES(42,32,48,1,'2012-06-10 22:25:17.606604',NULL,NULL,0,67);
-INSERT INTO "grampsdb_noteref" VALUES(43,32,48,1,'2012-06-10 22:25:17.608739',NULL,NULL,0,35);
-INSERT INTO "grampsdb_noteref" VALUES(44,32,51,1,'2012-06-10 22:25:17.756182',NULL,NULL,0,5);
-INSERT INTO "grampsdb_noteref" VALUES(45,32,51,1,'2012-06-10 22:25:17.758490',NULL,NULL,0,51);
-INSERT INTO "grampsdb_noteref" VALUES(46,32,51,1,'2012-06-10 22:25:17.760624',NULL,NULL,0,36);
-INSERT INTO "grampsdb_noteref" VALUES(47,32,51,1,'2012-06-10 22:25:17.762760',NULL,NULL,0,32);
-INSERT INTO "grampsdb_noteref" VALUES(48,32,51,1,'2012-06-10 22:25:17.764871',NULL,NULL,0,8);
-INSERT INTO "grampsdb_noteref" VALUES(49,32,51,1,'2012-06-10 22:25:17.767039',NULL,NULL,0,60);
-INSERT INTO "grampsdb_noteref" VALUES(50,35,10,1,'2012-06-10 22:25:17.928888',NULL,NULL,0,40);
-INSERT INTO "grampsdb_noteref" VALUES(51,32,56,1,'2012-06-10 22:25:18.041188',NULL,NULL,0,68);
-INSERT INTO "grampsdb_noteref" VALUES(52,32,56,1,'2012-06-10 22:25:18.044000',NULL,NULL,0,50);
-INSERT INTO "grampsdb_noteref" VALUES(53,32,56,1,'2012-06-10 22:25:18.047212',NULL,NULL,0,72);
-INSERT INTO "grampsdb_noteref" VALUES(54,32,56,1,'2012-06-10 22:25:18.050306',NULL,NULL,0,69);
-INSERT INTO "grampsdb_noteref" VALUES(55,32,64,1,'2012-06-10 22:25:18.433226',NULL,NULL,0,23);
-INSERT INTO "grampsdb_noteref" VALUES(56,32,67,1,'2012-06-10 22:25:18.499113',NULL,NULL,0,34);
-INSERT INTO "grampsdb_noteref" VALUES(57,32,67,1,'2012-06-10 22:25:18.501261',NULL,NULL,0,26);
-INSERT INTO "grampsdb_noteref" VALUES(58,32,67,1,'2012-06-10 22:25:18.503403',NULL,NULL,0,73);
-INSERT INTO "grampsdb_noteref" VALUES(59,32,68,1,'2012-06-10 22:25:18.551204',NULL,NULL,0,38);
-INSERT INTO "grampsdb_noteref" VALUES(60,32,68,1,'2012-06-10 22:25:18.553342',NULL,NULL,0,65);
-INSERT INTO "grampsdb_noteref" VALUES(61,32,68,1,'2012-06-10 22:25:18.555469',NULL,NULL,0,14);
-INSERT INTO "grampsdb_noteref" VALUES(62,32,68,1,'2012-06-10 22:25:18.557612',NULL,NULL,0,41);
-INSERT INTO "grampsdb_noteref" VALUES(63,35,11,1,'2012-06-10 22:25:18.593992',NULL,NULL,0,11);
-INSERT INTO "grampsdb_noteref" VALUES(64,32,69,1,'2012-06-10 22:25:18.641021',NULL,NULL,0,62);
-INSERT INTO "grampsdb_noteref" VALUES(65,32,69,1,'2012-06-10 22:25:18.643167',NULL,NULL,0,59);
-INSERT INTO "grampsdb_noteref" VALUES(66,32,69,1,'2012-06-10 22:25:18.645325',NULL,NULL,0,53);
-INSERT INTO "grampsdb_noteref" VALUES(67,32,69,1,'2012-06-10 22:25:18.647443',NULL,NULL,0,48);
-INSERT INTO "grampsdb_noteref" VALUES(68,32,69,1,'2012-06-10 22:25:18.649593',NULL,NULL,0,39);
+INSERT INTO "grampsdb_noteref" VALUES(1,32,1,1,'2012-06-18 21:44:21.830825',NULL,NULL,0,4);
+INSERT INTO "grampsdb_noteref" VALUES(2,32,2,1,'2012-06-18 21:44:21.885811',NULL,NULL,0,14);
+INSERT INTO "grampsdb_noteref" VALUES(3,35,1,1,'2012-06-18 21:44:21.912155',NULL,NULL,0,49);
+INSERT INTO "grampsdb_noteref" VALUES(4,32,3,1,'2012-06-18 21:44:21.976232',NULL,NULL,0,20);
+INSERT INTO "grampsdb_noteref" VALUES(5,32,3,1,'2012-06-18 21:44:21.980105',NULL,NULL,0,1);
+INSERT INTO "grampsdb_noteref" VALUES(6,32,3,1,'2012-06-18 21:44:21.983843',NULL,NULL,0,25);
+INSERT INTO "grampsdb_noteref" VALUES(7,32,3,1,'2012-06-18 21:44:21.987563',NULL,NULL,0,75);
+INSERT INTO "grampsdb_noteref" VALUES(8,32,3,1,'2012-06-18 21:44:21.991415',NULL,NULL,0,62);
+INSERT INTO "grampsdb_noteref" VALUES(9,32,3,1,'2012-06-18 21:44:21.995166',NULL,NULL,0,37);
+INSERT INTO "grampsdb_noteref" VALUES(10,32,7,1,'2012-06-18 21:44:22.221594',NULL,NULL,0,47);
+INSERT INTO "grampsdb_noteref" VALUES(11,32,7,1,'2012-06-18 21:44:22.225494',NULL,NULL,0,70);
+INSERT INTO "grampsdb_noteref" VALUES(12,32,7,1,'2012-06-18 21:44:22.229260',NULL,NULL,0,71);
+INSERT INTO "grampsdb_noteref" VALUES(13,32,7,1,'2012-06-18 21:44:22.233004',NULL,NULL,0,54);
+INSERT INTO "grampsdb_noteref" VALUES(14,35,2,1,'2012-06-18 21:44:22.707245',NULL,NULL,0,65);
+INSERT INTO "grampsdb_noteref" VALUES(15,32,17,1,'2012-06-18 21:44:22.780492',NULL,NULL,0,40);
+INSERT INTO "grampsdb_noteref" VALUES(16,32,17,1,'2012-06-18 21:44:22.784389',NULL,NULL,0,66);
+INSERT INTO "grampsdb_noteref" VALUES(17,32,17,1,'2012-06-18 21:44:22.789462',NULL,NULL,0,24);
+INSERT INTO "grampsdb_noteref" VALUES(18,32,21,1,'2012-06-18 21:44:23.092783',NULL,NULL,0,32);
+INSERT INTO "grampsdb_noteref" VALUES(19,32,21,1,'2012-06-18 21:44:23.096555',NULL,NULL,0,31);
+INSERT INTO "grampsdb_noteref" VALUES(20,32,21,1,'2012-06-18 21:44:23.100428',NULL,NULL,0,48);
+INSERT INTO "grampsdb_noteref" VALUES(21,32,24,1,'2012-06-18 21:44:23.360614',NULL,NULL,0,61);
+INSERT INTO "grampsdb_noteref" VALUES(22,32,24,1,'2012-06-18 21:44:23.364551',NULL,NULL,0,43);
+INSERT INTO "grampsdb_noteref" VALUES(23,32,24,1,'2012-06-18 21:44:23.368274',NULL,NULL,0,74);
+INSERT INTO "grampsdb_noteref" VALUES(24,35,3,1,'2012-06-18 21:44:23.410125',NULL,NULL,0,52);
+INSERT INTO "grampsdb_noteref" VALUES(25,32,27,1,'2012-06-18 21:44:23.709955',NULL,NULL,0,55);
+INSERT INTO "grampsdb_noteref" VALUES(26,32,27,1,'2012-06-18 21:44:23.713720',NULL,NULL,0,38);
+INSERT INTO "grampsdb_noteref" VALUES(27,32,27,1,'2012-06-18 21:44:23.717481',NULL,NULL,0,53);
+INSERT INTO "grampsdb_noteref" VALUES(28,32,27,1,'2012-06-18 21:44:23.721224',NULL,NULL,0,35);
+INSERT INTO "grampsdb_noteref" VALUES(29,32,27,1,'2012-06-18 21:44:23.725230',NULL,NULL,0,15);
+INSERT INTO "grampsdb_noteref" VALUES(30,35,4,1,'2012-06-18 21:44:23.842987',NULL,NULL,0,69);
+INSERT INTO "grampsdb_noteref" VALUES(31,35,5,1,'2012-06-18 21:44:23.851287',NULL,NULL,0,42);
+INSERT INTO "grampsdb_noteref" VALUES(32,32,30,1,'2012-06-18 21:44:23.999643',NULL,NULL,0,68);
+INSERT INTO "grampsdb_noteref" VALUES(33,32,30,1,'2012-06-18 21:44:24.003657',NULL,NULL,0,16);
+INSERT INTO "grampsdb_noteref" VALUES(34,32,30,1,'2012-06-18 21:44:24.007484',NULL,NULL,0,18);
+INSERT INTO "grampsdb_noteref" VALUES(35,32,30,1,'2012-06-18 21:44:24.011393',NULL,NULL,0,17);
+INSERT INTO "grampsdb_noteref" VALUES(36,32,30,1,'2012-06-18 21:44:24.015154',NULL,NULL,0,58);
+INSERT INTO "grampsdb_noteref" VALUES(37,32,30,1,'2012-06-18 21:44:24.018893',NULL,NULL,0,29);
+INSERT INTO "grampsdb_noteref" VALUES(38,32,31,1,'2012-06-18 21:44:24.159572',NULL,NULL,0,21);
+INSERT INTO "grampsdb_noteref" VALUES(39,32,31,1,'2012-06-18 21:44:24.163490',NULL,NULL,0,12);
+INSERT INTO "grampsdb_noteref" VALUES(40,32,31,1,'2012-06-18 21:44:24.167283',NULL,NULL,0,26);
+INSERT INTO "grampsdb_noteref" VALUES(41,32,32,1,'2012-06-18 21:44:24.286031',NULL,NULL,0,2);
+INSERT INTO "grampsdb_noteref" VALUES(42,32,32,1,'2012-06-18 21:44:24.289813',NULL,NULL,0,46);
+INSERT INTO "grampsdb_noteref" VALUES(43,32,32,1,'2012-06-18 21:44:24.293581',NULL,NULL,0,51);
+INSERT INTO "grampsdb_noteref" VALUES(44,35,6,1,'2012-06-18 21:44:24.597114',NULL,NULL,0,39);
+INSERT INTO "grampsdb_noteref" VALUES(45,32,39,1,'2012-06-18 21:44:24.734661',NULL,NULL,0,34);
+INSERT INTO "grampsdb_noteref" VALUES(46,32,39,1,'2012-06-18 21:44:24.739944',NULL,NULL,0,33);
+INSERT INTO "grampsdb_noteref" VALUES(47,32,39,1,'2012-06-18 21:44:24.743777',NULL,NULL,0,10);
+INSERT INTO "grampsdb_noteref" VALUES(48,32,39,1,'2012-06-18 21:44:24.747551',NULL,NULL,0,56);
+INSERT INTO "grampsdb_noteref" VALUES(49,32,39,1,'2012-06-18 21:44:24.751312',NULL,NULL,0,67);
+INSERT INTO "grampsdb_noteref" VALUES(50,32,40,1,'2012-06-18 21:44:24.852871',NULL,NULL,0,9);
+INSERT INTO "grampsdb_noteref" VALUES(51,35,7,1,'2012-06-18 21:44:24.964817',NULL,NULL,0,44);
+INSERT INTO "grampsdb_noteref" VALUES(52,35,8,1,'2012-06-18 21:44:25.204496',NULL,NULL,0,13);
+INSERT INTO "grampsdb_noteref" VALUES(53,35,9,1,'2012-06-18 21:44:25.586906',NULL,NULL,0,8);
+INSERT INTO "grampsdb_noteref" VALUES(54,35,10,1,'2012-06-18 21:44:25.656834',NULL,NULL,0,7);
+INSERT INTO "grampsdb_noteref" VALUES(55,32,53,1,'2012-06-18 21:44:25.725447',NULL,NULL,0,63);
+INSERT INTO "grampsdb_noteref" VALUES(56,32,53,1,'2012-06-18 21:44:25.729201',NULL,NULL,0,5);
+INSERT INTO "grampsdb_noteref" VALUES(57,32,53,1,'2012-06-18 21:44:25.735546',NULL,NULL,0,59);
+INSERT INTO "grampsdb_noteref" VALUES(58,32,53,1,'2012-06-18 21:44:25.750978',NULL,NULL,0,64);
+INSERT INTO "grampsdb_noteref" VALUES(59,32,53,1,'2012-06-18 21:44:25.755975',NULL,NULL,0,28);
+INSERT INTO "grampsdb_noteref" VALUES(60,32,57,1,'2012-06-18 21:44:26.076417',NULL,NULL,0,27);
+INSERT INTO "grampsdb_noteref" VALUES(61,32,57,1,'2012-06-18 21:44:26.080167',NULL,NULL,0,73);
+INSERT INTO "grampsdb_noteref" VALUES(62,32,57,1,'2012-06-18 21:44:26.083915',NULL,NULL,0,72);
+INSERT INTO "grampsdb_noteref" VALUES(63,32,65,1,'2012-06-18 21:44:26.475213',NULL,NULL,0,30);
+INSERT INTO "grampsdb_noteref" VALUES(64,32,69,1,'2012-06-18 21:44:26.704588',NULL,NULL,0,45);
+INSERT INTO "grampsdb_noteref" VALUES(65,32,69,1,'2012-06-18 21:44:26.708426',NULL,NULL,0,6);
+INSERT INTO "grampsdb_noteref" VALUES(66,32,69,1,'2012-06-18 21:44:26.712184',NULL,NULL,0,60);
+INSERT INTO "grampsdb_noteref" VALUES(67,32,69,1,'2012-06-18 21:44:26.715923',NULL,NULL,0,22);
+INSERT INTO "grampsdb_noteref" VALUES(68,35,11,1,'2012-06-18 21:44:26.748288',NULL,NULL,0,57);
 CREATE TABLE "grampsdb_eventref" (
     "id" integer NOT NULL PRIMARY KEY,
     "object_type_id" integer NOT NULL REFERENCES "django_content_type" ("id"),
@@ -1951,150 +2003,150 @@ CREATE TABLE "grampsdb_eventref" (
     "ref_object_id" integer NOT NULL REFERENCES "grampsdb_event" ("id"),
     "role_type_id" integer NOT NULL REFERENCES "grampsdb_eventroletype" ("id")
 );
-INSERT INTO "grampsdb_eventref" VALUES(1,32,1,1,'2012-06-10 22:25:15.712242',NULL,NULL,0,88,3);
-INSERT INTO "grampsdb_eventref" VALUES(2,32,1,2,'2012-06-10 22:25:15.715165',NULL,NULL,0,48,3);
-INSERT INTO "grampsdb_eventref" VALUES(3,32,1,3,'2012-06-10 22:25:15.717936',NULL,NULL,0,55,3);
-INSERT INTO "grampsdb_eventref" VALUES(4,32,1,4,'2012-06-10 22:25:15.720698',NULL,NULL,0,110,3);
-INSERT INTO "grampsdb_eventref" VALUES(5,32,1,5,'2012-06-10 22:25:15.723524',NULL,NULL,0,102,3);
-INSERT INTO "grampsdb_eventref" VALUES(6,32,2,1,'2012-06-10 22:25:15.772134',NULL,NULL,0,15,3);
-INSERT INTO "grampsdb_eventref" VALUES(7,32,3,1,'2012-06-10 22:25:15.795762',NULL,NULL,0,121,3);
-INSERT INTO "grampsdb_eventref" VALUES(8,32,4,1,'2012-06-10 22:25:15.818350',NULL,NULL,0,33,3);
-INSERT INTO "grampsdb_eventref" VALUES(9,33,1,1,'2012-06-10 22:25:15.849184',NULL,NULL,0,112,10);
-INSERT INTO "grampsdb_eventref" VALUES(10,32,6,1,'2012-06-10 22:25:15.872480',NULL,NULL,0,133,3);
-INSERT INTO "grampsdb_eventref" VALUES(11,32,7,1,'2012-06-10 22:25:15.899010',NULL,NULL,0,91,3);
-INSERT INTO "grampsdb_eventref" VALUES(12,32,7,2,'2012-06-10 22:25:15.901784',NULL,NULL,0,23,3);
-INSERT INTO "grampsdb_eventref" VALUES(13,32,7,3,'2012-06-10 22:25:15.904526',NULL,NULL,0,11,3);
-INSERT INTO "grampsdb_eventref" VALUES(14,32,7,4,'2012-06-10 22:25:15.907305',NULL,NULL,0,75,3);
-INSERT INTO "grampsdb_eventref" VALUES(15,32,7,5,'2012-06-10 22:25:15.910070',NULL,NULL,0,84,3);
-INSERT INTO "grampsdb_eventref" VALUES(16,32,7,6,'2012-06-10 22:25:15.912825',NULL,NULL,0,38,3);
-INSERT INTO "grampsdb_eventref" VALUES(17,32,7,7,'2012-06-10 22:25:15.915585',NULL,NULL,0,46,3);
-INSERT INTO "grampsdb_eventref" VALUES(18,32,8,1,'2012-06-10 22:25:15.977646',NULL,NULL,0,78,3);
-INSERT INTO "grampsdb_eventref" VALUES(19,32,9,1,'2012-06-10 22:25:16.015003',NULL,NULL,0,37,3);
-INSERT INTO "grampsdb_eventref" VALUES(20,32,11,1,'2012-06-10 22:25:16.064964',NULL,NULL,0,73,3);
-INSERT INTO "grampsdb_eventref" VALUES(21,32,12,1,'2012-06-10 22:25:16.094691',NULL,NULL,0,139,3);
-INSERT INTO "grampsdb_eventref" VALUES(22,32,12,2,'2012-06-10 22:25:16.097475',NULL,NULL,0,60,3);
-INSERT INTO "grampsdb_eventref" VALUES(23,32,13,1,'2012-06-10 22:25:16.138918',NULL,NULL,0,144,3);
-INSERT INTO "grampsdb_eventref" VALUES(24,32,14,1,'2012-06-10 22:25:16.161737',NULL,NULL,0,137,3);
-INSERT INTO "grampsdb_eventref" VALUES(25,32,14,2,'2012-06-10 22:25:16.164520',NULL,NULL,0,66,3);
-INSERT INTO "grampsdb_eventref" VALUES(26,32,16,1,'2012-06-10 22:25:16.218494',NULL,NULL,0,104,3);
-INSERT INTO "grampsdb_eventref" VALUES(27,32,17,1,'2012-06-10 22:25:16.241725',NULL,NULL,0,20,3);
-INSERT INTO "grampsdb_eventref" VALUES(28,32,18,1,'2012-06-10 22:25:16.267239',NULL,NULL,0,100,3);
-INSERT INTO "grampsdb_eventref" VALUES(29,32,19,1,'2012-06-10 22:25:16.293892',NULL,NULL,0,19,3);
-INSERT INTO "grampsdb_eventref" VALUES(30,32,20,1,'2012-06-10 22:25:16.325072',NULL,NULL,0,25,3);
-INSERT INTO "grampsdb_eventref" VALUES(31,32,21,1,'2012-06-10 22:25:16.345376',NULL,NULL,0,58,3);
-INSERT INTO "grampsdb_eventref" VALUES(32,32,21,2,'2012-06-10 22:25:16.348157',NULL,NULL,0,132,3);
-INSERT INTO "grampsdb_eventref" VALUES(33,32,21,3,'2012-06-10 22:25:16.350958',NULL,NULL,0,31,3);
-INSERT INTO "grampsdb_eventref" VALUES(34,32,21,4,'2012-06-10 22:25:16.353746',NULL,NULL,0,45,3);
-INSERT INTO "grampsdb_eventref" VALUES(35,32,21,5,'2012-06-10 22:25:16.356522',NULL,NULL,0,71,3);
-INSERT INTO "grampsdb_eventref" VALUES(36,33,3,1,'2012-06-10 22:25:16.404544',NULL,NULL,0,67,10);
-INSERT INTO "grampsdb_eventref" VALUES(37,32,22,1,'2012-06-10 22:25:16.413793',NULL,NULL,0,8,3);
-INSERT INTO "grampsdb_eventref" VALUES(38,32,22,2,'2012-06-10 22:25:16.416566',NULL,NULL,0,129,3);
-INSERT INTO "grampsdb_eventref" VALUES(39,32,23,1,'2012-06-10 22:25:16.451434',NULL,NULL,0,108,3);
-INSERT INTO "grampsdb_eventref" VALUES(40,32,23,2,'2012-06-10 22:25:16.454234',NULL,NULL,0,30,3);
-INSERT INTO "grampsdb_eventref" VALUES(41,32,23,3,'2012-06-10 22:25:16.456994',NULL,NULL,0,18,3);
-INSERT INTO "grampsdb_eventref" VALUES(42,32,23,4,'2012-06-10 22:25:16.459781',NULL,NULL,0,118,3);
-INSERT INTO "grampsdb_eventref" VALUES(43,32,23,5,'2012-06-10 22:25:16.462548',NULL,NULL,0,36,3);
-INSERT INTO "grampsdb_eventref" VALUES(44,32,23,6,'2012-06-10 22:25:16.465312',NULL,NULL,0,56,3);
-INSERT INTO "grampsdb_eventref" VALUES(45,32,23,7,'2012-06-10 22:25:16.468091',NULL,NULL,0,13,3);
-INSERT INTO "grampsdb_eventref" VALUES(46,32,23,8,'2012-06-10 22:25:16.470898',NULL,NULL,0,81,3);
-INSERT INTO "grampsdb_eventref" VALUES(47,32,23,9,'2012-06-10 22:25:16.473693',NULL,NULL,0,96,3);
-INSERT INTO "grampsdb_eventref" VALUES(48,32,23,10,'2012-06-10 22:25:16.476511',NULL,NULL,0,114,3);
-INSERT INTO "grampsdb_eventref" VALUES(49,32,23,11,'2012-06-10 22:25:16.479346',NULL,NULL,0,47,3);
-INSERT INTO "grampsdb_eventref" VALUES(50,32,24,1,'2012-06-10 22:25:16.589410',NULL,NULL,0,80,3);
-INSERT INTO "grampsdb_eventref" VALUES(51,33,4,1,'2012-06-10 22:25:16.638928',NULL,NULL,0,34,10);
-INSERT INTO "grampsdb_eventref" VALUES(52,33,5,1,'2012-06-10 22:25:16.649296',NULL,NULL,0,3,10);
-INSERT INTO "grampsdb_eventref" VALUES(53,32,25,1,'2012-06-10 22:25:16.664310',NULL,NULL,0,21,3);
-INSERT INTO "grampsdb_eventref" VALUES(54,32,26,1,'2012-06-10 22:25:16.707824',NULL,NULL,0,70,3);
-INSERT INTO "grampsdb_eventref" VALUES(55,33,6,1,'2012-06-10 22:25:16.747476',NULL,NULL,0,87,10);
-INSERT INTO "grampsdb_eventref" VALUES(56,32,27,1,'2012-06-10 22:25:16.761138',NULL,NULL,0,92,3);
-INSERT INTO "grampsdb_eventref" VALUES(57,32,27,2,'2012-06-10 22:25:16.765551',NULL,NULL,0,134,3);
-INSERT INTO "grampsdb_eventref" VALUES(58,32,28,1,'2012-06-10 22:25:16.814989',NULL,NULL,0,24,3);
-INSERT INTO "grampsdb_eventref" VALUES(59,32,30,1,'2012-06-10 22:25:16.861856',NULL,NULL,0,69,3);
-INSERT INTO "grampsdb_eventref" VALUES(60,32,31,1,'2012-06-10 22:25:16.886373',NULL,NULL,0,51,3);
-INSERT INTO "grampsdb_eventref" VALUES(61,33,8,1,'2012-06-10 22:25:16.941773',NULL,NULL,0,93,10);
-INSERT INTO "grampsdb_eventref" VALUES(62,32,32,1,'2012-06-10 22:25:16.952363',NULL,NULL,0,9,3);
-INSERT INTO "grampsdb_eventref" VALUES(63,32,33,1,'2012-06-10 22:25:17.005884',NULL,NULL,0,63,3);
-INSERT INTO "grampsdb_eventref" VALUES(64,32,33,2,'2012-06-10 22:25:17.008684',NULL,NULL,0,26,3);
-INSERT INTO "grampsdb_eventref" VALUES(65,32,33,3,'2012-06-10 22:25:17.011537',NULL,NULL,0,43,3);
-INSERT INTO "grampsdb_eventref" VALUES(66,32,33,4,'2012-06-10 22:25:17.014323',NULL,NULL,0,94,3);
-INSERT INTO "grampsdb_eventref" VALUES(67,32,33,5,'2012-06-10 22:25:17.017095',NULL,NULL,0,49,3);
-INSERT INTO "grampsdb_eventref" VALUES(68,32,33,6,'2012-06-10 22:25:17.019924',NULL,NULL,0,140,3);
-INSERT INTO "grampsdb_eventref" VALUES(69,32,34,1,'2012-06-10 22:25:17.077294',NULL,NULL,0,50,3);
-INSERT INTO "grampsdb_eventref" VALUES(70,32,34,2,'2012-06-10 22:25:17.080081',NULL,NULL,0,77,3);
-INSERT INTO "grampsdb_eventref" VALUES(71,32,34,3,'2012-06-10 22:25:17.083031',NULL,NULL,0,97,3);
-INSERT INTO "grampsdb_eventref" VALUES(72,32,34,4,'2012-06-10 22:25:17.085849',NULL,NULL,0,76,3);
-INSERT INTO "grampsdb_eventref" VALUES(73,32,34,5,'2012-06-10 22:25:17.088620',NULL,NULL,0,89,3);
-INSERT INTO "grampsdb_eventref" VALUES(74,33,10,1,'2012-06-10 22:25:17.159782',NULL,NULL,0,107,10);
-INSERT INTO "grampsdb_eventref" VALUES(75,33,11,1,'2012-06-10 22:25:17.182811',NULL,NULL,0,141,10);
-INSERT INTO "grampsdb_eventref" VALUES(76,33,12,1,'2012-06-10 22:25:17.198138',NULL,NULL,0,65,10);
-INSERT INTO "grampsdb_eventref" VALUES(77,32,35,1,'2012-06-10 22:25:17.209996',NULL,NULL,0,6,3);
-INSERT INTO "grampsdb_eventref" VALUES(78,32,35,2,'2012-06-10 22:25:17.212770',NULL,NULL,0,99,3);
-INSERT INTO "grampsdb_eventref" VALUES(79,32,37,1,'2012-06-10 22:25:17.263205',NULL,NULL,0,122,3);
-INSERT INTO "grampsdb_eventref" VALUES(80,32,38,1,'2012-06-10 22:25:17.286527',NULL,NULL,0,124,3);
-INSERT INTO "grampsdb_eventref" VALUES(81,32,39,1,'2012-06-10 22:25:17.310281',NULL,NULL,0,7,3);
-INSERT INTO "grampsdb_eventref" VALUES(82,33,13,1,'2012-06-10 22:25:17.392011',NULL,NULL,0,16,10);
-INSERT INTO "grampsdb_eventref" VALUES(83,32,42,1,'2012-06-10 22:25:17.401171',NULL,NULL,0,117,3);
-INSERT INTO "grampsdb_eventref" VALUES(84,32,42,2,'2012-06-10 22:25:17.403955',NULL,NULL,0,27,3);
-INSERT INTO "grampsdb_eventref" VALUES(85,32,43,1,'2012-06-10 22:25:17.434026',NULL,NULL,0,64,3);
-INSERT INTO "grampsdb_eventref" VALUES(86,32,43,2,'2012-06-10 22:25:17.436808',NULL,NULL,0,131,3);
-INSERT INTO "grampsdb_eventref" VALUES(87,32,45,1,'2012-06-10 22:25:17.477477',NULL,NULL,0,109,3);
-INSERT INTO "grampsdb_eventref" VALUES(88,32,45,2,'2012-06-10 22:25:17.480326',NULL,NULL,0,83,3);
-INSERT INTO "grampsdb_eventref" VALUES(89,32,47,1,'2012-06-10 22:25:17.539245',NULL,NULL,0,68,3);
-INSERT INTO "grampsdb_eventref" VALUES(90,32,48,1,'2012-06-10 22:25:17.576152',NULL,NULL,0,32,3);
-INSERT INTO "grampsdb_eventref" VALUES(91,32,48,2,'2012-06-10 22:25:17.578944',NULL,NULL,0,17,3);
-INSERT INTO "grampsdb_eventref" VALUES(92,32,48,3,'2012-06-10 22:25:17.581788',NULL,NULL,0,62,3);
-INSERT INTO "grampsdb_eventref" VALUES(93,32,48,4,'2012-06-10 22:25:17.584657',NULL,NULL,0,54,3);
-INSERT INTO "grampsdb_eventref" VALUES(94,32,48,5,'2012-06-10 22:25:17.587426',NULL,NULL,0,41,3);
-INSERT INTO "grampsdb_eventref" VALUES(95,32,48,6,'2012-06-10 22:25:17.590194',NULL,NULL,0,123,3);
-INSERT INTO "grampsdb_eventref" VALUES(96,33,14,1,'2012-06-10 22:25:17.669505',NULL,NULL,0,135,10);
-INSERT INTO "grampsdb_eventref" VALUES(97,32,50,1,'2012-06-10 22:25:17.693098',NULL,NULL,0,119,3);
-INSERT INTO "grampsdb_eventref" VALUES(98,32,51,1,'2012-06-10 22:25:17.729016',NULL,NULL,0,95,3);
-INSERT INTO "grampsdb_eventref" VALUES(99,32,51,2,'2012-06-10 22:25:17.731835',NULL,NULL,0,115,3);
-INSERT INTO "grampsdb_eventref" VALUES(100,32,51,3,'2012-06-10 22:25:17.734657',NULL,NULL,0,1,3);
-INSERT INTO "grampsdb_eventref" VALUES(101,32,51,4,'2012-06-10 22:25:17.737466',NULL,NULL,0,42,3);
-INSERT INTO "grampsdb_eventref" VALUES(102,32,51,5,'2012-06-10 22:25:17.740261',NULL,NULL,0,136,3);
-INSERT INTO "grampsdb_eventref" VALUES(103,32,51,6,'2012-06-10 22:25:17.743088',NULL,NULL,0,128,3);
-INSERT INTO "grampsdb_eventref" VALUES(104,32,51,7,'2012-06-10 22:25:17.745895',NULL,NULL,0,116,3);
-INSERT INTO "grampsdb_eventref" VALUES(105,32,52,1,'2012-06-10 22:25:17.832030',NULL,NULL,0,143,3);
-INSERT INTO "grampsdb_eventref" VALUES(106,32,53,1,'2012-06-10 22:25:17.885559',NULL,NULL,0,86,3);
-INSERT INTO "grampsdb_eventref" VALUES(107,32,53,2,'2012-06-10 22:25:17.889699',NULL,NULL,0,98,3);
-INSERT INTO "grampsdb_eventref" VALUES(108,33,15,1,'2012-06-10 22:25:17.940452',NULL,NULL,0,106,10);
-INSERT INTO "grampsdb_eventref" VALUES(109,32,54,1,'2012-06-10 22:25:17.955220',NULL,NULL,0,127,3);
-INSERT INTO "grampsdb_eventref" VALUES(110,32,55,1,'2012-06-10 22:25:17.983865',NULL,NULL,0,4,3);
-INSERT INTO "grampsdb_eventref" VALUES(111,32,56,1,'2012-06-10 22:25:18.026514',NULL,NULL,0,101,3);
-INSERT INTO "grampsdb_eventref" VALUES(112,32,56,2,'2012-06-10 22:25:18.029780',NULL,NULL,0,61,3);
-INSERT INTO "grampsdb_eventref" VALUES(113,32,57,1,'2012-06-10 22:25:18.092434',NULL,NULL,0,52,3);
-INSERT INTO "grampsdb_eventref" VALUES(114,32,58,1,'2012-06-10 22:25:18.126397',NULL,NULL,0,10,3);
-INSERT INTO "grampsdb_eventref" VALUES(115,33,16,1,'2012-06-10 22:25:18.188038',NULL,NULL,0,126,10);
-INSERT INTO "grampsdb_eventref" VALUES(116,32,59,1,'2012-06-10 22:25:18.197291',NULL,NULL,0,111,3);
-INSERT INTO "grampsdb_eventref" VALUES(117,32,59,2,'2012-06-10 22:25:18.200069',NULL,NULL,0,85,3);
-INSERT INTO "grampsdb_eventref" VALUES(118,32,59,3,'2012-06-10 22:25:18.202839',NULL,NULL,0,53,3);
-INSERT INTO "grampsdb_eventref" VALUES(119,32,60,1,'2012-06-10 22:25:18.249345',NULL,NULL,0,29,3);
-INSERT INTO "grampsdb_eventref" VALUES(120,32,60,2,'2012-06-10 22:25:18.252143',NULL,NULL,0,2,3);
-INSERT INTO "grampsdb_eventref" VALUES(121,32,61,1,'2012-06-10 22:25:18.282727',NULL,NULL,0,5,3);
-INSERT INTO "grampsdb_eventref" VALUES(122,32,61,2,'2012-06-10 22:25:18.285518',NULL,NULL,0,22,3);
-INSERT INTO "grampsdb_eventref" VALUES(123,32,61,3,'2012-06-10 22:25:18.288303',NULL,NULL,0,57,3);
-INSERT INTO "grampsdb_eventref" VALUES(124,32,61,4,'2012-06-10 22:25:18.291116',NULL,NULL,0,35,3);
-INSERT INTO "grampsdb_eventref" VALUES(125,32,62,1,'2012-06-10 22:25:18.338282',NULL,NULL,0,59,3);
-INSERT INTO "grampsdb_eventref" VALUES(126,32,62,2,'2012-06-10 22:25:18.341079',NULL,NULL,0,125,3);
-INSERT INTO "grampsdb_eventref" VALUES(127,33,17,1,'2012-06-10 22:25:18.386582',NULL,NULL,0,138,10);
-INSERT INTO "grampsdb_eventref" VALUES(128,33,18,1,'2012-06-10 22:25:18.414629',NULL,NULL,0,28,10);
-INSERT INTO "grampsdb_eventref" VALUES(129,32,64,1,'2012-06-10 22:25:18.422974',NULL,NULL,0,82,3);
-INSERT INTO "grampsdb_eventref" VALUES(130,32,67,1,'2012-06-10 22:25:18.486304',NULL,NULL,0,39,3);
-INSERT INTO "grampsdb_eventref" VALUES(131,32,67,2,'2012-06-10 22:25:18.489093',NULL,NULL,0,74,3);
-INSERT INTO "grampsdb_eventref" VALUES(132,32,68,1,'2012-06-10 22:25:18.530791',NULL,NULL,0,12,3);
-INSERT INTO "grampsdb_eventref" VALUES(133,32,68,2,'2012-06-10 22:25:18.533633',NULL,NULL,0,79,3);
-INSERT INTO "grampsdb_eventref" VALUES(134,32,68,3,'2012-06-10 22:25:18.536433',NULL,NULL,0,105,3);
-INSERT INTO "grampsdb_eventref" VALUES(135,32,68,4,'2012-06-10 22:25:18.539216',NULL,NULL,0,142,3);
-INSERT INTO "grampsdb_eventref" VALUES(136,32,68,5,'2012-06-10 22:25:18.542218',NULL,NULL,0,120,3);
-INSERT INTO "grampsdb_eventref" VALUES(137,32,68,6,'2012-06-10 22:25:18.545062',NULL,NULL,0,44,3);
-INSERT INTO "grampsdb_eventref" VALUES(138,32,69,1,'2012-06-10 22:25:18.610179',NULL,NULL,0,14,3);
-INSERT INTO "grampsdb_eventref" VALUES(139,32,69,2,'2012-06-10 22:25:18.612972',NULL,NULL,0,130,3);
-INSERT INTO "grampsdb_eventref" VALUES(140,32,69,3,'2012-06-10 22:25:18.615753',NULL,NULL,0,103,3);
-INSERT INTO "grampsdb_eventref" VALUES(141,32,69,4,'2012-06-10 22:25:18.618562',NULL,NULL,0,90,3);
-INSERT INTO "grampsdb_eventref" VALUES(142,32,69,5,'2012-06-10 22:25:18.621356',NULL,NULL,0,113,3);
-INSERT INTO "grampsdb_eventref" VALUES(143,32,69,6,'2012-06-10 22:25:18.624237',NULL,NULL,0,72,3);
-INSERT INTO "grampsdb_eventref" VALUES(144,32,69,7,'2012-06-10 22:25:18.627048',NULL,NULL,0,40,3);
+INSERT INTO "grampsdb_eventref" VALUES(1,33,1,1,'2012-06-18 21:44:21.784611',NULL,NULL,0,50,10);
+INSERT INTO "grampsdb_eventref" VALUES(2,32,1,1,'2012-06-18 21:44:21.816702',NULL,NULL,0,82,3);
+INSERT INTO "grampsdb_eventref" VALUES(3,32,2,1,'2012-06-18 21:44:21.866844',NULL,NULL,0,119,3);
+INSERT INTO "grampsdb_eventref" VALUES(4,32,3,1,'2012-06-18 21:44:21.928414',NULL,NULL,0,118,3);
+INSERT INTO "grampsdb_eventref" VALUES(5,32,3,2,'2012-06-18 21:44:21.933447',NULL,NULL,0,19,3);
+INSERT INTO "grampsdb_eventref" VALUES(6,32,3,3,'2012-06-18 21:44:21.938348',NULL,NULL,0,134,3);
+INSERT INTO "grampsdb_eventref" VALUES(7,32,3,4,'2012-06-18 21:44:21.943410',NULL,NULL,0,8,3);
+INSERT INTO "grampsdb_eventref" VALUES(8,32,3,5,'2012-06-18 21:44:21.948318',NULL,NULL,0,58,3);
+INSERT INTO "grampsdb_eventref" VALUES(9,32,3,6,'2012-06-18 21:44:21.953455',NULL,NULL,0,52,3);
+INSERT INTO "grampsdb_eventref" VALUES(10,32,3,7,'2012-06-18 21:44:21.958387',NULL,NULL,0,35,3);
+INSERT INTO "grampsdb_eventref" VALUES(11,32,4,1,'2012-06-18 21:44:22.069557',NULL,NULL,0,68,3);
+INSERT INTO "grampsdb_eventref" VALUES(12,32,6,1,'2012-06-18 21:44:22.144946',NULL,NULL,0,67,3);
+INSERT INTO "grampsdb_eventref" VALUES(13,32,7,1,'2012-06-18 21:44:22.185718',NULL,NULL,0,51,3);
+INSERT INTO "grampsdb_eventref" VALUES(14,32,7,2,'2012-06-18 21:44:22.190672',NULL,NULL,0,123,3);
+INSERT INTO "grampsdb_eventref" VALUES(15,32,7,3,'2012-06-18 21:44:22.195744',NULL,NULL,0,63,3);
+INSERT INTO "grampsdb_eventref" VALUES(16,32,7,4,'2012-06-18 21:44:22.200651',NULL,NULL,0,13,3);
+INSERT INTO "grampsdb_eventref" VALUES(17,32,7,5,'2012-06-18 21:44:22.205812',NULL,NULL,0,11,3);
+INSERT INTO "grampsdb_eventref" VALUES(18,32,7,6,'2012-06-18 21:44:22.210749',NULL,NULL,0,39,3);
+INSERT INTO "grampsdb_eventref" VALUES(19,32,9,1,'2012-06-18 21:44:22.341515',NULL,NULL,0,24,3);
+INSERT INTO "grampsdb_eventref" VALUES(20,32,10,1,'2012-06-18 21:44:22.394432',NULL,NULL,0,121,3);
+INSERT INTO "grampsdb_eventref" VALUES(21,32,12,1,'2012-06-18 21:44:22.498707',NULL,NULL,0,21,3);
+INSERT INTO "grampsdb_eventref" VALUES(22,32,12,2,'2012-06-18 21:44:22.505421',NULL,NULL,0,64,3);
+INSERT INTO "grampsdb_eventref" VALUES(23,32,14,1,'2012-06-18 21:44:22.624809',NULL,NULL,0,47,3);
+INSERT INTO "grampsdb_eventref" VALUES(24,32,14,2,'2012-06-18 21:44:22.629847',NULL,NULL,0,73,3);
+INSERT INTO "grampsdb_eventref" VALUES(25,32,15,1,'2012-06-18 21:44:22.680414',NULL,NULL,0,28,3);
+INSERT INTO "grampsdb_eventref" VALUES(26,32,17,1,'2012-06-18 21:44:22.764597',NULL,NULL,0,41,3);
+INSERT INTO "grampsdb_eventref" VALUES(27,32,17,2,'2012-06-18 21:44:22.769524',NULL,NULL,0,90,3);
+INSERT INTO "grampsdb_eventref" VALUES(28,32,18,1,'2012-06-18 21:44:22.835569',NULL,NULL,0,87,3);
+INSERT INTO "grampsdb_eventref" VALUES(29,32,18,2,'2012-06-18 21:44:22.840507',NULL,NULL,0,113,3);
+INSERT INTO "grampsdb_eventref" VALUES(30,32,19,1,'2012-06-18 21:44:22.898255',NULL,NULL,0,95,3);
+INSERT INTO "grampsdb_eventref" VALUES(31,32,19,2,'2012-06-18 21:44:22.903190',NULL,NULL,0,106,3);
+INSERT INTO "grampsdb_eventref" VALUES(32,32,19,3,'2012-06-18 21:44:22.908359',NULL,NULL,0,26,3);
+INSERT INTO "grampsdb_eventref" VALUES(33,32,19,4,'2012-06-18 21:44:22.913267',NULL,NULL,0,56,3);
+INSERT INTO "grampsdb_eventref" VALUES(34,33,3,1,'2012-06-18 21:44:22.990161',NULL,NULL,0,84,10);
+INSERT INTO "grampsdb_eventref" VALUES(35,32,20,1,'2012-06-18 21:44:23.012184',NULL,NULL,0,69,3);
+INSERT INTO "grampsdb_eventref" VALUES(36,32,21,1,'2012-06-18 21:44:23.054847',NULL,NULL,0,124,3);
+INSERT INTO "grampsdb_eventref" VALUES(37,32,21,2,'2012-06-18 21:44:23.059945',NULL,NULL,0,125,3);
+INSERT INTO "grampsdb_eventref" VALUES(38,32,21,3,'2012-06-18 21:44:23.064869',NULL,NULL,0,116,3);
+INSERT INTO "grampsdb_eventref" VALUES(39,32,21,4,'2012-06-18 21:44:23.069967',NULL,NULL,0,62,3);
+INSERT INTO "grampsdb_eventref" VALUES(40,32,21,5,'2012-06-18 21:44:23.074907',NULL,NULL,0,31,3);
+INSERT INTO "grampsdb_eventref" VALUES(41,33,5,1,'2012-06-18 21:44:23.247868',NULL,NULL,0,46,10);
+INSERT INTO "grampsdb_eventref" VALUES(42,32,24,1,'2012-06-18 21:44:23.337681',NULL,NULL,0,70,3);
+INSERT INTO "grampsdb_eventref" VALUES(43,32,24,2,'2012-06-18 21:44:23.342796',NULL,NULL,0,104,3);
+INSERT INTO "grampsdb_eventref" VALUES(44,33,6,1,'2012-06-18 21:44:23.404810',NULL,NULL,0,88,10);
+INSERT INTO "grampsdb_eventref" VALUES(45,33,7,1,'2012-06-18 21:44:23.478609',NULL,NULL,0,76,10);
+INSERT INTO "grampsdb_eventref" VALUES(46,32,26,1,'2012-06-18 21:44:23.528330',NULL,NULL,0,128,3);
+INSERT INTO "grampsdb_eventref" VALUES(47,33,8,1,'2012-06-18 21:44:23.616135',NULL,NULL,0,126,10);
+INSERT INTO "grampsdb_eventref" VALUES(48,32,27,1,'2012-06-18 21:44:23.667384',NULL,NULL,0,139,3);
+INSERT INTO "grampsdb_eventref" VALUES(49,32,27,2,'2012-06-18 21:44:23.672332',NULL,NULL,0,78,3);
+INSERT INTO "grampsdb_eventref" VALUES(50,32,27,3,'2012-06-18 21:44:23.677553',NULL,NULL,0,107,3);
+INSERT INTO "grampsdb_eventref" VALUES(51,32,27,4,'2012-06-18 21:44:23.682541',NULL,NULL,0,120,3);
+INSERT INTO "grampsdb_eventref" VALUES(52,32,27,5,'2012-06-18 21:44:23.687450',NULL,NULL,0,12,3);
+INSERT INTO "grampsdb_eventref" VALUES(53,32,27,6,'2012-06-18 21:44:23.692375',NULL,NULL,0,132,3);
+INSERT INTO "grampsdb_eventref" VALUES(54,32,28,1,'2012-06-18 21:44:23.795550',NULL,NULL,0,112,3);
+INSERT INTO "grampsdb_eventref" VALUES(55,32,29,1,'2012-06-18 21:44:23.870739',NULL,NULL,0,75,3);
+INSERT INTO "grampsdb_eventref" VALUES(56,33,9,1,'2012-06-18 21:44:23.916582',NULL,NULL,0,114,10);
+INSERT INTO "grampsdb_eventref" VALUES(57,32,30,1,'2012-06-18 21:44:23.931600',NULL,NULL,0,48,3);
+INSERT INTO "grampsdb_eventref" VALUES(58,32,30,2,'2012-06-18 21:44:23.936522',NULL,NULL,0,4,3);
+INSERT INTO "grampsdb_eventref" VALUES(59,32,30,3,'2012-06-18 21:44:23.941595',NULL,NULL,0,53,3);
+INSERT INTO "grampsdb_eventref" VALUES(60,32,30,4,'2012-06-18 21:44:23.946535',NULL,NULL,0,55,3);
+INSERT INTO "grampsdb_eventref" VALUES(61,32,30,5,'2012-06-18 21:44:23.951595',NULL,NULL,0,136,3);
+INSERT INTO "grampsdb_eventref" VALUES(62,32,30,6,'2012-06-18 21:44:23.956501',NULL,NULL,0,16,3);
+INSERT INTO "grampsdb_eventref" VALUES(63,32,30,7,'2012-06-18 21:44:23.961529',NULL,NULL,0,18,3);
+INSERT INTO "grampsdb_eventref" VALUES(64,32,30,8,'2012-06-18 21:44:23.966479',NULL,NULL,0,66,3);
+INSERT INTO "grampsdb_eventref" VALUES(65,32,30,9,'2012-06-18 21:44:23.971546',NULL,NULL,0,15,3);
+INSERT INTO "grampsdb_eventref" VALUES(66,32,30,10,'2012-06-18 21:44:23.976544',NULL,NULL,0,131,3);
+INSERT INTO "grampsdb_eventref" VALUES(67,32,30,11,'2012-06-18 21:44:23.981586',NULL,NULL,0,105,3);
+INSERT INTO "grampsdb_eventref" VALUES(68,32,31,1,'2012-06-18 21:44:24.136799',NULL,NULL,0,36,3);
+INSERT INTO "grampsdb_eventref" VALUES(69,32,31,2,'2012-06-18 21:44:24.141710',NULL,NULL,0,32,3);
+INSERT INTO "grampsdb_eventref" VALUES(70,33,10,1,'2012-06-18 21:44:24.217654',NULL,NULL,0,97,10);
+INSERT INTO "grampsdb_eventref" VALUES(71,32,32,1,'2012-06-18 21:44:24.245110',NULL,NULL,0,140,3);
+INSERT INTO "grampsdb_eventref" VALUES(72,32,32,2,'2012-06-18 21:44:24.250060',NULL,NULL,0,44,3);
+INSERT INTO "grampsdb_eventref" VALUES(73,32,32,3,'2012-06-18 21:44:24.255128',NULL,NULL,0,22,3);
+INSERT INTO "grampsdb_eventref" VALUES(74,32,32,4,'2012-06-18 21:44:24.260061',NULL,NULL,0,143,3);
+INSERT INTO "grampsdb_eventref" VALUES(75,32,32,5,'2012-06-18 21:44:24.265101',NULL,NULL,0,72,3);
+INSERT INTO "grampsdb_eventref" VALUES(76,32,32,6,'2012-06-18 21:44:24.270047',NULL,NULL,0,117,3);
+INSERT INTO "grampsdb_eventref" VALUES(77,32,32,7,'2012-06-18 21:44:24.275090',NULL,NULL,0,115,3);
+INSERT INTO "grampsdb_eventref" VALUES(78,32,33,1,'2012-06-18 21:44:24.367176',NULL,NULL,0,27,3);
+INSERT INTO "grampsdb_eventref" VALUES(79,32,33,2,'2012-06-18 21:44:24.372174',NULL,NULL,0,138,3);
+INSERT INTO "grampsdb_eventref" VALUES(80,32,34,1,'2012-06-18 21:44:24.425595',NULL,NULL,0,133,3);
+INSERT INTO "grampsdb_eventref" VALUES(81,32,35,1,'2012-06-18 21:44:24.468202',NULL,NULL,0,61,3);
+INSERT INTO "grampsdb_eventref" VALUES(82,32,35,2,'2012-06-18 21:44:24.473238',NULL,NULL,0,144,3);
+INSERT INTO "grampsdb_eventref" VALUES(83,33,11,1,'2012-06-18 21:44:24.564451',NULL,NULL,0,3,10);
+INSERT INTO "grampsdb_eventref" VALUES(84,32,38,1,'2012-06-18 21:44:24.612194',NULL,NULL,0,30,3);
+INSERT INTO "grampsdb_eventref" VALUES(85,32,39,1,'2012-06-18 21:44:24.671502',NULL,NULL,0,103,3);
+INSERT INTO "grampsdb_eventref" VALUES(86,32,39,2,'2012-06-18 21:44:24.678020',NULL,NULL,0,94,3);
+INSERT INTO "grampsdb_eventref" VALUES(87,32,39,3,'2012-06-18 21:44:24.687831',NULL,NULL,0,79,3);
+INSERT INTO "grampsdb_eventref" VALUES(88,32,39,4,'2012-06-18 21:44:24.700844',NULL,NULL,0,6,3);
+INSERT INTO "grampsdb_eventref" VALUES(89,32,39,5,'2012-06-18 21:44:24.706244',NULL,NULL,0,130,3);
+INSERT INTO "grampsdb_eventref" VALUES(90,32,39,6,'2012-06-18 21:44:24.712317',NULL,NULL,0,110,3);
+INSERT INTO "grampsdb_eventref" VALUES(91,32,40,1,'2012-06-18 21:44:24.818661',NULL,NULL,0,57,3);
+INSERT INTO "grampsdb_eventref" VALUES(92,32,40,2,'2012-06-18 21:44:24.823588',NULL,NULL,0,77,3);
+INSERT INTO "grampsdb_eventref" VALUES(93,32,40,3,'2012-06-18 21:44:24.828490',NULL,NULL,0,129,3);
+INSERT INTO "grampsdb_eventref" VALUES(94,32,40,4,'2012-06-18 21:44:24.833413',NULL,NULL,0,5,3);
+INSERT INTO "grampsdb_eventref" VALUES(95,32,40,5,'2012-06-18 21:44:24.838318',NULL,NULL,0,45,3);
+INSERT INTO "grampsdb_eventref" VALUES(96,33,12,1,'2012-06-18 21:44:24.958050',NULL,NULL,0,9,10);
+INSERT INTO "grampsdb_eventref" VALUES(97,32,42,1,'2012-06-18 21:44:25.005241',NULL,NULL,0,93,3);
+INSERT INTO "grampsdb_eventref" VALUES(98,32,43,1,'2012-06-18 21:44:25.051005',NULL,NULL,0,81,3);
+INSERT INTO "grampsdb_eventref" VALUES(99,32,44,1,'2012-06-18 21:44:25.094668',NULL,NULL,0,91,3);
+INSERT INTO "grampsdb_eventref" VALUES(100,33,13,1,'2012-06-18 21:44:25.151772',NULL,NULL,0,33,10);
+INSERT INTO "grampsdb_eventref" VALUES(101,32,45,1,'2012-06-18 21:44:25.166572',NULL,NULL,0,135,3);
+INSERT INTO "grampsdb_eventref" VALUES(102,32,47,1,'2012-06-18 21:44:25.295401',NULL,NULL,0,83,3);
+INSERT INTO "grampsdb_eventref" VALUES(103,32,48,1,'2012-06-18 21:44:25.342899',NULL,NULL,0,10,3);
+INSERT INTO "grampsdb_eventref" VALUES(104,32,49,1,'2012-06-18 21:44:25.392403',NULL,NULL,0,60,3);
+INSERT INTO "grampsdb_eventref" VALUES(105,32,50,1,'2012-06-18 21:44:25.454292',NULL,NULL,0,86,3);
+INSERT INTO "grampsdb_eventref" VALUES(106,32,50,2,'2012-06-18 21:44:25.459287',NULL,NULL,0,34,3);
+INSERT INTO "grampsdb_eventref" VALUES(107,33,15,1,'2012-06-18 21:44:25.533584',NULL,NULL,0,108,10);
+INSERT INTO "grampsdb_eventref" VALUES(108,32,51,1,'2012-06-18 21:44:25.549739',NULL,NULL,0,43,3);
+INSERT INTO "grampsdb_eventref" VALUES(109,32,52,1,'2012-06-18 21:44:25.601486',NULL,NULL,0,23,3);
+INSERT INTO "grampsdb_eventref" VALUES(110,32,52,2,'2012-06-18 21:44:25.606455',NULL,NULL,0,29,3);
+INSERT INTO "grampsdb_eventref" VALUES(111,32,53,1,'2012-06-18 21:44:25.671464',NULL,NULL,0,37,3);
+INSERT INTO "grampsdb_eventref" VALUES(112,32,53,2,'2012-06-18 21:44:25.676399',NULL,NULL,0,42,3);
+INSERT INTO "grampsdb_eventref" VALUES(113,32,53,3,'2012-06-18 21:44:25.681313',NULL,NULL,0,25,3);
+INSERT INTO "grampsdb_eventref" VALUES(114,32,53,4,'2012-06-18 21:44:25.686232',NULL,NULL,0,59,3);
+INSERT INTO "grampsdb_eventref" VALUES(115,32,53,5,'2012-06-18 21:44:25.691163',NULL,NULL,0,122,3);
+INSERT INTO "grampsdb_eventref" VALUES(116,32,53,6,'2012-06-18 21:44:25.696065',NULL,NULL,0,137,3);
+INSERT INTO "grampsdb_eventref" VALUES(117,32,53,7,'2012-06-18 21:44:25.701005',NULL,NULL,0,98,3);
+INSERT INTO "grampsdb_eventref" VALUES(118,32,54,1,'2012-06-18 21:44:25.860153',NULL,NULL,0,7,3);
+INSERT INTO "grampsdb_eventref" VALUES(119,32,55,1,'2012-06-18 21:44:25.900690',NULL,NULL,0,96,3);
+INSERT INTO "grampsdb_eventref" VALUES(120,32,56,1,'2012-06-18 21:44:25.948952',NULL,NULL,0,2,3);
+INSERT INTO "grampsdb_eventref" VALUES(121,33,16,1,'2012-06-18 21:44:25.986720',NULL,NULL,0,71,10);
+INSERT INTO "grampsdb_eventref" VALUES(122,33,17,1,'2012-06-18 21:44:26.031360',NULL,NULL,0,142,10);
+INSERT INTO "grampsdb_eventref" VALUES(123,32,57,1,'2012-06-18 21:44:26.045945',NULL,NULL,0,80,3);
+INSERT INTO "grampsdb_eventref" VALUES(124,32,57,2,'2012-06-18 21:44:26.050888',NULL,NULL,0,101,3);
+INSERT INTO "grampsdb_eventref" VALUES(125,32,57,3,'2012-06-18 21:44:26.055824',NULL,NULL,0,100,3);
+INSERT INTO "grampsdb_eventref" VALUES(126,32,57,4,'2012-06-18 21:44:26.060733',NULL,NULL,0,92,3);
+INSERT INTO "grampsdb_eventref" VALUES(127,32,57,5,'2012-06-18 21:44:26.065683',NULL,NULL,0,89,3);
+INSERT INTO "grampsdb_eventref" VALUES(128,32,58,1,'2012-06-18 21:44:26.142731',NULL,NULL,0,74,3);
+INSERT INTO "grampsdb_eventref" VALUES(129,32,59,1,'2012-06-18 21:44:26.179838',NULL,NULL,0,102,3);
+INSERT INTO "grampsdb_eventref" VALUES(130,32,60,1,'2012-06-18 21:44:26.233343',NULL,NULL,0,141,3);
+INSERT INTO "grampsdb_eventref" VALUES(131,32,61,1,'2012-06-18 21:44:26.275896',NULL,NULL,0,54,3);
+INSERT INTO "grampsdb_eventref" VALUES(132,32,62,1,'2012-06-18 21:44:26.316464',NULL,NULL,0,109,3);
+INSERT INTO "grampsdb_eventref" VALUES(133,32,63,1,'2012-06-18 21:44:26.364404',NULL,NULL,0,99,3);
+INSERT INTO "grampsdb_eventref" VALUES(134,32,63,2,'2012-06-18 21:44:26.369336',NULL,NULL,0,65,3);
+INSERT INTO "grampsdb_eventref" VALUES(135,32,64,1,'2012-06-18 21:44:26.417815',NULL,NULL,0,1,3);
+INSERT INTO "grampsdb_eventref" VALUES(136,32,65,1,'2012-06-18 21:44:26.459513',NULL,NULL,0,49,3);
+INSERT INTO "grampsdb_eventref" VALUES(137,32,65,2,'2012-06-18 21:44:26.464464',NULL,NULL,0,40,3);
+INSERT INTO "grampsdb_eventref" VALUES(138,32,66,1,'2012-06-18 21:44:26.516595',NULL,NULL,0,14,3);
+INSERT INTO "grampsdb_eventref" VALUES(139,32,66,2,'2012-06-18 21:44:26.521508',NULL,NULL,0,38,3);
+INSERT INTO "grampsdb_eventref" VALUES(140,32,66,3,'2012-06-18 21:44:26.526435',NULL,NULL,0,127,3);
+INSERT INTO "grampsdb_eventref" VALUES(141,32,68,1,'2012-06-18 21:44:26.633349',NULL,NULL,0,17,3);
+INSERT INTO "grampsdb_eventref" VALUES(142,32,69,1,'2012-06-18 21:44:26.682050',NULL,NULL,0,20,3);
+INSERT INTO "grampsdb_eventref" VALUES(143,32,69,2,'2012-06-18 21:44:26.687011',NULL,NULL,0,85,3);
+INSERT INTO "grampsdb_eventref" VALUES(144,33,19,1,'2012-06-18 21:44:26.827754',NULL,NULL,0,111,10);
 CREATE TABLE "grampsdb_repositoryref" (
     "id" integer NOT NULL PRIMARY KEY,
     "object_type_id" integer NOT NULL REFERENCES "django_content_type" ("id"),
@@ -2118,7 +2170,7 @@ CREATE TABLE "grampsdb_personref" (
     "last_changed_by" text,
     "private" bool NOT NULL,
     "ref_object_id" integer NOT NULL REFERENCES "grampsdb_person" ("id"),
-    "description" varchar(50) NOT NULL
+    "description" varchar(50)
 );
 CREATE TABLE "grampsdb_citationref" (
     "id" integer NOT NULL PRIMARY KEY,
@@ -2144,55 +2196,55 @@ CREATE TABLE "grampsdb_childref" (
     "mother_rel_type_id" integer NOT NULL REFERENCES "grampsdb_childreftype" ("id"),
     "ref_object_id" integer NOT NULL REFERENCES "grampsdb_person" ("id")
 );
-INSERT INTO "grampsdb_childref" VALUES(1,33,1,1,'2012-06-10 22:25:15.839374',NULL,NULL,0,2,2,23);
-INSERT INTO "grampsdb_childref" VALUES(2,33,1,2,'2012-06-10 22:25:15.842935',NULL,NULL,0,2,2,52);
-INSERT INTO "grampsdb_childref" VALUES(3,33,1,3,'2012-06-10 22:25:15.846336',NULL,NULL,0,2,2,50);
-INSERT INTO "grampsdb_childref" VALUES(4,33,2,1,'2012-06-10 22:25:16.086297',NULL,NULL,0,2,2,33);
-INSERT INTO "grampsdb_childref" VALUES(5,33,4,1,'2012-06-10 22:25:16.625752',NULL,NULL,0,2,2,10);
-INSERT INTO "grampsdb_childref" VALUES(6,33,4,2,'2012-06-10 22:25:16.630650',NULL,NULL,0,2,2,17);
-INSERT INTO "grampsdb_childref" VALUES(7,33,4,3,'2012-06-10 22:25:16.634556',NULL,NULL,0,2,2,41);
-INSERT INTO "grampsdb_childref" VALUES(8,33,8,1,'2012-06-10 22:25:16.925139',NULL,NULL,0,2,2,19);
-INSERT INTO "grampsdb_childref" VALUES(9,33,8,2,'2012-06-10 22:25:16.928638',NULL,NULL,0,2,2,18);
-INSERT INTO "grampsdb_childref" VALUES(10,33,8,3,'2012-06-10 22:25:16.932004',NULL,NULL,0,2,2,60);
-INSERT INTO "grampsdb_childref" VALUES(11,33,8,4,'2012-06-10 22:25:16.935377',NULL,NULL,0,2,2,6);
-INSERT INTO "grampsdb_childref" VALUES(12,33,8,5,'2012-06-10 22:25:16.938854',NULL,NULL,0,2,2,48);
-INSERT INTO "grampsdb_childref" VALUES(13,33,10,1,'2012-06-10 22:25:17.129303',NULL,NULL,0,2,2,68);
-INSERT INTO "grampsdb_childref" VALUES(14,33,10,2,'2012-06-10 22:25:17.132828',NULL,NULL,0,2,2,51);
-INSERT INTO "grampsdb_childref" VALUES(15,33,10,3,'2012-06-10 22:25:17.136222',NULL,NULL,0,2,2,35);
-INSERT INTO "grampsdb_childref" VALUES(16,33,10,4,'2012-06-10 22:25:17.139621',NULL,NULL,0,2,2,67);
-INSERT INTO "grampsdb_childref" VALUES(17,33,10,5,'2012-06-10 22:25:17.143241',NULL,NULL,0,2,2,56);
-INSERT INTO "grampsdb_childref" VALUES(18,33,10,6,'2012-06-10 22:25:17.146710',NULL,NULL,0,2,2,64);
-INSERT INTO "grampsdb_childref" VALUES(19,33,10,7,'2012-06-10 22:25:17.150085',NULL,NULL,0,2,2,21);
-INSERT INTO "grampsdb_childref" VALUES(20,33,10,8,'2012-06-10 22:25:17.153507',NULL,NULL,0,2,2,42);
-INSERT INTO "grampsdb_childref" VALUES(21,33,10,9,'2012-06-10 22:25:17.156893',NULL,NULL,0,2,2,27);
-INSERT INTO "grampsdb_childref" VALUES(22,33,11,1,'2012-06-10 22:25:17.169712',NULL,NULL,0,2,2,15);
-INSERT INTO "grampsdb_childref" VALUES(23,33,11,2,'2012-06-10 22:25:17.173136',NULL,NULL,0,2,2,44);
-INSERT INTO "grampsdb_childref" VALUES(24,33,11,3,'2012-06-10 22:25:17.176534',NULL,NULL,0,2,2,66);
-INSERT INTO "grampsdb_childref" VALUES(25,33,11,4,'2012-06-10 22:25:17.179960',NULL,NULL,0,2,2,36);
-INSERT INTO "grampsdb_childref" VALUES(26,33,13,1,'2012-06-10 22:25:17.375519',NULL,NULL,0,2,2,53);
-INSERT INTO "grampsdb_childref" VALUES(27,33,13,2,'2012-06-10 22:25:17.378977',NULL,NULL,0,2,2,58);
-INSERT INTO "grampsdb_childref" VALUES(28,33,13,3,'2012-06-10 22:25:17.382361',NULL,NULL,0,2,2,65);
-INSERT INTO "grampsdb_childref" VALUES(29,33,13,4,'2012-06-10 22:25:17.385746',NULL,NULL,0,2,2,38);
-INSERT INTO "grampsdb_childref" VALUES(30,33,13,5,'2012-06-10 22:25:17.389155',NULL,NULL,0,2,2,8);
-INSERT INTO "grampsdb_childref" VALUES(31,33,14,1,'2012-06-10 22:25:17.659858',NULL,NULL,0,2,2,55);
-INSERT INTO "grampsdb_childref" VALUES(32,33,14,2,'2012-06-10 22:25:17.663259',NULL,NULL,0,2,2,45);
-INSERT INTO "grampsdb_childref" VALUES(33,33,14,3,'2012-06-10 22:25:17.666647',NULL,NULL,0,2,2,32);
-INSERT INTO "grampsdb_childref" VALUES(34,33,16,1,'2012-06-10 22:25:18.150892',NULL,NULL,0,2,2,26);
-INSERT INTO "grampsdb_childref" VALUES(35,33,16,2,'2012-06-10 22:25:18.154370',NULL,NULL,0,2,2,37);
-INSERT INTO "grampsdb_childref" VALUES(36,33,16,3,'2012-06-10 22:25:18.157758',NULL,NULL,0,2,2,22);
-INSERT INTO "grampsdb_childref" VALUES(37,33,16,4,'2012-06-10 22:25:18.161143',NULL,NULL,0,2,2,24);
-INSERT INTO "grampsdb_childref" VALUES(38,33,16,5,'2012-06-10 22:25:18.164538',NULL,NULL,0,2,2,54);
-INSERT INTO "grampsdb_childref" VALUES(39,33,16,6,'2012-06-10 22:25:18.168093',NULL,NULL,0,2,2,9);
-INSERT INTO "grampsdb_childref" VALUES(40,33,16,7,'2012-06-10 22:25:18.171490',NULL,NULL,0,2,2,30);
-INSERT INTO "grampsdb_childref" VALUES(41,33,16,8,'2012-06-10 22:25:18.174926',NULL,NULL,0,2,2,13);
-INSERT INTO "grampsdb_childref" VALUES(42,33,16,9,'2012-06-10 22:25:18.178372',NULL,NULL,0,2,2,39);
-INSERT INTO "grampsdb_childref" VALUES(43,33,16,10,'2012-06-10 22:25:18.181785',NULL,NULL,0,2,2,2);
-INSERT INTO "grampsdb_childref" VALUES(44,33,16,11,'2012-06-10 22:25:18.185189',NULL,NULL,0,2,2,47);
-INSERT INTO "grampsdb_childref" VALUES(45,33,17,1,'2012-06-10 22:25:18.376911',NULL,NULL,0,2,2,61);
-INSERT INTO "grampsdb_childref" VALUES(46,33,17,2,'2012-06-10 22:25:18.380358',NULL,NULL,0,2,2,59);
-INSERT INTO "grampsdb_childref" VALUES(47,33,17,3,'2012-06-10 22:25:18.383734',NULL,NULL,0,2,2,62);
-INSERT INTO "grampsdb_childref" VALUES(48,33,18,1,'2012-06-10 22:25:18.408362',NULL,NULL,0,2,2,69);
-INSERT INTO "grampsdb_childref" VALUES(49,33,18,2,'2012-06-10 22:25:18.411746',NULL,NULL,0,2,2,5);
+INSERT INTO "grampsdb_childref" VALUES(1,33,3,1,'2012-06-18 21:44:22.972485',NULL,NULL,0,2,2,30);
+INSERT INTO "grampsdb_childref" VALUES(2,33,3,2,'2012-06-18 21:44:22.978992',NULL,NULL,0,2,2,44);
+INSERT INTO "grampsdb_childref" VALUES(3,33,3,3,'2012-06-18 21:44:22.984999',NULL,NULL,0,2,2,59);
+INSERT INTO "grampsdb_childref" VALUES(4,33,5,1,'2012-06-18 21:44:23.230674',NULL,NULL,0,2,2,41);
+INSERT INTO "grampsdb_childref" VALUES(5,33,5,2,'2012-06-18 21:44:23.236665',NULL,NULL,0,2,2,64);
+INSERT INTO "grampsdb_childref" VALUES(6,33,5,3,'2012-06-18 21:44:23.242819',NULL,NULL,0,2,2,22);
+INSERT INTO "grampsdb_childref" VALUES(7,33,7,1,'2012-06-18 21:44:23.425019',NULL,NULL,0,2,2,7);
+INSERT INTO "grampsdb_childref" VALUES(8,33,7,2,'2012-06-18 21:44:23.431038',NULL,NULL,0,2,2,3);
+INSERT INTO "grampsdb_childref" VALUES(9,33,7,3,'2012-06-18 21:44:23.437203',NULL,NULL,0,2,2,17);
+INSERT INTO "grampsdb_childref" VALUES(10,33,7,4,'2012-06-18 21:44:23.443298',NULL,NULL,0,2,2,31);
+INSERT INTO "grampsdb_childref" VALUES(11,33,7,5,'2012-06-18 21:44:23.449291',NULL,NULL,0,2,2,69);
+INSERT INTO "grampsdb_childref" VALUES(12,33,7,6,'2012-06-18 21:44:23.455400',NULL,NULL,0,2,2,2);
+INSERT INTO "grampsdb_childref" VALUES(13,33,7,7,'2012-06-18 21:44:23.461342',NULL,NULL,0,2,2,21);
+INSERT INTO "grampsdb_childref" VALUES(14,33,7,8,'2012-06-18 21:44:23.467463',NULL,NULL,0,2,2,50);
+INSERT INTO "grampsdb_childref" VALUES(15,33,7,9,'2012-06-18 21:44:23.473554',NULL,NULL,0,2,2,24);
+INSERT INTO "grampsdb_childref" VALUES(16,33,8,1,'2012-06-18 21:44:23.574712',NULL,NULL,0,2,2,68);
+INSERT INTO "grampsdb_childref" VALUES(17,33,8,2,'2012-06-18 21:44:23.581713',NULL,NULL,0,2,2,4);
+INSERT INTO "grampsdb_childref" VALUES(18,33,8,3,'2012-06-18 21:44:23.589781',NULL,NULL,0,2,2,12);
+INSERT INTO "grampsdb_childref" VALUES(19,33,8,4,'2012-06-18 21:44:23.597111',NULL,NULL,0,2,2,48);
+INSERT INTO "grampsdb_childref" VALUES(20,33,8,5,'2012-06-18 21:44:23.604295',NULL,NULL,0,2,2,39);
+INSERT INTO "grampsdb_childref" VALUES(21,33,9,1,'2012-06-18 21:44:23.905350',NULL,NULL,0,2,2,53);
+INSERT INTO "grampsdb_childref" VALUES(22,33,9,2,'2012-06-18 21:44:23.911569',NULL,NULL,0,2,2,16);
+INSERT INTO "grampsdb_childref" VALUES(23,33,12,1,'2012-06-18 21:44:24.928594',NULL,NULL,0,2,2,35);
+INSERT INTO "grampsdb_childref" VALUES(24,33,12,2,'2012-06-18 21:44:24.934622',NULL,NULL,0,2,2,38);
+INSERT INTO "grampsdb_childref" VALUES(25,33,12,3,'2012-06-18 21:44:24.940765',NULL,NULL,0,2,2,36);
+INSERT INTO "grampsdb_childref" VALUES(26,33,12,4,'2012-06-18 21:44:24.946876',NULL,NULL,0,2,2,6);
+INSERT INTO "grampsdb_childref" VALUES(27,33,12,5,'2012-06-18 21:44:24.952859',NULL,NULL,0,2,2,56);
+INSERT INTO "grampsdb_childref" VALUES(28,33,13,1,'2012-06-18 21:44:25.134267',NULL,NULL,0,2,2,19);
+INSERT INTO "grampsdb_childref" VALUES(29,33,13,2,'2012-06-18 21:44:25.140472',NULL,NULL,0,2,2,66);
+INSERT INTO "grampsdb_childref" VALUES(30,33,13,3,'2012-06-18 21:44:25.146506',NULL,NULL,0,2,2,33);
+INSERT INTO "grampsdb_childref" VALUES(31,33,14,1,'2012-06-18 21:44:25.276420',NULL,NULL,0,2,2,27);
+INSERT INTO "grampsdb_childref" VALUES(32,33,15,1,'2012-06-18 21:44:25.510546',NULL,NULL,0,2,2,13);
+INSERT INTO "grampsdb_childref" VALUES(33,33,15,2,'2012-06-18 21:44:25.516560',NULL,NULL,0,2,2,67);
+INSERT INTO "grampsdb_childref" VALUES(34,33,15,3,'2012-06-18 21:44:25.522548',NULL,NULL,0,2,2,23);
+INSERT INTO "grampsdb_childref" VALUES(35,33,15,4,'2012-06-18 21:44:25.528552',NULL,NULL,0,2,2,11);
+INSERT INTO "grampsdb_childref" VALUES(36,33,17,1,'2012-06-18 21:44:26.014045',NULL,NULL,0,2,2,9);
+INSERT INTO "grampsdb_childref" VALUES(37,33,17,2,'2012-06-18 21:44:26.020310',NULL,NULL,0,2,2,18);
+INSERT INTO "grampsdb_childref" VALUES(38,33,17,3,'2012-06-18 21:44:26.026339',NULL,NULL,0,2,2,62);
+INSERT INTO "grampsdb_childref" VALUES(39,33,19,1,'2012-06-18 21:44:26.762715',NULL,NULL,0,2,2,49);
+INSERT INTO "grampsdb_childref" VALUES(40,33,19,2,'2012-06-18 21:44:26.768710',NULL,NULL,0,2,2,45);
+INSERT INTO "grampsdb_childref" VALUES(41,33,19,3,'2012-06-18 21:44:26.774714',NULL,NULL,0,2,2,14);
+INSERT INTO "grampsdb_childref" VALUES(42,33,19,4,'2012-06-18 21:44:26.780674',NULL,NULL,0,2,2,55);
+INSERT INTO "grampsdb_childref" VALUES(43,33,19,5,'2012-06-18 21:44:26.786650',NULL,NULL,0,2,2,51);
+INSERT INTO "grampsdb_childref" VALUES(44,33,19,6,'2012-06-18 21:44:26.792603',NULL,NULL,0,2,2,61);
+INSERT INTO "grampsdb_childref" VALUES(45,33,19,7,'2012-06-18 21:44:26.798574',NULL,NULL,0,2,2,43);
+INSERT INTO "grampsdb_childref" VALUES(46,33,19,8,'2012-06-18 21:44:26.804533',NULL,NULL,0,2,2,10);
+INSERT INTO "grampsdb_childref" VALUES(47,33,19,9,'2012-06-18 21:44:26.810639',NULL,NULL,0,2,2,34);
+INSERT INTO "grampsdb_childref" VALUES(48,33,19,10,'2012-06-18 21:44:26.816783',NULL,NULL,0,2,2,26);
+INSERT INTO "grampsdb_childref" VALUES(49,33,19,11,'2012-06-18 21:44:26.822746',NULL,NULL,0,2,2,28);
 CREATE TABLE "grampsdb_mediaref" (
     "id" integer NOT NULL PRIMARY KEY,
     "object_type_id" integer NOT NULL REFERENCES "django_content_type" ("id"),
@@ -2249,83 +2301,84 @@ CREATE INDEX grampsdb_eventref_object_id_object_type_id
        ON grampsdb_eventref (object_id, object_type_id);
 CREATE INDEX grampsdb_childref_object_id_object_type_id 
        ON grampsdb_childref (object_id, object_type_id);
-CREATE INDEX "auth_permission_e4470c6e" ON "auth_permission" ("content_type_id");
-CREATE INDEX "auth_group_permissions_bda51c3c" ON "auth_group_permissions" ("group_id");
+CREATE INDEX "auth_permission_1bb8f392" ON "auth_permission" ("content_type_id");
+CREATE INDEX "auth_group_permissions_425ae3c4" ON "auth_group_permissions" ("group_id");
 CREATE INDEX "auth_group_permissions_1e014c8f" ON "auth_group_permissions" ("permission_id");
-CREATE INDEX "auth_user_user_permissions_fbfc09f1" ON "auth_user_user_permissions" ("user_id");
+CREATE INDEX "auth_user_user_permissions_403f60f" ON "auth_user_user_permissions" ("user_id");
 CREATE INDEX "auth_user_user_permissions_1e014c8f" ON "auth_user_user_permissions" ("permission_id");
-CREATE INDEX "auth_user_groups_fbfc09f1" ON "auth_user_groups" ("user_id");
-CREATE INDEX "auth_user_groups_bda51c3c" ON "auth_user_groups" ("group_id");
-CREATE INDEX "auth_message_fbfc09f1" ON "auth_message" ("user_id");
-CREATE INDEX "django_session_c25c2c28" ON "django_session" ("expire_date");
-CREATE INDEX "django_admin_log_fbfc09f1" ON "django_admin_log" ("user_id");
-CREATE INDEX "django_admin_log_e4470c6e" ON "django_admin_log" ("content_type_id");
+CREATE INDEX "auth_user_groups_403f60f" ON "auth_user_groups" ("user_id");
+CREATE INDEX "auth_user_groups_425ae3c4" ON "auth_user_groups" ("group_id");
+CREATE INDEX "auth_message_403f60f" ON "auth_message" ("user_id");
+CREATE INDEX "django_session_3da3d3d8" ON "django_session" ("expire_date");
+CREATE INDEX "django_admin_log_403f60f" ON "django_admin_log" ("user_id");
+CREATE INDEX "django_admin_log_1bb8f392" ON "django_admin_log" ("content_type_id");
 CREATE INDEX "grampsdb_profile_71d2bf68" ON "grampsdb_profile" ("theme_type_id");
 CREATE INDEX "grampsdb_person_families_21b911c5" ON "grampsdb_person_families" ("person_id");
-CREATE INDEX "grampsdb_person_families_ccf20756" ON "grampsdb_person_families" ("family_id");
+CREATE INDEX "grampsdb_person_families_330df8aa" ON "grampsdb_person_families" ("family_id");
 CREATE INDEX "grampsdb_person_tags_21b911c5" ON "grampsdb_person_tags" ("person_id");
 CREATE INDEX "grampsdb_person_tags_3747b463" ON "grampsdb_person_tags" ("tag_id");
 CREATE INDEX "grampsdb_person_parent_families_21b911c5" ON "grampsdb_person_parent_families" ("person_id");
-CREATE INDEX "grampsdb_person_parent_families_ccf20756" ON "grampsdb_person_parent_families" ("family_id");
+CREATE INDEX "grampsdb_person_parent_families_330df8aa" ON "grampsdb_person_parent_families" ("family_id");
 CREATE INDEX "grampsdb_person_79775e9" ON "grampsdb_person" ("gender_type_id");
 CREATE INDEX "grampsdb_person_3a672176" ON "grampsdb_person" ("birth_id");
-CREATE INDEX "grampsdb_person_f406392b" ON "grampsdb_person" ("death_id");
-CREATE INDEX "grampsdb_family_tags_ccf20756" ON "grampsdb_family_tags" ("family_id");
+CREATE INDEX "grampsdb_person_bf9c6d5" ON "grampsdb_person" ("death_id");
+CREATE INDEX "grampsdb_family_tags_330df8aa" ON "grampsdb_family_tags" ("family_id");
 CREATE INDEX "grampsdb_family_tags_3747b463" ON "grampsdb_family_tags" ("tag_id");
 CREATE INDEX "grampsdb_family_656bfb9c" ON "grampsdb_family" ("father_id");
 CREATE INDEX "grampsdb_family_3800eb51" ON "grampsdb_family" ("mother_id");
-CREATE INDEX "grampsdb_family_8a163760" ON "grampsdb_family" ("family_rel_type_id");
-CREATE INDEX "grampsdb_citation_89f89e85" ON "grampsdb_citation" ("source_id");
-CREATE INDEX "grampsdb_event_cb60d07f" ON "grampsdb_event" ("event_type_id");
-CREATE INDEX "grampsdb_event_c4391d6c" ON "grampsdb_event" ("place_id");
+CREATE INDEX "grampsdb_family_75e9c8a0" ON "grampsdb_family" ("family_rel_type_id");
+CREATE INDEX "grampsdb_citation_7607617b" ON "grampsdb_citation" ("source_id");
+CREATE INDEX "grampsdb_event_349f2f81" ON "grampsdb_event" ("event_type_id");
+CREATE INDEX "grampsdb_event_3bc6e294" ON "grampsdb_event" ("place_id");
 CREATE INDEX "grampsdb_repository_5f9de118" ON "grampsdb_repository" ("repository_type_id");
 CREATE INDEX "grampsdb_media_tags_11f50c51" ON "grampsdb_media_tags" ("media_id");
 CREATE INDEX "grampsdb_media_tags_3747b463" ON "grampsdb_media_tags" ("tag_id");
 CREATE INDEX "grampsdb_note_tags_14a186ec" ON "grampsdb_note_tags" ("note_id");
 CREATE INDEX "grampsdb_note_tags_3747b463" ON "grampsdb_note_tags" ("tag_id");
-CREATE INDEX "grampsdb_note_8e504316" ON "grampsdb_note" ("note_type_id");
+CREATE INDEX "grampsdb_note_71afbcea" ON "grampsdb_note" ("note_type_id");
 CREATE INDEX "grampsdb_surname_5489fd8b" ON "grampsdb_surname" ("name_origin_type_id");
 CREATE INDEX "grampsdb_surname_632e075f" ON "grampsdb_surname" ("name_id");
-CREATE INDEX "grampsdb_name_bbd280b5" ON "grampsdb_name" ("name_type_id");
-CREATE INDEX "grampsdb_name_af013a48" ON "grampsdb_name" ("sort_as_id");
-CREATE INDEX "grampsdb_name_f5d4d029" ON "grampsdb_name" ("display_as_id");
+CREATE INDEX "grampsdb_name_442d7f4b" ON "grampsdb_name" ("name_type_id");
+CREATE INDEX "grampsdb_name_50fec5b8" ON "grampsdb_name" ("sort_as_id");
+CREATE INDEX "grampsdb_name_a2b2fd7" ON "grampsdb_name" ("display_as_id");
 CREATE INDEX "grampsdb_name_21b911c5" ON "grampsdb_name" ("person_id");
-CREATE INDEX "grampsdb_lds_a9c5135e" ON "grampsdb_lds" ("lds_type_id");
-CREATE INDEX "grampsdb_lds_c4391d6c" ON "grampsdb_lds" ("place_id");
+CREATE INDEX "grampsdb_lds_563aeca2" ON "grampsdb_lds" ("lds_type_id");
+CREATE INDEX "grampsdb_lds_3bc6e294" ON "grampsdb_lds" ("place_id");
 CREATE INDEX "grampsdb_lds_5934a803" ON "grampsdb_lds" ("famc_id");
 CREATE INDEX "grampsdb_lds_44224078" ON "grampsdb_lds" ("status_id");
 CREATE INDEX "grampsdb_lds_21b911c5" ON "grampsdb_lds" ("person_id");
-CREATE INDEX "grampsdb_lds_ccf20756" ON "grampsdb_lds" ("family_id");
+CREATE INDEX "grampsdb_lds_330df8aa" ON "grampsdb_lds" ("family_id");
 CREATE INDEX "grampsdb_markup_14a186ec" ON "grampsdb_markup" ("note_id");
-CREATE INDEX "grampsdb_markup_b91c6fdf" ON "grampsdb_markup" ("styled_text_tag_type_id");
-CREATE INDEX "grampsdb_sourcedatamap_89f89e85" ON "grampsdb_sourcedatamap" ("source_id");
-CREATE INDEX "grampsdb_citationdatamap_958eecfd" ON "grampsdb_citationdatamap" ("citation_id");
+CREATE INDEX "grampsdb_markup_46e39021" ON "grampsdb_markup" ("styled_text_tag_type_id");
+CREATE INDEX "grampsdb_sourcedatamap_7607617b" ON "grampsdb_sourcedatamap" ("source_id");
+CREATE INDEX "grampsdb_citationdatamap_6a711303" ON "grampsdb_citationdatamap" ("citation_id");
 CREATE INDEX "grampsdb_address_21b911c5" ON "grampsdb_address" ("person_id");
 CREATE INDEX "grampsdb_address_6a730446" ON "grampsdb_address" ("repository_id");
-CREATE INDEX "grampsdb_location_c4391d6c" ON "grampsdb_location" ("place_id");
-CREATE INDEX "grampsdb_location_b213c1e9" ON "grampsdb_location" ("address_id");
-CREATE INDEX "grampsdb_url_9655b856" ON "grampsdb_url" ("url_type_id");
+CREATE INDEX "grampsdb_location_3bc6e294" ON "grampsdb_location" ("place_id");
+CREATE INDEX "grampsdb_location_4dec3e17" ON "grampsdb_location" ("address_id");
+CREATE INDEX "grampsdb_url_69aa47aa" ON "grampsdb_url" ("url_type_id");
 CREATE INDEX "grampsdb_url_21b911c5" ON "grampsdb_url" ("person_id");
-CREATE INDEX "grampsdb_url_c4391d6c" ON "grampsdb_url" ("place_id");
+CREATE INDEX "grampsdb_url_3bc6e294" ON "grampsdb_url" ("place_id");
 CREATE INDEX "grampsdb_url_6a730446" ON "grampsdb_url" ("repository_id");
-CREATE INDEX "grampsdb_attribute_ec24ebcd" ON "grampsdb_attribute" ("attribute_type_id");
-CREATE INDEX "grampsdb_attribute_ae71a55b" ON "grampsdb_attribute" ("object_type_id");
-CREATE INDEX "grampsdb_noteref_ae71a55b" ON "grampsdb_noteref" ("object_type_id");
-CREATE INDEX "grampsdb_noteref_d8532d97" ON "grampsdb_noteref" ("ref_object_id");
-CREATE INDEX "grampsdb_eventref_ae71a55b" ON "grampsdb_eventref" ("object_type_id");
-CREATE INDEX "grampsdb_eventref_d8532d97" ON "grampsdb_eventref" ("ref_object_id");
+CREATE INDEX "grampsdb_attribute_13db1433" ON "grampsdb_attribute" ("attribute_type_id");
+CREATE INDEX "grampsdb_attribute_518e5aa5" ON "grampsdb_attribute" ("object_type_id");
+CREATE INDEX "grampsdb_log_518e5aa5" ON "grampsdb_log" ("object_type_id");
+CREATE INDEX "grampsdb_noteref_518e5aa5" ON "grampsdb_noteref" ("object_type_id");
+CREATE INDEX "grampsdb_noteref_27acd269" ON "grampsdb_noteref" ("ref_object_id");
+CREATE INDEX "grampsdb_eventref_518e5aa5" ON "grampsdb_eventref" ("object_type_id");
+CREATE INDEX "grampsdb_eventref_27acd269" ON "grampsdb_eventref" ("ref_object_id");
 CREATE INDEX "grampsdb_eventref_6ae08856" ON "grampsdb_eventref" ("role_type_id");
-CREATE INDEX "grampsdb_repositoryref_ae71a55b" ON "grampsdb_repositoryref" ("object_type_id");
-CREATE INDEX "grampsdb_repositoryref_d8532d97" ON "grampsdb_repositoryref" ("ref_object_id");
+CREATE INDEX "grampsdb_repositoryref_518e5aa5" ON "grampsdb_repositoryref" ("object_type_id");
+CREATE INDEX "grampsdb_repositoryref_27acd269" ON "grampsdb_repositoryref" ("ref_object_id");
 CREATE INDEX "grampsdb_repositoryref_4fd76720" ON "grampsdb_repositoryref" ("source_media_type_id");
-CREATE INDEX "grampsdb_personref_ae71a55b" ON "grampsdb_personref" ("object_type_id");
-CREATE INDEX "grampsdb_personref_d8532d97" ON "grampsdb_personref" ("ref_object_id");
-CREATE INDEX "grampsdb_citationref_ae71a55b" ON "grampsdb_citationref" ("object_type_id");
-CREATE INDEX "grampsdb_citationref_958eecfd" ON "grampsdb_citationref" ("citation_id");
-CREATE INDEX "grampsdb_childref_ae71a55b" ON "grampsdb_childref" ("object_type_id");
+CREATE INDEX "grampsdb_personref_518e5aa5" ON "grampsdb_personref" ("object_type_id");
+CREATE INDEX "grampsdb_personref_27acd269" ON "grampsdb_personref" ("ref_object_id");
+CREATE INDEX "grampsdb_citationref_518e5aa5" ON "grampsdb_citationref" ("object_type_id");
+CREATE INDEX "grampsdb_citationref_6a711303" ON "grampsdb_citationref" ("citation_id");
+CREATE INDEX "grampsdb_childref_518e5aa5" ON "grampsdb_childref" ("object_type_id");
 CREATE INDEX "grampsdb_childref_6f3234de" ON "grampsdb_childref" ("father_rel_type_id");
-CREATE INDEX "grampsdb_childref_de957003" ON "grampsdb_childref" ("mother_rel_type_id");
-CREATE INDEX "grampsdb_childref_d8532d97" ON "grampsdb_childref" ("ref_object_id");
-CREATE INDEX "grampsdb_mediaref_ae71a55b" ON "grampsdb_mediaref" ("object_type_id");
-CREATE INDEX "grampsdb_mediaref_d8532d97" ON "grampsdb_mediaref" ("ref_object_id");
+CREATE INDEX "grampsdb_childref_216a8ffd" ON "grampsdb_childref" ("mother_rel_type_id");
+CREATE INDEX "grampsdb_childref_27acd269" ON "grampsdb_childref" ("ref_object_id");
+CREATE INDEX "grampsdb_mediaref_518e5aa5" ON "grampsdb_mediaref" ("object_type_id");
+CREATE INDEX "grampsdb_mediaref_27acd269" ON "grampsdb_mediaref" ("ref_object_id");
 COMMIT;

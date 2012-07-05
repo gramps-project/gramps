@@ -7,23 +7,23 @@
 pkgpythondir = $(datadir)/@PACKAGE@/plugins/textreport
 
 pkgpython_PYTHON = \
-	AlphabeticalIndex.py\
-	AncestorReport.py\
-	BirthdayReport.py\
-	CustomBookText.py\
-	DescendReport.py\
-	DetAncestralReport.py\
-	DetDescendantReport.py\
-	EndOfLineReport.py\
-	FamilyGroup.py\
-	IndivComplete.py\
-	KinshipReport.py\
-	NumberOfAncestorsReport.py\
-	PlaceReport.py\
-	SimpleBookTitle.py\
-	Summary.py\
-	TableOfContents.py\
-	TagReport.py\
+	alphabeticalindex.py\
+	ancestorreport.py\
+	birthdayreport.py\
+	custombooktext.py\
+	descendreport.py\
+	detancestralreport.py\
+	detdescendantreport.py\
+	endoflinereport.py\
+	familygroup.py\
+	indivcomplete.py\
+	kinshipreport.py\
+	numberofancestorsreport.py\
+	placereport.py\
+	simplebooktitle.py\
+	summary.py\
+	tableofcontents.py\
+	tagreport.py\
 	textplugins.gpr.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/textreport

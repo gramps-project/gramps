@@ -39,7 +39,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 import gen.datehandler
-import LdsUtils
+from gen.utils.lds import TEMPLES
 
 #-------------------------------------------------------------------------
 #
@@ -59,7 +59,7 @@ class LdsModel(Gtk.ListStore):
                 lds_ord.type2str(), 
                 gen.datehandler.get_date(lds_ord), 
                 lds_ord.status2str(), 
-                LdsUtils.TEMPLES.name(lds_ord.get_temple()),
+                TEMPLES.name(lds_ord.get_temple()),
                 self.column_place(lds_ord), 
                 lds_ord, 
                 ])

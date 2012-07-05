@@ -37,8 +37,8 @@ import subprocess
 import libxml2
 
 from libgrampsxml import GRAMPS_XML_VERSION
-from const import VERSION
-import ExportVCard
+from gen.const import VERSION
+import exportvcard
 
 class VCardCheck(unittest.TestCase):
     def setUp(self):

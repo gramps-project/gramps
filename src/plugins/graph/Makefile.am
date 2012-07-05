@@ -8,9 +8,9 @@ pkgpythondir = $(datadir)/@PACKAGE@/plugins/graph
 
 pkgpython_PYTHON = \
 	graphplugins.gpr.py\
-	GVFamilyLines.py \
-	GVHourGlass.py \
-	GVRelGraph.py
+	gvfamilylines.py \
+	gvhourglass.py \
+	gvrelgraph.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/graph
 

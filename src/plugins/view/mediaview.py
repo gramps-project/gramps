@@ -52,11 +52,11 @@ from gi.repository import Gtk
 from gui.utils import open_file_with_default_application
 from gui.views.listview import ListView
 from gui.views.treemodels import MediaModel
-import const
 from gen.constfunc import win
 from gen.config import config
-import Utils
-from gen.utils.referent import get_media_referents
+from gen.utils.file import (media_path, relative_path, media_path_full, 
+                            fix_encoding)
+from gen.utils.db import get_media_referents
 from gui.views.bookmarks import MediaBookmarks
 import gen.mime
 import gen.lib
@@ -180,7 +180,7 @@ class MediaView(ListView):
         else:
             files =  sel_data.get_uris()
         for file in files:
-            clean_string = Utils.fix_encoding(
+            clean_string = fix_encoding(
                             file.replace('\0',' ').replace("\r", " ").strip())
             protocol, site, mfile, j, k, l = urlparse.urlparse(clean_string)
             if protocol == "file":
@@ -190,9 +190,9 @@ class MediaView(ListView):
                 if not gen.mime.is_valid_type(mime):
                     return
                 photo = gen.lib.MediaObject()
-                base_dir = unicode(Utils.media_path(self.dbstate.db))
+                base_dir = unicode(media_path(self.dbstate.db))
                 if os.path.exists(base_dir):
-                    name = Utils.relative_path(name, base_dir)
+                    name = relative_path(name, base_dir)
                 photo.set_path(name)
                 photo.set_mime_type(mime)
                 basename = os.path.basename(name)
@@ -249,7 +249,7 @@ class MediaView(ListView):
         """
         for handle in self.selected_handles():
             ref_obj = self.dbstate.db.get_object_from_handle(handle)
-            mpath = Utils.media_path_full(self.dbstate.db, ref_obj.get_path())
+            mpath = media_path_full(self.dbstate.db, ref_obj.get_path())
             open_file_with_default_application(mpath)
 
     def open_containing_folder(self, obj):
@@ -258,7 +258,7 @@ class MediaView(ListView):
         """
         for handle in self.selected_handles():
             ref_obj = self.dbstate.db.get_object_from_handle(handle)
-            mpath = Utils.media_path_full(self.dbstate.db, ref_obj.get_path())
+            mpath = media_path_full(self.dbstate.db, ref_obj.get_path())
             if mpath:
                 mfolder, mfile = os.path.split(mpath)
                 open_file_with_default_application(mfolder)

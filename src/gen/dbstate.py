@@ -27,7 +27,7 @@ Provide the database state class
 
 from gen.db import DbBsddbRead
 from gen.proxy.proxybase import ProxyDbBase
-from gen.utils import Callback
+from gen.utils.callback import Callback
 from gen.config import config
 
 class DbState(Callback):
