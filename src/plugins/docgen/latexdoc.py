@@ -646,7 +646,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
 #   some additional variables
 #   ---------------------------------------------------------------
     in_table = False
-    in_multrow_cell = False
+    in_multrow_cell = False #   for tab-strukt: cols of rows
     pict = ''
     pict_in_table = False
     pict_width = 0
@@ -701,7 +701,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
         elif tab_state == ROW_END:
             self.tabrow.addit = text # text: \\hline, \\cline{}
             self.tabrow.tail = ''.join(self.textmem) # \\\\ row-termination
-            if self.in_multrow_cell:
+            if self.in_multrow_cell: #   cols of rows: convert to rows of cols
                 self.repack_row()
             else:
                 self.tabmem.rows.append(self.tabrow)
@@ -719,10 +719,15 @@ class LaTeXDoc(BaseDoc, TextDoc):
 
     def repack_row(self):
         """
-        Transpose contents contained in a row of mult-row cells
+        Transpose contents contained in a row of cols of cells
         to rows of cells with corresponding contents.
-        Rows in the mult-row-cell are ended by SEPARATION_PAT
+        Cols of the mult-row-cell are ended by SEPARATION_PAT
         """
+        # if last col empty: delete
+        if self.tabrow.cells[-1].content == '':
+            del self.tabrow.cells[-1]
+            self.numcols -= 1
+
         # extract cell.contents
         bare_contents = [cell.content.strip(SEPARATION_PAT).replace(
                                                '\n', '').split(SEPARATION_PAT)
@@ -1040,7 +1045,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
         if self.in_title and ltxstyle.font_beg.find('centering') == -1:
             self.in_title = False
             self._backend.write('\\vspace{5ex}%\n')
-        if self.in_table:
+        if self.in_table:   #   paragraph in table indicates: cols of rows
             self.in_multrow_cell = True
         else:
             if leader:
