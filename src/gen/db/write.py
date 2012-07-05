@@ -62,6 +62,8 @@ from gen.db import (DbBsddbRead, DbWriteBase, BSDDBTxn,
                     find_surname_name, DbUndoBSDDB as DbUndo)
 from gen.db.dbconst import *
 from gen.utils.callback import Callback
+from gen.utils.cast import (conv_unicode_tosrtkey_ongtk, conv_dbstr_to_unicode,
+                            conv_unicode_tosrtkey)
 from gen.updatecallback import UpdateCallback
 from gen.errors import DbError
 from gen.constfunc import win
@@ -1414,7 +1416,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         if not self.readonly:
             # Start transaction
             with BSDDBTxn(self.env, self.name_group) as txn:
-                sname = str(name)
+                sname = conv_unicode_tosrtkey(name)
                 data = txn.get(sname)
                 if data is not None:
                     txn.delete(sname)
@@ -1427,15 +1429,19 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             self.emit('person-groupname-rebuild', (name, grouppar))
 
     def sort_surname_list(self):
-        self.surname_list.sort(key=locale.strxfrm)
+        self.surname_list.sort(key=conv_unicode_tosrtkey_ongtk)
 
     @catch_db_error
     def build_surname_list(self):
         """
         Build surname list for use in autocompletion
+        This is a list of unicode objects, which are decoded from the utf-8 in 
+        bsddb
         """
-        self.surname_list = sorted(map(unicode, set(self.surnames.keys())), 
-                                   key=locale.strxfrm)
+        #TODO GTK3: Why double conversion? Convert to a list of str objects!
+        self.surname_list = sorted(
+                        map(conv_dbstr_to_unicode, set(self.surnames.keys())), 
+                        key=conv_unicode_tosrtkey_ongtk)
 
     def add_to_surname_list(self, person, batch_transaction):
         """

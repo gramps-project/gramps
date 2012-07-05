@@ -74,7 +74,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gen.filters import SearchFilter, ExactSearchFilter
-from bugfix import conv_unicode_tosrtkey_ongtk
+from gen.utils.cast import conv_unicode_tosrtkey_ongtk
 
 #-------------------------------------------------------------------------
 #
@@ -561,9 +561,7 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         Return the (sort_key, handle) list of all data that can maximally 
         be shown. 
         This list is sorted ascending, via localized string sort. 
-        conv_unicode_tosrtkey_ongtk which uses strxfrm, which is apparently 
-        broken in Win ?? --> they should fix base lib, we need strxfrm, fix it 
-        in the bugfix module.
+        conv_unicode_tosrtkey_ongtk which uses strxfrm
         """
         # use cursor as a context manager
         with self.gen_cursor() as cursor:   
@@ -758,7 +756,12 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         if col == self._tooltip_column:
             return val
         else:
-            return str(val)
+            #GTK 3 should convert unicode objects automatically, but this
+            # gives wrong column values, so we convert
+            if isinstance(val, unicode):
+                return val.encode('utf-8')
+            else:
+                return val
 
     def do_iter_previous(self, iter):
         #print 'do_iter_previous'
