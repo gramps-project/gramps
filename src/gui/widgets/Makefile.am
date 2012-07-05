@@ -14,6 +14,7 @@ pkgpython_PYTHON = \
 	grampletpane.py \
 	labels.py \
 	linkbox.py \
+	menuitem.py \
 	menutoolbuttonaction.py \
 	monitoredwidgets.py \
 	multitreeview.py \

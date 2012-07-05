@@ -34,6 +34,7 @@ from gen.ggettext import gettext as _
 # GTK libraries
 #
 #-------------------------------------------------------------------------
+from gi.repository import GObject
 from gi.repository import Gtk
 from gi.repository import Pango
 WEIGHT_NORMAL = Pango.Weight.NORMAL

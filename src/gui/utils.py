@@ -55,17 +55,6 @@ from gen.constfunc import has_display, is_quartz, mac, win
 #
 #
 #-------------------------------------------------------------------------
-def add_menuitem(menu, msg, obj, func):
-    """
-    add a menuitem to menu with label msg, which activates func, and has data
-    obj
-    """
-    from gi.repository import Gtk
-    item = Gtk.MenuItem(label=msg)
-    item.set_data('o', obj)
-    item.connect("activate", func)
-    item.show()
-    menu.append(item)
 
 class CLIVbox():
     """

@@ -57,7 +57,7 @@ from gui.columnorder import ColumnOrder
 from gen.config import config
 from gen.errors import WindowActiveError
 from gui.filters import SearchBar
-from gui.utils import add_menuitem
+from gui.widgets.menuitem import add_menuitem
 from gen.const import CUSTOM_FILTERS, USE_TIPS
 from gen.utils.debug import profile
 from gen.utils.string import data_recover_msg

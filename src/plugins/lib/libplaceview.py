@@ -47,7 +47,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 import gen.lib
 from gui.views.listview import ListView
-from gui.utils import add_menuitem
+from gui.widgets.menuitem import add_menuitem
 from gen.errors import WindowActiveError
 from gui.views.bookmarks import PlaceBookmarks
 from gen.config import config

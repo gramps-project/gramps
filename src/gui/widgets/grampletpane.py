@@ -49,6 +49,7 @@ from gen.const import URL_MANUAL_PAGE, VERSION_DIR
 from gui.editors import EditPerson, EditFamily
 from gui.managedwindow import ManagedWindow
 import gui.utils
+from gui.widgets.menuitem import add_menuitem
 from gui.plug.quick import run_quick_report_by_name
 from gui.display import display_help, display_url
 from gui.glade import Glade
@@ -1386,7 +1387,7 @@ class GrampletPane(Gtk.ScrolledWindow):
                          if gplug.navtypes == []]
                 names.sort()
                 for name in names:
-                    gui.utils.add_menuitem(qr_menu, name, None,
+                    add_menuitem(qr_menu, name, None,
                                            self.add_gramplet)
                 ag_menu.set_submenu(qr_menu)
             rg_menu = uiman.get_widget('/GrampletPopup/RestoreGramplet')
@@ -1400,7 +1401,7 @@ class GrampletPane(Gtk.ScrolledWindow):
                 if len(names) > 0:
                     qr_menu = Gtk.Menu()
                     for name in names:
-                        gui.utils.add_menuitem(qr_menu, name, None,
+                        add_menuitem(qr_menu, name, None,
                                                self.restore_gramplet)
                     rg_menu.set_submenu(qr_menu)
             menu = uiman.get_widget('/GrampletPopup')

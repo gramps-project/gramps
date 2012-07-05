@@ -1,8 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
-# Copyright (C) 2010       Benny Malengier
+# Copyright (C) 2008  Zsolt Foldvari
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,36 +18,57 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: toolcomboentry.py 19858 2012-06-17 21:25:37Z bmcage $
+
+"ToolComboEntry class."
+
+__all__ = ["MenuItemWithData", "add_menuitem"]
 
 #-------------------------------------------------------------------------
 #
-# GTK libraries
+# Python modules
 #
 #-------------------------------------------------------------------------
+import logging
+_LOG = logging.getLogger(".widgets.menuitem")
+
+#-------------------------------------------------------------------------
+#
+# GTK modules
+#
+#-------------------------------------------------------------------------
+from gi.repository import GObject
 from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS classes
+# MenuItemWithData class
 #
 #-------------------------------------------------------------------------
 
+    
+class MenuItemWithData(Gtk.MenuItem):
+    """ A MenuItem that stores a data property. As set_data in GTK3 is not 
+    working, this is a workaround to have set_data"""
+    data = GObject.Property(type=object)
 
-#-------------------------------------------------------------------------
-#
-# SurnamModel
-#
-#-------------------------------------------------------------------------
-class SurnameModel(Gtk.ListStore):
+    def __init__(self, label=''):
+        GObject.GObject.__init__(self, label=label)
+    
+    def set_data(self, data):
+        self.data = data
 
-    def __init__(self, surn_list, db):
-        #setup model for the treeview
-        Gtk.ListStore.__init__(self, str, str, str, str, 
-                               bool, object)
-        for surn in surn_list:
-            # fill the liststore
-            self.append(row=[surn.get_prefix(), surn.get_surname(),
-                             surn.get_connector(), str(surn.get_origintype()),
-                             surn.get_primary(), surn])
-        self.db = db
+    def get_data(self, _=None):
+        """ obtain the data, for backward compat, we allow a dummy argument"""
+        return self.data
+
+def add_menuitem(menu, msg, obj, func):
+    """
+    add a menuitem to menu with label msg, which activates func, and has data
+    obj
+    """
+    item = MenuItemWithData(label=msg)
+    item.set_data(obj)
+    item.connect("activate", func)
+    item.show()
+    menu.append(item)
