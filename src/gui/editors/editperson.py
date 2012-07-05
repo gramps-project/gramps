@@ -59,6 +59,7 @@ from gui import widgets
 from gen.display.name import displayer as name_displayer
 from gen.errors import WindowActiveError
 from gui.glade import Glade
+from gui.widgets.menuitem import add_menuitem
 
 from editprimary import EditPrimary
 from editmediaref import EditMediaRef
@@ -621,9 +622,9 @@ class EditPerson(EditPrimary):
         menu.set_title(_("Media Object"))
         obj = self.db.get_object_from_handle(photo.get_reference_handle())
         if obj:
-            gui.utils.add_menuitem(menu, _("View"), photo,
+            add_menuitem(menu, _("View"), photo,
                                    self._popup_view_photo)
-        gui.utils.add_menuitem(menu, _("Edit Object Properties"), photo,
+        add_menuitem(menu, _("Edit Object Properties"), photo,
                                self._popup_change_description)
         menu.popup(None, None, None, event.button, event.time)
 
