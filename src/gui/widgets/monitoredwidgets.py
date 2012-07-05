@@ -858,7 +858,7 @@ class MonitoredTagList(object):
         Invoke the tag editor.
         """
         if (event.type == Gdk.EventType.BUTTON_PRESS or
-           (event.type == Gdk.KEY_PRESS and
+           (event.type == Gdk.EventType.KEY_PRESS and
             event.keyval in (_RETURN, _KP_ENTER))):
             from gui.editors import EditTagList
             editor = EditTagList(self.tag_list, self.all_tags,

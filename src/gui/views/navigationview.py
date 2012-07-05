@@ -501,7 +501,7 @@ class NavigationView(PageView):
         Handle the control+c (copy) and control+v (paste), or pass it on.
         """
         if self.active:
-            if event.type == Gdk.KEY_PRESS:
+            if event.type == Gdk.EventType.KEY_PRESS:
                 if (event.keyval == Gdk.KEY_c and 
                     (event.get_state() & Gdk.ModifierType.CONTROL_MASK)):
                     self.call_copy()

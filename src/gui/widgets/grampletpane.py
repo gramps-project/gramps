@@ -789,7 +789,7 @@ class GridGramplet(GuiGramplet):
         """
         Edit the title, handle escape.
         """
-        if event.type == Gdk.KEY_PRESS:
+        if event.type == Gdk.EventType.KEY_PRESS:
             if event.keyval == Gdk.KEY_Escape:
                 self.titlelabel.show()
                 widget.hide()

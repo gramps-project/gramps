@@ -155,7 +155,7 @@ class GrampsTab(Gtk.VBox):
         The inheriting object must contain a widget that connects at mimimum
         to this method, eg an eventbox, tree, ...
         """
-        if event.type == Gdk.KEY_PRESS:
+        if event.type == Gdk.EventType.KEY_PRESS:
             if event.keyval in (_LEFT,) and \
                     (event.get_state() & Gdk.ModifierType.MOD1_MASK):
                 self.prev_page()

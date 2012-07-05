@@ -1094,7 +1094,7 @@ class EditFamily(EditPrimary):
 def button_activated(event, mouse_button):
     if (event.type == Gdk.EventType.BUTTON_PRESS and
         event.button == mouse_button) or \
-       (event.type == Gdk.KEY_PRESS and
+       (event.type == Gdk.EventType.KEY_PRESS and
         event.keyval in (_RETURN, _KP_ENTER)):
         return True
     else:

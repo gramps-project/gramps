@@ -322,7 +322,7 @@ class SurnameTab(EmbeddedList):
         Here we make sure tab moves to next or previous value in row on TAB
         """
         if not EmbeddedList.key_pressed(self, obj, event):
-            if event.type == Gdk.KEY_PRESS and event.keyval in (_TAB,):
+            if event.type == Gdk.EventType.KEY_PRESS and event.keyval in (_TAB,):
                 if not (event.get_state() & (Gdk.ModifierType.SHIFT_MASK |
                                        Gdk.ModifierType.CONTROL_MASK)):
                     return self.next_cell()

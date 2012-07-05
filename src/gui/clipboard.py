@@ -1403,7 +1403,7 @@ class MultiTreeView(Gtk.TreeView):
         self.defer_select = False
 
     def key_press_event(self, widget, event):
-        if event.type == Gdk.KEY_PRESS:
+        if event.type == Gdk.EventType.KEY_PRESS:
             if event.keyval == Gdk.KEY_Delete:
                 model, paths = self.get_selection().get_selected_rows()
                 # reverse, to delete from the end

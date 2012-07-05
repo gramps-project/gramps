@@ -205,7 +205,7 @@ class ButtonTab(GrampsTab):
         Handles the return key being pressed on list. If the key is pressed,
         the Edit button handler is called
         """
-        if event.type == Gdk.KEY_PRESS:
+        if event.type == Gdk.EventType.KEY_PRESS:
             #print 'key pressed', event.keyval, event.get_state(), _ADD
             if  event.keyval in (_RETURN, _KP_ENTER):
                 try:
