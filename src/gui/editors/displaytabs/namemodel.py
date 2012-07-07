@@ -87,7 +87,7 @@ class NameModel(Gtk.TreeStore):
             that might be used. name is the name for the group.
         """
         typeobjs = (x[1] for x in self.COLS)
-        GObject.GObject.__init__(self, *typeobjs)
+        Gtk.TreeStore.__init__(self, *typeobjs)
         self.db = db
         self.groups = groups
         for index, group in enumerate(obj_list):

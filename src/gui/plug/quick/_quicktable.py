@@ -150,7 +150,7 @@ class QuickTable(SimpleTable):
                     popup.append(menu_item)
                     menu_item.show()
             # Show the popup menu:
-            popup.popup(None, None, func, button_code, event_time)
+            popup.popup(None, None, func, None, button_code, event_time)
             return True        
         return False
 

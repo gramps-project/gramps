@@ -56,7 +56,7 @@ class UndoableInsertEntry(object):
         self.offset = position
         self.text = str(text)
         #unicode char can have length > 1 as it points in the buffer
-        charlength = len(unicode(text))
+        charlength = len(unicode(text, 'utf-8'))
         self.length = charlength
         if charlength > 1 or self.text in ("\r", "\n", " "):
             self.mergeable = False
@@ -66,7 +66,7 @@ class UndoableInsertEntry(object):
 class UndoableDeleteEntry(object):
     """something that has been deleted from our textbuffer"""
     def __init__(self, editable, start, end):
-        self.text = str(editable.get_chars(start, end))
+        self.text = editable.get_chars(start, end).encode('utf-8')
         self.start = start
         self.end = end
         # need to find out if backspace or delete key has been used

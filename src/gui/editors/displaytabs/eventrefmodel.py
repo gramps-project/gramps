@@ -95,7 +95,7 @@ class EventRefModel(Gtk.TreeStore):
         """
         self.start_date = kwargs.get("start_date", None)
         typeobjs = (x[1] for x in self.COLS)
-        GObject.GObject.__init__(self, *typeobjs)
+        Gtk.TreeStore.__init__(self, *typeobjs)
         self.db = db
         self.groups = groups
         for index, group in enumerate(event_list):

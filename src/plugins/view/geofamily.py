@@ -36,7 +36,8 @@ import sys
 import urlparse
 import operator
 import locale
-from Gdk.KEY_import Tab as KEY_TAB
+from gi.repository import Gdk
+KEY_TAB = Gdk.KEY_Tab
 import socket
 from gi.repository import Gtk
 
@@ -444,7 +445,7 @@ class GeoFamily(GeoGraphyView):
         add_item.show()
         menu.append(add_item)
         self.add_event_bubble_message(event, lat, lon, prevmark, add_item)
-        menu.popup(None, None, None, 0, event.time)
+        menu.popup(None, None, None, None, 0, event.time)
         return 1
 
     def add_specific_menu(self, menu, event, lat, lon): 

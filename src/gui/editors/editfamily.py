@@ -676,7 +676,7 @@ class EditFamily(EditPrimary):
         notebook.show_all()
 
         self.hidden = (notebook, self.top.get_object('info'))
-        self.top.get_object('vbox').pack_start(notebook, True)
+        self.top.get_object('vbox').pack_start(notebook, True, True, 0)
 
     def update_father(self, handle):
         self.load_parent(handle, self.fname, self.fbirth, self.fbirth_label,

@@ -1466,7 +1466,7 @@ class MultiTreeView(Gtk.TreeView):
                 popup.append(menu_item)
                 menu_item.show()
             # Show the popup menu:
-            popup.popup(None, None, None, 3, event.time)
+            popup.popup(None, None, None, None, 3, event.time)
             return True        
         elif event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             model, paths = self.get_selection().get_selected_rows()

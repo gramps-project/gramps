@@ -476,7 +476,7 @@ class GeoClose(GeoGraphyView):
                                    event, lat, lon, prevmark)
                     itemoption.append(center)
                     menu.show()
-                    menu.popup(None, None, None, 0, event.time)
+                    menu.popup(None, None, None, None, 0, event.time)
         return 0
 
     def add_specific_menu(self, menu, event, lat, lon): 

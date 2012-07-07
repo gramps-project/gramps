@@ -216,7 +216,7 @@ class EditPerson(EditPrimary):
             self.multsurnfr.show_all()
             self.singlesurn_active = False
         else:
-            self.multsurnfr.hide_all()
+            self.multsurnfr.hide()
             self.singsurnfr.show_all()
             self.singlesurn_active = True
         #if self.pname.get_surname() and not self.pname.get_first_name():
@@ -524,7 +524,7 @@ class EditPerson(EditPrimary):
 
         self._setup_notebook_tabs(notebook)
         notebook.show_all()
-        self.top.get_object('vbox').pack_start(notebook, True)
+        self.top.get_object('vbox').pack_start(notebook, True, True, 0)
 
     def _changed_name(self, *obj):
         """
@@ -568,7 +568,7 @@ class EditPerson(EditPrimary):
         else:
             self.singlesurn_active = False
         if self.singlesurn_active:
-            self.multsurnfr.hide_all()
+            self.multsurnfr.hide()
             self.singsurnfr.show_all()
         else:
             self.singsurnfr.hide_all()
@@ -626,7 +626,7 @@ class EditPerson(EditPrimary):
                                    self._popup_view_photo)
         add_menuitem(menu, _("Edit Object Properties"), photo,
                                self._popup_change_description)
-        menu.popup(None, None, None, event.button, event.time)
+        menu.popup(None, None, None, None, event.button, event.time)
 
     def _popup_view_photo(self, obj):
         """
@@ -891,7 +891,7 @@ class EditPerson(EditPrimary):
         else:
             self.singlesurn_active = False
         if self.singlesurn_active:
-            self.multsurnfr.hide_all()
+            self.multsurnfr.hide()
             self.singsurnfr.show_all()
 
         else:
@@ -934,7 +934,7 @@ class EditPerson(EditPrimary):
                 self.load_photo(ref, obj)
         else:
             self.obj_photo.hide()
-            self.frame_photo.hide_all()
+            self.frame_photo.hide()
 
     def load_photo(self, ref, obj):
         """

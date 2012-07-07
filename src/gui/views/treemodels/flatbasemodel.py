@@ -645,7 +645,7 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
             insert_path = self.node_map.insert(insert_val)
 
             if insert_path is not None:
-                node = self.do_get_iter(insert_path)
+                node = self.do_get_iter(insert_path)[1]
                 self.row_inserted(insert_path, node)
         else:
             self.node_map.insert(insert_val, allkeyonly=True)
@@ -749,7 +749,11 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         #print 'do_get_val', iter, iter.user_data, col,
         handle = iter.user_data
         if handle != self.prev_handle:
-            self.prev_data = self.map(str(handle))
+            data = self.map(str(handle))
+            if data is None:
+                #object is no longer present
+                return u''
+            self.prev_data = data
             self.prev_handle = handle
         val = self.fmap[col](self.prev_data)
         #print 'val is', val, type(val)

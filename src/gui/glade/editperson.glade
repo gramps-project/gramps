@@ -11,11 +11,13 @@
       <object class="GtkBox" id="vbox">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="vexpand">True</property>
         <property name="orientation">vertical</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="hbuttonbox1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="valign">start</property>
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="button15">
@@ -76,7 +78,7 @@
           </object>
           <packing>
             <property name="expand">False</property>
-            <property name="fill">True</property>
+            <property name="fill">False</property>
             <property name="pack_type">end</property>
             <property name="position">0</property>
           </packing>
@@ -85,15 +87,18 @@
           <object class="GtkEventBox" id="eventboxtop">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="valign">start</property>
             <child>
               <object class="GtkVBox" id="vbox1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="valign">start</property>
                 <property name="border_width">3</property>
                 <child>
                   <object class="GtkTable" id="table3">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="valign">start</property>
                     <property name="n_rows">8</property>
                     <property name="n_columns">9</property>
                     <child>
@@ -345,8 +350,8 @@
                         <property name="has_entry">True</property>
                         <child internal-child="entry">
                           <object class="GtkEntry" id="ntype-entry">
-                        <property name="can_focus">True</property>
-                        <property name="overwrite_mode">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="overwrite_mode">True</property>
                           </object>
                         </child>
                       </object>
@@ -377,6 +382,7 @@
                         <property name="top_attach">5</property>
                         <property name="bottom_attach">6</property>
                         <property name="x_options">GTK_FILL</property>
+                        <property name="y_options"></property>
                         <property name="x_padding">3</property>
                         <property name="y_padding">3</property>
                       </packing>
@@ -423,7 +429,7 @@ Indicate that the surname consists of different parts. Every surname has its own
                           </object>
                           <packing>
                             <property name="expand">False</property>
-                            <property name="fill">True</property>
+                            <property name="fill">False</property>
                             <property name="position">0</property>
                           </packing>
                         </child>
@@ -645,8 +651,8 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="has_entry">True</property>
                             <child internal-child="entry">
                               <object class="GtkEntry" id="cmborigin-entry">
-                        <property name="can_focus">True</property>
-                        <property name="overwrite_mode">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="overwrite_mode">True</property>
                               </object>
                             </child>
                           </object>
@@ -808,14 +814,11 @@ Indicate that the surname consists of different parts. Every surname has its own
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">True</property>
-                    <property name="fill">True</property>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
                     <property name="padding">2</property>
                     <property name="position">0</property>
                   </packing>
-                </child>
-                <child>
-                  <placeholder/>
                 </child>
               </object>
             </child>

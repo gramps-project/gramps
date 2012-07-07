@@ -1406,7 +1406,7 @@ class GrampletPane(Gtk.ScrolledWindow):
                     rg_menu.set_submenu(qr_menu)
             menu = uiman.get_widget('/GrampletPopup')
             if menu:
-                menu.popup(None, None, None, 1, event.time)
+                menu.popup(None, None, None, None, 1, event.time)
                 return True
         return False
 

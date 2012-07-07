@@ -975,5 +975,5 @@ class FanChartView(NavigationView):
             item.set_sensitive(0)
         item.show()
         menu.append(item)
-        menu.popup(None,None,None,event.button,event.time)
+        menu.popup(None, None, None, None, event.button, event.time)
         return 1

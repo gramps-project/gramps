@@ -1052,7 +1052,7 @@ class RelationshipView(NavigationView):
         if self.show_details:
             value = self.info_string(handle)
             if value:
-                vbox.pack_start(widgets.MarkupLabel(value, True, True, 0))
+                vbox.pack_start(widgets.MarkupLabel(value), True, True, 0)
 
         eventbox = Gtk.EventBox()
         if self.use_shade:
@@ -1217,7 +1217,7 @@ class RelationshipView(NavigationView):
         elif button_activated(event, _RIGHT_BUTTON):
             myMenu = Gtk.Menu()
             myMenu.append(self.build_menu_item(handle))
-            myMenu.popup(None, None, None, event.button, event.time)
+            myMenu.popup(None, None, None, None, event.button, event.time)
 
     def build_menu_item(self, handle):
         person = self.dbstate.db.get_person_from_handle(handle)

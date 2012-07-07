@@ -152,7 +152,10 @@ class EmbeddedList(ButtonTab):
                     img.set_from_stock(img_stock, Gtk.IconSize.MENU)
                     item.set_image(img)
                 else:
-                    item = Gtk.ImageMenuItem(stock_id=title)
+                    item = Gtk.ImageMenuItem('')
+                    img = Gtk.Image()
+                    img.set_from_stock(title, Gtk.IconSize.MENU)
+                    item.set_image(img)
             else:
                 item = Gtk.MenuItem(label=title)
             item.connect('activate', func)
@@ -160,7 +163,8 @@ class EmbeddedList(ButtonTab):
                 item.set_sensitive(False)
             item.show()
             menu.append(item)
-        menu.popup(None, None, None, event.button, event.time)
+        menu.popup(None, None, None, None, event.button, event.time)
+        return True
 
     def find_index(self, obj):
         """

@@ -233,7 +233,7 @@ class Tags(DbGUIElement):
         """
         menu = self.uistate.uimanager.get_widget('/TagPopup')
         button = self.uistate.uimanager.get_widget('/ToolBar/TagTool/TagButton')
-        menu.popup(None, None, cb_menu_position, 0, 0, button)
+        menu.popup(None, None, cb_menu_position, button, 0, 0)
         
     def cb_organize_tags(self, action):
         """

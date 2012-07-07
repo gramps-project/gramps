@@ -1014,7 +1014,7 @@ class BookReportSelector(ManagedWindow):
             item.set_sensitive(sensitivity)
             item.show()
             menu.append(item)
-        menu.popup(None, None, None, event.button, event.time)
+        menu.popup(None, None, None, None, event.button, event.time)
 
     def build_avail_context_menu(self, event):
         """Builds the menu with the single Add option."""
@@ -1037,7 +1037,7 @@ class BookReportSelector(ManagedWindow):
             item.set_sensitive(sensitivity)
             item.show()
             menu.append(item)
-        menu.popup(None, None, None, event.button, event.time)
+        menu.popup(None, None, None, None, event.button, event.time)
 
     def on_book_ok_clicked(self, obj): 
         """

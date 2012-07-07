@@ -132,8 +132,8 @@ class Navigator(object):
             button.grab_focus()
             button.set_active(True)
 
-            self.menu.popup(None, None, cb_menu_position, event.button,
-                            event.time, button)
+            self.menu.popup(None, None, cb_menu_position, button, event.button,
+                            event.time)
 
     def cb_menu_activate(self, menu, index):
         """

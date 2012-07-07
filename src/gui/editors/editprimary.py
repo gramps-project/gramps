@@ -277,7 +277,7 @@ class EditPrimary(ManagedWindow, DbGUIElement):
         self.contexteventbox = eventbox
         self.contexteventbox.connect('button-press-event',
                                 self._contextmenu_button_press)
-                                
+        
     def _contextmenu_button_press(self, obj, event) :
         """
         Button press event that is caught when a mousebutton has been
@@ -295,7 +295,7 @@ class EditPrimary(ManagedWindow, DbGUIElement):
                 
             menu = self.popupmanager.get_widget('/Popup')
             if menu:
-                menu.popup(None, None, None, event.button, event.time)
+                menu.popup(None, None, None, None, event.button, event.time)
                 return True
         return False
 

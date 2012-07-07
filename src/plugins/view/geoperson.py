@@ -36,7 +36,8 @@ import sys
 import urlparse
 import operator
 import locale
-from Gdk.KEY_import Tab as KEY_TAB
+from gi.repository import Gdk
+KEY_TAB = Gdk.KEY_Tab
 import socket
 from gi.repository import Gtk
 import glib
@@ -479,7 +480,7 @@ class GeoPerson(GeoGraphyView):
         center.connect("activate", self.center_here, event, lat, lon, prevmark)
         itemoption.append(center)
         menu.show()
-        menu.popup(None, None, None, 0, event.time)
+        menu.popup(None, None, None, None, 0, event.time)
         return 1
 
     def add_specific_menu(self, menu, event, lat, lon): 

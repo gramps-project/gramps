@@ -139,7 +139,7 @@ class MonitoredEntry(object):
         self.obj.connect(signal, callback, *data)
 
     def _on_change(self, obj):
-        self.set_val(unicode(obj.get_text()))
+        self.set_val(unicode(obj.get_text(), 'utf-8'))
         if self.changed:
             self.changed(obj)
 
