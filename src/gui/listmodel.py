@@ -29,6 +29,7 @@ Provide the basic functionality for a list view
 # GTK 
 #
 #-------------------------------------------------------------------------
+from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import Pango
 from gen.const import THUMBSCALE
@@ -429,6 +430,7 @@ class ListModel(object):
         """
         Add the data to the model at the end of the model
         """
+        info = info or ''
         self.count += 1
         need_to_set = True
         # Create the node:

@@ -319,7 +319,7 @@ class GrampsBar(Gtk.Notebook):
         height = min(int(self.uistate.screen_height() * 0.20), 400)
         gramplet.set_size_request(width, height)
 
-        page_num = self.append_page(gramplet, Gtk.Label(label=msg))
+        page_num = self.append_page(gramplet, Gtk.Label(label=''))
         return page_num
 
     def __create_tab_label(self, gramplet):
@@ -444,7 +444,12 @@ class GrampsBar(Gtk.Notebook):
             rd_menu.show()
             menu.append(rd_menu)
 
-            menu.popup(None, None, None, None, 1, event.time)
+            menu.show_all()
+            #GTK3 does not show the popup, workaround: pass position function
+            menu.popup(None, None, 
+                       lambda menu, data: (event.get_root_coords()[0],
+                                          event.get_root_coords()[1], True),
+                       None, event.button, event.time)
             return True
 
         return False
