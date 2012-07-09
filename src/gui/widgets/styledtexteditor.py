@@ -19,6 +19,7 @@
 #
 
 # $Id$
+from __future__ import print_function
 
 "Text editor subclassed from Gtk.TextView handling L{StyledText}."
 
@@ -188,6 +189,7 @@ class StyledTextEditor(Gtk.TextView):
             #but still gives error on output:
             #/usr/local/lib/python2.7/site-packages/gi/types.py:47: 
             #   Warning: g_value_get_object: assertion `G_VALUE_HOLDS_OBJECT (value)' failed
+            print ('GRAMPS GTK3: a g_value_get_object warning:')
             StyledTextEditor.FONTS = [f.get_name() for f in 
                         self.get_pango_context().list_families()]
             StyledTextEditor.FONTS.sort()
