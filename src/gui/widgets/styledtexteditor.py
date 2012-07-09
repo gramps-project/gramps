@@ -172,7 +172,9 @@ class StyledTextEditor(Gtk.TextView):
         'match-changed': (GObject.SignalFlags.RUN_FIRST, 
                           None, #return value
                           (GObject.TYPE_PYOBJECT,)), # arguments
-    }    
+    }
+    
+    FONTS = None
 
     def __init__(self):
         """Setup initial instance variable values."""
@@ -180,6 +182,15 @@ class StyledTextEditor(Gtk.TextView):
         self.textbuffer.connect('style-changed', self._on_buffer_style_changed)
         self.textbuffer.connect('changed', self._on_buffer_changed)
         GObject.GObject.__init__(self, buffer=self.textbuffer)
+        if StyledTextEditor.FONTS is None:
+            #TODO GTK3: How to do this different?
+            #workaround for bug https://bugzilla.gnome.org/show_bug.cgi?id=679654
+            #but still gives error on output:
+            #/usr/local/lib/python2.7/site-packages/gi/types.py:47: 
+            #   Warning: g_value_get_object: assertion `G_VALUE_HOLDS_OBJECT (value)' failed
+            StyledTextEditor.FONTS = [f.get_name() for f in 
+                        self.get_pango_context().list_families()]
+            StyledTextEditor.FONTS.sort()
 
         self.match = None
         self.last_match = None
@@ -472,14 +483,12 @@ class StyledTextEditor(Gtk.TextView):
         ]
         
         # ...last the custom actions, which have custom proxies
-        items = [f.get_name() for f in self.get_pango_context().list_families()]
-        items.sort()
         default = StyledTextTagType.STYLE_DEFAULT[StyledTextTagType.FONTFACE]
         fontface_action = ValueAction(str(StyledTextTagType.FONTFACE),
                                       _("Font family"),
                                       default,
                                       ToolComboEntry,
-                                      items,
+                                      StyledTextEditor.FONTS,
                                       False, #editable
                                       True, #shortlist
                                       None) # validator
