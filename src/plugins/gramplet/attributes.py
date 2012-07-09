@@ -53,7 +53,7 @@ class Attributes(Gramplet):
         Display the attributes of an object.
         """
         for attr in obj.get_attribute_list():
-            self.model.add((attr.get_type(), attr.get_value()))
+            self.model.add((str(attr.get_type()), attr.get_value()))
         self.set_has_data(self.model.count > 0)
         
     def display_report(self, treeview):
