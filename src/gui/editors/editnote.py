@@ -263,8 +263,7 @@ class EditNote(EditPrimary):
         # create a formatting toolbar
         if not self.dbstate.db.readonly:
             vbox = self.top.get_object('container')
-            vbox.pack_start(label=self.texteditor.get_toolbar(),
-                            expand=False, fill=False)
+            vbox.pack_start(self.texteditor.get_toolbar(), False, False, 0)
                 
         # setup initial values for textview and textbuffer
         if self.obj:
