@@ -28,6 +28,13 @@ Person Tree View
 
 #-------------------------------------------------------------------------
 #
+# GTK modules
+#
+#-------------------------------------------------------------------------
+from gi.repository import Gtk
+
+#-------------------------------------------------------------------------
+#
 # Gramps modules
 #
 #-------------------------------------------------------------------------
@@ -48,7 +55,7 @@ from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
-# PlaceTreeView
+# PersonTreeView
 #
 #-------------------------------------------------------------------------
 class PersonTreeView(BasePersonView):
@@ -169,10 +176,12 @@ class PersonTreeView(BasePersonView):
         basepers = None
         if len(pathlist) == 1:
             path = pathlist[0]
-            if len(path) == 1:
-                path = (path[0], 0)
-            node = model.get_iter(path)
-            handle = model.get_value(node, self.handle_col)
+            pathids = path.get_indices()
+            if len(pathids) == 1:
+                path = Gtk.TreePath((pathids[0], 0))
+            nodeiter = model.do_get_iter(path)[1]
+            node = model.get_node_from_iter(nodeiter)
+            handle = model.get_handle(node)
             basepers = self.dbstate.db.get_person_from_handle(handle)
         if basepers:
             preset_name(basepers, name)

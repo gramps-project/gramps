@@ -641,9 +641,9 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
 
             if not self._in_build:
                 # emit row_inserted signal
-                path = self.on_get_path(child_node)
-                node = self.get_iter(path)
-                self.row_inserted(path, node)
+                iternode = self.get_iter(child_node)
+                path = self.do_get_path(iternode)
+                self.row_inserted(path, iternode)
                 if handle:
                     self.__total += 1
                     self.__displayed += 1
@@ -678,7 +678,8 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
             self.__displayed -= 1
             self.__total -= 1
         elif node.parent: # don't remove the hidden root node
-            path = self.on_get_path(node)
+            iternode = self.get_iter(node)
+            path = self.do_get_path(iternode)
             self.nodemap.node(node.parent).remove_child(node, self.nodemap)
             del self.tree[node.ref]
             if node.handle is not None:
@@ -714,8 +715,8 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
             if node.parent is None:
                 path = iter = None
             else:
-                path = self.on_get_path(node)
-                iter = self.get_iter(path)
+                iternode = self.get_iter(node)
+                path = self.do_get_path(iternode)
             self.rows_reordered(path, iter, rows)
             if self.nrgroups > 1:
                 for child in node.children:
@@ -773,9 +774,9 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
             if not parent.children:
                 if parent.handle:
                     # emit row_has_child_toggled signal
-                    path = self.on_get_path(parent)
-                    node = self.get_iter(path)
-                    self.row_has_child_toggled(path, node)
+                    iternode = self.get_iter(parent)
+                    path = self.do_get_path(iternode)
+                    self.row_has_child_toggled(path, iternode)
                 else:
                     self.remove_node(parent)
             parent = next_parent
@@ -841,7 +842,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         Obtain from a handle, a path.
         Part of common api with flat/treebasemodel
         """
-        return self.on_get_path(self.get_node(handle))
+        return self.do_get_path(self.get_iter(self.get_node(handle)))
 
     # The following implement the public interface of Gtk.TreeModel
 
