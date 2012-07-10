@@ -1,13 +1,14 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007  Zsolt Foldvari
-# Copyright (C) 2009  Benny Malengier
-# Copyright (C) 2009  Brian Matherly
-# Copyright (C) 2010  Peter Landgren
-# Copyright (C) 2010  Jakim Friant
-# Copyright (C) 2011  Paul Franklin
-# Copyright (C) 2012  Craig Anderson
+# Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2007       Zsolt Foldvari
+# Copyright (C) 2009       Benny Malengier
+# Copyright (C) 2009       Brian Matherly
+# Copyright (C) 2010       Peter Landgren
+# Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2011-2012  Paul Franklin
+# Copyright (C) 2012       Craig Anderson
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1228,13 +1229,17 @@ class GtkDocText(GtkDocBaseElement):
     # line spacing is not defined in ParagraphStyle
     spacingfractionfont = 0.2
     
-    def __init__(self, style, vertical_alignment, text, x, y, angle=0):
+    def __init__(self, style, vertical_alignment, text, x, y,
+                 angle=0, mark=None):
         GtkDocBaseElement.__init__(self, style)
         self._align_y = vertical_alignment
         self._text = text
         self._x = x
         self._y = y
         self._angle = angle
+        self._marklist = []
+        if mark:
+            self._marklist = [mark]
         
     def draw(self, cr, layout, width, dpi_x, dpi_y):
         text_x = self._x * dpi_x / 2.54
@@ -1295,6 +1300,12 @@ class GtkDocText(GtkDocBaseElement):
         cr.restore()
 
         return layout_height
+
+    def get_marks(self):
+        """
+        Return the index mark for this text
+        """
+        return self._marklist
 
 #------------------------------------------------------------------------
 #
@@ -1444,7 +1455,7 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
     def __write_text(self, text, mark=None, markup=False, links=False):
         """
         @param text: text to write.
-        @param mark:  IndexMark to use for indexing (if supported)
+        @param mark:  IndexMark to use for indexing
         @param markup: True if text already contains markup info. 
                        Then text will no longer be escaped
         @param links:  True if URLs should be made clickable
@@ -1477,7 +1488,7 @@ links (like ODF) and write PDF from that format.
         """Write a normal piece of text according to the
            present style
         @param text: text to write.
-        @param mark:  IndexMark to use for indexing (if supported)
+        @param mark:  IndexMark to use for indexing
         @param links:  True if URLs should be made clickable
         """
         self.__write_text(text, mark, links=links)
@@ -1557,7 +1568,8 @@ links (like ODF) and write PDF from that format.
         new_polygon = GtkDocPolygon(style, path)
         self._active_element.add_child(new_polygon)
         
-    def draw_box(self, style_name, text, x, y, w, h):
+    def draw_box(self, style_name, text, x, y, w, h, mark=None):
+        """ @param mark:  IndexMark to use for indexing """
         # we handle the box and...
         style_sheet = self.get_style_sheet()
         style = style_sheet.get_draw_style(style_name)
@@ -1580,10 +1592,11 @@ links (like ODF) and write PDF from that format.
                 
             new_text = GtkDocText(paragraph_style, 'center', 
                                   self.__markup(text),
-                                  x + x_offset , y + h / 2, angle=0)
+                                  x + x_offset, y + h / 2, angle=0, mark=mark)
             self._active_element.add_child(new_text)
     
-    def draw_text(self, style_name, text, x, y):
+    def draw_text(self, style_name, text, x, y, mark=None):
+        """ @param mark:  IndexMark to use for indexing """
         style_sheet = self.get_style_sheet()
         style = style_sheet.get_draw_style(style_name)
         paragraph_style_name = style.get_paragraph_style()
@@ -1591,10 +1604,11 @@ links (like ODF) and write PDF from that format.
         paragraph_style.set_alignment(PARA_ALIGN_LEFT)
         
         new_text = GtkDocText(paragraph_style, 'top', 
-                              self.__markup(text), x, y, angle=0)
+                              self.__markup(text), x, y, angle=0, mark=mark)
         self._active_element.add_child(new_text)
         
-    def center_text(self, style_name, text, x, y):
+    def center_text(self, style_name, text, x, y, mark=None):
+        """ @param mark:  IndexMark to use for indexing """
         style_sheet = self.get_style_sheet()
         style = style_sheet.get_draw_style(style_name)
         paragraph_style_name = style.get_paragraph_style()
@@ -1602,10 +1616,11 @@ links (like ODF) and write PDF from that format.
         paragraph_style.set_alignment(PARA_ALIGN_CENTER)
         
         new_text = GtkDocText(paragraph_style, 'top', 
-                              self.__markup(text), x, y, angle=0)
+                              self.__markup(text), x, y, angle=0, mark=mark)
         self._active_element.add_child(new_text)
     
-    def rotate_text(self, style_name, text, x, y, angle):
+    def rotate_text(self, style_name, text, x, y, angle, mark=None):
+        """ @param mark:  IndexMark to use for indexing """
         style_sheet = self.get_style_sheet()
         style = style_sheet.get_draw_style(style_name)
         paragraph_style_name = style.get_paragraph_style()
@@ -1613,7 +1628,7 @@ links (like ODF) and write PDF from that format.
         paragraph_style.set_alignment(PARA_ALIGN_CENTER)
         
         new_text = GtkDocText(paragraph_style, 'center', 
-                              self.__markup(text), x, y, angle)
+                              self.__markup(text), x, y, angle, mark)
         self._active_element.add_child(new_text)
     
     # paginating and drawing interface

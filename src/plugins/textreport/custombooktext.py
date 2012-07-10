@@ -3,6 +3,7 @@
 # Copyright (C) 2003-2006  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2012       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,7 +47,7 @@ from gen.plug.menu import TextOption
 from gen.plug.report import Report
 from gen.plug.report import MenuReportOptions
 from gen.plug.docgen import (FontStyle, ParagraphStyle, FONT_SANS_SERIF, 
-                             PARA_ALIGN_CENTER)
+                             PARA_ALIGN_CENTER, IndexMark, INDEX_TYPE_TOC)
 
 #------------------------------------------------------------------------
 #
@@ -80,9 +81,17 @@ class CustomText(Report):
         self.bottom_text = menu.get_option_by_name('bot').get_value()
         
     def write_report(self):
+        mark_text = _("Custom Text")
+        if self.top_text[0]:
+            mark_text = "%s (%s)" % (_("Custom Text"), self.top_text[0])
+        elif self.middle_text[0]:
+            mark_text = "%s (%s)" % (_("Custom Text"), self.middle_text[0])
+        elif self.bottom_text[0]:
+            mark_text = "%s (%s)" % (_("Custom Text"), self.bottom_text[0])
+        mark = IndexMark(mark_text, INDEX_TYPE_TOC, 1)
         self.doc.start_paragraph('CBT-Initial')
         for line in self.top_text:
-            self.doc.write_text(line)
+            self.doc.write_text(line, mark)
             self.doc.write_text("\n")
         self.doc.end_paragraph()
 

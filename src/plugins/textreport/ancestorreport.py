@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2007-2009  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2012       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -209,9 +210,12 @@ class AncestorReport(Report):
                 generation += 1
 
                 # Create the Generation title, set an index marker
-                mark =  IndexMark(title, INDEX_TYPE_TOC, 2)  
+                gen_text = self._("Generation %d") % generation
+                mark = None # don't need any with no page breaks
+                if self.pgbrk:
+                    mark = IndexMark(gen_text, INDEX_TYPE_TOC, 2)
                 self.doc.start_paragraph("AHN-Generation")
-                self.doc.write_text(self._("Generation %d") % generation, mark)
+                self.doc.write_text(gen_text, mark)
                 self.doc.end_paragraph()
 
             # Build the entry

@@ -5,7 +5,8 @@
 # Copyright (C) 2004-2005 Eero Tamminen
 # Copyright (C) 2007-2008 Brian G. Matherly
 # Copyright (C) 2008      Peter Landgren
-# Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2010      Jakim Friant
+# Copyright (C) 2012      Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,10 +47,11 @@ from gen.lib import Person, FamilyRelType, EventType, EventRoleType
 from gen.lib.date import Date
 # gender and report type names
 from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
-                            FONT_SANS_SERIF, FONT_SERIF,
-                            PARA_ALIGN_CENTER, PARA_ALIGN_LEFT)
-from gen.plug.menu import BooleanOption, NumberOption, EnumeratedListOption, \
-                         FilterOption, PersonOption
+                             FONT_SANS_SERIF, FONT_SERIF,
+                             PARA_ALIGN_CENTER, PARA_ALIGN_LEFT,
+                             IndexMark, INDEX_TYPE_TOC)
+from gen.plug.menu import (BooleanOption, NumberOption, EnumeratedListOption,
+                           FilterOption, PersonOption)
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
@@ -782,10 +784,14 @@ class StatisticsChart(Report):
     def write_report(self):
         "output the selected statistics..."
 
+        mark = IndexMark(_('Statistics Charts'), INDEX_TYPE_TOC, 1)
         self._user.begin_progress(_('Statistics Charts'), 
                                   _('Saving charts...'), len(self.data))
         for data in self.data:
             self.doc.start_page()
+            if mark:
+                self.doc.draw_text('SC-title', '', 0, 0, mark) # put it in TOC
+                mark = None # crock, but we only want one of them
             if len(data[2]) < self.bar_items:
                 self.output_piechart(*data[:4])
             else:
@@ -803,7 +809,8 @@ class StatisticsChart(Report):
         middle = min(middle_w,middle_h)
         
         # start output
-        self.doc.center_text('SC-title', title, middle_w, 0)
+        mark = IndexMark(title, INDEX_TYPE_TOC, 2)
+        self.doc.center_text('SC-title', title, middle_w, 0, mark)
         style_sheet = self.doc.get_style_sheet()
         pstyle = style_sheet.get_paragraph_style('SC-Title')
         yoffset = ReportUtils.pt2cm(pstyle.get_font().get_size())
@@ -857,7 +864,8 @@ class StatisticsChart(Report):
         maxsize = stopx - margin
 
         # start output
-        self.doc.center_text('SC-title', title, middle, 0)
+        mark = IndexMark(title, INDEX_TYPE_TOC, 2)
+        self.doc.center_text('SC-title', title, middle, 0, mark)
         pstyle = style_sheet.get_paragraph_style('SC-Title')
         yoffset = pt2cm(pstyle.get_font().get_size())
         #print title

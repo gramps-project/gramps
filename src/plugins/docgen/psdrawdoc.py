@@ -180,7 +180,8 @@ class PSDrawDoc(BaseDoc, DrawDoc):
         new_text = self.encode(text)
         return (new_text, fdef)
 
-    def center_text(self, style, text, x, y):
+    def center_text(self, style, text, x, y, mark=None):
+        """ @param mark:  IndexMark to use for indexing (not supported) """
         style_sheet = self.get_style_sheet()
         stype = style_sheet.get_draw_style(style)
         pname = stype.get_paragraph_style()
@@ -201,7 +202,8 @@ class PSDrawDoc(BaseDoc, DrawDoc):
             'grestore\n'
             )
 
-    def draw_text(self, style, text, x1, y1):
+    def draw_text(self, style, text, x1, y1, mark=None):
+        """ @param mark:  IndexMark to use for indexing (not supported) """
         style_sheet = self.get_style_sheet()
         stype = style_sheet.get_draw_style(style)
         pname = stype.get_paragraph_style()
@@ -219,7 +221,8 @@ class PSDrawDoc(BaseDoc, DrawDoc):
             '(%s) show grestore\n' % text
             )
 
-    def rotate_text(self, style, text, x, y, angle):
+    def rotate_text(self, style, text, x, y, angle, mark=None):
+        """ @param mark:  IndexMark to use for indexing (not supported) """
 
         x += self.paper.get_left_margin()
         y += self.paper.get_top_margin()
@@ -321,7 +324,8 @@ class PSDrawDoc(BaseDoc, DrawDoc):
             'grestore\n'
             )
 
-    def draw_box(self, style, text, x, y, w, h):
+    def draw_box(self, style, text, x, y, w, h, mark=None):
+        """ @param mark:  IndexMark to use for indexing (not supported) """
         x += self.paper.get_left_margin()
         y += self.paper.get_top_margin()
         

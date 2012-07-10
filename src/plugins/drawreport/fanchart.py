@@ -3,7 +3,8 @@
 #
 # Copyright (C) 2003-2006 Donald N. Allingham
 # Copyright (C) 2007-2008 Brian G. Matherly
-# Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2010      Jakim Friant
+# Copyright (C) 2012      Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -43,7 +44,8 @@ def log2(val):
 #------------------------------------------------------------------------
 from gen.errors import ReportError
 from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
-                             FONT_SANS_SERIF, PARA_ALIGN_CENTER)
+                             FONT_SANS_SERIF, PARA_ALIGN_CENTER,
+                             IndexMark, INDEX_TYPE_TOC)
 from gen.plug.menu import EnumeratedListOption, NumberOption, PersonOption
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
@@ -249,7 +251,9 @@ class FanChart(Report):
             block_size = min_xy / self.max_generations
         text = _("%(generations)d Generation Fan Chart for %(person)s" ) % \
                  { 'generations' : self.max_generations, 'person' : n }
-        self.doc.center_text ('t', text, self.doc.get_usable_width() / 2, 0)
+        mark = IndexMark(text, INDEX_TYPE_TOC, 1)
+        self.doc.center_text ('t', text,
+                              self.doc.get_usable_width() / 2, 0, mark)
 
         for generation in range (0, min (max_circular, self.max_generations)):
             self.draw_circular (x, y, start_angle, max_angle, block_size, generation)
@@ -339,9 +343,11 @@ class FanChart(Report):
             if self.map[index]:
                 if (generation == 0) and self.circle == FULL_CIRCLE:
                     yc = y
+                person = self.database.get_person_from_handle(self.map[index])
+                mark = ReportUtils.get_person_mark(self.database, person)
                 txt = '\n'.join(self.text[index])
                 self.doc.rotate_text(text_style, txt,
-                                     xc, yc, text_angle)
+                                     xc, yc, text_angle, mark)
             text_angle += delta
 
 
@@ -369,13 +375,15 @@ class FanChart(Report):
                                  start_angle, end_angle, rad1)
             text_angle += delta
             if self.map[index]:
+                person = self.database.get_person_from_handle(self.map[index])
+                mark = ReportUtils.get_person_mark(self.database, person)
                 txt = '\n'.join(self.text[index])
                 if self.radial == RADIAL_UPRIGHT and (start_angle >= 90) and (start_angle < 270):
                     self.doc.rotate_text(text_style, txt,
-                                         xc, yc, text_angle + 180)
+                                         xc, yc, text_angle + 180, mark)
                 else:
                     self.doc.rotate_text(text_style, txt,
-                                         xc, yc, text_angle)
+                                         xc, yc, text_angle, mark)
 
 #------------------------------------------------------------------------
 #
