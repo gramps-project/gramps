@@ -1466,13 +1466,19 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         If not then we need to remove the name from the list.
         The function must be overridden in the derived class.
         """
-        name = str(find_surname_name(person.handle, 
-                                     person.get_primary_name().serialize()))
+        name = find_surname_name(person.handle, 
+                                     person.get_primary_name().serialize())
+        if isinstance(name, unicode):
+            uname = name
+            name = str(name)
+        else:
+            uname = unicode(name, 'utf-8')
         try:
             cursor = self.surnames.cursor(txn=self.txn)
             cursor_position = cursor.set(name)
             if cursor_position is not None and cursor.count() == 1:
-                i = bisect.bisect(self.surname_list, name)
+                #surname list contains unicode objects
+                i = bisect.bisect(self.surname_list, uname)
                 if 0 <= i-1 < len(self.surname_list):
                     del self.surname_list[i-1]
         except db.DBError, err:
