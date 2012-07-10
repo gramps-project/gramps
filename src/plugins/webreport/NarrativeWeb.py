@@ -7498,10 +7498,10 @@ class NavWebReport(Report):
         elif obj_class == "Repository":
             subdir = "repo"
         elif obj_class == "Family": 
-            # FIXME: no family page in NarWeb
-            return None
+            subdir = "fam"
         else:
-            raise AttributeError("unknown object type '%s'" % obj_class)
+            print ("unknown object type '%s'" % obj_class)
+            return None
         return self.build_url_fname(handle, subdir, up) + self.ext
 
     def build_url_fname(self, fname, subdir = None, up = False):
