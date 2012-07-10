@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-06-19 17:16+0200\n"
-"PO-Revision-Date: 2012-07-10 14:56-0300\n"
+"PO-Revision-Date: 2012-07-10 15:41-0300\n"
 "Last-Translator: André Marcelo Alvarenga <alvarenga@kde.org>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_br@kde.org>\n"
 "Language: \n"
@@ -23350,7 +23350,7 @@ msgstr ""
 #: ../src/plugins/view/geography.gpr.py:49
 msgid "A view showing the places visited by one person during his life."
 msgstr ""
-"Uma visualização que mostra de locais visitados por uma pessoa durante a sua "
+"Uma visualização que mostra os locais visitados por uma pessoa durante a sua "
 "vida."
 
 #: ../src/plugins/view/geography.gpr.py:66
@@ -31085,4 +31085,5 @@ msgstr ""
 "2003&quot;. Você também pode indicar o nível de confiança na data e até "
 "escolher entre sete diferentes calendários. Experimente o botão ao lado do "
 "campo de data no editor de eventos."
+
 
