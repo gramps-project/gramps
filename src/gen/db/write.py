@@ -1449,7 +1449,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         if batch_transaction:
             return
         name = unicode(find_surname_name(person.handle, 
-                                        person.get_primary_name().serialize()))
+                            person.get_primary_name().serialize()), 'utf-8')
         i = bisect.bisect(self.surname_list, name)
         if 0 < i <= len(self.surname_list):
             if self.surname_list[i-1] != name:
