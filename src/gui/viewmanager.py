@@ -1582,7 +1582,7 @@ class ViewManager(CLIManager):
                                             callback=self.pulse_progressbar))
                 writer.export()
             else:
-                from ExportXml import XmlWriter
+                from exportxml import XmlWriter
                 writer = XmlWriter(self.dbstate.db,
                                    User(error=ErrorDialog,
                                         callback=self.pulse_progressbar),
