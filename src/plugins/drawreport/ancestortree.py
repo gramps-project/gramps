@@ -127,14 +127,14 @@ class FamilyBox(AncestorBoxBase):
 # Titles Class(es)
 #
 #------------------------------------------------------------------------
-class TitleN(TitleBox):
+class TitleN(TitleNoDisplay):
     """No Title class for the report """
     def __init__(self, doc):
-        TitleBox.__init__(self, doc, "None")
+        TitleNoDisplay.__init__(self, doc, "AC2-Title")
         
     def calc_title(self, center):
         """Calculate the title of the report"""
-        return
+        self.text = _("Ancestor Graph")
 
 class TitleA(TitleBox):
     """Title class for the report """
@@ -234,6 +234,9 @@ class MakeAncestorTree(object):
         
         myself.text = self.calc_items.calc_person(
                             index, indi_handle, fams_handle)
+
+        myself.add_mark(self.database, 
+                self.database.get_person_from_handle(indi_handle))
 
         self.canvas.add_box(myself)
 

@@ -573,6 +573,7 @@ class BoxBase(object):
         # (#  - which column am I in  (zero based)
         # ,#  - Am I a (0)direct descendant/ancestor or (>0)other
         # , ) - anything else the report needs to run
+        self.__mark = None  #Database person object
         self.level = (0,0)
         self.x_cm = 0.0
         self.y_cm = 0.0
@@ -586,6 +587,9 @@ class BoxBase(object):
         self.y_cm *= scale_amount
         self.width *= scale_amount
         self.height *= scale_amount
+    
+    def add_mark(self, database, person):
+        self.__mark = ReportUtils.get_person_mark(database, person)
     
     def display(self):
         """ display the box accounting for page x, y offsets
@@ -602,7 +606,7 @@ class BoxBase(object):
         doc.draw_box(self.boxstr,
                 text,
                 xbegin, ybegin, 
-                self.width, self.height)
+                self.width, self.height, self.__mark)
 
         #I am responsible for my own lines. Do them here.
         if self.line_to:
@@ -614,7 +618,28 @@ class BoxBase(object):
             yme = ybegin + self.height/2
             doc.draw_line(report_opts.line_str, 0, yme, xbegin, yme)
 
+class TitleNoDisplay(BoxBase):
+    """
+    Holds information about the Title that will print on a TOC 
+    and NOT on the report
+    """
+    def __init__(self, doc, boxstr):
+        """ initialize the title box """
+        BoxBase.__init__(self)
+        self.doc = doc
+        self.boxstr = boxstr
+        
+    def set_box_height_width(self):
+        self.width = self.height = 0
 
+    def display(self):
+        """ display the title box.  """
+        #Set up the Table of Contents here
+        
+        from gen.plug.docgen import (IndexMark, INDEX_TYPE_TOC) # interim, here
+        mark = IndexMark(self.text, INDEX_TYPE_TOC, 1)
+                              
+        self.doc.center_text(self.boxstr, '', 0, -100, mark)
 
 class TitleBox(BoxBase):
     """
@@ -649,9 +674,14 @@ class TitleBox(BoxBase):
         """ display the title box.  """
         if self.page.y_page_num or self.boxstr == "None":
             return
+
+        #Set up the Table of Contents here
+        from gen.plug.docgen import (IndexMark, INDEX_TYPE_TOC) # interim, here
+        mark = IndexMark(self.text, INDEX_TYPE_TOC, 1)
+                              
         if self.text:
             self.doc.center_text(self.boxstr, self.text,
-                             self.width/2, self.y_cm)
+                             self.width/2, self.y_cm, mark)
     
 class PageNumberBox(BoxBase):
     """
