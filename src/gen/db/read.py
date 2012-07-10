@@ -58,7 +58,7 @@ from gen.lib import (MediaObject, Person, Family, Source, Citation, Event,
                      NameOriginType)
 from gen.db.dbconst import *
 from gen.utils.callback import Callback
-from gen.utils.cast import conv_dbstr_to_unicode, conv_unicode_tosrtkey
+from gen.utils.cast import conv_dbstr_to_unicode
 from gen.db import (BsddbBaseCursor, DbReadBase)
 from gen.utils.id import create_id
 from gen.errors import DbError
@@ -826,10 +826,10 @@ class DbBsddbRead(DbReadBase, Callback):
         Return type is a unicode object
         """
         if isinstance(surname, unicode):
-            ssurname = conv_unicode_tosrtkey(surname)
-            return unicode(self.name_group.get(ssurname, ssurname), 'utf-8')
+            ssurname = surname.encode('utf-8')
+            return conv_dbstr_to_unicode(self.name_group.get(ssurname, ssurname))
         else:
-            return unicode(self.name_group.get(surname, surname), 'utf-8')
+            return conv_dbstr_to_unicode(self.name_group.get(surname, surname))
 
     def get_name_group_keys(self):
         """
@@ -844,7 +844,7 @@ class DbBsddbRead(DbReadBase, Callback):
         # The use of has_key seems allright because there is no write lock
         # on the name_group table when this is called.
         if isinstance(name, unicode):
-            return self.name_group.has_key(conv_unicode_tosrtkey(name))
+            return self.name_group.has_key(name.encode('utf-8'))
         else:
             return self.name_group.has_key(name)
 

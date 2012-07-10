@@ -62,8 +62,7 @@ from gen.db import (DbBsddbRead, DbWriteBase, BSDDBTxn,
                     find_surname_name, DbUndoBSDDB as DbUndo)
 from gen.db.dbconst import *
 from gen.utils.callback import Callback
-from gen.utils.cast import (conv_unicode_tosrtkey_ongtk, conv_dbstr_to_unicode,
-                            conv_unicode_tosrtkey)
+from gen.utils.cast import (conv_unicode_tosrtkey_ongtk, conv_dbstr_to_unicode)
 from gen.updatecallback import UpdateCallback
 from gen.errors import DbError
 from gen.constfunc import win
@@ -1416,7 +1415,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         if not self.readonly:
             # Start transaction
             with BSDDBTxn(self.env, self.name_group) as txn:
-                sname = conv_unicode_tosrtkey(name)
+                sname = name.encode('utf-8')
                 data = txn.get(sname)
                 if data is not None:
                     txn.delete(sname)

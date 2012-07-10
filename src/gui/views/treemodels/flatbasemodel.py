@@ -151,15 +151,14 @@ class FlatNodeMap(object):
         Reverse sets up how the path is determined from the index. If True the
         first index is the last path
         
-        :param index2hndllist: the ascending sorted (sortkey, handle, iter) values 
+        :param index2hndllist: the ascending sorted (sortkey, handle) values 
                     as they will appear in the flat treeview. This often is 
                     a subset of all possible data.
-                    Set iter=None, it will be set internally
         :type index2hndllist: a list of (sortkey, handle) tuples
         :param fullhndllist: the list of all possilbe ascending sorted 
-                    [sortkey, handle, iter] values as they will appear in the flat 
+                    (sortkey, handle) values as they will appear in the flat 
                      treeview if all data is shown.
-        :type fullhndllist: a list of (sortkey, handle, iter) tuples
+        :type fullhndllist: a list of (sortkey, handl) tuples
         :param identical: identify if index2hndllist and fullhndllist are the
                         same list, so only one is kept in memory.
         :type identical: bool
@@ -446,7 +445,10 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         #inheriting classes must set self.map to obtain the data
         self.prev_handle = None
         self.prev_data = None
+
+        #GTK3 We leak ref, yes??
         #self.set_property("leak_references", False)
+
         self.db = db
         #normally sort on first column, so scol=0
         if sort_map:
@@ -752,7 +754,7 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
             data = self.map(str(handle))
             if data is None:
                 #object is no longer present
-                return u''
+                return ''
             self.prev_data = data
             self.prev_handle = handle
         val = self.fmap[col](self.prev_data)
@@ -784,13 +786,14 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         else:
             return False
 
-    def do_iter_children(self, iter):
+    def do_iter_children(self, iterparent):
         """
         Return the first child of the node
         See Gtk.TreeModel
         """
         #print 'do_iter_children'
         print 'ERROR: iter children, should not be called in flat base!!'
+        raise NotImplementedError
         if handle is None and len(self.node_map):
             return self.node_map.get_first_handle()
         return None

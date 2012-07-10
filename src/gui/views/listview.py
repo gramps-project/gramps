@@ -378,8 +378,9 @@ class ListView(NavigationView):
 
         if self.type_list() == LISTFLAT:
             # Flat
+            iter = self.model.nodemap.new_iter(handle)
             try:
-                path = self.model.on_get_path(handle)
+                path = self.model.do_get_path(iter)
             except:
                 path = None
         else:
@@ -387,15 +388,17 @@ class ListView(NavigationView):
             path = None
             node = self.model.get_node(handle)
             if node:
-                parent_node = self.model.on_iter_parent(node)
-                if parent_node:
-                    parent_path = self.model.on_get_path(parent_node)
+                iter = self.model.get_iter(node)
+                has_parent, parent_iter = self.model.do_iter_parent(iter)
+                if has_parent:
+                    parent_path = self.model.do_get_path(parent_iter)
                     if parent_path:
-                        for i in range(len(parent_path)):
+                        parent_path_list = parent_path.get_indices()
+                        for i in range(len(parent_path_list)):
                             expand_path = Gtk.TreePath(
-                                        tuple([x for x in parent_path[:i+1]]))
+                                    tuple([x for x in parent_path_list[:i+1]]))
                             self.list.expand_row(expand_path, False)
-                path = self.model.on_get_path(node)
+                path = self.model.do_get_path(iter)
 
         if path is not None:
             self.selection.unselect_all()
@@ -535,11 +538,14 @@ class ListView(NavigationView):
         if not prompt:
             self.uistate.set_busy_cursor(0)
         
-    def blist(self, store, path, node, sel_list):
-        if store.get_flags() & Gtk.TreeModelFlags.LIST_ONLY:
-            handle = store.get_value(node, self.handle_col)
+    def blist(self, store, path, iter, sel_list):
+        '''GtkTreeSelectionForeachFunc
+            construct a list sel_list with all selected handles
+        '''
+        if store.do_get_flags() & Gtk.TreeModelFlags.LIST_ONLY:
+            handle = store.node_map.get_handle(path)
         else:
-            handle = store.get_handle(store.on_get_iter(path))
+            handle = store.get_handle(store.get_node_from_iter(iter))
 
         if handle is not None:
             sel_list.append(handle)
@@ -756,7 +762,8 @@ class ListView(NavigationView):
                 store, paths = self.selection.get_selected_rows()
                 if paths:
                     firstsel = paths[0]
-                    firstnode = self.model.on_get_iter(firstsel)
+                    firstnode = self.model.get_node_from_iter(
+                                    self.model.do_get_iter(firstsel)[1])
                     if len(paths)==1 and firstnode.handle is None:
                         return self.expand_collapse_tree_branch()
                     else:
@@ -832,7 +839,8 @@ class ListView(NavigationView):
                 store, paths = self.selection.get_selected_rows()
                 if paths:
                     firstsel = paths[0]
-                    firstnode = self.model.on_get_iter(firstsel)
+                    firstnode = self.model.get_node_from_iter(
+                                    self.model.do_get_iter(firstsel)[1])
                     if len(paths) == 1 and firstnode.handle is None:
                         return self.expand_collapse_tree_branch()
         else:
@@ -840,7 +848,8 @@ class ListView(NavigationView):
                 store, paths = self.selection.get_selected_rows()
                 if paths:
                     firstsel = paths[0]
-                    firstnode = self.model.on_get_iter(firstsel)
+                    firstnode = self.model.get_node_from_iter(
+                                    self.model.do_get_iter(firstsel)[1])
                     if len(paths) == 1 and firstnode.handle is None:
                         return self.expand_collapse_tree()
                     else:
@@ -857,7 +866,8 @@ class ListView(NavigationView):
         store, paths = self.selection.get_selected_rows()
         if paths:
             firstsel = paths[0]
-            firstnode = self.model.on_get_iter(firstsel)
+            firstnode = self.model.get_node_from_iter(
+                                    self.model.do_get_iter(firstsel)[1])
             if firstnode.handle:
                 return False
             if self.list.row_expanded(firstsel):
@@ -875,7 +885,8 @@ class ListView(NavigationView):
         store, paths = self.selection.get_selected_rows()
         if paths:
             firstsel = paths[0]
-            firstnode = self.model.on_get_iter(firstsel)
+            firstnode = self.model.get_node_from_iter(
+                                    self.model.do_get_iter(firstsel)[1])
             if firstnode.handle:
                 return False
             if self.list.row_expanded(firstsel):
@@ -996,7 +1007,7 @@ class ListView(NavigationView):
                 ofile.end_row()
         else:
             # Tree model
-            node = self.model.on_get_iter((0,))
+            node = self.model.get_node_from_iter(self.model.do_get_iter((0,))[1])
             self.write_node(node, len(levels), [], ofile, data_cols)
         
         ofile.end_page()
@@ -1006,18 +1017,20 @@ class ListView(NavigationView):
         if node is None:
             return
         while node is not None:
-            new_level = level + [self.model.on_get_value(node, 0)]
+            new_level = level + [self.model.do_get_value(node, 0)]
             if self.model.get_handle(node):
                 ofile.start_row()
                 padded_level = new_level + [''] * (depth - len(new_level))
                 map(ofile.write_cell, padded_level)
                 for index in data_cols:
-                    ofile.write_cell(self.model.on_get_value(node, index))
+                    ofile.write_cell(self.model.do_get_value(node, index))
                 ofile.end_row()
 
-            first_child = self.model.on_iter_children(node)
+            has_child, first_child = self.model.do_iter_children(node)
             self.write_node(first_child, depth, new_level, ofile, data_cols)
-            node = self.model.on_iter_next(node)
+            has_next = self.model.do_iter_next(node)
+            if not has_next:
+                node = None
 
     ####################################################################
     # Template functions

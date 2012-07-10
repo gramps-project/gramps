@@ -4,7 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2009       Gary Burton
 # Copyright (C) 2009-2011  Nick Hall
-# Copyright (C) 2009       Benny Malengier
+# Copyright (C) 2009-2012  Benny Malengier
 # Copyright (C) 2011       Tim G L lyons
 #
 # This program is free software; you can redistribute it and/or modify
@@ -34,7 +34,7 @@ This module provides the model that is used for all hierarchical treeviews.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import with_statement
+from __future__ import with_statement, print_function
 import time
 import locale
 from gen.ggettext import gettext as _
@@ -55,7 +55,7 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.utils.cast import conv_unicode_tosrtkey_ongtk
+from gen.utils.cast import conv_str_tosrtkey_ongtk, conv_unicode_tosrtkey_ongtk
 import gui.widgets.progressdialog as progressdlg
 from lru import LRU
 from bisect import bisect_right
@@ -87,10 +87,17 @@ class Node(object):
                  'prev', 'next', 'children')#, '__weakref__')
 
     def __init__(self, ref, parent, sortkey, handle, secondary):
-        self.name = sortkey
         if sortkey:
-            self.sortkey = map(conv_unicode_tosrtkey_ongtk, sortkey)
+            if isinstance(sortkey, unicode):
+                self.name = sortkey.encode('utf-8')
+                #sortkey must be localized sort, so 
+                self.sortkey = conv_unicode_tosrtkey_ongtk(sortkey)
+            else:
+                self.name = sortkey
+                #sortkey must be localized sort, so
+                self.sortkey = conv_str_tosrtkey_ongtk(sortkey)
         else:
+            self.name = ''
             self.sortkey = None
         self.ref = ref
         self.handle = handle
@@ -284,10 +291,15 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
                     nrgroups = 1,
                     group_can_have_handle = False,
                     has_secondary=False):
-        #TODO GTK3, first get flatbasemodel working !
-        raise NotImplementedError
         cput = time.clock()
         GObject.GObject.__init__(self)
+        #We create a stamp to recognize invalid iterators. From the docs:
+        #Set the stamp to be equal to your model's stamp, to mark the 
+        #iterator as valid. When your model's structure changes, you should 
+        #increment your model's stamp to mark all older iterators as invalid. 
+        #They will be recognised as invalid because they will then have an 
+        #incorrect stamp.
+        self.stamp = 0
         #two unused attributes pesent to correspond to flatbasemodel
         self.prev_handle = None
         self.prev_data = None
@@ -306,7 +318,9 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         self.nodemap = NodeMap()
         self.handle2node = {}
 
-        self.set_property("leak_references", False)
+        #GTK3 We leak ref, yes??
+        #self.set_property("leak_references", False)
+
         #normally sort on first column, so scol=0
         if sort_map:
             #sort_map is the stored order of the columns and if they are
@@ -349,6 +363,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
             self.sort_func2 = None
         if self.nodemap:
             self.nodemap.destroy()
+        
         self.nodemap = None
         self.rebuild_data = None
         self._build_data = None
@@ -422,10 +437,9 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         """
         Clear the data map.
         """
-        #invalidate the iters within gtk
-        self.invalidate_iters()
         self.tree.clear()
         self.handle2node.clear()
+        self.stamp += 1
         self.nodemap.clear()
         #start with creating the new iters
         topnode = Node(None, None, None, None, False)
@@ -450,7 +464,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
                 if search[1]:
                     # we have search[1] = (index, text_unicode, inversion)
                     col, text, inv = search[1]
-                    func = lambda x: self._get_value(x, col) or u""
+                    func = lambda x: self._get_value(x, col) or ""
                     if search[2]:
                         self.search = ExactSearchFilter(func, text, inv)
                     else:
@@ -783,14 +797,39 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         
         # If the node hasn't moved, all we need is to call row_changed.
         #self.row_changed(path, node)
+
+    def new_iter(self, nodeid):
+        """
+        Return a new iter containing the nodeid in the nodemap
+        """
+        iter = Gtk.TreeIter()
+        iter.stamp = self.stamp
+        #user data should be an object, so we store the long as str
         
+        iter.user_data = str(nodeid)
+        return iter
+
+    def get_iter(self, node):
+        """
+        Return an iter from the node.
+        iters are always created afresh
+        
+        Will raise IndexError if the maps are not filled yet, or if it is empty.
+        Caller should take care of this if it allows calling with invalid path
+        
+        :param path: node as it appears in the treeview
+        :type path: Node
+        """
+        iter = self.new_iter(id(node))
+        return iter
+
     def get_handle(self, node):
         """
         Get the gramps handle for a node.  Return None if the node does
         not correspond to a gramps object.
         """
         return node.handle
-            
+
     def get_node(self, handle):
         """
         Get the node for a handle.
@@ -804,50 +843,57 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         """
         return self.on_get_path(self.get_node(handle))
 
-    # The following implement the public interface of Gtk.GenericTreeModel
+    # The following implement the public interface of Gtk.TreeModel
 
-    def on_get_flags(self):
+    def do_get_flags(self):
         """
-        See Gtk.GenericTreeModel
+        See Gtk.TreeModel
         """
-        return Gtk.TreeModelFlags.ITERS_PERSIST
+        return 0 #Gtk.TreeModelFlags.ITERS_PERSIST
 
-    def on_get_n_columns(self):
+    def do_get_n_columns(self):
         """
         Return the number of columns. Must be implemented in the child objects
-        See Gtk.GenericTreeModel
+        See Gtk.TreeModel
         """
         raise NotImplementedError
 
-    def on_get_column_type(self, index):
+    def do_get_column_type(self, index):
         """
-        See Gtk.GenericTreeModel
+        See Gtk.TreeModel
         """
         if index == self._tooltip_column:
             return object
         return str
 
-    def on_get_value(self, nodeid, col):
+    def do_get_value(self, iter, col):
         """
-        See Gtk.GenericTreeModel
+        See Gtk.TreeModel
         """
-        #print 'get_value', nodeid, col
-        nodeid = id(nodeid)
+        nodeid = long(iter.user_data)
         node = self.nodemap.node(nodeid)
         if node.handle is None:
             # Header rows dont get the foreground color set
             if col == self.color_column():
-                return None
+                return "#000000000000"
 
             # Return the node name for the first column
             if col == 0:
                 return self.column_header(node)
-
+            else:
+                #no value to show in other header column
+                return ''
         else:
             # return values for 'data' row, calling a function
             # according to column_defs table
-            return self._get_value(node.handle, col, node.secondary)
-            
+            val = self._get_value(node.handle, col, node.secondary)
+            #GTK 3 should convert unicode objects automatically, but this
+            # gives wrong column values, so we convert
+            if isinstance(val, unicode):
+                return val.encode('utf-8')
+            else:
+                return val
+
     def _get_value(self, handle, col, secondary=False):
         """
         Returns the contents of a given column of a gramps object
@@ -864,29 +910,38 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
 
         try:
             if not secondary:
-                return (self.fmap[col](data))
+                return self.fmap[col](data)
             else:
-                return (self.fmap2[col](data))
+                return self.fmap2[col](data)
         except:
-            return None
+            return ''
 
-    def on_get_iter(self, path):
+    def do_get_iter(self, path):
         """
         Returns a node from a given path.
         """
         if not self.tree or not self.tree[None].children:
-            return None
+            return False, Gtk.TreeIter()
         node = self.tree[None]
-        pathlist = list(path)
+        pathlist = path.get_indices()
         for index in pathlist:
             _index = (-index - 1) if self.__reverse else index
             node = self.nodemap.node(node.children[_index][1])
-        return node
-        
-    def on_get_path(self, node):
+        return True, self.get_iter(node)
+
+    def get_node_from_iter(self, iter):
+        if iter and iter.user_data:
+            return self.nodemap.node(long(iter.user_data))
+        else:
+            print ('Problem', iter, iter.user_data)
+            raise NotImplementedError
+            return None
+
+    def do_get_path(self, iter):
         """
         Returns a path from a given node.
         """
+        node = self.get_node_from_iter(iter)
         pathlist = []
         while node.parent is not None:
             parent = self.nodemap.node(node.parent)
@@ -901,62 +956,79 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
 
         if pathlist is not None:
             pathlist.reverse()
-            return tuple(pathlist)
+            return Gtk.TreePath(tuple(pathlist))
         else:
             return None
-            
-    def on_iter_next(self, node):
+
+    def do_iter_next(self, iter):
         """
+        Sets iter to the next node at this level of the tree
+        See Gtk.TreeModel
         Get the next node with the same parent as the given node.
         """
+        node = self.get_node_from_iter(iter)
         val = node.prev if self.__reverse else node.next
-        return val and self.nodemap.node(val)
+        if val:
+            #user_data contains the nodeid
+            iter.user_data = str(val)
+            return True
+        else:
+            return False
 
-    def on_iter_children(self, node):
+    def do_iter_children(self, iterparent):
         """
         Get the first child of the given node.
         """
-        if node is None:
-            node = self.tree[None]
-        if node.children:
-            return self.nodemap.node(
-                        node.children[-1 if self.__reverse else 0][1])
+        if iterparent is None:
+            nodeid = id(self.tree[None])
         else:
-            return None
+            nodeparent = self.get_node_from_iter(iterparent)
+            if nodeparent.children:
+                nodeid = nodeparent.children[-1 if self.__reverse else 0][1]
+            else:
+                return False, None
+        return True, self.new_iter(nodeid)
         
-    def on_iter_has_child(self, node):
+    def do_iter_has_child(self, iter):
         """
         Find if the given node has any children.
         """
-        if node is None:
-            node = self.tree[None]
+        node = self.get_node_from_iter(iter)
         return True if node.children else False
 
-    def on_iter_n_children(self, node):
+    def do_iter_n_children(self, iter):
         """
         Get the number of children of the given node.
         """
-        if node is None:
+        if iter is None:
             node = self.tree[None]
+        else:
+            node = self.get_node_from_iter(iter)
         return len(node.children)
 
-    def on_iter_nth_child(self, node, index):
+    def do_iter_nth_child(self, iterparent, index):
         """
         Get the nth child of the given node.
         """
-        if node is None:
+        if iterparent is None:
             node = self.tree[None]
+        else:
+            node = self.get_node_from_iter(iterparent)
         if node.children:
             if len(node.children) > index:
                 _index = (-index - 1) if self.__reverse else index
-                return self.nodemap.node(node.children[_index][1])
+                return True, self.new_iter(node.children[_index][1])
             else:
-                return None
+                return False, None
         else:
-            return None
+            return False, None
 
-    def on_iter_parent(self, node):
+    def do_iter_parent(self, iterchild):
         """
         Get the parent of the given node.
         """
-        return node.parent and self.nodemap.node(node.parent)
+        node = self.get_node_from_iter(iterchild)
+        if node.parent:
+            return True, self.new_iter(node.parent)
+        else:
+            return False, None

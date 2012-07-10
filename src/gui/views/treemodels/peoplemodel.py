@@ -90,7 +90,7 @@ class PeopleBaseModel(object):
     """
     Basic Model interface to handle the PersonViews
     """
-    _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
+    _GENDER = [ _('female'), _('male'), _('unknown') ]
 
     # The following is accessed from the Person Selector
     COLUMN_INT_ID = 10  # dynamic calculation of column indices
@@ -191,7 +191,11 @@ class PeopleBaseModel(object):
         return len(self.fmap)+1
 
     def sort_name(self, data):
-        return name_displayer.raw_sorted_name(data[COLUMN_NAME])
+        name = name_displayer.raw_sorted_name(data[COLUMN_NAME])
+        # internally we work with utf-8
+        if isinstance(name, unicode):
+            name = name.encode('utf-8')
+        return name
 
     def column_name(self, data):
         handle = data[0]
@@ -199,6 +203,9 @@ class PeopleBaseModel(object):
             name = self.lru_name[handle]
         else:
             name = name_displayer.raw_display_name(data[COLUMN_NAME])
+            # internally we work with utf-8
+            if isinstance(name, unicode):
+                name = name.encode('utf-8')
             if not self._in_build:
                 self.lru_name[handle] = name
         return name
@@ -214,7 +221,7 @@ class PeopleBaseModel(object):
         return value
     
     def _get_spouse_data(self, data):
-        spouses_names = u""
+        spouses_names = ""
         for family_handle in data[COLUMN_FAMILY]:
             family = self.db.get_family_from_handle(family_handle)
             for spouse_id in [family.get_father_handle(),
@@ -231,7 +238,7 @@ class PeopleBaseModel(object):
 
     def column_id(self, data):
         return data[COLUMN_ID]
-        
+
     def sort_change(self,data):
         return "%012x" % data[COLUMN_CHANGE]
 
@@ -274,7 +281,7 @@ class PeopleBaseModel(object):
                 else:
                     return retval
             except:
-                return u''
+                return ''
         
         for event_ref in data[COLUMN_EVENT]:
             er = EventRef()
@@ -288,13 +295,13 @@ class PeopleBaseModel(object):
                 if sort_mode:
                     retval = "%09d" % event.get_date_object().get_sort_value()
                 else:
-                    retval = u"<i>%s</i>" % cgi.escape(date_str)
+                    retval = "<i>%s</i>" % cgi.escape(date_str)
                 if not gen.datehandler.get_date_valid(event):
                     return invalid_date_format % retval
                 else:
                     return retval
         
-        return u""
+        return ""
 
     def column_death_day(self, data):
         handle = data[0]
@@ -329,7 +336,7 @@ class PeopleBaseModel(object):
                 else:
                     return retval
             except:
-                return u''
+                return ''
         
         for event_ref in data[COLUMN_EVENT]:
             er = EventRef()
@@ -350,7 +357,7 @@ class PeopleBaseModel(object):
                     return invalid_date_format % retval
                 else:
                     return retval
-        return u""
+        return ""
 
     def column_birth_place(self, data):
         index = data[COLUMN_BIRTH]
@@ -368,7 +375,7 @@ class PeopleBaseModel(object):
                         if place_title:
                             return cgi.escape(place_title)
             except:
-                return u''
+                return ''
         
         for event_ref in data[COLUMN_EVENT]:
             er = EventRef()
@@ -385,7 +392,7 @@ class PeopleBaseModel(object):
                     if place_title:
                         return "<i>%s</i>" % cgi.escape(place_title)
         
-        return u""
+        return ""
 
     def column_death_place(self, data):
         index = data[COLUMN_DEATH]
@@ -403,7 +410,7 @@ class PeopleBaseModel(object):
                         if place_title:
                             return cgi.escape(place_title)
             except:
-                return u''
+                return ''
         
         for event_ref in data[COLUMN_EVENT]:
             er = EventRef()
@@ -420,10 +427,10 @@ class PeopleBaseModel(object):
                     place_title = place.get_title()
                     if place_title != "":
                         return "<i>" + cgi.escape(place_title) + "</i>"
-        return u""
+        return ""
 
     def column_tooltip(self, data):
-        return u'Person tooltip'
+        return 'Person tooltip'
         
     def column_int_id(self, data):
         return data[0]
@@ -528,6 +535,8 @@ class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
         
         name_data = data[COLUMN_NAME]
         group_name = ngn(self.db, name_data)
+        if isinstance(group_name, unicode):
+            group_name = group_name.encode('utf-8')
         sort_key = self.sort_func(data)
 
         #if group_name not in self.group_list:

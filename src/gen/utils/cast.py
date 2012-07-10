@@ -48,6 +48,9 @@ conv_unicode_tosrtkey = lambda x: locale.strxfrm(x.encode('utf-8', 'replace'))
 conv_unicode_tosrtkey_ongtk = lambda x: locale.strxfrm(x.encode(
                                                            codeset, 'replace'))
 
+conv_str_tosrtkey_ongtk = lambda x: locale.strxfrm(unicode(x,'utf-8').encode(
+                                                           codeset, 'replace'))
+
 conv_dbstr_to_unicode = lambda x: unicode(x, 'utf-8')
 
 def cast_to_bool(val):

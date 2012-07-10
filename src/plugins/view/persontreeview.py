@@ -53,7 +53,7 @@ from gen.ggettext import gettext as _
 #-------------------------------------------------------------------------
 class PersonTreeView(BasePersonView):
     """
-    A hierarchical view of the top three levels of places.
+    A hierarchical view of the people based on family name.
     """
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         BasePersonView.__init__(self, pdata, dbstate, uistate,
