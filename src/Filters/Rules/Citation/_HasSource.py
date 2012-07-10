@@ -48,6 +48,7 @@ class HasSource(HasSourceBase):
 
     labels      = [ _('Title:'), 
                     _('Author:'), 
+                    _('Abbreviation:'),
                     _('Publication:') ]
     name        = _('Sources matching parameters')
     description = _("Matches citations with a source of a particular "

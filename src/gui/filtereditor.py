@@ -929,7 +929,7 @@ class ShowResults(ManagedWindow.ManagedWindow):
             gid = source.get_gramps_id()
         elif self.namespace == 'Citation':
             citation = self.db.get_citation_from_handle(handle)
-            name = citation.get_title()
+            name = citation.get_page()
             gid = citation.get_gramps_id()
         elif self.namespace == 'Place':
             place = self.db.get_place_from_handle(handle)
@@ -963,7 +963,7 @@ class ShowResults(ManagedWindow.ManagedWindow):
         elif self.namespace == 'Source':
             sortname = self.db.get_source_from_handle(handle).get_title()
         elif self.namespace == 'Citation':
-            sortname = self.db.get_citation_from_handle(handle).get_title()
+            sortname = self.db.get_citation_from_handle(handle).get_page()
         elif self.namespace == 'Place':
             sortname = self.db.get_place_from_handle(handle).get_title()
         elif self.namespace == 'MediaObject':
