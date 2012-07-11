@@ -5,6 +5,7 @@
 # Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2008       Peter Landgren
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2012       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -35,6 +36,7 @@ Paragraph/Font style editor
 from gen.ggettext import sgettext as _
 import logging
 log = logging.getLogger(".")
+import re
 
 #------------------------------------------------------------------------
 #
@@ -216,8 +218,13 @@ class StyleEditor(object):
         self.top.get_object('bgcolor').connect('color-set', self.bg_color_set)
         self.top.get_object("style_name").set_text(name)
 
-        names = self.style.get_paragraph_style_names()
-        names.reverse()
+        def _alphanumeric_sort(iterable):
+            """ sort the given iterable in the way that humans expect """
+            convert = lambda text: int(text) if text.isdigit() else text
+            sort_key = lambda k: [convert(c) for c in re.split('([0-9]+)', k)]
+            return sorted(iterable, key=sort_key)
+
+        names = _alphanumeric_sort(self.style.get_paragraph_style_names())
         for p_name in names:
             self.plist.add([p_name], self.style.get_paragraph_style(p_name))
         self.plist.select_row(0)
