@@ -42,6 +42,8 @@ from gen.db import (PERSON_KEY,
                     REPOSITORY_KEY,
                     NOTE_KEY)
 from gen.utils.id import create_id
+from gen.lib import (MediaObject, Person, Family, Source, Citation, Event,
+                     Place, Repository, Note, Tag)
 
 class Cursor(object):
     """
@@ -96,6 +98,88 @@ class DictionaryDb(DbWriteBase, DbReadBase):
     def __init__(self, *args, **kwargs):
         DbReadBase.__init__(self)
         DbWriteBase.__init__(self)
+        self._tables = {
+            'Person':
+                {
+                "handle_func": self.get_person_from_handle, 
+                "gramps_id_func": self.get_person_from_gramps_id,
+                "class_func": Person,
+                "cursor_func": self.get_person_cursor,
+                "handles_func": self.get_person_handles,
+                },
+            'Family':
+                {
+                "handle_func": self.get_family_from_handle, 
+                "gramps_id_func": self.get_family_from_gramps_id,
+                "class_func": Family,
+                "cursor_func": self.get_family_cursor,
+                "handles_func": self.get_family_handles,
+                },
+            'Source':
+                {
+                "handle_func": self.get_source_from_handle, 
+                "gramps_id_func": self.get_source_from_gramps_id,
+                "class_func": Source,
+                "cursor_func": self.get_source_cursor,
+                "handles_func": self.get_source_handles,
+                },
+            'Citation':
+                {
+                "handle_func": self.get_citation_from_handle, 
+                "gramps_id_func": self.get_citation_from_gramps_id,
+                "class_func": Citation,
+                "cursor_func": self.get_citation_cursor,
+                "handles_func": self.get_citation_handles,
+                },
+            'Event':
+                {
+                "handle_func": self.get_event_from_handle, 
+                "gramps_id_func": self.get_event_from_gramps_id,
+                "class_func": Event,
+                "cursor_func": self.get_event_cursor,
+                "handles_func": self.get_event_handles,
+                },
+            'Media':
+                {
+                "handle_func": self.get_object_from_handle, 
+                "gramps_id_func": self.get_object_from_gramps_id,
+                "class_func": MediaObject,
+                "cursor_func": self.get_media_cursor,
+                "handles_func": self.get_media_object_handles,
+                },
+            'Place':
+                {
+                "handle_func": self.get_place_from_handle, 
+                "gramps_id_func": self.get_place_from_gramps_id,
+                "class_func": Place,
+                "cursor_func": self.get_place_cursor,
+                "handles_func": self.get_place_handles,
+                },
+            'Repository':
+                {
+                "handle_func": self.get_repository_from_handle, 
+                "gramps_id_func": self.get_repository_from_gramps_id,
+                "class_func": Repository,
+                "cursor_func": self.get_repository_cursor,
+                "handles_func": self.get_repository_handles,
+                },
+            'Note':
+                {
+                "handle_func": self.get_note_from_handle, 
+                "gramps_id_func": self.get_note_from_gramps_id,
+                "class_func": Note,
+                "cursor_func": self.get_note_cursor,
+                "handles_func": self.get_note_handles,
+                },
+            'Tag':
+                {
+                "handle_func": self.get_tag_from_handle, 
+                "gramps_id_func": None,
+                "class_func": Tag,
+                "cursor_func": self.get_tag_cursor,
+                "handles_func": self.get_tag_handles,
+                },
+            }
         # skip GEDCOM cross-ref check for now:
         self.set_feature("skip-check-xref", True)
         self.readonly = False
@@ -419,32 +503,59 @@ class DictionaryDb(DbWriteBase, DbReadBase):
         obj = gen.lib.Researcher()
         return obj
 
-    def get_person_handles(self):
-        return self.person_map.keys()
+    def get_person_handles(self, sort_handles=False):
+        if sort_handles:
+            return sorted(self.person_map.keys())
+        else:
+            return self.person_map.keys()
 
-    def get_family_handles(self):
-        return self.family_map.keys()
+    def get_family_handles(self, sort_handles=False):
+        if sort_handles:
+            return sorted(self.family_map.keys())
+        else:
+            return self.family_map.keys()
 
-    def get_event_handles(self):
-        return self.event_map.keys()
+    def get_event_handles(self, sort_handles=False):
+        if sort_handles:
+            return sorted(self.event_map.keys())
+        else:
+            return self.event_map.keys()
 
-    def get_citation_handles(self):
-        return self.citation_map.keys()
+    def get_citation_handles(self, sort_handles=False):
+        if sort_handles:
+            return sorted(self.citation_map.keys())
+        else:
+            return self.citation_map.keys()
 
-    def get_source_handles(self):
-        return self.source_map.keys()
+    def get_source_handles(self, sort_handles=False):
+        if sort_handles:
+            return sorted(self.source_map.keys())
+        else:
+            return self.source_map.keys()
 
-    def get_place_handles(self):
-        return self.place_map.keys()
+    def get_place_handles(self, sort_handles=False):
+        if sort_handles:
+            return sorted(self.place_map.keys())
+        else:
+            return self.place_map.keys()
 
-    def get_repository_handles(self):
-        return self.repository_map.keys()
+    def get_repository_handles(self, sort_handles=False):
+        if sort_handles:
+            return sorted(self.repository_map.keys())
+        else:
+            return self.repository_map.keys()
 
-    def get_media_object_handles(self):
-        return self.media_map.keys()
+    def get_media_object_handles(self, sort_handles=False):
+        if sort_handles:
+            return sorted(self.media_map.keys())
+        else:
+            return self.media_map.keys()
 
-    def get_note_handles(self):
-        return self.note_map.keys()
+    def get_note_handles(self, sort_handles=False):
+        if sort_handles:
+            return sorted(self.note_map.keys())
+        else:
+            return self.note_map.keys()
 
     def get_tag_handles(self, sort_handles=False):
         return []

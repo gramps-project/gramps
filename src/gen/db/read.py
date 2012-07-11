@@ -221,7 +221,6 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         DbReadBase.__init__(self)
         Callback.__init__(self)
-
         self._tables = {
             'Person':
                 {
@@ -229,6 +228,7 @@ class DbBsddbRead(DbReadBase, Callback):
                 "gramps_id_func": self.get_person_from_gramps_id,
                 "class_func": Person,
                 "cursor_func": self.get_person_cursor,
+                "handles_func": self.get_person_handles,
                 },
             'Family':
                 {
@@ -236,6 +236,7 @@ class DbBsddbRead(DbReadBase, Callback):
                 "gramps_id_func": self.get_family_from_gramps_id,
                 "class_func": Family,
                 "cursor_func": self.get_family_cursor,
+                "handles_func": self.get_family_handles,
                 },
             'Source':
                 {
@@ -243,6 +244,7 @@ class DbBsddbRead(DbReadBase, Callback):
                 "gramps_id_func": self.get_source_from_gramps_id,
                 "class_func": Source,
                 "cursor_func": self.get_source_cursor,
+                "handles_func": self.get_source_handles,
                 },
             'Citation':
                 {
@@ -250,6 +252,7 @@ class DbBsddbRead(DbReadBase, Callback):
                 "gramps_id_func": self.get_citation_from_gramps_id,
                 "class_func": Citation,
                 "cursor_func": self.get_citation_cursor,
+                "handles_func": self.get_citation_handles,
                 },
             'Event':
                 {
@@ -257,6 +260,7 @@ class DbBsddbRead(DbReadBase, Callback):
                 "gramps_id_func": self.get_event_from_gramps_id,
                 "class_func": Event,
                 "cursor_func": self.get_event_cursor,
+                "handles_func": self.get_event_handles,
                 },
             'Media':
                 {
@@ -264,6 +268,7 @@ class DbBsddbRead(DbReadBase, Callback):
                 "gramps_id_func": self.get_object_from_gramps_id,
                 "class_func": MediaObject,
                 "cursor_func": self.get_media_cursor,
+                "handles_func": self.get_media_object_handles,
                 },
             'Place':
                 {
@@ -271,6 +276,7 @@ class DbBsddbRead(DbReadBase, Callback):
                 "gramps_id_func": self.get_place_from_gramps_id,
                 "class_func": Place,
                 "cursor_func": self.get_place_cursor,
+                "handles_func": self.get_place_handles,
                 },
             'Repository':
                 {
@@ -278,6 +284,7 @@ class DbBsddbRead(DbReadBase, Callback):
                 "gramps_id_func": self.get_repository_from_gramps_id,
                 "class_func": Repository,
                 "cursor_func": self.get_repository_cursor,
+                "handles_func": self.get_repository_handles,
                 },
             'Note':
                 {
@@ -285,6 +292,7 @@ class DbBsddbRead(DbReadBase, Callback):
                 "gramps_id_func": self.get_note_from_gramps_id,
                 "class_func": Note,
                 "cursor_func": self.get_note_cursor,
+                "handles_func": self.get_note_handles,
                 },
             'Tag':
                 {
@@ -292,6 +300,7 @@ class DbBsddbRead(DbReadBase, Callback):
                 "gramps_id_func": None,
                 "class_func": Tag,
                 "cursor_func": self.get_tag_cursor,
+                "handles_func": self.get_tag_handles,
                 },
             }
 
