@@ -232,6 +232,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
         self.note_map        = {}
         self.media_map       = {}
         self.event_map       = {}
+        self.tag_map         = {}
         self.metadata   = {}
         self.name_group = {}
         self.undo_callback = None
@@ -558,7 +559,10 @@ class DictionaryDb(DbWriteBase, DbReadBase):
             return self.note_map.keys()
 
     def get_tag_handles(self, sort_handles=False):
-        return []
+        if sort_handles:
+            return sorted(self.tag_map.keys())
+        else:
+            return self.tag_map.keys()
 
     def get_event_from_handle(self, handle):
         return self.event_map[handle]
@@ -842,7 +846,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
     def add_tag(self, tag, trans):
         if not tag.handle:
             tag.handle = create_id()
-        self.commit_event(tag, trans)
+        self.commit_tag(tag, trans)
         return tag.handle
 
     def add_object(self, obj, transaction, set_gid=True):
