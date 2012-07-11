@@ -74,7 +74,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gen.filters import SearchFilter, ExactSearchFilter
-from gen.utils.cast import conv_unicode_tosrtkey_ongtk
+from gen.utils.cast import conv_unicode_tosrtkey, conv_tosrtkey
 
 #-------------------------------------------------------------------------
 #
@@ -107,7 +107,7 @@ class FlatNodeMap(object):
     the path, and a dictionary mapping hndl to index.
     To obtain index given a path, method real_index() is available
     
-    ..Note: If a string sortkey is used, apply conv_unicode_tosrtkey_ongtk
+    ..Note: If a string sortkey is used, apply conv_unicode_tosrtkey
             on it , so as to have localized sort
     """
 
@@ -563,13 +563,13 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         Return the (sort_key, handle) list of all data that can maximally 
         be shown. 
         This list is sorted ascending, via localized string sort. 
-        conv_unicode_tosrtkey_ongtk which uses strxfrm
+        conv_unicode_tosrtkey which uses strxfrm
         """
         # use cursor as a context manager
         with self.gen_cursor() as cursor:   
             #loop over database and store the sort field, and the handle, and
             #allow for a third iter
-            return sorted((map(conv_unicode_tosrtkey_ongtk,
+            return sorted((map(conv_tosrtkey,
                            self.sort_func(data)), key) for key, data in cursor)
 
     def _rebuild_search(self, ignore=None):
@@ -639,7 +639,7 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         if self.node_map.get_path_from_handle(handle) is not None:
             return # row is already displayed
         data = self.map(handle)
-        insert_val = (map(conv_unicode_tosrtkey_ongtk, self.sort_func(data)),
+        insert_val = (map(conv_tosrtkey, self.sort_func(data)),
                             handle)
         if not self.search or \
                 (self.search and self.search.match(handle, self.db)):
@@ -673,7 +673,7 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
             return # row is not currently displayed
         self.clear_cache(handle)
         oldsortkey = self.node_map.get_sortkey(handle)
-        newsortkey = map(conv_unicode_tosrtkey_ongtk, self.sort_func(self.map(
+        newsortkey = map(conv_tosrtkey, self.sort_func(self.map(
                             handle)))
         if oldsortkey is None or oldsortkey != newsortkey:
             #or the changed object is not present in the view due to filtering

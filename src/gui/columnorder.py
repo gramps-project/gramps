@@ -82,7 +82,7 @@ class ColumnOrder(Gtk.VBox):
         self.config = config
         self.on_apply = on_apply
         
-        self.pack_start(Gtk.Label(' ', True, True, 0), expand=False, fill=False)
+        self.pack_start(Gtk.Label(label=' '), False, False, 0)
         
         self.startrow = 0
         if self.treeview:
@@ -90,15 +90,15 @@ class ColumnOrder(Gtk.VBox):
                     _('Tree View: first column "%s" cannot be changed') % 
                       column_names[0])
             self.startrow = 1
-            self.pack_start(label, expand=False, fill=False)
-            self.pack_start(Gtk.Label(' ', True, True, 0), expand=False, fill=False)
+            self.pack_start(label, False, False, 0)
+            self.pack_start(Gtk.Label(label=' '), False, False, 0)
 
-        self.pack_start(Gtk.Label(_('Drag and drop the columns to change'
-                                    ' the order', True, True, 0)), expand=False, fill=False)
-        self.pack_start(Gtk.Label(' ', True, True, 0), expand=False, fill=False)
+        self.pack_start(Gtk.Label(label=_('Drag and drop the columns to change'
+                                    ' the order')), False, False, 0)
+        self.pack_start(Gtk.Label(label=' '), False, False,0)
         hbox = Gtk.HBox()
         hbox.set_spacing(10)
-        hbox.pack_start(Gtk.Label(' ', True, True, 0))
+        hbox.pack_start(Gtk.Label(label=' '), True, True, 0)
         scroll = Gtk.ScrolledWindow()
         scroll.set_size_request(300,300)
         hbox.pack_start(scroll, True, True, 0)

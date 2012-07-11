@@ -38,6 +38,7 @@ Base view for Place Views
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
+from gi.repository import Gdk
 from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
@@ -212,7 +213,7 @@ class PlaceBaseView(ListView):
                 widget.set_stock_id(Gtk.STOCK_JUMP_TO)
         if self.drag_info():
             self.list.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK,
-              [('text/plain', 0, 0), self.drag_info().target()],
+              [('text/plain', 0, 0), self.drag_info().target_data()],
               Gdk.DragAction.COPY)
 
     def __create_maps_menu_actions(self):

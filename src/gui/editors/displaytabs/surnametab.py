@@ -176,14 +176,14 @@ class SurnameTab(EmbeddedList):
         for idx in range(len(self.model)):
             node = self.model.get_iter(idx)
             surn = self.model.get_value(node, 5)
-            surn.set_prefix(unicode(self.model.get_value(node, 0)))
-            surn.set_surname(unicode(self.model.get_value(node, 1)))
-            surn.set_connector(unicode(self.model.get_value(node, 2)))
-            surn.get_origintype().set(unicode(self.model.get_value(node, 3)))
+            surn.set_prefix(unicode(self.model.get_value(node, 0), 'UTF-8'))
+            surn.set_surname(unicode(self.model.get_value(node, 1), 'UTF-8'))
+            surn.set_connector(unicode(self.model.get_value(node, 2), 'UTF-8'))
+            surn.get_origintype().set(unicode(self.model.get_value(node, 3), 'UTF-8'))
             surn.set_primary(self.model.get_value(node, 4))
             new_list += [surn]
         return new_list
-        
+
     def update(self):
         """
         Store the present data in the model to the name object
@@ -203,7 +203,7 @@ class SurnameTab(EmbeddedList):
         prim = False
         if len(self.obj.get_surname_list()) == 0:
             prim = True
-        node = self.model.append(row=['', '', '', NameOriginType(), prim, 
+        node = self.model.append(row=['', '', '', str(NameOriginType()), prim, 
                                       Surname()])
         self.selection.select_iter(node)
         path = self.model.get_path(node)

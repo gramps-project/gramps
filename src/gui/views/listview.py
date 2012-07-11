@@ -378,7 +378,7 @@ class ListView(NavigationView):
 
         if self.type_list() == LISTFLAT:
             # Flat
-            iter = self.model.nodemap.new_iter(handle)
+            iter = self.model.node_map.new_iter(handle)
             try:
                 path = self.model.do_get_path(iter)
             except:
@@ -543,7 +543,7 @@ class ListView(NavigationView):
             construct a list sel_list with all selected handles
         '''
         if store.do_get_flags() & Gtk.TreeModelFlags.LIST_ONLY:
-            handle = store.node_map.get_handle(path)
+            handle = store.node_map.get_handle(path.get_indices()[0])
         else:
             handle = store.get_handle(store.get_node_from_iter(iter))
 
@@ -1100,9 +1100,9 @@ class ListView(NavigationView):
         self.uistate.status_text(_("Updating display..."))
         self.uistate.set_busy_cursor(True)
         
-        selected = self.selection.get_selected_rows()
-        for path in selected[1]:
-            self.list.expand_row(path, True)
+        store, selected = self.selection.get_selected_rows()
+        for path in selected:
+            self.list.expand_row(path, False)
 
         self.uistate.set_busy_cursor(False)
         self.uistate.modify_statusbar(self.dbstate)
@@ -1113,8 +1113,8 @@ class ListView(NavigationView):
         :param obj: not used, present only to allow the use of the method in
             event callback
         """
-        selected = self.selection.get_selected_rows()
-        for path in selected[1]:
+        store, selected = self.selection.get_selected_rows()
+        for path in selected:
             self.list.collapse_row(path)
 
     def can_configure(self):

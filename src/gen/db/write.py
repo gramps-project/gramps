@@ -62,7 +62,7 @@ from gen.db import (DbBsddbRead, DbWriteBase, BSDDBTxn,
                     find_surname_name, DbUndoBSDDB as DbUndo)
 from gen.db.dbconst import *
 from gen.utils.callback import Callback
-from gen.utils.cast import (conv_unicode_tosrtkey_ongtk, conv_dbstr_to_unicode)
+from gen.utils.cast import (conv_unicode_tosrtkey, conv_dbstr_to_unicode)
 from gen.updatecallback import UpdateCallback
 from gen.errors import DbError
 from gen.constfunc import win
@@ -1428,7 +1428,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             self.emit('person-groupname-rebuild', (name, grouppar))
 
     def sort_surname_list(self):
-        self.surname_list.sort(key=conv_unicode_tosrtkey_ongtk)
+        self.surname_list.sort(key=conv_unicode_tosrtkey)
 
     @catch_db_error
     def build_surname_list(self):
@@ -1440,7 +1440,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         #TODO GTK3: Why double conversion? Convert to a list of str objects!
         self.surname_list = sorted(
                         map(conv_dbstr_to_unicode, set(self.surnames.keys())), 
-                        key=conv_unicode_tosrtkey_ongtk)
+                        key=conv_unicode_tosrtkey)
 
     def add_to_surname_list(self, person, batch_transaction):
         """

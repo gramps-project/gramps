@@ -76,7 +76,8 @@ class MenuToolButtonAction(Gtk.Action):
         @type tooltip: str
         
         """
-        GObject.GObject.__init__(self, name, label, tooltip, None)
+        GObject.GObject.__init__(self, name=name, label=label, tooltip=tooltip,
+                                 stock_id=None)
 ##TODO GTK3: following is deprecated, must be replaced by 
 ##        Gtk.MenuToolButton.set_related_action(MenuToolButtonAction) in calling class?
 ##        self.set_tool_item_type(Gtk.MenuToolButton)

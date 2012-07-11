@@ -55,7 +55,7 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.utils.cast import conv_str_tosrtkey_ongtk, conv_unicode_tosrtkey_ongtk
+from gen.utils.cast import conv_str_tosrtkey, conv_unicode_tosrtkey
 import gui.widgets.progressdialog as progressdlg
 from lru import LRU
 from bisect import bisect_right
@@ -91,11 +91,11 @@ class Node(object):
             if isinstance(sortkey, unicode):
                 self.name = sortkey.encode('utf-8')
                 #sortkey must be localized sort, so 
-                self.sortkey = conv_unicode_tosrtkey_ongtk(sortkey)
+                self.sortkey = conv_unicode_tosrtkey(sortkey)
             else:
                 self.name = sortkey
                 #sortkey must be localized sort, so
-                self.sortkey = conv_str_tosrtkey_ongtk(sortkey)
+                self.sortkey = conv_str_tosrtkey(sortkey)
         else:
             self.name = ''
             self.sortkey = None
