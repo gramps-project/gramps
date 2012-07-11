@@ -584,6 +584,10 @@ class DictionaryDb(DbWriteBase, DbReadBase):
         media = self.media_map[handle]
         return media
 
+    def get_tag_from_handle(self, handle):
+        tag = self.tag_map[handle]
+        return tag
+
     def get_default_person(self):
         return None
 
