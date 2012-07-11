@@ -4,7 +4,7 @@
 # Copyright (C) 2004-2007  Donald N. Allingham
 # Copyright (C) 2008,2011  Gary Burton
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2011       Paul Franklin
+# Copyright (C) 2011-2012  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -83,6 +83,7 @@ class OptionList(_options.OptionList):
         self.margins = [2.54, 2.54, 2.54, 2.54]
         self.format_name = None
         self.css_filename = None
+        self.output = None
     
     def set_style_name(self, style_name):
         """
@@ -233,6 +234,22 @@ class OptionList(_options.OptionList):
         @rtype: str
         """
         return self.format_name
+
+    def set_output(self, output):
+        """
+        Set the output for the OptionList.
+        @param output: name of the output to set.
+        @type output: str
+        """
+        self.output = output
+
+    def get_output(self):
+        """
+        Return the output of the OptionList.
+        @returns: returns the output name
+        @rtype: str
+        """
+        return self.output
 
 #-------------------------------------------------------------------------
 #
@@ -445,6 +462,9 @@ class OptionListCollection(_options.OptionListCollection):
         if option_list.get_style_name():
             f.write('  <style name="%s"/>\n' %
                         escxml(option_list.get_style_name()) )
+        if option_list.get_output():
+            f.write('  <output name="%s"/>\n' %
+                        escxml(os.path.basename(option_list.get_output())) )
 
     def parse(self):
         """
@@ -529,6 +549,9 @@ class OptionParser(_options.OptionParser):
                 self.collection.set_last_margin(pos, value)
             else:
                 self.option_list.set_margin(pos, value)
+        elif tag == 'output':
+            if not self.common:
+                self.option_list.set_output(attrs['name'])
         else:
             # Tag is not report-specific, so we let the base class handle it.
             _options.OptionParser.startElement(self, tag, attrs)
@@ -615,6 +638,8 @@ class OptionHandler(_options.OptionHandler):
             self.paper_name = self.saved_option_list.get_paper_name()
         if self.saved_option_list.get_format_name():
             self.format_name = self.saved_option_list.get_format_name()
+        if self.saved_option_list.get_output():
+            self.output = self.saved_option_list.get_output()
 
     def save_options(self):
         """
@@ -636,6 +661,7 @@ class OptionHandler(_options.OptionHandler):
     def save_common_options(self):
         # First we save common options
         self.saved_option_list.set_style_name(self.style_name)
+        self.saved_option_list.set_output(self.output)
         self.saved_option_list.set_orientation(self.orientation)
         self.saved_option_list.set_custom_paper_size(self.custom_paper_size)
         self.saved_option_list.set_margins(self.margins)
