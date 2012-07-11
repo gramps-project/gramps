@@ -506,61 +506,49 @@ class DictionaryDb(DbWriteBase, DbReadBase):
 
     def get_person_handles(self, sort_handles=False):
         if sort_handles:
-            return sorted(self.person_map.keys())
+            raise Exception("Implement!")
         else:
             return self.person_map.keys()
 
-    def get_family_handles(self, sort_handles=False):
-        if sort_handles:
-            return sorted(self.family_map.keys())
-        else:
-            return self.family_map.keys()
+    def get_family_handles(self):
+        return self.family_map.keys()
 
-    def get_event_handles(self, sort_handles=False):
-        if sort_handles:
-            return sorted(self.event_map.keys())
-        else:
-            return self.event_map.keys()
+    def get_event_handles(self):
+        return self.event_map.keys()
 
     def get_citation_handles(self, sort_handles=False):
         if sort_handles:
-            return sorted(self.citation_map.keys())
+            raise Exception("Implement!")
         else:
             return self.citation_map.keys()
 
     def get_source_handles(self, sort_handles=False):
         if sort_handles:
-            return sorted(self.source_map.keys())
+            raise Exception("Implement!")
         else:
             return self.source_map.keys()
 
     def get_place_handles(self, sort_handles=False):
         if sort_handles:
-            return sorted(self.place_map.keys())
+            raise Exception("Implement!")
         else:
             return self.place_map.keys()
 
-    def get_repository_handles(self, sort_handles=False):
-        if sort_handles:
-            return sorted(self.repository_map.keys())
-        else:
-            return self.repository_map.keys()
+    def get_repository_handles(self):
+        return self.repository_map.keys()
 
     def get_media_object_handles(self, sort_handles=False):
         if sort_handles:
-            return sorted(self.media_map.keys())
+            raise Exception("Implement!")
         else:
             return self.media_map.keys()
 
-    def get_note_handles(self, sort_handles=False):
-        if sort_handles:
-            return sorted(self.note_map.keys())
-        else:
-            return self.note_map.keys()
+    def get_note_handles(self):
+        return self.note_map.keys()
 
     def get_tag_handles(self, sort_handles=False):
         if sort_handles:
-            return sorted(self.tag_map.keys())
+            raise Exception("Implement!")
         else:
             return self.tag_map.keys()
 
@@ -577,7 +565,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
         return self.person_map[handle]
 
     def get_place_from_handle(self, handle):
-        place = self.person_map[handle]
+        place = self.place_map[handle]
         return place
 
     def get_citation_from_handle(self, handle):
