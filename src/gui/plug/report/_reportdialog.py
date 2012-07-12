@@ -167,6 +167,7 @@ class ReportDialog(ManagedWindow):
         self.ok = self.window.add_button(gtk.STOCK_OK, gtk.RESPONSE_OK)
         self.ok.connect('clicked', self.on_ok_clicked)
 
+        self.window.set_position(gtk.WIN_POS_CENTER)
         self.window.set_default_size(600, -1)
 
         # Set up and run the dialog.  These calls are not in top down
