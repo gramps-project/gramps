@@ -94,7 +94,9 @@ def diff_items(path, json1, json2):
                 value1 = json1[key]
                 value2 = json2[key]
                 if isinstance(value1, dict) and isinstance(value2, dict):
-                    retval = diff_items(path + "/" + key, value1, value2)
+                    result = diff_items(path + "/" + key, value1, value2)
+                    if result:
+                        retval = True
                 elif isinstance(value1, list) and isinstance(value2, list):
                     pos = 0
                     for v1, v2 in zip(value1, value2):
