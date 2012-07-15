@@ -55,64 +55,26 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 
 
 
-  <include href="https://raw.github.com/jralls/gtk-osx-build/master/modulesets-stable/gtk-osx.modules"/>
-  <!--include href="/Users/john/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/-->
+  <!--include href="https://raw.github.com/jralls/gtk-osx-build/master/modulesets-stable/gtk-osx.modules"/-->
+  <include href="/Volumes/Data/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/>
 
 
-  <autotools id="gramps" autogen-sh="configure">
-    <branch module="gramps/gramps-3.2.6.tar.gz" version="3.2.6"
-	    repo="sourceforge">
-      <patch file="http://raw.github.com/jralls/gtk-osx-build/master/patches/gramps.patch" strip="1"/>
-      <patch file="http://raw.github.com/jralls/gtk-osx-build/master/patches/gramps-viewmanager.patch" strip="1"/>
-      <patch file="http://raw.github.com/jralls/gtk-osx-build/master/patches/gramps-accelmap.patch" strip="1"/>
-      <patch file="http://raw.github.com/jralls/gtk-osx-build/master/patches/gramps-pedigree.patch" strip="1"/>
-      <patch file="http://raw.github.com/jralls/gtk-osx-build/master/patches/gramps-accel.patch" strip="1"/>
-    </branch>
+
+  <distutils id="gramps-svn" >
+    <branch module="gramps" revision="geps/gep-029-gtk3" repo="gramps"/>
     <dependencies>
-      <dep package="meta-gtk-osx-python"/>
-      <dep package="pyWebKitGtk"/>
-      <dep package="librsvg2"/>
-      <dep package="pygoocanvas"/>
-      <dep package="shared-mime-info"/>
-      <dep package="pyenchant"/>
-      <dep package="hunspell"/>
-      <dep package="pygtk-extras"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="gramps33" >
-    <branch module="gramps" revision="maintenance/gramps33" repo="gramps"/>
-    <dependencies>
-      <dep package="meta-gtk-osx-python"/>
-      <dep package="librsvg2"/>
-      <dep package="pygoocanvas"/>
+      <dep package="meta-gtk-osx-python-gtk3"/>
+      <dep package="librsvg"/>
+<!--      <dep package="pygoocanvas"/> -->
       <dep package="shared-mime-info"/>
       <dep package="hunspell"/>
-      <dep package="pygtk-extras"/>
-      <dep package="osmgpsmap-py"/>
-      <dep package="graphviz"/>
+ <!--     <dep package="osmgpsmap-py"/> -->
+<!--      <dep package="graphviz"/> -->
    </dependencies>
    <after>
-      <dep package="pyexiv2"/>
+<!--      <dep package="pyexiv2"/> -->
    </after>
-  </autotools>
-
-  <autotools id="gramps-svn" >
-    <branch module="gramps" repo="gramps"/>
-    <dependencies>
-      <dep package="meta-gtk-osx-python"/>
-      <dep package="librsvg2"/>
-      <dep package="pygoocanvas"/>
-      <dep package="shared-mime-info"/>
-      <dep package="hunspell"/>
-      <dep package="pygtk-extras"/>
-      <dep package="osmgpsmap-py"/>
-      <dep package="graphviz"/>
-   </dependencies>
-   <after>
-      <dep package="pyexiv2"/>
-   </after>
-  </autotools>
+  </distutils>
 
   <distutils id="gramps-addons">
     <branch module="branches/gramps32/contrib"
@@ -148,15 +110,15 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </autotools>
 
 <!-- Later versions of librsvg2 require libxml2-2.7, available only in
-     Snow Leopard -->
+     Snow Leopard 
   <autotools id="librsvg2" >
     <branch module="librsvg/2.22/librsvg-2.22.3.tar.bz2" version="2.22.3"
 	    repo="ftp.gnome.org"/>
     <dependencies>
       <dep package="libgsf"/>
-      <dep package="libart_lgpl"/><!-- goffice.modules -->
+      <dep package="libart_lgpl"/>< goffice.modules >
     </dependencies>
-  </autotools>
+  </autotools -->
 
   <autotools id="goocanvas">
     <branch module="goocanvas/0.15/goocanvas-0.15.tar.bz2" version="0.15"
