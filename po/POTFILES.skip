@@ -332,6 +332,7 @@ src/plugins/tool/calculateestimateddates.py
 src/plugins/tool/dateparserdisplaytest.py
 src/plugins/tool/dumpgenderstats.py
 src/plugins/tool/phpgedviewconnector.py
+src/plugins/tool/populatesources.py
 src/plugins/tool/testcasegenerator.py
 src/plugins/tool/phpgedview.glade
 src/plugins/tool/toolsdebug.gpr.py
