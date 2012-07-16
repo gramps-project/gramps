@@ -34,6 +34,7 @@ import gettext
 import sys
 import os
 import locale
+import logging
 
 #-------------------------------------------------------------------------
 #
@@ -58,8 +59,9 @@ else:
     if lang and lang[:2] == 'en':
         pass # No need to display warning, we're in English
     else:
-        print 'Locale dir does not exist at ' + os.path.join(PREFIXDIR, "share/locale")
-        print 'Running ./configure --prefix=YourPrefixDir might fix the problem'  
+        logging.warning('Locale dir does not exist at ' + 
+                        os.path.join(PREFIXDIR, "share/locale"))
+        logging.warning('Running ./configure --prefix=YourPrefixDir might fix the problem') 
     LOCALEDIR = None
 
 LOCALEDOMAIN = 'gramps'
@@ -77,7 +79,7 @@ else:
             try:
                 lang = locale.getdefaultlocale()[0] + '.UTF-8'
             except TypeError:
-                print 'Unable to determine your Locale, using English'
+                logging.warning('Unable to determine your Locale, using English')
                 lang = 'en.UTF-8'
 
     os.environ["LANG"] = lang
@@ -100,7 +102,7 @@ def setup_gettext():
     try:
         locale.bindtextdomain(LOCALEDOMAIN, LOCALEDIR)
     except ValueError:
-        print 'Failed to bind text domain, gtk.Builder() has no translation'
+        logging.warning('Failed to bind text domain, gtk.Builder() has no translation')
     
     #following installs _ as a python function, we avoid this as this module is
     #used sometimes:
@@ -217,8 +219,8 @@ def setup_windows_gettext():
         return
 
     # No complete/working translation found
-    print "Translation might not be complete/not working for",\
-           locale.getlocale()[0]
+    logging.warning("Translation might not be complete/not working for",\
+           locale.getlocale()[0])
     
 
 def get_localedomain():
