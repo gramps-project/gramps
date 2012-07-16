@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-18 19:46+0200\n"
-"PO-Revision-Date: 2012-06-18 19:47+0200\n"
+"POT-Creation-Date: 2012-07-15 17:49+0200\n"
+"PO-Revision-Date: 2012-07-16 13:36+0200\n"
 "Last-Translator: Peter Landgren\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -134,7 +134,7 @@ msgstr "Namn"
 #: ../src/gui/selectors/selectplace.py:63
 #: ../src/gui/selectors/selectrepository.py:62
 #: ../src/gui/selectors/selectsource.py:62
-#: ../src/gui/views/navigationview.py:348 ../src/Merge/mergeperson.py:174
+#: ../src/gui/views/navigationview.py:352 ../src/Merge/mergeperson.py:174
 #: ../src/plugins/lib/libpersonview.py:93
 #: ../src/plugins/lib/libplaceview.py:93 ../src/plugins/tool/EventCmp.py:250
 #: ../src/plugins/tool/NotRelated.py:131 ../src/plugins/tool/PatchNames.py:399
@@ -640,7 +640,7 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:613
-#: ../src/plugins/tool/Check.py:1905 ../src/plugins/view/geofamily.py:403
+#: ../src/plugins/tool/Check.py:1959 ../src/plugins/view/geofamily.py:403
 #: ../src/plugins/view/geoperson.py:450 ../src/plugins/view/relview.py:450
 #: ../src/plugins/view/relview.py:995 ../src/plugins/view/relview.py:1042
 #: ../src/plugins/webreport/NarrativeWeb.py:347
@@ -994,7 +994,7 @@ msgstr "Plats"
 #: ../src/gui/editors/editmedia.py:88 ../src/gui/editors/editmedia.py:171
 #: ../src/gui/editors/editmediaref.py:133
 #: ../src/gui/views/treemodels/mediamodel.py:128
-#: ../src/plugins/drawreport/AncestorTree.py:1014
+#: ../src/plugins/drawreport/AncestorTree.py:1015
 #: ../src/plugins/drawreport/DescendTree.py:1610
 #: ../src/plugins/export/ExportCsv.py:343
 #: ../src/plugins/export/ExportCsv.py:460
@@ -2766,7 +2766,7 @@ msgid "Time"
 msgstr "Tidpunkt"
 
 #: ../src/gen/lib/childreftype.py:73 ../src/gui/configure.py:70
-#: ../src/plugins/tool/Check.py:1951
+#: ../src/plugins/tool/Check.py:2005
 #: ../src/Filters/SideBar/_CitationSidebarFilter.py:161
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:160
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:217
@@ -3937,7 +3937,7 @@ msgstr "Registrerade '%s'"
 #: ../src/gen/plug/docgen/graphdoc.py:63
 #: ../src/plugins/textreport/AncestorReport.py:276
 #: ../src/plugins/textreport/AncestorReport.py:297
-#: ../src/plugins/textreport/BirthdayReport.py:379
+#: ../src/plugins/textreport/BirthdayReport.py:381
 #: ../src/plugins/textreport/DescendReport.py:401
 #: ../src/plugins/textreport/DetAncestralReport.py:736
 #: ../src/plugins/textreport/DetAncestralReport.py:758
@@ -4386,7 +4386,7 @@ msgstr "Drag och släpp kolumner för att ändra ordning"
 
 #. #################
 #: ../src/gui/columnorder.py:130 ../src/gui/configure.py:947
-#: ../src/plugins/drawreport/AncestorTree.py:907
+#: ../src/plugins/drawreport/AncestorTree.py:908
 #: ../src/plugins/drawreport/DescendTree.py:1487
 msgid "Display"
 msgstr "Visa"
@@ -4616,7 +4616,7 @@ msgstr "Exempel"
 #. label for the combo
 #: ../src/gui/configure.py:846 ../src/plugins/drawreport/Calendar.py:427
 #: ../src/plugins/textreport/AncestorReport.py:275
-#: ../src/plugins/textreport/BirthdayReport.py:378
+#: ../src/plugins/textreport/BirthdayReport.py:380
 #: ../src/plugins/textreport/DescendReport.py:400
 #: ../src/plugins/textreport/DetAncestralReport.py:735
 #: ../src/plugins/textreport/DetDescendantReport.py:899
@@ -5499,7 +5499,7 @@ msgstr "Filtertest"
 #: ../src/plugins/gramplet/bottombar.gpr.py:749
 #: ../src/plugins/graph/GVRelGraph.py:476
 #: ../src/plugins/quickview/quickview.gpr.py:127
-#: ../src/plugins/textreport/BirthdayReport.py:365
+#: ../src/plugins/textreport/BirthdayReport.py:367
 #: ../src/plugins/textreport/IndivComplete.py:672
 #: ../src/plugins/tool/SortEvents.py:168
 #: ../src/plugins/webreport/NarrativeWeb.py:7699
@@ -5990,12 +5990,6 @@ msgstr "Tillgängliga uppdateringar av Gramps tillägg"
 msgid "%(adjective)s: %(addon)s"
 msgstr "%(adjective)s: %(addon)s"
 
-#. checkbox visible?
-#. initially selected?
-#: ../src/gui/viewmanager.py:482 ../src/gui/viewmanager.py:493
-msgid "t"
-msgstr ""
-
 #: ../src/gui/viewmanager.py:537
 msgid "Downloading and installing selected addons..."
 msgstr "Laddar ner och installerar valda tillägg..."
@@ -6277,7 +6271,7 @@ msgstr "Media:"
 #. What to include
 #. #########################
 #: ../src/gui/viewmanager.py:1545
-#: ../src/plugins/drawreport/AncestorTree.py:985
+#: ../src/plugins/drawreport/AncestorTree.py:986
 #: ../src/plugins/drawreport/DescendTree.py:1581
 #: ../src/plugins/textreport/DetAncestralReport.py:801
 #: ../src/plugins/textreport/DetDescendantReport.py:975
@@ -8371,12 +8365,12 @@ msgstr "Mall"
 #. ###############################
 #: ../src/gui/plug/report/_reportdialog.py:356 ../src/plugins/Records.py:514
 #: ../src/plugins/drawreport/Calendar.py:406
-#: ../src/plugins/drawreport/FanChart.py:394
+#: ../src/plugins/drawreport/FanChart.py:396
 #: ../src/plugins/drawreport/StatisticsChart.py:908
 #: ../src/plugins/drawreport/TimeLine.py:367
 #: ../src/plugins/graph/GVRelGraph.py:473
 #: ../src/plugins/textreport/AncestorReport.py:266
-#: ../src/plugins/textreport/BirthdayReport.py:358
+#: ../src/plugins/textreport/BirthdayReport.py:360
 #: ../src/plugins/textreport/DescendReport.py:391
 #: ../src/plugins/textreport/DetAncestralReport.py:726
 #: ../src/plugins/textreport/DetDescendantReport.py:890
@@ -8742,12 +8736,20 @@ msgstr "Gå till standardpersonen"
 msgid "Set _Home Person"
 msgstr "Välj _hemperson"
 
-#: ../src/gui/views/navigationview.py:338
+#: ../src/gui/views/navigationview.py:335
+msgid "No Home Person"
+msgstr "Hemperson är inte bestämd."
+
+#: ../src/gui/views/navigationview.py:336
+msgid "You need to set a 'default person' to go to."
+msgstr "Du måste bestämma en 'standardperson' att hoppa till."
+
 #: ../src/gui/views/navigationview.py:342
+#: ../src/gui/views/navigationview.py:346
 msgid "Jump to by Gramps ID"
 msgstr "Hoppa till Gramps-ID"
 
-#: ../src/gui/views/navigationview.py:367
+#: ../src/gui/views/navigationview.py:371
 #, python-format
 msgid "Error: %s is not a valid Gramps ID"
 msgstr "Fel: %s är inte ett giltigt Gramps-ID"
@@ -9739,9 +9741,9 @@ msgid "The style used for headings."
 msgstr "Mall som används för rubriker."
 
 #: ../src/plugins/Records.py:611
-#: ../src/plugins/drawreport/AncestorTree.py:1066
+#: ../src/plugins/drawreport/AncestorTree.py:1067
 #: ../src/plugins/drawreport/DescendTree.py:1670
-#: ../src/plugins/drawreport/FanChart.py:456
+#: ../src/plugins/drawreport/FanChart.py:458
 #: ../src/plugins/textreport/AncestorReport.py:367
 #: ../src/plugins/textreport/DetAncestralReport.py:904
 #: ../src/plugins/textreport/DetDescendantReport.py:1099
@@ -9972,32 +9974,32 @@ msgstr "g."
 msgid "Ancestor Graph for %s"
 msgstr "Antavla för %s"
 
-#: ../src/plugins/drawreport/AncestorTree.py:697
-#: ../src/plugins/drawreport/AncestorTree.py:783
+#: ../src/plugins/drawreport/AncestorTree.py:698
+#: ../src/plugins/drawreport/AncestorTree.py:784
 #: ../src/plugins/drawreport/drawplugins.gpr.py:48
 msgid "Ancestor Tree"
 msgstr "Antavla, traditionell"
 
-#: ../src/plugins/drawreport/AncestorTree.py:698
+#: ../src/plugins/drawreport/AncestorTree.py:699
 msgid "Making the Tree..."
 msgstr "Gör släktträdet..."
 
-#: ../src/plugins/drawreport/AncestorTree.py:784
+#: ../src/plugins/drawreport/AncestorTree.py:785
 msgid "Printing the Tree..."
 msgstr "Skriver ut släktträdet..."
 
 #. #################
-#: ../src/plugins/drawreport/AncestorTree.py:864
+#: ../src/plugins/drawreport/AncestorTree.py:865
 #: ../src/plugins/drawreport/DescendTree.py:1452
 msgid "Tree Options"
 msgstr "Trädalternativ"
 
-#: ../src/plugins/drawreport/AncestorTree.py:866
+#: ../src/plugins/drawreport/AncestorTree.py:867
 #: ../src/plugins/drawreport/Calendar.py:417
-#: ../src/plugins/drawreport/FanChart.py:396
+#: ../src/plugins/drawreport/FanChart.py:398
 #: ../src/plugins/graph/GVHourGlass.py:261
 #: ../src/plugins/textreport/AncestorReport.py:268
-#: ../src/plugins/textreport/BirthdayReport.py:370
+#: ../src/plugins/textreport/BirthdayReport.py:372
 #: ../src/plugins/textreport/DescendReport.py:393
 #: ../src/plugins/textreport/DetAncestralReport.py:728
 #: ../src/plugins/textreport/DetDescendantReport.py:892
@@ -10007,13 +10009,13 @@ msgstr "Trädalternativ"
 msgid "Center Person"
 msgstr "Huvudperson"
 
-#: ../src/plugins/drawreport/AncestorTree.py:867
+#: ../src/plugins/drawreport/AncestorTree.py:868
 msgid "The center person for the tree"
 msgstr "Huvudpersonen för trädet"
 
-#: ../src/plugins/drawreport/AncestorTree.py:870
+#: ../src/plugins/drawreport/AncestorTree.py:871
 #: ../src/plugins/drawreport/DescendTree.py:1472
-#: ../src/plugins/drawreport/FanChart.py:400
+#: ../src/plugins/drawreport/FanChart.py:402
 #: ../src/plugins/textreport/AncestorReport.py:282
 #: ../src/plugins/textreport/DescendReport.py:415
 #: ../src/plugins/textreport/DetAncestralReport.py:742
@@ -10021,12 +10023,12 @@ msgstr "Huvudpersonen för trädet"
 msgid "Generations"
 msgstr "Generationer"
 
-#: ../src/plugins/drawreport/AncestorTree.py:871
+#: ../src/plugins/drawreport/AncestorTree.py:872
 #: ../src/plugins/drawreport/DescendTree.py:1473
 msgid "The number of generations to include in the tree"
 msgstr "Antal generationer, som skall tas med i trädet"
 
-#: ../src/plugins/drawreport/AncestorTree.py:875
+#: ../src/plugins/drawreport/AncestorTree.py:876
 msgid ""
 "Display unknown\n"
 "generations"
@@ -10034,16 +10036,16 @@ msgstr ""
 "Visa okända\n"
 "generationer"
 
-#: ../src/plugins/drawreport/AncestorTree.py:877
+#: ../src/plugins/drawreport/AncestorTree.py:878
 msgid "The number of generations of empty boxes that will be displayed"
 msgstr "Det antal generationer med tomma rutor, som kommer att visas"
 
-#: ../src/plugins/drawreport/AncestorTree.py:884
+#: ../src/plugins/drawreport/AncestorTree.py:885
 #: ../src/plugins/drawreport/DescendTree.py:1481
 msgid "Co_mpress tree"
 msgstr "Ko_mprimera träd"
 
-#: ../src/plugins/drawreport/AncestorTree.py:885
+#: ../src/plugins/drawreport/AncestorTree.py:886
 msgid ""
 "Whether to remove any extra blank spaces set aside for people that are "
 "unknown"
@@ -10059,7 +10061,7 @@ msgstr ""
 #. "Display Format"))
 #. Spouse_disp.set_help(_("Show spouses of the center person?"))
 #. menu.add_option(category_name, "Spouse_disp", Spouse_disp)
-#: ../src/plugins/drawreport/AncestorTree.py:899
+#: ../src/plugins/drawreport/AncestorTree.py:900
 msgid ""
 "Center person uses\n"
 "which format"
@@ -10067,19 +10069,19 @@ msgstr ""
 "Huvidperson använder\n"
 "vilket format"
 
-#: ../src/plugins/drawreport/AncestorTree.py:901
+#: ../src/plugins/drawreport/AncestorTree.py:902
 msgid "Use Fathers Display format"
 msgstr "Använd faders visningsformat"
 
-#: ../src/plugins/drawreport/AncestorTree.py:902
+#: ../src/plugins/drawreport/AncestorTree.py:903
 msgid "Use Mothers display format"
 msgstr "Använd moders visningsformat"
 
-#: ../src/plugins/drawreport/AncestorTree.py:903
+#: ../src/plugins/drawreport/AncestorTree.py:904
 msgid "Which Display format to use the center person"
 msgstr "Vilket visningsformat, som skall användas för huvudpersonen"
 
-#: ../src/plugins/drawreport/AncestorTree.py:909
+#: ../src/plugins/drawreport/AncestorTree.py:910
 msgid ""
 "Father\n"
 "Display Format"
@@ -10087,7 +10089,7 @@ msgstr ""
 "Far\n"
 "Visningsformat"
 
-#: ../src/plugins/drawreport/AncestorTree.py:913
+#: ../src/plugins/drawreport/AncestorTree.py:914
 msgid "Display format for the fathers box."
 msgstr "Visningsformat för fadersruta."
 
@@ -10098,7 +10100,7 @@ msgstr "Visningsformat för fadersruta."
 #. missing.set_help(_("What will print when information is not known"))
 #. menu.add_option(category_name, "miss_val", missing)
 #. category_name = _("Secondary")
-#: ../src/plugins/drawreport/AncestorTree.py:926
+#: ../src/plugins/drawreport/AncestorTree.py:927
 msgid ""
 "Mother\n"
 "Display Format"
@@ -10106,21 +10108,21 @@ msgstr ""
 "Mor\n"
 "Visningsformat"
 
-#: ../src/plugins/drawreport/AncestorTree.py:932
+#: ../src/plugins/drawreport/AncestorTree.py:933
 msgid "Display format for the mothers box."
 msgstr "Visningsformat för modersruta."
 
-#: ../src/plugins/drawreport/AncestorTree.py:935
+#: ../src/plugins/drawreport/AncestorTree.py:936
 #: ../src/plugins/drawreport/DescendTree.py:1521
 msgid "Include Marriage box"
 msgstr "Ta med giftermålsruta"
 
-#: ../src/plugins/drawreport/AncestorTree.py:937
+#: ../src/plugins/drawreport/AncestorTree.py:938
 #: ../src/plugins/drawreport/DescendTree.py:1523
 msgid "Whether to include a separate marital box in the report"
 msgstr "Huruvida ta med separat giftermålsruta i rapporten."
 
-#: ../src/plugins/drawreport/AncestorTree.py:940
+#: ../src/plugins/drawreport/AncestorTree.py:941
 #: ../src/plugins/drawreport/DescendTree.py:1526
 msgid ""
 "Marriage\n"
@@ -10129,43 +10131,43 @@ msgstr ""
 "Giftermål\n"
 "Visningsformat"
 
-#: ../src/plugins/drawreport/AncestorTree.py:941
+#: ../src/plugins/drawreport/AncestorTree.py:942
 #: ../src/plugins/drawreport/DescendTree.py:1527
 msgid "Display format for the marital box."
 msgstr "Visningsformat för giftermålsrutan."
 
 #. #################
-#: ../src/plugins/drawreport/AncestorTree.py:945
+#: ../src/plugins/drawreport/AncestorTree.py:946
 #: ../src/plugins/drawreport/DescendTree.py:1540
 msgid "Size"
 msgstr "Storlek"
 
-#: ../src/plugins/drawreport/AncestorTree.py:947
+#: ../src/plugins/drawreport/AncestorTree.py:948
 #: ../src/plugins/drawreport/DescendTree.py:1542
 msgid "Scale tree to fit"
 msgstr "Anpassa träd genom skalning"
 
-#: ../src/plugins/drawreport/AncestorTree.py:948
+#: ../src/plugins/drawreport/AncestorTree.py:949
 #: ../src/plugins/drawreport/DescendTree.py:1543
 msgid "Do not scale tree"
 msgstr "Skala inte om trädet"
 
-#: ../src/plugins/drawreport/AncestorTree.py:949
+#: ../src/plugins/drawreport/AncestorTree.py:950
 #: ../src/plugins/drawreport/DescendTree.py:1544
 msgid "Scale tree to fit page width only"
 msgstr "Skala om trädet för att anpassa till enbart till sidobredd"
 
-#: ../src/plugins/drawreport/AncestorTree.py:950
+#: ../src/plugins/drawreport/AncestorTree.py:951
 #: ../src/plugins/drawreport/DescendTree.py:1545
 msgid "Scale tree to fit the size of the page"
 msgstr "Skala om träd för att passa på en enda sida"
 
-#: ../src/plugins/drawreport/AncestorTree.py:952
+#: ../src/plugins/drawreport/AncestorTree.py:953
 #: ../src/plugins/drawreport/DescendTree.py:1547
 msgid "Whether to scale the tree to fit a specific paper size"
 msgstr "Huruvida skala om att passa för en särskild storlek"
 
-#: ../src/plugins/drawreport/AncestorTree.py:958
+#: ../src/plugins/drawreport/AncestorTree.py:959
 #: ../src/plugins/drawreport/DescendTree.py:1553
 msgid ""
 "Resize Page to Fit Tree size\n"
@@ -10175,7 +10177,7 @@ msgstr ""
 "Skala om sida att passa trädstorlek.\n"
 "Notera: Tar över val i fliken för pappersval"
 
-#: ../src/plugins/drawreport/AncestorTree.py:964
+#: ../src/plugins/drawreport/AncestorTree.py:965
 #: ../src/plugins/drawreport/DescendTree.py:1559
 msgid ""
 "Whether to resize the page to fit the size \n"
@@ -10209,67 +10211,67 @@ msgstr ""
 "kommer sidan att skalas om så att allt tomrum i \n"
 "antingen sida eller höjd försvinner."
 
-#: ../src/plugins/drawreport/AncestorTree.py:987
+#: ../src/plugins/drawreport/AncestorTree.py:988
 #: ../src/plugins/drawreport/DescendTree.py:1583
 msgid "Report Title"
 msgstr "Rapporttitel"
 
-#: ../src/plugins/drawreport/AncestorTree.py:988
+#: ../src/plugins/drawreport/AncestorTree.py:989
 #: ../src/plugins/drawreport/DescendTree.py:1584
 #: ../src/plugins/drawreport/DescendTree.py:1633
 msgid "Do not include a title"
 msgstr "Tag ej med titel"
 
-#: ../src/plugins/drawreport/AncestorTree.py:989
+#: ../src/plugins/drawreport/AncestorTree.py:990
 msgid "Include Report Title"
 msgstr "Ta med rapporttitel"
 
-#: ../src/plugins/drawreport/AncestorTree.py:990
+#: ../src/plugins/drawreport/AncestorTree.py:991
 #: ../src/plugins/drawreport/DescendTree.py:1586
 msgid "Choose a title for the report"
 msgstr "Välj en titel på rapporten"
 
-#: ../src/plugins/drawreport/AncestorTree.py:993
+#: ../src/plugins/drawreport/AncestorTree.py:994
 #: ../src/plugins/drawreport/DescendTree.py:1590
 msgid "Include a border"
 msgstr "Ta med en kant"
 
-#: ../src/plugins/drawreport/AncestorTree.py:994
+#: ../src/plugins/drawreport/AncestorTree.py:995
 #: ../src/plugins/drawreport/DescendTree.py:1591
 msgid "Whether to make a border around the report."
 msgstr "Huruvida göra en ram runt rapporten .."
 
-#: ../src/plugins/drawreport/AncestorTree.py:997
+#: ../src/plugins/drawreport/AncestorTree.py:998
 #: ../src/plugins/drawreport/DescendTree.py:1594
 msgid "Include Page Numbers"
 msgstr "Tag med sidnummer"
 
-#: ../src/plugins/drawreport/AncestorTree.py:998
+#: ../src/plugins/drawreport/AncestorTree.py:999
 msgid "Whether to print page numbers on each page."
 msgstr "Huruvida skriva ut sidnummer på varje sida."
 
-#: ../src/plugins/drawreport/AncestorTree.py:1001
+#: ../src/plugins/drawreport/AncestorTree.py:1002
 #: ../src/plugins/drawreport/DescendTree.py:1598
 msgid "Include Blank Pages"
 msgstr "Ta med blanka sidor"
 
-#: ../src/plugins/drawreport/AncestorTree.py:1002
+#: ../src/plugins/drawreport/AncestorTree.py:1003
 #: ../src/plugins/drawreport/DescendTree.py:1599
 msgid "Whether to include pages that are blank."
 msgstr "Huruvida ta med sidor, som är blanka."
 
 #. category_name = _("Notes")
-#: ../src/plugins/drawreport/AncestorTree.py:1009
+#: ../src/plugins/drawreport/AncestorTree.py:1010
 #: ../src/plugins/drawreport/DescendTree.py:1604
 msgid "Include a note"
 msgstr "Ta en notis"
 
-#: ../src/plugins/drawreport/AncestorTree.py:1010
+#: ../src/plugins/drawreport/AncestorTree.py:1011
 #: ../src/plugins/drawreport/DescendTree.py:1606
 msgid "Whether to include a note on the report."
 msgstr ".Huruvida ta med en notis i rapporten."
 
-#: ../src/plugins/drawreport/AncestorTree.py:1015
+#: ../src/plugins/drawreport/AncestorTree.py:1016
 #: ../src/plugins/drawreport/DescendTree.py:1611
 msgid ""
 "Add a note\n"
@@ -10281,29 +10283,29 @@ msgstr ""
 "\n"
 "$T inflikar dagens datum"
 
-#: ../src/plugins/drawreport/AncestorTree.py:1020
+#: ../src/plugins/drawreport/AncestorTree.py:1021
 #: ../src/plugins/drawreport/DescendTree.py:1616
 msgid "Note Location"
 msgstr "Placering av notis"
 
-#: ../src/plugins/drawreport/AncestorTree.py:1023
+#: ../src/plugins/drawreport/AncestorTree.py:1024
 #: ../src/plugins/drawreport/DescendTree.py:1619
 msgid "Where to place the note."
 msgstr "Var notisen skall placeras."
 
-#: ../src/plugins/drawreport/AncestorTree.py:1038
+#: ../src/plugins/drawreport/AncestorTree.py:1039
 msgid "No generations of empty boxes for unknown ancestors"
 msgstr "Inget skapande av tomma rutor för okända förfäder"
 
-#: ../src/plugins/drawreport/AncestorTree.py:1041
+#: ../src/plugins/drawreport/AncestorTree.py:1042
 msgid "One Generation of empty boxes for unknown ancestors"
 msgstr "En uppsättning tomma rutor för okända förfäder"
 
-#: ../src/plugins/drawreport/AncestorTree.py:1045
+#: ../src/plugins/drawreport/AncestorTree.py:1046
 msgid " Generations of empty boxes for unknown ancestors"
 msgstr "Flera uppsättningar tomma rutor för okända förfäder"
 
-#: ../src/plugins/drawreport/AncestorTree.py:1077
+#: ../src/plugins/drawreport/AncestorTree.py:1078
 #: ../src/plugins/drawreport/DescendTree.py:1660
 msgid "The basic style used for the title display."
 msgstr "Grundläggande mall som används för visning av titel."
@@ -10350,13 +10352,13 @@ msgid "Reading database..."
 msgstr "Läser databas..."
 
 #: ../src/plugins/drawreport/Calendar.py:314
-#: ../src/plugins/textreport/BirthdayReport.py:274
+#: ../src/plugins/textreport/BirthdayReport.py:276
 #, python-format
 msgid "%(person)s, birth%(relation)s"
 msgstr "%(person)s, birth%(relation)s"
 
 #: ../src/plugins/drawreport/Calendar.py:318
-#: ../src/plugins/textreport/BirthdayReport.py:278
+#: ../src/plugins/textreport/BirthdayReport.py:280
 #, python-format
 msgid "%(person)s, %(age)d%(relation)s"
 msgid_plural "%(person)s, %(age)d%(relation)s"
@@ -10364,7 +10366,7 @@ msgstr[0] "%(person)s, %(age)d%(relation)s"
 msgstr[1] "%(person)s, %(age)d%(relation)s"
 
 #: ../src/plugins/drawreport/Calendar.py:372
-#: ../src/plugins/textreport/BirthdayReport.py:324
+#: ../src/plugins/textreport/BirthdayReport.py:326
 #, python-format
 msgid ""
 "%(spouse)s and\n"
@@ -10374,7 +10376,7 @@ msgstr ""
 " %(person)s, bröllop"
 
 #: ../src/plugins/drawreport/Calendar.py:377
-#: ../src/plugins/textreport/BirthdayReport.py:328
+#: ../src/plugins/textreport/BirthdayReport.py:330
 #, python-format
 msgid ""
 "%(spouse)s and\n"
@@ -10391,21 +10393,21 @@ msgstr[1] ""
 
 #: ../src/plugins/drawreport/Calendar.py:407
 #: ../src/plugins/drawreport/Calendar.py:409
-#: ../src/plugins/textreport/BirthdayReport.py:360
 #: ../src/plugins/textreport/BirthdayReport.py:362
+#: ../src/plugins/textreport/BirthdayReport.py:364
 msgid "Year of calendar"
 msgstr "Kalenderår"
 
 #: ../src/plugins/drawreport/Calendar.py:414
-#: ../src/plugins/textreport/BirthdayReport.py:367
+#: ../src/plugins/textreport/BirthdayReport.py:369
 #: ../src/plugins/webreport/WebCal.py:1314
 msgid "Select filter to restrict people that appear on calendar"
 msgstr "Välj ett filter, som begränsar vilka personer, som tas med på kalender"
 
 #: ../src/plugins/drawreport/Calendar.py:418
-#: ../src/plugins/drawreport/FanChart.py:397
+#: ../src/plugins/drawreport/FanChart.py:399
 #: ../src/plugins/textreport/AncestorReport.py:269
-#: ../src/plugins/textreport/BirthdayReport.py:371
+#: ../src/plugins/textreport/BirthdayReport.py:373
 #: ../src/plugins/textreport/DescendReport.py:394
 #: ../src/plugins/textreport/DetAncestralReport.py:729
 #: ../src/plugins/textreport/DetDescendantReport.py:893
@@ -10417,7 +10419,7 @@ msgstr "Huvudpersonen för rapporten"
 
 #: ../src/plugins/drawreport/Calendar.py:430
 #: ../src/plugins/textreport/AncestorReport.py:279
-#: ../src/plugins/textreport/BirthdayReport.py:382
+#: ../src/plugins/textreport/BirthdayReport.py:384
 #: ../src/plugins/textreport/DescendReport.py:404
 #: ../src/plugins/textreport/DetAncestralReport.py:739
 #: ../src/plugins/textreport/DetDescendantReport.py:903
@@ -10432,138 +10434,138 @@ msgid "Select the format to display names"
 msgstr "Välj format vid namnvisning"
 
 #: ../src/plugins/drawreport/Calendar.py:433
-#: ../src/plugins/textreport/BirthdayReport.py:385
+#: ../src/plugins/textreport/BirthdayReport.py:387
 #: ../src/plugins/webreport/WebCal.py:1390
 msgid "Country for holidays"
 msgstr "Land för helgdagar"
 
 #: ../src/plugins/drawreport/Calendar.py:444
-#: ../src/plugins/textreport/BirthdayReport.py:396
+#: ../src/plugins/textreport/BirthdayReport.py:398
 msgid "Select the country to see associated holidays"
 msgstr "Välj landet för att få med dess helgdagar"
 
 #. Default selection ????
 #: ../src/plugins/drawreport/Calendar.py:447
-#: ../src/plugins/textreport/BirthdayReport.py:399
+#: ../src/plugins/textreport/BirthdayReport.py:401
 #: ../src/plugins/webreport/WebCal.py:1415
 msgid "First day of week"
 msgstr "Veckans första dag"
 
 #: ../src/plugins/drawreport/Calendar.py:451
-#: ../src/plugins/textreport/BirthdayReport.py:403
+#: ../src/plugins/textreport/BirthdayReport.py:405
 #: ../src/plugins/webreport/WebCal.py:1418
 msgid "Select the first day of the week for the calendar"
 msgstr "Välj veckans första dag för kalendern"
 
 #: ../src/plugins/drawreport/Calendar.py:454
-#: ../src/plugins/textreport/BirthdayReport.py:406
+#: ../src/plugins/textreport/BirthdayReport.py:408
 #: ../src/plugins/webreport/WebCal.py:1405
 msgid "Birthday surname"
 msgstr "Namn vid födseln"
 
 #: ../src/plugins/drawreport/Calendar.py:455
-#: ../src/plugins/textreport/BirthdayReport.py:407
+#: ../src/plugins/textreport/BirthdayReport.py:409
 #: ../src/plugins/webreport/WebCal.py:1406
 msgid "Wives use husband's surname (from first family listed)"
 msgstr "Hustrur använder sina makars efternamn (från första uppräknade familj)"
 
 #: ../src/plugins/drawreport/Calendar.py:456
-#: ../src/plugins/textreport/BirthdayReport.py:408
+#: ../src/plugins/textreport/BirthdayReport.py:410
 #: ../src/plugins/webreport/WebCal.py:1408
 msgid "Wives use husband's surname (from last family listed)"
 msgstr "Hustrur använder sina makars efternamn (från sista uppräknade familj)"
 
 #: ../src/plugins/drawreport/Calendar.py:457
-#: ../src/plugins/textreport/BirthdayReport.py:409
+#: ../src/plugins/textreport/BirthdayReport.py:411
 #: ../src/plugins/webreport/WebCal.py:1410
 msgid "Wives use their own surname"
 msgstr "Hustrur använder sina egna efternamn"
 
 #: ../src/plugins/drawreport/Calendar.py:458
-#: ../src/plugins/textreport/BirthdayReport.py:410
+#: ../src/plugins/textreport/BirthdayReport.py:412
 #: ../src/plugins/webreport/WebCal.py:1411
 msgid "Select married women's displayed surname"
 msgstr "Välj gifta kvinnors visade efternamn"
 
 #: ../src/plugins/drawreport/Calendar.py:461
-#: ../src/plugins/textreport/BirthdayReport.py:413
+#: ../src/plugins/textreport/BirthdayReport.py:415
 #: ../src/plugins/webreport/WebCal.py:1426
 msgid "Include only living people"
 msgstr "Ta bara med nu levande personer"
 
 #: ../src/plugins/drawreport/Calendar.py:462
-#: ../src/plugins/textreport/BirthdayReport.py:414
+#: ../src/plugins/textreport/BirthdayReport.py:416
 #: ../src/plugins/webreport/WebCal.py:1427
 msgid "Include only living people in the calendar"
 msgstr "Ta bara med nu levande personer i kalendern"
 
 #: ../src/plugins/drawreport/Calendar.py:465
-#: ../src/plugins/textreport/BirthdayReport.py:417
+#: ../src/plugins/textreport/BirthdayReport.py:419
 #: ../src/plugins/webreport/WebCal.py:1430
 msgid "Include birthdays"
 msgstr "Ta med födelsedagar"
 
 #: ../src/plugins/drawreport/Calendar.py:466
-#: ../src/plugins/textreport/BirthdayReport.py:418
+#: ../src/plugins/textreport/BirthdayReport.py:420
 #: ../src/plugins/webreport/WebCal.py:1431
 msgid "Include birthdays in the calendar"
 msgstr "Ta med födelsedagar i kalendern"
 
 #: ../src/plugins/drawreport/Calendar.py:469
-#: ../src/plugins/textreport/BirthdayReport.py:421
+#: ../src/plugins/textreport/BirthdayReport.py:423
 #: ../src/plugins/webreport/WebCal.py:1434
 msgid "Include anniversaries"
 msgstr "Ta med årsdagar"
 
 #: ../src/plugins/drawreport/Calendar.py:470
-#: ../src/plugins/textreport/BirthdayReport.py:422
+#: ../src/plugins/textreport/BirthdayReport.py:424
 #: ../src/plugins/webreport/WebCal.py:1435
 msgid "Include anniversaries in the calendar"
 msgstr "Ta med årsdagar i kalendern"
 
 #: ../src/plugins/drawreport/Calendar.py:473
 #: ../src/plugins/drawreport/Calendar.py:474
-#: ../src/plugins/textreport/BirthdayReport.py:430
+#: ../src/plugins/textreport/BirthdayReport.py:432
 msgid "Text Options"
 msgstr "Textalternativ"
 
 #: ../src/plugins/drawreport/Calendar.py:476
-#: ../src/plugins/textreport/BirthdayReport.py:437
+#: ../src/plugins/textreport/BirthdayReport.py:439
 msgid "Text Area 1"
 msgstr "Textområde 1"
 
 #: ../src/plugins/drawreport/Calendar.py:476
-#: ../src/plugins/textreport/BirthdayReport.py:437
+#: ../src/plugins/textreport/BirthdayReport.py:439
 msgid "My Calendar"
 msgstr "Min Kalender"
 
 #: ../src/plugins/drawreport/Calendar.py:477
-#: ../src/plugins/textreport/BirthdayReport.py:438
+#: ../src/plugins/textreport/BirthdayReport.py:440
 msgid "First line of text at bottom of calendar"
 msgstr "Första textraden nertill på kalendern"
 
 #: ../src/plugins/drawreport/Calendar.py:480
-#: ../src/plugins/textreport/BirthdayReport.py:441
+#: ../src/plugins/textreport/BirthdayReport.py:443
 msgid "Text Area 2"
 msgstr "Textområde 2"
 
 #: ../src/plugins/drawreport/Calendar.py:480
-#: ../src/plugins/textreport/BirthdayReport.py:441
+#: ../src/plugins/textreport/BirthdayReport.py:443
 msgid "Produced with Gramps"
 msgstr "Framställd av Gramps"
 
 #: ../src/plugins/drawreport/Calendar.py:481
-#: ../src/plugins/textreport/BirthdayReport.py:442
+#: ../src/plugins/textreport/BirthdayReport.py:444
 msgid "Second line of text at bottom of calendar"
 msgstr "Andra textraden nertill på kalendern"
 
 #: ../src/plugins/drawreport/Calendar.py:484
-#: ../src/plugins/textreport/BirthdayReport.py:445
+#: ../src/plugins/textreport/BirthdayReport.py:447
 msgid "Text Area 3"
 msgstr "Textområde 3"
 
 #: ../src/plugins/drawreport/Calendar.py:485
-#: ../src/plugins/textreport/BirthdayReport.py:446
+#: ../src/plugins/textreport/BirthdayReport.py:448
 msgid "Third line of text at bottom of calendar"
 msgstr "Tredje textraden nertill på kalendern"
 
@@ -10588,17 +10590,17 @@ msgid "Days of the week text"
 msgstr "Veckodagstext"
 
 #: ../src/plugins/drawreport/Calendar.py:555
-#: ../src/plugins/textreport/BirthdayReport.py:510
+#: ../src/plugins/textreport/BirthdayReport.py:512
 msgid "Text at bottom, line 1"
 msgstr "Text vid nederkant, rad 1"
 
 #: ../src/plugins/drawreport/Calendar.py:557
-#: ../src/plugins/textreport/BirthdayReport.py:512
+#: ../src/plugins/textreport/BirthdayReport.py:514
 msgid "Text at bottom, line 2"
 msgstr "Text vid nederkant, rad 2"
 
 #: ../src/plugins/drawreport/Calendar.py:559
-#: ../src/plugins/textreport/BirthdayReport.py:514
+#: ../src/plugins/textreport/BirthdayReport.py:516
 msgid "Text at bottom, line 3"
 msgstr "Text vid nederkant, rad 3"
 
@@ -10862,7 +10864,7 @@ msgstr "Skapar ett tidslinjediagram."
 msgid "%(generations)d Generation Fan Chart for %(person)s"
 msgstr "%(generations)d generationers cirkeldiagram för %(person)s"
 
-#: ../src/plugins/drawreport/FanChart.py:401
+#: ../src/plugins/drawreport/FanChart.py:403
 #: ../src/plugins/textreport/AncestorReport.py:283
 #: ../src/plugins/textreport/DescendReport.py:416
 #: ../src/plugins/textreport/DetAncestralReport.py:743
@@ -10870,59 +10872,59 @@ msgstr "%(generations)d generationers cirkeldiagram för %(person)s"
 msgid "The number of generations to include in the report"
 msgstr "Antal generationer, som skall tas med i rapporten"
 
-#: ../src/plugins/drawreport/FanChart.py:404
+#: ../src/plugins/drawreport/FanChart.py:406
 msgid "Type of graph"
 msgstr "Diagramtyp"
 
-#: ../src/plugins/drawreport/FanChart.py:405
+#: ../src/plugins/drawreport/FanChart.py:407
 msgid "full circle"
 msgstr "hel cirkel"
 
-#: ../src/plugins/drawreport/FanChart.py:406
+#: ../src/plugins/drawreport/FanChart.py:408
 msgid "half circle"
 msgstr "halvcirkel"
 
-#: ../src/plugins/drawreport/FanChart.py:407
+#: ../src/plugins/drawreport/FanChart.py:409
 msgid "quarter circle"
 msgstr "kvartscirkel"
 
-#: ../src/plugins/drawreport/FanChart.py:408
+#: ../src/plugins/drawreport/FanChart.py:410
 msgid "The form of the graph: full circle, half circle, or quarter circle."
 msgstr "Utseende på diagrammet: hel cirkel, halvcirkel eller kvartscirkel."
 
-#: ../src/plugins/drawreport/FanChart.py:412
+#: ../src/plugins/drawreport/FanChart.py:414
 msgid "Background color"
 msgstr "Bakgrundsfärg"
 
-#: ../src/plugins/drawreport/FanChart.py:413
+#: ../src/plugins/drawreport/FanChart.py:415
 msgid "white"
 msgstr "vit"
 
-#: ../src/plugins/drawreport/FanChart.py:414
+#: ../src/plugins/drawreport/FanChart.py:416
 msgid "generation dependent"
 msgstr "generationsberoende"
 
-#: ../src/plugins/drawreport/FanChart.py:415
+#: ../src/plugins/drawreport/FanChart.py:417
 msgid "Background color is either white or generation dependent"
 msgstr "Bakgrundsfärg är antingen vit eller generationsberoende"
 
-#: ../src/plugins/drawreport/FanChart.py:419
+#: ../src/plugins/drawreport/FanChart.py:421
 msgid "Orientation of radial texts"
 msgstr "Riktning på radial text"
 
-#: ../src/plugins/drawreport/FanChart.py:421
+#: ../src/plugins/drawreport/FanChart.py:423
 msgid "upright"
 msgstr "rak"
 
-#: ../src/plugins/drawreport/FanChart.py:422
+#: ../src/plugins/drawreport/FanChart.py:424
 msgid "roundabout"
 msgstr "rundad"
 
-#: ../src/plugins/drawreport/FanChart.py:423
+#: ../src/plugins/drawreport/FanChart.py:425
 msgid "Print radial texts upright or roundabout"
 msgstr "Skriv radiell text upprätt eller avrundat"
 
-#: ../src/plugins/drawreport/FanChart.py:447
+#: ../src/plugins/drawreport/FanChart.py:449
 #: ../src/plugins/textreport/AlphabeticalIndex.py:90
 #: ../src/plugins/textreport/TableOfContents.py:90
 msgid "The style used for the title."
@@ -11513,7 +11515,7 @@ msgstr "Export misslyckades"
 msgid "No families matched by selected filter"
 msgstr "Inga familjer matchades av det valda filtret"
 
-#: ../src/plugins/export/ExportPkg.py:166 ../src/plugins/tool/Check.py:645
+#: ../src/plugins/export/ExportPkg.py:166 ../src/plugins/tool/Check.py:665
 msgid "Select file"
 msgstr "Välj fil"
 
@@ -12752,7 +12754,7 @@ msgid "Total given names showing"
 msgstr "Visning av totalt antal förnamn"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:136
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:169
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:168
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:109
 msgid "Total people"
 msgstr "Antal personer"
@@ -13243,29 +13245,29 @@ msgid "Double-click surname for details"
 msgstr "Dubbelklicka på efternamn för detaljer"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:82
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:173
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:181
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:172
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:180
 msgid "Number of surnames"
 msgstr "Antal efternamn"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:83
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:175
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:182
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:174
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:181
 msgid "Min font size"
 msgstr "Minsta typsnittsstorlek"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:84
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:177
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:183
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:176
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:182
 msgid "Max font size"
 msgstr "Största typsnittsstorlek"
 
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:166
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:165
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:107
 msgid "Total unique surnames"
 msgstr "Antal unika efternamn"
 
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:168
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:167
 msgid "Total surnames showing"
 msgstr "Visning av totalt antal efternamn"
 
@@ -14574,9 +14576,9 @@ msgstr ""
 
 #. there is no old style XML
 #: ../src/plugins/import/ImportXml.py:762
-#: ../src/plugins/import/ImportXml.py:1191
-#: ../src/plugins/import/ImportXml.py:1437
-#: ../src/plugins/import/ImportXml.py:1812
+#: ../src/plugins/import/ImportXml.py:1194
+#: ../src/plugins/import/ImportXml.py:1440
+#: ../src/plugins/import/ImportXml.py:1815
 msgid "The Gramps Xml you are trying to import is malformed."
 msgstr "Den Gramps XML du försöker importera är felaktigt utformad."
 
@@ -14699,21 +14701,21 @@ msgstr ""
 msgid "Old xml file"
 msgstr "Gammal xml-fil"
 
-#: ../src/plugins/import/ImportXml.py:1112
-#: ../src/plugins/import/ImportXml.py:2458
+#: ../src/plugins/import/ImportXml.py:1115
+#: ../src/plugins/import/ImportXml.py:2461
 #, python-format
 msgid "Witness name: %s"
 msgstr "Vittnets namn: %s"
 
-#: ../src/plugins/import/ImportXml.py:1192
+#: ../src/plugins/import/ImportXml.py:1195
 msgid "Any event reference must have a 'hlink' attribute."
 msgstr "Alla händelsereferenser måste ha ett 'hlink'-attribut."
 
-#: ../src/plugins/import/ImportXml.py:1438
+#: ../src/plugins/import/ImportXml.py:1441
 msgid "Any person reference must have a 'hlink' attribute."
 msgstr "Alls personreferenser måste ha ett 'hlink'-attribut."
 
-#: ../src/plugins/import/ImportXml.py:1599
+#: ../src/plugins/import/ImportXml.py:1602
 #, python-format
 msgid ""
 "Your family tree groups name \"%(key)s\" together with \"%(parent)s\", did "
@@ -14722,19 +14724,19 @@ msgstr ""
 "Ditt släktträd grupperar namn \"%(key)s\" tillsammans med \"%(parent)s\", "
 "ändrade inte denna gruppering till \"%(value)s\"."
 
-#: ../src/plugins/import/ImportXml.py:1602
+#: ../src/plugins/import/ImportXml.py:1605
 msgid "Gramps ignored namemap value"
 msgstr "Gramps ignorerar namemap-värde"
 
-#: ../src/plugins/import/ImportXml.py:1661
+#: ../src/plugins/import/ImportXml.py:1664
 msgid "Unknown when imported"
 msgstr "Okänd vid import"
 
-#: ../src/plugins/import/ImportXml.py:1813
+#: ../src/plugins/import/ImportXml.py:1816
 msgid "Any note reference must have a 'hlink' attribute."
 msgstr "Alla notisreferenser måste ha ett 'hlink'-attribut."
 
-#: ../src/plugins/import/ImportXml.py:2349
+#: ../src/plugins/import/ImportXml.py:2352
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Vittnets kommentar: %s"
@@ -18741,19 +18743,19 @@ msgstr "Faders ålder"
 msgid "Mother Age"
 msgstr "Moders ålder"
 
-#: ../src/plugins/lib/libtreebase.py:718
+#: ../src/plugins/lib/libtreebase.py:719
 msgid "Top Left"
 msgstr "Överkant, vänster"
 
-#: ../src/plugins/lib/libtreebase.py:719
+#: ../src/plugins/lib/libtreebase.py:720
 msgid "Top Right"
 msgstr "Överkant, höger"
 
-#: ../src/plugins/lib/libtreebase.py:720
+#: ../src/plugins/lib/libtreebase.py:721
 msgid "Bottom Left"
 msgstr "Nederkant, vänster"
 
-#: ../src/plugins/lib/libtreebase.py:721
+#: ../src/plugins/lib/libtreebase.py:722
 msgid "Bottom Right"
 msgstr "Nederkant, höger"
 
@@ -20021,40 +20023,40 @@ msgstr "Visade släktskap är till %s"
 #: ../src/plugins/textreport/BirthdayReport.py:176
 #: ../src/plugins/textreport/BirthdayReport.py:214
 #: ../src/plugins/textreport/BirthdayReport.py:223
-#: ../src/plugins/textreport/BirthdayReport.py:433
+#: ../src/plugins/textreport/BirthdayReport.py:435
 #: ../src/plugins/textreport/textplugins.gpr.py:53
 msgid "Birthday and Anniversary Report"
 msgstr "Födelsedags- och årsdagsrapport"
 
-#: ../src/plugins/textreport/BirthdayReport.py:425
+#: ../src/plugins/textreport/BirthdayReport.py:427
 msgid "Include relationships to center person"
 msgstr "Ta med släktskap till centralperson"
 
-#: ../src/plugins/textreport/BirthdayReport.py:427
+#: ../src/plugins/textreport/BirthdayReport.py:429
 msgid "Include relationships to center person (slower)"
 msgstr "Ta med släktskap till centralperson (långsammare)"
 
-#: ../src/plugins/textreport/BirthdayReport.py:432
+#: ../src/plugins/textreport/BirthdayReport.py:434
 msgid "Title text"
 msgstr "Titeltext"
 
-#: ../src/plugins/textreport/BirthdayReport.py:434
+#: ../src/plugins/textreport/BirthdayReport.py:436
 msgid "Title of calendar"
 msgstr "Titel på kalender"
 
-#: ../src/plugins/textreport/BirthdayReport.py:500
+#: ../src/plugins/textreport/BirthdayReport.py:502
 msgid "Title text style"
 msgstr "Titeltextmall"
 
-#: ../src/plugins/textreport/BirthdayReport.py:503
+#: ../src/plugins/textreport/BirthdayReport.py:505
 msgid "Data text display"
 msgstr "Datatextvisning"
 
-#: ../src/plugins/textreport/BirthdayReport.py:505
+#: ../src/plugins/textreport/BirthdayReport.py:507
 msgid "Day text style"
 msgstr "Dagtextmall"
 
-#: ../src/plugins/textreport/BirthdayReport.py:508
+#: ../src/plugins/textreport/BirthdayReport.py:510
 msgid "Month text style"
 msgstr "Månadstextmall"
 
@@ -21369,15 +21371,15 @@ msgid_plural "%d event records were modified."
 msgstr[0] "%d händelse ändrades.d."
 msgstr[1] "%d händelser ändrades."
 
-#: ../src/plugins/tool/Check.py:102 ../src/plugins/tool/Check.py:229
+#: ../src/plugins/tool/Check.py:97 ../src/plugins/tool/Check.py:227
 msgid "Checking Database"
 msgstr "Kontrollerar databas"
 
-#: ../src/plugins/tool/Check.py:103
+#: ../src/plugins/tool/Check.py:98
 msgid "Looking for cross table duplicates"
 msgstr "Letar efter dubbletter i tabeller korsvis "
 
-#: ../src/plugins/tool/Check.py:145
+#: ../src/plugins/tool/Check.py:143
 msgid ""
 "Your family tree contains cross table duplicate handles.\n"
 " This is bad and can be fixed by making a backup of your\n"
@@ -21391,11 +21393,11 @@ msgstr ""
 "Resterande kontroll hoppas över verktyget \"Kontrollera och reparera\"\n"
 "bör köras ånyo på det nya släktträdet."
 
-#: ../src/plugins/tool/Check.py:152
+#: ../src/plugins/tool/Check.py:150
 msgid "Check Integrity"
 msgstr "Kontrollera integritet"
 
-#: ../src/plugins/tool/Check.py:230
+#: ../src/plugins/tool/Check.py:228
 #, python-format
 msgid ""
 "Objects referenced by this note were referenced but missing so that is why "
@@ -21404,35 +21406,35 @@ msgstr ""
 "Objekt, som refererats av denna notis, refererades men saknades så därför "
 "har de skapats när du kör Kontrollera och reparera på %s."
 
-#: ../src/plugins/tool/Check.py:252
+#: ../src/plugins/tool/Check.py:250
 msgid "Looking for invalid name format references"
 msgstr "Söker efter felaktiga namnformatsreferenser"
 
-#: ../src/plugins/tool/Check.py:304
+#: ../src/plugins/tool/Check.py:302
 msgid "Looking for duplicate spouses"
 msgstr "Söker efter dubblerade makar"
 
-#: ../src/plugins/tool/Check.py:327
+#: ../src/plugins/tool/Check.py:325
 msgid "Looking for character encoding errors"
 msgstr "Söker efter teckenkodningsproblem"
 
-#: ../src/plugins/tool/Check.py:364
+#: ../src/plugins/tool/Check.py:365
 msgid "Looking for ctrl characters in notes"
 msgstr "Söker efter ctrl-tecken i notiser"
 
-#: ../src/plugins/tool/Check.py:389
+#: ../src/plugins/tool/Check.py:390
 msgid "Looking for broken family links"
 msgstr "Söker efter trasiga familjelänkar"
 
-#: ../src/plugins/tool/Check.py:573
+#: ../src/plugins/tool/Check.py:591
 msgid "Looking for unused objects"
 msgstr "Söker efter oanvända objekt"
 
-#: ../src/plugins/tool/Check.py:673
+#: ../src/plugins/tool/Check.py:697
 msgid "Media object could not be found"
 msgstr "Mediaobjekt kunde inte återfinnas"
 
-#: ../src/plugins/tool/Check.py:674
+#: ../src/plugins/tool/Check.py:698
 #, python-format
 msgid ""
 "The file:\n"
@@ -21449,280 +21451,280 @@ msgstr ""
 "bort referensen från databasen, behålla referensen till den saknade filen, "
 "eller välja en ny fil."
 
-#: ../src/plugins/tool/Check.py:742
+#: ../src/plugins/tool/Check.py:775
 msgid "Looking for empty people records"
 msgstr "Söker efter tomma personposter"
 
-#: ../src/plugins/tool/Check.py:750
+#: ../src/plugins/tool/Check.py:783
 msgid "Looking for empty family records"
 msgstr "Söker efter tomma familjeposter"
 
-#: ../src/plugins/tool/Check.py:758
+#: ../src/plugins/tool/Check.py:791
 msgid "Looking for empty event records"
 msgstr "Söker efter tomma händelseposter"
 
-#: ../src/plugins/tool/Check.py:766
+#: ../src/plugins/tool/Check.py:799
 msgid "Looking for empty source records"
 msgstr "Söker efter tomma källposter"
 
-#: ../src/plugins/tool/Check.py:774
+#: ../src/plugins/tool/Check.py:807
 msgid "Looking for empty citation records"
 msgstr "Söker efter tomma citeringsposter"
 
-#: ../src/plugins/tool/Check.py:782
+#: ../src/plugins/tool/Check.py:815
 msgid "Looking for empty place records"
 msgstr "Söker efter tomma ortsposter"
 
-#: ../src/plugins/tool/Check.py:790
+#: ../src/plugins/tool/Check.py:823
 msgid "Looking for empty media records"
 msgstr "Söker efter tomma mediaposter"
 
-#: ../src/plugins/tool/Check.py:798
+#: ../src/plugins/tool/Check.py:831
 msgid "Looking for empty repository records"
 msgstr "Söker efter tomma arkivplatsposter"
 
-#: ../src/plugins/tool/Check.py:806
+#: ../src/plugins/tool/Check.py:839
 msgid "Looking for empty note records"
 msgstr "Söker efter tomma notisposter"
 
-#: ../src/plugins/tool/Check.py:851
+#: ../src/plugins/tool/Check.py:885
 msgid "Looking for empty families"
 msgstr "Söker efter tomma familjer"
 
-#: ../src/plugins/tool/Check.py:886
+#: ../src/plugins/tool/Check.py:920
 msgid "Looking for broken parent relationships"
 msgstr "Söker efter trasiga föräldrarelationer"
 
-#: ../src/plugins/tool/Check.py:923
+#: ../src/plugins/tool/Check.py:957
 msgid "Looking for event problems"
 msgstr "Söker efter problem med händelser"
 
-#: ../src/plugins/tool/Check.py:1075
+#: ../src/plugins/tool/Check.py:1121
 msgid "Looking for person reference problems"
 msgstr "Söker efter problem med personreferenser"
 
-#: ../src/plugins/tool/Check.py:1105
+#: ../src/plugins/tool/Check.py:1151
 msgid "Looking for family reference problems"
 msgstr "Söker efter problem med familjereferenser"
 
-#: ../src/plugins/tool/Check.py:1129
+#: ../src/plugins/tool/Check.py:1175
 msgid "Looking for repository reference problems"
 msgstr "Söker efter problem med arkivplatsreferens"
 
-#: ../src/plugins/tool/Check.py:1160
+#: ../src/plugins/tool/Check.py:1206
 msgid "Looking for place reference problems"
 msgstr "Söker efter problem med referenser till platser"
 
-#: ../src/plugins/tool/Check.py:1234
+#: ../src/plugins/tool/Check.py:1286
 msgid "Looking for citation reference problems"
 msgstr "Söker efter problem citeringshänvisningar"
 
-#: ../src/plugins/tool/Check.py:1363
+#: ../src/plugins/tool/Check.py:1415
 msgid "Looking for source reference problems"
 msgstr "Söker efter problem med hänvisningar i källor"
 
-#: ../src/plugins/tool/Check.py:1400
+#: ../src/plugins/tool/Check.py:1454
 msgid "Looking for media object reference problems"
 msgstr "Söker efter problem med referenser till mediaobjekt"
 
-#: ../src/plugins/tool/Check.py:1536
+#: ../src/plugins/tool/Check.py:1590
 msgid "Looking for note reference problems"
 msgstr "Söker efter problem med hänvisningar i notiser"
 
-#: ../src/plugins/tool/Check.py:1688
+#: ../src/plugins/tool/Check.py:1742
 msgid "Looking for tag reference problems"
 msgstr "Söker efter problem med flagghänvisningar"
 
-#: ../src/plugins/tool/Check.py:1881
+#: ../src/plugins/tool/Check.py:1935
 msgid "No errors were found"
 msgstr "Inga fel upptäcktes"
 
-#: ../src/plugins/tool/Check.py:1882
+#: ../src/plugins/tool/Check.py:1936
 msgid "The database has passed internal checks"
 msgstr "Databasen har klarat interna kontroller"
 
-#: ../src/plugins/tool/Check.py:1891
+#: ../src/plugins/tool/Check.py:1945
 #, python-format
 msgid "%(quantity)d broken child/family link was fixed\n"
 msgid_plural "%(quantity)d broken child-family links were fixed\n"
 msgstr[0] "%(quantity)d trasig barn/familjelänk lagades\n"
 msgstr[1] "%(quantity)d trasiga barn-familjelänkar lagades\n"
 
-#: ../src/plugins/tool/Check.py:1900
+#: ../src/plugins/tool/Check.py:1954
 msgid "Non existing child"
 msgstr "Ickeexisterande barn"
 
-#: ../src/plugins/tool/Check.py:1908
+#: ../src/plugins/tool/Check.py:1962
 #, python-format
 msgid "%(person)s was removed from the family of %(family)s\n"
 msgstr "%(person)s togs bort från familjen %(family)s\n"
 
-#: ../src/plugins/tool/Check.py:1914
+#: ../src/plugins/tool/Check.py:1968
 #, python-format
 msgid "%(quantity)d broken spouse/family link was fixed\n"
 msgid_plural "%(quantity)d broken spouse/family links were fixed\n"
 msgstr[0] "%(quantity)d trasig maka-/make-/familjelänk lagades\n"
 msgstr[1] "%(quantity)d trasiga maka-/make-/familjelänkar lagades\n"
 
-#: ../src/plugins/tool/Check.py:1923 ../src/plugins/tool/Check.py:1946
+#: ../src/plugins/tool/Check.py:1977 ../src/plugins/tool/Check.py:2000
 msgid "Non existing person"
 msgstr "Ickeexisterande person"
 
-#: ../src/plugins/tool/Check.py:1931 ../src/plugins/tool/Check.py:1954
+#: ../src/plugins/tool/Check.py:1985 ../src/plugins/tool/Check.py:2008
 #, python-format
 msgid "%(person)s was restored to the family of %(family)s\n"
 msgstr "%(person)s återställdes till familjen %(family)s\n"
 
-#: ../src/plugins/tool/Check.py:1937
+#: ../src/plugins/tool/Check.py:1991
 #, python-format
 msgid "%(quantity)d duplicate spouse/family link was found\n"
 msgid_plural "%(quantity)d duplicate spouse/family links were found\n"
 msgstr[0] "%(quantity)d duplicerad make-maka- eller familjelänk hittades\n"
 msgstr[1] "%(quantity)d duplicerade make-maka- eller familjelänkar hittades\n"
 
-#: ../src/plugins/tool/Check.py:1960
+#: ../src/plugins/tool/Check.py:2014
 msgid "1 family with no parents or children found, removed.\n"
 msgstr "1 familj utan föräldrar eller barn funnen, borttagen.\n"
 
-#: ../src/plugins/tool/Check.py:1965
+#: ../src/plugins/tool/Check.py:2019
 #, python-format
 msgid "%(quantity)d families with no parents or children, removed.\n"
 msgstr "%(quantity)d familjer utan föräldrar eller barn funna, borttagna.\n"
 
-#: ../src/plugins/tool/Check.py:1971
+#: ../src/plugins/tool/Check.py:2025
 #, python-format
 msgid "%d corrupted family relationship fixed\n"
 msgid_plural "%d corrupted family relationship fixed\n"
 msgstr[0] "%d skadad familjelänk lagad\n"
 msgstr[1] "%d skadade familjelänkar lagade\n"
 
-#: ../src/plugins/tool/Check.py:1978
+#: ../src/plugins/tool/Check.py:2032
 #, python-format
 msgid "%d person was referenced but not found\n"
 msgid_plural "%d persons were referenced, but not found\n"
 msgstr[0] "%d person, som refererats till, kunde inte hittas\n"
 msgstr[1] "%d personer, som refererats till, kunde inte hittas\n"
 
-#: ../src/plugins/tool/Check.py:1985
+#: ../src/plugins/tool/Check.py:2039
 #, python-format
 msgid "%d family was referenced but not found\n"
 msgid_plural "%d families were referenced, but not found\n"
 msgstr[0] "%d familj, som refererats till, kunde inte hittas\n"
 msgstr[1] "%d familjer, som refererats till, kunde inte hittas\n"
 
-#: ../src/plugins/tool/Check.py:1991
+#: ../src/plugins/tool/Check.py:2045
 #, python-format
 msgid "%d date was corrected\n"
 msgid_plural "%d dates were corrected\n"
 msgstr[0] "%d datum rättades\n"
 msgstr[1] "%d datum rättades\n"
 
-#: ../src/plugins/tool/Check.py:1997
+#: ../src/plugins/tool/Check.py:2051
 #, python-format
 msgid "%(quantity)d repository was referenced but not found\n"
 msgid_plural "%(quantity)d repositories were referenced, but not found\n"
 msgstr[0] "%(quantity)d arkivplats, som refererats till, kunde inte hittas\n"
 msgstr[1] "%(quantity)d arkivplatser, som refererats till, kunde inte hittas\n"
 
-#: ../src/plugins/tool/Check.py:2003
+#: ../src/plugins/tool/Check.py:2057
 #, python-format
 msgid "%(quantity)d media object was referenced, but not found\n"
 msgid_plural "%(quantity)d media objects were referenced, but not found\n"
 msgstr[0] "%(quantity)d mediaobjekt, som refererats till, kunde inte hittas\n"
 msgstr[1] "%(quantity)d mediaobjekt, som refererats till, kunde inte hittas\n"
 
-#: ../src/plugins/tool/Check.py:2010
+#: ../src/plugins/tool/Check.py:2064
 #, python-format
 msgid "Reference to %(quantity)d missing media object was kept\n"
 msgid_plural "References to %(quantity)d media objects were kept\n"
 msgstr[0] "Referens till %(quantity)d saknat mediaobjekt behölls\n"
 msgstr[1] "Referens till %(quantity)d saknade mediaobjekt behölls\n"
 
-#: ../src/plugins/tool/Check.py:2017
+#: ../src/plugins/tool/Check.py:2071
 #, python-format
 msgid "%(quantity)d missing media object was replaced\n"
 msgid_plural "%(quantity)d missing media objects were replaced\n"
 msgstr[0] "%(quantity)d saknat mediaobjekt ersattes\n"
 msgstr[1] "%(quantity)d saknade mediaobjekt ersattes\n"
 
-#: ../src/plugins/tool/Check.py:2024
+#: ../src/plugins/tool/Check.py:2078
 #, python-format
 msgid "%(quantity)d missing media object was removed\n"
 msgid_plural "%(quantity)d missing media objects were removed\n"
 msgstr[0] "%(quantity)d saknat mediaobjekt togs bort\n"
 msgstr[1] "%(quantity)d saknade mediaobjekt togs bort\n"
 
-#: ../src/plugins/tool/Check.py:2031
+#: ../src/plugins/tool/Check.py:2085
 #, python-format
 msgid "%(quantity)d event was referenced but not found\n"
 msgid_plural "%(quantity)d events were referenced, but not found\n"
 msgstr[0] "%(quantity)d händelse, som refererats till, kunde inte hittas\n"
 msgstr[1] "%(quantity)d händelser, som refererats till, kunde inte hittas\n"
 
-#: ../src/plugins/tool/Check.py:2038
+#: ../src/plugins/tool/Check.py:2092
 #, python-format
 msgid "%(quantity)d invalid birth event name was fixed\n"
 msgid_plural "%(quantity)d invalid birth event names were fixed\n"
 msgstr[0] "%(quantity)d ogiltigt födelsehändelsenamn lagades\n"
 msgstr[1] "%(quantity)d ogiltiga födelsehändelsenamn lagades\n"
 
-#: ../src/plugins/tool/Check.py:2045
+#: ../src/plugins/tool/Check.py:2099
 #, python-format
 msgid "%(quantity)d invalid death event name was fixed\n"
 msgid_plural "%(quantity)d invalid death event names were fixed\n"
 msgstr[0] "%(quantity)d ogiltigt dödshändelsenamn lagades\n"
 msgstr[1] "%(quantity)d ogiltiga dödshändelsenamn lagades\n"
 
-#: ../src/plugins/tool/Check.py:2052
+#: ../src/plugins/tool/Check.py:2106
 #, python-format
 msgid "%(quantity)d place was referenced but not found\n"
 msgid_plural "%(quantity)d places were referenced, but not found\n"
 msgstr[0] "%(quantity)d plats, som refererats till, kunde inte hittas\n"
 msgstr[1] "%(quantity)d platser, som refererats till, kunde inte hittas\n"
 
-#: ../src/plugins/tool/Check.py:2059
+#: ../src/plugins/tool/Check.py:2113
 #, python-format
 msgid "%(quantity)d citation was referenced but not found\n"
 msgid_plural "%(quantity)d citations were referenced, but not found\n"
 msgstr[0] "%(quantity)d citering, som refererats till, kunde inte hittas\n"
 msgstr[1] "%(quantity)d citeringar, som refererats till, kunde inte hittas\n"
 
-#: ../src/plugins/tool/Check.py:2066
+#: ../src/plugins/tool/Check.py:2120
 #, python-format
 msgid "%(quantity)d source was referenced but not found\n"
 msgid_plural "%(quantity)d sources were referenced, but not found\n"
 msgstr[0] "%(quantity)d källa, som refererats till, kunde inte hittas\n"
 msgstr[1] "%(quantity)d källor, som refererats till, kunde inte hittas\n"
 
-#: ../src/plugins/tool/Check.py:2073
+#: ../src/plugins/tool/Check.py:2127
 #, python-format
 msgid "%(quantity)d media object was referenced but not found\n"
 msgid_plural "%(quantity)d media objects were referenced but not found\n"
 msgstr[0] "%(quantity)d mediaobjekt, som refererats till, kunde inte hittas\n"
 msgstr[1] "%(quantity)d mediaobjekt, som refererats till, kunde inte hittas\n"
 
-#: ../src/plugins/tool/Check.py:2080
+#: ../src/plugins/tool/Check.py:2134
 #, python-format
 msgid "%(quantity)d note object was referenced but not found\n"
 msgid_plural "%(quantity)d note objects were referenced but not found\n"
 msgstr[0] "%(quantity)d notisobjekt, som refererats till, kunde inte hittas\n"
 msgstr[1] "%(quantity)d notisobjekt, som refererats till, kunde inte hittas\n"
 
-#: ../src/plugins/tool/Check.py:2086 ../src/plugins/tool/Check.py:2092
+#: ../src/plugins/tool/Check.py:2140 ../src/plugins/tool/Check.py:2146
 #, python-format
 msgid "%(quantity)d tag object was referenced but not found\n"
 msgid_plural "%(quantity)d tag objects were referenced but not found\n"
 msgstr[0] "%(quantity)d flaggobjekt, som refererats till, kunde inte hittas\n"
 msgstr[1] "%(quantity)d flaggobjekt, som refererats till, kunde inte hittas\n"
 
-#: ../src/plugins/tool/Check.py:2098
+#: ../src/plugins/tool/Check.py:2152
 #, python-format
 msgid "%(quantity)d invalid name format reference was removed\n"
 msgid_plural "%(quantity)d invalid name format references were removed\n"
 msgstr[0] "%(quantity)d ogiltig namnformatsreferens togs bort\n"
 msgstr[1] "%(quantity)d ogiltiga namnformatsreferenser togs bort\n"
 
-#: ../src/plugins/tool/Check.py:2104
+#: ../src/plugins/tool/Check.py:2158
 #, python-format
 msgid ""
 "%(empty_obj)d empty objects removed:\n"
@@ -21745,11 +21747,11 @@ msgstr ""
 "   %(repo)d arkivplatsobjekt\n"
 "   %(note)d notisobjekt\n"
 
-#: ../src/plugins/tool/Check.py:2151
+#: ../src/plugins/tool/Check.py:2205
 msgid "Integrity Check Results"
 msgstr "Resultat av integritetskontroll"
 
-#: ../src/plugins/tool/Check.py:2156
+#: ../src/plugins/tool/Check.py:2210
 msgid "Check and Repair"
 msgstr "Kontrollera och reparera"
 
@@ -27042,19 +27044,24 @@ msgid "Author:"
 msgstr "Författare:"
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:51
+#: ../src/glade/mergedata.glade.h:4 ../src/glade/mergesource.glade.h:3
+msgid "Abbreviation:"
+msgstr "Förkortning:"
+
+#: ../src/Filters/Rules/Citation/_HasSource.py:52
 #: ../src/glade/mergedata.glade.h:11 ../src/glade/mergesource.glade.h:8
 msgid "Publication:"
 msgstr "Publicering:"
 
-#: ../src/Filters/Rules/Citation/_HasSource.py:52
+#: ../src/Filters/Rules/Citation/_HasSource.py:53
 msgid "Sources matching parameters"
 msgstr "Källor som matchar parametrar"
 
-#: ../src/Filters/Rules/Citation/_HasSource.py:53
+#: ../src/Filters/Rules/Citation/_HasSource.py:54
 msgid "Matches citations with a source of a particular value"
 msgstr "Matchar citeringar med en källa av ett visst värde"
 
-#: ../src/Filters/Rules/Citation/_HasSource.py:55
+#: ../src/Filters/Rules/Citation/_HasSource.py:56
 msgid "Source filters"
 msgstr "Källfilter"
 
@@ -29051,10 +29058,6 @@ msgstr ""
 #: ../src/glade/mergedata.glade.h:3
 msgid "<b>Title selection</b>"
 msgstr "<b>Val av titel</b>"
-
-#: ../src/glade/mergedata.glade.h:4 ../src/glade/mergesource.glade.h:3
-msgid "Abbreviation:"
-msgstr "Förkortning:"
 
 #: ../src/glade/mergedata.glade.h:7
 msgid "Merge and _edit"
