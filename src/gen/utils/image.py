@@ -105,9 +105,9 @@ def image_dpi(source):
     try:
         import PIL.Image
     except ImportError:
-        import sys
-        print >> sys.stderr, _("WARNING: PIL module not loaded.  "
-                "Image cropping in report files will not be available.")
+        import logging
+        logging.warning(_("WARNING: PIL module not loaded.  "
+                "Image cropping in report files will not be available."))
 
         dpi = None
     else:

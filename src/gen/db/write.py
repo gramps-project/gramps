@@ -986,7 +986,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             # to loop through each of the primary object tables.
         
             for cursor_func, class_func in primary_table:
-                print "Rebuilding %s reference map" % class_func.__name__
+                logging.info("Rebuilding %s reference map" %
+                                class_func.__name__)
                 with cursor_func() as cursor:
                     for found_handle, val in cursor:
                         obj = class_func()

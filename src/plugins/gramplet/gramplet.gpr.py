@@ -393,9 +393,9 @@ try:
     import pyexiv2
     available = True
 except:
-    import sys
-    print >> sys.stderr, _("WARNING: pyexiv2 module not loaded.  "
-            "Image metadata functionality will not be available.")
+    import logging
+    logging.warning(_("WARNING: pyexiv2 module not loaded.  "
+                      "Image metadata functionality will not be available."))
     available = False
 
 if available:
