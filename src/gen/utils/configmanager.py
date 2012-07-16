@@ -37,6 +37,7 @@ import time
 import ConfigParser
 import errno
 import copy
+import logging
 
 def safe_eval(exp):
         # restrict eval to empty environment
@@ -274,13 +275,13 @@ class ConfigManager(object):
                             if vtype == bool:
                                 value = raw_value in ["1", "True"]
                             elif vtype == list:
-                                print >> sys.stderr, "WARNING: ignoring old key '%s'" % key
+                                logging.warning("WARNING: ignoring old key '%s'" % key)
                                 continue # there were no lists in oldstyle
                             else:
                                 value = vtype(raw_value)
                         else:
                             # else, ignore it
-                            print >> sys.stderr, "WARNING: ignoring old key '%s'" % key
+                            logging.warning("WARNING: ignoring old key '%s'" % key)
                             continue # with next setting
                     ####################### End upgrade code
                     else:
@@ -294,7 +295,7 @@ class ConfigManager(object):
                         elif type(value) == type(self.default[name][setting]):
                             self.data[name][setting] = value
                         else:
-                            print >> sys.stderr, ("WARNING: ignoring key with wrong type "
+                            logging.warning("WARNING: ignoring key with wrong type "
                                    "'%s.%s'" % (name, setting))
                     else:
                         # this could be a third-party setting; add it:

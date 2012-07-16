@@ -32,14 +32,15 @@ try :
     OSMGPSMAP = True
     if osmgpsmap.__version__ < '0.7.0':
         OSMGPSMAP = False
-        import sys
-        print >> sys.stderr, _("WARNING: osmgpsmap module not loaded. "
-                "osmgpsmap must be >= 0.7.0. yours is %s") % osmgpsmap.__version__
+        import logging
+        logging.warning( _("WARNING: osmgpsmap module not loaded. "
+                           "osmgpsmap must be >= 0.7.0. yours is %s") %
+                        osmgpsmap.__version__)
 except:
     OSMGPSMAP = False
-    import sys
-    print >> sys.stderr, _("WARNING: osmgpsmap module not loaded. "
-            "Geography functionality will not be available.")
+    import logging
+    logging.warning(_("WARNING: osmgpsmap module not loaded. "
+                      "Geography functionality will not be available."))
 
 if OSMGPSMAP:
     # Load the view only if osmgpsmap library is present.

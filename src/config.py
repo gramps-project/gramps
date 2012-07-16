@@ -35,6 +35,7 @@ This package implements access to GRAMPS configuration.
 #---------------------------------------------------------------
 import os, sys
 from gen.ggettext import gettext as _
+import logging
 
 #---------------------------------------------------------------
 #
@@ -330,10 +331,10 @@ if not os.path.exists(CONFIGMAN.filename):
     # If not, let's read old if there:
     if os.path.exists(os.path.join(const.HOME_DIR, "keys.ini")):
         # read it in old style:
-        print >> sys.stderr, "Importing old key file 'keys.ini'..."
+        logging.warning("Importing old key file 'keys.ini'...")
         CONFIGMAN.load(os.path.join(const.HOME_DIR, "keys.ini"),
                             oldstyle=True)
-        print >> sys.stderr, "Done importing old key file 'keys.ini'"
+        logging.warning("Done importing old key file 'keys.ini'")
     # other version upgrades here...
 
 #---------------------------------------------------------------
