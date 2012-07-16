@@ -31,7 +31,6 @@
 #-------------------------------------------------------------------------
 import sys
 import os
-import const
 import signal
 import gettext
 _ = gettext.gettext
@@ -47,9 +46,68 @@ from subprocess import Popen, PIPE
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+import const
+import constfunc
+
+#-------------------------------------------------------------------------
+#
+# Setup logging
+#
+# Ideally, this needs to be done before any Gramps modules are imported, so that
+# any code that is executed as the modules are imported can log errors or
+# warnings. Errors and warnings are particularly applicable to TransUtils and
+# setting up internationalisation in this module. const and constfunc have to be
+# imported before this code is executed because they are used in this code.
+#-------------------------------------------------------------------------
+"""Setup basic logging support."""
+
+# Setup a formatter
+form = logging.Formatter(fmt="%(relativeCreated)d: %(levelname)s: %(filename)s: line %(lineno)d: %(message)s")
+
+# Create the log handlers
+if constfunc.win():
+    # If running in GUI mode redirect stdout and stderr to log file
+    if hasattr(sys.stdout, "fileno") and sys.stdout.fileno() < 0:
+        logfile = os.path.join(const.HOME_DIR, 
+            "Gramps%s%s.log") % (const.VERSION_TUPLE[0], 
+            const.VERSION_TUPLE[1])
+        # We now carry out the first step in build_user_paths(), to make sure
+        # that the user home directory is available to store the log file. When
+        # build_user_paths() is called, the call is protected by a try...except
+        # block, and any failure will be logged. However, if the creation of the
+        # user directory fails here, there is no way to report the failure,
+        # because stdout/stderr are not available, and neither is the logfile.
+        if os.path.islink(const.HOME_DIR):
+            pass # ok
+        elif not os.path.isdir(const.HOME_DIR):
+            os.makedirs(const.HOME_DIR)
+        sys.stdout = sys.stderr = open(logfile, "w")
+stderrh = logging.StreamHandler(sys.stderr)
+stderrh.setFormatter(form)
+stderrh.setLevel(logging.DEBUG)
+
+# Setup the base level logger, this one gets
+# everything.
+l = logging.getLogger()
+l.setLevel(logging.WARNING)
+l.addHandler(stderrh)
+
+# put a hook on to catch any completely unhandled exceptions.
+def exc_hook(type, value, tb):
+    if type == KeyboardInterrupt:
+        # Ctrl-C is not a bug.
+        return
+    if type == IOError:
+        # strange Windows logging error on close
+        return
+    import traceback
+    LOG.error("Unhandled exception\n" +
+              "".join(traceback.format_exception(type, value, tb)))
+
+sys.excepthook = exc_hook
+
 from gen.mime import mime_type_is_defined
 import TransUtils
-import constfunc
 #-------------------------------------------------------------------------
 #
 # Load internationalization setup
@@ -64,9 +122,8 @@ gettext.bindtextdomain(TransUtils.LOCALEDOMAIN, TransUtils.LOCALEDIR)
 try:
     locale.setlocale(locale.LC_ALL,'')
 except:
-    # FIXME: This should use LOG.warn, but logging has not been initialised yet
-    print >> sys.stderr, _("WARNING: Setting locale failed. Please fix the "
-        "LC_* and/or the LANG environment variables to prevent this error")
+    logging.warning(_("WARNING: Setting locale failed. Please fix the "
+        "LC_* and/or the LANG environment variables to prevent this error"))
     try:
         # It is probably not necessary to set the locale to 'C'
         # because the locale will just stay at whatever it was,
@@ -75,7 +132,7 @@ except:
         # functions are working 
         locale.setlocale(locale.LC_ALL,'C')
     except:
-        print >> sys.stderr, _("ERROR: Setting the 'C' locale didn't work either")
+        logging.warning(_("ERROR: Setting the 'C' locale didn't work either"))
         # FIXME: This should propagate the exception,
         # if that doesn't break Gramps under Windows
         # raise
@@ -94,7 +151,7 @@ elif operating_system == 'FreeBSD':
     try:
         gettext.bindtextdomain(TransUtils.LOCALEDOMAIN, TransUtils.LOCALEDIR)
     except locale.Error:
-        print 'No translation in some gtk.Builder strings, '
+        logging.warning('No translation in some gtk.Builder strings, ')
 elif operating_system == 'OpenBSD':
     pass
 else: # normal case
@@ -102,7 +159,7 @@ else: # normal case
         locale.bindtextdomain(TransUtils.LOCALEDOMAIN, TransUtils.LOCALEDIR)
         #locale.textdomain(TransUtils.LOCALEDOMAIN)
     except locale.Error:
-        print 'No translation in some gtk.Builder strings, '
+        logging.warning('No translation in some gtk.Builder strings, ')
 
 #-------------------------------------------------------------------------
 #
@@ -112,7 +169,7 @@ else: # normal case
 
 MIN_PYTHON_VERSION = (2, 6, 0, '', 0)
 if not sys.version_info >= MIN_PYTHON_VERSION :
-    print (_("Your Python version does not meet the "
+    logging.warning(_("Your Python version does not meet the "
              "requirements. At least python %d.%d.%d is needed to"
              " start Gramps.\n\n"
              "Gramps will terminate now.") % (
@@ -148,37 +205,6 @@ except:
 
 args = sys.argv
 
-def setup_logging():
-    """Setup basic logging support."""
-
-    # Setup a formatter
-    form = logging.Formatter(fmt="%(relativeCreated)d: %(levelname)s: %(filename)s: line %(lineno)d: %(message)s")
-    
-    # Create the log handlers
-    stderrh = logging.StreamHandler(sys.stderr)
-    stderrh.setFormatter(form)
-    stderrh.setLevel(logging.DEBUG)
-
-    # Setup the base level logger, this one gets
-    # everything.
-    l = logging.getLogger()
-    l.setLevel(logging.WARNING)
-    l.addHandler(stderrh)
-
-    # put a hook on to catch any completely unhandled exceptions.
-    def exc_hook(type, value, tb):
-        if type == KeyboardInterrupt:
-            # Ctrl-C is not a bug.
-            return
-        if type == IOError:
-            # strange Windows logging error on close
-            return
-        import traceback
-        LOG.error("Unhandled exception\n" +
-                  "".join(traceback.format_exception(type, value, tb)))
-
-    sys.excepthook = exc_hook
-    
 def build_user_paths():
     """ check/make user-dirs on each Gramps session"""
     for path in const.USER_DIRLIST:
@@ -346,8 +372,6 @@ def show_settings():
 def run():
     error = []
     
-    setup_logging()
-    
     try:
         build_user_paths()   
     except OSError, msg:
@@ -442,4 +466,4 @@ def run():
 errors = run()
 if errors and isinstance(errors, list):
     for error in errors:
-        print error[0], error[1]
+        logging.warning(error[0] + error[1])
