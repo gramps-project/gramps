@@ -220,8 +220,8 @@ def write_const_py(install_cmd):
     '''
     Write the const.py file.
     '''
-    const_py_in = os.path.join('src', 'const.py.in')
-    const_py = os.path.join('src', 'const.py')
+    const_py_in = os.path.join('src', 'gen', 'const.py.in')
+    const_py = os.path.join('src', 'gen', 'const.py')
     prefix = install_cmd.install_data
     sysconfdir = os.path.join(prefix, 'etc') # Is this correct?
     
@@ -304,7 +304,7 @@ setup(name = 'gramps',
       packages = ['gramps',
             'gramps.cli',
             'gramps.cli.plug',
-            'gramps.docgen',
+            'gramps.gen.utils.docgen',
             'gramps.gen',
             'gramps.gen.datehandler',
             'gramps.gen.db',
