@@ -64,6 +64,7 @@ def process_tag(request, context, handle, action, add_to=None): # view, edit, sa
         if tagform.is_valid():
             update_last_changed(tag, request.user.username)
             tag = tagform.save()
+            dji.rebuild_cache(tag)
             action = "view"
         else:
             action = "edit"
@@ -74,11 +75,13 @@ def process_tag(request, context, handle, action, add_to=None): # view, edit, sa
         if tagform.is_valid():
             update_last_changed(tag, request.user.username)
             tag = tagform.save()
+            dji.rebuild_cache(tag)
             if add_to:
                 item, handle = add_to
                 model = dji.get_model(item)
                 obj = model.objects.get(handle=handle)
                 dji.add_tag_ref_default(obj, tag)
+                dji.rebuild_cache(obj)
                 return redirect("/%s/%s#tab-tags" % (item, handle))
             action = "view"
         else:

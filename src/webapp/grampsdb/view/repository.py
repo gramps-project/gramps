@@ -81,6 +81,7 @@ def process_repository(request, context, handle, action, add_to=None): # view, e
                 model = dji.get_model(item)
                 obj = model.objects.get(handle=handle)
                 dji.add_repository_ref(obj, repository)
+                dji.rebuild_cache(obj)
                 return redirect("/%s/%s#tab-repositories" % (item, handle))
             action = "view"
         else:

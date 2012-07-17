@@ -167,6 +167,7 @@ def process_surname(request, handle, order, sorder, action="view"):
             surname = sf.save(commit=False)
             check_primary(surname, surnames)
             surname.save()
+            dji.rebuild_cache(person)
             return redirect("/person/%s/name/%s/surname/%s%s#tab-surnames" % 
                             (person.handle, name.order, sorder, 
                              build_search(request)))
@@ -181,6 +182,7 @@ def process_surname(request, handle, order, sorder, action="view"):
             surname = sf.save(commit=False)
             check_primary(surname, name.surname_set.all().exclude(order=surname.order))
             surname.save()
+            dji.rebuild_cache(person)
             return redirect("/person/%s/name/%s/surname/%s%s#tab-surnames" % 
                             (person.handle, name.order, sorder,
                              build_search(request)))

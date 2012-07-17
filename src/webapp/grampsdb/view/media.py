@@ -145,13 +145,15 @@ def process_media(request, context, handle, action, add_to=None): # view, edit, 
         if mediaform.is_valid():
             update_last_changed(media, request.user.username)
             media = mediaform.save()
-            dji.rebuild_cache(media)
             if add_to:
                 item, handle = add_to
                 model = dji.get_model(item)
                 obj = model.objects.get(handle=handle)
                 dji.add_media_ref_default(obj, media)
+                dji.rebuild_cache(obj)
                 return redirect("/%s/%s#tab-gallery" % (item, handle))
+            else:
+                dji.rebuild_cache(media)
             action = "view"
         else:
             action = "add"

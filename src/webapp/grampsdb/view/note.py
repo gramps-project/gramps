@@ -97,6 +97,7 @@ def process_note(request, context, handle, action, add_to=None): # view, edit, s
                 model = dji.get_model(item)
                 obj = model.objects.get(handle=handle)
                 dji.add_note_ref(obj, note)
+                dji.rebuild_cache(obj)
                 return redirect("/%s/%s#tab-notes" % (item, handle))
             notetext = noteform.data["notetext"] 
             action = "view"

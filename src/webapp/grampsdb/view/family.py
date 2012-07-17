@@ -101,7 +101,7 @@ def process_family(request, context, handle, action, add_to=None): # view, edit,
                 model = dji.get_model(item)
                 obj = model.objects.get(handle=handle)
                 dji.add_family_ref(obj, family.handle)
-                # FIXME: cache; move to save methods? what about forms?
+                dji.rebuild_cache(obj)
                 return redirect("/%s/%s" % (item, handle))
             action = "view"
         else:
