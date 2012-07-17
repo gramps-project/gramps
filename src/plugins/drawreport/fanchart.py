@@ -345,8 +345,7 @@ class FanChart(Report):
                     yc = y
                 person = self.database.get_person_from_handle(self.map[index])
                 mark = ReportUtils.get_person_mark(self.database, person)
-                txt = '\n'.join(self.text[index])
-                self.doc.rotate_text(text_style, txt,
+                self.doc.rotate_text(text_style, self.text[index],
                                      xc, yc, text_angle, mark)
             text_angle += delta
 
@@ -377,12 +376,11 @@ class FanChart(Report):
             if self.map[index]:
                 person = self.database.get_person_from_handle(self.map[index])
                 mark = ReportUtils.get_person_mark(self.database, person)
-                txt = '\n'.join(self.text[index])
                 if self.radial == RADIAL_UPRIGHT and (start_angle >= 90) and (start_angle < 270):
-                    self.doc.rotate_text(text_style, txt,
+                    self.doc.rotate_text(text_style, self.text[index],
                                          xc, yc, text_angle + 180, mark)
                 else:
-                    self.doc.rotate_text(text_style, txt,
+                    self.doc.rotate_text(text_style, self.text[index],
                                          xc, yc, text_angle, mark)
 
 #------------------------------------------------------------------------
