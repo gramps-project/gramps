@@ -163,20 +163,6 @@ register(GRAMPLET,
          )
 
 register(GRAMPLET, 
-         id="Plugin Manager", 
-         name=_("Plugin Manager"), 
-         description = _("Gramplet showing available third-party plugins (addons)"),
-         status = STABLE,
-         fname="PluginManagerGramplet.py",
-         height=300,
-         expand=True,
-         gramplet = 'PluginManagerGramplet',
-         gramplet_title=_("Plugin Manager"),
-         version="1.0.0",
-         gramps_target_version="3.4",
-         )
-
-register(GRAMPLET, 
          id="Quick View", 
          name=_("Quick View"), 
          description = _("Gramplet showing an active item Quick View"),
