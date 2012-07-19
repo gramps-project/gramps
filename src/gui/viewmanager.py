@@ -108,9 +108,10 @@ from gen.utils.configmanager import safe_eval
 #-------------------------------------------------------------------------
 if is_quartz():
     try:
-        import gtk_osxapplication as QuartzApp
+        from gi.repository import GtkosxApplication as QuartzApp
         _GTKOSXAPPLICATION = True
     except:
+        print ("Failed to import gtk_osxapplication")
         _GTKOSXAPPLICATION = False
 else:
     _GTKOSXAPPLICATION = False
@@ -305,7 +306,7 @@ class ViewManager(CLIManager):
         """
         CLIManager.__init__(self, dbstate, False)
         if _GTKOSXAPPLICATION:
-            self.macapp = QuartzApp.OSXApplication()
+            self.macapp = QuartzApp.Application()
 
         self.view_category_order = view_category_order
 

@@ -94,7 +94,7 @@ def is_quartz():
             from gi.repository import Gdk
         except:
             return False
-        return Gdk.Display.get_default().__class__.__name__.endswith("quartzDisplay")
+        return Gdk.Display.get_default().__class__.__name__.endswith("QuartzDisplay")
     return False
 
 def has_display():
