@@ -344,7 +344,6 @@ src/plugins/gramplet/headlinenewsgramplet.py
 src/plugins/gramplet/mediapreview.py
 src/plugins/gramplet/metadataviewer.py
 src/plugins/gramplet/notegramplet.py
-src/plugins/gramplet/pluginmanagergramplet.py
 src/plugins/gramplet/populategramplet.py
 src/plugins/gramplet/populategramplet.gpr.py
 src/plugins/gramplet/pythongramplet.py
