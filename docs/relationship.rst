@@ -2,7 +2,7 @@
 The :class:`RelationshipCalculator` Class
 #########################################
 
-.. automodule:: Relationship
+.. automodule:: gen.relationship
 .. autoclass:: RelationshipCalculator
    :members:
    :undoc-members:

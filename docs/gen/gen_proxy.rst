@@ -34,10 +34,6 @@ Private
 
 References
 ====================================
-.. automodule:: gen.proxy.referenced
-   :members:
-   :undoc-members:
-   :show-inheritance:
 .. automodule:: gen.proxy.referencedbyselection
    :members:
    :undoc-members:

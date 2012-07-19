@@ -35,7 +35,6 @@ Contents:
    date
    relationship
    simple
-   utils
 
 Usefull snippets
 ===================

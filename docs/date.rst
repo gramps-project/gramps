@@ -4,7 +4,7 @@ The :class:`Date Handler` Classes
 
 DateParser
 ====================================
-.. automodule:: DateHandler._DateParser
+.. automodule:: gen.datehandler._dateparser
 .. autoclass:: DateParser
    :members:
    :undoc-members:
@@ -12,7 +12,7 @@ DateParser
 
 DateDisplay
 ====================================
-.. automodule:: DateHandler._DateDisplay
+.. automodule:: gen.datehandler._datedisplay
 .. autoclass:: DateDisplay
    :members:
    :undoc-members:
@@ -24,14 +24,14 @@ DateDisplay
 
 DateUtils
 ====================================
-.. automodule:: DateHandler._DateUtils
+.. automodule:: gen.datehandler._dateutils
    :members:
    :undoc-members:
    :show-inheritance:
 
-DateHandler
+datehandler
 ====================================
-.. automodule:: DateHandler._DateHandler
+.. automodule:: gen.datehandler._datehandler
    :members:
    :undoc-members:
    :show-inheritance:
@@ -40,229 +40,229 @@ Localized Date Handlers
 ====================================
 
 *****************************
-DateHandler (Bulgarian)
+datehandler (Bulgarian)
 *****************************
-.. autoclass:: DateHandler._Date_bg.DateParserBG
+.. autoclass:: gen.datehandler._date_bg.DateParserBG
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: DateHandler._Date_bg.DateDisplayBG
+.. autoclass:: gen.datehandler._date_bg.DateDisplayBG
    :members:
    :undoc-members:
    :show-inheritance: 
 
 *****************************
-DateHandler (Catalan)
+datehandler (Catalan)
 *****************************
-.. autoclass:: DateHandler._Date_ca.DateParserCA
+.. autoclass:: gen.datehandler._date_ca.DateParserCA
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: DateHandler._Date_ca.DateDisplayCA
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-*****************************
-DateHandler (Czech)
-*****************************
-.. autoclass:: DateHandler._Date_cs.DateParserCZ
-   :members:
-   :undoc-members:
-   :show-inheritance:
-.. autoclass:: DateHandler._Date_cs.DateDisplayCZ
+.. autoclass:: gen.datehandler._date_ca.DateDisplayCA
    :members:
    :undoc-members:
    :show-inheritance:
 
 *****************************
-DateHandler (German)
+datehandler (Czech)
 *****************************
-.. autoclass:: DateHandler._Date_de.DateParserDE
+.. autoclass:: gen.datehandler._date_cs.DateParserCZ
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: DateHandler._Date_de.DateDisplayDE
+.. autoclass:: gen.datehandler._date_cs.DateDisplayCZ
    :members:
    :undoc-members:
    :show-inheritance:
 
 *****************************
-DateHandler (Spanish)
+datehandler (German)
 *****************************
-.. autoclass:: DateHandler._Date_es.DateParserES
+.. autoclass:: gen.datehandler._date_de.DateParserDE
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: DateHandler._Date_es.DateDisplayES
+.. autoclass:: gen.datehandler._date_de.DateDisplayDE
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+*****************************
+datehandler (Spanish)
+*****************************
+.. autoclass:: gen.datehandler._date_es.DateParserES
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. autoclass:: gen.datehandler._date_es.DateDisplayES
    :members:
    :undoc-members:
    :show-inheritance: 
 
 *****************************
-DateHandler (Finnish)
+datehandler (Finnish)
 *****************************
-.. autoclass:: DateHandler._Date_fi.DateParserFI
+.. autoclass:: gen.datehandler._date_fi.DateParserFI
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: DateHandler._Date_fi.DateDisplayFI
+.. autoclass:: gen.datehandler._date_fi.DateDisplayFI
    :members:
    :undoc-members:
    :show-inheritance: 
 
 *****************************
-DateHandler (French)
+datehandler (French)
 *****************************
-.. autoclass:: DateHandler._Date_fr.DateParserFR
+.. autoclass:: gen.datehandler._date_fr.DateParserFR
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: DateHandler._Date_fr.DateDisplayFR
+.. autoclass:: gen.datehandler._date_fr.DateDisplayFR
    :members:
    :undoc-members:
    :show-inheritance: 
 
 *****************************
-DateHandler (Croatian)
+datehandler (Croatian)
 *****************************
-.. autoclass:: DateHandler._Date_hr.DateParserHR
+.. autoclass:: gen.datehandler._date_hr.DateParserHR
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: DateHandler._Date_hr.DateDisplayHR
+.. autoclass:: gen.datehandler._date_hr.DateDisplayHR
    :members:
    :undoc-members:
    :show-inheritance:
 
 *****************************
-DateHandler (Italian)
+datehandler (Italian)
 *****************************
-.. autoclass:: DateHandler._Date_it.DateParserIT
+.. autoclass:: gen.datehandler._date_it.DateParserIT
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: DateHandler._Date_it.DateDisplayIT
+.. autoclass:: gen.datehandler._date_it.DateDisplayIT
    :members:
    :undoc-members:
    :show-inheritance: 
 
 *****************************
-DateHandler (Lituanian)
+datehandler (Lituanian)
 *****************************
-.. autoclass:: DateHandler._Date_lt.DateParserLT
+.. autoclass:: gen.datehandler._date_lt.DateParserLT
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: DateHandler._Date_lt.DateDisplayLT
+.. autoclass:: gen.datehandler._date_lt.DateDisplayLT
    :members:
    :undoc-members:
    :show-inheritance:  
 
 *****************************
-DateHandler (Norwegian)
+datehandler (Norwegian)
 *****************************
-.. autoclass:: DateHandler._Date_nb.DateParserNb
+.. autoclass:: gen.datehandler._date_nb.DateParserNb
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: DateHandler._Date_nb.DateDisplayNb
+.. autoclass:: gen.datehandler._date_nb.DateDisplayNb
    :members:
    :undoc-members:
    :show-inheritance: 
 
 *****************************
-DateHandler (Dutch)
+datehandler (Dutch)
 *****************************
-.. autoclass:: DateHandler._Date_nl.DateParserNL
+.. autoclass:: gen.datehandler._date_nl.DateParserNL
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: DateHandler._Date_nl.DateDisplayNL
+.. autoclass:: gen.datehandler._date_nl.DateDisplayNL
    :members:
    :undoc-members:
    :show-inheritance: 
 
 *****************************
-DateHandler (Polish)
+datehandler (Polish)
 *****************************
-.. autoclass:: DateHandler._Date_pl.DateParserPL
+.. autoclass:: gen.datehandler._date_pl.DateParserPL
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: DateHandler._Date_pl.DateDisplayPL
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-*****************************
-DateHandler (Portuguese)
-*****************************
-.. autoclass:: DateHandler._Date_pt.DateParserPT
-   :members:
-   :undoc-members:
-   :show-inheritance:
-.. autoclass:: DateHandler._Date_pt.DateDisplayPT
+.. autoclass:: gen.datehandler._date_pl.DateDisplayPL
    :members:
    :undoc-members:
    :show-inheritance:
 
 *****************************
-DateHandler (Russian)
+datehandler (Portuguese)
 *****************************
-.. autoclass:: DateHandler._Date_ru.DateParserRU
+.. autoclass:: gen.datehandler._date_pt.DateParserPT
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: DateHandler._Date_ru.DateDisplayRU
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-*****************************
-DateHandler (Slovak)
-*****************************
-.. autoclass:: DateHandler._Date_sk.DateParserSK
-   :members:
-   :undoc-members:
-   :show-inheritance:
-.. autoclass:: DateHandler._Date_sk.DateDisplaySK
+.. autoclass:: gen.datehandler._date_pt.DateDisplayPT
    :members:
    :undoc-members:
    :show-inheritance:
 
 *****************************
-DateHandler (Slovenian)
+datehandler (Russian)
 *****************************
-.. autoclass:: DateHandler._Date_sl.DateParserSL
+.. autoclass:: gen.datehandler._date_ru.DateParserRU
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: DateHandler._Date_sl.DateDisplaySL
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-*****************************
-DateHandler (Serbian)
-*****************************
-.. autoclass:: DateHandler._Date_sr.DateParserSR
-   :members:
-   :undoc-members:
-   :show-inheritance:
-.. autoclass:: DateHandler._Date_sr.DateDisplaySR_latin
+.. autoclass:: gen.datehandler._date_ru.DateDisplayRU
    :members:
    :undoc-members:
    :show-inheritance:
 
 *****************************
-DateHandler (Swedish)
+datehandler (Slovak)
 *****************************
-.. autoclass::  DateHandler._Date_sv.DateParserSv
+.. autoclass:: gen.datehandler._date_sk.DateParserSK
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass::  DateHandler._Date_sv.DateDisplaySv
+.. autoclass:: gen.datehandler._date_sk.DateDisplaySK
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+*****************************
+datehandler (Slovenian)
+*****************************
+.. autoclass:: gen.datehandler._date_sl.DateParserSL
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. autoclass:: gen.datehandler._date_sl.DateDisplaySL
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+*****************************
+datehandler (Serbian)
+*****************************
+.. autoclass:: gen.datehandler._date_sr.DateParserSR
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. autoclass:: gen.datehandler._date_sr.DateDisplaySR_latin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+*****************************
+datehandler (Swedish)
+*****************************
+.. autoclass::  gen.datehandler._date_sv.DateParserSv
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. autoclass::  gen.datehandler._date_sv.DateDisplaySv
    :members:
    :undoc-members:
    :show-inheritance:
@@ -273,7 +273,7 @@ The :class:`Date Edition` Classes
 
 DateEdit
 ====================================
-.. automodule:: DateEdit
+.. automodule:: gui.editors.editdate
    :members:
    :undoc-members:
    :show-inheritance:
