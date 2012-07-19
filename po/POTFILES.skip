@@ -315,7 +315,6 @@ src/plugins/gramplet/HeadlineNewsGramplet.py
 src/plugins/gramplet/MediaPreview.py
 src/plugins/gramplet/MetadataViewer.py
 src/plugins/gramplet/NoteGramplet.py
-src/plugins/gramplet/PluginManagerGramplet.py
 src/plugins/gramplet/PopulateGramplet.py
 src/plugins/gramplet/PopulateGramplet.gpr.py
 src/plugins/gramplet/PythonGramplet.py
