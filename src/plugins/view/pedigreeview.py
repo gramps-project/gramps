@@ -711,7 +711,7 @@ class PedigreeView(NavigationView):
 
         self.func_list.update({
             'F2' : self.kb_goto_home,
-            '<CONTROL>J' : self.jump,
+            '<PRIMARY>J' : self.jump,
             })
 
         self.dbstate = dbstate

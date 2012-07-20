@@ -512,9 +512,9 @@ class StyledTextEditor(Gtk.TextView):
         
         # action accelerators
         self.action_accels = {
-            '<Control>i': str(StyledTextTagType.ITALIC),
-            '<Control>b': str(StyledTextTagType.BOLD),
-            '<Control>u': str(StyledTextTagType.UNDERLINE),
+            '<PRIMARY>i': str(StyledTextTagType.ITALIC),
+            '<PRIMARY>b': str(StyledTextTagType.BOLD),
+            '<PRIMARY>u': str(StyledTextTagType.UNDERLINE),
         }
 
         # create the action group and insert all the actions

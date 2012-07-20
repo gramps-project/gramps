@@ -270,10 +270,10 @@ class NavigationView(PageView):
         self.book_action = Gtk.ActionGroup(self.title + '/Bookmark')
         self.book_action.add_actions([
             ('AddBook', 'gramps-bookmark-new', _('_Add Bookmark'), 
-             '<control>d', None, self.add_bookmark), 
+             '<PRIMARY>d', None, self.add_bookmark), 
             ('EditBook', 'gramps-bookmark-edit', 
              _("%(title)s...") % {'title': _("Organize Bookmarks")}, 
-             '<shift><control>D', None, 
+             '<shift><PRIMARY>D', None, 
              self.edit_bookmarks), 
             ])
 

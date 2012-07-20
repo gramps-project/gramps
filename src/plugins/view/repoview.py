@@ -130,8 +130,8 @@ class RepositoryView(ListView):
             filter_class=RepoSidebarFilter)
 
         self.func_list.update({
-            '<CONTROL>J' : self.jump,
-            '<CONTROL>BackSpace' : self.key_delete,
+            '<PRIMARY>J' : self.jump,
+            '<PRIMARY>BackSpace' : self.key_delete,
             })
 
         self.additional_uis.append(self.additional_ui())

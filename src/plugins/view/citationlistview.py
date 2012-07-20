@@ -145,8 +145,8 @@ class CitationListView(ListView):
             markup = CitationListView.MARKUP_COLS)
 
         self.func_list.update({
-            '<CONTROL>J' : self.jump,
-            '<CONTROL>BackSpace' : self.key_delete,
+            '<PRIMARY>J' : self.jump,
+            '<PRIMARY>BackSpace' : self.key_delete,
             })
 
         self.additional_uis.append(self.additional_ui())

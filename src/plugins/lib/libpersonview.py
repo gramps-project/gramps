@@ -141,8 +141,8 @@ class BasePersonView(ListView):
             markup=BasePersonView.MARKUP_COLS)
             
         self.func_list.update({
-            '<CONTROL>J' : self.jump,
-            '<CONTROL>BackSpace' : self.key_delete,
+            '<PRIMARY>J' : self.jump,
+            '<PRIMARY>BackSpace' : self.key_delete,
             })
 
         uistate.connect('nameformat-changed', self.build_tree)
@@ -353,7 +353,7 @@ class BasePersonView(ListView):
                 ('FilterEdit', None, _('Person Filter Editor'), None, None,
                 self.filter_editor),
                 ('Edit', Gtk.STOCK_EDIT, _("action|_Edit..."),
-                "<control>Return", self.EDIT_MSG, self.edit), 
+                "<PRIMARY>Return", self.EDIT_MSG, self.edit), 
                 ('QuickReport', None, _("Quick View"), None, None, None), 
                 ('WebConnect', None, _("Web Connection"), None, None, None), 
                 ('Dummy', None, '  ', None, None, self.dummy_report), 
@@ -362,9 +362,9 @@ class BasePersonView(ListView):
 
         self.edit_action.add_actions(
             [
-                ('Add', Gtk.STOCK_ADD, _("_Add..."), "<control>Insert", 
+                ('Add', Gtk.STOCK_ADD, _("_Add..."), "<PRIMARY>Insert", 
                  self.ADD_MSG, self.add), 
-                ('Remove', Gtk.STOCK_REMOVE, _("_Remove"), "<control>Delete", 
+                ('Remove', Gtk.STOCK_REMOVE, _("_Remove"), "<PRIMARY>Delete", 
                  self.DEL_MSG, self.remove),
                 ('Merge', 'gramps-merge', _('_Merge...'), None,
                  self.MERGE_MSG, self.merge),

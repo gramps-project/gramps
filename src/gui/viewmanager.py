@@ -212,20 +212,20 @@ UIDEFAULT = '''<ui>
 <accelerator action="F9"/>
 <accelerator action="F11"/>
 <accelerator action="F12"/>
-<accelerator action="<CONTROL>1"/>
-<accelerator action="<CONTROL>2"/>
-<accelerator action="<CONTROL>3"/>
-<accelerator action="<CONTROL>4"/>
-<accelerator action="<CONTROL>5"/>
-<accelerator action="<CONTROL>6"/>
-<accelerator action="<CONTROL>7"/>
-<accelerator action="<CONTROL>8"/>
-<accelerator action="<CONTROL>9"/>
-<accelerator action="<CONTROL>0"/>
-<accelerator action="<CONTROL>BackSpace"/>
-<accelerator action="<CONTROL>J"/>
-<accelerator action="<CONTROL>N"/>
-<accelerator action="<CONTROL>P"/>
+<accelerator action="<PRIMARY>1"/>
+<accelerator action="<PRIMARY>2"/>
+<accelerator action="<PRIMARY>3"/>
+<accelerator action="<PRIMARY>4"/>
+<accelerator action="<PRIMARY>5"/>
+<accelerator action="<PRIMARY>6"/>
+<accelerator action="<PRIMARY>7"/>
+<accelerator action="<PRIMARY>8"/>
+<accelerator action="<PRIMARY>9"/>
+<accelerator action="<PRIMARY>0"/>
+<accelerator action="<PRIMARY>BackSpace"/>
+<accelerator action="<PRIMARY>J"/>
+<accelerator action="<PRIMARY>N"/>
+<accelerator action="<PRIMARY>P"/>
 </ui>
 '''
 
@@ -743,11 +743,11 @@ class ViewManager(CLIManager):
         """
         self._file_action_list = [
             ('FileMenu', None, _('_Family Trees')),
-            ('Open', 'gramps-db', _('_Manage Family Trees...'), "<control>o",
+            ('Open', 'gramps-db', _('_Manage Family Trees...'), "<PRIMARY>o",
              _("Manage databases"), self.__open_activate),
             ('OpenRecent', None, _('Open _Recent'), None,
              _("Open an existing database")),
-            ('Quit', Gtk.STOCK_QUIT, _('_Quit'), "<control>q", None,
+            ('Quit', Gtk.STOCK_QUIT, _('_Quit'), "<PRIMARY>q", None,
              self.quit),
             ('ViewMenu', None, _('_View')),
             ('EditMenu', None, _('_Edit')),
@@ -775,7 +775,7 @@ class ViewManager(CLIManager):
             ]
 
         self._readonly_action_list = [
-            ('Export', 'gramps-export', _('_Export...'), "<control>e", None,
+            ('Export', 'gramps-export', _('_Export...'), "<PRIMARY>e", None,
              self.export_data),
             ('Backup', None, _("Make Backup..."), None,
              _("Make a Gramps XML backup of the database"), self.quick_backup),
@@ -795,48 +795,48 @@ class ViewManager(CLIManager):
             ('F8', None, 'F9', "F8", None, self.__keypress),
             ('F9', None, 'F9', "F9", None, self.__keypress),
             ('F11', None, 'F11', "F11", None, self.__keypress),
-            ('<CONTROL>1', None, '<CONTROL>1', "<CONTROL>1", None, self.__gocat),
-            ('<CONTROL>2', None, '<CONTROL>2', "<CONTROL>2", None, self.__gocat),
-            ('<CONTROL>3', None, '<CONTROL>3', "<CONTROL>3", None, self.__gocat),
-            ('<CONTROL>4', None, '<CONTROL>4', "<CONTROL>4", None, self.__gocat),
-            ('<CONTROL>5', None, '<CONTROL>5', "<CONTROL>5", None, self.__gocat),
-            ('<CONTROL>6', None, '<CONTROL>6', "<CONTROL>6", None, self.__gocat),
-            ('<CONTROL>7', None, '<CONTROL>7', "<CONTROL>7", None, self.__gocat),
-            ('<CONTROL>8', None, '<CONTROL>8', "<CONTROL>8", None, self.__gocat),
-            ('<CONTROL>9', None, '<CONTROL>9', "<CONTROL>9", None, self.__gocat),
-            ('<CONTROL>0', None, '<CONTROL>0', "<CONTROL>0", None, self.__gocat),
+            ('<PRIMARY>1', None, '<PRIMARY>1', "<PRIMARY>1", None, self.__gocat),
+            ('<PRIMARY>2', None, '<PRIMARY>2', "<PRIMARY>2", None, self.__gocat),
+            ('<PRIMARY>3', None, '<PRIMARY>3', "<PRIMARY>3", None, self.__gocat),
+            ('<PRIMARY>4', None, '<PRIMARY>4', "<PRIMARY>4", None, self.__gocat),
+            ('<PRIMARY>5', None, '<PRIMARY>5', "<PRIMARY>5", None, self.__gocat),
+            ('<PRIMARY>6', None, '<PRIMARY>6', "<PRIMARY>6", None, self.__gocat),
+            ('<PRIMARY>7', None, '<PRIMARY>7', "<PRIMARY>7", None, self.__gocat),
+            ('<PRIMARY>8', None, '<PRIMARY>8', "<PRIMARY>8", None, self.__gocat),
+            ('<PRIMARY>9', None, '<PRIMARY>9', "<PRIMARY>9", None, self.__gocat),
+            ('<PRIMARY>0', None, '<PRIMARY>0', "<PRIMARY>0", None, self.__gocat),
             # NOTE: CTRL+ALT+NUMBER is set in src/plugins/sidebar/cat...py
-            ('<CONTROL>BackSpace', None, '<CONTROL>BackSpace',
-             "<CONTROL>BackSpace", None, self.__keypress),
-            ('<CONTROL>Delete', None, '<CONTROL>Delete',
-             "<CONTROL>Delete", None, self.__keypress),
-            ('<CONTROL>Insert', None, '<CONTROL>Insert',
-             "<CONTROL>Insert", None, self.__keypress),
+            ('<PRIMARY>BackSpace', None, '<PRIMARY>BackSpace',
+             "<PRIMARY>BackSpace", None, self.__keypress),
+            ('<PRIMARY>Delete', None, '<PRIMARY>Delete',
+             "<PRIMARY>Delete", None, self.__keypress),
+            ('<PRIMARY>Insert', None, '<PRIMARY>Insert',
+             "<PRIMARY>Insert", None, self.__keypress),
             ('F12', None, 'F12', "F12", None, self.__keypress),
-            ('<CONTROL>J', None, '<CONTROL>J',
-             "<CONTROL>J", None, self.__keypress),
-            ('<CONTROL>N', None, '<CONTROL>N', "<CONTROL>N", None,
+            ('<PRIMARY>J', None, '<PRIMARY>J',
+             "<PRIMARY>J", None, self.__keypress),
+            ('<PRIMARY>N', None, '<PRIMARY>N', "<PRIMARY>N", None,
              self.__next_view),
-            ('<CONTROL>P', None, '<CONTROL>P', "<CONTROL>P", None,
+            ('<PRIMARY>P', None, '<PRIMARY>P', "<PRIMARY>P", None,
              self.__prev_view),
             ]
 
         self._action_action_list = [
-            ('Clipboard', Gtk.STOCK_PASTE, _('Clip_board'), "<control>b",
+            ('Clipboard', Gtk.STOCK_PASTE, _('Clip_board'), "<PRIMARY>b",
              _("Open the Clipboard dialog"), self.clipboard),
-            ('Import', 'gramps-import', _('_Import...'), "<control>i", None,
+            ('Import', 'gramps-import', _('_Import...'), "<PRIMARY>i", None,
              self.import_data),
             ('Tools', 'gramps-tools', _('_Tools'), None,
              _("Open the tools dialog"), self.tools_clicked),
             ('BookMenu', None, _('_Bookmarks')),
             ('ToolsMenu', None, _('_Tools')),
             ('ConfigView', 'gramps-config', _('_Configure View...'),
-             '<shift><control>c', _('Configure the active view'),
+             '<shift><PRIMARY>c', _('Configure the active view'),
              self.config_view),
             ]
 
         self._file_toggle_action_list = [
-            ('Navigator', None, _('_Navigator'), "<control>m", None,
+            ('Navigator', None, _('_Navigator'), "<PRIMARY>m", None,
              self.navigator_toggle, self.show_navigator ),
             ('Toolbar', None, _('_Toolbar'), None, None, self.toolbar_toggle,
              self.show_toolbar ),
@@ -845,18 +845,18 @@ class ViewManager(CLIManager):
             ]
 
         self._undo_action_list = [
-            ('Undo', Gtk.STOCK_UNDO, _('_Undo'), '<control>z', None,
+            ('Undo', Gtk.STOCK_UNDO, _('_Undo'), '<PRIMARY>z', None,
              self.undo),
             ]
 
         self._redo_action_list = [
-            ('Redo', Gtk.STOCK_REDO, _('_Redo'), '<shift><control>z', None,
+            ('Redo', Gtk.STOCK_REDO, _('_Redo'), '<shift><PRIMARY>z', None,
              self.redo),
             ]
 
         self._undo_history_action_list = [
             ('UndoHistory', 'gramps-undo-history',
-             _('Undo History...'), "<control>H", None, self.undo_history),
+             _('Undo History...'), "<PRIMARY>H", None, self.undo_history),
             ]
 
     def __keypress(self, action):
@@ -1424,11 +1424,11 @@ class ViewManager(CLIManager):
         self.undoactions = Gtk.ActionGroup('Undo')
         if label:
             self.undoactions.add_actions([
-                ('Undo', Gtk.STOCK_UNDO, label, '<control>z', None, self.undo)])
+                ('Undo', Gtk.STOCK_UNDO, label, '<PRIMARY>z', None, self.undo)])
         else:
             self.undoactions.add_actions([
                 ('Undo', Gtk.STOCK_UNDO, _('_Undo'),
-                 '<control>z', None, self.undo)])
+                 '<PRIMARY>z', None, self.undo)])
             self.undoactions.set_sensitive(False)
         self.uimanager.insert_action_group(self.undoactions, 1)
 
@@ -1440,12 +1440,12 @@ class ViewManager(CLIManager):
         self.redoactions = Gtk.ActionGroup('Redo')
         if label:
             self.redoactions.add_actions([
-                ('Redo', Gtk.STOCK_REDO, label, '<shift><control>z',
+                ('Redo', Gtk.STOCK_REDO, label, '<shift><PRIMARY>z',
                  None, self.redo)])
         else:
             self.redoactions.add_actions([
                 ('Redo', Gtk.STOCK_UNDO, _('_Redo'),
-                 '<shift><control>z', None, self.redo)])
+                 '<shift><PRIMARY>z', None, self.redo)])
             self.redoactions.set_sensitive(False)
         self.uimanager.insert_action_group(self.redoactions, 1)
 

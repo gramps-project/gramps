@@ -144,7 +144,7 @@ class RelationshipView(NavigationView):
                                       nav_group)        
 
         self.func_list.update({
-            '<CONTROL>J' : self.jump,
+            '<PRIMARY>J' : self.jump,
             })
 
         dbstate.connect('database-changed', self.change_db)
@@ -395,7 +395,7 @@ class RelationshipView(NavigationView):
 
         self.family_action = Gtk.ActionGroup(self.title + '/Family')
         self.family_action.add_actions([
-            ('Edit', Gtk.STOCK_EDIT, _('Edit...'), "<control>Return",
+            ('Edit', Gtk.STOCK_EDIT, _('Edit...'), "<PRIMARY>Return",
                 _("Edit the active person"), self.edit_active),
             ('AddSpouse', 'gramps-spouse', _('Partner'), None ,
                 _("Add a new family with person as parent"), self.add_spouse),

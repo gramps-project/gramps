@@ -131,7 +131,7 @@ class CategorySidebar(BaseSidebar):
                 uitoolitems += '\n<toolitem action="%s"/>' % pageid
                 # id, stock, button text, UI, tooltip, page
                 if view_num < 9:
-                    modifier = "<CONTROL><ALT>%d" % ((view_num % 9) + 1)
+                    modifier = "<PRIMARY><ALT>%d" % ((view_num % 9) + 1)
                 else:
                     modifier = ""
 

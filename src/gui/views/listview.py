@@ -202,9 +202,9 @@ class ListView(NavigationView):
 
         self.edit_action = Gtk.ActionGroup(self.title + '/ChangeOrder')
         self.edit_action.add_actions([
-                ('Add', Gtk.STOCK_ADD, _("_Add..."), "<control>Insert", 
+                ('Add', Gtk.STOCK_ADD, _("_Add..."), "<PRIMARY>Insert", 
                     self.ADD_MSG, self.add), 
-                ('Remove', Gtk.STOCK_REMOVE, _("_Remove"), "<control>Delete", 
+                ('Remove', Gtk.STOCK_REMOVE, _("_Remove"), "<PRIMARY>Delete", 
                     self.DEL_MSG, self.remove), 
                 ('Merge', 'gramps-merge', _('_Merge...'), None,
                     self.MERGE_MSG, self.merge),
@@ -215,7 +215,7 @@ class ListView(NavigationView):
         self._add_action_group(self.edit_action)
 
         self._add_action('Edit', Gtk.STOCK_EDIT, _("action|_Edit..."), 
-                         accel="<control>Return", 
+                         accel="<PRIMARY>Return", 
                          tip=self.EDIT_MSG, 
                          callback=self.edit)
         

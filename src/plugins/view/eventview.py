@@ -124,8 +124,8 @@ class EventView(ListView):
             markup = EventView.MARKUP_COLS)
             
         self.func_list.update({
-            '<CONTROL>J' : self.jump,
-            '<CONTROL>BackSpace' : self.key_delete,
+            '<PRIMARY>J' : self.jump,
+            '<PRIMARY>BackSpace' : self.key_delete,
             })
 
         uistate.connect('nameformat-changed', self.build_tree)

@@ -405,10 +405,10 @@ class PageView(DbGUIElement):
         self.action_toggle_list in this function. 
         """
         self._add_toggle_action('Sidebar', None, _('_Sidebar'), 
-             "<shift><control>R", None, self.__sidebar_toggled,
+             "<shift><PRIMARY>R", None, self.__sidebar_toggled,
              self.sidebar.get_property('visible'))
         self._add_toggle_action('Bottombar', None, _('_Bottombar'), 
-             "<shift><control>B", None, self.__bottombar_toggled,
+             "<shift><PRIMARY>B", None, self.__bottombar_toggled,
              self.bottombar.get_property('visible'))
 
     def __build_action_group(self):
