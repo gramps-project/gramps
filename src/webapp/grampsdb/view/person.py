@@ -337,7 +337,7 @@ def process_name(request, handle, order, action="view"):
     context["next"] = "/person/%s/name/%d" % (person.handle, name.order)
     view_template = "view_name_detail.html"
     return render_to_response(view_template, context)
-    
+
 def process_person(request, context, handle, action, add_to=None): # view, edit, save
     """
     Process action on person. Can return a redirect.
@@ -346,7 +346,39 @@ def process_person(request, context, handle, action, add_to=None): # view, edit,
     context["tviews"] = _("People")
     logform = None
     if request.user.is_authenticated():
-        if action in ["edit", "view"]:
+        if action == "share":
+            item, handle = add_to
+            context["pickform"] = PickForm("Pick a person", 
+                                           Person, 
+                                           ("name__surname__surname", 
+                                            "name__first_name"),
+                                      request.POST)     
+            context["object_handle"] = handle
+            context["object_type"] = item
+            return render_to_response("pick.html", context)
+        elif action == "save-share":
+            item, handle = add_to # ("Family", handle)
+            pickform = PickForm("Pick a person", 
+                                Person, 
+                                ("name__surname__surname", 
+                                 "name__first_name"),
+                                request.POST)
+            if pickform.data["picklist"]:
+                person_handle = pickform.data["picklist"]
+                person = Person.objects.get(handle=person_handle)
+                model = dji.get_model(item) # what model?
+                obj = model.objects.get(handle=handle) # get family
+                dji.add_child_ref_default(obj, person) # add person to family
+                person.parent_families.add(obj) # add family to child
+                dji.rebuild_cache(person) # rebuild child
+                dji.rebuild_cache(obj) # rebuild family
+                return redirect("/%s/%s%s" % (item, handle, build_search(request)))
+            else:
+                context["pickform"] = pickform
+                context["object_handle"] = handle
+                context["object_type"] = "family"
+                return render_to_response("pick.html", context)
+        elif action in ["edit", "view"]:
             pf, nf, sf, person = get_person_forms(handle, empty=False)
             if action == "edit":
                 logform = LogForm()

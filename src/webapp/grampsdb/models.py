@@ -532,7 +532,10 @@ class Citation(DateObject, PrimaryObject):
                                          object_id_field="object_id")
 
     def __unicode__(self):
-        return "Citation to " + str(self.source)
+        return "[%s] (%s, %s) to %s" % (self.gramps_id, 
+                                        self.confidence,
+                                        self.page,
+                                        self.source)
 
     # Other keys here:
     #   .datamap_set
@@ -544,7 +547,8 @@ class Source(PrimaryObject):
     abbrev = models.CharField("Abbreviation", max_length=50, blank=True, null=True)
 
     def __unicode__(self):
-        return str(self.title)
+        return "[%s] %s" % (self.gramps_id,
+                            self.title)
 
     # Other keys here:
     #   .datamap_set
@@ -558,7 +562,9 @@ class Event(DateObject, PrimaryObject):
                                          object_id_field="object_id")
 
     def __unicode__(self):
-        return str(self.description) or str(self.event_type)
+        return "[%s] (%s) %s" % (self.gramps_id, 
+                                 self.event_type, 
+                                 self.description)
 
 class Repository(PrimaryObject):
     repository_type = models.ForeignKey('RepositoryType', verbose_name="Type")
@@ -570,7 +576,7 @@ class Repository(PrimaryObject):
     #url_list = models.ManyToManyField('Url', null=True, blank=True)
 
     def __unicode__(self):
-        return str(self.name)
+        return "[%s] %s" % (self.gramps_id, self.name)
 
     # Others keys here:
     #   .address_set

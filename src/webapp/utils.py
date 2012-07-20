@@ -84,7 +84,6 @@ util_tags = [
     "name_table",
     "surname_table",
     "citation_table",
-    "source_table",
     "note_table",
     "attribute_table",
     "data_table",
@@ -312,7 +311,7 @@ def event_table(obj, user, action, url, args):
         event_list = [(obj.ref_object, obj) for obj in event_ref_list]
         for (djevent, event_ref) in event_list:
             table.row(
-                event_ref,
+                djevent.description,
                 table.db.get_event_from_handle(djevent.handle),
                 djevent.gramps_id, 
                 display_date(djevent),
@@ -320,8 +319,8 @@ def event_table(obj, user, action, url, args):
                 str(event_ref.role_type))
     retval += table.get_html()
     if user.is_superuser and action == "view":
-        retval += make_button(_("Add Event"), (url % args).replace("$act", "add"))
-        retval += make_button(_("Share Event"), (url % args).replace("$act", "share"))
+        retval += make_button(_("Add New Event"), (url % args).replace("$act", "add"))
+        retval += make_button(_("Add Existing Event"), (url % args).replace("$act", "share"))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
@@ -412,34 +411,6 @@ def surname_table(obj, user, action, url=None, *args):
         retval += nbsp("") # to keep tabs same height
     return retval
 
-def source_table(obj, user, action, url=None, *args):
-    retval = ""
-    table = Table("source_table")
-    table.columns(_("ID"), 
-                  _("Title"),
-                  _("Author"),
-                  _("Page"))
-    if user.is_authenticated():
-        obj_type = ContentType.objects.get_for_model(obj)
-        citation_refs = dji.CitationRef.filter(object_type=obj_type,
-                                             object_id=obj.id)
-        for citation_ref in citation_refs:
-            if citation_ref.citation:
-                if citation_ref.citation.source:
-                    source = citation_ref.citation.source
-                    table.row(source,
-                              source.title,
-                              source.author,
-                              citation_ref.citation.page,
-                              )
-    retval += table.get_html()
-    if user.is_superuser and url and action == "view":
-        retval += make_button(_("Add Source"), (url % args).replace("$act", "add"))
-        retval += make_button(_("Share Source"), (url % args).replace("$act", "share"))
-    else:
-        retval += nbsp("") # to keep tabs same height
-    return retval
-
 def citation_table(obj, user, action, url=None, *args):
     retval = ""
     table = Table("citation_table")
@@ -460,8 +431,8 @@ def citation_table(obj, user, action, url=None, *args):
                           )
     retval += table.get_html()
     if user.is_superuser and url and action == "view":
-        retval += make_button(_("Add Citation"), (url % args).replace("$act", "add"))
-        retval += make_button(_("Share Citation"), (url % args).replace("$act", "share"))
+        retval += make_button(_("Add New Citation"), (url % args).replace("$act", "add"))
+        retval += make_button(_("Add Existing Citation"), (url % args).replace("$act", "share"))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
@@ -477,8 +448,8 @@ def repository_table(obj, user, action, url=None, *args):
         pass
     retval += table.get_html()
     if user.is_superuser and url and action == "view":
-        retval += make_button(_("Add Repository"), (url % args).replace("$act", "add"))
-        retval += make_button(_("Share Repository"), (url % args).replace("$act", "share"))
+        retval += make_button(_("Add New Repository"), (url % args).replace("$act", "add"))
+        retval += make_button(_("Add Existing Repository"), (url % args).replace("$act", "share"))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
@@ -502,8 +473,8 @@ def note_table(obj, user, action, url=None, *args):
                       note_ref.ref_object.text[:50])
     retval += table.get_html()
     if user.is_superuser and url and action == "view":
-        retval += make_button(_("Add Note"), (url % args).replace("$act", "add"))
-        retval += make_button(_("Share Note"), (url % args).replace("$act", "share"))
+        retval += make_button(_("Add New Note"), (url % args).replace("$act", "add"))
+        retval += make_button(_("Add Existing Note"), (url % args).replace("$act", "share"))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
@@ -589,6 +560,7 @@ def media_table(obj, user, action, url=None, *args):
     table = Table("media_table")
     table.columns(_("Description"), 
                   _("Type"),
+                  _("Path/Filename"),
                   )
     if user.is_authenticated():
         obj_type = ContentType.objects.get_for_model(obj)
@@ -602,8 +574,8 @@ def media_table(obj, user, action, url=None, *args):
                       media_ref.ref_object.path)
     retval += table.get_html()
     if user.is_superuser and url and action == "view":
-        retval += make_button(_("Add Media"), (url % args).replace("$act", "add"))
-        retval += make_button(_("Share Media"), (url % args).replace("$act", "share"))
+        retval += make_button(_("Add New Media"), (url % args).replace("$act", "add"))
+        retval += make_button(_("Add Existing Media"), (url % args).replace("$act", "share"))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
@@ -895,8 +867,8 @@ def children_table(obj, user, action, url=None, *args):
     table.links(links)
     retval += table.get_html()
     if user.is_superuser and url and action == "view":
-        retval += make_button(_("Add Child"), (url.replace("$act", "add") % args))
-        retval += make_button(_("Share Child"), (url.replace("$act", "share") % args))
+        retval += make_button(_("Add New Person as Child"), (url.replace("$act", "add") % args))
+        retval += make_button(_("Add Existing Person as Child"), (url.replace("$act", "share") % args))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval

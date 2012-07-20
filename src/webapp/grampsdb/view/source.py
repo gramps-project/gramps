@@ -22,7 +22,7 @@
 """ Views for Person, Name, and Surname """
 
 ## Gramps Modules
-from webapp.utils import _, boolean, update_last_changed
+from webapp.utils import _, boolean, update_last_changed, build_search
 from webapp.grampsdb.models import Source
 from webapp.grampsdb.forms import *
 from webapp.libdjango import DjangoInterface
@@ -48,8 +48,36 @@ def process_source(request, context, handle, action, add_to=None): # view, edit,
     if request.POST.has_key("action"):
         action = request.POST.get("action")
 
-    # Handle: edit, view, add, create, save, delete
-    if action == "add":
+    # Handle: edit, view, add, create, save, delete, share, save-share
+    if action == "share":
+        item, handle = add_to
+        context["pickform"] = PickForm("Pick source", 
+                                       Source, 
+                                       (),
+                                       request.POST)     
+        context["object_handle"] = handle
+        context["object_type"] = item
+        return render_to_response("pick.html", context)
+    elif action == "save-share":
+        item, handle = add_to 
+        pickform = PickForm("Pick source", 
+                            Source, 
+                            (),
+                            request.POST)
+        if pickform.data["picklist"]:
+            parent_model = dji.get_model(item) # what model?
+            parent_obj = parent_model.objects.get(handle=handle) # to add
+            ref_handle = pickform.data["picklist"]
+            ref_obj = Source.objects.get(handle=ref_handle) 
+            dji.add_source_ref_default(parent_obj, ref_obj)
+            dji.rebuild_cache(parent_obj) # rebuild cache
+            return redirect("/%s/%s%s#tab-sources" % (item, handle, build_search(request)))
+        else:
+            context["pickform"] = pickform
+            context["object_handle"] = handle
+            context["object_type"] = item
+            return render_to_response("pick.html", context)
+    elif action == "add":
         source = Source(gramps_id=dji.get_next_id(Source, "S"))
         sourceform = SourceForm(instance=source)
         sourceform.model = source

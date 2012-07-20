@@ -399,7 +399,7 @@ def view_list(request, view):
         context["search_query"] = ""
     return render_to_response(view_template, context)
 
-def check_access(request, context, obj, action):
+def check_access(request, context, obj, act):
     """
     Check to see if user has access to object. We don't need to
     sanitize here, just check to see if we even acknowledge it exists.
@@ -408,16 +408,21 @@ def check_access(request, context, obj, action):
         if request.user.is_superuser:
             return True
         else:
-            return action in ["view"]
+            return act in ["view"]
     else: # outside viewer
         return not obj.private
 
 def add_share(request, view, item, handle):
     """
-    Add a reference to an existing <view> referenced from <item>.
+    Add a new <view> referenced from <item>.
     """
-    # /view/share/person/handle
-    raise Http404(_('Not implemented yet.'))
+    # /person/share/family/handle
+    # Use an existing person with this family
+    # r'^(?P<view>(\w+))/share/(?P<item>(\w+))/(?P<handle>(\w+))$', 
+    act = "share"
+    if request.POST.has_key("action"):
+        act = request.POST.get("action") # can be "save-share"
+    return action(request, view, None, act, (item, handle))
 
 def add_to(request, view, item, handle):
     """
@@ -426,7 +431,7 @@ def add_to(request, view, item, handle):
     # /view/add/person/handle
     return action(request, view, None, "add", (item, handle))
 
-def action(request, view, handle, action, add_to=None):
+def action(request, view, handle, act, add_to=None):
     """
     View a particular object given /object/handle (implied view),
     /object/handle/action, or /object/add.
@@ -436,100 +441,100 @@ def action(request, view, handle, action, add_to=None):
     obj = None
     context = RequestContext(request)
     if request.POST.has_key("action"):
-        action = request.POST.get("action")
-    context["action"] = action
+        act = request.POST.get("action")
+    context["action"] = act
     context["view"] = view
     context["tview"] = _('Browse')
     if view == "event":
-        if action not in ["add", "create"]:
+        if act not in ["add", "create", "share", "save-share"]:
             try:
                 obj = Event.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
-        if not check_access(request, context, obj, action):
+        if not check_access(request, context, obj, act):
             raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_event_detail.html'
-        rd = process_event(request, context, handle, action, add_to)
+        rd = process_event(request, context, handle, act, add_to)
     elif view == "family":
-        if action not in ["add", "create"]:
+        if act not in ["add", "create", "share", "save-share"]:
             try:
                 obj = Family.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_family_detail.html'
-        rd = process_family(request, context, handle, action, add_to)
+        rd = process_family(request, context, handle, act, add_to)
     elif view == "media":
-        if action not in ["add", "create"]:
+        if act not in ["add", "create", "share", "save-share"]:
             try:
                 obj = Media.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_media_detail.html'
-        rd = process_media(request, context, handle, action, add_to)
+        rd = process_media(request, context, handle, act, add_to)
     elif view == "note":
-        if action not in ["add", "create"]:
+        if act not in ["add", "create", "share", "save-share"]:
             try:
                 obj = Note.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_note_detail.html'
-        rd = process_note(request, context, handle, action, add_to)
+        rd = process_note(request, context, handle, act, add_to)
     elif view == "person":
-        if action not in ["add", "create"]:
+        if act not in ["add", "create", "share", "save-share"]:
             try:
                 obj = Person.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_person_detail.html'
-        rd = process_person(request, context, handle, action, add_to)
+        rd = process_person(request, context, handle, act, add_to)
     elif view == "place":
-        if action not in ["add", "create"]:
+        if act not in ["add", "create", "share", "save-share"]:
             try:
                 obj = Place.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_place_detail.html'
-        rd = process_place(request, context, handle, action, add_to)
+        rd = process_place(request, context, handle, act, add_to)
     elif view == "repository":
-        if action not in ["add", "create"]:
+        if act not in ["add", "create", "share", "save-share"]:
             try:
                 obj = Repository.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_repository_detail.html'
-        rd = process_repository(request, context, handle, action, add_to)
+        rd = process_repository(request, context, handle, act, add_to)
     elif view == "citation":
-        if action not in ["add", "create"]:
+        if act not in ["add", "create", "share", "save-share"]:
             try:
                 obj = Citation.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_citation_detail.html'
-        rd = process_citation(request, context, handle, action, add_to)
+        rd = process_citation(request, context, handle, act, add_to)
     elif view == "source":
-        if action not in ["add", "create"]:
+        if act not in ["add", "create", "share", "save-share"]:
             try:
                 obj = Source.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_source_detail.html'
-        rd = process_source(request, context, handle, action, add_to)
+        rd = process_source(request, context, handle, act, add_to)
     elif view == "tag":
-        if action not in ["add", "create"]:
+        if act not in ["add", "create", "share", "save-share"]:
             try:
                 obj = Tag.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_tag_detail.html'
-        rd = process_tag(request, context, handle, action, add_to)
+        rd = process_tag(request, context, handle, act, add_to)
     elif view == "report":
-        if action not in ["add", "create"]:
+        if act not in ["add", "create", "share", "save-share"]:
             try:
                 obj = Report.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_report_detail.html'
-        rd = process_report(request, context, handle, action)
+        rd = process_report(request, context, handle, act)
     else:
         raise Http404(_("Requested page type not known"))
     if rd:
@@ -540,11 +545,11 @@ def action(request, view, handle, action, add_to=None):
         context["next"] = "/%s/%s" % (view, obj.handle)
     return render_to_response(view_template, context)
 
-def process_report(request, context, handle, action):
+def process_report(request, context, handle, act):
     """
     Process action on report. Can return a redirect.
     """
-    if action == "run":
+    if act == "run":
         return process_report_run(request, handle)
     context["tview"] = _("Report")
     context["tviews"] = _("Reports")

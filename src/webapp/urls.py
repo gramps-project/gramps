@@ -70,24 +70,24 @@ urlpatterns += patterns('',
     (r'^logout/$', logout_page),
     (r'^(?P<view>(\w+))/$', view_list),                    # /view/
     (r'^(?P<view>(\w+))/add$', action,
-     {"handle": None, "action": "add"}),                   # /view/add
+     {"handle": None, "act": "add"}),                   # /view/add
     (r'^(?P<view>(\w+))/add/(?P<item>(\w+))/(?P<handle>(\w+))$', 
      add_to),                                              # /view/add/item/handle
     (r'^(?P<view>(\w+))/share/(?P<item>(\w+))/(?P<handle>(\w+))$', 
      add_share),                                           # /view/share/item/handle
     (r'^(?P<view>(\w+))/(?P<handle>(\w+))/$', action, 
-     {"action": "view"}),                                  # /view/handle/
-    (r'^(?P<view>(\w+))/(?P<handle>(\w+))/(?P<action>(\w+))$', 
+     {"act": "view"}),                                  # /view/handle/
+    (r'^(?P<view>(\w+))/(?P<handle>(\w+))/(?P<act>(\w+))$', 
      action),                                              # /view/handle/action 
     (r'^(?P<ref_by>(\w+))/(?P<handle>(\w+))/reference/(?P<ref_to>(\w+))/(?P<order>(\w+))$', 
      process_reference),                                   # /view/handle/reference/item/order
     (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))$', process_name), 
-    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/(?P<action>(\w+))$', 
+    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/(?P<act>(\w+))$', 
      process_name),
 
     (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/surname/(?P<sorder>(\w+))$', 
      process_surname),
-    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/surname/(?P<sorder>(\w+))/(?P<action>(\w+))$', 
+    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/surname/(?P<sorder>(\w+))/(?P<act>(\w+))$', 
      process_surname),
 )
 
