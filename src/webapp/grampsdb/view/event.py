@@ -66,7 +66,7 @@ def process_event(request, context, handle, action, add_to=None): # view, edit, 
     elif action == "save-share":
         item, handle = add_to 
         pickform = PickForm("Pick event", 
-                            Media, 
+                            Event, 
                             (),
                             request.POST)
         if pickform.data["picklist"]:
