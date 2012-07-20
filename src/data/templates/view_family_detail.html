@@ -98,7 +98,7 @@
   <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
     <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tab-children">Children</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-events">Events</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-sources">Sources</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-citations">Citations</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-attributes">Attributes</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Notes</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-media">Media</a></li>
@@ -112,8 +112,8 @@
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-events">
     {% event_table family user action "/event/$act/family/%s" family.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-sources">
-    {% source_table family user action "/source/$act/family/%s" family.handle %}
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-citations">
+    {% citation_table family user action "/citation/$act/family/%s" family.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-attributes">
     {% attribute_table family user action "/attribute/add/family/%s" family.handle %}

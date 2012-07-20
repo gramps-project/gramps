@@ -75,7 +75,7 @@
     <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tab-general">General</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-surnames">Surnames</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-names">Other Names</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-sources">Sources</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-citations">Citations</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Notes</a></li>
   </ul>
 
@@ -105,8 +105,8 @@
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-names">
     {% name_table person user action "/person/%s/name" person.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-sources">
-    {% source_table nameform.model user action "/person/%s/name/%s/source" person.handle nameform.model.order %}
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-citations">
+    {% citation_table nameform.model user action "/citation/add/person/%s/name/%s" person.handle nameform.model.order %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom
 	      ui-tabs-hide" id="tab-notes">
