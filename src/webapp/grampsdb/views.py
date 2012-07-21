@@ -727,9 +727,15 @@ def build_media_query(request, search):
                     request.user.message_set.create(message="Invalid query field '%s'" % field)                
         else: # no search fields, just raw search
             if protect:
-                query &= Q(gramps_id__icontains=search)
+                query &= (Q(gramps_id__icontains=search) |
+                          Q(path__icontains=search) |
+                          Q(desc__icontains=search) | 
+                          Q(mime__icontains=search))
             else:
-                query &= Q(gramps_id__icontains=search)
+                query &= (Q(gramps_id__icontains=search) |
+                          Q(path__icontains=search) |
+                          Q(desc__icontains=search) | 
+                          Q(mime__icontains=search))
     else: # no search
         pass # nothing left to do
     return query, order, terms
