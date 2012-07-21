@@ -205,6 +205,7 @@ class Table(object):
         self.db = DbDjango()
         self.access = SimpleAccess(self.db)
         self.table = SimpleTable(self.access)
+        self.column_widths = None
         class Doc(object):
             def __init__(self, doc):
                 self.doc = doc
@@ -249,7 +250,7 @@ class Table(object):
 
     def get_html(self):
         # The HTML writer escapes data:
-        self.table.write(self.doc) # forces to htmllist
+        self.table.write(self.doc, self.column_widths) # forces to htmllist
         # FIXME: do once, or once per table?
         self.doc.doc.build_style_declaration(self.id) # can pass id, for whole
         # FIXME: don't want to repeat this, unless diff for each table:
@@ -837,6 +838,7 @@ def children_table(obj, user, act, url=None, *args):
         _("Maternal"),
         _("Birth Date"),
         )
+    table.column_widths = [3] + [98/6] * 6
 
     family = obj
     obj_type = ContentType.objects.get_for_model(family)

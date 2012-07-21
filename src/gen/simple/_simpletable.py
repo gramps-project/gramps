@@ -188,11 +188,14 @@ class SimpleTable(object):
         else:
             self._rows.sort(lambda a, b: cmp(a[idx],b[idx]))
 
-    def write(self, document):
+    def write(self, document, column_widths=None):
         doc = document.doc
         columns = len(self._columns)
         doc.start_table('simple', 'Table')
-        doc._tbl.set_column_widths([100/columns] * columns)
+        if column_widths:
+            doc._tbl.set_column_widths(column_widths)
+        else:
+            doc._tbl.set_column_widths([100/columns] * columns)
         doc._tbl.set_columns(columns)
         if self.title:
             doc.start_row()
