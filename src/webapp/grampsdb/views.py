@@ -555,6 +555,19 @@ def process_report(request, context, handle, act):
     context["tview"] = _("Report")
     context["tviews"] = _("Reports")
 
+def build_string_query(field, value, exact=False, startswith=False, endswith=False):
+    print field, value
+    retval = None
+    if exact:
+        retval = Q(**{"%s" % field: value})
+    elif startswith:
+        retval = Q(**{"%s__istartswith" % field: value}) 
+    elif endswith:
+        retval = Q(**{"%s__iendswith" % field: value}) 
+    else: # default
+        retval = Q(**{"%s__icontains" % field: value}) 
+    return retval
+
 def build_person_query(request, search):
     """
     Build and return a Django QuerySet and sort order for the Person
@@ -575,6 +588,9 @@ def build_person_query(request, search):
     if search:
         if "," in search or "=" in search:
             for term in [term.strip() for term in search.split(",")]:
+                startswith = False
+                endswith = False
+                exact = False
                 if "=" in term:
                     field, value = [s.strip() for s in term.split("=")]
                 else:
@@ -583,15 +599,23 @@ def build_person_query(request, search):
                         value = term
                     else:
                         continue
+                if value.startswith("^"):
+                    startswith = True
+                    value = value[1:]
+                if value.endswith("$"):
+                    endswith = True
+                    value = value[:-1]
+                if startswith and endswith:
+                    exact = True
                 if "." in field and not protect:
                     query &= Q(**{str(field.replace(".", "__")): value})
                 elif field == "surname":
-                    query &= Q(surname__surname__istartswith=value)
+                    query &= build_string_query("surname__surname", value, exact, startswith, endswith)
                 elif field == "given":
                     if protect:
-                        query &= Q(first_name__istartswith=value) & Q(person__probably_alive=False)
+                        query &= build_string_query("first_name", value, exact, startswith, endswith) & Q(person__probably_alive=False)
                     else:
-                        query &= Q(first_name__istartswith=value)
+                        query &= build_string_query("first_name", value, exact, startswith, endswith)
                 elif field == "private":
                     if not protect:
                         query &= Q(person__private=boolean(value))
@@ -606,7 +630,7 @@ def build_person_query(request, search):
                     else:
                         query &= Q(person__death__year1=safe_int(value))
                 elif field == "id":
-                    query &= Q(person__gramps_id__icontains=value)
+                    query &= build_string_query("person__gramps_id", value, exact, startswith, endswith)
                 elif field == "gender":
                     query &= Q(person__gender_type__name=value.title())
                 else:
@@ -653,6 +677,9 @@ def build_family_query(request, search):
     if search:
         if "," in search or "=" in search:
             for term in [term.strip() for term in search.split(",")]:
+                startswith = False
+                endswith = False
+                exact = False
                 if "=" in term:
                     field, value = [s.strip() for s in term.split("=")]
                 else:
@@ -662,19 +689,27 @@ def build_family_query(request, search):
                     else:
                         make_message("Ignoring value without specified field")
                         continue
+                if value.startswith("^"):
+                    startswith = True
+                    value = value[1:]
+                if value.endswith("$"):
+                    endswith = True
+                    value = value[:-1]
+                if startswith and endswith:
+                    exact = True
                 if "." in field and not protect:
                     query &= Q(**{str(field.replace(".", "__")): value})
                 elif field == "surnames":
-                    query &= (Q(father__name__surname__surname__istartswith=value) |
-                              Q(mother__name__surname__surname__istartswith=value))
+                    query &= (build_string_query("father__name__surname__surname", value, exact, startswith, endswith) |
+                              build_string_query("mother__name__surname__surname", value, exact, startswith, endswith))
                 elif field == "father":
-                    query &= Q(father__name__surname__surname__istartswith=value)
+                    query &= build_string_query("father__name__surname__surname", value, exact, startswith, endswith)
                 elif field == "mother":
-                    query &= Q(mother__name__surname__surname__istartswith=value)
+                    query &= build_string_query("mother__name__surname__surname", value, exact, startswith, endswith)
                 elif field == "type":
-                    query &= Q(family_rel_type__name__icontains=value)
+                    query &= build_string_query("family_rel_type__name", value, exact, startswith, endswith)
                 elif field == "id":
-                    query &= Q(gramps_id__icontains=value)
+                    query &= build_string_query("gramps_id", value, exact, startswith, endswith)
                 else:
                     make_message(request, message="Invalid query field '%s'" % field)
         else: # no search fields, just raw search
@@ -705,6 +740,9 @@ def build_media_query(request, search):
     if search:
         if "," in search or "=" in search:
             for term in [term.strip() for term in search.split(",")]:
+                startswith = False
+                endswith = False
+                exact = False
                 if "=" in term:
                     field, value = [s.strip() for s in term.split("=")]
                 else:
@@ -713,16 +751,24 @@ def build_media_query(request, search):
                         value = term
                     else:
                         continue
+                if value.startswith("^"):
+                    startswith = True
+                    value = value[1:]
+                if value.endswith("$"):
+                    endswith = True
+                    value = value[:-1]
+                if startswith and endswith:
+                    exact = True
                 if "." in field and not protect:
                     query &= Q(**{str(field.replace(".", "__")): value})
                 elif field == "id":
-                    query &= Q(gramps_id__icontains=value)
+                    query &= build_string_query("gramps_id", value, exact, startswith, endswith) 
                 elif field == "path":
-                    query &= Q(path__icontains=value)
+                    query &= build_string_query("path", value, exact, startswith, endswith) 
                 elif field == "description":
-                    query &= Q(desc__icontains=value)
+                    query &= build_string_query("desc", value, exact, startswith, endswith) 
                 elif field == "mime":
-                    query &= Q(mime__icontains=value)
+                    query &= build_string_query("mime", value, exact, startswith, endswith) 
                 else:
                     request.user.message_set.create(message="Invalid query field '%s'" % field)                
         else: # no search fields, just raw search
@@ -752,6 +798,9 @@ def build_note_query(request, search):
     if search:
         if "," in search or "=" in search:
             for term in [term.strip() for term in search.split(",")]:
+                startswith = False
+                endswith = False
+                exact = False
                 if "=" in term:
                     field, value = [s.strip() for s in term.split("=")]
                 else:
@@ -760,14 +809,22 @@ def build_note_query(request, search):
                         value = term
                     else:
                         continue
+                if value.startswith("^"):
+                    startswith = True
+                    value = value[1:]
+                if value.endswith("$"):
+                    endswith = True
+                    value = value[:-1]
+                if startswith and endswith:
+                    exact = True
                 if "." in field and not protect:
                     query &= Q(**{str(field.replace(".", "__")): value})
                 elif field == "id":
-                    query &= Q(gramps_id__icontains=value)
+                    query &= build_string_query("gramps_id", value, exact, startswith, endswith)
                 elif field == "type":
-                    query &= Q(note_type__name__icontains=value)
+                    query &= build_string_query("note_type__name", value, exact, startswith, endswith) 
                 elif field == "text":
-                    query &= Q(text__icontains=value)
+                    query &= build_string_query("text", value, exact, startswith, endswith) 
                 else:
                     request.user.message_set.create(message="Invalid query field '%s'" % field)                
         else: # no search fields, just raw search
@@ -795,6 +852,9 @@ def build_place_query(request, search):
     if search:
         if "," in search or "=" in search:
             for term in [term.strip() for term in search.split(",")]:
+                startswith = False
+                endswith = False
+                exact = False
                 if "=" in term:
                     field, value = [s.strip() for s in term.split("=")]
                 else:
@@ -803,12 +863,20 @@ def build_place_query(request, search):
                         value = term
                     else:
                         continue
+                if value.startswith("^"):
+                    startswith = True
+                    value = value[1:]
+                if value.endswith("$"):
+                    endswith = True
+                    value = value[:-1]
+                if startswith and endswith:
+                    exact = True
                 if "." in field and not protect:
                     query &= Q(**{str(field.replace(".", "__")): value})
                 elif field == "id":
-                    query &= Q(gramps_id__icontains=value)
+                    query &= build_string_query("gramps_id", value, exact, startswith, endswith)
                 elif field == "title":
-                    query &= Q(title__icontains=value)
+                    query &= build_string_query("title", value, exact, startswith, endswith) 
                 else:
                     request.user.message_set.create(message="Invalid query field '%s'" % field)                
         else: # no search fields, just raw search
@@ -834,6 +902,9 @@ def build_repository_query(request, search):
     if search:
         if "," in search or "=" in search:
             for term in [term.strip() for term in search.split(",")]:
+                startswith = False
+                endswith = False
+                exact = False
                 if "=" in term:
                     field, value = [s.strip() for s in term.split("=")]
                 else:
@@ -842,14 +913,22 @@ def build_repository_query(request, search):
                         value = term
                     else:
                         continue
+                if value.startswith("^"):
+                    startswith = True
+                    value = value[1:]
+                if value.endswith("$"):
+                    endswith = True
+                    value = value[:-1]
+                if startswith and endswith:
+                    exact = True
                 if "." in field and not protect:
                     query &= Q(**{str(field.replace(".", "__")): value})
                 elif field == "id":
-                    query &= Q(gramps_id__icontains=value)
+                    query &= build_string_query("gramps_id", value, exact, startswith, endswith)
                 elif field == "name":
-                    query &= Q(name__icontains=value)
+                    query &= build_string_query("name", value, exact, startswith, endswith) 
                 elif field == "type":
-                    query &= Q(repository_type__name__icontains=value)
+                    query &= build_string_query("repository_type__name", value, exact, startswith, endswith)
                 else:
                     request.user.message_set.create(message="Invalid query field '%s'" % field)                
         else: # no search fields, just raw search
@@ -879,6 +958,9 @@ def build_citation_query(request, search):
     if search:
         if "," in search or "=" in search:
             for term in [term.strip() for term in search.split(",")]:
+                startswith = False
+                endswith = False
+                exact = False
                 if "=" in term:
                     field, value = [s.strip() for s in term.split("=")]
                 else:
@@ -887,10 +969,18 @@ def build_citation_query(request, search):
                         value = term
                     else:
                         continue
+                if value.startswith("^"):
+                    startswith = True
+                    value = value[1:]
+                if value.endswith("$"):
+                    endswith = True
+                    value = value[:-1]
+                if startswith and endswith:
+                    exact = True
                 if "." in field and not protect:
                     query &= Q(**{str(field.replace(".", "__")): value})
                 elif field == "id":
-                    query &= Q(gramps_id__icontains=value)
+                    query &= build_string_query("gramps_id", value, exact, startswith, endswith)
                 else:
                     request.user.message_set.create(message="Invalid query field '%s'" % field)                
         else: # no search fields, just raw search
@@ -914,6 +1004,9 @@ def build_source_query(request, search):
     if search:
         if "," in search or "=" in search:
             for term in [term.strip() for term in search.split(",")]:
+                startswith = False
+                endswith = False
+                exact = False
                 if "=" in term:
                     field, value = [s.strip() for s in term.split("=")]
                 else:
@@ -922,10 +1015,18 @@ def build_source_query(request, search):
                         value = term
                     else:
                         continue
+                if value.startswith("^"):
+                    startswith = True
+                    value = value[1:]
+                if value.endswith("$"):
+                    endswith = True
+                    value = value[:-1]
+                if startswith and endswith:
+                    exact = True
                 if "." in field and not protect:
                     query &= Q(**{str(field.replace(".", "__")): value})
                 elif field == "id":
-                    query &= Q(gramps_id__icontains=value)
+                    query &= build_string_query("gramps_id", value, exact, startswith, endswith)
                 else:
                     request.user.message_set.create(message="Invalid query field '%s'" % field)                
         else: # no search fields, just raw search
@@ -949,6 +1050,9 @@ def build_tag_query(request, search):
     if search:
         if "," in search or "=" in search:
             for term in [term.strip() for term in search.split(",")]:
+                startswith = False
+                endswith = False
+                exact = False
                 if "=" in term:
                     field, value = [s.strip() for s in term.split("=")]
                 else:
@@ -957,6 +1061,14 @@ def build_tag_query(request, search):
                         value = term
                     else:
                         continue
+                if value.startswith("^"):
+                    startswith = True
+                    value = value[1:]
+                if value.endswith("$"):
+                    endswith = True
+                    value = value[:-1]
+                if startswith and endswith:
+                    exact = True
                 if "." in field and not protect:
                     query &= Q(**{str(field.replace(".", "__")): value})
                 elif field == "name":
@@ -985,6 +1097,9 @@ def build_report_query(request, search):
     if search:
         if "," in search or "=" in search:
             for term in [term.strip() for term in search.split(",")]:
+                startswith = False
+                endswith = False
+                exact = False
                 if "=" in term:
                     field, value = [s.strip() for s in term.split("=")]
                 else:
@@ -993,6 +1108,14 @@ def build_report_query(request, search):
                         value = term
                     else:
                         continue
+                if value.startswith("^"):
+                    startswith = True
+                    value = value[1:]
+                if value.endswith("$"):
+                    endswith = True
+                    value = value[:-1]
+                if startswith and endswith:
+                    exact = True
                 if "." in field and not protect:
                     query &= Q(**{str(field.replace(".", "__")): value})
                 elif field == "name":
@@ -1020,6 +1143,9 @@ def build_event_query(request, search):
     if search:
         if "," in search or "=" in search:
             for term in [term.strip() for term in search.split(",")]:
+                startswith = False
+                endswith = False
+                exact = False
                 if "=" in term:
                     field, value = [s.strip() for s in term.split("=")]
                 else:
@@ -1028,14 +1154,22 @@ def build_event_query(request, search):
                         value = term
                     else:
                         continue
+                if value.startswith("^"):
+                    startswith = True
+                    value = value[1:]
+                if value.endswith("$"):
+                    endswith = True
+                    value = value[:-1]
+                if startswith and endswith:
+                    exact = True
                 if "." in field and not protect:
                     query &= Q(**{str(field.replace(".", "__")): value})
                 elif field == "id":
-                    query &= Q(gramps_id__icontains=value)
+                    query &= build_string_query("gramps_id", value, exact, startswith, endswith)
                 elif field == "type":
-                    query &= Q(event_type__name__icontains=value)
+                    query &= build_string_query("event_type__name", value, exact, startswith, endswith)
                 elif field == "place":
-                    query &= Q(place__title__icontains=value)
+                    query &= build_string_query("place__title", value, exact, startswith, endswith)
                 else:
                     request.user.message_set.create(message="Invalid query field '%s'" % field)                
         else: # no search fields, just raw search
