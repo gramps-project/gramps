@@ -293,7 +293,7 @@ def make_button(text, url, *args):
     return mark_safe("""<input type="button" value="%s" onclick="document.location.href='%s%s%s'"/>""" % 
                      (text, url, kwargs, last))
 
-def event_table(obj, user, action, url, args):
+def event_table(obj, user, act, url, args):
     retval = ""
     table = Table("event_table")
     table.columns(
@@ -318,14 +318,14 @@ def event_table(obj, user, action, url, args):
                 get_title(djevent.place),
                 str(event_ref.role_type))
     retval += table.get_html()
-    if user.is_superuser and action == "view":
+    if user.is_superuser and act == "view":
         retval += make_button(_("Add New Event"), (url % args).replace("$act", "add"))
         retval += make_button(_("Add Existing Event"), (url % args).replace("$act", "share"))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
 
-def history_table(obj, user, action):
+def history_table(obj, user, act):
     retval = ""
     table = Table("history_table")
     table.columns(
@@ -350,7 +350,7 @@ def history_table(obj, user, action):
     retval += nbsp("") # to keep tabs same height
     return retval
 
-def name_table(obj, user, action, url=None, *args):
+def name_table(obj, user, act, url=None, *args):
     retval = ""
     table = Table("name_table")
     table.columns(_("Name"), 
@@ -382,13 +382,13 @@ def name_table(obj, user, action, url=None, *args):
                           (url % name.person.handle) + ("/%s" % name.order)))
         table.links(links)
     retval += table.get_html()
-    if user.is_superuser and url and action == "view":
+    if user.is_superuser and url and act == "view":
         retval += make_button(_("Add Name"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
 
-def surname_table(obj, user, action, url=None, *args):
+def surname_table(obj, user, act, url=None, *args):
     person_handle = args[0]
     order = args[1]
     retval = ""
@@ -405,13 +405,13 @@ def surname_table(obj, user, action, url=None, *args):
             retval += table.get_html()
         else:
             retval += "<p id='error'>No such name order = %s</p>" % order
-    if user.is_superuser and url and action == "view":
+    if user.is_superuser and url and act == "view":
         retval += make_button(_("Add Surname"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
 
-def citation_table(obj, user, action, url=None, *args):
+def citation_table(obj, user, act, url=None, *args):
     retval = ""
     table = Table("citation_table")
     table.columns(_("ID"), 
@@ -430,14 +430,14 @@ def citation_table(obj, user, action, url=None, *args):
                           str(citation.page),
                           )
     retval += table.get_html()
-    if user.is_superuser and url and action == "view":
+    if user.is_superuser and url and act == "view":
         retval += make_button(_("Add New Citation"), (url % args).replace("$act", "add"))
         retval += make_button(_("Add Existing Citation"), (url % args).replace("$act", "share"))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
 
-def repository_table(obj, user, action, url=None, *args):
+def repository_table(obj, user, act, url=None, *args):
     retval = ""
     table = Table("repository_table")
     table.columns(
@@ -447,14 +447,14 @@ def repository_table(obj, user, action, url=None, *args):
     if user.is_authenticated():
         pass
     retval += table.get_html()
-    if user.is_superuser and url and action == "view":
+    if user.is_superuser and url and act == "view":
         retval += make_button(_("Add New Repository"), (url % args).replace("$act", "add"))
         retval += make_button(_("Add Existing Repository"), (url % args).replace("$act", "share"))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
 
-def note_table(obj, user, action, url=None, *args):
+def note_table(obj, user, act, url=None, *args):
     retval = ""
     table = Table("note_table")
     table.columns(
@@ -472,14 +472,14 @@ def note_table(obj, user, action, url=None, *args):
                       str(note_ref.ref_object.note_type),
                       note_ref.ref_object.text[:50])
     retval += table.get_html()
-    if user.is_superuser and url and action == "view":
+    if user.is_superuser and url and act == "view":
         retval += make_button(_("Add New Note"), (url % args).replace("$act", "add"))
         retval += make_button(_("Add Existing Note"), (url % args).replace("$act", "share"))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
 
-def data_table(obj, user, action, url=None, *args):
+def data_table(obj, user, act, url=None, *args):
     retval = ""
     table = Table("data_table")
     table.columns(_("Type"), 
@@ -488,13 +488,13 @@ def data_table(obj, user, action, url=None, *args):
     if user.is_authenticated():
         pass
     retval += table.get_html()
-    if user.is_superuser and url and action == "view":
+    if user.is_superuser and url and act == "view":
         retval += make_button(_("Add Data"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
 
-def attribute_table(obj, user, action, url=None, *args):
+def attribute_table(obj, user, act, url=None, *args):
     retval = ""
     table = Table("attribute_table")
     table.columns(_("Type"), 
@@ -508,13 +508,13 @@ def attribute_table(obj, user, action, url=None, *args):
             table.row(attribute.attribute_type.name,
                       attribute.value)
     retval += table.get_html()
-    if user.is_superuser and url and action == "view":
+    if user.is_superuser and url and act == "view":
         retval += make_button(_("Add Attribute"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
 
-def address_table(obj, user, action, url=None, *args):
+def address_table(obj, user, act, url=None, *args):
     retval = ""
     table = Table("address_table")
     table.columns(_("Date"), 
@@ -532,13 +532,13 @@ def address_table(obj, user, action, url=None, *args):
                           location.state,
                           location.country)
     retval += table.get_html()
-    if user.is_superuser and url and action == "view":
+    if user.is_superuser and url and act == "view":
         retval += make_button(_("Add Address"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
 
-def location_table(obj, user, action, url=None, *args):
+def location_table(obj, user, act, url=None, *args):
     retval = ""
     table = Table("location_table")
     table.columns(_("Date"), 
@@ -549,13 +549,13 @@ def location_table(obj, user, action, url=None, *args):
     if user.is_authenticated():
         pass # FIXME
     retval += table.get_html()
-    if user.is_superuser and url and action == "view":
+    if user.is_superuser and url and act == "view":
         retval += make_button(_("Add Address"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
 
-def media_table(obj, user, action, url=None, *args):
+def media_table(obj, user, act, url=None, *args):
     retval = ""
     table = Table("media_table")
     table.columns(_("Description"), 
@@ -573,14 +573,14 @@ def media_table(obj, user, action, url=None, *args):
                       str(media_ref.ref_object.desc),
                       media_ref.ref_object.path)
     retval += table.get_html()
-    if user.is_superuser and url and action == "view":
+    if user.is_superuser and url and act == "view":
         retval += make_button(_("Add New Media"), (url % args).replace("$act", "add"))
         retval += make_button(_("Add Existing Media"), (url % args).replace("$act", "share"))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
 
-def internet_table(obj, user, action, url=None, *args):
+def internet_table(obj, user, act, url=None, *args):
     retval = ""
     table = Table("internet_table")
     table.columns(_("Type"),
@@ -593,13 +593,13 @@ def internet_table(obj, user, action, url=None, *args):
                       url_obj.path,
                       url_obj.desc)
     retval += table.get_html()
-    if user.is_superuser and url and action == "view":
+    if user.is_superuser and url and act == "view":
         retval += make_button(_("Add Internet"), (str(url) % args))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
 
-def association_table(obj, user, action, url=None, *args):
+def association_table(obj, user, act, url=None, *args):
     retval = ""
     table = Table("association_table")
     table.columns(_("Name"), 
@@ -612,13 +612,13 @@ def association_table(obj, user, action, url=None, *args):
             for association in associations:
                 table.row()
     retval += table.get_html()
-    if user.is_superuser and url and action == "view":
+    if user.is_superuser and url and act == "view":
         retval += make_button(_("Add Association"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
 
-def lds_table(obj, user, action, url=None, *args):
+def lds_table(obj, user, act, url=None, *args):
     retval = ""
     table = Table("lds_table")
     table.columns(_("Type"), 
@@ -636,13 +636,13 @@ def lds_table(obj, user, action, url=None, *args):
                       lds.temple,
                       get_title(lds.place))
     retval += table.get_html()
-    if user.is_superuser and url and action == "view":
+    if user.is_superuser and url and act == "view":
         retval += make_button(_("Add LDS"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
 
-def reference_table(obj, user, action, url=None, *args):
+def reference_table(obj, user, act, url=None, *args):
     retval = ""
     table = Table("reference_table")
     table.columns(
@@ -655,14 +655,14 @@ def reference_table(obj, user, action, url=None, *args):
     retval += nbsp("") # to keep tabs same height
     return retval 
 
-def person_reference_table(obj, user, action):
+def person_reference_table(obj, user, act):
     retval = ""
     table = Table("person_reference_table")
     table.columns(
         _("Type"),
         _("Reference"), 
         _("ID"))
-    if user.is_authenticated() and action != "add":
+    if user.is_authenticated() and act != "add":
         for reference in obj.families.all():
             table.row(
                 _("Family (spouse in)"),
@@ -677,14 +677,14 @@ def person_reference_table(obj, user, action):
     retval += nbsp("") # to keep tabs same height
     return retval 
 
-def note_reference_table(obj, user, action):
+def note_reference_table(obj, user, act):
     retval = ""
     table = Table("note_reference_table")
     table.columns(
         _("Type"),
         _("Reference"), 
         _("ID"))
-    if user.is_authenticated() and action != "add":
+    if user.is_authenticated() and act != "add":
         for reference in models.NoteRef.objects.filter(ref_object=obj):
             ref_from_class = reference.object_type.model_class()
             item = ref_from_class.objects.get(id=reference.object_id)
@@ -696,14 +696,14 @@ def note_reference_table(obj, user, action):
     retval += nbsp("") # to keep tabs same height
     return retval 
 
-def event_reference_table(obj, user, action):
+def event_reference_table(obj, user, act):
     retval = ""
     table = Table("event_reference_table")
     table.columns(
         _("Type"),
         _("Reference"), 
         _("ID"))
-    if user.is_authenticated() and action != "add":
+    if user.is_authenticated() and act != "add":
         for reference in models.EventRef.objects.filter(ref_object=obj):
             ref_from_class = reference.object_type.model_class()
             item = ref_from_class.objects.get(id=reference.object_id)
@@ -715,14 +715,14 @@ def event_reference_table(obj, user, action):
     retval += nbsp("") # to keep tabs same height
     return retval 
 
-def repository_reference_table(obj, user, action):
+def repository_reference_table(obj, user, act):
     retval = ""
     table = Table("repository_reference_table")
     table.columns(
         _("Type"),
         _("Reference"), 
         _("ID"))
-    if user.is_authenticated() and action != "add":
+    if user.is_authenticated() and act != "add":
         for reference in models.RepositoryRef.objects.filter(ref_object=obj):
             ref_from_class = reference.object_type.model_class()
             item = ref_from_class.objects.get(id=reference.object_id)
@@ -734,7 +734,7 @@ def repository_reference_table(obj, user, action):
     retval += nbsp("") # to keep tabs same height
     return retval 
 
-def citation_reference_table(obj, user, action):
+def citation_reference_table(obj, user, act):
     retval = ""
     table = Table("citation_reference_table")
     table.columns(
@@ -742,7 +742,7 @@ def citation_reference_table(obj, user, action):
         _("Reference"), 
 #        _("ID")
         )
-    if user.is_authenticated() and action != "add":
+    if user.is_authenticated() and act != "add":
         for reference in models.CitationRef.objects.filter(citation=obj):
             ref_from_class = reference.object_type.model_class()
             item = ref_from_class.objects.get(id=reference.object_id)
@@ -753,28 +753,28 @@ def citation_reference_table(obj, user, action):
     retval += nbsp("") # to keep tabs same height
     return retval 
 
-def source_reference_table(obj, user, action):
+def source_reference_table(obj, user, act):
     retval = ""
     table = Table("source_reference_table")
     table.columns(
         _("Type"),
         _("Reference"), 
         _("ID"))
-    if user.is_authenticated() and action != "add":
+    if user.is_authenticated() and act != "add":
         pass
     # FIXME: where is source ref?
     retval += table.get_html()
     retval += nbsp("") # to keep tabs same height
     return retval 
 
-def media_reference_table(obj, user, action):
+def media_reference_table(obj, user, act):
     retval = ""
     table = Table("media_reference_table")
     table.columns(
         _("Type"),
         _("Reference"), 
         _("ID"))
-    if user.is_authenticated() and action != "add":
+    if user.is_authenticated() and act != "add":
         for reference in models.MediaRef.objects.filter(ref_object=obj):
             ref_from_class = reference.object_type.model_class()
             item = ref_from_class.objects.get(id=reference.object_id)
@@ -786,27 +786,27 @@ def media_reference_table(obj, user, action):
     retval += nbsp("") # to keep tabs same height
     return retval 
 
-def place_reference_table(obj, user, action):
+def place_reference_table(obj, user, act):
     retval = ""
     table = Table("place_reference_table")
     table.columns(
         _("Type"),
         _("Reference"), 
         _("ID"))
-    if user.is_authenticated() and action != "add":
+    if user.is_authenticated() and act != "add":
         pass # FIXME
     retval += table.get_html()
     retval += nbsp("") # to keep tabs same height
     return retval 
 
-def tag_reference_table(obj, user, action):
+def tag_reference_table(obj, user, act):
     retval = ""
     table = Table("tag_reference_table")
     table.columns(
         _("Type"),
         _("Reference"), 
         _("ID"))
-    if user.is_authenticated() and action != "add":
+    if user.is_authenticated() and act != "add":
         querysets = [obj.person_set, obj.family_set, obj.note_set, obj.media_set]
         for queryset in querysets:
             for item in queryset.all():
@@ -818,7 +818,7 @@ def tag_reference_table(obj, user, action):
     retval += nbsp("") # to keep tabs same height
     return retval 
 
-def children_table(obj, user, action, url=None, *args):
+def children_table(obj, user, act, url=None, *args):
     retval = ""
     table = Table("children_table")
     table.columns(
@@ -866,7 +866,7 @@ def children_table(obj, user, action, url=None, *args):
             count += 1
     table.links(links)
     retval += table.get_html()
-    if user.is_superuser and url and action == "view":
+    if user.is_superuser and url and act == "view":
         retval += make_button(_("Add New Person as Child"), (url.replace("$act", "add") % args))
         retval += make_button(_("Add Existing Person as Child"), (url.replace("$act", "share") % args))
     else:
@@ -905,16 +905,16 @@ def display_date(obj):
     else:
         return ""
 
-def media_link(handle, user, action):
+def media_link(handle, user, act):
     retval = """<a href="%s"><img src="%s" /></a>""" % (
         "/media/%s/full" % handle, 
         "/media/%s/thumbnail" % handle)
     return retval
 
-def render(formfield, user, action, id=None, url=None, *args):
+def render(formfield, user, act, id=None, url=None, *args):
     if not user.is_authenticated():
-        action = "view"
-    if action == "view": # show as text
+        act = "view"
+    if act == "view": # show as text
         fieldname = formfield.name # 'surname'
         try:
             item = getattr(formfield.form.model, fieldname)
@@ -945,7 +945,7 @@ def render(formfield, user, action, id=None, url=None, *args):
             retval = formfield.as_widget()
     return retval
 
-def render_name(name, user, action=None):
+def render_name(name, user, act=None):
     """
     Given a Django or Gramps object, render the name and return.  This
     function uses authentication, privacy and probably_alive settings.

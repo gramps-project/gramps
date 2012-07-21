@@ -35,31 +35,31 @@ from django.template import Context, RequestContext
 ## Globals
 dji = DjangoInterface()
 
-def process_family(request, context, handle, action, add_to=None): # view, edit, save
+def process_family(request, context, handle, act, add_to=None): # view, edit, save
     """
-    Process action on person. Can return a redirect.
+    Process act on person. Can return a redirect.
     """
     context["tview"] = _("Family")
     context["tviews"] = _("Familes")
 
     if handle == "add":
-        action = "add"
+        act = "add"
     if request.POST.has_key("action"):
-        action = request.POST.get("action")
+        act = request.POST.get("action")
 
     # Handle: edit, view, add, create, save, delete
-    if action == "add":
+    if act == "add":
         family = Family(
             gramps_id=dji.get_next_id(Family, "F"),
             family_rel_type=FamilyRelType.objects.get(
                 val=FamilyRelType._DEFAULT[0]))
         familyform = FamilyForm(instance=family)
         familyform.model = family
-    elif action in ["view", "edit"]: 
+    elif act in ["view", "edit"]: 
         family = Family.objects.get(handle=handle)
         familyform = FamilyForm(instance=family)
         familyform.model = family
-    elif action == "save": 
+    elif act == "save": 
         family = Family.objects.get(handle=handle)
         familyform = FamilyForm(request.POST, instance=family)
         familyform.model = family
@@ -75,10 +75,10 @@ def process_family(request, context, handle, action, add_to=None): # view, edit,
                 if family not in family.father.families.all():
                     family.father.families.add(family)
             dji.rebuild_cache(family)
-            action = "view"
+            act = "view"
         else:
-            action = "edit"
-    elif action == "create": 
+            act = "edit"
+    elif act == "create": 
         family = Family(family_rel_type=FamilyRelType.objects.get(
                 val=FamilyRelType._DEFAULT[0]),
                         handle=create_id())
@@ -103,20 +103,20 @@ def process_family(request, context, handle, action, add_to=None): # view, edit,
                 dji.add_family_ref(obj, family.handle)
                 dji.rebuild_cache(obj)
                 return redirect("/%s/%s" % (item, handle))
-            action = "view"
+            act = "view"
         else:
-            action = "add"
-    elif action == "delete": 
+            act = "add"
+    elif act == "delete": 
         family = Family.objects.get(handle=handle)
         family.delete()
         return redirect("/family/")
     else:
-        raise Exception("Unhandled action: '%s'" % action)
+        raise Exception("Unhandled act: '%s'" % act)
 
     context["familyform"] = familyform
     context["object"] = family
     context["family"] = family
-    context["action"] = action
+    context["action"] = act
     view_template = "view_family_detail.html"
     
     return render_to_response(view_template, context)

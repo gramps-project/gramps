@@ -47,9 +47,9 @@ def pb2image(pb):
     width, height = pb.get_width(), pb.get_height()
     return Image.fromstring("RGB", (width,height), pb.get_pixels())
  
-def process_media(request, context, handle, action, add_to=None): # view, edit, save
+def process_media(request, context, handle, act, add_to=None): # view, edit, save
     """
-    Process action on person. Can return a redirect.
+    Process act on person. Can return a redirect.
     """
     context["tview"] = _("Media")
     context["tviews"] = _("Media")
@@ -57,12 +57,12 @@ def process_media(request, context, handle, action, add_to=None): # view, edit, 
     view_template = "view_media_detail.html"
     
     if handle == "add":
-        action = "add"
+        act = "add"
     if request.POST.has_key("action"):
-        action = request.POST.get("action")
+        act = request.POST.get("action")
 
     # Handle: edit, view, add, create, save, delete, share, save-share
-    if action == "share":
+    if act == "share":
         item, handle = add_to
         context["pickform"] = PickForm("Pick media", 
                                        Media, 
@@ -71,7 +71,7 @@ def process_media(request, context, handle, action, add_to=None): # view, edit, 
         context["object_handle"] = handle
         context["object_type"] = item
         return render_to_response("pick.html", context)
-    elif action == "save-share":
+    elif act == "save-share":
         item, handle = add_to 
         pickform = PickForm("Pick media", 
                             Media, 
@@ -90,7 +90,7 @@ def process_media(request, context, handle, action, add_to=None): # view, edit, 
             context["object_handle"] = handle
             context["object_type"] = item
             return render_to_response("pick.html", context)
-    elif action == "full":
+    elif act == "full":
         media = Media.objects.get(handle=handle)
         media_type, media_ext = media.mime.split("/", 1)
         # FIXME: This should be absolute:
@@ -107,7 +107,7 @@ def process_media(request, context, handle, action, add_to=None): # view, edit, 
             image = png.Image(pixels, meta)
             image.save(response)
         return response
-    elif action == "thumbnail":
+    elif act == "thumbnail":
         media = Media.objects.get(handle=handle)
         media_type, media_ext = media.mime.split("/", 1)
         # FIXME: This should be absolute:
@@ -147,15 +147,15 @@ def process_media(request, context, handle, action, add_to=None): # view, edit, 
                 image.save("%s/thumbnail/%s" % (folder, media.path), media_ext)
                 image.save(response, media_ext.upper())
         return response
-    elif action == "add":
+    elif act == "add":
         media = Media(gramps_id=dji.get_next_id(Media, "M"))
         mediaform = MediaForm(instance=media)
         mediaform.model = media
-    elif action in ["view", "edit"]: 
+    elif act in ["view", "edit"]: 
         media = Media.objects.get(handle=handle)
         mediaform = MediaForm(instance=media)
         mediaform.model = media
-    elif action == "save": 
+    elif act == "save": 
         media = Media.objects.get(handle=handle)
         mediaform = MediaForm(request.POST, instance=media)
         mediaform.model = media
@@ -163,10 +163,10 @@ def process_media(request, context, handle, action, add_to=None): # view, edit, 
             update_last_changed(media, request.user.username)
             media = mediaform.save()
             dji.rebuild_cache(media)
-            action = "view"
+            act = "view"
         else:
-            action = "edit"
-    elif action == "create": 
+            act = "edit"
+    elif act == "create": 
         media = Media(handle=create_id())
         mediaform = MediaForm(request.POST, instance=media)
         mediaform.model = media
@@ -182,19 +182,19 @@ def process_media(request, context, handle, action, add_to=None): # view, edit, 
                 return redirect("/%s/%s#tab-gallery" % (item, handle))
             else:
                 dji.rebuild_cache(media)
-            action = "view"
+            act = "view"
         else:
-            action = "add"
-    elif action == "delete": 
+            act = "add"
+    elif act == "delete": 
         media = Media.objects.get(handle=handle)
         media.delete()
         return redirect("/media/")
     else:
-        raise Exception("Unhandled action: '%s'" % action)
+        raise Exception("Unhandled act: '%s'" % act)
 
     context["mediaform"] = mediaform
     context["object"] = media
     context["media"] = media
-    context["action"] = action
+    context["action"] = act
     
     return render_to_response(view_template, context)
