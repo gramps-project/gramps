@@ -694,7 +694,7 @@ def build_family_query(request, search):
     return query, order, terms
 
 def build_media_query(request, search):
-    terms = ["id"]
+    terms = ["id", "path", "description", "mime"]
     protect = not request.user.is_authenticated()
     if protect:
         query = Q(private=False) # general privacy
@@ -717,6 +717,12 @@ def build_media_query(request, search):
                     query &= Q(**{str(field.replace(".", "__")): value})
                 elif field == "id":
                     query &= Q(gramps_id__icontains=value)
+                elif field == "path":
+                    query &= Q(path__icontains=value)
+                elif field == "description":
+                    query &= Q(desc__icontains=value)
+                elif field == "mime":
+                    query &= Q(mime__icontains=value)
                 else:
                     request.user.message_set.create(message="Invalid query field '%s'" % field)                
         else: # no search fields, just raw search
