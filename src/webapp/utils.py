@@ -674,7 +674,14 @@ def person_reference_table(obj, user, act):
                 reference,
                 reference.gramps_id)
     retval += table.get_html()
-    retval += nbsp("") # to keep tabs same height
+    retval += make_button(_("Add as Spouse to New Family"), 
+                          "/family/add/spouse/%s" % obj.handle)
+    retval += make_button(_("Add as Spouse to Existing Family"), 
+                          "/family/share/spouse/%s" % obj.handle)
+    retval += make_button(_("Add as Child to New Family"), 
+                          "/family/add/child/%s" % obj.handle)
+    retval += make_button(_("Add as Child to Existing Family"), 
+                          "/family/share/child/%s" % obj.handle)
     return retval 
 
 def note_reference_table(obj, user, act):

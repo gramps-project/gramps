@@ -41,7 +41,7 @@
  <td class="ColumnValue" id="data">{{family.father|render_name:user}}</td>
 {% endif %}
  <td class="ColumnAttribute">Name:</td>
-{% if user.is_authenticated or mother.probably_alive %}
+{% if user.is_authenticated or family.mother.probably_alive %}
  <td class="ColumnValue" id="data">{% render familyform.mother user action %}</td>
 {% else %}
  <td class="ColumnValue" id="data">{{family.mother|render_name:user}}</td>

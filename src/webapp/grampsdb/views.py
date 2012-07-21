@@ -429,6 +429,7 @@ def add_to(request, view, item, handle):
     Add a new <view> referenced from <item>.
     """
     # /view/add/person/handle
+    # /family/add/child/handle
     return action(request, view, None, "add", (item, handle))
 
 def action(request, view, handle, act, add_to=None):
