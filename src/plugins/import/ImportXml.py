@@ -1286,6 +1286,10 @@ class GrampsParser(UpdateCallback):
             if (self.db.get_source_from_handle(handle) is not None
                     and handle not in self.db.source_bookmarks.get() ):
                 self.db.source_bookmarks.append(handle)
+        elif target == 'citation':
+            if (self.db.get_citation_from_handle(handle) is not None
+                    and handle not in self.db.citation_bookmarks.get() ):
+                self.db.citation_bookmarks.append(handle)
         elif target == 'place':
             if (self.db.get_place_from_handle(handle) is not None
                     and handle not in self.db.place_bookmarks.get() ):

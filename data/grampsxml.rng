@@ -546,6 +546,7 @@
         <value>family</value>
         <value>event</value>
         <value>source</value>
+        <value>citation</value>
         <value>place</value>
         <value>media</value>
         <value>repository</value>
