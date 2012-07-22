@@ -6,6 +6,10 @@ The :mod:`gen.utils` Module
 
 Utils
 ====================================
+.. automodule:: gen.utils.alive
+   :members:
+   :undoc-members:
+   :show-inheritance:
 .. automodule:: gen.utils.callback
    :members:
    :undoc-members:

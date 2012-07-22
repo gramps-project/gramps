@@ -29,7 +29,7 @@ DateUtils
    :undoc-members:
    :show-inheritance:
 
-datehandler
+DateHandler
 ====================================
 .. automodule:: gen.datehandler._datehandler
    :members:
@@ -40,7 +40,7 @@ Localized Date Handlers
 ====================================
 
 *****************************
-datehandler (Bulgarian)
+DateHandler (Bulgarian)
 *****************************
 .. autoclass:: gen.datehandler._date_bg.DateParserBG
    :members:
@@ -52,7 +52,7 @@ datehandler (Bulgarian)
    :show-inheritance: 
 
 *****************************
-datehandler (Catalan)
+DateHandler (Catalan)
 *****************************
 .. autoclass:: gen.datehandler._date_ca.DateParserCA
    :members:
@@ -64,7 +64,7 @@ datehandler (Catalan)
    :show-inheritance:
 
 *****************************
-datehandler (Czech)
+DateHandler (Czech)
 *****************************
 .. autoclass:: gen.datehandler._date_cs.DateParserCZ
    :members:
@@ -76,7 +76,7 @@ datehandler (Czech)
    :show-inheritance:
 
 *****************************
-datehandler (German)
+DateHandler (German)
 *****************************
 .. autoclass:: gen.datehandler._date_de.DateParserDE
    :members:
@@ -88,7 +88,7 @@ datehandler (German)
    :show-inheritance:
 
 *****************************
-datehandler (Spanish)
+DateHandler (Spanish)
 *****************************
 .. autoclass:: gen.datehandler._date_es.DateParserES
    :members:
@@ -100,7 +100,7 @@ datehandler (Spanish)
    :show-inheritance: 
 
 *****************************
-datehandler (Finnish)
+DateHandler (Finnish)
 *****************************
 .. autoclass:: gen.datehandler._date_fi.DateParserFI
    :members:
@@ -112,7 +112,7 @@ datehandler (Finnish)
    :show-inheritance: 
 
 *****************************
-datehandler (French)
+DateHandler (French)
 *****************************
 .. autoclass:: gen.datehandler._date_fr.DateParserFR
    :members:
@@ -124,7 +124,7 @@ datehandler (French)
    :show-inheritance: 
 
 *****************************
-datehandler (Croatian)
+DateHandler (Croatian)
 *****************************
 .. autoclass:: gen.datehandler._date_hr.DateParserHR
    :members:
@@ -136,7 +136,7 @@ datehandler (Croatian)
    :show-inheritance:
 
 *****************************
-datehandler (Italian)
+DateHandler (Italian)
 *****************************
 .. autoclass:: gen.datehandler._date_it.DateParserIT
    :members:
@@ -148,7 +148,7 @@ datehandler (Italian)
    :show-inheritance: 
 
 *****************************
-datehandler (Lituanian)
+DateHandler (Lituanian)
 *****************************
 .. autoclass:: gen.datehandler._date_lt.DateParserLT
    :members:
@@ -160,7 +160,7 @@ datehandler (Lituanian)
    :show-inheritance:  
 
 *****************************
-datehandler (Norwegian)
+DateHandler (Norwegian)
 *****************************
 .. autoclass:: gen.datehandler._date_nb.DateParserNb
    :members:
@@ -172,7 +172,7 @@ datehandler (Norwegian)
    :show-inheritance: 
 
 *****************************
-datehandler (Dutch)
+DateHandler (Dutch)
 *****************************
 .. autoclass:: gen.datehandler._date_nl.DateParserNL
    :members:
@@ -184,7 +184,7 @@ datehandler (Dutch)
    :show-inheritance: 
 
 *****************************
-datehandler (Polish)
+DateHandler (Polish)
 *****************************
 .. autoclass:: gen.datehandler._date_pl.DateParserPL
    :members:
@@ -196,7 +196,7 @@ datehandler (Polish)
    :show-inheritance:
 
 *****************************
-datehandler (Portuguese)
+DateHandler (Portuguese)
 *****************************
 .. autoclass:: gen.datehandler._date_pt.DateParserPT
    :members:
@@ -208,7 +208,7 @@ datehandler (Portuguese)
    :show-inheritance:
 
 *****************************
-datehandler (Russian)
+DateHandler (Russian)
 *****************************
 .. autoclass:: gen.datehandler._date_ru.DateParserRU
    :members:
@@ -220,7 +220,7 @@ datehandler (Russian)
    :show-inheritance:
 
 *****************************
-datehandler (Slovak)
+DateHandler (Slovak)
 *****************************
 .. autoclass:: gen.datehandler._date_sk.DateParserSK
    :members:
@@ -232,7 +232,7 @@ datehandler (Slovak)
    :show-inheritance:
 
 *****************************
-datehandler (Slovenian)
+DateHandler (Slovenian)
 *****************************
 .. autoclass:: gen.datehandler._date_sl.DateParserSL
    :members:
@@ -244,7 +244,7 @@ datehandler (Slovenian)
    :show-inheritance:
 
 *****************************
-datehandler (Serbian)
+DateHandler (Serbian)
 *****************************
 .. autoclass:: gen.datehandler._date_sr.DateParserSR
    :members:
@@ -256,7 +256,7 @@ datehandler (Serbian)
    :show-inheritance:
 
 *****************************
-datehandler (Swedish)
+DateHandler (Swedish)
 *****************************
 .. autoclass::  gen.datehandler._date_sv.DateParserSv
    :members:
