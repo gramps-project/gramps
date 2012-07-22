@@ -826,10 +826,20 @@ def tag_reference_table(obj, user, act):
     retval += nbsp("") # to keep tabs same height
     return retval 
 
+class Link(object):
+    def __init__(self, string, url=None):
+        self.string = string
+        self.url = url
+    def get_url(self):
+        return self.url
+    def __str__(self):
+        return self.string
+
 def children_table(obj, user, act, url=None, *args):
     retval = ""
     table = Table("children_table")
     table.columns(
+        "",
         _("#"),
         _("ID"),
         _("Name"),
@@ -838,7 +848,7 @@ def children_table(obj, user, act, url=None, *args):
         _("Maternal"),
         _("Birth Date"),
         )
-    table.column_widths = [3] + [98/6] * 6
+    #table.column_widths = [3] + [98/6] * 6
 
     family = obj
     obj_type = ContentType.objects.get_for_model(family)
@@ -849,7 +859,8 @@ def children_table(obj, user, act, url=None, *args):
     for childref in childrefs:
         child = childref.ref_object
         if user.is_authenticated():
-            table.row(str(count), 
+            table.row(Link("[[x]][[^]][[v]]"),
+                      str(count), 
                       "[%s]" % child.gramps_id,
                       render_name(child, user),
                       child.gender_type,
@@ -875,6 +886,9 @@ def children_table(obj, user, act, url=None, *args):
             count += 1
     table.links(links)
     retval += table.get_html()
+    retval = retval.replace("[[x]]", make_button("x", "/person/remove/family/%s" % family.handle))
+    retval = retval.replace("[[^]]", make_button("^", "/person/up/family/%s" % family.handle))
+    retval = retval.replace("[[v]]", make_button("v", "/person/down/family/%s" % family.handle))
     if user.is_superuser and url and act == "view":
         retval += make_button(_("Add New Person as Child"), (url.replace("$act", "add") % args))
         retval += make_button(_("Add Existing Person as Child"), (url.replace("$act", "share") % args))
