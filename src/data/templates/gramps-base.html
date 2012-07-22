@@ -17,7 +17,6 @@
     <script type="text/javascript" src="/styles/javascript/jquery-ui-1.7.2.custom.min.js"></script>
     <script type="text/javascript" src="/styles/jhtmlarea/scripts/jHtmlArea-0.7.0.js"></script>	 
     <link rel="Stylesheet" type="text/css" href="/styles/jhtmlarea/style/jHtmlArea.css" />
-
     {% endblock %}
 
    <style type="text/css">
@@ -203,12 +202,62 @@
      .ui-tabs .ui-tabs-hide {
          display: none !important; 
          }
-
-   
     </style>
 
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+var  timerId=0 ;
+
+function clearTimer() {
+  if (timerId!=0) {
+    clearTimeout(timerId); timerId=0; }}
+
+function startTimer() {
+  clearTimer(); timerId=setTimeout('timerId=0;hideMenus()',200); 
+}
+
+function showMenu(menuNum) {
+  clearTimer(); hideMenus();
+  document.getElementById('menu_'+menuNum).style.display=""; 
+}
+
+function hideMenus() {
+  document.getElementById('menu_browse').style.display="none";
+}
+
+function hiLite(theOption) {
+  clearTimer();
+  document.getElementById('opt_'+theOption).style.background='#9090FF'; 
+}
+
+function unLite(theOption) {
+  startTimer();
+  document.getElementById('opt_'+theOption).style.background='#D0D0FF'; 
+}
+
+function optClick(theOption) {
+  document.location.href=theOption;
+}
+//-->
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+<!--
+.popupMenu {
+//  font-family     : Verdana,Tahoma,Helvetica,sans-serif;
+//  font-size       :     12px;
+  color           :  #111111;
+  position        : absolute;
+//  top             :     72px;
+  border          :      1px;
+  padding         :      3px;
+  z-index         :       16;
+  background-color:  #D0D0FF;
+  cursor          :  pointer; }
+-->
+</STYLE>
 </head>
-<body onload="if (document.getElementById('get_focus')) {document.getElementById('get_focus').focus();}">
+<body onclick="hideMenus()" onload="if (document.getElementById('get_focus')) {document.getElementById('get_focus').focus();}">
    <div id="header" style="padding-top: 1em; background-position:0px -32px;">
      <h1 id="SiteTitle" style="margin-left: 0em;">{% block heading %}{{sitename}}{% endblock %}</h1>
    </div>
@@ -224,9 +273,11 @@
 	   {% if user.is_authenticated %}
                 <li {{tview|currentSection:title.1 }}>
 	        {% if title.1 %}
-                   <a href="/{{title.1}}/">{{title.0}}</a></li>
+                   <a href="/{{title.1}}/">{{title.0}}</a>
+		</li>
 	        {% else %}
-                   <a href="/">{{title.0}}</a></li>
+                   <a href="/">{{title.0}}</a>
+                </li>
 	        {% endif %}
 	   {% else %}
                 {# don't show #}
@@ -234,7 +285,26 @@
         {% else %}
                 <li {{tview|currentSection:title.1 }}>
 	        {% if title.1 %}
-                   <a href="/{{title.1}}/">{{title.0}}</a></li>
+                   <a href="/{{title.1}}/"
+		      onmouseover="showMenu('{{title.1}}')" 
+		      onmouseout="startTimer()" 
+		      style="cursor:pointer"  
+		      href="/browse/">{{title.0}}</a>
+<DIV CLASS="popupMenu" ID="menu_browse" STYLE="display:none;">
+  <TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0">
+  <TR ID="opt_person"><TD><A ONMOUSEOVER="hiLite('person')" ONMOUSEOUT="unLite('person')" ONCLICK="optClick('/person/')">People</A></TD></TR>
+  <TR ID="opt_family"><TD><A ONMOUSEOVER="hiLite('family')" ONMOUSEOUT="unLite('family')" ONCLICK="optClick('/family/')">Families</A></TD></TR>
+  <TR ID="opt_event"><TD><A ONMOUSEOVER="hiLite('event')" ONMOUSEOUT="unLite('event')" ONCLICK="optClick('/event/')">Events</A></TD></TR>
+  <TR ID="opt_note"><TD><A ONMOUSEOVER="hiLite('note')" ONMOUSEOUT="unLite('note')" ONCLICK="optClick('/note/')">Note</A></TD></TR>
+  <TR ID="opt_media"><TD><A ONMOUSEOVER="hiLite('media')" ONMOUSEOUT="unLite('media')" ONCLICK="optClick('/media/')">Media</A></TD></TR>
+  <TR ID="opt_citation"><TD><A ONMOUSEOVER="hiLite('citation')" ONMOUSEOUT="unLite('citation')" ONCLICK="optClick('/citation/')">Citations</A></TD></TR>
+  <TR ID="opt_source"><TD><A ONMOUSEOVER="hiLite('source')" ONMOUSEOUT="unLite('source')" ONCLICK="optClick('/source/')">Sources</A></TD></TR>
+  <TR ID="opt_place"><TD><A ONMOUSEOVER="hiLite('place')" ONMOUSEOUT="unLite('place')" ONCLICK="optClick('/place/')">Places</A></TD></TR>
+  <TR ID="opt_repository"><TD><A ONMOUSEOVER="hiLite('repsoitory')" ONMOUSEOUT="unLite('repository')" ONCLICK="optClick('/repository/')">Repository</A></TD></TR>
+  <TR ID="opt_tag"><TD><A ONMOUSEOVER="hiLite('tag')" ONMOUSEOUT="unLite('tag')" ONCLICK="optClick('/tag/')">Tags</A></TD></TR>
+</TABLE>
+</DIV>
+                </li>
 	        {% else %}
                    <a href="/">{{title.0}}</a></li>
 	        {% endif %}
