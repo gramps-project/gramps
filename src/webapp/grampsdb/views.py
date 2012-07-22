@@ -608,7 +608,7 @@ def build_person_query(request, search):
                 if startswith and endswith:
                     exact = True
                 if "." in field and not protect:
-                    query &= Q(**{str(field.replace(".", "__")): value})
+                    query &= build_string_query(field.replace(".", "__"), value, exact, startswith, endswith)
                 elif field == "surname":
                     query &= build_string_query("surname__surname", value, exact, startswith, endswith)
                 elif field == "given":
@@ -657,7 +657,7 @@ def build_family_query(request, search):
     Build and return a Django QuerySet and sort order for the Family
     table.
     """
-    terms = ["father", "mother", "id", "type"]
+    terms = ["father", "mother", "id", "type", "surnames", "father.name.first_name", "mother.name.first_name"]
     protect = not request.user.is_authenticated()
     if protect:
         query = (Q(private=False) & Q(father__private=False) & 
@@ -698,7 +698,7 @@ def build_family_query(request, search):
                 if startswith and endswith:
                     exact = True
                 if "." in field and not protect:
-                    query &= Q(**{str(field.replace(".", "__")): value})
+                    query &= build_string_query(field.replace(".", "__"), value, exact, startswith, endswith)
                 elif field == "surnames":
                     query &= (build_string_query("father__name__surname__surname", value, exact, startswith, endswith) |
                               build_string_query("mother__name__surname__surname", value, exact, startswith, endswith))
@@ -760,7 +760,7 @@ def build_media_query(request, search):
                 if startswith and endswith:
                     exact = True
                 if "." in field and not protect:
-                    query &= Q(**{str(field.replace(".", "__")): value})
+                    query &= build_string_query(field.replace(".", "__"), value, exact, startswith, endswith)
                 elif field == "id":
                     query &= build_string_query("gramps_id", value, exact, startswith, endswith) 
                 elif field == "path":
@@ -818,7 +818,7 @@ def build_note_query(request, search):
                 if startswith and endswith:
                     exact = True
                 if "." in field and not protect:
-                    query &= Q(**{str(field.replace(".", "__")): value})
+                    query &= build_string_query(field.replace(".", "__"), value, exact, startswith, endswith)
                 elif field == "id":
                     query &= build_string_query("gramps_id", value, exact, startswith, endswith)
                 elif field == "type":
@@ -872,7 +872,7 @@ def build_place_query(request, search):
                 if startswith and endswith:
                     exact = True
                 if "." in field and not protect:
-                    query &= Q(**{str(field.replace(".", "__")): value})
+                    query &= build_string_query(field.replace(".", "__"), value, exact, startswith, endswith)
                 elif field == "id":
                     query &= build_string_query("gramps_id", value, exact, startswith, endswith)
                 elif field == "title":
@@ -922,7 +922,7 @@ def build_repository_query(request, search):
                 if startswith and endswith:
                     exact = True
                 if "." in field and not protect:
-                    query &= Q(**{str(field.replace(".", "__")): value})
+                    query &= build_string_query(field.replace(".", "__"), value, exact, startswith, endswith)
                 elif field == "id":
                     query &= build_string_query("gramps_id", value, exact, startswith, endswith)
                 elif field == "name":
@@ -978,7 +978,7 @@ def build_citation_query(request, search):
                 if startswith and endswith:
                     exact = True
                 if "." in field and not protect:
-                    query &= Q(**{str(field.replace(".", "__")): value})
+                    query &= build_string_query(field.replace(".", "__"), value, exact, startswith, endswith)
                 elif field == "id":
                     query &= build_string_query("gramps_id", value, exact, startswith, endswith)
                 else:
@@ -1024,7 +1024,7 @@ def build_source_query(request, search):
                 if startswith and endswith:
                     exact = True
                 if "." in field and not protect:
-                    query &= Q(**{str(field.replace(".", "__")): value})
+                    query &= build_string_query(field.replace(".", "__"), value, exact, startswith, endswith)
                 elif field == "id":
                     query &= build_string_query("gramps_id", value, exact, startswith, endswith)
                 else:
@@ -1070,7 +1070,7 @@ def build_tag_query(request, search):
                 if startswith and endswith:
                     exact = True
                 if "." in field and not protect:
-                    query &= Q(**{str(field.replace(".", "__")): value})
+                    query &= build_string_query(field.replace(".", "__"), value, exact, startswith, endswith)
                 elif field == "name":
                     query &= Q(name__icontains=value)
                 else:
@@ -1117,7 +1117,7 @@ def build_report_query(request, search):
                 if startswith and endswith:
                     exact = True
                 if "." in field and not protect:
-                    query &= Q(**{str(field.replace(".", "__")): value})
+                    query &= build_string_query(field.replace(".", "__"), value, exact, startswith, endswith)
                 elif field == "name":
                     query &= Q(name__icontains=value)
                 else:
@@ -1132,7 +1132,7 @@ def build_report_query(request, search):
     return query, order, terms
 
 def build_event_query(request, search):
-    terms = ["id", "type", "place"]
+    terms = ["id", "type", "place", "description"]
     protect = not request.user.is_authenticated()
     if protect:
         query = Q(private=False) # general privacy
@@ -1163,9 +1163,11 @@ def build_event_query(request, search):
                 if startswith and endswith:
                     exact = True
                 if "." in field and not protect:
-                    query &= Q(**{str(field.replace(".", "__")): value})
+                    query &= build_string_query(field.replace(".", "__"), value, exact, startswith, endswith)
                 elif field == "id":
                     query &= build_string_query("gramps_id", value, exact, startswith, endswith)
+                elif field == "description":
+                    query &= build_string_query("desc", value, exact, startswith, endswith)
                 elif field == "type":
                     query &= build_string_query("event_type__name", value, exact, startswith, endswith)
                 elif field == "place":
@@ -1175,10 +1177,12 @@ def build_event_query(request, search):
         else: # no search fields, just raw search
             if protect:
                 query &= (Q(gramps_id__icontains=search) |
+                          Q(desc__icontains=search) |
                           Q(event_type__name__icontains=search) |
                           Q(place__title__icontains=search))
             else:
                 query &= (Q(gramps_id__icontains=search) |
+                          Q(desc__icontains=search) |
                           Q(event_type__name__icontains=search) |
                           Q(place__title__icontains=search))
     else: # no search
