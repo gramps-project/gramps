@@ -848,7 +848,7 @@ def children_table(obj, user, act, url=None, *args):
         _("Maternal"),
         _("Birth Date"),
         )
-    #table.column_widths = [3] + [98/6] * 6
+    table.column_widths = [10, 3, 8, 30, 8, 8, 8, 25] 
 
     family = obj
     obj_type = ContentType.objects.get_for_model(family)
@@ -859,7 +859,7 @@ def children_table(obj, user, act, url=None, *args):
     for childref in childrefs:
         child = childref.ref_object
         if user.is_authenticated():
-            table.row(Link("[[x]][[^]][[v]]"),
+            table.row(Link("[[x%d]][[^%d]][[v%d]]" % (count, count, count)),
                       str(count), 
                       "[%s]" % child.gramps_id,
                       render_name(child, user),
@@ -886,9 +886,12 @@ def children_table(obj, user, act, url=None, *args):
             count += 1
     table.links(links)
     retval += table.get_html()
-    retval = retval.replace("[[x]]", make_button("x", "/person/remove/family/%s" % family.handle))
-    retval = retval.replace("[[^]]", make_button("^", "/person/up/family/%s" % family.handle))
-    retval = retval.replace("[[v]]", make_button("v", "/person/down/family/%s" % family.handle))
+    count = 1
+    for childref in childrefs:
+        retval = retval.replace("[[x%d]]" % count, make_button("x", "/family/%s/remove/child/%d" % (family.handle, count)))
+        retval = retval.replace("[[^%d]]" % count, make_button("^", "/family/%s/up/child/%d" % (family.handle, count)))
+        retval = retval.replace("[[v%d]]" % count, make_button("v", "/family/%s/down/child/%d" % (family.handle, count)))
+        count += 1
     if user.is_superuser and url and act == "view":
         retval += make_button(_("Add New Person as Child"), (url.replace("$act", "add") % args))
         retval += make_button(_("Add Existing Person as Child"), (url.replace("$act", "share") % args))

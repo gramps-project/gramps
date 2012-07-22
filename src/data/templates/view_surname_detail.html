@@ -19,7 +19,8 @@
       {% format "/browse|Browse" %} ||
       {% format "/person|People" %} ||
       {% format "/person/%s|Person [%s]" object.handle object.gramps_id %} ||
-      {% format "/person/%s/name/%s|Name #%s" object.handle order order %}
+      {% format "/person/%s/name/%s|Name #%s" object.handle order order %} ||
+      {% format "/person/%s/name/%s/surname/%s|Surname #%s" object.handle order sorder sorder %}
    {% endfilter %}
 
 <h3>{{person|make_name:user}} [{{person.gramps_id}}]</h3>
@@ -55,17 +56,6 @@
 </div>
 </div>
 
-<!-- Tabs -->
-
-<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
-  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tab-general">General</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-sources">Sources</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Notes</a></li>
-  </ul>
-
-</div>
-
 {% if user.is_superuser %}
   {% if action == "edit" %}
     {% make_button "Cancel" "/person/%s/name/%s/surname/%s" person.handle order sorder args %}
@@ -83,7 +73,7 @@
     {% else %}
       {% make_button "Add Surname" "/person/%s/name/%s/surname/add" person.handle order args %}
       {% make_button "Edit Surname" "/person/%s/name/%s/surname/%s/edit" person.handle order sorder args %}
-      {% make_button "Add Surname" "/person/%s/name/%s/surname/%s/delete" person.handle order sorder args %}
+      {% make_button "Delete Surname" "/person/%s/name/%s/surname/%s/delete" person.handle order sorder args %}
     {% endif %}
   {% endif %}
 {% endif %}
