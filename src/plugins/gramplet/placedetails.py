@@ -46,11 +46,11 @@ class PlaceDetails(Gramplet):
         self.title = Gtk.Label()
         self.title.set_alignment(0, 0)
         self.title.modify_font(Pango.FontDescription('sans bold 12'))
-        vbox.pack_start(self.title, fill=True, expand=False, padding=7)
+        vbox.pack_start(self.title, False, True, 7)
         self.table = Gtk.Table(1, 2)
-        vbox.pack_start(self.table, fill=True, expand=False)
-        self.top.pack_start(self.photo, fill=True, expand=False, padding=5)
-        self.top.pack_start(vbox, fill=True, expand=False, padding=10)
+        vbox.pack_start(self.table, False, True, 0)
+        self.top.pack_start(self.photo, False, True, 5)
+        self.top.pack_start(vbox, False, True, 10)
         self.top.show_all()
         return self.top
 
