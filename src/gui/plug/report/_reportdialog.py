@@ -4,7 +4,7 @@
 # Copyright (C) 2001-2006  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2011       Paul Franklin
+# Copyright (C) 2011-2012  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -185,7 +185,6 @@ class ReportDialog(ManagedWindow):
         # frame and to create other frames
         self.add_user_options()
 
-        self.setup_main_options()
         self.setup_init()
         self.setup_format_frame()
         self.setup_target_frame()
@@ -377,8 +376,6 @@ class ReportDialog(ManagedWindow):
 
     def setup_other_frames(self):
         for key in self.frame_names:
-            if key == "":
-                continue
             flist = self.frames[key]
             table = Gtk.Table(3, len(flist))
             table.set_col_spacings(12)
@@ -402,21 +399,6 @@ class ReportDialog(ManagedWindow):
                                  yoptions=Gtk.AttachOptions.SHRINK)
                 row += 1
                 
-    def setup_main_options(self):
-        if "" in self.frames:
-            flist = self.frames[""]
-            for (text, widget) in flist:
-                label = Gtk.Label(label="<b>%s</b>" % text)
-                label.set_use_markup(True)
-                label.set_alignment(0.0, 0.5)
-                
-                self.tbl.set_border_width(12)
-                self.tbl.attach(label, 0, 4, self.row, self.row+1)
-                self.row += 1
-    
-                self.tbl.attach(widget, 2, 4, self.row, self.row+1)
-                self.row += 1
-
     #------------------------------------------------------------------------
     #
     # Customization hooks for stand-alone reports (subclass ReportDialog)
