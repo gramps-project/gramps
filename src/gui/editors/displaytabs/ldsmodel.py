@@ -31,7 +31,7 @@
 # GTK libraries
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -46,12 +46,12 @@ from gen.utils.lds import TEMPLES
 # LdsModel
 #
 #-------------------------------------------------------------------------
-class LdsModel(gtk.ListStore):
+class LdsModel(Gtk.ListStore):
 
     _HANDLE_COL = 5
 
     def __init__(self, lds_list, db):
-        gtk.ListStore.__init__(self, str, str, str, str, str, object)
+        Gtk.ListStore.__init__(self, str, str, str, str, str, object)
 
         self.db = db
         for lds_ord in lds_list:

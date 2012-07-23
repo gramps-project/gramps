@@ -27,7 +27,7 @@
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
-import gobject
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -155,7 +155,7 @@ class PersonEventEmbedList(EventEmbedList):
         # New index is index-1 but for path, add another 1 for person events.
         path = (index,)
         self.tree.get_selection().select_path(path)
-        gobject.idle_add(self.tree.scroll_to_cell, path)
+        GObject.idle_add(self.tree.scroll_to_cell, path)
 
     def _move_down_group(self, groupindex):
         """
@@ -183,4 +183,4 @@ class PersonEventEmbedList(EventEmbedList):
         # New index is index+1 but for path, add another 1 for person events.
         path = (index + 2,)
         self.tree.get_selection().select_path(path)
-        gobject.idle_add(self.tree.scroll_to_cell, path)
+        GObject.idle_add(self.tree.scroll_to_cell, path)

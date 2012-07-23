@@ -33,7 +33,7 @@ log = logging.getLogger(".")
 # GNOME/GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -68,7 +68,7 @@ INVALID_DATE_FORMAT = config.get('preferences.invalid-date-format')
 #-------------------------------------------------------------------------
 class EventModel(FlatBaseModel):
 
-    def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None,
+    def __init__(self, db, scol=0, order=Gtk.SortType.ASCENDING, search=None,
                  skip=set(), sort_map=None):
         self.gen_cursor = db.get_event_cursor
         self.map = db.get_raw_event_data
@@ -109,7 +109,7 @@ class EventModel(FlatBaseModel):
         self.smap = None
         FlatBaseModel.destroy(self)
 
-    def on_get_n_columns(self):
+    def do_get_n_columns(self):
         return len(self.fmap)+1
 
     def column_description(self,data):

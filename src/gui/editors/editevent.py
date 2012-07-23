@@ -34,7 +34,7 @@ from gen.ggettext import sgettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -171,7 +171,7 @@ class EditEvent(EditPrimary):
         Create the notebook tabs and inserts them into the main
         window.
         """
-        notebook = gtk.Notebook()
+        notebook = Gtk.Notebook()
 
         self.citation_list = CitationEmbedList(self.dbstate,
                                                self.uistate,
@@ -210,7 +210,7 @@ class EditEvent(EditPrimary):
         self._setup_notebook_tabs(notebook)
         
         notebook.show_all()
-        self.top.get_object('vbox').pack_start(notebook, True)
+        self.top.get_object('vbox').pack_start(notebook, True, True, 0)
 
         self.track_ref_for_deletion("citation_list")
         self.track_ref_for_deletion("note_list")

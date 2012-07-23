@@ -48,7 +48,7 @@ LOG = logging.getLogger(".Spell")
 # GTK libraries
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 try:
     import gtkspell

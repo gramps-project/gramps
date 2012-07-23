@@ -26,6 +26,40 @@
 Utility functions to cast types
 """
 
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
+import locale
+
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
+from gen.datehandler import codeset
+
+"""
+strxfrm needs it's unicode argument correctly cast before used.
+"""
+
+conv_unicode_tosrtkey = lambda x: locale.strxfrm(x.encode(codeset, 'replace'))
+
+if codeset == 'UTF-8':
+    conv_str_tosrtkey = lambda x: locale.strxfrm(x)
+else:
+    conv_str_tosrtkey = lambda x: locale.strxfrm(unicode(x,'UTF-8').encode(
+                                                           codeset, 'replace'))
+
+def conv_tosrtkey(value):
+    if isinstance(value, unicode):
+        return conv_unicode_tosrtkey(value)
+    return conv_str_tosrtkey(value)
+
+#strings in database are utf-8
+conv_dbstr_to_unicode = lambda x: unicode(x, 'UTF-8')
+
 def cast_to_bool(val):
     if val == str(True):
         return True

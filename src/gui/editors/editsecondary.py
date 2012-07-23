@@ -102,7 +102,7 @@ class EditSecondary(ManagedWindow, DbGUIElement):
 
     def _add_tab(self, notebook,page):
         self.__tabs.append(page)
-        notebook.insert_page(page, page.get_tab_widget())
+        notebook.insert_page(page, page.get_tab_widget(), -1)
         page.label.set_use_underline(True)
         return page
 

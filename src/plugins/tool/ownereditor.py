@@ -30,7 +30,7 @@
 # gnome/gtk
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -156,7 +156,7 @@ class OwnerEditor(tool.Tool, ManagedWindow):
     def on_button_press_event(self, obj, event):
         """Shows popup-menu for db <-> preferences copying"""
         if gui.utils.is_right_click(event):
-            self.menu.popup(None,None,None,0,0)
+            self.menu.popup(None, None, None, None, 0, 0)
 
     def build_menu_names(self, obj):
         return (_('Main window'), _("Edit database owner information"))

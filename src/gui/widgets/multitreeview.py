@@ -24,14 +24,14 @@
 An override to allow easy multiselections.
 """
 
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
 # MultiTreeView class
 #
 #-------------------------------------------------------------------------
-class MultiTreeView(gtk.TreeView):
+class MultiTreeView(Gtk.TreeView):
     '''
     TreeView that captures mouse events to make drag and drop work properly
     '''
@@ -43,8 +43,8 @@ class MultiTreeView(gtk.TreeView):
         self.defer_select = False
 
     def key_press_event(self, widget, event):
-        if event.type == gtk.gdk.KEY_PRESS:
-            if event.keyval == gtk.keysyms.Delete:
+        if event.type == Gdk.EventType.KEY_PRESS:
+            if event.keyval == Gdk.KEY_Delete:
                 model, paths = self.get_selection().get_selected_rows()
                 # reverse, to delete from the end
                 paths.sort(key=lambda x:-x[0])
@@ -62,8 +62,8 @@ class MultiTreeView(gtk.TreeView):
         # drag multiple items without the click selecting only one
         target = self.get_path_at_pos(int(event.x), int(event.y))
         if (target 
-            and event.type == gtk.gdk.BUTTON_PRESS
-            and not (event.state & (gtk.gdk.CONTROL_MASK|gtk.gdk.SHIFT_MASK))
+            and event.type == Gdk.EventType.BUTTON_PRESS
+            and not (event.get_state() & (Gdk.ModifierType.CONTROL_MASK|Gdk.ModifierType.SHIFT_MASK))
             and self.get_selection().path_is_selected(target[0])):
             # disable selection
             self.get_selection().set_select_function(lambda *ignore: False)

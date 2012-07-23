@@ -43,8 +43,7 @@ import re
 # GNOME/GTK modules
 #
 #------------------------------------------------------------------------
-import gtk
-from gtk.gdk import Color
+from gi.repository import Gdk
 
 #------------------------------------------------------------------------
 #
@@ -101,7 +100,7 @@ class StyleListDisplay(object):
                                         [(_('Style'), -1, 10)], )
         self.redraw()
         if parent_window:
-            self.window.set_transient_for(parent_window)
+            self.set_transient_for(parent_window)
         self.window.run()
         self.window.destroy()
 
@@ -141,7 +140,7 @@ class StyleListDisplay(object):
             log.error("Failed to save stylesheet", exc_info=True)
 
     def on_button_press(self, obj, event):
-        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             self.on_edit_clicked(obj)
             
     def on_edit_clicked(self, obj):
@@ -230,7 +229,7 @@ class StyleEditor(object):
         self.plist.select_row(0)
         
         if self.parent:
-            self.window.set_transient_for(parent.window)
+            self.set_transient_for(parent.window)
         self.window.run()
         self.window.destroy()
 
@@ -277,7 +276,7 @@ class StyleEditor(object):
         self.top.get_object("bborder").set_active(p.get_bottom_border())
 
         self.fg_color = font.get_color()
-        c = Color(self.fg_color[0] << 8, 
+        c = Gdk.Color(self.fg_color[0] << 8, 
                   self.fg_color[1] << 8, 
                   self.fg_color[2] << 8)
         self.top.get_object("color").set_color(c)
@@ -285,7 +284,7 @@ class StyleEditor(object):
                                                "#%02X%02X%02X" % self.fg_color)
 
         self.bg_color = p.get_background_color()
-        c = Color(self.bg_color[0] << 8, 
+        c = Gdk.Color(self.bg_color[0] << 8, 
                   self.bg_color[1] << 8, 
                   self.bg_color[2] << 8)
         self.top.get_object("bgcolor").set_color(c)

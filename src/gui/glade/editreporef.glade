@@ -73,9 +73,16 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkComboBoxEntry" id="media_type">
+                      <object class="GtkComboBox" id="media_type">
                         <property name="visible">True</property>
                         <property name="tooltip_text" translatable="yes">On what type of media this source is available in the repository.</property>
+                        <property name="has_entry">True</property>
+                        <child internal-child="entry">
+                          <object class="GtkEntry" id="media_type-entry">
+                        <property name="can_focus">True</property>
+                        <property name="overwrite_mode">True</property>
+                          </object>
+                        </child>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -321,9 +328,16 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkComboBoxEntry" id="repo_type">
+                          <object class="GtkComboBox" id="repo_type">
                             <property name="visible">True</property>
                             <property name="tooltip_text" translatable="yes">Type of repository, eg., 'Library', 'Album', ...</property>
+                        <property name="has_entry">True</property>
+                        <child internal-child="entry">
+                          <object class="GtkEntry" id="repo_type-entry">
+                        <property name="can_focus">True</property>
+                        <property name="overwrite_mode">True</property>
+                          </object>
+                        </child>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>

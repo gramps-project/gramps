@@ -29,7 +29,7 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import gobject
+from gi.repository import GObject
 from gen.ggettext import gettext as _
 from copy import copy
 
@@ -38,7 +38,7 @@ from copy import copy
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -85,9 +85,9 @@ class GeneralNameTab(GrampsTab):
         @type widge: gtk widget
         """
         GrampsTab.__init__(self, dbstate, uistate, track, name)
-        eventbox = gtk.EventBox()
+        eventbox = Gtk.EventBox()
         eventbox.add(widget)
-        self.pack_start(eventbox)
+        self.pack_start(eventbox, True, True, 0)
         self._set_label(show_image=False)
         widget.connect('key_press_event', self.key_pressed)
         self.show_all()

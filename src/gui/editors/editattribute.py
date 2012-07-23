@@ -39,7 +39,7 @@ from gen.ggettext import gettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -107,7 +107,7 @@ class EditAttribute(EditSecondary):
             )
 
     def _create_tabbed_pages(self):
-        notebook = gtk.Notebook()
+        notebook = Gtk.Notebook()
         self.srcref_list = CitationEmbedList(self.dbstate,
                                              self.uistate,
                                              self.track,

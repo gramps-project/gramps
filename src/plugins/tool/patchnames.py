@@ -36,8 +36,8 @@ import re
 # gnome/gtk
 #
 #-------------------------------------------------------------------------
-import gtk
-import gobject
+from gi.repository import Gtk
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -105,40 +105,39 @@ class PatchNames(tool.BatchTool, ManagedWindow):
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.label = _('Name and title extraction tool')
         ManagedWindow.__init__(self, uistate, [], self.__class__)
-        self.set_window(gtk.Window(), gtk.Label(), '')
+        self.set_window(Gtk.Window(), Gtk.Label(), '')
 
         tool.BatchTool.__init__(self, dbstate, options_class, name)
         if self.fail:
             return
         
-        winprefix = gtk.Dialog(_("Default prefix and connector settings"),
+        winprefix = Gtk.Dialog(_("Default prefix and connector settings"),
                                 self.uistate.window,
-                                gtk.DIALOG_MODAL|gtk.DIALOG_DESTROY_WITH_PARENT,
-                                (gtk.STOCK_OK, gtk.RESPONSE_ACCEPT))
+                                Gtk.DialogFlags.MODAL|Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                (Gtk.STOCK_OK, Gtk.ResponseType.ACCEPT))
         
-        winprefix.set_has_separator(False)
         winprefix.vbox.set_spacing(5)
-        hboxpref = gtk.HBox()
-        hboxpref.pack_start(gtk.Label(_('Prefixes to search for:')), 
+        hboxpref = Gtk.HBox()
+        hboxpref.pack_start(Gtk.Label(_('Prefixes to search for:', True, True, 0)), 
                             expand=False, padding=5)
-        self.prefixbox = gtk.Entry()
+        self.prefixbox = Gtk.Entry()
         self.prefixbox.set_text(', '.join(PREFIX_LIST))
-        hboxpref.pack_start(self.prefixbox)
-        winprefix.vbox.pack_start(hboxpref)
-        hboxcon = gtk.HBox()
-        hboxcon.pack_start(gtk.Label(_('Connectors splitting surnames:')), 
+        hboxpref.pack_start(self.prefixbox, True, True, 0)
+        winprefix.vbox.pack_start(hboxpref, True, True, 0)
+        hboxcon = Gtk.HBox()
+        hboxcon.pack_start(Gtk.Label(_('Connectors splitting surnames:', True, True, 0)), 
                            expand=False, padding=5)
-        self.conbox = gtk.Entry()
+        self.conbox = Gtk.Entry()
         self.conbox.set_text(', '.join(CONNECTOR_LIST))
-        hboxcon.pack_start(self.conbox)
-        winprefix.vbox.pack_start(hboxcon)
-        hboxconns = gtk.HBox()
-        hboxconns.pack_start(gtk.Label(_('Connectors not splitting surnames:')), 
+        hboxcon.pack_start(self.conbox, True, True, 0)
+        winprefix.vbox.pack_start(hboxcon, True, True, 0)
+        hboxconns = Gtk.HBox()
+        hboxconns.pack_start(Gtk.Label(_('Connectors not splitting surnames:', True, True, 0)), 
                            expand=False, padding=5)
-        self.connsbox = gtk.Entry()
+        self.connsbox = Gtk.Entry()
         self.connsbox.set_text(', '.join(CONNECTOR_LIST_NONSPLIT))
-        hboxconns.pack_start(self.connsbox)
-        winprefix.vbox.pack_start(hboxconns)
+        hboxconns.pack_start(self.connsbox, True, True, 0)
+        winprefix.vbox.pack_start(hboxconns, True, True, 0)
         winprefix.show_all()
         winprefix.resize(700, 100)
 
@@ -387,25 +386,25 @@ class PatchNames(tool.BatchTool, ManagedWindow):
         self.list = self.top.get_object("list")
         self.set_window(window, self.top.get_object('title'), self.label)
 
-        self.model = gtk.ListStore(gobject.TYPE_BOOLEAN, gobject.TYPE_STRING,
-                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                   gobject.TYPE_STRING)
+        self.model = Gtk.ListStore(GObject.TYPE_BOOLEAN, GObject.TYPE_STRING,
+                                   GObject.TYPE_STRING, GObject.TYPE_STRING,
+                                   GObject.TYPE_STRING)
 
-        r = gtk.CellRendererToggle()
+        r = Gtk.CellRendererToggle()
         r.connect('toggled', self.toggled)
-        c = gtk.TreeViewColumn(_('Select'), r, active=0)
+        c = Gtk.TreeViewColumn(_('Select'), r, active=0)
         self.list.append_column(c)
 
-        c = gtk.TreeViewColumn(_('ID'), gtk.CellRendererText(), text=1)
+        c = Gtk.TreeViewColumn(_('ID'), Gtk.CellRendererText(), text=1)
         self.list.append_column(c)
 
-        c = gtk.TreeViewColumn(_('Type'), gtk.CellRendererText(), text=2)
+        c = Gtk.TreeViewColumn(_('Type'), Gtk.CellRendererText(), text=2)
         self.list.append_column(c)
 
-        c = gtk.TreeViewColumn(_('Value'), gtk.CellRendererText(), text=3)
+        c = Gtk.TreeViewColumn(_('Value'), Gtk.CellRendererText(), text=3)
         self.list.append_column(c)
 
-        c = gtk.TreeViewColumn(_('Current Name'), gtk.CellRendererText(), text=4)
+        c = Gtk.TreeViewColumn(_('Current Name'), Gtk.CellRendererText(), text=4)
         self.list.append_column(c)
 
         self.list.set_model(self.model)

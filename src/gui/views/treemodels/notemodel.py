@@ -34,7 +34,7 @@ import locale
 # GNOME/GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -53,7 +53,7 @@ from gen.lib import (Note, NoteType, StyledText)
 class NoteModel(FlatBaseModel):
     """
     """
-    def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None,
+    def __init__(self, db, scol=0, order=Gtk.SortType.ASCENDING, search=None,
                  skip=set(), sort_map=None):
         """Setup initial values for instance variables."""
         self.gen_cursor = db.get_note_cursor
@@ -96,7 +96,7 @@ class NoteModel(FlatBaseModel):
         """
         return 6
 
-    def on_get_n_columns(self):
+    def do_get_n_columns(self):
         """Return the column number of the Note tab."""
         return len(self.fmap) + 1
 
@@ -141,7 +141,7 @@ class NoteModel(FlatBaseModel):
         """
         Return the tag color.
         """
-        tag_color = None
+        tag_color = "#000000000000"
         tag_priority = None
         for handle in data[Note.POS_TAGS]:
             tag = self.db.get_tag_from_handle(handle)

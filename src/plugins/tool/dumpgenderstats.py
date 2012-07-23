@@ -27,7 +27,7 @@
     Tools/Debug/Dump Gender Statistics
 """
 from gen.ggettext import gettext as _
-import gtk
+from gi.repository import Gtk
 from gui.listmodel import ListModel, INTEGER
 from gui.managedwindow import ManagedWindow
 
@@ -66,14 +66,14 @@ class DumpGenderStats(tool.Tool, ManagedWindow):
                 (_('Guess'),4,70)
                 ]
         
-            treeview = gtk.TreeView()
+            treeview = Gtk.TreeView()
             model = ListModel(treeview,titles)
             for entry in stats_list:
                 model.add(entry,entry[0])
                 
-            window = gtk.Window()
+            window = Gtk.Window()
             window.set_default_size(400,300)
-            s = gtk.ScrolledWindow()
+            s = Gtk.ScrolledWindow()
             s.add(treeview)
             window.add(s)
             window.show_all()

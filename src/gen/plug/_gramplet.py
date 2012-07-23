@@ -230,16 +230,16 @@ class Gramplet(object):
         Set the textview to wrap or not.
         """
         textview = self.gui.textview
-        import gtk
-        # gtk.WRAP_NONE, gtk.WRAP_CHAR, gtk.WRAP_WORD or gtk.WRAP_WORD_CHAR.
+        from gi.repository import Gtk
+        # Gtk.WrapMode.NONE, Gtk.WrapMode.CHAR, Gtk.WrapMode.WORD or Gtk.WrapMode.WORD_CHAR.
         if value in [True, 1]:
-            textview.set_wrap_mode(gtk.WRAP_WORD)
+            textview.set_wrap_mode(Gtk.WrapMode.WORD)
         elif value in [False, 0, None]:
-            textview.set_wrap_mode(gtk.WRAP_NONE)
+            textview.set_wrap_mode(Gtk.WrapMode.NONE)
         elif value in ["char"]:
-            textview.set_wrap_mode(gtk.WRAP_CHAR)
+            textview.set_wrap_mode(Gtk.WrapMode.CHAR)
         elif value in ["word char"]:
-            textview.set_wrap_mode(gtk.WRAP_WORD_CHAR)
+            textview.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
         else:
             raise ValueError(
                     "Unknown wrap mode: '%s': use 0,1,'char' or 'word char')"
@@ -275,7 +275,7 @@ class Gramplet(object):
         """
         The main interface for running the main method.
         """
-        import gobject
+        from gi.repository import GObject
         if ((not self.active or 
              self.gui.gstate in ["closed", "minimized"] or 
              not self.dbstate.open) and 
@@ -294,8 +294,8 @@ class Gramplet(object):
             self.interrupt()
         self._generator = self.main()
         self._pause = False
-        self._idle_id = gobject.idle_add(self._updater, 
-                                         priority=gobject.PRIORITY_LOW - 10)
+        self._idle_id = GObject.idle_add(self._updater, 
+                                         priority=GObject.PRIORITY_LOW - 10)
 
     def _updater(self):
         """
@@ -345,10 +345,10 @@ class Gramplet(object):
         """
         Resume the main method that has previously paused.
         """
-        import gobject
+        from gi.repository import GObject
         self._pause = False
-        self._idle_id = gobject.idle_add(self._updater, 
-                                         priority=gobject.PRIORITY_LOW - 10)
+        self._idle_id = GObject.idle_add(self._updater, 
+                                         priority=GObject.PRIORITY_LOW - 10)
 
     def update_all(self, *args):
         """
@@ -363,10 +363,10 @@ class Gramplet(object):
         """
         Force the generator to stop running.
         """
-        import gobject
+        from gi.repository import GObject
         self._pause = True
         if self._idle_id == 0:
-            gobject.source_remove(self._idle_id)
+            GObject.source_remove(self._idle_id)
             self._idle_id = 0
 
     def _db_changed(self, db):

@@ -54,7 +54,7 @@ __LOG = logging.getLogger(".EditDate")
 # GNOME modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -205,13 +205,13 @@ class EditDate(ManagedWindow):
 
         while True:
             response = self.window.run()
-            if response == gtk.RESPONSE_HELP:
+            if response == Gtk.ResponseType.HELP:
                 display_help(webpage=WIKI_HELP_PAGE,
                                    section=WIKI_HELP_SEC)
-            elif response == gtk.RESPONSE_DELETE_EVENT:
+            elif response == Gtk.ResponseType.DELETE_EVENT:
                 break
             else:
-                if response == gtk.RESPONSE_OK:
+                if response == Gtk.ResponseType.OK:
                     (the_quality, the_modifier, the_calendar, the_value, 
                      the_text, the_newyear) = self.build_date_from_ui()
                     self.return_date = Date(self.date)

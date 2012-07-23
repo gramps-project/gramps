@@ -34,7 +34,7 @@ import locale
 # GNOME/GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -57,7 +57,7 @@ invalid_date_format = config.get('preferences.invalid-date-format')
 #-------------------------------------------------------------------------
 class FamilyModel(FlatBaseModel):
 
-    def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None, 
+    def __init__(self, db, scol=0, order=Gtk.SortType.ASCENDING, search=None, 
                  skip=set(), sort_map=None):
         self.gen_cursor = db.get_family_cursor
         self.map = db.get_raw_family_data
@@ -105,7 +105,7 @@ class FamilyModel(FlatBaseModel):
         """
         return 8
 
-    def on_get_n_columns(self):
+    def do_get_n_columns(self):
         return len(self.fmap)+1
 
     def column_handle(self, data):
@@ -185,7 +185,7 @@ class FamilyModel(FlatBaseModel):
         """
         Return the tag color.
         """
-        tag_color = None
+        tag_color = "#000000000000"
         tag_priority = None
         for handle in data[13]:
             tag = self.db.get_tag_from_handle(handle)

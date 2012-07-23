@@ -50,10 +50,10 @@ log = logging.getLogger(".")
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
 from gui.ddtargets import DdTargets
-import gtk
-from gtk import gdk
-import pango
-import gobject
+from gi.repository import Gtk
+from gi.repository import Gdk
+from gi.repository import Pango
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -86,8 +86,8 @@ from gen.utils.id import create_id
 
 SelectPerson = SelectorFactory('Person')
 
-_RETURN = gdk.keyval_from_name("Return")
-_KP_ENTER = gdk.keyval_from_name("KP_Enter")
+_RETURN = Gdk.keyval_from_name("Return")
+_KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 _LEFT_BUTTON = 1
 _RIGHT_BUTTON = 3
 
@@ -134,14 +134,14 @@ class ChildEmbedList(EmbeddedList):
 
     def get_popup_menu_items(self):
         return [
-            (False, True,  (gtk.STOCK_EDIT, _('Edit child')), 
+            (False, True,  (Gtk.STOCK_EDIT, _('Edit child')), 
                                             self.edit_child_button_clicked),
-            (True, True, gtk.STOCK_ADD, self.add_button_clicked),
+            (True, True, Gtk.STOCK_ADD, self.add_button_clicked),
             (True, False, _('Add an existing child'), 
                                             self.share_button_clicked),
-            (False, True,  (gtk.STOCK_EDIT, _('Edit relationship')), 
+            (False, True,  (Gtk.STOCK_EDIT, _('Edit relationship')), 
                                             self.edit_button_clicked),
-            (True, True, gtk.STOCK_REMOVE, self.del_button_clicked),
+            (True, True, Gtk.STOCK_REMOVE, self.del_button_clicked),
             ]
 
     def get_middle_click(self):
@@ -193,7 +193,7 @@ class ChildEmbedList(EmbeddedList):
         ref.ref = person.get_handle()
         self.family.add_child_ref(ref)
         self.rebuild()
-        gobject.idle_add(self.tree.scroll_to_cell,
+        GObject.idle_add(self.tree.scroll_to_cell,
                          len(self.family.get_child_ref_list()) - 1)
         self.call_edit_childref(ref)
 
@@ -215,7 +215,7 @@ class ChildEmbedList(EmbeddedList):
             ref.ref = person.get_handle()
             self.family.add_child_ref(ref)
             self.rebuild()
-            gobject.idle_add(self.tree.scroll_to_cell,
+            GObject.idle_add(self.tree.scroll_to_cell,
                              len(self.family.get_child_ref_list()) - 1)
             self.call_edit_childref(ref)
 
@@ -615,7 +615,7 @@ class EditFamily(EditPrimary):
 
     def _create_tabbed_pages(self):
 
-        notebook = gtk.Notebook()
+        notebook = Gtk.Notebook()
 
         self.child_list = ChildEmbedList(self.dbstate,
                                          self.uistate,
@@ -676,7 +676,7 @@ class EditFamily(EditPrimary):
         notebook.show_all()
 
         self.hidden = (notebook, self.top.get_object('info'))
-        self.top.get_object('vbox').pack_start(notebook, True)
+        self.top.get_object('vbox').pack_start(notebook, True, True, 0)
 
     def update_father(self, handle):
         self.load_parent(handle, self.fname, self.fbirth, self.fbirth_label,
@@ -1092,9 +1092,9 @@ class EditFamily(EditPrimary):
         return name
 
 def button_activated(event, mouse_button):
-    if (event.type == gtk.gdk.BUTTON_PRESS and
+    if (event.type == Gdk.EventType.BUTTON_PRESS and
         event.button == mouse_button) or \
-       (event.type == gtk.gdk.KEY_PRESS and
+       (event.type == Gdk.EventType.KEY_PRESS and
         event.keyval in (_RETURN, _KP_ENTER)):
         return True
     else:

@@ -39,7 +39,8 @@ from gen.ggettext import gettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gdk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -60,8 +61,8 @@ from gen.display.name import displayer as name_displayer
 #
 #-------------------------------------------------------------------------
 
-_RETURN = gtk.gdk.keyval_from_name("Return")
-_KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
+_RETURN = Gdk.keyval_from_name("Return")
+_KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 _LEFT_BUTTON = 1
 _RIGHT_BUTTON = 3
 
@@ -143,7 +144,7 @@ class EditChildRef(EditSecondary):
         Create the notebook tabs and inserts them into the main
         window.
         """
-        notebook = gtk.Notebook()
+        notebook = Gtk.Notebook()
 
         self.srcref_list = CitationEmbedList(self.dbstate, 
                                              self.uistate, 
@@ -205,9 +206,9 @@ class EditChildRef(EditSecondary):
             self.close()
 
 def button_activated(event, mouse_button):
-    if (event.type == gtk.gdk.BUTTON_PRESS and
+    if (event.type == Gdk.EventType.BUTTON_PRESS and
         event.button == mouse_button) or \
-       (event.type == gtk.gdk.KEY_PRESS and
+       (event.type == Gdk.EventType.KEY_PRESS and
         event.keyval in (_RETURN, _KP_ENTER)):
         return True
     else:

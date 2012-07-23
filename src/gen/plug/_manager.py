@@ -548,7 +548,7 @@ class BasePluginManager(object):
         @param option:      the option class
         @type option:       class that inherits from gen.plug.menu.Option
         @param guioption:   the gui-option class
-        @type guioption:    class that inherits from gtk.Widget.
+        @type guioption:    class that inherits from Gtk.Widget.
         """
         self.__external_opt_dict[option] = guioption;
 

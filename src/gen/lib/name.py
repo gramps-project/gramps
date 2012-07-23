@@ -107,9 +107,9 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
             self.group_as = ""
             self.sort_as = self.DEF
             self.display_as = self.DEF
-            self.call = u''
-            self.nick = u''
-            self.famnick = u''
+            self.call = ""
+            self.nick = ""
+            self.famnick = ""
 
     def serialize(self):
         """
@@ -130,9 +130,9 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         """
         Indicate if the name is empty.
         """
-        namefieldsempty = (self.first_name == u"" and
-                self.suffix == u"" and self.title == u"" and self.nick ==u""
-                and self.famnick == u"")
+        namefieldsempty = (self.first_name == "" and
+                self.suffix == "" and self.title == "" and self.nick == ""
+                and self.famnick == "")
         surnamefieldsempty = not (False in 
                             [surn.is_empty() for surn in self.surname_list])
         return namefieldsempty and surnamefieldsempty

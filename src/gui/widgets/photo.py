@@ -24,7 +24,8 @@
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import GObject
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -40,14 +41,14 @@ from gen.ggettext import gettext as _
 # Photo class
 #
 #-------------------------------------------------------------------------
-class Photo(gtk.EventBox):
+class Photo(Gtk.EventBox):
     """
     Displays an image and allows it to be viewed in an external image viewer.
     """
     def __init__(self, use_small_size=False):
-        gtk.EventBox.__init__(self)
+        GObject.GObject.__init__(self)
         self.full_path = None
-        self.photo = gtk.Image()
+        self.photo = Gtk.Image()
         self.add(self.photo)
         self.connect('button-press-event', self.display_image)
         tip = _('Double-click on the picture to view it in the default image '
@@ -74,5 +75,5 @@ class Photo(gtk.EventBox):
         """
         Display the image with the default external viewer.
         """
-        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             open_file_with_default_application(self.full_path)

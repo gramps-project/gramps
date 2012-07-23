@@ -52,7 +52,7 @@ log = logging.getLogger(".WritePkg")
 # GNOME/GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -163,10 +163,10 @@ class PackageWriter(object):
                     
         #     fs_top = gtk.FileChooserDialog("%s - GRAMPS" % _("Select file"),
         #                 buttons=(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
-        #                          gtk.STOCK_OK, gtk.RESPONSE_OK)
+        #                          gtk.STOCK_OK, Gtk.ResponseType.OK)
         #                 )
         #     response = fs_top.run()
-        #     if response == gtk.RESPONSE_OK:
+        #     if response == Gtk.ResponseType.OK:
         #         fs_ok_clicked(fs_top)
         #     elif response == gtk.RESPONSE_CANCEL:
         #         fs_close_window(fs_top)

@@ -28,7 +28,7 @@ manage pages in the main Gramps window.
 # GNOME modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -50,47 +50,47 @@ class Navigator(object):
 
         self.viewmanager = viewmanager
         self.pages = []
-        self.top = gtk.VBox()
+        self.top = Gtk.VBox()
         
-        frame = gtk.Frame()
-        hbox = gtk.HBox()
+        frame = Gtk.Frame()
+        hbox = Gtk.HBox()
         hbox.show()
         frame.add(hbox)
         frame.show()
         
-        self.select_button = gtk.ToggleButton()
-        self.select_button.set_relief(gtk.RELIEF_NONE)
-        select_hbox = gtk.HBox()
-        self.title_label = gtk.Label('')
-        arrow = gtk.Arrow(gtk.ARROW_DOWN, gtk.SHADOW_NONE)
-        select_hbox.pack_start(self.title_label, False)
-        select_hbox.pack_end(arrow, False)
+        self.select_button = Gtk.ToggleButton()
+        self.select_button.set_relief(Gtk.ReliefStyle.NONE)
+        select_hbox = Gtk.HBox()
+        self.title_label = Gtk.Label(label='')
+        arrow = Gtk.Arrow(Gtk.ArrowType.DOWN, Gtk.ShadowType.NONE)
+        select_hbox.pack_start(self.title_label, False, True, 0)
+        select_hbox.pack_end(arrow, False, True, 0)
         self.select_button.add(select_hbox)
 
         self.select_button.connect('button_press_event',
                                    self.__menu_button_pressed)
 
-        #close_button = gtk.Button()
-        #img = gtk.image_new_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_MENU)
+        #close_button = Gtk.Button()
+        #img = Gtk.Image.new_from_stock(Gtk.STOCK_CLOSE, Gtk.IconSize.MENU)
         #close_button.set_image(img)
-        #close_button.set_relief(gtk.RELIEF_NONE)
+        #close_button.set_relief(Gtk.ReliefStyle.NONE)
         #close_button.connect('clicked', self.cb_close_clicked)
-        hbox.pack_start(self.select_button, False)
-        #hbox.pack_end(close_button, False)
+        hbox.pack_start(self.select_button, False, True, 0)
+        #hbox.pack_end(close_button, False, True, 0)
 
-        self.top.pack_end(frame, False)        
+        self.top.pack_end(frame, False, True, 0)        
 
-        self.menu = gtk.Menu()
+        self.menu = Gtk.Menu()
         self.menu.show()
         self.menu.connect('deactivate', cb_menu_deactivate, self.select_button)
 
-        self.notebook = gtk.Notebook()
+        self.notebook = Gtk.Notebook()
         self.notebook.show()
         self.notebook.set_show_tabs(False)
         self.notebook.set_show_border(False)
         self.notebook.connect('switch_page', self.cb_switch_page)
         self.top.show()
-        self.top.pack_start(self.notebook, True)
+        self.top.pack_start(self.notebook, True, True, 0)
         
     def get_top(self):
         """
@@ -103,9 +103,9 @@ class Navigator(object):
         Add a page to the sidebar for a plugin.
         """
         self.pages.append((title, sidebar))
-        index = self.notebook.append_page(sidebar.get_top(), gtk.Label(title))
+        index = self.notebook.append_page(sidebar.get_top(), Gtk.Label(label=title))
 
-        menu_item = gtk.MenuItem(title)
+        menu_item = Gtk.MenuItem(label=title)
         if order == START:
             self.menu.prepend(menu_item)
             self.notebook.set_current_page(index)
@@ -128,12 +128,12 @@ class Navigator(object):
         """
         Called when the button to select a sidebar page is pressed.
         """
-        if event.button == 1 and event.type == gtk.gdk.BUTTON_PRESS:
+        if event.button == 1 and event.type == Gdk.EventType.BUTTON_PRESS:
             button.grab_focus()
             button.set_active(True)
 
-            self.menu.popup(None, None, cb_menu_position, event.button,
-                            event.time, button)
+            self.menu.popup(None, None, cb_menu_position, button, event.button,
+                            event.time)
 
     def cb_menu_activate(self, menu, index):
         """

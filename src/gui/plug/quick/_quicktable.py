@@ -38,8 +38,8 @@ import cPickle as pickle
 # GNOME modules
 #
 #-------------------------------------------------------------------------
-import gtk
-from gtk.gdk import ACTION_COPY
+from gi.repository import Gdk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -117,11 +117,11 @@ class QuickTable(SimpleTable):
         # you need index, treeview, path, button_code,
         # func, and event_time
         if index is not None:
-            popup = gtk.Menu()
+            popup = Gtk.Menu()
             if (index is not None and self._link[index]):
             # See details (edit, etc):
                 objclass, handle = self._link[index]
-                menu_item = gtk.MenuItem(_("the object|See %s details") % trans_objclass(objclass))
+                menu_item = Gtk.MenuItem(label=_("the object|See %s details") % trans_objclass(objclass))
                 menu_item.connect("activate", 
                   lambda widget: self.on_table_doubleclick(treeview))
                 popup.append(menu_item)
@@ -131,7 +131,7 @@ class QuickTable(SimpleTable):
                 (index is not None and self._link[index])):
                 objclass, handle = self._link[index]
                 if objclass == 'Person':
-                    menu_item = gtk.MenuItem(_("the object|Make %s active") % trans_objclass('Person'))
+                    menu_item = Gtk.MenuItem(label=_("the object|Make %s active") % trans_objclass('Person'))
                     menu_item.connect("activate", 
                       lambda widget: self.on_table_click(treeview))
                     popup.append(menu_item)
@@ -144,13 +144,13 @@ class QuickTable(SimpleTable):
                     handle[0] in ['Person', 'Family', 'Place', 'Event',
                                   'Repository', 'Note', 'MediaObject',
                                   'Citation', 'Source']):
-                    menu_item = gtk.MenuItem(_("See data not in Filter"))
+                    menu_item = Gtk.MenuItem(label=_("See data not in Filter"))
                     menu_item.connect("activate", 
                       lambda widget: self.show_not_in_filter(handle[0]))
                     popup.append(menu_item)
                     menu_item.show()
             # Show the popup menu:
-            popup.popup(None, None, func, button_code, event_time)
+            popup.popup(None, None, func, None, button_code, event_time)
             return True        
         return False
 
@@ -293,12 +293,12 @@ class QuickTable(SimpleTable):
             if isinstance(handle, list):
                 handle = handle[0]
             if objclass == 'Person':
-                import gobject
+                from gi.repository import GObject
                 # If you emmit the signal here and it causes this table to be deleted, 
                 # then you'll crash Python:
                 #self.simpledoc.doc.uistate.set_active(handle, 'Person')
                 # So, let's return from this, then change the active person:
-                return gobject.timeout_add(100, self.simpledoc.doc.uistate.set_active, handle, 'Person')
+                return GObject.timeout_add(100, self.simpledoc.doc.uistate.set_active, handle, 'Person')
                 return True
         return False # didn't handle event
 
@@ -333,18 +333,18 @@ class QuickTable(SimpleTable):
         else:
             sort_index = 0
         treeview = MultiTreeView()
-        treeview.enable_model_drag_source(gtk.gdk.BUTTON1_MASK,
-             [(DdTargets.HANDLE_LIST.drag_type, gtk.TARGET_SAME_WIDGET, 0)],
-                                          gtk.gdk.ACTION_COPY)
+        treeview.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK,
+             [(DdTargets.HANDLE_LIST.drag_type, Gtk.TargetFlags.SAME_WIDGET, 0)],
+                                          Gdk.DragAction.COPY)
         #treeview.enable_model_drag_dest(DdTargets.all_targets(),
-        #                                gtk.gdk.ACTION_DEFAULT)            
+        #                                Gdk.DragAction.DEFAULT)            
         treeview.connect('drag_data_get', self.object_drag_data_get)
-        treeview.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
+        treeview.set_grid_lines(Gtk.TreeViewGridLines.BOTH)
         #treeview.connect('row-activated', on_table_doubleclick, self)
         #treeview.connect('cursor-changed', on_table_click, self)
         treeview.connect('button-press-event', self.button_press_event)
         treeview.connect('select-cursor-row', self.button_press_event)
-        renderer = gtk.CellRendererText()
+        renderer = Gtk.CellRendererText()
         types = [int] # index
         cnt = 0
         sort_data = []
@@ -353,15 +353,15 @@ class QuickTable(SimpleTable):
             if self.get_cell_type(cnt) == "text":
                 types.append(str)
                 if self.get_cell_markup(cnt):
-                    column = gtk.TreeViewColumn(col,renderer,markup=model_index)
+                    column = Gtk.TreeViewColumn(col,renderer,markup=model_index)
                 else:
-                    column = gtk.TreeViewColumn(col,renderer,text=model_index)
+                    column = Gtk.TreeViewColumn(col,renderer,text=model_index)
             elif self.get_cell_type(cnt) == "checkbox":
                 types.append(bool)
-                toggle_renderer = gtk.CellRendererToggle()
+                toggle_renderer = Gtk.CellRendererToggle()
                 toggle_renderer.set_property('activatable', True)
                 toggle_renderer.connect("toggled", self.toggle, model_index)
-                column = gtk.TreeViewColumn(col, toggle_renderer)
+                column = Gtk.TreeViewColumn(col, toggle_renderer)
                 column.add_attribute(toggle_renderer, "active", model_index)
             column.set_resizable(True)
             if self._sort_vals[cnt] != []:
@@ -381,9 +381,9 @@ class QuickTable(SimpleTable):
             self.simpledoc.paragraph(self.title)
         # Make a GUI to put the tree view in
         types += sort_data_types
-        model = gtk.ListStore(*types)
+        model = Gtk.ListStore(*types)
         treeview.set_model(model)
-        treeview.get_selection().set_mode(gtk.SELECTION_MULTIPLE)
+        treeview.get_selection().set_mode(Gtk.SelectionMode.MULTIPLE)
         iter = buffer.get_end_iter()
         anchor = buffer.create_child_anchor(iter)
         text_view.add_child_at_anchor(treeview, anchor)

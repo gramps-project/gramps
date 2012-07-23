@@ -39,7 +39,7 @@ import os
 # GNOME/GTK
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -108,7 +108,7 @@ class GrampsWindowManager(object):
         self.uimanager = uimanager
         self.window_tree = []
         self.id2item = {}
-        self.action_group = gtk.ActionGroup('WindowManger')
+        self.action_group = Gtk.ActionGroup('WindowManger')
         self.active = DISABLED
         self.ui = _win_top + _win_btm
         
@@ -286,7 +286,7 @@ class GrampsWindowManager(object):
             self.uimanager.remove_ui(self.active)
             self.uimanager.remove_action_group(self.action_group)
 
-        self.action_group = gtk.ActionGroup('WindowManger')
+        self.action_group = Gtk.ActionGroup('WindowManger')
         action_data = []
 
         data = StringIO()
@@ -395,12 +395,12 @@ class ManagedWindow(object):
         """
         Set the window that is managed.
         
-        :param window:   if isWindow=False window must be a gtk.Window() object, otherwise None
+        :param window:   if isWindow=False window must be a Gtk.Window() object, otherwise None
         :param title:    a label widget in which to write the title, None if not needed
         :param text:     text to use as title of window and in title param
         :param msg:      if not None, use msg as title of window instead of text
         :param isWindow: {if isWindow than self is the window 
-                            (so self inherits from gtk.Window and 
+                            (so self inherits from Gtk.Window and 
                             from ManagedWindow)
                          if not isWindow, than window is the Window to manage, 
                             and after this method self.window stores it.
@@ -414,7 +414,7 @@ class ManagedWindow(object):
             set_titles(self, title, text, msg)
         else :
             set_titles(window, title, text, msg)
-            #closing the gtk.Window must also close ManagedWindow
+            #closing the Gtk.Window must also close ManagedWindow
             self.window = window
             self.window.connect('delete-event', self.close)
     
@@ -482,15 +482,15 @@ class ManagedWindow(object):
         #self.show()
         while True:
             response = self.window.run()
-            if response == gtk.RESPONSE_OK:
+            if response == Gtk.ResponseType.OK:
                 # dialog will be closed by connect, now continue work while
                 # rest of dialog is unresponsive, release when finished
                 self.close()
                 if after_ok_func is not None:
                     after_ok_func()
                 break
-            elif (response == gtk.RESPONSE_DELETE_EVENT or
-              response == gtk.RESPONSE_CANCEL):
+            elif (response == Gtk.ResponseType.DELETE_EVENT or
+              response == Gtk.ResponseType.CANCEL):
                 # connect buttons generating this to a close call
                 break
 

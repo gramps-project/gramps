@@ -8,7 +8,6 @@ pkgpythondir = $(datadir)/@PACKAGE@/gui/views/treemodels
 
 pkgpython_PYTHON = \
 	__init__.py \
-	bugfix.py \
 	eventmodel.py \
 	familymodel.py \
 	flatbasemodel.py \

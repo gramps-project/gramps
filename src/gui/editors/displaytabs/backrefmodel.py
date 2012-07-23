@@ -26,8 +26,8 @@
 # GTK libraries
 #
 #-------------------------------------------------------------------------
-import gobject
-import gtk
+from gi.repository import GObject
+from gi.repository import Gtk
 
 from gen.ggettext import gettext as _
 
@@ -44,25 +44,25 @@ from gen.utils.db import family_name, get_participant_from_event
 # BackRefModel
 #
 #-------------------------------------------------------------------------
-class BackRefModel(gtk.ListStore):
+class BackRefModel(Gtk.ListStore):
     
     dispstr = _('%(part1)s - %(part2)s')
 
     def __init__(self, sref_list, db):
-        gtk.ListStore.__init__(self, str, str, str, str, str)
+        Gtk.ListStore.__init__(self, str, str, str, str, str)
         self.db = db
         self.sref_list = sref_list
         self.count = 0
-        self.idle = gobject.idle_add(self.load_model().next)
+        self.idle = GObject.idle_add(self.load_model().next)
 
     def destroy(self):
-        gobject.source_remove(self.idle)
+        GObject.source_remove(self.idle)
 
     def load_model(self):
         """
         Objects can have very large backreferences. To avoid blocking the 
         interface up to the moment that the model is created, this method is 
-        called via gobject.idle_add.
+        called via GObject.idle_add.
         WARNING: a consequence of above is that loading can still be happening
             while the GUI using this model is no longer used. Disconnect any
             methods before closing the GUI.

@@ -26,17 +26,17 @@
 # GTK libraries
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
 # CitationModel
 #
 #-------------------------------------------------------------------------
-class CitationRefModel(gtk.ListStore):
+class CitationRefModel(Gtk.ListStore):
 
     def __init__(self, citation_list, db):
-        gtk.ListStore.__init__(self, str, str, str, str, object)
+        Gtk.ListStore.__init__(self, str, str, str, str, object)
         self.db = db
         for handle in citation_list:
             citation = self.db.get_citation_from_handle(handle) 

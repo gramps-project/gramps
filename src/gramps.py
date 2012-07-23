@@ -150,7 +150,7 @@ elif operating_system == 'FreeBSD':
     try:
         gettext.bindtextdomain(LOCALEDOMAIN, LOCALEDIR)
     except locale.Error:
-        logging.warning('No translation in some gtk.Builder strings, ')
+        logging.warning('No translation in some Gtk.Builder strings, ')
 elif operating_system == 'OpenBSD':
     pass
 else: # normal case
@@ -158,7 +158,7 @@ else: # normal case
         locale.bindtextdomain(LOCALEDOMAIN, LOCALEDIR)
         #locale.textdomain(LOCALEDOMAIN)
     except locale.Error:
-        logging.warning('No translation in some gtk.Builder strings, ')
+        logging.warning('No translation in some Gtk.Builder strings, ')
 
 #-------------------------------------------------------------------------
 #
@@ -166,7 +166,7 @@ else: # normal case
 #
 #-------------------------------------------------------------------------
 
-MIN_PYTHON_VERSION = (2, 6, 0, '', 0)
+MIN_PYTHON_VERSION = (2, 7, 0, '', 0)
 if not sys.version_info >= MIN_PYTHON_VERSION :
     logging.warning(_("Your Python version does not meet the "
              "requirements. At least python %(v1)d.%(v2)d.%(v3)d is needed to"
@@ -176,21 +176,6 @@ if not sys.version_info >= MIN_PYTHON_VERSION :
              'v2': MIN_PYTHON_VERSION[1],
              'v3': MIN_PYTHON_VERSION[2]})
     sys.exit(1)
-
-#-------------------------------------------------------------------------
-#
-# deepcopy workaround
-#
-#-------------------------------------------------------------------------
-# In versions < 2.7 python does not properly copy methods when doing a 
-# deepcopy. This workaround makes the copy work properly. When Gramps no longer
-# supports python 2.6, this workaround can be removed.
-if sys.version_info < (2, 7) :
-    import copy
-    import types
-    def _deepcopy_method(x, memo):
-        return type(x)(x.im_func, copy.deepcopy(x.im_self, memo), x.im_class)
-    copy._deepcopy_dispatch[types.MethodType] = _deepcopy_method
 
 #-------------------------------------------------------------------------
 #
@@ -218,28 +203,23 @@ def show_settings():
     """
     py_str = '%d.%d.%d' % sys.version_info[:3]
     try:
-        import gtk
+        from gi.repository import Gtk
         try:
-            gtkver_str = '%d.%d.%d' % gtk.gtk_version 
+            gtkver_str = '%d.%d.%d' % (Gtk.get_major_version(), 
+                        Gtk.get_minor_version(), Gtk.get_micro_version())
         except : # any failure to 'get' the version
             gtkver_str = 'unknown version'
-        try:
-            pygtkver_str = '%d.%d.%d' % gtk.pygtk_version
-        except :# any failure to 'get' the version
-            pygtkver_str = 'unknown version'
     except ImportError:
         gtkver_str = 'not found'
-        pygtkver_str = 'not found'
     # no DISPLAY is a RuntimeError in an older pygtk (e.g. 2.17 in Fedora 14)
     except RuntimeError:
         gtkver_str = 'DISPLAY not set'
-        pygtkver_str = 'DISPLAY not set'
     #exept TypeError: To handle back formatting on version split
 
     try:
-        import gobject
+        from gi.repository import GObject
         try:
-            gobjectver_str = '%d.%d.%d' % gobject.pygobject_version
+            gobjectver_str = '%d.%d.%d' % GObject.pygobject_version
         except :# any failure to 'get' the version
             gobjectver_str = 'unknown version'
 
@@ -331,7 +311,6 @@ def show_settings():
     print ' python    : %s' % py_str
     print ' gramps    : %s' % gramps_str
     print ' gtk++     : %s' % gtkver_str
-    print ' pygtk     : %s' % pygtkver_str
     print ' gobject   : %s' % gobjectver_str
     if usebsddb3:
         print ' Using bsddb3'

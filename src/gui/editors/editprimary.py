@@ -33,7 +33,7 @@ from gen.ggettext import gettext as _
 # GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk 
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -147,7 +147,7 @@ class EditPrimary(ManagedWindow, DbGUIElement):
 
     def _add_tab(self, notebook, page):
         self.__tabs.append(page)
-        notebook.insert_page(page, page.get_tab_widget())
+        notebook.insert_page(page, page.get_tab_widget(), -1)
         page.label.set_use_underline(True)
         return page
 
@@ -277,7 +277,7 @@ class EditPrimary(ManagedWindow, DbGUIElement):
         self.contexteventbox = eventbox
         self.contexteventbox.connect('button-press-event',
                                 self._contextmenu_button_press)
-                                
+        
     def _contextmenu_button_press(self, obj, event) :
         """
         Button press event that is caught when a mousebutton has been
@@ -295,7 +295,7 @@ class EditPrimary(ManagedWindow, DbGUIElement):
                 
             menu = self.popupmanager.get_widget('/Popup')
             if menu:
-                menu.popup(None, None, None, event.button, event.time)
+                menu.popup(None, None, None, None, event.button, event.time)
                 return True
         return False
 
@@ -305,7 +305,7 @@ class EditPrimary(ManagedWindow, DbGUIElement):
         """
         from gui.plug.quick import create_quickreport_menu        
         
-        self.popupmanager = gtk.UIManager()
+        self.popupmanager = Gtk.UIManager()
         #add custom actions
         (ui_top, action_groups) = self._top_contextmenu()
         for action in action_groups :
@@ -316,7 +316,7 @@ class EditPrimary(ManagedWindow, DbGUIElement):
             (ui_qr, reportactions) = create_quickreport_menu(self.QR_CATEGORY,
                                     self.dbstate, self.uistate, 
                                     self.obj.get_handle())
-            self.report_action = gtk.ActionGroup("/PersonReport")
+            self.report_action = Gtk.ActionGroup("/PersonReport")
             self.report_action.add_actions(reportactions)
             self.report_action.set_visible(True)
             self.popupmanager.insert_action_group(self.report_action, -1)

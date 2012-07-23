@@ -42,7 +42,7 @@ import subprocess
 # -----------------------------------------------------------------------------
 # GTK modules
 # -----------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 # -----------------------------------------------------------------------------
 # GRAMPS modules
@@ -269,43 +269,43 @@ class EditExifMetadata(Gramplet):
         """
         will display all exif metadata and all buttons.
         """
-        main_vbox = gtk.VBox(False, 0)
+        main_vbox = Gtk.VBox(False, 0)
         main_vbox.set_border_width(10)
 
         # Displays the file name
-        medialabel = gtk.HBox(False, 0)
+        medialabel = Gtk.HBox(False, 0)
         label = self.__create_label("MediaLabel", False, False, False) 
         medialabel.pack_start(label, expand =False)
         main_vbox.pack_start(medialabel, expand =False, fill =True, padding =0)
 
         # Displays mime type information
-        mimetype = gtk.HBox(False, 0)
+        mimetype = Gtk.HBox(False, 0)
         label = self.__create_label("MimeType", False, False, False)
         mimetype.pack_start(label, expand =False)
         main_vbox.pack_start(mimetype, expand =False, fill =True, padding =0)
 
         # image dimensions
-        imagesize = gtk.HBox(False, 0)
+        imagesize = Gtk.HBox(False, 0)
         label = self.__create_label("ImageSize", False, False, False)
         imagesize.pack_start(label, expand =False, fill =False, padding =0)
         main_vbox.pack_start(imagesize, expand =False, fill =True, padding =0)
 
         # Displays all plugin messages
-        messagearea = gtk.HBox(False, 0)
+        messagearea = Gtk.HBox(False, 0)
         label = self.__create_label("MessageArea", False, False, False)
         messagearea.pack_start(label, expand =False)
         main_vbox.pack_start(messagearea, expand =False, fill =True, padding =0)
 
         # Separator line before the buttons
-        main_vbox.pack_start(gtk.HSeparator(), expand =False, fill =False, padding =0)
+        main_vbox.pack_start(Gtk.HSeparator(, True, True, 0), expand =False, fill =False, padding =0)
 
         # Thumbnail, ImageType, and Convert buttons
-        new_hbox = gtk.HBox(False, 0)
+        new_hbox = Gtk.HBox(False, 0)
         main_vbox.pack_start(new_hbox, expand =False, fill =False, padding =0)
         new_hbox.show()
 
         # Thumbnail button
-        event_box = gtk.EventBox()
+        event_box = Gtk.EventBox()
         new_hbox.pack_start(event_box, expand =False, fill =False, padding =0)
         event_box.show()
 
@@ -314,11 +314,11 @@ class EditExifMetadata(Gramplet):
         event_box.add(button)
 
         # Image Types
-        event_box = gtk.EventBox()
+        event_box = Gtk.EventBox()
         new_hbox.pack_start(event_box, expand =False, fill =False, padding =0)
         event_box.show()
 
-        combo_box = gtk.combo_box_new_text()
+        combo_box = Gtk.ComboBoxText()
         combo_box.append_text(_validconvert[0])
         combo_box.set_active(0)
         combo_box.set_sensitive(False)
@@ -327,28 +327,28 @@ class EditExifMetadata(Gramplet):
         combo_box.show()
 
         # Convert button
-        event_box = gtk.EventBox()
+        event_box = Gtk.EventBox()
         new_hbox.pack_start(event_box, expand =False, fill =False, padding =0)
         event_box.show()        
 
         button = self.__create_button(
-            "Convert", False, [self.__convert_dialog], gtk.STOCK_CONVERT)
+            "Convert", False, [self.__convert_dialog], Gtk.STOCK_CONVERT)
         event_box.add(button)
 
         # Connect the changed signal to ImageType
         self.exif_widgets["ImageTypes"].connect("changed", self.changed_cb)
 
         # Help, Edit, and Delete buttons
-        new_hbox = gtk.HBox(False, 0)
+        new_hbox = Gtk.HBox(False, 0)
         main_vbox.pack_start(new_hbox, expand =False, fill =False, padding =0)
         new_hbox.show()
 
         for (widget, text, callback, icon, is_sensitive) in [
-            ("Help",   False, [self.__help_page],   gtk.STOCK_HELP,   True),
-            ("Edit",   False, [self.display_edit],  gtk.STOCK_EDIT,   False),
-            ("Delete", False, [self._wipe_dialog], gtk.STOCK_DELETE, False) ]:
+            ("Help",   False, [self.__help_page],   Gtk.STOCK_HELP,   True),
+            ("Edit",   False, [self.display_edit],  Gtk.STOCK_EDIT,   False),
+            ("Delete", False, [self._wipe_dialog], Gtk.STOCK_DELETE, False) ]:
 
-            event_box = gtk.EventBox()
+            event_box = Gtk.EventBox()
             new_hbox.pack_start(event_box, expand =False, fill =False, padding =0)
             event_box.show()
 
@@ -361,7 +361,7 @@ class EditExifMetadata(Gramplet):
         main_vbox.pack_start(self.view, expand =False, fill =True, padding =5)
 
         # Separator line before the Total
-        main_vbox.pack_start(gtk.HSeparator(), expand =False, fill =True, padding =5)
+        main_vbox.pack_start(Gtk.HSeparator(, True, True, 0), expand =False, fill =True, padding =5)
 
         # number of key/ value pairs shown
         label = self.__create_label("Total", False, False, False)
@@ -591,9 +591,9 @@ class EditExifMetadata(Gramplet):
         creates and returns a button for display
         """
         if (icon and not text):
-            button = gtk.Button(stock =icon)
+            button = Gtk.Button(stock =icon)
         else:
-            button = gtk.Button(text)
+            button = Gtk.Button(text)
 
         if callback is not []:
             for call_ in callback:
@@ -612,7 +612,7 @@ class EditExifMetadata(Gramplet):
         """
         creates a label for this addon.
         """
-        label = gtk.Label()
+        label = Gtk.Label()
 
         if text:
             label.set_text(text)
@@ -634,7 +634,7 @@ class EditExifMetadata(Gramplet):
         """
         handles the creation of an event_box and entry containers and returns them...
         """
-        evt_box = gtk.EventBox()
+        evt_box = Gtk.EventBox()
 
         if (width and height):
             evt_box.set_size_request(width, height)
@@ -649,7 +649,7 @@ class EditExifMetadata(Gramplet):
                     entry.connect('validate', call_, pos)
 
         elif type_ == "Entry":
-            entry = gtk.Entry(max = length_)
+            entry = Gtk.Entry(max = length_)
 
             if cb_list:
                 for call_ in cb_list:  
@@ -667,7 +667,7 @@ class EditExifMetadata(Gramplet):
         """
         tip = _("Click Close to close this Thumbnail View Area.")
 
-        self.tbarea = gtk.Window(gtk.WINDOW_TOPLEVEL)
+        self.tbarea = Gtk.Window(Gtk.WindowType.TOPLEVEL)
         self.tbarea.tooltip = tip
         self.tbarea.set_title(_("Thumbnail View Area"))
 
@@ -697,7 +697,7 @@ class EditExifMetadata(Gramplet):
                 width, height = tdata.dimensions
 
                 # Create a GTK pixbuf loader to read the thumbnail data
-                pbloader = gtk.gdk.PixbufLoader()
+                pbloader = GdkPixbuf.PixbufLoader()
                 pbloader.write(tdata)
             except (IOError, OSError):
                 return pbloader, width, height
@@ -715,7 +715,7 @@ class EditExifMetadata(Gramplet):
                 return pbloader, width, height
 
             # Create a GTK pixbuf loader to read the thumbnail data
-            pbloader = gtk.gdk.PixbufLoader()
+            pbloader = GdkPixbuf.PixbufLoader()
             pbloader.write(preview.data)
 
         return pbloader, width, height
@@ -724,10 +724,10 @@ class EditExifMetadata(Gramplet):
         """
         builds the thumbnail viewing area.
         """
-        main_vbox = gtk.VBox()
+        main_vbox = Gtk.VBox()
         main_vbox.set_size_request((width - 30), (height - 30))
 
-        hbox = gtk.HBox(False, 0)
+        hbox = Gtk.HBox(False, 0)
         main_vbox.pack_start(hbox, expand =False, fill =False, padding =5)
         hbox.show()
 
@@ -735,7 +735,7 @@ class EditExifMetadata(Gramplet):
         pixbuf = pbloader.get_pixbuf()
         pbloader.close()
 
-        imgwidget = gtk.Image()
+        imgwidget = Gtk.Image()
         imgwidget.set_from_pixbuf(pixbuf)
         hbox.pack_start(imgwidget, expand = False, fill =True, padding =0)
         imgwidget.show()
@@ -919,7 +919,7 @@ class EditExifMetadata(Gramplet):
         # with a screen height of 600 maximum...
         width_  =  int(main_scr_width * 0.60)
 
-        edtarea = gtk.Window(gtk.WINDOW_TOPLEVEL)
+        edtarea = Gtk.Window(Gtk.WindowType.TOPLEVEL)
         edtarea.tooltip = tip
         edtarea.set_title( self.orig_image.get_description())
         edtarea.set_size_request((width_ + 45), 550)
@@ -928,13 +928,13 @@ class EditExifMetadata(Gramplet):
         edtarea.connect("destroy", lambda w: edtarea.destroy())
 
         # create a new scrolled window.
-        scrollwindow = gtk.ScrolledWindow()
+        scrollwindow = Gtk.ScrolledWindow()
         scrollwindow.set_size_request(width_, 600)
         scrollwindow.set_border_width(10)
         width_ -= 10 # width = 594
 
         # will show scrollbars only when necessary
-        scrollwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        scrollwindow.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         edtarea.add(scrollwindow)
         scrollwindow.show()
 
@@ -972,7 +972,7 @@ class EditExifMetadata(Gramplet):
         """
         creates the content for the edit window...
         """
-        main_vbox = gtk.VBox()
+        main_vbox = Gtk.VBox()
         main_vbox.set_border_width(10)
         width_ -= 10 # width = 584
 
@@ -985,19 +985,19 @@ class EditExifMetadata(Gramplet):
 
         # Media Title Frame...
         width_ -= 10 # 574 on a screen width of 1024
-        title_frame = gtk.Frame(_("Media Object Title"))
+        title_frame = Gtk.Frame(_("Media Object Title"))
         title_frame.set_size_request(width_, 60) # width = 574
         main_vbox.pack_start(title_frame, expand =False, fill =True, padding =10)
         title_frame.show()
 
-        new_vbox = gtk.VBox(False, 0)
+        new_vbox = Gtk.VBox(False, 0)
         title_frame.add(new_vbox)
         new_vbox.show()
 
         for widget, text in [
             ("MediaTitle", _("media Title: ")) ]:
  
-            new_hbox = gtk.HBox(False, 0)
+            new_hbox = Gtk.HBox(False, 0)
             new_vbox.pack_start(new_hbox, expand =False, fill =False, padding =5)
             new_hbox.show()
 
@@ -1009,12 +1009,12 @@ class EditExifMetadata(Gramplet):
 
         # create the data fields...
         # ***Description, Artist, and Copyright
-        gen_frame = gtk.Frame(_("General Data"))
+        gen_frame = Gtk.Frame(_("General Data"))
         gen_frame.set_size_request(width_, 155) # width = 574
         main_vbox.pack_start(gen_frame, expand =False, fill =True, padding =10)
         gen_frame.show()
 
-        new_vbox = gtk.VBox(False, 0)
+        new_vbox = Gtk.VBox(False, 0)
         gen_frame.add(new_vbox)
         new_vbox.show()
 
@@ -1023,7 +1023,7 @@ class EditExifMetadata(Gramplet):
             ("Artist",      _("Artist: ")),
             ("Copyright",   _("Copyright: ")) ]:
  
-            new_hbox = gtk.HBox(False, 0)
+            new_hbox = Gtk.HBox(False, 0)
             new_vbox.pack_start(new_hbox, expand =False, fill =False, padding =5)
             new_hbox.show()
 
@@ -1034,16 +1034,16 @@ class EditExifMetadata(Gramplet):
             new_hbox.pack_start(event_box, expand =False, fill =False, padding =0)
 
         # iso format: Year, Month, Day spinners...
-        datetime_frame = gtk.Frame(_("Date/ Time"))
+        datetime_frame = Gtk.Frame(_("Date/ Time"))
         datetime_frame.set_size_request(width_, 90) # width = 574
         main_vbox.pack_start(datetime_frame, expand =False, fill =False, padding =0)
         datetime_frame.show()
 
-        new_vbox = gtk.VBox(False, 0)
+        new_vbox = Gtk.VBox(False, 0)
         datetime_frame.add(new_vbox)
         new_vbox.show()
 
-        new_hbox = gtk.HBox(False, 0)
+        new_hbox = Gtk.HBox(False, 0)
         new_vbox.pack_start(new_hbox, expand =False, fill =False, padding =0)
         new_hbox.show()
 
@@ -1051,7 +1051,7 @@ class EditExifMetadata(Gramplet):
             ("Original", _("Original: ")),
             ("Modified", _("Modified: ")) ]:
 
-            vbox2 = gtk.VBox(False, 0)
+            vbox2 = Gtk.VBox(False, 0)
             new_hbox.pack_start(vbox2, expand =False, fill =False, padding =5)
             vbox2.show()
 
@@ -1066,16 +1066,16 @@ class EditExifMetadata(Gramplet):
             self.dates[widget] = None
 
         # GPS coordinates...
-        latlong_frame = gtk.Frame(_("Latitude/ Longitude/ Altitude GPS coordinates"))
+        latlong_frame = Gtk.Frame(_("Latitude/ Longitude/ Altitude GPS coordinates"))
         latlong_frame.set_size_request(width_, 80) # width = 574
         main_vbox.pack_start(latlong_frame, expand =False, fill =False, padding =0)
         latlong_frame.show()
 
-        new_vbox = gtk.VBox(False, 0)
+        new_vbox = Gtk.VBox(False, 0)
         latlong_frame.add(new_vbox)
         new_vbox.show()
 
-        new_hbox = gtk.HBox(False, 0)
+        new_hbox = Gtk.HBox(False, 0)
         new_vbox.pack_start(new_hbox, expand =False, fill =False, padding =0)
         new_hbox.show()
 
@@ -1084,7 +1084,7 @@ class EditExifMetadata(Gramplet):
             ("Longitude", _("Longitude :") ),
             ("Altitude",  _("Altitude :") ) ]:
 
-            vbox2 = gtk.VBox(False, 0)
+            vbox2 = Gtk.VBox(False, 0)
             new_hbox.pack_start(vbox2, expand =False, fill =False, padding =5)
             vbox2.show()
 
@@ -1096,18 +1096,18 @@ class EditExifMetadata(Gramplet):
             vbox2.pack_start(event_box, expand =False, fill =False, padding =0)
 
         # Help, Save, Clear, Copy, and Close buttons...
-        new_hbox = gtk.HBox(False, 0)
+        new_hbox = Gtk.HBox(False, 0)
         main_vbox.pack_start(new_hbox, expand =False, fill =True, padding =5)
         new_hbox.show()
 
         for (widget, text, callback, icon, is_sensitive) in [
-            ("Help",  False, [self.__help_page],                 gtk.STOCK_HELP,  True),
-            ("Save",  False, [self.save_metadata, self.update],  gtk.STOCK_SAVE,  True), 
-            ("Clear", False, [self.clear_metadata],              gtk.STOCK_CLEAR, True),
-            ("Copy",  False, [self.__display_exif_tags],         gtk.STOCK_COPY,  True),
-            ("Close", False, [lambda w: edtarea.destroy()],      gtk.STOCK_CLOSE, True) ]:
+            ("Help",  False, [self.__help_page],                 Gtk.STOCK_HELP,  True),
+            ("Save",  False, [self.save_metadata, self.update],  Gtk.STOCK_SAVE,  True), 
+            ("Clear", False, [self.clear_metadata],              Gtk.STOCK_CLEAR, True),
+            ("Copy",  False, [self.__display_exif_tags],         Gtk.STOCK_COPY,  True),
+            ("Close", False, [lambda w: edtarea.destroy()],      Gtk.STOCK_CLOSE, True) ]:
 
-            event_box = gtk.EventBox()
+            event_box = Gtk.EventBox()
             event_box.set_size_request(112, 30)
             new_hbox.pack_start(event_box, expand =False, fill =True, padding =1)
             event_box.show()
@@ -1155,7 +1155,7 @@ class EditExifMetadata(Gramplet):
         Handles the Delete Dialog...
         """
         QuestionDialog(_("Edit Image Exif Metadata"), _("WARNING!  You are about to completely "
-            "delete the Exif metadata from this image?"), gtk.STOCK_DELETE, self.strip_metadata)
+            "delete the Exif metadata from this image?"), Gtk.STOCK_DELETE, self.strip_metadata)
         self.update()
 
     def clear_metadata(self, object):

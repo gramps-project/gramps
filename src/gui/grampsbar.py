@@ -39,7 +39,8 @@ import ConfigParser
 # GNOME modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import GObject
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -73,12 +74,12 @@ NL = "\n"
 # GrampsBar class
 #
 #-------------------------------------------------------------------------
-class GrampsBar(gtk.Notebook):
+class GrampsBar(Gtk.Notebook):
     """
     A class which defines the graphical representation of the GrampsBar.
     """
     def __init__(self, dbstate, uistate, pageview, configfile, defaults):
-        gtk.Notebook.__init__(self)
+        GObject.GObject.__init__(self)
 
         self.dbstate = dbstate
         self.uistate = uistate
@@ -88,7 +89,7 @@ class GrampsBar(gtk.Notebook):
         self.detached_gramplets = []
         self.empty = False
 
-        self.set_group_id(1)
+        self.set_group_name("grampsbar")
         self.set_show_border(False)
         self.set_scrollable(True)
         self.connect('switch-page', self.__switch_page)
@@ -302,10 +303,10 @@ class GrampsBar(gtk.Notebook):
         """
         Create an empty tab to be displayed when the GrampsBar is empty.
         """
-        tab_label = gtk.Label(_('Gramps Bar'))
+        tab_label = Gtk.Label(label=_('Gramps Bar'))
         tab_label.show()
         msg = _('Right-click to the right of the tab to add a gramplet.')
-        content = gtk.Label(msg)
+        content = Gtk.Label(label=msg)
         content.show()
         self.append_page(content, tab_label)
         return content
@@ -318,14 +319,14 @@ class GrampsBar(gtk.Notebook):
         height = min(int(self.uistate.screen_height() * 0.20), 400)
         gramplet.set_size_request(width, height)
 
-        page_num = self.append_page(gramplet)
+        page_num = self.append_page(gramplet, Gtk.Label(label=''))
         return page_num
 
     def __create_tab_label(self, gramplet):
         """
         Create a tab label.
         """
-        label = gtk.Label()
+        label = Gtk.Label()
         if hasattr(gramplet.pui, "has_data"):
             if gramplet.pui.has_data:
                 label.set_text("<b>%s</b>" % gramplet.title)
@@ -416,9 +417,9 @@ class GrampsBar(gtk.Notebook):
         Called when a button is pressed in the tabs section of the GrampsBar.
         """
         if gui.utils.is_right_click(event):
-            menu = gtk.Menu()
+            menu = Gtk.Menu()
 
-            ag_menu = gtk.MenuItem(_('Add a gramplet'))
+            ag_menu = Gtk.MenuItem(label=_('Add a gramplet'))
             nav_type = self.pageview.navigation_type()
             skip = self.all_gramplets()
             gramplet_list = GET_GRAMPLET_LIST(nav_type, skip)
@@ -428,7 +429,7 @@ class GrampsBar(gtk.Notebook):
             menu.append(ag_menu)
 
             if not self.empty:
-                rg_menu = gtk.MenuItem(_('Remove a gramplet'))
+                rg_menu = Gtk.MenuItem(label=_('Remove a gramplet'))
                 gramplet_list = [(gramplet.title, gramplet.gname)
                                  for gramplet in self.get_children() +
                                                  self.detached_gramplets]
@@ -438,12 +439,17 @@ class GrampsBar(gtk.Notebook):
                 rg_menu.show()
                 menu.append(rg_menu)
 
-            rd_menu = gtk.MenuItem(_('Restore default gramplets'))
+            rd_menu = Gtk.MenuItem(label=_('Restore default gramplets'))
             rd_menu.connect("activate", self.__restore_clicked)
             rd_menu.show()
             menu.append(rd_menu)
 
-            menu.popup(None, None, None, 1, event.time)
+            menu.show_all()
+            #GTK3 does not show the popup, workaround: pass position function
+            menu.popup(None, None, 
+                       lambda menu, data: (event.get_root_coords()[0],
+                                          event.get_root_coords()[1], True),
+                       None, event.button, event.time)
             return True
 
         return False
@@ -454,9 +460,9 @@ class GrampsBar(gtk.Notebook):
         """
         if main_menu:
             submenu = main_menu.get_submenu()
-            submenu = gtk.Menu()
+            submenu = Gtk.Menu()
             for entry in gramplet_list:
-                item = gtk.MenuItem(entry[0])
+                item = Gtk.MenuItem(label=entry[0])
                 item.connect("activate", callback_func, entry[1])
                 item.show()
                 submenu.append(item)
@@ -513,7 +519,7 @@ class GrampsBar(gtk.Notebook):
 # TabGramplet class
 #
 #-------------------------------------------------------------------------
-class TabGramplet(gtk.ScrolledWindow, GuiGramplet):
+class TabGramplet(Gtk.ScrolledWindow, GuiGramplet):
     """
     Class that handles the plugin interfaces for the GrampletBar.
     """
@@ -521,18 +527,18 @@ class TabGramplet(gtk.ScrolledWindow, GuiGramplet):
         """
         Internal constructor for GUI portion of a gramplet.
         """
-        gtk.ScrolledWindow.__init__(self)
+        GObject.GObject.__init__(self)
         GuiGramplet.__init__(self, pane, dbstate, uistate, title, **kwargs)
 
         self.scrolledwindow = self
-        self.textview = gtk.TextView()
+        self.textview = Gtk.TextView()
         self.textview.set_editable(False)
-        self.textview.set_wrap_mode(gtk.WRAP_WORD)
+        self.textview.set_wrap_mode(Gtk.WrapMode.WORD)
         self.buffer = UndoableBuffer()
         self.text_length = 0
         self.textview.set_buffer(self.buffer)
         self.textview.connect("key-press-event", self.on_key_press_event)
-        self.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.add(self.textview)
         self.show_all()
         self.track = []
@@ -565,18 +571,18 @@ class DetachedWindow(ManagedWindow):
 
         ManagedWindow.__init__(self, gramplet.uistate, [],
                                              self.title)
-        self.set_window(gtk.Dialog("", gramplet.uistate.window,
-                                   gtk.DIALOG_DESTROY_WITH_PARENT,
-                                   (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)),
+        self.set_window(Gtk.Dialog("", gramplet.uistate.window,
+                                   Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                   (Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE)),
                         None,
                         self.title)
         self.window.move(x_pos, y_pos)
         self.window.set_size_request(gramplet.detached_width,
                                      gramplet.detached_height)
-        self.window.add_button(gtk.STOCK_HELP, gtk.RESPONSE_HELP)
+        self.window.add_button(Gtk.STOCK_HELP, Gtk.ResponseType.HELP)
         self.window.connect('response', self.handle_response)
 
-        self.notebook = gtk.Notebook()
+        self.notebook = Gtk.Notebook()
         self.notebook.set_show_tabs(False)
         self.notebook.set_show_border(False)
         self.notebook.show()
@@ -587,9 +593,9 @@ class DetachedWindow(ManagedWindow):
         """
         Callback for taking care of button clicks.
         """
-        if response in [gtk.RESPONSE_CLOSE, gtk.STOCK_CLOSE]:
+        if response in [Gtk.ResponseType.CLOSE, Gtk.STOCK_CLOSE]:
             self.close()
-        elif response == gtk.RESPONSE_HELP:
+        elif response == Gtk.ResponseType.HELP:
             # translated name:
             if self.gramplet.help_url:
                 if self.gramplet.help_url.startswith("http://"):

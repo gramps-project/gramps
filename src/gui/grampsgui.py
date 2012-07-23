@@ -34,22 +34,39 @@ LOG = logging.getLogger(".grampsgui")
 
 #-------------------------------------------------------------------------
 #
-# pygtk
+# Miscellaneous initialization
 #
 #-------------------------------------------------------------------------
 try:
-    import pygtk
-    pygtk.require('2.0')
-except ImportError:
-    pass
-
+    import gi
+    gi.require_version('Gtk', '3.0')
+    #It is important to import Pango before Gtk, or some things start to go
+    #wrong in GTK3 !
+    from gi.repository import Pango
+    from gi.repository import Gtk, Gdk
+except ImportError, ValueError:
+    print (_("Gtk typelib not installed. Install Gnome Introspection, and "
+             "pygobject version 3.3.2 or later.\n\n"
+             "Gramps will terminate now."))
+    sys.exit(0)
+    
 #-------------------------------------------------------------------------
 #
 # Miscellaneous initialization
 #
 #-------------------------------------------------------------------------
-import gtk
-import gobject
+from gi.repository import GObject
+
+MIN_PYGOBJECT_VERSION = (3, 3, 2)
+if not GObject.pygobject_version >= MIN_PYGOBJECT_VERSION :
+    print (_("Your pygobject version does not meet the "
+             "requirements. At least pygobject %d.%d.%d is needed to"
+             " start Gramps with a GUI.\n\n"
+             "Gramps will terminate now.") % (
+            MIN_PYGOBJECT_VERSION[0], 
+            MIN_PYGOBJECT_VERSION[1],
+            MIN_PYGOBJECT_VERSION[2]))
+    sys.exit(0)
 
 #-------------------------------------------------------------------------
 #
@@ -90,75 +107,75 @@ def register_stock_icons ():
     #add to the back of this list to overrule images set at beginning of list
     extraiconsize = [
                     (os.path.join(IMAGE_DIR, '22x22'),
-                            gtk.ICON_SIZE_LARGE_TOOLBAR),
+                            Gtk.IconSize.LARGE_TOOLBAR),
                     (os.path.join(IMAGE_DIR, '16x16'),
-                            gtk.ICON_SIZE_MENU),
+                            Gtk.IconSize.MENU),
                     (os.path.join(IMAGE_DIR, '22x22'),
-                            gtk.ICON_SIZE_BUTTON),
+                            Gtk.IconSize.BUTTON),
                     ]
 
     items = [
-        ('gramps-db', _('Family Trees'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-address', _('Address'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-attribute', _('Attribute'), gtk.gdk.CONTROL_MASK, 0, ''),
-        #('gramps-bookmark', _('Bookmarks'), gtk.gdk.CONTROL_MASK, 0, ''),
-        #('gramps-bookmark-delete', _('Delete bookmark'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-bookmark-new', _('_Add bookmark'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-bookmark-edit', _('Organize Bookmarks'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-config', _('Configure'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-date', _('Date'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-date-edit', _('Edit Date'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-event', _('Events'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-family', _('Family'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-fanchart', _('Fan Chart'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-font', _('Font'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-font-color', _('Font Color'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-font-bgcolor', _('Font Background Color'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-gramplet', _('Gramplets'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-geo', _('Geography'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-geo-mainmap', _('Geography'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-geo-altmap', _('Geography'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('geo-show-person', _('GeoPerson'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('geo-show-family', _('GeoFamily'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('geo-show-event', _('GeoEvents'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('geo-show-place', _('GeoPlaces'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-lock', _('Public'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-media', _('Media'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-merge', _('Merge'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-notes', _('Notes'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-parents', _('Parents'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-parents-add', _('Add Parents'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-parents-open', _('Select Parents'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-pedigree', _('Pedigree'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-person', _('Person'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-place', _('Places'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-relation', _('Relationships'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-reports', _('Reports'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-repository', _('Repositories'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-source', _('Sources'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-spouse', _('Add Spouse'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-tag', _('Tag'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-tag-new', _('New Tag'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-tools', _('Tools'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-tree-group', _('Grouped List'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-tree-list', _('List'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-tree-select', _('Select'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-unlock', _('Private'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-view', _('View'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-viewmedia', _('View'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-zoom-in', _('Zoom In'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-zoom-out', _('Zoom Out'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-zoom-fit-width', _('Fit Width'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-zoom-best-fit', _('Fit Page'), gtk.gdk.CONTROL_MASK, 0, ''),
-        ('gramps-citation', _('Citations'), gtk.gdk.CONTROL_MASK, 0, ''),
+        ('gramps-db', _('Family Trees'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-address', _('Address'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-attribute', _('Attribute'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        #('gramps-bookmark', _('Bookmarks'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        #('gramps-bookmark-delete', _('Delete bookmark'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-bookmark-new', _('_Add bookmark'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-bookmark-edit', _('Organize Bookmarks'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-config', _('Configure'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-date', _('Date'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-date-edit', _('Edit Date'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-event', _('Events'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-family', _('Family'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-fanchart', _('Fan Chart'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-font', _('Font'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-font-color', _('Font Color'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-font-bgcolor', _('Font Background Color'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-gramplet', _('Gramplets'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-geo', _('Geography'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-geo-mainmap', _('Geography'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-geo-altmap', _('Geography'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('geo-show-person', _('GeoPerson'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('geo-show-family', _('GeoFamily'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('geo-show-event', _('GeoEvents'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('geo-show-place', _('GeoPlaces'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-lock', _('Public'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-media', _('Media'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-merge', _('Merge'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-notes', _('Notes'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-parents', _('Parents'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-parents-add', _('Add Parents'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-parents-open', _('Select Parents'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-pedigree', _('Pedigree'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-person', _('Person'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-place', _('Places'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-relation', _('Relationships'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-reports', _('Reports'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-repository', _('Repositories'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-source', _('Sources'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-spouse', _('Add Spouse'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-tag', _('Tag'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-tag-new', _('New Tag'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-tools', _('Tools'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-tree-group', _('Grouped List'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-tree-list', _('List'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-tree-select', _('Select'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-unlock', _('Private'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-view', _('View'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-viewmedia', _('View'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-zoom-in', _('Zoom In'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-zoom-out', _('Zoom Out'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-zoom-fit-width', _('Fit Width'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-zoom-best-fit', _('Fit Page'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-citation', _('Citations'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
         ]
     # the following icons are not yet in new directory structure
     # they should be ported in the near future
     items_legacy = [
-         ('gramps-export', _('Export'), gtk.gdk.CONTROL_MASK, 0, ''),
-         ('gramps-import', _('Import'), gtk.gdk.CONTROL_MASK, 0, ''),
-         ('gramps-undo-history', _('Undo History'), gtk.gdk.CONTROL_MASK, 0, ''),
-         ('gramps-url', _('URL'), gtk.gdk.CONTROL_MASK, 0, ''),
+         ('gramps-export', _('Export'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+         ('gramps-import', _('Import'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+         ('gramps-undo-history', _('Undo History'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+         ('gramps-url', _('URL'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
         ]
 
     base_reg_stock_icons(iconpaths, extraiconsize, items+items_legacy)
@@ -252,19 +269,19 @@ class Gramps(object):
 
 def __startgramps(errors, argparser):
     """
-    Main startup function started via gobject.timeout_add
+    Main startup function started via GObject.timeout_add
     First action inside the gtk loop
     """
     from gui.dialog import ErrorDialog
     #handle first existing errors in GUI fashion
     if errors:
         ErrorDialog(errors[0], errors[1])
-        gtk.main_quit()
+        Gtk.main_quit()
         sys.exit(1)
 
     if argparser.errors:
         ErrorDialog(argparser.errors[0], argparser.errors[1])
-        gtk.main_quit()
+        Gtk.main_quit()
         sys.exit(1)
 
     # add gui logger
@@ -316,7 +333,7 @@ def __startgramps(errors, argparser):
 
     if quit_now:
         #stop gtk loop and quit
-        gtk.main_quit()
+        Gtk.main_quit()
         sys.exit(exit_code)
 
     #function finished, return False to stop the timeout_add function calls
@@ -325,9 +342,9 @@ def __startgramps(errors, argparser):
 def startgtkloop(errors, argparser):
     """ We start the gtk loop and run the function to start up GRAMPS
     """
-    gobject.threads_init()
+    GObject.threads_init()
 
-    gobject.timeout_add(100, __startgramps, errors, argparser, priority=100)
+    GObject.timeout_add(100, __startgramps, errors, argparser, priority=100)
     if os.path.exists(os.path.join(DATA_DIR, "gramps.accel")):
-        gtk.accel_map_load(os.path.join(DATA_DIR, "gramps.accel"))
-    gtk.main()
+        Gtk.AccelMap.load(os.path.join(DATA_DIR, "gramps.accel"))
+    Gtk.main()

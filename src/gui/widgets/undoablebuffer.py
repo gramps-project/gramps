@@ -32,7 +32,8 @@ __all__ = ["UndoableBuffer"]
 # http://bitbucket.org/tiax/gtk-textbuffer-with-undo/
 # Please send bugfixes and comments upstream to Florian
 
-import gtk
+from gi.repository import GObject
+from gi.repository import Gtk
 
 class Stack(list):
     """
@@ -66,7 +67,7 @@ class UndoableInsert(object):
 class UndoableDelete(object):
     """something that has been deleted from our textbuffer"""
     def __init__(self, text_buffer, start_iter, end_iter):
-        self.text = str(text_buffer.get_text(start_iter, end_iter))
+        self.text = str(text_buffer.get_text(start_iter, end_iter, True))
         self.start = start_iter.get_offset()
         self.end = end_iter.get_offset()
         # need to find out if backspace or delete key has been used
@@ -82,7 +83,7 @@ class UndoableDelete(object):
             self.mergeable = True
         self.tags = None
 
-class UndoableBuffer(gtk.TextBuffer):
+class UndoableBuffer(Gtk.TextBuffer):
     """text buffer with added undo capabilities
 
     designed as a drop-in replacement for gtksourceview,
@@ -97,7 +98,7 @@ class UndoableBuffer(gtk.TextBuffer):
         """
         we'll need empty stacks for undo/redo and some state keeping
         """
-        gtk.TextBuffer.__init__(self)
+        GObject.GObject.__init__(self)
         self.undo_stack = Stack(self.undo_stack_size)
         self.redo_stack = []
         self.not_undoable_action = False

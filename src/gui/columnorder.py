@@ -40,8 +40,8 @@ import logging
 # GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk
-import gobject
+from gi.repository import Gtk
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -59,7 +59,7 @@ from gui.glade import Glade
 #-------------------------------------------------------------------------
 __LOG = logging.getLogger(".ColumnOrder")
 
-class ColumnOrder(gtk.VBox):
+class ColumnOrder(Gtk.VBox):
     """
     Column ordering selection widget
     """
@@ -75,62 +75,62 @@ class ColumnOrder(gtk.VBox):
         tree: are the columns for a treeview, if so, the first columns is not
             changable
         """
-        gtk.VBox.__init__(self)
+        GObject.GObject.__init__(self)
 
         self.treeview = tree
         self.colnames = column_names
         self.config = config
         self.on_apply = on_apply
         
-        self.pack_start(gtk.Label(' '), expand=False, fill=False)
+        self.pack_start(Gtk.Label(label=' '), False, False, 0)
         
         self.startrow = 0
         if self.treeview:
-            label = gtk.Label(
+            label = Gtk.Label(label=
                     _('Tree View: first column "%s" cannot be changed') % 
                       column_names[0])
             self.startrow = 1
-            self.pack_start(label, expand=False, fill=False)
-            self.pack_start(gtk.Label(' '), expand=False, fill=False)
+            self.pack_start(label, False, False, 0)
+            self.pack_start(Gtk.Label(label=' '), False, False, 0)
 
-        self.pack_start(gtk.Label(_('Drag and drop the columns to change'
-                                    ' the order')), expand=False, fill=False)
-        self.pack_start(gtk.Label(' '), expand=False, fill=False)
-        hbox = gtk.HBox()
+        self.pack_start(Gtk.Label(label=_('Drag and drop the columns to change'
+                                    ' the order')), False, False, 0)
+        self.pack_start(Gtk.Label(label=' '), False, False,0)
+        hbox = Gtk.HBox()
         hbox.set_spacing(10)
-        hbox.pack_start(gtk.Label(' '))
-        scroll = gtk.ScrolledWindow()
+        hbox.pack_start(Gtk.Label(label=' '), True, True, 0)
+        scroll = Gtk.ScrolledWindow()
         scroll.set_size_request(300,300)
-        hbox.pack_start(scroll)
-        self.tree = gtk.TreeView()
+        hbox.pack_start(scroll, True, True, 0)
+        self.tree = Gtk.TreeView()
         self.tree.set_reorderable(True)
         scroll.add(self.tree)
-        self.apply_button = gtk.Button(stock='gtk-apply')
-        btns = gtk.HButtonBox()
-        btns.set_layout(gtk.BUTTONBOX_END)
-        btns.pack_start(self.apply_button)
-        hbox.pack_start(btns, expand=False)
-        self.pack_start(hbox)
+        self.apply_button = Gtk.Button(stock='gtk-apply')
+        btns = Gtk.HButtonBox()
+        btns.set_layout(Gtk.ButtonBoxStyle.END)
+        btns.pack_start(self.apply_button, True, True, 0)
+        hbox.pack_start(btns, False, True, 0)
+        self.pack_start(hbox, True, True, 0)
 
         #Model holds:
         # bool: column visible or not
         # str : name of the column
         # int : order of the column
         # int : size (width) of the column
-        self.model = gtk.ListStore(gobject.TYPE_BOOLEAN, gobject.TYPE_STRING, 
-                                   gobject.TYPE_INT, gobject.TYPE_INT)
+        self.model = Gtk.ListStore(GObject.TYPE_BOOLEAN, GObject.TYPE_STRING, 
+                                   GObject.TYPE_INT, GObject.TYPE_INT)
         
         self.tree.set_model(self.model)
 
-        checkbox = gtk.CellRendererToggle()
+        checkbox = Gtk.CellRendererToggle()
         checkbox.connect('toggled', toggled, self.model)
-        renderer = gtk.CellRendererText()
+        renderer = Gtk.CellRendererText()
         
-        column_n = gtk.TreeViewColumn(_('Display'), checkbox, active=0)
+        column_n = Gtk.TreeViewColumn(_('Display'), checkbox, active=0)
         column_n.set_min_width(50)
         self.tree.append_column(column_n)
 
-        column_n = gtk.TreeViewColumn(_('Column Name'),  renderer, text=1)
+        column_n = Gtk.TreeViewColumn(_('Column Name'),  renderer, text=1)
         column_n.set_min_width(225)
         self.tree.append_column(column_n)
 

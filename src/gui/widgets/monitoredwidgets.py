@@ -41,9 +41,10 @@ import locale
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gobject
-import gtk
-import pango
+from gi.repository import GObject
+from gi.repository import Gtk
+from gi.repository import Gdk
+from gi.repository import Pango
 
 #-------------------------------------------------------------------------
 #
@@ -62,8 +63,8 @@ from gen.errors import ValidationError
 #
 #------------------------------------------------------------------------
 
-_RETURN = gtk.gdk.keyval_from_name("Return")
-_KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
+_RETURN = Gdk.keyval_from_name("Return")
+_KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 
 #-------------------------------------------------------------------------
 #
@@ -138,7 +139,7 @@ class MonitoredEntry(object):
         self.obj.connect(signal, callback, *data)
 
     def _on_change(self, obj):
-        self.set_val(unicode(obj.get_text()))
+        self.set_val(unicode(obj.get_text(), 'utf-8'))
         if self.changed:
             self.changed(obj)
 
@@ -179,9 +180,9 @@ class MonitoredEntryIndicator(MonitoredEntry):
             self.indicatorshown = True
             self.indicator = indicator
             self.obj.set_text(indicator)
-            self.obj.modify_text(gtk.STATE_NORMAL, 
-                                 gtk.gdk.color_parse('grey'))
-            self.obj.modify_font(pango.FontDescription('sans italic'))
+            self.obj.modify_text(Gtk.StateType.NORMAL, 
+                                 Gdk.color_parse('grey'))
+            self.obj.modify_font(Pango.FontDescription('sans italic'))
             self.fockey = self.obj.connect('focus-in-event', 
                                                self._obj_focus)
     
@@ -196,8 +197,8 @@ class MonitoredEntryIndicator(MonitoredEntry):
         callback for when prefix obtains focus
         """
         self.set_text('')
-        self.obj.modify_text(gtk.STATE_NORMAL, gtk.gdk.color_parse('black'))
-        self.obj.modify_font(pango.FontDescription('normal'))
+        self.obj.modify_text(Gtk.StateType.NORMAL, Gdk.color_parse('black'))
+        self.obj.modify_font(Pango.FontDescription('normal'))
         self.obj.disconnect(self.fockey)
         self.indicatorshown = False
         return False
@@ -217,7 +218,7 @@ class MonitoredSpinButton(object):
                  autolist=None, changed=None):
         """
         @param obj: widget to be monitored
-        @type obj: gtk.SpinButton
+        @type obj: Gtk.SpinButton
         @param set_val: callback to be called when obj is changed
         @param get_val: callback to be called to retrieve value for obj
         @param read_only: If SpinButton is read only.
@@ -280,7 +281,7 @@ class MonitoredSpinButton(object):
         Event handler to be called when the monitored widget is changed.
 
         @param obj: Widget that has been changed.
-        @type obj: gtk.SpinButton
+        @type obj: Gtk.SpinButton
         """
         
         self.set_val(obj.get_value())
@@ -420,8 +421,8 @@ class MonitoredDataType(object):
         """
         Constructor for the MonitoredDataType class.
 
-        @param obj: Existing ComboBoxEntry widget to use.
-        @type obj: gtk.ComboBoxEntry
+        @param obj: Existing ComboBox widget to use with has_entry=True.
+        @type obj: Gtk.ComboBox
         @param set_val: The function that sets value of the type in the object
         @type set_val:  method
         @param get_val: The function that gets value of the type in the object.
@@ -525,7 +526,7 @@ class MonitoredMenu(object):
 
     def change_menu(self, mapping):
         self.data = {}
-        self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_INT)
+        self.model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_INT)
         index = 0
         for t, v in mapping:
             self.model.append(row=[t, v])
@@ -551,7 +552,7 @@ class MonitoredStrMenu(object):
         self.get_val = get_val
 
         self.obj = obj
-        self.model = gtk.ListStore(gobject.TYPE_STRING)
+        self.model = Gtk.ListStore(GObject.TYPE_STRING)
         
         if len(mapping) > 20:
             self.obj.set_wrap_width(3)
@@ -610,10 +611,10 @@ class MonitoredDate(object):
         self.text_obj = field
         self.button_obj = button
 
-        image = gtk.Image()
-        image.set_from_stock('gramps-date-edit', gtk.ICON_SIZE_BUTTON)
+        image = Gtk.Image()
+        image.set_from_stock('gramps-date-edit', Gtk.IconSize.BUTTON)
         self.button_obj.set_image(image)
-        self.button_obj.set_relief(gtk.RELIEF_NORMAL)
+        self.button_obj.set_relief(Gtk.ReliefStyle.NORMAL)
         self.pixmap_obj = self.button_obj.get_child()
         
         self.text_obj.connect('validate', self.validate)
@@ -701,7 +702,7 @@ class MonitoredComboSelectedEntry(object):
         self.__fill()
         self.objcombo.clear()
         self.objcombo.set_model(self.store)
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         self.objcombo.pack_start(cell, True)
         self.objcombo.add_attribute(cell, 'text', 1)
         self.objcombo.set_active(self.active_index)
@@ -727,7 +728,7 @@ class MonitoredComboSelectedEntry(object):
         """
         Fill combo with data
         """
-        self.store = gtk.ListStore(gobject.TYPE_INT, gobject.TYPE_STRING)
+        self.store = Gtk.ListStore(GObject.TYPE_INT, GObject.TYPE_STRING)
         keys = sorted(self.mapping.keys(), key=self.__by_value_key)
 
         for index, key in enumerate(keys):
@@ -824,9 +825,9 @@ class MonitoredTagList(object):
 
         self.label = label
         self.label.set_alignment(0, 0.5)
-        self.label.set_ellipsize(pango.ELLIPSIZE_END)
-        image = gtk.Image()
-        image.set_from_stock('gramps-tag', gtk.ICON_SIZE_MENU)
+        self.label.set_ellipsize(Pango.EllipsizeMode.END)
+        image = Gtk.Image()
+        image.set_from_stock('gramps-tag', Gtk.IconSize.MENU)
         button.set_image (image)
         button.set_tooltip_text(_('Edit the tag list'))
         button.connect('button-press-event', self.cb_edit)
@@ -856,8 +857,8 @@ class MonitoredTagList(object):
         """
         Invoke the tag editor.
         """
-        if (event.type == gtk.gdk.BUTTON_PRESS or
-           (event.type == gtk.gdk.KEY_PRESS and
+        if (event.type == Gdk.EventType.BUTTON_PRESS or
+           (event.type == Gdk.EventType.KEY_PRESS and
             event.keyval in (_RETURN, _KP_ENTER))):
             from gui.editors import EditTagList
             editor = EditTagList(self.tag_list, self.all_tags,

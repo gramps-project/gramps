@@ -34,14 +34,18 @@ from gen.ggettext import gettext as _
 # GTK libraries
 #
 #-------------------------------------------------------------------------
-import gtk
-from pango import WEIGHT_NORMAL, WEIGHT_BOLD
+from gi.repository import GObject
+from gi.repository import Gtk
+from gi.repository import Pango
+WEIGHT_NORMAL = Pango.Weight.NORMAL
+WEIGHT_BOLD = Pango.Weight.BOLD
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
+from gui.widgets.undoablebuffer import UndoableBuffer
 from gen.display.name import displayer as name_displayer
 
 #-------------------------------------------------------------------------
@@ -53,7 +57,7 @@ from gen.display.name import displayer as name_displayer
 YES = _('Yes')
 NO = _('No')
 
-class NameModel(gtk.TreeStore):
+class NameModel(Gtk.TreeStore):
     #tree groups defined
     DEFINDEX = 0
     DEFNAME = _('Preferred name')
@@ -83,7 +87,7 @@ class NameModel(gtk.TreeStore):
             that might be used. name is the name for the group.
         """
         typeobjs = (x[1] for x in self.COLS)
-        gtk.TreeStore.__init__(self, *typeobjs)
+        Gtk.TreeStore.__init__(self, *typeobjs)
         self.db = db
         self.groups = groups
         for index, group in enumerate(obj_list):

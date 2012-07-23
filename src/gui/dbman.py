@@ -37,8 +37,7 @@ import time
 import copy
 import subprocess
 import urlparse
-from gen.ggettext import gettext as _
-from gui.user import User
+
 #-------------------------------------------------------------------------
 #
 # set up logging
@@ -61,15 +60,17 @@ else:
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
-from gtk.gdk import ACTION_COPY
-import pango
+from gi.repository import Gdk
+from gi.repository import Gtk
+from gi.repository import Pango
 
 #-------------------------------------------------------------------------
 #
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from gen.ggettext import gettext as _
+from gui.user import User
 from gui.dialog import ErrorDialog, QuestionDialog, QuestionDialog2
 from gen.db import DbBsddb
 from gui.pluginmanager import GuiPluginManager
@@ -82,8 +83,8 @@ from gen.db.exceptions import DbException
 from gen.utils.file import get_unicode_path_from_env_var
 
 
-_RETURN = gtk.gdk.keyval_from_name("Return")
-_KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
+_RETURN = Gdk.keyval_from_name("Return")
+_KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 
 
 #-------------------------------------------------------------------------
@@ -112,9 +113,9 @@ class DbManager(CLIDbManager):
     """
     ICON_MAP = {
                 CLIDbManager.ICON_NONE : '',
-                CLIDbManager.ICON_RECOVERY : gtk.STOCK_DIALOG_ERROR,
+                CLIDbManager.ICON_RECOVERY : Gtk.STOCK_DIALOG_ERROR,
                 CLIDbManager.ICON_LOCK : 'gramps-lock',
-                CLIDbManager.ICON_OPEN : gtk.STOCK_OPEN,
+                CLIDbManager.ICON_OPEN : Gtk.STOCK_OPEN,
                }
 
     ERROR = ErrorDialog
@@ -152,7 +153,8 @@ class DbManager(CLIDbManager):
         Connects the signals to the buttons on the interface. 
         """
         ddtargets = [ DdTargets.URI_LIST.target() ]
-        self.top.drag_dest_set(gtk.DEST_DEFAULT_ALL, ddtargets, ACTION_COPY)
+        self.top.drag_dest_set(Gtk.DestDefaults.ALL, ddtargets,
+                               Gdk.DragAction.COPY)
 
         self.remove.connect('clicked', self.__remove_db)
         self.new.connect('clicked', self.__new_db)
@@ -174,9 +176,9 @@ class DbManager(CLIDbManager):
         treat a double click as if it was OK button press. However, we have
         to make sure that an item was selected first.
         """
-        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             if self.connect.get_property('sensitive'):
-                self.top.response(gtk.RESPONSE_OK)
+                self.top.response(Gtk.ResponseType.OK)
                 return True
         return False
 
@@ -187,7 +189,7 @@ class DbManager(CLIDbManager):
         """
         if event.keyval in (_RETURN, _KP_ENTER):
             if self.connect.get_property('sensitive'):
-                self.top.response(gtk.RESPONSE_OK)
+                self.top.response(Gtk.ResponseType.OK)
                 return True
         return False
 
@@ -222,10 +224,10 @@ class DbManager(CLIDbManager):
         if path is None:
             return
 
-        is_rev = len(path) > 1
+        is_rev = len(path.get_indices()) > 1
         self.rcs.set_label(RCS_BUTTON[is_rev])
 
-        if store.get_value(node, STOCK_COL) == gtk.STOCK_OPEN:
+        if store.get_value(node, STOCK_COL) == Gtk.STOCK_OPEN:
             self.connect.set_sensitive(False)
             if _RCS_FOUND:
                 self.rcs.set_sensitive(True)
@@ -236,7 +238,7 @@ class DbManager(CLIDbManager):
             else:
                 self.rcs.set_sensitive(False)
 
-        if store.get_value(node, STOCK_COL) == gtk.STOCK_DIALOG_ERROR:
+        if store.get_value(node, STOCK_COL) == Gtk.STOCK_DIALOG_ERROR:
             path = get_unicode_path_from_env_var(store.get_value(node, PATH_COL))
             backup = os.path.join(path, "person.gbkp")
             self.repair.set_sensitive(os.path.isfile(backup))
@@ -264,12 +266,12 @@ class DbManager(CLIDbManager):
         """
 
         # build the database name column
-        render = gtk.CellRendererText()
-        render.set_property('ellipsize', pango.ELLIPSIZE_END)
+        render = Gtk.CellRendererText()
+        render.set_property('ellipsize', Pango.EllipsizeMode.END)
         render.connect('edited', self.__change_name)
         render.connect('editing-canceled', self.__stop_edit)
         render.connect('editing-started', self.__start_edit)
-        self.column = gtk.TreeViewColumn(_('Family tree name'), render, 
+        self.column = Gtk.TreeViewColumn(_('Family tree name'), render, 
                                          text=NAME_COL)
         self.column.set_sort_column_id(NAME_COL)
         self.column.set_resizable(True)
@@ -278,14 +280,14 @@ class DbManager(CLIDbManager):
         self.name_renderer = render
 
         # build the icon column
-        render = gtk.CellRendererPixbuf()
-        icon_column = gtk.TreeViewColumn(_('Status'), render, 
+        render = Gtk.CellRendererPixbuf()
+        icon_column = Gtk.TreeViewColumn(_('Status'), render, 
                                          stock_id=STOCK_COL)
         self.dblist.append_column(icon_column)
 
         # build the last accessed column
-        render = gtk.CellRendererText()
-        column = gtk.TreeViewColumn(_('Last accessed'), render, text=DATE_COL)
+        render = Gtk.CellRendererText()
+        column = Gtk.TreeViewColumn(_('Last accessed'), render, text=DATE_COL)
         column.set_sort_column_id(DSORT_COL)
         self.dblist.append_column(column)
 
@@ -303,7 +305,7 @@ class DbManager(CLIDbManager):
         """
         Builds the display model.
         """
-        self.model = gtk.TreeStore(str, str, str, str, int, bool, str)
+        self.model = Gtk.TreeStore(str, str, str, str, int, bool, str)
 
         #use current names to set up the model
         for items in self.current_names:
@@ -322,12 +324,12 @@ class DbManager(CLIDbManager):
         iter = self.model.get_iter_first()
         while (iter):
             path = self.model.get_path(iter)
+            iter = self.model.iter_next(iter)
             if path == skippath:
                 continue
             itername = self.model.get_value(iter, NAME_COL)
             if itername.strip() == name.strip():
                 return True
-            iter = self.model.iter_next(iter)
         return False
 
     def run(self):
@@ -337,14 +339,14 @@ class DbManager(CLIDbManager):
         """
         while True:
             value = self.top.run()
-            if value == gtk.RESPONSE_OK:
+            if value == Gtk.ResponseType.OK:
                 store, node = self.selection.get_selected()
                 # don't open a locked file
                 if store.get_value(node, STOCK_COL) == 'gramps-lock':
                     self.__ask_to_break_lock(store, node)
                     continue 
                 # don't open a version
-                if len(store.get_path(node)) > 1:
+                if len(store.get_path(node).get_indices()) > 1:
                     continue
                 if node:
                     self.top.destroy()
@@ -375,7 +377,7 @@ class DbManager(CLIDbManager):
               "the database and you break the lock, you may corrupt the "
               "database."),
             _("Break lock"),
-            self.__really_break_lock)
+            self.__really_break_lock, self.top)
 
     def __really_break_lock(self):
         """
@@ -415,12 +417,13 @@ class DbManager(CLIDbManager):
         If the new string is empty, do nothing. Otherwise, renaming the	
         database is simply changing the contents of the name file.
         """
+        #path is a string, convert to TreePath first
+        path = Gtk.TreePath(path=path)
         if len(new_text) > 0:
             node = self.model.get_iter(path)
             old_text = self.model.get_value(node, NAME_COL)
             if not old_text.strip() == new_text.strip():
-                #If there is a ":" in path, then it as revision
-                if ":" in path :
+                if len(path.get_indices()) > 1 :
                     self.__rename_revision(path, new_text)
                 else:
                     self.__rename_database(path, new_text)
@@ -482,7 +485,7 @@ class DbManager(CLIDbManager):
         """
         store, node = self.selection.get_selected()
         tree_path = store.get_path(node)
-        if len(tree_path) > 1:
+        if len(tree_path.get_indices()) > 1:
             parent_node = store.get_iter((tree_path[0],))
             parent_name = store.get_value(parent_node, NAME_COL)
             name = store.get_value(node, NAME_COL)
@@ -524,7 +527,7 @@ class DbManager(CLIDbManager):
         path = store.get_path(node)
         self.data_to_delete = store[path]
 
-        if len(path) == 1:
+        if len(path.get_indices()) == 1:
             QuestionDialog(
                 _("Remove the '%s' family tree?") % self.data_to_delete[0],
                 _("Removing this family tree will permanently destroy the data."),
@@ -610,8 +613,7 @@ class DbManager(CLIDbManager):
         store, node = self.selection.get_selected()
         path = self.model.get_path(node)
         self.name_renderer.set_property('editable', True)
-        self.dblist.set_cursor(path, focus_column=self.column, 
-                               start_editing=True)
+        self.dblist.set_cursor(path, self.column, True)
 
     def __repair_db(self, obj):
         """
@@ -687,9 +689,9 @@ class DbManager(CLIDbManager):
         message
         """
         self.msg.set_label(msg)
-        self.top.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-        while (gtk.events_pending()):
-            gtk.main_iteration()
+        self.top.window.set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
+        while (Gtk.events_pending()):
+            Gtk.main_iteration()
 
     def __end_cursor(self):
         """
@@ -724,8 +726,7 @@ class DbManager(CLIDbManager):
         self.selection.select_iter(node)
         path = self.model.get_path(node)
         self.name_renderer.set_property('editable', True)
-        self.dblist.set_cursor(path, focus_column=self.column, 
-                               start_editing=True)
+        self.dblist.set_cursor(path, self.column, True)
         return new_path, title
 
     def __drag_data_received(self, widget, context, xpos, ypos, selection, 
@@ -750,7 +751,7 @@ def drag_motion(wid, context, xpos, ypos, time_stamp):
     """
     DND callback that is called on a DND drag motion begin
     """
-    context.drag_status(gtk.gdk.ACTION_COPY, time_stamp)
+    context.drag_status(Gdk.DragAction.COPY, time_stamp)
     return True
 
 def drop_cb(wid, context, xpos, ypos, time_stamp):

@@ -38,7 +38,7 @@ LOG = logging.getLogger(".citation")
 # GNOME/GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -57,7 +57,7 @@ class CitationListModel(CitationBaseModel, FlatBaseModel):
     """
     Flat citation model.  (Original code in CitationBaseModel).
     """
-    def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None,
+    def __init__(self, db, scol=0, order=Gtk.SortType.ASCENDING, search=None,
                  skip=set(), sort_map=None):
         self.map = db.get_raw_citation_data
         self.gen_cursor = db.get_citation_cursor
@@ -105,5 +105,5 @@ class CitationListModel(CitationBaseModel, FlatBaseModel):
         self.smap = None
         FlatBaseModel.destroy(self)
 
-    def on_get_n_columns(self):
+    def do_get_n_columns(self):
         return len(self.fmap)+1

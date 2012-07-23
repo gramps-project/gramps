@@ -33,9 +33,10 @@ import cPickle as pickle
 # GTK libraries
 #
 #-------------------------------------------------------------------------
-import gtk
-import pango
-import gobject
+from gi.repository import Gdk
+from gi.repository import Gtk
+from gi.repository import Pango
+from gi.repository import GObject
 #-------------------------------------------------------------------------
 #
 # GRAMPS classes
@@ -54,7 +55,7 @@ class GroupEmbeddedList(EmbeddedList):
     This class provides the base class for all the list tabs that show
     grouped data. 
     
-    It maintains a gtk.TreeView, including the selection and button sensitivity.
+    It maintains a Gtk.TreeView, including the selection and button sensitivity.
     """
     
     _WORKGROUP = 0
@@ -92,7 +93,7 @@ class GroupEmbeddedList(EmbeddedList):
         """
         The group column is clicked, sort it as it was
         """
-        self.columns[0].set_sort_order(gtk.SORT_ASCENDING)
+        self.columns[0].set_sort_order(Gtk.SortType.ASCENDING)
         self.rebuild()
         self.dbsort = True
     
@@ -108,7 +109,7 @@ class GroupEmbeddedList(EmbeddedList):
             if obj and obj[1]:
                 self._tmpgroup = obj[0]
                 self.right_click(obj[1], event)
-        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 2:
+        elif event.type == Gdk.EventType.BUTTON_PRESS and event.button == 2:
                 fun = self.get_middle_click()
                 if fun:
                     fun()
@@ -216,7 +217,7 @@ class GroupEmbeddedList(EmbeddedList):
             wgroup = dest[0][0]
             if len(dest[0]) == 1:
                 # On a heading
-                if dest[1] == gtk.TREE_VIEW_DROP_BEFORE:
+                if dest[1] == Gtk.TreeViewDropPosition.BEFORE:
                     if wgroup != 0:
                         # If before then put at end of previous group
                         return (wgroup-1, len(self.get_data()[wgroup-1]))
@@ -226,8 +227,8 @@ class GroupEmbeddedList(EmbeddedList):
                 else:
                     return (wgroup, 0)
             else:
-                if dest[1] in (gtk.TREE_VIEW_DROP_BEFORE,
-                               gtk.TREE_VIEW_DROP_INTO_OR_BEFORE):
+                if dest[1] in (Gtk.TreeViewDropPosition.BEFORE,
+                               Gtk.TreeViewDropPosition.INTO_OR_BEFORE):
                     return (wgroup, dest[0][1])
                 else:
                     return (wgroup, dest[0][1]+1)
@@ -297,7 +298,7 @@ class GroupEmbeddedList(EmbeddedList):
             #select the row
             path = (self._WORKGROUP, row_from[1]-1)
             self.tree.get_selection().select_path(path)
-            gobject.idle_add(self.tree.scroll_to_cell, path)
+            GObject.idle_add(self.tree.scroll_to_cell, path)
         else:
             self._move_up_notwork(row_from, obj, selmethod)
 
@@ -330,7 +331,7 @@ class GroupEmbeddedList(EmbeddedList):
             #select the row
             path = (self._WORKGROUP, row_from[1]+1)
             self.tree.get_selection().select_path(path)
-            gobject.idle_add(self.tree.scroll_to_cell, path)
+            GObject.idle_add(self.tree.scroll_to_cell, path)
         else:
             self._move_down_notwork(row_from, obj, selmethod)
 
@@ -353,7 +354,7 @@ class GroupEmbeddedList(EmbeddedList):
         STOCK_JUSTIFY_FILL icon, which in the default GTK style
         looks kind of like a list.
         """
-        return gtk.STOCK_JUSTIFY_FILL
+        return Gtk.STOCK_JUSTIFY_FILL
 
     def del_button_clicked(self, obj):
         ref = self.get_selected()

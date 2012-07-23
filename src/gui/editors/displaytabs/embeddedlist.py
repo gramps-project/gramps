@@ -34,9 +34,10 @@ import cPickle as pickle
 # GTK libraries
 #
 #-------------------------------------------------------------------------
-import gobject
-import gtk
-import pango
+from gi.repository import GObject
+from gi.repository import Gdk
+from gi.repository import Gtk
+from gi.repository import Pango
 
 #-------------------------------------------------------------------------
 #
@@ -55,7 +56,7 @@ class EmbeddedList(ButtonTab):
     """
     This class provides the base class for all the list tabs. 
     
-    It maintains a gtk.TreeView, including the selection and button sensitivity.
+    It maintains a Gtk.TreeView, including the selection and button sensitivity.
     """
     
     _HANDLE_COL = -1
@@ -102,7 +103,7 @@ class EmbeddedList(ButtonTab):
             ref = self.get_selected()
             if ref:
                 self.right_click(obj, event)
-        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 2:
+        elif event.type == Gdk.EventType.BUTTON_PRESS and event.button == 2:
             fun = self.get_middle_click()
             if fun:
                 fun()
@@ -120,16 +121,16 @@ class EmbeddedList(ButtonTab):
         """
         if self.share_btn:
             itemlist = [
-                (True, True, gtk.STOCK_ADD, self.add_button_clicked),
+                (True, True, Gtk.STOCK_ADD, self.add_button_clicked),
                 (True, False, _('Share'), self.share_button_clicked),
-                (False,True, gtk.STOCK_EDIT, self.edit_button_clicked),
-                (True, True, gtk.STOCK_REMOVE, self.del_button_clicked),
+                (False,True, Gtk.STOCK_EDIT, self.edit_button_clicked),
+                (True, True, Gtk.STOCK_REMOVE, self.del_button_clicked),
                 ]
         else:
             itemlist = [
-                (True, True, gtk.STOCK_ADD, self.add_button_clicked),
-                (False,True, gtk.STOCK_EDIT, self.edit_button_clicked),
-                (True, True, gtk.STOCK_REMOVE, self.del_button_clicked),
+                (True, True, Gtk.STOCK_ADD, self.add_button_clicked),
+                (False,True, Gtk.STOCK_EDIT, self.edit_button_clicked),
+                (True, True, Gtk.STOCK_REMOVE, self.del_button_clicked),
             ]
         return itemlist
 
@@ -141,25 +142,29 @@ class EmbeddedList(ButtonTab):
         On right click show a popup menu.
         This is populated with get_popup_menu_items
         """
-        menu = gtk.Menu()
+        menu = Gtk.Menu()
         for (needs_write_access, image, title, func) in self.get_popup_menu_items():
             if image:
                 if isinstance(title, tuple):
                     img_stock, txt = title
-                    item = gtk.ImageMenuItem(txt)
-                    img = gtk.Image()
-                    img.set_from_stock(img_stock, gtk.ICON_SIZE_MENU)
+                    item = Gtk.ImageMenuItem(txt)
+                    img = Gtk.Image()
+                    img.set_from_stock(img_stock, Gtk.IconSize.MENU)
                     item.set_image(img)
                 else:
-                    item = gtk.ImageMenuItem(stock_id=title)
+                    item = Gtk.ImageMenuItem('')
+                    img = Gtk.Image()
+                    img.set_from_stock(title, Gtk.IconSize.MENU)
+                    item.set_image(img)
             else:
-                item = gtk.MenuItem(title)
+                item = Gtk.MenuItem(label=title)
             item.connect('activate', func)
             if needs_write_access and self.dbstate.db.readonly:
                 item.set_sensitive(False)
             item.show()
             menu.append(item)
-        menu.popup(None, None, None, event.button, event.time)
+        menu.popup(None, None, None, None, event.button, event.time)
+        return True
 
     def find_index(self, obj):
         """
@@ -175,15 +180,16 @@ class EmbeddedList(ButtonTab):
         """
 
         if self._DND_EXTRA:
-            dnd_types = [ self._DND_TYPE.target(), self._DND_EXTRA.target() ]
+            dnd_types = [self._DND_TYPE.target_data(), 
+                         self._DND_EXTRA.target_data()]
         else:
-            dnd_types = [ self._DND_TYPE.target() ]
+            dnd_types = [self._DND_TYPE.target_data()]
         
         self.tree.enable_model_drag_dest(dnd_types,
-                                         gtk.gdk.ACTION_COPY)
-        self.tree.enable_model_drag_source(gtk.gdk.BUTTON1_MASK,
-                                  [self._DND_TYPE.target()],
-                                  gtk.gdk.ACTION_COPY)
+                                         Gdk.DragAction.COPY)
+        self.tree.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK,
+                                  [self._DND_TYPE.target_data()],
+                                  Gdk.DragAction.COPY)
         self.tree.connect('drag_data_get', self.drag_data_get)
         if not self.dbstate.db.readonly:
             self.tree.connect('drag_data_received', self.drag_data_received)
@@ -258,8 +264,8 @@ class EmbeddedList(ButtonTab):
         if row is None:
             return len(self.get_data())
         else:
-            if row[1] in (gtk.TREE_VIEW_DROP_BEFORE,
-                          gtk.TREE_VIEW_DROP_INTO_OR_BEFORE):
+            if row[1] in (Gtk.TreeViewDropPosition.BEFORE,
+                          Gtk.TreeViewDropPosition.INTO_OR_BEFORE):
                 return row[0][0]
             else:
                 return row[0][0]+1
@@ -294,9 +300,9 @@ class EmbeddedList(ButtonTab):
         #select the row
         path = '%d' % (row_from-1) 
         self.tree.get_selection().select_path(path)
-        # The height/location of gtk.treecells is calculated in an idle handler
+        # The height/location of Gtk.treecells is calculated in an idle handler
         # so use idle_add to scroll cell into view.
-        gobject.idle_add(self.tree.scroll_to_cell, path)
+        GObject.idle_add(self.tree.scroll_to_cell, path)
         
     def _move_down(self, row_from, obj, selmethod=None):
         """ 
@@ -314,7 +320,7 @@ class EmbeddedList(ButtonTab):
         #select the row
         path = '%d' % (row_from+1) 
         self.tree.get_selection().select_path(path)
-        gobject.idle_add(self.tree.scroll_to_cell, path)
+        GObject.idle_add(self.tree.scroll_to_cell, path)
 
     def get_icon_name(self):
         """
@@ -323,7 +329,7 @@ class EmbeddedList(ButtonTab):
         STOCK_JUSTIFY_FILL icon, which in the default GTK style
         looks kind of like a list.
         """
-        return gtk.STOCK_JUSTIFY_FILL
+        return Gtk.STOCK_JUSTIFY_FILL
 
     def del_button_clicked(self, obj):
         ref = self.get_selected()
@@ -349,14 +355,14 @@ class EmbeddedList(ButtonTab):
 
     def build_interface(self):
         """
-        Builds the interface, instantiating a gtk.TreeView in a
-        gtk.ScrolledWindow.
+        Builds the interface, instantiating a Gtk.TreeView in a
+        Gtk.ScrolledWindow.
         """
 
         # create the tree, turn on rule hinting and connect the
         # button press to the double click function.
         
-        self.tree = gtk.TreeView()
+        self.tree = Gtk.TreeView()
         self.tree.set_reorderable(True)
         self.tree.set_rules_hint(True)
         self.tree.connect('button_press_event', self.double_click)
@@ -364,11 +370,11 @@ class EmbeddedList(ButtonTab):
         self.track_ref_for_deletion("tree")
 
         # create the scrolled window, and attach the treeview
-        scroll = gtk.ScrolledWindow()
-        scroll.set_shadow_type(gtk.SHADOW_IN)
-        scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        scroll = Gtk.ScrolledWindow()
+        scroll.set_shadow_type(Gtk.ShadowType.IN)
+        scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         scroll.add(self.tree)
-        self.pack_end(scroll, True)
+        self.pack_end(scroll, True, True,0)
 
     def get_selected(self):
         """
@@ -434,12 +440,12 @@ class EmbeddedList(ButtonTab):
             # assign it to the column name. The text value is extracted
             # from the model column specified in pair[1]
             name = self._column_names[pair[1]][0]
-            renderer = gtk.CellRendererText()
-            renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
+            renderer = Gtk.CellRendererText()
+            renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
             if self._column_names[pair[1]][3] == 0:
-                column = gtk.TreeViewColumn(name, renderer, text=pair[1])
+                column = Gtk.TreeViewColumn(name, renderer, text=pair[1])
             else:
-                column = gtk.TreeViewColumn(name, renderer, markup=pair[1])
+                column = Gtk.TreeViewColumn(name, renderer, markup=pair[1])
             if not self._column_names[pair[1]][4] == -1:
                 #apply weight attribute
                 column.add_attribute(renderer, "weight", 
@@ -448,7 +454,7 @@ class EmbeddedList(ButtonTab):
             # insert the colum into the tree
             column.set_resizable(True)
             column.set_clickable(True)
-            column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+            column.set_sizing(Gtk.TreeViewColumnSizing.FIXED)
             #column.set_min_width(self._column_names[pair[1]][2])
             column.set_fixed_width(self._column_names[pair[1]][2])
 
@@ -496,8 +502,8 @@ class EmbeddedList(ButtonTab):
         #model and tree are reset, allow _selection_changed again, and force it
         self.dirty_selection = False
         self._selection_changed()
-        if self.tree.flags() & gtk.REALIZED:
-            gobject.idle_add(self.tree.scroll_to_point, offset.x, offset.y)
+        if self.tree.get_realized():
+            GObject.idle_add(self.tree.scroll_to_point, offset.x, offset.y)
         self.post_rebuild(selectedpath)
     
     def post_rebuild(self, prebuildpath):

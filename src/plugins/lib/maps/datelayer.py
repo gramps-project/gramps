@@ -28,7 +28,7 @@
 #
 #-------------------------------------------------------------------------
 import os
-import gobject
+from gi.repository import GObject
 import operator
 from math import *
 
@@ -45,7 +45,7 @@ _LOG = logging.getLogger("maps.datelayer")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -65,7 +65,7 @@ try:
 except:
     raise
 
-class DateLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
+class DateLayer(GObject.GObject, osmgpsmap.GpsMapLayer):
     """
     This is the layer used to display the two extreme dates on the top left of the view
     """
@@ -73,7 +73,7 @@ class DateLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
         """
         Initialize the layer
         """
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
         self.first = "    "
         self.last = "    "
         self.color = "black"
@@ -118,7 +118,7 @@ class DateLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
                              cairo.FONT_SLANT_NORMAL,
                              cairo.FONT_WEIGHT_NORMAL)
         ctx.set_font_size(int(self.size))
-        color = gtk.gdk.color_parse(self.color)
+        color = Gdk.color_parse(self.color)
         ctx.set_source_rgba(float(color.red / 65535.0),
                             float(color.green / 65535.0),
                             float(color.blue / 65535.0),
@@ -149,5 +149,5 @@ class DateLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
         """
         return False
 
-gobject.type_register(DateLayer)
+GObject.type_register(DateLayer)
 

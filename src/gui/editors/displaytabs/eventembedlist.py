@@ -27,8 +27,8 @@
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
-import gtk
-import gobject
+from gi.repository import Gtk
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -284,7 +284,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         self.callman.register_handles({'event': [primary.handle]}) 
         self.changed = True
         self.rebuild()
-        gobject.idle_add(self.tree.scroll_to_cell,
+        GObject.idle_add(self.tree.scroll_to_cell,
                          (self._WORKGROUP, len(data) - 1))
 
     def object_edited(self, ref, event):
@@ -302,8 +302,8 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
             return GroupEmbeddedList.get_popup_menu_items(self)
         else:
             return [
-                (True, True, gtk.STOCK_ADD, self.add_button_clicked),
-                (False,True, gtk.STOCK_EDIT, self.edit_button_clicked),
+                (True, True, Gtk.STOCK_ADD, self.add_button_clicked),
+                (False,True, Gtk.STOCK_EDIT, self.edit_button_clicked),
                 ]
 
     def _non_native_change(self):

@@ -59,8 +59,9 @@ except:
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
-import gobject
+from gi.repository import Gdk
+from gi.repository import Gtk
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -946,7 +947,7 @@ class BookReportSelector(ManagedWindow):
 
         while True:
             response = item_dialog.window.run()
-            if response == gtk.RESPONSE_OK:
+            if response == Gtk.ResponseType.OK:
                 # dialog will be closed by connect, now continue work while
                 # rest of dialog is unresponsive, release when finished
                 style = option_class.handler.get_default_stylesheet_name()
@@ -956,10 +957,10 @@ class BookReportSelector(ManagedWindow):
                 self.book.set_item(row, item)
                 item_dialog.close()
                 break
-            elif response == gtk.RESPONSE_CANCEL:
+            elif response == Gtk.ResponseType.CANCEL:
                 item_dialog.close()
                 break
-            elif response == gtk.RESPONSE_DELETE_EVENT:
+            elif response == Gtk.ResponseType.DELETE_EVENT:
                 #just stop, in ManagedWindow, delete-event is already coupled to
                 #correct action.
                 break
@@ -969,7 +970,7 @@ class BookReportSelector(ManagedWindow):
         Double-click on the current book selection is the same as setup.
         Right click evokes the context menu. 
         """
-        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             self.on_setup_clicked(obj)
         elif gui.utils.is_right_click(event):
             self.build_book_context_menu(event)
@@ -979,7 +980,7 @@ class BookReportSelector(ManagedWindow):
         Double-click on the available selection is the same as add.
         Right click evokes the context menu. 
         """
-        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             self.on_add_clicked(obj)
         elif gui.utils.is_right_click(event):
             self.build_avail_context_menu(event)
@@ -993,27 +994,27 @@ class BookReportSelector(ManagedWindow):
         else:
             sensitivity = 0 
         entries = [
-            (gtk.STOCK_GO_UP, self.on_up_clicked, sensitivity),
-            (gtk.STOCK_GO_DOWN, self.on_down_clicked, sensitivity),
+            (Gtk.STOCK_GO_UP, self.on_up_clicked, sensitivity),
+            (Gtk.STOCK_GO_DOWN, self.on_down_clicked, sensitivity),
             (_("Setup"), self.on_setup_clicked, sensitivity),
-            (gtk.STOCK_REMOVE, self.on_remove_clicked, sensitivity),
+            (Gtk.STOCK_REMOVE, self.on_remove_clicked, sensitivity),
             (None,None,0),
-            (gtk.STOCK_CLEAR, self.on_clear_clicked, 1),
-            (gtk.STOCK_SAVE, self.on_save_clicked, 1),
-            (gtk.STOCK_OPEN, self.on_open_clicked, 1),
+            (Gtk.STOCK_CLEAR, self.on_clear_clicked, 1),
+            (Gtk.STOCK_SAVE, self.on_save_clicked, 1),
+            (Gtk.STOCK_OPEN, self.on_open_clicked, 1),
             (_("Edit"), self.on_edit_clicked,1 ),
         ]
 
-        menu = gtk.Menu()
+        menu = Gtk.Menu()
         menu.set_title(_('Book Menu'))
         for stock_id, callback, sensitivity in entries:
-            item = gtk.ImageMenuItem(stock_id)
+            item = Gtk.ImageMenuItem(stock_id)
             if callback:
                 item.connect("activate", callback)
             item.set_sensitive(sensitivity)
             item.show()
             menu.append(item)
-        menu.popup(None, None, None, event.button, event.time)
+        menu.popup(None, None, None, None, event.button, event.time)
 
     def build_avail_context_menu(self, event):
         """Builds the menu with the single Add option."""
@@ -1024,19 +1025,19 @@ class BookReportSelector(ManagedWindow):
         else:
             sensitivity = 0 
         entries = [
-            (gtk.STOCK_ADD, self.on_add_clicked, sensitivity),
+            (Gtk.STOCK_ADD, self.on_add_clicked, sensitivity),
         ]
 
-        menu = gtk.Menu()
+        menu = Gtk.Menu()
         menu.set_title(_('Available Items Menu'))
         for stock_id, callback, sensitivity in entries:
-            item = gtk.ImageMenuItem(stock_id)
+            item = Gtk.ImageMenuItem(stock_id)
             if callback:
                 item.connect("activate", callback)
             item.set_sensitive(sensitivity)
             item.show()
             menu.append(item)
-        menu.popup(None, None, None, event.button, event.time)
+        menu.popup(None, None, None, None, event.button, event.time)
 
     def on_book_ok_clicked(self, obj): 
         """
@@ -1190,11 +1191,11 @@ class BookItemDialog(ReportDialog):
 # _BookFormatComboBox
 #
 #-------------------------------------------------------------------------
-class _BookFormatComboBox(gtk.ComboBox):
+class _BookFormatComboBox(Gtk.ComboBox):
 
     def __init__(self, active):
 
-        gtk.ComboBox.__init__(self)
+        GObject.GObject.__init__(self)
         
         pmgr = GuiPluginManager.get_instance()
         self.__bookdoc_plugins = []
@@ -1202,9 +1203,9 @@ class _BookFormatComboBox(gtk.ComboBox):
             if plugin.get_text_support() and plugin.get_draw_support():
                 self.__bookdoc_plugins.append(plugin)
         
-        self.store = gtk.ListStore(gobject.TYPE_STRING)
+        self.store = Gtk.ListStore(GObject.TYPE_STRING)
         self.set_model(self.store)
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         self.pack_start(cell, True)
         self.add_attribute(cell, 'text', 0)
 
@@ -1282,7 +1283,7 @@ class BookReportDialog(DocReportDialog):
                     this_style_name,style_sheet.get_cell_style(this_style_name))
 
         response = self.window.run()
-        if response == gtk.RESPONSE_OK:
+        if response == Gtk.ResponseType.OK:
             try:
                 self.make_report()
             except (IOError,OSError),msg:

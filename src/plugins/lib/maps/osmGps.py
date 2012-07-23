@@ -28,7 +28,7 @@
 #
 #-------------------------------------------------------------------------
 import os
-import gobject
+from gi.repository import GObject
 
 #------------------------------------------------------------------------
 #
@@ -44,7 +44,7 @@ _LOG = logging.getLogger("maps.osmgps")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -99,7 +99,7 @@ class OsmGps():
         """
         create the vbox 
         """
-        self.vbox = gtk.VBox(False, 0)
+        self.vbox = Gtk.VBox(False, 0)
         cache_path = config.get('geography.path')
         if not os.path.isdir(cache_path):
             try:
@@ -156,7 +156,7 @@ class OsmGps():
         self.osm.connect("motion-notify-event", self.motion_event)
         self.osm.connect('changed', self.zoom_changed)
         self.osm.show()
-        self.vbox.pack_start(self.osm)
+        self.vbox.pack_start(self.osm, True, True, 0)
         self.goto_handle(handle=None)
 
     def add_selection_layer(self):
@@ -313,11 +313,11 @@ class OsmGps():
             else:
                 # do we click on a marker ?
                 self.is_there_a_marker_here(event, lat, lon)
-        elif event.button == 2 and event.type == gtk.gdk.BUTTON_PRESS:
+        elif event.button == 2 and event.type == Gdk.EventType.BUTTON_PRESS:
             self.begin_selection = current
             self.end_selection = None
             self.zone_selection = True
-        elif event.button == 2 and event.type == gtk.gdk.BUTTON_RELEASE:
+        elif event.button == 2 and event.type == Gdk.EventType.BUTTON_RELEASE:
             self.end_selection = current
             self.zone_selection = False
         elif event.button == 3:

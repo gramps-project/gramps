@@ -34,7 +34,7 @@ import locale
 # gtk
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -79,40 +79,40 @@ class PersonSidebarFilter(SidebarFilter):
         self.filter_death = widgets.BasicEntry()
         self.filter_event = gen.lib.Event()
         self.filter_event.set_type((gen.lib.EventType.CUSTOM, u''))
-        self.etype = gtk.ComboBoxEntry()
+        self.etype = Gtk.ComboBox(has_entry=True)
         self.event_menu = widgets.MonitoredDataType(
             self.etype, 
             self.filter_event.set_type, 
             self.filter_event.get_type)
 
         self.filter_note = widgets.BasicEntry()
-        self.filter_gender = gtk.combo_box_new_text()
+        self.filter_gender = Gtk.ComboBoxText()
         map(self.filter_gender.append_text, 
             [ _('any'), _('male'), _('female'), _('unknown') ])
         self.filter_gender.set_active(0)
             
-        self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
+        self.filter_regex = Gtk.CheckButton(_('Use regular expressions'))
 
-        self.tag = gtk.ComboBox()
-        self.generic = gtk.ComboBox()
+        self.tag = Gtk.ComboBox()
+        self.generic = Gtk.ComboBox()
 
         SidebarFilter.__init__(self, dbstate, uistate, "Person")
 
     def create_widget(self):
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         cell.set_property('width', self._FILTER_WIDTH)
         cell.set_property('ellipsize', self._FILTER_ELLIPSIZE)
         self.generic.pack_start(cell, True)
         self.generic.add_attribute(cell, 'text', 0)
         self.on_filters_changed('Person')
 
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         cell.set_property('width', self._FILTER_WIDTH)
         cell.set_property('ellipsize', self._FILTER_ELLIPSIZE)
         self.tag.pack_start(cell, True)
         self.tag.add_attribute(cell, 'text', 0)
 
-        self.etype.child.set_width_chars(5)
+        self.etype.get_child().set_width_chars(5)
 
         exdate1 = gen.lib.Date()
         exdate2 = gen.lib.Date()
@@ -145,7 +145,7 @@ class PersonSidebarFilter(SidebarFilter):
         self.filter_death.set_text(u'')
         self.filter_note.set_text(u'')
         self.filter_gender.set_active(0)
-        self.etype.child.set_text(u'')
+        self.etype.get_child().set_text(u'')
         self.tag.set_active(0)
         self.generic.set_active(0)
 
@@ -262,7 +262,7 @@ class PersonSidebarFilter(SidebarFilter):
         """
         Update the list of tags in the tag filter.
         """
-        model = gtk.ListStore(str)
+        model = Gtk.ListStore(str)
         model.append(('',))
         for tag_name in tag_list:
             model.append((tag_name,))

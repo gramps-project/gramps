@@ -21,16 +21,16 @@
 # glade/catalog/grampswidgets.py
 # $Id$
 
-import gtk
+from gi.repository import Gtk
 
-class ValidatableMaskedEntry(gtk.Entry):
+class ValidatableMaskedEntry(Gtk.Entry):
     __gtype_name__ = 'ValidatableMaskedEntry'
 
-class UndoableEntry(gtk.Entry):
+class UndoableEntry(Gtk.Entry):
     __gtype_name__ = 'UndoableEntry'
     
-class StyledTextEditor(gtk.TextView):
+class StyledTextEditor(Gtk.TextView):
     __gtype_name__ = 'StyledTextEditor'
 
-class UndoableBuffer(gtk.TextBuffer):
+class UndoableBuffer(Gtk.TextBuffer):
     __gtype_name__ = 'UndoableBuffer'

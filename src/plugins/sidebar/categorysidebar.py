@@ -28,7 +28,7 @@
 # GNOME modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -96,10 +96,10 @@ class CategorySidebar(BaseSidebar):
         self.cat_view_group = None
         self.merge_ids = []
 
-        self.window = gtk.ScrolledWindow()
-        vbox = gtk.VBox()
+        self.window = Gtk.ScrolledWindow()
+        vbox = Gtk.VBox()
         self.window.add_with_viewport(vbox)
-        self.window.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
+        self.window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.window.show()
         
         use_text = config.get('interface.sidebar-text')
@@ -118,7 +118,7 @@ class CategorySidebar(BaseSidebar):
                     # create the button and add it to the sidebar
                     button = self.__make_sidebar_button(use_text, cat_num,
                                                         category, cat_icon)
-                    vbox.pack_start(button, False)
+                    vbox.pack_start(button, False, True, 0)
                     
                     # Enable view switching during DnD
                     button.drag_dest_set(0, [], 0)
@@ -131,7 +131,7 @@ class CategorySidebar(BaseSidebar):
                 uitoolitems += '\n<toolitem action="%s"/>' % pageid
                 # id, stock, button text, UI, tooltip, page
                 if view_num < 9:
-                    modifier = "<CONTROL><ALT>%d" % ((view_num % 9) + 1)
+                    modifier = "<PRIMARY><ALT>%d" % ((view_num % 9) + 1)
                 else:
                     modifier = ""
 
@@ -166,7 +166,7 @@ class CategorySidebar(BaseSidebar):
             map(uimanager.remove_ui, self.merge_ids)
 
         if cat_num in self.ui_category:
-            self.cat_view_group = gtk.ActionGroup('categoryviews')
+            self.cat_view_group = Gtk.ActionGroup('categoryviews')
             self.cat_view_group.add_radio_actions(
                     self.view_toggle_actions[cat_num], value=view_num,
                     on_change=self.cb_view_clicked, user_data=cat_num)
@@ -220,8 +220,8 @@ class CategorySidebar(BaseSidebar):
         the button.
         """
         # create the button
-        button = gtk.ToggleButton()
-        button.set_relief(gtk.RELIEF_NONE)
+        button = Gtk.ToggleButton()
+        button.set_relief(Gtk.ReliefStyle.NONE)
         button.set_alignment(0, 0.5)
         self.buttons.append(button)
 
@@ -235,22 +235,22 @@ class CategorySidebar(BaseSidebar):
 
         # add the image. If we are using text, use the BUTTON (larger) size. 
         # otherwise, use the smaller size
-        hbox = gtk.HBox()
+        hbox = Gtk.HBox()
         hbox.show()
-        image = gtk.Image()
+        image = Gtk.Image()
         if use_text:
-            image.set_from_stock(page_stock, gtk.ICON_SIZE_BUTTON)
+            image.set_from_stock(page_stock, Gtk.IconSize.BUTTON)
         else:
-            image.set_from_stock(page_stock, gtk.ICON_SIZE_DND)
+            image.set_from_stock(page_stock, Gtk.IconSize.DND)
         image.show()
-        hbox.pack_start(image, False, False)
+        hbox.pack_start(image, False, False, 0)
         hbox.set_spacing(4)
 
         # add text if requested
         if use_text:
-            label = gtk.Label(page_title)
+            label = Gtk.Label(label=page_title)
             label.show()
-            hbox.pack_start(label, False, True)
+            hbox.pack_start(label, False, True, 0)
             
         button.add(hbox)
         return button

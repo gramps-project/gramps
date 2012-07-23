@@ -27,7 +27,7 @@
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -97,10 +97,10 @@ class SelectPerson(BaseSelector):
     def _on_row_activated(self, treeview, path, view_col):
         store, paths = self.selection.get_selected_rows()
         if paths and len(paths[0]) == 2 :
-            self.window.response(gtk.RESPONSE_OK)
+            self.window.response(Gtk.ResponseType.OK)
 
     def _key_press(self, obj, event):
-        if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
+        if event.keyval in (Gdk.KEY_Return, Gdk.KEY_KP_Enter):
             store, paths = self.selection.get_selected_rows()
             if paths and len(paths[0]) == 1 :
                 if self.tree.row_expanded(paths[0]):

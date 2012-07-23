@@ -50,7 +50,7 @@ _LOG = logging.getLogger("HtmlRenderer")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -454,7 +454,7 @@ class HtmlView(NavigationView):
         self.renderer = None
         self.urlfield = ""
         self.htmlfile = ""
-        self.filter = gtk.HBox()
+        self.filter = Gtk.HBox()
         self.table = ""
         self.browser = NOWEB
         self.bootstrap_handler = None
@@ -465,16 +465,16 @@ class HtmlView(NavigationView):
 
     def build_widget(self):
         """
-        Builds the interface and returns a gtk.Container type that
+        Builds the interface and returns a Gtk.Container type that
         contains the interface. This containter will be inserted into
-        a gtk.Notebook page.
+        a Gtk.Notebook page.
         """
-        self.box = gtk.VBox(False, 4)
+        self.box = Gtk.VBox(False, 4)
         #top widget at the top
-        self.box.pack_start(self.top_widget(), False, False, 0 )
+        self.box.pack_start(self.top_widget(, True, True, 0), False, False, 0 )
         #web page under it in a scrolled window
-        self.table = gtk.Table(1, 1, False)
-        frames = gtk.HBox(False, 4)
+        self.table = Gtk.Table(1, 1, False)
+        frames = Gtk.HBox(False, 4)
         self.frames = frames
         self.toolkit = TOOLKIT = get_toolkits()
         if   (get_toolkits() == (WEBKIT+MOZILLA)):
@@ -491,18 +491,18 @@ class HtmlView(NavigationView):
                 self.toolkit = "html"
         if self.toolkit == "html":
             _LOG.debug("We are native htmlrenderer.")
-            frame = gtk.ScrolledWindow(None, None)
-            frame.set_shadow_type(gtk.SHADOW_NONE)
-            frame.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+            frame = Gtk.ScrolledWindow(None, None)
+            frame.set_shadow_type(Gtk.ShadowType.NONE)
+            frame.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
             frame.add_with_viewport(self.table)
         else:
             _LOG.debug("We are called by geoview.")
-            frame = gtk.Frame()
+            frame = Gtk.Frame()
             frame.set_size_request(100,100)
             frame.add(self.table)
         self.bootstrap_handler = self.box.connect("size-request", 
                                  self.init_parent_signals_for_map)
-        self.table.get_parent().set_shadow_type(gtk.SHADOW_NONE)
+        self.table.get_parent().set_shadow_type(Gtk.ShadowType.NONE)
         self.table.set_row_spacings(1)
         self.table.set_col_spacings(0)
         if   (TOOLKIT == MOZILLA) :
@@ -530,12 +530,12 @@ class HtmlView(NavigationView):
         """
         The default class gives a widget where user can type an url
         """
-        hbox = gtk.HBox(False, 4)
-        self.urlfield = gtk.Entry()
+        hbox = Gtk.HBox(False, 4)
+        self.urlfield = Gtk.Entry()
         self.urlfield.set_text(config.get("htmlview.start-url"))
         self.urlfield.connect('activate', self._on_activate)
         hbox.pack_start(self.urlfield, True, True, 4)
-        button = gtk.Button(stock=gtk.STOCK_APPLY)
+        button = Gtk.Button(stock=Gtk.STOCK_APPLY)
         button.connect('clicked', self._on_activate)
         hbox.pack_start(button, False, False, 4)
         return hbox
@@ -639,23 +639,23 @@ class HtmlView(NavigationView):
         accel doesn't work in webkit and gtkmozembed !
         we must do that ...
         """
-        self.back_action = gtk.ActionGroup(self.title + '/Back')
+        self.back_action = Gtk.ActionGroup(self.title + '/Back')
         self.back_action.add_actions([
-            ('Back', gtk.STOCK_GO_BACK, _("_Back"), 
+            ('Back', Gtk.STOCK_GO_BACK, _("_Back"), 
              "<ALT>Left", _("Go to the previous page in the history"), 
              self.go_back)
             ])
         self._add_action_group(self.back_action)
         # add the Forward action to handle the Forward button
-        self.forward_action = gtk.ActionGroup(self.title + '/Forward')
+        self.forward_action = Gtk.ActionGroup(self.title + '/Forward')
         self.forward_action.add_actions([
-            ('Forward', gtk.STOCK_GO_FORWARD, _("_Forward"), 
+            ('Forward', Gtk.STOCK_GO_FORWARD, _("_Forward"), 
              "<ALT>Right", _("Go to the next page in the history"), 
              self.go_forward)
             ])
         self._add_action_group(self.forward_action)
         # add the Refresh action to handle the Refresh button
-        self._add_action('Refresh', gtk.STOCK_REFRESH, _("_Refresh"), 
+        self._add_action('Refresh', Gtk.STOCK_REFRESH, _("_Refresh"), 
                           callback=self.refresh,
                           accel="<Ctl>R",
                           tip=_("Stop and reload the page."))

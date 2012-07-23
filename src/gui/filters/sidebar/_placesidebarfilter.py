@@ -34,7 +34,7 @@ from gen.ggettext import gettext as _
 # gtk
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -72,13 +72,13 @@ class PlaceSidebarFilter(SidebarFilter):
         self.filter_parish = widgets.BasicEntry()
         self.filter_note = widgets.BasicEntry()
         
-        self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
-        self.generic = gtk.ComboBox()
+        self.filter_regex = Gtk.CheckButton(_('Use regular expressions'))
+        self.generic = Gtk.ComboBox()
 
         SidebarFilter.__init__(self, dbstate, uistate, "Place")
 
     def create_widget(self):
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         cell.set_property('width', self._FILTER_WIDTH)
         cell.set_property('ellipsize', self._FILTER_ELLIPSIZE)
         self.generic.pack_start(cell, True)

@@ -33,7 +33,7 @@ from gen.ggettext import gettext as _
 # gtk
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -59,34 +59,34 @@ class CitationSidebarFilter(SidebarFilter):
 
     def __init__(self, dbstate, uistate, clicked):
         self.clicked_func = clicked
-        self.filter_id = gtk.Entry()
-        self.filter_page = gtk.Entry()       
-        self.filter_date = gtk.Entry()
+        self.filter_id = Gtk.Entry()
+        self.filter_page = Gtk.Entry()       
+        self.filter_date = Gtk.Entry()
         
-        self.filter_conf = gtk.ComboBox()
-        model = gtk.ListStore(str)
+        self.filter_conf = Gtk.ComboBox()
+        model = Gtk.ListStore(str)
         for conf_value in sorted(confidence.keys()):
             model.append((confidence[conf_value],))
         self.filter_conf.set_model(model)
         self.filter_conf.set_active(2)  # gen.lib.Citation.CONF_NORMAL
         
-        self.filter_note = gtk.Entry()
+        self.filter_note = Gtk.Entry()
 
-        self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
+        self.filter_regex = Gtk.CheckButton(_('Use regular expressions'))
 
-        self.generic = gtk.ComboBox()
+        self.generic = Gtk.ComboBox()
 
         SidebarFilter.__init__(self, dbstate, uistate, "Citation")
 
     def create_widget(self):
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         cell.set_property('width', self._FILTER_WIDTH)
         cell.set_property('ellipsize', self._FILTER_ELLIPSIZE)
         self.generic.pack_start(cell, True)
         self.generic.add_attribute(cell, 'text', 0)
         self.on_filters_changed('Citation')
 
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         cell.set_property('width', self._FILTER_WIDTH)
         cell.set_property('ellipsize', self._FILTER_ELLIPSIZE)
         self.filter_conf.pack_start(cell, True)

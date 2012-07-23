@@ -20,7 +20,7 @@
 
 # $Id$
 
-import gtk
+from gi.repository import Gtk
 
 try:
     from gnomevfs import mime_get_short_list_applications, \

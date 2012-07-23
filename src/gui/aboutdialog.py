@@ -44,7 +44,9 @@ except ImportError:
 # Gtk modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import GObject
+from gi.repository import Gtk
+from gi.repository import GdkPixbuf
 
 #-------------------------------------------------------------------------
 #
@@ -75,11 +77,11 @@ CONTRIB_HEADER = _('\n==== Contributors ====\n')
 # GrampsAboutDialog
 #
 #-------------------------------------------------------------------------
-class GrampsAboutDialog(gtk.AboutDialog):
+class GrampsAboutDialog(Gtk.AboutDialog):
     """Create an About dialog with all fields set."""
     def __init__(self, parent):
         """Setup all the fields shown in the About dialog."""
-        gtk.AboutDialog.__init__(self)
+        GObject.GObject.__init__(self)
         self.set_transient_for(parent)
         self.set_modal(True)
         
@@ -111,9 +113,9 @@ class GrampsAboutDialog(gtk.AboutDialog):
         trans_credits = _(TRANSLATORS)
         if trans_credits != TRANSLATORS:
             self.set_translator_credits(trans_credits)
-            
+
         self.set_documenters(DOCUMENTERS)
-        self.set_logo(gtk.gdk.pixbuf_new_from_file(SPLASH))
+        self.set_logo(GdkPixbuf.Pixbuf.new_from_file(SPLASH))
 
     def get_versions(self):
         """
@@ -245,5 +247,6 @@ def _show_url(dialog, link, prefix):
         link = prefix + link
     display_url(link)
 
-gtk.about_dialog_set_url_hook(_show_url, None)
-gtk.about_dialog_set_email_hook(_show_url, 'mailto:')
+#TODO GTK3: is there an alternative for these:
+#Gtk.about_dialog_set_url_hook(_show_url, None)
+#Gtk.about_dialog_set_email_hook(_show_url, 'mailto:')

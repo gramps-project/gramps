@@ -36,8 +36,8 @@ from itertools import chain
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
-import gobject
+from gi.repository import Gtk
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -67,37 +67,37 @@ class UndoHistory(ManagedWindow):
         self.undodb = self.db.undodb
         self.dbstate = dbstate
 
-        window = gtk.Dialog("", uistate.window,
-                            gtk.DIALOG_DESTROY_WITH_PARENT, None)
+        window = Gtk.Dialog("", uistate.window,
+                            Gtk.DialogFlags.DESTROY_WITH_PARENT, None)
 
-        self.undo_button = window.add_button(gtk.STOCK_UNDO,
-                                             gtk.RESPONSE_REJECT)
-        self.redo_button = window.add_button(gtk.STOCK_REDO,
-                                             gtk.RESPONSE_ACCEPT)
-        self.clear_button = window.add_button(gtk.STOCK_CLEAR,
-                                              gtk.RESPONSE_APPLY)
-        self.close_button = window.add_button(gtk.STOCK_CLOSE,
-                                              gtk.RESPONSE_CLOSE)
+        self.undo_button = window.add_button(Gtk.STOCK_UNDO,
+                                             Gtk.ResponseType.REJECT)
+        self.redo_button = window.add_button(Gtk.STOCK_REDO,
+                                             Gtk.ResponseType.ACCEPT)
+        self.clear_button = window.add_button(Gtk.STOCK_CLEAR,
+                                              Gtk.ResponseType.APPLY)
+        self.close_button = window.add_button(Gtk.STOCK_CLOSE,
+                                              Gtk.ResponseType.CLOSE)
      
         self.set_window(window, None, self.title)
         self.window.set_size_request(400, 200)
         self.window.connect('response', self._response)
 
-        scrolled_window = gtk.ScrolledWindow()
-        scrolled_window.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        self.tree = gtk.TreeView()
-        self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING, 
-                                   gobject.TYPE_STRING, gobject.TYPE_STRING)
+        scrolled_window = Gtk.ScrolledWindow()
+        scrolled_window.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+        self.tree = Gtk.TreeView()
+        self.model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING, 
+                                   GObject.TYPE_STRING, GObject.TYPE_STRING)
         self.selection = self.tree.get_selection()
 
-        self.renderer = gtk.CellRendererText()
+        self.renderer = Gtk.CellRendererText()
         self.tree.set_model(self.model)
         self.tree.set_rules_hint(True)
         self.tree.append_column(
-            gtk.TreeViewColumn(_('Original time'), self.renderer,
+            Gtk.TreeViewColumn(_('Original time'), self.renderer,
                                text=0, foreground=2, background=3))
         self.tree.append_column(
-            gtk.TreeViewColumn(_('Action'), self.renderer,
+            Gtk.TreeViewColumn(_('Action'), self.renderer,
                                text=1, foreground=2, background=3))
 
         scrolled_window.add(self.tree)
@@ -133,7 +133,7 @@ class UndoHistory(ManagedWindow):
 
     def _paint_rows(self, start, end, selected=False):
         if selected:
-            (fg, bg) = get_colors(self.tree, gtk.STATE_SELECTED)
+            (fg, bg) = get_colors(self.tree, Gtk.StateType.SELECTED)
         else:
             fg = bg = None
 
@@ -143,10 +143,10 @@ class UndoHistory(ManagedWindow):
             self.model.set(the_iter, 3, bg)
             
     def _response(self, obj, response_id):
-        if response_id == gtk.RESPONSE_CLOSE:
+        if response_id == Gtk.ResponseType.CLOSE:
             self.close(obj)
 
-        elif response_id == gtk.RESPONSE_REJECT:
+        elif response_id == Gtk.ResponseType.REJECT:
             # Undo the selected entries
             (model, node) = self.selection.get_selected()
             if not node:
@@ -155,7 +155,7 @@ class UndoHistory(ManagedWindow):
             nsteps = path[0] - self.undodb.undo_count - 1
             self._move(nsteps or -1)
 
-        elif response_id == gtk.RESPONSE_ACCEPT:
+        elif response_id == Gtk.ResponseType.ACCEPT:
             # Redo the selected entries
             (model, node) = self.selection.get_selected()
             if not node:
@@ -164,9 +164,9 @@ class UndoHistory(ManagedWindow):
             nsteps = path[0] - self.undodb.undo_count
             self._move(nsteps or 1)
 
-        elif response_id == gtk.RESPONSE_APPLY:
+        elif response_id == Gtk.ResponseType.APPLY:
             self._clear_clicked()
-        elif response_id == gtk.RESPONSE_DELETE_EVENT:
+        elif response_id == Gtk.ResponseType.DELETE_EVENT:
             self.close(obj)
 
     def build_menu_names(self, obj):

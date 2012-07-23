@@ -28,7 +28,7 @@
 #
 #-------------------------------------------------------------------------
 import os
-import gobject
+from gi.repository import GObject
 from math import *
 
 #------------------------------------------------------------------------
@@ -44,7 +44,7 @@ _LOG = logging.getLogger("maps.lifeway")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -64,7 +64,7 @@ try:
 except:
     raise
 
-class LifeWayLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
+class LifeWayLayer(GObject.GObject, osmgpsmap.GpsMapLayer):
     """
     This is the layer used to display tracks or the life way for one or several
     individuals.
@@ -73,7 +73,7 @@ class LifeWayLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
         """
         Initialize the layer
         """
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
         self.lifeways_ref = []
         self.lifeways = []
         self.comments = []
@@ -109,7 +109,7 @@ class LifeWayLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
             ctx.set_line_cap(cairo.LINE_CAP_ROUND)
             ctx.set_line_join(cairo.LINE_JOIN_ROUND)
             ctx.set_line_width(3)
-            color = gtk.gdk.color_parse(lifeway[1])
+            color = Gdk.color_parse(lifeway[1])
             ctx.set_source_rgba(float(color.red / 65535.0),
                                 float(color.green / 65535.0),
                                 float(color.blue / 65535.0),
@@ -153,7 +153,7 @@ class LifeWayLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
                 conv_pt = osmgpsmap.point_new_degrees(point[0], point[1])
                 coord_x, coord_y = gpsmap.convert_geographic_to_screen(conv_pt)
                 map_points.append((coord_x, coord_y))
-            color = gtk.gdk.color_parse(lifeway[1])
+            color = Gdk.color_parse(lifeway[1])
             ctx.set_source_rgb(float(color.red / 65535.0),
                                float(color.green / 65535.0),
                                float(color.blue / 65535.0))
@@ -190,5 +190,5 @@ class LifeWayLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
         """
         return False
 
-gobject.type_register(LifeWayLayer)
+GObject.type_register(LifeWayLayer)
 

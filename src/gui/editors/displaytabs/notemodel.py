@@ -25,17 +25,17 @@
 # GTK libraries
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
 # NoteModel
 #
 #-------------------------------------------------------------------------
-class NoteModel(gtk.ListStore):
+class NoteModel(Gtk.ListStore):
 
     def __init__(self, note_list, db):
-        gtk.ListStore.__init__(self, str, str, object)
+        Gtk.ListStore.__init__(self, str, str, object)
         self.db = db
         for handle in note_list:
             note = self.db.get_note_from_handle(handle)

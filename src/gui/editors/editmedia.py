@@ -35,7 +35,7 @@ from gen.ggettext import gettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -191,7 +191,7 @@ class EditMedia(EditPrimary):
         self.select.connect('clicked', self.select_file)
 
     def _create_tabbed_pages(self):
-        notebook = gtk.Notebook()
+        notebook = Gtk.Notebook()
 
         self.citation_tab = CitationEmbedList(self.dbstate,
                                               self.uistate,
@@ -232,7 +232,7 @@ class EditMedia(EditPrimary):
         return (_('Edit Media Object'), self.get_menu_title())
 
     def button_press_event(self, obj, event):
-        if event.button == 1 and event.type == gtk.gdk._2BUTTON_PRESS:
+        if event.button == 1 and event.type == Gdk.EventType._2BUTTON_PRESS:
             self.view_media(obj)
 
     def view_media(self, obj):

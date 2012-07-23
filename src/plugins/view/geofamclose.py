@@ -32,7 +32,7 @@ Geography for two families
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
 import operator
-import gtk
+from gi.repository import Gtk
 from math import *
 
 #-------------------------------------------------------------------------
@@ -263,7 +263,7 @@ class GeoFamClose(GeoGraphyView):
         """
         NavigationView.define_actions(self)
 
-        self.ref_family = gtk.ActionGroup(self.title + '/Selection')
+        self.ref_family = Gtk.ActionGroup(self.title + '/Selection')
         self.ref_family.add_actions([
             ('RefFamily', 'gramps-family', _('reference _Family'), None ,
             _("Select the family which is the reference for life ways"),
@@ -608,7 +608,7 @@ class GeoFamClose(GeoGraphyView):
         """
         Create the menu for the selected marker
         """
-        menu = gtk.Menu()
+        menu = Gtk.Menu()
         menu.set_title("family")
         events = []
         message = ""
@@ -647,35 +647,35 @@ class GeoFamClose(GeoGraphyView):
                             descr = _('No description')
                         message = "(%s) %s => %s" % ( date, plce[11], descr)
                     prevmark = plce
-                    add_item = gtk.MenuItem(message)
+                    add_item = Gtk.MenuItem(label=message)
                     add_item.show()
                     menu.append(add_item)
-                    itemoption = gtk.Menu()
+                    itemoption = Gtk.Menu()
                     itemoption.set_title(message)
                     itemoption.show()
                     add_item.set_submenu(itemoption)
-                    modify = gtk.MenuItem(_("Edit Event"))
+                    modify = Gtk.MenuItem(label=_("Edit Event"))
                     modify.show()
                     modify.connect("activate", self.edit_event,
                                    event, lat, lon, prevmark)
                     itemoption.append(modify)
-                    center = gtk.MenuItem(_("Center on this place"))
+                    center = Gtk.MenuItem(label=_("Center on this place"))
                     center.show()
                     center.connect("activate", self.center_here,
                                    event, lat, lon, prevmark)
                     itemoption.append(center)
                     menu.show()
-                    menu.popup(None, None, None, 0, event.time)
+                    menu.popup(None, None, None, None, 0, event.time)
         return 0
 
     def add_specific_menu(self, menu, event, lat, lon): 
         """ 
         Add specific entry to the navigation menu.
         """ 
-        add_item = gtk.MenuItem()
+        add_item = Gtk.MenuItem()
         add_item.show()
         menu.append(add_item)
-        add_item = gtk.MenuItem(_("Choose the reference family"))
+        add_item = Gtk.MenuItem(label=_("Choose the reference family"))
         add_item.connect("activate", self.selectFamily)
         add_item.show()
         menu.append(add_item)
@@ -693,7 +693,7 @@ class GeoFamClose(GeoGraphyView):
         Add specific entry to the preference menu.
         Must be done in the associated view.
         """
-        table = gtk.Table(2, 2)
+        table = Gtk.Table(2, 2)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)

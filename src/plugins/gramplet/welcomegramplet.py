@@ -24,7 +24,7 @@
 #
 #------------------------------------------------------------------------
 
-import gtk
+from gi.repository import Gtk
 
 #------------------------------------------------------------------------
 #
@@ -82,18 +82,18 @@ class WelcomeGramplet(Gramplet):
         """
         Build the GUI interface.
         """
-        top = gtk.VBox(False)
+        top = Gtk.VBox(False)
         
-        scrolledwindow = gtk.ScrolledWindow()
-        scrolledwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        scrolledwindow = Gtk.ScrolledWindow()
+        scrolledwindow.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.texteditor = StyledTextEditor()
         self.texteditor.set_editable(False)
-        self.texteditor.set_wrap_mode(gtk.WRAP_WORD)
+        self.texteditor.set_wrap_mode(Gtk.WrapMode.WORD)
         scrolledwindow.add(self.texteditor)
 
         self.set_text()
         
-        top.pack_start(scrolledwindow, True, True)
+        top.pack_start(scrolledwindow, True, True, 0)
         top.show_all()
         return top
 

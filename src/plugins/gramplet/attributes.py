@@ -23,7 +23,7 @@ from gui.listmodel import ListModel, NOSORT
 from gui.plug.quick import run_quick_report_by_name
 from gen.plug import Gramplet
 from gen.ggettext import gettext as _
-import gtk
+from gi.repository import Gtk
 
 class Attributes(Gramplet):
     """
@@ -42,7 +42,7 @@ class Attributes(Gramplet):
         tip = _('Double-click on a row to view a quick report showing '
                 'all people with the selected attribute.')
         self.set_tooltip(tip)
-        top = gtk.TreeView()
+        top = Gtk.TreeView()
         titles = [(_('Key'), 1, 100),
                   (_('Value'), 2, 100)]
         self.model = ListModel(top, titles, event_func=self.display_report)
@@ -53,7 +53,7 @@ class Attributes(Gramplet):
         Display the attributes of an object.
         """
         for attr in obj.get_attribute_list():
-            self.model.add((attr.get_type(), attr.get_value()))
+            self.model.add((str(attr.get_type()), attr.get_value()))
         self.set_has_data(self.model.count > 0)
         
     def display_report(self, treeview):

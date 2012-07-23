@@ -25,7 +25,7 @@
 # GTK libraries
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -39,10 +39,10 @@ import gtk
 # AttrModel
 #
 #-------------------------------------------------------------------------
-class AttrModel(gtk.ListStore):
+class AttrModel(Gtk.ListStore):
 
     def __init__(self, attr_list, db):
-        gtk.ListStore.__init__(self, str, str, object)
+        Gtk.ListStore.__init__(self, str, str, object)
         self.db = db
         for attr in attr_list:
             self.append(row=[

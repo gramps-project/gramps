@@ -33,7 +33,7 @@ from gen.ggettext import gettext as _
 # gtk
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -63,34 +63,34 @@ class NoteSidebarFilter(SidebarFilter):
 
         self.note = Note()
         self.note.set_type((NoteType.CUSTOM,''))
-        self.ntype = gtk.ComboBoxEntry()
+        self.ntype = Gtk.ComboBox(has_entry=True)
         self.event_menu = widgets.MonitoredDataType(
             self.ntype,
             self.note.set_type,
             self.note.get_type)
 
-        self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
+        self.filter_regex = Gtk.CheckButton(_('Use regular expressions'))
 
-        self.tag = gtk.ComboBox()
-        self.generic = gtk.ComboBox()
+        self.tag = Gtk.ComboBox()
+        self.generic = Gtk.ComboBox()
 
         SidebarFilter.__init__(self, dbstate, uistate, "Note")
 
     def create_widget(self):
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         cell.set_property('width', self._FILTER_WIDTH)
         cell.set_property('ellipsize', self._FILTER_ELLIPSIZE)
         self.generic.pack_start(cell, True)
         self.generic.add_attribute(cell, 'text', 0)
         self.on_filters_changed('Note')
 
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         cell.set_property('width', self._FILTER_WIDTH)
         cell.set_property('ellipsize', self._FILTER_ELLIPSIZE)
         self.tag.pack_start(cell, True)
         self.tag.add_attribute(cell, 'text', 0)
 
-        self.ntype.child.set_width_chars(5)
+        self.ntype.get_child().set_width_chars(5)
 
         self.add_text_entry(_('ID'), self.filter_id)
         self.add_text_entry(_('Text'), self.filter_text)
@@ -102,7 +102,7 @@ class NoteSidebarFilter(SidebarFilter):
     def clear(self, obj):
         self.filter_id.set_text('')
         self.filter_text.set_text('')
-        self.ntype.child.set_text('')
+        self.ntype.get_child().set_text('')
         self.tag.set_active(0)
         self.generic.set_active(0)
 
@@ -158,7 +158,7 @@ class NoteSidebarFilter(SidebarFilter):
         """
         Update the list of tags in the tag filter.
         """
-        model = gtk.ListStore(str)
+        model = Gtk.ListStore(str)
         model.append(('',))
         for tag_name in tag_list:
             model.append((tag_name,))

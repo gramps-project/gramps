@@ -37,9 +37,10 @@ import time
 import urlparse
 import operator
 import locale
-from gtk.keysyms import Tab as KEY_TAB
+from gi.repository import Gdk
+KEY_TAB = Gdk.KEY_Tab
 import socket
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -302,64 +303,64 @@ class GeoPlaces(GeoGraphyView):
         self._create_markers()
 
     def bubble_message(self, event, lat, lon, marks):
-        menu = gtk.Menu()
+        menu = Gtk.Menu()
         menu.set_title("places")
         message = ""
         prevmark = None
         for mark in marks:
             if message != "":
-                add_item = gtk.MenuItem(message)
+                add_item = Gtk.MenuItem(label=message)
                 add_item.show()
                 menu.append(add_item)
-                itemoption = gtk.Menu()
+                itemoption = Gtk.Menu()
                 itemoption.set_title(message)
                 itemoption.show()
                 add_item.set_submenu(itemoption)
-                modify = gtk.MenuItem(_("Edit Place"))
+                modify = Gtk.MenuItem(label=_("Edit Place"))
                 modify.show()
                 modify.connect("activate", self.edit_place,
                                event, lat, lon, prevmark)
                 itemoption.append(modify)
-                center = gtk.MenuItem(_("Center on this place"))
+                center = Gtk.MenuItem(label=_("Center on this place"))
                 center.show()
                 center.connect("activate", self.center_here,
                                event, lat, lon, prevmark)
                 itemoption.append(center)
             message = "%s" % mark[0]
             prevmark = mark
-        add_item = gtk.MenuItem(message)
+        add_item = Gtk.MenuItem(label=message)
         add_item.show()
         menu.append(add_item)
-        itemoption = gtk.Menu()
+        itemoption = Gtk.Menu()
         itemoption.set_title(message)
         itemoption.show()
         add_item.set_submenu(itemoption)
-        modify = gtk.MenuItem(_("Edit Place"))
+        modify = Gtk.MenuItem(label=_("Edit Place"))
         modify.show()
         modify.connect("activate", self.edit_place, event, lat, lon, prevmark)
         itemoption.append(modify)
-        center = gtk.MenuItem(_("Center on this place"))
+        center = Gtk.MenuItem(label=_("Center on this place"))
         center.show()
         center.connect("activate", self.center_here, event, lat, lon, prevmark)
         itemoption.append(center)
-        menu.popup(None, None, None, 0, event.time)
+        menu.popup(None, None, None, None, 0, event.time)
         return 1
 
     def add_specific_menu(self, menu, event, lat, lon): 
         """ 
         Add specific entry to the navigation menu.
         """ 
-        add_item = gtk.MenuItem()
+        add_item = Gtk.MenuItem()
         add_item.show()
         menu.append(add_item)
-        add_item = gtk.MenuItem(_("Show all places"))
+        add_item = Gtk.MenuItem(label=_("Show all places"))
         add_item.connect("activate", self.show_all_places, event, lat , lon)
         add_item.show()
         menu.append(add_item)
-        add_item = gtk.MenuItem(_("Centering on Place"))
+        add_item = Gtk.MenuItem(label=_("Centering on Place"))
         add_item.show()
         menu.append(add_item)
-        itemoption = gtk.Menu()
+        itemoption = Gtk.Menu()
         itemoption.set_title(_("Centering on Place"))
         itemoption.show()
         add_item.set_submenu(itemoption)
@@ -367,7 +368,7 @@ class GeoPlaces(GeoGraphyView):
         for mark in self.sort:
             if mark[0] != oldplace:
                 oldplace = mark[0]
-                modify = gtk.MenuItem(mark[0])
+                modify = Gtk.MenuItem(label=mark[0])
                 modify.show()
                 modify.connect("activate", self.goto_place,
                                float(mark[3]), float(mark[4]))

@@ -31,7 +31,7 @@ Provide merge capabilities for persons.
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import pango
+from gi.repository import Pango
 
 #-------------------------------------------------------------------------
 #
@@ -173,8 +173,8 @@ class MergePerson(ManagedWindow):
         indent.set_property('pixels-above-lines', 1)
         indent.set_property('pixels-below-lines', 1)
         title = tobj.create_tag()
-        title.set_property('weight', pango.WEIGHT_BOLD)
-        title.set_property('scale', pango.SCALE_LARGE)
+        title.set_property('weight', Pango.Weight.BOLD)
+        title.set_property('scale', Pango.SCALE_LARGE)
         self.add(tobj, title, name_displayer.display(person))
         self.add(tobj, normal, "%s:\t%s" % (_('ID'), 
                  person.get_gramps_id()))

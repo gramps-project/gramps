@@ -38,7 +38,7 @@ _LOG = logging.getLogger('.gui.citationtreeview')
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -150,8 +150,8 @@ class CitationTreeView(ListView):
             markup = CitationTreeView.MARKUP_COLS)
 
         self.func_list.update({
-            '<CONTROL>J' : self.jump,
-            '<CONTROL>BackSpace' : self.key_delete,
+            '<PRIMARY>J' : self.jump,
+            '<PRIMARY>BackSpace' : self.key_delete,
             })
 
         self.additional_uis.append(self.additional_ui())
@@ -288,8 +288,8 @@ class CitationTreeView(ListView):
                          tip=self.ADD_CITATION_MSG, 
                          callback=self.share)
         
-        self.all_action = gtk.ActionGroup(self.title + "/CitationAll")
-        self.edit_action = gtk.ActionGroup(self.title + "/CitationEdit")
+        self.all_action = Gtk.ActionGroup(self.title + "/CitationAll")
+        self.edit_action = Gtk.ActionGroup(self.title + "/CitationEdit")
 
         self._add_action('FilterEdit', None, _('Citation Filter Editor'),
                          callback=self.filter_editor,)

@@ -37,7 +37,7 @@ log = logging.getLogger(".")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -85,9 +85,9 @@ class MainLocTab(GrampsTab):
         @type widge: gtk widget
         """
         GrampsTab.__init__(self, dbstate, uistate, track, name)
-        eventbox = gtk.EventBox()
+        eventbox = Gtk.EventBox()
         eventbox.add(widget)
-        self.pack_start(eventbox)
+        self.pack_start(eventbox, True, True, 0)
         self._set_label(show_image=False)
         eventbox.connect('key_press_event', self.key_pressed)
         self.show_all()

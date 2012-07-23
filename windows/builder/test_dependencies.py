@@ -26,11 +26,11 @@ py_str = 'found %d.%d.%d' %  sys.version_info[:3]
 try:
     import gtk
     try:
-        gtkver_str = 'found %d.%d.%d' % gtk.gtk_version 
+        gtkver_str = 'found %d.%d.%d' % Gtk.gtk_version 
     except : # any failure to 'get' the version
         gtkver_str = 'unknown version'
     try:
-        pygtkver_str = 'found %d.%d.%d' % gtk.pygtk_version
+        pygtkver_str = 'found %d.%d.%d' % Gtk.pygtk_version
     except :# any failure to 'get' the version
         pygtkver_str = 'unknown version'
 except ImportError:
@@ -41,7 +41,7 @@ except ImportError:
 try:
     import gobject
     try:
-        gobjectver_str = 'found %d.%d.%d' % gobject.pygobject_version
+        gobjectver_str = 'found %d.%d.%d' % GObject.pygobject_version
     except :# any failure to 'get' the version
         gobjectver_str = 'unknown version'
     

@@ -102,7 +102,7 @@ def setup_gettext():
     try:
         locale.bindtextdomain(LOCALEDOMAIN, LOCALEDIR)
     except ValueError:
-        logging.warning('Failed to bind text domain, gtk.Builder() has no translation')
+        logging.warning('Failed to bind text domain, Gtk.Builder() has no translation')
     
     #following installs _ as a python function, we avoid this as this module is
     #used sometimes:
@@ -145,7 +145,7 @@ def init_windows_gettext(intl_path):
 def setup_windows_gettext():
     """
     Windows specific function for migrating from LibGlade to GtkBuilder
-    Glade had a gtk.glade.bindtextdomain() function to define the directory
+    Glade had a Gtk.glade.bindtextdomain() function to define the directory
     where to look for translations (.mo-files). It is now replaced with call
     to locale.bindtextdomain() which exposes the C librarys gettext
     interface on systems that provide this interface.

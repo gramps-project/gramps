@@ -37,21 +37,23 @@ _LOG = logging.getLogger(".widgets.validatedcomboentry")
 # GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import GObject
+from gi.repository import Gdk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
 # ValidatedComboEntry class
 #
 #-------------------------------------------------------------------------
-class ValidatedComboEntry(gtk.ComboBox, gtk.CellLayout):
+class ValidatedComboEntry(Gtk.ComboBox):
     """A ComboBoxEntry widget with validation.
     
     ValidatedComboEntry may have data type other then string, and is set
     with the C{datatype} contructor parameter.
     
-    Its behaviour is different from gtk.ComboBoxEntry in the way how
-    the entry part of the widget is handled. While gtk.ComboBoxEntry
+    Its behaviour is different from Gtk.ComboBoxEntry in the way how
+    the entry part of the widget is handled. While Gtk.ComboBoxEntry
     emits the 'changed' signal immediatelly the text in the entry is 
     changed, ValidatedComboEntry emits the signal only after the text is
     activated (enter is pressed, the focus is moved out) and validated.
@@ -66,19 +68,20 @@ class ValidatedComboEntry(gtk.ComboBox, gtk.CellLayout):
     __gtype_name__ = "ValidatedComboEntry"
     
     def __init__(self, datatype, model=None, column=-1, validator=None, width=-1):
-        gtk.ComboBox.__init__(self, model)
+        #GObject.GObject.__init__(self, model)
+        Gtk.ComboBox.__init__(self, model=model)
 
-        self._entry = gtk.Entry()
+        self._entry = Gtk.Entry()
         self._entry.set_width_chars(width)
         # <hack description="set the GTK_ENTRY(self._entry)->is_cell_renderer
         # flag to TRUE in order to tell the entry to fill its allocation.">
-        dummy_event = gtk.gdk.Event(gtk.gdk.NOTHING)
+        dummy_event = Gdk.Event(Gdk.EventType.NOTHING)
         self._entry.start_editing(dummy_event)
         # </hack>
         self.add(self._entry)
         self._entry.show()
         
-        self._text_renderer = gtk.CellRendererText()
+        self._text_renderer = Gtk.CellRendererText()
         self.pack_start(self._text_renderer, False)
         
         self._data_type = datatype
@@ -145,7 +148,7 @@ class ValidatedComboEntry(gtk.ComboBox, gtk.CellLayout):
         
         """
         # FIXME Escape never reaches here, the dialog eats it, I assume.
-        if event.keyval == gtk.keysyms.Escape:
+        if event.keyval == Gdk.KEY_Escape:
             entry.set_text(self._active_text)
             entry.set_position(-1)
             return True
@@ -174,7 +177,7 @@ class ValidatedComboEntry(gtk.ComboBox, gtk.CellLayout):
         Called whenever a property of the object is changed.
         
         """
-        if gparamspec.name == 'has-frame':
+        if gparamspec and gparamspec.name == 'has-frame':
             self._has_frame_changed()
     
     # Private methods
@@ -213,7 +216,7 @@ class ValidatedComboEntry(gtk.ComboBox, gtk.CellLayout):
         @param data: data value to check
         @type data: depends on the actual data type of the object
         @returns: position of 'data' in the model
-        @returntype: gtk.TreeIter or None
+        @returntype: Gtk.TreeIter or None
         
         """
         model = self.get_model()
@@ -241,7 +244,7 @@ class ValidatedComboEntry(gtk.ComboBox, gtk.CellLayout):
         
         if self._data_column == -1:
             self._data_column = data_column
-            self.set_attributes(self._text_renderer, text=data_column)
+            self.add_attribute(self._text_renderer, "text", data_column)
         
     def get_data_column(self):
         return self._data_column

@@ -25,7 +25,7 @@
 # GTK libraries
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 import cgi
 
 #-------------------------------------------------------------------------
@@ -44,10 +44,10 @@ from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 # ChildModel
 #
 #-------------------------------------------------------------------------
-class ChildModel(gtk.ListStore):
+class ChildModel(Gtk.ListStore):
 
     def __init__(self, child_ref_list, db):
-        gtk.ListStore.__init__(self, int, str, str, str, str, str, 
+        Gtk.ListStore.__init__(self, int, str, str, str, str, str, 
                                str, str, str, str, str, str, str, object)
         self.db = db
         for index, child_ref in enumerate(child_ref_list):

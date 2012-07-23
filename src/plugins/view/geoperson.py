@@ -36,9 +36,10 @@ import sys
 import urlparse
 import operator
 import locale
-from gtk.keysyms import Tab as KEY_TAB
+from gi.repository import Gdk
+KEY_TAB = Gdk.KEY_Tab
 import socket
-import gtk
+from gi.repository import Gtk
 import glib
 
 #-------------------------------------------------------------------------
@@ -282,7 +283,7 @@ class GeoPerson(GeoGraphyView):
         # in this case, stepyear is >= 9000
         # large move means longitude or latitude differences greater than geography.maximum_lon_lat
         # degrees.
-        glib.timeout_add(self._config.get("geography.speed"), self.animate,
+        GObject.timeout_add(self._config.get("geography.speed"), self.animate,
                          menu, marks, i, stepyear)
         return False
 
@@ -397,47 +398,47 @@ class GeoPerson(GeoGraphyView):
             self._create_markers()
 
     def bubble_message(self, event, lat, lon, marks):
-        menu = gtk.Menu()
+        menu = Gtk.Menu()
         menu.set_title("person")
         message = ""
         oldplace = ""
         prevmark = None
         for mark in marks:
             if oldplace != "":
-                add_item = gtk.MenuItem(message)
+                add_item = Gtk.MenuItem(label=message)
                 add_item.show()
                 menu.append(add_item)
-                itemoption = gtk.Menu()
+                itemoption = Gtk.Menu()
                 itemoption.set_title(message)
                 itemoption.show()
                 message = ""
                 add_item.set_submenu(itemoption)
-                modify = gtk.MenuItem(_("Edit Event"))
+                modify = Gtk.MenuItem(label=_("Edit Event"))
                 modify.show()
                 modify.connect("activate", self.edit_event,
                                event, lat, lon, prevmark)
                 itemoption.append(modify)
-                center = gtk.MenuItem(_("Center on this place"))
+                center = Gtk.MenuItem(label=_("Center on this place"))
                 center.show()
                 center.connect("activate", self.center_here,
                                event, lat, lon, prevmark)
                 itemoption.append(center)
             if mark[0] != oldplace:
                 if message != "":
-                    add_item = gtk.MenuItem()
+                    add_item = Gtk.MenuItem()
                     add_item.show()
                     menu.append(add_item)
-                    itemoption = gtk.Menu()
+                    itemoption = Gtk.Menu()
                     itemoption.set_title(message)
                     itemoption.show()
                     message = ""
                     add_item.set_submenu(itemoption)
-                    modify = gtk.MenuItem(_("Edit Event"))
+                    modify = Gtk.MenuItem(label=_("Edit Event"))
                     modify.show()
                     modify.connect("activate", self.edit_event,
                                    event, lat, lon, mark)
                     itemoption.append(modify)
-                    center = gtk.MenuItem(_("Center on this place"))
+                    center = Gtk.MenuItem(label=_("Center on this place"))
                     center.show()
                     center.connect("activate", self.center_here,
                                    event, lat, lon, mark)
@@ -463,33 +464,33 @@ class GeoPerson(GeoGraphyView):
                     descr = _('No description')
                 message = "(%s) %s => %s" % ( date, mark[11], descr)
             prevmark = mark
-        add_item = gtk.MenuItem(message)
+        add_item = Gtk.MenuItem(label=message)
         add_item.show()
         menu.append(add_item)
-        itemoption = gtk.Menu()
+        itemoption = Gtk.Menu()
         itemoption.set_title(message)
         itemoption.show()
         add_item.set_submenu(itemoption)
-        modify = gtk.MenuItem(_("Edit Event"))
+        modify = Gtk.MenuItem(label=_("Edit Event"))
         modify.show()
         modify.connect("activate", self.edit_event, event, lat, lon, prevmark)
         itemoption.append(modify)
-        center = gtk.MenuItem(_("Center on this place"))
+        center = Gtk.MenuItem(label=_("Center on this place"))
         center.show()
         center.connect("activate", self.center_here, event, lat, lon, prevmark)
         itemoption.append(center)
         menu.show()
-        menu.popup(None, None, None, 0, event.time)
+        menu.popup(None, None, None, None, 0, event.time)
         return 1
 
     def add_specific_menu(self, menu, event, lat, lon): 
         """ 
         Add specific entry to the navigation menu.
         """ 
-        add_item = gtk.MenuItem()
+        add_item = Gtk.MenuItem()
         add_item.show()
         menu.append(add_item)
-        add_item = gtk.MenuItem(_("Animate"))
+        add_item = Gtk.MenuItem(label=_("Animate"))
         add_item.connect("activate", self.animate, self.sort, 0, 0)
         add_item.show()
         menu.append(add_item)
@@ -507,7 +508,7 @@ class GeoPerson(GeoGraphyView):
         Add specific entry to the preference menu.
         Must be done in the associated view.
         """
-        table = gtk.Table(2, 2)
+        table = Gtk.Table(2, 2)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)

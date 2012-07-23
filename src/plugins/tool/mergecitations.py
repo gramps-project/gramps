@@ -38,7 +38,7 @@ LOG = logging.getLogger(".citation")
 # GNOME libraries
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -92,7 +92,7 @@ class MergeCitations(tool.BatchTool,ManagedWindow):
         
         ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.dbstate = dbstate
-        self.set_window(gtk.Window(), gtk.Label(), '')
+        self.set_window(Gtk.Window(), Gtk.Label(), '')
 
         tool.BatchTool.__init__(self, dbstate, options_class, name)
 
@@ -109,7 +109,7 @@ class MergeCitations(tool.BatchTool,ManagedWindow):
         fields = self.options.handler.options_dict['fields']
         dont_merge_notes = self.options.handler.options_dict['dont_merge_notes']
 
-        my_menu = gtk.ListStore(str, object)
+        my_menu = Gtk.ListStore(str, object)
         for val in sorted(_val2label):
             my_menu.append([_val2label[val], val])
 

@@ -38,7 +38,7 @@ from gen.ggettext import gettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -239,7 +239,7 @@ class EditLdsOrd(EditSecondary):
         self.status_menu.change_menu(new_data)
 
     def _create_tabbed_pages(self):
-        notebook = gtk.Notebook()
+        notebook = Gtk.Notebook()
         self.citation_list = CitationEmbedList(self.dbstate, self.uistate, 
                                              self.track, 
                                              self.obj.get_citation_list())
@@ -405,7 +405,7 @@ class EditFamilyLdsOrd(EditSecondary):
         self.track_ref_for_deletion('status_menu')
 
     def _create_tabbed_pages(self):
-        notebook = gtk.Notebook()
+        notebook = Gtk.Notebook()
         self.srcref_list = CitationEmbedList(self.dbstate,self.uistate, 
                                              self.track, 
                                              self.obj.get_citation_list())

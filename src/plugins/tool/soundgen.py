@@ -71,7 +71,7 @@ class SoundGen(tool.Tool, ManagedWindow):
 
         self.value = self.glade.get_object("value")
         self.autocomp = self.glade.get_object("name_list")
-        self.name = self.autocomp.child
+        self.name = self.autocomp.get_child()
 
         self.name.connect('changed',self.on_apply_clicked)
 

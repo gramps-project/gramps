@@ -58,6 +58,7 @@ from gen.lib import (MediaObject, Person, Family, Source, Citation, Event,
                      NameOriginType)
 from gen.db.dbconst import *
 from gen.utils.callback import Callback
+from gen.utils.cast import conv_dbstr_to_unicode
 from gen.db import (BsddbBaseCursor, DbReadBase)
 from gen.utils.id import create_id
 from gen.errors import DbError
@@ -101,11 +102,11 @@ def __index_surname(surn_list):
     pa/matronymic not as they change for every generation!
     """
     if surn_list:
-        surn = " ".join([x[0] for x in surn_list if not (x[3][0] in [
+        surn = u" ".join([x[0] for x in surn_list if not (x[3][0] in [
                     NameOriginType.PATRONYMIC, NameOriginType.MATRONYMIC]) ])
     else:
-        surn = ""
-    return str(surn)
+        surn = u""
+    return surn.encode('utf-8')
     
 
 #-------------------------------------------------------------------------
@@ -831,14 +832,19 @@ class DbBsddbRead(DbReadBase, Callback):
     def get_name_group_mapping(self, surname):
         """
         Return the default grouping name for a surname.
+        Return type is a unicode object
         """
-        return unicode(self.name_group.get(str(surname), surname))
+        if isinstance(surname, unicode):
+            ssurname = surname.encode('utf-8')
+            return conv_dbstr_to_unicode(self.name_group.get(ssurname, ssurname))
+        else:
+            return conv_dbstr_to_unicode(self.name_group.get(surname, surname))
 
     def get_name_group_keys(self):
         """
         Return the defined names that have been assigned to a default grouping.
         """
-        return map(unicode, self.name_group.keys())
+        return map(conv_dbstr_to_unicode, self.name_group.keys())
 
     def has_name_group_key(self, name):
         """
@@ -846,7 +852,10 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         # The use of has_key seems allright because there is no write lock
         # on the name_group table when this is called.
-        return self.name_group.has_key(str(name))
+        if isinstance(name, unicode):
+            return self.name_group.has_key(name.encode('utf-8'))
+        else:
+            return self.name_group.has_key(name)
 
     def get_number_of_records(self, table):
         if not self.db_is_open:

@@ -38,8 +38,8 @@ from gen.ggettext import gettext as _
 # gnome/gtk
 #
 #-------------------------------------------------------------------------
-import gtk
-import gobject
+from gi.repository import Gtk
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -415,7 +415,7 @@ class ExtractCity(tool.BatchTool, ManagedWindow):
         self.label = _('Extract Place data')
         
         ManagedWindow.__init__(self, uistate, [], self.__class__)
-        self.set_window(gtk.Window(), gtk.Label(), '')
+        self.set_window(Gtk.Window(), Gtk.Label(), '')
 
         tool.BatchTool.__init__(self, dbstate, options_class, name)
 
@@ -530,24 +530,24 @@ class ExtractCity(tool.BatchTool, ManagedWindow):
               'be extracted from the place title. Select the places you '
               'wish Gramps to convert.'))
 
-        self.model = gtk.ListStore(gobject.TYPE_BOOLEAN, gobject.TYPE_STRING, 
-                                   gobject.TYPE_STRING, gobject.TYPE_STRING, 
-                                   gobject.TYPE_STRING, gobject.TYPE_STRING, 
-                                   gobject.TYPE_STRING)
+        self.model = Gtk.ListStore(GObject.TYPE_BOOLEAN, GObject.TYPE_STRING, 
+                                   GObject.TYPE_STRING, GObject.TYPE_STRING, 
+                                   GObject.TYPE_STRING, GObject.TYPE_STRING, 
+                                   GObject.TYPE_STRING)
 
-        r = gtk.CellRendererToggle()
+        r = Gtk.CellRendererToggle()
         r.connect('toggled', self.toggled)
-        c = gtk.TreeViewColumn(_('Select'), r, active=0)
+        c = Gtk.TreeViewColumn(_('Select'), r, active=0)
         self.list.append_column(c)
 
         for (title, col) in COLS:
-            render = gtk.CellRendererText()
+            render = Gtk.CellRendererText()
             if col > 1:
                 render.set_property('editable', True)
                 render.connect('edited', self.__change_name, col)
             
             self.list.append_column(
-                gtk.TreeViewColumn(title, render, text=col))
+                Gtk.TreeViewColumn(title, render, text=col))
         self.list.set_model(self.model)
 
         self.iter_list = []

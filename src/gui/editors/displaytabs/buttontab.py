@@ -33,7 +33,8 @@ from gen.ggettext import gettext as _
 # GTK libraries
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
+from gi.repository import Gdk
 
 #-------------------------------------------------------------------------
 #
@@ -44,13 +45,13 @@ from gui.widgets import SimpleButton
 from grampstab import GrampsTab
 from gen.errors import WindowActiveError
 
-_KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
-_RETURN = gtk.gdk.keyval_from_name("Return")
-_DEL = gtk.gdk.keyval_from_name("Delete")
-_ADD = gtk.gdk.keyval_from_name("Insert")
-_OPEN = gtk.gdk.keyval_from_name("o")
-_LEFT = gtk.gdk.keyval_from_name("Left")
-_RIGHT = gtk.gdk.keyval_from_name("Right")
+_KP_ENTER = Gdk.keyval_from_name("KP_Enter")
+_RETURN = Gdk.keyval_from_name("Return")
+_DEL = Gdk.keyval_from_name("Delete")
+_ADD = Gdk.keyval_from_name("Insert")
+_OPEN = Gdk.keyval_from_name("o")
+_LEFT = Gdk.keyval_from_name("Left")
+_RIGHT = Gdk.keyval_from_name("Right")
 
 #-------------------------------------------------------------------------
 #
@@ -118,13 +119,13 @@ class ButtonTab(GrampsTab):
         Note: some ButtonTab subclasses override this method.
         """
         if top_label:
-            self.top_label = gtk.Label(top_label)
+            self.top_label = Gtk.Label(label=top_label)
             self.top_label.set_use_markup(True)
             self.track_ref_for_deletion("top_label")
 
-        self.add_btn  = SimpleButton(gtk.STOCK_ADD, self.add_button_clicked)
-        self.edit_btn = SimpleButton(gtk.STOCK_EDIT, self.edit_button_clicked)
-        self.del_btn  = SimpleButton(gtk.STOCK_REMOVE, self.del_button_clicked)
+        self.add_btn  = SimpleButton(Gtk.STOCK_ADD, self.add_button_clicked)
+        self.edit_btn = SimpleButton(Gtk.STOCK_EDIT, self.edit_button_clicked)
+        self.del_btn  = SimpleButton(Gtk.STOCK_REMOVE, self.del_button_clicked)
         self.track_ref_for_deletion("add_btn")
         self.track_ref_for_deletion("edit_btn")
         self.track_ref_for_deletion("del_btn")
@@ -134,16 +135,16 @@ class ButtonTab(GrampsTab):
         self.del_btn.set_tooltip_text(self._MSG['del'])
         
         if share_button:
-            self.share_btn = SimpleButton(gtk.STOCK_INDEX, self.share_button_clicked)
+            self.share_btn = SimpleButton(Gtk.STOCK_INDEX, self.share_button_clicked)
             self.share_btn.set_tooltip_text(self._MSG['share'])
             self.track_ref_for_deletion("share_btn")
         else:
             self.share_btn = None
             
         if move_buttons:
-            self.up_btn = SimpleButton(gtk.STOCK_GO_UP, self.up_button_clicked)
+            self.up_btn = SimpleButton(Gtk.STOCK_GO_UP, self.up_button_clicked)
             self.up_btn.set_tooltip_text(self._MSG['up'])
-            self.down_btn = SimpleButton(gtk.STOCK_GO_DOWN, 
+            self.down_btn = SimpleButton(Gtk.STOCK_GO_DOWN, 
                                                 self.down_button_clicked)
             self.down_btn.set_tooltip_text(self._MSG['down'])
             self.track_ref_for_deletion("up_btn")
@@ -153,29 +154,29 @@ class ButtonTab(GrampsTab):
             self.down_btn = None
 
         if jump_button:
-            self.jump_btn = SimpleButton(gtk.STOCK_JUMP_TO, self.jump_button_clicked)
+            self.jump_btn = SimpleButton(Gtk.STOCK_JUMP_TO, self.jump_button_clicked)
             self.track_ref_for_deletion("jump_btn")
             self.jump_btn.set_tooltip_text(self._MSG['jump'])
         else:
             self.jump_btn = None
 
-        hbox = gtk.HBox()
+        hbox = Gtk.HBox()
         hbox.set_spacing(6)
         if top_label:
-            hbox.pack_start(self.top_label, False)
-        hbox.pack_start(self.add_btn, False)
+            hbox.pack_start(self.top_label, False, True, 0)
+        hbox.pack_start(self.add_btn, False, True, 0)
         if share_button:
-            hbox.pack_start(self.share_btn, False)
-        hbox.pack_start(self.edit_btn, False)
-        hbox.pack_start(self.del_btn, False)
+            hbox.pack_start(self.share_btn, False, True, 0)
+        hbox.pack_start(self.edit_btn, False, True, 0)
+        hbox.pack_start(self.del_btn, False, True, 0)
         if move_buttons:
-            hbox.pack_start(self.up_btn, False)
-            hbox.pack_start(self.down_btn, False)
+            hbox.pack_start(self.up_btn, False, True, 0)
+            hbox.pack_start(self.down_btn, False, True, 0)
 
         if self.jump_btn:
-            hbox.pack_start(self.jump_btn, False)
+            hbox.pack_start(self.jump_btn, False, True, 0)
         hbox.show_all()
-        self.pack_start(hbox, False)
+        self.pack_start(hbox, False, True, 0)
 
         if self.dbstate.db.readonly:
             self.add_btn.set_sensitive(False)
@@ -193,7 +194,7 @@ class ButtonTab(GrampsTab):
         Handles the double click on list. If the double click occurs,
         the Edit button handler is called
         """
-        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             try:
                 self.edit_button_clicked(obj)
             except WindowActiveError:
@@ -204,8 +205,8 @@ class ButtonTab(GrampsTab):
         Handles the return key being pressed on list. If the key is pressed,
         the Edit button handler is called
         """
-        if event.type == gtk.gdk.KEY_PRESS:
-            #print 'key pressed', event.keyval, event.state, _ADD
+        if event.type == Gdk.EventType.KEY_PRESS:
+            #print 'key pressed', event.keyval, event.get_state(), _ADD
             if  event.keyval in (_RETURN, _KP_ENTER):
                 try:
                     self.edit_button_clicked(obj)
@@ -220,13 +221,13 @@ class ButtonTab(GrampsTab):
                     return
                 self.add_button_clicked(obj)
             elif event.keyval in (_OPEN,) and self.share_btn and \
-                    (event.state & gtk.gdk.CONTROL_MASK):
+                    (event.get_state() & Gdk.ModifierType.CONTROL_MASK):
                 self.share_button_clicked(obj)
             elif event.keyval in (_LEFT,) and \
-                    (event.state & gtk.gdk.MOD1_MASK):
+                    (event.get_state() & Gdk.ModifierType.MOD1_MASK):
                 self.prev_page()
             elif event.keyval in (_RIGHT,) and \
-                    (event.state & gtk.gdk.MOD1_MASK):
+                    (event.get_state() & Gdk.ModifierType.MOD1_MASK):
                 self.next_page()
             else:
                 return

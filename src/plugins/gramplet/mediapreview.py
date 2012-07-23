@@ -22,7 +22,7 @@
 from gen.plug import Gramplet
 from gui.widgets import Photo
 from gen.utils.file import media_path_full
-import gtk
+from gi.repository import Gtk
 
 class MediaPreview(Gramplet):
     """
@@ -37,7 +37,7 @@ class MediaPreview(Gramplet):
         """
         Build the GUI interface.
         """
-        self.top = gtk.HBox()
+        self.top = Gtk.HBox()
         self.photo = Photo(self.uistate.screen_height() < 1000)
         self.top.pack_start(self.photo, fill=True, expand=False, padding=5)
         self.top.show_all()

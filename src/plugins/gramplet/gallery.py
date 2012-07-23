@@ -23,7 +23,7 @@
 from gen.plug import Gramplet
 from gui.widgets import Photo
 from gen.utils.file import media_path_full
-import gtk
+from gi.repository import Gtk
 
 class Gallery(Gramplet):
     """
@@ -39,7 +39,7 @@ class Gallery(Gramplet):
         Build the GUI interface.
         """
         self.image_list = []
-        self.top = gtk.HBox(False, 3)
+        self.top = Gtk.HBox(False, 3)
         return self.top
         
     def clear_images(self):
@@ -65,7 +65,7 @@ class Gallery(Gramplet):
                 photo = Photo(self.uistate.screen_height() < 1000)
                 photo.set_image(full_path, mime_type, media_ref.get_rectangle())
                 self.image_list.append(photo)
-                self.top.pack_start(photo, expand=False, fill=False)
+                self.top.pack_start(photo, False, False, 0)
                 self.top.show_all()
                 count += 1
         self.set_has_data(count > 0)

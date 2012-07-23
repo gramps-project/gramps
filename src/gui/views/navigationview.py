@@ -39,7 +39,8 @@ _LOG = logging.getLogger('.navigationview')
 # gtk
 #
 #----------------------------------------------------------------
-import gtk
+from gi.repository import Gdk
+from gi.repository import Gtk
 
 #----------------------------------------------------------------
 #
@@ -266,13 +267,13 @@ class NavigationView(PageView):
         """
         Define the bookmark menu actions.
         """
-        self.book_action = gtk.ActionGroup(self.title + '/Bookmark')
+        self.book_action = Gtk.ActionGroup(self.title + '/Bookmark')
         self.book_action.add_actions([
             ('AddBook', 'gramps-bookmark-new', _('_Add Bookmark'), 
-             '<control>d', None, self.add_bookmark), 
+             '<PRIMARY>d', None, self.add_bookmark), 
             ('EditBook', 'gramps-bookmark-edit', 
              _("%(title)s...") % {'title': _("Organize Bookmarks")}, 
-             '<shift><control>D', None, 
+             '<shift><PRIMARY>D', None, 
              self.edit_bookmarks), 
             ])
 
@@ -286,28 +287,28 @@ class NavigationView(PageView):
         Define the navigation menu actions.
         """
         # add the Forward action group to handle the Forward button
-        self.fwd_action = gtk.ActionGroup(self.title + '/Forward')
+        self.fwd_action = Gtk.ActionGroup(self.title + '/Forward')
         self.fwd_action.add_actions([
-            ('Forward', gtk.STOCK_GO_FORWARD, _("_Forward"), 
+            ('Forward', Gtk.STOCK_GO_FORWARD, _("_Forward"), 
              "%sRight" % mod_key(), _("Go to the next object in the history"), 
              self.fwd_clicked)
             ])
 
         # add the Backward action group to handle the Forward button
-        self.back_action = gtk.ActionGroup(self.title + '/Backward')
+        self.back_action = Gtk.ActionGroup(self.title + '/Backward')
         self.back_action.add_actions([
-            ('Back', gtk.STOCK_GO_BACK, _("_Back"), 
+            ('Back', Gtk.STOCK_GO_BACK, _("_Back"), 
              "%sLeft" % mod_key(), _("Go to the previous object in the history"), 
              self.back_clicked)
             ])
 
-        self._add_action('HomePerson', gtk.STOCK_HOME, _("_Home"), 
+        self._add_action('HomePerson', Gtk.STOCK_HOME, _("_Home"), 
                          accel="%sHome" % mod_key(), 
                          tip=_("Go to the default person"), callback=self.home)
 
-        self.other_action = gtk.ActionGroup(self.title + '/PersonOther')
+        self.other_action = Gtk.ActionGroup(self.title + '/PersonOther')
         self.other_action.add_actions([
-                ('SetActive', gtk.STOCK_HOME, _("Set _Home Person"), None, 
+                ('SetActive', Gtk.STOCK_HOME, _("Set _Home Person"), None, 
                  None, self.set_default_person), 
                 ])
 
@@ -339,27 +340,26 @@ class NavigationView(PageView):
         """
         A dialog to move to a Gramps ID entered by the user.
         """
-        dialog = gtk.Dialog(_('Jump to by Gramps ID'), None, 
-                            gtk.DIALOG_NO_SEPARATOR)
+        dialog = Gtk.Dialog(_('Jump to by Gramps ID'))
         dialog.set_border_width(12)
-        label = gtk.Label('<span weight="bold" size="larger">%s</span>' % 
+        label = Gtk.Label(label='<span weight="bold" size="larger">%s</span>' % 
                           _('Jump to by Gramps ID'))
         label.set_use_markup(True)
         dialog.vbox.add(label)
         dialog.vbox.set_spacing(10)
         dialog.vbox.set_border_width(12)
-        hbox = gtk.HBox()
-        hbox.pack_start(gtk.Label("%s: " % _('ID')), False)
-        text = gtk.Entry()
+        hbox = Gtk.HBox()
+        hbox.pack_start(Gtk.Label("%s: " % _('ID', True, True, 0)), False)
+        text = Gtk.Entry()
         text.set_activates_default(True)
-        hbox.pack_start(text, False)
-        dialog.vbox.pack_start(hbox, False)
-        dialog.add_buttons(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, 
-                           gtk.STOCK_JUMP_TO, gtk.RESPONSE_OK)
-        dialog.set_default_response(gtk.RESPONSE_OK)
+        hbox.pack_start(text, False, True, 0)
+        dialog.vbox.pack_start(hbox, False, True, 0)
+        dialog.add_buttons(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, 
+                           Gtk.STOCK_JUMP_TO, Gtk.ResponseType.OK)
+        dialog.set_default_response(Gtk.ResponseType.OK)
         dialog.vbox.show_all()
         
-        if dialog.run() == gtk.RESPONSE_OK:
+        if dialog.run() == Gtk.ResponseType.OK:
             gid = text.get_text()
             handle = self.get_handle_from_gramps_id(gid)
             if handle is not None:
@@ -448,7 +448,7 @@ class NavigationView(PageView):
                          "%s%d" % (mod_key(), index), None,
                          make_callback(hobj.push, handle)))
  
-        self.mru_action = gtk.ActionGroup(nav_type)
+        self.mru_action = Gtk.ActionGroup(nav_type)
         self.mru_action.add_actions(data)
         self.mru_enable()
 
@@ -505,9 +505,9 @@ class NavigationView(PageView):
         Handle the control+c (copy) and control+v (paste), or pass it on.
         """
         if self.active:
-            if event.type == gtk.gdk.KEY_PRESS:
-                if (event.keyval == gtk.keysyms.c and 
-                    (event.state & gtk.gdk.CONTROL_MASK)):
+            if event.type == Gdk.EventType.KEY_PRESS:
+                if (event.keyval == Gdk.KEY_c and 
+                    (event.get_state() & Gdk.ModifierType.CONTROL_MASK)):
                     self.call_copy()
                     return True
         return super(NavigationView, self).key_press_handler(widget, event)

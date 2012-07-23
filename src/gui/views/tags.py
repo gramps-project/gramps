@@ -34,7 +34,7 @@ from xml.sax.saxutils import escape
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -203,7 +203,7 @@ class Tags(DbGUIElement):
 
         if self.db is None:
             self.tag_ui = ''
-            self.tag_action = gtk.ActionGroup('Tag')
+            self.tag_action = Gtk.ActionGroup('Tag')
             return
 
         tag_menu = '<menuitem action="NewTag"/>'
@@ -224,7 +224,7 @@ class Tags(DbGUIElement):
         actions.append(('TagButton', 'gramps-tag', _('Tag'), None,
                         _('Tag selected rows'), self.cb_tag_button))
  
-        self.tag_action = gtk.ActionGroup('Tag')
+        self.tag_action = Gtk.ActionGroup('Tag')
         self.tag_action.add_actions(actions)
         
     def cb_tag_button(self, action):
@@ -233,7 +233,7 @@ class Tags(DbGUIElement):
         """
         menu = self.uistate.uimanager.get_widget('/TagPopup')
         button = self.uistate.uimanager.get_widget('/ToolBar/TagTool/TagButton')
-        menu.popup(None, None, cb_menu_position, 0, 0, button)
+        menu.popup(None, None, cb_menu_position, button, 0, 0)
         
     def cb_organize_tags(self, action):
         """
@@ -263,7 +263,7 @@ class Tags(DbGUIElement):
         # Make the dialog modal so that the user can't start another
         # database transaction while the one setting tags is still running.
         pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog, 
-                     ("", self.uistate.window, gtk.DIALOG_MODAL), popup_time=2)
+                     ("", self.uistate.window, Gtk.DialogFlags.MODAL), popup_time=2)
         status = progressdlg.LongOpStatus(msg=_("Adding Tags"),
                                           total_steps=len(selected),
                                           interval=len(selected)//20)
@@ -315,7 +315,7 @@ class OrganizeTagsDialog(object):
         self._populate_model()
         while True:
             response = self.top.run()
-            if response == gtk.RESPONSE_HELP:
+            if response == Gtk.ResponseType.HELP:
                 display_help(webpage=WIKI_HELP_PAGE,
                                    section=WIKI_HELP_SEC)
             else:
@@ -369,45 +369,44 @@ class OrganizeTagsDialog(object):
         """
         # pylint: disable-msg=E1101
         title = _("%(title)s - Gramps") % {'title': _("Organize Tags")}
-        top = gtk.Dialog(title)
+        top = Gtk.Dialog(title)
         top.set_default_size(400, 350)
         top.set_modal(True)
         top.set_transient_for(self.parent_window)
-        top.set_has_separator(False)
         top.vbox.set_spacing(5)
-        label = gtk.Label('<span size="larger" weight="bold">%s</span>'
+        label = Gtk.Label(label='<span size="larger" weight="bold">%s</span>'
                           % _("Organize Tags"))
         label.set_use_markup(True)
         top.vbox.pack_start(label, 0, 0, 5)
-        box = gtk.HBox()
+        box = Gtk.HBox()
         top.vbox.pack_start(box, 1, 1, 5)
         
         name_titles = [('', NOSORT, 20, INTEGER), # Priority
                        ('', NOSORT, 100), # Handle
                        (_('Name'), NOSORT, 200),
                        (_('Color'), NOSORT, 50, COLOR)]
-        self.namelist = gtk.TreeView()
+        self.namelist = Gtk.TreeView()
         self.namemodel = ListModel(self.namelist, name_titles)
 
-        slist = gtk.ScrolledWindow()
+        slist = Gtk.ScrolledWindow()
         slist.add_with_viewport(self.namelist)
-        slist.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        slist.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         box.pack_start(slist, 1, 1, 5)
-        bbox = gtk.VButtonBox()
-        bbox.set_layout(gtk.BUTTONBOX_START)
+        bbox = Gtk.VButtonBox()
+        bbox.set_layout(Gtk.ButtonBoxStyle.START)
         bbox.set_spacing(6)
-        up = gtk.Button(stock=gtk.STOCK_GO_UP)
-        down = gtk.Button(stock=gtk.STOCK_GO_DOWN)
-        add = gtk.Button(stock=gtk.STOCK_ADD)
-        edit = gtk.Button(stock=gtk.STOCK_EDIT)
-        remove = gtk.Button(stock=gtk.STOCK_REMOVE)
+        up = Gtk.Button(stock=Gtk.STOCK_GO_UP)
+        down = Gtk.Button(stock=Gtk.STOCK_GO_DOWN)
+        add = Gtk.Button(stock=Gtk.STOCK_ADD)
+        edit = Gtk.Button(stock=Gtk.STOCK_EDIT)
+        remove = Gtk.Button(stock=Gtk.STOCK_REMOVE)
         up.connect('clicked', self.cb_up_clicked)
         down.connect('clicked', self.cb_down_clicked)
         add.connect('clicked', self.cb_add_clicked, top)
         edit.connect('clicked', self.cb_edit_clicked, top)
         remove.connect('clicked', self.cb_remove_clicked, top)
-        top.add_button(gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)
-        top.add_button(gtk.STOCK_HELP, gtk.RESPONSE_HELP)
+        top.add_button(Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE)
+        top.add_button(Gtk.STOCK_HELP, Gtk.ResponseType.HELP)
         bbox.add(up)
         bbox.add(down)
         bbox.add(add)
@@ -501,7 +500,7 @@ class OrganizeTagsDialog(object):
             # Make the dialog modal so that the user can't start another
             # database transaction while the one removing tags is still running.
             pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog, 
-                       ("", self.parent_window, gtk.DIALOG_MODAL), popup_time=2)
+                       ("", self.parent_window, Gtk.DialogFlags.MODAL), popup_time=2)
             status = progressdlg.LongOpStatus(msg=_("Removing Tags"),
                                               total_steps=len(links),
                                               interval=len(links)//20)
@@ -542,7 +541,7 @@ class EditTag(object):
         Run the dialog and return the result.
         """
         response = self.top.run()
-        if response == gtk.RESPONSE_OK:
+        if response == Gtk.ResponseType.OK:
             self._save()
         self.top.destroy()
 
@@ -579,28 +578,27 @@ class EditTag(object):
             title = _('Tag: %s')  % self.tag.get_name()
         else:
             title = _('New Tag')
-        top = gtk.Dialog(_("%(title)s - Gramps") % {'title': title})
+        top = Gtk.Dialog(_("%(title)s - Gramps") % {'title': title})
         top.set_default_size(300, 100)
         top.set_modal(True)
         top.set_transient_for(self.parent_window)
-        top.set_has_separator(False)
         top.vbox.set_spacing(5)
 
-        hbox = gtk.HBox()
+        hbox = Gtk.HBox()
         top.vbox.pack_start(hbox, False, False, 10)
 
-        label = gtk.Label(_('Tag Name:'))
-        self.entry = gtk.Entry()
+        label = Gtk.Label(label=_('Tag Name:'))
+        self.entry = Gtk.Entry()
         self.entry.set_text(self.tag.get_name())
-        self.color = gtk.ColorButton()
-        self.color.set_color(gtk.gdk.color_parse(self.tag.get_color()))
+        self.color = Gtk.ColorButton()
+        self.color.set_color(Gdk.color_parse(self.tag.get_color()))
         title = _("%(title)s - Gramps") % {'title': _("Pick a Color")}
         self.color.set_title(title)
         hbox.pack_start(label, False, False, 5)
         hbox.pack_start(self.entry, True, True, 5)
         hbox.pack_start(self.color, False, False, 5)
         
-        top.add_button(gtk.STOCK_OK, gtk.RESPONSE_OK)
-        top.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
+        top.add_button(Gtk.STOCK_OK, Gtk.ResponseType.OK)
+        top.add_button(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL)
         top.show_all()
         return top

@@ -27,7 +27,7 @@ from gen.display.name import displayer as name_displayer
 from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 import gen.datehandler
 from gen.errors import WindowActiveError
-import gtk
+from gi.repository import Gtk
 
 class Children(Gramplet):
     """
@@ -79,7 +79,7 @@ class PersonChildren(Children):
         """
         tip = _('Double-click on a row to edit the selected child.')
         self.set_tooltip(tip)
-        top = gtk.TreeView()
+        top = Gtk.TreeView()
         titles = [('', NOSORT, 50,),
                   (_('Child'), 1, 250),
                   (_('Birth Date'), 3, 100),
@@ -175,7 +175,7 @@ class FamilyChildren(Children):
         """
         tip = _('Double-click on a row to edit the selected child.')
         self.set_tooltip(tip)
-        top = gtk.TreeView()
+        top = Gtk.TreeView()
         titles = [('', NOSORT, 50,),
                   (_('Child'), 1, 250),
                   (_('Birth Date'), 3, 100),

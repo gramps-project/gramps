@@ -37,8 +37,8 @@ _LOG = logging.getLogger(".widgets.menutoolbuttonaction")
 # GTK modules
 #
 #-------------------------------------------------------------------------
-import gobject
-import gtk
+from gi.repository import GObject
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -52,7 +52,7 @@ import gtk
 # MenuToolButtonAction class
 #
 #-------------------------------------------------------------------------
-class MenuToolButtonAction(gtk.Action):
+class MenuToolButtonAction(Gtk.Action):
     """MenuToolButton action class.
     
     (A MenuToolButtonAction with menu item doesn't make any sense, 
@@ -62,8 +62,8 @@ class MenuToolButtonAction(gtk.Action):
     __gtype_name__ = "MenuToolButtonAction"
     
     __gsignals__ = {
-        'changed': (gobject.SIGNAL_RUN_FIRST, 
-                    gobject.TYPE_NONE, #return value
+        'changed': (GObject.SignalFlags.RUN_FIRST, 
+                    None, #return value
                     ()), # arguments
     }    
 
@@ -76,9 +76,11 @@ class MenuToolButtonAction(gtk.Action):
         @type tooltip: str
         
         """
-        gtk.Action.__init__(self, name, label, tooltip, None)
-        
-        self.set_tool_item_type(gtk.MenuToolButton)
+        GObject.GObject.__init__(self, name=name, label=label, tooltip=tooltip,
+                                 stock_id=None)
+##TODO GTK3: following is deprecated, must be replaced by 
+##        Gtk.MenuToolButton.set_related_action(MenuToolButtonAction) in calling class?
+##        self.set_tool_item_type(Gtk.MenuToolButton)
         if callback:
             self.connect('activate', callback)
         self.arrowtooltip = arrowtooltip

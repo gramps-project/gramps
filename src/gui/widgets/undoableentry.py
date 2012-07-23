@@ -39,8 +39,9 @@ _LOG = logging.getLogger(".widgets.undoableentry")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gobject
-import gtk
+from gi.repository import GObject
+from gi.repository import Gdk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -50,12 +51,12 @@ import gtk
 from undoablebuffer import Stack
 
 class UndoableInsertEntry(object):
-    """something that has been inserted into our gtk.editable"""
+    """something that has been inserted into our Gtk.editable"""
     def __init__(self, text, length, position, editable):
         self.offset = position
         self.text = str(text)
         #unicode char can have length > 1 as it points in the buffer
-        charlength = len(unicode(text))
+        charlength = len(unicode(text, 'utf-8'))
         self.length = charlength
         if charlength > 1 or self.text in ("\r", "\n", " "):
             self.mergeable = False
@@ -65,7 +66,7 @@ class UndoableInsertEntry(object):
 class UndoableDeleteEntry(object):
     """something that has been deleted from our textbuffer"""
     def __init__(self, editable, start, end):
-        self.text = str(editable.get_chars(start, end))
+        self.text = editable.get_chars(start, end).encode('utf-8')
         self.start = start
         self.end = end
         # need to find out if backspace or delete key has been used
@@ -80,7 +81,7 @@ class UndoableDeleteEntry(object):
         else:
             self.mergeable = True
 
-class UndoableEntry(gtk.Entry):
+class UndoableEntry(Gtk.Entry):
     """
     The UndoableEntry is an Entry subclass with additional features.
 
@@ -96,7 +97,7 @@ class UndoableEntry(gtk.Entry):
     undo_stack_size = 50
 
     def __init__(self):
-        gtk.Entry.__init__(self)
+        GObject.GObject.__init__(self)
         self.undo_stack = Stack(self.undo_stack_size)
         self.redo_stack = []
         self.not_undoable_action = False
@@ -107,7 +108,7 @@ class UndoableEntry(gtk.Entry):
         self.connect('key-press-event', self._on_key_press_event)
 
     def set_text(self, text):
-        gtk.Entry.set_text(self, text)
+        Gtk.Entry.set_text(self, text)
         self.reset()
 
     def _on_key_press_event(self, widget, event):
@@ -115,13 +116,13 @@ class UndoableEntry(gtk.Entry):
         Handle formatting undo/redo key press.
         
         """
-        if ((gtk.gdk.keyval_name(event.keyval) == 'Z') and
-            (event.state & gtk.gdk.CONTROL_MASK) and 
-            (event.state & gtk.gdk.SHIFT_MASK)):
+        if ((Gdk.keyval_name(event.keyval) == 'Z') and
+            (event.get_state() & Gdk.ModifierType.CONTROL_MASK) and 
+            (event.get_state() & Gdk.ModifierType.SHIFT_MASK)):
             self.redo()
             return True
-        elif ((gtk.gdk.keyval_name(event.keyval) == 'z') and
-              (event.state & gtk.gdk.CONTROL_MASK)):
+        elif ((Gdk.keyval_name(event.keyval) == 'z') and
+              (event.get_state() & Gdk.ModifierType.CONTROL_MASK)):
             self.undo()
             return True
 

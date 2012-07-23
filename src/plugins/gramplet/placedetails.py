@@ -24,8 +24,8 @@ from gui.widgets import Photo
 from gen.ggettext import gettext as _
 from gen.utils.place import conv_lat_lon
 from gen.utils.file import media_path_full
-import gtk
-import pango
+from gi.repository import Gtk
+from gi.repository import Pango
 
 class PlaceDetails(Gramplet):
     """
@@ -40,14 +40,14 @@ class PlaceDetails(Gramplet):
         """
         Build the GUI interface.
         """
-        self.top = gtk.HBox()
-        vbox = gtk.VBox()
+        self.top = Gtk.HBox()
+        vbox = Gtk.VBox()
         self.photo = Photo(self.uistate.screen_height() < 1000)
-        self.title = gtk.Label()
+        self.title = Gtk.Label()
         self.title.set_alignment(0, 0)
-        self.title.modify_font(pango.FontDescription('sans bold 12'))
+        self.title.modify_font(Pango.FontDescription('sans bold 12'))
         vbox.pack_start(self.title, fill=True, expand=False, padding=7)
-        self.table = gtk.Table(1, 2)
+        self.table = Gtk.Table(1, 2)
         vbox.pack_start(self.table, fill=True, expand=False)
         self.top.pack_start(self.photo, fill=True, expand=False, padding=5)
         self.top.pack_start(vbox, fill=True, expand=False, padding=10)
@@ -58,16 +58,16 @@ class PlaceDetails(Gramplet):
         """
         Add a row to the table.
         """
-        label = gtk.Label(title + ':')
+        label = Gtk.Label(label=title + ':')
         label.set_alignment(1, 0)
         label.show()
-        value = gtk.Label(value)
+        value = Gtk.Label(label=value)
         value.set_alignment(0, 0)
         value.show()
         rows = self.table.get_property('n-rows')
         rows += 1
         self.table.resize(rows, 2)
-        self.table.attach(label, 0, 1, rows, rows + 1, xoptions=gtk.FILL,
+        self.table.attach(label, 0, 1, rows, rows + 1, xoptions=Gtk.AttachOptions.FILL,
                                                        xpadding=10)
         self.table.attach(value, 1, 2, rows, rows + 1)
         
@@ -136,13 +136,13 @@ class PlaceDetails(Gramplet):
         """
         Display an empty row to separate groupd of entries.
         """
-        label = gtk.Label('')
-        label.modify_font(pango.FontDescription('sans 4'))
+        label = Gtk.Label(label='')
+        label.modify_font(Pango.FontDescription('sans 4'))
         label.show()
         rows = self.table.get_property('n-rows')
         rows += 1
         self.table.resize(rows, 2)
-        self.table.attach(label, 0, 1, rows, rows + 1, xoptions=gtk.FILL)
+        self.table.attach(label, 0, 1, rows, rows + 1, xoptions=Gtk.AttachOptions.FILL)
 
     def load_place_image(self, place):
         """

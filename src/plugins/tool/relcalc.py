@@ -37,7 +37,7 @@ from gen.ggettext import gettext as _
 # GNOME libraries
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -113,7 +113,7 @@ class RelCalc(tool.Tool, ManagedWindow):
     
         self.tree = self.glade.get_object("peopleList")
         self.text = self.glade.get_object("text1")
-        self.textbuffer = gtk.TextBuffer()
+        self.textbuffer = Gtk.TextBuffer()
         self.text.set_buffer(self.textbuffer)
         
         self.model = PersonTreeModel(self.db)
@@ -121,7 +121,7 @@ class RelCalc(tool.Tool, ManagedWindow):
 
         self.tree.connect('key-press-event', self._key_press)
         self.selection = self.tree.get_selection()
-        self.selection.set_mode(gtk.SELECTION_SINGLE)
+        self.selection.set_mode(Gtk.SelectionMode.SINGLE)
 
         #keep reference of column so garbage collection works
         self.columns = []
@@ -129,11 +129,11 @@ class RelCalc(tool.Tool, ManagedWindow):
             if not pair[0]:
                 continue
             name = column_names[pair[1]]
-            column = gtk.TreeViewColumn(name, gtk.CellRendererText(),
+            column = Gtk.TreeViewColumn(name, Gtk.CellRendererText(),
                                         markup=pair[1])
             column.set_resizable(True)
             column.set_min_width(60)
-            column.set_sizing(gtk.TREE_VIEW_COLUMN_GROW_ONLY)
+            column.set_sizing(Gtk.TreeViewColumnSizing.GROW_ONLY)
             self.tree.append_column(column)
             #keep reference of column so garbage collection works
             self.columns.append(column)
@@ -241,7 +241,7 @@ class RelCalc(tool.Tool, ManagedWindow):
         self.textbuffer.set_text(textval)
     
     def _key_press(self, obj, event):
-        if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
+        if event.keyval in (Gdk.KEY_Return, Gdk.KEY_KP_Enter):
             store, paths = self.selection.get_selected_rows()
             if paths and len(paths[0]) == 1 :
                 if self.tree.row_expanded(paths[0]):

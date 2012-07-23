@@ -1,7 +1,7 @@
 import unittest
 import logging
 import sys
-import gtk
+from gi.repository import Gtk
 
 
 sys.path.append('../../src')
@@ -41,7 +41,7 @@ class GtkHandlerTest(unittest.TestCase):
         except:
             l.error(log_message,exc_info=True)
 
-        gtk.main()
+        Gtk.main()
 
 
         

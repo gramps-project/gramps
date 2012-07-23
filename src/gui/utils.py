@@ -55,17 +55,6 @@ from gen.constfunc import has_display, is_quartz, mac, win
 #
 #
 #-------------------------------------------------------------------------
-def add_menuitem(menu, msg, obj, func):
-    """
-    add a menuitem to menu with label msg, which activates func, and has data
-    obj
-    """
-    import gtk
-    item = gtk.MenuItem(msg)
-    item.set_data('o', obj)
-    item.connect("activate", func)
-    item.show()
-    menu.append(item)
 
 class CLIVbox():
     """
@@ -85,8 +74,6 @@ class CLIDialog:
     Command-line interface vbox, to keep compatible with Dialog.
     """
     def connect(self, signal, callback):
-        pass
-    def set_has_separator(self, flag):
         pass
     def set_title(self, title):
         pass
@@ -130,7 +117,7 @@ class ProgressMeter(object):
         """
         Specify the title and the current pass header.
         """
-        import gtk
+        from gi.repository import Gtk
         self.__mode = ProgressMeter.MODE_FRACTION
         self.__pbar_max = 100.0
         self.__pbar_index = 0.0
@@ -143,48 +130,47 @@ class ProgressMeter(object):
             self.__cancel_callback = self.handle_cancel
 
         if has_display():
-            self.__dialog = gtk.Dialog()
+            self.__dialog = Gtk.Dialog()
         else:
             self.__dialog = CLIDialog()
         if self.__can_cancel:
             self.__dialog.connect('delete_event', self.__cancel_callback)
         else:
             self.__dialog.connect('delete_event', self.__warn)
-        self.__dialog.set_has_separator(False)
         self.__dialog.set_title(title)
         self.__dialog.set_border_width(12)
         self.__dialog.vbox.set_spacing(10)
         self.__dialog.vbox.set_border_width(24)
         self.__dialog.set_size_request(400, 125)
 
-        tlbl = gtk.Label('<span size="larger" weight="bold">%s</span>' % title)
+        tlbl = Gtk.Label(label='<span size="larger" weight="bold">%s</span>' % title)
         tlbl.set_use_markup(True)
         self.__dialog.vbox.add(tlbl)
 
-        self.__lbl = gtk.Label(header)
+        self.__lbl = Gtk.Label(label=header)
         self.__lbl.set_use_markup(True)
         self.__dialog.vbox.add(self.__lbl)
 
-        self.__pbar = gtk.ProgressBar()
+        self.__pbar = Gtk.ProgressBar()
         self.__dialog.vbox.add(self.__pbar)
 
         if self.__can_cancel:
             self.__dialog.set_size_request(350, 170)
-            self.__cancel_button = gtk.Button(stock=gtk.STOCK_CANCEL)
+            self.__cancel_button = Gtk.Button(stock=Gtk.STOCK_CANCEL)
             self.__cancel_button.connect('clicked', self.__cancel_callback)
             self.__dialog.vbox.add(self.__cancel_button)
 
         self.message_area = None
         if message_area:
-            area = gtk.ScrolledWindow()
-            text = gtk.TextView()
+            area = Gtk.ScrolledWindow()
+            text = Gtk.TextView()
             text.set_border_width(6)
             text.set_editable(False)
             self.message_area = text
             area.add_with_viewport(text)
-            area.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+            area.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
             self.__dialog.vbox.add(area)
-            self.message_area_ok = gtk.Button(stock=gtk.STOCK_OK)
+            self.message_area_ok = Gtk.Button(stock=Gtk.STOCK_OK)
             self.message_area_ok.connect("clicked", self.close)
             self.message_area_ok.set_sensitive(False)
             self.__dialog.vbox.pack_start(self.message_area_ok, expand=False, fill=False)
@@ -236,7 +222,7 @@ class ProgressMeter(object):
         of steps to be used.
         """
 
-        import gtk
+        from gi.repository import Gtk
         self.__mode = mode
         self.__pbar_max = total
         self.__pbar_index = 0.0
@@ -254,8 +240,8 @@ class ProgressMeter(object):
         else: # ProgressMeter.MODE_ACTIVITY
             self.__pbar.set_pulse_step(1.0/self.__pbar_max)
 
-        while gtk.events_pending():
-            gtk.main_iteration()
+        while Gtk.events_pending():
+            Gtk.main_iteration()
 
     def step(self):
         """
@@ -263,7 +249,7 @@ class ProgressMeter(object):
         and insure that it doesn't go over 100%.
         """
 
-        import gtk
+        from gi.repository import Gtk
         if self.__mode is ProgressMeter.MODE_FRACTION:
             self.__pbar_index = self.__pbar_index + 1.0
 
@@ -282,16 +268,16 @@ class ProgressMeter(object):
         else: # ProgressMeter.MODE_ACTIVITY
             self.__pbar.pulse()
 
-        while gtk.events_pending():
-            gtk.main_iteration()
+        while Gtk.events_pending():
+            Gtk.main_iteration()
 
         return self.__cancelled
 
     def set_header(self, text):
-        import gtk
+        from gi.repository import Gtk
         self.__lbl.set_text(text)
-        while gtk.events_pending():
-            gtk.main_iteration()
+        while Gtk.events_pending():
+            Gtk.main_iteration()
 
     def __warn(self, *obj):
         """
@@ -354,10 +340,10 @@ def process_pending_events(max_count=10):
     """
     Process pending events, but don't get into an infinite loop.
     """
-    import gtk
+    from gi.repository import Gtk
     count = 0
-    while gtk.events_pending():
-        gtk.main_iteration()
+    while Gtk.events_pending():
+        Gtk.main_iteration()
         count += 1
         if count >= max_count:
             break
@@ -371,12 +357,12 @@ def is_right_click(event):
     """
     Returns True if the event is a button-3 or equivalent
     """
-    import gtk
+    from gi.repository import Gdk
 
-    if event.type == gtk.gdk.BUTTON_PRESS:
+    if event.type == Gdk.EventType.BUTTON_PRESS:
         if is_quartz():
             if (event.button == 3
-                or (event.button == 1 and event.state & gtk.gdk.CONTROL_MASK)):
+                or (event.button == 1 and event.get_state() & Gdk.ModifierType.CONTROL_MASK)):
                 return True
 
         if event.button == 3:

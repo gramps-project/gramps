@@ -32,7 +32,7 @@ log = logging.getLogger(".")
 # GNOME/GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -49,7 +49,7 @@ from gui.views.treemodels.flatbasemodel import FlatBaseModel
 #-------------------------------------------------------------------------
 class SourceModel(FlatBaseModel):
 
-    def __init__(self,db,scol=0, order=gtk.SORT_ASCENDING,search=None,
+    def __init__(self,db,scol=0, order=Gtk.SortType.ASCENDING,search=None,
                  skip=set(), sort_map=None):
         self.map = db.get_raw_source_data
         self.gen_cursor = db.get_source_cursor
@@ -85,7 +85,7 @@ class SourceModel(FlatBaseModel):
         self.smap = None
         FlatBaseModel.destroy(self)
 
-    def on_get_n_columns(self):
+    def do_get_n_columns(self):
         return len(self.fmap)+1
 
     def column_title(self,data):

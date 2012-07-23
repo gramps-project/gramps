@@ -24,7 +24,7 @@ from gui.listmodel import ListModel, NOSORT
 from gen.utils.db import navigation_label
 from gen.plug import Gramplet
 from gen.ggettext import gettext as _
-import gtk
+from gi.repository import Gtk
 
 class Backlinks(Gramplet):
     """
@@ -40,7 +40,7 @@ class Backlinks(Gramplet):
         """
         Build the GUI interface.
         """
-        top = gtk.TreeView()
+        top = Gtk.TreeView()
         titles = [(_('Type'), 1, 100),
                   (_('Name'), 2, 100)]
         self.model = ListModel(top, titles)

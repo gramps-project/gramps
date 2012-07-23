@@ -42,8 +42,9 @@ _LOG = logging.getLogger('.gui.listview')
 # gtk
 #
 #----------------------------------------------------------------
-import gtk
-import pango
+from gi.repository import Gdk
+from gi.repository import Gtk
+from gi.repository import Pango
 
 #----------------------------------------------------------------
 #
@@ -56,7 +57,7 @@ from gui.columnorder import ColumnOrder
 from gen.config import config
 from gen.errors import WindowActiveError
 from gui.filters import SearchBar
-from gui.utils import add_menuitem
+from gui.widgets.menuitem import add_menuitem
 from gen.const import CUSTOM_FILTERS, USE_TIPS
 from gen.utils.debug import profile
 from gen.utils.string import data_recover_msg
@@ -105,10 +106,10 @@ class ListView(NavigationView):
         self._dirty_on_change_inactive = False
         
         self.filter_class = filter_class
-        self.renderer = gtk.CellRendererText()
-        self.renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
+        self.renderer = Gtk.CellRendererText()
+        self.renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
         self.sort_col = 0
-        self.sort_order = gtk.SORT_ASCENDING
+        self.sort_order = Gtk.SortType.ASCENDING
         self.columns = []
         self.colinfo = columns
         self.handle_col = handle_col
@@ -132,11 +133,11 @@ class ListView(NavigationView):
     ####################################################################
     def build_widget(self):
         """
-        Builds the interface and returns a gtk.Container type that
+        Builds the interface and returns a Gtk.Container type that
         contains the interface. This containter will be inserted into
-        a gtk.Notebook page.
+        a Gtk.Notebook page.
         """
-        self.vbox = gtk.VBox()
+        self.vbox = Gtk.VBox()
         self.vbox.set_border_width(4)
         self.vbox.set_spacing(4)
         
@@ -144,7 +145,7 @@ class ListView(NavigationView):
                                     self.search_build_tree)
         filter_box = self.search_bar.build()
 
-        self.list = gtk.TreeView()
+        self.list = Gtk.TreeView()
         self.list.set_rules_hint(True)
         self.list.set_headers_visible(True)
         self.list.set_headers_clickable(True)
@@ -162,28 +163,28 @@ class ListView(NavigationView):
             self.list.connect('drag_begin', self.drag_begin)
         if self.drag_dest_info():
             self.list.connect('drag_data_received', self.drag_data_received)
-            self.list.drag_dest_set(gtk.DEST_DEFAULT_MOTION |
-                                    gtk.DEST_DEFAULT_DROP, 
+            self.list.drag_dest_set(Gtk.DestDefaults.MOTION |
+                                    Gtk.DestDefaults.DROP, 
                                     [self.drag_dest_info().target()], 
-                                    gtk.gdk.ACTION_MOVE |
-                                    gtk.gdk.ACTION_COPY)
+                                    Gdk.DragAction.MOVE |
+                                    Gdk.DragAction.COPY)
 
-        scrollwindow = gtk.ScrolledWindow()
-        scrollwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        scrollwindow.set_shadow_type(gtk.SHADOW_ETCHED_IN)
+        scrollwindow = Gtk.ScrolledWindow()
+        scrollwindow.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+        scrollwindow.set_shadow_type(Gtk.ShadowType.ETCHED_IN)
         scrollwindow.add(self.list)
 
-        self.vbox.pack_start(filter_box, False)
-        self.vbox.pack_start(scrollwindow, True)
+        self.vbox.pack_start(filter_box, False, True, 0)
+        self.vbox.pack_start(scrollwindow, True, True, 0)
 
-        self.renderer = gtk.CellRendererText()
-        self.renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
+        self.renderer = Gtk.CellRendererText()
+        self.renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
 
         self.columns = []
         self.build_columns()
         self.selection = self.list.get_selection()
         if self.multiple_selection:
-            self.selection.set_mode(gtk.SELECTION_MULTIPLE)
+            self.selection.set_mode(Gtk.SelectionMode.MULTIPLE)
         self.selection.connect('changed', self.row_changed)
 
         self.setup_filter()
@@ -199,11 +200,11 @@ class ListView(NavigationView):
         
         NavigationView.define_actions(self)
 
-        self.edit_action = gtk.ActionGroup(self.title + '/ChangeOrder')
+        self.edit_action = Gtk.ActionGroup(self.title + '/ChangeOrder')
         self.edit_action.add_actions([
-                ('Add', gtk.STOCK_ADD, _("_Add..."), "<control>Insert", 
+                ('Add', Gtk.STOCK_ADD, _("_Add..."), "<PRIMARY>Insert", 
                     self.ADD_MSG, self.add), 
-                ('Remove', gtk.STOCK_REMOVE, _("_Remove"), "<control>Delete", 
+                ('Remove', Gtk.STOCK_REMOVE, _("_Remove"), "<PRIMARY>Delete", 
                     self.DEL_MSG, self.remove), 
                 ('Merge', 'gramps-merge', _('_Merge...'), None,
                     self.MERGE_MSG, self.merge),
@@ -213,8 +214,8 @@ class ListView(NavigationView):
 
         self._add_action_group(self.edit_action)
 
-        self._add_action('Edit', gtk.STOCK_EDIT, _("action|_Edit..."), 
-                         accel="<control>Return", 
+        self._add_action('Edit', Gtk.STOCK_EDIT, _("action|_Edit..."), 
+                         accel="<PRIMARY>Return", 
                          tip=self.EDIT_MSG, 
                          callback=self.edit)
         
@@ -228,7 +229,7 @@ class ListView(NavigationView):
             if not pair[0]: continue
             name = self.colinfo[pair[1]]
 
-            column = gtk.TreeViewColumn(name, self.renderer)
+            column = Gtk.TreeViewColumn(name, self.renderer)
             
             if self.model and self.model.color_column() is not None:
                 column.set_cell_data_func(self.renderer, self.foreground_color)
@@ -242,14 +243,14 @@ class ListView(NavigationView):
 
             column.set_resizable(True)
             column.set_clickable(True)
-            column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+            column.set_sizing(Gtk.TreeViewColumnSizing.FIXED)
             column.set_fixed_width(pair[2])
             
             self.columns.append(column)
             self.list.append_column(column)
             index += 1
 
-    def foreground_color(self, column, renderer, model, iter_):
+    def foreground_color(self, column, renderer, model, iter_, data=None):
         '''
         Set the foreground color of the cell renderer.  We use a cell data
         function because we don't want to set the color of untagged rows.
@@ -343,7 +344,7 @@ class ListView(NavigationView):
             [(self.colinfo[pair[1]], pair[1], pair[1] in self.exact_search())
                 for pair in self.column_order() if pair[0]])
 
-    def sidebar_toggled(self, active):
+    def sidebar_toggled(self, active, data=None):
         """
         Called when the sidebar is toggled.
         """
@@ -377,8 +378,9 @@ class ListView(NavigationView):
 
         if self.type_list() == LISTFLAT:
             # Flat
+            iter = self.model.node_map.new_iter(handle)
             try:
-                path = self.model.on_get_path(handle)
+                path = self.model.do_get_path(iter)
             except:
                 path = None
         else:
@@ -386,14 +388,17 @@ class ListView(NavigationView):
             path = None
             node = self.model.get_node(handle)
             if node:
-                parent_node = self.model.on_iter_parent(node)
-                if parent_node:
-                    parent_path = self.model.on_get_path(parent_node)
+                iter = self.model.get_iter(node)
+                has_parent, parent_iter = self.model.do_iter_parent(iter)
+                if has_parent:
+                    parent_path = self.model.do_get_path(parent_iter)
                     if parent_path:
-                        for i in range(len(parent_path)):
-                            expand_path = tuple([x for x in parent_path[:i+1]])
+                        parent_path_list = parent_path.get_indices()
+                        for i in range(len(parent_path_list)):
+                            expand_path = Gtk.TreePath(
+                                    tuple([x for x in parent_path_list[:i+1]]))
                             self.list.expand_row(expand_path, False)
-                path = self.model.on_get_path(node)
+                path = self.model.do_get_path(iter)
 
         if path is not None:
             self.selection.unselect_all()
@@ -467,7 +472,7 @@ class ListView(NavigationView):
         #make sure we sort on first column. We have no idea where the 
         # column that was sorted on before is situated now. 
         self.sort_col = 0
-        self.sort_order = gtk.SORT_ASCENDING
+        self.sort_order = Gtk.SortType.ASCENDING
         self.setup_filter()
         self.build_tree()
 
@@ -533,11 +538,14 @@ class ListView(NavigationView):
         if not prompt:
             self.uistate.set_busy_cursor(0)
         
-    def blist(self, store, path, node, sel_list):
-        if store.get_flags() & gtk.TREE_MODEL_LIST_ONLY:
-            handle = store.get_value(node, self.handle_col)
+    def blist(self, store, path, iter, sel_list):
+        '''GtkTreeSelectionForeachFunc
+            construct a list sel_list with all selected handles
+        '''
+        if store.do_get_flags() & Gtk.TreeModelFlags.LIST_ONLY:
+            handle = store.node_map.get_handle(path.get_indices()[0])
         else:
-            handle = store.get_handle(store.on_get_iter(path))
+            handle = store.get_handle(store.get_node_from_iter(iter))
 
         if handle is not None:
             sel_list.append(handle)
@@ -571,14 +579,14 @@ class ListView(NavigationView):
         cput = time.clock()
         same_col = False
         if self.sort_col != data:
-            order = gtk.SORT_ASCENDING
+            order = Gtk.SortType.ASCENDING
         else:
             same_col = True
-            if (self.columns[data].get_sort_order() == gtk.SORT_DESCENDING
+            if (self.columns[data].get_sort_order() == Gtk.SortType.DESCENDING
                 or not self.columns[data].get_sort_indicator()):
-                order = gtk.SORT_ASCENDING
+                order = Gtk.SortType.ASCENDING
             else:
-                order = gtk.SORT_DESCENDING
+                order = Gtk.SortType.DESCENDING
 
         self.sort_col = data
         self.sort_order = order
@@ -656,14 +664,14 @@ class ListView(NavigationView):
 
         if len(selected_ids) == 1:
             if self.drag_info():
-                self.list.drag_source_set(gtk.gdk.BUTTON1_MASK, 
+                self.list.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, 
                                       [self.drag_info().target()], 
-                                      gtk.gdk.ACTION_COPY)
+                                      Gdk.DragAction.COPY)
         elif len(selected_ids) > 1:
             if self.drag_list_info():
-                self.list.drag_source_set(gtk.gdk.BUTTON1_MASK, 
+                self.list.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, 
                                       [self.drag_list_info().target()], 
-                                      gtk.gdk.ACTION_COPY)
+                                      Gdk.DragAction.COPY)
 
         self.uistate.modify_statusbar(self.dbstate)
 
@@ -745,7 +753,7 @@ class ListView(NavigationView):
         """
         if not self.dbstate.open:
             return False
-        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             if self.type_list() == LISTFLAT:
                 self.edit(obj)
                 return True
@@ -754,7 +762,8 @@ class ListView(NavigationView):
                 store, paths = self.selection.get_selected_rows()
                 if paths:
                     firstsel = paths[0]
-                    firstnode = self.model.on_get_iter(firstsel)
+                    firstnode = self.model.get_node_from_iter(
+                                    self.model.do_get_iter(firstsel)[1])
                     if len(paths)==1 and firstnode.handle is None:
                         return self.expand_collapse_tree_branch()
                     else:
@@ -768,7 +777,7 @@ class ListView(NavigationView):
                             get_widget('/Popup/QuickReport').get_submenu()
                 if qr_menu :
                     self.uistate.uimanager.\
-                            get_widget('/Popup/QuickReport').remove_submenu()
+                            get_widget('/Popup/QuickReport').set_submenu(None)
                 reportactions = []
                 if menu and self.get_active():
                     (ui, reportactions) = create_quickreport_menu(
@@ -777,7 +786,7 @@ class ListView(NavigationView):
                                             self.uistate,
                                             self.first_selected())
                 if len(reportactions) > 1 :
-                    qr_menu = gtk.Menu()
+                    qr_menu = Gtk.Menu()
                     for action in reportactions[1:] :
                         add_menuitem(qr_menu, action[2], None, action[5])
                     self.uistate.uimanager.get_widget('/Popup/QuickReport').\
@@ -788,19 +797,19 @@ class ListView(NavigationView):
                     qr_menu = popup.get_submenu()
                     webconnects = []
                     if qr_menu:
-                        popup.remove_submenu()
+                        popup.set_submenu(None)
                         webconnects = create_web_connect_menu(
                             self.dbstate, 
                             self.uistate,
                             self.navigation_type(),
                             self.first_selected())
                     if len(webconnects) > 1 :
-                        qr_menu = gtk.Menu()
+                        qr_menu = Gtk.Menu()
                         for action in webconnects[1:] :
                             add_menuitem(qr_menu, action[2], None, action[5])
                         popup.set_submenu(qr_menu)
             if menu:
-                menu.popup(None, None, None, event.button, event.time)
+                menu.popup(None, None, None, None, event.button, event.time)
                 return True
             
         return False
@@ -812,7 +821,7 @@ class ListView(NavigationView):
         """
         if not self.dbstate.open:
             return False
-        if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
+        if event.keyval in (Gdk.KEY_Return, Gdk.KEY_KP_Enter):
             self.edit(obj)
             return True
         return False
@@ -825,20 +834,22 @@ class ListView(NavigationView):
         """
         if not self.dbstate.open:
             return False
-        elif event.state & gtk.gdk.SHIFT_MASK:
-            if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
+        elif event.get_state() & Gdk.ModifierType.SHIFT_MASK:
+            if event.keyval in (Gdk.KEY_Return, Gdk.KEY_KP_Enter):
                 store, paths = self.selection.get_selected_rows()
                 if paths:
                     firstsel = paths[0]
-                    firstnode = self.model.on_get_iter(firstsel)
+                    firstnode = self.model.get_node_from_iter(
+                                    self.model.do_get_iter(firstsel)[1])
                     if len(paths) == 1 and firstnode.handle is None:
                         return self.expand_collapse_tree_branch()
         else:
-            if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
+            if event.keyval in (Gdk.KEY_Return, Gdk.KEY_KP_Enter):
                 store, paths = self.selection.get_selected_rows()
                 if paths:
                     firstsel = paths[0]
-                    firstnode = self.model.on_get_iter(firstsel)
+                    firstnode = self.model.get_node_from_iter(
+                                    self.model.do_get_iter(firstsel)[1])
                     if len(paths) == 1 and firstnode.handle is None:
                         return self.expand_collapse_tree()
                     else:
@@ -855,7 +866,8 @@ class ListView(NavigationView):
         store, paths = self.selection.get_selected_rows()
         if paths:
             firstsel = paths[0]
-            firstnode = self.model.on_get_iter(firstsel)
+            firstnode = self.model.get_node_from_iter(
+                                    self.model.do_get_iter(firstsel)[1])
             if firstnode.handle:
                 return False
             if self.list.row_expanded(firstsel):
@@ -873,7 +885,8 @@ class ListView(NavigationView):
         store, paths = self.selection.get_selected_rows()
         if paths:
             firstsel = paths[0]
-            firstnode = self.model.on_get_iter(firstsel)
+            firstnode = self.model.get_node_from_iter(
+                                    self.model.do_get_iter(firstsel)[1])
             if firstnode.handle:
                 return False
             if self.list.row_expanded(firstsel):
@@ -920,20 +933,20 @@ class ListView(NavigationView):
     # Export data
     ####################################################################
     def export(self, obj):
-        chooser = gtk.FileChooserDialog(
+        chooser = Gtk.FileChooserDialog(
             _("Export View as Spreadsheet"), 
             self.uistate.window, 
-            gtk.FILE_CHOOSER_ACTION_SAVE, 
-            (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, 
-             gtk.STOCK_SAVE, gtk.RESPONSE_OK))
+            Gtk.FileChooserAction.SAVE, 
+            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, 
+             Gtk.STOCK_SAVE, Gtk.ResponseType.OK))
         chooser.set_do_overwrite_confirmation(True)
 
-        combobox = gtk.combo_box_new_text()
-        label = gtk.Label(_("Format:"))
+        combobox = Gtk.ComboBoxText()
+        label = Gtk.Label(label=_("Format:"))
         label.set_alignment(1.0, 0.5)
-        box = gtk.HBox()
+        box = Gtk.HBox()
         box.pack_start(label, True, True, padding=12)
-        box.pack_start(combobox, False, False)
+        box.pack_start(combobox, False, False, 0)
         combobox.append_text(_('CSV'))
         combobox.append_text(_('OpenDocument Spreadsheet'))
         combobox.set_active(0)
@@ -945,7 +958,7 @@ class ListView(NavigationView):
             fn = chooser.get_filename()
             fn = get_unicode_path_from_file_chooser(fn)
             fl = combobox.get_active()
-            if value == gtk.RESPONSE_OK:
+            if value == Gtk.ResponseType.OK:
                 if fn:
                     chooser.destroy()
                     break
@@ -975,7 +988,7 @@ class ListView(NavigationView):
         ofile.start_row()
 
         # Headings
-        if self.model.get_flags() & gtk.TREE_MODEL_LIST_ONLY:
+        if self.model.get_flags() & Gtk.TreeModelFlags.LIST_ONLY:
             headings = column_names
         else:
             levels = self.model.get_tree_levels()
@@ -985,7 +998,7 @@ class ListView(NavigationView):
         map(ofile.write_cell, headings)
         ofile.end_row()
 
-        if self.model.get_flags() & gtk.TREE_MODEL_LIST_ONLY:
+        if self.model.get_flags() & Gtk.TreeModelFlags.LIST_ONLY:
             # Flat model
             for row in self.model:
                 ofile.start_row()
@@ -994,7 +1007,7 @@ class ListView(NavigationView):
                 ofile.end_row()
         else:
             # Tree model
-            node = self.model.on_get_iter((0,))
+            node = self.model.get_node_from_iter(self.model.do_get_iter((0,))[1])
             self.write_node(node, len(levels), [], ofile, data_cols)
         
         ofile.end_page()
@@ -1004,18 +1017,20 @@ class ListView(NavigationView):
         if node is None:
             return
         while node is not None:
-            new_level = level + [self.model.on_get_value(node, 0)]
+            new_level = level + [self.model.do_get_value(node, 0)]
             if self.model.get_handle(node):
                 ofile.start_row()
                 padded_level = new_level + [''] * (depth - len(new_level))
                 map(ofile.write_cell, padded_level)
                 for index in data_cols:
-                    ofile.write_cell(self.model.on_get_value(node, index))
+                    ofile.write_cell(self.model.do_get_value(node, index))
                 ofile.end_row()
 
-            first_child = self.model.on_iter_children(node)
+            has_child, first_child = self.model.do_iter_children(node)
             self.write_node(first_child, depth, new_level, ofile, data_cols)
-            node = self.model.on_iter_next(node)
+            has_next = self.model.do_iter_next(node)
+            if not has_next:
+                node = None
 
     ####################################################################
     # Template functions
@@ -1027,25 +1042,25 @@ class ListView(NavigationView):
         """
         raise NotImplementedError
         
-    def edit(self, obj):
+    def edit(self, obj, data=None):
         """
         Template function to allow the editing of the selected object
         """
         raise NotImplementedError
 
-    def remove(self, handle):
+    def remove(self, handle, data=None):
         """
         Template function to allow the removal of an object by its handle
         """
         raise NotImplementedError
 
-    def add(self, obj):
+    def add(self, obj, data=None):
         """
         Template function to allow the adding of a new object
         """
         raise NotImplementedError
 
-    def merge(self, obj):
+    def merge(self, obj, data=None):
         """
         Template function to allow the merger of two objects.
         """
@@ -1085,9 +1100,9 @@ class ListView(NavigationView):
         self.uistate.status_text(_("Updating display..."))
         self.uistate.set_busy_cursor(True)
         
-        selected = self.selection.get_selected_rows()
-        for path in selected[1]:
-            self.list.expand_row(path, True)
+        store, selected = self.selection.get_selected_rows()
+        for path in selected:
+            self.list.expand_row(path, False)
 
         self.uistate.set_busy_cursor(False)
         self.uistate.modify_statusbar(self.dbstate)
@@ -1098,8 +1113,8 @@ class ListView(NavigationView):
         :param obj: not used, present only to allow the use of the method in
             event callback
         """
-        selected = self.selection.get_selected_rows()
-        for path in selected[1]:
+        store, selected = self.selection.get_selected_rows()
+        for path in selected:
             self.list.collapse_row(path)
 
     def can_configure(self):

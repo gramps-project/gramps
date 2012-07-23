@@ -27,11 +27,11 @@ f = open(fn,"w")
 f.write('[tests]\n')
 
 try:
-    import gtk
+    from gi.repository import Gtk
     f.write('gtk=yes\n')
-    f.write('gtkver=%d.%d.%d\n' % gtk.gtk_version)
+    f.write('gtkver=%d.%d.%d\n' % Gtk.gtk_version)
     f.write('pygtk=yes\n')
-    f.write('pygtkver=%d.%d.%d\n' % gtk.pygtk_version)
+    f.write('pygtkver=%d.%d.%d\n' % Gtk.pygtk_version)
 except ImportError:
     f.write('gtk=no\n')
     f.write('gtkver=no\n')

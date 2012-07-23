@@ -39,8 +39,10 @@ _LOG = logging.getLogger(".widgets.labels")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
-import pango
+from gi.repository import GObject
+from gi.repository import Gdk
+from gi.repository import Gtk
+from gi.repository import Pango
 
 #-------------------------------------------------------------------------
 #
@@ -55,7 +57,7 @@ from gen.constfunc import has_display, win
 #
 #-------------------------------------------------------------------------
 if has_display():
-    HAND_CURSOR = gtk.gdk.Cursor(gtk.gdk.HAND2)
+    HAND_CURSOR = Gdk.Cursor.new(Gdk.CursorType.HAND2)
 
 #-------------------------------------------------------------------------
 #
@@ -63,14 +65,14 @@ if has_display():
 #
 #-------------------------------------------------------------------------
 def realize_cb(widget):
-    widget.window.set_cursor(HAND_CURSOR)
+    widget.get_root_window().set_cursor(HAND_CURSOR)
 
 #-------------------------------------------------------------------------
 #
 # LinkLabel class
 #
 #-------------------------------------------------------------------------
-class LinkLabel(gtk.EventBox):
+class LinkLabel(Gtk.EventBox):
 
     def __init__(self, label, func, handle, emph=False, theme="CLASSIC"):
         self.theme = theme
@@ -100,7 +102,7 @@ class LinkLabel(gtk.EventBox):
             else:
                 raise AttributeError("invalid theme: '%s'" % theme)
 
-        gtk.EventBox.__init__(self)
+        GObject.GObject.__init__(self)
         self.orig_text = cgi.escape(label[0])
         self.gender = label[1]
         self.decoration = format
@@ -113,11 +115,11 @@ class LinkLabel(gtk.EventBox):
 
             self.set_tooltip_text(msg)
         
-        self.label = gtk.Label(text)
+        self.label = Gtk.Label(label=text)
         self.label.set_use_markup(True)
         self.label.set_alignment(0, 0.5)
 
-        hbox = gtk.HBox()
+        hbox = Gtk.HBox()
         hbox.pack_start(self.label, False, False, 0)
         if label[1]:
             hbox.pack_start(GenderLabel(label[1]), False, False, 0)
@@ -175,13 +177,13 @@ class LinkLabel(gtk.EventBox):
 # EditLabel class
 #
 #-------------------------------------------------------------------------
-class EditLabel(gtk.HBox):
+class EditLabel(Gtk.HBox):
     def __init__(self, text):
-        gtk.HBox.__init__(self)
+        GObject.GObject.__init__(self)
         label = BasicLabel(text)
-        self.pack_start(label, False)
-        self.pack_start(gtk.image_new_from_stock(gtk.STOCK_EDIT, 
-                                                 gtk.ICON_SIZE_MENU), False)
+        self.pack_start(label, False, True, 0)
+        self.pack_start(Gtk.Image.new_from_stock(Gtk.STOCK_EDIT, 
+                                                 Gtk.IconSize.MENU), False)
         self.set_spacing(4)
         self.show_all()
 
@@ -190,10 +192,10 @@ class EditLabel(gtk.HBox):
 # BasicLabel class
 #
 #-------------------------------------------------------------------------
-class BasicLabel(gtk.Label):
+class BasicLabel(Gtk.Label):
 
-    def __init__(self, text, ellipsize=pango.ELLIPSIZE_NONE):
-        gtk.Label.__init__(self, text)
+    def __init__(self, text, ellipsize=Pango.EllipsizeMode.NONE):
+        GObject.GObject.__init__(self, label=text)
         self.set_alignment(0, 0.5)
         self.set_ellipsize(ellipsize)
         self.show()
@@ -203,13 +205,13 @@ class BasicLabel(gtk.Label):
 # GenderLabel class
 #
 #-------------------------------------------------------------------------
-class GenderLabel(gtk.Label):
+class GenderLabel(Gtk.Label):
 
     def __init__(self, text):
-        gtk.Label.__init__(self, text)
+        GObject.GObject.__init__(self, label=text)
         self.set_alignment(0, 0.5)
         if win():
-            pangoFont = pango.FontDescription('Arial')
+            pangoFont = Pango.FontDescription('Arial')
             self.modify_font(pangoFont)
         self.show()
 
@@ -218,10 +220,10 @@ class GenderLabel(gtk.Label):
 # MarkupLabel class
 #
 #-------------------------------------------------------------------------
-class MarkupLabel(gtk.Label):
+class MarkupLabel(Gtk.Label):
 
     def __init__(self, text, x_align=0, y_align=0.5):
-        gtk.Label.__init__(self, text)
+        GObject.GObject.__init__(self, label=text)
         self.set_alignment(x_align, y_align)
         self.set_use_markup(True)
         self.show_all()
@@ -231,11 +233,11 @@ class MarkupLabel(gtk.Label):
 # DualMarkupLabel class
 #
 #-------------------------------------------------------------------------
-class DualMarkupLabel(gtk.HBox):
+class DualMarkupLabel(Gtk.HBox):
 
     def __init__(self, text, alt, x_align=0, y_align=0.5):
-        gtk.HBox.__init__(self)
-        label = gtk.Label(text)
+        GObject.GObject.__init__(self)
+        label = Gtk.Label(label=text)
         label.set_alignment(x_align, y_align)
         label.set_use_markup(True)
 

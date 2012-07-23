@@ -26,8 +26,7 @@
 # GTK libraries
 #
 #-------------------------------------------------------------------------
-import gtk
-import gobject
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -41,11 +40,11 @@ import gobject
 # SurnamModel
 #
 #-------------------------------------------------------------------------
-class SurnameModel(gtk.ListStore):
+class SurnameModel(Gtk.ListStore):
 
     def __init__(self, surn_list, db):
         #setup model for the treeview
-        gtk.ListStore.__init__(self, str, str, str, str, 
+        Gtk.ListStore.__init__(self, str, str, str, str, 
                                bool, object)
         for surn in surn_list:
             # fill the liststore

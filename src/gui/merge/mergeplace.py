@@ -30,7 +30,7 @@ Provide merge capabilities for places.
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -105,8 +105,8 @@ class MergePlace(ManagedWindow):
         loc2 = self.pl2.get_main_location().get_text_data_list()
         tv1 = self.get_widget("loc1")
         tv2 = self.get_widget("loc2")
-        tb1 = gtk.TextBuffer()
-        tb2 = gtk.TextBuffer()
+        tb1 = Gtk.TextBuffer()
+        tb2 = Gtk.TextBuffer()
         tv1.set_buffer(tb1)
         tv2.set_buffer(tb2)
         tb1.set_text("\n".join(loc1))

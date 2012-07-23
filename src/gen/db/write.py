@@ -62,6 +62,7 @@ from gen.db import (DbBsddbRead, DbWriteBase, BSDDBTxn,
                     find_surname_name, DbUndoBSDDB as DbUndo)
 from gen.db.dbconst import *
 from gen.utils.callback import Callback
+from gen.utils.cast import (conv_unicode_tosrtkey, conv_dbstr_to_unicode)
 from gen.updatecallback import UpdateCallback
 from gen.errors import DbError
 from gen.constfunc import win
@@ -1415,7 +1416,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         if not self.readonly:
             # Start transaction
             with BSDDBTxn(self.env, self.name_group) as txn:
-                sname = str(name)
+                sname = name.encode('utf-8')
                 data = txn.get(sname)
                 if data is not None:
                     txn.delete(sname)
@@ -1428,15 +1429,19 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             self.emit('person-groupname-rebuild', (name, grouppar))
 
     def sort_surname_list(self):
-        self.surname_list.sort(key=locale.strxfrm)
+        self.surname_list.sort(key=conv_unicode_tosrtkey)
 
     @catch_db_error
     def build_surname_list(self):
         """
         Build surname list for use in autocompletion
+        This is a list of unicode objects, which are decoded from the utf-8 in 
+        bsddb
         """
-        self.surname_list = sorted(map(unicode, set(self.surnames.keys())), 
-                                   key=locale.strxfrm)
+        #TODO GTK3: Why double conversion? Convert to a list of str objects!
+        self.surname_list = sorted(
+                        map(conv_dbstr_to_unicode, set(self.surnames.keys())), 
+                        key=conv_unicode_tosrtkey)
 
     def add_to_surname_list(self, person, batch_transaction):
         """
@@ -1445,7 +1450,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         if batch_transaction:
             return
         name = unicode(find_surname_name(person.handle, 
-                                        person.get_primary_name().serialize()))
+                            person.get_primary_name().serialize()), 'utf-8')
         i = bisect.bisect(self.surname_list, name)
         if 0 < i <= len(self.surname_list):
             if self.surname_list[i-1] != name:
@@ -1462,13 +1467,19 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         If not then we need to remove the name from the list.
         The function must be overridden in the derived class.
         """
-        name = str(find_surname_name(person.handle, 
-                                     person.get_primary_name().serialize()))
+        name = find_surname_name(person.handle, 
+                                     person.get_primary_name().serialize())
+        if isinstance(name, unicode):
+            uname = name
+            name = str(name)
+        else:
+            uname = unicode(name, 'utf-8')
         try:
             cursor = self.surnames.cursor(txn=self.txn)
             cursor_position = cursor.set(name)
             if cursor_position is not None and cursor.count() == 1:
-                i = bisect.bisect(self.surname_list, name)
+                #surname list contains unicode objects
+                i = bisect.bisect(self.surname_list, uname)
                 if 0 <= i-1 < len(self.surname_list):
                     del self.surname_list[i-1]
         except db.DBError, err:
@@ -1842,7 +1853,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         if not transaction.batch:
             # It can occur that the listview is already updated because of
             # the "model-treeview automatic update" combined with a
-            # "while gtk.events_pending(): gtk.main_iteration() loop"
+            # "while Gtk.events_pending(): Gtk.main_iteration() loop"
             # (typically used in a progress bar), so emit rebuild signals
             # to correct that.
             object_types = set([x[0] for x in transaction.keys()])

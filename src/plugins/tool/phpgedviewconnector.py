@@ -25,7 +25,7 @@
 
 import httplib
 import urllib2
-import gtk
+from gi.repository import Gtk
 import os
 from tempfile import mkstemp
 from gen.ggettext import gettext as _
@@ -312,8 +312,8 @@ class phpGedViewImporter(object):
             self.progressbar.set_fraction( 1.0 * step / max)
         else:
             self.progressbar.set_fraction( 0.0)
-        while gtk.events_pending():
-            gtk.main_iteration()
+        while Gtk.events_pending():
+            Gtk.main_iteration()
         
     def on_next_pressed_cb(self, widget, event=None, data=None):
         if event:
@@ -413,7 +413,7 @@ def filter_url( url):
 ##             l = f.readline()
 ##     except IOError:
 ##         phpGedViewImporter(None)
-##         gtk.main()
+##         Gtk.main()
 
 ## else:
 ##     #-------------------------------------------------------------------------

@@ -37,7 +37,7 @@ from gen.ggettext import gettext as _
 # GTK+
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -82,11 +82,11 @@ class SelectObject(BaseSelector):
         """
         self.width_key = 'interface.media-sel-width'
         self.height_key = 'interface.media-sel-height'
-        self.preview = gtk.Image()
+        self.preview = Gtk.Image()
         self.preview.set_size_request(int(THUMBSCALE),
                                     int(THUMBSCALE))
         vbox = self.glade.get_object('select_person_vbox')
-        vbox.pack_start(self.preview,False)
+        vbox.pack_start(self.preview, False, True, 0)
         vbox.reorder_child(self.preview,1)
         self.preview.show()
         self.selection.connect('changed',self._row_change)

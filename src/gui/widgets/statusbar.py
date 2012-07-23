@@ -35,22 +35,22 @@ _LOG = logging.getLogger(".widgets.statusbar")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gobject
-import gtk
-import pango
+from gi.repository import GObject
+from gi.repository import Gtk
+from gi.repository import Pango
 
 #-------------------------------------------------------------------------
 #
 # Statusbar class
 #
 #-------------------------------------------------------------------------
-class Statusbar(gtk.HBox):
+class Statusbar(Gtk.HBox):
     """Custom Statusbar with flexible number of "bars".
     
     Statusbar can have any number of fields included, each identified
     by it's own bar id. It has by default one field with id = 0. This
     defult field is used when no bar id is given in the relevant (push, pop, 
-    etc.) methods, thus Statusbar behaves as a single gtk.Statusbar.
+    etc.) methods, thus Statusbar behaves as a single Gtk.Statusbar.
     
     To add a new field use the "insert" method. Using the received bar id
     one can push, pop and remove messages to/from this newly inserted field.
@@ -64,56 +64,59 @@ class Statusbar(gtk.HBox):
     ##}
 
     __gproperties__ = {
-        'has-resize-grip': (gobject.TYPE_BOOLEAN, 
+        'has-resize-grip': (GObject.TYPE_BOOLEAN, 
                             'Resize grip', 
                             'Whether resize grip is visible', 
                             True, 
-                            gobject.PARAM_READWRITE), 
+                            GObject.PARAM_READWRITE), 
     }
     
     def __init__(self):
-        gtk.HBox.__init__(self)
+        GObject.GObject.__init__(self)
         # initialize property values
         self.__has_resize_grip = True
         # create the main statusbar with id #0
-        main_bar = gtk.Statusbar()
+        main_bar = Gtk.Statusbar()
         main_bar.show()
-        self.pack_start(main_bar, fill=True, expand=True)
+        self.pack_start(main_bar, True, True, 0)
         self._bars = {0: main_bar}
-        self._set_resize_grip()
 
-    # Virtual methods
-
-    def do_get_property(self, prop):
-        """Return the gproperty's value.
-        """
-        if prop.name == 'has-resize-grip':
-            return self.__has_resize_grip
-        else:
-            raise AttributeError, 'unknown property %s' % prop.name
-
-    def do_set_property(self, prop, value):
-        """Set the property of writable properties.
-        """
-        if prop.name == 'has-resize-grip':
-            self.__has_resize_grip = value
-            self._set_resize_grip()
-        else:
-            raise AttributeError, 'unknown or read only property %s' % prop.name
-
-    # Private
-    
-    def _set_resize_grip(self):
-        """Set the resize grip for the statusbar.
-        
-        Resize grip is disabled for all statusbars except the last one, 
-        which is set according to the "has-resize-grip" propery.
-        
-        """
-        for bar in self.get_children():
-            bar.set_has_resize_grip(False)
-        
-        bar.set_has_resize_grip(self.get_property('has-resize-grip'))
+##TODO GTK3: statusbar no longer has resize grip methods, depracate this part
+##           of Gramps Statusbar??
+##        self._set_resize_grip()
+##
+##    # Virtual methods
+##
+##    def do_get_property(self, prop):
+##        """Return the gproperty's value.
+##        """
+##        if prop.name == 'has-resize-grip':
+##            return self.__has_resize_grip
+##        else:
+##            raise AttributeError, 'unknown property %s' % prop.name
+##
+##    def do_set_property(self, prop, value):
+##        """Set the property of writable properties.
+##        """
+##        if prop.name == 'has-resize-grip':
+##            self.__has_resize_grip = value
+##            self._set_resize_grip()
+##        else:
+##            raise AttributeError, 'unknown or read only property %s' % prop.name
+##
+##    # Private
+##    
+##    def _set_resize_grip(self):
+##        """Set the resize grip for the statusbar.
+##        
+##        Resize grip is disabled for all statusbars except the last one, 
+##        which is set according to the "has-resize-grip" propery.
+##        
+##        """
+##        for bar in self.get_children():
+##            bar.set_has_resize_grip(False)
+##        
+##        bar.set_has_resize_grip(self.get_property('has-resize-grip'))
 
     def _get_next_id(self):
         """Get next unused statusbar id.
@@ -134,20 +137,22 @@ class Statusbar(gtk.HBox):
         The new bar_id is returned.
         
         """
-        new_bar = gtk.Statusbar()
+        new_bar = Gtk.Statusbar()
         new_bar.show()
-        self.pack_start(new_bar, fill=True, expand=True)
+        self.pack_start(new_bar, True, True, 0)
         self.reorder_child(new_bar, index)
-        self._set_resize_grip()
+##TODO GTK3: statusbar no longer has resize grip methods, depracate this part
+##           of Gramps Statusbar??
+##        self._set_resize_grip()
         
         if ralign:
             frame = new_bar.get_children()[0]
-            obj = frame.get_children()[0]
-            # obj was a gtk.Label (GTK 2.16.6), 
-            # now it is is gtk.HBox (GTK 2.19.1)
-            while not isinstance(obj, gtk.Label):
-                obj = obj.get_children()[0]
-            obj.set_alignment(xalign=1.0, yalign=0.5)        
+            obj = frame.get_children()[0]      
+            # obj is HBox
+            obj = obj.get_children()[0]
+##TODO GTK3: Check if following give expected alignment in statusbar
+            obj.valign = Gtk.Align(value=Gtk.Align.CENTER)
+            obj.halign = Gtk.Align(value=Gtk.Align.END)    
         
         new_bar_id = self._get_next_id()
         self._bars[new_bar_id] = new_bar
@@ -200,28 +205,28 @@ class Statusbar(gtk.HBox):
         self._bars[bar_id].remove(context_id, message_id)
     
     def set_has_resize_grip(self, setting):
-        """Mirror gtk.Statusbar functionaliy.
+        """Mirror Gtk.Statusbar functionaliy.
         """
         self.set_property('has-resize-grip', setting)
     
     def get_has_resize_grip(self):
-        """Mirror gtk.Statusbar functionaliy.
+        """Mirror Gtk.Statusbar functionaliy.
         """
         return self.get_property('has-resize-grip')
 
 def main(args):
-    win = gtk.Window()
+    win = Gtk.Window()
     win.set_title('Statusbar test window')
-    win.set_position(gtk.WIN_POS_CENTER)
+    win.set_position(Gtk.WindowPosition.CENTER)
     def cb(window, event):
-        gtk.main_quit()
+        Gtk.main_quit()
     win.connect('delete-event', cb)
 
-    vbox = gtk.VBox()
+    vbox = Gtk.VBox()
     win.add(vbox)
 
     statusbar = Statusbar()
-    vbox.pack_end(statusbar, False)
+    vbox.pack_end(statusbar, False, True, 0)
     
     statusbar.push(1, "My statusbar")
     
@@ -236,7 +241,7 @@ def main(args):
                    last_statusbar)
     
     win.show_all()
-    gtk.main()
+    Gtk.main()
 
 if __name__ == '__main__':
     import sys

@@ -41,8 +41,8 @@ from gen.ggettext import sgettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
-import pango
+from gi.repository import Gtk
+from gi.repository import Pango
 
 #-------------------------------------------------------------------------
 #
@@ -59,6 +59,7 @@ from gui import widgets
 from gen.display.name import displayer as name_displayer
 from gen.errors import WindowActiveError
 from gui.glade import Glade
+from gui.widgets.menuitem import add_menuitem
 
 from editprimary import EditPrimary
 from editmediaref import EditMediaRef
@@ -206,7 +207,7 @@ class EditPerson(EditPrimary):
         self.load_person_image()
         self.given.grab_focus()
         self._changed_name(None)
-        self.top.get_object("hboxmultsurnames").pack_start(self.surntab)
+        self.top.get_object("hboxmultsurnames").pack_start(self.surntab, True, True, 0)
 
         if len(self.obj.get_primary_name().get_surname_list()) > 1:
             self.multsurnfr.set_size_request(-1,
@@ -215,7 +216,7 @@ class EditPerson(EditPrimary):
             self.multsurnfr.show_all()
             self.singlesurn_active = False
         else:
-            self.multsurnfr.hide_all()
+            self.multsurnfr.hide()
             self.singsurnfr.show_all()
             self.singlesurn_active = True
         #if self.pname.get_surname() and not self.pname.get_first_name():
@@ -419,7 +420,7 @@ class EditPerson(EditPrimary):
             obj.connect('changed', self._changed_name)
 
         self.preview_name = self.top.get_object("full_name")
-        self.preview_name.modify_font(pango.FontDescription('sans bold 12'))
+        self.preview_name.modify_font(Pango.FontDescription('sans bold 12'))
 
     def get_start_date(self):
         """
@@ -433,7 +434,7 @@ class EditPerson(EditPrimary):
         """
         Create the notebook tabs and insert them into the main window.
         """
-        notebook = gtk.Notebook()
+        notebook = Gtk.Notebook()
         notebook.set_scrollable(True)
 
         self.event_list = PersonEventEmbedList(
@@ -523,7 +524,7 @@ class EditPerson(EditPrimary):
 
         self._setup_notebook_tabs(notebook)
         notebook.show_all()
-        self.top.get_object('vbox').pack_start(notebook, True)
+        self.top.get_object('vbox').pack_start(notebook, True, True, 0)
 
     def _changed_name(self, *obj):
         """
@@ -567,7 +568,7 @@ class EditPerson(EditPrimary):
         else:
             self.singlesurn_active = False
         if self.singlesurn_active:
-            self.multsurnfr.hide_all()
+            self.multsurnfr.hide()
             self.singsurnfr.show_all()
         else:
             self.singsurnfr.hide_all()
@@ -589,7 +590,7 @@ class EditPerson(EditPrimary):
         main form.
 
         """
-        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
 
             media_list = self.obj.get_media_list()
             if media_list:
@@ -617,15 +618,15 @@ class EditPerson(EditPrimary):
         available actions.
         """
 
-        menu = gtk.Menu()
+        menu = Gtk.Menu()
         menu.set_title(_("Media Object"))
         obj = self.db.get_object_from_handle(photo.get_reference_handle())
         if obj:
-            gui.utils.add_menuitem(menu, _("View"), photo,
+            add_menuitem(menu, _("View"), photo,
                                    self._popup_view_photo)
-        gui.utils.add_menuitem(menu, _("Edit Object Properties"), photo,
+        add_menuitem(menu, _("Edit Object Properties"), photo,
                                self._popup_change_description)
-        menu.popup(None, None, None, event.button, event.time)
+        menu.popup(None, None, None, None, event.button, event.time)
 
     def _popup_view_photo(self, obj):
         """
@@ -656,17 +657,17 @@ class EditPerson(EditPrimary):
         Override from base class, the menuitems and actiongroups for the top
         of context menu.
         """
-        self.all_action    = gtk.ActionGroup("/PersonAll")
-        self.home_action   = gtk.ActionGroup("/PersonHome")
+        self.all_action    = Gtk.ActionGroup("/PersonAll")
+        self.home_action   = Gtk.ActionGroup("/PersonHome")
         self.track_ref_for_deletion("all_action")
         self.track_ref_for_deletion("home_action")
 
         self.all_action.add_actions([
-                ('ActivePerson', gtk.STOCK_APPLY, _("Make Active Person"),
+                ('ActivePerson', Gtk.STOCK_APPLY, _("Make Active Person"),
                     None, None, self._make_active),
                 ])
         self.home_action.add_actions([
-                ('HomePerson', gtk.STOCK_HOME, _("Make Home Person"),
+                ('HomePerson', Gtk.STOCK_HOME, _("Make Home Person"),
                     None, None, self._make_home_person),
                 ])
 
@@ -890,7 +891,7 @@ class EditPerson(EditPrimary):
         else:
             self.singlesurn_active = False
         if self.singlesurn_active:
-            self.multsurnfr.hide_all()
+            self.multsurnfr.hide()
             self.singsurnfr.show_all()
 
         else:
@@ -910,7 +911,7 @@ class EditPerson(EditPrimary):
                        self.obj.get_primary_name())
         self.multsurnfr.set_size_request(-1,
                                 int(config.get('interface.surname-box-height')))
-        msurhbox.pack_start(self.surntab)
+        msurhbox.pack_start(self.surntab, True, True, 0)
 
     def load_person_image(self):
         """
@@ -933,7 +934,7 @@ class EditPerson(EditPrimary):
                 self.load_photo(ref, obj)
         else:
             self.obj_photo.hide()
-            self.frame_photo.hide_all()
+            self.frame_photo.hide()
 
     def load_photo(self, ref, obj):
         """
@@ -1053,12 +1054,12 @@ class EditPerson(EditPrimary):
         #config.save()
 
 
-class GenderDialog(gtk.MessageDialog):
+class GenderDialog(Gtk.MessageDialog):
     def __init__(self, parent=None):
-        gtk.MessageDialog.__init__(self,
+        GObject.GObject.__init__(self,
                                 parent,
-                                flags=gtk.DIALOG_MODAL,
-                                type=gtk.MESSAGE_QUESTION,
+                                flags=Gtk.DialogFlags.MODAL,
+                                type=Gtk.MessageType.QUESTION,
                                    )
         self.set_icon(ICON)
         self.set_title('')

@@ -28,7 +28,7 @@
 #
 #-------------------------------------------------------------------------
 import os
-import gobject
+from gi.repository import GObject
 
 #------------------------------------------------------------------------
 #
@@ -59,5 +59,5 @@ class DummyMapNoGpsPoint(osmgpsmap.GpsMap):
     def do_draw_gps_point(self, drawable):
         pass
 
-gobject.type_register(DummyMapNoGpsPoint)
+GObject.type_register(DummyMapNoGpsPoint)
 

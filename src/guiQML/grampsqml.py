@@ -100,7 +100,7 @@ class GrampsQML(object):
 
 def startqml(errors, argparser):
     """
-    Main startup function started via gobject.timeout_add
+    Main startup function started via GObject.timeout_add
     First action inside the gtk loop
     """
     from guiQML.questiondialog import ErrorDialog, run_dialog_standalone

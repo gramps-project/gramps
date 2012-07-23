@@ -46,8 +46,9 @@ from gen.errors import WindowActiveError
 # GNOME/GTK modules
 #
 #------------------------------------------------------------------------
-import gtk
-import gobject
+from gi.repository import Gdk
+from gi.repository import Gtk
+from gi.repository import GObject
 
 #------------------------------------------------------------------------
 #
@@ -320,11 +321,11 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
         except WindowActiveError:
             pass
 
-        self.uistate.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        self.uistate.window.window.set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
         self.uistate.progress.show()
-        self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        self.window.window.set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
         try:
-            self.vr.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+            self.vr.window.window.set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
         except AttributeError:
             pass
 
@@ -469,52 +470,52 @@ class VerifyResults(ManagedWindow):
         self.invert_button = self.top.get_object('invert_all')
         self.invert_button.connect('clicked',self.invert_clicked)
 
-        self.real_model = gtk.ListStore(gobject.TYPE_BOOLEAN, 
-                                        gobject.TYPE_STRING, 
-                                        gobject.TYPE_STRING, 
-                                        gobject.TYPE_STRING, 
-                                        gobject.TYPE_STRING, object, 
-                                        gobject.TYPE_STRING, 
-                                        gobject.TYPE_STRING,
-                                        gobject.TYPE_BOOLEAN, 
-                                        gobject.TYPE_BOOLEAN)
+        self.real_model = Gtk.ListStore(GObject.TYPE_BOOLEAN, 
+                                        GObject.TYPE_STRING, 
+                                        GObject.TYPE_STRING, 
+                                        GObject.TYPE_STRING, 
+                                        GObject.TYPE_STRING, object, 
+                                        GObject.TYPE_STRING, 
+                                        GObject.TYPE_STRING,
+                                        GObject.TYPE_BOOLEAN, 
+                                        GObject.TYPE_BOOLEAN)
         self.filt_model = self.real_model.filter_new()
         self.filt_model.set_visible_column(VerifyResults.TRUE_COL)
-        self.sort_model = gtk.TreeModelSort(self.filt_model)
+        self.sort_model = Gtk.TreeModelSort(self.filt_model)
         self.warn_tree.set_model(self.sort_model)
 
-        self.renderer = gtk.CellRendererText()
-        self.img_renderer = gtk.CellRendererPixbuf()
-        self.bool_renderer = gtk.CellRendererToggle()
+        self.renderer = Gtk.CellRendererText()
+        self.img_renderer = Gtk.CellRendererPixbuf()
+        self.bool_renderer = Gtk.CellRendererToggle()
         self.bool_renderer.connect('toggled',self.selection_toggled)
 
         # Add ignore column
-        ignore_column = gtk.TreeViewColumn(_('Mark'),self.bool_renderer,
+        ignore_column = Gtk.TreeViewColumn(_('Mark'),self.bool_renderer,
                                            active=VerifyResults.IGNORE_COL)
         ignore_column.set_sort_column_id(VerifyResults.IGNORE_COL)
         self.warn_tree.append_column(ignore_column)
         
         # Add image column
-        img_column = gtk.TreeViewColumn(None, self.img_renderer )
+        img_column = Gtk.TreeViewColumn(None, self.img_renderer )
         img_column.set_cell_data_func(self.img_renderer,self.get_image)
         self.warn_tree.append_column(img_column)        
 
         # Add column with the warning text
-        warn_column = gtk.TreeViewColumn(_('Warning'), self.renderer,
+        warn_column = Gtk.TreeViewColumn(_('Warning'), self.renderer,
                                          text=VerifyResults.WARNING_COL,
                                          foreground=VerifyResults.FG_COLOR_COL)
         warn_column.set_sort_column_id(VerifyResults.WARNING_COL)
         self.warn_tree.append_column(warn_column)
 
         # Add column with object gramps_id
-        id_column = gtk.TreeViewColumn(_('ID'), self.renderer,
+        id_column = Gtk.TreeViewColumn(_('ID'), self.renderer,
                                        text=VerifyResults.OBJ_ID_COL,
                                        foreground=VerifyResults.FG_COLOR_COL)
         id_column.set_sort_column_id(VerifyResults.OBJ_ID_COL)
         self.warn_tree.append_column(id_column)
 
         # Add column with object name
-        name_column = gtk.TreeViewColumn(_('Name'), self.renderer,
+        name_column = Gtk.TreeViewColumn(_('Name'), self.renderer,
                                          text=VerifyResults.OBJ_NAME_COL,
                                          foreground=VerifyResults.FG_COLOR_COL)
         name_column.set_sort_column_id(VerifyResults.OBJ_NAME_COL)
@@ -589,12 +590,12 @@ class VerifyResults(ManagedWindow):
             button.set_label(_("_Show all"))
             self.filt_model = self.real_model.filter_new()
             self.filt_model.set_visible_column(VerifyResults.SHOW_COL)
-            self.sort_model = gtk.TreeModelSort(self.filt_model)
+            self.sort_model = Gtk.TreeModelSort(self.filt_model)
             self.warn_tree.set_model(self.sort_model)
         else:
             self.filt_model = self.real_model.filter_new()
             self.filt_model.set_visible_column(VerifyResults.TRUE_COL)
-            self.sort_model = gtk.TreeModelSort(self.filt_model)
+            self.sort_model = Gtk.TreeModelSort(self.filt_model)
             self.warn_tree.set_model(self.sort_model)
             button.set_label(_("_Hide marked"))
         
@@ -632,7 +633,7 @@ class VerifyResults(ManagedWindow):
         self.filt_model.refilter()
 
     def double_click(self, obj,event):
-        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             (model, node) = self.selection.get_selected()
             if not node:
                 return

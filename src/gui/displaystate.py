@@ -45,8 +45,9 @@ _LOG = logging.getLogger(".DisplayState")
 # GNOME python modules
 #
 #-------------------------------------------------------------------------
-import gtk
-import gobject
+from gi.repository import Gdk
+from gi.repository import Gtk
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -241,7 +242,7 @@ import os
 
 class RecentDocsMenu(object):
     def __init__(self, uistate, state, fileopen):
-        self.action_group = gtk.ActionGroup('RecentFiles')
+        self.action_group = Gtk.ActionGroup('RecentFiles')
         self.active = DISABLED
         self.uistate = uistate
         self.uimanager = uistate.uimanager
@@ -262,14 +263,14 @@ class RecentDocsMenu(object):
         if self.active != DISABLED:
             self.uimanager.remove_ui(self.active)
             self.uimanager.remove_action_group(self.action_group)
-            self.action_group = gtk.ActionGroup('RecentFiles')
+            self.action_group = Gtk.ActionGroup('RecentFiles')
             self.active = DISABLED
             
         actions = []
         rfiles = gramps_rf.gramps_recent_files
         rfiles.sort(by_time)
 
-        new_menu = gtk.Menu()
+        new_menu = Gtk.Menu()
 
         for item in rfiles:
             try:
@@ -279,7 +280,7 @@ class RecentDocsMenu(object):
                 buf.write('<menuitem action="%s"/>' % action_id)
                 actions.append((action_id, None, title, None, None, 
                                 make_callback(item, self.load)))
-                mitem = gtk.MenuItem(title)
+                mitem = Gtk.MenuItem(label=title)
                 mitem.connect('activate', make_callback(item, self.load))
                 mitem.show()
                 new_menu.append(mitem)
@@ -320,7 +321,7 @@ class WarnHandler(RotateHandler):
     def emit(self, record):
         if self.timer is None:
             #check every 3 minutes if warn button can disappear
-            self.timer = gobject.timeout_add(3*60*1000, self._check_clear)
+            self.timer = GObject.timeout_add(3*60*1000, self._check_clear)
         RotateHandler.emit(self, record)
         self.button.show()
 
@@ -517,9 +518,10 @@ class DisplayState(Callback):
         else:
             self.busy = value
         if value:
-            self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+            self.window.get_root_window().set_cursor(Gdk.Cursor.new(
+                                                        Gdk.CursorType.WATCH))
         else:
-            self.window.window.set_cursor(None)
+            self.window.get_root_window().set_cursor(None)
         process_pending_events()
 
     def set_open_widget(self, widget):
@@ -530,7 +532,7 @@ class DisplayState(Callback):
 
     def push_message(self, dbstate, text):
         self.status_text(text)
-        gobject.timeout_add(5000, self.modify_statusbar, dbstate)
+        GObject.timeout_add(5000, self.modify_statusbar, dbstate)
 
     def show_filter_results(self, dbstate, matched, total):
         #nav_type = self.viewmanager.active_page.navigation_type()

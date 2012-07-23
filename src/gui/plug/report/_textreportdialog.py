@@ -27,8 +27,8 @@
 # GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk
-import gobject
+from gi.repository import Gtk
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -44,14 +44,14 @@ from _docreportdialog import DocReportDialog
 # _TextFormatComboBox
 #
 #-------------------------------------------------------------------------
-class _TextFormatComboBox(gtk.ComboBox):
+class _TextFormatComboBox(Gtk.ComboBox):
     """
     This class is a combo box that allows the selection of a docgen plugin
     from all textdoc plugins.
     """
     def __init__(self, active):
         
-        gtk.ComboBox.__init__(self)
+        GObject.GObject.__init__(self)
         
         pmgr = GuiPluginManager.get_instance()
         self.__textdoc_plugins = []
@@ -59,9 +59,9 @@ class _TextFormatComboBox(gtk.ComboBox):
             if plugin.get_text_support():
                 self.__textdoc_plugins.append(plugin)
 
-        self.store = gtk.ListStore(gobject.TYPE_STRING)
+        self.store = Gtk.ListStore(GObject.TYPE_STRING)
         self.set_model(self.store)
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         self.pack_start(cell, True)
         self.add_attribute(cell, 'text', 0)
 

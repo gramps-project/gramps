@@ -45,16 +45,14 @@ _LOG = logging.getLogger("maps.messagelayer")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gdk
+from gi.repository import Cairo
 
 #-------------------------------------------------------------------------
 #
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-import cairo
-import pango
-import pangocairo
 
 #-------------------------------------------------------------------------
 #
@@ -80,7 +78,6 @@ class MessageLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
         self.color = "black"
         self.font = "Arial"
         self.size = 18
-        #font_map = pangocairo.cairo_font_map_get_default()
         #families = font_map.list_families()
 
     def clear_messages(self):
@@ -123,7 +120,7 @@ class MessageLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
                              cairo.FONT_SLANT_NORMAL,
                              cairo.FONT_WEIGHT_NORMAL)
         ctx.set_font_size(int(self.size))
-        color = gtk.gdk.color_parse(self.color)
+        color = Gdk.color_parse(self.color)
         ctx.set_source_rgba(float(color.red / 65535.0),
                             float(color.green / 65535.0),
                             float(color.blue / 65535.0),

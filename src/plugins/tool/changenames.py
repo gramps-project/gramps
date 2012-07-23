@@ -29,8 +29,8 @@
 # gnome/gtk
 #
 #-------------------------------------------------------------------------
-import gobject
-import gtk
+from gi.repository import GObject
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -76,7 +76,7 @@ class ChangeNames(tool.BatchTool, ManagedWindow):
         self.cb = callback
         
         ManagedWindow.__init__(self,uistate,[],self.__class__)
-        self.set_window(gtk.Window(),gtk.Label(),'')
+        self.set_window(Gtk.Window(),Gtk.Label(),'')
 
         tool.BatchTool.__init__(self, dbstate, options_class, name)
         if self.fail:
@@ -186,20 +186,20 @@ class ChangeNames(tool.BatchTool, ManagedWindow):
         self.list = self.top.get_object("list")
         self.set_window(window,self.top.get_object('title'),self.label)
 
-        self.model = gtk.ListStore(gobject.TYPE_BOOLEAN, gobject.TYPE_STRING, 
-                                   gobject.TYPE_STRING)
+        self.model = Gtk.ListStore(GObject.TYPE_BOOLEAN, GObject.TYPE_STRING, 
+                                   GObject.TYPE_STRING)
 
-        r = gtk.CellRendererToggle()
+        r = Gtk.CellRendererToggle()
         r.connect('toggled',self.toggled)
-        c = gtk.TreeViewColumn(_('Select'),r,active=0)
+        c = Gtk.TreeViewColumn(_('Select'),r,active=0)
         self.list.append_column(c)
 
-        c = gtk.TreeViewColumn(_('Original Name'),
-                               gtk.CellRendererText(),text=1)
+        c = Gtk.TreeViewColumn(_('Original Name'),
+                               Gtk.CellRendererText(),text=1)
         self.list.append_column(c)
 
-        c = gtk.TreeViewColumn(_('Capitalization Change'),
-                               gtk.CellRendererText(),text=2)
+        c = Gtk.TreeViewColumn(_('Capitalization Change'),
+                               Gtk.CellRendererText(),text=2)
         self.list.append_column(c)
 
         self.list.set_model(self.model)

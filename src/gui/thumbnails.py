@@ -41,8 +41,9 @@ except ImportError:
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
-import gobject
+from gi.repository import Gtk
+from gi.repository import GObject
+from gi.repository import GdkPixbuf
 
 #-------------------------------------------------------------------------
 #
@@ -59,10 +60,15 @@ from gen.const import (ICON, IMAGE_DIR, THUMB_LARGE, THUMB_NORMAL, THUMBSCALE,
 #
 #-------------------------------------------------------------------------
 try:
-    import gconf
+    #test first for the key to avoid an error in the importer that causes
+    #the error logger to activate 
+    ##TODO GTK3: Is this the best way to avoid error?
+    import gi.repository as repo
+    repo.__dict__['GConf']
+    from gi.repository import GConf
     GCONF = True
-    CLIENT = gconf.client_get_default()
-except ImportError:
+    CLIENT = GConf.Client.get_default()
+except (ImportError, KeyError), msg:
     GCONF = False
 
 #-------------------------------------------------------------------------
@@ -91,7 +97,7 @@ def __get_gconf_string(key):
     """
     try:
         val =  CLIENT.get_string(key)
-    except gobject.GError:
+    except GObject.GError:
         val = None
     return unicode(val)
 
@@ -112,7 +118,7 @@ def __get_gconf_bool(key):
     """
     try:
         val = CLIENT.get_bool(key)
-    except gobject.GError:
+    except GObject.GError:
         val = None
     return val
 
@@ -176,7 +182,7 @@ def __create_thumbnail_image(src_file, mtype=None, rectangle=None,
         # build a thumbnail by scaling the image using GTK's built in 
         # routines.
         try:
-            pixbuf = gtk.gdk.pixbuf_new_from_file(src_file)
+            pixbuf = GdkPixbuf.Pixbuf.new_from_file(src_file)
             width = pixbuf.get_width()
             height = pixbuf.get_height()
 
@@ -204,7 +210,7 @@ def __create_thumbnail_image(src_file, mtype=None, rectangle=None,
             scaled_height = int(height * scale)
             
             pixbuf = pixbuf.scale_simple(scaled_width, scaled_height, 
-                                         gtk.gdk.INTERP_BILINEAR)
+                                         GdkPixbuf.InterpType.BILINEAR)
             pixbuf.save(filename, "png")
             return True
         except Exception, err:
@@ -216,7 +222,7 @@ def __create_thumbnail_image(src_file, mtype=None, rectangle=None,
 # find_mime_type_pixbuf
 #
 #-------------------------------------------------------------------------
-_icon_theme = gtk.icon_theme_get_default()
+_icon_theme = Gtk.IconTheme.get_default()
 
 def find_mime_type_pixbuf(mime_type):
     try:
@@ -230,10 +236,9 @@ def find_mime_type_pixbuf(mime_type):
                 newicon = "gnome-mime-%s" % icontmp
                 return _icon_theme.load_icon(newicon,48,0)
             except:
-                return gtk.gdk.pixbuf_new_from_file(ICON)
+                return GdkPixbuf.Pixbuf.new_from_file(ICON)
     except:
-        return gtk.gdk.pixbuf_new_from_file(ICON)
-
+        return GdkPixbuf.Pixbuf.new_from_file(ICON)
 #-------------------------------------------------------------------------
 #
 # run_thumbnailer
@@ -306,17 +311,17 @@ def get_thumbnail_image(src_file, mtype=None, rectangle=None, size=SIZE_NORMAL):
     :param rectangle: subsection rectangle
     :type rectangle: tuple
     :returns: thumbnail representing the source file
-    :rtype: gtk.gdk.Pixbuf
+    :rtype: GdkPixbuf.Pixbuf
     """
     try:
         filename = get_thumbnail_path(src_file, mtype, rectangle, size)
-        return gtk.gdk.pixbuf_new_from_file(filename)
-    except (gobject.GError, OSError):
+        return GdkPixbuf.Pixbuf.new_from_file(filename)
+    except (GObject.GError, OSError):
         if mtype:
             return find_mime_type_pixbuf(mtype)
         else:
             default = os.path.join(IMAGE_DIR, "document.png")
-            return gtk.gdk.pixbuf_new_from_file(default)
+            return GdkPixbuf.Pixbuf.new_from_file(default)
 
 #-------------------------------------------------------------------------
 #
@@ -336,7 +341,7 @@ def get_thumbnail_path(src_file, mtype=None, rectangle=None, size=SIZE_NORMAL):
     :param rectangle: subsection rectangle
     :type rectangle: tuple
     :returns: thumbnail representing the source file
-    :rtype: gtk.gdk.Pixbuf
+    :rtype: GdkPixbuf.Pixbuf
     """
     filename = __build_thumb_path(src_file, rectangle, size)
     if not os.path.isfile(src_file):

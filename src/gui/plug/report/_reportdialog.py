@@ -41,7 +41,7 @@ LOG = logging.getLogger(".")
 # GTK+ modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -152,22 +152,21 @@ class ReportDialog(ManagedWindow):
 
         self.style_name = self.options.handler.get_default_stylesheet_name()
 
-        window = gtk.Dialog('Gramps')
+        window = Gtk.Dialog('Gramps')
         self.set_window(window, None, self.get_title())
-        self.window.set_has_separator(False)
         self.window.set_modal(True)
 
-        self.help = self.window.add_button(gtk.STOCK_HELP, gtk.RESPONSE_HELP)
+        self.help = self.window.add_button(Gtk.STOCK_HELP, Gtk.ResponseType.HELP)
         self.help.connect('clicked', self.on_help_clicked)
 
-        self.cancel = self.window.add_button(gtk.STOCK_CANCEL,
-                                             gtk.RESPONSE_CANCEL)
+        self.cancel = self.window.add_button(Gtk.STOCK_CANCEL,
+                                             Gtk.ResponseType.CANCEL)
         self.cancel.connect('clicked', self.on_cancel)
 
-        self.ok = self.window.add_button(gtk.STOCK_OK, gtk.RESPONSE_OK)
+        self.ok = self.window.add_button(Gtk.STOCK_OK, Gtk.ResponseType.OK)
         self.ok.connect('clicked', self.on_ok_clicked)
 
-        self.window.set_position(gtk.WIN_POS_CENTER)
+        self.window.set_position(Gtk.WindowPosition.CENTER)
         self.window.set_default_size(600, -1)
 
         # Set up and run the dialog.  These calls are not in top down
@@ -176,7 +175,7 @@ class ReportDialog(ManagedWindow):
 
         self.setup_title()
         self.setup_header()
-        self.tbl = gtk.Table(4, 4, False)
+        self.tbl = Gtk.Table(4, 4, False)
         self.tbl.set_col_spacings(12)
         self.tbl.set_row_spacings(6)
         self.tbl.set_border_width(6)
@@ -191,7 +190,7 @@ class ReportDialog(ManagedWindow):
         self.setup_target_frame()
         self.setup_style_frame()
 
-        self.notebook = gtk.Notebook()
+        self.notebook = Gtk.Notebook()
         self.notebook.set_scrollable(True)
         self.notebook.set_border_width(6)
         self.window.vbox.add(self.notebook)
@@ -290,7 +289,7 @@ class ReportDialog(ManagedWindow):
 
     def setup_header(self):
         """Set up the header line bar of the dialog."""
-        label = gtk.Label('<span size="larger" weight="bold">%s</span>' % 
+        label = Gtk.Label(label='<span size="larger" weight="bold">%s</span>' % 
                           self.report_name)
         label.set_use_markup(True)
         self.window.vbox.pack_start(label, True, True, self.border_pad)
@@ -310,18 +309,18 @@ class ReportDialog(ManagedWindow):
             return
 
         # Styles Frame
-        label = gtk.Label("%s:" % _("Style"))
+        label = Gtk.Label(label="%s:" % _("Style"))
         label.set_alignment(0.0, 0.5)
 
         self.style_menu = StyleComboBox()
-        self.style_button = gtk.Button("%s..." % _("Style Editor"))
+        self.style_button = Gtk.Button("%s..." % _("Style Editor"))
         self.style_button.connect('clicked', self.on_style_edit_clicked)
 
-        self.tbl.attach(label, 1, 2, self.row, self.row+1, gtk.SHRINK|gtk.FILL)
+        self.tbl.attach(label, 1, 2, self.row, self.row+1, Gtk.AttachOptions.SHRINK|Gtk.AttachOptions.FILL)
         self.tbl.attach(self.style_menu, 2, 3, self.row, self.row+1,
-                        yoptions=gtk.SHRINK)
+                        yoptions=Gtk.AttachOptions.SHRINK)
         self.tbl.attach(self.style_button, 3, 4, self.row, self.row+1,
-                        xoptions=gtk.SHRINK|gtk.FILL, yoptions=gtk.SHRINK)
+                        xoptions=Gtk.AttachOptions.SHRINK|Gtk.AttachOptions.FILL, yoptions=Gtk.AttachOptions.SHRINK)
         self.row += 1
         
         # Build the initial list of available styles sets.  This
@@ -349,11 +348,11 @@ class ReportDialog(ManagedWindow):
         if max_rows == 0:
             return
 
-        table = gtk.Table(3, max_rows+1)
+        table = Gtk.Table(3, max_rows+1)
         table.set_col_spacings(12)
         table.set_row_spacings(6)
         
-        label = gtk.Label("<b>%s</b>" % _("Report Options"))
+        label = Gtk.Label(label="<b>%s</b>" % _("Report Options"))
         label.set_alignment(0.0, 0.5)
         label.set_use_markup(True)
         
@@ -364,40 +363,40 @@ class ReportDialog(ManagedWindow):
         # Setup requested widgets
         for (text, widget) in self.widgets:
             if text:
-                text_widget = gtk.Label("%s:" % text)
+                text_widget = Gtk.Label(label="%s:" % text)
                 text_widget.set_alignment(0.0, 0.0)
                 table.attach(text_widget, 1, 2, row, row+1,
-                             gtk.SHRINK|gtk.FILL, gtk.SHRINK)
+                             Gtk.AttachOptions.SHRINK|Gtk.AttachOptions.FILL, Gtk.AttachOptions.SHRINK)
                 table.attach(widget, 2, 3, row, row+1,
-                             yoptions=gtk.SHRINK)
+                             yoptions=Gtk.AttachOptions.SHRINK)
             else:
                 table.attach(widget, 2, 3, row, row+1,
-                             yoptions=gtk.SHRINK)
+                             yoptions=Gtk.AttachOptions.SHRINK)
             row += 1
 
     def setup_other_frames(self):
         for key in self.frame_names:
             flist = self.frames[key]
-            table = gtk.Table(3, len(flist))
+            table = Gtk.Table(3, len(flist))
             table.set_col_spacings(12)
             table.set_row_spacings(6)
             table.set_border_width(6)
-            l = gtk.Label("<b>%s</b>" % _(key))
+            l = Gtk.Label(label="<b>%s</b>" % _(key))
             l.set_use_markup(True)
             self.notebook.append_page(table, l)
 
             row = 0
             for (text, widget) in flist:
                 if text:
-                    text_widget = gtk.Label('%s:' % text)
+                    text_widget = Gtk.Label(label='%s:' % text)
                     text_widget.set_alignment(0.0, 0.5)
                     table.attach(text_widget, 1, 2, row, row+1,
-                                 gtk.SHRINK|gtk.FILL, gtk.SHRINK)
+                                 Gtk.AttachOptions.SHRINK|Gtk.AttachOptions.FILL, Gtk.AttachOptions.SHRINK)
                     table.attach(widget, 2, 3, row, row+1,
-                                 yoptions=gtk.SHRINK)
+                                 yoptions=Gtk.AttachOptions.SHRINK)
                 else:
                     table.attach(widget, 2, 3, row, row+1,
-                                 yoptions=gtk.SHRINK)
+                                 yoptions=Gtk.AttachOptions.SHRINK)
                 row += 1
                 
     #------------------------------------------------------------------------
@@ -444,11 +443,11 @@ class ReportDialog(ManagedWindow):
         spath = self.get_default_directory()
         self.target_fileentry.set_filename(spath)
         # need any labels at top:
-        label = gtk.Label("<b>%s</b>" % _('Document Options'))
+        label = Gtk.Label(label="<b>%s</b>" % _('Document Options'))
         label.set_use_markup(1)
         label.set_alignment(0.0, 0.5)
         self.tbl.set_border_width(12)
-        self.tbl.attach(label, 0, 4, self.row, self.row+1, gtk.FILL)
+        self.tbl.attach(label, 0, 4, self.row, self.row+1, Gtk.AttachOptions.FILL)
         self.row += 1
         
     def setup_target_frame(self):
@@ -459,13 +458,13 @@ class ReportDialog(ManagedWindow):
         directory should be used."""
 
         # Save Frame
-        self.doc_label = gtk.Label("%s:" % _("Filename"))
+        self.doc_label = Gtk.Label(label="%s:" % _("Filename"))
         self.doc_label.set_alignment(0.0, 0.5)
 
         self.tbl.attach(self.doc_label, 1, 2, self.row, self.row+1,
-                        xoptions=gtk.SHRINK|gtk.FILL,yoptions=gtk.SHRINK)
+                        xoptions=Gtk.AttachOptions.SHRINK|Gtk.AttachOptions.FILL,yoptions=Gtk.AttachOptions.SHRINK)
         self.tbl.attach(self.target_fileentry, 2, 4, self.row, self.row+1,
-                        xoptions=gtk.EXPAND|gtk.FILL,yoptions=gtk.SHRINK)
+                        xoptions=Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL,yoptions=Gtk.AttachOptions.SHRINK)
         self.row += 1
         
     #------------------------------------------------------------------------
@@ -507,7 +506,7 @@ class ReportDialog(ManagedWindow):
                                  _('_Overwrite'), None,
                                  _('_Change filename'), None)
                              
-                if a.get_response() == gtk.RESPONSE_YES:
+                if a.get_response() == Gtk.ResponseType.YES:
                     return None
 
         # selected path does not exist yet
@@ -619,7 +618,7 @@ def report(dbstate, uistate, person, report_class, options_class,
 
     while True:
         response = dialog.window.run()
-        if response == gtk.RESPONSE_OK:
+        if response == Gtk.ResponseType.OK:
             dialog.close()
             try:
                 user = User()
@@ -662,10 +661,10 @@ def report(dbstate, uistate, person, report_class, options_class,
             except:
                 LOG.error("Failed to run report.", exc_info=True)
             break
-        elif response == gtk.RESPONSE_CANCEL:
+        elif response == Gtk.ResponseType.CANCEL:
             dialog.close()
             break
-        elif response == gtk.RESPONSE_DELETE_EVENT:
+        elif response == Gtk.ResponseType.DELETE_EVENT:
             #just stop, in ManagedWindow, delete-event is already coupled to
             #correct action.
             break

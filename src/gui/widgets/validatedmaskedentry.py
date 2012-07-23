@@ -38,9 +38,11 @@ _LOG = logging.getLogger(".widgets.validatedmaskedentry")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gobject
-import gtk
-import pango
+from gi.repository import GObject
+from gi.repository import Gdk
+from gi.repository import Gtk
+from gi.repository import GdkPixbuf
+from gi.repository import Pango
 
 #-------------------------------------------------------------------------
 #
@@ -57,9 +59,9 @@ from gui.widgets.undoableentry import UndoableEntry
 #-------------------------------------------------------------------------
 # STOCK_INFO was added only in Gtk 2.8
 try:
-    INFO_ICON = gtk.STOCK_INFO
+    INFO_ICON = Gtk.STOCK_INFO
 except AttributeError:
-    INFO_ICON = gtk.STOCK_DIALOG_INFO
+    INFO_ICON = Gtk.STOCK_DIALOG_INFO
 
 #============================================================================
 #
@@ -70,17 +72,17 @@ except AttributeError:
 #
 #============================================================================
 
-class FadeOut(gobject.GObject):
+class FadeOut(GObject.GObject):
     """I am a helper class to draw the fading effect of the background
     Call my methods start() and stop() to control the fading.
     """
     __gsignals__ = {
-        'done': (gobject.SIGNAL_RUN_FIRST, 
-                 gobject.TYPE_NONE, 
+        'done': (GObject.SignalFlags.RUN_FIRST, 
+                 None, 
                  ()), 
-        'color-changed': (gobject.SIGNAL_RUN_FIRST, 
-                          gobject.TYPE_NONE, 
-                          (gtk.gdk.Color, )), 
+        'color-changed': (GObject.SignalFlags.RUN_FIRST, 
+                          None, 
+                          (Gdk.Color, )), 
     }
     
     # How long time it'll take before we start (in ms)
@@ -89,7 +91,7 @@ class FadeOut(gobject.GObject):
     MERGE_COLORS_DELAY = 100
 
     def __init__(self, widget, err_color = "#ffd5d5"):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
         self.ERROR_COLOR = err_color
         self._widget = widget
         self._start_color = None
@@ -113,7 +115,7 @@ class FadeOut(gobject.GObject):
             rs += rinc
             gs += ginc
             bs += binc
-            col = gtk.gdk.color_parse("#%02X%02X%02X" % (int(rs) >> 8, 
+            col = Gdk.color_parse("#%02X%02X%02X" % (int(rs) >> 8, 
                                                          int(gs) >> 8, 
                                                          int(bs) >> 8))
             self.emit('color-changed', col)
@@ -132,9 +134,9 @@ class FadeOut(gobject.GObject):
 
         ##_LOG.debug('_start_merging: Starting')
         func = self._merge_colors(self._start_color, 
-                                  gtk.gdk.color_parse(self.ERROR_COLOR)).next
+                                  Gdk.color_parse(self.ERROR_COLOR)).next
         self._background_timeout_id = (
-            gobject.timeout_add(FadeOut.MERGE_COLORS_DELAY, func))
+            GObject.timeout_add(FadeOut.MERGE_COLORS_DELAY, func))
         self._countdown_timeout_id = -1
 
     def start(self, color):
@@ -154,7 +156,7 @@ class FadeOut(gobject.GObject):
 
         self._start_color = color
         ##_LOG.debug('start: Scheduling')
-        self._countdown_timeout_id = gobject.timeout_add(
+        self._countdown_timeout_id = GObject.timeout_add(
             FadeOut.COMPLAIN_DELAY, self._start_merging)
 
         return True
@@ -163,31 +165,32 @@ class FadeOut(gobject.GObject):
         """Stops the fadeout and restores the background color"""
         ##_LOG.debug('Stopping')
         if self._background_timeout_id != -1:
-            gobject.source_remove(self._background_timeout_id)
+            GObject.source_remove(self._background_timeout_id)
             self._background_timeout_id = -1
         if self._countdown_timeout_id != -1:
-            gobject.source_remove(self._countdown_timeout_id)
+            GObject.source_remove(self._countdown_timeout_id)
             self._countdown_timeout_id = -1
 
         self._widget.update_background(self._start_color)
         self._done = False
 
-class Tooltip(gtk.Window):
+class Tooltip(Gtk.Window):
     """Tooltip for the Icon in the MaskedEntry"""
     
     DEFAULT_DELAY = 500
     BORDER_WIDTH = 4
 
     def __init__(self, widget):
-        gtk.Window.__init__(self, gtk.WINDOW_POPUP)
+        GObject.GObject.__init__(self, type=Gtk.WindowType.POPUP)
         # from gtktooltips.c:gtk_tooltips_force_window
         self.set_app_paintable(True)
         self.set_resizable(False)
         self.set_name("gtk-tooltips")
         self.set_border_width(Tooltip.BORDER_WIDTH)
-        self.connect('expose-event', self._on__expose_event)
+        #TODO GTK3: this signal no longer exists. Convert to draw
+        self.connect('draw', self._on__draw_event)
 
-        self._label = gtk.Label()
+        self._label = Gtk.Label()
         self.add(self._label)
         self._show_timeout_id = -1
 
@@ -195,15 +198,20 @@ class Tooltip(gtk.Window):
     def _calculate_pos(self, widget):
         screen = widget.get_screen()
 
-        w, h = self.size_request()
+        greq = Gtk.Requisition()
+        greq = self.size_request()
+        w = greq.width
+        h = greq.height
 
-        x, y = widget.window.get_origin()
+        _, x, y = widget.get_window().get_origin()
 
-        if widget.flags() & gtk.NO_WINDOW:
-            x += widget.allocation.x
-            y += widget.allocation.y
+        # TODO GTK3 No longer WidgetFlags!
+        #if widget.get_state_flags() & Gtk.WidgetFlags.NO_WINDOW:
+        x += widget.get_allocation().width
+        y += widget.get_allocation().height
 
-        x = screen.get_root_window().get_pointer()[0]
+        x = screen.get_root_window().get_pointer()[1]
+        #TODO GTK3, how: x = screen.get_window().get_device_position()[0]
         x -= (w / 2 + Tooltip.BORDER_WIDTH)
 
         pointer_screen, px, py, _ = screen.get_display().get_pointer()
@@ -219,21 +227,26 @@ class Tooltip(gtk.Window):
         elif x < monitor.x:
             x = monitor.x
 
-        if ((y + h + widget.allocation.height + Tooltip.BORDER_WIDTH) >
+        if ((y + h + widget.get_allocation().height + Tooltip.BORDER_WIDTH) >
             monitor.y + monitor.height):
             y -= h + Tooltip.BORDER_WIDTH
         else:
-            y += widget.allocation.height + Tooltip.BORDER_WIDTH
+            y += widget.get_allocation().height + Tooltip.BORDER_WIDTH
 
         return x, y
 
     # from gtktooltips.c:gtk_tooltips_paint_window
-    def _on__expose_event(self, window, event):
-        w, h = window.size_request()
-        window.style.paint_flat_box(window.window, 
-                                    gtk.STATE_NORMAL, gtk.SHADOW_OUT, 
-                                    None, window, "tooltip", 
-                                    0, 0, w, h)
+    def _on__draw_event(self, window, cairo_context):
+        #GTK3 TODO, paint_flat_box deprecated !!
+        greq = self.size_request()
+        w = greq.width
+        h = greq.height
+        Gtk.render_frame(window.get_style_context(), cairo_context,
+            0,0,w,h)
+        #window.get_style().paint_flat_box(window.window, 
+        #                            Gtk.StateType.NORMAL, Gtk.ShadowType.OUT, 
+        #                            None, window, "tooltip", 
+        #                            0, 0, w, h)
         return False
 
     def _real_display(self, widget):
@@ -248,8 +261,8 @@ class Tooltip(gtk.Window):
         self._label.set_text(text)
 
     def hide(self):
-        gtk.Window.hide(self)
-        gobject.source_remove(self._show_timeout_id)
+        Gtk.Window.hide(self)
+        GObject.source_remove(self._show_timeout_id)
         self._show_timeout_id = -1
 
     def display(self, widget):
@@ -259,7 +272,7 @@ class Tooltip(gtk.Window):
         if self._show_timeout_id != -1:
             return
 
-        self._show_timeout_id = gobject.timeout_add(Tooltip.DEFAULT_DELAY, 
+        self._show_timeout_id = GObject.timeout_add(Tooltip.DEFAULT_DELAY, 
                                                     self._real_display, 
                                                     widget)
 
@@ -314,8 +327,8 @@ class IconEntry(object):
     """
 
     def __init__(self, entry):
-        if not isinstance(entry, gtk.Entry):
-            raise TypeError("entry must be a gtk.Entry")
+        if not isinstance(entry, Gtk.Entry):
+            raise TypeError("entry must be a Gtk.Entry")
         self._constructed = False
         self._pixbuf = None
         self._pixw = 1
@@ -358,21 +371,21 @@ class IconEntry(object):
 
     def set_pixbuf(self, pixbuf):
         """
-        @param pixbuf: a gdk.Pixbuf or None
+        @param pixbuf: a GdkPixbuf.Pixbuf or None
         """
         entry = self._entry
-        if not isinstance(entry.get_toplevel(), gtk.Window):
+        if not isinstance(entry.get_toplevel(), Gtk.Window):
             # For widgets in SlaveViews, wait until they're attached
             # to something visible, then set the pixbuf
             entry.connect_object('realize', self.set_pixbuf, pixbuf)
             return
 
         if pixbuf:
-            if not isinstance(pixbuf, gtk.gdk.Pixbuf):
+            if not isinstance(pixbuf, GdkPixbuf.Pixbuf):
                 raise TypeError("pixbuf must be a GdkPixbuf")
         else:
-            # Turning of the icon should also restore the background
-            entry.modify_base(gtk.STATE_NORMAL, None)
+            # Turning off the icon should also restore the background
+            entry.override_background_color(Gtk.StateType.NORMAL, None)
             if not self._pixbuf:
                 return
         self._pixbuf = pixbuf
@@ -405,39 +418,67 @@ class IconEntry(object):
             return
 
         entry = self._entry
-        if not entry.flags() & gtk.REALIZED:
+        if not entry.get_realized():
             entry.realize()
 
         # Hack: Save a reference to the text area, now when its created
-        self._text_area = entry.window.get_children()[0]
+        self._text_area = entry.get_window().get_children()[0]
         self._text_area_pos = self._text_area.get_position()
 
         # PyGTK should allow default values for most of the values here.
-        win = gtk.gdk.Window(entry.window, 
-                             self._pixw, self._pixh, 
-                             gtk.gdk.WINDOW_CHILD, 
-                             (gtk.gdk.ENTER_NOTIFY_MASK |
-                              gtk.gdk.LEAVE_NOTIFY_MASK), 
-                             gtk.gdk.INPUT_OUTPUT, 
-                             'icon window', 
-                             0, 0, 
-                             entry.get_visual(), 
-                             entry.get_colormap(), 
-                             gtk.gdk.Cursor(entry.get_display(), gtk.gdk.LEFT_PTR), 
-                             '', '', True)
+        attr = Gdk.WindowAttr()
+        attr.width = self._pixw
+        attr.height = self._pixh
+        attr.x = 0
+        attr.y = 0
+        attr.cursor = Gdk.Cursor.new_for_display(
+                                entry.get_display(), Gdk.CursorType.LEFT_PTR)
+        #attr.wmclass_name=''
+        #attr.wmclass_class=''
+        attr.override_redirect=True
+        attr.event_mask = (Gdk.EventMask.ENTER_NOTIFY_MASK |
+                              Gdk.EventMask.LEAVE_NOTIFY_MASK)
+        # TODO GTK3 Why can we not set title?
+        #attr.title = 'icon window'
+        attr.wclass = Gdk.WindowWindowClass.INPUT_OUTPUT
+        attr.window_type = Gdk.WindowType.CHILD
+        attr.visual = entry.get_visual()
+        attrmask = (
+                #Gdk.WindowAttributesType.TITLE |
+                Gdk.WindowAttributesType.X |
+                Gdk.WindowAttributesType.Y |
+                Gdk.WindowAttributesType.CURSOR |
+                Gdk.WindowAttributesType.VISUAL |
+                Gdk.WindowAttributesType.NOREDIR
+                )
+        #the window containing the icon image
+        win = Gdk.Window(entry.get_window(),
+                         attr,
+                         attrmask)
+##                             Gdk.WindowType.CHILD, 
+##                             (Gdk.EventMask.ENTER_NOTIFY_MASK |
+##                              Gdk.EventMask.LEAVE_NOTIFY_MASK), 
+##                             Gdk.WindowWindowClass.INPUT_OUTPUT, 
+##                             title='icon window', 
+##                             x=0, y=0, 
+##                             visual=entry.get_visual(),
+##                             #TODO GTK3: is there alternative for:
+##                             #colormap=entry.get_colormap(), 
+##                             cursor=Gdk.Cursor.new_for_display(
+##                                entry.get_display(), Gdk.CursorType.LEFT_PTR), 
+##                             wmclass_name='',
+##                             wmclass_class='', override_redirect=True)
         self._icon_win = win
         win.set_user_data(entry)
-        win.set_background(entry.style.base[entry.state])
+        #win.set_background(entry.get_style().base[entry.get_state()])
         self._constructed = True
 
     def deconstruct(self):
         if self._icon_win:
-            # This is broken on PyGTK 2.6.x
-            try:
-                self._icon_win.set_user_data(None)
-            except:
-                pass
+            self._icon_win.set_user_data(None)
             # Destroy not needed, called by the GC.
+            # TODO GTK3: we see error:  Gdk-WARNING **: losing last reference to undestroyed window
+            # TODO Investigate
             self._icon_win = None
 
     def update_background(self, color):
@@ -446,12 +487,27 @@ class IconEntry(object):
         if not self._icon_win:
             return
 
-        self._entry.modify_base(gtk.STATE_NORMAL, color)
+        maxvalcol = 65535.
+        if color:
+            red = int(color.red/ maxvalcol*255)
+            green = int(color.green/ maxvalcol*255)
+            blue = int(color.blue/ maxvalcol*255)
+            rgba = Gdk.RGBA()
+            Gdk.RGBA.parse(rgba, 'rgb(%f,%f,%f)'%(red, green, blue))
+            self._entry.override_background_color(Gtk.StateType.NORMAL, rgba)
+        else:
+            self._entry.override_background_color(Gtk.StateType.NORMAL, None)
 
         self.draw_pixbuf()
 
     def get_background(self):
-        return self._entry.style.base[gtk.STATE_NORMAL]
+        """ Return default background color as a Gdk.Color """
+        backcol = self._entry.get_style_context().get_background_color(Gtk.StateType.NORMAL)
+        bcol= Gdk.Color.parse('#fff')[1]
+        bcol.red = int(backcol.red * 65535)
+        bcol.green = int(backcol.green * 65535)
+        bcol.blue = int(backcol.blue * 65535)
+        return bcol
 
     def resize_windows(self):
         if not self._pixbuf:
@@ -460,11 +516,17 @@ class IconEntry(object):
         icony = iconx = 4
 
         # Make space for the icon, both windows
-        winw = self._entry.window.get_size()[0]
-        textw, texth = self._text_area.get_size()
-        textw = winw - self._pixw - (iconx + icony)
+        # GTK 3 gives for entry the sizes for the entire editor
+        geom =self._text_area.get_geometry()
+        origx = geom[0]
+        origy = geom[1]
+        origw = geom[2]
+        origh = geom[3]
+        textw = origw
+        texth = origh
+        textw = textw - self._pixw - (iconx + icony)
 
-        if self._pos == gtk.POS_LEFT:
+        if self._pos == Gtk.PositionType.LEFT:
             textx, texty = self._text_area_pos
             textx += iconx + self._pixw
 
@@ -473,7 +535,7 @@ class IconEntry(object):
             textw -= 2
             self._text_area.move_resize(textx, texty, textw, texth)
             self._recompute()
-        elif self._pos == gtk.POS_RIGHT:
+        elif self._pos == Gtk.PositionType.RIGHT:
             self._text_area.resize(textw, texth)
             iconx += textw
 
@@ -484,10 +546,11 @@ class IconEntry(object):
 
         # If the size of the window is large enough, resize and move it
         # Otherwise just move it to the right side of the entry
-        if icon_win.get_size() != (self._pixw, self._pixh):
-            icon_win.move_resize(iconx, icony, self._pixw, self._pixh)
+        if (icon_win.get_width(), icon_win.get_height()) != (self._pixw, self._pixh):
+            icon_win.move_resize(origx + origw - self._pixw, icony + origy, 100, 100)
+            icon_win.move_resize(origx + origw - self._pixw, icony + origy, self._pixw, self._pixh)
         else:
-            icon_win.move(iconx, icony)
+            icon_win.move(origx + origw - self._pixw, icony + origy)
 
     def draw_pixbuf(self):
         if not self._pixbuf:
@@ -499,21 +562,27 @@ class IconEntry(object):
             return
 
         # Draw background first
-        color = self._entry.style.base_gc[self._entry.state]
-        win.draw_rectangle(color, True, 
-                           0, 0, self._pixw, self._pixh)
+        color = self._entry.get_style_context().get_background_color(
+                                            self._entry.get_state())
+        ## TODO GTK3 no more draw_rectangle
+        cairo_t = Gdk.cairo_create(win)
+        Gdk.cairo_set_source_rgba(cairo_t, color)
+        #win.draw_rectangle(color, True, 
+        #                   0, 0, self._pixw, self._pixh)
 
         # If sensitive draw the icon, regardless of the window emitting the
         # event since makes it a bit smoother on resize
-        if self._entry.flags() & gtk.SENSITIVE:
-            win.draw_pixbuf(None, self._pixbuf, 0, 0, 0, 0, 
-                            self._pixw, self._pixh)
+        if self._entry.get_sensitive():
+            Gdk.cairo_set_source_pixbuf(cairo_t, self._pixbuf, 0, 0)
+            #TODO GTK3: win not visible under red/white part of gtkEntry, no icon also!
+            #TODO GTK3: deprecate the icon? Use button indication on edit date button?
+            win.show()
 
     def _update_position(self):
         if self._entry.get_property('xalign') > 0.5:
-            self._pos = gtk.POS_LEFT
+            self._pos = Gtk.PositionType.LEFT
         else:
-            self._pos = gtk.POS_RIGHT
+            self._pos = Gtk.PositionType.RIGHT
 
     def _recompute(self):
         # Protect against re-entrancy when inserting text, happens in DateEntry
@@ -615,27 +684,29 @@ class MaskedEntry(UndoableEntry):
 
         self._block_insert = False
         self._block_delete = False
+        self.in_do_draw = False
 
     # Virtual methods, note do_size_alloc needs gtk 2.9 +
     def do_size_allocate(self, allocation):
-        gtk.Entry.do_size_allocate(self, allocation)
+        Gtk.Entry.do_size_allocate(self, allocation)
 
-        if self.flags() & gtk.REALIZED:
+        if self.get_realized():
             self._icon.resize_windows()
 
-    def do_expose_event(self, event):
-        gtk.Entry.do_expose_event(self, event)
+    def do_draw(self, cairo_t):
+        #TODO GTK3: It seems this is called in a loop, test, add print here
+        Gtk.Entry.do_draw(self, cairo_t)
 
-        if event.window == self.window:
+        if Gtk.cairo_should_draw_window(cairo_t, self.get_window()):
             self._icon.draw_pixbuf()
 
     def do_realize(self):
-        gtk.Entry.do_realize(self)
+        Gtk.Entry.do_realize(self)
         self._icon.construct()
 
     def do_unrealize(self):
         self._icon.deconstruct()
-        gtk.Entry.do_unrealize(self)
+        Gtk.Entry.do_unrealize(self)
 
     # Mask & Fields
 
@@ -659,7 +730,7 @@ class MaskedEntry(UndoableEntry):
         @param mask: the mask to set
         """
         if not mask:
-            self.modify_font(pango.FontDescription("sans"))
+            self.modify_font(Pango.FontDescription("sans"))
             self._mask = mask
             return
 
@@ -689,7 +760,7 @@ class MaskedEntry(UndoableEntry):
             pos += 1
 
         self._mask_fields.append((field_begin, field_end))
-        self.modify_font(pango.FontDescription("monospace"))
+        self.modify_font(Pango.FontDescription("monospace"))
 
         self._really_delete_text(0, -1)
         self._insert_mask(0, input_length)
@@ -905,7 +976,7 @@ class MaskedEntry(UndoableEntry):
         else:
             match_func = self._completion_normal_match_func
         completion = self._get_completion()
-        completion.set_match_func(match_func)
+        completion.set_match_func(match_func, None)
 
     def is_empty(self):
         text = self.get_text()
@@ -958,7 +1029,7 @@ class MaskedEntry(UndoableEntry):
         if completion:
             return completion
 
-        completion = gtk.EntryCompletion()
+        completion = Gtk.EntryCompletion()
         self.set_completion(completion)
         return completion
 
@@ -966,15 +1037,15 @@ class MaskedEntry(UndoableEntry):
         return self._completion
 
     def set_completion(self, completion):
-        gtk.Entry.set_completion(self, completion)
+        Gtk.Entry.set_completion(self, completion)
         # FIXME objects not supported yet, should it be at all?
-        #completion.set_model(gtk.ListStore(str, object))
-        completion.set_model(gtk.ListStore(gobject.TYPE_STRING))
+        #completion.set_model(Gtk.ListStore(str, object))
+        completion.set_model(Gtk.ListStore(GObject.TYPE_STRING))
         completion.set_text_column(0)
         #completion.connect("match-selected", 
                            #self._on_completion__match_selected)
 
-        self._completion = gtk.Entry.get_completion(self)
+        self._completion = Gtk.Entry.get_completion(self)
         self.set_exact_completion(self._exact_completion)
         return
 
@@ -1001,7 +1072,7 @@ class MaskedEntry(UndoableEntry):
         content = model[iter][COL_TEXT]
         return content.startswith(self.get_text())
 
-    def _completion_normal_match_func(self, completion, key, iter):
+    def _completion_normal_match_func(self, completion, key, iter, data=None):
         model = completion.get_model()
         if not len(model):
             return
@@ -1009,7 +1080,7 @@ class MaskedEntry(UndoableEntry):
         content = model[iter][COL_TEXT].lower()
         return key.lower() in content
 
-    def _on_completion__match_selected(self, completion, model, iter):
+    def _on_completion__match_selected(self, completion, model, iter, data=None):
         if not len(model):
             return
 
@@ -1057,7 +1128,7 @@ class MaskedEntry(UndoableEntry):
             text = self.get_field_text(field)
             length = self.get_field_length(field)
             if len(text) == length:
-                gtk.gdk.beep()
+                Gdk.beep()
                 return pos
 
         # If the char confirms to the mask, but is a static char, return the
@@ -1074,7 +1145,7 @@ class MaskedEntry(UndoableEntry):
             if field is not False:
                 pos = self.get_field_pos(field+1)
                 if pos is not None:
-                    gobject.idle_add(self.set_position, pos)
+                    GObject.idle_add(self.set_position, pos)
             return pos
 
         return None
@@ -1134,11 +1205,11 @@ class MaskedEntry(UndoableEntry):
 #                    text[pos+length:end]+
 #                    text[end:])
         new_pos = pos+1
-        gobject.idle_add(self.set_position, new_pos)
+        GObject.idle_add(self.set_position, new_pos)
 
         # If the field is full, jump to the next field
         if len(self.get_field_text(field)) == self.get_field_length(field)-1:
-            gobject.idle_add(self.set_field, field+1, True)
+            GObject.idle_add(self.set_field, field+1, True)
             self.set_field(field+1)
 
         return new_pos, new_text
@@ -1285,11 +1356,11 @@ class MaskedEntry(UndoableEntry):
         if not self._mask:
             return
 
-        if (direction == gtk.DIR_TAB_FORWARD or
-            direction == gtk.DIR_DOWN):
+        if (direction == Gtk.DIR_TAB_FORWARD or
+            direction == Gtk.DIR_DOWN):
             inc = 1
-        if (direction == gtk.DIR_TAB_BACKWARD or
-            direction == gtk.DIR_UP):
+        if (direction == Gtk.DIR_TAB_BACKWARD or
+            direction == Gtk.DIR_UP):
             inc = -1
 
         field = self._current_field
@@ -1361,9 +1432,9 @@ class MaskedEntry(UndoableEntry):
         self._selecting = extend_selection
 
     def _on_button_press_event(self, entry, event ):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
+        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 1:
             self._selecting = True
-        elif event.type == gtk.gdk.BUTTON_RELEASE and event.button == 1:
+        elif event.type == Gdk.EventType.BUTTON_RELEASE and event.button == 1:
             self._selecting = True
 
     # IconEntry
@@ -1375,7 +1446,7 @@ class MaskedEntry(UndoableEntry):
         self._icon.set_pixbuf(pixbuf)
 
     def set_stock(self, stock_name):
-        pixbuf = self.render_icon(stock_name, gtk.ICON_SIZE_MENU)
+        pixbuf = self.render_icon(stock_name, Gtk.IconSize.MENU)
         self._icon.set_pixbuf(pixbuf)
 
     def update_background(self, color):
@@ -1387,7 +1458,7 @@ class MaskedEntry(UndoableEntry):
     def get_icon_window(self):
         return self._icon.get_icon_window()
 
-    # gtk.EntryCompletion convenience function
+    # Gtk.EntryCompletion convenience function
     
     def prefill(self, itemdata, sort=False):
         if not isinstance(itemdata, (list, tuple)):
@@ -1418,7 +1489,7 @@ class MaskedEntry(UndoableEntry):
 
 VALIDATION_ICON_WIDTH = 16
 MANDATORY_ICON = INFO_ICON
-ERROR_ICON = gtk.STOCK_STOP
+ERROR_ICON = Gtk.STOCK_STOP
 
 class ValidatableMaskedEntry(MaskedEntry):
     """It extends the MaskedEntry with validation feature.
@@ -1431,28 +1502,28 @@ class ValidatableMaskedEntry(MaskedEntry):
     __gtype_name__ = 'ValidatableMaskedEntry'
 
     __gsignals__ = {
-        'content-changed': (gobject.SIGNAL_RUN_FIRST, 
-                            gobject.TYPE_NONE, 
+        'content-changed': (GObject.SignalFlags.RUN_FIRST, 
+                            None, 
                             ()), 
-        'validation-changed': (gobject.SIGNAL_RUN_FIRST, 
-                               gobject.TYPE_NONE, 
-                               (gobject.TYPE_BOOLEAN, )), 
-        'validate': (gobject.SIGNAL_RUN_LAST, 
-                     gobject.TYPE_PYOBJECT, 
-                     (gobject.TYPE_PYOBJECT, )), 
+        'validation-changed': (GObject.SignalFlags.RUN_FIRST, 
+                               None, 
+                               (GObject.TYPE_BOOLEAN, )), 
+        'validate': (GObject.SignalFlags.RUN_LAST, 
+                     GObject.TYPE_PYOBJECT, 
+                     (GObject.TYPE_PYOBJECT, )), 
         'changed': 'override', 
     }
 
     __gproperties__ = {
-        'data-type': (gobject.TYPE_PYOBJECT, 
+        'data-type': (GObject.TYPE_PYOBJECT, 
                        'Data Type of the widget', 
                        'Type object', 
-                       gobject.PARAM_READWRITE), 
-        'mandatory': (gobject.TYPE_BOOLEAN, 
+                       GObject.PARAM_READWRITE), 
+        'mandatory': (GObject.TYPE_BOOLEAN, 
                       'Mandatory', 
                       'Mandatory', 
                       False, 
-                      gobject.PARAM_READWRITE), 
+                      GObject.PARAM_READWRITE), 
     }
                             
     # FIXME put the data type support back
@@ -1632,7 +1703,7 @@ class ValidatableMaskedEntry(MaskedEntry):
         if not fade:
             if self.error_icon:
                 self.set_stock(self.error_icon)
-            self.update_background(gtk.gdk.color_parse(self._fade.ERROR_COLOR))
+            self.update_background(Gdk.color_parse(self._fade.ERROR_COLOR))
             return
 
         # When the fading animation is finished, set the error icon
@@ -1713,18 +1784,18 @@ def main(args):
             # used on AgeOnDateGramplet
             return ValidationError(_("'%s' is not a valid date value"))
         
-    win = gtk.Window()
+    win = Gtk.Window()
     win.set_title('ValidatableMaskedEntry test window')
-    win.set_position(gtk.WIN_POS_CENTER)
+    win.set_position(Gtk.WindowPosition.CENTER)
     def cb(window, event):
-        gtk.main_quit()
+        Gtk.main_quit()
     win.connect('delete-event', cb)
 
-    vbox = gtk.VBox()
+    vbox = Gtk.VBox()
     win.add(vbox)
     
-    label = gtk.Label('Pre-filled entry validated against the given list:')
-    vbox.pack_start(label)
+    label = Gtk.Label(label='Pre-filled entry validated against the given list:')
+    vbox.pack_start(label, True, True, 0)
     
     widget1 = ValidatableMaskedEntry(str)
     widget1.set_completion_mode(inline=True, popup=False)
@@ -1732,20 +1803,20 @@ def main(args):
     #widget1.set_default_error_msg(widget1)
     widget1.prefill(('Birth', 'Death', 'Conseption'))
     #widget1.set_exact_completion(True)
-    vbox.pack_start(widget1, fill=False)
+    vbox.pack_start(widget1, True, False, 0)
     
-    label = gtk.Label('Mandatory masked entry validated against user function:')
-    vbox.pack_start(label)
+    label = Gtk.Label(label='Mandatory masked entry validated against user function:')
+    vbox.pack_start(label, True, True, 0)
     
     #widget2 = ValidatableMaskedEntry(str, "#e0e0e0", error_icon=None)
     widget2 = ValidatableMaskedEntry()
     widget2.set_mask('00/00/0000')
     widget2.connect('validate', on_validate)
     widget2.mandatory = True
-    vbox.pack_start(widget2, fill=False)
+    vbox.pack_start(widget2, True, False, 0)
     
     win.show_all()
-    gtk.main()
+    Gtk.main()
 
 if __name__ == '__main__':
     import sys

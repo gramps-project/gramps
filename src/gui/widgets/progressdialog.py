@@ -39,7 +39,7 @@ log = logging.getLogger("gen.progressdialog")
 # GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -404,7 +404,7 @@ class ProgressMonitor(object):
 # _GtkProgressBar
 #
 #-------------------------------------------------------------------------
-class _GtkProgressBar(gtk.VBox):
+class _GtkProgressBar(Gtk.VBox):
     """This widget displays the progress bar and labels for a progress
     indicator. It provides an interface to updating the progress bar.
     """
@@ -413,27 +413,27 @@ class _GtkProgressBar(gtk.VBox):
         """:param long_op_status: the status of the operation.
            :type long_op_status: L{gen.utils.LongOpStatus}
         """
-        gtk.VBox.__init__(self)
+        GObject.GObject.__init__(self)
         
         msg = long_op_status.get_msg()
         self._old_val = -1
-        self._lbl = gtk.Label(msg)
+        self._lbl = Gtk.Label(label=msg)
         self._lbl.set_use_markup(True)
         #self.set_border_width(24)
         
-        self._pbar = gtk.ProgressBar()
-        self._hbox = gtk.HBox()
+        self._pbar = Gtk.ProgressBar()
+        self._hbox = Gtk.HBox()
         
         # Only display the cancel button is the operation
         # can be canceled.
         if long_op_status.can_cancel():
-            self._cancel = gtk.Button(stock=gtk.STOCK_CANCEL)
+            self._cancel = Gtk.Button(stock=Gtk.STOCK_CANCEL)
             self._cancel.connect("clicked", 
                                  lambda x: long_op_status.cancel())
             self._cancel.show()
             self._hbox.pack_end(self._cancel)
         
-        self._hbox.pack_start(self._pbar)
+        self._hbox.pack_start(self._pbar, True, True, 0)
         
         self.pack_start(self._lbl, expand=False, fill=False)
         self.pack_start(self._hbox, expand=False, fill=False)
@@ -474,7 +474,7 @@ class _GtkProgressBar(gtk.VBox):
 # GtkProgressDialog
 #
 #-------------------------------------------------------------------------
-class GtkProgressDialog(gtk.Dialog):
+class GtkProgressDialog(Gtk.Dialog):
     """A gtk window to display the status of a long running
     process."""
     
@@ -482,11 +482,10 @@ class GtkProgressDialog(gtk.Dialog):
         """:param title: The title to display on the top of the window.
            :type title: string
         """
-        gtk.Dialog.__init__(self, *window_params)
+        GObject.GObject.__init__(self, *window_params)
         self.connect('delete_event', self._warn)
-        self.set_has_separator(False)
         self.set_title(title)
-        #self.set_resize_mode(gtk.RESIZE_IMMEDIATE)
+        #self.set_resize_mode(Gtk.RESIZE_IMMEDIATE)
         #self.show()
         
         self._progress_bars = []
@@ -536,19 +535,19 @@ class GtkProgressDialog(gtk.Dialog):
         self._process_events()
             
     def _process_events(self):
-        while gtk.events_pending():
-            gtk.main_iteration()
+        while Gtk.events_pending():
+            Gtk.main_iteration()
 
     def show(self):
         """Show the dialog and process any events.
         """
-        gtk.Dialog.show(self)
+        Gtk.Dialog.show(self)
         self._process_events()
         
     def hide(self):
         """Hide the dialog and process any events.
         """
-        gtk.Dialog.hide(self)
+        Gtk.Dialog.hide(self)
         self._process_events()
         
     def _warn(self, x, y):
@@ -598,12 +597,12 @@ if __name__ == '__main__':
         if not s.was_cancelled():
             s.end()
     
-    w = gtk.Window(gtk.WINDOW_TOPLEVEL)
-    w.connect('destroy', gtk.main_quit)
-    button = gtk.Button("Test")
+    w = Gtk.Window(Gtk.WindowType.TOPLEVEL)
+    w.connect('destroy', Gtk.main_quit)
+    button = Gtk.Button("Test")
     button.connect("clicked", test, None)
     w.add(button)
     button.show()
     w.show()
-    gtk.main()
+    Gtk.main()
     print 'done'

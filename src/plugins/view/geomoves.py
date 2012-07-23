@@ -32,8 +32,8 @@ Geography for one person and all his descendant
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
 import operator
-import gtk
-import gobject
+from gi.repository import Gtk
+from gi.repository import GObject
 import time
 import threading
 from math import *
@@ -368,7 +368,7 @@ class GeoMoves(GeoGraphyView):
             merge_list = self.sort
             for the_event in sort1 :
                 if the_event not in merge_list:
-	            merge_list.append(the_event)
+                    merge_list.append(the_event)
             self.sort = sorted(merge_list, key=operator.itemgetter(6))
 
     def _add_person_to_list(self, person_id, level):
@@ -469,8 +469,8 @@ class GeoMoves(GeoGraphyView):
             if not person:
                 return
         self.message_layer.add_message(_("All descendance for %s" % _nd.display(person)))
-        color = gtk.gdk.color_parse(self._config.get('geography.color_base'))
-        gobject.timeout_add(int(self._config.get("geography.generation_interval")),
+        color = Gdk.color_parse(self._config.get('geography.color_base'))
+        GObject.timeout_add(int(self._config.get("geography.generation_interval")),
                          self.animate_moves, 0, person, color)
 
     def animate_moves(self, index, person, color):
@@ -521,9 +521,9 @@ class GeoMoves(GeoGraphyView):
                 new_list.append([level, plxp, birth, death])
             pidx = 0;
             try:
-                color = gtk.gdk.color_parse(color)
+                color = Gdk.color_parse(color)
             except:
-                # We have already a gdk.color
+                # We have already a Gdk.color
                 pass
             for (level, plxp, birth, death) in sorted(new_list, key=operator.itemgetter(0,2)):
                 if index == int(self._config.get("geography.maximum_generations")):
@@ -541,7 +541,7 @@ class GeoMoves(GeoGraphyView):
                 time_to_wait = int(self._config.get("geography.generation_interval"))
                 self._create_markers()
                 # process next generation in a few milliseconds
-                gobject.timeout_add(time_to_wait, self.animate_moves,
+                GObject.timeout_add(time_to_wait, self.animate_moves,
                                                   index+1, person, str(color))
             else:
                 self.started = False
@@ -551,7 +551,7 @@ class GeoMoves(GeoGraphyView):
         """
         Create the menu for the selected marker
         """
-        menu = gtk.Menu()
+        menu = Gtk.Menu()
         menu.set_title("descendance")
         events = []
         message = ""
@@ -589,25 +589,25 @@ class GeoMoves(GeoGraphyView):
                     descr = _('No description')
                 message = "(%s) %s => %s" % ( date, mark[11], descr)
             prevmark = mark
-            add_item = gtk.MenuItem(message)
+            add_item = Gtk.MenuItem(label=message)
             add_item.show()
             menu.append(add_item)
-            itemoption = gtk.Menu()
+            itemoption = Gtk.Menu()
             itemoption.set_title(message)
             itemoption.show()
             add_item.set_submenu(itemoption)
-            modify = gtk.MenuItem(_("Edit Event"))
+            modify = Gtk.MenuItem(label=_("Edit Event"))
             modify.show()
             modify.connect("activate", self.edit_event,
                            event, lat, lon, prevmark)
             itemoption.append(modify)
-            center = gtk.MenuItem(_("Center on this place"))
+            center = Gtk.MenuItem(label=_("Center on this place"))
             center.show()
             center.connect("activate", self.center_here,
                            event, lat, lon, prevmark)
             itemoption.append(center)
             menu.show()
-            menu.popup(None, None, None, 0, event.time)
+            menu.popup(None, None, None, None, 0, event.time)
         return 1
 
     def add_specific_menu(self, menu, event, lat, lon): 
@@ -628,7 +628,7 @@ class GeoMoves(GeoGraphyView):
         Add specific entry to the preference menu.
         Must be done in the associated view.
         """
-        table = gtk.Table(2, 2)
+        table = Gtk.Table(2, 2)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)

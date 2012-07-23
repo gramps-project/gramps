@@ -35,7 +35,7 @@ import locale
 # GNOME/GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -53,7 +53,7 @@ from gui.views.treemodels.flatbasemodel import FlatBaseModel
 #-------------------------------------------------------------------------
 class MediaModel(FlatBaseModel):
 
-    def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None,
+    def __init__(self, db, scol=0, order=Gtk.SortType.ASCENDING, search=None,
                  skip=set(), sort_map=None):
         self.gen_cursor = db.get_media_cursor
         self.map = db.get_raw_object_data
@@ -103,7 +103,7 @@ class MediaModel(FlatBaseModel):
         """
         return 8
 
-    def on_get_n_columns(self):
+    def do_get_n_columns(self):
         return len(self.fmap)+1
 
     def column_description(self,data):
@@ -165,7 +165,7 @@ class MediaModel(FlatBaseModel):
         """
         Return the tag color.
         """
-        tag_color = None
+        tag_color = "#000000000000"
         tag_priority = None
         for handle in data[10]:
             tag = self.db.get_tag_from_handle(handle)

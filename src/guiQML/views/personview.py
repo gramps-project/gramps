@@ -55,7 +55,7 @@ from PySide import QtOpenGL
 #
 #-------------------------------------------------------------------------
 from gen.const import ROOT_DIR
-from gui.views.treemodels import conv_unicode_tosrtkey_ongtk
+from gui.views.treemodels import conv_unicode_tosrtkey
 from gen.ggettext import gettext as _
 from gen.display.name import displayer as name_displayer
 from gen.lib import Name
@@ -124,14 +124,14 @@ class QMLPersonListModel(QtCore.QAbstractListModel):
         Return the (sort_key, handle) list of all data that can maximally 
         be shown. 
         This list is sorted ascending, via localized string sort. 
-        conv_unicode_tosrtkey_ongtk which uses strxfrm, which is apparently 
+        conv_unicode_tosrtkey which uses strxfrm, which is apparently 
         broken in Win ?? --> they should fix base lib, we need strxfrm, fix it 
         in the Utils module.
         """
         # use cursor as a context manager
         with self.gen_cursor() as cursor:   
             #loop over database and store the sort field, and the handle
-            return sorted((map(conv_unicode_tosrtkey_ongtk,
+            return sorted((map(conv_unicode_tosrtkey,
                            self.sort_func(data)), key) for key, data in cursor)
 
     def sort_name(self, data):

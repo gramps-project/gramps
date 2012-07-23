@@ -37,8 +37,8 @@ _LOG = logging.getLogger(".widgets.shortlistcomboentry")
 # GTK modules
 #
 #-------------------------------------------------------------------------
-import gobject
-import gtk
+from gi.repository import GObject
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -53,11 +53,11 @@ from gui.widgets.validatedcomboentry import ValidatedComboEntry
 #
 #-------------------------------------------------------------------------
 _GTYPE = {
-    str: gobject.TYPE_STRING,
-    unicode: gobject.TYPE_STRING,
-    int: gobject.TYPE_INT,
-    long: gobject.TYPE_INT64,
-    float: gobject.TYPE_FLOAT,
+    str: GObject.TYPE_STRING,
+    unicode: GObject.TYPE_STRING,
+    int: GObject.TYPE_INT,
+    long: GObject.TYPE_INT64,
+    float: GObject.TYPE_FLOAT,
 }
 
 (COLUMN_ITEM,
@@ -78,10 +78,10 @@ class ShortlistComboEntry(ValidatedComboEntry):
             raise ValueError
         
         data_type = items[0].__class__
-        gtype = _GTYPE.get(data_type, gobject.TYPE_PYOBJECT)
+        gtype = _GTYPE.get(data_type, GObject.TYPE_PYOBJECT)
         
         # create the model and insert the items
-        model = gtk.ListStore(gtype, gobject.TYPE_BOOLEAN)
+        model = Gtk.ListStore(gtype, GObject.TYPE_BOOLEAN)
         maxlen = -1
         for item in items:
             if len(str(item)) > maxlen:
@@ -99,7 +99,7 @@ class ShortlistComboEntry(ValidatedComboEntry):
             self._shortlist = []
             self.connect("changed", self._on_combobox_changed)
             
-        self.set_row_separator_func(self._is_row_separator)
+        self.set_row_separator_func(self._is_row_separator, None)
             
     def _on_combobox_changed(self, combobox):
         if self._internal_change:
@@ -127,5 +127,5 @@ class ShortlistComboEntry(ValidatedComboEntry):
             for data in self._shortlist:
                 model.prepend((data, False))
 
-    def _is_row_separator(self, model, iter):
+    def _is_row_separator(self, model, iter, data=None):
         return model.get_value(iter, COLUMN_IS_SEP)

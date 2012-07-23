@@ -26,7 +26,7 @@
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -68,9 +68,9 @@ class RefTab(GrampsTab):
         @type widge: gtk widget
         """
         GrampsTab.__init__(self, dbstate, uistate, track, name)
-        eventbox = gtk.EventBox()
+        eventbox = Gtk.EventBox()
         eventbox.add(widget)
-        self.pack_start(eventbox)
+        self.pack_start(eventbox, True, True, 0)
         self._set_label(show_image=False)
         widget.connect('key_press_event', self.key_pressed)
         self.show_all()
@@ -158,7 +158,7 @@ class EditReference(ManagedWindow, DbGUIElement):
 
     def _add_tab(self, notebook,page):
         self.__tabs.append(page)
-        notebook.insert_page(page, page.get_tab_widget())
+        notebook.insert_page(page, page.get_tab_widget(), -1)
         page.label.set_use_underline(True)
         return page
 

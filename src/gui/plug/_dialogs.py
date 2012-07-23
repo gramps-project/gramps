@@ -26,7 +26,7 @@
 # GTK libraries
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -88,7 +88,7 @@ class PluginDialog(ManagedWindow):
         self.state = state
         self.uistate = uistate
         
-        self.dialog = gtk.Builder()
+        self.dialog = Gtk.Builder()
         self.dialog.add_from_file(PLUGINS_GLADE)
         self.dialog.connect_signals({
             "on_report_apply_clicked" : self.on_apply_clicked,
@@ -102,10 +102,10 @@ class PluginDialog(ManagedWindow):
 
         self.set_window(window, self.title, msg )
 
-        self.store = gtk.TreeStore(str)
+        self.store = Gtk.TreeStore(str)
         self.selection = self.tree.get_selection()
         self.selection.connect('changed', self.on_node_selected)
-        col = gtk.TreeViewColumn('', gtk.CellRendererText(), text=0)
+        col = Gtk.TreeViewColumn('', Gtk.CellRendererText(), text=0)
         self.tree.append_column(col)
         self.tree.set_model(self.store)
         

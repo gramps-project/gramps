@@ -34,11 +34,12 @@ import locale
 # GTK classes
 #
 #-------------------------------------------------------------------------
-import gtk
-import gobject
-import pango
-_TAB = gtk.gdk.keyval_from_name("Tab")
-_ENTER = gtk.gdk.keyval_from_name("Enter")
+from gi.repository import Gtk
+from gi.repository import Gdk
+from gi.repository import GObject
+from gi.repository import Pango
+_TAB = Gdk.keyval_from_name("Tab")
+_ENTER = Gdk.keyval_from_name("Enter")
 
 #-------------------------------------------------------------------------
 #
@@ -97,7 +98,7 @@ class SurnameTab(EmbeddedList):
         # Need to add attributes to renderers
         # and connect renderers to the 'edited' signal
         for colno in range(len(self.columns)):
-            for renderer in self.columns[colno].get_cell_renderers():
+            for renderer in self.columns[colno].get_cells():
                 renderer.set_property('editable', not self.dbstate.db.readonly)
                 renderer.connect('editing_started', self.on_edit_start, colno)
                 renderer.connect('edited', self.on_edit_inline, self.column_order()[colno][1])
@@ -106,11 +107,11 @@ class SurnameTab(EmbeddedList):
         # combobox for type
         colno = len(self.columns)
         name = self._column_combo[0]
-        renderer = gtk.CellRendererCombo()
-        renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
+        renderer = Gtk.CellRendererCombo()
+        renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
         # set up the comboentry editable
         no = NameOriginType()
-        self.cmborig = gtk.ListStore(gobject.TYPE_INT, gobject.TYPE_STRING)
+        self.cmborig = Gtk.ListStore(GObject.TYPE_INT, GObject.TYPE_STRING)
         self.cmborigmap = no.get_map().copy()
         keys = sorted(self.cmborigmap, self.by_value)
         for key in keys:
@@ -128,7 +129,7 @@ class SurnameTab(EmbeddedList):
         renderer.connect('editing_started', self.on_edit_start_cmb, colno)
         renderer.connect('edited', self.on_orig_edited, self._column_combo[3])
         # add to treeview
-        column = gtk.TreeViewColumn(name, renderer, text=self._column_combo[3])
+        column = Gtk.TreeViewColumn(name, renderer, text=self._column_combo[3])
         column.set_resizable(True)
         column.set_sort_column_id(self._column_combo[1])
         column.set_min_width(self._column_combo[2])
@@ -138,14 +139,14 @@ class SurnameTab(EmbeddedList):
         # toggle box for primary
         colno += 1
         name = self._column_toggle[0]
-        renderer = gtk.CellRendererToggle()
+        renderer = Gtk.CellRendererToggle()
         renderer.set_property('activatable', True)
         renderer.set_property('radio', True)
         renderer.connect( 'toggled', self.on_prim_toggled, self._column_toggle[3])
         # add to treeview
-        column = gtk.TreeViewColumn(name, renderer, active=self._column_toggle[3])
+        column = Gtk.TreeViewColumn(name, renderer, active=self._column_toggle[3])
         column.set_resizable(False)
-        column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+        column.set_sizing(Gtk.TreeViewColumnSizing.FIXED)
         column.set_alignment(0.5)
         column.set_sort_column_id(self._column_toggle[1])
         column.set_min_width(self._column_toggle[2])
@@ -175,14 +176,14 @@ class SurnameTab(EmbeddedList):
         for idx in range(len(self.model)):
             node = self.model.get_iter(idx)
             surn = self.model.get_value(node, 5)
-            surn.set_prefix(unicode(self.model.get_value(node, 0)))
-            surn.set_surname(unicode(self.model.get_value(node, 1)))
-            surn.set_connector(unicode(self.model.get_value(node, 2)))
-            surn.get_origintype().set(unicode(self.model.get_value(node, 3)))
+            surn.set_prefix(unicode(self.model.get_value(node, 0), 'UTF-8'))
+            surn.set_surname(unicode(self.model.get_value(node, 1), 'UTF-8'))
+            surn.set_connector(unicode(self.model.get_value(node, 2), 'UTF-8'))
+            surn.get_origintype().set(unicode(self.model.get_value(node, 3), 'UTF-8'))
             surn.set_primary(self.model.get_value(node, 4))
             new_list += [surn]
         return new_list
-        
+
     def update(self):
         """
         Store the present data in the model to the name object
@@ -202,7 +203,7 @@ class SurnameTab(EmbeddedList):
         prim = False
         if len(self.obj.get_surname_list()) == 0:
             prim = True
-        node = self.model.append(row=['', '', '', NameOriginType(), prim, 
+        node = self.model.append(row=['', '', '', str(NameOriginType()), prim, 
                                       Surname()])
         self.selection.select_iter(node)
         path = self.model.get_path(node)
@@ -238,11 +239,11 @@ class SurnameTab(EmbeddedList):
         """
         self.on_edit_start(cellr, celle, path, colnr)
         #set up autocomplete
-        completion = gtk.EntryCompletion()
+        completion = Gtk.EntryCompletion()
         completion.set_model(self.cmborig)
         completion.set_minimum_key_length(1)
         completion.set_text_column(1)
-        celle.child.set_completion(completion)
+        celle.get_child().set_completion(completion)
         #
         celle.connect('changed', self.on_origcmb_change, path, colnr)
 
@@ -321,12 +322,12 @@ class SurnameTab(EmbeddedList):
         Here we make sure tab moves to next or previous value in row on TAB
         """
         if not EmbeddedList.key_pressed(self, obj, event):
-            if event.type == gtk.gdk.KEY_PRESS and event.keyval in (_TAB,):
-                if not (event.state & (gtk.gdk.SHIFT_MASK |
-                                       gtk.gdk.CONTROL_MASK)):
+            if event.type == Gdk.EventType.KEY_PRESS and event.keyval in (_TAB,):
+                if not (event.get_state() & (Gdk.ModifierType.SHIFT_MASK |
+                                       Gdk.ModifierType.CONTROL_MASK)):
                     return self.next_cell()
-                elif (event.state & (gtk.gdk.SHIFT_MASK |
-                                     gtk.gdk.CONTROL_MASK)):
+                elif (event.get_state() & (Gdk.ModifierType.SHIFT_MASK |
+                                     Gdk.ModifierType.CONTROL_MASK)):
                     return self.prev_cell()
                 else:
                     return
@@ -340,17 +341,17 @@ class SurnameTab(EmbeddedList):
         """           
         (model, node) = self.selection.get_selected()
         if node:
-            path = int(self.model.get_path(node)[0])
+            path = self.model.get_path(node).get_indices()[0]
             nccol = self.curr_col+1
             if  nccol < 4:
-                self.tree.set_cursor_on_cell(path,
+                self.tree.set_cursor_on_cell(Gtk.TreePath((path,)),
                                          focus_column=self.columns[nccol],
                                          focus_cell=None,
                                          start_editing=True)
             elif nccol == 4:
                 #go to next line if there is one
                 if path < len(self.obj.get_surname_list()):
-                    newpath = (path+1,)
+                    newpath = Gtk.TreePath((path+1,))
                     self.selection.select_path(newpath)
                     self.tree.set_cursor_on_cell(newpath,
                                      focus_column=self.columns[0],
@@ -369,16 +370,16 @@ class SurnameTab(EmbeddedList):
         """     
         (model, node) = self.selection.get_selected()
         if node:
-            path = int(self.model.get_path(node)[0])
+            path = self.model.get_path(node).get_indices()[0]
             if  self.curr_col > 0:
-                self.tree.set_cursor_on_cell(path,
+                self.tree.set_cursor_on_cell(Gtk.TreePath((path,)),
                                          focus_column=self.columns[self.curr_col-1],
                                          focus_cell=None,
                                          start_editing=True)
             elif self.curr_col == 0:
                 #go to prev line if there is one
                 if path > 0:
-                    newpath = (path-1,)
+                    newpath = Gtk.TreePath((path-1,))
                     self.selection.select_path(newpath)
                     self.tree.set_cursor_on_cell(newpath,
                                      focus_column=self.columns[-2],

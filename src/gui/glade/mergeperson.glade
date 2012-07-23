@@ -6,7 +6,6 @@
     <property name="modal">True</property>
     <property name="default_width">700</property>
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox1">
         <property name="visible">True</property>

@@ -45,8 +45,8 @@ log = logging.getLogger(".filtereditor")
 # GTK/GNOME 
 #
 #-------------------------------------------------------------------------
-import gtk
-import gobject
+from gi.repository import Gtk
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -118,10 +118,10 @@ def by_rule_name(f, s):
 # MyBoolean - check button with standard interface
 #
 #-------------------------------------------------------------------------
-class MyBoolean(gtk.CheckButton):
+class MyBoolean(Gtk.CheckButton):
 
     def __init__(self, label=None):
-        gtk.CheckButton.__init__(self, label)
+        GObject.GObject.__init__(self, label)
         self.show()
 
     def get_text(self):
@@ -148,11 +148,11 @@ class MyBoolean(gtk.CheckButton):
 # MyInteger - spin button with standard interface
 #
 #-------------------------------------------------------------------------
-class MyInteger(gtk.SpinButton):
+class MyInteger(Gtk.SpinButton):
 
     def __init__(self, min, max):
-        gtk.SpinButton.__init__(self)
-        self.set_adjustment(gtk.Adjustment(min, min, max, 1))
+        GObject.GObject.__init__(self)
+        self.set_adjustment(Gtk.Adjustment(min, min, max, 1))
         self.show()
 
     def get_text(self):
@@ -166,7 +166,7 @@ class MyInteger(gtk.SpinButton):
 # MyFilters - Combo box with list of filters with a standard interface
 #
 #-------------------------------------------------------------------------
-class MyFilters(gtk.ComboBox):
+class MyFilters(Gtk.ComboBox):
     """
     Class to present a combobox of selectable filters.
     """
@@ -178,10 +178,10 @@ class MyFilters(gtk.ComboBox):
         If filter_name is given, it will be excluded from the dropdown box.
         
         """
-        gtk.ComboBox.__init__(self)
-        store = gtk.ListStore(gobject.TYPE_STRING)
+        GObject.GObject.__init__(self)
+        store = Gtk.ListStore(GObject.TYPE_STRING)
         self.set_model(store)
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         self.pack_start(cell, True)
         self.add_attribute(cell, 'text', 0)
         #remove own name from the list if given.
@@ -209,13 +209,13 @@ class MyFilters(gtk.ComboBox):
 # MyList - Combo box to allow entries
 #
 #-------------------------------------------------------------------------
-class MyList(gtk.ComboBox):
+class MyList(Gtk.ComboBox):
  
     def __init__(self, clist, clist_trans, default=0):
-        gtk.ComboBox.__init__(self)
-        store = gtk.ListStore(gobject.TYPE_STRING)
+        GObject.GObject.__init__(self)
+        store = Gtk.ListStore(GObject.TYPE_STRING)
         self.set_model(store)
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         self.pack_start(cell, True)
         self.add_attribute(cell, 'text', 0)
         self.clist = clist
@@ -237,13 +237,13 @@ class MyList(gtk.ComboBox):
 # MyLesserEqualGreater - Combo box to allow selection of "<", "=", or ">"
 #
 #-------------------------------------------------------------------------
-class MyLesserEqualGreater(gtk.ComboBox):
+class MyLesserEqualGreater(Gtk.ComboBox):
 
     def __init__(self, default=0):
-        gtk.ComboBox.__init__(self)
-        store = gtk.ListStore(gobject.TYPE_STRING)
+        GObject.GObject.__init__(self)
+        store = Gtk.ListStore(GObject.TYPE_STRING)
         self.set_model(store)
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         self.pack_start(cell, True)
         self.add_attribute(cell, 'text', 0)
         self.clist = ['lesser than', 'equal to', 'greater than']
@@ -271,10 +271,10 @@ class MyLesserEqualGreater(gtk.ComboBox):
 #            a standard interface
 #
 #-------------------------------------------------------------------------
-class MyPlaces(gtk.Entry):
+class MyPlaces(Gtk.Entry):
     
     def __init__(self, places):
-        gtk.Entry.__init__(self)
+        GObject.GObject.__init__(self)
         
         fill_entry(self, places)
         self.show()
@@ -284,7 +284,7 @@ class MyPlaces(gtk.Entry):
 # MyID - Person/GRAMPS ID selection box with a standard interface
 #
 #-------------------------------------------------------------------------
-class MyID(gtk.HBox):
+class MyID(Gtk.HBox):
     _invalid_id_txt = _('Not a valid ID')
     _empty_id_txt  = _invalid_id_txt
 
@@ -301,20 +301,20 @@ class MyID(gtk.HBox):
         }
     
     def __init__(self, dbstate, uistate, track, namespace='Person'):
-        gtk.HBox.__init__(self, False, 6)
+        GObject.GObject.__init__(self, False, 6)
         self.dbstate = dbstate
         self.db = dbstate.db
         self.uistate = uistate
         self.track = track
         
         self.namespace = namespace
-        self.entry = gtk.Entry()
+        self.entry = Gtk.Entry()
         self.entry.show()
-        self.button = gtk.Button()
+        self.button = Gtk.Button()
         self.button.set_label(_('Select...'))
         self.button.connect('clicked', self.button_press)
         self.button.show()
-        self.pack_start(self.entry)
+        self.pack_start(self.entry, True, True, 0)
         self.add(self.button)
         self.button.set_tooltip_text(_('Select %s from a list')
                               % self.obj_name[namespace])
@@ -394,10 +394,11 @@ class MySource(MyID):
 # MySelect
 #
 #-------------------------------------------------------------------------
-class MySelect(gtk.ComboBoxEntry):
+class MySelect(Gtk.ComboBox):
     
     def __init__(self, type_class):
-        gtk.ComboBoxEntry.__init__(self)
+        #we need to inherit and have an combobox with an entry
+        Gtk.Combobox.__init__(self, has_entry=True)
         self.type_class = type_class
         self.sel = StandardCustomSelector(type_class._I2SMAP, self,
                                           type_class._CUSTOM,
@@ -417,10 +418,10 @@ class MySelect(gtk.ComboBoxEntry):
 # MyEntry
 #
 #-------------------------------------------------------------------------
-class MyEntry(gtk.Entry):
+class MyEntry(Gtk.Entry):
     
     def __init__(self):
-        gtk.Entry.__init__(self)
+        GObject.GObject.__init__(self)
         self.show()
         
 #-------------------------------------------------------------------------
@@ -451,7 +452,7 @@ class EditRule(ManagedWindow):
         self.rname = self.get_widget('ruletree')
         self.rule_name = self.get_widget('rulename')
 
-        self.notebook = gtk.Notebook()
+        self.notebook = Gtk.Notebook()
         self.notebook.set_show_tabs(0)
         self.notebook.set_show_border(0)
         self.notebook.show()
@@ -486,24 +487,24 @@ class EditRule(ManagedWindow):
             tlist = []
             self.page.append((class_obj, vallist, tlist))
             pos = 0
-            l2 = gtk.Label(class_obj.name)
+            l2 = Gtk.Label(label=class_obj.name)
             l2.set_alignment(0, 0.5)
             l2.show()
-            c = gtk.TreeView()
+            c = Gtk.TreeView()
             c.set_data('d', pos)
             c.show()
             the_map[class_obj] = c
             # Only add a table with parameters if there are any parameters
             if arglist:
-                table = gtk.Table(3, len(arglist))
+                table = Gtk.Table(3, len(arglist))
             else:
-                table = gtk.Table(1, 1)
+                table = Gtk.Table(1, 1)
             table.set_border_width(6)
             table.set_col_spacings(6)
             table.set_row_spacings(6)
             table.show()
             for v in arglist:
-                l = gtk.Label(v)
+                l = Gtk.Label(label=v)
                 l.set_alignment(1, 0.5)
                 l.show()
                 if v == _('Place:'):
@@ -556,21 +557,21 @@ class EditRule(ManagedWindow):
                 else:                    
                     t = MyEntry()
                 tlist.append(t)
-                table.attach(l, 1, 2, pos, pos+1, gtk.FILL, 0, 5, 5)
-                table.attach(t, 2, 3, pos, pos+1, gtk.EXPAND|gtk.FILL, 0, 5, 5)
+                table.attach(l, 1, 2, pos, pos+1, Gtk.AttachOptions.FILL, 0, 5, 5)
+                table.attach(t, 2, 3, pos, pos+1, Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL, 0, 5, 5)
                 pos += 1
             # put the table into a scrollable area:
-            scrolled_win = gtk.ScrolledWindow()
+            scrolled_win = Gtk.ScrolledWindow()
             scrolled_win.add_with_viewport(table)
-            scrolled_win.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+            scrolled_win.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
             scrolled_win.show()
-            self.notebook.append_page(scrolled_win, gtk.Label(class_obj.name))
+            self.notebook.append_page(scrolled_win, Gtk.Label(label=class_obj.name))
             self.class2page[class_obj] = self.page_num
             self.page_num = self.page_num + 1
         self.page_num = 0
-        self.store = gtk.TreeStore(gobject.TYPE_STRING, gobject.TYPE_PYOBJECT)
+        self.store = Gtk.TreeStore(GObject.TYPE_STRING, GObject.TYPE_PYOBJECT)
         self.selection = self.rname.get_selection()
-        col = gtk.TreeViewColumn(_('Rule Name'), gtk.CellRendererText(), 
+        col = Gtk.TreeViewColumn(_('Rule Name'), Gtk.CellRendererText(), 
                                  text=0)
         self.rname.append_column(col)
         self.rname.set_model(self.store)
@@ -641,11 +642,11 @@ class EditRule(ManagedWindow):
         self.selection.select_iter(iter)
 
     def _button_press(self, obj, event):
-        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             return self.expand_collapse()
 
     def _key_press(self, obj, event):
-        if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
+        if event.keyval in (Gdk.KEY_Return, Gdk.KEY_KP_Enter):
             return self.expand_collapse()
         return False    
     
@@ -887,16 +888,16 @@ class ShowResults(ManagedWindow):
             self.get_widget('test_title'),
             _('Filter Test'))
 
-        render = gtk.CellRendererText()
+        render = Gtk.CellRendererText()
         
         tree = self.get_widget('list')
-        model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
+        model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING)
         tree.set_model(model)
 
-        column_n = gtk.TreeViewColumn(_('Name'), render, text=0)
+        column_n = Gtk.TreeViewColumn(_('Name'), render, text=0)
         tree.append_column(column_n)
 
-        column_n = gtk.TreeViewColumn(_('ID'), render, text=1)
+        column_n = Gtk.TreeViewColumn(_('ID'), render, text=1)
         tree.append_column(column_n)
 
         self.get_widget('test_close').connect('clicked', self.close)

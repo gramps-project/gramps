@@ -25,7 +25,7 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 import re
 
 #-------------------------------------------------------------------------
@@ -76,7 +76,7 @@ class EditLink(ManagedWindow):
                         self.top.get_object("title"),
                         _('Link Editor'))
         self.table = self.top.get_object('table27')
-        self.uri_list = gtk.combo_box_new_text()
+        self.uri_list = Gtk.ComboBoxText()
         for text in [_("Internet Address"),       # 0 this order range above
                      _("Event"),      # 1 
                      _("Family"),     # 2 

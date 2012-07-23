@@ -29,7 +29,7 @@ Package providing filtering framework for GRAMPS.
 # GTK
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -44,10 +44,10 @@ from gen.filters import CustomFilters
 # FilterStore
 #
 #-------------------------------------------------------------------------
-class FilterStore(gtk.ListStore):
+class FilterStore(Gtk.ListStore):
 
     def __init__(self, local_filters=[], namespace="generic", default=""):
-        gtk.ListStore.__init__(self, str)
+        GObject.GObject.__init__(self, str)
         self.list_map = []
         self.def_index = 0
 

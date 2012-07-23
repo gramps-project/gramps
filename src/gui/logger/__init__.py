@@ -60,7 +60,7 @@ Usage:
         except:
             l.error(log_message,exc_info=True)
 
-        gtk.main()
+        Gtk.main()
 
 """
 

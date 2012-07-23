@@ -44,7 +44,7 @@ import tempfile
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.utils.file import get_unicode_path_from_env_var
+from gen.utils.file import get_unicode_path_from_env_va
 
 #-------------------------------------------------------------------------
 #
@@ -67,9 +67,9 @@ def resize_to_jpeg(source, destination, width, height, crop=None):
     :param crop: cropping coordinates
     :type crop: array of integers ([start_x, start_y, end_x, end_y])
     """
-    import gtk
+    from gi.repository import GdkPixbuf
 
-    img = gtk.gdk.pixbuf_new_from_file(source)
+    img = GdkPixbuf.Pixbuf.new_from_file(source)
 
     if crop:
         # Gramps cropping coorinates are [0, 100], so we need to convert to pixels
@@ -84,7 +84,7 @@ def resize_to_jpeg(source, destination, width, height, crop=None):
     # if the dimensions aren't close in size
     (width, height) = image_actual_size(width, height, img.get_width(), img.get_height())
 
-    scaled = img.scale_simple(int(width), int(height), gtk.gdk.INTERP_BILINEAR)
+    scaled = img.scale_simple(int(width), int(height), GdkPixbuf.InterpType.BILINEAR)
     scaled.save(destination, 'jpeg')
 
 #-------------------------------------------------------------------------
@@ -137,13 +137,13 @@ def image_size(source):
     :rtype: tuple(int, int)
     :returns: a tuple consisting of the width and height
     """
-    import gtk
-    import gobject
+    from gi.repository import GdkPixbuf
+    from gi.repository import GObject
     try:
-        img = gtk.gdk.pixbuf_new_from_file(source)
+        img = GdkPixbuf.Pixbuf.new_from_file(source)
         width = img.get_width()
         height = img.get_height()
-    except gobject.GError:
+    except GObject.GError:
         width = 0
         height = 0
     return (width, height)
@@ -199,8 +199,8 @@ def resize_to_buffer(source, size, crop=None):
     :rtype: buffer of data 
     :returns: raw data
     """
-    import gtk
-    img = gtk.gdk.pixbuf_new_from_file(source)
+    from gi.repository import GdkPixbuf
+    img = GdkPixbuf.Pixbuf.new_from_file(source)
 
     if crop:
         # Gramps cropping coorinates are [0, 100], so we need to convert to pixels
@@ -215,7 +215,7 @@ def resize_to_buffer(source, size, crop=None):
     # if the dimensions aren't close in size
     (size[0], size[1]) = image_actual_size(size[0], size[1], img.get_width(), img.get_height())
 
-    scaled = img.scale_simple(int(size[0]), int(size[1]), gtk.gdk.INTERP_BILINEAR)
+    scaled = img.scale_simple(int(size[0]), int(size[1]), GdkPixbuf.InterpType.BILINEAR)
 
     return scaled
 
@@ -238,9 +238,9 @@ def resize_to_jpeg_buffer(source, size, crop=None):
     :rtype: buffer of data 
     :returns: jpeg image as raw data
     """
-    import gtk
+    from gi.repository import GdkPixbuf
     filed, dest = tempfile.mkstemp()
-    img = gtk.gdk.pixbuf_new_from_file(source)
+    img = GdkPixbuf.Pixbuf.new_from_file(source)
 
     if crop:
         # Gramps cropping coorinates are [0, 100], so we need to convert to pixels
@@ -255,7 +255,7 @@ def resize_to_jpeg_buffer(source, size, crop=None):
     # if the dimensions aren't close in size
     (size[0], size[1]) = image_actual_size(size[0], size[1], img.get_width(), img.get_height())
 
-    scaled = img.scale_simple(int(size[0]), int(size[1]), gtk.gdk.INTERP_BILINEAR)
+    scaled = img.scale_simple(int(size[0]), int(size[1]), GdkPixbuf.InterpType.BILINEAR)
     os.close(filed)
     dest = get_unicode_path_from_env_var(dest)
     scaled.save(dest, 'jpeg')

@@ -37,7 +37,9 @@ _LOG = logging.getLogger(".widgets.expandcollapsearrow")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import GObject
+from gi.repository import Gtk
+from gi.repository import Gdk
 from gen.constfunc import has_display
 
 #-------------------------------------------------------------------------
@@ -46,7 +48,7 @@ from gen.constfunc import has_display
 #
 #-------------------------------------------------------------------------
 if has_display():
-    HAND_CURSOR = gtk.gdk.Cursor(gtk.gdk.HAND2)
+    HAND_CURSOR = Gdk.Cursor.new(Gdk.CursorType.HAND2)
 
 #-------------------------------------------------------------------------
 #
@@ -54,14 +56,14 @@ if has_display():
 #
 #-------------------------------------------------------------------------
 def realize_cb(widget):
-    widget.window.set_cursor(HAND_CURSOR)
+    widget.get_root_window().set_cursor(HAND_CURSOR)
 
 #-------------------------------------------------------------------------
 #
 # ExpandCollapseArrow class
 #
 #-------------------------------------------------------------------------
-class ExpandCollapseArrow(gtk.EventBox):
+class ExpandCollapseArrow(Gtk.EventBox):
     """
         Arrow to be used for expand/collapse of sections.
         Note: shadow does not work, we indicate action with realize_cb
@@ -77,12 +79,12 @@ class ExpandCollapseArrow(gtk.EventBox):
         @type onbuttonpress:  callback
         @param pair: user param for onbuttonpress function
         """
-        gtk.EventBox.__init__(self)
+        GObject.GObject.__init__(self)
         if collapsed :
-            self.arrow = gtk.Arrow(gtk.ARROW_RIGHT, gtk.SHADOW_OUT)
+            self.arrow = Gtk.Arrow(Gtk.ArrowType.RIGHT, Gtk.ShadowType.OUT)
             self.set_tooltip_text(_("Expand this section"))
         else:
-            self.arrow = gtk.Arrow(gtk.ARROW_DOWN, gtk.SHADOW_OUT)
+            self.arrow = Gtk.Arrow(Gtk.ArrowType.DOWN, Gtk.ShadowType.OUT)
             self.set_tooltip_text(_("Collapse this section"))
         self.add(self.arrow)
         self.connect('button-press-event', onbuttonpress, pair)

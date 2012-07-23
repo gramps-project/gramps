@@ -38,8 +38,8 @@ from xml.sax.saxutils import escape
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
-import gobject
+from gi.repository import Gtk
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -94,12 +94,11 @@ class DisplayNameEditor(ManagedWindow):
         self.dialog = dialog
         self.dbstate = dbstate
         self.set_window(
-            gtk.Dialog(_('Display Name Editor'), 
-                       flags=gtk.DIALOG_NO_SEPARATOR, 
-                       buttons=(gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)), 
+            Gtk.Dialog(_('Display Name Editor'),
+                       buttons=(Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE)), 
             None, _('Display Name Editor'), None)
         table = self.dialog._build_custom_name_ui()
-        label = gtk.Label(_("""The following keywords are replaced with the appropriate name parts:
+        label = Gtk.Label(label=_("""The following keywords are replaced with the appropriate name parts:
 <tt>  
   <b>Given</b>      - given name (first name) <b>Surname</b>      - surnames (with prefix and connectors)
   <b>Title</b>      - title (Dr., Mrs.)       <b>Suffix</b>       - suffix (Jr., Sr.)
@@ -120,8 +119,8 @@ UPPERCASE keyword forces uppercase. Extra parentheses, commas are removed. Other
      <i>Underhills</i> family nick name, <i>Jose</i> callname.
 """))
         label.set_use_markup(True)
-        self.window.vbox.pack_start(label, expand=False)        
-        self.window.vbox.pack_start(table)
+        self.window.vbox.pack_start(label, False, True, 0)        
+        self.window.vbox.pack_start(table, True, True, 0)
         self.window.set_default_size(600, 550)
         self.window.connect('response', self.close)
         self.show()
@@ -154,7 +153,7 @@ class ConfigureDialog(ManagedWindow):
         :param uistate: a DisplayState instance
         :param dbstate: a DbState instance
         :param configure_page_funcs: a list of function that return a tuple
-            (str, gtk.Widget). The string is used as label for the 
+            (str, Gtk.Widget). The string is used as label for the 
             configuration page, and the widget as the content of the 
             configuration page
         :param configobj: the unique object that is configured, it must be 
@@ -171,10 +170,10 @@ class ConfigureDialog(ManagedWindow):
         self.__config = configmanager
         ManagedWindow.__init__(self, uistate, [], configobj)
         self.set_window(
-            gtk.Dialog(dialogtitle, flags=gtk.DIALOG_NO_SEPARATOR, 
-                       buttons=(gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)), 
+            Gtk.Dialog(dialogtitle, 
+                       buttons=(Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE)), 
                        None, dialogtitle, None)
-        self.panel = gtk.Notebook()
+        self.panel = Gtk.Notebook()
         self.panel.set_scrollable(True)
         self.window.vbox.add(self.panel)
         self.__on_close = on_close
@@ -263,7 +262,7 @@ class ConfigureDialog(ManagedWindow):
                      config=None, extra_callback=None):
         if not config:
             config = self.__config
-        checkbox = gtk.CheckButton(label)
+        checkbox = Gtk.CheckButton(label)
         checkbox.set_active(config.get(constant))
         checkbox.connect('toggled', self.update_checkbox, constant, config)
         if extra_callback:
@@ -274,7 +273,7 @@ class ConfigureDialog(ManagedWindow):
                      config=None):
         if not config:
             config = self.__config
-        radiobox = gtk.RadioButton(group,label)
+        radiobox = Gtk.RadioButton(group,label)
         if config.get(constant) == True:
             radiobox.set_active(True)
         radiobox.connect('toggled', self.update_radiobox, constant)
@@ -284,7 +283,7 @@ class ConfigureDialog(ManagedWindow):
     def add_text(self, table, label, index, config=None):
         if not config:
             config = self.__config
-        text = gtk.Label()
+        text = Gtk.Label()
         text.set_line_wrap(True)
         text.set_alignment(0.,0.)
         text.set_text(label)
@@ -300,20 +299,20 @@ class ConfigureDialog(ManagedWindow):
         if not config:
             config = self.__config
         lwidget = BasicLabel("%s: " %label)
-        hbox = gtk.HBox()
+        hbox = Gtk.HBox()
         if path:
             entry.set_text(path)
         entry.connect('changed', callback_label)
-        btn = gtk.Button()
+        btn = Gtk.Button()
         btn.connect('clicked', callback_sel)
-        image = gtk.Image()
-        image.set_from_stock(gtk.STOCK_OPEN, gtk.ICON_SIZE_BUTTON)
+        image = Gtk.Image()
+        image.set_from_stock(Gtk.STOCK_OPEN, Gtk.IconSize.BUTTON)
         image.show()
         btn.add(image)
-        hbox.pack_start(entry, expand=True, fill=True)
-        hbox.pack_start(btn, expand=False, fill=False)
+        hbox.pack_start(entry, True, True, 0)
+        hbox.pack_start(btn, False, False, 0)
         table.attach(lwidget, 1, 2, index, index+1, yoptions=0, 
-                     xoptions=gtk.FILL)
+                     xoptions=Gtk.AttachOptions.FILL)
         table.attach(hbox, 2, 3, index, index+1, yoptions=0)
 
     def add_entry(self, table, label, index, constant, callback=None,
@@ -323,11 +322,11 @@ class ConfigureDialog(ManagedWindow):
         if not callback:
             callback = self.update_entry
         lwidget = BasicLabel("%s: " % label)
-        entry = gtk.Entry()
+        entry = Gtk.Entry()
         entry.set_text(config.get(constant))
         entry.connect('changed', callback, constant)
         table.attach(lwidget, 0, 1, index, index+1, yoptions=0, 
-                     xoptions=gtk.FILL)
+                     xoptions=Gtk.AttachOptions.FILL)
         table.attach(entry, 1, 2, index, index+1, yoptions=0)
 
     def add_pos_int_entry(self, table, label, index, constant, callback=None,
@@ -337,12 +336,12 @@ class ConfigureDialog(ManagedWindow):
         if not config:
             config = self.__config
         lwidget = BasicLabel("%s: " % label)
-        entry = gtk.Entry()
+        entry = Gtk.Entry()
         entry.set_text(str(config.get(constant)))
         if callback:
             entry.connect('changed', callback, constant)
         table.attach(lwidget, col_attach, col_attach+1, index, index+1,
-                     yoptions=0, xoptions=gtk.FILL)
+                     yoptions=0, xoptions=Gtk.AttachOptions.FILL)
         table.attach(entry, col_attach+1, col_attach+2, index, index+1, 
                      yoptions=0)
 
@@ -351,12 +350,12 @@ class ConfigureDialog(ManagedWindow):
             config = self.__config
         lwidget = BasicLabel("%s: " % label)
         hexval = config.get(constant)
-        color = gtk.gdk.color_parse(hexval)
-        entry = gtk.ColorButton(color=color)
+        color = Gdk.color_parse(hexval)
+        entry = Gtk.ColorButton(color=color)
         color_hex_label = BasicLabel(hexval)
         entry.connect('color-set', self.update_color, constant, color_hex_label)
         table.attach(lwidget, 0, 1, index, index+1, yoptions=0, 
-                     xoptions=gtk.FILL)
+                     xoptions=Gtk.AttachOptions.FILL)
         table.attach(entry, 1, 2, index, index+1, yoptions=0, xoptions=0)
         table.attach(color_hex_label, 2, 3, index, index+1, yoptions=0)
         return entry
@@ -373,17 +372,17 @@ class ConfigureDialog(ManagedWindow):
         if not callback:
             callback = self.update_combo
         lwidget = BasicLabel("%s: " % label)
-        store = gtk.ListStore(int, str)
+        store = Gtk.ListStore(int, str)
         for item in opts:
             store.append(item)
-        combo = gtk.ComboBox(store)
-        cell = gtk.CellRendererText()
+        combo = Gtk.ComboBox(store)
+        cell = Gtk.CellRendererText()
         combo.pack_start(cell, True)
         combo.add_attribute(cell, 'text', 1)  
         combo.set_active(config.get(constant))
         combo.connect('changed', callback, constant)
         table.attach(lwidget, 1, 2, index, index+1, yoptions=0, 
-                     xoptions=gtk.FILL)
+                     xoptions=Gtk.AttachOptions.FILL)
         table.attach(combo, 2, 3, index, index+1, yoptions=0)
         return combo
 
@@ -398,14 +397,14 @@ class ConfigureDialog(ManagedWindow):
         if not callback:
             callback = self.update_slider
         lwidget = BasicLabel("%s: " % label)
-        adj = gtk.Adjustment(config.get(constant), range[0], range[1], 1, 0, 0)
-        slider = gtk.HScale(adj)
-        slider.set_update_policy(gtk.UPDATE_DISCONTINUOUS)
+        adj = Gtk.Adjustment(config.get(constant), range[0], range[1], 1, 0, 0)
+        slider = Gtk.HScale(adj)
+        slider.set_update_policy(Gtk.UPDATE_DISCONTINUOUS)
         slider.set_digits(0)
-        slider.set_value_pos(gtk.POS_BOTTOM)
+        slider.set_value_pos(Gtk.PositionType.BOTTOM)
         slider.connect('value-changed', callback, constant)
         table.attach(lwidget, 1, 2, index, index+1, yoptions=0, 
-                     xoptions=gtk.FILL)
+                     xoptions=Gtk.AttachOptions.FILL)
         table.attach(slider, 2, 3, index, index+1, yoptions=0)
         return slider
 
@@ -420,11 +419,11 @@ class ConfigureDialog(ManagedWindow):
         if not callback:
             callback = self.update_spinner
         lwidget = BasicLabel("%s: " % label)
-        adj = gtk.Adjustment(config.get(constant), range[0], range[1], 1, 0, 0)
-        spinner = gtk.SpinButton(adj)
+        adj = Gtk.Adjustment(config.get(constant), range[0], range[1], 1, 0, 0)
+        spinner = Gtk.SpinButton(adjustment=adj, climb_rate=0.0, digits=0)
         spinner.connect('value-changed', callback, constant)
         table.attach(lwidget, 1, 2, index, index+1, yoptions=0, 
-                     xoptions=gtk.FILL)
+                     xoptions=Gtk.AttachOptions.FILL)
         table.attach(spinner, 2, 3, index, index+1, yoptions=0)
         return spinner
 
@@ -451,7 +450,7 @@ class GrampsPreferences(ConfigureDialog):
                                  on_close=update_constants)
 
     def add_researcher_panel(self, configdialog):
-        table = gtk.Table(3, 8)
+        table = Gtk.Table(3, 8)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -470,7 +469,7 @@ class GrampsPreferences(ConfigureDialog):
         """
         Add the ID prefix tab to the preferences.
         """
-        table = gtk.Table(3, 8)
+        table = Gtk.Table(3, 8)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -495,7 +494,7 @@ class GrampsPreferences(ConfigureDialog):
         return _('ID Formats'), table
 
     def add_advanced_panel(self, configdialog):
-        table = gtk.Table(4, 8)
+        table = Gtk.Table(4, 8)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -522,10 +521,10 @@ class GrampsPreferences(ConfigureDialog):
         """
         Create a common model for ComboBox and TreeView
         """
-        name_format_model = gtk.ListStore(gobject.TYPE_INT, 
-                                          gobject.TYPE_STRING, 
-                                          gobject.TYPE_STRING, 
-                                          gobject.TYPE_STRING)
+        name_format_model = Gtk.ListStore(GObject.TYPE_INT, 
+                                          GObject.TYPE_STRING, 
+                                          GObject.TYPE_STRING, 
+                                          GObject.TYPE_STRING)
         index = 0
         the_index = 0
         for num, name, fmt_str, act in _nd.get_name_format():
@@ -713,15 +712,15 @@ class GrampsPreferences(ConfigureDialog):
         UI to manage the custom name formats
         """
 
-        table = gtk.Table(2, 3)
+        table = Gtk.Table(2, 3)
         table.set_border_width(6)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
 
         # make a treeview for listing all the name formats
-        format_tree = gtk.TreeView(self.fmt_model)
-        name_renderer = gtk.CellRendererText()
-        name_column = gtk.TreeViewColumn(_('Format'), 
+        format_tree = Gtk.TreeView(self.fmt_model)
+        name_renderer = Gtk.CellRendererText()
+        name_column = Gtk.TreeViewColumn(_('Format'), 
                                          name_renderer, 
                                          text=COL_NAME)
         name_renderer.set_property('editable', False)
@@ -730,8 +729,8 @@ class GrampsPreferences(ConfigureDialog):
         name_renderer.connect('editing-canceled', self.__cancel_change)
         self.name_renderer = name_renderer
         format_tree.append_column(name_column)
-        example_renderer = gtk.CellRendererText()
-        example_column = gtk.TreeViewColumn(_('Example'), 
+        example_renderer = Gtk.CellRendererText()
+        example_column = Gtk.TreeViewColumn(_('Example'), 
                                             example_renderer, 
                                             text=COL_EXPL)
         format_tree.append_column(example_column)
@@ -740,24 +739,24 @@ class GrampsPreferences(ConfigureDialog):
         format_tree.set_rules_hint(True)
 
         # ... and put it into a scrolled win
-        format_sw = gtk.ScrolledWindow()
-        format_sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        format_sw = Gtk.ScrolledWindow()
+        format_sw.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         format_sw.add(format_tree)
-        format_sw.set_shadow_type(gtk.SHADOW_IN)
-        table.attach(format_sw, 0, 3, 0, 1, yoptions=gtk.FILL|gtk.EXPAND)
+        format_sw.set_shadow_type(Gtk.ShadowType.IN)
+        table.attach(format_sw, 0, 3, 0, 1, yoptions=Gtk.AttachOptions.FILL|Gtk.AttachOptions.EXPAND)
 
         # to hold the values of the selected row of the tree and the iter
         self.selected_fmt = ()
         self.iter = None
 
-        self.insert_button = gtk.Button(stock=gtk.STOCK_ADD)
+        self.insert_button = Gtk.Button(stock=Gtk.STOCK_ADD)
         self.insert_button.connect('clicked', self.__new_name)
 
-        self.edit_button = gtk.Button(stock=gtk.STOCK_EDIT)
+        self.edit_button = Gtk.Button(stock=Gtk.STOCK_EDIT)
         self.edit_button.connect('clicked', self.__edit_name)
         self.edit_button.set_sensitive(False)
 
-        self.remove_button = gtk.Button(stock=gtk.STOCK_REMOVE)
+        self.remove_button = Gtk.Button(stock=Gtk.STOCK_REMOVE)
         self.remove_button.connect('clicked', self.cb_del_fmt_str)
         self.remove_button.set_sensitive(False)
         
@@ -832,7 +831,7 @@ class GrampsPreferences(ConfigureDialog):
 
     def add_formats_panel(self, configdialog):
         row = 0
-        table = gtk.Table(4, 4)
+        table = Gtk.Table(4, 4)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -863,8 +862,8 @@ class GrampsPreferences(ConfigureDialog):
         active = _nd.get_default_format()
         self.fmt_model, active = self._build_name_format_model(active)
         # set up the combo to choose the preset format
-        self.fmt_obox = gtk.ComboBox()
-        cell = gtk.CellRendererText()
+        self.fmt_obox = Gtk.ComboBox()
+        cell = Gtk.CellRendererText()
         self.fmt_obox.pack_start(cell, True)
         self.fmt_obox.add_attribute(cell, 'text', 1)
         self.fmt_obox.set_model(self.fmt_model)
@@ -875,11 +874,11 @@ class GrampsPreferences(ConfigureDialog):
         lwidget = BasicLabel("%s: " % _('Name format'))
         lwidget.set_use_underline(True)
         lwidget.set_mnemonic_widget(self.fmt_obox)
-        hbox = gtk.HBox()
-        btn = gtk.Button("%s..." % _('Edit') )
+        hbox = Gtk.HBox()
+        btn = Gtk.Button("%s..." % _('Edit') )
         btn.connect('clicked', self.cb_name_dialog)
-        hbox.pack_start(self.fmt_obox, expand=True, fill=True)
-        hbox.pack_start(btn, expand=False, fill=False)
+        hbox.pack_start(self.fmt_obox, True, True, 0)
+        hbox.pack_start(btn, False, False, 0)
         table.attach(lwidget, 0, 1, row, row+1, yoptions=0)
         table.attach(hbox,    1, 3, row, row+1, yoptions=0)
         row += 1
@@ -892,7 +891,7 @@ class GrampsPreferences(ConfigureDialog):
         row += 1
 
         # Date format:
-        obox = gtk.combo_box_new_text()
+        obox = Gtk.ComboBoxText()
         formats = gen.datehandler.get_date_formats()
         map(obox.append_text, formats)
         active = config.get('preferences.date-format')
@@ -907,7 +906,7 @@ class GrampsPreferences(ConfigureDialog):
         
         # Age precision:
         # precision=1 for "year", 2: "year, month" or 3: "year, month, days"
-        obox = gtk.combo_box_new_text()
+        obox = Gtk.ComboBoxText()
         age_precision = [_("Years"),
                          _("Years, Months"),
                          _("Years, Months, Days")]
@@ -928,7 +927,7 @@ class GrampsPreferences(ConfigureDialog):
         row += 1
         
         # Calendar format on report:
-        obox = gtk.combo_box_new_text()
+        obox = Gtk.ComboBoxText()
         map(obox.append_text, gen.lib.Date.ui_calendar_names)
         active = config.get('preferences.calendar-format-report')
         if active >= len(formats):
@@ -941,7 +940,7 @@ class GrampsPreferences(ConfigureDialog):
         row += 1
 
         # Surname guessing:
-        obox = gtk.combo_box_new_text()
+        obox = Gtk.ComboBoxText()
         formats = _surname_styles
         map(obox.append_text, formats)
         obox.set_active(config.get('behavior.surname-guessing'))
@@ -954,7 +953,7 @@ class GrampsPreferences(ConfigureDialog):
         row += 1
         
         # Default Family Relationship
-        obox = gtk.combo_box_new_text()
+        obox = Gtk.ComboBoxText()
         formats = gen.lib.FamilyRelType().get_standard_names()
         map(obox.append_text, formats)
         obox.set_active(config.get('preferences.family-relation-type'))
@@ -974,7 +973,7 @@ class GrampsPreferences(ConfigureDialog):
         row += 1
 
         # Status bar:
-        obox = gtk.combo_box_new_text()
+        obox = Gtk.ComboBoxText()
         formats = [_("Active person's name and ID"), 
                    _("Relationship to home person")]
         map(obox.append_text, formats)
@@ -999,7 +998,7 @@ class GrampsPreferences(ConfigureDialog):
 
     def add_text_panel(self, configdialog):
         row = 0
-        table = gtk.Table(6, 8)
+        table = Gtk.Table(6, 8)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -1057,7 +1056,7 @@ class GrampsPreferences(ConfigureDialog):
         config.set('preferences.calendar-format-report', obj.get_active())
     
     def add_date_panel(self, configdialog):
-        table = gtk.Table(2, 7)
+        table = Gtk.Table(2, 7)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -1090,7 +1089,7 @@ class GrampsPreferences(ConfigureDialog):
         return _('Dates'), table
         
     def add_behavior_panel(self, configdialog):
-        table = gtk.Table(3, 6)
+        table = Gtk.Table(3, 6)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -1110,14 +1109,14 @@ class GrampsPreferences(ConfigureDialog):
         self.add_spinner(table, 
                 _('Max generations for relationships'),
                 4, 'behavior.generation-depth', (5, 50), self.update_gendepth)
-        self.path_entry = gtk.Entry()
+        self.path_entry = Gtk.Entry()
         self.add_path_box(table, 
                 _('Base path for relative media paths'),
                 5, self.path_entry, self.dbstate.db.get_mediapath(),
                 self.set_mediapath, self.select_mediapath)
 
         # Check for updates:
-        obox = gtk.combo_box_new_text()
+        obox = Gtk.ComboBoxText()
         formats = [_("Never"), 
                    _("Once a month"), 
                    _("Once a week"), 
@@ -1131,7 +1130,7 @@ class GrampsPreferences(ConfigureDialog):
         table.attach(lwidget, 1, 2, 6, 7, yoptions=0)
         table.attach(obox,    2, 3, 6, 7, yoptions=0)
 
-        self.whattype_box = gtk.combo_box_new_text()
+        self.whattype_box = Gtk.ComboBoxText()
         formats = [_("Updated addons only"), 
                    _("New addons only"), 
                    _("New and updated addons"),]
@@ -1148,13 +1147,13 @@ class GrampsPreferences(ConfigureDialog):
         table.attach(lwidget, 1, 2, 7, 8, yoptions=0)
         table.attach(self.whattype_box, 2, 3, 7, 8, yoptions=0)
 
-        checkbutton = gtk.CheckButton(
+        checkbutton = Gtk.CheckButton(
             _("Do not ask about previously notified addons"))
         checkbutton.set_active(config.get('behavior.do-not-show-previously-seen-updates'))
         checkbutton.connect("toggled", self.toggle_hide_previous_addons)
 
         table.attach(checkbutton, 0, 3, 8, 9, yoptions=0)
-        button = gtk.Button(_("Check now"))
+        button = Gtk.Button(_("Check now"))
         button.connect("clicked", lambda obj: \
                   self.uistate.viewmanager.check_for_updates(force=True))
         table.attach(button, 3, 4, 8, 9, yoptions=0)
@@ -1162,7 +1161,7 @@ class GrampsPreferences(ConfigureDialog):
         return _('General'), table
 
     def add_famtree_panel(self, configdialog):
-        table = gtk.Table(2, 2)
+        table = Gtk.Table(2, 2)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -1183,20 +1182,20 @@ class GrampsPreferences(ConfigureDialog):
             self.dbstate.db.set_mediapath(None)
 
     def select_mediapath(self, *obj):
-        f = gtk.FileChooserDialog(
+        f = Gtk.FileChooserDialog(
             _("Select media directory"),
-            action=gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
-            buttons=(gtk.STOCK_CANCEL,
-                     gtk.RESPONSE_CANCEL,
-                     gtk.STOCK_APPLY,
-                     gtk.RESPONSE_OK))
+            action=Gtk.FileChooserAction.SELECT_FOLDER,
+            buttons=(Gtk.STOCK_CANCEL,
+                     Gtk.ResponseType.CANCEL,
+                     Gtk.STOCK_APPLY,
+                     Gtk.ResponseType.OK))
         mpath = self.dbstate.db.get_mediapath()
         if not mpath:
             mpath = HOME_DIR
         f.set_current_folder(os.path.dirname(mpath))
 
         status = f.run()
-        if status == gtk.RESPONSE_OK:
+        if status == Gtk.ResponseType.OK:
             val = get_unicode_path_from_file_chooser(f.get_filename())
             if val:
                 self.path_entry.set_text(val)
@@ -1246,9 +1245,9 @@ class GrampsPreferences(ConfigureDialog):
 
     # FIXME: is this needed?
     def _set_button(self, stock):
-        button = gtk.Button()
-        image = gtk.Image()
-        image.set_from_stock(stock, gtk.ICON_SIZE_BUTTON)
+        button = Gtk.Button()
+        image = Gtk.Image()
+        image.set_from_stock(stock, Gtk.IconSize.BUTTON)
         image.show()
         button.add(image)
         button.show()

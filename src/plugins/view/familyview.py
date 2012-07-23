@@ -38,7 +38,7 @@ _LOG = logging.getLogger(".plugins.eventview")
 # GNOME/GTK+ modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -122,8 +122,8 @@ class FamilyView(ListView):
             markup=FamilyView.MARKUP_COLS)
 
         self.func_list.update({
-            '<CONTROL>J' : self.jump,
-            '<CONTROL>BackSpace' : self.key_delete,
+            '<PRIMARY>J' : self.jump,
+            '<PRIMARY>BackSpace' : self.key_delete,
             })
 
         uistate.connect('nameformat-changed', self.build_tree)
@@ -205,11 +205,11 @@ class FamilyView(ListView):
         self._add_action('FilterEdit', None, _('Family Filter Editor'),
                         callback=self.filter_editor,)
                         
-        self.all_action = gtk.ActionGroup(self.title + "/FamilyAll")
+        self.all_action = Gtk.ActionGroup(self.title + "/FamilyAll")
         self.all_action.add_actions([
-                ('MakeFatherActive', gtk.STOCK_APPLY, _("Make Father Active Person"), 
+                ('MakeFatherActive', Gtk.STOCK_APPLY, _("Make Father Active Person"), 
                  None, None, self._make_father_active),
-                ('MakeMotherActive', gtk.STOCK_APPLY, _("Make Mother Active Person"), 
+                ('MakeMotherActive', Gtk.STOCK_APPLY, _("Make Mother Active Person"), 
                  None, None, self._make_mother_active),
                 ('QuickReport', None, _("Quick View"), None, None, None),
                 ('Dummy', None, '  ', None, None, self.dummy_report),

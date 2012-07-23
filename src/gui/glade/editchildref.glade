@@ -37,8 +37,15 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkComboBoxEntry" id="mrel">
+                  <object class="GtkComboBox" id="mrel">
                     <property name="visible">True</property>
+                        <property name="has_entry">True</property>
+                        <child internal-child="entry">
+                          <object class="GtkEntry" id="mrel-entry">
+                        <property name="can_focus">True</property>
+                        <property name="overwrite_mode">True</property>
+                          </object>
+                        </child>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>

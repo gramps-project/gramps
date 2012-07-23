@@ -28,7 +28,7 @@ gtk textbuffer with undo functionality
 
 __all__ = ["UndoableStyledBuffer"]
 
-import gtk
+from gi.repository import Gtk
 
 from gen.lib.styledtext import StyledText
 from gui.widgets.undoablebuffer import UndoableInsert, UndoableDelete
@@ -40,7 +40,7 @@ class UndoableInsertStyled(UndoableInsert):
         #we obtain the buffer before the text has been inserted
         UndoableInsert.__init__(self, text_iter, text, length, text_buffer)
         self.tags = text_buffer.get_text(text_buffer.get_start_iter(), 
-                                         text_buffer.get_end_iter()).get_tags()
+                                text_buffer.get_end_iter(), True).get_tags()
         self.tagsafter = None
 
 class UndoableDeleteStyled(UndoableDelete):
@@ -48,7 +48,7 @@ class UndoableDeleteStyled(UndoableDelete):
         #we obtain the buffer before the text has been deleted
         UndoableDelete.__init__(self, text_buffer, start_iter, end_iter)
         self.tags = text_buffer.get_text(text_buffer.get_start_iter(), 
-                                         text_buffer.get_end_iter()).get_tags()
+                                text_buffer.get_end_iter(), True).get_tags()
 
 class UndoableApplyStyle():
     """a style has been applied to our textbuffer"""
@@ -57,7 +57,7 @@ class UndoableApplyStyle():
         
         self.mergeable = False
         self.tags = text_buffer.get_text(text_buffer.get_start_iter(), 
-                                         text_buffer.get_end_iter()).get_tags()
+                                text_buffer.get_end_iter(), True).get_tags()
         #
         self.tags_after = None
         self.offset_after = None
@@ -100,7 +100,7 @@ class UndoableStyledBuffer(StyledTextBuffer):
                         UndoableApplyStyle):
             return
         self.undo_stack[-1].set_after(buffer.get_text(buffer.get_start_iter(), 
-                                            buffer.get_end_iter()).get_tags(),
+                    buffer.get_end_iter(), True).get_tags(),
                     buffer.get_iter_at_mark(buffer.get_insert()).get_offset())
 
     def _undo_insert(self, undo_action):
@@ -110,8 +110,8 @@ class UndoableStyledBuffer(StyledTextBuffer):
         )
         self.delete(start, stop)
         #the text is correct again, now we create correct styled text
-        s_text = StyledText(gtk.TextBuffer.get_text(self, 
-            self.get_start_iter(), self.get_end_iter()), undo_action.tags)
+        s_text = StyledText(Gtk.TextBuffer.get_text(self, 
+            self.get_start_iter(), self.get_end_iter(), True), undo_action.tags)
         self.set_text(s_text)
         self.place_cursor(self.get_iter_at_offset(undo_action.offset))
 
@@ -119,8 +119,8 @@ class UndoableStyledBuffer(StyledTextBuffer):
         start = self.get_iter_at_offset(undo_action.start)
         self.insert(start, undo_action.text)
         #the text is correct again, now we create correct styled text
-        s_text = StyledText(gtk.TextBuffer.get_text(self, 
-            self.get_start_iter(), self.get_end_iter()), undo_action.tags)
+        s_text = StyledText(Gtk.TextBuffer.get_text(self, 
+            self.get_start_iter(), self.get_end_iter(), True), undo_action.tags)
         self.set_text(s_text)
         if undo_action.delete_key_used:
             self.place_cursor(self.get_iter_at_offset(undo_action.start))
@@ -128,8 +128,8 @@ class UndoableStyledBuffer(StyledTextBuffer):
             self.place_cursor(self.get_iter_at_offset(undo_action.end))
 
     def _redo_insert(self, redo_action):
-        s_text = StyledText(gtk.TextBuffer.get_text(self, 
-            self.get_start_iter(), self.get_end_iter()), redo_action.tags)
+        s_text = StyledText(Gtk.TextBuffer.get_text(self, 
+            self.get_start_iter(), self.get_end_iter(), True), redo_action.tags)
         self.set_text(s_text)
         start = self.get_iter_at_offset(redo_action.offset)
         self.insert(start, redo_action.text)
@@ -143,22 +143,22 @@ class UndoableStyledBuffer(StyledTextBuffer):
         stop = self.get_iter_at_offset(redo_action.end)
         self.delete(start, stop)
         #the text is correct again, now we create correct styled text
-        #s_text = StyledText(gtk.TextBuffer.get_text(self, 
-        #    self.get_start_iter(), self.get_end_iter()), redo_action.tags)
+        #s_text = StyledText(Gtk.TextBuffer.get_text(self, 
+        #    self.get_start_iter(), self.get_end_iter(), True), redo_action.tags)
         #self.set_text(s_text)
         self.place_cursor(self.get_iter_at_offset(redo_action.start))
     
     def _handle_undo(self, undo_action):
         """ undo of apply of style """
-        s_text = StyledText(gtk.TextBuffer.get_text(self, 
-            self.get_start_iter(), self.get_end_iter()), undo_action.tags)
+        s_text = StyledText(Gtk.TextBuffer.get_text(self, 
+            self.get_start_iter(), self.get_end_iter(), True), undo_action.tags)
         self.set_text(s_text)
         self.place_cursor(self.get_iter_at_offset(undo_action.offset))
 
     def _handle_redo(self, redo_action):
         """ redo of apply of style """
-        s_text = StyledText(gtk.TextBuffer.get_text(self, 
-                self.get_start_iter(), self.get_end_iter()), 
+        s_text = StyledText(Gtk.TextBuffer.get_text(self, 
+                self.get_start_iter(), self.get_end_iter(), True), 
             redo_action.tags_after)
         self.set_text(s_text)
         self.place_cursor(self.get_iter_at_offset(redo_action.offset_after))

@@ -3,8 +3,9 @@ in glade.
 
 Assuming you are in the root svn directory do:
 
-GLADE_CATALOG_PATH=src/gui/glade/catalog glade
+GLADE_CATALOG_SEARCH_PATH=src/gui/glade/catalog GLADE_MODULE_SEARCH_PATH=src/gui/glade/catalog/ glade
 
+However, this does no longer work for python modules (since 3.8), so the gramps widgets are not in the catalog at this moment.
 As project settings:
 
 *format: gtkbuilder

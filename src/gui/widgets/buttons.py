@@ -37,7 +37,9 @@ _LOG = logging.getLogger(".widgets.buttons")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import GObject
+from gi.repository import Gdk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -46,9 +48,9 @@ import gtk
 #-------------------------------------------------------------------------
 # STOCK_INFO was added only in Gtk 2.8
 try:
-    INFO_ICON = gtk.STOCK_INFO
+    INFO_ICON = Gtk.STOCK_INFO
 except AttributeError:
-    INFO_ICON = gtk.STOCK_DIALOG_INFO
+    INFO_ICON = Gtk.STOCK_DIALOG_INFO
 
     
 #-------------------------------------------------------------------------
@@ -56,16 +58,16 @@ except AttributeError:
 # IconButton class
 #
 #-------------------------------------------------------------------------
-class IconButton(gtk.Button):
+class IconButton(Gtk.Button):
 
-    def __init__(self, func, handle, icon=gtk.STOCK_EDIT, 
-                 size=gtk.ICON_SIZE_MENU):
-        gtk.Button.__init__(self)
-        image = gtk.Image()
+    def __init__(self, func, handle, icon=Gtk.STOCK_EDIT, 
+                 size=Gtk.IconSize.MENU):
+        GObject.GObject.__init__(self)
+        image = Gtk.Image()
         image.set_from_stock(icon, size)
         image.show()
         self.add(image)
-        self.set_relief(gtk.RELIEF_NONE)
+        self.set_relief(Gtk.ReliefStyle.NONE)
         self.show()
 
         if func:
@@ -76,23 +78,23 @@ class IconButton(gtk.Button):
 ##        """
 ##        Unset all elements that can prevent garbage collection
 ##        """
-##        gtk.Button.destroy(self)
+##        Gtk.Button.destroy(self)
 
 #-------------------------------------------------------------------------
 #
 # WarnButton class
 #
 #-------------------------------------------------------------------------
-class WarnButton(gtk.Button):
+class WarnButton(Gtk.Button):
     def __init__(self):
-        gtk.Button.__init__(self)
+        GObject.GObject.__init__(self)
 
-        image = gtk.Image()
-        image.set_from_stock(INFO_ICON, gtk.ICON_SIZE_MENU)
+        image = Gtk.Image()
+        image.set_from_stock(INFO_ICON, Gtk.IconSize.MENU)
         image.show()
         self.add(image)
 
-        self.set_relief(gtk.RELIEF_NONE)
+        self.set_relief(Gtk.ReliefStyle.NONE)
         self.show()
         self.func = None
         self.hide()
@@ -102,14 +104,14 @@ class WarnButton(gtk.Button):
 ##        Unset all elements that can prevent garbage collection
 ##        """
 ##        self.func = None
-##        gtk.Button.destroy(self)
+##        Gtk.Button.destroy(self)
 
     def on_clicked(self, func):
         self.connect('button-press-event', self._button_press)
         self.func = func
 
     def _button_press(self, obj, event):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
+        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 1:
             self.func(obj)
 
 #-------------------------------------------------------------------------
@@ -117,12 +119,12 @@ class WarnButton(gtk.Button):
 # SimpleButton class
 #
 #-------------------------------------------------------------------------
-class SimpleButton(gtk.Button):
+class SimpleButton(Gtk.Button):
 
     def __init__(self, image, func):
-        gtk.Button.__init__(self)
-        self.set_relief(gtk.RELIEF_NONE)
-        self.add(gtk.image_new_from_stock(image, gtk.ICON_SIZE_BUTTON))
+        GObject.GObject.__init__(self)
+        self.set_relief(Gtk.ReliefStyle.NONE)
+        self.add(Gtk.Image.new_from_stock(image, Gtk.IconSize.BUTTON))
         self.connect('clicked', func)
         self.show()
 
@@ -130,7 +132,7 @@ class SimpleButton(gtk.Button):
 ##        """
 ##        Unset all elements that can prevent garbage collection
 ##        """
-##        gtk.Button.destroy(self)
+##        Gtk.Button.destroy(self)
         
 #-------------------------------------------------------------------------
 #
@@ -163,18 +165,18 @@ class PrivacyButton(object):
         return self.button.get_active()
 
     def _on_toggle(self, obj):
-        child = obj.child
+        child = obj.get_child()
         if child:
             obj.remove(child)
-        image = gtk.Image()
+        image = Gtk.Image()
         if obj.get_active():
-#            image.set_from_icon_name('stock_lock', gtk.ICON_SIZE_MENU)
-            image.set_from_stock('gramps-lock', gtk.ICON_SIZE_MENU)
+#            image.set_from_icon_name('stock_lock', Gtk.IconSize.MENU)
+            image.set_from_stock('gramps-lock', Gtk.IconSize.MENU)
             obj.set_tooltip_text(_('Record is private'))
             self.obj.set_privacy(True)
         else:
-#            image.set_from_icon_name('stock_lock-open', gtk.ICON_SIZE_MENU)
-            image.set_from_stock('gramps-unlock', gtk.ICON_SIZE_MENU)
+#            image.set_from_icon_name('stock_lock-open', Gtk.IconSize.MENU)
+            image.set_from_stock('gramps-unlock', Gtk.IconSize.MENU)
             obj.set_tooltip_text(_('Record is public'))
             self.obj.set_privacy(False)
         image.show()

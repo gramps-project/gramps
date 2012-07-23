@@ -48,7 +48,9 @@ log = logging.getLogger(".ExportAssistant")
 # Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
+from gi.repository import GdkPixbuf
+
 #-------------------------------------------------------------------------
 #
 # gramps modules
@@ -79,7 +81,7 @@ _ExportAssistant_pages = {
             'summary'                : 5,
             }
 
-class ExportAssistant(gtk.Assistant, ManagedWindow) :
+class ExportAssistant(Gtk.Assistant, ManagedWindow) :
     """
     This class creates a GTK assistant to guide the user through the various
     Save as/Export options. 
@@ -109,10 +111,10 @@ class ExportAssistant(gtk.Assistant, ManagedWindow) :
         self.writestarted = False
         
         #set up Assistant
-        gtk.Assistant.__init__(self)
+        GObject.GObject.__init__(self)
         ##workaround around bug http://bugzilla.gnome.org/show_bug.cgi?id=56070
         self.forward_button = None
-        gtk.Assistant.forall(self, self.get_forward_button)
+        Gtk.Assistant.forall(self, self.get_forward_button)
         ## end
         
         #set up ManagedWindow
@@ -132,15 +134,14 @@ class ExportAssistant(gtk.Assistant, ManagedWindow) :
             self.person = self.dbstate.db.find_initial_person()
             
         try:
-            self.logo      = gtk.gdk.pixbuf_new_from_file(ICON)
+            self.logo      = GdkPixbuf.Pixbuf.new_from_file(ICON)
         except:
             self.logo = None
         try:
-            self.splash    = gtk.gdk.pixbuf_new_from_file(SPLASH)
+            self.splash    = GdkPixbuf.Pixbuf.new_from_file(SPLASH)
         except:
             self.splash = None
 
-            
         pmgr = GuiPluginManager.get_instance()
         self.__exporters = pmgr.get_export_plugins()
         self.map_exporters = {}
@@ -164,27 +165,27 @@ class ExportAssistant(gtk.Assistant, ManagedWindow) :
         ManagedWindow.show(self)
 
     def get_forward_button(self, arg):
-        if isinstance(arg, gtk.HBox):
+        if isinstance(arg, Gtk.HBox):
             arg.forall(self._forward_btn)
 
     def _forward_btn(self, arg):
-        if isinstance(arg, gtk.Button) and arg.get_label() == 'gtk-go-forward':
+        if isinstance(arg, Gtk.Button) and arg.get_label() == 'gtk-go-forward':
             self.forward_button = arg
 
     def get_cancel_button(self, arg):
-        if isinstance(arg, gtk.HBox):
+        if isinstance(arg, Gtk.HBox):
             arg.forall(self._cancel_btn)
 
     def _cancel_btn(self, arg):
-        if isinstance(arg, gtk.Button) and arg.get_label() == 'gtk-cancel':
+        if isinstance(arg, Gtk.Button) and arg.get_label() == 'gtk-cancel':
             self.cancel_button = arg
 
     def get_close_button(self, arg):
-        if isinstance(arg, gtk.HBox):
+        if isinstance(arg, Gtk.HBox):
             arg.forall(self._close_btn)
 
     def _close_btn(self, arg):
-        if isinstance(arg, gtk.Button) and arg.get_label() == 'gtk-close':
+        if isinstance(arg, Gtk.Button) and arg.get_label() == 'gtk-close':
             self.close_button = arg
 
     def build_menu_names(self, obj):
@@ -193,7 +194,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow) :
         
     def create_page_intro(self):
         """Create the introduction page."""
-        label = gtk.Label(self.get_intro_text())
+        label = Gtk.Label(label=self.get_intro_text())
         label.set_line_wrap(True)
         label.set_use_markup(True)
         
@@ -205,7 +206,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow) :
         self.set_page_side_image(page, self.splash)
         self.set_page_title(page, _('Saving your data'))
         self.set_page_complete(page, True)
-        self.set_page_type(page, gtk.ASSISTANT_PAGE_INTRO)
+        self.set_page_type(page, Gtk.AssistantPageType.INTRO)
     
     def create_page_exporttypes(self):
         """Create the export type page.
@@ -216,11 +217,11 @@ class ExportAssistant(gtk.Assistant, ManagedWindow) :
         """
         self.format_buttons = []
 
-        box = gtk.VBox()
+        box = Gtk.VBox()
         box.set_border_width(12)
         box.set_spacing(12)
 
-        table = gtk.Table(2*len(self.__exporters),2)
+        table = Gtk.Table(2*len(self.__exporters),2)
         table.set_row_spacings(6)
         table.set_col_spacings(6)
         
@@ -234,7 +235,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow) :
             title = exporter.get_name()
             description= exporter.get_description()
             self.map_exporters[ix] = exporter
-            button = gtk.RadioButton(group,title)
+            button = Gtk.RadioButton(group,title)
             button.set_tooltip_text(description)
             if not group:
                 group = button
@@ -254,12 +255,12 @@ class ExportAssistant(gtk.Assistant, ManagedWindow) :
         self.set_page_header_image(page, self.logo)
         self.set_page_title(page, _('Choose the output format'))
     
-        self.set_page_type(page, gtk.ASSISTANT_PAGE_CONTENT)
+        self.set_page_type(page, Gtk.AssistantPageType.CONTENT)
         
             
     def create_page_options(self):
         # as we do not know yet what to show, we create an empty page
-        page = gtk.VBox()
+        page = Gtk.VBox()
         page.set_border_width(12)
         page.set_spacing(12)
         
@@ -268,7 +269,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow) :
         self.append_page(page)
         self.set_page_header_image(page, self.logo)
         self.set_page_complete(page, False)
-        self.set_page_type(page, gtk.ASSISTANT_PAGE_CONTENT)
+        self.set_page_type(page, Gtk.AssistantPageType.CONTENT)
         
     def forward_func(self, pagenumber, data):
         """This function is called on forward press.
@@ -312,7 +313,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow) :
         self.set_page_complete(vbox, True)
         
     def create_page_fileselect(self):
-        self.chooser = gtk.FileChooserWidget(gtk.FILE_CHOOSER_ACTION_SAVE)
+        self.chooser = Gtk.FileChooserWidget(Gtk.FileChooserAction.SAVE)
         #add border
         self.chooser.set_border_width(12)
         #global files, ask before overwrite
@@ -339,7 +340,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow) :
         self.set_page_title(page, _('Select Save File'))
         #see if page can be set as complete :
         self.check_fileselect(page)
-        self.set_page_type(page, gtk.ASSISTANT_PAGE_CONTENT)
+        self.set_page_type(page, Gtk.AssistantPageType.CONTENT)
         
     def check_fileselect(self, filechooser, event=None, show=True):
         """Given a filechooser, determine if it can be marked complete in 
@@ -366,7 +367,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow) :
         
     def create_page_confirm(self):
         # Construct confirm page
-        label = gtk.Label()
+        label = Gtk.Label()
         label.set_line_wrap(True)
         label.set_use_markup(True)
         label.show()
@@ -375,25 +376,25 @@ class ExportAssistant(gtk.Assistant, ManagedWindow) :
         self.append_page(page)
         self.set_page_header_image(page, self.logo)
         self.set_page_title(page, _('Final confirmation'))
-        self.set_page_type(page, gtk.ASSISTANT_PAGE_CONFIRM)
+        self.set_page_type(page, Gtk.AssistantPageType.CONFIRM)
         self.set_page_complete(page, True)
            
     def create_page_summary(self):
         # Construct summary page
         # As this is the last page needs to be of page_type
-        # gtk.ASSISTANT_PAGE_CONFIRM or gtk.ASSISTANT_PAGE_SUMMARY
-        page = gtk.Alignment(xalign=0.5, yalign=0.5, xscale=0,
+        # Gtk.AssistantPageType.CONFIRM or Gtk.AssistantPageType.SUMMARY
+        page = Gtk.Alignment.new(xalign=0.5, yalign=0.5, xscale=0,
                            yscale=0)
-        vbox = gtk.VBox()
+        vbox = Gtk.VBox()
         vbox.set_border_width(12)
         vbox.set_spacing(6)
-        self.labelsum = gtk.Label(_("Please wait while your data is selected and exported"))
+        self.labelsum = Gtk.Label(label=_("Please wait while your data is selected and exported"))
         self.labelsum.set_line_wrap(True)
         self.labelsum.set_use_markup(True)
-        vbox.pack_start(self.labelsum, expand=True)
+        vbox.pack_start(self.labelsum, True, True, 0)
         
-        self.progressbar = gtk.ProgressBar()
-        vbox.pack_start(self.progressbar, expand=True)
+        self.progressbar = Gtk.ProgressBar()
+        vbox.pack_start(self.progressbar, True, True, 0)
         
         page.add(vbox)
         page.show_all()
@@ -403,7 +404,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow) :
         self.set_page_title(page, _('Summary'))
         self.set_page_side_image(page, self.splash)
         self.set_page_complete(page, False)
-        self.set_page_type(page, gtk.ASSISTANT_PAGE_SUMMARY)
+        self.set_page_type(page, Gtk.AssistantPageType.SUMMARY)
 
     def do_apply(self):
         pass
@@ -460,7 +461,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow) :
             # see if page is complete with above
             self.check_fileselect(page, show=True)
             
-        elif self.get_page_type(page) ==  gtk.ASSISTANT_PAGE_CONFIRM :
+        elif self.get_page_type(page) ==  Gtk.AssistantPageType.CONFIRM :
             # The confirm page with apply button
             # Present user with what will happen
             ix = self.get_selected_format_index()
@@ -510,7 +511,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow) :
                 confirm_text = self.option_box_instance.confirm_text
             page.set_label(confirm_text)
                 
-        elif self.get_page_type(page) ==  gtk.ASSISTANT_PAGE_SUMMARY :
+        elif self.get_page_type(page) ==  Gtk.AssistantPageType.SUMMARY :
             # The summary page
             # Lock page, show progress bar
             self.pre_save(page)
@@ -558,7 +559,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow) :
         
     def close(self, *obj) :
         #clean up ManagedWindow menu, then destroy window, bring forward parent
-        gtk.Assistant.destroy(self)
+        Gtk.Assistant.destroy(self)
         ManagedWindow.close(self,*obj)
 
     def get_intro_text(self):
@@ -648,19 +649,19 @@ class ExportAssistant(gtk.Assistant, ManagedWindow) :
     def set_busy_cursor(self,value):
         """Set or unset the busy cursor while saving data.
         
-            Note : self.window is the gtk.Assistant gtk.Window, not 
+            Note : self.window is the Gtk.Assistant Gtk.Window, not 
                    a part of ManagedWindow
                    
         """
         if value:
-            self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+            self.window.set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
             #self.set_sensitive(0)
         else:
             self.window.set_cursor(None)
             #self.set_sensitive(1)
 
-        while gtk.events_pending():
-            gtk.main_iteration()
+        while Gtk.events_pending():
+            Gtk.main_iteration()
             
     def pulse_progressbar(self, value, text=None):
         self.progressbar.set_fraction(min(value/100.0, 1.0))
@@ -668,8 +669,8 @@ class ExportAssistant(gtk.Assistant, ManagedWindow) :
             self.progressbar.set_text("%s: %d%%" % (text, value))
         else:
             self.progressbar.set_text("%d%%" % value)
-        while gtk.events_pending():
-            gtk.main_iteration()
+        while Gtk.events_pending():
+            Gtk.main_iteration()
         
 
 

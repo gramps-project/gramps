@@ -37,7 +37,7 @@ LOG = logging.getLogger(".citation")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -128,7 +128,7 @@ class EditSource(EditPrimary):
                                     self.db.readonly)
 
     def _create_tabbed_pages(self):
-        notebook = gtk.Notebook()
+        notebook = Gtk.Notebook()
 
         self.note_tab = NoteTab(self.dbstate,
                                 self.uistate,

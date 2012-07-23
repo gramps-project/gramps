@@ -41,9 +41,9 @@
 
    from gui.ddtargets import DdTargets
 
-   drag_dest_set(gtk.DEST_DEFAULT_ALL,
+   drag_dest_set(Gtk.DestDefaults.ALL,
                  DdTargets.all_targets(),
-                 ACTION_COPY)
+                 Gdk.DragAction.COPY)
    
 """
 
@@ -55,6 +55,7 @@
 import logging
 log = logging.getLogger(".DdTargets")
 
+from gi.repository import Gtk
 
 class _DdType:
     """Represents the fields needed by a drag and drop target."""
@@ -85,11 +86,16 @@ class _DdType:
         """
         Return the full target information in the format required by the 
         Gtk functions.
-        
         """
-        return (self.drag_type, self.target_flags, self.app_id)
-        
-        
+        return Gtk.TargetEntry.new(self.drag_type, self.target_flags,
+                                   self.app_id)
+
+    def target_data(self):
+        """
+        Return the target information as a list in the format required by
+        Gtk3 functions.
+        """
+        return [self.drag_type, self.target_flags, self.app_id]
 
 class _DdTargets(object):
     """A single class that manages all the drag and drop targets."""

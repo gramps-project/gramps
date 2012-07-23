@@ -68,9 +68,16 @@
                     <property name="visible">True</property>
                     <property name="spacing">12</property>
                     <child>
-                      <object class="GtkComboBoxEntry" id="repository_type">
+                      <object class="GtkComboBox" id="repository_type">
                         <property name="visible">True</property>
                         <property name="tooltip_text" translatable="yes">Type of repository, eg., 'Library', 'Album', ...</property>
+                        <property name="has_entry">True</property>
+                        <child internal-child="entry">
+                          <object class="GtkEntry" id="repository_type-entry">
+                        <property name="can_focus">True</property>
+                        <property name="overwrite_mode">True</property>
+                          </object>
+                        </child>
                       </object>
                       <packing>
                         <property name="expand">False</property>

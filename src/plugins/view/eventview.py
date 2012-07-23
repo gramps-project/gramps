@@ -39,7 +39,7 @@ _LOG = logging.getLogger(".plugins.eventview")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -124,8 +124,8 @@ class EventView(ListView):
             markup = EventView.MARKUP_COLS)
             
         self.func_list.update({
-            '<CONTROL>J' : self.jump,
-            '<CONTROL>BackSpace' : self.key_delete,
+            '<PRIMARY>J' : self.jump,
+            '<PRIMARY>BackSpace' : self.key_delete,
             })
 
         uistate.connect('nameformat-changed', self.build_tree)

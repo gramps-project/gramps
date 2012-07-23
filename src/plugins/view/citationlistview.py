@@ -38,7 +38,7 @@ LOG = logging.getLogger(".citation")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -145,8 +145,8 @@ class CitationListView(ListView):
             markup = CitationListView.MARKUP_COLS)
 
         self.func_list.update({
-            '<CONTROL>J' : self.jump,
-            '<CONTROL>BackSpace' : self.key_delete,
+            '<PRIMARY>J' : self.jump,
+            '<PRIMARY>BackSpace' : self.key_delete,
             })
 
         self.additional_uis.append(self.additional_ui())
@@ -175,8 +175,8 @@ class CitationListView(ListView):
         """
         ListView.define_actions(self)
 
-        self.all_action = gtk.ActionGroup(self.title + "/CitationAll")
-        self.edit_action = gtk.ActionGroup(self.title + "/CitationEdit")
+        self.all_action = Gtk.ActionGroup(self.title + "/CitationAll")
+        self.edit_action = Gtk.ActionGroup(self.title + "/CitationEdit")
 
         self._add_action('FilterEdit', None, _('Citation Filter Editor'),
                          callback=self.filter_editor,)

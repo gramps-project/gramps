@@ -29,20 +29,20 @@ The TreeModel for the URL list in the Url Tab.
 # GTK libraries
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
 # WebModel
 #
 #-------------------------------------------------------------------------
-class WebModel(gtk.ListStore):
+class WebModel(Gtk.ListStore):
     """
     WebModel derives from the ListStore, defining te items in the list
     """
     def __init__(self, obj_list, dbase):
 
-        gtk.ListStore.__init__(self, str, str, str, object)
+        Gtk.ListStore.__init__(self, str, str, str, object)
         self.db = dbase
         for obj in obj_list:
             self.append(row=[str(obj.type), obj.path, obj.desc, obj])
