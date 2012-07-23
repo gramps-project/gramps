@@ -360,5 +360,5 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
         if node.name:
             return '<i>%s</i>' % cgi.escape(node.name)
         else:
-            level = len(self.on_get_path(node))
+            level = len(self.do_get_path(self.get_iter(node)).get_indices())
             return '<i>%s</i>' % cgi.escape(COUNTRYLEVELS['default'][level])
