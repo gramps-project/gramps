@@ -6,6 +6,7 @@
 # Copyright (C) 2009       Gary Burton
 # Contribution 2009 by     Bob Ham <rah@bash.sh>
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2012       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -165,7 +166,10 @@ class GraphvizReportDialog(ReportDialog):
             ext = ""
         else:
             spath = self.get_default_directory()
-            base = "%s%s" % (self.report_name, ext)
+            if self.options.get_output():
+                base = os.path.basename(self.options.get_output())
+            else:
+                base = "%s%s" % (self.report_name, ext)
             spath = os.path.normpath(os.path.join(spath, base))
             self.target_fileentry.set_filename(spath)
                 

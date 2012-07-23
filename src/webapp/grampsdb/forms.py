@@ -303,3 +303,10 @@ class LogForm(forms.ModelForm):
     reason = forms.CharField(label="Reason for change",
                              widget=forms.widgets.Textarea(attrs={'rows':'2', 
                                                                   'cols': '65'}))
+class PickForm(forms.Form):
+    picklist = forms.ChoiceField()
+    def __init__(self, label, item, order_by, *args, **kwargs):
+        super(PickForm, self).__init__(*args, **kwargs)
+        self.fields['picklist'].choices = \
+            [("", "---------")] + [(p.handle, p) for p in item.objects.all() \
+                                .order_by(*order_by)]

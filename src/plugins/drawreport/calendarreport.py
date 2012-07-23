@@ -3,6 +3,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008-2009  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2012       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -41,7 +42,8 @@ from gen.errors import ReportError
 from gen.relationship import get_relationship_calculator
 from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                              FONT_SERIF, PARA_ALIGN_CENTER,
-                             PARA_ALIGN_LEFT, PARA_ALIGN_RIGHT)
+                             PARA_ALIGN_LEFT, PARA_ALIGN_RIGHT,
+                             IndexMark, INDEX_TYPE_TOC)
 from gen.plug.docgen.fontscale import string_trim
 from gen.plug.menu import (BooleanOption, StringOption, NumberOption, 
                          EnumeratedListOption, FilterOption, PersonOption)
@@ -131,11 +133,11 @@ class Calendar(Report):
 
 ### The rest of these all have to deal with calendar specific things
 
-    def add_day_item(self, text, month, day, format="CAL-Text"):
+    def add_day_item(self, text, month, day, format="CAL-Text", marks=[None]):
         """ Add an item to a day. """
         month_dict = self.calendar.get(month, {})
         day_list = month_dict.get(day, [])
-        day_list.append((format, text))
+        day_list.append((format, text, marks))
         month_dict[day] = day_list
         self.calendar[month] = month_dict
 
@@ -184,13 +186,18 @@ class Calendar(Report):
         width = self.doc.get_usable_width()
         height = self.doc.get_usable_height()
         header = 2.54 # one inch
+        mark = None
+        if month == 1:
+            mark = IndexMark(_('Calendar Report'), INDEX_TYPE_TOC, 1)
         self.draw_rectangle("CAL-Border", 0, 0, width, height)
-        self.doc.draw_box("CAL-Title", "", 0, 0, width, header)
+        self.doc.draw_box("CAL-Title", "", 0, 0, width, header, mark)
         self.doc.draw_line("CAL-Border", 0, header, width, header)
         year = self.year
         title = "%s %d" % (_dd.long_months[month].capitalize(), year)
+        mark = IndexMark(title, INDEX_TYPE_TOC, 2)
         font_height = pt2cm(ptitle.get_font().get_size())
-        self.doc.center_text("CAL-Title", title, width/2, font_height * 0.25)
+        self.doc.center_text("CAL-Title", title,
+                             width/2, font_height * 0.25, mark)
         cell_width = width / 7
         cell_height = (height - header)/ 6
         current_date = datetime.date(year, month, 1)
@@ -226,7 +233,7 @@ class Calendar(Report):
                     list_ = self.calendar.get(month, {}).get(thisday.day, [])
                     list_.sort() # to get CAL-Holiday on bottom
                     position = 0.0 
-                    for (format, p) in list_:
+                    for (format, p, m_list) in list_:
                         lines = p.count("\n") + 1 # lines in the text
                         position += (lines  * spacing)
                         current = 0
@@ -239,7 +246,9 @@ class Calendar(Report):
                             line = string_trim(font, line, cm2pt(cell_width + 0.2))
                             self.doc.draw_text(format, line, 
                                               day_col * cell_width + 0.1, 
-                                              header + (week_row + 1) * cell_height - position + (current * spacing) - 0.1)
+                                              header + (week_row + 1) * cell_height - position + (current * spacing) - 0.1, m_list[0])
+                            if len(m_list) > 1: # index the spouse too
+                                self.doc.draw_text(format, "",0,0, m_list[1])
                             current += 1
                 current_ord += 1
         if not something_this_week:
@@ -272,6 +281,7 @@ class Calendar(Report):
         for person_handle in people:
             self._user.step_progress()
             person = db.get_person_from_handle(person_handle)
+            mark = ReportUtils.get_person_mark(db, person)
             birth_ref = person.get_birth_ref()
             birth_date = None
             if birth_ref:
@@ -318,7 +328,7 @@ class Calendar(Report):
                                  % {'person'   : short_name,
                                     'age'      : nyears,  
                                     'relation' : ""})
-                    self.add_day_item(text, month, day)
+                    self.add_day_item(text, month, day, marks=[mark])
             if self.anniversaries:
                 family_list = person.get_family_handle_list()
                 for fhandle in family_list: 
@@ -333,6 +343,7 @@ class Calendar(Report):
                     if spouse_handle:
                         spouse = db.get_person_from_handle(spouse_handle)
                         if spouse:
+                            s_m = ReportUtils.get_person_mark(db, spouse)
                             spouse_name = self.get_name(spouse)
                             short_name = self.get_name(person)
                             # TEMP: this will handle ordered events
@@ -383,7 +394,8 @@ class Calendar(Report):
                                         alive2 = probably_alive(spouse, self.database,
                                                     prob_alive_date)
                                         if ((self.alive and alive1 and alive2) or not self.alive):
-                                            self.add_day_item(text, month, day)
+                                            self.add_day_item(text, month, day,
+                                                              marks=[mark,s_m])
         self._user.end_progress()
 
 #------------------------------------------------------------------------

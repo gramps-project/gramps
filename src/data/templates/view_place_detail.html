@@ -52,7 +52,7 @@
   <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
     <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tab-locations">Location</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-alternatelocations">Alternate Locations</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-sources">Sources</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-citations">Citations</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Notes</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-media">Media</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-internet">Internet</a></li>
@@ -65,8 +65,8 @@
   <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-alternatelocations">
     {% location_table place user action "/location/$act/place/%s" place.handle %}
   </div>
-  <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-sources">
-    {% source_table place user action "/source/$act/place/%s" place.handle %}
+  <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-citations">
+    {% citation_table place user action "/citation/$act/place/%s" place.handle %}
   </div>
   <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-notes">
     {% note_table place user action "/note/$act/place/%s" place.handle %}

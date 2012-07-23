@@ -34,9 +34,9 @@ from django.template import Context, RequestContext
 ## Globals
 dji = DjangoInterface()
 
-def process_place(request, context, handle, action, add_to=None): # view, edit, save
+def process_place(request, context, handle, act, add_to=None): # view, edit, save
     """
-    Process action on person. Can return a redirect.
+    Process act on person. Can return a redirect.
     """
     context["tview"] = _("Place")
     context["tviews"] = _("Places")
@@ -44,20 +44,20 @@ def process_place(request, context, handle, action, add_to=None): # view, edit, 
     view_template = "view_place_detail.html"
 
     if handle == "add":
-        action = "add"
+        act = "add"
     if request.POST.has_key("action"):
-        action = request.POST.get("action")
+        act = request.POST.get("action")
 
     # Handle: edit, view, add, create, save, delete
-    if action == "add":
+    if act == "add":
         place = Place(gramps_id=dji.get_next_id(Place, "P"))
         placeform = PlaceForm(instance=place)
         placeform.model = place
-    elif action in ["view", "edit"]: 
+    elif act in ["view", "edit"]: 
         place = Place.objects.get(handle=handle)
         placeform = PlaceForm(instance=place)
         placeform.model = place
-    elif action == "save": 
+    elif act == "save": 
         place = Place.objects.get(handle=handle)
         placeform = PlaceForm(request.POST, instance=place)
         placeform.model = place
@@ -65,10 +65,10 @@ def process_place(request, context, handle, action, add_to=None): # view, edit, 
             update_last_changed(place, request.user.username)
             place = placeform.save()
             dji.rebuild_cache(place)
-            action = "view"
+            act = "view"
         else:
-            action = "edit"
-    elif action == "create": 
+            act = "edit"
+    elif act == "create": 
         place = Place(handle=create_id())
         placeform = PlaceForm(request.POST, instance=place)
         placeform.model = place
@@ -81,20 +81,21 @@ def process_place(request, context, handle, action, add_to=None): # view, edit, 
                 model = dji.get_model(item)
                 obj = model.objects.get(handle=handle)
                 dji.add_place_ref(obj, place.handle)
+                dji.rebuild_cache(obj)
                 return redirect("/%s/%s#tab-places" % (item, handle))
-            action = "view"
+            act = "view"
         else:
-            action = "add"
-    elif action == "delete": 
+            act = "add"
+    elif act == "delete": 
         place = Place.objects.get(handle=handle)
         place.delete()
         return redirect("/place/")
     else:
-        raise Exception("Unhandled action: '%s'" % action)
+        raise Exception("Unhandled act: '%s'" % act)
 
     context["placeform"] = placeform
     context["object"] = place
     context["place"] = place
-    context["action"] = action
+    context["action"] = act
     
     return render_to_response(view_template, context)

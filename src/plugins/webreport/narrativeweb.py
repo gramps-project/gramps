@@ -7557,8 +7557,7 @@ class NavWebReport(Report):
         elif obj_class == "Repository":
             subdir = "repo"
         elif obj_class == "Family": 
-            # FIXME: no family page in NarWeb
-            return None
+            subdir = "fam"
         else:
             print ("NarrativeWeb ignoring link type '%s'" % obj_class)
             return None

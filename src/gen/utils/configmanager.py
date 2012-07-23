@@ -37,10 +37,12 @@ import time
 import ConfigParser
 import errno
 import copy
+import logging
 
 def safe_eval(exp):
-        # restrict eval to empty environment
-        return eval(exp, {})
+    # restrict eval to empty environment
+    return eval(exp, {})
+
 ##try:
 ##    from ast import literal_eval as safe_eval
 ##    # this leaks memory !!
@@ -274,13 +276,13 @@ class ConfigManager(object):
                             if vtype == bool:
                                 value = raw_value in ["1", "True"]
                             elif vtype == list:
-                                print >> sys.stderr, "WARNING: ignoring old key '%s'" % key
+                                logging.warning("WARNING: ignoring old key '%s'" % key)
                                 continue # there were no lists in oldstyle
                             else:
                                 value = vtype(raw_value)
                         else:
                             # else, ignore it
-                            print >> sys.stderr, "WARNING: ignoring old key '%s'" % key
+                            logging.warning("WARNING: ignoring old key '%s'" % key)
                             continue # with next setting
                     ####################### End upgrade code
                     else:
@@ -288,13 +290,10 @@ class ConfigManager(object):
                     ####################### Now, let's test and set:
                     if (name in self.default and 
                         setting in self.default[name]):
-                        if (isinstance(value, basestring) and
-                            isinstance(self.default[name][setting], basestring)):
-                            self.data[name][setting] = value
-                        elif type(value) == type(self.default[name][setting]):
+                        if self.check_type(self.default[name][setting], value):
                             self.data[name][setting] = value
                         else:
-                            print >> sys.stderr, ("WARNING: ignoring key with wrong type "
+                            logging.warning("WARNING: ignoring key with wrong type "
                                    "'%s.%s'" % (name, setting))
                     else:
                         # this could be a third-party setting; add it:
@@ -492,13 +491,8 @@ class ConfigManager(object):
             raise AttributeError("No such config setting name: '%s.%s'" % 
                                  (section, setting))
         # Check value to see if right type:
-        if type(value) == long:
-            value = int(value)
         if self.has_default(key):
-            if (isinstance(self.get_default(key), basestring) and
-                isinstance(value, basestring)):
-                pass # ok
-            elif type(self.get_default(key)) != type(value):
+	    if not self.check_type(self.get_default(key), value):
                 raise AttributeError("attempting to set '%s' to wrong type "
                                      "'%s'; should be '%s'" %
                                      (key, type(value), 
@@ -515,3 +509,19 @@ class ConfigManager(object):
                 setting in self.callbacks[section]):
                 self.emit(key)
 
+    def check_type(self, value1, value2):
+        """
+	Check if value1 and value2 are different types.
+	"""
+	type1 = type(value1)
+        type2 = type(value2)
+        if type1 == type2:
+            return True
+	elif (isinstance(value1, basestring) and
+	      isinstance(value2, basestring)):
+            return True
+        elif (type1 in [int, float, long] and 
+	      type2 in [int, float, long]):
+            return True
+	else:
+            return False

@@ -48,7 +48,6 @@ from collections import defaultdict
 #
 #------------------------------------------------------------------------
 import logging
-LOG_OBJ = logging.getLogger(".CheckRepair")
 
 #-------------------------------------------------------------------------
 #
@@ -82,10 +81,6 @@ from gui.glade import Glade
 # All except 09, 0A, 0D are replaced with space.
 strip_dict = dict.fromkeys(range(9)+range(11,13)+range(14, 32),  u" ")
 
-# This is assigned so that it can be either LOG_OBJ.debug or print, depending on
-# which is deemed to better interface for Gramps
-LOG = print
-
 #-------------------------------------------------------------------------
 #
 # Low Level repair
@@ -105,7 +100,7 @@ def cross_table_duplicates(db):
     """
     progress = ProgressMeter(_('Checking Database'),'')
     progress.set_pass(_('Looking for cross table duplicates'), 9)
-    LOG('Looking for cross table duplicates')
+    logging.info('Looking for cross table duplicates')
     total_nr_handles = 0
     all_handles = set([])
     for the_map in [db.person_map, db.family_map, db.event_map, db.place_map,
@@ -117,8 +112,11 @@ def cross_table_duplicates(db):
         progress.step()
     progress.close()
     num_errors = total_nr_handles - len(all_handles)
-    LOG('    OK: No cross table duplicates' if num_errors == 0 else
-        '    FAIL: Found %d cross table duplicates' % num_errors)
+    if num_errors == 0:
+        logging.info('    OK: No cross table duplicates')
+    else:
+        logging.warning('    FAIL: Found %d cross table duplicates' %
+                         num_errors)
     return total_nr_handles > len(all_handles)
 
 #-------------------------------------------------------------------------
@@ -255,7 +253,7 @@ class CheckIntegrity(object):
         """
         self.progress.set_pass(_('Looking for invalid name format references'),
                                self.db.get_number_of_people())
-        LOG('Looking for invalid name format references')
+        logging.info('Looking for invalid name format references')
         
         deleted_name_formats = [number for (number, name, fmt_str,act)
                                 in self.db.name_formats if not act]
@@ -301,13 +299,13 @@ class CheckIntegrity(object):
                                                            only_active=False)            
 
         if len(self.removed_name_format) == 0:
-            LOG('    OK: no invalid name formats found found')
+            logging.info('    OK: no invalid name formats found found')
 
     def cleanup_duplicate_spouses(self):
 
         self.progress.set_pass(_('Looking for duplicate spouses'),
                                self.db.get_number_of_people())
-        LOG('Looking for duplicate spouses')
+        logging.info('Looking for duplicate spouses')
         previous_errors = len(self.duplicate_links)
 
         for handle in self.db.person_map.keys():
@@ -325,12 +323,12 @@ class CheckIntegrity(object):
             self.progress.step()
 
         if previous_errors == len(self.duplicate_links):
-            LOG('    OK: no duplicate spouses found')
+            logging.info('    OK: no duplicate spouses found')
 
     def fix_encoding(self):
         self.progress.set_pass(_('Looking for character encoding errors'),
                                self.db.get_number_of_media_objects())
-        LOG('Looking for character encoding errors')
+        logging.info('Looking for character encoding errors')
         error_count = 0
         for handle in self.db.media_map.keys():
             data = self.db.media_map[handle]
@@ -340,11 +338,13 @@ class CheckIntegrity(object):
                 obj.desc = fix_encoding( obj.desc, errors='ignore')
                 self.db.commit_media_object(obj, self.trans)
                 if not isinstance(data[2], unicode):
-                    LOG('    FAIL: encoding error on media object "%s"'
-                        ' path "%s"' % (obj.gramps_id, obj.path))
+                    logging.warning('    FAIL: encoding error on media object '
+                                    '"%(gid)s" path "%(path)s"' %
+                                    {'gid' : obj.gramps_id, 'path' : obj.path})
                 if not isinstance(data[2], unicode):
-                    LOG('    FAIL: encoding error on media object "%s"'
-                        ' description "%s"' %  (obj.gramps_id, obj.desc))
+                    logging.warning('    FAIL: encoding error on media object ' 
+                                    '"%(gid)s" description "%(desc)s"' %
+                                    {'gid' : obj.gramps_id, 'desc' : obj.desc})
                 error_count += 1
             # Once we are here, fix the mime string if not str
             if not isinstance(data[3], str):
@@ -357,17 +357,18 @@ class CheckIntegrity(object):
                 except:
                     obj.mime = ""
                 self.db.commit_media_object(obj, self.trans)
-                LOG('    FAIL: encoding error on media object "%s"'
-                    ' mime "%s"' % (obj.desc, obj.mime))
+                logging.warning('    FAIL: encoding error on media object '
+                                '"%(desc)s" mime "%(mime)s"' % 
+                                {'desc' : obj.desc, 'mime' : obj.mime})
                 error_count += 1
             self.progress.step()
         if error_count == 0:
-            LOG('    OK: no encoding errors found')
+            logging.info('    OK: no encoding errors found')
 
     def fix_ctrlchars_in_notes(self):
         self.progress.set_pass(_('Looking for ctrl characters in notes'),
                                self.db.get_number_of_notes())
-        LOG('Looking for ctrl characters in notes')
+        logging.info('Looking for ctrl characters in notes')
         error_count = 0
         for handle in self.db.note_map.keys():
             note = self.db.get_note_from_handle(handle)
@@ -375,7 +376,7 @@ class CheckIntegrity(object):
             old_text = unicode(stext)
             new_text = old_text.translate(strip_dict)
             if old_text != new_text:
-                LOG('    FAIL: control characters found in note "%s"' %
+                logging.warning('    FAIL: control characters found in note "%s"' %
                     self.db.note_map[handle][1])
                 error_count += 1
                 # Commit only if ctrl char found.
@@ -384,7 +385,7 @@ class CheckIntegrity(object):
                 self.db.commit_note(note, self.trans)
             self.progress.step()
         if error_count == 0:
-            LOG('    OK: no ctrl characters in notes found')
+            logging.info('    OK: no ctrl characters in notes found')
 
     def check_for_broken_family_links(self):
         # Check persons referenced by the family objects
@@ -393,7 +394,7 @@ class CheckIntegrity(object):
         self.progress.set_pass(_('Looking for broken family links'),
                                len(fhandle_list) +
                                self.db.get_number_of_people())
-        LOG('Looking for broken family links')
+        logging.info('Looking for broken family links')
         previous_errors = len(self.broken_parent_links + self.broken_links)
         
         for family_handle in fhandle_list:
@@ -410,8 +411,10 @@ class CheckIntegrity(object):
                     family.set_father_handle(None)
                     self.db.commit_family(family, self.trans)
                     self.broken_parent_links.append((father_handle, family_handle))
-                    LOG("    FAIL: family '%s' father handle '%s'"
-                        " does not exist" % (family.gramps_id, father_handle))
+                    logging.warning("    FAIL: family '%(fam_gid)s' "
+                                    "father handle '%(hand)s' does not exist" % 
+                                    {'fam_gid' : family.gramps_id, 
+                                     'hand' : father_handle})
                     father_handle = None
             if mother_handle:
                 mother = self.db.get_person_from_handle(mother_handle)
@@ -423,8 +426,10 @@ class CheckIntegrity(object):
                     family.set_mother_handle(None)
                     self.db.commit_family(family, self.trans)
                     self.broken_parent_links.append((mother_handle, family_handle))
-                    LOG("    FAIL: family '%s' mother handle '%s'"
-                        " does not exist" % (family.gramps_id, mother_handle))
+                    logging.warning("    FAIL: family '%(fam_gid)s' "
+                                    "mother handle '%(hand)s' does not exist" % 
+                                    {'fam_gid' : family.gramps_id, 
+                                     'hand' : mother_handle})
                     mother_handle = None
 
             if father_handle and father and \
@@ -435,9 +440,10 @@ class CheckIntegrity(object):
                 self.broken_parent_links.append((father_handle, family_handle))
                 father.add_family_handle(family_handle)
                 self.db.commit_person(father, self.trans)
-                LOG("    FAIL: family '%s' father '%s'"
-                    " does not refer back to the family" % 
-                          (family.gramps_id, father_handle))
+                logging.warning("    FAIL: family '%(fam_gid)s' father "
+                                "'%(hand)s' does not refer back to the family" % 
+                                {'fam_gid' : family.gramps_id,
+                                 'hand' : father_handle})
 
             if mother_handle and mother and \
                     family_handle not in mother.get_family_handle_list():
@@ -447,9 +453,10 @@ class CheckIntegrity(object):
                 self.broken_parent_links.append((mother_handle, family_handle))
                 mother.add_family_handle(family_handle)
                 self.db.commit_person(mother, self.trans)
-                LOG("    FAIL: family '%s' mother '%s'"
-                    " does not refer back to the family" % 
-                          (family.gramps_id, mother_handle))
+                logging.warning("    FAIL: family '%(fam_gid)s' mother "
+                                "'%(hand)s' does not refer back to the family" % 
+                                {'fam_gid' : family.gramps_id,
+                                 'hand' : mother_handle})
             
             for child_ref in family.get_child_ref_list():
                 child_handle = child_ref.ref
@@ -460,9 +467,11 @@ class CheckIntegrity(object):
                         # such child from the family
                         # This is tested by TestcaseGenerator where the father
                         # is "Broken19"
-                        LOG("    FAIL: family '%s' child '%s'"
-                            " is one of the parents" % 
-                                  (family.gramps_id, child.gramps_id))
+                        logging.warning("    FAIL: family '%(fam_gid)s' "
+                                        "child '%(child_gid)s' is one of the "
+                                        "parents" % 
+                                        {'fam_gid' : family.gramps_id,
+                                         'child_gid' : child.gramps_id})
                         family.remove_child_ref(child_ref)
                         self.db.commit_family(family, self.trans)
                         self.broken_links.append((child_handle, family_handle))
@@ -474,9 +483,11 @@ class CheckIntegrity(object):
                         # The referenced child has no reference to the family
                         # This is tested by TestcaseGenerator where the father
                         # is "Broken8"
-                        LOG("    FAIL: family '%s' child '%s'"
-                            " has no reference to the family" % 
-                                  (family.gramps_id, child.gramps_id))
+                        logging.warning("    FAIL: family '%(fam_gid)s' "
+                                        "child '%(child_gid)s' has no reference"
+                                        " to the family" % 
+                                        {'fam_gid' : family.gramps_id,
+                                         'child_gid' : child.gramps_id})
                         family.remove_child_ref(child_ref)
                         self.db.commit_family(family, self.trans)
                         self.broken_links.append((child_handle, family_handle))
@@ -485,9 +496,10 @@ class CheckIntegrity(object):
                     # does not exist in the database
                     # This is tested by TestcaseGenerator where the father
                     # is "Broken20"
-                    LOG("    FAIL: family '%s' child '%s'"
-                        " does not exist in the database" % 
-                              (family.gramps_id, child_handle))
+                    logging.warning("    FAIL: family '%(fam_gid)s' child "
+                                    "'%(hand)s' does not exist in the database" % 
+                                    {'fam_gid' : family.gramps_id,
+                                     'hand' : child_handle})
                     family.remove_child_ref(child_ref)
                     self.db.commit_family(family, self.trans)
                     self.broken_links.append((child_handle, family_handle))
@@ -533,9 +545,11 @@ class CheckIntegrity(object):
                     # Person is not a child in the referenced parent family
                     # This is tested by TestcaseGenerator where the father
                     # is "Broken9"
-                    LOG("    FAIL: family '%s' person '%s'"
-                        " is not a child in the referenced parent family" % 
-                              (family.gramps_id, person.gramps_id))
+                    logging.warning("    FAIL: family '%(fam_gid)s' person "
+                                    "'%(pers_gid)s' is not a child in the "
+                                    "referenced parent family" % 
+                                    {'fam_gid' : family.gramps_id,
+                                     'pers_gid' :person.gramps_id})
                     person.remove_parent_family_handle(par_family_handle)
                     self.db.commit_person(person, self.trans)
                     self.broken_links.append((person_handle,family_handle))
@@ -545,9 +559,11 @@ class CheckIntegrity(object):
                     # The referenced family does not exist in database
                     # This is tested by TestcaseGenerator where the father
                     # is "Broken20"
-                    LOG("    FAIL: person '%s' refers to "
-                        "family '%s' which is not in the database" % 
-                              (person.gramps_id, family_handle))
+                    logging.warning("    FAIL: person '%(pers_gid)s' refers to "
+                                    "family '%(hand)s' which is not in the "
+                                    "database" % 
+                                    {'pers_gid' : person.gramps_id,
+                                     'hand' : family_handle})
                     person.remove_family_handle(family_handle)
                     self.db.commit_person(person, self.trans)
                     self.broken_links.append((person_handle, family_handle))
@@ -561,22 +577,24 @@ class CheckIntegrity(object):
                 # "Broken2" and the family misses the link to the father, and
                 # where the mother is "Broken3" and the family misses the link
                 # to the mother
-                LOG("    FAIL: family '%s' person '%s'"
-                    " is not member of the referenced family" % 
-                          (family.gramps_id, person.gramps_id))
+                logging.warning("    FAIL: family '%(fam_gid)s' person "
+                                "'%(pers_gid)s' is not member of the referenced"
+                                " family" % 
+                                {'fam_gid' : family.gramps_id,
+                                 'pers_gid' : person.gramps_id})
                 person.remove_family_handle(family_handle)
                 self.db.commit_person(person, self.trans)
                 self.broken_links.append((person_handle, family_handle))
             self.progress.step()
 
         if previous_errors == len(self.broken_parent_links + self.broken_links):
-            LOG('    OK: no broken family links found')
+            logging.info('    OK: no broken family links found')
     
     def cleanup_missing_photos(self, cl=0):
 
         self.progress.set_pass(_('Looking for unused objects'),
                                len(self.db.get_media_object_handles()))
-        LOG('Looking for missing photos')
+        logging.info('Looking for missing photos')
                                
         missmedia_action = 0
         #-------------------------------------------------------------------------
@@ -621,17 +639,18 @@ class CheckIntegrity(object):
 
             self.removed_photo.append(ObjectId)
             self.db.remove_object(ObjectId,self.trans) 
-            LOG('        FAIL: media object and all references to it removed')
+            logging.warning('        FAIL: media object and all references to '
+                            'it removed')
    
         def leave_clicked():
             self.bad_photo.append(ObjectId)
-            LOG('        FAIL: references to missing file kept')
+            logging.warning('        FAIL: references to missing file kept')
 
         def select_clicked():
             # File is lost => select a file to replace the lost one
             def fs_close_window(obj):
                 self.bad_photo.append(ObjectId)
-                LOG('        FAIL: references to missing file kept')
+                logging.warning('        FAIL: references to missing file kept')
 
             def fs_ok_clicked(obj):
                 name = get_unicode_path_from_file_chooser(fs_top.get_filename())
@@ -641,10 +660,11 @@ class CheckIntegrity(object):
                     self.db.commit_media_object(obj, self.trans)
                     self.replaced_photo.append(ObjectId)
                     self.last_img_dir = os.path.dirname(name)
-                    LOG('        FAIL: media object reselected to "%s"' % name)
+                    logging.warning('        FAIL: media object reselected to '
+                                    '"%s"' % name)
                 else:
                     self.bad_photo.append(ObjectId)
-                    LOG('    FAIL: references to missing file kept')
+                    logging.warning('    FAIL: references to missing file kept')
 
             fs_top = Gtk.FileChooserDialog("%s - Gramps" % _("Select file"),
                         buttons=(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
@@ -668,12 +688,16 @@ class CheckIntegrity(object):
                 if cl:
                     # Convert to file system encoding before prining
                     fn = os.path.basename(photo_name).encode(sys.getfilesystemencoding())
-                    print ("Warning: media file %s was not found." % fn)
+                    logging.warning("    FAIL: media file %s was not found." %
+                                    fn)
                     self.bad_photo.append(ObjectId)
                 else:
                     if missmedia_action == 0:
-                        LOG('    FAIL: media object "%s" reference to missing '
-                            'file "%s" found' % (photo_desc, photo_name))
+                        logging.warning('    FAIL: media object "%(desc)s" '
+                                        'reference to missing file "%(name)s" '
+                                        'found' %
+                                         {'desc' : photo_desc, 
+                                          'name' : photo_name})
                         mmd = MissingMediaDialog(_("Media object could not be found"),
                         _("The file:\n %(file_name)s \nis referenced in the database, but no longer exists. " 
                         "The file may have been deleted or moved to a different location. " 
@@ -683,20 +707,29 @@ class CheckIntegrity(object):
                             remove_clicked, leave_clicked, select_clicked)
                         missmedia_action = mmd.default_action
                     elif missmedia_action == 1:
-                        LOG('    FAIL: media object "%s" reference to missing '
-                            'file "%s" found' % (photo_desc, photo_name))
+                        logging.warning('    FAIL: media object "%(desc)s" '
+                                        'reference to missing file "%(name)s" '
+                                        'found' %
+                                        {'desc' : photo_desc,
+                                         'name' : photo_name})
                         remove_clicked()
                     elif missmedia_action == 2:
-                        LOG('    FAIL: media object "%s" reference to missing '
-                            'file "%s" found' % (photo_desc, photo_name))
+                        logging.warning('    FAIL: media object "%(desc)s" '
+                                        'reference to missing file "%(name)s" '
+                                        'found' %
+                                        {'desc' : photo_desc,
+                                         'name' : photo_name})
                         leave_clicked()
                     elif missmedia_action == 3:
-                        LOG('    FAIL: media object "%s" reference to missing '
-                            'file "%s" found' % (photo_desc, photo_name))
+                        logging.warning('    FAIL: media object "%(desc)s" '
+                                        'reference to missing file "%(name)s" '
+                                        'found' %
+                                        {'desc' : photo_desc,
+                                         'name' : photo_name})
                         select_clicked()
             self.progress.step()
         if len(self.bad_photo + self.removed_photo) == 0:
-            LOG('    OK: no missing photos found')
+            logging.info('    OK: no missing photos found')
     
     def cleanup_empty_objects(self):
         #the position of the change column in the primary objects
@@ -821,22 +854,23 @@ class CheckIntegrity(object):
             with cursor_func() as cursor:
                 total = total_func()
                 self.progress.set_pass(text, total)
-                LOG(text)
+                logging.info(text)
 
                 for handle, data in cursor:
                     self.progress.step()
                     if check_func(data):
                         # we cannot remove here as that would destroy cursor
                         # so save the handles for later removal               
-                        LOG('    FAIL: empty %s record with handle "%s" was found'
-                            % (the_type, handle))
+                        logging.warning('    FAIL: empty %(type)s record with '
+                                        'handle "%(hand)s" was found' %
+                                        {'type' : the_type, 'hand' : handle})
                         self.empty_objects[the_type].append(handle)
 
             #now remove
             for handle in self.empty_objects[the_type]:
                 remove_func(handle, self.trans)
             if len(self.empty_objects[the_type]) == 0:
-                LOG('    OK: no empty %s found' % the_type)
+                logging.info('    OK: no empty %s found' % the_type)
     
     def _check_empty(self, data, empty_data, changepos):
         """compare the data with the data of an empty object
@@ -854,7 +888,7 @@ class CheckIntegrity(object):
 
         self.progress.set_pass(_('Looking for empty families'),
                                len(fhandle_list))
-        LOG('Looking for empty families')
+        logging.info('Looking for empty families')
         previous_errors = len(self.empty_family)
         for family_handle in fhandle_list:
             self.progress.step()
@@ -870,7 +904,7 @@ class CheckIntegrity(object):
                 self.delete_empty_family(family_handle)
 
         if previous_errors == len(self.empty_family):
-            LOG('    OK: no empty families found')
+            logging.info('    OK: no empty families found')
 
     def delete_empty_family(self, family_handle):
         for key in self.db.get_person_handles(sort_handles=False):
@@ -889,7 +923,7 @@ class CheckIntegrity(object):
         fhandle_list = self.db.get_family_handles()
         self.progress.set_pass(_('Looking for broken parent relationships'),
                                len(fhandle_list))
-        LOG('Looking for broken parent relationships')
+        logging.info('Looking for broken parent relationships')
         previous_errors = len(self.fam_rel)
 
         for family_handle in fhandle_list:
@@ -913,7 +947,7 @@ class CheckIntegrity(object):
             if (fgender == gen.lib.Person.FEMALE 
                     or mgender == gen.lib.Person.MALE) and fgender != mgender:
                 # swap. note: (at most) one handle may be None
-                LOG('    FAIL: the family "%s" has a father=female or '
+                logging.warning('    FAIL: the family "%s" has a father=female or '
                     ' mother=male in a different sex family' % family.gramps_id)
                 family.set_father_handle(mother_handle)
                 family.set_mother_handle(father_handle)
@@ -921,13 +955,13 @@ class CheckIntegrity(object):
                 self.fam_rel.append(family_handle)
 
         if previous_errors == len(self.fam_rel):
-            LOG('    OK: no broken parent relationships found')
+            logging.info('    OK: no broken parent relationships found')
 
     def check_events(self):
         self.progress.set_pass(_('Looking for event problems'),
                                self.db.get_number_of_people()
                                +self.db.get_number_of_families())
-        LOG('Looking for event problems')
+        logging.info('Looking for event problems')
         
         for key in self.db.get_person_handles(sort_handles=False):
             self.progress.step()
@@ -949,17 +983,21 @@ class CheckIntegrity(object):
                     make_unknown(birth_handle, self.explanation.handle,
                             self.class_event, self.commit_event, self.trans,
                             type=gen.lib.EventType.BIRTH)
-                    LOG('    FAIL: the person "%s" refers to a birth event'
-                        ' "%s" which does not exist in the database' % 
-                              (person.gramps_id, birth_handle))
+                    logging.warning('    FAIL: the person "%(gid)s" refers to '
+                                    'a birth event "%(hand)s" which does not '
+                                    'exist in the database' % 
+                                    {'gid' : person.gramps_id,
+                                     'hand' : birth_handle})
                     self.invalid_events.add(key)
                 else:
                     if int(birth.get_type()) != gen.lib.EventType.BIRTH:
                         # Birth event was not of the type "Birth"
                         # This is tested by TestcaseGenerator person "Broken14"
-                        LOG('    FAIL: the person "%s" refers to a birth event'
-                            ' which is of type "%s" instead of Birth' % 
-                                  (person.gramps_id, int(birth.get_type())))
+                        logging.warning('    FAIL: the person "%(gid)s" refers '
+                                        'to a birth event which is of type '
+                                        '"%(type)s" instead of Birth' % 
+                                        {'gid' : person.gramps_id,
+                                         'type' : int(birth.get_type())})
                         birth.set_type(gen.lib.EventType(gen.lib.EventType.BIRTH))
                         self.db.commit_event(birth, self.trans)
                         self.invalid_birth_events.add(key)
@@ -980,9 +1018,11 @@ class CheckIntegrity(object):
                     # The death event referenced by the death handle
                     # does not exist in the database
                     # This is tested by TestcaseGenerator person "Broken12"
-                    LOG('    FAIL: the person "%s" refers to a death event'
-                        ' "%s" which does not exist in the database' % 
-                              (person.gramps_id, death_handle))
+                    logging.warning('    FAIL: the person "%(gid)s" refers to '
+                                    'a death event "%(hand)s" which does not '
+                                    'exist in the database' % 
+                                    {'gid' : person.gramps_id,
+                                     'hand' : death_handle})
                     make_unknown(death_handle, self.explanation.handle,
                             self.class_event, self.commit_event, self.trans,
                             type=gen.lib.EventType.DEATH)
@@ -991,9 +1031,11 @@ class CheckIntegrity(object):
                     if int(death.get_type()) != gen.lib.EventType.DEATH:
                         # Death event was not of the type "Death"
                         # This is tested by TestcaseGenerator person "Broken15"
-                        LOG('    FAIL: the person "%s" refers to a death event'
-                            ' which is of type "%s" instead of Death' % 
-                                  (person.gramps_id, int(death.get_type())))
+                        logging.warning('    FAIL: the person "%(gid)s" refers '
+                                        'to a death event which is of type '
+                                        '"%(type)s" instead of Death' % 
+                                        {'gid' : person.gramps_id,
+                                         'type' : int(death.get_type())})
                         death.set_type(gen.lib.EventType(gen.lib.EventType.DEATH))
                         self.db.commit_event(death, self.trans)
                         self.invalid_death_events.add(key)
@@ -1018,9 +1060,11 @@ class CheckIntegrity(object):
                         # This is tested by TestcaseGenerator person "Broken11"
                         # This is tested by TestcaseGenerator person "Broken12"
                         # This is tested by TestcaseGenerator person "Broken13"
-                        LOG('    FAIL: the person "%s" refers to an event'
-                            ' "%s" which does not exist in the database' % 
-                                  (person.gramps_id, event_handle))
+                        logging.warning('    FAIL: the person "%(gid)s" refers '
+                                        'to an event "%(hand)s" which does not '
+                                        'exist in the database' % 
+                                        { 'gid' : person.gramps_id,
+                                         'hand' : event_handle})
                         make_unknown(event_handle,
                                 self.explanation.handle, self.class_event,
                                 self.commit_event, self.trans)
@@ -1030,7 +1074,7 @@ class CheckIntegrity(object):
                     self.db.commit_person(person, self.trans)
             elif not isinstance(person.get_event_ref_list(), list):
                 # event_list is None or other garbage
-                LOG('    FAIL: the person "%s" has an event ref list'
+                logging.warning('    FAIL: the person "%s" has an event ref list'
                     ' which is invalid' % (person.gramps_id))
                 person.set_event_ref_list([])
                 self.db.commit_person(person, self.trans)
@@ -1052,9 +1096,11 @@ class CheckIntegrity(object):
                     if not event:
                         # The event referenced by the family
                         # does not exist in the database
-                        LOG('    FAIL: the family "%s" refers to an event'
-                            ' "%s" which does not exist in the database' % 
-                                  (family.gramps_id, event_handle))
+                        logging.warning('    FAIL: the family "%(gid)s" refers '
+                                        'to an event "%(hand)s" which does not '
+                                        'exist in the database' % 
+                                        {'gid' : family.gramps_id,
+                                         'hand' : event_handle})
                         make_unknown(event_handle, self.explanation,
                                 self.class_event, self.commit_event, self.trans)
                         self.invalid_events.add(key)
@@ -1063,7 +1109,7 @@ class CheckIntegrity(object):
                     self.db.commit_family(family, self.trans)
             elif not isinstance(family.get_event_ref_list(), list):
                 # event_list is None or other garbage
-                LOG('    FAIL: the family "%s" has an event ref list'
+                logging.warning('    FAIL: the family "%s" has an event ref list'
                     ' which is invalid' % (family.gramps_id))
                 family.set_event_ref_list([])
                 self.db.commit_family(family, self.trans)
@@ -1071,14 +1117,14 @@ class CheckIntegrity(object):
 
         if len (self.invalid_birth_events) + len(self.invalid_death_events) +\
                 len(self.invalid_events) == 0:
-            LOG('    OK: no event problems found')
+            logging.info('    OK: no event problems found')
 
     def check_person_references(self):
         plist = self.db.get_person_handles()
         
         self.progress.set_pass(_('Looking for person reference problems'),
                                len(plist))
-        LOG('Looking for person reference problems')
+        logging.info('Looking for person reference problems')
         
         for key in plist:
             self.progress.step()
@@ -1101,14 +1147,14 @@ class CheckIntegrity(object):
                 self.db.commit_person(person, self.trans)
 
         if len (self.invalid_person_references) == 0:
-            LOG('    OK: no event problems found')
+            logging.info('    OK: no event problems found')
 
     def check_family_references(self):
         plist = self.db.get_person_handles()
 
         self.progress.set_pass(_('Looking for family reference problems'),
                                len(plist))
-        LOG('Looking for family reference problems')
+        logging.info('Looking for family reference problems')
 
         for key in plist:
             self.progress.step()
@@ -1125,14 +1171,14 @@ class CheckIntegrity(object):
                         self.invalid_family_references.add(key)
 
         if len (self.invalid_family_references) == 0:
-            LOG('    OK: no event problems found')
+            logging.info('    OK: no event problems found')
 
     def check_repo_references(self):
         slist = self.db.get_source_handles()
         
         self.progress.set_pass(_('Looking for repository reference problems'),
                                len(slist))
-        LOG('Looking for repository reference problems')
+        logging.info('Looking for repository reference problems')
         
         for key in slist:
             self.progress.step()
@@ -1155,7 +1201,7 @@ class CheckIntegrity(object):
                 self.db.commit_source(source, self.trans)
 
         if len (self.invalid_repo_references) == 0:
-            LOG('    OK: no repository reference problems found')
+            logging.info('    OK: no repository reference problems found')
 
     def check_place_references(self):
         plist = self.db.get_person_handles()
@@ -1163,7 +1209,7 @@ class CheckIntegrity(object):
         elist = self.db.get_event_handles()
         self.progress.set_pass(_('Looking for place reference problems'),
                                len(elist)+len(plist)+len(flist))
-        LOG('Looking for place reference problems')
+        logging.info('Looking for place reference problems')
         
         # check persons -> the LdsOrd references a place
         for key in plist:
@@ -1180,9 +1226,11 @@ class CheckIntegrity(object):
                         make_unknown(place_handle,
                                 self.explanation.handle, self.class_place,
                                 self.commit_place, self.trans)
-                        LOG('    FAIL: the person "%s" refers to an LdsOrd'
-                            ' place "%s" which does not exist in the database' % 
-                                  (person.gramps_id, place_handle))
+                        logging.warning('    FAIL: the person "%(gid)s" refers '
+                                        'to an LdsOrd place "%(hand)s" which '
+                                        'does not exist in the database' % 
+                                        {'gid' : person.gramps_id,
+                                         'hand' : place_handle})
                         self.invalid_place_references.add(key)
         # check families -> the LdsOrd references a place
         for key in flist:
@@ -1197,9 +1245,11 @@ class CheckIntegrity(object):
                         make_unknown(place_handle,
                                 self.explanation.handle, self.class_place,
                                 self.commit_place, self.trans)
-                        LOG('    FAIL: the family "%s" refers to an LdsOrd'
-                            ' place "%s" which does not exist in the database' % 
-                                  (family.gramps_id, place_handle))
+                        logging.warning('    FAIL: the family "%(gid)s" refers '
+                                        'to an LdsOrd place "%(hand)s" which '
+                                        'does not exist in the database' % 
+                                        {'gid' : family.gramps_id,
+                                         'hand' : place_handle})
                         self.invalid_place_references.add(key)
         # check events
         for key in elist:
@@ -1213,13 +1263,15 @@ class CheckIntegrity(object):
                     make_unknown(place_handle,
                             self.explanation.handle, self.class_place,
                             self.commit_place, self.trans)
-                    LOG('    FAIL: the event "%s" refers to an LdsOrd place'
-                        ' "%s" which does not exist in the database' % 
-                              (event.gramps_id, place_handle))
+                    logging.warning('    FAIL: the event "%(gid)s" refers '
+                                    'to an LdsOrd place "%(hand)s" which '
+                                    'does not exist in the database' % 
+                                    {'gid' : event.gramps_id,
+                                     'hand' : place_handle})
                     self.invalid_place_references.add(key)
 
         if len (self.invalid_place_references) == 0:
-            LOG('    OK: no place reference problems found')
+            logging.info('    OK: no place reference problems found')
 
     def check_citation_references(self):
         known_handles = self.db.get_citation_handles()
@@ -1237,7 +1289,7 @@ class CheckIntegrity(object):
 
         self.progress.set_pass(_('Looking for citation reference problems'),
                                total)
-        LOG('Looking for citation reference problems')
+        logging.info('Looking for citation reference problems')
 
         for handle in self.db.person_map.keys():
             self.progress.step()
@@ -1360,13 +1412,13 @@ class CheckIntegrity(object):
             self.invalid_source_references.add(created[0].handle)
 
         if len(self.invalid_citation_references) == 0:
-            LOG('   OK: no citation reference problems found')
+            logging.info('   OK: no citation reference problems found')
 
     def check_source_references(self):
         clist = self.db.get_citation_handles()
         self.progress.set_pass(_('Looking for source reference problems'),
                                len(clist))
-        LOG('Looking for source reference problems')
+        logging.info('Looking for source reference problems')
 
         for key in clist:
             self.progress.step()
@@ -1382,12 +1434,14 @@ class CheckIntegrity(object):
                     # The referenced source does not exist in the database
                     make_unknown(source_handle, self.explanation.handle,
                             self.class_source, self.commit_source, self.trans)
-                    LOG('    FAIL: the citation "%s" refers to source '
-                            ' "%s" which does not exist in the database' %
-                                (citation.gramps_id, source_handle))
+                    logging.warning('    FAIL: the citation "%(gid)s" refers '
+                                    'to source "%(hand)s" which does not exist '
+                                    'in the database' %
+                                    {'gid' : citation.gramps_id,
+                                     'hand' : source_handle})
                     self.invalid_source_references.add(key)
         if len(self.invalid_source_references) == 0:
-            LOG('   OK: no source reference problems found')
+            logging.info('   OK: no source reference problems found')
 
     def check_media_references(self):
         known_handles = self.db.get_media_object_handles(False)
@@ -1403,7 +1457,7 @@ class CheckIntegrity(object):
 
         self.progress.set_pass(_('Looking for media object reference problems'),
                                total)
-        LOG('Looking for media object reference problems')
+        logging.info('Looking for media object reference problems')
         
         for handle in self.db.person_map.keys():
             self.progress.step()
@@ -1506,7 +1560,7 @@ class CheckIntegrity(object):
                                self.class_object, self.commit_object, self.trans)
 
         if len (self.invalid_media_references) == 0:
-            LOG('    OK: no media reference problems found')
+            logging.info('    OK: no media reference problems found')
 
     def check_note_references(self):
         # Here I assume check note_references runs after all the next checks.
@@ -1539,7 +1593,7 @@ class CheckIntegrity(object):
 
         self.progress.set_pass(_('Looking for note reference problems'),
                                total)
-        LOG('Looking for note reference problems')
+        logging.info('Looking for note reference problems')
         
         for handle in self.db.person_map.keys():
             self.progress.step()
@@ -1674,7 +1728,7 @@ class CheckIntegrity(object):
                                self.class_note, self.commit_note, self.trans)
 
         if len (self.invalid_note_references) == 0:
-            LOG('    OK: no note reference problems found')
+            logging.info('    OK: no note reference problems found')
         else:
             if not missing_references:
                 self.db.add_note(self.explanation, self.trans, set_gid=True)
@@ -1691,7 +1745,7 @@ class CheckIntegrity(object):
 
         self.progress.set_pass(_('Looking for tag reference problems'),
                                total)
-        LOG('Looking for tag reference problems')
+        logging.info('Looking for tag reference problems')
 
         for handle in self.db.person_map.keys():
             self.progress.step()
@@ -1762,7 +1816,7 @@ class CheckIntegrity(object):
                                self.commit_tag, self.trans)
 
         if len(self.invalid_tag_references) == 0:
-            LOG('   OK: no tag reference problems found')
+            logging.info('   OK: no tag reference problems found')
 
     def class_person(self, handle):
         person = gen.lib.Person()

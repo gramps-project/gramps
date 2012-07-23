@@ -165,20 +165,6 @@ register(GRAMPLET,
          )
 
 register(GRAMPLET, 
-         id="Plugin Manager", 
-         name=_("Plugin Manager"), 
-         description = _("Gramplet showing available third-party plugins (addons)"),
-         status = STABLE,
-         fname="pluginmanagergramplet.py",
-         height=300,
-         expand=True,
-         gramplet = 'PluginManagerGramplet',
-         gramplet_title=_("Plugin Manager"),
-         version="1.0.0",
-         gramps_target_version="3.5",
-         )
-
-register(GRAMPLET, 
          id="Quick View", 
          name=_("Quick View"), 
          description = _("Gramplet showing an active item Quick View"),
@@ -393,9 +379,9 @@ try:
     import pyexiv2
     available = True
 except:
-    import sys
-    print >> sys.stderr, _("WARNING: pyexiv2 module not loaded.  "
-            "Image metadata functionality will not be available.")
+    import logging
+    logging.warning(_("WARNING: pyexiv2 module not loaded.  "
+                      "Image metadata functionality will not be available."))
     available = False
 
 if available:

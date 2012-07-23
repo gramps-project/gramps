@@ -127,14 +127,14 @@ class FamilyBox(AncestorBoxBase):
 # Titles Class(es)
 #
 #------------------------------------------------------------------------
-class TitleN(TitleBox):
+class TitleN(TitleNoDisplay):
     """No Title class for the report """
     def __init__(self, doc):
-        TitleBox.__init__(self, doc, "None")
+        TitleNoDisplay.__init__(self, doc, "AC2-Title")
         
     def calc_title(self, center):
         """Calculate the title of the report"""
-        return
+        self.text = _("Ancestor Graph")
 
 class TitleA(TitleBox):
     """Title class for the report """
@@ -234,6 +234,9 @@ class MakeAncestorTree(object):
         
         myself.text = self.calc_items.calc_person(
                             index, indi_handle, fams_handle)
+
+        myself.add_mark(self.database, 
+                self.database.get_person_from_handle(indi_handle))
 
         self.canvas.add_box(myself)
 
@@ -747,8 +750,12 @@ class AncestorTree(Report):
         scale = self.canvas.scale_report(one_page,
                                          scale_report != 0, scale_report == 2)
         
+        self._user.step_progress()
+
         if scale != 1 or self.connect.get_val('shadowscale') != 1.0:
             self.scale_styles(scale)
+
+        self._user.end_progress()
 
     def write_report(self):
         
@@ -774,7 +781,6 @@ class AncestorTree(Report):
         if prnnum:
             page_num_box = PageNumberBox(self.doc, 'AC2-box')
         
-        self._user.step_progress()
         #####################
         #ok, everyone is now ready to print on the canvas.  Paginate?
         self.canvas.paginate(colsperpage, one_page)
@@ -784,7 +790,6 @@ class AncestorTree(Report):
         #lets finally make some pages!!!
         #####################
         pages = self.canvas.page_count(incblank)
-        self._user.end_progress()
         self._user.begin_progress( _('Ancestor Tree'), 
                                    _('Printing the Tree...'), pages)
 

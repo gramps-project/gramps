@@ -8,8 +8,7 @@
   <tr>
     <th>#</th>
     <th>ID</th>
-    <th>MIME Type</th>
-    <th>Date</th>
+    <th>Description</th>
     <th>File</th>
   </tr>
 </thead>
@@ -20,8 +19,7 @@
     <td><a href="/{{view}}/{{media.handle|escape}}{{args}}" class="noThumb browsecell">
            <span class="grampsid">[{{media.gramps_id}}]</span></a>
     {% if user.is_authenticated %}
-    <td><a href="/{{view}}/{{media.handle|escape}}{{args}}" class="browsecell">{{media.mime|escape}}</a>
-    <td><a href="/{{view}}/{{media.handle|escape}}{{args}}" class="browsecell">{{media|display_date|nbsp}}</a>
+    <td><a href="/{{view}}/{{media.handle|escape}}{{args}}" class="browsecell">{{media.desc|escape}}</a>
     <td><a href="/{{view}}/{{media.handle|escape}}{{args}}" class="browsecell">{{media.path|escape}}</a>
     {% else %}
       <td></td>

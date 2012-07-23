@@ -49,7 +49,10 @@ Keyword translation interface
 #        's' : suffix     = suffix
 #        'n' : nickname   = nick name
 #        'g' : familynick = family nick name
-        
+
+import gettext
+_ = gettext.gettext
+
 KEYWORDS = [("title",     "t", _("Person|Title"),     _("Person|TITLE")),
             ("given",     "f", _("Given"),     _("GIVEN")),
             ("surname",   "l", _("Surname"),    _("SURNAME")),

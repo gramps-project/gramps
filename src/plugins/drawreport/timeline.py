@@ -3,7 +3,8 @@
 #
 # Copyright (C) 2003-2007 Donald N. Allingham
 # Copyright (C) 2007-2008 Brian G. Matherly
-# Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2010      Jakim Friant
+# Copyright (C) 2012      Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,7 +45,8 @@ from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
 pt2cm = ReportUtils.pt2cm
 from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
-                    FONT_SANS_SERIF, DASHED, PARA_ALIGN_CENTER)
+                             FONT_SANS_SERIF, DASHED, PARA_ALIGN_CENTER,
+                             IndexMark, INDEX_TYPE_TOC)
 from gen.sort import Sort
 from gen.display.name import displayer as name_displayer
 from gen.config import config
@@ -138,7 +140,7 @@ class TimeLine(Report):
         self._user.end_progress()
         
         self.doc.start_page()
-        self.build_grid(low, high, start, stop)
+        self.build_grid(low, high, start, stop, True)
 
         index = 1
         current = 1;
@@ -163,8 +165,9 @@ class TimeLine(Report):
                 d = None
 
             n = name_displayer.display_formal(p)
+            mark = ReportUtils.get_person_mark(self.database, p)
             self.doc.draw_text('TLG-text', n,incr+pad,
-                               self.header + (incr+pad)*index)
+                               self.header + (incr+pad)*index, mark)
             
             y1 = self.header + (pad+incr)*index
             y2 = self.header + ((pad+incr)*index)+incr
@@ -205,7 +208,7 @@ class TimeLine(Report):
         self.doc.end_page()
         self._user.end_progress()    
 
-    def build_grid(self, year_low, year_high, start_pos, stop_pos):
+    def build_grid(self, year_low, year_high, start_pos, stop_pos, toc=False):
         """
         Draws the grid outline for the chart. Sets the document label,
         draws the vertical lines, and adds the year labels. Arguments
@@ -216,7 +219,7 @@ class TimeLine(Report):
         start_pos - x position of the lowest leftmost grid line
         stop_pos  - x position of the rightmost grid line
         """
-        self.draw_title()
+        self.draw_title(toc)
         self.draw_columns(start_pos, stop_pos)
         if year_high is not None and year_low is not None:
             self.draw_year_headings(year_low, year_high, start_pos, stop_pos)
@@ -237,7 +240,7 @@ class TimeLine(Report):
             xpos = start_pos + (val * delta)
             self.doc.draw_line('TLG-grid', xpos, top_y, xpos, bottom_y)
             
-    def draw_title(self):
+    def draw_title(self, toc):
         """
         Draws the title for the page.
         """
@@ -246,7 +249,11 @@ class TimeLine(Report):
         byline = _("Sorted by %s") % self.sort_name
         # feature request 2356: avoid genitive form
         title = _("Timeline Graph for %s") % self.filter.get_name()
-        self.doc.center_text('TLG-title', title + "\n" + byline, width / 2.0, 0)
+        mark = None
+        if toc:
+            mark = IndexMark(title, INDEX_TYPE_TOC, 1)
+        self.doc.center_text('TLG-title', title + "\n" + byline,
+                             width / 2.0, 0, mark)
         
     def draw_year_headings(self, year_low, year_high, start_pos, stop_pos):
         """

@@ -7,6 +7,7 @@
 # Copyright (C) 2010       Peter Landgren
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2011       Adam Stein <adam@csh.rit.edu>
+# Copyright (C) 2012       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1576,12 +1577,21 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         Uses the xml.sax.saxutils.escape function to convert XML
         entities. The _esc_map dictionary allows us to add our own
         mappings.
+        @param mark:  IndexMark to use for indexing
         """
         text = escape(text, _esc_map)
 
         if links == True:
             text = re.sub(URL_PATTERN, _CLICKABLE, text)
 
+        self._write_mark(mark, text)
+
+        self.cntnt.write(text)
+
+    def _write_mark(self, mark, text):
+        """
+        Insert a mark at this point in the document.
+        """
         if mark:
             key = escape(mark.key, _esc_map)
             key = key.replace('"', '&quot;')
@@ -1590,7 +1600,6 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                     '<text:alphabetical-index-mark '
                     'text:string-value="%s" />' % key
                     )
-
             elif mark.type == INDEX_TYPE_TOC:
                 self.cntnt.write(
                     '<text:toc-mark ' +
@@ -1606,8 +1615,6 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             elif mark.type == LOCAL_TARGET:
                 self.cntnt.write(
                     '<text:bookmark text:name="%s"/>' % key)
-
-        self.cntnt.write(text)
 
     def insert_toc(self):
         """
@@ -1763,9 +1770,10 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             _META_XML % locals()
             )
 
-    def rotate_text(self, style, text, x, y, angle):
+    def rotate_text(self, style, text, x, y, angle, mark=None):
         """
         Used to rotate a text with an angle.
+        @param mark:  IndexMark to use for indexing
         """
         style_sheet = self.get_style_sheet()
         stype = style_sheet.get_draw_style(style)
@@ -1784,6 +1792,8 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         rangle = radians(angle)
         xloc = x - (wcm / 2.0) * cos(rangle) + (hcm / 2.0) * sin(rangle)
         yloc = y - (hcm / 2.0) * cos(rangle) - (wcm / 2.0) * sin(rangle)
+
+        self._write_mark(mark, text)
 
         self.cntnt.write(
             '<draw:frame text:anchor-type="paragraph" ' +
@@ -1855,9 +1865,10 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             '</draw:line>\n'
             )
 
-    def draw_text(self, style, text, x, y):
+    def draw_text(self, style, text, x, y, mark=None):
         """
         Draw a text
+        @param mark:  IndexMark to use for indexing
         """
         style_sheet = self.get_style_sheet()
         box_style = style_sheet.get_draw_style(style)
@@ -1865,6 +1876,8 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         pstyle = style_sheet.get_paragraph_style(para_name)
         font = pstyle.get_font()
         sw = ReportUtils.pt2cm(string_width(font, text))*1.3
+
+        self._write_mark(mark, text)
 
         self.cntnt.write(
             '<draw:frame text:anchor-type="paragraph" ' +
@@ -1886,14 +1899,17 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             '</draw:frame>\n'
             )
 
-    def draw_box(self, style, text, x, y, w, h):
+    def draw_box(self, style, text, x, y, w, h, mark=None):
         """
         Draw a box
+        @param mark:  IndexMark to use for indexing
         """
         style_sheet = self.get_style_sheet()
         box_style = style_sheet.get_draw_style(style)
         para_name = box_style.get_paragraph_style()
         shadow_width = box_style.get_shadow_space()
+
+        self._write_mark(mark, text)
 
         if box_style.get_shadow():
             self.cntnt.write(
@@ -1928,9 +1944,10 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                 )
         self.cntnt.write('</draw:rect>\n')
 
-    def center_text(self, style, text, x, y):
+    def center_text(self, style, text, x, y, mark=None):
         """
         Center a text in a cell, a row, a line, ...
+        @param mark:  IndexMark to use for indexing
         """
         style_sheet = self.get_style_sheet()
         box_style = style_sheet.get_draw_style(style)
@@ -1939,6 +1956,8 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         font = pstyle.get_font()
 
         size = (string_width(font, text) / 72.0) * 2.54
+
+        self._write_mark(mark, text)
 
         self.cntnt.write(
             '<draw:frame text:anchor-type="paragraph" ' +

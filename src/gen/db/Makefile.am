@@ -1,4 +1,4 @@
-# This is the src/RelLib level Makefile for Gramps
+# This is the src/gen/db level Makefile for Gramps
 # $Id$
 # We could use GNU make's ':=' syntax for nice wildcard use,
 # but that is not necessarily portable.
@@ -13,6 +13,7 @@ pkgpython_PYTHON = \
 	bsddbtxn.py \
 	cursor.py \
 	dbconst.py \
+	dictionary.py \
 	exceptions.py \
 	read.py \
 	txn.py \

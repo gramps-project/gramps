@@ -61,9 +61,9 @@ def impData(database, name, user):
     #     in the mediapath dir of the family tree we import to
     oldmediapath = database.get_mediapath()
     #use home dir if no media path
-    media_path = media_path(database)
+    my_media_path = media_path(database)
     media_dir = "%s.media" % os.path.basename(name)
-    tmpdir_path = os.path.join(media_path, media_dir)
+    tmpdir_path = os.path.join(my_media_path, media_dir)
     if not os.path.isdir(tmpdir_path):
         try:
             os.mkdir(tmpdir_path, 0700)
@@ -91,7 +91,7 @@ def impData(database, name, user):
 
     imp_db_name = os.path.join(tmpdir_path, XMLFILE)  
 
-    importer = ImportXml.importData
+    importer = importxml.importData
     info = importer(database, imp_db_name, user)
     newmediapath = database.get_mediapath()
     #import of gpkg should not change media path as all media has new paths!

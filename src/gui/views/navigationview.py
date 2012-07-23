@@ -331,6 +331,10 @@ class NavigationView(PageView):
         defperson = self.dbstate.db.get_default_person()
         if defperson:
             self.change_active(defperson.get_handle())
+        else:
+            from gui.dialog import WarningDialog
+            WarningDialog(_("No Home Person"), 
+                          _("You need to set a 'default person' to go to."))
 
     def jump(self):
         """

@@ -22,7 +22,7 @@
 """ Views for Person, Name, and Surname """
 
 ## Gramps Modules
-from webapp.utils import _, boolean, update_last_changed
+from webapp.utils import _, boolean, update_last_changed, build_search
 from webapp.grampsdb.models import Citation
 from webapp.grampsdb.forms import *
 from webapp.libdjango import DjangoInterface
@@ -34,9 +34,9 @@ from django.template import Context, RequestContext
 ## Globals
 dji = DjangoInterface()
 
-def process_citation(request, context, handle, action, add_to=None): # view, edit, save
+def process_citation(request, context, handle, act, add_to=None): # view, edit, save
     """
-    Process action on person. Can return a redirect.
+    Process act on person. Can return a redirect.
     """
     context["tview"] = _("Citation")
     context["tviews"] = _("Citations")
@@ -44,26 +44,54 @@ def process_citation(request, context, handle, action, add_to=None): # view, edi
     view_template = "view_citation_detail.html"
     
     if handle == "add":
-        action = "add"
+        act = "add"
     if request.POST.has_key("action"):
-        action = request.POST.get("action")
+        act = request.POST.get("action")
 
-    # Handle: edit, view, add, create, save, delete
-    if action == "add":
+    # Handle: edit, view, add, create, save, delete, share, save-share
+    if act == "share":
+        item, handle = add_to
+        context["pickform"] = PickForm("Pick citation", 
+                                       Citation, 
+                                       (),
+                                       request.POST)     
+        context["object_handle"] = handle
+        context["object_type"] = item
+        return render_to_response("pick.html", context)
+    elif act == "save-share":
+        item, handle = add_to 
+        pickform = PickForm("Pick citation", 
+                            Citation, 
+                            (),
+                            request.POST)
+        if pickform.data["picklist"]:
+            parent_model = dji.get_model(item) # what model?
+            parent_obj = parent_model.objects.get(handle=handle) # to add
+            ref_handle = pickform.data["picklist"]
+            ref_obj = Citation.objects.get(handle=ref_handle) 
+            dji.add_citation_ref_default(parent_obj, ref_obj)
+            dji.rebuild_cache(parent_obj) # rebuild cache
+            return redirect("/%s/%s%s#tab-citations" % (item, handle, build_search(request)))
+        else:
+            context["pickform"] = pickform
+            context["object_handle"] = handle
+            context["object_type"] = item
+            return render_to_response("pick.html", context)
+    elif act == "add":
         source = Source(gramps_id=dji.get_next_id(Source, "S"))
         sourceform = SourceForm(instance=source)
         sourceform.model = source
         citation = Citation(source=source, gramps_id=dji.get_next_id(Citation, "C"))
         citationform = CitationForm(instance=citation)
         citationform.model = citation
-    elif action in ["view", "edit"]: 
+    elif act in ["view", "edit"]: 
         citation = Citation.objects.get(handle=handle)
         citationform = CitationForm(instance=citation)
         citationform.model = citation
         source = citation.source
         sourceform = SourceForm(instance=source)
         sourceform.model = source
-    elif action == "save": 
+    elif act == "save": 
         citation = Citation.objects.get(handle=handle)
         citationform = CitationForm(request.POST, instance=citation)
         citationform.model = citation
@@ -71,10 +99,10 @@ def process_citation(request, context, handle, action, add_to=None): # view, edi
             update_last_changed(citation, request.user.username)
             citation = citationform.save()
             dji.rebuild_cache(citation)
-            action = "view"
+            act = "view"
         else:
-            action = "edit"
-    elif action == "create": 
+            act = "edit"
+    elif act == "create": 
         source = Source(handle=create_id())
         sourceform = SourceForm(request.POST, instance=source)
         sourceform.model = source
@@ -94,22 +122,23 @@ def process_citation(request, context, handle, action, add_to=None): # view, edi
                 model = dji.get_model(item)
                 obj = model.objects.get(handle=handle)
                 dji.add_citation_ref(obj, citation.handle)
+                dji.rebuild_cache(obj)
                 return redirect("/%s/%s#tab-citations" % (item, handle))
-            action = "view"
+            act = "view"
         else:
-            action = "add"
-    elif action == "delete": 
+            act = "add"
+    elif act == "delete": 
         citation = Citation.objects.get(handle=handle)
         citation.delete()
         return redirect("/citation/")
     else:
-        raise Exception("Unhandled action: '%s'" % action)
+        raise Exception("Unhandled act: '%s'" % act)
 
     context["citationform"] = citationform
     context["sourceform"] = sourceform
     context["object"] = citation
     context["citation"] = citation
     context["source"] = source
-    context["action"] = action
+    context["action"] = act
     
     return render_to_response(view_template, context)

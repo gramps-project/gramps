@@ -310,7 +310,7 @@ class HtmlDoc(BaseDoc, TextDoc):
     def __write_text(self, text, mark=None, markup=False, links=False):
         """
         @param text: text to write.
-        @param mark:  IndexMark to use for indexing (if supported)
+        @param mark:  IndexMark to use for indexing (not supported)
         @param markup: True if text already contains markup info. 
                        Then text will no longer be escaped
         @param links: make URLs clickable if True

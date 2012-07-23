@@ -92,7 +92,8 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
             'xmlns="http://www.w3.org/2000/svg">\n'
             )
 
-    def rotate_text(self, style, text, x, y, angle):
+    def rotate_text(self, style, text, x, y, angle, mark=None):
+        """ @param mark:  IndexMark to use for indexing (not supported) """
         style_sheet = self.get_style_sheet()
         stype = style_sheet.get_draw_style(style)
         pname = stype.get_paragraph_style()
@@ -187,7 +188,8 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
                 )
         self.f.write('"/>\n')
 
-    def draw_box(self, style, text, x, y, w, h):
+    def draw_box(self, style, text, x, y, w, h, mark=None):
+        """ @param mark:  IndexMark to use for indexing (not supported) """
         x += self.paper.get_left_margin()
         y += self.paper.get_top_margin()
 
@@ -252,7 +254,8 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
                     '</text>\n'
                     )
 
-    def draw_text(self, style, text, x, y):
+    def draw_text(self, style, text, x, y, mark=None):
+        """ @param mark:  IndexMark to use for indexing (not supported) """
         x += self.paper.get_left_margin()
         y += self.paper.get_top_margin()
         
@@ -285,7 +288,8 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
             '</text>\n'
             )
 
-    def center_text(self, style, text, x, y):
+    def center_text(self, style, text, x, y, mark=None):
+        """ @param mark:  IndexMark to use for indexing (not supported) """
         style_sheet = self.get_style_sheet()
         box_style = style_sheet.get_draw_style(style)
         para_name = box_style.get_paragraph_style()

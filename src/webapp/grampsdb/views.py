@@ -399,7 +399,7 @@ def view_list(request, view):
         context["search_query"] = ""
     return render_to_response(view_template, context)
 
-def check_access(request, context, obj, action):
+def check_access(request, context, obj, act):
     """
     Check to see if user has access to object. We don't need to
     sanitize here, just check to see if we even acknowledge it exists.
@@ -408,25 +408,31 @@ def check_access(request, context, obj, action):
         if request.user.is_superuser:
             return True
         else:
-            return action in ["view"]
+            return act in ["view"]
     else: # outside viewer
         return not obj.private
 
 def add_share(request, view, item, handle):
     """
-    Add a reference to an existing <view> referenced from <item>.
+    Add a new <view> referenced from <item>.
     """
-    # /view/share/person/handle
-    raise Http404(_('Not implemented yet.'))
+    # /person/share/family/handle
+    # Use an existing person with this family
+    # r'^(?P<view>(\w+))/share/(?P<item>(\w+))/(?P<handle>(\w+))$', 
+    act = "share"
+    if request.POST.has_key("action"):
+        act = request.POST.get("action") # can be "save-share"
+    return action(request, view, None, act, (item, handle))
 
 def add_to(request, view, item, handle):
     """
     Add a new <view> referenced from <item>.
     """
     # /view/add/person/handle
+    # /family/add/child/handle
     return action(request, view, None, "add", (item, handle))
 
-def action(request, view, handle, action, add_to=None):
+def action(request, view, handle, act, add_to=None):
     """
     View a particular object given /object/handle (implied view),
     /object/handle/action, or /object/add.
@@ -436,100 +442,100 @@ def action(request, view, handle, action, add_to=None):
     obj = None
     context = RequestContext(request)
     if request.POST.has_key("action"):
-        action = request.POST.get("action")
-    context["action"] = action
+        act = request.POST.get("action")
+    context["action"] = act
     context["view"] = view
     context["tview"] = _('Browse')
     if view == "event":
-        if action not in ["add", "create"]:
+        if act not in ["add", "create", "share", "save-share"]:
             try:
                 obj = Event.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
-        if not check_access(request, context, obj, action):
+        if not check_access(request, context, obj, act):
             raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_event_detail.html'
-        rd = process_event(request, context, handle, action, add_to)
+        rd = process_event(request, context, handle, act, add_to)
     elif view == "family":
-        if action not in ["add", "create"]:
+        if act not in ["add", "create", "share", "save-share"]:
             try:
                 obj = Family.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_family_detail.html'
-        rd = process_family(request, context, handle, action, add_to)
+        rd = process_family(request, context, handle, act, add_to)
     elif view == "media":
-        if action not in ["add", "create"]:
+        if act not in ["add", "create", "share", "save-share"]:
             try:
                 obj = Media.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_media_detail.html'
-        rd = process_media(request, context, handle, action, add_to)
+        rd = process_media(request, context, handle, act, add_to)
     elif view == "note":
-        if action not in ["add", "create"]:
+        if act not in ["add", "create", "share", "save-share"]:
             try:
                 obj = Note.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_note_detail.html'
-        rd = process_note(request, context, handle, action, add_to)
+        rd = process_note(request, context, handle, act, add_to)
     elif view == "person":
-        if action not in ["add", "create"]:
+        if act not in ["add", "create", "share", "save-share"]:
             try:
                 obj = Person.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_person_detail.html'
-        rd = process_person(request, context, handle, action, add_to)
+        rd = process_person(request, context, handle, act, add_to)
     elif view == "place":
-        if action not in ["add", "create"]:
+        if act not in ["add", "create", "share", "save-share"]:
             try:
                 obj = Place.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_place_detail.html'
-        rd = process_place(request, context, handle, action, add_to)
+        rd = process_place(request, context, handle, act, add_to)
     elif view == "repository":
-        if action not in ["add", "create"]:
+        if act not in ["add", "create", "share", "save-share"]:
             try:
                 obj = Repository.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_repository_detail.html'
-        rd = process_repository(request, context, handle, action, add_to)
+        rd = process_repository(request, context, handle, act, add_to)
     elif view == "citation":
-        if action not in ["add", "create"]:
+        if act not in ["add", "create", "share", "save-share"]:
             try:
                 obj = Citation.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_citation_detail.html'
-        rd = process_citation(request, context, handle, action, add_to)
+        rd = process_citation(request, context, handle, act, add_to)
     elif view == "source":
-        if action not in ["add", "create"]:
+        if act not in ["add", "create", "share", "save-share"]:
             try:
                 obj = Source.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_source_detail.html'
-        rd = process_source(request, context, handle, action, add_to)
+        rd = process_source(request, context, handle, act, add_to)
     elif view == "tag":
-        if action not in ["add", "create"]:
+        if act not in ["add", "create", "share", "save-share"]:
             try:
                 obj = Tag.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_tag_detail.html'
-        rd = process_tag(request, context, handle, action, add_to)
+        rd = process_tag(request, context, handle, act, add_to)
     elif view == "report":
-        if action not in ["add", "create"]:
+        if act not in ["add", "create", "share", "save-share"]:
             try:
                 obj = Report.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_report_detail.html'
-        rd = process_report(request, context, handle, action)
+        rd = process_report(request, context, handle, act)
     else:
         raise Http404(_("Requested page type not known"))
     if rd:
@@ -540,14 +546,27 @@ def action(request, view, handle, action, add_to=None):
         context["next"] = "/%s/%s" % (view, obj.handle)
     return render_to_response(view_template, context)
 
-def process_report(request, context, handle, action):
+def process_report(request, context, handle, act):
     """
     Process action on report. Can return a redirect.
     """
-    if action == "run":
+    if act == "run":
         return process_report_run(request, handle)
     context["tview"] = _("Report")
     context["tviews"] = _("Reports")
+
+def build_string_query(field, value, exact=False, startswith=False, endswith=False):
+    print field, value
+    retval = None
+    if exact:
+        retval = Q(**{"%s" % field: value})
+    elif startswith:
+        retval = Q(**{"%s__istartswith" % field: value}) 
+    elif endswith:
+        retval = Q(**{"%s__iendswith" % field: value}) 
+    else: # default
+        retval = Q(**{"%s__icontains" % field: value}) 
+    return retval
 
 def build_person_query(request, search):
     """
@@ -569,6 +588,9 @@ def build_person_query(request, search):
     if search:
         if "," in search or "=" in search:
             for term in [term.strip() for term in search.split(",")]:
+                startswith = False
+                endswith = False
+                exact = False
                 if "=" in term:
                     field, value = [s.strip() for s in term.split("=")]
                 else:
@@ -577,15 +599,23 @@ def build_person_query(request, search):
                         value = term
                     else:
                         continue
+                if value.startswith("^"):
+                    startswith = True
+                    value = value[1:]
+                if value.endswith("$"):
+                    endswith = True
+                    value = value[:-1]
+                if startswith and endswith:
+                    exact = True
                 if "." in field and not protect:
-                    query &= Q(**{str(field.replace(".", "__")): value})
+                    query &= build_string_query(field.replace(".", "__"), value, exact, startswith, endswith)
                 elif field == "surname":
-                    query &= Q(surname__surname__istartswith=value)
+                    query &= build_string_query("surname__surname", value, exact, startswith, endswith)
                 elif field == "given":
                     if protect:
-                        query &= Q(first_name__istartswith=value) & Q(person__probably_alive=False)
+                        query &= build_string_query("first_name", value, exact, startswith, endswith) & Q(person__probably_alive=False)
                     else:
-                        query &= Q(first_name__istartswith=value)
+                        query &= build_string_query("first_name", value, exact, startswith, endswith)
                 elif field == "private":
                     if not protect:
                         query &= Q(person__private=boolean(value))
@@ -600,7 +630,7 @@ def build_person_query(request, search):
                     else:
                         query &= Q(person__death__year1=safe_int(value))
                 elif field == "id":
-                    query &= Q(person__gramps_id__icontains=value)
+                    query &= build_string_query("person__gramps_id", value, exact, startswith, endswith)
                 elif field == "gender":
                     query &= Q(person__gender_type__name=value.title())
                 else:
@@ -627,7 +657,7 @@ def build_family_query(request, search):
     Build and return a Django QuerySet and sort order for the Family
     table.
     """
-    terms = ["father", "mother", "id", "type"]
+    terms = ["father", "mother", "id", "type", "surnames", "father.name.first_name", "mother.name.first_name"]
     protect = not request.user.is_authenticated()
     if protect:
         query = (Q(private=False) & Q(father__private=False) & 
@@ -647,6 +677,9 @@ def build_family_query(request, search):
     if search:
         if "," in search or "=" in search:
             for term in [term.strip() for term in search.split(",")]:
+                startswith = False
+                endswith = False
+                exact = False
                 if "=" in term:
                     field, value = [s.strip() for s in term.split("=")]
                 else:
@@ -656,19 +689,27 @@ def build_family_query(request, search):
                     else:
                         make_message("Ignoring value without specified field")
                         continue
+                if value.startswith("^"):
+                    startswith = True
+                    value = value[1:]
+                if value.endswith("$"):
+                    endswith = True
+                    value = value[:-1]
+                if startswith and endswith:
+                    exact = True
                 if "." in field and not protect:
-                    query &= Q(**{str(field.replace(".", "__")): value})
+                    query &= build_string_query(field.replace(".", "__"), value, exact, startswith, endswith)
                 elif field == "surnames":
-                    query &= (Q(father__name__surname__surname__istartswith=value) |
-                              Q(mother__name__surname__surname__istartswith=value))
+                    query &= (build_string_query("father__name__surname__surname", value, exact, startswith, endswith) |
+                              build_string_query("mother__name__surname__surname", value, exact, startswith, endswith))
                 elif field == "father":
-                    query &= Q(father__name__surname__surname__istartswith=value)
+                    query &= build_string_query("father__name__surname__surname", value, exact, startswith, endswith)
                 elif field == "mother":
-                    query &= Q(mother__name__surname__surname__istartswith=value)
+                    query &= build_string_query("mother__name__surname__surname", value, exact, startswith, endswith)
                 elif field == "type":
-                    query &= Q(family_rel_type__name__icontains=value)
+                    query &= build_string_query("family_rel_type__name", value, exact, startswith, endswith)
                 elif field == "id":
-                    query &= Q(gramps_id__icontains=value)
+                    query &= build_string_query("gramps_id", value, exact, startswith, endswith)
                 else:
                     make_message(request, message="Invalid query field '%s'" % field)
         else: # no search fields, just raw search
@@ -688,7 +729,7 @@ def build_family_query(request, search):
     return query, order, terms
 
 def build_media_query(request, search):
-    terms = ["id"]
+    terms = ["id", "path", "description", "mime"]
     protect = not request.user.is_authenticated()
     if protect:
         query = Q(private=False) # general privacy
@@ -699,6 +740,9 @@ def build_media_query(request, search):
     if search:
         if "," in search or "=" in search:
             for term in [term.strip() for term in search.split(",")]:
+                startswith = False
+                endswith = False
+                exact = False
                 if "=" in term:
                     field, value = [s.strip() for s in term.split("=")]
                 else:
@@ -707,17 +751,37 @@ def build_media_query(request, search):
                         value = term
                     else:
                         continue
+                if value.startswith("^"):
+                    startswith = True
+                    value = value[1:]
+                if value.endswith("$"):
+                    endswith = True
+                    value = value[:-1]
+                if startswith and endswith:
+                    exact = True
                 if "." in field and not protect:
-                    query &= Q(**{str(field.replace(".", "__")): value})
+                    query &= build_string_query(field.replace(".", "__"), value, exact, startswith, endswith)
                 elif field == "id":
-                    query &= Q(gramps_id__icontains=value)
+                    query &= build_string_query("gramps_id", value, exact, startswith, endswith) 
+                elif field == "path":
+                    query &= build_string_query("path", value, exact, startswith, endswith) 
+                elif field == "description":
+                    query &= build_string_query("desc", value, exact, startswith, endswith) 
+                elif field == "mime":
+                    query &= build_string_query("mime", value, exact, startswith, endswith) 
                 else:
                     request.user.message_set.create(message="Invalid query field '%s'" % field)                
         else: # no search fields, just raw search
             if protect:
-                query &= Q(gramps_id__icontains=search)
+                query &= (Q(gramps_id__icontains=search) |
+                          Q(path__icontains=search) |
+                          Q(desc__icontains=search) | 
+                          Q(mime__icontains=search))
             else:
-                query &= Q(gramps_id__icontains=search)
+                query &= (Q(gramps_id__icontains=search) |
+                          Q(path__icontains=search) |
+                          Q(desc__icontains=search) | 
+                          Q(mime__icontains=search))
     else: # no search
         pass # nothing left to do
     return query, order, terms
@@ -734,6 +798,9 @@ def build_note_query(request, search):
     if search:
         if "," in search or "=" in search:
             for term in [term.strip() for term in search.split(",")]:
+                startswith = False
+                endswith = False
+                exact = False
                 if "=" in term:
                     field, value = [s.strip() for s in term.split("=")]
                 else:
@@ -742,14 +809,22 @@ def build_note_query(request, search):
                         value = term
                     else:
                         continue
+                if value.startswith("^"):
+                    startswith = True
+                    value = value[1:]
+                if value.endswith("$"):
+                    endswith = True
+                    value = value[:-1]
+                if startswith and endswith:
+                    exact = True
                 if "." in field and not protect:
-                    query &= Q(**{str(field.replace(".", "__")): value})
+                    query &= build_string_query(field.replace(".", "__"), value, exact, startswith, endswith)
                 elif field == "id":
-                    query &= Q(gramps_id__icontains=value)
+                    query &= build_string_query("gramps_id", value, exact, startswith, endswith)
                 elif field == "type":
-                    query &= Q(note_type__name__icontains=value)
+                    query &= build_string_query("note_type__name", value, exact, startswith, endswith) 
                 elif field == "text":
-                    query &= Q(text__icontains=value)
+                    query &= build_string_query("text", value, exact, startswith, endswith) 
                 else:
                     request.user.message_set.create(message="Invalid query field '%s'" % field)                
         else: # no search fields, just raw search
@@ -777,6 +852,9 @@ def build_place_query(request, search):
     if search:
         if "," in search or "=" in search:
             for term in [term.strip() for term in search.split(",")]:
+                startswith = False
+                endswith = False
+                exact = False
                 if "=" in term:
                     field, value = [s.strip() for s in term.split("=")]
                 else:
@@ -785,12 +863,20 @@ def build_place_query(request, search):
                         value = term
                     else:
                         continue
+                if value.startswith("^"):
+                    startswith = True
+                    value = value[1:]
+                if value.endswith("$"):
+                    endswith = True
+                    value = value[:-1]
+                if startswith and endswith:
+                    exact = True
                 if "." in field and not protect:
-                    query &= Q(**{str(field.replace(".", "__")): value})
+                    query &= build_string_query(field.replace(".", "__"), value, exact, startswith, endswith)
                 elif field == "id":
-                    query &= Q(gramps_id__icontains=value)
+                    query &= build_string_query("gramps_id", value, exact, startswith, endswith)
                 elif field == "title":
-                    query &= Q(title__icontains=value)
+                    query &= build_string_query("title", value, exact, startswith, endswith) 
                 else:
                     request.user.message_set.create(message="Invalid query field '%s'" % field)                
         else: # no search fields, just raw search
@@ -816,6 +902,9 @@ def build_repository_query(request, search):
     if search:
         if "," in search or "=" in search:
             for term in [term.strip() for term in search.split(",")]:
+                startswith = False
+                endswith = False
+                exact = False
                 if "=" in term:
                     field, value = [s.strip() for s in term.split("=")]
                 else:
@@ -824,14 +913,22 @@ def build_repository_query(request, search):
                         value = term
                     else:
                         continue
+                if value.startswith("^"):
+                    startswith = True
+                    value = value[1:]
+                if value.endswith("$"):
+                    endswith = True
+                    value = value[:-1]
+                if startswith and endswith:
+                    exact = True
                 if "." in field and not protect:
-                    query &= Q(**{str(field.replace(".", "__")): value})
+                    query &= build_string_query(field.replace(".", "__"), value, exact, startswith, endswith)
                 elif field == "id":
-                    query &= Q(gramps_id__icontains=value)
+                    query &= build_string_query("gramps_id", value, exact, startswith, endswith)
                 elif field == "name":
-                    query &= Q(name__icontains=value)
+                    query &= build_string_query("name", value, exact, startswith, endswith) 
                 elif field == "type":
-                    query &= Q(repository_type__name__icontains=value)
+                    query &= build_string_query("repository_type__name", value, exact, startswith, endswith)
                 else:
                     request.user.message_set.create(message="Invalid query field '%s'" % field)                
         else: # no search fields, just raw search
@@ -861,6 +958,9 @@ def build_citation_query(request, search):
     if search:
         if "," in search or "=" in search:
             for term in [term.strip() for term in search.split(",")]:
+                startswith = False
+                endswith = False
+                exact = False
                 if "=" in term:
                     field, value = [s.strip() for s in term.split("=")]
                 else:
@@ -869,10 +969,18 @@ def build_citation_query(request, search):
                         value = term
                     else:
                         continue
+                if value.startswith("^"):
+                    startswith = True
+                    value = value[1:]
+                if value.endswith("$"):
+                    endswith = True
+                    value = value[:-1]
+                if startswith and endswith:
+                    exact = True
                 if "." in field and not protect:
-                    query &= Q(**{str(field.replace(".", "__")): value})
+                    query &= build_string_query(field.replace(".", "__"), value, exact, startswith, endswith)
                 elif field == "id":
-                    query &= Q(gramps_id__icontains=value)
+                    query &= build_string_query("gramps_id", value, exact, startswith, endswith)
                 else:
                     request.user.message_set.create(message="Invalid query field '%s'" % field)                
         else: # no search fields, just raw search
@@ -896,6 +1004,9 @@ def build_source_query(request, search):
     if search:
         if "," in search or "=" in search:
             for term in [term.strip() for term in search.split(",")]:
+                startswith = False
+                endswith = False
+                exact = False
                 if "=" in term:
                     field, value = [s.strip() for s in term.split("=")]
                 else:
@@ -904,10 +1015,18 @@ def build_source_query(request, search):
                         value = term
                     else:
                         continue
+                if value.startswith("^"):
+                    startswith = True
+                    value = value[1:]
+                if value.endswith("$"):
+                    endswith = True
+                    value = value[:-1]
+                if startswith and endswith:
+                    exact = True
                 if "." in field and not protect:
-                    query &= Q(**{str(field.replace(".", "__")): value})
+                    query &= build_string_query(field.replace(".", "__"), value, exact, startswith, endswith)
                 elif field == "id":
-                    query &= Q(gramps_id__icontains=value)
+                    query &= build_string_query("gramps_id", value, exact, startswith, endswith)
                 else:
                     request.user.message_set.create(message="Invalid query field '%s'" % field)                
         else: # no search fields, just raw search
@@ -931,6 +1050,9 @@ def build_tag_query(request, search):
     if search:
         if "," in search or "=" in search:
             for term in [term.strip() for term in search.split(",")]:
+                startswith = False
+                endswith = False
+                exact = False
                 if "=" in term:
                     field, value = [s.strip() for s in term.split("=")]
                 else:
@@ -939,8 +1061,16 @@ def build_tag_query(request, search):
                         value = term
                     else:
                         continue
+                if value.startswith("^"):
+                    startswith = True
+                    value = value[1:]
+                if value.endswith("$"):
+                    endswith = True
+                    value = value[:-1]
+                if startswith and endswith:
+                    exact = True
                 if "." in field and not protect:
-                    query &= Q(**{str(field.replace(".", "__")): value})
+                    query &= build_string_query(field.replace(".", "__"), value, exact, startswith, endswith)
                 elif field == "name":
                     query &= Q(name__icontains=value)
                 else:
@@ -967,6 +1097,9 @@ def build_report_query(request, search):
     if search:
         if "," in search or "=" in search:
             for term in [term.strip() for term in search.split(",")]:
+                startswith = False
+                endswith = False
+                exact = False
                 if "=" in term:
                     field, value = [s.strip() for s in term.split("=")]
                 else:
@@ -975,8 +1108,16 @@ def build_report_query(request, search):
                         value = term
                     else:
                         continue
+                if value.startswith("^"):
+                    startswith = True
+                    value = value[1:]
+                if value.endswith("$"):
+                    endswith = True
+                    value = value[:-1]
+                if startswith and endswith:
+                    exact = True
                 if "." in field and not protect:
-                    query &= Q(**{str(field.replace(".", "__")): value})
+                    query &= build_string_query(field.replace(".", "__"), value, exact, startswith, endswith)
                 elif field == "name":
                     query &= Q(name__icontains=value)
                 else:
@@ -991,7 +1132,7 @@ def build_report_query(request, search):
     return query, order, terms
 
 def build_event_query(request, search):
-    terms = ["id", "type", "place"]
+    terms = ["id", "type", "place", "description"]
     protect = not request.user.is_authenticated()
     if protect:
         query = Q(private=False) # general privacy
@@ -1002,6 +1143,9 @@ def build_event_query(request, search):
     if search:
         if "," in search or "=" in search:
             for term in [term.strip() for term in search.split(",")]:
+                startswith = False
+                endswith = False
+                exact = False
                 if "=" in term:
                     field, value = [s.strip() for s in term.split("=")]
                 else:
@@ -1010,23 +1154,35 @@ def build_event_query(request, search):
                         value = term
                     else:
                         continue
+                if value.startswith("^"):
+                    startswith = True
+                    value = value[1:]
+                if value.endswith("$"):
+                    endswith = True
+                    value = value[:-1]
+                if startswith and endswith:
+                    exact = True
                 if "." in field and not protect:
-                    query &= Q(**{str(field.replace(".", "__")): value})
+                    query &= build_string_query(field.replace(".", "__"), value, exact, startswith, endswith)
                 elif field == "id":
-                    query &= Q(gramps_id__icontains=value)
+                    query &= build_string_query("gramps_id", value, exact, startswith, endswith)
+                elif field == "description":
+                    query &= build_string_query("desc", value, exact, startswith, endswith)
                 elif field == "type":
-                    query &= Q(event_type__name__icontains=value)
+                    query &= build_string_query("event_type__name", value, exact, startswith, endswith)
                 elif field == "place":
-                    query &= Q(place__title__icontains=value)
+                    query &= build_string_query("place__title", value, exact, startswith, endswith)
                 else:
                     request.user.message_set.create(message="Invalid query field '%s'" % field)                
         else: # no search fields, just raw search
             if protect:
                 query &= (Q(gramps_id__icontains=search) |
+                          Q(desc__icontains=search) |
                           Q(event_type__name__icontains=search) |
                           Q(place__title__icontains=search))
             else:
                 query &= (Q(gramps_id__icontains=search) |
+                          Q(desc__icontains=search) |
                           Q(event_type__name__icontains=search) |
                           Q(place__title__icontains=search))
     else: # no search

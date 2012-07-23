@@ -1,6 +1,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2012       Nick Hall
+# Copyright (C) 2012       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,7 +34,8 @@ from gen.ggettext import sgettext as _
 from gen.plug.report import Report
 from gen.plug.report import MenuReportOptions
 from gen.plug.docgen import (FontStyle, ParagraphStyle, TableStyle, 
-                             TableCellStyle, FONT_SANS_SERIF)
+                             TableCellStyle, FONT_SANS_SERIF,
+                             IndexMark, INDEX_TYPE_TOC)
 
 #------------------------------------------------------------------------
 #
@@ -59,6 +61,10 @@ class AlphabeticalIndex(Report):
         
     def write_report(self):
         """ Generate the contents of the report """
+        mark = IndexMark(_("Alphabetical Index"), INDEX_TYPE_TOC, 1)
+        self.doc.start_paragraph("IDX-Title")
+        self.doc.write_text('', mark)
+        self.doc.end_paragraph()
         self.doc.insert_index()
 
 #------------------------------------------------------------------------

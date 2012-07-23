@@ -829,6 +829,15 @@ class DjangoInterface(object):
         self.add_attribute_list(media_ref, attribute_list)
         self.add_citation_list(media_ref, citation_list)
     
+    def add_citation_ref_default(self, obj, citation, private=False):
+        object_type = ContentType.objects.get_for_model(obj)
+        count = models.CitationRef.objects.filter(object_id=obj.id,object_type=object_type).count()
+        citation_ref = models.CitationRef(private=private,
+                                          referenced_by=obj,
+                                          citation=citation,
+                                          order=count + 1)
+        citation_ref.save()
+
     def add_citation_ref(self, obj, handle):
         try:
             citation = models.Citation.objects.get(handle=handle)
@@ -938,6 +947,19 @@ class DjangoInterface(object):
         event_ref.save()
         self.add_note_list(event_ref, note_list)
         self.add_attribute_list(event_ref, attribute_list)
+
+    def add_repository_ref_default(self, obj, repository, private=False, call_number="", 
+                                   source_media_type=models.SourceMediaType._DEFAULT):
+        object_type = ContentType.objects.get_for_model(obj)
+        count = models.RepositoryRef.objects.filter(object_id=obj.id,object_type=object_type).count()
+        repos_ref = models.RepositoryRef(private=private,
+                                         referenced_by=obj,
+                                         call_number=call_number,
+                                         source_media_type=models.get_type(models.SourceMediaType,
+                                                                           source_media_type),
+                                         ref_object=repository,
+                                         order=count + 1)
+        repos_ref.save()
     
     def add_repository_ref(self, obj, reporef_data):
         (note_list, 

@@ -22,7 +22,7 @@
 """ Views for Person, Name, and Surname """
 
 ## Gramps Modules
-from webapp.utils import _, boolean, update_last_changed
+from webapp.utils import _, boolean, update_last_changed, build_search
 from webapp.grampsdb.models import Event
 from webapp.grampsdb.forms import *
 from webapp.libdjango import DjangoInterface
@@ -39,9 +39,9 @@ db = DbDjango()
 dd = displayer.display
 dp = parser.parse
 
-def process_event(request, context, handle, action, add_to=None): # view, edit, save
+def process_event(request, context, handle, act, add_to=None): # view, edit, save
     """
-    Process action on person. Can return a redirect.
+    Process act on person. Can return a redirect.
     """
     context["tview"] = _("Event")
     context["tviews"] = _("Events")
@@ -49,16 +49,44 @@ def process_event(request, context, handle, action, add_to=None): # view, edit, 
     view_template = "view_event_detail.html"
 
     if handle == "add":
-        action = "add"
+        act = "add"
     if request.POST.has_key("action"):
-        action = request.POST.get("action")
+        act = request.POST.get("action")
 
-    # Handle: edit, view, add, create, save, delete
-    if action == "add":
+    # Handle: edit, view, add, create, save, delete, share, save-share
+    if act == "share":
+        item, handle = add_to
+        context["pickform"] = PickForm("Pick event", 
+                                       Event, 
+                                       (),
+                                       request.POST)     
+        context["object_handle"] = handle
+        context["object_type"] = item
+        return render_to_response("pick.html", context)
+    elif act == "save-share":
+        item, handle = add_to 
+        pickform = PickForm("Pick event", 
+                            Event, 
+                            (),
+                            request.POST)
+        if pickform.data["picklist"]:
+            parent_model = dji.get_model(item) # what model?
+            parent_obj = parent_model.objects.get(handle=handle) # to add
+            ref_handle = pickform.data["picklist"]
+            ref_obj = Event.objects.get(handle=ref_handle) 
+            dji.add_event_ref_default(parent_obj, ref_obj)
+            dji.rebuild_cache(parent_obj) # rebuild cache
+            return redirect("/%s/%s%s#tab-events" % (item, handle, build_search(request)))
+        else:
+            context["pickform"] = pickform
+            context["object_handle"] = handle
+            context["object_type"] = item
+            return render_to_response("pick.html", context)
+    elif act == "add":
         event = Event(gramps_id=dji.get_next_id(Event, "E"))
         eventform = EventForm(instance=event)
         eventform.model = event
-    elif action in ["view", "edit"]: 
+    elif act in ["view", "edit"]: 
         event = Event.objects.get(handle=handle)
         genlibevent = db.get_event_from_handle(handle)
         if genlibevent:
@@ -66,7 +94,7 @@ def process_event(request, context, handle, action, add_to=None): # view, edit, 
             event.text = dd(date)
         eventform = EventForm(instance=event)
         eventform.model = event
-    elif action == "save": 
+    elif act == "save": 
         event = Event.objects.get(handle=handle)
         eventform = EventForm(request.POST, instance=event)
         eventform.model = event
@@ -74,10 +102,10 @@ def process_event(request, context, handle, action, add_to=None): # view, edit, 
             update_last_changed(event, request.user.username)
             event = eventform.save()
             dji.rebuild_cache(event)
-            action = "view"
+            act = "view"
         else:
-            action = "edit"
-    elif action == "create": 
+            act = "edit"
+    elif act == "create": 
         event = Event(handle=create_id())
         eventform = EventForm(request.POST, instance=event)
         eventform.model = event
@@ -90,20 +118,21 @@ def process_event(request, context, handle, action, add_to=None): # view, edit, 
                 model = dji.get_model(item)
                 obj = model.objects.get(handle=handle)
                 dji.add_event_ref_default(obj, event)
+                dji.rebuild_cache(obj)                
                 return redirect("/%s/%s#tab-events" % (item, handle))
-            action = "view"
+            act = "view"
         else:
-            action = "add"
-    elif action == "delete": 
+            act = "add"
+    elif act == "delete": 
         event = Event.objects.get(handle=handle)
         event.delete()
         return redirect("/event/")
     else:
-        raise Exception("Unhandled action: '%s'" % action)
+        raise Exception("Unhandled act: '%s'" % act)
 
     context["eventform"] = eventform
     context["object"] = event
     context["event"] = event
-    context["action"] = action
+    context["action"] = act
     
     return render_to_response(view_template, context)

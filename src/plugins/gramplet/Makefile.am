@@ -31,7 +31,6 @@ pkgpython_PYTHON = \
 	persondetails.py \
 	personresidence.py \
 	placedetails.py \
-	pluginmanagergramplet.py\
 	quickviewgramplet.py \
 	relativegramplet.py \
 	repositorydetails.py \

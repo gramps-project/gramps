@@ -95,7 +95,7 @@ DB Manager
 *****************************
 Filter Editor
 *****************************
-.. automodule:: gui.filtereditor
+.. automodule:: gui.editors.filtereditor
 .. autoclass:: EditFilter
    :members:
    :undoc-members:

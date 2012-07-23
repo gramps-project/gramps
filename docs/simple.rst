@@ -2,25 +2,25 @@
 The :class:`Simple` Classes
 ###########################
 
-.. automodule:: Simple
+.. automodule:: gen.simple
 
 Simple Access
 ====================================
-.. automodule:: Simple._SimpleAccess
+.. automodule:: gen.simple._simpleaccess
    :members:
    :undoc-members:
    :show-inheritance:
 
 Simple Doc
 ====================================
-.. automodule:: Simple._SimpleDoc
+.. automodule:: gen.simple._simpledoc
    :members:
    :undoc-members:
    :show-inheritance:
 
 Simple Table
 ====================================
-.. automodule:: Simple._SimpleTable
+.. automodule:: gen.simple._simpletable
    :members:
    :undoc-members:
    :show-inheritance:

@@ -42,6 +42,8 @@ from gen.db import (PERSON_KEY,
                     REPOSITORY_KEY,
                     NOTE_KEY)
 from gen.utils.id import create_id
+from gen.lib import (MediaObject, Person, Family, Source, Citation, Event,
+                     Place, Repository, Note, Tag)
 
 class Cursor(object):
     """
@@ -96,6 +98,88 @@ class DictionaryDb(DbWriteBase, DbReadBase):
     def __init__(self, *args, **kwargs):
         DbReadBase.__init__(self)
         DbWriteBase.__init__(self)
+        self._tables = {
+            'Person':
+                {
+                "handle_func": self.get_person_from_handle, 
+                "gramps_id_func": self.get_person_from_gramps_id,
+                "class_func": Person,
+                "cursor_func": self.get_person_cursor,
+                "handles_func": self.get_person_handles,
+                },
+            'Family':
+                {
+                "handle_func": self.get_family_from_handle, 
+                "gramps_id_func": self.get_family_from_gramps_id,
+                "class_func": Family,
+                "cursor_func": self.get_family_cursor,
+                "handles_func": self.get_family_handles,
+                },
+            'Source':
+                {
+                "handle_func": self.get_source_from_handle, 
+                "gramps_id_func": self.get_source_from_gramps_id,
+                "class_func": Source,
+                "cursor_func": self.get_source_cursor,
+                "handles_func": self.get_source_handles,
+                },
+            'Citation':
+                {
+                "handle_func": self.get_citation_from_handle, 
+                "gramps_id_func": self.get_citation_from_gramps_id,
+                "class_func": Citation,
+                "cursor_func": self.get_citation_cursor,
+                "handles_func": self.get_citation_handles,
+                },
+            'Event':
+                {
+                "handle_func": self.get_event_from_handle, 
+                "gramps_id_func": self.get_event_from_gramps_id,
+                "class_func": Event,
+                "cursor_func": self.get_event_cursor,
+                "handles_func": self.get_event_handles,
+                },
+            'Media':
+                {
+                "handle_func": self.get_object_from_handle, 
+                "gramps_id_func": self.get_object_from_gramps_id,
+                "class_func": MediaObject,
+                "cursor_func": self.get_media_cursor,
+                "handles_func": self.get_media_object_handles,
+                },
+            'Place':
+                {
+                "handle_func": self.get_place_from_handle, 
+                "gramps_id_func": self.get_place_from_gramps_id,
+                "class_func": Place,
+                "cursor_func": self.get_place_cursor,
+                "handles_func": self.get_place_handles,
+                },
+            'Repository':
+                {
+                "handle_func": self.get_repository_from_handle, 
+                "gramps_id_func": self.get_repository_from_gramps_id,
+                "class_func": Repository,
+                "cursor_func": self.get_repository_cursor,
+                "handles_func": self.get_repository_handles,
+                },
+            'Note':
+                {
+                "handle_func": self.get_note_from_handle, 
+                "gramps_id_func": self.get_note_from_gramps_id,
+                "class_func": Note,
+                "cursor_func": self.get_note_cursor,
+                "handles_func": self.get_note_handles,
+                },
+            'Tag':
+                {
+                "handle_func": self.get_tag_from_handle, 
+                "gramps_id_func": None,
+                "class_func": Tag,
+                "cursor_func": self.get_tag_cursor,
+                "handles_func": self.get_tag_handles,
+                },
+            }
         # skip GEDCOM cross-ref check for now:
         self.set_feature("skip-check-xref", True)
         self.readonly = False
@@ -148,6 +232,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
         self.note_map        = {}
         self.media_map       = {}
         self.event_map       = {}
+        self.tag_map         = {}
         self.metadata   = {}
         self.name_group = {}
         self.undo_callback = None
@@ -419,8 +504,11 @@ class DictionaryDb(DbWriteBase, DbReadBase):
         obj = gen.lib.Researcher()
         return obj
 
-    def get_person_handles(self):
-        return self.person_map.keys()
+    def get_person_handles(self, sort_handles=False):
+        if sort_handles:
+            raise Exception("Implement!")
+        else:
+            return self.person_map.keys()
 
     def get_family_handles(self):
         return self.family_map.keys()
@@ -428,26 +516,41 @@ class DictionaryDb(DbWriteBase, DbReadBase):
     def get_event_handles(self):
         return self.event_map.keys()
 
-    def get_citation_handles(self):
-        return self.citation_map.keys()
+    def get_citation_handles(self, sort_handles=False):
+        if sort_handles:
+            raise Exception("Implement!")
+        else:
+            return self.citation_map.keys()
 
-    def get_source_handles(self):
-        return self.source_map.keys()
+    def get_source_handles(self, sort_handles=False):
+        if sort_handles:
+            raise Exception("Implement!")
+        else:
+            return self.source_map.keys()
 
-    def get_place_handles(self):
-        return self.place_map.keys()
+    def get_place_handles(self, sort_handles=False):
+        if sort_handles:
+            raise Exception("Implement!")
+        else:
+            return self.place_map.keys()
 
     def get_repository_handles(self):
         return self.repository_map.keys()
 
-    def get_media_object_handles(self):
-        return self.media_map.keys()
+    def get_media_object_handles(self, sort_handles=False):
+        if sort_handles:
+            raise Exception("Implement!")
+        else:
+            return self.media_map.keys()
 
     def get_note_handles(self):
         return self.note_map.keys()
 
     def get_tag_handles(self, sort_handles=False):
-        return []
+        if sort_handles:
+            raise Exception("Implement!")
+        else:
+            return self.tag_map.keys()
 
     def get_event_from_handle(self, handle):
         return self.event_map[handle]
@@ -462,7 +565,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
         return self.person_map[handle]
 
     def get_place_from_handle(self, handle):
-        place = self.person_map[handle]
+        place = self.place_map[handle]
         return place
 
     def get_citation_from_handle(self, handle):
@@ -480,6 +583,10 @@ class DictionaryDb(DbWriteBase, DbReadBase):
     def get_object_from_handle(self, handle):
         media = self.media_map[handle]
         return media
+
+    def get_tag_from_handle(self, handle):
+        tag = self.tag_map[handle]
+        return tag
 
     def get_default_person(self):
         return None
@@ -667,7 +774,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
     def add_person(self, person, trans, set_gid=True):
         if not person.handle:
             person.handle = create_id()
-        if not person.gramps_id or set_gid:
+        if not person.gramps_id and set_gid:
             person.gramps_id = self.find_next_person_gramps_id()
         self.commit_person(person, trans)
         return person.handle
@@ -675,7 +782,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
     def add_family(self, family, trans, set_gid=True):
         if not family.handle:
             family.handle = create_id()
-        if not family.gramps_id or set_gid:
+        if not family.gramps_id and set_gid:
             family.gramps_id = self.find_next_family_gramps_id()
         self.commit_family(family, trans)
         return family.handle
@@ -683,7 +790,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
     def add_citation(self, citation, trans, set_gid=True):
         if not citation.handle:
             citation.handle = create_id()
-        if not citation.gramps_id or set_gid:
+        if not citation.gramps_id and set_gid:
             citation.gramps_id = self.find_next_citation_gramps_id()
         self.commit_citation(citation, trans)
         return citation.handle
@@ -691,7 +798,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
     def add_source(self, source, trans, set_gid=True):
         if not source.handle:
             source.handle = create_id()
-        if not source.gramps_id or set_gid:
+        if not source.gramps_id and set_gid:
             source.gramps_id = self.find_next_source_gramps_id()
         self.commit_source(source, trans)
         return source.handle
@@ -699,7 +806,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
     def add_repository(self, repository, trans, set_gid=True):
         if not repository.handle:
             repository.handle = create_id()
-        if not repository.gramps_id or set_gid:
+        if not repository.gramps_id and set_gid:
             repository.gramps_id = self.find_next_repository_gramps_id()
         self.commit_repository(repository, trans)
         return repository.handle
@@ -707,7 +814,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
     def add_note(self, note, trans, set_gid=True):
         if not note.handle:
             note.handle = create_id()
-        if not note.gramps_id or set_gid:
+        if not note.gramps_id and set_gid:
             note.gramps_id = self.find_next_note_gramps_id()
         self.commit_note(note, trans)
         return note.handle
@@ -715,7 +822,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
     def add_place(self, place, trans, set_gid=True):
         if not place.handle:
             place.handle = create_id()
-        if not place.gramps_id or set_gid:
+        if not place.gramps_id and set_gid:
             place.gramps_id = self.find_next_place_gramps_id()
         self.commit_place(place, trans)
         return place.handle
@@ -723,7 +830,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
     def add_event(self, event, trans, set_gid=True):
         if not event.handle:
             event.handle = create_id()
-        if not event.gramps_id or set_gid:
+        if not event.gramps_id and set_gid:
             event.gramps_id = self.find_next_event_gramps_id()
         self.commit_event(event, trans)
         return event.handle
@@ -731,7 +838,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
     def add_tag(self, tag, trans):
         if not tag.handle:
             tag.handle = create_id()
-        self.commit_event(tag, trans)
+        self.commit_tag(tag, trans)
         return tag.handle
 
     def add_object(self, obj, transaction, set_gid=True):
@@ -743,7 +850,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
         """
         if not obj.handle:
             obj.handle = create_id()
-        if not obj.gramps_id or set_gid:
+        if not obj.gramps_id and set_gid:
             obj.gramps_id = self.find_next_object_gramps_id()
         self.commit_media_object(obj, transaction)
         return obj.handle

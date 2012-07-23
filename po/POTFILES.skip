@@ -332,6 +332,7 @@ src/plugins/tool/calculateestimateddates.py
 src/plugins/tool/dateparserdisplaytest.py
 src/plugins/tool/dumpgenderstats.py
 src/plugins/tool/phpgedviewconnector.py
+src/plugins/tool/populatesources.py
 src/plugins/tool/testcasegenerator.py
 src/plugins/tool/phpgedview.glade
 src/plugins/tool/toolsdebug.gpr.py
@@ -343,7 +344,6 @@ src/plugins/gramplet/headlinenewsgramplet.py
 src/plugins/gramplet/mediapreview.py
 src/plugins/gramplet/metadataviewer.py
 src/plugins/gramplet/notegramplet.py
-src/plugins/gramplet/pluginmanagergramplet.py
 src/plugins/gramplet/populategramplet.py
 src/plugins/gramplet/populategramplet.gpr.py
 src/plugins/gramplet/pythongramplet.py

@@ -1,4 +1,4 @@
-# This is the src/RelLib level Makefile for Gramps
+# This is the src/gen/merge level Makefile for Gramps
 # $Id: Makefile.am 18851 2012-02-10 20:25:15Z josipsf $
 # We could use GNU make's ':=' syntax for nice wildcard use,
 # but that is not necessarily portable.
@@ -8,6 +8,7 @@ pkgpythondir = $(datadir)/@PACKAGE@/gen/merge
 
 pkgpython_PYTHON = \
 	__init__.py \
+	diff.py \
 	mergepersonquery.py \
 	mergefamilyquery.py \
 	mergeeventquery.py \

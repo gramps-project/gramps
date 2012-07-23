@@ -34,9 +34,9 @@ from django.template import Context, RequestContext
 ## Globals
 dji = DjangoInterface()
 
-def process_tag(request, context, handle, action, add_to=None): # view, edit, save
+def process_tag(request, context, handle, act, add_to=None): # view, edit, save
     """
-    Process action on person. Can return a redirect.
+    Process act on person. Can return a redirect.
     """
     context["tview"] = _("Tag")
     context["tviews"] = _("Tags")
@@ -44,55 +44,58 @@ def process_tag(request, context, handle, action, add_to=None): # view, edit, sa
     view_template = "view_tag_detail.html"
     
     if handle == "add":
-        action = "add"
+        act = "add"
     if request.POST.has_key("action"):
-        action = request.POST.get("action")
+        act = request.POST.get("action")
 
     # Handle: edit, view, add, create, save, delete
-    if action == "add":
+    if act == "add":
         tag = Tag()
         tagform = TagForm(instance=tag)
         tagform.model = tag
-    elif action in ["view", "edit"]: 
+    elif act in ["view", "edit"]: 
         tag = Tag.objects.get(handle=handle)
         tagform = TagForm(instance=tag)
         tagform.model = tag
-    elif action == "save": 
+    elif act == "save": 
         tag = Tag.objects.get(handle=handle)
         tagform = TagForm(request.POST, instance=tag)
         tagform.model = tag
         if tagform.is_valid():
             update_last_changed(tag, request.user.username)
             tag = tagform.save()
-            action = "view"
+            dji.rebuild_cache(tag)
+            act = "view"
         else:
-            action = "edit"
-    elif action == "create": 
+            act = "edit"
+    elif act == "create": 
         tag = Tag(handle=create_id())
         tagform = TagForm(request.POST, instance=tag)
         tagform.model = tag
         if tagform.is_valid():
             update_last_changed(tag, request.user.username)
             tag = tagform.save()
+            dji.rebuild_cache(tag)
             if add_to:
                 item, handle = add_to
                 model = dji.get_model(item)
                 obj = model.objects.get(handle=handle)
                 dji.add_tag_ref_default(obj, tag)
+                dji.rebuild_cache(obj)
                 return redirect("/%s/%s#tab-tags" % (item, handle))
-            action = "view"
+            act = "view"
         else:
-            action = "add"
-    elif action == "delete": 
+            act = "add"
+    elif act == "delete": 
         tag = Tag.objects.get(handle=handle)
         tag.delete()
         return redirect("/tag/")
     else:
-        raise Exception("Unhandled action: '%s'" % action)
+        raise Exception("Unhandled act: '%s'" % act)
 
     context["tagform"] = tagform
     context["object"] = tag
     context["tag"] = tag
-    context["action"] = action
+    context["action"] = act
     
     return render_to_response(view_template, context)

@@ -22,7 +22,7 @@
 """ Views for Person, Name, and Surname """
 
 ## Gramps Modules
-from webapp.utils import _, boolean, update_last_changed
+from webapp.utils import _, boolean, update_last_changed, build_search
 from webapp.grampsdb.models import Media
 from webapp.grampsdb.forms import *
 from webapp.libdjango import DjangoInterface
@@ -47,9 +47,9 @@ def pb2image(pb):
     width, height = pb.get_width(), pb.get_height()
     return Image.fromstring("RGB", (width,height), pb.get_pixels())
  
-def process_media(request, context, handle, action, add_to=None): # view, edit, save
+def process_media(request, context, handle, act, add_to=None): # view, edit, save
     """
-    Process action on person. Can return a redirect.
+    Process act on person. Can return a redirect.
     """
     context["tview"] = _("Media")
     context["tviews"] = _("Media")
@@ -57,12 +57,40 @@ def process_media(request, context, handle, action, add_to=None): # view, edit, 
     view_template = "view_media_detail.html"
     
     if handle == "add":
-        action = "add"
+        act = "add"
     if request.POST.has_key("action"):
-        action = request.POST.get("action")
+        act = request.POST.get("action")
 
-    # Handle: edit, view, add, create, save, delete
-    if action == "full":
+    # Handle: edit, view, add, create, save, delete, share, save-share
+    if act == "share":
+        item, handle = add_to
+        context["pickform"] = PickForm("Pick media", 
+                                       Media, 
+                                       (),
+                                       request.POST)     
+        context["object_handle"] = handle
+        context["object_type"] = item
+        return render_to_response("pick.html", context)
+    elif act == "save-share":
+        item, handle = add_to 
+        pickform = PickForm("Pick media", 
+                            Media, 
+                            (),
+                            request.POST)
+        if pickform.data["picklist"]:
+            parent_model = dji.get_model(item) # what model?
+            parent_obj = parent_model.objects.get(handle=handle) # to add
+            ref_handle = pickform.data["picklist"]
+            ref_obj = Media.objects.get(handle=ref_handle) 
+            dji.add_media_ref_default(parent_obj, ref_obj)
+            dji.rebuild_cache(parent_obj) # rebuild cache
+            return redirect("/%s/%s%s#tab-media" % (item, handle, build_search(request)))
+        else:
+            context["pickform"] = pickform
+            context["object_handle"] = handle
+            context["object_type"] = item
+            return render_to_response("pick.html", context)
+    elif act == "full":
         media = Media.objects.get(handle=handle)
         media_type, media_ext = media.mime.split("/", 1)
         # FIXME: This should be absolute:
@@ -79,7 +107,7 @@ def process_media(request, context, handle, action, add_to=None): # view, edit, 
             image = png.Image(pixels, meta)
             image.save(response)
         return response
-    elif action == "thumbnail":
+    elif act == "thumbnail":
         media = Media.objects.get(handle=handle)
         media_type, media_ext = media.mime.split("/", 1)
         # FIXME: This should be absolute:
@@ -119,15 +147,15 @@ def process_media(request, context, handle, action, add_to=None): # view, edit, 
                 image.save("%s/thumbnail/%s" % (folder, media.path), media_ext)
                 image.save(response, media_ext.upper())
         return response
-    elif action == "add":
+    elif act == "add":
         media = Media(gramps_id=dji.get_next_id(Media, "M"))
         mediaform = MediaForm(instance=media)
         mediaform.model = media
-    elif action in ["view", "edit"]: 
+    elif act in ["view", "edit"]: 
         media = Media.objects.get(handle=handle)
         mediaform = MediaForm(instance=media)
         mediaform.model = media
-    elif action == "save": 
+    elif act == "save": 
         media = Media.objects.get(handle=handle)
         mediaform = MediaForm(request.POST, instance=media)
         mediaform.model = media
@@ -135,36 +163,38 @@ def process_media(request, context, handle, action, add_to=None): # view, edit, 
             update_last_changed(media, request.user.username)
             media = mediaform.save()
             dji.rebuild_cache(media)
-            action = "view"
+            act = "view"
         else:
-            action = "edit"
-    elif action == "create": 
+            act = "edit"
+    elif act == "create": 
         media = Media(handle=create_id())
         mediaform = MediaForm(request.POST, instance=media)
         mediaform.model = media
         if mediaform.is_valid():
             update_last_changed(media, request.user.username)
             media = mediaform.save()
-            dji.rebuild_cache(media)
             if add_to:
                 item, handle = add_to
                 model = dji.get_model(item)
                 obj = model.objects.get(handle=handle)
                 dji.add_media_ref_default(obj, media)
+                dji.rebuild_cache(obj)
                 return redirect("/%s/%s#tab-gallery" % (item, handle))
-            action = "view"
+            else:
+                dji.rebuild_cache(media)
+            act = "view"
         else:
-            action = "add"
-    elif action == "delete": 
+            act = "add"
+    elif act == "delete": 
         media = Media.objects.get(handle=handle)
         media.delete()
         return redirect("/media/")
     else:
-        raise Exception("Unhandled action: '%s'" % action)
+        raise Exception("Unhandled act: '%s'" % act)
 
     context["mediaform"] = mediaform
     context["object"] = media
     context["media"] = media
-    context["action"] = action
+    context["action"] = act
     
     return render_to_response(view_template, context)

@@ -6,6 +6,7 @@
 # Copyright (C) 2007       Brian G. Matherly
 # Copyright (C) 2009       Benny Malengier
 # Copyright (C) 2009       Gary Burton
+# Copyright (C) 2012       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -91,16 +92,20 @@ class DrawDoc(object):
     def draw_path(self, style, path):
         raise NotImplementedError
     
-    def draw_box(self, style, text, x, y, w, h):
+    def draw_box(self, style, text, x, y, w, h, mark=None):
+        """ @param mark:  IndexMark to use for indexing (if supported) """
         raise NotImplementedError
 
-    def draw_text(self, style, text, x1, y1):
+    def draw_text(self, style, text, x1, y1, mark=None):
+        """ @param mark:  IndexMark to use for indexing (if supported) """
         raise NotImplementedError
 
-    def center_text(self, style, text, x1, y1):
+    def center_text(self, style, text, x1, y1, mark=None):
+        """ @param mark:  IndexMark to use for indexing (if supported) """
         raise NotImplementedError
 
-    def rotate_text(self, style, text, x, y, angle):
+    def rotate_text(self, style, text, x, y, angle, mark=None):
+        """ @param mark:  IndexMark to use for indexing (if supported) """
         raise NotImplementedError
     
     def draw_line(self, style, x1, y1, x2, y2):

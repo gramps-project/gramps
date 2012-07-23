@@ -169,7 +169,7 @@ class SimpleTable(object):
                 retval.append(item[0])
                 link = (item[1], item[2:])
             else:
-                retval.append(str(item))
+                retval.append(item)
                 if (self._link_col == col or link is None):
                     if hasattr(item, "get_url"):
                         link = ("url", item.get_url())
@@ -188,11 +188,14 @@ class SimpleTable(object):
         else:
             self._rows.sort(lambda a, b: cmp(a[idx],b[idx]))
 
-    def write(self, document):
+    def write(self, document, column_widths=None):
         doc = document.doc
         columns = len(self._columns)
         doc.start_table('simple', 'Table')
-        doc._tbl.set_column_widths([100/columns] * columns)
+        if column_widths:
+            doc._tbl.set_column_widths(column_widths)
+        else:
+            doc._tbl.set_column_widths([100/columns] * columns)
         doc._tbl.set_columns(columns)
         if self.title:
             doc.start_row()
@@ -216,7 +219,9 @@ class SimpleTable(object):
             for col in row:
                 doc.start_cell('TableDataCell', span=1) 
                 obj_type, handle = None, None
-                if isinstance(self._link_col, tuple):
+                if hasattr(col, "get_url"):
+                    obj_type, handle = "URL", col.get_url()
+                elif isinstance(self._link_col, tuple):
                     obj_type, handle = self._link_col
                 elif isinstance(self._link_col, list):
                     obj_type, handle = self._link_col[index]
@@ -225,12 +230,13 @@ class SimpleTable(object):
                 ######
                 if obj_type:
                     if obj_type.lower() == "url":
-                        doc.start_link(handle)
+                        if handle:
+                            doc.start_link(handle)
                     else:
                         doc.start_link("/%s/%s" % 
                                        (obj_type.lower(), handle))
-                doc.write_text(col, 'Normal')
-                if obj_type:
+                doc.write_text(str(col), 'Normal')
+                if obj_type and handle:
                     doc.stop_link()
                 doc.end_cell()
             doc.end_row()

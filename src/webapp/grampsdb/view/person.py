@@ -113,25 +113,25 @@ def check_preferred(request, name, person):
         if not ok:
             name.preferred = True
 
-def process_surname(request, handle, order, sorder, action="view"):
+def process_surname(request, handle, order, sorder, act="view"):
     #import pdb; pdb.set_trace()
     # /sdjhgsdjhdhgsd/name/1/surname/1  (view)
     # /sdjhgsdjhdhgsd/name/1/surname/add
     # /sdjhgsdjhdhgsd/name/1/surname/2/[edit|view|add|delete]
 
     if sorder == "add":
-        action = "add"
+        act = "add"
     if request.POST.has_key("action"):
-        action = request.POST.get("action")
+        act = request.POST.get("action")
 
     person = Person.objects.get(handle=handle)
     name = person.name_set.get(order=order)
 
-    if action in ["view", "edit"]:
+    if act in ["view", "edit"]:
         surname = name.surname_set.get(order=sorder)
-        if action == "edit":
+        if act == "edit":
             surname.prefix = make_empty(True, surname.prefix, " prefix ")
-    elif action in ["delete"]:
+    elif act in ["delete"]:
         surnames = name.surname_set.all().order_by("order")
         if len(surnames) > 1:
             neworder = 1
@@ -148,11 +148,11 @@ def process_surname(request, handle, order, sorder, action="view"):
             request.user.message_set.create(message="You can't delete the only surname")
         return redirect("/person/%s/name/%s%s#tab-surnames" % (person.handle, name.order, 
                                                                build_search(request)))
-    elif action in ["add"]:
+    elif act in ["add"]:
         surname = Surname(name=name, primary=False, 
                           name_origin_type=NameOriginType.objects.get(val=NameOriginType._DEFAULT[0]))
         surname.prefix = make_empty(True, surname.prefix, " prefix ")
-    elif action == "create":
+    elif act == "create":
         surnames = name.surname_set.all().order_by("order")
         sorder = 1
         for surname in surnames:
@@ -167,12 +167,13 @@ def process_surname(request, handle, order, sorder, action="view"):
             surname = sf.save(commit=False)
             check_primary(surname, surnames)
             surname.save()
+            dji.rebuild_cache(person)
             return redirect("/person/%s/name/%s/surname/%s%s#tab-surnames" % 
                             (person.handle, name.order, sorder, 
                              build_search(request)))
-        action = "add"
+        act = "add"
         surname.prefix = make_empty(True, surname.prefix, " prefix ")
-    elif action == "save":
+    elif act == "save":
         surname = name.surname_set.get(order=sorder)
         sf = SurnameForm(request.POST, instance=surname)
         sf.model = surname
@@ -181,20 +182,21 @@ def process_surname(request, handle, order, sorder, action="view"):
             surname = sf.save(commit=False)
             check_primary(surname, name.surname_set.all().exclude(order=surname.order))
             surname.save()
+            dji.rebuild_cache(person)
             return redirect("/person/%s/name/%s/surname/%s%s#tab-surnames" % 
                             (person.handle, name.order, sorder,
                              build_search(request)))
-        action = "edit"
+        act = "edit"
         surname.prefix = make_empty(True, surname.prefix, " prefix ")
         # else, edit again
     else:
-        raise Exception("unknown action: '%s'" % action)
+        raise Exception("unknown act: '%s'" % act)
 
     sf = SurnameForm(instance=surname)
     sf.model = surname
 
     context = RequestContext(request)
-    context["action"] = action
+    context["action"] = act
     context["tview"] = _("Surname")
     context["handle"] = handle
     context["id"] = id
@@ -206,19 +208,19 @@ def process_surname(request, handle, order, sorder, action="view"):
     view_template = 'view_surname_detail.html'
     return render_to_response(view_template, context)
 
-def process_name(request, handle, order, action="view"):
+def process_name(request, handle, order, act="view"):
     if order == "add":
-        action = "add"
+        act = "add"
     if request.POST.has_key("action"):
-        action = request.POST.get("action")
-    ### Process action:
-    if action in "view":
+        act = request.POST.get("action")
+    ### Process act:
+    if act in "view":
         pf, nf, sf, person = get_person_forms(handle, order=order)
         name = nf.model
-    elif action == "edit":
+    elif act == "edit":
         pf, nf, sf, person = get_person_forms(handle, order=order)
         name = nf.model
-    elif action == "delete":
+    elif act == "delete":
         person = Person.objects.get(handle=handle)
         name = person.name_set.filter(order=order)
         names = person.name_set.all()
@@ -229,7 +231,7 @@ def process_name(request, handle, order, action="view"):
             request.user.message_set.create(message = "Can't delete only name.")
         return redirect("/person/%s%s#tab-names" % (person.handle,
                                                     build_search(request)))
-    elif action == "add": # add name
+    elif act == "add": # add name
         person = Person.objects.get(handle=handle)
         name = Name(person=person, 
                     preferred=False,
@@ -244,7 +246,7 @@ def process_name(request, handle, order, action="view"):
                           name_origin_type=NameOriginType.objects.get(val=NameOriginType._DEFAULT[0]))
         sf = SurnameForm(request.POST, instance=surname)
         sf.model = surname
-    elif action == "create":
+    elif act == "create":
         # make new data
         person = Person.objects.get(handle=handle)
         name = Name(preferred=False)
@@ -283,8 +285,8 @@ def process_name(request, handle, order, action="view"):
             return redirect("/person/%s/name/%s%s#tab-surnames" % (person.handle, name.order,             
                                                                    build_search(request)))
         else:
-            action = "add"
-    elif action == "save":
+            act = "add"
+    elif act == "save":
         # look up old data:
         person = Person.objects.get(handle=handle)
         oldname = person.name_set.get(order=order)
@@ -319,9 +321,9 @@ def process_name(request, handle, order, action="view"):
             return redirect("/person/%s/name/%s%s#tab-surnames" % (person.handle, name.order,
                                                                    build_search(request)))
         else:
-            action = "edit"
+            act = "edit"
     context = RequestContext(request)
-    context["action"] = action
+    context["action"] = act
     context["tview"] = _('Name')
     context["tviews"] = _('Names')
     context["view"] = 'name'
@@ -335,27 +337,59 @@ def process_name(request, handle, order, action="view"):
     context["next"] = "/person/%s/name/%d" % (person.handle, name.order)
     view_template = "view_name_detail.html"
     return render_to_response(view_template, context)
-    
-def process_person(request, context, handle, action, add_to=None): # view, edit, save
+
+def process_person(request, context, handle, act, add_to=None): # view, edit, save
     """
-    Process action on person. Can return a redirect.
+    Process act on person. Can return a redirect.
     """
     context["tview"] = _("Person")
     context["tviews"] = _("People")
     logform = None
     if request.user.is_authenticated():
-        if action in ["edit", "view"]:
+        if act == "share":
+            item, handle = add_to
+            context["pickform"] = PickForm("Pick a person", 
+                                           Person, 
+                                           ("name__surname__surname", 
+                                            "name__first_name"),
+                                      request.POST)     
+            context["object_handle"] = handle
+            context["object_type"] = item
+            return render_to_response("pick.html", context)
+        elif act == "save-share":
+            item, handle = add_to # ("Family", handle)
+            pickform = PickForm("Pick a person", 
+                                Person, 
+                                ("name__surname__surname", 
+                                 "name__first_name"),
+                                request.POST)
+            if pickform.data["picklist"]:
+                person_handle = pickform.data["picklist"]
+                person = Person.objects.get(handle=person_handle)
+                model = dji.get_model(item) # what model?
+                obj = model.objects.get(handle=handle) # get family
+                dji.add_child_ref_default(obj, person) # add person to family
+                person.parent_families.add(obj) # add family to child
+                dji.rebuild_cache(person) # rebuild child
+                dji.rebuild_cache(obj) # rebuild family
+                return redirect("/%s/%s%s" % (item, handle, build_search(request)))
+            else:
+                context["pickform"] = pickform
+                context["object_handle"] = handle
+                context["object_type"] = "family"
+                return render_to_response("pick.html", context)
+        elif act in ["edit", "view"]:
             pf, nf, sf, person = get_person_forms(handle, empty=False)
-            if action == "edit":
+            if act == "edit":
                 logform = LogForm()
-        elif action == "add":
+        elif act == "add":
             pf, nf, sf, person = get_person_forms(handle=None, protect=False, empty=True)
             logform = LogForm()
-        elif action == "delete":
+        elif act == "delete":
             pf, nf, sf, person = get_person_forms(handle, protect=False, empty=True)
             person.delete()
             return redirect("/person/%s" % build_search(request))
-        elif action in ["save", "create"]: # could be create a new person
+        elif act in ["save", "create"]: # could be create a new person
             # look up old data, if any:
             logform = LogForm(request.POST)
             if handle: 
@@ -400,7 +434,7 @@ def process_person(request, context, handle, action, add_to=None): # view, edit,
                 surname.primary = True # FIXME: why is this False? Remove from form?
                 surname.save()
                 # FIXME: put this in correct place to get correct cache, before changes:
-                make_log(person, action, request.user.username, logform.cleaned_data["reason"], person.cache)
+                make_log(person, act, request.user.username, logform.cleaned_data["reason"], person.cache)
                 if add_to: # Adding a child to the family
                     item, handle = add_to # ("Family", handle)
                     model = dji.get_model(item) # what model?
@@ -415,9 +449,9 @@ def process_person(request, context, handle, action, add_to=None): # view, edit,
             else: 
                 # need to edit again
                 if handle:
-                    action = "edit"
+                    act = "edit"
                 else:
-                    action = "add"
+                    act = "add"
         else: # error?
             raise Http404(_("Requested %s does not exist.") % "person")
     else: # not authenticated
@@ -430,7 +464,7 @@ def process_person(request, context, handle, action, add_to=None): # view, edit,
             raise Http404(_("Requested %s does not exist.") % "person")
         pf, nf, sf, person = get_person_forms(handle, protect=True)
         # END NON-AUTHENTICATED ACCESS
-    context["action"] = action
+    context["action"] = act
     context["view"] = "person"
     context["tview"] = _("Person")
     context["tviews"] = _("People")

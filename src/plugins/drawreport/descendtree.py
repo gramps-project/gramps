@@ -200,15 +200,15 @@ class DescendantTitleBase(TitleBox):
         
         return parents
 
-class TitleNone(TitleBox):
+class TitleNone(TitleNoDisplay):
     """Family Chart Title class for the report """
     
     def __init__(self, dbase, doc):
-        TitleBox.__init__(self, doc, "None")
+        TitleNoDisplay.__init__(self, doc, "CG2-Title")
         
     def calc_title(self, persons):
         """Calculate the title of the report"""
-        return
+        self.text = 'Descendant Graph'
 
 class TitleDPY(DescendantTitleBase):
     """Descendant (Person yes start with parents) Chart 
@@ -454,6 +454,9 @@ class RecurseDown:
         
         #calculate the text.
         myself.calc_text(self.database, indi_handle, fams_handle)
+
+        myself.add_mark(self.database, 
+                self.database.get_person_from_handle(indi_handle))
 
         self.add_to_col(myself)
         
