@@ -859,7 +859,7 @@ def children_table(obj, user, act, url=None, *args):
     for childref in childrefs:
         child = childref.ref_object
         if user.is_authenticated():
-            table.row(Link("[[x%d]][[^%d]][[v%d]]" % (count, count, count)),
+            table.row(Link("[[x%d]][[^%d]][[v%d]]" % (count, count, count)), 
                       str(count), 
                       "[%s]" % child.gramps_id,
                       render_name(child, user),

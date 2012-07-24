@@ -1199,6 +1199,58 @@ def safe_int(num):
     except:
         return -1
 
+def process_child(request, handle, act, child):
+    """
+    handle - Family handle
+    act - 'remove', 'up', or 'down'
+    child - child number
+    """
+    from webapp.grampsdb.forms import FamilyForm
+    context = RequestContext(request)
+    context["view"] = "family"
+    context["tview"] = _("Family")
+    context["tviews"] = _("Familes")
+    family = Family.objects.get(handle=handle)
+    obj_type = ContentType.objects.get_for_model(family)
+    childrefs = dji.ChildRef.filter(object_id=family.id,
+                                    object_type=obj_type).order_by("order")
+
+    if act == "remove":
+        person = childrefs[int(child) - 1].ref_object
+        [f.delete() for f in person.parent_families.filter(handle=handle)]
+        childrefs[int(child) - 1].delete()
+        dji.rebuild_cache(person)
+        dji.rebuild_cache(family)
+    elif act == "up":
+        if int(child) >= 2:
+            for ref in childrefs:
+                if ref.order == int(child):
+                    ref.order = ref.order - 1
+                elif ref.order == int(child) - 1:
+                    ref.order = ref.order + 1
+                else:
+                    ref.order = ref.order
+            for ref in childrefs:
+                ref.save()
+            dji.rebuild_cache(family)
+    elif act == "down":
+        if int(child) <= len(childrefs) - 1:
+            childrefs[int(child) - 1].order = int(child) + 1
+            childrefs[int(child)].order = int(child) 
+            childrefs[int(child) - 1].save()
+            childrefs[int(child)].save()
+            dji.rebuild_cache(family)
+    else:
+        raise Exception("invalid child action: %s" % act)
+    familyform = FamilyForm(instance=family)
+    familyform.model = family
+    context["familyform"] = familyform
+    context["object"] = family
+    context["family"] = family
+    context["action"] = "view"
+    view_template = "view_family_detail.html"
+    return render_to_response(view_template, context)
+
 def process_reference(request, ref_by, handle, ref_to, order):
     # FIXME: can I make this work for all?
     context = RequestContext(request)
