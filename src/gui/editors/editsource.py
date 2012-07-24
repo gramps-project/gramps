@@ -170,7 +170,7 @@ class EditSource(EditPrimary):
         
         self._setup_notebook_tabs(notebook)
         notebook.show_all()
-        self.glade.get_object('vbox').pack_start(notebook, True)
+        self.glade.get_object('vbox').pack_start(notebook, True, True, 0)
 
     def build_menu_names(self, source):
         return (_('Edit Source'), self.get_menu_title())        
