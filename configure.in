@@ -40,45 +40,9 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Define to the Gettext pa
 AM_GLIB_GNU_GETTEXT
 
 dnl Checks for programs.  
-dnl We first only check for python >= 2.6
 
 AM_PATH_PYTHON(2.6)
 AC_PATH_PROG(BINSH, sh)
-
-AC_MSG_CHECKING(Python bindings for gtk 3.3.2 (pygobject>=3.3.2))
-cat > conftest.py <<EOF
-try:
-    from gi.repository import Gtk
-except ImportError:
-    pass
-
-def out(line):
-    f = open('conftest.out', 'w')
-    f.write(line)
-    f.close()
-
-try:
-    gtk_ver = (Gtk.get_major_version(), 
-               Gtk.get_minor_version(), 
-               Gtk.get_micro_version())
-    if gtk_ver >= (3, 3, 2):
-        print_version = '.'.join([str(i) for i in gtk_ver])
-        out(print_version)
-    else:
-        out("NO")
-except:
-    out("NO")
-EOF
-$PYTHON conftest.py
-has_pygtk=`cat conftest.out`
-rm -f conftest.out conftest.py
-if test NO = "$has_pygtk"
-then
-   AC_MSG_ERROR([
-
-**** The python bindings for pygobect 3.3.2 (pygobject>=3.3.2) could not be found.])
-fi
-AC_MSG_RESULT($has_pygtk)
 
 AC_CONFIG_FILES([
 po/Makefile.in
