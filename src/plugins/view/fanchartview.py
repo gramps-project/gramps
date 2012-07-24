@@ -174,23 +174,46 @@ class FanChartWidget(Gtk.Widget):
         """
         Overriden method to handle the realize event.
         """
-        self.set_flags(self.flags() | Gtk.REALIZED)
-        self.window = Gdk.Window(self.get_parent_window(),
-                                 width=self.allocation.width,
-                                 height=self.allocation.height,
-                                 window_type=Gdk.WindowType.CHILD,
-                                 wclass=Gdk.WindowWindowClass.INPUT_OUTPUT,
-                                 event_mask=self.get_events() | Gdk.EventMask.EXPOSURE_MASK)
-        if not hasattr(self.window, "cairo_create"):
-            self.draw_gc = Gdk.GC(self.window,
-                                  line_width=5,
-                                  line_style=Gdk.SOLID,
-                                  join_style=Gdk.JOIN_ROUND)
+        ## TODO GTK3: need to create the window correctly
+        self.set_flags(self.flags() | self.get_realized())
+        attr = Gdk.WindowAttr()
+        attr.width = self.allocation.width
+        attr.height = self.allocation.height
+        attr.wclass = Gdk.WindowWindowClass.INPUT_OUTPUT
+        attr.window_type = Gdk.WindowType.CHILD
+        attr.event_mask = (Gdk.EventMask.ENTER_NOTIFY_MASK |
+                           Gdk.EventMask.LEAVE_NOTIFY_MASK)
 
-        self.window.set_user_data(self)
-        self.style.attach(self.window)
-        self.style.set_background(self.window, Gtk.StateType.NORMAL)
-        self.window.move_resize(*self.allocation)
+        attrmask = ( 
+                #Gdk.WindowAttributesType.TITLE |
+                Gdk.WindowAttributesType.X |
+                Gdk.WindowAttributesType.Y |
+                Gdk.WindowAttributesType.CURSOR |
+                Gdk.WindowAttributesType.VISUAL |
+                Gdk.WindowAttributesType.NOREDIR
+                )
+
+        self.window = Gdk.Window(self.get_parent_window(),
+                                 attr,
+                                 attrmask)
+
+### self.window = Gdk.Window(self.get_parent_window(),
+###                          width=self.allocation.width,
+###                          height=self.allocation.height,
+###                          window_type=Gdk.WindowType.CHILD,
+###                          wclass=Gdk.WindowWindowClass.INPUT_OUTPUT,
+###                          event_mask=self.get_events() | Gdk.EventMask.EXPOSURE_MASK)
+
+        #if not hasattr(self.window, "cairo_create"):
+        #    self.draw_gc = Gdk.GC(self.window,
+        #                          line_width=5,
+        #                          line_style=Gdk.SOLID,
+        #                          join_style=Gdk.JOIN_ROUND)
+
+        #self.window.set_user_data(self)
+        #self.style.attach(self.window)
+        #self.style.set_background(self.window, Gtk.StateType.NORMAL)
+        #self.window.move_resize(*self.allocation)
 
     def do_size_request(self, requisition):
         """
@@ -563,6 +586,14 @@ class FanChartWidget(Gtk.Widget):
                 return True
         self.queue_draw()
         return True
+
+    def set_flags(self, flags):
+        ## TODO GTK3: need to set_flags?
+        pass
+
+    def flags(self):
+        ## TODO GTK3: need to get flags?
+        return 0
 
 class FanChartView(NavigationView):
     """
@@ -977,3 +1008,4 @@ class FanChartView(NavigationView):
         menu.append(item)
         menu.popup(None, None, None, None, event.button, event.time)
         return 1
+
