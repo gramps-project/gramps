@@ -44,7 +44,7 @@ import tempfile
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.utils.file import get_unicode_path_from_env_va
+from gen.utils.file import get_unicode_path_from_env_var
 
 #-------------------------------------------------------------------------
 #
