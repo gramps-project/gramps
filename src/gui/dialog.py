@@ -26,6 +26,8 @@
 #
 #-------------------------------------------------------------------------
 import sys
+import logging
+_LOG = logging.getLogger(".dialog")
 
 #-------------------------------------------------------------------------
 #
@@ -351,3 +353,33 @@ class MessageHideDialog(object):
     def update_checkbox(self, obj, constant):
         config.set(constant, obj.get_active())
         config.save()
+
+## Testing function of some of these dialogs
+def main(args):
+
+    win = Gtk.Window()
+    win.set_title('Dialog test window')
+    win.set_position(Gtk.WindowPosition.CENTER)
+    def cb(window, event):
+        Gtk.main_quit()
+    win.connect('delete-event', cb)
+
+
+    def test_info(obj):
+        InfoDialog('The title', 'This is a lot of info\n to show to all!', parent=win)
+
+    vbox = Gtk.VBox()
+    win.add(vbox)
+    
+    btn1 = Gtk.Button('Info dialog')
+    btn1.connect('clicked', test_info)
+    vbox.pack_start(btn1, True, True, 0)
+    
+    win.show_all()
+    Gtk.main()
+
+if __name__ == '__main__':
+    import sys
+    # fall back to root logger for testing
+    _LOG = logging
+    sys.exit(main(sys.argv))

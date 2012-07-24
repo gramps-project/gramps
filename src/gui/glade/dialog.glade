@@ -223,12 +223,16 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="shadow_type">etched-in</property>
+                <property name="min_content_width">300</property>
+                <property name="min_content_height">300</property>
                 <child>
                   <object class="GtkTextView" id="infoview">
                     <property name="width_request">308</property>
                     <property name="height_request">210</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="hscroll_policy">natural</property>
+                    <property name="vscroll_policy">natural</property>
                     <property name="editable">False</property>
                   </object>
                 </child>
