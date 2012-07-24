@@ -34,6 +34,7 @@ from gen.ggettext import ngettext
 from cgi import escape
 import math
 import sys
+import os
 
 #-------------------------------------------------------------------------
 #
