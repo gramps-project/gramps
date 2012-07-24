@@ -211,7 +211,7 @@ def __create_thumbnail_image(src_file, mtype=None, rectangle=None,
             
             pixbuf = pixbuf.scale_simple(scaled_width, scaled_height, 
                                          GdkPixbuf.InterpType.BILINEAR)
-            pixbuf.save(filename, "png")
+            pixbuf.savev(filename, "png", "", "")
             return True
         except Exception, err:
             LOG.warn("Error scaling image down: %s", str(err))
