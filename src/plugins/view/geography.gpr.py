@@ -27,11 +27,7 @@
 #
 #------------------------------------------------------------------------
 
-# As this file is only used to load the modules if the osmgpsmap library is
-# available, we can force gramps_target_version to the current version of gramps.
-from gen.const import VERSION_TUPLE
-MODULE_VERSION="%1d.%1d" % (VERSION_TUPLE[0], VERSION_TUPLE[1])
-
+MODULE_VERSION="3.5" 
 
 try :
     NEWGTK = False
