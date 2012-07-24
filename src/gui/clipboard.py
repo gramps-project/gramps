@@ -36,8 +36,9 @@ from time import strftime as strftime
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import Gtk
+from gi.repository import GObject
 from gi.repository import Gdk
+from gi.repository import Gtk
 from gi.repository import GdkPixbuf
 
 #-------------------------------------------------------------------------
@@ -874,7 +875,7 @@ class ClipDropHandleList(ClipDropList):
 class ClipboardListModel(Gtk.ListStore):
 
     def __init__(self):
-        GObject.GObject.__init__(self,
+        Gtk.ListStore.__init__(self,
                                str,    # 0: object type
                                object, # 1: object
                                object, # 2: tooltip callback
@@ -892,7 +893,8 @@ class ClipboardListModel(Gtk.ListStore):
 #-------------------------------------------------------------------------
 class ClipboardListView(object):
 
-    LOCAL_DRAG_TARGET = ('MY_TREE_MODEL_ROW', Gtk.TargetFlags.SAME_WIDGET, 0)
+    LOCAL_DRAG_TARGET = Gtk.TargetEntry.new('MY_TREE_MODEL_ROW', 
+                                            Gtk.TargetFlags.SAME_WIDGET, 0)
     LOCAL_DRAG_TYPE   = 'MY_TREE_MODEL_ROW'
     
     def __init__(self, dbstate, widget):
@@ -933,7 +935,7 @@ class ClipboardListView(object):
         self._col4_cell = Gtk.CellRendererText()
 
         # Add cells to view
-        self._col1.pack_start(self._col1_cellpb, False, True, 0)
+        self._col1.pack_start(self._col1_cellpb, False)
         self._col1.pack_start(self._col1_cell, True)
         self._col2.pack_start(self._col2_cell, True)
         self._col3.pack_start(self._col3_cell, True)
@@ -950,9 +952,9 @@ class ClipboardListView(object):
         self._widget.set_enable_search(True)
         #self._widget.set_search_column(3)
 
-        self._widget.drag_dest_set(Gtk.DestDefaults.ALL,
-                                   (ClipboardListView.LOCAL_DRAG_TARGET,) + \
-                                       DdTargets.all_targets(),
+        targ_data = (ClipboardListView.LOCAL_DRAG_TARGET,) + \
+                                       DdTargets.all_targets()
+        self._widget.drag_dest_set(Gtk.DestDefaults.ALL, targ_data,
                                     Gdk.DragAction.COPY)
 
         self._widget.connect('drag_data_get', self.object_drag_data_get)
