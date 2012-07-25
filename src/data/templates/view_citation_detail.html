@@ -34,16 +34,16 @@
 <!-- Tabs -->
 <h2>Citation information</h2>
 
-<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs" style="border: none;">
   <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
     <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tab-general">General</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Notes</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Note</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-media">Media</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-data">Data</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-references">References</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-references">Reference</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-history">History</a></li>
   </ul>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-general"> 
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-general" style="background-color: #f4f0ec;"> 
 
 <table class="infolist" style="width:90%;">
 <tr>
@@ -67,19 +67,19 @@
 </table>
 
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-notes">
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-notes"  style="background-color: #f4f0ec;"> 
     {% note_table citation user action "/note/$act/citation/%s" citation.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-media">
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-media" style="background-color: #f4f0ec;"> 
     {% media_table citation user action "/media/$act/citation/%s" citation.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-data">
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-data" style="background-color: #f4f0ec;"> 
     {% data_table citation user action "/data/$act/citation/%s" citation.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-references">
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-references" style="background-color: #f4f0ec;"> 
     {% citation_reference_table citation user action %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-history">
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-history" style="background-color: #f4f0ec;"> 
     {% history_table citation user action %}
   </div>
 </div>
@@ -91,7 +91,7 @@
 <hr>
 
 <h2>Source information (shared)</h2>
-<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="shared-tabs">
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="shared-tabs" style="border: none;">
   <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
     <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tab-shared-general">General</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-shared-notes">Notes</a></li>
@@ -100,7 +100,7 @@
     <li class="ui-corner-top ui-state-default"><a href="#tab-shared-references">References</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-shared-history">History</a></li>
   </ul>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-shared-general"> 
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-shared-general" style="background-color: #f4f0ec;"> 
 
 <table class="infolist" style="width:90%;">
 <tr>
@@ -128,19 +128,19 @@
 </table>
 
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-shared-notes">
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-shared-notes" style="background-color: #f4f0ec;"> 
     {% note_table source user action "/note/$act/source/%s" source.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-shared-media">
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-shared-media" style="background-color: #f4f0ec;"> 
     {% media_table source user action "/media/$act/source/%s" source.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-shared-repositories">
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-shared-repositories" style="background-color: #f4f0ec;"> 
     {% repository_table source user action "/repository/$act/source/%s" source.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-shared-references">
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-shared-references" style="background-color: #f4f0ec;"> 
     {% citation_reference_table source user action %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-shared-history">
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-shared-history" style="background-color: #f4f0ec;"> 
     {% history_table source user action %}
   </div>
 </div>

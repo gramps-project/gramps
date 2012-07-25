@@ -64,7 +64,6 @@ def process_tag(request, context, handle, act, add_to=None): # view, edit, save
         if tagform.is_valid():
             update_last_changed(tag, request.user.username)
             tag = tagform.save()
-            dji.rebuild_cache(tag)
             act = "view"
         else:
             act = "edit"
@@ -75,7 +74,6 @@ def process_tag(request, context, handle, act, add_to=None): # view, edit, save
         if tagform.is_valid():
             update_last_changed(tag, request.user.username)
             tag = tagform.save()
-            dji.rebuild_cache(tag)
             if add_to:
                 item, handle = add_to
                 model = dji.get_model(item)

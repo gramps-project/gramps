@@ -48,39 +48,39 @@
 
 <!-- Tabs -->
 
-<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs" style="border: none;">
   <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
     <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tab-locations">Location</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-alternatelocations">Alternate Locations</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-citations">Citations</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Notes</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-citations">Citation</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Note</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-media">Media</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-internet">Internet</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-references">References</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-references">Reference</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-history">History</a></li>
   </ul>
-  <div class="ui-tab-panel ui-widget-content ui-corner-bottom" id="tab-locations">
+  <div class="ui-tab-panel ui-widget-content ui-corner-bottom" id="tab-locations" style="background-color: #f4f0ec;"> 
     <!-- place.location_set  -->
   </div>
-  <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-alternatelocations">
+  <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-alternatelocations" style="background-color: #f4f0ec;"> 
     {% location_table place user action "/location/$act/place/%s" place.handle %}
   </div>
-  <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-citations">
+  <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-citations" style="background-color: #f4f0ec;"> 
     {% citation_table place user action "/citation/$act/place/%s" place.handle %}
   </div>
-  <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-notes">
+  <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-notes" style="background-color: #f4f0ec;"> 
     {% note_table place user action "/note/$act/place/%s" place.handle %}
   </div>
-  <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-media">
+  <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-media" style="background-color: #f4f0ec;"> 
     {% media_table place user action "/media/$act/place/%s" place.handle %}
   </div>
-  <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-internet">
+  <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-internet" style="background-color: #f4f0ec;"> 
     {% internet_table place user action "/internet/$act/place/%s" place.handle %}
   </div>
-  <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-references">
+  <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-references" style="background-color: #f4f0ec;"> 
     {% place_reference_table place user action %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-history">
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-history" style="background-color: #f4f0ec;"> 
     {% history_table place user action %}
   </div>
 </div>

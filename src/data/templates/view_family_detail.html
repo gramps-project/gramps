@@ -94,40 +94,40 @@
 
 <!-- Tabs -->
 
-<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs" style="border: none;">
   <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
     <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tab-children">Children</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-events">Events</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-citations">Citations</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-attributes">Attributes</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Notes</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-events">Event</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-citations">Citation</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-attributes">Attribute</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Note</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-media">Media</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-lds">LDS</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-history">History</a></li>
   </ul>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-children"> 
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-children" style="background-color: #f4f0ec;"> 
     <!-- Events -->
     {% children_table family user action "/person/$act/family/%s" family.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-events">
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-events" style="background-color: #f4f0ec;"> 
     {% event_table family user action "/event/$act/family/%s" family.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-citations">
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-citations" style="background-color: #f4f0ec;"> 
     {% citation_table family user action "/citation/$act/family/%s" family.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-attributes">
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-attributes" style="background-color: #f4f0ec;"> 
     {% attribute_table family user action "/attribute/add/family/%s" family.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-notes">
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-notes" style="background-color: #f4f0ec;"> 
     {% note_table family user action "/note/$act/family/%s" family.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-media">
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-media" style="background-color: #f4f0ec;"> 
     {% media_table family user action "/media/$act/family/%s" family.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-lds">
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-lds" style="background-color: #f4f0ec;"> 
     {% lds_table family user action "/lds/add/family/%s" family.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-history">
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-history" style="background-color: #f4f0ec;"> 
     {% history_table family user action %}
   </div>
 </div>

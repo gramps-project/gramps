@@ -51,31 +51,31 @@
 
 <!-- Tabs -->
 
-<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs" style="border: none;">
   <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tab-notes">Notes</a></li>
+    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tab-notes">Note</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-media">Media</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-data">Data</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-repositories">Repositories</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-references">References</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-repositories">Repository</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-references">Reference</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-history">History</a></li>
   </ul>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-notes"> 
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-notes" style="background-color: #f4f0ec;"> 
     {% note_table source user action "/note/$act/source/%s" source.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-media">
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-media" style="background-color: #f4f0ec;"> 
     {% media_table source user action "/media/$act/source/%s" source.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-data">
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-data" style="background-color: #f4f0ec;"> 
     {% data_table source user action "/data/add/source/%s" source.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-repositories">
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-repositories" style="background-color: #f4f0ec;"> 
     {% repository_table source user action "/repository/$act/source/%s" source.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-references">
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-references" style="background-color: #f4f0ec;"> 
     {% source_reference_table source user action %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-history">
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-history" style="background-color: #f4f0ec;"> 
     {% history_table source user action %}
   </div>
 </div>
