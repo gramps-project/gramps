@@ -196,7 +196,7 @@ def __create_thumbnail_image(src_file, mtype=None, rectangle=None,
                 sub_width = int((lower_x - upper_x) * width)
                 sub_height = int((lower_y - upper_y) * height)
                 if sub_width > 0 and sub_height > 0:
-                    pixbuf = pixbuf.subpixbuf(sub_x, sub_y, sub_width, sub_height)
+                    pixbuf = pixbuf.new_subpixbuf(sub_x, sub_y, sub_width, sub_height)
                     width = sub_width
                     height = sub_height
                     
