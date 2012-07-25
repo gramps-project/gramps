@@ -195,16 +195,18 @@ def process_report_run(request, handle):
         if report.options:
             for pair in str(report.options).split(" "):
                 if "=" in pair:
-                    key, value = pair.split("=", 1)
-                    args[key] = value
+                    key, value = [x.strip() for x in pair.split("=", 1)]
+                    if key and value:
+                        args[key] = value
         # override from options on webpage:
         if request.GET.has_key("options"):
             options = str(request.GET.get("options"))
             if options:
-                for pair in options.split(" "): # from webpage
+                for pair in options.split("\n"): # from webpage
                     if "=" in pair:
-                        key, value = pair.split("=", 1)
-                        args[key] = value
+                        key, value = [x.strip() for x in pair.split("=", 1)]
+                        if key and value:
+                            args[key] = value
         #############################################################################
         if report.report_type == "report":
             filename = "/tmp/%s-%s.%s" % (str(profile.user.username), str(handle), args["off"])
@@ -437,6 +439,7 @@ def action(request, view, handle, act, add_to=None):
     View a particular object given /object/handle (implied view),
     /object/handle/action, or /object/add.
     """
+    from webapp.reports import get_plugin_options
     # redirect:
     rd = None
     obj = None
@@ -529,11 +532,34 @@ def action(request, view, handle, act, add_to=None):
         view_template = 'view_tag_detail.html'
         rd = process_tag(request, context, handle, act, add_to)
     elif view == "report":
-        if act not in ["add", "create", "share", "save-share"]:
+        if act not in ["add", "create"]:
             try:
                 obj = Report.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
+        override = {} 
+        if obj.options:
+            for pair in obj.options.split(" "):
+                key, value = pair.split("=")
+                override[key] = value
+        db = DbDjango()
+        opt_default, opt_help = get_plugin_options(db, obj.handle)
+        retval = ""
+        for key in sorted(opt_default.keys()):
+            if key in override:
+                retval += "%s=%s\n" % (key, override[key])
+                del override[key]
+            else:
+                retval += "%s=%s\n" % (key, repr(opt_default[key]))
+        # Any leftover overrides:
+        for key in sorted(override.keys()):
+            retval += "%s=%s\n" % (key, override[key])
+        obj.options = retval
+        retval = "<ol>"
+        for key in sorted(opt_help.keys()):
+            retval += "<li><b>%s</b>: %s</li>\n" % (key, opt_help[key][1])
+        retval += "</ol>"
+        context["help"] = retval
         view_template = 'view_report_detail.html'
         rd = process_report(request, context, handle, act)
     else:

@@ -41,6 +41,24 @@ import os
 # db = dbdjango.DbDjango()
 # run_report(db, "ancestor_report", off="txt", of="ar.txt", pid="I0363")
 
+def get_plugin_options(db, pid):
+    """
+    Get the default options and help for this plugin.
+    """
+    dbstate = DbState()
+    climanager = CLIManager(dbstate, False) # do not load db_loader
+    climanager.do_reg_plugins(dbstate, None)
+    pmgr = BasePluginManager.get_instance()
+    pdata = pmgr.get_plugin(pid)
+    if hasattr(pdata, "optionclass") and pdata.optionclass:
+        mod = pmgr.load_plugin(pdata)
+        optionclass = eval("mod." + pdata.optionclass)
+        optioninstance = optionclass("Name", db)
+        optioninstance.load_previous_values()
+        return optioninstance.options_dict, optioninstance.options_help
+    else:
+        return {}, {}
+
 def import_file(db, filename, user):
     """
     Import a file (such as a GEDCOM file) into the given db.

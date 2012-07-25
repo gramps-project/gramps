@@ -492,6 +492,12 @@ class DbDjango(DbWriteBase, DbReadBase):
         obj = gen.lib.Researcher()
         return obj
 
+    def get_tag_handles(self, sort_handles=False):
+        if sort_handles:
+            return [item.handle for item in self.dji.Tag.all().order_by("handle")]
+        else:
+            return [item.handle for item in self.dji.Tag.all()]
+
     def get_person_handles(self, sort_handles=False):
         if sort_handles:
             return [item.handle for item in self.dji.Person.all().order_by("handle")]
@@ -592,6 +598,15 @@ class DbDjango(DbWriteBase, DbReadBase):
         except:
             return None
         return self.make_person(person)
+
+    def get_tag_from_handle(self, handle):
+        if handle in self.import_cache:
+            return self.import_cache[handle]
+        try:
+            tag = self.dji.Tag.get(handle=handle)
+        except:
+            return None
+        return self.make_tag(tag)
 
     def make_repository(self, repository):
         if self.use_db_cache and repository.cache:
