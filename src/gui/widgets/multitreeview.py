@@ -24,6 +24,7 @@
 An override to allow easy multiselections.
 """
 
+from gi.repository import Gdk
 from gi.repository import Gtk
 
 #-------------------------------------------------------------------------

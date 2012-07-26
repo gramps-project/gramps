@@ -711,9 +711,10 @@ class GridGramplet(GuiGramplet):
     """
     Class that handles the plugin interfaces for the GrampletView.
     """
-    TARGET_TYPE_FRAME = 80
+    TARGET_TYPE_FRAME = 80L
     LOCAL_DRAG_TYPE   = 'GRAMPLET'
-    LOCAL_DRAG_TARGET = Gtk.TargetEntry.new(LOCAL_DRAG_TYPE, 0, TARGET_TYPE_FRAME)
+    LOCAL_DRAG_TARGET = (Gdk.atom_intern(LOCAL_DRAG_TYPE, False), 0, TARGET_TYPE_FRAME)
+
     def __init__(self, pane, dbstate, uistate, title, **kwargs):
         """
         Internal constructor for GUI portion of a gramplet.
@@ -758,8 +759,12 @@ class GridGramplet(GuiGramplet):
         # source:
         drag = self.gvproperties
         drag.drag_source_set(Gdk.ModifierType.BUTTON1_MASK,
-                             [GridGramplet.LOCAL_DRAG_TARGET],
+                             [],
                              Gdk.DragAction.COPY)
+        tglist = Gtk.TargetList.new([])
+        tg = GridGramplet.LOCAL_DRAG_TARGET
+        tglist.add(tg[0], tg[1], tg[2])
+        drag.drag_source_set_target_list(tglist)
 
         # default tooltip
         msg = _("Drag Properties Button to move and click it for setup")
@@ -775,7 +780,7 @@ class GridGramplet(GuiGramplet):
         if self.titlelabel_entry is None:
             self.titlelabel_entry = Gtk.Entry()
             parent = widget.get_parent()
-            parent.pack_end(self.titlelabel_entry)
+            parent.pack_end(self.titlelabel_entry, True, True, 0)
             self.titlelabel_entry.connect("focus-out-event",
                                           self.edit_title_done)
             self.titlelabel_entry.connect("activate", self.edit_title_done)
@@ -966,8 +971,12 @@ class GrampletPane(Gtk.ScrolledWindow):
         self.drag_dest_set(Gtk.DestDefaults.MOTION |
                             Gtk.DestDefaults.HIGHLIGHT |
                             Gtk.DestDefaults.DROP,
-                            [Gtk.TargetEntry.new('GRAMPLET', 0, 80)],
+                            [],
                             Gdk.DragAction.COPY)
+        tglist = Gtk.TargetList.new([])
+        tg = GridGramplet.LOCAL_DRAG_TARGET
+        tglist.add(tg[0], tg[1], tg[2])
+        self.drag_dest_set_target_list(tglist)
         self.connect('drag_drop', self.drop_widget)
         self.connect('button-press-event', self._button_press)
 
@@ -1228,7 +1237,7 @@ class GrampletPane(Gtk.ScrolledWindow):
         This is the destination method for handling drag and drop
         of a gramplet onto the main scrolled window.
         """
-        button = context.get_source_widget()
+        button = Gtk.drag_get_source_widget(context)
         hbox = button.get_parent()
         mframe = hbox.get_parent()
         mainframe = mframe.get_parent() # actually a vbox
