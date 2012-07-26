@@ -118,7 +118,8 @@ class GalleryTab(ButtonTab, DbGUIElement):
         elif gui.utils.is_right_click(event):
             reflist = self.iconlist.get_selected_items()
             if len(reflist) == 1:
-                ref = self.media_list[reflist[0][0]]
+                path = reflist[0].get_indices()
+                ref = self.media_list[path[0]]
                 self.right_click(ref, event)
                 return True
         return
@@ -131,7 +132,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
             (True, True, Gtk.STOCK_REMOVE, self.del_button_clicked), 
             ]
 
-        menu = Gtk.Menu()
+        self.menu = Gtk.Menu()
 
         ref_obj = self.dbstate.db.get_object_from_handle(obj.ref)
         media_path = media_path_full(self.dbstate.db, ref_obj.get_path())
@@ -142,27 +143,27 @@ class GalleryTab(ButtonTab, DbGUIElement):
             item.set_image(img)
             item.connect('activate', make_launcher(media_path))
             item.show()
-            menu.append(item)
+            self.menu.append(item)
             mfolder, mfile = os.path.split(media_path)
             item = Gtk.MenuItem(label=_('Open Containing _Folder'))
             item.connect('activate', make_launcher(mfolder))
             item.show()
-            menu.append(item)
+            self.menu.append(item)
             item = Gtk.SeparatorMenuItem()
             item.show()
-            menu.append(item)
+            self.menu.append(item)
         
         for (needs_write_access, image, title, func) in itemlist:
             if image:
-                item = Gtk.ImageMenuItem(stock_id=title)
+                item = Gtk.ImageMenuItem.new_from_stock(title, None)
             else:
                 item = Gtk.MenuItem(label=title)
             item.connect('activate', func)
             if needs_write_access and self.dbstate.db.readonly:
                 item.set_sensitive(False)
             item.show()
-            menu.append(item)
-        menu.popup(None, None, None, None, event.button, event.time)
+            self.menu.append(item)
+        self.menu.popup(None, None, None, None, event.button, event.time)
         
     def get_icon_name(self):
         return 'gramps-media'
