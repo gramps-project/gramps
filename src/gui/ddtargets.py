@@ -55,14 +55,16 @@
 import logging
 log = logging.getLogger(".DdTargets")
 
+from gi.repository import Gdk
 from gi.repository import Gtk
 
 class _DdType:
     """Represents the fields needed by a drag and drop target."""
     
-    _APP_ID_OFFSET = 40  # Starting value of app_ids
+    _APP_ID_OFFSET = 40L  # Starting value of app_ids
     
-    def __init__(self, container, drag_type, target_flags=0, app_id=None):
+    def __init__(self, container, drag_type, 
+                 target_flags=0L, app_id=None):
         """Create a new DdType:
 
         drag_type: string holding the name of the type.
@@ -71,6 +73,7 @@ class _DdType:
         """
         
         self.drag_type = drag_type
+        self.atom_drag_type = Gdk.atom_intern(drag_type, False)
         self.target_flags = target_flags
         self.app_id = app_id or self._calculate_id()
         container.insert(self)
@@ -176,13 +179,13 @@ class _DdTargets(object):
         
         self.CHILD         = _DdType(self, 'child')
         self.SPOUSE        = _DdType(self, 'spouse')
-        self.TEXT_MIME     = _DdType(self, 'text/plain', 0, 0)
-        self.TEXT          = _DdType(self, 'TEXT', 0, 1)
-        self.STRING        = _DdType(self, 'STRING', 0, 2)
-        self.COMPOUND_TEXT = _DdType(self, 'COMPOUND_TEXT', 0, 3)
-        self.UTF8_STRING   = _DdType(self, 'UTF8_STRING', 0, 4)
-        self.URI_LIST      = _DdType(self, 'text/uri-list', 0, 5)
-        self.APP_ROOT      = _DdType(self, 'application/x-rootwin-drop', 0, 6)
+        self.TEXT_MIME     = _DdType(self, 'text/plain', 0L, 0L)
+        self.TEXT          = _DdType(self, 'TEXT', 0L, 1L)
+        self.STRING        = _DdType(self, 'STRING', 0L, 2L)
+        self.COMPOUND_TEXT = _DdType(self, 'COMPOUND_TEXT', 0L, 3L)
+        self.UTF8_STRING   = _DdType(self, 'UTF8_STRING', 0L, 4L)
+        self.URI_LIST      = _DdType(self, 'text/uri-list', 0L, 5L)
+        self.APP_ROOT      = _DdType(self, 'application/x-rootwin-drop', 0L, 6L)
 
         # List of all the text types. These are types
         # that can be interpreted as text.
@@ -234,7 +237,6 @@ class _DdTargets(object):
         
         return tuple([t.target() for t in self._all_text_types])
 
-
     def all_gramps_targets(self):
         """Return a list off the internal gramps targets."""
 
@@ -243,6 +245,11 @@ class _DdTargets(object):
     def all_targets(self):
         """Return a list of all the known targets."""
         return self.all_gramps_targets() + self.all_text_targets()
+
+    def all_dtype(self):
+        """Return all known Ddtype"""
+        return [x for x in self._all_gramps_types] + \
+                [x for x in self._all_text_types]
 
 # Create the singleton instance.
 

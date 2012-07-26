@@ -446,21 +446,23 @@ class ListView(NavigationView):
 
     def drag_begin(self, widget, context):
         widget.drag_source_set_icon_stock(self.get_stock())
-        return True
         
     def drag_data_get(self, widget, context, sel_data, info, time):
         selected_ids = self.selected_handles()
 
+        #Gtk.selection_add_target(widget, sel_data.get_selection(), 
+        #                         Gdk.atom_intern(self.drag_info().drag_type, False),
+        #                         self.drag_info().app_id)
+
         if len(selected_ids) == 1:
             data = (self.drag_info().drag_type, id(self), selected_ids[0], 0)
-            sel_data.set(sel_data.target, 8, pickle.dumps(data))
+            sel_data.set(self.drag_info().atom_drag_type, 8, pickle.dumps(data))
         elif len(selected_ids) > 1:
             data = (self.drag_list_info().drag_type, id(self), 
-                    [(self.drag_info().drag_type, handle)
+                    [(self.drag_list_info().drag_type, handle)
                         for handle in selected_ids], 
                     0)
-            sel_data.set(sel_data.target, 8, pickle.dumps(data))
-        return True
+            sel_data.set(self.drag_list_info().atom_drag_type, 8, pickle.dumps(data))
 
     def set_column_order(self):
         """
@@ -665,13 +667,23 @@ class ListView(NavigationView):
         if len(selected_ids) == 1:
             if self.drag_info():
                 self.list.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, 
-                                      [self.drag_info().target()], 
+                                      [], 
                                       Gdk.DragAction.COPY)
+                #TODO GTK3: wourkaround here for bug https://bugzilla.gnome.org/show_bug.cgi?id=680638
+                tglist = Gtk.TargetList.new([])
+                dtype = self.drag_info()
+                tglist.add(dtype.atom_drag_type, dtype.target_flags, dtype.app_id)
+                self.list.drag_source_set_target_list(tglist)
         elif len(selected_ids) > 1:
             if self.drag_list_info():
                 self.list.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, 
-                                      [self.drag_list_info().target()], 
+                                      [], 
                                       Gdk.DragAction.COPY)
+                #TODO GTK3: wourkaround here for bug https://bugzilla.gnome.org/show_bug.cgi?id=680638
+                tglist = Gtk.TargetList.new([])
+                dtype = self.drag_list_info()
+                tglist.add(dtype.atom_drag_type, dtype.target_flags, dtype.app_id)
+                self.list.drag_source_set_target_list(tglist)
 
         self.uistate.modify_statusbar(self.dbstate)
 

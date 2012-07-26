@@ -893,9 +893,9 @@ class ClipboardListModel(Gtk.ListStore):
 #-------------------------------------------------------------------------
 class ClipboardListView(object):
 
-    LOCAL_DRAG_TARGET = Gtk.TargetEntry.new('MY_TREE_MODEL_ROW', 
-                                            Gtk.TargetFlags.SAME_WIDGET, 0)
     LOCAL_DRAG_TYPE   = 'MY_TREE_MODEL_ROW'
+    LOCAL_DRAG_ATOM_TYPE = Gdk.atom_intern(LOCAL_DRAG_TYPE, False)
+    LOCAL_DRAG_TARGET = (LOCAL_DRAG_TYPE, Gtk.TargetFlags.SAME_WIDGET, 0)
     
     def __init__(self, dbstate, widget):
         
@@ -952,16 +952,25 @@ class ClipboardListView(object):
         self._widget.set_enable_search(True)
         #self._widget.set_search_column(3)
 
-        targ_data = (ClipboardListView.LOCAL_DRAG_TARGET,) + \
-                                       DdTargets.all_targets()
-        self._widget.drag_dest_set(Gtk.DestDefaults.ALL, targ_data,
+        targ_data = DdTargets.all_dtype()
+        tglist = Gtk.TargetList.new([])
+        tglist.add(ClipboardListView.LOCAL_DRAG_ATOM_TYPE, 
+                    ClipboardListView.LOCAL_DRAG_TARGET[1], 
+                    ClipboardListView.LOCAL_DRAG_TARGET[2])
+        for tg in targ_data:
+            tglist.add(tg.atom_drag_type, tg.target_flags, tg.app_id)
+        self._widget.enable_model_drag_dest([],
                                     Gdk.DragAction.COPY)
+        #TODO GTK3: wourkaround here for bug https://bugzilla.gnome.org/show_bug.cgi?id=680638
+        self._widget.drag_dest_set_target_list(tglist)
+        #self._widget.drag_dest_set(Gtk.DestDefaults.ALL, targ_data,
+        #                            Gdk.DragAction.COPY)
 
-        self._widget.connect('drag_data_get', self.object_drag_data_get)
-        self._widget.connect('drag_begin', self.object_drag_begin)
-        self._widget.connect('drag_data_received',
+        self._widget.connect('drag-data-get', self.object_drag_data_get)
+        self._widget.connect('drag-begin', self.object_drag_begin)
+        self._widget.connect('drag-data-received',
                              self.object_drag_data_received)
-        self._widget.connect('drag_end', self.object_drag_end)
+        self._widget.connect('drag-end', self.object_drag_end)
 
         self.register_wrapper_classes()
 
@@ -1127,12 +1136,13 @@ class ClipboardListView(object):
             node = model.get_iter(path)
             if node is not None:
                 o = model.get_value(node,1)
-                targets += [target.target() for target in o.__class__.DROP_TARGETS]
+                targets += [target.target_data() for target in o.__class__.DROP_TARGETS]
 
-        self._widget.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK, targets, 
-                                    Gdk.DragAction.COPY | Gdk.DragAction.MOVE)
+        self._widget.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK, 
+                            targets, 
+                            Gdk.DragAction.COPY | Gdk.DragAction.MOVE)
 
-    def object_drag_begin(self, context, a):
+    def object_drag_begin(self, widget, drag_context):
         """ Handle the beginning of a drag operation. """
         pass
     
@@ -1155,13 +1165,12 @@ class ClipboardListView(object):
                 o = model.get_value(node,1)
                 raw_list.append(o.pack())
             sel_data.set(sel_data.target, 8, pickle.dumps(raw_list))
-        return True
 
-    def object_drag_data_received(self,widget,context,x,y,selection,info,time,
-                                  title=None, value=None, dbid=None, 
+    def object_drag_data_received(self, widget, context, x, y, selection, info,
+                                  time, title=None, value=None, dbid=None,
                                   dbname=None):
         model = widget.get_model()
-        sel_data = selection.data
+        sel_data = selection.get_data()
         # In Windows time is always zero. Until that is fixed, use the seconds
         # of the local time to filter out double drops.
         realTime = strftime("%S")
@@ -1192,7 +1201,8 @@ class ClipboardListView(object):
             if dragtype in self._target_type_to_wrapper_class_map:
                 possible_wrappers = [dragtype]
         else:
-            possible_wrappers = [target for target in context.targets
+            tgs = [atm.name() for atm in context.list_targets()]
+            possible_wrappers = [target for target in tgs
                         if target in self._target_type_to_wrapper_class_map]
 
         if len(possible_wrappers) == 0:
@@ -1225,7 +1235,7 @@ class ClipboardListView(object):
             data = [o.__class__.DRAG_TARGET.drag_type, o, None, 
                     o._type, o._value, o._dbid, o._dbname]
             contains = model_contains(model, data)
-            if context.action != Gdk.DragAction.MOVE and contains:
+            if context.get_actions() != Gdk.DragAction.MOVE and contains:
                 continue
             drop_info = widget.get_dest_row_at_pos(x, y)
             if drop_info:
@@ -1242,7 +1252,7 @@ class ClipboardListView(object):
         # FIXME: there is one bug here: if you multi-select and drop
         # on self, then it moves the first, and copies the rest.
 
-        if context.action == Gdk.DragAction.MOVE:
+        if context.get_actions() == Gdk.DragAction.MOVE:
             context.finish(True, True, time)
 
         # remember time for double drop workaround.
@@ -1332,8 +1342,7 @@ class ClipboardWindow(ManagedWindow):
                                        self.set_clear_all_btn_sensitivity)
         ClipboardWindow.otree.connect('row-inserted',
                                        self.set_clear_all_btn_sensitivity)
-        
-        
+
         self.object_list.set_model(ClipboardWindow.otree)
         
         #Database might have changed, objects might have been removed,
@@ -1398,7 +1407,7 @@ class MultiTreeView(Gtk.TreeView):
         self.dbstate = dbstate
         self.uistate = uistate
         self.title = title if title else _("Clipboard")
-        super(MultiTreeView, self).__init__()
+        Gtk.TreeView.__init__(self)
         self.connect('button_press_event', self.on_button_press)
         self.connect('button_release_event', self.on_button_release)
         self.connect('key_press_event', self.key_press_event)
@@ -1486,12 +1495,12 @@ class MultiTreeView(Gtk.TreeView):
             and not (event.get_state() & (Gdk.ModifierType.CONTROL_MASK|Gdk.ModifierType.SHIFT_MASK))
             and self.get_selection().path_is_selected(target[0])):
             # disable selection
-            self.get_selection().set_select_function(lambda *ignore: False)
+            self.get_selection().set_select_function(lambda *ignore: False, None)
             self.defer_select = target[0]
-			
+
     def on_button_release(self, widget, event):
         # re-enable selection
-        self.get_selection().set_select_function(lambda *ignore: True)
+        self.get_selection().set_select_function(lambda *ignore: True, None)
         
         target = self.get_path_at_pos(int(event.x), int(event.y))	
         if (self.defer_select and target 
