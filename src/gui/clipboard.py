@@ -895,7 +895,7 @@ class ClipboardListView(object):
 
     LOCAL_DRAG_TYPE   = 'MY_TREE_MODEL_ROW'
     LOCAL_DRAG_ATOM_TYPE = Gdk.atom_intern(LOCAL_DRAG_TYPE, False)
-    LOCAL_DRAG_TARGET = (LOCAL_DRAG_TYPE, Gtk.TargetFlags.SAME_WIDGET, 0)
+    LOCAL_DRAG_TARGET = (LOCAL_DRAG_ATOM_TYPE, Gtk.TargetFlags.SAME_WIDGET, 0)
     
     def __init__(self, dbstate, widget):
         
@@ -954,7 +954,7 @@ class ClipboardListView(object):
 
         targ_data = DdTargets.all_dtype()
         tglist = Gtk.TargetList.new([])
-        tglist.add(ClipboardListView.LOCAL_DRAG_ATOM_TYPE, 
+        tglist.add(ClipboardListView.LOCAL_DRAG_TARGET[0], 
                     ClipboardListView.LOCAL_DRAG_TARGET[1], 
                     ClipboardListView.LOCAL_DRAG_TARGET[2])
         for tg in targ_data:
@@ -1128,7 +1128,7 @@ class ClipboardListView(object):
         tree_selection = self._widget.get_selection()
         model, paths = tree_selection.get_selected_rows()
         if len(paths) > 1:
-            targets = [(DdTargets.RAW_LIST.drag_type, Gtk.TargetFlags.SAME_WIDGET, 0), 
+            targets = [(DdTargets.RAW_LIST.atom_drag_type, Gtk.TargetFlags.SAME_WIDGET, 0), 
                        ClipboardListView.LOCAL_DRAG_TARGET] 
         else:
             targets = [ClipboardListView.LOCAL_DRAG_TARGET] 
@@ -1136,11 +1136,16 @@ class ClipboardListView(object):
             node = model.get_iter(path)
             if node is not None:
                 o = model.get_value(node,1)
-                targets += [target.target_data() for target in o.__class__.DROP_TARGETS]
+                targets += [target.target_data_atom() for target in o.__class__.DROP_TARGETS]
 
+        #TODO GTK3: wourkaround here for bug https://bugzilla.gnome.org/show_bug.cgi?id=680638
         self._widget.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK, 
-                            targets, 
+                            [], 
                             Gdk.DragAction.COPY | Gdk.DragAction.MOVE)
+        tglist = Gtk.TargetList.new([])
+        for tg in targets:
+            tglist.add(tg[0], tg[1], tg[2])
+        self._widget.drag_source_set_target_list(tglist)
 
     def object_drag_begin(self, widget, drag_context):
         """ Handle the beginning of a drag operation. """
@@ -1153,18 +1158,19 @@ class ClipboardListView(object):
     def object_drag_data_get(self, widget, context, sel_data, info, time):
         tree_selection = widget.get_selection()
         model, paths = tree_selection.get_selected_rows()
+        tgs = context.list_targets()
         if len(paths) == 1:
             path = paths[0]
             node = model.get_iter(path)
             o = model.get_value(node,1)
-            sel_data.set(sel_data.target, 8, o.pack())
+            sel_data.set(tgs[0], 8, o.pack())
         elif len(paths) > 1:
             raw_list = []
             for path in paths:
                 node = model.get_iter(path)
                 o = model.get_value(node,1)
                 raw_list.append(o.pack())
-            sel_data.set(sel_data.target, 8, pickle.dumps(raw_list))
+            sel_data.set(tgs[0], 8, pickle.dumps(raw_list))
 
     def object_drag_data_received(self, widget, context, x, y, selection, info,
                                   time, title=None, value=None, dbid=None,

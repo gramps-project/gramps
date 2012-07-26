@@ -161,7 +161,7 @@ class EditChildRef(EditSecondary):
 
         self._setup_notebook_tabs( notebook)
         notebook.show_all()
-        self.top.get_object('vbox').pack_start(notebook,True)
+        self.top.get_object('vbox').pack_start(notebook, True, True, 0)
 
     def _post_init(self): 
         self.ok_button.grab_focus()

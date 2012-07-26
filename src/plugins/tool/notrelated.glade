@@ -69,8 +69,15 @@
                     <property name="visible">True</property>
                     <property name="spacing">3</property>
                     <child>
-                      <object class="GtkComboBoxEntry" id="tagcombo">
+                      <object class="GtkComboBox" id="tagcombo">
                         <property name="visible">True</property>
+                        <property name="has_entry">True</property>
+                        <child internal-child="entry">
+                          <object class="GtkEntry" id="tagcombo-entry">
+                        <property name="can_focus">True</property>
+                        <property name="overwrite_mode">True</property>
+                          </object>
+                        </child>
                         <accelerator key="T" signal="grab_focus" modifiers="GDK_MOD1_MASK"/>
                       </object>
                       <packing>

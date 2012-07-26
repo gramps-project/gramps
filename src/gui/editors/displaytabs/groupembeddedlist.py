@@ -148,7 +148,7 @@ class GroupEmbeddedList(EmbeddedList):
         data = pickle.dumps(value)
 
         # pass as a string (8 bits)
-        sel_data.set(sel_data.target, 8, data)
+        sel_data.set(self._DND_TYPE.atom_drag_type, 8, data)
 
     def drag_data_received(self, widget, context, x, y, sel_data, info, time):
         """
@@ -157,8 +157,8 @@ class GroupEmbeddedList(EmbeddedList):
         If the selection data is define, extract the value from sel_data.data,
         and decide if this is a move or a reorder.
         """
-        if sel_data and sel_data.data:
-            (mytype, selfid, obj, row_from) = pickle.loads(sel_data.data)
+        if sel_data and sel_data.get_data():
+            (mytype, selfid, obj, row_from) = pickle.loads(sel_data.get_data())
 
             # make sure this is the correct DND type for this object
             if mytype == self._DND_TYPE.drag_type:

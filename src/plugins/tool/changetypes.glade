@@ -76,8 +76,15 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkComboBoxEntry" id="new">
+                  <object class="GtkComboBox" id="new">
                     <property name="visible">True</property>
+                        <property name="has_entry">True</property>
+                        <child internal-child="entry">
+                          <object class="GtkEntry" id="new-entry">
+                        <property name="can_focus">True</property>
+                        <property name="overwrite_mode">True</property>
+                          </object>
+                        </child>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -89,8 +96,15 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkComboBoxEntry" id="original">
+                  <object class="GtkComboBox" id="original">
                     <property name="visible">True</property>
+                        <property name="has_entry">True</property>
+                        <child internal-child="entry">
+                          <object class="GtkEntry" id="original-entry">
+                        <property name="can_focus">True</property>
+                        <property name="overwrite_mode">True</property>
+                          </object>
+                        </child>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
