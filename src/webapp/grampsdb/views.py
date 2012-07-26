@@ -1250,8 +1250,9 @@ def process_reference(request, ref_by, handle, ref_to, order):
     context["tviews"] = _('References')
     context["object"] = referenced_by
     context["handle"] = referenced_by.handle
-    context["url"] = "/%s/%s" % (referenced_to[0].ref_object.__class__.__name__.lower(), 
-                                 referenced_to[0].ref_object.handle)
+    context["url"] = referenced_to[0].get_reference_to().get_url()
+    #"/%s/%s" % (referenced_to[0].ref_object.__class__.__name__.lower(), 
+    #                             referenced_to[0].ref_object.handle)
     context["referenced_by"] = "/%s/%s" % (referenced_by.__class__.__name__.lower(),
                                            referenced_by.handle)
     context["action"] = "view"
@@ -1324,6 +1325,9 @@ def process_list_item(request, view, handle, act, item, index):
     if item == "eventref":
         refs = dji.EventRef.filter(object_id=obj.id,
                                    object_type=obj_type).order_by("order")
+    elif item == "citationref":
+        refs = dji.CitationRef.filter(object_id=obj.id,
+                                      object_type=obj_type).order_by("order")
     # Next, perform action:
     if act == "remove":
         count = 1

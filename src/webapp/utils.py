@@ -312,6 +312,7 @@ def event_table(obj, user, act, url, args):
             object_id=obj.id, 
             object_type=obj_type).order_by("order")
         event_list = [(o.ref_object, o) for o in event_ref_list]
+        links = []
         count = 1
         for (djevent, event_ref) in event_list:
             table.row(Link("[[x%d]][[^%d]][[v%d]]" % (count, count, count)) if user.is_superuser and act == "view" else "",
@@ -321,7 +322,9 @@ def event_table(obj, user, act, url, args):
                 display_date(djevent),
                 get_title(djevent.place),
                 str(event_ref.role_type))
+            links.append(('URL', event_ref.get_url()))
             count += 1
+        table.links(links)
     retval += table.get_html()
     if user.is_superuser and act == "view":
         count = 1
@@ -435,17 +438,20 @@ def citation_table(obj, user, act, url=None, *args):
         obj_type = ContentType.objects.get_for_model(obj)
         citation_refs = dji.CitationRef.filter(object_type=obj_type,
                                                object_id=obj.id).order_by("order")
+        links = []
         count = 1
         for citation_ref in citation_refs:
             if citation_ref.citation:
                 citation = table.db.get_citation_from_handle(
                     citation_ref.citation.handle)
                 table.row(Link("[[x%d]][[^%d]][[v%d]]" % (count, count, count)) if user.is_superuser and url and act == "view" else "",
-                          citation,
+                          citation.gramps_id,
                           str(citation.confidence),
                           str(citation.page),
                           )
+                links.append(('URL', citation_ref.get_url()))
                 count += 1
+        table.links(links)
     retval += table.get_html()
     if user.is_superuser and url and act == "view":
         count = 1
@@ -895,7 +901,7 @@ def children_table(obj, user, act, url=None, *args):
                       childref.mother_rel_type,
                       date_as_text(child.birth, user),
                       )
-            links.append(('URL', ("/person/%s" % child.handle)))
+            links.append(('URL', childref.get_url()))
             count += 1
         else:
             table.row("",
@@ -907,8 +913,8 @@ def children_table(obj, user, act, url=None, *args):
                       "[Private]",
                       "[Private]",
                       )
-            if not child.private:
-                links.append(('URL', ("/person/%s" % child.handle)))
+            if not child.private and not childref.private:
+                links.append(('URL', childref.get_url()))
             else:
                 links.append((None, None))
             count += 1

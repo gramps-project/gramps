@@ -845,6 +845,14 @@ class BaseRef(models.Model):
     #attributes = models.ManyToManyField("Attribute", null=True)
     private = models.BooleanField()
 
+    def get_url(self):
+        # /person/3536453463/reference/event/2
+        ref_by = self.object_type.model_class().objects.get(id=self.object_id)
+        ref_to = self.get_reference_to()
+        return "/%s/%s/reference/%s/%s" % (ref_by.__class__.__name__.lower(), 
+                                           ref_by.handle, 
+                                           ref_to.__class__.__name__.lower(), 
+                                           self.order)
 class Log(BaseRef):
     log_type = models.CharField(max_length=10) # edit, delete, add
     reason = models.TextField() # must be filled in
@@ -859,6 +867,9 @@ class Log(BaseRef):
 class NoteRef(BaseRef):
     ref_object = models.ForeignKey('Note') 
 
+    def get_reference_to(self):
+        return self.ref_object
+
     def __unicode__(self):
         return "NoteRef to " + str(self.ref_object)
 
@@ -868,6 +879,9 @@ class EventRef(BaseRef):
 
     def __unicode__(self):
         return str(self.ref_object)
+
+    def get_reference_to(self):
+        return self.ref_object
 
     def get_url(self):
         # /person/3536453463/reference/event/2
@@ -883,12 +897,18 @@ class RepositoryRef(BaseRef):
     source_media_type = models.ForeignKey('SourceMediaType')
     call_number = models.CharField(max_length=50)
 
+    def get_reference_to(self):
+        return self.ref_object
+
     def __unicode__(self):
         return "RepositoryRef to " + str(self.ref_object)
 
 class PersonRef(BaseRef):
     ref_object = models.ForeignKey('Person')
     description = models.CharField(max_length=50, blank=True, null=True)
+
+    def get_reference_to(self):
+        return self.ref_object
 
     def __unicode__(self):
         return "PersonRef to " + str(self.ref_object)
@@ -899,12 +919,22 @@ class CitationRef(BaseRef):
     def __unicode__(self):
         return "CitationRef to " + str(self.citation)
   
+    def get_reference_to(self):
+        return self.citation
+
 class ChildRef(BaseRef):
     father_rel_type = models.ForeignKey('ChildRefType', 
                                         related_name="child_father_rel")
     mother_rel_type = models.ForeignKey('ChildRefType', 
                                         related_name="child_mother_rel")
     ref_object = models.ForeignKey('Person')
+
+    def get_reference_to(self):
+        return self.ref_object
+
+    def get_url(self):
+        # FIXME: go to child reference
+        return "/person/%s" % self.ref_object.handle
 
     def __unicode__(self):
         return "ChildRef to " + str(self.ref_object)
@@ -915,6 +945,9 @@ class MediaRef(BaseRef):
     x2 = models.IntegerField()
     y2 = models.IntegerField()
     ref_object = models.ForeignKey('Media')
+
+    def get_reference_to(self):
+        return self.ref_object
 
     def __unicode__(self):
         return "MediaRef to " + str(self.ref_object)
