@@ -23,9 +23,9 @@
 
 ## Gramps Modules
 from webapp.utils import _, boolean, update_last_changed, build_search
-from webapp.grampsdb.models import Event
+from webapp.grampsdb.models import Event, EventType, EventRef, EventRoleType, Person
 from webapp.grampsdb.forms import *
-from webapp.libdjango import DjangoInterface
+from webapp.libdjango import DjangoInterface, lookup_role_index
 from webapp.dbdjango import DbDjango
 from gen.datehandler import displayer, parser
 
@@ -39,6 +39,94 @@ db = DbDjango()
 dd = displayer.display
 dp = parser.parse
 
+def delete_event(event):
+    obj_type = ContentType.objects.get_for_model(Person)
+    # First, get those items we need to update:
+    event_refs = EventRef.objects.filter(
+        ref_object=event,
+        object_type=obj_type,
+        role_type=get_type_from_name(EventRoleType, "Primary")
+        )
+    people = []
+    for event_ref in event_refs:
+        try:
+            person = Person.objects.get(id=event_ref.object_id)
+        except:
+            print "Warning: Corrupt reference in delete_event: %s" % event_ref
+            continue
+        people.append(person)
+    # Remove links to birth/death:
+    for person in people:
+        if person.death == event:
+            person.death = None
+            person.save()
+        elif person.birth == event:
+            person.birth = None
+            person.save()
+    # Now, delete the event:
+    event.delete()
+    # Now, update all of the people:
+    for person in people:
+        recheck_birth_death_refs(person)
+        person.save()
+        dji.rebuild_cache(person)
+
+def check_event(event):
+    obj_type = ContentType.objects.get_for_model(Person)
+    # First, get those items we need to update:
+    event_refs = EventRef.objects.filter(
+        ref_object=event,
+        object_type=obj_type,
+        role_type=get_type_from_name(EventRoleType, "Primary")
+        )
+    people = []
+    for event_ref in event_refs:
+        try:
+            person = Person.objects.get(id=event_ref.object_id)
+        except:
+            print "Warning: Corrupt reference in delete_event: %s" % event_ref
+            continue
+        recheck_birth_death_refs(person)
+        person.save()
+        dji.rebuild_cache(person)
+
+def recheck_birth_death_refs(person):
+    """
+    Reset birth/death references. Need to save later.
+    """
+    all_events = dji.get_event_ref_list(person)
+    obj_type = ContentType.objects.get_for_model(person)
+    # Update Birth event references:
+    events = EventRef.objects.filter(
+        object_id=person.id, 
+        object_type=obj_type, 
+        role_type=get_type_from_name(EventRoleType, "Primary"),
+        ref_object__event_type__val=EventType.BIRTH).order_by("order")
+    if events:
+        person.birth = events[0].ref_object
+        new_index = lookup_role_index(EventType.BIRTH, all_events)
+        if person.birth_ref_index != new_index:
+            person.birth_ref_index = new_index
+    else:
+        person.birth = None
+        person.birth_ref_index = -1
+    # Update Death event references:
+    events = EventRef.objects.filter(
+        object_id=person.id, 
+        object_type=obj_type, 
+        role_type=get_type_from_name(EventRoleType, "Primary"),
+        ref_object__event_type__val=EventType.DEATH).order_by("order")
+    if events:
+        person.probably_alive = False
+        person.death = events[0].ref_object
+        new_index = lookup_role_index(EventType.DEATH, all_events)
+        if person.death_ref_index != new_index:
+            person.death_ref_index = new_index
+    else:
+        person.death = None
+        person.death_ref_index = -1
+        person.probably_alive = True
+    
 def process_event(request, context, handle, act, add_to=None): # view, edit, save
     """
     Process act on person. Can return a redirect.
@@ -75,6 +163,9 @@ def process_event(request, context, handle, act, add_to=None): # view, edit, sav
             ref_handle = pickform.data["picklist"]
             ref_obj = Event.objects.get(handle=ref_handle) 
             dji.add_event_ref_default(parent_obj, ref_obj)
+            if item == "person": # then need to recheck birth/death indexes:
+                recheck_birth_death_refs(parent_obj)
+                parent_obj.save()
             dji.rebuild_cache(parent_obj) # rebuild cache
             return redirect("/%s/%s%s#tab-events" % (item, handle, build_search(request)))
         else:
@@ -101,6 +192,10 @@ def process_event(request, context, handle, act, add_to=None): # view, edit, sav
         if eventform.is_valid():
             update_last_changed(event, request.user.username)
             event = eventform.save()
+            # Check any person that might be referenced to see if
+            # birth/death issues changed:
+            check_event(event)
+            event.save()
             dji.rebuild_cache(event)
             act = "view"
         else:
@@ -118,6 +213,9 @@ def process_event(request, context, handle, act, add_to=None): # view, edit, sav
                 model = dji.get_model(item)
                 obj = model.objects.get(handle=handle)
                 dji.add_event_ref_default(obj, event)
+                if item == "person": # then need to recheck birth/death indexes:
+                    recheck_birth_death_refs(obj)
+                    obj.save()
                 dji.rebuild_cache(obj)                
                 return redirect("/%s/%s#tab-events" % (item, handle))
             act = "view"
@@ -125,7 +223,7 @@ def process_event(request, context, handle, act, add_to=None): # view, edit, sav
             act = "add"
     elif act == "delete": 
         event = Event.objects.get(handle=handle)
-        event.delete()
+        delete_event(event)
         return redirect("/event/")
     else:
         raise Exception("Unhandled act: '%s'" % act)

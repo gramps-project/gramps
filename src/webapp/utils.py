@@ -714,7 +714,11 @@ def event_reference_table(obj, user, act):
     if user.is_authenticated() and act != "add":
         for reference in models.EventRef.objects.filter(ref_object=obj):
             ref_from_class = reference.object_type.model_class()
-            item = ref_from_class.objects.get(id=reference.object_id)
+            try:
+                item = ref_from_class.objects.get(id=reference.object_id)
+            except:
+                print "Warning: Corrupt reference: %s" % reference
+                continue
             table.row(
                 item.__class__.__name__,
                 item,
