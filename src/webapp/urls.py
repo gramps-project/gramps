@@ -92,6 +92,8 @@ urlpatterns += patterns('',
     (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/surname/(?P<sorder>(\w+))/(?P<act>(\w+))$', 
      process_surname),
     (r'^family/(?P<handle>(\w+))/(?P<act>(\w+))/child/(?P<child>(\w+))$', process_child),
+    (r'^(?P<view>(\w+))/(?P<handle>(\w+))/(?P<act>(\w+))/(?P<item>(\w+))/(?P<index>(\w+))$', 
+     process_list_item),
 )
 
 # In urls:

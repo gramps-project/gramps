@@ -298,28 +298,39 @@ def event_table(obj, user, act, url, args):
     retval = ""
     table = Table("event_table")
     table.columns(
+        "",
         _("Description"), 
         _("Type"),
         _("ID"),
         _("Date"),
         _("Place"),
         _("Role"))
+    table.column_widths = [10, 20, 10, 7, 20, 23, 10]
     if user.is_authenticated():
         obj_type = ContentType.objects.get_for_model(obj)
         event_ref_list = models.EventRef.objects.filter(
             object_id=obj.id, 
             object_type=obj_type).order_by("order")
-        event_list = [(obj.ref_object, obj) for obj in event_ref_list]
+        event_list = [(o.ref_object, o) for o in event_ref_list]
+        count = 1
         for (djevent, event_ref) in event_list:
-            table.row(
+            table.row(Link("[[x%d]][[^%d]][[v%d]]" % (count, count, count)) if user.is_superuser and act == "view" else "",
                 djevent.description,
                 table.db.get_event_from_handle(djevent.handle),
                 djevent.gramps_id, 
                 display_date(djevent),
                 get_title(djevent.place),
                 str(event_ref.role_type))
+            count += 1
     retval += table.get_html()
     if user.is_superuser and act == "view":
+        count = 1
+        for (djevent, event_ref) in event_list:
+            item = obj.__class__.__name__.lower()
+            retval = retval.replace("[[x%d]]" % count, make_button("x", "/%s/%s/remove/eventref/%d" % (item, obj.handle, count)))
+            retval = retval.replace("[[^%d]]" % count, make_button("^", "/%s/%s/up/eventref/%d" % (item, obj.handle, count)))
+            retval = retval.replace("[[v%d]]" % count, make_button("v", "/%s/%s/down/eventref/%d" % (item, obj.handle, count)))
+            count += 1
         retval += make_button(_("Add New Event"), (url % args).replace("$act", "add"))
         retval += make_button(_("Add Existing Event"), (url % args).replace("$act", "share"))
     else:
@@ -415,23 +426,35 @@ def surname_table(obj, user, act, url=None, *args):
 def citation_table(obj, user, act, url=None, *args):
     retval = ""
     table = Table("citation_table")
-    table.columns(_("ID"), 
+    table.columns("", 
+                  _("ID"), 
                   _("Confidence"),
                   _("Page"))
+    table.column_widths = [10, 10, 50, 30]
     if user.is_authenticated():
         obj_type = ContentType.objects.get_for_model(obj)
         citation_refs = dji.CitationRef.filter(object_type=obj_type,
-                                               object_id=obj.id)
+                                               object_id=obj.id).order_by("order")
+        count = 1
         for citation_ref in citation_refs:
             if citation_ref.citation:
                 citation = table.db.get_citation_from_handle(
                     citation_ref.citation.handle)
-                table.row(citation,
+                table.row(Link("[[x%d]][[^%d]][[v%d]]" % (count, count, count)) if user.is_superuser and url and act == "view" else "",
+                          citation,
                           str(citation.confidence),
                           str(citation.page),
                           )
+                count += 1
     retval += table.get_html()
     if user.is_superuser and url and act == "view":
+        count = 1
+        for citation_ref in citation_refs:
+            item = obj.__class__.__name__.lower()
+            retval = retval.replace("[[x%d]]" % count, make_button("x", "/%s/%s/remove/citationref/%d" % (item, obj.handle, count)))
+            retval = retval.replace("[[^%d]]" % count, make_button("^", "/%s/%s/up/citationref/%d" % (item, obj.handle, count)))
+            retval = retval.replace("[[v%d]]" % count, make_button("v", "/%s/%s/down/citationref/%d" % (item, obj.handle, count)))
+            count += 1
         retval += make_button(_("Add New Citation"), (url % args).replace("$act", "add"))
         retval += make_button(_("Add Existing Citation"), (url % args).replace("$act", "share"))
     else:
@@ -863,7 +886,7 @@ def children_table(obj, user, act, url=None, *args):
     for childref in childrefs:
         child = childref.ref_object
         if user.is_authenticated():
-            table.row(Link("[[x%d]][[^%d]][[v%d]]" % (count, count, count)), 
+            table.row(Link("[[x%d]][[^%d]][[v%d]]" % (count, count, count)) if user.is_superuser and url and act == "view" else "",
                       str(count), 
                       "[%s]" % child.gramps_id,
                       render_name(child, user),
@@ -875,7 +898,8 @@ def children_table(obj, user, act, url=None, *args):
             links.append(('URL', ("/person/%s" % child.handle)))
             count += 1
         else:
-            table.row(str(count), 
+            table.row("",
+                      str(count), 
                       "[%s]" % child.gramps_id,
                       render_name(child, user) if not child.private else "[Private]",
                       child.gender_type if not child.private else "[Private]",
@@ -890,13 +914,13 @@ def children_table(obj, user, act, url=None, *args):
             count += 1
     table.links(links)
     retval += table.get_html()
-    count = 1
-    for childref in childrefs:
-        retval = retval.replace("[[x%d]]" % count, make_button("x", "/family/%s/remove/child/%d" % (family.handle, count)))
-        retval = retval.replace("[[^%d]]" % count, make_button("^", "/family/%s/up/child/%d" % (family.handle, count)))
-        retval = retval.replace("[[v%d]]" % count, make_button("v", "/family/%s/down/child/%d" % (family.handle, count)))
-        count += 1
     if user.is_superuser and url and act == "view":
+        count = 1
+        for childref in childrefs:
+            retval = retval.replace("[[x%d]]" % count, make_button("x", "/family/%s/remove/child/%d" % (family.handle, count)))
+            retval = retval.replace("[[^%d]]" % count, make_button("^", "/family/%s/up/child/%d" % (family.handle, count)))
+            retval = retval.replace("[[v%d]]" % count, make_button("v", "/family/%s/down/child/%d" % (family.handle, count)))
+            count += 1
         retval += make_button(_("Add New Person as Child"), (url.replace("$act", "add") % args))
         retval += make_button(_("Add Existing Person as Child"), (url.replace("$act", "share") % args))
     else:

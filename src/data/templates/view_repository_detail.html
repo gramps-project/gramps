@@ -33,10 +33,10 @@
 <td class="ColumnValue" id="data" colspan="5">{% render repositoryform.name user action %} </td>
 </tr>
 <tr>
-<td class="ColumnAttribute">{{repositoryform.repository_type.label}}:</td>
-<td class="ColumnValue" id="data" colspan="3">{% render repositoryform.repository_type user action %}</td>
 </tr>
 <tr>
+<td class="ColumnAttribute">{{repositoryform.repository_type.label}}:</td>
+<td class="ColumnValue" id="data">{% render repositoryform.repository_type user action %}</td>
 <td class="ColumnAttribute">{{repositoryform.gramps_id.label}}:</td>
 <td class="ColumnValue" id="data">{% render repositoryform.gramps_id user action %}</td>
 <td class="ColumnAttribute" >{{repositoryform.private.label}}:</td>

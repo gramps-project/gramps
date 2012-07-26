@@ -550,7 +550,7 @@ def action(request, view, handle, act, add_to=None):
                 retval += "%s=%s\n" % (key, override[key])
                 del override[key]
             else:
-                retval += "%s=%s\n" % (key, repr(opt_default[key]))
+                retval += "%s=%s\n" % (key, opt_default[key])
         # Any leftover overrides:
         for key in sorted(override.keys()):
             retval += "%s=%s\n" % (key, override[key])
@@ -1225,58 +1225,6 @@ def safe_int(num):
     except:
         return -1
 
-def process_child(request, handle, act, child):
-    """
-    handle - Family handle
-    act - 'remove', 'up', or 'down'
-    child - child number
-    """
-    from webapp.grampsdb.forms import FamilyForm
-    context = RequestContext(request)
-    context["view"] = "family"
-    context["tview"] = _("Family")
-    context["tviews"] = _("Familes")
-    family = Family.objects.get(handle=handle)
-    obj_type = ContentType.objects.get_for_model(family)
-    childrefs = dji.ChildRef.filter(object_id=family.id,
-                                    object_type=obj_type).order_by("order")
-
-    if act == "remove":
-        person = childrefs[int(child) - 1].ref_object
-        [f.delete() for f in person.parent_families.filter(handle=handle)]
-        childrefs[int(child) - 1].delete()
-        dji.rebuild_cache(person)
-        dji.rebuild_cache(family)
-    elif act == "up":
-        if int(child) >= 2:
-            for ref in childrefs:
-                if ref.order == int(child):
-                    ref.order = ref.order - 1
-                elif ref.order == int(child) - 1:
-                    ref.order = ref.order + 1
-                else:
-                    ref.order = ref.order
-            for ref in childrefs:
-                ref.save()
-            dji.rebuild_cache(family)
-    elif act == "down":
-        if int(child) <= len(childrefs) - 1:
-            childrefs[int(child) - 1].order = int(child) + 1
-            childrefs[int(child)].order = int(child) 
-            childrefs[int(child) - 1].save()
-            childrefs[int(child)].save()
-            dji.rebuild_cache(family)
-    else:
-        raise Exception("invalid child action: %s" % act)
-    familyform = FamilyForm(instance=family)
-    familyform.model = family
-    context["familyform"] = familyform
-    context["object"] = family
-    context["family"] = family
-    context["action"] = "view"
-    view_template = "view_family_detail.html"
-    return render_to_response(view_template, context)
-
 def process_reference(request, ref_by, handle, ref_to, order):
     # FIXME: can I make this work for all?
     context = RequestContext(request)
@@ -1309,3 +1257,104 @@ def process_reference(request, ref_by, handle, ref_to, order):
     context["action"] = "view"
     return render_to_response("reference.html", context)
 
+def process_child(request, handle, act, child):
+    """
+    handle - Family handle
+    act - 'remove', 'up', or 'down'
+    child - child number
+    """
+    family = Family.objects.get(handle=handle)
+    obj_type = ContentType.objects.get_for_model(family)
+    childrefs = dji.ChildRef.filter(object_id=family.id,
+                                    object_type=obj_type).order_by("order")
+
+    # FIXME: what about parent_families, families?
+    if act == "remove":
+        person = childrefs[int(child) - 1].ref_object
+        [f.delete() for f in person.parent_families.filter(handle=handle)]
+        childrefs[int(child) - 1].delete()
+        dji.rebuild_cache(person)
+        dji.rebuild_cache(family)
+        # FIXME: renumber order after delete
+    elif act == "up":
+        if int(child) >= 2:
+            for ref in childrefs:
+                if ref.order == int(child):
+                    ref.order = ref.order - 1
+                elif ref.order == int(child) - 1:
+                    ref.order = ref.order + 1
+                else:
+                    ref.order = ref.order
+            for ref in childrefs:
+                ref.save()
+            dji.rebuild_cache(family)
+    elif act == "down":
+        if int(child) <= len(childrefs) - 1:
+            childrefs[int(child) - 1].order = int(child) + 1
+            childrefs[int(child)].order = int(child) 
+            childrefs[int(child) - 1].save()
+            childrefs[int(child)].save()
+            dji.rebuild_cache(family)
+    else:
+        raise Exception("invalid child action: %s" % act)
+    return redirect("/family/%s/" % handle)
+
+def process_list_item(request, view, handle, act, item, index):
+    # /person/872323636232635/remove/event/1
+    # /family/872323636232635/up/citation/1
+    # /citation/872323636232635/down/attribute/2
+    index = int(index)
+    tab = {
+        "eventref":     "#tab-events", 
+        "citationref":  "#tab-citations", 
+        "attribute":    "#tab-attributes", 
+        "media":        "#tab-media", 
+        "lds":          "#tab-lds",
+        }
+    if view == "person":
+        obj = dji.Person.get(handle=handle)
+    elif view == "event":
+        obj = dji.Event.get(handle=handle)
+    elif view == "family":
+        obj = dji.Family.get(handle=handle)
+    elif view == "citation":
+        obj = dji.Citation.get(handle=handle)
+    obj_type = ContentType.objects.get_for_model(obj)
+    # Next, get reference
+    if item == "eventref":
+        refs = dji.EventRef.filter(object_id=obj.id,
+                                   object_type=obj_type).order_by("order")
+    # Next, perform action:
+    if act == "remove":
+        count = 1
+        done = False
+        for ref in refs:
+            if count == index and not done:
+                ref.delete()
+                done = True
+            else:
+                ref.order = count
+                ref.save()
+                count += 1
+    elif act == "up" and index >= 2:
+        count = 1
+        for ref in refs:
+            if count == index - 1:
+                ref.order = index
+                ref.save()
+            elif count == index:
+                ref.order = index - 1
+                ref.save()
+            count += 1
+    elif act == "down" and index < len(refs):
+        count = 1
+        for ref in refs:
+            if count == index:
+                ref.order = index + 1
+                ref.save()
+            elif count == index + 1:
+                ref.order = index
+                ref.save()
+            count += 1
+    dji.rebuild_cache(obj)
+    return redirect("/%s/%s/%s" % (view, handle, tab[item]))

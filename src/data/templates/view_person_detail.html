@@ -74,7 +74,7 @@
  <td class="ColumnAttribute">{{personform.private.label}}:</td>
  <td class="ColumnValue" id="data">{% render personform.private user action %}</td>
  <td class="ColumnAttribute">{{personform.probably_alive.label}}:</td>
- <td class="ColumnValue" id="data">{% render personform.probably_alive user action %}</td>
+ <td class="ColumnValue" id="data">{% if person.probably_alive %}Yes{% else %}No{% endif %}</td>
 </tr>
 </tbody>
 </table>
