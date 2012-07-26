@@ -182,7 +182,7 @@ class ObjEntry(object):
         pass
 
     def drag_data_received(self, widget, context, x, y, selection, info, time):
-        (drag_type, idval, obj, val) = pickle.loads(selection.data)
+        (drag_type, idval, obj, val) = pickle.loads(selection.get_data())
         
         data = self.db.get_place_from_handle(obj)
         self.obj_added(data)
@@ -263,8 +263,11 @@ class PlaceEntry(ObjEntry):
     def _init_dnd(self):
         """connect drag and drop of places
         """
-        self.label.drag_dest_set(Gtk.DestDefaults.ALL, [DdTargets.PLACE_LINK.target()], 
-                               Gdk.DragAction.COPY)
+        self.label.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.COPY)
+        tglist = Gtk.TargetList.new([])
+        tglist.add(DdTargets.PLACE_LINK.atom_drag_type, DdTargets.PLACE_LINK.target_flags,
+                   DdTargets.PLACE_LINK.app_id)
+        self.label.drag_dest_set_target_list(tglist)
         self.label.connect('drag_data_received', self.drag_data_received)
 
     def get_from_handle(self, handle):
@@ -314,8 +317,11 @@ class MediaEntry(ObjEntry):
     def _init_dnd(self):
         """connect drag and drop of places
         """
-        self.label.drag_dest_set(Gtk.DestDefaults.ALL, [DdTargets.MEDIAOBJ.target()], 
-                               Gdk.DragAction.COPY)
+        self.label.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.COPY)
+        tglist = Gtk.TargetList.new([])
+        tglist.add(DdTargets.MEDIAOBJ.atom_drag_type, DdTargets.MEDIAOBJ.target_flags,
+                   DdTargets.MEDIAOBJ.app_id)
+        self.label.drag_dest_set_target_list(tglist)
         self.label.connect('drag_data_received', self.drag_data_received)
 
     def get_from_handle(self, handle):
@@ -376,8 +382,11 @@ class NoteEntry(ObjEntry):
     def _init_dnd(self):
         """connect drag and drop of places
         """
-        self.label.drag_dest_set(Gtk.DestDefaults.ALL, [DdTargets.NOTE_LINK.target()], 
-                               Gdk.DragAction.COPY)
+        self.label.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.COPY)
+        tglist = Gtk.TargetList.new([])
+        tglist.add(DdTargets.NOTE_LINK.atom_drag_type, DdTargets.NOTE_LINK.target_flags,
+                   DdTargets.NOTE_LINK.app_id)
+        self.label.drag_dest_set_target_list(tglist)
         self.label.connect('drag_data_received', self.drag_data_received)
 
     def get_from_handle(self, handle):
