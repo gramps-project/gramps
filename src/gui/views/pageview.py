@@ -249,11 +249,17 @@ class PageView(DbGUIElement):
                 class Selection(object):
                     def __init__(self, data):
                         self.data = data
+                    def get_data(self):
+                        return self.data
                 class Context(object):
                     targets = [drag_type]
                     action = 1
+                    def list_targets(self):
+                        return Context.targets
+                    def get_actions(self):
+                        return Context.action
                 # eg: ('person-link', 23767, '27365123671', 0)
-                data = (drag_type, id(self), handle, 0)
+                data = (drag_type.name(), id(self), handle, 0)
                 clipboard.object_list.object_drag_data_received(
                     clipboard.object_list._widget, # widget
                     Context(),       # drag type and action
@@ -271,7 +277,7 @@ class PageView(DbGUIElement):
 
         The code creates the Clipboard if it does not already exist.
         """
-        from gui.clipboard import ClipboardWindow, obj2target
+        from gui.clipboard import ClipboardWindow
         clipboard = None
         for widget in self.uistate.gwm.window_tree:
             if isinstance(widget, ClipboardWindow):

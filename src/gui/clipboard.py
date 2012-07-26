@@ -133,18 +133,18 @@ def obj2class(target):
         }
     return d[target] if target in d else None
 
-def obj2target(target):
-    d = {"Person": 'person-link',
-         "Family": 'family-link',
-         'Source': 'source-link',
-         'Citation': 'citation-link',
-         'Repository': 'repo-link',
-         'Event': 'pevent',
-         'Media': 'mediaobj',
-         'Place': 'place-link',
-         'Note': 'note-link',
+OBJ2TARGET = {"Person": Gdk.atom_intern('person-link', False),
+         "Family": Gdk.atom_intern('family-link', False),
+         'Source': Gdk.atom_intern('source-link', False),
+         'Citation': Gdk.atom_intern('citation-link', False),
+         'Repository': Gdk.atom_intern('repo-link', False),
+         'Event': Gdk.atom_intern('pevent', False),
+         'Media': Gdk.atom_intern('mediaobj', False),
+         'Place': Gdk.atom_intern('place-link', False),
+         'Note': Gdk.atom_intern('note-link', False),
          }
-    return d[target] if target in d else None
+def obj2target(target):
+    return OBJ2TARGET[target] if target in OBJ2TARGET else None
 
 def model_contains(model, data):
     """
@@ -857,7 +857,7 @@ class ClipDropHandleList(ClipDropList):
         retval = []
         for (objclass, handle) in self._obj_list:
             _class = obj2class(objclass)
-            target = obj2target(objclass)
+            target = obj2target(objclass).name()
             # outgoing:
             # (drag_type, idval, self._handle, val) = pickle.loads(self._obj)
             data = (target, id(self), handle, 0)
