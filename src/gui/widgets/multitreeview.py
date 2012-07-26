@@ -31,12 +31,14 @@ from gi.repository import Gtk
 # MultiTreeView class
 #
 #-------------------------------------------------------------------------
+
+#TODO GTK3: Is this not duplicate of the class in clipboard py ?? We should reuse pieces
 class MultiTreeView(Gtk.TreeView):
     '''
     TreeView that captures mouse events to make drag and drop work properly
     '''
     def __init__(self):
-        super(MultiTreeView, self).__init__()
+        Gtk.TreeView.__init__(self)
         self.connect('button_press_event', self.on_button_press)
         self.connect('button_release_event', self.on_button_release)
         self.connect('key_press_event', self.key_press_event)
@@ -66,12 +68,12 @@ class MultiTreeView(Gtk.TreeView):
             and not (event.get_state() & (Gdk.ModifierType.CONTROL_MASK|Gdk.ModifierType.SHIFT_MASK))
             and self.get_selection().path_is_selected(target[0])):
             # disable selection
-            self.get_selection().set_select_function(lambda *ignore: False)
+            self.get_selection().set_select_function(lambda *ignore: False, None)
             self.defer_select = target[0]
 
     def on_button_release(self, widget, event):
         # re-enable selection
-        self.get_selection().set_select_function(lambda *ignore: True)
+        self.get_selection().set_select_function(lambda *ignore: True, None)
         
         target = self.get_path_at_pos(int(event.x), int(event.y))	
         if (self.defer_select and target 
