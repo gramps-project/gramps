@@ -37,6 +37,7 @@ from gen.ggettext import sgettext as _
 #
 #-------------------------------------------------------------------------
 from gi.repository import GdkPixbuf
+from gi.repository import Gdk
 
 #-------------------------------------------------------------------------
 #

@@ -268,7 +268,8 @@ class GalleryTab(ButtonTab, DbGUIElement):
     def get_selected(self):
         node = self.iconlist.get_selected_items()
         if len(node) > 0:
-            return self.media_list[node[0][0]]
+            path = node[0].get_indices()
+            return self.media_list[path[0]]
         return None
 
     def add_button_clicked(self, obj):
@@ -397,14 +398,22 @@ class GalleryTab(ButtonTab, DbGUIElement):
         variable defined that points to an entry in DdTargets.
         """
 
-        dnd_types = [ self._DND_TYPE.target(), self._DND_EXTRA.target(),
-                      DdTargets.MEDIAOBJ.target()]
+        dnd_types = [ self._DND_TYPE, self._DND_EXTRA, DdTargets.MEDIAOBJ]
 
-        self.iconlist.enable_model_drag_dest(dnd_types,
+        #TODO GTK3: wourkaround here for bug https://bugzilla.gnome.org/show_bug.cgi?id=680638
+        self.iconlist.enable_model_drag_dest([],
                                     Gdk.DragAction.MOVE|Gdk.DragAction.COPY)
         self.iconlist.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK,
-                                  [self._DND_TYPE.target()],
+                                  [],
                                   Gdk.DragAction.COPY)
+        tglist = Gtk.TargetList.new([])
+        for tg in dnd_types:
+            tglist.add(tg.atom_drag_type, tg.target_flags, tg.app_id)
+        self.iconlist.drag_dest_set_target_list(tglist)
+        tglist = Gtk.TargetList.new([])
+        tglist.add(self._DND_TYPE.atom_drag_type, self._DND_TYPE.target_flags,
+                   self._DND_TYPE.app_id)
+        self.iconlist.drag_source_set_target_list(tglist)
         self.iconlist.connect('drag_data_get', self.drag_data_get)
         if not self.dbstate.db.readonly:
             self.iconlist.connect('drag_data_received', self.drag_data_received)
@@ -428,7 +437,8 @@ class GalleryTab(ButtonTab, DbGUIElement):
 
         try:
             reflist = self.iconlist.get_selected_items()
-            obj = self.media_list[reflist[0][0]]
+            path = reflist[0].get_indices()
+            obj = self.media_list[path[0]]
 
             if not obj:
                 return
@@ -439,7 +449,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
             data = pickle.dumps(value)
 
             # pass as a string (8 bits)
-            sel_data.set(sel_data.target, 8, data)
+            sel_data.set(self._DND_TYPE.atom_drag_type, 8, data)
         except IndexError:
             return
 
@@ -450,9 +460,9 @@ class GalleryTab(ButtonTab, DbGUIElement):
         If the selection data is define, extract the value from sel_data.data,
         and decide if this is a move or a reorder.
         """
-        if sel_data and sel_data.data:
+        if sel_data and sel_data.get_data():
             try:
-                (mytype, selfid, obj, row_from) = pickle.loads(sel_data.data)
+                (mytype, selfid, obj, row_from) = pickle.loads(sel_data.get_data())
 
                 # make sure this is the correct DND type for this object
                 if mytype == self._DND_TYPE.drag_type:
@@ -491,7 +501,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
             except pickle.UnpicklingError:
         #modern file managers provide URI_LIST. For Windows split sel_data.data
                 if win():
-                    files = sel_data.data.split('\n')
+                    files = sel_data.get_data().split('\n')
                 else:
                     files =  sel_data.get_uris()
                 for file in files:
