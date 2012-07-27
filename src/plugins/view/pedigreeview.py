@@ -114,9 +114,14 @@ class _PersonWidgetBase(Gtk.DrawingArea):
             self.connect("drag_begin", self.cb_drag_begin)
             # Enable drag
             self.drag_source_set(Gdk.ModifierType.BUTTON1_MASK,
-                                [DdTargets.PERSON_LINK.target()] +
-                                list(DdTargets.all_text_targets()),
+                                [],
                                 Gdk.DragAction.COPY)
+            tglist = Gtk.TargetList.new([])
+            tglist.add(DdTargets.PERSON_LINK.atom_drag_type,
+                       DdTargets.PERSON_LINK.target_flags,
+                       DdTargets.PERSON_LINK.app_id)
+            tglist.add_text_targets(0L)
+            self.drag_source_set_target_list(tglist)
 
     def cb_drag_begin(self, widget, data):
         """Set up some inital conditions for drag. Set up icon."""
@@ -127,6 +132,7 @@ class _PersonWidgetBase(Gtk.DrawingArea):
         Returned parameters after drag.
         Specified for 'person-link', for others return text info about person.
         """
+        #TODO GTK3 Still to convert when pedigreeview works again
         if sel_data.target == DdTargets.PERSON_LINK.drag_type:
             data = (DdTargets.PERSON_LINK.drag_type,
                     id(self), self.person.get_handle(), 0)
@@ -1519,10 +1525,10 @@ class PedigreeView(NavigationView):
 
     def cb_on_show_option_menu(self, obj, event, data=None):
         """Right click option menu."""
-        menu = Gtk.Menu()
-        self.add_nav_portion_to_menu(menu)
-        self.add_settings_to_menu(menu)
-        menu.popup(None, None, None, None, 0, event.time)
+        self.menu = Gtk.Menu()
+        self.add_nav_portion_to_menu(self.menu)
+        self.add_settings_to_menu(self.menu)
+        self.menu.popup(None, None, None, None, 0, event.time)
         return True
 
     def cb_bg_button_press(self, widget, event):
@@ -1642,7 +1648,7 @@ class PedigreeView(NavigationView):
                 if child:
                     self.change_active(childlist[0])
             elif len(childlist) > 1:
-                my_menu = Gtk.Menu()
+                self.my_menu = Gtk.Menu()
                 for child_handle in childlist:
                     child = self.dbstate.db.get_person_from_handle(child_handle)
                     cname = escape(name_displayer.display(child))
@@ -1659,11 +1665,11 @@ class PedigreeView(NavigationView):
                     go_image.show()
                     menuitem.set_image(go_image)
                     menuitem.add(label)
-                    my_menu.append(menuitem)
+                    self.my_menu.append(menuitem)
                     menuitem.connect("activate", self.cb_childmenu_changed,
                                      child_handle)
                     menuitem.show()
-                my_menu.popup(None, None, None, None, 0, 0)
+                self.my_menu.popup(None, None, None, None, 0, 0)
             return 1
         return 0
 
@@ -1801,24 +1807,24 @@ class PedigreeView(NavigationView):
     def cb_build_missing_parent_nav_menu(self, obj, event,
                                          person_handle, family_handle):
         """Builds the menu for a missing parent."""
-        menu = Gtk.Menu()
-        menu.set_title(_('People Menu'))
+        self.menu = Gtk.Menu()
+        self.menu.set_title(_('People Menu'))
 
         add_item = Gtk.ImageMenuItem.new_from_stock(Gtk.STOCK_ADD, None)
         add_item.connect("activate", self.cb_add_parents, person_handle,
                          family_handle)
         add_item.show()
-        menu.append(add_item)
+        self.menu.append(add_item)
 
         # Add a separator line
         add_item = Gtk.SeparatorMenuItem()
         add_item.show()
-        menu.append(add_item)
+        self.menu.append(add_item)
 
         # Add history-based navigation
-        self.add_nav_portion_to_menu(menu)
-        self.add_settings_to_menu(menu)
-        menu.popup(None, None, None, None, 0, event.time)
+        self.add_nav_portion_to_menu(self.menu)
+        self.add_settings_to_menu(self.menu)
+        self.menu.popup(None, None, None, None, 0, event.time)
         return 1
 
     def cb_build_full_nav_menu(self, obj, event, person_handle, family_handle):
@@ -1827,8 +1833,8 @@ class PedigreeView(NavigationView):
         and Parents) with navigation.
         """
 
-        menu = Gtk.Menu()
-        menu.set_title(_('People Menu'))
+        self.menu = Gtk.Menu()
+        self.menu.set_title(_('People Menu'))
 
         person = self.dbstate.db.get_person_from_handle(person_handle)
         if not person:
@@ -1841,18 +1847,18 @@ class PedigreeView(NavigationView):
         go_item.set_image(go_image)
         go_item.connect("activate", self.cb_childmenu_changed, person_handle)
         go_item.show()
-        menu.append(go_item)
+        self.menu.append(go_item)
 
         edit_item = Gtk.ImageMenuItem.new_from_stock(Gtk.STOCK_EDIT, None)
         edit_item.connect("activate", self.cb_edit_person, person_handle)
         edit_item.show()
-        menu.append(edit_item)
+        self.menu.append(edit_item)
 
         clipboard_item = Gtk.ImageMenuItem.new_from_stock(Gtk.STOCK_COPY, None)
         clipboard_item.connect("activate", self.cb_copy_person_to_clipboard,
                                person_handle)
         clipboard_item.show()
-        menu.append(clipboard_item)
+        self.menu.append(clipboard_item)
 
         # collect all spouses, parents and children
         linked_persons = []
@@ -1890,7 +1896,7 @@ class PedigreeView(NavigationView):
             item.set_sensitive(0)
 
         item.show()
-        menu.append(item)
+        self.menu.append(item)
 
         # Go over siblings and build their menu
         item = Gtk.MenuItem(label=_("Siblings"))
@@ -1935,7 +1941,7 @@ class PedigreeView(NavigationView):
         if no_siblings:
             item.set_sensitive(0)
         item.show()
-        menu.append(item)
+        self.menu.append(item)
 
         # Go over children and build their menu
         item = Gtk.MenuItem(label=_("Children"))
@@ -1975,7 +1981,7 @@ class PedigreeView(NavigationView):
         if no_children:
             item.set_sensitive(0)
         item.show()
-        menu.append(item)
+        self.menu.append(item)
 
         # Go over parents and build their menu
         item = Gtk.MenuItem(label=_("Parents"))
@@ -2023,7 +2029,7 @@ class PedigreeView(NavigationView):
             else:
                 item.set_sensitive(0)
         item.show()
-        menu.append(item)
+        self.menu.append(item)
 
         # Go over parents and build their menu
         item = Gtk.MenuItem(label=_("Related"))
@@ -2059,23 +2065,23 @@ class PedigreeView(NavigationView):
         if no_related:
             item.set_sensitive(0)
         item.show()
-        menu.append(item)
+        self.menu.append(item)
 
         # Add separator line
         item = Gtk.SeparatorMenuItem()
         item.show()
-        menu.append(item)
+        self.menu.append(item)
 
         # Add history-based navigation
-        self.add_nav_portion_to_menu(menu)
-        self.add_settings_to_menu(menu)
-        menu.popup(None, None, None, None, 0, event.time)
+        self.add_nav_portion_to_menu(self.menu)
+        self.add_settings_to_menu(self.menu)
+        self.menu.popup(None, None, None, None, 0, event.time)
         return 1
 
     def cb_build_relation_nav_menu(self, obj, event, family_handle):
         """Builds the menu for a parents-child relation line."""
-        menu = Gtk.Menu()
-        menu.set_title(_('Family Menu'))
+        self.menu = Gtk.Menu()
+        self.menu.set_title(_('Family Menu'))
 
         family = self.dbstate.db.get_family_from_handle(family_handle)
         if not family:
@@ -2084,23 +2090,23 @@ class PedigreeView(NavigationView):
         edit_item = Gtk.ImageMenuItem.new_from_stock(Gtk.STOCK_EDIT, None)
         edit_item.connect("activate", self.cb_edit_family, family_handle)
         edit_item.show()
-        menu.append(edit_item)
+        self.menu.append(edit_item)
 
         clipboard_item = Gtk.ImageMenuItem.new_from_stock(Gtk.STOCK_COPY, None)
         clipboard_item.connect("activate", self.cb_copy_family_to_clipboard,
                                family_handle)
         clipboard_item.show()
-        menu.append(clipboard_item)
+        self.menu.append(clipboard_item)
 
         # Add separator
         item = Gtk.SeparatorMenuItem()
         item.show()
-        menu.append(item)
+        self.menu.append(item)
 
         # Add history-based navigation
-        self.add_nav_portion_to_menu(menu)
-        self.add_settings_to_menu(menu)
-        menu.popup(None, None, None, None, 0, event.time)
+        self.add_nav_portion_to_menu(self.menu)
+        self.add_settings_to_menu(self.menu)
+        self.menu.popup(None, None, None, None, 0, event.time)
         return 1
         
     def cb_update_show_images(self, client, cnxn_id, entry, data):
