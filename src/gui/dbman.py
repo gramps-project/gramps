@@ -152,9 +152,12 @@ class DbManager(CLIDbManager):
         """
         Connects the signals to the buttons on the interface. 
         """
-        ddtargets = [ DdTargets.URI_LIST.target() ]
-        self.top.drag_dest_set(Gtk.DestDefaults.ALL, ddtargets,
-                               Gdk.DragAction.COPY)
+        ddtarget = DdTargets.URI_LIST
+        self.top.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.COPY)
+        tglist = Gtk.TargetList.new([])
+        tglist.add(ddtarget.atom_drag_type, ddtarget.target_flags,
+                   ddtarget.app_id)
+        self.top.drag_dest_set_target_list(tglist)
 
         self.remove.connect('clicked', self.__remove_db)
         self.new.connect('clicked', self.__new_db)
@@ -734,7 +737,7 @@ class DbManager(CLIDbManager):
         """
         Handle the reception of drag data
         """
-        drag_value = selection.data
+        drag_value = selection.get_data()
         fname = None
         type = None
         title = None
@@ -751,14 +754,14 @@ def drag_motion(wid, context, xpos, ypos, time_stamp):
     """
     DND callback that is called on a DND drag motion begin
     """
-    context.drag_status(Gdk.DragAction.COPY, time_stamp)
+    Gdk.drag_status(context, Gdk.DragAction.COPY, time_stamp)
     return True
 
 def drop_cb(wid, context, xpos, ypos, time_stamp):
     """
     DND callback that finishes the DND operation
     """
-    context.finish(True, False, time_stamp)
+    Gtk.drag_finish(context, True, False, time_stamp)
     return True
 
 def find_revisions(name):
