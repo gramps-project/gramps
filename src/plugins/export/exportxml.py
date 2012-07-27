@@ -285,7 +285,7 @@ class GrampsXmlWriter(UpdateCallback):
 
         if citation_len > 0:
             self.g.write("  <citations>\n")
-            for handle in self.db.get_citation_handles():
+            for handle in sorted(self.db.get_citation_handles()):
                 citation = self.db.get_citation_from_handle(handle)
                 self.write_citation(citation,2)
                 self.update()
