@@ -33,13 +33,21 @@ import base64
 
 #------------------------------------------------------------------------
 #
+# Django Modules
+#
+#------------------------------------------------------------------------
+from django.contrib.contenttypes.models import ContentType
+from django.db import transaction
+
+#------------------------------------------------------------------------
+#
 # Gramps Modules
 #
 #------------------------------------------------------------------------
 import webapp.grampsdb.models as models
-from django.contrib.contenttypes.models import ContentType
 import webapp
 import gen
+from gen.utils.id import create_id
 
 # To get a django person from a django database:
 #    djperson = dji.Person.get(handle='djhgsdh324hjg234hj24')
@@ -259,10 +267,12 @@ class DjangoInterface(object):
         return map(self.pack_event_ref, eventrefs)
 
     def get_family_list(self, person): # person has families
-        return [fam.handle for fam in person.families.all()]
+        return [fam.family.handle for fam in 
+                self.PersonFamilyOrder.filter(person=person).order_by("order")]
 
-    def get_parent_family_list(self, person):
-        return [fam.handle for fam in person.parent_families.all()]
+    def get_parent_family_list(self, person): # person's parents has families
+        return [fam.family.handle for fam in 
+                self.PersonParentFamilyOrder.filter(person=person).order_by("order")]
 
     def get_person_ref_list(self, person):
         obj_type = ContentType.objects.get_for_model(person)
@@ -715,6 +725,44 @@ class DjangoInterface(object):
         for attribute_data in attribute_list:
             self.add_attribute(obj, attribute_data)
     
+    def add_tag_list(self, otype, obj, tag_list):
+        for tag_handle in tag_list:
+            try:
+                tag = models.Tag.objects.get(handle=tag_handle)
+            except:
+                print >> sys.stderr, ("ERROR: Tag does not exist: '%s'" % 
+                                      tag_handle)
+            self.add_tag_to_obj(otype, obj, tag)
+    
+    def add_tag_to_obj(self, field, obj, tag):
+        if field == "person":
+            tagref = models.PersonTag(
+                person=obj, 
+                tag=tag,
+                order=len(models.PersonTag.objects.filter(person=obj)) + 1)
+            tagref.save()
+        elif field == "family":
+            tagref = models.FamilyTag(
+                family=obj, 
+                tag=tag,
+                order=len(models.FamilyTag.objects.filter(family=obj)) + 1)
+            tagref.save()
+        elif field == "media":
+            tagref = models.MediaTag(
+                media=obj, 
+                tag=tag,
+                order=len(models.MediaTag.objects.filter(media=obj)) + 1)
+            tagref.save()
+        elif field == "note":
+            tagref = models.NoteTag(
+                note=obj, 
+                tag=tag,
+                order=len(models.NoteTag.objects.filter(note=obj)) + 1)
+            tagref.save()
+        else:
+            raise AttributeError("invalid field '%s' to attach tag" %
+                                 field)
+
     def add_url_list(self, field, obj, url_list):
         if not url_list: return None
         count = 1
@@ -883,6 +931,7 @@ class DjangoInterface(object):
             return
         citation.source = source
         self.add_date(citation, date)
+        citation.cache = self.encode_raw(citation_data)
         citation.save()
         self.add_note_list(citation, note_list) 
         self.add_media_ref_list(citation, media_list) 
@@ -992,7 +1041,10 @@ class DjangoInterface(object):
             print >> sys.stderr, ("ERROR: Family does not exist: '%s'" % 
                                   handle)
             return
-        obj.families.add(family)
+        #obj.families.add(family)
+        pfo = models.PersonFamilyOrder(person=obj, family=family,
+                                       order=len(self.PersonFamilyOrder.filter(person=obj)) + 1)
+        pfo.save()
         obj.save()
     
     ## Export individual objects:
@@ -1124,7 +1176,10 @@ class DjangoInterface(object):
             print >> sys.stderr, ("ERROR: Family does not exist: '%s'" % 
                                   parent_family_handle)
             return
-        person.parent_families.add(family)
+        #person.parent_families.add(family)
+        pfo = models.PersonParentFamilyOrder(person=person, family=family,
+                                             order=len(self.PersonParentFamilyOrder.filter(person=person)) + 1)
+        pfo.save()
         person.save()
     
     def add_date(self, obj, date):
@@ -1269,6 +1324,7 @@ class DjangoInterface(object):
         self.add_citation_list(person, pcitation_list)
         self.add_address_list("person", person, address_list)
         self.add_lds_list("person", person, lds_ord_list)
+        self.add_tag_list("person", person, tag_list)
         # set person.birth and birth.death to correct events:
 
         obj_type = ContentType.objects.get_for_model(person)
@@ -1289,14 +1345,18 @@ class DjangoInterface(object):
         if events:
             person.death = events[0].ref_object
             person.death_ref_index = lookup_role_index(models.EventType.DEATH, all_events)
+        person.cache = self.encode_raw(data)
         person.save()
         return person
 
     def add_note_detail(self, data):
-        """
-        Dummy method for consistency with other two-pass adds.
-        """
-        pass
+        # Unpack from the BSDDB:
+        (handle, gid, styled_text, format, note_type,
+         change, tag_list, private) = data
+        note = models.Note.objects.get(handle=handle)
+        note.cache = self.encode_raw(data)
+        note.save()
+        self.add_tag_list("note", note, tag_list)
 
     def save_note_markup(self, note, markup_list):
         # delete any prexisting markup:
@@ -1372,6 +1432,7 @@ class DjangoInterface(object):
                 print >> sys.stderr, ("ERROR: Mother does not exist: '%s'" % 
                                       mother_handle)
                 family.mother = None
+        family.cache = self.encode_raw(data)
         family.save()
         self.add_child_ref_list(family, child_ref_list)
         self.add_note_list(family, note_list)
@@ -1380,6 +1441,7 @@ class DjangoInterface(object):
         self.add_media_ref_list(family, media_list)
         self.add_event_ref_list(family, event_ref_list)
         self.add_lds_list("family", family, lds_seal_list)
+        self.add_tag_list("family", family, tag_list)
         
     def add_source(self, data):
         (handle, gid, title,
@@ -1411,6 +1473,8 @@ class DjangoInterface(object):
             print >> sys.stderr, ("ERROR: Source does not exist: '%s'" % 
                                   handle)
             return
+        source.cache = self.encode_raw(data)
+        source.save()
         self.add_note_list(source, note_list) 
         self.add_media_ref_list(source, media_list)
         self.add_source_datamap_dict(source, datamap)
@@ -1438,6 +1502,8 @@ class DjangoInterface(object):
             print >> sys.stderr, ("ERROR: Repository does not exist: '%s'" % 
                                   handle)
             return
+        repository.cache = self.encode_raw(data)
+        repository.save()
         self.add_note_list(repository, note_list)
         self.add_url_list("repository", repository, url_list)
         self.add_address_list("repository", repository, address_list)
@@ -1507,6 +1573,8 @@ class DjangoInterface(object):
             print >> sys.stderr, ("ERROR: Place does not exist: '%s'" % 
                                   handle)
             return
+        place.cache = self.encode_raw(data)
+        place.save()
         self.add_url_list("place", place, url_list)
         self.add_media_ref_list(place, media_list)
         self.add_citation_list(place, citation_list)
@@ -1517,8 +1585,29 @@ class DjangoInterface(object):
             self.add_location("place", place, loc_data, count)
             count + 1
 
+    def add_tag_detail(self, data):
+        (handle,
+         name,
+         color,
+         priority,
+         change) = data
+        tag = models.Tag.objects.get(handle=handle)
+        tag.cache = self.encode_raw(data)
+        tag.save()
+
     def add_tag(self, data):
-        print "FIXME: libdjango.add_tag()"
+        (handle,
+         name,
+         color,
+         priority,
+         change) = data
+        tag = models.Tag(handle=handle,
+                         gramps_id=create_id(),
+                         name=name,
+                         color=color,
+                         priority=priority,
+                         last_changed=todate(change))
+        tag.save()
     
     def add_media(self, data):
         (handle, gid, path, mime, desc,
@@ -1552,9 +1641,12 @@ class DjangoInterface(object):
             print >> sys.stderr, ("ERROR: Media does not exist: '%s'" % 
                                   handle)
             return
+        media.cache = self.encode_raw(data)
+        media.save()
         self.add_note_list(media, note_list) 
         self.add_citation_list(media, citation_list)
         self.add_attribute_list(media, attribute_list)
+        self.add_tag_list("media", media, tag_list)
     
     def add_event(self, data):
         (handle, gid, the_type, date, description, place_handle, 
@@ -1580,6 +1672,8 @@ class DjangoInterface(object):
             print >> sys.stderr, ("ERROR: Event does not exist: '%s'" % 
                                   handle)
             return
+        event.cache = self.encode_raw(data)
+        event.save()
         self.add_place_ref(event, place_handle)
         self.add_note_list(event, note_list)
         self.add_attribute_list(event, attribute_list)
@@ -1616,17 +1710,26 @@ class DjangoInterface(object):
         """
         Resets the cache version of an object, but doesn't save it to the database.
         """
+        item.cache = self.get_cache(item)
+    
+    def encode_raw(self, raw):
+        return base64.encodestring(cPickle.dumps(raw))
+
+    def get_cache(self, item):
+        """
+        Gets the cache version of an object.
+        """
         raw = self.get_raw(item)
-        item.cache = base64.encodestring(cPickle.dumps(raw))
+        return base64.encodestring(cPickle.dumps(raw))
     
     def rebuild_cache(self, item):
         """
         Resets the cache version of an object, and saves it to the database.
         """
-        raw = self.get_raw(item)
-        item.cache = base64.encodestring(cPickle.dumps(raw))
+        self.reset_cache(item)
         item.save()
     
+    @transaction.commit_on_success
     def rebuild_caches(self, callback=None):
         """
         Call this to rebuild the caches for all primary models.
@@ -1643,63 +1746,153 @@ class DjangoInterface(object):
                  self.Repository.all().count() +
                  self.Place.all().count() +
                  self.Media.all().count() +
-                 self.Source.all().count())
+                 self.Source.all().count() +
+                 self.Citation.all().count() +
+                 self.Tag.all().count())
 
         for item in self.Person.all():
             raw = self.get_person(item)
             item.cache = base64.encodestring(cPickle.dumps(raw))
             item.save()
-            callback(100 * count/total)
             count += 1
+        callback(100 * (count/total if total else 0))
 
         for item in self.Family.all():
             raw = self.get_family(item)
             item.cache = base64.encodestring(cPickle.dumps(raw))
             item.save()
-            callback(100 * count/total)
             count += 1
+        callback(100 * (count/total if total else 0))
 
         for item in self.Source.all():
             raw = self.get_source(item)
             item.cache = base64.encodestring(cPickle.dumps(raw))
             item.save()
-            callback(100 * count/total)
             count += 1
+        callback(100 * (count/total if total else 0))
 
         for item in self.Event.all():
             raw = self.get_event(item)
             item.cache = base64.encodestring(cPickle.dumps(raw))
             item.save()
-            callback(100 * count/total)
             count += 1
+        callback(100 * (count/total if total else 0))
 
         for item in self.Repository.all():
             raw = self.get_repository(item)
             item.cache = base64.encodestring(cPickle.dumps(raw))
             item.save()
-            callback(100 * count/total)
             count += 1
+        callback(100 * (count/total if total else 0))
 
         for item in self.Place.all():
             raw = self.get_place(item)
             item.cache = base64.encodestring(cPickle.dumps(raw))
             item.save()
-            callback(100 * count/total)
             count += 1
+        callback(100 * (count/total if total else 0))
 
         for item in self.Media.all():
             raw = self.get_media(item)
             item.cache = base64.encodestring(cPickle.dumps(raw))
             item.save()
-            callback(100 * count/total)
             count += 1
+        callback(100 * (count/total if total else 0))
 
-        for item in self.Note.all():
-            raw = self.get_note(item)
+        for item in self.Citation.all():
+            raw = self.get_citation(item)
             item.cache = base64.encodestring(cPickle.dumps(raw))
             item.save()
-            callback(100 * count/total)
             count += 1
+        callback(100 * (count/total if total else 0))
 
+        for item in self.Tag.all():
+            raw = self.get_tag(item)
+            item.cache = base64.encodestring(cPickle.dumps(raw))
+            item.save()
+            count += 1
+        callback(100)
+
+    def check_caches(self, callback=None):
+        """
+        Call this to check the caches for all primary models.
+        """
+        if not callable(callback): 
+            callback = lambda (percent): None # dummy
+
+        callback(0)
+        count = 0.0
+        total = (self.Note.all().count() + 
+                 self.Person.all().count() +
+                 self.Event.all().count() + 
+                 self.Family.all().count() +
+                 self.Repository.all().count() +
+                 self.Place.all().count() +
+                 self.Media.all().count() +
+                 self.Source.all().count() +
+                 self.Citation.all().count() +
+                 self.Tag.all().count())
+
+        for item in self.Person.all():
+            raw = self.get_person(item)
+            if item.cache == base64.encodestring(cPickle.dumps(raw)):
+                print "Different!", item
+            count += 1
+        callback(100 * (count/total if total else 0))
+
+        for item in self.Family.all():
+            raw = self.get_family(item)
+            if item.cache == base64.encodestring(cPickle.dumps(raw)):
+                print "Different!", item
+            count += 1
+        callback(100 * (count/total if total else 0))
+
+        for item in self.Source.all():
+            raw = self.get_source(item)
+            if item.cache == base64.encodestring(cPickle.dumps(raw)):
+                print "Different!", item
+            count += 1
+        callback(100 * (count/total if total else 0))
+
+        for item in self.Event.all():
+            raw = self.get_event(item)
+            if item.cache == base64.encodestring(cPickle.dumps(raw)):
+                print "Different!", item
+            count += 1
+        callback(100 * (count/total if total else 0))
+
+        for item in self.Repository.all():
+            raw = self.get_repository(item)
+            if item.cache == base64.encodestring(cPickle.dumps(raw)):
+                print "Different!", item
+            count += 1
+        callback(100 * (count/total if total else 0))
+
+        for item in self.Place.all():
+            raw = self.get_place(item)
+            if item.cache == base64.encodestring(cPickle.dumps(raw)):
+                print "Different!", item
+            count += 1
+        callback(100 * (count/total if total else 0))
+
+        for item in self.Media.all():
+            raw = self.get_media(item)
+            if item.cache == base64.encodestring(cPickle.dumps(raw)):
+                print "Different!", item
+            count += 1
+        callback(100 * (count/total if total else 0))
+
+        for item in self.Citation.all():
+            raw = self.get_citation(item)
+            if item.cache == base64.encodestring(cPickle.dumps(raw)):
+                print "Different!", item
+            count += 1
+        callback(100 * (count/total if total else 0))
+
+        for item in self.Tag.all():
+            raw = self.get_tag(item)
+            if item.cache == base64.encodestring(cPickle.dumps(raw)):
+                print "Different!", item
+            count += 1
         callback(100)
 

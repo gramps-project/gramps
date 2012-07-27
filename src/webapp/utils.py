@@ -68,6 +68,8 @@ from cli.grampscli import CLIManager
 
 _ = lambda msg: msg
 
+TAB_HEIGHT = 200
+
 util_filters = [
     'nbsp', 
     'date_as_text',
@@ -200,7 +202,7 @@ class Table(object):
     >>> table.row("4", "5", "6")
     >>> table.get_html()
     """
-    def __init__(self, id):
+    def __init__(self, id, style=None):
         self.id = id # css id
         self.db = DbDjango()
         self.access = SimpleAccess(self.db)
@@ -231,7 +233,7 @@ class Table(object):
             Html('div', 
                  class_="content", 
                  id=self.id, 
-                 style="overflow: auto; height:150px; background-color: #f4f0ec;")]
+                 style=("overflow: auto; height:%spx; background-color: #f4f0ec;" % TAB_HEIGHT) if not style else style)]
 
     def columns(self, *args):
         self.table.columns(*args)
@@ -249,12 +251,13 @@ class Table(object):
         self.table.set_link_col(links)
 
     def get_html(self):
+        retval = ""
         # The HTML writer escapes data:
         self.table.write(self.doc, self.column_widths) # forces to htmllist
         # FIXME: do once, or once per table?
         self.doc.doc.build_style_declaration(self.id) # can pass id, for whole
         # FIXME: don't want to repeat this, unless diff for each table:
-        retval = "<style>%s</style>" % self.doc.doc.style_declaration
+        retval += "<style>%s</style>" % self.doc.doc.style_declaration
         # We have a couple of HTML bits that we want to unescape:
         return retval + str(self.doc.doc.htmllist[0]).replace("&amp;nbsp;", "&nbsp;")
 
@@ -686,24 +689,60 @@ def reference_table(obj, user, act, url=None, *args):
     return retval 
 
 def person_reference_table(obj, user, act):
-    retval = ""
-    table = Table("person_reference_table")
-    table.columns(
-        _("Type"),
+    retval = """<div style="overflow: auto; height:%spx;">""" % TAB_HEIGHT
+    text1 = ""
+    text2 = ""
+    table1 = Table("person_reference_table", style="background-color: #f4f0ec;")
+    table1.columns(
+        "As Spouse",
+        _("ID"),
         _("Reference"), 
-        _("ID"))
+        )
+    table1.column_widths = [10, 10, 82]
+    table2 = Table("person_reference_table", style="background-color: #f4f0ec;")
+    table2.columns(
+        "As Child",
+        _("ID"),
+        _("Reference"), 
+        )
+    table2.column_widths = [10, 10, 82]
     if user.is_authenticated() and act != "add":
-        for reference in obj.families.all():
-            table.row(
-                _("Family (spouse in)"),
+        count = 1
+        for through in models.PersonFamilyOrder.objects.filter(person=obj).order_by("order"):
+            reference = through.family
+            table1.row(
+                Link("[[x%d]][[^%d]][[v%d]]" % (count, count, count)) if user.is_superuser else "",
+                reference.gramps_id,
                 reference,
-                reference.gramps_id)
-        for reference in obj.parent_families.all():
-            table.row(
-                _("Family (child in)"),
+                )
+            count += 1
+        text1 += table1.get_html()
+        count = 1
+        for through in models.PersonFamilyOrder.objects.filter(person=obj).order_by("order"):
+            reference = through.family
+            text1 = text1.replace("[[x%d]]" % count, make_button("x", "/person/%s/remove/family/%d" % (obj.handle, count)))
+            text1 = text1.replace("[[^%d]]" % count, make_button("^", "/person/%s/up/family/%d" % (obj.handle, count)))
+            text1 = text1.replace("[[v%d]]" % count, make_button("v", "/person/%s/down/family/%d" % (obj.handle, count)))
+            count += 1
+        # Parent Families
+        count = 1
+        for through in models.PersonParentFamilyOrder.objects.filter(person=obj).order_by("order"):
+            reference = through.family
+            table2.row(
+                Link("[[x%d]][[^%d]][[v%d]]" % (count, count, count)) if user.is_superuser else "",
+                reference.gramps_id,
                 reference,
-                reference.gramps_id)
-    retval += table.get_html()
+                )
+        text2 += table2.get_html()
+        count = 1
+        for through in models.PersonParentFamilyOrder.objects.filter(person=obj).order_by("order"):
+            reference = through.family
+            text2 = text2.replace("[[x%d]]" % count, make_button("x", "/person/%s/remove/parentfamily/%d" % (obj.handle, count)))
+            text2 = text2.replace("[[^%d]]" % count, make_button("^", "/person/%s/up/parentfamily/%d" % (obj.handle, count)))
+            text2 = text2.replace("[[v%d]]" % count, make_button("v", "/person/%s/down/parentfamily/%d" % (obj.handle, count)))
+            count += 1
+
+    retval += text1 + text2 + "</div>"
     retval += make_button(_("Add as Spouse to New Family"), 
                           "/family/add/spouse/%s" % obj.handle)
     retval += make_button(_("Add as Spouse to Existing Family"), 

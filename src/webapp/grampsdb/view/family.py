@@ -70,7 +70,10 @@ def process_family(request, context, handle, act, add_to=None): # view, edit, sa
             ref_obj = Family.objects.get(handle=ref_handle) 
             if item == "child":
                 dji.add_child_ref_default(ref_obj, person) # add person to family
-                person.parent_families.add(ref_obj) # add family to child
+                #person.parent_families.add(ref_obj) # add family to child
+                pfo = PersonParentFamilyOrder(person=person, family=ref_obj, 
+                                              order=len(person.parent_families.all())+1)
+                pfo.save()
             elif item == "spouse":
                 if person.gender_type.name == "Female":
                     ref_obj.mother = person
@@ -78,7 +81,10 @@ def process_family(request, context, handle, act, add_to=None): # view, edit, sa
                     ref_obj.father = person
                 else:
                     ref_obj.father = person # FIXME: Unknown gender, add to open
-                person.families.add(ref_obj) # add family to person
+                #person.families.add(ref_obj) # add family to person
+                pfo = PersonFamilyOrder(person=person, family=ref_obj, 
+                                        order=len(person.families.all())+1)
+                pfo.save()
             ref_obj.save()
             person.save()
             dji.rebuild_cache(person) # rebuild child
@@ -125,10 +131,16 @@ def process_family(request, context, handle, act, add_to=None): # view, edit, sa
             # FIXME: remove family from previous mother/father?
             if family.mother:
                 if family not in family.mother.families.all():
-                    family.mother.families.add(family)
+                    #family.mother.families.add(family)
+                    pfo = PersonFamilyOrder(person=family.mother, family=family, 
+                                            order=len(family.mother.families.all())+1)
+                    pfo.save()
             if family.father:
                 if family not in family.father.families.all():
-                    family.father.families.add(family)
+                    #family.father.families.add(family)
+                    pfo = PersonFamilyOrder(person=family.father, family=family, 
+                                            order=len(family.father.families.all())+1)
+                    pfo.save()
             dji.rebuild_cache(family)
             act = "view"
         else:
@@ -146,17 +158,26 @@ def process_family(request, context, handle, act, add_to=None): # view, edit, sa
             # FIXME: remove family from previous mother/father?
             if family.mother:
                 if family not in family.mother.families.all():
-                    family.mother.families.add(family)
+                    #family.mother.families.add(family)
+                    pfo = PersonFamilyOrder(person=family.mother, family=family, 
+                                            order=len(family.mother.families.all())+1)
+                    pfo.save()
             if family.father:
                 if family not in family.father.families.all():
-                    family.father.families.add(family)
+                    #family.father.families.add(family)
+                    pfo = PersonFamilyOrder(person=family.father, family=family,
+                                            order=len(family.father.families.all())+1)
+                    pfo.save()
             dji.rebuild_cache(family)
             if add_to: # add child or spouse to family
                 item, handle = add_to
                 person = Person.objects.get(handle=handle)
                 if item == "child":
                     dji.add_child_ref_default(family, person) # add person to family
-                    person.parent_families.add(family) # add family to child
+                    #person.parent_families.add(family) # add family to child
+                    pfo = PersonParentFamilyOrder(person=person, family=family,
+                                                  order=len(person.parent_families.all())+1)
+                    pfo.save()
                 elif item == "spouse":
                     if person.gender_type.name == "Female":
                         family.mother = person
@@ -164,7 +185,10 @@ def process_family(request, context, handle, act, add_to=None): # view, edit, sa
                         family.father = person
                     else:
                         family.father = person # FIXME: Unknown gender, add to open
-                    person.families.add(family) # add family to person
+                    #person.families.add(family) # add family to person
+                    pfo = PersonFamilyOrder(person=person, family=family,
+                                            order=len(person.families.all())+1)
+                    pfo.save()
                 family.save()
                 person.save()
                 dji.rebuild_cache(person) # rebuild child

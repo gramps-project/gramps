@@ -459,6 +459,26 @@ class PrimaryObject(models.Model):
         return "/%s/%s" % (self.__class__.__name__.lower(),
                            self.handle)
 
+class PersonTag(models.Model):
+    person = models.ForeignKey("Person")
+    tag = models.ForeignKey("Tag")
+    order = models.PositiveIntegerField(default=1)
+
+class FamilyTag(models.Model):
+    family = models.ForeignKey("Family")
+    tag = models.ForeignKey("Tag")
+    order = models.PositiveIntegerField(default=1)
+
+class MediaTag(models.Model):
+    media = models.ForeignKey("Media")
+    tag = models.ForeignKey("Tag")
+    order = models.PositiveIntegerField(default=1)
+
+class NoteTag(models.Model):
+    note = models.ForeignKey("Note")
+    tag = models.ForeignKey("Tag")
+    order = models.PositiveIntegerField(default=1)
+
 class Person(PrimaryObject):
     """
     The model for the person object
@@ -479,7 +499,7 @@ class Person(PrimaryObject):
     birth_ref_index = models.IntegerField("Birth Reference Index", default=-1)
     death_ref_index = models.IntegerField("Death Reference Index", default=-1)
 
-    tags = models.ManyToManyField('Tag', blank=True, null=True)
+    tags = models.ManyToManyField('Tag', blank=True, null=True, through="PersonTag")
 
     # Others keys here:
     #   .name_set 
@@ -508,7 +528,7 @@ class Family(PrimaryObject):
     mother = models.ForeignKey('Person', related_name="mother_ref", 
                                null=True, blank=True)
     family_rel_type = models.ForeignKey('FamilyRelType', verbose_name="Type")
-    tags = models.ManyToManyField('Tag', blank=True, null=True)
+    tags = models.ManyToManyField('Tag', blank=True, null=True, through="FamilyTag")
 
     def make_tag_list(self):
         return tuple()
@@ -603,7 +623,7 @@ class Media(DateObject, PrimaryObject):
     references = generic.GenericRelation('MediaRef', related_name="refs",
                                          content_type_field="object_type",
                                          object_id_field="object_id")
-    tags = models.ManyToManyField('Tag', blank=True, null=True)
+    tags = models.ManyToManyField('Tag', blank=True, null=True, through="MediaTag")
 
     def make_tag_list(self):
         return tuple()
@@ -618,7 +638,7 @@ class Note(PrimaryObject):
     references = generic.GenericRelation('NoteRef', related_name="refs",
                                          content_type_field="object_type",
                                          object_id_field="object_id")
-    tags = models.ManyToManyField('Tag', blank=True, null=True)
+    tags = models.ManyToManyField('Tag', blank=True, null=True, through="NoteTag")
 
     def make_tag_list(self):
         return tuple()
@@ -1022,6 +1042,12 @@ TABLES = [
     ("ref", PersonRef),
     ("ref", ChildRef),
     ("ref", MediaRef),
+    ("ref", PersonFamilyOrder),
+    ("ref", PersonParentFamilyOrder),
+    ("ref", PersonTag),
+    ("ref", FamilyTag),
+    ("ref", MediaTag),
+    ("ref", NoteTag),
     ("system", Config),
     ("system", Report),
     ("system", Result),

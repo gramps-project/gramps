@@ -83,9 +83,9 @@ def import_file(db, filename, user):
                     etype, exception, traceback = error_tuple
                     print "ERROR:", name, exception
                 return False
-            retval = import_function = getattr(mod, pdata.import_function)
+            import_function = getattr(mod, pdata.import_function)
             db.prepare_import()
-            import_function(db, filename, user)
+            retval = import_function(db, filename, user)
             db.commit_import()
             # FIXME: need to call probably_alive
             for person in Person.objects.all():

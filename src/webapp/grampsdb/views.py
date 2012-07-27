@@ -193,7 +193,7 @@ def process_report_run(request, handle):
         args = {"off": "pdf", "iff": "ged"} # basic defaults
         # override from given defaults in table:
         if report.options:
-            for pair in str(report.options).split(" "):
+            for pair in str(report.options).split("\\n"):
                 if "=" in pair:
                     key, value = [x.strip() for x in pair.split("=", 1)]
                     if key and value:
@@ -539,8 +539,8 @@ def action(request, view, handle, act, add_to=None):
                 raise Http404(_("Requested %s does not exist.") % view)
         override = {} 
         if obj.options:
-            for pair in obj.options.split(" "):
-                key, value = pair.split("=")
+            for pair in obj.options.split("\\n"):
+                key, value = pair.split("=", 1)
                 override[key] = value
         db = DbDjango()
         opt_default, opt_help = get_plugin_options(db, obj.handle)
@@ -601,7 +601,7 @@ def build_person_query(request, search):
     """
     protect = not request.user.is_authenticated()
     ### Build the order:
-    terms = ["surname", "given"]
+    terms = ["surname", "given", "tag"]
     if protect:
         # Do this to get the names sorted by private/alive 
         query = Q(private=False) & Q(person__private=False)
@@ -659,6 +659,8 @@ def build_person_query(request, search):
                     query &= build_string_query("person__gramps_id", value, exact, startswith, endswith)
                 elif field == "gender":
                     query &= Q(person__gender_type__name=value.title())
+                elif field == "tag":
+                    query &= build_string_query("person__tags__name", value, exact, startswith, endswith)
                 else:
                     make_message(request, "Invalid query field '%s'" % field)
         else: # no search fields, just raw search
@@ -683,7 +685,7 @@ def build_family_query(request, search):
     Build and return a Django QuerySet and sort order for the Family
     table.
     """
-    terms = ["father", "mother", "id", "type", "surnames", "father.name.first_name", "mother.name.first_name"]
+    terms = ["father", "mother", "id", "type", "surnames", "father.name.first_name", "mother.name.first_name", "tag"]
     protect = not request.user.is_authenticated()
     if protect:
         query = (Q(private=False) & Q(father__private=False) & 
@@ -736,6 +738,8 @@ def build_family_query(request, search):
                     query &= build_string_query("family_rel_type__name", value, exact, startswith, endswith)
                 elif field == "id":
                     query &= build_string_query("gramps_id", value, exact, startswith, endswith)
+                elif field == "tag":
+                    query &= build_string_query("tags__name", value, exact, startswith, endswith)
                 else:
                     make_message(request, message="Invalid query field '%s'" % field)
         else: # no search fields, just raw search
@@ -755,7 +759,7 @@ def build_family_query(request, search):
     return query, order, terms
 
 def build_media_query(request, search):
-    terms = ["id", "path", "description", "mime"]
+    terms = ["id", "path", "description", "mime", "tag"]
     protect = not request.user.is_authenticated()
     if protect:
         query = Q(private=False) # general privacy
@@ -795,6 +799,8 @@ def build_media_query(request, search):
                     query &= build_string_query("desc", value, exact, startswith, endswith) 
                 elif field == "mime":
                     query &= build_string_query("mime", value, exact, startswith, endswith) 
+                elif field == "tag":
+                    query &= build_string_query("tags__name", value, exact, startswith, endswith)
                 else:
                     request.user.message_set.create(message="Invalid query field '%s'" % field)                
         else: # no search fields, just raw search
@@ -813,7 +819,7 @@ def build_media_query(request, search):
     return query, order, terms
 
 def build_note_query(request, search):
-    terms = ["id", "type", "text"]
+    terms = ["id", "type", "text", "tag"]
     protect = not request.user.is_authenticated()
     if protect:
         query = Q(private=False) # general privacy
@@ -851,6 +857,8 @@ def build_note_query(request, search):
                     query &= build_string_query("note_type__name", value, exact, startswith, endswith) 
                 elif field == "text":
                     query &= build_string_query("text", value, exact, startswith, endswith) 
+                elif field == "tag":
+                    query &= build_string_query("tags__name", value, exact, startswith, endswith)
                 else:
                     request.user.message_set.create(message="Invalid query field '%s'" % field)                
         else: # no search fields, just raw search
@@ -1311,6 +1319,8 @@ def process_list_item(request, view, handle, act, item, index):
         "attribute":    "#tab-attributes", 
         "media":        "#tab-media", 
         "lds":          "#tab-lds",
+        "parentfamily": "#tab-references",
+        "family":       "#tab-references",
         }
     if view == "person":
         obj = dji.Person.get(handle=handle)
@@ -1328,6 +1338,10 @@ def process_list_item(request, view, handle, act, item, index):
     elif item == "citationref":
         refs = dji.CitationRef.filter(object_id=obj.id,
                                       object_type=obj_type).order_by("order")
+    elif item == "parentfamily":
+        refs = dji.PersonParentFamilyOrder.filter(person=obj).order_by("order")
+    elif item == "family":
+        refs = dji.PersonFamilyOrder.filter(person=obj).order_by("order")
     # Next, perform action:
     if act == "remove":
         count = 1

@@ -224,6 +224,8 @@ class DbDjango(DbWriteBase, DbReadBase):
                 self.dji.add_note_detail(obj.serialize())
             elif isinstance(obj, gen.lib.MediaObject):
                 self.dji.add_media_detail(obj.serialize())
+            elif isinstance(obj, gen.lib.Tag):
+                self.dji.add_tag_detail(obj.serialize())
         self.use_import_cache = False
         self.import_cache = {}
 
@@ -234,7 +236,8 @@ class DbDjango(DbWriteBase, DbReadBase):
         pass
 
     def request_rebuild(self):
-        self.dji.rebuild_caches()
+        #self.dji.rebuild_caches()
+        pass
 
     def get_undodb(self):
         return None
@@ -765,7 +768,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         return self.dji.Place.count()
 
     def get_number_of_tags(self):
-        return 0 # self.dji.Tag.count()
+        return self.dji.Tag.count()
 
     def get_number_of_families(self):
         return self.dji.Family.count()
