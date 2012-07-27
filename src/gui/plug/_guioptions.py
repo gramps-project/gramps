@@ -99,7 +99,7 @@ class LastNameDialog(ManagedWindow):
         scrolled_window.add(self.__tree_view)
         scrolled_window.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         scrolled_window.set_shadow_type(Gtk.ShadowType.OUT)
-        self.__dlg.vbox.pack_start(scrolled_window, expand=True, fill=True)
+        self.__dlg.vbox.pack_start(scrolled_window, True, True, 0)
         scrolled_window.show_all()
 
         if len(surnames) == 0:
@@ -1112,10 +1112,10 @@ class GuiPersonListOption(Gtk.HBox):
         self.__db = dbstate.get_database()
         self.__uistate = uistate
         self.__track = track
+        self.set_size_request(150, 150)
 
         self.__model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING)
         self.__tree_view = Gtk.TreeView(self.__model)
-        self.__tree_view.set_size_request(150, 150)
         col1 = Gtk.TreeViewColumn(_('Name'  ), Gtk.CellRendererText(), text=0)
         col2 = Gtk.TreeViewColumn(_('ID'    ), Gtk.CellRendererText(), text=1)
         col1.set_resizable(True)
@@ -1289,10 +1289,10 @@ class GuiPlaceListOption(Gtk.HBox):
         self.__db = dbstate.get_database()
         self.__uistate = uistate
         self.__track = track
+        self.set_size_request(150, 150)
 
         self.__model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING)
         self.__tree_view = Gtk.TreeView(self.__model)
-        self.__tree_view.set_size_request(150, 150)
         col1 = Gtk.TreeViewColumn(_('Place'  ), Gtk.CellRendererText(), text=0)
         col2 = Gtk.TreeViewColumn(_('ID'    ), Gtk.CellRendererText(), text=1)
         col1.set_resizable(True)
@@ -1433,6 +1433,7 @@ class GuiSurnameColorOption(Gtk.HBox):
         self.__db = dbstate.get_database()
         self.__uistate = uistate
         self.__track = track
+        self.set_size_request(150, 150)
 
         # This will get populated the first time the dialog is run,
         # and used each time after.
@@ -1440,7 +1441,6 @@ class GuiSurnameColorOption(Gtk.HBox):
         
         self.__model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING)
         self.__tree_view = Gtk.TreeView(self.__model)
-        self.__tree_view.set_size_request(150, 150)
         self.__tree_view.connect('row-activated', self.__row_clicked)
         col1 = Gtk.TreeViewColumn(_('Surname'), Gtk.CellRendererText(), text=0)
         col2 = Gtk.TreeViewColumn(_('Color'), Gtk.CellRendererText(), text=1)
