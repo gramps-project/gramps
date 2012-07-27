@@ -30,6 +30,10 @@
 #
 #-------------------------------------------------------------------------
 import sys
+## hack to avoid mentioning 'utf8' encoding everywhere unicode or str is is used
+reload(sys)
+sys.setdefaultencoding('utf8')
+##
 import os
 import signal
 import gettext
