@@ -311,7 +311,7 @@ class QuickTable(SimpleTable):
             index = model.get_value(node,0)
             if (index is not None and self._link[index]):
                 retval.append(self._link[index])
-        sel_data.set(sel_data.target, 8, pickle.dumps(retval))
+        sel_data.set(DdTargets.HANDLE_LIST.atom_drag_type, 8, pickle.dumps(retval))
         return True
 
     def toggle(self, obj, path, col):
@@ -334,8 +334,12 @@ class QuickTable(SimpleTable):
             sort_index = 0
         treeview = MultiTreeView()
         treeview.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK,
-             [(DdTargets.HANDLE_LIST.drag_type, Gtk.TargetFlags.SAME_WIDGET, 0)],
+             [],
                                           Gdk.DragAction.COPY)
+        tglist = Gtk.TargetList.new([])
+        tglist.add(DdTargets.HANDLE_LIST.atom_drag_type, Gtk.TargetFlags.SAME_WIDGET,
+                   0L)
+        treeview.drag_source_set_target_list(tglist)
         #treeview.enable_model_drag_dest(DdTargets.all_targets(),
         #                                Gdk.DragAction.DEFAULT)            
         treeview.connect('drag_data_get', self.object_drag_data_get)
