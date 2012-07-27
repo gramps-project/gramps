@@ -57,11 +57,11 @@
 
 <div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs" style="border: none;">
   <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tab-sources" style=":hover {color: black;}">Citation</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-attributes">Attribute</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Note</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-references">Reference</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-history">History</a></li>
+    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a class="tab-sources" href="#tab-sources" style=":hover {color: black;}">Citation</a></li>
+    <li class="ui-corner-top ui-state-default"><a class="tab-attributes" href="#tab-attributes">Attribute</a></li>
+    <li class="ui-corner-top ui-state-default"><a class="tab-notes" href="#tab-notes">Note</a></li>
+    <li class="ui-corner-top ui-state-default"><a class="tab-references" href="#tab-references">Reference</a></li>
+    <li class="ui-corner-top ui-state-default"><a class="tab-history" href="#tab-history">History</a></li>
   </ul>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-sources" style="background-color: #f4f0ec;"> 
     {% citation_table media user action "/citation/$act/media/%s" media.handle %}
