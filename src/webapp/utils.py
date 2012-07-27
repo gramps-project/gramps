@@ -299,6 +299,8 @@ def make_button(text, url, *args):
 
 def event_table(obj, user, act, url, args):
     retval = ""
+    has_data = False
+    cssid = "tab-events"
     table = Table("event_table")
     table.columns(
         "",
@@ -326,6 +328,7 @@ def event_table(obj, user, act, url, args):
                 get_title(djevent.place),
                 str(event_ref.role_type))
             links.append(('URL', event_ref.get_url()))
+            has_data = True
             count += 1
         table.links(links)
     retval += table.get_html()
@@ -341,10 +344,14 @@ def event_table(obj, user, act, url, args):
         retval += make_button(_("Add Existing Event"), (url % args).replace("$act", "share"))
     else:
         retval += nbsp("") # to keep tabs same height
+    if has_data:
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
 
 def history_table(obj, user, act):
     retval = ""
+    has_data = False
+    cssid = "tab-history"
     table = Table("history_table")
     table.columns(
         _("Action"), 
@@ -360,16 +367,21 @@ def history_table(obj, user, act):
                                     entry.last_changed,
                                     entry.last_changed_by),
                 entry.reason)
+            has_data = True
         table.row(
             "Latest on %s by %s" % (obj.last_changed,
                                      obj.last_changed_by),
             "Current status")
     retval += table.get_html()
     retval += nbsp("") # to keep tabs same height
+    if has_data:
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
 
 def name_table(obj, user, act, url=None, *args):
     retval = ""
+    has_data = False
+    cssid = "tab-names"
     table = Table("name_table")
     table.columns(_("Name"), 
                   _("Type"),
@@ -398,18 +410,23 @@ def name_table(obj, user, act, url=None, *args):
             links.append(('URL', 
                           # url is "/person/%s/name"
                           (url % name.person.handle) + ("/%s" % name.order)))
+            has_data = True
         table.links(links)
     retval += table.get_html()
     if user.is_superuser and url and act == "view":
         retval += make_button(_("Add Name"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
+    if has_data:
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
 
 def surname_table(obj, user, act, url=None, *args):
     person_handle = args[0]
     order = args[1]
     retval = ""
+    has_data = False
+    cssid = "tab-surnames"
     table = Table("surname_table")
     table.columns(_("Order"), _("Surname"),)
     if user.is_authenticated():
@@ -420,6 +437,7 @@ def surname_table(obj, user, act, url=None, *args):
         if name:
             for surname in name.surname_set.all().order_by("order"):
                 table.row(str(surname.order), surname)
+                has_data = True
             retval += table.get_html()
         else:
             retval += "<p id='error'>No such name order = %s</p>" % order
@@ -427,10 +445,14 @@ def surname_table(obj, user, act, url=None, *args):
         retval += make_button(_("Add Surname"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
+    if has_data:
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
 
 def citation_table(obj, user, act, url=None, *args):
     retval = ""
+    has_data = False
+    cssid = "tab-citations"
     table = Table("citation_table")
     table.columns("", 
                   _("ID"), 
@@ -453,6 +475,7 @@ def citation_table(obj, user, act, url=None, *args):
                           str(citation.page),
                           )
                 links.append(('URL', citation_ref.get_url()))
+                has_data = True
                 count += 1
         table.links(links)
     retval += table.get_html()
@@ -468,10 +491,14 @@ def citation_table(obj, user, act, url=None, *args):
         retval += make_button(_("Add Existing Citation"), (url % args).replace("$act", "share"))
     else:
         retval += nbsp("") # to keep tabs same height
+    if has_data:
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
 
 def repository_table(obj, user, act, url=None, *args):
     retval = ""
+    has_data = False
+    cssid = "tab-repositories"
     table = Table("repository_table")
     table.columns(
         _("ID"),
@@ -480,15 +507,21 @@ def repository_table(obj, user, act, url=None, *args):
     if user.is_authenticated():
         pass
     retval += table.get_html()
+    ## FIXME: missing table
+    ## has_data = True
     if user.is_superuser and url and act == "view":
         retval += make_button(_("Add New Repository"), (url % args).replace("$act", "add"))
         retval += make_button(_("Add Existing Repository"), (url % args).replace("$act", "share"))
     else:
         retval += nbsp("") # to keep tabs same height
+    if has_data:
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
 
 def note_table(obj, user, act, url=None, *args):
     retval = ""
+    has_data = False
+    cssid = "tab-notes"
     table = Table("note_table")
     table.columns(
         _("ID"),
@@ -504,31 +537,42 @@ def note_table(obj, user, act, url=None, *args):
             table.row(table.db.get_note_from_handle(note.handle),
                       str(note_ref.ref_object.note_type),
                       note_ref.ref_object.text[:50])
+            has_data = True
     retval += table.get_html()
     if user.is_superuser and url and act == "view":
         retval += make_button(_("Add New Note"), (url % args).replace("$act", "add"))
         retval += make_button(_("Add Existing Note"), (url % args).replace("$act", "share"))
     else:
         retval += nbsp("") # to keep tabs same height
+    if has_data:
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
 
 def data_table(obj, user, act, url=None, *args):
     retval = ""
+    has_data = False
+    cssid = "has_data"
     table = Table("data_table")
     table.columns(_("Type"), 
                   _("Value"),
                   )
     if user.is_authenticated():
         pass
+    ## FIXME: missing table
+    ## has_data = True
     retval += table.get_html()
     if user.is_superuser and url and act == "view":
         retval += make_button(_("Add Data"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
+    if has_data:
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
 
 def attribute_table(obj, user, act, url=None, *args):
     retval = ""
+    has_data = False
+    cssid = "tab-attributes"
     table = Table("attribute_table")
     table.columns(_("Type"), 
                   _("Value"),
@@ -540,15 +584,20 @@ def attribute_table(obj, user, act, url=None, *args):
         for attribute in attributes:
             table.row(attribute.attribute_type.name,
                       attribute.value)
+            has_data = True
     retval += table.get_html()
     if user.is_superuser and url and act == "view":
         retval += make_button(_("Add Attribute"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
+    if has_data:
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
 
 def address_table(obj, user, act, url=None, *args):
     retval = ""
+    has_data = False
+    cssid = "tab-addresses"
     table = Table("address_table")
     table.columns(_("Date"), 
                   _("Address"),
@@ -564,15 +613,20 @@ def address_table(obj, user, act, url=None, *args):
                           location.city,
                           location.state,
                           location.country)
+                has_data = True
     retval += table.get_html()
     if user.is_superuser and url and act == "view":
         retval += make_button(_("Add Address"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
+    if has_data:
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
 
 def location_table(obj, user, act, url=None, *args):
     retval = ""
+    has_data = False
+    cssid = "tab-locations"
     table = Table("location_table")
     table.columns(_("Date"), 
                   _("Address"),
@@ -581,15 +635,21 @@ def location_table(obj, user, act, url=None, *args):
                   _("Country"))
     if user.is_authenticated():
         pass # FIXME
+    ## FIXME: missing table
+    ## has_data = True
     retval += table.get_html()
     if user.is_superuser and url and act == "view":
         retval += make_button(_("Add Address"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
+    if has_data:
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
 
 def media_table(obj, user, act, url=None, *args):
     retval = ""
+    has_data = False
+    cssid = "tab-media"
     table = Table("media_table")
     table.columns(_("Description"), 
                   _("Type"),
@@ -605,16 +665,21 @@ def media_table(obj, user, act, url=None, *args):
             table.row(table.db.get_object_from_handle(media.handle),
                       str(media_ref.ref_object.desc),
                       media_ref.ref_object.path)
+            has_data = True
     retval += table.get_html()
     if user.is_superuser and url and act == "view":
         retval += make_button(_("Add New Media"), (url % args).replace("$act", "add"))
         retval += make_button(_("Add Existing Media"), (url % args).replace("$act", "share"))
     else:
         retval += nbsp("") # to keep tabs same height
+    if has_data:
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
 
 def internet_table(obj, user, act, url=None, *args):
     retval = ""
+    has_data = False
+    cssid = "tab-internet"
     table = Table("internet_table")
     table.columns(_("Type"),
                   _("Path"),
@@ -625,15 +690,20 @@ def internet_table(obj, user, act, url=None, *args):
             table.row(str(url_obj.url_type),
                       url_obj.path,
                       url_obj.desc)
+            has_data = True
     retval += table.get_html()
     if user.is_superuser and url and act == "view":
         retval += make_button(_("Add Internet"), (str(url) % args))
     else:
         retval += nbsp("") # to keep tabs same height
+    if has_data:
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
 
 def association_table(obj, user, act, url=None, *args):
     retval = ""
+    has_data = False
+    cssid = "tab-associations"
     table = Table("association_table")
     table.columns(_("Name"), 
                   _("ID"),
@@ -643,16 +713,21 @@ def association_table(obj, user, act, url=None, *args):
         if gperson:
             associations = gperson.get_person_ref_list()
             for association in associations:
-                table.row()
+                table.row() # FIXME: missing table
+                has_data = True
     retval += table.get_html()
     if user.is_superuser and url and act == "view":
         retval += make_button(_("Add Association"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
+    if has_data:
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
 
 def lds_table(obj, user, act, url=None, *args):
     retval = ""
+    has_data = False
+    cssid = "tab-lds"
     table = Table("lds_table")
     table.columns(_("Type"), 
                   _("Date"),
@@ -668,15 +743,20 @@ def lds_table(obj, user, act, url=None, *args):
                       str(lds.status),
                       lds.temple,
                       get_title(lds.place))
+            has_data = True
     retval += table.get_html()
     if user.is_superuser and url and act == "view":
         retval += make_button(_("Add LDS"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
+    if has_data:
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
 
 def reference_table(obj, user, act, url=None, *args):
     retval = ""
+    has_data = False
+    cssid = "tab-references"
     table = Table("reference_table")
     table.columns(
         _("Type"),
@@ -686,12 +766,17 @@ def reference_table(obj, user, act, url=None, *args):
         pass
     retval += table.get_html()
     retval += nbsp("") # to keep tabs same height
+    if has_data:
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval 
 
 def person_reference_table(obj, user, act):
     retval = """<div style="overflow: auto; height:%spx;">""" % TAB_HEIGHT
+    has_data = False
+    cssid = "tab-references"
     text1 = ""
     text2 = ""
+    has_data = False
     table1 = Table("person_reference_table", style="background-color: #f4f0ec;")
     table1.columns(
         "As Spouse",
@@ -715,6 +800,7 @@ def person_reference_table(obj, user, act):
                 reference.gramps_id,
                 reference,
                 )
+            has_data = True
             count += 1
         text1 += table1.get_html()
         count = 1
@@ -733,6 +819,8 @@ def person_reference_table(obj, user, act):
                 reference.gramps_id,
                 reference,
                 )
+            has_data = True
+            count += 1
         text2 += table2.get_html()
         count = 1
         for through in models.PersonParentFamilyOrder.objects.filter(person=obj).order_by("order"):
@@ -751,10 +839,14 @@ def person_reference_table(obj, user, act):
                           "/family/add/child/%s" % obj.handle)
     retval += make_button(_("Add as Child to Existing Family"), 
                           "/family/share/child/%s" % obj.handle)
+    if has_data:
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval 
 
 def note_reference_table(obj, user, act):
     retval = ""
+    has_data = False
+    cssid = "tab-references"
     table = Table("note_reference_table")
     table.columns(
         _("Type"),
@@ -768,12 +860,17 @@ def note_reference_table(obj, user, act):
                 item.__class__.__name__,
                 item,
                 item.gramps_id)
+            has_data = True
     retval += table.get_html()
     retval += nbsp("") # to keep tabs same height
+    if has_data:
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval 
 
 def event_reference_table(obj, user, act):
     retval = ""
+    has_data = False
+    cssid = "tab-references"
     table = Table("event_reference_table")
     table.columns(
         _("Type"),
@@ -791,12 +888,17 @@ def event_reference_table(obj, user, act):
                 item.__class__.__name__,
                 item,
                 item.gramps_id)
+            has_data = True
     retval += table.get_html()
     retval += nbsp("") # to keep tabs same height
+    if has_data:
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval 
 
 def repository_reference_table(obj, user, act):
     retval = ""
+    has_data = False
+    cssid = "tab-references"
     table = Table("repository_reference_table")
     table.columns(
         _("Type"),
@@ -810,12 +912,17 @@ def repository_reference_table(obj, user, act):
                 item.__class__.__name__,
                 item,
                 item.gramps_id)
+            has_data = True
     retval += table.get_html()
     retval += nbsp("") # to keep tabs same height
+    if has_data:
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval 
 
 def citation_reference_table(obj, user, act):
     retval = ""
+    has_data = False
+    cssid = "tab-references"
     table = Table("citation_reference_table")
     table.columns(
         _("Type"),
@@ -829,12 +936,17 @@ def citation_reference_table(obj, user, act):
             table.row(
                 item.__class__.__name__,
                 item)
+            has_data = True
     retval += table.get_html()
     retval += nbsp("") # to keep tabs same height
+    if has_data:
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval 
 
 def source_reference_table(obj, user, act):
     retval = ""
+    has_data = False
+    cssid = "tab-references"
     table = Table("source_reference_table")
     table.columns(
         _("Type"),
@@ -845,10 +957,14 @@ def source_reference_table(obj, user, act):
     # FIXME: where is source ref?
     retval += table.get_html()
     retval += nbsp("") # to keep tabs same height
+    if has_data:
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval 
 
 def media_reference_table(obj, user, act):
     retval = ""
+    has_data = False
+    cssid = "tab-references"
     table = Table("media_reference_table")
     table.columns(
         _("Type"),
@@ -862,12 +978,17 @@ def media_reference_table(obj, user, act):
                 item.__class__.__name__,
                 item,
                 item.gramps_id)
+            has_data = True
     retval += table.get_html()
     retval += nbsp("") # to keep tabs same height
+    if has_data:
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval 
 
 def place_reference_table(obj, user, act):
     retval = ""
+    has_data = False
+    cssid = "tab-references"
     table = Table("place_reference_table")
     table.columns(
         _("Type"),
@@ -875,12 +996,17 @@ def place_reference_table(obj, user, act):
         _("ID"))
     if user.is_authenticated() and act != "add":
         pass # FIXME
+    ## FIXME: missing table
     retval += table.get_html()
     retval += nbsp("") # to keep tabs same height
+    if has_data:
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval 
 
 def tag_reference_table(obj, user, act):
     retval = ""
+    has_data = False
+    cssid = "tab-references"
     table = Table("tag_reference_table")
     table.columns(
         _("Type"),
@@ -894,8 +1020,11 @@ def tag_reference_table(obj, user, act):
                     item.__class__.__name__,
                     item,
                     item.gramps_id)
+                has_data = True
     retval += table.get_html()
     retval += nbsp("") # to keep tabs same height
+    if has_data:
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval 
 
 class Link(object):
@@ -909,6 +1038,8 @@ class Link(object):
 
 def children_table(obj, user, act, url=None, *args):
     retval = ""
+    has_data = False
+    cssid = "tab-children"
     table = Table("children_table")
     table.columns(
         "",
@@ -956,6 +1087,7 @@ def children_table(obj, user, act, url=None, *args):
                 links.append(('URL', childref.get_url()))
             else:
                 links.append((None, None))
+            has_data = True
             count += 1
     table.links(links)
     retval += table.get_html()
@@ -970,6 +1102,8 @@ def children_table(obj, user, act, url=None, *args):
         retval += make_button(_("Add Existing Person as Child"), (url.replace("$act", "share") % args))
     else:
         retval += nbsp("") # to keep tabs same height
+    if has_data:
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
 
 ## FIXME: these dji function wrappers just use the functions

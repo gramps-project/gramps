@@ -238,6 +238,22 @@ function unLite(theOption) {
 function optClick(theOption) {
   document.location.href=theOption;
 }
+
+function setHasData(classname, value)
+{
+    var elems = document.getElementsByTagName('*'), i;
+    for (i in elems) {
+        if((" " + elems[i].className + " ").indexOf(" " + classname + " ") > -1) {
+            if (value) {
+                elems[i].style.fontWeight = "bold"; 
+                elems[i].style.fontStyle = "italic"; 
+	    } else {
+                elems[i].style.fontWeight = ""; 
+                elems[i].style.fontStyle = ""; 
+            }
+	 }
+    }
+}   
 //-->
 </SCRIPT>
 
