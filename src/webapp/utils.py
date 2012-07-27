@@ -764,6 +764,7 @@ def reference_table(obj, user, act, url=None, *args):
         _("ID"))
     if user.is_authenticated():
         pass
+    ## FIXME: missing table?
     retval += table.get_html()
     retval += nbsp("") # to keep tabs same height
     if has_data:
@@ -776,7 +777,6 @@ def person_reference_table(obj, user, act):
     cssid = "tab-references"
     text1 = ""
     text2 = ""
-    has_data = False
     table1 = Table("person_reference_table", style="background-color: #f4f0ec;")
     table1.columns(
         "As Spouse",
@@ -1071,6 +1071,7 @@ def children_table(obj, user, act, url=None, *args):
                       childref.mother_rel_type,
                       date_as_text(child.birth, user),
                       )
+            has_data = True
             links.append(('URL', childref.get_url()))
             count += 1
         else:
