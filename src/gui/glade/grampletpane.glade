@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <!-- interface-requires gtk+ 2.12 -->
-  <!-- interface-naming-policy project-wide -->
+  <!-- interface-requires gtk+ 3.0 -->
   <object class="GtkWindow" id="grampletview">
+    <property name="can_focus">False</property>
+    <property name="events">GDK_BUTTON_PRESS_MASK | GDK_STRUCTURE_MASK</property>
     <property name="title" translatable="yes">window2</property>
     <child>
       <object class="GtkVBox" id="gvgramplet">
         <property name="visible">True</property>
-        <property name="events">GDK_BUTTON_PRESS_MASK | GDK_STRUCTURE_MASK</property>
+        <property name="can_focus">False</property>
         <child>
           <object class="GtkFrame" id="gvframe">
             <property name="visible">True</property>
+            <property name="can_focus">False</property>
             <property name="events">GDK_BUTTON_PRESS_MASK | GDK_STRUCTURE_MASK</property>
             <property name="border_width">10</property>
             <property name="label_xalign">0</property>
@@ -18,6 +20,7 @@
             <child>
               <object class="GtkVBox" id="vbox143">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <child>
                   <placeholder/>
                 </child>
@@ -25,8 +28,6 @@
                   <object class="GtkScrolledWindow" id="gvscrolledwindow">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="hscrollbar_policy">automatic</property>
-                    <property name="vscrollbar_policy">automatic</property>
                     <child>
                       <object class="GtkTextView" id="gvtextview">
                         <property name="visible">True</property>
@@ -37,6 +38,8 @@
                     </child>
                   </object>
                   <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
                     <property name="position">1</property>
                   </packing>
                 </child>
@@ -45,15 +48,17 @@
             <child type="label">
               <object class="GtkHBox" id="hbox144">
                 <property name="visible">True</property>
-                <property name="events">GDK_BUTTON_PRESS_MASK | GDK_STRUCTURE_MASK</property>
+                <property name="can_focus">False</property>
                 <child>
                   <object class="GtkButton" id="gvproperties">
+                    <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="has_tooltip">True</property>
                     <property name="tooltip_markup">Drag to move; click to detach</property>
                     <property name="tooltip_text" translatable="yes">Drag to move; click to detach</property>
+                    <property name="use_action_appearance">False</property>
                     <child internal-child="accessible">
                       <object class="AtkObject" id="gvproperties-atkobject">
                         <property name="AtkObject::accessible-name" translatable="yes">Detach</property>
@@ -62,6 +67,7 @@
                     <child>
                       <object class="GtkImage" id="gvpropertiesimage">
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <property name="stock">gtk-properties</property>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="gvpropertiesimage-atkobject">
@@ -79,12 +85,14 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="gvstate">
+                    <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="has_tooltip">True</property>
                     <property name="tooltip_markup">Click to expand/collapse</property>
                     <property name="tooltip_text" translatable="yes">Click to expand/collapse</property>
+                    <property name="use_action_appearance">False</property>
                     <child internal-child="accessible">
                       <object class="AtkObject" id="gvstate-atkobject">
                         <property name="AtkObject::accessible-name" translatable="yes">Remove</property>
@@ -93,6 +101,7 @@
                     <child>
                       <object class="GtkImage" id="gvstateimage">
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <property name="stock">gtk-remove</property>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="gvstateimage-atkobject">
@@ -110,12 +119,14 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="gvclose">
+                    <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="has_tooltip">True</property>
                     <property name="tooltip_markup">Click to delete gramplet from view</property>
                     <property name="tooltip_text" translatable="yes">Click to delete gramplet from view</property>
+                    <property name="use_action_appearance">False</property>
                     <child internal-child="accessible">
                       <object class="AtkObject" id="gvclose-atkobject">
                         <property name="AtkObject::accessible-name" translatable="yes">Delete</property>
@@ -124,6 +135,7 @@
                     <child>
                       <object class="GtkImage" id="gvcloseimage">
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <property name="stock">gtk-close</property>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="gvcloseimage-atkobject">
@@ -142,12 +154,16 @@
                 <child>
                   <object class="GtkButton" id="gvtitle">
                     <property name="label" translatable="yes">Gramplet</property>
+                    <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <property name="use_action_appearance">False</property>
                     <property name="relief">none</property>
                   </object>
                   <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
                     <property name="position">3</property>
                   </packing>
                 </child>
@@ -155,6 +171,8 @@
             </child>
           </object>
           <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
             <property name="position">0</property>
           </packing>
         </child>

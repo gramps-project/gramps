@@ -966,7 +966,12 @@ class GrampletPane(Gtk.ScrolledWindow):
         msg = _("Right click to add gramplets")
         self.set_tooltip_text(msg)
         self.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+        self.eventb = Gtk.EventBox()
         self.hbox = Gtk.HBox(homogeneous=True)
+        self.eventb.add(self.hbox)
+        self.add_with_viewport(self.eventb)
+        self.set_kinetic_scrolling(True)
+        self.set_capture_button_press(True)
         # Set up drag and drop
         self.drag_dest_set(Gtk.DestDefaults.MOTION |
                             Gtk.DestDefaults.HIGHLIGHT |
@@ -978,9 +983,8 @@ class GrampletPane(Gtk.ScrolledWindow):
         tglist.add(tg[0], tg[1], tg[2])
         self.drag_dest_set_target_list(tglist)
         self.connect('drag_drop', self.drop_widget)
-        self.connect('button-press-event', self._button_press)
+        self.eventb.connect('button-press-event', self._button_press)
 
-        self.add_with_viewport(self.hbox)
         # Create the columns:
         self.columns = []
         for i in range(self.column_count):
@@ -1236,11 +1240,17 @@ class GrampletPane(Gtk.ScrolledWindow):
         """
         This is the destination method for handling drag and drop
         of a gramplet onto the main scrolled window.
+        Also used for adding new gramplets, then context should be GridGramplet
         """
-        button = Gtk.drag_get_source_widget(context)
-        hbox = button.get_parent()
-        mframe = hbox.get_parent()
-        mainframe = mframe.get_parent() # actually a vbox
+        button = None
+        if isinstance(context, Gdk.DragContext):
+            button = Gtk.drag_get_source_widget(context)
+        else:
+            button = context.get_source_widget()
+        if button:
+            hbox = button.get_parent()
+            mframe = hbox.get_parent()
+            mainframe = mframe.get_parent() # actually a vbox
         rect = source.get_allocation()
         sx, sy = rect.width, rect.height
         # first, find column:
@@ -1249,9 +1259,10 @@ class GrampletPane(Gtk.ScrolledWindow):
             if x < (sx/len(self.columns) * (i + 1)): 
                 col = i
                 break
-        fromcol = mainframe.get_parent()
-        if fromcol:
-            fromcol.remove(mainframe)
+        if button:
+            fromcol = mainframe.get_parent()
+            if fromcol:
+                fromcol.remove(mainframe)
         # now find where to insert in column:
         stack = []
         current_row = 0
@@ -1369,7 +1380,7 @@ class GrampletPane(Gtk.ScrolledWindow):
             else:
                 pos = 0
             self.columns[pos].pack_start(gramplet.mainframe,
-                                         expand=gramplet.expand)
+                                         gramplet.expand, True, 0)
             # set height on gramplet.scrolledwindow here:
             gramplet.scrolledwindow.set_size_request(-1, gramplet.height)
             ## now drop it in right place
@@ -1413,9 +1424,10 @@ class GrampletPane(Gtk.ScrolledWindow):
                         add_menuitem(qr_menu, name, None,
                                                self.restore_gramplet)
                     rg_menu.set_submenu(qr_menu)
-            menu = uiman.get_widget('/GrampletPopup')
-            if menu:
-                menu.popup(None, None, None, None, 1, event.time)
+            self.menu = uiman.get_widget('/GrampletPopup')
+            if self.menu:
+                #GTK3 does not show the popup, workaround: menu as attribute
+                self.menu.popup(None, None, None, None, event.button, event.time)
                 return True
         return False
 

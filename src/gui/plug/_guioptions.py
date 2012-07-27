@@ -292,7 +292,7 @@ class GuiNumberOption(Gtk.SpinButton):
             import math
             decimals = int(math.log10(step) * -1)
             
-        GObject.GObject.__init__(self, adj, digits=decimals)
+        GObject.GObject.__init__(self, adjustment=adj, climb_rate=1, digits=decimals)
         Gtk.SpinButton.set_numeric(self, True)
 
         self.set_value(self.__option.get_value())

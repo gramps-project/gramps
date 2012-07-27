@@ -76,8 +76,8 @@ class AgeOnDateGramplet(Gramplet):
         button.connect("clicked", self.run)
         ##self.filter = 
         hbox.pack_start(label, False, True, 0)
-        hbox.pack_start(self.entry, True)
-        vbox.pack_start(description, True)
+        hbox.pack_start(self.entry, True, True, 0)
+        vbox.pack_start(description, True, True, 0)
         vbox.pack_start(hbox, False, True, 0)
         vbox.pack_start(button, False, True, 0)
         self.gui.get_container_widget().remove(self.gui.textview)
