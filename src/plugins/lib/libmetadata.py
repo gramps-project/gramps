@@ -21,6 +21,19 @@
 #
 # $Id$
 #
+#-------------------------------------------------------------------------
+#
+# GNOME modules
+#
+#-------------------------------------------------------------------------
+from gi.repository import GObject
+from gi.repository import Gtk
+
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
 
 from gui.listmodel import ListModel
 from gen.ggettext import gettext as _
@@ -29,7 +42,6 @@ from fractions import Fraction
 import gen.lib
 import gen.datehandler
 import datetime
-from gi.repository import Gtk
 import pyexiv2
 
 # v0.1 has a different API to v0.2 and above

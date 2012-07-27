@@ -168,6 +168,11 @@ class ListView(NavigationView):
                                     [self.drag_dest_info().target()], 
                                     Gdk.DragAction.MOVE |
                                     Gdk.DragAction.COPY)
+            tglist = Gtk.TargetList.new([])
+            tglist.add(self.drag_dest_info().atom_drag_type, 
+                       self.drag_dest_info().target_flags,
+                       self.drag_dest_info().app_id)
+            self.list.drag_dest_set_target_list(tglist)
 
         scrollwindow = Gtk.ScrolledWindow()
         scrollwindow.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
