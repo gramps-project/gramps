@@ -43,6 +43,7 @@ import sys
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
+from gi.repository import Gdk
 from gi.repository import GObject
 
 #-------------------------------------------------------------------------
@@ -227,7 +228,8 @@ class GuiColorOption(Gtk.ColorButton):
     def __init__(self, option, dbstate, uistate, track, override):
         self.__option = option
         value = self.__option.get_value()
-        GObject.GObject.__init__( self, Gdk.color_parse(value) )
+        GObject.GObject.__init__(self)
+        self.set_color(Gdk.color_parse(self.__option.get_value()))
 
         # Set up signal handlers when the widget value is changed
         # from user interaction or programmatically.  When handling
@@ -434,7 +436,8 @@ class GuiBooleanOption(Gtk.CheckButton):
     """
     def __init__(self, option, dbstate, uistate, track, override):
         self.__option = option
-        GObject.GObject.__init__(self, self.__option.get_label())
+        GObject.GObject.__init__(self)
+        self.set_label(self.__option.get_label())
         self.set_active(self.__option.get_value())
 
         # Set up signal handlers when the widget value is changed
@@ -1129,7 +1132,7 @@ class GuiPersonListOption(Gtk.HBox):
                                           Gtk.PolicyType.AUTOMATIC)
         self.__scrolled_window.set_shadow_type(Gtk.ShadowType.OUT)
 
-        self.pack_start(self.__scrolled_window, expand=True, fill=True)
+        self.pack_start(self.__scrolled_window, True, True, 0)
 
         self.__value_changed()
 
@@ -1143,7 +1146,7 @@ class GuiPersonListOption(Gtk.HBox):
         self.__vbbox.add(self.__add_person)
         self.__vbbox.add(self.__del_person)
         self.__vbbox.set_layout(Gtk.ButtonBoxStyle.SPREAD)
-        self.pack_end(self.__vbbox, expand=False)
+        self.pack_end(self.__vbbox, False, False, 0)
 
         self.valuekey = self.__option.connect('value-changed', self.__value_changed)
         
@@ -1453,7 +1456,7 @@ class GuiSurnameColorOption(Gtk.HBox):
         self.scrolled_window.set_policy(Gtk.PolicyType.AUTOMATIC, 
                                         Gtk.PolicyType.AUTOMATIC)
         self.scrolled_window.set_shadow_type(Gtk.ShadowType.OUT)
-        self.pack_start(self.scrolled_window, expand=True, fill=True)
+        self.pack_start(self.scrolled_window, True, True, 0)
 
         self.add_surname = widgets.SimpleButton(Gtk.STOCK_ADD, 
                                                 self.__add_clicked)
@@ -1463,7 +1466,7 @@ class GuiSurnameColorOption(Gtk.HBox):
         self.vbbox.add(self.add_surname)
         self.vbbox.add(self.del_surname)
         self.vbbox.set_layout(Gtk.ButtonBoxStyle.SPREAD)
-        self.pack_end(self.vbbox, expand=False)
+        self.pack_end(self.vbbox, False, False, 0)
 
         self.__value_changed()
 

@@ -24,6 +24,7 @@
 
 import os
 from gi.repository import Gtk
+from gi.repository import GObject
 from gen.utils.file import get_unicode_path_from_file_chooser
 
 class FileEntry(Gtk.HBox):
@@ -46,7 +47,7 @@ class FileEntry(Gtk.HBox):
         self.button.add(image)
         self.button.connect('clicked', self.__select_file)
         self.pack_start(self.entry, True, True, 0)
-        self.pack_end(self.button, False, False)
+        self.pack_end(self.button, False, False, 0)
 
     def __select_file(self, obj):
         """ Call back function to handle the open button press """
