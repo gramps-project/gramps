@@ -463,6 +463,10 @@ class ListView(NavigationView):
                         for handle in selected_ids], 
                     0)
             sel_data.set(self.drag_list_info().atom_drag_type, 8, pickle.dumps(data))
+        else:
+            # pass empty
+            data = (self.drag_info().drag_type, id(self), [], 0)
+            sel_data.set(self.drag_list_info().atom_drag_type, 8, pickle.dumps(data))
 
     def set_column_order(self):
         """
