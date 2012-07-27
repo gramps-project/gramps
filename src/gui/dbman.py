@@ -745,7 +745,7 @@ class DbManager(CLIDbManager):
         if drag_value and urlparse.urlparse(drag_value).scheme != "":
             fname, title = [], []
             for treename in [v.strip() for v in drag_value.split("\n") if v.strip() != '']:
-                f, t = self.import_new_db(treename, None)
+                f, t = self.import_new_db(treename, User())
                 fname.append(f)
                 title.append(t)
         return fname, title

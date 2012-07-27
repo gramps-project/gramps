@@ -286,6 +286,12 @@ class CLIDbManager(object):
         Attempt to import the provided file into a new database.
         A new database will only be created if an appropriate importer was 
         found.
+
+        @param filename: a fully-qualified path, filename, and
+        extension to open.
+
+        @param user: a cli.User or gui.User instance for managing user
+        interaction.
         
         @return: A tuple of (new_path, name) for the new database
                  or (None, None) if no import was performed.
