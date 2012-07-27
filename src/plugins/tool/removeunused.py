@@ -172,7 +172,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                                         GObject.TYPE_STRING, 
                                         GObject.TYPE_STRING, 
                                         GObject.TYPE_STRING)
-        self.sort_model = Gtk.TreeModelSort(self.real_model)
+        self.sort_model = self.real_model.sort_new_with_model()
         self.warn_tree.set_model(self.sort_model)
 
         self.renderer = Gtk.CellRendererText()
@@ -237,16 +237,16 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         for item in self.sensitive_list:
             item.set_sensitive(True)
 
-        self.uistate.window.window.set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
+        self.uistate.window.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
         self.uistate.progress.show()
-        self.window.window.set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
+        self.window.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
 
         self.real_model.clear()
         self.collect_unused()
 
         self.uistate.progress.hide()
-        self.uistate.window.window.set_cursor(None)
-        self.window.window.set_cursor(None)
+        self.uistate.window.get_window().set_cursor(None)
+        self.window.get_window().set_cursor(None)
         self.reset()
         
         # Save options
