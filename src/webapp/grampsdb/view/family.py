@@ -71,8 +71,8 @@ def process_family(request, context, handle, act, add_to=None): # view, edit, sa
             if item == "child":
                 dji.add_child_ref_default(ref_obj, person) # add person to family
                 #person.parent_families.add(ref_obj) # add family to child
-                pfo = PersonParentFamilyOrder(person=person, family=ref_obj, 
-                                              order=len(person.parent_families.all())+1)
+                pfo = MyParentFamilies(person=person, family=ref_obj, 
+                                       order=len(person.parent_families.all())+1)
                 pfo.save()
             elif item == "spouse":
                 if person.gender_type.name == "Female":
@@ -82,8 +82,8 @@ def process_family(request, context, handle, act, add_to=None): # view, edit, sa
                 else:
                     ref_obj.father = person # FIXME: Unknown gender, add to open
                 #person.families.add(ref_obj) # add family to person
-                pfo = PersonFamilyOrder(person=person, family=ref_obj, 
-                                        order=len(person.families.all())+1)
+                pfo = MyFamilies(person=person, family=ref_obj, 
+                                 order=len(person.families.all())+1)
                 pfo.save()
             ref_obj.save()
             person.save()
@@ -109,38 +109,47 @@ def process_family(request, context, handle, act, add_to=None): # view, edit, sa
                     family.father = person
                 elif gender == "Female":
                     family.mother = person
+                else: # You have to pick one!
+                    family.father = person
             elif what == "child":
                 pass # FIXME: can't show child in table? 
                      # Table from children_table
-            else: # unknown gender!
-                family.father = person
+            else: # unknown what!
+                raise Exception("can't add_to: '%s'" % what)
         familyform = FamilyForm(instance=family)
         familyform.model = family
     elif act in ["view", "edit"]: 
         family = Family.objects.get(handle=handle)
         familyform = FamilyForm(instance=family)
         familyform.model = family
-    elif act == "save": 
+    elif act == "save": # editing an existing family
         family = Family.objects.get(handle=handle)
+        old_family_mother = family.mother
+        old_family_father = family.father
         familyform = FamilyForm(request.POST, instance=family)
         familyform.model = family
         if familyform.is_valid():
             update_last_changed(family, request.user.username)
             family = familyform.save()
-            # FIXME: multiple families with same parents?
-            # FIXME: remove family from previous mother/father?
-            if family.mother:
-                if family not in family.mother.families.all():
+            # Remove family from previous mother/father if changed
+            if familyform.cleaned_data["mother"] != old_family_mother and old_family_mother:
+                MyFamilies.objects.get(person=old_family_mother, family=family).delete()
+            if familyform.cleaned_data["father"] != old_family_father and old_family_father:
+                MyFamilies.objects.get(person=old_family_father, family=family).delete()
+            # Add family to newly selected mother/father if needed:
+            if familyform.cleaned_data["mother"]:
+                if family not in familyform.cleaned_data["mother"].families.all():
                     #family.mother.families.add(family)
-                    pfo = PersonFamilyOrder(person=family.mother, family=family, 
-                                            order=len(family.mother.families.all())+1)
+                    pfo = MyFamilies(person=familyform.cleaned_data["mother"], family=family, 
+                                     order=len(familyform.cleaned_data["mother"].families.all())+1)
                     pfo.save()
-            if family.father:
-                if family not in family.father.families.all():
+            if familyform.cleaned_data["father"]:
+                if family not in familyform.cleaned_data["father"].families.all():
                     #family.father.families.add(family)
-                    pfo = PersonFamilyOrder(person=family.father, family=family, 
-                                            order=len(family.father.families.all())+1)
+                    pfo = MyFamilies(person=family.father, family=family, 
+                                     order=len(familyform.cleaned_data["father"].families.all())+1)
                     pfo.save()
+            familyform.save()
             dji.rebuild_cache(family)
             act = "view"
         else:
@@ -154,46 +163,31 @@ def process_family(request, context, handle, act, add_to=None): # view, edit, sa
         if familyform.is_valid():
             update_last_changed(family, request.user.username)
             family = familyform.save()
-            # FIXME: multiple families with same parents?
-            # FIXME: remove family from previous mother/father?
             if family.mother:
-                if family not in family.mother.families.all():
-                    #family.mother.families.add(family)
-                    pfo = PersonFamilyOrder(person=family.mother, family=family, 
-                                            order=len(family.mother.families.all())+1)
-                    pfo.save()
+                #family.mother.families.add(family)
+                pfo = MyFamilies(person=family.mother, family=family, 
+                                 order=len(family.mother.families.all())+1)
+                pfo.save()
             if family.father:
-                if family not in family.father.families.all():
-                    #family.father.families.add(family)
-                    pfo = PersonFamilyOrder(person=family.father, family=family,
-                                            order=len(family.father.families.all())+1)
-                    pfo.save()
+                #family.father.families.add(family)
+                pfo = MyFamilies(person=family.father, family=family,
+                                 order=len(family.father.families.all())+1)
+                pfo.save()
             dji.rebuild_cache(family)
             if add_to: # add child or spouse to family
                 item, handle = add_to
                 person = Person.objects.get(handle=handle)
                 if item == "child":
                     dji.add_child_ref_default(family, person) # add person to family
-                    #person.parent_families.add(family) # add family to child
-                    pfo = PersonParentFamilyOrder(person=person, family=family,
-                                                  order=len(person.parent_families.all())+1)
+                    ##person.parent_families.add(family) # add family to child
+                    pfo = MyParentFamilies(person=person, family=family,
+                                           order=len(person.parent_families.all())+1)
                     pfo.save()
-                elif item == "spouse":
-                    if person.gender_type.name == "Female":
-                        family.mother = person
-                    elif person.gender_type.name == "Male":
-                        family.father = person
-                    else:
-                        family.father = person # FIXME: Unknown gender, add to open
-                    #person.families.add(family) # add family to person
-                    pfo = PersonFamilyOrder(person=person, family=family,
-                                            order=len(person.families.all())+1)
-                    pfo.save()
-                family.save()
-                person.save()
-                dji.rebuild_cache(person) # rebuild child
-                dji.rebuild_cache(family) # rebuild cache
-                return redirect("/%s/%s" % ("person", handle))
+                #elif item == "spouse":
+                # already added by selecting
+                    person.save()
+                    dji.rebuild_cache(person) # rebuild child
+                return redirect("/%s/%s%s#tab-references" % ("person", handle, build_search(request)))
             act = "view"
         else:
             act = "add"

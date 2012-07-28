@@ -369,7 +369,10 @@ def process_person(request, context, handle, act, add_to=None): # view, edit, sa
                 model = dji.get_model(item) # what model?
                 obj = model.objects.get(handle=handle) # get family
                 dji.add_child_ref_default(obj, person) # add person to family
-                person.parent_families.add(obj) # add family to child
+                #person.parent_families.add(obj) # add family to child
+                pfo = MyParentFamilies(person=person, family=obj,
+                                       order=len(person.parent_families.all())+1)
+                pfo.save()
                 dji.rebuild_cache(person) # rebuild child
                 dji.rebuild_cache(obj) # rebuild family
                 return redirect("/%s/%s%s" % (item, handle, build_search(request)))
@@ -440,7 +443,10 @@ def process_person(request, context, handle, act, add_to=None): # view, edit, sa
                     model = dji.get_model(item) # what model?
                     obj = model.objects.get(handle=handle) # get family
                     dji.add_child_ref_default(obj, person) # add person to family
-                    person.parent_families.add(obj) # add family to child
+                    #person.parent_families.add(obj) # add family to child
+                    pfo = MyParentFamilies(person=person, family=obj,
+                                           order=len(person.parent_families.all())+1)
+                    pfo.save()
                     dji.rebuild_cache(person) # rebuild child
                     dji.rebuild_cache(obj) # rebuild family
                     return redirect("/%s/%s%s" % (item, handle, build_search(request)))

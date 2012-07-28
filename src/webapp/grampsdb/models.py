@@ -459,12 +459,12 @@ class PrimaryObject(models.Model):
         return "/%s/%s" % (self.__class__.__name__.lower(),
                            self.handle)
 
-class PersonFamilyOrder(models.Model):
+class MyFamilies(models.Model):
     person = models.ForeignKey("Person")
     family = models.ForeignKey("Family")
     order = models.PositiveIntegerField(default=1)
 
-class PersonParentFamilyOrder(models.Model):
+class MyParentFamilies(models.Model):
     person = models.ForeignKey("Person")
     family = models.ForeignKey("Family")
     order = models.PositiveIntegerField(default=1)
@@ -475,11 +475,11 @@ class Person(PrimaryObject):
     """
     gender_type = models.ForeignKey('GenderType', verbose_name="Gender")
     probably_alive = models.BooleanField("Probably alive")
-    families = models.ManyToManyField('Family', blank=True, null=True, through="PersonFamilyOrder")
+    families = models.ManyToManyField('Family', blank=True, null=True, through="MyFamilies")
     parent_families = models.ManyToManyField('Family', 
                                              related_name="parent_families",
                                              blank=True, null=True, 
-                                             through='PersonParentFamilyOrder')
+                                             through='MyParentFamilies')
     #addresses = models.ManyToManyField('Address', null=True, blank=True)
     references = generic.GenericRelation('PersonRef', related_name="refs",
                                          content_type_field="object_type",
@@ -528,6 +528,15 @@ class Family(PrimaryObject):
 
     # Others keys here:
     #   .lds_set
+
+    def get_children(self):
+        """
+        Return all children from this family, in order.
+        """
+        obj_type = ContentType.objects.get_for_model(self)
+        childrefs = ChildRef.objects.filter(object_id=self.id,
+                                            object_type=obj_type).order_by("order")
+        return [childref.ref_object for childref in childrefs]
 
     def __unicode__(self):
         father = self.father.get_primary_name() if self.father else "No father"
@@ -1033,12 +1042,8 @@ TABLES = [
     ("ref", PersonRef),
     ("ref", ChildRef),
     ("ref", MediaRef),
-    ("ref", PersonFamilyOrder),
-    ("ref", PersonParentFamilyOrder),
-    ("ref", PersonTag),
-    ("ref", FamilyTag),
-    ("ref", MediaTag),
-    ("ref", NoteTag),
+    ("ref", MyFamilies),
+    ("ref", MyParentFamilies),
     ("system", Config),
     ("system", Report),
     ("system", Result),

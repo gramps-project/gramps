@@ -268,11 +268,11 @@ class DjangoInterface(object):
 
     def get_family_list(self, person): # person has families
         return [fam.family.handle for fam in 
-                self.PersonFamilyOrder.filter(person=person).order_by("order")]
-
+                models.MyFamilies.objects.filter(person=person).order_by("order")]
+    
     def get_parent_family_list(self, person): # person's parents has families
         return [fam.family.handle for fam in 
-                self.PersonParentFamilyOrder.filter(person=person).order_by("order")]
+                models.MyParentFamilies.objects.filter(person=person).order_by("order")]
 
     def get_person_ref_list(self, person):
         obj_type = ContentType.objects.get_for_model(person)
@@ -725,44 +725,15 @@ class DjangoInterface(object):
         for attribute_data in attribute_list:
             self.add_attribute(obj, attribute_data)
     
-    def add_tag_list(self, otype, obj, tag_list):
+    def add_tag_list(self, obj, tag_list):
         for tag_handle in tag_list:
             try:
                 tag = models.Tag.objects.get(handle=tag_handle)
             except:
                 print >> sys.stderr, ("ERROR: Tag does not exist: '%s'" % 
                                       tag_handle)
-            self.add_tag_to_obj(otype, obj, tag)
+            obj.tags.add(tag)
     
-    def add_tag_to_obj(self, field, obj, tag):
-        if field == "person":
-            tagref = models.PersonTag(
-                person=obj, 
-                tag=tag,
-                order=len(models.PersonTag.objects.filter(person=obj)) + 1)
-            tagref.save()
-        elif field == "family":
-            tagref = models.FamilyTag(
-                family=obj, 
-                tag=tag,
-                order=len(models.FamilyTag.objects.filter(family=obj)) + 1)
-            tagref.save()
-        elif field == "media":
-            tagref = models.MediaTag(
-                media=obj, 
-                tag=tag,
-                order=len(models.MediaTag.objects.filter(media=obj)) + 1)
-            tagref.save()
-        elif field == "note":
-            tagref = models.NoteTag(
-                note=obj, 
-                tag=tag,
-                order=len(models.NoteTag.objects.filter(note=obj)) + 1)
-            tagref.save()
-        else:
-            raise AttributeError("invalid field '%s' to attach tag" %
-                                 field)
-
     def add_url_list(self, field, obj, url_list):
         if not url_list: return None
         count = 1
@@ -1042,8 +1013,8 @@ class DjangoInterface(object):
                                   handle)
             return
         #obj.families.add(family)
-        pfo = models.PersonFamilyOrder(person=obj, family=family,
-                                       order=len(self.PersonFamilyOrder.filter(person=obj)) + 1)
+        pfo = models.MyFamilies(person=obj, family=family,
+                                order=len(models.MyFamilies.objects.filter(person=obj)) + 1)
         pfo.save()
         obj.save()
     
@@ -1177,8 +1148,8 @@ class DjangoInterface(object):
                                   parent_family_handle)
             return
         #person.parent_families.add(family)
-        pfo = models.PersonParentFamilyOrder(person=person, family=family,
-                                             order=len(self.PersonParentFamilyOrder.filter(person=person)) + 1)
+        pfo = models.MyParentFamilies(person=person, family=family,
+                                      order=len(models.MyParentFamilies.objects.filter(person=person)) + 1)
         pfo.save()
         person.save()
     
@@ -1324,7 +1295,7 @@ class DjangoInterface(object):
         self.add_citation_list(person, pcitation_list)
         self.add_address_list("person", person, address_list)
         self.add_lds_list("person", person, lds_ord_list)
-        self.add_tag_list("person", person, tag_list)
+        self.add_tag_list(person, tag_list)
         # set person.birth and birth.death to correct events:
 
         obj_type = ContentType.objects.get_for_model(person)
@@ -1356,7 +1327,7 @@ class DjangoInterface(object):
         note = models.Note.objects.get(handle=handle)
         note.cache = self.encode_raw(data)
         note.save()
-        self.add_tag_list("note", note, tag_list)
+        self.add_tag_list(note, tag_list)
 
     def save_note_markup(self, note, markup_list):
         # delete any prexisting markup:
@@ -1441,7 +1412,7 @@ class DjangoInterface(object):
         self.add_media_ref_list(family, media_list)
         self.add_event_ref_list(family, event_ref_list)
         self.add_lds_list("family", family, lds_seal_list)
-        self.add_tag_list("family", family, tag_list)
+        self.add_tag_list(family, tag_list)
         
     def add_source(self, data):
         (handle, gid, title,
@@ -1646,7 +1617,7 @@ class DjangoInterface(object):
         self.add_note_list(media, note_list) 
         self.add_citation_list(media, citation_list)
         self.add_attribute_list(media, attribute_list)
-        self.add_tag_list("media", media, tag_list)
+        self.add_tag_list(media, tag_list)
     
     def add_event(self, data):
         (handle, gid, the_type, date, description, place_handle, 
@@ -1896,3 +1867,21 @@ class DjangoInterface(object):
             count += 1
         callback(100)
 
+    def check_families(self):
+        for family in self.Family.all():
+            if family.mother:
+                if not family in family.mother.families.all():
+                    print "Mother not in family", mother, family
+            if family.father:
+                if not family in family.father.families.all():
+                    print "Father not in family", mother, family
+            for child in family.get_children():
+                if family not in child.parent_families.all():
+                    print "Child not in family", child, family
+        for person in self.Person.all():
+            for family in person.families.all():
+                if person not in [family.mother, family.father]:
+                    print "Spouse not in family", person, family
+            for family in person.parent_families.all():
+                if person not in family.get_children():
+                    print "Child not in family", person, family

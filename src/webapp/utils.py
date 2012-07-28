@@ -793,7 +793,7 @@ def person_reference_table(obj, user, act):
     table2.column_widths = [10, 10, 82]
     if user.is_authenticated() and act != "add":
         count = 1
-        for through in models.PersonFamilyOrder.objects.filter(person=obj).order_by("order"):
+        for through in models.MyFamilies.objects.filter(person=obj).order_by("order"):
             reference = through.family
             table1.row(
                 Link("[[x%d]][[^%d]][[v%d]]" % (count, count, count)) if user.is_superuser else "",
@@ -804,7 +804,7 @@ def person_reference_table(obj, user, act):
             count += 1
         text1 += table1.get_html()
         count = 1
-        for through in models.PersonFamilyOrder.objects.filter(person=obj).order_by("order"):
+        for through in models.MyFamilies.objects.filter(person=obj).order_by("order"):
             reference = through.family
             text1 = text1.replace("[[x%d]]" % count, make_button("x", "/person/%s/remove/family/%d" % (obj.handle, count)))
             text1 = text1.replace("[[^%d]]" % count, make_button("^", "/person/%s/up/family/%d" % (obj.handle, count)))
@@ -812,7 +812,7 @@ def person_reference_table(obj, user, act):
             count += 1
         # Parent Families
         count = 1
-        for through in models.PersonParentFamilyOrder.objects.filter(person=obj).order_by("order"):
+        for through in models.MyParentFamilies.objects.filter(person=obj).order_by("order"):
             reference = through.family
             table2.row(
                 Link("[[x%d]][[^%d]][[v%d]]" % (count, count, count)) if user.is_superuser else "",
@@ -823,7 +823,7 @@ def person_reference_table(obj, user, act):
             count += 1
         text2 += table2.get_html()
         count = 1
-        for through in models.PersonParentFamilyOrder.objects.filter(person=obj).order_by("order"):
+        for through in models.MyParentFamilies.objects.filter(person=obj).order_by("order"):
             reference = through.family
             text2 = text2.replace("[[x%d]]" % count, make_button("x", "/person/%s/remove/parentfamily/%d" % (obj.handle, count)))
             text2 = text2.replace("[[^%d]]" % count, make_button("^", "/person/%s/up/parentfamily/%d" % (obj.handle, count)))

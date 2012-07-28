@@ -100,111 +100,99 @@ INSERT INTO "auth_permission" VALUES(90,'Can delete config',30,'delete_config');
 INSERT INTO "auth_permission" VALUES(91,'Can add tag',31,'add_tag');
 INSERT INTO "auth_permission" VALUES(92,'Can change tag',31,'change_tag');
 INSERT INTO "auth_permission" VALUES(93,'Can delete tag',31,'delete_tag');
-INSERT INTO "auth_permission" VALUES(94,'Can add person family order',32,'add_personfamilyorder');
-INSERT INTO "auth_permission" VALUES(95,'Can change person family order',32,'change_personfamilyorder');
-INSERT INTO "auth_permission" VALUES(96,'Can delete person family order',32,'delete_personfamilyorder');
-INSERT INTO "auth_permission" VALUES(97,'Can add person parent family order',33,'add_personparentfamilyorder');
-INSERT INTO "auth_permission" VALUES(98,'Can change person parent family order',33,'change_personparentfamilyorder');
-INSERT INTO "auth_permission" VALUES(99,'Can delete person parent family order',33,'delete_personparentfamilyorder');
-INSERT INTO "auth_permission" VALUES(100,'Can add person tag',34,'add_persontag');
-INSERT INTO "auth_permission" VALUES(101,'Can change person tag',34,'change_persontag');
-INSERT INTO "auth_permission" VALUES(102,'Can delete person tag',34,'delete_persontag');
-INSERT INTO "auth_permission" VALUES(103,'Can add family tag',35,'add_familytag');
-INSERT INTO "auth_permission" VALUES(104,'Can change family tag',35,'change_familytag');
-INSERT INTO "auth_permission" VALUES(105,'Can delete family tag',35,'delete_familytag');
-INSERT INTO "auth_permission" VALUES(106,'Can add media tag',36,'add_mediatag');
-INSERT INTO "auth_permission" VALUES(107,'Can change media tag',36,'change_mediatag');
-INSERT INTO "auth_permission" VALUES(108,'Can delete media tag',36,'delete_mediatag');
-INSERT INTO "auth_permission" VALUES(109,'Can add note tag',37,'add_notetag');
-INSERT INTO "auth_permission" VALUES(110,'Can change note tag',37,'change_notetag');
-INSERT INTO "auth_permission" VALUES(111,'Can delete note tag',37,'delete_notetag');
-INSERT INTO "auth_permission" VALUES(112,'Can add person',38,'add_person');
-INSERT INTO "auth_permission" VALUES(113,'Can change person',38,'change_person');
-INSERT INTO "auth_permission" VALUES(114,'Can delete person',38,'delete_person');
-INSERT INTO "auth_permission" VALUES(115,'Can add family',39,'add_family');
-INSERT INTO "auth_permission" VALUES(116,'Can change family',39,'change_family');
-INSERT INTO "auth_permission" VALUES(117,'Can delete family',39,'delete_family');
-INSERT INTO "auth_permission" VALUES(118,'Can add citation',40,'add_citation');
-INSERT INTO "auth_permission" VALUES(119,'Can change citation',40,'change_citation');
-INSERT INTO "auth_permission" VALUES(120,'Can delete citation',40,'delete_citation');
-INSERT INTO "auth_permission" VALUES(121,'Can add source',41,'add_source');
-INSERT INTO "auth_permission" VALUES(122,'Can change source',41,'change_source');
-INSERT INTO "auth_permission" VALUES(123,'Can delete source',41,'delete_source');
-INSERT INTO "auth_permission" VALUES(124,'Can add event',42,'add_event');
-INSERT INTO "auth_permission" VALUES(125,'Can change event',42,'change_event');
-INSERT INTO "auth_permission" VALUES(126,'Can delete event',42,'delete_event');
-INSERT INTO "auth_permission" VALUES(127,'Can add repository',43,'add_repository');
-INSERT INTO "auth_permission" VALUES(128,'Can change repository',43,'change_repository');
-INSERT INTO "auth_permission" VALUES(129,'Can delete repository',43,'delete_repository');
-INSERT INTO "auth_permission" VALUES(130,'Can add place',44,'add_place');
-INSERT INTO "auth_permission" VALUES(131,'Can change place',44,'change_place');
-INSERT INTO "auth_permission" VALUES(132,'Can delete place',44,'delete_place');
-INSERT INTO "auth_permission" VALUES(133,'Can add media',45,'add_media');
-INSERT INTO "auth_permission" VALUES(134,'Can change media',45,'change_media');
-INSERT INTO "auth_permission" VALUES(135,'Can delete media',45,'delete_media');
-INSERT INTO "auth_permission" VALUES(136,'Can add note',46,'add_note');
-INSERT INTO "auth_permission" VALUES(137,'Can change note',46,'change_note');
-INSERT INTO "auth_permission" VALUES(138,'Can delete note',46,'delete_note');
-INSERT INTO "auth_permission" VALUES(139,'Can add surname',47,'add_surname');
-INSERT INTO "auth_permission" VALUES(140,'Can change surname',47,'change_surname');
-INSERT INTO "auth_permission" VALUES(141,'Can delete surname',47,'delete_surname');
-INSERT INTO "auth_permission" VALUES(142,'Can add name',48,'add_name');
-INSERT INTO "auth_permission" VALUES(143,'Can change name',48,'change_name');
-INSERT INTO "auth_permission" VALUES(144,'Can delete name',48,'delete_name');
-INSERT INTO "auth_permission" VALUES(145,'Can add lds',49,'add_lds');
-INSERT INTO "auth_permission" VALUES(146,'Can change lds',49,'change_lds');
-INSERT INTO "auth_permission" VALUES(147,'Can delete lds',49,'delete_lds');
-INSERT INTO "auth_permission" VALUES(148,'Can add markup',50,'add_markup');
-INSERT INTO "auth_permission" VALUES(149,'Can change markup',50,'change_markup');
-INSERT INTO "auth_permission" VALUES(150,'Can delete markup',50,'delete_markup');
-INSERT INTO "auth_permission" VALUES(151,'Can add source datamap',51,'add_sourcedatamap');
-INSERT INTO "auth_permission" VALUES(152,'Can change source datamap',51,'change_sourcedatamap');
-INSERT INTO "auth_permission" VALUES(153,'Can delete source datamap',51,'delete_sourcedatamap');
-INSERT INTO "auth_permission" VALUES(154,'Can add citation datamap',52,'add_citationdatamap');
-INSERT INTO "auth_permission" VALUES(155,'Can change citation datamap',52,'change_citationdatamap');
-INSERT INTO "auth_permission" VALUES(156,'Can delete citation datamap',52,'delete_citationdatamap');
-INSERT INTO "auth_permission" VALUES(157,'Can add address',53,'add_address');
-INSERT INTO "auth_permission" VALUES(158,'Can change address',53,'change_address');
-INSERT INTO "auth_permission" VALUES(159,'Can delete address',53,'delete_address');
-INSERT INTO "auth_permission" VALUES(160,'Can add location',54,'add_location');
-INSERT INTO "auth_permission" VALUES(161,'Can change location',54,'change_location');
-INSERT INTO "auth_permission" VALUES(162,'Can delete location',54,'delete_location');
-INSERT INTO "auth_permission" VALUES(163,'Can add url',55,'add_url');
-INSERT INTO "auth_permission" VALUES(164,'Can change url',55,'change_url');
-INSERT INTO "auth_permission" VALUES(165,'Can delete url',55,'delete_url');
-INSERT INTO "auth_permission" VALUES(166,'Can add attribute',56,'add_attribute');
-INSERT INTO "auth_permission" VALUES(167,'Can change attribute',56,'change_attribute');
-INSERT INTO "auth_permission" VALUES(168,'Can delete attribute',56,'delete_attribute');
-INSERT INTO "auth_permission" VALUES(169,'Can add log',57,'add_log');
-INSERT INTO "auth_permission" VALUES(170,'Can change log',57,'change_log');
-INSERT INTO "auth_permission" VALUES(171,'Can delete log',57,'delete_log');
-INSERT INTO "auth_permission" VALUES(172,'Can add note ref',58,'add_noteref');
-INSERT INTO "auth_permission" VALUES(173,'Can change note ref',58,'change_noteref');
-INSERT INTO "auth_permission" VALUES(174,'Can delete note ref',58,'delete_noteref');
-INSERT INTO "auth_permission" VALUES(175,'Can add event ref',59,'add_eventref');
-INSERT INTO "auth_permission" VALUES(176,'Can change event ref',59,'change_eventref');
-INSERT INTO "auth_permission" VALUES(177,'Can delete event ref',59,'delete_eventref');
-INSERT INTO "auth_permission" VALUES(178,'Can add repository ref',60,'add_repositoryref');
-INSERT INTO "auth_permission" VALUES(179,'Can change repository ref',60,'change_repositoryref');
-INSERT INTO "auth_permission" VALUES(180,'Can delete repository ref',60,'delete_repositoryref');
-INSERT INTO "auth_permission" VALUES(181,'Can add person ref',61,'add_personref');
-INSERT INTO "auth_permission" VALUES(182,'Can change person ref',61,'change_personref');
-INSERT INTO "auth_permission" VALUES(183,'Can delete person ref',61,'delete_personref');
-INSERT INTO "auth_permission" VALUES(184,'Can add citation ref',62,'add_citationref');
-INSERT INTO "auth_permission" VALUES(185,'Can change citation ref',62,'change_citationref');
-INSERT INTO "auth_permission" VALUES(186,'Can delete citation ref',62,'delete_citationref');
-INSERT INTO "auth_permission" VALUES(187,'Can add child ref',63,'add_childref');
-INSERT INTO "auth_permission" VALUES(188,'Can change child ref',63,'change_childref');
-INSERT INTO "auth_permission" VALUES(189,'Can delete child ref',63,'delete_childref');
-INSERT INTO "auth_permission" VALUES(190,'Can add media ref',64,'add_mediaref');
-INSERT INTO "auth_permission" VALUES(191,'Can change media ref',64,'change_mediaref');
-INSERT INTO "auth_permission" VALUES(192,'Can delete media ref',64,'delete_mediaref');
-INSERT INTO "auth_permission" VALUES(193,'Can add report',65,'add_report');
-INSERT INTO "auth_permission" VALUES(194,'Can change report',65,'change_report');
-INSERT INTO "auth_permission" VALUES(195,'Can delete report',65,'delete_report');
-INSERT INTO "auth_permission" VALUES(196,'Can add result',66,'add_result');
-INSERT INTO "auth_permission" VALUES(197,'Can change result',66,'change_result');
-INSERT INTO "auth_permission" VALUES(198,'Can delete result',66,'delete_result');
+INSERT INTO "auth_permission" VALUES(94,'Can add my families',32,'add_myfamilies');
+INSERT INTO "auth_permission" VALUES(95,'Can change my families',32,'change_myfamilies');
+INSERT INTO "auth_permission" VALUES(96,'Can delete my families',32,'delete_myfamilies');
+INSERT INTO "auth_permission" VALUES(97,'Can add my parent families',33,'add_myparentfamilies');
+INSERT INTO "auth_permission" VALUES(98,'Can change my parent families',33,'change_myparentfamilies');
+INSERT INTO "auth_permission" VALUES(99,'Can delete my parent families',33,'delete_myparentfamilies');
+INSERT INTO "auth_permission" VALUES(100,'Can add person',34,'add_person');
+INSERT INTO "auth_permission" VALUES(101,'Can change person',34,'change_person');
+INSERT INTO "auth_permission" VALUES(102,'Can delete person',34,'delete_person');
+INSERT INTO "auth_permission" VALUES(103,'Can add family',35,'add_family');
+INSERT INTO "auth_permission" VALUES(104,'Can change family',35,'change_family');
+INSERT INTO "auth_permission" VALUES(105,'Can delete family',35,'delete_family');
+INSERT INTO "auth_permission" VALUES(106,'Can add citation',36,'add_citation');
+INSERT INTO "auth_permission" VALUES(107,'Can change citation',36,'change_citation');
+INSERT INTO "auth_permission" VALUES(108,'Can delete citation',36,'delete_citation');
+INSERT INTO "auth_permission" VALUES(109,'Can add source',37,'add_source');
+INSERT INTO "auth_permission" VALUES(110,'Can change source',37,'change_source');
+INSERT INTO "auth_permission" VALUES(111,'Can delete source',37,'delete_source');
+INSERT INTO "auth_permission" VALUES(112,'Can add event',38,'add_event');
+INSERT INTO "auth_permission" VALUES(113,'Can change event',38,'change_event');
+INSERT INTO "auth_permission" VALUES(114,'Can delete event',38,'delete_event');
+INSERT INTO "auth_permission" VALUES(115,'Can add repository',39,'add_repository');
+INSERT INTO "auth_permission" VALUES(116,'Can change repository',39,'change_repository');
+INSERT INTO "auth_permission" VALUES(117,'Can delete repository',39,'delete_repository');
+INSERT INTO "auth_permission" VALUES(118,'Can add place',40,'add_place');
+INSERT INTO "auth_permission" VALUES(119,'Can change place',40,'change_place');
+INSERT INTO "auth_permission" VALUES(120,'Can delete place',40,'delete_place');
+INSERT INTO "auth_permission" VALUES(121,'Can add media',41,'add_media');
+INSERT INTO "auth_permission" VALUES(122,'Can change media',41,'change_media');
+INSERT INTO "auth_permission" VALUES(123,'Can delete media',41,'delete_media');
+INSERT INTO "auth_permission" VALUES(124,'Can add note',42,'add_note');
+INSERT INTO "auth_permission" VALUES(125,'Can change note',42,'change_note');
+INSERT INTO "auth_permission" VALUES(126,'Can delete note',42,'delete_note');
+INSERT INTO "auth_permission" VALUES(127,'Can add surname',43,'add_surname');
+INSERT INTO "auth_permission" VALUES(128,'Can change surname',43,'change_surname');
+INSERT INTO "auth_permission" VALUES(129,'Can delete surname',43,'delete_surname');
+INSERT INTO "auth_permission" VALUES(130,'Can add name',44,'add_name');
+INSERT INTO "auth_permission" VALUES(131,'Can change name',44,'change_name');
+INSERT INTO "auth_permission" VALUES(132,'Can delete name',44,'delete_name');
+INSERT INTO "auth_permission" VALUES(133,'Can add lds',45,'add_lds');
+INSERT INTO "auth_permission" VALUES(134,'Can change lds',45,'change_lds');
+INSERT INTO "auth_permission" VALUES(135,'Can delete lds',45,'delete_lds');
+INSERT INTO "auth_permission" VALUES(136,'Can add markup',46,'add_markup');
+INSERT INTO "auth_permission" VALUES(137,'Can change markup',46,'change_markup');
+INSERT INTO "auth_permission" VALUES(138,'Can delete markup',46,'delete_markup');
+INSERT INTO "auth_permission" VALUES(139,'Can add source datamap',47,'add_sourcedatamap');
+INSERT INTO "auth_permission" VALUES(140,'Can change source datamap',47,'change_sourcedatamap');
+INSERT INTO "auth_permission" VALUES(141,'Can delete source datamap',47,'delete_sourcedatamap');
+INSERT INTO "auth_permission" VALUES(142,'Can add citation datamap',48,'add_citationdatamap');
+INSERT INTO "auth_permission" VALUES(143,'Can change citation datamap',48,'change_citationdatamap');
+INSERT INTO "auth_permission" VALUES(144,'Can delete citation datamap',48,'delete_citationdatamap');
+INSERT INTO "auth_permission" VALUES(145,'Can add address',49,'add_address');
+INSERT INTO "auth_permission" VALUES(146,'Can change address',49,'change_address');
+INSERT INTO "auth_permission" VALUES(147,'Can delete address',49,'delete_address');
+INSERT INTO "auth_permission" VALUES(148,'Can add location',50,'add_location');
+INSERT INTO "auth_permission" VALUES(149,'Can change location',50,'change_location');
+INSERT INTO "auth_permission" VALUES(150,'Can delete location',50,'delete_location');
+INSERT INTO "auth_permission" VALUES(151,'Can add url',51,'add_url');
+INSERT INTO "auth_permission" VALUES(152,'Can change url',51,'change_url');
+INSERT INTO "auth_permission" VALUES(153,'Can delete url',51,'delete_url');
+INSERT INTO "auth_permission" VALUES(154,'Can add attribute',52,'add_attribute');
+INSERT INTO "auth_permission" VALUES(155,'Can change attribute',52,'change_attribute');
+INSERT INTO "auth_permission" VALUES(156,'Can delete attribute',52,'delete_attribute');
+INSERT INTO "auth_permission" VALUES(157,'Can add log',53,'add_log');
+INSERT INTO "auth_permission" VALUES(158,'Can change log',53,'change_log');
+INSERT INTO "auth_permission" VALUES(159,'Can delete log',53,'delete_log');
+INSERT INTO "auth_permission" VALUES(160,'Can add note ref',54,'add_noteref');
+INSERT INTO "auth_permission" VALUES(161,'Can change note ref',54,'change_noteref');
+INSERT INTO "auth_permission" VALUES(162,'Can delete note ref',54,'delete_noteref');
+INSERT INTO "auth_permission" VALUES(163,'Can add event ref',55,'add_eventref');
+INSERT INTO "auth_permission" VALUES(164,'Can change event ref',55,'change_eventref');
+INSERT INTO "auth_permission" VALUES(165,'Can delete event ref',55,'delete_eventref');
+INSERT INTO "auth_permission" VALUES(166,'Can add repository ref',56,'add_repositoryref');
+INSERT INTO "auth_permission" VALUES(167,'Can change repository ref',56,'change_repositoryref');
+INSERT INTO "auth_permission" VALUES(168,'Can delete repository ref',56,'delete_repositoryref');
+INSERT INTO "auth_permission" VALUES(169,'Can add person ref',57,'add_personref');
+INSERT INTO "auth_permission" VALUES(170,'Can change person ref',57,'change_personref');
+INSERT INTO "auth_permission" VALUES(171,'Can delete person ref',57,'delete_personref');
+INSERT INTO "auth_permission" VALUES(172,'Can add citation ref',58,'add_citationref');
+INSERT INTO "auth_permission" VALUES(173,'Can change citation ref',58,'change_citationref');
+INSERT INTO "auth_permission" VALUES(174,'Can delete citation ref',58,'delete_citationref');
+INSERT INTO "auth_permission" VALUES(175,'Can add child ref',59,'add_childref');
+INSERT INTO "auth_permission" VALUES(176,'Can change child ref',59,'change_childref');
+INSERT INTO "auth_permission" VALUES(177,'Can delete child ref',59,'delete_childref');
+INSERT INTO "auth_permission" VALUES(178,'Can add media ref',60,'add_mediaref');
+INSERT INTO "auth_permission" VALUES(179,'Can change media ref',60,'change_mediaref');
+INSERT INTO "auth_permission" VALUES(180,'Can delete media ref',60,'delete_mediaref');
+INSERT INTO "auth_permission" VALUES(181,'Can add report',61,'add_report');
+INSERT INTO "auth_permission" VALUES(182,'Can change report',61,'change_report');
+INSERT INTO "auth_permission" VALUES(183,'Can delete report',61,'delete_report');
+INSERT INTO "auth_permission" VALUES(184,'Can add result',62,'add_result');
+INSERT INTO "auth_permission" VALUES(185,'Can change result',62,'change_result');
+INSERT INTO "auth_permission" VALUES(186,'Can delete result',62,'delete_result');
 CREATE TABLE "auth_group_permissions" (
     "id" integer NOT NULL PRIMARY KEY,
     "group_id" integer NOT NULL,
@@ -240,8 +228,8 @@ CREATE TABLE "auth_user" (
     "last_login" datetime NOT NULL,
     "date_joined" datetime NOT NULL
 );
-INSERT INTO "auth_user" VALUES(1,'admin','','','bugs@gramps-project.org','sha1$79844$2e75313e057aa61a683a05fd30873de252a22b14',1,1,1,'2012-07-27 01:29:11.642056','2012-07-27 01:29:11.642056');
-INSERT INTO "auth_user" VALUES(2,'admin1','','','bugs@gramps-project.org','sha1$7c119$6f386d33297d05700ccd580db301bba00027b3c0',1,1,1,'2012-07-27 01:29:16.458202','2012-07-27 01:29:16.458202');
+INSERT INTO "auth_user" VALUES(1,'admin','','','bugs@gramps-project.org','sha1$0aac2$c94ddc40e2dfd41bd5453230a3e53a6a925572b2',1,1,1,'2012-07-28 09:32:02.407417','2012-07-28 09:32:02.407417');
+INSERT INTO "auth_user" VALUES(2,'admin1','','','bugs@gramps-project.org','sha1$887ff$3829f603618766d49287f3b98b036d6b06c3f440',1,1,1,'2012-07-28 09:32:07.068033','2012-07-28 09:32:07.068033');
 CREATE TABLE "auth_message" (
     "id" integer NOT NULL PRIMARY KEY,
     "user_id" integer NOT NULL REFERENCES "auth_user" ("id"),
@@ -285,41 +273,37 @@ INSERT INTO "django_content_type" VALUES(28,'date new year type','grampsdb','dat
 INSERT INTO "django_content_type" VALUES(29,'theme type','grampsdb','themetype');
 INSERT INTO "django_content_type" VALUES(30,'config','grampsdb','config');
 INSERT INTO "django_content_type" VALUES(31,'tag','grampsdb','tag');
-INSERT INTO "django_content_type" VALUES(32,'person family order','grampsdb','personfamilyorder');
-INSERT INTO "django_content_type" VALUES(33,'person parent family order','grampsdb','personparentfamilyorder');
-INSERT INTO "django_content_type" VALUES(34,'person tag','grampsdb','persontag');
-INSERT INTO "django_content_type" VALUES(35,'family tag','grampsdb','familytag');
-INSERT INTO "django_content_type" VALUES(36,'media tag','grampsdb','mediatag');
-INSERT INTO "django_content_type" VALUES(37,'note tag','grampsdb','notetag');
-INSERT INTO "django_content_type" VALUES(38,'person','grampsdb','person');
-INSERT INTO "django_content_type" VALUES(39,'family','grampsdb','family');
-INSERT INTO "django_content_type" VALUES(40,'citation','grampsdb','citation');
-INSERT INTO "django_content_type" VALUES(41,'source','grampsdb','source');
-INSERT INTO "django_content_type" VALUES(42,'event','grampsdb','event');
-INSERT INTO "django_content_type" VALUES(43,'repository','grampsdb','repository');
-INSERT INTO "django_content_type" VALUES(44,'place','grampsdb','place');
-INSERT INTO "django_content_type" VALUES(45,'media','grampsdb','media');
-INSERT INTO "django_content_type" VALUES(46,'note','grampsdb','note');
-INSERT INTO "django_content_type" VALUES(47,'surname','grampsdb','surname');
-INSERT INTO "django_content_type" VALUES(48,'name','grampsdb','name');
-INSERT INTO "django_content_type" VALUES(49,'lds','grampsdb','lds');
-INSERT INTO "django_content_type" VALUES(50,'markup','grampsdb','markup');
-INSERT INTO "django_content_type" VALUES(51,'source datamap','grampsdb','sourcedatamap');
-INSERT INTO "django_content_type" VALUES(52,'citation datamap','grampsdb','citationdatamap');
-INSERT INTO "django_content_type" VALUES(53,'address','grampsdb','address');
-INSERT INTO "django_content_type" VALUES(54,'location','grampsdb','location');
-INSERT INTO "django_content_type" VALUES(55,'url','grampsdb','url');
-INSERT INTO "django_content_type" VALUES(56,'attribute','grampsdb','attribute');
-INSERT INTO "django_content_type" VALUES(57,'log','grampsdb','log');
-INSERT INTO "django_content_type" VALUES(58,'note ref','grampsdb','noteref');
-INSERT INTO "django_content_type" VALUES(59,'event ref','grampsdb','eventref');
-INSERT INTO "django_content_type" VALUES(60,'repository ref','grampsdb','repositoryref');
-INSERT INTO "django_content_type" VALUES(61,'person ref','grampsdb','personref');
-INSERT INTO "django_content_type" VALUES(62,'citation ref','grampsdb','citationref');
-INSERT INTO "django_content_type" VALUES(63,'child ref','grampsdb','childref');
-INSERT INTO "django_content_type" VALUES(64,'media ref','grampsdb','mediaref');
-INSERT INTO "django_content_type" VALUES(65,'report','grampsdb','report');
-INSERT INTO "django_content_type" VALUES(66,'result','grampsdb','result');
+INSERT INTO "django_content_type" VALUES(32,'my families','grampsdb','myfamilies');
+INSERT INTO "django_content_type" VALUES(33,'my parent families','grampsdb','myparentfamilies');
+INSERT INTO "django_content_type" VALUES(34,'person','grampsdb','person');
+INSERT INTO "django_content_type" VALUES(35,'family','grampsdb','family');
+INSERT INTO "django_content_type" VALUES(36,'citation','grampsdb','citation');
+INSERT INTO "django_content_type" VALUES(37,'source','grampsdb','source');
+INSERT INTO "django_content_type" VALUES(38,'event','grampsdb','event');
+INSERT INTO "django_content_type" VALUES(39,'repository','grampsdb','repository');
+INSERT INTO "django_content_type" VALUES(40,'place','grampsdb','place');
+INSERT INTO "django_content_type" VALUES(41,'media','grampsdb','media');
+INSERT INTO "django_content_type" VALUES(42,'note','grampsdb','note');
+INSERT INTO "django_content_type" VALUES(43,'surname','grampsdb','surname');
+INSERT INTO "django_content_type" VALUES(44,'name','grampsdb','name');
+INSERT INTO "django_content_type" VALUES(45,'lds','grampsdb','lds');
+INSERT INTO "django_content_type" VALUES(46,'markup','grampsdb','markup');
+INSERT INTO "django_content_type" VALUES(47,'source datamap','grampsdb','sourcedatamap');
+INSERT INTO "django_content_type" VALUES(48,'citation datamap','grampsdb','citationdatamap');
+INSERT INTO "django_content_type" VALUES(49,'address','grampsdb','address');
+INSERT INTO "django_content_type" VALUES(50,'location','grampsdb','location');
+INSERT INTO "django_content_type" VALUES(51,'url','grampsdb','url');
+INSERT INTO "django_content_type" VALUES(52,'attribute','grampsdb','attribute');
+INSERT INTO "django_content_type" VALUES(53,'log','grampsdb','log');
+INSERT INTO "django_content_type" VALUES(54,'note ref','grampsdb','noteref');
+INSERT INTO "django_content_type" VALUES(55,'event ref','grampsdb','eventref');
+INSERT INTO "django_content_type" VALUES(56,'repository ref','grampsdb','repositoryref');
+INSERT INTO "django_content_type" VALUES(57,'person ref','grampsdb','personref');
+INSERT INTO "django_content_type" VALUES(58,'citation ref','grampsdb','citationref');
+INSERT INTO "django_content_type" VALUES(59,'child ref','grampsdb','childref');
+INSERT INTO "django_content_type" VALUES(60,'media ref','grampsdb','mediaref');
+INSERT INTO "django_content_type" VALUES(61,'report','grampsdb','report');
+INSERT INTO "django_content_type" VALUES(62,'result','grampsdb','result');
 CREATE TABLE "django_session" (
     "session_key" varchar(40) NOT NULL PRIMARY KEY,
     "session_data" text NOT NULL,
@@ -664,7 +648,7 @@ CREATE TABLE "grampsdb_config" (
 );
 INSERT INTO "grampsdb_config" VALUES(1,'sitename','site name of family tree','str','Gramps-Connect');
 INSERT INTO "grampsdb_config" VALUES(2,'db_version','database scheme version','str','0.6.1');
-INSERT INTO "grampsdb_config" VALUES(3,'db_created','database creation date/time','str','2012-07-27 01:28');
+INSERT INTO "grampsdb_config" VALUES(3,'db_created','database creation date/time','str','2012-07-28 09:30');
 INSERT INTO "grampsdb_config" VALUES(4,'htmlview.url-handler',NULL,'bool','False');
 INSERT INTO "grampsdb_config" VALUES(5,'htmlview.start-url',NULL,'str','http://gramps-project.org');
 INSERT INTO "grampsdb_config" VALUES(6,'paths.recent-export-dir',NULL,'str','');
@@ -768,7 +752,7 @@ INSERT INTO "grampsdb_config" VALUES(103,'interface.edit-rule-height',NULL,'int'
 INSERT INTO "grampsdb_config" VALUES(104,'interface.place-width',NULL,'int','650');
 INSERT INTO "grampsdb_config" VALUES(105,'interface.place-height',NULL,'int','450');
 INSERT INTO "grampsdb_config" VALUES(106,'interface.source-ref-width',NULL,'int','600');
-INSERT INTO "grampsdb_config" VALUES(107,'interface.repo-height',NULL,'int','450');
+INSERT INTO "grampsdb_config" VALUES(107,'interface.view',NULL,'bool','True');
 INSERT INTO "grampsdb_config" VALUES(108,'interface.source-sel-height',NULL,'int','450');
 INSERT INTO "grampsdb_config" VALUES(109,'interface.clipboard-height',NULL,'int','300');
 INSERT INTO "grampsdb_config" VALUES(110,'interface.fullscreen',NULL,'bool','False');
@@ -785,7 +769,7 @@ INSERT INTO "grampsdb_config" VALUES(120,'interface.name-width',NULL,'int','600'
 INSERT INTO "grampsdb_config" VALUES(121,'interface.event-sel-height',NULL,'int','450');
 INSERT INTO "grampsdb_config" VALUES(122,'interface.child-ref-height',NULL,'int','450');
 INSERT INTO "grampsdb_config" VALUES(123,'interface.filter',NULL,'bool','False');
-INSERT INTO "grampsdb_config" VALUES(124,'interface.view',NULL,'bool','True');
+INSERT INTO "grampsdb_config" VALUES(124,'interface.repo-height',NULL,'int','450');
 INSERT INTO "grampsdb_config" VALUES(125,'interface.media-ref-height',NULL,'int','450');
 INSERT INTO "grampsdb_config" VALUES(126,'interface.family-sel-height',NULL,'int','450');
 INSERT INTO "grampsdb_config" VALUES(127,'interface.pedview-show-marriage',NULL,'bool','False');
@@ -853,41 +837,23 @@ CREATE TABLE "grampsdb_tag" (
     "color" varchar(13),
     "priority" integer
 );
-CREATE TABLE "grampsdb_personfamilyorder" (
+CREATE TABLE "grampsdb_myfamilies" (
     "id" integer NOT NULL PRIMARY KEY,
     "person_id" integer NOT NULL,
     "family_id" integer NOT NULL,
     "order" integer unsigned NOT NULL
 );
-CREATE TABLE "grampsdb_personparentfamilyorder" (
+CREATE TABLE "grampsdb_myparentfamilies" (
     "id" integer NOT NULL PRIMARY KEY,
     "person_id" integer NOT NULL,
     "family_id" integer NOT NULL,
     "order" integer unsigned NOT NULL
 );
-CREATE TABLE "grampsdb_persontag" (
+CREATE TABLE "grampsdb_person_tags" (
     "id" integer NOT NULL PRIMARY KEY,
     "person_id" integer NOT NULL,
     "tag_id" integer NOT NULL REFERENCES "grampsdb_tag" ("id"),
-    "order" integer unsigned NOT NULL
-);
-CREATE TABLE "grampsdb_familytag" (
-    "id" integer NOT NULL PRIMARY KEY,
-    "family_id" integer NOT NULL,
-    "tag_id" integer NOT NULL REFERENCES "grampsdb_tag" ("id"),
-    "order" integer unsigned NOT NULL
-);
-CREATE TABLE "grampsdb_mediatag" (
-    "id" integer NOT NULL PRIMARY KEY,
-    "media_id" integer NOT NULL,
-    "tag_id" integer NOT NULL REFERENCES "grampsdb_tag" ("id"),
-    "order" integer unsigned NOT NULL
-);
-CREATE TABLE "grampsdb_notetag" (
-    "id" integer NOT NULL PRIMARY KEY,
-    "note_id" integer NOT NULL,
-    "tag_id" integer NOT NULL REFERENCES "grampsdb_tag" ("id"),
-    "order" integer unsigned NOT NULL
+    UNIQUE ("person_id", "tag_id")
 );
 CREATE TABLE "grampsdb_person" (
     "id" integer NOT NULL PRIMARY KEY,
@@ -904,6 +870,12 @@ CREATE TABLE "grampsdb_person" (
     "death_id" integer,
     "birth_ref_index" integer NOT NULL,
     "death_ref_index" integer NOT NULL
+);
+CREATE TABLE "grampsdb_family_tags" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "family_id" integer NOT NULL,
+    "tag_id" integer NOT NULL REFERENCES "grampsdb_tag" ("id"),
+    UNIQUE ("family_id", "tag_id")
 );
 CREATE TABLE "grampsdb_family" (
     "id" integer NOT NULL PRIMARY KEY,
@@ -1011,6 +983,12 @@ CREATE TABLE "grampsdb_place" (
     "long" text NOT NULL,
     "lat" text NOT NULL
 );
+CREATE TABLE "grampsdb_media_tags" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "media_id" integer NOT NULL,
+    "tag_id" integer NOT NULL REFERENCES "grampsdb_tag" ("id"),
+    UNIQUE ("media_id", "tag_id")
+);
 CREATE TABLE "grampsdb_media" (
     "calendar" integer NOT NULL,
     "modifier" integer NOT NULL,
@@ -1037,6 +1015,12 @@ CREATE TABLE "grampsdb_media" (
     "path" text NOT NULL,
     "mime" text,
     "desc" text NOT NULL
+);
+CREATE TABLE "grampsdb_note_tags" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "note_id" integer NOT NULL,
+    "tag_id" integer NOT NULL REFERENCES "grampsdb_tag" ("id"),
+    UNIQUE ("note_id", "tag_id")
 );
 CREATE TABLE "grampsdb_note" (
     "id" integer NOT NULL PRIMARY KEY,
@@ -1345,84 +1329,84 @@ CREATE INDEX grampsdb_eventref_object_id_object_type_id
        ON grampsdb_eventref (object_id, object_type_id);
 CREATE INDEX grampsdb_childref_object_id_object_type_id 
        ON grampsdb_childref (object_id, object_type_id);
-CREATE INDEX "auth_permission_1bb8f392" ON "auth_permission" ("content_type_id");
-CREATE INDEX "auth_group_permissions_425ae3c4" ON "auth_group_permissions" ("group_id");
+CREATE INDEX "auth_permission_e4470c6e" ON "auth_permission" ("content_type_id");
+CREATE INDEX "auth_group_permissions_bda51c3c" ON "auth_group_permissions" ("group_id");
 CREATE INDEX "auth_group_permissions_1e014c8f" ON "auth_group_permissions" ("permission_id");
-CREATE INDEX "auth_user_user_permissions_403f60f" ON "auth_user_user_permissions" ("user_id");
+CREATE INDEX "auth_user_user_permissions_fbfc09f1" ON "auth_user_user_permissions" ("user_id");
 CREATE INDEX "auth_user_user_permissions_1e014c8f" ON "auth_user_user_permissions" ("permission_id");
-CREATE INDEX "auth_user_groups_403f60f" ON "auth_user_groups" ("user_id");
-CREATE INDEX "auth_user_groups_425ae3c4" ON "auth_user_groups" ("group_id");
-CREATE INDEX "auth_message_403f60f" ON "auth_message" ("user_id");
-CREATE INDEX "django_session_3da3d3d8" ON "django_session" ("expire_date");
-CREATE INDEX "django_admin_log_403f60f" ON "django_admin_log" ("user_id");
-CREATE INDEX "django_admin_log_1bb8f392" ON "django_admin_log" ("content_type_id");
+CREATE INDEX "auth_user_groups_fbfc09f1" ON "auth_user_groups" ("user_id");
+CREATE INDEX "auth_user_groups_bda51c3c" ON "auth_user_groups" ("group_id");
+CREATE INDEX "auth_message_fbfc09f1" ON "auth_message" ("user_id");
+CREATE INDEX "django_session_c25c2c28" ON "django_session" ("expire_date");
+CREATE INDEX "django_admin_log_fbfc09f1" ON "django_admin_log" ("user_id");
+CREATE INDEX "django_admin_log_e4470c6e" ON "django_admin_log" ("content_type_id");
 CREATE INDEX "grampsdb_profile_71d2bf68" ON "grampsdb_profile" ("theme_type_id");
-CREATE INDEX "grampsdb_personfamilyorder_21b911c5" ON "grampsdb_personfamilyorder" ("person_id");
-CREATE INDEX "grampsdb_personfamilyorder_330df8aa" ON "grampsdb_personfamilyorder" ("family_id");
-CREATE INDEX "grampsdb_personparentfamilyorder_21b911c5" ON "grampsdb_personparentfamilyorder" ("person_id");
-CREATE INDEX "grampsdb_personparentfamilyorder_330df8aa" ON "grampsdb_personparentfamilyorder" ("family_id");
-CREATE INDEX "grampsdb_persontag_21b911c5" ON "grampsdb_persontag" ("person_id");
-CREATE INDEX "grampsdb_persontag_3747b463" ON "grampsdb_persontag" ("tag_id");
-CREATE INDEX "grampsdb_familytag_330df8aa" ON "grampsdb_familytag" ("family_id");
-CREATE INDEX "grampsdb_familytag_3747b463" ON "grampsdb_familytag" ("tag_id");
-CREATE INDEX "grampsdb_mediatag_11f50c51" ON "grampsdb_mediatag" ("media_id");
-CREATE INDEX "grampsdb_mediatag_3747b463" ON "grampsdb_mediatag" ("tag_id");
-CREATE INDEX "grampsdb_notetag_14a186ec" ON "grampsdb_notetag" ("note_id");
-CREATE INDEX "grampsdb_notetag_3747b463" ON "grampsdb_notetag" ("tag_id");
+CREATE INDEX "grampsdb_myfamilies_21b911c5" ON "grampsdb_myfamilies" ("person_id");
+CREATE INDEX "grampsdb_myfamilies_ccf20756" ON "grampsdb_myfamilies" ("family_id");
+CREATE INDEX "grampsdb_myparentfamilies_21b911c5" ON "grampsdb_myparentfamilies" ("person_id");
+CREATE INDEX "grampsdb_myparentfamilies_ccf20756" ON "grampsdb_myparentfamilies" ("family_id");
+CREATE INDEX "grampsdb_person_tags_21b911c5" ON "grampsdb_person_tags" ("person_id");
+CREATE INDEX "grampsdb_person_tags_3747b463" ON "grampsdb_person_tags" ("tag_id");
 CREATE INDEX "grampsdb_person_79775e9" ON "grampsdb_person" ("gender_type_id");
 CREATE INDEX "grampsdb_person_3a672176" ON "grampsdb_person" ("birth_id");
-CREATE INDEX "grampsdb_person_bf9c6d5" ON "grampsdb_person" ("death_id");
+CREATE INDEX "grampsdb_person_f406392b" ON "grampsdb_person" ("death_id");
+CREATE INDEX "grampsdb_family_tags_ccf20756" ON "grampsdb_family_tags" ("family_id");
+CREATE INDEX "grampsdb_family_tags_3747b463" ON "grampsdb_family_tags" ("tag_id");
 CREATE INDEX "grampsdb_family_656bfb9c" ON "grampsdb_family" ("father_id");
 CREATE INDEX "grampsdb_family_3800eb51" ON "grampsdb_family" ("mother_id");
-CREATE INDEX "grampsdb_family_75e9c8a0" ON "grampsdb_family" ("family_rel_type_id");
-CREATE INDEX "grampsdb_citation_7607617b" ON "grampsdb_citation" ("source_id");
-CREATE INDEX "grampsdb_event_349f2f81" ON "grampsdb_event" ("event_type_id");
-CREATE INDEX "grampsdb_event_3bc6e294" ON "grampsdb_event" ("place_id");
+CREATE INDEX "grampsdb_family_8a163760" ON "grampsdb_family" ("family_rel_type_id");
+CREATE INDEX "grampsdb_citation_89f89e85" ON "grampsdb_citation" ("source_id");
+CREATE INDEX "grampsdb_event_cb60d07f" ON "grampsdb_event" ("event_type_id");
+CREATE INDEX "grampsdb_event_c4391d6c" ON "grampsdb_event" ("place_id");
 CREATE INDEX "grampsdb_repository_5f9de118" ON "grampsdb_repository" ("repository_type_id");
-CREATE INDEX "grampsdb_note_71afbcea" ON "grampsdb_note" ("note_type_id");
+CREATE INDEX "grampsdb_media_tags_11f50c51" ON "grampsdb_media_tags" ("media_id");
+CREATE INDEX "grampsdb_media_tags_3747b463" ON "grampsdb_media_tags" ("tag_id");
+CREATE INDEX "grampsdb_note_tags_14a186ec" ON "grampsdb_note_tags" ("note_id");
+CREATE INDEX "grampsdb_note_tags_3747b463" ON "grampsdb_note_tags" ("tag_id");
+CREATE INDEX "grampsdb_note_8e504316" ON "grampsdb_note" ("note_type_id");
 CREATE INDEX "grampsdb_surname_5489fd8b" ON "grampsdb_surname" ("name_origin_type_id");
 CREATE INDEX "grampsdb_surname_632e075f" ON "grampsdb_surname" ("name_id");
-CREATE INDEX "grampsdb_name_442d7f4b" ON "grampsdb_name" ("name_type_id");
-CREATE INDEX "grampsdb_name_50fec5b8" ON "grampsdb_name" ("sort_as_id");
-CREATE INDEX "grampsdb_name_a2b2fd7" ON "grampsdb_name" ("display_as_id");
+CREATE INDEX "grampsdb_name_bbd280b5" ON "grampsdb_name" ("name_type_id");
+CREATE INDEX "grampsdb_name_af013a48" ON "grampsdb_name" ("sort_as_id");
+CREATE INDEX "grampsdb_name_f5d4d029" ON "grampsdb_name" ("display_as_id");
 CREATE INDEX "grampsdb_name_21b911c5" ON "grampsdb_name" ("person_id");
-CREATE INDEX "grampsdb_lds_563aeca2" ON "grampsdb_lds" ("lds_type_id");
-CREATE INDEX "grampsdb_lds_3bc6e294" ON "grampsdb_lds" ("place_id");
+CREATE INDEX "grampsdb_lds_a9c5135e" ON "grampsdb_lds" ("lds_type_id");
+CREATE INDEX "grampsdb_lds_c4391d6c" ON "grampsdb_lds" ("place_id");
 CREATE INDEX "grampsdb_lds_5934a803" ON "grampsdb_lds" ("famc_id");
 CREATE INDEX "grampsdb_lds_44224078" ON "grampsdb_lds" ("status_id");
 CREATE INDEX "grampsdb_lds_21b911c5" ON "grampsdb_lds" ("person_id");
-CREATE INDEX "grampsdb_lds_330df8aa" ON "grampsdb_lds" ("family_id");
+CREATE INDEX "grampsdb_lds_ccf20756" ON "grampsdb_lds" ("family_id");
 CREATE INDEX "grampsdb_markup_14a186ec" ON "grampsdb_markup" ("note_id");
-CREATE INDEX "grampsdb_markup_46e39021" ON "grampsdb_markup" ("styled_text_tag_type_id");
-CREATE INDEX "grampsdb_sourcedatamap_7607617b" ON "grampsdb_sourcedatamap" ("source_id");
-CREATE INDEX "grampsdb_citationdatamap_6a711303" ON "grampsdb_citationdatamap" ("citation_id");
+CREATE INDEX "grampsdb_markup_b91c6fdf" ON "grampsdb_markup" ("styled_text_tag_type_id");
+CREATE INDEX "grampsdb_sourcedatamap_89f89e85" ON "grampsdb_sourcedatamap" ("source_id");
+CREATE INDEX "grampsdb_citationdatamap_958eecfd" ON "grampsdb_citationdatamap" ("citation_id");
 CREATE INDEX "grampsdb_address_21b911c5" ON "grampsdb_address" ("person_id");
 CREATE INDEX "grampsdb_address_6a730446" ON "grampsdb_address" ("repository_id");
-CREATE INDEX "grampsdb_location_3bc6e294" ON "grampsdb_location" ("place_id");
-CREATE INDEX "grampsdb_location_4dec3e17" ON "grampsdb_location" ("address_id");
-CREATE INDEX "grampsdb_url_69aa47aa" ON "grampsdb_url" ("url_type_id");
+CREATE INDEX "grampsdb_location_c4391d6c" ON "grampsdb_location" ("place_id");
+CREATE INDEX "grampsdb_location_b213c1e9" ON "grampsdb_location" ("address_id");
+CREATE INDEX "grampsdb_url_9655b856" ON "grampsdb_url" ("url_type_id");
 CREATE INDEX "grampsdb_url_21b911c5" ON "grampsdb_url" ("person_id");
-CREATE INDEX "grampsdb_url_3bc6e294" ON "grampsdb_url" ("place_id");
+CREATE INDEX "grampsdb_url_c4391d6c" ON "grampsdb_url" ("place_id");
 CREATE INDEX "grampsdb_url_6a730446" ON "grampsdb_url" ("repository_id");
-CREATE INDEX "grampsdb_attribute_13db1433" ON "grampsdb_attribute" ("attribute_type_id");
-CREATE INDEX "grampsdb_attribute_518e5aa5" ON "grampsdb_attribute" ("object_type_id");
-CREATE INDEX "grampsdb_log_518e5aa5" ON "grampsdb_log" ("object_type_id");
-CREATE INDEX "grampsdb_noteref_518e5aa5" ON "grampsdb_noteref" ("object_type_id");
-CREATE INDEX "grampsdb_noteref_27acd269" ON "grampsdb_noteref" ("ref_object_id");
-CREATE INDEX "grampsdb_eventref_518e5aa5" ON "grampsdb_eventref" ("object_type_id");
-CREATE INDEX "grampsdb_eventref_27acd269" ON "grampsdb_eventref" ("ref_object_id");
+CREATE INDEX "grampsdb_attribute_ec24ebcd" ON "grampsdb_attribute" ("attribute_type_id");
+CREATE INDEX "grampsdb_attribute_ae71a55b" ON "grampsdb_attribute" ("object_type_id");
+CREATE INDEX "grampsdb_log_ae71a55b" ON "grampsdb_log" ("object_type_id");
+CREATE INDEX "grampsdb_noteref_ae71a55b" ON "grampsdb_noteref" ("object_type_id");
+CREATE INDEX "grampsdb_noteref_d8532d97" ON "grampsdb_noteref" ("ref_object_id");
+CREATE INDEX "grampsdb_eventref_ae71a55b" ON "grampsdb_eventref" ("object_type_id");
+CREATE INDEX "grampsdb_eventref_d8532d97" ON "grampsdb_eventref" ("ref_object_id");
 CREATE INDEX "grampsdb_eventref_6ae08856" ON "grampsdb_eventref" ("role_type_id");
-CREATE INDEX "grampsdb_repositoryref_518e5aa5" ON "grampsdb_repositoryref" ("object_type_id");
-CREATE INDEX "grampsdb_repositoryref_27acd269" ON "grampsdb_repositoryref" ("ref_object_id");
+CREATE INDEX "grampsdb_repositoryref_ae71a55b" ON "grampsdb_repositoryref" ("object_type_id");
+CREATE INDEX "grampsdb_repositoryref_d8532d97" ON "grampsdb_repositoryref" ("ref_object_id");
 CREATE INDEX "grampsdb_repositoryref_4fd76720" ON "grampsdb_repositoryref" ("source_media_type_id");
-CREATE INDEX "grampsdb_personref_518e5aa5" ON "grampsdb_personref" ("object_type_id");
-CREATE INDEX "grampsdb_personref_27acd269" ON "grampsdb_personref" ("ref_object_id");
-CREATE INDEX "grampsdb_citationref_518e5aa5" ON "grampsdb_citationref" ("object_type_id");
-CREATE INDEX "grampsdb_citationref_6a711303" ON "grampsdb_citationref" ("citation_id");
-CREATE INDEX "grampsdb_childref_518e5aa5" ON "grampsdb_childref" ("object_type_id");
+CREATE INDEX "grampsdb_personref_ae71a55b" ON "grampsdb_personref" ("object_type_id");
+CREATE INDEX "grampsdb_personref_d8532d97" ON "grampsdb_personref" ("ref_object_id");
+CREATE INDEX "grampsdb_citationref_ae71a55b" ON "grampsdb_citationref" ("object_type_id");
+CREATE INDEX "grampsdb_citationref_958eecfd" ON "grampsdb_citationref" ("citation_id");
+CREATE INDEX "grampsdb_childref_ae71a55b" ON "grampsdb_childref" ("object_type_id");
 CREATE INDEX "grampsdb_childref_6f3234de" ON "grampsdb_childref" ("father_rel_type_id");
-CREATE INDEX "grampsdb_childref_216a8ffd" ON "grampsdb_childref" ("mother_rel_type_id");
-CREATE INDEX "grampsdb_childref_27acd269" ON "grampsdb_childref" ("ref_object_id");
-CREATE INDEX "grampsdb_mediaref_518e5aa5" ON "grampsdb_mediaref" ("object_type_id");
-CREATE INDEX "grampsdb_mediaref_27acd269" ON "grampsdb_mediaref" ("ref_object_id");
+CREATE INDEX "grampsdb_childref_de957003" ON "grampsdb_childref" ("mother_rel_type_id");
+CREATE INDEX "grampsdb_childref_d8532d97" ON "grampsdb_childref" ("ref_object_id");
+CREATE INDEX "grampsdb_mediaref_ae71a55b" ON "grampsdb_mediaref" ("object_type_id");
+CREATE INDEX "grampsdb_mediaref_d8532d97" ON "grampsdb_mediaref" ("ref_object_id");
 COMMIT;
