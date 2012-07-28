@@ -118,22 +118,19 @@ class PatchNames(tool.BatchTool, ManagedWindow):
         
         winprefix.vbox.set_spacing(5)
         hboxpref = Gtk.HBox()
-        hboxpref.pack_start(Gtk.Label(_('Prefixes to search for:', True, True, 0)), 
-                            expand=False, padding=5)
+        hboxpref.pack_start(Gtk.Label(_('Prefixes to search for:')), False, False, 5)
         self.prefixbox = Gtk.Entry()
         self.prefixbox.set_text(', '.join(PREFIX_LIST))
         hboxpref.pack_start(self.prefixbox, True, True, 0)
         winprefix.vbox.pack_start(hboxpref, True, True, 0)
         hboxcon = Gtk.HBox()
-        hboxcon.pack_start(Gtk.Label(_('Connectors splitting surnames:', True, True, 0)), 
-                           expand=False, padding=5)
+        hboxcon.pack_start(Gtk.Label(_('Connectors splitting surnames:')), False, False, 5)
         self.conbox = Gtk.Entry()
         self.conbox.set_text(', '.join(CONNECTOR_LIST))
         hboxcon.pack_start(self.conbox, True, True, 0)
         winprefix.vbox.pack_start(hboxcon, True, True, 0)
         hboxconns = Gtk.HBox()
-        hboxconns.pack_start(Gtk.Label(_('Connectors not splitting surnames:', True, True, 0)), 
-                           expand=False, padding=5)
+        hboxconns.pack_start(Gtk.Label(_('Connectors not splitting surnames:')), False, False, 5)
         self.connsbox = Gtk.Entry()
         self.connsbox.set_text(', '.join(CONNECTOR_LIST_NONSPLIT))
         hboxconns.pack_start(self.connsbox, True, True, 0)
