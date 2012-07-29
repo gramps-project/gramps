@@ -34,8 +34,10 @@ The following packages are *STRONGLY RECOMMENDED* to be installed:
                     Obtain it from: http://tilloy.net/dev/pyexiv2/download.html  
 
 The following packages are optional
-   python gtkspell  Enable spell checking in the notes, gtkspell contains the
-                    libraries.
+   gtkspell         Enable spell checking in the notes. Gtkspell depends on 
+                    enchant. A version of gtkspell with gobject introspection
+                    is needed (if not the official yet, use
+                    https://github.com/manisandro/gtkspell3/tree/changes/gtkspell)
 
    ttf-freefont     More font support in the reports
 
