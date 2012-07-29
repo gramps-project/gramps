@@ -282,7 +282,7 @@ class RecurseDown():
                 # Just print a reference
                 spouse = self.database.get_person_from_handle(spouse_handle)
                 self.objPrint.print_reference(level, spouse,
-                        self.person_printed[person_handle])
+                        self.person_printed[spouse_handle])
             else:
                 self.objPrint.print_spouse(level, spouse_handle, family)
 
