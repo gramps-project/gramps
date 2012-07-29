@@ -51,7 +51,7 @@ LOG = logging.getLogger(".Spell")
 from gi.repository import Gtk
 
 try:
-    import gtkspell
+    from gi.repository import Gtkspell
     HAVE_GTKSPELL = True
 except ImportError:
     HAVE_GTKSPELL = False
@@ -100,19 +100,21 @@ class Spell(object):
                 return
             else:
                 try:
-                    gtkspell_spell = gtkspell.Spell(self.textview)
+                    #transfer full GTK object, so assign to an attribute!
+                    self.gtkspell_spell = Gtkspell.Spell.new()
+                    success = self.gtkspell_spell.attach(self.textview)
                     self._active_spellcheck = spellcheck_code
                 except:
                     # attaching the spellchecker will fail if
                     # the language does not exist
                     # and presumably if there is no dictionary
-                    pass
+                    LOG.warn(_("Spelling checker could not be attached to TextView"))
         else:
             if spellcheck_code == 'on':
                 return
             else:
-                gtkspell_spell = gtkspell.get_from_text_view(self.textview)
-                gtkspell_spell.detach()
+                self.gtkspell_spell = Gtkspell.Spell.get_from_text_view(self.textview)
+                self.gtkspell_spell.detach()
                 self._active_spellcheck = spellcheck_code
 
     # Public API
@@ -120,7 +122,7 @@ class Spell(object):
     def get_all_spellchecks(self):
         """Get the list of installed spellcheck names."""
         return self._spellcheck_options.values()
-    
+
     def set_active_spellcheck(self, spellcheck):
         """Set active spellcheck by it's name."""
         for code, name in self._spellcheck_options.items():
@@ -131,4 +133,3 @@ class Spell(object):
     def get_active_spellcheck(self):
         """Get the name of the active spellcheck."""
         return self._spellcheck_options[self._active_spellcheck]
-
