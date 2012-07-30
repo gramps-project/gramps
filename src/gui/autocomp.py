@@ -50,7 +50,7 @@ def fill_combo(combo, data_list):
             store.append(row=[data])
     
     combo.set_model(store)
-    combo.set_text_column(0)
+    combo.set_entry_text_column(0)
     completion = Gtk.EntryCompletion()
     completion.set_model(store)
     completion.set_minimum_key_length(1)

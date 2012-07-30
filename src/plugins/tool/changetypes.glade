@@ -5,7 +5,6 @@
   <object class="GtkDialog" id="changetypes">
     <property name="visible">True</property>
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <signal name="delete_event" handler="on_delete_event"/>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox2">
