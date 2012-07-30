@@ -125,16 +125,17 @@ user_pref("general.useragent.locale, %(lang)s);
 TOOLKIT = NOWEB
 
 try:
-    import webkit
+    from gi.repository import WebKit as webkit
     TOOLKIT = WEBKIT
 except:
     pass
 
-try:
-    import gtkmozembed
-    TOOLKIT += MOZILLA
-except:
-    pass
+#TODO GTK3: gtkmozembed not for GTK3
+##try:
+##    import gtkmozembed
+##    TOOLKIT += MOZILLA
+##except:
+##    pass
 
 #no interfaces present, raise Error so that options for GeoView do not show
 if TOOLKIT == NOWEB :
@@ -457,7 +458,7 @@ class HtmlView(NavigationView):
         self.filter = Gtk.HBox()
         self.table = ""
         self.browser = NOWEB
-        self.bootstrap_handler = None
+        #self.bootstrap_handler = None
         self.box = None
         self.toolkit = None
 
@@ -471,7 +472,7 @@ class HtmlView(NavigationView):
         """
         self.box = Gtk.VBox(False, 4)
         #top widget at the top
-        self.box.pack_start(self.top_widget(, True, True, 0), False, False, 0 )
+        self.box.pack_start(self.top_widget(), False, False, 0 )
         #web page under it in a scrolled window
         self.table = Gtk.Table(1, 1, False)
         frames = Gtk.HBox(False, 4)
@@ -500,8 +501,8 @@ class HtmlView(NavigationView):
             frame = Gtk.Frame()
             frame.set_size_request(100,100)
             frame.add(self.table)
-        self.bootstrap_handler = self.box.connect("size-request", 
-                                 self.init_parent_signals_for_map)
+        #self.bootstrap_handler = self.box.connect("size-request", 
+        #                         self.init_parent_signals_for_map)
         self.table.get_parent().set_shadow_type(Gtk.ShadowType.NONE)
         self.table.set_row_spacings(1)
         self.table.set_col_spacings(0)
@@ -662,6 +663,7 @@ class HtmlView(NavigationView):
 
     def init_parent_signals_for_map(self, widget, event):
         """
+        TODO GTK3: No longer called
         Required to properly bootstrap the signal handlers.
         This handler is connected by build_widget.
         After the outside ViewManager has placed this widget we are

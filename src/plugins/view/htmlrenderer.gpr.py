@@ -34,13 +34,13 @@ MOZILLA  = 2
 TOOLKIT = NOWEB
 
 try:
-    import webkit
+    from gi.repository import WebKit
     TOOLKIT = WEBKIT
 except:
-    try:
-        import gtkmozembed
-        TOOLKIT = MOZILLA
-    except:
+    ##try:
+    ##    import gtkmozembed
+    ##    TOOLKIT = MOZILLA
+    ##except:
         pass
 
 #no interfaces present, we do not register these plugins
@@ -50,7 +50,7 @@ if not (TOOLKIT == NOWEB):
     name  = _("Html View"),
     description =  _("A view showing html pages embedded in Gramps"),
     version = '1.0',
-    gramps_target_version = '3.5',
+    gramps_target_version = '4.0',
     status = STABLE,
     fname = 'htmlrenderer.py',
     authors = [u"The Gramps project"],
