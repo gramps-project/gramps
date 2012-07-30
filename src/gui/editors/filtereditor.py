@@ -46,6 +46,7 @@ log = logging.getLogger(".filtereditor")
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
+from gi.repository import Gdk
 from gi.repository import GObject
 
 #-------------------------------------------------------------------------
@@ -121,7 +122,8 @@ def by_rule_name(f, s):
 class MyBoolean(Gtk.CheckButton):
 
     def __init__(self, label=None):
-        GObject.GObject.__init__(self, label)
+        GObject.GObject.__init__(self)
+        self.set_label(label)
         self.show()
 
     def get_text(self):
@@ -284,7 +286,7 @@ class MyPlaces(Gtk.Entry):
 # MyID - Person/GRAMPS ID selection box with a standard interface
 #
 #-------------------------------------------------------------------------
-class MyID(Gtk.HBox):
+class MyID(Gtk.Box):
     _invalid_id_txt = _('Not a valid ID')
     _empty_id_txt  = _invalid_id_txt
 
@@ -301,7 +303,10 @@ class MyID(Gtk.HBox):
         }
     
     def __init__(self, dbstate, uistate, track, namespace='Person'):
-        GObject.GObject.__init__(self, False, 6)
+        GObject.GObject.__init__(self)
+        self.set_orientation(Gtk.Orientation.HORIZONTAL)
+        self.set_homogeneous(False)
+        self.set_spacing(6)
         self.dbstate = dbstate
         self.db = dbstate.db
         self.uistate = uistate
@@ -398,7 +403,7 @@ class MySelect(Gtk.ComboBox):
     
     def __init__(self, type_class):
         #we need to inherit and have an combobox with an entry
-        Gtk.Combobox.__init__(self, has_entry=True)
+        Gtk.ComboBox.__init__(self, has_entry=True)
         self.type_class = type_class
         self.sel = StandardCustomSelector(type_class._I2SMAP, self,
                                           type_class._CUSTOM,
@@ -598,7 +603,7 @@ class EditRule(ManagedWindow):
             top_node[category] = self.store.insert_after(None, last_top)
             top_level[category] = []
             last_top = top_node[category]
-            self.store.set(last_top, 0, category, 1, None)
+            self.store.set(last_top, 0, category, 1, '')
 
         for class_obj in keys:
             category = class_obj.category
