@@ -127,11 +127,14 @@ class Merge(tool.Tool,ManagedWindow):
                         _('Find Possible Duplicate People'))
 
         top.connect_signals({
+            "on_do_merge_clicked"   : self.__dummy,
+            "on_help_show_clicked"  : self.__dummy,
+            "on_delete_show_event"  : self.__dummy,
             "on_merge_ok_clicked"   : self.on_merge_ok_clicked,
             "destroy_passed_object" : self.close,
             "on_help_clicked"       : self.on_help_clicked,
             "on_delete_merge_event" : self.close,
-            "on_delete_event"   : self.close,
+            "on_delete_event"       : self.close,
             })
 
         self.show()
@@ -523,6 +526,12 @@ class Merge(tool.Tool,ManagedWindow):
                 elif name[0] == name2[0] and self.name_compare(name, name2):
                     value += 0.25
         return min(value,1) if value else -1
+
+    def __dummy(self, obj):
+        """dummy callback, needed because a shared glade file is used for
+        both toplevel windows and all signals must be handled.
+        """
+        pass
         
 
 class ShowMatches(ManagedWindow):
@@ -551,6 +560,10 @@ class ShowMatches(ManagedWindow):
             "on_do_merge_clicked"   : self.on_do_merge_clicked,
             "on_help_show_clicked"  : self.on_help_clicked,
             "on_delete_show_event"  : self.close,
+            "on_merge_ok_clicked"   : self.__dummy,
+            "on_help_clicked"       : self.__dummy,
+            "on_delete_merge_event" : self.__dummy,
+            "on_delete_event"       : self.__dummy,
             })
 
         mtitles = [
@@ -621,6 +634,12 @@ class ShowMatches(ManagedWindow):
     def update_and_destroy(self, obj):
         self.update(1)
         self.close()
+
+    def __dummy(self, obj):
+        """dummy callback, needed because a shared glade file is used for
+        both toplevel windows and all signals must be handled.
+        """
+        pass
         
 
 #-------------------------------------------------------------------------
