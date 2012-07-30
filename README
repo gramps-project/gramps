@@ -41,27 +41,15 @@ The following packages are optional
 
    ttf-freefont     More font support in the reports
 
-   PyWebKitGtk or python-gtkmozembed: 
-                    The hidden view 'Htmlview' allows websites to be opened in
+   gir-webkit       GObject introspection data of WebKit is required for the
+                    hidden view 'Htmlview', which allows websites to be opened in
                     Gramps. Users can unhide the view in the plugin manager. 
                     A html renderer must be installed to use the view.
                     !! PACKAGERS, Test if on your distribution
                     webkit and Gramps is stable. If you obtain crashes, patch 
                     src/plugins/view/htmlrenderer.py and
                     src/plugins/view/geoview.gpr.py, so as to remove:
-                       import webkit
-                    Then use the gecko package (python-gtkmozembed) instead.
-                    If WEBKIT ang GECKO are installed, webkit will be used as
-                    the javascript engine is faster (google maps).
-                  * PyWebKitGtk    
-                    Enable html rendering for the Web view. Often called 
-                    python-webkit package. Be careful, webkit is always in a 
-                    development phase.
-                  * python-gtkmozembed 
-                    Enable html rendering for the Web view in case PyWebKitGtk
-                    is not available or to be used if webkit is unstable.
-                    It can be in python-gnome2-extras or python-gtkhtml2
-                    depending on distributions.
+                       from gi.repository import WebKit as webkit
 
    python-pygoocanvas:
                     Required for the experimental Graphview plugin
