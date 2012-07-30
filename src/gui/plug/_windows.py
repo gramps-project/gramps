@@ -142,7 +142,7 @@ class PluginStatus(ManagedWindow):
             self.__load_btn = Gtk.Button(_("Load"))
             hbutbox.add(self.__load_btn)
             self.__load_btn.connect('clicked', self.__load, self.list_reg, 4) # id_col
-        vbox_reg.pack_start(hbutbox, expand=False, padding=5)
+        vbox_reg.pack_start(hbutbox, False, False, 0)
         
         notebook.append_page(vbox_reg, 
                              tab_label=Gtk.Label(label=_('Registered Plugins')))
@@ -199,7 +199,7 @@ class PluginStatus(ManagedWindow):
             self.__load_btn.set_sensitive(False)
             hbutbox.add(self.__load_btn)
             self.__load_btn.connect('clicked', self.__load, self.list, 4) # id_col
-        vbox_loaded.pack_start(hbutbox, expand=False, padding=5)
+        vbox_loaded.pack_start(hbutbox, False, False, 5)
         notebook.append_page(vbox_loaded, 
                              tab_label=Gtk.Label(label=_('Loaded Plugins')))
 
@@ -236,7 +236,7 @@ class PluginStatus(ManagedWindow):
         self.addon_list.connect('cursor-changed', self.button_press_addon)
 
         install_row = Gtk.HBox()
-        install_row.pack_start(Gtk.Label(_("Path to Addon:", True, True, 0)), expand=False)
+        install_row.pack_start(Gtk.Label(label=_("Path to Addon:")), False, True, 0)
         self.install_addon_path = Gtk.Entry()
 
         button = Gtk.Button()
@@ -245,14 +245,14 @@ class PluginStatus(ManagedWindow):
         button.add(img)
         button.connect('clicked', self.__select_file)
         install_row.pack_start(self.install_addon_path, True, True, 0)
-        install_row.pack_start(button, expand=False, fill=False)
+        install_row.pack_start(button, False, False, 0)
 
         scrolled_window.add(self.addon_list)
         install_page.pack_start(scrolled_window, True, True, 0)
         #add some spce under the scrollbar
-        install_page.pack_start(Gtk.Label('', True, True, 0), expand=False, fill=False)
+        install_page.pack_start(Gtk.Label(label=''), False, False, 0)
         #path to addon path line
-        install_page.pack_start(install_row, expand=False, fill=False)
+        install_page.pack_start(install_row, False, False, 0)
 
         hbutbox = Gtk.HButtonBox()
         hbutbox.set_layout(Gtk.ButtonBoxStyle.SPREAD)
@@ -265,12 +265,12 @@ class PluginStatus(ManagedWindow):
         self.__refresh_btn = Gtk.Button(_("Refresh Addon List"))
         hbutbox.add(self.__refresh_btn)
         self.__refresh_btn.connect('clicked', self.__refresh_addon_list) 
-        install_page.pack_start(hbutbox, expand=False, padding=5)
+        install_page.pack_start(hbutbox, False, True, 5)
         # notebook.append_page(install_page, 
         #                      tab_label=Gtk.Label(label=_('Install Addons')))
 
         #add the notebook to the window
-        self.window.get_content_area().add(notebook)
+        self.window.get_content_area().pack_start(notebook, True, True, 0)
         
         if __debug__:
             # Only show the "Reload" button when in debug mode 
@@ -520,10 +520,11 @@ class PluginStatus(ManagedWindow):
     def cursor_changed(self, obj):
         if __debug__:
             selection = obj.get_selection()
-            model, node = selection.get_selected()
-            if node:
-                data = model.get_value(node, 3)
-                self.__load_btn.set_sensitive(data is not None)
+            if selection:
+                model, node = selection.get_selected()
+                if node:
+                    data = model.get_value(node, 3)
+                    self.__load_btn.set_sensitive(data is not None)
 
     def button_press(self, obj, event):
         """ Callback function from the user clicking on a line """
@@ -545,10 +546,11 @@ class PluginStatus(ManagedWindow):
         """
         import urllib
         selection = self.addon_list.get_selection()
-        model, node = selection.get_selected()
-        if node:
-            url = model.get_value(node, 9)
-            self.install_addon_path.set_text(url)
+        if selection:
+            model, node = selection.get_selected()
+            if node:
+                url = model.get_value(node, 9)
+                self.install_addon_path.set_text(url)
     
     def build_menu_names(self, obj):
         return (self.title, "")
