@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-05-10 21:46+0100\n"
-"PO-Revision-Date: 2012-07-10 15:51-0300\n"
+"PO-Revision-Date: 2012-07-29 23:40-0300\n"
 "Last-Translator: André Marcelo Alvarenga <alvarenga@kde.org>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_br@kde.org>\n"
 "Language: \n"
@@ -507,7 +507,7 @@ msgstr "Ascendentes de %s"
 #: ../src/ExportOptions.py:438 ../src/gen/plug/report/utils.py:286
 #, python-format
 msgid "People with common ancestor with %s"
-msgstr "Pessoas com ascendente comum a %s"
+msgstr "Pessoas com ascendente comum com %s"
 
 #: ../src/ExportOptions.py:560
 msgid "Filtering private data"
@@ -1449,12 +1449,12 @@ msgstr "Inválido"
 
 #: ../src/Utils.py:92 ../src/gui/editors/editcitation.py:276
 msgid "Very High"
-msgstr "Muito alto"
+msgstr "Muito alta"
 
 #: ../src/Utils.py:93 ../src/gui/editors/editcitation.py:275
 #: ../src/plugins/tool/FindDupes.py:63
 msgid "High"
-msgstr "Alto"
+msgstr "Alta"
 
 #: ../src/Utils.py:94 ../src/gui/editors/editcitation.py:274
 #: ../src/plugins/webreport/NarrativeWeb.py:2291
@@ -1464,11 +1464,11 @@ msgstr "Normal"
 #: ../src/Utils.py:95 ../src/gui/editors/editcitation.py:273
 #: ../src/plugins/tool/FindDupes.py:61
 msgid "Low"
-msgstr "Baixo"
+msgstr "Baixa"
 
 #: ../src/Utils.py:96 ../src/gui/editors/editcitation.py:272
 msgid "Very Low"
-msgstr "Muito baixo"
+msgstr "Muito baixa"
 
 #: ../src/Utils.py:100
 msgid "A legal or common-law relationship between a husband and wife"
@@ -2209,7 +2209,7 @@ msgstr ""
 "7. Para gerar um resumo do banco de dados:\n"
 "gramps -O 'Árvore genealógica 1' -a report -p name=summary\n"
 "\n"
-"8. Listando as opções de relatório\n"
+"8. Listando as opções do relatório\n"
 "Use o name=timeline,show=all para encontrar todas as opções disponíveis para "
 "o relatório da linha temporal.\n"
 "Para encontrar detalhes de uma opção específica, use show=nome_opção, por "
@@ -4639,7 +4639,7 @@ msgstr "Exemplo"
 #: ../src/plugins/webreport/NarrativeWeb.py:7776
 #: ../src/plugins/webreport/WebCal.py:1337
 msgid "Name format"
-msgstr "Formato de nomes"
+msgstr "Formato do nome"
 
 #: ../src/gui/configure.py:876 ../src/gui/editors/displaytabs/buttontab.py:70
 #: ../src/gui/plug/_windows.py:137 ../src/gui/plug/_windows.py:193
@@ -8338,7 +8338,7 @@ msgstr "Janela principal"
 #: ../src/gui/plug/report/_docreportdialog.py:123
 #: ../src/gui/plug/report/_graphvizreportdialog.py:173
 msgid "Paper Options"
-msgstr "Opções de papel"
+msgstr "Opções do papel"
 
 #: ../src/gui/plug/report/_docreportdialog.py:128
 msgid "HTML Options"
@@ -8411,12 +8411,12 @@ msgstr "Estilo"
 #: ../src/plugins/webreport/NarrativeWeb.py:7732
 #: ../src/plugins/webreport/WebCal.py:1303
 msgid "Report Options"
-msgstr "Opções de relatório"
+msgstr "Opções do relatório"
 
 #. need any labels at top:
 #: ../src/gui/plug/report/_reportdialog.py:464
 msgid "Document Options"
-msgstr "Opções de documento"
+msgstr "Opções do documento"
 
 #: ../src/gui/plug/report/_reportdialog.py:511
 #: ../src/gui/plug/report/_reportdialog.py:536
@@ -10067,8 +10067,8 @@ msgid ""
 "Display unknown\n"
 "generations"
 msgstr ""
-"Exibição desconhecida\n"
-"gerações"
+"Exibição de gerações\n"
+"desconhecidas"
 
 #: ../src/plugins/drawreport/AncestorTree.py:877
 msgid "The number of generations of empty boxes that will be displayed"
@@ -10101,8 +10101,8 @@ msgid ""
 "Center person uses\n"
 "which format"
 msgstr ""
-"Formato que a pessoa\n"
-"principal usa"
+"Formato usado pela\n"
+"pessoa principal"
 
 #: ../src/plugins/drawreport/AncestorTree.py:901
 msgid "Use Fathers Display format"
@@ -10195,7 +10195,7 @@ msgstr "Ajustar a árvore apenas à largura da página"
 #: ../src/plugins/drawreport/AncestorTree.py:950
 #: ../src/plugins/drawreport/DescendTree.py:1545
 msgid "Scale tree to fit the size of the page"
-msgstr "Ajustar a árvore para o tamanho da página"
+msgstr "Ajustar a árvore ao tamanho da página"
 
 #: ../src/plugins/drawreport/AncestorTree.py:952
 #: ../src/plugins/drawreport/DescendTree.py:1547
@@ -10211,7 +10211,7 @@ msgid ""
 msgstr ""
 "Redimensionar a página ao tamanho da árvore\n"
 "\n"
-"Observação: Substitui as opções da aba 'Opções de papel'"
+"Observação: Substitui as opções da aba 'Opções do papel'"
 
 #: ../src/plugins/drawreport/AncestorTree.py:964
 #: ../src/plugins/drawreport/DescendTree.py:1559
@@ -10791,7 +10791,7 @@ msgid ""
 "'Replace this'/' with this'"
 msgstr ""
 "Substituir o formato de exibição:\n"
-"'Substituir isto'/' com isto'"
+"'Substituir isto'/'com isto'"
 
 #: ../src/plugins/drawreport/DescendTree.py:1536
 msgid ""
@@ -11135,7 +11135,7 @@ msgstr "%(genders)s nascido(s) %(year_from)04d-%(year_to)04d: %(chart_title)s"
 #: ../src/plugins/drawreport/StatisticsChart.py:753
 #, python-format
 msgid "Persons born %(year_from)04d-%(year_to)04d: %(chart_title)s"
-msgstr "Pessoas nascidas %(year_from)04d-%(year_to)04d: %(chart_title)s"
+msgstr "Pessoas nascidas em %(year_from)04d-%(year_to)04d: %(chart_title)s"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:786
 msgid "Saving charts..."
@@ -11186,7 +11186,7 @@ msgstr "Ano de nascimento até o qual incluir pessoas"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:947
 msgid "Include people without known birth years"
-msgstr "Incluir pessoas que não possuem anos de nascimento conhecidos"
+msgstr "Incluir pessoas que não possuem ano de nascimento conhecido"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:949
 msgid "Whether to include people without known birth years."
@@ -11202,7 +11202,7 @@ msgstr "Seleciona os sexos que serão incluídos nas estatísticas."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:962
 msgid "Max. items for a pie"
-msgstr "Número máximo de itens para um gráfico de pizza"
+msgstr "Máximo de itens para um gráfico de setores"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:963
 msgid ""
@@ -13033,7 +13033,7 @@ msgstr "%"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:260
 msgid "Generation 1"
-msgstr "A geração 1"
+msgstr "Geração 1"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:261
 msgid "Double-click to see people in generation"
@@ -13051,7 +13051,7 @@ msgstr " tem 1 de 1 indivíduo (%(percent)s completo)\n"
 #: ../src/plugins/textreport/EndOfLineReport.py:176
 #, python-format
 msgid "Generation %d"
-msgstr "A geração %d"
+msgstr "Geração %d"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:267
 #, python-format
@@ -19367,7 +19367,7 @@ msgstr "%(person)s e %(active_person)s são a mesma pessoa."
 #: ../src/plugins/tool/RelCalc.py:202
 #, python-format
 msgid "%(person)s is the %(relationship)s of %(active_person)s."
-msgstr "%(person)s é o(a) %(relationship)s de %(active_person)s."
+msgstr "%(person)s é %(relationship)s de %(active_person)s."
 
 #: ../src/plugins/quickview/all_relations.py:103
 #, python-format
@@ -20679,7 +20679,7 @@ msgstr "O estilo usado para dados adicionais detalhados."
 #: ../src/plugins/textreport/DetDescendantReport.py:290
 #, python-format
 msgid "Descendant Report for %(person_name)s"
-msgstr "Relatório de descendentes para %(person_name)s"
+msgstr "Relatório de descendentes de %(person_name)s"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:576
 #, python-format
@@ -21010,7 +21010,7 @@ msgstr "O estilo usado para o nome do cônjuge."
 #: ../src/plugins/textreport/KinshipReport.py:117
 #, python-format
 msgid "Kinship Report for %s"
-msgstr "Relatório de parentesco para %s"
+msgstr "Relatório de parentesco de %s"
 
 #: ../src/plugins/textreport/KinshipReport.py:355
 msgid "The maximum number of descendant generations"
@@ -21034,11 +21034,11 @@ msgstr "Se devem ser incluídos os primos"
 
 #: ../src/plugins/textreport/KinshipReport.py:370
 msgid "Include aunts/uncles/nephews/nieces"
-msgstr "Incluir tias/tios/sobrinhos/sobrinhas"
+msgstr "Incluir tias/tios/sobrinhas/sobrinhos"
 
 #: ../src/plugins/textreport/KinshipReport.py:371
 msgid "Whether to include aunts/uncles/nephews/nieces"
-msgstr "Se devem ser incluídos tias/tios/sobrinhos/sobrinhas"
+msgstr "Se devem ser incluídos tias/tios/sobrinhas/sobrinhos"
 
 #: ../src/plugins/textreport/KinshipReport.py:396
 #: ../src/plugins/textreport/Summary.py:290
@@ -21437,7 +21437,7 @@ msgstr "Gera um relatório completo da pessoa selecionada"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:230
 msgid "Kinship Report"
-msgstr "Relatório de parentes"
+msgstr "Relatório de parentesco"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:231
 msgid "Produces a textual report of kinship for a given person"
@@ -28022,7 +28022,7 @@ msgid ""
 "some reports."
 msgstr ""
 "Parte do nome próprio que normalmente é usado. Se o fundo estiver em "
-"vermelho, o nome vocativo não é parte do nome próprio e não será aparecerá "
+"vermelho, o nome vocativo não é parte do nome próprio e não aparecerá "
 "sublinhado em alguns relatórios."
 
 #: ../src/glade/editperson.glade.h:25

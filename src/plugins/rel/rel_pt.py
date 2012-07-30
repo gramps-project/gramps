@@ -122,7 +122,7 @@ _CHILDREN_LEVEL = [u"", u"filhos", u"netos", u"bisnetos", u"trinetos",
 		   u"tetranetos", u"pentanetos", u"hexanetos", u"heptanetos"
 		  u"octanetos"]
 
-_SIBLINGS_LEVEL = [u"", u"irmãos e irmães", u"tios e tias",u"tios avôs e tias avós",
+_SIBLINGS_LEVEL = [u"", u"irmãos e irmãs", u"tios e tias",u"tios avôs e tias avós",
                    u"tios bisavôs e tias bisavós", u"tios trisavôs e tias trisavós",
 		   u"tios tetravôs e tias tetravós", u"tios pentavôs e tias pentavós",
 		   u"tios hexavôs e tias hexavós", u"tios heptavôs e tias heptavós"
@@ -430,15 +430,15 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
             # These are cousins in the same generation
 
             if Ga == 2:
-                rel_str = u"primos primas"
+                rel_str = u"primos e primas"
             elif Ga <= len(_level_name_plural):
-                rel_str = u"%s primos primas" % _level_name_plural[Ga -
+                rel_str = u"%s primos e primas" % _level_name_plural[Ga -
                         2]
             else:
 
             # security
 
-                rel_str = u"primos primas"
+                rel_str = u"primos e primas"
 
         if in_law_b == True:
             rel_str = u"cônjuges dos %s" % rel_str
