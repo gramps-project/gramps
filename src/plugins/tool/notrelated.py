@@ -104,7 +104,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
         self.tagcombo = topDialog.get_object("tagcombo")
         tagmodel = Gtk.ListStore(str)
         self.tagcombo.set_model(tagmodel)
-        self.tagcombo.set_text_column(0)
+        self.tagcombo.set_entry_text_column(0)
         tagmodel.append((_('ToDo'),))
         tagmodel.append((_('NotRelated'),))
         self.tagcombo.set_sensitive(False)
@@ -149,7 +149,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
         self.treeView.append_column(col4)
         self.treeSelection = self.treeView.get_selection()
         self.treeSelection.set_mode(Gtk.SelectionMode.MULTIPLE)
-        self.treeSelection.set_select_function(self.selectIsAllowed, full=True)
+        self.treeSelection.set_select_function(self.selectIsAllowed, None)
         self.treeSelection.connect('changed', self.rowSelectionChanged)
         self.treeView.connect('row-activated', self.rowActivated)
 
@@ -195,7 +195,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
         return False
 
 
-    def selectIsAllowed(self, selection, model, path, isSelected) :
+    def selectIsAllowed(self, selection, model, path, isSelected, userData) :
         # return True/False depending on if the row being selected is a leaf node
         iter = self.model.get_iter(path)
         if self.model.get_value(iter, 1) == '': # does the row have a GID?
@@ -444,7 +444,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
             # get the surname node (or create it if it doesn't exist)
 
             # start with the root
-            iter = self.model.get_iter_root()
+            iter = self.model.get_iter_first()
             # look for a node with a matching surname
             while iter:
                 if self.model.get_value(iter, 0) == surname:
