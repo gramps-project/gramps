@@ -321,21 +321,21 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
         except WindowActiveError:
             pass
 
-        self.uistate.window.window.set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
+        self.uistate.window.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
         self.uistate.progress.show()
-        self.window.window.set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
+        self.window.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
         try:
-            self.vr.window.window.set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
+            self.vr.window.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
         except AttributeError:
             pass
 
         self.run_tool(cli=False)
 
         self.uistate.progress.hide()
-        self.uistate.window.window.set_cursor(None)
+        self.uistate.window.get_window().set_cursor(None)
         try:
-            self.window.window.set_cursor(None)
-            self.vr.window.window.set_cursor(None)
+            self.window.get_window().set_cursor(None)
+            self.vr.window.get_window().set_cursor(None)
         except AttributeError:
             pass
         run_button.set_sensitive(True)
@@ -481,7 +481,7 @@ class VerifyResults(ManagedWindow):
                                         GObject.TYPE_BOOLEAN)
         self.filt_model = self.real_model.filter_new()
         self.filt_model.set_visible_column(VerifyResults.TRUE_COL)
-        self.sort_model = Gtk.TreeModelSort(self.filt_model)
+        self.sort_model = self.filt_model.sort_new_with_model()
         self.warn_tree.set_model(self.sort_model)
 
         self.renderer = Gtk.CellRendererText()
@@ -590,12 +590,12 @@ class VerifyResults(ManagedWindow):
             button.set_label(_("_Show all"))
             self.filt_model = self.real_model.filter_new()
             self.filt_model.set_visible_column(VerifyResults.SHOW_COL)
-            self.sort_model = Gtk.TreeModelSort(self.filt_model)
+            self.sort_model = self.filt_model.sort_new_with_model()
             self.warn_tree.set_model(self.sort_model)
         else:
             self.filt_model = self.real_model.filter_new()
             self.filt_model.set_visible_column(VerifyResults.TRUE_COL)
-            self.sort_model = Gtk.TreeModelSort(self.filt_model)
+            self.sort_model = self.filt_model.sort_new_with_model()
             self.warn_tree.set_model(self.sort_model)
             button.set_label(_("_Hide marked"))
         
