@@ -85,7 +85,7 @@ def resize_to_jpeg(source, destination, width, height, crop=None):
     (width, height) = image_actual_size(width, height, img.get_width(), img.get_height())
 
     scaled = img.scale_simple(int(width), int(height), GdkPixbuf.InterpType.BILINEAR)
-    scaled.save(destination, 'jpeg')
+    scaled.savev(destination, "jpeg" "", "")
 
 #-------------------------------------------------------------------------
 #
@@ -258,7 +258,7 @@ def resize_to_jpeg_buffer(source, size, crop=None):
     scaled = img.scale_simple(int(size[0]), int(size[1]), GdkPixbuf.InterpType.BILINEAR)
     os.close(filed)
     dest = get_unicode_path_from_env_var(dest)
-    scaled.save(dest, 'jpeg')
+    scaled.savev(dest, "jpeg", "", "")
     ofile = open(dest, mode='rb')
     data = ofile.read()
     ofile.close()

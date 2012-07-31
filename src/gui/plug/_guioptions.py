@@ -1630,7 +1630,7 @@ class GuiDestinationOption(Gtk.HBox):
         self.__button.connect('clicked', self.__select_file)
         
         self.pack_start(self.__entry, True, True, 0)
-        self.pack_end(self.__button, False, False)
+        self.pack_end(self.__button, False, False, 0)
 
         # Set up signal handlers when the widget value is changed
         # from user interaction or programmatically.  When handling
