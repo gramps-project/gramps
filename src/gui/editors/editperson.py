@@ -1056,7 +1056,7 @@ class EditPerson(EditPrimary):
 
 class GenderDialog(Gtk.MessageDialog):
     def __init__(self, parent=None):
-        GObject.GObject.__init__(self,
+        Gtk.MessageDialog.__init__(self,
                                 parent,
                                 flags=Gtk.DialogFlags.MODAL,
                                 type=Gtk.MessageType.QUESTION,
