@@ -93,7 +93,7 @@ class MediaMan(tool.Tool):
         self.assistant.connect('cancel', self.close)
         self.assistant.connect('apply', self.run)
         self.assistant.connect('prepare', self.prepare)
-        self.assistant.set_forward_page_func(self.forward_page)
+        self.assistant.set_forward_page_func(self.forward_page, None)
 
         intro = IntroductionPage()
         self.add_page(intro, Gtk.AssistantPageType.INTRO, _('Introduction'))
@@ -116,7 +116,7 @@ class MediaMan(tool.Tool):
         """
         self.assistant.hide()
 
-    def forward_page(self, page):
+    def forward_page(self, page, data):
         """
         Specify the next page to be displayed.
         """
@@ -334,7 +334,7 @@ class ConfirmationPage(Gtk.VBox):
         tree_view_column.set_sort_column_id(0)
         tree.append_column(tree_view_column)
         scrolled_window.add(tree)
-        self.pack_start(scrolled_window, expand=True, fill=True)
+        self.pack_start(scrolled_window, True, True, 0)
 
         label3 = Gtk.Label(_('Press Apply to proceed, Cancel to abort, '
                              'or Back to revisit your options.'))
