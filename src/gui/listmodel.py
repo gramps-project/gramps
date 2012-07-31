@@ -322,7 +322,7 @@ class ListModel(object):
         """
         store, node = self.selection.get_selected()
         if node:
-            rows = store.get_path(node)
+            rows = store.get_path(node).get_indices()
             return rows[0]
         else:
             return -1
@@ -413,8 +413,8 @@ class ListModel(object):
         for obj in data:
             self.model.set_value(node, col, obj)
             col += 1
-        self.model.set_value(node, col, info)
         if info:
+            self.model.set_value(node, col, info)
             self.idmap[str(info)] = node
         if select:
             self.selection.select_iter(node)

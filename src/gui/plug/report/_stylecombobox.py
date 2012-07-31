@@ -41,7 +41,8 @@ class StyleComboBox(Gtk.ComboBox):
         """
         Initialize the combobox, building the display column.
         """
-        GObject.GObject.__init__(self,model)
+        GObject.GObject.__init__(self)
+        self.set_model(model)
         cell = Gtk.CellRendererText()
         self.pack_start(cell,True)
         self.add_attribute(cell,'text',0)
