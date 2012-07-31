@@ -228,8 +228,8 @@ CREATE TABLE "auth_user" (
     "last_login" datetime NOT NULL,
     "date_joined" datetime NOT NULL
 );
-INSERT INTO "auth_user" VALUES(1,'admin','','','bugs@gramps-project.org','sha1$0aac2$c94ddc40e2dfd41bd5453230a3e53a6a925572b2',1,1,1,'2012-07-28 09:32:02.407417','2012-07-28 09:32:02.407417');
-INSERT INTO "auth_user" VALUES(2,'admin1','','','bugs@gramps-project.org','sha1$887ff$3829f603618766d49287f3b98b036d6b06c3f440',1,1,1,'2012-07-28 09:32:07.068033','2012-07-28 09:32:07.068033');
+INSERT INTO "auth_user" VALUES(1,'admin','','','bugs@gramps-project.org','sha1$248cf$71082f5ec314e2706d1cc9e44a0d63b953ba1d08',1,1,1,'2012-07-31 07:58:28.096063','2012-07-31 07:58:28.096063');
+INSERT INTO "auth_user" VALUES(2,'admin1','','','bugs@gramps-project.org','sha1$bd368$2e83f9d34578f66402e62b698950adae05f4d6bf',1,1,1,'2012-07-31 07:58:37.492571','2012-07-31 07:58:37.492571');
 CREATE TABLE "auth_message" (
     "id" integer NOT NULL PRIMARY KEY,
     "user_id" integer NOT NULL REFERENCES "auth_user" ("id"),
@@ -648,7 +648,7 @@ CREATE TABLE "grampsdb_config" (
 );
 INSERT INTO "grampsdb_config" VALUES(1,'sitename','site name of family tree','str','Gramps-Connect');
 INSERT INTO "grampsdb_config" VALUES(2,'db_version','database scheme version','str','0.6.1');
-INSERT INTO "grampsdb_config" VALUES(3,'db_created','database creation date/time','str','2012-07-28 09:30');
+INSERT INTO "grampsdb_config" VALUES(3,'db_created','database creation date/time','str','2012-07-31 07:56');
 INSERT INTO "grampsdb_config" VALUES(4,'htmlview.url-handler',NULL,'bool','False');
 INSERT INTO "grampsdb_config" VALUES(5,'htmlview.start-url',NULL,'str','http://gramps-project.org');
 INSERT INTO "grampsdb_config" VALUES(6,'paths.recent-export-dir',NULL,'str','');
@@ -863,6 +863,7 @@ CREATE TABLE "grampsdb_person" (
     "last_changed" datetime,
     "last_changed_by" text,
     "private" bool NOT NULL,
+    "public" bool NOT NULL,
     "cache" text,
     "gender_type_id" integer NOT NULL REFERENCES "grampsdb_gendertype" ("id"),
     "probably_alive" bool NOT NULL,
@@ -885,6 +886,7 @@ CREATE TABLE "grampsdb_family" (
     "last_changed" datetime,
     "last_changed_by" text,
     "private" bool NOT NULL,
+    "public" bool NOT NULL,
     "cache" text,
     "father_id" integer REFERENCES "grampsdb_person" ("id"),
     "mother_id" integer REFERENCES "grampsdb_person" ("id"),
@@ -912,6 +914,7 @@ CREATE TABLE "grampsdb_citation" (
     "last_changed" datetime,
     "last_changed_by" text,
     "private" bool NOT NULL,
+    "public" bool NOT NULL,
     "cache" text,
     "confidence" integer,
     "page" varchar(50),
@@ -925,6 +928,7 @@ CREATE TABLE "grampsdb_source" (
     "last_changed" datetime,
     "last_changed_by" text,
     "private" bool NOT NULL,
+    "public" bool NOT NULL,
     "cache" text,
     "title" varchar(50),
     "author" varchar(50),
@@ -953,6 +957,7 @@ CREATE TABLE "grampsdb_event" (
     "last_changed" datetime,
     "last_changed_by" text,
     "private" bool NOT NULL,
+    "public" bool NOT NULL,
     "cache" text,
     "event_type_id" integer NOT NULL REFERENCES "grampsdb_eventtype" ("id"),
     "description" varchar(50) NOT NULL,
@@ -966,6 +971,7 @@ CREATE TABLE "grampsdb_repository" (
     "last_changed" datetime,
     "last_changed_by" text,
     "private" bool NOT NULL,
+    "public" bool NOT NULL,
     "cache" text,
     "repository_type_id" integer NOT NULL REFERENCES "grampsdb_repositorytype" ("id"),
     "name" text NOT NULL
@@ -978,6 +984,7 @@ CREATE TABLE "grampsdb_place" (
     "last_changed" datetime,
     "last_changed_by" text,
     "private" bool NOT NULL,
+    "public" bool NOT NULL,
     "cache" text,
     "title" text NOT NULL,
     "long" text NOT NULL,
@@ -1011,6 +1018,7 @@ CREATE TABLE "grampsdb_media" (
     "last_changed" datetime,
     "last_changed_by" text,
     "private" bool NOT NULL,
+    "public" bool NOT NULL,
     "cache" text,
     "path" text NOT NULL,
     "mime" text,
@@ -1030,6 +1038,7 @@ CREATE TABLE "grampsdb_note" (
     "last_changed" datetime,
     "last_changed_by" text,
     "private" bool NOT NULL,
+    "public" bool NOT NULL,
     "cache" text,
     "note_type_id" integer NOT NULL REFERENCES "grampsdb_notetype" ("id"),
     "text" text NOT NULL,
@@ -1120,13 +1129,15 @@ CREATE TABLE "grampsdb_sourcedatamap" (
     "id" integer NOT NULL PRIMARY KEY,
     "key" varchar(80) NOT NULL,
     "value" varchar(80) NOT NULL,
-    "source_id" integer NOT NULL REFERENCES "grampsdb_source" ("id")
+    "source_id" integer NOT NULL REFERENCES "grampsdb_source" ("id"),
+    "order" integer unsigned NOT NULL
 );
 CREATE TABLE "grampsdb_citationdatamap" (
     "id" integer NOT NULL PRIMARY KEY,
     "key" varchar(80) NOT NULL,
     "value" varchar(80) NOT NULL,
-    "citation_id" integer NOT NULL REFERENCES "grampsdb_citation" ("id")
+    "citation_id" integer NOT NULL REFERENCES "grampsdb_citation" ("id"),
+    "order" integer unsigned NOT NULL
 );
 CREATE TABLE "grampsdb_address" (
     "id" integer NOT NULL PRIMARY KEY,

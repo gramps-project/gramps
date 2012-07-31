@@ -28,7 +28,7 @@
     <div id="error">{{familyform.errors}}</div>
     <hr>
   {% endif %}
-<form method="post">{% csrf_token %}
+<form method="post" onsubmit="setReturnValues()">{% csrf_token %}
 <tr>
 <th colspan="2">Father</th>
 <th colspan="2">Mother</th>
@@ -36,16 +36,55 @@
 <tr>
  <td class="ColumnAttribute">Name:</td>
 {% if user.is_authenticated or father.probably_alive %}
- <td class="ColumnValue" id="data">{% render familyform.father user action %}</td>
+ <td class="ColumnValue" id="data">
+{% if action != "view" %}
+    <script type="text/javascript">  
+        $(function() { 
+            $('#father').flexbox('/json/?field=father', {
+	        watermark: 'Father',
+	        width: 300,
+	        paging: {  
+                  pageSize: 10  
+	        },
+  	        initialValue: '{{family.father.get_selection_string}}',
+  	        initialId: '{{family.father.handle}}'
+	        });
+        });  
+    // </script>
+    <div id="father"></div>  
 {% else %}
- <td class="ColumnValue" id="data">{{family.father|render_name:user}}</td>
+ {{family.father|render_name:user}}
 {% endif %}
+</td>
+{% else %}
+ {{family.father|render_name:user}}
+{% endif %}
+ </td>
  <td class="ColumnAttribute">Name:</td>
 {% if user.is_authenticated or family.mother.probably_alive %}
- <td class="ColumnValue" id="data">{% render familyform.mother user action %}</td>
+ <td class="ColumnValue" id="data">
+{% if action != "view" %}
+   <script type="text/javascript">  
+        $(function() { 
+            $('#mother').flexbox('/json/?field=mother', {
+	        watermark: 'Mother',
+	        width: 300,
+	        paging: {  
+                  pageSize: 10  
+	        },
+	        initialValue: '{{family.mother.get_selection_string}}',
+  	        initialId: '{{family.mother.handle}}'
+	        });
+        });  
+    // </script>
+    <div id="mother"></div>  
 {% else %}
- <td class="ColumnValue" id="data">{{family.mother|render_name:user}}</td>
+ {{family.mother|render_name:user}}
 {% endif %}
+{% else %}
+ {{family.mother|render_name:user}}
+{% endif %}
+</td>
 </tr>
 {% if user.is_authenticated or not familyform.father.probably_alive %}
 <tr>
@@ -135,6 +174,8 @@
 {% if user.is_superuser %}
   {% if action == "edit" %}
     {% make_button "Cancel" "/family/%s" family.handle args %}
+    <input type="hidden" id="father_return" name="father_return" value=""/>
+    <input type="hidden" id="mother_return" name="mother_return" value=""/>
     <input type="hidden" name="action" value="save"/>
     <input type="hidden" name="search" value="{{search}}"/>
     <input type="hidden" name="page" value="{{page}}"/>
@@ -142,6 +183,8 @@
   {% else %}
     {% ifequal action "add" %}
       {% make_button "Cancel" "/family/" args %}
+      <input type="hidden" id="father_return" name="father_return" value=""/>
+      <input type="hidden" id="mother_return" name="mother_return" value=""/>
       <input type="hidden" name="action" value="create"/>
       <input type="hidden" name="search" value="{{search}}"/>
       <input type="hidden" name="page" value="{{page}}"/>

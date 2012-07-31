@@ -17,6 +17,8 @@
     <script type="text/javascript" src="/styles/javascript/jquery-ui-1.7.2.custom.min.js"></script>
     <script type="text/javascript" src="/styles/jhtmlarea/scripts/jHtmlArea-0.7.0.js"></script>	 
     <link rel="Stylesheet" type="text/css" href="/styles/jhtmlarea/style/jHtmlArea.css" />
+    <script type="text/javascript" src="/styles/javascript/jquery.flexbox.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="/styles/css/jquery.flexbox.css" />  
     {% endblock %}
 
    <style type="text/css">
@@ -239,8 +241,7 @@ function optClick(theOption) {
   document.location.href=theOption;
 }
 
-function setHasData(classname, value)
-{
+function setHasData(classname, value) {
     var elems = document.getElementsByTagName('*'), i;
     for (i in elems) {
         if((" " + elems[i].className + " ").indexOf(" " + classname + " ") > -1) {
@@ -254,6 +255,18 @@ function setHasData(classname, value)
 	 }
     }
 }   
+
+function setReturnValues() {
+    var elems = document.getElementsByTagName('*'), i;
+    for (i in elems) {
+        if ((" " + elems[i].name + " ").indexOf("_return ") > -1) {
+	    var pos = (" " + elems[i].name + " ").indexOf("_return ");
+            var s = elems[i].name.substring(0, pos - 1);
+	    var v = document.getElementsByName(s)[0];
+	    elems[i].value = v.value;
+	}
+    }
+}
 //-->
 </SCRIPT>
 
@@ -273,7 +286,9 @@ function setHasData(classname, value)
 -->
 </STYLE>
 </head>
-<body onclick="hideMenus()" onload="if (document.getElementById('get_focus')) {document.getElementById('get_focus').focus();}">
+<body onclick="hideMenus()" 
+      onload="if (document.getElementById('get_focus')) {document.getElementById('get_focus').focus();}"
+>
    <div id="header" style="padding-top: 1em; background-position:0px -32px;">
      <h1 id="SiteTitle" style="margin-left: 0em;">{% block heading %}{{sitename}}{% endblock %}</h1>
    </div>
@@ -348,11 +363,11 @@ function setHasData(classname, value)
    </div>
     <div class="grampsweb">
      {% for message in messages %}
-        <font color="red">{{message}}</font>
+        <font color="red">{{message}}</font><br/>
      {% endfor %}
      {% if message %}
         <div id="system_message" class="{{ message_type }}">
-           <font color="red">{{message}}</font>
+           <font color="red">{{message}}</font><br/>
         </div>
     {% endif %}
     {% block content %}
@@ -363,11 +378,12 @@ function setHasData(classname, value)
    <div id="footer">
     {% block footer %}
     <p id="createdate">
-      <a href="http://www.gramps-project.org/wiki/index.php?title=Gramps-Connect">Gramps Connect, version {{gramps_version}}</a>.
+      <a href="http://www.gramps-project.org/wiki/index.php?title=Gramps-Connect">Gramps-Connect, version {{gramps_version}}</a>.
     </p>
     <p id="copyright">&copy; 2009-2012 <a href="http://www.gramps-project.org/">www.gramps-project.org</a> 
     </p>
     {% endblock %}
    </div>
+
 </body>
 </html>

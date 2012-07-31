@@ -60,7 +60,39 @@
     <li class="ui-corner-top ui-state-default"><a class="tab-history" href="#tab-history">History</a></li>
   </ul>
   <div class="ui-tab-panel ui-widget-content ui-corner-bottom" id="tab-locations" style="background-color: #f4f0ec;"> 
-    <!-- place.location_set  -->
+
+<table class="infolist" style="width:90%;">
+<tr>
+<td class="ColumnAttribute">Street:</td>
+<td class="Columnvalue" id="data" colspan="3"> FIXME </td>
+</tr>
+<tr>
+<td class="ColumnAttribute">Locality:</td>
+<td class="Columnvalue" id="data"> FIXME </td>
+<td class="ColumnAttribute">Church parish:</td>
+<td class="Columnvalue" id="data"> FIXME </td>
+</tr>
+<tr>
+<td class="ColumnAttribute">City:</td>
+<td class="Columnvalue" id="data"> FIXME </td>
+<td class="ColumnAttribute">State:</td>
+<td class="Columnvalue" id="data"> FIXME </td>
+</tr>
+<tr>
+<td class="ColumnAttribute">County:</td>
+<td class="Columnvalue" id="data"> FIXME </td>
+<td class="ColumnAttribute">ZIP/Postal code:</td>
+<td class="Columnvalue" id="data"> FIXME </td>
+</tr>
+<tr>
+<td class="ColumnAttribute">Country:</td>
+<td class="Columnvalue" id="data"> FIXME </td>
+<td class="ColumnAttribute">Phone:</td>
+<td class="Columnvalue" id="data"> FIXME </td>
+</tr>
+</table>
+    
+
   </div>
   <div class="ui-tab-panel ui-widget-content ui-corner-bottom ui-tab-hide" id="tab-alternatelocations" style="background-color: #f4f0ec;"> 
     {% location_table place user action "/location/$act/place/%s" place.handle %}

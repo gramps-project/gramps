@@ -16,16 +16,40 @@
 </thead>
 <tbody>
   {% for name in page.object_list %}
-  <tr class="{% cycle odd,even %}">
+  <tr class="{% cycle odd,even %}" style="">
     {% if name.person %}
-    <td><a href="{{name.person.handle}}/{{args}}" class="noThumb browsecell">{{ forloop.counter|row_count:page }}</a>
+    <td><a href="{{name.person.handle}}/{{args}}" class="noThumb browsecell"
+	{% if name.person.tags.all %}
+            style="color: {{name.person.tags.all.0.color|format_color}};"
+	{% endif %}
+        >{{ forloop.counter|row_count:page }}</a>
     </td>
-    <td><a href="{{name.person.handle}}/{{args}}" class="noThumb browsecell">{{name|make_name:user}} &nbsp;</a>
+    <td><a href="{{name.person.handle}}/{{args}}" class="noThumb browsecell"
+	{% if name.person.tags.all %}
+            style="color: {{name.person.tags.all.0.color|format_color}};"
+	{% endif %}
+        >{{name|make_name:user}} &nbsp;</a>
     </td>
-    <td><a href="{{name.person.handle}}/{{args}}" class="grampsid browsecell">[{{name.person.gramps_id}}]</a></td>
-    <td><a href="{{name.person.handle}}/{{args}}" class="noThumb browsecell">{{name.person.gender_type}} &nbsp;</a></td>
-    <td><a href="{{name.person.handle}}/{{args}}" class="noThumb browsecell">{{name.person.birth|date_as_text:user}} &nbsp;</a></td>
-    <td><a href="{{name.person.handle}}/{{args}}" class="noThumb browsecell">{{name.person.death|date_as_text:user}} &nbsp;</a></td>
+    <td><a href="{{name.person.handle}}/{{args}}" class="grampsid browsecell"
+	{% if name.person.tags.all %}
+            style="color: {{name.person.tags.all.0.color|format_color}};"
+	{% endif %}
+        >[{{name.person.gramps_id}}]</a></td>
+    <td><a href="{{name.person.handle}}/{{args}}" class="noThumb browsecell"
+	{% if name.person.tags.all %}
+            style="color: {{name.person.tags.all.0.color|format_color}};"
+	{% endif %}
+        >{{name.person.gender_type}} &nbsp;</a></td>
+    <td><a href="{{name.person.handle}}/{{args}}" class="noThumb browsecell"
+	{% if name.person.tags.all %}
+            style="color: {{name.person.tags.all.0.color|format_color}};"
+	{% endif %}
+        >{{name.person.birth|date_as_text:user}} &nbsp;</a></td>
+    <td><a href="{{name.person.handle}}/{{args}}" class="noThumb browsecell"
+	{% if name.person.tags.all %}
+            style="color: {{name.person.tags.all.0.color|format_color}};"
+	{% endif %}
+        >{{name.person.death|date_as_text:user}} &nbsp;</a></td>
     {% endif %}
   </tr>
   {% endfor %}

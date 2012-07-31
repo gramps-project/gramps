@@ -17,7 +17,7 @@
     <td>{{ forloop.counter|row_count:page }}</td>
     <td><a href="/{{view}}/{{place.handle|escape}}{{args}}" class="noThumb browsecell">
            <span class="grampsid">[{{place.gramps_id}}]</span></a>
-    {% if user.is_authenticated %}
+    {% if user.is_authenticated or place.public %}
     <td><a href="/{{view}}/{{place.handle|escape}}{{args}}" class="browsecell">{{place.title|escape|nbsp}}</a>
     {% else %}
       <td></td>

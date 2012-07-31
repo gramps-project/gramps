@@ -26,24 +26,49 @@
     <div id="error">{{eventform.errors}}</div>
     <hr>
   {% endif %}
-<form method="post">{% csrf_token %}
+<form method="post" onsubmit="setReturnValues()">{% csrf_token %}
 <tr>
 <td class="ColumnAttribute">{{eventform.event_type.label}}:</td>
 <td class="ColumnValue" id="data"> {% render eventform.event_type user action %}</td>
 <td class="ColumnAttribute">{{eventform.text.label}}:</td>
 <td class="ColumnValue" id="data">{% render eventform.text user action %}</td>
+<td></td>
 </tr>
 <tr>
 <td class="ColumnAttribute">Description:</td>
 <td  class="ColumnValue" id="data" colspan="3">{% render eventform.description user action %}</td>
+<td></td>
 </tr>
 <tr>
 <td class="ColumnAttribute">ID:</td>
 <td  class="ColumnValue" id="data" colspan="3">{% render eventform.gramps_id user action %}</td>
+<td></td>
 </tr>
 <tr>
 <td class="ColumnAttribute">Place:</td>
-<td  class="ColumnValue" id="data" colspan="3">{% render eventform.place user action %}</td>
+<td  class="ColumnValue" id="data" colspan="3">
+{% if action != "view" %}
+   <script type="text/javascript">  
+        $(function() { 
+            $('#place').flexbox('/json/?field=place', {
+	        watermark: 'Place',
+	        width: 600,
+	        paging: {  
+                  pageSize: 10  
+	        },
+	        initialValue: '{{event.place.get_selection_string}}',
+  	        initialId: '{{event.place.handle}}'
+	        });
+        });  
+    // </script>
+    <div id="place"></div>  
+{% else %}
+    <a href="/place/?search={{event.place}}">{{event.place}}</a>
+{% endif %}
+</td>
+<td>
+<td  class="ColumnValue" id="data" colspan="3">{% render eventform.private user action %}
+</td>
 </tr>
 </table>
 </div>
@@ -82,6 +107,7 @@
 {% if user.is_superuser %}
   {% if action == "edit" %}
     {% make_button "Cancel" "/event/%s" event.handle args %}
+    <input type="hidden" id="place_return" name="place_return" value=""/>
     <input type="hidden" name="action" value="save"/>
     <input type="hidden" name="search" value="{{search}}"/>
     <input type="hidden" name="page" value="{{page}}"/>
@@ -89,6 +115,7 @@
   {% else %}
     {% ifequal action "add" %}
       {% make_button "Cancel" "/event/" args %}
+      <input type="hidden" id="place_return" name="place_return" value=""/>
       <input type="hidden" name="action" value="create"/>
       <input type="hidden" name="search" value="{{search}}"/>
       <input type="hidden" name="page" value="{{page}}"/>

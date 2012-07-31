@@ -448,6 +448,7 @@ class PrimaryObject(models.Model):
     last_changed_by = models.TextField(blank=True, null=True)
 
     private = models.BooleanField('private')
+    public = models.BooleanField('public', default=True)
     #attributes = models.ManyToManyField("Attribute", blank=True, null=True)
     cache = models.TextField(blank=True, null=True)
 
@@ -512,6 +513,9 @@ class Person(PrimaryObject):
 
     def make_tag_list(self):
         return tuple()
+
+    def get_selection_string(self):
+        return self.name_set.get(preferred=True).get_selection_string()
 
 class Family(PrimaryObject):
     father = models.ForeignKey('Person', related_name="father_ref", 
@@ -608,6 +612,9 @@ class Place(PrimaryObject):
     long = models.TextField(blank=True)
     lat = models.TextField(blank=True)
     #url_list = models.ManyToManyField('Url', null=True, blank=True)
+
+    def get_selection_string(self):
+        return "%s [%s]" % (self.title, self.gramps_id)
 
     def __unicode__(self):
         return str(self.title)
@@ -719,6 +726,14 @@ class Name(DateObject, SecondaryObject):
             surname = "[No primary surname]"
         return "%s, %s" % (surname,
                            self.first_name)
+
+    def get_selection_string(self):
+        try:
+            surname = self.surname_set.get(primary=True)
+        except:
+            surname = "[No primary surname]"
+        return "%s, %s [%s]" % (surname, self.first_name, self.person.gramps_id)
+
     @staticmethod
     def get_dummy():
         name = Name()
@@ -791,11 +806,13 @@ class SourceDatamap(models.Model):
     key = models.CharField(max_length=80, blank=True)
     value = models.CharField(max_length=80, blank=True)
     source = models.ForeignKey("Source")
+    order = models.PositiveIntegerField()
 
 class CitationDatamap(models.Model):
     key = models.CharField(max_length=80, blank=True)
     value = models.CharField(max_length=80, blank=True)
     citation = models.ForeignKey("Citation")
+    order = models.PositiveIntegerField()
 
 class Address(DateObject, SecondaryObject):
     #locations = models.ManyToManyField('Location', null=True)

@@ -90,12 +90,11 @@ util_tags = [
     "attribute_table",
     "data_table",
     "address_table",
-    "location_table",
     "media_table",
     "internet_table",
     "association_table",
+    "location_table",
     "lds_table",
-    "reference_table",
     "repository_table",
     "person_reference_table",
     "note_reference_table",
@@ -311,7 +310,7 @@ def event_table(obj, user, act, url, args):
         _("Place"),
         _("Role"))
     table.column_widths = [10, 20, 10, 7, 20, 23, 10]
-    if user.is_authenticated():
+    if user.is_authenticated() or obj.public:
         obj_type = ContentType.objects.get_for_model(obj)
         event_ref_list = models.EventRef.objects.filter(
             object_id=obj.id, 
@@ -357,7 +356,7 @@ def history_table(obj, user, act):
         _("Action"), 
         _("Comment"),
         )
-    if user.is_authenticated():
+    if user.is_authenticated() or obj.public:
         obj_type = ContentType.objects.get_for_model(obj)
         for entry in models.Log.objects.filter(
             object_id=obj.id, 
@@ -388,7 +387,7 @@ def name_table(obj, user, act, url=None, *args):
                   _("Group As"),
                   _("Source"),
                   _("Note Preview"))
-    if user.is_authenticated():
+    if user.is_authenticated() or obj.public:
         links = []
         for name in obj.name_set.all().order_by("order"):
             obj_type = ContentType.objects.get_for_model(name)
@@ -429,7 +428,7 @@ def surname_table(obj, user, act, url=None, *args):
     cssid = "tab-surnames"
     table = Table("surname_table")
     table.columns(_("Order"), _("Surname"),)
-    if user.is_authenticated():
+    if user.is_authenticated() or obj.public:
         try:
             name = obj.name_set.filter(order=order)[0]
         except:
@@ -450,16 +449,18 @@ def surname_table(obj, user, act, url=None, *args):
     return retval
 
 def citation_table(obj, user, act, url=None, *args):
+    # FIXME: how can citation_table and source_table both be on same
+    # page? This causes problems with form names, tab names, etc.
     retval = ""
     has_data = False
-    cssid = "tab-citations"
+    cssid = "tab-sources"
     table = Table("citation_table")
     table.columns("", 
                   _("ID"), 
                   _("Confidence"),
                   _("Page"))
     table.column_widths = [10, 10, 50, 30]
-    if user.is_authenticated():
+    if user.is_authenticated() or obj.public:
         obj_type = ContentType.objects.get_for_model(obj)
         citation_refs = dji.CitationRef.filter(object_type=obj_type,
                                                object_id=obj.id).order_by("order")
@@ -501,14 +502,37 @@ def repository_table(obj, user, act, url=None, *args):
     cssid = "tab-repositories"
     table = Table("repository_table")
     table.columns(
+        "",
         _("ID"),
+        _("Title"),
+        _("Call number"),
         _("Type"),
-        _("Note"))
-    if user.is_authenticated():
-        pass
-    retval += table.get_html()
-    ## FIXME: missing table
-    ## has_data = True
+        )
+    if user.is_authenticated() or obj.public:
+        obj_type = ContentType.objects.get_for_model(obj)
+        refs = dji.RepositoryRef.filter(object_type=obj_type,
+                                        object_id=obj.id)
+        count = 1
+        for repo_ref in refs:
+            repository = repo_ref.ref_object
+            table.row(
+                Link("[[x%d]][[^%d]][[v%d]]" % (count, count, count)) if user.is_superuser else "",
+                repository.gramps_id,
+                repository.name,
+                repo_ref.call_number, 
+                str(repository.repository_type),
+                )
+            has_data = True
+            count += 1
+        text = table.get_html()
+        count = 1
+        for repo_ref in refs:
+            item = obj.__class__.__name__.lower()
+            text = text.replace("[[x%d]]" % count, make_button("x", "/%s/%s/remove/repositoryref/%d" % (item, obj.handle, count)))
+            text = text.replace("[[^%d]]" % count, make_button("^", "/%s/%s/up/repositoryref/%d" % (item, obj.handle, count)))
+            text = text.replace("[[v%d]]" % count, make_button("v", "/%s/%s/down/repositoryref/%d" % (item, obj.handle, count)))
+            count += 1
+        retval += text
     if user.is_superuser and url and act == "view":
         retval += make_button(_("Add New Repository"), (url % args).replace("$act", "add"))
         retval += make_button(_("Add Existing Repository"), (url % args).replace("$act", "share"))
@@ -527,16 +551,15 @@ def note_table(obj, user, act, url=None, *args):
         _("ID"),
         _("Type"),
         _("Note"))
-    if user.is_authenticated():
+    if user.is_authenticated() or obj.public:
         obj_type = ContentType.objects.get_for_model(obj)
         note_refs = dji.NoteRef.filter(object_type=obj_type,
                                        object_id=obj.id)
         for note_ref in note_refs:
-            note = table.db.get_note_from_handle(
-                note_ref.ref_object.handle)
-            table.row(table.db.get_note_from_handle(note.handle),
-                      str(note_ref.ref_object.note_type),
-                      note_ref.ref_object.text[:50])
+            note = note_ref.ref_object
+            table.row(note,
+                      str(note.note_type),
+                      note.text[:50])
             has_data = True
     retval += table.get_html()
     if user.is_superuser and url and act == "view":
@@ -551,18 +574,43 @@ def note_table(obj, user, act, url=None, *args):
 def data_table(obj, user, act, url=None, *args):
     retval = ""
     has_data = False
-    cssid = "has_data"
+    cssid = "tab-data"
     table = Table("data_table")
-    table.columns(_("Type"), 
-                  _("Value"),
-                  )
-    if user.is_authenticated():
-        pass
-    ## FIXME: missing table
-    ## has_data = True
-    retval += table.get_html()
+    table.columns(
+        "",
+        _("Type"), 
+        _("Value"),
+        )
+    if user.is_authenticated() or obj.public:
+        item_class = obj.__class__.__name__.lower()
+        if item_class == "citation":
+            refs = models.CitationDatamap.objects.filter(citation=obj).order_by("order")
+        elif item_class == "source":
+            refs = models.SourceDatamap.objects.filter(source=obj).order_by("order")
+        count = 1
+        for ref in refs:
+            if item_class == "citation":
+                ref_obj = ref.citation
+            elif item_class == "source":
+                ref_obj = ref.source
+            table.row(
+                Link("[[x%d]][[^%d]][[v%d]]" % (count, count, count)) if user.is_superuser else "",
+                ref_obj.key,
+                ref_obj.value,
+                )
+            has_data = True
+            count += 1
+        text = table.get_html()
+        count = 1
+        for repo_ref in refs:
+            text = text.replace("[[x%d]]" % count, make_button("x", "/%s/%s/remove/datamap/%d" % (item_class, obj.handle, count)))
+            text = text.replace("[[^%d]]" % count, make_button("^", "/%s/%s/up/datamap/%d" % (item_class, obj.handle, count)))
+            text = text.replace("[[v%d]]" % count, make_button("v", "/%s/%s/down/datamap/%d" % (item_class, obj.handle, count)))
+            count += 1
+        retval += text
     if user.is_superuser and url and act == "view":
-        retval += make_button(_("Add Data"), (url % args))
+        # /data/$act/citation/%s
+        retval += make_button(_("Add Data"), (url.replace("$act", "add") % args))
     else:
         retval += nbsp("") # to keep tabs same height
     if has_data:
@@ -577,7 +625,7 @@ def attribute_table(obj, user, act, url=None, *args):
     table.columns(_("Type"), 
                   _("Value"),
                   )
-    if user.is_authenticated():
+    if user.is_authenticated() or obj.public:
         obj_type = ContentType.objects.get_for_model(obj)
         attributes = dji.Attribute.filter(object_type=obj_type,
                                           object_id=obj.id)
@@ -604,7 +652,7 @@ def address_table(obj, user, act, url=None, *args):
                   _("City"),
                   _("State"),
                   _("Country"))
-    if user.is_authenticated():
+    if user.is_authenticated() or obj.public:
         for address in obj.address_set.all().order_by("order"):
             locations = address.location_set.all().order_by("order")
             for location in locations:
@@ -623,29 +671,6 @@ def address_table(obj, user, act, url=None, *args):
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
 
-def location_table(obj, user, act, url=None, *args):
-    retval = ""
-    has_data = False
-    cssid = "tab-locations"
-    table = Table("location_table")
-    table.columns(_("Date"), 
-                  _("Address"),
-                  _("City"),
-                  _("State"),
-                  _("Country"))
-    if user.is_authenticated():
-        pass # FIXME
-    ## FIXME: missing table
-    ## has_data = True
-    retval += table.get_html()
-    if user.is_superuser and url and act == "view":
-        retval += make_button(_("Add Address"), (url % args))
-    else:
-        retval += nbsp("") # to keep tabs same height
-    if has_data:
-        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
-    return retval
-
 def media_table(obj, user, act, url=None, *args):
     retval = ""
     has_data = False
@@ -655,7 +680,7 @@ def media_table(obj, user, act, url=None, *args):
                   _("Type"),
                   _("Path/Filename"),
                   )
-    if user.is_authenticated():
+    if user.is_authenticated() or obj.public:
         obj_type = ContentType.objects.get_for_model(obj)
         media_refs = dji.MediaRef.filter(object_type=obj_type,
                                         object_id=obj.id)
@@ -684,7 +709,7 @@ def internet_table(obj, user, act, url=None, *args):
     table.columns(_("Type"),
                   _("Path"),
                   _("Description"))
-    if user.is_authenticated():
+    if user.is_authenticated() or obj.public:
         urls = dji.Url.filter(person=obj)
         for url_obj in urls:
             table.row(str(url_obj.url_type),
@@ -708,14 +733,29 @@ def association_table(obj, user, act, url=None, *args):
     table.columns(_("Name"), 
                   _("ID"),
                   _("Association"))
-    if user.is_authenticated():
-        gperson = table.db.get_person_from_handle(obj.handle)
-        if gperson:
-            associations = gperson.get_person_ref_list()
-            for association in associations:
-                table.row() # FIXME: missing table
+    if user.is_authenticated() or obj.public:
+        person = table.db.get_person_from_handle(obj.handle)
+        if person:
+            links = []
+            count = 1
+            associations = person.get_person_ref_list()
+            for association in associations: # PersonRef
+                table.row(Link("[[x%d]][[^%d]][[v%d]]" % (count, count, count)) if user.is_superuser and url and act == "view" else "",
+                          association.ref_object.get_primary_name(), 
+                          association.ref_object.gramps_id, 
+                          association.description, 
+                          )
+                links.append(('URL', "/person/%s/association/%d" % (obj.handle, count))) 
                 has_data = True
-    retval += table.get_html()
+                count += 1
+            table.links(links)
+            text = table.get_html()
+            count = 1
+            for association in associations: # PersonRef
+                text = text.replace("[[x%d]]" % count, make_button("x", "/person/%s/remove/association/%d" % (obj.handle, count)))
+                text = text.replace("[[^%d]]" % count, make_button("^", "/person/%s/up/association/%d" % (obj.handle, count)))
+                text = text.replace("[[v%d]]" % count, make_button("v", "/person/%s/down/association/%d" % (obj.handle, count)))
+            retval += text
     if user.is_superuser and url and act == "view":
         retval += make_button(_("Add Association"), (url % args))
     else:
@@ -723,6 +763,39 @@ def association_table(obj, user, act, url=None, *args):
     if has_data:
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
+
+def location_table(obj, user, act, url=None, *args):	 
+    # obj is Place or Address
+    retval = ""	 
+    has_data = False	 
+    cssid = "tab-alternatelocations"	 
+    table = Table("location_table")	 
+    table.columns(_("Street"),	 
+                  _("Locality"),	 
+                  _("City"),	 
+                  _("State"),	 
+                  _("Country"))	 
+    if user.is_authenticated() or obj.public:
+        # FIXME: location confusion!
+        # The single Location on the Location Tab is here too?
+        # I think if Parish is None, then these are single Locations;
+        # else they are in the table of alternate locations
+        for location in obj.location_set.all().order_by("order"):
+            table.row(
+                location.street,
+                location.locality,
+                location.city,
+                location.state,
+                location.country)
+            has_data = True
+    retval += table.get_html()	 
+    if user.is_superuser and url and act == "view":	 
+        retval += make_button(_("Add Address"), (url % args))	 
+    else:	 
+        retval += nbsp("") # to keep tabs same height	 
+    if has_data:	 
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid	 
+    return retval	 
 
 def lds_table(obj, user, act, url=None, *args):
     retval = ""
@@ -734,7 +807,7 @@ def lds_table(obj, user, act, url=None, *args):
                   _("Status"),
                   _("Temple"),
                   _("Place"))
-    if user.is_authenticated():
+    if user.is_authenticated() or obj.public:
         obj_type = ContentType.objects.get_for_model(obj)
         ldss = obj.lds_set.all().order_by("order")
         for lds in ldss:
@@ -752,24 +825,6 @@ def lds_table(obj, user, act, url=None, *args):
     if has_data:
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
-
-def reference_table(obj, user, act, url=None, *args):
-    retval = ""
-    has_data = False
-    cssid = "tab-references"
-    table = Table("reference_table")
-    table.columns(
-        _("Type"),
-        _("Reference"), 
-        _("ID"))
-    if user.is_authenticated():
-        pass
-    ## FIXME: missing table?
-    retval += table.get_html()
-    retval += nbsp("") # to keep tabs same height
-    if has_data:
-        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
-    return retval 
 
 def person_reference_table(obj, user, act):
     retval = """<div style="overflow: auto; height:%spx;">""" % TAB_HEIGHT
@@ -791,7 +846,7 @@ def person_reference_table(obj, user, act):
         _("Reference"), 
         )
     table2.column_widths = [10, 10, 82]
-    if user.is_authenticated() and act != "add":
+    if (user.is_authenticated() or obj.public) and act != "add":
         count = 1
         for through in models.MyFamilies.objects.filter(person=obj).order_by("order"):
             reference = through.family
@@ -852,7 +907,7 @@ def note_reference_table(obj, user, act):
         _("Type"),
         _("Reference"), 
         _("ID"))
-    if user.is_authenticated() and act != "add":
+    if (user.is_authenticated()  or obj.public) and act != "add":
         for reference in models.NoteRef.objects.filter(ref_object=obj):
             ref_from_class = reference.object_type.model_class()
             item = ref_from_class.objects.get(id=reference.object_id)
@@ -876,7 +931,7 @@ def event_reference_table(obj, user, act):
         _("Type"),
         _("Reference"), 
         _("ID"))
-    if user.is_authenticated() and act != "add":
+    if (user.is_authenticated() or obj.public) and act != "add":
         for reference in models.EventRef.objects.filter(ref_object=obj):
             ref_from_class = reference.object_type.model_class()
             try:
@@ -904,7 +959,7 @@ def repository_reference_table(obj, user, act):
         _("Type"),
         _("Reference"), 
         _("ID"))
-    if user.is_authenticated() and act != "add":
+    if (user.is_authenticated() or obj.public) and act != "add":
         for reference in models.RepositoryRef.objects.filter(ref_object=obj):
             ref_from_class = reference.object_type.model_class()
             item = ref_from_class.objects.get(id=reference.object_id)
@@ -929,7 +984,7 @@ def citation_reference_table(obj, user, act):
         _("Reference"), 
 #        _("ID")
         )
-    if user.is_authenticated() and act != "add":
+    if (user.is_authenticated() or obj.public) and act != "add":
         for reference in models.CitationRef.objects.filter(citation=obj):
             ref_from_class = reference.object_type.model_class()
             item = ref_from_class.objects.get(id=reference.object_id)
@@ -952,9 +1007,13 @@ def source_reference_table(obj, user, act):
         _("Type"),
         _("Reference"), 
         _("ID"))
-    if user.is_authenticated() and act != "add":
-        pass
-    # FIXME: where is source ref?
+    if (user.is_authenticated() or obj.public) and act != "add":
+        for item in obj.citation_set.all():
+            table.row(
+                item.__class__.__name__,
+                item,
+                item.gramps_id)
+            has_data = True
     retval += table.get_html()
     retval += nbsp("") # to keep tabs same height
     if has_data:
@@ -970,7 +1029,7 @@ def media_reference_table(obj, user, act):
         _("Type"),
         _("Reference"), 
         _("ID"))
-    if user.is_authenticated() and act != "add":
+    if (user.is_authenticated() or obj.public) and act != "add":
         for reference in models.MediaRef.objects.filter(ref_object=obj):
             ref_from_class = reference.object_type.model_class()
             item = ref_from_class.objects.get(id=reference.object_id)
@@ -992,11 +1051,16 @@ def place_reference_table(obj, user, act):
     table = Table("place_reference_table")
     table.columns(
         _("Type"),
-        _("Reference"), 
-        _("ID"))
-    if user.is_authenticated() and act != "add":
-        pass # FIXME
-    ## FIXME: missing table
+        _("Reference"))
+    if (user.is_authenticated() or obj.public) and act != "add":
+        # location, url, event, lds
+        querysets = [obj.location_set, obj.url_set, obj.event_set, obj.lds_set]
+        for queryset in querysets:
+            for item in queryset.all():
+                table.row(
+                    item.__class__.__name__,
+                    item)
+                has_data = True
     retval += table.get_html()
     retval += nbsp("") # to keep tabs same height
     if has_data:
@@ -1012,7 +1076,7 @@ def tag_reference_table(obj, user, act):
         _("Type"),
         _("Reference"), 
         _("ID"))
-    if user.is_authenticated() and act != "add":
+    if (user.is_authenticated() or obj.public) and act != "add":
         querysets = [obj.person_set, obj.family_set, obj.note_set, obj.media_set]
         for queryset in querysets:
             for item in queryset.all():
@@ -1061,7 +1125,7 @@ def children_table(obj, user, act, url=None, *args):
     count = 1
     for childref in childrefs:
         child = childref.ref_object
-        if user.is_authenticated():
+        if user.is_authenticated() or obj.public:
             table.row(Link("[[x%d]][[^%d]][[v%d]]" % (count, count, count)) if user.is_superuser and url and act == "view" else "",
                       str(count), 
                       "[%s]" % child.gramps_id,
@@ -1069,7 +1133,7 @@ def children_table(obj, user, act, url=None, *args):
                       child.gender_type,
                       childref.father_rel_type,
                       childref.mother_rel_type,
-                      date_as_text(child.birth, user),
+                      date_as_text(child.birth, user) if child.birth else "",
                       )
             has_data = True
             links.append(('URL', childref.get_url()))
@@ -1116,20 +1180,6 @@ def get_title(place):
     else:
         return ""
 
-def person_get_birth_date(person):
-    #db = DbDjango()
-    #event = get_birth_or_fallback(db, db.get_person_from_handle(person.handle))
-    #if event:
-    #    return event.date
-    return None
-
-def person_get_death_date(person):
-    #db = DbDjango()
-    #event = get_death_or_fallback(db, db.get_person_from_handle(person.handle))
-    #if event:
-    #    return event.date
-    return None
-
 def display_date(obj):
     date_tuple = dji.get_date(obj)
     if date_tuple:
@@ -1162,10 +1212,16 @@ def render(formfield, user, act, id=None, url=None, *args):
                 else:
                     retval = str(item)
                 #### Some cleanup:
-                if retval == "True":
-                    retval = "Yes"
-                elif retval == "False":
-                    retval = "No"
+                if fieldname == "private": # obj.private
+                    if retval == "True":
+                        retval = "Private"
+                    elif retval == "False":
+                        retval = "Not private"
+                else:
+                    if retval == "True":
+                        retval = "Yes"
+                    elif retval == "False":
+                        retval = "No"
         except:
             # name, "prefix"
             try:
@@ -1177,6 +1233,8 @@ def render(formfield, user, act, id=None, url=None, *args):
             retval = formfield.as_widget(attrs={"id": id})
         else:
             retval = formfield.as_widget()
+        if formfield.name == "private":
+            retval += " Private"
     return retval
 
 def render_name(name, user, act=None):
@@ -1236,15 +1294,15 @@ def date_as_text(obj, user):
     Given a Django object, render the date as text and return.  This
     function uses authentication settings.
     """
-    if (user.is_authenticated() or 
-        (not user.is_authenticated() and obj and not obj.private)):
+    if user.is_authenticated() or (obj and obj.public):
         if obj:
             date_tuple = dji.get_date(obj)
             if date_tuple:
                 gdate = GDate().unserialize(date_tuple)
                 return dd(gdate)
         return ""
-    return "[Private]"
+    else:
+        return ""
 
 def person_get_event(person, event_type=None):
     event_ref_list = dji.get_event_ref_list(person)
@@ -1489,3 +1547,17 @@ def make_log(obj, log_type, last_changed_by, reason, cache):
                      cache=cache)
     log.save()
     
+def person_get_birth_date(person):
+    #db = DbDjango()
+    #event = get_birth_or_fallback(db, db.get_person_from_handle(person.handle))
+    #if event:
+    #    return event.date
+    return None
+
+def person_get_death_date(person):
+    #db = DbDjango()
+    #event = get_death_or_fallback(db, db.get_person_from_handle(person.handle))
+    #if event:
+    #    return event.date
+    return None
+

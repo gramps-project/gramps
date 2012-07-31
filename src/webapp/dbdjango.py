@@ -228,6 +228,7 @@ class DbDjango(DbWriteBase, DbReadBase):
                 self.dji.add_tag_detail(obj.serialize())
         self.use_import_cache = False
         self.import_cache = {}
+        self.dji.update_publics()
 
     def transaction_commit(self, txn):
         pass
@@ -236,8 +237,8 @@ class DbDjango(DbWriteBase, DbReadBase):
         pass
 
     def request_rebuild(self):
-        #self.dji.rebuild_caches()
-        pass
+        # caches are ok, but let's compute public's
+        self.dji.update_publics()
 
     def get_undodb(self):
         return None

@@ -21,20 +21,17 @@
     <td><a href="/{{view}}/{{event.handle|escape}}{{args}}" class="noThumb browsecell">
            <span class="grampsid">[{{event.gramps_id}}]</span></a>
 
-    {% if user.is_authenticated %}
-
+    {% if user.is_authenticated or event.public %}
     <td><a href="/{{view}}/{{event.handle|escape}}{{args}}" class="browsecell">{{event.event_type|nbsp}}</a>
     <td><a href="/{{view}}/{{event.handle|escape}}{{args}}" class="browsecell">{{event.description|nbsp}}</a>
     <td><a href="/{{view}}/{{event.handle|escape}}{{args}}" class="browsecell">{{event|date_as_text:user}}</a>
     <td><a href="/{{view}}/{{event.handle|escape}}{{args}}" class="browsecell">{{event.place.title|nbsp}}</a>
-
     {% else %}
-      <td>[Private]</td>
-      <td>[Private]</td>
-      <td>[Private]</td>
-      <td>[Private]</td>
+      <td><a href="/{{view}}/{{event.handle|escape}}{{args}}" class="browsecell">[Private]</a>
+      <td><a href="/{{view}}/{{event.handle|escape}}{{args}}" class="browsecell">[Private]</a>
+      <td><a href="/{{view}}/{{event.handle|escape}}{{args}}" class="browsecell">[Private]</a>
+      <td><a href="/{{view}}/{{event.handle|escape}}{{args}}" class="browsecell">[Private]</a>
     {% endif %}
-
   </tr>
   {% endfor %}
 </tbody>

@@ -16,14 +16,26 @@
   {% for note in page.object_list %}
   <tr class="{% cycle odd,even %}">
     <td>{{ forloop.counter|row_count:page }}</td>
-    <td><a href="/{{view}}/{{note.handle|escape}}{{args}}" class="noThumb browsecell">
+    <td><a href="/{{view}}/{{note.handle|escape}}{{args}}" class="noThumb browsecell"
+	{% if note.tags.all %}
+            style="color: {{note.tags.all.0.color|format_color}};"
+	{% endif %}
+        >
            <span class="grampsid">[{{note.gramps_id}}]</span></a>
-    {% if user.is_authenticated %}
-    <td><a href="/{{view}}/{{note.handle|escape}}{{args}}" class="browsecell">{{note.note_type|escape|nbsp}}</a>
-    <td><a href="/{{view}}/{{note.handle|escape}}{{args}}" class="browsecell">{{note.text|preview:70|nbsp}}</a>
+    {% if user.is_authenticated or note.public %}
+    <td><a href="/{{view}}/{{note.handle|escape}}{{args}}" class="browsecell"
+	{% if note.tags.all %}
+            style="color: {{note.tags.all.0.color|format_color}};"
+	{% endif %}
+        >{{note.note_type|escape|nbsp}}</a>
+    <td><a href="/{{view}}/{{note.handle|escape}}{{args}}" class="browsecell"
+	{% if note.tags.all %}
+            style="color: {{note.tags.all.0.color|format_color}};"
+	{% endif %}
+        >{{note.text|preview:70|nbsp}}</a>
     {% else %}
-      <td></td>
-      <td></td>
+      <td>[Private]</td>
+      <td>[Private]</td>
     {% endif %}
   </tr>
   {% endfor %}

@@ -16,11 +16,23 @@
   {% for media in page.object_list %}
   <tr class="{% cycle odd,even %}">
     <td>{{ forloop.counter|row_count:page }}</td>
-    <td><a href="/{{view}}/{{media.handle|escape}}{{args}}" class="noThumb browsecell">
+    <td><a href="/{{view}}/{{media.handle|escape}}{{args}}" class="noThumb browsecell"
+	{% if media.tags.all %}
+            style="color: {{media.tags.all.0.color|format_color}};"
+	{% endif %}
+        >
            <span class="grampsid">[{{media.gramps_id}}]</span></a>
-    {% if user.is_authenticated %}
-    <td><a href="/{{view}}/{{media.handle|escape}}{{args}}" class="browsecell">{{media.desc|escape}}</a>
-    <td><a href="/{{view}}/{{media.handle|escape}}{{args}}" class="browsecell">{{media.path|escape}}</a>
+    {% if user.is_authenticated or media.public %}
+    <td><a href="/{{view}}/{{media.handle|escape}}{{args}}" class="browsecell"
+	{% if media.tags.all %}
+            style="color: {{media.tags.all.0.color|format_color}};"
+	{% endif %}
+        >{{media.desc|escape}}</a>
+    <td><a href="/{{view}}/{{media.handle|escape}}{{args}}" class="browsecell"
+	{% if media.tags.all %}
+            style="color: {{media.tags.all.0.color|format_color}};"
+	{% endif %}
+        >{{media.path|escape}}</a>
     {% else %}
       <td></td>
       <td></td>

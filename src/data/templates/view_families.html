@@ -16,14 +16,44 @@
 <tbody>
   {% for family in page.object_list %}
   <tr class="{% cycle odd,even %}">
-    <td><a href="/{{view}}/{{family.handle|escape}}{{args}}" class="browsecell">{{ forloop.counter|row_count:page }}</a></td>
-    <td><a href="/{{view}}/{{family.handle|escape}}{{args}}" class="browsecell"><span class="grampsid">[{{family.gramps_id}}]</span></a>
-    <td><a href="/{{view}}/{{family.handle|escape}}{{args}}" class="browsecell">{{family.father|make_name:user|nbsp}}</a>
-    <td><a href="/{{view}}/{{family.handle|escape}}{{args}}" class="browsecell">{{family.mother|make_name:user|nbsp}}</a>
-    {% if user.is_authenticated %}
-    <td><a href="/{{view}}/{{family.handle|escape}}{{args}}" class="browsecell">{{family.family_rel_type|escape|nbsp}}</a>
+    <td><a href="/{{view}}/{{family.handle|escape}}{{args}}" class="browsecell"
+	{% if family.tags.all %}
+            style="color: {{family.tags.all.0.color|format_color}};"
+	{% endif %}
+        >{{ forloop.counter|row_count:page }}</a></td>
+    <td><a href="/{{view}}/{{family.handle|escape}}{{args}}" class="browsecell"
+	{% if family.tags.all %}
+            style="color: {{family.tags.all.0.color|format_color}};"
+	{% endif %}
+        ><span class="grampsid">[{{family.gramps_id}}]</span></a>
+    <td><a href="/{{view}}/{{family.handle|escape}}{{args}}" class="browsecell"
+	{% if family.tags.all %}
+            style="color: {{family.tags.all.0.color|format_color}};"
+	{% endif %}
+        >{{family.father|make_name:user|nbsp}}</a>
+    <td><a href="/{{view}}/{{family.handle|escape}}{{args}}" class="browsecell"
+	{% if family.tags.all %}
+            style="color: {{family.tags.all.0.color|format_color}};"
+	{% endif %}
+        >{{family.mother|make_name:user|nbsp}}</a>
+    {% if user.is_authenticated or family.public %}
+    <td><a href="/{{view}}/{{family.handle|escape}}{{args}}" class="browsecell"
+	{% if family.tags.all %}
+            style="color: {{family.tags.all.0.color|format_color}};"
+	{% endif %}
+        >{{family.family_rel_type|escape|nbsp}}</a>
     {% else %}
-    <td><a href="/{{view}}/{{family.handle|escape}}{{args}}" class="browsecell">[Private]</a>
+    <td><a href="/{{view}}/{{family.handle|escape}}{{args}}" class="browsecell"
+	{% if family.tags.all %}
+            style="color: {{family.tags.all.0.color|format_color}};"
+	{% endif %}
+        >
+	{% if not family.public %}
+           [Private]
+	{% else %}
+	   {{family.family_rel_type}}
+	{% endif %}
+        </a>
     {% endif %}
   </tr>
   {% endfor %}

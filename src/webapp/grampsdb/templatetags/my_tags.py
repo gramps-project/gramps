@@ -186,6 +186,11 @@ def make_args(search, page):
 make_args.is_safe = True
 register.simple_tag(make_args)
 
+def format_color(color):
+    return color[0:3] + color[5:7] + color[9:11]
+format_color.is_safe = True
+register.filter("format_color", format_color)
+
 def currentSection(view1, view2): # tview, menu
     if view1.strip().lower() in [view[1] for view in VIEWS] and view2 == "browse":
         return "class=CurrentSection"

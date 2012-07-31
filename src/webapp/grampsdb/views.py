@@ -47,6 +47,7 @@ from django.shortcuts import get_object_or_404, render_to_response, redirect
 from django.template import Context, RequestContext
 from django.db.models import Q
 from django.forms.models import modelformset_factory
+from django.utils import simplejson
 
 #------------------------------------------------------------------------
 #
@@ -60,7 +61,8 @@ from webapp.grampsdb.view import *
 from webapp.dbdjango import DbDjango
 import cli.user
 import gen.proxy
-from gen.const import VERSION
+from gen.const import VERSION_TUPLE
+from gen.utils.svn import get_svn_revision
 
 # Menu: (<Nice name>, /<path>/, <Model> | None, Need authentication ) 
 MENU = [
@@ -95,7 +97,7 @@ def context_processor(request):
     else:
         context["css_theme"] = "Web_Mainz.css"
     # Other things for all environments:
-    context["gramps_version"] = VERSION
+    context["gramps_version"] = ".".join([str(v) for v in VERSION_TUPLE]) + " " + get_svn_revision()
     context["views"] = VIEWS
     context["menu"] = MENU
     context["None"] = None
@@ -582,7 +584,6 @@ def process_report(request, context, handle, act):
     context["tviews"] = _("Reports")
 
 def build_string_query(field, value, exact=False, startswith=False, endswith=False):
-    print field, value
     retval = None
     if exact:
         retval = Q(**{"%s" % field: value})
@@ -601,9 +602,10 @@ def build_person_query(request, search):
     """
     protect = not request.user.is_authenticated()
     ### Build the order:
-    terms = ["surname", "given", "tag"]
+    terms = ["surname", "given", "id", "tag", "public", "private"]
     if protect:
         # Do this to get the names sorted by private/alive 
+        # NOTE: names can be private
         query = Q(private=False) & Q(person__private=False)
         order = ["surname__surname", "private", "person__probably_alive", 
                  "first_name"]
@@ -612,6 +614,9 @@ def build_person_query(request, search):
         order = ["surname__surname", "first_name"]
     ### Build the query:
     if search:
+        if "[" in search: # "Surname, Given [I0002]" to match Flexbox and obj.get_select_string()
+            search = search.replace("[", ", id=^")
+            search = search.replace("]", "$")
         if "," in search or "=" in search:
             for term in [term.strip() for term in search.split(",")]:
                 startswith = False
@@ -645,6 +650,9 @@ def build_person_query(request, search):
                 elif field == "private":
                     if not protect:
                         query &= Q(person__private=boolean(value))
+                elif field == "public":
+                    if not protect:
+                        query &= Q(person__public=boolean(value))
                 elif field == "birth":
                     if protect:
                         query &= Q(person__birth__year1=safe_int(value)) & Q(person__probably_alive=False)
@@ -685,7 +693,8 @@ def build_family_query(request, search):
     Build and return a Django QuerySet and sort order for the Family
     table.
     """
-    terms = ["father", "mother", "id", "type", "surnames", "father.name.first_name", "mother.name.first_name", "tag"]
+    terms = ["father", "mother", "id", "type", "surnames", "father.name.first_name", 
+             "mother.name.first_name", "tag", "public", "private"]
     protect = not request.user.is_authenticated()
     if protect:
         query = (Q(private=False) & Q(father__private=False) & 
@@ -740,6 +749,10 @@ def build_family_query(request, search):
                     query &= build_string_query("gramps_id", value, exact, startswith, endswith)
                 elif field == "tag":
                     query &= build_string_query("tags__name", value, exact, startswith, endswith)
+                elif field == "private":
+                    query &= Q(private=boolean(value))
+                elif field == "public":
+                    query &= Q(public=boolean(value))
                 else:
                     make_message(request, message="Invalid query field '%s'" % field)
         else: # no search fields, just raw search
@@ -759,7 +772,7 @@ def build_family_query(request, search):
     return query, order, terms
 
 def build_media_query(request, search):
-    terms = ["id", "path", "description", "mime", "tag"]
+    terms = ["id", "path", "description", "mime", "tag", "public", "private"]
     protect = not request.user.is_authenticated()
     if protect:
         query = Q(private=False) # general privacy
@@ -801,6 +814,10 @@ def build_media_query(request, search):
                     query &= build_string_query("mime", value, exact, startswith, endswith) 
                 elif field == "tag":
                     query &= build_string_query("tags__name", value, exact, startswith, endswith)
+                elif field == "private":
+                    query &= Q(private=boolean(value))
+                elif field == "public":
+                    query &= Q(public=boolean(value))
                 else:
                     request.user.message_set.create(message="Invalid query field '%s'" % field)                
         else: # no search fields, just raw search
@@ -819,7 +836,7 @@ def build_media_query(request, search):
     return query, order, terms
 
 def build_note_query(request, search):
-    terms = ["id", "type", "text", "tag"]
+    terms = ["id", "type", "text", "tag", "public", "private"]
     protect = not request.user.is_authenticated()
     if protect:
         query = Q(private=False) # general privacy
@@ -859,6 +876,10 @@ def build_note_query(request, search):
                     query &= build_string_query("text", value, exact, startswith, endswith) 
                 elif field == "tag":
                     query &= build_string_query("tags__name", value, exact, startswith, endswith)
+                elif field == "private":
+                    query &= Q(private=boolean(value))
+                elif field == "public":
+                    query &= Q(public=boolean(value))
                 else:
                     request.user.message_set.create(message="Invalid query field '%s'" % field)                
         else: # no search fields, just raw search
@@ -875,7 +896,7 @@ def build_note_query(request, search):
     return query, order, terms
 
 def build_place_query(request, search):
-    terms = ["id", "title"]
+    terms = ["title", "id", "public", "private"]
     protect = not request.user.is_authenticated()
     if protect:
         query = Q(private=False) # general privacy
@@ -884,8 +905,11 @@ def build_place_query(request, search):
         query = Q()
         order = ["gramps_id"]
     if search:
-        if "," in search or "=" in search:
-            for term in [term.strip() for term in search.split(",")]:
+        if "[" in search: # "Place [I0002]" to match Flexbox and obj.get_select_string()
+            search = search.replace("[", "; id=^")
+            search = search.replace("]", "$")
+        if ";" in search or "=" in search:
+            for term in [term.strip() for term in search.split(";")]:
                 startswith = False
                 endswith = False
                 exact = False
@@ -911,6 +935,10 @@ def build_place_query(request, search):
                     query &= build_string_query("gramps_id", value, exact, startswith, endswith)
                 elif field == "title":
                     query &= build_string_query("title", value, exact, startswith, endswith) 
+                elif field == "private":
+                    query &= Q(private=boolean(value))
+                elif field == "public":
+                    query &= Q(public=boolean(value))
                 else:
                     request.user.message_set.create(message="Invalid query field '%s'" % field)                
         else: # no search fields, just raw search
@@ -925,7 +953,7 @@ def build_place_query(request, search):
     return query, order, terms
 
 def build_repository_query(request, search):
-    terms = ["id", "name", "type"]
+    terms = ["id", "name", "type", "public", "private"]
     protect = not request.user.is_authenticated()
     if protect:
         query = Q(private=False) # general privacy
@@ -963,6 +991,10 @@ def build_repository_query(request, search):
                     query &= build_string_query("name", value, exact, startswith, endswith) 
                 elif field == "type":
                     query &= build_string_query("repository_type__name", value, exact, startswith, endswith)
+                elif field == "private":
+                    query &= Q(private=boolean(value))
+                elif field == "public":
+                    query &= Q(public=boolean(value))
                 else:
                     request.user.message_set.create(message="Invalid query field '%s'" % field)                
         else: # no search fields, just raw search
@@ -981,7 +1013,7 @@ def build_repository_query(request, search):
     return query, order, terms
 
 def build_citation_query(request, search):
-    terms = ["id"]
+    terms = ["id", "private", "public"]
     protect = not request.user.is_authenticated()
     if protect:
         query = Q(private=False) # general privacy
@@ -1015,6 +1047,10 @@ def build_citation_query(request, search):
                     query &= build_string_query(field.replace(".", "__"), value, exact, startswith, endswith)
                 elif field == "id":
                     query &= build_string_query("gramps_id", value, exact, startswith, endswith)
+                elif field == "private":
+                    query &= Q(private=boolean(value))
+                elif field == "public":
+                    query &= Q(public=boolean(value))
                 else:
                     request.user.message_set.create(message="Invalid query field '%s'" % field)                
         else: # no search fields, just raw search
@@ -1027,7 +1063,7 @@ def build_citation_query(request, search):
     return query, order, terms
 
 def build_source_query(request, search):
-    terms = ["id"]
+    terms = ["id", "private", "public"]
     protect = not request.user.is_authenticated()
     if protect:
         query = Q(private=False) # general privacy
@@ -1061,6 +1097,10 @@ def build_source_query(request, search):
                     query &= build_string_query(field.replace(".", "__"), value, exact, startswith, endswith)
                 elif field == "id":
                     query &= build_string_query("gramps_id", value, exact, startswith, endswith)
+                elif field == "private":
+                    query &= Q(private=boolean(value))
+                elif field == "public":
+                    query &= Q(public=boolean(value))
                 else:
                     request.user.message_set.create(message="Invalid query field '%s'" % field)                
         else: # no search fields, just raw search
@@ -1166,7 +1206,7 @@ def build_report_query(request, search):
     return query, order, terms
 
 def build_event_query(request, search):
-    terms = ["id", "type", "place", "description"]
+    terms = ["id", "type", "place", "description", "private", "public"]
     protect = not request.user.is_authenticated()
     if protect:
         query = Q(private=False) # general privacy
@@ -1201,22 +1241,26 @@ def build_event_query(request, search):
                 elif field == "id":
                     query &= build_string_query("gramps_id", value, exact, startswith, endswith)
                 elif field == "description":
-                    query &= build_string_query("desc", value, exact, startswith, endswith)
+                    query &= build_string_query("description", value, exact, startswith, endswith)
                 elif field == "type":
                     query &= build_string_query("event_type__name", value, exact, startswith, endswith)
                 elif field == "place":
                     query &= build_string_query("place__title", value, exact, startswith, endswith)
+                elif field == "private":
+                    query &= Q(private=boolean(value))
+                elif field == "public":
+                    query &= Q(public=boolean(value))
                 else:
                     request.user.message_set.create(message="Invalid query field '%s'" % field)                
         else: # no search fields, just raw search
             if protect:
                 query &= (Q(gramps_id__icontains=search) |
-                          Q(desc__icontains=search) |
+                          Q(description__icontains=search) |
                           Q(event_type__name__icontains=search) |
                           Q(place__title__icontains=search))
             else:
                 query &= (Q(gramps_id__icontains=search) |
-                          Q(desc__icontains=search) |
+                          Q(description__icontains=search) |
                           Q(event_type__name__icontains=search) |
                           Q(place__title__icontains=search))
     else: # no search
@@ -1314,13 +1358,14 @@ def process_list_item(request, view, handle, act, item, index):
     # /citation/872323636232635/down/attribute/2
     index = int(index)
     tab = {
-        "eventref":     "#tab-events", 
-        "citationref":  "#tab-citations", 
-        "attribute":    "#tab-attributes", 
-        "media":        "#tab-media", 
-        "lds":          "#tab-lds",
-        "parentfamily": "#tab-references",
-        "family":       "#tab-references",
+        "eventref":       "#tab-events", 
+        "citationref":    "#tab-citations", 
+        "repositoryref":  "#tab-repositories", 
+        "attribute":      "#tab-attributes", 
+        "media":          "#tab-media", 
+        "lds":            "#tab-lds",
+        "parentfamily":   "#tab-references",
+        "family":         "#tab-references",
         }
     if view == "person":
         obj = dji.Person.get(handle=handle)
@@ -1330,6 +1375,10 @@ def process_list_item(request, view, handle, act, item, index):
         obj = dji.Family.get(handle=handle)
     elif view == "citation":
         obj = dji.Citation.get(handle=handle)
+    elif view == "source":
+        obj = dji.Source.get(handle=handle)
+    else:
+        raise Exception("add '%s' to list" % view)
     obj_type = ContentType.objects.get_for_model(obj)
     # Next, get reference
     if item == "eventref":
@@ -1338,10 +1387,15 @@ def process_list_item(request, view, handle, act, item, index):
     elif item == "citationref":
         refs = dji.CitationRef.filter(object_id=obj.id,
                                       object_type=obj_type).order_by("order")
+    elif item == "repositoryref":
+        refs = dji.RepositoryRef.filter(object_id=obj.id,
+                                        object_type=obj_type).order_by("order")
     elif item == "parentfamily":
-        refs = dji.PersonParentFamilyOrder.filter(person=obj).order_by("order")
+        refs = dji.MyParentFamilies.filter(person=obj).order_by("order")
     elif item == "family":
-        refs = dji.PersonFamilyOrder.filter(person=obj).order_by("order")
+        refs = dji.MyFamilies.filter(person=obj).order_by("order")
+    else:
+        raise Exception("add '%s' to reference list" % item)
     # Next, perform action:
     if act == "remove":
         count = 1
@@ -1376,3 +1430,56 @@ def process_list_item(request, view, handle, act, item, index):
             count += 1
     dji.rebuild_cache(obj)
     return redirect("/%s/%s/%s" % (view, handle, tab[item]))
+
+def process_json_request(request):
+    """
+    Process an Ajax/Json query request.
+    """
+    if not request.user.is_authenticated():
+        response_data = {"results": [], "total": 0}
+        return HttpResponse(simplejson.dumps(response_data), mimetype="application/json")
+    field = request.GET.get("field", None)
+    query = request.GET.get("q", "")
+    page = int(request.GET.get("p", "1"))
+    size = int(request.GET.get("s", "10"))
+    if field == "mother":
+        q, order, terms = build_person_query(request, query)
+        q &= Q(person__gender_type__name="Female")
+        matches = Name.objects.filter(q).order_by(*order)
+        response_data = {"results": [], "total": len(matches)}
+        for match in matches[(page - 1) * size:page * size]:
+            response_data["results"].append(
+                {"id": match.person.handle,
+                 "name": match.get_selection_string(), 
+                 })
+    elif field == "father":
+        q, order, terms = build_person_query(request, query)
+        q &= Q(person__gender_type__name="Male")
+        matches = Name.objects.filter(q).order_by(*order)
+        response_data = {"results": [], "total": len(matches)}
+        for match in matches[(page - 1) * size:page * size]:
+            response_data["results"].append(
+                {"id": match.person.handle,
+                 "name": match.get_selection_string(), 
+                 })
+    elif field == "person":
+        q, order, terms = build_person_query(request, query)
+        matches = Name.objects.filter(q).order_by(*order)
+        response_data = {"results": [], "total": len(matches)}
+        for match in matches[(page - 1) * size:page * size]:
+            response_data["results"].append(
+                {"id": match.person.handle,
+                 "name": match.get_selection_string(), 
+                 })
+    elif field == "place":
+        q, order, terms = build_place_query(request, query)
+        matches = Place.objects.filter(q).order_by(*order)
+        response_data = {"results": [], "total": len(matches)}
+        for match in matches[(page - 1) * size:page * size]:
+            response_data["results"].append(
+                {"id": match.handle,
+                 "name": match.get_selection_string(), 
+                 })
+    else:
+        raise Exception("""Invalid field: '%s'; Example: /json/?field=mother&q=Smith&p=1&size=10""" % field)
+    return HttpResponse(simplejson.dumps(response_data), mimetype="application/json")
