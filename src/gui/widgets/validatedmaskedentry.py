@@ -438,7 +438,7 @@ class IconEntry(object):
         attr.override_redirect=True
         attr.event_mask = (Gdk.EventMask.ENTER_NOTIFY_MASK |
                               Gdk.EventMask.LEAVE_NOTIFY_MASK)
-        # TODO GTK3 Why can we not set title?
+        # GTK3 We can we not set title?
         #attr.title = 'icon window'
         attr.wclass = Gdk.WindowWindowClass.INPUT_OUTPUT
         attr.window_type = Gdk.WindowType.CHILD
@@ -452,7 +452,7 @@ class IconEntry(object):
                 Gdk.WindowAttributesType.NOREDIR
                 )
         #the window containing the icon image
-        win = Gdk.Window(entry.get_window(),
+        self._icon_win = Gdk.Window(entry.get_window(),
                          attr,
                          attrmask)
 ##                             Gdk.WindowType.CHILD, 
@@ -468,8 +468,7 @@ class IconEntry(object):
 ##                                entry.get_display(), Gdk.CursorType.LEFT_PTR), 
 ##                             wmclass_name='',
 ##                             wmclass_class='', override_redirect=True)
-        self._icon_win = win
-        win.set_user_data(entry)
+        self._icon_win.set_user_data(entry)
         #win.set_background(entry.get_style().base[entry.get_state()])
         self._constructed = True
 
@@ -487,6 +486,8 @@ class IconEntry(object):
         if not self._icon_win:
             return
 
+        self.draw_pixbuf()
+        
         maxvalcol = 65535.
         if color:
             red = int(color.red/ maxvalcol*255)
@@ -494,11 +495,15 @@ class IconEntry(object):
             blue = int(color.blue/ maxvalcol*255)
             rgba = Gdk.RGBA()
             Gdk.RGBA.parse(rgba, 'rgb(%f,%f,%f)'%(red, green, blue))
-            self._entry.override_background_color(Gtk.StateType.NORMAL, rgba)
+            self._entry.override_background_color(Gtk.StateFlags.NORMAL, rgba)
+            #GTK 3: workaround, background not changing in themes, use symbolic
+            self._entry.override_symbolic_color('bg_color', rgba)
+            self._entry.override_symbolic_color('theme_bg_color', rgba)
         else:
-            self._entry.override_background_color(Gtk.StateType.NORMAL, None)
+            self._entry.override_background_color(Gtk.StateFlags.NORMAL, None)
+            self._entry.override_symbolic_color('bg_color', None)
+            self._entry.override_symbolic_color('theme_bg_color', None)
 
-        self.draw_pixbuf()
 
     def get_background(self):
         """ Return default background color as a Gdk.Color """
@@ -513,7 +518,7 @@ class IconEntry(object):
         if not self._pixbuf:
             return
 
-        icony = iconx = 4
+        icony = iconx = 0
 
         # Make space for the icon, both windows
         # GTK 3 gives for entry the sizes for the entire editor
@@ -561,22 +566,23 @@ class IconEntry(object):
         if not win:
             return
 
-        # Draw background first
-        color = self._entry.get_style_context().get_background_color(
-                                            self._entry.get_state())
-        ## TODO GTK3 no more draw_rectangle
-        cairo_t = Gdk.cairo_create(win)
-        Gdk.cairo_set_source_rgba(cairo_t, color)
-        #win.draw_rectangle(color, True, 
-        #                   0, 0, self._pixw, self._pixh)
+        # Draw background first - not needed with cairo!
+        ##color = self._entry.get_style_context().get_background_color(
+        ##                                    self._entry.get_state())
 
         # If sensitive draw the icon, regardless of the window emitting the
         # event since makes it a bit smoother on resize
         if self._entry.get_sensitive():
+            #GTK 3: we use cairo to draw the pixbuf
+            cairo_t = Gdk.cairo_create(win)
             Gdk.cairo_set_source_pixbuf(cairo_t, self._pixbuf, 0, 0)
-            #TODO GTK3: win not visible under red/white part of gtkEntry, no icon also!
-            #TODO GTK3: deprecate the icon? Use button indication on edit date button?
-            win.show()
+            cairo_t.new_path()
+            cairo_t.move_to (0, 0);
+            cairo_t.rel_line_to (win.get_width(), 0);
+            cairo_t.rel_line_to (0, win.get_height());
+            cairo_t.rel_line_to (-win.get_width(), 0);
+            cairo_t.close_path ();
+            cairo_t.fill()
 
     def _update_position(self):
         if self._entry.get_property('xalign') > 0.5:
@@ -694,7 +700,6 @@ class MaskedEntry(UndoableEntry):
             self._icon.resize_windows()
 
     def do_draw(self, cairo_t):
-        #TODO GTK3: It seems this is called in a loop, test, add print here
         Gtk.Entry.do_draw(self, cairo_t)
 
         if Gtk.cairo_should_draw_window(cairo_t, self.get_window()):
