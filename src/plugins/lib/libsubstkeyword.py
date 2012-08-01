@@ -732,6 +732,8 @@ class VariableParse(object):
     
     def get_event_by_name(self, person, event_name):
         """ get an event from a name. """
+        if not person:
+            return None
         for e_ref in person.get_event_ref_list():
             if not e_ref:
                 continue
