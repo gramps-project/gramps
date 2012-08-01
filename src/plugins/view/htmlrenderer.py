@@ -89,10 +89,6 @@ def get_identity():
 # Constants
 #
 #-------------------------------------------------------------------------
-# I think we should set the two following variable in const.py
-# They are used only with gtkmozembed.
-MOZEMBED_PATH = TEMP_DIR
-MOZEMBED_SUBPATH = get_empty_tempdir('mozembed_gramps')
 GEOVIEW_SUBPATH = get_empty_tempdir('geoview')
 NOWEB   = 0
 WEBKIT  = 1
@@ -129,13 +125,6 @@ try:
     TOOLKIT = WEBKIT
 except:
     pass
-
-#TODO GTK3: gtkmozembed not for GTK3
-##try:
-##    import gtkmozembed
-##    TOOLKIT += MOZILLA
-##except:
-##    pass
 
 #no interfaces present, raise Error so that options for GeoView do not show
 if TOOLKIT == NOWEB :
@@ -327,113 +316,6 @@ class RendererWebkit(Renderer):
 
 #-------------------------------------------------------------------------
 #
-# The Mozilla or Gecko Renderer class
-#
-#-------------------------------------------------------------------------
-class RendererMozilla(Renderer):
-    """
-    Implementation of Renderer with gtkmozembed
-    """
-    def __init__(self):
-        Renderer.__init__(self)
-        if hasattr(gtkmozembed, 'set_profile_path'):
-            set_profile_path = gtkmozembed.set_profile_path
-        else:
-            set_profile_path = gtkmozembed.gtk_moz_embed_set_profile_path
-        set_profile_path(MOZEMBED_PATH, MOZEMBED_SUBPATH)
-        self.__set_mozembed_proxy()
-        self.window = gtkmozembed.MozEmbed()
-        self.browser = MOZILLA
-        self.title = None
-        self.handler = self.window.connect("net-stop", self.page_loaded)
-        self.window.connect("title", self.get_title)
-        self.fct = None
-
-    def page_loaded(self, *args):
-        """
-        We just loaded one page in the browser.
-        Set the button sensitivity 
-        """
-        self.set_button_sensitivity()
-
-    def set_button_sensitivity(self):
-        """
-        We must set the back and forward button in the HtmlView class.
-        """
-        self.fct()
-
-    def open(self, url):
-        """
-        We need to load the page in the browser.
-        """
-        self.window.load_url(url)
-
-    def get_title(self, *args):
-        """
-        We need to get the html title page.
-        """
-        self.title = self.window.get_title()
-
-    def execute_script(self, url):
-        """
-        We need to execute a javascript function into the browser
-        """
-        self.window.load_url(url)
-
-    def get_uri(self):
-        """
-        What is the uri loaded in the browser ?
-        """
-        return self.window.get_location()
-
-    def refresh(self):
-        """
-        We need to reload the page in the browser.
-        """
-        self.window.reload(0)
-
-    def __set_mozembed_proxy(self):
-        """
-        Try to see if we have some proxy environment variable.
-        http_proxy in our case.
-        The standard format is : http://[user:password@]proxy:port/
-        """
-        try:
-            proxy = os.environ['http_proxy']
-            if proxy:
-                host_port = None
-                prefs = open(os.path.join(MOZEMBED_SUBPATH,
-                                          "prefs.js"),
-                             "w+")
-                if not os.path.exists(prefs):
-                    parts = urlparse.urlparse(proxy)
-                    if not parts[0] or parts[0] == 'http':
-                        host_port = parts[1]
-                        hport = host_port.split(':')
-                        host = hport[0].strip()
-                        if host:
-                            try:
-                                port = int(hport[1])
-                            except:
-                                user = host
-                                uprox = hport[1].split('@')
-                                password = uprox[0]
-                                host = uprox[1]
-                                port = int(hport[2])
-                    if port and host:
-                        port = str(port)
-                        (lang_country, modifier ) = locale.getlocale()
-                        lang = lang_country.split('_')[0]
-                        prefs.write(MOZJS % vars() )
-                    prefs.close()
-        except:
-            try: # trying to remove pref.js in case of proxy change.
-                os.remove(os.path.join(MOZEMBED_SUBPATH, "prefs.js"))
-            except:
-                pass
-
-#-------------------------------------------------------------------------
-#
 # HtmlView
 #
 #-------------------------------------------------------------------------
@@ -474,49 +356,18 @@ class HtmlView(NavigationView):
         #top widget at the top
         self.box.pack_start(self.top_widget(), False, False, 0 )
         #web page under it in a scrolled window
-        self.table = Gtk.Table(1, 1, False)
-        frames = Gtk.HBox(False, 4)
-        self.frames = frames
+        #self.table = Gtk.Table(1, 1, False)
         self.toolkit = TOOLKIT = get_toolkits()
-        if   (get_toolkits() == (WEBKIT+MOZILLA)):
-            # The two toolkits ( webkit and mozilla ) are available.
-            # The user is able to choose what toolkit he will use.
-            try:
-                # preferences.webkit is useful only in geoview;
-                # not in htmlview.
-                if self._config.get('preferences.webkit'):
-                    TOOLKIT = WEBKIT
-                else:
-                    TOOLKIT = MOZILLA
-            except:
-                self.toolkit = "html"
-        if self.toolkit == "html":
-            _LOG.debug("We are native htmlrenderer.")
-            frame = Gtk.ScrolledWindow(None, None)
-            frame.set_shadow_type(Gtk.ShadowType.NONE)
-            frame.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
-            frame.add_with_viewport(self.table)
-        else:
-            _LOG.debug("We are called by geoview.")
-            frame = Gtk.Frame()
-            frame.set_size_request(100,100)
-            frame.add(self.table)
-        #self.bootstrap_handler = self.box.connect("size-request", 
-        #                         self.init_parent_signals_for_map)
-        self.table.get_parent().set_shadow_type(Gtk.ShadowType.NONE)
-        self.table.set_row_spacings(1)
-        self.table.set_col_spacings(0)
-        if   (TOOLKIT == MOZILLA) :
-            _LOG.debug("We use gtkmozembed")
-            self.renderer = RendererMozilla()
-        else:
-            _LOG.debug("We use webkit")
-            self.renderer = RendererWebkit()
-        self.table.add(self.renderer.get_window())
-        frames.set_homogeneous(False)
-        frames.pack_start(frame, True, True, 0)
-        frames.pack_end(self.filter, False, False, 0)
-        self.box.pack_start(frames, True, True, 0)
+        self.renderer = RendererWebkit()
+        self.frames = Gtk.HBox(False, 4)
+        frame = Gtk.ScrolledWindow(None, None)
+        frame.set_shadow_type(Gtk.ShadowType.NONE)
+        frame.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+        frame.add(self.renderer.get_window())
+        self.frames.set_homogeneous(False)
+        self.frames.pack_start(frame, True, True, 0)
+        self.frames.pack_end(self.filter, False, False, 0)
+        self.box.pack_start(self.frames, True, True, 0)
         # this is used to activate the back and forward button
         # from the renderer class.
         self.renderer.fct = lambda: self.set_button_sensitivity
