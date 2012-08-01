@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-07-15 17:49+0200\n"
-"PO-Revision-Date: 2012-07-29 23:40-0300\n"
+"PO-Revision-Date: 2012-07-31 23:09-0300\n"
 "Last-Translator: André Marcelo Alvarenga <alvarenga@kde.org>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_br@kde.org>\n"
 "Language: \n"
@@ -12674,7 +12674,7 @@ msgid ""
 "  1. <a wiki='%s_-_FAQ#How_do_I_change_the_order_of_spouses.3F'>How do I "
 "change the order of spouses?</a>\n"
 msgstr ""
-"  1. <a wiki='%s_-_FAQ#How_do_I_change_the_order_of_spouses.3F'>Como eu "
+"  1. <a wiki='%s_-_FAQ#How_do_I_change_the_order_of_spouses.3F'>Como "
 "altero a ordem dos cônjuges?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:44
@@ -12683,7 +12683,7 @@ msgid ""
 "  2. <a wiki='%s_-_FAQ#How_do_I_add_an_additional_spouse.3F'>How do I add an "
 "additional spouse?</a>\n"
 msgstr ""
-"  2. <a wiki='%s_-_FAQ#How_do_I_add_an_additional_spouse.3F'>Como eu "
+"  2. <a wiki='%s_-_FAQ#How_do_I_add_an_additional_spouse.3F'>Como "
 "adiciono outro cônjuge?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:45
@@ -12692,7 +12692,7 @@ msgid ""
 "  3. <a wiki='%s_-_FAQ#How_do_I_remove_a_spouse.3F'>How do I remove a spouse?"
 "</a>\n"
 msgstr ""
-"  3. <a wiki='%s_-_FAQ#How_do_I_remove_a_spouse.3F'>Como eu removo um "
+"  3. <a wiki='%s_-_FAQ#How_do_I_remove_a_spouse.3F'>Como removo um "
 "cônjuge?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:47
@@ -12705,7 +12705,7 @@ msgid ""
 "  4. <a wiki='%s_-_FAQ#How_do_I_keep_backups.3F'>How do I make backups "
 "safely?</a>\n"
 msgstr ""
-"  4. <a wiki='%s_-_FAQ#How_do_I_keep_backups.3F'>Como eu faço cópias de "
+"  4. <a wiki='%s_-_FAQ#How_do_I_keep_backups.3F'>Como faço cópias de "
 "segurança de maneira segura?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:50
@@ -12773,7 +12773,7 @@ msgid ""
 "website with Gramps and my tree?</a>\n"
 msgstr ""
 " 10. <a wiki='%s_-"
-"_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>Como é que posso "
+"_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>Como posso "
 "publicar uma página Web com a minha árvore genealógica produzida pelo Gramps?"
 "</a>\n"
 
@@ -12783,7 +12783,7 @@ msgid ""
 "msg_id=21487967'>How do I record one's occupation?</a>\n"
 msgstr ""
 " 11. <a href='http://sourceforge.net/mailarchive/message.php?"
-"msg_id=21487967'>Como eu registro uma ocupação?</a>\n"
+"msg_id=21487967'>Como registro uma ocupação?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:66
 #, python-format
@@ -12791,8 +12791,8 @@ msgid ""
 " 12. <a wiki='%s_-_FAQ#What_do_I_do_if_I_have_found_a_bug.3F'>What do I do "
 "if I have found a bug?</a>\n"
 msgstr ""
-" 12. <a wiki='%s_-_FAQ#What_do_I_do_if_I_have_found_a_bug.3F'>O que fazer se "
-"eu encontrar um erro?</a>\n"
+" 12. <a wiki='%s_-_FAQ#What_do_I_do_if_I_have_found_a_bug.3F'>O que eu faço "
+"se encontrar um erro?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:67
 msgid " 13. <a wiki='Portal:Using_GRAMPS'>Is there a manual for Gramps?</a>\n"
@@ -12809,8 +12809,7 @@ msgstr " 15. <a wiki='Category:How_do_I...'>Como é que...</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:70
 msgid " 16. <a wiki='How_you_can_help'>How can I help with Gramps?</a>\n"
-msgstr ""
-" 16. <a wiki='How_you_can_help'>De que forma posso ajudar o Gramps?</a>\n"
+msgstr " 16. <a wiki='How_you_can_help'>Como posso ajudar o Gramps?</a>\n"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:43
 msgid "Double-click given name for details"
@@ -13424,7 +13423,7 @@ msgid ""
 msgstr ""
 "O Gramps é criado por genealogistas para genealogistas e organizado no "
 "projeto Gramps. Ele é um programa de código aberto, o que significa que você "
-"pode fazer cópia e distribuí-lo como preferir. Ele é desenvolvido e mantido "
+"pode fazer cópias e distribuí-lo como preferir. Ele é desenvolvido e mantido "
 "por equipes de voluntários distribuídas pelo mundo, com objetivo de tornar o "
 "Gramps poderoso e fácil de usar.\n"
 "\n"
@@ -13444,7 +13443,7 @@ msgstr ""
 "A primeira coisa que você precisa fazer é criar uma nova árvore genealógica. "
 "Para criar uma (às vezes é chamada de 'banco de dados') selecione \"Árvores "
 "genealógicas\" a partir do menu, escolha \"Gerenciar árvores genealógicas\", "
-"clique em \"Nova\" e informe o nome da sua árvore genealógica. Para mais "
+"clique em \"Novo\" e informe o nome da sua árvore genealógica. Para mais "
 "detalhes leia as informações nos links acima\n"
 "\n"
 
@@ -13464,7 +13463,7 @@ msgid ""
 "can also drag the Properties button to reposition the gramplet  on this "
 "page, and detach the gramplet to float above Gramps."
 msgstr ""
-"Você está lendo a partir da página \"Gramplets\", onde você pode adicionar "
+"Você está lendo a partir da página \"Gramplets\", onde é possível adicionar "
 "os seus próprios gramplets. Você pode também adicionar Gramplets em qualquer "
 "modo de exibição, ao adicionar uma barra lateral e/ou barra de botões, e "
 "clicar com o botão direito na aba.\n"
@@ -19308,12 +19307,12 @@ msgstr "Abrir em openstreetmap.org"
 #: ../src/plugins/quickview/AgeOnDate.py:50
 #, python-format
 msgid "People probably alive and their ages the %s"
-msgstr "Pessoas provavelmente vivas e as suas idades o %s"
+msgstr "Pessoas provavelmente vivas e suas idades em %s"
 
 #: ../src/plugins/quickview/AgeOnDate.py:53
 #, python-format
 msgid "People probably alive and their ages on %s"
-msgstr "Pessoas provavelmente vivas e as suas idades em %s"
+msgstr "Pessoas provavelmente vivas e suas idades em %s"
 
 #: ../src/plugins/quickview/AgeOnDate.py:68
 #, python-format
@@ -19322,7 +19321,7 @@ msgid ""
 "%d matches.\n"
 msgstr ""
 "\n"
-"%d coincide.\n"
+"%d ocorrências.\n"
 
 #. display the results
 #. feature request 2356: avoid genitive form
@@ -19615,7 +19614,7 @@ msgstr "Tipos de nome"
 
 #: ../src/plugins/quickview/FilterByName.py:296
 msgid "birth event but no date"
-msgstr "evento de nascimento mas sem data"
+msgstr "com evento de nascimento mas sem data"
 
 #: ../src/plugins/quickview/FilterByName.py:299
 msgid "missing birth event"
@@ -19655,7 +19654,7 @@ msgstr "Tamanho em bytes"
 msgid "Filter matched %d record."
 msgid_plural "Filter matched %d records."
 msgstr[0] "O filtro corresponde a %d registro."
-msgstr[1] "O filtro corresponde a %d registro."
+msgstr[1] "O filtro corresponde a %d registros."
 
 #. display the results
 #. feature request 2356: avoid genitive form
@@ -20029,7 +20028,7 @@ msgstr "Coincide com as pessoas sem o primeiro nome"
 #: ../src/plugins/quickview/SameSurnames.py:106
 #, python-format
 msgid "People sharing the surname '%s'"
-msgstr "Pessoas que compartilham do mesmo sobrenome '%s'"
+msgstr "Pessoas que possuem o sobrenome '%s'"
 
 #: ../src/plugins/quickview/SameSurnames.py:126
 #: ../src/plugins/quickview/SameSurnames.py:168
