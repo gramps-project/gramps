@@ -42,7 +42,6 @@ import os
 #
 #-------------------------------------------------------------------------
 from gi.repository import GObject
-from gi.repository import Pango
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import GdkPixbuf
@@ -188,9 +187,7 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         self.alive = alive
         self.maxlines = maxlines
         self.hightlight = False
-##TODO GTK3: event deprecated , instead if still needed connect to event, 
-## and check if event is an expose event.
-##        self.connect("expose_event", self.expose)
+        self.connect("draw", self.expose)
         if not win():
             self.connect("realize", self.realize)
         self.text = ""
@@ -265,15 +262,15 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
             ymin = max(ymin, self.img_surf.get_height()+4)
         self.set_size_request(max(xmin, 120), max(ymin, 25))
 
-    def expose(self, widget, event):
+    def expose(self, widget, context):
         """
         Redrawing the contents of the widget.
         Creat new cairo object and draw in it all (borders, background and etc.)
         witout text.
         """
         # pylint: disable-msg=E1101
+        self.context = context
         if win():
-            self.context = self.window.cairo_create()
             self.textlayout = self.context.create_layout()
             self.textlayout.set_font_description(self.get_style().font_desc)
             self.textlayout.set_markup(self.text)
@@ -286,7 +283,6 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
             self.set_size_request(max(xmin, 120), max(ymin, 25))
 
         alloc = self.get_allocation()
-        self.context = self.window.cairo_create()
 
         # widget area for debugging
         #self.context.rectangle(0, 0, alloc.width, alloc.height)
@@ -342,7 +338,7 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         # text
         self.context.move_to(5, 4)
         self.context.set_source_rgb(0, 0, 0)
-        self.context.show_layout(self.textlayout)
+        PangoCairo.show_layout(self.context, self.textlayout)
 
         # text extents
         #self.context.set_source_rgba(1, 0, 0, 0.5)
