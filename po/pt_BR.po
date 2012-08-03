@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-05-10 21:46+0100\n"
-"PO-Revision-Date: 2012-07-31 23:09-0300\n"
+"PO-Revision-Date: 2012-08-03 00:08-0300\n"
 "Last-Translator: André Marcelo Alvarenga <alvarenga@kde.org>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_br@kde.org>\n"
 "Language: \n"
@@ -391,13 +391,13 @@ msgid ""
 "button at any time and your present database will still be intact."
 msgstr ""
 "Sob circunstâncias normais, o Gramps não exige que você salve suas "
-"modificações diretamente. Todas as modificações que você faz são salvas "
+"modificações diretamente. Todas as modificações feitas são salvas "
 "imediatamente no banco de dados.\n"
 "\n"
 "Este processo o ajudará a salvar uma cópia de seus dados em qualquer um dos "
 "diversos formatos suportados pelo Gramps. Isto pode ser usado para fazer uma "
 "cópia dos seus dados, um backup dos dados, ou convertê-los para um formato "
-"que possibilitará sua transferência para um programa diferente.\n"
+"que possibilitará sua transferência para outro programa.\n"
 "\n"
 "Se você mudar de ideia durante o processo, basta clicar em Cancelar a "
 "qualquer momento e o seu banco de dados atual permanecerá intacto."
@@ -436,7 +436,7 @@ msgstr "Alterar a ordem"
 
 #: ../src/ExportOptions.py:179
 msgid "Calculate Previews"
-msgstr "Visualizações calculadas"
+msgstr "Calcular visualizações"
 
 #: ../src/ExportOptions.py:256
 msgid "_Person Filter"
@@ -3469,7 +3469,7 @@ msgstr "Não liberado"
 #: ../src/gen/lib/markertype.py:59
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:80
 msgid "Complete"
-msgstr "Completo"
+msgstr "Concluído"
 
 #: ../src/gen/lib/markertype.py:60 ../src/plugins/tool/NotRelated.py:108
 msgid "ToDo"
@@ -4388,7 +4388,7 @@ msgstr "Vista em árvore: primeira coluna \"%s\" não pode ser alterada"
 
 #: ../src/gui/columnorder.py:97
 msgid "Drag and drop the columns to change the order"
-msgstr "Arraste e solte as colunas para alterar a sua ordem"
+msgstr "Arraste e solte as colunas para alterar a ordem"
 
 #. #################
 #: ../src/gui/columnorder.py:130 ../src/gui/configure.py:973
@@ -4584,8 +4584,7 @@ msgstr ""
 
 #: ../src/gui/configure.py:513
 msgid "Show plugin status dialog on plugin load error."
-msgstr ""
-"Exibir janela de status dos plug-ins se ocorrer um erro ao carregá-los."
+msgstr "Exibir janela de status dos plugins se ocorrer um erro ao carregá-los."
 
 #: ../src/gui/configure.py:516
 msgid "Warnings"
@@ -4768,7 +4767,7 @@ msgstr "Adicionar fonte padrão na importação"
 
 #: ../src/gui/configure.py:1077
 msgid "Enable spelling checker"
-msgstr "Habilita o verificador ortográfico"
+msgstr "Ativar o verificador ortográfico"
 
 #: ../src/gui/configure.py:1080
 msgid "Display Tip of the Day"
@@ -4824,7 +4823,7 @@ msgstr "O que verificar"
 
 #: ../src/gui/configure.py:1127
 msgid "Do not ask about previously notified addons"
-msgstr "Não pergunte sobre as extensões notificadas anteriormente"
+msgstr "Não perguntar sobre as extensões anteriormente notificadas"
 
 #: ../src/gui/configure.py:1132
 msgid "Check now"
@@ -4855,12 +4854,12 @@ msgid ""
 "If you think you may want to revert the import, please stop here and backup "
 "your database."
 msgstr ""
-"Prosseguir com a importação apagará o histórico de desfazimentos para esta "
+"Prosseguir com a importação apagará o histórico de desfazimentos desta "
 "sessão. Particularmente, você não será capaz de reverter a importação ou "
 "quaisquer mudanças feitas antes disso.\n"
 "\n"
-"Se você acha que deve reverter a importação, por favor, pare agora e faça "
-"uma cópia de segurança do seu banco de dados."
+"Se você acha que pode ser necessário reverter a importação, por favor, pare "
+"agora e faça uma cópia de segurança do seu banco de dados."
 
 #: ../src/gui/dbloader.py:123
 msgid "_Proceed with import"
@@ -6059,7 +6058,7 @@ msgstr "_Sair"
 
 #: ../src/gui/viewmanager.py:748
 msgid "_View"
-msgstr "_Visualizar"
+msgstr "_Exibir"
 
 #: ../src/gui/viewmanager.py:749
 msgid "_Edit"
@@ -6095,7 +6094,7 @@ msgstr "_Sobre"
 
 #: ../src/gui/viewmanager.py:763
 msgid "_Plugin Manager"
-msgstr "Gerenciador de plug-ins"
+msgstr "Gerenciador de plugins"
 
 #: ../src/gui/viewmanager.py:765
 msgid "_FAQ"
@@ -6205,7 +6204,7 @@ msgstr "Tecla %s não configurada"
 #. load plugins
 #: ../src/gui/viewmanager.py:970
 msgid "Loading plugins..."
-msgstr "Carregando plug-ins..."
+msgstr "Carregando plugins..."
 
 #: ../src/gui/viewmanager.py:977 ../src/gui/viewmanager.py:992
 msgid "Ready"
@@ -6214,7 +6213,7 @@ msgstr "Pronto"
 #. registering plugins
 #: ../src/gui/viewmanager.py:985
 msgid "Registering plugins..."
-msgstr "Registrando plug-ins..."
+msgstr "Registrando plugins..."
 
 #: ../src/gui/viewmanager.py:1022
 msgid "Autobackup..."
@@ -6342,7 +6341,7 @@ msgstr "Selecionar a pasta da cópia de segurança"
 
 #: ../src/gui/viewmanager.py:1878
 msgid "Failed Loading Plugin"
-msgstr "Falha no carregamento do plug-in"
+msgstr "Falha no carregamento do plugin"
 
 #: ../src/gui/viewmanager.py:1879
 #, python-format
@@ -7332,7 +7331,7 @@ msgstr "Salvar alterações?"
 
 #: ../src/gui/editors/editprimary.py:235
 msgid "If you close without saving, the changes you have made will be lost"
-msgstr "Se você fechar sem salvar, as modificações que você fez serão perdidas"
+msgstr "Se você fechar sem salvar, as modificações feitas serão perdidas"
 
 #: ../src/gui/editors/editreporef.py:63
 msgid "Repository Reference Editor"
@@ -8202,7 +8201,7 @@ msgstr "Visível"
 #: ../src/gui/plug/_windows.py:82 ../src/plugins/gramplet/gramplet.gpr.py:169
 #: ../src/plugins/gramplet/gramplet.gpr.py:176
 msgid "Plugin Manager"
-msgstr "Gerenciador de plug-ins"
+msgstr "Gerenciador de plugins"
 
 #: ../src/gui/plug/_windows.py:129 ../src/gui/plug/_windows.py:184
 msgid "Info"
@@ -8220,7 +8219,7 @@ msgstr "Carregar"
 
 #: ../src/gui/plug/_windows.py:146
 msgid "Registered Plugins"
-msgstr "Plug-ins registrados"
+msgstr "Plugins registrados"
 
 #: ../src/gui/plug/_windows.py:160
 msgid "Loaded"
@@ -8236,7 +8235,7 @@ msgstr "Mensagem"
 
 #: ../src/gui/plug/_windows.py:202
 msgid "Loaded Plugins"
-msgstr "Plug-ins carregados"
+msgstr "Plugins carregados"
 
 #. self.addon_list.connect('button-press-event', self.button_press)
 #: ../src/gui/plug/_windows.py:222
@@ -8308,7 +8307,7 @@ msgstr "Falhou"
 
 #: ../src/gui/plug/_windows.py:594
 msgid "Plugin name"
-msgstr "Nome do plug-in"
+msgstr "Nome do plugin"
 
 #: ../src/gui/plug/_windows.py:596
 msgid "Version"
@@ -8329,7 +8328,7 @@ msgstr "Informações detalhadas"
 
 #: ../src/gui/plug/_windows.py:659
 msgid "Plugin Error"
-msgstr "Erro do plug-in"
+msgstr "Erro do plugin"
 
 #: ../src/gui/plug/_windows.py:1023 ../src/plugins/tool/OwnerEditor.py:161
 msgid "Main window"
@@ -8691,7 +8690,7 @@ msgstr "Coluna pressionada, ordenando..."
 
 #: ../src/gui/views/listview.py:921
 msgid "Export View as Spreadsheet"
-msgstr "Exportar visualização com planilha"
+msgstr "Exportar visualização como planilha"
 
 #: ../src/gui/views/listview.py:929 ../src/glade/mergenote.glade.h:4
 msgid "Format:"
@@ -9321,11 +9320,11 @@ msgstr ""
 "para os desenvolvedores do Gramps, que será o mais detalhado possível.\n"
 "\n"
 "O assistente fará algumas perguntas e irá reunir algumas informações sobre o "
-"erro que ocorreu e o ambiente de operação. No final do assistente você será "
+"erro que ocorreu e o ambiente de operação. No final do assistente, você será "
 "orientado a incluir um relatório de erro no sistema de gerenciamento de "
 "erros do Gramps. O assistente deixará o relatório de erro na área de "
-"transferência, de forma a que possa copiá-lo para o formulário da página web "
-"e rever a informação que queira incluir."
+"transferência, de forma que possa copiá-lo para o formulário da página web "
+"e rever a informação que deseja incluir."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:70
 msgid "Report a bug: Step 1 of 5"
@@ -9374,7 +9373,7 @@ msgid ""
 "understand it. You will have the opportunity to add further detail about the "
 "error in the following pages of the assistant."
 msgstr ""
-"Essa é a informação detalhada de erros do Gramps, não se preocupe se você "
+"Essa é a informação detalhada de erros do Gramps, não se preocupe se "
 "não entendê-la. Você terá a oportunidade de adicionar mais detalhes sobre o "
 "erro nas próximas páginas do assistente."
 
@@ -9451,7 +9450,7 @@ msgid ""
 msgstr ""
 "Utilize os botões seguintes para, primeiramente, copiar o relatório de erro "
 "para a área de transferências e depois abrir um navegador Web para enviar o "
-"relatório de erro a "
+"relatório de erro para "
 
 #. url_label = gtk.Label(_("If your email client is configured correctly you may be able "#. "to use this button to start it with the bug report ready to send. "#. "(This will probably only work if you are running Gnome)"))
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:466
@@ -9513,7 +9512,8 @@ msgid ""
 msgstr ""
 "Seus dados estarão a salvo, mas é aconselhável que reinicie o Gramps "
 "imediatamente. Se você quiser preencher um relatório de erro para a equipe "
-"do Gramps, então por favor, clique em Relatar e o Assistente de Relatório de "
+"do Gramps, então por favor, clique em Relatório e o Assistente de Relatório "
+"de "
 "Erros irá ajudá-lo a produzir um relatório."
 
 #: ../src/GrampsLogger/_ErrorView.py:114 ../src/GrampsLogger/_ErrorView.py:127
@@ -12450,7 +12450,7 @@ msgstr "Gramplet que mostra os ascendentes da pessoa ativa"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:170
 msgid "Gramplet showing available third-party plugins (addons)"
-msgstr "Gramplet que mostra os plug-ins feitos por terceiros (extensões)"
+msgstr "Gramplet que mostra os plugins criados por terceiros (extensões)"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:184
 msgid "Gramplet showing an active item Quick View"
@@ -22097,7 +22097,7 @@ msgstr "Procurar_pessoas_com_possível_registro_duplicado..."
 
 #: ../src/plugins/tool/FindDupes.py:127 ../src/plugins/tool/tools.gpr.py:218
 msgid "Find Possible Duplicate People"
-msgstr "Procura pessoas com possível registro duplicado"
+msgstr "Procurar pessoas com possível registro duplicado"
 
 #: ../src/plugins/tool/FindDupes.py:140
 #: ../src/plugins/tool/MergeCitations.py:159 ../src/plugins/tool/Verify.py:294
@@ -22702,7 +22702,7 @@ msgstr "Gerador de código SoundEx"
 
 #: ../src/plugins/tool/tools.gpr.py:35
 msgid "Fix Capitalization of Family Names"
-msgstr "Corrige maiúsculas/minúsculas dos nomes de família"
+msgstr "Corrigir maiúsculas/minúsculas dos nomes de família"
 
 #: ../src/plugins/tool/tools.gpr.py:36
 msgid ""
@@ -22848,7 +22848,7 @@ msgstr "Reordena os IDs do Gramps de acordo com as regras pré-definidas."
 
 #: ../src/plugins/tool/tools.gpr.py:463 ../src/plugins/tool/tools.gpr.py:464
 msgid "Sorts events"
-msgstr "Ordena eventos"
+msgstr "Ordenar eventos"
 
 #: ../src/plugins/tool/tools.gpr.py:485
 msgid "Generate SoundEx Codes"
@@ -23063,7 +23063,7 @@ msgstr "Fonte: Abreviação"
 #: ../src/plugins/view/citationtreeview.py:97
 #: ../src/plugins/view/citationlistview.py:104
 msgid "Source: Publication Information"
-msgstr "Fonte: Informação da publicação"
+msgstr "Fonte: Informações da publicação"
 
 #: ../src/plugins/view/citationtreeview.py:118
 #: ../src/plugins/view/citationlistview.py:118
@@ -23985,7 +23985,7 @@ msgstr "Abreviação"
 
 #: ../src/plugins/view/sourceview.py:83
 msgid "Publication Information"
-msgstr "Informação da publicação"
+msgstr "Informações da publicação"
 
 #: ../src/plugins/view/sourceview.py:94
 msgid "Edit the selected source"
@@ -28186,7 +28186,7 @@ msgstr "Fechar _sem salvar"
 
 #: ../src/glade/questiondialog.glade.h:2
 msgid "Do not ask again"
-msgstr "Não pergunte novamente"
+msgstr "Não perguntar novamente"
 
 #: ../src/glade/questiondialog.glade.h:3
 msgid "Do not show this dialog again"
