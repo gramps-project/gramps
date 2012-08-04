@@ -375,7 +375,7 @@ class ConfigureDialog(ManagedWindow):
         store = Gtk.ListStore(int, str)
         for item in opts:
             store.append(item)
-        combo = Gtk.ComboBox(store)
+        combo = Gtk.ComboBox(model=store)
         cell = Gtk.CellRendererText()
         combo.pack_start(cell, True)
         combo.add_attribute(cell, 'text', 1)  
@@ -398,8 +398,7 @@ class ConfigureDialog(ManagedWindow):
             callback = self.update_slider
         lwidget = BasicLabel("%s: " % label)
         adj = Gtk.Adjustment(config.get(constant), range[0], range[1], 1, 0, 0)
-        slider = Gtk.HScale(adj)
-        slider.set_update_policy(Gtk.UPDATE_DISCONTINUOUS)
+        slider = Gtk.HScale(adjustment=adj)
         slider.set_digits(0)
         slider.set_value_pos(Gtk.PositionType.BOTTOM)
         slider.connect('value-changed', callback, constant)

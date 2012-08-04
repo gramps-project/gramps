@@ -46,6 +46,7 @@ from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import GdkPixbuf
 from gi.repository import PangoCairo
+import cairo
 
 #-------------------------------------------------------------------------
 #
@@ -77,14 +78,6 @@ import gui.utils
 # Constants
 #
 #-------------------------------------------------------------------------
-if is_quartz():
-    CAIRO_AVAILABLE = False
-else:
-    try:
-        import cairo
-        CAIRO_AVAILABLE = True
-    except ImportError:
-        CAIRO_AVAILABLE = False
 
 _PERSON = "p"
 _BORN = _('short for born|b.')
@@ -188,8 +181,6 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         self.maxlines = maxlines
         self.hightlight = False
         self.connect("draw", self.expose)
-        if not win():
-            self.connect("realize", self.realize)
         self.text = ""
         if self.person:
             self.text = self.format_helper.format_person(self.person,
@@ -229,7 +220,6 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         # enable mouse-out
         self.connect("leave-notify-event", self.cb_on_leave)
         self.set_size_request(120, 25)
-        # GTK object use in realize and expose methods
         self.context = None
         self.textlayout = None
 
@@ -244,24 +234,6 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         self.hightlight = False
         self.queue_draw()
 
-    def realize(self, widget):
-        """
-        Necessary actions when the widget is instantiated on a particular
-        display. Print text and resize element.
-        """
-        # pylint: disable-msg=E1101
-        self.context = self.get_root_window().cairo_create()
-        self.textlayout = PangoCairo.create_layout(self.context)
-        self.textlayout.set_font_description(self.get_style().font_desc)
-        self.textlayout.set_markup(self.text)
-        size = self.textlayout.get_pixel_size()
-        xmin = size[0] + 12
-        ymin = size[1] + 11
-        if self.img_surf:
-            xmin += self.img_surf.get_width()
-            ymin = max(ymin, self.img_surf.get_height()+4)
-        self.set_size_request(max(xmin, 120), max(ymin, 25))
-
     def expose(self, widget, context):
         """
         Redrawing the contents of the widget.
@@ -270,17 +242,17 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         """
         # pylint: disable-msg=E1101
         self.context = context
-        if win():
-            self.textlayout = self.context.create_layout()
+        if not self.textlayout:
+            self.textlayout = PangoCairo.create_layout(self.context)
             self.textlayout.set_font_description(self.get_style().font_desc)
-            self.textlayout.set_markup(self.text)
-            size = self.textlayout.get_pixel_size()
-            xmin = size[0] + 12
-            ymin = size[1] + 11
-            if self.img_surf:
-                xmin += self.img_surf.get_width()
-                ymin = max(ymin, self.img_surf.get_height()+4)
-            self.set_size_request(max(xmin, 120), max(ymin, 25))
+            self.textlayout.set_markup(self.text, -1)
+        size = self.textlayout.get_pixel_size()
+        xmin = size[0] + 12
+        ymin = size[1] + 11
+        if self.img_surf:
+            xmin += self.img_surf.get_width()
+            ymin = max(ymin, self.img_surf.get_height()+4)
+        self.set_size_request(max(xmin, 120), max(ymin, 25))
 
         alloc = self.get_allocation()
 
@@ -335,18 +307,6 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
                 alloc.width-4-self.img_surf.get_width(), 1)
             self.context.paint()
 
-        # text
-        self.context.move_to(5, 4)
-        self.context.set_source_rgb(0, 0, 0)
-        PangoCairo.show_layout(self.context, self.textlayout)
-
-        # text extents
-        #self.context.set_source_rgba(1, 0, 0, 0.5)
-        #s = self.textlayout.get_pixel_size()
-        #self.context.set_line_width(1)
-        #self.context.rectangle(5.5, 4.5, s[0]-1, s[1]-1)
-        #self.context.stroke()
-
         # Mark deceased
         if self.person and not self.alive:
             self.context.set_line_width(2)
@@ -362,150 +322,13 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         self.context.append_path(path)
         self.context.set_source_rgb(*self.bordercolor[:3])
         self.context.stroke()
-
-class PersonBoxWidget(_PersonWidgetBase):
-    """
-    Draw person box using GC library.
-    For version PyGTK < 2.8
-    """
-    def __init__(self, view, format_helper, dbstate, person, alive, maxlines,
-                image=False):
-        _PersonWidgetBase.__init__(self, view, format_helper, person)
-                        # Required for popup menu and right mouse button click
-        self.add_events(Gdk.EventMask.BUTTON_PRESS_MASK
-                        | Gdk.EventMask.BUTTON_RELEASE_MASK
-                        # Required for tooltip and mouse-over
-                        | Gdk.EventMask.ENTER_NOTIFY_MASK
-                        # Required for tooltip and mouse-over
-                        | Gdk.EventMask.LEAVE_NOTIFY_MASK)
-        self.maxlines = maxlines
-        self.alive = alive
-        
-        self.image = None
-        if image:
-            image_path = self.get_image(dbstate, person)
-            if image_path:
-                self.image = GdkPixbuf.Pixbuf.new_from_file(image_path)
-
-##TODO GTK3: event deprecated , instead if still needed connect to event, 
-## and check if event is an expose event.
-##        self.connect("expose_event", self.expose)
-        self.connect("realize", self.realize)
-        text = ""
-        if self.person:
-            text = self.format_helper.format_person(self.person, self.maxlines)
-            # enable mouse-over
-            self.connect("enter-notify-event", self.cb_on_enter)
-            self.connect("leave-notify-event", self.cb_on_leave)
-        self.textlayout = self.create_pango_layout(text)
-        size = self.textlayout.get_pixel_size()
-        xmin = size[0] + 12
-        ymin = size[1] + 11
-        if self.image:
-            xmin += self.image.get_width()
-            ymin = max(ymin, self.image.get_height()+4)
-        self.set_size_request(max(xmin, 120), max(ymin, 25))
-        # GTK object use in realize and expose methods
-        self.bg_gc = None
-        self.text_gc = None
-        self.border_gc = None
-        self.shadow_gc = None
-
-    def cb_on_enter(self, widget, event):
-        """On mouse-over highlight border"""
-        self.border_gc.line_width = 3
-        self.queue_draw()
-
-    def cb_on_leave(self, widget, event):
-        """On mouse-out normal border"""
-        self.border_gc.line_width = 1
-        self.queue_draw()
-
-    def realize(self, widget):
-        """
-        Necessary actions when the widget is instantiated on a particular
-        display. Creat all elements for person box(bg_gc, text_gc, border_gc,
-        shadow_gc), and setup they style.
-        """
-        # pylint: disable-msg=E1101
-        self.bg_gc = self.window.new_gc()
-        self.text_gc = self.window.new_gc()
-        self.border_gc = self.window.new_gc()
-        self.border_gc.line_style = Gdk.LINE_SOLID
-        self.border_gc.line_width = 1
-        self.shadow_gc = self.window.new_gc()
-        self.shadow_gc.line_style = Gdk.LINE_SOLID
-        self.shadow_gc.line_width = 4
-        if self.person:
-            if self.alive and self.person.get_gender() == gen.lib.Person.MALE:
-                self.bg_gc.set_foreground(
-                    self.get_colormap().alloc_color("#b9cfe7"))
-                self.border_gc.set_foreground(
-                    self.get_colormap().alloc_color("#204a87"))
-            elif self.person.get_gender() == gen.lib.Person.MALE:
-                self.bg_gc.set_foreground(
-                    self.get_colormap().alloc_color("#b9cfe7"))
-                self.border_gc.set_foreground(
-                    self.get_colormap().alloc_color("#000000"))
-            elif self.alive and (
-                self.person.get_gender() == gen.lib.Person.FEMALE):
-                self.bg_gc.set_foreground(
-                    self.get_colormap().alloc_color("#ffcdf1"))
-                self.border_gc.set_foreground(
-                    self.get_colormap().alloc_color("#87206a"))
-            elif self.person.get_gender() == gen.lib.Person.FEMALE:
-                self.bg_gc.set_foreground(
-                    self.get_colormap().alloc_color("#ffcdf1"))
-                self.border_gc.set_foreground(
-                    self.get_colormap().alloc_color("#000000"))
-            elif self.alive:
-                self.bg_gc.set_foreground(
-                    self.get_colormap().alloc_color("#f4dcb7"))
-                self.border_gc.set_foreground(
-                    self.get_colormap().alloc_color("#8f5902"))
-            else:
-                self.bg_gc.set_foreground(
-                    self.get_colormap().alloc_color("#f4dcb7"))
-                self.border_gc.set_foreground(
-                    self.get_colormap().alloc_color("#000000"))
-        else:
-            self.bg_gc.set_foreground(
-                self.get_colormap().alloc_color("#eeeeee"))
-            self.border_gc.set_foreground(
-                self.get_colormap().alloc_color("#777777"))
-        self.shadow_gc.set_foreground(
-            self.get_colormap().alloc_color("#999999"))
-
-
-    def expose(self, widget, event):
-        """
-        Redrawing the contents of the widget.
-        Drawing borders and person info on exist elements.
-        """
-        # pylint: disable-msg=E1101
-        alloc = self.get_allocation()
-        # shadow
-        self.window.draw_line(self.shadow_gc, 3, alloc.height-1,
-                              alloc.width, alloc.height-1)
-        self.window.draw_line(self.shadow_gc, alloc.width-1, 3,
-                              alloc.width-1, alloc.height)
-        # box background
-        self.window.draw_rectangle(self.bg_gc, True, 1, 1,
-                                   alloc.width-5, alloc.height-5)
         # text
-        if self.person:
-            self.window.draw_layout(self.text_gc, 5, 4, self.textlayout)
-        # image
-        if self.image:
-            self.window.draw_pixbuf(self.text_gc, self.image, 0, 0,
-                                    alloc.width-4-self.image.get_width(), 1)
-        # border
-        if self.border_gc.line_width > 1:
-            self.window.draw_rectangle(self.border_gc, False, 1, 1,
-                                       alloc.width-6, alloc.height-6)
-        else:
-            self.window.draw_rectangle(self.border_gc, False, 0, 0,
-                                       alloc.width-4, alloc.height-4)
+        #self.context.save()
+        #self.context.set_line_width(2)
+        self.context.move_to(5, 4)
+        self.context.set_source_rgb(0, 0, 0)
+        PangoCairo.show_layout(self.context, self.textlayout)
+        #self.context.restore()
 
 class LineWidget(Gtk.DrawingArea):
     """
@@ -520,31 +343,16 @@ class LineWidget(Gtk.DrawingArea):
         self.frel = frel
         self.mrel = mrel
         self.direction = direction
-        self.line_gc = None
         
-##TODO GTK3: event deprecated , instead if still needed connect to event, 
-## and check if event is an expose event.
-##        self.connect("expose_event", self.expose)
-        self.connect("realize", self.realize)
+        self.connect("draw", self.expose)
 
-    def realize(self, widget):
-        """
-        Necessary actions when the widget is instantiated on a particular
-        display.
-        """
-        # pylint: disable-msg=E1101
-        self.set_size_request(20, 20)
-##TODO GTK3:to rewrite in terms of cairo!
-##        self.line_gc = self.get_root_window().new_gc()
-##        self.line_gc.set_foreground(
-##            self.get_colormap().alloc_color("#000000"))
-        self.cairocontext = self.get_root_window().cairo_create()
-        self.cairocontext.set_source_rgb(0.,0.,0.)
-        
-    def expose(self, widget, event):
+    def expose(self, widget, context):
         """
         Redraw the contents of the widget.
         """
+        self.cairocontext = context
+        self.set_size_request(20, 20)
+        self.cairocontext.set_source_rgb(0.,0.,0.)
         # pylint: disable-msg=E1101
         alloc = self.get_allocation()
         child = self.child_box.get_allocation()
@@ -577,8 +385,6 @@ class LineWidget(Gtk.DrawingArea):
             child_side = parent_side
             parent_side = 0
 
-        self.line_gc.line_width = 3
-
         if self.father_box:
             self.draw_link(parent_side, middle, child_side, centre,
                            father_side, self.mrel)
@@ -591,25 +397,32 @@ class LineWidget(Gtk.DrawingArea):
         """
         Draw a link between parent and child.
         """
-        if rela:
-            self.line_gc.line_style = Gdk.LINE_SOLID
-        else:
-            self.line_gc.line_style = Gdk.LINE_ON_OFF_DASH
         
-        self.draw_line(centre, side, parent_side, side)
-        self.draw_line(centre, side, centre, middle)
-        self.draw_line(centre, middle, child_side, middle)
+        self.cairocontext.set_line_width(3)
+        if rela:
+            self.cairocontext.set_dash([], 0) #SOLID
+        else:
+            self.cairocontext.set_dash([9.], 1) #DASH
+        
+        self.draw_line(parent_side, side, centre, side)
+        self.draw_line(centre, side, centre, middle, True)
+        self.draw_line(centre, middle, child_side, middle, True)
+        self.cairocontext.stroke()
 
-    def draw_line(self, x_from, y_from, x_to, y_to):
+    def draw_line(self, x_from, y_from, x_to, y_to, join=False):
         """
         Draw a single line in a link.
         """
         # pylint: disable-msg=E1101
         if self.direction in [2, 3]: # horizontal
-            self.window.draw_line(self.line_gc, x_from, y_from, x_to, y_to)
+            if not join:
+                self.cairocontext.move_to(x_from, y_from)
+            self.cairocontext.line_to(x_to, y_to)
         else:
-            self.window.draw_line(self.line_gc, y_from, x_from, y_to, x_to)
-            
+            if not join:
+                self.cairocontext.move_to(y_from, x_from)
+            self.cairocontext.line_to(y_to, x_to)
+
 class LineWidget2(Gtk.DrawingArea):
     """
     Draw lines linking Person boxes - Type B.
@@ -620,28 +433,16 @@ class LineWidget2(Gtk.DrawingArea):
         self.male = male
         self.rela = rela
         self.direction = direction
-        self.line_gc = None
-        
-##TODO GTK3: event deprecated , instead if still needed connect to event, 
-## and check if event is an expose event.
-##        self.connect("expose_event", self.expose)
-        self.connect("realize", self.realize)
 
-    def realize(self, widget):
-        """
-        Necessary actions when the widget is instantiated on a particular
-        display.
-        """
-        # pylint: disable-msg=E1101
-        self.set_size_request(20, -1)
-        self.line_gc = self.window.new_gc()
-        self.line_gc.set_foreground(
-            self.get_colormap().alloc_color("#000000"))
-        
-    def expose(self, widget, event):
+        self.connect("draw", self.expose)
+
+    def expose(self, widget, context):
         """
         Redraw the contents of the widget.
         """
+        self.cairocontext = context
+        self.set_size_request(20, -1)
+        self.cairocontext.set_source_rgb(0.,0.,0.)
         # pylint: disable-msg=E1101
         alloc = self.get_allocation()
 
@@ -660,12 +461,11 @@ class LineWidget2(Gtk.DrawingArea):
             mid_y = alloc.width / 2
             mid_x = alloc.height / 2
 
-        if not self.rela:
-            self.line_gc.line_style = Gdk.LINE_ON_OFF_DASH
+        self.cairocontext.set_line_width(3)
+        if self.rela:
+            self.cairocontext.set_dash([], 0) #SOLID
         else:
-            self.line_gc.line_style = Gdk.LINE_SOLID
-
-        self.line_gc.line_width = 3
+            self.cairocontext.set_dash([9.], 1) #DASH
 
         if self.direction in [1, 3]:
             parent_x = 0
@@ -674,18 +474,22 @@ class LineWidget2(Gtk.DrawingArea):
             child_y = 0
 
         self.draw_line(child_x, child_y, mid_x, mid_y)
-        self.draw_line(mid_x, mid_y, parent_x, parent_y)
+        self.draw_line(mid_x, mid_y, parent_x, parent_y, True)
         
-    def draw_line(self, x_from, y_from, x_to, y_to):
+    def draw_line(self, x_from, y_from, x_to, y_to, join=False):
         """
         Draw a single line in a link.
         """
         # pylint: disable-msg=E1101
         if self.direction in [2, 3]: # horizontal
-            self.window.draw_line(self.line_gc, x_from, y_from, x_to, y_to)
+            if not join:
+                self.cairocontext.move_to(x_from, y_from)
+            self.cairocontext.line_to(x_to, y_to)
         else:
-            self.window.draw_line(self.line_gc, y_from, x_from, y_to, x_to)
-        
+            if not join:
+                self.cairocontext.move_to(y_from, x_from)
+            self.cairocontext.line_to(y_to, x_to)
+
 #-------------------------------------------------------------------------
 #
 # PedigreeView
@@ -1118,11 +922,7 @@ class PedigreeView(NavigationView):
                 #
                 # No person -> show empty box
                 #
-                if CAIRO_AVAILABLE:
-                    pbw = PersonBoxWidgetCairo(self, self.format_helper,
-                        self.dbstate, None, False, 0, None)
-                else:
-                    pbw = PersonBoxWidget(self, self.format_helper,
+                pbw = PersonBoxWidgetCairo(self, self.format_helper,
                         self.dbstate, None, False, 0, None)
 
                 if i > 0 and lst[((i+1)/2)-1]:
@@ -1145,11 +945,7 @@ class PedigreeView(NavigationView):
                    i < ((2**size-1)/2) or self.tree_style == 2):
                     image = True
 
-                if CAIRO_AVAILABLE:
-                    pbw = PersonBoxWidgetCairo(self, self.format_helper,
-                        self.dbstate, lst[i][0], lst[i][3], height, image)
-                else:
-                    pbw = PersonBoxWidget(self, self.format_helper,
+                pbw = PersonBoxWidgetCairo(self, self.format_helper,
                         self.dbstate, lst[i][0], lst[i][3], height, image)
                 lst[i][4] = pbw
                 if height < 7:
