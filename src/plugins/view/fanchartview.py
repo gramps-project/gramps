@@ -32,18 +32,13 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-import gi
-gi.require_version('Gtk', '3.0')
 from gi.repository import Pango
 from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gtk
+import cairo
 import math
 from cgi import escape
-try:
-    import cairo
-except ImportError:
-    pass
 from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -127,6 +122,8 @@ class FanChartWidget(Gtk.Widget):
         self.connect("button_release_event", self.on_mouse_up)
         self.connect("motion_notify_event", self.on_mouse_move)
         self.connect("button-press-event", self.on_mouse_down)
+        self.connect("draw", self.on_draw)
+        #self.connect("realize", self.realize)
         self.context_popup_callback = context_popup_callback
         self.add_events(Gdk.EventMask.BUTTON_PRESS_MASK |
                         Gdk.EventMask.BUTTON_RELEASE_MASK |
@@ -170,19 +167,28 @@ class FanChartWidget(Gtk.Widget):
                 angle += slice
                 gender = not gender
                                            
-    def do_realize(self):
+    def do_realize(self, data=None):
         """
         Overriden method to handle the realize event.
         """
         ## TODO GTK3: need to create the window correctly
-        self.set_flags(self.flags() | self.get_realized())
+        #if self.get_realized():
+        #    return
+        #self.set_flags(self.flags() | self.get_realized())
         attr = Gdk.WindowAttr()
         attr.width = self.allocation.width
         attr.height = self.allocation.height
+        attr.x = 0
+        attr.y = 0
+        attr.cursor = Gdk.Cursor.new_for_display(
+                                self.get_display(), Gdk.CursorType.LEFT_PTR)
+        attr.event_mask = (Gdk.EventMask.ENTER_NOTIFY_MASK |
+                           Gdk.EventMask.LEAVE_NOTIFY_MASK)
         attr.wclass = Gdk.WindowWindowClass.INPUT_OUTPUT
         attr.window_type = Gdk.WindowType.CHILD
         attr.event_mask = (Gdk.EventMask.ENTER_NOTIFY_MASK |
                            Gdk.EventMask.LEAVE_NOTIFY_MASK)
+        attr.visual = self.get_visual()
 
         attrmask = ( 
                 #Gdk.WindowAttributesType.TITLE |
@@ -196,7 +202,8 @@ class FanChartWidget(Gtk.Widget):
         self.window = Gdk.Window(self.get_parent_window(),
                                  attr,
                                  attrmask)
-
+        self.set_window(self.window)
+        self.set_realized(True)
 ### self.window = Gdk.Window(self.get_parent_window(),
 ###                          width=self.allocation.width,
 ###                          height=self.allocation.height,
@@ -223,34 +230,43 @@ class FanChartWidget(Gtk.Widget):
         requisition.width = (width // Pango.SCALE + self.BORDER_WIDTH*4)* 1.45
         requisition.height = (3 * height // Pango.SCALE + self.BORDER_WIDTH*4) * 1.2
 
+    def do_get_preferred_width(self):
+        """ GTK3 uses width for height sizing model. This method will 
+            override the virtual method
+        """
+        req = Gtk.Requisition()
+        self.do_size_request(req)
+        return req.width, req.width
+
+    def do_get_preferred_height(self):
+        """ GTK3 uses width for height sizing model. This method will 
+            override the virtual method
+        """
+        req = Gtk.Requisition()
+        self.do_size_request(req)
+        return req.height, req.height
+
     def do_size_allocate(self, allocation):
         """
         Overridden method to handle size allocation events.
         """
+        
         self.allocation = allocation
-        if self.get_realized():
-            self.window.move_resize(*allocation)
+        if self.get_has_window():
+            if self.get_realized():
+                self.window.move_resize(allocation.x, allocation.y,
+                                allocation.width, allocation.height)
 
-    def _expose_gdk(self, event):
-        x, y, w, h = self.allocation
-        self.layout = self.create_pango_layout('no cairo')
-        fontw, fonth = self.layout.get_pixel_size()
-        self.style.paint_layout(self.window, self.state, False,
-                                event.area, self, "label",
-                                (w - fontw) / 2, (h - fonth) / 2,
-                                self.layout)
+##    def _expose_gdk(self, event):
+##        x, y, w, h = self.allocation
+##        self.layout = self.create_pango_layout('no cairo')
+##        fontw, fonth = self.layout.get_pixel_size()
+##        self.style.paint_layout(self.window, self.state, False,
+##                                event.area, self, "label",
+##                                (w - fontw) / 2, (h - fonth) / 2,
+##                                self.layout)
 
-    def do_expose_event(self, event):
-        """
-        Overridden method to handle expose events.
-        """
-        try:
-            cr = self.window.cairo_create()
-        except AttributeError:
-            return self._expose_gdk(event)
-        return self._expose_cairo(event, cr)
-
-    def _expose_cairo(self, event, cr):
+    def on_draw(self, widget, cr):
         """
         The main method to do the drawing.
         """
@@ -587,13 +603,13 @@ class FanChartWidget(Gtk.Widget):
         self.queue_draw()
         return True
 
-    def set_flags(self, flags):
-        ## TODO GTK3: need to set_flags?
-        pass
-
-    def flags(self):
-        ## TODO GTK3: need to get flags?
-        return 0
+##    def set_flags(self, flags):
+##        ## TODO GTK3: need to set_flags?
+##        pass
+##
+##    def flags(self):
+##        ## TODO GTK3: need to get flags?
+##        return 0
 
 class FanChartView(NavigationView):
     """
