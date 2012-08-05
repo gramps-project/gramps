@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-07-15 17:49+0200\n"
-"PO-Revision-Date: 2012-08-04 14:24-0300\n"
+"PO-Revision-Date: 2012-08-04 23:15-0300\n"
 "Last-Translator: André Marcelo Alvarenga <alvarenga@kde.org>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_br@kde.org>\n"
 "Language: \n"
@@ -1894,14 +1894,14 @@ msgid ""
 "If GEDCOM, Gramps-xml or grdb, use the -i option to import into a family "
 "tree instead."
 msgstr ""
-"Erro: Árvore genealógica \"%s\" não existe.\n"
-"Se for GEDCOM, Gramps-xml ou grdb, utilize a opção -i para importar para uma "
+"Erro: A árvore genealógica \"%s\" não existe.\n"
+"Se for GEDCOM, Gramps-xml ou grdb, use a opção -i para importar para uma "
 "árvore genealógica."
 
 #: ../src/cli/arghandler.py:243
 #, python-format
 msgid "Error: Import file %s not found."
-msgstr "Erro: Arquivo de importação %s não encontrado.."
+msgstr "Erro: Arquivo de importação %s não encontrado."
 
 #: ../src/cli/arghandler.py:261
 #, python-format
@@ -2000,7 +2000,7 @@ msgstr "Importando: arquivo %(filename)s, formato %(format)s."
 
 #: ../src/cli/arghandler.py:505
 msgid "Opened successfully!"
-msgstr "Aberto com sucesso!"
+msgstr "Aberta com sucesso!"
 
 #: ../src/cli/arghandler.py:519
 msgid "Database is locked, cannot open it!"
@@ -2047,7 +2047,7 @@ msgstr "O nome da ferramenta não é conhecido."
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
-"Nome da ferramenta não fornecido. Use um dos %(donottranslate)s=toolname."
+"Nome da ferramenta não fornecido. Use %(donottranslate)s=nome_ferramenta."
 
 #: ../src/cli/arghandler.py:662
 #, python-format
@@ -2194,7 +2194,7 @@ msgstr ""
 "(use -f se o nome do arquivo não permite a identificação do seu formato):\n"
 "gramps -i arquivo1.ged -i arquivo2.gpkg -e ~/novo-pacote -f gramps-pkg\n"
 "\n"
-"4. Para salvar todas as mensagens de erros do exemplos acima nos arquivos "
+"4. Para salvar todas as mensagens de erro do exemplos acima nos arquivos "
 "'arquivo_saída' e 'arquivo_erros', execute:\n"
 "gramps -i arquivo1.ged -i arquivo2.dpkg -e ~/novo-pacote -f gramps-pkg "
 ">arquivo_saída 2>arquivo_erros\n"
@@ -2203,7 +2203,7 @@ msgstr ""
 "Gramps com o resultado:\n"
 "gramps -i arquivo1.ged -i arquivo2.gpkg -i ~/bd3.gramps\n"
 "\n"
-"6. Para abrir um banco de dados e, baseado nos dados, gerar um relatório de "
+"6. Para abrir um banco de dados e, com base nos dados, gerar um relatório de "
 "linha temporal em formato PDF,\n"
 "indique a saída para o arquivo minha_linha_temporal:\n"
 "gramps -O 'Árvore genealógica 1' -a report -p name=timeline,off=pdf,"
@@ -5938,7 +5938,7 @@ msgstr ""
 
 #: ../src/gui/grampsgui.py:246
 msgid "Error parsing arguments"
-msgstr "Erro analisando argumentos"
+msgstr "Erro na análise dos argumentos"
 
 # VERIFICAR
 #: ../src/gui/makefilter.py:44
