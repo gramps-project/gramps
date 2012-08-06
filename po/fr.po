@@ -21215,7 +21215,7 @@ msgstr "Inclure ou non les informations détaillées concernant le conjoint."
 # trunk
 #: ../src/plugins/textreport/DetDescendantReport.py:1015
 msgid "Include spouse reference"
-msgstr "Inclure les conjoints"
+msgstr "Inclure une référence au conjoint"
 
 # trunk
 #: ../src/plugins/textreport/DetDescendantReport.py:1016
