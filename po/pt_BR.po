@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-07-15 17:49+0200\n"
-"PO-Revision-Date: 2012-08-04 23:15-0300\n"
+"PO-Revision-Date: 2012-08-05 23:48-0300\n"
 "Last-Translator: André Marcelo Alvarenga <alvarenga@kde.org>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_br@kde.org>\n"
 "Language: \n"
@@ -4690,8 +4690,7 @@ msgstr "Barra de status"
 
 #: ../src/gui/configure.py:944
 msgid "Show text in sidebar buttons (requires restart)"
-msgstr ""
-"Mostrar texto nos botões da barra lateral (é necessário iniciar novamente)"
+msgstr "Mostrar texto nos botões da barra lateral (é necessário reiniciar)"
 
 #: ../src/gui/configure.py:955
 msgid "Missing surname"
@@ -4787,7 +4786,7 @@ msgstr "Número máximo de gerações para parentescos"
 
 #: ../src/gui/configure.py:1064
 msgid "Base path for relative media paths"
-msgstr "Localização base para caminhos relativos de mídias"
+msgstr "Localização base para caminhos relativos das mídias"
 
 #: ../src/gui/configure.py:1071
 msgid "Once a month"
@@ -4811,7 +4810,7 @@ msgstr "Procurar atualizações"
 
 #: ../src/gui/configure.py:1084
 msgid "Updated addons only"
-msgstr "Somente as extensões foram atualizadas"
+msgstr "Somente as extensões atualizadas"
 
 #: ../src/gui/configure.py:1085
 msgid "New addons only"
@@ -5985,7 +5984,7 @@ msgstr "Novo"
 #. Dead code for l10n
 #: ../src/gui/viewmanager.py:433
 msgid "new"
-msgstr "novo"
+msgstr "novas"
 
 #: ../src/gui/viewmanager.py:433
 msgid "update"
