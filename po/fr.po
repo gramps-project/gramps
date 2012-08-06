@@ -21078,7 +21078,7 @@ msgstr "Fournit un résumé de la base de données active"
 # trunk
 #: ../src/plugins/textreport/textplugins.gpr.py:365
 msgid "Table Of Contents"
-msgstr "Sommaire"
+msgstr "Table des matières"
 
 # trunk
 #: ../src/plugins/textreport/textplugins.gpr.py:366
