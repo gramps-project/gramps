@@ -168,6 +168,7 @@ data/man/fr/Makefile
 data/man/nl/Makefile
 data/man/pl/Makefile
 data/man/sv/Makefile
+data/man/pt_BR/Makefile
 example/Makefile
 example/gramps/Makefile
 ])

@@ -1,0 +1,325 @@
+.TH gramps 1 "@VERSION@" "Janeiro de 2008" "@VERSION@"
+.SH NOME
+gramps \- Programa para pesquisa genealógica.
+
+.SH RESUMO
+.B gramps
+.RB [ \-?|\-\^\-help ]
+.RB [ \-\^\-usage ]
+.RB [ \-\^\-version ]
+.RB [ \-l ]
+.RB [ \-u|\-\^\-force-unlock ]
+.RB [ \-O|\-\^\-open=
+.IR BANCODEDADOS 
+.RB [ \-f|\-\^\-format= 
+.IR FORMATO ]] 
+.RB [ \-i|\-\^\-import=
+.IR ARQUIVO 
+.RB [ \-f|\-\^\-format= 
+.IR FORMATO ]] 
+.RB [ \-i|\-\^\-import= 
+.IR ... ] 
+.RB [ \-e|\-\^\-export= 
+.IR ARQUIVO
+.RB [ \-f|\-\^\-format= 
+.IR FORMATO ]] 
+.RB [ \-a|\-\^\-action= 
+.IR AÇÃO ]
+.RB [ \-p|\-\^\-options= 
+.IR OPÇÕES ]]
+.RB [
+.IR ARQUIVO
+.RB ]
+.if 0 .RB [ bonobo\ options ]
+.if 0 .RB [ sound\ options ]
+.RB [ \-\-version ]
+
+.SH DESCRIÇÃO
+.PP 
+\fIGramps\fP é um programa de genealogia livre e de código aberto. Ele é escrito
+em Python e usa a interface GTK+/GNOME.
+Gramps deve parecer familiar a qualquer pessoa que já tenha usado outro programa
+de genealogia, tais como o \fIFamily Tree Maker (TM)\fR,  \fIPersonal Ancestral
+Files (TM)\fR, ou o GNU Geneweb.
+Ele suporta a importação do formato GEDCOM, que é amplamente usado por quase 
+todos os outros programas de genealogia.
+
+.SH OPÇÕES
+.TP 
+.BI gramps " ARQUIVO" 
+Quando \fIARQUIVO\fR for indicado (sem qualquer outra opção) como um nome de
+árvore genealógica ou como pasta do banco de dados, ela será aberta e iniciada
+uma sessão interativa. Se ARQUIVO for um formato compreendido pelo Gramps, será 
+criada uma árvore genealógica vazia com o nome baseado no \fIARQUIVO\fP
+e os dados são importados para ela. As demais opções serão ignoradas. Esta forma
+de execução é apropriada para usar o Gramps como manipulador de dados genealógicos
+em, por exemplo, navegadores Web. Este método aceita qualquer formato de dados 
+nativo do Gramps, conforme abaixo.
+.br
+
+.TP 
+.BI \-f,\-\^\-format= " FORMATO"
+Indica expressamente o formato do \fIARQUIVO\fR, precedente das opções  
+.ig
+\fB\-O\fR,
+..
+\fB\-i\fR ou 
+\fB\-e\fR. Se a opção \fB\-f\fR não for fornecida para um \fIARQUIVO\fR, 
+o formato será identificado de acordo com a sua extensão ou tipo MIME. 
+.br
+
+Os formatos disponíveis para exportação são \fBgramps\-xml\fR (se o \fIARQUIVO\fR 
+terminar com \fB.gramps\fR), \fBgedcom\fR (se o \fIARQUIVO\fR terminar com \fB.ged\fR) 
+ou qualquer outro formato de arquivo disponível através do sistema de plugins do 
+Gramps.
+.br
+
+Os formatos disponíveis para importação são \fBgrdb\fR, \fBgramps\-xml\fR, \fBgedcom\fR,  
+\fBgramps\-pkg\fR (se o \fIARQUIVO\fR terminar com \fB.gpkg\fR), e \fBgeneweb\fR 
+(se o \fIARQUIVO\fR terminar com \fB.gw\fR).
+.br
+
+Os formatos disponíveis para exportação são
+.ig
+\fBgrdb\fR,
+..
+\fBgramps\-xml\fR, \fBgedcom\fR,
+\fBgramps\-pkg\fR, \fBwft\fR (se o \fIARQUIVO\fR terminar com \fB.wft\fR),
+\fBgeneweb\fR, e \fBiso\fR (deve sempre ser indicado com a opção
+\fB\-f\fR).
+
+.TP 
+.BI \-l
+Exibe uma lista com as árvores genealógicas conhecidas.
+
+.TP
+.BI \-u,\-\^\-force-unlock
+Desbloqueia um banco de dados previamente bloqueado.
+
+.TP 
+.BI \-O,\-\^\-open= " BANCODEDADOS"
+Abre o \fIBANCODEDADOS\fR, que deve ser uma pasta de banco de dados ou um nome de árvore
+genealógica existentes.
+Se não forem indicadas opções de ação, importação ou exportação na linha de comando, 
+será iniciada uma sessão interativa usando este banco de dados.
+
+.TP 
+.BI \-i,\-\^\-import= " ARQUIVO"
+Importa os dados do \fIARQUIVO\fR. Se não for indicado um banco de dados, o Gramps usará
+um arquivo temporário, que será excluído ao sair do programa.
+.br
+
+Quando mais de um arquivo de origem for indicado, cada um deles deve ser precedido da
+opção \fB\-i\fR. Os arquivos são importados na ordem indicada, por exemplo, 
+\fB\-i\fR \fIARQUIVO1\fR \fB\-i\fR \fIARQUIVO2\fR  
+e \fB\-i\fR \fIARQUIVO2\fR \fB\-i\fR \fIARQUIVO1\fR poderá produzir diferentes gramps IDs 
+no banco de dados resultante. 
+
+.TP 
+.BI \-a,\-\^\-action= " AÇÃO"
+Executa a \fIAÇÃO\fR nos dados importados. Isto será executado após a conclusão de todas
+as importações. Até o momento, as ações disponíveis são \fBsummary\fR (o mesmo que 
+Relatórios->Exibir->Resumo), 
+\fBcheck\fR (o mesmo que Ferramentas->Processamento do banco de dados->Verificar e reparar), 
+\fBreport\fR (gera o relatório), e
+\fBtool\fR (executa uma ferramenta de plugin).
+Para o \fBreport\fR e \fBtool\fR é necessário fornecer \fIOPÇÕES\fR (com uso da opção  
+\fB\-p\fR). 
+.br
+
+As \fIOPÇÕES\fR devem satisfazer as seguintes condições:
+.br
+Não podem conter espaços.
+Se alguns argumentos precisam incluir espaços, a string deve
+ser colocada entre aspas, ou seja, seguir a sintaxe do shell.
+String de opção é uma lista de pares com o nome e o valor (separados por 
+sinal de igual). Os pares de nome e valor devem ser separados por vírgula.
+.br
+
+Muitas opções são específicas de cada relatório ou ferramenta. 
+Entretanto, algumas opções são comuns.
+
+.BI "name=nome"
+.br
+Esta opção obrigatória determina qual relatório ou ferramenta será executado.
+Se o \fInome\fR fornecido não corresponder a um relatório ou ferramenta, será
+exibida uma mensagem de erro seguida de uma lista de relatórios e ferramentas
+disponíveis (dependendo da \fIAÇÃO\fR).
+
+.BI "show=all"
+.br
+Isto irá gerar uma lista com os nomes para todas as opções disponíveis de um determinado
+relatório ou ferramenta.
+
+.BI "show="nome_opção
+.br
+Isto irá exibir a descrição da funcionalidade indicada por \fInome_opção\fR, bem 
+como quais são os tipos aceitáveis e os valores para esta opção.
+
+.br
+Use as opções acima para descobrir
+tudo sobre um determinado relatório.
+
+.LP
+Quando mais de uma ação de saída for indicada, cada uma deve ser precedida da opção 
+\fB\-a\fR. As ações são realizadas uma a uma, na ordem indicada.
+
+.TP 
+.BI \-d,\-\^\-debug= " ARQUIVO_REGISTRO"
+Ativa os registros para desenvolvimento e testes. Veja o código-fonte para mais detalhes.
+.TP
+.BI \-\^\-version
+Exibe o número da versão do Gramps e finaliza.
+\" altera de 0 para 1 para ativar a saída das opções OAF
+.if 0 \{
+.PP
+As opções a seguir são usadas para ativação do Bonobo.
+.TP 
+.BI \-\^\-oaf-ior-fd= "FD"
+Descritor do arquivo para exibir o OAF IOR em
+.TP 
+.BI \-\^\-oaf-activate-iid= " IID"
+OAF IID para ativar
+.TP 
+.BI \-\^\-oaf-private
+Impedir o registro do servidor com OAF
+\}
+\" altera de 0 para 1 para ativar a saída das opções de som do Gnome
+.if 0 \{
+.PP
+As opções a seguir são usadas para controlar o som usando a biblioteca do Gnome.
+.TP
+.BI \-\^\-disable-sound
+Desativa o servidor de som
+.TP
+.BI \-\^\-enable-sound
+Ativa o servidor de som
+.TP
+.BI \-\^\-espeaker= " HOSTNAME:PORT"
+Máquina:porta que o servidor de som utiliza para execução
+\}
+
+.SH "Operação"
+.br
+Se o primeiro argumento da linha de comando não começar com um traço (isto é, 
+sem uma opção), o Gramps tentará abrir o arquivo com o nome fornecido pelo primeiro
+argumento e iniciar a sessão interativa, ignorando o resto dos argumentos da
+linha de comando.
+
+.LP
+Se for fornecida a opção \fB\-O\fR, então o Gramps tentará abrir o banco de dados
+indicado e trabalhar com estes dados, de acordo com as instruções dos parâmetros 
+adicionais da linha de comando.
+
+.LP
+Com ou sem a opção \fB\-O\fR, pode haver múltiplas importações, exportações e
+ações indicadas pela linha de comando usando as opções \fB\-i\fR,
+\fB\-e\fR e \fB\-a\fR.  
+
+.LP
+A ordem das opções \fB\-i\fR, \fB\-e\fR ou \fB\-a\fR não importa. A ordem
+utilizada será sempre esta: todas as importações (se existirem) -> todas
+as ações (se existirem) -> todas as exportações (se existirem). Mas a abertura 
+deve estar sempre em primeiro lugar!
+
+.LP
+Se as opções \fB\-O\fR ou \fB\-i\fR não forem fornecidas, o Gramps será aberto
+com a sua janela principal e iniciará a sessão interativa padrão com um banco
+de dados vazio, uma vez que não há nada a processar.
+
+.LP
+Se as opções \fB\-e\fR ou \fB\-a\fR não forem fornecidas, o Gramps será aberto
+com a sua janela principal e iniciará a sessão interativa padrão com um banco
+de dados resultante de todas as importações. Este banco de dados está localizado
+no arquivo \fBimport_db.grdb\fR da pasta \fB~/.gramps/import\fR.
+
+.LP
+Os erros encontrados durante a importação, exportação ou ação, serão direcionados 
+para \fIstdout\fR (se forem exceções tratadas pelo Gramps) ou para \fIstderr\fR
+(se não forem tratadas). Use redirecionamentos usuais de \fIstdout\fR e 
+\fIstderr\fR do shell para salvar mensagens e erros em arquivos.
+
+.SH EXEMPLOS
+.TP 
+Abrir uma árvore genealógica existente e importar um arquivo xml para ela:
+\fBgramps\fR \fB\-O\fR \fI'Minha árvore genealógica'\fR \fB\-i\fR \fI~/db3.gramps\fR
+.TP 
+Fazer as mesmas alterações da árvore genealógica do comando anterior, mas importar a árvore genealógica temporária e iniciar uma sessão interativa:
+\fBgramps\fR \fB\-i\fR \fI'Minha árvore genealógica'\fR \fB\-i\fR \fI~/db3.gramps\fR
+.TP 
+Importar quatro bancos de dados (cujos formatos podem ser reconhecidos pelos nomes) e verificar a existência de erros no banco de dados resultante:
+\fBgramps\fR \fB\-i\fR \fIarquivo1.ged\fR \fB\-i\fR \fIarquivo2.tgz\fR \fB\-i\fR \fI~/db3.gramps\fR \fB\-i\fR \fIarquivo4.wft\fR \fB\-a\fR \fIcheck\fR 
+.TP 
+Indicar de forma explícita os formatos do exemplo acima, atribuindo os nomes dos arquivos com as opções \fB\-f\fR apropriadas:
+\fBgramps\fR \fB\-i\fR \fIarquivo1.ged\fR \fB\-f\fR \fIgedcom\fR \fB\-i\fR \fIarquivo2.tgz\fR \fB\-f\fR \fIgramps-pkg\fR \fB\-i\fR \fI~/db3.gramps\fR \fB\-f\fR \fIgramps-xml\fR \fB\-i\fR \fIarquivo4.wft\fR \fB\-f\fR \fIwft\fR  \fB\-a\fR \fIcheck\fR 
+.TP 
+Gravar o banco de dados resultante de todas as importações, indicando a opção \fB\-e\fR (use \fB\-f\fR se o nome do arquivo não permirtir que o gramps reconheça o formato automaticamente):
+\fBgramps\fR \fB\-i\fR \fIarquivo1.ged\fR \fB\-i\fR \fIarquivo2.tgz\fR \fB\-e\fR \fI~/novo-pacote\fR \fB\-f\fR \fIgramps-pkg\fR 
+.TP 
+Importar três bancos de dados e iniciar a sessão interativa do Gramps com o resultado:
+\fBgramps\fR \fB\-i\fR \fIarquivo1.ged\fR \fB\-i\fR \fIarquivo2.tgz\fR \fB\-i\fR \fI~/db3.gramps\fR 
+.TP 
+Executar a ferramenta de verificação a partir da linha de comando e direcionar o resultado para stdout:
+\fBgramps\fR \fB\-O\fR \fI'Minha árvore genealógica'\fR \fB-a\fR \fItool\fR \fB-p\fR \fBname\fR=\fIverify\fR
+.TP 
+Finalmente, para iniciar uma sessão interativa normal, digite:
+\fBgramps\fR 
+
+.SH VARIÁVEIS DE AMBIENTE
+O programa verifica se estas variáveis de ambiente estão definidas:
+
+\fBLANG\fR - identifica o idioma a ser usado.
+Ex.: Para o idioma português do Brasil, a variável deve ser definida como pt_BR.UTF-8.
+
+\fBGRAMPSHOME\fR - se definida, força o Gramps a usar a pasta indicada para armazenar
+as configurações e os bancos de dados do programa. Por padrão, esta variável não é 
+definida e o Gramps assume que a pasta com todos os bancos de dados e configurações
+do perfil devem ser criadas na pasta do usuário (descrita na variável de ambiente 
+HOME no Linux ou USERPROFILE no Windows 2000/XP).
+
+.SH CONCEITOS
+Suporta um sistema de plugins baseado em Python, permitindo acrescentar importações 
+e exportações adicionais, geradores de relatórios, ferramentas e filtros de exibição, 
+sem modificação do programa principal.
+.LP 
+Além da impressão direta, é possível gerar relatórios em diversos formatos de
+arquivo, tais como \fIOpenOffice.org\fR, \fIAbiWord\fR, HTML ou LaTeX, para permitir
+aos usuários a modificação de acordo com suas necessidades.
+
+.SH LIMITAÇÕES E ERROS CONHECIDOS
+
+.SH ARQUIVOS
+.LP 
+\fI${PREFIX}/bin/gramps\fP 
+.br 
+\fI${PREFIX}/share/gramps\fP
+.br 
+\fI${HOME}/.gramps\fP 
+
+.SH AUTORES
+Donald Allingham \fI<don@gramps-project.org>\fR
+.br 
+\fIhttp://gramps.sourceforge.net\fR
+.LP 
+Este manual foi originalmente escrito por:
+.br 
+Brandon L. Griffith \fI<brandon@debian.org>\fR
+.br
+para inclusão na distribuição Debian GNU/Linux.
+.LP 
+Este manual é atualmente mantido pelo:
+.br 
+Projeto Gramps \fI<xxx@gramps-project.org>\fR
+.br 
+
+.SH DOCUMENTAÇÃO
+A documentação para usuários está disponível através da opção de ajuda padrão
+do GNOME, na forma de Manual do Gramps. O Manual também está disponível no 
+formato XML como \fBgramps-manual.xml\fR em \fIdoc/gramps-manual/$LANG\fR 
+nas fontes oficiais da sua distribuição.
+.LP 
+A documentação para desenvolvedores pode ser encontrada na página 
+\fIhttp://developers.gramps-project.org\fR. 
+
+.SH TRADUÇÃO
+\&\fR\&\f(CWAndré Marcelo Alvarenga <andrealvarenga@gmx.net> em 05/08/2012\fR
