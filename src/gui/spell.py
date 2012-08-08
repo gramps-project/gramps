@@ -49,12 +49,19 @@ LOG = logging.getLogger(".Spell")
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
+from gi import Repository
 
-try:
-    from gi.repository import Gtkspell
-    HAVE_GTKSPELL = True
-except ImportError:
-    HAVE_GTKSPELL = False
+HAVE_GTKSPELL = False
+
+# Attempting to import gtkspell gives an error dialog if gtkspell is not
+# available so test first and log just a warning to the console instead.
+repository = Repository.get_default()
+if repository.enumerate_versions("Gtkspell"):
+    try:
+        from gi.repository import Gtkspell
+        HAVE_GTKSPELL = True
+    except:
+        pass
 
 if not HAVE_GTKSPELL:
     LOG.warn(_("Spelling checker is not installed"))
