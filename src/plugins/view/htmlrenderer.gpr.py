@@ -27,21 +27,44 @@
 #
 #------------------------------------------------------------------------
 
+#-------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+#-------------------------------------------------------------------------
+from gi import Repository
+
+#-------------------------------------------------------------------------
+#
+# set up logging
+#
+#-------------------------------------------------------------------------
+import logging
+_LOG = logging.getLogger("HtmlRenderer")
+
 NOWEB  = 0
 WEBKIT = 1
 MOZILLA  = 2
 
 TOOLKIT = NOWEB
 
-try:
-    from gi.repository import WebKit
-    TOOLKIT = WEBKIT
-except:
-    ##try:
-    ##    import gtkmozembed
-    ##    TOOLKIT = MOZILLA
-    ##except:
-        pass
+
+# Attempting to import webkit gives an error dialog if webkit is not
+# available so test first and log just a warning to the console instead.
+repository = Repository.get_default()
+if repository.enumerate_versions("WebKit"):
+    try:
+        print "import Webkit"
+        from gi.repository import WebKit
+        TOOLKIT = WEBKIT
+    except:
+        ##try:
+        ##    import gtkmozembed
+        ##    TOOLKIT = MOZILLA
+        ##except:
+            pass
+else:
+    _LOG.warning("Webkit is not installed");
 
 #no interfaces present, we do not register these plugins
 if not (TOOLKIT == NOWEB):
