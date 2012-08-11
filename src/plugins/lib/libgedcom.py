@@ -1219,11 +1219,11 @@ class UTF16Reader(BaseReader):
         self.reset()
 
     def readline(self):
-        l = self.ifile.readline()
+        l = unicode(self.ifile.readline())
         if l.strip():
-            return l
+            return l.translate(STRIP_DICT)
         else:
-            return self.ifile.readline()
+            return unicode(self.ifile.readline()).translate(STRIP_DICT)
 
 class AnsiReader(BaseReader):
 
