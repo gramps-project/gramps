@@ -275,13 +275,13 @@ class EditExifMetadata(Gramplet):
         # Displays the file name
         medialabel = Gtk.HBox(False, 0)
         label = self.__create_label("MediaLabel", False, False, False) 
-        medialabel.pack_start(label, expand =False)
+        medialabel.pack_start(label, expand =False, fill =True, padding =0)
         main_vbox.pack_start(medialabel, expand =False, fill =True, padding =0)
 
         # Displays mime type information
         mimetype = Gtk.HBox(False, 0)
         label = self.__create_label("MimeType", False, False, False)
-        mimetype.pack_start(label, expand =False)
+        mimetype.pack_start(label, expand =False, fill =True, padding =0)
         main_vbox.pack_start(mimetype, expand =False, fill =True, padding =0)
 
         # image dimensions
@@ -293,11 +293,11 @@ class EditExifMetadata(Gramplet):
         # Displays all plugin messages
         messagearea = Gtk.HBox(False, 0)
         label = self.__create_label("MessageArea", False, False, False)
-        messagearea.pack_start(label, expand =False)
+        messagearea.pack_start(label, expand =False, fill =True, padding =0)
         main_vbox.pack_start(messagearea, expand =False, fill =True, padding =0)
 
         # Separator line before the buttons
-        main_vbox.pack_start(Gtk.HSeparator(, True, True, 0), expand =False, fill =False, padding =0)
+        main_vbox.pack_start(Gtk.HSeparator(), expand =False, fill =False, padding =0)
 
         # Thumbnail, ImageType, and Convert buttons
         new_hbox = Gtk.HBox(False, 0)
@@ -361,7 +361,7 @@ class EditExifMetadata(Gramplet):
         main_vbox.pack_start(self.view, expand =False, fill =True, padding =5)
 
         # Separator line before the Total
-        main_vbox.pack_start(Gtk.HSeparator(, True, True, 0), expand =False, fill =True, padding =5)
+        main_vbox.pack_start(Gtk.HSeparator(), expand =False, fill =True, padding =5)
 
         # number of key/ value pairs shown
         label = self.__create_label("Total", False, False, False)
