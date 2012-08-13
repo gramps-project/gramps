@@ -45,7 +45,7 @@ class RepositoryDetails(Gramplet):
         self.name.modify_font(Pango.FontDescription('sans bold 12'))
         vbox.pack_start(self.name, fill=True, expand=False, padding=7)
         self.table = Gtk.Table(1, 2)
-        vbox.pack_start(self.table, fill=True, expand=False, '')
+        vbox.pack_start(self.table, fill=True, expand=False, padding=0)
         self.top.pack_start(vbox, fill=True, expand=False, padding=10)
         self.top.show_all()
         return self.top
@@ -63,8 +63,8 @@ class RepositoryDetails(Gramplet):
         rows = self.table.get_property('n-rows')
         rows += 1
         self.table.resize(rows, 2)
-        self.table.attach(label, 0, 1, rows, rows + 1, xoptions=Gtk.AttachOptions.FILL,
-                                                       xpadding=10)
+        self.table.attach(label, 0, 1, rows, rows + 1, 
+	                  xoptions=Gtk.AttachOptions.FILL, xpadding=10)
         self.table.attach(value, 1, 2, rows, rows + 1)
         
     def clear_table(self):
@@ -147,4 +147,5 @@ class RepositoryDetails(Gramplet):
         rows = self.table.get_property('n-rows')
         rows += 1
         self.table.resize(rows, 2)
-        self.table.attach(label, 0, 1, rows, rows + 1, xoptions=Gtk.AttachOptions.FILL)
+        self.table.attach(label, 0, 1, rows, rows + 1, 
+	                  xoptions=Gtk.AttachOptions.FILL)
