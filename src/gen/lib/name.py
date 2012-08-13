@@ -126,6 +126,26 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
                 self.group_as, self.sort_as, self.display_as, self.call,
                 self.nick, self.famnick)
 
+    def to_struct(self):
+        """
+        Convert the object to a serialized struct of data.
+        """
+        return {"private": PrivacyBase.to_struct(self),
+                "citation_list": CitationBase.to_struct(self),
+                "note_list": NoteBase.to_struct(self),
+                "date": DateBase.to_struct(self),
+                "first_name": self.first_name, 
+                "surname_list": SurnameBase.to_struct(self),
+                "suffix": self.suffix, 
+                "title": self.title,
+                "type": self.type.to_struct(), 
+                "group_as": self.group_as, 
+                "sort_as": self.sort_as, 
+                "display_as": self.display_as, 
+                "call": self.call,
+                "nick": self.nick, 
+                "famnick": self.famnick}
+
     def is_empty(self):
         """
         Indicate if the name is empty.

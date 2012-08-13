@@ -144,6 +144,20 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
                 self.type, self.place,
                 self.famc, self.temple, self.status, self.private)
 
+    def to_struct(self):
+        """
+        Convert the object to a serialized tuple of data.
+        """
+        return {"citation_list": CitationBase.to_struct(self),
+                "note_list": NoteBase.to_struct(self),
+                "date": DateBase.to_struct(self),
+                "type": self.type, 
+                "place": self.place,
+                "famc": self.famc, 
+                "temple": self.temple, 
+                "status": self.status, 
+                "private": self.private}
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

@@ -272,6 +272,21 @@ class StyledText(object):
             
         return (self._string, the_tags)
     
+    def to_struct(self):
+        """Convert the object to a serialized tuple of data.
+        
+        :returns: Serialized format of the instance.
+        :returnstype: tuple
+        
+        """
+        if self._tags:
+            the_tags = [tag.to_struct() for tag in self._tags]
+        else:
+            the_tags = []
+            
+        return {"string": self._string, 
+                "tags": the_tags}
+    
     def unserialize(self, data):
         """Convert a serialized tuple of data to an object.
         
@@ -298,6 +313,14 @@ class StyledText(object):
         """
         return self._tags
 
+    def get_string(self):
+        """
+        Accessor for the associated string.
+        """
+        return self._string
+
+    tags = property(get_tags)
+    string = property(get_string)
 
 if __name__ == '__main__':
     from styledtexttagtype import StyledTextTagType

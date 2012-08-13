@@ -66,6 +66,12 @@ class LdsOrdBase(object):
         """
         return [lds_ord.serialize() for lds_ord in self.lds_ord_list]
 
+    def to_struct(self):
+        """
+        Convert the object to a serialized tuple of data.
+        """
+        return [lds_ord.to_struct() for lds_ord in self.lds_ord_list]
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object

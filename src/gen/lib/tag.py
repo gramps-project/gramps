@@ -198,6 +198,32 @@ class Tag(TableObject):
         :rtype: int
         """
         return self.__priority
+
+    def to_struct(self):
+        """
+        Convert the data held in the event to a Python tuple that
+        represents all the data elements. 
+        
+        This method is used to convert the object into a form that can easily 
+        be saved to a database.
+
+        These elements may be primitive Python types (string, integers),
+        complex Python types (lists or tuples, or Python objects. If the
+        target database cannot handle complex types (such as objects or
+        lists), the database is responsible for converting the data into
+        a form that it can use.
+
+        :returns: Returns a python tuple containing the data that should
+            be considered persistent.
+        :rtype: tuple
+        """
+        return {"handle": self.handle,
+                "name": self.__name,
+                "color": self.__color,
+                "priority": self.__priority,
+                "change": self.change}
+
+    FIELDS = ["handle", "name", "color", "priority", "change"]
+
     priority = property(get_priority, set_priority, None,
                      'Returns or sets priority of the tag')
-

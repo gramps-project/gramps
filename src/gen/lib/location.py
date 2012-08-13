@@ -64,6 +64,20 @@ class Location(SecondaryObject, LocationBase):
         """
         return (LocationBase.serialize(self), self.parish)
 
+    def to_struct(self):
+        """
+        Convert the object to a serialized tuple of data.
+        """
+        return {"street": self.street, 
+                "locality": self.locality, 
+                "city": self.city, 
+                "country": self.county, 
+                "state": self.state,
+                "country": self.country, 
+                "postal": self.postal, 
+                "phone": self.phone,
+                "parish": self.parish}
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

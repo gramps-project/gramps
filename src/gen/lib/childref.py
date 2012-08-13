@@ -75,6 +75,17 @@ class ChildRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
                 self.frel.serialize(),
                 self.mrel.serialize())
 
+    def to_struct(self):
+        """
+        Convert the object to a serialized struct of data.
+        """
+        return {"private": PrivacyBase.to_struct(self),
+                "citation_list": CitationBase.to_struct(self),
+                "note_list": NoteBase.to_struct(self),
+                "ref": RefBase.to_struct(self),
+                "frel": self.frel.to_struct(),
+                "mrel": self.mrel.to_struct()}
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

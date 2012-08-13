@@ -60,6 +60,12 @@ class UrlBase(object):
         """
         return [url.serialize() for url in self.urls]
 
+    def to_struct(self):
+        """
+        Convert the object to a serialized tuple of data
+        """
+        return [url.to_struct() for url in self.urls]
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

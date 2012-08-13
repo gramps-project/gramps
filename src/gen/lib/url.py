@@ -69,6 +69,12 @@ class Url(SecondaryObject, PrivacyBase):
     def serialize(self):
         return (self.private, self.path, self.desc, self.type.serialize())
 
+    def to_struct(self):
+        return {"private": self.private, 
+                "path": self.path, 
+                "desc": self.desc, 
+                "type": self.type.to_struct()}
+
     def unserialize(self, data):
         (self.private, self.path, self.desc, type_value) = data
         self.type.unserialize(type_value)

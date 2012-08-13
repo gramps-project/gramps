@@ -71,6 +71,16 @@ class Surname(SecondaryObject):
         return (self.surname, self.prefix, self.primary, 
                 self.origintype.serialize(), self.connector)
 
+    def to_struct(self):
+        """
+        Convert the object to a serialized tuple of data.
+        """
+        return {"surname": self.surname, 
+                "prefix": self.prefix, 
+                "primary": self.primary, 
+                "origintype": self.origintype.to_struct(), 
+                "connector": self.connector}
+
     def is_empty(self):
         """
         Indicate if the surname is empty.

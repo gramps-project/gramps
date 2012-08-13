@@ -69,6 +69,18 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
             PrivacyBase.serialize(self),
             )
 
+    def to_struct(self):
+        """
+        Convert the object to a serialized tuple of data.
+        """
+        return {
+            "note_list": NoteBase.to_struct(self),
+            "ref": RefBase.to_struct(self),
+            "call_number": self.call_number, 
+            "media_type": self.media_type.to_struct(),
+            "private": PrivacyBase.serialize(self),
+            }
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

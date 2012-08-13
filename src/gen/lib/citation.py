@@ -91,6 +91,22 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
                 self.change,                           #  9
                 self.private)                          # 10
 
+    def to_struct(self, no_text_date = False):
+        """
+        Convert the object to a serialized struct of data.
+        """
+        return {"handle": self.handle,                           #  0
+                "gramps_id": self.gramps_id,                        #  1
+                "date": DateBase.to_struct(self),                #  2
+                "page": unicode(self.page),                    #  3
+                "confidence": self.confidence,                       #  4
+                "source_handle": self.source_handle,                    #  5
+                "note_list": NoteBase.to_struct(self),              #  6
+                "media_list": MediaBase.to_struct(self),             #  7
+                "datamap": self.datamap,                          #  8
+                "change": self.change,                           #  9
+                "private": self.private}                          # 10
+
     def unserialize(self, data):
         """
         Convert the data held in a tuple created by the serialize method

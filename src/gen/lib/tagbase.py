@@ -54,6 +54,12 @@ class TagBase(object):
         """
         return self.tag_list
 
+    def to_struct(self):
+        """
+        Convert the object to a serialized tuple of data.
+        """
+        return self.tag_list
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

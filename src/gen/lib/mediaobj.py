@@ -116,6 +116,37 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
                 TagBase.serialize(self),
                 self.private)
 
+    def to_struct(self):
+        """
+        Convert the data held in the event to a Python tuple that
+        represents all the data elements. 
+        
+        This method is used to convert the object into a form that can easily 
+        be saved to a database.
+
+        These elements may be primitive Python types (string, integers),
+        complex Python types (lists or tuples, or Python objects. If the
+        target database cannot handle complex types (such as objects or
+        lists), the database is responsible for converting the data into
+        a form that it can use.
+
+        :returns: Returns a python tuple containing the data that should
+            be considered persistent.
+        :rtype: tuple
+        """
+        return {"handle": self.handle, 
+                "gramps_id": self.gramps_id, 
+                "path": self.path, 
+                "mime": self.mime, 
+                "desc": self.desc,
+                "attribute_list": AttributeBase.to_struct(self),
+                "citation_list": CitationBase.to_struct(self),
+                "note_list": NoteBase.to_struct(self),
+                "change": self.change,
+                "date": DateBase.to_struct(self),
+                "tag_list": TagBase.to_struct(self),
+                "private": self.private}
+
     def unserialize(self, data):
         """
         Convert the data held in a tuple created by the serialize method

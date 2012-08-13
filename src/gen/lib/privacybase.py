@@ -57,6 +57,12 @@ class PrivacyBase(object):
         """
         return self.private
 
+    def to_struct(self):
+        """
+        Convert the object to a serialized tuple of data.
+        """
+        return self.private
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

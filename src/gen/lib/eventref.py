@@ -77,6 +77,18 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
             self.__role.serialize()
             )
 
+    def to_struct(self):
+        """
+        Convert the object to a serialized tuple of data.
+        """
+        return {
+            "private": PrivacyBase.to_struct(self),
+            "note_list": NoteBase.to_struct(self),
+            "attribute_list": AttributeBase.to_struct(self),
+            "ref": RefBase.to_struct(self),
+            "role": self.__role.to_struct()
+            }
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

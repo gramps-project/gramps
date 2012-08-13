@@ -128,6 +128,40 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
                 NoteBase.serialize(self),
                 self.change, TagBase.serialize(self), self.private)
 
+    def to_struct(self):
+        """
+        Convert the data held in the event to a Python tuple that
+        represents all the data elements. 
+        
+        This method is used to convert the object into a form that can easily 
+        be saved to a database.
+
+        These elements may be primitive Python types (string, integers),
+        complex Python types (lists or tuples, or Python objects. If the
+        target database cannot handle complex types (such as objects or
+        lists), the database is responsible for converting the data into
+        a form that it can use.
+
+        :returns: Returns a python tuple containing the data that should
+            be considered persistent.
+        :rtype: tuple
+        """
+        return {"handle": self.handle, 
+                "gramps_id": self.gramps_id, 
+                "father_handle": self.father_handle,
+                "mother_handle": self.mother_handle,
+                "child_ref_list": [cr.to_struct() for cr in self.child_ref_list],
+                "type": self.type.to_struct(),
+                "event_ref_list": [er.to_struct() for er in self.event_ref_list],
+                "media_list": MediaBase.to_struct(self),
+                "attribute_list": AttributeBase.to_struct(self),
+                "lds_ord_list": LdsOrdBase.to_struct(self),
+                "citation_list": CitationBase.to_struct(self),
+                "note_list": NoteBase.to_struct(self),
+                "change": self.change, 
+                "tag_list": TagBase.to_struct(self), 
+                "private": self.private}
+
     def unserialize(self, data):
         """
         Convert the data held in a tuple created by the serialize method

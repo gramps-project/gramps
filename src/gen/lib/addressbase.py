@@ -61,6 +61,12 @@ class AddressBase(object):
         """
         return [addr.serialize() for addr in self.address_list]
 
+    def to_struct(self):
+        """
+        Convert the object to a serialized struct of data.
+        """
+        return [addr.to_struct() for addr in self.address_list]
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

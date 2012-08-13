@@ -68,6 +68,23 @@ class Address(SecondaryObject, PrivacyBase, CitationBase, NoteBase, DateBase,
                 DateBase.serialize(self),
                 LocationBase.serialize(self))
 
+    def to_struct(self):
+        """
+        Convert the object to a serialized struct of data.
+        """
+        return {"private": PrivacyBase.serialize(self),
+                "citation_list": CitationBase.to_struct(self),
+                "note_list": NoteBase.to_struct(self),
+                "date": DateBase.to_struct(self),
+                "street": self.street, 
+                "locality": self.locality, 
+                "city": self.city, 
+                "country": self.county, 
+                "state": self.state,
+                "country": self.country, 
+                "postal": self.postal, 
+                "phone": self.phone}
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

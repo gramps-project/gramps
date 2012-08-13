@@ -69,6 +69,23 @@ class Source(MediaBase, NoteBase, PrimaryObject):
                 [rr.serialize() for rr in self.reporef_list],
                 self.private)
 
+    def to_struct(self):
+        """
+        Convert the object to a serialized tuple of data.
+        """
+        return {"handle": self.handle, 
+                "gramps_id": self.gramps_id, 
+                "title": unicode(self.title),
+                "author": unicode(self.author), 
+                "pubinfo": unicode(self.pubinfo),
+                "note_list": NoteBase.to_struct(self),
+                "media_list": MediaBase.to_struct(self), 
+                "abbrev": unicode(self.abbrev),
+                "change": self.change, 
+                "datamap": {"dict": self.datamap},
+                "reporef_list": [rr.to_struct() for rr in self.reporef_list],
+                "private": self.private}
+
     def unserialize(self, data):
         """
         Convert the data held in a tuple created by the serialize method

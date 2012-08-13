@@ -58,6 +58,12 @@ class MediaBase(object):
         """
         return [mref.serialize() for mref in self.media_list]
 
+    def to_struct(self):
+        """
+        Convert the object to a serialized tuple of data.
+        """
+        return [mref.to_struct() for mref in self.media_list]
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

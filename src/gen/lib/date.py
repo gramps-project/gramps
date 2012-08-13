@@ -637,6 +637,18 @@ class Date(object):
         return (self.calendar, self.modifier, self.quality, 
                 self.dateval, text, self.sortval, self.newyear)
 
+    def to_struct(self):
+        """
+        Convert to struct for data storage.
+        """
+        return {"calendar": self.calendar, 
+                "modifier": self.modifier, 
+                "quality": self.quality, 
+                "dateval": self.dateval, 
+                "text": self.text, 
+                "sortval": self.sortval, 
+                "newyear": self.newyear}
+
     def unserialize(self, data):
         """
         Load from the format created by serialize.

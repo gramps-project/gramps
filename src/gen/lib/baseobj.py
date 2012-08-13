@@ -51,6 +51,12 @@ class BaseObject(object):
         """
         assert False, "Needs to be overridden in the derived class"
 
+    def to_struct(self):
+        """
+        Convert the object to a serialized struct of data.
+        """
+        assert False, "Needs to be overridden in the derived class"
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

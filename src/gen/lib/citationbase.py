@@ -69,6 +69,12 @@ class CitationBase(object):
         """
         return self.citation_list
 
+    def to_struct(self):
+        """
+        Convert the object to a serialized tuple of data.
+        """
+        return self.citation_list
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

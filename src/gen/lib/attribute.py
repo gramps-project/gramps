@@ -83,6 +83,16 @@ class Attribute(SecondaryObject, PrivacyBase, CitationBase, NoteBase):
                 NoteBase.serialize(self),
                 self.type.serialize(), self.value)
 
+    def to_struct(self):
+        """
+        Convert the object to a serialized struct of data.
+        """
+        return {"private": PrivacyBase.serialize(self),
+                "citation_list": CitationBase.to_struct(self),
+                "note_list": NoteBase.to_struct(self),
+                "type": self.type.to_struct(), 
+                "value": self.value}
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

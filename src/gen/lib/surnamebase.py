@@ -62,6 +62,12 @@ class SurnameBase(object):
         """
         return [surname.serialize() for surname in self.surname_list]
 
+    def to_struct(self):
+        """
+        Convert the object to a serialized struct of data.
+        """
+        return [surname.to_struct() for surname in self.surname_list]
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

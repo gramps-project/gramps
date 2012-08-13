@@ -48,6 +48,12 @@ class RefBase(object):
         """
         return self.ref
 
+    def to_struct(self):
+        """
+        Convert the object to a serialized tuple of data.
+        """
+        return self.ref
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

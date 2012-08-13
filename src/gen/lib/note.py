@@ -97,6 +97,22 @@ class Note(BasicPrimaryObject, TagBase):
                 self.type.serialize(), self.change, TagBase.serialize(self),
                 self.private)
 
+    def to_struct(self):
+        """Convert the object to a serialized tuple of data.
+        
+        :returns: The serialized format of the instance.
+        :rtype: tuple
+        
+        """
+        return {"handle": self.handle, 
+                "gramps_id": self.gramps_id, 
+                "text": self.text.to_struct(), 
+                "format": self.format,
+                "type": self.type.to_struct(), 
+                "change": self.change, 
+                "tag_list": TagBase.to_struct(self),
+                "private": self.private}
+
     def unserialize(self, data):
         """Convert a serialized tuple of data to an object.
         

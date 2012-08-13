@@ -72,6 +72,16 @@ class PersonRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
                 RefBase.serialize(self),
                 self.rel)
 
+    def to_struct(self):
+        """
+        Convert the object to a serialized tuple of data.
+        """
+        return {"private": PrivacyBase.to_struct(self),
+                "citation_list": CitationBase.to_struct(self),
+                "note_list": NoteBase.to_struct(self),
+                "ref": RefBase.to_struct(self),
+                "rel": self.rel}
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

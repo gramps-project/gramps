@@ -109,6 +109,44 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
                 NoteBase.serialize(self),
                 self.change, self.private)
 
+    def to_struct(self):
+        """
+        Convert the data held in the Place to a Python tuple that
+        represents all the data elements. 
+        
+        This method is used to convert the object into a form that can easily 
+        be saved to a database.
+
+        These elements may be primitive Python types (string, integers),
+        complex Python types (lists or tuples, or Python objects. If the
+        target database cannot handle complex types (such as objects or
+        lists), the database is responsible for converting the data into
+        a form that it can use.
+
+        :returns: Returns a python tuple containing the data that should
+            be considered persistent.
+        :rtype: tuple
+        """
+
+        if self.main_loc is None or self.main_loc.serialize() == _EMPTY_LOC:
+            main_loc = None
+        else:
+            main_loc = self.main_loc.to_struct()
+
+        return {"handle": self.handle, 
+                "gramps_id": self.gramps_id, 
+                "title": self.title, 
+                "long": self.long, 
+                "lat": self.lat,
+                "main_loc": main_loc, 
+                "alt_loc": [al.to_struct() for al in self.alt_loc],
+                "urls": UrlBase.to_struct(self),
+                "media_list": MediaBase.to_struct(self),
+                "citation_list": CitationBase.to_struct(self),
+                "note_list": NoteBase.to_struct(self),
+                "change": self.change, 
+                "private": self.private}
+
     def unserialize(self, data):
         """
         Convert the data held in a tuple created by the serialize method

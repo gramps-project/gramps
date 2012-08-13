@@ -198,6 +198,11 @@ class GrampsType(object):
         """Convert the object to a serialized tuple of data. """
         return (self.__value, self.__string)
 
+    def to_struct(self):
+        """Convert the object to a serialized tuple of data. """
+        return {"value": self.__value, 
+                "string": str(self)}
+
     def unserialize(self, data):
         """Convert a serialized tuple of data to an object."""
         self.__value, self.__string = data

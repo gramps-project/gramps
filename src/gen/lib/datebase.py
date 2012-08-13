@@ -63,6 +63,16 @@ class DateBase(object):
             date = self.date.serialize(no_text_date)
         return date
 
+    def to_struct(self, no_text_date=False):
+        """
+        Convert the object to a serialized tuple of data.
+        """
+        if self.date is None:
+            date = Date().to_struct()
+        else:
+            date = self.date.to_struct()
+        return date
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

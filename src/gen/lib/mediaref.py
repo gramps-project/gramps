@@ -70,6 +70,17 @@ class MediaRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase,
                 RefBase.serialize(self),
                 self.rect)
 
+    def to_struct(self):
+        """
+        Convert the object to a serialized tuple of data.
+        """
+        return {"private": PrivacyBase.serialize(self),
+                "citation_list": CitationBase.to_struct(self),
+                "note_list": NoteBase.to_struct(self),
+                "attribute_list": AttributeBase.to_struct(self),
+                "ref": RefBase.to_struct(self),
+                "rect": self.rect}
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

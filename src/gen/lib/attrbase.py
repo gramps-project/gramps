@@ -65,6 +65,12 @@ class AttributeBase(object):
         """
         return [attr.serialize() for attr in self.attribute_list]
 
+    def to_struct(self):
+        """
+        Convert the object to a serialized struct of data.
+        """
+        return [attr.to_struct() for attr in self.attribute_list]
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

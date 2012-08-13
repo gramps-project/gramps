@@ -73,6 +73,17 @@ class StyledTextTag(object):
         """
         return (self.name.serialize(), self.value, self.ranges)
     
+    def to_struct(self):
+        """Convert the object to a serialized tuple of data.
+       
+        :returns: Serialized format of the instance.
+        :returnstype: tuple
+        
+        """
+        return {"name": self.name.to_struct(), 
+                "value": self.value, 
+                "ranges": self.ranges}
+    
     def unserialize(self, data):
         """Convert a serialized tuple of data to an object.
        

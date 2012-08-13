@@ -61,6 +61,15 @@ class Researcher(LocationBase):
         return (LocationBase.serialize(self),
                 self.name, self.addr, self.email)
 
+    def to_struct(self):
+        """
+        Convert the object to a serialized tuple of data.
+        """
+        return {"location": LocationBase.to_struct(self),
+                "name": self.name, 
+                "address": self.addr, 
+                "email": self.email}
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

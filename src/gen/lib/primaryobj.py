@@ -164,6 +164,14 @@ class BasicPrimaryObject(TableObject, PrivacyBase):
     def replace_media_references(self, old_handle, new_handle):
         pass
 
+    def get_fields(self):
+        """
+        Return a list of fields of the struct.
+        """
+        return self.to_struct().keys()
+
+    FIELDS = property(get_fields)
+
 #-------------------------------------------------------------------------
 #
 # Primary Object class
@@ -264,3 +272,4 @@ class PrimaryObject(BasicPrimaryObject):
         Replace the handle reference with the new reference.
         """
         pass
+    

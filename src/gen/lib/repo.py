@@ -67,6 +67,20 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
                 UrlBase.serialize(self),
                 self.change, self.private)
 
+    def to_struct(self):
+        """
+        Convert the object to a serialized tuple of data.
+        """
+        return {"handle": self.handle, 
+                "gramps_id": self.gramps_id, 
+                "type": self.type.to_struct(),
+                "name": unicode(self.name),
+                "note_list": NoteBase.to_struct(self),
+                "address_list": AddressBase.to_struct(self),
+                "urls": UrlBase.to_struct(self),
+                "change": self.change, 
+                "private": self.private}
+
     def unserialize(self, data):
         """
         Convert the data held in a tuple created by the serialize method

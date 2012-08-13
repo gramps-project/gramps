@@ -66,6 +66,19 @@ class LocationBase(object):
         return (self.street, self.locality, self.city, self.county, self.state,
                 self.country, self.postal, self.phone)
 
+    def to_struct(self):
+        """
+        Convert the object to a serialized tuple of data.
+        """
+        return {"street": self.street, 
+                "locality": self.locality, 
+                "city": self.city, 
+                "country": self.county, 
+                "state": self.state,
+                "country": self.country, 
+                "postal": self.postal, 
+                "phone": self.phone}
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
