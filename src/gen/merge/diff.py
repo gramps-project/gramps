@@ -94,19 +94,19 @@ def diff_items(path, json1, json2):
                 value1 = json1[key]
                 value2 = json2[key]
                 if isinstance(value1, dict) and isinstance(value2, dict):
-                    result = diff_items(path + "/" + key, value1, value2)
+                    result = diff_items(path + "." + key, value1, value2)
                     if result:
                         retval = True
                 elif isinstance(value1, list) and isinstance(value2, list):
                     pos = 0
                     for v1, v2 in zip(value1, value2):
-                        result = diff_items(path + "/" + key + "/" + str(pos), 
+                        result = diff_items(path + "." + key + ("[%d]" % pos), 
                                             v1, v2)
                         if result:
                             retval = True
                         pos += 1
                 elif value1 != value2:
-                    print "different parts", path + "/" + key
+                    print "different parts", path + "." + key
                     print "   old:", value1
                     print "   new:", value2
                     retval = True
@@ -140,9 +140,9 @@ def diff_dbs(db1, db2):
             if handles1[p1] == handles2[p2]: # in both
                 item1 = db1._tables[item]["handle_func"](handles1[p1])
                 item2 = db2._tables[item]["handle_func"](handles2[p2])
-                diff = diff_items(item, item1.to_json(), item2.to_json())
+                diff = diff_items(item, item1.to_struct(), item2.to_struct())
                 if diff:
-                    diffs += [(item1, item2)]
+                    diffs += [(item, item1, item2)]
                 # else same!
                 p1 += 1
                 p2 += 1
@@ -171,6 +171,3 @@ def diff_db_to_file(old_db, filename):
     diffs, m_old, m_new = diff_dbs(old_db, new_db)
     return diffs, m_old, m_new
     
-def diff(db):
-    diffs, m_old, m_new = diff_db_to_file(db, '/home/dblank/Ubuntu One/blank-no-chenoweths.gramps')
-    return diffs, m_old, m_new
