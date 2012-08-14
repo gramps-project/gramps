@@ -41,6 +41,7 @@ from gen.ggettext import gettext as _
 # GNOME/GTK
 #
 #-------------------------------------------------------------------------
+from gi.repository import PangoCairo
 
 #-------------------------------------------------------------------------
 #
@@ -295,6 +296,47 @@ class ProgressMeter(object):
         Close the progress meter
         """
         self.__dialog.destroy()
+
+#-------------------------------------------------------------------------
+#
+# SystemFonts class
+#
+#-------------------------------------------------------------------------
+
+class SystemFonts(object):
+    """
+    Define fonts available to Gramps    
+
+    This is a workaround for bug which prevents the list_families method
+    being called more than once.
+
+    The bug is described here: https://bugzilla.gnome.org/show_bug.cgi?id=679654
+
+    This code generate a warning:
+    /usr/local/lib/python2.7/site-packages/gi/types.py:47: 
+    Warning: g_value_get_object: assertion `G_VALUE_HOLDS_OBJECT (value)' failed
+
+    To get a list of fonts, instantiate this class and call get_system_fonts()
+    #TODO GTK3: the underlying bug may be fixed at some point in the future
+    """
+
+    __FONTS = None
+
+    def __init__(self):
+        """
+        Populate the class variable __FONTS only once.
+        """
+        if SystemFonts.__FONTS is None:
+            families = PangoCairo.font_map_get_default().list_families()
+            print ('GRAMPS GTK3: a g_value_get_object warning:')
+            SystemFonts.__FONTS = [family.get_name() for family in families]
+            SystemFonts.__FONTS.sort()
+
+    def get_system_fonts(self):
+        """
+        Return a sorted list of fonts available to Gramps
+        """
+        return SystemFonts.__FONTS
 
 #-------------------------------------------------------------------------
 #

@@ -51,6 +51,7 @@ from gen.plug.report import utils as ReportUtils
 from gen.errors import PluginError
 from gen.plug.docbackend import CairoBackend
 from gen.utils.image import resize_to_buffer
+from gui.utils import SystemFonts
 
 #------------------------------------------------------------------------
 #
@@ -108,9 +109,8 @@ def set_font_families():
     """
     global font_families
     
-    ##families = pango_context.list_families()
-    families = PangoCairo.font_map_get_default().list_families()
-    family_names = [family.get_name() for family in families]
+    fonts = SystemFonts()        
+    family_names = fonts.get_system_fonts()
     
     fam = [f for f in _TTF_FREEFONT.itervalues() if f in family_names]
     if len(fam) == len(_TTF_FREEFONT):
