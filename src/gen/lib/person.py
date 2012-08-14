@@ -78,28 +78,6 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
     MALE    = 1
     FEMALE  = 0
     
-    FIELDS = ["handle",                                         #  0
-              "gramps_id",                                      #  1
-              "gender",                                         #  2
-              "primary_name",                                   #  3
-              "alternate_names",                                #  4
-              "death_ref_index",                                #  5
-              "birth_ref_index",                                #  6
-              "event_ref_list",                                 #  7
-              "family_list",                                    #  8
-              "parent_family_list",                             #  9
-              "media_list",                                     # 10
-              "address_list",                                   # 11
-              "attribute_list",                                 # 12
-              "urls",                                           # 13
-              "lds_ord_list",                                   # 14
-              "citation_list",                                  # 15
-              "note_list",                                      # 16
-              "change",                                         # 17
-              "tag_list",                                       # 18
-              "private",                                        # 19
-              "person_ref_list"]                                # 20
-
     def __init__(self, data=None):
         """
         Create a new Person instance. 
@@ -182,63 +160,51 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
             )
 
     def to_struct(self):
-        return {
-            "handle": self.handle,                                            #  0
-            "gramps_id": self.gramps_id,                                      #  1
-            "gender": self.gender,                                            #  2
-            "primary_name": self.primary_name.to_struct(),                      #  3
-            "alternate_names": [name.to_struct() for name in self.alternate_names], #  4
-            "death_ref_index": self.death_ref_index,                          #  5
-            "birth_ref_index": self.birth_ref_index,                          #  6
-            "event_ref_list": [er.to_struct() for er in self.event_ref_list],   #  7
-            "family_list": self.family_list,                                  #  8
-            "parent_family_list": self.parent_family_list,                    #  9
-            "media_list": MediaBase.to_struct(self),                            # 10
-            "address_list": AddressBase.to_struct(self),                        # 11
-            "attribute_list": AttributeBase.to_struct(self),                    # 12
-            "urls": UrlBase.to_struct(self),                                    # 13
-            "lds_ord_list": LdsOrdBase.to_struct(self),                         # 14
-            "citation_list": CitationBase.to_struct(self),                      # 15
-            "note_list": NoteBase.to_struct(self),                              # 16
-            "change": self.change,                                            # 17
-            "tag_list": TagBase.to_struct(self),                                # 18
-            "private": self.private,                                          # 19
-            "person_ref_list": [pr.to_struct() for pr in self.person_ref_list]  # 20
-            }
+        """
+        Convert the data held in this object to a structure (eg,
+        struct) that represents all the data elements.
+        
+        This method is used to recursively convert the object into a
+        self-documenting form that can easily be used for various
+        purposes, including diffs and queries.
 
-    def from_struct(self, to_struct):
-        self.handle = to_struct["handle"]                                    # 0
-        self.gramps_id = to_struct["gramps_id"]                              #  1
-        self.gender = to_struct["gender"]                                    #  2
-        self.primary_name = Name.from_struct(to_struct["primary_name"])        #  3
-        self.alternate_names = [Name.from_struct(name) 
-                                for name in to_struct["alternate_names"]]    #  4
-        self.death_ref_index = to_struct["death_ref_index"]                  #  5
-        self.birth_ref_index = to_struct["birth_ref_index"]                  #  6
-        self.event_ref_list = [EventRef.from_struct(er) 
-                               for er in to_struct["event_ref_list"]]        #  7
-        self.family_list = to_struct["family_list"]                          #  8
-        self.parent_family_list = to_struct["parent_family_list"]            #  9
-        self.media_list = [MediaBase.from_struct(m)
-                           for m in to_struct["media_list"]]                 # 10
-        self.address_list = [AddressBase.from_struct(a)
-                             for a in to_struct["address_list"]]             # 11
-        self.attribute_list = [AttributeBase.from_struct(attr)
-                               for attr in to_struct["attribute_list"]]      # 12
-        self.urls = [UrlBase.from_struct(url)
-                     for url in to_struct["urls"]]                           # 13
-        self.lds_ord_list = [LdsOrdBase.from_struct(lref) 
-                             for lref in to_struct["lds_ord_list"]]          # 14
-        self.citation_list = [CitationBase.from_struct(cref)
-                              for cref in to_struct["citation_list"]]        # 15
-        self.note_list = [NoteBase.from_struct(noteref) 
-                          for noteref in to_struct["note_list"]]             # 16
-        self.change = to_struct["change"]                                    # 17
-        self.tag_list = [TagBase.from_struct(tag) 
-                         for tag in to_struct["tag_list"]]                   # 18
-        self.private = to_struct["private"]                                  # 19
-        self.person_ref_list = [PersonRef.from_struct(pr) 
-                                for pr in to_struct["person_ref_list"]]      # 20
+        These structures may be primitive Python types (string,
+        integer, boolean, etc.) or complex Python types (lists,
+        tuples, or dicts). If the return type is a dict, then the keys
+        of the dict match the fieldname of the object. If the return
+        struct (or value of a dict key) is a list, then it is a list
+        of structs. Otherwise, the struct is just the value of the
+        attribute.
+
+        :returns: Returns a struct containing the data of the object.
+        :rtype: dict
+        """
+        return {
+            "handle": self.handle,                               #  0
+            "gramps_id": self.gramps_id,                         #  1
+            "gender": self.gender,                               #  2
+            "primary_name": self.primary_name.to_struct(),       #  3
+            "alternate_names": [name.to_struct() 
+                                for name in self.alternate_names], #  4
+            "death_ref_index": self.death_ref_index,             #  5
+            "birth_ref_index": self.birth_ref_index,             #  6
+            "event_ref_list": [er.to_struct() 
+                               for er in self.event_ref_list],   #  7
+            "family_list": self.family_list,                     #  8
+            "parent_family_list": self.parent_family_list,       #  9
+            "media_list": MediaBase.to_struct(self),             # 10
+            "address_list": AddressBase.to_struct(self),         # 11
+            "attribute_list": AttributeBase.to_struct(self),     # 12
+            "urls": UrlBase.to_struct(self),                     # 13
+            "lds_ord_list": LdsOrdBase.to_struct(self),          # 14
+            "citation_list": CitationBase.to_struct(self),       # 15
+            "note_list": NoteBase.to_struct(self),               # 16
+            "change": self.change,                               # 17
+            "tag_list": TagBase.to_struct(self),                 # 18
+            "private": self.private,                             # 19
+            "person_ref_list": [pr.to_struct() 
+                                for pr in self.person_ref_list]  # 20
+            }
 
     def unserialize(self, data):
         """

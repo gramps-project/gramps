@@ -118,21 +118,23 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
 
     def to_struct(self):
         """
-        Convert the data held in the event to a Python tuple that
-        represents all the data elements. 
+        Convert the data held in this object to a structure (eg,
+        struct) that represents all the data elements.
         
-        This method is used to convert the object into a form that can easily 
-        be saved to a database.
+        This method is used to recursively convert the object into a
+        self-documenting form that can easily be used for various
+        purposes, including diffs and queries.
 
-        These elements may be primitive Python types (string, integers),
-        complex Python types (lists or tuples, or Python objects. If the
-        target database cannot handle complex types (such as objects or
-        lists), the database is responsible for converting the data into
-        a form that it can use.
+        These structures may be primitive Python types (string,
+        integer, boolean, etc.) or complex Python types (lists,
+        tuples, or dicts). If the return type is a dict, then the keys
+        of the dict match the fieldname of the object. If the return
+        struct (or value of a dict key) is a list, then it is a list
+        of structs. Otherwise, the struct is just the value of the
+        attribute.
 
-        :returns: Returns a python tuple containing the data that should
-            be considered persistent.
-        :rtype: tuple
+        :returns: Returns a struct containing the data of the object.
+        :rtype: dict
         """
         return {"handle": self.handle, 
                 "gramps_id": self.gramps_id, 

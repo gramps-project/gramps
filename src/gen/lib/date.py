@@ -639,7 +639,23 @@ class Date(object):
 
     def to_struct(self):
         """
-        Convert to struct for data storage.
+        Convert the data held in this object to a structure (eg,
+        struct) that represents all the data elements.
+        
+        This method is used to recursively convert the object into a
+        self-documenting form that can easily be used for various
+        purposes, including diffs and queries.
+
+        These structures may be primitive Python types (string,
+        integer, boolean, etc.) or complex Python types (lists,
+        tuples, or dicts). If the return type is a dict, then the keys
+        of the dict match the fieldname of the object. If the return
+        struct (or value of a dict key) is a list, then it is a list
+        of structs. Otherwise, the struct is just the value of the
+        attribute.
+
+        :returns: Returns a struct containing the data of the object.
+        :rtype: dict
         """
         return {"calendar": self.calendar, 
                 "modifier": self.modifier, 

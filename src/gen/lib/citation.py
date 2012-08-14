@@ -91,21 +91,37 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
                 self.change,                           #  9
                 self.private)                          # 10
 
-    def to_struct(self, no_text_date = False):
+    def to_struct(self):
         """
-        Convert the object to a serialized struct of data.
+        Convert the data held in this object to a structure (eg,
+        struct) that represents all the data elements.
+        
+        This method is used to recursively convert the object into a
+        self-documenting form that can easily be used for various
+        purposes, including diffs and queries.
+
+        These structures may be primitive Python types (string,
+        integer, boolean, etc.) or complex Python types (lists,
+        tuples, or dicts). If the return type is a dict, then the keys
+        of the dict match the fieldname of the object. If the return
+        struct (or value of a dict key) is a list, then it is a list
+        of structs. Otherwise, the struct is just the value of the
+        attribute.
+
+        :returns: Returns a struct containing the data of the object.
+        :rtype: dict
         """
         return {"handle": self.handle,                           #  0
-                "gramps_id": self.gramps_id,                        #  1
+                "gramps_id": self.gramps_id,                     #  1
                 "date": DateBase.to_struct(self),                #  2
-                "page": unicode(self.page),                    #  3
-                "confidence": self.confidence,                       #  4
-                "source_handle": self.source_handle,                    #  5
-                "note_list": NoteBase.to_struct(self),              #  6
-                "media_list": MediaBase.to_struct(self),             #  7
-                "datamap": self.datamap,                          #  8
+                "page": unicode(self.page),                      #  3
+                "confidence": self.confidence,                   #  4
+                "source_handle": self.source_handle,             #  5
+                "note_list": NoteBase.to_struct(self),           #  6
+                "media_list": MediaBase.to_struct(self),         #  7
+                "datamap": self.datamap,                         #  8
                 "change": self.change,                           #  9
-                "private": self.private}                          # 10
+                "private": self.private}                         # 10
 
     def unserialize(self, data):
         """
