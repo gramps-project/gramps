@@ -112,7 +112,7 @@ class DbManager(CLIDbManager):
     create, rename, delete and open databases.
     """
     ICON_MAP = {
-                CLIDbManager.ICON_NONE : '',
+                CLIDbManager.ICON_NONE : None,
                 CLIDbManager.ICON_RECOVERY : Gtk.STOCK_DIALOG_ERROR,
                 CLIDbManager.ICON_LOCK : 'gramps-lock',
                 CLIDbManager.ICON_OPEN : Gtk.STOCK_OPEN,
