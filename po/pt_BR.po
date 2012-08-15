@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-07-15 17:49+0200\n"
-"PO-Revision-Date: 2012-08-05 23:48-0300\n"
+"PO-Revision-Date: 2012-08-14 23:14-0300\n"
 "Last-Translator: André Marcelo Alvarenga <alvarenga@kde.org>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_br@kde.org>\n"
 "Language: \n"
@@ -14066,11 +14066,11 @@ msgstr "As famílias serão mostradas como elipses, ligadas aos pais e filhos."
 
 #: ../src/plugins/import/import.gpr.py:34
 msgid "Import data from CSV files"
-msgstr "Importar dados de arquivos CSV"
+msgstr "Importa os dados de arquivos CSV"
 
 #: ../src/plugins/import/import.gpr.py:71
 msgid "Import data from GeneWeb files"
-msgstr "Importar dados de arquivos GeneWeb"
+msgstr "Importa os dados de arquivos GeneWeb"
 
 #: ../src/plugins/import/import.gpr.py:88
 msgid "Gramps package (portable XML)"
@@ -14081,7 +14081,7 @@ msgid ""
 "Import data from a Gramps package (an archived XML family tree together with "
 "the media object files.)"
 msgstr ""
-"Importar dados de um pacote do Gramps (uma árvore genealógica arquivada em "
+"Importa os dados de um pacote do Gramps (uma árvore genealógica arquivada em "
 "XML, juntamente com os arquivos de objetos multimídia.)"
 
 #: ../src/plugins/import/import.gpr.py:107
@@ -14111,11 +14111,11 @@ msgstr "Pro-Gen"
 
 #: ../src/plugins/import/import.gpr.py:147
 msgid "Import data from Pro-Gen files"
-msgstr "Importar dados de arquivos Pro-Gen"
+msgstr "Importa os dados de arquivos Pro-Gen"
 
 #: ../src/plugins/import/import.gpr.py:165
 msgid "Import data from vCard files"
-msgstr "Importar dados de arquivos vCard"
+msgstr "Importa os dados de arquivos vCard"
 
 #: ../src/plugins/import/ImportCsv.py:148
 #: ../src/plugins/import/ImportGedcom.py:113
@@ -19283,19 +19283,19 @@ msgstr ""
 
 #: ../src/plugins/mapservices/mapservice.gpr.py:31
 msgid "EniroMaps"
-msgstr "Mapas Eniro"
+msgstr "Eniro Maps"
 
 #: ../src/plugins/mapservices/mapservice.gpr.py:32
 msgid "Opens on kartor.eniro.se"
-msgstr "Abrir em kartor.eniro.se"
+msgstr "Abre no kartor.eniro.se"
 
 #: ../src/plugins/mapservices/mapservice.gpr.py:50
 msgid "GoogleMaps"
-msgstr "GoogleMaps"
+msgstr "Google Maps"
 
 #: ../src/plugins/mapservices/mapservice.gpr.py:51
 msgid "Open on maps.google.com"
-msgstr "Abrir em maps.google.com"
+msgstr "Abre no maps.google.com"
 
 #: ../src/plugins/mapservices/mapservice.gpr.py:69
 #: ../src/plugins/webreport/NarrativeWeb.py:7994
@@ -19304,7 +19304,7 @@ msgstr "OpenStreetMap"
 
 #: ../src/plugins/mapservices/mapservice.gpr.py:70
 msgid "Open on openstreetmap.org"
-msgstr "Abrir em openstreetmap.org"
+msgstr "Abre no openstreetmap.org"
 
 #: ../src/plugins/quickview/AgeOnDate.py:50
 #, python-format
@@ -19759,7 +19759,7 @@ msgstr "Não existem mais eventos em %(year)d"
 
 #: ../src/plugins/quickview/quickview.gpr.py:33
 msgid "Display people and ages on a particular date"
-msgstr "Exibir pessoas e as suas idades em uma data específica"
+msgstr "Exibe as pessoas e as suas idades em uma data específica"
 
 #: ../src/plugins/quickview/quickview.gpr.py:52
 msgid "Attribute Match"
@@ -19767,7 +19767,7 @@ msgstr "Coincidir atributo"
 
 #: ../src/plugins/quickview/quickview.gpr.py:53
 msgid "Display people with same attribute."
-msgstr "Exibir pessoas com o mesmo atributo."
+msgstr "Exibe as pessoas com o mesmo atributo."
 
 #: ../src/plugins/quickview/quickview.gpr.py:72
 msgid "All Events"
@@ -19775,7 +19775,7 @@ msgstr "Todos os eventos"
 
 #: ../src/plugins/quickview/quickview.gpr.py:73
 msgid "Display a person's events, both personal and family."
-msgstr "Exibir os eventos pessoais e familiares de uma pessoa."
+msgstr "Exibe os eventos pessoais e familiares de uma pessoa."
 
 #: ../src/plugins/quickview/quickview.gpr.py:87
 msgid "All Family Events"
@@ -19783,7 +19783,7 @@ msgstr "Todos os eventos familiares"
 
 #: ../src/plugins/quickview/quickview.gpr.py:88
 msgid "Display the family and family members events."
-msgstr "Exibir os eventos da família e de seus membros."
+msgstr "Exibe os eventos da família e de seus membros."
 
 #: ../src/plugins/quickview/quickview.gpr.py:107
 msgid "Relation to Home Person"
@@ -19791,11 +19791,11 @@ msgstr "Parentesco com a pessoa inicial"
 
 #: ../src/plugins/quickview/quickview.gpr.py:108
 msgid "Display all relationships between person and home person."
-msgstr "Exibir todos os parentescos entre a pessoa e a pessoa inicial."
+msgstr "Exibe todos os parentescos entre a pessoa e a pessoa inicial."
 
 #: ../src/plugins/quickview/quickview.gpr.py:128
 msgid "Display filtered data"
-msgstr "Exibir dados filtrados"
+msgstr "Exibe os dados filtrados"
 
 #: ../src/plugins/quickview/quickview.gpr.py:147
 msgid "Father lineage"
@@ -19803,7 +19803,7 @@ msgstr "Linhagem paterna"
 
 #: ../src/plugins/quickview/quickview.gpr.py:148
 msgid "Display father lineage"
-msgstr "Exibir linhagem paterna"
+msgstr "Exibe a linhagem paterna"
 
 #: ../src/plugins/quickview/quickview.gpr.py:161
 msgid "Mother lineage"
@@ -19811,7 +19811,7 @@ msgstr "Linhagem materna"
 
 #: ../src/plugins/quickview/quickview.gpr.py:162
 msgid "Display mother lineage"
-msgstr "Exibir linhagem materna"
+msgstr "Exibe a linhagem materna"
 
 #: ../src/plugins/quickview/quickview.gpr.py:181
 msgid "On This Day"
@@ -19819,7 +19819,7 @@ msgstr "Neste dia"
 
 #: ../src/plugins/quickview/quickview.gpr.py:182
 msgid "Display events on a particular day"
-msgstr "Exibir eventos em um dia específico"
+msgstr "Exibe os eventos de um dia específico"
 
 #: ../src/plugins/quickview/quickview.gpr.py:208
 #: ../src/plugins/quickview/References.py:91
@@ -19834,7 +19834,7 @@ msgstr "Referências a %s"
 #: ../src/plugins/quickview/quickview.gpr.py:215
 #, python-format
 msgid "Display references for a %s"
-msgstr "Exibir referências a %s"
+msgstr "Exibe as referências de %s"
 
 #: ../src/plugins/quickview/quickview.gpr.py:228
 msgid "Link References"
@@ -19842,7 +19842,7 @@ msgstr "Referências de ligações"
 
 #: ../src/plugins/quickview/quickview.gpr.py:229
 msgid "Display link references for a note"
-msgstr "Exibir referências de ligações para uma nota"
+msgstr "Exibe as referências de ligações para uma nota"
 
 #: ../src/plugins/quickview/quickview.gpr.py:248
 msgid "Repository References"
@@ -19852,7 +19852,7 @@ msgstr "Referências de repositório"
 msgid ""
 "Display the repository reference for sources related to the active repository"
 msgstr ""
-"Exibir a referência de repositórios para fontes relacionadas com o "
+"Exibe a referência de repositórios para fontes relacionadas com o "
 "repositório ativo"
 
 #: ../src/plugins/quickview/quickview.gpr.py:269
@@ -22820,7 +22820,7 @@ msgid ""
 "Extract titles, prefixes and compound surnames from given name or family "
 "name."
 msgstr ""
-"Extrair títulos, prefixos e sobrenomes compostos a partir do nome próprio ou "
+"Extrai títulos, prefixos e sobrenomes compostos a partir do nome próprio ou "
 "nome de família."
 
 #: ../src/plugins/tool/tools.gpr.py:352
@@ -22861,7 +22861,7 @@ msgstr "Reordena os IDs do Gramps de acordo com as regras pré-definidas."
 
 #: ../src/plugins/tool/tools.gpr.py:463 ../src/plugins/tool/tools.gpr.py:464
 msgid "Sorts events"
-msgstr "Ordenar eventos"
+msgstr "Ordena os eventos"
 
 #: ../src/plugins/tool/tools.gpr.py:485
 msgid "Generate SoundEx Codes"
@@ -23359,21 +23359,21 @@ msgstr ""
 #: ../src/plugins/view/geography.gpr.py:49
 msgid "A view showing the places visited by one person during his life."
 msgstr ""
-"Uma visualização que mostra os locais visitados por uma pessoa durante a sua "
+"Visualização que mostra os locais visitados por uma pessoa durante a sua "
 "vida."
 
 #: ../src/plugins/view/geography.gpr.py:66
 msgid "A view showing all places of the database."
-msgstr "Uma visualização que mostra todos os locais do banco de dados."
+msgstr "Visualização que mostra todos os locais do banco de dados."
 
 #: ../src/plugins/view/geography.gpr.py:81
 msgid "A view showing all the event places of the database."
-msgstr "Uma visualização que mostra todos locais de eventos do banco de dados."
+msgstr "Visualização que mostra todos locais de eventos do banco de dados."
 
 #: ../src/plugins/view/geography.gpr.py:97
 msgid "A view showing the places visited by one family during all their life."
 msgstr ""
-"Uma visualização que mostra os locais visitados por uma família durante a "
+"Visualização que mostra os locais visitados por uma família durante a "
 "sua vida."
 
 #: ../src/plugins/view/geoevents.py:116
@@ -23513,7 +23513,7 @@ msgstr "Visualização HTML"
 
 #: ../src/plugins/view/htmlrenderer.gpr.py:51
 msgid "A view showing html pages embedded in Gramps"
-msgstr "Uma visualização que mostra páginas HTML embutidas no Gramps"
+msgstr "Visualização que mostra páginas HTML embutidas no Gramps"
 
 #: ../src/plugins/view/htmlrenderer.gpr.py:58
 msgid "Web"
