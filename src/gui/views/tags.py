@@ -35,6 +35,7 @@ from xml.sax.saxutils import escape
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
+from gi.repository import Gdk
 
 #-------------------------------------------------------------------------
 #
@@ -280,9 +281,9 @@ def cb_menu_position(menu, button):
     """
     Determine the position of the popup menu.
     """
-    x_pos, y_pos = button.window.get_origin()
-    x_pos += button.allocation.x
-    y_pos += button.allocation.y + button.allocation.height
+    ret_val, x_pos, y_pos = button.get_window().get_origin()
+    x_pos += button.get_allocation().x
+    y_pos += button.get_allocation().y + button.get_allocation().height
     
     return (x_pos, y_pos, False)
 
