@@ -73,7 +73,7 @@ class RebuildRefMap(tool.Tool, UpdateCallback):
         self.db.disable_signals()
         if uistate:
             self.callback = uistate.pulse_progressbar
-            uistate.set_busy_cursor(1)
+            uistate.set_busy_cursor(True)
             uistate.progress.show()
             uistate.push_message(dbstate, _("Rebuilding reference maps..."))
         else:
@@ -86,7 +86,7 @@ class RebuildRefMap(tool.Tool, UpdateCallback):
         self.reset()
 
         if uistate:
-            uistate.set_busy_cursor(0)
+            uistate.set_busy_cursor(False)
             uistate.progress.hide()
             OkDialog(_("Reference maps rebuilt"),
                      _('All reference maps have been rebuilt.'),

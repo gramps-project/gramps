@@ -72,7 +72,7 @@ class Rebuild(tool.Tool, UpdateCallback):
         
         if uistate:
             self.callback = uistate.pulse_progressbar
-            uistate.set_busy_cursor(1)
+            uistate.set_busy_cursor(True)
             uistate.progress.show()
             uistate.push_message(dbstate, _("Rebuilding secondary indexes..."))
             
@@ -81,7 +81,7 @@ class Rebuild(tool.Tool, UpdateCallback):
             self.db.rebuild_secondary(self.update)
             self.reset()
             
-            uistate.set_busy_cursor(0)
+            uistate.set_busy_cursor(False)
             uistate.progress.hide()
             OkDialog(_("Secondary indexes rebuilt"),
                      _('All secondary indexes have been rebuilt.'),

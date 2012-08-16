@@ -1021,14 +1021,14 @@ class ViewManager(CLIManager):
         Backup the current file as a backup file.
         """
         if self.dbstate.db.has_changed:
-            self.uistate.set_busy_cursor(1)
+            self.uistate.set_busy_cursor(True)
             self.uistate.progress.show()
             self.uistate.push_message(self.dbstate, _("Autobackup..."))
             try:
                 backup(self.dbstate.db)
             except DbException, msg:
                 ErrorDialog(_("Error saving backup data"), msg)
-            self.uistate.set_busy_cursor(0)
+            self.uistate.set_busy_cursor(False)
             self.uistate.progress.hide()
 
     def abort(self, obj=None):
@@ -1373,8 +1373,6 @@ class ViewManager(CLIManager):
         self.dbstate.db.undo_history_callback = self.undo_history_update
         self.undo_history_close()
 
-        self.uistate.window.get_root_window().set_cursor(None)
-
     def _post_load_newdb(self, filename, filetype, title=None):
         """
         The method called after load of a new database.
@@ -1572,7 +1570,7 @@ class ViewManager(CLIManager):
                 yes_no = question.run()
                 if not yes_no:
                     return
-            self.uistate.set_busy_cursor(1)
+            self.uistate.set_busy_cursor(True)
             self.pulse_progressbar(0)
             self.uistate.progress.show()
             self.uistate.push_message(self.dbstate, _("Making backup..."))
@@ -1589,7 +1587,7 @@ class ViewManager(CLIManager):
                                         callback=self.pulse_progressbar),
                                    strip_photos=0, compress=1)
                 writer.write(filename)
-            self.uistate.set_busy_cursor(0)
+            self.uistate.set_busy_cursor(False)
             self.uistate.progress.hide()
             filename = get_unicode_path_from_env_var(filename)
             self.uistate.push_message(self.dbstate, _("Backup saved to '%s'") % filename)
@@ -1685,17 +1683,17 @@ class ViewManager(CLIManager):
         """
         Calls the undo function on the database
         """
-        self.uistate.set_busy_cursor(1)
+        self.uistate.set_busy_cursor(True)
         self.dbstate.db.undo()
-        self.uistate.set_busy_cursor(0)
+        self.uistate.set_busy_cursor(False)
 
     def redo(self, obj):
         """
         Calls the redo function on the database
         """
-        self.uistate.set_busy_cursor(1)
+        self.uistate.set_busy_cursor(True)
         self.dbstate.db.redo()
-        self.uistate.set_busy_cursor(0)
+        self.uistate.set_busy_cursor(False)
 
     def undo_history(self, obj):
         """

@@ -259,11 +259,11 @@ class FamilyView(ListView):
         q = QuestionDialog2(_('Delete %s?') % _('family'), msg,
                        _('_Delete Item'), _('Cancel'))
         if q.run():
-            self.uistate.set_busy_cursor(1)
+            self.uistate.set_busy_cursor(True)
             map(self.dbstate.db.remove_family_relationships,
                 self.selected_handles())
             self.build_tree()
-            self.uistate.set_busy_cursor(0)
+            self.uistate.set_busy_cursor(False)
     
     def edit(self, obj):
         for handle in self.selected_handles():

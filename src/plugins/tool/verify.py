@@ -321,7 +321,7 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
         except WindowActiveError:
             pass
 
-        self.uistate.window.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
+        self.uistate.set_busy_cursor(True)
         self.uistate.progress.show()
         self.window.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
         try:
@@ -332,7 +332,7 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
         self.run_tool(cli=False)
 
         self.uistate.progress.hide()
-        self.uistate.window.get_window().set_cursor(None)
+        self.uistate.set_busy_cursor(False)
         try:
             self.window.get_window().set_cursor(None)
             self.vr.window.get_window().set_cursor(None)

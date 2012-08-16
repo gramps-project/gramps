@@ -323,7 +323,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         found = False
         mark_selected = []
-        self.uistate.set_busy_cursor(1)
+        self.uistate.set_busy_cursor(True)
         for mark in self.sort:
             # as we are not precise with our hand, reduce the precision
             # depending on the zoom.
@@ -364,7 +364,7 @@ class GeoGraphyView(OsmGps, NavigationView):
                 found = True
         if found:
             self.bubble_message(event, lat, lon, mark_selected)
-        self.uistate.set_busy_cursor(0)
+        self.uistate.set_busy_cursor(False)
 
     def bubble_message(self, event, lat, lon, mark):
         """

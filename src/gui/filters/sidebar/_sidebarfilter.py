@@ -106,9 +106,9 @@ class SidebarFilter(DbGUIElement):
         pass
 
     def clicked(self, obj):
-        self.uistate.set_busy_cursor(1)
+        self.uistate.set_busy_cursor(True)
         self.clicked_func()
-        self.uistate.set_busy_cursor(0)
+        self.uistate.set_busy_cursor(False)
 
     def clicked_func(self):
         pass

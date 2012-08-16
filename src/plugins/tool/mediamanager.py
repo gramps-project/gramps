@@ -182,14 +182,14 @@ class MediaMan(tool.Tool):
         """
         Code to run prior to the batch op.
         """
-        self.uistate.set_busy_cursor(1)
+        self.uistate.set_busy_cursor(True)
         self.uistate.progress.show()
 
     def post_run(self):
         """
         Code to run after to the batch op.
         """
-        self.uistate.set_busy_cursor(0)
+        self.uistate.set_busy_cursor(False)
         self.uistate.progress.hide()
 
 #------------------------------------------------------------------------

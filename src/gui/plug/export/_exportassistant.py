@@ -637,11 +637,11 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         page.set_child_visible(True)
         self.show_all()
         
-        self.uistate.set_busy_cursor(1)
+        self.uistate.set_busy_cursor(True)
         self.set_busy_cursor(1)
 
     def post_save(self):
-        self.uistate.set_busy_cursor(0)
+        self.uistate.set_busy_cursor(False)
         self.set_busy_cursor(0)
         self.progressbar.hide()
         self.writestarted = False

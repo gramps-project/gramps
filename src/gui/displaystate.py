@@ -373,10 +373,13 @@ class DisplayState(Callback):
         'Note': _("No active note"),
         }
 
+    BUSY_CURSOR = Gdk.Cursor.new(Gdk.CursorType.WATCH)
+
     def __init__(self, window, status, progress, warnbtn, uimanager, 
                  progress_monitor, viewmanager=None):
 
         self.busy = False
+        self.cursor = None
         self.viewmanager = viewmanager
         self.uimanager = uimanager
         self.progress_monitor = progress_monitor
@@ -518,10 +521,10 @@ class DisplayState(Callback):
         else:
             self.busy = value
         if value:
-            self.window.get_root_window().set_cursor(Gdk.Cursor.new(
-                                                        Gdk.CursorType.WATCH))
+            self.cursor = self.window.get_window().get_cursor()
+            self.window.get_window().set_cursor(self.BUSY_CURSOR)
         else:
-            self.window.get_root_window().set_cursor(None)
+            self.window.get_window().set_cursor(self.cursor)
         process_pending_events()
 
     def set_open_widget(self, widget):

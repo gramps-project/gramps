@@ -523,7 +523,7 @@ class ListView(NavigationView):
             prompt = q.run()
             
         if not prompt:
-            self.uistate.set_busy_cursor(1)
+            self.uistate.set_busy_cursor(True)
 
         for handle in self.selected_handles():
             (query, is_used, object) = self.remove_object_from_handle(handle)
@@ -539,15 +539,15 @@ class ListView(NavigationView):
                 #descr = object.get_description()
                 #if descr == "":
                 descr = object.get_gramps_id()
-                self.uistate.set_busy_cursor(1)
+                self.uistate.set_busy_cursor(True)
                 QuestionDialog(_('Delete %s?') % descr, msg,
                                _('_Delete Item'), query.query_response)
-                self.uistate.set_busy_cursor(0)
+                self.uistate.set_busy_cursor(False)
             else:
                 query.query_response()
 
         if not prompt:
-            self.uistate.set_busy_cursor(0)
+            self.uistate.set_busy_cursor(False)
         
     def blist(self, store, path, iter, sel_list):
         '''GtkTreeSelectionForeachFunc
@@ -585,7 +585,7 @@ class ListView(NavigationView):
         obj     A TreeViewColumn object of the column clicked
         data    The column index
         """
-        self.uistate.set_busy_cursor(1)
+        self.uistate.set_busy_cursor(True)
         self.uistate.push_message(self.dbstate, _("Column clicked, sorting..."))
         cput = time.clock()
         same_col = False
@@ -628,7 +628,7 @@ class ListView(NavigationView):
         search_col = self.column_order()[data][1]
         self.list.set_search_column(search_col)
         
-        self.uistate.set_busy_cursor(0)
+        self.uistate.set_busy_cursor(False)
         
         _LOG.debug('   ' + self.__class__.__name__ + ' column_clicked ' +
                     str(time.clock() - cput) + ' sec')

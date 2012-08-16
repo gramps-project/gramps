@@ -237,7 +237,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         for item in self.sensitive_list:
             item.set_sensitive(True)
 
-        self.uistate.window.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
+        self.uistate.set_busy_cursor(True)
         self.uistate.progress.show()
         self.window.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
 
@@ -245,7 +245,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         self.collect_unused()
 
         self.uistate.progress.hide()
-        self.uistate.window.get_window().set_cursor(None)
+        self.uistate.set_busy_cursor(False)
         self.window.get_window().set_cursor(None)
         self.reset()
         

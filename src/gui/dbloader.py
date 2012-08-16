@@ -97,7 +97,7 @@ class DbLoader(CLIDbLoader):
             _LOG.error(str(msg) +"\n" + exc)
     
     def _begin_progress(self):
-        self.uistate.set_busy_cursor(1)
+        self.uistate.set_busy_cursor(True)
         self.uistate.progress.show()
         self.uistate.pulse_progressbar(0)
     
@@ -105,7 +105,7 @@ class DbLoader(CLIDbLoader):
         self.uistate.pulse_progressbar(value)
 
     def _end_progress(self):
-        self.uistate.set_busy_cursor(0)
+        self.uistate.set_busy_cursor(False)
         self.uistate.progress.hide()
 
     def import_file(self):
