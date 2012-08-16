@@ -156,7 +156,7 @@ class EditPersonRef(EditSecondary):
 
         self._setup_notebook_tabs(notebook)
         notebook.show_all()
-        self.top.get_object('vbox').pack_start(notebook, True)
+        self.top.get_object('vbox').pack_start(notebook, True, True, 0)
 
     def build_menu_names(self, obj):
         return (_('Person Reference'),_('Person Reference Editor'))

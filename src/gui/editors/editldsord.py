@@ -254,7 +254,7 @@ class EditLdsOrd(EditSecondary):
         
         self._setup_notebook_tabs( notebook)
         notebook.show_all()
-        self.top.get_object('vbox').pack_start(notebook,True)
+        self.top.get_object('vbox').pack_start(notebook, True, True, 0)
 
     def select_parents_clicked(self, obj):
         SelectFamily = SelectorFactory('Family')
@@ -419,7 +419,7 @@ class EditFamilyLdsOrd(EditSecondary):
         self.track_ref_for_deletion("note_tab")
         
         notebook.show_all()
-        self.top.get_object('vbox').pack_start(notebook,True)
+        self.top.get_object('vbox').pack_start(notebook, True, True, 0)
 
     def build_menu_names(self, attrib):
         label = _("LDS Ordinance")

@@ -124,7 +124,8 @@ class EditName(EditSecondary):
         hbox_surn.set_size_request(-1, 
                             int(config.get('interface.surname-box-height')))
         hbox_surn.pack_start(SurnameTab(self.dbstate, self.uistate, self.track, 
-                                        self.obj, top_label=None))
+                                        self.obj, top_label=None),
+                             True, True, 0)
         #recreate start page as GrampsTab
         notebook.remove_page(0)
         self.gennam = GeneralNameTab(self.dbstate, self.uistate, self.track, 

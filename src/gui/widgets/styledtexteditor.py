@@ -636,22 +636,22 @@ class StyledTextEditor(Gtk.TextView):
         current_value = self.textbuffer.get_style_at_cursor(style)
 
         if style == StyledTextTagType.FONTCOLOR:
-            color_selection = Gtk.ColorSelectionDialog(_("Select font color"))
+            color_dialog = Gtk.ColorSelectionDialog(_("Select font color"))
         elif style == StyledTextTagType.HIGHLIGHT:
-            color_selection = Gtk.ColorSelectionDialog(_("Select "
+            color_dialog = Gtk.ColorSelectionDialog(_("Select "
                                                          "background color"))
         else:
             _LOG.debug("unknown style: '%d'" % style)
             return
 
+        color_selection = color_dialog.get_color_selection()
         if current_value:
-            color_selection.colorsel.set_current_color(
-                hex_to_color(current_value))
+            color_selection.set_current_color(hex_to_color(current_value))
 
-        response = color_selection.run()
-        color = color_selection.colorsel.get_current_color()
+        response = color_dialog.run()
+        color = color_selection.get_current_color()
         value = color_to_hex(color)
-        color_selection.destroy()
+        color_dialog.destroy()
         
         if response == Gtk.ResponseType.OK:
             _LOG.debug("applying style '%d' with value '%s'" %
