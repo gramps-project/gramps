@@ -82,8 +82,7 @@ class PluginDialog(ManagedWindow):
         self.content = content
         self._pmgr = GuiPluginManager.get_instance()
 
-        ManagedWindow.__init__(self, uistate, track, 
-                                             self.__class__)
+        ManagedWindow.__init__(self, uistate, track, self.__class__)
 
         self.state = state
         self.uistate = uistate
@@ -100,7 +99,7 @@ class PluginDialog(ManagedWindow):
         window = self.dialog.get_object("report")
         self.title = self.dialog.get_object("title")
 
-        self.set_window(window, self.title, msg )
+        self.set_window(window, self.title, msg)
 
         self.store = Gtk.TreeStore(str)
         self.selection = self.tree.get_selection()
@@ -156,7 +155,7 @@ class PluginDialog(ManagedWindow):
 
         store, node = self.selection.get_selected()
         if node:
-            path = store.get_path(node)
+            path = store.get_path(node).to_string()
         if not node or path not in self.imap:
             return 
         pdata = self.imap[path]
@@ -225,9 +224,9 @@ class PluginDialog(ManagedWindow):
                 ilist.append((next, item))
                 self.store.set(next, 0, item.name)
         for next, tab in ilist:
-            path = self.store.get_path(next)
+            path = self.store.get_path(next).to_string()
             self.imap[path] = tab
-    
+
     def run_plugin(self, pdata):
         """
         run a plugin based on it's PluginData:

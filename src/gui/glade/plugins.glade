@@ -73,12 +73,12 @@
             <property name="can_focus">True</property>
             <child>
               <object class="GtkScrolledWindow" id="scrolledwindow3">
+                <property name="width_request">250</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="shadow_type">in</property>
                 <child>
                   <object class="GtkTreeView" id="tree">
-                    <property name="width_request">200</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="headers_visible">False</property>
