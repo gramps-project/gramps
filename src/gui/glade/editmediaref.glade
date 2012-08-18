@@ -1,19 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <!-- interface-requires gtk+ 2.12 -->
-  <!-- interface-requires grampswidgets 0.0 -->
-  <!-- interface-naming-policy project-wide -->
+  <!-- interface-requires gtk+ 3.0 -->
+  <object class="GtkAdjustment" id="adjustment1">
+    <property name="upper">100</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustment2">
+    <property name="upper">100</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustment3">
+    <property name="upper">100</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustment4">
+    <property name="upper">100</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
   <object class="GtkDialog" id="editmediaref">
+    <property name="can_focus">False</property>
     <property name="default_width">600</property>
     <property name="default_height">450</property>
     <property name="type_hint">dialog</property>
     <child internal-child="vbox">
-      <object class="GtkVBox" id="dialog-vbox20">
+      <object class="GtkBox" id="dialog-vbox20">
         <property name="visible">True</property>
+        <property name="can_focus">False</property>
         <property name="spacing">8</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox" id="dialog-action_area20">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <object class="GtkButton" id="button84">
+                <property name="label">gtk-cancel</property>
+                <property name="use_action_appearance">False</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="can_default">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_action_appearance">False</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="button82">
+                <property name="label">gtk-ok</property>
+                <property name="use_action_appearance">False</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="can_default">True</property>
+                <property name="has_default">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_action_appearance">False</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="button104">
+                <property name="label">gtk-help</property>
+                <property name="use_action_appearance">False</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="can_default">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_action_appearance">False</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
         <child>
           <object class="GtkVBox" id="vbox22">
             <property name="visible">True</property>
+            <property name="can_focus">False</property>
             <property name="border_width">6</property>
             <property name="spacing">6</property>
             <child>
@@ -23,14 +109,25 @@
                 <child>
                   <object class="GtkTable" id="table50">
                     <property name="visible">True</property>
+                    <property name="can_focus">False</property>
                     <property name="border_width">12</property>
                     <property name="n_rows">5</property>
                     <property name="n_columns">5</property>
                     <property name="column_spacing">12</property>
                     <property name="row_spacing">6</property>
                     <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
                       <object class="GtkLabel" id="label425">
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <property name="xalign">0</property>
                         <property name="label" translatable="yes">_Corner 2:  X</property>
                         <property name="use_underline">True</property>
@@ -41,13 +138,14 @@
                         <property name="right_attach">2</property>
                         <property name="top_attach">3</property>
                         <property name="bottom_attach">4</property>
-                        <property name="x_options"></property>
-                        <property name="y_options"></property>
+                        <property name="x_options"/>
+                        <property name="y_options"/>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label428">
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <property name="xalign">0</property>
                         <property name="label" translatable="yes">Y coordinate|Y</property>
                         <property name="use_underline">True</property>
@@ -58,13 +156,14 @@
                         <property name="right_attach">4</property>
                         <property name="top_attach">3</property>
                         <property name="bottom_attach">4</property>
-                        <property name="x_options"></property>
-                        <property name="y_options"></property>
+                        <property name="x_options"/>
+                        <property name="y_options"/>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label430">
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <property name="xalign">0</property>
                         <property name="label" translatable="yes">&lt;b&gt;Referenced Region&lt;/b&gt;</property>
                         <property name="use_markup">True</property>
@@ -74,7 +173,7 @@
                         <property name="top_attach">1</property>
                         <property name="bottom_attach">2</property>
                         <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
+                        <property name="y_options"/>
                       </packing>
                     </child>
                     <child>
@@ -93,7 +192,7 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                         <property name="right_attach">5</property>
                         <property name="top_attach">3</property>
                         <property name="bottom_attach">4</property>
-                        <property name="y_options"></property>
+                        <property name="y_options"/>
                       </packing>
                     </child>
                     <child>
@@ -112,23 +211,26 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                         <property name="right_attach">3</property>
                         <property name="top_attach">3</property>
                         <property name="bottom_attach">4</property>
-                        <property name="y_options"></property>
+                        <property name="y_options"/>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkFrame" id="frame9">
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">Referenced region of the image media object.
 Select a region with clicking and holding the mouse button on the top left corner of the region you want, dragging the mouse to the bottom right corner of the region, and then releasing the mouse button.</property>
                         <property name="label_xalign">0</property>
                         <child>
                           <object class="GtkEventBox" id="eventbox1">
                             <property name="visible">True</property>
+                            <property name="can_focus">False</property>
                             <child>
                               <object class="GtkImage" id="subpixmap">
                                 <property name="width_request">100</property>
                                 <property name="height_request">100</property>
                                 <property name="visible">True</property>
+                                <property name="can_focus">False</property>
                                 <property name="yalign">0</property>
                               </object>
                             </child>
@@ -137,6 +239,7 @@ Select a region with clicking and holding the mouse button on the top left corne
                         <child type="label">
                           <object class="GtkLabel" id="label707">
                             <property name="visible">True</property>
+                            <property name="can_focus">False</property>
                             <property name="label" translatable="yes">&lt;b&gt;Preview&lt;/b&gt;</property>
                             <property name="use_markup">True</property>
                           </object>
@@ -145,12 +248,13 @@ Select a region with clicking and holding the mouse button on the top left corne
                       <packing>
                         <property name="top_attach">2</property>
                         <property name="bottom_attach">5</property>
-                        <property name="x_options"></property>
+                        <property name="x_options"/>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label426">
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <property name="xalign">0</property>
                         <property name="label" translatable="yes">_Corner 1:  X</property>
                         <property name="use_underline">True</property>
@@ -161,9 +265,12 @@ Select a region with clicking and holding the mouse button on the top left corne
                         <property name="right_attach">2</property>
                         <property name="top_attach">2</property>
                         <property name="bottom_attach">3</property>
-                        <property name="x_options"></property>
-                        <property name="y_options"></property>
+                        <property name="x_options"/>
+                        <property name="y_options"/>
                       </packing>
+                    </child>
+                    <child>
+                      <placeholder/>
                     </child>
                     <child>
                       <object class="GtkSpinButton" id="corner1_x">
@@ -182,7 +289,7 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                         <property name="right_attach">3</property>
                         <property name="top_attach">2</property>
                         <property name="bottom_attach">3</property>
-                        <property name="y_options"></property>
+                        <property name="y_options"/>
                       </packing>
                     </child>
                     <child>
@@ -201,12 +308,13 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                         <property name="right_attach">5</property>
                         <property name="top_attach">2</property>
                         <property name="bottom_attach">3</property>
-                        <property name="y_options"></property>
+                        <property name="y_options"/>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label427">
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <property name="xalign">0</property>
                         <property name="label" translatable="yes">Y coordinate|Y</property>
                         <property name="use_underline">True</property>
@@ -217,13 +325,17 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                         <property name="right_attach">4</property>
                         <property name="top_attach">2</property>
                         <property name="bottom_attach">3</property>
-                        <property name="x_options"></property>
-                        <property name="y_options"></property>
+                        <property name="x_options"/>
+                        <property name="y_options"/>
                       </packing>
+                    </child>
+                    <child>
+                      <placeholder/>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label1">
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
@@ -233,13 +345,19 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                       </packing>
                     </child>
                     <child>
+                      <placeholder/>
+                    </child>
+                    <child>
                       <object class="GtkHBox" id="hbox1">
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <child>
                           <object class="GtkToggleButton" id="private">
+                            <property name="use_action_appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
+                            <property name="use_action_appearance">False</property>
                             <property name="relief">none</property>
                             <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                             <child internal-child="accessible">
@@ -250,6 +368,7 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                             <child>
                               <object class="GtkImage" id="image2686">
                                 <property name="visible">True</property>
+                                <property name="can_focus">False</property>
                                 <property name="icon_name">gtk-dialog-authentication</property>
                                 <child internal-child="accessible">
                                   <object class="AtkObject" id="image2686-atkobject">
@@ -296,11 +415,15 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                     <child>
                       <placeholder/>
                     </child>
+                    <child>
+                      <placeholder/>
+                    </child>
                   </object>
                 </child>
                 <child type="tab">
                   <object class="GtkLabel" id="label424">
                     <property name="visible">True</property>
+                    <property name="can_focus">False</property>
                     <property name="label" translatable="yes">General</property>
                   </object>
                   <packing>
@@ -309,6 +432,8 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                 </child>
               </object>
               <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
                 <property name="padding">10</property>
                 <property name="position">0</property>
               </packing>
@@ -325,14 +450,28 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                     <child>
                       <object class="GtkTable" id="table2">
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <property name="border_width">12</property>
                         <property name="n_rows">7</property>
                         <property name="n_columns">4</property>
                         <property name="column_spacing">12</property>
                         <property name="row_spacing">6</property>
                         <child>
+                          <placeholder/>
+                        </child>
+                        <child>
+                          <placeholder/>
+                        </child>
+                        <child>
+                          <placeholder/>
+                        </child>
+                        <child>
+                          <placeholder/>
+                        </child>
+                        <child>
                           <object class="GtkLabel" id="label129">
                             <property name="visible">True</property>
+                            <property name="can_focus">False</property>
                             <property name="xalign">0</property>
                             <property name="label" translatable="yes">_Path:</property>
                             <property name="use_underline">True</property>
@@ -345,12 +484,13 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                             <property name="top_attach">3</property>
                             <property name="bottom_attach">4</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
                           <object class="GtkLabel" id="label132">
                             <property name="visible">True</property>
+                            <property name="can_focus">False</property>
                             <property name="xalign">0</property>
                             <property name="label" translatable="yes">_ID:</property>
                             <property name="use_underline">True</property>
@@ -361,12 +501,13 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                             <property name="left_attach">1</property>
                             <property name="right_attach">2</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
                           <object class="GtkLabel" id="label126">
                             <property name="visible">True</property>
+                            <property name="can_focus">False</property>
                             <property name="xalign">0</property>
                             <property name="label" translatable="yes">_Title:</property>
                             <property name="use_underline">True</property>
@@ -394,16 +535,18 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                             <property name="right_attach">3</property>
                             <property name="top_attach">1</property>
                             <property name="bottom_attach">2</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
                           <object class="GtkHBox" id="warn_box">
+                            <property name="can_focus">False</property>
                             <property name="border_width">6</property>
                             <property name="spacing">12</property>
                             <child>
                               <object class="GtkImage" id="image2705">
                                 <property name="visible">True</property>
+                                <property name="can_focus">False</property>
                                 <property name="stock">gtk-dialog-warning</property>
                                 <property name="icon-size">6</property>
                               </object>
@@ -417,6 +560,7 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                               <object class="GtkLabel" id="label659">
                                 <property name="width_request">400</property>
                                 <property name="visible">True</property>
+                                <property name="can_focus">False</property>
                                 <property name="xalign">0</property>
                                 <property name="ypad">3</property>
                                 <property name="label" translatable="yes">&lt;b&gt;Note:&lt;/b&gt; Any changes in the shared media object information will be reflected in the media object itself.</property>
@@ -441,10 +585,12 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                         <child>
                           <object class="GtkFrame" id="frame6">
                             <property name="visible">True</property>
+                            <property name="can_focus">False</property>
                             <property name="label_xalign">0</property>
                             <child>
                               <object class="GtkEventBox" id="eventbox">
                                 <property name="visible">True</property>
+                                <property name="can_focus">False</property>
                                 <property name="has_tooltip">True</property>
                                 <property name="tooltip_markup">Double click image to view in an external viewer</property>
                                 <property name="tooltip_text" translatable="yes">Double click image to view in an external viewer</property>
@@ -453,6 +599,7 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                                     <property name="width_request">100</property>
                                     <property name="height_request">100</property>
                                     <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
                                   </object>
                                 </child>
                               </object>
@@ -460,6 +607,7 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                             <child type="label">
                               <object class="GtkLabel" id="label175">
                                 <property name="visible">True</property>
+                                <property name="can_focus">False</property>
                                 <property name="label" translatable="yes">&lt;b&gt;Preview&lt;/b&gt;</property>
                                 <property name="use_markup">True</property>
                               </object>
@@ -474,6 +622,7 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                         <child>
                           <object class="GtkLabel" id="label660">
                             <property name="visible">True</property>
+                            <property name="can_focus">False</property>
                             <property name="xalign">0</property>
                             <property name="label" translatable="yes">Type:</property>
                             <property name="mnemonic_widget">type</property>
@@ -484,12 +633,13 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                             <property name="top_attach">5</property>
                             <property name="bottom_attach">6</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
                           <object class="GtkLabel" id="type">
                             <property name="visible">True</property>
+                            <property name="can_focus">False</property>
                             <property name="tooltip_text" translatable="yes">Type of media object as indicated by the computer, eg Image, Video, ...</property>
                             <property name="xalign">0</property>
                           </object>
@@ -499,12 +649,13 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                             <property name="top_attach">5</property>
                             <property name="bottom_attach">6</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
                           <object class="GtkLabel" id="label422">
                             <property name="visible">True</property>
+                            <property name="can_focus">False</property>
                             <property name="xalign">0</property>
                             <property name="label" translatable="yes">_Date:</property>
                             <property name="use_underline">True</property>
@@ -516,7 +667,7 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                             <property name="top_attach">2</property>
                             <property name="bottom_attach">3</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
@@ -530,16 +681,18 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                             <property name="right_attach">3</property>
                             <property name="top_attach">2</property>
                             <property name="bottom_attach">3</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
                           <object class="GtkButton" id="date_edit">
+                            <property name="use_action_appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="has_tooltip">True</property>
                             <property name="tooltip_text" translatable="yes">Invoke date editor</property>
+                            <property name="use_action_appearance">False</property>
                             <property name="relief">none</property>
                             <accelerator key="d" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                             <accessibility>
@@ -553,6 +706,7 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                             <child>
                               <object class="GtkImage" id="image2264">
                                 <property name="visible">True</property>
+                                <property name="can_focus">False</property>
                                 <property name="icon_name">gramps-date</property>
                                 <child internal-child="accessible">
                                   <object class="AtkObject" id="image2264-atkobject">
@@ -568,14 +722,16 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                             <property name="top_attach">2</property>
                             <property name="bottom_attach">3</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
                           <object class="GtkToggleButton" id="privacy">
+                            <property name="use_action_appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
+                            <property name="use_action_appearance">False</property>
                             <property name="relief">none</property>
                             <child internal-child="accessible">
                               <object class="AtkObject" id="privacy-atkobject">
@@ -585,6 +741,7 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                             <child>
                               <object class="GtkImage" id="image2710">
                                 <property name="visible">True</property>
+                                <property name="can_focus">False</property>
                                 <property name="icon_name">gtk-dialog-authentication</property>
                                 <child internal-child="accessible">
                                   <object class="AtkObject" id="image2710-atkobject">
@@ -613,11 +770,13 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                         </child>
                         <child>
                           <object class="GtkButton" id="file_select">
+                            <property name="use_action_appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="has_tooltip">True</property>
                             <property name="tooltip_text" translatable="yes">Select a file</property>
+                            <property name="use_action_appearance">False</property>
                             <property name="relief">none</property>
                             <accessibility>
                               <relation type="labelled-by" target="label129"/>
@@ -630,6 +789,7 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                             <child>
                               <object class="GtkImage" id="image2673">
                                 <property name="visible">True</property>
+                                <property name="can_focus">False</property>
                                 <property name="stock">gtk-open</property>
                                 <child internal-child="accessible">
                                   <object class="AtkObject" id="image2673-atkobject">
@@ -663,6 +823,7 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                         <child>
                           <object class="GtkLabel" id="label2">
                             <property name="visible">True</property>
+                            <property name="can_focus">False</property>
                             <property name="xalign">0</property>
                             <property name="label" translatable="yes">_Tags:</property>
                             <property name="use_underline">True</property>
@@ -674,12 +835,13 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                             <property name="top_attach">4</property>
                             <property name="bottom_attach">5</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
                           <object class="GtkLabel" id="tag_label">
                             <property name="visible">True</property>
+                            <property name="can_focus">False</property>
                           </object>
                           <packing>
                             <property name="left_attach">2</property>
@@ -690,9 +852,11 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                         </child>
                         <child>
                           <object class="GtkButton" id="tag_button">
+                            <property name="use_action_appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
+                            <property name="use_action_appearance">False</property>
                             <accessibility>
                               <relation type="labelled-by" target="label1"/>
                             </accessibility>
@@ -709,23 +873,12 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                             <property name="bottom_attach">5</property>
                           </packing>
                         </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
                       </object>
                     </child>
                     <child type="tab">
                       <object class="GtkLabel" id="label617">
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <property name="label" translatable="yes">&lt;b&gt;General&lt;/b&gt;</property>
                         <property name="use_markup">True</property>
                       </object>
@@ -738,75 +891,23 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                 <child type="label">
                   <object class="GtkLabel" id="label616">
                     <property name="visible">True</property>
+                    <property name="can_focus">False</property>
                     <property name="label" translatable="yes">&lt;b&gt;Shared Information&lt;/b&gt;</property>
                     <property name="use_markup">True</property>
                   </object>
                 </child>
               </object>
               <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
                 <property name="position">1</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="position">1</property>
-          </packing>
-        </child>
-        <child internal-child="action_area">
-          <object class="GtkHButtonBox" id="dialog-action_area20">
-            <property name="visible">True</property>
-            <property name="layout_style">end</property>
-            <child>
-              <object class="GtkButton" id="button84">
-                <property name="label">gtk-cancel</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="button82">
-                <property name="label">gtk-ok</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="has_default">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="button104">
-                <property name="label">gtk-help</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="position">2</property>
               </packing>
             </child>
           </object>
           <packing>
             <property name="expand">False</property>
-            <property name="pack_type">end</property>
-            <property name="position">0</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
           </packing>
         </child>
       </object>
@@ -816,25 +917,5 @@ You can use the mouse on the picture to select a region, or use these spinbutton
       <action-widget response="-5">button82</action-widget>
       <action-widget response="-11">button104</action-widget>
     </action-widgets>
-  </object>
-  <object class="GtkAdjustment" id="adjustment1">
-    <property name="upper">100</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
-  </object>
-  <object class="GtkAdjustment" id="adjustment2">
-    <property name="upper">100</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
-  </object>
-  <object class="GtkAdjustment" id="adjustment3">
-    <property name="upper">100</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
-  </object>
-  <object class="GtkAdjustment" id="adjustment4">
-    <property name="upper">100</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
   </object>
 </interface>
