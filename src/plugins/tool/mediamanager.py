@@ -85,15 +85,12 @@ class MediaMan(tool.Tool):
         self.build_batch_ops()
 
         self.assistant = Gtk.Assistant()
-        self.logo = GdkPixbuf.Pixbuf.new_from_file(ICON)
-        self.splash = GdkPixbuf.Pixbuf.new_from_file(SPLASH)
 
         self.assistant.set_title(_('Gramps Media Manager'))
         self.assistant.connect('close', self.close)
         self.assistant.connect('cancel', self.close)
         self.assistant.connect('apply', self.run)
         self.assistant.connect('prepare', self.prepare)
-        self.assistant.set_forward_page_func(self.forward_page, None)
 
         intro = IntroductionPage()
         self.add_page(intro, Gtk.AssistantPageType.INTRO, _('Introduction'))
@@ -109,6 +106,7 @@ class MediaMan(tool.Tool):
         self.add_page(self.conclusion, Gtk.AssistantPageType.SUMMARY)
         
         self.assistant.show()
+        self.assistant.set_forward_page_func(self.forward_page, None)
 
     def close(self, assistant):
         """
@@ -144,7 +142,6 @@ class MediaMan(tool.Tool):
         """
         page.show_all()
         self.assistant.append_page(page)
-        self.assistant.set_page_header_image(page, self.logo)
         self.assistant.set_page_title(page, title)
         self.assistant.set_page_type(page, page_type)
 
@@ -197,7 +194,7 @@ class MediaMan(tool.Tool):
 # Assistant pages
 #
 #------------------------------------------------------------------------
-class IntroductionPage(Gtk.HBox):
+class IntroductionPage(Gtk.VBox):
     """
     A page containing introductory text.
     """
@@ -214,7 +211,7 @@ class IntroductionPage(Gtk.HBox):
         label.set_use_markup(True)
 
         self.pack_start(image, False, False, 0)
-        self.pack_start(label, True, True, 0)
+        self.pack_start(label, False, False, 5)
 
     def __get_intro_text(self):
         """
@@ -254,15 +251,13 @@ class SelectionPage(Gtk.VBox):
         table.set_row_spacings(6)
         table.set_col_spacings(6)
         
-        group = None
+        button = None
         for index in range(len(batch_ops)):
             title = batch_ops[index].title
             description = batch_ops[index].description
 
-            button = Gtk.RadioButton(group, title)
+            button = Gtk.RadioButton.new_with_mnemonic_from_widget(button, title)
             button.set_tooltip_text(description)
-            if not group:
-                group = button
             self.batch_op_buttons.append(button)
             table.attach(button, 0, 2, 2 * index, 2 * index + 1, yoptions=0)
         
@@ -302,6 +297,7 @@ class SettingsPage(Gtk.VBox):
             self.show_all()
             return True
         else:
+            self.assistant.set_page_title(self, '')
             return False
 
 class ConfirmationPage(Gtk.VBox):
@@ -353,7 +349,7 @@ class ConfirmationPage(Gtk.VBox):
         for path in path_list:
             self.path_model.append(row=[path])
 
-class ConclusionPage(Gtk.HBox):
+class ConclusionPage(Gtk.VBox):
     """
     A page to display the summary of the proposed action, as well as the 
     list of affected paths.
@@ -363,8 +359,6 @@ class ConclusionPage(Gtk.HBox):
 
         self.assistant = assistant
 
-        # Using set_page_side_image causes window sizing problems, so put the 
-        # image in the main page instead.
         image = Gtk.Image()
         image.set_from_file(SPLASH)
 
@@ -372,7 +366,7 @@ class ConclusionPage(Gtk.HBox):
         self.label.set_line_wrap(True)
 
         self.pack_start(image, False, False, 0)
-        self.pack_start(self.label, True, True, 0)
+        self.pack_start(self.label, False, False, 5)
         
     def set_result(self, success):
         if success:

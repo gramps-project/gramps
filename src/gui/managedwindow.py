@@ -175,8 +175,8 @@ class GrampsWindowManager(object):
         # Given an item, close its window and remove it's ID from the dict
         if item.window_id:
             del self.id2item[item.window_id]
-        if item.window:
-            item.window.destroy()
+        if item.get_window():
+            item.get_window().destroy()
 
     def remove_item(self, track):
         # We need the whole gymnastics below because our item
@@ -418,6 +418,15 @@ class ManagedWindow(object):
             self.window = window
             self.window.connect('delete-event', self.close)
     
+    def get_window(self):
+        """
+        Return the managed window.
+        """
+        if self.isWindow:
+            return self
+        else:
+            return self.window
+
     def update_title(self, text):
         if self.isWindow:
             set_titles(self, self.titlelabel, text, self.msg)

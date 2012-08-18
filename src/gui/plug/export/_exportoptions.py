@@ -140,7 +140,7 @@ class WriterOptionBox(object):
         widget = Gtk.VBox()
         
         full_database_row = Gtk.HBox()
-        full_database_row.pack_start(Gtk.Label(_("Unfiltered Family Tree:", True, True, 0)), False)
+        full_database_row.pack_start(Gtk.Label(_("Unfiltered Family Tree:")), True, True, 0)
         people_count = len(self.dbstate.db.get_person_handles())
         button = Gtk.Button(ngettext("%d Person", "%d People", people_count) % 
                             people_count)
@@ -264,7 +264,7 @@ class WriterOptionBox(object):
             box.pack_start(
                 gui.widgets.SimpleButton(Gtk.STOCK_EDIT, 
                    lambda obj: self.edit_filter('Person', self.filter_obj)),
-                False)
+                False, True, 0)
             button.set_tooltip_text(_("Click to see preview after person filter"))
         elif proxy_name == "note":
             # Frame Note:
@@ -281,7 +281,7 @@ class WriterOptionBox(object):
             box.pack_start(
                 gui.widgets.SimpleButton(Gtk.STOCK_EDIT, 
                    lambda obj: self.edit_filter('Note', self.filter_note)),
-                False)
+                False, True, 0)
             button.set_tooltip_text(_("Click to see preview after note filter"))
         elif proxy_name == "privacy":
             # Frame 3:

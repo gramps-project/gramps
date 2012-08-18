@@ -69,9 +69,6 @@ class ErrorReportAssistant(Gtk.Assistant):
         self._error_details_text_buffer = None
         self._final_report_text_buffer = None
 
-        self.logo = GdkPixbuf.Pixbuf.new_from_file(ICON)
-        self.splash = GdkPixbuf.Pixbuf.new_from_file(SPLASH)
-
         self.set_title(_("Error Report Assistant"))
         self.connect('close', self.close)
         self.connect('cancel', self.close)
@@ -110,7 +107,6 @@ class ErrorReportAssistant(Gtk.Assistant):
         """
         Copy the bug report to the clipboard.
         """
-        #TODO GTK3 Is this clipboard copy working ??
         clipboard = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(), 
                     Gdk.SELECTION_CLIPBOARD)
         clipboard.set_text(
@@ -218,21 +214,17 @@ class ErrorReportAssistant(Gtk.Assistant):
         label = Gtk.Label(label=self.get_intro_text())
         label.set_line_wrap(True)
 
-        # Using set_page_side_image causes window sizing problems, so put the 
-        # image in the main page instead.
         image = Gtk.Image()
         image.set_from_file(SPLASH)
 
-        hbox = Gtk.HBox()
-        hbox.pack_start(image, False, False, 0)
-        hbox.pack_start(label, True, True, 0)
+        box = Gtk.VBox()
+        box.pack_start(image, False, False, 5)
+        box.pack_start(label, False, False, 5)
 
-        page = hbox
+        page = box
 
         page.show_all()
         self.append_page(page)
-        self.set_page_header_image(page, self.logo)
-        #self.set_page_side_image(page, self.splash)
         self.set_page_title(page, _('Report a bug'))
         self.set_page_type(page, Gtk.AssistantPageType.INTRO)
 
@@ -313,18 +305,23 @@ class ErrorReportAssistant(Gtk.Assistant):
                                  "in the following pages of the assistant."))
 
         side_label.set_line_wrap(True)
-        side_label.set_size_request(124, -1)
 
-        box = Gtk.HBox()
-        box.pack_start(side_label, False, False, 5)
+        image = Gtk.Image()
+        image.set_from_file(ICON)
+
+        heading = Gtk.HBox()
+        heading.pack_start(side_label, True, True, 5)
+        heading.pack_start(image, False, False, 5)
+
+        box = Gtk.VBox()
+        box.pack_start(heading, False, False, 5)
         box.pack_start(error_details_frame, True, True, 0)
 
         page = box
 
         page.show_all()
         self.append_page(page)
-        self.set_page_header_image(page, self.logo)
-        self.set_page_title(page, _("Report a bug: Step 1 of 5"))
+        self.set_page_title(page, _("Error Details"))
         self.set_page_type(page, Gtk.AssistantPageType.CONTENT)
 
     def build_page2(self):
@@ -387,18 +384,23 @@ class ErrorReportAssistant(Gtk.Assistant):
                                  "bug."))
 
         side_label.set_line_wrap(True)
-        side_label.set_size_request(124, -1)
 
-        box = Gtk.HBox()
-        box.pack_start(side_label, False, False, 5)
+        image = Gtk.Image()
+        image.set_from_file(ICON)
+
+        heading = Gtk.HBox()
+        heading.pack_start(side_label, True, True, 5)
+        heading.pack_start(image, False, False, 5)
+
+        box = Gtk.VBox()
+        box.pack_start(heading, False, False, 5)
         box.pack_start(sys_information_frame, True, True, 0)
 
         page = box
 
         page.show_all()
         self.append_page(page)
-        self.set_page_header_image(page, self.logo)
-        self.set_page_title(page, _("Report a bug: Step 2 of 5"))
+        self.set_page_title(page, _("System Information"))
         self.set_page_type(page, Gtk.AssistantPageType.CONTENT)
 
     def build_page3(self):
@@ -454,18 +456,23 @@ class ErrorReportAssistant(Gtk.Assistant):
                                  "you were doing when the error occured."))
 
         side_label.set_line_wrap(True)
-        side_label.set_size_request(124, -1)
 
-        box = Gtk.HBox()
-        box.pack_start(side_label, False, False, 5)
+        image = Gtk.Image()
+        image.set_from_file(ICON)
+
+        heading = Gtk.HBox()
+        heading.pack_start(side_label, True, True, 5)
+        heading.pack_start(image, False, False, 5)
+
+        box = Gtk.VBox()
+        box.pack_start(heading, False, False, 5)
         box.pack_start(user_information_frame, True, True, 0)
 
         page = box
 
         page.show_all()
         self.append_page(page)
-        self.set_page_header_image(page, self.logo)
-        self.set_page_title(page, _("Report a bug: Step 3 of 5"))
+        self.set_page_title(page, _("Further Information"))
         self.set_page_type(page, Gtk.AssistantPageType.CONTENT)
 
     def build_page4(self):
@@ -516,18 +523,23 @@ class ErrorReportAssistant(Gtk.Assistant):
                                  "website."))
 
         side_label.set_line_wrap(True)
-        side_label.set_size_request(124, -1)
 
-        box = Gtk.HBox()
-        box.pack_start(side_label, False, False, 5)
+        image = Gtk.Image()
+        image.set_from_file(ICON)
+
+        heading = Gtk.HBox()
+        heading.pack_start(side_label, True, True, 5)
+        heading.pack_start(image, False, False, 5)
+
+        box = Gtk.VBox()
+        box.pack_start(heading, False, False, 5)
         box.pack_start(summary_frame, True, True, 0)
 
         page = box
 
         page.show_all()
         self.append_page(page)
-        self.set_page_header_image(page, self.logo)
-        self.set_page_title(page, _("Report a bug: Step 4 of 5"))
+        self.set_page_title(page, _("Bug Report Summary"))
         self.set_page_type(page, Gtk.AssistantPageType.CONTENT)
 
     def build_page5(self):
@@ -551,6 +563,7 @@ class ErrorReportAssistant(Gtk.Assistant):
         url_label.set_alignment(0.01, 0.5)
         url_label.set_padding(0, 4)
         url_label.set_line_wrap(True)
+        url_label.set_size_request(200, -1)
 
         url_button = Gtk.Button("File bug report")
         url_button.connect('clicked', self._start_gramps_bts_in_browser)
@@ -577,6 +590,7 @@ class ErrorReportAssistant(Gtk.Assistant):
         clip_label.set_alignment(0.01, 0.5)
         clip_label.set_padding(0, 4)
         clip_label.set_line_wrap(True)
+        clip_label.set_size_request(200, -1)
 
         clip_button = Gtk.Button("Copy to clipboard")
         clip_button.connect('clicked', self._copy_to_clipboard)
@@ -618,18 +632,23 @@ class ErrorReportAssistant(Gtk.Assistant):
                                  "system."))
 
         side_label.set_line_wrap(True)
-        side_label.set_size_request(124, -1)
 
-        box = Gtk.HBox()
-        box.pack_start(side_label, False, False, 5)
+        image = Gtk.Image()
+        image.set_from_file(ICON)
+
+        heading = Gtk.HBox()
+        heading.pack_start(side_label, True, True, 5)
+        heading.pack_start(image, False, False, 5)
+
+        box = Gtk.VBox()
+        box.pack_start(heading, False, False, 5)
         box.pack_start(outer_frame, True, True, 0)
 
         page = box
 
         page.show_all()
         self.append_page(page)
-        self.set_page_header_image(page, self.logo)
-        self.set_page_title(page, _("Report a bug: Step 5 of 5"))
+        self.set_page_title(page, _("Send Bug Report"))
         self.set_page_type(page, Gtk.AssistantPageType.CONTENT)
 
     def create_page_summary(self):
@@ -642,21 +661,17 @@ class ErrorReportAssistant(Gtk.Assistant):
         label = Gtk.Label(label=text)
         label.set_line_wrap(True)
 
-        # Using set_page_side_image causes window sizing problems, so put the 
-        # image in the main page instead.
         image = Gtk.Image()
         image.set_from_file(SPLASH)
 
-        hbox = Gtk.HBox()
-        hbox.pack_start(image, False, False, 0)
-        hbox.pack_start(label, True, True, 0)
+        box = Gtk.VBox()
+        box.pack_start(image, False, False, 5)
+        box.pack_start(label, False, False, 5)
 
-        page = hbox
+        page = box
 
         page.show_all()
         self.append_page(page)
-        self.set_page_header_image(page, self.logo)
-        #self.set_page_side_image(page, self.splash)
         self.set_page_title(page, _('Complete'))
         self.set_page_type(page, Gtk.AssistantPageType.SUMMARY)
 
