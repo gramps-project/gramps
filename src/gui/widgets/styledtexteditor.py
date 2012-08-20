@@ -61,7 +61,7 @@ from gui.widgets.toolcomboentry import ToolComboEntry
 from gui.widgets.springseparator import SpringSeparatorAction
 from gui.spell import Spell
 from gui.display import display_url
-from gui.utils import SystemFonts, rgb_to_hex
+from gui.utils import SystemFonts, rgb_to_hex, hex_to_color, color_to_hex
 from gen.config import config
 from gen.constfunc import has_display
 
@@ -852,20 +852,6 @@ def uri_dialog(self, uri, callback):
 # Module functions
 #
 #-------------------------------------------------------------------------
-def color_to_hex(color):
-    """Convert Gdk.Color to hex string."""
-    hexstring = ""
-    for col in 'red', 'green', 'blue':
-        hexfrag = hex(getattr(color, col) / (16 * 16)).split("x")[1]
-        if len(hexfrag) < 2:
-            hexfrag = "0" + hexfrag
-        hexstring += hexfrag
-    return '#' + hexstring
-    
-def hex_to_color(hex):
-    """Convert hex string to Gdk.Color."""
-    color = Gdk.color_parse(hex)
-    return color
 
 def is_valid_fontsize(size):
     """Validator function for font size selector widget."""
