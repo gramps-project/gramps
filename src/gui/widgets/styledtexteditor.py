@@ -61,7 +61,7 @@ from gui.widgets.toolcomboentry import ToolComboEntry
 from gui.widgets.springseparator import SpringSeparatorAction
 from gui.spell import Spell
 from gui.display import display_url
-from gui.utils import SystemFonts
+from gui.utils import SystemFonts, rgb_to_hex
 from gen.config import config
 from gen.constfunc import has_display
 
@@ -182,6 +182,14 @@ class StyledTextEditor(Gtk.TextView):
         self.textbuffer.connect('style-changed', self._on_buffer_style_changed)
         self.textbuffer.connect('changed', self._on_buffer_changed)
         GObject.GObject.__init__(self, buffer=self.textbuffer)
+
+        st_cont = self.get_style_context()
+        col = st_cont.lookup_color('link_color')
+        if col[0]:
+            self.linkcolor = rgb_to_hex((col[1].red, col[1].green, col[1].blue))
+        else:
+            self.linkcolor = 'blue'
+        self.textbuffer.linkcolor = self.linkcolor
 
         self.match = None
         self.last_match = None
@@ -541,7 +549,7 @@ class StyledTextEditor(Gtk.TextView):
         """Setup regexp matching for URL match."""
         self.textbuffer.create_tag('hyperlink',
                                    underline=Pango.Underline.SINGLE,
-                                   foreground='blue')
+                                   foreground=self.linkcolor)
         self.textbuffer.match_add(SCHEME + "//(" + USER + "@)?[" +
                                   HOSTCHARS + ".]+" + "(:[0-9]+)?(" +
                                   URLPATH + ")?/?", GENURL)
@@ -621,7 +629,7 @@ class StyledTextEditor(Gtk.TextView):
                 tag = LinkTag(self.textbuffer, 
                               data=uri,
                               underline=Pango.Underline.SINGLE, 
-                              foreground="blue")
+                              foreground=self.linkcolor)
                 selection_bounds = self.textbuffer.get_selection_bounds()
                 self.textbuffer.apply_tag(tag,
                                           selection_bounds[0],

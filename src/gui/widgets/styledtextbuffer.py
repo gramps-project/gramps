@@ -294,6 +294,8 @@ class StyledTextBuffer(UndoableBuffer):
         self.connect_after('insert-text', self.after_insert_text)
         self.connect_after('delete-range', self.after_delete_range)
         
+        self.linkcolor = 'blue'
+
         # init gtkspell "state machine"
         self.gtkspell_state = GtkSpellState(self)
         
@@ -560,7 +562,7 @@ class StyledTextBuffer(UndoableBuffer):
         for s_tag in s_tags:
             if s_tag.name == _('Link'):
                 g_tag = LinkTag(self, s_tag.value, 
-                                foreground="blue",
+                                foreground=self.linkcolor,
                                 underline=UNDERLINE_SINGLE)
             else:
                 g_tag = self._find_tag_by_name(int(s_tag.name), s_tag.value)

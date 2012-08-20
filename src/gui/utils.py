@@ -409,3 +409,22 @@ def is_right_click(event):
 
         if event.button == 3:
             return True
+
+def hex_to_rgb(value):
+    """
+    Convert a hexademical value #FF00FF to rgb. Returns tuple of integers
+    """
+    value = value.lstrip('#')
+    lenv = len(value)
+    return tuple(int(value[i:i+lenv/3], 16) for i in range(0, lenv, lenv/3))
+
+def rgb_to_hex(rgb):
+    """
+    Convert a tuple of integer or float rgb values to its hex value
+    """
+    if type(rgb[0]) == int:
+        return '#%02x%02x%02x' % rgb
+    else:
+        rgbint = (int(rgb[0] * 255), int(rgb[1] * 255), int(rgb[2] * 255))
+        return '#%02x%02x%02x' % rgbint
+
