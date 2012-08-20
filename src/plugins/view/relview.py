@@ -151,8 +151,6 @@ class RelationshipView(NavigationView):
         uistate.connect('nameformat-changed', self.build_tree)
         self.redrawing = False
 
-        self.color = Gdk.RGBA()
-        self.color.parse("White")
         self.child = None
         self.old_handle = None
 
@@ -313,6 +311,15 @@ class RelationshipView(NavigationView):
         self.child = None
 
         self.scroll = Gtk.ScrolledWindow()
+
+        st_cont = self.scroll.get_style_context()
+        col = st_cont.lookup_color('base_color')
+        if col[0]:
+            self.color = col[1]
+        else:
+            self.color = Gdk.RGBA()
+            self.color.parse("White")
+
         self.scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.scroll.show()
         

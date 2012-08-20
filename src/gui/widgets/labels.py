@@ -50,6 +50,7 @@ from gi.repository import Pango
 #
 #-------------------------------------------------------------------------
 from gen.constfunc import has_display, win
+from gui.utils import rgb_to_hex
 
 #-------------------------------------------------------------------------
 #
@@ -77,12 +78,22 @@ class LinkLabel(Gtk.EventBox):
     def __init__(self, label, func, handle, emph=False, theme="CLASSIC"):
         self.theme = theme
         self.emph = emph
+
+        GObject.GObject.__init__(self)
+        
+        st_cont = self.get_style_context()
+        col = st_cont.lookup_color('link_color')
+        if col[0]:
+            self.color = rgb_to_hex((col[1].red, col[1].green, col[1].blue))
+        else:
+            self.color = 'blue'
+
         if emph:
             #emphasize a link
             if theme == "CLASSIC":
                 format = 'underline="single" weight="heavy" style="italic"'
             elif theme == "WEBPAGE":
-                format = 'foreground="blue" weight="heavy"'
+                format = 'foreground="' + self.color + '" weight="heavy"'
             else:
                 raise AttributeError("invalid theme: '%s'" % theme)
         elif emph is None:
@@ -98,11 +109,10 @@ class LinkLabel(Gtk.EventBox):
             if theme == "CLASSIC":
                 format = 'underline="single"'
             elif theme == "WEBPAGE":
-                format = 'foreground="blue"'
+                format = 'foreground="' + self.color + '"'
             else:
                 raise AttributeError("invalid theme: '%s'" % theme)
 
-        GObject.GObject.__init__(self)
         self.orig_text = cgi.escape(label[0])
         self.gender = label[1]
         self.decoration = format
@@ -139,10 +149,10 @@ class LinkLabel(Gtk.EventBox):
         if self.emph:
             #emphasize a link
             if self.theme == "CLASSIC":
-                format = 'foreground="blue" underline="single" '\
+                format = 'foreground="' + self.color + '" underline="single" '\
                          'weight="heavy" style="italic"'
             elif self.theme == "WEBPAGE":
-                format = 'underline="single" foreground="blue" '\
+                format = 'underline="single" foreground="' + self.color + '" '\
                          'weight="heavy"'
             else:
                 raise AttributeError("invalid theme: '%s'" % theme)
@@ -157,9 +167,9 @@ class LinkLabel(Gtk.EventBox):
         else:
             #no emphasize, a link
             if self.theme == "CLASSIC":
-                format = 'foreground="blue" underline="single"'
+                format = 'foreground="' + self.color + '" underline="single"'
             elif self.theme == "WEBPAGE":
-                format = 'underline="single" foreground="blue"'
+                format = 'underline="single" foreground="' + self.color + '"'
             else:
                 raise AttributeError("invalid theme: '%s'" % theme)
         
