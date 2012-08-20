@@ -39,6 +39,7 @@ log = logging.getLogger("gen.progressdialog")
 # GTK modules
 #
 #-------------------------------------------------------------------------
+from gi.repository import GObject
 from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
