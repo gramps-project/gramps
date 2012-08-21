@@ -247,7 +247,7 @@ class GrampsXmlWriter(UpdateCallback):
         # Write table objects
         if tag_len > 0:
             self.g.write("  <tags>\n")
-            for key in self.db.get_tag_handles():
+            for key in sorted(self.db.get_tag_handles()):
                 tag = self.db.get_tag_from_handle(key)
                 self.write_tag(tag, 2)
                 self.update()
@@ -256,7 +256,7 @@ class GrampsXmlWriter(UpdateCallback):
         # Write primary objects
         if event_len > 0:
             self.g.write("  <events>\n")
-            for handle in self.db.get_event_handles():
+            for handle in sorted(self.db.get_event_handles()):
                 event = self.db.get_event_from_handle(handle)
                 self.write_event(event,2)
                 self.update()
@@ -269,7 +269,7 @@ class GrampsXmlWriter(UpdateCallback):
                 self.g.write(' home="_%s"' % person.handle)
             self.g.write('>\n')
 
-            for handle in self.db.get_person_handles():
+            for handle in sorted(self.db.get_person_handles()):
                 person = self.db.get_person_from_handle(handle)
                 self.write_person(person, 2)
                 self.update()
@@ -277,7 +277,7 @@ class GrampsXmlWriter(UpdateCallback):
 
         if family_len > 0:
             self.g.write("  <families>\n")
-            for handle in self.db.iter_family_handles():
+            for handle in sorted(self.db.iter_family_handles()):
                 family = self.db.get_family_from_handle(handle)
                 self.write_family(family,2)
                 self.update()
@@ -293,7 +293,7 @@ class GrampsXmlWriter(UpdateCallback):
 
         if source_len > 0:
             self.g.write("  <sources>\n")
-            for handle in self.db.get_source_handles():
+            for handle in sorted(self.db.get_source_handles()):
                 source = self.db.get_source_from_handle(handle)
                 self.write_source(source,2)
                 self.update()
@@ -301,7 +301,7 @@ class GrampsXmlWriter(UpdateCallback):
 
         if place_len > 0:
             self.g.write("  <places>\n")
-            for key in self.db.get_place_handles():
+            for key in sorted(self.db.get_place_handles()):
                 # try:
                 place = self.db.get_place_from_handle(key)
                 self.write_place_obj(place,2)
@@ -310,7 +310,7 @@ class GrampsXmlWriter(UpdateCallback):
 
         if obj_len > 0:
             self.g.write("  <objects>\n")
-            for handle in self.db.get_media_object_handles():
+            for handle in sorted(self.db.get_media_object_handles()):
                 obj = self.db.get_object_from_handle(handle)
                 self.write_object(obj,2)
                 self.update()
@@ -318,7 +318,7 @@ class GrampsXmlWriter(UpdateCallback):
 
         if repo_len > 0:
             self.g.write("  <repositories>\n")
-            for key in self.db.get_repository_handles():
+            for key in sorted(self.db.get_repository_handles()):
                 repo = self.db.get_repository_from_handle(key)
                 self.write_repository(repo,2)
                 self.update()
@@ -326,7 +326,7 @@ class GrampsXmlWriter(UpdateCallback):
 
         if note_len > 0:
             self.g.write("  <notes>\n")
-            for key in self.db.get_note_handles():
+            for key in sorted(self.db.get_note_handles()):
                 note = self.db.get_note_from_handle(key)
                 self.write_note(note, 2)
                 self.update()
@@ -525,10 +525,10 @@ class GrampsXmlWriter(UpdateCallback):
         self.write_attribute_list(person.get_attribute_list())
         self.write_url_list(person.get_url_list(),index+1)
 
-        for family_handle in sorted(person.get_parent_family_handle_list()):
+        for family_handle in person.get_parent_family_handle_list():
             self.write_ref("childof",family_handle,index+1)
 
-        for family_handle in sorted(person.get_family_handle_list()):
+        for family_handle in person.get_family_handle_list():
             self.write_ref("parentin",family_handle,index+1)
 
         for person_ref in person.get_person_ref_list():
