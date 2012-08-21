@@ -496,7 +496,7 @@ class EditRule(ManagedWindow):
             l2.set_alignment(0, 0.5)
             l2.show()
             c = Gtk.TreeView()
-            c.set_data('d', pos)
+            #c.set_data('d', pos)
             c.show()
             the_map[class_obj] = c
             # Only add a table with parameters if there are any parameters
@@ -661,7 +661,7 @@ class EditRule(ManagedWindow):
         Return True if change done, False otherwise
         """
         store, paths = self.selection.get_selected_rows()
-        if paths and len(paths[0]) == 1 :
+        if paths and len(paths[0].get_indices()) == 1 :
             if self.rname.row_expanded(paths[0]):
                 self.rname.collapse_row(paths[0])
             else:
