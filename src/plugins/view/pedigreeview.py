@@ -1562,7 +1562,7 @@ class PedigreeView(NavigationView):
         ]
 
         for stock_id, callback, sensitivity in entries:
-            item = Gtk.ImageMenuItem(stock_id)
+            item = Gtk.ImageMenuItem.new_from_stock(stock_id=stock_id, accel_group=None)
             item.set_sensitive(sensitivity)
             if stock_id == _("Home"):
                 im = Gtk.Image.new_from_stock(Gtk.STOCK_HOME, Gtk.IconSize.MENU)
