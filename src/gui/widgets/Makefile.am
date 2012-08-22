@@ -11,6 +11,7 @@ pkgpython_PYTHON = \
 	basicentry.py \
 	buttons.py \
 	expandcollapsearrow.py \
+	fanchart.py \
 	grampletpane.py \
 	labels.py \
 	linkbox.py \

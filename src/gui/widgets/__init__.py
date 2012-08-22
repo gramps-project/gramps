@@ -26,6 +26,7 @@
 from basicentry import *
 from buttons import *
 from expandcollapsearrow import *
+from fanchart import *
 from labels import *
 from linkbox import *
 from photo import *
