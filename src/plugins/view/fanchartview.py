@@ -36,6 +36,7 @@ from gi.repository import Pango
 from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gtk
+from gi.repository import PangoCairo
 import cairo
 import math
 from cgi import escape
@@ -89,18 +90,11 @@ class AttachList(object):
 # FanChartWidget
 #
 #-------------------------------------------------------------------------
-class FanChartWidget(Gtk.Widget):
+class FanChartWidget(Gtk.DrawingArea):
     """
     Interactive Fan Chart Widget. 
     """
     BORDER_WIDTH = 10
-    __gsignals__ = { 'realize':          'override',
-##TODO GTK3: no longer expose-event in GTK3, check if this still works
-##                     'expose-event' :    'override',
-                     'size-allocate':    'override',
-##TODO GTK3: no longer size-request in GTK3, check if this still works
-##                     'size-request':     'override',
-                    }
     GENCOLOR = ((229,191,252),
                 (191,191,252),
                 (191,222,252),
@@ -123,7 +117,6 @@ class FanChartWidget(Gtk.Widget):
         self.connect("motion_notify_event", self.on_mouse_move)
         self.connect("button-press-event", self.on_mouse_down)
         self.connect("draw", self.on_draw)
-        #self.connect("realize", self.realize)
         self.context_popup_callback = context_popup_callback
         self.add_events(Gdk.EventMask.BUTTON_PRESS_MASK |
                         Gdk.EventMask.BUTTON_RELEASE_MASK |
@@ -140,6 +133,7 @@ class FanChartWidget(Gtk.Widget):
         self.center = 50 # pixel radius of center
         self.layout = self.create_pango_layout('cairo')
         self.layout.set_font_description(Pango.FontDescription("sans 8"))
+        self.set_size_request(120,120)
 
     def reset_generations(self):
         """
@@ -166,61 +160,6 @@ class FanChartWidget(Gtk.Widget):
                 self.angle[i].append([angle, angle + slice,gender,self.NORMAL])
                 angle += slice
                 gender = not gender
-                                           
-    def do_realize(self, data=None):
-        """
-        Overriden method to handle the realize event.
-        """
-        ## TODO GTK3: need to create the window correctly
-        #if self.get_realized():
-        #    return
-        #self.set_flags(self.flags() | self.get_realized())
-        attr = Gdk.WindowAttr()
-        attr.width = self.allocation.width
-        attr.height = self.allocation.height
-        attr.x = 0
-        attr.y = 0
-        attr.cursor = Gdk.Cursor.new_for_display(
-                                self.get_display(), Gdk.CursorType.LEFT_PTR)
-        attr.event_mask = (Gdk.EventMask.ENTER_NOTIFY_MASK |
-                           Gdk.EventMask.LEAVE_NOTIFY_MASK)
-        attr.wclass = Gdk.WindowWindowClass.INPUT_OUTPUT
-        attr.window_type = Gdk.WindowType.CHILD
-        attr.event_mask = (Gdk.EventMask.ENTER_NOTIFY_MASK |
-                           Gdk.EventMask.LEAVE_NOTIFY_MASK)
-        attr.visual = self.get_visual()
-
-        attrmask = ( 
-                #Gdk.WindowAttributesType.TITLE |
-                Gdk.WindowAttributesType.X |
-                Gdk.WindowAttributesType.Y |
-                Gdk.WindowAttributesType.CURSOR |
-                Gdk.WindowAttributesType.VISUAL |
-                Gdk.WindowAttributesType.NOREDIR
-                )
-
-        self.window = Gdk.Window(self.get_parent_window(),
-                                 attr,
-                                 attrmask)
-        self.set_window(self.window)
-        self.set_realized(True)
-### self.window = Gdk.Window(self.get_parent_window(),
-###                          width=self.allocation.width,
-###                          height=self.allocation.height,
-###                          window_type=Gdk.WindowType.CHILD,
-###                          wclass=Gdk.WindowWindowClass.INPUT_OUTPUT,
-###                          event_mask=self.get_events() | Gdk.EventMask.EXPOSURE_MASK)
-
-        #if not hasattr(self.window, "cairo_create"):
-        #    self.draw_gc = Gdk.GC(self.window,
-        #                          line_width=5,
-        #                          line_style=Gdk.SOLID,
-        #                          join_style=Gdk.JOIN_ROUND)
-
-        #self.window.set_user_data(self)
-        #self.style.attach(self.window)
-        #self.style.set_background(self.window, Gtk.StateType.NORMAL)
-        #self.window.move_resize(*self.allocation)
 
     def do_size_request(self, requisition):
         """
@@ -246,31 +185,28 @@ class FanChartWidget(Gtk.Widget):
         self.do_size_request(req)
         return req.height, req.height
 
-    def do_size_allocate(self, allocation):
-        """
-        Overridden method to handle size allocation events.
-        """
-        
-        self.allocation = allocation
-        if self.get_has_window():
-            if self.get_realized():
-                self.window.move_resize(allocation.x, allocation.y,
-                                allocation.width, allocation.height)
-
-##    def _expose_gdk(self, event):
-##        x, y, w, h = self.allocation
-##        self.layout = self.create_pango_layout('no cairo')
-##        fontw, fonth = self.layout.get_pixel_size()
-##        self.style.paint_layout(self.window, self.state, False,
-##                                event.area, self, "label",
-##                                (w - fontw) / 2, (h - fonth) / 2,
-##                                self.layout)
-
     def on_draw(self, widget, cr):
         """
         The main method to do the drawing.
         """
-        x, y, w, h = self.allocation
+        # first do size request of what we will need
+        nrgen = None
+        for generation in range(self.generations - 1, 0, -1):
+            for p in range(len(self.data[generation])):
+                (text, person, parents, child) = self.data[generation][p]
+                if person:
+                    nrgen = generation
+                    break
+            if nrgen is not None:
+                break
+        if nrgen is None:
+            nrgen = 1
+        halfdist = self.pixels_per_generation * nrgen + self.center
+        self.set_size_request(2 * halfdist, 2 * halfdist)
+        
+        #obtain the allocation
+        alloc = self.get_allocation()
+        x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
         cr.translate(w/2. - self.center_xy[0], h/2. - self.center_xy[1])
         cr.save()
         cr.rotate(self.rotate_value * math.pi/180)
@@ -307,8 +243,8 @@ class FanChartWidget(Gtk.Widget):
                 cr.fill()
         fontw, fonth = self.layout.get_pixel_size()
         cr.move_to((w - fontw - 4), (h - fonth ))
-        cr.update_layout(self.layout)
-        cr.show_layout(self.layout)
+        self.layout.context_changed()
+        PangoCairo.show_layout(cr, self.layout)
 
     def draw_person(self, cr, gender, name, start, stop, generation, 
                     state, parents, child):
@@ -316,7 +252,8 @@ class FanChartWidget(Gtk.Widget):
         Display the piece of pie for a given person. start and stop
         are in degrees.
         """
-        x, y, w, h = self.allocation
+        alloc = self.get_allocation()
+        x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
         start_rad = start * math.pi/180
         stop_rad = stop * math.pi/180
         r,g,b = self.GENCOLOR[generation % len(self.GENCOLOR)]
@@ -382,7 +319,8 @@ class FanChartWidget(Gtk.Widget):
         # center text:
         # offset for cairo-font system is 90:
         pos = start + ((stop - start) - self.text_degrees(text,radius))/2.0 + 90
-        x, y, w, h = self.allocation
+        alloc = self.get_allocation()
+        x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
         cr.save()
         # Create a PangoLayout, set the font and text 
         # Draw the layout N_WORDS times in a circle 
@@ -394,10 +332,10 @@ class FanChartWidget(Gtk.Widget):
             cr.set_source_rgb(0, 0, 0) # black 
             cr.rotate(angle * (math.pi / 180));
             # Inform Pango to re-layout the text with the new transformation
-            cr.update_layout(layout)
+            layout.context_changed()
             width, height = layout.get_size()
             cr.move_to(- (width / Pango.SCALE) / 2.0, - radius)
-            cr.show_layout(layout)
+            PangoCairo.show_layout(cr, layout)
             cr.restore()
         cr.restore()
 
@@ -506,21 +444,55 @@ class FanChartWidget(Gtk.Widget):
                                                       self.NORMAL]
                 self.show_parents(generation+1, selected-1, start, slice/2.0)
 
-# TODO GTK3: these should be do_ methods now?
     def on_mouse_up(self, widget, event):
         # Done with mouse movement
-        if self.last_x is None or self.last_y is None: return True
+        if self.last_x is None or self.last_y is None:
+            return True
         if self.translating:
             self.translating = False
-            x, y, w, h = self.allocation
+            alloc = self.get_allocation()
+            x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
             self.center_xy = w/2 - event.x, h/2 - event.y
         self.last_x, self.last_y = None, None
         self.queue_draw()
         return True
 
     def on_mouse_move(self, widget, event):
-        if self.last_x is None or self.last_y is None: return False
-        x, y, w, h = self.allocation
+        if self.last_x is None or self.last_y is None:
+            alloc = self.get_allocation()
+            x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
+            cx = w/2 - self.center_xy[0]
+            cy = h/2 - self.center_xy[1]
+            radius = math.sqrt((event.x - cx) ** 2 + (event.y - cy) ** 2)
+            selected = None
+            if radius < self.center:
+                generation = 0
+                selected = 0
+            else:
+                generation = int((radius - self.center) / 
+                                 self.pixels_per_generation) + 1
+            rads = math.atan2( (event.y - cy), (event.x - cx) )
+            if rads < 0: # second half of unit circle
+                rads = math.pi + (math.pi + rads)
+            pos = ((rads/(math.pi * 2) - self.rotate_value/360.) * 360.0) % 360
+            if (0 < generation < self.generations):
+                for p in range(len(self.angle[generation])):
+                    if self.data[generation][p][1]: # there is a person there
+                        start, stop, male, state = self.angle[generation][p]
+                        if state == self.COLLAPSED: continue
+                        if start <= pos <= stop:
+                            selected = p
+                            break
+            tooltip = ""
+            if selected is not None:
+                text, person, parents, child = self.data[generation][selected]
+                if person:
+                    tooltip = self.format_helper.format_person(person, 11)
+            self.set_tooltip_text(tooltip)
+            return False
+        
+        alloc = self.get_allocation()
+        x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
         if self.translating:
             self.center_xy = w/2 - event.x, h/2 - event.y
             self.queue_draw()
@@ -543,7 +515,8 @@ class FanChartWidget(Gtk.Widget):
 
     def on_mouse_down(self, widget, event):
         # compute angle, radius, find out who would be there (rotated)
-        x, y, w, h = self.allocation
+        alloc = self.get_allocation()
+        x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
         self.translating = False # keep track of up/down/left/right movement
         cx = w/2 - self.center_xy[0]
         cy = h/2 - self.center_xy[1]
@@ -603,14 +576,6 @@ class FanChartWidget(Gtk.Widget):
         self.queue_draw()
         return True
 
-##    def set_flags(self, flags):
-##        ## TODO GTK3: need to set_flags?
-##        pass
-##
-##    def flags(self):
-##        ## TODO GTK3: need to get flags?
-##        return 0
-
 class FanChartView(NavigationView):
     """
     The Gramplet code that realizes the FanChartWidget. 
@@ -636,7 +601,14 @@ class FanChartView(NavigationView):
     def build_widget(self):
         self.fan = FanChartWidget(self.generations, 
                                   context_popup_callback=self.on_popup)
-        return self.fan
+        self.fan.format_helper = self.format_helper
+        self.scrolledwindow = Gtk.ScrolledWindow(None, None)
+        self.scrolledwindow.set_policy(Gtk.PolicyType.AUTOMATIC,
+                                       Gtk.PolicyType.AUTOMATIC)
+        self.fan.show_all()
+        self.scrolledwindow.add_with_viewport(self.fan)
+
+        return self.scrolledwindow
 
     def get_stock(self):
         """
@@ -793,13 +765,13 @@ class FanChartView(NavigationView):
             return True
         return False
 
-    def copy_person_to_clipboard_cb(self, obj,person_handle):
+    def copy_person_to_clipboard_cb(self, obj, person_handle):
         """Renders the person data into some lines of text and puts that into the clipboard"""
         person = self.dbstate.db.get_person_from_handle(person_handle)
         if person:
             cb = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(), 
                         Gdk.SELECTION_CLIPBOARD)
-            cb.set_text( self.format_helper.format_person(person,11))
+            cb.set_text( self.format_helper.format_person(person,11), -1)
             return True
         return False
 
@@ -808,8 +780,9 @@ class FanChartView(NavigationView):
         Builds the full menu (including Siblings, Spouses, Children, 
         and Parents) with navigation. Copied from PedigreeView.
         """
-        
-        menu = Gtk.Menu()
+        #store menu for GTK3 to avoid it being destroyed before showing
+        self.menu = Gtk.Menu()
+        menu = self.menu
         menu.set_title(_('People Menu'))
 
         person = self.dbstate.db.get_person_from_handle(person_handle)
@@ -824,12 +797,12 @@ class FanChartView(NavigationView):
         go_item.show()
         menu.append(go_item)
 
-        edit_item = Gtk.ImageMenuItem(Gtk.STOCK_EDIT)
+        edit_item = Gtk.ImageMenuItem.new_from_stock(stock_id=Gtk.STOCK_EDIT, accel_group=None)
         edit_item.connect("activate",self.edit_person_cb,person_handle)
         edit_item.show()
         menu.append(edit_item)
 
-        clipboard_item = Gtk.ImageMenuItem(Gtk.STOCK_COPY)
+        clipboard_item = Gtk.ImageMenuItem.new_from_stock(stock_id=Gtk.STOCK_COPY, accel_group=None)
         clipboard_item.connect("activate",self.copy_person_to_clipboard_cb,person_handle)
         clipboard_item.show()
         menu.append(clipboard_item)
@@ -856,7 +829,7 @@ class FanChartView(NavigationView):
                 item.set_submenu(Gtk.Menu())
                 sp_menu = item.get_submenu()
 
-            go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO,Gtk.IconSize.MENU)
+            go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO, Gtk.IconSize.MENU)
             go_image.show()
             sp_item = Gtk.ImageMenuItem(name_displayer.display(spouse))
             sp_item.set_image(go_image)
@@ -896,7 +869,7 @@ class FanChartView(NavigationView):
                 else:
                     label = Gtk.Label(label=escape(name_displayer.display(sib)))
 
-                go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO,Gtk.IconSize.MENU)
+                go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO, Gtk.IconSize.MENU)
                 go_image.show()
                 sib_item = Gtk.ImageMenuItem(None)
                 sib_item.set_image(go_image)
@@ -933,7 +906,7 @@ class FanChartView(NavigationView):
             else:
                 label = Gtk.Label(label=escape(name_displayer.display(child)))
 
-            go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO,Gtk.IconSize.MENU)
+            go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO, Gtk.IconSize.MENU)
             go_image.show()
             child_item = Gtk.ImageMenuItem(None)
             child_item.set_image(go_image)
@@ -970,7 +943,7 @@ class FanChartView(NavigationView):
             else:
                 label = Gtk.Label(label=escape(name_displayer.display(par)))
 
-            go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO,Gtk.IconSize.MENU)
+            go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO, Gtk.IconSize.MENU)
             go_image.show()
             par_item = Gtk.ImageMenuItem(None)
             par_item.set_image(go_image)
@@ -1006,7 +979,7 @@ class FanChartView(NavigationView):
 
             label = Gtk.Label(label=escape(name_displayer.display(per)))
 
-            go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO,Gtk.IconSize.MENU)
+            go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO, Gtk.IconSize.MENU)
             go_image.show()
             per_item = Gtk.ImageMenuItem(None)
             per_item.set_image(go_image)
@@ -1024,4 +997,3 @@ class FanChartView(NavigationView):
         menu.append(item)
         menu.popup(None, None, None, None, event.button, event.time)
         return 1
-

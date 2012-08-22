@@ -124,7 +124,6 @@ class _PersonWidgetBase(Gtk.DrawingArea):
         self.in_drag = True
         self.drag_source_set_icon_stock('gramps-person')
 
-
     def cb_drag_end(self, widget, data):
         """Set up some inital conditions for drag. Set up icon."""
         self.in_drag = False
@@ -174,7 +173,6 @@ class _PersonWidgetBase(Gtk.DrawingArea):
                                             obj.get_path()),
                                 rectangle=photo.get_rectangle())
         return image_path
-
 
 class PersonBoxWidgetCairo(_PersonWidgetBase):
     """Draw person box using cairo library"""
