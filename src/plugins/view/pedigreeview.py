@@ -89,21 +89,24 @@ _CREM = _('short for cremated|crem.')
 
 class _PersonWidgetBase(Gtk.DrawingArea):
     """
-    Defualt set up for person widgets.
+    Default set up for person widgets.
     Set up drag options and button release events.
     """
+    
     def __init__(self, view, format_helper, person):
         GObject.GObject.__init__(self)
         self.view = view
         self.format_helper = format_helper
         self.person = person
         self.force_mouse_over = False
+        self.in_drag = False
         if self.person:
             self.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
             self.add_events(Gdk.EventMask.BUTTON_RELEASE_MASK)
             self.connect("button-release-event", self.cb_on_button_release)
             self.connect("drag_data_get", self.cb_drag_data_get)
             self.connect("drag_begin", self.cb_drag_begin)
+            self.connect("drag_end", self.cb_drag_end)
             # Enable drag
             self.drag_source_set(Gdk.ModifierType.BUTTON1_MASK,
                                 [],
@@ -117,27 +120,34 @@ class _PersonWidgetBase(Gtk.DrawingArea):
 
     def cb_drag_begin(self, widget, data):
         """Set up some inital conditions for drag. Set up icon."""
+        self.in_drag = True
         self.drag_source_set_icon_stock('gramps-person')
+
+
+    def cb_drag_end(self, widget, data):
+        """Set up some inital conditions for drag. Set up icon."""
+        self.in_drag = False
 
     def cb_drag_data_get(self, widget, context, sel_data, info, time):
         """
         Returned parameters after drag.
         Specified for 'person-link', for others return text info about person.
         """
-        #TODO GTK3 Still to convert when pedigreeview works again
-        if sel_data.target == DdTargets.PERSON_LINK.drag_type:
+        tgs = [x.name() for x in context.list_targets()]
+        if DdTargets.PERSON_LINK.drag_type in tgs and info == DdTargets.PERSON_LINK.app_id:
             data = (DdTargets.PERSON_LINK.drag_type,
                     id(self), self.person.get_handle(), 0)
-            sel_data.set(sel_data.target, 8, pickle.dumps(data))
-        else:
-            sel_data.set(sel_data.target, 8,
-                         self.format_helper.format_person(self.person, 11))
+            sel_data.set(sel_data.get_target(), 8, pickle.dumps(data))
+        elif 'TEXT' in tgs or 'text/plain' in tgs:
+            sel_data.set_text(self.format_helper.format_person(self.person, 11), -1)
 
     def cb_on_button_release(self, widget, event):
         """
-        Defualt action for release event from mouse.
+        Default action for release event from mouse.
         Change active person to current.
         """
+        if self.in_drag:
+            return False
         if event.button == 1 and event.type == Gdk.EventType.BUTTON_RELEASE:
             self.view.cb_childmenu_changed(None, self.person.get_handle())
             return True
@@ -860,7 +870,7 @@ class PedigreeView(NavigationView):
         """
         Function called from rebuild_trees.
         For table_widget (Gtk.Table) place list of person, use positions array.
-        For style C position calculated, for others style use static posotins.
+        For style C position calculated, for others style use static positions.
         All display options process in this function.
         """
 
