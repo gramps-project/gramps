@@ -280,6 +280,7 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         #self.context.stroke()
 
         # Create box shape and store path
+        self.context.save()
         self.context.move_to(0, 5)
         self.context.curve_to(0, 2, 2, 0, 5, 0)
         self.context.line_to(alloc.width-8, 0)
@@ -325,6 +326,7 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
             self.context.paint()
 
         # text
+        self.context.restore()
         self.context.move_to(5, 4)
         self.context.set_source_rgb(0, 0, 0)
         self.context.show_layout(self.textlayout)
