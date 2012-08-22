@@ -115,6 +115,7 @@ class _PersonWidgetBase(Gtk.DrawingArea):
             tglist.add(DdTargets.PERSON_LINK.atom_drag_type,
                        DdTargets.PERSON_LINK.target_flags,
                        DdTargets.PERSON_LINK.app_id)
+            #allow drag to a text document, info on drag_get will be 0L !
             tglist.add_text_targets(0L)
             self.drag_source_set_target_list(tglist)
 
@@ -134,11 +135,11 @@ class _PersonWidgetBase(Gtk.DrawingArea):
         Specified for 'person-link', for others return text info about person.
         """
         tgs = [x.name() for x in context.list_targets()]
-        if DdTargets.PERSON_LINK.drag_type in tgs and info == DdTargets.PERSON_LINK.app_id:
+        if info == DdTargets.PERSON_LINK.app_id:
             data = (DdTargets.PERSON_LINK.drag_type,
                     id(self), self.person.get_handle(), 0)
             sel_data.set(sel_data.get_target(), 8, pickle.dumps(data))
-        elif 'TEXT' in tgs or 'text/plain' in tgs:
+        elif ('TEXT' in tgs or 'text/plain' in tgs) and info == 0L:
             sel_data.set_text(self.format_helper.format_person(self.person, 11), -1)
 
     def cb_on_button_release(self, widget, event):
@@ -180,9 +181,7 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
     def __init__(self, view, format_helper, dbstate, person, alive, maxlines,
                 image=None):
         _PersonWidgetBase.__init__(self, view, format_helper, person)
-        # Required for popup menu
-        self.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
-        self.add_events(Gdk.EventMask.BUTTON_RELEASE_MASK)
+        self.set_size_request(120, 25)
         # Required for tooltip and mouse-over
         self.add_events(Gdk.EventMask.ENTER_NOTIFY_MASK)
         # Required for tooltip and mouse-over
@@ -190,7 +189,7 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         self.alive = alive
         self.maxlines = maxlines
         self.hightlight = False
-        self.connect("draw", self.expose)
+        self.connect("draw", self.draw)
         self.text = ""
         if self.person:
             self.text = self.format_helper.format_person(self.person,
@@ -229,7 +228,6 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         self.connect("enter-notify-event", self.cb_on_enter)
         # enable mouse-out
         self.connect("leave-notify-event", self.cb_on_leave)
-        self.set_size_request(120, 25)
         self.context = None
         self.textlayout = None
 
@@ -244,13 +242,37 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         self.hightlight = False
         self.queue_draw()
 
-    def expose(self, widget, context):
+    def draw(self, widget, context):
         """
         Redrawing the contents of the widget.
         Creat new cairo object and draw in it all (borders, background and etc.)
         witout text.
         """
+        def _boxpath(context, alloc):
+            # Create box shape and store path
+            context.new_path()
+            context.move_to(0, 5)
+            context.curve_to(0, 2, 2, 0, 5, 0)
+            context.line_to(alloc.width-8, 0)
+            context.curve_to(alloc.width-5, 0,
+                                  alloc.width-3, 2,
+                                  alloc.width-3, 5)
+            context.line_to(alloc.width-3, alloc.height-8)
+            context.curve_to(alloc.width-3, alloc.height-5,
+                                  alloc.width-5, alloc.height-3,
+                                  alloc.width-8, alloc.height-3)
+            context.line_to(5, alloc.height-3)
+            context.curve_to(2, alloc.height-3,
+                                  0, alloc.height-5,
+                                  0, alloc.height-8)
+            context.close_path()
+            return self.context.copy_path()
+
         # pylint: disable-msg=E1101
+        minw = 120
+        minh = 25
+        alw = self.get_allocated_width()
+        alh = self.get_allocated_height()
         self.context = context
         if not self.textlayout:
             self.textlayout = PangoCairo.create_layout(self.context)
@@ -262,36 +284,24 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         if self.img_surf:
             xmin += self.img_surf.get_width()
             ymin = max(ymin, self.img_surf.get_height()+4)
-        self.set_size_request(max(xmin, 120), max(ymin, 25))
+        self.set_size_request(max(xmin, minw), max(ymin, minh))
 
         alloc = self.get_allocation()
+        
+        alw = self.get_allocated_width()
+        alh = self.get_allocated_height()
 
         # widget area for debugging
-        #self.context.rectangle(0, 0, alloc.width, alloc.height)
-        #self.context.set_source_rgb(1, 0, 1)
-        #self.context.fill_preserve()
-        #self.context.stroke()
+        ##self.context.rectangle(0, 0, alloc.width, alloc.height)
+        ##self.context.set_source_rgb(1, 0, 1)
+        ##self.context.fill_preserve()
+        ##self.context.stroke()
 
         # Create box shape and store path
-        self.context.move_to(0, 5)
-        self.context.curve_to(0, 2, 2, 0, 5, 0)
-        self.context.line_to(alloc.width-8, 0)
-        self.context.curve_to(alloc.width-5, 0,
-                              alloc.width-3, 2,
-                              alloc.width-3, 5)
-        self.context.line_to(alloc.width-3, alloc.height-8)
-        self.context.curve_to(alloc.width-3, alloc.height-5,
-                              alloc.width-5, alloc.height-3,
-                              alloc.width-8, alloc.height-3)
-        self.context.line_to(5, alloc.height-3)
-        self.context.curve_to(2, alloc.height-3,
-                              0, alloc.height-5,
-                              0, alloc.height-8)
-        self.context.close_path()
-        path = self.context.copy_path()
+        self.context.save()
+        path = _boxpath(self.context, alloc)
 
         # shadow
-        self.context.save()
         self.context.translate(3, 3)
         self.context.new_path()
         self.context.append_path(path)
@@ -301,12 +311,13 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         self.context.stroke()
         self.context.restore()
 
+        self.context.save()
         # box shape used for clipping
-        self.context.append_path(path)
+        _boxpath(self.context, alloc)
         self.context.clip()
 
-        # background
-        self.context.append_path(path)
+        # background (while clipped)
+        _boxpath(self.context, alloc)
         self.context.set_source_rgb(*self.bgcolor[:3])
         self.context.fill_preserve()
         self.context.stroke()
@@ -318,27 +329,30 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
             self.context.paint()
 
         # Mark deceased
+        self.context.new_path()
         if self.person and not self.alive:
+            self.context.set_source_rgb(0, 0, 0)
             self.context.set_line_width(2)
             self.context.move_to(0, 10)
             self.context.line_to(10, 0)
             self.context.stroke()
 
         #border
+        _boxpath(self.context, alloc)
         if self.hightlight:
             self.context.set_line_width(5)
         else:
             self.context.set_line_width(2)
-        self.context.append_path(path)
         self.context.set_source_rgb(*self.bordercolor[:3])
         self.context.stroke()
+        self.context.restore()
+        self.context.save()
+        
         # text
-        #self.context.save()
-        #self.context.set_line_width(2)
         self.context.move_to(5, 4)
         self.context.set_source_rgb(0, 0, 0)
         PangoCairo.show_layout(self.context, self.textlayout)
-        #self.context.restore()
+        self.context.restore()
 
 class LineWidget(Gtk.DrawingArea):
     """
@@ -609,11 +623,11 @@ class PedigreeView(NavigationView):
         event_box.connect("motion-notify-event", self.cb_bg_motion_notify_event)
         self.scrolledwindow.add_with_viewport(event_box)
 
-        self.table = Gtk.Table(1, 1, False)
+        self.table = Gtk.Grid()
         event_box.add(self.table)
         event_box.get_parent().set_shadow_type(Gtk.ShadowType.NONE)
-        self.table.set_row_spacings(1)
-        self.table.set_col_spacings(0)
+        self.table.set_row_spacing(1)
+        self.table.set_column_spacing(0)
 
         return self.scrolledwindow
 
@@ -861,7 +875,7 @@ class PedigreeView(NavigationView):
         # Purge current table content
         for child in self.table.get_children():
             child.destroy()
-        self.table.resize(1, 1)
+        ##self.table = Gtk.Grid()
 
         if person:
             self.rebuild(self.table, pos, lst, self.force_size)
@@ -869,7 +883,7 @@ class PedigreeView(NavigationView):
     def rebuild(self, table_widget, positions, lst, size):
         """
         Function called from rebuild_trees.
-        For table_widget (Gtk.Table) place list of person, use positions array.
+        For table_widget (Gtk.Grid) place list of person, use positions array.
         For style C position calculated, for others style use static positions.
         All display options process in this function.
         """
@@ -1118,7 +1132,7 @@ class PedigreeView(NavigationView):
 
             ymid = int(math.floor(ymax/2))
             self.attach_widget(table_widget, button, xmax,
-                                0, 1, ymid, ymid +1, fill=False)
+                                0, 1, ymid, ymid +1)
             
             button = Gtk.Button()
             button.add(Gtk.Arrow.new(parent_arrow, Gtk.ShadowType.IN))
@@ -1131,7 +1145,7 @@ class PedigreeView(NavigationView):
                 
             ymid = int(math.floor(ymax/4))
             self.attach_widget(table_widget, button, xmax,
-                                xmax, xmax+1, ymid-1, ymid+2, fill=False)
+                                xmax, xmax+1, ymid-1, ymid+2)
 
             button = Gtk.Button()
             button.add(Gtk.Arrow.new(parent_arrow, Gtk.ShadowType.IN))
@@ -1144,23 +1158,23 @@ class PedigreeView(NavigationView):
                 
             ymid = int(math.floor(ymax/4*3))
             self.attach_widget(table_widget, button, xmax,
-                                xmax, xmax+1, ymid-1, ymid+2, fill=False)
+                                xmax, xmax+1, ymid-1, ymid+2)
 
         # add dummy widgets into the corners of the table
         # to allow the pedigree to be centered
-        label = Gtk.Label(label="")
-        table_widget.attach(label, 0, 1, 0, 1,
-                        Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL,
-                        Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL, 0, 0)
-        label = Gtk.Label(label="")
-        if self.tree_direction in [2, 3]:
-            table_widget.attach(label, xmax, xmax+1, ymax, ymax+1,
-                        Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL,
-                        Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL, 0, 0)
-        else:
-            table_widget.attach(label, ymax, ymax+1, xmax, xmax+1,
-                        Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL,
-                        Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL, 0, 0)
+##        label = Gtk.Label(label="")
+##        table_widget.attach(label, 0, 1, 0, 1,
+##                        Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL,
+##                        Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL, 0, 0)
+##        label = Gtk.Label(label="")
+##        if self.tree_direction in [2, 3]:
+##            table_widget.attach(label, xmax, xmax+1, ymax, ymax+1,
+##                        Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL,
+##                        Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL, 0, 0)
+##        else:
+##            table_widget.attach(label, ymax, ymax+1, xmax, xmax+1,
+##                        Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL,
+##                        Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL, 0, 0)
 
         debug = False
         if debug:
@@ -1195,10 +1209,7 @@ class PedigreeView(NavigationView):
                         frame.set_shadow_type(Gtk.ShadowType.NONE)
                         frame.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.NEVER)
                         frame.add_with_viewport(label)
-                        table_widget.attach(frame, x_pos, x_pos+1,
-                                            y_pos, y_pos+1,
-                                            Gtk.AttachOptions.FILL,
-                                            Gtk.AttachOptions.FILL, 0, 0)
+                        table_widget.attach(frame, x_pos, y_pos, 1, 1)
         table_widget.show_all()
 
         # Setup scrollbars for view root person
@@ -1231,25 +1242,18 @@ class PedigreeView(NavigationView):
         elif self.tree_direction in [2, 3]:
             self.cb_change_scroll_direction(None, False)
 
-    def attach_widget(self, table, widget, xmax, right, left, top, bottom,
-                        fill=True):
+    def attach_widget(self, table, widget, xmax, right, left, top, bottom):
         """
         Attach a widget to the table.
         """
-        xopts = yopts = 0
-        if fill:
-            xopts = yopts = Gtk.AttachOptions.FILL
-
         if self.tree_direction == 0: # Vertical (top to bottom)
-            table.attach(widget, top, bottom, right, left, xopts, yopts, 0, 0)
+            table.attach(widget, top, right, bottom-top, left-right)
         elif self.tree_direction == 1: # Vertical (bottom to top)
-            table.attach(widget, top, bottom, xmax - left + 1, xmax - right + 1,
-                                xopts, yopts, 0, 0)
+            table.attach(widget, top, xmax - left + 1, bottom-top, left - right)
         elif self.tree_direction == 2: # Horizontal (left to right)
-            table.attach(widget, right, left, top, bottom, xopts, yopts, 0, 0)
+            table.attach(widget, right, top, left-right, bottom-top)
         elif self.tree_direction == 3: # Horizontal (right to left)
-            table.attach(widget, xmax - left + 1, xmax - right + 1, top, bottom,
-                                xopts, yopts, 0, 0)
+            table.attach(widget, xmax - left + 1, top, left - right, bottom-top)
 
     def cb_home(self, menuitem):
         """Change root person to default person for database."""
