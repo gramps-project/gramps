@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-15 17:49+0200\n"
+"POT-Creation-Date: 2012-08-23 17:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -510,18 +510,17 @@ msgstr ""
 msgid "Do not include records not linked to a selected person"
 msgstr ""
 
-#. FIXME: This should use LOG.warn, but logging has not been initialised yet
-#: ../src/gramps.py:68
+#: ../src/gramps.py:125
 msgid ""
 "WARNING: Setting locale failed. Please fix the LC_* and/or the LANG "
 "environment variables to prevent this error"
 msgstr ""
 
-#: ../src/gramps.py:78
+#: ../src/gramps.py:135
 msgid "ERROR: Setting the 'C' locale didn't work either"
 msgstr ""
 
-#: ../src/gramps.py:115
+#: ../src/gramps.py:172
 #, python-format
 msgid ""
 "Your Python version does not meet the requirements. At least python %d.%d.%d "
@@ -530,15 +529,15 @@ msgid ""
 "Gramps will terminate now."
 msgstr ""
 
-#: ../src/gramps.py:354 ../src/gramps.py:361 ../src/gramps.py:432
+#: ../src/gramps.py:378 ../src/gramps.py:385 ../src/gramps.py:456
 msgid "Configuration error:"
 msgstr ""
 
-#: ../src/gramps.py:358
+#: ../src/gramps.py:382
 msgid "Error reading configuration"
 msgstr ""
 
-#: ../src/gramps.py:362
+#: ../src/gramps.py:386
 #, python-format
 msgid ""
 "A definition for the MIME-type %s could not be found \n"
@@ -643,8 +642,8 @@ msgstr ""
 
 #: ../src/QuickReports.py:137 ../src/docgen/TextBufDoc.py:81
 #: ../src/docgen/TextBufDoc.py:161 ../src/docgen/TextBufDoc.py:163
-#: ../src/plugins/gramplet/gramplet.gpr.py:181
-#: ../src/plugins/gramplet/gramplet.gpr.py:188
+#: ../src/plugins/gramplet/gramplet.gpr.py:167
+#: ../src/plugins/gramplet/gramplet.gpr.py:174
 #: ../src/plugins/lib/libpersonview.py:356
 #: ../src/plugins/lib/libplaceview.py:174
 #: ../src/plugins/view/citationtreeview.py:294
@@ -655,7 +654,7 @@ msgstr ""
 msgid "Quick View"
 msgstr ""
 
-#: ../src/Relationship.py:800 ../src/plugins/view/pedigreeview.py:1677
+#: ../src/Relationship.py:800 ../src/plugins/view/pedigreeview.py:1679
 msgid "Relationship loop detected"
 msgstr ""
 
@@ -914,7 +913,7 @@ msgstr ""
 #: ../src/gui/editors/editmedia.py:88 ../src/gui/editors/editmedia.py:171
 #: ../src/gui/editors/editmediaref.py:133
 #: ../src/gui/views/treemodels/mediamodel.py:128
-#: ../src/plugins/drawreport/AncestorTree.py:1015
+#: ../src/plugins/drawreport/AncestorTree.py:1018
 #: ../src/plugins/drawreport/DescendTree.py:1610
 #: ../src/plugins/export/ExportCsv.py:343
 #: ../src/plugins/export/ExportCsv.py:460
@@ -1078,7 +1077,7 @@ msgstr ""
 #: ../src/plugins/textreport/PlaceReport.py:183
 #: ../src/plugins/textreport/PlaceReport.py:255
 #: ../src/plugins/textreport/PlaceReport.py:387
-#: ../src/plugins/tool/EventCmp.py:250 ../src/plugins/view/geography.gpr.py:48
+#: ../src/plugins/tool/EventCmp.py:250 ../src/plugins/view/geography.gpr.py:49
 #: ../src/plugins/webreport/NarrativeWeb.py:336
 #: ../src/plugins/webreport/NarrativeWeb.py:3619
 #: ../src/plugins/webreport/NarrativeWeb.py:5873
@@ -1103,7 +1102,7 @@ msgstr ""
 #: ../src/plugins/quickview/quickview.gpr.py:200
 #: ../src/plugins/quickview/References.py:86
 #: ../src/plugins/textreport/IndivComplete.py:77
-#: ../src/plugins/view/geography.gpr.py:96 ../src/plugins/view/relview.py:1318
+#: ../src/plugins/view/geography.gpr.py:97 ../src/plugins/view/relview.py:1318
 #: ../src/plugins/view/relview.py:1340 ../src/glade/editldsord.glade.h:3
 msgid "Family"
 msgstr ""
@@ -1306,43 +1305,43 @@ msgstr ""
 msgid "Child"
 msgstr ""
 
-#: ../src/TransUtils.py:309
+#: ../src/TransUtils.py:311
 msgid "the person"
 msgstr ""
 
-#: ../src/TransUtils.py:311
+#: ../src/TransUtils.py:313
 msgid "the family"
 msgstr ""
 
-#: ../src/TransUtils.py:313
+#: ../src/TransUtils.py:315
 msgid "the place"
 msgstr ""
 
-#: ../src/TransUtils.py:315
+#: ../src/TransUtils.py:317
 msgid "the event"
 msgstr ""
 
-#: ../src/TransUtils.py:317
+#: ../src/TransUtils.py:319
 msgid "the repository"
 msgstr ""
 
-#: ../src/TransUtils.py:319
+#: ../src/TransUtils.py:321
 msgid "the note"
 msgstr ""
 
-#: ../src/TransUtils.py:321
+#: ../src/TransUtils.py:323
 msgid "the media"
 msgstr ""
 
-#: ../src/TransUtils.py:323
+#: ../src/TransUtils.py:325
 msgid "the source"
 msgstr ""
 
-#: ../src/TransUtils.py:325
+#: ../src/TransUtils.py:327
 msgid "the filter"
 msgstr ""
 
-#: ../src/TransUtils.py:327
+#: ../src/TransUtils.py:329
 msgid "See details"
 msgstr ""
 
@@ -3732,22 +3731,22 @@ msgid "TrueType / FreeSans"
 msgstr ""
 
 #: ../src/gen/plug/docgen/graphdoc.py:67
-#: ../src/plugins/view/pedigreeview.py:2198
+#: ../src/plugins/view/pedigreeview.py:2200
 msgid "Vertical (top to bottom)"
 msgstr ""
 
 #: ../src/gen/plug/docgen/graphdoc.py:68
-#: ../src/plugins/view/pedigreeview.py:2199
+#: ../src/plugins/view/pedigreeview.py:2201
 msgid "Vertical (bottom to top)"
 msgstr ""
 
 #: ../src/gen/plug/docgen/graphdoc.py:69
-#: ../src/plugins/view/pedigreeview.py:2200
+#: ../src/plugins/view/pedigreeview.py:2202
 msgid "Horizontal (left to right)"
 msgstr ""
 
 #: ../src/gen/plug/docgen/graphdoc.py:70
-#: ../src/plugins/view/pedigreeview.py:2201
+#: ../src/plugins/view/pedigreeview.py:2203
 msgid "Horizontal (right to left)"
 msgstr ""
 
@@ -4121,7 +4120,7 @@ msgstr ""
 
 #. #################
 #: ../src/gui/columnorder.py:130 ../src/gui/configure.py:947
-#: ../src/plugins/drawreport/AncestorTree.py:908
+#: ../src/plugins/drawreport/AncestorTree.py:911
 #: ../src/plugins/drawreport/DescendTree.py:1487
 msgid "Display"
 msgstr ""
@@ -5283,7 +5282,7 @@ msgstr ""
 #: ../src/plugins/quickview/FilterByName.py:97
 #: ../src/plugins/textreport/TagReport.py:284
 #: ../src/plugins/view/eventview.py:117
-#: ../src/plugins/view/geography.gpr.py:80 ../src/plugins/view/view.gpr.py:41
+#: ../src/plugins/view/geography.gpr.py:81 ../src/plugins/view/view.gpr.py:41
 #: ../src/plugins/webreport/NarrativeWeb.py:1650
 #: ../src/plugins/webreport/NarrativeWeb.py:1707
 #: ../src/plugins/webreport/NarrativeWeb.py:1759
@@ -5320,10 +5319,10 @@ msgid "Gramplets"
 msgstr ""
 
 #: ../src/gui/grampsgui.py:119 ../src/gui/grampsgui.py:120
-#: ../src/gui/grampsgui.py:121 ../src/plugins/view/geography.gpr.py:57
-#: ../src/plugins/view/geography.gpr.py:73
-#: ../src/plugins/view/geography.gpr.py:89
-#: ../src/plugins/view/geography.gpr.py:106
+#: ../src/gui/grampsgui.py:121 ../src/plugins/view/geography.gpr.py:58
+#: ../src/plugins/view/geography.gpr.py:74
+#: ../src/plugins/view/geography.gpr.py:90
+#: ../src/plugins/view/geography.gpr.py:107
 msgid "Geography"
 msgstr ""
 
@@ -5376,7 +5375,7 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:306
 #: ../src/plugins/tool/NotRelated.py:132
 #: ../src/plugins/view/fanchartview.py:906
-#: ../src/plugins/view/pedigreeview.py:1957 ../src/plugins/view/relview.py:511
+#: ../src/plugins/view/pedigreeview.py:1959 ../src/plugins/view/relview.py:511
 #: ../src/plugins/view/relview.py:848 ../src/plugins/view/relview.py:882
 #: ../src/plugins/webreport/NarrativeWeb.py:332
 #: ../src/plugins/webreport/NarrativeWeb.py:2776
@@ -5395,13 +5394,13 @@ msgstr ""
 
 #: ../src/gui/grampsgui.py:133 ../src/plugins/gramplet/gramplet.gpr.py:150
 #: ../src/plugins/gramplet/gramplet.gpr.py:156
-#: ../src/plugins/view/pedigreeview.py:690
+#: ../src/plugins/view/pedigreeview.py:692
 #: ../src/plugins/webreport/NarrativeWeb.py:5964
 msgid "Pedigree"
 msgstr ""
 
 #: ../src/gui/grampsgui.py:135 ../src/plugins/quickview/FilterByName.py:100
-#: ../src/plugins/view/geography.gpr.py:65
+#: ../src/plugins/view/geography.gpr.py:66
 #: ../src/plugins/view/placetreeview.gpr.py:34
 #: ../src/plugins/view/view.gpr.py:180
 #: ../src/plugins/webreport/NarrativeWeb.py:1651
@@ -5900,7 +5899,7 @@ msgstr ""
 #. What to include
 #. #########################
 #: ../src/gui/viewmanager.py:1545
-#: ../src/plugins/drawreport/AncestorTree.py:986
+#: ../src/plugins/drawreport/AncestorTree.py:989
 #: ../src/plugins/drawreport/DescendTree.py:1581
 #: ../src/plugins/textreport/DetAncestralReport.py:801
 #: ../src/plugins/textreport/DetDescendantReport.py:975
@@ -5910,7 +5909,7 @@ msgstr ""
 msgid "Include"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1546 ../src/plugins/gramplet/StatsGramplet.py:190
+#: ../src/gui/viewmanager.py:1546 ../src/plugins/gramplet/StatsGramplet.py:194
 msgid "Megabyte|MB"
 msgstr ""
 
@@ -7719,8 +7718,7 @@ msgstr ""
 msgid "Visible"
 msgstr ""
 
-#: ../src/gui/plug/_windows.py:82 ../src/plugins/gramplet/gramplet.gpr.py:167
-#: ../src/plugins/gramplet/gramplet.gpr.py:174
+#: ../src/gui/plug/_windows.py:82
 msgid "Plugin Manager"
 msgstr ""
 
@@ -7911,7 +7909,7 @@ msgstr ""
 #. ###############################
 #: ../src/gui/plug/report/_reportdialog.py:356 ../src/plugins/Records.py:514
 #: ../src/plugins/drawreport/Calendar.py:406
-#: ../src/plugins/drawreport/FanChart.py:396
+#: ../src/plugins/drawreport/FanChart.py:394
 #: ../src/plugins/drawreport/StatisticsChart.py:908
 #: ../src/plugins/drawreport/TimeLine.py:367
 #: ../src/plugins/graph/GVRelGraph.py:473
@@ -8611,23 +8609,23 @@ msgstr ""
 msgid "See data not in Filter"
 msgstr ""
 
-#: ../src/config.py:288
+#: ../src/config.py:289
 msgid "Missing Given Name"
 msgstr ""
 
-#: ../src/config.py:289
+#: ../src/config.py:290
 msgid "Missing Record"
 msgstr ""
 
-#: ../src/config.py:290
+#: ../src/config.py:291
 msgid "Missing Surname"
 msgstr ""
 
-#: ../src/config.py:297 ../src/config.py:299
+#: ../src/config.py:298 ../src/config.py:300
 msgid "Living"
 msgstr ""
 
-#: ../src/config.py:298
+#: ../src/config.py:299
 msgid "Private Record"
 msgstr ""
 
@@ -8733,7 +8731,7 @@ msgstr ""
 #: ../src/plugins/gramplet/FanChartGramplet.py:724
 #: ../src/plugins/textreport/KinshipReport.py:125
 #: ../src/plugins/view/fanchartview.py:792
-#: ../src/plugins/view/pedigreeview.py:1837
+#: ../src/plugins/view/pedigreeview.py:1839
 msgid "Spouses"
 msgstr ""
 
@@ -9209,9 +9207,9 @@ msgid "The style used for headings."
 msgstr ""
 
 #: ../src/plugins/Records.py:611
-#: ../src/plugins/drawreport/AncestorTree.py:1067
+#: ../src/plugins/drawreport/AncestorTree.py:1070
 #: ../src/plugins/drawreport/DescendTree.py:1670
-#: ../src/plugins/drawreport/FanChart.py:458
+#: ../src/plugins/drawreport/FanChart.py:456
 #: ../src/plugins/textreport/AncestorReport.py:367
 #: ../src/plugins/textreport/DetAncestralReport.py:904
 #: ../src/plugins/textreport/DetDescendantReport.py:1099
@@ -9440,7 +9438,7 @@ msgid "Ancestor Graph for %s"
 msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:698
-#: ../src/plugins/drawreport/AncestorTree.py:784
+#: ../src/plugins/drawreport/AncestorTree.py:787
 #: ../src/plugins/drawreport/drawplugins.gpr.py:48
 msgid "Ancestor Tree"
 msgstr ""
@@ -9449,19 +9447,19 @@ msgstr ""
 msgid "Making the Tree..."
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:785
+#: ../src/plugins/drawreport/AncestorTree.py:788
 msgid "Printing the Tree..."
 msgstr ""
 
 #. #################
-#: ../src/plugins/drawreport/AncestorTree.py:865
+#: ../src/plugins/drawreport/AncestorTree.py:868
 #: ../src/plugins/drawreport/DescendTree.py:1452
 msgid "Tree Options"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:867
+#: ../src/plugins/drawreport/AncestorTree.py:870
 #: ../src/plugins/drawreport/Calendar.py:417
-#: ../src/plugins/drawreport/FanChart.py:398
+#: ../src/plugins/drawreport/FanChart.py:396
 #: ../src/plugins/graph/GVHourGlass.py:261
 #: ../src/plugins/textreport/AncestorReport.py:268
 #: ../src/plugins/textreport/BirthdayReport.py:372
@@ -9474,13 +9472,13 @@ msgstr ""
 msgid "Center Person"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:868
+#: ../src/plugins/drawreport/AncestorTree.py:871
 msgid "The center person for the tree"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:871
+#: ../src/plugins/drawreport/AncestorTree.py:874
 #: ../src/plugins/drawreport/DescendTree.py:1472
-#: ../src/plugins/drawreport/FanChart.py:402
+#: ../src/plugins/drawreport/FanChart.py:400
 #: ../src/plugins/textreport/AncestorReport.py:282
 #: ../src/plugins/textreport/DescendReport.py:415
 #: ../src/plugins/textreport/DetAncestralReport.py:742
@@ -9488,27 +9486,27 @@ msgstr ""
 msgid "Generations"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:872
+#: ../src/plugins/drawreport/AncestorTree.py:875
 #: ../src/plugins/drawreport/DescendTree.py:1473
 msgid "The number of generations to include in the tree"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:876
+#: ../src/plugins/drawreport/AncestorTree.py:879
 msgid ""
 "Display unknown\n"
 "generations"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:878
+#: ../src/plugins/drawreport/AncestorTree.py:881
 msgid "The number of generations of empty boxes that will be displayed"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:885
+#: ../src/plugins/drawreport/AncestorTree.py:888
 #: ../src/plugins/drawreport/DescendTree.py:1481
 msgid "Co_mpress tree"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:886
+#: ../src/plugins/drawreport/AncestorTree.py:889
 msgid ""
 "Whether to remove any extra blank spaces set aside for people that are "
 "unknown"
@@ -9523,31 +9521,31 @@ msgstr ""
 #. "Display Format"))
 #. Spouse_disp.set_help(_("Show spouses of the center person?"))
 #. menu.add_option(category_name, "Spouse_disp", Spouse_disp)
-#: ../src/plugins/drawreport/AncestorTree.py:900
+#: ../src/plugins/drawreport/AncestorTree.py:903
 msgid ""
 "Center person uses\n"
 "which format"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:902
+#: ../src/plugins/drawreport/AncestorTree.py:905
 msgid "Use Fathers Display format"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:903
+#: ../src/plugins/drawreport/AncestorTree.py:906
 msgid "Use Mothers display format"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:904
+#: ../src/plugins/drawreport/AncestorTree.py:907
 msgid "Which Display format to use the center person"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:910
+#: ../src/plugins/drawreport/AncestorTree.py:913
 msgid ""
 "Father\n"
 "Display Format"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:914
+#: ../src/plugins/drawreport/AncestorTree.py:917
 msgid "Display format for the fathers box."
 msgstr ""
 
@@ -9559,70 +9557,70 @@ msgstr ""
 #. missing.set_help(_("What will print when information is not known"))
 #. menu.add_option(category_name, "miss_val", missing)
 #. category_name = _("Secondary")
-#: ../src/plugins/drawreport/AncestorTree.py:927
+#: ../src/plugins/drawreport/AncestorTree.py:930
 msgid ""
 "Mother\n"
 "Display Format"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:933
+#: ../src/plugins/drawreport/AncestorTree.py:936
 msgid "Display format for the mothers box."
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:936
+#: ../src/plugins/drawreport/AncestorTree.py:939
 #: ../src/plugins/drawreport/DescendTree.py:1521
 msgid "Include Marriage box"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:938
+#: ../src/plugins/drawreport/AncestorTree.py:941
 #: ../src/plugins/drawreport/DescendTree.py:1523
 msgid "Whether to include a separate marital box in the report"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:941
+#: ../src/plugins/drawreport/AncestorTree.py:944
 #: ../src/plugins/drawreport/DescendTree.py:1526
 msgid ""
 "Marriage\n"
 "Display Format"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:942
+#: ../src/plugins/drawreport/AncestorTree.py:945
 #: ../src/plugins/drawreport/DescendTree.py:1527
 msgid "Display format for the marital box."
 msgstr ""
 
 #. #################
-#: ../src/plugins/drawreport/AncestorTree.py:946
+#: ../src/plugins/drawreport/AncestorTree.py:949
 #: ../src/plugins/drawreport/DescendTree.py:1540
 msgid "Size"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:948
+#: ../src/plugins/drawreport/AncestorTree.py:951
 #: ../src/plugins/drawreport/DescendTree.py:1542
 msgid "Scale tree to fit"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:949
+#: ../src/plugins/drawreport/AncestorTree.py:952
 #: ../src/plugins/drawreport/DescendTree.py:1543
 msgid "Do not scale tree"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:950
+#: ../src/plugins/drawreport/AncestorTree.py:953
 #: ../src/plugins/drawreport/DescendTree.py:1544
 msgid "Scale tree to fit page width only"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:951
+#: ../src/plugins/drawreport/AncestorTree.py:954
 #: ../src/plugins/drawreport/DescendTree.py:1545
 msgid "Scale tree to fit the size of the page"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:953
+#: ../src/plugins/drawreport/AncestorTree.py:956
 #: ../src/plugins/drawreport/DescendTree.py:1547
 msgid "Whether to scale the tree to fit a specific paper size"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:959
+#: ../src/plugins/drawreport/AncestorTree.py:962
 #: ../src/plugins/drawreport/DescendTree.py:1553
 msgid ""
 "Resize Page to Fit Tree size\n"
@@ -9630,7 +9628,7 @@ msgid ""
 "Note: Overrides options in the 'Paper Option' tab"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:965
+#: ../src/plugins/drawreport/AncestorTree.py:968
 #: ../src/plugins/drawreport/DescendTree.py:1559
 msgid ""
 "Whether to resize the page to fit the size \n"
@@ -9649,67 +9647,67 @@ msgid ""
 "  is resized to remove any gap in either height or width"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:988
+#: ../src/plugins/drawreport/AncestorTree.py:991
 #: ../src/plugins/drawreport/DescendTree.py:1583
 msgid "Report Title"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:989
+#: ../src/plugins/drawreport/AncestorTree.py:992
 #: ../src/plugins/drawreport/DescendTree.py:1584
 #: ../src/plugins/drawreport/DescendTree.py:1633
 msgid "Do not include a title"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:990
+#: ../src/plugins/drawreport/AncestorTree.py:993
 msgid "Include Report Title"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:991
+#: ../src/plugins/drawreport/AncestorTree.py:994
 #: ../src/plugins/drawreport/DescendTree.py:1586
 msgid "Choose a title for the report"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:994
+#: ../src/plugins/drawreport/AncestorTree.py:997
 #: ../src/plugins/drawreport/DescendTree.py:1590
 msgid "Include a border"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:995
+#: ../src/plugins/drawreport/AncestorTree.py:998
 #: ../src/plugins/drawreport/DescendTree.py:1591
 msgid "Whether to make a border around the report."
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:998
+#: ../src/plugins/drawreport/AncestorTree.py:1001
 #: ../src/plugins/drawreport/DescendTree.py:1594
 msgid "Include Page Numbers"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:999
+#: ../src/plugins/drawreport/AncestorTree.py:1002
 msgid "Whether to print page numbers on each page."
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:1002
+#: ../src/plugins/drawreport/AncestorTree.py:1005
 #: ../src/plugins/drawreport/DescendTree.py:1598
 msgid "Include Blank Pages"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:1003
+#: ../src/plugins/drawreport/AncestorTree.py:1006
 #: ../src/plugins/drawreport/DescendTree.py:1599
 msgid "Whether to include pages that are blank."
 msgstr ""
 
 #. category_name = _("Notes")
-#: ../src/plugins/drawreport/AncestorTree.py:1010
+#: ../src/plugins/drawreport/AncestorTree.py:1013
 #: ../src/plugins/drawreport/DescendTree.py:1604
 msgid "Include a note"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:1011
+#: ../src/plugins/drawreport/AncestorTree.py:1014
 #: ../src/plugins/drawreport/DescendTree.py:1606
 msgid "Whether to include a note on the report."
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:1016
+#: ../src/plugins/drawreport/AncestorTree.py:1019
 #: ../src/plugins/drawreport/DescendTree.py:1611
 msgid ""
 "Add a note\n"
@@ -9717,29 +9715,29 @@ msgid ""
 "$T inserts today's date"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:1021
+#: ../src/plugins/drawreport/AncestorTree.py:1024
 #: ../src/plugins/drawreport/DescendTree.py:1616
 msgid "Note Location"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:1024
+#: ../src/plugins/drawreport/AncestorTree.py:1027
 #: ../src/plugins/drawreport/DescendTree.py:1619
 msgid "Where to place the note."
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:1039
+#: ../src/plugins/drawreport/AncestorTree.py:1042
 msgid "No generations of empty boxes for unknown ancestors"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:1042
+#: ../src/plugins/drawreport/AncestorTree.py:1045
 msgid "One Generation of empty boxes for unknown ancestors"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:1046
+#: ../src/plugins/drawreport/AncestorTree.py:1049
 msgid " Generations of empty boxes for unknown ancestors"
 msgstr ""
 
-#: ../src/plugins/drawreport/AncestorTree.py:1078
+#: ../src/plugins/drawreport/AncestorTree.py:1081
 #: ../src/plugins/drawreport/DescendTree.py:1660
 msgid "The basic style used for the title display."
 msgstr ""
@@ -9833,7 +9831,7 @@ msgid "Select filter to restrict people that appear on calendar"
 msgstr ""
 
 #: ../src/plugins/drawreport/Calendar.py:418
-#: ../src/plugins/drawreport/FanChart.py:399
+#: ../src/plugins/drawreport/FanChart.py:397
 #: ../src/plugins/textreport/AncestorReport.py:269
 #: ../src/plugins/textreport/BirthdayReport.py:373
 #: ../src/plugins/textreport/DescendReport.py:394
@@ -10282,7 +10280,7 @@ msgstr ""
 msgid "%(generations)d Generation Fan Chart for %(person)s"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:403
+#: ../src/plugins/drawreport/FanChart.py:401
 #: ../src/plugins/textreport/AncestorReport.py:283
 #: ../src/plugins/textreport/DescendReport.py:416
 #: ../src/plugins/textreport/DetAncestralReport.py:743
@@ -10290,59 +10288,59 @@ msgstr ""
 msgid "The number of generations to include in the report"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:406
+#: ../src/plugins/drawreport/FanChart.py:404
 msgid "Type of graph"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:407
+#: ../src/plugins/drawreport/FanChart.py:405
 msgid "full circle"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:408
+#: ../src/plugins/drawreport/FanChart.py:406
 msgid "half circle"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:409
+#: ../src/plugins/drawreport/FanChart.py:407
 msgid "quarter circle"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:410
+#: ../src/plugins/drawreport/FanChart.py:408
 msgid "The form of the graph: full circle, half circle, or quarter circle."
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:414
+#: ../src/plugins/drawreport/FanChart.py:412
 msgid "Background color"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:415
+#: ../src/plugins/drawreport/FanChart.py:413
 msgid "white"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:416
+#: ../src/plugins/drawreport/FanChart.py:414
 msgid "generation dependent"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:417
+#: ../src/plugins/drawreport/FanChart.py:415
 msgid "Background color is either white or generation dependent"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:421
+#: ../src/plugins/drawreport/FanChart.py:419
 msgid "Orientation of radial texts"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:423
+#: ../src/plugins/drawreport/FanChart.py:421
 msgid "upright"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:424
+#: ../src/plugins/drawreport/FanChart.py:422
 msgid "roundabout"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:425
+#: ../src/plugins/drawreport/FanChart.py:423
 msgid "Print radial texts upright or roundabout"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:449
+#: ../src/plugins/drawreport/FanChart.py:447
 #: ../src/plugins/textreport/AlphabeticalIndex.py:90
 #: ../src/plugins/textreport/TableOfContents.py:90
 msgid "The style used for the title."
@@ -11035,8 +11033,8 @@ msgid "Mother - Child Age Diff Distribution"
 msgstr ""
 
 #: ../src/plugins/gramplet/AgeStats.py:229
-#: ../src/plugins/gramplet/gramplet.gpr.py:227
-#: ../src/plugins/gramplet/gramplet.gpr.py:234
+#: ../src/plugins/gramplet/gramplet.gpr.py:213
+#: ../src/plugins/gramplet/gramplet.gpr.py:220
 msgid "Statistics"
 msgstr ""
 
@@ -11377,7 +11375,7 @@ msgstr ""
 #: ../src/plugins/textreport/FamilyGroup.py:584
 #: ../src/plugins/textreport/IndivComplete.py:442
 #: ../src/plugins/view/fanchartview.py:869
-#: ../src/plugins/view/pedigreeview.py:1917
+#: ../src/plugins/view/pedigreeview.py:1919
 #: ../src/plugins/view/relview.py:1358
 #: ../src/plugins/webreport/NarrativeWeb.py:628
 msgid "Children"
@@ -11739,7 +11737,7 @@ msgstr ""
 #. Convert and delete original file or just convert
 #: ../src/plugins/gramplet/EditExifMetadata.py:752
 #: ../src/plugins/gramplet/EditExifMetadata.py:1158
-#: ../src/plugins/gramplet/gramplet.gpr.py:313
+#: ../src/plugins/gramplet/gramplet.gpr.py:299
 msgid "Edit Image Exif Metadata"
 msgstr ""
 
@@ -11921,8 +11919,8 @@ msgstr ""
 
 #: ../src/plugins/gramplet/FanChartGramplet.py:696
 #: ../src/plugins/view/fanchartview.py:764
-#: ../src/plugins/view/pedigreeview.py:1781
-#: ../src/plugins/view/pedigreeview.py:1807
+#: ../src/plugins/view/pedigreeview.py:1783
+#: ../src/plugins/view/pedigreeview.py:1809
 msgid "People Menu"
 msgstr ""
 
@@ -11930,7 +11928,7 @@ msgstr ""
 #: ../src/plugins/gramplet/FanChartGramplet.py:758
 #: ../src/plugins/quickview/quickview.gpr.py:316
 #: ../src/plugins/view/fanchartview.py:826
-#: ../src/plugins/view/pedigreeview.py:1872 ../src/plugins/view/relview.py:898
+#: ../src/plugins/view/pedigreeview.py:1874 ../src/plugins/view/relview.py:898
 #: ../src/plugins/webreport/NarrativeWeb.py:6364
 msgid "Siblings"
 msgstr ""
@@ -11938,7 +11936,7 @@ msgstr ""
 #. Go over parents and build their menu
 #: ../src/plugins/gramplet/FanChartGramplet.py:875
 #: ../src/plugins/view/fanchartview.py:943
-#: ../src/plugins/view/pedigreeview.py:2005
+#: ../src/plugins/view/pedigreeview.py:2007
 msgid "Related"
 msgstr ""
 
@@ -12151,94 +12149,90 @@ msgid "Gramplet showing active person's ancestors"
 msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:168
-msgid "Gramplet showing available third-party plugins (addons)"
-msgstr ""
-
-#: ../src/plugins/gramplet/gramplet.gpr.py:182
 msgid "Gramplet showing an active item Quick View"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:197
-#: ../src/plugins/gramplet/gramplet.gpr.py:203
+#: ../src/plugins/gramplet/gramplet.gpr.py:183
+#: ../src/plugins/gramplet/gramplet.gpr.py:189
 msgid "Relatives"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:198
+#: ../src/plugins/gramplet/gramplet.gpr.py:184
 msgid "Gramplet showing active person's relatives"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:213
-#: ../src/plugins/gramplet/gramplet.gpr.py:220
+#: ../src/plugins/gramplet/gramplet.gpr.py:199
+#: ../src/plugins/gramplet/gramplet.gpr.py:206
 msgid "Session Log"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:214
+#: ../src/plugins/gramplet/gramplet.gpr.py:200
 msgid "Gramplet showing all activity for this session"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:228
+#: ../src/plugins/gramplet/gramplet.gpr.py:214
 msgid "Gramplet showing summary data of the family tree"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:241
-#: ../src/plugins/gramplet/gramplet.gpr.py:248
+#: ../src/plugins/gramplet/gramplet.gpr.py:227
+#: ../src/plugins/gramplet/gramplet.gpr.py:234
 msgid "Surname Cloud"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:242
+#: ../src/plugins/gramplet/gramplet.gpr.py:228
 msgid "Gramplet showing all surnames as a text cloud"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:255
+#: ../src/plugins/gramplet/gramplet.gpr.py:241
 msgid "TODO"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:256
+#: ../src/plugins/gramplet/gramplet.gpr.py:242
 msgid "Gramplet for generic notes"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:262
+#: ../src/plugins/gramplet/gramplet.gpr.py:248
 msgid "TODO List"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:269
-#: ../src/plugins/gramplet/gramplet.gpr.py:275
+#: ../src/plugins/gramplet/gramplet.gpr.py:255
+#: ../src/plugins/gramplet/gramplet.gpr.py:261
 msgid "Top Surnames"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:270
+#: ../src/plugins/gramplet/gramplet.gpr.py:256
 msgid "Gramplet showing most frequent surnames in this tree"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:282
+#: ../src/plugins/gramplet/gramplet.gpr.py:268
 msgid "Welcome"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:283
+#: ../src/plugins/gramplet/gramplet.gpr.py:269
 msgid "Gramplet showing a welcome message"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:289
+#: ../src/plugins/gramplet/gramplet.gpr.py:275
 msgid "Welcome to Gramps!"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:296
+#: ../src/plugins/gramplet/gramplet.gpr.py:282
 msgid "What's Next"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:297
+#: ../src/plugins/gramplet/gramplet.gpr.py:283
 msgid "Gramplet suggesting items to research"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:303
+#: ../src/plugins/gramplet/gramplet.gpr.py:289
 msgid "What's Next?"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:314
+#: ../src/plugins/gramplet/gramplet.gpr.py:300
 msgid "Gramplet to view, edit, and save image Exif metadata"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:318
+#: ../src/plugins/gramplet/gramplet.gpr.py:304
 msgid "Edit Exif Metadata"
 msgstr ""
 
@@ -12473,7 +12467,7 @@ msgid "less than 1"
 msgstr ""
 
 #. -------------------------
-#: ../src/plugins/gramplet/StatsGramplet.py:135
+#: ../src/plugins/gramplet/StatsGramplet.py:139
 #: ../src/plugins/graph/GVFamilyLines.py:148
 #: ../src/plugins/textreport/Summary.py:103
 #: ../src/plugins/webreport/NarrativeWeb.py:1647
@@ -12483,76 +12477,76 @@ msgstr ""
 msgid "Individuals"
 msgstr ""
 
-#: ../src/plugins/gramplet/StatsGramplet.py:137
+#: ../src/plugins/gramplet/StatsGramplet.py:141
 msgid "Number of individuals"
 msgstr ""
 
 #. -------------------------
-#: ../src/plugins/gramplet/StatsGramplet.py:141
+#: ../src/plugins/gramplet/StatsGramplet.py:145
 #: ../src/plugins/graph/GVFamilyLines.py:151
 #: ../src/plugins/graph/GVRelGraph.py:547
 #: ../src/Filters/Rules/Person/_IsMale.py:46
 msgid "Males"
 msgstr ""
 
-#: ../src/plugins/gramplet/StatsGramplet.py:144
+#: ../src/plugins/gramplet/StatsGramplet.py:148
 #: ../src/plugins/graph/GVFamilyLines.py:155
 #: ../src/plugins/graph/GVRelGraph.py:551
 #: ../src/Filters/Rules/Person/_IsFemale.py:46
 msgid "Females"
 msgstr ""
 
-#: ../src/plugins/gramplet/StatsGramplet.py:147
+#: ../src/plugins/gramplet/StatsGramplet.py:151
 msgid "Individuals with unknown gender"
 msgstr ""
 
-#: ../src/plugins/gramplet/StatsGramplet.py:151
+#: ../src/plugins/gramplet/StatsGramplet.py:155
 msgid "Individuals with incomplete names"
 msgstr ""
 
-#: ../src/plugins/gramplet/StatsGramplet.py:155
+#: ../src/plugins/gramplet/StatsGramplet.py:159
 msgid "Individuals missing birth dates"
 msgstr ""
 
-#: ../src/plugins/gramplet/StatsGramplet.py:159
+#: ../src/plugins/gramplet/StatsGramplet.py:163
 msgid "Disconnected individuals"
 msgstr ""
 
-#: ../src/plugins/gramplet/StatsGramplet.py:163
+#: ../src/plugins/gramplet/StatsGramplet.py:167
 #: ../src/plugins/textreport/Summary.py:190
 msgid "Family Information"
 msgstr ""
 
-#: ../src/plugins/gramplet/StatsGramplet.py:165
+#: ../src/plugins/gramplet/StatsGramplet.py:169
 msgid "Number of families"
 msgstr ""
 
-#: ../src/plugins/gramplet/StatsGramplet.py:169
+#: ../src/plugins/gramplet/StatsGramplet.py:173
 msgid "Unique surnames"
 msgstr ""
 
-#: ../src/plugins/gramplet/StatsGramplet.py:173
+#: ../src/plugins/gramplet/StatsGramplet.py:177
 #: ../src/plugins/textreport/Summary.py:206
 msgid "Media Objects"
 msgstr ""
 
-#: ../src/plugins/gramplet/StatsGramplet.py:175
+#: ../src/plugins/gramplet/StatsGramplet.py:179
 msgid "Individuals with media objects"
 msgstr ""
 
-#: ../src/plugins/gramplet/StatsGramplet.py:179
+#: ../src/plugins/gramplet/StatsGramplet.py:183
 msgid "Total number of media object references"
 msgstr ""
 
-#: ../src/plugins/gramplet/StatsGramplet.py:183
+#: ../src/plugins/gramplet/StatsGramplet.py:187
 msgid "Number of unique media objects"
 msgstr ""
 
-#: ../src/plugins/gramplet/StatsGramplet.py:188
+#: ../src/plugins/gramplet/StatsGramplet.py:192
 msgid "Total size of media objects"
 msgstr ""
 
-#: ../src/plugins/gramplet/StatsGramplet.py:192
+#: ../src/plugins/gramplet/StatsGramplet.py:196
 #: ../src/plugins/textreport/Summary.py:235
 msgid "Missing Media Objects"
 msgstr ""
@@ -13807,8 +13801,8 @@ msgstr ""
 #. there is no old style XML
 #: ../src/plugins/import/ImportXml.py:762
 #: ../src/plugins/import/ImportXml.py:1194
-#: ../src/plugins/import/ImportXml.py:1440
-#: ../src/plugins/import/ImportXml.py:1815
+#: ../src/plugins/import/ImportXml.py:1444
+#: ../src/plugins/import/ImportXml.py:1819
 msgid "The Gramps Xml you are trying to import is malformed."
 msgstr ""
 
@@ -13901,7 +13895,7 @@ msgid "Old xml file"
 msgstr ""
 
 #: ../src/plugins/import/ImportXml.py:1115
-#: ../src/plugins/import/ImportXml.py:2461
+#: ../src/plugins/import/ImportXml.py:2465
 #, python-format
 msgid "Witness name: %s"
 msgstr ""
@@ -13910,30 +13904,30 @@ msgstr ""
 msgid "Any event reference must have a 'hlink' attribute."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:1441
+#: ../src/plugins/import/ImportXml.py:1445
 msgid "Any person reference must have a 'hlink' attribute."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:1602
+#: ../src/plugins/import/ImportXml.py:1606
 #, python-format
 msgid ""
 "Your family tree groups name \"%(key)s\" together with \"%(parent)s\", did "
 "not change this grouping to \"%(value)s\"."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:1605
+#: ../src/plugins/import/ImportXml.py:1609
 msgid "Gramps ignored namemap value"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:1664
+#: ../src/plugins/import/ImportXml.py:1668
 msgid "Unknown when imported"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:1816
+#: ../src/plugins/import/ImportXml.py:1820
 msgid "Any note reference must have a 'hlink' attribute."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:2352
+#: ../src/plugins/import/ImportXml.py:2356
 #, python-format
 msgid "Witness comment: %s"
 msgstr ""
@@ -17368,7 +17362,7 @@ msgid "Delete Person (%s)"
 msgstr ""
 
 #: ../src/plugins/lib/libpersonview.py:352
-#: ../src/plugins/view/pedigreeview.py:836 ../src/plugins/view/relview.py:412
+#: ../src/plugins/view/pedigreeview.py:838 ../src/plugins/view/relview.py:412
 msgid "Person Filter Editor"
 msgstr ""
 
@@ -21919,25 +21913,25 @@ msgid ""
 "WARNING: osmgpsmap module not loaded. osmgpsmap must be >= 0.7.0. yours is %s"
 msgstr ""
 
-#: ../src/plugins/view/geography.gpr.py:41
+#: ../src/plugins/view/geography.gpr.py:42
 msgid ""
 "WARNING: osmgpsmap module not loaded. Geography functionality will not be "
 "available."
 msgstr ""
 
-#: ../src/plugins/view/geography.gpr.py:49
+#: ../src/plugins/view/geography.gpr.py:50
 msgid "A view showing the places visited by one person during his life."
 msgstr ""
 
-#: ../src/plugins/view/geography.gpr.py:66
+#: ../src/plugins/view/geography.gpr.py:67
 msgid "A view showing all places of the database."
 msgstr ""
 
-#: ../src/plugins/view/geography.gpr.py:81
+#: ../src/plugins/view/geography.gpr.py:82
 msgid "A view showing all the event places of the database."
 msgstr ""
 
-#: ../src/plugins/view/geography.gpr.py:97
+#: ../src/plugins/view/geography.gpr.py:98
 msgid "A view showing the places visited by one family during all their life."
 msgstr ""
 
@@ -22148,87 +22142,87 @@ msgstr ""
 msgid "short for cremated|crem."
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:1289
+#: ../src/plugins/view/pedigreeview.py:1291
 msgid "Jump to child..."
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:1302
+#: ../src/plugins/view/pedigreeview.py:1304
 msgid "Jump to father"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:1315
+#: ../src/plugins/view/pedigreeview.py:1317
 msgid "Jump to mother"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:1678
+#: ../src/plugins/view/pedigreeview.py:1680
 msgid "A person was found to be his/her own ancestor."
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:1725
-#: ../src/plugins/view/pedigreeview.py:1731
+#: ../src/plugins/view/pedigreeview.py:1727
+#: ../src/plugins/view/pedigreeview.py:1733
 #: ../src/plugins/webreport/NarrativeWeb.py:4328
 #: ../src/plugins/webreport/WebCal.py:516
 msgid "Home"
 msgstr ""
 
 #. Mouse scroll direction setting.
-#: ../src/plugins/view/pedigreeview.py:1751
+#: ../src/plugins/view/pedigreeview.py:1753
 msgid "Mouse scroll direction"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:1759
+#: ../src/plugins/view/pedigreeview.py:1761
 msgid "Top <-> Bottom"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:1766
+#: ../src/plugins/view/pedigreeview.py:1768
 msgid "Left <-> Right"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:1994 ../src/plugins/view/relview.py:401
+#: ../src/plugins/view/pedigreeview.py:1996 ../src/plugins/view/relview.py:401
 msgid "Add New Parents..."
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:2054
+#: ../src/plugins/view/pedigreeview.py:2056
 msgid "Family Menu"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:2180
+#: ../src/plugins/view/pedigreeview.py:2182
 msgid "Show images"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:2183
+#: ../src/plugins/view/pedigreeview.py:2185
 msgid "Show marriage data"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:2186
+#: ../src/plugins/view/pedigreeview.py:2188
 msgid "Show unknown people"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:2189
+#: ../src/plugins/view/pedigreeview.py:2191
 msgid "Tree style"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:2191
+#: ../src/plugins/view/pedigreeview.py:2193
 msgid "Standard"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:2192
+#: ../src/plugins/view/pedigreeview.py:2194
 msgid "Compact"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:2193
+#: ../src/plugins/view/pedigreeview.py:2195
 msgid "Expanded"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:2196
+#: ../src/plugins/view/pedigreeview.py:2198
 msgid "Tree direction"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:2203
+#: ../src/plugins/view/pedigreeview.py:2205
 msgid "Tree size"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:2207
+#: ../src/plugins/view/pedigreeview.py:2209
 #: ../src/plugins/view/relview.py:1652
 msgid "Layout"
 msgstr ""
