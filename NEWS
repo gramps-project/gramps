@@ -1,3 +1,13 @@
+2012-08-23
+Version 3.4.1 -- The "A tiger? In Africa?!" bug fix release.
+Mention in the release that upgrading is advised for two critical issues:
+ -> error in export to xml of family order in 3.4.0, now fixed
+ -> crash in windows after some use due to too much terminal output in 3.4.0, now fixed
+* Some platform-specific fixes (Windows, OSX)
+* Bug fixes
+* Translation updates
+* Changelog: http://www.gramps-project.org/bugs/roadmap_page.php?version_id=31
+
 2012-05-21
 Version 3.4.0 -- The "always look on the bright side of life" feature release.
 * Lots of changes and bug fixes to every part of Gramps, including XML
