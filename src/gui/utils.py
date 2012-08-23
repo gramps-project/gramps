@@ -50,6 +50,7 @@ from gi.repository import PangoCairo
 #-------------------------------------------------------------------------
 import gen.lib
 from gen.constfunc import has_display, is_quartz, mac, win
+from gen.config import config
 
 #-------------------------------------------------------------------------
 #
@@ -409,6 +410,56 @@ def is_right_click(event):
 
         if event.button == 3:
             return True
+
+def color_graph_box(alive=False, gender=gen.lib.Person.MALE):
+    """
+    Returns based on the config the color for graph boxes in hex
+    If gender is None, an empty box is assumed
+    Return type: tuple (hex color fill, hex color border)
+    """
+    if gender == gen.lib.Person.MALE:
+        if alive:
+            return (config.get('preferences.color-gender-male-alive'),
+                    config.get('preferences.bordercolor-gender-male-alive'))
+        else:
+            return (config.get('preferences.color-gender-male-death'),
+                    config.get('preferences.bordercolor-gender-male-death'))
+    elif gender == gen.lib.Person.FEMALE:
+        if alive:
+            return (config.get('preferences.color-gender-female-alive'),
+                    config.get('preferences.bordercolor-gender-female-alive'))
+        else:
+            return (config.get('preferences.color-gender-female-death'),
+                    config.get('preferences.bordercolor-gender-female-death'))
+    elif gender == gen.lib.Person.UNKNOWN:
+        if alive:
+            return (config.get('preferences.color-gender-unknown-alive'),
+                    config.get('preferences.bordercolor-gender-unknown-alive'))
+        else:
+            return (config.get('preferences.color-gender-unknown-death'),
+                    config.get('preferences.bordercolor-gender-unknown-death'))
+    #empty box, no gender
+    return ('#d2d6ce', '#000000')
+##    print 'male alive', rgb_to_hex((185/256.0, 207/256.0, 231/256.0))
+##    print 'female alive', rgb_to_hex((255/256.0, 205/256.0, 241/256.0))
+##    print 'unknown alive', rgb_to_hex((244/256.0, 220/256.0, 183/256.0))
+##    print 'male death', rgb_to_hex((185/256.0, 207/256.0, 231/256.0))
+##    print 'female death', rgb_to_hex((255/256.0, 205/256.0, 241/256.0))
+##    print 'unknown death', rgb_to_hex((244/256.0, 220/256.0, 183/256.0))
+##
+##    print 'border male alive', rgb_to_hex((32/256.0, 74/256.0, 135/256.0))
+##    print 'border female alive', rgb_to_hex((135/256.0, 32/256.0, 106/256.0))
+##    print 'border unknown alive', rgb_to_hex((143/256.0, 89/256.0, 2/256.0))
+##    print 'empty', rgb_to_hex((211/256.0, 215/256.0, 207/256.0))
+
+def hex_to_rgb_float(value):
+    """
+    Convert a hexademical value #FF00FF to rgb. Returns tuple of float between
+    0 and 1
+    """
+    value = value.lstrip('#')
+    lenv = len(value)
+    return tuple(int(value[i:i+lenv/3], 16)/256.0 for i in range(0, lenv, lenv/3))
 
 def hex_to_rgb(value):
     """

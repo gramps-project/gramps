@@ -192,27 +192,12 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         if self.person:
             self.text = self.format_helper.format_person(self.person,
                                                          self.maxlines, True)
-            if alive and self.person.get_gender() == gen.lib.Person.MALE:
-                self.bgcolor = (185/256.0, 207/256.0, 231/256.0)
-                self.bordercolor = (32/256.0, 74/256.0, 135/256.0)
-            elif alive and self.person.get_gender() == gen.lib.Person.FEMALE:
-                self.bgcolor = (255/256.0, 205/256.0, 241/256.0)
-                self.bordercolor = (135/256.0, 32/256.0, 106/256.0)
-            elif alive:
-                self.bgcolor = (244/256.0, 220/256.0, 183/256.0)
-                self.bordercolor = (143/256.0, 89/256.0, 2/256.0)
-            elif self.person.get_gender() == gen.lib.Person.MALE:
-                self.bgcolor = (185/256.0, 207/256.0, 231/256.0)
-                self.bordercolor = (0, 0, 0)
-            elif self.person.get_gender() == gen.lib.Person.FEMALE:
-                self.bgcolor = (255/256.0, 205/256.0, 241/256.0)
-                self.bordercolor = (0, 0, 0)
-            else:
-                self.bgcolor = (244/256.0, 220/256.0, 183/256.0)
-                self.bordercolor = (0, 0, 0)
+            gender = self.person.get_gender()
         else:
-            self.bgcolor = (211/256.0, 215/256.0, 207/256.0)
-            self.bordercolor = (0, 0, 0)
+            gender = None
+        self.bgcolor, self.bordercolor = gui.utils.color_graph_box(alive, gender)
+        self.bgcolor = gui.utils.hex_to_rgb_float(self.bgcolor)
+        self.bordercolor = gui.utils.hex_to_rgb_float(self.bordercolor)
 
         self.img_surf = None    
         if image:

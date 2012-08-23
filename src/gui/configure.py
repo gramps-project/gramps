@@ -38,8 +38,9 @@ from xml.sax.saxutils import escape
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import Gtk
 from gi.repository import GObject
+from gi.repository import Gdk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
@@ -280,14 +281,14 @@ class ConfigureDialog(ManagedWindow):
         table.attach(radiobox, column, column+1, index, index+1, yoptions=0)
         return radiobox
 
-    def add_text(self, table, label, index, config=None):
+    def add_text(self, table, label, index, config=None, line_wrap=True):
         if not config:
             config = self.__config
         text = Gtk.Label()
-        text.set_line_wrap(True)
+        text.set_line_wrap(line_wrap)
         text.set_alignment(0.,0.)
         text.set_text(label)
-        table.attach(text, 1, 9, index, index+1, yoptions=0)
+        table.attach(text, 1, 9, index, index+1, yoptions=Gtk.AttachOptions.SHRINK)
 
     def add_path_box(self, table, label, index, entry, path, callback_label, 
                      callback_sel, config=None):
@@ -345,7 +346,7 @@ class ConfigureDialog(ManagedWindow):
         table.attach(entry, col_attach+1, col_attach+2, index, index+1, 
                      yoptions=0)
 
-    def add_color(self, table, label, index, constant, config=None):
+    def add_color(self, table, label, index, constant, config=None, col=0):
         if not config:
             config = self.__config
         lwidget = BasicLabel("%s: " % label)
@@ -354,10 +355,10 @@ class ConfigureDialog(ManagedWindow):
         entry = Gtk.ColorButton(color=color)
         color_hex_label = BasicLabel(hexval)
         entry.connect('color-set', self.update_color, constant, color_hex_label)
-        table.attach(lwidget, 0, 1, index, index+1, yoptions=0, 
+        table.attach(lwidget, col, col+1, index, index+1, yoptions=0, 
                      xoptions=Gtk.AttachOptions.FILL)
-        table.attach(entry, 1, 2, index, index+1, yoptions=0, xoptions=0)
-        table.attach(color_hex_label, 2, 3, index, index+1, yoptions=0)
+        table.attach(entry, col+1, col+2, index, index+1, yoptions=0, xoptions=0)
+        table.attach(color_hex_label, col+2, col+3, index, index+1, yoptions=0)
         return entry
 
     def add_combo(self, table, label, index, constant, opts, callback=None,
@@ -441,8 +442,9 @@ class GrampsPreferences(ConfigureDialog):
             self.add_text_panel,
             self.add_prefix_panel,
             self.add_date_panel,
-            self.add_advanced_panel,
             self.add_researcher_panel,
+            self.add_advanced_panel,
+            self.add_color_panel
             )
         ConfigureDialog.__init__(self, uistate, dbstate, page_funcs, 
                                  GrampsPreferences, config,
@@ -453,15 +455,17 @@ class GrampsPreferences(ConfigureDialog):
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
-        self.add_entry(table, _('Name'), 0, 'researcher.researcher-name')
-        self.add_entry(table, _('Address'), 1, 'researcher.researcher-addr')
-        self.add_entry(table, _('Locality'), 2, 'researcher.researcher-locality')
-        self.add_entry(table, _('City'), 3, 'researcher.researcher-city')
-        self.add_entry(table, _('State/County'), 4, 'researcher.researcher-state')
-        self.add_entry(table, _('Country'), 5, 'researcher.researcher-country')
-        self.add_entry(table, _('ZIP/Postal Code'), 6, 'researcher.researcher-postal')
-        self.add_entry(table, _('Phone'), 7, 'researcher.researcher-phone')
-        self.add_entry(table, _('Email'), 8, 'researcher.researcher-email')
+        self.add_text(table, _('Enter your information so people can contact you when you'
+                        ' distribute your family tree'), 0, line_wrap=False)
+        self.add_entry(table, _('Name'), 1, 'researcher.researcher-name')
+        self.add_entry(table, _('Address'), 2, 'researcher.researcher-addr')
+        self.add_entry(table, _('Locality'), 3, 'researcher.researcher-locality')
+        self.add_entry(table, _('City'), 4, 'researcher.researcher-city')
+        self.add_entry(table, _('State/County'), 5, 'researcher.researcher-state')
+        self.add_entry(table, _('Country'), 6, 'researcher.researcher-country')
+        self.add_entry(table, _('ZIP/Postal Code'), 7, 'researcher.researcher-postal')
+        self.add_entry(table, _('Phone'), 8, 'researcher.researcher-phone')
+        self.add_entry(table, _('Email'), 9, 'researcher.researcher-email')
         return _('Researcher'), table
 
     def add_prefix_panel(self, configdialog):
@@ -491,6 +495,47 @@ class GrampsPreferences(ConfigureDialog):
         self.add_entry(table, _('Note'), 8, 'preferences.nprefix',
                        self.update_idformat_entry)
         return _('ID Formats'), table
+
+    def add_color_panel(self, configdialog):
+        """
+        Add the tab to set defaults colors for graph boxes
+        """
+        table = Gtk.Table(17, 8)
+        self.add_text(table, _('Set the colors used for boxes in the graphical views'),
+                        0, line_wrap=False)
+        self.add_color(table, _('Gender Male Alive'), 1, 
+                        'preferences.color-gender-male-alive')
+        self.add_color(table, _('Border Male Alive'), 2, 
+                        'preferences.bordercolor-gender-male-alive')
+        self.add_color(table, _('Gender Male Death'), 3, 
+                        'preferences.color-gender-male-death')
+        self.add_color(table, _('Border Male Death'), 4, 
+                        'preferences.bordercolor-gender-male-death')
+        self.add_color(table, _('Gender Female Alive'), 1, 
+                        'preferences.color-gender-female-alive', col=4)
+        self.add_color(table, _('Border Female Alive'), 2, 
+                        'preferences.bordercolor-gender-female-alive', col=4)
+        self.add_color(table, _('Gender Female Death'), 3, 
+                        'preferences.color-gender-female-death', col=4)
+        self.add_color(table, _('Border Female Death'), 4, 
+                        'preferences.bordercolor-gender-female-death', col=4)
+##        self.add_color(table, _('Gender Other Alive'), 5, 
+##                        'preferences.color-gender-other-alive')
+##        self.add_color(table, _('Border Other Alive'), 6, 
+##                        'preferences.bordercolor-gender-other-alive')
+##        self.add_color(table, _('Gender Other Death'), 7, 
+##                        'preferences.color-gender-other-death')
+##        self.add_color(table, _('Border Other Death'), 8, 
+##                        'preferences.bordercolor-gender-other-death')
+        self.add_color(table, _('Gender Unknown Alive'), 5, 
+                        'preferences.color-gender-unknown-alive', col=4)
+        self.add_color(table, _('Border Unknown Alive'), 6, 
+                        'preferences.bordercolor-gender-unknown-alive', col=4)
+        self.add_color(table, _('Gender Unknown Death'), 7, 
+                        'preferences.color-gender-unknown-death', col=4)
+        self.add_color(table, _('Border Unknown Death'), 8, 
+                        'preferences.bordercolor-gender-unknown-death', col=4)
+        return _('Colors'), table
 
     def add_advanced_panel(self, configdialog):
         table = Gtk.Table(4, 8)
