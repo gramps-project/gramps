@@ -6,7 +6,7 @@ Mention in the release that upgrading is advised for two critical issues:
 * Some platform-specific fixes (Windows, OSX)
 * Bug fixes
 * Translation updates
-* Changelog: http://www.gramps-project.org/bugs/roadmap_page.php?version_id=31
+* Changelog: http://www.gramps-project.org/bugs/changelog_page.php?version_id=31
 
 2012-05-21
 Version 3.4.0 -- The "always look on the bright side of life" feature release.
