@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-19 16:49+0200\n"
+"POT-Creation-Date: 2012-08-23 17:10+0200\n"
 "PO-Revision-Date: 2012-03-18 18:06+0100\n"
 "Last-Translator: \n"
 "Language-Team: Norwegian Bokmål <i18n-nb@lister.ping.uio.no>\n"
@@ -82,7 +82,7 @@ msgstr "Organisere bokmerker"
 #. Priority
 #. Handle
 #. Add column with object name
-#: ../src/Bookmarks.py:213 ../src/ScratchPad.py:560 ../src/ToolTips.py:175
+#: ../src/Bookmarks.py:213 ../src/ScratchPad.py:561 ../src/ToolTips.py:175
 #: ../src/ToolTips.py:201 ../src/ToolTips.py:212 ../src/gui/configure.py:429
 #: ../src/gui/filtereditor.py:741 ../src/gui/filtereditor.py:894
 #: ../src/gui/viewmanager.py:469 ../src/gui/editors/editfamily.py:117
@@ -99,7 +99,7 @@ msgstr "Organisere bokmerker"
 #: ../src/plugins/textreport/IndivComplete.py:600
 #: ../src/plugins/textreport/TagReport.py:124
 #: ../src/plugins/tool/NotRelated.py:130
-#: ../src/plugins/tool/RemoveUnused.py:200 ../src/plugins/tool/Verify.py:508
+#: ../src/plugins/tool/RemoveUnused.py:200 ../src/plugins/tool/Verify.py:517
 #: ../src/plugins/view/repoview.py:82
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:127
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:93
@@ -125,12 +125,12 @@ msgstr "Navn"
 #: ../src/gui/selectors/selectplace.py:63
 #: ../src/gui/selectors/selectrepository.py:62
 #: ../src/gui/selectors/selectsource.py:62
-#: ../src/gui/views/navigationview.py:348 ../src/Merge/mergeperson.py:174
+#: ../src/gui/views/navigationview.py:352 ../src/Merge/mergeperson.py:174
 #: ../src/plugins/lib/libpersonview.py:93
 #: ../src/plugins/lib/libplaceview.py:93 ../src/plugins/tool/EventCmp.py:250
 #: ../src/plugins/tool/NotRelated.py:131 ../src/plugins/tool/PatchNames.py:399
 #: ../src/plugins/tool/RemoveUnused.py:194
-#: ../src/plugins/tool/SortEvents.py:58 ../src/plugins/tool/Verify.py:501
+#: ../src/plugins/tool/SortEvents.py:58 ../src/plugins/tool/Verify.py:510
 #: ../src/plugins/view/citationtreeview.py:91
 #: ../src/plugins/view/citationlistview.py:96
 #: ../src/plugins/view/eventview.py:82 ../src/plugins/view/familyview.py:79
@@ -240,7 +240,7 @@ msgstr "Ingen aktiv kilde"
 
 #: ../src/DisplayState.py:369
 msgid "No active citation"
-msgstr "Ingen aktive kildehendvisninger"
+msgstr "Ingen aktive siteringer"
 
 #: ../src/DisplayState.py:370
 msgid "No active repository"
@@ -535,16 +535,15 @@ msgstr "Ta med alle valgte poster"
 msgid "Do not include records not linked to a selected person"
 msgstr "Ikke ta med poster som er lenket til valgt person"
 
-#. FIXME: This should use LOG.warn, but logging has not been initialised yet
-#: ../src/gramps.py:68
+#: ../src/gramps.py:125
 msgid "WARNING: Setting locale failed. Please fix the LC_* and/or the LANG environment variables to prevent this error"
 msgstr "ADVARSEL: Språkvalg feilet. Vennligst reparere miljøvariablene LC_* og/eller LANG for å bli kvitt denne feilmeldingen"
 
-#: ../src/gramps.py:78
+#: ../src/gramps.py:135
 msgid "ERROR: Setting the 'C' locale didn't work either"
 msgstr "FEIL: Språkvalg 'C' fungerte heller ikke"
 
-#: ../src/gramps.py:115
+#: ../src/gramps.py:172
 #, python-format
 msgid ""
 "Your Python version does not meet the requirements. At least python %d.%d.%d is needed to start Gramps.\n"
@@ -555,15 +554,15 @@ msgstr ""
 "\n"
 "Gramps vil avslutte nå."
 
-#: ../src/gramps.py:354 ../src/gramps.py:361 ../src/gramps.py:432
+#: ../src/gramps.py:378 ../src/gramps.py:385 ../src/gramps.py:456
 msgid "Configuration error:"
 msgstr "Feil i innstillinger:"
 
-#: ../src/gramps.py:358
+#: ../src/gramps.py:382
 msgid "Error reading configuration"
 msgstr "Feil ved lesing oppsettet"
 
-#: ../src/gramps.py:362
+#: ../src/gramps.py:386
 #, python-format
 msgid ""
 "A definition for the MIME-type %s could not be found \n"
@@ -575,7 +574,7 @@ msgstr ""
 "Det er mulig at installasjonen av Gramps ikke ble fullført. Vennligst kontroller at MIME-typer for Gramps er ordentlig installert."
 
 #. not all families have a spouse.
-#: ../src/LdsUtils.py:82 ../src/LdsUtils.py:88 ../src/ScratchPad.py:180
+#: ../src/LdsUtils.py:82 ../src/LdsUtils.py:88 ../src/ScratchPad.py:181
 #: ../src/Utils.py:1654 ../src/Utils.py:1656 ../src/Utils.py:1660
 #: ../src/Utils.py:1666 ../src/Utils.py:1671 ../src/cli/clidbman.py:469
 #: ../src/gen/lib/attrtype.py:63 ../src/gen/lib/childreftype.py:79
@@ -601,8 +600,8 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:613
-#: ../src/plugins/tool/Check.py:1905 ../src/plugins/view/geofamily.py:402
-#: ../src/plugins/view/geoperson.py:449 ../src/plugins/view/relview.py:450
+#: ../src/plugins/tool/Check.py:1959 ../src/plugins/view/geofamily.py:403
+#: ../src/plugins/view/geoperson.py:450 ../src/plugins/view/relview.py:450
 #: ../src/plugins/view/relview.py:995 ../src/plugins/view/relview.py:1042
 #: ../src/plugins/webreport/NarrativeWeb.py:347
 #: ../src/plugins/webreport/NarrativeWeb.py:2286
@@ -671,8 +670,8 @@ msgstr "Web Connect"
 
 #: ../src/QuickReports.py:137 ../src/docgen/TextBufDoc.py:81
 #: ../src/docgen/TextBufDoc.py:161 ../src/docgen/TextBufDoc.py:163
-#: ../src/plugins/gramplet/gramplet.gpr.py:181
-#: ../src/plugins/gramplet/gramplet.gpr.py:188
+#: ../src/plugins/gramplet/gramplet.gpr.py:167
+#: ../src/plugins/gramplet/gramplet.gpr.py:174
 #: ../src/plugins/lib/libpersonview.py:356
 #: ../src/plugins/lib/libplaceview.py:174
 #: ../src/plugins/view/citationtreeview.py:294
@@ -683,7 +682,7 @@ msgstr "Web Connect"
 msgid "Quick View"
 msgstr "Snarrapport"
 
-#: ../src/Relationship.py:800 ../src/plugins/view/pedigreeview.py:1676
+#: ../src/Relationship.py:800 ../src/plugins/view/pedigreeview.py:1679
 msgid "Relationship loop detected"
 msgstr "Fant en relasjonsløkke"
 
@@ -866,16 +865,16 @@ msgstr "Sortere relasjonstyper"
 msgid "Reorder Relationships: %s"
 msgstr "Sortere relasjonstyper: %s"
 
-#: ../src/ScratchPad.py:66
+#: ../src/ScratchPad.py:67
 msgid "manual|Using_the_Clipboard"
 msgstr "Bruk av Utklippstavlen"
 
-#: ../src/ScratchPad.py:183 ../src/ScratchPad.py:184
+#: ../src/ScratchPad.py:184 ../src/ScratchPad.py:185
 #: ../src/gui/plug/_windows.py:473
 msgid "Unavailable"
 msgstr "Utilgjengelig"
 
-#: ../src/ScratchPad.py:292 ../src/gui/configure.py:430
+#: ../src/ScratchPad.py:293 ../src/gui/configure.py:430
 #: ../src/gui/grampsgui.py:103 ../src/gui/editors/editaddress.py:156
 #: ../src/plugins/gramplet/RepositoryDetails.py:123
 #: ../src/plugins/textreport/FamilyGroup.py:324
@@ -884,14 +883,14 @@ msgstr "Utilgjengelig"
 msgid "Address"
 msgstr "Adresse"
 
-#: ../src/ScratchPad.py:312 ../src/ToolTips.py:142
+#: ../src/ScratchPad.py:313 ../src/ToolTips.py:142
 #: ../src/gen/lib/nameorigintype.py:93 ../src/gui/plug/_windows.py:600
 #: ../src/plugins/gramplet/PlaceDetails.py:125
 msgid "Location"
 msgstr "Plassering"
 
 #. 0 this order range above
-#: ../src/ScratchPad.py:329 ../src/gui/configure.py:460
+#: ../src/ScratchPad.py:330 ../src/gui/configure.py:460
 #: ../src/gui/filtereditor.py:292 ../src/gui/editors/editlink.py:81
 #: ../src/plugins/gramplet/QuickViewGramplet.py:107
 #: ../src/plugins/quickview/FilterByName.py:150
@@ -900,12 +899,13 @@ msgstr "Plassering"
 #: ../src/plugins/quickview/References.py:87
 #: ../src/plugins/textreport/PlaceReport.py:386
 #: ../src/plugins/webreport/NarrativeWeb.py:326
+#: ../src/plugins/webreport/NarrativeWeb.py:883
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:134
 msgid "Event"
 msgstr "Hendelse"
 
 #. 5
-#: ../src/ScratchPad.py:356 ../src/gui/configure.py:452
+#: ../src/ScratchPad.py:357 ../src/gui/configure.py:452
 #: ../src/gui/filtereditor.py:293 ../src/gui/editors/editlink.py:86
 #: ../src/gui/editors/displaytabs/eventembedlist.py:80
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:55
@@ -937,14 +937,14 @@ msgstr "Sted"
 
 #. ###############################
 #. 3
-#: ../src/ScratchPad.py:383 ../src/ToolTips.py:161
+#: ../src/ScratchPad.py:384 ../src/ToolTips.py:161
 #: ../src/gen/plug/docgen/graphdoc.py:229 ../src/gui/configure.py:464
 #: ../src/gui/filtereditor.py:297 ../src/gui/editors/editlink.py:84
 #: ../src/gui/editors/editmedia.py:88 ../src/gui/editors/editmedia.py:171
 #: ../src/gui/editors/editmediaref.py:133
 #: ../src/gui/views/treemodels/mediamodel.py:128
-#: ../src/plugins/drawreport/AncestorTree.py:1014
-#: ../src/plugins/drawreport/DescendTree.py:1609
+#: ../src/plugins/drawreport/AncestorTree.py:1018
+#: ../src/plugins/drawreport/DescendTree.py:1610
 #: ../src/plugins/export/ExportCsv.py:343
 #: ../src/plugins/export/ExportCsv.py:460
 #: ../src/plugins/gramplet/QuickViewGramplet.py:110
@@ -964,24 +964,24 @@ msgstr "Sted"
 msgid "Note"
 msgstr "Kommentar"
 
-#: ../src/ScratchPad.py:416 ../src/Filters/SideBar/_FamilySidebarFilter.py:119
+#: ../src/ScratchPad.py:417 ../src/Filters/SideBar/_FamilySidebarFilter.py:119
 msgid "Family Event"
 msgstr "Familiehendelser"
 
-#: ../src/ScratchPad.py:432
+#: ../src/ScratchPad.py:433
 msgid "Url"
 msgstr "Nettadresse"
 
-#: ../src/ScratchPad.py:448 ../src/gui/grampsgui.py:104
+#: ../src/ScratchPad.py:449 ../src/gui/grampsgui.py:104
 #: ../src/gui/editors/editattribute.py:135
 msgid "Attribute"
 msgstr "Egenskap"
 
-#: ../src/ScratchPad.py:463
+#: ../src/ScratchPad.py:464
 msgid "Family Attribute"
 msgstr "Familieegenskap"
 
-#: ../src/ScratchPad.py:479 ../src/gen/lib/notetype.py:84
+#: ../src/ScratchPad.py:480 ../src/gen/lib/notetype.py:84
 #: ../src/gui/configure.py:456 ../src/gui/filtereditor.py:298
 #: ../src/gui/editors/editcitation.py:140
 #: ../src/gui/editors/editcitation.py:146
@@ -990,27 +990,27 @@ msgstr "Familieegenskap"
 #: ../src/plugins/quickview/quickview.gpr.py:206
 #: ../src/plugins/quickview/References.py:89
 msgid "Citation"
-msgstr "Kildehenvisning"
+msgstr "Sitering"
 
-#: ../src/ScratchPad.py:494
+#: ../src/ScratchPad.py:495
 msgid "not available|NA"
 msgstr "utilgjengelig"
 
-#: ../src/ScratchPad.py:503
+#: ../src/ScratchPad.py:504
 #, python-format
 msgid "Volume/Page: %(pag)s -- %(sourcetext)s"
 msgstr "BindSide: %(pag)s -- %(sourcetext)s"
 
-#: ../src/ScratchPad.py:524
+#: ../src/ScratchPad.py:525
 msgid "Repository ref"
 msgstr "Referanse til oppbevaringssted"
 
-#: ../src/ScratchPad.py:542
+#: ../src/ScratchPad.py:543
 msgid "Event ref"
 msgstr "Hendelsesreferanse"
 
 #. show surname and first name
-#: ../src/ScratchPad.py:576 ../src/Utils.py:1275 ../src/gui/configure.py:515
+#: ../src/ScratchPad.py:577 ../src/Utils.py:1275 ../src/gui/configure.py:515
 #: ../src/gui/configure.py:517 ../src/gui/configure.py:519
 #: ../src/gui/configure.py:521 ../src/gui/configure.py:524
 #: ../src/gui/configure.py:525 ../src/gui/configure.py:526
@@ -1026,7 +1026,7 @@ msgstr "Hendelsesreferanse"
 msgid "Surname"
 msgstr "Etternavn"
 
-#: ../src/ScratchPad.py:592 ../src/ScratchPad.py:597
+#: ../src/ScratchPad.py:593 ../src/ScratchPad.py:598
 #: ../src/gen/plug/report/_constants.py:56 ../src/gui/configure.py:973
 #: ../src/plugins/textreport/CustomBookText.py:117
 #: ../src/plugins/textreport/TagReport.py:393
@@ -1036,7 +1036,7 @@ msgstr "Tekst"
 
 #. 2
 #. add media column
-#: ../src/ScratchPad.py:608 ../src/gui/grampsgui.py:127
+#: ../src/ScratchPad.py:609 ../src/gui/grampsgui.py:127
 #: ../src/gui/editors/editlink.py:83
 #: ../src/plugins/gramplet/QuickViewGramplet.py:109
 #: ../src/plugins/quickview/FilterByName.py:109
@@ -1058,19 +1058,19 @@ msgstr "Tekst"
 msgid "Media"
 msgstr "Media"
 
-#: ../src/ScratchPad.py:635
+#: ../src/ScratchPad.py:636
 msgid "Media ref"
 msgstr "Mediereferanse"
 
-#: ../src/ScratchPad.py:653
+#: ../src/ScratchPad.py:654
 msgid "Person ref"
 msgstr "Personreferanse"
 
-#: ../src/ScratchPad.py:671
+#: ../src/ScratchPad.py:672
 msgid "Child ref"
 msgstr "Barn henv"
 
-#: ../src/ScratchPad.py:680
+#: ../src/ScratchPad.py:681
 #, python-format
 msgid "%(frel)s %(mrel)s"
 msgstr "%(frel)s %(mrel)s"
@@ -1082,7 +1082,7 @@ msgstr "%(frel)s %(mrel)s"
 #.
 #. ------------------------------------------------------------------------
 #. functions for the actual quickreports
-#: ../src/ScratchPad.py:692 ../src/ToolTips.py:200 ../src/gui/configure.py:448
+#: ../src/ScratchPad.py:693 ../src/ToolTips.py:200 ../src/gui/configure.py:448
 #: ../src/gui/filtereditor.py:290 ../src/gui/grampsgui.py:134
 #: ../src/gui/editors/editlink.py:85 ../src/plugins/export/ExportCsv.py:336
 #: ../src/plugins/gramplet/QuickViewGramplet.py:106
@@ -1107,7 +1107,7 @@ msgstr "%(frel)s %(mrel)s"
 #: ../src/plugins/textreport/PlaceReport.py:183
 #: ../src/plugins/textreport/PlaceReport.py:255
 #: ../src/plugins/textreport/PlaceReport.py:387
-#: ../src/plugins/tool/EventCmp.py:250 ../src/plugins/view/geography.gpr.py:48
+#: ../src/plugins/tool/EventCmp.py:250 ../src/plugins/view/geography.gpr.py:49
 #: ../src/plugins/webreport/NarrativeWeb.py:336
 #: ../src/plugins/webreport/NarrativeWeb.py:3619
 #: ../src/plugins/webreport/NarrativeWeb.py:5873
@@ -1119,7 +1119,7 @@ msgstr "Person"
 #. get the family events
 #. show "> Family: ..." and nothing else
 #. show "V Family: ..." and the rest
-#: ../src/ScratchPad.py:720 ../src/ToolTips.py:230 ../src/gui/configure.py:450
+#: ../src/ScratchPad.py:721 ../src/ToolTips.py:230 ../src/gui/configure.py:450
 #: ../src/gui/filtereditor.py:291 ../src/gui/grampsgui.py:113
 #: ../src/gui/editors/editfamily.py:487 ../src/gui/editors/editlink.py:82
 #: ../src/plugins/export/ExportCsv.py:503
@@ -1132,13 +1132,13 @@ msgstr "Person"
 #: ../src/plugins/quickview/quickview.gpr.py:200
 #: ../src/plugins/quickview/References.py:86
 #: ../src/plugins/textreport/IndivComplete.py:77
-#: ../src/plugins/view/geography.gpr.py:96 ../src/plugins/view/relview.py:1318
+#: ../src/plugins/view/geography.gpr.py:97 ../src/plugins/view/relview.py:1318
 #: ../src/plugins/view/relview.py:1340 ../src/glade/editldsord.glade.h:3
 msgid "Family"
 msgstr "Familie"
 
 #. 7
-#: ../src/ScratchPad.py:749 ../src/gui/configure.py:454
+#: ../src/ScratchPad.py:750 ../src/gui/configure.py:454
 #: ../src/gui/filtereditor.py:294 ../src/gui/editors/editlink.py:88
 #: ../src/gui/editors/editsource.py:77
 #: ../src/gui/editors/displaytabs/nameembedlist.py:77
@@ -1155,7 +1155,7 @@ msgid "Source"
 msgstr "Kilde"
 
 #. 6
-#: ../src/ScratchPad.py:776 ../src/ToolTips.py:128 ../src/gui/configure.py:462
+#: ../src/ScratchPad.py:777 ../src/ToolTips.py:128 ../src/gui/configure.py:462
 #: ../src/gui/filtereditor.py:296 ../src/gui/editors/editlink.py:87
 #: ../src/gui/editors/editrepository.py:67
 #: ../src/gui/editors/editrepository.py:69
@@ -1167,7 +1167,7 @@ msgstr "Oppbevaringssted"
 
 #. Create the tree columns
 #. 0 selected?
-#: ../src/ScratchPad.py:907 ../src/gui/viewmanager.py:468
+#: ../src/ScratchPad.py:908 ../src/gui/viewmanager.py:468
 #: ../src/gui/editors/displaytabs/attrembedlist.py:63
 #: ../src/gui/editors/displaytabs/backreflist.py:60
 #: ../src/gui/editors/displaytabs/eventembedlist.py:75
@@ -1209,14 +1209,14 @@ msgstr "Oppbevaringssted"
 msgid "Type"
 msgstr "Type"
 
-#: ../src/ScratchPad.py:910
+#: ../src/ScratchPad.py:911
 #: ../src/gui/editors/displaytabs/citationembedlist.py:82
 #: ../src/gui/editors/displaytabs/repoembedlist.py:68
 #: ../src/gui/selectors/selectobject.py:74
 #: ../src/gui/selectors/selectplace.py:62
 #: ../src/gui/selectors/selectrepository.py:61
 #: ../src/gui/selectors/selectsource.py:61
-#: ../src/gui/widgets/grampletpane.py:1498
+#: ../src/gui/widgets/grampletpane.py:1500
 #: ../src/plugins/gramplet/PersonDetails.py:124
 #: ../src/plugins/textreport/TagReport.py:457
 #: ../src/plugins/view/citationtreeview.py:165
@@ -1227,7 +1227,7 @@ msgstr "Type"
 msgid "Title"
 msgstr "Tittel"
 
-#: ../src/ScratchPad.py:913 ../src/gui/editors/displaytabs/attrembedlist.py:64
+#: ../src/ScratchPad.py:914 ../src/gui/editors/displaytabs/attrembedlist.py:64
 #: ../src/gui/editors/displaytabs/dataembedlist.py:60
 #: ../src/plugins/gramplet/Attributes.py:47
 #: ../src/plugins/lib/libmetadata.py:161 ../src/plugins/tool/PatchNames.py:405
@@ -1242,29 +1242,29 @@ msgstr "Verdi"
 #. constants
 #.
 #. -------------------------------------------------------------------------
-#: ../src/ScratchPad.py:916 ../src/cli/clidbman.py:65
+#: ../src/ScratchPad.py:917 ../src/cli/clidbman.py:65
 #: ../src/gui/configure.py:1126
 msgid "Family Tree"
 msgstr "Slektstre"
 
-#: ../src/ScratchPad.py:1308 ../src/ScratchPad.py:1314
-#: ../src/ScratchPad.py:1353 ../src/ScratchPad.py:1397
+#: ../src/ScratchPad.py:1309 ../src/ScratchPad.py:1315
+#: ../src/ScratchPad.py:1354 ../src/ScratchPad.py:1398
 #: ../src/glade/scratchpad.glade.h:2
 msgid "Clipboard"
 msgstr "Utklippstavle"
 
-#: ../src/ScratchPad.py:1439 ../src/Simple/_SimpleTable.py:137
+#: ../src/ScratchPad.py:1440 ../src/Simple/_SimpleTable.py:138
 #, python-format
 msgid "the object|See %s details"
 msgstr "Vis %s detaljer"
 
 #. ---------------------------
-#: ../src/ScratchPad.py:1445 ../src/Simple/_SimpleTable.py:147
+#: ../src/ScratchPad.py:1446 ../src/Simple/_SimpleTable.py:148
 #, python-format
 msgid "the object|Make %s active"
 msgstr "Gjør %s aktiv"
 
-#: ../src/ScratchPad.py:1461
+#: ../src/ScratchPad.py:1462
 #, python-format
 msgid "the object|Create Filter from %s selected..."
 msgstr "Lag filter fra %s utvalgte..."
@@ -1338,43 +1338,43 @@ msgstr "Primærkilde"
 msgid "Child"
 msgstr "Barn"
 
-#: ../src/TransUtils.py:309
+#: ../src/TransUtils.py:311
 msgid "the person"
 msgstr "personen"
 
-#: ../src/TransUtils.py:311
+#: ../src/TransUtils.py:313
 msgid "the family"
 msgstr "familien"
 
-#: ../src/TransUtils.py:313
+#: ../src/TransUtils.py:315
 msgid "the place"
 msgstr "stedet"
 
-#: ../src/TransUtils.py:315
+#: ../src/TransUtils.py:317
 msgid "the event"
 msgstr "hendelsen"
 
-#: ../src/TransUtils.py:317
+#: ../src/TransUtils.py:319
 msgid "the repository"
 msgstr "oppbevaringsstedet"
 
-#: ../src/TransUtils.py:319
+#: ../src/TransUtils.py:321
 msgid "the note"
 msgstr "notatet"
 
-#: ../src/TransUtils.py:321
+#: ../src/TransUtils.py:323
 msgid "the media"
 msgstr "mediet"
 
-#: ../src/TransUtils.py:323
+#: ../src/TransUtils.py:325
 msgid "the source"
 msgstr "kilden"
 
-#: ../src/TransUtils.py:325
+#: ../src/TransUtils.py:327
 msgid "the filter"
 msgstr "filteret"
 
-#: ../src/TransUtils.py:327
+#: ../src/TransUtils.py:329
 msgid "See details"
 msgstr "Vis detaljer"
 
@@ -2385,32 +2385,32 @@ msgstr "_Gjør om %s"
 #: ../src/gen/db/upgrade.py:83
 #, python-format
 msgid "%6d  People        upgraded with %6d citations in %6d secs\n"
-msgstr ""
+msgstr "%6d Personer        oppgradert med %6d siteringer iløpet av %6d sekunder\n"
 
 #: ../src/gen/db/upgrade.py:84
 #, python-format
 msgid "%6d  Families      upgraded with %6d citations in %6d secs\n"
-msgstr ""
+msgstr "%6d Familier        oppgradert med %6d siteringer iløpet av %6d sekunder\n"
 
 #: ../src/gen/db/upgrade.py:85
 #, python-format
 msgid "%6d  Events        upgraded with %6d citations in %6d secs\n"
-msgstr ""
+msgstr "%6d Hendelser        oppgradert med %6d siteringer iløpet av %6d sekunder\n"
 
 #: ../src/gen/db/upgrade.py:86
 #, python-format
 msgid "%6d  Media Objects upgraded with %6d citations in %6d secs\n"
-msgstr ""
+msgstr "%6d Mediaobjekter        oppgradert med %6d siteringer iløpet av %6d sekunder\n"
 
 #: ../src/gen/db/upgrade.py:87
 #, python-format
 msgid "%6d  Places        upgraded with %6d citations in %6d secs\n"
-msgstr ""
+msgstr "%6d Steder        oppgradert med %6d siteringer iløpet av %6d sekunder\n"
 
 #: ../src/gen/db/upgrade.py:88
 #, python-format
 msgid "%6d  Repositories  upgraded with %6d citations in %6d secs\n"
-msgstr ""
+msgstr "%6d Oppbevaringssteder        oppgradert med %6d siteringer iløpet av %6d sekunder\n"
 
 #: ../src/gen/db/upgrade.py:416
 msgid "Number of new objects upgraded:\n"
@@ -2621,7 +2621,7 @@ msgid "Time"
 msgstr "Tid"
 
 #: ../src/gen/lib/childreftype.py:73 ../src/gui/configure.py:70
-#: ../src/plugins/tool/Check.py:1951
+#: ../src/plugins/tool/Check.py:2005
 #: ../src/Filters/SideBar/_CitationSidebarFilter.py:161
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:160
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:217
@@ -3391,7 +3391,7 @@ msgid "Source text"
 msgstr "Kildetekst"
 
 #: ../src/gen/lib/notetype.py:85 ../src/gen/plug/_pluginreg.py:76
-#: ../src/GrampsLogger/_ErrorView.py:135
+#: ../src/GrampsLogger/_ErrorView.py:136
 msgid "Report"
 msgstr "Rapporter"
 
@@ -3786,7 +3786,7 @@ msgstr "Registrerte ''%s"
 #: ../src/gen/plug/docgen/graphdoc.py:63
 #: ../src/plugins/textreport/AncestorReport.py:276
 #: ../src/plugins/textreport/AncestorReport.py:297
-#: ../src/plugins/textreport/BirthdayReport.py:379
+#: ../src/plugins/textreport/BirthdayReport.py:381
 #: ../src/plugins/textreport/DescendReport.py:401
 #: ../src/plugins/textreport/DetAncestralReport.py:736
 #: ../src/plugins/textreport/DetAncestralReport.py:758
@@ -3809,22 +3809,22 @@ msgid "TrueType / FreeSans"
 msgstr "Truetype / FreeSans"
 
 #: ../src/gen/plug/docgen/graphdoc.py:67
-#: ../src/plugins/view/pedigreeview.py:2197
+#: ../src/plugins/view/pedigreeview.py:2200
 msgid "Vertical (top to bottom)"
 msgstr "Loddrett (topp til bunn)"
 
 #: ../src/gen/plug/docgen/graphdoc.py:68
-#: ../src/plugins/view/pedigreeview.py:2198
+#: ../src/plugins/view/pedigreeview.py:2201
 msgid "Vertical (bottom to top)"
 msgstr "Loddrett (bunn til topp)"
 
 #: ../src/gen/plug/docgen/graphdoc.py:69
-#: ../src/plugins/view/pedigreeview.py:2199
+#: ../src/plugins/view/pedigreeview.py:2202
 msgid "Horizontal (left to right)"
 msgstr "Vannrett (venstre til høyre)"
 
 #: ../src/gen/plug/docgen/graphdoc.py:70
-#: ../src/plugins/view/pedigreeview.py:2200
+#: ../src/plugins/view/pedigreeview.py:2203
 msgid "Horizontal (right to left)"
 msgstr "Vannrett (høyre til venstre)"
 
@@ -4184,7 +4184,7 @@ msgstr "Dra og slipp kolonnen for å endre rekkefølgen"
 
 #. #################
 #: ../src/gui/columnorder.py:130 ../src/gui/configure.py:947
-#: ../src/plugins/drawreport/AncestorTree.py:907
+#: ../src/plugins/drawreport/AncestorTree.py:911
 #: ../src/plugins/drawreport/DescendTree.py:1487
 msgid "Display"
 msgstr "Vis"
@@ -4327,7 +4327,7 @@ msgid "Researcher"
 msgstr "Forsker"
 
 #: ../src/gui/configure.py:458 ../src/gui/filtereditor.py:295
-#: ../src/gui/editors/editperson.py:615
+#: ../src/gui/editors/editperson.py:610
 msgid "Media Object"
 msgstr "Mediaobjekt"
 
@@ -4391,7 +4391,7 @@ msgstr "Eksempel"
 #. label for the combo
 #: ../src/gui/configure.py:846 ../src/plugins/drawreport/Calendar.py:427
 #: ../src/plugins/textreport/AncestorReport.py:275
-#: ../src/plugins/textreport/BirthdayReport.py:378
+#: ../src/plugins/textreport/BirthdayReport.py:380
 #: ../src/plugins/textreport/DescendReport.py:400
 #: ../src/plugins/textreport/DetAncestralReport.py:735
 #: ../src/plugins/textreport/DetDescendantReport.py:899
@@ -4931,7 +4931,7 @@ msgstr "Notatfiltre"
 
 #: ../src/gui/filtereditor.py:89
 msgid "Citation Filters"
-msgstr "Filtre for kildehenvisning"
+msgstr "Siteringsfiltre"
 
 #: ../src/gui/filtereditor.py:93 ../src/Filters/Rules/Person/_HasEvent.py:49
 msgid "Personal event:"
@@ -5221,7 +5221,7 @@ msgstr "Filtertest"
 #: ../src/plugins/gramplet/bottombar.gpr.py:749
 #: ../src/plugins/graph/GVRelGraph.py:476
 #: ../src/plugins/quickview/quickview.gpr.py:127
-#: ../src/plugins/textreport/BirthdayReport.py:365
+#: ../src/plugins/textreport/BirthdayReport.py:367
 #: ../src/plugins/textreport/IndivComplete.py:672
 #: ../src/plugins/tool/SortEvents.py:168
 #: ../src/plugins/webreport/NarrativeWeb.py:7699
@@ -5350,7 +5350,7 @@ msgstr "Rediger Dato"
 #: ../src/plugins/quickview/FilterByName.py:97
 #: ../src/plugins/textreport/TagReport.py:284
 #: ../src/plugins/view/eventview.py:117
-#: ../src/plugins/view/geography.gpr.py:80 ../src/plugins/view/view.gpr.py:41
+#: ../src/plugins/view/geography.gpr.py:81 ../src/plugins/view/view.gpr.py:41
 #: ../src/plugins/webreport/NarrativeWeb.py:1650
 #: ../src/plugins/webreport/NarrativeWeb.py:1707
 #: ../src/plugins/webreport/NarrativeWeb.py:1759
@@ -5365,7 +5365,7 @@ msgstr "Hendelser"
 #: ../src/plugins/drawreport/drawplugins.gpr.py:170
 #: ../src/plugins/gramplet/gramplet.gpr.py:106
 #: ../src/plugins/gramplet/gramplet.gpr.py:115
-#: ../src/plugins/view/fanchartview.py:570
+#: ../src/plugins/view/fanchartview.py:571
 msgid "Fan Chart"
 msgstr "Vifteformet slektstavle"
 
@@ -5387,26 +5387,26 @@ msgid "Gramplets"
 msgstr "Smågramps"
 
 #: ../src/gui/grampsgui.py:119 ../src/gui/grampsgui.py:120
-#: ../src/gui/grampsgui.py:121 ../src/plugins/view/geography.gpr.py:57
-#: ../src/plugins/view/geography.gpr.py:73
-#: ../src/plugins/view/geography.gpr.py:89
-#: ../src/plugins/view/geography.gpr.py:106
+#: ../src/gui/grampsgui.py:121 ../src/plugins/view/geography.gpr.py:58
+#: ../src/plugins/view/geography.gpr.py:74
+#: ../src/plugins/view/geography.gpr.py:90
+#: ../src/plugins/view/geography.gpr.py:107
 msgid "Geography"
 msgstr "Geografi"
 
-#: ../src/gui/grampsgui.py:122 ../src/plugins/view/geoperson.py:165
+#: ../src/gui/grampsgui.py:122 ../src/plugins/view/geoperson.py:166
 msgid "GeoPerson"
 msgstr "GeoPerson"
 
-#: ../src/gui/grampsgui.py:123 ../src/plugins/view/geofamily.py:137
+#: ../src/gui/grampsgui.py:123 ../src/plugins/view/geofamily.py:138
 msgid "GeoFamily"
 msgstr "GeoFamilie"
 
-#: ../src/gui/grampsgui.py:124 ../src/plugins/view/geoevents.py:138
+#: ../src/gui/grampsgui.py:124 ../src/plugins/view/geoevents.py:139
 msgid "GeoEvents"
 msgstr "GeoHendelser"
 
-#: ../src/gui/grampsgui.py:125 ../src/plugins/view/geoplaces.py:138
+#: ../src/gui/grampsgui.py:125 ../src/plugins/view/geoplaces.py:139
 msgid "GeoPlaces"
 msgstr "GeoSteder"
 
@@ -5439,11 +5439,11 @@ msgstr "Notater"
 #. Go over parents and build their menu
 #. don't show rest
 #: ../src/gui/grampsgui.py:130 ../src/Merge/mergeperson.py:211
-#: ../src/plugins/gramplet/FanChartGramplet.py:836
+#: ../src/plugins/gramplet/FanChartGramplet.py:838
 #: ../src/plugins/quickview/all_relations.py:306
 #: ../src/plugins/tool/NotRelated.py:132
-#: ../src/plugins/view/fanchartview.py:905
-#: ../src/plugins/view/pedigreeview.py:1956 ../src/plugins/view/relview.py:511
+#: ../src/plugins/view/fanchartview.py:906
+#: ../src/plugins/view/pedigreeview.py:1959 ../src/plugins/view/relview.py:511
 #: ../src/plugins/view/relview.py:848 ../src/plugins/view/relview.py:882
 #: ../src/plugins/webreport/NarrativeWeb.py:332
 #: ../src/plugins/webreport/NarrativeWeb.py:2776
@@ -5462,13 +5462,13 @@ msgstr "Velg foreldre"
 
 #: ../src/gui/grampsgui.py:133 ../src/plugins/gramplet/gramplet.gpr.py:150
 #: ../src/plugins/gramplet/gramplet.gpr.py:156
-#: ../src/plugins/view/pedigreeview.py:689
+#: ../src/plugins/view/pedigreeview.py:692
 #: ../src/plugins/webreport/NarrativeWeb.py:5964
 msgid "Pedigree"
 msgstr "Stamtavle"
 
 #: ../src/gui/grampsgui.py:135 ../src/plugins/quickview/FilterByName.py:100
-#: ../src/plugins/view/geography.gpr.py:65
+#: ../src/plugins/view/geography.gpr.py:66
 #: ../src/plugins/view/placetreeview.gpr.py:34
 #: ../src/plugins/view/view.gpr.py:180
 #: ../src/plugins/webreport/NarrativeWeb.py:1651
@@ -5551,7 +5551,7 @@ msgid "Select"
 msgstr "Velg"
 
 #: ../src/gui/grampsgui.py:148 ../src/gui/grampsgui.py:149
-#: ../src/gui/editors/editperson.py:618
+#: ../src/gui/editors/editperson.py:613
 #: ../src/gui/editors/displaytabs/gallerytab.py:136
 #: ../src/plugins/view/mediaview.py:220
 msgid "View"
@@ -5580,7 +5580,7 @@ msgstr "Tilpass side"
 #: ../src/plugins/gramplet/bottombar.gpr.py:469
 #: ../src/plugins/view/view.gpr.py:227
 msgid "Citations"
-msgstr "Kildehenvisninger"
+msgstr "Siteringer"
 
 #: ../src/gui/grampsgui.py:159
 msgid "Export"
@@ -5971,7 +5971,7 @@ msgstr "Media:"
 #. What to include
 #. #########################
 #: ../src/gui/viewmanager.py:1545
-#: ../src/plugins/drawreport/AncestorTree.py:985
+#: ../src/plugins/drawreport/AncestorTree.py:989
 #: ../src/plugins/drawreport/DescendTree.py:1581
 #: ../src/plugins/textreport/DetAncestralReport.py:801
 #: ../src/plugins/textreport/DetDescendantReport.py:975
@@ -5981,7 +5981,7 @@ msgstr "Media:"
 msgid "Include"
 msgstr "Ta med"
 
-#: ../src/gui/viewmanager.py:1546 ../src/plugins/gramplet/StatsGramplet.py:190
+#: ../src/gui/viewmanager.py:1546 ../src/plugins/gramplet/StatsGramplet.py:194
 msgid "Megabyte|MB"
 msgstr "MB"
 
@@ -6200,11 +6200,11 @@ msgstr "Behandler for barnereferanser"
 #: ../src/gui/editors/editcitation.py:149
 #: ../src/gui/editors/editcitation.py:155
 msgid "New Citation"
-msgstr "Ny kildehenvisning"
+msgstr "Ny sitering"
 
 #: ../src/gui/editors/editcitation.py:386
 msgid "Edit Citation"
-msgstr "Redigere kildehenvisning"
+msgstr "Redigere siteringer"
 
 #: ../src/gui/editors/editcitation.py:392 ../src/gui/editors/editsource.py:181
 msgid "Cannot save source"
@@ -6216,7 +6216,7 @@ msgstr "Det finnes ikke data for denne kilden.  Skriv inn data eller avbryt endr
 
 #: ../src/gui/editors/editcitation.py:402
 msgid "Cannot save citation. ID already exists."
-msgstr "Kan ikke lagre kildehenvisningen. ID finnes allerede."
+msgstr "Kan ikke lagre siteringen. ID finnes allerede."
 
 #: ../src/gui/editors/editcitation.py:403
 #: ../src/gui/editors/editcitation.py:417
@@ -6241,17 +6241,17 @@ msgstr "Rediger kilde (%s)"
 #: ../src/gui/editors/editcitation.py:443
 #, python-format
 msgid "Add Citation (%s)"
-msgstr "Legg til kildehenvisning (%s)"
+msgstr "Legg til sitering (%s)"
 
 #: ../src/gui/editors/editcitation.py:449
 #, python-format
 msgid "Edit Citation (%s)"
-msgstr "Redigere kildehenvisning (%s)"
+msgstr "Redigere sitering (%s)"
 
 #: ../src/gui/editors/editcitation.py:532
 #, python-format
 msgid "Delete Citation (%s)"
-msgstr "Slett kildehenvisning (%s)"
+msgstr "Slett sitering (%s)"
 
 #: ../src/gui/editors/editevent.py:64
 msgid "manual|Editing_Information_About_Events"
@@ -6266,10 +6266,10 @@ msgstr "Hendelse: %s"
 msgid "New Event"
 msgstr "Ny hendelse"
 
-#: ../src/gui/editors/editevent.py:222 ../src/plugins/view/geoevents.py:319
-#: ../src/plugins/view/geoevents.py:346 ../src/plugins/view/geofamily.py:371
-#: ../src/plugins/view/geoperson.py:410 ../src/plugins/view/geoperson.py:430
-#: ../src/plugins/view/geoperson.py:468
+#: ../src/gui/editors/editevent.py:222 ../src/plugins/view/geoevents.py:323
+#: ../src/plugins/view/geoevents.py:350 ../src/plugins/view/geofamily.py:372
+#: ../src/plugins/view/geoperson.py:411 ../src/plugins/view/geoperson.py:431
+#: ../src/plugins/view/geoperson.py:469
 msgid "Edit Event"
 msgstr "Rediger hendelse"
 
@@ -6286,7 +6286,7 @@ msgid "Cannot save event. ID already exists."
 msgstr "Kan ikke lagre hendelse. ID finnes allerede."
 
 #: ../src/gui/editors/editevent.py:241 ../src/gui/editors/editmedia.py:280
-#: ../src/gui/editors/editperson.py:810 ../src/gui/editors/editplace.py:303
+#: ../src/gui/editors/editperson.py:806 ../src/gui/editors/editplace.py:303
 #: ../src/gui/editors/editrepository.py:172
 #: ../src/gui/editors/editsource.py:192
 #, python-format
@@ -6475,7 +6475,7 @@ msgid "New Family"
 msgstr "Ny familie"
 
 #: ../src/gui/editors/editfamily.py:493 ../src/gui/editors/editfamily.py:996
-#: ../src/plugins/view/geofamily.py:363
+#: ../src/plugins/view/geofamily.py:364
 msgid "Edit Family"
 msgstr "Rediger familie"
 
@@ -6755,27 +6755,27 @@ msgstr "Ny person: %(name)s"
 msgid "New Person"
 msgstr "Ny person"
 
-#: ../src/gui/editors/editperson.py:575 ../src/plugins/view/geofamily.py:367
+#: ../src/gui/editors/editperson.py:570 ../src/plugins/view/geofamily.py:368
 msgid "Edit Person"
 msgstr "Rediger person"
 
-#: ../src/gui/editors/editperson.py:619
+#: ../src/gui/editors/editperson.py:615
 msgid "Edit Object Properties"
 msgstr "Rediger objektegenskapene"
 
-#: ../src/gui/editors/editperson.py:658
+#: ../src/gui/editors/editperson.py:654
 msgid "Make Active Person"
 msgstr "Gjør person aktiv"
 
-#: ../src/gui/editors/editperson.py:662
+#: ../src/gui/editors/editperson.py:658
 msgid "Make Home Person"
 msgstr "Gjør til startperson"
 
-#: ../src/gui/editors/editperson.py:773
+#: ../src/gui/editors/editperson.py:769
 msgid "Problem changing the gender"
 msgstr "Problem med å endre kjønn"
 
-#: ../src/gui/editors/editperson.py:774
+#: ../src/gui/editors/editperson.py:770
 msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
@@ -6783,50 +6783,50 @@ msgstr ""
 "Endring av kjønn førte til problemer med informasjonen om ekteskapet.\n"
 "Sjekk personens giftemål."
 
-#: ../src/gui/editors/editperson.py:785
+#: ../src/gui/editors/editperson.py:781
 msgid "Cannot save person"
 msgstr "Kan ikke lagre personen"
 
-#: ../src/gui/editors/editperson.py:786
+#: ../src/gui/editors/editperson.py:782
 msgid "No data exists for this person. Please enter data or cancel the edit."
 msgstr "Det er angitt data for denne personen.  Skriv inn data eller avbryt endringen."
 
-#: ../src/gui/editors/editperson.py:809
+#: ../src/gui/editors/editperson.py:805
 msgid "Cannot save person. ID already exists."
 msgstr "Kan ikke lagre personen. ID finnes allerede."
 
-#: ../src/gui/editors/editperson.py:827
+#: ../src/gui/editors/editperson.py:823
 #, python-format
 msgid "Add Person (%s)"
 msgstr "Legg til person (%s)"
 
-#: ../src/gui/editors/editperson.py:833
+#: ../src/gui/editors/editperson.py:829
 #, python-format
 msgid "Edit Person (%s)"
 msgstr "Rediger person (%s)"
 
-#: ../src/gui/editors/editperson.py:922
+#: ../src/gui/editors/editperson.py:920
 #: ../src/gui/editors/displaytabs/gallerytab.py:251
 msgid "Non existing media found in the Gallery"
 msgstr "Ingen eksisterende media ble funnet i Galleriet"
 
-#: ../src/gui/editors/editperson.py:1058
+#: ../src/gui/editors/editperson.py:1056
 msgid "Unknown gender specified"
 msgstr "Det angitte kjønnet er ukjent"
 
-#: ../src/gui/editors/editperson.py:1060
+#: ../src/gui/editors/editperson.py:1058
 msgid "The gender of the person is currently unknown. Usually, this is a mistake. Please specify the gender."
 msgstr "Kjønnet til personen er for øyeblikket ukjent. Vanligvis er dette en feil. Spesifiser kjønn."
 
-#: ../src/gui/editors/editperson.py:1063
+#: ../src/gui/editors/editperson.py:1061
 msgid "_Male"
 msgstr "_Hankjønn"
 
-#: ../src/gui/editors/editperson.py:1064
+#: ../src/gui/editors/editperson.py:1062
 msgid "_Female"
 msgstr "Hu_nkjønn"
 
-#: ../src/gui/editors/editperson.py:1065
+#: ../src/gui/editors/editperson.py:1063
 msgid "_Unknown"
 msgstr "_Ukjent"
 
@@ -6882,7 +6882,7 @@ msgstr "48.21\"E, -18.2412 eller -18:9:48.21)"
 
 #: ../src/gui/editors/editplace.py:229
 #: ../src/plugins/lib/maps/geography.py:882
-#: ../src/plugins/view/geoplaces.py:287 ../src/plugins/view/geoplaces.py:306
+#: ../src/plugins/view/geoplaces.py:293 ../src/plugins/view/geoplaces.py:312
 msgid "Edit Place"
 msgstr "Rediger sted"
 
@@ -6913,11 +6913,11 @@ msgstr "Rediger sted (%s)"
 msgid "Delete Place (%s)"
 msgstr "Slett sted (%s)"
 
-#: ../src/gui/editors/editprimary.py:234
+#: ../src/gui/editors/editprimary.py:235
 msgid "Save Changes?"
 msgstr "Lagre endringer?"
 
-#: ../src/gui/editors/editprimary.py:235
+#: ../src/gui/editors/editprimary.py:236
 msgid "If you close without saving, the changes you have made will be lost"
 msgstr "Hvis du lukker uten å lagre, vil dine endringer gå tapt"
 
@@ -7080,7 +7080,7 @@ msgid "Remove"
 msgstr "Fjern"
 
 #: ../src/gui/editors/displaytabs/buttontab.py:71
-#: ../src/gui/editors/displaytabs/embeddedlist.py:123
+#: ../src/gui/editors/displaytabs/embeddedlist.py:124
 #: ../src/gui/editors/displaytabs/gallerytab.py:126
 #: ../src/plugins/view/relview.py:403
 msgid "Share"
@@ -7100,28 +7100,28 @@ msgstr "Flytt ned"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:71
 msgid "Create and add a new citation and new source"
-msgstr "Lag og legg til en ny kildehenvisning og ny kilde"
+msgstr "Lag og legg til en ny sitering og ny kilde"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:72
 msgid "Remove the existing citation"
-msgstr "Fjern den eksisterende kildehenvisningen"
+msgstr "Fjern den eksisterende siteringen"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:73
 #: ../src/plugins/view/citationlistview.py:121
 msgid "Edit the selected citation"
-msgstr "Rediger den valgte kildehenvisningen"
+msgstr "Rediger den valgte siteringen"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:74
 msgid "Add an existing citation or source"
-msgstr "Legg til en eksisterende kildehenvisning eller kilde"
+msgstr "Legg til en eksisterende siteringen eller kilde"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:75
 msgid "Move the selected citation upwards"
-msgstr "Flytt den valgte kildehenvisningen opp"
+msgstr "Flytt den valgte siteringen oppover"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:76
 msgid "Move the selected citation downwards"
-msgstr "Flytt den valgte kildehenvisningen ned"
+msgstr "Flytt den valgte siteringen nedover"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:83
 #: ../src/plugins/gramplet/Citations.py:49
@@ -7139,7 +7139,7 @@ msgstr "Side"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:92
 msgid "_Source Citations"
-msgstr "_Kildereferanser"
+msgstr "Kilde_sitering"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:172
 #: ../src/gui/editors/displaytabs/citationembedlist.py:182
@@ -7159,9 +7159,9 @@ msgid ""
 "\n"
 "To edit this citation, you need to close the object."
 msgstr ""
-"Denne kildehenvisningen  kan ikke lages nå.  Enten er den tilhørende kilden allerede endret, eller så er en annen kildehenvisning som tilhører kilden endret.\n"
+"Denne siteringen  kan ikke lages nå.  Enten er den tilhørende kilden allerede endret, eller så er en annen kildehenvisning som tilhører kilden endret.\n"
 "\n"
-"For å endre denne kikdereferansen må du lukke objektet."
+"For å redigere denne siteringen må du lukke objektet."
 
 #: ../src/gui/editors/displaytabs/dataembedlist.py:49
 msgid "Create and add a new data entry"
@@ -7398,13 +7398,13 @@ msgstr "Sett som standardnavn"
 #.
 #. -------------------------------------------------------------------------
 #: ../src/gui/editors/displaytabs/namemodel.py:53
-#: ../src/gui/plug/_guioptions.py:1192 ../src/gui/views/listview.py:500
+#: ../src/gui/plug/_guioptions.py:1192 ../src/gui/views/listview.py:501
 #: ../src/gui/views/tags.py:478 ../src/plugins/quickview/all_relations.py:307
 msgid "Yes"
 msgstr "Ja"
 
 #: ../src/gui/editors/displaytabs/namemodel.py:54
-#: ../src/gui/plug/_guioptions.py:1191 ../src/gui/views/listview.py:501
+#: ../src/gui/plug/_guioptions.py:1191 ../src/gui/views/listview.py:502
 #: ../src/gui/views/tags.py:479 ../src/plugins/quickview/all_relations.py:311
 msgid "No"
 msgstr "Nei"
@@ -7761,8 +7761,7 @@ msgstr "Skjult"
 msgid "Visible"
 msgstr "Synlig"
 
-#: ../src/gui/plug/_windows.py:82 ../src/plugins/gramplet/gramplet.gpr.py:167
-#: ../src/plugins/gramplet/gramplet.gpr.py:174
+#: ../src/gui/plug/_windows.py:82
 msgid "Plugin Manager"
 msgstr "Behandler for programtillegg"
 
@@ -7893,7 +7892,7 @@ msgstr "Detaljert informasjon"
 msgid "Plugin Error"
 msgstr "Feil for programtillegg"
 
-#: ../src/gui/plug/_windows.py:1023 ../src/plugins/tool/OwnerEditor.py:161
+#: ../src/gui/plug/_windows.py:1023 ../src/plugins/tool/OwnerEditor.py:162
 msgid "Main window"
 msgstr "Hovedvindu"
 
@@ -7958,7 +7957,7 @@ msgstr "Stil"
 #: ../src/plugins/drawreport/TimeLine.py:367
 #: ../src/plugins/graph/GVRelGraph.py:473
 #: ../src/plugins/textreport/AncestorReport.py:266
-#: ../src/plugins/textreport/BirthdayReport.py:358
+#: ../src/plugins/textreport/BirthdayReport.py:360
 #: ../src/plugins/textreport/DescendReport.py:391
 #: ../src/plugins/textreport/DetAncestralReport.py:726
 #: ../src/plugins/textreport/DetDescendantReport.py:890
@@ -8112,7 +8111,7 @@ msgstr "Du må velge en aktiv person for at dette verktøyet skal fungere ordent
 
 #: ../src/gui/selectors/selectcitation.py:59
 msgid "Select Source or Citation"
-msgstr "Velg kilde eller kildehenvisning"
+msgstr "Velg kilde eller sitering"
 
 #: ../src/gui/selectors/selectevent.py:54
 msgid "Select Event"
@@ -8166,91 +8165,91 @@ msgstr "Velg Oppbevaringssted"
 msgid "Select Source"
 msgstr "Velg kilde"
 
-#: ../src/gui/views/listview.py:201 ../src/plugins/lib/libpersonview.py:364
+#: ../src/gui/views/listview.py:202 ../src/plugins/lib/libpersonview.py:364
 msgid "_Add..."
 msgstr "_Legg til..."
 
-#: ../src/gui/views/listview.py:203 ../src/plugins/lib/libpersonview.py:366
+#: ../src/gui/views/listview.py:204 ../src/plugins/lib/libpersonview.py:366
 msgid "_Remove"
 msgstr "Fjern"
 
-#: ../src/gui/views/listview.py:205 ../src/plugins/lib/libpersonview.py:368
+#: ../src/gui/views/listview.py:206 ../src/plugins/lib/libpersonview.py:368
 msgid "_Merge..."
 msgstr "Flett sa_mmen..."
 
-#: ../src/gui/views/listview.py:207 ../src/plugins/lib/libpersonview.py:370
+#: ../src/gui/views/listview.py:208 ../src/plugins/lib/libpersonview.py:370
 msgid "Export View..."
 msgstr "Eksporter visningsresultat..."
 
-#: ../src/gui/views/listview.py:213 ../src/plugins/lib/libpersonview.py:354
+#: ../src/gui/views/listview.py:214 ../src/plugins/lib/libpersonview.py:354
 msgid "action|_Edit..."
 msgstr "R_edigere..."
 
-#: ../src/gui/views/listview.py:400
+#: ../src/gui/views/listview.py:401
 msgid "Active object not visible"
 msgstr "Det aktive objektet er ikke synlig"
 
-#: ../src/gui/views/listview.py:411 ../src/gui/views/navigationview.py:255
+#: ../src/gui/views/listview.py:412 ../src/gui/views/navigationview.py:255
 #: ../src/plugins/view/familyview.py:242
 msgid "Could Not Set a Bookmark"
 msgstr "Klarte ikke å opprette bokmerket"
 
-#: ../src/gui/views/listview.py:412
+#: ../src/gui/views/listview.py:413
 msgid "A bookmark could not be set because nothing was selected."
 msgstr "Bokmerket kunne ikke lages fordi ingen er valgt."
 
-#: ../src/gui/views/listview.py:497
+#: ../src/gui/views/listview.py:498
 msgid "Remove selected items?"
 msgstr "Fjern valgte element?"
 
-#: ../src/gui/views/listview.py:498
+#: ../src/gui/views/listview.py:499
 msgid "More than one item has been selected for deletion. Ask before deleting each one?"
 msgstr "Mer enn ett element som skal slettes er valgt. Spør ved sletting av hvert enkelt?"
 
-#: ../src/gui/views/listview.py:511
+#: ../src/gui/views/listview.py:512
 msgid "This item is currently being used. Deleting it will remove it from the database and from all other items that reference it."
 msgstr "Dette elementet er i bruk. Hvis du fjerner det vil elementet samt alle henvisninger til det bli slettet."
 
-#: ../src/gui/views/listview.py:515 ../src/plugins/view/familyview.py:256
+#: ../src/gui/views/listview.py:516 ../src/plugins/view/familyview.py:256
 msgid "Deleting item will remove it from the database."
 msgstr "Sletting av elementet vil fjerne det fra databasen."
 
-#: ../src/gui/views/listview.py:522 ../src/plugins/lib/libpersonview.py:298
+#: ../src/gui/views/listview.py:523 ../src/plugins/lib/libpersonview.py:298
 #: ../src/plugins/view/familyview.py:258
 #, python-format
 msgid "Delete %s?"
 msgstr "Vil du slette %s?"
 
-#: ../src/gui/views/listview.py:523 ../src/plugins/view/familyview.py:259
+#: ../src/gui/views/listview.py:524 ../src/plugins/view/familyview.py:259
 msgid "_Delete Item"
 msgstr "_Slett element"
 
-#: ../src/gui/views/listview.py:565
+#: ../src/gui/views/listview.py:566
 msgid "Column clicked, sorting..."
 msgstr "Kolonne valgt, sorterer..."
 
-#: ../src/gui/views/listview.py:921
+#: ../src/gui/views/listview.py:922
 msgid "Export View as Spreadsheet"
 msgstr "Eksportere visningsresultat som et regneark"
 
-#: ../src/gui/views/listview.py:929 ../src/glade/mergenote.glade.h:4
+#: ../src/gui/views/listview.py:930 ../src/glade/mergenote.glade.h:4
 msgid "Format:"
 msgstr "Format:"
 
-#: ../src/gui/views/listview.py:934
+#: ../src/gui/views/listview.py:935
 msgid "CSV"
 msgstr "CSV"
 
-#: ../src/gui/views/listview.py:935
+#: ../src/gui/views/listview.py:936
 msgid "OpenDocument Spreadsheet"
 msgstr "Open Document Regneark"
 
-#: ../src/gui/views/listview.py:1062 ../src/gui/views/listview.py:1082
+#: ../src/gui/views/listview.py:1063 ../src/gui/views/listview.py:1083
 #: ../src/Filters/_SearchBar.py:165
 msgid "Updating display..."
 msgstr "Oppdater visningen ..."
 
-#: ../src/gui/views/listview.py:1128
+#: ../src/gui/views/listview.py:1129
 msgid "Columns"
 msgstr "Kolonner"
 
@@ -8303,12 +8302,20 @@ msgstr "Gå til standardpersonen"
 msgid "Set _Home Person"
 msgstr "Angi som startperson"
 
-#: ../src/gui/views/navigationview.py:338
+#: ../src/gui/views/navigationview.py:335
+msgid "No Home Person"
+msgstr "Startperson er ikke valgt"
+
+#: ../src/gui/views/navigationview.py:336
+msgid "You need to set a 'default person' to go to."
+msgstr "Du må angi en 'standardpersonen' å gå til."
+
 #: ../src/gui/views/navigationview.py:342
+#: ../src/gui/views/navigationview.py:346
 msgid "Jump to by Gramps ID"
 msgstr "Hopp til Gramps ID"
 
-#: ../src/gui/views/navigationview.py:367
+#: ../src/gui/views/navigationview.py:371
 #, python-format
 msgid "Error: %s is not a valid Gramps ID"
 msgstr "Feil: %s er ikke en gyldig Gramps-ID"
@@ -8502,27 +8509,27 @@ msgstr "Høyreklikk for å legge til smågramps"
 msgid "Untitled Gramplet"
 msgstr "Smågramps uten navn"
 
-#: ../src/gui/widgets/grampletpane.py:1470
+#: ../src/gui/widgets/grampletpane.py:1472
 msgid "Number of Columns"
 msgstr "Antall kolonner"
 
-#: ../src/gui/widgets/grampletpane.py:1475
+#: ../src/gui/widgets/grampletpane.py:1477
 msgid "Gramplet Layout"
 msgstr "Innstillinger for Smågramps"
 
-#: ../src/gui/widgets/grampletpane.py:1505
+#: ../src/gui/widgets/grampletpane.py:1507
 msgid "Use maximum height available"
 msgstr "Bruk største tilgjengelige høyde"
 
-#: ../src/gui/widgets/grampletpane.py:1511
+#: ../src/gui/widgets/grampletpane.py:1513
 msgid "Height if not maximized"
 msgstr "Høyde om det ikke er maksimert"
 
-#: ../src/gui/widgets/grampletpane.py:1518
+#: ../src/gui/widgets/grampletpane.py:1520
 msgid "Detached width"
 msgstr "Bredde, frikoblet"
 
-#: ../src/gui/widgets/grampletpane.py:1525
+#: ../src/gui/widgets/grampletpane.py:1527
 msgid "Detached height"
 msgstr "Høyde, frikoblet"
 
@@ -8641,41 +8648,41 @@ msgstr "Dette feltet er obligatorisk"
 msgid "'%s' is not a valid date value"
 msgstr "'%s' er ikke en gyldig dato"
 
-#: ../src/Simple/_SimpleTable.py:160
+#: ../src/Simple/_SimpleTable.py:161
 msgid "See data not in Filter"
 msgstr "Velg data som ikke er i filter"
 
-#: ../src/config.py:288
+#: ../src/config.py:289
 msgid "Missing Given Name"
 msgstr "Mangler fornavn"
 
-#: ../src/config.py:289
+#: ../src/config.py:290
 msgid "Missing Record"
 msgstr "Mangler forekomst"
 
-#: ../src/config.py:290
+#: ../src/config.py:291
 msgid "Missing Surname"
 msgstr "Mangler etternavn"
 
-#: ../src/config.py:297 ../src/config.py:299
+#: ../src/config.py:298 ../src/config.py:300
 msgid "Living"
 msgstr "Levende"
 
-#: ../src/config.py:298
+#: ../src/config.py:299
 msgid "Private Record"
 msgstr "Privat forekomst"
 
 #: ../src/Merge/mergecitation.py:50
 msgid "manual|Merge_Citations"
-msgstr "Flett_sammen_kildehenvisninger"
+msgstr "Flett_sammen_siteringer"
 
 #: ../src/Merge/mergecitation.py:72 ../src/plugins/tool/tools.gpr.py:529
 msgid "Merge Citations"
-msgstr "Flett sammen kildehenvisninger"
+msgstr "Flett sammen siteringer"
 
 #: ../src/Merge/mergecitation.py:193 ../src/plugins/tool/MergeCitations.py:188
 msgid "Merge Citation"
-msgstr "Flett sammen kildehenvisning"
+msgstr "Flett sammen sitering"
 
 #: ../src/Merge/mergeevent.py:49
 msgid "manual|Merge_Events"
@@ -8727,15 +8734,15 @@ msgstr "Flett sammen mediaobjekt"
 msgid "manual|Merge_Notes"
 msgstr "Flett_sammen_notater"
 
-#: ../src/Merge/mergenote.py:71 ../src/Merge/mergenote.py:203
+#: ../src/Merge/mergenote.py:71 ../src/Merge/mergenote.py:205
 msgid "Merge Notes"
 msgstr "Flett sammen notater"
 
-#: ../src/Merge/mergenote.py:96
+#: ../src/Merge/mergenote.py:98
 msgid "flowed"
 msgstr "flytende"
 
-#: ../src/Merge/mergenote.py:96
+#: ../src/Merge/mergenote.py:98
 msgid "preformatted"
 msgstr "formattert"
 
@@ -8762,10 +8769,10 @@ msgstr "Fant ingen foreldre"
 
 #. Go over spouses and build their menu
 #: ../src/Merge/mergeperson.py:222
-#: ../src/plugins/gramplet/FanChartGramplet.py:722
+#: ../src/plugins/gramplet/FanChartGramplet.py:724
 #: ../src/plugins/textreport/KinshipReport.py:125
-#: ../src/plugins/view/fanchartview.py:791
-#: ../src/plugins/view/pedigreeview.py:1836
+#: ../src/plugins/view/fanchartview.py:792
+#: ../src/plugins/view/pedigreeview.py:1839
 msgid "Spouses"
 msgstr "Ektefeller"
 
@@ -8953,7 +8960,7 @@ msgstr "Gramps oppdaget en uventet feil"
 msgid "Your data will be safe but it would be advisable to restart Gramps immediately. If you would like to report the problem to the Gramps team please click Report and the Error Reporting Wizard will help you to make a bug report."
 msgstr "Dine data vil være trygge, men det anbefales at du tar en omstart av Gramps med en gang.  Hvis du ønsker å rapportere feilen til utviklerne av Gramps, klikk Rapporter og Feilrapporteringshjelperen vil hjelpe deg med å lage en feilrapport."
 
-#: ../src/GrampsLogger/_ErrorView.py:114 ../src/GrampsLogger/_ErrorView.py:127
+#: ../src/GrampsLogger/_ErrorView.py:114 ../src/GrampsLogger/_ErrorView.py:128
 msgid "Error Detail"
 msgstr "Feildetaljer"
 
@@ -9203,8 +9210,8 @@ msgid "The style used for headings."
 msgstr "Stilen som brukes på titler."
 
 #: ../src/plugins/Records.py:611
-#: ../src/plugins/drawreport/AncestorTree.py:1066
-#: ../src/plugins/drawreport/DescendTree.py:1669
+#: ../src/plugins/drawreport/AncestorTree.py:1070
+#: ../src/plugins/drawreport/DescendTree.py:1670
 #: ../src/plugins/drawreport/FanChart.py:456
 #: ../src/plugins/textreport/AncestorReport.py:367
 #: ../src/plugins/textreport/DetAncestralReport.py:904
@@ -9408,13 +9415,13 @@ msgstr "Indeks"
 #. ------------------------------------------------------------------------
 #: ../src/plugins/drawreport/AncestorTree.py:72
 #: ../src/plugins/drawreport/DescendTree.py:59
-#: ../src/plugins/view/pedigreeview.py:83
+#: ../src/plugins/view/pedigreeview.py:84
 msgid "short for born|b."
 msgstr "f."
 
 #: ../src/plugins/drawreport/AncestorTree.py:73
 #: ../src/plugins/drawreport/DescendTree.py:60
-#: ../src/plugins/view/pedigreeview.py:84
+#: ../src/plugins/view/pedigreeview.py:85
 msgid "short for died|d."
 msgstr "d."
 
@@ -9429,32 +9436,32 @@ msgstr "g."
 msgid "Ancestor Graph for %s"
 msgstr "Anetavle for %s"
 
-#: ../src/plugins/drawreport/AncestorTree.py:697
-#: ../src/plugins/drawreport/AncestorTree.py:783
+#: ../src/plugins/drawreport/AncestorTree.py:698
+#: ../src/plugins/drawreport/AncestorTree.py:787
 #: ../src/plugins/drawreport/drawplugins.gpr.py:48
 msgid "Ancestor Tree"
 msgstr "Anetre"
 
-#: ../src/plugins/drawreport/AncestorTree.py:698
+#: ../src/plugins/drawreport/AncestorTree.py:699
 msgid "Making the Tree..."
 msgstr "Lager slektstreet..."
 
-#: ../src/plugins/drawreport/AncestorTree.py:784
+#: ../src/plugins/drawreport/AncestorTree.py:788
 msgid "Printing the Tree..."
 msgstr "Skriver ut treet..."
 
 #. #################
-#: ../src/plugins/drawreport/AncestorTree.py:864
+#: ../src/plugins/drawreport/AncestorTree.py:868
 #: ../src/plugins/drawreport/DescendTree.py:1452
 msgid "Tree Options"
 msgstr "Treopsjoner"
 
-#: ../src/plugins/drawreport/AncestorTree.py:866
+#: ../src/plugins/drawreport/AncestorTree.py:870
 #: ../src/plugins/drawreport/Calendar.py:417
 #: ../src/plugins/drawreport/FanChart.py:396
 #: ../src/plugins/graph/GVHourGlass.py:261
 #: ../src/plugins/textreport/AncestorReport.py:268
-#: ../src/plugins/textreport/BirthdayReport.py:370
+#: ../src/plugins/textreport/BirthdayReport.py:372
 #: ../src/plugins/textreport/DescendReport.py:393
 #: ../src/plugins/textreport/DetAncestralReport.py:728
 #: ../src/plugins/textreport/DetDescendantReport.py:892
@@ -9464,11 +9471,11 @@ msgstr "Treopsjoner"
 msgid "Center Person"
 msgstr "Senterperson"
 
-#: ../src/plugins/drawreport/AncestorTree.py:867
+#: ../src/plugins/drawreport/AncestorTree.py:871
 msgid "The center person for the tree"
 msgstr "Senterpersonen for dette treet"
 
-#: ../src/plugins/drawreport/AncestorTree.py:870
+#: ../src/plugins/drawreport/AncestorTree.py:874
 #: ../src/plugins/drawreport/DescendTree.py:1472
 #: ../src/plugins/drawreport/FanChart.py:400
 #: ../src/plugins/textreport/AncestorReport.py:282
@@ -9478,12 +9485,12 @@ msgstr "Senterpersonen for dette treet"
 msgid "Generations"
 msgstr "Generasjoner"
 
-#: ../src/plugins/drawreport/AncestorTree.py:871
+#: ../src/plugins/drawreport/AncestorTree.py:875
 #: ../src/plugins/drawreport/DescendTree.py:1473
 msgid "The number of generations to include in the tree"
 msgstr "Antall generasjoner som skal være med i treet"
 
-#: ../src/plugins/drawreport/AncestorTree.py:875
+#: ../src/plugins/drawreport/AncestorTree.py:879
 msgid ""
 "Display unknown\n"
 "generations"
@@ -9491,16 +9498,16 @@ msgstr ""
 "Vise ukjente\n"
 "generasjoner"
 
-#: ../src/plugins/drawreport/AncestorTree.py:877
+#: ../src/plugins/drawreport/AncestorTree.py:881
 msgid "The number of generations of empty boxes that will be displayed"
 msgstr "Antall generasjoner med tomme bokser som skal være med i rapporten"
 
-#: ../src/plugins/drawreport/AncestorTree.py:884
+#: ../src/plugins/drawreport/AncestorTree.py:888
 #: ../src/plugins/drawreport/DescendTree.py:1481
 msgid "Co_mpress tree"
 msgstr "Ko_mprimere tre"
 
-#: ../src/plugins/drawreport/AncestorTree.py:885
+#: ../src/plugins/drawreport/AncestorTree.py:889
 msgid "Whether to remove any extra blank spaces set aside for people that are unknown"
 msgstr "Om ekstra mellomrom skal fjernes ved navn for ukjente personer"
 
@@ -9513,7 +9520,7 @@ msgstr "Om ekstra mellomrom skal fjernes ved navn for ukjente personer"
 #. "Display Format"))
 #. Spouse_disp.set_help(_("Show spouses of the center person?"))
 #. menu.add_option(category_name, "Spouse_disp", Spouse_disp)
-#: ../src/plugins/drawreport/AncestorTree.py:899
+#: ../src/plugins/drawreport/AncestorTree.py:903
 msgid ""
 "Center person uses\n"
 "which format"
@@ -9521,19 +9528,19 @@ msgstr ""
 "Hovedperson bruker\n"
 "hvilket format"
 
-#: ../src/plugins/drawreport/AncestorTree.py:901
+#: ../src/plugins/drawreport/AncestorTree.py:905
 msgid "Use Fathers Display format"
 msgstr "Bruk fedres visningsformat"
 
-#: ../src/plugins/drawreport/AncestorTree.py:902
+#: ../src/plugins/drawreport/AncestorTree.py:906
 msgid "Use Mothers display format"
 msgstr "Bruk mødres visningsformat"
 
-#: ../src/plugins/drawreport/AncestorTree.py:903
+#: ../src/plugins/drawreport/AncestorTree.py:907
 msgid "Which Display format to use the center person"
 msgstr "Hvilket visningsformat som skal brukes for senterpersonen"
 
-#: ../src/plugins/drawreport/AncestorTree.py:909
+#: ../src/plugins/drawreport/AncestorTree.py:913
 msgid ""
 "Father\n"
 "Display Format"
@@ -9541,7 +9548,7 @@ msgstr ""
 "Far\n"
 "visningsformat"
 
-#: ../src/plugins/drawreport/AncestorTree.py:913
+#: ../src/plugins/drawreport/AncestorTree.py:917
 msgid "Display format for the fathers box."
 msgstr "Visningsformat til boksen for utdata."
 
@@ -9552,7 +9559,7 @@ msgstr "Visningsformat til boksen for utdata."
 #. missing.set_help(_("What will print when information is not known"))
 #. menu.add_option(category_name, "miss_val", missing)
 #. category_name = _("Secondary")
-#: ../src/plugins/drawreport/AncestorTree.py:926
+#: ../src/plugins/drawreport/AncestorTree.py:930
 msgid ""
 "Mother\n"
 "Display Format"
@@ -9560,21 +9567,21 @@ msgstr ""
 "Mor\n"
 "visningsformat"
 
-#: ../src/plugins/drawreport/AncestorTree.py:932
+#: ../src/plugins/drawreport/AncestorTree.py:936
 msgid "Display format for the mothers box."
 msgstr "Visningsformat for bokser med mødre."
 
-#: ../src/plugins/drawreport/AncestorTree.py:935
+#: ../src/plugins/drawreport/AncestorTree.py:939
 #: ../src/plugins/drawreport/DescendTree.py:1521
 msgid "Include Marriage box"
 msgstr "Ta med ekteskapsbokser"
 
-#: ../src/plugins/drawreport/AncestorTree.py:937
+#: ../src/plugins/drawreport/AncestorTree.py:941
 #: ../src/plugins/drawreport/DescendTree.py:1523
 msgid "Whether to include a separate marital box in the report"
 msgstr "Om egne ekteskapsbokser skal være med i rapporten"
 
-#: ../src/plugins/drawreport/AncestorTree.py:940
+#: ../src/plugins/drawreport/AncestorTree.py:944
 #: ../src/plugins/drawreport/DescendTree.py:1526
 msgid ""
 "Marriage\n"
@@ -9583,43 +9590,43 @@ msgstr ""
 "Visningsformat\n"
 "for ekteskap"
 
-#: ../src/plugins/drawreport/AncestorTree.py:941
+#: ../src/plugins/drawreport/AncestorTree.py:945
 #: ../src/plugins/drawreport/DescendTree.py:1527
 msgid "Display format for the marital box."
 msgstr "Visningsformat til bokser med ekteskapsdata."
 
 #. #################
-#: ../src/plugins/drawreport/AncestorTree.py:945
+#: ../src/plugins/drawreport/AncestorTree.py:949
 #: ../src/plugins/drawreport/DescendTree.py:1540
 msgid "Size"
 msgstr "Størrelse"
 
-#: ../src/plugins/drawreport/AncestorTree.py:947
+#: ../src/plugins/drawreport/AncestorTree.py:951
 #: ../src/plugins/drawreport/DescendTree.py:1542
 msgid "Scale tree to fit"
 msgstr "Skalere treet så det passer"
 
-#: ../src/plugins/drawreport/AncestorTree.py:948
+#: ../src/plugins/drawreport/AncestorTree.py:952
 #: ../src/plugins/drawreport/DescendTree.py:1543
 msgid "Do not scale tree"
 msgstr "Ikke skalere treet"
 
-#: ../src/plugins/drawreport/AncestorTree.py:949
+#: ../src/plugins/drawreport/AncestorTree.py:953
 #: ../src/plugins/drawreport/DescendTree.py:1544
 msgid "Scale tree to fit page width only"
 msgstr "Skalere treet slik at det passer i bredden"
 
-#: ../src/plugins/drawreport/AncestorTree.py:950
+#: ../src/plugins/drawreport/AncestorTree.py:954
 #: ../src/plugins/drawreport/DescendTree.py:1545
 msgid "Scale tree to fit the size of the page"
 msgstr "Skalere treet slik at det passer på en side"
 
-#: ../src/plugins/drawreport/AncestorTree.py:952
+#: ../src/plugins/drawreport/AncestorTree.py:956
 #: ../src/plugins/drawreport/DescendTree.py:1547
 msgid "Whether to scale the tree to fit a specific paper size"
 msgstr "Om treet skal skaleres for å passe inn på en side"
 
-#: ../src/plugins/drawreport/AncestorTree.py:958
+#: ../src/plugins/drawreport/AncestorTree.py:962
 #: ../src/plugins/drawreport/DescendTree.py:1553
 msgid ""
 "Resize Page to Fit Tree size\n"
@@ -9629,7 +9636,7 @@ msgstr ""
 "Endre sidestørrelse for å tilpasse trestørrelsen.\n"
 "Merk: Overstyrer innstillingene i flippen for 'Papirstørrelse'"
 
-#: ../src/plugins/drawreport/AncestorTree.py:964
+#: ../src/plugins/drawreport/AncestorTree.py:968
 #: ../src/plugins/drawreport/DescendTree.py:1559
 msgid ""
 "Whether to resize the page to fit the size \n"
@@ -9663,68 +9670,68 @@ msgstr ""
 "  vil sidestørrelsen bli endret for å fjerne alle mellomrom\n"
 "  enten i høyde eller bredde"
 
-#: ../src/plugins/drawreport/AncestorTree.py:987
+#: ../src/plugins/drawreport/AncestorTree.py:991
 #: ../src/plugins/drawreport/DescendTree.py:1583
 msgid "Report Title"
 msgstr "Rapporttittel"
 
-#: ../src/plugins/drawreport/AncestorTree.py:988
+#: ../src/plugins/drawreport/AncestorTree.py:992
 #: ../src/plugins/drawreport/DescendTree.py:1584
-#: ../src/plugins/drawreport/DescendTree.py:1632
+#: ../src/plugins/drawreport/DescendTree.py:1633
 msgid "Do not include a title"
 msgstr "Ikke ta med tittel"
 
-#: ../src/plugins/drawreport/AncestorTree.py:989
+#: ../src/plugins/drawreport/AncestorTree.py:993
 msgid "Include Report Title"
 msgstr "Ta med rapporttittel"
 
-#: ../src/plugins/drawreport/AncestorTree.py:990
-#: ../src/plugins/drawreport/DescendTree.py:1585
+#: ../src/plugins/drawreport/AncestorTree.py:994
+#: ../src/plugins/drawreport/DescendTree.py:1586
 msgid "Choose a title for the report"
 msgstr "Velg en tittel for denne rapporten"
 
-#: ../src/plugins/drawreport/AncestorTree.py:993
-#: ../src/plugins/drawreport/DescendTree.py:1589
+#: ../src/plugins/drawreport/AncestorTree.py:997
+#: ../src/plugins/drawreport/DescendTree.py:1590
 msgid "Include a border"
 msgstr "Ta med en ramme"
 
-#: ../src/plugins/drawreport/AncestorTree.py:994
-#: ../src/plugins/drawreport/DescendTree.py:1590
+#: ../src/plugins/drawreport/AncestorTree.py:998
+#: ../src/plugins/drawreport/DescendTree.py:1591
 msgid "Whether to make a border around the report."
 msgstr "Om det skal lages en ramme rundt rapporten."
 
-#: ../src/plugins/drawreport/AncestorTree.py:997
-#: ../src/plugins/drawreport/DescendTree.py:1593
+#: ../src/plugins/drawreport/AncestorTree.py:1001
+#: ../src/plugins/drawreport/DescendTree.py:1594
 msgid "Include Page Numbers"
 msgstr "Ta med sidetall"
 
-#: ../src/plugins/drawreport/AncestorTree.py:998
+#: ../src/plugins/drawreport/AncestorTree.py:1002
 msgid "Whether to print page numbers on each page."
 msgstr "Om det skal skrives sidetall på hver side."
 
-#: ../src/plugins/drawreport/AncestorTree.py:1001
-#: ../src/plugins/drawreport/DescendTree.py:1597
+#: ../src/plugins/drawreport/AncestorTree.py:1005
+#: ../src/plugins/drawreport/DescendTree.py:1598
 msgid "Include Blank Pages"
 msgstr "Ta med blanke sider"
 
-#: ../src/plugins/drawreport/AncestorTree.py:1002
-#: ../src/plugins/drawreport/DescendTree.py:1598
+#: ../src/plugins/drawreport/AncestorTree.py:1006
+#: ../src/plugins/drawreport/DescendTree.py:1599
 msgid "Whether to include pages that are blank."
 msgstr "Ta med blanke sider."
 
 #. category_name = _("Notes")
-#: ../src/plugins/drawreport/AncestorTree.py:1009
-#: ../src/plugins/drawreport/DescendTree.py:1603
+#: ../src/plugins/drawreport/AncestorTree.py:1013
+#: ../src/plugins/drawreport/DescendTree.py:1604
 msgid "Include a note"
 msgstr "Ta med en kommentar"
 
-#: ../src/plugins/drawreport/AncestorTree.py:1010
-#: ../src/plugins/drawreport/DescendTree.py:1605
+#: ../src/plugins/drawreport/AncestorTree.py:1014
+#: ../src/plugins/drawreport/DescendTree.py:1606
 msgid "Whether to include a note on the report."
 msgstr "Om det skal tas med et notat i rapporten."
 
-#: ../src/plugins/drawreport/AncestorTree.py:1015
-#: ../src/plugins/drawreport/DescendTree.py:1610
+#: ../src/plugins/drawreport/AncestorTree.py:1019
+#: ../src/plugins/drawreport/DescendTree.py:1611
 msgid ""
 "Add a note\n"
 "\n"
@@ -9734,30 +9741,30 @@ msgstr ""
 "\n"
 "$T setter inn dagens dato"
 
-#: ../src/plugins/drawreport/AncestorTree.py:1020
-#: ../src/plugins/drawreport/DescendTree.py:1615
+#: ../src/plugins/drawreport/AncestorTree.py:1024
+#: ../src/plugins/drawreport/DescendTree.py:1616
 msgid "Note Location"
 msgstr "Notatplassering"
 
-#: ../src/plugins/drawreport/AncestorTree.py:1023
-#: ../src/plugins/drawreport/DescendTree.py:1618
+#: ../src/plugins/drawreport/AncestorTree.py:1027
+#: ../src/plugins/drawreport/DescendTree.py:1619
 msgid "Where to place the note."
 msgstr "Hvor et notat skal plasseres."
 
-#: ../src/plugins/drawreport/AncestorTree.py:1038
+#: ../src/plugins/drawreport/AncestorTree.py:1042
 msgid "No generations of empty boxes for unknown ancestors"
 msgstr "Ingen generasjoner med tomme bokser for ukjente aner"
 
-#: ../src/plugins/drawreport/AncestorTree.py:1041
+#: ../src/plugins/drawreport/AncestorTree.py:1045
 msgid "One Generation of empty boxes for unknown ancestors"
 msgstr "En generasjon med tomme bokser for ukjente aner"
 
-#: ../src/plugins/drawreport/AncestorTree.py:1045
+#: ../src/plugins/drawreport/AncestorTree.py:1049
 msgid " Generations of empty boxes for unknown ancestors"
 msgstr " Generasjoner av tomme bokser for ukjente aner"
 
-#: ../src/plugins/drawreport/AncestorTree.py:1077
-#: ../src/plugins/drawreport/DescendTree.py:1659
+#: ../src/plugins/drawreport/AncestorTree.py:1081
+#: ../src/plugins/drawreport/DescendTree.py:1660
 msgid "The basic style used for the title display."
 msgstr "Den grunnleggende stilen for tittelvisning."
 
@@ -9803,13 +9810,13 @@ msgid "Reading database..."
 msgstr "Leser database..."
 
 #: ../src/plugins/drawreport/Calendar.py:314
-#: ../src/plugins/textreport/BirthdayReport.py:274
+#: ../src/plugins/textreport/BirthdayReport.py:276
 #, python-format
 msgid "%(person)s, birth%(relation)s"
 msgstr "%(person)s, født%(relation)s"
 
 #: ../src/plugins/drawreport/Calendar.py:318
-#: ../src/plugins/textreport/BirthdayReport.py:278
+#: ../src/plugins/textreport/BirthdayReport.py:280
 #, python-format
 msgid "%(person)s, %(age)d%(relation)s"
 msgid_plural "%(person)s, %(age)d%(relation)s"
@@ -9817,7 +9824,7 @@ msgstr[0] "%(person)s, %(age)d%(relation)s"
 msgstr[1] "%(person)s, %(age)d%(relation)s"
 
 #: ../src/plugins/drawreport/Calendar.py:372
-#: ../src/plugins/textreport/BirthdayReport.py:324
+#: ../src/plugins/textreport/BirthdayReport.py:326
 #, python-format
 msgid ""
 "%(spouse)s and\n"
@@ -9827,7 +9834,7 @@ msgstr ""
 " %(person)s, bryllup"
 
 #: ../src/plugins/drawreport/Calendar.py:377
-#: ../src/plugins/textreport/BirthdayReport.py:328
+#: ../src/plugins/textreport/BirthdayReport.py:330
 #, python-format
 msgid ""
 "%(spouse)s and\n"
@@ -9844,13 +9851,13 @@ msgstr[1] ""
 
 #: ../src/plugins/drawreport/Calendar.py:407
 #: ../src/plugins/drawreport/Calendar.py:409
-#: ../src/plugins/textreport/BirthdayReport.py:360
 #: ../src/plugins/textreport/BirthdayReport.py:362
+#: ../src/plugins/textreport/BirthdayReport.py:364
 msgid "Year of calendar"
 msgstr "Kalenderår"
 
 #: ../src/plugins/drawreport/Calendar.py:414
-#: ../src/plugins/textreport/BirthdayReport.py:367
+#: ../src/plugins/textreport/BirthdayReport.py:369
 #: ../src/plugins/webreport/WebCal.py:1314
 msgid "Select filter to restrict people that appear on calendar"
 msgstr "Velg filter for å begrense antall personer som skal vises på kalenderen"
@@ -9858,7 +9865,7 @@ msgstr "Velg filter for å begrense antall personer som skal vises på kalendere
 #: ../src/plugins/drawreport/Calendar.py:418
 #: ../src/plugins/drawreport/FanChart.py:397
 #: ../src/plugins/textreport/AncestorReport.py:269
-#: ../src/plugins/textreport/BirthdayReport.py:371
+#: ../src/plugins/textreport/BirthdayReport.py:373
 #: ../src/plugins/textreport/DescendReport.py:394
 #: ../src/plugins/textreport/DetAncestralReport.py:729
 #: ../src/plugins/textreport/DetDescendantReport.py:893
@@ -9870,7 +9877,7 @@ msgstr "Senterpersonen for denne rapporten"
 
 #: ../src/plugins/drawreport/Calendar.py:430
 #: ../src/plugins/textreport/AncestorReport.py:279
-#: ../src/plugins/textreport/BirthdayReport.py:382
+#: ../src/plugins/textreport/BirthdayReport.py:384
 #: ../src/plugins/textreport/DescendReport.py:404
 #: ../src/plugins/textreport/DetAncestralReport.py:739
 #: ../src/plugins/textreport/DetDescendantReport.py:903
@@ -9885,138 +9892,138 @@ msgid "Select the format to display names"
 msgstr "Velg format for å vise navn"
 
 #: ../src/plugins/drawreport/Calendar.py:433
-#: ../src/plugins/textreport/BirthdayReport.py:385
+#: ../src/plugins/textreport/BirthdayReport.py:387
 #: ../src/plugins/webreport/WebCal.py:1390
 msgid "Country for holidays"
 msgstr "Land for helligdager"
 
 #: ../src/plugins/drawreport/Calendar.py:444
-#: ../src/plugins/textreport/BirthdayReport.py:396
+#: ../src/plugins/textreport/BirthdayReport.py:398
 msgid "Select the country to see associated holidays"
 msgstr "Velg et land for å vise dets helligdager"
 
 #. Default selection ????
 #: ../src/plugins/drawreport/Calendar.py:447
-#: ../src/plugins/textreport/BirthdayReport.py:399
+#: ../src/plugins/textreport/BirthdayReport.py:401
 #: ../src/plugins/webreport/WebCal.py:1415
 msgid "First day of week"
 msgstr "Første ukedag"
 
 #: ../src/plugins/drawreport/Calendar.py:451
-#: ../src/plugins/textreport/BirthdayReport.py:403
+#: ../src/plugins/textreport/BirthdayReport.py:405
 #: ../src/plugins/webreport/WebCal.py:1418
 msgid "Select the first day of the week for the calendar"
 msgstr "Velg første ukedag for kalenderen"
 
 #: ../src/plugins/drawreport/Calendar.py:454
-#: ../src/plugins/textreport/BirthdayReport.py:406
+#: ../src/plugins/textreport/BirthdayReport.py:408
 #: ../src/plugins/webreport/WebCal.py:1405
 msgid "Birthday surname"
 msgstr "Etternavn ved fødsel"
 
 #: ../src/plugins/drawreport/Calendar.py:455
-#: ../src/plugins/textreport/BirthdayReport.py:407
+#: ../src/plugins/textreport/BirthdayReport.py:409
 #: ../src/plugins/webreport/WebCal.py:1406
 msgid "Wives use husband's surname (from first family listed)"
 msgstr "Hustruer bruker mannens etternavn (fra første familie som listes opp)"
 
 #: ../src/plugins/drawreport/Calendar.py:456
-#: ../src/plugins/textreport/BirthdayReport.py:408
+#: ../src/plugins/textreport/BirthdayReport.py:410
 #: ../src/plugins/webreport/WebCal.py:1408
 msgid "Wives use husband's surname (from last family listed)"
 msgstr "Hustruer bruker mannens etternavn (fra siste familie som listes opp)"
 
 #: ../src/plugins/drawreport/Calendar.py:457
-#: ../src/plugins/textreport/BirthdayReport.py:409
+#: ../src/plugins/textreport/BirthdayReport.py:411
 #: ../src/plugins/webreport/WebCal.py:1410
 msgid "Wives use their own surname"
 msgstr "Hustruer bruker sitt eget etternavn"
 
 #: ../src/plugins/drawreport/Calendar.py:458
-#: ../src/plugins/textreport/BirthdayReport.py:410
+#: ../src/plugins/textreport/BirthdayReport.py:412
 #: ../src/plugins/webreport/WebCal.py:1411
 msgid "Select married women's displayed surname"
 msgstr "Velg gifte kvinners viste etternavn"
 
 #: ../src/plugins/drawreport/Calendar.py:461
-#: ../src/plugins/textreport/BirthdayReport.py:413
+#: ../src/plugins/textreport/BirthdayReport.py:415
 #: ../src/plugins/webreport/WebCal.py:1426
 msgid "Include only living people"
 msgstr "Ta bare med levende personer"
 
 #: ../src/plugins/drawreport/Calendar.py:462
-#: ../src/plugins/textreport/BirthdayReport.py:414
+#: ../src/plugins/textreport/BirthdayReport.py:416
 #: ../src/plugins/webreport/WebCal.py:1427
 msgid "Include only living people in the calendar"
 msgstr "Ta bare med levende personer i kalenderen"
 
 #: ../src/plugins/drawreport/Calendar.py:465
-#: ../src/plugins/textreport/BirthdayReport.py:417
+#: ../src/plugins/textreport/BirthdayReport.py:419
 #: ../src/plugins/webreport/WebCal.py:1430
 msgid "Include birthdays"
 msgstr "Ta med fødselsdager"
 
 #: ../src/plugins/drawreport/Calendar.py:466
-#: ../src/plugins/textreport/BirthdayReport.py:418
+#: ../src/plugins/textreport/BirthdayReport.py:420
 #: ../src/plugins/webreport/WebCal.py:1431
 msgid "Include birthdays in the calendar"
 msgstr "Ta med fødselsdager i kalenderen"
 
 #: ../src/plugins/drawreport/Calendar.py:469
-#: ../src/plugins/textreport/BirthdayReport.py:421
+#: ../src/plugins/textreport/BirthdayReport.py:423
 #: ../src/plugins/webreport/WebCal.py:1434
 msgid "Include anniversaries"
 msgstr "Ta med jubileer"
 
 #: ../src/plugins/drawreport/Calendar.py:470
-#: ../src/plugins/textreport/BirthdayReport.py:422
+#: ../src/plugins/textreport/BirthdayReport.py:424
 #: ../src/plugins/webreport/WebCal.py:1435
 msgid "Include anniversaries in the calendar"
 msgstr "Ta med jubileer i kalenderen"
 
 #: ../src/plugins/drawreport/Calendar.py:473
 #: ../src/plugins/drawreport/Calendar.py:474
-#: ../src/plugins/textreport/BirthdayReport.py:430
+#: ../src/plugins/textreport/BirthdayReport.py:432
 msgid "Text Options"
 msgstr "Innstillinger for rapporter"
 
 #: ../src/plugins/drawreport/Calendar.py:476
-#: ../src/plugins/textreport/BirthdayReport.py:437
+#: ../src/plugins/textreport/BirthdayReport.py:439
 msgid "Text Area 1"
 msgstr "Tekstområde 1"
 
 #: ../src/plugins/drawreport/Calendar.py:476
-#: ../src/plugins/textreport/BirthdayReport.py:437
+#: ../src/plugins/textreport/BirthdayReport.py:439
 msgid "My Calendar"
 msgstr "Min Kalender"
 
 #: ../src/plugins/drawreport/Calendar.py:477
-#: ../src/plugins/textreport/BirthdayReport.py:438
+#: ../src/plugins/textreport/BirthdayReport.py:440
 msgid "First line of text at bottom of calendar"
 msgstr "Første linje med tekst på bunn av kalenderen"
 
 #: ../src/plugins/drawreport/Calendar.py:480
-#: ../src/plugins/textreport/BirthdayReport.py:441
+#: ../src/plugins/textreport/BirthdayReport.py:443
 msgid "Text Area 2"
 msgstr "Tekstområde 2"
 
 #: ../src/plugins/drawreport/Calendar.py:480
-#: ../src/plugins/textreport/BirthdayReport.py:441
+#: ../src/plugins/textreport/BirthdayReport.py:443
 msgid "Produced with Gramps"
 msgstr "Laget med Gramps"
 
 #: ../src/plugins/drawreport/Calendar.py:481
-#: ../src/plugins/textreport/BirthdayReport.py:442
+#: ../src/plugins/textreport/BirthdayReport.py:444
 msgid "Second line of text at bottom of calendar"
 msgstr "Andre linje med tekst på bunn av kalenderen"
 
 #: ../src/plugins/drawreport/Calendar.py:484
-#: ../src/plugins/textreport/BirthdayReport.py:445
+#: ../src/plugins/textreport/BirthdayReport.py:447
 msgid "Text Area 3"
 msgstr "Tekstområde 3"
 
 #: ../src/plugins/drawreport/Calendar.py:485
-#: ../src/plugins/textreport/BirthdayReport.py:446
+#: ../src/plugins/textreport/BirthdayReport.py:448
 msgid "Third line of text at bottom of calendar"
 msgstr "Tredje linje med tekst på bunn av kalenderen"
 
@@ -10041,17 +10048,17 @@ msgid "Days of the week text"
 msgstr "Tekst for ukedager"
 
 #: ../src/plugins/drawreport/Calendar.py:555
-#: ../src/plugins/textreport/BirthdayReport.py:510
+#: ../src/plugins/textreport/BirthdayReport.py:512
 msgid "Text at bottom, line 1"
 msgstr "Bunntekst, linje 1"
 
 #: ../src/plugins/drawreport/Calendar.py:557
-#: ../src/plugins/textreport/BirthdayReport.py:512
+#: ../src/plugins/textreport/BirthdayReport.py:514
 msgid "Text at bottom, line 2"
 msgstr "Bunntekst, linje 2"
 
 #: ../src/plugins/drawreport/Calendar.py:559
-#: ../src/plugins/textreport/BirthdayReport.py:514
+#: ../src/plugins/textreport/BirthdayReport.py:516
 msgid "Text at bottom, line 3"
 msgstr "Bunntekst, linje 3"
 
@@ -10207,23 +10214,24 @@ msgstr ""
 "f.eks.\n"
 "Amerikas Forente Stater/USA"
 
-#: ../src/plugins/drawreport/DescendTree.py:1594
-msgid "Whether to include page numbers on each page."
-msgstr "Om det skal tas med sidetall på hver side."
-
-#: ../src/plugins/drawreport/DescendTree.py:1633
+#: ../src/plugins/drawreport/DescendTree.py:1585
+#: ../src/plugins/drawreport/DescendTree.py:1634
 msgid "Descendant Chart for [selected person(s)]"
 msgstr "Etterkommertre for [valgt(e) person(er)]"
 
-#: ../src/plugins/drawreport/DescendTree.py:1637
+#: ../src/plugins/drawreport/DescendTree.py:1595
+msgid "Whether to include page numbers on each page."
+msgstr "Om det skal tas med sidetall på hver side."
+
+#: ../src/plugins/drawreport/DescendTree.py:1638
 msgid "Family Chart for [names of chosen family]"
 msgstr "Slektstre for [navn på valgt familie]"
 
-#: ../src/plugins/drawreport/DescendTree.py:1641
+#: ../src/plugins/drawreport/DescendTree.py:1642
 msgid "Cousin Chart for [names of children]"
 msgstr "Søskenbarntre for [navn på barn]"
 
-#: ../src/plugins/drawreport/DescendTree.py:1681
+#: ../src/plugins/drawreport/DescendTree.py:1682
 msgid "The bold style used for the text display."
 msgstr "Den uthevede stilen som brukes for tekstvisningen."
 
@@ -10947,7 +10955,7 @@ msgstr "Eksporteringen feilet"
 msgid "No families matched by selected filter"
 msgstr "Søket ga ingen familier med dette filteret"
 
-#: ../src/plugins/export/ExportPkg.py:166 ../src/plugins/tool/Check.py:645
+#: ../src/plugins/export/ExportPkg.py:166 ../src/plugins/tool/Check.py:665
 msgid "Select file"
 msgstr "Velg en fil"
 
@@ -11048,8 +11056,8 @@ msgid "Mother - Child Age Diff Distribution"
 msgstr "Fordeling av aldersforskjell mellom mor og barn"
 
 #: ../src/plugins/gramplet/AgeStats.py:229
-#: ../src/plugins/gramplet/gramplet.gpr.py:227
-#: ../src/plugins/gramplet/gramplet.gpr.py:234
+#: ../src/plugins/gramplet/gramplet.gpr.py:213
+#: ../src/plugins/gramplet/gramplet.gpr.py:220
 msgid "Statistics"
 msgstr "Statistikker"
 
@@ -11213,11 +11221,11 @@ msgstr "Smågramps som viser mediaobjektene for denne kilden"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:223
 msgid "Citation Gallery"
-msgstr "Galleri over kildehenvisninger"
+msgstr "Siteringsgalleri"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:224
 msgid "Gramplet showing media objects for a citation"
-msgstr "Smågramps som viser mediaobjekter for en kildehenvisning"
+msgstr "Smågramps som viser mediaobjekter for en sitering"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:237
 msgid "Person Attributes"
@@ -11309,11 +11317,11 @@ msgstr "Smågramps som viser notatene for en kilde"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:363
 msgid "Citation Notes"
-msgstr "Notater for kildehenvisning"
+msgstr "Siteringsnotater"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:364
 msgid "Gramplet showing the notes for a citation"
-msgstr "Smågramps som viser notatene for en kildehenvisning"
+msgstr "Smågramps som viser notatene for en sitering"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:377
 msgid "Repository Notes"
@@ -11333,43 +11341,43 @@ msgstr "Smågramps som viser notatene for et mediaobjekt"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:405
 msgid "Person Citations"
-msgstr "Kildehenvisninger til person"
+msgstr "Personsiteringer"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:406
 msgid "Gramplet showing the citations for a person"
-msgstr "Smågramps som viser referanser for en person"
+msgstr "Smågramps som viser siteringer for en person"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:419
 msgid "Event Citations"
-msgstr "Hendelseshenvisning"
+msgstr "Hendelsessitering"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:420
 msgid "Gramplet showing the citations for an event"
-msgstr "Smågramps som viser referanser for en hendelse"
+msgstr "Smågramps som viser siteringene for en hendelse"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:433
 msgid "Family Citations"
-msgstr "Familiehenvisninger"
+msgstr "Familiesiteringer"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:434
 msgid "Gramplet showing the citations for a family"
-msgstr "Smågramps som viser referanser for en familie"
+msgstr "Smågramps som viser siteringene for en familie"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:447
 msgid "Place Citations"
-msgstr "Stedshenvisninger"
+msgstr "Stedssiteringer"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:448
 msgid "Gramplet showing the citations for a place"
-msgstr "Smågramps som viser referanser for et sted"
+msgstr "Smågramps som viser siteringene for et sted"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:461
 msgid "Media Citations"
-msgstr "Mediahenvisninger"
+msgstr "Mediasiteringer"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:462
 msgid "Gramplet showing the citations for a media object"
-msgstr "Smågramps som viser referanser for et mediaobjekt"
+msgstr "Smågramps som viser siteringene for et mediaobjekt"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:475
 msgid "Person Children"
@@ -11382,11 +11390,11 @@ msgstr "Smågramps som viser barna til en person"
 #. Go over children and build their menu
 #: ../src/plugins/gramplet/bottombar.gpr.py:483
 #: ../src/plugins/gramplet/bottombar.gpr.py:497
-#: ../src/plugins/gramplet/FanChartGramplet.py:799
+#: ../src/plugins/gramplet/FanChartGramplet.py:801
 #: ../src/plugins/textreport/FamilyGroup.py:584
 #: ../src/plugins/textreport/IndivComplete.py:442
-#: ../src/plugins/view/fanchartview.py:868
-#: ../src/plugins/view/pedigreeview.py:1916
+#: ../src/plugins/view/fanchartview.py:869
+#: ../src/plugins/view/pedigreeview.py:1919
 #: ../src/plugins/view/relview.py:1358
 #: ../src/plugins/webreport/NarrativeWeb.py:628
 msgid "Children"
@@ -11521,11 +11529,11 @@ msgstr "Smågramps som også har et hendelsesfilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:685
 msgid "Citation Filter"
-msgstr "Henvisningsfilter"
+msgstr "Siteringsfilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:686
 msgid "Gramplet providing a citation filter"
-msgstr "Smågramps som også har henvisningsfilter"
+msgstr "Smågramps som har siteringsfilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:699
 msgid "Place Filter"
@@ -11570,11 +11578,11 @@ msgstr "Dobbeltklikk på en rad for å se/redigere det valgte barnet."
 
 #: ../src/plugins/gramplet/Citations.py:44
 msgid "Double-click on a row to edit the selected source/citation."
-msgstr "Dobbeltklikk på en rad for å redigere den valgte kilden/henvisningen."
+msgstr "Dobbeltklikk på en rad for å redigere den valgte kilden/siteringen."
 
 #: ../src/plugins/gramplet/Citations.py:48
 msgid "Source/Citation"
-msgstr "Kilde/henvisning"
+msgstr "Kilde/Sitering"
 
 #: ../src/plugins/gramplet/Citations.py:50
 msgid "Publisher"
@@ -11582,7 +11590,7 @@ msgstr "Utgiver"
 
 #: ../src/plugins/gramplet/Citations.py:121
 msgid "<No Citation>"
-msgstr "<Ingen henvisning>"
+msgstr "<Ingen siteringer>"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:49
 #: ../src/plugins/gramplet/PedigreeGramplet.py:51
@@ -11744,7 +11752,7 @@ msgstr "Visningsområde for småbilde"
 #. Convert and delete original file or just convert
 #: ../src/plugins/gramplet/EditExifMetadata.py:752
 #: ../src/plugins/gramplet/EditExifMetadata.py:1158
-#: ../src/plugins/gramplet/gramplet.gpr.py:313
+#: ../src/plugins/gramplet/gramplet.gpr.py:299
 msgid "Edit Image Exif Metadata"
 msgstr "Redigere Metadata for bilde"
 
@@ -11904,7 +11912,7 @@ msgstr "Det var en feil da Exif-metadata for bildet ble fjernet..."
 msgid "Double-click on a row to edit the selected event."
 msgstr "Dobbeltklikk på en rad for å redigere den valgte hendelsen."
 
-#: ../src/plugins/gramplet/FanChartGramplet.py:554
+#: ../src/plugins/gramplet/FanChartGramplet.py:556
 msgid ""
 "Click to expand/contract person\n"
 "Right-click for options\n"
@@ -11914,26 +11922,26 @@ msgstr ""
 "Høyreklikk for å se valg\n"
 "Dra og slipp i åpent område for å rotere"
 
-#: ../src/plugins/gramplet/FanChartGramplet.py:694
-#: ../src/plugins/view/fanchartview.py:763
-#: ../src/plugins/view/pedigreeview.py:1780
-#: ../src/plugins/view/pedigreeview.py:1806
+#: ../src/plugins/gramplet/FanChartGramplet.py:696
+#: ../src/plugins/view/fanchartview.py:764
+#: ../src/plugins/view/pedigreeview.py:1783
+#: ../src/plugins/view/pedigreeview.py:1809
 msgid "People Menu"
 msgstr "Personmeny"
 
 #. Go over siblings and build their menu
-#: ../src/plugins/gramplet/FanChartGramplet.py:756
+#: ../src/plugins/gramplet/FanChartGramplet.py:758
 #: ../src/plugins/quickview/quickview.gpr.py:316
-#: ../src/plugins/view/fanchartview.py:825
-#: ../src/plugins/view/pedigreeview.py:1871 ../src/plugins/view/relview.py:898
+#: ../src/plugins/view/fanchartview.py:826
+#: ../src/plugins/view/pedigreeview.py:1874 ../src/plugins/view/relview.py:898
 #: ../src/plugins/webreport/NarrativeWeb.py:6364
 msgid "Siblings"
 msgstr "Søsken"
 
 #. Go over parents and build their menu
-#: ../src/plugins/gramplet/FanChartGramplet.py:873
-#: ../src/plugins/view/fanchartview.py:942
-#: ../src/plugins/view/pedigreeview.py:2004
+#: ../src/plugins/gramplet/FanChartGramplet.py:875
+#: ../src/plugins/view/fanchartview.py:943
+#: ../src/plugins/view/pedigreeview.py:2007
 msgid "Related"
 msgstr "Relatert"
 
@@ -12121,94 +12129,90 @@ msgid "Gramplet showing active person's ancestors"
 msgstr "Smågramps som viser den aktive personens aner"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:168
-msgid "Gramplet showing available third-party plugins (addons)"
-msgstr "Smågramps som viser tilgjengelige tredjeparts programtillegg (tillegg)"
-
-#: ../src/plugins/gramplet/gramplet.gpr.py:182
 msgid "Gramplet showing an active item Quick View"
 msgstr "Smågramps som viser en Kortvisning av elementer"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:197
-#: ../src/plugins/gramplet/gramplet.gpr.py:203
+#: ../src/plugins/gramplet/gramplet.gpr.py:183
+#: ../src/plugins/gramplet/gramplet.gpr.py:189
 msgid "Relatives"
 msgstr "Slektninger"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:198
+#: ../src/plugins/gramplet/gramplet.gpr.py:184
 msgid "Gramplet showing active person's relatives"
 msgstr "Smågramps som viser den aktive personens slektninger"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:213
-#: ../src/plugins/gramplet/gramplet.gpr.py:220
+#: ../src/plugins/gramplet/gramplet.gpr.py:199
+#: ../src/plugins/gramplet/gramplet.gpr.py:206
 msgid "Session Log"
 msgstr "Sesjonslogg"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:214
+#: ../src/plugins/gramplet/gramplet.gpr.py:200
 msgid "Gramplet showing all activity for this session"
 msgstr "Smågramps som viser aktiviteten for denne sesjonen"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:228
+#: ../src/plugins/gramplet/gramplet.gpr.py:214
 msgid "Gramplet showing summary data of the family tree"
 msgstr "Smågramps som viser et sammendrag av slektsdatabasen"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:241
-#: ../src/plugins/gramplet/gramplet.gpr.py:248
+#: ../src/plugins/gramplet/gramplet.gpr.py:227
+#: ../src/plugins/gramplet/gramplet.gpr.py:234
 msgid "Surname Cloud"
 msgstr "Etternavnstatistikk"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:242
+#: ../src/plugins/gramplet/gramplet.gpr.py:228
 msgid "Gramplet showing all surnames as a text cloud"
 msgstr "Smågramps som viser alle etternavn som en tekstsky"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:255
+#: ../src/plugins/gramplet/gramplet.gpr.py:241
 msgid "TODO"
 msgstr "Å-gjøre"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:256
+#: ../src/plugins/gramplet/gramplet.gpr.py:242
 msgid "Gramplet for generic notes"
 msgstr "Smågramps for generelle notater"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:262
+#: ../src/plugins/gramplet/gramplet.gpr.py:248
 msgid "TODO List"
 msgstr "Å-gjøre-liste"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:269
-#: ../src/plugins/gramplet/gramplet.gpr.py:275
+#: ../src/plugins/gramplet/gramplet.gpr.py:255
+#: ../src/plugins/gramplet/gramplet.gpr.py:261
 msgid "Top Surnames"
 msgstr "Mest brukte etternavn"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:270
+#: ../src/plugins/gramplet/gramplet.gpr.py:256
 msgid "Gramplet showing most frequent surnames in this tree"
 msgstr "Smågramps som viser de mest brukte etternavnene i denne slektsdatabasen"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:282
+#: ../src/plugins/gramplet/gramplet.gpr.py:268
 msgid "Welcome"
 msgstr "Velkommen"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:283
+#: ../src/plugins/gramplet/gramplet.gpr.py:269
 msgid "Gramplet showing a welcome message"
 msgstr "Smågramps som viser en velkomstmelding"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:289
+#: ../src/plugins/gramplet/gramplet.gpr.py:275
 msgid "Welcome to Gramps!"
 msgstr "Velkommen til Gramps!"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:296
+#: ../src/plugins/gramplet/gramplet.gpr.py:282
 msgid "What's Next"
 msgstr "Hva nå?"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:297
+#: ../src/plugins/gramplet/gramplet.gpr.py:283
 msgid "Gramplet suggesting items to research"
 msgstr "Smågramps som foreslår hva man bør forske mer på"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:303
+#: ../src/plugins/gramplet/gramplet.gpr.py:289
 msgid "What's Next?"
 msgstr "Hva nå?"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:314
+#: ../src/plugins/gramplet/gramplet.gpr.py:300
 msgid "Gramplet to view, edit, and save image Exif metadata"
 msgstr "Smågramps for å vise, redigere og lagre Exif-metadata for bilder"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:318
+#: ../src/plugins/gramplet/gramplet.gpr.py:304
 msgid "Edit Exif Metadata"
 msgstr "Redigere Exif-metadata"
 
@@ -12400,7 +12404,7 @@ msgstr "   %d.a Mor: "
 msgid "   %d.b Father: "
 msgstr "   %d.b: Far: "
 
-#: ../src/plugins/gramplet/SessionLogGramplet.py:45
+#: ../src/plugins/gramplet/SessionLogGramplet.py:42
 msgid ""
 "Click name to change active\n"
 "Double-click name to edit"
@@ -12408,28 +12412,28 @@ msgstr ""
 "Klikk på navnet til aktiv person\n"
 "Dobbeltklikk på navnet for å redigere"
 
-#: ../src/plugins/gramplet/SessionLogGramplet.py:46
+#: ../src/plugins/gramplet/SessionLogGramplet.py:43
 msgid "Log for this Session"
 msgstr "Logge for denne sesjonen"
 
-#: ../src/plugins/gramplet/SessionLogGramplet.py:55
+#: ../src/plugins/gramplet/SessionLogGramplet.py:52
 msgid "Opened data base -----------\n"
 msgstr "Åpnet database -----------\n"
 
 #. List of translated strings used here (translated in self.log ).
-#: ../src/plugins/gramplet/SessionLogGramplet.py:57
+#: ../src/plugins/gramplet/SessionLogGramplet.py:54
 msgid "Added"
 msgstr "Lagt til"
 
-#: ../src/plugins/gramplet/SessionLogGramplet.py:57
+#: ../src/plugins/gramplet/SessionLogGramplet.py:54
 msgid "Deleted"
 msgstr "Slettet"
 
-#: ../src/plugins/gramplet/SessionLogGramplet.py:57
+#: ../src/plugins/gramplet/SessionLogGramplet.py:54
 msgid "Edited"
 msgstr "Redigert"
 
-#: ../src/plugins/gramplet/SessionLogGramplet.py:57
+#: ../src/plugins/gramplet/SessionLogGramplet.py:54
 msgid "Selected"
 msgstr "Valgt"
 
@@ -12443,7 +12447,7 @@ msgid "less than 1"
 msgstr "mindre enn 1"
 
 #. -------------------------
-#: ../src/plugins/gramplet/StatsGramplet.py:135
+#: ../src/plugins/gramplet/StatsGramplet.py:139
 #: ../src/plugins/graph/GVFamilyLines.py:148
 #: ../src/plugins/textreport/Summary.py:103
 #: ../src/plugins/webreport/NarrativeWeb.py:1647
@@ -12453,76 +12457,76 @@ msgstr "mindre enn 1"
 msgid "Individuals"
 msgstr "Personer"
 
-#: ../src/plugins/gramplet/StatsGramplet.py:137
+#: ../src/plugins/gramplet/StatsGramplet.py:141
 msgid "Number of individuals"
 msgstr "Antall personer"
 
 #. -------------------------
-#: ../src/plugins/gramplet/StatsGramplet.py:141
+#: ../src/plugins/gramplet/StatsGramplet.py:145
 #: ../src/plugins/graph/GVFamilyLines.py:151
 #: ../src/plugins/graph/GVRelGraph.py:547
 #: ../src/Filters/Rules/Person/_IsMale.py:46
 msgid "Males"
 msgstr "Menn"
 
-#: ../src/plugins/gramplet/StatsGramplet.py:144
+#: ../src/plugins/gramplet/StatsGramplet.py:148
 #: ../src/plugins/graph/GVFamilyLines.py:155
 #: ../src/plugins/graph/GVRelGraph.py:551
 #: ../src/Filters/Rules/Person/_IsFemale.py:46
 msgid "Females"
 msgstr "Kvinner"
 
-#: ../src/plugins/gramplet/StatsGramplet.py:147
+#: ../src/plugins/gramplet/StatsGramplet.py:151
 msgid "Individuals with unknown gender"
 msgstr "Personer med ukjent kjønn"
 
-#: ../src/plugins/gramplet/StatsGramplet.py:151
+#: ../src/plugins/gramplet/StatsGramplet.py:155
 msgid "Individuals with incomplete names"
 msgstr "Personer med ufullstendig navn"
 
-#: ../src/plugins/gramplet/StatsGramplet.py:155
+#: ../src/plugins/gramplet/StatsGramplet.py:159
 msgid "Individuals missing birth dates"
 msgstr "Personer uten fødselsdato"
 
-#: ../src/plugins/gramplet/StatsGramplet.py:159
+#: ../src/plugins/gramplet/StatsGramplet.py:163
 msgid "Disconnected individuals"
 msgstr "Slektsløse personer"
 
-#: ../src/plugins/gramplet/StatsGramplet.py:163
+#: ../src/plugins/gramplet/StatsGramplet.py:167
 #: ../src/plugins/textreport/Summary.py:190
 msgid "Family Information"
 msgstr "Familieinformasjon"
 
-#: ../src/plugins/gramplet/StatsGramplet.py:165
+#: ../src/plugins/gramplet/StatsGramplet.py:169
 msgid "Number of families"
 msgstr "Antall familier"
 
-#: ../src/plugins/gramplet/StatsGramplet.py:169
+#: ../src/plugins/gramplet/StatsGramplet.py:173
 msgid "Unique surnames"
 msgstr "Unike etternavn"
 
-#: ../src/plugins/gramplet/StatsGramplet.py:173
+#: ../src/plugins/gramplet/StatsGramplet.py:177
 #: ../src/plugins/textreport/Summary.py:206
 msgid "Media Objects"
 msgstr "Mediaobjekter"
 
-#: ../src/plugins/gramplet/StatsGramplet.py:175
+#: ../src/plugins/gramplet/StatsGramplet.py:179
 msgid "Individuals with media objects"
 msgstr "Personer med mediaobjekter"
 
-#: ../src/plugins/gramplet/StatsGramplet.py:179
+#: ../src/plugins/gramplet/StatsGramplet.py:183
 msgid "Total number of media object references"
 msgstr "Totalt antall henvisninger til mediaobjekter"
 
-#: ../src/plugins/gramplet/StatsGramplet.py:183
+#: ../src/plugins/gramplet/StatsGramplet.py:187
 msgid "Number of unique media objects"
 msgstr "Antall unike mediaobjekter"
 
-#: ../src/plugins/gramplet/StatsGramplet.py:188
+#: ../src/plugins/gramplet/StatsGramplet.py:192
 msgid "Total size of media objects"
 msgstr "Samlet størrelse på mediaobjekter"
 
-#: ../src/plugins/gramplet/StatsGramplet.py:192
+#: ../src/plugins/gramplet/StatsGramplet.py:196
 #: ../src/plugins/textreport/Summary.py:235
 msgid "Missing Media Objects"
 msgstr "Manglende mediaobjekter"
@@ -13635,7 +13639,7 @@ msgstr "  Notat %(id)s med %(id2)s\n"
 #: ../src/plugins/import/ImportXml.py:276
 #, python-format
 msgid "  Citation %(id)s with %(id2)s\n"
-msgstr "  Henvisning %(id)s med %(id2)s\n"
+msgstr "  Sitering %(id)s med %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:284
 #, python-format
@@ -13685,7 +13689,7 @@ msgstr "  Merker: %d\n"
 #: ../src/plugins/import/ImportXml.py:293
 #, python-format
 msgid "  Citations: %d\n"
-msgstr "  Kildehenvisninger: %d\n"
+msgstr "  Siteringer: %d\n"
 
 #: ../src/plugins/import/ImportXml.py:295
 msgid "Number of new objects imported:\n"
@@ -13730,9 +13734,9 @@ msgstr ""
 
 #. there is no old style XML
 #: ../src/plugins/import/ImportXml.py:762
-#: ../src/plugins/import/ImportXml.py:1191
-#: ../src/plugins/import/ImportXml.py:1437
-#: ../src/plugins/import/ImportXml.py:1812
+#: ../src/plugins/import/ImportXml.py:1194
+#: ../src/plugins/import/ImportXml.py:1444
+#: ../src/plugins/import/ImportXml.py:1819
 msgid "The Gramps Xml you are trying to import is malformed."
 msgstr "Gramps XML-fila du prøver å importere er ødelagt."
 
@@ -13828,38 +13832,38 @@ msgstr ""
 msgid "Old xml file"
 msgstr "Gammel xml-fil"
 
-#: ../src/plugins/import/ImportXml.py:1112
-#: ../src/plugins/import/ImportXml.py:2458
+#: ../src/plugins/import/ImportXml.py:1115
+#: ../src/plugins/import/ImportXml.py:2465
 #, python-format
 msgid "Witness name: %s"
 msgstr "Vitners navn: %s"
 
-#: ../src/plugins/import/ImportXml.py:1192
+#: ../src/plugins/import/ImportXml.py:1195
 msgid "Any event reference must have a 'hlink' attribute."
 msgstr "Alle referanser til hendelser må ha en 'hlink'-egenskap."
 
-#: ../src/plugins/import/ImportXml.py:1438
+#: ../src/plugins/import/ImportXml.py:1445
 msgid "Any person reference must have a 'hlink' attribute."
 msgstr "Alle referanser til personer må ha en 'hlink'-egenskap."
 
-#: ../src/plugins/import/ImportXml.py:1599
+#: ../src/plugins/import/ImportXml.py:1606
 #, python-format
 msgid "Your family tree groups name \"%(key)s\" together with \"%(parent)s\", did not change this grouping to \"%(value)s\"."
 msgstr "Ditt slektstre grupperer navn \"%(key)s\" sammen med \"%(parent)s\", endret ikke denne grupperingen til \"%(value)s\"."
 
-#: ../src/plugins/import/ImportXml.py:1602
+#: ../src/plugins/import/ImportXml.py:1609
 msgid "Gramps ignored namemap value"
 msgstr "Gramps ignorerte verdi på navnekart"
 
-#: ../src/plugins/import/ImportXml.py:1661
+#: ../src/plugins/import/ImportXml.py:1668
 msgid "Unknown when imported"
 msgstr "Ukjent når importert"
 
-#: ../src/plugins/import/ImportXml.py:1813
+#: ../src/plugins/import/ImportXml.py:1820
 msgid "Any note reference must have a 'hlink' attribute."
 msgstr "Alle referanser til notater må ha en 'hlink'-egenskap."
 
-#: ../src/plugins/import/ImportXml.py:2349
+#: ../src/plugins/import/ImportXml.py:2356
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Vitners kommentar: %s"
@@ -17033,7 +17037,7 @@ msgid "Delete Person (%s)"
 msgstr "Slett person (%s)"
 
 #: ../src/plugins/lib/libpersonview.py:352
-#: ../src/plugins/view/pedigreeview.py:835 ../src/plugins/view/relview.py:412
+#: ../src/plugins/view/pedigreeview.py:838 ../src/plugins/view/relview.py:412
 msgid "Person Filter Editor"
 msgstr "Lage personfilter"
 
@@ -17306,23 +17310,27 @@ msgid "Ukrainian"
 msgstr "ukrainsk"
 
 #: ../src/plugins/lib/libtranslate.py:81
+msgid "Vietnamese"
+msgstr "vietnamesisk"
+
+#: ../src/plugins/lib/libtranslate.py:82
 msgid "Chinese"
 msgstr "kinesisk"
 
-#: ../src/plugins/lib/libtranslate.py:85
+#: ../src/plugins/lib/libtranslate.py:86
 msgid "Brazil"
 msgstr "Brasil"
 
-#: ../src/plugins/lib/libtranslate.py:86
+#: ../src/plugins/lib/libtranslate.py:87
 #: ../src/plugins/lib/holidays.xml.in.h:23
 msgid "China"
 msgstr "Kina"
 
-#: ../src/plugins/lib/libtranslate.py:87
+#: ../src/plugins/lib/libtranslate.py:88
 msgid "Portugal"
 msgstr "Portugal"
 
-#: ../src/plugins/lib/libtranslate.py:110
+#: ../src/plugins/lib/libtranslate.py:111
 #, python-format
 msgid "%(language)s (%(country)s)"
 msgstr "%(language)s (%(country)s)"
@@ -17333,27 +17341,27 @@ msgstr "%(language)s (%(country)s)"
 #. ex: AttributeType
 #. (FATHER_AGE  , _("Father's Age"), "Father Age"),
 #. (MOTHER_AGE  , _("Mother's Age"), "Mother Age"),
-#: ../src/plugins/lib/libtranslate.py:246
+#: ../src/plugins/lib/libtranslate.py:247
 msgid "Father Age"
 msgstr "Fars alder"
 
-#: ../src/plugins/lib/libtranslate.py:246
+#: ../src/plugins/lib/libtranslate.py:247
 msgid "Mother Age"
 msgstr "Mors alder"
 
-#: ../src/plugins/lib/libtreebase.py:718
+#: ../src/plugins/lib/libtreebase.py:719
 msgid "Top Left"
 msgstr "Øverst til venstre"
 
-#: ../src/plugins/lib/libtreebase.py:719
+#: ../src/plugins/lib/libtreebase.py:720
 msgid "Top Right"
 msgstr "Øverst til høyre"
 
-#: ../src/plugins/lib/libtreebase.py:720
+#: ../src/plugins/lib/libtreebase.py:721
 msgid "Bottom Left"
 msgstr "Nederst til venstre"
 
-#: ../src/plugins/lib/libtreebase.py:721
+#: ../src/plugins/lib/libtreebase.py:722
 msgid "Bottom Right"
 msgstr "Nederst til høyre"
 
@@ -17590,10 +17598,10 @@ msgid "Replace '%(map)s' by =>"
 msgstr "Erstatte '%(map)s' med =>"
 
 #: ../src/plugins/lib/maps/geography.py:886
-#: ../src/plugins/view/geoevents.py:324 ../src/plugins/view/geoevents.py:350
-#: ../src/plugins/view/geofamily.py:375 ../src/plugins/view/geoperson.py:415
-#: ../src/plugins/view/geoperson.py:435 ../src/plugins/view/geoperson.py:472
-#: ../src/plugins/view/geoplaces.py:292 ../src/plugins/view/geoplaces.py:310
+#: ../src/plugins/view/geoevents.py:328 ../src/plugins/view/geoevents.py:354
+#: ../src/plugins/view/geofamily.py:376 ../src/plugins/view/geoperson.py:416
+#: ../src/plugins/view/geoperson.py:436 ../src/plugins/view/geoperson.py:473
+#: ../src/plugins/view/geoplaces.py:298 ../src/plugins/view/geoplaces.py:316
 msgid "Center on this place"
 msgstr "Sentrer på dette stedet"
 
@@ -17632,12 +17640,12 @@ msgstr "Forstørr/forminsk ved sentrering"
 msgid "The map"
 msgstr "Kartet"
 
-#: ../src/plugins/lib/maps/grampsmaps.py:168
+#: ../src/plugins/lib/maps/grampsmaps.py:169
 #, python-format
 msgid "Can't create tiles cache directory %s"
 msgstr "Kan ikke opprette mellomlagerkatalog for titler %s"
 
-#: ../src/plugins/lib/maps/grampsmaps.py:186
+#: ../src/plugins/lib/maps/grampsmaps.py:187
 #, python-format
 msgid "Can't create tiles cache directory for '%s'."
 msgstr "Kan ikke opprette mellomlagerkatalog for titler for '%s'."
@@ -18116,7 +18124,7 @@ msgid "No birth relation with child"
 msgstr "Ingen fødselsrelasjon med barn"
 
 #: ../src/plugins/quickview/lineage.py:158
-#: ../src/plugins/quickview/lineage.py:178 ../src/plugins/tool/Verify.py:942
+#: ../src/plugins/quickview/lineage.py:178 ../src/plugins/tool/Verify.py:951
 msgid "Unknown gender"
 msgstr "Ukjent kjønn"
 
@@ -18219,7 +18227,7 @@ msgstr "Viser hendelser på en bestemt dag"
 #: ../src/plugins/quickview/quickview.gpr.py:208
 #: ../src/plugins/quickview/References.py:91
 msgid "Source or Citation"
-msgstr "Kilde med henvisninger"
+msgstr "Kilde eller Sitering"
 
 #: ../src/plugins/quickview/quickview.gpr.py:214
 #, python-format
@@ -18609,40 +18617,40 @@ msgstr "Viste slektsforhold er til %s"
 #: ../src/plugins/textreport/BirthdayReport.py:176
 #: ../src/plugins/textreport/BirthdayReport.py:214
 #: ../src/plugins/textreport/BirthdayReport.py:223
-#: ../src/plugins/textreport/BirthdayReport.py:433
+#: ../src/plugins/textreport/BirthdayReport.py:435
 #: ../src/plugins/textreport/textplugins.gpr.py:53
 msgid "Birthday and Anniversary Report"
 msgstr "Bursdags- og jubileumsrapport"
 
-#: ../src/plugins/textreport/BirthdayReport.py:425
+#: ../src/plugins/textreport/BirthdayReport.py:427
 msgid "Include relationships to center person"
 msgstr "Ta med slektskap til senterpersonen"
 
-#: ../src/plugins/textreport/BirthdayReport.py:427
+#: ../src/plugins/textreport/BirthdayReport.py:429
 msgid "Include relationships to center person (slower)"
 msgstr "Ta med slektskap til senterpersonen (tregere)"
 
-#: ../src/plugins/textreport/BirthdayReport.py:432
+#: ../src/plugins/textreport/BirthdayReport.py:434
 msgid "Title text"
 msgstr "Titteltekst"
 
-#: ../src/plugins/textreport/BirthdayReport.py:434
+#: ../src/plugins/textreport/BirthdayReport.py:436
 msgid "Title of calendar"
 msgstr "Tittel på kalender"
 
-#: ../src/plugins/textreport/BirthdayReport.py:500
+#: ../src/plugins/textreport/BirthdayReport.py:502
 msgid "Title text style"
 msgstr "Stil for titteltekst"
 
-#: ../src/plugins/textreport/BirthdayReport.py:503
+#: ../src/plugins/textreport/BirthdayReport.py:505
 msgid "Data text display"
 msgstr "Visning av daglig tekst"
 
-#: ../src/plugins/textreport/BirthdayReport.py:505
+#: ../src/plugins/textreport/BirthdayReport.py:507
 msgid "Day text style"
 msgstr "Stil for dagtekst"
 
-#: ../src/plugins/textreport/BirthdayReport.py:508
+#: ../src/plugins/textreport/BirthdayReport.py:510
 msgid "Month text style"
 msgstr "Stil for månedstekst"
 
@@ -19928,15 +19936,15 @@ msgid_plural "%d event records were modified."
 msgstr[0] "%d hendelse ble endret."
 msgstr[1] "%d hendelser ble endret."
 
-#: ../src/plugins/tool/Check.py:102 ../src/plugins/tool/Check.py:229
+#: ../src/plugins/tool/Check.py:97 ../src/plugins/tool/Check.py:227
 msgid "Checking Database"
 msgstr "Kontrollerer database"
 
-#: ../src/plugins/tool/Check.py:103
+#: ../src/plugins/tool/Check.py:98
 msgid "Looking for cross table duplicates"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:145
+#: ../src/plugins/tool/Check.py:143
 msgid ""
 "Your family tree contains cross table duplicate handles.\n"
 " This is bad and can be fixed by making a backup of your\n"
@@ -19945,44 +19953,44 @@ msgid ""
 "Repair tool should be run anew on this new family tree."
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:152
+#: ../src/plugins/tool/Check.py:150
 msgid "Check Integrity"
 msgstr "Kontroller integritet"
 
-#: ../src/plugins/tool/Check.py:230
+#: ../src/plugins/tool/Check.py:228
 #, python-format
 msgid "Objects referenced by this note were referenced but missing so that is why they have been created when you ran Check and Repair on %s."
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:252
+#: ../src/plugins/tool/Check.py:250
 msgid "Looking for invalid name format references"
 msgstr "Søker etter ugyldige referanser til navneformat"
 
-#: ../src/plugins/tool/Check.py:304
+#: ../src/plugins/tool/Check.py:302
 msgid "Looking for duplicate spouses"
 msgstr "Søker etter doble ektefeller"
 
-#: ../src/plugins/tool/Check.py:327
+#: ../src/plugins/tool/Check.py:325
 msgid "Looking for character encoding errors"
 msgstr "Ser etter tegnkodingsfeil"
 
-#: ../src/plugins/tool/Check.py:364
+#: ../src/plugins/tool/Check.py:365
 msgid "Looking for ctrl characters in notes"
 msgstr "Ser etter kontrolltegn i notater"
 
-#: ../src/plugins/tool/Check.py:389
+#: ../src/plugins/tool/Check.py:390
 msgid "Looking for broken family links"
 msgstr "Søker etter ødelagte familielenker"
 
-#: ../src/plugins/tool/Check.py:573
+#: ../src/plugins/tool/Check.py:591
 msgid "Looking for unused objects"
 msgstr "Søker etter ubrukte objekter"
 
-#: ../src/plugins/tool/Check.py:673
+#: ../src/plugins/tool/Check.py:697
 msgid "Media object could not be found"
 msgstr "Fant ikke mediaobjektet"
 
-#: ../src/plugins/tool/Check.py:674
+#: ../src/plugins/tool/Check.py:698
 #, python-format
 msgid ""
 "The file:\n"
@@ -19993,280 +20001,280 @@ msgstr ""
 "%(file_name)s \n"
 "er referert til i databasen, men denne fila eksisterer ikke lenger. Fila kan være slettet eller blitt flyttet til en annen lokasjon. Du kan velge å fjerne referansen til fila fra databasen, beholde referansen til den savnede fila, eller velge en ny fil."
 
-#: ../src/plugins/tool/Check.py:742
+#: ../src/plugins/tool/Check.py:775
 msgid "Looking for empty people records"
 msgstr "Søker etter tomme personforekomster"
 
-#: ../src/plugins/tool/Check.py:750
+#: ../src/plugins/tool/Check.py:783
 msgid "Looking for empty family records"
 msgstr "Søker etter tomme familieforekomster"
 
-#: ../src/plugins/tool/Check.py:758
+#: ../src/plugins/tool/Check.py:791
 msgid "Looking for empty event records"
 msgstr "Søker etter tomme hendelsesforekomster"
 
-#: ../src/plugins/tool/Check.py:766
+#: ../src/plugins/tool/Check.py:799
 msgid "Looking for empty source records"
 msgstr "Søker etter tomme kildeforekomster"
 
-#: ../src/plugins/tool/Check.py:774
+#: ../src/plugins/tool/Check.py:807
 msgid "Looking for empty citation records"
-msgstr "Ser etter tomme henvisningsforekomster"
+msgstr "Ser etter tomme siteringsforekomster"
 
-#: ../src/plugins/tool/Check.py:782
+#: ../src/plugins/tool/Check.py:815
 msgid "Looking for empty place records"
 msgstr "Søker etter tomme stedsforekomster"
 
-#: ../src/plugins/tool/Check.py:790
+#: ../src/plugins/tool/Check.py:823
 msgid "Looking for empty media records"
 msgstr "Ser etter tomme mediaforekomster"
 
-#: ../src/plugins/tool/Check.py:798
+#: ../src/plugins/tool/Check.py:831
 msgid "Looking for empty repository records"
 msgstr "Søker etter tomme oppbevaringsstedsforekomster"
 
-#: ../src/plugins/tool/Check.py:806
+#: ../src/plugins/tool/Check.py:839
 msgid "Looking for empty note records"
 msgstr "Søker etter tomme notatforekomster"
 
-#: ../src/plugins/tool/Check.py:851
+#: ../src/plugins/tool/Check.py:885
 msgid "Looking for empty families"
 msgstr "Søker etter tomme familier"
 
-#: ../src/plugins/tool/Check.py:886
+#: ../src/plugins/tool/Check.py:920
 msgid "Looking for broken parent relationships"
 msgstr "Søker etter ødelagte foreldrerelasjoner"
 
-#: ../src/plugins/tool/Check.py:923
+#: ../src/plugins/tool/Check.py:957
 msgid "Looking for event problems"
 msgstr "Søker etter problemer med hendelser"
 
-#: ../src/plugins/tool/Check.py:1075
+#: ../src/plugins/tool/Check.py:1121
 msgid "Looking for person reference problems"
 msgstr "Søker etter problemer med personreferanser"
 
-#: ../src/plugins/tool/Check.py:1105
+#: ../src/plugins/tool/Check.py:1151
 msgid "Looking for family reference problems"
 msgstr "Søker etter problemer med familiereferanser"
 
-#: ../src/plugins/tool/Check.py:1129
+#: ../src/plugins/tool/Check.py:1175
 msgid "Looking for repository reference problems"
 msgstr "Søker etter problemer med oppbevaringsstedferanser"
 
-#: ../src/plugins/tool/Check.py:1160
+#: ../src/plugins/tool/Check.py:1206
 msgid "Looking for place reference problems"
 msgstr "Søker etter problemer med stedsreferanser"
 
-#: ../src/plugins/tool/Check.py:1234
+#: ../src/plugins/tool/Check.py:1286
 msgid "Looking for citation reference problems"
-msgstr "Søker etter problemer med kildereferanser"
+msgstr "Søker etter problemer med siteringsreferanser"
 
-#: ../src/plugins/tool/Check.py:1363
+#: ../src/plugins/tool/Check.py:1415
 msgid "Looking for source reference problems"
 msgstr "Søker etter problemer med kildereferanser"
 
-#: ../src/plugins/tool/Check.py:1400
+#: ../src/plugins/tool/Check.py:1454
 msgid "Looking for media object reference problems"
 msgstr "Søker etter mediaobjekter med referanseproblemer"
 
-#: ../src/plugins/tool/Check.py:1536
+#: ../src/plugins/tool/Check.py:1590
 msgid "Looking for note reference problems"
 msgstr "Søker etter problemer med notatreferanser"
 
-#: ../src/plugins/tool/Check.py:1688
+#: ../src/plugins/tool/Check.py:1742
 msgid "Looking for tag reference problems"
 msgstr "Søker etter problemer med markeringsreferanser"
 
-#: ../src/plugins/tool/Check.py:1881
+#: ../src/plugins/tool/Check.py:1935
 msgid "No errors were found"
 msgstr "Ingen feil ble funnet"
 
-#: ../src/plugins/tool/Check.py:1882
+#: ../src/plugins/tool/Check.py:1936
 msgid "The database has passed internal checks"
 msgstr "Databasen har bestått den interne kontrollen"
 
-#: ../src/plugins/tool/Check.py:1891
+#: ../src/plugins/tool/Check.py:1945
 #, python-format
 msgid "%(quantity)d broken child/family link was fixed\n"
 msgid_plural "%(quantity)d broken child-family links were fixed\n"
 msgstr[0] "%(quantity)d brutt barn-familierelasjon ble reparert\n"
 msgstr[1] "%(quantity)d brutte barn-familierelasjoner ble reparert\n"
 
-#: ../src/plugins/tool/Check.py:1900
+#: ../src/plugins/tool/Check.py:1954
 msgid "Non existing child"
 msgstr "Ikke-eksisterende barn"
 
-#: ../src/plugins/tool/Check.py:1908
+#: ../src/plugins/tool/Check.py:1962
 #, python-format
 msgid "%(person)s was removed from the family of %(family)s\n"
 msgstr "%(person)s ble fjernet fra %(family)s sin familie\n"
 
-#: ../src/plugins/tool/Check.py:1914
+#: ../src/plugins/tool/Check.py:1968
 #, python-format
 msgid "%(quantity)d broken spouse/family link was fixed\n"
 msgid_plural "%(quantity)d broken spouse/family links were fixed\n"
 msgstr[0] "%(quantity)d brutt ektefelle-/familierelasjon ble reparert\n"
 msgstr[1] "%(quantity)d brutte ektefelle-/familierelasjoner ble reparert\n"
 
-#: ../src/plugins/tool/Check.py:1923 ../src/plugins/tool/Check.py:1946
+#: ../src/plugins/tool/Check.py:1977 ../src/plugins/tool/Check.py:2000
 msgid "Non existing person"
 msgstr "Ikke-eksisterende person"
 
-#: ../src/plugins/tool/Check.py:1931 ../src/plugins/tool/Check.py:1954
+#: ../src/plugins/tool/Check.py:1985 ../src/plugins/tool/Check.py:2008
 #, python-format
 msgid "%(person)s was restored to the family of %(family)s\n"
 msgstr "%(person)s ble gjeninnsatt i %(family)s sin familie\n"
 
-#: ../src/plugins/tool/Check.py:1937
+#: ../src/plugins/tool/Check.py:1991
 #, python-format
 msgid "%(quantity)d duplicate spouse/family link was found\n"
 msgid_plural "%(quantity)d duplicate spouse/family links were found\n"
 msgstr[0] "%(quantity)d duplikat ektefelle-/familierelasjon ble funnet\n"
 msgstr[1] "%(quantity)d duplikate ektefelle-/familierelasjoner ble funnet\n"
 
-#: ../src/plugins/tool/Check.py:1960
+#: ../src/plugins/tool/Check.py:2014
 msgid "1 family with no parents or children found, removed.\n"
 msgstr "1 familie uten foreldre eller barn ble funnet og fjernet.\n"
 
-#: ../src/plugins/tool/Check.py:1965
+#: ../src/plugins/tool/Check.py:2019
 #, python-format
 msgid "%(quantity)d families with no parents or children, removed.\n"
 msgstr "%(quantity)d familier uten foreldre eller barn ble fjernet.\n"
 
-#: ../src/plugins/tool/Check.py:1971
+#: ../src/plugins/tool/Check.py:2025
 #, python-format
 msgid "%d corrupted family relationship fixed\n"
 msgid_plural "%d corrupted family relationship fixed\n"
 msgstr[0] "%d defekt familierelasjone ble reparert\n"
 msgstr[1] "%d defekte familierelasjoner ble reparert\n"
 
-#: ../src/plugins/tool/Check.py:1978
+#: ../src/plugins/tool/Check.py:2032
 #, python-format
 msgid "%d person was referenced but not found\n"
 msgid_plural "%d persons were referenced, but not found\n"
 msgstr[0] "%d person ble referert til, men ikke funnet\n"
 msgstr[1] "%d personer ble referert til, men ikke funnet\n"
 
-#: ../src/plugins/tool/Check.py:1985
+#: ../src/plugins/tool/Check.py:2039
 #, python-format
 msgid "%d family was referenced but not found\n"
 msgid_plural "%d families were referenced, but not found\n"
 msgstr[0] "%d familie ble referert til, men ikke funnet\n"
 msgstr[1] "%d familier ble referert til, men ikke funnet\n"
 
-#: ../src/plugins/tool/Check.py:1991
+#: ../src/plugins/tool/Check.py:2045
 #, python-format
 msgid "%d date was corrected\n"
 msgid_plural "%d dates were corrected\n"
 msgstr[0] "%d dato var korrekt\n"
 msgstr[1] "%d datoer var korrekt\n"
 
-#: ../src/plugins/tool/Check.py:1997
+#: ../src/plugins/tool/Check.py:2051
 #, python-format
 msgid "%(quantity)d repository was referenced but not found\n"
 msgid_plural "%(quantity)d repositories were referenced, but not found\n"
 msgstr[0] "%(quantity)d oppbevaringssted ble referert til, men ikke funnet\n"
 msgstr[1] "%(quantity)d oppbevaringssteder ble referert til, men ikke funnet\n"
 
-#: ../src/plugins/tool/Check.py:2003
+#: ../src/plugins/tool/Check.py:2057
 #, python-format
 msgid "%(quantity)d media object was referenced, but not found\n"
 msgid_plural "%(quantity)d media objects were referenced, but not found\n"
 msgstr[0] "%(quantity)d henvist mediaobjekt ble ikke funnet\n"
 msgstr[1] "%(quantity)d henviste mediaobjekt ble ikke funnet\n"
 
-#: ../src/plugins/tool/Check.py:2010
+#: ../src/plugins/tool/Check.py:2064
 #, python-format
 msgid "Reference to %(quantity)d missing media object was kept\n"
 msgid_plural "References to %(quantity)d media objects were kept\n"
 msgstr[0] "Referanse til %(quantity)d manglende mediaobjekt ble beholdt\n"
 msgstr[1] "Referanser til %(quantity)d manglende mediaobjekt ble beholdt\n"
 
-#: ../src/plugins/tool/Check.py:2017
+#: ../src/plugins/tool/Check.py:2071
 #, python-format
 msgid "%(quantity)d missing media object was replaced\n"
 msgid_plural "%(quantity)d missing media objects were replaced\n"
 msgstr[0] "%(quantity)d manglende medieobjekt ble erstattet\n"
 msgstr[1] "%(quantity)d manglende mediaobjekt ble erstattet\n"
 
-#: ../src/plugins/tool/Check.py:2024
+#: ../src/plugins/tool/Check.py:2078
 #, python-format
 msgid "%(quantity)d missing media object was removed\n"
 msgid_plural "%(quantity)d missing media objects were removed\n"
 msgstr[0] "%(quantity)d manglende medieobjekt ble fjernet\n"
 msgstr[1] "%(quantity)d manglende mediaobjekt ble fjernet\n"
 
-#: ../src/plugins/tool/Check.py:2031
+#: ../src/plugins/tool/Check.py:2085
 #, python-format
 msgid "%(quantity)d event was referenced but not found\n"
 msgid_plural "%(quantity)d events were referenced, but not found\n"
 msgstr[0] "%(quantity)d hendelse er referert til, men ble ikke funnet\n"
 msgstr[1] "%(quantity)d hendelser er referert til, men ble ikke funnet\n"
 
-#: ../src/plugins/tool/Check.py:2038
+#: ../src/plugins/tool/Check.py:2092
 #, python-format
 msgid "%(quantity)d invalid birth event name was fixed\n"
 msgid_plural "%(quantity)d invalid birth event names were fixed\n"
 msgstr[0] "%(quantity)d ugyldig navn på fødselshendelse ble reparert\n"
 msgstr[1] "%(quantity)d ugyldige navn på fødselshendelser ble reparert\n"
 
-#: ../src/plugins/tool/Check.py:2045
+#: ../src/plugins/tool/Check.py:2099
 #, python-format
 msgid "%(quantity)d invalid death event name was fixed\n"
 msgid_plural "%(quantity)d invalid death event names were fixed\n"
 msgstr[0] "%(quantity)d ugyldig navn på dødshendelse ble reparert\n"
 msgstr[1] "%(quantity)d ugyldige navn på dødshendelser ble reparert\n"
 
-#: ../src/plugins/tool/Check.py:2052
+#: ../src/plugins/tool/Check.py:2106
 #, python-format
 msgid "%(quantity)d place was referenced but not found\n"
 msgid_plural "%(quantity)d places were referenced, but not found\n"
 msgstr[0] "%(quantity)d sted er referert til, men ble ikke funnet\n"
 msgstr[1] "%(quantity)d steder er referert til, men ble ikke funnet\n"
 
-#: ../src/plugins/tool/Check.py:2059
+#: ../src/plugins/tool/Check.py:2113
 #, python-format
 msgid "%(quantity)d citation was referenced but not found\n"
 msgid_plural "%(quantity)d citations were referenced, but not found\n"
-msgstr[0] "%(quantity)d henvisninger er referert til, men ble ikke funnet\n"
-msgstr[1] "%(quantity)d henvisninger er referert til, men ble ikke funnet\n"
+msgstr[0] "%(quantity)d sitering er referert til, men ble ikke funnet\n"
+msgstr[1] "%(quantity)d siteringer er referert til, men ble ikke funnet\n"
 
-#: ../src/plugins/tool/Check.py:2066
+#: ../src/plugins/tool/Check.py:2120
 #, python-format
 msgid "%(quantity)d source was referenced but not found\n"
 msgid_plural "%(quantity)d sources were referenced, but not found\n"
 msgstr[0] "%(quantity)d kilde er referert til, men ble ikke funnet\n"
 msgstr[1] "%(quantity)d kilder er referert til, men ble ikke funnet\n"
 
-#: ../src/plugins/tool/Check.py:2073
+#: ../src/plugins/tool/Check.py:2127
 #, python-format
 msgid "%(quantity)d media object was referenced but not found\n"
 msgid_plural "%(quantity)d media objects were referenced but not found\n"
 msgstr[0] "%(quantity)d henvist mediaobjekt ble ikke funnet\n"
 msgstr[1] "%(quantity)d henviste mediaobjekter ble ikke funnet\n"
 
-#: ../src/plugins/tool/Check.py:2080
+#: ../src/plugins/tool/Check.py:2134
 #, python-format
 msgid "%(quantity)d note object was referenced but not found\n"
 msgid_plural "%(quantity)d note objects were referenced but not found\n"
 msgstr[0] "%(quantity)d notatobjekt er henvist til, men ble ikke funnet\n"
 msgstr[1] "%(quantity)d notatobjekter er henvist til, men ble ikke funnet\n"
 
-#: ../src/plugins/tool/Check.py:2086 ../src/plugins/tool/Check.py:2092
+#: ../src/plugins/tool/Check.py:2140 ../src/plugins/tool/Check.py:2146
 #, python-format
 msgid "%(quantity)d tag object was referenced but not found\n"
 msgid_plural "%(quantity)d tag objects were referenced but not found\n"
 msgstr[0] "%(quantity)d markeringsobjekt er henvist til, men ble ikke funnet\n"
 msgstr[1] "%(quantity)d markeringsobjekter er henvist til, men ble ikke funnet\n"
 
-#: ../src/plugins/tool/Check.py:2098
+#: ../src/plugins/tool/Check.py:2152
 #, python-format
 msgid "%(quantity)d invalid name format reference was removed\n"
 msgid_plural "%(quantity)d invalid name format references were removed\n"
 msgstr[0] "%(quantity)d ugyldig referanse til navneformat ble fjernet\n"
 msgstr[1] "%(quantity)d ugyldige referanser til navneformat ble fjernet\n"
 
-#: ../src/plugins/tool/Check.py:2104
+#: ../src/plugins/tool/Check.py:2158
 #, python-format
 msgid ""
 "%(empty_obj)d empty objects removed:\n"
@@ -20289,11 +20297,11 @@ msgstr ""
 "   %(repo)d oppbevaringsstedsobjekt\n"
 "   %(note)d notatobjekt\n"
 
-#: ../src/plugins/tool/Check.py:2151
+#: ../src/plugins/tool/Check.py:2205
 msgid "Integrity Check Results"
 msgstr "Resultater for integritetssjekk"
 
-#: ../src/plugins/tool/Check.py:2156
+#: ../src/plugins/tool/Check.py:2210
 msgid "Check and Repair"
 msgstr "Kontroller og reparer"
 
@@ -20426,7 +20434,7 @@ msgid "Find Possible Duplicate People"
 msgstr "Finn mulig duplikate personer"
 
 #: ../src/plugins/tool/FindDupes.py:140
-#: ../src/plugins/tool/MergeCitations.py:159 ../src/plugins/tool/Verify.py:294
+#: ../src/plugins/tool/MergeCitations.py:159 ../src/plugins/tool/Verify.py:297
 msgid "Tool settings"
 msgstr "Verktøyvalg"
 
@@ -20478,31 +20486,31 @@ msgstr "Andre person"
 msgid "Merge candidates"
 msgstr "Kandidater for fletting"
 
-#: ../src/plugins/tool/Leak.py:67
+#: ../src/plugins/tool/Leak.py:68
 msgid "Uncollected Objects Tool"
 msgstr "Verktøy for ubrukte objekter"
 
-#: ../src/plugins/tool/Leak.py:88
+#: ../src/plugins/tool/Leak.py:89
 #: ../src/plugins/webreport/NarrativeWeb.py:2644
 #: ../src/plugins/webreport/NarrativeWeb.py:4394
 msgid "Number"
 msgstr "Nummer"
 
-#: ../src/plugins/tool/Leak.py:92
+#: ../src/plugins/tool/Leak.py:93
 msgid "Uncollected object"
 msgstr "Objekter som ikke er samlet"
 
-#: ../src/plugins/tool/Leak.py:131
+#: ../src/plugins/tool/Leak.py:132
 #, python-format
 msgid "Referrers of %d"
 msgstr "Referanser for %d"
 
-#: ../src/plugins/tool/Leak.py:142
+#: ../src/plugins/tool/Leak.py:143
 #, python-format
 msgid "%d refers to"
 msgstr "%d henviser til"
 
-#: ../src/plugins/tool/Leak.py:158
+#: ../src/plugins/tool/Leak.py:159
 #, python-format
 msgid "Uncollected Objects: %s"
 msgstr "Løse objekter: %s"
@@ -20653,19 +20661,19 @@ msgstr "Ignorere troverdighet"
 
 #: ../src/plugins/tool/MergeCitations.py:78
 msgid "Ignore Date and Confidence"
-msgstr ""
+msgstr "Ignorere dato og troverdighet"
 
 #: ../src/plugins/tool/MergeCitations.py:82
 msgid "manual|Merge citations..."
-msgstr "Flett sammen kildehenvisninger..."
+msgstr "Flett sammen siteringer..."
 
 #: ../src/plugins/tool/MergeCitations.py:129
 msgid "Notes, media objects and data-items of matching citations will be combined."
-msgstr "Notater, mediaobjekter og andre data for sammenfallende henvisninger vil bli satt sammen."
+msgstr "Notater, mediaobjekter og andre data for sammenfallende siteringer vil bli satt sammen."
 
 #: ../src/plugins/tool/MergeCitations.py:159
 msgid "Merge citations tool"
-msgstr "Verktøy for fletting av kildehenvisninger"
+msgstr "Verktøy for fletting av siteringer"
 
 #: ../src/plugins/tool/MergeCitations.py:180
 msgid "Checking Sources"
@@ -20673,7 +20681,7 @@ msgstr "Kontrollerer kilder"
 
 #: ../src/plugins/tool/MergeCitations.py:181
 msgid "Looking for citation fields"
-msgstr "Ser etter felt for kildehenvisning"
+msgstr "Ser etter siteringsfelt"
 
 #: ../src/plugins/tool/MergeCitations.py:225
 msgid "Number of merges done"
@@ -20683,8 +20691,8 @@ msgstr "Antall flettinger"
 #, python-format
 msgid "%(num)d citation merged"
 msgid_plural "%(num)d citations merged"
-msgstr[0] "%(num)d kildehenvisning flettet"
-msgstr[1] "%(num)d kildehenvisninger flettet"
+msgstr[0] "%(num)d sitering flettet"
+msgstr[1] "%(num)d siteringer flettet"
 
 #: ../src/plugins/tool/NotRelated.py:67
 msgid "manual|Not_Related..."
@@ -20739,15 +20747,15 @@ msgid_plural "Looking up the names of %d people"
 msgstr[0] "Henter navn for %d person"
 msgstr[1] "Henter navnene for %d personer"
 
-#: ../src/plugins/tool/OwnerEditor.py:56
+#: ../src/plugins/tool/OwnerEditor.py:57
 msgid "manual|Edit_Database_Owner_Information..."
 msgstr "Redigere informasjon om databaseeier..."
 
-#: ../src/plugins/tool/OwnerEditor.py:101
+#: ../src/plugins/tool/OwnerEditor.py:102
 msgid "Database Owner Editor"
 msgstr "Behandler for databaseeier"
 
-#: ../src/plugins/tool/OwnerEditor.py:161
+#: ../src/plugins/tool/OwnerEditor.py:162
 msgid "Edit database owner information"
 msgstr "Redigere informasjon om databaseeier"
 
@@ -20866,7 +20874,7 @@ msgstr "Ubrukte objekter"
 
 #. Add mark column
 #. Add ignore column
-#: ../src/plugins/tool/RemoveUnused.py:183 ../src/plugins/tool/Verify.py:483
+#: ../src/plugins/tool/RemoveUnused.py:183 ../src/plugins/tool/Verify.py:492
 msgid "Mark"
 msgstr "Markere"
 
@@ -21112,170 +21120,170 @@ msgstr "Verifiserer dataene mot brukerdefinerte tester"
 
 #: ../src/plugins/tool/tools.gpr.py:530
 msgid "Searches the entire database, looking for citations that have the same Volume/Page, Date and Confidence."
-msgstr "Søker gjennom hele databasen for å lete etter henvisninger som kan ha samme sidetall, dato eller troverdighetsnivå."
+msgstr "Søker gjennom hele databasen for å lete etter siteringer som kan ha samme sidetall, dato eller troverdighetsnivå."
 
 #: ../src/plugins/tool/Verify.py:74
 msgid "manual|Verify_the_Data..."
 msgstr "Verifiser_dataene..."
 
-#: ../src/plugins/tool/Verify.py:244
+#: ../src/plugins/tool/Verify.py:247
 msgid "Database Verify tool"
 msgstr "Kontrollere database"
 
-#: ../src/plugins/tool/Verify.py:431
+#: ../src/plugins/tool/Verify.py:440
 msgid "Database Verification Results"
 msgstr "Databaseverifiseringsresultat"
 
 #. Add column with the warning text
-#: ../src/plugins/tool/Verify.py:494
+#: ../src/plugins/tool/Verify.py:503
 msgid "Warning"
 msgstr "Advarsel"
 
-#: ../src/plugins/tool/Verify.py:580
+#: ../src/plugins/tool/Verify.py:589
 msgid "_Show all"
 msgstr "Vis alle"
 
-#: ../src/plugins/tool/Verify.py:590 ../src/plugins/tool/verify.glade.h:22
+#: ../src/plugins/tool/Verify.py:599 ../src/plugins/tool/verify.glade.h:22
 msgid "_Hide marked"
 msgstr "Gjem markerte"
 
-#: ../src/plugins/tool/Verify.py:843
+#: ../src/plugins/tool/Verify.py:852
 msgid "Baptism before birth"
 msgstr "Dåp før fødsel"
 
-#: ../src/plugins/tool/Verify.py:857
+#: ../src/plugins/tool/Verify.py:866
 msgid "Death before baptism"
 msgstr "Død før dåp"
 
-#: ../src/plugins/tool/Verify.py:871
+#: ../src/plugins/tool/Verify.py:880
 msgid "Burial before birth"
 msgstr "Begravelse før fødsel"
 
-#: ../src/plugins/tool/Verify.py:885
+#: ../src/plugins/tool/Verify.py:894
 msgid "Burial before death"
 msgstr "Begravelse før død"
 
-#: ../src/plugins/tool/Verify.py:899
+#: ../src/plugins/tool/Verify.py:908
 msgid "Death before birth"
 msgstr "Død før fødsel"
 
-#: ../src/plugins/tool/Verify.py:913
+#: ../src/plugins/tool/Verify.py:922
 msgid "Burial before baptism"
 msgstr "Begravelse før dåp"
 
-#: ../src/plugins/tool/Verify.py:931
+#: ../src/plugins/tool/Verify.py:940
 msgid "Old age at death"
 msgstr "Gammel ved død"
 
-#: ../src/plugins/tool/Verify.py:952
+#: ../src/plugins/tool/Verify.py:961
 msgid "Multiple parents"
 msgstr "Flere foreldrepar"
 
-#: ../src/plugins/tool/Verify.py:969
+#: ../src/plugins/tool/Verify.py:978
 msgid "Married often"
 msgstr "Ofte gift"
 
-#: ../src/plugins/tool/Verify.py:988
+#: ../src/plugins/tool/Verify.py:997
 msgid "Old and unmarried"
 msgstr "Gammel og ugift"
 
-#: ../src/plugins/tool/Verify.py:1015
+#: ../src/plugins/tool/Verify.py:1024
 msgid "Too many children"
 msgstr "For mange barn"
 
-#: ../src/plugins/tool/Verify.py:1030
+#: ../src/plugins/tool/Verify.py:1039
 msgid "Same sex marriage"
 msgstr "Partnerskap"
 
-#: ../src/plugins/tool/Verify.py:1040
+#: ../src/plugins/tool/Verify.py:1049
 msgid "Female husband"
 msgstr "Kvinnelig ektemann"
 
-#: ../src/plugins/tool/Verify.py:1050
+#: ../src/plugins/tool/Verify.py:1059
 msgid "Male wife"
 msgstr "Mannlig hustru"
 
-#: ../src/plugins/tool/Verify.py:1077
+#: ../src/plugins/tool/Verify.py:1086
 msgid "Husband and wife with the same surname"
 msgstr "Ektemann og hustru med samme etternavn"
 
-#: ../src/plugins/tool/Verify.py:1102
+#: ../src/plugins/tool/Verify.py:1111
 msgid "Large age difference between spouses"
 msgstr "Store aldersforskjeller mellom ektefeller"
 
-#: ../src/plugins/tool/Verify.py:1133
+#: ../src/plugins/tool/Verify.py:1142
 msgid "Marriage before birth"
 msgstr "Ekteskap før fødsel"
 
-#: ../src/plugins/tool/Verify.py:1164
+#: ../src/plugins/tool/Verify.py:1173
 msgid "Marriage after death"
 msgstr "Ekteskap etter død"
 
-#: ../src/plugins/tool/Verify.py:1198
+#: ../src/plugins/tool/Verify.py:1207
 msgid "Early marriage"
 msgstr "Tidlig ekteskap"
 
-#: ../src/plugins/tool/Verify.py:1230
+#: ../src/plugins/tool/Verify.py:1239
 msgid "Late marriage"
 msgstr "Sent ekteskap"
 
-#: ../src/plugins/tool/Verify.py:1291
+#: ../src/plugins/tool/Verify.py:1300
 msgid "Old father"
 msgstr "Gammel far"
 
-#: ../src/plugins/tool/Verify.py:1294
+#: ../src/plugins/tool/Verify.py:1303
 msgid "Old mother"
 msgstr "Gammel mor"
 
-#: ../src/plugins/tool/Verify.py:1336
+#: ../src/plugins/tool/Verify.py:1345
 msgid "Young father"
 msgstr "Ung far"
 
-#: ../src/plugins/tool/Verify.py:1339
+#: ../src/plugins/tool/Verify.py:1348
 msgid "Young mother"
 msgstr "Ung mor"
 
-#: ../src/plugins/tool/Verify.py:1378
+#: ../src/plugins/tool/Verify.py:1387
 msgid "Unborn father"
 msgstr "Ufødt far"
 
-#: ../src/plugins/tool/Verify.py:1381
+#: ../src/plugins/tool/Verify.py:1390
 msgid "Unborn mother"
 msgstr "Ufødt mor"
 
-#: ../src/plugins/tool/Verify.py:1426
+#: ../src/plugins/tool/Verify.py:1435
 msgid "Dead father"
 msgstr "Død far"
 
-#: ../src/plugins/tool/Verify.py:1429
+#: ../src/plugins/tool/Verify.py:1438
 msgid "Dead mother"
 msgstr "Død mor"
 
-#: ../src/plugins/tool/Verify.py:1451
+#: ../src/plugins/tool/Verify.py:1460
 msgid "Large year span for all children"
 msgstr "Høyest antall år mellom første og siste barn"
 
-#: ../src/plugins/tool/Verify.py:1473
+#: ../src/plugins/tool/Verify.py:1482
 msgid "Large age differences between children"
 msgstr "Store aldersforskjeller mellom barna"
 
-#: ../src/plugins/tool/Verify.py:1483
+#: ../src/plugins/tool/Verify.py:1492
 msgid "Disconnected individual"
 msgstr "Slektsløse personer"
 
-#: ../src/plugins/tool/Verify.py:1505
+#: ../src/plugins/tool/Verify.py:1514
 msgid "Invalid birth date"
 msgstr "Ugyldig fødselsdato"
 
-#: ../src/plugins/tool/Verify.py:1527
+#: ../src/plugins/tool/Verify.py:1536
 msgid "Invalid death date"
 msgstr "Ugyldig dødsdato"
 
-#: ../src/plugins/tool/Verify.py:1543
+#: ../src/plugins/tool/Verify.py:1552
 msgid "Marriage date but not married"
 msgstr "Ekteskapsdato men ikke gift"
 
-#: ../src/plugins/tool/Verify.py:1565
+#: ../src/plugins/tool/Verify.py:1574
 msgid "Old age but no death"
 msgstr "Høy alder, men ingen død"
 
@@ -21308,7 +21316,7 @@ msgstr "Kilde: Publikasjonsinformasjon"
 #: ../src/plugins/view/citationtreeview.py:118
 #: ../src/plugins/view/citationlistview.py:118
 msgid "Add a new citation and a new source"
-msgstr "Lag og legg til en ny kildehenvisning og en ny kilde"
+msgstr "Legg til en ny sitering og en ny kilde"
 
 #: ../src/plugins/view/citationtreeview.py:119
 #: ../src/plugins/view/citationlistview.py:119
@@ -21319,24 +21327,24 @@ msgstr "Legg til en ny kilde"
 #: ../src/plugins/view/citationtreeview.py:120
 #: ../src/plugins/view/citationlistview.py:120
 msgid "Add a new citation to an existing source"
-msgstr "Legg til en henvisning til en eksisterende kilde"
+msgstr "Legg til en sitering til en eksisterende kilde"
 
 #: ../src/plugins/view/citationtreeview.py:121
 msgid "Edit the selected citation or source"
-msgstr "Rediger den valgte henvisningen eller kilden"
+msgstr "Rediger den valgte siteringen eller kilden"
 
 #: ../src/plugins/view/citationtreeview.py:122
 msgid "Delete the selected citation or source"
-msgstr "Slett den valgte henvisningen eller kilden"
+msgstr "Slett den valgte siteringen eller kilden"
 
 #: ../src/plugins/view/citationtreeview.py:123
 msgid "Merge the selected citations or selected sources"
-msgstr "Flett sammen de valgte henvisningene eller kildene"
+msgstr "Flett sammen de valgte siteringene eller kildene"
 
 #: ../src/plugins/view/citationtreeview.py:141
 #: ../src/plugins/view/view.gpr.py:234
 msgid "Citation Tree View"
-msgstr ""
+msgstr "Trevisning for siteringer"
 
 #: ../src/plugins/view/citationtreeview.py:279
 msgid "Add source..."
@@ -21344,12 +21352,12 @@ msgstr "Legg til kilde..."
 
 #: ../src/plugins/view/citationtreeview.py:284
 msgid "Add citation..."
-msgstr "Legg til henvisning..."
+msgstr "Legg til sitering..."
 
 #: ../src/plugins/view/citationtreeview.py:292
 #: ../src/plugins/view/citationlistview.py:180
 msgid "Citation Filter Editor"
-msgstr "Filtereditor for henvisning"
+msgstr "Filtereditor for sitering"
 
 #: ../src/plugins/view/citationtreeview.py:301
 #: ../src/plugins/view/persontreeview.py:82
@@ -21365,11 +21373,11 @@ msgstr "Slå sammen alle knutepunkt"
 
 #: ../src/plugins/view/citationtreeview.py:445
 msgid "Cannot add citation."
-msgstr "Kan ikke legge til henvisning."
+msgstr "Kan ikke legge til sitering."
 
 #: ../src/plugins/view/citationtreeview.py:446
 msgid "In order to add a citation to an existing source,  you must select a source."
-msgstr ""
+msgstr "For å legge til en sitering eller eksiterende kilde må du velge en kilde."
 
 #: ../src/plugins/view/citationtreeview.py:514
 msgid ""
@@ -21377,7 +21385,7 @@ msgid ""
 "\n"
 "To edit this source, you need to close the object."
 msgstr ""
-"Denne kilden  kan ikke endres nå.  Enten er den tilhørende kilden allerede endret, eller så er en annen kildereferanse som tilhører kilden endret.\n"
+"Denne kilden  kan ikke endres nå.  Enten er den tilhørende kilden allerede endret, eller så er en annen sitering som tilhører kilden endret.\n"
 "\n"
 "For å endre denne kikden må du lukke objektet."
 
@@ -21386,25 +21394,25 @@ msgstr ""
 #: ../src/plugins/view/citationlistview.py:321
 #: ../src/plugins/view/citationlistview.py:332
 msgid "Cannot merge citations."
-msgstr "Kan ikke flette sammen henvisninger."
+msgstr "Kan ikke flette sammen siteringer."
 
 #: ../src/plugins/view/citationtreeview.py:528
 #: ../src/plugins/view/citationlistview.py:322
 msgid "Exactly two citations must be selected to perform a merge. A second citation can be selected by holding down the control key while clicking on the desired citation."
-msgstr "Nøyaktig to kildehenvisninger må velges for å gjennomføre en fletting.  Kildehenvisning nummer to kan velges ved å holde inne CTRL-tasten og så klikke på ønsket kildehenvisning."
+msgstr "Nøyaktig to siteringer må velges for å gjennomføre en fletting.  Kildehenvisning nummer to kan velges ved å holde inne CTRL-tasten og så klikke på ønsket kildehenvisning."
 
 #: ../src/plugins/view/citationtreeview.py:548
 #: ../src/plugins/view/citationlistview.py:333
 msgid "The two selected citations must have the same source to perform a merge. If you want to merge these two citations, then you must merge the sources first."
-msgstr ""
+msgstr "De to valgte siteringene må ha samme kilde for å kunne flettes sammen. Hvis du vil flette sammen disse to siteringene må du først flette sammen kildene."
 
 #: ../src/plugins/view/citationtreeview.py:562
 msgid "Cannot perform merge."
-msgstr "Kan ikke flette sammen kilder."
+msgstr "Kan ikke flette sammen."
 
 #: ../src/plugins/view/citationtreeview.py:563
 msgid "Both objects must be of the same type, either both must be sources, or both must be citations."
-msgstr ""
+msgstr "Begge objektene må være av samme type, enten må begge være kilder eller så må begge være siteringer."
 
 #: ../src/plugins/view/citationlistview.py:95
 #: ../src/Filters/SideBar/_CitationSidebarFilter.py:95
@@ -21425,16 +21433,16 @@ msgstr "Kilde: Sist endret"
 
 #: ../src/plugins/view/citationlistview.py:122
 msgid "Delete the selected citation"
-msgstr "Slett den valgte kildehenvisningen"
+msgstr "Slett den valgte siteringen"
 
 #: ../src/plugins/view/citationlistview.py:123
 msgid "Merge the selected citations"
-msgstr "Flett sammen de valgte kildehenvisningene"
+msgstr "Flett sammen de valgte siteringene"
 
 #: ../src/plugins/view/citationlistview.py:137
 #: ../src/plugins/view/view.gpr.py:219
 msgid "Citation View"
-msgstr "Visning for kildehenvisning"
+msgstr "Siteringsvisning"
 
 #: ../src/plugins/view/citationlistview.py:308
 msgid ""
@@ -21532,23 +21540,23 @@ msgstr "Visningen viser relasjonene som en viftetavle"
 msgid "WARNING: osmgpsmap module not loaded. osmgpsmap must be >= 0.7.0. yours is %s"
 msgstr "ADVARSEL: modulen osmgpsmap er ikke lastet.  osmgpsmap må være av versjon >= 0.7.0. Din er %s"
 
-#: ../src/plugins/view/geography.gpr.py:41
+#: ../src/plugins/view/geography.gpr.py:42
 msgid "WARNING: osmgpsmap module not loaded. Geography functionality will not be available."
 msgstr "ADVARSEL: modulen osmgpsmap er ikke lastet.  Funksjonaliteten Geografi vil ikke være tilgjengelig."
 
-#: ../src/plugins/view/geography.gpr.py:49
+#: ../src/plugins/view/geography.gpr.py:50
 msgid "A view showing the places visited by one person during his life."
 msgstr "En visning som gjør det mulig å se steder som er besøkt av en person i dennes levetid."
 
-#: ../src/plugins/view/geography.gpr.py:66
+#: ../src/plugins/view/geography.gpr.py:67
 msgid "A view showing all places of the database."
 msgstr "En visning som gjør det mulig å se alle steder i databasen."
 
-#: ../src/plugins/view/geography.gpr.py:81
+#: ../src/plugins/view/geography.gpr.py:82
 msgid "A view showing all the event places of the database."
 msgstr "En visning som gjør at du kan se alle steder for hendelser i databasen."
 
-#: ../src/plugins/view/geography.gpr.py:97
+#: ../src/plugins/view/geography.gpr.py:98
 msgid "A view showing the places visited by one family during all their life."
 msgstr "En visning som lar deg se alle steder som er besøkt av en familie i deres levetid."
 
@@ -21556,16 +21564,16 @@ msgstr "En visning som lar deg se alle steder som er besøkt av en familie i der
 msgid "Events places map"
 msgstr "Kart for steder for hendelser"
 
-#: ../src/plugins/view/geoevents.py:252
+#: ../src/plugins/view/geoevents.py:253
 msgid "incomplete or unreferenced event ?"
 msgstr "ukomplett eller ureferert hendelse ?"
 
-#: ../src/plugins/view/geoevents.py:364
+#: ../src/plugins/view/geoevents.py:368
 msgid "Show all events"
 msgstr "Vis alle hendelser"
 
-#: ../src/plugins/view/geoevents.py:368 ../src/plugins/view/geoevents.py:372
-#: ../src/plugins/view/geoplaces.py:328 ../src/plugins/view/geoplaces.py:332
+#: ../src/plugins/view/geoevents.py:372 ../src/plugins/view/geoevents.py:376
+#: ../src/plugins/view/geoplaces.py:334 ../src/plugins/view/geoplaces.py:338
 msgid "Centering on Place"
 msgstr "Sentrer på sted"
 
@@ -21573,32 +21581,32 @@ msgstr "Sentrer på sted"
 msgid "Family places map"
 msgstr "Kart for familiesteder"
 
-#: ../src/plugins/view/geofamily.py:216 ../src/plugins/view/geoperson.py:322
+#: ../src/plugins/view/geofamily.py:217 ../src/plugins/view/geoperson.py:323
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../src/plugins/view/geofamily.py:299
+#: ../src/plugins/view/geofamily.py:300
 #, python-format
 msgid "Father : %s : %s"
 msgstr "Far : %s : %s"
 
-#: ../src/plugins/view/geofamily.py:306
+#: ../src/plugins/view/geofamily.py:307
 #, python-format
 msgid "Mother : %s : %s"
 msgstr "Mor : %s : %s"
 
-#: ../src/plugins/view/geofamily.py:317
+#: ../src/plugins/view/geofamily.py:318
 #, python-format
 msgid "Child : %(id)s - %(index)d : %(name)s"
 msgstr "Barn : %(id)s - %(index)d : %(name)s"
 
-#: ../src/plugins/view/geofamily.py:326
+#: ../src/plugins/view/geofamily.py:327
 #, python-format
 msgid "Person : %(id)s %(name)s has no family."
 msgstr "Person : %(id)s %(name)s har ingen familie."
 
-#: ../src/plugins/view/geofamily.py:413 ../src/plugins/view/geoperson.py:458
+#: ../src/plugins/view/geofamily.py:414 ../src/plugins/view/geoperson.py:459
 #: ../src/Filters/Rules/_Rule.py:55 ../src/glade/rule.glade.h:22
 msgid "No description"
 msgstr "Ingen beskrivelse"
@@ -21607,19 +21615,19 @@ msgstr "Ingen beskrivelse"
 msgid "Person places map"
 msgstr "Kart for steder for person"
 
-#: ../src/plugins/view/geoperson.py:487
+#: ../src/plugins/view/geoperson.py:488
 msgid "Animate"
 msgstr "Animere"
 
-#: ../src/plugins/view/geoperson.py:510
+#: ../src/plugins/view/geoperson.py:511
 msgid "Animation speed in milliseconds (big value means slower)"
 msgstr "Hastighet på animasjonen i millisekund (stor verdi betyr langsommere)"
 
-#: ../src/plugins/view/geoperson.py:517
+#: ../src/plugins/view/geoperson.py:518
 msgid "How many steps between two markers when we are on large move ?"
 msgstr "Hvor mange steg mellom to markeringen når vi forflytter oss raskt ?"
 
-#: ../src/plugins/view/geoperson.py:524
+#: ../src/plugins/view/geoperson.py:525
 msgid ""
 "The minimum latitude/longitude to select large move.\n"
 "The value is in tenth of degree."
@@ -21627,7 +21635,7 @@ msgstr ""
 "Minste breddegrad/lengdegrad for å velge stor forflytning.\n"
 "Verdi i tiendels grader."
 
-#: ../src/plugins/view/geoperson.py:531
+#: ../src/plugins/view/geoperson.py:532
 msgid "The animation parameters"
 msgstr "Animasjonsparametrene"
 
@@ -21635,7 +21643,7 @@ msgstr "Animasjonsparametrene"
 msgid "Places places map"
 msgstr "Plasserer stedskart"
 
-#: ../src/plugins/view/geoplaces.py:324
+#: ../src/plugins/view/geoplaces.py:330
 msgid "Show all places"
 msgstr "Vis alle steder"
 
@@ -21742,103 +21750,103 @@ msgstr "Kan ikke flette sammen notater."
 msgid "Exactly two notes must be selected to perform a merge. A second note can be selected by holding down the control key while clicking on the desired note."
 msgstr "Nøyaktig to notater må velges for å gjennomføre en fletting.  Notat nummer to kan velges ved å holde inne CTRL-tasten og så klikke på ønsket notat."
 
-#: ../src/plugins/view/pedigreeview.py:85
+#: ../src/plugins/view/pedigreeview.py:86
 msgid "short for baptized|bap."
 msgstr "dåp."
 
-#: ../src/plugins/view/pedigreeview.py:86
+#: ../src/plugins/view/pedigreeview.py:87
 msgid "short for christened|chr."
 msgstr "dåp."
 
-#: ../src/plugins/view/pedigreeview.py:87
+#: ../src/plugins/view/pedigreeview.py:88
 msgid "short for buried|bur."
 msgstr "beg."
 
-#: ../src/plugins/view/pedigreeview.py:88
+#: ../src/plugins/view/pedigreeview.py:89
 msgid "short for cremated|crem."
 msgstr "krem."
 
-#: ../src/plugins/view/pedigreeview.py:1288
+#: ../src/plugins/view/pedigreeview.py:1291
 msgid "Jump to child..."
 msgstr "Gå til barn..."
 
-#: ../src/plugins/view/pedigreeview.py:1301
+#: ../src/plugins/view/pedigreeview.py:1304
 msgid "Jump to father"
 msgstr "Hopp til far"
 
-#: ../src/plugins/view/pedigreeview.py:1314
+#: ../src/plugins/view/pedigreeview.py:1317
 msgid "Jump to mother"
 msgstr "Hopp til mor"
 
-#: ../src/plugins/view/pedigreeview.py:1677
+#: ../src/plugins/view/pedigreeview.py:1680
 msgid "A person was found to be his/her own ancestor."
 msgstr "En person ble funnet til å være hans/hennes egen ane."
 
-#: ../src/plugins/view/pedigreeview.py:1724
-#: ../src/plugins/view/pedigreeview.py:1730
+#: ../src/plugins/view/pedigreeview.py:1727
+#: ../src/plugins/view/pedigreeview.py:1733
 #: ../src/plugins/webreport/NarrativeWeb.py:4328
 #: ../src/plugins/webreport/WebCal.py:516
 msgid "Home"
 msgstr "Hjem"
 
 #. Mouse scroll direction setting.
-#: ../src/plugins/view/pedigreeview.py:1750
+#: ../src/plugins/view/pedigreeview.py:1753
 msgid "Mouse scroll direction"
 msgstr "Retning på muserulling"
 
-#: ../src/plugins/view/pedigreeview.py:1758
+#: ../src/plugins/view/pedigreeview.py:1761
 msgid "Top <-> Bottom"
 msgstr "Topp <-> Bunn"
 
-#: ../src/plugins/view/pedigreeview.py:1765
+#: ../src/plugins/view/pedigreeview.py:1768
 msgid "Left <-> Right"
 msgstr "Venstre <-> Høyre"
 
-#: ../src/plugins/view/pedigreeview.py:1993 ../src/plugins/view/relview.py:401
+#: ../src/plugins/view/pedigreeview.py:1996 ../src/plugins/view/relview.py:401
 msgid "Add New Parents..."
 msgstr "Legg til nye foreldre..."
 
-#: ../src/plugins/view/pedigreeview.py:2053
+#: ../src/plugins/view/pedigreeview.py:2056
 msgid "Family Menu"
 msgstr "Familiemeny"
 
-#: ../src/plugins/view/pedigreeview.py:2179
+#: ../src/plugins/view/pedigreeview.py:2182
 msgid "Show images"
 msgstr "Vis bilder"
 
-#: ../src/plugins/view/pedigreeview.py:2182
+#: ../src/plugins/view/pedigreeview.py:2185
 msgid "Show marriage data"
 msgstr "Vis ekteskapsdata"
 
-#: ../src/plugins/view/pedigreeview.py:2185
+#: ../src/plugins/view/pedigreeview.py:2188
 msgid "Show unknown people"
 msgstr "Vis ukjente personer"
 
-#: ../src/plugins/view/pedigreeview.py:2188
+#: ../src/plugins/view/pedigreeview.py:2191
 msgid "Tree style"
 msgstr "Trestruktur"
 
-#: ../src/plugins/view/pedigreeview.py:2190
+#: ../src/plugins/view/pedigreeview.py:2193
 msgid "Standard"
 msgstr "Standard"
 
-#: ../src/plugins/view/pedigreeview.py:2191
+#: ../src/plugins/view/pedigreeview.py:2194
 msgid "Compact"
 msgstr "Kompakt"
 
-#: ../src/plugins/view/pedigreeview.py:2192
+#: ../src/plugins/view/pedigreeview.py:2195
 msgid "Expanded"
 msgstr "Utvidet"
 
-#: ../src/plugins/view/pedigreeview.py:2195
+#: ../src/plugins/view/pedigreeview.py:2198
 msgid "Tree direction"
 msgstr "Treretning"
 
-#: ../src/plugins/view/pedigreeview.py:2202
+#: ../src/plugins/view/pedigreeview.py:2205
 msgid "Tree size"
 msgstr "Trestørrelse"
 
-#: ../src/plugins/view/pedigreeview.py:2206
+#: ../src/plugins/view/pedigreeview.py:2209
 #: ../src/plugins/view/relview.py:1652
 msgid "Layout"
 msgstr "Utseende"
@@ -22201,11 +22209,11 @@ msgstr "Visningen viser alle kildene"
 
 #: ../src/plugins/view/view.gpr.py:220
 msgid "The view showing all the citations"
-msgstr "Visningen som viser alle kildehenvisningene"
+msgstr "Visningen som viser alle siteringene"
 
 #: ../src/plugins/view/view.gpr.py:235
 msgid "A view displaying citations and sources in a tree format."
-msgstr "En visning som viser kildehenvisninger som en trestruktur."
+msgstr "En visning som viser siteringer og kilder i en trestruktur."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:327
 msgid "Gramps&nbsp;ID"
@@ -22451,7 +22459,7 @@ msgstr "Publikasjonsinformasjon"
 #. add secion title
 #: ../src/plugins/webreport/NarrativeWeb.py:4527
 msgid "Citation References"
-msgstr "Henvisningsreferanser"
+msgstr "Siteringsreferanser"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4832
 msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object&#8217;s page.  If you see media size dimensions above an image, click on the image to see the full sized version.  "
@@ -22484,6 +22492,12 @@ msgstr "Filnavn"
 #: ../src/plugins/webreport/NarrativeWeb.py:5143
 msgid "Last Modified"
 msgstr "Sist endret"
+
+#. add page title
+#: ../src/plugins/webreport/NarrativeWeb.py:5577
+#, python-format
+msgid "Tracking %s"
+msgstr ""
 
 #. page description
 #: ../src/plugins/webreport/NarrativeWeb.py:5581
@@ -23736,11 +23750,11 @@ msgstr "Bind/side:"
 
 #: ../src/Filters/Rules/Person/_HasCitation.py:51
 msgid "People with the <citation>"
-msgstr "Personer med <kildehenvisning>"
+msgstr "Personer med <sitering>"
 
 #: ../src/Filters/Rules/Person/_HasCitation.py:52
 msgid "Matches people with a citation of a particular value"
-msgstr "Samsvarer med personen som har kildehenvisning av en bestemt verdi"
+msgstr "Samsvarer med personen som har siteringer av en bestemt verdi"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:49
 msgid "People with a common ancestor with <filter> match"
@@ -23968,9 +23982,8 @@ msgstr "Personer med <kilde>"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:48
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:53
-#, fuzzy
 msgid "Citation/source filters"
-msgstr "Posisjonsfiltre"
+msgstr "Siterings-/kildefiltre"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:49
 msgid "Matches people who have a particular source"
@@ -24427,18 +24440,16 @@ msgid "Matches families with the family attribute of a particular value"
 msgstr "Samsvarer med familiene som har en familieegenskap med en bestemt verdi"
 
 #: ../src/Filters/Rules/Family/_HasCitation.py:52
-#, fuzzy
 msgid "Family with the <citation>"
-msgstr "Familier med <merke>"
+msgstr "Familier med <sitering>"
 
 #: ../src/Filters/Rules/Family/_HasCitation.py:53
-#, fuzzy
 msgid "Matches families with a citation of a particular value"
-msgstr "Samsvarer med familier som har en hendelse av en bestemt type"
+msgstr "Samsvarer med familier som har en sitering av en bestemt verdi"
 
 #: ../src/Filters/Rules/Family/_HasEvent.py:53
 msgid "Families with the <event>"
-msgstr "Familier med <event>"
+msgstr "Familier med <hendelse>"
 
 #: ../src/Filters/Rules/Family/_HasEvent.py:54
 msgid "Matches families with an event of a particular value"
@@ -24653,14 +24664,12 @@ msgid "Matches events with the event attribute of a particular value"
 msgstr "Samsvarer med hendelser med en gitt hendelsesegenskap av en bestemt verdi"
 
 #: ../src/Filters/Rules/Event/_HasCitation.py:52
-#, fuzzy
 msgid "Event with the <citation>"
-msgstr "Hendelser med <data>"
+msgstr "Hendels med <sitering>"
 
 #: ../src/Filters/Rules/Event/_HasCitation.py:53
-#, fuzzy
 msgid "Matches events with a citation of a particular value"
-msgstr "Samsvarer med hendelser med data av en bestemt verdi"
+msgstr "Samsvarer med hendelser med en sitering av en bestemt verdi"
 
 #: ../src/Filters/Rules/Event/_HasData.py:49
 msgid "Events with <data>"
@@ -24811,7 +24820,6 @@ msgid "Places with no latitude or longitude given"
 msgstr "Steder uten angitt lengde- eller breddegrad"
 
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:50
-#, fuzzy
 msgid "Matches places with empty latitude or longitude"
 msgstr "Samsvarer med steder med tom lengde- eller breddegrad"
 
@@ -25069,94 +25077,76 @@ msgid "Matches sources whose Gramps ID matches the regular expression"
 msgstr "Samsvarer med kilder som har en Gramps ID som samsvarer med det regulære uttrykket"
 
 #: ../src/Filters/Rules/Citation/_AllCitations.py:46
-#, fuzzy
 msgid "Every citation"
-msgstr "Kildehenvisning"
+msgstr "Hver sitering"
 
 #: ../src/Filters/Rules/Citation/_AllCitations.py:47
-#, fuzzy
 msgid "Matches every citation in the database"
-msgstr "Samsvarer med alle i databasen"
+msgstr "Samsvarer med alle siteringer i databasen"
 
 #: ../src/Filters/Rules/Citation/_ChangedSince.py:47
-#, fuzzy
 msgid "Citations changed after <date time>"
-msgstr "Personer som er endret etter <dato tid>"
+msgstr "Siteringer som er endret etter <dato tid>"
 
 #: ../src/Filters/Rules/Citation/_ChangedSince.py:48
-#, fuzzy
 msgid "Matches citation records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
-msgstr "Samsvarer med personer som er endret etter en angitt dato (yyyy-mm-dd hh:mm:ss) eller innenfor et tidsrom om to datoer er angitt."
+msgstr "Samsvarer med siteringer som er endret etter en angitt dato (yyyy-mm-dd hh:mm:ss) eller innenfor et tidsrom om to datoer er angitt."
 
 #: ../src/Filters/Rules/Citation/_CitationPrivate.py:44
-#, fuzzy
 msgid "Citations marked private"
-msgstr "Notater som er merket private"
+msgstr "Siteringer som er merket private"
 
 #: ../src/Filters/Rules/Citation/_CitationPrivate.py:45
-#, fuzzy
 msgid "Matches citations that are indicated as private"
-msgstr "Samsvarer med objekter som er merket private"
+msgstr "Samsvarer med siteringer som er merket private"
 
 #: ../src/Filters/Rules/Citation/_HasGallery.py:46
-#, fuzzy
 msgid "Citations with <count> media"
-msgstr "Familier med <antall> media"
+msgstr "Siteringer med <antall> media"
 
 #: ../src/Filters/Rules/Citation/_HasGallery.py:47
-#, fuzzy
 msgid "Matches citations with a certain number of items in the gallery"
-msgstr "Samsvarer med familier som har et bestemt antall bilder i galleriet"
+msgstr "Samsvarer med siteringer som har et bestemt antall bilder i galleriet"
 
 #: ../src/Filters/Rules/Citation/_HasIdOf.py:46
-#, fuzzy
 msgid "Citation with <Id>"
-msgstr "Person med <Id>"
+msgstr "Siteringer med <Id>"
 
 #: ../src/Filters/Rules/Citation/_HasIdOf.py:47
-#, fuzzy
 msgid "Matches a citation with a specified Gramps ID"
-msgstr "Samsvarer med en familie som har en angitt Gramps ID"
+msgstr "Samsvarer med en sitering som har en angitt Gramps ID"
 
 #: ../src/Filters/Rules/Citation/_HasNote.py:47
-#, fuzzy
 msgid "Citations having <count> notes"
-msgstr "Familier som har <antall> notater"
+msgstr "Siteringer som har <antall> notater"
 
 #: ../src/Filters/Rules/Citation/_HasNote.py:48
-#, fuzzy
 msgid "Matches citations having a certain number of notes"
-msgstr "Samsvarer med hendelser som har et bestemt antall notater"
+msgstr "Samsvarer med siteringer som har et bestemt antall notater"
 
 #: ../src/Filters/Rules/Citation/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Citations having notes containing <substring>"
-msgstr "Familier med tekstfelt som inneholder <substring>"
+msgstr "Siteringer med notater som inneholder <delstreng>"
 
 #: ../src/Filters/Rules/Citation/_HasNoteMatchingSubstringOf.py:45
-#, fuzzy
 msgid "Matches citations whose notes contain text matching a substring"
-msgstr "Samsvarer med familier som har notater som inneholder tekst fra et treff på en delstreng"
+msgstr "Samsvarer med siteringer som har notater som inneholder tekst fra en delstreng"
 
 #: ../src/Filters/Rules/Citation/_HasNoteRegexp.py:43
-#, fuzzy
 msgid "Citations having notes containing <regular expression>"
-msgstr "Familier med tekstfelt som inneholder <regular expression>"
+msgstr "Siteringer med notater som inneholder <regulært uttrykk>"
 
 #: ../src/Filters/Rules/Citation/_HasNoteRegexp.py:44
-#, fuzzy
 msgid "Matches citations whose notes contain text matching a regular expression"
-msgstr "Samsvarer med familier med notater som inneholder tekst fra et treff på en delstreng"
+msgstr "Samsvarer med siteringer med notater som inneholder tekst fra et regulært uttrykk"
 
 #: ../src/Filters/Rules/Citation/_HasReferenceCountOf.py:44
-#, fuzzy
 msgid "Citations with a reference count of <count>"
-msgstr "Notater som er referert til <count> antall ganger"
+msgstr "Siteringer som er referert til <antall> antall ganger"
 
 #: ../src/Filters/Rules/Citation/_HasReferenceCountOf.py:45
-#, fuzzy
 msgid "Matches citations with a certain reference count"
-msgstr "Samsvarer med notater som er referert til et visst antall ganger"
+msgstr "Samsvarer med siteringer som er referert til et visst antall ganger"
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:49
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:47
@@ -25172,75 +25162,68 @@ msgid "Author:"
 msgstr "Forfatter:"
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:51
+#: ../src/glade/mergedata.glade.h:4 ../src/glade/mergesource.glade.h:3
+msgid "Abbreviation:"
+msgstr "Forkortelse:"
+
+#: ../src/Filters/Rules/Citation/_HasSource.py:52
 #: ../src/glade/mergedata.glade.h:11 ../src/glade/mergesource.glade.h:8
 msgid "Publication:"
 msgstr "Publikasjon:"
 
-#: ../src/Filters/Rules/Citation/_HasSource.py:52
+#: ../src/Filters/Rules/Citation/_HasSource.py:53
 msgid "Sources matching parameters"
 msgstr "Kilder mangler parametre"
 
-#: ../src/Filters/Rules/Citation/_HasSource.py:53
-#, fuzzy
+#: ../src/Filters/Rules/Citation/_HasSource.py:54
 msgid "Matches citations with a source of a particular value"
-msgstr "Samsvarer med familier som har en hendelse av en bestemt type"
+msgstr "Samsvarer med siteringer med kilde av en bestemt type"
 
-#: ../src/Filters/Rules/Citation/_HasSource.py:55
-#, fuzzy
+#: ../src/Filters/Rules/Citation/_HasSource.py:56
 msgid "Source filters"
 msgstr "Kildefiltre"
 
 #: ../src/Filters/Rules/Citation/_MatchesFilter.py:46
-#, fuzzy
 msgid "Citations matching the <filter>"
-msgstr "Notater samsvarer med <filter>"
+msgstr "Siteringer samsvarer med <filter>"
 
 #: ../src/Filters/Rules/Citation/_MatchesFilter.py:47
-#, fuzzy
 msgid "Matches citations matched by the specified filter name"
-msgstr "Samsvarer med notater fra et bestemt filternavn"
+msgstr "Samsvarer med siteringer fra et bestemt filternavn"
 
 #: ../src/Filters/Rules/Citation/_MatchesPageSubstringOf.py:44
-#, fuzzy
 msgid "Citation Volume/Page containing <substring>"
-msgstr "Oppbevaringssteder inneholder <delstreng>"
+msgstr "Siteringsvolum/-side inneholder <delstreng>"
 
 #: ../src/Filters/Rules/Citation/_MatchesPageSubstringOf.py:45
-#, fuzzy
 msgid "Matches citations whose Volume/Page contains a certain substring"
-msgstr "Samsvarer med oppbevaringssteder som har navn som inneholder en bestemt delstreng"
+msgstr "Samsvarer med siteringer som har Volum/Side som inneholder en bestemt delstreng"
 
 #: ../src/Filters/Rules/Citation/_RegExpIdOf.py:49
-#, fuzzy
 msgid "Citations with <Id> matching regular expression"
-msgstr "Notater med <Id> samsvarer med regulært uttrykk"
+msgstr "Siteringer med <Id> samsvarer med regulært uttrykk"
 
 #: ../src/Filters/Rules/Citation/_RegExpIdOf.py:50
-#, fuzzy
 msgid "Matches citations whose Gramps ID matches the regular expression"
-msgstr "Samsvarer med notater hvor Gramps ID samsvarer med det regulære uttrykk"
+msgstr "Samsvarer med siteringer hvor Gramps ID samsvarer med det regulære uttrykk"
 
 #: ../src/Filters/Rules/Citation/_MatchesRepositoryFilter.py:47
-#, fuzzy
 msgid "Citations with a source with a repository reference matching the <repository filter>"
-msgstr "Kilder med henvisning til oppbevaringssted som samsvarer med <filter for oppbevaringssted>"
+msgstr "Siteringer med en kilde med en henvisning til oppbevaringssted som samsvarer med <filter for oppbevaringssted>"
 
 #: ../src/Filters/Rules/Citation/_MatchesRepositoryFilter.py:49
-#, fuzzy
 msgid "Matches citations with sources with a repository reference that match a certain repository filter"
 msgstr ""
-"Samsvarer med kilder som har henvisning til oppbevaringssted\n"
+"Samsvarer med siteringer med kilde som har henvisning til oppbevaringssted\n"
 "som samsvarer med et angitt filter for oppbevaringssteder"
 
 #: ../src/Filters/Rules/Citation/_MatchesSourceFilter.py:50
-#, fuzzy
 msgid "Citations with source matching the <source filter>"
-msgstr "Hendelser med kilder som samsvarer med <source filter>"
+msgstr "Siteringer med kilde som samsvarer med <kildefilter>"
 
 #: ../src/Filters/Rules/Citation/_MatchesSourceFilter.py:51
-#, fuzzy
 msgid "Matches citations with sources that match the specified source filter name"
-msgstr "Samsvarer med hendelser som har kilder som samsvarer med et angitt filternavn"
+msgstr "Samsvarer med siteringer som har kilder som samsvarer med et angitt filternavn"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:45
 msgid "Every media object"
@@ -25559,9 +25542,8 @@ msgid "Custom filter"
 msgstr "Selvvalgt filter"
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:96
-#, fuzzy
 msgid "Participants"
-msgstr "Hoveddeltakere"
+msgstr "Deltakere"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:90
 msgid "any"
@@ -25765,9 +25747,8 @@ msgstr "_Etternavn:"
 #: ../src/glade/editperson.glade.h:37 ../src/glade/editfamily.glade.h:23
 #: ../src/glade/editmedia.glade.h:19 ../src/glade/editmediaref.glade.h:32
 #: ../src/glade/editnote.glade.h:13
-#, fuzzy
 msgid "_Tags:"
-msgstr "Merker:"
+msgstr "_Merker:"
 
 #: ../src/glade/editperson.glade.h:38 ../src/glade/editurl.glade.h:9
 #: ../src/glade/editrepository.glade.h:11 ../src/glade/editreporef.glade.h:19
@@ -25786,10 +25767,9 @@ msgstr "Klikk for å utvide/slå sammen"
 
 #: ../src/glade/grampletpane.glade.h:3
 msgid "Close"
-msgstr ""
+msgstr "Lukk"
 
 #: ../src/glade/grampletpane.glade.h:4
-#, fuzzy
 msgid "Config"
 msgstr "Innstilling"
 
@@ -25798,9 +25778,8 @@ msgid "Delete"
 msgstr "Slette"
 
 #: ../src/glade/grampletpane.glade.h:6
-#, fuzzy
 msgid "Detach"
-msgstr "Detaljer"
+msgstr "Koble fra"
 
 #: ../src/glade/grampletpane.glade.h:7
 msgid "Drag to move; click to detach"
@@ -25827,24 +25806,20 @@ msgid "Arrow top"
 msgstr ""
 
 #: ../src/glade/reorder.glade.h:5
-#, fuzzy
 msgid "Move family down"
-msgstr "Fjerne slektstreet"
+msgstr "Flytt familien ned"
 
 #: ../src/glade/reorder.glade.h:6
-#, fuzzy
 msgid "Move family up"
-msgstr "Alle familier"
+msgstr "Flytt familien opp"
 
 #: ../src/glade/reorder.glade.h:7
-#, fuzzy
 msgid "Move parent down"
-msgstr "Fant ingen foreldre"
+msgstr "Flytt foreldre ned"
 
 #: ../src/glade/reorder.glade.h:8
-#, fuzzy
 msgid "Move parent up"
-msgstr "Fant ingen foreldre"
+msgstr "Flytt foreldre opp"
 
 #: ../src/glade/tipofday.glade.h:1
 msgid "_Display on startup"
@@ -26238,14 +26213,12 @@ msgid "_Rename"
 msgstr "Gi n_ytt navn"
 
 #: ../src/glade/editcitation.glade.h:1
-#, fuzzy
 msgid "<b>Citation information</b>"
-msgstr "<b>Relasjonsinformasjon</b>"
+msgstr "<b>Siteringsinformasjon</b>"
 
 #: ../src/glade/editcitation.glade.h:3
-#, fuzzy
 msgid "<b>Note:</b> Any changes in the shared citation information will be reflected in the citation itself, for all items that reference the citation."
-msgstr "<b>Merk:</b> Alle endringer i delt oppbevaringsstedsinformasjon vil bli endret i oppbevaringsstedet selv og for alle objekt som henviser til oppbevaringsstedet."
+msgstr "<b>Merk:</b> Alle endringer i delt siteringsinformasjon vil bli endret i selve siteringen og for alle objekt som henviser til siteringen."
 
 #: ../src/glade/editcitation.glade.h:4 ../src/glade/editsourceref.glade.h:2
 msgid "<b>Note:</b> Any changes in the shared source information will be reflected in the source itself, for all items that reference the source."
@@ -26256,9 +26229,8 @@ msgid "<b>Shared source information</b>"
 msgstr "<b>Delt kildeinformasjon</b>"
 
 #: ../src/glade/editcitation.glade.h:6
-#, fuzzy
 msgid "A unique ID to identify the citation"
-msgstr "En unik ID for å identifisere notatet."
+msgstr "En unik ID for å identifisere siteringen"
 
 #: ../src/glade/editcitation.glade.h:10 ../src/glade/editsourceref.glade.h:8
 msgid "Con_fidence:"
@@ -26396,9 +26368,8 @@ msgstr "Velg en person som har en tilknytning til den personen som redigeres."
 #: ../src/glade/editpersonref.glade.h:9 ../src/glade/editlink.glade.h:5
 #: ../src/glade/editfamily.glade.h:19 ../src/glade/editldsord.glade.h:9
 #: ../src/glade/editevent.glade.h:12
-#, fuzzy
 msgid "Selector"
-msgstr "Velg"
+msgstr "Velger"
 
 #: ../src/glade/editpersonref.glade.h:10
 msgid "Use the select button to choose a person that has an association to the edited person."
@@ -26489,9 +26460,8 @@ msgid "Internet Address:"
 msgstr "Internettadresser:"
 
 #: ../src/glade/editlink.glade.h:6
-#, fuzzy
 msgid "_Link Type:"
-msgstr "Lenketype:"
+msgstr "_Lenketype:"
 
 #: ../src/glade/editfamily.glade.h:1
 msgid "<b>Father</b>"
@@ -26625,9 +26595,8 @@ msgid "Folder"
 msgstr ""
 
 #: ../src/glade/editmedia.glade.h:7
-#, fuzzy
 msgid "Image preview"
-msgstr "Bildestørrelse"
+msgstr "Forhåndsvisning av bilde"
 
 #: ../src/glade/editmedia.glade.h:9
 msgid "Open File Browser to select a media file on your computer."
@@ -26686,7 +26655,6 @@ msgstr ""
 "Velg et område ved klikke og holde inne venstre museknapp i hjørnet øverst til venstre av området du vil ha og så dra musen til hjørnet nederst til høyre av området. Slipp deretter museknappen."
 
 #: ../src/glade/editmediaref.glade.h:22
-#, fuzzy
 msgid "Select a file"
 msgstr "Velg en fil"
 
@@ -26695,14 +26663,12 @@ msgid "Type of media object as indicated by the computer, eg Image, Video, ..."
 msgstr "Mediatypeobjekt som antatt av datamaskinen, f.eks. Bilde, Video, ..."
 
 #: ../src/glade/editmediaref.glade.h:27
-#, fuzzy
 msgid "_Corner 1:  X"
-msgstr "Hjørne 1:  X"
+msgstr "_Hjørne 1:  X"
 
 #: ../src/glade/editmediaref.glade.h:28
-#, fuzzy
 msgid "_Corner 2:  X"
-msgstr "Hjørne 2:  X"
+msgstr "_Hjørne 2:  X"
 
 #: ../src/glade/editeventref.glade.h:2
 msgid "<b>Note:</b> Any changes in the shared event information will be reflected in the event itself, for all participants in the event."
@@ -26738,9 +26704,8 @@ msgid "Ordinance:"
 msgstr "Prestevielse:"
 
 #: ../src/glade/editldsord.glade.h:11
-#, fuzzy
 msgid "_Family:"
-msgstr "Familie:"
+msgstr "_Familie:"
 
 #: ../src/glade/editldsord.glade.h:13
 msgid "_Status:"
@@ -26759,9 +26724,8 @@ msgid "A unique ID to identify the note."
 msgstr "En unik ID for å identifisere notatet."
 
 #: ../src/glade/editnote.glade.h:6
-#, fuzzy
 msgid "Styled Text Editor"
-msgstr "Stilbehandler"
+msgstr "Tekstbehandler med stiler"
 
 #: ../src/glade/editnote.glade.h:8
 msgid ""
@@ -26980,26 +26944,20 @@ msgid "Gramps ID:"
 msgstr "Gramps ID:"
 
 #: ../src/glade/mergecitation.glade.h:7
-#, fuzzy
 msgid "Notes, media objects and data-items of both citations will be combined."
-msgstr "Notater, mediaobjekter, data og henvisninger til oppbevaringssteder for begge kildene vil bli satt sammen."
+msgstr "Notater, mediaobjekter, data for begge siteringene vil bli satt sammen."
 
 #: ../src/glade/mergecitation.glade.h:8
-#, fuzzy
 msgid ""
 "Select the citation that will provide the\n"
 "primary data for the merged citation."
 msgstr ""
-"Velg personen som vil gi\n"
-"primærdataene for den sammenflettede personen."
+"Velg siteringen som vil gi\n"
+"primærdataene for den sammenflettede siteringen."
 
 #: ../src/glade/mergedata.glade.h:3
 msgid "<b>Title selection</b>"
 msgstr "<b>Tittelvalg</b>"
-
-#: ../src/glade/mergedata.glade.h:4 ../src/glade/mergesource.glade.h:3
-msgid "Abbreviation:"
-msgstr "Forkortelse:"
 
 #: ../src/glade/mergedata.glade.h:7
 msgid "Merge and _edit"
@@ -27310,34 +27268,28 @@ msgid "Size:"
 msgstr "Størrelse:"
 
 #: ../src/glade/papermenu.glade.h:7
-#, fuzzy
 msgid "_Bottom:"
 msgstr "_Nederst"
 
 #: ../src/glade/papermenu.glade.h:8
-#, fuzzy
 msgid "_Height:"
-msgstr "Høyde:"
+msgstr "_Høyde:"
 
 #: ../src/glade/papermenu.glade.h:9
-#, fuzzy
 msgid "_Left:"
 msgstr "_Venstre"
 
 #: ../src/glade/papermenu.glade.h:10
-#, fuzzy
 msgid "_Right:"
 msgstr "Høy_re"
 
 #: ../src/glade/papermenu.glade.h:11
-#, fuzzy
 msgid "_Top:"
 msgstr "_Øverst"
 
 #: ../src/glade/papermenu.glade.h:12
-#, fuzzy
 msgid "_Width:"
-msgstr "Bredde:"
+msgstr "_Bredde:"
 
 #: ../src/glade/updateaddons.glade.h:1
 msgid "<b>Available Gramps Updates for Addons</b>"
@@ -27481,37 +27433,31 @@ msgstr "Bruk soundex-koder"
 
 #: ../src/plugins/tool/mergecitations.glade.h:3
 msgid "Don't merge if citation has notes"
-msgstr ""
+msgstr "Ikke flett sammen hvis sitering har notater"
 
 #: ../src/plugins/tool/ownereditor.glade.h:1
-#, fuzzy
 msgid "_City:"
-msgstr "By/Kommune:"
+msgstr "_By:"
 
 #: ../src/plugins/tool/ownereditor.glade.h:2
-#, fuzzy
 msgid "_Country:"
-msgstr "Land:"
+msgstr "_Land:"
 
 #: ../src/plugins/tool/ownereditor.glade.h:3
-#, fuzzy
 msgid "_Email:"
-msgstr "E-post:"
+msgstr "_E-post:"
 
 #: ../src/plugins/tool/ownereditor.glade.h:6
-#, fuzzy
 msgid "_Phone:"
-msgstr "Telefon:"
+msgstr "_Telefon:"
 
 #: ../src/plugins/tool/ownereditor.glade.h:8
-#, fuzzy
 msgid "_Street:"
-msgstr "Gate:"
+msgstr "_Gate:"
 
 #: ../src/plugins/tool/ownereditor.glade.h:9
-#, fuzzy
 msgid "_ZIP/Postal Code:"
-msgstr "Postnummer:"
+msgstr "_Postnummer:"
 
 #: ../src/plugins/tool/patchnames.glade.h:1
 msgid ""
@@ -27686,9 +27632,8 @@ msgid "Mi_nimum age to marry"
 msgstr "_Laveste alder ved giftemål"
 
 #: ../src/plugins/tool/verify.glade.h:21
-#, fuzzy
 msgid "_Estimate missing or inexact dates"
-msgstr "_Estimer manglende datoer"
+msgstr "_Estimer manglende eller unøyaktige datoer"
 
 #: ../src/plugins/tool/verify.glade.h:23
 msgid "_Identify invalid dates"
@@ -28033,6 +27978,9 @@ msgstr "<b>Hvem ble født når?</b><br/>Under &quot;Verktøy &gt; Analysere og u
 #: ../src/data/tips.xml.in.h:63
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr "<b>Arbeide med datoer</b><br/>En serie med datoer can angis ved å bruke formatet &quot;mellom 4.januar 2000 og 20.mars 2003&quot;. Du kan også indikere troverdighetsnivå og velge blant sju ulike kalendre. Prøv knappen ved siden av datofeltet i Hendelsesbehandleren."
+
+#~ msgid "Gramplet showing available third-party plugins (addons)"
+#~ msgstr "Smågramps som viser tilgjengelige tredjeparts programtillegg (tillegg)"
 
 #~ msgid "Rebuild reference map"
 #~ msgstr "Gjenoppbygg referansekart"
@@ -28704,9 +28652,6 @@ msgstr "<b>Arbeide med datoer</b><br/>En serie med datoer can angis ved å bruke
 
 #~ msgid "Uzbek"
 #~ msgstr "usbekisk"
-
-#~ msgid "Vietnamese"
-#~ msgstr "vietnamesisk"
 
 #~ msgid "Walloon"
 #~ msgstr "vallonsk"
