@@ -39,6 +39,7 @@ from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import PangoCairo
 import math
+import cPickle as pickle
 
 #-------------------------------------------------------------------------
 #
@@ -48,6 +49,7 @@ import math
 from gen.display.name import displayer as name_displayer
 import gen.lib
 import gui.utils
+from gui.ddtargets import DdTargets
 
 #-------------------------------------------------------------------------
 #
@@ -95,13 +97,28 @@ class FanChartWidget(Gtk.DrawingArea):
         self.connect("motion_notify_event", self.on_mouse_move)
         self.connect("button-press-event", self.on_mouse_down)
         self.connect("draw", self.on_draw)
+        self.connect("drag_data_get", self.on_drag_data_get)
+        self.connect("drag_begin", self.on_drag_begin)
+        self.connect("drag_end", self.on_drag_end)
         self.context_popup_callback = context_popup_callback
         self.add_events(Gdk.EventMask.BUTTON_PRESS_MASK |
                         Gdk.EventMask.BUTTON_RELEASE_MASK |
                         Gdk.EventMask.POINTER_MOTION_MASK)
+        # Enable drag
+        self.drag_source_set(Gdk.ModifierType.BUTTON1_MASK,
+                            [],
+                            Gdk.DragAction.COPY)
+        tglist = Gtk.TargetList.new([])
+        tglist.add(DdTargets.PERSON_LINK.atom_drag_type,
+                   DdTargets.PERSON_LINK.target_flags,
+                   DdTargets.PERSON_LINK.app_id)
+        #allow drag to a text document, info on drag_get will be 0L !
+        tglist.add_text_targets(0L)
+        self.drag_source_set_target_list(tglist)
         self.pixels_per_generation = 50 # size of radius for generation
         ## gotten from experiments with "sans serif 8":
         self.degrees_per_radius = .80
+        self._mouse_click = False
         ## Other fonts will have different settings. Can you compute that
         ## from the font size? I have no idea.
         self.generations = generations
@@ -422,20 +439,8 @@ class FanChartWidget(Gtk.DrawingArea):
                                                       self.NORMAL]
                 self.show_parents(generation+1, selected-1, start, slice/2.0)
 
-    def on_mouse_up(self, widget, event):
-        # Done with mouse movement
-        if self.last_x is None or self.last_y is None:
-            return True
-        if self.translating:
-            self.translating = False
-            alloc = self.get_allocation()
-            x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
-            self.center_xy = w/2 - event.x, h/2 - event.y
-        self.last_x, self.last_y = None, None
-        self.queue_draw()
-        return True
-
     def on_mouse_move(self, widget, event):
+        self._mouse_click = False
         if self.last_x is None or self.last_y is None:
             alloc = self.get_allocation()
             x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
@@ -545,7 +550,10 @@ class FanChartWidget(Gtk.DrawingArea):
                 return True
         # Do things based on state, event.get_state(), or button, event.button
         if event.button == 1: # left mouse
-            self.change_slice(generation, selected)
+            self._mouse_click = True
+            self._mouse_click_gen = generation
+            self._mouse_click_sel = selected
+            return False
         elif gui.utils.is_right_click(event):
             text, person, parents, child = self.data[generation][selected]
             if person and self.context_popup_callback:
@@ -553,3 +561,44 @@ class FanChartWidget(Gtk.DrawingArea):
                 return True
         self.queue_draw()
         return True
+
+    def on_mouse_up(self, widget, event):
+        # Done with mouse movement
+        if self._mouse_click:
+            self.change_slice(self._mouse_click_gen, self._mouse_click_sel)
+            self._mouse_click = False
+            self.queue_draw()
+            return True
+        if self.last_x is None or self.last_y is None:
+            return True
+        if self.translating:
+            self.translating = False
+            alloc = self.get_allocation()
+            x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
+            self.center_xy = w/2 - event.x, h/2 - event.y
+        self.last_x, self.last_y = None, None
+        self.queue_draw()
+        return True
+
+    def on_drag_begin(self, widget, data):
+        """Set up some inital conditions for drag. Set up icon."""
+        self.in_drag = True
+        self.drag_source_set_icon_stock('gramps-person')
+
+    def on_drag_end(self, widget, data):
+        """Set up some inital conditions for drag. Set up icon."""
+        self.in_drag = False
+
+    def on_drag_data_get(self, widget, context, sel_data, info, time):
+        """
+        Returned parameters after drag.
+        Specified for 'person-link', for others return text info about person.
+        """
+        tgs = [x.name() for x in context.list_targets()]
+        text, person, parents, child = self.data[self._mouse_click_gen][self._mouse_click_sel]
+        if info == DdTargets.PERSON_LINK.app_id:
+            data = (DdTargets.PERSON_LINK.drag_type,
+                    id(self), person.get_handle(), 0)
+            sel_data.set(sel_data.get_target(), 8, pickle.dumps(data))
+        elif ('TEXT' in tgs or 'text/plain' in tgs) and info == 0L:
+            sel_data.set_text(self.format_helper.format_person(person, 11), -1)
